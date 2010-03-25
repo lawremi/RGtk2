@@ -1,0 +1,122 @@
+
+<<echo=FALSE>>=
+require(RGtk2)
+@ 
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.45\textwidth]{ex-RGtk2-alert-panel}
+  \caption{The alert panel showing a message.}
+  \label{fig:RGtk2-alert-panel}
+\end{figure}
+
+This example puts together images, buttons, labels and box containers
+to create an alert panel, or information bar. This is an area that
+seems to drop down from the menu bar to give users feedback about an
+action that is less disruptive than a modal dialog. A similar widget
+is used by Mozilla with its popup blocker. Although, as of version
+2.18, a similar feature is available in \GTK\/ through the
+\code{GtkInfoBar} widget, this example is given, as it shows how
+several useful things in \GTK\/ can be combined to customize the user
+experience.
+
+This constructor for the widget specifies some properties and returns
+an environment to store these properties, as our function calls will
+need to update these properties and have be persistent.
+<<>>=
+newAlertPanel <- function(wrap=35,
+                          icon="gtk-dialog-warning",
+                          message="",
+                          panel.color="goldenrod",
+                          evb=NULL,
+                          image=NULL,
+                          label=NULL # info
+                    ) {
+  x <- c("wrap","icon","message","panel.color","evb","image","label")
+  e <- new.env()
+  sapply(x, function(i) assign(i, envir=e, get(i)))
+  return(e)
+}
+@ 
+
+An alert panel needs just a few methods: one to create the widget, one
+to show the widget and one to hide the widget. We create a function
+\code{getAlertPanelBlock} to return a component that can be added to a
+container. An event box is used so that we can color the background,
+as this isn't possible for a box container due to its lack of a gdk
+window.  To this event box we add a box container that will hold an
+icon indicating this is an alert, a label for the message, and another
+icon to indicate to the user how to close the alert. Since we wish to
+receive mouse clicks on close icon, we place this inside another event
+box. To this, we bind a callback to the \signal{button-press-event} signal.
+<<>>=
+getAlertPanelBlock <- function(obj) {
+
+  obj$evb <- gtkEventBox(show=FALSE)
+  obj$evb$ModifyBg(state="normal",color=obj$panel.color)
+
+  g <- gtkHBox(homogeneous=FALSE, spacing=5)
+  obj$evb$add(g)
+
+  obj$image <- gtkImageNewFromStock(obj$icon, size="button",show=TRUE)
+  obj$image['yalign'] <- .5
+  g$packStart(obj$image, expand=FALSE)
+
+  obj$label <- gtkLabel(obj$message)
+  obj$label['xalign'] <- 0; obj$label['yalign'] <- .5
+  obj$label$setLineWrap(TRUE)
+  obj$label$setWidthChars(obj$wrap)
+  g$packStart(obj$label, expand=TRUE, fill= TRUE)
+
+  xbutton <- gtkEventBox()
+  xbutton$modifyBg(state="normal",color=obj$panel.color) # same color
+  xbutton$add(gtkImageNewFromStock("gtk-close",size="menu"))
+  xbuttonCallback <- function(data,widget,...) {
+    hideAlertPanel(data)
+    return(FALSE)
+  }
+  ID <- gSignalConnect(xbutton,"button-press-event",
+                 f = xbuttonCallback,
+                 data=obj, user.data.first=TRUE)
+  g$packEnd(xbutton, expand=FALSE, fill=FALSE)
+
+  ## also close when event box is clicked
+  obj$motionID <-
+    gSignalConnect(obj$evb,signal="button-press-event",
+                   f = xbuttonCallback,
+                   data=obj, user.data.first=TRUE)
+  return(obj$evb)
+}
+
+@ 
+
+The \code{showAlertPanel} function updates the message and then calls
+the \method{Show}{gtkWidget} method of the event box.
+
+<<>>=
+showAlertPanel <- function(obj) {
+  obj$label$setText(obj$message)
+  obj$evb$show()
+}
+@ 
+
+Our \code{hideAlertPanel} function simply calls the \method{hide}{gtkWidget}
+method the event box.
+<<>>=
+hideAlertPanel <- function(obj) obj$evb$hide()
+@ 
+
+To test it out, we create a simple GUI
+<<>>=
+w <- gtkWindow()
+g <- gtkVBox(); w$add(g)
+
+ap <- newAlertPanel()
+g$packStart(getAlertPanelBlock(ap), expand=FALSE)
+g$packStart(gtkLabel("fill space"), expand=TRUE, fill=TRUE)
+ap$message <- "New Message"             # add message
+showAlertPanel(ap)
+@ 
+
+One could also add a time to close the panel after some delay. The \function{gTimeoutAdd} function is used to specify a function to call periodically until the function returns \code{FALSE}. 
+

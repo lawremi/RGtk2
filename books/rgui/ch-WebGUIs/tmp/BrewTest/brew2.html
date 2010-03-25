@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<html>
+<extends>
+brew1.html
+</extends>
+
+<block id="block1">
+<p>
+This is in block 1 of brew2
+</p>
+<div>some div tag</div>
+</block>
+
+<div>
+  <block id="block3">
+  block 3 in brew 2
+  some brew stuff
+  <%=
+  cat("Brew you")
+  %>
+  
+  </block>
+</div>
+
+<rcode eval="TRUE" echo="FALSE">
+x = 2 + 2
+</rcode>
+
+<rcode eval="TRUE" echo="TRUE">
+2 + 2 + x
+</rcode>
+
+
+
+</html>

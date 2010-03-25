@@ -1,0 +1,36 @@
+# use *striped* table example through first:
+
+table
+stylesheet 
+hwriter
+paste(paste( and loop))
+R2HTML
+prettyR
+highlight -- code highlighting
+brew: 
+  basic template
+  zebra
+  paginator. closure
+Graphics: canvas, svg, figures?
+
+RApache
+------
+REQUEST
+brew integration 
+  header/footer, breadcrumbs, ...
+  findFile -- to place in directory?
+  
+FORMS
+some basic widgets
+
+
+Web 2.0
+-------
+xmlhttp in RApache
+javascript libraries dojo, jQuery, yahoo, extjs
+dude examples
+gWWWW
+
+
+
+

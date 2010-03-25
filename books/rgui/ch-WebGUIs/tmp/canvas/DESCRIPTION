@@ -1,0 +1,9 @@
+Package: canvas
+Version: 0.1-0
+Title: R graphics device targeting the HTML canvas element.
+Author: Jeffrey Horner <jeff.horner@vanderbilt.edu>
+Maintainer: Jeffrey Horner <jeff.horner@vanderbilt.edu>
+Depends: R (>= 2.8.0)
+Description: canvas implements the CanvasRenderingContext2D javascript api.
+License: GPL version 2
+URL: http://www.rforge.net/canvas/

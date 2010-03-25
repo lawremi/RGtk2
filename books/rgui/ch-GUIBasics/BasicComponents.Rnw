@@ -1,0 +1,526 @@
+This section provides an overview of many common GUI controls.
+
+
+\subsection{Selection}
+\label{sec:GUI:basic-selection}
+
+A major taks for a GUI for statistics is the selection of a value. For
+\R\/ there are conceivably several different possible types of
+selections. For example selecting a data frame from a list of data
+frames, selecting a variable in a data frame, selecting certain cases
+in a data frame, selecting a logical value for a function argument,
+selecting a numeric value for a confidence level, selecting a string
+to specify an alternative hypothesis. Clearly there can be no
+one-size-fits all widget to handle the selection of a value. We
+describe some standard selection widgets next. 
+
+
+% XXX REDO FIGURE
+% \begin{figure}
+%   \centering
+%   \includegraphics[width=.45\textwidth]{spss-11-model-selection}
+%   \includegraphics[width=.45\textwidth]{spss-11-one-way-anova}
+%   \caption{Two dialog boxes from SPSS version 11 for specifying terms
+%     for a linear model. The left graphic shows a dialog that allows
+%     the user to specify individual terms in the model. This uses
+%     several types of widgets for selection of values, such as a radio
+%     group, a checkbox, combo boxes, and list boxes. The right graphic
+%     shows a dialog that allows the user to specify response variables
+%     and a grouping variable for a one-way ANOVA.}
+%   \label{fig:GUI:spss-11-model-selection}
+% \end{figure}
+
+\subsubsection{Checkboxes}
+\label{sec:GUI:checkboxes}
+
+A \dfn{checkbox} allows the user to select a logical value for a
+variable. Checkboxes have labels to indicate which variable is being
+selected. A \dfn{checkbox group} is a linked collection of checkboxes
+that allows the selection of one or more values at a time.  
+
+
+\subsubsection{Radio Button Groups}
+\label{sec:GUI:radio=button-groups}
+
+A \dfn{radio button group} allows a user to select exactly one value from a
+vector of possible values. The analogy dates back to old car radios
+where there were 6 buttons to press to select a channel. When a new
+button was pushed in, the old button popped up. Radio button groups
+are useful, provided there are not too many values to choose from, as
+all the values are shown. These values can be arranged in a row, a
+column or rows and columns to better use screen space.
+
+%% tcltk examples
+\begin{figure}
+  \centering
+  \includegraphics[width=.35\textwidth]{ex-listbox}
+  \includegraphics[width=.35\textwidth]{tcltk-tkdensity}
+  \caption{
+    Two applications of the \pkg{tcltk} package. 
+    %%
+    The left graphic is
+    produced by \command{chooseCRANmirror} and uses a list box to
+    allow selection from a long list of possibiulities.
+    %% 
+    The right graphic is the \code{tkdensity} demo from the
+    package. It has various widgets that allow for the selection of
+    parameter values for a density plot.
+  }
+  \label{fig:GUI:ex-tcltk}
+\end{figure}
+
+\subsubsection{Sliders and spinbuttons}
+\label{sec:GUI:sliders}
+
+A \dfn{slider} is a widget that allows the selection of a value from a
+sequence of possible values (typically) through the manipulation of a
+knob that can visually range over the possible values. Some toolkits
+(e.g. Java) only allow for the sequence to have integer values. The
+slider is a good choice for offering the user a selection of parameter
+values. The \code{tkdensity} demo of the \pkg{tcltk} package
+(Figure~\ref{fig:GUI:ex-tcltk}) uses a slider to dynamically adjust the
+bandwith of a density estimate.
+
+
+A \dfn{spin button} also allows the user to specify a value from a possible
+sequence of values. Typically, this widget is is drawn with a text box
+displaying the current value and two arrows to increment or decrement
+the selection. The text box can usually be edited. Some toolkits allow
+the sequence to be a more general than a numeric sequence. A spin
+button has the advantage of using less screen space, but is much
+harder for the user to use if the sequence to choose from is long. A
+spin button is used in the KDE print dialog of
+Figure~\ref{fig:GUI:print-dialogs} to adjust the number of copies.
+
+
+\subsubsection{Popup menus and Combo boxes}
+\label{sec:GUI:combo-boxes}
+
+A \dfn{popup menu} is a widget that allows the selection of one or more
+fixed values while only showing just the currently selected one.
+Usually an arrow is drawn beside the selected value to indicate to the
+user a choice is possible. Clicking on this arrow will cause a
+pre-specified list of values to either drop down or up depending on
+the location of the widget on the screen. If there are too many
+choices, then typically further arrows are used to indicate more
+available choices.  From a screen-space perspective, they can
+efficiently allow the selection of a value from many values, although
+a choice from too many values can be annoying to the user, as anyone
+who has had to select their country out of over 100 in a web form can
+attest. Some toolkits, such as \GTK\/ allow the specification of an
+icon next to the list of values. A \dfn{combo box} is a popup menu
+combined with a text entry area to allow the user to specify their own
+value.
+
+
+
+
+
+
+
+\subsubsection{List boxes}
+
+A \dfn{list box} is a widget that displays in a column the list of
+possible choices. Often a scrollbar is used when the list is too long
+to show in the allocated space. Some toolkits have list boxes that
+allow the values to spread out over several columns. Selection
+typically occurs with a right mouse click or through the keyboad,
+whereas a double-click will typically be programmed to initiate some
+action. Figure~\ref{fig:GUI:ex-tcltk} shows a list box created by \R\/
+that is called from the function \command{chooseCRANmirror}.
+
+List boxes are a good alternative to drop lists when the number of
+selections gets bigger thatn 30. Additionally, list boxes can be
+programmed to allow for multiple selection. This is typically done by
+holding down either the \kbd{shift} or \kbd{ctrl} keys.
+
+Some toolkits allow widgets to be placed next to the entries, such as
+checkboxes or icons. The right-most graphic in
+Figure~\ref{fig:GUI:spss-11-model-selection} shows how SPSS places an icon
+indicating the type of variable next to the variable name in a list
+box, to aid in selection of the proper type of variable.
+
+
+
+\subsubsection{Tabular display}
+\label{sec:GUI:tabular-display}
+
+A \dfn{table widget} shows tabular data, such as a data frame, where
+typically each column is rendered in the same manner but different
+columns need not be. The table widget need not be as flexible as a
+spread sheet, despite their similar appearances. For example, in
+\GTK\/ the selection is done by row, as in a list box. 
+
+Table widgets may be used to display and select tabular data, or may
+be intended for the user to also edit the
+data. Figure~\ref{fig:GUI:table-widgets} shows the data editor from the
+\pkg{JGR} GUI that uses Java's table widget.
+
+In \code{RGtk2} and \code{rJava}, the table widget has a separation of
+the data (the model) and its display. This has many advantages, such
+as, allowing for sorting and filtering of the values displayed without
+changing the underlying data, allowing for multiple views of the same
+data; or allowing for efficient ways to store, perhaps, sparsely
+filled tables. Figure~\ref{fig:GUI:table-widgets} shows a table object
+and a graph object in a Fathom session. These are two different views
+for the same data model. The two are dynamically linked, as changes to
+the underlying model are propogated to its views so that they are
+updated.
+
+The view part of a table, for efficiency, is geared around the display
+of its columns rather than on a cell-by-cell basis (although this may
+be overridden, such as when a cell is being edited). The programmer
+then needs to specify a mapping of data in the model to column numbers
+in the display and the means of rendering the data in the column.
+
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.4\textwidth]{JGR-data-editor}
+  \includegraphics[width=.55\textwidth]{fathom-2-1-xyplot}
+  \caption{
+    Two windows showing the use of table widgets.
+    %%
+    The left graphic shows the data editor from \pkg{JGR} using the
+    table widget in Java.  
+    %%
+    The right graphic shows a data table and a graph in Fathom 2.1
+    with two views of the same data. One view uses a table widget, the
+    other a graph. Changes to one or the other views cause an update
+    to the underlying model. This model then will notify its various
+    displays to update. This arrangement allows for dynamic linking of
+    the table and the graph.}
+  \label{fig:GUI:table-widgets}
+\end{figure}
+
+\subsubsection{Tree widgets}
+\label{sec:GUI:tree-widgets}
+
+List boxes essentially display vectors of similar data, essentially
+tables display data frames. If the data has a heirarchical structure,
+then a \dfn{tree widget} can be used to show that. Examples of
+heirarchical data in \R, are directory structures, the components of a
+list, or the inheritance of methods. The object browser in \pkg{JGR}
+uses a tree widget to show the components of the objects in a users
+session (the left graphic of
+Figure~\ref{fig:GUI:R-guis-exs-JGR-Rcmdr}). The root node of the tree
+is the ``data'' folder, each data object in the global workspace is
+treated as an offspring of this root node. For the data frame
+\code{iraq}, its variables are considered as offspring of the data
+frame. In this case these variables have no further offspring, as
+indicated by the ``page'' icon.
+
+
+\subsection{Inititiating an action}
+
+When users use some widgets, they expect some immediate action to
+occur. Examples of these widgets are the familiar buttons, menubars
+and toolbars. 
+
+
+\subsubsection{Buttons}
+\label{sec:GUI:buttons}
+
+A \dfn{button} is typically used to give the user a place to click the
+mouse in order to initiate some immediate action. The ``Properties''
+button, when clicked, causes a dialog for setting a printers
+properties to open. Similarly, the button with the wizard icons does
+something similar.  As buttons typically lead to an action, they often
+are labeled with a verb.~\citep{APPLE:HIG} In
+Figure~\ref{fig:GUI:spss-11-term-selection} we see how SPSS uses
+buttons in its dialogs: buttons which are not valid in the current
+state, as the user has not input enough information are disabled;
+buttons which are designed to open subsequent dialogs have trailing
+dots; and the standard actions of resetting the data, canceling the
+dialog or requesting help are given their own buttons on the right
+edge of the dialog box.
+
+
+%% adjustments
+The look of the button can usually be manipulated.  A button is given
+a relief through its border, shading, and perhaps a color gradient
+along its face. Some toolkits allow these to be optionally drawn,
+thereby making a button look more like a label, as described below.
+The button text may have some markup or an indication of a accelerator
+keyboard binding, such as the \text{\underline{C}ontrasts...} button
+in the dialog shown in the right graphic of
+Figure~\ref{fig:GUI:spss-11-model-selection}.
+
+\subsubsection{icons}
+\label{sec:GUI:icons}
+An \dfn{icon} is used to augment or replace a text label on a button,
+a toolbar, in a list box, etc.. When icons are used on toolbars and
+buttons, they are associated with actions, so the icons should have
+some visual association.  Well drawn icons make a big visual
+difference in a GUI. The KDE print dialog, contrasted to the firefox
+print dialog in Figure~\ref{fig:GUI:print-dialogs} illustrates this
+point.
+
+Except for the default installation of \pkg{tcltk}, images and icons
+may be specified in a variety of different formats.  Icons can come in
+several different sizes from 16 by 16 pixels to 128 by 128. For
+toolbars and menubars, the toolkit takes care of selecting the
+appropriate icon.
+
+
+\subsubsection{Menubars}
+\label{sec:GUI:menubars}
+
+Xerox Parc's revolutionary idea of a \acronym{WIMP} GUI added windows,
+icons, menubars, and pointing devices to the desktop computing
+environment. The central role of menu bars has not diminished. For a
+GUI, the \dfn{menubar} gives access to the full range of functionality
+available. Each possible action should have a corresponding menu
+item. Menubars are traditionally associated with a top-level
+window. This is enforced by the toolkit in \wxWidgets\/ and
+\Java\/ but not \tcltk\/ and \GTK.  In Mac OS X, the
+menubar appears on the top line of the display, but otherwise they
+typically appear at the top of the main window. In most modern
+applications, standard document-based design is used to
+organize a GUI and its actions, with a main window showing the
+document and its menu bar calling actions on the document, some of
+which may need to open subsequent application windows or dialogs for
+gathering additional user input.  In this model, only the main window
+has a menu bar not the application windows or dialogs. In a statistics
+application, the ``document'' may be viewed as the active data frame,
+a report, or a graphic so there may be many different menu bars
+needed.
+
+The styles used for menubars are fairly standardized, as this allows
+new users to quickly orient themselves with a GUI. The visible menu
+names are often in the order \code{File}, \code{Edit}, \code{View},
+\code{Go}, then application specific menus, and finally a \code{Help}
+menu. Each visible menu item when clicked opens a menu of possible
+actions. The text for these actions traditionally use a \code{...}  to
+indicate that a subsequent dialog will open so that more information
+can be gather to complete the action, as opposed to some immediate
+action being taken. The text may also indicate a key-board
+accelerator, such as \code{Find \underline{N}ext F3} indicating that
+both ``N'' as a keyboard accelerator and F3 as a shortcut will
+initiate this same action. 
+
+Not all actions will be applicable at any given time. It is
+recommended that rather than deleting these menu items, they be
+disabled, or greyed out, instead.~\ref{KDE:HIG}
+
+Menus can get very long. To help the user the menu items are usually
+grouped together, first by being under the appropriate menu title,
+then with either horizontal separators to define subsequent groupings,
+or hierarchical submenus. The latter are indicated with an
+arrow. Several different levels are possible, but navigating through
+to many can be tedious.
+
+The use of menus has evolved to also allow the user to set properties
+or attributes of current state of the GUI. There may be checkboxes
+drawn next to the menu item or some icon indicating the current state.
+
+Another use of menus is to bind contextual menus (popup menus) to
+certain mouse clicks on GUI elements. Typically right mouse clicks
+will pop up a menu that lists often-used commands that are appropriate
+for that widget and the current state of the GUI. In Mac OS X,
+one-button users these menus are bound to a control-click.
+
+\subsubsection{Toolbars}
+\label{sec:GUI:toolbars}
+
+Toolbars are used to give immediate access to the frequently used actions
+defined in the menubar. Toolbars typically have icons representing the
+action and perhaps accompanying text. They traditionally appear on the
+top of a window, but sometimes are used along the edges. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\subsection{Displaying text for editing}
+\label{sec:GUI:text-widgets}
+
+As much as possible, GUIs are designed around using the pointing
+device to select value for user input. Perhaps this is because it is
+difficult to both type and move the mouse at the same time. For
+statistical GUIs, especially for \R\/ with its poweful command line,
+it is essential that text entry widgets be used for any complicated
+GUI. Except with \wxWidgets\/ there is a distinction made between
+widgets for handling just single lines versus multiple lines of text.
+
+\subsubsection{Single line text}
+\label{sec:GUI:single-line-text}
+
+A text entry widget for editing a single line of text is used in the
+Firefox print dialogs in Figure~\ref{fig:GUI:print-dialogs} to specify
+the number of copies. An advantage to using a text entry area for this
+specification, as opposed to a spinbutton, is the ease of editing for
+a user who uses the \kbd{tab} key to move between fields rather than
+the mouse. A disadvantage of using this type of widget is the need to
+validate the user's input, as it only makes sense to have a positive
+integer for this value.
+
+\subsubsection{Text edit boxes}
+\label{sec:GUI:textboxes}
+
+Multi-line text entry areas are used in many GUIs. The right graphic
+of Figure~\ref{fig:GUI:R-guis-exs-JGR-Rcmdr} shows a text entry areas
+used by \pkg{Rcmdr} to enter in \R\/ commands; to show the output of
+\R\/ commands and to provide a message area (in lieu of a status
+bar). The ``Output Window'' shows that text may have formatting
+attributes applied to it, in this case the color of the commands
+differs from that of the output. This is done by specifying
+text-changing attributes to different portions of the text. The
+difficulty is that when the text widget is changed, these positions
+must also reflect the change. Alternately, some of the toolkits allow
+HTML to be used for markup.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.35\textwidth]{JGR-object-browser}
+  \includegraphics[width=.5\textwidth]{Rcmdr-main-window}
+  \caption{
+    Some windows from \R\/ GUIs.
+    %% 
+    The left graphic shows the object browser in the \pkg{JGR} GUI
+    using a tree widget 
+    to display the possibly heirarchical nature of \R\/ objects.
+    %%
+    The right graphic shows the main Rcmdr (1.3-11) window
+    illustrating the use of multi-line text entry areas for a command
+    area, an output area and a message area.}
+  \label{fig:GUI:R-guis-exs-JGR-Rcmdr}
+\end{figure}
+
+
+\XXX{Not needed here?}
+% %% A table showing the values and constructors
+% %% Make changes to gnumeric spreadsheet, export
+% {\small
+% \newcommand{\PARASIZE}{1.25in}
+% \newcommand{\LARGEPARASIZE}{1.45in}
+% \begin{landscape}
+%   \begin{table}[tbp]
+%     \centering
+%     \begin{minipage}{1.0\textwidth}
+%       \begin{tabular}{lp{\PARASIZE}@{\quad}p{\LARGEPARASIZE}@{\quad}p{\PARASIZE}@{\quad}p{\PARASIZE}@{\quad}p{\PARASIZE}@{\quad}c}
+%         %%
+%         Widget & \code{gWidgets} & \code{RGtk2} & \code{RwxWidgets} &
+%         \code{tcltk}~\footnote{Some constructors require add-on
+%           libraries, as indicated by parentheses.} & \code{rJava} &\\
+%         \hline
+%         \SweaveInput{widgets-constructors}
+%       \end{tabular}
+%     \end{minipage}
+%     \caption{A table listing several common widgets with a constructor for
+%       different toolkits discussed in the text.}
+% \label{tab:GUI:widgets-constructors}
+%   \end{table}
+% \end{landscape}
+% }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\subsection{Display of information}
+\label{sec:GUI:info-display}
+
+Some widgets are typically used to just display information and are
+not expected to have any response to mouse clicks. These are called
+static controls in \wxWidgets. 
+
+\subsubsection{Labels}
+\label{sec:GUI:labels}
+%% Static Text
+A label is a widget for placing text into a GUI that is typically not
+intended for editing, or even selecting with a mouse. This widget is
+used to label other controls, so the user understands what will happen
+when that control is changed.
+
+%% markup
+A Label's text can be marked up in some toolkits using HTML in
+Java/Swing and pango markup in GTK+. As well, regular font attributes
+can be applied to the label in the other
+toolkits. Figure~\ref{fig:GUI:Rcmdr-main-window} shows labels marked in
+red and blue in \pkg{tcltk}.
+
+\subsubsection{Statusbars}
+\label{sec:GUI:statusbars}
+
+A typical top-level window will have a menubar and toolbar for access
+to the possible actions, an area to display the document being worked
+on, and at the bottom of the window a statusbar for giving the user
+immediated feedback on the actions that have been
+intiated. Figure~\ref{fig:GUI:Rcmdr-main-window} show a text area being
+used as a status bar for messages in the \pkg{Rcmdr} GUI. Likely this
+was chosen as there is no ready-made status bar widget in the base
+\pkg{tcltk} package. The other toolkits do provide one.
+
+\subsubsection{Progress bars}
+
+A progress bar is used to notify how much time is left during a long
+computation. They are often used during software installation. 
+
+
+\subsubsection{Tooltips}
+\label{sec:GUI:basic-tooltips}
+
+A tooltip is a small window that pops up when a user hovers their mouse
+over a tooltip-enabled widget. These are used to give quick feedback
+on that particular widget. They can be useful for guiding new users of
+a GUI and  annoying for familiar users. In \R\/ their implementation
+for the toolkits can be hampered due to eventloop issues.
+
+
+%% combined with modal dialogs
+% \subsection{Choosers}
+% \label{sec:GUI:choosers}
+
+% Certain standard widgets are used to select values from a range
+% defined by the system the user is on.
+
+
+% \subsubsection{Color choosers}
+% \label{sec:GUI:color-pickers}
+
+% A color picker allows the selection of a color. 
+
+% \subsubsection{Font choosers}
+% \label{sec:GUI:font-choosers}
+
+% A font chooser allows the selection of a font. 
+
+
+\subsection{Modal dialog boxes}
+\label{sec:GUI:modal-dialogs}
+
+A \dfnref{modal dialog box} is a dialog box that keeps the focus until
+the user takes an action to dismiss the box. They are used to notify
+the user of some action, perhaps asking for confirmation in case the
+action is destructive, such as overwriting of a file name. Modal
+dialog boxes can be disruptive to a users flow, so should be used
+sparingly. As the flow essentially stops until the window is
+dismissed, functions that call modal dialogs can return a value when
+an event occurs, rather than have a handler respond to the dismiss
+event. The \command{file.choose} function, mentioned below, is a good
+example. When used during an interactive \R\/ session, the user is
+unable to interact with the command line until a file has been
+specified of the dialog dismissed. 
+
+
+\subsubsection{File choosers}
+\label{sec:GUI:file-choosers}
+
+A file chooser allows for the selection of existing files, existing
+directories, or the specification of new files. They are familiar to
+any user of a GUI. A typical \R\/ installation has the functions
+\command{file.choose} and \command{tkchooseDirectory} (in the
+\pkg{tcltk} package) to select files and directories, the latter using
+\pkg{tcltk} and the former using the windows file selector if
+applicable. The use of \
+
+
+Other common choosers are color choosers and font choosers.
+
+\subsubsection{Message dialogs}
+\label{sec:GUI:message-dialogs}
+
+A \dfnref{message dialog} generally has a pretty standard form, a
+small rectangular box that appears in the middle of the screen with an
+icon on the left and a message on the right. At the bottom is a button
+to dismiss the dialog, often labeled ``OK.'' A \dfnref{confirmation
+  dialog} would add a ``cancel'' button which the programmer can use
+to invalidate the proposed action.
+
+

@@ -1,0 +1,201 @@
+This example shows how to display the heirarchical structure of an XML
+document. The \pkg{XML} package is used to parse the document.
+
+<<echo=FALSE>>=
+## not shown
+## load in tcltk
+library(tcltk)
+
+## helper funtion to add scrollbars
+addScrollbars <- function(parent, widget) {
+  xscr <- ttkscrollbar(parent, orient="horizontal",
+                       command=function(...) tkxview(widget, ...))
+  yscr <- ttkscrollbar(parent, orient="vertical",
+                       command=function(...) tkxview(widget, ...))
+
+  tkconfigure(widget,
+              xscrollcommand=function(...) tkset(xscr,...),
+              yscrollcommand=function(...) tkset(yscr,...))
+
+  tkgrid(widget, row=0, column=0, sticky="news")
+  tkgrid(yscr,row=0,column=1, sticky="ns")
+  tkgrid(xscr, row=1, column=0, sticky="ew")
+  tkgrid.columnconfigure(parent, 0, weight=1)
+  tkgrid.rowconfigure(parent, 0, weight=1)
+}
+@ 
+
+We use the \pkg{XML} library to parse a document from the
+internet. This example uses just a few functions from this library:
+The \function(htmlTreeParse) (similar to \function{xmlInternalTreeParse}) to parse the file, 
+\function{xmlRoot} to find the base node,
+\function{xmlName} to get the name of a node, 
+\function{xmlValue} to get an associated value, and
+\function{xmlChildren} to return any child nodes of a node.
+
+
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.7\textwidth]{fig-tcltk-xml-viewer.png}
+  \caption{Illustration of using \code{ttktreeview} widget to show
+    heirarchical data returned from parsing an HTML document with the
+    \pkg{XML} package.}
+  \label{fig:fig-tcltk-xml-viewer}
+\end{figure}
+<<>>=
+library(XML)
+fileName <- "http://www.omegahat.org/RSXML/shortIntro.html" # XML's doc
+QT <- function(...) {}  # quiet next call
+doc <- htmlTreeParse(fileName, useInternalNodes=TRUE, error=QT)
+root <- xmlRoot(doc)
+@ 
+Our GUI is primitive, with just a treeview instance added.
+<<>>=
+w <- tktoplevel()
+tkwm.title(w, "Treeview example with XML")
+f <- ttkframe(w, padding=c(3,3,3,12))
+tkpack(f, expand=TRUE, fill="both")
+tr <- ttktreeview(f, displaycolumns="#all", columns=1)
+addScrollbars(f, tr)                    
+@ 
+
+We configure our columns headers and set a minimum
+width below. Recall, the tree column is designated \qcode{\#0}.
+<<columnConfiguration>>=
+tcl(tr, "heading", "#0", text="Name")
+tcl(tr, "column", "#0", minwidth=20)
+tcl(tr, "heading", 1, text="value")
+tcl(tr, "column", 1, minwidth=20)
+@ 
+<<echo=FALSE>>=
+## http://www.omegahat.org/RSXML/shortIntro.html
+## xmlChildren gives children
+## xmlName gives name of node
+## xmlValue gives values stored in node -- text
+
+## issue with quoting values of tree. This taken from shQuote
+quoteIt <- function(string) {           
+  doQuote <- function(x) {
+    xx <- strsplit(x, '"', fixe=TRUE)[[1]]
+    paste(paste('"', xx, '"', sep=""), collapse='\'"\'')
+  }
+  if(!length(string)) return("")
+  has_double_quote <- grep('"',string)
+  if(!length(has_double_quote))
+    return(paste('"',string,'"',sep=""))
+  if (!length(grep("([$`])", string))) {
+    paste("\"", gsub("([\"!\\])", "\\\\\\1", string), 
+          "\"", sep = "")
+  } else sapply(string, doQuote)
+}
+@ 
+
+To map the tree-like structure of the XML document into the widget, we
+define the following function to recursively add to the treeview
+instance.  We only add to the \code{value} column (through the
+\code{values} option) when the node does not have children, dren. We
+use \code{do.call}, as a convenience, to avoid constructing two
+different calls to the \code{insert} subcommand. The \code{quoteIt}
+function used is not shown, but similar to \function{shQuote} only
+escaping with double quotes, as single quotes are treated differently
+by \TCL. (Otherwise the \code{ttktreeview} widget will split values on
+spaces.)
+<<>>=
+insertChild <- function(tr, node, parent="") {
+  l <- list(tr, "insert", parent, "end", text=xmlName(node))
+  children <- xmlChildren(node)
+  if(length(children) == 0) {           # add in values
+    values <- paste(xmlValue(node), sep=" ", collapse=" ")
+    values <- gsub("\n", " ", values)   # treeview doesn't like
+    values <- quoteIt(values)           # \n and spaces
+    l$values <- values
+  }
+  treePath <- do.call("tcl", l)
+
+  if(length(children))                  # recurse
+    for(i in children) insertChild(tr, i, treePath)
+}
+insertChild(tr, root)
+@ 
+
+At this point, the GUI will allow one to explore the structure of the
+XML file. We continue this example to show two things of general
+interest, but are really artificial for this example.
+
+%%\XXX{Use index parent to place at same level just below}
+
+\paragraph{Drag and drop}
+First, we show how one might introduce drag and drop to rearrange the
+rows. We begin by defining two global variables that store the row
+that is being dragged  and a flag to indicate if a drag event is ongoing.
+<<>>=
+.selectedID <- ""                       # globals
+.dragging <- FALSE
+@ 
+We provide callbacks for three events: a mouse click, mouse motion and mouse release.
+This first callback sets the selected row on a mouse click.
+<<>>=
+tkbind(tr, "<Button-1>", function(W,x,y) {
+  .selectedID <<- as.character(tcl(W, "identify","row", x, y))
+})  
+@ 
+The motion callback configures the cursor to indicate a drag event and sets
+the dragging flag. One might also put in code to highlight
+any drop areas.
+<<>>=
+tkbind(tr, "<B1-Motion>", function(W, x, y, X, Y) {
+  tkconfigure(W, cursor="diamond_cross")
+  .dragging <<-TRUE
+})
+@ 
+
+When the mouse button is released we check that the widget we are over
+is indeed the tree widget. If so, we then move the rows. One can't
+move a parent to be a child of its own children, so we wrap the
+\subcommand{move}{ttktreeview} sub command within \code{try}. The
+\code{move} command places the new value as the first child of the
+item it is being dropped on. If a different action is desired, the
+\qcode{0} below would need to be modified.
+<<>>=
+tkbind(tr, "<ButtonRelease-1>", function(W, x, y, X, Y) {
+  if(.dragging && .selectedID != "") {
+    w = tkwinfo("containing", X, Y)
+    if(as.character(w) == as.character(W)) {
+      dropID <- as.character(tcl(W, "identify","row", x, y))
+      try(tkmove(W, .selectedID, dropID, "0"), silent=TRUE)
+    }
+  }
+  .dragging <<- FALSE; .selectedID <<- "" # reset
+})
+@ 
+
+\paragraph{Walking the tree}
+Our last item of general interest is a function that shows one way to
+walk the structure of the treeview widget to generate a list
+representing the structure of the data.  A potential use of this might
+be to allow a user to rearrange an XML document through drag and drop.
+The subcommand \subcommand{children}{ttktreeview} proves useful here,
+as it is used to identify the heirarchical structure. When there are children a recursive call is made.
+
+
+
+<<walkTreeReturnAList>>=
+treeToList <- function(tr) {
+  l <- list()
+  walkTree <- function(child, l) {
+    l$name <- tclvalue(tcl(tr,"item", child, "-text"))
+    l$value <- tclvalue(tcl(tr,"item", child, "-values"))
+    children <- as.character(tcl(tr, "children", child)) 
+    if(length(children)) {
+      l$children <- list()
+      for(i in children) 
+        l$children[[i]] <- walkTree(i, list()) # recurse
+    }
+    return(l)
+  }
+  l <- walkTree("",l)
+  return(l)
+}
+
+@ 

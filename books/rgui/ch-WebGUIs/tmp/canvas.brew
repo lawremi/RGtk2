@@ -1,0 +1,49 @@
+<%
+require(brew)
+hrefify <- function(title) gsub('[\\.()]','_',title,perl=TRUE)
+title <- "Test canvas"
+%>
+
+
+<% brew("brew-header.brew") %>
+
+The canvas package allows for graphs to be displayed using javascript
+-- and not as images.  However, it does not work within all browsers,
+as the canvas tag is relatively new. It does work with firefox 3.0 and
+higher. On Opera and Safari and an old version of chrome the histogram
+bars are not drawn. On internet explorer it didn't work.
+
+<br>
+A pure javascript alternative that seems to work with more browsers is 
+<A HREF=http://jsxgraph.uni-bayreuth.de/wp/>http://jsxgraph.uni-bayreuth.de/wp/</A>.
+
+<br>
+
+<%
+## Standard R calls to use canvas
+width <- 480; height <- 480 ## used twice in canvas call and in javascript
+
+require(canvas, quietly=TRUE)
+f <- tempfile()                  ## canvas writes to a file
+canvas(file=f, width, height)
+hist(rnorm(100), col="blue")
+dev.off()
+%>
+
+<% ## Calls to use canvas object with R that are not typical
+cat("\n",file=f,append=TRUE) ## o/w a warning 
+cat("<canvas id='canv' width='", width,"' height='", height,"'></canvas>", ## make canvas HTML object
+    "<script type='text/javascript'>",                   
+    "var canvas = document.getElementById('canv');\n",  ## get canv object
+    "var ctx = canvas.getContext('2d');\n",             ## get context. Needs to be ctx
+    "if(!ctx.fillText) {ctx.fillText = function() {};}\n", ## needed firefox 3.1, not 3.5
+    paste(readLines(f), collapse="\n"),
+    "</script>")
+unlink(f)						## clean up
+%>
+
+
+
+<% brew("brew-footer.brew") %>
+
+

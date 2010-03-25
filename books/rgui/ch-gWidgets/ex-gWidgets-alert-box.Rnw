@@ -1,0 +1,39 @@
+This example shows nested ggroup containers and the use of the
+\method{delete}{ggroup} method to remove a child widget from a
+container. In this application, a box is set aside at the top of the
+window to hold a message that can be set via \code{openAlert} and
+closed with \code{closeAlert}. This example works better under
+\pkg{RGtk2}, as the space allocated to the alert is reclaimed when
+it is closed.
+
+<<echo=FALSE>>=
+library(gWidgets)
+@ 
+
+This code sets up the area for the alert box to appear from.
+<<>>=
+w <- gwindow("Alert box example")
+g <- ggroup(horizontal=FALSE, cont = w)
+alertBox <- ggroup(cont = g)
+mainBox <- ggroup(cont = g, expand=TRUE)
+l <- glabel("main box label", cont = mainBox, expand=TRUE)
+ig <- NULL                              # global
+@ 
+
+These two functions will open and close the alert box respectively. In
+this example we use the global value, \code{ig}, to store the inner group.
+<<>>=
+openAlert <- function(message="message goes here") {
+  ig <<- ggroup(cont=alertBox)
+  glabel(message, cont = ig)
+}
+closeAlert <- function() delete(alertBox, ig)
+  
+@ 
+
+The state of the box can be toggled programattically via
+<<>>=
+QT <- openAlert("new message")                # open
+QT <- closeAlert()                            # close
+@ 
+

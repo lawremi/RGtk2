@@ -1,0 +1,108 @@
+\documentclass[showtrims]{memoir}
+
+
+\input{setup}
+%% Begin here
+
+
+
+%%\usepackage{/Users/verzani/R/R.framework/Resources/share/texmf/Sweave}
+\begin{document}
+\thispagestyle{empty}
+\bibliographystyle{plainnat}
+\input{setup2}                  % sweave
+
+\frontmatter
+
+\chapter*{Preface}
+\label{chap:preface}
+\input{ch-Preface/ch-Preface}
+
+
+
+
+%% Put these in front for easier reference.
+\setcounter{tocdepth}{3}
+\tableofcontents
+\newpage
+
+
+
+%% Find graphic files in subdirectories
+\graphicspath{
+  {ch-Preface/}
+  {ch-GUIBasics/}
+  {ch-ProgrammingPractices/}
+  {ch-gWidgets/}
+%%  {ch-gWidgetsExamples/}
+  {ch-RGtk2/}
+%%  {ch-RGtk2Example/}
+  {ch-RwxWidgets/}
+  {ch-tcltk/}
+  {ch-WebGUIs/}
+}
+
+%% Begin. Chapters all call in ch-XXX/ch-XXX.tex file
+
+\mainmatter
+\chapter{The basic ideas of Graphical User Interfaces}
+\label{chap:GUIBasics}
+\input{ch-GUIBasics/ch-GUIBasics}
+
+
+
+%% R functions, practices for GUI programmng
+\chapter{R Programming Practices for GUIs}
+\label{chap:programming-practices}
+%\input{ch-ProgrammingPractices/ch-ProgrammingPractices}
+
+
+
+%% gWidgets
+%%\part{The \pkg{gWidgets} package}
+\label{chap:gWidgets-intro}
+\input{ch-gWidgets/ch-gWidgetsIntro}
+
+
+%% RGtk2
+%%\part{The \pkg{RGtk2} package}
+\label{chap:RGtk2}
+\input{ch-RGtk2/ch-RGtk2}
+
+
+% \chapter{RGtk2 Example: Extending the data frame class}
+% \label{chap:RGtk2}
+% \input{ch-RGtk2Example/ch-RGtk2Example}
+
+% %% RwxWidgets
+% \chapter{RwxWidgets}
+% \label{chap:RwxWidgets}
+% \input{ch-RwxWidgets/ch-RwxWidgets}
+
+%% tcltk
+%%\part{The \pkg{tcltk} package}
+\label{chap:tcltk}
+\input{ch-tcltk/ch-tcltk}
+
+
+%% Web based programming
+\chapter{Web-based GUIs}
+\label{chap:WebGUIS}
+\input{ch-WebGUIs/ch-WebGUIs}
+
+
+\backmatter
+%% Appendix
+%% Bibiligraphy
+%% Index
+
+
+
+
+
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

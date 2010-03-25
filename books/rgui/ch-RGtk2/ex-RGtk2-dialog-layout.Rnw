@@ -1,0 +1,71 @@
+This example shows how to layout some controls for a dialog with some
+attention paid to how the widgets are aligned and how they respond to
+resizing of the window.
+<<echo=FALSE>>=
+## layout a basic dialog -- center align
+library(RGtk2)
+@ 
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.5\textwidth]{ex-RGtk2-dialog-layout}
+  \caption{A basic dialog using a \code{gtkTable} container for layout.}
+  \label{fig:RGtk2-dialog-layout}
+\end{figure}
+
+
+Our basic GUI is a table with 4 rows and 2 columns.
+<<>>=
+w <- gtkWindow(show=FALSE)
+w$setTitle("example of gtkTable and attaching")
+tbl <- gtkTable(rows=4, columns=2, homogeneous=FALSE)
+w$add(tbl)
+@ 
+
+We define our widgets first then deal with their layout.
+<<>>=
+l1 <- gtkLabel("Sample size")
+w1 <- gtkComboBoxNewText()
+QT <- sapply(c(5, 10, 15, 30), function(i) w1$appendText(i))
+
+l2 <- gtkLabel("Show diagnostic ")
+w2 <- gtkVBox()
+rb <- list()
+rb[["t"]] <- gtkRadioButton(label="t-statistic")
+for(i in c("mean","median")) rb[[i]] <- gtkRadioButton(rb, label=i)
+QT <- sapply(rb, function(i) w2$packStart(i))
+
+w3 <- gtkButton("Run simulation")
+@ 
+
+The basic \code{AttachDeafults} method will cause the widgets to
+expand when resized, which we want to control here. As such we use
+\code{Attach}. To get the control's label to center align yet still
+have some breathing room we set its
+\code{xalign} and  \code{xpad} properties.
+For the combobox we avoid using \qcode{expand} as otherwise it resizes
+to fill the space allocated to the cell in the \code{y} direction.
+<<>>=
+tbl$attach(l1, left.attach=0,1, top.attach=0,1, yoptions="fill")
+l1["xalign"] <- 1; l1["xpad"] <- 5
+tbl$attach(w1, left.attach=1,2, top.attach=0,1, xoptions="fill", yoptions="fill")
+@ 
+
+We use \qcode{expand} here to attach the radio group, so that it
+expands to fill the space. The label has its \code{yalign} proporty
+set, so that it stays at the top of the cell, not the middle.
+<<>>=
+tbl$attach(l2, left.attach=0,1, top.attach=1,2, yoptions="fill")
+l2["xalign"] <- 1; l2['yalign'] <- 0; l2["xpad"] <- 4
+tbl$attach(w2, left.attach=1,2, top.attach=1,2, xoptions=c("expand", "fill"))
+@ 
+A separator with a bit of padding provides a visual distinction
+between the controls and the button to initiate an action.
+<<>>=
+tbl$attach(gtkHSeparator(),left.attach=0,2, top.attach=2,3, ypadding=10, yoptions="fill")
+tbl$attach(w3, left.attach=1,2, top.attach=3,4, xoptions="fill", yoptions="fill")
+@ 
+Finally, we use the \code{ShowAll} method so that it propogates to the combobox.
+<<>>=
+w$showAll()                             # propogate to combo
+@ 

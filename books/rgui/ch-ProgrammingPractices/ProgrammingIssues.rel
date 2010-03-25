@@ -1,0 +1,50 @@
+;; RefTeX parse info file
+;; File: /Users/verzani/GUI/ch-ProgrammingPractices/ProgrammingIssues.Rnw
+;; User: verzani (john verzani)
+
+(set reftex-docstruct-symbol '(
+
+
+(xr nil "\\\\\\\\\\\\")
+
+(index-tags)
+
+(is-multi nil)
+
+(bibview-cache)
+
+(master-dir . "/Users/verzani/GUI/ch-ProgrammingPractices/")
+
+(label-numbers)
+
+(bof "/Users/verzani/GUI/ch-ProgrammingPractices/ProgrammingIssues.Rnw")
+
+(toc "toc" "      1 Pass by copy" "/Users/verzani/GUI/ch-ProgrammingPractices/ProgrammingIssues.Rnw" nil 3 "1" "\\subsection{Pass by copy}" 2)
+
+("sec:pass-by-copy" "s" "\\subsection{Variable lookup: Scoping} \\subsection{Converting text into \\R\\/ commands}  \\XXX{eval(par" "/Users/verzani/GUI/ch-ProgrammingPractices/ProgrammingIssues.Rnw" nil)
+
+(toc "toc" "      2 Variable lookup: Scoping" "/Users/verzani/GUI/ch-ProgrammingPractices/ProgrammingIssues.Rnw" nil 3 "2" "\\subsection{Variable lookup: Scoping}" 144)
+
+("sec:vari-look-scop" "s" nil "/Users/verzani/GUI/ch-ProgrammingPractices/ProgrammingIssues.Rnw" nil "")
+
+(toc "toc" "        2.1 Environements in \\R" "/Users/verzani/GUI/ch-ProgrammingPractices/ProgrammingIssues.Rnw" nil 4 "2.1" "\\subsubsection{Environements in \\R}" 213)
+
+("sec:environements-r" "s" nil "/Users/verzani/GUI/ch-ProgrammingPractices/ProgrammingIssues.Rnw" nil "")
+
+(toc "toc" "      2 Variable lookup: Scoping" "/Users/verzani/GUI/ch-ProgrammingPractices/ProgrammingIssues.Rnw" nil 3 "2" "\\subsection{Variable lookup: Scoping}" 144)
+
+(toc "toc" "      3 Converting text into \\R\\/ commands" "/Users/verzani/GUI/ch-ProgrammingPractices/ProgrammingIssues.Rnw" nil 3 "3" "\\subsection{Converting text into \\R\\/ commands}" 279)
+
+("sec:text-to-R" "s" "\\XXX{eval(parse), do.call, ...} \\XXX{deparse, dput, sys.call, serialization} \\subsection{Efficient p" "/Users/verzani/GUI/ch-ProgrammingPractices/ProgrammingIssues.Rnw" nil)
+
+(toc "toc" "      4 Efficient programming in \\R" "/Users/verzani/GUI/ch-ProgrammingPractices/ProgrammingIssues.Rnw" nil 3 "4" "\\subsection{Efficient programming in \\R}" 456)
+
+("sec:efficient-programming" "s" "\\XXX{do.call, apply functions, \\subsection{Localization}  " "/Users/verzani/GUI/ch-ProgrammingPractices/ProgrammingIssues.Rnw" nil)
+
+(toc "toc" "      5 Localization" "/Users/verzani/GUI/ch-ProgrammingPractices/ProgrammingIssues.Rnw" nil 3 "5" "\\subsection{Localization}" 572)
+
+("sec:localization" "s" " " "/Users/verzani/GUI/ch-ProgrammingPractices/ProgrammingIssues.Rnw" nil)
+
+(eof "/Users/verzani/GUI/ch-ProgrammingPractices/ProgrammingIssues.Rnw")
+))
+

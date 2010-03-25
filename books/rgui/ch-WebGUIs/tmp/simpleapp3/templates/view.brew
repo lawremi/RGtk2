@@ -1,0 +1,10 @@
+<HTML>
+<HEAD>
+<%# read in style sheet #%>
+<link rel="stylesheet" href="brew-stylesheet.css" type="text/css" />
+<title><%= title %></title>
+</HEAD>
+<BODY>
+This is the body of the view
+</body>
+</html>

@@ -1,0 +1,164 @@
+\begin{example}{Using a tree to show content}{eg:RGtk2:using-tree-content}
+
+
+<<echo=FALSE>>=
+library(proto)
+library(RGtk2)
+@ 
+
+  A common use of a tree widget in statistical applications is to use
+  the tree as a means of selecting content to display. This example
+  shows how to use a tree to display information in a text buffer.
+
+  Our tree will be generated from a list which allows for arbitrary
+  nesting of values. The end values will be \pkg{proto} objects with
+  some \function{show} method. This trait will be used for these objects.
+
+<<AnObject>>=
+AnObject <-
+  proto(new=function(.,...) .$proto(...),
+        data = NULL,                    # where to show
+        show = function(.) {}           # show in treeview
+        )
+@ 
+
+We define the text view and a scrolled window to hold it before as it
+will be the same for each instance of our object.
+
+<<>>=
+tv <- gtkTextView()
+tv.sw <- gtkScrolledWindow()
+tv.sw$SetPolicy("automatic","automatic")
+tv.sw$Add(tv)
+@ 
+
+Now a simple trait for showing a message in the text view. Real
+examples would be more complicated, of course, but this shows that a
+very simple framework is possible for this task.
+<<>>=
+showText <- AnObject$new()
+showText$data <- tv
+showText$show <- function(.) {
+  tb <- .$data$GetBuffer()
+  tb$InsertAtCursor(paste(.$message,"\n",sep=""))
+}
+@ 
+
+
+We define a function to populate a tree store from a list. This uses
+recursion to handle the possible nesting in the list. We use the named
+components of the list to label the tree and recursion when a list
+component is not of \class{proto} class.
+<<>>=
+gtkTreeStoreAddFromList <- function(store,lst) {
+  ## we stop descending when we hit a proto object
+  is.proto <- function(.) inherits(.,"proto")
+  addToTree <- function(store, lst, iter) {
+    for(i in names(lst)) {
+      niter <- store$Append(parent=iter)$iter
+      if(!is.proto(lst[[i]])) {
+        store$SetValue(niter, column = 0, i) # recurse
+        addToTree(store, lst[[i]], niter)
+      } else {
+        store$SetValue(niter, column = 0, i)
+      }
+    }
+  }
+  addToTree(store, lst, NULL)
+}
+@ 
+
+This function returns the entire set of names for a given depth in the
+tree. These names can then be used to extract values from the list
+which will define our tree. The basic idea is that we walk back the
+tree using the \method{IterParent}{gtkTreeStore} method. This returns
+an iter with a \code{FALSE} value for its \code{retval} component when
+it reaches the root of the tree.
+<<getPathNames>>=
+gtkTreeStoreGetPathNames <- function(store,iter, path) {
+  if(missing(iter)) {
+    str <- path$ToString()
+    iter <- store$GetIterFromString(str)$iter
+  }
+  val <- store$GetValue(iter,0)$value
+  iter <- store$IterParent(iter)
+  while(iter$retval) {
+    val <- c(store$GetValue(iter$iter,0)$value, val)
+      iter <- store$IterParent(iter$iter) # walk back
+  }
+  return(val)
+}
+@ 
+
+We define s quick function to display a column of the view and then
+wrap the view in a scrolled window.
+<<>>=
+showView <- function(view)  {
+  cr <- gtkCellRendererText()
+  vc <- gtkTreeViewColumn()
+  vc$SetTitle("testing")
+  vc$PackStart(cr, TRUE)
+  vc$AddAttribute(cr,"text",0)
+  view$InsertColumn(vc,0)
+  
+  sw <- gtkScrolledWindow()
+  sw$SetPolicy("automatic","automatic")
+  sw$Add(view)
+  return(sw)
+}
+@ 
+
+Now we are ready for an example. This one uses a simple list to keep
+track of some cartoon characters.
+<<MakeList>>=
+lst <- list(flintstone = list(
+              husband = showText$new(message="fred"),
+              wife = showText$new(message="wilma")
+              ),
+            rubble = list(
+              husband = showText$new(message="barney"),
+              wife = showText$new(message="betty")
+              )
+            )
+@ 
+
+We use the previously defined method to label our tree. We do so in
+two stages to indicate, that it is possible to dynamically add to the
+tree, if that is desired.
+<<>>=
+store <- gtkTreeStore("gchararray")
+store$AddFromList(lst["flintstone"])
+store$AddFromList(lst["rubble"])
+@ 
+
+We now define a tree view and attach a callback to the
+\signal{row-activated} signal so that when the user double clicks on a
+child in the tree view, the text
+view will be updated by calling the appropriate \code{show}
+method. 
+<<>>=
+view <- gtkTreeViewNewWithModel(store)
+## callback
+ID <- gSignalConnect(view,"row-activated",
+                     f = function(view,path, column, data) {
+                       store <- view$getModel()
+                       nms <- store$GetPathNames(path=path)
+                       if(is.proto(data[[nms]]))
+                         data[[nms]]$show()   # vectorized [[
+                     }, data = lst)
+@ 
+
+We place this into a paned layout. We add the text view so that if the
+window is resized the new space will be allocated to that. To enlarge
+the view of the tree is done by dragging the paned layout's gutter.
+
+<<>>=
+## simple layout
+w <- gtkWindow(); w$SetTitle("Tree view")
+g <- gtkHPaned(); w$Add(g)
+g$Pack1(showView(view), resize=FALSE)
+g$Pack2(tv.sw, resize=TRUE, shrink=TRUE)
+@ 
+
+
+\end{example}

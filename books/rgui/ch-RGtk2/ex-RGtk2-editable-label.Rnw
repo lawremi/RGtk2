@@ -1,0 +1,28 @@
+We use the \signal{activate} signal in the following example where we
+make an editable label. When the label is clicked, a text entry
+replaces the label allowing its content to be edited. The user
+indicates the editing is over by pressing the \kbd{enter} key. This
+example also illustrates the \function{gtkEventBox}, which emits a
+\signal{button-press-event} signal, when the label is clicked on.  
+<<EditableLabel>>=
+w <- gtkWindow(); w$setTitle("Editable label")
+evb <- gtkEventBox(); 
+w$add(evb); 
+e <- gtkEntry()
+l <- gtkLabel("Click me to edit")
+evb$setData("entry", e); evb$setData("label", l)
+evb$add(l)
+
+ID <- gSignalConnect(evb, "button-press-event", function(w, e, ...) {
+  label <- w$getData("label"); entry <- w$getData("entry")
+  entry$setText(label$getText())
+  w$remove(label);  w$add(entry) # swap
+})
+ID <- gSignalConnect(e,"activate", function(userData, w, ...) {
+  evb = userData$evb; label <- evb$getData("label")
+  label$setText(w$getText())
+  evb$remove(w); evb$add(label) #swap
+},
+                     data=list(evb=evb),
+                     user.data.first=TRUE)
+@ 

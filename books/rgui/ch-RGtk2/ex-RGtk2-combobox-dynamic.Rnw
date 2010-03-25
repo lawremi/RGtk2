@@ -1,0 +1,80 @@
+This example shows how to use two comboboxes to achieve a useful
+task. That being, allowing the user a means to select from the
+available variables in a data frame. We use a \code{rGtkDataFrame}
+model for each, but for one use the basic constructor and the other
+the more involved, as an illustration.
+<<>>=
+data("Cars93", package="MASS")
+dfNames <- c("mtcars", "Cars93")
+dfModel <- rGtkDataFrame(dfNames)
+dfCb <- gtkComboBoxEntryNewWithModel(dfModel, text.column=0)
+@ 
+
+The variable names are initially just an empty string. We use an
+\code{rGtkDataFrame}  as the
+model and also specify a cell renderer to view the data.
+
+<<>>=
+variableNames <- character(0)
+varModel <- rGtkDataFrame(variableNames)
+varCb <- gtkComboBoxNewWithModel(varModel)
+cr <- gtkCellRendererText()
+varCb$packStart(cr)
+varCb$addAttribute(cr, "text", 0)
+@ 
+
+Our basic GUI uses a table for layout. Comboboxes fill and expand to fill the cell.
+<<>>=
+tbl <- gtkTableNew(rows=2, columns=2, homogeneous=FALSE)
+tbl$attach(gtkLabel("Data frame"), left.attach=0,1, top.attach=0,1)
+tbl$attach(dfCb, left.attach=1,2, top.attach=0,1)
+
+tbl$attach(gtkLabel("Variables"), left.attach=0,1, top.attach=1,2)
+tbl$attach(varCb, left.attach=1,2, top.attach=1,2)
+@ 
+<<echo=FALSE>>=
+w <- gtkWindow(show=FALSE)
+w['title'] <- "Example of comboboxes"
+g <- gtkHBox()
+g$packStart(tbl, padding=15)
+w$add(g)
+w$showAll()
+@ 
+This callback will be used for both the entry widget and the combobox,
+so we first check which it is and if it is the combobox, we get the
+entry widget from it. To update the display we replace the model. The
+option of replacing the frame within the current model requires us to
+be careful when adding additional rows.
+
+<<>>=
+newDfSelected <- function(varCb, w, ...) {
+  if(inherits(w, "GtkComboBox"))        # get entry widget
+    w <- w$getChild()
+  val <- w$getText()
+  df <- try(get(val, envir=.GlobalEnv), silent=TRUE)
+  if(!inherits(df, "try-error") && is.data.frame(df)) {
+    nms <- names(df)
+    ## update model
+    newModel <- rGtkDataFrame(nms)
+    varCb$setModel(newModel)
+    varCb$setActive(-1)
+  }
+}
+@ 
+Our callbacks for the data frame combobox simply call the above
+function. As for the variable combobox, we show how to get the
+selected value, but for no real purpose.
+<<>>=
+QT <- gSignalConnect(dfCb, "changed", f=newDfSelected,
+                     user.data.first=TRUE,
+                     data=varCb)
+QT <- gSignalConnect(dfCb$getChild(), "activate", f=newDfSelected,
+                     user.data.first=TRUE,
+                     data=varCb)
+QT <- gSignalConnect(varCb, "changed", f=function(w, ...) {
+  model <- w$getModel()
+  iter <- w$getActiveIter()
+  val <- model$getValue(iter$iter, column=0)
+  print(val$value)                      # add real purpose
+})
+@ 

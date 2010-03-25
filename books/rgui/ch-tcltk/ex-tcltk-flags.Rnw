@@ -1,0 +1,196 @@
+This example shows how the \function{tkpack} the \function{tkgrid} geometry managers can be used to draw some of the world flags. For these, we consulted \url{https://www.cia.gov/library/publications/the-world-factbook/docs/flagsoftheworld.html}.
+
+
+\begin{figure}
+  \centering
+  \begin{tabular}{cc}
+    \includegraphics[width=.4\textwidth]{fig-tcltk-mali.png}
+    & %%  \hfill
+    \includegraphics[width=.5\textwidth]{fig-tcltk-lithuania.png}
+    \\
+    \includegraphics[width=.4\textwidth]{fig-tcltk-benin.png}
+    &
+    \includegraphics[width=.4\textwidth]{fig-tcltk-togo.png}
+  \end{tabular}
+  \caption{Example of world flags to illustrate \function{tkpack} and \function{tkgrid} usage. The Mali flag uses \code{expand=TRUE} to allocate space evenly, \code{fill="both"} to have the child fill the space and \code{side="left"} to place the children, whereas Lithuania uses \code{side="top"}. The Benin flag takes advantage of \code{tkgrid} to layout the colors in a grid. The left color has \code{rowspan=2} set. The Togo flag could be done using just \code{grid}, but a mix is demonstrated.}
+  \label{fig:tcltk-flags}
+\end{figure}
+
+
+<<echo=FALSE>>=
+## example of flags of the world for tkpack, grid
+## https://www.cia.gov/library/publications/the-world-factbook/docs/flagsoftheworld.html
+## dimensions http://flagspot.net/flags/xf-size.html
+## using G, Y, R flags only
+library(tcltk)
+@ 
+
+We will make the dimensions of the flags true to the flag proportions. These we found at \url{http://flagspot.net/flags/xf-size.html}. Here we define the proportions for the flags of interest.
+<<>>=
+dims <- cbind(Benin=2:3, Cameroon=2:3,Guinea=2:3, Mali=2:3,
+              Bolivia=2:3, Lithuania=1:2,Congo=2:3, Guyana=1:2,
+              Togo= 2:3)
+@ 
+
+This is a convenience function to create \function{tkframes} with different background colors. We use \function{tkframe} here -- not \function{ttkframe} -- as it has a background property.
+<<>>=
+makeColors <- function(parent)
+  list(green  = tkframe(parent, background="green"),
+       red    = tkframe(parent, background="red"),
+       yellow = tkframe(parent, background="yellow"))
+@ 
+
+This convenience function packs a frame into a top-level window.
+<<>>=
+makeTopLevel <- function(country) {
+  w <- tktoplevel()
+  tkwm.title(w, country)
+  f <- ttkframe(w, padding=c(3,3,3,12))
+  tkpack(f, expand=TRUE, fill="both")
+  return(list(w=w, f= f, country=country))
+}
+@ 
+This function resizes the toplevel window and forces it to have a fixed proportion using the global \code{dims} defined previously.
+<<>>=
+resizeWin <- function(win) {
+  height <- 200;
+  setWidth <- function(h)
+    floor(h * dims[2, win$country] / dims[1, win$country])
+  width <- setWidth(height)
+  tkwm.geometry(win$w, paste(width, height, sep="x"))
+  ## constrain the resize to flag proportions
+  ## alternate to tkwm.aspect(w, a,b,c,d)
+  tkbind(win$w, "<Configure>", function(W) {
+    tl <- tkwinfo("toplevel",W)
+    geo <- tclvalue(tkwm.geometry(tl))
+    geo <- as.numeric(unlist(strsplit(geo,"[^[:digit:]]"))[1:2])
+    tkwm.geometry(tl, paste(setWidth(geo[2]), geo[2], sep="x"))
+  })
+}
+@
+
+Our first flags are  Cameroon (GRY), Guinea (RYG), and Mali (GYR). These are flags with 3 equal vertical strips of color. We use tkpack with \code{side="left"} to pack in the colors from left to right. The \code{expand=TRUE} option causes extra space to be allocated equally to the three children, preserving the equal sizes in this case.
+
+<<>>=
+win <- makeTopLevel("Cameroon")
+w <- win$w; f <- win$f
+l <- makeColors(f)
+tkpack(l$green, l$red, l$yellow, expand=TRUE, 
+  fill="both", side="left")
+resizeWin(win)
+@ 
+
+To create Guinea's flag we simply move the green strip to the end.
+<<>>=
+## Guinea just moves colors around
+tkpack("forget", l$green)
+tkpack(l$green, expand=TRUE, fill="both", side="left")
+tkwm.title(win$w, "Guinea")
+@ 
+
+For Mali, we flip the position of green and red. We pack them in relative to the yellow strip using the \code{before} and \code{after} options to \function{tkpack}.
+<<>>=
+tkpack("forget", l$green)
+tkpack("forget", l$red)
+tkpack(l$green, before=l$yellow, expand=TRUE, fill="both", side="left")
+tkpack(l$red, after=l$yellow, expand=TRUE, fill="both", side="left")
+tkwm.title(win$w, "Mali")
+@ 
+
+Lithuania is similar, only the stripes run horizontally. We pack from top to bottom to achieve this.
+<<>>=
+win <- makeTopLevel("Lithuania")
+l <- makeColors(win$f)
+tkpack(l$yellow, l$green, l$red, expand=TRUE, fill="both", side="top")
+resizeWin(win)
+@ 
+
+Benin's flag is better suited for the grid geometry manager. We use a combination of \code{rowspan} and \code{columnspan} to get the proper arrangement. In this case, the proportions of the colors are achieved through equal weights when we configure the row and columns.
+<<>>=
+## benin is better suited for grid
+win <- makeTopLevel("Benin")
+l <- makeColors(win$f)
+tkgrid(l$green,  row=0, column=0, rowspan=2,    sticky="news")
+tkgrid(l$yellow, row=0, column=1, columnspan=2, sticky="news")
+tkgrid(l$red,    row=1, column=1, columnspan=2, sticky="news")
+## use grid in equal sizes to get spaing right
+tkgrid.rowconfigure(win$f, 0:1, weight=1)
+tkgrid.columnconfigure(win$f, 0:2, weight=1) 
+resizeWin(win)
+@ 
+
+Togo is trickier. We could use grid,  as above, with the proper
+combinations of row and columnspan. Instead we do this less directly to illustrate the mixing of the \function{tkgrid} and \function{tkpack} geometry managers.
+
+<<>>=
+win <- makeTopLevel("Togo")
+f <- win$f
+l <- makeColors(f)
+upperR <- ttkframe(f); bottom <- ttkframe(f)
+tkgrid(l$red, row=0, column=0, sticky="news")
+tkgrid(upperR, row=0, column=1, sticky="news")
+tkgrid(bottom, row=1, column=0, columnspan=2, sticky="news")
+
+l1 <- makeColors(upperR)
+tkpack(l1$yellow, expand=TRUE, fill="both", side="top")
+tkpack(l1$green, expand=TRUE, fill="both", side="top")
+l2 <- makeColors(bottom)
+tkpack(l2$yellow, expand=TRUE, fill="both", side="top")
+tkpack(l2$green, expand=TRUE, fill="both", side="top")
+
+tkgrid.rowconfigure(f, 0:1, weight=1)
+tkgrid.columnconfigure(f, 0, weight=8)
+tkgrid.columnconfigure(f, 1, weight=10)  # not quite uniform
+resizeWin(win)
+@ 
+
+<<echo=FALSE>>=
+## Now for some trickier ones we use canvas
+## At this point in the text, canvas hasn't been introduced
+## so this isn't shown
+win <- makeTopLevel("Congo")
+canvas <- tkcanvas(win$f, highlightthickness=0)
+tkpack(canvas, expand=TRUE, fill="both")
+
+## we use this function to draw polygons with a fill
+## when the canvas is resized we use this as a callback for
+## configure. Hence we delete any old polygons and just replace
+## as otherwise, the sizing would be off.
+drawCongo <- function(W) {
+  geo <- tclvalue(tkwinfo("geometry",W))
+  geo <- as.numeric(unlist(strsplit(geo,"[^[:digit:]]")))[1:2]
+  w <- geo[1]; h <- geo[2]
+  tcl(W,"delete","green","red","yellow") # out with old
+  tcl(W,"create","polygon",
+      0,0, w,0, 0,h, fill="green", tag="green")
+  tcl(W, "create", "polygon",
+      0,h, h,0, w,0, w-h,h, fill="red", tag="red")
+  tcl(W, "create", "polygon",
+      w,0, w,h, w-h,h, fill="yellow", tag="yellow")
+}
+tkbind(canvas, "<Configure>", drawCongo)
+resizeWin(win)
+@ 
+
+<<echo=FALSE>>=
+## Guyana is identical to Congo
+## we just need a different function to draw the polygons.
+win <- makeTopLevel("Guyana")
+canvas <- tkcanvas(win$f, highlightthickness=0)
+tkpack(canvas, expand=TRUE, fill="both")
+
+drawGuyana <- function(W) {
+  geo <- tclvalue(tkwinfo("geometry",W))
+  geo <- as.numeric(unlist(strsplit(geo,"[^[:digit:]]")))[1:2]
+  w <- geo[1]; h <- geo[2]
+  tcl(W,"delete","green","red","yellow") # out with old
+  tcl(W,"create","polygon",
+      0,0, w,h/2, 0,h, w,h, w,0, fill="green", tag="green")
+  tcl(W, "create", "polygon",
+      0,0, 0,h,  sqrt(3)*h/2,h/2, fill="red", tag="red")
+  tcl(W, "create", "polygon",
+      0,0, sqrt(3)*h/2,h/2, 0,h, w,h/2, fill="yellow", tag="yellow")
+}
+tkbind(canvas, "<Configure>", drawGuyana)
+resizeWin(win)
+@ 

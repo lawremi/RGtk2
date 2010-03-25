@@ -1,0 +1,174 @@
+This example shows a combination widget that is familiar from other
+statistics GUIs. It provides two tree views listing variable names and
+has arrows to move variable names from one side to the other. Often
+such widgets are used for specifying statistical models. 
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.4\textwidth]{ex-RGtk2-pingpong}
+  \caption{An example showing to tree views with buttons to move entries from one to the other. This is a common method for variable selection.}
+  \label{fig:RGtk2-pingpong}
+\end{figure}
+
+
+We will use Example~\ref{ex:RGtk2:add-stock-icons}, in particular its
+function \code{addToStockIcons}, to add some custom
+stock icons to identify the variable type.
+<<echo=FALSE>>=
+## also in previous example
+addToStockIcons <- function(iconNames, fileNames, stock.prefix="new") {
+  iconfactory <- gtkIconFactoryNew()
+  
+  for(i in seq_along(iconNames)) {
+    
+    iconsource = gtkIconSourceNew()
+    iconsource$setFilename(fileNames[i])
+    
+    iconset = gtkIconSetNew()
+    iconset$addSource(iconsource)
+    
+    stockName = paste(stock.prefix, "-",iconNames[i],sep="")
+    iconfactory$add(stockName, iconset)
+    
+    items = list(test=list(stockName, iconNames[i],"","",""))
+    gtkStockAdd(items)
+  }
+  iconfactory$AddDefault()
+}
+@ 
+<<addIcons>>=
+nms <- c("factor","numeric")
+fileNms <- c(system.file("images","factor.gif", package="gWidgets"),
+             system.file("images","numeric.gif", package="gWidgets"))
+QT <- addToStockIcons(nms, fileNms)
+@ 
+
+To keep track of the variables in the two tree views we use a single
+model. It has a column for all the variable names, a column for the
+icon, and two columns to keep track of which variable names are to be
+displayed in the respective tree views.
+<<>>=
+d <- data.frame(varNames=c("response", "trt1", "trt2"),
+                stock.id=c("new-numeric", "new-factor", "new-factor"),
+                leftView  = rep(TRUE, 3),
+                rightView = rep(FALSE, 3),
+                stringsAsFactors=FALSE)
+model <- rGtkDataFrame(d)
+@ 
+
+We will use a filtered data store to show each tree view.
+As the two tree views are identical, except for the rows that are
+displayed, we use a function to generate them. The \code{vis.col}
+indicates which column in the \code{rGtkDataFrame} object contains the
+visibility information. Our tree view packs in both a pixbuf cell
+rendererer and a text one.
+<<>>=
+## make a view
+makeView <- function(model, vis.col) {
+  filteredModel <- model$filterNew()
+  filteredModel$setVisibleColumn(vis.col - 1)
+  tv <- gtkTreeView(filteredModel)
+  tv$getSelection()$setMode("multiple")
+  ##
+  vc <- gtkTreeViewColumn()
+  vc$setTitle("Variable")
+  tv$insertColumn(vc, 0)
+  ##
+  cr <- gtkCellRendererPixbuf()
+  vc$PackStart(cr, expand=FALSE)
+  cr['xalign'] <- 1
+  vc$addAttribute(cr, "stock-id", 1)
+  ##
+  cr <- gtkCellRendererText()
+  vc$PackStart(cr, expand=TRUE)
+  cr['xalign'] <- 0
+  cr['xpad'] <- 5
+  vc$addAttribute(cr, "text", 0)
+
+  return(tv)
+}
+@ 
+We know create the tree views and store the selections associated to each.
+<<>>=
+views <- list()
+views[["left"]] <- makeView(model,3)
+views[["right"]] <- makeView(model,4)
+selections <- lapply(views, gtkTreeViewGetSelection)
+@ 
+We need buttons to move the values left and right, these are stored
+in a list for convenience later on.
+<<>>=
+buttons <- list()
+buttons[["fromLeft"]] <- gtkButton(">")
+buttons[["fromRight"]] <- gtkButton("<")
+@ 
+
+Our basic GUI is shown in Figure~\ref{fig:RGtk2-pingpong} where the
+two tree views are placed side-by-side.
+%The basic GUI just lays out the two tree views with the buttons in
+%between. We left out command to add scrollwindows etc.
+<<basicGUI, echo=FALSE>>=
+## Not shown, but lays out a basic GUI
+w <- gtkWindow()
+g <- gtkHBox()
+w$add(g)
+g$PackStart(views$left)
+vg <- gtkVBox()
+QT <- sapply(buttons, function(i) vg$packStart(i, expand=FALSE))
+g$PackStart(vg)
+g$PackStart(views$right)
+@ 
+
+The key handler moves the selected value from one side to the
+other. The issue here is that when the view is using filtering the
+selection returns values relative to the child model (the filtered
+one). In general the methods of the filtered model
+\code{convertChildPathToPath} and \code{convertChildIterToIter} will
+translate between the two models, but in this case we pass in the
+\code{rGtkDataFrame} instance, not the filtered model. So we use the
+columns indicating visibility to identify which index is being
+referred to. This handler assumes the model and a value indicating the
+view (\code{from}) is passed in through the user data.
+<<>>=
+moveSelected <- function(b, data) {
+  model <- data$model
+
+  selection <- selections[[data$from]]
+  selected <- selection$getSelectedRows()
+  if(length(selected$retval)) {
+    childRows <- sapply(selected$retval, function(childPath) {
+      childRow <- as.numeric(childPath$toString()) + 1
+    })
+    shownIndices <- which(model[, 2 + data$from])
+    rows <- shownIndices[childRows]
+
+    model[rows, 2 + data$from] <- FALSE
+    model[rows, 2 + (3-data$from)] <- !model[rows, 2 + data$from]
+  }
+}
+@ 
+We connect the handler to the \qcode{clicked} signal for the buttons.
+<<>>=
+IDs <- sapply(1:2, function(i) 
+              gSignalConnect(buttons[[i]], signal="clicked", 
+                             f=moveSelected,
+                             data=list(from=i, model=model)))
+@ 
+
+We add one flourish, namely ensuring that the arrows are not sensitive
+when the corresponding selection is not set. This handler for the
+selections is used.
+<<disableButtonsIfNoSelection>>=
+disableButton <- function(sel, data) {
+  selected <- sel$getSelectedRows()
+  buttons[[data]]$setSensitive(length(selected$retval) != 0)
+}
+IDs <- sapply(1:2, function(i) 
+              gSignalConnect(selections[[i]], signal="changed",
+                             f=disableButton,
+                             data=i))
+@ 
+As the initial state has no selection,  we set the buttons sensitivity accordingly.
+<<>>=
+QT <- sapply(buttons, function(i) i$setSensitive(FALSE))
+@ 

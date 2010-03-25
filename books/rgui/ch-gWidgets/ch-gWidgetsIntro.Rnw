@@ -1,0 +1,61 @@
+%% Put these somewhwere:
+
+\XXX{use svalue(g), spacing to give some breathing room in a ggroup}
+
+\XXX{something like ggroup(cont=w,spacing=10); svalue(g)=10}
+
+\XXX{include listing data frame, listing variables by type}
+
+\XXX{relationship with the toolkits
+
+\XXX{getToolkitWidget, add method, ... only with RGtk2 (rJava?), only some widgets}}
+
+
+
+%% gWidgets introduction
+\SweaveOpts{keep.source=TRUE} 
+<<echo=FALSE>>=
+options(prompt=" ",continue=" ") 
+source("../booktabs.R")
+@ 
+\newcommand{\ONLYIN}[1]{[only in #1]}
+
+\chapter{\pkg{gWidgets}: Overview}
+\label{sec:overview}
+
+\SweaveInput{Overview}
+
+
+\chapter{\pkg{gWidgets}: Containers}
+\label{sec:gWidgets-Containers}
+\SweaveInput{Containers}
+
+
+
+
+\chapter{\pkg{gWidgets}: Control Widgets}
+\section{Basic controls}
+\label{sec:gWidgets-controls}
+\SweaveInput{Controls}
+
+
+\section{\pkg{gWidgets}: Compound widgets}
+\label{sec:compound-widgets}
+\SweaveInput{CompoundWidgets}
+
+
+\XXX{Need to have an example with drag and drop}
+
+
+%\section{End of chapter notes}
+%\label{sec:gWidgets:eoc}
+
+
+
+
+
+<<echo=FALSE>>=
+options(prompt="> ")
+options(continue="+ ")
+options(width=80)
+@ 

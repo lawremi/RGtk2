@@ -1,0 +1,34 @@
+<HTML>
+<HEAD>
+<%# read in style sheet #%>
+<link rel="stylesheet" href="brew-stylesheet.css" type="text/css" />
+<title><%= title %></title>
+</HEAD>
+<BODY>
+This is detail on <%= id %>
+
+<h2>SERVER</h2>
+<%=
+for(i in names(SERVER)) {
+   cat(i,":"); print(SERVER[[i]]); cat("<br />")
+  }
+%>
+
+<h2>GET</h2>
+<%= 
+for(i in names(GET)) {
+   cat(i,":"); print(GET[[i]]); cat("<br />")
+  }
+%>
+
+<h2>Cookies</h2>
+<%= 
+for(i in names(COOKIES)) {
+   cat(i,":"); print(COOKIES[[i]]); cat("<br />")
+  }
+%>
+
+
+
+</body>
+</html>

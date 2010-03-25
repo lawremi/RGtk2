@@ -1,0 +1,3 @@
+f <- function() {
+  SERVER$uri
+}

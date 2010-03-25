@@ -1,0 +1,73 @@
+This example shows how a text buffer can be used to display the output
+of \R\/ commands, using an approach modified from \pkg{Sweave}. The
+following function does the work of evaluating a command chunk then
+inserting the values into the text buffer, using different markup to
+indicate commands from output.
+
+<<>>=
+evalCmdChunk <- function(t, cmds) {
+  ## create tags
+  tktag.configure(t, "commandTag", foreground="blue", 
+                  font="courier 12 italic")
+  tktag.configure(t, "outputTag", font="courier 12")
+  tktag.configure(t, "errorTag", foreground="red", 
+                  font="courier 12 bold")
+
+  cmdChunks <- try(parse(text=cmds), silent=TRUE)
+  if(inherits(cmdChunks,"try-error")) {
+    tkinsert(t, "end", "Error", "errorTag") # add tag for markup
+  }
+
+  for(cmd in cmdChunks) {
+    dcmd <- deparse(cmd, width.cutoff = 0.75 * getOption("width"))
+    command <- 
+      paste(getOption("prompt"),
+            paste(dcmd, collapse=paste("\n", getOption("continue"), 
+                          sep="")),
+            sep="", collapse="")
+    tkinsert(t, "end", command, "commandTag")
+    tkinsert(t, "end","\n")
+    ## output, should check for errors in eval!
+    output <- capture.output(eval(cmd, envir=.GlobalEnv))
+    output <- paste(output, collapse="\n")
+    tkinsert(t, "end", output, "outputTag")
+    tkinsert(t, "end","\n")
+  }
+}
+@ 
+
+<<echo=FALSE>>=
+## function to add scrollbars to a widget
+addScrollbars <- function(parent, widget) {
+  xscr <- ttkscrollbar(parent, orient="horizontal",
+                       command=function(...) tkxview(widget, ...))
+  yscr <- ttkscrollbar(parent, orient="vertical",
+                       command=function(...) tkxview(widget, ...))
+
+  tkconfigure(widget,
+              xscrollcommand=function(...) tkset(xscr,...),
+              yscrollcommand=function(...) tkset(yscr,...))
+
+  tkgrid(widget, row=0, column=0, sticky="news")
+  tkgrid(yscr,row=0,column=1, sticky="ns")
+  tkgrid(xscr, row=1, column=0, sticky="ew")
+  tkgrid.columnconfigure(parent, 0, weight=1)
+  tkgrid.rowconfigure(parent, 0, weight=1)
+}
+@
+
+We envision this as a piece of a larger GUI which generates the
+commands t evaluate. For this example though, we make a simple GUI.
+
+<<makeGUI>>=
+w <- tktoplevel(); tkwm.title(w, "Text buffer example")
+f <- ttkframe(w, padding=c(3,3,3,12))
+tkpack(f, expand=TRUE, fill="both")
+t <- tktext(f, width=80, height = 24)   # default size
+addScrollbars(f, t)
+@ 
+ 
+This is how it can be used.
+<<TryIt>>=    
+evalCmdChunk(t, "2 + 2; lm(mpg ~ wt, data=mtcars)")
+@ 

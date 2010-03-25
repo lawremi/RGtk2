@@ -1,0 +1,56 @@
+%% Using R to generate HTML
+Several package authors have provided \R\/ functions to produce HTML from within \R.
+
+\subsection{The R2HTML package}
+\label{sec:r2html}
+
+\subsection{The hwriter package}
+\label{sec:hwriter-package}
+
+The \pkg{hwriter} package provides the \function{hwrite} function that can be used to produce HTML from \R\/ objects in a very flexible manner. The function can output it value to a connection or file, if the \argument{page}{hwrite} argument is specified, otherwise it will return a character vector with the result. The \function{hwrite} function is a generic function with methods for character vectors, numeric vectors, matrices, arrays and data frames. 
+
+The \function{hwrite} function has several general arguments listed in its help page and through is excellent example. We mention \argument{br}{hwrite} to append a break line after the value; \argument{table}{hwrite} which if \code{TRUE} (the default for matrices and vectors of length greater than 1) then values will be placed in an HTML table; and \argument{link}{hwrite} to specify a hyperlink the value will point to. Additional named arguments are used to specify attributes for the HTML tags. Through R's regular recycling rules, some complex results can be achieved quite easily.
+
+<<>>=
+library(hwriter)
+m <- mtcars[1:2,1:2]                    # some data frame
+@ 
+hmakeTag
+
+hwriteImage
+
+%% more developed
+
+* R2HTML
+  * HTMLUtils (HTML function)
+  * Sweave driver for HTML
+  * Rpad builds on R2HTML (HtoHTML, ...) (Rpad docs are good ?HTML)
+
+\subsection{The prettyR package}
+
+The \pkg{prettyR} has several functions for describing \R\/ objects. It \function{htmlize} function can be used to produce an HTML page from an \R\/ script, where the output from the script is formatted for display through \pkg{prettyR} functions. The argument \argument{do.nav}{htmlize} can be set to \code{TRUE} so that the input commands appear with hyperlinks leading to the output.
+ 
+\subsection{The brew package}
+\label{sec:brew-package}
+
+The \pkg{brew} package is a template language, similar to many others, that allows HTML and \R\/ commands to be mixed. Its serves a similar role as Sweave for creating latex documents. When the function \function{brew} is run, the \R\/ commands are executed and their output can be inserted into the document. The conversion is quick and the process can be run in response to a web request, making the presentation of HTML documents using R relatively simple.
+
+
+The manual page clearly describes the syntax with:
+\begin{quotation}
+brew syntax is quite simple and there are very few delimiters to learn:
+\begin{enumerate}
+\item   All text that falls outside of the delimiters is printed as-is.
+\item   R expressions between the '\leftBracket\%' and '\%\rightBracket' delimiters are executed in-place.
+\item The value of the R expression between the '\leftBracket\%=' and
+  '\%\rightBracket' delimiters is printed.
+\item All text between the '\leftBracket\%\#' and '\%\rightBracket'
+  delimiters is thrown away. Use it as a comment.
+\item If you place a '-' just before the '\%\rightBracket' delimiter,
+  and it's placed at the end of a line, then the newline is omitted
+  from the output.
+\end{enumerate}
+\end{quotation}
+
+We give an example when discussion \pkg{RApache}. \XXX{reference}
+        

@@ -1,0 +1,154 @@
+%% Overview of HTML, etc
+
+Web technologies are many and changing. This section tries to list
+some of the standard ones that intersect with \R\/ packages that take
+advantage of them. 
+
+When a user loads a web page in their browser, many things happen in
+the background. In order to put work on the web to allow such access,
+a few details must be known. The web architecture is based around a
+client-server model, where the client is the web browser, and the
+server a web server. The Apache \XXX{apache reference} web server is
+the dominant open-source web server available for numerous
+platforms. Numerous others are also available, some for specific needs
+such as low resources, others with commercial origins.
+
+The web server is repsonsible for processing a user request for a
+page, as specified by a URL, and returning content to the user's web
+browser for display. The web server may do this in many ways. The most
+basic is when the URL refers to a static web page, a plain text file
+written in HTML format, in which case the page is returned to the
+user's browser for rendering.  A typical setup uses the web server to map the URL to a file within the file system on the server. To place a file on the web, then requires a knowledge of how to create an HTML file and where to place it.
+
+Web servers have moved far beyond this usage case.  Many web pages are
+now written as templates with the information appearing on the page
+generated dynamically by the web server.  A typical usuage now
+involves a request to the server, which in turn processes that request
+through some call to another process, perhaps an \R\/ process that
+generates the HTML to display. Along the way this secondary process
+may query a data base or other similarly complex tasks.
+
+Newer web technologies allow each component on the page to act independent of the entire page. So rather than needing to reload an entire page to refresh data, only the components requiring updating are refreshed. This has allowed for interactive web sites to become desktop like.
+
+For developing \R\/ GUIs for the web -- interactive web pages --
+understanding how \R\/ can be used for the secondary process will be
+necessary. Before discussing that, we begin with a discussion on some
+of the underlying web technologies.
+
+
+\begin{figure}
+  \centering
+  \XXX{Graphic goes here}
+  \caption{Schematic of possible web requests, the first showing how a static web page is rendered, the latter showing a more complex usage.}
+  \label{fig:web-page-rendering}
+\end{figure}
+
+\subsection{ML: Markup Language}
+
+The web has come a long way since Timoth Berners Lee designed the
+initial hypertext markup language (HTML) in 1992 \XXX{reference}, but
+the centrality of this markup language is still present.
+
+A markup language is a means of specifying attributes for elements of
+a document. There are many such languages, for example the \LaTeX/
+language for typesetting mathematics is one, the open document format
+is another. Many modern ones are based on XML (extensible markup
+language). 
+
+
+\subsubsection{HTML}
+
+HTML (Hypertext markup language) is the original language that web
+browsers could render as pages. A full specification of the language can be
+found at \XXX{Where?}.
+
+Markup is achieved by wrapping elements within begin and tags. 
+A typical tag has the form
+\begin{quotation}
+  \verb+<tagname attributeKey=value>text</tagname>+.
+\end{quotation}
+The tag is enclosed within brackets and the closing tag includes a
+forward slash. Tags can include attributes to paramterize how they are
+displayed. These are specified in \texttt{key=value} format. White
+space is used to separate attributes, so quotes are used to combine
+the value when it contains spaces.
+
+Tags are used to structure the document. There are \code{head} and
+\code{body} tags to separate out topmatter for a document and the
+document content. A basic document head may look like
+\begin{verbatim}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<title>Page title</title>
+</head>
+\end{verbatim}
+%
+which specifies the type of document, character set and the page
+title. More complicated head content can be used to define styles and
+scripts that will be used in the document.
+
+After the \code{head} tag, the main content is contained within a \code{body} tag. At the end of the document, the \code{body} and \code{html} tags are closed with something like
+\begin{verbatim}
+</body></html>
+\end{verbatim}
+
+
+Within the body, there sectioning tags such as
+\code{H1}, \code{H2}, \code{div}, \code{span} etc. for layout of text on the page. 
+Tags are also used to format text. Examples are \code{p} for marking
+paragraphs, \code{b} for bold-faced text, and \code{pre} for
+pre-formatted text. 
+
+
+
+
+\paragraph{The canvas tag} As the internet developed, the need for more specialized displays became necessary. The \code{canvas} tag is a new tag that creates a canvas that can be drawn to and have its objects manipulated, as with the \code{tkcanvas} widget in \pkg{tcltk}. The \pkg{canvas} package~\cite{canvas-package}, by Jeffrey Horner, provides a means to use a canvas element as a device within an \R\/ session.
+
+
+\subsubsection{XML}
+
+The extensible markup language extends HTML to allow markup of many diverse document types. For \R\/ users, XML can be used to markup data sets for example. For GUI developers, XML is used to  specificy GUI layouts, or menu and toolbar structures. 
+
+XML allows users to define new tags
+
+How else does it standardize
+
+\subsubsection{MathML}
+
+
+MathML is a subset of XML that specifies a markup for math symbols. Examples,
+
+
+\subsection{Style sheets}
+\label{sec:style-sheets}
+
+* separation of content and layout
+* defined within a tag, or read in from a local file or an url.
+* example
+* properties can be set per tag h5.class or byh class .class or ???
+* cascading comes from how look up occurs first by tag.class, then class then tag?
+* 
+\subsection{Javascript}
+\label{sec:javascript}
+
+* allows for client side behaviors without a query to the server
+* DOM allows for manipulation of current page
+* A programming language, prototype based (R proto package) centered around properties and methods. but many methods to manipulate the current page
+* web 2.0 -- AJAX, xmlhttpd
+* json -- javascript object notatino
+* external libraries: dojo, extjs, YUI, ...
+
+\subsection{Reading from the internet within an R session}
+\label{sec:read-from-intern}
+
+* \code{url}
+
+*  (\pkg{RCurl})
+
+* \pkg{RServe}
+
+
+

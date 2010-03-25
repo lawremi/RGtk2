@@ -1,0 +1,71 @@
+This shows the minimal number of steps to use \code{rGtk2DataFrame}
+
+<<echo-FALSE>>=
+library(RGtk2)
+@ 
+
+We define a simple data frame, and then create our data store and tree view.
+<<defineSomeData>>=
+df <- data.frame(a=c(1:5), b=c(21.2, rnorm(1), 1, NA, NaN))
+store <- rGtkDataFrame(df)
+tv <- gtkTreeView(store)
+@ 
+
+The basic steps to show a column, with the small flourish of adding a
+column title, are right here, where the first column of the store is
+mapped to the first column of the tree view.
+<<minimalSteps>>=
+vc <- gtkTreeViewColumn()
+QT <- tv$insertColumn(vc, 0)                  # first col. of tree view
+vc$setTitle("Column 1")
+cr <- gtkCellRendererText()
+vc$packStart(cr)
+vc$addAttribute(cr, "text", 0)          # first col. of store
+@ 
+
+A basic GUI consists of adding the tree view to a window using a
+scrolled window.
+<<basicGUI>>=
+w <- gtkWindow(show=FALSE)
+w$setSizeRequest(300,300)
+w$setTitle("rGtk2DataFrame example")
+sw <- gtkScrolledWindow()
+sw$setPolicy("automatic", "automatic")
+sw$add(tv)
+w$add(sw)
+w$showAll()
+@ 
+
+However, if we did the above for column 2 of our data frame, we would
+encounter the minor issues involving formatting described
+previously. To work around these issues, we can define a function that
+is called to render each cell. As this is called for each cell
+rendered, this approach is slower.
+<<>>=
+vc <- gtkTreeViewColumn()
+tv$insertColumn(vc, 1)
+vc$setTitle("Column 2")
+cr <- gtkCellRendererText()
+vc$packStart(cr)
+@ 
+Our cell data function allows us to modify the value before assigning
+it to the \qcode{text} attribute of the cell renderer. In the example,
+we replace the \code{NA} values with strings, and format the numbers
+to a fixed number of decimal points. The right alignment, then forces
+the alignment of the decimal points. We write this, so that the column
+number is passed in, in case reuse is desired.
+<<cellDataFunc>>=
+cellFunc <- function(vc, cr, model, iter, data) {
+  curVal <- model$getValue(iter, data - 1)$value
+  if(is.nan(curVal))
+    curVal <- "NA"
+  else if(is.nan(curVal))
+    curVal <- "NaN"
+  else
+    curVal <- sprintf("%.3f", curVal)
+  cr['xalign'] <- 1
+  cr['text'] <- curVal
+}
+QT <- vc$setCellDataFunc(cr, func=cellFunc, 
+                         func.data=2) # pass in col. no
+@ 

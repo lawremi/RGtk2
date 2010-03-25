@@ -1,0 +1,19 @@
+Basics: HTML, Forms (CGI), javascript, XMLHTTPD
+HTML tags, tables, converters R2HTML, (Rpad, HTMLutils) hwrite, brew
+FORMS tags, CGI
+JavaScript, toolkits (YUI, extjs, dojo, ...)
+RApache
+RPad (gWidgets)
+
+
+What to put for RApache
+basics of brew
+file upload
+data base
+from function
+
+Rpad
+
+
+http://www.w3schools.com/TAGS/tag_input.asp 
+for input tag: type, events

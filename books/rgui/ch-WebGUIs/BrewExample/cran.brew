@@ -1,0 +1,15 @@
+<%
+require(brew)
+setwd("/mnt/hgfs/verzani/export/Statistics/GUI/ch-WebGUIs/tmp")
+title <- "Click on a CRAN mirror"
+%>
+
+<% brew("brew-header.brew") %>
+<div id="header">  <%= title %>                        </div>
+<div id="nav">     <% brew("brew-breadcrumbs.brew") %> </div>
+<div id="sidebar"> <% brew("brew-fortunes.brew") %>    </div>
+<div id="main">    <% brew("brew-list.brew") %>        </div>
+<div id="footer">  Text for footer                     </div>
+<% brew("brew-footer.brew") %>
+
+

@@ -1,0 +1,35 @@
+(TeX-add-style-hook "BasicComponents"
+ (lambda ()
+    (LaTeX-add-labels
+     "sec:GUI:two-print-dialogs"
+     "fig:GUI:print-dialogs"
+     "sec:GUI:basic-selection"
+     "fig:GUI:spss-11-model-selection"
+     "sec:GUI:checkboxes"
+     "sec:GUI:radio=button-groups"
+     "fig:GUI:ex-tcltk"
+     "sec:GUI:sliders"
+     "sec:GUI:combo-boxes"
+     "sec:GUI:tabular-display"
+     "fig:GUI:table-widgets"
+     "sec:GUI:tree-widgets"
+     "sec:GUI:buttons"
+     "sec:GUI:icons"
+     "sec:GUI:menubars"
+     "sec:GUI:toolbars"
+     "sec:GUI:text-widgets"
+     "sec:GUI:single-line-text"
+     "sec:GUI:textboxes"
+     "fig:GUI:R-guis-exs-JGR-Rcmdr"
+     "tab:GUI:widgets-constructors"
+     "sec:GUI:info-display"
+     "sec:GUI:labels"
+     "sec:GUI:statusbars"
+     "sec:GUI:basic-tooltips"
+     "sec:GUI:modal-dialogs"
+     "sec:GUI:file-choosers"
+     "sec:GUI:message-dialogs")
+    (TeX-add-symbols
+     "PARASIZE"
+     "LARGEPARASIZE")))
+

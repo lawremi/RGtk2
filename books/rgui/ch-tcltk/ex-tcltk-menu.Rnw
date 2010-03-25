@@ -1,0 +1,181 @@
+<<echo=FALSE>>=
+## Not shown
+library(tcltk)
+
+## Helper functions
+usingMac <- function()  
+  as.character(tcl("tk", "windowingsystem")) == "aqua"
+
+addScrollbars <- function(parent, widget,type=c("both", "x", "y")) {
+  if(any(type %in% c("both","x"))) {
+    xscr <- ttkscrollbar(parent, orient="horizontal",
+                         command=function(...) tkxview(widget, ...))
+    tkconfigure(widget,
+                xscrollcommand=function(...) tkset(xscr,...))
+  }
+
+  if(any(type %in% c("both","y"))) {
+     yscr <- ttkscrollbar(parent, orient="vertical",
+                          command=function(...) tkxview(widget, ...))
+     tkconfigure(widget,
+                 yscrollcommand=function(...) tkset(yscr,...))
+   }
+
+  ## place in grid     
+  tkgrid(widget, row=0, column=0, sticky="news")
+  if(any(type %in% c("both", "x"))) {
+    tkgrid(xscr, row=1, column=0, sticky="ew")
+    tkgrid.columnconfigure(parent, 0, weight=1)
+  }
+  if(any(type %in% c("both", "y"))) {
+    tkgrid(yscr,row=0,column=1, sticky="ns")
+    tkgrid.rowconfigure(parent, 0, weight=1)
+  }
+}
+@ 
+This example shows how one might make a very simple code editor using a text-entry widget. We use the \pkg{svMisc} package, as it defines a few GUI helpers which we use.
+<<>>=
+library(svMisc)                         # for some helpers
+showCmd <- function(cmd) writeLine(captureAll(Parse(cmd)))
+@ 
+
+We create a simple GUI with a top-level window containing the text entry widget.
+<<>>=
+w <- tktoplevel()
+tkwm.title(w, "Simple code editor")
+f <- ttkframe(w,padding=c(3,3,3,12)); 
+tkpack(f, expand=TRUE, fill="both")
+tb <- tktext(f, undo=TRUE)
+addScrollbars(f, tb)
+@ 
+
+We create a toplevel menu bar, \code{mb}, and attach it to our toplevel window. The we create a file and edit submenu.
+<<>>=
+mb <- tkmenu(w); tkconfigure(w, menu=mb)
+fileMenu <- tkmenu(mb)
+tkadd(mb, "cascade", label="File", menu=fileMenu)
+editMenu <- tkmenu(mb)
+tkadd(mb, "cascade", label="Edit", menu=editMenu)
+@ 
+
+To these sub menu bars, we add action items. First a command to evaluate the contents of the buffer.
+<<>>=
+tkadd(fileMenu, "command", label="Evaluate buffer",
+      command = function() {
+        curVal <- tclvalue(tkget(tb, "1.0", "end"))
+        showCmd(curVal)
+      })
+@ 
+
+Then a command to evaluate just the current selection
+<<>>=
+tkadd(fileMenu, "command", label="Evaluate selection",
+      state="disabled",
+      command = function() {
+        curSel <- tclvalue(tkget(tb, "sel.first", "sel.last"))
+        showCmd(curSel)
+      })
+@ 
+
+Finally, we end the file menu with a quit action. 
+<<addQuit>>=
+tkadd(fileMenu, "separator")
+tkadd(fileMenu, "command", label="Quit", command=function() tkdestroy(w))
+@ 
+
+The edit menu has an undo and redo item. For illustration purposes we add an icon to the undo item.
+<<>>=
+img <- system.file("images/up.gif",package="gWidgets")
+QT <- tkimage.create("photo", "::img::undo", 
+                     file = img)
+tkadd(editMenu, "command", label="Undo",
+      image="::img::undo", compound="left",
+      command = function() tcl(tb, "edit", "undo"))
+tkadd(editMenu, "command", label="Redo",
+      command = function() tcl(tb, "edit", "redo"))
+@ 
+
+We now define a function to update the user interface to reflect any changes.
+<<updateUI>>=
+updateUI <- function() {
+  states <- c("disabled","normal")
+  ## selection
+  hasSelection <- function(W) {
+    ranges <- tclvalue(tcl(W, "tag", "ranges", "sel"))
+    length(ranges) > 1 || ranges != ""
+  }
+  ## by index  
+  tkentryconfigure(fileMenu,1,  state=states[hasSelection(tb) + 1]) 
+  ## undo -- if buffer modified, assume undo stack possible
+  ## redo -- no good check for redo
+  canUndo <- function(W) as.logical(tcl(W,"edit", "modified"))
+  tkentryconfigure(editMenu,"Undo", state=states[canUndo(tb) + 1])
+  tkentryconfigure(editMenu,"Redo", state=states[canUndo(tb) + 1])
+}
+@ 
+We update the UI during idle times. The \function{after} command can be used to run a command after a period of time. The following repeats a function every second until the toplevel window no longer exists.
+<<>>=
+afterID <- ""
+repeatCall <- function(ms=1000, f, w) {
+  afterID <<- tcl("after", ms, function() {
+    if(as.logical(tkwinfo("exists", w))) {
+      f()
+      afterID <<- repeatCall(ms, f, w)
+    } else {
+      tcl("after", "cancel", afterID)
+    }
+  })
+}
+repeatCall(100, updateUI, w)
+@ 
+
+We now add an accelerator entry to the menubar and a binding to the top-level window for the keyboard shortcut.
+<<addKeyboardShortcut>>=
+if(usingMac()) {
+  tkentryconfigure(editMenu,"Undo",accelerator="Cmd-z")
+  tkbind(w,"<Option-z>", function() tcl(tb,"edit","undo"))
+} else {
+  tkentryconfigure(editMenu,"Undo",accelerator="Control-u")
+  tkbind(w,"<Control-u>", function() tcl(tb,"edit","undo"))
+}
+@ 
+
+To illustrate popup menus, we define one within our text widget that will grab all
+functions that complete the current word, using the
+\function{CompletePlus} function from the \pkg{svMisc} package to find
+the completions.  The use of \code{current wordstart} and
+\code{current wordend} to find the word at the insertion point isn't quite
+right for \R, as it stops at periods.
+<<definePopup>>=
+doPopup <- function(W, X, Y) {
+  cur <- tclvalue(tkget(W,"current  wordstart", "current wordend"))
+  tcl(W, "tag", "add", "popup", "current  wordstart", "current wordend")
+  posVals <- head(CompletePlus(cur)[,1, drop=TRUE], n=20)
+  if(length(posVals) > 1) {
+    popup <- tkmenu(tb)                 # create menu for popup
+    sapply(posVals, function(i) {         
+      tkadd(popup, "command", label=i, command = function() {
+        tcl(W,"replace", "popup.first", "popup.last", i)
+      })
+    })
+    tkpopup(popup, X, Y)
+ }}
+@ 
+
+For a popup, we set the appropriate binding for the underlying
+windowing system. For the second mouse button binding in OS X, we
+clear the clipboard. Otherwise the text  will be pasted in, as this mouse
+action already has a default binding for the text widget.
+
+<<addPopup>>=
+if (!usingMac()) {
+  tkbind(tb, "<Button-3>", doPopup)
+} else {
+  tkbind(tb, "<Button-2>", function(W,X,Y) {
+    ## UNIX legacy re mouse-2 click for selection copy
+    tcl("clipboard","clear",displayof=W) 
+    doPopup(W,X,Y)
+    })      # right click
+  tkbind(tb, "<Control-1>", doPopup)     # Control + click
+}
+@       

@@ -1,0 +1,51 @@
+<<echo=FALSE>>=
+library(RGtk2)
+@ 
+
+
+\begin{example}{Using a pixbuf to present graphs}{ex:RGtk2:pixbuf}
+
+  This example shows how to use a \constructor{gtkImage} object to
+  embed a graphic within \pkg{RGtk2}, as an alternative to using the
+  \pkg{cairoDevice} package. The basic idea is to use the
+  \function{Cairo} device to create a file containing the graphic, and
+  then use \constructor{gtkImageNewFromFile} to construct a widget to
+  show the graphic.
+
+  We begin by creating a window of a certain size.
+<<>>=    
+w <- gtkWindow(show=FALSE); w$setTitle("Graphic window");
+w$setSizeRequest(400,400)
+g <- gtkHBox(); w$add(g)
+w$showAll()
+@ 
+
+
+The size of the image is retrieved from the size allocated to the box
+\code{g}. This allows the window to be resized prior to drawing the
+graphic. Unllke an interactive device, after drawing, this graphic
+does not resize itself when the window resizes.
+
+<<>>=
+theSize <- g$getAllocation()
+width <- theSize$width; height <- theSize$height
+@ 
+
+Now we draw a basic  graphic as a png file (\code{Cairo}'s default) stored in a temporary file.
+<<>>=
+require(Cairo)
+filename <- tempfile()
+Cairo(file = filename, width = width, height = height)
+hist(rnorm(100))
+QT <- dev.off()
+@ 
+
+The constructor may be called as \command{gtkImage(filename=filename)}
+or as follows:
+<<>>=
+image <- gtkImageNewFromFile(filename)
+g$packStart(image, expand=TRUE, fill = TRUE)
+unlink(filename)                        # tidy up
+@ 
+
+\end{example}

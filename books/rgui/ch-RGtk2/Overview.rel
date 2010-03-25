@@ -1,0 +1,52 @@
+;; RefTeX parse info file
+;; File: /Users/verzani/GUI/ch-RGtk2/Overview.Rnw
+;; User: verzani (john verzani)
+
+(set reftex-docstruct-symbol '(
+
+
+(xr nil "\\\\\\\\\\\\")
+
+(index-tags)
+
+(is-multi nil)
+
+(bibview-cache)
+
+(master-dir . "/Users/verzani/GUI/ch-RGtk2/")
+
+(label-numbers)
+
+(bof "/Users/verzani/GUI/ch-RGtk2/Overview.Rnw")
+
+(toc "toc" "      1 Installation" "/Users/verzani/GUI/ch-RGtk2/Overview.Rnw" nil 3 "1" "\\subsection{Installation}" 2671)
+
+("sec:installation" "s" nil "/Users/verzani/GUI/ch-RGtk2/Overview.Rnw" nil "")
+
+(toc "toc" "      1 Installation" "/Users/verzani/GUI/ch-RGtk2/Overview.Rnw" nil 3 "1" "\\subsection{Installation}" 2671)
+
+(toc "toc" "    1 How \\GTK\\/ is organized" "/Users/verzani/GUI/ch-RGtk2/Overview.Rnw" nil 2 "1" "\\section{How \\GTK\\/ is organized}" 3335)
+
+("sec:RGtk2:constructors" "s" "\\GTK\\/ objects are created using constructors such as \\function{gtkWindowNew} and \\function{gtkButto" "/Users/verzani/GUI/ch-RGtk2/Overview.Rnw" nil)
+
+(toc "toc" "      1.1 Methods" "/Users/verzani/GUI/ch-RGtk2/Overview.Rnw" nil 3 "1.1" "\\subsection{Methods}" 3868)
+
+(toc "toc" "      1.2 Properties" "/Users/verzani/GUI/ch-RGtk2/Overview.Rnw" nil 3 "1.2" "\\subsection{Properties}" 6849)
+
+(toc "toc" "      1.3 Enumerated types and flags" "/Users/verzani/GUI/ch-RGtk2/Overview.Rnw" nil 3 "1.3" "\\subsection{Enumerated types and flags}" 8612)
+
+(toc "toc" "      1.4 PANGO" "/Users/verzani/GUI/ch-RGtk2/Overview.Rnw" nil 3 "1.4" "\\subsection{PANGO}" 15310)
+
+("sec:pango" "s" nil "/Users/verzani/GUI/ch-RGtk2/Overview.Rnw" nil "")
+
+(toc "toc" "      1.4 Events and signals" "/Users/verzani/GUI/ch-RGtk2/Overview.Rnw" nil 3 "1.4" "\\subsection{Events and signals}" 8614)
+
+(toc "toc" "      1.5 The eventloop" "/Users/verzani/GUI/ch-RGtk2/Overview.Rnw" nil 3 "1.5" "\\subsection{The eventloop}" 8614)
+
+(toc "toc" "    2 RGtk2 and gWidgetsRGtk2" "/Users/verzani/GUI/ch-RGtk2/Overview.Rnw" nil 2 "2" "\\section{RGtk2 and gWidgetsRGtk2}" 15878)
+
+("sec:RGtk2:gWidgetsRGtk2" "s" "The widgets described above, are also available through \\pkg{gWidgetsRGtk2}. The two packages can be" "/Users/verzani/GUI/ch-RGtk2/Overview.Rnw" nil)
+
+(eof "/Users/verzani/GUI/ch-RGtk2/Overview.Rnw")
+))
+

@@ -1,0 +1,50 @@
+To illustrate popup menus, we show how define a one and connect it to
+a third-mouse click. We start with a \code{gtkMenu} instance, to which we add some items.
+<<"menubar-ex">>=
+popup <- gtkMenu()                       # top level
+
+for(i in c("cut","copy","----","paste")) {
+  if(i == "----")
+    popup$append(gtkSeparatorMenuItem())
+  else
+    popup$append(gtkMenuItem(i))
+}
+@ 
+
+This menu will be shown by \code{gtkMenuPopup}. This function is
+called with the menu, some optional arguments for placement, and
+values for the button that was clicked and the time of
+activation. These values can be retrieved from the second argument of
+the callback (a \code{GdkEvent}), as shown.
+<<>>=
+b <- gtkButton("Click me with right mouse button")
+w <- gtkWindow(); w$setTitle("Popup menu example")
+w$add(b)
+
+ID <- gSignalConnect(b,"button-press-event",
+                    f = function(w, e, userData) {
+                      if(e$getButton() == 3 ||
+                         (e$getButton() == 1 && # a mac
+                          e$getState() == GdkModifierType['control-mask'])
+                         ) {
+                        gtkMenuPopup(userData$mb,
+                                     button = e$getButton(),
+                                     activate.time = e$getTime())
+                        }
+                      return(FALSE)
+                    },
+                    data=list(mb=popup)
+                    )
+@ 
+
+The above will popup a menu, but until we bind to the \code{activate}
+signal, nothing will happen when a menu item is selected. Below we
+supply a stub for sake of illustration. The children of a popup menu
+are the menu items, including the separator which we avoid.
+<<>>=
+IDs <- sapply(popup$getChildren(), function(i) {
+  if(!inherits(i, "GtkSeparatorMenuItem")) # skip these
+    gSignalConnect(i, "activate",
+                   f = function(w, data) print("replace me"))
+})
+@ 

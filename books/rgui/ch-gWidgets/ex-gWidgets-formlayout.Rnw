@@ -1,0 +1,135 @@
+This example uses \code{gformlayout} to make a GUI for a $t$-test (Figure~\ref{fig:ex-gWidgets-formlayout}). The
+first task is to define the list that will set up the GUI. We do this
+in pieces. This first piece will define the part of the GUI where the
+null and alternative hypotheses are specified. The null is specified
+as a numeric value with a default of 0. We use the \code{gedit} widget
+which by default will return a character value, so the
+\code{coerce.with} argument is specified. For the alternative, this
+requires a selection for just 3 possibilities, so a combo box is
+employed.
+\begin{figure}
+  \centering
+  \includegraphics[width=.5\textwidth]{ex-gWidgets-formlayout}
+  \caption{A dialog to collect arguments for a $t$-test made with \code{gformlayout}.}
+  \label{fig:ex-gWidgets-formlayout}
+\end{figure}
+
+
+<<>>=
+hypotheses <- 
+  list(type = "fieldset",
+       label = "Hypotheses",
+       columns = 2, 
+       children = list(
+         list(type="gedit",                            
+              name="mu", label="Ho: mu=",
+              text="0", coerce.with=as.numeric),
+         
+         list(type="gcombobox",
+              name="alternative", label="HA: ",
+              items=c("two.sided","less","greater")
+              )))
+@
+
+Basic usage of the \code{t.test} function allows for an \code{x}, or
+\code{x} and \code{y} variable to be specified. Here we disable the
+\code{y} variable until the \code{x} one has been entered. The
+\code{addHandlerChanged} method is called when the enter key is
+pressed after the \code{x} value is specified.
+
+<<>>=
+variables <- 
+  list(type="fieldset",
+       columns = 2,
+       label = "Variable(s)",
+       label.pos = "top",
+       label.font = c(weight="bold"),
+       children = list(
+         list(type = "gedit",
+              name = "x", label = "x",
+              text = ""),
+         list(type = "gedit",
+              name = "y", label = "y",
+              text = "",
+              depends.on = "x",
+              depends.FUN = function(value) nchar(value) > 0,
+              depends.signal = "addHandlerChanged"
+              )))
+@
+
+If a \code{y} value is specified, then the two-sample options make sense. This enables them dependent on that happening.
+
+<<>>=
+two.sample <-  
+  list(type = "fieldset",
+       label = "two sample test",
+       columns = 2,
+       depends.on = "y",
+       depends.FUN = function(value) nchar(value) > 0,
+       depends.signal = "addHandlerChanged",                     
+       children = list(
+         list(type = "gcombobox",
+              name = "paired", label = "paired samples",
+              items = c(FALSE, TRUE)
+              ),
+         list(type = "gcombobox",
+              name = "var.equal", label = "assume equal var",
+              items = c(FALSE, TRUE)
+              )))
+@
+
+The confidence interval specification is specified using a slider for variety.
+
+<<>>=
+conf.level <- 
+  list(type = "fieldset",
+       columns = 1,
+       children = list(
+         list(type = "gslider",
+              name = "conf.level", label = "confidence level",
+              from=0.5, to=1.0, by=.01, value=0.95
+              )))
+@
+Finally, the constituent pieces are placed inside a box container.
+<<>>=
+tTest <- list(type = "ggroup",
+              horizontal = FALSE,
+              children = list(
+                variables,
+                hypotheses,
+                two.sample,
+                conf.level
+                ))
+@ 
+
+The layout of the GUI is primarily done by the \code{gformlayout}
+call. The following just places the values in a top-level window and adds a
+button to initiate the call to \code{t.test}.
+
+<<>>=
+w <- gwindow("t.test example with gformlayout")
+g <- ggroup(horizontal=FALSE, cont=w)
+fl <- gformlayout(tTest, cont=g, expand=TRUE)
+bg <- ggroup(cont=g)
+addSpring(bg)
+b <- gbutton("Run t.test", cont=bg)
+@
+
+The handler is very simple, as the names chosen match the argument
+names of \code{t.test}, so the list returned by the \meth{svalue}
+method can be used with \code{do.call}. The only needed adjustment is
+for the one-sample case.
+
+<<>>=
+addHandlerChanged(b, function(h, ...) {
+  out <- svalue(fl)
+  out$x <- svalue(out$x) # turns text string into numbers
+  if(out$y == "") {
+    out$y <- out$paired <- NULL 
+  } else {
+   out$y <- svalue(out$y)
+  }
+  print(do.call("t.test", out))
+})
+@
+

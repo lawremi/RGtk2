@@ -1,0 +1,5 @@
+%% discuss modal dialogs:
+
+* message, confirm, input
+* filebrowser
+* calendar

@@ -1,0 +1,155 @@
+
+\begin{example}{}{}
+
+This example shows how a user can update a text area through selection
+from a tree. This is a common practice in statistical GUIs, although
+the implementation is more sophisiticated.
+
+<<echo=FALSE>>=
+library(proto)
+library(RGtk2)
+@ 
+
+We define a global variable, \code{tv}, to hold the text view and then
+wrap the view in a scrolled window.
+<<>>=
+tv <- gtkTextView()
+tv.sw <- gtkScrolledWindow()
+tv.sw$SetPolicy("automatic","automatic")
+tv.sw$Add(tv)
+
+We create a proto trait to show an object in a generic way. This gets used below to create an object that "shows" itself by writing to the text view.
+<<>>=
+AnObject <-
+  proto(new=function(.,...) .$proto(...),
+        data = NULL,                    # where to show
+        show = function(.) {}           # show in treeview
+        )
+@ 
+
+This creates a trait whose instances will show them selves by
+inserting their message into the text buffer.
+<<>>=
+ShowText <- AnObject$new()
+ShowText$message = ""
+ShowText$data <- tv
+ShowText$show <- function(.) {
+  tb <- .$data$GetBuffer()
+  tb$InsertAtCursor(paste(.$message,"\n",sep=""))
+}
+@ 
+
+Now we define a few convenience functions for lists. This first one
+will populate the list store from a list. This is done recursively, as
+the depth of the list may be arbitrary. 
+
+<<>>=
+gtkTreeStoreAddFromList <- function(store,lst) {
+  ## we stop descending when we hit a proto object
+  is.proto <- function(.) inherits(.,"proto")
+  addToTree <- function(store, lst, iter) {
+    for(i in names(lst)) {
+      niter <- store$Append(parent=iter)$iter
+      if(!is.proto(lst[[i]])) {
+        store$SetValue(niter, column = 0, i) # recurse
+        addToTree(store, lst[[i]], niter)
+      } else {
+        store$SetValue(niter, column = 0, i)
+      }
+    }
+  }
+  addToTree(store, lst, NULL)
+}
+@ 
+
+We use the following function to relate the user's selection to the
+list elements. This function simply walks back the tree collecting the
+values in the first column.
+
+<<>>=
+gtkTreeStoreGetPathNames <- function(store,iter, path) {
+  if(missing(iter)) {
+    str <- path$ToString()
+    iter <- store$GetIterFromString(str)$iter
+  }
+
+  val <- store$GetValue(iter,0)$value
+  
+  iter <- store$IterParent(iter)
+  while(iter$retval) {
+    val <- c(store$GetValue(iter$iter,0)$value, val)
+      iter <- store$IterParent(iter$iter)
+  }
+  return(val)
+}
+@ 
+
+This is a quick function to show a tree view with just a single
+column, whose only purpose it to make the layout easier to read.
+<<>>=
+showView <- function(view)  {
+  cr <- gtkCellRendererText()
+  vc <- gtkTreeViewColumn()
+  vc$SetTitle("testing")
+  vc$PackStart(cr, TRUE)
+  vc$AddAttribute(cr,"text",0)
+  view$InsertColumn(vc,0)
+  
+  sw <- gtkScrolledWindow()
+  sw$SetPolicy("automatic","automatic")
+  sw$Add(view)
+  return(sw)
+}
+@ 
+
+Now we are ready for a simple example. First we define a list to show
+through the tree. The terminal nodes are instances of the trait
+defined previously.
+<<>>=
+lst <- list(flintstone = list(
+              husband = ShowText$new(message="fred"),
+              wife = ShowText$new(message="wilma")
+              ),
+            rubble = list(
+              husband = ShowText$new(message="barney"),
+              wife = ShowText$new(message="betty")
+              )
+            )
+@ 
+
+We populate the tree store using the list above. We call the list by
+its components, to indicate that one could dynamically add to the tree view.
+<<>>=
+store <- gtkTreeStore("gchararray")
+store$AddFromList(lst["flintstone"])
+store$AddFromList(lst["rubble"])
+@ 
+Now we define a view for the tree store and connect a callback to the
+\signal{row-activated} signal. This callback uses the previously
+defined \function{gtkTreeStoreGetPathNames} to retrieve the names of
+the selection, then passes these to the list using the recursive
+indexing of lists.
+<<>>=
+view <- gtkTreeViewNewWithModel(store)
+
+## callback
+ID <- gSignalConnect(view,"row-activated",
+               f = function(view,path, column, data) {
+                 store <- view$getModel()
+                 nms <- store$GetPathNames(path=path)
+                 if(is.proto(data[[nms]]))
+                   data[[nms]]$show()   # call proto object
+               }, data = lst)
+@ 
+
+We end with some code to set up the layout of the two main widgets.
+<<>>=
+w <- gtkWindow(); w$SetTitle("Tree view")
+g <- gtkHBox(FALSE,5)
+w$Add(g)
+g$PackStart(showView(view))
+g$PackStart(tv.sw)
+@ 
+
+\end{example}
+

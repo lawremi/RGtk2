@@ -1,0 +1,637 @@
+While websites can consist of just static files, many webpages viewed
+are dynamically generated in response to user input. In order to
+implement this, the process of returning a page for a user request is
+more complicated. Rather than simply look up a file, the web server
+may call an external program that prepares the text to return. This
+text may be HTML for a web page, or in the case of web services, may
+be XML or some other form of data markup. For \R\/ users, there have
+been a few projects in the past that allow an \R\/ process to be used
+to generate the response. At this point, the best one is the
+\pkg{rapache} package. The package web page lists a few projects that
+use this technology to create web pages, including some highly
+interactive web pages by Jeroen Ooms. The \pkg{gWidgetsWWW} package ports the
+\pkg{gWidgets} API to the web using \pkg{rapache}.
+
+
+The \defn{Apache} web server is one of several open-source projects
+supported by the apache Apache Software Foundation. It is extremely
+successful -- its website (\url{http://www.apache.org}) boasts it has
+been the most popular web server on the internet since 1996. Like \R,
+Apache's open source nature allows developers to customize its
+standard behavious, in this case using modules. The \pkg{RApache}
+package (\url{http://biostat.mc.vanderbilt.edu/rapache/}) provides
+such a module that inserts \R\/ in the processing phase of a request
+to the web server.
+
+The \pkg{rapache} package works under linux but not directly under
+windows. However, one can use a virtual machine to run a linux version
+of Apache under windows or Mac OS X. A ``virtual machine'' containing
+a pre-built linux system is available from the \pkg{rapache} website.
+
+\subsection{Configuration}
+\label{sec:configuration}
+
+The \pkg{rapache} package requires the Apache web server to be
+properly configured. There are a number of steps in the process.
+The \pkg{rapache} homepage has detailed instructions, we mention just
+the steps here.
+
+First, a module for Apache must be created by running \pkg{rapache}'s
+configure script. For Debian users, the package can be installed
+through the usual mechanism.
+Afterwards, Apache must be configured.
+
+The \R\/ module must be loaded into Apache. This is done in the
+standard way for Apache, through its \code{LoadModule} directive. This
+is done before any other \R-centric directives are given in Apache's configuration.
+
+The \code{REvalOnStartup} directive is used to specify any packages
+that should be loaded whenever the web server starts. The web server
+embeds a copy of \R\/ in itself and spawns copies of this as it spawn
+copies of itself to handle requests. The startup can be slow, so this
+offers a chance to pre-load common packages to speed things up at the
+cost of a larger memory footprint. \code{RSourceOnStartup} is similar,
+only it used to specify a file to be sourced on startup.
+
+\paragraph{The Directory Directive}
+
+There are a few directives to configure \pkg{rapache} to process an
+incoming request. A standard configuration for Apache, is to have the
+URL specify a file on the file system after some mangling of the name,
+exchanging the base part of the URL with a document root. One can have
+\pkg{rapache} process the file prior to being returned by creating the
+appropriate directive
+
+\begin{figure}
+  \centering
+\begin{verbatim}
+request url -> mangle file name -> lookup, return file
+
+ to
+
+request url -> mangle file name -> run function file through rapache handler
+            -> return output
+\end{verbatim}
+  \caption{Inserting \pkg{rapache} in the request lookup}
+  \label{sec:rapache-brew}
+\end{figure}
+
+
+The \pkg{rapache} manual specifies a typical usage is to call
+\function{brew} on the file.  That is, to make a dynamic web page a
+brew template is created and placed into the appropriate
+directory.
+
+To configure \pkg{rapache} to do this, the following example directive
+may be added to Apache's configuration.
+\begin{HTMLinput}
+<Directory /var/www/brew>
+  SetHandler r-script
+  RHandler brew::brew
+</Directory>
+\end{HTMLinput}
+
+If the ``DocumentRoot'' of Apache is \code{/var/www}, then a request
+such as \url{http://servername/brew/file.brew} will resolve first to
+Apache finding \code{file.brew} in the \code{/var/www/brew/}
+directory, and then that file will be processed by the \function{brew}
+function in the \pkg{brew} package. The output will then be returned
+to the client making the request. The \code{SetHandler} directive,
+specifies the handler will be script, thereby passing along the file
+information and an environment. The \code{RHandler} directive is used
+to specify a function to call. This example assumes the \pkg{brew}
+package is not loaded, so the \function{brew} is found from within the
+package. An alternative to \function{brew}, may be
+\function{sys.source}.
+
+
+\paragraph{The Location Directive}
+
+
+\begin{figure}
+  \centering
+\begin{verbatim}
+request -> rapache calls function -> returns output to client
+\end{verbatim}
+  \caption{Creating a web page from a script and inputs}
+  \label{fig:rapache-location-directive}
+\end{figure}
+Requests need not map to a file system, but can simply map to a
+function call. For example, an application might be designed around
+data stored in a data base and all pages are generated dynamically. To
+have a URL call a script without reference to a file, the
+\code{LOCATION} directive is used. For example,
+\begin{HTMLinput}
+<Location /myapp>
+  SetHandler r-handler
+  RFileHandler /path/to/R/scripts/myapp.R
+</Location>
+\end{HTMLinput}
+A request to \url{http://servername/myapp/extra} will call the script
+\code{myapp.R}. The \code{extra} part of the request can be found from
+one of the \pkg{rapache} variables discussed in
+Section~\ref{sec:pkgrapache-variables} and the script can adjust its
+output based on this.
+
+
+\subsection{Creating files}
+\label{sec:creating-files}
+
+The typical use of \pkg{rapache} is to return an HTML file, but this
+is not the only possibility.
+
+A \pkg{brew} template can easily have the necessary header/body
+structure of an HTML file to be returned by the server to the
+client. However, if the page is generated by a function call, as with
+the Location directive, \pkg{rapache} provides some convenience functions.
+
+Response headers can be added throught the \function{setHeader}
+function. The set of headers is long and technical.~\footnote{The
+  definitions can be found at \url{http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html}.}
+
+Web servers typically return HTML files, but are possible of much
+more. For example, the server may be asked to dynamically generate a
+graphic, and the output would be an image file. As well, web services
+are used to pass some resource, say some data to a client requesting
+it. This data may be stored in XML format, or JSON or YAML etc. The
+\function{setContentType} function is used to set the MIME type of the
+response. It must be called before any \function{print} or
+\function{cat} statements in the file.  To send back binary data, the
+function \function{sendBin} is available.
+
+
+\paragraph{Return Codes}
+The return value of the handler call indicates the failure or success
+of the request.  The return value should be an integer, \pkg{rapache}
+provides named variables instead. For success a return value of
+\code{DONE} will indicate success, whereas a value such as
+\code{HTTP\_BAD\_REQUEST} will signal an error.~\footnote{A list of
+  the \pkg{rapache} variables appear in its manual. A list of status
+  codes can be found at \url{http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html}}. 
+
+The function \function{RApacheOutputErrors} can be used to direct what
+happens to the error, in particular it can be used to have errors
+print out to the browser rather than the log file. This is useful when
+developing a program.
+
+\subsection{\pkg{rapache} variables}
+\label{sec:pkgrapache-variables}
+
+When a script of function is being evaluated within \pkg{rapache}
+certain variables holding information about the request and web server
+are created. The variables are lists with named arguments, the names
+matching \code{Apache} variables.
+
+\paragraph{\code{SERVER}}
+
+The \code{SERVER} variable holds a large amount of information on the
+request. For example, the \code{status} componenent returns the status
+code. Some of the most useful, decompose the URL requesting the page.
+
+The response depends on the configuration. If the we use
+\code{/var/www/brew} to process requests through \function{brew}, as
+above, then a request like
+\url{http://localhost/brew/test.brew?some=brew} results in values of
+\code{uri} being \code{/brew/test.brew}, 
+\code{filename} being  \code{/var/www/brew/test.brew},
+\code{path\_info} being an empty string and 
+\code{args} holding the string \code{some=brew}.
+
+However, if we use the Location directive above, then the request
+\url{http://localhost/myapp/detail?some=brew} has \code{uri} being
+\code{/myapp/detail}, \code{path\_info} being \code{/detail} (the
+``virtual'' part of the request), and \code{args} again holding the
+string \code{some=brew}.
+
+
+
+\paragraph{\code{GET}}
+Both of the example urls above result have \code{SERVER\$method} being
+\code{GET}. HTTP has a few conventions that are not enforced, but
+are associated with it providing RESTful web services. One being that
+one uses a certain set of methods to interact with the service. A
+\code{GET} request is meant to return data, a \code{POST} request is
+meant to create new data, a \code{PUT} request is meant to update data
+and a \code{DELETE} request to delete data.
+
+The two example requests above, result in \code{GET} reqests and the
+\code{GET} variable contains some useful information, namely the
+arguments passed through the URL after the \code{?}. (URLs use a
+\code{?} to pass arguments in the form \code{key=value} with multiple
+arguments separated by an \code{\&}. So in the above, \code{GET} is a
+list with component \code{some} whose value is \code{brew}.
+
+
+
+\paragraph{\code{POST}}
+A \code{POST} request usually comes from within a form. As with a
+\code{GET} request, arguments can be passed in with the request,
+although they do not appear in a URL as illustrated above. As with the
+\code{GET} variable, the arguments appear as named components in the
+\code{POST} variable. \code{POST} request can contain more information
+-- they are not limited in length the same way --
+and must be used to upload files, say.
+
+
+
+\paragraph{\code{COOKIES}}
+
+By design HTTP is a stateless protocol. This means that between
+requests the web server remembers nothing about the past
+requests. For large web sites, this has an advantage when multiple
+servers are used to process requests. However, it has disadvantages as
+the request must relay the state of a web page. Several mechanisms have
+been developed to deal with this issue. Sessions, where information is
+kept server side and an ID kept with the client allows a state to be
+maintained. Another solution is to store information on the client
+side. This is implemented through cookies. Although cookies have
+privacy issues, their use is widespread. 
+
+A basic cookie consists of a name and a value (a character vector of length
+1).  Cookies must satisfy certain validity constraints which are
+specified through a time to expire, a path to which the cookie
+pertains and a domain for which the cookie is valid. The \pkg{rapache}
+function \function{setCookie} can be used to set a cookie. The first
+argument is the cookie name, the second the value, and others are
+available to set properties, such as an expiry time. Cookies are
+placed in the outgoing header of a document, so this call is done
+before the \code{head} tag.
+
+When a page is loaded, the \code{COOKIES} variable contains cookie
+information. Again, as a list. In this case, the names are the valid
+cookie names and the component's value is the cookie.
+
+
+\subsection{Forms}
+\label{sec:forms}
+
+User input can be passed to the server through the URL request or
+through a form. Forms are specified with the \tagger{form} tag, which
+has a few important attributes.~\footnote{See
+  \url{http://www.w3.org/TR/html401/interact/forms.html} for a
+  specification}. The \code{action} attribute specifies the URI that
+will process the form information. In our example, this will match a
+Location directive. The \tagattr{method}{form} attribute is used to specify a
+\code{GET} request or a \code{POST} request. For a post request that
+includes a file upload, the \tagattr{enctype}{form} attribute should contain
+\code{"multipart/form-data"}. In addition to these, the
+\tagattr{onsubmit}{form} attribute is often used to specify some JavaScript to
+call as the form is submitted. For example, this may be used to specify code to
+validate the form entries.
+
+\paragraph{The input tag}
+With the \tagger{form} tags control elements may be placed. The
+\tagger{input} tag is used to specify several types of controls. The
+\tagattr{type}{input} attribute is used to specify which control. The
+default is \code{text} for a single line text entry, but other values are
+\code{password} for a password entry; \code{checkbox} and \code{radio}
+for selection of items; \code{file} for a file upload control;
+\code{image} for an image; \code{button} to make a button; and
+\code{submit} for a submit button.
+
+The usual attributes \code{class} and \code{id}
+apply, as do many others that are type specific.
+The \tagattr{name}{input} attribute specifes the name for the
+element. This is processed as a key in the \code{POST} variable. The
+\tagattr{value}{input} attribute is used to specify an initial value. For sizing, the
+attributes \tagattr{size}{input} and \tagattr{maxlength}{input} are used to
+specify the control size and length of text string. For images
+\tagattr{src}{input} is used to specify the image source as a URL. For
+the selection widgets, \tagattr{checked}{option} is used to specify if the
+button is on. 
+
+To illustrate, this HTML would produce a simple text entry area
+\begin{HTMLinput}
+<input type="text" value="initial text" />
+\end{HTMLinput}
+This would be used to specify a submit button
+\begin{HTMLinput}
+<input type="submit" value="submit" />
+\end{HTMLinput}
+
+A radio group is created by having multiple inputs sharing a common name
+\begin{HTMLinput}
+<input type="radio" name="key" value="TRUE" checked="TRUE">
+<input type="radio" name="key" value="FALSE">
+\end{HTMLinput}
+
+
+\paragraph{The select tag}
+The \tagger{select} tag is used to create a control to select one or more
+values from a list of options. This control may be a combobox or a
+table display. The attribute
+\tagattr{multiple}{select} is used to specify if the user can select
+one or more values. When specified, the \code{POST} or \code{GET} variables
+have multiple components of the same name. The \tagattr{size}{select}
+attribute specifes the number of entries to make initially visible. 
+
+The possible values for selection are given within \code{option}
+tags. The attribute \tagattr{selected}{option} is used to specify if
+the value is initially selected. The attribute
+\tagattr{value}{option} can be used to specify a different value than
+that displayed.
+
+For example, 
+\begin{HTMLinput}
+<select name="id">
+  <option value="1">one</option>
+  <option value="2" selected="true">two</option>
+</select>
+\end{HTMLinput}
+
+\paragraph{A textarea tag}
+Single line text entries are created by the \tagger{input} tag by
+default, but multiple line entries are formed by the \tagger{textarea}
+tag. The attributes \tagattr{cols}{textarea} and
+\tagattr{rows}{textarea} specify the size.
+
+
+
+\subsection{Security}
+
+Forms allow users to specify values. These value may then be processed
+by the underlying \R\/ process within \pkg{rapache}. As such a
+malicious user may try to have code run that could compromise the web
+server. More benignly, the user may specify responses that include
+malformed HTML. If these are simply printed back when the web page is
+created, a rendering error may occur. Regardless of the user base for
+a web application, one should assume that user input for web sites should never be trusted.
+
+\paragraph{Unclosed or malicious tags}
+To avoid malformed HTML one should encode any user input that is
+echoed back to a web page. The following function will replace certain
+characters with their HTML entity for safe inclusion with a page.
+
+<<HTMLencode>>=
+HTMLencode <- function(str) {
+  str <- as.character(str)
+  vals <- list(c('&','&amp;'),
+               c('"','&quot;'),
+               c('<','&lt;'),
+               c('>','&gt;')
+               )
+  for(i in vals)
+    str <- gsub(i[1],i[2],str)
+  str
+}
+@ 
+
+\paragraph{Whitelists, Blacklists}
+Even in the event of a fixed list of values for a user to choose from,
+user input should always be checked. It is very easy to fabricate a
+request without going through the web form, for example the \R\/ package
+\code{Rcurl} can do this.
+
+When checking values, one can use a whitelist -- a list of acceptable
+values, or a blacklist -- a list of unacceptable values. The use of a
+whitelist is better if possible, as it is very easy to miss somthing in
+a blacklist.
+
+In either case, it is a good idea to never evaluate directly a users input.
+
+
+\paragraph{SQL injection}
+Many web sites are built around queries to a data base. Websites
+powered by \pkg{rapache} can take this approach, as the \pkg{Rdbi}
+package allows an interface within the \R\/ process between a data
+base and \R. The basic use is to create a query within \R\/ and then
+call one of \pkg{Rdbi}'s functions to get the results from the
+query. The technique of SQL injection, takes advantage of carelessly
+constructed SQL queries that are made by pasting together SQL commands
+with user-given input. 
+
+
+\begin{example}{Using \pkg{rapache} to explore a data store}{eg:rapache}
+
+<<avoidErrors, echo=FALSE>>=  
+SERVER <- GET <- POST <- COOKIES <- list()
+SERVER$path_info <- ""
+setContentType <- function(...) {}
+brew <- function(...) {}
+
+#' similar to URLencode, but encodes <, >, &, " as entities
+HTMLencode <- function(str) {
+  str <- as.character(str)
+  vals <- list(c('&','&amp;'),
+               c('"','&quot;'),
+               c('<','&lt;'),
+               c('>','&gt;')
+               )
+  for(i in vals)
+    str <- gsub(i[1],i[2],str)
+  str
+}
+#' get with default values -- identity if defined, else default
+get_d <- function(x, default="") ifelse(is.null(x) || is.na(x) || x == "", default, x)
+@ 
+  
+  
+This example shows how one can use \pkg{rapache} to allow a user to
+explore a data set. This basic application is simple, but the
+structure of it is typical and very extendible. There are three pages
+to display: a page to greet the user, a page to select one of many
+items, and a page to display detail on an item.
+
+We use a \code{Location} directive for this application which allows
+us to specify which page to display using the \code{path\_info}
+variable.
+\begin{HTMLinput}
+<Location /simpleapp>
+   SetHandler r-handler
+   RFileHandler /var/www/GUI/simpleapp/app.R
+</Location>
+ \end{HTMLinput}
+  
+ The script \code{app.R} is responsible for processing the request and
+ dispatching to the appropriate page. Our script contains the
+ following to load packages and set the current working directory to
+ match that of the script. This is needed for our calls to
+ \code{brew}.
+<<setwd, eval=FALSE>>=  
+require(brew, quietly=TRUE)
+require(hwriter, quietly=TRUE)
+dir <- "/var/www/GUI/simpleapp"
+setwd(dir)
+@ 
+
+We have four main pages, one for any errors, and the three
+mentioned. The dispatch to the page will call these functions which
+are responsible for setting the context for the \pkg{brew}
+templates. Each template has a \code{title} variable that we set
+within the function. This then will be within the scope of the call to
+\function{brew}. The variable \code{df} is assumed to contain a data frame
+of interest. This could be retrieved by some call to a data base, for
+example.
+
+Our error page is called by
+<<error>>=
+processError <- function(e) {
+  title <- "Error"
+  with(e, brew("error.brew"))
+}
+@ 
+The \code{error.brew} template has
+\begin{HTMLinput}
+<% brew("brew-header.brew") %>
+<h2>
+  <%= message %>
+</h2>
+<% brew("brew-footer.brew") %>
+\end{HTMLinput}
+where the value for \code{message} is passed in through the error
+call. The header and footer templates are straightforward, and are
+used to give a consistent look to each page. In this case, as we use
+xhtml, we have for the header:
+\begin{HTMLinput}
+<?xml version="1.0" ?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" 
+  lang="en">
+<head>
+<meta http-equiv="content-type" 
+  content="text/html; charset=UTF-8"/>
+<title> <%= title %> </title>
+</head>
+<body>
+<% 
+  if(exists("user_name") && nchar(user_name)) 
+    cat(sprintf("<h2>Welcome %s</h2>", HTMLencode(user_name)))
+%>
+\end{HTMLinput}
+The \code{user\_name} variable is set in the greeting page, so may
+not be present. Note the call to \function{HTMLencode} to ensure that the
+value for the name, which comes from the user, does not contain any
+malformed HTML. 
+
+The footer simply closes the \code{body} and \code{html} tags. In both
+cases, these templates could be much more complicated.
+
+Our greeting page illustrates how to use a form to gather user input, in this case a name, but in general this might be used for authentification etc.
+<<showLogon>>=
+showLogon <- function() {
+  title <- "Logon"
+  brew("login-form.brew")
+}
+@ 
+The main part of the \pkg{brew} template is a basic form using the
+\code{input} tag in two different ways.
+\begin{HTMLinput}
+<form method="POST" action="/simpleapp/select">
+<label>Enter your name:</label>
+<input type="text" name="name" />
+<input type="submit" value="submit" />
+</form>
+\end{HTMLinput}
+We use a \code{POST} call, as this may be used to modify a data
+source. As well, the \code{action} specification uses \code{select} so
+that the \code{path\_info} variable can be used to determine which
+page to call.
+
+
+After logging on, the user may be asked to narrow the search for
+data. In this example, the user is asked to select one of the rows of
+the data source. We generically refer to the row identifier as
+\code{ID}. 
+<<selectID>>=
+selectID <- function() {
+  title <- "Select an ID"
+  context <- list(nms=rownames(df))   
+  with(context, brew("select-id.brew"))
+}
+@ 
+The \code{context} variable is used to pass in
+different contexts to the \pkg{brew} template. Of course this could
+also appear directly in the template, but it is better to separate the
+logic from the presentation. In this case, the template for ID
+selection includes this
+\begin{HTMLinput}
+<form method="GET" action="/simpleapp/id">
+<select name="id">
+<% 
+  cat(hmakeTag("option", nms)) 
+%>
+</select>
+<input type="submit" value="submit" />
+</form>
+\end{HTMLinput}
+We use \code{GET} for the method, as we assume this is merely a
+request to narrow the display of data, not modify the data store. The
+useful \function{hmakeTag} function is employed to vectorize the
+creation of the HTML \code{option} tags.
+
+Finally, our call to show detail on the selected identifier includes
+matching the user specified ID against a list of possible values (a
+whitelist). If no match occurs, an error message is printed.
+<<showID>>=
+showID <- function() {
+  title <- "Show an ID"
+  id <- GET$id
+  if(! id %in% rownames(df)) {
+    processError(list(message="id does not match"))
+  } else {
+    context <- list(d=df[id,], id=id)
+    with(context, brew("show-id.brew"))
+  }
+}
+@ 
+For the display, we have this basic template which uses
+\function{hwrite} to put the output into a table.
+\begin{HTMLinput}
+<h3> Detail on <%= id %> </h3>
+<% 
+  hwrite(unlist(d), page=stdout()) 
+%>  
+\end{HTMLinput}
+
+
+The main script must figure out the \code{user\_name} variable. This
+may come from the greeting page through a POST request, or may be
+stored using a cookie to make the name persistent. This leads to the
+following (\function{get\_d} is used to provide a default, if the variable
+is \code{NULL}):
+<<>>=
+user_name <- ""
+if (!is.null(POST)) {
+  user_name <- get_d(POST$name, "")
+}
+if(user_name == "" && !is.null(COOKIES)) {
+  user_name <- get_d(COOKIES$name, "")
+} 
+@ 
+
+Finally, the script is used to dispatch to the proper page. We start
+by setting the content type and a cookie to store the
+\code{user\_name} variable.
+<<eval=FALSE>>=
+setContentType("text/html")
+if(user_name != "")
+  setCookie("name",user_name)
+@ 
+
+Following how django processes URLs we set up a list of regular
+expressions to check against \code{path\_info} and function names to handle the dispatch.
+<<>>=
+urls <- list(select=list(regexp = "^/select", call="selectID"),
+             id =   list(regexp = "^/id",     call="showID" )
+             )
+default_call <- "showLogon"
+@ 
+
+With this, we then process the request as follows.
+<<eval=FALSE>>=
+path_info <- SERVER$path_info
+flag <- FALSE
+for(i in urls) {
+  if(!flag && grepl(i$regexp, path_info)) {
+    flag <- TRUE
+    tryCatch(do.call(i$call, list()), error=processError)
+  }
+}
+if(!flag)
+  tryCatch(do.call(default_call, list()), error=processError)
+@ 
+We wrap the call inside \code{tryCatch} in case the page creation
+throws an error.
+
+The last line of the script is simply \code{DONE} to indicate to the
+client that the request is finished.
+\end{example}

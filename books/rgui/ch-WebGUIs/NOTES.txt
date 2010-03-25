@@ -1,0 +1,53 @@
+-- Technology Overview
+
+browser --> web server --> html page --> browser
+Via RCurl browser can be R process
+(RCurl, url, also get values from browser)
+
+We have markup -- ML, styling -- CSS, dynamic -- AJAX, 
+
+-- Markup (ML)
+  HTML, XML, RDocBook; 
+
+-- styles
+css (Sxslt)
+
+-- dynamic pages
+javascript -- DOM, 
+AJAX technologies
+
+-- Producing HTML in R
+
+* format into HTML
+R2HTML
+  * HTMLUtils
+  * Rpad has features
+prettyR: htmlize
+
+hwriter
+hwrite, hmakeTag
+
+brew -- template engine
+
+plot devices
+     svg devices RSVGTipsDevice, SVGAnnotation
+      canvas, 
+
+
+-- Interactive web pages
+
+CGI model: 
+browser --> web server --> scripting program --> html --> browser
+
+browser --> web server --> R process --> html  --> browser 
+RApache
+
+browser --> web server --> R process --> html (brew template) --> browser 
+
+RApache with brew
+
+browser --> AJAX --> web server --> R process --> JSON/XML --> javascript listener --> browser
+http://www.jeroenooms.com/ stock app (use RApache and extjs) 
+
+gWidgetsWWW
+

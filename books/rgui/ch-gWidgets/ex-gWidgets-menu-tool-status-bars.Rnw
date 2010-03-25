@@ -1,0 +1,73 @@
+<<echo=FALSE>>=
+library(gWidgets)
+@ 
+
+The following commands create some standard looking actions. The
+handler \code{f} is just a stub to be replaced in a real application.
+<<>>=
+f <- function(...) print("stub")        # a stub
+aOpen <- gaction("open", icon="open", handler = f)
+aQuit <- gaction("quit", icon="quit", handler = f)
+aUndo <- gaction("undo", icon="undo", handler = f)
+@ 
+
+A menubar and toolbar are specified through a  named list, as is
+illustrated next. The menubar list, has a nested list specifying a submenu.
+<<>>=
+tl <- list(open = aOpen, quit = aQuit)
+ml <- list(File = list(
+             open = aOpen, 
+             sep = gseparator(), 
+             quit = aQuit),
+           Edit = list(
+             undo = aUndo
+             ))
+@ 
+
+
+Menubars and toolbars are added to top-level windows, so their parent
+containers should be \code{gwindow} objects.
+<<>>=
+w <- gwindow("Example of menubars, toolbars")
+mb <- gmenu(ml, cont=w)
+tb <- gtoolbar(tl, cont=w)
+l <- glabel("Test of DOM widgets", cont=w)
+@ 
+
+
+By disabling a \code{gaction} instance, we change the sensitivity of
+all its realizations. Here this will only affect the menu bar.
+
+<<>>=
+enabled(aUndo) <- FALSE
+@ 
+
+An ``undo'' menubar item, often changes its label when a new command
+is performed, or the previous command is undone. The
+\method{svalue\ASSIGN}{gaction} method can set the label text. This
+shows how a new command can be added and how the menu item can be made
+sensitive to mouse events.
+<<>>=
+svalue(aUndo) <- "undo: command"
+enabled(aUndo) <- TRUE
+@ 
+
+%%\XXX{Citation needed}
+
+Good GUI building principles suggest that one should not replace
+values in the a menu, rather one should simply disable those that are
+not being used. This allows the user to more easily become familiar
+with the possible menu items. However, it may be useful to add to a
+menu or toolbar. The \method{add}{gmenu} method can do so. For
+example, to add a help menu item to our example one could do:
+<<>>=
+hl <- list(help = list(
+             help = gaction("manual", handler=f)
+             ))
+add(mb, hl)
+@      
+
+
+
+
+        

@@ -1,0 +1,103 @@
+%% gWidgets introduction
+\SweaveOpts{keep.source=TRUE} 
+<<echo=FALSE>>=
+require(tcltk)
+source("../booktabs.R")
+
+noPrompt <- function() {
+  options(prompt=" ")
+  options(continue=" ")
+}
+doPrompt <- function() {
+  options(prompt="> ")
+  options(continue="+ ")
+}
+noPrompt()
+noTclPrint <- function(x, ...) {
+  y <- try(as.character(x))
+  if(inherits(y,"try-error")) {
+    cat(y)
+  } else if(length(y) == 0 ||
+            (length(y) == 1 && nchar(y) == 0 )) {
+    return()
+    invisible(x)
+  }
+  tcltk:::print.tclObj(x)
+}
+print.tclObj <- noTclPrint
+
+@ 
+%%\newcommand{\ONLYIN}[1]{[only in #1]}
+\newcommand{\Event}[1]{$<$#1$>$}
+\newcommand{\VirtualEvent}[1]{$<<$#1$>>$}
+
+\XXX{add in tcl(``source''); external TCL packages}
+\XXX{comment about scope -- no user data}
+
+
+% makeIconTcltk(w, gifFile) {
+%   if(as.character(tkwinfo("class", w)) == "Toplevel" &&
+%      file.exists(giffile)) {
+%     tkimage.create("photo","::icon::name", file=giffile)
+%     tcl("wm","iconphoto", w, "::icon::name")
+%   }
+% }
+\chapter{Tcl Tk: Overview}
+
+\TCL\/ (``tool command language'') is a scripting language and
+interpreter of that language.  Originally developed in the late 80s by
+John Ousterhout as a ``glue'' to combine two or more complicated
+applications together, it evolved overtime to find use not just as
+middleware, but also as a standalone development tool.
+
+\TK\/ is an extension of \TCL\/ that provides GUI components through
+\TCL.  This was first developed in 1990, again by John
+Ousterhout. \TK\/ quickly found widespread usage, as it made
+programming GUIs for X11 easier and faster. Over the years, other
+graphical toolkits have evolved and surpassed this one, but \TK\/
+still has numerous users.
+
+\TK\/ has a large number of bindings available for it, e.g. Perl, Python,
+Ruby, and through the \pkg{tcltk} package, \R. The \pkg{tcltk} package
+was developed by Peter Dalgaard, and  included in \R\/ from version
+1.1.0. Since then, the package has been used in a number of GUI 
+projects for \R,  most notably, the \pkg{Rcmdr} GUI.
+
+\TK\/ had a major change between version 8.4 and 8.5, with the latter
+introducing themed widgets. Many widgets were rewritten, and their API
+dramatically simplified. In \pkg{tcltk} there can be two different
+functions to construct a similar widget. For example,
+\function{tklabel} or \function{ttklabel}. The latter, with the
+\code{ttk} prefix, would be for the newer themed widget. We assume the
+\TK\/ version is 8.5 or higher, as this was a major step forward. As
+of version 2.7.0, \R\/ for windows has been bundled with this \TK\/
+version, so there are no installation issues for that platform. As of
+writing, some linux distributions and \OSX\/ still come with 8.4 which
+would need to be upgraded for the following.
+
+
+
+%%\section{Overview}
+%%\label{sec:tcltk:overview}
+\SweaveInput{Overview}
+
+
+
+\chapter{Tcl Tk: Containers and Layout}
+\label{sec:tcltk:basic-containers}
+\SweaveInput{BasicContainers}
+
+\chapter{Tcl Tk: Widgets}
+\label{sec:tcltk:widgets}
+\SweaveInput{Widgets}
+
+
+\section{Dialogs}
+\label{sec:tcltk:dialogs}
+\SweaveInput{Dialogs}
+
+\section{End of chapter notes}
+\label{sec:tcltk:eoc}
+
+
+

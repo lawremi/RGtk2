@@ -1,0 +1,38 @@
+This example shows how to make a range widget that combines both the slider and spinbutton to choose a single number. Such a widget is popular, as the slider is easy to make large changes and the spinbutton better at finer changes. In \GTK\/ we use the same adjustment, so changes to one widget propogate without effort to the other.
+
+<<ehco=FALSE>>=
+## make a range widget combining both a slider and spinbutton to choose a number
+library(RGtk2)
+@ 
+
+Were this written as a function, an \R\/ user might expect the
+arguments to match those of \code{seq}/
+<<>>=
+from <- 0; to <- 100; by <- 1
+@ 
+
+The slider is drawn without a value, so that the user sees only that
+in the spinbutton. This spinbutton is created by specifying the
+adjustement created when the slider widget is.
+<<>>=
+slider <- gtkHScale(min=from, max=to, step=by)
+slider['draw-value'] <- FALSE
+adjustment <- slider$getAdjustment()
+spinbutton <- gtkSpinButton(adjustment=adjustment)
+@ 
+Our layout places the two widgets in a horizontal box container with
+the slider set to expand on a resize, but not the spinbutton.
+<<>>=
+g <- gtkHBox()
+g$packStart(slider, expand=TRUE, fill=TRUE, padding=5)
+g$packStart(spinbutton, expand=FALSE, padding=5)
+@ 
+
+
+<<echo=FALSE>>=
+w <- gtkWindow(show=FALSE)
+w['title'] <- "Example of a range widget"
+w$setSizeRequest(width=200, height=-1)
+w$add(g)
+w$show()
+@ 

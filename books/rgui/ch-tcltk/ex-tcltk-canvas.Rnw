@@ -1,0 +1,73 @@
+This example is a stripped-down version of the \code{tkcanvas.R} demo
+that accompanies the \pkg{tcltk} package. That example shows a
+scatterplot with regression line. The user can move the points around
+and see the effect this has on the scatterplot. Here we focus on the
+moving of an object on a canvas widget. We assume we have such a
+widget in the variable \code{canvas}.
+
+<<echo=FALSE>>=
+## Canvas example of moving a point. See tkcanvas for much more
+library(tcltk)
+w <- tktoplevel()
+tkwm.title(w, "Move canvas object example")
+canvas <- tkcanvas(w, width=450, height=300)
+tkpack(canvas, expand=TRUE, fill="both")
+@ 
+
+This following adds a single point to the canvas using an
+\code{oval} object. We add the \qcode{point} tag to this item, for
+later use. Clearly, this code could be modified to add more points.
+<<>>=
+x <- 200; y <- 150; r <- 6
+item <- tkcreate(canvas, "oval", x - r, y - r, x + r, y + r,
+                 width=1, outline="black",
+                 fill="SkyBlue2")
+tkaddtag(canvas, "point", "withtag", item)
+@ 
+
+In order to indicate to the user that a point is active, in some
+sense, the following changes the fill color of the point when the
+mouse is over the point.  We add this binding using \code{tkitembind}
+so that is will apply to all point items and only the point items.
+<<>>=
+tkitembind(canvas, "point", "<Any-Enter>", function()
+           tkitemconfigure(canvas, "current", fill="red"))
+tkitembind(canvas, "point", "<Any-Leave>", function()
+           tkitemconfigure(canvas, "current", fill="SkyBlue2"))
+@ 
+
+There are two key bindings needed for movement of an object. First, we
+tag the point item that gets selected when a mouse clicks on a point
+and update the last position of the currently selected point.
+<<>>=
+lastPos <- numeric(2)                   # global to track position
+tagSelected <- function(W, x, y) {
+  tkaddtag(W,  "selected",  "withtag",  "current")
+  tkitemraise(W, "current")
+  lastPos <<- as.numeric(c(x, y))
+}
+tkitembind(canvas, "point", "<Button-1>",  tagSelected)
+@
+
+When the mouse moves, we use \code{tkmove} to have the currently
+selected point move too. This is done by tracking the differences
+between the last position recorded and the current position and moving
+accordingly.
+<<moveSelectedPoint>>=
+moveSelected <- function(W, x, y) {
+  pos <- as.numeric(c(x,y))
+  tkmove(W, "selected", pos[1] - lastPos[1], pos[2] - lastPos[2])
+  lastPos <<- pos
+}
+tkbind(canvas, "<B1-Motion>", moveSelected)
+@ 
+
+A further binding, for the \Event{ButtonRelease-1} event, would be
+added to do somethng after the point is released. In the original
+example, the old regression line is deleted, and a new one drawn. Here
+we simply delete the \qcode{selected} tag.
+<<>>=
+tkbind(canvas, "<ButtonRelease-1>", function(W) tkdtag(W,"selected"))
+@ 
+
+

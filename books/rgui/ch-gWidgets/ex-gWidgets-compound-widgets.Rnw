@@ -1,0 +1,34 @@
+This example shows how to use drag and drop to create a simple
+interface to plot a number value. The implemenation of drag and drop
+is unfortunately a bit toolkit dependent. In this use, for
+\pkg{gWidgetstctlk} one must first select the value by clicking before
+dragging. For \pkg{gWidgetsRGtk2}, the \code{addDropTarget} for
+\code{gedit} instances does not work, rather the drop value is just
+added at the insertion point.
+
+<<>>=
+w <- gwindow("Example of compound widgets")
+pg <- gpanedgroup(cont = w)
+gvarbrowser(cont = pg)
+
+tbl <- glayout(cont = pg, expand=TRUE)
+tbl[1,1, anchor=c(1,0)] <- "x"
+tbl[1,2] <- (e <- gedit("", cont = tbl))
+tbl[2,2, anchor=c(-1,1)] <- "(drop value above)"
+tbl[3,1] <- (b <- gbutton("plot", cont = tbl))
+@
+The \code{gvarbrowser} object already has its drop source
+specified. For other drag and drop examples, a call to
+\code{addDropSource} is needed. Here we show the \code{addDropTarget}
+usage where the \code{dropdata} component contains the selected
+text. For \code{gvarbrowser}, this uses \code{\$} to indicate
+components of lists.
+<<>>=
+## add drop source already part of gvarbrowser
+addDropTarget(e, handler = function(h,...) svalue(e) <- h$dropdata)
+@
+\XXX{The svalue svalue use described here}
+<<>>=
+addHandlerChanged(b, handler = function(h,...) plot(x=svalue(svalue(e)),xlab=svalue(e)))
+
+@

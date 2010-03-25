@@ -1,0 +1,190 @@
+%% web 2.0
+
+%% Using R as a web service
+
+The term web 2.0 is used to describe highly interactive web sites. A
+key feature of many of these is the use of \defn{Ajax
+  technologies}. The packages \pkg{Rpad} and \pkg{gWidgetsWWW} use
+Ajax technologies for interactive web sites. ``Ajax'' comes from
+\textbf{a}synchronous \textbf{J}avascript and \textbf{X}ML. The term
+asynchronous refers to pieces of a web page being updated
+independently of others, unlike in the previous section where each
+request creates a new page. The JavaScript term is a substitute for a
+browser side language to manipulate the web pages DOM, and XML simply
+a means to encode data, and shouldn't be taken literally, as other
+common text-based encodings are used, such as JSON.
+
+Several JavaScript libraries are built around Ajax technologies, such
+as the \code{extjs} library and \code{jQuery}. These provide a means to query a server
+asychronously through an \defn{XMLHttpRequest}. This section discusses
+briefly how to use \pkg{rapache} to provide the data for such a
+request. 
+
+\begin{example}{Creating a web service using \pkg{rapache}}{eg:web-service}
+  This example will illustrate how make a web service with
+  \pkg{rapache}. There are two pieces, the JavaScript code in the web
+  page, and the server code. For the JavaScript piece, we use the
+  \code{jQuery} library, as the use is somewhat straightforward.
+  
+  We illustrate how to return HTML, JSON and XML. First, the HTML.
+  
+  In the header of our web page, we must call in the \code{jQuery}
+  JavaScript library. These files may be on local webserver, or called
+  in with the following HTML code:
+  \begin{HTMLinput}
+<script 
+  src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js" 
+  type="text/javascript">
+</script>    
+  \end{HTMLinput}
+
+  Inside the HTML page, we have a place holder to put the text from
+  the web service. We use \tagger{div} tag, with an unique id.
+  \begin{HTMLinput}
+<div id="htmlTarget"> [HTML target] </div>    
+  \end{HTMLinput}
+  (There are also similar areas for JSON and XML.)
+  
+  We want the request for data to happen when the page loads. The
+  \code{jQuery} library provides a means to have a function called as
+  the page loads (before any images are downloaded, say). We place the
+  command within this bit of JavaScript.
+  \begin{HTMLinput}
+<script type="text/javascript">
+  $(document).ready(function(){  
+    // JavaScript commands go here
+  })
+</script>
+  \end{HTMLinput}
+
+  As for the JavaScript commands,  the following jQuery code will
+  produce the Ajax request. This assumes the webserver is running
+  locally. One would replace \code{localhost} with the appropriate site.
+  \begin{HTMLinput}
+$.ajax({
+   type: "GET",
+   url:"http://localhost/ajaxapp/html",
+   dataType: "html",
+   success: function(data) {
+     $("htmlTarget").html(data);
+   },
+   error: function(e) {
+     $("#htmlTarget").html("<em>Service is unavailable</em>");
+   }
+   });    
+  \end{HTMLinput}
+  To explain, the \code{\$} is a \code{jQuery} variable, the first
+  occurence is a call to its \code{ajax} method, The arguments are
+  specifed to make a \code{GET} request to a certain url. The return
+  data will be HTML. The request, if a success, will replace the HTML
+  code within the node with id \code{htmlTarget} with that returned by
+  the Ajax request. If an error is returned, an error message is placed
+  there instead.
+  
+  Within the \R\/ script run by \pkg{rapache}, we have a call like this
+<<>>=  
+show_html <- function() {
+  require(hwriter, quietly=TRUE)
+  setContentType("text/html")
+  hwrite(d[1:5,], page=stdout())
+}
+@ 
+
+Which specifies the content type and some HTML text. No headers are
+needed here.  The \code{d} variable refers to some data frame. If
+there were an error, we would return an error code, say \code{404L}
+for file not found. In this case the error handler is called.
+  
+
+
+Using \code{JSON} is not much different. This example will use the
+package \pkg{rjson} to create encode the data into json code, but
+\pkg{RJSONIO} can be used instead (from \url{omegahat.org}) or one can
+create the JSON within \R\/ directly. Here is the server side code
+(not written with any generality):
+<<serverSideJson>>=
+show_json <- function() {
+  require(rjson, quietly=TRUE)
+  n <- as.integer(GET$n)
+  n <- min(max(n,1), 32)                # check
+  out <- toJSON(list(mpg=mtcars$mpg[1:n],
+                     car=rownames(mtcars)[1:n]))
+  setContentType("application/json")
+  cat(out)
+}
+@ 
+We allow a variable \code{n} to be passed in through the Ajax
+call. The function \code{toJSON} prefers lists to data frames, so we
+make a list with our data, in this case we have two named variables
+\code{mpg} and \code{car}.
+
+Within the HTML file we have this JavaScript code.
+\begin{HTMLinput}
+$.getJSON(
+   "http://localhost/ajaxapp/json",
+   {n:"5"},
+   function(data) {
+     $("#jsonTarget").html("");  // clear out
+     for(i=0; i < data.mpg.length; i=i+1) {  
+       $("#jsonTarget").append(data.car[i] + " gets " +
+         data.mpg[i] + " miles per gallon" + "<br />");
+    }
+   });
+\end{HTMLinput}
+The \code{getJSON} method is a convenience for the \code{ajax}
+method. The second argument is how we pass in the parameter
+\code{n}. Finally, the last function is called on a success, and
+simply loops over the vector and pieces together some HTML, appending
+it to the target. (The last bit is much easier in \R, but not too hard
+in JavaScript.)
+
+Finally, we illustrate doing a similar task only using XML. The server
+side code might look like
+<<serverSideXML>>=
+show_xml <- function() {
+  require(XML, quietly=TRUE)
+  n <- as.integer(GET$n)
+  n <- min(max(n,1), 32)                # check  
+  children <- sapply(1:n, function(i) 
+                     newXMLNode("car", 
+                                newXMLNode("make",d[i,1]), 
+                                newXMLNode("mpg", d[i,2])
+                                ))
+  out <- saveXML(newXMLNode("data", .children=children))
+  setContentType("text/xml")
+  cat(out)
+}
+@ 
+We use the \code{XML} library to piece together our response. In this
+case we make several car nodes, each with a make and mpg value.
+
+The JavaScript to parse this response can look like this:
+\begin{HTMLinput}
+$.ajax({
+  type: "GET",
+  url:"http://localhost/ajaxapp/xml",
+  data: {n:"4"},
+  dataType: "xml",
+  success: function(data) {
+    $("#xmlTarget").html("");
+    $(data).find("car").each(function() {
+     $("#xmlTarget").append($(this).find("make").text()  + 
+       " gets " + $(this).find("mpg").text() + 
+       " miles per gallon" + "<br />")
+    })
+ }
+})
+\end{HTMLinput}
+The \code{data} argument is used to pass in a parameter. As for the
+\code{success} callback, as before we append tet to the target after
+clearing it out. To find the text, is a bit tricky, as it uses
+\code{jQuery}'s selector methods. Basically, the variable \code{this}
+stands for each \code{car} node, and the \code{find} method gets the
+child node for that variable. The \code{text} method converts the
+object to text that can be appended to the target.
+\end{example}
+
+
+
+
+

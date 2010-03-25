@@ -1,0 +1,68 @@
+We illustrate how to make a basic menu bar with a plain item, an
+item with an icon, and check item. Our GUI, just adds a menubar to a
+top-level window.
+
+We create top-level menubar and a menu item for our top level File entry with a mnemonic.
+<<>>=
+mb <- gtkMenuBar()
+fileMi <- gtkMenuItemNewWithMnemonic(label="_File")
+mb$append(fileMi)
+@
+
+For the menu item we attach a submenu.
+<<>>=
+fileMb <- gtkMenu()
+fileMi$setSubmenu(fileMb)
+@ 
+We now define some menu items. First a basic one:
+<<>>=
+open <- gtkMenuItem(label="open")
+@ 
+
+Next we show how an \code{gtkAction} item can define a menuitem.
+<<>>=
+saveAction <- gtkAction("save", "save", "Save object", "gtk-save")
+save <- saveAction$CreateMenuItem()
+@ 
+
+This illustrates how to add an image to the menu bar using a stock icon. The size specification is important to get the correct look.
+<<>>=
+quit <- gtkImageMenuItem(label="quit")
+quit$setImage(gtkImageNewFromStock("gtk-quit", size=GtkIconSize["menu"]))
+@ 
+
+A simple check menu item can be created, as follows:
+<<>>=
+happy <- gtkCheckMenuItem(label="happy")
+happy$setActive(TRUE)
+@ 
+
+These items are appended in the desired order, by
+<<>>=
+Qt <- sapply(list(open, save, happy, gtkSeparatorMenuItem(), quit), function(i) {
+       fileMb$append(i)
+     })
+@ 
+We specify a handler for the toggle button
+<<>>=
+ID <- gSignalConnect(happy, "toggled", function(b,data) {
+  if(b$getActive())
+    print("User is now happy")
+})
+@ 
+For the other  items, we specify a generic action for the \signal{activate} signal.
+<<>>=
+QT <- sapply(list(open, quit, saveAction), function(i) 
+       gSignalConnect(i, "activate", f=function(mi, data) {
+         cat("item selected\n")
+       })
+       )
+@
+
+We make as simple GUI for the menubar.
+<<makeGUI>>=
+w <- gtkWindow(show=FALSE)
+w['title'] <- "Menubar example"
+w$add(mb)
+w$ShowAll()
+@ 

@@ -1,0 +1,61 @@
+%% Object oriented programming in R
+
+\subsection{Principles of object oriented programming}
+\label{sec:princ-object-orient}
+
+\subsubsection{Generic functions and methods in R}
+\label{sec:gener-funct-meth}
+
+
+
+\subsection{S3 Style}
+\label{sec:PROG:S3}
+
+
+ 
+% S3
+% class(), dispatch, ``inheritance''
+% use current generics
+% define new generics
+% not class based -- object based (MMaechler, but what does it mean?)
+
+
+
+
+% -------------
+% proto
+% environments: \$, [, like a list; but passed through to functions,
+%  unlike lists 
+% <<>>=
+% library(proto)
+% f = function(obj) obj[['new']]<-"new"
+% p = proto(); p$new = "old"; q = p$proto()
+% e = environment(); e$new="old"
+% l = list(); l$new = "old"
+% f(q); f(e); f(l); print(c(q$new, p$new, e$new, l$new))
+% @ 
+% parents share properties with children -- not the other way. Why?
+% child\$new looks in the enviroment of child for "new", if it is not
+% found then it looks in enviroment of parent where it is found. This is
+% broken when the child defines a property or method of that name.
+
+% override dollar sign
+% get/assign
+% ex: ex-UndoRedo support: 
+
+% ex: issue with overriding \$, (nextMethod) -- do that
+
+% %%
+
+
+\subsection{S4 Style}
+\label{sec:PROG:S4}
+
+% ----------------
+% S4
+% dispath -- multiple arguments
+% defining classes, get classes, inheritance
+% method signature
+% use current methods
+% add new methods
+% promote  S3 object to S4 object

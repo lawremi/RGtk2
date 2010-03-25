@@ -1,0 +1,552 @@
+In this chapter we give an introduction to using the \pkg{RGtk2}
+package. This package provides access to the underlying cross-platform
+\GTK\/ libraries, provided they are installed on the system. This
+tookit is modern, feature rich and widely used.  We begin with an
+overview of how the toolkit is structured and the basic interaction
+with it. In later chapters we describe the familiar containers and
+widgets.
+
+%% intorduction
+
+<<echo=FALSE>>=
+require(RGtk2)
+@ 
+
+%% Technical, but short beginning
+
+As the name implies, the \pkg{RGtk2} package provides a connection, or
+bindings, between \GTK\/ and \R\/ allowing nearly the full power of
+\GTK\/ to be available to the \R\/ programmer. In addition,
+\pkg{RGtk2} provides bindings to other libraries accompanying \GTK:
+The Pango libraries for font rendering; the Cairo
+libraries for vector graphics; the GdkPixbuf libraries for image
+manipulation; ATK for the accessiblity toolkit;  and GDK, which
+provides an abstract layer between the windowing system, such as X11,
+and \GTK. These libraries are multi-platform and extensive and have been
+used for many major projects, such as the linux versions of the
+firefox browser and open office.
+
+% Actually, the bindings to GTK are only part of the story. RGtk2 also
+% offers complete bindings to Pango (font rendering), GDK (basic
+% drawing, low-level device access), Cairo (vector graphics), GdkPixbuf
+% (image manipulation), libglade (GUI's from XML descriptions),
+% GtkMozEmbed (embeddable mozilla browser on linux), and ATK
+% (accessibility devices). [Michael Lawrence's announcement]
+
+The \pkg{RGtk2} package was intially conceived by Duncan Temple Lang,
+who created a means to automatically create bindings between \R\/ and
+the underlying C libraries of \GTK, resulting in \pgk{RGtk}.  For example,
+the \R\/ function \function{gtkContainerAdd} eventually calling the C
+function \code{gtk\_container\_add}. The naming convention, that
+underscores are removed and the following letter capitalized. Michael
+Lawrence, continued and greatly expanded this work in making
+\pkg{RGtk2} making it much more stable and tied to the currently
+active version of \GTK, which is discussed here.
+
+
+The full API for \GTK\/ is quite large, and clearly can not be
+documented here. However, the \GTK\/ documentation is converted into
+\R\/ format in the building of \pkg{RGtk2}. This conveniently allows
+the programmer to refer to the appropriate documentation within an
+\R\/ session, without having to consult the a web page, such as
+\url{http://library.gnome.org/devel/gtk/stable/} which lists the API
+of the stable versions \GTK.
+
+
+\subsection{Installation}
+\label{sec:installation}
+
+The package requires the underlying \GTK\/ libraries to be installed. These are standard under Linux, but must be installed under Windows and Mac OS X. Each platform has pre-compiled binaries, so this is not hard for the user. The Windows binaries are provided at \url{http://www.gtk.org/download-windows.html}. Under Mac OS X, the toolkit can be compiled from source, through the \code{fink} utilities, or a binary version can be installed. Currently the latter is provided at \url{http://r.research.att.com/}, where a version to use with the Max OS X binary of \R\/ is found.
+
+
+%%% ------- OOP --------------
+
+\section{How \GTK\/ is organized}
+\label{sec:RGtk2:constructors}
+
+
+\GTK\/ objects are created using constructors such as
+\function{gtkWindowNew} and \function{gtkButtonNewWithLabel} (these
+mapping to \code{gtk\_window\_new} and
+\code{gtk\_button\_new\_with\_label} respectively). The \pkg{RGtk2}
+package also provides convenience constructors with names not ending
+in \code{New} that may, depending on the arguments given, call
+different, but similar, constructors. We prefer these shorter, more
+flexible constructors, such as \function{gtkWindow} or
+\function{gtkButton}, but note their documentation is provided by the
+\R\/ package author and is in addition to the formal API.
+
+
+The automatic creation of \R\/ functions from the \GTK\/ libraries
+gives the constructors a somwhat consistent definition. For example,
+<<gtkWindowNew>>=
+gtkWindowNew
+@ 
+The \code{.RGtkCall} function provides the interface to the
+libraries. The value returned, is a pointer to an object. The
+\code{gtkWidgetShowAll} function is used to display a widget. Widgets
+may be unmapped, hidden, shown, or, if destroyed, invalid. The return
+value of the function
+
+\subsection{Classes and methods}
+
+
+%% OO methods
+The underlying \GTK\/ library is written in C, but still provides a a
+singly inherited, object-oriented framework that leads naturally to the
+use of S3 classes for the \R\/ package. In \GTK\/ the
+\class{GtkWindow} class inherits methods, properties, and signals from
+the \class{GtkBin}, \class{GtkContainer}, \class{GtkWidget},
+\class{GtkObject}, \class{GInitiallyUnowned}, and \class{GObject}
+classes. In \pkg{RGtk2}, by calling \function{class} on a
+\command{gtkWindow} instance~\footnote{We use the term ``instance'' of
+  a constructor to refer to the object returned by the constructor,
+  which is an instance of some class.}  we can see the class
+heiarchy
+<<gtkWindow-classes>>=
+class(gtkWindow())
+@ 
+
+It is identical except for the addition of the base \class{RGtkObject}
+class. When a widget is destroyed, the \R\/ object is assigned
+\class{<invalid>} class.
+
+\paragraph{Methods} Methods of \pkg{RGtk2} are not generic functions
+and do not use S3 dispatch, but rather an internal
+one. However, the end result is similar -- \R\/ will step through the
+values returned by \function{class} until it finds an appropriately
+named method.  The call \code{obj\$method(...)} resolves to a function call
+\code{f(obj,...)}. The function is found by looking for any function
+prefixed with with either an interface or a class from the object
+followed by the method name. The interfaces are checked first.
+
+For instance, if \code{win} is a \function{gtkWindow} instance, then
+\code{win\$add(widget)} looks for methods with the name
+\function{gtkBuildableAdd}, \function{atkImplementorIfaceAdd},
+\function{gtkWindowAdd}, \function{gtkBinAdd} before finding
+\function{gtkContainerAdd} and calling it as
+\code{gtkContainerAdd(win,widget)}.  The \method{\$}{GObject} method
+does the work of method dispatch.  As names are standardized in the
+process, the inteface allows method names to be specified in camelCase
+notation (first letter lower case, other words start upper case) or
+with a leading capital. The camelCase notation is consistent with many
+coding standards where methods start with lower case names and classes
+upper case.
+
+Understanding this dispatch mechanism allows us to add to the
+\pkg{RGtk2} API by naming our functions accordingly. This may not be
+the best practice, as one can unintentionally mask important functions
+and documentation of these methods is different, but it does allow one
+to call methods in a consistent manner. For instance, we can add to
+the button API by defining an appropriately named function:
+
+<<gtkButtonAddApi>>=
+gtkButtonPrintHello <- function(obj) print("hello")
+b <- gtkButton()
+b$printHello()
+@ 
+
+Had we defined, \code{gtkWidgetPrintHello} say, the method would be
+inherited by all objects whose class contains \class{GtkWidget}. 
+
+
+\paragraph{Some common methods}
+Some common methods are inherited by most widgets, as they are defined
+in the base \class{GtkWidget} class. There are methods to traverse the
+widget heirarchy. These include \method{GetParent}{gtkWidget} to get
+the parent container; \method{GetToplevel}{gtkWidget} to get the top
+widget in the objects widget heirarchy;
+\method{GetAncestor}{gtkWidget} to search up the heirarchy for an
+ancestor widget of a certain type; and for container widgets, the
+method \method{GetChildren}{gtkContainer} returns a list of the
+container's children. Children are shown through a call of
+\method{Show}{gtkWidget}. This is the default for the constructors. A call to \method{ShowAll}{gtkWidget} will
+recursively call itself for any child components. Widgets can be
+hidden through the either \method{Hide}{gtkWidget} or
+\method{HideAll}{gtkWidget}. A widget will be destroyed through a call
+to \method{Destroy}{gtkWidget} (once destroyed, the widget will have
+class \Event{invalid}). There are a handful of methods to modify a
+widget's appearance, for instance \method{ModifyBg}{gtkWidget} to
+change background color of a widget and \method{ModifyFg}{gtkWidget}
+to change its foreground color.
+
+
+\subsection{Properties}
+
+
+%% --------- Properties ------------
+Also inherited are widget properties. A list of properties that a
+widget has is returned by its
+\method{GetPropInfo}{gObject}. \pkg{RGtk2} provides the \R\/ generic
+\method{names}{Gobject} as a familiar alternative. For the button just
+defined, we can see the first eight properties with
+<<showProperties>>=
+head( names( b$getPropInfo()), n=8)
+@ 
+property names.
+
+Some key properties are \code{user-data} which allows one to store
+arbitrary data with the widget, use \method{GetData}{gObject} and
+\method{SetData}{gObject} to access; \code{sensitive}, which controls
+whether a widget can receive user events; and \code{width} and
+\code{height} to specify the requested minmum size if desired.
+
+
+There are a few different ways to access these properties in a
+consisten manner. Consider the \code{label} property of a
+\code{gtkButton} instance.  \GTK\/ provides the functions
+\function{gObjectGet} and \function{gObjectSet} to get and set
+properties of a widget.  The set function using the arguments names for
+the property key.
+
+<<>>=
+b <- gtkButton("A button")
+gObjectGet(b,"label")
+gObjectSet(b,label="a new label for our button")
+@ 
+Additionally, most user-accessible properties have specific \code{Get} and
+\code{Set} methods defined for them. In our example,  the methods
+\method{getLabel}{gtkButton} and \method{setLabel}{gtkButton} can be used.
+<<>>=
+b$getLabel()
+b$setLabel("Again, a new label for our button")
+@ 
+
+\pkg{RGtk2} provides the convenient and familiar \code{[} and
+\code{[$<$-} methods to get and access the properties:
+<<>>=
+b['label']
+@ 
+
+For ease of referencing the appropriate help pages, we tend to use the
+full method name in the examples, although at times the move \R-like
+vector notation will be used for commonly accessed
+properties. Table~\ref{tab:RGtk2-familiar-generics} summarizes how
+some familiar \R\/ generics are employed in \pkg{RGtk2}.
+
+The \PACKAGENAME\/ package provides the function
+\function{showGtkWidgetInfo} which provides a simple GUI to access
+information about a \pkg{RGtk2} object in the global environment.
+
+
+<<echo=FALSE, results=tex>>=
+## sapply(paste("[[.",class(gtkWindow(show=FALSE)), sep=""), function(i) {x <- try(get(i)); if(!inherits(x,"try-error")) x})
+df <- rbind(
+            c("\method{\[}{GObject}", "Look up property of object"),
+            c("\method{\[\ASSIGN}{GObject}", "Set property of object"),
+            c("\method{\$}{GObject}", "Get method for object"),
+            c("\method{\[[}{GObject}", "For containers, refers to child components"),
+            c("", "For some objects, e.g., \class{GdkEventButton}s, refers to properties") ,          
+            c("\method{\[[\ASSIGN}{GObject}", "For containers, sets child component")
+            )
+colnames(df) <- c("Generic","Description")
+cat(booktabs(df,
+             colTypes=c("l","p{0.7\\textwidth}"),
+             caption="Table of familiar \R\/ generics and their usage in \pkg{RGtk2}.",
+             label="tab:RGtk2-familiar-generics"))
+@ 
+
+%%% ------ constants --------
+\subsection{Enumerated types and flags}
+
+The \GTK\/ libraries have a number of constants that identify
+different states. These enumerated types are defined in the C
+code. For instance, for a toolbar, there are four possible styles with
+icons, just text, both text and icon, and both text and icon drawn
+horizontally. The flags indicating the style are stored in C in an
+enumeration \code{GtkToolbarStyle} with constants
+\code{GTK\_TOOLBAR\_ICONS}, \code{GTK\_TOOLBAR\_TEXT}, etc. In \pkg{RGtk2}
+these values are conveniently stored in the vector
+\code{GtkToolbarStyle} with named integer values
+<<>>=
+GtkToolbarStyle
+@ 
+
+A  list of enumerated types for \GTK\/ is listed in the man
+page \code{?gtk-Standard-Enumerations} and for \code{Pango} in
+\code{?pango-Layout-Objects}. The \code{Gdk} the variables are
+prefixed with \code{Gdk} and so can be found using \function{apropos},
+say, with \code{ignore.case=TRUE}.
+
+To use these enumerated types, on can specify them by name as
+<<>>=
+tb <- gtkToolbar()
+tb$setStyle( GtkToolbarStyle['icons'] )
+@ 
+
+But \pkg{RGtk2} provides the convenience of specifying the style name
+only, as in
+<<>>=
+tb$setStyle("icons")
+@ 
+
+When more than one value is desired, they can be combined using
+\function{c}.
+
+%%% ------ Signals ----------
+
+\subsection{Events and signals}
+
+
+In \pkg{RGtk2} user events, such as mouse clicks, keyboard usage,
+drag and drops, etc. trigger \pkg{RGtk2} widgets to signal the action.
+A GUI can be made interactive, by adding callbacks to a widget to
+be called when the widget emits
+a specific signal. In addition to signals, there are a number
+of window manager events, such as a \code{button-press-event}. These
+events have callbacks attached in a similar manner.
+
+The signals and events that an object adds are returned by the method
+\method{GetSignals}{gObject}. For example
+<<>>=
+names(b$getSignals())
+@ 
+shows the ``clicked'' signal in addition to others.
+
+To see the inherited signals can be achieved using
+\function{gtkTypeGetSignals}. For instance, the following will print
+out all the inherited signals and events.
+<<eval=FALSE>>=
+types <- class(b)
+lst <- sapply(head(types,n=-1), gtkTypeGetSignals)
+for(i in names(lst)) { cat(i,"\n"); print(lst[[i]])}
+@ 
+
+
+
+%% the gSignalConnect function
+The \function{gSignalConnect} (or \function{gSignalConnect}) function is used
+to add a callback to a widget's signal. Its signature is
+<<>>=
+args(gSignalConnect)
+@ 
+
+The \argument{obj}{gSignalConnect} is the widget the callback is attached to and
+\argument{signal}{gSignalConnect} the signal name, for instance \code{"drag-drop"}. 
+This may also be an event name.
+
+The \argument{f}{gSignalConnect} argument is for the callback.
+Although, it can be specified as an expression or a call, our examples
+always use a function to handle the callback. More detail follows. The
+\argument{after}{gSignalConnect} argument is a logical indicating if
+the callback should be called after the default handlers (see
+\command{?gSignalConnect}).
+
+The \argument{data}{gSignalConnect} argument is used to specify
+arbitrary data to parameterize the callback.  The
+\argument{user.data.first}{gSignalConnect} argument specifies if this
+\argument{data}{gSignalConnect} argument should be the first argument
+to the callback or by default the last. As the signature of the
+callback has varying length, setting this to \code{TRUE} can prove
+useful when not all arguments are important.
+
+%% the callback
+The signature for the callback varies for each signal and for 
+window manager events. The basic signature is \code{(w, user.data)}, where
+\code{w} passes in the widget that emits the signal and
+\code{user.data} is the optional data passed through the \code{data}
+argument of \code{gSignalConnect}. Some callbacks
+have longer signatures. The API for the constructor documents the
+available signals and the signatures of the callbacks. 
+
+
+\paragraph{Window manager events} 
+For window manager events, the basic
+signature is \code{(w, event, user.data)}, where the 
+second argument is a \class{GdkEvent} object (or a subclass). These
+objects carry with them
+extra information about the event that occurred, such as the position
+of a mouse click, or the type of key that was pressed. The help page
+\code{?"gdk-Events"} has detail on the possible events.
+
+
+Callbacks for signals emitted by window manager events are expected to
+return a logical value. Failure to do so can cause errors to be
+raised. For other callbacks the return value is ignored, so it is safe to
+always return a logical value. For an event callback, a return value
+of \code{TRUE} indicates that no further callbacks should be called,
+whereas \code{FALSE} indicates that the next callback should be
+called. So in the following example, only the first two callbacks are
+executed.
+
+<<>>=
+b <- gtkButton("Click me")
+w <- gtkWindow()
+w$add(b)
+
+id1 <- gSignalConnect(b,"button-press-event",function(b, event, data) {
+  print(event$getButton()); return(FALSE)
+})
+id2 <- gSignalConnect(b,"button-press-event",function(b, event, data) {
+  print(event$getX()); return(TRUE)
+})
+id3 <- gSignalConnect(b,"button-press-event",function(b, event, data) {
+  print(event$getTime()); return(TRUE)
+})
+@ 
+
+\paragraph{Scope of callback functions}
+As the callback is an \R\/ function, it is passed copies of the
+object. Since \pkg{RGtk2} objects are pointers, there is no practical
+difference. So changes within the body of a callback to \pkg{RGtk2}
+objects are reflected outside the scope of the callback, unlike
+changes to most other \R\/ objects. Making changes to \R\/ objects
+within a callback can be done through the usual scoping
+rules. However, it can be convenient to use the
+\method{setData}{gObject} and \code{getData}{gObject} to pass values
+into a callback, as changes to the \code{user-data} property of a widget
+will be reflected outside the scope of the callback.
+
+
+<<>>=
+w <- gtkWindow(); w['title'] <- "test signals"
+x <- 1; 
+b <- gtkButton("click me"); w$add(b)
+ID <- gSignalConnect(b,signal="clicked",f = function(widget,...) {
+  widget$setData("x",2)
+  x <- 2
+  return(TRUE)
+})
+@ 
+Then after clicking, we would have
+<<echo=FALSE>>=
+b$setData("x",2)                        # fix non-interactivity
+@ 
+
+<<>>=
+cat(x, b$getData("x"),"\n") # 1 and 2
+@ 
+
+
+%% multiple callbacks; remove; block
+\paragraph{Disconnecting, blocking and unblocking handlers}
+Multiple callbacks can be assigned to each signal. They will be
+processed in the order they were bound to the signal.  The
+\function{gSignalConnect} function returns an ID that can be used to
+disconnect a callback if desired using
+\function{gSignalHandlerDisconnect} or temporarily blocked using
+\function{gSignalHandlerBlock} and
+\function{gSignalHandlerUnblock}. The man page for
+\function{gSignalConnect} gives the details on this, and much more.
+
+
+%% --------- Event Loop
+
+\subsection{The eventloop}
+
+
+The \pkg{RGtk2} eventloop integrates with the \R\/ event loop. Such
+integration is tricky. In a C program, \GTK\/ programs call the
+function \code{gtk\_main} which puts control of the GUI into the main
+event loop of \GTK. This sits idle until some event occurs. According
+to the \pkg{RGtk2} website, ``The nature of the R event loop prevents
+the continuous execution of the GTK main loop, thus preventing things
+like timers and idle tasks from executing reliably. This manifests
+itself when using functionality such as GtkExpander and
+GtkEntryCompletion.''
+
+During a long calculation, the GUI can seem unresponsive. To avoid
+this the following construct can be used during the long calculation
+to process pending events.
+
+<<>>=
+while(gtkEventsPending()) 
+  gtkMainIteration()
+@ 
+
+\subsection{Pango}
+\label{sec:pango}
+
+Pango describes itself as 
+\begin{quotation}
+``a library for laying out and rendering of
+text, with an emphasis on internationalization. Pango can be used
+anywhere that text layout is needed, though most of the work on Pango
+so far has been done in the context of the GTK+ widget toolkit. Pango
+forms the core of text and font handling for GTK+-2.x.''
+\end{quotation}
+When working with text within \pkg{RGtk2}, the Pango library is used,
+although the programmer need not be too aware of this fact, except
+when the Pango text attribute markup language is employed.
+
+
+\subsection{Themes}
+\label{sec:RGkt2:themes}
+
+[XXX insert bit about themes, adjusting defaults. perhaps rc files]
+
+\subsection{GtkBuildable  and Glade }
+\GTK\/ has a means to describe an interface using an XML
+specification. The inteface is then built through a \class{GtkBuilder}
+object.  The \code{glade} inteface builder can be used to create the
+interface through a point-and-click process and the XML file will be
+created from within \code{glad} If this appeals to you, the software
+may be downloaded from \url{http://glade.gnome.org/}. This resulting
+XML file is read into the \R\/ session along the lines of the
+following:
+<<>>=
+g <- gtkBuildableNew()
+g$addFromFile("buildable.xml")
+@ 
+The \method{getObject}{gtkBuilder} is used to extract the widgets by
+their ID. For this example, the \code{dialog1} is the top-level
+widget, for which we extract then display through a call to the
+\method{showAll}{gtkWidget} method.
+<<>>=
+d <- g$getObject("dialog1")
+d$showAll()
+@
+The XML specification includes a line
+\begin{verbatim}
+<signal name="clicked" handler="ok_button_clicked" />
+\end{verbatim}
+
+This specifies that the  callback \code{ok\_button\_clicked} should be called when the widget (a button) is clicked. To add this callback within \R\/ we must define a function with a signature that matches that for this signal (\code{...} does) and then register the callbacks through a call to the \method{ConnectSignals}{gtkBuildable} method.
+
+<<>>=
+ok_button_clicked <- function(w, userData) {
+  print("hello world")
+}
+g$connectSignals()
+@ 
+
+\section{Running scripts under Windows}
+\label{sec:RGtk2-run-scripts-under-windows}
+
+If one assigns an icon to run an \pkg{RGtk2} script under Windows, the
+script will immediately exit and the GUI will disappear. To work
+around this, the function \function{gtkMain} is used to run the main
+loop until the function \function{gtkMainQuit} is called. This can't
+be called from the command line, so should be called through some
+event handler.
+
+
+\section{RGtk2 and gWidgetsRGtk2}
+\label{sec:RGtk2:gWidgetsRGtk2}
+
+
+The widgets described above, are also available through
+\pkg{gWidgetsRGtk2}. The two packages can be used together, for the
+most part. The \code{add} method of \pkg{gWidgetsRGtk2} can be used to
+add an \pkg{RGtk2} widget to a \code{gWidgetsRGtk2}
+container. Whereas, the \code{getToolkitWidget} method will (usually)
+return the \pkg{RGtk2} component to use within \pkg{RGtk2}.
+
+\section{Other sources of documentation for \pkg{RGtk2}}
+\label{sec:RGtk2:other-sourc-docum}
+
+\GTK\/ has many sources of online documentation. The full API is found
+at \url{http://www.gtk.org/documentation.html}. Although this is in C,
+the translation to \R\/ is not so difficult. A tutorial for the python
+bindings to \GTK\/ is very useful, as the python implementation is no
+too far from \R's, can be found at
+\url{http://moeraki.com/pygtktutorial/pygtk2tutorial}. This is based
+on the C-based tutorial for \GTK. Some authors have provided tutorials
+for the more complicated widgets the treeview
+\url{http://scentric.net/tutorial/treeview-tutorial.html} and the text
+view \url{http://www.bravegnu.org/gtktext/gtktext-0.4.html}, although
+with both one must translate the C code into \R\/ code.
+
+In addition to the online documentation, the book ``Foundations of GTK+
+Development'' by Andrew Krause proved a useful resource when preparing
+these chapters on \pkg{RGtk2}.

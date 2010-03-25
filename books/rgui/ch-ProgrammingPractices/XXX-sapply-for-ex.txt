@@ -1,0 +1,66 @@
+http://article.gmane.org/gmane.comp.lang.r.devel/17181
+
+On Sun, 20 Jul 2008, James Bullard wrote:
+
+> Hi All, I am confused about the following code. I thought that the problem 
+> stemmed from lazy evaluation and the fact that 'i' is never evaluated within 
+> the first lapply. However, I am then confused as to why it gets bound to the 
+> final element of the lapply.
+
+Correct.  'i' in the environments is a promise, and it gets the value at 
+the time the promise is evaluated from the environment in which the 
+promise is created.  Since you don't evaluate it until after the lapply, 
+the environment in which the promise is evaluated has the final value at 
+that time. BTW, the following variant
+
+x <- vector("list", 4)
+for(i in 1:3) x[[i]] <- function() i^2
+sapply(1:3, function(i) x[[i]]())
+
+works the same way.
+
+Lazy evaluation works somewhat differently in R and in S -- I've never 
+seen a comprehensive discussion as to why (nor exactly how it works in 
+either system, although there is a lot about promises in the 'R Internals' 
+manual).
+
+> The environments of the returned functions are 
+> indeed different in both cases and each environment has a local binding for 
+> 'i' it just happens to be 3 -- which I will say is wrong, but I await 
+> reeducation.
+>
+> I looked for documentation concerning this, but I wasn't able to find 
+> anything -- I imagine that this must be documented somewhere as it appears 
+> like a reasonable thing to do.  Thank you as always for any insight. -- jim
+
+> ## doesn't do what I think it should
+> x <- lapply(1:3, function(i) {
+>   function() { i^2 }
+> })
+> sapply(1:3, function(i) x[[i]]())
+>
+> [1] 9 9 9
+>
+> ## does what I expect
+> x <- lapply(1:3, function(i) {
+>   print(i)
+>   function() { i^2 }
+> })
+> [1] 1
+> [1] 2
+> [1] 3
+>
+> sapply(1:3, function(i) x[[i]]())
+>
+> [1] 1 4 9
+>
+>
+>> sessionInfo()
+> R version 2.7.1 Patched (2008-07-20 r46088)
+> i386-apple-darwin9.4.0
+>
+> locale:
+> en_US.UTF-8/en_US.UTF-8/C/C/en_US.UTF-8/en_US.UTF-8
+>
+> attached base packages:
+> [1] stats     graphics  grDevi

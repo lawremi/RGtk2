@@ -1,0 +1,86 @@
+\documentclass{book}
+\input{setup}
+%% Begin here
+\begin{document}
+\thispagestyle{empty}
+\bibliographystyle{plainnat}
+\input{setup2}
+
+%% Put these in front for easier reference.
+\setcounter{tocdepth}{3}
+\tableofcontents
+\newpage
+
+%% Find graphic files in subdirectories
+\graphicspath{
+  {ch-Preface/}
+  {ch-GUIBasics/}
+  {ch-ProgrammingPractices/}
+  {ch-gWidgetsIntro/}
+  {ch-gWidgetsExamples/}
+  {ch-RGtk2/}
+  {ch-RGtk2Example/}
+  {ch-RwxWidgets/}
+  {ch-tcltk/}
+  {ch-WebGUIs/}
+}
+
+%% Begin. Chapters all call in ch-XXX/ch-XXX.tex file
+\chapter*{Preface}
+\label{chap:preface}
+\input{ch-Preface/ch-Preface}
+
+
+\chapter{The basic ideas of Graphical User Interfaces}
+\label{chap:GUIBasics}
+\input{ch-GUIBasics/ch-GUIBasics}
+
+%% Make this appendices?
+%% R functions, practices for GUI programmng
+\chapter{R Programming Practices for GUIs}
+\label{chap:programming-practices}
+%\input{ch-ProgrammingPractices/ch-ProgrammingPractices}
+
+%% gWidgets
+\chapter{An introduction to \pkg{gWidgets}}
+\label{chap:gWidgets-intro}
+\input{ch-gWidgetsIntro/ch-gWidgetsIntro}
+
+%% More on gWidgets
+\chapter{GUI examples using gWidgets}
+\label{chap:gWidgetsExamples}
+\input{ch-gWidgetsExamples/ch-gWidgetsExamples}
+
+%% RGtk2
+\chapter{RGtk2}
+\label{chap:RGtk2}
+\input{ch-RGtk2/ch-RGtk2}
+
+%% QT
+\chapter{Qt}
+\label{cha:qt}
+\input{ch-Qt/ch-Qt}
+
+%% tcltk
+\chapter{tcltk}
+\label{chap:tcltk}
+\input{ch-tcltk/ch-tcltk}
+
+
+%% Web based programming
+\chapter{Web-based GUIs}
+\label{chap:WebGUIS}
+\input{ch-WebGUIs/ch-WebGUIs}
+
+
+
+
+
+
+
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

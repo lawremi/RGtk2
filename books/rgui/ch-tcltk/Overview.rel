@@ -1,0 +1,112 @@
+;; RefTeX parse info file
+;; File: /Users/verzani/GUI/ch-tcltk/Overview.Rnw
+;; User: verzani (john verzani)
+
+(set reftex-docstruct-symbol '(
+
+
+(xr nil "\\\\\\\\\\\\")
+
+(index-tags)
+
+(is-multi nil)
+
+(bibview-cache)
+
+(master-dir . "/Users/verzani/GUI/ch-tcltk/")
+
+(label-numbers)
+
+(bof "/Users/verzani/GUI/ch-tcltk/Overview.Rnw")
+
+(toc "toc" "    1 Interacting with \\TCL" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 2 "1" "\\section{Interacting with \\TCL}" 168)
+
+("sec:tcltk:interacting-with-tcl" "s" "%% Tclk The basic syntax of \\TCL\\/ is a bit unlike \\R. For example a simple string assignment would " "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil)
+
+(toc "toc" "          1.0.0.1 The tcl function" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 5 "1.0.0.1" "\\paragraph{The tcl function}" 4624)
+
+("fig:tcl-function-map" "f" "How the \\code{tcl} function maps its arguments" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil)
+
+(toc "toc" "    2 Constructors" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 2 "2" "\\section{Constructors}" 6156)
+
+("sec:tcltk:constructors" "s" "In this chapter, we will stick to a few basic widgets: labels and buttons; and top-level containers " "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil)
+
+(toc "toc" "          2.0.0.1 Options" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 5 "2.0.0.1" "\\paragraph{Options}" 7440)
+
+(toc "toc" "          2.0.0.2 The functions tkcget, tkconfigure" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 5 "2.0.0.2" "\\paragraph{The functions tkcget, tkconfigure}" 8880)
+
+(toc "toc" "          2.0.0.3 Coercion to character" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 5 "2.0.0.3" "\\paragraph{Coercion to character}" 9642)
+
+(toc "toc" "          2.0.0.4 Buttons" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 5 "2.0.0.4" "\\paragraph{Buttons}" 10056)
+
+(toc "toc" "          2.0.0.5 tkwidget" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 5 "2.0.0.5" "\\paragraph{tkwidget}" 10829)
+
+(toc "toc" "      2.1 Geometry managers" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 3 "2.1" "\\subsection{Geometry managers}" 12010)
+
+("sec:tcltk:overview:geometry-managers" "s" "As with \\GTK, when a new widget is constructed it is not automatically mapped. \\TK\\/ uses geometry m" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil)
+
+(toc "toc" "      2.2 \\TCL\\/ variables" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 3 "2.2" "\\subsection{\\TCL\\/ variables}" 12820)
+
+("sec:tcltk:overview:textvariables" "s" "%% textvariables For several \\TK\\/ widgets, there is an option \\code{textvariable} for a \\TCL\\/ vari" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil)
+
+(toc "toc" "      2.3 Colors and fonts" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 3 "2.3" "\\subsection{Colors and fonts}" 13886)
+
+("sec:tcltk:overview:colors-fonts" "s" "The label color can be set through its \\code{foreground} property. Colors can be specified by name -" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil)
+
+(toc "toc" "          2.3.0.1 Fonts" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 5 "2.3.0.1" "\\paragraph{Fonts}" 14504)
+
+("fig:fig-tcltk-all-fonts" "f" "A scrollable frame widget (cf. Example~\\ref{ex:tcltk-scrollable-frame}) showing the available fonts " "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil)
+
+(toc "toc" "          2.3.0.2 Font metrics" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 5 "2.3.0.2" "\\paragraph{Font metrics}" 17216)
+
+(toc "toc" "      2.4 Images" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 3 "2.4" "\\subsection{Images}" 17712)
+
+("sec:tcltk:overview:images" "s" "Many \\pkg{tcltk} widgets, including both labels and buttons, can show images. In these cases, either" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil)
+
+(toc "toc" "          2.4.0.1 Image manipulation" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 5 "2.4.0.1" "\\paragraph{Image manipulation}" 19491)
+
+(toc "toc" "      2.5 Themes" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 3 "2.5" "\\subsection{Themes}" 20124)
+
+("sec:tcltk:overview:themes" "s" "%% themes -- ttkframe The themed widgets have a style that determines how they are drawn. The separa" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil)
+
+(toc "toc" "      2.6 Window properties and state: \\code{tkwinfo}" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 3 "2.6" "\\subsection{Window properties and state: \\code{tkwinfo}}" 21788)
+
+("sec:tcltk:overview:widget-properties" "s" "Widgets have options which can be set through \\code{tkconfigure} and additionally, when mapped, the " "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil)
+
+(toc "toc" "    3 Events and Callbacks" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 2 "3" "\\section{Events and Callbacks}" 24024)
+
+("sec:tcltk:overview:events-callbacks" "s" "The button widget has the \\code{command} option for assigning a callback for when the user clicks th" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil)
+
+(toc "toc" "      3.1 Callbacks" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 3 "3.1" "\\subsection{Callbacks}" 24330)
+
+("sec:tcltk:callbacks" "s" "%% \\XXX{ use of tcl(``eval'',''break'') to avoid calling subsequent callbacks} -- doesn't work %% Se" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil)
+
+(toc "toc" "      3.2 Events" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 3 "3.2" "\\subsection{Events}" 26292)
+
+("sec:tcltk:events" "s" "%% (Unlike \\pkg{RGtk2}, that the event triggers a widget to emit a signal that a callback listens fo" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil)
+
+(toc "toc" "          3.2.0.1 Events with modifiers" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 5 "3.2.0.1" "\\paragraph{Events with modifiers}" 27831)
+
+(toc "toc" "          3.2.0.2 Window manager events" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 5 "3.2.0.2" "\\paragraph{Window manager events}" 28702)
+
+(toc "toc" "          3.2.0.3 Virtual events" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 5 "3.2.0.3" "\\paragraph{Virtual events}" 28936)
+
+(toc "toc" "      3.3 \\% Substitutions" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 3 "3.3" "\\subsection{\\% Substitutions}" 30735)
+
+("sec:tcltk-percent-substitutions" "s" "\\TK\\/ provides a mechanism called \\defn{percent substitution} to pass information about the event to" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil)
+
+(toc "toc" "          3.3.0.1 The after command" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 5 "3.3.0.1" "\\paragraph{The after command}" 31783)
+
+(toc "toc" "    4 Rcmdr" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 2 "4" "\\section{Rcmdr}" 32353)
+
+("sec:tcltk:rcmdr" "s" nil "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil "")
+
+(toc "toc" "    5 Other sources of documentation" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 2 "5" "\\section{Other sources of documentation}" 32419)
+
+("sec:tcltk:other-sourc-docum" "s" nil "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil "")
+
+(toc "toc" "    4 Rcmdr" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 2 "4" "\\section{Rcmdr}" 32353)
+
+(eof "/Users/verzani/GUI/ch-tcltk/Overview.Rnw")
+))
+

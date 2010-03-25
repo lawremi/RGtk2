@@ -1,0 +1,31 @@
+This example shows how a scrolled window can be used to display a long list of values. The tree view
+widget can also do this, but here we can very easily customize the display of each value. In the example, we simply locates where a label is placed.
+
+<<ScrolledWindowExample, echo=FALSE>>=
+library(RGtk2)
+@
+
+<<>>=
+g <- gtkVBox(spacing=0)
+QT <- sapply(state.name, function(i) {
+  l <- gtkLabel(i)
+  l['xalign'] <- 0; l['xpad'] <- 10
+  g$packStart(l, expand=TRUE, fill=TRUE)
+})
+@
+
+The scrolled window has just two basic steps in its construction. Here
+we specify never using a scrolled window for the vertical display.
+<<>>=
+sw <- gtkScrolledWindow()
+sw$setPolicy("never","automatic")
+sw$addWithViewport(g)                   # just "Add" for text, tree, ...
+@
+
+<<>>=
+w <- gtkWindow(show=FALSE)
+w$setTitle("Scrolled window example")
+w$setSizeRequest(-1, 300)
+w$add(sw)
+w$show()
+@

@@ -1,0 +1,278 @@
+This example shows how the text view widget can be used to make a
+simple command line. While programming a command line isn't likely to
+be the most common task in designing a GUI for a statistics
+application (presumably you are already using a good one), the example
+is familiar and shows several different, but useful, aspects
+of the widget.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.6\textwidth]{ex-RGtk2-terminal}
+  \caption{A basic \R\/ terminal implemented using a \code{gtkTextView} widget.}
+  \label{fig:RGtk2-terminal}
+\end{figure}
+
+<<echo=FALSE>>=
+## make a *basic* terminal in RGtk2
+library(RGtk2)
+@ 
+
+We begin by defining our text view widget and retrieving its
+buffer. We also specify a fixed-width font for the buffer.
+<<TextViewWidget>>=
+tv <- gtkTextView()
+tb <- tv$getBuffer()
+font <- pangoFontDescriptionFromString("Monospace")
+tv$modifyFont(font)                     # widget wide
+@ 
+
+Our main object will be the text buffer which will have only one
+view. As there is no built-in method to return a corresponding view
+from the buffer, we use the \method{setData}{gtkWidget} method to
+associate the view with the buffer.
+<<>>=
+tb$setData("textview", tv)
+@ 
+
+We will use a few formatting tags, defined next. We don't need the tag
+objects, as we refer to them later by name.
+<<>>=
+aTag <- tb$createTag(tag.name="cmdInput")
+aTag <- tb$createTag(tag.name="cmdOutput", 
+                     weight=PangoWeight["bold"])
+aTag <- tb$createTag(tag.name="cmdError", 
+                     weight=PangoStyle["italic"], foreground="red")
+aTag <- tb$createTag(tag.name="uneditable", editable=FALSE)
+@ 
+
+We define one new mark to mark the prompt for a new line. We
+need to be able to identify a new command, and this marks the
+beginning of this command.
+<<>>=
+startCmd <- gtkTextMark("startCmd", left.gravity=TRUE)
+tb$addMark(startCmd, tb$getStartIter()$iter)
+@ 
+
+We define several functions, which we think of as methods of the text
+buffer (not the text view). This first shows how to move the viewport
+so that the command line is visibile.
+<<>>=
+moveViewport <- function(obj) {
+  tv <- obj$getData("textview")
+  endIter <- obj$getEndIter()
+  QT <- tv$scrollToIter(endIter$iter, 0)
+}
+@ 
+
+There are two types of prompts needed. This function adds a new one or a
+continuation one. An argument allows one to specify that the
+\code{startCmd} mark is set.
+<<>>=
+addPrompt <- function(obj, prompt=c("prompt","continue"), 
+                      setMark=TRUE) {
+  prompt <- match.arg(prompt)
+  prompt <- getOption(prompt)
+  
+  endIter <- obj$getEndIter()
+  obj$insert(endIter$iter, prompt)
+  tv <- obj$getData("textview")
+  if(setMark)
+    obj$moveMarkByName("startCmd", endIter$iter)
+}
+addPrompt(tb) ## place an initial prompt
+@ 
+
+This helper method is used to write the output of a command to the
+text buffer. We arrange to truncate large outputs. By passing in the
+tag name, we could reuse this function. If we were to streamline the
+code for this example, we might use this function to also write out the error
+messages, but leave that to the similarly defined function
+\code{addErrorMessage} (not shown).
+
+
+<<addOutput>>=
+addOutput <- function(obj, output, tagName="cmdOutput") {
+  if(length(output) > 100)              # shorten if needed
+    out <- c(output[1:100], "...")
+
+  endIter <- obj$getEndIter()
+  if(length(output) > 0) 
+    sapply(output, function(i)  {
+      obj$insertWithTagsByName(endIter$iter, i, tagName)
+      obj$insert(endIter$iter, "\n", len=-1)
+    })
+  
+  addPrompt(obj, "prompt", setMark=TRUE)
+  obj$applyTagByName("uneditable", obj$getStartIter()$iter, 
+                     obj$getEndIter()$iter)
+  moveViewport(obj)
+}
+@ 
+
+<<echo=FALSE>>=
+## not shown in example
+addErrorMessage <- function(obj, msg) {
+  ## add error message to end of buffer, new line with continuation prompt
+  endIter <- obj$getEndIter()
+  obj$insert(endIter$iter, "\n", len=-1)
+  sapply(msg, function(i) {
+    obj$insertWithTagsByName(endIter$iter, i,  "cmdError")
+    obj$insert(endIter$iter, "\n", len=-1)
+  })
+  addPrompt(obj, "prompt", setMark=TRUE)
+  moveViewport(obj)  
+}
+@ 
+
+This next function uses the \code{startCmd} mark and the end of the buffer
+to extract the current command. Multi-line commands are handled through
+a regular expression which should not be hard-coded to the standard
+continue prompt, but for sake of simplicity is.
+<<>>=  
+findCMD <- function(obj) {
+  endIter <- obj$getEndIter()
+  startIter <- obj$getIterAtMark(startCmd)
+  cmd <- obj$getText(startIter$iter, endIter$iter, TRUE)
+
+  cmd <- unlist(strsplit(cmd, "\n[+] ")) # hardcoded "+"
+  cmd
+}
+@ 
+
+The following function takes the current command and does the
+appropriate thing. It uses a hack (involving \code{grep}) to
+distinguish between an incomplete command and a true syntax error. The
+\code{addHistory} call refers to a function that is not shown, but is
+left to illustrate where one would add to a history stack if desired.
+
+<<>>=
+evalCMD <- function(obj, cmd) {
+  cmd <- paste(cmd, sep="\n")
+  out <- try(parse(text=cmd), silent=TRUE)
+  if(inherits(out, "try-error")) {
+    if(length(grep("end", out))) {      # unexpected end of input
+      ## continue
+      addPrompt(obj, "continue", setMark=FALSE)
+      moveViewport(obj)
+    } else {
+      ## error
+      addErrorMessage(obj, out)
+    }
+    return()
+  }
+  addHistory(obj, cmd)  ## if keeping track of history
+  
+  out <- capture.output(eval(parse(text = cmd), envir=.GlobalEnv))
+  addOutput(obj, out)
+}
+@ 
+
+The \code{evalCMD} command is called when the \kbd{return} key is
+pressed. The \signal{key-release-event} signal passes the event
+information through to the second argument. We inspect the key value
+and compare to that of the return key. 
+
+<<connectBinding>>=
+ID <- gSignalConnect(tv, "key-release-event", f=function(w, e, data) {
+  obj <- w$getBuffer()                  # w is textview
+  keyval <- e$getKeyval()
+  if(keyval == GDK_Return) {
+    cmd <- findCMD(obj)
+    if(nchar(cmd) > 0)
+      evalCMD(obj, cmd)
+  }
+  return(FALSE)                         # events need return value
+})
+@ 
+Figure~\ref{fig:RGtk2-terminal} shows the widget placed into a very
+simple GUI.
+<<makeGUI, echo=FALSE>>=
+## scroll window
+sw <- gtkScrolledWindow()
+sw$setPolicy("automatic", "automatic")
+sw$add(tv)
+
+## top-level window
+w <- gtkWindow(show=FALSE)
+w$setTitle("A terminal")
+w$add(sw)
+w$setSizeRequest(400,200)
+w$showAll()
+@ 
+
+
+
+<<echo=FALSE>>=
+## History features
+## This is not illustrated in text, but is added here to illustrate how this might be implemented
+## The major issue with this example is we can't trap the return or arrow keys before they move 
+## the cursor so any thing ends up looking jerky
+
+## store the stack and a pointer to the current command with the text buffer
+tb$setData("history", list())
+tb$setData("ptr", 0)
+
+
+## replace cmd with that in str.
+replaceCMD <- function(obj, str) {
+  endIter <- obj$getEndIter()
+  startIter <- obj$getIterAtMark(startCmd)
+  obj$delete(startIter$iter, endIter$iter)
+  endIter <- obj$getEndIter()
+  obj$insertWithTagsByName(endIter$iter, str[1], "cmdInput")
+  if(length(str) > 1) {
+    for(i in str[-1]) {
+      obj$insert(endIter$iter, "\n")
+      obj$insertWithTagsByName(endIter$iter, getOption("continue"), "cmdInput")
+      obj$insertWithTagsByName(endIter$iter, i, "cmdInput")
+    }
+  }
+  moveViewport(obj)
+}
+
+## This adds the command to the history stack and moves the pointer.
+addHistory <- function(obj, cmd) {
+  history <- obj$GetData("history"); ptr <- obj$GetData("ptr")
+  history <- c(history, cmd)
+  ptr <- length(history)
+  obj$SetData("ptr", ptr)
+  obj$SetData("history", history)
+}
+
+## these next two functions scroll through the history
+scrollHistoryUp <- function(obj) {
+  ## move through history
+  ptr <- obj$GetData("ptr") - 1
+  if(ptr > 0)
+    replaceCMD(obj, obj$GetData("history")[[ptr]])
+  obj$SetData("ptr", max(ptr,0))
+  obj$PlaceCursor(obj$GetEndIter()$iter)
+}
+
+scrollHistoryDown <- function(obj) {
+  ## move through history
+  ptr <- obj$GetData("ptr") + 1
+  history <- obj$GetData("history")
+  if(ptr <= length(history)) 
+    replaceCMD(obj, history[[ptr]])
+  obj$SetData("ptr", min(ptr,length(history)))
+  obj$PlaceCursor(obj$GetEndIter()$iter)
+}
+
+## History bindings
+## this uses Control-p and Control-n to move
+ID <- gSignalConnect(tv, "key-release-event", f=function(w, e, data) {
+  if(e$GetState() != GdkModifierType['control-mask'])
+    return(TRUE)
+
+  obj <- w$GetBuffer()
+  keyval <- e$GetKeyval()
+
+  if(keyval == GDK_p) {
+    scrollHistoryUp(obj)
+  } else if(keyval == GDK_n) {
+    scrollHistoryDown(obj)
+  }
+  return(TRUE)
+})
+@ 

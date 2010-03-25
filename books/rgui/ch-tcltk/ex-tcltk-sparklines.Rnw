@@ -1,0 +1,84 @@
+Edward Tufte, in his book \textit{Beautiful
+  Evidence}~\cite{Tufte:Beautiful-Evidence}, advocates for the use of
+\textit{sparklines} -- small, intense, simple datawords -- to show substantial
+amounts of data in a small visual space. This example shows how to use
+a \code{ttkcanvas} object to display a sparkline graph using a \texttt{line} object. The example also uses \texttt{tkgrid}
+to layout the information in a  table. We could have spent more time on the
+formatting of the numeric values and factoring out the data download, but leave improvements as an exercise.
+
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.66\textwidth]{fig-tcltk-sparklines.png}
+  \caption{Example of embedding sparklines in a display organized
+    using \code{tkgrid}. A \code{tkcanvas} widget is used to display
+    the graph.}
+  \label{fig:fig-tcltk-sparklines}
+\end{figure}
+
+<<echo=FALSE>>=
+## sparklines
+library(tcltk)
+library(tseries)
+w <- tktoplevel()
+tkwm.title(w, "Sparklines example")
+f <- ttkframe(w, padding=c(3,3,3,12))
+tkpack(f, expand=TRUE, fill="both")
+@ 
+
+This function simply shortens our call to \texttt{ttklabel}. We use the global \texttt{f} (a \code{ttkframe}) as the parent.
+<<>>=
+mL <- function(label) {
+  if(is.numeric(label))
+    label <- format(label, digits=4)
+  ttklabel(f, text=label) # save some typing
+}
+@ 
+We begin by making the table header along with a toprule.
+<<makeHeaderRule>>=
+tkgrid(mL(""), mL("2000-01-01"), mL("-- until --"), 
+       mL("today"), mL("low"), mL("high"))
+tkgrid(ttkseparator(f), row=1, column=1, columnspan=5, sticky="we")
+@ 
+
+This function adds a sparkline to the table. We use financial data in
+this example, as we can conveniently employ the
+\function{get.hist.quote} function from the \pkg{tseries} package to
+get interesting data.
+<<>>=
+addSparkLine <- function(label, symbol="MSFT") {
+  width <- 100; height=15               # fix width, height
+  y <- get.hist.quote(instrument=symbol, start="2000-01-01",
+                      quote="C", provider="yahoo", 
+                      retclass="zoo")$Close
+  min <- min(y); max <- max(y)
+  start <- y[1]; end <- tail(y,n=1)
+  rng <- range(y)
+
+  sparkLineCanvas <- tkcanvas(f, width=width, height=height)
+  x <- 0:(length(y)-1) * width/length(y)
+  if(diff(rng) != 0) {
+    y1 <- (y - rng[1])/diff(rng) * height
+    y1 <- height - y1   # adjust to canvas coordinates
+  } else {
+    y1 <- height/2 + 0 * y
+  }
+  ## make line with: pathName create line x1 y1... xn yn 
+  l <- list(sparkLineCanvas,"create","line")
+  sapply(1:length(x), function(i) {
+    l[[2*i + 2]] <<- x[i]
+    l[[2*i + 3]] <<- y1[i]
+  })
+  do.call("tcl",l)
+
+  tkgrid(mL(label),mL(start), sparkLineCanvas, 
+         mL(end), mL(min), mL(max), pady=1)
+}
+@ 
+
+We can then add some rows to the table as follows:
+<<eval=FALSE>>=
+addSparkLine("Microsoft","MSFT")
+addSparkLine("General Electric", "GE")
+addSparkLine("Starbucks","SBUX")
+@ 

@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<title> <%= title %> </title>
+</head>
+<body>
+
+<% 
+   if(exists("user_name") && nchar(user_name)) 
+     cat(sprintf("<h2>Welcome %s</h2>", HTMLencode(user_name)))
+%>

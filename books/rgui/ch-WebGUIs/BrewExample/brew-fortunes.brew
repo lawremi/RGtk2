@@ -1,0 +1,10 @@
+<%
+require(fortunes)
+out <- fortune(22)
+%>
+
+<h3 class="fortune">Fortune</h3>
+<%= out$quote %> <br>
+--<em><%= out$author %></em>, <%= out$date %>
+
+

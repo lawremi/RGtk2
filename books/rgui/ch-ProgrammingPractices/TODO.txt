@@ -1,0 +1,19 @@
+Put in description of 
+
+R ---> toolkit; (handler) ---> R
+
+It is handled differently in tcltk than Tcl/Tk
+What about RGtk2?
+in web programming, the picture is a bit different
+
+browser ---> server, (R) ---> browser
+
+The cycle is complete, no R --> browser with a request?
+
+
+R ---> toolkit; (object) ---> R 
+Does the object get coerced back? Not in tcltk, RGtk2 it does.
+
+
+\XXX{issue with pass-by-copy}
+

@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<html>
+<extends>
+brew.html
+</extends>
+
+<block id="block1">
+<p>
+This is in block 1 of brew 1
+</p>
+Some R code
+<rcode echo="TRUE" eval="TRUE">
+x = 2 + 2
+print(x)
+
+</rcode>
+
+<div>some div tag</div>
+</block>
+<div>
+  put in div wrapper so different level of tree than block 1
+  <block id="block2">
+  This is in block 2 of brew 1
+  </block>
+</div>
+</html>

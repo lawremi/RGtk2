@@ -1,0 +1,32 @@
+
+\subsection{Pass by copy}
+\label{sec:pass-by-copy}
+
+\XXX{issues with modifying values in callback, double arrow
+  assignement, assign, etc.}
+
+\subsubsection{Variable lookup: Scoping}
+\label{sec:vari-look-scop}
+
+\subsubsection{Environments in \R}
+\label{sec:environements-r}
+
+
+
+\subsection{Converting text into \R\/ commands and \R\/ commands to text.}
+\label{sec:text-to-R}
+\XXX{eval(parse), do.call, ...}
+
+\XXX{deparse, dput, sys.call, serialization}
+
+
+\subsection{Efficient programming in \R}
+\label{sec:efficient-programming}
+\XXX{do.call, apply functions,...}
+  
+  
+\subsection{Localization}
+\label{sec:localization}
+
+\XXX{gettext, etc.}
+

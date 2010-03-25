@@ -1,0 +1,151 @@
+This example shows how to implement drag and drop between two widgets. Steps are needed to make a widget a drop source, and other steps are needed to make a widget a drop target. The basic idea is that when a value is being dragged, virtual events are generated for the widget the cursor is over. If that widget has callbacks bound to these events, then the drag and drop can be processed. The idea for the code below originated with \url{http://wiki.tcl.tk/416}.
+
+<<echo=FALSE>>=
+## ex-tcltk-dnd
+## Example of drag and drop
+## idea from http://wiki.tcl.tk/416
+library(tcltk)
+@ 
+
+To begin, we create a simple GUI to hold three widgets. We use buttons
+for drag and drop, but only because we haven't yet discussed more
+natural widgets such as the text widgets. 
+
+<<>>=
+w <- tktoplevel()
+bDrag <- ttkbutton(w, text="Drag me")
+bDrop <- ttkbutton(w, text="Drop here")
+tkpack(bDrag)
+tkpack(ttklabel(w, text="Drag over me"))
+tkpack(bDrop)
+@ 
+
+
+Before beginning, we define three global variables that can be shared
+among drop sources to keep track of the drag and drop state. A more
+elegant example might store these in an environment.
+<<>>=
+.dragging <- FALSE                      # currently dragging?
+.lastWidgetID <- ""                     # last widget dragged over
+.dragValue <- ""                        # value to transfer
+@ 
+
+<<defineDragLabel, echo=FALSE>>=
+## make a drag label to pop up during dragging to show text
+## label idea from http://www.codebykevin.com/opensource/xplat_oss.html
+## not shown in text, but here as an example if desired
+QT <- tclServiceMode(FALSE)
+QT <- tcl("image", "create", "photo", "::dnd::icon",
+    data=paste(                         # uuencode gif image of document
+      "R0lGODlhEAAQALMAAAAAAMbGxv//////////////////////////////////",
+      "/////////////////////yH5BAEAAAEALAAAAAAQABAAAAQwMMhJ6wQ4YyuB",
+      "+OBmeeDnAWNpZhWpmu0bxrKAUu57X7VNy7tOLxjIqYiapIjDbDYjADs=",
+      sep=""))
+dragLabel <- tktoplevel()
+tkwm.title(dragLabel, "")
+tkwm.resizable(dragLabel, FALSE,FALSE)  # no size handler in Mac OS X
+tkwm.withdraw(dragLabel)                # minimize window
+QT <- tclServiceMode(TRUE)                    # back to redrawin
+tkwm.overrideredirect(dragLabel, TRUE)  # Should remove title bar (not in Mac OS X)
+## can set this using tkconfigure
+dragLabel_label <- ttklabel(dragLabel,image="::dnd::icon", text="this space for rent", compound="left")
+tkpack(dragLabel_label)
+@ 
+
+To set up a drag source, we bind to three events: a mouse button press, mouse motion, and a button release. For the button press, we set the values of the three global variables.
+<<>>=
+tkbind(bDrag,"<ButtonPress-1>",function(W) {
+  .dragging <<-  TRUE
+  .lastWidgetID <<- as.character(W)
+  .dragValue <<- as.character(tkcget(W,text=NULL))
+})
+@ 
+
+<<echo=FALSE>>=
+## If using dragLabel, you can add this line to handler code:
+## tkconfigure(dragLabel_label, text=.dragValue)
+@ 
+
+For mouse motion, we do several things. First we set the cursor to
+indicate a drag operation. The choice of cursor is a bit outdated. The
+commented code shows how one can put in a custom cursor from an xbm
+file, but this doesn't work for all platforms (e.g.,  OS X). After setting the cursor, we find the ID of the widget the cursor is over. This uses \function{tkwinfo} to find the widget containing the $x,y$-coordinates of the cursor position.  We then generate the \VirtualEvent{DragOver} virtual event for this widget, and if this widget is different from the previous last widget, we generate the \VirtualEvent{DragLeave} virtual event.
+
+%%  ## This failed with OS X: "
+%%  ##  .Tcl(paste(as.character(bDrag$ID),' configure -cursor "@', getwd(),'/cursor.xbm black"', sep=""))
+
+<<>>=
+tkbind(bDrag,"<B1-Motion>",function(W,X,Y) {
+  if(!.dragging) return()
+  ## see cursor help page in API for more
+  ## For custom cursors cf. http://wiki.tcl.tk/8674. 
+  tkconfigure(W, cursor="coffee_mug")    # set cursor
+
+  w = tkwinfo("containing", X, Y)       # widget mouse is over
+  if(as.logical(tkwinfo("exists", w)))   # does widget exist?
+    tkevent.generate(w, "<<DragOver>>")
+
+  ## generate drag leave if we left last widget
+  if(as.logical(tkwinfo("exists", w)) &&
+     length(as.character(w)) > 0 &&
+     length(as.character(.lastWidgetID)) > 0
+     ) {
+    if(as.character(w)[1] != .lastWidgetID) 
+      tkevent.generate(.lastWidgetID, "<<DragLeave>>")
+  }
+  .lastWidgetID <<- as.character(w)
+})
+@ 
+
+<<echo=FALSE>>=
+## if doing example with drag label, include the following in the motion event callback
+##  tkwm.deiconify(dragLabel)
+##  tkwm.geometry(dragLabel, paste("+",X,"+",Y, sep="")) # put in offset if desired
+@ 
+
+Finally, if the button is released, we generate the virtual events
+\VirtualEvent{DragLeave} and most importantly \VirtualEvent{DragDrop} for the
+widget we are over.
+<<>>=
+ tkbind(bDrag,"<ButtonRelease-1>",function(W, X, Y) {
+  if(!.dragging) return()
+  w = tkwinfo("containing", X, Y)
+    
+  if(as.logical(tkwinfo("exists", w))) {
+    tkevent.generate(w, "<<DragLeave>>")
+    tkevent.generate(w, "<<DragDrop>>")
+    tkconfigure(w, cursor="")
+  }
+  .dragging <<- FALSE
+  tkconfigure(W, cursor="")
+})
+@ 
+
+<<echo=FALSE>>=
+## if doing dragLabel, we have this as well:
+## tkwm.withdraw(dragLabel)
+@ 
+
+To set up a drop target, we  bind callbacks for the virtual events generated above to the widget. For the \VirtualEvent{DragOver} event we make the widget \code{active} so that it appears ready to receive a drag value.
+<<>>=
+tkbind(bDrop,"<<DragOver>>",function(W) {
+  if(.dragging) 
+    tkconfigure(W, default="active")
+})
+@ 
+If the drag event leaves the widget without dropping, we change the state back to \code{normal}.
+<<>>=
+tkbind(bDrop,"<<DragLeave>>", function(W) {
+  if(.dragging)  {
+    tkconfigure(W, cursor="")
+    tkconfigure(W, default="normal")  
+   }
+})
+@ 
+Finally, if the \VirtualEvent{DragDrop} virtual event occurs, we set the widget value to that stored in the global variable \code{.dragValue}.
+<<>>=
+tkbind(bDrop,"<<DragDrop>>", function(W) {
+  tkconfigure(W, text=.dragValue)
+  .dragValue <- ""
+})
+@ 

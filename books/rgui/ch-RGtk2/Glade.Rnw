@@ -1,0 +1,11 @@
+%% Using Glade
+
+\subsection{Installing glade}
+\label{sec:RGtk2-install-glade}
+
+\subsection{Laying out a basic GUI with \code{glade}}
+\label{sec:Rgtk2-glade-layout}
+
+\subsection{Loading and manipulating a GUI designed with \code{glade}}
+\label{sec:RGtk2-use-glade-GUI}
+

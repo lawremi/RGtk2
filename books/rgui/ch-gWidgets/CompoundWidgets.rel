@@ -1,0 +1,50 @@
+;; RefTeX parse info file
+;; File: /Users/verzani/GUI/ch-gWidgetsIntro/CompoundWidgets.Rnw
+;; User: verzani (john verzani)
+
+(set reftex-docstruct-symbol '(
+
+
+(xr nil "\\\\\\\\\\\\")
+
+(index-tags)
+
+(is-multi nil)
+
+(bibview-cache)
+
+(master-dir . "/Users/verzani/GUI/ch-gWidgetsIntro/")
+
+(label-numbers)
+
+(bof "/Users/verzani/GUI/ch-gWidgetsIntro/CompoundWidgets.Rnw")
+
+("tab:gWidgets-compound-widgets" "t" "Table of compound widgets provided by \\pkg{gWidgets}" "/Users/verzani/GUI/ch-gWidgetsIntro/CompoundWidgets.Rnw" nil)
+
+(toc "toc" "        1 Laying out a form" "/Users/verzani/GUI/ch-gWidgetsIntro/CompoundWidgets.Rnw" nil 4 "1" "\\subsubsection{Laying out a form}" 3742)
+
+("sec:gWidgets-laying-out-form" "s" nil "/Users/verzani/GUI/ch-gWidgetsIntro/CompoundWidgets.Rnw" nil "")
+
+(toc "toc" "        2 Automatically creating a GUI" "/Users/verzani/GUI/ch-gWidgetsIntro/CompoundWidgets.Rnw" nil 4 "2" "\\subsubsection{Automatically creating a GUI}" 6610)
+
+("sec:gWidgets-autom-creat-gui" "s" nil "/Users/verzani/GUI/ch-gWidgetsIntro/CompoundWidgets.Rnw" nil "")
+
+(toc "toc" "      1 Command line widget" "/Users/verzani/GUI/ch-gWidgetsIntro/CompoundWidgets.Rnw" nil 3 "1" "\\subsection{Command line widget}" 919)
+
+("sec:command-line-widget" "s" nil "/Users/verzani/GUI/ch-gWidgetsIntro/CompoundWidgets.Rnw" nil "")
+
+(toc "toc" "      2 Workspace browser" "/Users/verzani/GUI/ch-gWidgetsIntro/CompoundWidgets.Rnw" nil 3 "2" "\\subsection{Workspace browser}" 985)
+
+("sec:workspace-browser" "s" nil "/Users/verzani/GUI/ch-gWidgetsIntro/CompoundWidgets.Rnw" nil "")
+
+(toc "toc" "      3 Help browser" "/Users/verzani/GUI/ch-gWidgetsIntro/CompoundWidgets.Rnw" nil 3 "3" "\\subsection{Help browser}" 1047)
+
+("sec:help-browser" "s" nil "/Users/verzani/GUI/ch-gWidgetsIntro/CompoundWidgets.Rnw" nil "")
+
+(toc "toc" "      4 Designing forms" "/Users/verzani/GUI/ch-gWidgetsIntro/CompoundWidgets.Rnw" nil 3 "4" "\\subsection{Designing forms}" 1099)
+
+("sec:designing-forms" "s" nil "/Users/verzani/GUI/ch-gWidgetsIntro/CompoundWidgets.Rnw" nil "")
+
+(eof "/Users/verzani/GUI/ch-gWidgetsIntro/CompoundWidgets.Rnw")
+))
+

@@ -1,0 +1,36 @@
+\documentclass[
+letterpaper,
+10pt, 
+extrafontsizes,
+twoside,
+openright,
+%%draft, %% of final
+showtrims
+]{memoir}
+\input{../setup.tex}
+
+%\RequirePackage{listings}
+%\SweaveOpts{keep.source=TRUE} 
+%<<SweaveListingsPreparation, results=tex, echo=FALSE>>=
+%require(SweaveListingUtils)
+%SweaveListingPreparations()
+%changeKeywordstyles(pkgs=c("SweaveListingUtils","distr"),
+%                      keywordstyles=c("\\bf\\color{blue}",
+%                        "\\bf\\color{red}"))
+%@ 
+
+
+%%\usepackage{../Sweave}
+\begin{document}
+\input{../setup2.tex}
+
+%\SweaveInput{ch-tcltk.Rnw}
+\part{Tcl Tk}
+\input ch-tcltk
+
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

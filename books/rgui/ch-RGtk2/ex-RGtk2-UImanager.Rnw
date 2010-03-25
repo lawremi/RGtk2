@@ -1,0 +1,213 @@
+We define the UI manager as follows
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.6\textwidth]{ex-RGtk2-UI}
+  \caption{A GUI made using a UI manager to layout the menubar and toolbar.}
+  \label{fig:RGtk2-UI}
+\end{figure}
+
+<<not-shown,echo=FALSE>>=
+## sample RGtk2 menu
+library(RGtk2)
+@ 
+
+<<>>=
+uimanager = gtkUIManager()
+@ 
+
+Our actions either open a dialog to gather more information or issue a
+command. A \class{GtkAction} element is passed to the action. We
+define a stub here, that simply updates a \code{gtkStatusbar}
+instance, defined below.
+<<>>=
+someAction <- function(action,...) 
+  statusbar$push(statusbar$getContextId("message"), action$getName())
+Quit <- function(...) win$destroy()
+@ 
+
+To show how we can sequentially add interfaces, we break up our action
+group definitions into one for ``File'' and ``Edit'' and another one
+for ``Help.'' The key is the list defining the entries. Each component
+specifies (in this order) the name; the icon; the label, with
+\code{\_} specifying the mnemonic; the keyboard accelerator, with
+\code{<control>}, \code{<alt>}, \code{<shift>} as possible prefixes, a
+tooltip, which may not work with the \R\/ event loop, and finally the
+callback. Empty values can be defined as \code{NULL} or, except for
+the callback, an empty string.
+
+
+<<Define-first-action-group>>=
+firstActionGroup = gtkActionGroup("firstActionGroup")
+firstActionEntries = list(
+  ## name,ID,label,accelerator,tooltip,callback
+  file = list("File",NULL,"_File",NULL,NULL,NULL),
+  new = list("New","gtk-new","_New","<control>N","New document",someAction),
+  sub = list("Submenu",NULL,"S_ub",NULL,NULL,NULL),
+  open = list("Open","gtk-open","_Open","<ctrl>0","Open document",someAction),
+  save = list("Save","gtk-save","_Save","<alt>S","Save document",someAction),
+  quit = list("Quit","gtk-quit","_Quit","<ctrl>Q","Quit",Quit),
+  edit = list("Edit",NULL,"_Edit",NULL,NULL,NULL),
+  undo = list("Undo","gtk-undo","_Undo","<ctrl>Z","Undo change",someAction),
+  redo = list("Redo","gtk-redo","_Redo","<ctrl>U","Redo change",someAction)
+)
+@ 
+We now add the actions to the action group, then add this action group
+to the first spot in the UI manager.
+<<"Insert action group">>=
+QT <- firstActionGroup$addActions(firstActionEntries)
+uimanager$insertActionGroup(firstActionGroup,0) # 0 -- first spot
+@ 
+
+The ``Help'' actions we do a bit differently. We define a ``Use
+tooltips'' mode to be a toggle, as an illustration of that feature. One can also
+incorporate radio groups, although this is not shown.
+
+<<>>=
+helpActionGroup = gtkActionGroup("helpActionGroup")
+helpActionEntries = list(
+  help = list("Help","","_Help","","",NULL),
+  about = list("About","gtk-about","_About","","",someAction)
+  )
+QT <- helpActionGroup$AddActions(helpActionEntries)
+@ 
+
+A toggle is defined with \command{gtkToggleAction} which has signature
+in a different order than the action entry. Notice, we don't have an
+icon, as the toggled icons is used.  To add a callback, we connect to
+the \code{toggled} signal of the action element. This callback allows
+for user data, as illustrated.
+
+<<"a toggle action">>=
+toggleAction <- gtkToggleAction("UseTooltips",label="_Use tooltips",
+                                tooltip="Use tooltips ")
+toggleAction$setActive(TRUE)            # initially set
+ID <- gSignalConnect(toggleAction,signal = "toggled",
+                    f=function(ta,userData) cat(userData,ta$getName(),"\n"),
+                    data="toggled")
+helpActionGroup$addAction(toggleAction)
+@ 
+We insert the help action group in position 2.
+<<"insert help action group">>=
+uimanager$insertActionGroup(helpActionGroup,1)
+@ 
+The \code{SetActive} method can set the state, use \code{GetActive} to
+retrieve the state.
+
+
+Our UI Manager's layout is specified in a file. The file uses XML to
+specify where objects go. The structure of the file can be grasped
+quickly from the example. Each entry is wrapped in \code{ui} tags. The
+type of UI is either a \code{menubar}, \code{toolbar}, or
+\code{popup}.  The \code{name} properties are used to reference the
+widgets later on.  Menuitems are added with a \code{menuitem} entry
+and toolbar items the \code{toolitem} entry. These have an
+\code{action} value and an optional name (defaulting to the
+\code{action} value). The \code{separator} tags allow for some
+formatting.  The nesting of the menuitems is achieved using 
+the \code{menu} tags. A \code{placeholder} tag can be used to add
+entries at a later time.
+
+\begin{verbatim}
+<ui>
+  <menubar name="menubar">
+    <menu name="FileMenu" action="File">
+      <menuitem name="FileNew" action="New"/>
+      <menu action="Submenu">
+	<menuitem name="FileOpen" action="Open" />
+      </menu>
+      <menuitem name="FileSave" action="Save"/>
+      <separator />
+      <menuitem name="FileQuit" action="Quit"/>
+    </menu>
+    <menu action="Edit">
+      <menuitem name="EditUndo" action="Undo" />
+      <menuitem name="EditRedo" action="Redo" />
+    </menu>
+    <menu action="Help">
+      <menuitem action="UseTooltips"/>
+      <menuitem action="About"/>
+    </menu>
+  </menubar>
+  <toolbar name="toolbar">
+    <toolitem action="New"/>
+    <toolitem action="Open"/>
+    <toolitem action="Save"/>
+    <separator />
+    <toolitem action="Quit"/>
+  </toolbar>
+</ui>
+\end{verbatim}
+%\VerbatimInput{ex-menus.xml}
+
+This file is loaded into the UI manager as follows
+<<"Load UI from file">>=
+id <- uimanager$addUiFromFile("ex-menus.xml")
+@ 
+
+The \code{id} value can be used to merge and delete UI components, but
+this is not illustrated here. The menus can also be loaded from strings.
+
+Now we can setup a basic window template with menubar, toolbar, and
+status bar. We first get the three main widgets. We use the names from
+the UI layout to get the widgets through the \command{GetWidget}
+method of the UI manager. The menubar and toolbar are returned as
+follows, for our choice of names in the XML file.
+<<"Retrieve menubar and toolbar from the uimanager">>=
+menubar <- uimanager$getWidget("/menubar")
+toolbar <- uimanager$getWidget("/toolbar")
+@ 
+The statusbar is constructed with
+<<"define statusbar">>=
+statusbar <- gtkStatusbar()
+@ 
+Statusbars have a simple API. The \method{push} method, as used in the
+definition of the callback \code{f}, is used to add new text to the
+statusbar. The \code{pop} method reverts to the previous message.
+
+
+Now we define a top-level window and attach a keyboard accelerator
+group to the window so that when the window has the focus, the
+specified keyboard shortcuts can be used.
+
+<<Define-window-add-accelerator-group>>=
+win <- gtkWindow(show=TRUE)
+win$setTitle("Window example")
+accelgroup = uimanager$getAccelGroup()  # add accel group
+win$addAccelGroup(accelgroup)
+@ 
+
+
+Now it is a simple matter of packing the widgets into a box.
+<<setup-box>>=
+box <- gtkVBox()
+win$add(box)
+
+box$packStart(menubar, expand=FALSE, fill=FALSE,0)
+box$packStart(toolbar, expand=FALSE, fill= FALSE,0)
+contentArea = gtkVBox()
+box$packStart(contentArea, expand=TRUE, fill=TRUE,0)
+contentArea$packStart(gtkLabel("Content Area"))
+box$packStart(statusbar, expand=FALSE, fill=FALSE, 0)
+@ 
+
+The redo feature should only be sensitive to mouse events after a user
+has undone an action and has not done another. To set the sensitivity
+of a menu item is done through the \method{SetSensitive} method called
+on the widget. We again retrieve the menuitem or toolbar item widgets
+through their names.
+
+<<How-to-set-sensitivity>>=
+uimanager$getWidget("/menubar/Edit/EditRedo")$setSensitive(FALSE)
+@ 
+To reenable, use \code{TRUE} for the argument to \command{SetSensitive}
+
+We can also use the \method{SetText} method on the menuitems. For
+instance, instead of a generic ``Undo'' label, one might want to
+change the text to list the most previous action.  The method is not
+for the menu item though, but rather a \code{gtkLabel} which is the
+first child. We use the list notation to access that.
+<<How-to-replace-menuitem-text>>=
+a <- uimanager$getWidget("/menubar/Edit/EditUndo")
+a[[1]]$setText("Undo add text")
+@ 

@@ -1,0 +1,31 @@
+RGtk2 is a binding from R to GTK and many of its underlying libraries, 
+plus a few extras. RGtk2 works on all three major platforms (Linux, Mac, 
+and Windows). It is based on the original RGtk by Duncan Temple Lang, 
+but RGtk2 is largely a rewrite of that package. I approached the RGtk2 
+with the goal of providing a virtually complete binding without 
+sacrificing the familiar R style of programming.
+
+As its name suggests, RGtk2 binds to the new (well 5 years old now) GTK2 
+libraries. GTK2 offers many improvements over its successor including 
+more sophisticated widgets, overhauled object-oriented functionality, 
+internationalized and anti-aliased font rendering, etc.
+
+Actually, the bindings to GTK are only part of the story. RGtk2 also 
+offers complete bindings to Pango (font rendering), GDK (basic drawing, 
+low-level device access), Cairo (vector graphics), GdkPixbuf (image 
+manipulation), libglade (GUI's from XML descriptions), GtkMozEmbed 
+(embeddable mozilla browser on linux), and ATK (accessibility
+devices).
+
+
+One of the coolest parts is that these bindings are fully documented by 
+the R adaptation of the API docs for the bound libraries. You should 
+learn all you need to know directly from within R.
+
+I also provided a GTK implementation of Simon Urbanek's iWidgets API.
+
+Here is the current website (may be moved to Omegahat eventually):
+http://www.ggobi.org/rgtk2
+
+Please find more details there. The page also includes a link to my 
+Cairo R graphics device that allow you to embed R graphics in RGtk2 GUI's.

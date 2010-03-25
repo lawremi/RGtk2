@@ -1,0 +1,26 @@
+;; RefTeX parse info file
+;; File: /Users/verzani/GUI/ch-gWidgets/ex-gWidgets-ggroup.Rnw
+;; User: verzani (john verzani)
+
+(set reftex-docstruct-symbol '(
+
+
+(xr nil "\\\\\\\\\\\\")
+
+(index-tags)
+
+(is-multi nil)
+
+(bibview-cache)
+
+(master-dir . "/Users/verzani/GUI/ch-gWidgets/")
+
+(label-numbers)
+
+(bof "/Users/verzani/GUI/ch-gWidgets/ex-gWidgets-ggroup.Rnw")
+
+("fig:ggroup-example" "f" "Use of expand, anchor, addSpace and addSpring with \\code{ggroup} constructor in \\pkg{gWidgetsRGtk2} " "/Users/verzani/GUI/ch-gWidgets/ex-gWidgets-ggroup.Rnw" nil "")
+
+(eof "/Users/verzani/GUI/ch-gWidgets/ex-gWidgets-ggroup.Rnw")
+))
+

@@ -1,0 +1,136 @@
+;; RefTeX parse info file
+;; File: /Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw
+;; User: verzani (john verzani)
+
+(set reftex-docstruct-symbol '(
+
+
+(xr nil "\\\\\\\\\\\\")
+
+(index-tags)
+
+(is-multi nil)
+
+(bibview-cache)
+
+(master-dir . "/Users/verzani/GUI/ch-RGtk2/")
+
+(label-numbers)
+
+(bof "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw")
+
+(toc "toc" "    1 Top-level windows" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil 2 "1" "\\section{Top-level windows}" 432)
+
+("sec:RGtk2:gtkWindow" "s" "%% constructor Show/Hide Top-level windows are constructed by the \\constructor{gtkWindow} constructo" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil)
+
+(toc "toc" "          1.0.0.1 Window size" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil 5 "1.0.0.1" "\\paragraph{Window size}" 1864)
+
+(toc "toc" "          1.0.0.2 Transient windows" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil 5 "1.0.0.2" "\\paragraph{Transient windows}" 2424)
+
+(toc "toc" "          1.0.0.3 Destroying windows" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil 5 "1.0.0.3" "\\paragraph{Destroying windows}" 3559)
+
+(toc "toc" "          1.0.0.4 Adding a child component to a window" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil 5 "1.0.0.4" "\\paragraph{Adding a child component to a window}" 4254)
+
+(toc "toc" "    2 Box containers" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil 2 "2" "\\section{Box containers}" 5609)
+
+("sec:RGtk2:BoxContainers" "s" "Flexible containers for holding more than one child are the box containers constructed by \\function{" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil)
+
+(toc "toc" "          2.0.0.1 Packing child components" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil 5 "2.0.0.1" "\\paragraph{Packing child components}" 6262)
+
+(toc "toc" "          2.0.0.2 Removing and reordering children" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil 5 "2.0.0.2" "\\paragraph{Removing and reordering children}" 7306)
+
+(toc "toc" "          2.0.0.3 Spacing" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil 5 "2.0.0.3" "\\paragraph{Spacing}" 8296)
+
+(toc "toc" "          2.0.0.4 Component size" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil 5 "2.0.0.4" "\\paragraph{Component size}" 9635)
+
+("fig:RGtk2:GtkBox-expand-fill" "f" "Illustration of \\code{expand} and \\code{fill} arguments for a \\code{GtkBox} container. The \\code{exp" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil)
+
+(toc "toc" "    3 Buttons" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil 2 "3" "\\section{Buttons}" 12298)
+
+("sec:RGtk2:gtkButton" "s" "A basic button is constructed using \\constructor{gtkButton}. This is a convenience wrapper for sever" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil)
+
+("fig:RGtk2:various-buttons" "f" "Various buttons" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil)
+
+(toc "toc" "          3.0.0.1 signals" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil 5 "3.0.0.1" "\\paragraph{signals}" 14824)
+
+(toc "toc" "    4 Labels" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil 2 "4" "\\section{Labels}" 16231)
+
+("sec:RGtk2:gtkLabel" "s" "Labels are created by the \\constructor{gtkLabel} constructor. Its main argument is \\argument{str}{gt" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil)
+
+(toc "toc" "          4.0.0.1 Signals" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil 5 "4.0.0.1" "\\paragraph{Signals}" 19651)
+
+(toc "toc" "      4.1 Link Buttons" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil 3 "4.1" "\\subsection{Link Buttons}" 20199)
+
+("sec:link-buttons" "s" "A link button is a special label which shows an underlined link, such as is done by a web browser. (" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil)
+
+(toc "toc" "    5 Images" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil 2 "5" "\\section{Images}" 21312)
+
+("sec:RGtk2:images" "s" "Images in \\pkg{RGtk2} are constructed with \\constructor{gtkImage}. This is a front end for several c" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil)
+
+(toc "toc" "    6 Stock icons" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil 2 "6" "\\section{Stock icons}" 22311)
+
+("sec:RGtk2:stock-icons" "s" "\\GTK\\/ comes with several ``stock'' icons. These are used by the \\constructor{gtkButton} constructor" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil)
+
+(toc "toc" "    7 Text entry" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil 2 "7" "\\section{Text entry}" 23730)
+
+("sec:RGtk2:gtkEntry" "s" "A one-line text entry widget is constructed by \\function{gtkEntry}. An argument \\argument{max}{gtkEn" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil)
+
+(toc "toc" "    8 Check button" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil 2 "8" "\\section{Check button}" 25624)
+
+("sec:RGtk2:gtkCheckbox" "s" "A check button widget is constructed by \\function{gtkCheckButton}. The optional argument \\argument{l" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil)
+
+(toc "toc" "      8.1 Toggle buttons" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil 3 "8.1" "\\subsection{Toggle buttons}" 26370)
+
+("sec:ToggleButtons" "s" "A toggle button, is a useful way to set configuration values in an obvious way to the user. A toggle" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil)
+
+(toc "toc" "    9 Radio groups" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil 2 "9" "\\section{Radio groups}" 27238)
+
+("sec:RGtk2:gtkRadioButton" "s" "The \\function{gtkRadioButton} constructor is used to create linked radio buttons. The argument \\argu" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil)
+
+(toc "toc" "    10 Combo boxes" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil 2 "10" "\\section{Combo boxes}" 31062)
+
+("sec:RGtk2:basic-combobox" "s" "A basic combobox is constructed by \\constructor{gtkComboBoxNewText}. Later we will discuss more comp" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil)
+
+(toc "toc" "      10.1 The cairoDevice package" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil 3 "10.1" "\\subsection{The cairoDevice package}" 33521)
+
+("sec:cairodevice-package" "s" nil "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil "")
+
+(toc "toc" "      10.1 The cairoDevice package" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil 3 "10.1" "\\subsection{The cairoDevice package}" 33521)
+
+(toc "toc" "    11 Containers" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil 2 "11" "\\section{Containers}" 34344)
+
+("sec:containers" "s" "In addition to boxes, there are a number of useful containers detailed next. Each of the following, " "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil)
+
+(toc "toc" "      11.1 Framed containers" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil 3 "11.1" "\\subsection{Framed containers}" 34607)
+
+("sec:RGtk2:gtkFrame" "s" "The \\function{gtkFrame} function constructs a container with a decorative frame to set off the conta" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil)
+
+(toc "toc" "      11.2 Expandable containers" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil 3 "11.2" "\\subsection{Expandable containers}" 35356)
+
+("sec:RGtk2:gtkExpander" "s" "Although they are a little unresponsive due to eventloop issues, an expandable container proves quit" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil)
+
+(toc "toc" "    12 Divided containers" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil 2 "12" "\\section{Divided containers}" 36324)
+
+("sec:RGtk2:gtkPanedWindow" "s" "The \\constructor{gtkHPaned} and \\constructor{gtkVPaned} create containers with a ``gutter'' to alloc" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil)
+
+(toc "toc" "    13 Notebooks" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil 2 "13" "\\section{Notebooks}" 37576)
+
+("sec:RGtk2:gtkNotebook" "s" "The \\constructor{gtkNotebook} constructor creates a notebook container. The default position of the " "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil)
+
+(toc "toc" "          13.0.0.1 Adding pages to a notebook" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil 5 "13.0.0.1" "\\paragraph{Adding pages to a notebook}" 38289)
+
+(toc "toc" "          13.0.0.2 Rearranging pages" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil 5 "13.0.0.2" "\\paragraph{Rearranging pages}" 39626)
+
+(toc "toc" "          13.0.0.3 Signals" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil 5 "13.0.0.3" "\\paragraph{Signals}" 40869)
+
+(toc "toc" "    14 Tabular layout" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil 2 "14" "\\section{Tabular layout}" 42700)
+
+("sec:RGtk2:gtkTable" "s" "The \\constructor{gtkTable} constructor produces a container for laying out objects in a tabular form" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil)
+
+(toc "toc" "    15 Drag and drop" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil 2 "15" "\\section{Drag and drop}" 45243)
+
+("sec:RGtk2:dnd" "s" "%% ------------ Drag and Drop \\GTK\\/ has mechanisms to provide drag and drop features to widgets. On" "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw" nil)
+
+(eof "/Users/verzani/GUI/ch-RGtk2/BasicComponents.Rnw")
+))
+

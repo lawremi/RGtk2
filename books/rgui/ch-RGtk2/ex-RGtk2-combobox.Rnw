@@ -1,0 +1,144 @@
+%%
+This examples shows how a combobox can be used as an alternative to
+\function{gtkColorButton} to select a color. We use two cellrenderers
+for each row, one to hold an image and the other a text label.
+<<echo=FALSE>>=
+## Example of combo box for colors
+
+library(grid)
+library(RGtk2)
+@ 
+
+
+This function uses the \pkg{grid} package to produce a graphic that
+will read into the pixbuf.
+
+<<makePixbuf>>=
+require(Cairo)
+makePixbufFromColor <- function(color) {
+  filename <- tempfile()
+  Cairo(file=filename, width=25,height=10)
+  grid.newpage()
+  grid.draw(rectGrob(gp = gpar(fill = color)))
+  dev.off()
+  image <- gdkPixbufNewFromFile(filename)
+  unlink(filename)
+  return(image$retval)
+}
+@ 
+
+Our data store has one column for the pixbuf and one for the color
+text. The pixbuf is stored using the \code{GObject} class.
+
+<<>>=
+store <- gtkListStore(c("GObject","gchararray"))
+@ 
+
+This loop adds the colors and their name to the data store.
+<<theColors>>=
+theColors <- palette()                  # some colors
+for(i in theColors) {
+  iter <- store$append()
+  store$setValue(iter$iter, 0, makePixbufFromColor(i))
+  store$setValue(iter$iter, 1, i)
+}
+@ 
+
+Next we define the combobox using the store as the model. There are
+two cell renderers to add.
+<<comboBox>>=
+combobox <- gtkComboBox(model=store)
+## pixbuf
+crp <- gtkCellRendererPixbuf(); crp['xalign'] <- 0
+combobox$packStart(crp, expand=FALSE)                
+combobox$addAttribute(crp, "pixbuf", 0)
+## text
+crt <- gtkCellRendererText(); 
+crt['xpad'] <- 5                        # give some space
+combobox$packStart(crt)
+combobox$addAttribute(crt, "text", 1)
+@ 
+
+<<echo=FALSE>>=
+## display in a window
+win <- gtkWindow(show=FALSE)
+win$setTitle("Color test")
+win$add(combobox)
+win$showAll()
+@ 
+
+% This shows how the method \method{GetActiveIter}{gtkComboBox}
+% indicates the selected value, which can be used by the
+% \method{GetValue}{gtkTreeStore} method of the  data store to retrieve
+% the value.
+% <<changedsignal>>=
+% ID <- gSignalConnect(combobox, "changed",
+%               f = function(cb, data) {
+%                 store <- cb$getModel()
+%                 iter <- cb$getActiveIter()
+%                 if(iter$retval) {
+%                   val <- store$getValue(iter$iter,1)$value 
+%                   print(val)
+%                 }
+%                 return(TRUE)
+                
+%               })
+% @ 
+% \end{example}
+
+
+
+% \begin{example}{Editable combo box}{eg:RGtk2:editable combo box}
+
+%   This example is similar to the previous one, except it adds the
+%   ability to edit the value in the combobox.
+
+%   The \argument{text.column}{gtkComboBoxEntryNewWithModel} argument in
+%   the constructor specifies which column in the data store contains
+%   the text. We do not need a cell renderer to display the text.
+
+% <<>>=
+% comboentry <- gtkComboBoxEntryNewWithModel(store, text.column = 1)
+% @ 
+
+% To draw the image next to the text is similar to before.
+
+% <<>>=
+% crp <- gtkCellRendererPixbuf(); crp['xalign'] <- 0
+% comboentry$packStart(crp, expand=FALSE)                 # icon first
+% comboentry$addAttribute(crp, "pixbuf", 0)
+% @ 
+
+% We need to call the \method{Show}{gtkWidget} method for this widget to
+% be visible.
+% <<>>=
+% comboentry$show()
+% @ 
+
+% Again, we simply add the widget to a top-level window.
+% <<>>=
+% win <- gtkWindow();win$setTitle("Combo box with entry")
+% win$add(comboentry)
+% @ 
+
+
+% These two callbacks show how to attach a callback to changes due to
+% either selecting a value from the available values or pressing
+% \kbd{enter} after entering a value.
+
+% <<>>=
+
+% ID <- gSignalConnect(comboentry, "changed", # changed via popup
+%                f = function(cb, data) {
+%                  if(cb$getActive() != -1)
+%                    print(cb$getChild()$getText())
+%                  return(TRUE)
+%                })
+% ## just enter will call handler. Widget is gtkEntry instance
+% ID <- gSignalConnect(comboentry$getChild(), "activate", # on entry
+%               f = function(w, data) {
+%                   print(w$getText())
+%                 return(TRUE)
+%               })
+
+% @ 

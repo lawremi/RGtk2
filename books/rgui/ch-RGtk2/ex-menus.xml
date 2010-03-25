@@ -1,0 +1,29 @@
+<ui>
+  <menubar name="menubar">
+    <menu name="FileMenu" action="File">
+      <menuitem name="FileNew" action="New"/>
+      <menu action="Submenu">
+	<menuitem name="FileOpen" action="Open" />
+      </menu>
+      <menuitem name="FileSave" action="Save"/>
+      <separator />
+      <menuitem name="FileQuit" action="Quit"/>
+    </menu>
+    <menu action="Edit">
+      <menuitem name="EditUndo" action="Undo" />
+      <menuitem name="EditRedo" action="Redo" />
+    </menu>
+    <menu action="Help">
+      <menuitem action="UseTooltips"/>
+      <menuitem action="About"/>
+    </menu>
+  </menubar>
+  <toolbar name="toolbar">
+    <toolitem action="New"/>
+    <toolitem action="Open"/>
+    <toolitem action="Save"/>
+    <separator />
+    <toolitem action="Quit"/>
+  </toolbar>
+</ui>
+  

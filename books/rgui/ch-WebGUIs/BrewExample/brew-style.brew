@@ -1,0 +1,59 @@
+<%# Style sheet for two column layout.
+   has header, nav, sidebar, main, footer
+
+   Thanks to http://www.456bereastreet.com/lab/developing_with_web_standards/csslayout/2-col/ 
+   See that URL for excellent comments.
+
+#%>
+<style type="text/css">
+body,
+html { 
+    margin:0; padding:0;	/* push to edge */
+    color:#000; background:#CCFFFF; /* basic colors */
+    font-family:"Times New Roman",Georgia,Serif;
+}
+#wrap { 
+    margin:0 auto;             /* Contains all, auto for side margin */
+    background:#CCFFFF;
+}
+h1 { margin:0; }
+h2 { margin:0 0 1em; }
+
+#header {
+    font-size:2em; font-weight:bold; font-family:Arial,Verdana,Sans;
+    float:top;
+    padding:5px 10px;
+    background:#99CC99;
+}
+
+#nav {
+    padding:5px 10px;
+    background:#99E600;
+}
+
+#sidebar {
+    float:left;
+    width:20%; display:block;
+    padding:10px;
+    background:#BBDDDD;
+}
+
+#main {
+    float:right;
+    display:block; position:relative;
+    width:75%;
+    padding:10px;
+    background:#CCFFFF;
+}
+
+#footer { 
+    clear:both;
+    padding:5px 10px;
+    background:#C1F0A9; 
+}
+#footer p { margin:0; }
+
+* html #footer { 		/* IE hack */
+    height:1px;
+}
+</style>

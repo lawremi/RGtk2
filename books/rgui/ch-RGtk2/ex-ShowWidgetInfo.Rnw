@@ -1,0 +1,228 @@
+%% Example to show widgets in use, and widget information
+
+* put validation into handler
+* get object in handler; use it to call others
+
+
+<<echo=FALSE>>=
+require(RGtk2)
+@ 
+
+\begin{example}{A GUI to show widget information}{ex:RGtk2:show-widget-info}
+This example show how to integrate a few widgets to make useful GUI
+for viewing information about GTK+ objects. The idea comes from the
+\command{getHeirarchy} example in the \pkg{RGtkViewers} package
+written for \pkg{RGtk}. That used the HTML library of \GTK, which is
+not (yet) implented in \pkg{RGtk2}, as it proved buggy.
+
+The user types in the name of a constructor and the GUI creates pages
+detailing the properties of the object, its signals and any methods
+defined for this object (not the inherited ones though). It uses the
+functions \function{gObjectGetPropInfo}, \function{gtkTypeGetSignals},
+and \function{apropos} to do this.
+
+We being by defining our key widgets: a text entry widget for the user
+to type in the constructor name; a notebook for displaying the three
+pieces of information; and three text buffers to store the displayed content.
+
+<<>>=
+co <- gtkEntry()
+nb <- gtkNotebook()
+buffers <- list(
+                properties = gtkTextBuffer(),
+                signals = gtkTextBuffer(),
+                methods = gtkTextBuffer(),
+                methodLookup = gtkTextBuffer()
+                )
+bnames <- gettext(c("Widget Properties","Widget Signals","Widget methods", "Lookup method"))
+names(bnames) <- names(buffers)
+@ 
+
+We now present a simple layout for the widgets.
+<<>>=
+w <- gtkWindow(); w$setTitle("Browse Gtk Object")
+w$setDefaultSize(500,450)               # set size
+g <- gtkVBoxNew(spacing=5); w$add(g)
+sg <- gtkHBoxNew(); g$packStart(sg, expand=FALSE, fill=FALSE)
+@ 
+The \code{sg} box is used to place a search-like text entry. We push
+it to the right side by adding an expanding box on the left.
+<<>>=
+sg$packStart(gtkHBox(), TRUE, TRUE,0) # push to right
+sg$packStart(gtkLabel("gtk object:"),FALSE,FALSE)
+sg$packStart(co, FALSE,FALSE,5)
+@ 
+The notebook is added next. We use \function{sapply} here, which was our
+motivation for  storing the buffers in a list and the
+buffer names in a vector.
+<<>>=
+g$packStart(nb, TRUE,TRUE)
+sapply(c("properties","signals","methods"), # populate tabs
+       function(i) {
+         tv <- gtkTextView(buffers[[i]])
+         sw <- gtkScrolledWindow()
+         sw$setPolicy("GTK_POLICY_AUTOMATIC","GTK_POLICY_AUTOMATIC")
+         sw$add(tv)
+         nb$appendPage(sw, gtkLabel(bnames[i]))
+       })
+nb$setCurrentPage(0)                    # start on first page
+@ 
+
+The method lookup tab is different, as the user needs to specify the
+method name.
+<<methodLookup>>=
+mlg <- gtkVBox()
+nb$AppendPage(mlg, gtkLabel("method lookup"))
+
+vg <- gtkHBox(); mlg$PackStart(vg)
+vg$PackStart(gtkLabel("Method name:"))
+methodEntry <- gtkEntry()
+vg$PackStart(methodEntry)
+tv <- gtkTextView(buffers[["methodLookup"]])
+sw <- gtkScrolledWindow()
+sw$setPolicy("GTK_POLICY_AUTOMATIC","GTK_POLICY_AUTOMATIC")
+sw$add(tv)
+mlg$PackStart(sw, expand=TRUE, fill=TRUE)
+@ 
+
+
+There is only one handler for the main GUI. The \code{activate} signal is emitted when
+the user hits enter after specifying a gtk object. Our handler calls the \code{showGtkInfo} function
+with the text value contained in the text entry widget.
+<<>>=
+ID <- gSignalConnect(co,"activate",
+                     f = function(widget,...) showGtkInfo(widget$getText()))
+@ 
+
+The following three functions prepare the text that will be displayed
+in the text views defined previously. The text is stored in a
+character vector. This first one uses \function{class} and the method
+\method{GetPropInfo}{gObject} to gather the information. Since we call
+the constructor to create the widget, we check if it will produce a
+new window.
+<<>>=
+getPropertyText <- function(obj,constructor) {
+
+  classes <- class(obj)     # vector
+  properties <- obj$getPropInfo() #list
+
+  out <- c(constructor,"","","Class inheritance:")
+  for(i in 1:length(classes)) 
+    out[length(out)+1] <-
+      paste(paste(rep("\t",i-1),collapse=""), classes[i],sep="")
+
+  out[length(out)+1] <- "Properties:"
+  ## now turn properties into text
+  for(i in names(properties)) {
+    out[length(out)+1] <- i
+    for(j in names(properties[[i]])) {
+      out[length(out)+1] <- paste("\t",j,": ",
+                                  as.character(properties[[i]][[j]]),
+                                  sep="")
+    }
+  }
+
+  return(out)
+}
+@ 
+The signals are returned by the method \method{GetSignals}{gtkType}.
+<<>>=
+getSignalText <- function(constructor) {
+  signals <- gtkTypeGetSignals(constructor)
+  out <- c()
+  for(i in names(signals))
+    out[length(out)+1] <- paste(i,":\t signal-id ",as.character(signals[[i]]),sep="")
+  
+  return(out)
+}
+@ 
+
+Finally, we use \function{apropos} to retrieve the methods, taking
+advantage of their naming convention. This only finds the new
+methods. We could have walked down the classes to find all the methods.
+<<>>=
+getMethodsText <- function(obj, constructor) {
+  tolowerFirst <- function(x) {
+    tmp <- unlist(strsplit(x,""))
+    paste(tolower(tmp[1]),paste(tmp[-1],collapse=""),sep="")
+  }
+  out <- c(paste("Methods for", constructor))
+  meths <- apropos(paste("^",tolowerFirst(constructor),sep=""),ignore.case=FALSE)
+  out <- c(out,paste("\t",meths,sep=""))
+  
+  return(out)
+}
+@ This function is called by the handler. There is a small amount of
+error checking, then calls to the three functions just defined. The
+\method{SetText}{gtkTextBuffer} method for text buffer just replaces
+the data. With a bit more time, this GUI would benefit from some font
+attributes.
+<<>>=
+showGtkInfo <- function(constructor) {
+  ## Validate
+  constructor <- gsub("New$","",constructor)
+  FUN <- match.fun(constructor)
+  if(constructor == "gtkWindow")        # don't open a new windows
+    obj <- gtkWindow(show=FALSE)
+  else
+    obj <- try(FUN(),silent=TRUE)
+  if(inherits(obj,"try-error")) {
+    cat("Can't get value")
+    return(FALSE)
+  }
+
+
+  ## update text buffers. SetText overwrites current text
+  propText <- paste(getPropertyText(obj, constructor),collapse="\n")
+  buffers[['properties']]$setText(propText)
+  
+  signalText <- paste(getSignalText(constructor),collapse="\n")
+  buffers[['signals']]$setText(signalText)
+
+  methsText <- paste(getMethodsText(obj, constructor),collapse="\n")
+  buffers[['methods']]$setText(methsText)
+}
+@ 
+
+The method lookup tab, does it work after the method is
+specified. This function produces the text:
+<<>>=
+findMethodForObject <- function(obj, name, where=parent.frame()) {
+  ## this is from RGtk2:.getAutoMethodByName
+  classes <- c(attr(obj, "interfaces"), class(obj))
+  sym <- paste(tolower(substring(classes, 1, 1)), # camelCase
+               substring(classes, 2), 
+               toupper(substring(name, 1, 1)), 
+               substring(name, 2), 
+               sep = "")
+  which <- sapply(sym, exists, where)
+  if (!any(which)) {
+    msg <- paste("No such method", name, "for classes", 
+                 paste(class(obj),  collapse = ", "))
+  } else {
+    methodName <- sym[which][1]
+    msg <- cat("Show help page for", methodName, "\n")
+  }
+  return(msg)
+}  
+@
+
+<<>>=
+gSignalConnect(methodEntry, "activate", function(objectName, widget, ...) {
+  methodName <- widget$GetText()
+  object <- try(get(objectName, envir=.GlobalEnv), silent=TRUE)
+  if(inherits(object, "try-error")) {
+    cat("error with finding object")
+    return()
+  }
+  txt <- findMethodForObject(object, methodName)
+  txt <- paste(txt, collapse="\n")
+  buffers[['methodLookup']]$setText(txt)
+}, 
+               user.data=,
+               user.data.first=TRUE)
+@ 
+    
+
+
+\end{example}

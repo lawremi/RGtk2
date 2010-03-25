@@ -1,0 +1,271 @@
+* opening paragaph
+  * Dalgaard
+  * Dalgaard notes, tcltk examples
+  * Rcmdr GUI, others (fgui, rpanel, ...)
+
+* overview
+  * tcl -- tool command language; meant as glue but grew
+    * .Tcl function, example of string length ($x, no quotes, ...)
+     At the lowest level '.Tcl' sends a
+     command as a text string to the Tcl interpreter and returns the
+     result as an object of class 'tclObj'
+
+    * can call in tcl code via the "source" command
+  * tcltk constructor (ttklabel)
+
+     ttk::button .b -text {button label}
+
+     R translates .b part --
+     R translates -text text in the R way (text="text") using .Tcl.args
+
+     tcl <- function(...) .Tcl.objv(.Tcl.args.objv(...))
+
+     '.Tcl.objv' accepts arguments in the form of a named list
+     of 'tclObj' objects.
+
+     '.Tcl.args' converts an R argument list of 'tag=value' pairs to
+     the Tcl '-option value' style, thus enabling a simple translation
+     between the two languages.
+
+     Most values are just converted to character mode and
+     inserted in the command string, but window objects are passed
+     using their ID string, and callbacks are passed via the result of
+     '.Tcl.callback'. Tags are converted to option flags simply by
+     prepending a '-'
+
+    * comment on ttklabel over tklabel (8.5+)    * need to have a top level window
+  * properties (text) -- what really gets called
+  * getting setting after construction cget, tkconfigure
+  * textvariables
+  * fonts
+  * icons/images
+  * commands -- buttons
+    * tkbind
+    * subsitution values (??)
+  * themes
+    * use ttkframe -- themable widget
+    * listing available themes
+    * changing frames
+  * tkwinfo -- width, height, geometry, ismapped, 
+  * tkwm -- communicate with window manager: disable, 
+  * widget states: active, disabled, focus, pressed, selected, back...
+    * tkconfigure(b, "-state", "[disabled|normal]")
+  * events in general
+    * drag and drop (where to put?)
+  * Example: non-modal dialog with spacing
+    * focus, defaultWidget on OK button
+
+  * loading external tcl packages
+
+* Top level windows
+  * attributes -- tkwm title
+  * destroy/delete binding (FALSE)
+  * relative to parent (transient)...
+  * size (tkwm maxsize, minsize,..)
+  * tkwm commands: stackorder, focus, destroy, ...
+  * Example: dialog with size, etc. (See wm example)
+
+** layout
+  
+* tkpack
+  * packing in children
+  * tkwm forget -- forget child
+  * getting parent, listing children once packed -- traversing:
+    tkwinfo parent, children
+  * Example:
+
+* tkgrid
+  * Example:
+
+* ttklabelframe
+
+* notebook
+
+* panegroup
+
+** widgets
+
+* Selection widgets
+  * checkbox, radio, combobox, [listbox], scale (ttkscale needs
+    defining! no resultion), [spinbox]...
+
+* Text
+  * ttkentry
+    * validation
+    * Example: positive values, only numbers, Not sure?
+    
+  * ttktext
+    * scrollbars
+        * [Put this is autoscroll example, for scrollbars, reference] can call in tcl commands via 
+      ## load in tcl packages
+        tcl("source",system.file("tcl","autoscroll.tcl",package="gWidgetstcltk"))
+  	tclRequire("autoscroll")
+  	tcl("namespace","import","::autoscroll::autoscroll")
+
+    * console example?
+
+* ttktree
+  * tabular data
+  * heirarchical data
+
+* menus/toolbars
+
+* canvas
+  * constructor
+  * adding objects
+  * assigning to ID
+  * tags
+  * Example: drawing program; regression example in package; ggplot?
+
+* dialogs (new in 8.5)
+  * simple examples -- modal!
+  * also grab all focus trick
+
+
+
+-__________________________________________________ BONE PILE _____
+
+%% overview of tcltk
+* tcl command
+explain R -> tcl
+  interact with tkconfigure, assign binding via tkbind
+explain tcl -> R: 
+  tkcget, tkget?
+  coercion of return type: as.character, as.integer,
+  quoting hell
+  
+
+
+* explain API
+tcl(a,b,c,...) -- how that maps
+tclcget
+tclconfigure
+"-text"
+"text","value"
+
+command a b c d -> tcl("command",a,b,value=c,"-value",d)
+
+
+* binding
+tkbind
+variables passed along
+
+
+* toplevel windows
+  * wminfo ?
+  * container heirarchy and ID component
+  * tktitle
+  tkbind("<Destroy>")
+  * tkwm.geometry(w, ") 
+  * tkwm.minsize(w, width, height)
+  * tkwm.geometry(w,"+x+y")
+  * tkwm.transient
+  * tkdestroy
+  
+
+* containers: tktoplevel; ttkframe; ...
+* geometry managers: 
+  * tkpack: expand, fill = c(both, x, y)
+  * tkgrid: row, column; sticky
+  * tkgrid.configure: weights
+  * hiding/showing a component (hide for grid, what for pack)
+  * slaves -- see old gwindow code. Walk heiarchy
+
+* labels
+* buttons
+  * commands
+  * fonts, ...
+  
+* textvariables
+
+* one-line text
+* multi-line text
+* text widget
+  marks, et
+* scrollbars
+  tkxview
+  tkxview.moveto
+  tkxview.scrollto
+  
+* tree example
+
+* tclRequire example -- autoscroll
+* package
+
+* rpanel
+* Rcmdr
+
+
+* examples
+
+* containers -- tkpack
+* basic controls
+
+* control variables
+* other controls
+
+* grid
+* text -- 
+* table
+
+
+%% tcltk file
+
+* bind man page has lots of stuff on X11 events
+
+* constructors
+* methods
+* return values -- a list? 
+* properties
+* signals/events -- how to list
+
+
+
+* windows: 
+tkwm.withdraw()
+tkwm.title();
+tkwm.protocol(window,"WM\_DELETE\_WINDOW", command))
+tkwm.geometry(win, position)
+tkwinfo("width",top)
+tkwm.resizable
+tkwait.window(window)
+tkwm.deiconify(window)
+
+
+tkfocus()
+
+tagName <- messageTag()
+tkinsert(.message, "end", paste(line, "\\n", sep=""))
+tktag.add(.message, tagName, "end - 2 lines linestart", "end - 2 lines lineend")
+tktag.configure(.message, tagName, foreground=col)
+tkyview.moveto(.message, 1.0)
+
+
+.Tcl("update idletasks")
+.Tcl("selection get -selection CLIPBOARD")
+.Tcl(paste("tk scaling ", scale.factor, sep=""))
+.Tcl(paste("option add *font ", default.font, sep=""))
+ tclvalue(.Tcl(paste("tk\_chooseColor", .Tcl.args(title = "Select a Color"))))
+
+tklabel(parent, bitmap=..., fg=...)
+
+
+tkbind(.commander, "<Control-r>", onSubmit)
+tkbind(.commander, "<Control-R>", onSubmit)
+tkbind(.commander, "<Control-Tab>", onSubmit)
+tkbind(.commander, "<Control-f>", onFind)
+tkbind(.commander, "<Control-F>", onFind)
+tkbind(.commander, "<Control-s>", saveLog)
+tkbind(.commander, "<Control-S>", saveLog)
+tkbind(.commander, "<Control-a>", onSelectAll)
+tkbind(.commander, "<Control-A>", onSelectAll)
+tkbind(.log, "<ButtonPress-3>", contextMenuLog)
+tkbind(.output, "<ButtonPress-3>", contextMenuOutput)
+tkbind(datasetBox, "<ButtonPress-1>", onClick)      
+tkbind(packageBox, "<Double-ButtonPress-1>", onPackageSelect)
+tkbind(datasetBox, "<Double-ButtonPress-1>", onDatasetSelect)
+tkbind(top, "<Return>", onOK)
+
+
+tkmenu -- tcl(menuItem, "entryconfigure", name\_or\_index, state="disabled")
+

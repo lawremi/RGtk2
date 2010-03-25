@@ -1,0 +1,158 @@
+ \begin{example}{Mapping a list to a tree store}{eg:RGtk2:list-tree}
+
+  This example shows how to automate the process of mapping \R's
+  heirarchical list structure into \GTK's heirarchical tree store
+  structure and back. Each direction takes advantage of recursion to
+  traverse the values.
+
+<<echo=FALSE>>=
+library(RGtk2)
+## Populate a tree store from an R list by recursively calling some function
+@ 
+
+
+This new method \method{PopulateFromList}{gtkTreeStore} takes a list
+of a certain type and maps it into a tree store. This is done through
+a recursive call when the list component in question returns
+\code{TRUE} from \function{is.recursive}.
+<<>>=
+## populate from list with named components
+gtkTreeStorePopulateFromList <- function(store, lst, noCols=1) {
+  store$setData("noCols",noCols)        # store for later use
+  addToTree <- function(store,lst, iter) {
+    for(i in names(lst)) {
+      niter <- store$append(parent=iter$iter)
+      if(is.recursive(lst[[i]])) {
+        store$setValue(niter$iter, column = 0, i)
+        addToTree(store, lst[[i]], niter)
+      } else {
+        store$setValue(niter$iter, column = 0, i)
+        for(j in 1:store$getData("noCols"))
+          store$setValue(niter$iter, column = 1, lst[[i]][j])
+      }
+    }
+  }
+  ## call recursive function to walk down list.
+  addToTree(store, lst, list(iter=NULL))
+}
+@ 
+
+This new method does the reverse of the previous. It takes a tree
+store and returns a list containing the values. Again it is done
+recursively. The method \method{IterChildren}{gtkTreeModel} is used to
+indicate if a recursive call is needed.
+<<>>=
+## return list from the tree.
+## returns how we initialized gtkTreeStore
+gtkTreeStoreToList <- function(store) {
+  getChildren <- function(store, iter) {
+    ## loop over iterNext, recurse if iterChildren
+    l <- list(); n <- 0
+    retval <- iter$retval
+    while(retval) {                # loop over sibling
+      name <- store$getValue(iter$iter,0)$value
+      citer <- store$iterChildren(iter$iter)
+      if(citer$retval) {                # recurse if has child
+        l[[name]] <- getChildren(store,citer)
+      } else {
+        val <- sapply(1:store$getData("noCols"),
+                      function(i) store$getValue(iter$iter,i)$value)
+        l[[name]] <- val
+      }
+      retval <- store$iterNext(iter$iter)  # updates iter, returns FALSE if none
+    }
+    return(l)
+  }
+  ## start it off
+  getChildren(store,store$getIterFirst())
+}
+@ 
+
+This method can be used in a handler to return the first columns of
+the selected value and its ancestors in the tree.
+<<>>=
+gtkTreeStoreGetPathNames <- function(store,iter) {
+  val <- store$getValue(iter,0)$value
+
+  iter <- store$iterParent(iter)
+  while(iter$retval) {
+    val <- c(store$getValue(iter$iter,0)$value, val)
+      iter <- store$iterParent(iter$iter)
+  }
+  return(val)
+}
+@
+
+This method \method{MakeView}{gtkTreeStore} is a convenience method to
+create a tree view for a store. For simplicity, this uses a basic cell
+renderer, treating all cells essentially the same.
+<<>>=
+gtkTreeStoreMakeView <- function(store, search.col=0) {
+## create a tree view. Allow searching, drag-and-drop reordering 
+  view = gtkTreeViewNewWithModel(store)
+  view$setHeadersClickable(TRUE)        # used with sorting
+  view$setReorderable(TRUE)             # drag and drop reordering
+  store$setData("view",view)            # to get later
+  
+  view$setSearchColumn(search.col)
+  ## multiple
+  sel = view$getSelection()
+  sel$setMode(GtkSelectionMode["multiple"])
+  ## add two cell renderers -- 1 for name, 1 for type
+  n <- store$getData("noCols")
+  for(i in 1:(n+1)) {
+    nms <- c("name",rep("value",n))
+    cr <- gtkCellRendererText()
+    vc <- gtkTreeViewColumn()
+    vc$setSortColumnId(i-1)             # allow sorting
+    vc$setResizable(TRUE)               # adjust column width
+    vc$setTitle(nms[i])                 # name of column
+    vc$packStart(cr,TRUE)               # add cellrenderer
+    vc$addAttribute(cr,"text",i-1)      # get text from i-1 col of store
+    view$insertColumn(vc, i-1)          # put column into i-1 col or view
+  }
+  
+  return(view)
+}
+@ 
+
+<<>>=
+## Try it out. Here is a list
+lst = list(
+  a=list(
+    b=1,
+    c=2,
+    d=list(
+      e=list(f=1)
+      )
+    ),
+  g=2
+  )
+
+
+## Set up store, here we have a character for a name, the values
+types <- c("gchararray","gchararray")
+store <- gtkTreeStore(types)
+store$populateFromList(lst, noCols = length(types) - 1)
+view <- store$makeView()
+@ 
+
+As a tree store can possibly contain many values, it is typical that
+they are put inside of a scrolled window. Since this is expected, the
+\method{Add}{gtkBin} method is used, not the
+\method{AddWithViewport}{gtkScrolledWindow}. 
+<<>>=
+sw <- gtkScrolledWindow()             # scrollwindow for view
+sw$setPolicy("automatic","automatic")
+sw$add(view)
+
+w <- gtkWindow(); w$setTitle("Tree view example")
+w$add(sw)
+@ 
+
+<<echo=FALSE>>=
+## what is there
+store$toList()
+@ 
+
+\end{example}

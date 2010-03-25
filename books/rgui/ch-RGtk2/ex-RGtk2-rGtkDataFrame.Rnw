@@ -1,0 +1,205 @@
+\begin{example}{Showing a data frame using rGtkDataFrame}{eg:RGtk2:rGtkDataFrame}
+<<echo=FALSE>>=
+library(RGtk2)
+@ 
+
+This example shows how to use  \function{rGtkDataFrame} to provide a
+data store for data coming from a data frame and how to use a tree
+view to provide a means of editing the data. 
+
+Our main function is a one-size-fits-all function to create a view
+column for a column of data. In this function, we set a callback to
+set the value in the data store when the user initiates an edit
+request. This callback is defined first. Its signature is indefinite
+as the signature is different from the others when the cell renderer
+is a toggle.
+<<callBackEdit>>=
+editCallBack <- function(cell, path, arg3, ...) {
+  if(nargs() == 3) {
+    userData <- arg3; newValue <- NA    # no newValue (toggle)
+  } else {
+    newValue <- arg3; userData = ..1    # ..1 is first component of ...
+  }
+  rGtkStore <- userData$view$getModel() 
+  i <- as.numeric(path) + 1
+  j <- userData$column
+  newValue <- try(switch(userData$type,
+                         "integer" = as.integer(as.numeric(newValue)),
+                         "character" = as.character(newValue),
+                         "numeric" = as.numeric(newValue),
+                         "factor"  = as.character(newValue),
+                         "logical" =  !as.logical(rGtkStore[i,j])),
+                  silent=TRUE)
+  
+  if(inherits(newValue,"try-error")) {
+    sprintf("Failed to coerce new value to type %s",userData$type)
+    return(FALSE)
+  }
+  
+  if(userData$type == "factor") {
+    curLevels <- levels(rGtkStore[,j])
+    if(! newValue %in% curLevels) {
+      cat(gettext("Can't add level to a factor."))
+      return(FALSE)
+    }
+  }
+  
+  rGtkStore[i,j] <- newValue            # assign value
+  return(FALSE)
+}
+@ 
+
+This is the main function to add a new column of a certain type. The
+view column number and store column number may be different, although
+aren't in our example. For editing, this method uses a toggle renderer
+for logical values, a combo box for factors (as adding new levels is
+not supported), and text renderers for other data types.
+<<AddColumnWithType>>=
+gtkTreeViewAddColumnWithType <-
+  function(view,
+           name="",
+           type=c("rowname","numeric","integer","character",
+             "logical","factor","icon"),
+           viewCol,                     # 1-based column of view
+           storeCol                     # 1-based column for rGtkDataFrame
+           ) {
+    
+    type = match.arg(type)
+    
+    ## define the cell renderer
+    cr <- switch(type,
+                 "logical" = gtkCellRendererToggle(),
+                 "factor" = gtkCellRendererCombo(),
+                 gtkCellRendererText())
+    
+    ## the new column we will add
+    vc <- gtkTreeViewColumn()
+    vc$packStart(cr, TRUE)
+    vc$setTitle(name)
+    vc$setResizable(TRUE); vc$setClickable(TRUE)
+    view$InsertColumn(vc, viewCol - 1)  # viewCol is 1-based
+    
+    ## add attributes
+    switch(type,
+           "logical" =  vc$addAttribute(cr, "active",storeCol - 1),
+           vc$addAttribute(cr, "text",storeCol - 1)
+           )
+    if(type == "numeric") cr['xalign'] <- 1
+    
+    ## set editable/activatable property
+    switch(type,
+           "logical" = cr["activatable"] <- TRUE,
+           cr["editable"] <- TRUE)
+    
+    if(type == "factor") {              # combobox needs a data store
+      cstore <- gtkListStore("gchararray")
+      rGtkstore <- view$getModel()
+      vals <- rGtkstore[,storeCol, drop=TRUE]
+      for(i in as.character(unique(vals))) {
+        iter <- cstore$append()
+        cstore$setValue(iter$iter,column=0, i)
+      }
+      cr['model'] <- cstore
+      cr['text-column'] <- 0        
+    }
+
+    
+    ## connect callback to edited/toggled signal
+    QT <- gSignalConnect(cr, signal =
+                         if(type != "logical") "edited" else "toggled",
+                         f = editCallBack, 
+                         data = list(view=view,type=type,column=storeCol))
+  }
+@ 
+
+<<keyNav,echo=FALSE>>=
+### -- bug with this when not editing
+gtkTreeViewAddKeyNavigations <- function(view) {
+  ## keyMotionHandler example.
+  connectSignal(view,"key-release-event",
+                f = function(view, event, userData,...) {
+                  
+                  keyval = event$getKeyval()
+                  cursor = view$getCursor()
+                  ## i,j are current positions,
+                  i = as.numeric(cursor$path$toString()) + 1
+                  vc = cursor[['focus.column']] ## might be focus_column!!
+                  j = which(sapply(view$getColumns(), function(i) i == vc))
+                  d = dim(view$getModel()) # rGtkStore method
+                  
+                  setCursorAtCell <- function(view, i, j) {
+                    path <- gtkTreePathNewFromString(i-1)
+                    vc <- view$getColumn(j - 1)
+                    view$setCursor(path=path, focus.column=vc, start.editing=TRUE)
+                  }
+                  
+                  if(keyval == GDK_Return) {
+                    ## what do do with return?
+                  } else if(keyval == GDK_Up) {
+                    setCursorAtCell(view,max(1, i - 1), j)
+                  } else if(keyval == GDK_Down) {
+                    if(i < d[1]) 
+                      setCursorAtCell(view,i + 1, j)
+                  } else if(keyval == GDK_Tab) {
+                    if(j < d[2]) 
+                      setCursorAtCell(view,i, j + 1)
+                  }
+                },
+                data=list(view = view)
+                )
+
+}
+@ 
+
+To try it out, we first define a small data frame including all the
+types we have.
+<<testIt>>=
+df = data.frame(
+  logical = c(TRUE, TRUE, FALSE),
+  character = c("one","two","three"),
+  factor = factor(c("ctrl","trt1","trt2")),
+  integer = 1:3,
+  numeric = rnorm(3),
+  stringsAsFactors=FALSE)
+@ 
+The store and view are easily defined
+<<>>=
+store <- rGtkDataFrame(df)
+view <- gtkTreeView(store)
+@ 
+Next to shows the data in the store inside the view.
+
+<<>>=
+nms <- names(df)
+QT <- sapply(1:ncol(df), function(i) {
+  type <- class(df[,i])[1]
+  view$addColumnWithType(name = nms[i], type, viewCol = i, storeCol = i)
+  
+})
+@ 
+
+We add a blank column at the end to make this resize gracefully.
+<<>>=
+vc <- gtkTreeViewColumn()
+newColNo <- view$insertColumn(vc, -1)           # -1 = end
+@ 
+
+
+<<AddNavigations, echo=FALSE>>=
+ID <- view$addKeyNavigations()
+@ 
+
+
+Finally, we pack the view inside a scrolled window and then show it in
+a top-level window.
+<<PackWidget>>=
+sw <- gtkScrolledWindow()
+sw$setPolicy("automatic","automatic")
+sw$add(view)
+
+w <- gtkWindow(); w$setTitle("rGtkDataFrame example")
+w$add(sw)
+@ 
+
+\end{example}
+

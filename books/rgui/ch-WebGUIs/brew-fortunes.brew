@@ -1,0 +1,9 @@
+<%
+  require(fortunes)
+  out <- fortune(155)
+%>
+<h3 class="fortune">Fortune</h3>
+<%= wrap(out$quote) %> <br>
+--<em><%= out$author %></em>, <%= out$date %>
+
+

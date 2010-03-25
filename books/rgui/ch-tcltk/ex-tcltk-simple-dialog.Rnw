@@ -1,0 +1,120 @@
+This example shows how to use  window, frames,  labels, buttons,
+icons, packing and bindings to create a non-modal dialog. 
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.4\textwidth]{fig-tcltk-simple-dialog.png}
+  \caption{Example of a simple dialog}
+  \label{fig:fig-tcltk-simple-dialog}
+\end{figure}
+
+<<echo=FALSE>>=
+## example of  simple non-modal dialog
+## much taken from msgbox.tcl in tk source
+
+library(tcltk)
+@
+Although not written as a function, we set aside the values that would
+be passed in were it.
+<<>>=
+title <- "message dialog"
+message <- "Do you like tcltk so far?"
+parent <- NULL
+QT <- tkimage.create("photo", "::img::tclLogo", 
+                     file = system.file("images","tclp.gif",
+                       package="ProgGUIinR"))
+@ 
+
+The main top-level window is then given a title, then withdrawn while the GUI is created.
+<<>>=
+w <- tktoplevel(); tkwm.title(w, title)
+tkwm.state(w, "withdrawn")
+@ 
+
+If the parent is non-null and is viewable, then the dialog is made
+transient to a parent, The parent need not be a top-level window, so
+\function{tkwinfo} if used to find the parent's top-level window. For Mac OS X, we use the \code{notify} attribute to bounce the dock icon until the mouse enters the window area.
+
+<<>>=
+if(!is.null(parent)) {
+  parentWin <- tkwinfo("toplevel", parent)
+  if(as.logical(tkwinfo("viewable", parentWin))) {
+    tkwm.transient(w, parent)
+    tcl("wm","attributes",parentWin, notify=TRUE) # bounce
+    tkbind(parentWin,"<Enter>", function() 
+      tcl("wm","attributes",parentWin, notify=FALSE)) #stop
+  }
+}
+@ 
+Finally, a frame is packed into the top-level window. Since we want the
+frame to expand to fill all the space if the window is resized, we use \code{fill="both"}.
+<<>>=
+## frame for theme purposes, give some space
+f <- ttkframe(w,  padding=c(5,5,10,10))
+tkpack(f, expand=TRUE, fill="both")
+@ 
+
+We will use a standard layout for our dialog with an icon on the left,
+a message and buttons on the right. We pack the icon into the left side of the frame,
+<<>>=
+l <- ttklabel(f, image="::img::tclLogo", padding=5) # recycle
+tkpack(l,side="left")
+@ 
+
+A nested frame will be used to layout the message area and button area. Since the \function{tkpack} default is to pack in top to bottom, no \code{side} specification is made.
+<<>>=
+f1 <- ttkframe(f)
+tkpack(f1, expand=TRUE, fill="both")
+#
+m <- ttklabel(f1, text=message)
+tkpack(m, expand=TRUE, fill="both")
+@ 
+
+The buttons have their own frame, as they are layed out horizontally. 
+<<>>=
+f2 <- ttkframe(f1)
+tkpack(f2)
+@ 
+The callback function for the OK button prints a message then destroys the window.
+<<>>=
+okCB <- function() {
+  print("That's great")
+  tkdestroy(w)
+}
+okButton <- ttkbutton(f2, text="OK", default="active")
+@ 
+We bind the callback to both a left mouse click on the button, and if the user presses \kbd{return} when the button has the focus. The \code{default="active"} argument, makes this button the one that gets the \code{Return} event when the \kbd{return} key is pressed.
+
+<<>>=
+tkbind(okButton, "<Button-1>", okCB)
+tkbind(okButton, "<Return>", okCB)
+
+cancelButton <- ttkbutton(f2, text="Cancel", 
+                          command=function() tkdestroy(w))
+tkpack(okButton, side="left", padx=12)  # give some space
+tkpack(cancelButton)
+@ 
+
+Now we bring the dialog back from its withdrawn state, fix the size and set the focus on the OK button.
+<<>>=
+tkwm.state(w, "normal")
+tkwm.resizable(w, FALSE, FALSE)
+tkfocus(okButton)
+@ 
+
+Finally, the following bindings make the buttons look active when the keyboard focus is on them, generating a \code{FocusIn} event, then a \code{FocusOut} event. We make a binding for the top-level window, then within the callback check to see if the widget emitting the signal is of a themed button class.
+<<echo=FALSE>>=
+## bind so that object highlights on mouseover
+## illustrates how we can bind to all the widgets
+@ 
+<<>>=
+isTButton <- function(W)  
+  as.character(tkwinfo("class",W)) == "TButton"
+tkbind(w,"<FocusIn>", function(W) {
+  if(isTButton(W)) tkconfigure(W,default="active")
+})
+
+tkbind(w,"<FocusOut>", function(W) {
+  if(isTButton(W)) tkconfigure(W,default="normal")
+})
+@ 

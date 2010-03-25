@@ -1,0 +1,58 @@
+<<echo=FALSE>>=
+library(tcltk)
+## pack examples
+## how to pack in buttons
+@ 
+
+<<echo=FALSE>>=
+w <- tktoplevel()
+tkwm.title(w, "Examples using pack as a geometry manager")
+f <- ttkframe(w, padding=c(3,3,3,12))
+tkpack(f, expand=TRUE, fill="both")
+
+@ 
+
+This example shows how one can pack in action buttons, such as when a
+dialog is created.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.5\textwidth]{fig-tcltk-pack-buttons.png}
+  \caption{Demonstration of using \code{tkpack} options showing
+    effects of using the \code{side}
+    and \code{padx} options to create
+    dialog buttons.}
+  \label{fig:tcltk-pack-buttons}
+\end{figure}
+
+
+The first example just uses \code{tkpack} without any arguments except
+the side to indicate the buttons are packed in left to right, not top
+to bottom.
+<<>>=
+f1 <- ttklabelframe(f, text="plain vanilla")
+tkpack(f1, expand=TRUE, fill="x")
+l <- list(ttkbutton(f1, text="cancel"), ttkbutton(f1, text="ok"))
+QT <- sapply(l, function(i) tkpack(i, side="left"))
+@ 
+
+Typically the buttons are right justified. One way to do this is to
+pack in using \code{side} with a value of \qcode{right}. This shows
+how to use a blank expanding label to take up the space on the left.
+<<moveRight>>=
+f2 <- ttklabelframe(f, text="push to right")
+tkpack(f2, expand=TRUE, fill="x")
+l <- list(ttkbutton(f2, text="cancel"), ttkbutton(f2, text="ok"))
+tkpack(ttklabel(f2, text=" "), expand=TRUE, fill="x", side="left")
+QT <- sapply(l, function(i) tkpack(i, side="left"))
+@ 
+
+Finally, we add in some padding to conform to Apple's design specification that such
+buttons should have a 12 pixel separation.
+<<appleSays>>=
+f3 <- ttklabelframe(f, text="push to right with space")
+tkpack(f3, expand=TRUE, fill="x")
+tkpack(ttklabel(f3, text=" "), expand=TRUE, fill="x", side="left")
+l <- list(ttkbutton(f3, text="cancel"), ttkbutton(f3, text="ok"))
+QT <- sapply(l, function(i) tkpack(i, side="left", padx=6))
+@ 

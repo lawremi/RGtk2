@@ -1,0 +1,655 @@
+%% The request process
+
+% COMMENT oN XHTML
+
+% Form w3.org
+% Uniform Resource Identifier (URI)
+
+% A Uniform Resource Identifier (URI) is a string of characters which identifies an Internet Resource.
+
+% The most common URI is the Uniform Resource Locator (URL) which identifies an Internet domain address. Another, not so common type of URI is the Universal Resource Name (URN).
+
+
+
+
+The simplest web page is a static page that is returned when a user
+make a request. The basic architecture involves a browser (or some
+other client) requesting a document from a web server. The request
+must endcode what document is desired, so the web server can find
+it. The request is specified in terms of a \defn{URI}, or uniform
+resource identifier (a URL is technically a type
+of URI). The web server in turn maps the URI request to a file on the
+file system which the web server returns to the browser.
+
+\begin{figure}
+  \centering
+\begin{verbatim}
+browser -> request -> server -> page lookup -> return page to browser -> display
+XXX -- REPLACE ME -- XXX
+\end{verbatim}
+  \caption{Basic flow of a how a static HTML file is displayed on a browser.}
+  \label{fig:static-html-file}
+\end{figure}
+
+
+The type of HTML file just described is known as a static file, in contrast to a
+dynamically generated file, as its contents do not reflect any
+possible extra information in the request. The authoring of static HTML files
+may involve three different techonologies described next.
+
+
+\subsection{Markup languages}
+\label{sec:markup-languages}
+
+Typically a static web page is marked up in HTML. This now familiar
+markup language allows the page author to indicate structure in
+various parts of the document. Typical structures are paragraphs,
+headers, images, etc. Additionally, tags can denote presentation, such
+as color, font etc.
+
+HTML is centered around the concept of a tag which is used to wrap a
+portion of the text of a file. A tag has a name or keyword, in lower
+case, and is enclosed in angle brackets. If the tag encloses some
+text, it has a start and end style. The start tag for a tag \code{x}
+would be \verb+<x>+ where the end tag would be \texttt{</x>} (an extra
+slash). All text between theses tags would carry this tag. Some tags,
+such as the image tag \tagger{img}, are used to define their attributes
+only (a link in this case) so do not come in pairs, in this case it is
+common practice to end the tag with \texttt{/>}.~\footnote{There are
+  two common variants of HTML one coming from SGML, another, XHTML, deriving
+  from XML. Both are similar, but xhtml is stricter with its use of
+  tags. Some basic rules (as opposed to conventions) include all tags
+  are either ended with a closing tag, or with \texttt{/>}; tags are
+  lower case; attributes must be enclosed in quotes and specified; the
+  root element is different from that given in the examples. The
+  Web Hypertext Application Technology Working Group
+  (\url{http://whatwg.org}) has proposed specifications for the two
+  that seem likely to become the standard for HTML5.}
+
+A few typical tags are specified in Table~\ref{tab:HTML-tags}. 
+Tags may indicate how text is supposed to be formatted (e.g. \texttt{b}),
+others indicate what type of text it is (e.g. \texttt{code}), others
+the document structure (e.g., \texttt{h1}, \texttt{p}, etc.).
+
+<<echo=FALSE, results=tex>>=
+df <- rbind(
+            c("html","Denotes an HTML file"),
+            c("head","Marks header of file"),
+            c("body","Marks off main body of file"),
+            c("script","Used to include other types of files"),
+            c("p","A paragraph. Also, br for a line break"),
+            c("h1","First level header. Also h2,...,h6"),
+            c("ul", "Unordered list. Also ol."),
+            c("li", "Denotes a list item"),
+            c("a", "An anchor for a hyperreference"),
+            c("img", "Denotes an image"),
+            c("div","A text division, indicates a line break"),
+            c("span","A text division, no implied break"),
+            c("b","Denotes text to be set in bold"),
+            c("code","Denotes text that is code"),
+            c("em","Denotes text to be emphasized"),
+            c("table","Creates a table element")
+            )
+colnames(df) <- c("Tag","Description")
+cat(booktabs(df,
+             colTypes=c("l","p{0.7\\textwidth}"),
+             caption="Table of common tags in HTML.",
+             label="tab:HTML-tags"))
+@ 
+
+A tag may have one or more \defn{attributes} specified. For example, an
+anchor tag, \texttt{a}, has an attribute to specify the image by URI,
+\tagattr{href}{a}. This attribute is indicated by name with an equals
+sign. Quotes are optional for HTML, but recommended in general. They
+are mandatory if there is white
+space involved. An example might be \verb+<a href="http://www.r-project.org" />+.
+
+All tags have an \texttt{id} attribute, which is used to give a unique
+ID to the part enclosed by the tag. This is used to identify the tag
+within the document object model (DOM) described in brief later. All
+tags also have a \texttt{class} attribute to indicate if the tagged
+content should be treated as a member of a class. This provides a
+means to classify and treat similar objects as a group. Some tags also
+allow one to specify style attributes, but a more modern approach is
+to use a stylesheet to specify those. The \texttt{span} and \texttt{div} tags are primarily used to specify
+attributes for the tagged text.
+
+Some characters, such as angle brackets, have a reserved meaning.  As
+such, to use an angle bracket in an HTML document requires the use an
+\dfn{HTML entity reference}.  There are many such entities -- they are
+also used for cahracter encodeings. Entities are
+denoted by a leading ampersand \texttt{\&} and trailing semicolon, as
+with \texttt{\&lt;}. 
+
+
+\begin{example}{Simple HTML file}{eg:sample-html-xhtml-header}
+  A basic HTML file would include a structure similar to the following
+  which shows the head and body. Within the head, a title is set.
+  \begin{HTMLinput}
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+  <head>
+    <title>Hello World Page</title>
+  </head>
+  <body>
+    Hello world
+  </body>
+</html>
+\end{HTMLinput}
+
+A basic \code{xhtml} file has a different header, for example the
+following which specifies a version for the XML and a default name
+space through the \tagattr{xmlns}{html} attribute.
+\begin{HTMLinput}
+<?xml version="1.0" ?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" 
+  lang="en">
+<head>
+<meta http-equiv="content-type" 
+  content="text/html; charset=UTF-8"/>
+<title>Page title</title>
+</head>
+\end{HTMLinput}
+
+\end{example}
+
+\begin{example}{A basic table}{}
+  Displaying tables is a common task for web pages. The \tagger{table}
+  tag encloses a table. New rows are enclosed in a \tagger{tr} tag,
+  and each cell can be a header cell, \tagger{th}, or a data cell
+  \tagger{td}. The following shows one way alternate rows can be
+  striped by hard coding a color attribute to the rows.
+  \begin{HTMLinput}
+<table border="0" cellpadding="0">
+  <tr>
+    <th>Header 1</th><th>Header 2</th>
+  </tr>
+  <tr>
+    <th>1</th> <th>2</th>
+  </tr>
+  <tr bgcolor="goldenrod">
+    <th>3</th> <th>4</th>
+  </tr>
+</table>
+ \end{HTMLinput}
+\end{example}
+
+\begin{example}{\R\/ helpers}{}
+  Writing a tag and specifying a table can be tedious, especially if
+  the data is in an \R\/ object. Some helper functions are useful. The
+  \pkg{hwriter} package includes a few, for now
+  we mention \function{hmakeTag} which will produce a tag around some
+  specified content along with attributes, that can be passed in
+  through \R's \code{name=value} syntax.
+<<>>=  
+require(hwriter)
+out <- hmakeTag("td",1:2, bgcolor="red")
+cat(out, sep="\n")
+@ 
+The function is vectorized, as can be gathered from the output.
+\end{example}
+
+
+\subsection{Style sheets}
+\label{sec:style-sheets}
+
+%% http://www.w3.org/Style/LieBos2e/history/ for history
+
+Casscading Style Sheets (\defn{CSS}) may be used to specify the
+presentation of the text on a page. Common practice is to use the
+markup language to specify document structure and a separate document
+to specify the layout of the first document. The advantage is a clean
+separation of tasks so that one can make changes to the layout, say,
+without affecting the text (and vice versa). A typical usage is to be
+able to provide different layouts depending on the type of device.
+
+Without going into detail, the style sheet syntax provides a means to
+specify what type of tagged content the style will apply to (the
+selector) and a means to specify what styles of markup will be
+applied. For example, the specification below has
+\texttt{h1, h2, h3, h4, h5, h6} as a selector to indicate that it
+applies to all header tags. In the \defn{declaration block} are style
+specifications for the color of the text and the font
+weight. Additionally, specifications for margins and padding are
+given, along with a border on the bottom around the element.
+\begin{HTMLinput}
+  h1, h2, h3, h4, h5, h6 {
+    color: Black;
+    font-weight: normal;
+    margin: 0;
+    padding-top: 0.5em;
+    border-bottom: 1px solid #aaaaaa;
+}
+\end{HTMLinput}
+The full specification allows for much more complicated selections, be
+they based on id of the tag, class of the tag, or relation of tag to
+an enclosing tag. 
+Style sheets can also refer to positioning of the object within the
+page. Most modern web pages use style sheets for layout, rather than
+tables, as it allows for greater accessibility and offers advantages
+with search engines.
+
+
+\begin{example}{A striped table using style sheets}{}
+  Using the \tagattr{bgcolor}{table}  attribute of a table is deprecated in favor of
+  style sheets for good reason. Here we illustrate a style sheet
+  approach to striping a table. The style sheet may be defined in the
+  HTML file itself with the \tagger{style} tag that appears within the
+  document's \tagger{head}. 
+  
+  \begin{HTMLinput}
+<style type="text/css">
+table { border: 1px solid #8897be; border-spacing: 0px}
+tr.head {background-color:#ababab;}
+tr.even { background-color: #eeeeee;}
+tr.odd { background-color: #ffffff;}
+</style>
+ \end{HTMLinput}
+ A more common alternative, is to use the \tagger{link} tag to include
+ the stylesheet through a url. For example,
+\begin{HTMLinput}
+<link rel="stylesheet" href="the.url.of.the.sheet" />
+\end{HTMLinput}
+
+ For the table itself, we need only replace the specification of the attribute with a
+ class specification.
+ \begin{HTMLinput}
+<table>
+  <tr class='head'>
+    <th>Header 1</th><th>Header 2</th>
+  </tr>
+  <tr class='odd'>
+    <th>1</th> <th>2</th>
+  </tr>
+  <tr class='even'>
+    <th>3</th> <th>4</th>
+  </tr>
+</table>
+\end{HTMLinput}
+  
+\end{example}
+
+
+\subsection{JavaScript}
+\label{sec:javascript}
+
+The third primary component of most modern web pages is JavaScript. This is a scripting
+language that runs within the browser that allows manipulation of the
+document. The document object model (DOM) specifies the elements of
+the text that may be referenced from within JavaScript. For example,
+individual elements can be found by unique ID, or common elements by class, or
+elements sharing a tag, say \tagger{p}. JavaScript provides methods for
+manipulating these elements. The simplest uses might be to change the
+text when the mouse hovers over an element.
+
+JavaScript allows web pages to be dynamic interfaces. The language
+allows for callbacks to be defined for certain events, as with the
+other GUI toolkits we've discussed. We don't pursue this, but note
+that the \pkg{gWidgetsWWW} package uses JavaScript to make dynamic web
+pages (cf. Figure~\ref{fig:gWidgets-three-oses}).
+
+\begin{example}{Simple use of JavaScript to make a button have an action}{eg:javascript-action-button}
+  The \tagger{button} tag produces a visual button. This tag has several
+  event attributes, including \tagattr{onmouseover}{button} and
+  \tagattr{onclick}{button}. Here we show how to change the documents background
+  color on a mouseover, and how to display a message on a mouse click.
+  \begin{HTMLinput}
+<button
+  onMouseOver="document.bgColor='red'; return true;"
+  onMouseOut="document.bgColor=''; return true;"
+  onClick="alert('clicked button'); return true;" >
+  Click me...
+</button>
+ \end{HTMLinput}
+\end{example}
+
+There are several open source JavaScript libraries available that
+offer convenient interfaces to JavaScript and UI widgets. We
+mention ExtJS (\url{www.extjs.com}, jQuery (\url{jQuery.com}), YUI
+(\url{developer.yahoo.com/yoi}) and Dojo
+(\url{www.dojotoolkit.org}). 
+
+
+\subsection{\R\/ tools to assist with authoring web pages}
+\label{sec:r-tools-authoring}
+
+There are quite a few packages for \R\/ to faciliate authoring web pages from
+\R\/ objects. We mention a couple.
+
+\subsubsection{The hwriter package}
+\label{sec:hwriter-package}
+
+
+The \pkg{hwriter} package simplifies the task of creating HTML tables
+for \R\/ objects, such as a matrix or vector. The package has a
+self-generated example page in HTML which is created by its
+\function{showExample} function. The main function \function{hwrite}
+maps \R\/ objects into table objects (by default) and has many options
+to modify the attributes involved. By default, it writes its output to
+a file. The helper function \function{openPage} takes a file name and
+returns a text connection. The \function{closePage} function will
+close it. In the examples below, so as the output will print, we use the \function{stdout} function instead
+for the connection.
+
+The package's examples show many different usages, we illustrate a few below.
+
+To create a simple table, we simply call the constructor on a matrix or
+data.frame object:
+<<>>=
+m <- matrix(1:4, ncol=2)
+hwrite(m, page=stdout())
+@ 
+
+
+To get alternate rows to be striped we could have:
+<<>>=
+hwrite(m, page=stdout(), 
+       row.class=rep(c("odd","even"), nrow(m))[1:nrow(m)])
+@ 
+
+(Or using the \tagattr{bgcolor}{tr} attribute setting
+\argument{row.bgColor}{hwriter}. Although, most of the
+\function{hwrite} arguments recycle, in this case we do so
+manually. as the ``\code{row.}'' attributes need such assistance.)
+
+
+Finally, a hyperlink can be generated through the \argument{link}{hwriter} argument.
+<<>>=
+hwrite("R project", link="http://www.r-project.org",
+       page=stdout())
+@ 
+
+\subsubsection{The \pkg{R2HTML} package}
+\label{sec:pkgr2html-package}
+
+The \pkg{R2HTML} provides the generic function \code{HTML} for
+creating HTML output from \R\/ objects based on their class.  As with
+\function{hwrite}, this function writes its output to a connection for ease of
+generating a file.
+
+As \function{HTML} is a generic function, its usage is straightforward. For a
+numeric vector we have:
+<<>>=
+library(R2HTML)
+HTML(1:4, file=stdout())
+@ 
+The class is written using the \tagattr{class}{} attribute, so a style
+sheet can be used:
+<<>>=
+HTML(c(TRUE, FALSE), file=stdout())
+@ 
+
+Functions may be formatted:
+<<>>=
+HTML(mean, file=stdout())
+@ 
+
+For more complicated objects, such as matrices and data frames, the
+\function{HTML} function has other arguments. For example, a border
+and inner border can be set (we omit the output).
+<<eval=FALSE>>=
+HTML(iris[1:3,1:2], Border=10, innerBorder=5, file=stdout())
+@ 
+
+The package also includes a number of functions to facilitate the
+drafting of HTML files within \R, including \function{HTMLInitFile},
+\function{HTMLCSS}, \function{HTMLInsertGraph} and
+\function{HTMLEndFile}. The functions \function{HTMLStart} and
+\function{HTMLEnd} 
+
+
+\subsubsection{The \pkg{brew} package}
+\label{sec:pkgbrew-package}
+
+\R\/ has the wonderful facility \pkg{Sweave} that passes through a
+\LaTeX\/ file and can replace \R\/ code with the code and output
+generated by evaluating the code. The \pkg{R2HTML} provides a means to
+do the same with HTML files. Whereas, the \pkg{ascii} package provides
+a means to do so for several ascii-based syntaxes for markup, many of
+which have tools to create HTML pages.
+
+The \pkg{brew} package does something similar, yet different. It
+allows one to place a template within an HTML file that \R\/ will
+eventually populate when called accordingly. In the next section, we
+illustrate how this can be used dynamically in a web page. For now, we
+mention how to make a template and how to process it.
+
+A template is a file which is processed by the \function{brew}
+function. This function returns the contents of the file after
+modification to store in a file or to print out.
+
+A template is a file with parts of it marked by delimiters
+(cf. Table~\ref{tab:brew-delimiters}). All text not within delimiters
+is processed as is. Whereas, text within delimiters may be evaluated
+by \R, and if evaluated the contents may be inserted into the output
+or simply used to adjust the evaluation environment.
+
+
+\begin{table}
+  \centering
+  \begin{tabular}{lr@{\quad}c@{\quad}c}
+    \toprule
+    &&\multicolumn{2}{c}{Evaluate}\\
+    && Yes & No \\
+    \cmidrule{3-4}
+   Print & Yes & \verb+<%= %>+ & no delimiters\\
+%   \addlinespace[.5pt]\\
+          & No  & \verb+<% %>+  & \verb+<%# %>+\\
+\bottomrule
+ \end{tabular}
+  \caption{The \pkg{brew} delimiters and how they are processed}
+  \label{tab:brew-delimiters}
+\end{table}
+
+
+\begin{example}{Differences in \pkg{brew} delimiters}{eg:brew-delimiters}
+<<echo=FALSE>>=
+require(brew)
+brew("brew-basic.brew","brew-basic.brew.out")
+@ 
+
+To illustrate the differences in the \pkg{brew} delimiters, the left
+side has \pkg{brew} commands and the right side is their output.
+
+\begin{minipage}{0.45\linewidth}
+  \HTMLinputlisting{brew-basic.brew}
+\end{minipage}
+%%
+\quad\quad
+\begin{minipage}{0.45\linewidth}
+  \HTMLinputlisting{brew-basic.brew.out}
+\end{minipage}
+
+The inline example has a dash before the closing delimiter to suppress
+a newline.
+\end{example}
+
+\begin{example}{Dynamically formatted text}{eg:brew-dynamic-text}
+  This example shows how brew can be used to insert dynamic text.
+<<echo=FALSE>>=
+wrap <- function(x, width=50) paste(strwrap(x, width=width), collapse="\n")
+brew("brew-fortunes.brew","brew-fortunes.brew.out")
+@ 
+
+This template
+
+\HTMLinputlisting{brew-fortunes.brew}
+
+produces
+
+\HTMLinputlisting{brew-fortunes.brew.out}
+
+\end{example}
+
+\begin{example}{Recursively calling \function{brew}}{eg:recursive-brew}
+  Typically there will be more than one page on a web site with each
+  sharing common features: a banner, a footer, navigation links, a
+  side bar, ... Using templates for these pieces and then including
+  the template in a file is one way to centralize these common
+  pieces. The \function{brew} function can easily be used to do this.
+  
+  For example, here we define a header and footer and then call them
+  in from a page. Our header is basic template, but includes a
+  variable \code{title} to be defined in the page.
+  
+\HTMLinputlisting{brew-header.brew}  
+
+  Our basic footer is
+  
+\HTMLinputlisting{brew-footer.brew}    
+
+  And a typical page has this structure. We set the variable
+  \code{title} in the scope of this page, but it is seen withing the
+  scope of the call to process the header page.
+  
+\HTMLinputlisting{brew-page.brew}    
+  
+  
+\end{example}
+
+
+\begin{example}{Creating a template within a template}{ex:brew-template-withing}
+  This example shows how one can define a template within a template,
+  as an alternative to a separate file. The basic idea is to use
+  \function{paste} to bypass the issue of being unable to nest
+  \pkg{brew} delimiters. We evaluate the template within a context, so
+  that each time we get the values from different rows.
+
+<<echo=FALSE>>=
+set.seed(22)
+brew("brew-list.brew","brew-list.brew.out")
+@ 
+This template
+ \HTMLinputlisting{brew-list.brew}
+
+ produces
+ 
+ \HTMLinputlisting{brew-list.brew.out}
+\end{example}
+
+\subsection{Graphics in web pages}
+\label{sec:graphics-web-pages}
+Web pages may be plain text, but most contain images or graphics. The
+\tagger{img} tag allows one to display a graphics file in an HTML
+page by specifying it \tagattr{src}{img} attribute. This is an image file,
+often in \code{png}, \code{gif} or \code{jpeg} format. In this
+section, we describe how \R\/ can be used to generate images by using
+different device drivers. To list all possible stock devices, see the
+help page for \code{Devices}. The function \function{capabilities} list
+which devices are available for a given \R\/ installation.
+
+\subsubsection{png}
+\label{sec:images}
+Typically when a plot command is issue, an interactive plot device is
+opened or reused, however, the user can specify a device to save the
+output to a file for further use. For example, the \function{pdf} and
+\function{postscript} functions will turn \R\/ commands into files for
+inclusion in written documents. For web pages, the \function{png} and
+\function{jpeg} device drivers are available for many systems. These
+may be used to insert a graphic into a web page.
+
+The basic usage is like that of the \function{pdf} driver illustrated
+below -- open the device, issue graphics commands, close the device:
+<<>>=
+pdf(file="test.pdf", width=6, height=6) # in inches
+hist(rnorm(100), main="Some graphic")
+invisible(dev.off())                    # close device
+@ 
+
+To use the \code{png} driver on a linux server, the option \code{type}
+should be set to \code{cairo} either through the constructor, or by
+setting the option \code{bitmapType}. 
+
+The \pkg{Cairo} device driver is an alternative which can also output
+in png format.
+
+
+\subsubsection{SVG graphics}
+\label{sec:svg-graphics}
+The web has other means to display graphics than an inclusion of an
+image file. For example, Flash is a very popular method.~\footnote{The
+  \pkg{FlashMXML} from \url{omegahat.org} provides a means to
+  genearate flash files from within \R.} Scalable vector graphics
+(SVG, \url{http://www.w3.org/Graphics/SVG/}) is another way to specify
+a graphical object using XML. Many modern web browsers have support for
+the display of SVG graphics. To insert the file, we have the
+\tagger{object} tag and its attributes \tagattr{data}{object} and
+\tagattr{type}{object}, as in
+\begin{HTMLinput}
+<object data="image-svg.svg" type="image/svg+xml"></object> 
+\end{HTMLinput}
+Not all browsers support svg, so one might also have a fall back
+image, as in:
+\begin{HTMLinput}
+<object data="image-svg.svg" type="image/svg+xml">
+<img src="image-png.png" alt="alternative file" /> 
+</object> 
+\end{HTMLinput}
+
+There are a few drivers to create SVG files in \R, for example In the base
+\pkg{grGraphics} package, the driver \code{svg} is available.  This non-interactive
+driver is used as the \code{png} one illustrated above.
+
+
+The \pkg{RSVGTipsDevice} package provides an alternate driver,
+\function{devSVGTips}.  The ``Tips'' part of the package, is provided
+by the function \function{setSVGShapeToolTip}, which allows one to
+specify a tooltip to popup when the mouse hovers over an element. The
+tooltip specified is placed over the next shape drawn, such as a
+point.
+
+For example, here we add a tip and a URL to each point in a
+scatterplot. We initially call \function{plot} without plot characters to
+set up the axes, etc.
+<<>>=
+require(RSVGTipsDevice)
+f <- "image-svg.sv"
+devSVGTips(f, toolTipMode=2, toolTipOpacity=.8) 
+plot(mpg ~ wt, mtcars, pch=NA) 
+nms <- rownames(mtcars) 
+for(i in 1:nrow(mtcars)) { 
+  ## need to add tooltip shape by shape 
+  setSVGShapeToolTip(title=nms[i])    # add tooltip 
+  setSVGShapeURL("http://www.google.com")    # some URL 
+  with(mtcars, points(wt[i], mpg[i], cex=2, pch=16)) # add
+} 
+invisible(dev.off())
+@ 
+
+
+
+
+\subsubsection{The canvas tag}
+\label{sec:canvas-tag}
+HTML5 is a major extenstion to HTML that is being implemented in most
+browsers at the time of the writing of this book. One of the new
+features of HTML5 is the \tagger{canvas} element, which allows
+JavaScript code to manipulate objects, similar to the \function{tkcanvas}
+widget of \pkg{tcltk}. 
+
+\R\/ has the \code{canvas} device driver, that can be used to generate
+JavaScript code to produce the graphic in a canvas element. The basic
+usage involves creating the JavaScript:
+<<>>=
+require(canvas)
+f <- "canvas-commands.js"
+canvas(width=480, height=480, file=f)
+hist(rnorm(100), main="Some graphic")
+invisible(dev.off())
+@ 
+
+Then, within the HTML File, code along the lines of the following is
+needed. The first \tagger{script} tag is used to define the variable
+\code{ctx} to hold the canvas
+object, as this is assumed by the canvas package. 
+
+\begin{HTMLinput}
+<canvas id="canvas_id" width=480 height=480></canvas>
+<script type="text/javascript" language="javascript">
+var ctx = document.getElementById("canvas_id").getContext("2d");
+</script> 
+<script type="text/javascript" src="canvas-commands.js"></script>
+\end{HTMLinput}
+
+
+An alternative to \pkg{canvas} is possible through the \pkg{RGraphicsDevice} device from \url{omegahat.org}.

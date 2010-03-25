@@ -1,0 +1,50 @@
+;; RefTeX parse info file
+;; File: /Users/verzani/GUI/ch-GUIBasics/GUIDesign.Rnw
+;; User: verzani (john verzani)
+
+(set reftex-docstruct-symbol '(
+
+
+(xr nil "\\\\\\\\\\\\")
+
+(index-tags)
+
+(is-multi nil)
+
+(bibview-cache)
+
+(master-dir . "/Users/verzani/GUI/ch-GUIBasics/")
+
+(label-numbers)
+
+(bof "/Users/verzani/GUI/ch-GUIBasics/GUIDesign.Rnw")
+
+(toc "toc" "        1 GUI History" "/Users/verzani/GUI/ch-GUIBasics/GUIDesign.Rnw" nil 4 "1" "\\subsubsection{GUI History}" 153)
+
+("sec:gui-history" "s" nil "/Users/verzani/GUI/ch-GUIBasics/GUIDesign.Rnw" nil "")
+
+(toc "toc" "        2 GUI Design principles" "/Users/verzani/GUI/ch-GUIBasics/GUIDesign.Rnw" nil 4 "2" "\\subsubsection{GUI Design principles}" 206)
+
+("sec:gui-design-princ" "s" nil "/Users/verzani/GUI/ch-GUIBasics/GUIDesign.Rnw" nil "")
+
+(toc "toc" "        3 WIMP" "/Users/verzani/GUI/ch-GUIBasics/GUIDesign.Rnw" nil 4 "3" "\\subsubsection{WIMP}" 274)
+
+("sec:wimp" "s" nil "/Users/verzani/GUI/ch-GUIBasics/GUIDesign.Rnw" nil "")
+
+(toc "toc" "        3 Visual real estate" "/Users/verzani/GUI/ch-GUIBasics/GUIDesign.Rnw" nil 4 "3" "\\subsubsection{Visual real estate}" 314)
+
+("sec:GUI-visual-real-estate" "s" nil "/Users/verzani/GUI/ch-GUIBasics/GUIDesign.Rnw" nil "")
+
+(toc "toc" "        4 User driven events" "/Users/verzani/GUI/ch-GUIBasics/GUIDesign.Rnw" nil 4 "4" "\\subsubsection{User driven events}" 536)
+
+("sec:user-driven-events" "s" nil "/Users/verzani/GUI/ch-GUIBasics/GUIDesign.Rnw" nil "")
+
+(toc "toc" "        5 User expectations" "/Users/verzani/GUI/ch-GUIBasics/GUIDesign.Rnw" nil 4 "5" "\\subsubsection{User expectations}" 709)
+
+("sec:user-expectations" "s" nil "/Users/verzani/GUI/ch-GUIBasics/GUIDesign.Rnw" nil "")
+
+(toc "toc" "        1 GUI History" "/Users/verzani/GUI/ch-GUIBasics/GUIDesign.Rnw" nil 4 "1" "\\subsubsection{GUI History}" 153)
+
+(eof "/Users/verzani/GUI/ch-GUIBasics/GUIDesign.Rnw")
+))
+

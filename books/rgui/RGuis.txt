@@ -1,0 +1,35 @@
+R packages which provide a GUI
+-------------------------------
+RKWard
+JGR
+Rcmdr
+ RcmdrPlugin.orloca
+ RcmdrPlugin.HH
+pmg
+
+R Packages providing a GUI to specific functionality
+-----------------------------------------------------
+
+relax
+fgui
+Metabonomic
+StatFingerprints
+ResearchMethods
+teachingDemos
+
+
+R packages that provide access to GUI toolkits
+----------------------------------------------
+RGtk2
+tcltk
+tcltk2 (windows only)
+rJava
+rpanel
+
+gWidgets
+ gWidgetsRGtk2
+ gWidgetstcltk
+ gWidgetsrJava
+
+
+

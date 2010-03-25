@@ -1,0 +1,46 @@
+;; RefTeX parse info file
+;; File: /Users/verzani/GUI/ch-gWidgetsIntro/ch-gWidgetsIntro.Rnw
+;; User: verzani (john verzani)
+
+(set reftex-docstruct-symbol '(
+
+
+(xr nil "\\\\\\\\\\\\")
+
+(index-tags)
+
+(is-multi nil)
+
+(bibview-cache)
+
+(master-dir . "/Users/verzani/GUI/ch-gWidgetsIntro/")
+
+(label-numbers)
+
+(bof "/Users/verzani/GUI/ch-gWidgetsIntro/ch-gWidgetsIntro.Rnw")
+
+(toc "toc" "    1 Overview" "/Users/verzani/GUI/ch-gWidgetsIntro/ch-gWidgetsIntro.Rnw" nil 2 "1" "\\section{Overview}" 1108)
+
+("sec:overview" "s" "\\SweaveInput{Overview} \\section{Containers}  \\SweaveInput{Containers} \\section{Basic controls} \\labe" "/Users/verzani/GUI/ch-gWidgetsIntro/ch-gWidgetsIntro.Rnw" nil)
+
+(toc "toc" "    2 Containers" "/Users/verzani/GUI/ch-gWidgetsIntro/ch-gWidgetsIntro.Rnw" nil 2 "2" "\\section{Containers}" 1172)
+
+("sec:gWidgets-Containers" "s" "\\SweaveInput{Containers} \\section{Basic controls}  \\SweaveInput{Controls} \\section{Compound widgets}" "/Users/verzani/GUI/ch-gWidgetsIntro/ch-gWidgetsIntro.Rnw" nil)
+
+(toc "toc" "    3 Basic controls" "/Users/verzani/GUI/ch-gWidgetsIntro/ch-gWidgetsIntro.Rnw" nil 2 "3" "\\section{Basic controls}" 1253)
+
+("sec:gWidgets-controls" "s" "\\SweaveInput{Controls} \\section{Compound widgets} \\begin{example}{Layout of a calculator}{ex-gWidget" "/Users/verzani/GUI/ch-gWidgetsIntro/ch-gWidgetsIntro.Rnw" nil)
+
+(toc "toc" "    4 Compound widgets" "/Users/verzani/GUI/ch-gWidgetsIntro/ch-gWidgetsIntro.Rnw" nil 2 "4" "\\section{Compound widgets}" 1333)
+
+("sec:compound-widgets" "s" nil "/Users/verzani/GUI/ch-gWidgetsIntro/ch-gWidgetsIntro.Rnw" nil "")
+
+(toc "toc" "    4 Compound widgets" "/Users/verzani/GUI/ch-gWidgetsIntro/ch-gWidgetsIntro.Rnw" nil 2 "4" "\\section{Compound widgets}" 1333)
+
+(toc "toc" "    5 End of chapter notes" "/Users/verzani/GUI/ch-gWidgetsIntro/ch-gWidgetsIntro.Rnw" nil 2 "5" "\\section{End of chapter notes}" 1715)
+
+("sec:gWidgets:eoc" "s" "* menubar uses list, not XML -- RGtk2 we use XML, tcltk we use hard way " "/Users/verzani/GUI/ch-gWidgetsIntro/ch-gWidgetsIntro.Rnw" nil)
+
+(eof "/Users/verzani/GUI/ch-gWidgetsIntro/ch-gWidgetsIntro.Rnw")
+))
+

@@ -1,0 +1,9 @@
+<% brew("brew-header.brew") %>
+
+<h2>
+<%= 
+message
+%>
+</h2>
+
+<% brew("brew-footer.brew") %>

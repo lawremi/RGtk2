@@ -1,0 +1,3 @@
+%% End of chapter notes
+\XXX{svDialogs, Rcmdr, others}
+\XXX{Wettenhall, }

@@ -1,0 +1,11 @@
+%% place to discuss why program GUIs in R
+
+
+\XXX{Cover these}
+\begin{itemize}
+\item Benefit to user of code -- complexity
+\item Convenience
+\item Reasonable speed, power
+\item many options: RGtk2, tcltk, RPad, rJava, RwxWidgets, DTL stuff
+\item Cross platform
+\end{itemize}

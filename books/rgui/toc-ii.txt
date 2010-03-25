@@ -1,0 +1,334 @@
+ 1 The basic ideas of Graphical User Interfaces
+-----------------------------------------------
+
+  * Introduction
+  * A simple GUI in R
+
+[JV: we might even include this at the beginning of chapter 2 which in
+some ways is the programming GUIs chapter.]
+
+[ML: but we certainly need some real example up-front]
+
+[JV: I like what you say about formalizing widgets regarding
+communicating information, receiving input and what you say about
+space and other contraints lead to the development of many different
+widgets. For sure this should be threaded into the discussion here. As
+for using actual GUIs here to illustrate I think this is a good
+idea. As for the print dialogs, that makes sense after containers are
+discussed and perhaps after some layout philosophies are discussed.]
+
+[ML: I still wonder about the ordering of the concepts below. It seems like labels and icons (i.e. text and symbolic graphics) are fundamental to any GUI, so should come first. Then comes the ubiquitous button that uses labels/icons to describe the action it performs. Dialogspou are a simple form of GUI, so could be introduced here. I understand the problems with them, but they're simple and familiar to everyone. Then the selection widgets, information display, text editing. More comments in-line.]
+
+  * Controls
+      * Selection
+        * Checkboxes
+        * Radio Button Groups
+        * Sliders and spinbuttons [ML: "continuous", move to bottom of list?]
+        * Drop down list
+        * List boxes
+        * Tabular display [ML: probably belongs under display of information]
+        * Tree widgets [ML: another information display]
+    * Inititiating an action 
+        * Buttons 
+        * icons [ML: more of a display widget right?]
+        * Menubars [ML: probably belongs after introduction of containers]
+        * Toolbars [ML: same as above]
+    *Displaying text for editing 
+        * Single line text 
+        * Text edit boxes 
+    * Display of information 
+        * Labels 
+        * Statusbars 
+        * Progress bars 
+        * Tooltips 
+    * Modal dialog boxes 
+        * File choosers 
+        * Message dialogs 
+* Containers 
+    * Top level windows 
+    * Box containers 
+
+[JV: I really like your Figure 1 here and your figure 4. The figure 4
+analog should appear in the gwidgets and the tcltk chapters too.]
+
+        * Frames 
+        * Expanding boxes 
+        * Paned boxes 
+    * Notebooks
+    * Grid layout 
+
+[JV: This might fall into its own chapter? I think here is where we
+should cover the HCI aspects and a general overview of GUI
+issues. Maybe once it is written, we will see if it integrates into
+the above or more naturally needs more breathing room.]
+
+[ML: I agree. There should be a short history of GUIs, including the origins of WIMP. And from there launch into the GUI design discussion. But there should probably be some introduction of HCI aspects above before we go through the entire litany of widgets. After all this comes GUI programming.]
+
+* GUI programming metaphors
+
+[ML: These could go in the new chapter]
+
+  * Graphical Toolkits
+  * Windows, menu, pointer (WIMP)
+    * Drag and Drop
+
+[ML: this stuff sounds like it belongs in the programming section.]
+
+  * Events:
+      * two styles of programming
+      * signals, callbacks
+
+[JV: We may want to move the programming styles to chapter 2 on
+programming GUIs in R]
+
+  * Document Object Model  (DOM)
+  * Model View Controller  (MVC)
+  * Action/Commands (undo/redo, design patterns)
+
+[JV: others?]
+
+
+* GUI design
+  * Layout aesthetics: Example of print dialogs
+  * other principles (John Chambers directive of making it hard to do
+    things that shouldn't be done
+
+* End of chapter notes 
+
+
+
+2 R Programming Practices for GUIs
+-------------------------------------------
+
+[ML: At some point, we probably need to discuss/reference the toolkits we aren't covering, like Swing through rJava, RwxWidgets, other Duncan TL vaporware.]
+
+* Why program GUIs in R 
+  * Why not to program GUIs in R
+
+[JV: I'm thinking convenience and speed but likely there are more
+issues to bring up.]
+
+* Object Oriented Programming
+  * in general
+  * S3
+  * S4
+
+[JV: this discussion might be a good time to introduce the widget heirarchy
+from Figure 2 in your paper.]
+
+[JV: I took out proto, and think you are right about it being a
+distraction we don't need.]
+
+* Programming Issues when programming GUIs
+  * Converting text into R  commands: eval(parse), do.call, ...
+
+[JV: I still think this is useful. I may be wrong, but this task isn't the
+most common, nor is there clearly a best way to do it.]
+
+[ML: I agree it belongs in here. Many GUIs will output R code as text, it only makes sense to go in the opposite direction. We should probably introduce both, i.e. include deparse(), dput(), sys.call(), ... Probably not as the first section though.]
+
+  * Efficient programming in R: *apply, vectorize, profiling code (profr?)
+
+[JV: One issues with gWidgets recently raised was its speed. I spent some
+time trying to vectorize and profiiling. I think this is generally
+useful to have spelled out, especially since speed is one issue why
+not to program GUIs in R.]
+
+[ML: these two (values vs references, scoping) are probably the most important and should come before efficiency and language manipulation.]
+
+  * Pass by copy vs pass by reference
+    * lists vs. environments, pointers
+
+  * Scoping in R, function closures
+
+  * Event loops [ML: more of a general GUI concept no?]
+
+* Localization (Internationalization)
+  * gettext, PO files, ...
+
+[JV: This issue isn't well documented with R as far as I could find,
+and for GUIs there are some things to avoid such as fixing the size of
+a label etc.]
+
+[ML: Good point.]
+
+[JV: Should we discuss XML here, any other useful things?]
+
+[ML: Not sure right now. Probably don't need XML.]
+
+3 An introduction to gWidgets 
+
+* Overview
+  * table of widgets, containers
+    methods, handlers
+
+[JV: rather than list all of the widgets etc, I thought a table would
+compactly do this. We have already described in chapter 1 what these
+widgets do and why. This should free us up to make the chapters have
+more of a cookbook style with comments as to extensions.]
+
+[ML: good idea.]
+
+* box containers, framed, expandgroup
+* Controls through examples
+  * constructors
+  * adding handlers
+    * using action= (gaction)
+  * icons
+  * methods
+
+[JV: I'd like to add in an example here about filtering tables using
+gWidgets. I thnk this might even be a good place to have the same
+example in gWidgets, RGtk2 and tcltk to compare the merits of each]
+
+[ML: It might make sense to put the comparisons after introducing each of the toolkits. RGtk2 and especially tcltk have a strange syntax. It might be too much for the reader at this point. Perhaps in each toolkit section we need a simple, common example to allow comparison. And then more complex examples that demonstrate the strengths of the particular toolkit.]
+
+* layout containers, notebooks
+
+* graphics device (RGtk2)
+
+* using icons
+  * buttons
+  * gcombobox
+  * gtable
+
+* menubar/toolbars/statusbars
+
+* dialogs
+
+[You have modal dialogs fairly central in your RGtk2 paper. I don't really
+like them as much. I'm more fond of the alert panels (like the alert
+panel example I have) that come out of the web GUI world. We should be
+consistent.]
+
+* End of chapter notes
+
+4 GUI examples using gWidgets
+-----------------------------
+
+
+* Example 1 -- a gformula interface? 
+* Example 2 -- graphical representations of R objects
+
+[JV: I'm giving a talk in late October and hope to have Example 1
+ready for that. Example 2 is following your idea, but to be honest I'm
+not sure I know exactly what you have in mind here.]
+
+[ML: me neither :)]
+
+5 RGtk2
+-----------
+
+[JV: I'll let you worry about these two chapters]
+
+[ML: Sure, and thanks for the nice outline :) I've already gone over it and tweaked it a little.]
+
+* Introduction
+    * The design of GTK+
+        * Classes
+        * Methods
+        * Properties
+        * Enumerated types and flags
+        * Events and signals
+        * The eventloop
+    * Mapping of GTK+ concepts to R
+    * Why to use RGtk2 (or not)
+* RGtk2 basics
+    * Table relating GTK+ widgets to corresponding gWidgets
+    * Simple example introducing RGtk2 syntax
+* Nifty high-level/special-case widgets
+    * Link button
+    * Scale button
+    * Selection of (recent) files, fonts and colors
+    * Wizard (GtkAssistant)
+    * About dialog
+    * Printing
+    * Status icon
+    * Handle box
+* Widgets Using Models
+    * Sliders, spinners, and scrollers (GtkAdjustment)
+        * Sliders
+        * Spinbuttons
+        * Scrollable windows
+    * Tree models and views (GtkTreeModel)
+        * Model interface
+        * Model implementations
+           * List Stores 
+           * Tree Stores
+           * rGtkDataFrame for tabular data
+        * View/Controllers
+           * TreeView
+           * IconView
+           * ComboBox
+    * Text models and views (GtkTextBuffer)
+    * Text entry widgets with completion (GtkCompletion)
+* Menus in RGtk2
+    * Menus, toolbars, and statusbars
+    * UI Managers and actions
+* Custom dialogs (sticking stuff in the vbox field, response types)
+* Graphics
+    * Embedding
+        * cairoDevice 
+       * rggobi
+    * Drawing custom graphics
+       * Gdk
+       * Cairo
+       * Pango
+    * Printing
+* Keyboard handling
+* Drag and drop, the clipboard
+* Theming support
+* Using RGtk2 and gWidgetsRGtk2 together
+* Extending GTK+ classes from R
+* Using glade to design GUIs
+    * Installing glade
+    * Laying out a basic GUI with glade 
+    * Loading and manipulating a GUI designed with glade 
+* End of chapter notes
+
+6 RGtk2 Examples:
+------------------
+
+* good example
+* really good example
+* awesome example
+
+7 tcltk
+-------------------
+[JV: I know we need to cover this, I'm not sure we need to have a
+follow up chapter with longer examples. I'm not sure the Rcmdr section
+is even needed. There is an article in RNews. As well the add-on
+libraries might go too]
+
+[ML: Agreed.]
+
+*  Overview
+   * tcl/tk API into tcltk
+*  Basic box container
+*  Controls
+*  Layout (more containers)
+*  Add-on Tcl/Tk libraries
+*  Extending Rcmdr 
+*  Example
+*  End of chapter notes
+
+8 Web-based GUIs
+---------------------
+* Overview
+* producing HTML code
+    * xtable    
+    * prettyR's htmlize
+    * R2HTML, Sweave with R2HTML
+    * The HTML document structure
+* CGI programming in R
+  * HTML forms
+  * CGIwithR
+  * RApache
+* Web 2.0, XMLhttpd
+  * Rpad
+  * gWidgetsWWW
+
+9 Appendices
+--------------
+
+* Instructions for installing packages

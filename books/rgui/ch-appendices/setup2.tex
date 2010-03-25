@@ -1,0 +1,59 @@
+%% From http://tolstoy.newcastle.edu.au/R/e6/help/09/04/11790.html
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Listings
+%% for code listings. Make pretty?
+\newenvironment{listing}{\begin{figure}}{\end{figure}}
+\newcommand{\definition}[1]{#1}
+
+%%\usepackage{listings}
+\definecolor{gris10}{gray}{0.10}
+\definecolor{gris90}{gray}{0.90}
+\definecolor{gris95}{gray}{0.95}
+\lstloadlanguages{R}
+
+\lstrenewenvironment{Sinput}[1][]{
+  \lstset{%
+    language={R},
+    basicstyle=\small,                        % print whole listing small
+%   keywordstyle=\color{black}\bfseries,      % style for keyword
+   keywordstyle=\ttfamily,      % style for keyword
+    emph={in},                                % define a list of word to emphasis
+%    emphstyle=\color{black}\bfseries,         % define the way to    emphase
+    emphstyle=\ttfamily,         % define the way to emphase
+    % emph={[2]out},                            % define a second list of word to emphasis
+    % emphstyle=[2]\color{red}\bfseries,        % define the way to emphase the list 2
+%    commentstyle=\color{gris10}\ttfamily,              % define the
+                                % style of the comments
+    stringstyle=\ttfamily,
+    identifierstyle=\ttfamily,
+    %% 
+    frame=leftline,                             % box arround the code
+    backgroundcolor=\color{gris95},           % background color
+   showspaces=false,                         % show the space in code, or not
+    stringstyle=\ttfamily,                    % style of the string (like "hello word")
+    showstringspaces=false,                   % show the space in
+                                % string, on not
+    aboveskip=\medskipamount,
+ #1
+  }
+}{}
+
+\lstrenewenvironment{Soutput}[1][]{
+  \lstset{%
+    language={R},
+    basicstyle=\small,                        % print whole listing small
+    keywordstyle=\color{black}\bfseries,      % style for keyword
+    emph={in},                                % define a list of word to emphasis
+    emphstyle=\color{black}\bfseries,         % define the way to emphase
+    % emph={[2]out},                            % define a second list of word to emphasis
+    % emphstyle=[2]\color{red}\bfseries,        % define the way to emphase the list 2
+    %% frame=single,                             % box arround the code
+    backgroundcolor=\color{gris95},           % background color
+    % commentstyle=\color{gris10},              % define the style of the comments
+    showspaces=false,                         % show the space in code, or not
+    stringstyle=\ttfamily,                    % style of the string (like "hello word")
+    showstringspaces=false,                   % show the space in  string, on not
+   #1
+  }
+}{} 

@@ -1,0 +1,42 @@
+;; RefTeX parse info file
+;; File: /Users/verzani/GUI/ch-ProgrammingPractices/OOP.Rnw
+;; User: verzani (john verzani)
+
+(set reftex-docstruct-symbol '(
+
+
+(xr nil "\\\\\\\\\\\\")
+
+(index-tags)
+
+(is-multi nil)
+
+(bibview-cache)
+
+(master-dir . "/Users/verzani/GUI/ch-ProgrammingPractices/")
+
+(label-numbers)
+
+(bof "/Users/verzani/GUI/ch-ProgrammingPractices/OOP.Rnw")
+
+(toc "toc" "      1 Principles of object oriented programming" "/Users/verzani/GUI/ch-ProgrammingPractices/OOP.Rnw" nil 3 "1" "\\subsection{Principles of object oriented programming}" 38)
+
+("sec:princ-object-orient" "s" nil "/Users/verzani/GUI/ch-ProgrammingPractices/OOP.Rnw" nil "")
+
+(toc "toc" "        1.1 Generic functions and methods in R" "/Users/verzani/GUI/ch-ProgrammingPractices/OOP.Rnw" nil 4 "1.1" "\\subsubsection{Generic functions and methods in R}" 126)
+
+("sec:gener-funct-meth" "s" nil "/Users/verzani/GUI/ch-ProgrammingPractices/OOP.Rnw" nil "")
+
+(toc "toc" "      1 Principles of object oriented programming" "/Users/verzani/GUI/ch-ProgrammingPractices/OOP.Rnw" nil 3 "1" "\\subsection{Principles of object oriented programming}" 38)
+
+(toc "toc" "      2 S3" "/Users/verzani/GUI/ch-ProgrammingPractices/OOP.Rnw" nil 3 "2" "\\subsection{S3}" 209)
+
+("sec:PROG:S3" "s" "% S3 % class(), dispatch, ``inheritance'' % use current generics % define new generics % not class b" "/Users/verzani/GUI/ch-ProgrammingPractices/OOP.Rnw" nil)
+
+(toc "toc" "      3 S4" "/Users/verzani/GUI/ch-ProgrammingPractices/OOP.Rnw" nil 3 "3" "\\subsection{S4}" 1166)
+
+("sec:PROG:S4" "s" "% ---------------- % S4 % dispath -- multiple arguments % defining classes, get classes, inheritance" "/Users/verzani/GUI/ch-ProgrammingPractices/OOP.Rnw" nil)
+
+(eof "/Users/verzani/GUI/ch-ProgrammingPractices/OOP.Rnw")
+))
+

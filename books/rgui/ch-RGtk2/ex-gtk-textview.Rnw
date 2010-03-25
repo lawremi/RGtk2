@@ -1,0 +1,7 @@
+XXX -- write me -- an exmple using a text view
+
+<<>>=
+library(RGtk2)
+@
+
+....

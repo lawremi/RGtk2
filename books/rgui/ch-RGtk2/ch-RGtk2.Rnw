@@ -1,0 +1,111 @@
+\SweaveOpts{keep.source=TRUE}
+% XXX- discuss GtkBin; which widgets have a window, which do not --image and label do not, and we mightwant them too,
+%   modify_bg() only affects widgets that have an associated gtk.gdk.Window.
+% > Widgets that do not have an associated window include .... gtk.Arrow,
+% > gtk.Bin, gtk.Box, gtk.Button, gtk.CheckButton, gtk.Fixed , gtk.Image ,
+% > gtk.Label , gtk.MenuItem , gtk.Notebook , gtk.Paned , gtk.RadioButton ,
+% > gtk.Range , gtk.ScrolledWindow , gtk.Separator , gtk.Table , gtk.Toolbar ,
+% > gtk.AspectFrame , gtk.Frame , gtk.VBox , gtk.HBox , gtk.VSeparator ,
+% > gtk.HSeparator . These widgets can be added to a gtk.EventBox to overcome
+% > this limitation.
+
+
+<<echo=FALSE>>=
+options(prompt=" ")
+options(continue=" ")
+options(width=80)
+
+findmethod <- function (obj, name, where=.GlobalEnv) 
+{
+    classes <- c(attr(obj, "interfaces"), class(obj))
+    sym <- paste(tolower(substring(classes, 1, 1)), substring(classes, 
+        2), toupper(substring(name, 1, 1)), substring(name, 2), 
+        sep = "")
+    which <- sapply(sym, exists, where)
+    if (!any(which)) 
+        stop(paste("No such method", name, "for classes", paste(class(obj), 
+            collapse = ", ")))
+    return(sym[which][1])
+}
+
+## override NULL in output
+args <- function(name) {
+  out <- capture.output(.Internal(args(name)))
+  invisible(cat(out[-length(out)],"\n"))
+}
+@ 
+
+
+%% RGtk2 chapter
+\chapter{RGtk2: Overview}
+%%\section{Introduction}
+\label{sec:RGtk2-Introduction}
+\SweaveInput{Introduction}
+
+\chapter{RGtk2: Basic Components}
+\label{sec:top-level-windows}
+\SweaveInput{BasicComponents}
+
+
+\chapter{RGtk2: Widgets Using Models}
+\label{sec:RGtk2:widgets-with-models}
+\SweaveInput{WidgetsWithModels}
+
+
+\chapter{RGtk2: Menus and Dialogs}
+\label{sec:RGtk2-menus}
+\SweaveInput{menus}
+
+
+\label{sec:RGtk2:dialogs}
+\SweaveInput{Pre-defined-dialogs}
+
+% \chapter{\code{cairoDevice}}
+% \label{sec:RGtk2-cairoDevice}
+% \SweaveInput{cairoDevice}
+
+% \chapter{Using \code{glade} to design GUIs}
+% \label{sec:RGtk2-glade}
+% \SweaveInput{Glade}
+
+%\section{End of chapter notes}
+%\label{sec:RGtk2:end-of-chapter}
+
+% * overview in inst
+% * gtk tutorial in R
+% * API at http://developer.gimp.org/api/2.0/gtk/
+% * ...
+
+% * widget gallery
+% http://library.gnome.org/devel/gtk/stable/ch02.html
+
+%  good source: http://developer.gnome.org/doc/GGAD/ggad.html
+
+% * http://gtk.org/documentation.html
+
+% * gtk API
+% http://library.gnome.org/devel/gtk/stable/
+
+% * pango manual 
+% http://library.gnome.org/devel/pango/stable/PangoMarkupFormat.html
+
+% * Missing discussion on standard dialogs: message, confirmations, etc.
+% filebrowser, colors selector, font selector, 
+
+% * Mention history: GIMP; GNOME; DTL RGtk; Michael Lawrence RGtk2
+% * Installation: windows; linux; mac OS X
+
+% * Info
+% php cookbook good source of info
+
+% DTL examples from omegahat
+
+% pygtk tutorial easier to read than C one (no types specifed)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+<<echo=FALSE>>=
+options(prompt="> ")
+options(continue="+ ")
+options(width=80)
+@ 
+

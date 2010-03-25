@@ -1,0 +1,326 @@
+%% Setup file for latex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Load packages
+\usepackage{mathptmx}  %% 420 pages          % for math fonts type 1
+\usepackage[pdftex]{graphicx}           % for graphics files
+\usepackage{floatflt}           % for ``floating boxes''
+\usepackage{index}
+\usepackage{relsize}            % for relative size fonts
+\usepackage{amsmath}            % for amslatex stuff
+\usepackage{amsfonts}           % for amsfonts
+\usepackage{url}                % for \url,
+\usepackage{listings}
+\usepackage{booktabs}
+
+%%\usepackage{subfigure}          % for subcaption command
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% The page
+
+
+%%
+%% Set up memor for book layout
+%% paragraph
+
+%% showtrims
+%%\showtrimson
+%%\trimXmarks
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%
+%% page layout
+%% assume basic page size for now
+\raggedbottom
+
+
+%%%%%%%%%%
+%% fonts
+%% Review:
+% Upright shape \textup{Upright shape} 
+% Italic shape \textit{Italic shape} 
+% Slanted shape \textsl{Slanted shape} 
+% S MAL L CAP S S HAP E \textsc{Small Caps shape} 
+% Series or weight 
+% Medium series \textmd{Medium series} 
+% Bold series \textbf{Bold series} 
+% Family 
+% Roman family \textrm{Roman family} 
+% Sans serif family \textsf{Sans serif family} 
+% Typewriter family \texttt{Typewriter family} 
+
+%% which fonts?
+%%\usepackage{avant}
+%%\usepackage{palatcm}
+\usepackage[T1]{fontenc}
+%\usepackage[adobe-utopia]{mathdesign}
+%\usepackage{aurical}
+
+\renewcommand{\encodingdefault}{T1}
+\usepackage[sc]{mathpazo}
+\linespread{1.05}         % Palatino needs more leading (space between lines)
+
+%% verbatim fonts
+%\setverbatimfont{\fontencoding{T1}\fontfamily{cmss}\selectfont} 
+%\setverbatimfont{\normalfont\ttfamily}
+
+
+
+
+
+%%%%%%%%%%
+%% titles
+
+%%%%%%%%%%
+%% divisions
+
+%% chapter styles
+\chapterstyle{ell}
+%\chapterstyle{memman}
+%\chapterstyle{veelo}
+%\chapterstyle{bringhurst}
+% \chapterstyle{crosshead}
+% \chapterstyle{dowding}
+% \chapterstyle{komalike}
+
+% \chapterstyle{ntglike}
+%\chapterstyle{tandh}
+%\chapterstyle{wilsondob}
+
+%%% pagestyle
+\pagestyle{ruled}
+%\pagestyle{companion}
+
+% captions -- The class uses the following to specify the standard LaTeX caption style: 
+% \captionnamefont{} 
+% \captiontitlefont{} 
+\captionstyle[\centering]{\raggedright} 
+\captionwidth{\linewidth} 
+% \normalcaptionwidth 
+% \normalcaption 
+\captiondelim{: } 
+%\postcaption{\rule{\linewidth}{0.4pt}\par}
+
+%%%%%%%%%%
+%% pagination headers
+
+%%%%%%%%%%
+%% paragraphs, lists
+\tightlists
+%% WHAT TO DO HERE? \renewcommand{\paragraph}[1]{\marginpar{#1}}
+
+%%%%%%%%%%
+%% content lists
+
+%%%%%%%%%%
+%% floats and captions
+
+%%%%%%%%%%
+%% rows and columns
+
+%%%%%%%%%%
+%% page notes
+
+%%%%%%%%%%
+%% decorative text
+
+
+%%%%%%%%%%
+%% Boxes verbatims files
+
+%%%%%%%%%%
+%% cross referencing
+
+%%%%%%%%%%
+%% back matter
+
+
+
+
+
+%%
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%% http://article.gmane.org/gmane.comp.lang.r.general/137990
+% \usepackage{listings}
+% \lstset{%
+% 	basicstyle=\scriptsize,
+% 	breaklines=true,
+% 	frame=single,
+% 	literate=
+% 		{<-}{$\leftarrow$}{2}
+% }
+% \renewcommand\lstlistlistingname{List of listings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Abbreviations (most are Rd-ish)
+%% Flag something to look at -- XXX is easy to search for
+\newcommand{\XXX}[1]{}%%{XXX-- #1 --XXX\\}
+
+
+\newcommand{\R}{\textsf{R}}
+\newcommand{\code}[1]{\texttt{#1}} % code
+\newcommand{\qcode}[1]{\code{"#1"}} % quoted code 
+
+\newcommand{\defn}[1]{\textit{#1}\index{\textit{#1}}}   % add in index
+\newcommand{\command}[1]{\code{#1}} % name of command
+\newcommand{\function}[1]{\code{#1}} % name of function
+\newcommand{\constructor}[1]{\function{#1}\index{#1}}
+
+\newcommand{\args}[1]{\code{#1}} % name of argument only
+\newcommand{\argument}[2]{\args{#1}\index{#2|\texttt{#1}}} % name of an argument, plus
+                                % function for index
+\newcommand{\subcommand}[2]{\textit{#2} \args{#1}\index{#2|\code{#1}}} % name of an tk subcommand plus
+                                % function for index
+\newcommand{\subcommanda}[3]{\subcommand{#1}{#2} \textit{#3} }
+\newcommand{\option}[2]{\args{#1}\index{#2|\code{#1}}} % name of an option plus constructor
+\newcommand{\class}[1]{\code{#1}}  % a class
+\newcommand{\generic}[1]{\code{#1}} % name of generic method -- no
+\newcommand{\meth}[1]{\generic{#1}}     % single arg, no class
+\newcommand{\method}[2]{\meth{#1}\index{#2|\code{#1}}} % name of method with
+                                % class for index
+
+\newcommand{\signal}[1]{\code{#1}} % name of signal
+\newcommand{\dfn}[1]{\textit{#1}} % definition
+\newcommand{\dfnref}[1]{\textit{#1}} % refer to a definition
+\newcommand{\env}[1]{\texttt{#1}} % environment setting
+\newcommand{\file}[1]{\texttt{#1}}
+\newcommand{\kbd}[1]{\textmd{#1}}
+\newcommand{\pkg}[1]{\texttt{#1}}
+\newcommand{\opt}[1]{\texttt{#1}} % R option
+\newcommand{\acronym}[1]{\texttt{#1}}
+
+%% HTML
+\newcommand{\tagger}[1]{\texttt{#1}}
+\newcommand{\tagattr}[2]{\texttt{#1}} % #2 is the tag for index
+
+\usepackage{fancyvrb}
+\DefineShortVerb{\|}
+\SaveVerb{ASSIGN}|<-|
+%%\newcommand{\ASSIGN}{\code{\UseVerb{ASSIGN}}} % <- formats funny
+\newcommand{\leftBracket}{$<$}
+\newcommand{\rightBracket}{$>$}
+%% THisis from the highlight pacakge
+\newsavebox{\hlboxlessthan}%
+\setbox\hlboxlessthan=\hbox{\verb.<-.}%
+\newcommand{\ASSIGN}{{\ }{\usebox{\hlboxlessthan}}{\ } }
+%%\newcommand{\ASSIGN}{\code{$<$-}}  %% <-
+\newcommand{\backslashn}{\code{$\backslash$n}} %% \n
+
+\newcommand{\GTK}{GTK+}
+\newcommand{\TCL}{Tcl}
+\newcommand{\Tcl}{\TCL}
+\newcommand{\TK}{Tk}
+\newcommand{\Tk}{Tk}
+\newcommand{\tcltk}{Tcl/Tk}
+\newcommand{\wxWidgets}{wxWidgets}
+\newcommand{\Java}{Java}
+\newcommand{\gWidgets}{gWidgets}
+
+\newcommand{\TITLE}{Programming GUIs within R}
+\title{\TITLE}
+\newcommand{\PACKAGENAME}{ProgGUIinR}
+\newcommand{\WINDOZE}{Windows}
+\newcommand{\UNIX}{Unix}
+\newcommand{\LINUX}{Linux}
+\newcommand{\OSX}{Mac OS X}
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\usepackage{color}
+%%% Define some colors
+\definecolor{gray70}{gray}{.70}
+\definecolor{gray60}{gray}{.60}
+\definecolor{gray50}{gray}{.50}
+\definecolor{gray40}{gray}{.40}
+\definecolor{gray25}{gray}{.25}
+
+%% \usepackage{fancyhdr} % in memoir
+
+
+
+\usepackage{fancyvrb}
+%\usepackage{makeidx}
+\usepackage{multicol}          % for making multiple columns
+%%\usepackage{fancybox}           % for framing
+
+\usepackage{prelim2e}           % put on bottom of each page
+\renewcommand{\PrelimWords}{Draft version, do not circulate}
+
+%\usepackage{/home/verzani/R/lib/R/share/texmf/Sweave}
+%\usepackage{Sweave}
+
+\usepackage{lscape}             % landscape tables
+%% Save space things
+%% http://www-h.eng.cam.ac.uk/help/tpl/textprocessing/squeeze.html 
+%% \usepackage{float}        
+% \usepackage{jvfloatstyle}       % redefine float.sty for my style. Hack
+% \floatstyle{jvstyle}            
+% \restylefloat{table}
+% \restylefloat{figure}
+
+
+\usepackage{natbib}
+\bibpunct{(}{)}{;}{a}{,}{,}
+
+\newcommand{\warning}[1]{Warning #1}
+\newcommand{\aside}[1]{Aside #1}
+
+
+%% An environment to flag an example to insert in index, allow for
+%% referencing, and allow formatting
+%% two arguments: title, label
+
+%% XXX Fix me to make look nicer
+\newcounter{Example}[chapter]
+\def\theExample {\thechapter.\arabic{Example}}
+\setcounter{Example}{1}
+
+\newenvironment{example}[2]{
+  \refstepcounter{Example} 
+  \vspace{12pt}
+  \noindent
+  \textbf{Example \theExample: #1}
+  \label{#2}
+  \newline
+}{
+  %% how to finish
+}
+
+
+% \newenvironment{example}[2]{
+%   \refstepcounter{Example} 
+%   {\vspace{12pt}\noindent#1\label{#2}\hrulefill\newline}}%
+%   {\noindent\hrulefill}
+
+% \newenvironment{example}[2]{
+%   \refstepcounter{Example} 
+%   {\vspace{18pt}\noindent\large\sf Example \theExample: #1 \hfill}\label{#2}
+% }{
+%   \noindent{\rule{2in}{1pt}\vspace{12pt}}
+% %% something at the finish too?
+% }
+%% Numbered code example
+%% wrap around <<>>= @ environements to get number and labeling possibility
+\newcounter{CodeExample}[chapter]
+\def\theCodeExample {\thechapter.\arabic{CodeExample}}
+\setcounter{CodeExample}{1}
+
+\newenvironment{codeexample}[2]{
+  \refstepcounter{CodeExample} 
+  \noindent{Example \theCodeExample}\newline
+  \hrulefill \newline}{
+  {\noindent\hrulefill}
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Listings
+%% for code listings. Make pretty?
+\newenvironment{listing}{\begin{figure}}{\end{figure}}
+\newcommand{\definition}[1]{#1}
+

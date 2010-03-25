@@ -1,0 +1,17 @@
+Layout of chapter:
+* example  -- tic tac toe
+  * shows structure of a program
+  * shows lack of built-in facilities
+
+* Design choices -- print dialogs
+  * discuss GUI design principles
+  * discuss 
+
+* widget choice 
+  * spss dialog -- shows several types
+
+* containers
+  * The basics top-level window, box, grid
+  * discuss heiarchy
+  * discuss resizing algorithm
+  * others: notebook, paned group, expand group (disclosure button)

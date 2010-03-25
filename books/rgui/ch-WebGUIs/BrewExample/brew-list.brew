@@ -1,0 +1,35 @@
+<%  source("brew-list.R") %>
+
+<h2> Click on a link to visit the CRAN site <h2>
+
+<%    ## show cran sites
+df <- getCRANmirrors() ## some data frame
+
+page <- as.numeric(getVal(GET,"page",1))
+uri <- SERVER$uri
+
+pg <- paginator(nrow(df))
+
+for(i in p.page(pg, page)) {
+   context <- df[i,]
+   brew(text=lineTemplate)  # defined in sourced file
+}
+
+%>
+
+<HR>
+
+<%
+## make pagination links
+makeLink("<<",pg, 1, uri)
+makeLink("<",pg, page - 1, uri)
+for(i in 1:p.nopages(pg)) {
+  if(i != page)
+     makeLink(i, pg, i, uri)
+  else
+     cat(i,"&nbsp;")
+}
+makeLink(">",pg, page + 1, uri)
+makeLink(">>",pg, p.nopages(pg), uri)
+%>
+

@@ -1,0 +1,24 @@
+There are many reasons why one would want to create a graphical user
+interface for a package or piece of \R\/ functionality. For example,
+\begin{itemize}
+\item GUIs allow others easier access to your functions,
+\item GUIs are useful if a function has many arguments,
+\item GUIs can be dynamic, they can direct the user how to fill in
+  arguments, can give feedback on the choice of an argument, they can
+  prevent or allow user input as appropriate,
+\item GUIs make dealing with large data sets easier both visually and
+  as an alternative to sometimes difficulte command line usage.
+\item GUIs can tightly integrate with graphics, for example the
+  rggobi interface among others.
+\end{itemize}
+Even though \R\/ has so much new interest, especially commericially
+supported interest it does not have a common graphical user
+interface. Many reasons exists. Historically those most capable of
+doing so in the \R\/ community had the least desire for one, the
+cross-platform nature of \R\/ makes it difficult to provide, the wide
+variety of user types lends a single interface unlikely to satisfy
+all. Even if it did have a common interfface, as much of \R's
+functionality depends on user contributions there will always be a
+demand for package programmers to provide convenient interfaces to
+their work. 
+

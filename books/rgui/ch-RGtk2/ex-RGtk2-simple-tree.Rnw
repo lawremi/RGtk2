@@ -1,0 +1,57 @@
+This example illustrates that the same tree view can display both
+rectangular and heirarchical data. The data we use will come from the
+\code{Cars93} data set used in Example~\ref{eg:RGtk2:tree-store}. In
+that example we defined a simple tree store from a data frame, with a
+level for manufacturer and make for different cars. We refer to that
+model by \code{tstore} below. 
+
+<<notShown, echo=FALSE>>=
+## define tstore, but aslo in earlier example so not shown
+data(Cars93, package="MASS")
+tstore <- gtkTreeStore("gchararray")
+Manufacturers <- Cars93$Manufacturer
+Makes <- split(Cars93[,"Model"], Manufacturers)
+for(i in unique(Manufacturers)) {
+  piter <- tstore$append()              # parent
+  tstore$setValue(piter$iter, column=0, value=i)
+  for(j in Makes[[i]]) { 
+    sibiter <- tstore$append(parent=piter$iter) # child
+    if(is.null(sibiter$retval)) 
+      tstore$setValue(sibiter$iter,column=0, value=j)
+  }
+}
+@ 
+
+
+Now, we make a simple rectangular store for the make information with
+the following:
+
+<<>>=
+store <- rGtkDataFrame(Cars93[,"Model", drop=FALSE])
+@
+
+The basic view is similar to that for rectangular data already presented.
+<<makeView>>=
+view <- gtkTreeView()
+vc <- gtkTreeViewColumn()
+vc$setTitle("Make")
+QT <- view$insertColumn(vc, 0)
+cr <- gtkCellRendererText()
+vc$packStart(cr)
+vc$addAttribute(cr, "text", 0)
+@ 
+
+<<makeGUI, echo=FALSE>>=
+w <- gtkWindow(show=FALSE)
+w['title'] <- "Example of changing models"
+sw <- gtkScrolledWindow()
+sw$add(view)
+w$add(sw)
+w$show()
+@ 
+
+Finally, we illustrate that the same view can be used with either model:
+<<>>=
+view$setModel(store)                    # the rectangular store
+view$setModel(tstore)                   # or the tree store
+@ 

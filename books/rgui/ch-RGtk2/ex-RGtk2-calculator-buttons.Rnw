@@ -1,0 +1,47 @@
+  The following example shows how to layout calculator buttons. In
+  this example we want each button click to call the same callback,
+  passing in user data to parameterize the call.  To do this
+  efficiently, we define a new method
+  \method{GetLabelsFromDataFrame}{gtkTable} which will map the entries
+  in a data frame to the button labels. This method is defined as,
+<<gtkTableGetLabelsFromDataFrame>>=
+gtkTableGetLabelsFromDataFrame <-
+  function(object, dataFrame, callBack, userData=NULL) {
+    checkPtrType(object, "GtkTable")
+    dataFrame <- as.data.frame(dataFrame)
+    d <- dim(dataFrame)
+    object$resize(d[1], d[2])            # resize dynamically
+    for(i in 1:d[1]) {
+      for(j in 1:d[2]) {
+        child <-  gtkButton(as.character(dataFrame[i,j]))
+        id <- connectSignal(child,"clicked", f=callBack,
+                            data=list(i=i, j=j, data=userData),
+                            user.data.first=TRUE)
+        ## 0-based for attaching
+        object$attach(child, 
+                      left.attach=j-1, j, top.attach=i-1, i)
+      }}}
+@ 
+The callback function should have signature
+\code{(userData,button)}. We use the following matrix to store our
+calculator layout.
+<<buttonLayout>>=
+m = rbind(
+  c("^", "(", ")", " / ", " == "),
+  c(7  ,   8,   9, " * ", " > "),
+  c(4  ,   5,   6, " - ", " >= "),
+  c(1  ,   2,   3, " + ", " < "),
+  c(0  , ".", " ", " ! ", " <= ")
+  )
+@ 
+Finally, we create our GUI using the method above to do the bulk of
+the work.
+<<buttonGUI>>=
+tab <- gtkTable(homogeneous=TRUE)       # same size buttons
+tab$getLabelsFromDataFrame(m, function(userData, b) 
+                           cat(b$getLabel()))
+w <- gtkWindow(show=FALSE)
+w$setTitle("Show matrix")
+w$add(tab)
+w$show()
+@ 

@@ -1,0 +1,448 @@
+*** define gtkTreeViewAddColumnType[Integer, Character, Numeric,
+Logical, Factor] to have (view, viewColumn, colInView, colInStore, coerce.FUN)
+use SetData to store
+
+Then handler would look like
+% f(cell, path, NewData,UserData) {
+%   view = UserData$view 
+%   store = view$getModel()
+%   ## if Filtering
+%   visibleRows <- which(store[,1])       # adjust for filtering
+%   i <- visibleRows[as.numeric(path) + 1]
+%   ## else
+%   i <- as.numeric(path) + 1
+%   j <- userData$column + 1
+%   coerce.FUN <- cell$GetData("coerce.FUN")
+%   if(!is.null(coerce.FUN)) 
+%     new Value = math.fun(coerce.FUN)(newValue)
+%   store[i,j] <- newValue
+%   return(TRUE)
+% }
+
+*** add in bit about selection, setting values 
+*** put into rGtkDataFrame example adding rows, adding columns and
+*shrinking* rows
+*** comment on use of ``store'' instead of CS oriented ``model'' (gtk,
+plus model reserved in stats)
+
+
+
+%% example of rGtkDataFrame 
+%% define a data store
+%% define a data store using proto and rGtkDataFrame
+%% show a view
+%% show a view and a graphic
+%% use proto for the objects for updating
+
+
+\subsection{Data stores}
+\label{sec:RGtk2:data-stores}
+
+MVC
+
+iter -- transient mark, path 0-based description (stringToPath)
+* how to convert
+*how to set values (by path, iter); how to get values (from path, from iter, from selection)
+
+liststore, tree store, rGtkDataFrame -- can define your own
+
+store has iter to reference the row, columns referenced by number
+
+can insert, append, remove row
+
+rows in tree stores can be specified as children
+
+iter can also be a path, which is useful for tree structures
+
+access via GetValue(iter,col); SetValue(iter,col,value)
+
+
+\subsection{Comboboxes}
+\label{sec:RGtk2:comboboxes}
+
+* use liststore
+
+* give example with editing
+
+%% list store for a combo box
+
+%% cell renderers
+
+\subsection{The tree widget}
+\label{sec:RGtk2:tree-widget}
+
+* use tree store append
+
+example -- CodeSegments ex-gtk-tree
+
+\subsection{Using \code{rGtkDataFrame} to display a data frame}
+\label{sec:RGtk2:rGtkDataFrame}
+%% Example of MVC in GTK+
+%% data store -- views -- (API for control?)
+
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.65\textwidth]{RGtk2-rGtkDataFrame}
+  \caption{A view of a data frame. This example uses
+    \code{rGtkDataFrame} to provide a model for the data storage. The
+    view illustrates different cell renderers that are available. The
+    first 6 columns use the text cell renderer, although each with
+    some modification. The ``combo'' column shows a how a combo box
+    cell renderer can be used to edit a value. The ``logical'' columns
+    shows how a checkbox cell render can be used for editing logical
+    values. Finally, the last column shows a Pixbuf cell renderer.}
+  \label{fig:RGtk2:rGtkDataFrame}
+\end{figure}
+
+
+This example shows how to use models or data stores. The main one used
+is a \class{RGtkDataFrame} instance used for a view of rectangular
+data.  Additionally, we show how to use \command{gtkListStore} to
+provide a model for a combo box. 
+
+The \GTK\/ widget to create a view of a a tabular data store is
+constructed by \command{gtkTreeView}. As the name suggests, it is also
+used to view heiarchical data. For efficiency reasons, the view is
+oriented around displaying the columns, not cell-by-cell. A
+\command{gtkTreeViewColumn} instance is used to display a column. A
+column can have a header with a title. This header can be used to
+resize the display or be dragged in a drag and drop action. The
+default behaviour is to just show a blank area, so this much be
+requested. The tree view column must specify which column in the
+display it is responsible for.
+
+Each column has one or more cell renderers defined for the display of
+the data. This example shows how different cell renderers are used to
+display text, checkboxes, comboboxes and icons.  The cell render
+specifies how that text will be rendered on a cell by cell basis. The
+``attributes'' of the cell renderer control how this is done. For
+example, for a text cell renderer the \code{text} attribute specifies
+the text to display, whereas the \code{size-points} attribute
+indicates the point size. The attributes can be specified per column
+using the \ASSIGN\/ syntax for a cell renderer, or have values
+specified by a column in the data store.
+
+If the data in a cell is to be edited, the \code{editable} attribute
+must be set to \code{TRUE} (\code{activatable} is the attribute for
+the toggle cell renderer). In this case, the cell may be
+edited. However, unless a handler is assigned to process the edits
+they will be lost. In the example below, the editors update the
+underlying model which in turn notifies the view to update its display.
+
+We also add to this example the concept of filtering. We set aside the
+first column in the data store to be a logical variable. If
+\code{TRUE}, we show that row and if \code{FALSE} we hide it.
+
+Finally, we show how to add a drag-and-drop action to a column header.
+
+
+
+This example is meant to be instructive, so is not programmed in an
+efficient manner. First we set up a data frame containing many
+different types of data.
+<<>>=
+library(RGtk2)
+df <- data.frame(visible = rep(TRUE,3),
+                 integer = 1:3,
+                 character = gettext(letters[1:3]),
+                 markup = c("<b>bold</b>","<i>italics</i>",
+                   "<span foreground='red'>red</span>"),
+                 real = c(1.234,1.23456789,-1.2),
+                 factor = as.factor(1:3),
+                 logical = c(TRUE,TRUE,FALSE),
+                 icons = c("gtk-ok","gtk-quit","gtk-stop"),
+                 stringsAsFactors = FALSE)
+@ 
+
+We use \command{rGtkDataFrame} to provide the data store. The
+\code{sfilter}  is used to filter the data by the 0-column in the data
+store (the \code{visible} column of the data frame \code{df}).
+The view is defined in terms of the filter. Without filtering, we
+would simply use \code{gtkTreeView(store)}.
+<<define-view>>=
+store <- rGtkDataFrame(df)
+filtered.store <- store$FilterNew()
+filtered.store$SetVisibleColumn(0)
+view <- gtkTreeView(filtered.store)                 
+@ 
+
+We can modify properties of the view, if desired. In this case we turn
+on alternate-row shading and enable searching through the \kbd{CTRL-F}
+command.
+
+<<>>=
+if(ncol(df) > 1)  view$SetRulesHint(TRUE ) # shade alternating rows
+view$SetEnableSearch(TRUE)                 # enable search
+@ 
+
+\GTK\/ expects 0-based counting, whereas our data store is 1-based
+like a data frame. We define these variables to help translate.
+<<>>=
+cols <- 1:ncol(df); names(cols) <- names(df)[-1]
+col <- 1
+@ 
+
+To render the first column, we have these steps:
+<<show-integer>>=
+viewColumn <- gtkTreeViewColumn()       # controls column display
+cellrenderer <- gtkCellRendererText()   # how to render the cells
+viewColumn$PackStart(cellrenderer, TRUE) # combine the two.
+viewColumn$SetTitle("integer")           # column header
+viewColumn$SetResizable(TRUE)            # resizable column widths
+viewColumn$SetClickable(TRUE)            # for dnd example
+QT <- view$InsertColumn(viewColumn, col) # which column in view 
+## per cell text attribute found from the 'integer' column of data store
+viewColumn$AddAttribute(cellrenderer, "text",cols["integer"])
+@ 
+The last line specifies that the text for the cell renderer is to come
+from the \code{integer} column of the data store (1 in this case,
+which is the second column of the data store.)
+
+The first 6 commands will be more or less the same for each column we
+show, except for a specification the type and column name.  The
+\command{gtkTreeViewColumnNewWithAttributes} can combine the first
+three of the lines into one command, but we prefer to write our own function
+to do this leaving some flexibility for different cell renderers. We
+overwrite global variables for the cellrenderer, the column view, and
+the views current column here, as once we've set up the column, we no
+longer need to reference them.
+
+<<>>=
+newCol <- function(type,name) {
+  cellrenderer <<- do.call(paste("gtkCellRenderer",type,sep=""),list())
+  viewColumn <<- gtkTreeViewColumn()
+  viewColumn$PackStart(cellrenderer, TRUE)
+  viewColumn$SetTitle(name)
+  viewColumn$SetResizable(TRUE)
+  viewColumn$SetClickable(TRUE)
+  view$InsertColumn(viewColumn, col <<- col+1)
+  invisible()
+}
+@ 
+
+To render character data is done in an idential manner as integer
+data. This also shows how properties of the cellrender are set with
+\ASSIGN, rather than \code{SetProperty} in \pkg{RGtk2}.
+<<character>>=
+newCol("Text","character")
+viewColumn$AddAttribute(cellrenderer, "text",cols["character"])
+cellrenderer["size-points"] <- 14 # point size
+@ 
+The \code{AddAttribute} method gets a value for each cell from a
+column in the data store, whereas the \code{size-points} property of
+the cell renderer is set the point size on a per-column basis.
+
+
+The text can be use Pango markup. Rather than set the \code{text}
+attribute, we use the \code{markup} one.
+<<pango-markup>>=
+newCol("Text","markup")
+viewColumn$AddAttribute(cellrenderer, "markup",cols["markup"])
+@ 
+
+Real numbers do not render well by default, as the decimal points are
+not aligned. This shows how a special function can be used to handle
+the rendering of each cell. In this case, we format the real values as dollars.
+
+To achieve this, we define a cell data function
+(\code{renderFunc}). The arguments to this function are the treeview
+column, the cellrenderer, the model, an iter and finally any data that
+is passed in. In this example, we use the iter to get the value with
+the \code{GetValue} method for \code{rGtkDataFrame}. The return value
+is a list, with component \code{retval} a logical indicating if a
+value is present in the model for the row indicated by \code{iter} and
+column specified (4th column in data frame, or 3 for the 0-based store).
+
+<<real>>=
+newCol("Text","real")
+cellrenderer['xalign'] <- 1
+cellrenderer['style'] <- "monotype"
+
+renderFunc = function(column, cellrenderer, model, iter, userData) {
+  val <- model$GetValue(iter,userData$column)
+  val <- val$value
+  ## format text using dollar sign
+  cellrenderer['text'] <-
+    ngettext(val<0,sprintf("-$%.2f",abs(val)),sprintf("$%.2f",val))
+
+}
+QT <- viewColumn$SetCellDataFunc(cellrenderer, renderFunc,
+                                 list(column=cols['real']))
+@ 
+
+The individual cells can be edited. To do so, we need to specify that
+this is the case. We use a cell renderer property to specify that for
+the entire column below.
+<<editable>>=
+newCol("Text","editable")
+viewColumn$AddAttribute(cellrenderer, "text",cols["real"]) 
+cellrenderer['xalign'] <- 1             # right align
+cellrenderer["editable"] <- TRUE
+@ 
+
+If we don't add a handler for the \code{edited} signal, no changes
+will be made to the data store. In this call back the data store is
+updated by row and column number which in turn updates the view.  The
+data store is not part of the signature of the call back function. It
+could be found using scoping rules, or as illustrated, passed to the
+function using the user data argument. Similarly, although the row is
+given through the \code{path} argument, the column is also passed
+through. However, since some rows may not be visible, and the row
+given through \code{path} does not reflect this, we need to make an
+adjustment. Finally, we need to coerce the value to be numeric, as
+that passed through to \code{newValue} is of character type.
+
+<<>>=
+callBack <- function(cell, path, newValue, userData) {
+  visibleRows <- which(store[,1])       # adjust for filtering
+  i <- visibleRows[as.numeric(path) + 1]
+  j <- userData$column + 1
+  userData$store[i,j] <- as.numeric(newValue) # coerce character
+}
+id <- gSignalConnect(cellrenderer, signal = "edited", f = callBack,
+                    data = list(store=store,column=cols["real"]))
+
+@ 
+
+
+This shows one way to edit a factor. Since adding a new level to an
+\code{rGtkDataFrame} data store is not supported, we check before
+trying in the call back.
+
+<<factor-editable>>=
+newCol("Text","factor")
+
+viewColumn$AddAttribute(cellrenderer, "text",cols["factor"]) 
+cellrenderer['xalign'] <- 1             # proportion of free space on left
+cellrenderer['cell-background'] <- "gray90" # background color
+cellrenderer["editable"] <- TRUE
+@ 
+
+<<factorCallBack>>=
+callBack <- function(cell, path, newValue, userData) {
+  visibleRows <- which(store[,1])
+  i <- visibleRows[as.numeric(path) + 1]
+  j <- userData$column + 1
+
+  if(newValue %in% userData$levels)
+    userData$store[i,j] <- newValue
+  else
+    cat(sprintf("The value %s is not in levels of the factor\n",newValue))
+}
+id <- gSignalConnect(cellrenderer, signal = "edited", f = callBack,
+                    data = list(store=store,column=cols["factor"],
+                      levels = levels(df$factor))
+                    )
+@ 
+
+
+Alternatively, a combo box where only pre-specified values may be
+chosen might be desirable for editing a factor. The
+\code{gtkCellRendererCombo} function provides a cell renderer. A
+separate model is provided for this which we use \code{gtkListStore}.
+<<factor-combo>>=
+newCol("Combo","combo")
+
+cstore <- gtkListStore("gchararray")     # make the store
+for(i in as.character(df[,"factor"])) {
+  iter <- cstore$Append()
+  cstore$SetValue(iter$iter,column=0, i)
+}
+cellrenderer['model'] <- cstore
+cellrenderer['text-column'] <- 0        #which column
+cellrenderer['editable'] <- TRUE       
+# cellrenderer['has-entry'] <- TRUE       #editable
+viewColumn$AddAttribute(cellrenderer, "text",cols["factor"]) ## show text
+@ 
+
+The call back is similar to above, the row is found from the
+\code{path} argument and the column passed in through the user data.
+<<>>=
+callBack <- function(cell, path, newValue, userData) {
+  visibleRows <- which(userData$store[,1])
+  i <- visibleRows[as.numeric(path) + 1]
+  j <- userData$column + 1
+  userData$store[i,j] <- newValue
+}
+id <- gSignalConnect(cellrenderer, signal = "edited", f= callBack,
+                    data =list(store=store,column=cols["factor"])
+                    )
+@ 
+
+%% logical toggle
+For logical values, a checkbox is good way for the user to make
+changes. This is supported through \command{gtkCellRendererToggle}, as
+illustrated next. Here, the property is called \code{activatable}, not
+\code{editable}, but otherwise this looks similar, although the call
+back signature is slightly different, as no edited value is passed through.
+<<>>=
+newCol("Toggle","logical")
+cellrenderer["activatable"] <- TRUE
+viewColumn$AddAttribute(cellrenderer, "active",cols["logical"])
+
+callBack <- function(cell, path, userData) {
+  visibleRows <- which(userData$store[,1])
+  i <- visibleRows[as.numeric(path) + 1]
+  j <- userData$column + 1
+  userData$store[i,j] <- !userData$store[i,j]
+}
+id <- gSignalConnect(cellrenderer, signal = "toggled", f = callBack,
+                    data =list(store=store,column=cols["logical"])
+                    )
+@ 
+
+Finally, the view allows icons to be shown. This use the stock icon
+names and \code{gtkCellRendererPixbuf} to display the icons.
+%% Pixbuf
+<<icons>>=
+newCol("Pixbuf","icons")
+viewColumn$AddAttribute(cellrenderer, "stock-id",cols["icons"])
+@ 
+
+As an illustration, we will set up a drop source for the column
+header. To do this, we use our own widget to label the column, and put
+the drop source on that widget.  This is a bit confusing, as we use a
+label for the column header name, but this label won't get the
+\code{drag-data-set} signal, instead a secret button that contains the
+label does. We need to walk up three steps on the containment tree to
+get that button, hence the ugly call below.
+
+<<>>=
+label = gtkLabel("drag me")
+viewColumn$SetWidget(label)
+TARGET.TYPE.TEXT   = 80                 
+button = viewColumn$GetWidget()$GetParent()$GetParent()$GetParent()
+
+QT <- gtkDragSourceSet(button,  
+                 GdkModifierType["button1-mask"] | 
+                 GdkModifierType["button3-mask"],
+                 list(gtkTargetEntry("text/plain", 0, TARGET.TYPE.TEXT)),
+                 GdkDragAction["copy"])
+sourceHandler = function(widget,context,selection,
+  targetType, eventTime, userData) {
+  selection$SetText(str=userData)
+  return(TRUE)
+}
+id <- gSignalConnect(button,signal="drag-data-get", f=sourceHandler,
+                    data= "This gets dropped")
+@ 
+
+
+To display the view, we add it to a scrolled window which is then
+added to a top-level window.
+<<showModel>>=
+sw <- gtkScrolledWindow()
+sw$SetPolicy("GTK_POLICY_AUTOMATIC","GTK_POLICY_AUTOMATIC")
+sw$Add(view)
+
+w <- gtkWindow(show=TRUE)
+w$SetTitle("Model")
+w$Add(sw)
+w$SetDefaultSize(500,200)
+@ 
+
+
+
+
+

@@ -1,0 +1,730 @@
+\documentclass{memoir}
+\input{setup}
+
+%% Begin here
+\begin{document}
+\thispagestyle{empty}
+\bibliographystyle{plainnat}
+
+\SweaveOpts{keep.source=TRUE}
+<<echo=FALSE>>=
+#options(prompt=" ")
+#options(continue=" ")
+#options(width=80)
+@ 
+
+\chapter{The model-view-controller pattern}
+
+%% orientation
+The model-view-controller design pattern for GUIs (MVC) is a means to isolate the
+data, the graphical represtation of the data, and the code that
+connects the two. The data is stored in a \textit{model}, this data
+may be represented by one or more \textit{views}, and a
+\textit{controller} connects a model with a view. 
+
+
+%% history
+According to a wikipedia article
+\begin{quotation}
+  MVC was first described in 1979 by Trygve Reenskaug, then working
+  on Smalltalk at Xerox PARC. The original implementation is described
+  in depth in the influential paper ``Applications Programming in
+  Smalltalk-80: How to use Model–View–Controller''.
+\end{quotation}
+It is widely implemented. In \pkg{RGtk2} some of the more complicated
+widgets, such as the tree view, a text view etc., have an explicit
+specification of the model. In \pkg{tcltk}, the TCL variables play the
+role the model and the TK widgets are views of the model. 
+
+In \R\/ an implementation is given in the bioconductor pacakge
+\pkg{MVCClass} using S4 classes. In a subsequent chapter, we provide
+a lightweight implementation using the \pkg{mutatr} package.
+
+%% responsibilities
+A common use, found in the \pkg{ggobi} package say, is graphical
+brushing. That is, when a user identfies certain points in one graph
+displaying a data set, the same points are highlighted in a different
+graph of the same data set. 
+
+In MVC language, we have the model is the data set, and there are two
+views -- the two graphs. When one graph is brushed a controller
+informs the model that there is a change in selection. The model then
+notifies any view that the selection has changed (again through a
+controller) and the view updates its representation accordingly. By
+inserting a controller between the model and the view, the two are
+decoupled which provides several benefits. These benefits include, the
+overall program flow is easier to debug, the decoupling allows views
+and models to be reused, and the model can be changed independent of the
+view (so one can update the graphical displays without having to
+remake the graphs). Of course, the benefits come at a cost --
+increased complexity, atleast conceptually.
+
+
+\section{A basic implementation}
+\label{sec:basic-implementation}
+To illustrate the concept and the responsibilities for each part we
+present an implementation using the \pkg{mutatr} package. This package
+extends \R's environments to create a somewhat object-oriented
+programming style. 
+
+Our implementation follows somewhat that given in the \pkg{pygtkmvc}
+python package
+(\url{http://sourceforge.net/apps/trac/pygtkmvc/wiki}). There are many
+different implementations, this one is relatively straightforward. 
+
+
+
+\subsection{A base trait}
+\label{sec:base-trait}
+
+The \pkg{mutatr} package implemenst protoype programming which is not
+technically object-oriented, but does allow for the main features:
+a concept of object properties, object methods, and object
+inheritance. However, the concept of a class is not used. (The
+\pkg{proto} package does something similar.) 
+
+Instead of classes, one defines a ``trait'' that provides the standard
+properties and methods for an instance. Sub traits can inherits these
+and modify them, as we will illustrate. 
+
+We load two package to start.
+<<>>=
+require(mutatr)
+require(digest)
+@ 
+
+We begin by defining a base trait from which our \code{Model},
+\code{View} and \code{Controller} traits will inherit. The naming
+convention is upper-camel case.
+<<>>=
+BaseTrait <- Object$clone()
+@ 
+The \pkg{mutatr} package allows for properties and methods to be
+defined within the \code{clone} call, but for typesetting reasons we
+will assign using the \code{\$} notation.
+
+We define a class property to keep track of the type of \code{mutatr}
+object we have, as there is not built in class concept.
+<<>>=
+BaseTrait$class <- "Base"
+@ 
+Properties can also be referenced by the method \meth{get\_slot}, set
+through \meth{set\_slot}. To check if a property is previously
+defined, the method \meth{has\_slot} is available.
+
+
+Defining a property, as above, is straightforward. Defining a method
+is a bit different, as there is a variable \code{self} available
+within the body of the function that refers to the \pkg{mutatr}
+object. Unlike usual \R\/ functions, changes to this variable are
+reflected outside the scope of the function body, hence the values are \textit{mutatable}
+<<>>=
+BaseTrait$append <- function(key, value, name) {
+  l <- self$get_slot(key)
+  l <- c(l, value)
+  if(!missing(name)) names(l)[length(l)] <- name
+  self$set_slot(key, l)
+}
+
+BaseTrait$add_class <- function(new_class) self$append("class", new_class)
+@
+The \pkg{mutatr} package allows for introspection -- determining
+properties at run time. We implement some methods for doing so. First,
+an implementation mirroring the \code{is} function of S4 programming.
+<<>>=
+BaseTrait$is <- function(class)  class %in% self$class
+
+@ 
+This function returns all properties and methods. 
+The \pkg{mutatr}  package provides an iterator to step back through an
+object's ancestors. The iterator modifies its value in place, when the
+method \meth{get_next} is called.
+<<>>=
+BaseTrait$list_objects <- function() {
+  iter <- ancestor_iterator(self)
+  methods <- c()
+  properties <- c()
+  while(iter$has_next()) {
+    ancestor <- iter$get_next()
+    nms <- ancestor$slot_names()
+    ind <- sapply(nms, function(i) is.function(ancestor$get_slot(i)))
+    methods <- unique(c(methods, nms[ind]))
+    properties <- unique(c(properties, nms[!ind]))
+  }
+  list(methods=methods, 
+       properties=setdiff(properties,c("protos","class","slot")))
+}
+@ 
+With the definition above, we can define the following:
+<<>>=
+BaseTrait$list_methods <- function() self$list_objects()$methods
+BaseTrait$list_properties <- function() self$list_objects()$properties
+@ 
+
+Finally, we make a convenience function to call a method provided a
+property with the given key exists and is a function.
+
+<<>>=
+BaseTrait$do_call <- function(fun, lst=list()) {
+  if(self$has_slot(as.character(fun)) &&
+     is.function(FUN <- self$get_slot(fun)))
+    do.call(FUN, lst)
+}
+@ 
+
+%% Model
+\subsection{A model trait}
+\label{sec:model-trait}
+A model consists of properties and methods to manipulate these
+properties. In addition we implement the observer pattern. An observer
+is a controller. When a model property changes, all the observers are
+notified of this. The observer can then update any views it is
+associated with. In order to implement this, we must change the
+property values through the \code{setattr} method. For convenience,
+the \code{init\_model} method will create \code{get}/\code{set} pairs for
+interacting with the property values by name. 
+
+<<>>=
+Model <- BaseTrait$clone()
+Model$add_class("Model")
+@ 
+
+
+
+
+We implement the observer pattern by defining a few key methods. An
+oberver is a controller instance (defined later). The following just
+stores these in a list using a private property.
+<<>>=
+Model$.observers <- list()               # private property (leading .)
+Model$add_observer <- function(observer) {
+  id <- length(self$.observers) + 1
+  self$.observers[[id]] <- observer
+}
+@ 
+
+<<>>=
+Model$remove_observer <- function(observer) {
+  ind <- sapply(self$.observers, function(i) identical(i, observer))
+  if(any(ind))
+    sapply(which(ind), function(i) self$.observers[[i]] <- NULL)
+}
+@ 
+This is the key method, which is called when a property value is
+changed through \code{setattr}. The controllers use a naming
+convention. If a property \code{prop1} is changed, say, then the a method
+\code{property\_prop1\_value\_changed} is called. For any model
+chagne, the \code{model\_value\_changed}, method, if
+present in the observer, is called.
+<<>>=
+Model$notify_observers <- function(key=NULL, value=NA, old_value=NA) {
+  sapply(self$.observers, function(i) {
+    if(digest(value) != digest(old_value)) { #serialize, then compare
+      if(!is.null(key)) {
+        i$do_call(sprintf("property_%s_value_changed",key),
+                  list(value=value, old_value=old_value))
+      }
+      i$do_call("model_value_changed", list()) # always call if present
+    }
+  })
+  invisible()
+}
+@ 
+
+The methods \code{getattr} and \code{setattr} are used to interact
+with the model's properties. 
+<<>>=
+Model$getattr = function(key) {
+  if(self$has_slot(key)) {
+    self$get_slot(key)
+  } else {
+    NULL
+  }
+}  
+Model$setattr = function(key, value) {
+  old <- self$getattr(key)
+  core(self)$set_slot(key, value)       # avoid a loop
+  self$notify_observers(key=key, value=value, old_value=old)
+}
+@ 
+
+On initialization, a model has get/set methods defined for its
+properties. The method \code{\$\ASSIGN.mutatr} will call these method
+\code{get\_name} when assignment to \code{name} is made, so this
+allows us to notify the observers when a model propert is changed.
+We avoid the name \code{init}, as \pkg{mutatr} calls this when
+\code{clone} is called, and we may want to wait to initialize our model.
+<<>>=
+Model$init_model = function() {
+  sapply(self$list_properties(), function(i) {
+    self$set_slot(paste("get_",i, sep=""),
+                  function(...) self$getattr(i))
+    self$set_slot(paste("set_", i, sep=""),
+                  function(value, ...) self$setattr(i,value))
+  })
+  invisible()
+}
+@ 
+
+%% view
+\subsection{A view trait}
+\label{sec:view-trait}
+
+A view typically provides a visual representation of a model property or
+properties. (Not all case, as a model could also be a view, etc..) Our
+view trait is oriented around using \pkg{gWidgets} to provide the
+graphical widgets.
+
+<<>>=
+View <- BaseTrait$clone()
+View$add_class("View")
+@ 
+
+The basic view properties include a list of attributes to pass to the
+widget constructor (\code{make\_ui}) and a list of widgets, to which
+we provide a few convenience methods.
+<<>>=
+View$attr <- list()                   # passed to widget constructor
+View$widgets <- list()                     # lists all widgets in the view
+View$get_widget_by_name <- 
+  function(key) self$widgets[[as.character(key)]]
+@ 
+The user interface for a view is created by the \code{make\_ui}
+method. This should create the widgets and save those that will be
+referenced later in the \code{widgets} property.
+<<>>=
+View$make_ui <- function(cont, attr=self$attr) {}
+@ 
+The view has two distinct states -- before the widget is realized and after. It
+is important to be able to determine which state the widget is in.
+<<>>=
+View$is_realized <- function() 
+  length(self$widgets) && isExtant(self$widgets[[1]])
+@ 
+
+Communication between the model and view is done through the
+controller. These methods are there to provide a standard interface in
+the simplest cases.  These just provide a convenient means for the
+controller, they do not sychronize with the model, as the view does
+not know the model or even the controller. 
+
+<<>>=
+View$get_value_from_view <- function() {}
+View$set_value_in_view <- function(widget_name, value) {
+  if(self$is_realized()) {
+    widget <- self$get_widget_by_name(widget_name)
+    svalue(widget) <- value
+  }
+}
+@ 
+
+Finally, we define similar functions to hide or disable the view.
+<<>>=
+View$enabled <- function(value) 
+  if(self$is_realized())
+  invisible(sapply(self$widgets, function(i) enabled(i) <- as.logical(value)))
+View$visible <- function(value) 
+  if(self$is_realized())
+  invisible(sapply(self$widgets, function(i) visible(i) <- as.logical(value)))
+@ 
+
+%% controller
+\subsection{A controller trait}
+\label{sec:controller-trait}
+Controllers have the difficult task of implementing the core logic
+that connects the various views and models. A controller needs to know
+the model and the view and provide a means for the two to communicate
+back and forth, if desired. 
+<<>>=
+Controller <- BaseTrait$clone()
+Controller$add_class("Controller")
+@ 
+We first define a \code{model} property and some methods to interact
+with it. When setting the model, we also take care to update the
+observers including the \code{adapters} which are a simple form of a
+controller discussed later.
+<<>>=
+Controller$model <- NULL
+Controller$assign_model <- function(model) {
+  if(is.null(self$model)) self$model <- model
+  self$model$remove_observer(self)
+  self$model <- model
+  self$model$add_observer(self)
+  sapply(self$.adapters, function(i) i$set_model(model))
+}
+@ 
+
+Similarly, we define a \code{view} property and some methods to
+interact with it.
+<<>>=
+Controller$view <- NULL
+Controller$assign_view <- function(view) {
+  if(is.mutatr(self$view) && self$view$is("View"))
+    self$remove_view()
+  self$view <- view
+  sapply(self$.adapters, function(i) i$set_view(view))
+}
+Controller$remove_view <- function() 
+  sapply(self$.adapters, function(i) i$remove_view())
+@ 
+
+The following two methods are used in the definition of the adapter pattern given
+later. As a controller can not be initialized until after a model and
+view are, we provide methods to be called during initialization that
+implement how a model updates a view and how a view updates a model.
+<<>>=
+Controller$update_from_model <- function() {}
+Controller$update_from_view <- function() {}
+@ 
+
+Here is the initialization method. In addition to calling the previous
+methods, it also initilizes any adapter, whose definitions follow later.
+<<>>=
+Controller$init_controller <- function() {
+  if(!is.null(self$model)) {
+    self$update_from_model()
+    self$model$init_model()
+    self$model$add_observer(self)
+  }
+  if(!is.null(self$view)) {
+    self$update_from_view()
+  }
+  ## call value_changed methods to update any views
+  nms <- self$list_methods()
+  sapply(nms[grep("property_(.*)_value_changed$", nms)],
+         function(i) {
+           prop <-  gsub("property_(.*)_value_changed$","\\1",i)
+           self$get_slot(i)(self$model$getattr(prop), NA)
+         })
+  ## register any adapters
+  self$register_adapters()
+}
+@ 
+
+The controller is used as an observer for its model. Sub classes may
+override methods such as these to implement specific actions when the
+model is changed. These follow the naming convention needed by our
+implementation of the observer pattern. 
+
+Defining a controller can be a bit involved. The adapter pattern
+simplifies this for the simple case that a single property is being
+observed and the view has just a single widget to update.
+
+We define an adapter using a list of lists:
+<<>>=
+## list of adapters. Each adapter specified with a list. E.g.,
+## list(property="propname",
+##      view_name="viewname",
+##      add_handler_name=c("addHandlerChanged"), # or NULL to suppress
+##      handler_user_data=NULL
+##      )
+Controller$adapters <- list()
+@ 
+The adapters are constructed by the \code{register\_adapters} method
+which is called in the \code{init\_controller} method. The actual adapter
+instances are stored in this private property.
+<<>>=
+Controller$.adapters <- list()
+Controller$.handlerIDs <- list()
+@ 
+Finally, our method to register the adapters is defined using the
+\code{Adapter} trait given below.
+<<>>=
+Controller$register_adapters <- function() {
+  if(length(self$adapters) && !length(self$.adapters)) {
+    ## make adpater instances
+    self$.adapters <- lapply(self$adapters, function(i) {
+      Adapter$clone(model=self$model,
+                    view=self$view,
+                    property=i$property,
+                    view_widget_name=i$view_widget_name,
+                    add_handler_name=i$add_handler_name,
+                    handler_user_data=i$handler_user_data
+                    )
+    })
+    sapply(self$.adapters, function(i) {
+      i$init_controller()
+    })
+  }
+}
+@ 
+
+
+Next we define the adapter trait.
+<<>>=
+Adapter <- Controller$clone()
+Adapter$add_class("Adapter")
+@ 
+We define some properties of the adapter. We specify the model
+property and name of the widget in the view for starters.
+<<>>=
+Adapter$property <- NULL
+Adapter$view_widget_name <- NULL       # otherwise last one
+@ 
+The view communicates back to the model through the controller through
+a callback. This defines the \pkg{gWidgets} ``\code{addHandlerXXX}'' to be used. One
+can leave this an empty string for no interaction
+<<>>=
+Adapter$add_handler_name <- c("addHandlerChanged") # 1 or more
+Adapter$handler_user_data <- NULL
+@ 
+
+This method is called by \code{init\_controller} to add a model observer that
+updates the widget value.
+<<>>=
+Adapter$update_from_model = function() {
+  ## set up model to notify view For example:
+  view <- self$view
+  meth_name<- sprintf("property_%s_value_changed", self$property)
+  self$set_slot(meth_name,
+                function(value, old_value) {
+                  view$set_value_in_view(self$view_widget_name, value)
+                })
+  ## call method
+  self$get_slot(meth_name)(self$model$getattr(self$property), NA)
+}
+@ 
+This method is called by \code{init\_controller} to add handlers to the widget to
+propogate changes back to the model.
+<<>>=
+Adapter$update_from_view <- function() {
+  ## here view knows about model through controller (this adapter)
+  if(!self$view$is_realized()) return()
+  if(!is.null(self$view_widget_name))
+    widget <- self$view$get_widget_by_name(self$view_widget_name)
+  else
+    widget <- tail(self$view$widgets, n=1)[[1]]
+  ## gWidgets specific call to set up control between model and
+  ## view
+  if(is.null(self$add_handler_name))
+    self$add_handler_name <- "addHandlerChanged"
+  sapply(self$add_handler_name, function(i) {
+    if(i != "") {
+      lst <- list(obj=widget,
+                  handler=function(h,...) {
+                    self <- h$action$adapter
+                    
+                    ## set property in model using name
+                    value <- svalue(h$obj)
+                    if(isExtant(h$obj)) {
+                      self$model$setattr(self$property, value)
+                    }
+                  },
+                  action=list(adapter=self))
+      self$append(".handlerIDs", do.call(i, lst))
+    }
+  })
+}
+@ 
+This method is called to remove a view, disconnecting the handlers
+that have been defined first.
+<<>>=
+Adapter$remove_view <- function() {
+  if(self$has_slot(".handlerIDs"))
+    sapply(self$.handlerIDs, function() removeHandler(self$view, i))
+}
+@ 
+This initialization method sets up the adapter.
+<<>>=
+Adapter$init_controller <- function() {
+  ## check that we are all there
+  if(!is.null(self$property) &&
+     (is.mutatr(model <- self$model) && model$is("Model")) &&
+     (is.mutatr(view <- self$view) && view$is("View"))) {
+    self$update_from_model()
+    self$update_from_view()
+    ## call value_changed methods to update any views
+    nms <- self$list_methods()
+    sapply(nms[grep("property_(.*)_value_changed$", nms)],
+           function(i) {
+             prop <-  gsub("property_(.*)_value_changed$","\\1",i)
+               self$get_slot(i)(self$model$getattr(prop), NA)
+           })    
+  } else {
+    warning("Adapter does not have view, model and property")
+  }
+  self$model$add_observer(self)
+}
+@ 
+
+
+\subsection{Examples}
+\label{sec:examples}
+
+
+\paragraph{A model observing itself}
+\label{sec:model-observ-itself}
+
+We can have model observe itself. In this example, the property
+\code{b} is multipled by $2.54$ whenever the value in \code{a} is changed.
+<<>>=
+m <- Model$clone()
+m$a <- 1
+m$b <- 2.54 * m$a
+m$property_a_value_changed <- function(value, old_value) m$set_b(2.54 * value)
+m$init_model()
+m$add_observer(m)
+##
+m$b
+m$a <- 10
+m$b
+@ 
+
+
+\paragraph{Silly example using an adapter}
+Our next example uses a model with just one property and has a view
+for this property.
+<<>>=
+model <- Model$clone(prop1=1)
+model$init_model()
+@ 
+
+Our view, for sake of illustration, has a text area.
+<<>>=
+require(gWidgets)
+options(guiToolkit="RGtk2")
+view <- View$clone(make_ui=function(cont, attr=.attr) {
+  self$widgets[['toplevel']] <- w <- gwindow("Example")
+  g <- ggroup(cont=w, horizontal=FALSE)
+  self$widgets[["text"]] <- gtext("", cont=g)
+})
+@ 
+
+We use an adapter to connect the text widget with the  property.
+
+<<>>=
+adapter <- Controller$clone(model=model, view=view)
+adapter$adapters <- list(prop1=list(
+                           property="prop1",
+                           view_widget_name="text"
+                           ))
+@ 
+Finally we initialize. The model and view need to be initialized prior
+to the controller.
+<<>>=
+view$make_ui()
+adapter$init_controller()
+@ 
+
+
+Using a controller allows us to do some more complicated things. In
+this case, clicking a button will update the value in property
+\code{a} by the amount in property \code{b}.
+
+
+<<>>=
+model <- Model$clone(a=0, b=5)
+view <- View$clone(make_ui=function(cont, attr) {
+  self$widgets$toplevel <- (w <- gwindow("Example"))
+  g <- ggroup(cont=w, horizontal=FALSE)
+  self$widgets[['e']] <- gedit(0, cont=g)
+  self$widgets[['b']] <- gbutton("add", cont=g)
+})
+controller <- Controller$clone(model=model, view=view)
+@
+We define methods to reflect changes in the model back to the view.
+<<>>=
+controller$property_a_value_changed <- function(value, old_value) {
+  widget <- self$view$get_widget_by_name("e")
+  svalue(widget) <- as.character(value)
+}
+controller$property_b_value_changed <- function(value, old_value)  {
+  button <- self$view$get_widget_by_name("b")
+  svalue(button) <- sprintf("add %s",value)
+}
+@ 
+<<>>=
+controller$update_from_view <- function() {
+  widget <- self$view$get_widget_by_name("e")
+  id <- addHandlerChanged(widget, handler= function(h,...) {
+    self <- h$action$controller
+    model <- self$model
+    val <- svalue(h$obj)
+    model$set_a(val)
+  }, action=list(controller=self))
+  self$append(".handlerIDs",id)
+
+  widget <- self$view$get_widget_by_name("b")
+  id <- addHandlerClicked(widget, handler = function(h,...) {
+    model <- h$action$controller$model
+    model$set_a(as.numeric(model$get_a()) + as.numeric(model$get_b()))
+  }, action=list(controller=self))
+  self$append(".handlerIDs", id)
+}
+@
+Now we need to initialize the model, view and controller.
+<<>>=
+model$init_model()
+view$make_ui()
+controller$init_controller()
+@ 
+
+
+
+
+
+\paragraph{One model property two views}
+Our next example shows how we can share a model among views, in this
+case to sychronize a spinbutton and a slider widget.
+
+<<>>=
+model <- Model$clone(value=1)
+model$init_model()
+@ 
+<<>>=
+view <- View$clone()
+view$make_ui <- function() {
+  self$widgets[['toplevel']] <- (w <- gwindow("Example"))
+  g <- ggroup(cont = w, horizontal=TRUE, expand=TRUE)
+  self$widgets[['slider']] <- gslider(from=0, to=10, by=1, cont=g, expand=TRUE)
+  self$widgets[['spinner']] <- gspinbutton(from=0, to=10, by=1, cont=g)
+}
+view$make_ui()
+@ 
+
+<<>>=
+controller <- Controller$clone(model=model, view=view)
+@ 
+We bypass \code{update\_from\_model} and define the value changed
+method directly:
+<<>>=
+controller$property_value_value_changed <- function(value, old_value) {
+  ## update both widget
+  widgets <- lapply(c("slider","spinner"), function(i) 
+                    self$view$get_widget_by_name(i))
+  sapply(widgets, function(i) svalue(i) <- value)
+}
+@
+The same handler is used for each widget to update the model, giving
+us the following code to add the callbacks when the GUI is updated by
+the user.
+<<>>=
+controller$update_from_view <- function() {
+  handler <- function(h,...) {
+    self <- h$action$controller
+    model <- self$model
+    val <- svalue(h$obj)
+    model$set_value(val)
+  }
+  widgets <- lapply(c("slider","spinner"), function(i) 
+                    self$view$get_widget_by_name(i))
+  IDs <- sapply(widgets, function(i) 
+                addHandlerChanged(i, handler=handler, action=list(controller=self))
+                )
+}
+controller$init_controller()
+@ 
+
+                                      
+                              
+
+
+
+
+
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

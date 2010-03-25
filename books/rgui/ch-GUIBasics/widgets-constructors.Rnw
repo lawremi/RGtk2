@@ -1,0 +1,30 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                  %%
+%%  This is a LaTeX2e table fragment exported from Gnumeric.        %%
+%%                                                                  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+checkbox	&gcheckbox, gcheckboxgroup	&gtkCheckButton	&wxCheckBox	&tkcheckbutton	&JCheckBox	&\\
+radio button group	&gradio	&gtkRadioButton	&wxRadioButton	&tkradiobutton	&JRadioButton	&\\
+sliders	&gslider	&gtkHScale, gtkVScale	&wxSlider	&tkscale	&Jslider	&\\
+spinbuttons	&gspinbutton	&gtkSpinButton	&wxSpinCtrl	&tkwidget spinbox	&Jspinner	&\\
+combo box	&gdroplist	&gtkComboBox	&wxComboBox	&(Bwidget) tkwidget ComboBox	&JComboBox	&\\
+list box	&gtable	&gtkTreeView	&wxListBox	&tklistbox	&Jlist	&\\
+table	&gtable	&gtkTreeView	&wxGrid	&(Tktable) tkwidget table	&Jtable	&\\
+tree	&gtree	&gtkTreeView	&wxTreeCtrl	&(Bwidget) tkwidget Tree	&Jtree	&\\
+buttons	&gbutton	&gtkButton	&wxButton	&tkbutton	&Jbutton	&\\
+icons	&gimage	&gtkImage	&wxImage, wxBitmap, wxIcon	&	&ImageIcon	&\\
+menu bars	&gmenu	&gtkMenuBar	&wxMenu	&tkmenu	&JMenuBar	&\\
+popup menus	&gmenu	&gtkMenu	&wxMenu	&	&JMenuBar	&\\
+toolbars	&gtoolbar	&gtkToolbar	&wxToolBar	&	&JToolBar	&\\
+single line text	&gedit	&gtkEntry	&wxTextCtrl	&tkentry	&JTextField	&\\
+multi-line text	&gtext	&gtkTextView	&wxTextCtrl	&tktext	&JTextArea	&\\
+labels	&glabel	&gtkLabel	&wxStaticText	&tklabel	&Jlabel	&\\
+tooltips	&NA	&gtkTooltips	&SetToolTip (method)	&	&setToolTipText (method)	&\\
+statusbar	&gstatusbar	&gtkStatusbar	&wxStatusBar	&	&	&\\
+progress bar	&NA	&gtkProgressBar	&wxGauge	&	&JProgressBar	&\\
+separators	&gseparator	&gtkHSeparator, gtkVSeparator	&wxStaticLine	&	&Jseparator	&\\
+file chooser	&gfile	&gtkFileChooserDialog	&wxFileDialog, wxDirDialog	&tcl tk\_getOpenFile, tk\_getSaveFile	&JFileChooser	&\\
+date chooser	&gcalendar	&gtkCalendar	&wxCalendarCtrl	&(Iwidgets) tkwidget iwidgets::calendar	&	&\\
+color picker	&	&gtkColorSelectionDialog	&wxColourDialog	&tkcmd tk\_choosecolor	&JColorChooser	&\\
+font chooser	&	&gtkFontSelectionDialog	&wxFontDIalog	&	&	&\\
+message dialog	&gmessage, gconfirm	&gtkMessageDialog	&wxMessageDialog	&tkmessageBox	&showMessageDialog	&\\

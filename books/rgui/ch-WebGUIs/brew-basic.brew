@@ -1,0 +1,4 @@
+Run, no print <% x <- 4 %>
+Eval and print <%= x^2 %>
+Comment <%# A comment %>
+Inline <%= x -%>  value

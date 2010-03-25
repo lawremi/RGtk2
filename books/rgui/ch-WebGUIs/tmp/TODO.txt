@@ -1,0 +1,24 @@
+Brew examples
+
+recursive brew -- modularity header, footer, css, ...
+ paginator
+ brew within a template
+form elements
+  input tag
+  textarea, select
+  file
+Like example for currency conversion
+  graphics -- png
+  graphics -- canvas
+
+data base: SQLite example, uses paginator
+maintain state: cookies, sessionid -- filehashSQLite
+
+brew from file   -- django like.
+  separate code logic from template, url redirect
+
+xmlhttpd for gWidgets
+  * configuration in RApache.conf file
+  * need to configure where AJAX handler lives
+  * need to configure where sesssionDB lives
+  * 

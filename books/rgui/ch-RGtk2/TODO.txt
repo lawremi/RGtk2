@@ -1,0 +1,5 @@
+* running script from windows icon.
+
+By the way I solved the event loop problem so the gui stops in batch mode and the users is able to interact with the gui.
+It is done by just adding gtkMain() to the end of the script and building in a function gtkMainQuit() for the quit icon to stop the program when finished.
+Regards,

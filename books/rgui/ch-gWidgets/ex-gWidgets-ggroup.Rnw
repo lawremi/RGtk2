@@ -1,0 +1,48 @@
+<<echo=FALSE>>=
+## example to sho nesting of vertical and horizontal box containers
+require(gWidgets)
+@ 
+
+This example shows the nesting of vertical and horizontal box containers and
+the effect of the \code{expand} and \code{anchor}
+arguments. Figure~\ref{fig:ggroup-example} shows how it is implemented
+in two different toolkits.
+\begin{figure}
+  \centering
+  \includegraphics[width=.45\textwidth]{ex-gWidgets-ggroup-RGtk2}\quad
+  \includegraphics[width=.45\textwidth]{ex-gWidgets-ggroup-tcltk}
+ \caption{Use of \code{expand}, \code{anchor}, \code{addSpace} and
+     \code{addSpring} with the \code{ggroup} constructor in \pkg{gWidgetsRGtk2} and \pkg{gWidgetstcltk}}
+  \label{fig:ggroup-example}
+\end{figure}
+
+
+
+
+
+<<>>=  
+w  <- gwindow("ggroup examples")
+g  <- ggroup(cont=w, horizontal=FALSE, expand=TRUE)
+g1 <- ggroup(cont=g, expand=TRUE)
+b  <- gbutton("no expand", cont=g1)
+b  <- gbutton("expand", cont=g1, expand=TRUE)
+g2 <- ggroup(cont=g)
+l  <- glabel("expand=TRUE, anchor=c(-1,0)", anchor=c(-1,0), 
+            expand=TRUE, cont=g2)
+g3 <- ggroup(cont=g, expand=TRUE)
+l  <- glabel("expand=FALSE, anchor=c(0,0)", anchor=c(0,0), 
+            expand=TRUE, cont=g3)
+g4 <- ggroup(cont=g, expand=TRUE)
+l  <- glabel("expand=TRUE, anchor=c(1,0)", anchor=c(1,0), 
+            expand=TRUE, cont=g4)
+@ 
+  
+This demonstrates how one might use the \meth{addSpace} and \meth{addSpring}
+methods in a button bar.
+<<>>=
+g5 <- ggroup(cont=g, expand=FALSE)
+addSpring(g5)
+b  <- gbutton("cancel", cont=g5, handler=function(h,..) dispose(w))
+addSpace(g5, 10)
+b  <- gbutton("ok", cont=g5)
+@ 

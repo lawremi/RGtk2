@@ -1,0 +1,30 @@
+The basic input dialog requires just the first argument.
+<<eval=FALSE>>=
+ginput("Message goes here", title="example dialog")
+@ 
+
+Here we use the question icon for a confirmation dialog, as the message is a question.
+<<eval=FALSE>>=
+ret <- gconfirm("Really delete file?", icon="question")
+@ 
+
+This illustrates how to use the return value.
+<<eval=FALSE>>=
+ret <- ginput("Enter your name", icon="info")
+if(!is.na(ret)) 
+  cat("Hello",ret,"\n")
+@ 
+
+The \code{gbasicdialog} constructor can be used to make modal
+dialogs. This example will force the user to
+select a color before proceeding with anything else. 
+<<eval=FALSE>>=
+## create a parent container
+dlg <- gbasicdialog("Pick a color", handler = 
+                    function(h,...) print(svalue(widget)))
+## create the dialog using dlg as the parent container
+widget <- gtable(colors(), cont = dlg)
+## show the modal dialog (not visible(dlg) <- TRUE)
+visible(dlg, set=TRUE)    
+@ 
+

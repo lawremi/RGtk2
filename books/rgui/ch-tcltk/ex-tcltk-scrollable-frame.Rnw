@@ -1,0 +1,82 @@
+<<echo=FALSE>>=
+## This is also an example of using a canvas to make a scrollable box container
+## cf http://mail.python.org/pipermail/python-list/1999-June/005180.html
+
+library(tcltk)
+addScrollbars <- function(parent, widget) {
+  xscr <- ttkscrollbar(parent, orient="horizontal",
+                       command=function(...) tkxview(widget, ...))
+  tkconfigure(widget, xscrollcommand = function(...) tkset(xscr,...))
+
+  yscr <- ttkscrollbar(parent, command=function(...) tkyview(widget,...))
+  tkconfigure(widget, yscrollcommand = function(...) tkset(yscr,...))
+  
+  ## Pack into a grid, from tkFAQ 10.1
+  tkgrid(widget,row=0,column=0, sticky="news")
+  tkgrid(xscr,row=1,column=0, sticky="ew")
+  tkgrid(yscr,row=0,column=1, sticky="ns")
+  tkgrid.columnconfigure(parent, 0, weight=1)
+  tkgrid.rowconfigure(parent, 0, weight=1)
+}
+@ 
+This example shows how to use a canvas widget to create a box
+container that scrolls when more items are added than will fit in the
+display area. The basic idea is that a frame is added to the canvas
+equipped with scrollbars using the \subcommand{create
+  window}{tkcanvas} subcommand. The binding to the \Event{Configure}
+event updates the scrollregion of the canvas widget to include the
+entire canvas. This grows, as items are added to the frame. This is
+modified from an example found at \url{
+  http://mail.python.org/pipermail/python-list/1999-June/005180.html}.
+
+This constructor returns a box container that scrolls as more items are added. The parent passed in must use the grid manager for its children.
+<<>>=
+scrollableFrame <- function(parent, width= 300, height=300) {
+  canvasWidget <- 
+    tkcanvas(parent,
+             borderwidth=0, highlightthickness=0,
+             background="#e3e3e3", # match themed widgets
+             width=width, height=height)
+  addScrollbars(parent, canvasWidget)
+
+  gp <- ttkframe(canvasWidget, padding=c(0,0,0,0))
+  gpID <- tkcreate(canvasWidget, "window", 0, 0, anchor="nw", 
+                   window=gp)
+  
+  tkbind(gp,"<Configure>",function() {  # updates scrollregion
+    bbox <- tcl(canvasWidget, "bbox", "all")
+    tcl(canvasWidget,"config", scrollregion=bbox)
+  })
+
+  return(gp)
+}
+@ 
+
+To use it, we create a simple GUI as follows:
+<<>>=
+w <- tktoplevel()
+tkwm.title(w,"Scrollable frame example")
+g <- ttkframe(w); tkpack(g, expand=TRUE, fill="both")
+gp <- scrollableFrame(g, 300, 300)
+@ 
+
+To display a collection of available fonts requires a widget or
+container that could possibly show hundreds of similar values. The
+scrollable frame serves this purpose well
+(cf. Figure~\ref{fig:fig-tcltk-all-fonts}).  The following shows how a
+label can be added to the frame whose font is the same as the label
+text. The available fonts are found from \function{tkfont.families}
+and the useful coercion to character by \function{as.character}.
+<<>>=
+fontFamilies <- as.character(tkfont.families())
+## skip odd named ones
+fontFamilies <- fontFamilies[grep("^[[:alpha:]]", fontFamilies)] 
+for(i in 1:length(fontFamilies)) {
+  fontName <- paste("tmp",i,sep="")
+  try(tkfont.create(fontName, family=fontFamilies[i], size=14), 
+      silent=TRUE)
+  l <- ttklabel(gp, text=fontFamilies[i], font=fontName)
+  tkpack(l, side="top", anchor="w")
+}
+@ 
+

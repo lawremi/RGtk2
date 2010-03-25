@@ -1,0 +1,36 @@
+\begin{figure}
+  \centering
+  \includegraphics[width=.5\textwidth]{ex-gWidgets-selection-widgets}
+  \caption{A template for a GUI using some of the widgets for selection.}
+  \label{fig:ex-gWidgets-selection-widgets}
+\end{figure}
+
+This example provides template for a possible GUI that would allow a
+specification of arguments for a function
+(Figure~\ref{fig:ex-gWidgets-selection-widgets}).  A checkbox is
+used to toggle whether the other controls are enabled or not.
+<<>>=
+w <- gwindow("Example of selection widgets", visible=FALSE)
+g <- ggroup(horizontal=FALSE, cont=w)
+cb <- gcheckbox("Allow selection", cont=g, checked=FALSE, 
+                handler = function(h, ...) {
+                  enabled(f) <- svalue(cb)
+                })
+
+f <- gframe("set off variables", cont=g)
+tbl <- glayout(cont=f)
+right <- c(1, 1); left <- c(-1, 1)
+tbl[1,1, anchor=right] <- "Radio label"
+tbl[1,2, anchor=left] <- (rb <- gradio(1:3, horizontal=TRUE, 
+           cont = tbl))
+tbl[2,1, anchor=right] <- "checkbox group label"
+tbl[2,2, achor=left] <- (chb <- gcheckboxgroup(letters[1:3], 
+           horizontal=FALSE, cont = tbl))
+tbl[3,1, anchor=right] <- "combobox label"
+tbl[3,2, achor=left] <- (combo <- gcombobox(state.name, 
+           cont = tbl))
+enabled(f) <- FALSE                     
+visible(w) <- TRUE
+@ 
+               
+    

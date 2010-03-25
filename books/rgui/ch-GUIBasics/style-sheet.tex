@@ -1,0 +1,75 @@
+%%% Put style stuff here
+
+%% shortcuts
+\newcommand{\tsa}{\dots,a_{-2}, a_{-1},a_0, a_1, a_2,\dots}
+\newcommand{\tsx}{\dots,x_{-2}, x_{-1},x_0, x_1, x_2,\dots}
+\newcommand{\tsz}{\dots,z_{-2}, z_{-1},z_0, z_1, z_2,\dots}
+
+
+
+%\definecolor{MathDef}{rgb}{.25,0,.3}
+%\definecolor{RFunc}{rgb}{0.2000000, 0.2274510, 0.6235294}
+%\definecolor{RCode}{rgb}{0.2000000, 0.2274510, 0.6235294}
+%\definecolor{RInput}{rgb}{0.2000000, 0.2274510, 0.6235294}
+%\definecolor{ROutput}{rgb}{0.10, 0.16, 0.82}
+%\definecolor{RArg}{rgb}{0.2000000, 0.2274510, 0.6235294}
+%\definecolor{RClass}{rgb}{.69,.35,.18}
+%\definecolor{RPackage}{rgb}{.69,.35,.18}
+%\definecolor{RData}{rgb}{.33,.25,.61}
+%\definecolor{Data}{rgb}{.25,.25,.61} % for built in data sets
+%\definecolor{Example}{rgb}{.25,0,.49}
+
+
+%%\newcommand{\R}{\textbf{R}}
+
+%% RCapital, not Slowercase
+%% With colors
+% \newcommand{\RRaw}[1]{\texttt{#1}}
+% \renewcommand{\RCode}[1]{{\color{RCode}\RRaw{#1}}}
+% \newcommand{\RArg}[1]{{\color{RArg}\RRaw{#1=}}}
+% \newcommand{\RClass}[1]{{\color{RCode}\RRaw{#1}}}
+% \newcommand{\RData}[1]{{\color{RData}\RRaw{#1}}}
+% \newcommand{\Data}[1]{{\color{Data}\RRaw{#1}}}
+% \renewcommand{\RFunc}[1]{{\color{RFunc}\RRaw{#1()}}}
+% \renewcommand{\RPackage}[1]{{\color{RPackage}\textbf{#1}}}
+
+%%% no colors here
+\newcommand{\RRaw}[1]{\texttt{#1}}
+\renewcommand{\RCode}[1]{\RRaw{#1}}
+\newcommand{\RArg}[1]{\RRaw{#1=}}
+\newcommand{\RClass}[1]{\RRaw{#1}}
+\newcommand{\RData}[1]{\RRaw{#1}}
+\newcommand{\Data}[1]{\RRaw{#1}}
+\renewcommand{\RFunc}[1]{\RRaw{#1()}}
+\renewcommand{\RPackage}[1]{\textbf{#1}}
+
+
+\newenvironment{Example}[1]{
+  \begin{trivlist}\item[]
+  \textbf{Example: #1}\quad}{\end{trivlist}}
+\newcommand{\Source}[1]{\footnote{Source: #1}}
+%\newcommand{\MathDef}[1]{\textit{#1}}
+%\newcommand{\RDef}[1]{\textit{#1}}
+
+%% shortcuts
+%%\newcommand{\R}{\textbf{R}}
+%%\newcommand{\E}{\mathbb{E}}
+%%\newcommand{\COV}{\mathbb{COV}}
+
+
+\definecolor{gray}{gray}{.4}
+\DefineVerbatimEnvironment{codeSnippet}{Verbatim}{
+%  formatcom=\color{RInput},
+  frame=leftline,
+  xleftmargin=2mm, 
+  framesep=2mm,
+  framerule=0.1mm,
+  fontsize=\relsize{-1},
+  commandchars=\\\{\}
+}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "ts.tex"
+%%% End: 

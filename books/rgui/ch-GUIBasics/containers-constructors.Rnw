@@ -1,0 +1,12 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                  %%
+%%  This is a LaTeX2e table fragment exported from Gnumeric.        %%
+%%                                                                  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+top-level window	&gwindow	&gtkWindow	&Rframe (wxFrame)	&tktoplevel	&Jframe\\
+Box container	&ggroup	&gtkHBox, gtkVBox	&wxBoxSizer	&tkpack	&BoxLayout, FlowLayout\\
+Framed box	&gframe	&gtkFrame	&wxStaticBoxSizer	&tkwidget labelframe	&setBorder\\
+Expanding box	&gexpandgroup	&gtkExander	&	&	&\\
+Sashes	&gpanedgroup	&gtkHPaned, gtkVPaned	&wxSplitterWindow	&tkwidgets panedwindow	&JSplitPane\\
+Grid layout	&glayout	&gtkTable	&wxFlexGridSizer	&tkgrid	&GridBagLayout, GridLayout\\
+Notebook	&gnotebook	&	&wxNotebook	&Iwidgets tkwidget tabbednotebook	&JTabbedPane\\

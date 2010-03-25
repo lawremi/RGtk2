@@ -1,0 +1,24 @@
+%%
+\section{Why program GUIs in \R?}
+\label{sec:GUIsInR}
+\SweaveInput{GUIsInR}
+
+
+%%
+\section{Object Oriented Programming in \R}
+\label{sec:OOP}
+\SweaveInput{OOP}
+
+
+\section{Programming Issues when programming GUIs}
+\label{sec:ProgrammingIssues}
+\SweaveInput{ProgrammingIssues}
+
+
+* nargs ..1 working with function args
+
+* stringToObject: get, eval(parse(text=...)), do.call, match.fun,
+serialize methods? assign, expressions?
+
+
+\XXX{hash package  for global environment}

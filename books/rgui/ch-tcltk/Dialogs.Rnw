@@ -1,0 +1,99 @@
+\subsection{Modal dialogs}
+\label{sec:modal-dialogs}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.6\textwidth]{fig-tcltk-confirm-dialog.png}
+  \caption{A basic modal dialog constructed by \code{tkmessageBox}.}
+  \label{fig:fig-tcltk-confirm-dialog}
+\end{figure}
+
+%% messageBox
+The \constructor{tkmessageBox} constructor can be used to create a simple modal dialogs allowing a user to confirm an action. This replaces the older \code{tkdialog} dialogs. The \code{tkmessageBox} dialogs use the native toolkit if possible. The arguments \argument{title}{tkmessageBox}, \argument{message}{tkmessageBox} and \argument{detail}{tkmessageBox} are used to set the text for the dialog. The \code{title} may not appear for all operating systems. A messageBox dialog has an \argument{icon}{tkmessageBox} argument. The  default icon is \qcode{info} but could also be one of \qcode{error}, \qcode{question} or \qcode{warning}. The buttons used are specified by the \argument{type}{tkmessageBox} argument with values of \qcode{ok}, \qcode{okcancel}, \qcode{retrycancel}, \qcode{yesno}, or \qcode{yesnocancel}. When a button is clicked the dialog is destroyed and the button label returned as a value. The argument \argument{parent}{tkmessageBox} can be given to specify which window the dialog belongs to. Depending on the operating system this may be used when drawing the dialog.
+
+A sample usage is:
+<<eval=FALSE>>=
+tkmessageBox(title="Confirm", 
+             message="Really exit?", detail="Changes need saving.", 
+             icon="question", type="okcancel")
+@ 
+%% 
+If the default modal dialog is not enough -- for instance there is no means to gather user input -- then a toplevel window can be made modal. The \function{tkwait.window} will cause a top-level window to be modal and \function{tkgrab.release} will return the interactivity for the window.
+
+\subsection{File and directory selection}
+\label{sec:file-direct-select}
+
+\Tk\/ provides constructors for selecting a file, for selecting a
+directory or for specifying a filename when saving. These are
+implemented by \constructor{tkgetOpenFile},
+\constructor{tkchooseDirectory}, and \constructor{tkgetSaveFile}
+respectively. Each of these can be called with no argument, and
+returns a \code{tclObj} that can be converted to a character string
+with \code{tclvalue}. The value is empty
+
+
+There are arguments that can be useful.  The dialog will appear
+related to a toplevel window if the argument
+\argument{parent}{tkgetOpenFile} is specified The
+\argument{initialdir}{tkgetOpenFile} and
+\argument{initialfile}{tkgetOpenFile} can be used to specify the
+initial values in the dialog.  The
+\argument{defaultextenstion}{tkgetSaveFile} argument can be used to specify a
+default extension for the file.
+
+When browsing for files, it can be convenient to filter the available
+file types that can be selected. The \argument{filetypes}{tkgetOpenFile} argument is used for this task. However,
+the file types are specified using \TCL\/ brace-notation, not \R\/ code. For example,
+to filter out various image types, one could have 
+<<eval=FALSE>>=
+tkgetOpenFile(filetypes = paste(
+                "{{jpeg files} {.jpg .jpeg} }",
+                "{{png files} {.png}}",
+                "{{All files} {*}}", sep=" ")) # the space is impt. here
+@ 
+Extending this is hopefully clear from the pattern above.
+
+\begin{example}{A ``File'' menu}{ex-tcltk-file-menu}
+  To illustrate, a simple example for a file menu could be:
+<<>>=  
+w <- tktoplevel(); tkwm.title(w, "File menu example")
+mb <- tkmenu(w); tkconfigure(w, menu=mb)
+fileMenu <- tkmenu(mb)
+tkadd(mb, "cascade", label="File", menu=fileMenu)
+
+tkadd(fileMenu,"command",label="Source file...",
+      command= function() {
+        fname <- tkgetOpenFile(fileTypes="{{R files} {.R}} {{All files} *}")
+        source(tclvalue(fname))
+      })
+tkadd(fileMenu, "command", label="Save workspace as...",
+      command=function() {
+        fname <- tkgetSaveFile(defaultextension="Rsave")
+        save.image(file=tclvalue(fname))
+      })
+tkadd(fileMenu, "command", label="Set working directory...",
+      command=function() {
+        fname <- tkchooseDirectory()
+        setwd(tclvalue(fName))
+      })
+@   
+\end{example}
+
+\subsection{Choosing a color}
+\Tk\/ provides the command \code{tk\_chooseColor} to construct a dialog for selection of a color by RGB value. There are three optional arguments \argument{initialcolor}{tk\_chooseColor} to specify an inital color such as \qcode{\#efefef}, \argument{parent}{tk\_chooseColor} to make the dialog a child of a specified window and \argument{title}{tk\_chooseColor} to specify a title for the dialog. The return value is in hex-coded RGB quantitles. 
+There is no constructor in \pkg{tcltk}, but one can use the dialog as follows:
+<<>>=
+w <- tktoplevel(); tkwm.title(w, "Select a color")
+f <- ttkframe(w, padding=c(3,3,3,12))
+tkpack(f, expand=TRUE, fill="both")
+colorWell <- tkcanvas(f, width=40, height=16, 
+                      background="#ee11aa",
+                      highlightbackground="#ababab") 
+tkpack(colorWell)
+tkbind(colorWell,"<Button-1>", function(W) {
+  color <- tcl("tk_chooseColor", parent=w, title="Set box color")
+  color <- tclvalue(color)
+  if(nchar(color))
+    tkconfigure(W, background = color)
+})
+@ 

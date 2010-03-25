@@ -1,0 +1,15 @@
+http://code.google.com/p/r-orange/
+* gWidgets example of dialog following wxWidgets chapter
+- data store
+- validators (in gWidgets, these check and update data variable)
+- transferFromData
+- transferToData
+- APplication could be some editing
+
+
+* tcltk gframe heirarchy -- beedub ref.
+* walking comment in gWidgets
+* fromlayout -- toplevel fieldset
+* ggroup scrolling -- use canvas: grid only? 
+http://mail.python.org/pipermail/python-list/1999-June/005180.html
+

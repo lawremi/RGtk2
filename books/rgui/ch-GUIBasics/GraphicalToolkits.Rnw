@@ -1,0 +1,86 @@
+\XXX{Describe how same principles can lead to different designs: tcl/tk earlier, GTK, Java/Swing, wxWidgets, web}
+
+
+
+
+% For our purposes, we'll use the following terminology. A
+% \definition{GUI} will refer to a \textit{graphical user interface} for
+% some task. A GUI will consists of one or more \definition{dialogs},
+% which will refer to a single window. The term \definition{modal
+%   dialog} will refer to a dialog that must be dismissed before the GUI
+% will be active. A \definition{widget} will refer to those graphical
+% elements, or components, which are combined to make a dialog. Widgets,
+% such as sliders or checkboxes are referred to as \definition{controls}
+% as they are used to control the behavior of the GUI. We will also use
+% the term widget, when referring to GUI components we define, such as a
+% workspace browser. Widgets are placed in a dialog using
+% \definition{containers}.
+
+
+% %% a toolkit
+% A graphical toolkit provides the software libraries on the computer
+% that ultimately draw and manage the components of a GUI. For the
+% Windows and OS X operating system, a user could conceivably only see
+% the native graphical toolkit, but any Java application or applications
+% built using other development environments may use an external
+% graphical toolkit. For Linux and other X11 environments, there may be
+% a choice of other toolkits.
+
+% We consider three different graphical toolkits: tcl/tk, GTK+, and
+% WxWidgets; and Java Script enabled HTML. Each provides a platform
+% independent approach for creating GUIs within R. The toolkits all have
+% an \R\/ package that allows an \R\/ user to call the underlying
+% toolkit from within an \R\/ session.
+
+% %% the three toolkits in brief
+% The tcl/tk toolkit includes a programming language (tcl) and a
+% graphical toolkit (tk). The \R\/ package \pkg{tcltk} provides an
+% interface to both. This package, along with the basic libraries come
+% bundled with the windows and OS X binary distributions and is readily
+% available for linux users. As such, it's use within R typically
+% requires no extra efforts on the users behalf.
+
+% The GTK+ toolkit is interfaced via the \pkg{RGtk2} package. This
+% provides bindings between library calls in the toolkit and similarly
+% named R functions. The toolkit is standard for many linux
+% distributions. For Windows and OS X users there are pre-compiled
+% libraries that may be downloaded and installed.
+
+% The wxWidgets toolkit aims to provide a cross-platform toolkit for
+% builders of graphical interfaces that uses the native toolkit for the
+% platform it is running on. That is, for windows users the windows
+% toolkit, for OS X the cocoa toolkit, for Linux the GTK+ toolkit or the
+% Motif toolkit. Unlike GTK+, say, where the toolkit is ported,
+% wxWidgets provides an abstract layer between the user and the
+% toolkits. 
+
+
+% The three toolkits above, along with Java/Swing, have implementations
+% of varying completeness for the \pkg{gWidgets} package. This package
+% trades off the power of the complete graphical toolkit, for a
+% framework that is significantly easier to learn.
+
+% A web-based approach differs from the toolkit approach. The toolkit
+% approach allows for faster, more dynamic GUIs, but the web-based
+% approach allows for GUIs that can more easily be deployed to multiple
+% users. 
+
+
+% %% object oriented implementations
+
+% The GTK+ and wxWidgets toolkits use object-oriented programming
+% practices. In short, this means that the toolkits provides various
+% classes and methods for these classes. An object is an instance of the
+% class, and a method is a function that is defined for members of the
+% class. The classes take advantage of inheritance so that common
+% features can be inherited from parent classes. For example, in GTK+
+% the radio button group inherits from a check button, which inherits
+% from a toggle button, which inherits from a button class which
+% inherits from a container class etc. Inheriting means that methods
+% defined for parent classes are also defined for the child classes
+% unless explicitly overridden. This allows, for example, a programmer
+% to write a method to extract the buttons text
+% (\code{gtkButtonGetLabel}) and have that same method be used for
+% retrieving the text from a check button.
+
+

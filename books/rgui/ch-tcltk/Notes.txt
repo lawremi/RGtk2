@@ -1,0 +1,74 @@
+==================================================
+
+Point about substitution for bindings. These are listed in the API:
+http://www.tcl.tk/man/tcl8.5/TkCmd/bind.htm
+
+tkbind(obj, signal, function(k) k) where %k is binding substition.
+
+==================================================
+
+From ?tclvalue
+
+R -> .Tcl -> Tcl interpreter -> object of class tclObj
+Tk Windows are tkwin object -- lists contain ID, env: parent, num.subwin
+
+
+Point about tcltk calls create tkwin objects with components ID and
+env. through .Tcl -> dotTcl (c) -> makeRTclObject (c). However, when
+a method returns a tcl object, it is not a tcltk object. 
+
+[Can traverse parents $env$parent, but not children -- only store num.subwin]
+
+For instance, in the first example of the tk tutorial (url), there is
+a shortcut to add padding to each child widget of a frame. In tcltk
+this loops over the return value of
+
+## from tutorial
+foreach w [winfo children .c] {grid configure $w -padx 5 -pady 5}
+
+tkwinfo("children",tkframe_instance)
+
+The return value of such looks like
+> tkwinfo("children",f)
+<Tcl> .1.1.1 .1.1.2 .1.1.3 
+
+A sequence of strings listing IDs of the objects. There is no
+mechanism to look up the tcltk objects corresponding to these IDs, so
+such means of traversal must be handled by the programmer. One method
+may be to store the children when the object is contstructed:
+
+addChild <- function(parent, child) {
+ if(is.null(parent$env$children)) parent$env$children <- list()
+ l <- parent$env$children
+ l[[length(l) + 1]] <- child
+ parent$env$children <- l
+}
+
+b <- ttkbutton(f, text="test)
+addChild(f,b)
+
+Example from http://www.tkdocs.com/tutorial/:
+
+==================================================
+Model-View-Controller:
+
+tclvariable usasge
+
+tclVar makes text variables (store txte values)
+tclvalue retrieves value
+tclvalue<- sets value
+
+==================================================
+
+Aslo tclArray -- when to use
+
+tclObj -- when to use
+
+==================================================
+
+binding can be for
+widget
+widget class
+window
+
+See beedub book

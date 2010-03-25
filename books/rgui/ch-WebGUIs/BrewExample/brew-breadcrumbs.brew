@@ -1,0 +1,8 @@
+<%
+tmp <- unlist(strsplit(SERVER$uri, "/"))[-1]
+vals <- c()
+for(i in 1:length(tmp)) 
+  vals[i] <- paste("<A HREF=/", paste(tmp[1:i], collapse="/"), ">", tmp[i], "</A>", sep="")
+out <- paste(vals, collapse="::")
+cat(out)
+%>

@@ -1,0 +1,24 @@
+;; RefTeX parse info file
+;; File: /Users/verzani/GUI/ch-RGtk2/ex-RGtk2-simple-tree.Rnw
+;; User: verzani (john verzani)
+
+(set reftex-docstruct-symbol '(
+
+
+(xr nil "\\\\\\\\\\\\")
+
+(index-tags)
+
+(is-multi nil)
+
+(bibview-cache)
+
+(master-dir . "/Users/verzani/GUI/ch-RGtk2/")
+
+(label-numbers)
+
+(bof "/Users/verzani/GUI/ch-RGtk2/ex-RGtk2-simple-tree.Rnw")
+
+(eof "/Users/verzani/GUI/ch-RGtk2/ex-RGtk2-simple-tree.Rnw")
+))
+

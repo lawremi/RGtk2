@@ -1,0 +1,567 @@
+%% parent windows, frames etc.
+%% Example
+
+\section{Top-level windows}
+\label{sec:top-level-windows}
+%%\XXX{Window Styles}
+
+%% constructor
+Top level windows are created through the \function{tktoplevel}
+constructor. The arguments \argument{width}{tktoplevel} and \argument{height}{tktoplevel} may be
+specified to give a requested size. Negative values means the window
+will not request any size. Top-level windows can have a menubar specified through the \argument{menu}{tktoplevel} argument. Menus will be covered
+in Section~\ref{sec:tcltk:menus}.
+
+The \function{tkdestroy} function can be called to destroy the window
+and its child components.
+
+The \TK\/ command \code{wm} is used to interact with top-level
+windows. This command has several subcommands, leading to \pkg{tcltk}
+functions with names such as \function{tkwm.title}. This function is
+used to set the window title. As with all such functions, either the
+top-level window object, or its ID must be the first argument. In this
+case, the new title is the second.
+
+When a top-level window is constructed there is no option for it not
+to be shown.  However, one can use the \function{tclServiceMode}
+function to suspend/resume drawing of any widget through \TK. This
+function takes a logical value to change the state. After a window is
+drawn. To iconify an already drawn window can be down through the
+\function{tkwm.withdraw} function and reversed with the
+\function{tkwm.deiconify} function. Together these can be useful to
+use in the construction of complicated GUIs, as the drawing of the
+widgets can seem slow. (The same can be done through the
+\function{tkwm.state} function with an option of \qcode{withdraw} or
+\qcode{normal}.)
+ 
+\paragraph{Window sizing}
+The preferred size of a top-level window can be configured through the \code{width} and \code{height} options. The absolute size and position of a top-level window in pixels can be queried of specified through the \function{tkwm.geometry}
+function. The geometry is specified as a string in the form \code{=wxh+x+y} (or \code{-}) where any of \code{=}, \code{wxh} or \code{+x+y} can be omitted. The value for \code{x} (if using \code{+})
+indicates how many pixels to the right from the left edge should the window be
+placed (if using \code{-} then the left side of the screen is used as
+a reference). For \code{y} the top (or bottom) of the screen is the reference.
+
+%% sizegrip
+The \constructor{ttksizegrip} widget can be used to add a visual area (usually the lower right corner) for the user to grab on to with their mouse for resizing the window. On some OSes (e.g., Mac OS X) these are added by the window manager automatically. 
+
+%%
+The \function{tkwm.resizable} function can be used to prohibit the
+resizing of a top-level window. The syntax allows either the width or
+height to be constrained. The following command would  prevent
+resizing of both the width and height of the toplevel window \code{w}. 
+
+\begin{Schunk}
+  \begin{Sinput}
+tkwm.resizable(w, FALSE, FALSE)    # width first
+  \end{Sinput}
+\end{Schunk}
+
+When a window is resized, you can constrain the minimun and maximum sizes with \function{tkwm.minsize} and \function{tkwm.maxsize}. The aspect ratio (width/height) can be set through \function{tkwm.aspect}.
+
+
+%% overridedirect
+For some uses it may be desirable to not have the window manager
+decorate the window with a title bar etc. Tooltips, for example, can
+be constructed using this approach. The command \subcommanda{wm
+  overrideredirect}{tktoplevel}{logical} takes a logical value
+indicating if the window should be decorated. Though, not all window
+managers respect this.
+
+
+
+%% binginds
+\paragraph{bindings}
+Bindings for top-level windows are shared by all of their child widgets. If a common binding is desired for all the children, then it need only be specified once for the top-level window.
+
+
+%% wm protocol
+The \function{tkwm.protocol} function is used to assign commands to
+window manager events, most commonly, the delete event when the user
+clicks the close button on the windows decorations. A top-level window
+can be removed through the \function{tkdestroy} function, or through
+the user clicking on the correct window decorations. When the window decoration is clicked, the window manager issues a \qcode{WM\_DELETE\_WINDOW} event. To bind to this, a command of thie form \code{tkwm.protocol(win,"WM\_DELETE\_WINDOW",  callback)} is used. 
+
+To illustrate, if \code{w} is a top-level window, and
+\code{e} a text entry widget
+(cf. Section~\ref{sec:tcltk:multi-line-text}) then the following
+snippet of code would check to see if the text widget has been
+modified before closing the window. This uses a modal message box
+described in Section~\ref{sec:tcltk:dialogs}.
+
+<<echo=FALSE>>=
+## set up window etc. for example
+library(tcltk)
+w <- tktoplevel()
+tkwm.title(w, "Simple text entry example")
+e <- tktext(w)
+tkpack(e)
+@
+
+
+<<example-wm-delete-window>>=
+tkwm.protocol(w,"WM_DELETE_WINDOW", function() {
+  modified <- tcl(e, "edit", "modified")
+  if(as.logical(modified)) {
+    response <- 
+      tkmessageBox(icon="question",
+                   message="Really close?",
+                   detail="Changes need to be saved",
+                   type="yesno",
+                   parent=w)
+    if(as.character(response) == "no")
+      return()
+  }
+  tkdestroy(w)                          # otherwise close
+})
+@ 
+
+%% transient
+Sometimes, say with dialogs, a top-level window should be related to
+a different top-level window. The function \function{tkwm.transient}
+allows one to specify the master window as its second argument. The
+new window will mirror the state of the master window, including if
+the master is withdrawn.
+
+%% decorations
+
+%% stack of windows
+A window can be made to always be the topmost window through the
+\code{attributes} subcommand of the \code{wm} command. However, there
+is no direct \pkg{tcltk} function, so if \code{w} was to be on top, one would use the \function{tcl}
+function as follows: 
+\begin{Schunk}
+\begin{Sinput}
+tcl("wm", "attributes", w, topmost=TRUE)  
+\end{Sinput}
+\end{Schunk}
+
+% When more than top-level window is in use, there is a stacking order
+% describing how they are displayed. This stacking order is returned
+% through the IDs of the windows through the \code{stackorder}
+% subcommand of the \code{wm} command. There is no \pkg{tcltk} function
+% for this, but the command \code{tcl("wm","stackorder", win)}, where
+% \code{win} is the top-level window object will return the list.
+
+% Stackign order of others; topmost
+%% \begin{example}{A window constructor}{ex-tcltk-window}
+<<ExampleOfWindowConstructor, echo=FALSE>>=
+## This shows a possible way to construct a top-level window with some 
+## useful options.
+@
+<<newWindow,echo=FALSE>>=
+newWindow <- function(title, command, parent,
+                      width, height) {
+  w <- tktoplevel()
+
+  if(!missing(title)) tkwm.title(w, title)
+
+  if(!missing(command)) 
+    tkwm.protocol(w,"WM_DELETE_WINDOW", function() {
+      command()
+      tkdestroy(w)
+    })
+
+  if(!missing(parent)) {
+    parentWin <- tkwinfo("toplevel", parent)
+    if(as.logical(tkwinfo("viewable", parentWin))) {
+      tkwm.transient(w, parent)
+    }
+  }
+  
+  if(!missing(width)) tkconfigure(w, width=as.numeric(width))
+  if(!missing(height)) tkconfigure(w, height=as.numeric(height))
+
+  windowSystem <- tclvalue(tcl("tk","windowingsystem"))
+  if(windowSystem == "aqua") {
+    f <- ttkframe(w, padding=c(3,3,12,12))
+  } else {
+    f1 <- ttkframe(w, padding=0)
+    tkpack(f1, expand=TRUE, fill="both")
+    f <- ttkframe(f1, padding=c(3,3,12,0))
+    sg <- ttksizegrip(f1)
+    tkpack(sg, side="bottom", anchor="se")
+  }
+  tkpack(f, expand=TRUE, fill="both", side="top")
+
+  return(f)
+}
+@ 
+%%\end{example}
+
+\section{Frames}
+\label{sec:tcltk:frames}
+
+The \function{ttkframe} constructor produces a themable box container
+that can be used to organize visible components within a GUI. It is
+often the first thing packed within a top-level window.
+
+The options include \option{width}{ttkframe} and
+\option{height}{ttkframe} to set the requested size,
+\option{borderwidth}{ttkframe} to specify a border around the frame of
+a given width, and \option{relief}{ttkframe} to set the border
+style. The value of \code{relief} is chosen from the default
+\qcode{flat}, \qcode{groove}, \qcode{raised}, \qcode{ridge},
+\qcode{solid}, or \qcode{sunken}.  The \option{padding}{ttkframe}
+option can be used to to put space within the border between the
+border and subsequent children.
+
+\subsection{Label Frames}
+\label{sec:tcltk:label-frames}
+
+The \constructor{ttklabelframe} constructor produces a frame with an
+optional label that can be used to set off and organize components of
+a GUI. The label is set through the option
+\option{text}{ttklabelframe}. Its position is determined by the option
+\option{labelanchor}{ttklabelframe} taking values labeled by compass
+headings (combinations of \code{n}, \code{e}, \code{w}, \code{s}. The
+default is theme dependent, although typically \qcode{nw} (upper
+left).
+
+\paragraph{Separators}
+To use a single line to separate out areas in a GUI, the
+\constructor{ttkseparator} widget can be used. The lone
+widget-specific option is \option{orient}{ttkseparator} which takes
+values of \qcode{horizontal} (the default) or \qcode{vertical}. This
+widget must be told to stretch when added to a container, as described
+in the next section.
+
+\section{Geometry Managers}
+\label{sec:tcltk:geometry-managers}
+
+\TCL\/ uses geometry managers to place child components within their
+parent windows. There are three such managers, but we describe only
+two, leaving the lower-level \code{place} command for the official documentation. The use of
+geometry managers, allows \TK\/ to quickly reallocate space to a GUI's
+components when it is resized.  The \function{tkpack} function will
+place children into their parent in the box-like manner. We have seen
+in several examples throughout the text, that through the use of
+nested boxes, one can construct quite flexible layouts, and
+Example~\ref{ex-tcltk-non-modal-dialog} will illustrate that once
+again. When simultaneous horizontal and vertical alignment of child
+components is desired, the \function{tkgrid} function can be used to
+manage the components.
+
+%% warn against mixing
+A GUI may use a mix of pack and grid to mangage the child components,
+but all siblings in the widget heirarchy must be managed the same
+way. Mixing the two will typically result in a lockup of the \R\/
+session.
+
+
+\subsection{Pack}
+\label{sec:tcltk:pack}
+
+%%\XXX{Is there a method to redraw the GUI?}
+%%\XXX{Comment that pack can pack into other parent?}
+
+%% side
+We have illustrated how \constructor{tkpack} can be used to manage how
+child components are viewed within their parent. The basic usage
+\code{tkpack(child)} will pack in the child components from top to
+bottom. The \option{side}{tkpack} option can take a value of
+\qcode{left}, \qcode{right}, \qcode{top} (default), or \qcode{bottom}
+to adjust where the children are placed. These can be mixed and
+matched, but sticking to just one direction is easier to
+understand. Using nested frames is a more transparent approach.
+
+\paragraph{after, before}
+The \option{after}{tkpack} and \option{before}{tkpack} options can be
+used to place the child before or after another component. These are
+used as with \code{tkpack(child1, after=child2)}. The object
+\code{child2} can be the \R\/ object or an ID. The latter might be
+useful, say when all the children are listed using the command
+\code{tkwinfo("children",parent)} which returns the IDs of the
+immediate child components.
+
+\paragraph{padding}
+
+\begin{figure}
+  \centering
+  \begin{tabular}[c@{\quad}c@{\quad}]{ccc}
+    \includegraphics[width=.25\textwidth]{fig-pack-padding} &
+    \includegraphics[width=.25\textwidth]{fig-pack-pady} &
+    \includegraphics[width=.25\textwidth]{fig-pack-ipady}
+  \end{tabular}
+  \caption{Various ways to put padding between widgets using a box container and \function{tkpack}. The \code{padding} option for the box container puts padding around the cavity for all the widgets. The \code{pady} option for \function{tkpack} puts padding around the top and bottom on the border of each widget. The \code{ipady} option for \function{tkpack} puts padding within the top and bottom of the border for each child (modifying the theme under Mac OS X).}
+  \label{fig:fig-pack-example}
+\end{figure}
+
+<<>>=
+## Code to make padding/pady/ipady figure
+## padding
+w <- tktoplevel();f <- ttkframe(w, padding=20 + 10);tkpack(f, expand=TRUE, fill="both")
+tkpack(ttkbutton(f, text="padding"))
+tkpack(ttkbutton(f, text="padding"))
+##  pady outside border
+w <- tktoplevel();f <- ttkframe(w, padding=10);tkpack(f, expand=TRUE, fill="both")
+tkpack(ttkbutton(f, text="pady"), pady=10)
+tkpack(ttkbutton(f, text="pady"), pady=10)
+## ipady within border
+w <- tktoplevel();f <- ttkframe(w, padding=10);tkpack(f, expand=TRUE, fill="both")
+tkpack(ttkbutton(f, text="ipady"), ipady=10)
+tkpack(ttkbutton(f, text="ipady"), ipady=10)
+@ 
+
+In addition to the \code{padding} option for a frame container, the
+\option{ipadx}{tkpack}, \option{ipady}{tkpack}, \option{padx}{tkpack},
+and \option{pady}{tkpack} options can be used to add space around the
+child components. Figure~\ref{fig:fig-pack-example} has an
+example. The \code{x} and \code{y} indicate left-right space or
+top-bottom space. The \code{i} stands for internal padding that is
+left on the sides or top and bottom of the child within the border,
+for \code{padx} the external padding added around the border of the
+child component. The value can be a single number or pair of numbers
+for asymmetric padding.
+
+<<echo=FALSE>>=
+## not shown
+## sets up window with some child components to illustrate
+## tkpack("configure", ...)
+w <- tktoplevel()
+tkwm.title(w,"tkpack configure example")
+f <- ttkframe(w, padding=5)
+tkpack(f, expand=TRUE, fill="both")
+l <- list()
+for(i in 1:5) {
+  l[[i]] <- ttklabel(f, text=i)
+  tkpack(l[[i]], side="left")
+}
+@ 
+
+This sample code shows how one can easily add padding around all the
+children of the frame \code{f} using the
+\subcommand{"configure"}{tkpack} subcommand.
+<<echo=FALSE>>=
+allChildren <- as.character(tkwinfo("children", f))
+QT <- sapply(allChildren, function(i) {
+  tkpack("configure", i,  padx=10, pady=5)
+})
+@ 
+
+
+\paragraph{Cavity model}
+The packing algorithm, as described in the \Tk\/ documentation, is based
+on arranging where to place a slave into the rectangular unallocated
+space called a cavity. We use the nicer terms child component and box
+to describe these. When a child is placed inside the box, say on the
+top, the space allocated to the child is the rectangular space with
+width given by the width of the box, and height the sum of the
+requested height of the child plus twice the \code{ipady} amount (or
+the sum if specified with two numbers). The packer then chooses the
+dimension of the child component, again from the requested size plus
+the \code{ipad} values for \code{x} and \code{y}. These two spacess
+may, of course, have different dimensions.
+
+
+\paragraph{anchor}
+By default, the child  will be placed centered along the edge of
+the box within the allocated space and blank space, if any, on both
+sides.  If there is not enough space for the child in the allocated
+space, the component can be drawn oddly. Enlarging the top-level
+window can adjust this. When there is more space in the box than
+requested by the child component, there are other options. The
+\option{anchor}{tkpack} option can be used to anchor the child to a
+place in the box by specifying one of the valid compass points
+(eg. \code{"n"} or \code{"se"} leaving blank space around the
+child. Padding between the child and the box can be set through the
+\code{padx} and \code{pady} options.
+
+\paragraph{expand, fill}
+When there is more space in the original box than needed by the
+children the extra space will be left blank unless some children have
+the option \option{expand}{tkpack} set to \code{TRUE}. In this case,
+the extra space is allocated evenly to each child with this set. The
+\code{fill} option is often used when \code{expand} is set.  The
+\option{fill}{tkpack} option is used to base the size of the child on
+the available cavity in the box -- not on the requested size of the
+child. The \code{fill} option can be \qcode{x}, \qcode{y} or
+\qcode{both}. The former expanding the child's size in just one
+direction, the latter in both.
+
+\paragraph{forget}
+Child components can be forgotten by the window manager, unmapping them but not destroying them, with the \subcommand{forget}{tkpack} subcommand, or the convenience function \function{tkpack.forget}. After a child component is removed this way, it can be re-placed in the GUI using a geometry manager. In \pkg{gWidgetstcltk} this is used to create a \code{gexpandgroup} container, as such a container is not provided by \TK.
+
+\paragraph{Introspection}
+The subcommand \subcommand{slaves}{tkpack} will return a list of the child components packed into a frame. Coercing these return values to character via \code{as.character} will produce the IDs of the child components. The subcommand \subcommand{info}{tkpack} will provide the packing info for a child.
+
+\begin{example}{Packing dialog buttons}{ex-tcltk-pack}
+  \SweaveInput{ex-tcltk-pack.Rnw}
+\end{example}
+
+\begin{example}{A non-modal dialog}{ex-tcltk-non-modal-dialog}
+  \SweaveInput{ex-tcltk-simple-dialog.Rnw}
+\end{example}
+
+\subsection{Grid}
+\label{sec:tcltk:grid}
+The \function{tkgrid} geometry manager is used to place child widgets in rows and columns. 
+In its simplest usage, a command like
+\begin{Schunk}
+  \begin{Sinput}
+tkgrid(child1, child2,..., childn)    
+  \end{Sinput}
+\end{Schunk}
+will place the $n$ children in a new row, in columns 1 through $n$. However, the specific row and column can be specified through the \option{row}{tkgrid} and \option{column}{tkgrid} options. Counting of rows and columns starts with 0.  Spanning of multiple rows and columns can be specified with integers 2 or greater by the \option{rowspan}{tkgrid} and \option{colspan}{tkgrid} options. These options, and others can be adjusted through the \function{tkgrid.configure} function.
+
+
+\paragraph{The tkgrid.rowconfigure, tkgrid.columnconfigure commands}
+When the managed container is resized, the grid manager consults
+weights that are assigned to each row and column to see how to
+allocate the extra space. These weights are configured with the
+\function{tkgrid.rowconfigure} and \function{tkgrid.columnconfigure}
+functions through the option
+\option{weight}{tkgrid.columnconfigure}, The weight is a value
+between 0 and 1. If there are just two rows, and the first row has weight
+$1/2$ and the second weight 1, then the extra space is allocated twice
+as much for the second row. The specific row or column must also be
+specified. Rows and columns are referenced starting with 0 not the usual \R-like 1. So to specify
+a weight of 1 to the first row would be done with a command like:
+
+<<echo=FALSE>>=
+w <- tktoplevel()
+tkwm.title(w, "tkgrid.rowconfigure example")
+parent <- ttkframe(w); tkpack(parent)
+child <- ttklabel(parent, text="test")
+tkgrid(child)
+@ 
+
+<<>>=
+tkgrid.rowconfigure(parent, 0, weight=1)
+@ 
+
+\paragraph{The sticky option}
+When more space is available then requested by the child component, the \option{sticky}{tkgrid} option can be used to place the widget into the grid. The value is a combination of the compass points \qcode{n},\qcode{e},\qcode{w}, and \qcode{s}. A specification \qcode{ns} will make the child component ``stick'' to the top and bottom of the cavity that is provided, similar to the \code{fill="y"} option for \function{tkgrid}. Similarly a value of \qcode{news} will make the child component expand in all the direction like \code{fill="both"}. A value of \qcode{w} will anchor the widget on the left side of the cavity
+
+\paragraph{Padding}
+As with \function{tkpack}, \function{tkgrid} has options
+\option{ipadx}{tkgrid}, \option{ipady}{tkgrid}, \option{padx}{tkgrid},
+and \option{padx}{tkgrid} to give internal and external space around a
+child.
+
+\paragraph{Size}
+The function \function{tkgrid.size} will return the number of columns and rows of the specified parent container that is managed by a grid. This can be useful when trying to position child components through the options \code{row} and \code{column}.
+
+\paragraph{Forget}
+To remove a child from the parent, the \function{tkgrid.forget} function can be used with the child object as its argument.
+
+
+\begin{example}{Using \function{tkgrid} and \function{tkpack} to draw some world flags}{ex-tcltk-flags}
+  \SweaveInput{ex-tcltk-flags.Rnw}
+\end{example}
+
+
+\begin{example}{Using \function{tkgrid} to create a toolbar}{ex-tcltk-toolbar}
+  \SweaveInput{ex-tcltk-toolbar.Rnw}
+\end{example}
+
+
+\section{Other containers}
+\label{sec:tcltk:other-containers}
+\TK\/ provides just a few other basic containers, here we describe paned windows and notebooks.
+
+\subsection{Paned Windows}
+\label{sec:tcltk:paned-windows}
+
+A paned window  is constructed by the function \constructor{ttkpanedwindow}. The primary option, outside of setting the requested width or height with \option{width}{ttkpanedwindow} and \option{height}{ttkpanedwindow}, is \option{orient}{ttkpanedwindow}, which takes a value of \qcode{vertical} (the default) or \qcode{horizontal}. This specifies how the children are stacked, and is opposite how the sash is drawn.
+
+%% adding
+The returned object can be used as a parent container, although one does not use the geometry managers to manage them. Instead, the \method{add}{ttkpandedwindow} command is used. For example:
+<<>>=
+w <- tktoplevel(); tkwm.title(w, "Paned window example")
+pw <- ttkpanedwindow(w, orient="horizontal")
+tkpack(pw, expand=TRUE, fill="both")
+left <- ttklabel(pw, text="left"); right <- ttklabel(pw, text="right")
+#
+tkadd(pw, left, weight=1)
+tkadd(pw, right, weight=2)
+@ 
+When resizing which child gets the space is determined by the
+associated \code{weight}, specified as an integer. The default uses
+even weights.  Unlike \GTK\/ more than two children are allowed.
+
+\paragraph{Forget}
+The subcommand \subcommand{forget}{ttkpanedwindow} can be used to
+unmanage a child component. For the paned window, we have no convenience function, so we call as follows:
+<<>>=
+tcl(pw, "forget", right)
+tkadd(pw, right, weight=2) ## add back
+@ 
+
+\paragraph{Sash position}
+The sash between two children can be adjusted through the subcommand
+\subcommand{sashpos}{ttkpanedwindow}. The index of the sash needs
+specifying, as there can be more than one. Counting starts at 0. The
+value for \code{sashpos} is in terms of pixel width (or height) of the
+paned window. The width can be returned as follows:
+<<>>=
+tcl(pw, "sashpos", 0, 150)
+as.integer(tkwinfo("width", pw))  # or "height"
+@ 
+
+\subsection{Notebooks}
+\label{sec:tcltk:notebooks}
+
+%% constructor
+The \constructor{ttknotebook} constructor returns a notebook object that can be subsequently manipulated. In \TK\/ the object itself, becomes a command with the subcommands being important. There are no convenience functions for these, so we will use the \function{tcl} function directly.
+<<echo=FALSE>>=
+## ttknotebook example
+w <- tktoplevel(); tkwm.title(w, "Notebook example")
+nb <- ttknotebook(w); tkpack(nb, expand=TRUE, fill="both")
+@ 
+
+Notebook pages can be added through the \subcommand{add}{ttknotebook} subcommand or inserted after a page through the \subcommand{insert}{ttknotebook} subcommand. The latter requires a tab ID to be specified, as described below. The tab label is configured similarly to \function{ttklabel} through the options \option{text}{ttknotebook} and the optional \option{image}{ttknotebook}, which if given has its placement determined by \option{compound}{ttknotebook}. 
+The placement of the child component within the notebook page is manipulated similarly as \function{tkgrid} through the  \option{sticky}{ttknotebook} option with values specified through compass points. Extra padding around the child can be added through the \option{padding}{ttknotebook} option. Typically, the child components would be containers to hold more complicated layouts. 
+
+\paragraph{Tab identifiers} %%integer (0-based), object (ID), "current", "end"
+Many of the commands for a notebook require a specification of a desired tab. This can be given by index, starting at 0; by the values \code{"current"} or \code{"end"}; by the child object added to the tab, either as an \R\/ object or an ID; or in terms of $x$-$y$ coordinates in the form \code{"@x,y"} (likely found through a binding).
+
+%% illustrate add, inser
+To illustrate, if \code{nb} is a \code{ttknotebook} object, then these commands would add pages.
+<<>>=
+iconFile <- system.file("images",paste("help","gif",sep="."),
+                        package="gWidgets")
+iconName <- "::tcl::helpIcon"
+QT <- tkimage.create("photo", iconName, file = iconFile)
+
+l1 <- ttklabel(nb, text="label 1")
+l2 <- ttklabel(nb, text="label 2")
+
+tkadd(nb, l2, sticky="nswe", text="label 2", 
+    image=iconName, compound="right")
+## put l1 first (tabID is 0)
+tkinsert(nb, 0, l1, sticky="nswe", text="label 1")
+@ 
+
+There are several useful subcommands to extract information from the notebook object.  For instance, \code{index} to return the page index (0-based), \code{tabs} to return the page IDs, \code{select} to select the displayed page, and \code{forget} to remove a page from the notebook. Except for \code{tabs}, these require a specification of a tab ID.
+<<>>=
+tcl(nb, "index", "current")           # current page for tabID
+length(as.character(tcl(nb,"tabs")))  # number of pages
+tcl(nb, "select", 0)                  # select viewable page by index
+tcl(nb, "forget", l1)                 # forget removes page from notebook
+tcl(nb, "add", l1)                    # can be managed again.
+@
+
+
+%% keyboard
+The notebook state can be manipulated through the keyboard, provided traversal is enabled. This can be done through
+<<>>=
+QT <- tcl("ttk::notebook::enableTraversal", nb)
+@ 
+
+If enabled, the shortcuts such as \kbd{control-tab} to move to the
+next tab are imlemented. If new pages are added or inserted with the
+option \option{underline}{ttknotebook}, which takes an integer value
+(0-based) specifying which character in the label is underlined, then
+a keyboard accelerator is added for that letter.
+
+\paragraph{bindings}
+%% virtualevent
+Beyond the usual events, the 
+notebook widget also generates a \VirtualEvent{NotebookTabChanged} virtual event after a new tab is selected. 
+
+%% limitations: no easy way to get close buttons (to me anyways); no graceful way to handle too man tabs.
+The notebook container in \TK\/ has a few limitations. For instance,
+there is no graceful management of too many tabs, as there is with
+\GTK, as well there is no easy way to implement close buttons as an
+icon.
+

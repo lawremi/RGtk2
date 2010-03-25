@@ -1,0 +1,57 @@
+<<echo=FALSE>>=
+require(RGtk2)
+@ 
+
+We will use this list store for our possible words for completion.
+<<>>=
+words <- names(mtcars)                  # for data frame values
+store <- gtkListStore(c("gchararray"))
+
+for(i in words) {
+  iter <- store$append()
+  store$setValue(iter$iter, column=0, value=i)
+}
+@ 
+
+Now to construct the entry and the completion widgets.
+<<>>=
+entry <- gtkEntry()
+completion = gtkEntryCompletionNew()
+@ 
+
+We set completion widgets model and text column using the named
+methods, and then set some properties to customize how the completion
+is handled.
+<<>>=
+completion$setModel(store)
+completion$setTextColumn(0)             # which column in model
+completion['inline-completion'] <- TRUE # inline with text edit
+completion['popup-single-match'] <- FALSE
+@ 
+
+To attach the completion widget to the entry widget, the method
+\method{SetCompletion}{gtkEntry} is used.
+<<>>=
+entry$setCompletion(completion)
+@ 
+
+We could add new values to the completion widget as follows
+<<>>=
+ID <- gSignalConnect(entry,"activate",
+                     f = function(data,w,...) {
+                       val <- w$getText()
+                       store <- data$store
+                       iter <- store$append()
+                       store$setValue(iter$iter,column = 0, value = val)
+                     },
+                     data = list(store=store),
+                     user.data.first = TRUE)
+@ 
+
+Finally, we place the widget in a window for illustrative purposes.
+<<>>=
+w <- gtkWindow(); w$setTitle("Test of entry completion")
+w$add(entry)
+@ 
+
+

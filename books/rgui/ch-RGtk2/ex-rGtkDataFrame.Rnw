@@ -1,0 +1,260 @@
+<<echo=FALSE>>=
+library(RGtk2)
+@ 
+
+XXX -- Needs writing -- XXX
+
+<<>>=
+## example to show a data frame with optional editing
+## add in rownames option
+
+## Add to the gtkTreeView API some convenience functions
+
+## add a column to the tree view with type
+gtkTreeViewAddColumnWithType <-
+  function(view,
+           type=c("numeric","integer","character","logical","factor","icon"),
+           viewCol, storeCol, name="", editable=TRUE) {
+    type = match.arg(type)
+
+    ## define the cell renderer
+    cr <- switch(type," = gtkCellRendererPixbuf(),
+                 "logical" = gtkCellRendererToggle(),
+                 "factor" = gtkCellRendererCombo(),
+                 gtkCellRendererText())
+    ## the new column we will add
+    vc <- gtkTreeViewColumn()
+    vc$packStart(cr, TRUE)
+    vc$setTitle(name)
+    vc$setResizable(TRUE)
+    if(type != "icon") vc$setClickable(TRUE)
+    view$insertColumn(vc, viewCol - 1)
+    ## add attributes
+    switch(type,
+           "logical"= vc$addAttribute(cr, "active",storeCol - 1),
+           "icon" = vc$addAttribute(cr, "stock-id",storeCol -1),
+           vc$addAttribute(cr, "text",storeCol - 1)
+           )
+    if(type=="numeric") cr['xalign'] <- 1
+
+    ## add in editable
+    if(!editable || type == "icon") return()
+    switch(type,
+           "logical"=cr["activatable"] <- TRUE,
+           cr["editable"] <- TRUE)
+    
+    if(type == "factor") {              # combobox needs a data store
+      cstore <- gtkListStore("gchararray")     
+      for(i in as.character(unique(view$getRGtkDataFrame()[,storeCol]))) {
+        iter <- cstore$append()
+        cstore$setValue(iter$iter,column=0, i)
+      }
+      cr['model'] <- cstore
+      cr['text-column'] <- 0        
+    }
+
+    ## basic call back, not logical though (no newValue)
+    callBack <- function(cell, path, arg3, ...) {
+      if(nargs() == 3) {
+        userData <- arg3; newValue <- NA
+      } else {
+        newValue <- arg3; userData = ..1
+      }
+      store = userData$view$getRGtkDataFrame()
+      ## get row number
+      if(!is.null(view$getData("doVisible"))) {
+        theVisible <- which(store[,1])
+        i <- theVisible[as.numeric(path) + 1]
+      } else {
+        i <- as.numeric(path) + 1
+      }
+
+      newValue <- try(switch(userData$type,
+                             "integer" = as.integer(as.numeric(newValue)),
+                             "character" = as.character(newValue),
+                             "numeric" = as.numeric(newValue),
+                             "factor"  = as.character(newValue),
+                             "logical" =  !store[i,userData$column]),
+                      silent=TRUE)
+      if(inherits(newValue,"try-error")) newValue <- NA
+      
+      store[i,userData$column] <- newValue
+    }
+    
+    
+    QT <- connectSignal(cr, signal = if(type =="logical") "toggled" else "edited",
+                        f = callBack, ##if(type=="logical") callBackLogical else callBack,
+                        data = list(view=view,type=type,column=storeCol))
+  }
+@ 
+
+
+<<>>=
+## This adds the tree view columns from the data store using
+## the type. If visible=TRUE, then we assume the first column contains
+## the visible information.
+gtkTreeViewAddColumnsFromModel <-
+  function(view,editable=TRUE, doVisible=view$getData("doVisible")) {
+    doVisible <- if(is.null(doVisible)) FALSE else as.logical(doVisible)
+
+    if(doVisible && !is.logical(view$getRGtkDataFrame()[,1])) {
+      cat(gettext("If doVisible, first column must be a logical variable"))
+      doVisible <- FALSE
+    }
+    
+    dataf <- as.data.frame(view$getRGtkDataFrame())
+    editable <- rep(editable, length=ncol(dataf)) # recycle
+    nms <- names(dataf)
+
+    ncols <- ncol(dataf) - doVisible
+    for(j in 1:ncols) {
+      type = class(dataf[,j + doVisible])[1]
+      view$addColumnWithType(type,viewCol=j,storeCol=j + doVisible,
+                             if(type=="icon") "" else nms[j + doVisible],
+                             editable=editable[j])
+    }
+  }
+@ 
+
+<<>>=
+gtkTreeViewClearAllColumns <- function(view) {
+  l <- view$getColumns()
+  if(length(l) > 0) sapply(l, function(col) view$removeColumn(col))
+}
+@ 
+
+<<>>=
+gtkTreeViewSwitchModel <- function(view, newData) {
+  if(!inherits(newData,"RGtkDataFrame"))
+    newData <- try(rGtkDataFrame(newData), silent=TRUE)
+  if(inherits(newData, "try-error")) 
+    stop(gettext("newData is either a data frame or RGtkDataFrame"))
+  
+  view$clearAllColumns()
+  view['model'] <- newData
+  view$addColumnsFromModel(editable=TRUE, doVisible=view$getData("doVisible"))
+}
+@ 
+
+
+<<>>=
+## newColumn, newRow are functions to call
+## with view, row, col
+gtkTreeViewAddKeyNavigations <- function(view, newColumn=NULL, newRow=NULL) {
+  ## keyMotionHandler
+  connectSignal(view,"key-release-event",
+                f = function(view, event, userData,...) {
+                  newColumn = userData$newColumn; newRow = userData$newRow
+                  
+                  keyval = event$getKeyval()
+                  cursor = view$getCursor()
+                  ## i,j are current positions,
+                  i = as.numeric(cursor$path$toString()) + 1
+                  vc = cursor[['focus.column']] ## might be focus_column!!
+                  j = which(sapply(view$getColumns(), function(i) i == vc))
+                  d = dim(view$getRGtkDataFrame())
+                  
+                  setCursorAtCell <- function(view, i, j, edit=TRUE) {
+                    path <- gtkTreePathNewFromString(i-1)
+                    vc <- view$getColumn(j - 1)
+                    view$setCursor(path=path, focus.column=vc, start.editing=edit)
+                  }
+                  
+                  if(keyval == GDK_Return) {
+                    ## what do do with return?
+                  } else if(keyval == GDK_Up) {
+                    setCursorAtCell(view,max(1, i - 1), j)
+                  } else if(keyval == GDK_Down) {
+                    if(i == d[1]) {
+                      if(!is.null(newRow)) match.fun(newRow)(view, i, j)
+                    } else {
+                      setCursorAtCell(view,i + 1, j)
+                    }
+                  } else if(keyval == GDK_Tab) {
+                    if(j == d[2]) {
+                      if(!is.null(newColumn)) match.fun(newColumn)(view, i, j)
+                    } else
+                    setCursorAtCell(view,i, j + 1)
+                  }
+                },
+                data=list(view = view,newRow=newRow, newColumn=newColumn)
+                )
+
+}  
+@ 
+
+<<>>=
+gtkTreeViewGetRGtkDataFrame <- function(view) {
+  model <- view$getModel()
+  if(inherits(model,"GtkTreeModelFilter"))
+    model <- model$getModel()
+
+  if(inherits(model,"RGtkDataFrame"))
+    return(model)
+  else
+    return(NULL)
+}
+@ 
+
+
+
+
+
+
+
+<<>>=
+## ### Test it
+
+
+
+
+## ## How to add in icons
+## icons = c("gtk-ok","gtk-stop","gtk-quit","gtk-save")
+## class(icons) <- c("icon","character")
+
+## dataf = data.frame(
+##   visible = c(TRUE,TRUE,FALSE, TRUE),
+##   icons = icons,
+##   logical= sample(c(TRUE,FALSE),4,TRUE),
+##   integer = 1:4,
+##   numeric = rnorm(4),
+##   character = letters[1:4],
+##   factor = factor(c("a","b","a","b")),
+##   stringsAsFactors = FALSE
+##   )
+
+
+
+
+
+
+
+## store = rGtkDataFrame(dataf)
+## store1 <-  rGtkDataFrame(dataf[1:2,1:4]) ## loses icons
+
+## nms <- names(dataf)
+
+## doVisible <- TRUE
+## if(exists("doVisible") && doVisible == TRUE) {
+##   filtered.store <- store$filterNew()
+##   filtered.store$setVisibleColumn(0)
+##   view <- gtkTreeView(filtered.store)
+##   view$setData("doVisible",TRUE)        # filter by first row
+## } else {
+##   view <- gtkTreeView(store)
+## }
+
+
+## view$addColumnsFromModel()
+## view$addKeyNavigations()
+
+## ##
+## sw <- gtkScrolledWindow()
+## sw$setPolicy("GTK_POLICY_AUTOMATIC","GTK_POLICY_AUTOMATIC")
+## sw$add(view)
+
+## w <- gtkWindow(); w$setTitle("ex-df-take-2")
+## w$add(sw)
+@ 
+
+

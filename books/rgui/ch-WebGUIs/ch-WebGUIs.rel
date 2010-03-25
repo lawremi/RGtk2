@@ -1,0 +1,50 @@
+;; RefTeX parse info file
+;; File: /Users/verzani/GUI/ch-WebGUIs/ch-WebGUIs.Rnw
+;; User: verzani (john verzani)
+
+(set reftex-docstruct-symbol '(
+
+
+(xr nil "\\\\\\\\\\\\")
+
+(index-tags)
+
+(is-multi nil)
+
+(bibview-cache)
+
+(master-dir . "/Users/verzani/GUI/ch-WebGUIs/")
+
+(label-numbers)
+
+(bof "/Users/verzani/GUI/ch-WebGUIs/ch-WebGUIs.Rnw")
+
+(toc "toc" "  1 Web based GUIs in R" "/Users/verzani/GUI/ch-WebGUIs/ch-WebGUIs.Rnw" nil 1 "1" "\\chapter{Web based GUIs in R}" 46)
+
+(toc "toc" "    1.1 Authoring Web Pages" "/Users/verzani/GUI/ch-WebGUIs/ch-WebGUIs.Rnw" nil 2 "1.1" "\\section{Authoring Web Pages}" 1724)
+
+("sec:authoring-web-pages" "s" "writing html pages request -> server -> serve a static web page writing a static web page * HTML * C" "/Users/verzani/GUI/ch-WebGUIs/ch-WebGUIs.Rnw" nil)
+
+(toc "toc" "    1.2 Calling an R process from a web page" "/Users/verzani/GUI/ch-WebGUIs/ch-WebGUIs.Rnw" nil 2 "1.2" "\\section{Calling an R process from a web page}" 1923)
+
+("sec:calling-an-r" "s" nil "/Users/verzani/GUI/ch-WebGUIs/ch-WebGUIs.Rnw" nil "")
+
+(toc "toc" "    1.2  " "/Users/verzani/GUI/ch-WebGUIs/ch-WebGUIs.Rnw" nil 2 "1.2" "\\section{}" 1922)
+
+("sec:web-Overview" "s" "\\SweaveInput{Overview} \\section{Producing HTML from within R}  \\SweaveInput{HTML} \\section{CGI Progr" "/Users/verzani/GUI/ch-WebGUIs/ch-WebGUIs.Rnw" nil)
+
+(toc "toc" "    1.3 Producing HTML from within R" "/Users/verzani/GUI/ch-WebGUIs/ch-WebGUIs.Rnw" nil 2 "1.3" "\\section{Producing HTML from within R}" 1922)
+
+("sec:web-html" "s" "\\SweaveInput{HTML} \\section{CGI Programming}  \\SweaveInput{Forms} \\section{Web 2.0} \\label{sec:web-2" "/Users/verzani/GUI/ch-WebGUIs/ch-WebGUIs.Rnw" nil)
+
+(toc "toc" "    1.4 CGI Programming" "/Users/verzani/GUI/ch-WebGUIs/ch-WebGUIs.Rnw" nil 2 "1.4" "\\section{CGI Programming}" 1922)
+
+("sec:forms" "s" "\\SweaveInput{Forms} \\section{Web 2.0}  \\SweaveInput{Web20} " "/Users/verzani/GUI/ch-WebGUIs/ch-WebGUIs.Rnw" nil)
+
+(toc "toc" "    1.5 Web 2.0" "/Users/verzani/GUI/ch-WebGUIs/ch-WebGUIs.Rnw" nil 2 "1.5" "\\section{Web 2.0}" 1922)
+
+("sec:web-2.0" "s" "\\SweaveInput{Web20} " "/Users/verzani/GUI/ch-WebGUIs/ch-WebGUIs.Rnw" nil)
+
+(eof "/Users/verzani/GUI/ch-WebGUIs/ch-WebGUIs.Rnw")
+))
+

@@ -1,0 +1,190 @@
+\section{Dialogs}
+\label{sec:dialogs}
+\GTK\/ comes with a variety of dialogs to create simple, usually
+single purpose, popup windows
+for the user to interact with.
+
+\subsection{The \code{gtkDialog} constructor}
+
+The constructor \constructor{gtkDialog} creates a basic dialog box,
+which is a display containing a top section with optionally an icon, a
+message, and a secondary message. The bottom section, the action area,
+shows buttons, such as \kbd{yes}, \kbd{no} and/or
+\kbd{cancel}. The convenience functions
+\constructor{gtkDialogNewWithButtons} and
+\constructor{gtkMessageDialog} simplify the construction.
+
+In \GTK\/ dialogs can be modal or not. Thre are a few ways to make a
+dialog modal. The method window \method{setModal}{gtkWindow} will do
+so, as will passing in a \code{modal} flag to some of the
+constructors. These make other GUI elements inactive, but not the \R\/
+session. Whereas, calling the \method{run}{gtkDialog} method,
+will stop the flow until the dialog is dismissed, The return value can
+then be inspected for the action, such as what button was
+pressed. These values are from \code{GtkResponseType}, which lists
+what can happen.
+
+
+\paragraph{Basic message dialogs} The \constructor{gtkMessageDialog} has
+an argument \argument{parent}{gtkMessageDialog}, to specify a parent
+window the dialog should appear relative to. The
+\argument{flags}{gtkMessageDialog} argument allows one to specify
+values (from \code{GtkDialogFlags}) of \code{destroy-with-parent} or
+\code{modal}. The \argument{type}{gtkMessageDialog} is used to specify
+the message type, using a value in \code{GtkMessageType}. The
+\argument{buttons}{gtkMessageDialog} is used to specify which buttons
+will be drawn. The message is the following argument. The dialog has a
+\code{secondary-text} property that can be set to give a secondary message.
+
+<<eval=FALSE>>=
+w <- gtkWindow()
+w['title'] <- "Parent window"
+dlg <- gtkMessageDialog(parent=w, flags="destroy-with-parent",
+                        type="question", buttons="ok",
+                        "My message")
+dlg['secondary-text'] <- "A secondary message"
+response <- dlg$run()
+if(response == GtkResponseType["cancel"] || # for other buttons
+   response == GtkResponseType["close"] ||
+   response == GtkResponseType["delete-event"]) {
+  ## pass
+} else if(response == GtkResponseType["ok"]) {
+  print("Ok")
+}
+dlg$Destroy()
+@ 
+
+\paragraph{Making your own dialogs} The \constructor{gtkDialog}
+constructor returns a dialog object which can be customized for more
+involved dialogs. In the example below, we illustrate how to make a
+dialog to accept user input. We use the
+\constructor{gtkDialogNewWithButtons}, which allows us to specify a
+stock buttosn and a response value. We use standard responses, but could
+have used custom ones by specifying a positive integer. The dialog is
+a window object containing a box container, which is returned by the
+\method{getVbox}{gtkDialog} method. This box has a separator and
+button box packed in at the end, we pack in another box at the
+beginning below to hold a label and our entry widget. 
+
+When one of the buttons is clicked, the \signal{response} signal is
+emitted by the dialog. We connect to this close the dialog.
+
+<<>>=
+dlg <- gtkDialogNewWithButtons(title="Enter a value", 
+                               parent=NULL, flags=0,
+                               "gtk-ok", GtkResponseType["ok"],
+                               "gtk-cancel", GtkResponseType["cancel"],
+                               show=FALSE)
+g <- dlg$getVbox()                           # content area
+vg <- gtkVBox()
+vg['spacing'] <- 10
+g$packStart(vg)
+
+vg$packStart(gtkLabel("Enter a value"))
+entry <- gtkEntry()
+vg$packStart(entry)
+ID <- gSignalConnect(dlg, "response", f=function(dlg, resp, user.data) {
+  if(resp == GtkResponseType["ok"])
+    print(entry$getText())
+  dlg$Destroy()
+})
+dlg$showAll()
+dlg$setModal(TRUE)
+@ 
+
+\subsection{File chooser}
+\label{sec:RGtk2:file-chooser}
+
+\GTK\/ has a \class{GtkFileChooser} backend to implement selecting a file
+from the file system. The same widget allows one to open or save a
+file and select or create
+a folder (directory). The action is specified through one of the
+\code{GtkFileChooserAction} flags.
+This backend presented in various ways through
+\constructor{gtkFileChooserDialog}, which pops up a modal dialog;
+\constructor{gtkFileChooserButton}, which pops up the dialog when the
+button is clicked; and \constructor{gtkFileChooserWidget}, which
+creates a widget that can be placed in a GUI to select a file.
+
+The dialog constructor allows one to spcify a title, a parent and an
+action. In addition, the dialog buttons must be specified, as with the last
+example using \code{gtkDialogNewWithButtons}. 
+
+\begin{example}{An open file dialog}{ex:RGtk2:open-file}
+An open file dialog can be created with:
+
+<<openFileDialog>>=
+dlg <- gtkFileChooserDialog(title="Open a file", parent=NULL, action="open",
+                            "gtk-ok", GtkResponseType["ok"],
+                            "gtk-cancel", GtkResponseType["cancel"])
+@ 
+
+One can use the \code{run} method to make this modal or connect to the
+\signal{response} signal. The file selected is found from the file
+chooser method \method{getFilename}{gtkFileChooser}. One can enable
+multiple selections, by passing
+\method{setSelectMultiple}{gtkFileChooser} a \code{TRUE} value. In
+this case, the \method{getFilenames}{gtkFileChooser} returns a list of filenames,
+
+<<>>=
+ID <- gSignalConnect(dlg, "response", f=function(dlg, resp, data) {
+  if(resp == GtkResponseType["ok"]) {
+    filename <- dlg$getFilename()
+    print(filename)
+  }
+  dlg$destroy()
+})
+@
+
+For the open dialog, one may wish to specify one or more filters, to narrow the
+available files for selection. A filter object is returned by the
+\constructor{gtkFileFilter} function.
+This object is added to the file chooser, through its
+\method{addFilter}{gtkFileChooser} method. The filter has a name
+property set through the \method{setName}{gtkFileFilter} method. The
+user can select a filter through a combobox, and this provides the
+label. To use
+the filter, one can add a pattern (\method{addPattern}{gtkFileFilter}),
+a MIME type (\method{addMimeType}{gtkFileFilter}), or a custom filter. 
+
+<<>>=
+fileFilter <- gtkFileFilter()
+fileFilter$setName("R files")
+dlg$addFilter(fileFilter)
+QT <- sapply(c("*.R", "*.Rdata"), 
+             function(i) fileFilter$addPattern(i))
+QT <- sapply(c("text/plain"), 
+             function(i) fileFilter$addMimeType(i))
+@ 
+\end{example}
+
+The save file dialog is similar. The
+\method{setFilename}{gtkFileChooser} can be used to specify a
+default file and \method{setFolder}{gtkFileChooser} can specify an
+initial directory. To be careful as to not overwrite an existing file, the
+method \method{setDoOverwriteConfirmation}{gtkFileChooser} can be
+passed a \code{TRUE} value.
+
+\subsection{Date picker}
+\label{sec:RGkt2:date-picker}
+
+A calendar widget is produced by \constructor{gtkCalendar}. This
+widget allows selection of a day, month or year. To specify these
+values, the properties \code{day}, \code{month} ($0$-$11$), and
+\code{year} store these values as integers. One can assign to these
+directly, or use the methods
+\method{selectDay}{gtkCalendar} and
+\method{selectMonth}{gtkCalendar} (no select year method). The method
+\method{getData}{gtkCalendar} returns a list with components for the
+year, month and day. If there is no selection, the \code{day}
+component is $0$.
+
+The widget emits various signals when a selection is changed. The
+\signal{day-selected} and \signal{day-selected-double-click} ones are
+likely the most useful of these.
+
+
+
+
+
+

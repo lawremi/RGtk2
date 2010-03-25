@@ -1,0 +1,9 @@
+\message{ !name(ch-ProgrammingPractices.Rnw.tex)}
+\message{ !name(ch-ProgrammingPractices.Rnw) !offset(31) }
+f = function(obj) obj[['new']]<-"new"
+p = proto(); p$new = "old"; q = p$proto()
+e = environment(); e$new="old"
+l = list(); l$new = "old"
+f(p); f(e); f(l); print(c(q$new, p$new, e$new, l$new))
+
+\message{ !name(ch-ProgrammingPractices.Rnw.tex) !offset(-9) }

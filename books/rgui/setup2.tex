@@ -1,0 +1,163 @@
+%%% These go inside begin document, so in a different file
+
+%% From http://tolstoy.newcastle.edu.au/R/e6/help/09/04/11790.html
+\newenvironment{Schunk}{}{}
+%%\usepackage{listings}
+\definecolor{gris10}{gray}{0.10}
+\definecolor{gris90}{gray}{0.90}
+\definecolor{gris95}{gray}{0.95}
+\lstloadlanguages{R}
+
+\lstnewenvironment{Sinput}[1][]{
+  \lstset{%
+    language={R},
+    basicstyle=\small,                        % print whole listing small
+%   keywordstyle=\color{black}\bfseries,      % style for keyword
+   keywordstyle=\ttfamily,      % style for keyword
+    emph={in},                                % define a list of word to emphasis
+%    emphstyle=\color{black}\bfseries,         % define the way to    emphase
+    emphstyle=\ttfamily,         % define the way to emphase
+    % emph={[2]out},                            % define a second list of word to emphasis
+    % emphstyle=[2]\color{red}\bfseries,        % define the way to emphase the list 2
+%    commentstyle=\color{gris10}\ttfamily,              % define the
+                                % style of the comments
+    stringstyle=\ttfamily,
+    identifierstyle=\ttfamily,
+    %% 
+    frame=leftline,                             % box arround the code
+    backgroundcolor=\color{gris95},           % background color
+   showspaces=false,                         % show the space in code, or not
+    stringstyle=\ttfamily,                    % style of the string (like "hello word")
+    showstringspaces=false,                   % show the space in
+                                % string, on not
+    aboveskip=\medskipamount,
+ #1
+  }
+}{}
+
+\lstnewenvironment{Soutput}[1][]{
+  \lstset{%
+    language={R},
+    basicstyle=\small,                        % print whole listing small
+    keywordstyle=\color{black}\bfseries,      % style for keyword
+    emph={in},                                % define a list of word to emphasis
+    emphstyle=\color{black}\bfseries,         % define the way to emphase
+    % emph={[2]out},                            % define a second list of word to emphasis
+    % emphstyle=[2]\color{red}\bfseries,        % define the way to emphase the list 2
+    %% frame=single,                             % box arround the code
+    backgroundcolor=\color{gris95},           % background color
+    % commentstyle=\color{gris10},              % define the style of the comments
+    showspaces=false,                         % show the space in code, or not
+    stringstyle=\ttfamily,                    % style of the string (like "hello word")
+    showstringspaces=false,                   % show the space in  string, on not
+   #1
+  }
+}{} 
+
+
+
+
+% %% Override the verbatim environment for Sinput, Soutput, Scode
+
+% \DefineVerbatimEnvironment{Sinput}{Verbatim}{
+% fontfamily=lmss,
+%   fontseries=b
+%   ,fontsize=\relsize{0}
+% %%  ,xleftmargin=2em
+% }
+% \DefineVerbatimEnvironment{Soutput}{Verbatim}{
+%   formatcom=\color{blue},
+% %%  fontshape=sl,
+%  fontsize=\relsize{0},
+%   showspaces=FALSE
+% %%  ,xleftmargin=2em
+% %%  formatcom=\color{gray40}
+% }
+% \DefineVerbatimEnvironment{Scode}{Verbatim}{
+%   %% xleftmargin=2em
+%   %% fontshape=sl
+% }
+
+% %% Same as Sinput
+% \DefineVerbatimEnvironment{CodeSnippet}{Verbatim}{
+% %  formatcom=\color{RInput},
+%   fontseries=b, 
+%   fontsize=\relsize{-1}
+% }
+
+
+% %%% DUncan Murdoch's solution to tighten up space in Sweave
+% \fvset{listparameters={\setlength{\topsep}{0pt}}}
+% \renewenvironment{Schunk}{\vspace{\topsep}}{\vspace{\topsep}}
+
+% % %% use   fontshape=it, for italics
+% % \DefineVerbatimEnvironment{Sinput}{Verbatim}{
+% % %  formatcom=\color{RInput},
+% %   fontfamily=courier,
+% %   fontseries=b,
+% %   fontsize=\relsize{-1},
+% %   showspaces=false
+% % %%  baselinestretch=0
+% % }
+% % \DefineVerbatimEnvironment{Soutput}{Verbatim}{
+% % %  formatcom=\color{ROutput},
+% %   fontfamily=courier,
+% %   fontseries=b,
+% %   fontsize=\relsize{-2},
+% %   showspaces=false
+% % %%  baselinestretch=0
+% % }
+
+
+%%% An environment for HTML text
+\lstnewenvironment{HTMLinput}[1][]{
+  \lstset{%
+    language={html},
+    basicstyle=\small,                        % print whole listing small
+    % keywordstyle=\color{black}\bfseries,      % style for keyword
+    keywordstyle=\ttfamily,      % style for keyword
+    emph={in},                                % define a list of word to emphasis
+    % emphstyle=\color{black}\bfseries,         % define the way to    emphase
+    emphstyle=\ttfamily,         % define the way to emphase
+    % emph={[2]out},                            % define a second list of word to emphasis
+    % emphstyle=[2]\color{red}\bfseries,        % define the way to emphase the list 2
+    % commentstyle=\color{gris10}\ttfamily,              % define the
+                                % style of the comments
+    stringstyle=\ttfamily,
+    identifierstyle=\ttfamily,
+    %% 
+    frame=leftline,                             % box arround the code
+    backgroundcolor=\color{gris95},           % background color
+    showspaces=false,                         % show the space in code, or not
+    stringstyle=\ttfamily,                    % style of the string (like "hello word")
+    showstringspaces=false,                   % show the space in
+    % string, on not
+    aboveskip=\medskipamount,
+ #1
+  }
+}{}
+
+%% Use to call in an HTML file
+\newcommand{\HTMLinputlisting}[1]{
+  \lstinputlisting[
+  language={html},
+  basicstyle=\small\ttfamily,
+   emph={in},                                % define a list of word to emphasis
+   emphstyle=\ttfamily,         % define the way to emphase
+   stringstyle=\ttfamily,
+   identifierstyle=\ttfamily,
+%   %% 
+   frame=leftline,                             % box arround the code
+   backgroundcolor=\color{gris95},           % background color
+   showspaces=false,                         % show the space in code, or not
+   stringstyle=\ttfamily,                    % style of the string (like "hello word")
+   showstringspaces=false,                   % show the space in
+%   % string, on not
+  aboveskip=\medskipamount
+  ]{#1}
+}
+
+% %%% Local Variables: 
+% %%% mode: latex
+% %%% TeX-master: t
+% %%% End: 
