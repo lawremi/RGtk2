@@ -2951,6 +2951,20 @@ button to initiate the call to \code{t.test}.
  w <- gwindow("t.test example with gformlayout")
  g <- ggroup(horizontal=FALSE, cont=w)
  fl <- gformlayout(tTest, cont=g, expand=TRUE)
+\end{Sinput}
+\begin{Soutput}
+DEBUG$weight
+weight 
+"bold" 
+
+[1] " bold"
+DEBUG$weight
+weight 
+"bold" 
+
+[1] " bold"
+\end{Soutput}
+\begin{Sinput}
  bg <- ggroup(cont=g)
  addSpring(bg)
  b <- gbutton("Run t.test", cont=bg)
@@ -3008,6 +3022,23 @@ the commands:
  f <- stats:::t.test.default; 
  widget <- ggenericwidget("f", cont=w)
 \end{Sinput}
+\begin{Soutput}
+DEBUG$style
+[1] "bold"
+
+[1] ""
+DEBUG$style
+[1] "bold"
+
+$size
+[1] 10
+
+[1] " 10"
+DEBUG$style
+[1] "bold"
+
+[1] ""
+\end{Soutput}
 \end{Schunk}
 
 

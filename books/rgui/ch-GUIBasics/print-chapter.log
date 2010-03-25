@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.4.5)  16 MAR 2010 17:51
+This is pdfTeX, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.4.5)  24 MAR 2010 21:50
 entering extended mode
 **print-chapter
 (./print-chapter.tex
@@ -893,7 +893,7 @@ er/sftt0900.pfb></opt/local/share/texmf-dist/fonts/type1/public/cm-super/sftt10
 00.pfb></opt/local/share/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></opt/l
 ocal/share/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></opt/local/share/tex
 mf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on print-chapter.pdf (21 pages, 515375 bytes).
+Output written on print-chapter.pdf (21 pages, 515371 bytes).
 PDF statistics:
  122 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
