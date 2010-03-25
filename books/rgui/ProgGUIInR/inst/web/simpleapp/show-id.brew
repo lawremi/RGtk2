@@ -1,0 +1,16 @@
+<% brew("brew-header.brew") %>
+
+<%
+for(i in 1:length(GET)) {
+ print(i)
+  print(GET[[i]])
+}
+%>
+
+<h3> 
+  Detail on <%= id %> 
+</h3>
+<%
+hwrite(unlist(d), page=stdout())
+%>
+<% brew("brew-footer.brew") %>
