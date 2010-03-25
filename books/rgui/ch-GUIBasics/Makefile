@@ -13,4 +13,4 @@ latex:
 
 package:
 	R CMD Stangle TicTacToe.Rnw
-	cp TicTacToe.R ../ProgGUIinR/inst/Examples/
+	cp TicTacToe.R ../ProgGUIInR/inst/Examples/

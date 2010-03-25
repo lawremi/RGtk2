@@ -12,10 +12,10 @@ latex:
 	pdflatex print-chapter
 
 package:
-	rm -rf ../ProgGUIinR/inst/web/simpleapp
-	rm -rf ../ProgGUIinR/inst/web/ajaxapp
-	rm -rf ../ProgGUIinR/inst/web/brew/*brew
-	cp -Ra tmp/simpleapp ../ProgGUIinR/inst/web/simpleapp
-	cp -Ra tmp/ajaxapp ../ProgGUIinR/inst/web/ajaxapp
-	cp tmp/test-ajax.html ../ProgGUIinR/inst/web/test-ajax.html
-	cp *.brew ../ProgGUIinR/inst/web/brew/
+	rm -rf ../ProgGUIInR/inst/web/simpleapp
+	rm -rf ../ProgGUIInR/inst/web/ajaxapp
+	rm -rf ../ProgGUIInR/inst/web/brew/*brew
+	cp -Ra tmp/simpleapp ../ProgGUIInR/inst/web/simpleapp
+	cp -Ra tmp/ajaxapp ../ProgGUIInR/inst/web/ajaxapp
+	cp tmp/test-ajax.html ../ProgGUIInR/inst/web/test-ajax.html
+	cp *.brew ../ProgGUIInR/inst/web/brew/
