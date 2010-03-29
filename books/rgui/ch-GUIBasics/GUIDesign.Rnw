@@ -22,29 +22,57 @@
 % discussed in “Dialogs.” (page 207)
 
 
+The most prevalent pattern of user interface design is denoted WIMP,
+which stands for Window, Icon, Menu and Pointer (i.e., mouse). The
+WIMP approach was developed at Xerox PARC in the 1970's and later
+popularized by the Apple Macintosh in 1984. This is particularly
+evident in the separation of the window from the menubar on the Mac
+desktop. Other graphical operating systems, such as Microsoft Windows,
+later adapted the WIMP paradigm, and libraries of reusable GUI
+components emerged to support development of applications in such
+environments. Thus, GUI development in R adheres to WIMP approach.
 
-
-A typical interface design
-consists of a top-level window referred to as the
-\dfnref{document window} that shows the current state of a
+The primary WIMP component from our perspective is the window. A
+typical interface design consists of a top-level window referred to as
+the \dfnref{document window} that shows the current state of a
 ``document'', whatever that is taken to be. In \R\/ it could be a data
-frame, a command line, a function editor, a graphic etc.. The actions
-that can be done on the ``document'' are called through the menubar or
-toolbar and have their parameters controlled in sub-windows. These
-sub-windows are termed \dfnref{application windows} by
-Apple~\citep{APPLE:HIG}, but we prefer the term \dfnref{dialogs}, or
-\dfnref{dialog boxes}. These terms may also refer to smaller
-sub-windows that are used for alerts or confirmation. As these are
-often used in a modal manner, we refer to them as \dfnref{modal dialog
-  boxes}.
+frame, a command line, a function editor, a graphic or an arbitrarily
+complex form containing an assortment of such elements. 
 
-Each window or dialog typically consists of numerous widgets or
-controls layed out in some manner to facilitate the user
-interaction. However, there are numerous means to achieve the same
-goals. For example, Figure~\ref{fig:GUI:print-dialogs} contains three
-dialogs that perform the same task -- collect arguments from the user
-to customize the printing of a document. Although all were designed to
-do the same thing, there are many differences.
+The actions that can be performed on the ``document'' are called
+through another WIMP component, the menu. Abstractly, every control in
+a window belongs to some menu. Two common ways of organizing controls
+into menus are the menubar and toolbar.
+
+The parameters of an action call, if any, are controlled in
+sub-windows. These sub-windows are termed \dfnref{application windows}
+by Apple~\citep{APPLE:HIG}, but we prefer the term \dfnref{dialogs},
+or \dfnref{dialog boxes}. These terms may also refer to smaller
+sub-windows that are used for alerts or confirmation. The program
+often needs to wait for user input before continuing with an action,
+in which case the window is modal. We refer to these as \dfnref{modal
+  dialog boxes}.
+
+Each window or dialog typically consists of numerous controls laid out
+in some manner to facilitate the user interaction. Each window and
+control is a type of \textit{widget}, the basic element of a
+GUI. Every GUI is constituted by its widgets. Not all widgets are
+directly visible by the user; for example, many GUI frameworks employ
+invisible widgets to lay out the other widgets in a window.
+
+There is a wide variety of available widget types, and widgets may be
+combined in an infinite number of ways. Thus, there are often numerous
+means to achieve the same goals. For example,
+Figure~\ref{fig:GUI:print-dialogs} contains three dialogs that perform
+the same task -- collect arguments from the user to customize the
+printing of a document. Although all were designed to do the same
+thing, there are many differences.
+
+%% ML: Print dialogs might be problematic, especially with Firefox, which
+%% (through GTK+) will use the platform native print dialog. On Linux,
+%% there is no native dialog, so GTK+ implements one. This might not
+%% be true of Firefox 2.0 specifically, but that is getting old
+%% now. What about taking the print dialog from the R Windows GUI?
 
 %% Principles of GUI layout
 %% http://www.sylvantech.com/~talin/projects/ui_design.html has a nice list
@@ -64,21 +92,21 @@ do the same thing, there are many differences.
 %% Choice of widget -- familiar metaphors, use of icons, 
 In some cases, typical usage suggests one control over another. The
 choice of printer for each is specified through a combo box. However,
-in other cases there can be a variety. For example, the control to indicate the
-number of copies for the mac and firefox dialogs is a simple text
-entry window, whereas for the KDE dialog it is a spinbutton. The
-latter minimizes user error, say through entering a non-positive
-integer. The KDE and Mac dialogs have icons to compactly represent
-actions, whereas the firefox one has none. The landscape icon for the
-Mac is very clear and provides this feature without having to use a
-sub dialog.
+for other choices a variety of widgets are employed. For example, the
+control to indicate the number of copies for the Mac and Firefox
+dialogs is a simple text entry window, whereas for the KDE dialog it
+is a spinbutton. The latter minimizes user error, say through entering
+a non-positive integer. The KDE and Mac dialogs have icons to
+compactly represent actions, whereas the Firefox example has none. The
+landscape icon for the Mac is very clear and provides this feature
+without having to use a sub dialog.
 
 
 %% Choice of layout -- positioning, focus, use of spacing, center
 %% balance, vs. ...
-How the interfaces are layed out also varies. All are read top to
+How the interfaces are laid out also varies. All are read top to
 bottom, although the Mac interface also has a very nice preview
-feature on the left side. The firefox and KDE dialogs use frames to
+feature on the left side. The Firefox and KDE dialogs use frames to
 separate out the printer arguments from the arguments that specify how
 the print job is to proceed. The Mac uses a vertical arrangement to
 guide the user through this. For the Mac, horizontal separators are used instead of
@@ -86,7 +114,7 @@ frames to break up the areas, although a frame is used towards the
 bottom. 
 
 Apple uses a center balance for its controls. They are not left
-justified as are the KDE and firefox dialogs. Apple has strict
+justified as are the KDE and Firefox dialogs. Apple has strict
 user-interface guidelines and this center balance is a design
 decision. 
 
@@ -97,49 +125,50 @@ decision.
 The Mac GUI provides a very nice preview of the current document
 indicating to the user clearly what is to be printed and how
 much. Adjusting GUIs to the possible state is an important user
-interface property.
-In each  GUI areas that are not currently sensitive to
-user input are grayed out. For example, the ``collate'' feature of the GUI only makes
-sense when more than 1 copy is selected, so the designers have it
-grayed out until then. It is common practice when designing GUIs to
-only enable controls that initiate actions when those actions can
-actually be completed given the state of the application. 
+interface property.  GUI areas that are not currently sensitive to
+user input are grayed out. For example, the ``collate'' feature of the
+GUI only makes sense when multiple copies are selected, so the
+designers have it grayed out until then. A common element of GUI
+design is to only enable controls when their associated action is
+possible, given the state of the application.
 
 %% shortcuts -- default button, keyboard accelerators
  
-The Mac GUI has the number of pages in focus, whereas for the firefox
-one the printer is focused. This allows the user to interact with the
-GUI without the mouse. Typically the \kbd{tab} key is used to step
-through the contorls. GUIss often have keyboard accelerators, such as
-the KDE dialog where the underlined letters indicate the
-accelerator. Such additions help power users navigate through the
-interface quicker. As well most dialogs have a default button, which
-will initiate the action when clicked on or if the \kbd{return} key is
-pressed. In the KDE dialog, you can see by the shading that this is
-the ``print'' button.
+The Mac GUI has the number of pages in focus, whereas Firefox places
+the printer in focus. This allows the user to interact with the GUI
+without the mouse. Typically the \kbd{tab} key is used to step through
+the controls. GUI's often have keyboard accelerators that allow power
+users to shift the focus directly to a specific widget. Examples are
+found in the KDE dialog, where the underlined letters indicate the
+accelerator key. Most dialogs also have a default button, which will
+initiate the dialog action when the \kbd{return} key is pressed. The
+KDE dialog, for example, indicates that the ``print'' button is the
+default button through special shading.
 
 %% help
 For such a common dialog, it is unlikely the user will need help. As
-such the firefox  dialog does not provide a link. However, the
-KDE and Mac dialogs do. A typical dialog should if the functions it provides
-are not commonly carried out.
+such the Firefox dialog does not provide a link. However, the
+KDE and Mac dialogs do. A dialog should provide assistance for
+complex and unfamiliar tasks.
 
 %% safety -- postion of buttons
+%% ML: Do we really want to mention something that is not applicable?
 The Apple human interface guidelines suggest putting buttons that can
 cause the destruction of data separate from other control buttons. As
 this isn't directly applicable here, we see that Apple does separate
 buttons that are common to many dialogs (cancel, print) from the ones
 specific to the dialog. The KDE buttons have nice icons, but their
-similare, but irregular, sizing is a bit unusual.
+similar, but irregular, sizing is a bit unusual.
 
 %% feature exposure, Choice of options -- what to show, what to leave out
 One of the greatest differences between these dialogs is the amount of
-features they choose to expose. The firefox dialog is essentially
-minimal by comparison. As this is for printing from a browser, and not
-other documents it makes sense. The Mac GUI uses ``disclosure
-buttons'' to allow access to printer properties and the PDF settings,
-whereas KDE uses a notebook container to show possible options without
-revealing all their detail. 
+features they choose to expose. The Firefox dialog is minimalist
+compared to the others. This is a general theme for Firefox and seems
+justifiable given that printing is not a very common task for a web
+browser.  The Mac GUI uses ``disclosure buttons'' to allow access to
+printer properties and the PDF settings, whereas KDE uses a notebook
+container to show possible options without revealing all of their
+detail.
 
 
 
@@ -149,12 +178,14 @@ revealing all their detail.
 %% real estate, type of data
 
 A GUI is comprised of one or more widgets. Typically these widgets
-allow a user to make a selection from one or more possible values. The
-choice of widget varies greatly depending on the length and type of
-values, on the desired number to select, and on the pixel-size
-allowable in the GUI layout. Table~\ref{tab:gui-design-widget-type}
-lists several different types of widgets used for selection from a set
-of values.
+display some type of information and/or allow a user to specify some
+input, often a selection from one or more possible choices. The
+appropriate choice of widget varies greatly, depending on the type and
+size of the information being displayed, the constraints on the user
+input, and on the space available in the GUI layout. As an example, we
+take the common GUI task of presenting a set of options to the
+user. Table~\ref{tab:gui-design-widget-type} lists several different
+types of widgets used for this purpose.
   
 <<echo=FALSE, results=tex>>=
 df <- rbind(
@@ -175,10 +206,10 @@ cat(booktabs(df,
 
 
 Figure~\ref{fig:GUI:spss-11-term-selection} shows several such
-controls in a single GUI. A checkbox is used to include an intercept,
-a radio group is used to select either full factorial or a custom
-model, a combobox is used to select the ``sum of squares'' type, and a
-list box is used to allow for multiple selection from the available
+controls in a single GUI. A checkbox enables an intercept,
+a radio group selects either full factorial or a custom
+model, a combobox selects the ``sum of squares'' type, and a
+list box allows for multiple selection from the available
 variables in the data set. 
 
 
@@ -200,15 +231,14 @@ example, values from a sequence map naturally to a slider or spin
 button; a data frame maps naturally to a table widget; or a list with
 similar structure can map naturally to a tree widget. However, certain
 \R\/ types have less common metaphors. For instance, a formula object
-can be a fairly complex
-thing. Figure~\ref{fig:GUI:spss-11-term-selection} shows an SPSS dialog to
-build terms in a model. \R\/ power users may be much faster specifying
-the formula through a text entry box, but beginning \R\/ users coming
-to grips with the concept of a command line and the concept of a
-formula may benefit from the assistance a well designed GUI can
-provide. Designing an interface to balance both of these types of
-users may be desired, or one may decide to use an interface such as
-the cumbersome SPSS one. Knowing the potential user base is important.
+can be fairly complex. Figure~\ref{fig:GUI:spss-11-term-selection}
+shows an SPSS dialog to build terms in a model. \R\/ power users may
+be much faster specifying the formula through a text entry box, but
+beginning \R\/ users coming to grips with the command line and the
+concept of a formula may benefit from the assistance of a well
+designed GUI. One might desire an interface that balances the needs of
+both types of user, or the SPSS interface may be appropriate. Knowing
+the potential user base is important.
 
 
 

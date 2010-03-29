@@ -7,6 +7,13 @@ has nothing to do with statistics, it illustrates, in a familiar way,
 some of the issues that this text will address with using GUIs. 
 
 
+%% ML: the note about the MVC pattern can probably come after the
+%% concrete model, view and controller have been presented. We can
+%% look back and point out that the design of the example can be
+%% generalized to MVC and that we will encounter such designs
+%% throughout the book, even if it is not always explicit. It's OK to
+%% generalize a little after each step, but I think we want to lead
+%% with the concrete.
 
 Many GUIs can be thought of as different views of some data
 model. This thought leads itself to the prevalent
@@ -135,10 +142,8 @@ drawMove <- function(z,type="x") {
 One could use \code{text} to place a text ``x'' or ``o'', but this may
 not look good if the GUI is resized. Most GUI layouts allow for
 dynamic resizing. Overall this is a great advantage, for example it
-allows translations to just worry about the text and not the layout
-even though some languages are much more verbose and hence require
-more space.
-
+allows translations to just worry about the text and not the layout,
+which will be different for every language.
 
 This function is used to test if a game is finished. The matrix
 \code{m} allows us to easily check all the possible ways to get three
@@ -162,7 +167,7 @@ This function picks a move for the computer.  The move is converted
 into coordinates using \code{\%\%} to get the remainder and
 \code{\%/\%} to get the quotient when dividing an integer by an
 integer. This function just chooses at random from the left over
-positions, we leave implementing a better stategy to the interested
+positions; we leave implementing a better stategy to the interested
 reader.
 
 <<doComputerMove>>=
@@ -192,10 +197,10 @@ playGame <- function() {
 
 %% endless tweak
 Finally, the above example illustrates a common issue when designing
-GUIs -- they seemingly can always be improved. In this case, there are
-many obvious improvements: localizing the text messages so different
-languages can be used, implementing a better logic for the computer's
-moves, drawing a line connecting three in a row when there is a win,
-indicating who won when there is a win, etc. For many GUIs there is a
-necessary trade-off between offering sufficient usability versus
-increased complexity.
+software that is particularly true of GUIs -- feature creep is an
+endless temptation. In this case, there are many obvious improvements:
+localizing the text messages so different languages can be used,
+implementing a better logic for the computer's moves, drawing a line
+connecting three in a row when there is a win, indicating who won when
+there is a win, etc. For many GUIs there is a necessary trade-off
+between usability and complexity.
