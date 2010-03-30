@@ -1,23 +1,37 @@
 %% Containers
 
-Widgets are arranged in a window to produce a GUI. How they are laid
-out is done using containers. The simplest containers a like boxes
+%% ML: Layout management is orthogonal to the type of container. This
+%% is made obvious in the design of Swing and Qt: there is a separate
+%% class hierarchy for layout managers, which are assigned to
+%% container widgets. The container could be invisible or provide an
+%% interface around its children, as with a frame, notebook or top-level
+%% window. Thus, in Qt, a frame container could lay out its children
+%% as a box, a grid, etc. I suggest discussing container types first,
+%% and then discuss layout management policies, explaining that some
+%% toolkits have widgets specific to a particular policy (and so
+%% require a lot of nesting), while in others any container type is
+%% capable of any type of layout.
+
+Widgets are arranged in a window to produce a GUI. Container widgets
+manage the layout. The simplest containers are like boxes
 that get packed in left to right or top to bottom. These boxes may be
 decorated with a frame or label, or may have some means of being
 hidden or displayed by the user. The nesting of box containers can
 provide a great deal of flexibility, but usually not
-enough. Additionally, layout can be done using grids to specify where
-to place the widgets.
+enough. An example of a more flexible layout strategy is to position
+widgets on a grid.
 
 \subsection{Top level windows}
 \label{sec:GUI:top-level-windows}
 
-The top-level window of a GUI or its sub-windows typically is drawn
-with window decorations including a title and buttons to iconify,
-maximize, or close. In addition, a top-level window may have room for
-a menu bar, a tool bar and a status bar. In between these, if present,
-is the area referred to as the \dfnref{client area} or \dfnref{content
-  pane} where other containers or widgets are placed.
+The top-level window of a GUI is typically decorated with a title and
+buttons to iconify, maximize, or close. Besides the text of the title,
+the decorations are generally the domain of the window manager, often
+part of the operating system. The application controls the contents of
+the window. Generally, a top-level window will consist of a menu bar,
+a tool bar and a status bar. In between these is the area referred to
+as the \dfnref{client area} or \dfnref{content pane} where other
+containers or widgets are placed.
 
 %% client area -- wxWidgets book
 %% content pane -- java tutorial
@@ -49,6 +63,15 @@ mouse. When this is done, the laying out of widgets must be updated.
 %% rJava -- Preferred Size
 %% tcltk -- min size
 %% RwxWidgets -- DefaultSize
+
+%% ML: I don't think that the ability to set a default or minimum size
+%% depends on the toolkit. It's all determined by the windowing system
+%% and what the associated window managers are required to support. I
+%% would say that on all major platforms, one can set both a default
+%% and a minimum size, as well as toggle resizability, with any
+%% reasonable toolkit. Certainly this is true of GTK+ and Qt. The
+%% top-level window geometry is the result of negotiation between the
+%% window manager and application.
 
 The window manager usually decorates a top-level window with a close
 button. It may be necessary or desirable to specify some action to
@@ -184,7 +207,7 @@ Figure~\ref{fig:GUI:box-possibilities}. Some specification where to
 anchor the component when there are nine possible positions plus
 expanding options must made.
 
-\subsection{Notebooks}
+\subsection{Tabbed Notebooks}
 \label{sec:GUI:notebooks}
 
 A notebook is a common container to hold one or more pages (or
