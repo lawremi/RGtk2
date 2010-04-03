@@ -516,7 +516,7 @@ an event occurs, rather than have a handler respond to the dismiss
 event. The \command{file.choose} function, mentioned below, is a good
 example. When used during an interactive \R\/ session, the user is
 unable to interact with the command line until a file has been
-specified of the dialog dismissed. 
+specified and the dialog dismissed. 
 
 
 \subsubsection{File choosers}
@@ -531,16 +531,17 @@ any user of a GUI. A typical \R\/ installation has the functions
 applicable. The use of \
 
 
-O\lther common choosers are color choosers and font choosers.
+Other common choosers are color choosers and font choosers.
 
 \subsubsection{Message dialogs}
 \label{sec:GUI:message-dialogs}
 
-A \dfnref{message dialog} generally has a pretty standard form, a
-small rectangular box that appears in the middle of the screen with an
-icon on the left and a message on the right. At the bottom is a button
-to dismiss the dialog, often labeled ``OK.'' A \dfnref{confirmation
-  dialog} would add a ``cancel'' button which the programmer can use
-to invalidate the proposed action.
+A \dfnref{message dialog} is a high-level dialog widget for
+communicating a message to the user. Generally, it has a standard
+form. There is a small rectangular box that appears in the middle of
+the screen with an icon on the left and a message on the right. At the
+bottom is a button to dismiss the dialog, often labeled ``OK.'' The
+\dfnref{confirmation dialog} variant would add a ``cancel'' button
+which invalidates the proposed action.
 
 
