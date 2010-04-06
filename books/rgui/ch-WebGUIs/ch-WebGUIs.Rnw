@@ -10,27 +10,20 @@ options(width=80)
 @ 
 
 
-The internet allows one to distribute their work in a convenient,
+The internet affords one the opportunity to distribute their work in a convenient,
 standardized way that allows people from around the globe to
-share. Indeed, the \R\/ project would never have reached the
-point it is had it started 10 years prior, as the web technologies
-that enabled user participation from disparate points did not exist in
-widespread form.
+share. Indeed, the \R\/ project has benefited greatly from the  web technologies
+that enable user participation from disparate points.
 
 This chapter shows some of the means to produce interactive interfaces
 between the user and R through web technologies, at the time of
-writing. Web interfaces to some process have many obvious advantages
+writing. Web interfaces to expose some resource have many obvious advantages
 over the desktop interfaces discussed in previous chapters: no
 installation issues for \R\/ and the toolkit libraries, user
-familiarity with a browser, operating system independence, etc. This
+familiarity with the browser interface, operating system independence, etc. This
 makes it much easier to share ones work, but also puts an added burden
 on the GUI writer, who must have some familiarity with new
 technologies and the security implications contained therein. 
-
-This chapter does not even pretend to be comprehensive. It covers an
-enormous array of technologies. Rather, its focus is to show how \R\/
-can be used with these technologies. The interested reader will likely
-need to seek additional help before implementation.
 
 The web programmer coming to \R\/ will find relatively simple tools as
 compared say to some open-source tools available for the python
@@ -43,6 +36,12 @@ make it possible to develop \R-driven websites. Of course, web
 technologies are changing quite rapidly, and \R\/ package writers are
 hard at work, so one should check to see if newer, more powerful
 resources, have been added to the mix.
+
+This chapter does not even pretend to be comprehensive. It covers an
+enormous array of technologies. Rather, its focus is to show how \R\/
+can be used with these technologies. The interested reader will likely
+need to seek additional help before implementation.
+
 
 \section{Authoring Web Pages}
 \label{sec:authoring-web-pages}

@@ -1,6 +1,6 @@
-The basic input dialog requires just the first argument.
+The basic message dialog requires just the first argument.
 <<eval=FALSE>>=
-ginput("Message goes here", title="example dialog")
+gmessage("Message goes here", title="example dialog")
 @ 
 
 Here we use the question icon for a confirmation dialog, as the message is a question.

@@ -21,16 +21,16 @@ briefly how to use \pkg{rapache} to provide the data for such a
 request. 
 
 \begin{example}{Creating a web service using \pkg{rapache}}{eg:web-service}
-  This example will illustrate how make a web service with
+  This example will illustrate how to make a web service with
   \pkg{rapache}. There are two pieces, the JavaScript code in the web
   page, and the server code. For the JavaScript piece, we use the
   \code{jQuery} library, as the use is somewhat straightforward.
   
-  We illustrate how to return HTML, JSON and XML. First, the HTML.
+  We illustrate how to return content in either HTML, JSON or XML format. 
   
-  In the header of our web page, we must call in the \code{jQuery}
-  JavaScript library. These files may be on local webserver, or called
-  in with the following HTML code:
+  First, the HTML. In the header of our web page, we must call in the
+  \code{jQuery} JavaScript library. These files may be on local
+  webserver, or called in with the following HTML code:
   \begin{HTMLinput}
 <script 
   src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js" 
@@ -38,17 +38,19 @@ request.
 </script>    
   \end{HTMLinput}
 
-  Inside the HTML page, we have a place holder to put the text from
+  Inside the same HTML page, we have a place holder to put the text from
   the web service. We use \tagger{div} tag, with an unique id.
   \begin{HTMLinput}
 <div id="htmlTarget"> [HTML target] </div>    
   \end{HTMLinput}
-  (There are also similar areas for JSON and XML.)
+  There are also similar areas for JSON and XML. If things are working
+  properly, the bit \code{[HTML target]} won't be seen, as our web
+  service will provide its content.
   
   We want the request for data to happen when the page loads. The
   \code{jQuery} library provides a means to have a function called as
   the page loads (before any images are downloaded, say). We place the
-  command within this bit of JavaScript.
+  commands within this snippet of JavaScript.
   \begin{HTMLinput}
 <script type="text/javascript">
   $(document).ready(function(){  
@@ -57,9 +59,12 @@ request.
 </script>
   \end{HTMLinput}
 
-  As for the JavaScript commands,  the following jQuery code will
+  As for the JavaScript commands, the following jQuery code will
   produce the Ajax request. This assumes the webserver is running
-  locally. One would replace \code{localhost} with the appropriate site.
+  locally. One would replace \code{localhost} with the appropriate
+  site.~\footnote{For security purposes, the server providing the web
+    service content must have the same domain as that providing the
+    web page.}
   \begin{HTMLinput}
 $.ajax({
    type: "GET",
@@ -74,14 +79,17 @@ $.ajax({
    });    
   \end{HTMLinput}
   To explain, the \code{\$} is a \code{jQuery} variable, the first
-  occurence is a call to its \code{ajax} method, The arguments are
-  specifed to make a \code{GET} request to a certain url. The return
+  occurence is a call to its \code{ajax} method. The \code{.}
+  indicates that. Whereas, the \code{\$("htmlTarget")} is a data
+  selection call. The arguments to the \code{ajax} method
+  specify  a \code{GET} request to a certain url. The return
   data will be HTML. The request, if a success, will replace the HTML
   code within the node with id \code{htmlTarget} with that returned by
   the Ajax request. If an error is returned, an error message is placed
   there instead.
   
-  Within the \R\/ script run by \pkg{rapache}, we have a call like this
+  Within the \R\/ script run by \pkg{rapache}, we have a call like
+  this to produce the content.
 <<>>=  
 show_html <- function() {
   require(hwriter, quietly=TRUE)
@@ -90,18 +98,20 @@ show_html <- function() {
 }
 @ 
 
-Which specifies the content type and some HTML text. No headers are
+This specifies the content type and some HTML text. No headers are
 needed here.  The \code{d} variable refers to some data frame. If
 there were an error, we would return an error code, say \code{404L}
 for file not found. In this case the error handler is called.
   
 
 
-Using \code{JSON} is not much different. This example will use the
-package \pkg{rjson} to create encode the data into json code, but
-\pkg{RJSONIO} can be used instead (from \url{omegahat.org}) or one can
-create the JSON within \R\/ directly. Here is the server side code
-(not written with any generality):
+Using \code{JSON} is not much different, although the JSON is just the
+data, so there will need to be some formatting within JavaScript. This
+illustration will use the package \pkg{rjson} to create encode the data
+into json markup, but \pkg{RJSONIO} can be used instead (from
+\url{www.omegahat.org}) or one could create the JSON within \R\/
+directly. Here is the server side code (not written with any
+generality):
 <<serverSideJson>>=
 show_json <- function() {
   require(rjson, quietly=TRUE)
@@ -175,10 +185,10 @@ $.ajax({
  }
 })
 \end{HTMLinput}
-The \code{data} argument is used to pass in a parameter. As for the
-\code{success} callback, as before we append tet to the target after
+The \code{data} argument is again used to pass in a parameter. As for the
+\code{success} callback, as before we append text to the target after
 clearing it out. To find the text, is a bit tricky, as it uses
-\code{jQuery}'s selector methods. Basically, the variable \code{this}
+\code{jQuery}'s selector methods. Within the method call, the variable \code{this}
 stands for each \code{car} node, and the \code{find} method gets the
 child node for that variable. The \code{text} method converts the
 object to text that can be appended to the target.

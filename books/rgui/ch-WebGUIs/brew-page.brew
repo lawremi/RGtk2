@@ -1,4 +1,4 @@
-<% title <- "A sample page" %>
+<%  title <- "A sample page" %>
 <%= brew("brew-header.brew") %>
 
 A basic page

@@ -13,9 +13,9 @@
 
 
 The simplest web page is a static page that is returned when a user
-make a request. The basic architecture involves a browser (or some
+makes a request. The basic architecture involves a browser (or some
 other client) requesting a document from a web server. The request
-must endcode what document is desired, so the web server can find
+must encode what document is desired so the web server can find
 it. The request is specified in terms of a \defn{URI}, or uniform
 resource identifier (a URL is technically a type
 of URI). The web server in turn maps the URI request to a file on the
@@ -44,17 +44,17 @@ may involve three different techonologies described next.
 Typically a static web page is marked up in HTML. This now familiar
 markup language allows the page author to indicate structure in
 various parts of the document. Typical structures are paragraphs,
-headers, images, etc. Additionally, tags can denote presentation, such
+headers, images, etc. Additionally, markup can denote presentation, such
 as color, font etc.
 
-HTML is centered around the concept of a tag which is used to wrap a
+HTML is centered around the concept of a \dfn{tag} which is used to wrap a
 portion of the text of a file. A tag has a name or keyword, in lower
 case, and is enclosed in angle brackets. If the tag encloses some
 text, it has a start and end style. The start tag for a tag \code{x}
 would be \verb+<x>+ where the end tag would be \texttt{</x>} (an extra
 slash). All text between theses tags would carry this tag. Some tags,
 such as the image tag \tagger{img}, are used to define their attributes
-only (a link in this case) so do not come in pairs, in this case it is
+only (a url of the file in this case) so do not come in pairs, in this case it is
 common practice to end the tag with \texttt{/>}.~\footnote{There are
   two common variants of HTML one coming from SGML, another, XHTML, deriving
   from XML. Both are similar, but xhtml is stricter with its use of
@@ -66,29 +66,32 @@ common practice to end the tag with \texttt{/>}.~\footnote{There are
   (\url{http://whatwg.org}) has proposed specifications for the two
   that seem likely to become the standard for HTML5.}
 
-A few typical tags are specified in Table~\ref{tab:HTML-tags}. 
+A few typical tags are specified in
+Table~\ref{tab:HTML-tags}.~\footnote{The site
+  \url{http://www.w3schools.com/} provides a comprehensive, yet
+  accessible, listing/}
 Tags may indicate how text is supposed to be formatted (e.g. \texttt{b}),
 others indicate what type of text it is (e.g. \texttt{code}), others
 the document structure (e.g., \texttt{h1}, \texttt{p}, etc.).
 
 <<echo=FALSE, results=tex>>=
 df <- rbind(
-            c("html","Denotes an HTML file"),
-            c("head","Marks header of file"),
-            c("body","Marks off main body of file"),
-            c("script","Used to include other types of files"),
-            c("p","A paragraph. Also, br for a line break"),
-            c("h1","First level header. Also h2,...,h6"),
-            c("ul", "Unordered list. Also ol."),
-            c("li", "Denotes a list item"),
-            c("a", "An anchor for a hyperreference"),
-            c("img", "Denotes an image"),
-            c("div","A text division, indicates a line break"),
-            c("span","A text division, no implied break"),
-            c("b","Denotes text to be set in bold"),
-            c("code","Denotes text that is code"),
-            c("em","Denotes text to be emphasized"),
-            c("table","Creates a table element")
+            c("\\code{html}","Denotes an HTML file"),
+            c("\\code{head}","Marks header of file"),
+            c("\\code{body}","Marks off main body of file"),
+            c("\\code{script}","Used to include other types of files"),
+            c("\\code{p}","A paragraph. Also, \code{br} for a line break"),
+            c("\\code{h1}","First level header. Also \\code{h2},...,\\code{h6}"),
+            c("\\code{ul}", "Unordered list. Also \\code{ol}"),
+            c("\\code{li}", "Denotes a list item"),
+            c("\\code{a}", "An anchor for a hyperreference"),
+            c("\\code{img}", "Denotes an image"),
+            c("\\code{div}","A text division, indicates a line break"),
+            c("\\code{span}","A text division, no implied break"),
+            c("\\code{b}","Denotes text to be set in bold"),
+            c("\\code{code}","Denotes text that is code"),
+            c("\\code{em}","Denotes text to be emphasized"),
+            c("\\code{table}","Creates a table element")
             )
 colnames(df) <- c("Tag","Description")
 cat(booktabs(df,
@@ -97,29 +100,32 @@ cat(booktabs(df,
              label="tab:HTML-tags"))
 @ 
 
-A tag may have one or more \defn{attributes} specified. For example, an
-anchor tag, \texttt{a}, has an attribute to specify the image by URI,
-\tagattr{href}{a}. This attribute is indicated by name with an equals
+A tag may have one or more \defn{attributes} specified. For example,
+the anchor tag, \texttt{a}, has an attribute \tagattr{href}{a} to
+specify the link that will open withn the user clicks on the
+anchor. This attribute is indicated by name with an equals
 sign. Quotes are optional for HTML, but recommended in general. They
-are mandatory if there is white
-space involved. An example might be \verb+<a href="http://www.r-project.org" />+.
+are mandatory if there is white space involved. An example might be
+\verb+<a href="http://www.r-project.org" />+.
 
-All tags have an \texttt{id} attribute, which is used to give a unique
-ID to the part enclosed by the tag. This is used to identify the tag
-within the document object model (DOM) described in brief later. All
-tags also have a \texttt{class} attribute to indicate if the tagged
-content should be treated as a member of a class. This provides a
-means to classify and treat similar objects as a group. Some tags also
-allow one to specify style attributes, but a more modern approach is
-to use a stylesheet to specify those. The \texttt{span} and \texttt{div} tags are primarily used to specify
+All tags may have an \texttt{id} attribute specified, which is used to
+give a unique ID to the part enclosed by the tag. This is used to
+identify the tag within the document object model (DOM) described in
+brief later. All tags may also have a \texttt{class} attribute to
+indicate if the tagged content should be treated as a member of a
+class. This provides a means to classify and treat similar objects as
+a group. Some tags also allow one to specify style attributes, but a
+more modern approach is to use a stylesheet to specify those. The
+\texttt{span} and \texttt{div} tags are primarily used to specify
 attributes for the tagged text.
+\\
 
 Some characters, such as angle brackets, have a reserved meaning.  As
 such, to use an angle bracket in an HTML document requires the use an
 \dfn{HTML entity reference}.  There are many such entities -- they are
 also used for cahracter encodeings. Entities are
 denoted by a leading ampersand \texttt{\&} and trailing semicolon, as
-with \texttt{\&lt;}. 
+with \code{\&lt;} pr \code{\&gt;}. 
 
 
 \begin{example}{Simple HTML file}{eg:sample-html-xhtml-header}
@@ -137,7 +143,8 @@ with \texttt{\&lt;}.
 </html>
 \end{HTMLinput}
 
-A basic \code{xhtml} file has a different header, for example the
+A basic \code{xhtml} file has a different header, but otherwise
+appears similar. For example the
 following which specifies a version for the XML and a default name
 space through the \tagattr{xmlns}{html} attribute.
 \begin{HTMLinput}
@@ -158,7 +165,8 @@ space through the \tagattr{xmlns}{html} attribute.
   tag encloses a table. New rows are enclosed in a \tagger{tr} tag,
   and each cell can be a header cell, \tagger{th}, or a data cell
   \tagger{td}. The following shows one way alternate rows can be
-  striped by hard coding a color attribute to the rows.
+  striped by hard coding a background color attribute (\code{bgcolor})
+  to the rows.
   \begin{HTMLinput}
 <table border="0" cellpadding="0">
   <tr>
@@ -175,12 +183,12 @@ space through the \tagattr{xmlns}{html} attribute.
 \end{example}
 
 \begin{example}{\R\/ helpers}{}
-  Writing a tag and specifying a table can be tedious, especially if
-  the data is in an \R\/ object. Some helper functions are useful. The
-  \pkg{hwriter} package includes a few, for now
-  we mention \function{hmakeTag} which will produce a tag around some
-  specified content along with attributes, that can be passed in
-  through \R's \code{name=value} syntax.
+  Writing a tag and specifying a table can be tedious. Some helper
+  functions are useful. The \pkg{hwriter} package includes a few, for
+  now we mention \function{hmakeTag} which will produce a tag around
+  some specified content along with attributes, that can be passed in
+  through \R's \code{name=value} syntax. The first argument specifies
+  the tag, and the second the values to be wrapped within the tag.
 <<>>=  
 require(hwriter)
 out <- hmakeTag("td",1:2, bgcolor="red")
@@ -197,7 +205,7 @@ The function is vectorized, as can be gathered from the output.
 
 Casscading Style Sheets (\defn{CSS}) may be used to specify the
 presentation of the text on a page. Common practice is to use the
-markup language to specify document structure and a separate document
+markup language to specify document structure and a separate style sheet
 to specify the layout of the first document. The advantage is a clean
 separation of tasks so that one can make changes to the layout, say,
 without affecting the text (and vice versa). A typical usage is to be
@@ -207,8 +215,8 @@ Without going into detail, the style sheet syntax provides a means to
 specify what type of tagged content the style will apply to (the
 selector) and a means to specify what styles of markup will be
 applied. For example, the specification below has
-\texttt{h1, h2, h3, h4, h5, h6} as a selector to indicate that it
-applies to all header tags. In the \defn{declaration block} are style
+\code{h1, h2, h3, h4, h5, h6} as a \dfn{selector} to indicate that it
+applies to all header tags. In the \dfn{declaration block} are style
 specifications for the color of the text and the font
 weight. Additionally, specifications for margins and padding are
 given, along with a border on the bottom around the element.
@@ -222,12 +230,12 @@ given, along with a border on the bottom around the element.
 }
 \end{HTMLinput}
 The full specification allows for much more complicated selections, be
-they based on id of the tag, class of the tag, or relation of tag to
-an enclosing tag. 
-Style sheets can also refer to positioning of the object within the
-page. Most modern web pages use style sheets for layout, rather than
-tables, as it allows for greater accessibility and offers advantages
-with search engines.
+they based on id of the tag (indicated with a prefix \code{\#}), class
+of the tag (indicatd with a prefix \code{.}), or relation of tag to an
+enclosing tag (left to right).  Style sheets can also refer to
+positioning of the object within the page. Most modern web pages use
+style sheets for layout, rather than tables, as it allows for greater
+accessibility and offers advantages with search engines.
 
 
 \begin{example}{A striped table using style sheets}{}
@@ -255,13 +263,13 @@ tr.odd { background-color: #ffffff;}
  class specification.
  \begin{HTMLinput}
 <table>
-  <tr class='head'>
+  <tr class="head">
     <th>Header 1</th><th>Header 2</th>
   </tr>
-  <tr class='odd'>
+  <tr class="odd">
     <th>1</th> <th>2</th>
   </tr>
-  <tr class='even'>
+  <tr class="even">
     <th>3</th> <th>4</th>
   </tr>
 </table>
@@ -291,12 +299,13 @@ pages (cf. Figure~\ref{fig:gWidgets-three-oses}).
 \begin{example}{Simple use of JavaScript to make a button have an action}{eg:javascript-action-button}
   The \tagger{button} tag produces a visual button. This tag has several
   event attributes, including \tagattr{onmouseover}{button} and
-  \tagattr{onclick}{button}. Here we show how to change the documents background
+  \tagattr{onclick}{button}. When these occur, the specified
+  JavaScript code is called. Here we show how to change the documents background
   color on a mouseover, and how to display a message on a mouse click.
   \begin{HTMLinput}
 <button
   onMouseOver="document.bgColor='red'; return true;"
-  onMouseOut="document.bgColor=''; return true;"
+  onMouseOut="document.bgColor="; return true;"
   onClick="alert('clicked button'); return true;" >
   Click me...
 </button>
@@ -305,7 +314,7 @@ pages (cf. Figure~\ref{fig:gWidgets-three-oses}).
 
 There are several open source JavaScript libraries available that
 offer convenient interfaces to JavaScript and UI widgets. We
-mention ExtJS (\url{www.extjs.com}, jQuery (\url{jQuery.com}), YUI
+mention ExtJS (\url{www.extjs.com}), jQuery (\url{jQuery.com}), YUI
 (\url{developer.yahoo.com/yoi}) and Dojo
 (\url{www.dojotoolkit.org}). 
 
@@ -313,8 +322,9 @@ mention ExtJS (\url{www.extjs.com}, jQuery (\url{jQuery.com}), YUI
 \subsection{\R\/ tools to assist with authoring web pages}
 \label{sec:r-tools-authoring}
 
-There are quite a few packages for \R\/ to faciliate authoring web pages from
-\R\/ objects. We mention a couple.
+There are quite a few packages for \R\/ to faciliate the authoring web
+of pages from within
+\R. We mention a couple.
 
 \subsubsection{The hwriter package}
 \label{sec:hwriter-package}
@@ -323,17 +333,28 @@ There are quite a few packages for \R\/ to faciliate authoring web pages from
 The \pkg{hwriter} package simplifies the task of creating HTML tables
 for \R\/ objects, such as a matrix or vector. The package has a
 self-generated example page in HTML which is created by its
-\function{showExample} function. The main function \function{hwrite}
-maps \R\/ objects into table objects (by default) and has many options
-to modify the attributes involved. By default, it writes its output to
-a file. The helper function \function{openPage} takes a file name and
-returns a text connection. The \function{closePage} function will
-close it. In the examples below, so as the output will print, we use the \function{stdout} function instead
-for the connection.
+\function{showExample} function (Or \code{example(hwriter)}). The main
+function \function{hwrite} maps \R\/ objects into table objects (by
+default) and has many options to modify the attributes involved. By
+default, it writes its output to a file. The helper function
+\function{openPage} takes a file name and returns a text
+connection. The \function{closePage} function will close it. In the
+examples below, so as the output will print, we use the
+\function{stdout} function instead for the connection.
 
 The package's examples show many different usages, we illustrate a few below.
 
-To create a simple table, we simply call the constructor on a matrix or
+
+A hyperlink can be generated through the \argument{link}{hwriter} argument.
+<<>>=
+hwrite("R project", link="http://www.r-project.org",
+       page=stdout())
+@ 
+Although this usage doesn't save typing, a vectorized call could
+easily do so.
+
+
+To create a simple table, we need only call the constructor on a matrix or
 data.frame object:
 <<>>=
 m <- matrix(1:4, ncol=2)
@@ -341,23 +362,13 @@ hwrite(m, page=stdout())
 @ 
 
 
-To get alternate rows to be striped we could have:
+To get alternate rows to be striped we could have the following:
 <<>>=
-hwrite(m, page=stdout(), 
-       row.class=rep(c("odd","even"), nrow(m))[1:nrow(m)])
+styles <- c("odd","even")
+hwrite(m, page=stdout(), row.class=rep(styles, length=nrow(m)))
 @ 
+The \code{row.class} value is recycled for each entry in the row.
 
-(Or using the \tagattr{bgcolor}{tr} attribute setting
-\argument{row.bgColor}{hwriter}. Although, most of the
-\function{hwrite} arguments recycle, in this case we do so
-manually. as the ``\code{row.}'' attributes need such assistance.)
-
-
-Finally, a hyperlink can be generated through the \argument{link}{hwriter} argument.
-<<>>=
-hwrite("R project", link="http://www.r-project.org",
-       page=stdout())
-@ 
 
 \subsubsection{The \pkg{R2HTML} package}
 \label{sec:pkgr2html-package}
@@ -394,8 +405,7 @@ HTML(iris[1:3,1:2], Border=10, innerBorder=5, file=stdout())
 The package also includes a number of functions to facilitate the
 drafting of HTML files within \R, including \function{HTMLInitFile},
 \function{HTMLCSS}, \function{HTMLInsertGraph} and
-\function{HTMLEndFile}. The functions \function{HTMLStart} and
-\function{HTMLEnd} 
+\function{HTMLEndFile}.
 
 
 \subsubsection{The \pkg{brew} package}
@@ -411,18 +421,17 @@ which have tools to create HTML pages.
 The \pkg{brew} package does something similar, yet different. It
 allows one to place a template within an HTML file that \R\/ will
 eventually populate when called accordingly. In the next section, we
-illustrate how this can be used dynamically in a web page. For now, we
+illustrate how this can be used to produce dynamically generated web pages. For now, we
 mention how to make a template and how to process it.
 
-A template is a file which is processed by the \function{brew}
-function. This function returns the contents of the file after
-modification to store in a file or to print out.
 
 A template is a file with parts of it marked by delimiters
 (cf. Table~\ref{tab:brew-delimiters}). All text not within delimiters
 is processed as is. Whereas, text within delimiters may be evaluated
 by \R, and if evaluated the contents may be inserted into the output
-or simply used to adjust the evaluation environment.
+or simply used to adjust the evaluation environment. When processed
+with brew, the result may be stored in a file, or sent to
+\code{stdout}.
 
 
 \begin{table}
@@ -434,11 +443,14 @@ or simply used to adjust the evaluation environment.
     \cmidrule{3-4}
    Print & Yes & \verb+<%= %>+ & no delimiters\\
 %   \addlinespace[.5pt]\\
-          & No  & \verb+<% %>+  & \verb+<%# %>+\\
+          & No  & \verb+<%  %>+  & \verb+<%# %>+\\
 \bottomrule
  \end{tabular}
-  \caption{The \pkg{brew} delimiters and how they are processed}
-  \label{tab:brew-delimiters}
+  \caption{The \pkg{brew} delimiters and how they are processed. The plain
+    \verb+<%+ processes within \R, \verb+<%=+ indicates to print the
+    result, and \verb+<%#+ is a comment. A trailing \verb+-%>+
+    suppresses a newline.}
+ \label{tab:brew-delimiters}
 \end{table}
 
 
@@ -459,9 +471,6 @@ side has \pkg{brew} commands and the right side is their output.
 \begin{minipage}{0.45\linewidth}
   \HTMLinputlisting{brew-basic.brew.out}
 \end{minipage}
-
-The inline example has a dash before the closing delimiter to suppress
-a newline.
 \end{example}
 
 \begin{example}{Dynamically formatted text}{eg:brew-dynamic-text}
@@ -499,7 +508,7 @@ produces
 \HTMLinputlisting{brew-footer.brew}    
 
   And a typical page has this structure. We set the variable
-  \code{title} in the scope of this page, but it is seen withing the
+  \code{title} in the scope of this page, but it is seen within the
   scope of the call to process the header page.
   
 \HTMLinputlisting{brew-page.brew}    
@@ -531,16 +540,16 @@ This template
 \label{sec:graphics-web-pages}
 Web pages may be plain text, but most contain images or graphics. The
 \tagger{img} tag allows one to display a graphics file in an HTML
-page by specifying it \tagattr{src}{img} attribute. This is an image file,
+page by specifying its \tagattr{src}{img} attribute. This is an image file,
 often in \code{png}, \code{gif} or \code{jpeg} format. In this
 section, we describe how \R\/ can be used to generate images by using
-different device drivers. To list all possible stock devices, see the
-help page for \code{Devices}. The function \function{capabilities} list
+different device drivers. To list all the possible stock devices, see the
+help page for \code{Devices}. The function \function{capabilities} lists
 which devices are available for a given \R\/ installation.
 
 \subsubsection{png}
 \label{sec:images}
-Typically when a plot command is issue, an interactive plot device is
+Typically when a plot command is issued, an interactive plot device is
 opened or reused, however, the user can specify a device to save the
 output to a file for further use. For example, the \function{pdf} and
 \function{postscript} functions will turn \R\/ commands into files for
@@ -569,9 +578,7 @@ in png format.
 The web has other means to display graphics than an inclusion of an
 image file. For example, Flash is a very popular method.~\footnote{The
   \pkg{FlashMXML} from \url{omegahat.org} provides a means to
-  genearate flash files from within \R.} Scalable vector graphics
-(SVG, \url{http://www.w3.org/Graphics/SVG/}) is another way to specify
-a graphical object using XML. Many modern web browsers have support for
+  genearate flash files from within \R.} SVG (Scalable vector graphics)~\footnote{\url{http://www.w3.org/Graphics/SVG/}} is another way to specify graphical objects using XML. Many modern web browsers have support for
 the display of SVG graphics. To insert the file, we have the
 \tagger{object} tag and its attributes \tagattr{data}{object} and
 \tagattr{type}{object}, as in
@@ -603,14 +610,17 @@ scatterplot. We initially call \function{plot} without plot characters to
 set up the axes, etc.
 <<>>=
 require(RSVGTipsDevice)
-f <- "image-svg.sv"
+f <- "image-svg.svg"
 devSVGTips(f, toolTipMode=2, toolTipOpacity=.8) 
 plot(mpg ~ wt, mtcars, pch=NA) 
 nms <- rownames(mtcars) 
+gurl <- function(x)                     # search google
+  sprintf("http://www.google.com/search?q=%s", x)
+
 for(i in 1:nrow(mtcars)) { 
   ## need to add tooltip shape by shape 
   setSVGShapeToolTip(title=nms[i])    # add tooltip 
-  setSVGShapeURL("http://www.google.com")    # some URL 
+  setSVGShapeURL(gurl(nms[i]), target="_blank")
   with(mtcars, points(wt[i], mpg[i], cex=2, pch=16)) # add
 } 
 invisible(dev.off())
@@ -621,7 +631,7 @@ invisible(dev.off())
 
 \subsubsection{The canvas tag}
 \label{sec:canvas-tag}
-HTML5 is a major extenstion to HTML that is being implemented in most
+HTML5 is a major extension to HTML that is being implemented in most
 browsers at the time of the writing of this book. One of the new
 features of HTML5 is the \tagger{canvas} element, which allows
 JavaScript code to manipulate objects, similar to the \function{tkcanvas}
@@ -638,11 +648,8 @@ hist(rnorm(100), main="Some graphic")
 invisible(dev.off())
 @ 
 
-Then, within the HTML File, code along the lines of the following is
-needed. The first \tagger{script} tag is used to define the variable
-\code{ctx} to hold the canvas
-object, as this is assumed by the canvas package. 
-
+Then, within the HTML file, code along the lines of the following is
+needed. 
 \begin{HTMLinput}
 <canvas id="canvas_id" width=480 height=480></canvas>
 <script type="text/javascript" language="javascript">
@@ -650,6 +657,9 @@ var ctx = document.getElementById("canvas_id").getContext("2d");
 </script> 
 <script type="text/javascript" src="canvas-commands.js"></script>
 \end{HTMLinput}
+The first \tagger{script} tag is used to define the variable
+\code{ctx} to hold the canvas object, as this is assumed by the canvas
+package.
 
-
-An alternative to \pkg{canvas} is possible through the \pkg{RGraphicsDevice} device from \url{omegahat.org}.
+The \pkg{RGraphicsDevice} device from \url{omegahat.org} provides a
+possible alternative to the \pkg{canvas} package.

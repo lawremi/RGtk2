@@ -5,7 +5,7 @@
 Select an ID
 <form method="GET" action="/simpleapp/id">
 <select name="id" size="4">
-<% cat(hmakeTag("option", nms)) %>
+<%= hmakeTag("option", nms) %>
 </select>
 
 <input type="submit" value="submit" />

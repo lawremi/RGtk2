@@ -2,11 +2,11 @@
    "%= URL %", ">><",
    "%= Name %","></a><br />",
    sep="") 
-%>
+-%>
 <%
 df <- getCRANmirrors() ## some data frame
 for(i in 2:3) {
    context <- df[i,]
-   with(context,  brew(text=tmpl))
+   with(context,  brew(text=tmpl, file=stdout()))
 }
-%>
+-%>

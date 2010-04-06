@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<% 
+<%= 
    if(exists("user_name") && nchar(user_name)) 
-     cat(sprintf("<h2>Welcome %s</h2>", HTMLencode(user_name)))
+     sprintf("<h2>Welcome %s</h2>", HTMLencode(user_name))
 %>

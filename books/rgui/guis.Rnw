@@ -5,7 +5,6 @@
 \thispagestyle{empty}
 \bibliographystyle{plainnat}
 \input{setup2}
-%% test delete
 %% Put these in front for easier reference.
 \setcounter{tocdepth}{3}
 \tableofcontents

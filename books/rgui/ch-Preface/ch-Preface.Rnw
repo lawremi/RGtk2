@@ -17,7 +17,7 @@ user and a graphical toolkit, such as \code{tcltk}, \code{RGtk2} and
 Java, Python or other external languages to provide access to graphical
 toolkits within those languages. This book is about writing graphical
 user interfaces (GUI) within \R\/ that do not rely on knowing an
-external language.  
+external programming language.  
 
 The R language, like its predecessor S, is designed for interactive
 use through a command line interface (CLI). However, the graphical
@@ -26,11 +26,11 @@ depending on the specific task and the target user base. Currently,
 there is a range of graphical interfaces for \R\/ that are programmed
 within R. For example, several package authors have provided GUIs for
 their functions. Examples include \pkg{limmaGUI}, \pkg{caGUI},
-\pkg{clustTool}, \pkg{Metabonomic}, \XXX{ade, fill me in}. There are a
+\pkg{clustTool}, \pkg{Metabonomic}, and others. There are a
 few tools to automatically generate such GUIs, such as the \pkg{fgui}
 package and the \function{guiDlgFunction} function from the
 \pkg{svDialogs} package. Other authors have provided graphical
-interfaces to explore data sets, such as \pkg{playwith},
+interfaces to explore data sets, such as \pkg{ggobi}, \pkg{playwith},
 \pkg{latticist} and \pkg{aplpack}. Still others have provided packages
 with GUIs aimed at allowing students to perform some simulation, e.g.,
 \pkg{teachingDemos}. The \pkg{rattle} package provides an interface
@@ -42,7 +42,7 @@ academia, it is not uncommon for people who work in a team setting to
 desire an interface to their \R\/ code that allows non-\R\/ users
 access.
 
-Such examples are all within the scope of this book. We set out to
+Most all of these examples are within the scope of this book. We set out to
 show that for many purposes adding a graphical interface to one's work
 is not terribly sophisticated nor time-consuming.  This book does not
 attempt to cover the development of GUIs that require knowledge of
@@ -61,7 +61,7 @@ The bulk of this text covers four different packages for writing GUIs
 in \R. The \pkg{gWidgets} package is covered first. This provides a
 common programming interface over several \R\/ packages that implement
 low-level, native interfaces to GUI toolkits. The \pkg{gWidgets}
-interface is much simpler (and less powerful) than the native
+interface is much simpler -- and less powerful -- than the native
 toolkits, so is useful for a programmer who does not wish to invest
 too much time into perfecting a GUI. There are a few other packages
 that provide a high-level \R\/ interface to a toolkit such as
@@ -75,8 +75,7 @@ that require special features or performance characteristics.  The
 first of these is the \pkg{RGtk2} package which provides a link
 between \R\/ and the cross-platform \GTK\/ library. \GTK\/ is mature,
 feature rich and leveraged by several widely used
-projects. \pkg{RGtk2} allows the \R\/ user to create complete and
-modern-looking interfaces.
+projects. 
 
 Another mature and feature-rich toolkit is \Qt, an open-source C++ library
 from Nokia. The \R\/ package \pkg{qtbase} provides a native interface
@@ -89,7 +88,7 @@ Finally, we discuss the \pkg{tcltk} package, which provides the \R\/
 user access to the \TK\/ libraries. Although not as modern as \GTK\/
 nor \Qt, these libraries come pre-installed with the Windows binary,
 thus avoiding installation issues for the average end-user. The
-bindings to \TK\/ were the first ones to appear for \R\/ and the
+bindings to \TK\/ were the first ones to appear for \R\/ and 
 several of the GUI projects above, notably \pkg{Rcmdr}, use this
 toolkit.
 
