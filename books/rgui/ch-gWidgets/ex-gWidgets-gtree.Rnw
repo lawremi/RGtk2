@@ -5,8 +5,12 @@ require(gWidgets)
 The \pkg{party} package implements a recursive partitioning algorithm
 for tree-based regression and classification models. The package
 provides an excellent \code{plot} method for the object, but in this
-example we demonstrate how the \code{gtree} widget can be used to display
-the heiarchical nature of the fitted object. First, we fit a model from an
+example we demonstrate how the \code{gtree} widget can be used to
+display the heiarchical nature of the fitted object. As working
+directly with the return object, is not for the faint of heart, such a
+GUI can be useful.
+
+First, we fit a model from an
 example appearing in the package's vignette.
 
 <<party>>=
@@ -16,25 +20,26 @@ gt <- ctree(Class ~ ., data=GlaucomaM)  # fit model
 @ 
 
 The \pkg{party} object tracks the heirarchical nature through its
-nodes. This object if a complex structure using lists to store data
+nodes. This object has a complex structure using lists to store data
 about the nodes. We define an \code{offspring} function next that
 tracks the node by number, as is done in the \pkg{party} object;
 records whether a node has offspring through the \code{terminal}
-component (by passing the \code{hasOffspring} function); and computes
+component (bypassing the \code{hasOffspring} function); and computes a
 condition on the variable that creates the node. For this example, the
 trees are all binary trees with 0 or 2 offspring so this data frame
 has only 0 or 2 rows.
 
 <<offspring>>=
 offspring <- function(key, offspring.data) {
-  if(missing(key) || length(key) < 1)  # which node?
+  if(missing(key) || length(key) == 0)  # which node?
     node <- 1
   else
     node <- as.numeric(key[length(key)]) # key is a vector
 
   if(nodes(gt, node)[[1]]$terminal)    # return if terminal
     return(data.frame(node=node, hasOffspring=FALSE,
-                      description="terminal"))
+                      description="terminal",
+                      stringsAsFactors=FALSE))
 
   df <- data.frame(node=integer(2), hasOffspring=logical(2),
                    description=character(2), 
@@ -71,9 +76,10 @@ l <- glabel("Click on the tree to investigate the partition",
 tr <- gtree(offspring, cont=g, expand=TRUE)
 @ 
 
-A single click is used to expand the tree, here we create a binding to  a double
-click event to create a basic graphic. The vignette shows how to make more
-complicated -- and meaningful -- graphics for this model fit.
+A single click is used to expand the tree, here we create a binding to
+a double click event to create a basic graphic. The \pkg{party}
+vignette shows how to make more complicated -- and meaningful --
+graphics for this model fit.
 <<eventHandler>>=
 addHandlerDoubleclick(tr, handler=function(h,...) {
   node <- as.numeric(svalue(h$obj))

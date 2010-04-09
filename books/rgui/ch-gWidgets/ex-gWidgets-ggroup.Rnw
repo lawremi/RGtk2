@@ -37,12 +37,15 @@ l  <- glabel("expand=TRUE, anchor=c(1,0)", anchor=c(1,0),
             expand=TRUE, cont=g4)
 @ 
   
-This demonstrates how one might use the \meth{addSpace} and \meth{addSpring}
-methods in a button bar.
+
+This demonstrates how one can use the \meth{addSpace} and \meth{addSpring}
+methods to right align buttons in a button bar.
 <<>>=
 g5 <- ggroup(cont=g, expand=FALSE)
 addSpring(g5)
-b  <- gbutton("cancel", cont=g5, handler=function(h,..) dispose(w))
-addSpace(g5, 10)
-b  <- gbutton("ok", cont=g5)
+cancel  <- gbutton("cancel", cont=g5, handler=function(h,..) {
+  dispose(w)
+})
+addSpace(g5, 12)
+ok  <- gbutton("ok", cont=g5)
 @ 

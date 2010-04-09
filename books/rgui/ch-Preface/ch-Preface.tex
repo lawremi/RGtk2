@@ -5,23 +5,28 @@
 \label{sec:about}
 
 
+% ML: this is repeated below, do we really want to lead with this?
 \R\/ has a number of packages that provide a link between the \R\/
 user and a graphical toolkit, such as \code{tcltk}, \code{RGtk2} and
-\code{rJava} (for Swing). In addition, an \R\/ user can interface with
-python or other external languages to provide access to graphical
+\code{qtbase}. In addition, an \R\/ user can interface with
+Java, Python or other external languages to provide access to graphical
 toolkits within those languages. This book is about writing graphical
 user interfaces (GUI) within \R\/ that do not rely on knowing an
-external language.  
+external programming language.  
 
-Currently, there is a range of graphical interfaces for \R\/ that are
-programmed within R. For example, several package authors have
-provided GUIs for their functions. Examples include \pkg{limmaGUI},
-\pkg{caGUI}, \pkg{clustTool}, \pkg{Metabonomic}, \XXX{ade, fill me
-  in}. There are a few tools to automatically generate such GUIs, such
-as the \pkg{fgui} package and the \function{guiDlgFunction} function
-from the \pkg{svDialogs} package. Other authors have provided
-graphical interfaces to explore data sets, such as \pkg{playwith},
-\pkg{latticist} and \pkg{aplpack}. While others have provided packages
+The R language, like its predecessor S, is designed for interactive
+use through a command line interface (CLI). However, the graphical
+user interface (GUI) has emerged as an effective alternative,
+depending on the specific task and the target user base. Currently,
+there is a range of graphical interfaces for \R\/ that are programmed
+within R. For example, several package authors have provided GUIs for
+their functions. Examples include \pkg{limmaGUI}, \pkg{caGUI},
+\pkg{clustTool}, \pkg{Metabonomic}, and others. There are a
+few tools to automatically generate such GUIs, such as the \pkg{fgui}
+package and the \function{guiDlgFunction} function from the
+\pkg{svDialogs} package. Other authors have provided graphical
+interfaces to explore data sets, such as \pkg{ggobi}, \pkg{playwith},
+\pkg{latticist} and \pkg{aplpack}. Still others have provided packages
 with GUIs aimed at allowing students to perform some simulation, e.g.,
 \pkg{teachingDemos}. The \pkg{rattle} package provides an interface
 for several data mining operations. The \pkg{Rcmdr} package provides a
@@ -32,54 +37,67 @@ academia, it is not uncommon for people who work in a team setting to
 desire an interface to their \R\/ code that allows non-\R\/ users
 access.
 
-Such examples are all within the scope of this book. We set out to
+Most all of these examples are within the scope of this book. We set out to
 show that for many purposes adding a graphical interface to one's work
-is not terribly sophisticated nor time-consuming (atleast each piece
-isn't).  This book does not attempt to cover GUIs for \R\/ that
-require knowledge of another programming language, although several
-such projects provide some of the most sophisticated
-interfaces. Examples are the \pkg{JGR} GUI or \pkg{iPlots} GUI written
-in Java through \pkg{rJava}, the \pkg{rkWard} GUI written within KDE,
-the \pkg{biocep} GUI written using Java and the \pkg{RServe} package,
-or even the Windows GUI that comes with \R's Windows package.
+is not terribly sophisticated nor time-consuming.  This book does not
+attempt to cover the development of GUIs that require knowledge of
+another programming language, although several such projects
+exist. Many of these are general front-ends to \R\/, such as the
+Java-based GUI \pkg{JGR}, the \pkg{rkWard} GUI for KDE, the
+\pkg{biocep} GUI written using Java and the \pkg{RServe} package, or
+even the Windows GUI that comes with \R's Windows package. There are
+also several special purpose GUIs, like \pkg{iPlots}, which are
+largely implemented in Java, relying on \pkg{rJava}, a native
+interface between \R\/ and Java.
+% ML: It seems like rJava-based GUIs like CADStat and Deducer DO fall into
+% our scope, but I would hate to have to document Swing...
 
+The bulk of this text covers four different packages for writing GUIs
+in \R. The \pkg{gWidgets} package is covered first. This provides a
+common programming interface over several \R\/ packages that implement
+low-level, native interfaces to GUI toolkits. The \pkg{gWidgets}
+interface is much simpler -- and less powerful -- than the native
+toolkits, so is useful for a programmer who does not wish to invest
+too much time into perfecting a GUI. There are a few other packages
+that provide a high-level \R\/ interface to a toolkit such as
+\code{rpanel} or \code{svDialogs}, but we focus on this one.
+% ML: but gWidgets is much more general than either of those, right?
 
-The bulk of this text covers three different approaches to writing
-GUIs. The \pkg{gWidgets} package is covered first. This provides a
-common programming interface to some of the different graphical
-toolkits provided with \R. This interface is much simpler (and less
-powerful) than the native toolkits, so is useful for a programmer who
-does not wish to invest too much time into perfecting their GUI. There
-are a few other packages that provide an \R\/ interface to a toolkit
-such as \code{rpanel} or \code{svDialogs}, but we focus on this one.
+The next three chapters introduce the native interfaces upon which
+\pkg{gWidgets} is built. These offer fuller and more direct control of
+the underlying toolkit and thus are well suited the development of GUI
+that require special features or performance characteristics.  The
+first of these is the \pkg{RGtk2} package which provides a link
+between \R\/ and the cross-platform \GTK\/ library. \GTK\/ is mature,
+feature rich and leveraged by several widely used
+projects. 
 
+Another mature and feature-rich toolkit is \Qt, an open-source C++ library
+from Nokia. The \R\/ package \pkg{qtbase} provides a native interface
+from \R\/ to \Qt.  As \Qt\/ is implemented in C++, it is designed
+around the ability to create classes that extend the \Qt\/
+classes. \pkg{qtbase} supports this from within \R\/, although such
+object oriented concepts may be unfamiliar to many \R\/ users.
 
-Next, we discuss the \pkg{RGtk2} package which provides a link between
-\R\/ and the cross-platform \GTK\/ libraries. These libraries are
-feature rich and used by several widely used projects. For the \R\/
-user, they provide the most complete and modern-looking interfaces.
+Finally, we discuss the \pkg{tcltk} package, which provides the \R\/
+user access to the \TK\/ libraries. Although not as modern as \GTK\/
+nor \Qt, these libraries come pre-installed with the Windows binary,
+thus avoiding installation issues for the average end-user. The
+bindings to \TK\/ were the first ones to appear for \R\/ and 
+several of the GUI projects above, notably \pkg{Rcmdr}, use this
+toolkit.
 
-\XXX{Insert bit about Qt here}
-
-
-Finally, we discuss the \pkg{tcltk} package. This package provides the
-\R\/ user access to the \TK\/ libraries. Although not as modern as
-\GTK, these libraries come pre-installed with the Windows binary and
-so there are no installation issues for the average end-user. The bindings
-to \TK\/ were the first ones to appear for \R\/ and the several of the
-GUI projects above, notably \pkg{Rcmdr}, use this toolkit.
-
-In addition to chapters on each of these three packages, the book has
-an introductory chapter on GUIs, \XXX{a chapter on issues and techniques
-for programming GUIs within \R}, and a chapter on web GUIs.
+There is a chapter dedicated to each of these four packages. Those
+chapters are preceeded by an introductory chapter on GUIs and followed
+by a chapter on web GUIs.
 
 The text is written with the belief that much can be learned by
 studying examples, and so several examples are given. Some of these
 are meant as sketches of what can be done, while a few illustrate how
 to code actual useful interfaces.  This text can't expect to cover all
-of the features of a graphical toolkit. For the \pkg{tcltk} and
-\pkg{RGtk2} packages, both underlying toolkits have well documented
-APIs.
+of the features of a graphical toolkit. For the \pkg{tcltk},
+\pkg{RGtk2} and \pkg{qtbase} packages, the underlying toolkits have
+well documented APIs.
 
 
 This text comes with an accompanying package \pkg{\PACKAGENAME}. This

@@ -11,8 +11,9 @@ aQuit <- gaction("quit", icon="quit", handler = f)
 aUndo <- gaction("undo", icon="undo", handler = f)
 @ 
 
-A menubar and toolbar are specified through a  named list, as is
-illustrated next. The menubar list, has a nested list specifying a submenu.
+A menubar and toolbar are specified through a list with named components, as is
+illustrated next. The menubar list uses a nested list with
+named components to specify a submenu.
 <<>>=
 tl <- list(open = aOpen, quit = aQuit)
 ml <- list(File = list(
@@ -26,7 +27,7 @@ ml <- list(File = list(
 
 
 Menubars and toolbars are added to top-level windows, so their parent
-containers should be \code{gwindow} objects.
+containers are \code{gwindow} objects.
 <<>>=
 w <- gwindow("Example of menubars, toolbars")
 mb <- gmenu(ml, cont=w)

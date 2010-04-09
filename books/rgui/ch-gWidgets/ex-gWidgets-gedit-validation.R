@@ -18,9 +18,11 @@ tbl[2,2] <- (b <- gbutton("submit", cont = tbl,
 ## Blur is focus out event
 addHandlerBlur(e, handler = function(h,...) {
   curVal <- svalue(h$obj)
-  if(length(grep(validRegexpr, curVal)) == 0) {
+  if(grepl(validRegexpr, curVal)) {
+    font(h$obj) <- c(color="black")
+  } else {
     focus(h$obj) <- TRUE
-    gmessage("not valid")
+    font(h$obj) <- c(color="red")
   }
 })
 

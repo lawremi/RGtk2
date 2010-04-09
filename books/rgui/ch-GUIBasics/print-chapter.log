@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.4.5)  24 MAR 2010 21:50
+This is pdfTeX, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.4.5)  9 APR 2010 11:23
 entering extended mode
 **print-chapter
 (./print-chapter.tex
@@ -659,211 +659,172 @@ File: lstlang3.sty 2004/09/05 1.3 listings language file
 (./ch-GUIBasics.tex
 LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <12> not available
 (Font)              Font shape `T1/pplx/b/n' tried instead on input line 6.
-LaTeX Font Info:    Try loading font information for OMS+pplx on input line 11.
+LaTeX Font Info:    Try loading font information for OMS+pplx on input line 21.
 
-LaTeX Font Info:    No file OMSpplx.fd. on input line 11.
+LaTeX Font Info:    No file OMSpplx.fd. on input line 21.
 
 
 LaTeX Font Warning: Font shape `OMS/pplx/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbullet' on input line 11.
-
-LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <10> not available
-(Font)              Font shape `T1/pplx/b/n' tried instead on input line 45.
-
-LaTeX Warning: Reference `fig:GUI:tic-tac-toe' on page 1 undefined on input lin
-e 45.
+(Font)              for symbol `textbullet' on input line 21.
 
 [1{/opt/local/share/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 ]
-LaTeX Font Info:    Try loading font information for OT1+pplx on input line 133
+LaTeX Font Info:    Try loading font information for OT1+pplx on input line 156
 .
 
 (/opt/local/share/texmf-dist/tex/latex/psnfss/ot1pplx.fd
 File: ot1pplx.fd 2004/09/06 font definitions for OT1/pplx.
 )
-LaTeX Font Info:    Try loading font information for OML+zplm on input line 133
+LaTeX Font Info:    Try loading font information for OML+zplm on input line 156
 .
 
 (/opt/local/share/texmf-dist/tex/latex/psnfss/omlzplm.fd
 File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMS+zplm on input line 133
+LaTeX Font Info:    Try loading font information for OMS+zplm on input line 156
 .
 
 (/opt/local/share/texmf-dist/tex/latex/psnfss/omszplm.fd
 File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMX+zplm on input line 133
+LaTeX Font Info:    Try loading font information for OMX+zplm on input line 156
 .
 
 (/opt/local/share/texmf-dist/tex/latex/psnfss/omxzplm.fd
 File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
 )
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 133.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 156.
 
 
 (/opt/local/share/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 133.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 156.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 133.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 156.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 133.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 156.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 133.
+(Font)              scaled to size 9.37807pt on input line 156.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 133.
+(Font)              scaled to size 7.29405pt on input line 156.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 5.21004pt on input line 133.
+(Font)              scaled to size 5.21004pt on input line 156.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 133.
+(Font)              scaled to size 9.37807pt on input line 156.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 133.
+(Font)              scaled to size 7.29405pt on input line 156.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 5.21004pt on input line 133.
-LaTeX Font Info:    Try loading font information for OT1+zplm on input line 133
+(Font)              scaled to size 5.21004pt on input line 156.
+LaTeX Font Info:    Try loading font information for OT1+zplm on input line 156
 .
 
 (/opt/local/share/texmf-dist/tex/latex/psnfss/ot1zplm.fd
 File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
-) [2] [3]
-Overfull \hbox (26.20374pt too wide) in paragraph at lines 225--226
-[][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
+) [2] [3] [4]
+LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <10> not available
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 330.
 
 
-Package natbib Warning: Citation `APPLE:HIG' on page 4 undefined on input line 
-295.
+Package natbib Warning: Citation `APPLE:HIG' on page 5 undefined on input line 
+330.
 
-[4] <fig-mac-print.png, id=21, 794.97pt x 555.07375pt>
+<fig-mac-print.png, id=21, 794.97pt x 555.07375pt>
 File: fig-mac-print.png Graphic file (type png)
  <use fig-mac-print.png>
-<firefox-print.png, id=22, 388.21141pt x 325.59537pt>
-File: firefox-print.png Graphic file (type png)
- <use firefox-print.png>
-<kde-print.png, id=23, 371.58292pt x 387.21506pt>
+<kde-print.png, id=22, 371.58292pt x 387.21506pt>
 File: kde-print.png Graphic file (type png)
  <use kde-print.png>
-
-LaTeX Warning: Float too large for page by 15.88603pt on input line 322.
-
-[5] [6 <./fig-mac-print.png> <./firefox-print.png (PNG copy)> <./kde-print.png 
-(PNG copy)>]
+<r-print-dialog.png, id=23, 439.6425pt x 335.2525pt>
+File: r-print-dialog.png Graphic file (type png)
+ <use r-print-dialog.png>
+[5] [6 <./fig-mac-print.png> <./kde-print.png (PNG copy)>] [7 <./r-print-dialog
+.png (PNG copy)>]
 LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/pplx/b/n' tried instead on input line 407.
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 470.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 423.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 488.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 423.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 488.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 423.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 488.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 10.42007pt on input line 423.
+(Font)              scaled to size 10.42007pt on input line 488.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.91925pt on input line 423.
+(Font)              scaled to size 7.91925pt on input line 488.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 423.
+(Font)              scaled to size 6.25204pt on input line 488.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 10.42007pt on input line 423.
+(Font)              scaled to size 10.42007pt on input line 488.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.91925pt on input line 423.
+(Font)              scaled to size 7.91925pt on input line 488.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 423.
- <spss-11-model-selection.png, id=31, 506.89375pt x 352.31625pt>
+(Font)              scaled to size 6.25204pt on input line 488.
+
+<spss-11-model-selection.png, id=35, 506.89375pt x 352.31625pt>
 File: spss-11-model-selection.png Graphic file (type png)
 
-<use spss-11-model-selection.png> [7] [8 <./spss-11-model-selection.png>]
-<ex-listbox.png, id=40, 183.40218pt x 152.72151pt>
+<use spss-11-model-selection.png> [8] [9 <./spss-11-model-selection.png>]
+<ex-listbox.png, id=43, 183.40218pt x 152.72151pt>
 File: ex-listbox.png Graphic file (type png)
  <use ex-listbox.png>
-<tcltk-tkdensity.png, id=41, 179.99321pt x 199.76518pt>
+<tcltk-tkdensity.png, id=44, 179.99321pt x 199.76518pt>
 File: tcltk-tkdensity.png Graphic file (type png)
 
-<use tcltk-tkdensity.png> [9 <./ex-listbox.png (PNG copy)> <./tcltk-tkdensity.p
-ng>]
+<use tcltk-tkdensity.png> [10 <./ex-listbox.png (PNG copy)> <./tcltk-tkdensity.
+png>] <fig-spotfire.png, id=49, 824.07875pt x 714.67pt>
+File: fig-spotfire.png Graphic file (type png)
+ <use fig-spotfire.png>
+[11] [12 <./fig-spotfire.png>]
 
-LaTeX Warning: Reference `fig:GUI:spss-11-model-selection' on page 10 undefined
- on input line 615.
-
-[10] <JGR-data-editor.png, id=49, 437.635pt x 245.91875pt>
-File: JGR-data-editor.png Graphic file (type png)
-
-<use JGR-data-editor.png>
-<fathom-2-1-xyplot.png, id=50, 800.9925pt x 325.215pt>
-File: fathom-2-1-xyplot.png Graphic file (type png)
-
-<use fathom-2-1-xyplot.png> [11 <./JGR-data-editor.png (PNG copy)> <./fathom-2-
-1-xyplot.png (PNG copy)>]
-
-Package natbib Warning: Citation `APPLE:HIG' on page 12 undefined on input line
- 705.
+Package natbib Warning: Citation `APPLE:HIG' on page 13 undefined on input line
+ 787.
 
 
-LaTeX Warning: Reference `fig:GUI:spss-11-model-selection' on page 12 undefined
- on input line 723.
-
-
-Overfull \hbox (12.21329pt too wide) in paragraph at lines 745--764
+Overfull \hbox (12.21329pt too wide) in paragraph at lines 838--855
 \T1/pplx/m/n/10 Xerox Parc's rev-o-lu-tion-ary idea of a \T1/cmtt/m/n/10 WIMP \
 T1/pplx/m/n/10 GUI added win-dows, icons, menubars,
  []
 
-[12]
-
-LaTeX Warning: Reference `KDE:HIG' on page 13 undefined on input line 780.
-
-[13] <JGR-object-browser.png, id=61, 428.60126pt x 415.5525pt>
+[13] [14] <JGR-object-browser.png, id=64, 428.60126pt x 415.5525pt>
 File: JGR-object-browser.png Graphic file (type png)
 
 <use JGR-object-browser.png>
-<Rcmdr-main-window.png, id=62, 657.92972pt x 510.66255pt>
+<Rcmdr-main-window.png, id=65, 657.92972pt x 510.66255pt>
 File: Rcmdr-main-window.png Graphic file (type png)
 
-<use Rcmdr-main-window.png> [14]
+<use Rcmdr-main-window.png> [15 <./JGR-object-browser.png (PNG copy)> <./Rcmdr-
+main-window.png>]
 
-LaTeX Warning: Reference `fig:GUI:Rcmdr-main-window' on page 15 undefined on in
-put line 911.
+LaTeX Warning: Reference `fig:GUI:Rcmdr-main-window' on page 16 undefined on in
+put line 997.
 
-
-Overfull \hbox (10.85844pt too wide) in paragraph at lines 908--913
-[]\T1/pplx/m/n/10 A La-bel's text can be marked up in some toolk-its us-ing HTM
-L in Java/Swing
+[16]
+Overfull \hbox (29.16556pt too wide) in paragraph at lines 1137--1145
+[]\T1/pplx/m/n/10 The chil-dren of the GUI must be or-ga-nized in some man-ner.
+ In GTK+(\T1/cmtt/m/n/10 gWidgets\T1/pplx/m/n/10 ),
  []
 
-
-LaTeX Warning: Reference `fig:GUI:Rcmdr-main-window' on page 15 undefined on in
-put line 921.
-
-[15 <./JGR-object-browser.png (PNG copy)> <./Rcmdr-main-window.png>] [16]
-Underfull \hbox (badness 10000) in paragraph at lines 1069--1083
-
- []
-
-[17] <box-horizontal.png, id=76, 451.6875pt x 331.2375pt>
+[17] [18] <box-horizontal.png, id=79, 451.6875pt x 331.2375pt>
 File: box-horizontal.png Graphic file (type png)
 
-<use box-horizontal.png> <box-alignment.png, id=77, 451.6875pt x 331.2375pt>
+<use box-horizontal.png> <box-alignment.png, id=80, 451.6875pt x 331.2375pt>
 File: box-alignment.png Graphic file (type png)
 
-<use box-alignment.png> <box-expand.png, id=78, 451.6875pt x 331.2375pt>
+<use box-alignment.png> <box-expand.png, id=81, 451.6875pt x 331.2375pt>
 File: box-expand.png Graphic file (type png)
 
-<use box-expand.png> <box-glue-spring.png, id=79, 451.6875pt x 331.2375pt>
+<use box-expand.png> <box-glue-spring.png, id=82, 451.6875pt x 331.2375pt>
 File: box-glue-spring.png Graphic file (type png)
 
-<use box-glue-spring.png> [18] [19 <./box-horizontal.png> <./box-alignment.png>
- <./box-expand.png> <./box-glue-spring.png>]
+<use box-glue-spring.png> [19 <./box-horizontal.png> <./box-alignment.png> <./b
+ox-expand.png> <./box-glue-spring.png>]
 
 Package natbib Warning: Citation `APPLE:HIG' on page 20 undefined on input line
- 1226.
-
-
-Package natbib Warning: Citation `APPLE:HIG' on page 20 undefined on input line
- 1248.
+ 1349.
 
 [20])
 
@@ -878,10 +839,10 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 7925 strings out of 94073
- 103705 string characters out of 1164798
- 235371 words of memory out of 1500000
- 11083 multiletter control sequences out of 10000+50000
+ 7919 strings out of 94073
+ 103530 string characters out of 1164798
+ 234931 words of memory out of 1500000
+ 11078 multiletter control sequences out of 10000+50000
  55253 words of font info for 104 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
  34i,12n,41p,648b,1744s stack positions out of 5000i,500n,6000p,200000b,5000s
@@ -893,9 +854,9 @@ er/sftt0900.pfb></opt/local/share/texmf-dist/fonts/type1/public/cm-super/sftt10
 00.pfb></opt/local/share/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></opt/l
 ocal/share/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></opt/local/share/tex
 mf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on print-chapter.pdf (21 pages, 515371 bytes).
+Output written on print-chapter.pdf (21 pages, 585188 bytes).
 PDF statistics:
  122 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
- 71 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 66 words of extra memory for PDF output out of 10000 (max. 10000000)
 

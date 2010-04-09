@@ -1,8 +1,9 @@
 This example shows how to add to the available stock icons and use
-\code{gimage} to display them. It creats a table to select a color
-from, as an alternative to a more complicated color chooser dialog. Under \pkg{gWidgetstcltk} the image
-files would need to be converted to \code{gif} format, as \code{png}
-format is not a natively supported image type. 
+\code{gimage} to display them. It creates a table to select a color
+from, as an alternative to a more complicated color chooser
+dialog. Under \pkg{gWidgetstcltk} the image files would need to be
+converted to \code{gif} format, as \code{png} format is not a natively
+supported image type.
 
 We begin by defining 16 arbitrary colors.
 
@@ -44,11 +45,11 @@ corresponding stock icon name.
 <<>>=
 w <- gwindow("Icon example")
 f <- function(h,...) print(h$action)
-tbl <- glayout(cont = w, spacing=0)
+tbl <- glayout(cont=w, spacing=0)
 for(i in 1:4) {
   for(j in 1:4) {
     ind <- (i - 1) * 4 + j
-    tbl[i,j] <- gimage(icons[(i-1)*4 + j], handler=f, 
+    tbl[i,j] <- gimage(icons[ind], handler=f, 
                        action=iconNames[ind], cont=tbl)
   }
 }

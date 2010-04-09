@@ -91,7 +91,7 @@ thing, there are many differences in implementation.
 
 \begin{figure}
   \centering
-  \includegraphics[width=.80\textwidget]{r-print-dialog}
+  \includegraphics[width=.80\textwidth]{r-print-dialog}
   \caption{\R's print dialog under windows XP using XP's native dialog.}
   \label{fig:GUI:print-dialogs-R}
 \end{figure}

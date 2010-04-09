@@ -9,7 +9,7 @@ requires a selection for just 3 possibilities, so a combo box is
 employed.
 \begin{figure}
   \centering
-  \includegraphics[width=.5\textwidth]{ex-gWidgets-formlayout}
+  \includegraphics[width=.65\textwidth]{ex-gWidgets-formlayout}
   \caption{A dialog to collect arguments for a $t$-test made with \code{gformlayout}.}
   \label{fig:ex-gWidgets-formlayout}
 \end{figure}

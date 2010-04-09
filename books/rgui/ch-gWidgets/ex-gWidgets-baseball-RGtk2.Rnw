@@ -3,7 +3,10 @@
 ## usees several gWidgets controls.
 library(plyr)
 library(gWidgets)
-require(hash)
+f <- tempfile()
+sink(f)
+require(hash)                           # noisy startup
+sink()
 #  stop("Only works with RGtk2 as the toolkit")
 options("guiToolkit"="RGtk2")
 @
@@ -42,7 +45,7 @@ e <- new.env()
 
 The following function transfers values from the GUI to our data
 store, \code{dat}, returning \code{TRUE} if all goes well. The widgets
-are all stored in an environmen, \code{e} below, using names which
+are all stored in an environment, \code{e} below, using names which
 are again used as keys to the hash. We also define a function
 \code{plotIt} to produce a graphic based on the current state of the
 data store, but don't reproduce it here.
@@ -104,8 +107,8 @@ plotIt <- function() {
 
 We now create a GUI so that the user can select which graphic to
 make. Our GUI will have a main plot window to show a scatter plot, and
-controls to adjust the variables that are plotted, and to filter that
-values plotted. 
+controls to adjust the variables that are plotted, and to filter the cases
+considered.
 
 Our layout will use box containers to split the top-level window into
 three panes. The middle one holds the graphic, so we set it to
@@ -163,7 +166,7 @@ restrict the display to one or more teams. A combobox allows the user
 to restrict to one of the historic leagues. To allow certain players
 to stand out, a compound widget is made using a \code{gedit} object to
 filter values, a \code{gtable} object to show all possible IDs, and a
-\code{gtable} object to show the selected IDs to highlight. Frame are
+\code{gtable} object to show the selected IDs to highlight. Frames are
 used to visually combine these controls.
 <<>>=
 rpWidth <- 200
@@ -193,21 +196,19 @@ GUI at periodic intervals, we use an event-driven model. These first
 two handlers, simply toggle whether the user can control the display
 by year or career year.
 <<>>=
-addHandlerChanged(e$doYear, handler = function(h,...) {
-  val <- ifelse(svalue(e$doYear), TRUE, FALSE)
-  enabled(e$year) <- val
-})
-addHandlerChanged(e$doCareerYear, handler = function(h,...) {
-  val <- ifelse(svalue(e$doCareerYear), TRUE, FALSE)
-  enabled(e$cyear) <- val
-})
+f <- function(h,...) {
+  val <- ifelse(svalue(h$obj), TRUE, FALSE)
+  enabled(h$action) <- val
+}
+addHandlerChanged(e$doYear, handler=f, action=e$year)
+addHandlerChanged(e$doCareerYear, handler=f, action=e$cyear)
 @ 
 This next handler updates the graphic when any of several widgets is changed.
 <<>>=
+f <- function(h, ...) transferdata() && plotIt()
 QT <- sapply(list(e$x, e$xlog, e$y, e$ylog, e$year, e$cyear,
-                  e$doYear, e$doCareerYear, e$lg), function(i)
-             addHandlerChanged(i, handler=function(h, ...) 
-                               transferData() && plotIt()))
+                  e$doYear, e$doCareerYear, e$lg), 
+             function(i) addHandlerChanged(i, handler=f))
 @ 
 
 For \code{gtable} objects, it is more natural here to bind to a single
@@ -227,7 +228,7 @@ addHandlerKeystroke(searchPlayer, handler=function(h, ...) {
   if(length(ind) > 0) {
     tmp[ind] <- TRUE
     visible(listPlayers) <- tmp
-  } else if(length(grep("^\\s$", cur))) {
+  } else if(grepl("^\\s$", cur)) {
     visible(listPlayers) <- !tmp
   } else {
     visible(listPlayers) <- tmp
@@ -268,3 +269,6 @@ To end, we show the GUI and initialize the plot.
 visible(w) <- TRUE
 QT <- transferData() && plotIt()
 @ 
+
+The \pkg{traitr} package, an add on for \pkg{gWidgets}, can simplify
+the construction of such GUIs. The package vignette provides an example.

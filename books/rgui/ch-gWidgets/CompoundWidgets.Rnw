@@ -4,13 +4,13 @@ producing GUIs. Table~\ref{tab:gWidgets-compound-widgets} lists them.
 
 <<echo=FALSE, results=tex>>=
 df <- rbind(
-            c("\constructor{gvarbrowser}", "GUI for browsing variables in the workspace"),
-            c("\constructor{ghelp}", "GUI for a help page"),
-            c("\constructor{ghelpbrowser}", "A help browser"),
+            c("\\constructor{gvarbrowser}", "GUI for browsing variables in the workspace"),
             c("\\constructor{gcommandline}", "Command line widget"),
-            c("\constructor{gformlayout}", "Uses list to specify layout of a GUI"),
-            c("\constructor{ggenericwidget}", "Creates a GUI for a function based on its formal arguments or a defining list")
+            c("\\constructor{gformlayout}", "Uses list to specify layout of a GUI"),
+            c("\\constructor{ggenericwidget}", "Creates a GUI for a function based on its formal arguments or a defining list")
             )
+##             ,c("\\constructor{ghelp}", "GUI for a help page"),
+##             c("\\constructor{ghelpbrowser}", "A help browser")
 colnames(df) <- c("Constructor","Description")
 cat(booktabs(df,
              colTypes=c("l","p{0.7\\textwidth}"),
@@ -51,25 +51,25 @@ handler is called on a double click. A single click is used for
 selection. The name of the currently selected value is returned by the
 \method{svalue}{gvarbrowser} method.
 
-\subsection{Help browser}
-\label{sec:gWidgets-help-browser}
+% \subsection{Help browser}
+% \label{sec:gWidgets-help-browser}
 
-The \constructor{ghelp} constructor produces a widget for showing help
-pages using a notebook container. This widget does not use the html
-help pages or the chm help pages, so it may not work for all operating
-systems. (For Windows, the help browser of the GUI is much better
-anyways.) To add a help page, the \method{add}{ghelp} method is used,
-where the \code{value} argument describes the desired page. This can
-be a character string containing the topic, a character string of the
-form \code{package:::topic} to specify the package, or a list with
-named components \code{package} and \code{topic}.  The
-\method{dispose}{ghelp} method of notebooks can be used to remove the
-current tab.
+% The \constructor{ghelp} constructor produces a widget for showing help
+% pages using a notebook container. This widget does not use the html
+% help pages or the chm help pages, so it may not work for all operating
+% systems. (For Windows, the help browser of the GUI is much better
+% anyways.) To add a help page, the \method{add}{ghelp} method is used,
+% where the \code{value} argument describes the desired page. This can
+% be a character string containing the topic, a character string of the
+% form \code{package:::topic} to specify the package, or a list with
+% named components \code{package} and \code{topic}.  The
+% \method{dispose}{ghelp} method of notebooks can be used to remove the
+% current tab.
 
-The \constructor{ghelpbrowser} constructor produces a stand-alone
-GUI for displaying help pages, running examples from the help pages or
-opening vignettes provided by the package. This GUI provides its own
-top-level window and does not return a value for which methods are defined.
+% The \constructor{ghelpbrowser} constructor produces a stand-alone
+% GUI for displaying help pages, running examples from the help pages or
+% opening vignettes provided by the package. This GUI provides its own
+% top-level window and does not return a value for which methods are defined.
 
 
 
@@ -78,7 +78,7 @@ top-level window and does not return a value for which methods are defined.
 
 A simple command line widget is created by the
 \constructor{gcommandline} constructor. This is not meant as a
-replacement for \R's typical commandlines, but is there for
+replacement for \R's typical commandlines, but is provided for
 lightweight usage. A text box allows users to to type in \R\/
 commands. The programmer may issue commands to be evaluated and
 displayed through the \method{svalue\ASSIGN}{gcommandline} method. The
@@ -104,14 +104,15 @@ The \constructor{gformlayout} constructor takes a list defining a
 layout and creates the specified widgets. The design borrows from the
 \code{extjs} javascript libraries for web programming, where a similar
 function can be used to specify the layout of web forms. Several
-toolkits have a means to specify a layout using XML (eg. glade), this
-implementation uses a list, assuming this is more familiar to the \R\/
-user. By defining the layout ahead of time, pieces of the layout can
-be recycled for other layouts.
+toolkits have a means to specify a layout using XML (eg. \GTK's
+Builder and \QT's assistant), this implementation uses a list,
+assuming this is more familiar to the \R\/ user. By defining the
+layout ahead of time, pieces of the layout can be recycled for other
+layouts.
 
 
 To define the layout, each component is specified using a list with
-named components. The component \code{type} specifies what component
+named components. The component \code{type} indicates what component
 to be created, as a string. This can be a the name of a container
 constructor, a widget constructor or the special value
 \code{"fieldset"}. Field sets are used to group a set of common
@@ -120,17 +121,16 @@ component that is created will be stored in the list returned by the
 \code{[} method.
 
 The \code{label} component can be specified to
-add a descriptive label to the layout. When specified, the component
-\code{label.pos} can be specified with value \code{"top"} to have the label
+add a descriptive label to the layout. When used, the component
+\code{label.pos} can be tale a value \code{"top"} to have the label
 on top of the widget, or \code{"side"} to place the label on the side
 (the default positioning). The \code{label.font} component can be used
 to specify the label's font properties using a label's \meth{font\ASSIGN} method.
 
-If the type is a container or
-fieldset, then the \code{children} component is a list whose
-components specify the children as above. Except for fieldsets, these
-children can contain other containers or components. Fieldsets only
-allow components as children.
+If the type is a container or fieldset, then the \code{children}
+component is a list whose components specify the children as
+above. Except for fieldsets, these children can contain other
+containers or components. Fieldsets only allow components as children.
 
 Whether a widget is enabled or not can be controlled by specifying
 values for \code{depends.on}, \code{depends.FUN}, and

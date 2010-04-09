@@ -8,12 +8,10 @@ underlying handlers are expecting a specific type of value.
   
 The \args{coerce.with} argument can be used to specify a function
 to coerce values after an action is initiatied, but in this example we
-show how to validate the text widget when it loses focus. The use of a
-modal dialog is a bit extreme here, a more user-friendly correction
-is suggested.
+show how to validate the text widget when it loses focus. If the value
+is invalid, we set the text color to red.
 
-<<echo=FALSE>>=
-## Validation example
+<<validationExample, echo=FALSE>>=
 require(gWidgets)
 @
 
@@ -28,9 +26,11 @@ tbl[2,2] <- (b <- gbutton("submit", cont = tbl,
 ## Blur is focus out event
 addHandlerBlur(e, handler = function(h,...) {
   curVal <- svalue(h$obj)
-  if(length(grep(validRegexpr, curVal)) == 0) {
+  if(grepl(validRegexpr, curVal)) {
+    font(h$obj) <- c(color="black")
+  } else {
+    font(h$obj) <- c(color="red")
     focus(h$obj) <- TRUE
-    gmessage("not valid")
   }
 })
 @ 

@@ -40,12 +40,14 @@ arguments. This initial size is the default size, but may be adjusted
 later through the \method{size}{gwindow} method or through the window
 manager. The \argument{visible}{gwindow} argument controls whether the
 window is initially drawn. If not drawn initially, the
-\method{visible\ASSIGN}{gwindow} method, taking a logical value, can be used draw the window
-later in a program.  The default is to initially draw the window, but often it is good practice to suppress the initial drawing, especially for displaying GUIs with several controls as the
-incremental  drawing of subsequent child components can make the
-GUI seem sluggish.
+\method{visible\ASSIGN}{gwindow} method, taking a logical value, can
+be used to draw the window later in a program.  The default is to
+initially draw the window, but often it is good practice to suppress
+the initial drawing, especially for displaying GUIs with several
+controls as the incremental drawing of subsequent child components can
+make the GUI seem sluggish.
 
-
+%% dispose/addHandlerUnrealize
 Windows can be closed programatically with the
 \method{dispose}{gwindow} method. Windows may also be closed through
 the window manager, by clicking a close icon in the title bar.  The
@@ -56,19 +58,21 @@ handler between the initial click of the close icon and the subsequent
 destroy event of the window. This handler must return a logical value:
 if \code{TRUE} the window will not be destroyed, if \code{FALSE} the
 window will be, as illustrated in the example.
+\\
 
+%% parent
 The initial placement of a window will be decided by the window
-manager, unlesss the \argument{parent}{gwindow} argument is
+manager, unless the \argument{parent}{gwindow} argument is
 specified. If this is done with a vector of $x$ and $y$ pixel values,
 the upper left corner will be placed there. If it is specified as a
 \code{gwindow} instance, the new window will be positioned over the
 specified window and be disposed of when the parent widget is. This is useful, say,
 when a main window opens a dialog window to gather values.
 
-In the document object model, the use of menubars, toolbars and
+In most GUIs,  the use of menubars, toolbars and
 statusbars is often reserved for the main window, while dialogs are
 not decorated so. In \pkg{gWidgets} it is suggested that these be
-added only to a top-level window and required by some toolkits.
+added only to a top-level window.
 
 <<echo=FALSE, results=tex>>=
 df <- rbind(
@@ -112,7 +116,7 @@ dispose(w1)                           # closes w2 also
 
 This shows how the \method{addHandlerUnrealize}{gwindow} method can be
 used to intercept the closing of the window through the ``close'' icon
-of the window manager. The \code{gconfirm} dialog returns \code{TRUE}
+of the window manager. The modal \code{gconfirm} dialog returns \code{TRUE}
 or \code{FALSE} depending on the button clicked, as will be explained
 in \ref{sec:gWidgets-modal-dialogs}.
 <<>>=
@@ -132,8 +136,9 @@ id <- addHandlerUnrealize(w, handler=function(h,...) {
 ## List methods for containers
 df <- rbind(c("\\meth{add}",paste("Adds a child object to a parent container.",
                                   "Called when a parent container is specified to the \\args{container}",
-                                  "argument, in which case, the \\args{...} arguments are passed to",
-                                  "this method", sep=" ")),
+                                  "argument of the widget constructor, in which case,",
+                                  "the \\args{...} arguments are passed to",
+                                  "this method.", sep=" ")),
             c("\\meth{delete}", "Remove a child object from a parent container"))
 colnames(df) <- c("Method","Description")
 cat(booktabs(df, 
@@ -169,7 +174,7 @@ used. In our examples, this is called internally by the constructors
 when the \args{container} argument is specified. The appropriate
 \args{...}  values for a constructor are passed to the \meth{add}
 method. For \constructor{ggroup} the important ones are \args{expand}
-and \args{anchor}. When more space is allocated to a child, then is
+and \args{anchor}. When more space is allocated to a child then is
 needed by that child, the \args{expand=TRUE} argument will cause the
 child to grow to fill the available space in both directions. (No
 means is available in \pkg{gWidgets} to restrict to just one
@@ -181,12 +186,14 @@ right, whereas $-1$ is left and bottom. The example will demonstrate
 their use.
 
 \paragraph{delete}
-The \method{delete}{ggroup} method can be used to remove a child component from a box container. In some toolkits, this child may be added back at a later time, but this isn't part of the API.
+The \method{delete}{ggroup} method can be used to remove a child
+component from a box container. In some toolkits, this child may be
+added back at a later time, but this isn't part of the API. 
 
 \paragraph{Spacing and sizing}
 For spacing between the child components, the argument
 \argument{spacing}{ggroup} may be used to specify, in pixels, the
-amount of space between the child widgets. This can later be set
+amount of space between the child widgets. For box containers, this can later be set
 through the \method{svalue}{ggroup} method. The method
 \method{addSpace}{ggroup} can add space between two widgets packed
 next to each other, whereas the method \method{addSpring}{ggroup} will place
@@ -244,7 +251,7 @@ by clicking the trigger or through the
 \method{visible\ASSIGN}{gexpandgroup} method.  A value of \code{TRUE}
 means the child is visible. The
 \method{addHandlerChanged}{gexpandgroup} method is used to specify a
-callback for when the widget is expanded.
+callback for when the widget is toggled.
 
 \begin{example}{The \constructor{gframe} and \constructor{gexpandgroup} containers}{gWidgets-gframe-gexpandgroup-ex}
 \SweaveInput{ex-gWidgets-gframe-gexpandgroup.Rnw}
@@ -257,12 +264,12 @@ callback for when the widget is expanded.
 \label{sec:gWidgets-gpanedgroup-container}
 
 The \constructor{gpanedgroup} constructor produces a container which
-has two children. The children are aligned side-by-side by default, or
-top to bottom if the \argument{horizontal}{gpanedgroup} argument is given as \code{FALSE}. These two
-children are separated by a visual gutter which can be adjusted using
-the mouse to allocate the space between the two children. This can
+has two children which are separated by a visual gutter which can be adjusted using
+the mouse to allocate the space between the two children. The children are aligned side-by-side (by default) or
+top to bottom if the \argument{horizontal}{gpanedgroup} argument is
+given as \code{FALSE}. The sash position can
 also be done programatically using the \method{svalue\ASSIGN}{gpanedgroup}
-method where  a value from 0 to 1 specifies the proportion of space allocated to the leftmost (topmost) child.
+method, where  a value from 0 to 1 specifies the proportion of space allocated to the leftmost (topmost) child.
 
 To add children, the container should be used as the parent container
 for two constructors. These can be other container constructors which
@@ -284,7 +291,7 @@ visible(w) <- TRUE
 @ 
 To adjust the sash position, one can do:
 <<>>=
-svalue(pg) <- .5
+svalue(pg) <- 0.75
 @ 
 \end{example}
 
@@ -297,14 +304,16 @@ The \constructor{gnotebook} constructor produces a tabbed notebook
 container. The constructor has the argument \argument{tab.pos}{gnotebook}
 to specify the location of the tabs. A value of 1 through 4 with 1
 being botton, 2 left side, 3 top and 4 right side being used, with the
-default being 3. (Not available for all toolkits.) The \argument{closebuttons}{gnotebook} argument takes a logical
+default being 3. The \argument{closebuttons}{gnotebook} argument takes a logical
 indicating whether the tabs should have close buttons on them. In this
 case, the argument \argument{dontCloseThese}{gnotebook} can be used to
 specify which tabs, by index, should not be closable. (Some toolkits do
 not implement these features though.)
 
-The \method{add}{gnotebook} method for the notebook container uses the \argument{label}{add}
-argument to specify the tab label. As this is called implicitly when a a widget is constructed, this argument is specified to the constructor.
+The \method{add}{gnotebook} method for the notebook container uses the
+\argument{label}{add} argument to specify the tab label. As \meth{add}
+is called implicitly when a a widget is constructed, this argument is usually
+specified to the constructor.
 
 \paragraph{Methods}
 The \method{svalue}{gnotebook} method returns the index of the

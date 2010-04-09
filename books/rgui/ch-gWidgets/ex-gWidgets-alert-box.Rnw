@@ -1,4 +1,4 @@
-This example shows nested ggroup containers and the use of the
+This example shows nested \code{ggroup} containers and the use of the
 \method{delete}{ggroup} method to remove a child widget from a
 container. In this application, a box is set aside at the top of the
 window to hold a message that can be set via \code{openAlert} and
@@ -27,13 +27,19 @@ openAlert <- function(message="message goes here") {
   ig <<- ggroup(cont=alertBox)
   glabel(message, cont = ig)
 }
-closeAlert <- function() delete(alertBox, ig)
+closeAlert <- function() {
+  if(!is.null(ig))
+    delete(alertBox, ig)
+  ig <<- NULL
+}
   
 @ 
 
-The state of the box can be toggled programattically via
+The state of the box can be toggled programmatically via
 <<>>=
 QT <- openAlert("new message")                # open
 QT <- closeAlert()                            # close
 @ 
 
+To elaborate on this, one might add a timer to close the alert after a specified
+time interval and a close icon so the user may dismiss the alert.

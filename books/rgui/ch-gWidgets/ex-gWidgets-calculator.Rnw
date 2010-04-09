@@ -4,7 +4,7 @@
 library(gWidgets)
 @ 
 The following example shows how one might use the widgets just
-discussed to make a GUI that resembles a calculator. Which may offer
+discussed to make a GUI that resembles a calculator. Such a GUI may offer
 familiarity to new \R\/ users, although certainly is no replacement
 for a command line.
 
@@ -64,13 +64,13 @@ there are no errors, the output is displayed in the label.
 <<>>=
 addHandlerClicked(eqButton, handler = function(h,...) {
   curExpr <- svalue(eqnArea)
-  out <- try(capture.output(eval(parse(text=curExpr))))
+  out <- try(capture.output(eval(parse(text=curExpr))), silent=TRUE)
   if(inherits(out,"try-error")) {
-    gmessage("There is an error")
-    return()
+    galert("There is an error")
+  } else {
+    svalue(outputArea) <- out
+    svalue(eqnArea) <- ""            # restart
   }
-  svalue(outputArea) <- out
-  svalue(eqnArea) <- ""            # restart
 })
                   
 @

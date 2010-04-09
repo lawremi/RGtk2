@@ -6,15 +6,15 @@
 \newlabel{sec:overview}{{\M@TitleReference {1}{\texttt  {gWidgets}: Overview}}{1}}
 \@writefile{toc}{\contentsline {section}{\numberline {1.1}Installation, toolkits}{1}}
 \newlabel{sec:installation}{{\M@TitleReference {1.1}{Installation, toolkits}}{1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.1}{\ignorespaces The \texttt  {gWidgets} package works with different operating systems and different GUI toolkits. This shows, the same code for \texttt  {RGtk2}, \texttt  {tcltk}, \texttt  {rJava} and \texttt  {gWidgetsWWW}. Note, each toolkit has it's own sizing ideas for the controls.}}{2}}
-\newlabel{fig:gWidgets-three-oses}{{\M@TitleReference {1.1}{The \texttt  {gWidgets} package works with different operating systems and different GUI toolkits. This shows, the same code for \texttt  {RGtk2}, \texttt  {tcltk}, \texttt  {rJava} and \texttt  {gWidgetsWWW}. Note, each toolkit has it's own sizing ideas for the controls.}}{2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.1}{\ignorespaces The \texttt  {gWidgets} package works with different operating systems and different GUI toolkits. This shows, the same code using the \texttt  {RGtk2}, \texttt  {tcltk}, \texttt  {qtbase} packages for a toolkit. Additionally, the \texttt  {gWidgetsWWW} package is used in the lower right figure.}}{2}}
+\newlabel{fig:gWidgets-three-oses}{{\M@TitleReference {1.1}{The \texttt  {gWidgets} package works with different operating systems and different GUI toolkits. This shows, the same code using the \texttt  {RGtk2}, \texttt  {tcltk}, \texttt  {qtbase} packages for a toolkit. Additionally, the \texttt  {gWidgetsWWW} package is used in the lower right figure.}}{2}}
 \@writefile{toc}{\contentsline {section}{\numberline {1.2}Startup}{2}}
+\newlabel{eg:gWidgets:first-gui}{{\M@TitleReference {1.1}{Startup}}{3}}
 \@writefile{toc}{\contentsline {section}{\numberline {1.3}Constructors}{3}}
 \newlabel{sec:constructors}{{\M@TitleReference {1.3}{Constructors}}{3}}
-\@writefile{toc}{\contentsline {subsection}{Return value}{3}}
-\newlabel{tab:gWidgets-methods}{{\M@TitleReference {1.3}{Return value}}{4}}
-\@writefile{lot}{\contentsline {table}{\numberline {1.1}{\ignorespaces Generic functions provided or used in \texttt  {gWidgets} API.}}{4}}
 \@writefile{toc}{\contentsline {subsubsection}{The \texttt  {container} argument}{4}}
+\newlabel{tab:gWidgets-methods}{{\M@TitleReference {1.3}{Constructors}}{5}}
+\@writefile{lot}{\contentsline {table}{\numberline {1.1}{\ignorespaces Generic functions provided or used in \texttt  {gWidgets} API.}}{5}}
 \@writefile{toc}{\contentsline {subsection}{The \texttt  {handler} and \texttt  {action} arguments}{5}}
 \newlabel{sec:callbacks}{{\M@TitleReference {1.3}{The \texttt  {handler} and \texttt  {action} arguments}}{5}}
 \@writefile{toc}{\contentsline {section}{\numberline {1.4}Drag and Drop}{6}}
@@ -38,13 +38,13 @@
 \newlabel{sec:gWidgets-ggroup-container}{{\M@TitleReference {2.2}{The \texttt  {ggroup} container}}{11}}
 \@writefile{toc}{\contentsline {paragraph}{add}{11}}
 \@writefile{toc}{\contentsline {paragraph}{delete}{11}}
-\@writefile{toc}{\contentsline {paragraph}{Spacing and sizing}{11}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces Use of \texttt  {expand}, \texttt  {anchor}, \texttt  {addSpace} and \texttt  {addSpring} with the \texttt  {ggroup} constructor in \texttt  {gWidgetsRGtk2} and \texttt  {gWidgetstcltk}}}{12}}
 \newlabel{fig:ggroup-example}{{\M@TitleReference {2.1}{Use of \texttt  {expand}, \texttt  {anchor}, \texttt  {addSpace} and \texttt  {addSpring} with the \texttt  {ggroup} constructor in \texttt  {gWidgetsRGtk2} and \texttt  {gWidgetstcltk}}}{12}}
+\@writefile{toc}{\contentsline {paragraph}{Spacing and sizing}{12}}
 \newlabel{gWidgets-ggroup-ex}{{\M@TitleReference {2.2}{Spacing and sizing}}{12}}
 \newlabel{ex-gWidgets-ggroup-delete}{{\M@TitleReference {2.3}{Spacing and sizing}}{13}}
-\@writefile{toc}{\contentsline {subsection}{The \texttt  {gframe} and \texttt  {gexpandgroup} containers}{13}}
-\newlabel{sec:gWidgets-decorated-cont}{{\M@TitleReference {2.2}{The \texttt  {gframe} and \texttt  {gexpandgroup} containers}}{13}}
+\@writefile{toc}{\contentsline {subsection}{The \texttt  {gframe} and \texttt  {gexpandgroup} containers}{14}}
+\newlabel{sec:gWidgets-decorated-cont}{{\M@TitleReference {2.2}{The \texttt  {gframe} and \texttt  {gexpandgroup} containers}}{14}}
 \newlabel{gWidgets-gframe-gexpandgroup-ex}{{\M@TitleReference {2.4}{The \texttt  {gframe} and \texttt  {gexpandgroup} containers}}{14}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.3}Paned containers: the \texttt  {gpandedgroup} container}{14}}
 \newlabel{sec:gWidgets-gpanedgroup-container}{{\M@TitleReference {2.3}{Paned containers: the \texttt  {gpandedgroup} container}}{14}}
@@ -52,128 +52,41 @@
 \@writefile{toc}{\contentsline {section}{\numberline {2.4}Tabbed notebooks: the \texttt  {gnotebook} container}{15}}
 \newlabel{sec:gWidgets-gnotebook}{{\M@TitleReference {2.4}{Tabbed notebooks: the \texttt  {gnotebook} container}}{15}}
 \@writefile{toc}{\contentsline {paragraph}{Methods}{15}}
-\newlabel{ex-gWidgets-gnotebook}{{\M@TitleReference {2.6}{Methods}}{15}}
+\newlabel{ex-gWidgets-gnotebook}{{\M@TitleReference {2.6}{Methods}}{16}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.5}Grid layout: the \texttt  {glayout} container}{16}}
 \newlabel{sec:gWidgets-glayout-container}{{\M@TitleReference {2.5}{Grid layout: the \texttt  {glayout} container}}{16}}
 \newlabel{ex-gWidgets-glayout}{{\M@TitleReference {2.7}{Grid layout: the \texttt  {glayout} container}}{16}}
 \@writefile{lof}{\addvspace {10pt}}
 \@writefile{lot}{\addvspace {10pt}}
-\@writefile{toc}{\contentsline {chapter}{\chapternumberline {3}\texttt  {gWidgets}: Control Widgets}{17}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.1}Basic controls}{17}}
-\newlabel{sec:gWidgets-controls}{{\M@TitleReference {3.1}{Basic controls}}{17}}
-\@writefile{toc}{\contentsline {subsection}{Buttons, Menubars, Toolbars}{17}}
-\newlabel{sec:gWidgets-buttons}{{\M@TitleReference {3.1}{Buttons, Menubars, Toolbars}}{17}}
-\newlabel{ex-gWidgets-hello-world-button}{{\M@TitleReference {3.1}{Buttons, Menubars, Toolbars}}{17}}
-\newlabel{tab:gWidgets-control-widgets}{{\M@TitleReference {3.1}{Basic controls}}{18}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces Table of constructors for control widgets in \texttt  {gWidgets}. Most, but not all, are implemented for each toolkit.}}{18}}
+\@writefile{toc}{\contentsline {chapter}{\chapternumberline {3}\texttt  {gWidgets}: Control Widgets}{19}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Basic controls}{19}}
+\newlabel{sec:gWidgets-controls}{{\M@TitleReference {3.1}{Basic controls}}{19}}
+\@writefile{toc}{\contentsline {subsection}{Buttons, Menubars, Toolbars}{19}}
+\newlabel{sec:gWidgets-buttons}{{\M@TitleReference {3.1}{Buttons, Menubars, Toolbars}}{19}}
 \@writefile{toc}{\contentsline {subsection}{Actions}{19}}
 \newlabel{sec:gWidgets-actions}{{\M@TitleReference {3.1}{Actions}}{19}}
-\@writefile{toc}{\contentsline {paragraph}{methods}{19}}
-\@writefile{toc}{\contentsline {paragraph}{buttons}{19}}
-\@writefile{toc}{\contentsline {subsection}{Toolbars}{19}}
-\newlabel{sec:gWidgets-toolbars}{{\M@TitleReference {3.1}{Toolbars}}{19}}
-\@writefile{toc}{\contentsline {subsection}{Menubars, popup menus}{20}}
-\newlabel{sec:gWidgets-menubars}{{\M@TitleReference {3.1}{Menubars, popup menus}}{20}}
-\@writefile{toc}{\contentsline {paragraph}{Methods}{20}}
-\newlabel{ex-gWidgets-menu-tool-status-bars}{{\M@TitleReference {3.2}{Methods}}{20}}
-\@writefile{toc}{\contentsline {paragraph}{Popup menus}{21}}
-\newlabel{ex-gWidgets-context-menus}{{\M@TitleReference {3.3}{Popup menus}}{21}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}Text widgets}{22}}
-\newlabel{sec:text-widgets}{{\M@TitleReference {3.2}{Text widgets}}{22}}
-\@writefile{toc}{\contentsline {subsection}{Labels}{22}}
-\newlabel{sec:gWidgets-static-text}{{\M@TitleReference {3.2}{Labels}}{22}}
-\@writefile{toc}{\contentsline {subsection}{Statusbars}{22}}
-\newlabel{sec:gWidgets-statusbars}{{\M@TitleReference {3.2}{Statusbars}}{22}}
-\@writefile{toc}{\contentsline {subsection}{Single-line, editable text}{23}}
-\newlabel{sec:gWidgets-single-line-editable}{{\M@TitleReference {3.2}{Single-line, editable text}}{23}}
-\@writefile{toc}{\contentsline {paragraph}{Methods}{23}}
-\@writefile{toc}{\contentsline {paragraph}{Handlers}{23}}
-\newlabel{ex-gWidgets-gedit-validation}{{\M@TitleReference {3.4}{Handlers}}{23}}
-\newlabel{tab:gWidgets-font-properties}{{\M@TitleReference {3.2}{Multi-line, editable text}}{24}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.2}{\ignorespaces Possible specfications for setting font properties. Font values of an object are changed with named vectors, as in \texttt  {font(obj){\ }{\unhbox \voidb@x \copy \hlboxlessthan \relax }{\ } c(weight="bold", size=12, color="red")}}}{24}}
-\@writefile{toc}{\contentsline {subsection}{Multi-line, editable text}{24}}
-\newlabel{sec:gWidgets-multi-line-editable}{{\M@TitleReference {3.2}{Multi-line, editable text}}{24}}
-\newlabel{ex-gWidgets-calculator}{{\M@TitleReference {3.5}{Multi-line, editable text}}{24}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.3}Selection controls}{26}}
-\newlabel{sec:gWidgets-widg-select-data}{{\M@TitleReference {3.3}{Selection controls}}{26}}
-\@writefile{toc}{\contentsline {subsection}{Checkbox widget}{26}}
-\newlabel{sec:gWidgets-checkbox-widget}{{\M@TitleReference {3.3}{Checkbox widget}}{26}}
-\@writefile{toc}{\contentsline {subsection}{Radio button widget}{26}}
-\newlabel{sec:gWidgets-radio-button-widget}{{\M@TitleReference {3.3}{Radio button widget}}{26}}
-\@writefile{toc}{\contentsline {subsection}{A group of checkboxes}{27}}
-\newlabel{sec:gWidgets-group-checkboxes}{{\M@TitleReference {3.3}{A group of checkboxes}}{27}}
-\@writefile{toc}{\contentsline {subsection}{A combobox}{27}}
-\newlabel{sec:gWidgets-combobox}{{\M@TitleReference {3.3}{A combobox}}{27}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces A template for a GUI using some of the widgets for selection.}}{28}}
-\newlabel{fig:ex-gWidgets-selection-widgets}{{\M@TitleReference {3.1}{A template for a GUI using some of the widgets for selection.}}{28}}
-\newlabel{ex-gWidgets-selection-widgets}{{\M@TitleReference {3.6}{A combobox}}{28}}
-\@writefile{toc}{\contentsline {subsection}{Display of tabular data}{29}}
-\newlabel{sec:gWidgets-tabular-data-display}{{\M@TitleReference {3.3}{Display of tabular data}}{29}}
-\@writefile{toc}{\contentsline {paragraph}{Filtering}{29}}
-\@writefile{toc}{\contentsline {paragraph}{Selection}{30}}
-\@writefile{toc}{\contentsline {paragraph}{Methods}{30}}
-\@writefile{toc}{\contentsline {paragraph}{Handlers}{30}}
-\newlabel{ex-gWidgets-simple-filter-gtable}{{\M@TitleReference {3.7}{Handlers}}{30}}
-\newlabel{ex-gWidgets-filter-gtable}{{\M@TitleReference {3.8}{Handlers}}{31}}
-\@writefile{toc}{\contentsline {subsection}{An editor for tabular data}{32}}
-\newlabel{sec:gWidgets-an-editor-tabular}{{\M@TitleReference {3.3}{An editor for tabular data}}{32}}
-\@writefile{toc}{\contentsline {paragraph}{Methods}{32}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.4}Selection from a sequence of numbers}{33}}
-\newlabel{sec:gWidgets-select-from-sequ}{{\M@TitleReference {3.4}{Selection from a sequence of numbers}}{33}}
-\@writefile{toc}{\contentsline {subsection}{A slider control}{33}}
-\newlabel{sec:gWidgets-slider-control}{{\M@TitleReference {3.4}{A slider control}}{33}}
-\@writefile{toc}{\contentsline {subsection}{A spin button control}{33}}
-\newlabel{sec:gWidgets-spin-button-control}{{\M@TitleReference {3.4}{A spin button control}}{33}}
-\newlabel{ex-gWidgets-sliders-spingbuttons}{{\M@TitleReference {3.9}{A spin button control}}{33}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.5}Display of heirarchical data}{34}}
-\newlabel{sec:gWidgets-displ-heir-data}{{\M@TitleReference {3.5}{Display of heirarchical data}}{34}}
-\@writefile{toc}{\contentsline {paragraph}{methods}{34}}
-\newlabel{ex-gWidgets-gtree}{{\M@TitleReference {3.10}{methods}}{34}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces GUI to explore return value of a model fit by the \texttt  {party} package.}}{36}}
-\newlabel{fig:ex-gWidgets-gtree-party}{{\M@TitleReference {3.2}{GUI to explore return value of a model fit by the \texttt  {party} package.}}{36}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.6}Selecting from the file system}{36}}
-\newlabel{sec:gWidgets-selecting-from-file}{{\M@TitleReference {3.6}{Selecting from the file system}}{36}}
-\@writefile{toc}{\contentsline {subsection}{Selecting a date}{37}}
-\newlabel{sec:gWidgets-selecting-date}{{\M@TitleReference {3.6}{Selecting a date}}{37}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.7}Display of graphics}{37}}
-\newlabel{sec:gWidgets-display-grapics}{{\M@TitleReference {3.7}{Display of graphics}}{37}}
-\@writefile{toc}{\contentsline {subsection}{Displaying icons and images store in files}{37}}
-\newlabel{sec:gWidgets-displ-icons-imag}{{\M@TitleReference {3.7}{Displaying icons and images store in files}}{37}}
-\newlabel{ex-gWidgets-stock-icons}{{\M@TitleReference {3.11}{Displaying icons and images store in files}}{37}}
-\@writefile{toc}{\contentsline {subsection}{A graphics device}{38}}
-\newlabel{sec:gWidgets-graphics-device}{{\M@TitleReference {3.7}{A graphics device}}{38}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces A \texttt  {RGtk2} GUI for exploring the \texttt  {baseball} data set of the \texttt  {plyr} package. One can subset by year or career year through the slider widgets.}}{39}}
-\newlabel{fig:ex-gWidgets-baseball}{{\M@TitleReference {3.3}{A \texttt  {RGtk2} GUI for exploring the \texttt  {baseball} data set of the \texttt  {plyr} package. One can subset by year or career year through the slider widgets.}}{39}}
-\newlabel{ex-gWidgets-baseball}{{\M@TitleReference {3.12}{A graphics device}}{39}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.8}Dialogs}{43}}
-\newlabel{sec:gWidgets-modal-dialogs}{{\M@TitleReference {3.8}{Dialogs}}{43}}
-\newlabel{tab:gWidgets-basic-dialogs}{{\M@TitleReference {3.8}{Dialogs}}{44}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.3}{\ignorespaces Table of constructors for basic dialogs in \texttt  {gWidgets}}}{44}}
-\@writefile{toc}{\contentsline {paragraph}{A message dialog}{44}}
-\@writefile{toc}{\contentsline {paragraph}{An alert dialog}{44}}
-\@writefile{toc}{\contentsline {paragraph}{A confirmation dialog}{44}}
-\@writefile{toc}{\contentsline {paragraph}{An input dialog}{44}}
-\@writefile{toc}{\contentsline {paragraph}{A basic dialog}{44}}
-\newlabel{ex-gWidgets-modal-dialogs}{{\M@TitleReference {3.13}{A basic dialog}}{45}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.9}\texttt  {gWidgets}: Compound widgets}{45}}
-\newlabel{sec:compound-widgets}{{\M@TitleReference {3.9}{\texttt  {gWidgets}: Compound widgets}}{45}}
-\newlabel{tab:gWidgets-compound-widgets}{{\M@TitleReference {3.9}{\texttt  {gWidgets}: Compound widgets}}{46}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.4}{\ignorespaces Table of constructors for compound widgets in \texttt  {gWidgets}}}{46}}
-\@writefile{toc}{\contentsline {subsection}{Workspace browser}{46}}
-\newlabel{sec:gWidgets-workspace-browser}{{\M@TitleReference {3.9}{Workspace browser}}{46}}
-\@writefile{toc}{\contentsline {subsection}{Help browser}{46}}
-\newlabel{sec:gWidgets-help-browser}{{\M@TitleReference {3.9}{Help browser}}{46}}
-\@writefile{toc}{\contentsline {subsection}{Command line widget}{46}}
-\newlabel{sec:gWidgets-command-line-widget}{{\M@TitleReference {3.9}{Command line widget}}{46}}
-\@writefile{toc}{\contentsline {subsection}{Simplifying creation of dialogs}{47}}
-\newlabel{sec:gWidgets-designing-forms}{{\M@TitleReference {3.9}{Simplifying creation of dialogs}}{47}}
-\@writefile{toc}{\contentsline {subsubsection}{Laying out a form}{47}}
-\newlabel{sec:gWidgets-laying-out-form}{{\M@TitleReference {3.9}{Laying out a form}}{47}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces A dialog to collect arguments for a $t$-test made with \texttt  {gformlayout}.}}{48}}
-\newlabel{fig:ex-gWidgets-formlayout}{{\M@TitleReference {3.4}{A dialog to collect arguments for a $t$-test made with \texttt  {gformlayout}.}}{48}}
-\@writefile{toc}{\contentsline {paragraph}{Methods}{48}}
-\newlabel{ex-gWidgets-gformlayou}{{\M@TitleReference {3.14}{Methods}}{48}}
-\@writefile{toc}{\contentsline {subsubsection}{Automatically creating a GUI}{51}}
-\newlabel{sec:gWidgets-autom-creat-gui}{{\M@TitleReference {3.9}{Automatically creating a GUI}}{51}}
-\setcounter{lastsheet}{51}
-\setcounter{lastpage}{51}
+\newlabel{tab:gWidgets-control-widgets}{{\M@TitleReference {3.1}{Basic controls}}{20}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces Table of constructors for control widgets in \texttt  {gWidgets}. Most, but not all, are implemented for each toolkit.}}{20}}
+\@writefile{toc}{\contentsline {paragraph}{methods}{21}}
+\@writefile{toc}{\contentsline {paragraph}{buttons}{21}}
+\@writefile{toc}{\contentsline {subsection}{Toolbars}{21}}
+\newlabel{sec:gWidgets-toolbars}{{\M@TitleReference {3.1}{Toolbars}}{21}}
+\@writefile{toc}{\contentsline {subsection}{Menubars, popup menus}{21}}
+\newlabel{sec:gWidgets-menubars}{{\M@TitleReference {3.1}{Menubars, popup menus}}{21}}
+\@writefile{toc}{\contentsline {paragraph}{Methods}{22}}
+\newlabel{ex-gWidgets-menu-tool-status-bars}{{\M@TitleReference {3.1}{Methods}}{22}}
+\@writefile{toc}{\contentsline {paragraph}{Popup menus}{23}}
+\newlabel{ex-gWidgets-context-menus}{{\M@TitleReference {3.2}{Popup menus}}{23}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Text widgets}{23}}
+\newlabel{sec:text-widgets}{{\M@TitleReference {3.2}{Text widgets}}{23}}
+\@writefile{toc}{\contentsline {subsection}{Labels}{23}}
+\newlabel{sec:gWidgets-static-text}{{\M@TitleReference {3.2}{Labels}}{23}}
+\@writefile{toc}{\contentsline {subsection}{Statusbars}{24}}
+\newlabel{sec:gWidgets-statusbars}{{\M@TitleReference {3.2}{Statusbars}}{24}}
+\@writefile{toc}{\contentsline {subsection}{Single-line, editable text}{24}}
+\newlabel{sec:gWidgets-single-line-editable}{{\M@TitleReference {3.2}{Single-line, editable text}}{24}}
+\@writefile{toc}{\contentsline {paragraph}{Methods}{24}}
+\@writefile{toc}{\contentsline {paragraph}{Handlers}{25}}
+\newlabel{ex-gWidgets-gedit-validation}{{\M@TitleReference {3.3}{Handlers}}{25}}
+\@writefile{toc}{\contentsline {subsection}{Multi-line, editable text}{25}}
+\newlabel{sec:gWidgets-multi-line-editable}{{\M@TitleReference {3.2}{Multi-line, editable text}}{25}}
