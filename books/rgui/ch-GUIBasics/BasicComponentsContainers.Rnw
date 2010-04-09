@@ -12,14 +12,51 @@
 %% require a lot of nesting), while in others any container type is
 %% capable of any type of layout.
 
-Widgets are arranged in a window to produce a GUI. Container widgets
-manage the layout. The simplest containers are like boxes
-that get packed in left to right or top to bottom. These boxes may be
-decorated with a frame or label, or may have some means of being
-hidden or displayed by the user. The nesting of box containers can
-provide a great deal of flexibility, but usually not
-enough. An example of a more flexible layout strategy is to position
-widgets on a grid.
+
+%% JV: good point. 
+% Widgets are arranged in a window to produce a GUI. Container widgets
+% manage the layout. The simplest containers are like boxes
+% that get packed in left to right or top to bottom. These boxes may be
+% decorated with a frame or label, or may have some means of being
+% hidden or displayed by the user. The nesting of box containers can
+% provide a great deal of flexibility, but usually not
+% enough. An example of a more flexible layout strategy is to position
+% widgets on a grid.
+
+%% Widget Heirarchy
+
+Widgets in a GUI are organized in a \dfn{widget heirarchy}, where some
+widgets are parents and some children (which may in turn be
+parents). The top-level window may play a special role here, as a
+parent but not a child. This organization offers the toolkit writers
+the chance to treat each object as a standalone component. For
+example, when a GUI is resized the typical algorithm is for the parent
+to be resized, then to send a signal to the children to resize
+themselves. Another example is when a window is closed, prior to
+closing the window will signal its children that they will be
+destroyed, and they should in turn signal their children, if any.  A
+means to traverse the widget heirarchy is provided by each toolkit.
+In \pkg{tcltk} this heirarchical relationship is explicit, as a widget
+constructor -- except for top-level windows -- requires a parent
+widget when be constructed. In the other toolkits, it may be implicit.
+
+In the widget heirarchy, the parents play a different role as those
+widgets that are just children. The parents play the role of
+\dfn{containers}. Sometimes the word \dfn{widget} is reserved for GUI
+components which are not-containers. Having containers makes it
+possible to organize GUIs into indivividual components -- again, a desirable
+design feature.
+
+The children of the GUI must be organized in some manner. In \GTK
+(\pkg{gWidgets}), this is done through the choice of container with
+parameters being set to adjust the placement within the container when
+the child is added. In \Qt\/ and \tcltk\/ there is an added
+abstraction of a layout. A layout decouples the heirarchy from the
+layout and offers much more flexibility. In \Qt\/ this allows for a
+richer set of default layout options, and the ability to create ones
+specialized layouts.
+
+
 
 \subsection{Top level windows}
 \label{sec:GUI:top-level-windows}
@@ -53,11 +90,6 @@ of construction. The top-level window of a GUI may generally be placed
 whereever it is convenient for the user, but sub-windows are often
 drawn on top of their parent window, as are modal dialog boxes. 
 
-The initial size of the window may also be specified at
-construction. The size of a top-level window may be specified as a
-default size, a preferred size, or a minimum size, depending on the
-toolkit. All of these allow for resizing of the window with the
-mouse. When this is done, the laying out of widgets must be updated.
 
 %% RGtk2 -- DefaultSize
 %% rJava -- Preferred Size
@@ -84,20 +116,6 @@ than have the window drawn and then have a blank window while this
 time passes, it is preferable to not make the window visible until the
 window is ready to draw. 
 
-The layout of widgets in a top-level container follows a heirarchical
-structure. Widgets are packed inside containers which may again be
-packed inside containers. Eventually the widget or container is packed
-inside a top-level window. In \pkg{tcltk} a
-parent container must be specified when a widget is
-constructed. Reversing the direction, one can view the top-level
-window as a root node of a tree with each container packed directly
-into it as children. (In \pkg{RGtk2} only one component can be packed
-into a top-level window.) Each child container, in turn, has children
-which are the components packed into it. This heirarchy is important
-when a window is resized. The new dimensions can be passed along to
-the children, and they can resize themselves accordingly. The
-allocation of this space varies from toolkit to toolkit.  
-\\
 
 We now describe some of the main containers.
 
@@ -111,7 +129,7 @@ We now describe some of the main containers.
 A box container places its children in it from left to right or from
 top to bottom.  If each child is viewed as a box, then this container
 holds them by packing them next to each other. The upper left figure in
-Figure\ref{fig:GUI:box-possibilities} illustrates this. 
+Figure~\ref{fig:GUI:box-possibilities} illustrates this. 
 
 When the boxes have different sizes, then some means to align them
 must be decided on. Several possibilities exists. The alignment could
@@ -173,24 +191,24 @@ an application is localized.
 
 A box container may have a border drawn around it to visually separate
 its contents from others. This border may also have a title. In
-\GTK\/ these are called frames, but this word is reserved in
-\Java\/ and \wxWidgets\/ for windows.
+\GTK\/ these are called frames, but this word is reserved in \tcltk\/ and
+\Java.
 
 \subsubsection{Expanding boxes}
 \label{sec:GUI:expanding-boxes}
 
 In order to save screen space, a means to hide a boxes contents can be
-used. This hiding/showing is initiated by a mouse click on a button or
-label. 
+used. This hiding/showing is initiated by a mouse click on a
+disclosure button or trigger icon.
 
 \subsubsection{Paned boxes}
 \label{sec:GUI:paned-boxes}
 
 If automatic space allocation between two child components is not
 desired, but rather a means for the user to allocate the space is,
-then a \dfnref{paned container} may be used. These offer either a
-horizontal or vertical sash that can be clicked and dragged to
-apportion space between two components.
+then a \dfnref{paned container} may be used. These offer one or more
+horizontal or verticales sash that can be clicked and dragged to
+apportion space between the child omponents.
 
    
 \subsection{Grid layout}
@@ -241,10 +259,10 @@ quickly seen that each column has a different size. The last row has a
 text entry area that spans the second and third columns. The first
 column has only labels. These are anchored to the left side of the
 allowed space. The Apple human interface guide
-\citep[p. 124]{APPLE:HIG} suggests using colons for text that provides
+\citep{APPLE:HIG} suggests using colons for text that provides
 context for controls, and the KDE designers do to. 
 
-The displayed page of the notebook shows a two child components, both
+The displayed page of the notebook shows two child components, both
 framed boxes. A pleasant amount of space between the frames and their
 child components has been chosen. The \code{Page Selection} frame has
 components including radio buttons, a text area, a horizontal
@@ -263,10 +281,10 @@ expanded, it is seen that there is a spring between the 3rd and 4th
 buttons, so that the first 3 are aligned with the left side of the
 window and the last two the right side.
 
-The Apple guidlines\citep[Ch. 15]{APPLE:HIG} suggest using ``center
-equalization'' for arranging widgets within a window. This means that
-the visual weight is balanced between the right and left side of the
-content area. This is not the case with the KDE print dialog.
+% The Apple guidlines\citep[Ch. 15]{APPLE:HIG} suggest using ``center
+% equalization'' for arranging widgets within a window. This means that
+% the visual weight is balanced between the right and left side of the
+% content area. This is not the case with the KDE print dialog.
 
 
 

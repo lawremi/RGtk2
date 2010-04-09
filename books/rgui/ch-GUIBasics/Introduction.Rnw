@@ -6,12 +6,17 @@ interface for a package or piece of \R\/ functionality. For example,
 % well-suited for casual users who are not familiar with the R
 % language and the command line interface. The one about integration
 % with graphics (presumably to create interactive visualizations) is a good one.
+
+%% JV: agreed. Let's try these:
 \begin{itemize}
-\item GUIs allow others easier access to your functions,
-\item GUIs are useful if a function has many arguments,
+%\item GUIs allow others easier access to your functions,
+%\item GUIs are useful if a function has many arguments,
+\item GUIs can make \R's functionality available to the casual \R\/ user,
 \item GUIs can be dynamic, they can direct the user how to fill in
   arguments, can give feedback on the choice of an argument, they can
   prevent or allow user input as appropriate,
+\item Although a command line is usually faster when the commands are
+  known, a GUI can make some less commonly used tasks easier to do.
 \item GUIs make dealing with large data sets easier both visually and
   as an alternative to sometimes difficulte command line usage.
 \item GUIs can tightly integrate with graphics, for example the
@@ -19,12 +24,16 @@ interface for a package or piece of \R\/ functionality. For example,
 \end{itemize}
 % ML: It is not clear why we are arguing for a common, general GUI. The focus
 % on the book seems to be the development of special-purpose GUI's.
+
+% JV: I'm not (I hope). I just want to avoid it seeming like a waste of time
+% to learn writing GUIs in case someone (say revolutions) writes such a
+% general GUI. 
 Even as \R\/ is rapidly gaining interest, especially commercial
 interest, it lacks a common graphical user interface. This is due to
 several reasons. (1) The \R\/ language is designed for command line
 usage. (2) The GUI would need to run on all supported \R\/ platforms
 (3) the wide variety of user types means a single interface would be
-unlikely to satisfy all. Even if it did have a common interfface, as
+unlikely to satisfy all. Even if it did have a common interface, as
 much of \R's functionality depends on user contributions there will
 always be a demand for package programmers to provide convenient
 interfaces to their work.

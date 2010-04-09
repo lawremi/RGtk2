@@ -39,6 +39,7 @@ the \dfnref{document window} that shows the current state of a
 frame, a command line, a function editor, a graphic or an arbitrarily
 complex form containing an assortment of such elements. 
 
+%% JV: control or "action" here?
 The actions that can be performed on the ``document'' are called
 through another WIMP component, the menu. Abstractly, every control in
 a window belongs to some menu. Two common ways of organizing controls
@@ -63,10 +64,10 @@ invisible widgets to lay out the other widgets in a window.
 There is a wide variety of available widget types, and widgets may be
 combined in an infinite number of ways. Thus, there are often numerous
 means to achieve the same goals. For example,
-Figure~\ref{fig:GUI:print-dialogs} contains three dialogs that perform
+Figures~\ref{fig:GUI:print-dialogs} and \ref{fig:GUI:print-dialogs-R} show three dialogs that perform
 the same task -- collect arguments from the user to customize the
 printing of a document. Although all were designed to do the same
-thing, there are many differences.
+thing, there are many differences in implementation.
 
 %% ML: Print dialogs might be problematic, especially with Firefox, which
 %% (through GTK+) will use the platform native print dialog. On Linux,
@@ -79,25 +80,31 @@ thing, there are many differences.
 
 \begin{figure}
   \centering
-  \includegraphics[width=.60\textwidth]{fig-mac-print}
-  \\
-  \includegraphics[width=.60\textwidth]{firefox-print}
-  \\
-  \includegraphics[width=.60\textwidth]{kde-print}
-  \caption{Three print dialogs. One from Mac OS X 10.6, one from
-    firefox 2.0 and one from KDE 3.5.}
+  \includegraphics[width=.80\textwidth]{fig-mac-print}
+   \\
+   
+  \includegraphics[width=.80\textwidth]{kde-print}
+  \caption{Two print dialogs. One from Mac OS X 10.6 and one from KDE 3.5.}
   \label{fig:GUI:print-dialogs}
+\end{figure}
+
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.80\textwidget]{r-print-dialog}
+  \caption{\R's print dialog under windows XP using XP's native dialog.}
+  \label{fig:GUI:print-dialogs-R}
 \end{figure}
 
 %% Choice of widget -- familiar metaphors, use of icons, 
 In some cases, typical usage suggests one control over another. The
 choice of printer for each is specified through a combo box. However,
 for other choices a variety of widgets are employed. For example, the
-control to indicate the number of copies for the Mac and Firefox
-dialogs is a simple text entry window, whereas for the KDE dialog it
+control to indicate the number of copies for the Mac is a simple text
+entry window, whereas for the KDE and \R\/ dialog it
 is a spinbutton. The latter minimizes user error, say through entering
 a non-positive integer. The KDE and Mac dialogs have icons to
-compactly represent actions, whereas the Firefox example has none. The
+compactly represent actions, whereas the \R\/ example has none. The
 landscape icon for the Mac is very clear and provides this feature
 without having to use a sub dialog.
 
@@ -106,7 +113,7 @@ without having to use a sub dialog.
 %% balance, vs. ...
 How the interfaces are laid out also varies. All are read top to
 bottom, although the Mac interface also has a very nice preview
-feature on the left side. The Firefox and KDE dialogs use frames to
+feature on the left side. The KDE dialog uses frames to
 separate out the printer arguments from the arguments that specify how
 the print job is to proceed. The Mac uses a vertical arrangement to
 guide the user through this. For the Mac, horizontal separators are used instead of
@@ -114,7 +121,7 @@ frames to break up the areas, although a frame is used towards the
 bottom. 
 
 Apple uses a center balance for its controls. They are not left
-justified as are the KDE and Firefox dialogs. Apple has strict
+justified as are the KDE and Windows dialogs. Apple has strict
 user-interface guidelines and this center balance is a design
 decision. 
 
@@ -134,7 +141,7 @@ possible, given the state of the application.
 
 %% shortcuts -- default button, keyboard accelerators
  
-The Mac GUI has the number of pages in focus, whereas Firefox places
+The Mac GUI has the number of pages in focus, whereas Windows places
 the printer in focus. This allows the user to interact with the GUI
 without the mouse. Typically the \kbd{tab} key is used to step through
 the controls. GUI's often have keyboard accelerators that allow power
@@ -146,26 +153,33 @@ KDE dialog, for example, indicates that the ``print'' button is the
 default button through special shading.
 
 %% help
-For such a common dialog, it is unlikely the user will need help. As
-such the Firefox dialog does not provide a link. However, the
-KDE and Mac dialogs do. A dialog should provide assistance for
-complex and unfamiliar tasks.
+% For such a common dialog, it is unlikely the user will need help. As
+% such the Windows dialog does not provide a link. However, the
+% KDE and Mac dialogs do. A dialog should provide assistance for
+% complex and unfamiliar tasks.
 
 %% safety -- postion of buttons
 %% ML: Do we really want to mention something that is not applicable?
-The Apple human interface guidelines suggest putting buttons that can
-cause the destruction of data separate from other control buttons. As
-this isn't directly applicable here, we see that Apple does separate
-buttons that are common to many dialogs (cancel, print) from the ones
-specific to the dialog. The KDE buttons have nice icons, but their
-similar, but irregular, sizing is a bit unusual.
+%% JV; Agreed
+% The Apple human interface guidelines suggest putting buttons that can
+% cause the destruction of data separate from other control buttons. As
+% this isn't directly applicable here, we see that Apple does separate
+% buttons that are common to many dialogs (cancel, print) from the ones
+% specific to the dialog. The KDE buttons have nice icons, but their
+% similar, but irregular, sizing is a bit unusual.
+
+
+Each dialog presents the user with a range of buttons to initiate or
+cancel the printing. The Windows ones are set on the right and consist
+of the standard ``OK'' and ``Cancel'' buttons. The Mac interface uses
+a spring to push some buttons to the left, and some to the right to
+keep separate their level of importance. The KDE buttons do so as
+well, although one can't tell from this. However, one can see the use
+of stock icons on the buttons to guide the user. 
 
 %% feature exposure, Choice of options -- what to show, what to leave out
 One of the greatest differences between these dialogs is the amount of
-features they choose to expose. The Firefox dialog is minimalist
-compared to the others. This is a general theme for Firefox and seems
-justifiable given that printing is not a very common task for a web
-browser.  The Mac GUI uses ``disclosure buttons'' to allow access to
+features they choose to expose. For example, the Mac GUI uses ``disclosure buttons'' to allow access to
 printer properties and the PDF settings, whereas KDE uses a notebook
 container to show possible options without revealing all of their
 detail.
@@ -177,15 +191,15 @@ detail.
 \label{sec:choice-widget}
 %% real estate, type of data
 
-A GUI is comprised of one or more widgets. Typically these widgets
-display some type of information and/or allow a user to specify some
-input, often a selection from one or more possible choices. The
-appropriate choice of widget varies greatly, depending on the type and
-size of the information being displayed, the constraints on the user
-input, and on the space available in the GUI layout. As an example, we
-take the common GUI task of presenting a set of options to the
-user. Table~\ref{tab:gui-design-widget-type} lists several different
-types of widgets used for this purpose.
+A GUI is comprised of one or more widgets or controls. The appropriate
+choice of widget depends on a balance of condiderations.  For example,
+many widgets offer the user a selection from one or more possible
+choices.  An appropriate choice depends on the type and size of the
+information being displayed, the constraints on the user input, and on
+the space available in the GUI layout. As an example,
+Table~\ref{tab:gui-design-widget-type} lists suggestes different types
+of widgets used for this purpose depending on the type and size of
+data and the number of items to select.
   
 <<echo=FALSE, results=tex>>=
 df <- rbind(
