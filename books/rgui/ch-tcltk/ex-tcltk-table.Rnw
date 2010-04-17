@@ -67,13 +67,16 @@ We illustrate the above with a slightly improved GUI for selecting a CRAN mirror
 <<>>=
 df <- getCRANmirrors()[, c(1,2,5,4)]
 @ 
-We use a text entry widget to allow the user to filter the values in the display as the user types.
-<<>>=
+
+<<notShown, echo=FALSE>>=
 w <- tktoplevel()
 tkwm.title(w, "Choose a CRAN mirror")
 f <- ttkframe(w, padding=c(3,3,3,12))
 tkpack(f, expand=TRUE, fill="both")
+@ 
 
+We use a text entry widget to allow the user to filter the values in the display as the user types.
+<<>>=
 f0 <- ttkframe(f); tkpack(f0, fill="x")
 l <- ttklabel(f0, text="filter:"); tkpack(l, side="left")
 filterVar <- tclVar("")

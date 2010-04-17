@@ -3,8 +3,8 @@ a dialog for gathering information to run a $t$-test. A realization is shown in 
 
 \begin{figure}
   \centering
-  \includegraphics[width=.6\textwidth]{fig-tcltk-t-test.png}
-  \caption{A dialog to collect values for a t.test.}
+  \includegraphics[width=.75\textwidth]{fig-tcltk-t-test.png}
+  \caption{A dialog to collect values for a $t$ test.}
   \label{fig:fig-tcltk-t-test}
 \end{figure}
 
@@ -57,15 +57,18 @@ e$mu <- tclVar(0); e$alternative <- tclVar("two.sided")
 e$conf.level <- tclVar(95); e$var.equal <- tclVar(FALSE)
 @ 
 
-Our layout is basic. Here we place a label frame into the window to give the dialog a nicer look.
-We will use the \code{tkgrid} geometry manager below.
 
-<<layout>>=
-### GUI
+<<notShown, echo=FALSE>>=
+### GUI Our standard setup
 w <- tktoplevel()
 tkwm.title(w, "t-test Dialog")
 f <- ttkframe(w, padding=c(3,3,3,12))
 tkpack(f, expand=TRUE, fill="both")
+@ 
+
+Our layout is basic. Here we pack a label frame into the window to give the dialog a nicer look.
+We will use the \code{tkgrid} geometry manager below.
+<<layout>>=
 lf <- ttklabelframe(f, text="t.test()", padding=10)
 tkpack(lf, expand=TRUE, fill="both", padx=5, pady=5)
 @ 
@@ -82,11 +85,12 @@ putLabel <- function(parent, text, row, column) {
 @ 
 
 Our first widget will be one to select a data frame. For this, a
-combobox is used, although if large number of data frames are a possibility, a different widget may be better suited. The \code{getDfs} function is
-not shown, but simply returns the names of all data frames in the
-global environment. Also not shown are two similar calls to create
-comboboxes \code{xCombo} and \code{fCombo} which allow the user to
-specify parts of a formula.
+combobox is used, although if a large number of data frames are a
+possibility, a different widget may be better suited. The
+\code{getDfs} function is not shown, but simply returns the names of
+all data frames in the global environment. Also not shown are two
+similar calls to create comboboxes \code{xCombo} and \code{fCombo}
+which allow the user to specify parts of a formula.
 
 <<>>=
 putLabel(lf, "data:",0,0)
@@ -95,28 +99,32 @@ tkgrid(dataCombo, row=0, column=1, sticky="ew", padx=2)
 tkfocus(dataCombo)                      # give focus
 @ 
 
-<<echo=FALSE>>=
+<<notShown, echo=FALSE>>=
 ## not shown
 putLabel(lf, "x:",1,0)
 xCombo <-  ttkcombobox(lf, values=getNumericVars(), textvariable=e$x)
 tkgrid(xCombo, row=1, column=1, sticky="ew", padx=2)
 @ 
 
-<<ehco=FALSE>>=
+<<notShown, echo=FALSE>>=
 ## not shown
-putLabel(lf, "f:",1,2)
+putLabel(lf, "~ f:",1,2)
 fCombo <-  ttkcombobox(lf, values=getTwoLevelFactor(), textvariable=e$f)
 tkgrid(fCombo, row=1, column=3, sticky="ew", padx=2)
 @ 
 
-The combobox may not be the most natural widget to gather a numeric value for the mean when the data is continuous, but at this point we haven't discussed the \code{tkentry} widget.
+The combobox may not be the most natural widget to gather a numeric
+value for the mean when the data is continuous, but at this point we
+haven't quite yet discussed the \code{ttkentry} widget.
 <<mu>>=
 putLabel(lf, "mu:", 2, 0)
 muCombo <-  ttkcombobox(lf, values=c(""), textvariable=e$mu)
 tkgrid(muCombo, row=2, column=1, sticky="ew", padx=2)
 @ 
 
-The alternative is a natural choice for a combo box, but in \pkg{tcltk} we can use a spin box with \code{wrap=TRUE}. 
+The selection of an alternative hypothesis is a natural choice for a
+combo box, but, as this alternative is available in \pkg{tcltk}, we
+use a spin box with \code{wrap=TRUE}.
 <<echo=FALSE>>=
 ttkscale <- function(parent, ...) tkwidget(parent, "ttk::scale", ...)
 tkspinbox <- function(parent, ...) tkwidget(parent, "tk::spinbox", ...)
@@ -129,7 +137,8 @@ tkgrid(altCombo, row=3, column=1, sticky="ew", padx=2)
 @ 
 
 Here we use two widgets to specify the confidence level. The slider
-is quicker to use, but less precise than the spinbox.
+is quicker to use, but less precise than the spinbox. By sharing a
+text variable, the widgets are automatically synchronized.
 <<>>=
 putLabel(lf, "conf.level:", 3, 2)
 altFrame <- ttkframe(lf)
@@ -171,7 +180,7 @@ cancel <- ttkbutton(bf, text="cancel", command=function() {
 ok <- ttkbutton(bf, text="ok")
 
 tkpack(ttklabel(bf, text=" "), expand=TRUE, fill="y", 
-       side="left")
+       side="left")                     # add a spring
 tkpack(cancel, padx=6, side="left")
 tkpack(ok, padx=6, side="left")
 tkconfigure(ok, default="active")
@@ -187,7 +196,10 @@ tkbind(ok, "<Button-1>", okCallback)
 tkbind(w, "<Return>", okCallback)        # for active binding
 @ 
 
-Our \code{updateUI} function does two basic things: it searches for
+At this point, our GUI is complete, but we would like to have it
+reflect any changes to the underlying \R\/ environment that effect its
+display. A such, we define
+a function, \code{updateUI}, which does two basic things: it searches for
 new data frames and it adjusts the controls depending on the current
 state.
 <<>>=
@@ -230,7 +242,7 @@ updateID$ID <- NA
 repeatFun <- function() {
   if(updateID$flag && as.logical(tkwinfo("exists",w))) {
     updateUI()
-    updateID$ID <- tcl("after",1000, repeatFun)
+    updateID$ID <- tcl("after", 1000, repeatFun)
   }
 }
 repeatFun()

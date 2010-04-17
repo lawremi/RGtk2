@@ -33,4 +33,4 @@ www:
 
 
 latex:  
-	pdflatex guis; 
+	pdflatex guis; bibtex guis; pdflatex guis

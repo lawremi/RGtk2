@@ -50,7 +50,7 @@ There is no native calendar widget in \pkg{tcltk}. This example shows how one ca
 Validation happens in a few steps.  A validation command is assigned
 to some event. This call can come in two forms. Prevalidation is when
 a change is validated prior to being committed, for example when each key
-is pressed.  Revalidation is when the values is checked
+is pressed.  Revalidation is when the value is checked
 after it is sent to be committed, say when the entry widget loses
 focus or the enter key is pressed.
 
@@ -58,12 +58,21 @@ When a validation command is called it should check
 whether the current state of the entry widget is valid or not. If
 valid, it returns a value of \code{TRUE} and \code{FALSE}
 otherwise. These need to be \TCL\/ Boolean values, so in the following,
-the command \code{tcl("eval","TRUE")} (or \qcode{FALSE}) is used. If
+the command \code{tcl("eval","TRUE")} (or \code{tcl("eval", "FALSE")}) is used. If
 the validation command returns \code{FALSE}, then a subsequent call to
-an invalidation command is made.
+the specified invalidation command is made.
 
 %% Put these into a table???
-For each callback, a number of substition values are possible, in addition to the standard ones such as \code{W} to refer to the widget. These are: \code{d} for the type of validation being done: 1 for insert prevalidation, 0 for delete prevalidation, or -1 for revalidation; \code{i} for the index of the string to be inserted or deleted or -1; \code{P} for te new value if the edit is accepted (in prevalidation) or the current value in revalidation; \code{s} for the value prior to editing; \code{S} for the string being inserted or deleted' \code{v} for the current value of \code{validate} and \code{V} for the condition that triggered the callback.  
+For each callback, a number of substition values are possible, in
+addition to the standard ones such as \code{W} to refer to the
+widget. These are: \code{d} for the type of validation being done: 1
+for insert prevalidation, 0 for delete prevalidation, or -1 for
+revalidation; \code{i} for the index of the string to be inserted or
+deleted or -1; \code{P} for the new value if the edit is accepted (in
+prevalidation) or the current value in revalidation; \code{s} for the
+value prior to editing; \code{S} for the string being inserted or
+deleted, \code{v} for the current value of \code{validate} and
+\code{V} for the condition that triggered the callback.
 
 In the following callback definition we use \code{W} so that we can change the entry text color to black and format the data in a standard manner and \code{P} to get the entry widget's value just prior to validations.
 
@@ -71,13 +80,16 @@ In the following callback definition we use \code{W} so that we can change the e
 To begin,  we define some patterns for acceptable date formats.
 <<>>=
 datePatterns <- c()
-for(i in list(c("%m","%d","%Y"),
+for(i in list(c("%m","%d","%Y"),        # U.S. style
               c("%m","%d","%y"))) {
   for(j in c("/","-"," ") )
-      datePatterns[length(datePatterns)+1] <- paste(i,sep="", collapse=j)
+    datePatterns[length(datePatterns)+1] <- 
+      paste(i,sep="", collapse=j)
 }
 @ 
 
+Our callbacks set the color to black or red, depending on whether we
+have a valid date. First our validation command.
 <<setValidDateCallback>>=
 isValidDate <- function(W, P) { # P is the current value
   for(i in datePatterns) {
@@ -93,7 +105,7 @@ isValidDate <- function(W, P) { # P is the current value
 }
 @ 
 
-This callback for when a date is invalid simply sets the text color to \code{red}. 
+This is our invalid command.
 <<setInvalidCallback>>=
 indicateInvalidDate <- function(W) {
   tkconfigure(W,foreground="red")
@@ -101,13 +113,22 @@ indicateInvalidDate <- function(W) {
 }
 @
 
-Now we define a simple GUI to show the entry widget.
-<<>>=
+<<notShown, echo=FALSE>>=
+## A simple GUI to show the entry widget.
 w <- tktoplevel(); tkwm.title(w,"Validation of date example")
 f <- ttkframe(w, padding=c(3,3,3,12)); tkpack(f, expand=TRUE, fill="both")
 tkpack(ttklabel(f, text="Enter a date mm/dd/yy"), side="left")
 @ 
-The \argument{validate}{ttkentry} argument is used to specify when the validation command should be called. This can be a value of \qcode{none} for validation when called through the \code{validation} command; \qcode{key} for each key press; \qcode{focusin} for when the widget receives the focus;  \qcode{focusout} for when it loses focus; \qcode{focus} for both of the previous; and \qcode{all} for any of the previous. We use \qcode{focusout} below, so also give a button widget so that the focus can be set elsewhere.
+
+The \argument{validate}{ttkentry} argument is used to specify when the
+validation command should be called. This can be a value of
+\qcode{none} for validation when called through the \code{validation}
+command; \qcode{key} for each key press; \qcode{focusin} for when the
+widget receives the focus; \qcode{focusout} for when it loses focus;
+\qcode{focus} for both of the previous; and \qcode{all} for any of the
+previous. We use \qcode{focusout} below, so also give a button widget
+so that the focus can be set elsewhere. (As usual, \code{f} is a
+parent frame.)
 <<entryWidgetWithValidation>>=
 e <- ttkentry(f, validate="focusout",
               validatecommand=isValidDate,

@@ -1072,7 +1072,7 @@ action is not currently permissible. Toolkits draw such buttons in a
 greyed out state. The \method{enabled\ASSIGN}{gWidgets} method can set or
 disable whether a widget can accept input.
 
-Ab basic example of a button with a handler was given in Example~\ref{ex-gWidgets-hello-world-button}.
+% A basic example of a button with a handler was given in Example~\ref{ex-gWidgets-hello-world-button}.
 
 % As an example of the limitations of \pkg{gWidgets} compared to the
 % underlying toolkits, within \pkg{gWidgets} there are no methods to set
@@ -1473,7 +1473,7 @@ The contents of the text buffer can be replaced with the
 \method{insert}{gtext} method is used. The signature is
 \code{insert(obj,text)} where \code{text} is a character vector. New text
 is added to the end of the buffer, by default, but the
-\argument{where}[insert} argument can specify \qcode{beginning} or \qcode{at.cursor}.
+\argument{where}{insert} argument can specify \qcode{beginning} or \qcode{at.cursor}.
 
 As with, \code{gedit}, the \method{addHandlerKeystroke}{gtext} method is used
 to set a handler to be called for each keystroke. This is the default handler.
@@ -2915,7 +2915,7 @@ layout and creates the specified widgets. The design borrows from the
 \code{extjs} javascript libraries for web programming, where a similar
 function can be used to specify the layout of web forms. Several
 toolkits have a means to specify a layout using XML (eg. \GTK's
-Builder and \QT's assistant), this implementation uses a list,
+Builder and \Qt's assistant), this implementation uses a list,
 assuming this is more familiar to the \R\/ user. By defining the
 layout ahead of time, pieces of the layout can be recycled for other
 layouts.

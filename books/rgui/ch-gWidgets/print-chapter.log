@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.4.5)  9 APR 2010 11:23
+This is pdfTeX, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.4.5)  17 APR 2010 15:02
 entering extended mode
 **print-chapter
 (./print-chapter.tex
@@ -542,7 +542,7 @@ Style option: `fancyvrb' v2.6, with DG/SPQR fixes <1998/07/17> (tvz)
 No file fancyvrb.cfg.
 )
 \hlboxlessthan=\box36
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 207.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 209.
 
  (/opt/local/share/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
@@ -825,12 +825,7 @@ LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <12> not available
 (Font)              Font shape `T1/cmtt/m/n' tried instead on input line 830.
  [14] [15] [16] [17] [18
 
-]
-
-LaTeX Warning: Reference `ex-gWidgets-hello-world-button' on page 19 undefined 
-on input line 1075.
-
-[19] [20] [21]
+] [19] [20] [21]
 Underfull \hbox (badness 10000) in paragraph at lines 1208--1209
 
  []
@@ -851,39 +846,136 @@ Overfull \hbox (4.60352pt too wide) in paragraph at lines 1440--1441
 [][][][][][][][][][][][][][][][] 
  []
 
-[25]
-! Too many }'s.
-l.1476 \argument{where}[insert}
-                                argument can specify \qcode{beginning} or \q...
+[25] [26]
+Overfull \hbox (31.60379pt too wide) in paragraph at lines 1569--1570
+[][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
 
-? X
- 
+[27] [28] <ex-gWidgets-selection-widgets.png, id=116, 401.5pt x 303.1325pt>
+File: ex-gWidgets-selection-widgets.png Graphic file (type png)
+
+<use ex-gWidgets-selection-widgets.png> [29] [30 <./ex-gWidgets-selection-widge
+ts.png>] [31]
+Underfull \hbox (badness 10000) in paragraph at lines 1880--1882
+
+ []
+
+[32] [33]
+Overfull \hbox (37.09181pt too wide) in paragraph at lines 1989--1995
+\T1/pplx/m/n/10 changed), \T1/cmtt/m/n/10 addHandlerClicked\T1/pplx/m/n/10 , \T
+1/cmtt/m/n/10 addHandlerDoubleclick\T1/pplx/m/n/10 , \T1/cmtt/m/n/10 addHandler
+ColumnClicked\T1/pplx/m/n/10 ,
+ []
+
+[34] [35]
+Overfull \hbox (22.01959pt too wide) in paragraph at lines 2107--2114
+\T1/pplx/m/n/10 method is used to up-date the dis-played tree. The method \T1/c
+mtt/m/n/10 addHandlerDoubleclick
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2115--2116
+
+ []
+
+[36] <ex-gWidgets-gtree.png, id=143, 401.5pt x 303.1325pt>
+File: ex-gWidgets-gtree.png Graphic file (type png)
+
+<use ex-gWidgets-gtree.png> [37] [38 <./ex-gWidgets-gtree.png>]
+Overfull \hbox (4.90318pt too wide) in paragraph at lines 2296--2300
+[]\T1/pplx/m/n/10 More stock icon names may be added through the func-tion \T1/
+cmtt/m/n/10 addStockIcons\T1/pplx/m/n/10 .
+ []
+
+[39]
+Overfull \hbox (32.0993pt too wide) in paragraph at lines 2378--2384
+\T1/pplx/m/n/10 Some toolk-its sup-port an em-bed-dable graph-ics de-vice (\T1/
+cmtt/m/n/10 RGtk2 \T1/pplx/m/n/10 through \T1/cmtt/m/n/10 cairoDevice\T1/pplx/m
+/n/10 ).
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2390--2392
+
+ []
+
+LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <9> not available
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 2393.
+[40] <fig-gWidgets-baseball-gui.png, id=158, 969.71239pt x 798.84161pt>
+File: fig-gWidgets-baseball-gui.png Graphic file (type png)
+
+<use fig-gWidgets-baseball-gui.png>
+Overfull \hbox (20.80368pt too wide) in paragraph at lines 2423--2424
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[41 <./fig-gWidgets-baseball-gui.png>] [42]
+Overfull \hbox (15.40363pt too wide) in paragraph at lines 2507--2508
+[][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (15.40363pt too wide) in paragraph at lines 2509--2510
+[][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 2515--2516
+[][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[43]
+Overfull \hbox (4.1798pt too wide) in paragraph at lines 2567--2569
+\T1/pplx/m/n/10 This next han-dler up-dates the graphic when any of sev-eral wi
+d-gets is changed.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2567--2569
+
+ []
+
+[44] [45] [46] [47] [48]
+Overfull \hbox (0.53983pt too wide) in paragraph at lines 2958--2964
+\T1/pplx/m/n/10 method will re-turn a list with com-po-nents be-ing the wid-get
+s that were named
+ []
+
+<ex-gWidgets-formlayout.png, id=185, 501.875pt x 391.4625pt>
+File: ex-gWidgets-formlayout.png Graphic file (type png)
+
+<use ex-gWidgets-formlayout.png> [49] [50 <./ex-gWidgets-formlayout.png>]
+[51])
+
+Package natbib Warning: There were undefined citations.
+
+[52] (./print-chapter.aux) ) 
 Here is how much of TeX's memory you used:
- 8055 strings out of 94073
- 105757 string characters out of 1164798
- 243068 words of memory out of 1500000
- 11217 multiletter control sequences out of 10000+50000
- 59329 words of font info for 112 fonts, out of 1200000 for 2000
+ 8503 strings out of 94073
+ 111002 string characters out of 1164798
+ 247140 words of memory out of 1500000
+ 11657 multiletter control sequences out of 10000+50000
+ 61636 words of font info for 115 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
- 36i,13n,41p,1788b,1704s stack positions out of 5000i,500n,6000p,200000b,5000s
-{/opt/local/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/opt/loc
-al/share/texmf-dist/fonts/enc/dvips/base/8r.enc}</opt/local/share/texmf-dist/fo
-nts/type1/bluesky/cm/cmmi10.pfb></opt/local/share/texmf-dist/fonts/type1/bluesk
-y/cm/cmsy10.pfb></opt/local/share/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb
-></opt/local/share/texmf-dist/fonts/type1/public/cm-super/sfss1000.pfb></opt/lo
-cal/share/texmf-dist/fonts/type1/public/cm-super/sfss1728.pfb></opt/local/share
-/texmf-dist/fonts/type1/public/cm-super/sfss2488.pfb></opt/local/share/texmf-di
-st/fonts/type1/public/cm-super/sftc1000.pfb></opt/local/share/texmf-dist/fonts/
-type1/public/cm-super/sftt0900.pfb></opt/local/share/texmf-dist/fonts/type1/pub
-lic/cm-super/sftt1000.pfb></opt/local/share/texmf-dist/fonts/type1/public/cm-su
-per/sftt1095.pfb></opt/local/share/texmf-dist/fonts/type1/public/cm-super/sftt1
-200.pfb></opt/local/share/texmf-dist/fonts/type1/public/cm-super/sftt1728.pfb><
-/opt/local/share/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></opt/local/sha
-re/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></opt/local/share/texmf-dist/
-fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on print-chapter.pdf (25 pages, 427598 bytes).
+ 36i,13n,41p,1788b,1712s stack positions out of 5000i,500n,6000p,200000b,5000s
+{/opt/local/share/texmf-dist/fonts/enc/dvips/cm-sup
+er/cm-super-t1.enc}{/opt/local/share/texmf-dist/fonts/enc/dvips/base/8r.enc}</o
+pt/local/share/texmf-dist/fonts/type1/bluesky/cm/cmmi10.pfb></opt/local/share/t
+exmf-dist/fonts/type1/bluesky/cm/cmsy10.pfb></opt/local/share/texmf-dist/fonts/
+type1/public/fpl/fplrc8a.pfb></opt/local/share/texmf-dist/fonts/type1/public/cm
+-super/sfss1000.pfb></opt/local/share/texmf-dist/fonts/type1/public/cm-super/sf
+ss1728.pfb></opt/local/share/texmf-dist/fonts/type1/public/cm-super/sfss2488.pf
+b></opt/local/share/texmf-dist/fonts/type1/public/cm-super/sftc1000.pfb></opt/l
+ocal/share/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb></opt/local/shar
+e/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></opt/local/share/texmf-d
+ist/fonts/type1/public/cm-super/sftt1095.pfb></opt/local/share/texmf-dist/fonts
+/type1/public/cm-super/sftt1200.pfb></opt/local/share/texmf-dist/fonts/type1/pu
+blic/cm-super/sftt1728.pfb></opt/local/share/texmf-dist/fonts/type1/urw/palatin
+o/uplb8a.pfb></opt/local/share/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb><
+/opt/local/share/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on print-chapter.pdf (52 pages, 630963 bytes).
 PDF statistics:
- 156 PDF objects out of 1000 (max. 8388607)
+ 251 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
- 31 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 51 words of extra memory for PDF output out of 10000 (max. 10000000)
 

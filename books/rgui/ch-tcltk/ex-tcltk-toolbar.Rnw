@@ -37,13 +37,15 @@ tkpack(ttklabel(contentFrame, text="Some content"))
 
 Now to add some buttons to the toolbar. We first show how to create a
 new style for a button, slightly modifiying the themed button to set
-the font and padding, and eliminate the border if the OS allows. This
-\code{makeIcon} function finds stock icons from the \pkg{gWidgets}
-package.
+the font and padding, and eliminate the border if the OS allows. 
 <<>>=
 tcl("ttk::style","configure","Toolbar.TButton", 
     font="helvetica 12", padding=0, borderwidth=0)
-
+@ 
+This
+\code{makeIcon} function finds stock icons from the \pkg{gWidgets}
+package and adds them to a button.
+<<>>=
 makeIcon <- function(parent, stockName, command=NULL) {
   iconFile <- system.file("images", 
                           paste(stockName,"gif",sep="."), 
@@ -80,7 +82,6 @@ changeGamma <- function(W, gamma=1.0) {
   if(as.character(tkwinfo("class",W)) == "TButton") {
     img <- tkcget(W,"image"=NULL)
     tkconfigure(img, gamma=gamma)
-  
   }
 }
 tkbind(w,"<Enter>", function(W) changeGamma(W, gamma=0.5))
@@ -89,7 +90,7 @@ tkbind(w,"<Leave>", function(W) changeGamma(W, gamma=1.0))
 
 \begin{figure}
   \centering
-  \includegraphics[width=.4\textwidth]{fig-tcltk-toolbar.png}
+  \includegraphics[width=.6\textwidth]{fig-tcltk-toolbar.png}
   \caption{Illustration of using \code{tkpack} to make a toolbar. }
   \label{fig:fig-tcltk-toolbar}
 \end{figure}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.4.5)  24 MAR 2010 21:53
+This is pdfTeX, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.4.5)  17 APR 2010 15:03
 entering extended mode
 **guis
 (./guis.tex
@@ -542,7 +542,7 @@ Style option: `fancyvrb' v2.6, with DG/SPQR fixes <1998/07/17> (tvz)
 No file fancyvrb.cfg.
 )
 \hlboxlessthan=\box36
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 207.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 209.
 
  (/opt/local/share/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
@@ -620,8 +620,14 @@ LaTeX Info: Redefining \cite on input line 602.
 )
 \c@Example=\count173
 \c@CodeExample=\count174
+) (./guis.aux
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
 )
-No file guis.aux.
 \openout1 = `guis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
@@ -636,7 +642,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
 LaTeX Font Info:    ... okay on input line 10.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
 LaTeX Font Info:    ... okay on input line 10.
-(/opt/local/share/texmf-dist/tex/context/base/supp-pdf.tex
+ (/opt/local/share/texmf-dist/tex/context/base/supp-pdf.tex
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count175
 \scratchdimen=\dimen175
@@ -660,330 +666,199 @@ File: lstlang3.sty 2004/09/05 1.3 listings language file
 (./ch-Preface/ch-Preface.tex
 LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <12> not available
 (Font)              Font shape `T1/pplx/b/n' tried instead on input line 4.
-
-Overfull \hbox (8.24529pt too wide) in paragraph at lines 16--34
-\T1/pplx/m/n/10 such as the \T1/cmtt/m/n/10 fgui \T1/pplx/m/n/10 pack-age and t
-he \T1/cmtt/m/n/10 guiDlgFunction \T1/pplx/m/n/10 func-tion from the \T1/cmtt/m
-/n/10 svDialogs
- []
-
-[1
+ [1
 
 
 
 {/opt/local/share/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (12.48459pt too wide) in paragraph at lines 85--93
+Overfull \hbox (10.66951pt too wide) in paragraph at lines 66--74
+[]\T1/pplx/m/n/10 The next three chap-ters in-tro-duce the na-tive in-ter-faces
+ upon which \T1/cmtt/m/n/10 gWidgets
+ []
+
+
+Overfull \hbox (12.48459pt too wide) in paragraph at lines 103--111
 \T1/pplx/m/n/10 the func-tions \T1/cmtt/m/n/10 browsegWidgetsFiles\T1/pplx/m/n/
 10 , \T1/cmtt/m/n/10 browseTclTkFiles \T1/pplx/m/n/10 and \T1/cmtt/m/n/10 brows
 eRGtk2Files
  []
 
-)
-No file guis.toc.
-[2] [3] [4
-
-] (./ch-GUIBasics/ch-GUIBasics.tex
-LaTeX Font Info:    Try loading font information for OMS+pplx on input line 11.
-
-LaTeX Font Info:    No file OMSpplx.fd. on input line 11.
-
-
-LaTeX Font Warning: Font shape `OMS/pplx/m/n' undefined
-(Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbullet' on input line 11.
-
+[2]) (./guis.toc
 LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <10> not available
-(Font)              Font shape `T1/pplx/b/n' tried instead on input line 45.
-
-LaTeX Warning: Reference `fig:GUI:tic-tac-toe' on page 1 undefined on input lin
-e 45.
-
-[1
-
-] [2]
-LaTeX Font Info:    Try loading font information for OT1+pplx on input line 133
-.
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 1.
+LaTeX Font Info:    Try loading font information for OT1+pplx on input line 1.
  (/opt/local/share/texmf-dist/tex/latex/psnfss/ot1pplx.fd
 File: ot1pplx.fd 2004/09/06 font definitions for OT1/pplx.
 )
-LaTeX Font Info:    Try loading font information for OML+zplm on input line 133
-.
+LaTeX Font Info:    Try loading font information for OML+zplm on input line 1.
 
 (/opt/local/share/texmf-dist/tex/latex/psnfss/omlzplm.fd
 File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMS+zplm on input line 133
-.
+LaTeX Font Info:    Try loading font information for OMS+zplm on input line 1.
 
 (/opt/local/share/texmf-dist/tex/latex/psnfss/omszplm.fd
 File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMX+zplm on input line 133
-.
+LaTeX Font Info:    Try loading font information for OMX+zplm on input line 1.
 
 (/opt/local/share/texmf-dist/tex/latex/psnfss/omxzplm.fd
 File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
 )
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 133.
-
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 1.
 
 (/opt/local/share/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 133.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 133.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 133.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.6> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 133.
+(Font)              scaled to size 10.42007pt on input line 1.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 133.
+(Font)              scaled to size 7.91925pt on input line 1.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 5.21004pt on input line 133.
+(Font)              scaled to size 6.25204pt on input line 1.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 133.
+(Font)              scaled to size 10.42007pt on input line 1.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 133.
+(Font)              scaled to size 7.91925pt on input line 1.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 5.21004pt on input line 133.
-LaTeX Font Info:    Try loading font information for OT1+zplm on input line 133
-.
+(Font)              scaled to size 6.25204pt on input line 1.
+LaTeX Font Info:    Try loading font information for OT1+zplm on input line 1.
 
 (/opt/local/share/texmf-dist/tex/latex/psnfss/ot1zplm.fd
 File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
 ) [3]
-Overfull \hbox (26.20374pt too wide) in paragraph at lines 225--226
-[][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
+LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10> not available
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 44.
+ [4] [5] [6]
+[7]) [8] (./ch-GUIBasics/ch-GUIBasics.tex
+LaTeX Font Info:    Try loading font information for OMS+pplx on input line 21.
+
+LaTeX Font Info:    No file OMSpplx.fd. on input line 21.
 
 
-Package natbib Warning: Citation `APPLE:HIG' on page 4 undefined on input line 
-295.
+LaTeX Font Warning: Font shape `OMS/pplx/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textbullet' on input line 21.
 
-[4]
+[1
 
-LaTeX Warning: Reference `fig:GUI:print-dialogs' on page 5 undefined on input l
-ine 304.
 
-<ch-GUIBasics/fig-mac-print.png, id=37, 794.97pt x 555.07375pt>
+] [2]
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 156.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 156.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 156.
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 9.37807pt on input line 156.
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 7.29405pt on input line 156.
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 5.21004pt on input line 156.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 9.37807pt on input line 156.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 7.29405pt on input line 156.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 5.21004pt on input line 156.
+ [3] [4]
+
+Package natbib Warning: Citation `APPLE:HIG' on page 5 undefined on input line 
+330.
+
+<ch-GUIBasics/fig-mac-print.png, id=49, 794.97pt x 555.07375pt>
 File: ch-GUIBasics/fig-mac-print.png Graphic file (type png)
 
 <use ch-GUIBasics/fig-mac-print.png>
-<ch-GUIBasics/firefox-print.png, id=38, 388.21141pt x 325.59537pt>
-File: ch-GUIBasics/firefox-print.png Graphic file (type png)
-
-<use ch-GUIBasics/firefox-print.png>
-<ch-GUIBasics/kde-print.png, id=39, 371.58292pt x 387.21506pt>
+<ch-GUIBasics/kde-print.png, id=50, 371.58292pt x 387.21506pt>
 File: ch-GUIBasics/kde-print.png Graphic file (type png)
 
 <use ch-GUIBasics/kde-print.png>
+<ch-GUIBasics/r-print-dialog.png, id=51, 439.6425pt x 335.2525pt>
+File: ch-GUIBasics/r-print-dialog.png Graphic file (type png)
 
-LaTeX Warning: Float too large for page by 15.88603pt on input line 322.
-
-[5] [6 <./ch-GUIBasics/fig-mac-print.png> <./ch-GUIBasics/firefox-print.png (PN
-G copy)> <./ch-GUIBasics/kde-print.png (PNG copy)>]
+<use ch-GUIBasics/r-print-dialog.png> [5] [6 <./ch-GUIBasics/fig-mac-print.png>
+ <./ch-GUIBasics/kde-print.png (PNG copy)>] [7 <./ch-GUIBasics/r-print-dialog.p
+ng (PNG copy)>]
 LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/pplx/b/n' tried instead on input line 407.
-
-
-LaTeX Warning: Reference `tab:gui-design-widget-type' on page 7 undefined on in
-put line 415.
-
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 423.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 423.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 423.
-LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 10.42007pt on input line 423.
-LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.91925pt on input line 423.
-LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 423.
-LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 10.42007pt on input line 423.
-LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.91925pt on input line 423.
-LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 423.
-
-LaTeX Warning: Reference `fig:GUI:spss-11-term-selection' on page 7 undefined o
-n input line 433.
-
-<ch-GUIBasics/spss-11-model-selection.png, id=47, 506.89375pt x 352.31625pt>
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 470.
+ [8]
+<ch-GUIBasics/spss-11-model-selection.png, id=66, 506.89375pt x 352.31625pt>
 File: ch-GUIBasics/spss-11-model-selection.png Graphic file (type png)
 
-<use ch-GUIBasics/spss-11-model-selection.png>
-
-LaTeX Warning: Reference `fig:GUI:spss-11-term-selection' on page 7 undefined o
-n input line 460.
-
-[7] [8 <./ch-GUIBasics/spss-11-model-selection.png>]
-<ch-GUIBasics/ex-listbox.png, id=55, 183.40218pt x 152.72151pt>
+<use ch-GUIBasics/spss-11-model-selection.png> [9 <./ch-GUIBasics/spss-11-model
+-selection.png>]
+<ch-GUIBasics/ex-listbox.png, id=71, 183.40218pt x 152.72151pt>
 File: ch-GUIBasics/ex-listbox.png Graphic file (type png)
 
 <use ch-GUIBasics/ex-listbox.png>
-<ch-GUIBasics/tcltk-tkdensity.png, id=56, 179.99321pt x 199.76518pt>
+<ch-GUIBasics/tcltk-tkdensity.png, id=72, 179.99321pt x 199.76518pt>
 File: ch-GUIBasics/tcltk-tkdensity.png Graphic file (type png)
 
-<use ch-GUIBasics/tcltk-tkdensity.png>
+<use ch-GUIBasics/tcltk-tkdensity.png> [10 <./ch-GUIBasics/ex-listbox.png (PNG 
+copy)> <./ch-GUIBasics/tcltk-tkdensity.png>] [11]
+<ch-GUIBasics/fig-spotfire.png, id=81, 824.07875pt x 714.67pt>
+File: ch-GUIBasics/fig-spotfire.png Graphic file (type png)
 
-LaTeX Warning: Reference `fig:GUI:ex-tcltk' on page 9 undefined on input line 5
-57.
+<use ch-GUIBasics/fig-spotfire.png> [12 <./ch-GUIBasics/fig-spotfire.png>]
 
-[9]
-
-LaTeX Warning: Reference `fig:GUI:print-dialogs' on page 10 undefined on input 
-line 569.
-
-[10 <./ch-GUIBasics/ex-listbox.png (PNG copy)> <./ch-GUIBasics/tcltk-tkdensity.
-png>]
-
-LaTeX Warning: Reference `fig:GUI:ex-tcltk' on page 11 undefined on input line 
-605.
+Package natbib Warning: Citation `APPLE:HIG' on page 13 undefined on input line
+ 787.
 
 
-LaTeX Warning: Reference `fig:GUI:spss-11-model-selection' on page 11 undefined
- on input line 615.
-
-
-LaTeX Warning: Reference `fig:GUI:table-widgets' on page 11 undefined on input 
-line 632.
-
-
-LaTeX Warning: Reference `fig:GUI:table-widgets' on page 11 undefined on input 
-line 640.
-
-<ch-GUIBasics/JGR-data-editor.png, id=65, 437.635pt x 245.91875pt>
-File: ch-GUIBasics/JGR-data-editor.png Graphic file (type png)
-
-<use ch-GUIBasics/JGR-data-editor.png>
-<ch-GUIBasics/fathom-2-1-xyplot.png, id=66, 800.9925pt x 325.215pt>
-File: ch-GUIBasics/fathom-2-1-xyplot.png Graphic file (type png)
-
-<use ch-GUIBasics/fathom-2-1-xyplot.png> [11]
-
-LaTeX Warning: Reference `fig:GUI:R-guis-exs-JGR-Rcmdr' on page 12 undefined on
- input line 682.
-
-
-Package natbib Warning: Citation `APPLE:HIG' on page 12 undefined on input line
- 705.
-
-
-LaTeX Warning: Reference `fig:GUI:spss-11-term-selection' on page 12 undefined 
-on input line 706.
-
-[12 <./ch-GUIBasics/JGR-data-editor.png (PNG copy)> <./ch-GUIBasics/fathom-2-1-
-xyplot.png (PNG copy)>]
-
-LaTeX Warning: Reference `fig:GUI:spss-11-model-selection' on page 13 undefined
- on input line 723.
-
-
-LaTeX Warning: Reference `fig:GUI:print-dialogs' on page 13 undefined on input 
-line 732.
-
-
-Overfull \hbox (12.21329pt too wide) in paragraph at lines 745--764
+Overfull \hbox (12.21329pt too wide) in paragraph at lines 838--855
 \T1/pplx/m/n/10 Xerox Parc's rev-o-lu-tion-ary idea of a \T1/cmtt/m/n/10 WIMP \
 T1/pplx/m/n/10 GUI added win-dows, icons, menubars,
  []
 
-[13]
-
-LaTeX Warning: Reference `KDE:HIG' on page 14 undefined on input line 780.
-
-
-LaTeX Warning: Reference `fig:GUI:print-dialogs' on page 14 undefined on input 
-line 824.
-
-[14]
-
-LaTeX Warning: Reference `fig:GUI:R-guis-exs-JGR-Rcmdr' on page 15 undefined on
- input line 836.
-
-<ch-GUIBasics/JGR-object-browser.png, id=79, 428.60126pt x 415.5525pt>
+[13] [14]
+<ch-GUIBasics/JGR-object-browser.png, id=92, 428.60126pt x 415.5525pt>
 File: ch-GUIBasics/JGR-object-browser.png Graphic file (type png)
 
 <use ch-GUIBasics/JGR-object-browser.png>
-<ch-GUIBasics/Rcmdr-main-window.png, id=80, 657.92972pt x 510.66255pt>
+<ch-GUIBasics/Rcmdr-main-window.png, id=93, 657.92972pt x 510.66255pt>
 File: ch-GUIBasics/Rcmdr-main-window.png Graphic file (type png)
 
 <use ch-GUIBasics/Rcmdr-main-window.png> [15 <./ch-GUIBasics/JGR-object-browser
 .png (PNG copy)> <./ch-GUIBasics/Rcmdr-main-window.png>]
 
 LaTeX Warning: Reference `fig:GUI:Rcmdr-main-window' on page 16 undefined on in
-put line 911.
+put line 997.
 
-
-Overfull \hbox (10.85844pt too wide) in paragraph at lines 908--913
-[]\T1/pplx/m/n/10 A La-bel's text can be marked up in some toolk-its us-ing HTM
-L in Java/Swing
+[16]
+Overfull \hbox (29.16556pt too wide) in paragraph at lines 1137--1145
+[]\T1/pplx/m/n/10 The chil-dren of the GUI must be or-ga-nized in some man-ner.
+ In GTK+(\T1/cmtt/m/n/10 gWidgets\T1/pplx/m/n/10 ),
  []
 
-
-LaTeX Warning: Reference `fig:GUI:Rcmdr-main-window' on page 16 undefined on in
-put line 921.
-
-[16] [17]
-Underfull \hbox (badness 10000) in paragraph at lines 1069--1083
-
- []
-
-
-LaTeX Warning: Reference `fig:GUI:box-possibilities' on page 18 undefined on in
-put line 1096.
-
-
-LaTeX Warning: Reference `fig:GUI:box-possibilities' on page 18 undefined on in
-put line 1102.
-
-
-LaTeX Warning: Reference `fig:GUI:box-possibilities' on page 18 undefined on in
-put line 1110.
-
-
-LaTeX Warning: Reference `fig:GUI:box-possibilities' on page 18 undefined on in
-put line 1114.
-
-[18] <ch-GUIBasics/box-horizontal.png, id=95, 451.6875pt x 331.2375pt>
+[17] [18] <ch-GUIBasics/box-horizontal.png, id=108, 451.6875pt x 331.2375pt>
 File: ch-GUIBasics/box-horizontal.png Graphic file (type png)
 
 <use ch-GUIBasics/box-horizontal.png>
-<ch-GUIBasics/box-alignment.png, id=96, 451.6875pt x 331.2375pt>
+<ch-GUIBasics/box-alignment.png, id=109, 451.6875pt x 331.2375pt>
 File: ch-GUIBasics/box-alignment.png Graphic file (type png)
 
 <use ch-GUIBasics/box-alignment.png>
-<ch-GUIBasics/box-expand.png, id=97, 451.6875pt x 331.2375pt>
+<ch-GUIBasics/box-expand.png, id=110, 451.6875pt x 331.2375pt>
 File: ch-GUIBasics/box-expand.png Graphic file (type png)
 
 <use ch-GUIBasics/box-expand.png>
-<ch-GUIBasics/box-glue-spring.png, id=98, 451.6875pt x 331.2375pt>
+<ch-GUIBasics/box-glue-spring.png, id=111, 451.6875pt x 331.2375pt>
 File: ch-GUIBasics/box-glue-spring.png Graphic file (type png)
 
 <use ch-GUIBasics/box-glue-spring.png> [19 <./ch-GUIBasics/box-horizontal.png> 
 <./ch-GUIBasics/box-alignment.png> <./ch-GUIBasics/box-expand.png> <./ch-GUIBas
-ics/box-glue-spring.png>]
-
-LaTeX Warning: Reference `fig:GUI:box-possibilities' on page 20 undefined on in
-put line 1188.
-
-
-LaTeX Warning: Reference `fig:GUI:print-dialogs' on page 20 undefined on input 
-line 1206.
-
-
-Package natbib Warning: Citation `APPLE:HIG' on page 20 undefined on input line
- 1226.
-
-[20]
+ics/box-glue-spring.png>] [20]
 
 Package natbib Warning: Citation `APPLE:HIG' on page 21 undefined on input line
- 1248.
+ 1349.
 
 ) [21] [22
 
@@ -992,303 +867,212 @@ Package natbib Warning: Citation `APPLE:HIG' on page 21 undefined on input line
 ]
 
 Package natbib Warning: Citation `iWidgets' on page 25 undefined on input line 
-33.
+40.
 
-
-LaTeX Warning: Reference `chap:WebGUIS' on page 25 undefined on input line 55.
-
-[25]
-
-LaTeX Warning: Reference `fig:gWidgets-three-oses' on page 26 undefined on inpu
-t line 69.
-
-<ch-gWidgets/ex-33-macosx-rgtk2.png, id=126, 322.20375pt x 213.79875pt>
+[25] <ch-gWidgets/ex-33-macosx-rgtk2.png, id=139, 322.20375pt x 213.79875pt>
 File: ch-gWidgets/ex-33-macosx-rgtk2.png Graphic file (type png)
 
 <use ch-gWidgets/ex-33-macosx-rgtk2.png>
-<ch-gWidgets/fig-gWidgets-ex-33-tlctk.png, id=127, 327.2225pt x 249.93375pt>
+<ch-gWidgets/fig-gWidgets-ex-33-tlctk.png, id=140, 327.2225pt x 249.93375pt>
 File: ch-gWidgets/fig-gWidgets-ex-33-tlctk.png Graphic file (type png)
 
 <use ch-gWidgets/fig-gWidgets-ex-33-tlctk.png>
-<ch-gWidgets/ex-33-linux-rJava.png, id=128, 404.49626pt x 303.18146pt>
+<ch-gWidgets/ex-33-linux-rJava.png, id=141, 404.49626pt x 303.18146pt>
 File: ch-gWidgets/ex-33-linux-rJava.png Graphic file (type png)
 
 <use ch-gWidgets/ex-33-linux-rJava.png>
-<ch-gWidgets/ex-33-gWidgetsWWW.png, id=129, 426.59375pt x 305.14pt>
+<ch-gWidgets/ex-33-gWidgetsWWW.png, id=142, 426.59375pt x 305.14pt>
 File: ch-gWidgets/ex-33-gWidgetsWWW.png Graphic file (type png)
 
 <use ch-gWidgets/ex-33-gWidgetsWWW.png> [26 <./ch-gWidgets/ex-33-macosx-rgtk2.p
 ng> <./ch-gWidgets/fig-gWidgets-ex-33-tlctk.png> <./ch-gWidgets/ex-33-linux-rJa
-va.png> <./ch-gWidgets/ex-33-gWidgetsWWW.png (PNG copy)>]
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 152.
-LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 8.33606pt on input line 152.
-LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 8.33606pt on input line 152.
-
-
-LaTeX Warning: Reference `tab:gWidgets-methods' on page 27 undefined on input l
-ine 205.
-
-[27]
-LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 278.
-
-
-LaTeX Warning: Reference `tab:gWidgets-container-constructors' on page 28 undef
-ined on input line 282.
-
-
-LaTeX Warning: Reference `tab:gWidgets-control-widgets' on page 28 undefined on
- input line 283.
-
-
-LaTeX Warning: Reference `tab:gWidgets-compound-widgets' on page 28 undefined o
-n input line 284.
-
-[28]
+va.png> <./ch-gWidgets/ex-33-gWidgetsWWW.png (PNG copy)>] [27]
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 299.
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 335.
+
+Overfull \hbox (29.78471pt too wide) in paragraph at lines 349--359
+\T1/pplx/m/n/10 event is of in-ter-est. For ex-am-ple, for sin-gle line text wi
+d-gets, the \T1/cmtt/m/n/10 addHandlerChanged
+ []
+
+[28] [29]
+Underfull \hbox (badness 2205) in paragraph at lines 413--413
+\T1/pplx/m/n/10 value is "changed." The in-ter-pre-ta-tion of
+ []
 
 
-LaTeX Warning: Reference `tab:gWidgets-callback-methods' on page 29 undefined o
-n input line 328.
-
-[29]
-Underfull \hbox (badness 1990) in paragraph at lines 356--356
+Underfull \hbox (badness 1990) in paragraph at lines 413--413
 []|\T1/pplx/m/n/10 Sets han-dler for when wid-get is dou-ble
  []
 
 [30] [31] [32
 
 ]
-Overfull \hbox (11.86212pt too wide) in paragraph at lines 448--458
+Overfull \hbox (11.86212pt too wide) in paragraph at lines 507--518
 \T1/pplx/m/n/10 de-stroyed, but will not pre-vent that from hap-pen-ing. The \T
 1/cmtt/m/n/10 addHandlerUnrealize
  []
 
-[33]
-Underfull \hbox (badness 10000) in paragraph at lines 486--487
+
+Underfull \hbox (badness 10000) in paragraph at lines 507--518
 
  []
 
+[33]
+Underfull \hbox (badness 10000) in paragraph at lines 547--548
 
-LaTeX Warning: Reference `sec:gWidgets-modal-dialogs' on page 34 undefined on i
-nput line 513.
+ []
 
 [34]
-Overfull \hbox (8.8893pt too wide) in paragraph at lines 555--561
+Overfull \hbox (8.8893pt too wide) in paragraph at lines 616--622
 \T1/pplx/m/n/10 The \T1/cmtt/m/n/10 ggroup \T1/pplx/m/n/10 box con-tainer pro-v
 ides an ar-gu-ment \T1/cmtt/m/n/10 horizontal \T1/pplx/m/n/10 to spec-ify wheth
 er
  []
 
 [35]
-Underfull \hbox (badness 10000) in paragraph at lines 605--606
+Underfull \hbox (badness 10000) in paragraph at lines 668--669
 
  []
 
-
-LaTeX Warning: Reference `fig:ggroup-example' on page 36 undefined on input lin
-e 609.
-
-<ch-gWidgets/ex-gWidgets-ggroup-RGtk2.png, id=169, 328.22626pt x 349.305pt>
+<ch-gWidgets/ex-gWidgets-ggroup-RGtk2.png, id=181, 328.22626pt x 349.305pt>
 File: ch-gWidgets/ex-gWidgets-ggroup-RGtk2.png Graphic file (type png)
 
 <use ch-gWidgets/ex-gWidgets-ggroup-RGtk2.png>
-<ch-gWidgets/ex-gWidgets-ggroup-tcltk.png, id=170, 324.21124pt x 350.30875pt>
+<ch-gWidgets/ex-gWidgets-ggroup-tcltk.png, id=182, 324.21124pt x 350.30875pt>
 File: ch-gWidgets/ex-gWidgets-ggroup-tcltk.png Graphic file (type png)
 
 <use ch-gWidgets/ex-gWidgets-ggroup-tcltk.png> [36 <./ch-gWidgets/ex-gWidgets-g
-group-RGtk2.png> <./ch-gWidgets/ex-gWidgets-ggroup-tcltk.png>]
-Overfull \hbox (26.20374pt too wide) in paragraph at lines 649--650
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[37]
-Overfull \hbox (14.32985pt too wide) in paragraph at lines 723--731
-[]  \T1/pplx/m/n/10 method. A value of \T1/cmtt/m/n/10 TRUE \T1/pplx/m/n/10 mea
-ns the child is vis-i-ble. The \T1/cmtt/m/n/10 addHandlerChanged
- []
-
+group-RGtk2.png> <./ch-gWidgets/ex-gWidgets-ggroup-tcltk.png>] [37]
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 758.
-[38] [39] [40]
-Overfull \hbox (11.61636pt too wide) in paragraph at lines 982--985
-\T1/pplx/m/n/10 the \T1/cmtt/m/n/10 addHandlerClicked \T1/pplx/m/n/10 which is 
-also aliased to the generic \T1/cmtt/m/n/10 addHandlerChanged\T1/pplx/m/n/10 . 
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 830.
+ [38]
+[39] [40] [41] [42
+
+] [43] [44] [45]
+Underfull \hbox (badness 10000) in paragraph at lines 1208--1209
 
  []
 
-[41
-
-] [42] [43]
-Underfull \hbox (badness 10000) in paragraph at lines 1144--1145
+[46]
+Underfull \hbox (badness 10000) in paragraph at lines 1304--1306
 
  []
 
-[44]
-Underfull \hbox (badness 10000) in paragraph at lines 1234--1236
-
+[47]
+Overfull \hbox (3.04852pt too wide) in paragraph at lines 1409--1416
+\T1/pplx/m/n/10 area is ``ac-ti-vated'' through the re-turn key be-ing pressed.
+ Use \T1/cmtt/m/n/10 addHandlerBlur
  []
 
-[45]
-Overfull \hbox (10.00357pt too wide) in paragraph at lines 1242--1243
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-LaTeX Warning: Reference `tab:gWidgets-font-properties' on page 46 undefined on
- input line 1276.
-
-[46] [47]
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 1372--1373
+[48]
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 1440--1441
 [][][][][][][][][][][][][][][][] 
  []
 
-
-Overfull \hbox (10.28572pt too wide) in paragraph at lines 1402--1410
-[]\T1/pplx/m/n/10 The con-tents of the text buffer can be re-placed with the \T
-1/cmtt/m/n/10 svalue []  \T1/pplx/m/n/10 method.
+[49] [50]
+Overfull \hbox (31.60379pt too wide) in paragraph at lines 1569--1570
+[][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-
-Overfull \hbox (37.69829pt too wide) in paragraph at lines 1402--1410
-\T1/pplx/m/n/10 To add text to a buffer, the \T1/cmtt/m/n/10 insert \T1/pplx/m/
-n/10 method is used. The sig-na-ture is \T1/cmtt/m/n/10 insert(obj,text)
- []
-
-[48] [49] [50] [51]
-<ch-gWidgets/ex-gWidgets-selection-widgets.png, id=225, 401.5pt x 303.1325pt>
+[51] [52]
+<ch-gWidgets/ex-gWidgets-selection-widgets.png, id=239, 401.5pt x 303.1325pt>
 File: ch-gWidgets/ex-gWidgets-selection-widgets.png Graphic file (type png)
 
-<use ch-gWidgets/ex-gWidgets-selection-widgets.png>
-
-LaTeX Warning: Reference `fig:ex-gWidgets-selection-widgets' on page 52 undefin
-ed on input line 1647.
-
-[52 <./ch-gWidgets/ex-gWidgets-selection-widgets.png>]
-
-LaTeX Warning: Reference `ex-gWidgets-filter-gtable' on page 53 undefined on in
-put line 1714.
-
-[53] [54]
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 1782--1783
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1790--1792
+<use ch-gWidgets/ex-gWidgets-selection-widgets.png> [53] [54 <./ch-gWidgets/ex-
+gWidgets-selection-widgets.png>] [55]
+Underfull \hbox (badness 10000) in paragraph at lines 1880--1882
 
  []
 
-[55] [56]
-Overfull \hbox (3.88106pt too wide) in paragraph at lines 1909--1910
-[]\T1/pplx/m/n/10 The \T1/cmtt/m/n/10 svalue \T1/pplx/m/n/10 method re-turns th
-e cur-rently cho-sen value. The \T1/cmtt/m/n/10 [ []  \T1/pplx/m/n/10 method
+[56] [57]
+Overfull \hbox (37.09181pt too wide) in paragraph at lines 1989--1995
+\T1/pplx/m/n/10 changed), \T1/cmtt/m/n/10 addHandlerClicked\T1/pplx/m/n/10 , \T
+1/cmtt/m/n/10 addHandlerDoubleclick\T1/pplx/m/n/10 , \T1/cmtt/m/n/10 addHandler
+ColumnClicked\T1/pplx/m/n/10 ,
+ []
+
+[58] [59]
+Overfull \hbox (22.01959pt too wide) in paragraph at lines 2107--2114
+\T1/pplx/m/n/10 method is used to up-date the dis-played tree. The method \T1/c
+mtt/m/n/10 addHandlerDoubleclick
  []
 
 
-LaTeX Warning: Reference `ex-gWidgets-sliders-spingbuttons' on page 57 undefine
-d on input line 1911.
-
-[57]
-Underfull \hbox (badness 10000) in paragraph at lines 1994--1995
+Underfull \hbox (badness 10000) in paragraph at lines 2115--2116
 
  []
 
-[58] <ch-gWidgets/ex-gWidgets-gtree.png, id=249, 401.5pt x 303.1325pt>
+[60] <ch-gWidgets/ex-gWidgets-gtree.png, id=267, 401.5pt x 303.1325pt>
 File: ch-gWidgets/ex-gWidgets-gtree.png Graphic file (type png)
 
-<use ch-gWidgets/ex-gWidgets-gtree.png>
-
-LaTeX Warning: Reference `fig:ex-gWidgets-gtree-party' on page 59 undefined on 
-input line 2060.
-
-[59] [60 <./ch-gWidgets/ex-gWidgets-gtree.png>]
-Overfull \hbox (4.90318pt too wide) in paragraph at lines 2166--2170
+<use ch-gWidgets/ex-gWidgets-gtree.png> [61] [62 <./ch-gWidgets/ex-gWidgets-gtr
+ee.png>]
+Overfull \hbox (4.90318pt too wide) in paragraph at lines 2296--2300
 []\T1/pplx/m/n/10 More stock icon names may be added through the func-tion \T1/
 cmtt/m/n/10 addStockIcons\T1/pplx/m/n/10 .
  []
 
-[61]
-Overfull \hbox (32.0993pt too wide) in paragraph at lines 2243--2249
+[63]
+Overfull \hbox (32.0993pt too wide) in paragraph at lines 2378--2384
 \T1/pplx/m/n/10 Some toolk-its sup-port an em-bed-dable graph-ics de-vice (\T1/
 cmtt/m/n/10 RGtk2 \T1/pplx/m/n/10 through \T1/cmtt/m/n/10 cairoDevice\T1/pplx/m
 /n/10 ).
  []
 
-[62]
-Underfull \hbox (badness 10000) in paragraph at lines 2255--2257
+
+Underfull \hbox (badness 10000) in paragraph at lines 2390--2392
 
  []
 
 LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <9> not available
-(Font)              Font shape `T1/pplx/b/n' tried instead on input line 2258.
-
-<ch-gWidgets/fig-gWidgets-baseball-gui.png, id=263, 969.71239pt x 798.84161pt>
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 2393.
+[64]
+<ch-gWidgets/fig-gWidgets-baseball-gui.png, id=281, 969.71239pt x 798.84161pt>
 File: ch-gWidgets/fig-gWidgets-baseball-gui.png Graphic file (type png)
 
-<use ch-gWidgets/fig-gWidgets-baseball-gui.png> [63 <./ch-gWidgets/fig-gWidgets
--baseball-gui.png>]
-Overfull \hbox (20.80368pt too wide) in paragraph at lines 2288--2289
+<use ch-gWidgets/fig-gWidgets-baseball-gui.png>
+Overfull \hbox (20.80368pt too wide) in paragraph at lines 2423--2424
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[64]
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 2372--2373
+[65 <./ch-gWidgets/fig-gWidgets-baseball-gui.png>] [66]
+Overfull \hbox (15.40363pt too wide) in paragraph at lines 2507--2508
 [][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 2374--2375
+Overfull \hbox (15.40363pt too wide) in paragraph at lines 2509--2510
 [][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 2380--2381
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 2515--2516
 [][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[65]
-Overfull \hbox (4.1798pt too wide) in paragraph at lines 2434--2436
+[67]
+Overfull \hbox (4.1798pt too wide) in paragraph at lines 2567--2569
 \T1/pplx/m/n/10 This next han-dler up-dates the graphic when any of sev-eral wi
 d-gets is changed.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2434--2436
+Underfull \hbox (badness 10000) in paragraph at lines 2567--2569
 
  []
 
-[66] [67] [68]
-
-LaTeX Warning: Reference `tab:gWidgets-compound-widgets' on page 69 undefined o
-n input line 2679.
-
-
-Overfull \hbox (28.79887pt too wide) in paragraph at lines 2686--2694
- [][] 
- []
-
-[69] [70] [71]
-Overfull \hbox (0.53983pt too wide) in paragraph at lines 2822--2828
+[68] [69] [70] [71] [72]
+Overfull \hbox (0.53983pt too wide) in paragraph at lines 2958--2964
 \T1/pplx/m/n/10 method will re-turn a list with com-po-nents be-ing the wid-get
 s that were named
  []
 
-
-LaTeX Warning: Reference `fig:ex-gWidgets-formlayout' on page 72 undefined on i
-nput line 2831.
-
-<ch-gWidgets/ex-gWidgets-formlayout.png, id=294, 501.875pt x 391.4625pt>
+<ch-gWidgets/ex-gWidgets-formlayout.png, id=309, 501.875pt x 391.4625pt>
 File: ch-gWidgets/ex-gWidgets-formlayout.png Graphic file (type png)
 
-<use ch-gWidgets/ex-gWidgets-formlayout.png> [72 <./ch-gWidgets/ex-gWidgets-for
-mlayout.png>] [73] [74]) (./ch-RGtk2/ch-RGtk2.tex [75] [76
-
-]
+<use ch-gWidgets/ex-gWidgets-formlayout.png> [73] [74 <./ch-gWidgets/ex-gWidget
+s-formlayout.png>] [75]) (./ch-RGtk2/ch-RGtk2.tex [76]
 Overfull \hbox (83.23752pt too wide) in paragraph at lines 67--75
 \T1/pplx/m/n/10 GTK+ ob-jects are cre-ated us-ing con-struc-tors such as \T1/cm
 tt/m/n/10 gtkWindowNew \T1/pplx/m/n/10 and \T1/cmtt/m/n/10 gtkButtonNewWithLabe
@@ -1301,7 +1085,15 @@ Overfull \hbox (0.47995pt too wide) in paragraph at lines 67--75
 10 and \T1/cmtt/m/n/10 gtk_button_new_with_label \T1/pplx/m/n/10 re-spec-
  []
 
-[77]
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 89.
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 8.33606pt on input line 89.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 8.33606pt on input line 89.
+[77
+
+]
 Overfull \hbox (44.50531pt too wide) in paragraph at lines 111--119
 []\T1/pplx/m/n/10 For in-stance, if \T1/cmtt/m/n/10 win \T1/pplx/m/n/10 is a \T
 1/cmtt/m/n/10 gtkWindow \T1/pplx/m/n/10 in-stance, then to re-solve the call \T
@@ -1379,25 +1171,11 @@ Overfull \hbox (53.20401pt too wide) in paragraph at lines 581--582
 [][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[87]
-
-LaTeX Warning: Reference `eg:RGtk2:mac-buttons' on page 88 undefined on input l
-ine 671.
-
-
-LaTeX Warning: Reference `fig:RGtk2-pack-start' on page 88 undefined on input l
-ine 672.
-
-<ch-RGtk2/ex-RGtk2-pack-start.png, id=347, 702.625pt x 323.2075pt>
+[87] <ch-RGtk2/ex-RGtk2-pack-start.png, id=358, 702.625pt x 323.2075pt>
 File: ch-RGtk2/ex-RGtk2-pack-start.png Graphic file (type png)
 
 <use ch-RGtk2/ex-RGtk2-pack-start.png> [88 <./ch-RGtk2/ex-RGtk2-pack-start.png>
 ]
-
-LaTeX Warning: Reference `fig:RGtk2:GtkBox-pack-start' on page 89 undefined on 
-input line 707.
-
-
 Overfull \hbox (34.51254pt too wide) in paragraph at lines 737--750
 \T1/pplx/m/n/10 ing \T1/cmtt/m/n/10 gtkButtonNewWithLabel\T1/pplx/m/n/10 . The 
 \T1/cmtt/m/n/10 stock.id \T1/pplx/m/n/10 ar-gu-ment calls \T1/cmtt/m/n/10 gtkBu
@@ -1414,15 +1192,10 @@ Overfull \hbox (42.4039pt too wide) in paragraph at lines 764--765
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-<ch-RGtk2/RGtk2-various-button.png, id=355, 297.2615pt x 57.95236pt>
+<ch-RGtk2/RGtk2-various-button.png, id=367, 297.2615pt x 57.95236pt>
 File: ch-RGtk2/RGtk2-various-button.png Graphic file (type png)
 
 <use ch-RGtk2/RGtk2-various-button.png>
-
-LaTeX Warning: Reference `sec:RGtk2:UIManager' on page 90 undefined on input li
-ne 819.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 822--824
 
  []
@@ -1437,7 +1210,7 @@ Overfull \hbox (20.80368pt too wide) in paragraph at lines 833--834
 [][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-<ch-RGtk2/ex-RGtk2-mac-buttons.png, id=359, 803.0pt x 52.195pt>
+<ch-RGtk2/ex-RGtk2-mac-buttons.png, id=371, 803.0pt x 52.195pt>
 File: ch-RGtk2/ex-RGtk2-mac-buttons.png Graphic file (type png)
 
 <use ch-RGtk2/ex-RGtk2-mac-buttons.png> [91 <./ch-RGtk2/ex-RGtk2-mac-buttons.pn
@@ -1473,27 +1246,16 @@ Overfull \hbox (15.40363pt too wide) in paragraph at lines 972--973
  []
 
 
-LaTeX Warning: Reference `eg:RGtk2:editable-label' on page 93 undefined on inpu
-t line 985.
-
-
-Overfull \hbox (50.72247pt too wide) in paragraph at lines 980--989
-\T1/pplx/m/n/10 an in-stance of \T1/cmtt/m/n/10 gtkButton \T1/pplx/m/n/10 with 
-its \T1/cmtt/m/n/10 relief \T1/pplx/m/n/10 prop-erty as-signed to \T1/cmtt/m/n/
-10 GtkReliefStyle['none']\T1/pplx/m/n/10 . 
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 1006--1008
 
  []
 
-
+[93]
 Overfull \hbox (26.20374pt too wide) in paragraph at lines 1012--1013
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[93]
+
 Overfull \hbox (62.1792pt too wide) in paragraph at lines 1026--1038
 \T1/pplx/m/n/10 con-struc-tors: \T1/cmtt/m/n/10 gtkImageNewFromIconSet\T1/pplx/
 m/n/10 , \T1/cmtt/m/n/10 gtkImageNewFromPixmap\T1/pplx/m/n/10 , \T1/cmtt/m/n/10
@@ -1561,7 +1323,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1239--1240
 
  []
 
-<ch-RGtk2/ex-RGtk2-alert-panel.png, id=380, 359.3425pt x 222.8325pt>
+<ch-RGtk2/ex-RGtk2-alert-panel.png, id=392, 359.3425pt x 222.8325pt>
 File: ch-RGtk2/ex-RGtk2-alert-panel.png Graphic file (type png)
 
 <use ch-RGtk2/ex-RGtk2-alert-panel.png> [97 <./ch-RGtk2/ex-RGtk2-alert-panel.pn
@@ -1644,18 +1406,14 @@ Overfull \hbox (0.31573pt too wide) in paragraph at lines 1817--1819
 e \T1/cmtt/m/n/10 shadow-type
  []
 
-
-LaTeX Warning: Reference `eg:RGtk2:using-tree-content' on page 106 undefined on
- input line 1846.
-
 [106]
-Overfull \hbox (20.80576pt too wide) in paragraph at lines 1857--1862
+Overfull \hbox (20.80576pt too wide) in paragraph at lines 1858--1863
 \T1/pplx/m/n/10 given in terms of screen po-si-tion. The prop-er-ties \T1/cmtt/
 m/n/10 min-position \T1/pplx/m/n/10 and \T1/cmtt/m/n/10 max-position
  []
 
 
-Overfull \hbox (57.18709pt too wide) in paragraph at lines 1871--1881
+Overfull \hbox (57.18709pt too wide) in paragraph at lines 1872--1882
 \T1/cmtt/m/n/10 tab-pos \T1/pplx/m/n/10 prop-erty (\T1/cmtt/m/n/10 SetTabPos\T1
 /pplx/m/n/10 ) uses the \T1/cmtt/m/n/10 GtkPositionType \T1/pplx/m/n/10 val-ues
  of \T1/cmtt/m/n/10 "left"\T1/pplx/m/n/10 ,\T1/cmtt/m/n/10 "right"\T1/pplx/m/n/
@@ -1663,104 +1421,104 @@ Overfull \hbox (57.18709pt too wide) in paragraph at lines 1871--1881
  []
 
 
-Overfull \hbox (2.51453pt too wide) in paragraph at lines 1911--1919
+Overfull \hbox (2.51453pt too wide) in paragraph at lines 1912--1920
 \T1/pplx/b/n/10 Re-ar-rang-ing pages[] \T1/pplx/m/n/10 Pages can be re-ordered 
 us-ing the \T1/cmtt/m/n/10 ReorderChild \T1/pplx/m/n/10 method.
  []
 
 [107]
-Overfull \hbox (4.57982pt too wide) in paragraph at lines 1933--1937
+Overfull \hbox (4.57982pt too wide) in paragraph at lines 1934--1938
 \T1/pplx/b/n/10 Sig-nals[] \T1/pplx/m/n/10 The note-book wid-get emits var-i-ou
 s sig-nals when its state is changed.
  []
 
 
-Overfull \hbox (69.40417pt too wide) in paragraph at lines 1974--1975
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[108]
 Overfull \hbox (69.40417pt too wide) in paragraph at lines 1975--1976
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (12.48651pt too wide) in paragraph at lines 2005--2012
+Overfull \hbox (69.40417pt too wide) in paragraph at lines 1976--1977
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[108]
+Overfull \hbox (12.48651pt too wide) in paragraph at lines 2006--2013
 \T1/pplx/m/n/10 the scroll-bars are drawn. By de-fault, they are al-ways drawn.
  The \T1/cmtt/m/n/10 GtkPolicyType
  []
 
 
-Overfull \hbox (53.20401pt too wide) in paragraph at lines 2035--2036
+Overfull \hbox (53.20401pt too wide) in paragraph at lines 2036--2037
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [109]
-Overfull \hbox (4.23189pt too wide) in paragraph at lines 2065--2074
+Overfull \hbox (4.23189pt too wide) in paragraph at lines 2066--2075
 []\T1/pplx/m/n/10 Child com-po-nents are added to this con-tainer through the \
 T1/cmtt/m/n/10 AttachDefaults
  []
 
 [110]
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 2114--2115
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 2115--2116
 [][][][][][][][][][][][][][][][][][][][][] 
  []
 
-<ch-RGtk2/ex-RGtk2-dialog-layout.png, id=427, 383.4325pt x 185.69376pt>
+<ch-RGtk2/ex-RGtk2-dialog-layout.png, id=439, 383.4325pt x 185.69376pt>
 File: ch-RGtk2/ex-RGtk2-dialog-layout.png Graphic file (type png)
 
 <use ch-RGtk2/ex-RGtk2-dialog-layout.png> [111]
-Overfull \hbox (26.20374pt too wide) in paragraph at lines 2185--2186
+Overfull \hbox (26.20374pt too wide) in paragraph at lines 2186--2187
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (10.00357pt too wide) in paragraph at lines 2200--2201
+Overfull \hbox (10.00357pt too wide) in paragraph at lines 2201--2202
 [][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (101.8045pt too wide) in paragraph at lines 2202--2203
+Overfull \hbox (101.8045pt too wide) in paragraph at lines 2203--2204
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (10.00357pt too wide) in paragraph at lines 2211--2212
+Overfull \hbox (10.00357pt too wide) in paragraph at lines 2212--2213
 [][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (80.20428pt too wide) in paragraph at lines 2213--2214
+Overfull \hbox (80.20428pt too wide) in paragraph at lines 2214--2215
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (145.00494pt too wide) in paragraph at lines 2220--2221
+Overfull \hbox (145.00494pt too wide) in paragraph at lines 2221--2222
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (101.8045pt too wide) in paragraph at lines 2221--2222
+Overfull \hbox (101.8045pt too wide) in paragraph at lines 2222--2223
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [112 <./ch-RGtk2/ex-RGtk2-dialog-layout.png>]
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 2264--2265
+Overfull \hbox (15.40363pt too wide) in paragraph at lines 2265--2266
 [][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (47.80396pt too wide) in paragraph at lines 2292--2293
+Overfull \hbox (47.80396pt too wide) in paragraph at lines 2293--2294
 [][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (42.4039pt too wide) in paragraph at lines 2294--2295
+Overfull \hbox (42.4039pt too wide) in paragraph at lines 2295--2296
 [][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [113]
-Overfull \hbox (9.74167pt too wide) in paragraph at lines 2354--2357
+Overfull \hbox (9.74167pt too wide) in paragraph at lines 2355--2358
 []\T1/pplx/m/n/10 If the ac-tion was \T1/cmtt/m/n/10 "move" \T1/pplx/m/n/10 the
 n the source wid-get emits the \T1/cmtt/m/n/10 drag-data-delete
  []
@@ -1768,352 +1526,318 @@ n the source wid-get emits the \T1/cmtt/m/n/10 drag-data-delete
 [114] [115
 
 ]
-Overfull \hbox (13.82707pt too wide) in paragraph at lines 2442--2457
+Overfull \hbox (13.82707pt too wide) in paragraph at lines 2443--2458
 \T1/pplx/b/n/10 Fonts[] \T1/pplx/m/n/10 The size and font can be glob-ally set 
 for a text view us-ing the \T1/cmtt/m/n/10 modifyFont
  []
 
 
-Overfull \hbox (61.60616pt too wide) in paragraph at lines 2442--2457
+Overfull \hbox (61.60616pt too wide) in paragraph at lines 2443--2458
 \T1/cmtt/m/n/10 PangoWeight\T1/pplx/m/n/10 , \T1/cmtt/m/n/10 PangoStretch\T1/pp
 lx/m/n/10 , and \T1/cmtt/m/n/10 PangoGravity\T1/pplx/m/n/10 . The help page for
  \T1/cmtt/m/n/10 PangoFontDescription
  []
 
 
-Overfull \hbox (15.9799pt too wide) in paragraph at lines 2459--2464
+Overfull \hbox (15.9799pt too wide) in paragraph at lines 2460--2465
 \T1/pplx/m/n/10 and any user data. Other sig-nals are de-tailed in the help pag
 e for \T1/cmtt/m/n/10 gtkTextBuffer\T1/pplx/m/n/10 . 
  []
 
 
-Overfull \hbox (10.00357pt too wide) in paragraph at lines 2479--2480
+Overfull \hbox (10.00357pt too wide) in paragraph at lines 2480--2481
 [][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [116]
-Overfull \hbox (47.80396pt too wide) in paragraph at lines 2483--2484
+Overfull \hbox (47.80396pt too wide) in paragraph at lines 2484--2485
 [][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (2.57674pt too wide) in paragraph at lines 2519--2531
+Overfull \hbox (2.57674pt too wide) in paragraph at lines 2520--2532
 \T1/pplx/m/n/10 The cur-rent se-lec-tion is re-turned by the method method \T1/
 cmtt/m/n/10 getSelectionBounds\T1/pplx/m/n/10 .
  []
 
-
-LaTeX Warning: Reference `eg-RGtk2-find-word' on page 117 undefined on input li
-ne 2559.
-
 [117]
-Overfull \hbox (24.87852pt too wide) in paragraph at lines 2583--2593
+Overfull \hbox (24.87852pt too wide) in paragraph at lines 2584--2594
 \T1/pplx/m/n/10 button-press event. The call-back has an event ar-gu-ment which
  is a \T1/cmtt/m/n/10 GdkEventButton
  []
 
 
-Overfull \hbox (58.60406pt too wide) in paragraph at lines 2597--2598
+Overfull \hbox (58.60406pt too wide) in paragraph at lines 2598--2599
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [118]
-Overfull \hbox (1.58614pt too wide) in paragraph at lines 2637--2647
+Overfull \hbox (1.58614pt too wide) in paragraph at lines 2638--2648
 \T1/pplx/m/n/10 method is used. This has op-tional ar-gu-ment \T1/cmtt/m/n/10 t
 ag.name\T1/pplx/m/n/10 gtkTextBufferCreateTag
  []
 
 
-Overfull \hbox (20.80368pt too wide) in paragraph at lines 2657--2658
+Overfull \hbox (20.80368pt too wide) in paragraph at lines 2658--2659
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 2658--2659
+Overfull \hbox (15.40363pt too wide) in paragraph at lines 2659--2660
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (26.20374pt too wide) in paragraph at lines 2659--2660
+Overfull \hbox (26.20374pt too wide) in paragraph at lines 2660--2661
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (20.80368pt too wide) in paragraph at lines 2661--2662
+Overfull \hbox (20.80368pt too wide) in paragraph at lines 2662--2663
 [][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (9.36067pt too wide) in paragraph at lines 2670--2681
+Overfull \hbox (9.36067pt too wide) in paragraph at lines 2671--2682
 \T1/pplx/m/n/10 board. The method \T1/cmtt/m/n/10 cutClipboard \T1/pplx/m/n/10 
 has an ex-tra arg-mu-ment, \T1/cmtt/m/n/10 default.editable\T1/pplx/m/n/10 ,
  []
 
-[119] <ch-RGtk2/ex-RGtk2-terminal.png, id=458, 401.5pt x 222.8325pt>
+[119] <ch-RGtk2/ex-RGtk2-terminal.png, id=470, 401.5pt x 222.8325pt>
 File: ch-RGtk2/ex-RGtk2-terminal.png Graphic file (type png)
 
 <use ch-RGtk2/ex-RGtk2-terminal.png>
-Overfull \hbox (26.20374pt too wide) in paragraph at lines 2727--2728
+Overfull \hbox (26.20374pt too wide) in paragraph at lines 2728--2729
 [][][][][][][][][][][][][][][][][][] 
  []
 
 [120 <./ch-RGtk2/ex-RGtk2-terminal.png>] [121]
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 2834--2835
+Overfull \hbox (15.40363pt too wide) in paragraph at lines 2835--2836
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (20.80368pt too wide) in paragraph at lines 2846--2847
+Overfull \hbox (20.80368pt too wide) in paragraph at lines 2847--2848
 [][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (42.4039pt too wide) in paragraph at lines 2859--2860
+Overfull \hbox (42.4039pt too wide) in paragraph at lines 2860--2861
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [122]
-Overfull \hbox (20.80368pt too wide) in paragraph at lines 2867--2868
+Overfull \hbox (20.80368pt too wide) in paragraph at lines 2868--2869
 [][][][][][][][][][][][][][][][][][][] 
  []
 
-
-LaTeX Warning: Reference `fig:RGtk2-terminal' on page 123 undefined on input li
-ne 2871.
-
 [123]
-Overfull \hbox (10.2484pt too wide) in paragraph at lines 2995--3003
+Overfull \hbox (10.2484pt too wide) in paragraph at lines 2996--3004
 []\T1/pplx/m/n/10 A tree store or list store is con-structed us-ing \T1/cmtt/m/
 n/10 gtkTreeStore \T1/pplx/m/n/10 or \T1/cmtt/m/n/10 gtkListStore\T1/pplx/m/n/1
 0 .
  []
 
 [124]
-Overfull \hbox (23.38435pt too wide) in paragraph at lines 3016--3020
+Overfull \hbox (23.38435pt too wide) in paragraph at lines 3017--3021
 []\T1/pplx/m/n/10 A \T1/cmtt/m/n/10 GtkTreePath \T1/pplx/m/n/10 ob-ject is cre-
 ated by the con-struc-tor \T1/cmtt/m/n/10 gtkTreePathNewFromString
  []
 
 [125]
-Overfull \hbox (10.00357pt too wide) in paragraph at lines 3139--3140
+Overfull \hbox (10.00357pt too wide) in paragraph at lines 3140--3141
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[126] <ch-RGtk2/traverse-tree.png, id=482, 557.9244pt x 322.3242pt>
+[126] <ch-RGtk2/traverse-tree.png, id=494, 557.9244pt x 322.3242pt>
 File: ch-RGtk2/traverse-tree.png Graphic file (type png)
 
 <use ch-RGtk2/traverse-tree.png> [127] [128 <./ch-RGtk2/traverse-tree.png>]
-Overfull \hbox (10.00357pt too wide) in paragraph at lines 3258--3259
+Overfull \hbox (10.00357pt too wide) in paragraph at lines 3259--3260
 [][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-LaTeX Warning: Reference `sec:RGtk2:basic-combobox' on page 129 undefined on in
-put line 3299.
-
-
-Overfull \hbox (1.79399pt too wide) in paragraph at lines 3304--3307
+Overfull \hbox (1.79399pt too wide) in paragraph at lines 3305--3308
 []\T1/pplx/m/n/10 The ba-sic \T1/cmtt/m/n/10 gtkComboBoxEntryNewWithModel \T1/p
 plx/m/n/10 con-struc-tor al-lows one to spec-
  []
 
 [129]
-Overfull \hbox (21.76987pt too wide) in paragraph at lines 3385--3388
+Overfull \hbox (21.76987pt too wide) in paragraph at lines 3386--3389
 []\T1/pplx/m/n/10 The vari-able names are ini-tially just an empty string. We u
 se an \T1/cmtt/m/n/10 rGtkDataFrame
  []
 
 [130]
-Overfull \hbox (26.20374pt too wide) in paragraph at lines 3404--3405
+Overfull \hbox (26.20374pt too wide) in paragraph at lines 3405--3406
 [][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (20.80368pt too wide) in paragraph at lines 3406--3407
+Overfull \hbox (20.80368pt too wide) in paragraph at lines 3407--3408
 [][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (20.80368pt too wide) in paragraph at lines 3441--3442
+Overfull \hbox (20.80368pt too wide) in paragraph at lines 3442--3443
 [][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [131] [132]
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 3660--3661
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 3661--3662
 [][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 3661--3662
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 3662--3663
 [][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [133]
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 3676--3678
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 3677--3679
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (1.46344pt too wide) in paragraph at lines 3748--3752
+Overfull \hbox (1.46344pt too wide) in paragraph at lines 3749--3753
 \T1/pplx/m/n/10 umn, by drag-ging with the mouse. The size prop-er-ties \T1/cmt
 t/m/n/10 "width"\T1/pplx/m/n/10 , \T1/cmtt/m/n/10 "min-width"\T1/pplx/m/n/10 ,
  []
 
 [134]
-Overfull \hbox (15.19444pt too wide) in paragraph at lines 3757--3766
+Overfull \hbox (15.19444pt too wide) in paragraph at lines 3758--3767
 []\T1/pplx/m/n/10 Tree view columns are added to the tree view with the method 
 \T1/cmtt/m/n/10 insertColumn\T1/pplx/m/n/10 .
  []
 
-
-LaTeX Warning: Reference `sec:RGtk2:combobox' on page 135 undefined on input li
-ne 3771.
-
 [135] [136]
-Overfull \hbox (80.20428pt too wide) in paragraph at lines 3929--3930
+Overfull \hbox (80.20428pt too wide) in paragraph at lines 3930--3931
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (4.35938pt too wide) in paragraph at lines 3936--3940
+Overfull \hbox (4.35938pt too wide) in paragraph at lines 3937--3941
 \T1/pplx/m/n/10 re-placed with some-thing more rea-son-able, such as a call to 
 \T1/cmtt/m/n/10 install.packages\T1/pplx/m/n/10 .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3936--3940
+Underfull \hbox (badness 10000) in paragraph at lines 3937--3941
 
  []
 
 [137] [138] [139] [140]
-Overfull \hbox (37.00385pt too wide) in paragraph at lines 4184--4185
+Overfull \hbox (37.00385pt too wide) in paragraph at lines 4185--4186
 [][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (69.40417pt too wide) in paragraph at lines 4187--4188
+Overfull \hbox (69.40417pt too wide) in paragraph at lines 4188--4189
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[141] <ch-RGtk2/ex-RGtk2-filtered.png, id=532, 301.125pt x 275.0275pt>
+[141] <ch-RGtk2/ex-RGtk2-filtered.png, id=543, 301.125pt x 275.0275pt>
 File: ch-RGtk2/ex-RGtk2-filtered.png Graphic file (type png)
 
 <use ch-RGtk2/ex-RGtk2-filtered.png> [142 <./ch-RGtk2/ex-RGtk2-filtered.png>]
-
-LaTeX Warning: Reference `fig:RGtk2-filtered' on page 143 undefined on input li
-ne 4327.
-
-<ch-RGtk2/ex-RGtk2-pingpong.png, id=537, 200.75pt x 222.8325pt>
+<ch-RGtk2/ex-RGtk2-pingpong.png, id=548, 200.75pt x 222.8325pt>
 File: ch-RGtk2/ex-RGtk2-pingpong.png Graphic file (type png)
 
 <use ch-RGtk2/ex-RGtk2-pingpong.png>
-
-LaTeX Warning: Reference `ex:RGtk2:add-stock-icons' on page 143 undefined on in
-put line 4347.
-
-
-Overfull \hbox (31.60379pt too wide) in paragraph at lines 4353--4354
+Overfull \hbox (31.60379pt too wide) in paragraph at lines 4354--4355
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (37.00385pt too wide) in paragraph at lines 4354--4355
+Overfull \hbox (37.00385pt too wide) in paragraph at lines 4355--4356
 [][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [143]
-Overfull \hbox (42.4039pt too wide) in paragraph at lines 4366--4367
+Overfull \hbox (42.4039pt too wide) in paragraph at lines 4367--4368
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [144 <./ch-RGtk2/ex-RGtk2-pingpong.png>]
-
-LaTeX Warning: Reference `fig:RGtk2-pingpong' on page 145 undefined on input li
-ne 4427.
-
-
-Overfull \hbox (9.65317pt too wide) in paragraph at lines 4432--4443
+Overfull \hbox (9.65317pt too wide) in paragraph at lines 4433--4444
 \T1/pplx/m/n/10 trans-late be-tween the two mod-els, but in this case we pass i
 n the \T1/cmtt/m/n/10 rGtkDataFrame
  []
 
 [145]
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 4457--4458
+Overfull \hbox (15.40363pt too wide) in paragraph at lines 4458--4459
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 4482--4483
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 4483--4484
 [][][][][][][][][][][][][][][][] 
  []
 
-
-LaTeX Warning: Reference `eg:RGtk2:tree-store' on page 146 undefined on input l
-ine 4509.
-
 [146]
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 4542--4543
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 4543--4544
 [][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (53.20401pt too wide) in paragraph at lines 4582--4584
+Overfull \hbox (53.20401pt too wide) in paragraph at lines 4583--4585
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [147] [148]
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 4725--4726
+Overfull \hbox (15.40363pt too wide) in paragraph at lines 4726--4727
 [][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [149]
-Overfull \hbox (42.4039pt too wide) in paragraph at lines 4730--4731
+Overfull \hbox (42.4039pt too wide) in paragraph at lines 4731--4732
 [][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (42.4039pt too wide) in paragraph at lines 4731--4732
+Overfull \hbox (42.4039pt too wide) in paragraph at lines 4732--4733
 [][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 4749--4750
+Overfull \hbox (15.40363pt too wide) in paragraph at lines 4750--4751
 [][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 4751--4752
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 4752--4753
 [][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 4770--4771
+Overfull \hbox (15.40363pt too wide) in paragraph at lines 4771--4772
 [][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (31.60379pt too wide) in paragraph at lines 4772--4773
+Overfull \hbox (31.60379pt too wide) in paragraph at lines 4773--4774
 [][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (64.00412pt too wide) in paragraph at lines 4774--4775
+Overfull \hbox (64.00412pt too wide) in paragraph at lines 4775--4776
 [][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (26.20374pt too wide) in paragraph at lines 4776--4777
+Overfull \hbox (26.20374pt too wide) in paragraph at lines 4777--4778
 [][][][][][][][][][][][][][][][][][][] 
  []
 
 [150]
-Overfull \hbox (38.31032pt too wide) in paragraph at lines 4814--4817
+Overfull \hbox (38.31032pt too wide) in paragraph at lines 4815--4818
 []\T1/pplx/m/n/10 Actions can have their \T1/cmtt/m/n/10 sensitivity \T1/pplx/m
 /n/10 prop-erty ad-justed through their \T1/cmtt/m/n/10 SetSensitive
  []
 
 
-Overfull \hbox (101.8045pt too wide) in paragraph at lines 4823--4824
+Overfull \hbox (101.8045pt too wide) in paragraph at lines 4824--4825
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][] 
  []
@@ -2121,949 +1845,720 @@ Overfull \hbox (101.8045pt too wide) in paragraph at lines 4823--4824
 [151
 
 ]
-Overfull \hbox (24.79082pt too wide) in paragraph at lines 4884--4892
+Overfull \hbox (24.79082pt too wide) in paragraph at lines 4885--4893
 \T1/pplx/m/n/10 the menu item. To group menu items, one use sep-a-ra-tors (\T1/
 cmtt/m/n/10 gtkSeparatorMenuItem\T1/pplx/m/n/10 ). 
  []
 
 [152]
-Overfull \hbox (20.80368pt too wide) in paragraph at lines 4953--4954
+Overfull \hbox (20.80368pt too wide) in paragraph at lines 4954--4955
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (58.60406pt too wide) in paragraph at lines 4962--4963
+Overfull \hbox (58.60406pt too wide) in paragraph at lines 4963--4964
 [][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (101.8045pt too wide) in paragraph at lines 4977--4978
+Overfull \hbox (101.8045pt too wide) in paragraph at lines 4978--4979
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [153]
-Overfull \hbox (64.00412pt too wide) in paragraph at lines 5042--5043
+Overfull \hbox (64.00412pt too wide) in paragraph at lines 5043--5044
 [][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 5046--5047
+Overfull \hbox (15.40363pt too wide) in paragraph at lines 5047--5048
 [][][][][][][][][][][][][] 
  []
 
 [154]
-Overfull \hbox (5.59988pt too wide) in paragraph at lines 5071--5077
+Overfull \hbox (5.59988pt too wide) in paragraph at lines 5072--5078
 []\T1/pplx/m/n/10 The above can eas-ily be au-to-mated. The menubar wid-get in 
 \T1/cmtt/m/n/10 gWidgetsRGtk2
  []
 
 
-Overfull \hbox (71.71587pt too wide) in paragraph at lines 5097--5109
+Overfull \hbox (71.71587pt too wide) in paragraph at lines 5098--5110
 \T1/pplx/m/n/10 not when clicked is cre-ated by \T1/cmtt/m/n/10 gtkToggleToolBu
 tton \T1/pplx/m/n/10 or \T1/cmtt/m/n/10 gtkToggleToolButtonNewFromStock\T1/pplx
 /m/n/10 .
  []
 
 [155]
-Overfull \hbox (145.00494pt too wide) in paragraph at lines 5157--5158
+Overfull \hbox (145.00494pt too wide) in paragraph at lines 5158--5159
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[156] <ch-RGtk2/ex-RGtk2-UI.png, id=583, 369.38pt x 261.97874pt>
+[156] <ch-RGtk2/ex-RGtk2-UI.png, id=595, 369.38pt x 261.97874pt>
 File: ch-RGtk2/ex-RGtk2-UI.png Graphic file (type png)
 
 <use ch-RGtk2/ex-RGtk2-UI.png>
-Overfull \hbox (37.00385pt too wide) in paragraph at lines 5240--5241
+Overfull \hbox (37.00385pt too wide) in paragraph at lines 5241--5242
 [][][][][][][][][][][][][][][][][][][][] 
  []
 
 [157 <./ch-RGtk2/ex-RGtk2-UI.png>]
-Overfull \hbox (74.80423pt too wide) in paragraph at lines 5262--5263
+Overfull \hbox (74.80423pt too wide) in paragraph at lines 5263--5264
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
 
  []
 
 
-Overfull \hbox (85.60434pt too wide) in paragraph at lines 5264--5265
+Overfull \hbox (85.60434pt too wide) in paragraph at lines 5265--5266
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (80.20428pt too wide) in paragraph at lines 5265--5266
+Overfull \hbox (80.20428pt too wide) in paragraph at lines 5266--5267
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
 
  []
 
 
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 5266--5267
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 5267--5268
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (74.80423pt too wide) in paragraph at lines 5268--5269
+Overfull \hbox (74.80423pt too wide) in paragraph at lines 5269--5270
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
 
  []
 
 
-Overfull \hbox (69.40417pt too wide) in paragraph at lines 5269--5270
+Overfull \hbox (69.40417pt too wide) in paragraph at lines 5270--5271
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
 
  []
 
 
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 5278--5279
+Overfull \hbox (15.40363pt too wide) in paragraph at lines 5279--5280
 [][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (31.60379pt too wide) in paragraph at lines 5305--5306
+Overfull \hbox (31.60379pt too wide) in paragraph at lines 5306--5307
 [][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (74.80423pt too wide) in paragraph at lines 5309--5310
+Overfull \hbox (74.80423pt too wide) in paragraph at lines 5310--5311
 [][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [158] [159]
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 5437--5438
+Overfull \hbox (15.40363pt too wide) in paragraph at lines 5438--5439
 [][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [160]
-Overfull \hbox (36.27759pt too wide) in paragraph at lines 5484--5494
+Overfull \hbox (36.27759pt too wide) in paragraph at lines 5485--5495
 \T1/pplx/m/n/10 gu-ment al-lows one to spec-ify val-ues (from \T1/cmtt/m/n/10 G
 tkDialogFlags\T1/pplx/m/n/10 ) of \T1/cmtt/m/n/10 destroy-with-parent
  []
 
 
-Overfull \hbox (18.49524pt too wide) in paragraph at lines 5484--5494
+Overfull \hbox (18.49524pt too wide) in paragraph at lines 5485--5495
 \T1/pplx/m/n/10 drawn. The mes-sage is the fol-low-ing ar-gu-ment. The di-a-log
  has a \T1/cmtt/m/n/10 secondary-text
  []
 
 
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 5504--5505
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 5505--5506
 [][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [161]
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 5534--5535
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 5535--5536
 [][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (47.80396pt too wide) in paragraph at lines 5535--5536
+Overfull \hbox (47.80396pt too wide) in paragraph at lines 5536--5537
 [][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (53.20401pt too wide) in paragraph at lines 5544--5545
+Overfull \hbox (53.20401pt too wide) in paragraph at lines 5545--5546
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (52.66199pt too wide) in paragraph at lines 5557--5567
+Overfull \hbox (52.66199pt too wide) in paragraph at lines 5558--5568
 \T1/pplx/m/n/10 through \T1/cmtt/m/n/10 gtkFileChooserDialog\T1/pplx/m/n/10 , w
 hich pops up a modal di-a-log; \T1/cmtt/m/n/10 gtkFileChooserButton\T1/pplx/m/n
 /10 ,
  []
 
 
-Overfull \hbox (19.66759pt too wide) in paragraph at lines 5557--5567
+Overfull \hbox (19.66759pt too wide) in paragraph at lines 5558--5568
 \T1/pplx/m/n/10 which pops up the di-a-log when the but-ton is clicked; and \T1
 /cmtt/m/n/10 gtkFileChooserWidget\T1/pplx/m/n/10 ,
  []
 
 [162]
-Overfull \hbox (74.80423pt too wide) in paragraph at lines 5577--5578
+Overfull \hbox (74.80423pt too wide) in paragraph at lines 5578--5579
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (31.60379pt too wide) in paragraph at lines 5579--5580
+Overfull \hbox (31.60379pt too wide) in paragraph at lines 5580--5581
 [][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (3.07578pt too wide) in paragraph at lines 5583--5589
+Overfull \hbox (3.07578pt too wide) in paragraph at lines 5584--5590
 []\T1/pplx/m/n/10 One can use the \T1/cmtt/m/n/10 run \T1/pplx/m/n/10 method to
  make this modal or con-nect to the \T1/cmtt/m/n/10 response
  []
 
 
-Overfull \hbox (26.20374pt too wide) in paragraph at lines 5592--5593
+Overfull \hbox (26.20374pt too wide) in paragraph at lines 5593--5594
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [163]
-Overfull \hbox (30.12112pt too wide) in paragraph at lines 5647--5650
+Overfull \hbox (30.12112pt too wide) in paragraph at lines 5648--5651
 []\T1/pplx/m/n/10 The wid-get emits var-i-ous sig-nals when a se-lec-tion is ch
 anged. The \T1/cmtt/m/n/10 day-selected
  []
 
-) (./ch-tcltk/ch-tcltk.tex [164] [165
+) (./ch-tcltk/ch-tcltk.tex [164]
+LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <8> not available
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 43.
+
+
+Package natbib Warning: Citation `TclTk:Api' on page 165 undefined on input lin
+e 43.
+
+
+Package natbib Warning: Citation `beedub' on page 165 undefined on input line 4
+3.
+
+
+Package natbib Warning: Citation `TclTk:Tutorial' on page 165 undefined on inpu
+t line 43.
+
+
+Package natbib Warning: Citation `Rnews:Dalgaard:2001a' on page 165 undefined o
+n input line 43.
+
+
+Package natbib Warning: Citation `Rnewse:Dalgaard:2002' on page 165 undefined o
+n input line 43.
+
+
+Package natbib Warning: Citation `Dalgaard-DSC' on page 165 undefined on input 
+line 43.
+
+
+Package natbib Warning: Citation `Wettenhall' on page 165 undefined on input li
+ne 43.
+
+
+Package natbib Warning: Citation `Rnews:Fox:2007' on page 165 undefined on inpu
+t line 43.
+
+[165
 
 ] [166] [167]
-
-LaTeX Warning: Reference `sec:tcltk:containers' on page 168 undefined on input 
-line 212.
-
-
-Overfull \hbox (1.4494pt too wide) in paragraph at lines 224--229
+Overfull \hbox (1.4494pt too wide) in paragraph at lines 261--270
 []\T1/pplx/m/n/10 For a sim-ple la-bel, the fol-low-ing op-tions are pos-si-ble
 : \T1/cmtt/m/n/10 anchor\T1/pplx/m/n/10 , \T1/cmtt/m/n/10 background\T1/pplx/m/
 n/10 ,
  []
 
 [168]
-Overfull \hbox (10.00357pt too wide) in paragraph at lines 269--270
+Overfull \hbox (10.00357pt too wide) in paragraph at lines 312--313
 [][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [169]
 
-LaTeX Warning: Reference `sec:tcltk:callbacks' on page 170 undefined on input l
-ine 316.
-
-
 LaTeX Font Warning: Font shape `OMS/pplx/bx/n' undefined
 (Font)              using `OMS/pplx/m/n' instead
-(Font)              for symbol `textasteriskcentered' on input line 338.
+(Font)              for symbol `textasteriskcentered' on input line 384.
 
 
 Package natbib Warning: Citation `Dalgaard-DSC' on page 170 undefined on input 
-line 350.
-
-
-LaTeX Warning: Reference `sec:tcltk:containers' on page 170 undefined on input 
-line 361.
+line 396.
 
 [170] [171]
-
-LaTeX Warning: Reference `tab:tcltk-std-fonts' on page 172 undefined on input l
-ine 444.
-
-
-Overfull \hbox (1.1798pt too wide) in paragraph at lines 450--458
+Overfull \hbox (3.67679pt too wide) in paragraph at lines 502--510
  [][] 
  []
 
-
-LaTeX Warning: Reference `fig:fig-tcltk-all-fonts' on page 172 undefined on inp
-ut line 476.
-
-
-LaTeX Warning: Reference `ex:tcltk-scrollable-frame' on page 172 undefined on i
-nput line 477.
-
-<ch-tcltk/fig-tcltk-all-fonts.png, id=634, 316.18124pt x 338.26375pt>
+<ch-tcltk/fig-tcltk-all-fonts.png, id=648, 316.18124pt x 338.26375pt>
 File: ch-tcltk/fig-tcltk-all-fonts.png Graphic file (type png)
 
 <use ch-tcltk/fig-tcltk-all-fonts.png>
-
-LaTeX Warning: Reference `ex:tcltk-scrollable-frame' on page 172 undefined on i
-nput line 493.
-
-
-LaTeX Warning: Reference `ex:tcltk-scrollable-frame' on page 172 undefined on i
-nput line 493.
-
-
-Overfull \hbox (10.53853pt too wide) in paragraph at lines 499--501
+Overfull \hbox (10.53853pt too wide) in paragraph at lines 551--556
 \T1/pplx/m/n/10 and height of some com-po-nents. The can be found through the \
 T1/cmtt/m/n/10 tkfont.measure
  []
 
 
-Overfull \hbox (37.00385pt too wide) in paragraph at lines 502--503
+Overfull \hbox (37.00385pt too wide) in paragraph at lines 557--558
 [][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[172] [173 <./ch-tcltk/fig-tcltk-all-fonts.png>]
-
-LaTeX Warning: Reference `ex-tcltk-toolbar' on page 174 undefined on input line
- 592.
-
-
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 598--599
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 599--600
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (42.4039pt too wide) in paragraph at lines 600--601
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[174]
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 638--639
+[172] [173 <./ch-tcltk/fig-tcltk-all-fonts.png>] [174]
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 723--724
 [][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[175]
+[175] [176]
+Overfull \hbox (27.92001pt too wide) in paragraph at lines 829--841
+[]\T1/pplx/m/n/10 Examples of a type are $\OML/zplm/m/it/10 <$\T1/cmtt/m/n/10 K
+eyPress$\OML/zplm/m/it/10 >$\T1/pplx/m/n/10 , $\OML/zplm/m/it/10 <$\T1/cmtt/m/n
+/10 ButtonPress$\OML/zplm/m/it/10 >$\T1/pplx/m/n/10 . The event $\OML/zplm/m/it
+/10 <$\T1/cmtt/m/n/10 Control-c$\OML/zplm/m/it/10 >$
+ []
 
-LaTeX Warning: Reference `sec:tcltk:entry-widgets' on page 176 undefined on inp
-ut line 697.
 
-[176]
-Overfull \hbox (5.69983pt too wide) in paragraph at lines 749--752
+Overfull \hbox (5.69983pt too wide) in paragraph at lines 843--846
 \T1/pplx/b/n/10 Win-dow man-ager events[] \T1/pplx/m/n/10 Some events are based
  on win-dow man-ager events.
  []
 
-[177]
-
-LaTeX Warning: Reference `ex-tcltk-dnd' on page 178 undefined on input line 789
-.
-
-
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 796--797
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[178]
-Overfull \hbox (20.80368pt too wide) in paragraph at lines 830--831
-[][][][][][][][][][][][][][][][][][][][][][] 
+[177] [178]
+Overfull \hbox (10.00357pt too wide) in paragraph at lines 901--902
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [179]
-Overfull \hbox (29.76932pt too wide) in paragraph at lines 882--886
+Overfull \hbox (29.76932pt too wide) in paragraph at lines 1010--1014
 []\T1/pplx/m/n/10 Finally, if the but-ton is re-leased, we gen-er-ate the vir-t
 ual events $\OML/zplm/m/it/10 <<$\T1/pplx/m/n/10 DragLeave$\OML/zplm/m/it/10 >>
 $
  []
 
-[180]
+[180] [181] [182
 
-Package natbib Warning: Citation `TclTk:API' on page 181 undefined on input lin
-e 946.
-
-
-Package natbib Warning: Citation `TclTk:Tutorial' on page 181 undefined on inpu
-t line 948.
-
-
-Package natbib Warning: Citation `beedub' on page 181 undefined on input line 9
-50.
-
-
-Package natbib Warning: Citation `Dalgaard-DSC' on page 181 undefined on input 
-line 952.
-
-
-Package natbib Warning: Citation `Rnews:Dalgaard:2001a' on page 181 undefined o
-n input line 952.
-
-
-Package natbib Warning: Citation `Rnews:Dalgaard:2002' on page 181 undefined on
- input line 953.
-
-
-Package natbib Warning: Citation `Wettenhall' on page 181 undefined on input li
-ne 955.
-
-[181] [182
-
-]
-
-LaTeX Warning: Reference `sec:tcltk:menus' on page 183 undefined on input line 
-973.
-
-[183]
-
-LaTeX Warning: Reference `sec:tcltk:multi-line-text' on page 184 undefined on i
-nput line 1046.
-
-
-LaTeX Warning: Reference `sec:tcltk:dialogs' on page 184 undefined on input lin
-e 1049.
-
-[184]
-Overfull \hbox (11.59164pt too wide) in paragraph at lines 1110--1119
+] [183] [184]
+Overfull \hbox (11.59164pt too wide) in paragraph at lines 1231--1240
 []\T1/pplx/m/n/10 The op-tions in-clude \T1/cmtt/m/n/10 width \T1/pplx/m/n/10 a
 nd \T1/cmtt/m/n/10 height \T1/pplx/m/n/10 to set the re-quested size, \T1/cmtt/
 m/n/10 borderwidth
  []
 
 
-Overfull \hbox (14.75449pt too wide) in paragraph at lines 1133--1139
+Overfull \hbox (14.75449pt too wide) in paragraph at lines 1254--1260
 \T1/pplx/b/n/10 Sep-a-ra-tors[] \T1/pplx/m/n/10 To use a sin-gle line to sep-a-
 rate out ar-eas in a GUI, the \T1/cmtt/m/n/10 ttkseparator
  []
 
+[185]
+<ch-tcltk/fig-tcltk-padding-pady-ipady.png, id=695, 303.1325pt x 125.46875pt>
+File: ch-tcltk/fig-tcltk-padding-pady-ipady.png Graphic file (type png)
 
-LaTeX Warning: Reference `ex-tcltk-non-modal-dialog' on page 185 undefined on i
-nput line 1151.
-
-[185] <ch-tcltk/fig-pack-padding.pdf, id=680, 145.54375pt x 130.4875pt>
-File: ch-tcltk/fig-pack-padding.pdf Graphic file (type pdf)
-
-<use ch-tcltk/fig-pack-padding.pdf>
-<ch-tcltk/fig-pack-pady.pdf, id=681, 101.37875pt x 130.4875pt>
-File: ch-tcltk/fig-pack-pady.pdf Graphic file (type pdf)
-
-<use ch-tcltk/fig-pack-pady.pdf>
-<ch-tcltk/fig-pack-ipady.pdf, id=682, 101.37875pt x 130.4875pt>
-File: ch-tcltk/fig-pack-ipady.pdf Graphic file (type pdf)
-
-<use ch-tcltk/fig-pack-ipady.pdf>
-Overfull \hbox (134.20483pt too wide) in paragraph at lines 1205--1206
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-] 
- []
-
-
-Overfull \hbox (107.20456pt too wide) in paragraph at lines 1209--1210
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (107.20456pt too wide) in paragraph at lines 1213--1214
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[186]
-
-LaTeX Warning: Reference `fig:fig-pack-example' on page 187 undefined on input 
-line 1222.
-
-[187 <./ch-tcltk/fig-pack-padding.pdf> <./ch-tcltk/fig-pack-pady.pdf> <./ch-tcl
-tk/fig-pack-ipady.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 1281--1282
+<use ch-tcltk/fig-tcltk-padding-pady-ipady.png> [186] [187 <./ch-tcltk/fig-tclt
+k-padding-pady-ipady.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 1386--1387
 
  []
 
-<ch-tcltk/fig-tcltk-pack-buttons.png, id=710, 307.1475pt x 185.69376pt>
+<ch-tcltk/fig-tcltk-pack-buttons.png, id=703, 307.1475pt x 185.69376pt>
 File: ch-tcltk/fig-tcltk-pack-buttons.png Graphic file (type png)
 
 <use ch-tcltk/fig-tcltk-pack-buttons.png>
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 1305--1306
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+Overfull \hbox (20.80368pt too wide) in paragraph at lines 1423--1424
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[188]
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 1317--1318
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (20.80368pt too wide) in paragraph at lines 1318--1319
+[188 <./ch-tcltk/fig-tcltk-pack-buttons.png>]
+Overfull \hbox (20.80368pt too wide) in paragraph at lines 1434--1435
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (20.80368pt too wide) in paragraph at lines 1329--1330
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 1435--1436
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 1330--1331
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-<ch-tcltk/fig-tcltk-simple-dialog.png, id=714, 257.96375pt x 115.43124pt>
+<ch-tcltk/fig-tcltk-simple-dialog.png, id=708, 257.96375pt x 115.43124pt>
 File: ch-tcltk/fig-tcltk-simple-dialog.png Graphic file (type png)
 
-<use ch-tcltk/fig-tcltk-simple-dialog.png> [189 <./ch-tcltk/fig-tcltk-pack-butt
-ons.png> <./ch-tcltk/fig-tcltk-simple-dialog.png>] [190] [191]
-Overfull \hbox (12.58998pt too wide) in paragraph at lines 1482--1493
+<use ch-tcltk/fig-tcltk-simple-dialog.png> [189 <./ch-tcltk/fig-tcltk-simple-di
+alog.png>] [190]
+Overfull \hbox (12.58998pt too wide) in paragraph at lines 1591--1602
 \T1/pplx/b/n/10 The tk-grid.rowconfigure, tk-grid.columnconfigure com-mands[] \
 T1/pplx/m/n/10 When the man-
  []
 
 
-Overfull \hbox (0.43738pt too wide) in paragraph at lines 1482--1493
+Overfull \hbox (0.43738pt too wide) in paragraph at lines 1591--1602
 \T1/pplx/m/n/10 are con-fig-ured with the \T1/cmtt/m/n/10 tkgrid.rowconfigure \
 T1/pplx/m/n/10 and \T1/cmtt/m/n/10 tkgrid.columnconfigure
  []
 
-
-Overfull \hbox (22.16156pt too wide) in paragraph at lines 1517--1519
+[191]
+Overfull \hbox (22.16156pt too wide) in paragraph at lines 1633--1635
 \T1/cmtt/m/n/10 cia . gov / library / publications / the-[]world-[]factbook / d
 ocs / flagsoftheworld .
  []
 
-<ch-tcltk/fig-tcltk-mali.png, id=727, 301.125pt x 222.8325pt>
+<ch-tcltk/fig-tcltk-mali.png, id=720, 301.125pt x 222.8325pt>
 File: ch-tcltk/fig-tcltk-mali.png Graphic file (type png)
 
 <use ch-tcltk/fig-tcltk-mali.png>
-<ch-tcltk/fig-tcltk-lithuania.png, id=728, 401.5pt x 222.8325pt>
+<ch-tcltk/fig-tcltk-lithuania.png, id=721, 401.5pt x 222.8325pt>
 File: ch-tcltk/fig-tcltk-lithuania.png Graphic file (type png)
 
 <use ch-tcltk/fig-tcltk-lithuania.png>
-<ch-tcltk/fig-tcltk-benin.png, id=729, 301.125pt x 222.8325pt>
+<ch-tcltk/fig-tcltk-benin.png, id=722, 301.125pt x 222.8325pt>
 File: ch-tcltk/fig-tcltk-benin.png Graphic file (type png)
 
 <use ch-tcltk/fig-tcltk-benin.png>
-<ch-tcltk/fig-tcltk-togo.png, id=730, 301.125pt x 222.8325pt>
+<ch-tcltk/fig-tcltk-togo.png, id=723, 301.125pt x 222.8325pt>
 File: ch-tcltk/fig-tcltk-togo.png Graphic file (type png)
 
-<use ch-tcltk/fig-tcltk-togo.png> [192]
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 1542--1543
+<use ch-tcltk/fig-tcltk-togo.png>
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 1661--1662
 [][][][][][][][][][][][][] 
  []
 
-[193 <./ch-tcltk/fig-tcltk-mali.png> <./ch-tcltk/fig-tcltk-lithuania.png> <./ch
--tcltk/fig-tcltk-benin.png> <./ch-tcltk/fig-tcltk-togo.png>]
-Overfull \hbox (10.00357pt too wide) in paragraph at lines 1583--1584
-[][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 1584--1585
-[][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (47.80396pt too wide) in paragraph at lines 1618--1619
+[192] [193 <./ch-tcltk/fig-tcltk-mali.png> <./ch-tcltk/fig-tcltk-lithuania.png>
+ <./ch-tcltk/fig-tcltk-benin.png> <./ch-tcltk/fig-tcltk-togo.png>]
+Overfull \hbox (47.80396pt too wide) in paragraph at lines 1722--1723
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (31.60379pt too wide) in paragraph at lines 1619--1620
+Overfull \hbox (31.60379pt too wide) in paragraph at lines 1723--1724
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[194]
-Overfull \hbox (42.4039pt too wide) in paragraph at lines 1629--1630
+
+Overfull \hbox (42.4039pt too wide) in paragraph at lines 1733--1734
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 1679--1680
+[194]
+Underfull \hbox (badness 10000) in paragraph at lines 1784--1785
 
  []
 
-[195] [196] <ch-tcltk/fig-tcltk-toolbar.png, id=751, 235.88126pt x 99.37125pt>
+[195] <ch-tcltk/fig-tcltk-toolbar.png, id=740, 235.88126pt x 99.37125pt>
 File: ch-tcltk/fig-tcltk-toolbar.png Graphic file (type png)
 
-<use ch-tcltk/fig-tcltk-toolbar.png> [197 <./ch-tcltk/fig-tcltk-toolbar.png>]
-Overfull \hbox (42.4039pt too wide) in paragraph at lines 1801--1802
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
+<use ch-tcltk/fig-tcltk-toolbar.png> [196 <./ch-tcltk/fig-tcltk-toolbar.png>]
+[197] <ch-tcltk/fig-tcltk-notebook.png, id=749, 415.5525pt x 155.58125pt>
+File: ch-tcltk/fig-tcltk-notebook.png Graphic file (type png)
 
-[198]
-Overfull \hbox (37.00385pt too wide) in paragraph at lines 1886--1887
+<use ch-tcltk/fig-tcltk-notebook.png> [198 <./ch-tcltk/fig-tcltk-notebook.png>]
+
+Overfull \hbox (37.00385pt too wide) in paragraph at lines 2026--2027
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (58.60406pt too wide) in paragraph at lines 1887--1888
+Overfull \hbox (58.60406pt too wide) in paragraph at lines 2027--2028
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[199] [200]
+[199] [200
 
-LaTeX Warning: Reference `sec:tcltk:overview' on page 201 undefined on input li
-ne 1923.
-
-
-LaTeX Warning: Reference `sec:tcltk:overview' on page 201 undefined on input li
-ne 1931.
-
-[201
-
-]
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 1980--1981
+] [201]
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 2124--2125
 [][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [202] [203]
-
-LaTeX Warning: Reference `ex:tcltk:entry-widgets' on page 204 undefined on inpu
-t line 2164.
-
-
-Overfull \hbox (37.00385pt too wide) in paragraph at lines 2183--2184
+Overfull \hbox (37.00385pt too wide) in paragraph at lines 2316--2317
 [][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (21.40672pt too wide) in paragraph at lines 2187--2203
+Overfull \hbox (21.40672pt too wide) in paragraph at lines 2320--2335
 []\T1/pplx/m/n/10 The ori-en-ta-tion is set through the op-tion \T1/cmtt/m/n/10
  orient \T1/pplx/m/n/10 tak-ing val-ues of \T1/cmtt/m/n/10 "horizontal"
  []
 
-
-Overfull \hbox (15.03497pt too wide) in paragraph at lines 2208--2212
+[204]
+Overfull \hbox (15.03497pt too wide) in paragraph at lines 2340--2345
 \T1/pplx/m/n/10 com-mand pro-duces a non-themable spin-box. Again, there is no 
 di-rect \T1/cmtt/m/n/10 tkspinbox
  []
 
-[204]
-Overfull \hbox (47.80396pt too wide) in paragraph at lines 2213--2214
-[][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-LaTeX Warning: Reference `sec:tcltk:entry-widgets' on page 205 undefined on inp
-ut line 2222.
-
-
-LaTeX Warning: Reference `fig:fig-tcltk-t-test' on page 205 undefined on input 
-line 2230.
-
-<ch-tcltk/fig-tcltk-t-test.png, id=778, 564.1075pt x 256.96pt>
+<ch-tcltk/fig-tcltk-t-test.png, id=773, 564.1075pt x 256.96pt>
 File: ch-tcltk/fig-tcltk-t-test.png Graphic file (type png)
 
-<use ch-tcltk/fig-tcltk-t-test.png> [205 <./ch-tcltk/fig-tcltk-t-test.png>]
-Overfull \hbox (20.80368pt too wide) in paragraph at lines 2294--2295
+<use ch-tcltk/fig-tcltk-t-test.png> [205]
+Overfull \hbox (20.80368pt too wide) in paragraph at lines 2445--2446
 [][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (53.20401pt too wide) in paragraph at lines 2305--2306
-[][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 2323--2324
+Overfull \hbox (15.40363pt too wide) in paragraph at lines 2470--2471
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[206] [207]
-Overfull \hbox (20.80368pt too wide) in paragraph at lines 2408--2409
+[206 <./ch-tcltk/fig-tcltk-t-test.png>] [207]
+Overfull \hbox (20.80368pt too wide) in paragraph at lines 2559--2560
 [][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (10.00357pt too wide) in paragraph at lines 2418--2420
+Overfull \hbox (10.00357pt too wide) in paragraph at lines 2569--2571
 [][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [208] [209]
-Overfull \hbox (16.48833pt too wide) in paragraph at lines 2535--2541
+Overfull \hbox (16.48833pt too wide) in paragraph at lines 2693--2699
 []\T1/pplx/m/n/10 Finally, we note that the se-lec-tion can be ad-justed us-ing
  the \T1/pplx/m/it/10 ttken-try \T1/cmtt/m/n/10 selection
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2552--2553
+Underfull \hbox (badness 10000) in paragraph at lines 2716--2717
 
  []
 
-<ch-tcltk/fig-tcltk-searchentry.png, id=796, 202.7575pt x 91.34125pt>
-File: ch-tcltk/fig-tcltk-searchentry.png Graphic file (type png)
-
-<use ch-tcltk/fig-tcltk-searchentry.png> [210]
-Underfull \hbox (badness 10000) in paragraph at lines 2608--2610
-
- []
-
-
-Overfull \hbox (64.00412pt too wide) in paragraph at lines 2621--2622
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[211 <./ch-tcltk/fig-tcltk-searchentry.png>]
-Overfull \hbox (37.00385pt too wide) in paragraph at lines 2658--2659
-[][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2666--2667
-
- []
-
-[212]
-Overfull \hbox (58.60406pt too wide) in paragraph at lines 2701--2702
-[][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (64.00412pt too wide) in paragraph at lines 2737--2738
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[213]
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 2748--2749
+[210] [211]
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 2811--2812
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (21.37186pt too wide) in paragraph at lines 2758--2767
+Overfull \hbox (21.37186pt too wide) in paragraph at lines 2821--2830
 \T1/pplx/m/n/10 ac-cept a scroll-bar (with-out too many ex-tra steps) have the 
 op-tions \T1/cmtt/m/n/10 xscrollcommand
  []
 
 
-Overfull \hbox (10.00357pt too wide) in paragraph at lines 2772--2773
+Overfull \hbox (10.00357pt too wide) in paragraph at lines 2837--2838
 [][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (10.00357pt too wide) in paragraph at lines 2774--2775
+Overfull \hbox (10.00357pt too wide) in paragraph at lines 2839--2840
 [][][][][][][][][][][][][][] 
  []
 
-[214] [215]
-Overfull \hbox (22.05089pt too wide) in paragraph at lines 2854--2855
+[212] [213]
+Overfull \hbox (22.05089pt too wide) in paragraph at lines 2927--2928
 \T1/pplx/m/n/10 buffer. Co-er-cion to char-ac-ter should be done with \T1/cmtt/
 m/n/10 tclvalue \T1/pplx/m/n/10 and not \T1/cmtt/m/n/10 as.character
  []
 
 
-Overfull \hbox (10.00357pt too wide) in paragraph at lines 2877--2878
+Overfull \hbox (13.5055pt too wide) in paragraph at lines 2955--2957
+[]\T1/pplx/m/n/10 The buffer can have its con-tents cleared us-ing \T1/cmtt/m/n
+/10 tkdelete\T1/pplx/m/n/10 , as with \T1/cmtt/m/n/10 tkdelete(t,
+ []
+
+
+Overfull \hbox (10.00357pt too wide) in paragraph at lines 2969--2970
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[214] [215]
+Overfull \hbox (10.00357pt too wide) in paragraph at lines 3095--3096
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (69.40417pt too wide) in paragraph at lines 2892--2893
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[216] [217]
-Overfull \hbox (10.00357pt too wide) in paragraph at lines 2996--2997
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (20.80368pt too wide) in paragraph at lines 3000--3001
+Overfull \hbox (20.80368pt too wide) in paragraph at lines 3099--3100
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-
-Overfull \hbox (26.20374pt too wide) in paragraph at lines 3003--3004
+[216]
+Overfull \hbox (26.20374pt too wide) in paragraph at lines 3102--3103
 [][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[218] [219]
-Overfull \hbox (20.80368pt too wide) in paragraph at lines 3067--3068
+[217]
+Overfull \hbox (20.80368pt too wide) in paragraph at lines 3187--3188
 [][][][][][][][][][][][][][][][][] 
  []
 
-[220]
-Overfull \hbox (20.80368pt too wide) in paragraph at lines 3140--3141
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+[218]
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 3261--3262
+[][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[221]
-Underfull \hbox (badness 10000) in paragraph at lines 3218--3219
+[219]
+Underfull \hbox (badness 10000) in paragraph at lines 3339--3340
 
  []
 
-[222] <ch-tcltk/fig-tcltk-filter-table.png, id=839, 602.25pt x 280.04625pt>
+[220] <ch-tcltk/fig-tcltk-filter-table.png, id=825, 602.25pt x 280.04625pt>
 File: ch-tcltk/fig-tcltk-filter-table.png Graphic file (type png)
 
 <use ch-tcltk/fig-tcltk-filter-table.png>
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 3268--3269
+Overfull \hbox (15.40363pt too wide) in paragraph at lines 3387--3388
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[223 <./ch-tcltk/fig-tcltk-filter-table.png>]
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 3300--3301
+[221 <./ch-tcltk/fig-tcltk-filter-table.png>]
+Overfull \hbox (15.40363pt too wide) in paragraph at lines 3419--3420
 [][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[224] <ch-tcltk/fig-tcltk-xml-viewer.png, id=847, 426.59375pt x 253.94875pt>
+[222] <ch-tcltk/fig-tcltk-xml-viewer.png, id=834, 426.59375pt x 253.94875pt>
 File: ch-tcltk/fig-tcltk-xml-viewer.png Graphic file (type png)
 
 <use ch-tcltk/fig-tcltk-xml-viewer.png>
-Overfull \hbox (47.80396pt too wide) in paragraph at lines 3398--3399
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 3400--3401
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 3523--3524
 [][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[225]
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 3444--3445
+[223]
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 3563--3564
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[226 <./ch-tcltk/fig-tcltk-xml-viewer.png>] [227]
-Overfull \hbox (1.12506pt too wide) in paragraph at lines 3563--3572
-[]\T1/pplx/m/n/10 A toplevel menu bar is to at-tached to top-level win-dow us-i
-ng \T1/cmtt/m/n/10 tkconfigure
+[224 <./ch-tcltk/fig-tcltk-xml-viewer.png>] [225]
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 3684--3685
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[228]
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 3589--3590
+
+Overfull \hbox (8.33507pt too wide) in paragraph at lines 3688--3697
+[]\T1/pplx/m/n/10 A toplevel menu bar is to at-tached to a top-level win-dow us
+-ing \T1/cmtt/m/n/10 tkconfigure
+ []
+
+[226]
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 3714--3715
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[229] [230]
-Overfull \hbox (58.60406pt too wide) in paragraph at lines 3715--3716
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (26.20374pt too wide) in paragraph at lines 3744--3745
+[227] [228]
+Overfull \hbox (26.20374pt too wide) in paragraph at lines 3870--3871
 [][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (20.80368pt too wide) in paragraph at lines 3748--3749
+Overfull \hbox (20.80368pt too wide) in paragraph at lines 3874--3875
 [][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (20.80368pt too wide) in paragraph at lines 3749--3750
+Overfull \hbox (20.80368pt too wide) in paragraph at lines 3875--3876
 [][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[231]
-Overfull \hbox (1.48984pt too wide) in paragraph at lines 3784--3791
+[229]
+Overfull \hbox (1.48984pt too wide) in paragraph at lines 3893--3900
 \T1/pplx/m/n/10 func-tion from the \T1/cmtt/m/n/10 svMisc \T1/pplx/m/n/10 pack-
 age to find the com-ple-tions. The use of \T1/cmtt/m/n/10 current
  []
 
-
-Overfull \hbox (26.20374pt too wide) in paragraph at lines 3793--3794
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (53.20401pt too wide) in paragraph at lines 3794--3795
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 3797--3798
-[][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[232]
-Overfull \hbox (39.71333pt too wide) in paragraph at lines 3854--3855
+[230]
+Overfull \hbox (39.71333pt too wide) in paragraph at lines 3965--3966
 \T1/pplx/m/it/10 vas \T1/cmtt/m/n/10 postscript \T1/pplx/m/n/10 sub-com-mand, a
 s in \T1/cmtt/m/n/10 tcl(canvas, "postscript", file="filename")\T1/pplx/m/n/10 
 .
  []
 
-[233]
-Overfull \hbox (10.8714pt too wide) in paragraph at lines 3890--3897
+[231]
+Overfull \hbox (10.8714pt too wide) in paragraph at lines 4002--4009
 \T1/pplx/m/n/10 com-mand \T1/pplx/m/it/10 tk-can-vas \T1/cmtt/m/n/10 bind \T1/p
 plx/m/it/10 tag_or_ID event func-tion  \T1/pplx/m/n/10 which is aliased to \T1/
 cmtt/m/n/10 tkitembind\T1/pplx/m/n/10 .
  []
 
-[234]
-
-LaTeX Warning: Reference `fig:fig-tcltk-all-fonts' on page 235 undefined on inp
-ut line 3948.
-
-
-Overfull \hbox (10.00357pt too wide) in paragraph at lines 3956--3957
+[232]
+Overfull \hbox (10.00357pt too wide) in paragraph at lines 4068--4069
 [][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 3959--3960
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 4071--4072
 [][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Package natbib Warning: Citation `Tufte:Beautiful-Evidence' on page 235 undefin
-ed on input line 3972.
+Package natbib Warning: Citation `Tufte:Beautiful-Evidence' on page 233 undefin
+ed on input line 4084.
 
 
-Overfull \hbox (6.95985pt too wide) in paragraph at lines 3970--3978
+Overfull \hbox (6.95985pt too wide) in paragraph at lines 4082--4090
 \T1/pplx/m/n/10 Ed-ward Tufte, in his book \T1/pplx/m/it/10 Beau-ti-ful Ev-i-de
 nce \T1/pplx/b/n/10 ?\T1/pplx/m/n/10 , ad-vo-cates for the use of \T1/pplx/m/it
 /10 sparklines
  []
 
-<ch-tcltk/fig-tcltk-sparklines.png, id=881, 423.5825pt x 127.47626pt>
+<ch-tcltk/fig-tcltk-sparklines.png, id=867, 423.5825pt x 127.47626pt>
 File: ch-tcltk/fig-tcltk-sparklines.png Graphic file (type png)
 
-<use ch-tcltk/fig-tcltk-sparklines.png> [235]
-Overfull \hbox (26.20374pt too wide) in paragraph at lines 4005--4006
+<use ch-tcltk/fig-tcltk-sparklines.png> [233 <./ch-tcltk/fig-tcltk-sparklines.p
+ng>]
+Overfull \hbox (26.20374pt too wide) in paragraph at lines 4117--4118
 [][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[236 <./ch-tcltk/fig-tcltk-sparklines.png>]
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 4088--4089
+[234]
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 4200--4201
 [][][][][][][][][][][][][][][][][][][] 
  []
 
-
-Overfull \hbox (20.80368pt too wide) in paragraph at lines 4097--4098
-[][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[237]
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 4115--4116
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (37.00385pt too wide) in paragraph at lines 4128--4129
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-<ch-tcltk/fig-tcltk-confirm-dialog.png, id=893, 475.7775pt x 146.5475pt>
+[235] <ch-tcltk/fig-tcltk-confirm-dialog.png, id=879, 475.7775pt x 146.5475pt>
 File: ch-tcltk/fig-tcltk-confirm-dialog.png Graphic file (type png)
 
 <use ch-tcltk/fig-tcltk-confirm-dialog.png>
-Overfull \hbox (26.20374pt too wide) in paragraph at lines 4156--4157
-[][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[238 <./ch-tcltk/fig-tcltk-confirm-dialog.png>]
-Overfull \hbox (8.94534pt too wide) in paragraph at lines 4161--4162
+Overfull \hbox (8.94534pt too wide) in paragraph at lines 4291--4296
 \T1/cmtt/m/n/10 tkwait.window \T1/pplx/m/n/10 will cause a top-level win-dow to
  be modal and \T1/cmtt/m/n/10 tkgrab.release
  []
 
 
-Overfull \hbox (4.92986pt too wide) in paragraph at lines 4166--4173
+Overfull \hbox (4.92986pt too wide) in paragraph at lines 4300--4307
 \T1/pplx/m/n/10 spec-i-fy-ing a file-name when sav-ing. These are im-ple-mented
  by \T1/cmtt/m/n/10 tkgetOpenFile\T1/pplx/m/n/10 ,
  []
 
-
-Overfull \hbox (53.20401pt too wide) in paragraph at lines 4193--4194
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (74.80423pt too wide) in paragraph at lines 4208--4209
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[239]
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 4238--4239
+[236 <./ch-tcltk/fig-tcltk-confirm-dialog.png>] [237]
+Overfull \hbox (15.40363pt too wide) in paragraph at lines 4371--4372
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-) [240] (./ch-WebGUIs/ch-WebGUIs.tex [241
+) [238] (./ch-WebGUIs/ch-WebGUIs.tex [239
 
 ]
-Overfull \hbox (78.89746pt too wide) in paragraph at lines 67--67
+Overfull \hbox (78.89746pt too wide) in paragraph at lines 66--66
 []\T1/cmtt/m/n/10 browser -> request -> server -> page lookup -> return page to
  browser -> display[] 
  []
 
+[240]
+Underfull \hbox (badness 10000) in paragraph at lines 137--148
 
-LaTeX Warning: Reference `tab:HTML-tags' on page 242 undefined on input line 10
-9.
+ []
 
-[242] (/opt/local/share/texmf-dist/tex/latex/listings/lstlang1.sty
+(/opt/local/share/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2004/09/05 1.3 listings language file
 )
 (/opt/local/share/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2004/09/07 1.3 (Carsten Heinz)
-) [243] [244]
+) [241] [242]
+[243] [244]
+Overfull \hbox (1.06544pt too wide) in paragraph at lines 347--352
+\T1/cmtt/m/n/10 extjs . com$\T1/pplx/m/n/10 ), jQuery ($\T1/cmtt/m/n/10 jQuery 
+. com$\T1/pplx/m/n/10 ), YUI ($\T1/cmtt/m/n/10 developer . yahoo . com / yoi$\T
+1/pplx/m/n/10 ) and Dojo
+ []
+
+
+Overfull \hbox (31.13463pt too wide) in paragraph at lines 365--376
+\T1/pplx/m/n/10 page in HTML which is cre-ated by its \T1/cmtt/m/n/10 showExamp
+le \T1/pplx/m/n/10 func-tion (Or \T1/cmtt/m/n/10 example(hwriter)\T1/pplx/m/n/1
+0 ).
+ []
+
 [245]
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 416--417
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
 
-LaTeX Warning: Reference `fig:gWidgets-three-oses' on page 246 undefined on inp
-ut line 322.
-
-[246] [247] [248]
-
-LaTeX Warning: Reference `tab:brew-delimiters' on page 249 undefined on input l
-ine 499.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 522--523
+[246]
+Underfull \hbox (badness 10000) in paragraph at lines 530--531
 
  []
 
@@ -3071,97 +2566,96 @@ Underfull \hbox (badness 10000) in paragraph at lines 522--523
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <9> not available
 (Font)              Font shape `T1/cmtt/m/n' tried instead on input line 3.
 ) (./brew-basic.brew.out)
-Overfull \hbox (3.10793pt too wide) in paragraph at lines 527--535
-[]$[]$   $[]$ 
+Overfull \hbox (3.10793pt too wide) in paragraph at lines 535--544
+[]$[]$   $[]$
  []
 
-(./brew-fortunes.brew [249]) (./brew-fortunes.brew.out) (./brew-header.brew)
-(./brew-footer.brew) (./brew-page.brew) [250] (./brew-list.brew)
-(./brew-list.brew.out) [251]
-Overfull \hbox (15.14677pt too wide) in paragraph at lines 661--667
+
+Underfull \hbox (badness 10000) in paragraph at lines 535--544
+
+ []
+
+[247] (./brew-fortunes.brew) (./brew-fortunes.brew.out) (./brew-header.brew)
+(./brew-footer.brew) (./brew-page.brew) [248] (./brew-list.brew)
+(./brew-list.brew.out) [249]
+Overfull \hbox (15.14677pt too wide) in paragraph at lines 664--670
 \T1/pplx/m/n/10 The ``Tips'' part of the pack-age, is pro-vided by the func-tio
 n \T1/cmtt/m/n/10 setSVGShapeToolTip\T1/pplx/m/n/10 ,
  []
 
-[252]
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 720--721
+[250]
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 722--723
 [][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (10.00357pt too wide) in paragraph at lines 722--723
+Overfull \hbox (10.00357pt too wide) in paragraph at lines 724--725
 [][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[253]
-Overfull \hbox (57.90259pt too wide) in paragraph at lines 802--802
+[251]
+Overfull \hbox (21.73962pt too wide) in paragraph at lines 783--791
+[]\T1/pplx/m/n/10 Finally, Apache must be con-fig-ured for use with \T1/cmtt/m/
+n/10 rapache\T1/pplx/m/n/10 . The \T1/cmtt/m/n/10 REvalOnStartup
+ []
+
+
+Overfull \hbox (57.90259pt too wide) in paragraph at lines 807--807
 []\T1/cmtt/m/n/10 request url -> mangle file name -> run function file through 
 rapache handler[] 
  []
 
-
-Overfull \hbox (30.38737pt too wide) in paragraph at lines 824--836
+[252]
+Overfull \hbox (30.38737pt too wide) in paragraph at lines 829--835
 \T1/cmtt/m/n/10 http : / / servername / brew / file . brew$ \T1/pplx/m/n/10 wil
 l re-solve first to Apache find-ing \T1/cmtt/m/n/10 file.brew
  []
 
-[254]
-
-LaTeX Warning: Reference `sec:pkgrapache-variables' on page 255 undefined on in
-put line 863.
-
-[255]
-Underfull \hbox (badness 10000) in paragraph at lines 880--880
+[253]
+Underfull \hbox (badness 10000) in paragraph at lines 888--888
 [][] [][]\T1/pplx/m/n/8 The def-i-ni-tions can be found at $\T1/cmtt/m/n/8 http
  : / / www . w3 . org / Protocols / rfc2616 /
  []
 
-
-Overfull \hbox (49.70328pt too wide) in paragraph at lines 921--929
-\T1/cmtt/m/n/10 localhost / brew / test . brew ? some = brew$ \T1/pplx/m/n/10 r
-e-sults in val-ues of \T1/cmtt/m/n/10 uri \T1/pplx/m/n/10 be-ing \T1/cmtt/m/n/1
-0 /brew/test.brew\T1/pplx/m/n/10 ,
- []
-
-
-Overfull \hbox (1.2887pt too wide) in paragraph at lines 921--929
-\T1/cmtt/m/n/10 filename \T1/pplx/m/n/10 be-ing \T1/cmtt/m/n/10 /var/www/brew/t
-est.brew\T1/pplx/m/n/10 , \T1/cmtt/m/n/10 path_info \T1/pplx/m/n/10 be-ing an e
-mpty string
- []
-
-
-Overfull \hbox (11.53694pt too wide) in paragraph at lines 930--935
-\T1/cmtt/m/n/10 localhost / myapp / detail ? some = brew$ \T1/pplx/m/n/10 has \
-T1/cmtt/m/n/10 uri \T1/pplx/m/n/10 be-ing \T1/cmtt/m/n/10 /myapp/detail\T1/pplx
-/m/n/10 , \T1/cmtt/m/n/10 path_info
- []
-
-[256] [257] [258] [259]
-Underfull \hbox (badness 10000) in paragraph at lines 1136--1137
+[254] [255] [256] [257]
+Underfull \hbox (badness 10000) in paragraph at lines 1148--1149
 
  []
 
-[260] [261] [262]
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 1339--1340
+[258] [259] [260]
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 1351--1352
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[263]
-Overfull \hbox (31.60379pt too wide) in paragraph at lines 1407--1408
+[261]
+Overfull \hbox (31.60379pt too wide) in paragraph at lines 1419--1420
 [][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[264] [265] [266]) [267] [268
+[262] [263] [264]) [265] [266
 
-]
+] (./guis.bbl
+Underfull \hbox (badness 6741) in paragraph at lines 47--49
+[]\T1/pplx/m/n/10 James Wet-ten-hall.  URL $\T1/cmtt/m/n/10 http : / / bioinf .
+ wehi . edu . au / ~wettenhall /
+ []
+
+)
 
 Package natbib Warning: There were undefined citations.
 
+[267
+
+]
 \tf@toc=\write5
 \openout5 = `guis.toc'.
 
-(./guis.aux)
+ (./guis.aux
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -3169,40 +2663,41 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 LaTeX Warning: There were undefined references.
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 11324 strings out of 94073
- 155288 string characters out of 1164798
- 248241 words of memory out of 1500000
- 14374 multiletter control sequences out of 10000+50000
- 74677 words of font info for 137 fonts, out of 1200000 for 2000
+ 11306 strings out of 94073
+ 154661 string characters out of 1164798
+ 264694 words of memory out of 1500000
+ 14349 multiletter control sequences out of 10000+50000
+ 77299 words of font info for 141 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
- 39i,12n,50p,1817b,1842s stack positions out of 5000i,500n,6000p,200000b,5000s
+ 38i,13n,50p,1792b,1744s stack positions out of 5000i,500n,6000p,200000b,5000s
 {/opt/local/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/opt/l
 ocal/share/texmf-dist/fonts/enc/dvips/base/8r.enc}</opt/local/share/texmf-dist/
 fonts/type1/bluesky/cm/cmmi10.pfb></opt/local/share/texmf-dist/fonts/type1/blue
 sky/cm/cmr10.pfb></opt/local/share/texmf-dist/fonts/type1/bluesky/cm/cmsy10.pfb
 ></opt/local/share/texmf-dist/fonts/type1/bluesky/cm/cmsy9.pfb></opt/local/shar
 e/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></opt/local/share/texmf-dist/fo
-nts/type1/public/cm-super/sfss0800.pfb></opt/local/share/texmf-dist/fonts/type1
-/public/cm-super/sfss1000.pfb></opt/local/share/texmf-dist/fonts/type1/public/c
-m-super/sfss1728.pfb></opt/local/share/texmf-dist/fonts/type1/public/cm-super/s
-fss2488.pfb></opt/local/share/texmf-dist/fonts/type1/public/cm-super/sfsx1000.p
-fb></opt/local/share/texmf-dist/fonts/type1/public/cm-super/sfsx1095.pfb></opt/
-local/share/texmf-dist/fonts/type1/public/cm-super/sftc1000.pfb></opt/local/sha
-re/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></opt/local/share/texmf-
-dist/fonts/type1/public/cm-super/sftt0900.pfb></opt/local/share/texmf-dist/font
-s/type1/public/cm-super/sftt1000.pfb></opt/local/share/texmf-dist/fonts/type1/p
-ublic/cm-super/sftt1095.pfb></opt/local/share/texmf-dist/fonts/type1/public/cm-
-super/sftt1200.pfb></opt/local/share/texmf-dist/fonts/type1/public/cm-super/sft
-t1728.pfb></opt/local/share/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></op
-t/local/share/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></opt/local/share/
-texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on guis.pdf (272 pages, 2276647 bytes).
+nts/type1/public/cm-super/sfit1000.pfb></opt/local/share/texmf-dist/fonts/type1
+/public/cm-super/sfss0800.pfb></opt/local/share/texmf-dist/fonts/type1/public/c
+m-super/sfss1000.pfb></opt/local/share/texmf-dist/fonts/type1/public/cm-super/s
+fss1728.pfb></opt/local/share/texmf-dist/fonts/type1/public/cm-super/sfss2488.p
+fb></opt/local/share/texmf-dist/fonts/type1/public/cm-super/sfsx1000.pfb></opt/
+local/share/texmf-dist/fonts/type1/public/cm-super/sfsx1095.pfb></opt/local/sha
+re/texmf-dist/fonts/type1/public/cm-super/sftc1000.pfb></opt/local/share/texmf-
+dist/fonts/type1/public/cm-super/sftt0800.pfb></opt/local/share/texmf-dist/font
+s/type1/public/cm-super/sftt0900.pfb></opt/local/share/texmf-dist/fonts/type1/p
+ublic/cm-super/sftt1000.pfb></opt/local/share/texmf-dist/fonts/type1/public/cm-
+super/sftt1095.pfb></opt/local/share/texmf-dist/fonts/type1/public/cm-super/sft
+t1200.pfb></opt/local/share/texmf-dist/fonts/type1/public/cm-super/sftt1728.pfb
+></opt/local/share/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></opt/local/s
+hare/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></opt/local/share/texmf-dis
+t/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on guis.pdf (275 pages, 2393549 bytes).
 PDF statistics:
- 1073 PDF objects out of 1200 (max. 8388607)
+ 1064 PDF objects out of 1200 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
- 256 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 241 words of extra memory for PDF output out of 10000 (max. 10000000)
 

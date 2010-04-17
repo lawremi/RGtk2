@@ -80,7 +80,8 @@ tkadd(fileMenu, "command", label="Evaluate selection",
 Finally, we end the file menu with a quit action. 
 <<addQuit>>=
 tkadd(fileMenu, "separator")
-tkadd(fileMenu, "command", label="Quit", command=function() tkdestroy(w))
+tkadd(fileMenu, "command", label="Quit", 
+      command=function() tkdestroy(w))
 @ 
 
 The edit menu has an undo and redo item. For illustration purposes we add an icon to the undo item.
@@ -113,8 +114,10 @@ updateUI <- function() {
   tkentryconfigure(editMenu,"Redo", state=states[canUndo(tb) + 1])
 }
 @ 
-We update the UI during idle times. The \function{after} command can be used to run a command after a period of time. The following repeats a function every second until the toplevel window no longer exists.
-<<>>=
+<<notShown, echo=FALSE>>=
+## We update the UI during idle times. The \function{after} command can be used to run a 
+## command after a period of time. The following repeats a function every second until the
+## toplevel window no longer exists.
 afterID <- ""
 repeatCall <- function(ms=1000, f, w) {
   afterID <<- tcl("after", ms, function() {
@@ -148,11 +151,13 @@ the completions.  The use of \code{current wordstart} and
 right for \R, as it stops at periods.
 <<definePopup>>=
 doPopup <- function(W, X, Y) {
-  cur <- tclvalue(tkget(W,"current  wordstart", "current wordend"))
-  tcl(W, "tag", "add", "popup", "current  wordstart", "current wordend")
+  cur <- tclvalue(tkget(W, "current  wordstart", 
+                           "current wordend"))
+  tcl(W, "tag", "add", "popup", "current  wordstart", 
+                                "current wordend")
   posVals <- head(CompletePlus(cur)[,1, drop=TRUE], n=20)
   if(length(posVals) > 1) {
-    popup <- tkmenu(tb)                 # create menu for popup
+    popup <- tkmenu(tb)                # create menu for popup
     sapply(posVals, function(i) {         
       tkadd(popup, "command", label=i, command = function() {
         tcl(W,"replace", "popup.first", "popup.last", i)

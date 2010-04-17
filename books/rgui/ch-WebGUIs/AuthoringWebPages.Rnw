@@ -446,10 +446,7 @@ with brew, the result may be stored in a file, or sent to
           & No  & \verb+<%  %>+  & \verb+<%# %>+\\
 \bottomrule
  \end{tabular}
-  \caption{The \pkg{brew} delimiters and how they are processed. The plain
-    \verb+<%+ processes within \R, \verb+<%=+ indicates to print the
-    result, and \verb+<%#+ is a comment. A trailing \verb+-%>+
-    suppresses a newline.}
+  \caption{The \pkg{brew} delimiters and how they are processed.}
  \label{tab:brew-delimiters}
 \end{table}
 

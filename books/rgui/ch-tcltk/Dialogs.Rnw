@@ -9,16 +9,36 @@
 \end{figure}
 
 %% messageBox
-The \constructor{tkmessageBox} constructor can be used to create a simple modal dialogs allowing a user to confirm an action. This replaces the older \code{tkdialog} dialogs. The \code{tkmessageBox} dialogs use the native toolkit if possible. The arguments \argument{title}{tkmessageBox}, \argument{message}{tkmessageBox} and \argument{detail}{tkmessageBox} are used to set the text for the dialog. The \code{title} may not appear for all operating systems. A messageBox dialog has an \argument{icon}{tkmessageBox} argument. The  default icon is \qcode{info} but could also be one of \qcode{error}, \qcode{question} or \qcode{warning}. The buttons used are specified by the \argument{type}{tkmessageBox} argument with values of \qcode{ok}, \qcode{okcancel}, \qcode{retrycancel}, \qcode{yesno}, or \qcode{yesnocancel}. When a button is clicked the dialog is destroyed and the button label returned as a value. The argument \argument{parent}{tkmessageBox} can be given to specify which window the dialog belongs to. Depending on the operating system this may be used when drawing the dialog.
+The \constructor{tkmessageBox} constructor can be used to create 
+simple modal dialogs allowing a user to confirm an action. This
+replaces the older \code{tkdialog} dialogs. The \code{tkmessageBox}
+dialogs use the native toolkit if possible. The arguments
+\argument{title}{tkmessageBox}, \argument{message}{tkmessageBox} and
+\argument{detail}{tkmessageBox} are used to set the text for the
+dialog. The \code{title} may not appear for all operating systems. A
+messageBox dialog has an \argument{icon}{tkmessageBox} argument. The
+default icon is \qcode{info} but could also be one of \qcode{error},
+\qcode{question} or \qcode{warning}. The buttons used are specified by
+the \argument{type}{tkmessageBox} argument with values of \qcode{ok},
+\qcode{okcancel}, \qcode{retrycancel}, \qcode{yesno}, or
+\qcode{yesnocancel}. When a button is clicked the dialog is destroyed
+and the button label returned as a value. The argument
+\argument{parent}{tkmessageBox} can be given to specify which window
+the dialog belongs to. Depending on the operating system this may be
+used when drawing the dialog.
 
 A sample usage is:
 <<eval=FALSE>>=
-tkmessageBox(title="Confirm", 
-             message="Really exit?", detail="Changes need saving.", 
+tkmessageBox(title="Confirm", message="Really exit?", 
+             detail="Changes need saving.", 
              icon="question", type="okcancel")
 @ 
 %% 
-If the default modal dialog is not enough -- for instance there is no means to gather user input -- then a toplevel window can be made modal. The \function{tkwait.window} will cause a top-level window to be modal and \function{tkgrab.release} will return the interactivity for the window.
+If the default modal dialog is not enough -- for instance there is no
+means to gather user input -- then a toplevel window can be made
+modal. The \function{tkwait.window} will cause a top-level window to
+be modal and \function{tkgrab.release} will return the interactivity
+for the window.
 
 \subsection{File and directory selection}
 \label{sec:file-direct-select}
@@ -29,17 +49,15 @@ implemented by \constructor{tkgetOpenFile},
 \constructor{tkchooseDirectory}, and \constructor{tkgetSaveFile}
 respectively. Each of these can be called with no argument, and
 returns a \code{tclObj} that can be converted to a character string
-with \code{tclvalue}. The value is empty
+with \code{tclvalue}. The value is empty when there is no selection made.
 
-
-There are arguments that can be useful.  The dialog will appear
-related to a toplevel window if the argument
+The dialog will appear related to a toplevel window if the argument
 \argument{parent}{tkgetOpenFile} is specified The
 \argument{initialdir}{tkgetOpenFile} and
 \argument{initialfile}{tkgetOpenFile} can be used to specify the
 initial values in the dialog.  The
-\argument{defaultextenstion}{tkgetSaveFile} argument can be used to specify a
-default extension for the file.
+\argument{defaultextenstion}{tkgetSaveFile} argument can be used to
+specify a default extension for the file.
 
 When browsing for files, it can be convenient to filter the available
 file types that can be selected. The \argument{filetypes}{tkgetOpenFile} argument is used for this task. However,
@@ -49,7 +67,7 @@ to filter out various image types, one could have
 tkgetOpenFile(filetypes = paste(
                 "{{jpeg files} {.jpg .jpeg} }",
                 "{{png files} {.png}}",
-                "{{All files} {*}}", sep=" ")) # the space is impt. here
+                "{{All files} {*}}", sep=" ")) # needs space
 @ 
 Extending this is hopefully clear from the pattern above.
 
@@ -63,7 +81,8 @@ tkadd(mb, "cascade", label="File", menu=fileMenu)
 
 tkadd(fileMenu,"command",label="Source file...",
       command= function() {
-        fname <- tkgetOpenFile(fileTypes="{{R files} {.R}} {{All files} *}")
+        fname <- tkgetOpenFile(fileTypes=
+                        "{{R files} {.R}} {{All files} *}")
         source(tclvalue(fname))
       })
 tkadd(fileMenu, "command", label="Save workspace as...",

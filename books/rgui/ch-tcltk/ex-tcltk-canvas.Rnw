@@ -40,7 +40,7 @@ There are two key bindings needed for movement of an object. First, we
 tag the point item that gets selected when a mouse clicks on a point
 and update the last position of the currently selected point.
 <<>>=
-lastPos <- numeric(2)                   # global to track position
+lastPos <- numeric(2)            # global to track position
 tagSelected <- function(W, x, y) {
   tkaddtag(W,  "selected",  "withtag",  "current")
   tkitemraise(W, "current")
@@ -56,7 +56,8 @@ accordingly.
 <<moveSelectedPoint>>=
 moveSelected <- function(W, x, y) {
   pos <- as.numeric(c(x,y))
-  tkmove(W, "selected", pos[1] - lastPos[1], pos[2] - lastPos[2])
+  tkmove(W, "selected", pos[1] - lastPos[1], 
+                        pos[2] - lastPos[2])
   lastPos <<- pos
 }
 tkbind(canvas, "<B1-Motion>", moveSelected)
@@ -67,7 +68,8 @@ added to do somethng after the point is released. In the original
 example, the old regression line is deleted, and a new one drawn. Here
 we simply delete the \qcode{selected} tag.
 <<>>=
-tkbind(canvas, "<ButtonRelease-1>", function(W) tkdtag(W,"selected"))
+tkbind(canvas, "<ButtonRelease-1>", 
+       function(W) tkdtag(W,"selected"))
 @ 
 
 

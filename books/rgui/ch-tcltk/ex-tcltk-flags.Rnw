@@ -25,7 +25,10 @@ This example shows how the \function{tkpack} the \function{tkgrid} geometry mana
 library(tcltk)
 @ 
 
-We will make the dimensions of the flags true to the flag proportions. These we found at \url{http://flagspot.net/flags/xf-size.html}. Here we define the proportions for the flags of interest.
+We will make the dimensions of the flags true to the flag
+proportions. These we found at
+\url{http://flagspot.net/flags/xf-size.html}. Here we define the
+proportions for the flags of interest.
 <<>>=
 dims <- cbind(Benin=2:3, Cameroon=2:3,Guinea=2:3, Mali=2:3,
               Bolivia=2:3, Lithuania=1:2,Congo=2:3, Guyana=1:2,
@@ -50,8 +53,10 @@ makeTopLevel <- function(country) {
   return(list(w=w, f= f, country=country))
 }
 @ 
-This function resizes the toplevel window and forces it to have a fixed proportion using the global \code{dims} defined previously.
-<<>>=
+<<echo=FALSE>>=
+## This function resizes the toplevel window and forces it to have a fixed proportion using the global 
+## \code{dims} defined previously.
+
 resizeWin <- function(win) {
   height <- 200;
   setWidth <- function(h)
@@ -69,7 +74,12 @@ resizeWin <- function(win) {
 }
 @
 
-Our first flags are  Cameroon (GRY), Guinea (RYG), and Mali (GYR). These are flags with 3 equal vertical strips of color. We use tkpack with \code{side="left"} to pack in the colors from left to right. The \code{expand=TRUE} option causes extra space to be allocated equally to the three children, preserving the equal sizes in this case.
+Our first flags are Cameroon (GRY), Guinea (RYG), and Mali
+(GYR). These are flags with 3 equal vertical strips of color. We use
+tkpack with \code{side="left"} to pack in the colors from left to
+right. The \code{expand=TRUE} option causes extra space to be
+allocated equally to the three children, preserving the equal sizes in
+this case.
 
 <<>>=
 win <- makeTopLevel("Cameroon")
@@ -77,8 +87,11 @@ w <- win$w; f <- win$f
 l <- makeColors(f)
 tkpack(l$green, l$red, l$yellow, expand=TRUE, 
   fill="both", side="left")
+@ 
+<<echo=FALSE>>=
 resizeWin(win)
 @ 
+
 
 To create Guinea's flag we simply move the green strip to the end.
 <<>>=
@@ -102,6 +115,8 @@ Lithuania is similar, only the stripes run horizontally. We pack from top to bot
 win <- makeTopLevel("Lithuania")
 l <- makeColors(win$f)
 tkpack(l$yellow, l$green, l$red, expand=TRUE, fill="both", side="top")
+@ 
+<<echo=FALSE>>=
 resizeWin(win)
 @ 
 
@@ -116,6 +131,8 @@ tkgrid(l$red,    row=1, column=1, columnspan=2, sticky="news")
 ## use grid in equal sizes to get spaing right
 tkgrid.rowconfigure(win$f, 0:1, weight=1)
 tkgrid.columnconfigure(win$f, 0:2, weight=1) 
+@ 
+<<echo=FALSE>>=
 resizeWin(win)
 @ 
 
@@ -127,13 +144,17 @@ win <- makeTopLevel("Togo")
 f <- win$f
 l <- makeColors(f)
 upperR <- ttkframe(f); bottom <- ttkframe(f)
+## upper left red rectangle
 tkgrid(l$red, row=0, column=0, sticky="news")
 tkgrid(upperR, row=0, column=1, sticky="news")
 tkgrid(bottom, row=1, column=0, columnspan=2, sticky="news")
 
+## top right stripes
 l1 <- makeColors(upperR)
 tkpack(l1$yellow, expand=TRUE, fill="both", side="top")
 tkpack(l1$green, expand=TRUE, fill="both", side="top")
+
+## bottom stripes
 l2 <- makeColors(bottom)
 tkpack(l2$yellow, expand=TRUE, fill="both", side="top")
 tkpack(l2$green, expand=TRUE, fill="both", side="top")
@@ -141,6 +162,8 @@ tkpack(l2$green, expand=TRUE, fill="both", side="top")
 tkgrid.rowconfigure(f, 0:1, weight=1)
 tkgrid.columnconfigure(f, 0, weight=8)
 tkgrid.columnconfigure(f, 1, weight=10)  # not quite uniform
+@ 
+<<echo=FALSE>>=
 resizeWin(win)
 @ 
 
@@ -169,8 +192,11 @@ drawCongo <- function(W) {
       w,0, w,h, w-h,h, fill="yellow", tag="yellow")
 }
 tkbind(canvas, "<Configure>", drawCongo)
+@ 
+<<echo=FALSE>>=
 resizeWin(win)
 @ 
+
 
 <<echo=FALSE>>=
 ## Guyana is identical to Congo
@@ -192,5 +218,7 @@ drawGuyana <- function(W) {
       0,0, sqrt(3)*h/2,h/2, 0,h, w,h/2, fill="yellow", tag="yellow")
 }
 tkbind(canvas, "<Configure>", drawGuyana)
+@ 
+<<echo=FALSE>>=
 resizeWin(win)
 @ 

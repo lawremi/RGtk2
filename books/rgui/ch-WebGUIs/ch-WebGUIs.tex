@@ -2,27 +2,20 @@
 
 
 
-The internet allows one to distribute their work in a convenient,
+The internet affords one the opportunity to distribute their work in a convenient,
 standardized way that allows people from around the globe to
-share. Indeed, the \R\/ project would never have reached the
-point it is had it started 10 years prior, as the web technologies
-that enabled user participation from disparate points did not exist in
-widespread form.
+share. Indeed, the \R\/ project has benefited greatly from the  web technologies
+that enable user participation from disparate points.
 
 This chapter shows some of the means to produce interactive interfaces
 between the user and R through web technologies, at the time of
-writing. Web interfaces to some process have many obvious advantages
+writing. Web interfaces to expose some resource have many obvious advantages
 over the desktop interfaces discussed in previous chapters: no
 installation issues for \R\/ and the toolkit libraries, user
-familiarity with a browser, operating system independence, etc. This
+familiarity with the browser interface, operating system independence, etc. This
 makes it much easier to share ones work, but also puts an added burden
 on the GUI writer, who must have some familiarity with new
 technologies and the security implications contained therein. 
-
-This chapter does not even pretend to be comprehensive. It covers an
-enormous array of technologies. Rather, its focus is to show how \R\/
-can be used with these technologies. The interested reader will likely
-need to seek additional help before implementation.
 
 The web programmer coming to \R\/ will find relatively simple tools as
 compared say to some open-source tools available for the python
@@ -35,6 +28,12 @@ make it possible to develop \R-driven websites. Of course, web
 technologies are changing quite rapidly, and \R\/ package writers are
 hard at work, so one should check to see if newer, more powerful
 resources, have been added to the mix.
+
+This chapter does not even pretend to be comprehensive. It covers an
+enormous array of technologies. Rather, its focus is to show how \R\/
+can be used with these technologies. The interested reader will likely
+need to seek additional help before implementation.
+
 
 \section{Authoring Web Pages}
 \label{sec:authoring-web-pages}
@@ -53,9 +52,9 @@ resources, have been added to the mix.
 
 
 The simplest web page is a static page that is returned when a user
-make a request. The basic architecture involves a browser (or some
+makes a request. The basic architecture involves a browser (or some
 other client) requesting a document from a web server. The request
-must endcode what document is desired, so the web server can find
+must encode what document is desired so the web server can find
 it. The request is specified in terms of a \defn{URI}, or uniform
 resource identifier (a URL is technically a type
 of URI). The web server in turn maps the URI request to a file on the
@@ -84,17 +83,17 @@ may involve three different techonologies described next.
 Typically a static web page is marked up in HTML. This now familiar
 markup language allows the page author to indicate structure in
 various parts of the document. Typical structures are paragraphs,
-headers, images, etc. Additionally, tags can denote presentation, such
+headers, images, etc. Additionally, markup can denote presentation, such
 as color, font etc.
 
-HTML is centered around the concept of a tag which is used to wrap a
+HTML is centered around the concept of a \dfn{tag} which is used to wrap a
 portion of the text of a file. A tag has a name or keyword, in lower
 case, and is enclosed in angle brackets. If the tag encloses some
 text, it has a start and end style. The start tag for a tag \code{x}
 would be \verb+<x>+ where the end tag would be \texttt{</x>} (an extra
 slash). All text between theses tags would carry this tag. Some tags,
 such as the image tag \tagger{img}, are used to define their attributes
-only (a link in this case) so do not come in pairs, in this case it is
+only (a url of the file in this case) so do not come in pairs, in this case it is
 common practice to end the tag with \texttt{/>}.~\footnote{There are
   two common variants of HTML one coming from SGML, another, XHTML, deriving
   from XML. Both are similar, but xhtml is stricter with its use of
@@ -106,7 +105,10 @@ common practice to end the tag with \texttt{/>}.~\footnote{There are
   (\url{http://whatwg.org}) has proposed specifications for the two
   that seem likely to become the standard for HTML5.}
 
-A few typical tags are specified in Table~\ref{tab:HTML-tags}. 
+A few typical tags are specified in
+Table~\ref{tab:HTML-tags}.~\footnote{The site
+  \url{http://www.w3schools.com/} provides a comprehensive, yet
+  accessible, listing/}
 Tags may indicate how text is supposed to be formatted (e.g. \texttt{b}),
 others indicate what type of text it is (e.g. \texttt{code}), others
 the document structure (e.g., \texttt{h1}, \texttt{p}, etc.).
@@ -120,33 +122,36 @@ the document structure (e.g., \texttt{h1}, \texttt{p}, etc.).
 
 Tag&Description\\
 \midrule
-html&Denotes an HTML file\\head&Marks header of file\\body&Marks off main body of file\\script&Used to include other types of files\\p&A paragraph. Also, br for a line break\\h1&First level header. Also h2,...,h6\\ul&Unordered list. Also ol.\\li&Denotes a list item\\a&An anchor for a hyperreference\\img&Denotes an image\\div&A text division, indicates a line break\\span&A text division, no implied break\\b&Denotes text to be set in bold\\code&Denotes text that is code\\em&Denotes text to be emphasized\\table&Creates a table element
+\code{html}&Denotes an HTML file\\\code{head}&Marks header of file\\\code{body}&Marks off main body of file\\\code{script}&Used to include other types of files\\\code{p}&A paragraph. Also, code{br} for a line break\\\code{h1}&First level header. Also \code{h2},...,\code{h6}\\\code{ul}&Unordered list. Also \code{ol}\\\code{li}&Denotes a list item\\\code{a}&An anchor for a hyperreference\\\code{img}&Denotes an image\\\code{div}&A text division, indicates a line break\\\code{span}&A text division, no implied break\\\code{b}&Denotes text to be set in bold\\\code{code}&Denotes text that is code\\\code{em}&Denotes text to be emphasized\\\code{table}&Creates a table element
 \\ \bottomrule
 \end{tabular}
 \end{table}
-A tag may have one or more \defn{attributes} specified. For example, an
-anchor tag, \texttt{a}, has an attribute to specify the image by URI,
-\tagattr{href}{a}. This attribute is indicated by name with an equals
+A tag may have one or more \defn{attributes} specified. For example,
+the anchor tag, \texttt{a}, has an attribute \tagattr{href}{a} to
+specify the link that will open withn the user clicks on the
+anchor. This attribute is indicated by name with an equals
 sign. Quotes are optional for HTML, but recommended in general. They
-are mandatory if there is white
-space involved. An example might be \verb+<a href="http://www.r-project.org" />+.
+are mandatory if there is white space involved. An example might be
+\verb+<a href="http://www.r-project.org" />+.
 
-All tags have an \texttt{id} attribute, which is used to give a unique
-ID to the part enclosed by the tag. This is used to identify the tag
-within the document object model (DOM) described in brief later. All
-tags also have a \texttt{class} attribute to indicate if the tagged
-content should be treated as a member of a class. This provides a
-means to classify and treat similar objects as a group. Some tags also
-allow one to specify style attributes, but a more modern approach is
-to use a stylesheet to specify those. The \texttt{span} and \texttt{div} tags are primarily used to specify
+All tags may have an \texttt{id} attribute specified, which is used to
+give a unique ID to the part enclosed by the tag. This is used to
+identify the tag within the document object model (DOM) described in
+brief later. All tags may also have a \texttt{class} attribute to
+indicate if the tagged content should be treated as a member of a
+class. This provides a means to classify and treat similar objects as
+a group. Some tags also allow one to specify style attributes, but a
+more modern approach is to use a stylesheet to specify those. The
+\texttt{span} and \texttt{div} tags are primarily used to specify
 attributes for the tagged text.
+\\
 
 Some characters, such as angle brackets, have a reserved meaning.  As
 such, to use an angle bracket in an HTML document requires the use an
 \dfn{HTML entity reference}.  There are many such entities -- they are
 also used for cahracter encodeings. Entities are
 denoted by a leading ampersand \texttt{\&} and trailing semicolon, as
-with \texttt{\&lt;}. 
+with \code{\&lt;} pr \code{\&gt;}. 
 
 
 \begin{example}{Simple HTML file}{eg:sample-html-xhtml-header}
@@ -164,7 +169,8 @@ with \texttt{\&lt;}.
 </html>
 \end{HTMLinput}
 
-A basic \code{xhtml} file has a different header, for example the
+A basic \code{xhtml} file has a different header, but otherwise
+appears similar. For example the
 following which specifies a version for the XML and a default name
 space through the \tagattr{xmlns}{html} attribute.
 \begin{HTMLinput}
@@ -185,7 +191,8 @@ space through the \tagattr{xmlns}{html} attribute.
   tag encloses a table. New rows are enclosed in a \tagger{tr} tag,
   and each cell can be a header cell, \tagger{th}, or a data cell
   \tagger{td}. The following shows one way alternate rows can be
-  striped by hard coding a color attribute to the rows.
+  striped by hard coding a background color attribute (\code{bgcolor})
+  to the rows.
   \begin{HTMLinput}
 <table border="0" cellpadding="0">
   <tr>
@@ -202,12 +209,12 @@ space through the \tagattr{xmlns}{html} attribute.
 \end{example}
 
 \begin{example}{\R\/ helpers}{}
-  Writing a tag and specifying a table can be tedious, especially if
-  the data is in an \R\/ object. Some helper functions are useful. The
-  \pkg{hwriter} package includes a few, for now
-  we mention \function{hmakeTag} which will produce a tag around some
-  specified content along with attributes, that can be passed in
-  through \R's \code{name=value} syntax.
+  Writing a tag and specifying a table can be tedious. Some helper
+  functions are useful. The \pkg{hwriter} package includes a few, for
+  now we mention \function{hmakeTag} which will produce a tag around
+  some specified content along with attributes, that can be passed in
+  through \R's \code{name=value} syntax. The first argument specifies
+  the tag, and the second the values to be wrapped within the tag.
 \begin{Schunk}
 \begin{Sinput}
  require(hwriter)
@@ -230,7 +237,7 @@ The function is vectorized, as can be gathered from the output.
 
 Casscading Style Sheets (\defn{CSS}) may be used to specify the
 presentation of the text on a page. Common practice is to use the
-markup language to specify document structure and a separate document
+markup language to specify document structure and a separate style sheet
 to specify the layout of the first document. The advantage is a clean
 separation of tasks so that one can make changes to the layout, say,
 without affecting the text (and vice versa). A typical usage is to be
@@ -240,8 +247,8 @@ Without going into detail, the style sheet syntax provides a means to
 specify what type of tagged content the style will apply to (the
 selector) and a means to specify what styles of markup will be
 applied. For example, the specification below has
-\texttt{h1, h2, h3, h4, h5, h6} as a selector to indicate that it
-applies to all header tags. In the \defn{declaration block} are style
+\code{h1, h2, h3, h4, h5, h6} as a \dfn{selector} to indicate that it
+applies to all header tags. In the \dfn{declaration block} are style
 specifications for the color of the text and the font
 weight. Additionally, specifications for margins and padding are
 given, along with a border on the bottom around the element.
@@ -255,12 +262,12 @@ given, along with a border on the bottom around the element.
 }
 \end{HTMLinput}
 The full specification allows for much more complicated selections, be
-they based on id of the tag, class of the tag, or relation of tag to
-an enclosing tag. 
-Style sheets can also refer to positioning of the object within the
-page. Most modern web pages use style sheets for layout, rather than
-tables, as it allows for greater accessibility and offers advantages
-with search engines.
+they based on id of the tag (indicated with a prefix \code{\#}), class
+of the tag (indicatd with a prefix \code{.}), or relation of tag to an
+enclosing tag (left to right).  Style sheets can also refer to
+positioning of the object within the page. Most modern web pages use
+style sheets for layout, rather than tables, as it allows for greater
+accessibility and offers advantages with search engines.
 
 
 \begin{example}{A striped table using style sheets}{}
@@ -288,13 +295,13 @@ tr.odd { background-color: #ffffff;}
  class specification.
  \begin{HTMLinput}
 <table>
-  <tr class='head'>
+  <tr class="head">
     <th>Header 1</th><th>Header 2</th>
   </tr>
-  <tr class='odd'>
+  <tr class="odd">
     <th>1</th> <th>2</th>
   </tr>
-  <tr class='even'>
+  <tr class="even">
     <th>3</th> <th>4</th>
   </tr>
 </table>
@@ -324,12 +331,13 @@ pages (cf. Figure~\ref{fig:gWidgets-three-oses}).
 \begin{example}{Simple use of JavaScript to make a button have an action}{eg:javascript-action-button}
   The \tagger{button} tag produces a visual button. This tag has several
   event attributes, including \tagattr{onmouseover}{button} and
-  \tagattr{onclick}{button}. Here we show how to change the documents background
+  \tagattr{onclick}{button}. When these occur, the specified
+  JavaScript code is called. Here we show how to change the documents background
   color on a mouseover, and how to display a message on a mouse click.
   \begin{HTMLinput}
 <button
   onMouseOver="document.bgColor='red'; return true;"
-  onMouseOut="document.bgColor=''; return true;"
+  onMouseOut="document.bgColor="; return true;"
   onClick="alert('clicked button'); return true;" >
   Click me...
 </button>
@@ -338,7 +346,7 @@ pages (cf. Figure~\ref{fig:gWidgets-three-oses}).
 
 There are several open source JavaScript libraries available that
 offer convenient interfaces to JavaScript and UI widgets. We
-mention ExtJS (\url{www.extjs.com}, jQuery (\url{jQuery.com}), YUI
+mention ExtJS (\url{www.extjs.com}), jQuery (\url{jQuery.com}), YUI
 (\url{developer.yahoo.com/yoi}) and Dojo
 (\url{www.dojotoolkit.org}). 
 
@@ -346,8 +354,9 @@ mention ExtJS (\url{www.extjs.com}, jQuery (\url{jQuery.com}), YUI
 \subsection{\R\/ tools to assist with authoring web pages}
 \label{sec:r-tools-authoring}
 
-There are quite a few packages for \R\/ to faciliate authoring web pages from
-\R\/ objects. We mention a couple.
+There are quite a few packages for \R\/ to faciliate the authoring web
+of pages from within
+\R. We mention a couple.
 
 \subsubsection{The hwriter package}
 \label{sec:hwriter-package}
@@ -356,17 +365,33 @@ There are quite a few packages for \R\/ to faciliate authoring web pages from
 The \pkg{hwriter} package simplifies the task of creating HTML tables
 for \R\/ objects, such as a matrix or vector. The package has a
 self-generated example page in HTML which is created by its
-\function{showExample} function. The main function \function{hwrite}
-maps \R\/ objects into table objects (by default) and has many options
-to modify the attributes involved. By default, it writes its output to
-a file. The helper function \function{openPage} takes a file name and
-returns a text connection. The \function{closePage} function will
-close it. In the examples below, so as the output will print, we use the \function{stdout} function instead
-for the connection.
+\function{showExample} function (Or \code{example(hwriter)}). The main
+function \function{hwrite} maps \R\/ objects into table objects (by
+default) and has many options to modify the attributes involved. By
+default, it writes its output to a file. The helper function
+\function{openPage} takes a file name and returns a text
+connection. The \function{closePage} function will close it. In the
+examples below, so as the output will print, we use the
+\function{stdout} function instead for the connection.
 
 The package's examples show many different usages, we illustrate a few below.
 
-To create a simple table, we simply call the constructor on a matrix or
+
+A hyperlink can be generated through the \argument{link}{hwriter} argument.
+\begin{Schunk}
+\begin{Sinput}
+ hwrite("R project", link="http://www.r-project.org",
+        page=stdout())
+\end{Sinput}
+\begin{Soutput}
+<a href="http://www.r-project.org">R project</a>
+\end{Soutput}
+\end{Schunk}
+Although this usage doesn't save typing, a vectorized call could
+easily do so.
+
+
+To create a simple table, we need only call the constructor on a matrix or
 data.frame object:
 \begin{Schunk}
 \begin{Sinput}
@@ -384,11 +409,11 @@ data.frame object:
 \end{Schunk}
 
 
-To get alternate rows to be striped we could have:
+To get alternate rows to be striped we could have the following:
 \begin{Schunk}
 \begin{Sinput}
- hwrite(m, page=stdout(), 
-        row.class=rep(c("odd","even"), nrow(m))[1:nrow(m)])
+ styles <- c("odd","even")
+ hwrite(m, page=stdout(), row.class=rep(styles, length=nrow(m)))
 \end{Sinput}
 \begin{Soutput}
 <table border="1">
@@ -399,23 +424,8 @@ To get alternate rows to be striped we could have:
 </table>
 \end{Soutput}
 \end{Schunk}
+The \code{row.class} value is recycled for each entry in the row.
 
-(Or using the \tagattr{bgcolor}{tr} attribute setting
-\argument{row.bgColor}{hwriter}. Although, most of the
-\function{hwrite} arguments recycle, in this case we do so
-manually. as the ``\code{row.}'' attributes need such assistance.)
-
-
-Finally, a hyperlink can be generated through the \argument{link}{hwriter} argument.
-\begin{Schunk}
-\begin{Sinput}
- hwrite("R project", link="http://www.r-project.org",
-        page=stdout())
-\end{Sinput}
-\begin{Soutput}
-<a href="http://www.r-project.org">R project</a>
-\end{Soutput}
-\end{Schunk}
 
 \subsubsection{The \pkg{R2HTML} package}
 \label{sec:pkgr2html-package}
@@ -471,8 +481,7 @@ and inner border can be set (we omit the output).
 The package also includes a number of functions to facilitate the
 drafting of HTML files within \R, including \function{HTMLInitFile},
 \function{HTMLCSS}, \function{HTMLInsertGraph} and
-\function{HTMLEndFile}. The functions \function{HTMLStart} and
-\function{HTMLEnd} 
+\function{HTMLEndFile}.
 
 
 \subsubsection{The \pkg{brew} package}
@@ -488,18 +497,17 @@ which have tools to create HTML pages.
 The \pkg{brew} package does something similar, yet different. It
 allows one to place a template within an HTML file that \R\/ will
 eventually populate when called accordingly. In the next section, we
-illustrate how this can be used dynamically in a web page. For now, we
+illustrate how this can be used to produce dynamically generated web pages. For now, we
 mention how to make a template and how to process it.
 
-A template is a file which is processed by the \function{brew}
-function. This function returns the contents of the file after
-modification to store in a file or to print out.
 
 A template is a file with parts of it marked by delimiters
 (cf. Table~\ref{tab:brew-delimiters}). All text not within delimiters
 is processed as is. Whereas, text within delimiters may be evaluated
 by \R, and if evaluated the contents may be inserted into the output
-or simply used to adjust the evaluation environment.
+or simply used to adjust the evaluation environment. When processed
+with brew, the result may be stored in a file, or sent to
+\code{stdout}.
 
 
 \begin{table}
@@ -511,11 +519,11 @@ or simply used to adjust the evaluation environment.
     \cmidrule{3-4}
    Print & Yes & \verb+<%= %>+ & no delimiters\\
 %   \addlinespace[.5pt]\\
-          & No  & \verb+<% %>+  & \verb+<%# %>+\\
+          & No  & \verb+<%  %>+  & \verb+<%# %>+\\
 \bottomrule
  \end{tabular}
-  \caption{The \pkg{brew} delimiters and how they are processed}
-  \label{tab:brew-delimiters}
+  \caption{The \pkg{brew} delimiters and how they are processed.}
+ \label{tab:brew-delimiters}
 \end{table}
 
 
@@ -532,9 +540,6 @@ side has \pkg{brew} commands and the right side is their output.
 \begin{minipage}{0.45\linewidth}
   \HTMLinputlisting{brew-basic.brew.out}
 \end{minipage}
-
-The inline example has a dash before the closing delimiter to suppress
-a newline.
 \end{example}
 
 \begin{example}{Dynamically formatted text}{eg:brew-dynamic-text}
@@ -568,7 +573,7 @@ produces
 \HTMLinputlisting{brew-footer.brew}    
 
   And a typical page has this structure. We set the variable
-  \code{title} in the scope of this page, but it is seen withing the
+  \code{title} in the scope of this page, but it is seen within the
   scope of the call to process the header page.
   
 \HTMLinputlisting{brew-page.brew}    
@@ -596,16 +601,16 @@ This template
 \label{sec:graphics-web-pages}
 Web pages may be plain text, but most contain images or graphics. The
 \tagger{img} tag allows one to display a graphics file in an HTML
-page by specifying it \tagattr{src}{img} attribute. This is an image file,
+page by specifying its \tagattr{src}{img} attribute. This is an image file,
 often in \code{png}, \code{gif} or \code{jpeg} format. In this
 section, we describe how \R\/ can be used to generate images by using
-different device drivers. To list all possible stock devices, see the
-help page for \code{Devices}. The function \function{capabilities} list
+different device drivers. To list all the possible stock devices, see the
+help page for \code{Devices}. The function \function{capabilities} lists
 which devices are available for a given \R\/ installation.
 
 \subsubsection{png}
 \label{sec:images}
-Typically when a plot command is issue, an interactive plot device is
+Typically when a plot command is issued, an interactive plot device is
 opened or reused, however, the user can specify a device to save the
 output to a file for further use. For example, the \function{pdf} and
 \function{postscript} functions will turn \R\/ commands into files for
@@ -636,9 +641,7 @@ in png format.
 The web has other means to display graphics than an inclusion of an
 image file. For example, Flash is a very popular method.~\footnote{The
   \pkg{FlashMXML} from \url{omegahat.org} provides a means to
-  genearate flash files from within \R.} Scalable vector graphics
-(SVG, \url{http://www.w3.org/Graphics/SVG/}) is another way to specify
-a graphical object using XML. Many modern web browsers have support for
+  genearate flash files from within \R.} SVG (Scalable vector graphics)~\footnote{\url{http://www.w3.org/Graphics/SVG/}} is another way to specify graphical objects using XML. Many modern web browsers have support for
 the display of SVG graphics. To insert the file, we have the
 \tagger{object} tag and its attributes \tagattr{data}{object} and
 \tagattr{type}{object}, as in
@@ -671,14 +674,16 @@ set up the axes, etc.
 \begin{Schunk}
 \begin{Sinput}
  require(RSVGTipsDevice)
- f <- "image-svg.sv"
+ f <- "image-svg.svg"
  devSVGTips(f, toolTipMode=2, toolTipOpacity=.8) 
  plot(mpg ~ wt, mtcars, pch=NA) 
  nms <- rownames(mtcars) 
+ gurl <- function(x)                     # search google
+   sprintf("http://www.google.com/search?q=%s", x)
  for(i in 1:nrow(mtcars)) { 
    ## need to add tooltip shape by shape 
    setSVGShapeToolTip(title=nms[i])    # add tooltip 
-   setSVGShapeURL("http://www.google.com")    # some URL 
+   setSVGShapeURL(gurl(nms[i]), target="_blank")
    with(mtcars, points(wt[i], mpg[i], cex=2, pch=16)) # add
  } 
  invisible(dev.off())
@@ -690,7 +695,7 @@ set up the axes, etc.
 
 \subsubsection{The canvas tag}
 \label{sec:canvas-tag}
-HTML5 is a major extenstion to HTML that is being implemented in most
+HTML5 is a major extension to HTML that is being implemented in most
 browsers at the time of the writing of this book. One of the new
 features of HTML5 is the \tagger{canvas} element, which allows
 JavaScript code to manipulate objects, similar to the \function{tkcanvas}
@@ -709,11 +714,8 @@ usage involves creating the JavaScript:
 \end{Sinput}
 \end{Schunk}
 
-Then, within the HTML File, code along the lines of the following is
-needed. The first \tagger{script} tag is used to define the variable
-\code{ctx} to hold the canvas
-object, as this is assumed by the canvas package. 
-
+Then, within the HTML file, code along the lines of the following is
+needed. 
 \begin{HTMLinput}
 <canvas id="canvas_id" width=480 height=480></canvas>
 <script type="text/javascript" language="javascript">
@@ -721,9 +723,12 @@ var ctx = document.getElementById("canvas_id").getContext("2d");
 </script> 
 <script type="text/javascript" src="canvas-commands.js"></script>
 \end{HTMLinput}
+The first \tagger{script} tag is used to define the variable
+\code{ctx} to hold the canvas object, as this is assumed by the canvas
+package.
 
-
-An alternative to \pkg{canvas} is possible through the \pkg{RGraphicsDevice} device from \url{omegahat.org}.
+The \pkg{RGraphicsDevice} device from \url{omegahat.org} provides a
+possible alternative to the \pkg{canvas} package.
 
 
 \section{The rapache package}
@@ -748,7 +753,7 @@ supported by the apache Apache Software Foundation. It is extremely
 successful -- its website (\url{http://www.apache.org}) boasts it has
 been the most popular web server on the internet since 1996. Like \R,
 Apache's open source nature allows developers to customize its
-standard behavious, in this case using modules. The \pkg{RApache}
+standard behaviours, in this case using modules. The \pkg{RApache}
 package (\url{http://biostat.mc.vanderbilt.edu/rapache/}) provides
 such a module that inserts \R\/ in the processing phase of a request
 to the web server.
@@ -771,10 +776,11 @@ configure script. For Debian users, the package can be installed
 through the usual mechanism.
 Afterwards, Apache must be configured.
 
-The \R\/ module must be loaded into Apache. This is done in the
+Next, the module must be loaded into Apache. This is done in the
 standard way for Apache, through its \code{LoadModule} directive. This
 is done before any other \R-centric directives are given in Apache's configuration.
 
+Finally, Apache must be configured for use with \pkg{rapache}. 
 The \code{REvalOnStartup} directive is used to specify any packages
 that should be loaded whenever the web server starts. The web server
 embeds a copy of \R\/ in itself and spawns copies of this as it spawn
@@ -783,8 +789,7 @@ offers a chance to pre-load common packages to speed things up at the
 cost of a larger memory footprint. \code{RSourceOnStartup} is similar,
 only it used to specify a file to be sourced on startup.
 
-\paragraph{The Directory Directive}
-
+\paragraph{The Directory directive}
 There are a few directives to configure \pkg{rapache} to process an
 incoming request. A standard configuration for Apache, is to have the
 URL specify a file on the file system after some mangling of the name,
@@ -807,13 +812,13 @@ request url -> mangle file name -> run function file through rapache handler
 \end{figure}
 
 
-The \pkg{rapache} manual specifies a typical usage is to call
-\function{brew} on the file.  That is, to make a dynamic web page a
-brew template is created and placed into the appropriate
-directory.
+The \pkg{rapache} manual demonstrates a typical usage calling
+\function{brew} on a template to produce the HTML file.  That is, to
+make a dynamic web page one only needs to write a brew template and
+plac it into the appropriate directory.
 
-To configure \pkg{rapache} to do this, the following example directive
-may be added to Apache's configuration.
+To configure \pkg{rapache} for this, a directive along the lines of
+the following may be added to Apache's configuration files.
 \begin{HTMLinput}
 <Directory /var/www/brew>
   SetHandler r-script
@@ -826,14 +831,13 @@ such as \url{http://servername/brew/file.brew} will resolve first to
 Apache finding \code{file.brew} in the \code{/var/www/brew/}
 directory, and then that file will be processed by the \function{brew}
 function in the \pkg{brew} package. The output will then be returned
-to the client making the request. The \code{SetHandler} directive,
-specifies the handler will be script, thereby passing along the file
-information and an environment. The \code{RHandler} directive is used
-to specify a function to call. This example assumes the \pkg{brew}
-package is not loaded, so the \function{brew} is found from within the
-package. An alternative to \function{brew}, may be
-\function{sys.source}.
+to the client making the request. 
 
+The \code{SetHandler} directive can be \code{r-script}, in which case
+the function called has two arguments a file path and an
+environment. The brew call uses these to find the template file, and
+give a context for evaluation. Alternatively, this directive can be
+\code{r-handler} in which case no arguments are passed to the call.
 
 \paragraph{The Location Directive}
 
@@ -846,6 +850,7 @@ request -> rapache calls function -> returns output to client
   \caption{Creating a web page from a script and inputs}
   \label{fig:rapache-location-directive}
 \end{figure}
+
 Requests need not map to a file system, but can simply map to a
 function call. For example, an application might be designed around
 data stored in a data base and all pages are generated dynamically. To
@@ -867,23 +872,20 @@ output based on this.
 \subsection{Creating files}
 \label{sec:creating-files}
 
-The typical use of \pkg{rapache} is to return an HTML file, but this
-is not the only possibility.
+The typical use of \pkg{rapache} is to return an HTML file, but it is
+possible of much more. For example, the server may be asked to
+dynamically generate a graphic, and the output would be an image
+file. As well, web services are used to pass some resource, say some
+data to a client requesting it. This data may be stored in XML format,
+or JSON or YAML etc. As such, information about the file type is passed back to the
+client along with the page.  
 
-A \pkg{brew} template can easily have the necessary header/body
-structure of an HTML file to be returned by the server to the
-client. However, if the page is generated by a function call, as with
-the Location directive, \pkg{rapache} provides some convenience functions.
-
-Response headers can be added throught the \function{setHeader}
-function. The set of headers is long and technical.~\footnote{The
-  definitions can be found at \url{http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html}.}
-
-Web servers typically return HTML files, but are possible of much
-more. For example, the server may be asked to dynamically generate a
-graphic, and the output would be an image file. As well, web services
-are used to pass some resource, say some data to a client requesting
-it. This data may be stored in XML format, or JSON or YAML etc. The
+If the page is generated by a function call, as with the Location
+directive example, \pkg{rapache} provides some convenience functions
+for providing this information.  Response headers can be added
+throught the \function{setHeader} function. The set of headers is long
+and technical.~\footnote{The definitions can be found at
+  \url{http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html}.}  The
 \function{setContentType} function is used to set the MIME type of the
 response. It must be called before any \function{print} or
 \function{cat} statements in the file.  To send back binary data, the
@@ -918,28 +920,37 @@ The \code{SERVER} variable holds a large amount of information on the
 request. For example, the \code{status} componenent returns the status
 code. Some of the most useful, decompose the URL requesting the page.
 
+
+
 The response depends on the configuration. If the we use
 \code{/var/www/brew} to process requests through \function{brew}, as
 above, then a request like
 \url{http://localhost/brew/test.brew?some=brew} results in values of
-\code{uri} being \code{/brew/test.brew}, 
-\code{filename} being  \code{/var/www/brew/test.brew},
-\code{path\_info} being an empty string and 
-\code{args} holding the string \code{some=brew}.
+
+\begin{tabular}{r@{\quad}l}
+\code{uri} &being \code{/brew/test.brew},\\
+\code{filename} &being  \code{/var/www/brew/test.brew},\\
+\code{path\_info} &being an empty string and \\
+\code{args} &holding the string \code{some=brew}.
+\end{tabular}
+
 
 However, if we use the Location directive above, then the request
-\url{http://localhost/myapp/detail?some=brew} has \code{uri} being
-\code{/myapp/detail}, \code{path\_info} being \code{/detail} (the
-``virtual'' part of the request), and \code{args} again holding the
-string \code{some=brew}.
+\url{http://localhost/myapp/detail?some=brew} has 
+
+\begin{tabular}{l@{\quad}l}
+\code{uri} &being \code{/myapp/detail},\\
+\code{path\_info} &being \code{/detail} (the``virtual'' part of the request), and\\
+\code{args} &again holding the string \code{some=brew}.
+\end{tabular}
 
 
 
 \paragraph{\code{GET}}
-Both of the example urls above result have \code{SERVER\$method} being
+Both of the example urls above result in the variable \code{SERVER\$method} being
 \code{GET}. HTTP has a few conventions that are not enforced, but
 are associated with it providing RESTful web services. One being that
-one uses a certain set of methods to interact with the service. A
+one uses a limited set of methods to interact with the service. A
 \code{GET} request is meant to return data, a \code{POST} request is
 meant to create new data, a \code{PUT} request is meant to update data
 and a \code{DELETE} request to delete data.
@@ -956,9 +967,9 @@ list with component \code{some} whose value is \code{brew}.
 \paragraph{\code{POST}}
 A \code{POST} request usually comes from within a form. As with a
 \code{GET} request, arguments can be passed in with the request,
-although they do not appear in a URL as illustrated above. As with the
+although they do not appear in a URL. As with the
 \code{GET} variable, the arguments appear as named components in the
-\code{POST} variable. \code{POST} request can contain more information
+\code{POST} variable. \code{POST} requests can contain more information
 -- they are not limited in length the same way --
 and must be used to upload files, say.
 
@@ -972,20 +983,21 @@ requests. For large web sites, this has an advantage when multiple
 servers are used to process requests. However, it has disadvantages as
 the request must relay the state of a web page. Several mechanisms have
 been developed to deal with this issue. Sessions, where information is
-kept server side and an ID kept with the client allows a state to be
-maintained. Another solution is to store information on the client
-side. This is implemented through cookies. Although cookies have
-privacy issues, their use is widespread. 
+kept server side and an ID kept with the client allow a state to be
+maintained server side. 
 
-A basic cookie consists of a name and a value (a character vector of length
-1).  Cookies must satisfy certain validity constraints which are
-specified through a time to expire, a path to which the cookie
-pertains and a domain for which the cookie is valid. The \pkg{rapache}
-function \function{setCookie} can be used to set a cookie. The first
-argument is the cookie name, the second the value, and others are
-available to set properties, such as an expiry time. Cookies are
-placed in the outgoing header of a document, so this call is done
-before the \code{head} tag.
+
+Another solution is to store information on the client side. This is
+implemented through \dfn{cookies}. Although cookies have privacy
+issues, their use is widespread.  A basic cookie consists of a name
+and a value (a character vector of length 1).  Cookies must satisfy
+certain validity constraints which are specified through a time to
+expire, a path to which the cookie pertains and a domain for which the
+cookie is valid. The \pkg{rapache} function \function{setCookie} can
+be used to set a cookie. The first argument is the cookie name, the
+second the value, and others are available to set properties, such as
+an expiry time. Cookies are placed in the outgoing header of a
+document, so this call is done before the \code{head} tag.
 
 When a page is loaded, the \code{COOKIES} variable contains cookie
 information. Again, as a list. In this case, the names are the valid
@@ -1010,9 +1022,9 @@ call as the form is submitted. For example, this may be used to specify code to
 validate the form entries.
 
 \paragraph{The input tag}
-With the \tagger{form} tags control elements may be placed. The
-\tagger{input} tag is used to specify several types of controls. The
-\tagattr{type}{input} attribute is used to specify which control. The
+Within the \tagger{form} tags control elements may be placed. The
+\tagger{input} tag is used to specify several types of controls, he
+\tagattr{type}{input} attribute indicating which control. The
 default is \code{text} for a single line text entry, but other values are
 \code{password} for a password entry; \code{checkbox} and \code{radio}
 for selection of items; \code{file} for a file upload control;
@@ -1030,11 +1042,11 @@ specify the control size and length of text string. For images
 the selection widgets, \tagattr{checked}{option} is used to specify if the
 button is on. 
 
-To illustrate, this HTML would produce a simple text entry area
+To illustrate, this HTML would produce a simple text entry area:
 \begin{HTMLinput}
 <input type="text" value="initial text" />
 \end{HTMLinput}
-This would be used to specify a submit button
+This would be used to specify a submit button:
 \begin{HTMLinput}
 <input type="submit" value="submit" />
 \end{HTMLinput}
@@ -1079,7 +1091,7 @@ tag. The attributes \tagattr{cols}{textarea} and
 
 \subsection{Security}
 
-Forms allow users to specify values. These value may then be processed
+Forms allow users to specify values, which may then be processed
 by the underlying \R\/ process within \pkg{rapache}. As such a
 malicious user may try to have code run that could compromise the web
 server. More benignly, the user may specify responses that include
@@ -1090,7 +1102,7 @@ a web application, one should assume that user input for web sites should never 
 \paragraph{Unclosed or malicious tags}
 To avoid malformed HTML one should encode any user input that is
 echoed back to a web page. The following function will replace certain
-characters with their HTML entity for safe inclusion with a page.
+characters with their HTML entity for safe inclusion within a page.
 
 \begin{Schunk}
 \begin{Sinput}
@@ -1207,9 +1219,9 @@ xhtml, we have for the header:
 <title> <%= title %> </title>
 </head>
 <body>
-<% 
+<%= 
   if(exists("user_name") && nchar(user_name)) 
-    cat(sprintf("<h2>Welcome %s</h2>", HTMLencode(user_name)))
+    sprintf("<h2>Welcome %s</h2>", HTMLencode(user_name))
 %>
 \end{HTMLinput}
 The \code{user\_name} variable is set in the greeting page, so may
@@ -1229,7 +1241,7 @@ Our greeting page illustrates how to use a form to gather user input, in this ca
  }
 \end{Sinput}
 \end{Schunk}
-The main part of the \pkg{brew} template is a basic form using the
+The main part of the \code{login-form.brew} template is a basic form using the
 \code{input} tag in two different ways.
 \begin{HTMLinput}
 <form method="POST" action="/simpleapp/select">
@@ -1265,8 +1277,8 @@ selection includes this
 \begin{HTMLinput}
 <form method="GET" action="/simpleapp/id">
 <select name="id">
-<% 
-  cat(hmakeTag("option", nms)) 
+<%= 
+  hmakeTag("option", nms)
 %>
 </select>
 <input type="submit" value="submit" />
@@ -1392,16 +1404,16 @@ briefly how to use \pkg{rapache} to provide the data for such a
 request. 
 
 \begin{example}{Creating a web service using \pkg{rapache}}{eg:web-service}
-  This example will illustrate how make a web service with
+  This example will illustrate how to make a web service with
   \pkg{rapache}. There are two pieces, the JavaScript code in the web
   page, and the server code. For the JavaScript piece, we use the
   \code{jQuery} library, as the use is somewhat straightforward.
   
-  We illustrate how to return HTML, JSON and XML. First, the HTML.
+  We illustrate how to return content in either HTML, JSON or XML format. 
   
-  In the header of our web page, we must call in the \code{jQuery}
-  JavaScript library. These files may be on local webserver, or called
-  in with the following HTML code:
+  First, the HTML. In the header of our web page, we must call in the
+  \code{jQuery} JavaScript library. These files may be on local
+  webserver, or called in with the following HTML code:
   \begin{HTMLinput}
 <script 
   src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js" 
@@ -1409,17 +1421,19 @@ request.
 </script>    
   \end{HTMLinput}
 
-  Inside the HTML page, we have a place holder to put the text from
+  Inside the same HTML page, we have a place holder to put the text from
   the web service. We use \tagger{div} tag, with an unique id.
   \begin{HTMLinput}
 <div id="htmlTarget"> [HTML target] </div>    
   \end{HTMLinput}
-  (There are also similar areas for JSON and XML.)
+  There are also similar areas for JSON and XML. If things are working
+  properly, the bit \code{[HTML target]} won't be seen, as our web
+  service will provide its content.
   
   We want the request for data to happen when the page loads. The
   \code{jQuery} library provides a means to have a function called as
   the page loads (before any images are downloaded, say). We place the
-  command within this bit of JavaScript.
+  commands within this snippet of JavaScript.
   \begin{HTMLinput}
 <script type="text/javascript">
   $(document).ready(function(){  
@@ -1428,9 +1442,12 @@ request.
 </script>
   \end{HTMLinput}
 
-  As for the JavaScript commands,  the following jQuery code will
+  As for the JavaScript commands, the following jQuery code will
   produce the Ajax request. This assumes the webserver is running
-  locally. One would replace \code{localhost} with the appropriate site.
+  locally. One would replace \code{localhost} with the appropriate
+  site.~\footnote{For security purposes, the server providing the web
+    service content must have the same domain as that providing the
+    web page.}
   \begin{HTMLinput}
 $.ajax({
    type: "GET",
@@ -1445,14 +1462,17 @@ $.ajax({
    });    
   \end{HTMLinput}
   To explain, the \code{\$} is a \code{jQuery} variable, the first
-  occurence is a call to its \code{ajax} method, The arguments are
-  specifed to make a \code{GET} request to a certain url. The return
+  occurence is a call to its \code{ajax} method. The \code{.}
+  indicates that. Whereas, the \code{\$("htmlTarget")} is a data
+  selection call. The arguments to the \code{ajax} method
+  specify  a \code{GET} request to a certain url. The return
   data will be HTML. The request, if a success, will replace the HTML
   code within the node with id \code{htmlTarget} with that returned by
   the Ajax request. If an error is returned, an error message is placed
   there instead.
   
-  Within the \R\/ script run by \pkg{rapache}, we have a call like this
+  Within the \R\/ script run by \pkg{rapache}, we have a call like
+  this to produce the content.
 \begin{Schunk}
 \begin{Sinput}
  show_html <- function() {
@@ -1463,18 +1483,20 @@ $.ajax({
 \end{Sinput}
 \end{Schunk}
 
-Which specifies the content type and some HTML text. No headers are
+This specifies the content type and some HTML text. No headers are
 needed here.  The \code{d} variable refers to some data frame. If
 there were an error, we would return an error code, say \code{404L}
 for file not found. In this case the error handler is called.
   
 
 
-Using \code{JSON} is not much different. This example will use the
-package \pkg{rjson} to create encode the data into json code, but
-\pkg{RJSONIO} can be used instead (from \url{omegahat.org}) or one can
-create the JSON within \R\/ directly. Here is the server side code
-(not written with any generality):
+Using \code{JSON} is not much different, although the JSON is just the
+data, so there will need to be some formatting within JavaScript. This
+illustration will use the package \pkg{rjson} to create encode the data
+into json markup, but \pkg{RJSONIO} can be used instead (from
+\url{www.omegahat.org}) or one could create the JSON within \R\/
+directly. Here is the server side code (not written with any
+generality):
 \begin{Schunk}
 \begin{Sinput}
  show_json <- function() {
@@ -1552,10 +1574,10 @@ $.ajax({
  }
 })
 \end{HTMLinput}
-The \code{data} argument is used to pass in a parameter. As for the
-\code{success} callback, as before we append tet to the target after
+The \code{data} argument is again used to pass in a parameter. As for the
+\code{success} callback, as before we append text to the target after
 clearing it out. To find the text, is a bit tricky, as it uses
-\code{jQuery}'s selector methods. Basically, the variable \code{this}
+\code{jQuery}'s selector methods. Within the method call, the variable \code{this}
 stands for each \code{car} node, and the \code{find} method gets the
 child node for that variable. The \code{text} method converts the
 object to text that can be appended to the target.

@@ -1,18 +1,22 @@
 This example shows how a text buffer can be used to display the output
-of \R\/ commands, using an approach modified from \pkg{Sweave}. The
-following function does the work of evaluating a command chunk then
-inserting the values into the text buffer, using different markup to
-indicate commands from output.
+of \R\/ commands, using an approach modified from \pkg{Sweave}.
+
+<<>>=
+## create formatting tags
+tktag.configure(t, "commandTag", foreground="blue", 
+                font="courier 12 italic")
+tktag.configure(t, "outputTag", font="courier 12")
+tktag.configure(t, "errorTag", foreground="red", 
+                font="courier 12 bold")
+@ 
+
+The following function does the work of evaluating a command chunk
+then inserting the values into the text buffer, using the different
+markup tags specified above to indicate commands from output.
 
 <<>>=
 evalCmdChunk <- function(t, cmds) {
-  ## create tags
-  tktag.configure(t, "commandTag", foreground="blue", 
-                  font="courier 12 italic")
-  tktag.configure(t, "outputTag", font="courier 12")
-  tktag.configure(t, "errorTag", foreground="red", 
-                  font="courier 12 bold")
-
+  
   cmdChunks <- try(parse(text=cmds), silent=TRUE)
   if(inherits(cmdChunks,"try-error")) {
     tkinsert(t, "end", "Error", "errorTag") # add tag for markup
@@ -57,7 +61,7 @@ addScrollbars <- function(parent, widget) {
 @
 
 We envision this as a piece of a larger GUI which generates the
-commands t evaluate. For this example though, we make a simple GUI.
+commands to evaluate. For this example though, we make a simple GUI.
 
 <<makeGUI>>=
 w <- tktoplevel(); tkwm.title(w, "Text buffer example")

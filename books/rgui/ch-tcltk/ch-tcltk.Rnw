@@ -43,6 +43,7 @@ print.tclObj <- noTclPrint
 %   }
 % }
 \chapter{Tcl Tk: Overview}
+\label{sec:tcltk:overview}
 
 \TCL\/ (``tool command language'') is a scripting language and
 interpreter of that language.  Originally developed in the late 80s by
@@ -50,7 +51,24 @@ John Ousterhout as a ``glue'' to combine two or more complicated
 applications together, it evolved overtime to find use not just as
 middleware, but also as a standalone development tool.
 
-\TK\/ is an extension of \TCL\/ that provides GUI components through
+\TK~\footnote{
+  %% Documentation sources
+  \Tk{} has a well documented API~\citep{TclTk:Api}
+  (\url{www.tcl.tk/man/tcl8.5}).  There are also several books
+  to supplement. We consulted the one by Welch, Jones and
+  Hobbs~\citep{beedub} often in the developement of this material. In
+  addition, the Tk Tutorial of Mark Roseman~\citep{TclTk:Tutorial}
+  (\url{www.tkdocs.com/tutorial}) provides much detail. \R{} specific
+  documentation include two excellent R News
+  articles and a proceedings paper~\citep{Rnews:Dalgaard:2001a},~\citep{Rnewse:Dalgaard:2002}
+  and \citep{Dalgaard-DSC} by Peter Dalgaard, the
+  package author. A set of examples due to James
+  Wettenhall~\citep{Wettenhall} are also quite instructive. A main use
+  of \pkg{tcltk} is within the \pkg{Rcmdr} framework. Writing
+  extensions for that is well documented in an R News
+  article~\citep{Rnews:Fox:2007} by John Fox, the package author.
+}
+ is an extension of \TCL\/ that provides GUI components through
 \TCL.  This was first developed in 1990, again by John
 Ousterhout. \TK\/ quickly found widespread usage, as it made
 programming GUIs for X11 easier and faster. Over the years, other
@@ -78,7 +96,6 @@ would need to be upgraded for the following.
 
 
 %%\section{Overview}
-%%\label{sec:tcltk:overview}
 \SweaveInput{Overview}
 
 
@@ -95,9 +112,5 @@ would need to be upgraded for the following.
 \section{Dialogs}
 \label{sec:tcltk:dialogs}
 \SweaveInput{Dialogs}
-
-\section{End of chapter notes}
-\label{sec:tcltk:eoc}
-
 
 

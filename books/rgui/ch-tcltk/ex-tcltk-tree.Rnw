@@ -1,6 +1,5 @@
 This example shows how to display the heirarchical structure of an XML
-document. The \pkg{XML} package is used to parse the document.
-
+document using the tree widget.
 <<echo=FALSE>>=
 ## not shown
 ## load in tcltk
@@ -45,17 +44,19 @@ The \function(htmlTreeParse) (similar to \function{xmlInternalTreeParse}) to par
 \end{figure}
 <<>>=
 library(XML)
-fileName <- "http://www.omegahat.org/RSXML/shortIntro.html" # XML's doc
+fileName <- "http://www.omegahat.org/RSXML/shortIntro.html"
 QT <- function(...) {}  # quiet next call
 doc <- htmlTreeParse(fileName, useInternalNodes=TRUE, error=QT)
 root <- xmlRoot(doc)
 @ 
 Our GUI is primitive, with just a treeview instance added.
-<<>>=
+<<notShown, echo=FALSE>>=
 w <- tktoplevel()
 tkwm.title(w, "Treeview example with XML")
 f <- ttkframe(w, padding=c(3,3,3,12))
 tkpack(f, expand=TRUE, fill="both")
+@ 
+<<>>=
 tr <- ttktreeview(f, displaycolumns="#all", columns=1)
 addScrollbars(f, tr)                    
 @ 
@@ -94,12 +95,12 @@ quoteIt <- function(string) {
 To map the tree-like structure of the XML document into the widget, we
 define the following function to recursively add to the treeview
 instance.  We only add to the \code{value} column (through the
-\code{values} option) when the node does not have children, dren. We
-use \code{do.call}, as a convenience, to avoid constructing two
-different calls to the \code{insert} subcommand. The \code{quoteIt}
-function used is not shown, but similar to \function{shQuote} only
-escaping with double quotes, as single quotes are treated differently
-by \TCL. (Otherwise the \code{ttktreeview} widget will split values on
+\code{values} option) when the node does not have children. We use
+\code{do.call}, as a convenience, to avoid constructing two different
+calls to the \code{insert} subcommand. The \code{quoteIt} function
+used is not shown, but similar to \function{shQuote} only escaping
+with double quotes, as single quotes are treated differently by
+\TCL. (Otherwise the \code{ttktreeview} widget will split values on
 spaces.)
 <<>>=
 insertChild <- function(tr, node, parent="") {

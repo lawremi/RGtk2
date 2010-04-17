@@ -167,7 +167,7 @@ such as \method{insideWord}{gtkTextIter}, returning logical values
 indicating if the condition is met.
 To use these methods, the iterator in the
 \code{iter} component is used, not the value returned as a
-list. Example~\ref{eg-RGtk2-find-word} shows how some of the above are
+list. Example~\ref{eg:RGtk2-find-word} shows how some of the above are
 used, in particular how these methods update the iterator rather than
 return a new one.
 

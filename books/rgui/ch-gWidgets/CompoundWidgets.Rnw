@@ -105,7 +105,7 @@ layout and creates the specified widgets. The design borrows from the
 \code{extjs} javascript libraries for web programming, where a similar
 function can be used to specify the layout of web forms. Several
 toolkits have a means to specify a layout using XML (eg. \GTK's
-Builder and \QT's assistant), this implementation uses a list,
+Builder and \Qt's assistant), this implementation uses a list,
 assuming this is more familiar to the \R\/ user. By defining the
 layout ahead of time, pieces of the layout can be recycled for other
 layouts.

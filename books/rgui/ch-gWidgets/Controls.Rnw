@@ -117,7 +117,7 @@ action is not currently permissible. Toolkits draw such buttons in a
 greyed out state. The \method{enabled\ASSIGN}{gWidgets} method can set or
 disable whether a widget can accept input.
 
-Ab basic example of a button with a handler was given in Example~\ref{ex-gWidgets-hello-world-button}.
+% A basic example of a button with a handler was given in Example~\ref{ex-gWidgets-hello-world-button}.
 
 % As an example of the limitations of \pkg{gWidgets} compared to the
 % underlying toolkits, within \pkg{gWidgets} there are no methods to set

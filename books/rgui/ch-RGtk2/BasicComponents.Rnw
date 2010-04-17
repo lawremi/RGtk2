@@ -257,7 +257,7 @@ the widget. In this case, the \argument{expand}{gtkBoxPackStart} and
 are important. If \code{expand=TRUE} is given, then the cell will
 expand to fill the extra space. Furthermore, if also \code{fill=TRUE} then
 the widget will expand to fill the space allocated to the cell.
-Figure~\ref{fig:RGtk2:GtkBox-pack-start} illustrates.
+Figure~\ref{fig:RGtk2-pack-start} illustrates.
 
 
 %% alignment of widgets within cells
@@ -978,8 +978,9 @@ When the state changes, the \signal{activate} signal is emitted.
 
 The \constructor{gtkHPaned} and \constructor{gtkVPaned} create
 containers with a ``gutter'' to allocate the space between its two
-children. An example is presented in Example
-\ref{eg:RGtk2:using-tree-content}. Like the \code{gtkBin} containers,
+children. 
+% An example is presented in Example \ref{eg:RGtk2:using-tree-content}. 
+Like the \class{gtkBin} containers,
 the two spaces allow only one child component. The two children may be
 added two different ways. The methods \method{Add1}{gtkPaned} and
 \method{Add2}{gtkPaned} simply add the child, whereas the methods

@@ -1,9 +1,9 @@
-This example shows how to use  window, frames,  labels, buttons,
+This example shows how to use  a window, frames,  labels, buttons,
 icons, packing and bindings to create a non-modal dialog. 
 
 \begin{figure}
   \centering
-  \includegraphics[width=.4\textwidth]{fig-tcltk-simple-dialog.png}
+  \includegraphics[width=.6\textwidth]{fig-tcltk-simple-dialog.png}
   \caption{Example of a simple dialog}
   \label{fig:fig-tcltk-simple-dialog}
 \end{figure}
@@ -25,33 +25,33 @@ QT <- tkimage.create("photo", "::img::tclLogo",
                        package="ProgGUIinR"))
 @ 
 
-The main top-level window is then given a title, then withdrawn while the GUI is created.
+The main top-level window is then given a title, then withdrawn while
+the GUI is created. 
 <<>>=
 w <- tktoplevel(); tkwm.title(w, title)
 tkwm.state(w, "withdrawn")
+f <- ttkframe(w,  padding=c(3, 3, 12, 12))
+tkpack(f, expand=TRUE, fill="both")
 @ 
+As usual, we added a frame so that any themes are respected.
 
 If the parent is non-null and is viewable, then the dialog is made
 transient to a parent, The parent need not be a top-level window, so
-\function{tkwinfo} if used to find the parent's top-level window. For Mac OS X, we use the \code{notify} attribute to bounce the dock icon until the mouse enters the window area.
+\function{tkwinfo} if used to find the parent's top-level window. For
+Mac OS X, we use the \code{notify} attribute to bounce the dock icon
+until the mouse enters the window area.
 
 <<>>=
 if(!is.null(parent)) {
   parentWin <- tkwinfo("toplevel", parent)
   if(as.logical(tkwinfo("viewable", parentWin))) {
     tkwm.transient(w, parent)
+    ## effects OS X only now
     tcl("wm","attributes",parentWin, notify=TRUE) # bounce
     tkbind(parentWin,"<Enter>", function() 
       tcl("wm","attributes",parentWin, notify=FALSE)) #stop
   }
 }
-@ 
-Finally, a frame is packed into the top-level window. Since we want the
-frame to expand to fill all the space if the window is resized, we use \code{fill="both"}.
-<<>>=
-## frame for theme purposes, give some space
-f <- ttkframe(w,  padding=c(5,5,10,10))
-tkpack(f, expand=TRUE, fill="both")
 @ 
 
 We will use a standard layout for our dialog with an icon on the left,

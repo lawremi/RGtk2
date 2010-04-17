@@ -16,6 +16,7 @@
 %   }
 % }
 \chapter{Tcl Tk: Overview}
+\label{sec:tcltk:overview}
 
 \TCL\/ (``tool command language'') is a scripting language and
 interpreter of that language.  Originally developed in the late 80s by
@@ -23,7 +24,24 @@ John Ousterhout as a ``glue'' to combine two or more complicated
 applications together, it evolved overtime to find use not just as
 middleware, but also as a standalone development tool.
 
-\TK\/ is an extension of \TCL\/ that provides GUI components through
+\TK~\footnote{
+  %% Documentation sources
+  \Tk{} has a well documented API~\citep{TclTk:Api}
+  (\url{www.tcl.tk/man/tcl8.5}).  There are also several books
+  to supplement. We consulted the one by Welch, Jones and
+  Hobbs~\citep{beedub} often in the developement of this material. In
+  addition, the Tk Tutorial of Mark Roseman~\citep{TclTk:Tutorial}
+  (\url{www.tkdocs.com/tutorial}) provides much detail. \R{} specific
+  documentation include two excellent R News
+  articles and a proceedings paper~\citep{Rnews:Dalgaard:2001a},~\citep{Rnewse:Dalgaard:2002}
+  and \citep{Dalgaard-DSC} by Peter Dalgaard, the
+  package author. A set of examples due to James
+  Wettenhall~\citep{Wettenhall} are also quite instructive. A main use
+  of \pkg{tcltk} is within the \pkg{Rcmdr} framework. Writing
+  extensions for that is well documented in an R News
+  article~\citep{Rnews:Fox:2007} by John Fox, the package author.
+}
+ is an extension of \TCL\/ that provides GUI components through
 \TCL.  This was first developed in 1990, again by John
 Ousterhout. \TK\/ quickly found widespread usage, as it made
 programming GUIs for X11 easier and faster. Over the years, other
@@ -51,7 +69,6 @@ would need to be upgraded for the following.
 
 
 %%\section{Overview}
-%%\label{sec:tcltk:overview}
 \XXX{Where to put loading in external TCL source, packages, ...}
 \XXX{tcl("update","idletasks")}
 \XXX{use svMisc -- atleast comment on Parse, Complete, CompletePlus}
@@ -117,12 +134,15 @@ access to the \TCL\/ interpreter:
 \end{Soutput}
 \end{Schunk}
 
-the \function{.Tcl} function simply sends a command as a text string
-to the \TCL\/ interpreter and returns the result as an object of class
-\code{tclObj} (cf. \code{?.Tcl}). These objects print with the leading
-\code{<Tcl>} (which we suppress here when there is no output). To coerce
-these values into characters, the \function{tclvalue} function is used or the \function{as.character} function. They differ in how they treat spaces and new lines. 
-Conversion to numeric values is also possible through \code{as.numeric}, but conversion to logical requires two steps.
+the \dfn{\function{.Tcl}} function simply sends a command as a text
+string to the \TCL\/ interpreter and returns the result as an object
+of class \dfn{\class{tclObj}} (cf. \code{?.Tcl}). These objects print
+with the leading \code{<Tcl>} (which we suppress here when there is no
+output). To coerce these values into characters, the
+\function{tclvalue} function is used or the \function{as.character}
+function. They differ in how they treat spaces and new lines.
+Conversion to numeric values is also possible through
+\code{as.numeric}, but conversion to logical requires two steps.
 
 The \function{.Tcl} function can be used to read in \TCL\/ scripts as with \code{.Tcl("source filename")}. This can be used to run arbitrary \TCL\/ scripts within an \R\/ session.
 
@@ -130,10 +150,24 @@ The \TK\/ extensions to \TCL\/ have a complicated command structure, and thankfu
 \begin{verbatim}
 % .label configure -text "new text"
 \end{verbatim}
-The \pkg{tcltk} provides a corresponding function \code{tkconfigure}. 
-Although the \TCL\/ statement appears to have the object oriented form of ``object method arguments,'' behind the scenes \TCL\/ creates a command with the same name as the widget with
-\code{configure} as a subcommand. This is followed by options 
-passed in using the form \texttt{-key value}.  The \TK\/ API for \code{ttklabel}'s \code{configure} subcommand is
+The \pkg{tcltk} provides a corresponding function
+\code{tkconfigure}. The above would be done as (assuming \code{l} is a
+label object):
+
+
+\begin{Schunk}
+\begin{Sinput}
+ tkconfigure(l, text="new text")
+\end{Sinput}
+\end{Schunk}
+
+
+Although the \TCL\/ statement appears to have the object oriented form
+of ``object method arguments,'' behind the scenes \TCL\/ creates a
+command with the same name as the widget with \code{configure} as a
+subcommand. This is followed by options passed in using the form
+\texttt{-key value}.  The \TK\/ API for \code{ttklabel}'s
+\code{configure} subcommand is
 
 \begin{quotation}
   \textit{pathName} \textbf{configure} \textit{?option? ?value option value ...?}
@@ -154,7 +188,7 @@ namespaces, so the ``tk'' prefix serves that role.) To make consulting the \TK\/
 function(widget, ...) tcl(widget, "configure", ...)
 \end{Sinput}
 
-The \function{tcl} function is the workhorse function used to piece
+The \dfn{\function{tcl}} function is the workhorse used to piece
 together \TCL\/ commands.  Behind the scenes it turns an \R\/ object,
 \code{widget}, into the \textit{pathName} above (using its ID component),
 converts \R\/ \code{key=value} pairs into \code{-key value} options for
@@ -165,9 +199,9 @@ needs to match that of the \TK\/ API.
 \begin{figure}
   \centering
 \begin{verbatim}
- tcl(widget, subcommand, key=value, callback)
-    /            |           |           \
-widget$ID  subcommand   -key value   makeCallback
+          tcl(widget, subcommand, key=value, callback)
+             /            |           |           \
+          widget$ID  subcommand   -key value   makeCallback
 \end{verbatim}
   \caption{How the \code{tcl} function maps its arguments}
   \label{fig:tcl-function-map}
@@ -179,15 +213,6 @@ this is not always the case. As named arguments are only for the
 the arguments ``options'' in the following.  The \function{tcl} function
 returns an object of class \code{tclObj}.
 
-To use the \function{tkconfigure} function to change a labels \code{text}
-attribute is done as follows (assuming \code{l} is a label object):
-
-
-\begin{Schunk}
-\begin{Sinput}
- tkconfigure(l, text="new text")
-\end{Sinput}
-\end{Schunk}
 
 
 
@@ -196,20 +221,31 @@ attribute is done as follows (assuming \code{l} is a label object):
 \section{Constructors}
 \label{sec:tcltk:constructors}
 
-In this chapter, we will stick to a few basic widgets: labels and
+In this Chapter, we will stick to a few basic widgets: labels and
 buttons; and top-level containers to illustrate the basic usage of
-\pkg{tcltk}, leaving for later chapters more detail on containers and
-widgets. 
+\pkg{tcltk}, leaving for later more detail on containers and widgets.
 
-Unlike \GTK, say, the construction of widgets in \pkg{tcltk} is tightly linked to the widget heirarchy. \TK\/ widgets are constructed as children of a parent container with the parent specified to the constructor. When the \TK\/ shell, wish, is used or the \TK\/ package is loaded through the \TCL\/ command \code{package require Tk}, a top level window named ``\code{.}'' is created. In the variable name \code{.label}, from above, the dot refers to the top level window. 
-In \pkg{tcltk} a top-level window is created separately through the \constructor{tktoplevel} constructor, as with
+Unlike \GTK, say, the construction of widgets in \pkg{tcltk} is
+tightly linked to the widget heirarchy. \TK\/ widgets are constructed
+as children of a parent container with the parent specified to the
+constructor. When the \TK\/ shell, wish, is used or the \TK\/ package
+is loaded through the \TCL\/ command \code{package require Tk}, a top
+level window named ``\code{.}'' is created. In the variable name
+\code{.label}, from above, the dot refers to the top level window.  In
+\pkg{tcltk} a top-level window is created separately through the
+\constructor{tktoplevel} constructor, as with
 \begin{Schunk}
 \begin{Sinput}
  w <- tktoplevel()
 \end{Sinput}
 \end{Schunk}
 
-Top-level windows will be explained in more detail in Section~\ref{sec:tcltk:containers}. For now, we just use one to construct a label widget. Like all other constructors, the label constructor (\constructor{ttklabel}) requires a specification of the parent container (\code{w}) and any other options that are desired. A typical usage would look like:
+Top-level windows will be explained in more detail in
+Section~\ref{sec:tcltk:basic-containers}. For now, we just use one to
+construct a label widget. Like all constructors but a toplevel window
+one, the label constructor (\constructor{ttklabel}) requires a
+specification of the parent container (\code{w}) and any other options
+that are desired. A typical usage would look like:
 \begin{Schunk}
 \begin{Sinput}
  l <- ttklabel(w, text="label text")
@@ -217,24 +253,31 @@ Top-level windows will be explained in more detail in Section~\ref{sec:tcltk:con
 \end{Schunk}
 
 \paragraph{Options}
-The first argument of a constructor is the parent container, subsequent arguments are
-used to specify the options for the constructor given as \code{key=value} pairs. The \TK\/ API lists
-these options along with their description.
+The first argument of a constructor is the parent container,
+subsequent arguments are used to specify the options for the
+constructor given as \code{key=value} pairs. The \TK\/ API lists these
+options along with their description.
 
-For a simple label, the following options are possible:
-\code{anchor}, \code{background}, \code{font}, \code{foreground}, \code{justify}, \code{padding}, \code{relief}, \code{text},
-and \code{wraplength}.  This is in addition to the standard options \code{class},
-\code{compound}, \code{cursor}, \code{image}, \code{state}, \code{style}, \code{takefocus}, \code{text}, \code{textvariable},
-\code{underline}, and \code{width}. (Although clearly lengthy, this list is significantly reduced from the options for \code{tklabel} where options for the many style properties are also included.)
+For a simple label, the following options are possible: \code{anchor},
+\code{background}, \code{font}, \code{foreground}, \code{justify},
+\code{padding}, \code{relief}, \code{text}, and \code{wraplength}.
+This is in addition to the standard options \code{class},
+\code{compound}, \code{cursor}, \code{image}, \code{state},
+\code{style}, \code{takefocus}, \code{text}, \code{textvariable},
+\code{underline}, and \code{width}. (Although clearly lengthy, this
+list is significantly reduced from the options for \code{tklabel}
+where options for the many style properties are also included.)
 
 Many of the options are clear from their name.  The
 \argument{padding}{ttklabel} argument allows the specification of
 space in pixels between the text of the label and the widget
 boundary. This may be set as four values \code{c(left, top, right,
-  bottom)}, or fewer, with \code{bottom} defaulting to \code{top}, \code{right} to \code{left} and
-\code{top} to \code{left}. The \argument{relief}{ttklabel} argument specifies how a
-3-d effect around the label should look if specified. Possible values
-are \qcode{flat}, \qcode{groove}, \qcode{raised}, \qcode{ridge}, \qcode{solid}, or \qcode{sunken}.
+  bottom)}, or fewer, with \code{bottom} defaulting to \code{top},
+\code{right} to \code{left} and \code{top} to \code{left}. The
+\argument{relief}{ttklabel} argument specifies how a 3-d effect around
+the label should look if specified. Possible values are \qcode{flat},
+\qcode{groove}, \qcode{raised}, \qcode{ridge}, \qcode{solid}, or
+\qcode{sunken}.
 
 \paragraph{The functions tkcget, tkconfigure}
 
@@ -245,7 +288,7 @@ with just the widget as an argument.
 
 \begin{Schunk}
 \begin{Sinput}
- head(as.character(tkconfigure(l)))
+ head(as.character(tkconfigure(l)))      # first 6 only
 \end{Sinput}
 \begin{Soutput}
 [1] "-background frameColor FrameColor {} {}"   
@@ -290,7 +333,10 @@ The conversion through \code{as.character} breaks the return value along whitesp
 [1] "label" "text" 
 \end{Soutput}
 \end{Schunk}
-The \function{tclvalue} function can also be used to extract the value from a \code{tclObj}, in this case not breaking along white space.
+
+The \function{tclvalue} function can also be used to extract the
+value from a \code{tclObj}, in this case not breaking along white
+space.
 \begin{Schunk}
 \begin{Sinput}
  tclvalue(tkcget(l, text=NULL))
@@ -311,11 +357,11 @@ Buttons are constructed using the \constructor{ttkbutton} constructor.
 \end{Schunk}
 
 Buttons and labels share many of the same options. However, buttons
-have a\argument{command}{ttkbutton} option to specify a callback for
+have a \argument{command}{ttkbutton} option to specify a callback for
 when it is clicked. Callbacks will be explained in
 Section~\ref{sec:tcltk:callbacks}.  Furthermore, buttons have the
 option \argument{default}{ttkbutton} to specify which button of a
-dialog will get the \texttt{Return} signal when the \kbd{enter} key is
+dialog, by defaukt, will get the \texttt{Return} signal when the \kbd{enter} key is
 pressed. A callback can then be set to respond to this signal. This
 value for \code{default} may be \qcode{active}, indicating the button
 will get the signal; \qcode{normal}; or \qcode{disabled}, to draw the
@@ -334,7 +380,7 @@ refer to the drawn widget and not just a top-level window)
 \begin{Soutput}
 List of 2
  $ ID : chr ".2.2"
- $ env:<environment: 0xcb6fe4> 
+ $ env:<environment: 0xd1c918> 
  - attr(*, "class")= chr "tkwin"
 \end{Soutput}
 \end{Schunk}
@@ -352,13 +398,18 @@ construction of a new widget requires the \code{ID} and environment of
 its parent, the first argument to \function{tkwidget}, \code{parent},
 must be an \R\/ \TK\/ object, not simply its character ID, as is
 possible for the \function{tcl} function. The latter is useful in
-callback, as only the ID may be known to the callback function.
+a callback, as only the ID may be known to the callback function.
 
 
 \subsection{Geometry managers}
 \label{sec:tcltk:overview:geometry-managers}
 
-As with \GTK, when a new widget is constructed it is not automatically mapped. \TK\/ uses geometry managers to specify how the widget will be drawn within the parent container. We will discuss two such geometry managers in Section~\ref{sec:tcltk:containers}, but for now, we note that the simplest way to view a widget in its parent window is through \function{tkpack}:
+As with \Qt, when a new widget is constructed it is not automatically
+mapped. \TK\/ uses geometry managers to specify how the widget will be
+drawn within the parent container. We will discuss two such geometry
+managers in Section~\ref{sec:tcltk:basic-containers}, but for now, we note
+that the simplest way to view a widget in its parent window is through
+\function{tkpack}:
 \begin{Schunk}
 \begin{Sinput}
  tkpack(l)
@@ -431,8 +482,9 @@ notation.
 Fonts are more involved than colors. \TK\/ version 8.5 made it more
 difficult to change style properties of individual widgets. This
 following the practice of centralizing style options for consistency,
-ease of maintaining and ease of theming.  To set a font for a label,
-rather than specify the font properties, one configures the \code{font} using a pre-defined font name, such as
+ease of maintaining code and ease of theming.  To set a font for a
+label, rather than specify the font properties, one configures the
+\code{font} attribute using a pre-defined font name, such as
 \begin{Schunk}
 \begin{Sinput}
  tkconfigure(l, font="TkFixedFont")
@@ -450,9 +502,9 @@ these defaults accordingly.
 \begin{tabular}{@{}ll@{}}
 \toprule
 
-\\
+Standard font name&Description\\
 \midrule
-TkDefaultFont&The default for all GUI items not otherwise specified.\\TkTextFont&Font for text widgets\\TkFixedFont&Fixed-width font.\\TkMenuFont&Menu bar fonts\\TkHeadingFont&Font for column headings\\TkCaptionFont&Caption font (dialogs)\\TkSmallCaptionFont&Smaller caption font\\TkIconFont&Icon and text font
+\code{TkDefaultFont}&Default font for all GUI items not otherwise specified\\\code{TkTextFont}&Font for text widgets\\\code{TkFixedFont}&Fixed-width font\\\code{TkMenuFont}&Menu bar fonts\\\code{TkHeadingFont}&Font for column headings\\\code{TkCaptionFont}&Caption font (dialogs)\\\code{TkSmallCaptionFont}&Smaller caption font\\\code{TkIconFont}&Icon and text font
 \\ \bottomrule
 \end{tabular}
 \end{table}
@@ -489,14 +541,17 @@ The arguments for \function{tkfont.create} are optional. The
 
 \begin{figure}
   \centering
-  \includegraphics[width=.4\textwidth]{fig-tcltk-all-fonts.png}
+  \includegraphics[width=.6\textwidth]{fig-tcltk-all-fonts.png}
   \caption{A scrollable frame widget (cf. Example~\ref{ex:tcltk-scrollable-frame}) showing the available fonts on a system.}
   \label{fig:fig-tcltk-all-fonts}
 \end{figure}
 
 
 \paragraph{Font metrics}
-The average character size is important in setting the width and height of some components. The can be found through the \function{tkfont.measure} and \function{tkfont.metrics} functions as follows:
+The average character size is important in setting the width and
+height of some components. The can be found through the
+\function{tkfont.measure} and \function{tkfont.metrics} functions as
+follows:
 \begin{Schunk}
 \begin{Sinput}
  tmp <- tkfont.measure("TkTextFont",paste(c(0:9,LETTERS),collapse=""))
@@ -518,11 +573,11 @@ The average character size is important in setting the width and height of some 
 
 Many \pkg{tcltk} widgets, including both labels and buttons, can show
 images. In these cases, either with or without an accompanying text
-label. Constructing images to display is similar to constructing new fonts, in
-that a new image object is created and can be reused by various
-widgets. The \function{tkimage.create} function is used to create image
-objects. The following command shows how an image object can be made from the
-file \code{tclp.gif} in the current directory:
+label. Constructing images to display is similar to constructing new
+fonts, in that a new image object is created and can be reused by
+various widgets. The \function{tkimage.create} function is used to
+create image objects. The following command shows how an image object
+can be made from the file \code{tclp.gif} in the current directory:
 
 \begin{Schunk}
 \begin{Sinput}
@@ -541,10 +596,10 @@ object. We follow the advice of the \TK\/ manual and preface the name
 with \code{::img::} so that we don't inadvertently overwrite any
 existing \TCL\/ commands. The third argument
 \argument{file}{tkimage.create} specifies the graphic file. The basic
-\TK\/ \code{image} command only can show GIF and PPM/PNM
+\TK\/ \code{image} command only can show only GIF and PPM/PNM
 images. Unfortunately, not many \R\/ devices output in these
 formats. (The \code{GDD} device driver can.) One may need system
-utilities to convert to the allowable formats.
+utilities to convert to the allowable formats or install add-on \TCL\/ packages.
 
 To use the image, one can specify the name for the \option{image}{ttklabel} option.
 \begin{Schunk}
@@ -553,7 +608,12 @@ To use the image, one can specify the name for the \option{image}{ttklabel} opti
                compound = "top")
 \end{Sinput}
 \end{Schunk}
-By default the text will not show. The \argument{compound}{ttklabel} argument takes a value of either \qcode{text}, \qcode{image} (default), \qcode{center}, \qcode{top}, \qcode{left}, \qcode{bottom}, or \qcode{right} specifying where the label is in relation to the text.
+
+By default the text will not show. The \argument{compound}{ttklabel}
+argument takes a value of either \qcode{text}, \qcode{image}
+(default), \qcode{center}, \qcode{top}, \qcode{left}, \qcode{bottom},
+or \qcode{right} specifying where the label is in relation to the
+text.
 
 \paragraph{Image manipulation}
 Once an image is created, there are several options to manipulate the
@@ -567,7 +627,9 @@ one could issue the command
 \end{Sinput}
 \end{Schunk}
 
-Another useful manipulation to draw attention to an image is to change the \code{gamma} value when something happens, such as a mouse-over event.
+Another useful manipulation to draw attention to an image is to change
+the \code{gamma} value when something happens, such as a mouse-over
+event (cf. Example~\ref{ex-tcltk-toolbar}).
 
 
 \subsection{Themes}
@@ -575,7 +637,17 @@ Another useful manipulation to draw attention to an image is to change the \code
 
 
 %% themes -- ttkframe
-The themed widgets have a style that determines how they are drawn. The separation of style properties from the widget, as opposed to having these set for each construction of a widget, makes it much easier to change the look of a GUI and easier to maintain the code. A collection of styles makes up a theme. The available themes depend on the system. The default theme should enable a GUI to have the native look and feel of the operating system. (This was definitely not the case for the older \TK\/ widgets.) There is no built in command to return the theme, so we use \code{.Tcl} to call the appropriate \TCL\/ command. The \code{names} sub command will return the available themes and the \code{use} sub command can be used to set the theme.
+The themed widgets have a style that determines how they are
+drawn. The separation of style properties from the widget, as opposed
+to having these set for each construction of a widget, makes it much
+easier to change the look of a GUI and easier to maintain the code. A
+collection of styles makes up a theme. The available themes depend on
+the system. The default theme should enable a GUI to have the native
+look and feel of the operating system. (This was definitely not the
+case for the older \TK\/ widgets.) There is no built in command to
+return the theme, so we use \code{.Tcl} to call the appropriate \TCL\/
+command. The \code{names} sub command will return the available themes
+and the \code{use} sub command can be used to set the theme.
 
 \begin{Schunk}
 \begin{Sinput}
@@ -589,15 +661,24 @@ The themed widgets have a style that determines how they are drawn. The separati
 \end{Sinput}
 \end{Schunk}
 
-The writing of themes will not be covered, but in Example~\ref{ex-tcltk-toolbar} we show how to create a new style for a button.
+The writing of themes will not be covered, but in
+Example~\ref{ex-tcltk-toolbar} we show how to create a new style for a
+button.
 
-The example we have shown so far, would not look quite right, as the toplevel window is not a themed widget. To work around that, a \function{ttkframe} widget is usually used to hold the child components of the top-level window. The following shows how to place a frame inside the window, with some arguments to be explained later that allow it to act reasonably if the window is resized.
+The example we have shown so far, would not look quite right, as the
+toplevel window is not a themed widget. To work around that, a
+\function{ttkframe} widget is usually used to hold the child
+components of the top-level window. The following shows how to place a
+frame inside the window, with some arguments to be explained later
+that allow it to act reasonably if the window is resized.
+
 \begin{Schunk}
 \begin{Sinput}
  w <- tktoplevel()
- f <- ttkframe(w, padding=c(3,3,12,12))  # a little breathing room
- tkpack(f, expand=TRUE, fill="both")     # handle window expansion
- l <- ttklabel(f, image="::img::tclLogo", text="label", compound="top")
+ f <- ttkframe(w, padding=c(3,3,12,12))  # Some breathing room
+ tkpack(f, expand=TRUE, fill="both")     # For window expansion
+ l <- ttklabel(f, image="::img::tclLogo", text="label", 
+               compound="top")
  tkpack(l)
 \end{Sinput}
 \end{Schunk}
@@ -625,7 +706,11 @@ the specification to \function{tkwinfo} is in the same order (the widget is not 
 \end{Soutput}
 \end{Schunk}
 
-The window, in this example \texttt{l}, can be specified as an \R\/ object, or by its character ID. This is useful, as the return value of some functions is the ID. For instance, the \texttt{children} subcommand returns IDs. Below the \code{as.character} function will coerce these into a vector of IDs.
+The window, in this example, \texttt{l}, can be specified as an \R\/
+object, or by its character ID. This is useful, as the return value of
+some functions is the ID. For instance, the \texttt{children}
+subcommand returns IDs. Below the \code{as.character} function will
+coerce these into a vector of IDs.
 
 \begin{Schunk}
 \begin{Sinput}
@@ -645,7 +730,7 @@ $`.3.1.1`
 
 There are several possible subcommands, here we list a few. The
 \subcommand{geometry}{tkwinfo} sub command returns the location and
-size of the wigets' window in the form \code{width x height + x + y};
+size of the widgets' window in the form \code{width x height + x + y};
 the sub commands \subcommand{height}{tkwinfo},
 \subcommand{width}{tkwinfo}, \subcommand{x}{tkwinfo}, or
 \subcommand{y}{tkwinfo} can be used to return just those parts. The
@@ -666,7 +751,10 @@ as a top-level window.
 \section{Events and Callbacks}
 \label{sec:tcltk:overview:events-callbacks}
 
-The button widget has the \code{command} option for assigning a callback for when the user clicks the mouse button on the button. In addition to this, one can specify callbacks for many other events that the user may initiate. 
+The button widget has the \code{command} option for assigning a
+callback for when the user clicks the mouse button on the button. In
+addition to this, one can specify callbacks for many other events that
+the user may initiate.
 
 
 \subsection{Callbacks}
@@ -694,19 +782,15 @@ button:
 
 %% scope of callback?
 The callback's return value is generally not important, although we
-shall see with validation in Section~\ref{sec:tcltk:entry-widgets}, it
-can matter. This is not the case in \Tk. As well, in \Tk\/ callbacks
-are evaluated in the global environment, but this is not so in
-\pkg{tcltk}.
+shall see with the validation framework, discussed in
+Section~\ref{sec:tcltk:entry-widgets}, it can matter.~\footnote{The
+  difference in processing of return values can make porting some
+  \Tk\/ code to \pkg{tcltk} difficult} As well, in \Tk\/ callbacks are
+evaluated in the global environment, but this is not so in
+\pkg{tcltk}, which respects the callback's scope.
 
-\begin{Schunk}
-\begin{Soutput}
-<Tcl> .w 
-\end{Soutput}
-\begin{Soutput}
-<Tcl> .w.b 
-\end{Soutput}
-\end{Schunk}
+
+
 \subsection{Events}
 \label{sec:tcltk:events}
 
@@ -717,11 +801,11 @@ When a user interacts with a GUI, they initiate events. The \pkg{tcltk} package 
 The \code{tag} argument allows for quite a bit of flexibility. It can be:
 
 \begin{description}
-\item[the name of a widget] in which the command will be bound to that widget;
-\item[q top-level window] in which case the command will be be bound to the event for the window and all its internal widgets;
+\item[the name of a widget], in which case the command will be bound to that widget;
+\item[a top-level window], in which case the command will be be bound to the event for the window and all its internal widgets;
 
-\item[a class of widget] such as \qcode{TButton}, in which case all such widgets will get the binding; or 
-\item[the value \qcode{all}] in which case all widgets in the application will get the binding.
+\item[a class of widget], such as \qcode{TButton}, in which case all such widgets will get the binding; or 
+\item[the value \qcode{all}], in which case all widgets in the application will get the binding.
 \end{description}
 %% possible events
 %% keys
@@ -742,8 +826,18 @@ More complicated events can be described with the pattern
 \code{\Event{modifier-modifier-type-detail}}.   
 \end{quotation}
 
-Examples are \code{\Event{KeyPress}},  \code{\Event{ButtonPress}}, \code{\Event{Double-Button-1}},  or \code{\Event{Control-c}}.
-The full list of modifiers and types are described in the man page for \code{bind}. Some familiar modifiers are \code{Control}, \code{Alt}, \code{Button1} (or its shortening \code{B1}), \code{Double} and \code{Triple}. The event types are the standard X event types along with some abbreviations. These are also listed in the \code{bind} man page. Some commonly used ones are \code{ButtonPress}, \code{ButtonRelease}, \code{KeyPress}, \code{KeyRelease}, \code{FocusIn}, and \code{FocusOut}. The detail may be a button number or key, such as \code{a} or \code{C}.
+Examples of a type are \code{\Event{KeyPress}},
+\code{\Event{ButtonPress}}. The event \code{\Event{Control-c}} has the
+type \code{c} and modifier \code{Control}. Whereas
+\code{\Event{Double-Button-1}} also has the detail \code{1}. The full
+list of modifiers and types are described in the man page for
+\code{bind}. Some familiar modifiers are \code{Control}, \code{Alt},
+\code{Button1} (or its shortening \code{B1}), \code{Double} and
+\code{Triple}. The event types are the standard X event types along
+with some abbreviations. These are also listed in the \code{bind} man
+page. Some commonly used ones are \code{ButtonPress},
+\code{ButtonRelease}, \code{KeyPress}, \code{KeyRelease},
+\code{FocusIn}, and \code{FocusOut}. 
 
 \paragraph{Window manager events}
 Some events are based on window manager events. The \Event{Configure}
@@ -751,7 +845,18 @@ event happens when a component is resized. The \Event{Map} and
 \Event{Unmap} events happen when a component is drawn or undrawn.
 
 \paragraph{Virtual events}
-Finally, the event may be a ``virtual event.'' These are represented with \code{\VirtualEvent{EventName}}. There are predefined virtual events listed in the \code{event} man page. These include \code{\VirtualEvent{MenuSelect}} when working with menus,  \code{\VirtualEvent{Modified}} for text widgets, \code{\VirtualEvent{Selection}} for text widgets, and \code{\VirtualEvent{Cut}}, \code{\VirtualEvent{Copy}} and \code{\VirtualEvent{Paste}} for working with the clipboard. New virtual events can be produced with the \code{tkevent.add} function. This takes atleast two arguments, an event name and a sequence that will initiate that event. The \code{event} man page has these examples coming from the Emacs world:
+Finally, the event may be a ``virtual event.'' These are represented
+with \code{\VirtualEvent{EventName}}. There are predefined virtual
+events listed in the \code{event} man page. These include
+\code{\VirtualEvent{MenuSelect}} when working with menus,
+\code{\VirtualEvent{Modified}} for text widgets,
+\code{\VirtualEvent{Selection}} for text widgets, and
+\code{\VirtualEvent{Cut}}, \code{\VirtualEvent{Copy}} and
+\code{\VirtualEvent{Paste}} for working with the clipboard. New
+virtual events can be produced with the \code{tkevent.add}
+function. This takes atleast two arguments, an event name and a
+sequence that will initiate that event. The \code{event} man page has
+these examples coming from the Emacs world:
 \begin{Schunk}
 \begin{Sinput}
   tkevent.add("<<Paste>>", "<Control-y>")
@@ -775,15 +880,15 @@ In \pkg{tcltk} only one callback can be associated with a widget and event throu
 \label{sec:tcltk-percent-substitutions}
 \TK\/ provides a mechanism called \defn{percent substitution} to pass
 information about the event to callbacks bound to the event. The basic
-idea is that in the \TCL\/ callback expressions of the type \code{\%X}
-for different characters \code{X} will replaced by values coming from
+idea is that in the \TCL\/ callback expressions of the type \code{\%X},
+for different characters \code{X}, will replaced by values coming from
 the event. In \pkg{tcltk}, if the callback function has an argument
 \code{X}, then that variable will correspond to the value specified by
 \code{\%X}. The complete list of substitutions is in the \code{bind}
 man page. Useful ones are \code{x} and \code{X} to specify the
 relative or absolute $x$-postion of a mouse click (the difference can
 be found through the \code{rootx} property of a widget), \code{y} and
-\code{Y} for the $y$ position, \code{k} and \code{K} for the keycode
+\code{Y} for the $y$-position, \code{k} and \code{K} for the keycode
 (ASCII) and key symbol of a \Event{KeyPress} event, and \code{W} to
 refer to the ID of the widget that signaled the event the callback is
 bound to. Example~\ref{ex-tcltk-dnd} will illustrate some of these.
@@ -793,16 +898,39 @@ bound to. Example~\ref{ex-tcltk-dnd} will illustrate some of these.
 The \TCL\/ command \code{after} will execute a command after a certain delay (specified in milliseconds as an integer) while not interupting the control flow while it waits for its delay. The function is called in a manner like:
 \begin{Schunk}
   \begin{Sinput}
-afterID <- tcl("after", 1000, function() print("1 second passed"))    
+    ID <- tcl("after", 1000, function() print("1 second passed"))    
   \end{Sinput}
 \end{Schunk}
-The ID returned by \code{after} may be used to cancel the command before it executes.
-
-
+The ID returned by \code{after} may be used to cancel the command
+before it executes. To execute a command repeatedly, can be done along
+the lines of:
+\begin{Schunk}
+\begin{Sinput}
+ afterID <- ""; someFlag <- TRUE
+ repeatCall <- function(ms=10000, f, w) {
+   afterID <<- tcl("after", ms, function() {
+     if(someFlag) {                      
+       f()
+       afterID <<- repeatCall(ms, f, w)
+     }  else {
+       tcl("after", "cancel", afterID)
+     }
+   })
+ }
+ repeatCall(100, function() print("running"), w)
+\end{Sinput}
+\end{Schunk}
+The flag allows for the cancellation of the repeated call.
 
 
 \begin{example}{Drag and Drop}{ex-tcltk-dnd}
-This example shows how to implement drag and drop between two widgets. Steps are needed to make a widget a drop source, and other steps are needed to make a widget a drop target. The basic idea is that when a value is being dragged, virtual events are generated for the widget the cursor is over. If that widget has callbacks bound to these events, then the drag and drop can be processed. The idea for the code below originated with \url{http://wiki.tcl.tk/416}.
+This long example shows how to implement drag and drop between two
+widgets. Steps are needed to make a widget a drop source, and other
+steps are needed to make a widget a drop target. The basic idea is
+that when a value is being dragged, virtual events are generated for
+the widget the cursor is over. If that widget has callbacks bound to
+these events, then the drag and drop can be processed. The idea for
+the code below originated with \url{http://wiki.tcl.tk/416}.
 
 
 To begin, we create a simple GUI to hold three widgets. We use buttons
@@ -826,9 +954,9 @@ among drop sources to keep track of the drag and drop state. A more
 elegant example might store these in an environment.
 \begin{Schunk}
 \begin{Sinput}
- .dragging <- FALSE                      # currently dragging?
- .lastWidgetID <- ""                     # last widget dragged over
- .dragValue <- ""                        # value to transfer
+ .dragging <- FALSE                 # currently dragging?
+ .lastWidgetID <- ""                # last widget dragged over
+ .dragValue <- ""                   # value to transfer
 \end{Sinput}
 \end{Schunk}
 
@@ -857,12 +985,12 @@ file, but this doesn't work for all platforms (e.g.,  OS X). After setting the c
 \begin{Sinput}
  tkbind(bDrag,"<B1-Motion>",function(W,X,Y) {
    if(!.dragging) return()
-   ## see cursor help page in API for more
+   ## see cursor help page in API for more options
    ## For custom cursors cf. http://wiki.tcl.tk/8674. 
-   tkconfigure(W, cursor="coffee_mug")    # set cursor
+   tkconfigure(W, cursor="coffee_mug")   # set cursor
  
    w = tkwinfo("containing", X, Y)       # widget mouse is over
-   if(as.logical(tkwinfo("exists", w)))   # does widget exist?
+   if(as.logical(tkwinfo("exists", w)))  # does widget exist?
      tkevent.generate(w, "<<DragOver>>")
  
    ## generate drag leave if we left last widget
@@ -932,27 +1060,6 @@ Finally, if the \VirtualEvent{DragDrop} virtual event occurs, we set the widget 
 \end{example}
 
 
-\section{Rcmdr}
-\label{sec:tcltk:rcmdr}
-
-[Adding to the Rcmdr. Write me.]
-
-
-\section{Other sources of documentation}
-\label{sec:tcltk:other-sourc-docum}
-
-%% Docs
-In writing this chapter we used the a few primary resources. The \TK\/
-API~\citep{TclTk:API} lays out the details of each widget in a clear
-concise manner. There is an excellent tutorial demonstrating the
-themed widgets by Mark Roseman~\citep{TclTk:Tutorial}.  The \TCL\/
-language is written about in several books. We used the authorative
-text by Welch, Jones and Hobbs~\citep{beedub}. The \pkg{tcltk} package
-was described in three very informative articles by the package Peter
-Dalgaard~\citep{Dalgaard-DSC}, \citep{Rnews:Dalgaard:2001a}, and
-\citep{Rnews:Dalgaard:2002}. Finally, a number of examples of the
-package compiled by James Wettenhall may be seen
-at~\citep{Wettenhall}.
 
 
 
@@ -962,7 +1069,7 @@ at~\citep{Wettenhall}.
 %% Example
 
 \section{Top-level windows}
-\label{sec:top-level-windows}
+\label{sec:tcltk:top-level-windows}
 %%\XXX{Window Styles}
 
 %% constructor
@@ -977,7 +1084,7 @@ and its child components.
 
 The \TK\/ command \code{wm} is used to interact with top-level
 windows. This command has several subcommands, leading to \pkg{tcltk}
-functions with names such as \function{tkwm.title}. This function is
+functions with names such as \function{tkwm.title}, the function
 used to set the window title. As with all such functions, either the
 top-level window object, or its ID must be the first argument. In this
 case, the new title is the second.
@@ -985,9 +1092,11 @@ case, the new title is the second.
 When a top-level window is constructed there is no option for it not
 to be shown.  However, one can use the \function{tclServiceMode}
 function to suspend/resume drawing of any widget through \TK. This
-function takes a logical value to change the state. After a window is
-drawn. To iconify an already drawn window can be down through the
-\function{tkwm.withdraw} function and reversed with the
+function takes a logical value indicating the updating of widgets
+should be suspended. One can set the value to \code{FALSE}, initiate
+the widgets, then set to \code{TRUE} to display the widgets.  After a
+window is drawn. To iconify an already drawn window can be done
+through the \function{tkwm.withdraw} function and reversed with the
 \function{tkwm.deiconify} function. Together these can be useful to
 use in the construction of complicated GUIs, as the drawing of the
 widgets can seem slow. (The same can be done through the
@@ -995,11 +1104,16 @@ widgets can seem slow. (The same can be done through the
 \qcode{normal}.)
  
 \paragraph{Window sizing}
-The preferred size of a top-level window can be configured through the \code{width} and \code{height} options. The absolute size and position of a top-level window in pixels can be queried of specified through the \function{tkwm.geometry}
-function. The geometry is specified as a string in the form \code{=wxh+x+y} (or \code{-}) where any of \code{=}, \code{wxh} or \code{+x+y} can be omitted. The value for \code{x} (if using \code{+})
-indicates how many pixels to the right from the left edge should the window be
-placed (if using \code{-} then the left side of the screen is used as
-a reference). For \code{y} the top (or bottom) of the screen is the reference.
+The preferred size of a top-level window can be configured through the
+\code{width} and \code{height} options. The absolute size and position
+of a top-level window in pixels can be queried or specified through
+the \function{tkwm.geometry} function. The geometry is specified as a
+string in the form \code{=w x h + x + y} (or \code{-}) where any of
+\code{=}, \code{wxh} or \code{+x+y} can be omitted. The value for
+\code{x} (if using \code{+}) indicates how many pixels to the right
+from the left edge should the window be placed (if using \code{-} then
+the left side of the screen is used as a reference). For \code{y} the
+top (or bottom) of the screen is the reference.
 
 %% sizegrip
 The \constructor{ttksizegrip} widget can be used to add a visual area (usually the lower right corner) for the user to grab on to with their mouse for resizing the window. On some OSes (e.g., Mac OS X) these are added by the window manager automatically. 
@@ -1031,15 +1145,21 @@ managers respect this.
 
 %% binginds
 \paragraph{bindings}
-Bindings for top-level windows are shared by all of their child widgets. If a common binding is desired for all the children, then it need only be specified once for the top-level window.
+Bindings for top-level windows are propogated down to all of their
+child widgets. If a common binding is desired for all the children,
+then it need only be specified once for the top-level window.
 
 
 %% wm protocol
-The \function{tkwm.protocol} function is used to assign commands to
-window manager events, most commonly, the delete event when the user
-clicks the close button on the windows decorations. A top-level window
-can be removed through the \function{tkdestroy} function, or through
-the user clicking on the correct window decorations. When the window decoration is clicked, the window manager issues a \qcode{WM\_DELETE\_WINDOW} event. To bind to this, a command of thie form \code{tkwm.protocol(win,"WM\_DELETE\_WINDOW",  callback)} is used. 
+The \function{tkwm.protocol} function (not \function{tkbind}) is used
+to assign commands to window manager events, most commonly, the delete
+event when the user clicks the close button on the windows
+decorations. A top-level window can be removed through the
+\function{tkdestroy} function, or through the user clicking on the
+correct window decorations. When the window decoration is clicked, the
+window manager issues a \qcode{WM\_DELETE\_WINDOW} event. To bind to
+this, a command of thie form
+\code{tkwm.protocol(win,"WM\_DELETE\_WINDOW", callback)} is used.
 
 To illustrate, if \code{w} is a top-level window, and
 \code{e} a text entry widget
@@ -1103,9 +1223,10 @@ tcl("wm", "attributes", w, topmost=TRUE)
 \section{Frames}
 \label{sec:tcltk:frames}
 
-The \function{ttkframe} constructor produces a themable box container
+The \function{ttkframe} constructor produces a themable container
 that can be used to organize visible components within a GUI. It is
-often the first thing packed within a top-level window.
+often the first thing packed within a top-level window. (As in the
+example of Section~\ref{sec:tcltk:overview:themes}.)
 
 The options include \option{width}{ttkframe} and
 \option{height}{ttkframe} to set the requested size,
@@ -1140,12 +1261,12 @@ in the next section.
 \section{Geometry Managers}
 \label{sec:tcltk:geometry-managers}
 
-\TCL\/ uses geometry managers to place child components within their
+\TCL\/ uses \secdfn{geometry managers}{tcltk} to place child components within their
 parent windows. There are three such managers, but we describe only
 two, leaving the lower-level \code{place} command for the official documentation. The use of
 geometry managers, allows \TK\/ to quickly reallocate space to a GUI's
 components when it is resized.  The \function{tkpack} function will
-place children into their parent in the box-like manner. We have seen
+place children into their parent in a box-like manner. We have seen
 in several examples throughout the text, that through the use of
 nested boxes, one can construct quite flexible layouts, and
 Example~\ref{ex-tcltk-non-modal-dialog} will illustrate that once
@@ -1153,8 +1274,8 @@ again. When simultaneous horizontal and vertical alignment of child
 components is desired, the \function{tkgrid} function can be used to
 manage the components.
 
-%% warn against mixing
-A GUI may use a mix of pack and grid to mangage the child components,
+%% warn against mixing XXX how to format warning?
+A GUI may use a mix of \code{pack} and \code{grid} to mangage the child components,
 but all siblings in the widget heirarchy must be managed the same
 way. Mixing the two will typically result in a lockup of the \R\/
 session.
@@ -1173,14 +1294,14 @@ child components are viewed within their parent. The basic usage
 bottom. The \option{side}{tkpack} option can take a value of
 \qcode{left}, \qcode{right}, \qcode{top} (default), or \qcode{bottom}
 to adjust where the children are placed. These can be mixed and
-matched, but sticking to just one direction is easier to
-understand. Using nested frames is a more transparent approach.
+matched, but sticking to just one direction is typical, with nested
+frames to give additional flexibility.
 
 \paragraph{after, before}
 The \option{after}{tkpack} and \option{before}{tkpack} options can be
 used to place the child before or after another component. These are
 used as with \code{tkpack(child1, after=child2)}. The object
-\code{child2} can be the \R\/ object or an ID. The latter might be
+\code{child2} can be an \R\/ object or its ID. The latter might be
 useful, say when all the children are listed using the command
 \code{tkwinfo("children",parent)} which returns the IDs of the
 immediate child components.
@@ -1189,32 +1310,11 @@ immediate child components.
 
 \begin{figure}
   \centering
-  \begin{tabular}[c@{\quad}c@{\quad}]{ccc}
-    \includegraphics[width=.25\textwidth]{fig-pack-padding} &
-    \includegraphics[width=.25\textwidth]{fig-pack-pady} &
-    \includegraphics[width=.25\textwidth]{fig-pack-ipady}
-  \end{tabular}
-  \caption{Various ways to put padding between widgets using a box container and \function{tkpack}. The \code{padding} option for the box container puts padding around the cavity for all the widgets. The \code{pady} option for \function{tkpack} puts padding around the top and bottom on the border of each widget. The \code{ipady} option for \function{tkpack} puts padding within the top and bottom of the border for each child (modifying the theme under Mac OS X).}
+  \includegraphics[width=.6\textwidth]{fig-tcltk-padding-pady-ipady}
+ \caption{Various ways to put padding between widgets using a box container and \function{tkpack}. The \code{padding} option for the box container puts padding around the cavity for all the widgets. The \code{pady} option for \function{tkpack} puts padding around the top and bottom on the border of each widget. The \code{ipady} option for \function{tkpack} puts padding within the top and bottom of the border for each child (modifying the theme under Mac OS X).}
   \label{fig:fig-pack-example}
 \end{figure}
 
-\begin{Schunk}
-\begin{Sinput}
- ## Code to make padding/pady/ipady figure
- ## padding
- w <- tktoplevel();f <- ttkframe(w, padding=20 + 10);tkpack(f, expand=TRUE, fill="both")
- tkpack(ttkbutton(f, text="padding"))
- tkpack(ttkbutton(f, text="padding"))
- ##  pady outside border
- w <- tktoplevel();f <- ttkframe(w, padding=10);tkpack(f, expand=TRUE, fill="both")
- tkpack(ttkbutton(f, text="pady"), pady=10)
- tkpack(ttkbutton(f, text="pady"), pady=10)
- ## ipady within border
- w <- tktoplevel();f <- ttkframe(w, padding=10);tkpack(f, expand=TRUE, fill="both")
- tkpack(ttkbutton(f, text="ipady"), ipady=10)
- tkpack(ttkbutton(f, text="ipady"), ipady=10)
-\end{Sinput}
-\end{Schunk}
 
 In addition to the \code{padding} option for a frame container, the
 \option{ipadx}{tkpack}, \option{ipady}{tkpack}, \option{padx}{tkpack},
@@ -1231,6 +1331,7 @@ for asymmetric padding.
 This sample code shows how one can easily add padding around all the
 children of the frame \code{f} using the
 \subcommand{"configure"}{tkpack} subcommand.
+
 
 
 \paragraph{Cavity model}
@@ -1256,8 +1357,8 @@ window can adjust this. When there is more space in the box than
 requested by the child component, there are other options. The
 \option{anchor}{tkpack} option can be used to anchor the child to a
 place in the box by specifying one of the valid compass points
-(eg. \code{"n"} or \code{"se"} leaving blank space around the
-child. Padding between the child and the box can be set through the
+(eg. \code{"n"} or \code{"se"}) leaving blank space around the
+child. External padding between the child and the box can be set through the
 \code{padx} and \code{pady} options.
 
 \paragraph{expand, fill}
@@ -1269,14 +1370,18 @@ the extra space is allocated evenly to each child with this set. The
 \option{fill}{tkpack} option is used to base the size of the child on
 the available cavity in the box -- not on the requested size of the
 child. The \code{fill} option can be \qcode{x}, \qcode{y} or
-\qcode{both}. The former expanding the child's size in just one
+\qcode{both}. The first two expanding the child's size in just one
 direction, the latter in both.
 
 \paragraph{forget}
 Child components can be forgotten by the window manager, unmapping them but not destroying them, with the \subcommand{forget}{tkpack} subcommand, or the convenience function \function{tkpack.forget}. After a child component is removed this way, it can be re-placed in the GUI using a geometry manager. In \pkg{gWidgetstcltk} this is used to create a \code{gexpandgroup} container, as such a container is not provided by \TK.
 
 \paragraph{Introspection}
-The subcommand \subcommand{slaves}{tkpack} will return a list of the child components packed into a frame. Coercing these return values to character via \code{as.character} will produce the IDs of the child components. The subcommand \subcommand{info}{tkpack} will provide the packing info for a child.
+The subcommand \subcommand{slaves}{tkpack} will return a list of the
+child components packed into a frame. Coercing these return values to
+character via \code{as.character} will produce the IDs of the child
+components. The subcommand \subcommand{info}{tkpack} will provide the
+packing info for a child.
 
 \begin{example}{Packing dialog buttons}{ex-tcltk-pack}
 
@@ -1302,8 +1407,9 @@ to bottom.
 \begin{Sinput}
  f1 <- ttklabelframe(f, text="plain vanilla")
  tkpack(f1, expand=TRUE, fill="x")
- l <- list(ttkbutton(f1, text="cancel"), ttkbutton(f1, text="ok"))
- QT <- sapply(l, function(i) tkpack(i, side="left"))
+ l <- function(f) 
+   list(ttkbutton(f, text="cancel"), ttkbutton(f, text="ok"))
+ QT <- sapply(l(f1), function(i) tkpack(i, side="left"))
 \end{Sinput}
 \end{Schunk}
 
@@ -1314,9 +1420,8 @@ how to use a blank expanding label to take up the space on the left.
 \begin{Sinput}
  f2 <- ttklabelframe(f, text="push to right")
  tkpack(f2, expand=TRUE, fill="x")
- l <- list(ttkbutton(f2, text="cancel"), ttkbutton(f2, text="ok"))
  tkpack(ttklabel(f2, text=" "), expand=TRUE, fill="x", side="left")
- QT <- sapply(l, function(i) tkpack(i, side="left"))
+ QT <- sapply(l(f2), function(i) tkpack(i, side="left"))
 \end{Sinput}
 \end{Schunk}
 
@@ -1327,19 +1432,18 @@ buttons should have a 12 pixel separation.
  f3 <- ttklabelframe(f, text="push to right with space")
  tkpack(f3, expand=TRUE, fill="x")
  tkpack(ttklabel(f3, text=" "), expand=TRUE, fill="x", side="left")
- l <- list(ttkbutton(f3, text="cancel"), ttkbutton(f3, text="ok"))
- QT <- sapply(l, function(i) tkpack(i, side="left", padx=6))
+ QT <- sapply(l(f3), function(i) tkpack(i, side="left", padx=6))
 \end{Sinput}
 \end{Schunk}
 \end{example}
 
 \begin{example}{A non-modal dialog}{ex-tcltk-non-modal-dialog}
-This example shows how to use  window, frames,  labels, buttons,
+This example shows how to use  a window, frames,  labels, buttons,
 icons, packing and bindings to create a non-modal dialog. 
 
 \begin{figure}
   \centering
-  \includegraphics[width=.4\textwidth]{fig-tcltk-simple-dialog.png}
+  \includegraphics[width=.6\textwidth]{fig-tcltk-simple-dialog.png}
   \caption{Example of a simple dialog}
   \label{fig:fig-tcltk-simple-dialog}
 \end{figure}
@@ -1357,17 +1461,23 @@ be passed in were it.
 \end{Sinput}
 \end{Schunk}
 
-The main top-level window is then given a title, then withdrawn while the GUI is created.
+The main top-level window is then given a title, then withdrawn while
+the GUI is created. 
 \begin{Schunk}
 \begin{Sinput}
  w <- tktoplevel(); tkwm.title(w, title)
  tkwm.state(w, "withdrawn")
+ f <- ttkframe(w,  padding=c(3, 3, 12, 12))
+ tkpack(f, expand=TRUE, fill="both")
 \end{Sinput}
 \end{Schunk}
+As usual, we added a frame so that any themes are respected.
 
 If the parent is non-null and is viewable, then the dialog is made
 transient to a parent, The parent need not be a top-level window, so
-\function{tkwinfo} if used to find the parent's top-level window. For Mac OS X, we use the \code{notify} attribute to bounce the dock icon until the mouse enters the window area.
+\function{tkwinfo} if used to find the parent's top-level window. For
+Mac OS X, we use the \code{notify} attribute to bounce the dock icon
+until the mouse enters the window area.
 
 \begin{Schunk}
 \begin{Sinput}
@@ -1375,20 +1485,12 @@ transient to a parent, The parent need not be a top-level window, so
    parentWin <- tkwinfo("toplevel", parent)
    if(as.logical(tkwinfo("viewable", parentWin))) {
      tkwm.transient(w, parent)
+     ## effects OS X only now
      tcl("wm","attributes",parentWin, notify=TRUE) # bounce
      tkbind(parentWin,"<Enter>", function() 
        tcl("wm","attributes",parentWin, notify=FALSE)) #stop
    }
  }
-\end{Sinput}
-\end{Schunk}
-Finally, a frame is packed into the top-level window. Since we want the
-frame to expand to fill all the space if the window is resized, we use \code{fill="both"}.
-\begin{Schunk}
-\begin{Sinput}
- ## frame for theme purposes, give some space
- f <- ttkframe(w,  padding=c(5,5,10,10))
- tkpack(f, expand=TRUE, fill="both")
 \end{Sinput}
 \end{Schunk}
 
@@ -1475,7 +1577,14 @@ In its simplest usage, a command like
 tkgrid(child1, child2,..., childn)    
   \end{Sinput}
 \end{Schunk}
-will place the $n$ children in a new row, in columns 1 through $n$. However, the specific row and column can be specified through the \option{row}{tkgrid} and \option{column}{tkgrid} options. Counting of rows and columns starts with 0.  Spanning of multiple rows and columns can be specified with integers 2 or greater by the \option{rowspan}{tkgrid} and \option{colspan}{tkgrid} options. These options, and others can be adjusted through the \function{tkgrid.configure} function.
+will place the $n$ children in a new row, in columns 1 through
+$n$. However, the specific row and column can be specified through the
+\option{row}{tkgrid} and \option{column}{tkgrid} options. Counting of
+rows and columns starts with 0.  Spanning of multiple rows and columns
+can be specified with integers 2 or greater by the
+\option{rowspan}{tkgrid} and \option{colspan}{tkgrid} options. These
+options, and others can be adjusted through the
+\function{tkgrid.configure} function.
 
 
 \paragraph{The tkgrid.rowconfigure, tkgrid.columnconfigure commands}
@@ -1499,7 +1608,14 @@ a weight of 1 to the first row would be done with a command like:
 \end{Schunk}
 
 \paragraph{The sticky option}
-When more space is available then requested by the child component, the \option{sticky}{tkgrid} option can be used to place the widget into the grid. The value is a combination of the compass points \qcode{n},\qcode{e},\qcode{w}, and \qcode{s}. A specification \qcode{ns} will make the child component ``stick'' to the top and bottom of the cavity that is provided, similar to the \code{fill="y"} option for \function{tkgrid}. Similarly a value of \qcode{news} will make the child component expand in all the direction like \code{fill="both"}. A value of \qcode{w} will anchor the widget on the left side of the cavity
+When more space is available then requested by the child component,
+the \option{sticky}{tkgrid} option can be used to place the widget
+into the grid. The value is a combination of the compass points
+\qcode{n},\qcode{e},\qcode{w}, and \qcode{s}. A specification
+\qcode{ns} will make the child component ``stick'' to the top and
+bottom of the cavity that is provided, similar to the \code{fill="y"}
+option for \function{tkpack}. A value of \qcode{news} will make the
+child component expand in all the direction like \code{fill="both"}.
 
 \paragraph{Padding}
 As with \function{tkpack}, \function{tkgrid} has options
@@ -1535,7 +1651,10 @@ This example shows how the \function{tkpack} the \function{tkgrid} geometry mana
 
 
 
-We will make the dimensions of the flags true to the flag proportions. These we found at \url{http://flagspot.net/flags/xf-size.html}. Here we define the proportions for the flags of interest.
+We will make the dimensions of the flags true to the flag
+proportions. These we found at
+\url{http://flagspot.net/flags/xf-size.html}. Here we define the
+proportions for the flags of interest.
 \begin{Schunk}
 \begin{Sinput}
  dims <- cbind(Benin=2:3, Cameroon=2:3,Guinea=2:3, Mali=2:3,
@@ -1566,28 +1685,13 @@ This convenience function packs a frame into a top-level window.
  }
 \end{Sinput}
 \end{Schunk}
-This function resizes the toplevel window and forces it to have a fixed proportion using the global \code{dims} defined previously.
-\begin{Schunk}
-\begin{Sinput}
- resizeWin <- function(win) {
-   height <- 200;
-   setWidth <- function(h)
-     floor(h * dims[2, win$country] / dims[1, win$country])
-   width <- setWidth(height)
-   tkwm.geometry(win$w, paste(width, height, sep="x"))
-   ## constrain the resize to flag proportions
-   ## alternate to tkwm.aspect(w, a,b,c,d)
-   tkbind(win$w, "<Configure>", function(W) {
-     tl <- tkwinfo("toplevel",W)
-     geo <- tclvalue(tkwm.geometry(tl))
-     geo <- as.numeric(unlist(strsplit(geo,"[^[:digit:]]"))[1:2])
-     tkwm.geometry(tl, paste(setWidth(geo[2]), geo[2], sep="x"))
-   })
- }
-\end{Sinput}
-\end{Schunk}
 
-Our first flags are  Cameroon (GRY), Guinea (RYG), and Mali (GYR). These are flags with 3 equal vertical strips of color. We use tkpack with \code{side="left"} to pack in the colors from left to right. The \code{expand=TRUE} option causes extra space to be allocated equally to the three children, preserving the equal sizes in this case.
+Our first flags are Cameroon (GRY), Guinea (RYG), and Mali
+(GYR). These are flags with 3 equal vertical strips of color. We use
+tkpack with \code{side="left"} to pack in the colors from left to
+right. The \code{expand=TRUE} option causes extra space to be
+allocated equally to the three children, preserving the equal sizes in
+this case.
 
 \begin{Schunk}
 \begin{Sinput}
@@ -1596,9 +1700,9 @@ Our first flags are  Cameroon (GRY), Guinea (RYG), and Mali (GYR). These are fla
  l <- makeColors(f)
  tkpack(l$green, l$red, l$yellow, expand=TRUE, 
    fill="both", side="left")
- resizeWin(win)
 \end{Sinput}
 \end{Schunk}
+
 
 To create Guinea's flag we simply move the green strip to the end.
 \begin{Schunk}
@@ -1627,7 +1731,6 @@ Lithuania is similar, only the stripes run horizontally. We pack from top to bot
  win <- makeTopLevel("Lithuania")
  l <- makeColors(win$f)
  tkpack(l$yellow, l$green, l$red, expand=TRUE, fill="both", side="top")
- resizeWin(win)
 \end{Sinput}
 \end{Schunk}
 
@@ -1643,7 +1746,6 @@ Benin's flag is better suited for the grid geometry manager. We use a combinatio
  ## use grid in equal sizes to get spaing right
  tkgrid.rowconfigure(win$f, 0:1, weight=1)
  tkgrid.columnconfigure(win$f, 0:2, weight=1) 
- resizeWin(win)
 \end{Sinput}
 \end{Schunk}
 
@@ -1656,21 +1758,24 @@ combinations of row and columnspan. Instead we do this less directly to illustra
  f <- win$f
  l <- makeColors(f)
  upperR <- ttkframe(f); bottom <- ttkframe(f)
+ ## upper left red rectangle
  tkgrid(l$red, row=0, column=0, sticky="news")
  tkgrid(upperR, row=0, column=1, sticky="news")
  tkgrid(bottom, row=1, column=0, columnspan=2, sticky="news")
+ ## top right stripes
  l1 <- makeColors(upperR)
  tkpack(l1$yellow, expand=TRUE, fill="both", side="top")
  tkpack(l1$green, expand=TRUE, fill="both", side="top")
+ ## bottom stripes
  l2 <- makeColors(bottom)
  tkpack(l2$yellow, expand=TRUE, fill="both", side="top")
  tkpack(l2$green, expand=TRUE, fill="both", side="top")
  tkgrid.rowconfigure(f, 0:1, weight=1)
  tkgrid.columnconfigure(f, 0, weight=8)
  tkgrid.columnconfigure(f, 1, weight=10)  # not quite uniform
- resizeWin(win)
 \end{Sinput}
 \end{Schunk}
+
 
 
 \end{example}
@@ -1717,13 +1822,18 @@ the toolbar does not resize if the window does.
 
 Now to add some buttons to the toolbar. We first show how to create a
 new style for a button, slightly modifiying the themed button to set
-the font and padding, and eliminate the border if the OS allows. This
-\code{makeIcon} function finds stock icons from the \pkg{gWidgets}
-package.
+the font and padding, and eliminate the border if the OS allows. 
 \begin{Schunk}
 \begin{Sinput}
  tcl("ttk::style","configure","Toolbar.TButton", 
      font="helvetica 12", padding=0, borderwidth=0)
+\end{Sinput}
+\end{Schunk}
+This
+\code{makeIcon} function finds stock icons from the \pkg{gWidgets}
+package and adds them to a button.
+\begin{Schunk}
+\begin{Sinput}
  makeIcon <- function(parent, stockName, command=NULL) {
    iconFile <- system.file("images", 
                            paste(stockName,"gif",sep="."), 
@@ -1764,7 +1874,6 @@ mouse is over that button, so that the user has some extra feedback.
    if(as.character(tkwinfo("class",W)) == "TButton") {
      img <- tkcget(W,"image"=NULL)
      tkconfigure(img, gamma=gamma)
-   
    }
  }
  tkbind(w,"<Enter>", function(W) changeGamma(W, gamma=0.5))
@@ -1774,7 +1883,7 @@ mouse is over that button, so that the user has some extra feedback.
 
 \begin{figure}
   \centering
-  \includegraphics[width=.4\textwidth]{fig-tcltk-toolbar.png}
+  \includegraphics[width=.6\textwidth]{fig-tcltk-toolbar.png}
   \caption{Illustration of using \code{tkpack} to make a toolbar. }
   \label{fig:fig-tcltk-toolbar}
 \end{figure}
@@ -1798,7 +1907,8 @@ The returned object can be used as a parent container, although one does not use
  w <- tktoplevel(); tkwm.title(w, "Paned window example")
  pw <- ttkpanedwindow(w, orient="horizontal")
  tkpack(pw, expand=TRUE, fill="both")
- left <- ttklabel(pw, text="left"); right <- ttklabel(pw, text="right")
+ left <- ttklabel(pw, text="left")
+ right <- ttklabel(pw, text="right")
  #
  tkadd(pw, left, weight=1)
  tkadd(pw, right, weight=2)
@@ -1843,32 +1953,62 @@ paned window. The width can be returned as follows:
 \label{sec:tcltk:notebooks}
 
 %% constructor
-The \constructor{ttknotebook} constructor returns a notebook object that can be subsequently manipulated. In \TK\/ the object itself, becomes a command with the subcommands being important. There are no convenience functions for these, so we will use the \function{tcl} function directly.
+The \constructor{ttknotebook} constructor returns a notebook
+object. In \TK\/ the object itself, becomes a command with the
+subcommands being important. There are no convenience functions for
+these, so we will use the \function{tcl} function directly.
 
-Notebook pages can be added through the \subcommand{add}{ttknotebook} subcommand or inserted after a page through the \subcommand{insert}{ttknotebook} subcommand. The latter requires a tab ID to be specified, as described below. The tab label is configured similarly to \function{ttklabel} through the options \option{text}{ttknotebook} and the optional \option{image}{ttknotebook}, which if given has its placement determined by \option{compound}{ttknotebook}. 
-The placement of the child component within the notebook page is manipulated similarly as \function{tkgrid} through the  \option{sticky}{ttknotebook} option with values specified through compass points. Extra padding around the child can be added through the \option{padding}{ttknotebook} option. Typically, the child components would be containers to hold more complicated layouts. 
+\begin{figure}
+  \centering
+  \includegraphics[width=.6\textwidth]{fig-tcltk-notebook}
+ \caption{A basic notebook under \OSX{}}
+  \label{fig:fig-notebook-example}
+\end{figure}
+
+
+Notebook pages can be added through the \subcommand{add}{ttknotebook}
+subcommand or inserted after a page through the
+\subcommand{insert}{ttknotebook} subcommand. The latter requires a tab
+ID to be specified, as described below. The tab label is configured
+similarly to \function{ttklabel} through the options
+\option{text}{ttknotebook} and the optional
+\option{image}{ttknotebook}, which if given has its placement
+determined by \option{compound}{ttknotebook}.  The placement of the
+child component within the notebook page is manipulated similarly as
+\function{tkgrid} through the \option{sticky}{ttknotebook} option with
+values specified through compass points. Extra padding around the
+child can be added with the \option{padding}{ttknotebook}
+option. Typically, the child components would be containers to hold
+more complicated layouts.
 
 \paragraph{Tab identifiers} %%integer (0-based), object (ID), "current", "end"
 Many of the commands for a notebook require a specification of a desired tab. This can be given by index, starting at 0; by the values \code{"current"} or \code{"end"}; by the child object added to the tab, either as an \R\/ object or an ID; or in terms of $x$-$y$ coordinates in the form \code{"@x,y"} (likely found through a binding).
 
 %% illustrate add, inser
-To illustrate, if \code{nb} is a \code{ttknotebook} object, then these commands would add pages.
+To illustrate, if \code{nb} is a \code{ttknotebook} object, then these
+commands would add pages (cf. Figure~\ref{fig:fig-notebook-example}):
 \begin{Schunk}
 \begin{Sinput}
  iconFile <- system.file("images",paste("help","gif",sep="."),
                          package="gWidgets")
  iconName <- "::tcl::helpIcon"
  QT <- tkimage.create("photo", iconName, file = iconFile)
- l1 <- ttklabel(nb, text="label 1")
- l2 <- ttklabel(nb, text="label 2")
+ #
+ l2 <- ttklabel(nb, text="Page 2")
  tkadd(nb, l2, sticky="nswe", text="label 2", 
      image=iconName, compound="right")
- ## put l1 first (tabID is 0)
+ ## put l1 first (tabID is 0), use tkinsert
+ l1 <- ttklabel(nb, text="Page 1")
  tkinsert(nb, 0, l1, sticky="nswe", text="label 1")
 \end{Sinput}
 \end{Schunk}
 
-There are several useful subcommands to extract information from the notebook object.  For instance, \code{index} to return the page index (0-based), \code{tabs} to return the page IDs, \code{select} to select the displayed page, and \code{forget} to remove a page from the notebook. Except for \code{tabs}, these require a specification of a tab ID.
+There are several useful subcommands to extract information from the
+notebook object.  For instance, \code{index} to return the page index
+(0-based), \code{tabs} to return the page IDs, \code{select} to select
+the displayed page, and \code{forget} to remove a page from the
+notebook. Except for \code{tabs}, these require a specification of a
+tab ID.
 \begin{Schunk}
 \begin{Sinput}
  tcl(nb, "index", "current")           # current page for tabID
@@ -1904,41 +2044,43 @@ option \option{underline}{ttknotebook}, which takes an integer value
 (0-based) specifying which character in the label is underlined, then
 a keyboard accelerator is added for that letter.
 
-\paragraph{bindings}
+\paragraph{Bindings}
 %% virtualevent
-Beyond the usual events, the 
-notebook widget also generates a \VirtualEvent{NotebookTabChanged} virtual event after a new tab is selected. 
+Beyond the usual events, the notebook widget also generates a
+\VirtualEvent{NotebookTabChanged} virtual event after a new tab is
+selected.
 
-%% limitations: no easy way to get close buttons (to me anyways); no graceful way to handle too man tabs.
+%% limitations: no easy way to get close buttons (to me anyways); no
+%% graceful way to handle too man tabs.
 The notebook container in \TK\/ has a few limitations. For instance,
 there is no graceful management of too many tabs, as there is with
 \GTK, as well there is no easy way to implement close buttons as an
-icon.
+icon, as in \Qt.
 
 
 \chapter{Tcl Tk: Widgets}
 \label{sec:tcltk:widgets}
 
 \Tk\/ has widgets for the common GUI controls. As mentioned in
-Chapter~\ref{sec:tcltk:overview}, the constructors for these widgets
-call the function \function{tkwidget} which calls the appropriate
-\TK\/ command and adds in extra information including an ID and an
-environment. As with labels and buttons, one primarily uses
-\function{tkconfigure} and \function{tkcget} to set and get properties
-of the widget.
+Chapter~\ref{sec:tcltk:overview} -- where we illustrated both buttons
+and labels -- the constructors for these widgets call the function
+\function{tkwidget} which calls the appropriate \TK\/ command and adds
+in extra information including an ID and an environment. As with
+labels and buttons, one primarily uses \function{tkconfigure} and
+\function{tkcget} to set and get properties of the widget when a
+\TCL\/ variable is not used to store the data for the widget.
 
-The label, button and image constructors were discussed in
-Section~\ref{sec:tcltk:overview}. For buttons and labels, we saw that
-a \TCL\/ variable can be used to store the data for a widget.
+
 
 
 \section{Selection Widgets}
 \label{sec:tcltk:selection-widgets}
 
 This section covers the many different ways to present data for the
-user to select a value. The widgets can use \TCL\/ variables to refer to the value that is displayed or that the user selects. 
-Recall, these were constructred through \function{tclVar} and manipulated rhough \code{tclvalue}.
-For example, a logical value can be stored as
+user to select a value. The widgets can use \TCL\/ variables to refer
+to the value that is displayed or that the user selects.  Recall,
+these were constructred through \function{tclVar} and manipulated
+rhough \code{tclvalue}.  For example, a logical value can be stored as
 \begin{Schunk}
 \begin{Sinput}
  value <- tclVar(TRUE)
@@ -1967,12 +2109,14 @@ option.
 
 The \option{command}{ttkcheckbutton} argument is used at construction
 time to specify a callback when the button is clicked. The callback is
-called when the state toggles, so often a callback considers the
-state of the widget before proceeding. Binding through \code{\Event{Button-1}} can be
-problematic, as the callback is called before the variable is updated,
-use \code{\Event{ButtonRelease-1}}.
+called when the state toggles, so often a callback considers the state
+of the widget before proceeding.  To add a callback with
+\function{tkbind} use \code{\Event{ButtonRelease-1}}, as the callback
+for the event \code{\Event{Button-1}} is called before the variable is
+updated.
 
-For example, if \code{f} is a frame, we can create a new check button with the following:
+For example, if \code{f} is a frame, we can create a new check button
+with the following:
 
 \begin{Schunk}
 \begin{Sinput}
@@ -2000,35 +2144,6 @@ But manipulating that is difficult.  A more general strategy within
 or an environment to store the global values.
 
 
-% This following code is one way, certainly not the best, to add a callback that allows one to pass in user data. 
-% <<addBinding>>=
-% addBinding <- function(widget, event="<Button-1>", cb, userData=NULL) {
-%   subArgs <- names(formals(cb)[-1])
-%   subArgs <- if(length(subArgs)) paste(subArgs, collapse=",") else ""
-%   expr <- paste("function(",subArgs,") {",
-%                 "h <- list(widget=widget, userData=userData);",
-%                 "cb(h",
-%                 if(subArgs != "") paste(",",subArgs, collase=""),
-%                 ")}", sep="")
-%   callback <- eval(parse(text=expr))
-%   tkbind(widget,event,callback)
-% }
-% @ 
-% The following uses \code{addBinding} to toggle the checkbutton value when the \kbd{return} key is pressed when the widget has the focus.
-% <<>>=
-% addBinding(widget=cb, event="<Return>",
-%            cb= function(h)  {
-%              tclvalue(h$userData) <- !as.numeric(tclvalue(h$userData))
-%            },
-%            userData=value)
-% @ 
-
-% <<>>=
-% addBinding(widget=cb, userData=value, event="<Return>",
-%            cb= function(h)  {
-%              tclvalue(h$userData) <- !as.numeric(tclvalue(h$userData))
-%            })
-% @ 
 
 \subsection{Radio Buttons}
 \label{sec:tcltk:radio-buttons}
@@ -2050,12 +2165,19 @@ of an alternative hypothesis, assuming \code{f} is a parent container.
  values <- c("less", "greater", "two.sided")
  var <- tclVar(values[3])                # initial value
  callback <- function() print(tclvalue(var))
- for(i in values) {
-   rb <- ttkradiobutton(f, text=i, variable=var, value=i,
-                        command=callback)
+ sapply(values, function(i) {
+   rb <- ttkradiobutton(f, text=i, variable=var, 
+                        value=i, command=callback)
    tkpack(rb, side="top", anchor="w")
- }
+ })
 \end{Sinput}
+\begin{Soutput}
+$less
+
+$greater
+
+$two.sided
+\end{Soutput}
 \end{Schunk}
 
 
@@ -2070,7 +2192,7 @@ option \option{textvariable}{ttkcombobox}, making the getting and
 setting of the displayed value straightforward. The possible values to
 select from are specified as a character vector through the
 \option{values}{ttkcombobox} option. (This may require one to coerce
-the results to the desired class.) Unlike \GTK\/ there is no option to
+the results to the desired class.) Unlike \GTK{} and \Qt{} there is no option to
 include images in the displayed text. One can adjust the alignment
 through the \option{justify}{ttkcombobox} options.  By default, a user
 can add in additional values through the entry widget part of the
@@ -2085,7 +2207,7 @@ begin by defining some values to choose from and a \TCL\/ variable.
 \begin{Schunk}
 \begin{Sinput}
  values <- rownames(mtcars)
- var <- tclVar(values[1])
+ var <- tclVar(values[1])                # initial value
 \end{Sinput}
 \end{Schunk}
 
@@ -2103,7 +2225,7 @@ The constructor call is as follows:
 
 
 The possible values the user can select from can be configured after
-construction through the \option{values}{ttkcombobox} option.
+construction through the \option{values}{ttkcombobox} option:
 \begin{Schunk}
 \begin{Sinput}
  tkconfigure(cb, values=tolower(values))
@@ -2112,7 +2234,10 @@ construction through the \option{values}{ttkcombobox} option.
 
 
 \paragraph{Setting the value}
-Setting values can be done through the \TCL\/ variable, or by value or index (0-based) using the \subcommand{set}{ttkcombobox} sub command through \function{tkset} or the \subcommand{current}{ttkcombobox} sub command.
+Setting values can be done through the \TCL\/ variable, or by value or
+index (0-based) using the \subcommand{set}{ttkcombobox} sub command
+through \function{tkset} or the \subcommand{current}{ttkcombobox} sub
+command.
 
 \begin{Schunk}
 \begin{Sinput}
@@ -2121,10 +2246,12 @@ Setting values can be done through the \TCL\/ variable, or by value or index (0-
  tcl(cb, "current", 4)                 # by index
 \end{Sinput}
 \end{Schunk}
-The values can also be retrieved in this manner, but coercing into a usable \R\/ object is not supported in general.
+
 
 \paragraph{Getting the value}
-One can retrieve the selected object in various ways: from the \TCL\/ variable. Additionally, the \subcommand{get}{ttkcombobox} subcommand can be used through \function{tkget}.
+One can retrieve the selected object in various ways: from the \TCL\/
+variable. Additionally, the \subcommand{get}{ttkcombobox} subcommand
+can be used through \function{tkget}.
 
 \begin{Schunk}
 \begin{Sinput}
@@ -2147,8 +2274,13 @@ One can retrieve the selected object in various ways: from the \TCL\/ variable. 
 \end{Soutput}
 \end{Schunk}
 
+
 \paragraph{Events}
-The virtual event \VirtualEvent{ComboboxSelected} occurs with selection. When the combobox may be edited, a user may expect some action when the \kbd{return} key is pressed. This triggers a \Event{Return} event, so to bind to this event, one can do something like the following:
+The virtual event \VirtualEvent{ComboboxSelected} occurs with
+selection. When the combobox may be edited, a user may expect some
+action when the \kbd{return} key is pressed. This triggers a
+\Event{Return} event. To bind to this event, one can do something
+like the following:
 
 \begin{Schunk}
 \begin{Sinput}
@@ -2161,7 +2293,7 @@ The virtual event \VirtualEvent{ComboboxSelected} occurs with selection. When th
 
 For editable comboboxes, the widget also supports some of the
 \function{ttkentry} commands discussed in
-Section~\ref{ex:tcltk:entry-widgets}.
+Section~\ref{sec:tcltk:entry-widgets}.
 
 
 % \subsection{Listboxes}
@@ -2177,7 +2309,8 @@ Section~\ref{ex:tcltk:entry-widgets}.
 \subsection{Scale widgets}
 \label{sec:tcltk:scale-widgets}
 
-The \constructor{ttkscale} constructor to produce a themable scale (slider) control is missing. You can define your own:
+The \constructor{ttkscale} constructor to produce a themable scale
+(slider) control is missing~\footnote{As of \R{} 2.11.0}. You can define your own:
 \begin{Schunk}
 \begin{Sinput}
  ttkscale <- function(parent, ...) tkwidget(parent, "ttk::scale", ...)
@@ -2188,8 +2321,7 @@ The orientation is set through the option \option{orient}{ttkscale}
 taking values of \qcode{horizontal} (the default) or
 \qcode{vertical}. For sizing the slider, the \option{length}{ttkscale}
 option is available.  To set the range, the basic options are
-\option{from}{ttkscale} and \option{to}{ttkscale} to set the
-range. There is no \code{by} option as of \TK\/ 8.5. The constructor
+\option{from}{ttkscale} and \option{to}{ttkscale}. There is no \code{by} option as of \TK\/ 8.5. The constructor
 \constructor{tkscale}, for a non-themable slider, has the option
 \option{resolution}{tkscale} to set that. The
 \option{variable}{ttkscale} option is used for specifying a \TCL\/
@@ -2197,7 +2329,7 @@ variable to record the value of the slider. Otherwise the
 \option{value}{ttkscale} option is available.  The \function{tkget} and \function{tkset} function (using the 
 \subcommand{get}{ttkscale} and \subcommand{set}{ttkscale} sub commands)
 can be used to get and set the value shown. They are used in the same
-manner as the same subcommands for a combobox. Again, the
+manner as the same-named subcommands for a combobox. Again, the
 \option{command}{ttkscale} option can be used to specify a callback
 for when the slider is manipulated by the user.
 
@@ -2207,19 +2339,41 @@ for when the slider is manipulated by the user.
 
 In \TK\/ version 8.5 there is no themable spinbox widget. In \TK\/ the
 \code{spinbox} command produces a non-themable spinbox. Again, there
-is no direct \constructor{tkspinbox} constructor, but one can be defined:
+is no direct \constructor{tkspinbox} constructor, but one can be
+defined with:
 \begin{Schunk}
 \begin{Sinput}
- tkspinbox <- function(parent, ...) tkwidget(parent, "tk::spinbox", ...)
+ tkspinbox <- function(parent, ...) 
+   tkwidget(parent, "tk::spinbox", ...)
 \end{Sinput}
 \end{Schunk}
 
-The non-themable widgets have many more options than the themable ones, as style properties can be set on a per-widget basis. We won't discuss those here. The spinbox can be used to select from a sequence of numeric values or a vector of character values.
+The non-themable widgets have many more options than the themable
+ones, as style properties can be set on a per-widget basis. We won't
+discuss those here. The spinbox can be used to select from a sequence
+of numeric values or a vector of character values.
 
 
-The basic options  to set the range for a numeric spinbox are \option{from}{tkspinbox}, \option{to}{tkspinbox}, and \option{increment}{tkspinbox}.  The \option{textvariable}{tkspinbox} option can be used to link the spinbox to a \TCL\/ variable. As usual, this allows the user to easily get and set the value displayed. Otherwise, the \function{tkget} and \function{tkset} functions may be used for these tasks. The option \option{state}{tkspinbox} can be used to specify whether the user can enter values, the default of \qcode{normal}; not edit the value, but simply select one of the given values (\qcode{readonly}), or not select a value (\qcode{disabled}).
+The basic options to set the range for a numeric spinbox are
+\option{from}{tkspinbox}, \option{to}{tkspinbox}, and
+\option{increment}{tkspinbox}.  The \option{textvariable}{tkspinbox}
+option can be used to link the spinbox to a \TCL\/ variable. As usual,
+this allows the user to easily get and set the value
+displayed. Otherwise, the \function{tkget} and \function{tkset}
+functions may be used for these tasks. The option
+\option{state}{tkspinbox} can be used to specify whether the user can
+enter values, the default of \qcode{normal}; not edit the value, but
+simply select one of the given values (\qcode{readonly}), or not
+select a value (\qcode{disabled}).
 
-In \TK, spinboxes can also be used to select from a list of text values. These are specified through the \option{values}{tkspinbox} option. For the latter, the \option{wrap}{tkspinbox} option, as in \code{wrap=TRUE}, can be used to wrap around the list of values when the end is reached. As with a combobox, when the \TK\/ spinbox displays character data and is in the \qcode{normal} state, the widget can be controlled like the entry widget of Section~\ref{sec:tcltk:entry-widgets}.
+In \TK, spinboxes can also be used to select from a list of text
+values. These are specified through the \option{values}{tkspinbox}
+option. For the latter, the \option{wrap}{tkspinbox} option, as in
+\code{wrap=TRUE}, can be used to wrap around the list of values when
+the end is reached. As with a combobox, when the \TK\/ spinbox
+displays character data and is in the \qcode{normal} state, the widget
+can be controlled like the entry widget of
+Section~\ref{sec:tcltk:entry-widgets}.
 
 % \begin{example}{A GUI for selecting a numeric range}{ex-tcltk-doublescale}
 %   \SweaveInput{ex-tcltk-doublescale}
@@ -2231,8 +2385,8 @@ a dialog for gathering information to run a $t$-test. A realization is shown in 
 
 \begin{figure}
   \centering
-  \includegraphics[width=.6\textwidth]{fig-tcltk-t-test.png}
-  \caption{A dialog to collect values for a t.test.}
+  \includegraphics[width=.75\textwidth]{fig-tcltk-t-test.png}
+  \caption{A dialog to collect values for a $t$ test.}
   \label{fig:fig-tcltk-t-test}
 \end{figure}
 
@@ -2253,16 +2407,12 @@ We will use a data store to hold the values to be passed to
 \end{Sinput}
 \end{Schunk}
 
-Our layout is basic. Here we place a label frame into the window to give the dialog a nicer look.
-We will use the \code{tkgrid} geometry manager below.
 
+
+Our layout is basic. Here we pack a label frame into the window to give the dialog a nicer look.
+We will use the \code{tkgrid} geometry manager below.
 \begin{Schunk}
 \begin{Sinput}
- ### GUI
- w <- tktoplevel()
- tkwm.title(w, "t-test Dialog")
- f <- ttkframe(w, padding=c(3,3,3,12))
- tkpack(f, expand=TRUE, fill="both")
  lf <- ttklabelframe(f, text="t.test()", padding=10)
  tkpack(lf, expand=TRUE, fill="both", padx=5, pady=5)
 \end{Sinput}
@@ -2282,11 +2432,12 @@ This next function simplifies the task of adding a label.
 \end{Schunk}
 
 Our first widget will be one to select a data frame. For this, a
-combobox is used, although if large number of data frames are a possibility, a different widget may be better suited. The \code{getDfs} function is
-not shown, but simply returns the names of all data frames in the
-global environment. Also not shown are two similar calls to create
-comboboxes \code{xCombo} and \code{fCombo} which allow the user to
-specify parts of a formula.
+combobox is used, although if a large number of data frames are a
+possibility, a different widget may be better suited. The
+\code{getDfs} function is not shown, but simply returns the names of
+all data frames in the global environment. Also not shown are two
+similar calls to create comboboxes \code{xCombo} and \code{fCombo}
+which allow the user to specify parts of a formula.
 
 \begin{Schunk}
 \begin{Sinput}
@@ -2298,16 +2449,10 @@ specify parts of a formula.
 \end{Schunk}
 
 
-\begin{Schunk}
-\begin{Sinput}
- ## not shown
- putLabel(lf, "f:",1,2)
- fCombo <-  ttkcombobox(lf, values=getTwoLevelFactor(), textvariable=e$f)
- tkgrid(fCombo, row=1, column=3, sticky="ew", padx=2)
-\end{Sinput}
-\end{Schunk}
 
-The combobox may not be the most natural widget to gather a numeric value for the mean when the data is continuous, but at this point we haven't discussed the \code{tkentry} widget.
+The combobox may not be the most natural widget to gather a numeric
+value for the mean when the data is continuous, but at this point we
+haven't quite yet discussed the \code{ttkentry} widget.
 \begin{Schunk}
 \begin{Sinput}
  putLabel(lf, "mu:", 2, 0)
@@ -2316,7 +2461,9 @@ The combobox may not be the most natural widget to gather a numeric value for th
 \end{Sinput}
 \end{Schunk}
 
-The alternative is a natural choice for a combo box, but in \pkg{tcltk} we can use a spin box with \code{wrap=TRUE}. 
+The selection of an alternative hypothesis is a natural choice for a
+combo box, but, as this alternative is available in \pkg{tcltk}, we
+use a spin box with \code{wrap=TRUE}.
 \begin{Schunk}
 \begin{Sinput}
  putLabel(lf, "alternative:", 3, 0)
@@ -2327,7 +2474,8 @@ The alternative is a natural choice for a combo box, but in \pkg{tcltk} we can u
 \end{Schunk}
 
 Here we use two widgets to specify the confidence level. The slider
-is quicker to use, but less precise than the spinbox.
+is quicker to use, but less precise than the spinbox. By sharing a
+text variable, the widgets are automatically synchronized.
 \begin{Schunk}
 \begin{Sinput}
  putLabel(lf, "conf.level:", 3, 2)
@@ -2373,7 +2521,7 @@ The dialog has two control buttons we wish to include.
  })
  ok <- ttkbutton(bf, text="ok")
  tkpack(ttklabel(bf, text=" "), expand=TRUE, fill="y", 
-        side="left")
+        side="left")                     # add a spring
  tkpack(cancel, padx=6, side="left")
  tkpack(ok, padx=6, side="left")
  tkconfigure(ok, default="active")
@@ -2392,7 +2540,10 @@ The \code{ok} button is made to look active. As such we should bind to the butto
 \end{Sinput}
 \end{Schunk}
 
-Our \code{updateUI} function does two basic things: it searches for
+At this point, our GUI is complete, but we would like to have it
+reflect any changes to the underlying \R\/ environment that effect its
+display. A such, we define
+a function, \code{updateUI}, which does two basic things: it searches for
 new data frames and it adjusts the controls depending on the current
 state.
 \begin{Schunk}
@@ -2438,7 +2589,7 @@ We use the \code{after} command to repeat a function call every so often. We als
  repeatFun <- function() {
    if(updateID$flag && as.logical(tkwinfo("exists",w))) {
      updateUI()
-     updateID$ID <- tcl("after",1000, repeatFun)
+     updateID$ID <- tcl("after", 1000, repeatFun)
    }
  }
  repeatFun()
@@ -2469,8 +2620,9 @@ of characters to be displayed, assuming average-width characters.  The
 text alignment can be set through the \argument{justify}{ttkentry}
 argument taking values of \qcode{left} (the default), \qcode{right}
 and \qcode{center}. For gathering passwords, the argument
-\argument{show}{ttkentry} can be used, such as with \code{show=}\qcode{*},
-to show asterisks in place of all the characters.
+\argument{show}{ttkentry} can be used, such as with
+\code{show=}\qcode{*}, to show asterisks in place of all the
+characters.
 
 The following constructs a basic example
 \begin{Schunk}
@@ -2505,7 +2657,13 @@ The \code{get} command can also be used.
 \end{Schunk}
 
 \paragraph{Indices}
-The entry widget uses an index to record the different positions within the entry box. This index can be a number (0-based), an $x$-coordinate of the value (\code{@x}), the values \qcode{end} and \qcode{insert} to refer to the end of the current text and the insert as set through the keyboard or mouse. The mouse can also be used to make a selection. In this case the indices \qcode{sel.first} and \qcode{sel.last} describe the selection.
+The entry widget uses an index to record the different positions
+within the entry box. This index can be a number (0-based), an
+$x$-coordinate of the value (\code{@x}), the values \qcode{end} and
+\qcode{insert} to refer to the end of the current text and the insert
+as set through the keyboard or mouse. The mouse can also be used to
+make a selection. In this case the indices \qcode{sel.first} and
+\qcode{sel.last} describe the selection.
 
 With indices, we can insert  text with the \subcommand{insert}{ttkentry} command
 \begin{Schunk}
@@ -2520,7 +2678,7 @@ the left most index to delete (0-based), the second value the index to
 the right of the last value deleted.
 \begin{Schunk}
 \begin{Sinput}
- tkdelete(e, 0, 4) # e.g., 123456 -> 56
+ tkdelete(e, 0, 4) # e.g.,  a b c d e f   -text
 \end{Sinput}
 \end{Schunk}
 
@@ -2547,122 +2705,14 @@ The \subcommand{selection clear}{ttkentry} subcommand clears the selection and \
 \paragraph{Events}
 Several useful events include \Event{KeyPress} and \Event{KeyRelease} for a key presses and  \Event{FocusIn} and \Event{FocusOut} for focus events.
 
-The examples show a bit more about the entry widget. The first  shows how styles can be used to adjust the look of an entry widget, and the second how to validate the users data entry in an entry widget.
+% The examples show a bit more about the entry widget. The first  shows how styles can be used to adjust the look of an entry widget, and the second how to validate the users data entry in an entry widget.
 
-\begin{example}{Using styles to adjust the look of an entry widget}{ex:tcltk-searchentry}
-
-This example follows one found at \url{http://wiki.tcl.tk/18188} where
-a entry widget has its style set so that it resembles a search box for
-Mac OS X. This involves setting a background to a gif image to curve
-the borders of the entry widget and adding a magnifying class icon. We
-show the commands, but do not offer much description. Much more on
-using styles is available online in Mark Roseman's \Tk\/ tutorial at
-\url{http://www.tkdocs.com/tutorial/}.
+%% XXX This is too techincal. -- put into package?
+% \begin{example}{Using styles to adjust the look of an entry widget}{ex:tcltk-searchentry}
+%   \SweaveInput{ex-tcltk-searchentry.Rnw}
+% \end{example}
 
 
-\begin{figure}
-  \centering
-  \includegraphics[width=.4\textwidth]{fig-tcltk-searchentry.png}
-  \caption{Illlustration of using Tk styles to configure an entry widget to look like a Mac OS X search entry box.}
-  \label{fig:fig-tcltk-searchentry}
-\end{figure}
-
-
-The use of uuencoded gif images allows one to store image data as
-text. The variable \code{.imageData} contains this for the background
-image of our entry widget. The following commands create two images,
-the latter to display when the widget has the focus.
-\begin{Schunk}
-\begin{Sinput}
- QT <- tkimage.create("photo","::image::search1", 
-                      data=.imageData, format="gif -index 0")
- QT <- tkimage.create("photo","::image::search2", 
-                      data=.imageData, format="gif -index 1")
-\end{Sinput}
-\end{Schunk}
-
-The following command creates a new style, \code{Search.field}, which has an image specified for when it is drawn, another for when it has the focus, a border set so that the magnifying glass icon isn't written over with text, and a value of \code{sticky} so that it stretches from left to right -- but not top to bottom -- when resized.
-\begin{Schunk}
-\begin{Sinput}
- .Tcl(paste("ttk::style element create Search.field ",
-            "image {::image::search1 focus ::image::search2} ",
-            "-border {22 7 14} -sticky ew",
-            sep=""))
-\end{Sinput}
-\begin{Soutput}
-<Tcl> Search.field 
-\end{Soutput}
-\end{Schunk}
-
-The following lays out the entry style. The search field above is given. It has children of padding and textarea which are simply told to stretch in all directions when resized.
-\begin{Schunk}
-\begin{Sinput}
- .Tcl(paste("ttk::style layout Search.entry {",
-            "Search.field -sticky nswe -border 1 -children {",
-            "Entry.padding -sticky nswe -children {",
-            "Entry.textarea -sticky nswe",
-            "}}}",
-            sep="\n"))
-\end{Sinput}
-\end{Schunk}
-Finally, this command configures the background for the \code{Search.entry} style.
-\begin{Schunk}
-\begin{Sinput}
- tcl("ttk::style", "configure", "Search.entry", 
-     background="#b2b2b2")
-\end{Sinput}
-\end{Schunk}
-
-At this point, we can set up a basic GUI to illustrate the use. First a toplevel window and themed frame are defined.
-\begin{Schunk}
-\begin{Sinput}
- w <- tktoplevel()
- tkwm.title(w, "Search box example")
- f <- ttkframe(w, padding=c(3,3,3,12)); tkpack(f, expand=TRUE, fill="both")
-\end{Sinput}
-\end{Schunk}
-
-The entry widget has the style set through its \argument{style}{ttkentry} argument, as follows.
-\begin{Schunk}
-\begin{Sinput}
- eVar <- tclVar("")
- e <- ttkentry(f, textvariable=eVar, style="Search.entry")
- tkpack(e)
- b <- ttkbutton(f, text="click me"); tkpack(b)
-\end{Sinput}
-\end{Schunk}
-
-At this point, we define two bindings to insert some intial text into
-the widget to give direction to the user. The first handler is called
-on the expose event, when the widget is first drawn, and simply sets
-the initial text in gray.
-\begin{Schunk}
-\begin{Sinput}
- initialText <- "Search"
- tkbind(e,"<Expose>", function(W) {
-   cur <- as.character(tcl(W,"get"))
-   if(length(cur) == 0 || cur == "") {    # first time
-     tclvalue(eVar) <- initialText
-     tkconfigure(W, foreground="gray50")
-   } else {
-     tkconfigure(W, foreground="black")
-   }
- })
-\end{Sinput}
-\end{Schunk}
-The second binding is to catch the first edit of the entry widget to replace the initial text with the value input by the user.
-\begin{Schunk}
-\begin{Sinput}
- tkbind(e,"<FocusIn>", function(W) {
-   cur <- as.character(tcl(W, "get"))
-   if(cur == initialText) {              # searching for initial text?
-     tclvalue(eVar) <- ""
-     tkconfigure(W, foreground="black")
-   }
- })
-\end{Sinput}
-\end{Schunk}
-\end{example}
 \begin{example}{Using validation for dates}{ex:tcltk-validation-dates}
 
 
@@ -2673,7 +2723,7 @@ There is no native calendar widget in \pkg{tcltk}. This example shows how one ca
 Validation happens in a few steps.  A validation command is assigned
 to some event. This call can come in two forms. Prevalidation is when
 a change is validated prior to being committed, for example when each key
-is pressed.  Revalidation is when the values is checked
+is pressed.  Revalidation is when the value is checked
 after it is sent to be committed, say when the entry widget loses
 focus or the enter key is pressed.
 
@@ -2681,12 +2731,21 @@ When a validation command is called it should check
 whether the current state of the entry widget is valid or not. If
 valid, it returns a value of \code{TRUE} and \code{FALSE}
 otherwise. These need to be \TCL\/ Boolean values, so in the following,
-the command \code{tcl("eval","TRUE")} (or \qcode{FALSE}) is used. If
+the command \code{tcl("eval","TRUE")} (or \code{tcl("eval", "FALSE")}) is used. If
 the validation command returns \code{FALSE}, then a subsequent call to
-an invalidation command is made.
+the specified invalidation command is made.
 
 %% Put these into a table???
-For each callback, a number of substition values are possible, in addition to the standard ones such as \code{W} to refer to the widget. These are: \code{d} for the type of validation being done: 1 for insert prevalidation, 0 for delete prevalidation, or -1 for revalidation; \code{i} for the index of the string to be inserted or deleted or -1; \code{P} for te new value if the edit is accepted (in prevalidation) or the current value in revalidation; \code{s} for the value prior to editing; \code{S} for the string being inserted or deleted' \code{v} for the current value of \code{validate} and \code{V} for the condition that triggered the callback.  
+For each callback, a number of substition values are possible, in
+addition to the standard ones such as \code{W} to refer to the
+widget. These are: \code{d} for the type of validation being done: 1
+for insert prevalidation, 0 for delete prevalidation, or -1 for
+revalidation; \code{i} for the index of the string to be inserted or
+deleted or -1; \code{P} for the new value if the edit is accepted (in
+prevalidation) or the current value in revalidation; \code{s} for the
+value prior to editing; \code{S} for the string being inserted or
+deleted, \code{v} for the current value of \code{validate} and
+\code{V} for the condition that triggered the callback.
 
 In the following callback definition we use \code{W} so that we can change the entry text color to black and format the data in a standard manner and \code{P} to get the entry widget's value just prior to validations.
 
@@ -2695,14 +2754,17 @@ To begin,  we define some patterns for acceptable date formats.
 \begin{Schunk}
 \begin{Sinput}
  datePatterns <- c()
- for(i in list(c("%m","%d","%Y"),
+ for(i in list(c("%m","%d","%Y"),        # U.S. style
                c("%m","%d","%y"))) {
    for(j in c("/","-"," ") )
-       datePatterns[length(datePatterns)+1] <- paste(i,sep="", collapse=j)
+     datePatterns[length(datePatterns)+1] <- 
+       paste(i,sep="", collapse=j)
  }
 \end{Sinput}
 \end{Schunk}
 
+Our callbacks set the color to black or red, depending on whether we
+have a valid date. First our validation command.
 \begin{Schunk}
 \begin{Sinput}
  isValidDate <- function(W, P) { # P is the current value
@@ -2720,7 +2782,7 @@ To begin,  we define some patterns for acceptable date formats.
 \end{Sinput}
 \end{Schunk}
 
-This callback for when a date is invalid simply sets the text color to \code{red}. 
+This is our invalid command.
 \begin{Schunk}
 \begin{Sinput}
  indicateInvalidDate <- function(W) {
@@ -2730,15 +2792,16 @@ This callback for when a date is invalid simply sets the text color to \code{red
 \end{Sinput}
 \end{Schunk}
 
-Now we define a simple GUI to show the entry widget.
-\begin{Schunk}
-\begin{Sinput}
- w <- tktoplevel(); tkwm.title(w,"Validation of date example")
- f <- ttkframe(w, padding=c(3,3,3,12)); tkpack(f, expand=TRUE, fill="both")
- tkpack(ttklabel(f, text="Enter a date mm/dd/yy"), side="left")
-\end{Sinput}
-\end{Schunk}
-The \argument{validate}{ttkentry} argument is used to specify when the validation command should be called. This can be a value of \qcode{none} for validation when called through the \code{validation} command; \qcode{key} for each key press; \qcode{focusin} for when the widget receives the focus;  \qcode{focusout} for when it loses focus; \qcode{focus} for both of the previous; and \qcode{all} for any of the previous. We use \qcode{focusout} below, so also give a button widget so that the focus can be set elsewhere.
+
+The \argument{validate}{ttkentry} argument is used to specify when the
+validation command should be called. This can be a value of
+\qcode{none} for validation when called through the \code{validation}
+command; \qcode{key} for each key press; \qcode{focusin} for when the
+widget receives the focus; \qcode{focusout} for when it loses focus;
+\qcode{focus} for both of the previous; and \qcode{all} for any of the
+previous. We use \qcode{focusout} below, so also give a button widget
+so that the focus can be set elsewhere. (As usual, \code{f} is a
+parent frame.)
 \begin{Schunk}
 \begin{Sinput}
  e <- ttkentry(f, validate="focusout",
@@ -2756,16 +2819,18 @@ The \argument{validate}{ttkentry} argument is used to specify when the validatio
 \label{sec:tcltk:scrollbars}
 
 \TK\/ has several scrollable widgets -- those that use scrollbars.
-Widgets
-which accept a scrollbar (without too many extra steps) have the options \code{xscrollcommand} and
-\code{yscrollcommand}.  To use scrollbars in \pkg{tcltk} requires two steps: the scrollbars must be constructed and bound
-to some widget, and that widget must be told it has a scrollbar. This
-way changes to the widget can update the scrollbar and vice
-versa. Suppose, \code{parent} is a container and \code{widget} has these
-options, then the following will set up both horizontal and vertical
-scrollbars.
+Widgets which accept a scrollbar (without too many extra steps) have
+the options \code{xscrollcommand} and \code{yscrollcommand}.  To use
+scrollbars in \pkg{tcltk} requires two steps: the scrollbars must be
+constructed and bound to some widget, and that widget must be told it
+has a scrollbar. This way changes to the widget can update the
+scrollbar and vice versa. Suppose, \code{parent} is a container and
+\code{widget} has these options, then the following will set up both
+horizontal and vertical scrollbars.
 
-The scrollbars are defined as follows using the \option{orient}{ttkscrollbar} option and a command of the following form.
+The scrollbars are defined as follows using the
+\option{orient}{ttkscrollbar} option and a command of the following
+form.
 \begin{Schunk}
 \begin{Sinput}
  xscr <- ttkscrollbar(parent, orient="horizontal",
@@ -2774,7 +2839,7 @@ The scrollbars are defined as follows using the \option{orient}{ttkscrollbar} op
                       command=function(...) tkxview(widget, ...))
 \end{Sinput}
 \end{Schunk}
-The \code{view} commands sets what part of the widget is being shown.
+The \code{view} commands set what part of the widget is being shown.
 
 To link the widget back to the scrollbar, the \code{set} command is
 used in a callback to the scroll command.  For this example we
@@ -2799,7 +2864,7 @@ Although scrollbars can appear anywhere, the conventional place is on the right 
  tkgrid.rowconfigure(parent, 0, weight=1)
 \end{Sinput}
 \end{Schunk}
-Although a bit tedious, this gives the programmer some flexibility in arranging scrollbars. To avoid doing all this in the sequal, we turn the above into function \function{addScrollbars} (not shown).
+Although a bit tedious, this gives the programmer some flexibility in arranging scrollbars. To avoid doing all this in the sequel, we turn the above into function \function{addScrollbars} (not shown).
 
 
 \subsection{Multi-line Text Widgets}
@@ -2810,7 +2875,20 @@ Although a bit tedious, this gives the programmer some flexibility in arranging 
 The \constructor{tktext} widget creates a multi-line text editing widget. If constructed with no options but a parent container, the widget can have text entered into it by the user. 
 
 %% arguments width, height
-The text widget is not a themed widget, hence has numerous arguments to adjust its appearance. We mention a few here and leave the rest to be discovered in the manual page (along with much else). The argument \argument{width}{tktext} and \argument{height}{tktext} are there to set the initial size, with values specifying number of characters and number of lines (not pixels). The actual size if font dependent, with the default for 80 by 24 characters. The  \argument{wrap}{tktext} argument, with a value from \qcode{none}, \qcode{char}, or \qcode{word}, indicates if wrapping is to occur and if so, does it happen at any character or only a word boundary. The argument \argument{undo}{tktext} takes a logical value indicating if the undo mechanism should be used. If so, the subcommand \subcommand{edit}{tktext} can be used to undo a change (or the \kbd{control-z} keyboard combination).
+The text widget is not a themed widget, hence has numerous arguments
+to adjust its appearance. We mention a few here and leave the rest to
+be discovered in the manual page (along with much else). The argument
+\argument{width}{tktext} and \argument{height}{tktext} are there to
+set the initial size, with values specifying number of characters and
+number of lines (not pixels). The actual size if font dependent, with
+the default for 80 by 24 characters. The \argument{wrap}{tktext}
+argument, with a value from \qcode{none}, \qcode{char}, or
+\qcode{word}, indicates if wrapping is to occur and if so, does it
+happen at any character or only a word boundary. The argument
+\argument{undo}{tktext} takes a logical value indicating if the undo
+mechanism should be used. If so, the subcommand
+\subcommand{edit}{tktext} can be used to undo a change (or the
+\kbd{control-z} keyboard combination).
 
 \paragraph{Indices}
 As with the entry widget, several commands take indices to specify
@@ -2821,33 +2899,28 @@ separated by a period in the pattern \code{line.char}. The line is
 $1$-based, the column $0$-based (e.g., \code{1.0} says start on the
 1st row and first character). In general, one can specify any line
 number and character on that line, with the keyword \code{end} used to
-refer to the last character on the line. If the $x$-$y$ postion of the
-spot is known (through percent substitutions say) the form
-\code{\@x,y} may be used. Text buffers may carry transient marks, in
-which case the use of this mark indicates the next character after the
-mark. The mark \code{insert} tracks the insertion point in the text
-buffer were the user to begin typing, whereas the mark \code{current} follows the character closest to the mouse position. As well, pieces of text may be
-tagged. The format \code{tag.first} and \code{tag.last} index the
-range of the tag \code{tag}. Marks and tags are described in the
-following.
+refer to the last character on the line. Text buffers may carry
+transient marks, in which case the use of this mark indicates the next
+character after the mark. Predefined marks include \code{end}, to  specify the end of the
+buffer, \code{insert}, to track the insertion point in the text
+buffer were the user to begin typing, and \code{current}, which 
+follows the character closest to the mouse position. As well, pieces
+of text may be tagged. The format \code{tag.first} and \code{tag.last}
+index the range of the tag \code{tag}. Marks and tags are described
+below. If the $x$-$y$ postion of the spot is known (through percent
+substitutions say) the index can be specified by postion, as \code{\@x,y}.
 
-Indices can also be adjusted relative to the above. This adjustment can be by a number of characters (\code{chars}), index positions (\code{indices}) or \code{lines}. For example, \code{insert + 1 lines} refers to 1 line under the insert point. The values \code{linestart}, \code{lineend}, \code{wordstart} and \code{wordend} are also available. For instance, \code{insert linestart} is the beginning of the line from the insert point, while \code{end -1 wordstart} and \code{end - 1 chars wordend} refer to the beginning and ending of the last word in the buffer. (The \code{end} index refers to the character just after the new line so we go back 2 steps.)
-
-
-\paragraph{Inserting text}
-Inserting text can be done through the \subcommand{insert}{ttktext}
-subcommand by specifying first the index then the text to add. One can use \code{$\backslash$n} to add new lines.
-\begin{Schunk}
-\begin{Sinput}
- tkinsert(t, "end", "more text\n new line")  
-\end{Sinput}
-\end{Schunk}
-Images and other windows can be added to a text buffer, but we do not discuss that here.
-
-\paragraph{Panning the buffer: tksee}
-After text is inserted, the visible part of buffer may not be what is
-desired. The \subcommand{see}{ttktext} sub command is used to position
-the buffer on the specified index, its lone argument.
+Indices can also be adjusted relative to the above
+specifications. This adjustment can be by a number of characters
+(\code{chars}), index positions (\code{indices}) or \code{lines}. For
+example, \code{insert + 1 lines} refers to 1 line under the insert
+point. The values \code{linestart}, \code{lineend}, \code{wordstart}
+and \code{wordend} are also available. For instance, \code{insert
+  linestart} is the beginning of the line from the insert point, while
+\code{end -1 wordstart} and \code{end - 1 chars wordend} refer to the
+beginning and ending of the last word in the buffer. (The \code{end}
+index refers to the character just after the new line so we go back 2
+steps.)
 
 \paragraph{Getting text}
 %% multiline? tclvalue versus as.character
@@ -2859,15 +2932,34 @@ The \subcommand{get}{tktext} subcommand is used to retrive the text in the buffe
  as.character(value)                     # wrong way
 \end{Sinput}
 \begin{Soutput}
-[1] "more" "text" "new"  "line"
+character(0)
 \end{Soutput}
 \begin{Sinput}
  tclvalue(value)
 \end{Sinput}
 \begin{Soutput}
-[1] "more text\n new line\n"
+[1] "\n"
 \end{Soutput}
 \end{Schunk}
+
+\paragraph{Inserting text}
+Inserting text can be done through the \subcommand{insert}{ttktext}
+subcommand by specifying first the index then the text to add. One can use \code{$\backslash$n} to add new lines.
+\begin{Schunk}
+\begin{Sinput}
+ tkinsert(t, "end", "more text\n new line")  
+\end{Sinput}
+\end{Schunk}
+Images and other windows can be added to a text buffer, but we do not discuss that here.
+
+The buffer can have its contents cleared using \code{tkdelete}, as
+with \code{tkdelete(t, "0.0", "end")}.
+
+\paragraph{Panning the buffer: tksee}
+After text is inserted, the visible part of buffer may not be what is
+desired. The \subcommand{see}{ttktext} sub command is used to position
+the buffer on the specified index, its lone argument.
+
 
 \paragraph{tags}
 Tags are a means to assign a name to characters within the text buffer. Tags may be used to adjust the 
@@ -2889,7 +2981,8 @@ location. The following marks the first word:
 The \subcommand{tag configure}{tktext} can be used to configure properties of the tagged characters, for example:
 \begin{Schunk}
 \begin{Sinput}
- tktag.configure(t, "firstWord", foreground="red", font="helvetica 12 bold")
+ tktag.configure(t, "firstWord", foreground="red", 
+                 font="helvetica 12 bold")
 \end{Sinput}
 \end{Schunk}
 There are several other configuration options for a tag. A cryptic list can be produced by calling the subcommand \subcommand{tag configure}{tktext} without a value for configuration.
@@ -2931,7 +3024,7 @@ context-sensitive popup menus, as in this code example:
 \begin{Schunk}
 \begin{Sinput}
  popupContext <- function(W, x, y) {
-   ## or use paste("@", x, ",", y, sep="")
+   ## or use sprintf("@%s,$s", x, y) for "current"
    cur <- tkget(W,"current  wordstart", "current wordend") 
    cur <- tclvalue(cur)
    popupContextMenuFor(cur, x, y)        # some function
@@ -2951,7 +3044,7 @@ To assign a new mark, one uses the \subcommand{mark set}{tktext} subcommand peci
 <Tcl> new text 
 \end{Soutput}
 \end{Schunk}
-The use of the subcommand \subcommand{mark gravity}{tktext} is done so that the mark attaches to the left most character at the insert point. The rightmost one changes as more text is inserted, so would make a poor choice. 
+The use of the subcommand \subcommand{mark gravity}{tktext} is done so that the mark attaches to the left-most character at the insert point. The rightmost one changes as more text is inserted, so would make a poor choice. 
 
 
 \paragraph{The edit command}
@@ -2976,21 +3069,27 @@ The widget defines virtual events \VirtualEvent{Modified} and \VirtualEvent{Sele
 
 \begin{example}{Displaying commands in a text buffer}{ex-tcltk-text}
 This example shows how a text buffer can be used to display the output
-of \R\/ commands, using an approach modified from \pkg{Sweave}. The
-following function does the work of evaluating a command chunk then
-inserting the values into the text buffer, using different markup to
-indicate commands from output.
+of \R\/ commands, using an approach modified from \pkg{Sweave}.
+
+\begin{Schunk}
+\begin{Sinput}
+ ## create formatting tags
+ tktag.configure(t, "commandTag", foreground="blue", 
+                 font="courier 12 italic")
+ tktag.configure(t, "outputTag", font="courier 12")
+ tktag.configure(t, "errorTag", foreground="red", 
+                 font="courier 12 bold")
+\end{Sinput}
+\end{Schunk}
+
+The following function does the work of evaluating a command chunk
+then inserting the values into the text buffer, using the different
+markup tags specified above to indicate commands from output.
 
 \begin{Schunk}
 \begin{Sinput}
  evalCmdChunk <- function(t, cmds) {
-   ## create tags
-   tktag.configure(t, "commandTag", foreground="blue", 
-                   font="courier 12 italic")
-   tktag.configure(t, "outputTag", font="courier 12")
-   tktag.configure(t, "errorTag", foreground="red", 
-                   font="courier 12 bold")
- 
+   
    cmdChunks <- try(parse(text=cmds), silent=TRUE)
    if(inherits(cmdChunks,"try-error")) {
      tkinsert(t, "end", "Error", "errorTag") # add tag for markup
@@ -3017,7 +3116,7 @@ indicate commands from output.
 
 
 We envision this as a piece of a larger GUI which generates the
-commands t evaluate. For this example though, we make a simple GUI.
+commands to evaluate. For this example though, we make a simple GUI.
 
 \begin{Schunk}
 \begin{Sinput}
@@ -3051,12 +3150,33 @@ like a data frame, or heirachical data. The usage is similar for each beyond the
 Rectangular data has a row and column structure. In \R, data frames are internally kept in terms of their columns which all must have the same type. The treeview widget is different, it stores all data as character data and one interacts with the data row by row. 
 
 %% constructor
-The \constructor{ttktreeview} constructor creates the tree widget. There is no separate model for this widget, but there is a means to filter what is displayed.
-The argument \argument{columns}{ttktreeview} is used to specify internal names for the columns and indicate the number of columns. A value of \code{1:n} will work here unless explicit names are desired. The argument \argument{displaycolunms}{ttktreeview} is used to control which of the columns are actually display. The default is \qcode{all}, but a vector of indices or names can be given. 
-The size of the widget is specified two different ways. 
-The  \argument{height}{ttktreeview} argument is used to adjust the number of visible rows. The width of the widget is determined by the combined widths of each column, whose adjustments are mentioned later. The user may select one or more rows with the mouse, as controlled by the argument \argument{selectmode}{ttktreeview}. Multiple rows may be selected with the default value of \qcode{extended}, a restriction to a single row is specified with \qcode{browse}, and no selection is possible if this is given as \code{none}. 
-The treeview widget has an initial column for showing the tree-like aspect with the data. This column is referenced by \code{\#0}. The \argument{show}{ttktreeview} argument controls whether this column is shown. A value of \qcode{tree} leaves just this column shown, \qcode{headings} will show the other columns, but not the first, and the combined value of \code{tree headings} will display both (the default). 
-Additionally, the treeview is a scrollable widget, so has the arguments \argument{xscrollcommand}{ttktreeview} and \argument{yscrollcommand}{ttktreeview} for specifying scrollbars. 
+The \constructor{ttktreeview} constructor creates the tree
+widget. There is no separate model for this widget, but there is a
+means to filter what is displayed.  The argument
+\argument{columns}{ttktreeview} is used to specify internal names for
+the columns and indicate the number of columns. A value of \code{1:n}
+will work here unless explicit names are desired. The argument
+\argument{displaycolunms}{ttktreeview} is used to control which of the
+columns are actually display. The default is \qcode{all}, but a vector
+of indices or names can be given.  The size of the widget is specified
+two different ways.  The \argument{height}{ttktreeview} argument is
+used to adjust the number of visible rows. The width of the widget is
+determined by the combined widths of each column, whose adjustments
+are mentioned later. The user may select one or more rows with the
+mouse, as controlled by the argument
+\argument{selectmode}{ttktreeview}. Multiple rows may be selected with
+the default value of \qcode{extended}, a restriction to a single row
+is specified with \qcode{browse}, and no selection is possible if this
+is given as \code{none}.  The treeview widget has an initial column
+for showing the tree-like aspect with the data. This column is
+referenced by \code{\#0}. The \argument{show}{ttktreeview} argument
+controls whether this column is shown. A value of \qcode{tree} leaves
+just this column shown, \qcode{headings} will show the other columns,
+but not the first, and the combined value of \qcode{tree headings} will
+display both (the default).  Additionally, the treeview is a
+scrollable widget, so has the arguments
+\argument{xscrollcommand}{ttktreeview} and
+\argument{yscrollcommand}{ttktreeview} for specifying scrollbars.
 
 
 If \code{f} is a frame, then the following call will create a widget with just one column showing 25 rows, like the older, non-themed, listbox widget of \Tk.
@@ -3081,7 +3201,7 @@ set through the \subcommand{heading}{ttktreeview} subcommand. The
 heading, similar to the button widget, can be text, an image or
 both. The text placement of the heading may be positioned through the
 \code{anchor} option. For example, this command will center the text
-heading of the one column:
+heading of the first column:
 \begin{Schunk}
 \begin{Sinput}
  tcl(tr, "heading", 1, text="Host", anchor="center")
@@ -3137,7 +3257,8 @@ to the treeview display.
  Host <- paste('"',x$Host,'"', sep="")   # add quotes!
  shade <- c("none", "gray")              # tag names
  for(i in 1:length(Host))
-   ID <- tkinsert(tr, "", "end", tag=shade[i %% 2], values=Host[i])
+   ID <- tkinsert(tr, "", "end", values=Host[i],
+                  tag=shade[i %% 2])              # none or gray
  tktag.configure(tr, "gray", background="gray95") # shade rows
 \end{Sinput}
 \end{Schunk}
@@ -3186,7 +3307,7 @@ The value returned from the \code{item} command can be difficult to parse, as \T
 
 %% deleting values
 \paragraph{Moving and deleting items}
-The \code{move}{ttktreeview} subcommand can be used to replace a child. As with the \code{insert} command, a parent and an index for where the new child is to go among the existing children is given. The item to be moved is referred to by its ID. The \subcommand{delete}{ttktreeview} and \subcommand{detach}{ttktreeviews} can be used to remove an item from the display, as specified by its ID. The latter command allows for the item to be reinserted at a later time.
+The \subcommand{move}{ttktreeview} subcommand can be used to replace a child. As with the \code{insert} command, a parent and an index for where the new child is to go among the existing children is given. The item to be moved is referred to by its ID. The \subcommand{delete}{ttktreeview} and \subcommand{detach}{ttktreeview} can be used to remove an item from the display, as specified by its ID. The latter command allows for the item to be reinserted at a later time.
 
 %% Events; handlers.
 \paragraph{Events and callbacks}
@@ -3223,13 +3344,11 @@ We illustrate the above with a slightly improved GUI for selecting a CRAN mirror
  df <- getCRANmirrors()[, c(1,2,5,4)]
 \end{Sinput}
 \end{Schunk}
+
+
 We use a text entry widget to allow the user to filter the values in the display as the user types.
 \begin{Schunk}
 \begin{Sinput}
- w <- tktoplevel()
- tkwm.title(w, "Choose a CRAN mirror")
- f <- ttkframe(w, padding=c(3,3,3,12))
- tkpack(f, expand=TRUE, fill="both")
  f0 <- ttkframe(f); tkpack(f0, fill="x")
  l <- ttklabel(f0, text="filter:"); tkpack(l, side="left")
  filterVar <- tclVar("")
@@ -3324,8 +3443,13 @@ event. In the callback, we set the CRAN option then withdraw the window.
 
 %% Comment on tktable XXX Do I want more XXX
 \paragraph{Editing cells of a table}
-There is no native widget for editing the cells of tabular data, as is provided by the \function{edit} method for data frames. The \code{tktable} widget (\url{http://tktable.sourceforge.net/}) provides
-such an add-on to the base \TK. We don't illustrate its usage here, as we keep to the core set of functions provided by \TK. However, we note that the \code{gdf} function of \pkg{gWidgetstcltk} provides an example of how it can be used.
+There is no native widget for editing the cells of tabular data, as is
+provided by the \function{edit} method for data frames. The
+\code{tktable} widget (\url{http://tktable.sourceforge.net/}) provides
+such an add-on to the base \TK. We don't illustrate its usage here, as
+we keep to the core set of functions provided by \TK. However, we note
+that the \code{gdf} function of \pkg{gWidgetstcltk} provides an
+example of how it can be used.
 
 
 
@@ -3371,8 +3495,7 @@ children when coerced to character with \code{as.character}.
 %% tree example using XML
 \begin{example}{Using the treeview widget to show an XML file}{ex-tcltk-tree}
 This example shows how to display the heirarchical structure of an XML
-document. The \pkg{XML} package is used to parse the document.
-
+document using the tree widget.
 
 We use the \pkg{XML} library to parse a document from the
 internet. This example uses just a few functions from this library:
@@ -3395,7 +3518,7 @@ The \function(htmlTreeParse) (similar to \function{xmlInternalTreeParse}) to par
 \begin{Schunk}
 \begin{Sinput}
  library(XML)
- fileName <- "http://www.omegahat.org/RSXML/shortIntro.html" # XML's doc
+ fileName <- "http://www.omegahat.org/RSXML/shortIntro.html"
  QT <- function(...) {}  # quiet next call
  doc <- htmlTreeParse(fileName, useInternalNodes=TRUE, error=QT)
  root <- xmlRoot(doc)
@@ -3404,10 +3527,6 @@ The \function(htmlTreeParse) (similar to \function{xmlInternalTreeParse}) to par
 Our GUI is primitive, with just a treeview instance added.
 \begin{Schunk}
 \begin{Sinput}
- w <- tktoplevel()
- tkwm.title(w, "Treeview example with XML")
- f <- ttkframe(w, padding=c(3,3,3,12))
- tkpack(f, expand=TRUE, fill="both")
  tr <- ttktreeview(f, displaycolumns="#all", columns=1)
  addScrollbars(f, tr)                    
 \end{Sinput}
@@ -3427,12 +3546,12 @@ width below. Recall, the tree column is designated \qcode{\#0}.
 To map the tree-like structure of the XML document into the widget, we
 define the following function to recursively add to the treeview
 instance.  We only add to the \code{value} column (through the
-\code{values} option) when the node does not have children, dren. We
-use \code{do.call}, as a convenience, to avoid constructing two
-different calls to the \code{insert} subcommand. The \code{quoteIt}
-function used is not shown, but similar to \function{shQuote} only
-escaping with double quotes, as single quotes are treated differently
-by \TCL. (Otherwise the \code{ttktreeview} widget will split values on
+\code{values} option) when the node does not have children. We use
+\code{do.call}, as a convenience, to avoid constructing two different
+calls to the \code{insert} subcommand. The \code{quoteIt} function
+used is not shown, but similar to \function{shQuote} only escaping
+with double quotes, as single quotes are treated differently by
+\TCL. (Otherwise the \code{ttktreeview} widget will split values on
 spaces.)
 \begin{Schunk}
 \begin{Sinput}
@@ -3550,22 +3669,28 @@ as it is used to identify the heirarchical structure. When there are children a 
 \section{Menus}
 \label{sec:tcltk:menus}
 
-Menu bars and popup menus in \Tk\/ are constructed with \constructor{tkmenu}. The 
-parent argument depends on what the menu is to do. A toplevel menu bar, such as appears at the top of a window has a toplevel window as its parent; a submenu of a menu bar  uses the parent menu; and a popup menu uses a widget.
-The menu widget in \Tk\/ has an option to be ``torn off.'' This features was at one time common in GUIs, but now is rarely seen so it is recommended that this option be disabled. The \argument{tearoff}{tkmenu} option can be used at
-construction time to override the default behaviour. Otherwise, the following command will do so globally:
+Menu bars and popup menus in \Tk\/ are constructed with
+\constructor{tkmenu}. The parent argument depends on what the menu is
+to do. A toplevel menu bar, such as appears at the top of a window has
+a toplevel window as its parent; a submenu of a menu bar uses the
+parent menu; and a popup menu uses a widget.  The menu widget in \Tk\/
+has an option to be ``torn off.'' This features was at one time common
+in GUIs, but now is rarely seen so it is recommended that this option
+be disabled. The \argument{tearoff}{tkmenu} option can be used at
+construction time to override the default behaviour. Otherwise, the
+following command will do so globally:
 \begin{Schunk}
 \begin{Sinput}
- tcl("option","add","*tearOff",0)       # disable tearoff menus
+ tcl("option","add","*tearOff", 0)       # disable tearoff menus
 \end{Sinput}
 \end{Schunk}
 
-A toplevel menu bar is to attached to top-level window using \code{tkconfigure}
+A toplevel menu bar is to attached to a top-level window using \code{tkconfigure}
 to set the \code{menu} property of the window. For the aqua \TK\/
 libraries for Mac OS X, this menu will appear on the top menu bar when
 the window has the focus. For other operating systems, it appears at
 the top of the window. For Mac OS X, a default menu bar with no
-relationship to your application will will shown if a menu is not
+relationship to your application will be shown if a menu is not
 provided for a toplevel window. Testing for native Mac OS X may be done via
 the following function:
 \begin{Schunk}
@@ -3578,7 +3703,7 @@ the following function:
 The \function{tkpopup} function facilitates the creation of a popup
 menu.  This function has arguments for the menu bar, and the postion
 where the menu should be popped up. For example, the following code
-will bind a popup menu, \code{pmb}, to the right click event for a
+will bind a popup menu, \code{pmb} (yet to be defined), to the right click event for a
 button \code{b}. As \OSX\/ may not have a third mouse button, and when
 it does it refers to it differently, the callback is bound
 conditionally to different events.
@@ -3619,7 +3744,7 @@ mouse. The \subcommand{add command}{tkmenu} (through
 \code{tkadd(widget, "command", ...)}) allows one to specify a
 \code{label}, a \code{command} and optionally an \code{image} with a
 value for \code{compound} to adjust its layout. (Images are not shown
-in Mac OS X.) Action commands may possibly called for different
+in Mac OS X.) Action commands may possibly be called for different
 widgets, so the use of percent substitution is discouraged here. One can also specify that a keyboard accelerator be displayed through the option \code{accelerator}, but a separate callback must listen for this combination.
 
 Action items may also be checkboxes. To create one, the subcommand
@@ -3712,7 +3837,8 @@ Finally, we end the file menu with a quit action.
 \begin{Schunk}
 \begin{Sinput}
  tkadd(fileMenu, "separator")
- tkadd(fileMenu, "command", label="Quit", command=function() tkdestroy(w))
+ tkadd(fileMenu, "command", label="Quit", 
+       command=function() tkdestroy(w))
 \end{Sinput}
 \end{Schunk}
 
@@ -3750,23 +3876,6 @@ We now define a function to update the user interface to reflect any changes.
  }
 \end{Sinput}
 \end{Schunk}
-We update the UI during idle times. The \function{after} command can be used to run a command after a period of time. The following repeats a function every second until the toplevel window no longer exists.
-\begin{Schunk}
-\begin{Sinput}
- afterID <- ""
- repeatCall <- function(ms=1000, f, w) {
-   afterID <<- tcl("after", ms, function() {
-     if(as.logical(tkwinfo("exists", w))) {
-       f()
-       afterID <<- repeatCall(ms, f, w)
-     } else {
-       tcl("after", "cancel", afterID)
-     }
-   })
- }
- repeatCall(100, updateUI, w)
-\end{Sinput}
-\end{Schunk}
 
 We now add an accelerator entry to the menubar and a binding to the top-level window for the keyboard shortcut.
 \begin{Schunk}
@@ -3790,11 +3899,13 @@ right for \R, as it stops at periods.
 \begin{Schunk}
 \begin{Sinput}
  doPopup <- function(W, X, Y) {
-   cur <- tclvalue(tkget(W,"current  wordstart", "current wordend"))
-   tcl(W, "tag", "add", "popup", "current  wordstart", "current wordend")
+   cur <- tclvalue(tkget(W, "current  wordstart", 
+                            "current wordend"))
+   tcl(W, "tag", "add", "popup", "current  wordstart", 
+                                 "current wordend")
    posVals <- head(CompletePlus(cur)[,1, drop=TRUE], n=20)
    if(length(posVals) > 1) {
-     popup <- tkmenu(tb)                 # create menu for popup
+     popup <- tkmenu(tb)                # create menu for popup
      sapply(posVals, function(i) {         
        tkadd(popup, "command", label=i, command = function() {
          tcl(W,"replace", "popup.first", "popup.last", i)
@@ -3860,8 +3971,9 @@ used to refer to the item at a later stage. Optionally, tags can be
 used to group items into common groups. The \qcode{tags} option can be
 used with \code{tkcreate} when the item is created, or the
 \subcommand{addtag}{tkcanvas} subcommand can be used. The call
-\code{tkaddtag(canvas, "tagName", "withtag", item)} would add a tag to
-the \code{item} returned by \code{tkcreate}. As well, if one is
+\code{tkaddtag(canvas, tagName, "withtag", item)} would add the tag ``\code{tagName}''to
+the \code{item} returned by \code{tkcreate}. (The \qcode{withtag} is
+one of several search specifications.) As well, if one is
 adding a tag through a mouse click, the call \code{tkaddtag(W,
   "tagName", "closest", x, y)} could be used with \code{W}, \code{x}
 and \code{y} coming from percent substitutions. Tags can be deleted
@@ -4094,7 +4206,7 @@ tag the point item that gets selected when a mouse clicks on a point
 and update the last position of the currently selected point.
 \begin{Schunk}
 \begin{Sinput}
- lastPos <- numeric(2)                   # global to track position
+ lastPos <- numeric(2)            # global to track position
  tagSelected <- function(W, x, y) {
    tkaddtag(W,  "selected",  "withtag",  "current")
    tkitemraise(W, "current")
@@ -4112,7 +4224,8 @@ accordingly.
 \begin{Sinput}
  moveSelected <- function(W, x, y) {
    pos <- as.numeric(c(x,y))
-   tkmove(W, "selected", pos[1] - lastPos[1], pos[2] - lastPos[2])
+   tkmove(W, "selected", pos[1] - lastPos[1], 
+                         pos[2] - lastPos[2])
    lastPos <<- pos
  }
  tkbind(canvas, "<B1-Motion>", moveSelected)
@@ -4125,7 +4238,8 @@ example, the old regression line is deleted, and a new one drawn. Here
 we simply delete the \qcode{selected} tag.
 \begin{Schunk}
 \begin{Sinput}
- tkbind(canvas, "<ButtonRelease-1>", function(W) tkdtag(W,"selected"))
+ tkbind(canvas, "<ButtonRelease-1>", 
+        function(W) tkdtag(W,"selected"))
 \end{Sinput}
 \end{Schunk}
 
@@ -4147,18 +4261,38 @@ we simply delete the \qcode{selected} tag.
 \end{figure}
 
 %% messageBox
-The \constructor{tkmessageBox} constructor can be used to create a simple modal dialogs allowing a user to confirm an action. This replaces the older \code{tkdialog} dialogs. The \code{tkmessageBox} dialogs use the native toolkit if possible. The arguments \argument{title}{tkmessageBox}, \argument{message}{tkmessageBox} and \argument{detail}{tkmessageBox} are used to set the text for the dialog. The \code{title} may not appear for all operating systems. A messageBox dialog has an \argument{icon}{tkmessageBox} argument. The  default icon is \qcode{info} but could also be one of \qcode{error}, \qcode{question} or \qcode{warning}. The buttons used are specified by the \argument{type}{tkmessageBox} argument with values of \qcode{ok}, \qcode{okcancel}, \qcode{retrycancel}, \qcode{yesno}, or \qcode{yesnocancel}. When a button is clicked the dialog is destroyed and the button label returned as a value. The argument \argument{parent}{tkmessageBox} can be given to specify which window the dialog belongs to. Depending on the operating system this may be used when drawing the dialog.
+The \constructor{tkmessageBox} constructor can be used to create 
+simple modal dialogs allowing a user to confirm an action. This
+replaces the older \code{tkdialog} dialogs. The \code{tkmessageBox}
+dialogs use the native toolkit if possible. The arguments
+\argument{title}{tkmessageBox}, \argument{message}{tkmessageBox} and
+\argument{detail}{tkmessageBox} are used to set the text for the
+dialog. The \code{title} may not appear for all operating systems. A
+messageBox dialog has an \argument{icon}{tkmessageBox} argument. The
+default icon is \qcode{info} but could also be one of \qcode{error},
+\qcode{question} or \qcode{warning}. The buttons used are specified by
+the \argument{type}{tkmessageBox} argument with values of \qcode{ok},
+\qcode{okcancel}, \qcode{retrycancel}, \qcode{yesno}, or
+\qcode{yesnocancel}. When a button is clicked the dialog is destroyed
+and the button label returned as a value. The argument
+\argument{parent}{tkmessageBox} can be given to specify which window
+the dialog belongs to. Depending on the operating system this may be
+used when drawing the dialog.
 
 A sample usage is:
 \begin{Schunk}
 \begin{Sinput}
- tkmessageBox(title="Confirm", 
-              message="Really exit?", detail="Changes need saving.", 
+ tkmessageBox(title="Confirm", message="Really exit?", 
+              detail="Changes need saving.", 
               icon="question", type="okcancel")
 \end{Sinput}
 \end{Schunk}
 %% 
-If the default modal dialog is not enough -- for instance there is no means to gather user input -- then a toplevel window can be made modal. The \function{tkwait.window} will cause a top-level window to be modal and \function{tkgrab.release} will return the interactivity for the window.
+If the default modal dialog is not enough -- for instance there is no
+means to gather user input -- then a toplevel window can be made
+modal. The \function{tkwait.window} will cause a top-level window to
+be modal and \function{tkgrab.release} will return the interactivity
+for the window.
 
 \subsection{File and directory selection}
 \label{sec:file-direct-select}
@@ -4169,17 +4303,15 @@ implemented by \constructor{tkgetOpenFile},
 \constructor{tkchooseDirectory}, and \constructor{tkgetSaveFile}
 respectively. Each of these can be called with no argument, and
 returns a \code{tclObj} that can be converted to a character string
-with \code{tclvalue}. The value is empty
+with \code{tclvalue}. The value is empty when there is no selection made.
 
-
-There are arguments that can be useful.  The dialog will appear
-related to a toplevel window if the argument
+The dialog will appear related to a toplevel window if the argument
 \argument{parent}{tkgetOpenFile} is specified The
 \argument{initialdir}{tkgetOpenFile} and
 \argument{initialfile}{tkgetOpenFile} can be used to specify the
 initial values in the dialog.  The
-\argument{defaultextenstion}{tkgetSaveFile} argument can be used to specify a
-default extension for the file.
+\argument{defaultextenstion}{tkgetSaveFile} argument can be used to
+specify a default extension for the file.
 
 When browsing for files, it can be convenient to filter the available
 file types that can be selected. The \argument{filetypes}{tkgetOpenFile} argument is used for this task. However,
@@ -4190,7 +4322,7 @@ to filter out various image types, one could have
  tkgetOpenFile(filetypes = paste(
                  "{{jpeg files} {.jpg .jpeg} }",
                  "{{png files} {.png}}",
-                 "{{All files} {*}}", sep=" ")) # the space is impt. here
+                 "{{All files} {*}}", sep=" ")) # needs space
 \end{Sinput}
 \end{Schunk}
 Extending this is hopefully clear from the pattern above.
@@ -4205,7 +4337,8 @@ Extending this is hopefully clear from the pattern above.
  tkadd(mb, "cascade", label="File", menu=fileMenu)
  tkadd(fileMenu,"command",label="Source file...",
        command= function() {
-         fname <- tkgetOpenFile(fileTypes="{{R files} {.R}} {{All files} *}")
+         fname <- tkgetOpenFile(fileTypes=
+                         "{{R files} {.R}} {{All files} *}")
          source(tclvalue(fname))
        })
  tkadd(fileMenu, "command", label="Save workspace as...",
@@ -4242,9 +4375,5 @@ There is no constructor in \pkg{tcltk}, but one can use the dialog as follows:
  })
 \end{Sinput}
 \end{Schunk}
-
-\section{End of chapter notes}
-\label{sec:tcltk:eoc}
-
 
 

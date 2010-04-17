@@ -1,4 +1,10 @@
-This example shows how to implement drag and drop between two widgets. Steps are needed to make a widget a drop source, and other steps are needed to make a widget a drop target. The basic idea is that when a value is being dragged, virtual events are generated for the widget the cursor is over. If that widget has callbacks bound to these events, then the drag and drop can be processed. The idea for the code below originated with \url{http://wiki.tcl.tk/416}.
+This long example shows how to implement drag and drop between two
+widgets. Steps are needed to make a widget a drop source, and other
+steps are needed to make a widget a drop target. The basic idea is
+that when a value is being dragged, virtual events are generated for
+the widget the cursor is over. If that widget has callbacks bound to
+these events, then the drag and drop can be processed. The idea for
+the code below originated with \url{http://wiki.tcl.tk/416}.
 
 <<echo=FALSE>>=
 ## ex-tcltk-dnd
@@ -25,9 +31,9 @@ Before beginning, we define three global variables that can be shared
 among drop sources to keep track of the drag and drop state. A more
 elegant example might store these in an environment.
 <<>>=
-.dragging <- FALSE                      # currently dragging?
-.lastWidgetID <- ""                     # last widget dragged over
-.dragValue <- ""                        # value to transfer
+.dragging <- FALSE                 # currently dragging?
+.lastWidgetID <- ""                # last widget dragged over
+.dragValue <- ""                   # value to transfer
 @ 
 
 <<defineDragLabel, echo=FALSE>>=
@@ -77,12 +83,12 @@ file, but this doesn't work for all platforms (e.g.,  OS X). After setting the c
 <<>>=
 tkbind(bDrag,"<B1-Motion>",function(W,X,Y) {
   if(!.dragging) return()
-  ## see cursor help page in API for more
+  ## see cursor help page in API for more options
   ## For custom cursors cf. http://wiki.tcl.tk/8674. 
-  tkconfigure(W, cursor="coffee_mug")    # set cursor
+  tkconfigure(W, cursor="coffee_mug")   # set cursor
 
   w = tkwinfo("containing", X, Y)       # widget mouse is over
-  if(as.logical(tkwinfo("exists", w)))   # does widget exist?
+  if(as.logical(tkwinfo("exists", w)))  # does widget exist?
     tkevent.generate(w, "<<DragOver>>")
 
   ## generate drag leave if we left last widget
