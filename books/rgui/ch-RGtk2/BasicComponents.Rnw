@@ -25,9 +25,10 @@ will always use, as the alternative is for ``popups'' which are used,
 for example, with menus. The second argument is \code{show}, which by
 default is \code{TRUE} indicating that the window should be shown. If
 set to \code{FALSE}, the window, like other widgets, can later be
-shown by calling its \method{Show}{gtkWidget} method. The \method{ShowAll}{gtkWidget} method
-will also show any child components. These can be reversed with
-\method{Hide}{gtkWidget} and \method{HideAll}{gtkWidget}.
+shown by calling its \method{Show}{gtkWidget} method. The
+\method{ShowAll}{gtkWidget} method will also show any child
+components. These can be reversed with \method{Hide}{gtkWidget} and
+\method{HideAll}{gtkWidget}.
 
 %% title
 As with all objects, windows have several properties. The window title
@@ -122,16 +123,19 @@ w$getChild()['label']                   # return label property of child
 The \method{[[}{GObject} method 
 %%]]
 can be used to access
-the child containers by number, as an shorcut for list extraction
-from the return value of the \method{GetChildren} method.
+the child containers by number, as a convenience for list extraction
+from the return value of the \method{GetChildren}{GObject} method.
 
-From the label's perspective, the window is its immediate parent. The
+In \GTK{} the widget heirarchy is built when children are added to a
+parent container for layout purposes.
+In our example, from the label's perspective, the window is its immediate parent. The
 \code{GetParent} method for \GTK\/ widgets, will return a widget's
 parent container.
 <<eval=FALSE, echo=FALSE>>=
 ## leave out?
 l$getParent()
 @ 
+
 
 \section{Box containers}
 \label{sec:RGtk2:BoxContainers}
@@ -153,8 +157,10 @@ Adding a child component to the box is done with the methods
 \method{PackStart}{gtkBox} or \method{PackEnd}{gtkBox}. The
 \method{PackStart}{gtkBox} method adds children from left to right
 when the box is horizontal, or top to bottom when vertical. the
-\method{PackEnd}{gtkBox} method is opposite. These methods have initial argument
-\argument{child}{gtkBoxPackStart} to specify the child component and \argument{padding}{gtkBoxPackStart} to specify a padding in pixels between child components. 
+\method{PackEnd}{gtkBox} method is opposite. These methods have
+initial argument \argument{child}{gtkBoxPackStart} to specify the
+child component and \argument{padding}{gtkBoxPackStart} to specify a
+padding in pixels between child components.
 
 <<mix-pack-start-pack-end, echo=FALSE>>=
 ## show how expand controls window placemnt.
@@ -166,7 +172,10 @@ g$packStart(gtkButton("Middle"), expand=FALSE)
 g$packEnd(gtkButton("Right"), expand=FALSE)
 @ 
 
-Once packed in the child components can be referenced through the \method{GetChildren}{GtkBox} method which is conveniently called through list extraction.
+%% JV mentioned above
+% Once packed in the child components can be referenced through the
+% \method{GetChildren}{GtkBox} method which is conveniently called
+% through list extraction.
 
 
 \paragraph{Removing and reordering children}
@@ -178,7 +187,7 @@ not to be drawn. This can be reversed with the
 \method{Show}{gtkWidget} method.
 
 The \method{Remove}{gtkWidget} method for containers can cause a child
-component to be removed. It can later be re-added using
+component to be removed. The child can later be re-added using
 \method{PackStart}{gtkBox}. For instance
 <<remove-child-component-3>>=
 b <- g[[3]]
@@ -187,7 +196,7 @@ g$packStart(b, expand=TRUE, fill=TRUE)
 @ 
 
 The \method{Reparent}{gtkWidget} method of widgets, will allow a
-widget to specify a new parent container.
+widget to specify a new parent container. 
 
 The \method{ReorderChild}{gtkBox} method can be used
 to reorder the child components. The new position of the child is
@@ -220,7 +229,7 @@ Figure~\ref{fig:RGtk2-pack-start} an illustration.
     row shows no padding, whereas the 2nd and 3rd illustrate the
     difference between \code{padding} (an amount around each child)
     and \code{spacing} (an amount between each child). The last two
-    rows show the effect of \code{fill} when \code{expand=TRUE}. Illustration
+    rows show the effect of \code{fill} when \code{expand=TRUE}. This illustration
     follows one in orignial \GTK\/ tutorial.}
   \label{fig:RGtk2-pack-start}
 \end{figure}
@@ -261,6 +270,7 @@ Figure~\ref{fig:RGtk2-pack-start} illustrates.
 
 
 %% alignment of widgets within cells
+\paragraph{Alignment}
 Widgets inherit the properties \code{xalign} and \code{yalign} from
 the \class{GtkMisc} class. These properties are used to specify how
 the widget is aligned within the cells when the widget size request is
@@ -346,7 +356,7 @@ a change.
 
 
 %% signals
-\paragraph{signals}
+\paragraph{Signals}
 The \signal{clicked} signal is emitted when the button is
 clicked on with the mouse or when the button has focus and the
 \kbd{enter} key is pressed. A callback can listen for this event, to
@@ -361,28 +371,31 @@ the action.
 
 %% Buttons initiate actions
 If the action a button is to initiate is the default action for the
-window it can be set so that it is activated
-when the user presses  \kbd{enter} while the parent window has the
-focus. To implement this, the property \code{can-default} must be
-\code{TRUE} and the widget method \method{grabDefault}{gtkWidget} must
-be called. (This is not specific to buttons, but any widget that can
-be activatable.)
+window it can be set so that it is activated when the user presses
+\kbd{enter} while the parent window has the focus. To implement this,
+the property \code{can-default} must be \code{TRUE} and the widget
+method \method{grabDefault}{gtkWidget} must be called. (This is not
+specific to buttons, but any widget that can be activatable.)
 
 
 As buttons are intended to call an action immediately after being
-clicked, it is customary to make them not sensitive to user input when the action is not possible. The \method{SetSensitive}{gtkWidget} method can adjust this for the button, as with other widgets.
+clicked, it is customary to make them not sensitive to user input when
+the action is not possible. The \method{SetSensitive}{gtkWidget}
+method can adjust this for the button, as with other widgets.
 
 
 If the action that a button initiates is to be represented elsewhere
 in the GUI, say a menu bar, then a \code{GtkAction} object may be
-appropriate. Action objects are covered in Section~\ref{sec:RGtk2:UIManager}.
+appropriate. Action objects are covered in
+Section~\ref{sec:RGtk2:UIManager}.
 
 
 \begin{example}{Callback example for \code{gtkButton}}{eg:RGtk2:gtkButton-callback}
+
 <<CallbackExampleForButton>>=
 w <- gtkWindow(); b <- gtkButton("click me");
 w$add(b)
-## only when clicked, but can retrieve button as shown
+
 ID <- gSignalConnect(b,"button-press-event",   # just mouse click
                      f = function(w,e,data) {
                        print(e$getButton())    # which button
@@ -438,10 +451,21 @@ involves the \code{<span>} tag markup, such as \code{<span color='red'>some text
 By default, text in a label can not be copied and pasted into another
 widget or application. To allow this, the \code{selectable} property
 can be set to \code{TRUE} with \method{SetSelectable}{gtkLabel}.
-
-Labels can hold mnemonics for other widgets. The constructor is \code{gtkLabelNewWithMnemonic}. The label needs to idenfy the widget it is holding a mnemonic for, this is done with the \method{SetMnemonicWidget}{gtkLabel} method.
+Labels can hold mnemonics for other widgets. The constructor is
+\code{gtkLabelNewWithMnemonic}. The label needs to idenfy the widget
+it is holding a mnemonic for, this is done with the
+\method{SetMnemonicWidget}{gtkLabel} method.
 
 \begin{example}{Label formatting}{eg:RGtk2:label-formatting}
+  This examples shows various label formatting techniques~(Figure~\ref{})>
+  
+\begin{figure}
+  \centering
+  \includegraphics[width=.6\textwidth]{fig-RGtk2-labels}
+  \caption{Various formatting for a label: wrapping, alignment, ellipsizing, PANGO markup}
+  \label{fig:RGtk2:label-formatting}
+\end{figure}
+ 
 <<LabelFormatting>>=
 w <- gtkWindow(); w$setTitle("Label formatting")
 w$setSizeRequest(250,100)               # narrow
@@ -464,7 +488,7 @@ rightJustified['xalign'] <- 1
 
 ## PANGO markup
 pangoLabel <- gtkLabel(); 
-pangoLabel$setMarkup(paste("<span foreground='blue' size='x-large'>",
+pangoLabel$setMarkup(paste("<span foreground='blue' size='x-small'>",
                            string,"</span>"));
 QT <- sapply(list(basicLabel, ellipsized, rightJustified, pangoLabel),
              function(i) g$packStart(i, expand=TRUE, fill=TRUE ))
@@ -511,8 +535,8 @@ g$packStart(lb1)
 
 f <- function(w,...) browseURL(w['uri'])
 
-ID <- gSignalConnect(lb,"clicked",f = f)
-ID <- gSignalConnect(lb1,"clicked",f = f)
+ID <- gSignalConnect(lb,  "clicked", f = f)
+ID <- gSignalConnect(lb1, "clicked", f = f)
 @ 
 \end{example}
 
@@ -541,7 +565,7 @@ events.
 
 \SweaveInput{ex-RGtk2-ImageForGraphics}
 
-<<>>=
+<<notShown, echo=FALSE>>=
 ## Work this into an example ###
 makeIconRGtk2 <- function(w, giffile) {
   if(checkPtrType(w, "GtkWindow")) {
@@ -551,6 +575,7 @@ makeIconRGtk2 <- function(w, giffile) {
   }
 }
 @ 
+
 \section{Stock icons}
 \label{sec:RGtk2:stock-icons}
 
@@ -606,15 +631,15 @@ method \method{SetMaxLength}{gtkEntry}.
 
 The \code{text} property stores the text. This can be set with the
 method \method{SetText}{gtkEntry} and retrieved with
-\method{GetText}{gtkEntry}. To insert text, the method
-\method{InsertText}{gtkEditable} is used.  Its argument
+\method{GetText}{gtkEntry}. The method
+\method{InsertText}{gtkEditable} is used to insert text.  Its argument
 \argument{new.text}{gtkEditableInsertText} contains the text and
 \argument{position}{gtkEditableInsertText} specifies the position of
-the next text. The return value is a list with components
+the text to be added. The return value is a list with components
 \code{position} indicating the position \textit{after} the new
 text. The \method{DeleteText}{gtkEditable} method can be used to
 delete text. This takes two integers indicating the start and finish
-location of the text. 
+location of the text.
 
 \begin{example}{Insert and Delete text}{eg:RGtk2:insert-delete-text}
 The example will show how to add then delete text.  
@@ -637,9 +662,10 @@ be emitted each time there is a keypress, while the widget has
 focus. When the \kbd{enter} key is pressed the \signal{activate} signal
 is also emitted. 
 
-\begin{example}{Editable label}{eg:RGtk2:editable-label}
-  \SweaveInput{ex-RGtk2-editable-label}
-\end{example}
+%% skipped
+% \begin{example}{Editable label}{eg:RGtk2:editable-label}
+%   \SweaveInput{ex-RGtk2-editable-label}
+% \end{example}
 
 
 \section{Check button}
@@ -657,7 +683,7 @@ retrieved with the methods \method{SetLabel}{gtkButton} and
 A check button's state is stored as a logical variable in its
 \code{active} property. It can be set or retrieved with the methods
 \method{SetActive}{gtkToggleButton} and
-\method{GetLabel}{gtkToggleButton}. 
+\method{GetActive}{gtkToggleButton}. 
 
 When the state is changed the \signal{toggle} signal is emitted.
 
@@ -687,7 +713,7 @@ clicks on the button.
 \label{sec:RGtk2:gtkRadioButton}
 
 The \function{gtkRadioButton} constructor is used to create linked
-radio buttons.  The argument \argument{group}{gtkRadioButton} is
+radio buttons.  The argument \argument{group}{gtkRadioButton} if
 missing or \code{NULL} will create a new radio button group. If
 specified as a list of radio buttons, will create a new button for the
 group.  The constructor returns a single radio button widget.  The
@@ -742,13 +768,15 @@ QT <- sapply(l, function(i)
 @ 
 \end{example}
 
-The \pkg{RGtk2} package coverts a list in \R\/ to the appropriate list for \GTK. However,
-you may wisth to refer to this list within a callback, but only the current radio button is passed through. Rather than passing the list through the \code{data} argument or using a global, The \method{GetGroup}{gtkRadioButton} method can be used to
+The \pkg{RGtk2} package coverts a list in \R\/ to the appropriate list
+for \GTK. However, you may wish to refer to this list within a
+callback, but only the current radio button is passed through. Rather
+than passing the list through the \code{data} argument or using a
+global, The \method{GetGroup}{gtkRadioButton} method can be used to
 reference the buttons stored within a radio group. This method returns
-a list containing the radio button. However, it is in the
-reverse order of how they were added (newest first). (As
- GLib list uses prepend to add elements, not append, as it
-is more efficient.)
+a list containing the radio button. However, it is in the reverse
+order of how they were added (newest first). (As GLib list uses
+prepend to add elements, not append, as it is more efficient.)
 
 \begin{example}{Radio group using \code{GetGroup}}{eg:gtk:radio-group-get-group}
   In this example below, we illustrate two things: using the
@@ -761,7 +789,8 @@ radiogp <- gtkRadioButton(label=vals[1])
 for(i in vals[-1])
   radiogp$newWithLabelFromWidget(i)
 
-w <- gtkWindow(); w['title'] <- "Radio group example"
+w <- gtkWindow(); 
+w['title'] <- "Radio group example"
 g <- gtkVBox(); w$add(g)
 QT <- sapply(rev(radiogp$getGroup()),         # reverse list
              function(i) g$packStart(i))
@@ -770,15 +799,24 @@ QT <- sapply(rev(radiogp$getGroup()),         # reverse list
 
 \section{Combo boxes}
 \label{sec:RGtk2:basic-combobox}
+
 A basic combobox is constructed by
 \constructor{gtkComboBoxNewText}. Later we will discuss more
-complicated comboboxes. Unlike others, as of writing, this widget must
-have its \method{Show}{gtkWidget} method called to be mapped.
+complicated comboboxes, where a backend model is manipulated.
+% Unlike
+% others, as of writing, this widget must have its
+% \method{Show}{gtkWidget} method called to be mapped.
 
-For the basic combobox, items may be added to the combobox in a few manners: to add to the end or beginning we have
-\method{AppendText}{gtkComboBox} and \method{PrependText}{gtkComboBox}; to insert within the list the \method{InsertText}{gtkComboBox} method is used with the argument
-\argument{position}{gtkComboBoxInsertText} specified in addition to the argument 
-\argument{text}{gtkComboBoxInsertText} to indicate the index where the values should added. (The prepend method would be index $0$, the append method would be with an index equal to the number of existing items.)
+For the basic combobox, items may be added to the combobox in a few
+manners: to add to the end or beginning we have
+\method{AppendText}{gtkComboBox} and
+\method{PrependText}{gtkComboBox}; to insert within the list the
+\method{InsertText}{gtkComboBox} method is used with the argument
+\argument{position}{gtkComboBoxInsertText} specified in addition to
+the argument \argument{text}{gtkComboBoxInsertText} to indicate the
+index where the values should added. (The prepend method would be
+index $0$, the append method would be with an index equal to the
+number of existing items.)
 
 The currently selected value is specified by index with the method
 \method{SetActive}{gtkComboBox} and returned by
@@ -805,19 +843,19 @@ cb <- gtkComboBoxNewText()
 for(i in vals) cb$appendText(i)
 cb$setActive(0)                         # first one
 ID <- gSignalConnect(cb, "changed",
-               f = function(w, ...) {
-                 i <- w$getActive() + 1 # shift index
-                 if(i == 0) 
-                   cat("No value selected\n")
-                 else
-                   cat("Value is", w$getActiveText(), "\n")
-               })
+                     f = function(w, ...) {
+                       i <- w$getActive() + 1 # shift index
+                       if(i == 0) 
+                         cat("No value selected\n")
+                       else
+                         cat("Value is", w$getActiveText(), "\n")
+                     })
 @ 
-A simple GUI is shown, the call to \code{ShowAll} is use here, as this
-widget does not get mapped otherwise.
+A simple GUI is shown, the call to \code{ShowAll} is used here, as this
+widget does not get mapped without its \code{Show} method being called.
 <<>>=
-## show it
-w <- gtkWindow(show=FALSE); w['title'] <- "Combobox example"
+w <- gtkWindow(show=FALSE)
+w['title'] <- "Combobox example"
 w$add(cb)
 w$showAll()    # propogate down to cb
 @ 
@@ -847,8 +885,8 @@ these values are best specified by name. Alternatively, the
 positional arguments for \code{min}, \code{max} and \code{step}.
 
 
-The methods \method{getValue}{gtkRange} and
-\method{getValue}{gtkRange} can be used to return and set the value of
+The methods \method{GetValue}{gtkRange} and
+\method{SetValue}{gtkRange} can be used to return and set the value of
 the widget. When assigning a value, values outside the bounds will be
 set to the minimum or maximum value.
 
@@ -867,24 +905,25 @@ emitted when the slider is moved.
 
 \begin{example}{A slider controlling histogram bin selection}{ex:RGtk2:sliders}
   A simple mechanism to make a graph interactive, is to have the
-  graph redraw wheneven a slider has its value changed. The following
+  graph redraw whenever a slider has its value changed. The following
   shows how this can be achieved.
 <<SliderAndHistogram>>=
 library(lattice)
 w <- gtkWindow(); w$setTitle("Histogram bin selection")
 
 slider <- gtkHScaleNewWithRange(1, 100, 1) # min, max, step
+slider$setValue(10)                        # initial val.
 slider['value-pos'] <- "bottom"
 w$add(slider)
 
-## initial graphic
-x <- rnorm(100)
-print(histogram(x), nint = slider$getValue())
+f <- function(val) print(histogram(x, nint = val))
 ID <- gSignalConnect(slider,"value-changed",
                f = function(w, ...) {
                  val <- w$getValue()
-                 print(histogram(x, nint=val))
+                 f(val)
                })
+x <- rnorm(100)                         # the data
+f(slider$getValue())                    # initial graphic
 @               
 \end{example}
 
@@ -933,8 +972,7 @@ device. This function has standard argument
 
 
 In addition to boxes, there are a number of useful containers detailed
-next. Each of the following, except for the table widget, inherit the
-\method{Add}{gtkContainer} method and allow for only one child component.
+next. 
 
 
 \subsection{Framed containers}
@@ -953,6 +991,10 @@ relative to the frame.
 Frames have a decorative shadow whose type is stored in the
 \code{shadow-type} property. This type is a value from \code{GtkShadowType}.
 
+Frames inherit from \class{GtkBin}, which means they have only one
+child component. The \method{Add}{gtkContainer} method is used to add
+it.
+
 \subsection{Expandable containers}
 \label{sec:RGtk2:gtkExpander}
 
@@ -970,8 +1012,14 @@ property  through \method{SetUseMarkup}{gtkExpander}.
 
 The state of the widget is stored in the \code{expanded} property,
 which can be accessed with \method{GetExpanded}{gtkExpander} and
-\method{SetExpander}{gtkExpander}. 
+\method{SetExpanded}{gtkExpander}. 
+
+As with frames, expanders inherit from \class{GtkBin} as well. The
+child component is added through the  \method{Add}{gtkContainer} method.
+
 When the state changes, the \signal{activate} signal is emitted.
+
+
 
 \section{Divided containers}
 \label{sec:RGtk2:gtkPanedWindow}
@@ -1009,7 +1057,7 @@ The \constructor{gtkNotebook} constructor creates a notebook container. The
 default position of the notebook tabs is on the top, starting on the
 left. The property \code{tab-pos} property
 (\method{SetTabPos}{gtkNotebook}) uses the \code{GtkPositionType}
-values of \qcode{left},\qcode{right},\qcode{top}, or \qcode{bottom} to adjust this. The
+values of \qcode{left}, \qcode{right}, \qcode{top}, or \qcode{bottom} to adjust this. The
 property \code{scrollable} should be set to \code{TRUE} to have the
 widget gracefully handle the case when there are more page tabs than
 can be shown at once. If the same size tab for each page is desired,
@@ -1030,15 +1078,17 @@ argument, but can also be set later with
 widget, such as a \function{gtkLabel} instance, but this allows for
 more complicated tabs, such as a box container with a close icon. The
 \method{SetTabLabelText}{gtkNotebook} can be used if just a text label
-is desired. To use this method, the child widget is needed. the
+is desired. To use this method, the child widget is needed, which can
+be retrieved with the
 \method{[[}{GObject}
 %%]]
- method can be used to retrieve this. So can the
-\method{GetNthPage}{gtkNotebook} method. Both are an alternative to
-getting all the children returned as a list through
-\method{GetChildren}{gtkContainer}. By default, the new page will be at
-the last position (the same as \method{AppendPage}{gtkNotebook}). This
-can be changed by supplying the desired position to the argument
+%%
+method or the \method{GetNthPage}{gtkNotebook} method. Both are an
+alternative to getting all the children returned as a list through
+\method{GetChildren}{gtkContainer}. By default, the new page will be
+at the last position (the same as
+\method{AppendPage}{gtkNotebook}). This can be changed by supplying
+the desired position to the argument
 \argument{position}{gtkNotebookInsertPage} using $0$-based indexing.
 The default value is $-1$, indictating the last page.
 
@@ -1105,8 +1155,10 @@ We now show a simple usage of a notebook.
 w <- gtkWindow()
 nb <- gtkNotebook(); w$add(nb)
 nb$setScrollable(TRUE)
-QT <- nb$insertPageWithCloseButton(gtkButton("hello"), label.text="page 1")
-QT <- nb$insertPageWithCloseButton(gtkButton("world"), label.text="page 2")
+QT <- nb$insertPageWithCloseButton(gtkButton("hello"), 
+                                   label.text="page 1")
+QT <- nb$insertPageWithCloseButton(gtkButton("world"), 
+                                   label.text="page 2")
 @ 
   
 \end{example}
@@ -1117,7 +1169,7 @@ QT <- nb$insertPageWithCloseButton(gtkButton("world"), label.text="page 2")
 
 Scrollbars allow components that are larger than the space allotted to
 be interacted with, by allowing the user to ajdust the visible portion
-of the componented. Scrollbars in \GTK\/ use adjustments (like the
+of the component. Scrollbars in \GTK\/ use adjustments (like the
 spin button widget) to control the $x$ and $y$ position of the
 displayed portion of the component.
 
@@ -1192,9 +1244,10 @@ of padding around the cell in pixels.
 Anchoring of widgets within a cell can be done by setting the
 \code{xalign} and \code{yalign} properties of the child widgets. 
 
-\begin{example}{Layout of calculator buttons}{eg-RGtk2-calculator-buttons}
-  \SweaveInput{ex-RGtk2-calculator-buttons.Rnw}
-\end{example}
+%% JV: this doesn't add enough it seems
+% \begin{example}{Layout of calculator buttons}{eg-RGtk2-calculator-buttons}
+%   \SweaveInput{ex-RGtk2-calculator-buttons.Rnw}
+% \end{example}
 
 
 \begin{example}{Dialog layout}{ex-RGtk2-dialog-layout}
@@ -1203,7 +1256,7 @@ Anchoring of widgets within a cell can be done by setting the
 
 
 
-
+%% JV: this is in need of rewriting
 \section{Drag and drop}
 \label{sec:RGtk2:dnd}
 
@@ -1224,8 +1277,8 @@ we define target types for text, pixmap and arbitrary objects.
 
 <<>>=
 ## info arguments -- application assigned
-TARGET.TYPE.TEXT   = 80                 # 
-TARGET.TYPE.PIXMAP = 81                 # 
+TARGET.TYPE.TEXT   = 80                 
+TARGET.TYPE.PIXMAP = 81                  
 TARGET.TYPE.OBJECT = 82
 
 widgetTargetTypes = list(

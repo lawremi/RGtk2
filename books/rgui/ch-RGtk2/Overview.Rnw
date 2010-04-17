@@ -18,7 +18,7 @@ As the name implies, the \pkg{RGtk2} package provides a connection, or
 bindings, between \GTK\/ and \R\/ allowing nearly the full power of
 \GTK\/ to be available to the \R\/ programmer. In addition,
 \pkg{RGtk2} provides bindings to other libraries accompanying \GTK:
-The Pango libraries for font rendering; the Cairo
+the Pango libraries for font rendering; the Cairo
 libraries for vector graphics; the GdkPixbuf libraries for image
 manipulation; ATK for the accessiblity toolkit;  and GDK, which
 provides an abstract layer between the windowing system, such as X11,
@@ -102,13 +102,13 @@ classes. In \pkg{RGtk2}, by calling \function{class} on a
 \command{gtkWindow} instance~\footnote{We use the term ``instance'' of
   a constructor to refer to the object returned by the constructor,
   which is an instance of some class.}  we can see the class
-heiarchy
+heirarchy
 <<gtkWindow-classes>>=
 class(gtkWindow())
 @ 
 
 It is identical except for the addition of the base \class{RGtkObject}
-class. When a widget is destroyed, the \R\/ object is assigned
+class. When a widget is destroyed, the \R\/ object is assigned the
 \class{<invalid>} class.
 
 \paragraph{Methods} Methods of \pkg{RGtk2} are not generic functions
@@ -160,15 +160,15 @@ widget in the objects widget heirarchy;
 ancestor widget of a certain type; and for container widgets, the
 method \method{GetChildren}{gtkContainer} returns a list of the
 container's children. Children are shown through a call of
-\method{Show}{gtkWidget}. This is the default for the constructors. A call to \method{ShowAll}{gtkWidget} will
-recursively call itself for any child components. Widgets can be
-hidden through the either \method{Hide}{gtkWidget} or
-\method{HideAll}{gtkWidget}. A widget will be destroyed through a call
-to \method{Destroy}{gtkWidget} (once destroyed, the widget will have
-class \Event{invalid}). There are a handful of methods to modify a
-widget's appearance, for instance \method{ModifyBg}{gtkWidget} to
-change background color of a widget and \method{ModifyFg}{gtkWidget}
-to change its foreground color.
+\method{Show}{gtkWidget}. This is the default for the constructors. A
+call to \method{ShowAll}{gtkWidget} will recursively call itself for
+any child components. Widgets can be hidden through the either
+\method{Hide}{gtkWidget} or \method{HideAll}{gtkWidget}. A widget will
+be destroyed through a call to \method{Destroy}{gtkWidget} (once
+destroyed, the widget will have class \Event{invalid}). There are a
+handful of methods to modify a widget's appearance, for instance
+\method{ModifyBg}{gtkWidget} to change background color of a widget
+and \method{ModifyFg}{gtkWidget} to change its foreground color.
 
 
 \subsection{Properties}
@@ -183,7 +183,7 @@ defined, we can see the first eight properties with
 <<showProperties>>=
 head( names( b$getPropInfo()), n=8)
 @ 
-property names.
+%% property names.
 
 Some key properties are \code{user-data} which allows one to store
 arbitrary data with the widget, use \method{GetData}{gObject} and
@@ -193,7 +193,7 @@ whether a widget can receive user events; and \code{width} and
 
 
 There are a few different ways to access these properties in a
-consisten manner. Consider the \code{label} property of a
+consistent manner. Consider the \code{label} property of a
 \code{gtkButton} instance.  \GTK\/ provides the functions
 \function{gObjectGet} and \function{gObjectSet} to get and set
 properties of a widget.  The set function using the arguments names for
@@ -201,8 +201,8 @@ the property key.
 
 <<>>=
 b <- gtkButton("A button")
-gObjectGet(b,"label")
-gObjectSet(b,label="a new label for our button")
+gObjectGet(b, "label")
+gObjectSet(b, label="a new label for our button")
 @ 
 Additionally, most user-accessible properties have specific \code{Get} and
 \code{Set} methods defined for them. In our example,  the methods
@@ -280,8 +280,7 @@ only, as in
 tb$setStyle("icons")
 @ 
 
-When more than one value is desired, they can be combined using
-\function{c}.
+A character vector can be used when more than one value is desired.
 
 %%% ------ Signals ----------
 
@@ -306,20 +305,23 @@ shows the ``clicked'' signal in addition to others.
 To see the inherited signals can be achieved using
 \function{gtkTypeGetSignals}. For instance, the following will print
 out all the inherited signals and events.
+
 <<eval=FALSE>>=
 types <- class(b)
 lst <- sapply(head(types,n=-1), gtkTypeGetSignals)
-for(i in names(lst)) { cat(i,"\n"); print(lst[[i]])}
+for(i in names(lst)) { 
+  cat(i,"\n"); print(lst[[i]])
+}
 @ 
 
 
 
 %% the gSignalConnect function
 The \function{gSignalConnect} (or \function{gSignalConnect}) function is used
-to add a callback to a widget's signal. Its signature is
-<<>>=
-args(gSignalConnect)
-@ 
+to add a callback to a widget's signal. 
+% <<>>=
+% args(gSignalConnect)
+% @ 
 
 The \argument{obj}{gSignalConnect} is the widget the callback is attached to and
 \argument{signal}{gSignalConnect} the signal name, for instance \code{"drag-drop"}. 
@@ -501,7 +503,11 @@ The XML specification includes a line
 <signal name="clicked" handler="ok_button_clicked" />
 \end{verbatim}
 
-This specifies that the  callback \code{ok\_button\_clicked} should be called when the widget (a button) is clicked. To add this callback within \R\/ we must define a function with a signature that matches that for this signal (\code{...} does) and then register the callbacks through a call to the \method{ConnectSignals}{gtkBuildable} method.
+This specifies that the callback \code{ok\_button\_clicked} should be
+called when the widget (a button) is clicked. To add this callback
+within \R\/ we must define a function with a signature that matches
+that for this signal (\code{...} does) and then register the callbacks
+through a call to the \method{ConnectSignals}{gtkBuildable} method.
 
 <<>>=
 ok_button_clicked <- function(w, userData) {

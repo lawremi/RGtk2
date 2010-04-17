@@ -1,4 +1,3 @@
-
 <<echo=FALSE>>=
 require(RGtk2)
 @ 
@@ -14,7 +13,7 @@ This example puts together images, buttons, labels and box containers
 to create an alert panel, or information bar. This is an area that
 seems to drop down from the menu bar to give users feedback about an
 action that is less disruptive than a modal dialog. A similar widget
-is used by Mozilla with its popup blocker. Although, as of version
+is used in the Firefox browser with its popup blocker. Although, as of version
 2.18, a similar feature is available in \GTK\/ through the
 \code{GtkInfoBar} widget, this example is given, as it shows how
 several useful things in \GTK\/ can be combined to customize the user
@@ -58,7 +57,7 @@ getAlertPanelBlock <- function(obj) {
   g <- gtkHBox(homogeneous=FALSE, spacing=5)
   obj$evb$add(g)
 
-  obj$image <- gtkImageNewFromStock(obj$icon, size="button",show=TRUE)
+  obj$image <- gtkImageNewFromStock(obj$icon, size="button")
   obj$image['yalign'] <- .5
   g$packStart(obj$image, expand=FALSE)
 
@@ -66,28 +65,25 @@ getAlertPanelBlock <- function(obj) {
   obj$label['xalign'] <- 0; obj$label['yalign'] <- .5
   obj$label$setLineWrap(TRUE)
   obj$label$setWidthChars(obj$wrap)
-  g$packStart(obj$label, expand=TRUE, fill= TRUE)
+  g$packStart(obj$label, expand=TRUE, fill=TRUE)
 
   xbutton <- gtkEventBox()
-  xbutton$modifyBg(state="normal",color=obj$panel.color) # same color
-  xbutton$add(gtkImageNewFromStock("gtk-close",size="menu"))
-  xbuttonCallback <- function(data,widget,...) {
+  xbutton$modifyBg(state="normal", color=obj$panel.color) 
+  xbutton$add(gtkImageNewFromStock("gtk-close", size="menu"))
+  g$packEnd(xbutton, expand=FALSE, fill=FALSE)
+  xbuttonCallback <- function(data, widget,...) {
     hideAlertPanel(data)
     return(FALSE)
   }
-  ID <- gSignalConnect(xbutton,"button-press-event",
-                 f = xbuttonCallback,
-                 data=obj, user.data.first=TRUE)
-  g$packEnd(xbutton, expand=FALSE, fill=FALSE)
 
-  ## also close when event box is clicked
-  obj$motionID <-
-    gSignalConnect(obj$evb,signal="button-press-event",
-                   f = xbuttonCallback,
+  ## close on button press and event box click
+  sapply(list(xbutton, obj$evb), function(i) {
+    gSignalConnect(i, "button-press-event",
+                   f=xbuttonCallback,
                    data=obj, user.data.first=TRUE)
+    })
   return(obj$evb)
 }
-
 @ 
 
 The \code{showAlertPanel} function updates the message and then calls
@@ -118,5 +114,7 @@ ap$message <- "New Message"             # add message
 showAlertPanel(ap)
 @ 
 
-One could also add a time to close the panel after some delay. The \function{gTimeoutAdd} function is used to specify a function to call periodically until the function returns \code{FALSE}. 
+To improve this, one could also add a time to close the panel after some delay. The
+\function{gTimeoutAdd} function is used to specify a function to call
+periodically until the function returns \code{FALSE}.
 

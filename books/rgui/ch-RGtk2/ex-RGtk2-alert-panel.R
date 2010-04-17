@@ -33,7 +33,7 @@ getAlertPanelBlock <- function(obj) {
   g <- gtkHBox(homogeneous=FALSE, spacing=5)
   obj$evb$add(g)
 
-  obj$image <- gtkImageNewFromStock(obj$icon, size="button",show=TRUE)
+  obj$image <- gtkImageNewFromStock(obj$icon, size="button")
   obj$image['yalign'] <- .5
   g$packStart(obj$image, expand=FALSE)
 
@@ -41,28 +41,25 @@ getAlertPanelBlock <- function(obj) {
   obj$label['xalign'] <- 0; obj$label['yalign'] <- .5
   obj$label$setLineWrap(TRUE)
   obj$label$setWidthChars(obj$wrap)
-  g$packStart(obj$label, expand=TRUE, fill= TRUE)
+  g$packStart(obj$label, expand=TRUE, fill=TRUE)
 
   xbutton <- gtkEventBox()
-  xbutton$modifyBg(state="normal",color=obj$panel.color) # same color
-  xbutton$add(gtkImageNewFromStock("gtk-close",size="menu"))
-  xbuttonCallback <- function(data,widget,...) {
+  xbutton$modifyBg(state="normal", color=obj$panel.color) 
+  xbutton$add(gtkImageNewFromStock("gtk-close", size="menu"))
+  g$packEnd(xbutton, expand=FALSE, fill=FALSE)
+  xbuttonCallback <- function(data, widget,...) {
     hideAlertPanel(data)
     return(FALSE)
   }
-  ID <- gSignalConnect(xbutton,"button-press-event",
-                 f = xbuttonCallback,
-                 data=obj, user.data.first=TRUE)
-  g$packEnd(xbutton, expand=FALSE, fill=FALSE)
 
-  ## also close when event box is clicked
-  obj$motionID <-
-    gSignalConnect(obj$evb,signal="button-press-event",
-                   f = xbuttonCallback,
+  ## close on button press and event box click
+  sapply(list(xbutton, obj$evb), function(i) {
+    gSignalConnect(i, "button-press-event",
+                   f=xbuttonCallback,
                    data=obj, user.data.first=TRUE)
+    })
   return(obj$evb)
 }
-
 
 
 ###################################################
