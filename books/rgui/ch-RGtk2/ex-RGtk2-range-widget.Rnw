@@ -1,12 +1,12 @@
 This example shows how to make a range widget that combines both the slider and spinbutton to choose a single number. Such a widget is popular, as the slider is easy to make large changes and the spinbutton better at finer changes. In \GTK\/ we use the same adjustment, so changes to one widget propogate without effort to the other.
 
-<<ehco=FALSE>>=
+<<echo=FALSE>>=
 ## make a range widget combining both a slider and spinbutton to choose a number
 library(RGtk2)
 @ 
 
 Were this written as a function, an \R\/ user might expect the
-arguments to match those of \code{seq}/
+arguments to match those of \code{seq}:
 <<>>=
 from <- 0; to <- 100; by <- 1
 @ 

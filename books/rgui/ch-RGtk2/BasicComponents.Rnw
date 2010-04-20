@@ -1262,37 +1262,40 @@ Anchoring of widgets within a cell can be done by setting the
 
 %% ------------ Drag and Drop
 
-\GTK\/ has mechanisms to provide drag and drop features to
-widgets. Only widgets which can receive signals will work for drag and
-drop, so to drag or drop on a label an event box must be used. To
-setup drag and drop actions requires setting a widget to be a source
-for a drag request, and setting a widget to be a target for a drop
-action. We illustrate how to set up the dragging of a text value from
-one widget to another. Much more complicated examples are possible,
-but we do not pursue it here.
+\GTK\/ has mechanisms to provide drag and drop facilities for
+widgets. To setup drag and drop actions requires setting a widget to
+be a source for a drag request, and setting a widget to be a target
+for a drop action, and assigning callbacks to responsd to certain
+signals.  Only widgets which can receive signals will work for drag
+and drop, so to drag or drop on a label, say, an event box must be
+used. 
+
+We illustrate how to set up the dragging of a text value from one
+widget to another. Much more complicated examples are possible, but we
+do not pursue it here.
 
 When a drag and drop is initiated, different types of data may be
 transferred. \GTK\/ allows the user to specify a target type. Below,
-we define target types for text, pixmap and arbitrary objects.
-
+we define target types for text and pixmap objects. These
+give numeric IDs for lookup purposes.
 <<>>=
-## info arguments -- application assigned
-TARGET.TYPE.TEXT   = 80                 
-TARGET.TYPE.PIXMAP = 81                  
-TARGET.TYPE.OBJECT = 82
-
-widgetTargetTypes = list(
-## target -- string representing the drag type
+TARGET.TYPE.TEXT   <- 80                 
+TARGET.TYPE.PIXMAP <- 81                  
+@ 
+We use of these to make different types of objects that can be dragged.
+<<>>=
+widgetTargetTypes <- list(
+## target -- string representing the drag type. MIME type used.
 ## flag delimiting drag scope. 0 -- no limit
 ## info -- application assigned value to identify
 text = gtkTargetEntry("text/plain", 0, TARGET.TYPE.TEXT),
-pixmap = gtkTargetEntry("image/x-pixmap", 0, TARGET.TYPE.PIXMAP),
-object = gtkTargetEntry("text/plain", 0, TARGET.TYPE.OBJECT)
+pixmap = gtkTargetEntry("image/x-pixmap", 0, TARGET.TYPE.PIXMAP)
 )
-
 @ 
 
-To set a widget to be a drag source requires calling
+\paragraph{A drag source}
+A widget that can have a value dragged from it is a drag source. It is
+specifide by calling
 \function{gtkDragSourceSet}. This function has arguments
 \argument{object}{gtkDragSourceSet} for the widget we are making a
 source, \argument{start.button.mask}{gtkDragSourceSet}  to specify
@@ -1302,46 +1305,53 @@ which mouse buttons can initiate the drag,
 \code{GdkDragAction} types is in effect, for instance \code{copy} or
 \code{move}. 
 
-When a widget is a drag source, it sends the drag data in response to
-the \signal{drag-data-get} signal using a callback. The signature of
-this callback is important, although we only use the \code{selection}
-argument, which is assigned the text that will be the data passed to
-the target widget. (Text, as we are passing text information.)
+When a widget is a drag source, it sends the data being dragged in
+response to the \signal{drag-data-get} signal using a callback. The
+signature of this callback is important, although we only use the
+\code{selection} argument, as this is assigned the text that will be the
+data passed to the target widget. (Text, as we are passing text
+information.)
 
 <<>>=
-widget <-  gtkButton("Drag me")
-w <- gtkWindow(); w$add(widget)
+w <- gtkWindow(); w['title'] <- "Drag Source"
+dragSourceWidget <-  gtkButton("Drag me")
+w$add(dragSourceWidget)
 
-QT <- 
-  gtkDragSourceSet(widget,
-                   start.button.mask=c("button1-mask", "button3-mask"),
-                   targets=widgetTargetTypes[["text"]],
-                   actions="copy") ## can also be any of GdkDragAction
+QT <- gtkDragSourceSet(dragSourceWidget,
+                 start.button.mask=c("button1-mask", "button3-mask"),
+                 targets=widgetTargetTypes[["text"]],
+                 actions="copy") ## can also be any of GdkDragAction
 
 ID <- 
-  gSignalConnect(widget, "drag-data-get", 
-                 f=function(userData, widget, context, 
+  gSignalConnect(dragSourceWidget, "drag-data-get", 
+                 f=function(widget, context, 
                    selection, targetType, eventTime) {
+                   ## customize this to set the text
                    selection$setText(str="some value") 
-                   return(TRUE)
-                 },
-                 user.data.first=TRUE,
-                 data="")
+                 })
 @ 
 
-To make an object a drop target, we call \function{gtkDragDestSet} on
-the object with new argument \argument{flags}{gtkDragDestSet} for
+\paragraph{Drop target}
+To make a widget a drop target, we call \function{gtkDragDestSet} on
+the object with the argument \argument{flags}{gtkDragDestSet} for
 specifying the actions \GTK\/ will perform when the widget is dropped
-on. We use the value \qcode{all} for \qcode{motion}, \qcode{highlight}, and
-\qcode{drop}. Additionally, values for
-\argument{targets}{gtkDragDestSet} and
-\argument{actions}{gtkDragDestSet} are given.
+on. We use the value \qcode{all} for \qcode{motion},
+\qcode{highlight}, and \qcode{drop}. The
+\argument{targets}{gtkDragDestSet} argument matches the type of data
+being allowed, in this case text. Finally, the value of
+\argument{action}{gtkDragDestSet} specifies what \code{GdkDragAction}
+should be sent back to the drop source widget. If the action was
+\qcode{move} then the source widget emits the \code{drag-data-delete}
+signal, so that a callback can be defined to handle the deletion of
+the data.
 
+ 
 <<>>=
-widget <- gtkButton("Drop here")
-w <- gtkWindow(); w$add(widget)
+w <- gtkWindow(); w['title'] <- "Drop Target"
+dropTargetWidget <- gtkButton("Drop here")
+w$add(dropTargetWidget)
 
-QT <- gtkDragDestSet(widget,
+QT <- gtkDragDestSet(dropTargetWidget,
                      flags="all", 
                      targets=widgetTargetTypes[["text"]],
                      actions="copy"
@@ -1351,17 +1361,17 @@ QT <- gtkDragDestSet(widget,
 When data is dropped, the widget emits the
 \code{drag-data-received}. The data is passed through the
 \code{selection} argument. The \code{context} argument is a
-\code{gdkDragContext}. The \code{x} and \code{y} arguments are integer
-valued and pass in the position in the widget where the drop
-occurred. In the example below, we see that text data is passed to
-this function in \code{raw} format, so it is converted with
-\function{rawToChar}.
+\code{gdkDragContext}, containing information about the drag
+event. The \code{x} and \code{y} arguments are integer valued and pass
+in the position in the widget where the drop occurred. In the example
+below, we see that text data is passed to this function in \code{raw}
+format, so it is converted with \function{rawToChar}.
 
 <<>>=
-
 ID <- 
-  gSignalConnect(widget, "drag-data-received", 
-                 f=function(userData, widget, context, x, y, 
+  gSignalConnect(dropTargetWidget, "drag-data-received", 
+                 f=function(dropTargetWidget, 
+                   context, x, y, 
                    selection, targetType, eventTime) {
                    dropdata <- selection$getText()
                    if(class(dropdata)[1] == "raw")
@@ -1369,24 +1379,8 @@ ID <-
                    else
                      val <- paste(dropdata, sep="")
                    print(val) ## some action
-                 },
-                 user.data.first=TRUE,
-                 data = "")
+                 })
 @ 
 
-If the action was \code{"move"} then the source widget emits the
-\code{drag-data-delete} signal, so that a callback can be defined to
-handle the deletion of the data.
-
-
-
-% XXX-- 
-% Explain signature -- 
-% context: \code{?gdkDragContext} 
-% x: integer with position of drop -- relative to widget dropped on
-% y: integer with position of drop -- relative to widget dropped on
-%   -- see cairoDevice for example
-% target: the target (form of the data) to retrieve, can be use with switch()
-% eventTime:  an integer recording time of drop
-% --XXX
-
+%% JV: This could be expanded -- motion is not covered, as is done with
+%% tcltk, but I don't think it is needed without a compelling use case.

@@ -177,8 +177,8 @@ ID <- gSignalConnect(tv, "key-release-event", f=function(w, e, data) {
   obj <- w$getBuffer()                  # w is textview
   keyval <- e$getKeyval()
   if(keyval == GDK_Return) {
-    cmd <- findCMD(obj)
-    if(nchar(cmd) > 0)
+    cmd <- findCMD(obj)                 # character(0) if nothing
+    if(length(cmd) && nchar(cmd) > 0)
       evalCMD(obj, cmd)
   }
   return(FALSE)                         # events need return value

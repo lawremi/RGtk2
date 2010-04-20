@@ -3,9 +3,10 @@ library(RGtk2)
 @ 
 
 Many widgets in \GTK\/ use the model, view, controller paradigm. While
-many times this is in the background, for the widgets in this chapter
+many times the deatils are in the background, for the widgets in this chapter
 one needs to be aware of the usage. This framework adds a layer of
-complexity, in exchange for more flexibility.  
+complexity, in exchange for creating smarter components that can share
+data more easily.
 
 
 
@@ -26,7 +27,7 @@ buffer, otherwise one will be created.
 This buffer is returned by the
 method \method{getBuffer}{gtkTextView} and may be set for a view with
 the \method{setBuffer}{gtkTextView} method. Text views are typically
-placed inside a scrolled window, and since a viewport is established,
+placed inside a scrolled window (Section~\ref{sec:RGtk2:scroll-windows}), and since a viewport is established,
 this is done with the \method{add}{gtkBin} method for scrolled
 windows.
 
@@ -73,7 +74,7 @@ The size and font can be globally set for a text view using the
 \method{modifyFont}{gtkWidget} method. (Specifying fonts for parts of
 the buffer requires the use of tags, described later.) The argument
 \argument{font.desc}{gtkWidgetModifyFont} specifies the new font using
-a Pango font description. These descriptions may be generated from a
+a Pango font description, which may be generated from a
 string specifying the font through the function
 \code{pangoFontDescriptionFromString}. These strings may contain up to
 3 parts: the first is a comma-separated list of font families, the
@@ -86,11 +87,11 @@ value might look like \code{"serif, monospace bold italic condensed
 contains more information.
 
 \paragraph{Signals}
-The text buffer emits many different types of signals. Most
-importantly, the \signal{changed} signal is emitted when the content
-of the buffer changes. The callback for a \signal{changed} signal has
-signature that returns the text buffer and any user data. Other
-signals are detailed in the help page for \function{gtkTextBuffer}.
+The text buffer emits many different types of signals detailed in the
+help page for \function{gtkTextBuffer}. Most importantly, the
+\signal{changed} signal is emitted when the content of the buffer
+changes. The callback for a \signal{changed} signal has signature that
+returns the text buffer and any user data.
 
 
 \begin{example}{Simple textview usage}{eg:RGtk2:simple-textview-usage}
@@ -103,7 +104,7 @@ signals are detailed in the help page for \function{gtkTextBuffer}.
 In order to do more with a text buffer, such as retrieve the text, 
 retrieve a selection, or modify attributes of just some of the text,
 one needs to become familiar with how pieces of the buffer are
-referred to within \pkg{Rgtk2}.
+referred to within \GTK.
 
 There are two methods: text iterators (iters) are a transient means to
 mark begin and end boundaries within a buffer, whereas text marks
@@ -115,39 +116,49 @@ these with tags to modify attributes of pieces of the buffer.
 
 %% text iters. GetStartIterm GetEndIter, GetSelectionBounds
 %% transient
-A text iterator is used to specify a position in a buffer in a transient
-manner. Iterators become invalid as soon as a buffer changes.  In
-\pkg{RGtk2}, iterators are stored as lists with components \code{iter}
-to hold a pointer to the underlying iterator and component
-\code{retval} to indicate whether the iterator when it was returned is
-valid. Many methods of the text buffer will update the iterator. This
-can happen inside a function call where the iterator is passed as an
-argument, so is unexpected to the \R\/ user. The
-\method{copy}{gtkTextIter} method will create a copy of an iterator,
-in case one is to be modifed yet the original is desired.
+
+%% An iterator
+An \dfn{iterator} is a programming object used to traverse through
+some data, such as a text buffer or table of values. Iterators are
+typically transient. They have
+methods to indicate what they point to and often update these
+values without an explicit function call. Such behaviour is unusual
+for typical \R\/ programming.
+
+
+In \GTK{} a \dfn{text iterator} is used to specify a position in a
+buffer. Iterators become invalid as soon as a buffer changes, say
+through the addition of text.  In \pkg{RGtk2}, iterators are stored as
+lists with components \code{iter} to hold a pointer to the underlying
+iterator and component \code{retval} to indicate whether the iterator
+when it was returned is valid. Many methods of the text buffer will
+update the iterator. This can happen inside a function call where the
+iterator is passed as an argument -- basically a copy is not passed
+in. The \method{copy}{gtkTextIter} method will create a copy of an
+iterator, in case one is to be modifed but it is important to keep the original.
 
 %% methods to return an iterator
-Several methods of the text buffer return iterators marking positions in the buffer. 
-The beginning and end of the
-buffer are returned by the methods
-\method{getStartIter}{gtkTextBuffer} and
-\method{getEndIter}{gtkTextBuffer}. Both of these iters are
-returned at once by the method \method{getBounds}{gtkTextBuffer} again
-as components of a list, in this case \code{start} and \code{end}.
-The current selection is returned by the method method
+Several methods of the text buffer return iterators marking positions
+in the buffer.  The beginning and end of the buffer are returned by
+the methods \method{getStartIter}{gtkTextBuffer} and
+\method{getEndIter}{gtkTextBuffer}. Both of these iters are returned
+at once by the method \method{getBounds}{gtkTextBuffer} again as
+components of a list, in this case \code{start} and \code{end}.  The
+current selection is returned by the method method
 \method{getSelectionBounds}{gtkTextBuffer}. Again, as a list of
 iterators specifying the start and end positions of the current
 selection. If there is no selection, then the component \code{retval}
-will be \code{FALSE}, otherwise it is \code{TRUE}.  
+will be \code{FALSE}, otherwise it is \code{TRUE}.
 
 The method \method{getIterAtLine}{gtkTextBuffer} will return an
-iterator pointing to the start of the line, which is specifed by line
-number starting with 0. The method \method{getIterAtLineOffset}{gtkTextBuffer} has an
-additional argument to specify the offset for a given line. An offset
-counts the number of individual characters and keeps track of the fact
-that the text encoding, UTF-8, may use more than one byte per
-character.  In addition to the text buffer, a text view also has the
-method \method{getIterAtLocation}{gtkTreeView} to return the iterator
+iterator pointing to the start of the line, which is specifed by
+$0$-based line number. The method
+\method{getIterAtLineOffset}{gtkTextBuffer} has an additional argument
+to specify the offset for a given line. An offset counts the number of
+individual characters and keeps track of the fact that the text
+encoding, UTF-8, may use more than one byte per character.  In
+addition to the text buffer, a text view also has the method
+\method{getIterAtLocation}{gtkTreeView} to return the iterator
 indicating the between-word space in the buffer closest to the point
 specified in $x$-$y$ coordinates.
 
@@ -184,7 +195,7 @@ of where the text is inserted. The \method{delete}{gtkTextBuffer}
 method will delete the text between the iterators specified to the
 arguments \argument{start}{gtkTextBufferDelete} and
 \argument{start}{gtkTextBufferDelete}. The
-\method{getText}{gtkTextBuffer} will get the text between the
+\method{getText}{gtkTextBuffer} method will get the text between the
 specified \argument{start}{gtkTextBufferDelete} and
 \argument{end}{gtkTextBufferDelete} iters. A similar method
 \method{getSlice}{gtkTextBuffer} will also do this, only it includes
@@ -197,10 +208,10 @@ mouse-button-press event. The callback has an event argument which is
 a \class{GdkEventButton} object with methods
 \method{getX}{GdkEventButton} and \method{getY}{GdkEventButton} to
 extract the \code{x} and \code{y} components of the event
-object. These give the position relative to the widget. The methods
+object. These give the position relative to the widget.~\footnote{The methods
 \method{getXRoot}{GdkEventButton} and
 \method{getYRoot}{GdkEventButton} give the position relative to the
-parent window the widget resides in.
+parent window the widget resides in.}
 
 <<echo=FALSE>>=
 ## setup example, not shown
@@ -210,12 +221,12 @@ w$add(tv)
 @ 
 
 <<FindWordAtMouseClick>>=
-ID <- gSignalConnect(tv, "button-press-event", f=function(obj, e, data) {
-  siter <- obj$getIterAtLocation(e$getX(), e$getY())$iter
-  niter <- siter$copy()
+ID <- gSignalConnect(tv, "button-press-event", f=function(w, e, ...) {
+  siter <- w$getIterAtLocation(e$getX(), e$getY())$iter
+  niter <- siter$copy()                 # need copy
   siter$backwardWordStart()
   niter$forwardWordEnd()
-  val <- obj$getBuffer()$getText(siter, niter)
+  val <- w$getBuffer()$getText(siter, niter)
   print(val)                            # replace
   return(FALSE)                         # call next handler
   })
@@ -234,9 +245,9 @@ text.
 
 
 Marks can be defined in two steps by calling \function{gtkTextMark},
-specifying and name and a value for the gravity, and then 
+specifying a name and a value for the gravity, and then 
 positioned within a buffer, specified by an iterator, through the
-buffers \method{addMark}{gtkTextBuffer} method. The
+buffer's \method{addMark}{gtkTextBuffer} method. The
 \method{createMark}{gtkTextBuffer} method combines the two steps.
 
 There are many text buffer methods to work with marks. The
@@ -254,7 +265,7 @@ different parts of the text buffer. \GTK\/ uses tags to specify how
 pieces of text will differ from those of the textview overall. To
 create a tag, the \method{createTag}{gtkTextBuffer} method is
 used. This has optional argument
-\code{tag.name}{gtkTextBufferCreateTag} which can be used to refer to
+\argument{tag.name}{gtkTextBufferCreateTag} which can be used to refer to
 the tag later, and otherwise uses named arguments so specify a properties
 names and the corresponding values. These tags may be applied to the text between
 two iters using the methods \method{applyTag}{gtkTextBuffer} or
@@ -268,12 +279,15 @@ tv <- gtkTextView()
 tb <- tv$getBuffer()
 tb$setText("the quick brown fox jumped over the lazy dog")
 ##
-tag.b <- tb$createTag(tag.name="bold", weight=PangoWeight["bold"])
-tag.em <- tb$createTag(tag.name="em", style=PangoStyle["italic"])
-tag.large <- tb$createTag(tag.name="large", font="Serif normal 18")
+tag.b <- tb$createTag(tag.name="bold", 
+                      weight=PangoWeight["bold"])
+tag.em <- tb$createTag(tag.name="em", 
+                       style=PangoStyle["italic"])
+tag.large <- tb$createTag(tag.name="large", 
+                          font="Serif normal 18")
 ##
-iter <- tb$getBounds()                  # or get iters another way
-tb$applyTag(tag.b, iter$start, iter$end) # iters updated
+iter <- tb$getBounds()         # or get iters another way
+tb$applyTag(tag.b, iter$start, iter$end)  # updates iters
 tb$applyTagByName("em", iter$start, iter$end)
 @ 
 \end{example}
@@ -283,14 +297,16 @@ tb$applyTagByName("em", iter$start, iter$end)
 \GTK\/ can create clipboards and provides convenient access to the
 default clipboard so that the standard cut, copy and paste actions can
 be implemented. The function \function{gtkClipboardGet} returns the
-default clipboard if given no arguments. The clipboard is the lone argument for
-the method \method{copyCliboard}{gtkTextBuffer} to copy the current
-selection to the clipboard. The method
+default clipboard if given no arguments. The clipboard is the lone
+argument for the method \method{copyCliboard}{gtkTextBuffer} to copy
+the current selection to the clipboard. The method
 \method{cutClipboard}{gtkTextBuffer} has an extra argmument,
-\code{default.editable}, which is typically \code{TRUE}. To paste the
-clipboard contents into the buffer, the second argument should be an
-iterator specifying where the text should be inserted and the third
-argument \code{TRUE} if the text is to be editable.
+\code{default.editable}, which is typically \code{TRUE}. The
+\method{pasteClipboard}{gtkTextBuffer} method is used paste the
+clipboard contents into the buffer, the second argument is \code{NULL}
+to paste at the insert are, or an iterator specifying otherwise where
+the text should be inserted. The third argument is \code{TRUE} if the
+pasted text is to be editable.
 
 \begin{example}{A simple command line interface}{eg:RGtk2-command-line}
   \SweaveInput{ex-RGtk2-terminal}
@@ -365,7 +381,7 @@ argument. The column classes are important, so even if this data frame
 is empty, it should specify the desired column classes.
 
 The constructor produces an object of class \class{RGtkDataFrame}
-which has a few methods defined for it. The familiar S3 methods
+for which the familiar S3 methods
 \method{[}{RGtkDataFrame}, \method{[\ASSIGN}{RGtkDataFrame},
 \method{dim}{RGtkDataFrame}, and \method{as.data.frame}{RGtkDataFrame}
 are defined. The \code{dimnames} attributes are kept, but have no
@@ -461,12 +477,12 @@ columns by its index, $0$-based.  The method
 whereas an entire row can be assigned through the
 \method{set}{gtkTreeStore} method. The former has arguments
 \code{iter}, \code{column}, \code{value}, in that order; the latter
-has no \code{column} or \code{value} argument. Instead, \code{Set}
+has no \code{column} or \code{value} argument. Instead, \meth{set}
 uses positional arguments to specify the column and the value. The
 column index appears as an even argument (say $2k$) and the
 corresponding value in the odd argument (say $2k+1$).  When calling
-\code{setValue} or \code{set} the iterator updates to the next row
-Values are returned by the \method{getValue}{gtkListStore} method,
+\code{setValue} or \code{set} the iterator updates to the next row.
+Values are returned by the \method{getValue}{gtkListStore} method, in
 a list with component \code{value} storing the value.
 
 \paragraph{Finding iterators}
@@ -500,11 +516,11 @@ before or after the sibling.
 of text we have:  
 <<AppendListStore>>=
 lstore <- gtkListStore("gchararray")
-for(i in 1:nrow(Cars93)) {
+QT <- sapply(Cars93[,1], function(i) {
   iter <- lstore$append()
   if(is.null(iter$retval)) 
-    lstore$setValue(iter$iter, 0, Cars93[i,1])
-}
+    lstore$setValue(iter$iter, 0, i)
+})
 @ 
 To retrieve a value, we have this example to get the first one in the store:
 <<>>=

@@ -1,4 +1,4 @@
-This example illustrates the basic steps to add completion to a text entry.
+This example illustrates the steps to add completion to a text entry.
 <<echo=FALSE>>=
 require(RGtk2)
 @ 
@@ -17,7 +17,7 @@ We set the completion objects's model and text column using the
 similarly named methods, and then set some properties to customize how
 the completion is handled.
 <<SetCompletion>>=
-store <- rGtkDataFrame(data.frame(name=I(state.name)))
+store <- rGtkDataFrame(state.name)
 completion$setModel(store)
 completion$setTextColumn(0)             # which column in model
 completion['inline-completion'] <- TRUE # inline with text edit
@@ -41,7 +41,7 @@ f <- function(comp, str, iter, user.data) {
 QT <- completion$setMatchFunc(func=f)
 @ 
 
-<<show=FALSE>>=
+<<notShown, echo=FALSE>>=
 ## Our basic GUI is basic:
 w <- gtkWindow(show=FALSE)
 w$setTitle("Test of entry with completion")

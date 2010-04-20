@@ -24,8 +24,10 @@ tb$setData("textview", tv)
 ### chunk number 4: 
 ###################################################
 aTag <- tb$createTag(tag.name="cmdInput")
-aTag <- tb$createTag(tag.name="cmdOutput", weight=PangoWeight["bold"])
-aTag <- tb$createTag(tag.name="cmdError", weight=PangoStyle["italic"], foreground="red")
+aTag <- tb$createTag(tag.name="cmdOutput", 
+                     weight=PangoWeight["bold"])
+aTag <- tb$createTag(tag.name="cmdError", 
+                     weight=PangoStyle["italic"], foreground="red")
 aTag <- tb$createTag(tag.name="uneditable", editable=FALSE)
 
 
@@ -49,7 +51,8 @@ moveViewport <- function(obj) {
 ###################################################
 ### chunk number 7: 
 ###################################################
-addPrompt <- function(obj, prompt=c("prompt","continue"), setMark=TRUE) {
+addPrompt <- function(obj, prompt=c("prompt","continue"), 
+                      setMark=TRUE) {
   prompt <- match.arg(prompt)
   prompt <- getOption(prompt)
   
@@ -59,14 +62,14 @@ addPrompt <- function(obj, prompt=c("prompt","continue"), setMark=TRUE) {
   if(setMark)
     obj$moveMarkByName("startCmd", endIter$iter)
 }
+addPrompt(tb) ## place an initial prompt
 
 
 ###################################################
 ### chunk number 8: addOutput
 ###################################################
 addOutput <- function(obj, output, tagName="cmdOutput") {
-  ## add output to end of buffer, new line with continuation prompt
-  if(length(output) > 100) 
+  if(length(output) > 100)              # shorten if needed
     out <- c(output[1:100], "...")
 
   endIter <- obj$getEndIter()
@@ -86,6 +89,7 @@ addOutput <- function(obj, output, tagName="cmdOutput") {
 ###################################################
 ### chunk number 9: 
 ###################################################
+## not shown in example
 addErrorMessage <- function(obj, msg) {
   ## add error message to end of buffer, new line with continuation prompt
   endIter <- obj$getEndIter()
@@ -103,7 +107,6 @@ addErrorMessage <- function(obj, msg) {
 ### chunk number 10: 
 ###################################################
 findCMD <- function(obj) {
-  ## get current command
   endIter <- obj$getEndIter()
   startIter <- obj$getIterAtMark(startCmd)
   cmd <- obj$getText(startIter$iter, endIter$iter, TRUE)
@@ -134,34 +137,33 @@ evalCMD <- function(obj, cmd) {
   
   out <- capture.output(eval(parse(text = cmd), envir=.GlobalEnv))
   addOutput(obj, out)
-
 }
 
 
 ###################################################
 ### chunk number 12: connectBinding
 ###################################################
-gSignalConnect(tv, "key-release-event", f=function(w, e, data) {
+ID <- gSignalConnect(tv, "key-release-event", f=function(w, e, data) {
   obj <- w$getBuffer()                  # w is textview
   keyval <- e$getKeyval()
   if(keyval == GDK_Return) {
-    ## run return handler
     cmd <- findCMD(obj)
-    if(nchar(cmd) > 0)
+    if(length(cmd) && nchar(cmd) > 0)
       evalCMD(obj, cmd)
   }
-  return(TRUE)                          # events need return value
+  return(FALSE)                         # events need return value
 })
 
 
 ###################################################
-### chunk number 13: 
+### chunk number 13: makeGUI
 ###################################################
-addPrompt(tb) ## initial prompt
+## scroll window
 sw <- gtkScrolledWindow()
 sw$setPolicy("automatic", "automatic")
 sw$add(tv)
 
+## top-level window
 w <- gtkWindow(show=FALSE)
 w$setTitle("A terminal")
 w$add(sw)
@@ -230,7 +232,7 @@ scrollHistoryDown <- function(obj) {
 
 ## History bindings
 ## this uses Control-p and Control-n to move
-gSignalConnect(tv, "key-release-event", f=function(w, e, data) {
+ID <- gSignalConnect(tv, "key-release-event", f=function(w, e, data) {
   if(e$GetState() != GdkModifierType['control-mask'])
     return(TRUE)
 

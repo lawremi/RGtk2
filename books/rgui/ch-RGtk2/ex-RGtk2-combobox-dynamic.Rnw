@@ -20,11 +20,11 @@ varModel <- rGtkDataFrame(variableNames)
 varCb <- gtkComboBoxNewWithModel(varModel)
 cr <- gtkCellRendererText()
 varCb$packStart(cr)
-varCb$addAttribute(cr, "text", 0)
+varCb$addAttribute(cr, "text", 0)       # column 1
 @ 
 
-Our basic GUI uses a table for layout. Comboboxes fill and expand to fill the cell.
-<<>>=
+<<notShown, echo=FALSE>>=
+## Our basic GUI uses a table for layout. Comboboxes fill and expand to fill the cell.
 tbl <- gtkTableNew(rows=2, columns=2, homogeneous=FALSE)
 tbl$attach(gtkLabel("Data frame"), left.attach=0,1, top.attach=0,1)
 tbl$attach(dfCb, left.attach=1,2, top.attach=0,1)
