@@ -40,10 +40,13 @@ frame, a command line, a function editor, a graphic or an arbitrarily
 complex form containing an assortment of such elements. 
 
 %% JV: control or "action" here?
-The actions that can be performed on the ``document'' are called
-through another WIMP component, the menu. Abstractly, every control in
-a window belongs to some menu. Two common ways of organizing controls
-into menus are the menubar and toolbar.
+%% ML: tried to make this clearer
+
+Abstractly, WIMP is a command language, where the user executes
+commands, often called actions, on a document by interacting with
+graphical controls. Every control in a window belongs to some abstract
+menu. Two common ways of organizing controls into menus are the
+menubar and toolbar.
 
 The parameters of an action call, if any, are controlled in
 sub-windows. These sub-windows are termed \dfnref{application windows}
@@ -111,22 +114,24 @@ without having to use a sub dialog.
 
 %% Choice of layout -- positioning, focus, use of spacing, center
 %% balance, vs. ...
-How the interfaces are laid out also varies. All are read top to
-bottom, although the Mac interface also has a very nice preview
-feature on the left side. The KDE dialog uses frames to
+How the interfaces are laid out also varies.  All
+panels are read top to bottom, although the Mac interface also has a very
+nice preview feature on the left side. The KDE dialog uses frames to
 separate out the printer arguments from the arguments that specify how
 the print job is to proceed. The Mac uses a vertical arrangement to
-guide the user through this. For the Mac, horizontal separators are used instead of
-frames to break up the areas, although a frame is used towards the
-bottom. 
+guide the user through this. For the Mac, horizontal separators are
+used instead of frames to break up the areas, although a frame is used
+towards the bottom. Apple uses a center balance for its controls. They
+are not left justified as are the KDE and Windows dialogs. Apple has
+strict user-interface guidelines and this center balance is a design
+decision.
 
-Apple uses a center balance for its controls. They are not left
-justified as are the KDE and Windows dialogs. Apple has strict
-user-interface guidelines and this center balance is a design
-decision. 
-
-
-
+%% feature exposure, Choice of options -- what to show, what to leave out
+The layout also determines how many features and choices are visible to the
+user at a given time.  For example, the Mac GUI uses ``disclosure
+buttons'' to allow access to printer properties and the PDF settings,
+whereas KDE uses a notebook container to show only a subset of the
+options at once.
 
 %% state visualization: sensitive/not; focus, not, 
 The Mac GUI provides a very nice preview of the current document
@@ -176,16 +181,6 @@ a spring to push some buttons to the left, and some to the right to
 keep separate their level of importance. The KDE buttons do so as
 well, although one can't tell from this. However, one can see the use
 of stock icons on the buttons to guide the user. 
-
-%% feature exposure, Choice of options -- what to show, what to leave out
-One of the greatest differences between these dialogs is the amount of
-features they choose to expose. For example, the Mac GUI uses ``disclosure buttons'' to allow access to
-printer properties and the PDF settings, whereas KDE uses a notebook
-container to show possible options without revealing all of their
-detail.
-
-
-
 
 \subsection{Choice of widget}
 \label{sec:choice-widget}

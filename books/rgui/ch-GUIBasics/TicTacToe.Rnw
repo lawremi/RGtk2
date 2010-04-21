@@ -17,10 +17,6 @@ some of the issues that this text will address with using GUIs.
 
 Many GUIs can be thought of as different views of some data
 model. 
-% This thought leads itself to the prevalent
-% model-view-controller architecture of many large GUI applications. 
-% For many of our examples in the text, we avoid that level of design, but
-% do try to keep separate the different aspects of GUI design. 
 In this example, the data simply consists of information holding the
 state of the game. Here we define a global variable, \code{board}, to store the
 current state of the game. 
@@ -193,6 +189,10 @@ playGame <- function() {
   mtext("All done\n",1)
 }
 @ 
+
+This example adheres to the model-view-controller design pattern that
+is implemented by virtually every complex GUI. We will encounter this
+pattern throughout this book, although it is not always explicit.
 
 %% endless tweak
 A final point, the above example illustrates a common issue when designing
