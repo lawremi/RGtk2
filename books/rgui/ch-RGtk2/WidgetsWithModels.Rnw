@@ -710,7 +710,7 @@ cr['stock.id'] <- "gtk-ok" ## or from a column in a model
 
 The basic combo box usage was discussed in
 Section~\ref{sec:RGtk2:basic-combobox}, here we discuss more
-complicated comboboxes that use a model for the backend This data is
+complicated comboboxes that use an explicit model for the backend This data is
 tabular and may be kept in a \function{rGtkDataFrame} instance or a
 list store.  
 
@@ -803,8 +803,7 @@ which is assigned to the completion object through its
 for the entry widget, the entry widget's
 \method{setCompletion}{gtkEntry} method is used. The
 \code{text-column} property is used to specify which column in
-the model is used to find the matches, we use the method
-\code{SetTextColumn} in the example to set this.
+the model is used to find the matches.
 
 
 There are several properties that can be adjusted to tailor the
@@ -908,14 +907,13 @@ of the tree view columns.
 In addition to the text and pixbuf cell renderers discussed in
 Section~\ref{sec:RGtk2:combobox}, there are cell renderers that allow
 one to display other types of data available for the tree view widget.
-Some only make sense if the underlying data is to be edited, for
-example the combobox renderer, for these, the \code{editable}
-attribute for the cell renderer
-should be set to \code{TRUE}.
+Some only make sense if the underlying data is to be edited the
+\code{editable} (or sometimes \code{activatable}) attribute for the
+cell renderer should be set to \code{TRUE}.
 
 
-As with comboboxes, the mapping of values in the data store to the
-attributes of a cell render is done by the
+As with comboboxes, the mapping of fied values, or values in the data
+store to the attributes of a cell render is done by the
 \method{addAttribute}{gtkCellLayout} method of the tree view column.
 
 
@@ -935,7 +933,7 @@ cr <- gtkCellRendererToggle()
 cr['activatable'] <- TRUE               # cell can be edited
 cr['active'] <- TRUE
 QT <- gSignalConnect(cr, "toggled", function(w, path) {
-  print(as.numeric(path) + 1) ## the row
+  print(as.numeric(path) + 1) ## modify model as needed
 })
 @ 
 
@@ -976,15 +974,16 @@ cr['orientation'] <- "right-to-left"
 %% numbers
 \paragraph{Cell data functions}
 Formatting numbers is a bit trickier, as the cell renderer properties
-are geared around text values. For example, to align floating point
-numbers one can do so in the model and then display as text. However,
-to do so through the cell rendererer requires one to get the value
-from the model and modify it before the cell rendererer gets it. For
-this, a cell data function is used, and not with comboboxes, but only
-tree views. A cell data function has arguments pointing to a tree view
-column, the cell renderer, the model, an
-iterator pointing to the row in the model and a data argument for user
-data. The function should set the appropriate attributes of the cell
+are oriented around text values. For example, to align floating point
+numbers one can do so in the model (e.g., using \function{sprintf} to
+format and coerce to character data) and then displaying as
+text. However, to do so through the cell rendererer requires one to
+get the value from the model and modify it before the cell rendererer
+gets it. For this, a cell data function (only with tree
+views, not comboboxes). A cell data function passing in arguments for the
+ tree view column, the cell renderer, the model, an iterator pointing
+to the row in the model and a data argument for user data. The
+function is tasked with setting the appropriate attributes of the cell
 renderer. For example, this function could be used to format floating
 point numbers:
 <<>>=
@@ -995,38 +994,44 @@ func <- function(viewCol, cellRend, model, iter, data) {
   cellRend['xalign'] <- 1
 }
 @ 
+One drawback with the use of such function is they are much
+slower. However, if you are displaying numeric data with \code{NA}
+values, they need to be used to get a sensible display.
 
 %% This function will be set for the tree view column and illustrated in Example~\ref{ex:RGtk2:rGtk2DataFrame}.
+%% editable cells 
 
+\paragraph{Editable cells} When the \code{editable} property of a text
+cell (or \code{activatable} property of a toggle cell) is set to
+\code{TRUE}, then the cell contents can be changed. This allows the
+user to make changes to the underlying model through the GUI. Although
+the view automatically reflects changes made to the model, the reverse
+is not true. A callback must be assigned to the \code{editable}
+(\code{toggled}) signal for the cell renderer to implement the
+change. The callback for the \qcode{editable} signal has arguments
+\code{renderer}, \code{path} for the path of the selected row (as a
+string), and \code{new.text} containing the value of the edited text
+as a string. The tree view object and which column was edited are not
+passed in by default. These can be passed through the user data
+arugment, or set as data for the widget if needed within the callback.
 
-
-%% editable cells \paragraph{Editable cells} When the \code{editable}
-property of a text cell (or \code{activatable} property of a toggle
-cell) is set to \code{TRUE}, then the cell contents can be
-changed. This allows the user to make changes to the underlying model
-through the GUI. Although the view automatically reflects changes made
-to the model, the reverse is not true. A callback must be assigned to
-the \code{editable} (\code{toggled}) signal for the cell renderer to
-imlement the change. The callback for the \qcode{editable} signal has
-arguments \code{renderer}, \code{path} for the path of the selected
-row (as a string), and \code{new.text} containing the value of the edited text as a
-string. The tree view and which column was edited are not passed in by
-default. These can be passed through the user data arugment, or set as
-data for the widget if needed within the callback.
+For example, here is how one can update an \code{rGtk2DataFrame} model
+from within the callback.
 <<echo=FALSE>>=
 cr <- gtkCellRendererText()
 @ 
 <<editedSignal>>=
 cr['editable'] <- TRUE
 ID <- gSignalConnect(cr, "edited", 
-                     f=function(cr, path, newtext, data) {
+                     f=function(cr, path, newtext, user.data) {
                        curRow <- as.numeric(path) + 1
-                       model <- data$model
-                       curCol <- data$column
+                       curCol <- user.data$column
+                       model <- user.data$model
                        model[curRow, curCol] <- newtext
                      }, data=list(model=store, column=1))
 @ 
 
+\paragraph{Moving the cursor}
 Users may expect that once a cell is edited, the next cell is then set
 up to be edited. In order to do this, one must set the cursor to the
 appropriate place and set the state to editing. This is done through
@@ -1046,6 +1051,7 @@ object can be found from a string through \function{gtkTreePathNewFromString}.
 \begin{example}{Displaying text columns in a tree view}{ex:RGtk2-add-toggle-to-df}
   \SweaveInput{ex-RGtk2-add-toggle-to-df}
 \end{example}
+
 %% filtering
 \paragraph{Using filtered models to restrict the displayed rows}
 \GTK\/ provides a means to show a filtered selection of rows. The
@@ -1069,10 +1075,10 @@ view <- gtkTreeView(filtered)
 
 <<notShown, echo=FALSE>>=
 vc <- gtkTreeViewColumn()
-view$insertColumn(vc, 0)
+QT <- view$insertColumn(vc, 0)
 cr <- gtkCellRendererText()
 vc$packStart(cr)
-vc$addAttribute(cr, "text", 0)
+vc$addAttribute(cr, "text", 0)      
 
 sw <- gtkScrolledWindow()
 sw$add(view)
@@ -1098,7 +1104,7 @@ sorted <- gtkTreeModelSortNewWithModel(store)
 #
 view <- gtkTreeView(sorted)
 vc <- gtkTreeViewColumn()
-view$insertColumn(vc, 0)                  # first column
+QT <- view$insertColumn(vc, 0)                  # first column
 vc$setTitle("Click to sort")
 vc$setClickable(TRUE)
 vc$setSortColumnId(0)                   
@@ -1107,13 +1113,13 @@ cr <- gtkCellRendererText()
 vc$packStart(cr)
 vc$addAttribute(cr, "text", 0)
 @ 
-The default sorting function can be changed. The sortable stores
+The default sorting function can be changed. The sortable store's
 method \method{setSortFunc}{gtkTreeSortable} is used for this.
 The following function -- which can easily be modified to taste -- shows
 how the default sorting might be implemented.
 <<sort-example>>=
-f <- function(model, iter1, iter2, data) {
-  column <- data
+f <- function(model, iter1, iter2, user.data) {
+  column <- user.data
   val1 <- model$GetValue(iter1, column)$value
   val2 <- model$GetValue(iter2, column)$value
   val1 > val2
@@ -1138,7 +1144,7 @@ w$show()
 \GTK\/ provides a class to handle the selection of rows that the user
 makes. The selection object is returned from the tree view, through
 its \method{getSelection}{gtkTreeView} method. 
-To modify the selection possibilities, the selection's method
+To modify the selection possibilities, the selection object's method
 \method{setMode}{gtkTreeSelection} method is used, with values from
 \code{GtkSelectionMode}, including \qcode{multiple} for allowing more
 than one row to be selected and \qcode{single} for no more than one row.
@@ -1161,7 +1167,7 @@ QT <- selection$setMode("single")
 <<echo=FALSE>>=
 ## create some tree view columns and cell renderers
 vc <- gtkTreeViewColumn()
-view$insertColumn(vc, 0)
+QT <- view$insertColumn(vc, 0)
 cr <- gtkCellRendererText()
 vc$PackStart(cr)
 vc$addAttribute(cr, "text", 0)
@@ -1176,10 +1182,10 @@ w$show()
 @ 
 If this tree view is shown and a selection made, this code will return the value in the first column:
 <<>>=
-selection$selectPath(gtkTreePathNewFromString("3")) # set for example
+selection$selectPath(gtkTreePathNewFromString("3")) # set 
 # 
 curSel <- selection$getSelected()       # retrieve selection
-with(curSel, model$getValue(iter, 0)$value) # both model and iter in curSel
+with(curSel, model$getValue(iter, 0)$value) # model, iter
 @ 
 
 
@@ -1188,11 +1194,18 @@ When multiple selection is permitted, then the method
 componets \code{model} pointing to the model, and \code{retval} a list
 of tree paths. No column information is passed back by this method.
 
-For example, if we change the selection mode then select a few rows
+For example, we can change the selection mode as follows.
 <<>>=
 selection$setMode("multiple")
 @ 
-This code will print the selected values in the first column:
+
+<<notShown, echo=FALSE>>=
+selection$selectPath(gtkTreePathNewFromString("1")) # set for example
+selection$selectPath(gtkTreePathNewFromString("2")) # set for example
+selection$selectPath(gtkTreePathNewFromString("3")) # set for example
+@ 
+This code will print the selected values in the first column (we have
+selected the first three rows):
 <<>>=
 curSel <- selection$getSelectedRows()
 if(length(curSel$retval)) {
@@ -1213,10 +1226,6 @@ several rows. A single click selects the value, and a double click is
 often used to initiate an action. If the cells are editable, then this
 action is to edit the content.
 
-%% selection
-When a selection is made or changed, the signal \signal{changed} is emitted by
-the selection. 
-
 %% double click
 When a row is not editable, then the double-click event or a keyboard
 command triggers the \signal{row-activated} signal for the tree
@@ -1230,6 +1239,10 @@ of the tree view through a command like
 <<eval=FALSE>>=
 sapply(tree.view$getColumns(), function(i) i == column)
 @ 
+
+%% selection
+The selection object emits signals for various events, in particular, when a
+selection is made or changed, the \signal{changed} signal is emitted.
 
 
 %% tree stores

@@ -1,7 +1,8 @@
 This example shows how to select one or more rows from a data frame
 that contains some information. We write it so any data frame could be
 used, although in the specific case we show a list of the installed
-packages that can be upgraded from CRAN.
+packages that can be upgraded from CRAN. The use of checkboxes for
+selection, employs the toggle cell renderer.
 
 <<echo=FALSE>>=
 ## example showing how to add a toggle button on left of data display
@@ -19,7 +20,8 @@ options(repos = repos)
 avail <- available.packages()
 installed <- installed.packages()
 tmp <- merge(avail, installed, by="Package")
-need.upgrade <- with(tmp, as.character(Version.x) != as.character(Version.y))
+need.upgrade <- with(tmp, as.character(Version.x) 
+                     != as.character(Version.y))
 d <- tmp[need.upgrade, c(1, 2, 16, 6)]
 names(d) <- c("Package", "Available", "Installed", "Depends")
 @ 
@@ -48,12 +50,12 @@ want to call \code{doThis} on.
 view <- gtkTreeView()
 # add toggle
 togglevc <- gtkTreeViewColumn()
-view$insertColumn(togglevc, 0)
+QT <- view$insertColumn(togglevc, 0)
 cr <- gtkCellRendererToggle()
 togglevc$packStart(cr)
 cr['activatable'] <- TRUE
 togglevc$addAttribute(cr, "active", n)
-gSignalConnect(cr, "toggled", function(cr, path, user.data) {
+QT <- gSignalConnect(cr, "toggled", function(cr, path, user.data) {
   view <- user.data
   row <- as.numeric(path) + 1
   model <- view$getModel()
@@ -63,9 +65,9 @@ gSignalConnect(cr, "toggled", function(cr, path, user.data) {
                data=view)
 @ 
 
-The text columns are added all in a similar manner.
+The text columns are added one-by-one in a similar manner:
 <<>>=
-sapply(1:n, function(i) {
+QT <- sapply(1:n, function(i) {
   vc <- gtkTreeViewColumn()
   vc$setTitle(nms[i])
   view$insertColumn(vc, i)
@@ -75,6 +77,27 @@ sapply(1:n, function(i) {
   vc$addAttribute(cr, "text", i-1)
 })
 @ 
+
+Finally, we connect the store to the model.
+<<>>=
+view$setModel(store)
+@ 
+
+To initiate the action, we create a button and assign a callback. We
+pass in the view, rather than the model, in case the model would be
+modified by the \code{doThis} call. In a real application, once a
+package is upgraded it would be removed from the display.
+<<>>=
+b <- gtkButton("click me")
+QT <- gSignalConnect(b, "clicked", function(w, data) {
+  view <- data
+  model <- view$getModel()
+  n <- dim(model)[2]
+  vals <- model[model[, n], -n, drop=FALSE]
+  doThis(vals)
+}, data=view)
+@ 
+
 
 Our basic GUI places the view into a box container that also holds a
 button to initiate the action.
@@ -89,26 +112,6 @@ g$packStart(sw, expand=TRUE, fill=TRUE)
 
 sw$add(view)
 sw$setPolicy("automatic", "automatic")
-@ 
-
-We add the button and its callback. We pass in the view, rather than
-the model, in case the model would be modified by the \code{doThis}
-call. In a real application, once a package is upgraded it would be
-removed from the display.
-<<>>=
-b <- gtkButton("click me")
-gSignalConnect(b, "clicked", function(w, data) {
-  view <- data
-  model <- view$getModel()
-  n <- dim(model)[2]
-  vals <- model[model[, n], -n, drop=FALSE]
-  doThis(vals)
-}, data=view)
 g$packStart(b, expand=FALSE)
-@ 
-
-Finally, we connect the store to the model and show the top-level window
-<<>>=
-view$setModel(store)
 w$show()
 @ 

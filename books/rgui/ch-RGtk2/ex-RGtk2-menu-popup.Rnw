@@ -22,19 +22,19 @@ w <- gtkWindow(); w$setTitle("Popup menu example")
 w$add(b)
 
 ID <- gSignalConnect(b,"button-press-event",
-                    f = function(w, e, userData) {
-                      if(e$getButton() == 3 ||
-                         (e$getButton() == 1 && # a mac
-                          e$getState() == GdkModifierType['control-mask'])
-                         ) {
-                        gtkMenuPopup(userData$mb,
-                                     button = e$getButton(),
-                                     activate.time = e$getTime())
-                        }
-                      return(FALSE)
-                    },
-                    data=list(mb=popup)
-                    )
+             f = function(w, e, userData) {
+               if(e$getButton() == 3 ||
+                  (e$getButton() == 1 && # a mac
+                   e$getState() == GdkModifierType['control-mask'])
+                  ) {
+                 gtkMenuPopup(userData$mb,
+                              button = e$getButton(),
+                              activate.time = e$getTime())
+                 }
+               return(FALSE)
+             },
+             data=list(mb=popup)
+             )
 @ 
 
 The above will popup a menu, but until we bind to the \code{activate}

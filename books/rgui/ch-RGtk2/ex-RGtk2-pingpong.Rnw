@@ -63,7 +63,6 @@ indicates which column in the \code{rGtkDataFrame} object contains the
 visibility information. Our tree view packs in both a pixbuf cell
 rendererer and a text one.
 <<>>=
-## make a view
 makeView <- function(model, vis.col) {
   filteredModel <- model$filterNew()
   filteredModel$setVisibleColumn(vis.col - 1)
@@ -122,28 +121,29 @@ g$PackStart(views$right)
 The key handler moves the selected value from one side to the
 other. The issue here is that when the view is using filtering the
 selection returns values relative to the child model (the filtered
-one). In general the methods of the filtered model
-\code{convertChildPathToPath} and \code{convertChildIterToIter} will
-translate between the two models, but in this case we pass in the
+one). In general the methods \code{convertChildPathToPath} and
+\code{convertChildIterToIter} of the filtered model will translate
+between the two models, but in this case we pass in the
 \code{rGtkDataFrame} instance, not the filtered model. So we use the
 columns indicating visibility to identify which index is being
 referred to. This handler assumes the model and a value indicating the
 view (\code{from}) is passed in through the user data.
 <<>>=
-moveSelected <- function(b, data) {
-  model <- data$model
+moveSelected <- function(b, user.data) {
+  model <- user.data$model
 
-  selection <- selections[[data$from]]
+  selection <- selections[[user.data$from]]
   selected <- selection$getSelectedRows()
   if(length(selected$retval)) {
     childRows <- sapply(selected$retval, function(childPath) {
       childRow <- as.numeric(childPath$toString()) + 1
     })
-    shownIndices <- which(model[, 2 + data$from])
+    shownIndices <- which(model[, 2 + user.data$from])
     rows <- shownIndices[childRows]
 
-    model[rows, 2 + data$from] <- FALSE
-    model[rows, 2 + (3-data$from)] <- !model[rows, 2 + data$from]
+    model[rows, 2 + user.data$from] <- FALSE
+    model[rows, 2 + (3-user.data$from)] <- 
+      !model[rows, 2 + user.data$from]
   }
 }
 @ 

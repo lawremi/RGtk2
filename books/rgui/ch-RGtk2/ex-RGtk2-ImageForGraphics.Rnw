@@ -31,18 +31,17 @@ theSize <- g$getAllocation()
 width <- theSize$width; height <- theSize$height
 @ 
 
-Now we draw a basic  graphic as a png file (\code{Cairo}'s default) stored in a temporary file.
-<<>>=
-require(Cairo)
+Now we draw a basic  graphic as a png file stored in a temporary file.
+<<eval=FALSE>>=
 filename <- tempfile()
-Cairo(file = filename, width = width, height = height)
+png(file = filename, width = width, height = height)
 hist(rnorm(100))
 QT <- dev.off()
 @ 
 
 The constructor may be called as \command{gtkImage(filename=filename)}
 or as follows:
-<<>>=
+<<eval=FALSE>>=
 image <- gtkImageNewFromFile(filename)
 g$packStart(image, expand=TRUE, fill = TRUE)
 unlink(filename)                        # tidy up

@@ -7,12 +7,17 @@ require(RGtk2)
 \label{sec:RGtk2:actions}
 
 Actions are a means to create reusable representations for some action
-to be initiated. The \constructor{gtkAction} constructor creates
-actions, taking arguments \argument{name}{gtkAction},
+to be initiated. Actions can be shared among buttons, menubars and
+toolbars. The \constructor{gtkAction} constructor creates actions,
+taking arguments \argument{name}{gtkAction},
 \argument{label}{gtkAction} (what gets shown),
 \argument{tooltip}{gtkAction}, and \argument{stock.id}{gtkAction}.
 The act associated with an action is specified by adding a callback to
-the \signal{activate} signal.
+its \signal{activate} signal.
+
+Actions can have their \code{sensitivity} property adjusted through
+their \method{SetSensitive}{gtkAction} method. This will propogate to
+all the widgets the action has a proxy connection with.
 
 Actions are connected to widgets, through the method
 \method{connectProxy}{gtkAction}. For buttons, the stock id
@@ -21,17 +26,14 @@ information must be added to the button through the button's
 method, with argument coming from a value of \code{GtkIconSize}, will
 return the needed image.
 
-Actions can have their \code{sensitivity} property adjusted through
-their \method{SetSensitive}{gtkAction} method. This will propogate to
-all the widgets the action has a proxy connection with.
-
 
 \begin{example}{An action object}{ex:RGtk2-action-object}
 A basic action can be defined as follows:
 <<DefineAction>>=
-a <- gtkAction(name="ok", label="_Ok", tooltip="An OK button", stock.id="gtk-ok")
+a <- gtkAction(name="ok", label="_Ok", 
+               tooltip="An OK button", stock.id="gtk-ok")
 ID <- gSignalConnect(a, "activate", f = function(w, data) {
-  print(a$GetName())                    # of some useful thing
+  print(a$GetName())                    # or some useful thing
 })
 @ 
 To connect the action to a button, is straightforward.
@@ -71,19 +73,24 @@ menu bar (\command{gtkMenuBar}). To a menu bar we append menu
 items. Menu items may have sub menus (\constructor{gtkMenu}) appended, which gives
 the heirarchical nature of a menu. Popup menus are similar, although begin with a \constructor{gtkMenu} instance.  
 
+Menubars (along with the upcoming toolbars and statusbars) are placed
+within the GUI by the programmer, although convention dictates their
+position within a top-level window.
+
+
 %% attach
 \paragraph{Building the the menu}
 Submenus and added to a menu item through the
-\method{SetSubMenu}{gtkMenuItem} method. Menu items are added to a
+\method{setSubMenu}{gtkMenuItem} method. Menu items are added to a
 menu through the methods
-\method{Append}{gtkMenuShell}; \method{Prepend}{gtkMenuShell}; and
-\method{Insert}{gtkMenuShell}, the latter requiring an index where the
-insertion is to take place, with 0 being the same as \code{Prepend},
+\method{append}{gtkMenuShell}; \method{prepend}{gtkMenuShell}; and
+\method{insert}{gtkMenuShell}, the latter requiring an index where the
+insertion is to take place, with 0 being the same as \code{prepend},
 in addition to the child. After a child is added, the method
 \method{ReorderChild}{gtkMenuShell} can be used to move it to a new
 position ($0$-based). Menuitems are not typically removed, rather they
-are disabled through their \code{SetSensitive} method, but if desired
-their \method{Show}{gtkWidget} and \method{Hide}{gtkWidget} methods
+are disabled through their \code{setSensitive} method, but if desired
+their \method{show}{gtkWidget} and \method{hide}{gtkWidget} methods
 can be used to stop them from being drawn.
 
 %% Menu itmes
@@ -91,8 +98,8 @@ can be used to stop them from being drawn.
 % Note that accelerators are different from mnemonics. Accelerators are shortcuts for activating a menu item; they appear alongside the menu item they're a shortcut for. For example "Ctrl+Q" might appear alongside the "Quit" menu item. Mnemonics are shortcuts for GUI elements such as text entries or buttons; they appear as underlined characters. See gtk_label_new_with_mnemonic(). Menu items can have both accelerators and mnemonics, of course. 
 
 \paragraph{Menu items}
-Menu items represent actions to be taken and are created by several
-different constructors.  A basic menu item is created by
+Menu items represent actions to be taken and are created through
+several different constructors.  A basic menu item is created with
 \constructor{gtkMenuItem}. The argument \argument{label}{gtkMenuItem}
 allows one to specify the label at construction time. The related
 constructor, \constructor{gtkMenuItemNewWithMnemonic} also allows the
@@ -102,8 +109,8 @@ separators (\constructor{gtkSeparatorMenuItem}).
 
 A menu item for a \code{gtkAction} object can be created by its
 \method{createMenuItem}{gtkAction} method. For window managers that
-display them, any icon specified the action's \code{stock.id} argument
-will be displayed.
+display them, any icon specified through the action's \code{stock.id}
+argument will be displayed.
 
 
 To add a different image in the menu bar, the
@@ -126,7 +133,7 @@ the \code{active} state for the menu is set. The default is not
 active. Use the \method{GetActive}{gtkCheckMenuItem} to test if the
 state is active or not.  It may be best to set this state to active,
 so the user can identify that the item is a toggle (use the method
-\code{SetActive(TRUE)}. When the user clicks on the menu item, the
+\code{SetActive(TRUE)}. When the user clicks on the menu item, its
 \signal{toggled} signal is emitted.
 
 \begin{example}{A basic menu bar}{eg:Rgtk2-Basic}
@@ -142,8 +149,7 @@ The above can easily be automated. The menubar widget in
 \pkg{gWidgetsRGtk2} simply maps a list with named components to the
 above, by setting menu items for each top-level component, submenus for
 each component that contains children, and menu items for components
-that do not have children. However, the next approach is preferred for
-larger menubars, as it separates out the presentation from the actions.
+that do not have children. 
 
 \section{Toolbars}
 \label{sec:RGtk2:toolbars}
@@ -152,39 +158,44 @@ Toolbars are like menubars only they only contain actions, there are
 no submenus. Toolbar objects are constructed by
 \constructor{gtkToolbar}. The placement of the widget at the top of a
 top-level window is done by the programmer. Toolbar items are added to
-the toolbar using the \method{Add}{gtkContainer} method. Once added,
+the toolbar using the \method{add}{gtkContainer} method. Once added,
 items can be referred to by index using the \code{[[} method.
+%%]]
 
 Toolbar items have some common properties. The buttons are comprised
 of an icon and text, and the style of their layout is specified by the
-toolbar method \method{SetStyle}{gtkToolbar}, with values coming from
+toolbar method \method{setStyle}{gtkToolbar}, with values coming from
 the \code{GtkToolbarStyle} enumeration. Toolbar items can have a
 tooltip set for them through the methods
-\method{SetTooltipText}{gtkToolItem} or
-\method{SetTooltipMarkup}{gtkToolItem}, the latter if PANGO markup is
-desired. Toolbar items can be disabled, through the method \method{SetSensitive}{gtkWidget}.
+\method{setTooltipText}{gtkToolItem} or
+\method{setTooltipMarkup}{gtkToolItem}, the latter if PANGO markup is
+desired. Toolbar items can be disabled, through the method
+\method{setSensitive}{gtkWidget}.
 
 The items can be one of a few different types. A stock toolbar item is
 constructed by \constructor{gtkToolbarButtonNewFromStock}, with the
 stock id as the argument. The constructor
 \constructor{gtkToolbarButton} creates a button that can have its
 label and icon value set through methods
-\method{SetLabel}{gtkToolbarButton} and
-\method{SetIconWidget}{gtkToolbarButton}. Additionally, there are
+\method{setLabel}{gtkToolbarButton} and
+\method{setIconWidget}{gtkToolbarButton}. Additionally, there are
 methods for setting a tooltip or specifying a stock id after
 construction. A toggle button, which toggles between looking depressed
-or not when clicked is created by \constructor{gtkToggleToolButton} or \constructor{gtkToggleToolButtonNewFromStock}.
-Additionally there are constructors to place menus
-(\constructor{gtkMenuToolButton}) and radio groups (\constructor{gtkRadioToolButton}).
+or not when clicked is created by \constructor{gtkToggleToolButton}
+(or \constructor{gtkToggleToolButtonNewFromStock}).  Additionally
+there are constructors to place menus
+(\constructor{gtkMenuToolButton}) and radio groups
+(\constructor{gtkRadioToolButton}).
   
 % signale
 The \code{clicked} signal is emitted when a toolbar button is
-pressed. For the toggle button, the \code{toggle} signal is emitteed. Other
+pressed. For the toggle button, the \code{toggle} signal is
+emitteed.
 
 
 
 \begin{example}{Basic toolbar usage}{ex:RGtk2-basic-toolbar}
-We illustrate with a toolbar, whose buttons are produced in various ways.
+We illustrate with a toolbar whose buttons are produced in various ways.
 <<>>=
 tb <- gtkToolbar()
 @ 
@@ -215,12 +226,15 @@ QT <- gSignalConnect(b3, "toggled", f=function(button, data) {
 @ 
 We give the other buttons a simple callback when clicked:
 <<>>=
-QT <- sapply(1:2, function(i) gSignalConnect(tb[[i]], "clicked", function(button, data) {
-  cat("You clicked", button$getLabel(), "\n")
-}))
+QT <- sapply(1:2, function(i) {
+  gSignalConnect(tb[[i]], "clicked", function(button, data) {
+    cat("You clicked", button$getLabel(), "\n")
+  })
+})
 @ 
 
-<<MakeToolbarGUI>>=
+<<MakeToolbarGUI, echo=FALSE>>=
+## simple GUI to finish toolbar example
 w <- gtkWindow(show=FALSE)
 w['title'] <- "Toolbar example"
 g <- gtkVBox()
@@ -234,7 +248,7 @@ w$showAll()
 \section{Statusbars}
 \label{sec:RGtk2:statusbars}
 
-In \GTK, a statusbar is constructed through by the
+In \GTK, a statusbar is constructed through the
 \constructor{gtkStatusbar} function. Statusbars must be placed at the
 bottom of a top-level window by the programmer. In \GTK, a statusbar
 keeps various stacks of messages for display. One adds a message to

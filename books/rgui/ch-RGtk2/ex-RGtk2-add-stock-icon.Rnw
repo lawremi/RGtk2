@@ -30,7 +30,7 @@ library(RGtk2)
 ## application. 
 @ 
 First we create the icons using the fact that the objects have a function \code{icon} to draw an image.
-<<>>=
+<<eval=FALSE>>=
 require(ggplot2)
 require(Cairo)
 iconNames <- c("GeomBar","GeomHistogram")   # 2 of many ggplot functions
@@ -48,7 +48,7 @@ fileNames <- sapply(iconNames, function(name) {
 @ 
 The following function works through the steps to add a new icon. The
 basic ideas are sketched out in the API for \code{GtkIconsSet}.
-<<addToStockIcons>>=
+<<addToStockIcons, eval=FALSE>>=
 addToStockIcons <- function(iconNames, fileNames, stock.prefix="new") {
   iconfactory <- gtkIconFactoryNew()
   
@@ -71,7 +71,7 @@ addToStockIcons <- function(iconNames, fileNames, stock.prefix="new") {
 }
 @ 
 We call this function and then check that the values are added:
-<<>>=
+<<eval=FALSE>>=
 addToStockIcons(iconNames, fileNames)
 nms <- gtkStockListIds()
 unlist(nms[grep("^new", nms)])

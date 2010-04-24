@@ -430,21 +430,20 @@ width <- theSize$width; height <- theSize$height
 
 
 ###################################################
-### chunk number 44: 
+### chunk number 44:  eval=FALSE
 ###################################################
-require(Cairo)
-filename <- tempfile()
-Cairo(file = filename, width = width, height = height)
-hist(rnorm(100))
-QT <- dev.off()
+## filename <- tempfile()
+## png(file = filename, width = width, height = height)
+## hist(rnorm(100))
+## QT <- dev.off()
 
 
 ###################################################
-### chunk number 45: 
+### chunk number 45:  eval=FALSE
 ###################################################
-image <- gtkImageNewFromFile(filename)
-g$packStart(image, expand=TRUE, fill = TRUE)
-unlink(filename)                        # tidy up
+## image <- gtkImageNewFromFile(filename)
+## g$packStart(image, expand=TRUE, fill = TRUE)
+## unlink(filename)                        # tidy up
 
 
 ###################################################
@@ -514,55 +513,55 @@ library(RGtk2)
 
 
 ###################################################
-### chunk number 51: 
+### chunk number 51:  eval=FALSE
 ###################################################
-require(ggplot2)
-require(Cairo)
-iconNames <- c("GeomBar","GeomHistogram")   # 2 of many ggplot functions
-icon.size <- 16
-iconDir <- tempdir()
-fileNames <- sapply(iconNames, function(name) {
-  nm <- paste(iconDir, "/", name, ".png", sep="", collapse="")
-  Cairo(file=nm, width=icon.size, height=icon.size, type="png")
-  val <- try(get(name))
-  grid.newpage()
-  try(grid.draw(val$icon()), silent=TRUE)
-  dev.off()
-  nm
-})
+## require(ggplot2)
+## require(Cairo)
+## iconNames <- c("GeomBar","GeomHistogram")   # 2 of many ggplot functions
+## icon.size <- 16
+## iconDir <- tempdir()
+## fileNames <- sapply(iconNames, function(name) {
+##   nm <- paste(iconDir, "/", name, ".png", sep="", collapse="")
+##   Cairo(file=nm, width=icon.size, height=icon.size, type="png")
+##   val <- try(get(name))
+##   grid.newpage()
+##   try(grid.draw(val$icon()), silent=TRUE)
+##   dev.off()
+##   nm
+## })
 
 
 ###################################################
-### chunk number 52: addToStockIcons
+### chunk number 52: addToStockIcons eval=FALSE
 ###################################################
-addToStockIcons <- function(iconNames, fileNames, stock.prefix="new") {
-  iconfactory <- gtkIconFactoryNew()
-  
-  for(i in seq_along(iconNames)) {
-    
-    iconsource = gtkIconSourceNew()
-    iconsource$setFilename(fileNames[i])
-    
-    iconset = gtkIconSetNew()
-    iconset$addSource(iconsource)
-    
-    stockName = paste(stock.prefix, "-", iconNames[i], sep="")
-    iconfactory$add(stockName, iconset)
-    
-    items = list(test=list(stockName, iconNames[i],"","",""))
-    gtkStockAdd(items)
-  }
-  iconfactory$AddDefault()
-  invisible(TRUE)
-}
+## addToStockIcons <- function(iconNames, fileNames, stock.prefix="new") {
+##   iconfactory <- gtkIconFactoryNew()
+##   
+##   for(i in seq_along(iconNames)) {
+##     
+##     iconsource = gtkIconSourceNew()
+##     iconsource$setFilename(fileNames[i])
+##     
+##     iconset = gtkIconSetNew()
+##     iconset$addSource(iconsource)
+##     
+##     stockName = paste(stock.prefix, "-", iconNames[i], sep="")
+##     iconfactory$add(stockName, iconset)
+##     
+##     items = list(test=list(stockName, iconNames[i],"","",""))
+##     gtkStockAdd(items)
+##   }
+##   iconfactory$AddDefault()
+##   invisible(TRUE)
+## }
 
 
 ###################################################
-### chunk number 53: 
+### chunk number 53:  eval=FALSE
 ###################################################
-addToStockIcons(iconNames, fileNames)
-nms <- gtkStockListIds()
-unlist(nms[grep("^new", nms)])
+## addToStockIcons(iconNames, fileNames)
+## nms <- gtkStockListIds()
+## unlist(nms[grep("^new", nms)])
 
 
 ###################################################
@@ -938,52 +937,51 @@ w$showAll()                             # propogate to combo
 ###################################################
 ### chunk number 87: 
 ###################################################
-## info arguments -- application assigned
-TARGET.TYPE.TEXT   = 80                 
-TARGET.TYPE.PIXMAP = 81                  
-TARGET.TYPE.OBJECT = 82
-
-widgetTargetTypes = list(
-## target -- string representing the drag type
-## flag delimiting drag scope. 0 -- no limit
-## info -- application assigned value to identify
-text = gtkTargetEntry("text/plain", 0, TARGET.TYPE.TEXT),
-pixmap = gtkTargetEntry("image/x-pixmap", 0, TARGET.TYPE.PIXMAP),
-object = gtkTargetEntry("text/plain", 0, TARGET.TYPE.OBJECT)
-)
-
+TARGET.TYPE.TEXT   <- 80                 
+TARGET.TYPE.PIXMAP <- 81                  
 
 
 ###################################################
 ### chunk number 88: 
 ###################################################
-widget <-  gtkButton("Drag me")
-w <- gtkWindow(); w$add(widget)
-
-QT <- 
-  gtkDragSourceSet(widget,
-                   start.button.mask=c("button1-mask", "button3-mask"),
-                   targets=widgetTargetTypes[["text"]],
-                   actions="copy") ## can also be any of GdkDragAction
-
-ID <- 
-  gSignalConnect(widget, "drag-data-get", 
-                 f=function(userData, widget, context, 
-                   selection, targetType, eventTime) {
-                   selection$setText(str="some value") 
-                   return(TRUE)
-                 },
-                 user.data.first=TRUE,
-                 data="")
+widgetTargetTypes <- list(
+## target -- string representing the drag type. MIME type used.
+## flag delimiting drag scope. 0 -- no limit
+## info -- application assigned value to identify
+text = gtkTargetEntry("text/plain", 0, TARGET.TYPE.TEXT),
+pixmap = gtkTargetEntry("image/x-pixmap", 0, TARGET.TYPE.PIXMAP)
+)
 
 
 ###################################################
 ### chunk number 89: 
 ###################################################
-widget <- gtkButton("Drop here")
-w <- gtkWindow(); w$add(widget)
+w <- gtkWindow(); w['title'] <- "Drag Source"
+dragSourceWidget <-  gtkButton("Drag me")
+w$add(dragSourceWidget)
 
-QT <- gtkDragDestSet(widget,
+QT <- gtkDragSourceSet(dragSourceWidget,
+                 start.button.mask=c("button1-mask", "button3-mask"),
+                 targets=widgetTargetTypes[["text"]],
+                 actions="copy") ## can also be any of GdkDragAction
+
+ID <- 
+  gSignalConnect(dragSourceWidget, "drag-data-get", 
+                 f=function(widget, context, 
+                   selection, targetType, eventTime) {
+                   ## customize this to set the text
+                   selection$setText(str="some value") 
+                 })
+
+
+###################################################
+### chunk number 90: 
+###################################################
+w <- gtkWindow(); w['title'] <- "Drop Target"
+dropTargetWidget <- gtkButton("Drop here")
+w$add(dropTargetWidget)
+
+QT <- gtkDragDestSet(dropTargetWidget,
                      flags="all", 
                      targets=widgetTargetTypes[["text"]],
                      actions="copy"
@@ -991,12 +989,12 @@ QT <- gtkDragDestSet(widget,
 
 
 ###################################################
-### chunk number 90: 
+### chunk number 91: 
 ###################################################
-
 ID <- 
-  gSignalConnect(widget, "drag-data-received", 
-                 f=function(userData, widget, context, x, y, 
+  gSignalConnect(dropTargetWidget, "drag-data-received", 
+                 f=function(dropTargetWidget, 
+                   context, x, y, 
                    selection, targetType, eventTime) {
                    dropdata <- selection$getText()
                    if(class(dropdata)[1] == "raw")
@@ -1004,42 +1002,41 @@ ID <-
                    else
                      val <- paste(dropdata, sep="")
                    print(val) ## some action
-                 },
-                 user.data.first=TRUE,
-                 data = "")
+                 })
 
 
 ###################################################
-### chunk number 91: 
+### chunk number 92: 
 ###################################################
 library(RGtk2)
 
 
 ###################################################
-### chunk number 92: textViewBasics
+### chunk number 93: textViewBasics
 ###################################################
 tv <- gtkTextView()
 sw <- gtkScrolledWindow()
-sw$setPolicy("automatic","automatic")
+sw$setPolicy("automatic", "automatic")
 sw$add(tv)
 
 w <- gtkWindow(); w$add(sw)
 
 tv['editable'] <- TRUE                  
 tv['cursor-visible'] <- TRUE            
-tv['wrap-mode'] <- "word"               # GtkWrapMode value
-tv['justification'] <- "left"           # GtkJustification value
-tv['left-margin'] <- 20                 # 0 is default
+tv['wrap-mode'] <- "word"             # GtkWrapMode value
+tv['justification'] <- "left"         # GtkJustification value
+tv['left-margin'] <- 20               # 0 is default
 
 tb <- tv$getBuffer()                    
 tb$setText("the quick brown fox jumped over the lazy dog")
 
-font <- pangoFontDescriptionFromString("Serif,monospace bold italic 8")
+font.str <- "Serif, monospace bold italic 8"
+font <- pangoFontDescriptionFromString(font.str)
 tv$modifyFont(font)
 
 
 ###################################################
-### chunk number 93: 
+### chunk number 94: 
 ###################################################
 ## setup example, not shown
 w <- gtkWindow()
@@ -1048,44 +1045,47 @@ w$add(tv)
 
 
 ###################################################
-### chunk number 94: FindWordAtMouseClick
+### chunk number 95: FindWordAtMouseClick
 ###################################################
-ID <- gSignalConnect(tv, "button-press-event", f=function(obj, e, data) {
-  siter <- obj$getIterAtLocation(e$getX(), e$getY())$iter
-  niter <- siter$copy()
+ID <- gSignalConnect(tv, "button-press-event", f=function(w, e, ...) {
+  siter <- w$getIterAtLocation(e$getX(), e$getY())$iter
+  niter <- siter$copy()                 # need copy
   siter$backwardWordStart()
   niter$forwardWordEnd()
-  val <- obj$getBuffer()$getText(siter, niter)
+  val <- w$getBuffer()$getText(siter, niter)
   print(val)                            # replace
   return(FALSE)                         # call next handler
   })
 
 
 ###################################################
-### chunk number 95: 
+### chunk number 96: 
 ###################################################
 tv <- gtkTextView()
 tb <- tv$getBuffer()
 tb$setText("the quick brown fox jumped over the lazy dog")
 ##
-tag.b <- tb$createTag(tag.name="bold", weight=PangoWeight["bold"])
-tag.em <- tb$createTag(tag.name="em", style=PangoStyle["italic"])
-tag.large <- tb$createTag(tag.name="large", font="Serif normal 18")
+tag.b <- tb$createTag(tag.name="bold", 
+                      weight=PangoWeight["bold"])
+tag.em <- tb$createTag(tag.name="em", 
+                       style=PangoStyle["italic"])
+tag.large <- tb$createTag(tag.name="large", 
+                          font="Serif normal 18")
 ##
-iter <- tb$getBounds()                  # or get iters another way
-tb$applyTag(tag.b, iter$start, iter$end) # iters updated
+iter <- tb$getBounds()         # or get iters another way
+tb$applyTag(tag.b, iter$start, iter$end)  # updates iters
 tb$applyTagByName("em", iter$start, iter$end)
 
 
 ###################################################
-### chunk number 96: 
+### chunk number 97: 
 ###################################################
 ## make a *basic* terminal in RGtk2
 library(RGtk2)
 
 
 ###################################################
-### chunk number 97: TextViewWidget
+### chunk number 98: TextViewWidget
 ###################################################
 tv <- gtkTextView()
 tb <- tv$getBuffer()
@@ -1094,13 +1094,13 @@ tv$modifyFont(font)                     # widget wide
 
 
 ###################################################
-### chunk number 98: 
+### chunk number 99: 
 ###################################################
 tb$setData("textview", tv)
 
 
 ###################################################
-### chunk number 99: 
+### chunk number 100: 
 ###################################################
 aTag <- tb$createTag(tag.name="cmdInput")
 aTag <- tb$createTag(tag.name="cmdOutput", 
@@ -1111,14 +1111,14 @@ aTag <- tb$createTag(tag.name="uneditable", editable=FALSE)
 
 
 ###################################################
-### chunk number 100: 
+### chunk number 101: 
 ###################################################
 startCmd <- gtkTextMark("startCmd", left.gravity=TRUE)
 tb$addMark(startCmd, tb$getStartIter()$iter)
 
 
 ###################################################
-### chunk number 101: 
+### chunk number 102: 
 ###################################################
 moveViewport <- function(obj) {
   tv <- obj$getData("textview")
@@ -1128,7 +1128,7 @@ moveViewport <- function(obj) {
 
 
 ###################################################
-### chunk number 102: 
+### chunk number 103: 
 ###################################################
 addPrompt <- function(obj, prompt=c("prompt","continue"), 
                       setMark=TRUE) {
@@ -1145,7 +1145,7 @@ addPrompt(tb) ## place an initial prompt
 
 
 ###################################################
-### chunk number 103: addOutput
+### chunk number 104: addOutput
 ###################################################
 addOutput <- function(obj, output, tagName="cmdOutput") {
   if(length(output) > 100)              # shorten if needed
@@ -1166,7 +1166,7 @@ addOutput <- function(obj, output, tagName="cmdOutput") {
 
 
 ###################################################
-### chunk number 104: 
+### chunk number 105: 
 ###################################################
 ## not shown in example
 addErrorMessage <- function(obj, msg) {
@@ -1183,7 +1183,7 @@ addErrorMessage <- function(obj, msg) {
 
 
 ###################################################
-### chunk number 105: 
+### chunk number 106: 
 ###################################################
 findCMD <- function(obj) {
   endIter <- obj$getEndIter()
@@ -1196,7 +1196,7 @@ findCMD <- function(obj) {
 
 
 ###################################################
-### chunk number 106: 
+### chunk number 107: 
 ###################################################
 evalCMD <- function(obj, cmd) {
   cmd <- paste(cmd, sep="\n")
@@ -1220,14 +1220,14 @@ evalCMD <- function(obj, cmd) {
 
 
 ###################################################
-### chunk number 107: connectBinding
+### chunk number 108: connectBinding
 ###################################################
 ID <- gSignalConnect(tv, "key-release-event", f=function(w, e, data) {
   obj <- w$getBuffer()                  # w is textview
   keyval <- e$getKeyval()
   if(keyval == GDK_Return) {
-    cmd <- findCMD(obj)
-    if(nchar(cmd) > 0)
+    cmd <- findCMD(obj)                 # character(0) if nothing
+    if(length(cmd) && nchar(cmd) > 0)
       evalCMD(obj, cmd)
   }
   return(FALSE)                         # events need return value
@@ -1235,7 +1235,7 @@ ID <- gSignalConnect(tv, "key-release-event", f=function(w, e, data) {
 
 
 ###################################################
-### chunk number 108: makeGUI
+### chunk number 109: makeGUI
 ###################################################
 ## scroll window
 sw <- gtkScrolledWindow()
@@ -1251,7 +1251,7 @@ w$showAll()
 
 
 ###################################################
-### chunk number 109: 
+### chunk number 110: 
 ###################################################
 ## History features
 ## This is not illustrated in text, but is added here to illustrate how this might be implemented
@@ -1328,7 +1328,7 @@ ID <- gSignalConnect(tv, "key-release-event", f=function(w, e, data) {
 
 
 ###################################################
-### chunk number 110: NotShown
+### chunk number 111: NotShown
 ###################################################
 ## Not shown, but this shows how to add a button to a text view widget
 b <- gtkButton("click me")              # child
@@ -1338,7 +1338,7 @@ tv$addChildAtAnchor(b, anchor)          # set widget at anchor
 
 
 ###################################################
-### chunk number 111: 
+### chunk number 112: 
 ###################################################
 data(Cars93, package="MASS")            # mix of classes
 model <- rGtkDataFrame(Cars93)
@@ -1347,31 +1347,31 @@ model[1, 4]                              # get value
 
 
 ###################################################
-### chunk number 112: 
+### chunk number 113: 
 ###################################################
 QT <- model$setFrame(Cars93[1:5, 1:5])
 
 
 ###################################################
-### chunk number 113: AppendListStore
+### chunk number 114: AppendListStore
 ###################################################
 lstore <- gtkListStore("gchararray")
-for(i in 1:nrow(Cars93)) {
+QT <- sapply(Cars93[,1], function(i) {
   iter <- lstore$append()
   if(is.null(iter$retval)) 
-    lstore$setValue(iter$iter, 0, Cars93[i,1])
-}
+    lstore$setValue(iter$iter, 0, i)
+})
 
 
 ###################################################
-### chunk number 114: 
+### chunk number 115: 
 ###################################################
 iter <- lstore$getIterFirst()           # first row
 lstore$getValue(iter$iter, column = 0)
 
 
 ###################################################
-### chunk number 115: 
+### chunk number 116: 
 ###################################################
 tstore <- gtkTreeStore("gchararray")
 Manufacturers <- Cars93$Manufacturer
@@ -1388,14 +1388,14 @@ for(i in unique(Manufacturers)) {
 
 
 ###################################################
-### chunk number 116: 
+### chunk number 117: 
 ###################################################
 iter <- tstore$getIterFromString("0:0") #  the 1st child of root
 tstore$getValue(iter$iter,column=0)$value
 
 
 ###################################################
-### chunk number 117: PreviousIter
+### chunk number 118: PreviousIter
 ###################################################
 gtkTreeModelIterPrev <- function(object, iter) {
   path <- object$getPath(iter)
@@ -1408,7 +1408,7 @@ gtkTreeModelIterPrev <- function(object, iter) {
 
 
 ###################################################
-### chunk number 118: cr-right-aligned
+### chunk number 119: cr-right-aligned
 ###################################################
 cr <- gtkCellRendererText()
 cr['xalign'] <- 1                       # default 0.5 = centered
@@ -1416,14 +1416,14 @@ cr['family'] <- "Helvetica"
 
 
 ###################################################
-### chunk number 119: CellRendererPixbufExample
+### chunk number 120: CellRendererPixbufExample
 ###################################################
 cr <- gtkCellRendererPixbuf()
 cr['stock.id'] <- "gtk-ok" ## or from a column in a model
 
 
 ###################################################
-### chunk number 120: 
+### chunk number 121: 
 ###################################################
 data("Cars93", package="MASS")
 dfNames <- c("mtcars", "Cars93")
@@ -1432,19 +1432,20 @@ dfCb <- gtkComboBoxEntryNewWithModel(dfModel, text.column=0)
 
 
 ###################################################
-### chunk number 121: 
+### chunk number 122: 
 ###################################################
 variableNames <- character(0)
 varModel <- rGtkDataFrame(variableNames)
 varCb <- gtkComboBoxNewWithModel(varModel)
 cr <- gtkCellRendererText()
 varCb$packStart(cr)
-varCb$addAttribute(cr, "text", 0)
+varCb$addAttribute(cr, "text", 0)       # column 1
 
 
 ###################################################
-### chunk number 122: 
+### chunk number 123: notShown
 ###################################################
+## Our basic GUI uses a table for layout. Comboboxes fill and expand to fill the cell.
 tbl <- gtkTableNew(rows=2, columns=2, homogeneous=FALSE)
 tbl$attach(gtkLabel("Data frame"), left.attach=0,1, top.attach=0,1)
 tbl$attach(dfCb, left.attach=1,2, top.attach=0,1)
@@ -1454,7 +1455,7 @@ tbl$attach(varCb, left.attach=1,2, top.attach=1,2)
 
 
 ###################################################
-### chunk number 123: 
+### chunk number 124: 
 ###################################################
 w <- gtkWindow(show=FALSE)
 w['title'] <- "Example of comboboxes"
@@ -1465,7 +1466,7 @@ w$showAll()
 
 
 ###################################################
-### chunk number 124: 
+### chunk number 125: 
 ###################################################
 newDfSelected <- function(varCb, w, ...) {
   if(inherits(w, "GtkComboBox"))        # get entry widget
@@ -1483,7 +1484,7 @@ newDfSelected <- function(varCb, w, ...) {
 
 
 ###################################################
-### chunk number 125: 
+### chunk number 126: 
 ###################################################
 QT <- gSignalConnect(dfCb, "changed", f=newDfSelected,
                      user.data.first=TRUE,
@@ -1500,7 +1501,7 @@ QT <- gSignalConnect(varCb, "changed", f=function(w, ...) {
 
 
 ###################################################
-### chunk number 126: 
+### chunk number 127: 
 ###################################################
 ## Example of combo box for colors
 
@@ -1509,12 +1510,11 @@ library(RGtk2)
 
 
 ###################################################
-### chunk number 127: makePixbuf
+### chunk number 128: makePixbuf
 ###################################################
-require(Cairo)
 makePixbufFromColor <- function(color) {
   filename <- tempfile()
-  Cairo(file=filename, width=25,height=10)
+  png(file=filename, width=25,height=10)
   grid.newpage()
   grid.draw(rectGrob(gp = gpar(fill = color)))
   dev.off()
@@ -1525,55 +1525,55 @@ makePixbufFromColor <- function(color) {
 
 
 ###################################################
-### chunk number 128: 
+### chunk number 129: 
 ###################################################
 store <- gtkListStore(c("GObject","gchararray"))
 
 
 ###################################################
-### chunk number 129: theColors
+### chunk number 130: theColors eval=FALSE
 ###################################################
-theColors <- palette()                  # some colors
-for(i in theColors) {
-  iter <- store$append()
-  store$setValue(iter$iter, 0, makePixbufFromColor(i))
-  store$setValue(iter$iter, 1, i)
-}
+## theColors <- palette()                  # some colors
+## for(i in theColors) {
+##   iter <- store$append()
+##   store$setValue(iter$iter, 0, makePixbufFromColor(i))
+##   store$setValue(iter$iter, 1, i)
+## }
 
 
 ###################################################
-### chunk number 130: comboBox
+### chunk number 131: comboBox eval=FALSE
 ###################################################
-combobox <- gtkComboBox(model=store)
-## pixbuf
-crp <- gtkCellRendererPixbuf(); crp['xalign'] <- 0
-combobox$packStart(crp, expand=FALSE)                
-combobox$addAttribute(crp, "pixbuf", 0)
-## text
-crt <- gtkCellRendererText(); 
-crt['xpad'] <- 5                        # give some space
-combobox$packStart(crt)
-combobox$addAttribute(crt, "text", 1)
+## combobox <- gtkComboBox(model=store)
+## ## pixbuf
+## crp <- gtkCellRendererPixbuf(); crp['xalign'] <- 0
+## combobox$packStart(crp, expand=FALSE)                
+## combobox$addAttribute(crp, "pixbuf", 0)
+## ## text
+## crt <- gtkCellRendererText(); 
+## crt['xpad'] <- 5                        # give some space
+## combobox$packStart(crt)
+## combobox$addAttribute(crt, "text", 1)
 
 
 ###################################################
-### chunk number 131: 
+### chunk number 132:  eval=FALSE
 ###################################################
-## display in a window
-win <- gtkWindow(show=FALSE)
-win$setTitle("Color test")
-win$add(combobox)
-win$showAll()
+## ## display in a window
+## win <- gtkWindow(show=FALSE)
+## win$setTitle("Color test")
+## win$add(combobox)
+## win$showAll()
 
 
 ###################################################
-### chunk number 132: 
+### chunk number 133: 
 ###################################################
 require(RGtk2)
 
 
 ###################################################
-### chunk number 133: AppendWords
+### chunk number 134: AppendWords
 ###################################################
 entry <- gtkEntry()
 completion <- gtkEntryCompletionNew()
@@ -1581,9 +1581,9 @@ entry$setCompletion(completion)
 
 
 ###################################################
-### chunk number 134: SetCompletion
+### chunk number 135: SetCompletion
 ###################################################
-store <- rGtkDataFrame(data.frame(name=I(state.name)))
+store <- rGtkDataFrame(state.name)
 completion$setModel(store)
 completion$setTextColumn(0)             # which column in model
 completion['inline-completion'] <- TRUE # inline with text edit
@@ -1591,7 +1591,7 @@ completion['popup-single-match'] <- FALSE
 
 
 ###################################################
-### chunk number 135: SetMatchFunc
+### chunk number 136: SetMatchFunc
 ###################################################
 f <- function(comp, str, iter, user.data) {
   model <- comp$getModel()
@@ -1604,7 +1604,7 @@ QT <- completion$setMatchFunc(func=f)
 
 
 ###################################################
-### chunk number 136: 
+### chunk number 137: notShown
 ###################################################
 ## Our basic GUI is basic:
 w <- gtkWindow(show=FALSE)
@@ -1614,18 +1614,18 @@ w$showAll()
 
 
 ###################################################
-### chunk number 137: cellRendererToggle
+### chunk number 138: cellRendererToggle
 ###################################################
 cr <- gtkCellRendererToggle()
 cr['activatable'] <- TRUE               # cell can be edited
 cr['active'] <- TRUE
 QT <- gSignalConnect(cr, "toggled", function(w, path) {
-  print(as.numeric(path) + 1) ## the row
+  print(as.numeric(path) + 1) ## modify model as needed
 })
 
 
 ###################################################
-### chunk number 138: 
+### chunk number 139: 
 ###################################################
 cr <- gtkCellRendererCombo()
 store <- rGtkDataFrame(state.name)
@@ -1635,7 +1635,7 @@ cr['editable'] <- TRUE                  # needed
 
 
 ###################################################
-### chunk number 139: comboEditor
+### chunk number 140: comboEditor
 ###################################################
 cr <- gtkCellRendererProgress()
 cr["value"] <- 50                       # fixed 50%
@@ -1643,7 +1643,7 @@ cr['orientation'] <- "right-to-left"
 
 
 ###################################################
-### chunk number 140: 
+### chunk number 141: 
 ###################################################
 func <- function(viewCol, cellRend, model, iter, data) {
   curVal <- model$GetValue(iter, 0)$value
@@ -1654,33 +1654,33 @@ func <- function(viewCol, cellRend, model, iter, data) {
 
 
 ###################################################
-### chunk number 141: 
+### chunk number 142: 
 ###################################################
 cr <- gtkCellRendererText()
 
 
 ###################################################
-### chunk number 142: editedSignal
+### chunk number 143: editedSignal
 ###################################################
 cr['editable'] <- TRUE
 ID <- gSignalConnect(cr, "edited", 
-                     f=function(cr, path, newtext, data) {
+                     f=function(cr, path, newtext, user.data) {
                        curRow <- as.numeric(path) + 1
-                       model <- data$model
-                       curCol <- data$column
+                       curCol <- user.data$column
+                       model <- user.data$model
                        model[curRow, curCol] <- newtext
                      }, data=list(model=store, column=1))
 
 
 ###################################################
-### chunk number 143: 
+### chunk number 144: 
 ###################################################
 ## example showing how to add a toggle button on left of data display
 library(RGtk2)
 
 
 ###################################################
-### chunk number 144: FixACRANforSweave
+### chunk number 145: FixACRANforSweave
 ###################################################
 repos <- getOption("repos")
 repos["CRAN"] <- "http://streaming.stat.iastate.edu/CRAN"
@@ -1688,24 +1688,25 @@ options(repos = repos)
 
 
 ###################################################
-### chunk number 145: getUpgradablePackages
+### chunk number 146: getUpgradablePackages
 ###################################################
 avail <- available.packages()
 installed <- installed.packages()
 tmp <- merge(avail, installed, by="Package")
-need.upgrade <- with(tmp, as.character(Version.x) != as.character(Version.y))
+need.upgrade <- with(tmp, as.character(Version.x) 
+                     != as.character(Version.y))
 d <- tmp[need.upgrade, c(1, 2, 16, 6)]
 names(d) <- c("Package", "Available", "Installed", "Depends")
 
 
 ###################################################
-### chunk number 146: 
+### chunk number 147: 
 ###################################################
 doThis <- function(d) print(d)
 
 
 ###################################################
-### chunk number 147: 
+### chunk number 148: 
 ###################################################
 n <- ncol(d)
 nms <- names(d)
@@ -1714,17 +1715,17 @@ store <- rGtkDataFrame(d)
 
 
 ###################################################
-### chunk number 148: 
+### chunk number 149: 
 ###################################################
 view <- gtkTreeView()
 # add toggle
 togglevc <- gtkTreeViewColumn()
-view$insertColumn(togglevc, 0)
+QT <- view$insertColumn(togglevc, 0)
 cr <- gtkCellRendererToggle()
 togglevc$packStart(cr)
 cr['activatable'] <- TRUE
 togglevc$addAttribute(cr, "active", n)
-gSignalConnect(cr, "toggled", function(cr, path, user.data) {
+QT <- gSignalConnect(cr, "toggled", function(cr, path, user.data) {
   view <- user.data
   row <- as.numeric(path) + 1
   model <- view$getModel()
@@ -1735,9 +1736,9 @@ gSignalConnect(cr, "toggled", function(cr, path, user.data) {
 
 
 ###################################################
-### chunk number 149: 
+### chunk number 150: 
 ###################################################
-sapply(1:n, function(i) {
+QT <- sapply(1:n, function(i) {
   vc <- gtkTreeViewColumn()
   vc$setTitle(nms[i])
   view$insertColumn(vc, i)
@@ -1749,7 +1750,26 @@ sapply(1:n, function(i) {
 
 
 ###################################################
-### chunk number 150: 
+### chunk number 151: 
+###################################################
+view$setModel(store)
+
+
+###################################################
+### chunk number 152: 
+###################################################
+b <- gtkButton("click me")
+QT <- gSignalConnect(b, "clicked", function(w, data) {
+  view <- data
+  model <- view$getModel()
+  n <- dim(model)[2]
+  vals <- model[model[, n], -n, drop=FALSE]
+  doThis(vals)
+}, data=view)
+
+
+###################################################
+### chunk number 153: 
 ###################################################
 w <- gtkWindow(show=FALSE)
 w$setTitle("Installed packages that need upgrading")
@@ -1761,31 +1781,12 @@ g$packStart(sw, expand=TRUE, fill=TRUE)
 
 sw$add(view)
 sw$setPolicy("automatic", "automatic")
-
-
-###################################################
-### chunk number 151: 
-###################################################
-b <- gtkButton("click me")
-gSignalConnect(b, "clicked", function(w, data) {
-  view <- data
-  model <- view$getModel()
-  n <- dim(model)[2]
-  vals <- model[model[, n], -n, drop=FALSE]
-  doThis(vals)
-}, data=view)
 g$packStart(b, expand=FALSE)
-
-
-###################################################
-### chunk number 152: 
-###################################################
-view$setModel(store)
 w$show()
 
 
 ###################################################
-### chunk number 153: 
+### chunk number 154: 
 ###################################################
 df <- data.frame(col=letters[1:3], vis=c(TRUE, TRUE, FALSE))
 store <- rGtkDataFrame(df)
@@ -1795,13 +1796,13 @@ view <- gtkTreeView(filtered)
 
 
 ###################################################
-### chunk number 154: notShown
+### chunk number 155: notShown
 ###################################################
 vc <- gtkTreeViewColumn()
-view$insertColumn(vc, 0)
+QT <- view$insertColumn(vc, 0)
 cr <- gtkCellRendererText()
 vc$packStart(cr)
-vc$addAttribute(cr, "text", 0)
+vc$addAttribute(cr, "text", 0)      
 
 sw <- gtkScrolledWindow()
 sw$add(view)
@@ -1811,14 +1812,14 @@ w$show()
 
 
 ###################################################
-### chunk number 155: basicSort
+### chunk number 156: basicSort
 ###################################################
 store <- rGtkDataFrame(mtcars)
 sorted <- gtkTreeModelSortNewWithModel(store)
 #
 view <- gtkTreeView(sorted)
 vc <- gtkTreeViewColumn()
-view$insertColumn(vc, 0)                  # first column
+QT <- view$insertColumn(vc, 0)                  # first column
 vc$setTitle("Click to sort")
 vc$setClickable(TRUE)
 vc$setSortColumnId(0)                   
@@ -1829,10 +1830,10 @@ vc$addAttribute(cr, "text", 0)
 
 
 ###################################################
-### chunk number 156: sort-example
+### chunk number 157: sort-example
 ###################################################
-f <- function(model, iter1, iter2, data) {
-  column <- data
+f <- function(model, iter1, iter2, user.data) {
+  column <- user.data
   val1 <- model$GetValue(iter1, column)$value
   val2 <- model$GetValue(iter2, column)$value
   val1 > val2
@@ -1842,7 +1843,7 @@ QT <- sorted$setSortFunc(sort.column.id=0, sort.func=f,
 
 
 ###################################################
-### chunk number 157: notShown
+### chunk number 158: notShown
 ###################################################
 ## basic GUI
 sw <- gtkScrolledWindow()
@@ -1854,7 +1855,7 @@ w$show()
 
 
 ###################################################
-### chunk number 158: 
+### chunk number 159: 
 ###################################################
 store <- rGtkDataFrame(mtcars)
 view <- gtkTreeView(store)
@@ -1863,11 +1864,11 @@ QT <- selection$setMode("single")
 
 
 ###################################################
-### chunk number 159: 
+### chunk number 160: 
 ###################################################
 ## create some tree view columns and cell renderers
 vc <- gtkTreeViewColumn()
-view$insertColumn(vc, 0)
+QT <- view$insertColumn(vc, 0)
 cr <- gtkCellRendererText()
 vc$PackStart(cr)
 vc$addAttribute(cr, "text", 0)
@@ -1882,22 +1883,30 @@ w$show()
 
 
 ###################################################
-### chunk number 160: 
+### chunk number 161: 
 ###################################################
-selection$selectPath(gtkTreePathNewFromString("3")) # set for example
+selection$selectPath(gtkTreePathNewFromString("3")) # set 
 # 
 curSel <- selection$getSelected()       # retrieve selection
-with(curSel, model$getValue(iter, 0)$value) # both model and iter in curSel
+with(curSel, model$getValue(iter, 0)$value) # model, iter
 
 
 ###################################################
-### chunk number 161: 
+### chunk number 162: 
 ###################################################
 selection$setMode("multiple")
 
 
 ###################################################
-### chunk number 162: 
+### chunk number 163: notShown
+###################################################
+selection$selectPath(gtkTreePathNewFromString("1")) # set for example
+selection$selectPath(gtkTreePathNewFromString("2")) # set for example
+selection$selectPath(gtkTreePathNewFromString("3")) # set for example
+
+
+###################################################
+### chunk number 164: 
 ###################################################
 curSel <- selection$getSelectedRows()
 if(length(curSel$retval)) {
@@ -1909,19 +1918,19 @@ if(length(curSel$retval)) {
 
 
 ###################################################
-### chunk number 163:  eval=FALSE
+### chunk number 165:  eval=FALSE
 ###################################################
 ## sapply(tree.view$getColumns(), function(i) i == column)
 
 
 ###################################################
-### chunk number 164: 
+### chunk number 166: 
 ###################################################
 library(RGtk2)
 
 
 ###################################################
-### chunk number 165: 
+### chunk number 167: 
 ###################################################
 df <- data.frame(state.name)
 df$VISIBLE <- rep(TRUE, nrow(df))
@@ -1929,7 +1938,7 @@ store <- rGtkDataFrame(df)
 
 
 ###################################################
-### chunk number 166: 
+### chunk number 168: 
 ###################################################
 filteredStore <- store$filterNew()
 filteredStore$setVisibleColumn(ncol(df)-1)      # offset
@@ -1937,7 +1946,7 @@ view <- gtkTreeView(filteredStore)
 
 
 ###################################################
-### chunk number 167: 
+### chunk number 169: 
 ###################################################
 vc <- gtkTreeViewColumn()
 cr <- gtkCellRendererText()
@@ -1948,7 +1957,7 @@ QT <- view$insertColumn(vc, 0)
 
 
 ###################################################
-### chunk number 168: 
+### chunk number 170: 
 ###################################################
 e <- gtkEntry()
 ID <- gSignalConnect(e, "changed", function(w, data) {
@@ -1963,7 +1972,7 @@ ID <- gSignalConnect(e, "changed", function(w, data) {
 
 
 ###################################################
-### chunk number 169: 
+### chunk number 171: 
 ###################################################
 ## not shown, but this places widgets into a simple GUI
 w <- gtkWindow(show=FALSE)
@@ -1984,7 +1993,7 @@ w$show()
 
 
 ###################################################
-### chunk number 170: 
+### chunk number 172: 
 ###################################################
 ## also in previous example
 addToStockIcons <- function(iconNames, fileNames, stock.prefix="new") {
@@ -2009,7 +2018,7 @@ addToStockIcons <- function(iconNames, fileNames, stock.prefix="new") {
 
 
 ###################################################
-### chunk number 171: addIcons
+### chunk number 173: addIcons
 ###################################################
 nms <- c("factor","numeric")
 fileNms <- c(system.file("images","factor.gif", package="gWidgets"),
@@ -2018,7 +2027,7 @@ QT <- addToStockIcons(nms, fileNms)
 
 
 ###################################################
-### chunk number 172: 
+### chunk number 174: 
 ###################################################
 d <- data.frame(varNames=c("response", "trt1", "trt2"),
                 stock.id=c("new-numeric", "new-factor", "new-factor"),
@@ -2029,9 +2038,8 @@ model <- rGtkDataFrame(d)
 
 
 ###################################################
-### chunk number 173: 
+### chunk number 175: 
 ###################################################
-## make a view
 makeView <- function(model, vis.col) {
   filteredModel <- model$filterNew()
   filteredModel$setVisibleColumn(vis.col - 1)
@@ -2058,7 +2066,7 @@ makeView <- function(model, vis.col) {
 
 
 ###################################################
-### chunk number 174: 
+### chunk number 176: 
 ###################################################
 views <- list()
 views[["left"]] <- makeView(model,3)
@@ -2067,7 +2075,7 @@ selections <- lapply(views, gtkTreeViewGetSelection)
 
 
 ###################################################
-### chunk number 175: 
+### chunk number 177: 
 ###################################################
 buttons <- list()
 buttons[["fromLeft"]] <- gtkButton(">")
@@ -2075,7 +2083,7 @@ buttons[["fromRight"]] <- gtkButton("<")
 
 
 ###################################################
-### chunk number 176: basicGUI
+### chunk number 178: basicGUI
 ###################################################
 ## Not shown, but lays out a basic GUI
 w <- gtkWindow()
@@ -2089,28 +2097,29 @@ g$PackStart(views$right)
 
 
 ###################################################
-### chunk number 177: 
+### chunk number 179: 
 ###################################################
-moveSelected <- function(b, data) {
-  model <- data$model
+moveSelected <- function(b, user.data) {
+  model <- user.data$model
 
-  selection <- selections[[data$from]]
+  selection <- selections[[user.data$from]]
   selected <- selection$getSelectedRows()
   if(length(selected$retval)) {
     childRows <- sapply(selected$retval, function(childPath) {
       childRow <- as.numeric(childPath$toString()) + 1
     })
-    shownIndices <- which(model[, 2 + data$from])
+    shownIndices <- which(model[, 2 + user.data$from])
     rows <- shownIndices[childRows]
 
-    model[rows, 2 + data$from] <- FALSE
-    model[rows, 2 + (3-data$from)] <- !model[rows, 2 + data$from]
+    model[rows, 2 + user.data$from] <- FALSE
+    model[rows, 2 + (3-user.data$from)] <- 
+      !model[rows, 2 + user.data$from]
   }
 }
 
 
 ###################################################
-### chunk number 178: 
+### chunk number 180: 
 ###################################################
 IDs <- sapply(1:2, function(i) 
               gSignalConnect(buttons[[i]], signal="clicked", 
@@ -2119,7 +2128,7 @@ IDs <- sapply(1:2, function(i)
 
 
 ###################################################
-### chunk number 179: disableButtonsIfNoSelection
+### chunk number 181: disableButtonsIfNoSelection
 ###################################################
 disableButton <- function(sel, data) {
   selected <- sel$getSelectedRows()
@@ -2132,13 +2141,13 @@ IDs <- sapply(1:2, function(i)
 
 
 ###################################################
-### chunk number 180: 
+### chunk number 182: 
 ###################################################
 QT <- sapply(buttons, function(i) i$setSensitive(FALSE))
 
 
 ###################################################
-### chunk number 181: notShown
+### chunk number 183: notShown
 ###################################################
 ## define tstore, but aslo in earlier example so not shown
 data(Cars93, package="MASS")
@@ -2157,13 +2166,13 @@ for(i in unique(Manufacturers)) {
 
 
 ###################################################
-### chunk number 182: 
+### chunk number 184: 
 ###################################################
 store <- rGtkDataFrame(Cars93[,"Model", drop=FALSE])
 
 
 ###################################################
-### chunk number 183: makeView
+### chunk number 185: makeView
 ###################################################
 view <- gtkTreeView()
 vc <- gtkTreeViewColumn()
@@ -2175,7 +2184,7 @@ vc$addAttribute(cr, "text", 0)
 
 
 ###################################################
-### chunk number 184: makeGUI
+### chunk number 186: makeGUI
 ###################################################
 w <- gtkWindow(show=FALSE)
 w['title'] <- "Example of changing models"
@@ -2186,14 +2195,14 @@ w$show()
 
 
 ###################################################
-### chunk number 185: 
+### chunk number 187: 
 ###################################################
-view$setModel(store)                    # the rectangular store
-view$setModel(tstore)                   # or the tree store
+view$setModel(store)               # the rectangular store
+view$setModel(tstore)              # or the tree store
 
 
 ###################################################
-### chunk number 186: 
+### chunk number 188: 
 ###################################################
 ## tree example
 ## a variable browser
@@ -2201,15 +2210,112 @@ require(RGtk2)
 
 
 ###################################################
-### chunk number 187: getChildren
+### chunk number 189: SetUpStore
+###################################################
+store <- gtkTreeStore(rep("gchararray",2))
+sstore <- gtkTreeModelSortNewWithModel(store)
+
+
+###################################################
+### chunk number 190: 
+###################################################
+iter <- store$append(parent=NULL)$iter
+store$setValue(iter,column=0, "GlobalEnv")
+store$setValue(iter,column=1,"")
+iter <- store$append(parent=iter)
+
+
+###################################################
+### chunk number 191: 
+###################################################
+view <- gtkTreeViewNewWithModel(sstore)
+view$getSelection()$setMode(GtkSelectionMode["multiple"])
+
+
+###################################################
+### chunk number 192: 
+###################################################
+ID <- gSignalConnect(view,signal="row-expanded",
+          f = function(view, iter, tpath, user.data) {
+            store <- user.data
+            p.iter <- tpathToPIter(view, tpath)
+            path <- iterToPath(view, p.iter)
+            children = getChildren(path)
+            addChildren(store, children, parentIter=p.iter)
+            ## remove errant 1st offspring. See addChildren
+            ci <- store$iterChildren(p.iter)
+            if(ci$retval) store$remove(ci$iter)
+          },
+          data=store)
+
+
+###################################################
+### chunk number 193: 
+###################################################
+ID <- gSignalConnect(view,signal="row-collapsed",
+          f = function(view, iter, tpath, user.data) {
+            store <- user.data
+            p.iter <- tpathToPIter(view,tpath)
+
+            n = store$iterNChildren(p.iter)
+            if(n > 1) { ## n=1 gets removed when expanded
+              for(i in 1:(n-1)) {
+                child.iter = store$iterChildren(p.iter)
+                if(child.iter$retval)
+                  store$remove(child.iter$iter)
+              }
+            }
+          }, 
+          data=store)
+
+
+###################################################
+### chunk number 194: DoubleClickHandler
+###################################################
+ID <- gSignalConnect(view,signal="row-activated",
+          f = function(view, tpath, tcol) {
+            p.iter <- tpathToPIter(view, tpath)
+            path <- iterToPath(view, p.iter)
+            sel <- view$getSelection()
+            out <- sel$getSelectedRows()
+            if(length(out) == 0) return(c()) # nothing
+            vals <- c()
+            for(i in out$retval) {  # multiple selections
+              iter <- out$model$getIter(i)$iter
+              newValue <- out$model$getValue(iter,0)$value
+              vals <- c(vals, newValue)
+            }
+            print(vals)  # [Replace this]
+          })
+
+
+###################################################
+### chunk number 195: addChildren
+###################################################
+addChildren <- function(store, children, parentIter=NULL) {
+  if(nrow(children) == 0) 
+    return(NULL)
+  for(i in 1:nrow(children)) {
+    iter <- store$append(parent=parentIter)$iter
+    ## use last column to indicate logical
+    sapply(1:(ncol(children) - 1), function(j)              
+           store$setValue(iter, column=j-1, children[i,j]))
+    ## Add a branch if there are children
+    if(children[i, "offspring"])
+      store$append(parent=iter)
+  }
+}
+
+
+###################################################
+### chunk number 196: getChildren
 ###################################################
 getChildren <- function(path=character(0)) {
-  
   pathToObject <- function(path) {      
-    x <- try(eval(parse(text=paste(path,collapse="$")),
-                  envir=.GlobalEnv),silent=TRUE)
-    if(inherits(x,"try-error")) {
-      cat(sprintf("Error with %s",path))
+    x <- try(eval(parse(text=paste(path, collapse="$")),
+                  envir=.GlobalEnv), silent=TRUE)
+    if(inherits(x, "try-error")) {
+      cat(sprintf("Error with %s", path))
       return(NA)
     }
     return(x)
@@ -2237,27 +2343,7 @@ getChildren <- function(path=character(0)) {
 
 
 ###################################################
-### chunk number 188: addChildren
-###################################################
-addChildren <- function(store, children, parentIter=NULL) {
-  if(nrow(children) == 0) 
-    return(NULL)
-  for(i in 1:nrow(children)) {
-    iter <- store$append(parent=parentIter)$iter
-    ## use last column to indicate logical
-    sapply(1:(ncol(children) - 1), function(j)              
-           store$setValue(iter, column=j-1, children[i,j]))
-    ## Add a branch if there are children
-    ## no better way, as this adds an extra blank line
-    ## we remove ir later.
-    if(children[i, "offspring"])
-      store$append(parent=iter)
-  }
-}
-
-
-###################################################
-### chunk number 189: trePathToIter
+### chunk number 197: trePathToIter
 ###################################################
 tpathToPIter <- function(view, tpath) {
   ## view$getModel -- sstore, again store
@@ -2270,7 +2356,7 @@ tpathToPIter <- function(view, tpath) {
 
 
 ###################################################
-### chunk number 190: IterToPath
+### chunk number 198: IterToPath
 ###################################################
 iterToPath <- function(view, iter) {
   sstore <- view$getModel()
@@ -2288,32 +2374,9 @@ iterToPath <- function(view, iter) {
 
 
 ###################################################
-### chunk number 191: SetUpStore
+### chunk number 199: addRenderer
 ###################################################
-store = gtkTreeStore(rep("gchararray",2))
-sstore = gtkTreeModelSortNewWithModel(store)
-
-
-###################################################
-### chunk number 192: 
-###################################################
-iter <- store$append(parent=NULL)$iter
-store$setValue(iter,column=0,"GlobalEnv")
-store$setValue(iter,column=1,"")
-iter <- store$append(parent=iter)
-
-
-###################################################
-### chunk number 193: 
-###################################################
-view = gtkTreeViewNewWithModel(sstore)
-sel = view$getSelection()
-sel$setMode(GtkSelectionMode["multiple"])
-
-
-###################################################
-### chunk number 194: addRenderer
-###################################################
+## Now, we define our GUI. The view will have two similar columns.
 ## add two cell renderers -- 1 for name, 1 for type
 nms <- c("Variable name","type")
 for(i in 1:2) {
@@ -2329,8 +2392,9 @@ for(i in 1:2) {
 
 
 ###################################################
-### chunk number 195: exampleGUI
+### chunk number 200: exampleGUI
 ###################################################
+## We now place the tree view widget into a basic GUI.
 sw <- gtkScrolledWindow()
 sw$setPolicy("automatic","automatic")
 sw$add(view)
@@ -2341,91 +2405,36 @@ w$add(sw)
 
 
 ###################################################
-### chunk number 196: 
-###################################################
-ID <- gSignalConnect(view,signal="row-expanded",
-                     f = function(view, iter, tpath, user.data) {
-                       store <- user.data
-                       p.iter <- tpathToPIter(view, tpath)
-                       path <- iterToPath(view, p.iter)
-                       children = getChildren(path)
-                       addChildren(store, children, parentIter=p.iter)
-                       ## remove errant 1st offspring. See addChildren
-                       ci <- store$iterChildren(p.iter)
-                       if(ci$retval) store$remove(ci$iter)
-                     },
-                     data=store)
-
-
-
-###################################################
-### chunk number 197: 
-###################################################
-ID <- gSignalConnect(view,signal="row-collapsed",
-                  f = function(view, iter, tpath, user.data) {
-                    store <- user.data
-                    p.iter <- tpathToPIter(view,tpath)
-
-                    n = store$iterNChildren(p.iter)
-                    if(n > 1) { ## n=1 gets removed when expanded
-                      for(i in 1:(n-1)) {
-                        child.iter = store$iterChildren(p.iter)
-                        if(child.iter$retval)
-                          store$remove(child.iter$iter)
-                      }
-                    }
-                  }, data=store)
-
-
-###################################################
-### chunk number 198: DoubleClickHandler
-###################################################
-ID <- gSignalConnect(view,signal="row-activated",
-                     f = function(view, tpath, tcol) {
-                       p.iter <- tpathToPIter(view, tpath)
-                       path <- iterToPath(view, p.iter)
-                       sel <- view$getSelection()
-                       out <- sel$getSelectedRows()
-                       if(length(out) == 0) return(c()) # nothing
-                       vals <- c()
-                       for(i in out$retval) {  # multiple selections
-                         iter <- out$model$getIter(i)$iter
-                         vals <- c(vals, out$model$getValue(iter,0)$value)
-                       }
-                       print(vals)      # Insert Real Function Here
-                     })
-
-
-###################################################
-### chunk number 199: 
+### chunk number 201: 
 ###################################################
 require(RGtk2)
 
 
 ###################################################
-### chunk number 200: DefineAction
+### chunk number 202: DefineAction
 ###################################################
-a <- gtkAction(name="ok", label="_Ok", tooltip="An OK button", stock.id="gtk-ok")
+a <- gtkAction(name="ok", label="_Ok", 
+               tooltip="An OK button", stock.id="gtk-ok")
 ID <- gSignalConnect(a, "activate", f = function(w, data) {
-  print(a$GetName())                    # of some useful thing
+  print(a$GetName())                    # or some useful thing
 })
 
 
 ###################################################
-### chunk number 201: ConnectAction
+### chunk number 203: ConnectAction
 ###################################################
 b <- gtkButton()
 a$connectProxy(b)
 
 
 ###################################################
-### chunk number 202: addImageFromStockId
+### chunk number 204: addImageFromStockId
 ###################################################
 b$setImage(a$createIcon('button')) # GtkIconSize value
 
 
 ###################################################
-### chunk number 203: showGUI
+### chunk number 205: showGUI
 ###################################################
 w <- gtkWindow(show=FALSE)
 w['title'] <- "Action with button example"
@@ -2434,7 +2443,7 @@ w$showAll()
 
 
 ###################################################
-### chunk number 204: 
+### chunk number 206: 
 ###################################################
 mb <- gtkMenuBar()
 fileMi <- gtkMenuItemNewWithMnemonic(label="_File")
@@ -2442,58 +2451,62 @@ mb$append(fileMi)
 
 
 ###################################################
-### chunk number 205: 
+### chunk number 207: 
 ###################################################
 fileMb <- gtkMenu()
 fileMi$setSubmenu(fileMb)
 
 
 ###################################################
-### chunk number 206: 
+### chunk number 208: 
 ###################################################
 open <- gtkMenuItem(label="open")
 
 
 ###################################################
-### chunk number 207: 
+### chunk number 209: 
 ###################################################
 saveAction <- gtkAction("save", "save", "Save object", "gtk-save")
 save <- saveAction$CreateMenuItem()
 
 
 ###################################################
-### chunk number 208: 
+### chunk number 210: 
 ###################################################
 quit <- gtkImageMenuItem(label="quit")
-quit$setImage(gtkImageNewFromStock("gtk-quit", size=GtkIconSize["menu"]))
+quit$setImage(gtkImageNewFromStock("gtk-quit", 
+              size=GtkIconSize["menu"]))
 
 
 ###################################################
-### chunk number 209: 
+### chunk number 211: 
 ###################################################
 happy <- gtkCheckMenuItem(label="happy")
 happy$setActive(TRUE)
 
 
 ###################################################
-### chunk number 210: 
+### chunk number 212: 
 ###################################################
-Qt <- sapply(list(open, save, happy, gtkSeparatorMenuItem(), quit), function(i) {
+items <- list(open, save, happy, gtkSeparatorMenuItem(), quit)
+Qt <- sapply(items, function(i) {
        fileMb$append(i)
      })
 
 
 ###################################################
-### chunk number 211: 
+### chunk number 213: 
 ###################################################
 ID <- gSignalConnect(happy, "toggled", function(b,data) {
   if(b$getActive())
-    print("User is now happy")
+    print("User is now happy ;)")
+  else
+    print("User is unhappy ;(")
 })
 
 
 ###################################################
-### chunk number 212: 
+### chunk number 214: 
 ###################################################
 QT <- sapply(list(open, quit, saveAction), function(i) 
        gSignalConnect(i, "activate", f=function(mi, data) {
@@ -2503,16 +2516,17 @@ QT <- sapply(list(open, quit, saveAction), function(i)
 
 
 ###################################################
-### chunk number 213: makeGUI
+### chunk number 215: makeGUI
 ###################################################
-w <- gtkWindow(show=FALSE)
+## We make as simple GUI for the menubar.
+ w <- gtkWindow(show=FALSE)
 w['title'] <- "Menubar example"
 w$add(mb)
 w$ShowAll()
 
 
 ###################################################
-### chunk number 214: "menubar-ex"
+### chunk number 216: "menubar-ex"
 ###################################################
 popup <- gtkMenu()                       # top level
 
@@ -2525,30 +2539,30 @@ for(i in c("cut","copy","----","paste")) {
 
 
 ###################################################
-### chunk number 215: 
+### chunk number 217: 
 ###################################################
 b <- gtkButton("Click me with right mouse button")
 w <- gtkWindow(); w$setTitle("Popup menu example")
 w$add(b)
 
 ID <- gSignalConnect(b,"button-press-event",
-                    f = function(w, e, userData) {
-                      if(e$getButton() == 3 ||
-                         (e$getButton() == 1 && # a mac
-                          e$getState() == GdkModifierType['control-mask'])
-                         ) {
-                        gtkMenuPopup(userData$mb,
-                                     button = e$getButton(),
-                                     activate.time = e$getTime())
-                        }
-                      return(FALSE)
-                    },
-                    data=list(mb=popup)
-                    )
+             f = function(w, e, userData) {
+               if(e$getButton() == 3 ||
+                  (e$getButton() == 1 && # a mac
+                   e$getState() == GdkModifierType['control-mask'])
+                  ) {
+                 gtkMenuPopup(userData$mb,
+                              button = e$getButton(),
+                              activate.time = e$getTime())
+                 }
+               return(FALSE)
+             },
+             data=list(mb=popup)
+             )
 
 
 ###################################################
-### chunk number 216: 
+### chunk number 218: 
 ###################################################
 IDs <- sapply(popup$getChildren(), function(i) {
   if(!inherits(i, "GtkSeparatorMenuItem")) # skip these
@@ -2558,20 +2572,20 @@ IDs <- sapply(popup$getChildren(), function(i) {
 
 
 ###################################################
-### chunk number 217: 
+### chunk number 219: 
 ###################################################
 tb <- gtkToolbar()
 
 
 ###################################################
-### chunk number 218: 
+### chunk number 220: 
 ###################################################
 b1 <-  gtkToolButtonNewFromStock("gtk-open") 
 tb$add(b1)
 
 
 ###################################################
-### chunk number 219: 
+### chunk number 221: 
 ###################################################
 f <- system.file("images/dataframe.gif", package="gWidgets")
 image <- gtkImageNewFromFile(f)
@@ -2582,7 +2596,7 @@ tb$add(b2)
 
 
 ###################################################
-### chunk number 220: 
+### chunk number 222: 
 ###################################################
 b3 <- gtkToggleToolButtonNewFromStock("gtk-fullscreen")
 tb$add(b3)
@@ -2593,16 +2607,19 @@ QT <- gSignalConnect(b3, "toggled", f=function(button, data) {
 
 
 ###################################################
-### chunk number 221: 
+### chunk number 223: 
 ###################################################
-QT <- sapply(1:2, function(i) gSignalConnect(tb[[i]], "clicked", function(button, data) {
-  cat("You clicked", button$getLabel(), "\n")
-}))
+QT <- sapply(1:2, function(i) {
+  gSignalConnect(tb[[i]], "clicked", function(button, data) {
+    cat("You clicked", button$getLabel(), "\n")
+  })
+})
 
 
 ###################################################
-### chunk number 222: MakeToolbarGUI
+### chunk number 224: MakeToolbarGUI
 ###################################################
+## simple GUI to finish toolbar example
 w <- gtkWindow(show=FALSE)
 w['title'] <- "Toolbar example"
 g <- gtkVBox()
@@ -2613,20 +2630,20 @@ w$showAll()
 
 
 ###################################################
-### chunk number 223: not-shown
+### chunk number 225: not-shown
 ###################################################
 ## sample RGtk2 menu
 library(RGtk2)
 
 
 ###################################################
-### chunk number 224: 
+### chunk number 226: 
 ###################################################
 uimanager = gtkUIManager()
 
 
 ###################################################
-### chunk number 225: 
+### chunk number 227: 
 ###################################################
 someAction <- function(action,...) 
   statusbar$push(statusbar$getContextId("message"), action$getName())
@@ -2634,80 +2651,89 @@ Quit <- function(...) win$destroy()
 
 
 ###################################################
-### chunk number 226: Define-first-action-group
+### chunk number 228: Define-first-action-group
 ###################################################
 firstActionGroup = gtkActionGroup("firstActionGroup")
 firstActionEntries = list(
   ## name,ID,label,accelerator,tooltip,callback
   file = list("File",NULL,"_File",NULL,NULL,NULL),
-  new = list("New","gtk-new","_New","<control>N","New document",someAction),
-  sub = list("Submenu",NULL,"S_ub",NULL,NULL,NULL),
-  open = list("Open","gtk-open","_Open","<ctrl>0","Open document",someAction),
-  save = list("Save","gtk-save","_Save","<alt>S","Save document",someAction),
-  quit = list("Quit","gtk-quit","_Quit","<ctrl>Q","Quit",Quit),
-  edit = list("Edit",NULL,"_Edit",NULL,NULL,NULL),
-  undo = list("Undo","gtk-undo","_Undo","<ctrl>Z","Undo change",someAction),
-  redo = list("Redo","gtk-redo","_Redo","<ctrl>U","Redo change",someAction)
+  new = list("New", "gtk-new", "_New", "<control>N", 
+    "New document", someAction),
+  sub = list("Submenu", NULL, "S_ub", NULL, NULL, NULL),
+  open = list("Open", "gtk-open", "_Open", "<ctrl>0", 
+    "Open document", someAction),
+  save = list("Save", "gtk-save", "_Save", "<alt>S", 
+    "Save document", someAction),
+  quit = list("Quit", "gtk-quit", "_Quit", "<ctrl>Q", 
+    "Quit", Quit),
+  edit = list("Edit", NULL, "_Edit", NULL, NULL, NULL),
+  undo = list("Undo", "gtk-undo", "_Undo", "<ctrl>Z", 
+    "Undo change", someAction),
+  redo = list("Redo", "gtk-redo", "_Redo", "<ctrl>U", 
+    "Redo change", someAction)
 )
 
 
 ###################################################
-### chunk number 227: "Insert action group"
+### chunk number 229: "Insert action group"
 ###################################################
 QT <- firstActionGroup$addActions(firstActionEntries)
-uimanager$insertActionGroup(firstActionGroup,0) # 0 -- first spot
+uimanager$insertActionGroup(firstActionGroup, 0) # 0-based
 
 
 ###################################################
-### chunk number 228: 
+### chunk number 230: 
 ###################################################
 helpActionGroup = gtkActionGroup("helpActionGroup")
 helpActionEntries = list(
-  help = list("Help","","_Help","","",NULL),
-  about = list("About","gtk-about","_About","","",someAction)
+  help = list("Help", "", "_Help", "", "", NULL),
+  about = list("About", "gtk-about", "_About", "", "", someAction)
   )
 QT <- helpActionGroup$AddActions(helpActionEntries)
 
 
 ###################################################
-### chunk number 229: "a toggle action"
+### chunk number 231: "a toggle action"
 ###################################################
-toggleAction <- gtkToggleAction("UseTooltips",label="_Use tooltips",
+toggleAction <- gtkToggleAction("UseTooltips",
+                                label="_Use tooltips",
                                 tooltip="Use tooltips ")
 toggleAction$setActive(TRUE)            # initially set
-ID <- gSignalConnect(toggleAction,signal = "toggled",
-                    f=function(ta,userData) cat(userData,ta$getName(),"\n"),
+ID <- gSignalConnect(toggleAction, signal = "toggled",
+                    f=function(ta, userData)  {
+                      cat(userData,ta$getName(),"\n")
+                    },
                     data="toggled")
 helpActionGroup$addAction(toggleAction)
 
 
 ###################################################
-### chunk number 230: "insert help action group"
+### chunk number 232: "insert help action group"
 ###################################################
 uimanager$insertActionGroup(helpActionGroup,1)
 
 
 ###################################################
-### chunk number 231: "Load UI from file"
+### chunk number 233: "Load UI from file"
 ###################################################
 id <- uimanager$addUiFromFile("ex-menus.xml")
 
 
 ###################################################
-### chunk number 232: "Retrieve menubar and toolbar from the uimanager"
+### chunk number 234: "Retrieve menubar and toolbar from the uimanager"
 ###################################################
 menubar <- uimanager$getWidget("/menubar")
 toolbar <- uimanager$getWidget("/toolbar")
 
 
 ###################################################
-### chunk number 233: "define statusbar"
+### chunk number 235: "define statusbar"
 ###################################################
 statusbar <- gtkStatusbar()
 
 
 ###################################################
-### chunk number 234: Define-window-add-accelerator-group
+### chunk number 236: Define-window-add-accelerator-group
 ###################################################
 win <- gtkWindow(show=TRUE)
 win$setTitle("Window example")
@@ -2716,7 +2742,7 @@ win$addAccelGroup(accelgroup)
 
 
 ###################################################
-### chunk number 235: setup-box
+### chunk number 237: setup-box
 ###################################################
 box <- gtkVBox()
 win$add(box)
@@ -2730,20 +2756,20 @@ box$packStart(statusbar, expand=FALSE, fill=FALSE, 0)
 
 
 ###################################################
-### chunk number 236: How-to-set-sensitivity
+### chunk number 238: How-to-set-sensitivity
 ###################################################
 uimanager$getWidget("/menubar/Edit/EditRedo")$setSensitive(FALSE)
 
 
 ###################################################
-### chunk number 237: How-to-replace-menuitem-text
+### chunk number 239: How-to-replace-menuitem-text
 ###################################################
 a <- uimanager$getWidget("/menubar/Edit/EditUndo")
 a[[1]]$setText("Undo add text")
 
 
 ###################################################
-### chunk number 238:  eval=FALSE
+### chunk number 240:  eval=FALSE
 ###################################################
 ## w <- gtkWindow()
 ## w['title'] <- "Parent window"
@@ -2763,13 +2789,13 @@ a[[1]]$setText("Undo add text")
 
 
 ###################################################
-### chunk number 239: 
+### chunk number 241: 
 ###################################################
 dlg <- gtkDialogNewWithButtons(title="Enter a value", 
-                               parent=NULL, flags=0,
-                               "gtk-ok", GtkResponseType["ok"],
-                               "gtk-cancel", GtkResponseType["cancel"],
-                               show=FALSE)
+                parent=NULL, flags=0,
+                "gtk-ok", GtkResponseType["ok"],
+                "gtk-cancel", GtkResponseType["cancel"],
+                show=FALSE)
 g <- dlg$getVbox()                           # content area
 vg <- gtkVBox()
 vg['spacing'] <- 10
@@ -2778,25 +2804,27 @@ g$packStart(vg)
 vg$packStart(gtkLabel("Enter a value"))
 entry <- gtkEntry()
 vg$packStart(entry)
-ID <- gSignalConnect(dlg, "response", f=function(dlg, resp, user.data) {
-  if(resp == GtkResponseType["ok"])
-    print(entry$getText())
-  dlg$Destroy()
-})
+ID <- gSignalConnect(dlg, "response", 
+                     f=function(dlg, resp, user.data) {
+                       if(resp == GtkResponseType["ok"])
+                         print(entry$getText())
+                       dlg$Destroy()
+                     })
 dlg$showAll()
 dlg$setModal(TRUE)
 
 
 ###################################################
-### chunk number 240: openFileDialog
+### chunk number 242: openFileDialog
 ###################################################
-dlg <- gtkFileChooserDialog(title="Open a file", parent=NULL, action="open",
-                            "gtk-ok", GtkResponseType["ok"],
-                            "gtk-cancel", GtkResponseType["cancel"])
+dlg <- gtkFileChooserDialog(title="Open a file", 
+                     parent=NULL, action="open",
+                     "gtk-ok", GtkResponseType["ok"],
+                     "gtk-cancel", GtkResponseType["cancel"])
 
 
 ###################################################
-### chunk number 241: 
+### chunk number 243: 
 ###################################################
 ID <- gSignalConnect(dlg, "response", f=function(dlg, resp, data) {
   if(resp == GtkResponseType["ok"]) {
@@ -2808,7 +2836,7 @@ ID <- gSignalConnect(dlg, "response", f=function(dlg, resp, data) {
 
 
 ###################################################
-### chunk number 242: 
+### chunk number 244: 
 ###################################################
 fileFilter <- gtkFileFilter()
 fileFilter$setName("R files")
@@ -2820,7 +2848,7 @@ QT <- sapply(c("text/plain"),
 
 
 ###################################################
-### chunk number 243: 
+### chunk number 245: 
 ###################################################
 options(prompt="> ")
 options(continue="+ ")

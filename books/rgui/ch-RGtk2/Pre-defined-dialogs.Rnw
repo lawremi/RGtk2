@@ -15,7 +15,7 @@ shows buttons, such as \kbd{yes}, \kbd{no} and/or
 \constructor{gtkMessageDialog} simplify the construction.
 
 In \GTK\/ dialogs can be modal or not. Thre are a few ways to make a
-dialog modal. The method window \method{setModal}{gtkWindow} will do
+dialog modal. The window method \method{setModal}{gtkWindow} will do
 so, as will passing in a \code{modal} flag to some of the
 constructors. These make other GUI elements inactive, but not the \R\/
 session. Whereas, calling the \method{run}{gtkDialog} method,
@@ -71,10 +71,10 @@ emitted by the dialog. We connect to this close the dialog.
 
 <<>>=
 dlg <- gtkDialogNewWithButtons(title="Enter a value", 
-                               parent=NULL, flags=0,
-                               "gtk-ok", GtkResponseType["ok"],
-                               "gtk-cancel", GtkResponseType["cancel"],
-                               show=FALSE)
+                parent=NULL, flags=0,
+                "gtk-ok", GtkResponseType["ok"],
+                "gtk-cancel", GtkResponseType["cancel"],
+                show=FALSE)
 g <- dlg$getVbox()                           # content area
 vg <- gtkVBox()
 vg['spacing'] <- 10
@@ -83,11 +83,12 @@ g$packStart(vg)
 vg$packStart(gtkLabel("Enter a value"))
 entry <- gtkEntry()
 vg$packStart(entry)
-ID <- gSignalConnect(dlg, "response", f=function(dlg, resp, user.data) {
-  if(resp == GtkResponseType["ok"])
-    print(entry$getText())
-  dlg$Destroy()
-})
+ID <- gSignalConnect(dlg, "response", 
+                     f=function(dlg, resp, user.data) {
+                       if(resp == GtkResponseType["ok"])
+                         print(entry$getText())
+                       dlg$Destroy()
+                     })
 dlg$showAll()
 dlg$setModal(TRUE)
 @ 
@@ -114,9 +115,10 @@ example using \code{gtkDialogNewWithButtons}.
 An open file dialog can be created with:
 
 <<openFileDialog>>=
-dlg <- gtkFileChooserDialog(title="Open a file", parent=NULL, action="open",
-                            "gtk-ok", GtkResponseType["ok"],
-                            "gtk-cancel", GtkResponseType["cancel"])
+dlg <- gtkFileChooserDialog(title="Open a file", 
+                     parent=NULL, action="open",
+                     "gtk-ok", GtkResponseType["ok"],
+                     "gtk-cancel", GtkResponseType["cancel"])
 @ 
 
 One can use the \code{run} method to make this modal or connect to the

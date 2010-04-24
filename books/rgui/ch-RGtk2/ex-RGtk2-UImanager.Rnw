@@ -42,21 +42,27 @@ firstActionGroup = gtkActionGroup("firstActionGroup")
 firstActionEntries = list(
   ## name,ID,label,accelerator,tooltip,callback
   file = list("File",NULL,"_File",NULL,NULL,NULL),
-  new = list("New","gtk-new","_New","<control>N","New document",someAction),
-  sub = list("Submenu",NULL,"S_ub",NULL,NULL,NULL),
-  open = list("Open","gtk-open","_Open","<ctrl>0","Open document",someAction),
-  save = list("Save","gtk-save","_Save","<alt>S","Save document",someAction),
-  quit = list("Quit","gtk-quit","_Quit","<ctrl>Q","Quit",Quit),
-  edit = list("Edit",NULL,"_Edit",NULL,NULL,NULL),
-  undo = list("Undo","gtk-undo","_Undo","<ctrl>Z","Undo change",someAction),
-  redo = list("Redo","gtk-redo","_Redo","<ctrl>U","Redo change",someAction)
+  new = list("New", "gtk-new", "_New", "<control>N", 
+    "New document", someAction),
+  sub = list("Submenu", NULL, "S_ub", NULL, NULL, NULL),
+  open = list("Open", "gtk-open", "_Open", "<ctrl>0", 
+    "Open document", someAction),
+  save = list("Save", "gtk-save", "_Save", "<alt>S", 
+    "Save document", someAction),
+  quit = list("Quit", "gtk-quit", "_Quit", "<ctrl>Q", 
+    "Quit", Quit),
+  edit = list("Edit", NULL, "_Edit", NULL, NULL, NULL),
+  undo = list("Undo", "gtk-undo", "_Undo", "<ctrl>Z", 
+    "Undo change", someAction),
+  redo = list("Redo", "gtk-redo", "_Redo", "<ctrl>U", 
+    "Redo change", someAction)
 )
 @ 
 We now add the actions to the action group, then add this action group
 to the first spot in the UI manager.
 <<"Insert action group">>=
 QT <- firstActionGroup$addActions(firstActionEntries)
-uimanager$insertActionGroup(firstActionGroup,0) # 0 -- first spot
+uimanager$insertActionGroup(firstActionGroup, 0) # 0-based
 @ 
 
 The ``Help'' actions we do a bit differently. We define a ``Use
@@ -66,8 +72,8 @@ incorporate radio groups, although this is not shown.
 <<>>=
 helpActionGroup = gtkActionGroup("helpActionGroup")
 helpActionEntries = list(
-  help = list("Help","","_Help","","",NULL),
-  about = list("About","gtk-about","_About","","",someAction)
+  help = list("Help", "", "_Help", "", "", NULL),
+  about = list("About", "gtk-about", "_About", "", "", someAction)
   )
 QT <- helpActionGroup$AddActions(helpActionEntries)
 @ 
@@ -79,11 +85,14 @@ the \code{toggled} signal of the action element. This callback allows
 for user data, as illustrated.
 
 <<"a toggle action">>=
-toggleAction <- gtkToggleAction("UseTooltips",label="_Use tooltips",
+toggleAction <- gtkToggleAction("UseTooltips",
+                                label="_Use tooltips",
                                 tooltip="Use tooltips ")
 toggleAction$setActive(TRUE)            # initially set
-ID <- gSignalConnect(toggleAction,signal = "toggled",
-                    f=function(ta,userData) cat(userData,ta$getName(),"\n"),
+ID <- gSignalConnect(toggleAction, signal = "toggled",
+                    f=function(ta, userData)  {
+                      cat(userData,ta$getName(),"\n")
+                    },
                     data="toggled")
 helpActionGroup$addAction(toggleAction)
 @ 
@@ -160,10 +169,10 @@ toolbar <- uimanager$getWidget("/toolbar")
 The statusbar is constructed with
 <<"define statusbar">>=
 statusbar <- gtkStatusbar()
-@ 
-Statusbars have a simple API. The \method{push} method, as used in the
-definition of the callback \code{f}, is used to add new text to the
-statusbar. The \code{pop} method reverts to the previous message.
+@ Statusbars have a simple API. The \method{push}{gtkStatusbar} method
+-- in the definition of the callback \code{f} -- is used to add new
+text to the statusbar. The \code{pop} method reverts to the previous
+message.
 
 
 Now we define a top-level window and attach a keyboard accelerator
@@ -192,7 +201,7 @@ box$packStart(statusbar, expand=FALSE, fill=FALSE, 0)
 @ 
 
 The redo feature should only be sensitive to mouse events after a user
-has undone an action and has not done another. To set the sensitivity
+has undone an action. To set the sensitivity
 of a menu item is done through the \method{SetSensitive} method called
 on the widget. We again retrieve the menuitem or toolbar item widgets
 through their names.
@@ -200,7 +209,7 @@ through their names.
 <<How-to-set-sensitivity>>=
 uimanager$getWidget("/menubar/Edit/EditRedo")$setSensitive(FALSE)
 @ 
-To reenable, use \code{TRUE} for the argument to \command{SetSensitive}
+To re-enable, use \code{TRUE} for the argument to \meth{setSensitive}
 
 We can also use the \method{SetText} method on the menuitems. For
 instance, instead of a generic ``Undo'' label, one might want to

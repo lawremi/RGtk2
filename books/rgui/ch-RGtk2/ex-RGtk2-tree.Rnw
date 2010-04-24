@@ -10,19 +10,125 @@ is expanded or collapsed.
 require(RGtk2)
 @ 
 
+We begin by defining our tree store and an acoompanying tree
+view. This example allows sorting, so calls the
+\constructor{gtkTreeModelSortNewWithModel} function.
+<<SetUpStore>>=
+store <- gtkTreeStore(rep("gchararray",2))
+sstore <- gtkTreeModelSortNewWithModel(store)
+@ 
 
-We begin by defining a function that gets the ``children'' of a list
-object. For a level of the list, this function returns the named
-components, their class and a logical indicating if the component is
-recursive.
+We set an initial root.
+<<>>=
+iter <- store$append(parent=NULL)$iter
+store$setValue(iter,column=0, "GlobalEnv")
+store$setValue(iter,column=1,"")
+iter <- store$append(parent=iter)
+@ 
+The call of \method{append}{gtkTreeStore} is used to allow the object
+to have an expandable icon. 
+
+
+Now to define the tree view. We allow multiple selection, as an illustration.
+<<>>=
+view <- gtkTreeViewNewWithModel(sstore)
+view$getSelection()$setMode(GtkSelectionMode["multiple"])
+@ 
+
+
+The basic idea is to create the children when a request to expand a
+row is given, and to delete the children when the request to collapse
+the row is given. The following callbacks are used. First, the expand request.
+
+
+<<>>=
+ID <- gSignalConnect(view,signal="row-expanded",
+          f = function(view, iter, tpath, user.data) {
+            store <- user.data
+            p.iter <- tpathToPIter(view, tpath)
+            path <- iterToPath(view, p.iter)
+            children = getChildren(path)
+            addChildren(store, children, parentIter=p.iter)
+            ## remove errant 1st offspring. See addChildren
+            ci <- store$iterChildren(p.iter)
+            if(ci$retval) store$remove(ci$iter)
+          },
+          data=store)
+@ 
+
+The callback has several functions called that we define later in this
+example. The collapse request has the following callback.
+
+<<>>=
+ID <- gSignalConnect(view,signal="row-collapsed",
+          f = function(view, iter, tpath, user.data) {
+            store <- user.data
+            p.iter <- tpathToPIter(view,tpath)
+
+            n = store$iterNChildren(p.iter)
+            if(n > 1) { ## n=1 gets removed when expanded
+              for(i in 1:(n-1)) {
+                child.iter = store$iterChildren(p.iter)
+                if(child.iter$retval)
+                  store$remove(child.iter$iter)
+              }
+            }
+          }, 
+          data=store)
+@ 
+
+
+This callback simply shows how to the values when a row is activated.
+<<DoubleClickHandler>>=
+ID <- gSignalConnect(view,signal="row-activated",
+          f = function(view, tpath, tcol) {
+            p.iter <- tpathToPIter(view, tpath)
+            path <- iterToPath(view, p.iter)
+            sel <- view$getSelection()
+            out <- sel$getSelectedRows()
+            if(length(out) == 0) return(c()) # nothing
+            vals <- c()
+            for(i in out$retval) {  # multiple selections
+              iter <- out$model$getIter(i)$iter
+              newValue <- out$model$getValue(iter,0)$value
+              vals <- c(vals, newValue)
+            }
+            print(vals)  # [Replace this]
+          })
+@ 
+
+The main function used in the expand request is the following
+\code{addChildren} function. Its one quirk, is the addition of a fake
+child when the item has children. This forces the tree view to draw an
+icon for the user to click on to request the expansion. 
+
+<<addChildren>>=
+addChildren <- function(store, children, parentIter=NULL) {
+  if(nrow(children) == 0) 
+    return(NULL)
+  for(i in 1:nrow(children)) {
+    iter <- store$append(parent=parentIter)$iter
+    ## use last column to indicate logical
+    sapply(1:(ncol(children) - 1), function(j)              
+           store$setValue(iter, column=j-1, children[i,j]))
+    ## Add a branch if there are children
+    if(children[i, "offspring"])
+      store$append(parent=iter)
+  }
+}
+@ 
+
+The ``children'' of the list -- its named components -- are generated
+by this function. For a level of the list, this function returns the
+named components, their class and a logical indicating if the
+component is recursive.
 <<getChildren>>=
 getChildren <- function(path=character(0)) {
-  
   pathToObject <- function(path) {      
-    x <- try(eval(parse(text=paste(path,collapse="$")),
-                  envir=.GlobalEnv),silent=TRUE)
-    if(inherits(x,"try-error")) {
-      cat(sprintf("Error with %s",path))
+    x <- try(eval(parse(text=paste(path, collapse="$")),
+                  envir=.GlobalEnv), silent=TRUE)
+    if(inherits(x, "try-error")) {
+      cat(sprintf("Error with %s", path))
       return(NA)
     }
     return(x)
@@ -48,28 +154,13 @@ getChildren <- function(path=character(0)) {
   if(length(ind) == 0) return(d) else return(d[-ind,])
 }
 @ 
+ 
 
-This function is used to add the children to a tree store.
-<<addChildren>>=
-addChildren <- function(store, children, parentIter=NULL) {
-  if(nrow(children) == 0) 
-    return(NULL)
-  for(i in 1:nrow(children)) {
-    iter <- store$append(parent=parentIter)$iter
-    ## use last column to indicate logical
-    sapply(1:(ncol(children) - 1), function(j)              
-           store$setValue(iter, column=j-1, children[i,j]))
-    ## Add a branch if there are children
-    ## no better way, as this adds an extra blank line
-    ## we remove ir later.
-    if(children[i, "offspring"])
-      store$append(parent=iter)
-  }
-}
-@ 
+The following are technical functions used to manipulate the path
+objects passed back to the callbacks.
 
-The various callbacks for the tree view pass back the view and a tree
-path. We define some functions to relate these values with iterators.
+This function finds the iterator for a tree path. The only issue is
+the sorted store must be handled.
 <<trePathToIter>>=
 tpathToPIter <- function(view, tpath) {
   ## view$getModel -- sstore, again store
@@ -100,33 +191,12 @@ iterToPath <- function(view, iter) {
 }
 @ 
 
-Now we can begin defining our tree store. This example allows sorting,
-so calls the \constructor{gtkTreeModelSortNewWithModel} function.
-<<SetUpStore>>=
-store = gtkTreeStore(rep("gchararray",2))
-sstore = gtkTreeModelSortNewWithModel(store)
-@ 
-
-We set an initial root.
-<<>>=
-iter <- store$append(parent=NULL)$iter
-store$setValue(iter,column=0,"GlobalEnv")
-store$setValue(iter,column=1,"")
-iter <- store$append(parent=iter)
-@ 
-The call of \method{append}{gtkTreeStore} is used to allow the object
-to have an expandable icon. 
+To finish this example, we would need to create the treeview columns
+and place within a window. 
 
 
-Now to define the tree view. We allow multiple selection, as an illustration.
-<<>>=
-view = gtkTreeViewNewWithModel(sstore)
-sel = view$getSelection()
-sel$setMode(GtkSelectionMode["multiple"])
-@ 
-
-The view will have two similar columns.
-<<addRenderer>>=
+<<addRenderer, echo=FALSE>>=
+## Now, we define our GUI. The view will have two similar columns.
 ## add two cell renderers -- 1 for name, 1 for type
 nms <- c("Variable name","type")
 for(i in 1:2) {
@@ -141,8 +211,8 @@ for(i in 1:2) {
 }
 @ 
 
-We put the tree view widget into a basic GUI.
-<<exampleGUI>>=
+<<exampleGUI, echo=FALSE>>=
+## We now place the tree view widget into a basic GUI.
 sw <- gtkScrolledWindow()
 sw$setPolicy("automatic","automatic")
 sw$add(view)
@@ -151,66 +221,4 @@ w <- gtkWindow()
 w$setTitle("Tree view")
 w$add(sw)
 @ 
-
-
-At this point, we can see the first level, but nothing will happen if
-we click on the trigger icon. We need to specify a handler for the
-\code{row-expanded} signal. The odd thing here, is that we appended an
-fake child, so that an expand icon would appear. In this, we remove it.
-
-<<>>=
-ID <- gSignalConnect(view,signal="row-expanded",
-                     f = function(view, iter, tpath, user.data) {
-                       store <- user.data
-                       p.iter <- tpathToPIter(view, tpath)
-                       path <- iterToPath(view, p.iter)
-                       children = getChildren(path)
-                       addChildren(store, children, parentIter=p.iter)
-                       ## remove errant 1st offspring. See addChildren
-                       ci <- store$iterChildren(p.iter)
-                       if(ci$retval) store$remove(ci$iter)
-                     },
-                     data=store)
-
-@ 
-
-Since the new data is generated when the row is expanded, we need
-to remove the old data when the row is closed.
-<<>>=
-ID <- gSignalConnect(view,signal="row-collapsed",
-                  f = function(view, iter, tpath, user.data) {
-                    store <- user.data
-                    p.iter <- tpathToPIter(view,tpath)
-
-                    n = store$iterNChildren(p.iter)
-                    if(n > 1) { ## n=1 gets removed when expanded
-                      for(i in 1:(n-1)) {
-                        child.iter = store$iterChildren(p.iter)
-                        if(child.iter$retval)
-                          store$remove(child.iter$iter)
-                      }
-                    }
-                  }, data=store)
-@ 
-
-Finally, this handler simply shows how to get the value (or values if
-multiple selection is okay). 
-<<DoubleClickHandler>>=
-ID <- gSignalConnect(view,signal="row-activated",
-                     f = function(view, tpath, tcol) {
-                       p.iter <- tpathToPIter(view, tpath)
-                       path <- iterToPath(view, p.iter)
-                       sel <- view$getSelection()
-                       out <- sel$getSelectedRows()
-                       if(length(out) == 0) return(c()) # nothing
-                       vals <- c()
-                       for(i in out$retval) {  # multiple selections
-                         iter <- out$model$getIter(i)$iter
-                         vals <- c(vals, out$model$getValue(iter,0)$value)
-                       }
-                       print(vals)      # Insert Real Function Here
-                     })
-@ 
-
-
 

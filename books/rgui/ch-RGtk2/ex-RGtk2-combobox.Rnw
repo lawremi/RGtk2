@@ -14,10 +14,9 @@ This function uses the \pkg{grid} package to produce a graphic that
 will read into the pixbuf.
 
 <<makePixbuf>>=
-require(Cairo)
 makePixbufFromColor <- function(color) {
   filename <- tempfile()
-  Cairo(file=filename, width=25,height=10)
+  png(file=filename, width=25,height=10)
   grid.newpage()
   grid.draw(rectGrob(gp = gpar(fill = color)))
   dev.off()
@@ -35,7 +34,7 @@ store <- gtkListStore(c("GObject","gchararray"))
 @ 
 
 This loop adds the colors and their name to the data store.
-<<theColors>>=
+<<theColors, eval=FALSE>>=
 theColors <- palette()                  # some colors
 for(i in theColors) {
   iter <- store$append()
@@ -46,7 +45,8 @@ for(i in theColors) {
 
 Next we define the combobox using the store as the model. There are
 two cell renderers to add.
-<<comboBox>>=
+%% CAIRO is puking in 2.11.0, png isn't working on my mac, so don't eval here
+<<comboBox, eval=FALSE>>=               
 combobox <- gtkComboBox(model=store)
 ## pixbuf
 crp <- gtkCellRendererPixbuf(); crp['xalign'] <- 0
@@ -59,7 +59,7 @@ combobox$packStart(crt)
 combobox$addAttribute(crt, "text", 1)
 @ 
 
-<<echo=FALSE>>=
+<<echo=FALSE, eval=FALSE>>=
 ## display in a window
 win <- gtkWindow(show=FALSE)
 win$setTitle("Color test")
@@ -123,7 +123,7 @@ win$showAll()
 
 
 % These two callbacks show how to attach a callback to changes due to
-% either selecting a value from the available values or pressing
+% either selecting a value fr`om the available values or pressing
 % \kbd{enter} after entering a value.
 
 % <<>>=

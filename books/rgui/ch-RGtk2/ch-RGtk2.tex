@@ -1099,12 +1099,11 @@ does not resize itself when the window resizes.
 \end{Sinput}
 \end{Schunk}
 
-Now we draw a basic  graphic as a png file (\code{Cairo}'s default) stored in a temporary file.
+Now we draw a basic  graphic as a png file stored in a temporary file.
 \begin{Schunk}
 \begin{Sinput}
- require(Cairo)
  filename <- tempfile()
- Cairo(file = filename, width = width, height = height)
+ png(file = filename, width = width, height = height)
  hist(rnorm(100))
  QT <- dev.off()
 \end{Sinput}
@@ -1238,9 +1237,6 @@ We call this function and then check that the values are added:
  nms <- gtkStockListIds()
  unlist(nms[grep("^new", nms)])
 \end{Sinput}
-\begin{Soutput}
-[1] "new-GeomHistogram" "new-GeomBar"      
-\end{Soutput}
 \end{Schunk}
 
 \end{example}
@@ -1734,15 +1730,9 @@ spin button is changed.
 \begin{example}{A range widget}{ex:RGtk2-range-widget}
 This example shows how to make a range widget that combines both the slider and spinbutton to choose a single number. Such a widget is popular, as the slider is easy to make large changes and the spinbutton better at finer changes. In \GTK\/ we use the same adjustment, so changes to one widget propogate without effort to the other.
 
-\begin{Schunk}
-\begin{Sinput}
- ## make a range widget combining both a slider and spinbutton to choose a number
- library(RGtk2)
-\end{Sinput}
-\end{Schunk}
 
 Were this written as a function, an \R\/ user might expect the
-arguments to match those of \code{seq}/
+arguments to match those of \code{seq}:
 \begin{Schunk}
 \begin{Sinput}
  from <- 0; to <- 100; by <- 1
@@ -2197,37 +2187,44 @@ Finally, we use the \code{ShowAll} method so that it propogates to the combobox.
 
 %% ------------ Drag and Drop
 
-\GTK\/ has mechanisms to provide drag and drop features to
-widgets. Only widgets which can receive signals will work for drag and
-drop, so to drag or drop on a label an event box must be used. To
-setup drag and drop actions requires setting a widget to be a source
-for a drag request, and setting a widget to be a target for a drop
-action. We illustrate how to set up the dragging of a text value from
-one widget to another. Much more complicated examples are possible,
-but we do not pursue it here.
+\GTK\/ has mechanisms to provide drag and drop facilities for
+widgets. To setup drag and drop actions requires setting a widget to
+be a source for a drag request, and setting a widget to be a target
+for a drop action, and assigning callbacks to responsd to certain
+signals.  Only widgets which can receive signals will work for drag
+and drop, so to drag or drop on a label, say, an event box must be
+used. 
+
+We illustrate how to set up the dragging of a text value from one
+widget to another. Much more complicated examples are possible, but we
+do not pursue it here.
 
 When a drag and drop is initiated, different types of data may be
 transferred. \GTK\/ allows the user to specify a target type. Below,
-we define target types for text, pixmap and arbitrary objects.
-
+we define target types for text and pixmap objects. These
+give numeric IDs for lookup purposes.
 \begin{Schunk}
 \begin{Sinput}
- ## info arguments -- application assigned
- TARGET.TYPE.TEXT   = 80                 
- TARGET.TYPE.PIXMAP = 81                  
- TARGET.TYPE.OBJECT = 82
- widgetTargetTypes = list(
- ## target -- string representing the drag type
+ TARGET.TYPE.TEXT   <- 80                 
+ TARGET.TYPE.PIXMAP <- 81                  
+\end{Sinput}
+\end{Schunk}
+We use of these to make different types of objects that can be dragged.
+\begin{Schunk}
+\begin{Sinput}
+ widgetTargetTypes <- list(
+ ## target -- string representing the drag type. MIME type used.
  ## flag delimiting drag scope. 0 -- no limit
  ## info -- application assigned value to identify
  text = gtkTargetEntry("text/plain", 0, TARGET.TYPE.TEXT),
- pixmap = gtkTargetEntry("image/x-pixmap", 0, TARGET.TYPE.PIXMAP),
- object = gtkTargetEntry("text/plain", 0, TARGET.TYPE.OBJECT)
+ pixmap = gtkTargetEntry("image/x-pixmap", 0, TARGET.TYPE.PIXMAP)
  )
 \end{Sinput}
 \end{Schunk}
 
-To set a widget to be a drag source requires calling
+\paragraph{A drag source}
+A widget that can have a value dragged from it is a drag source. It is
+specifide by calling
 \function{gtkDragSourceSet}. This function has arguments
 \argument{object}{gtkDragSourceSet} for the widget we are making a
 source, \argument{start.button.mask}{gtkDragSourceSet}  to specify
@@ -2237,46 +2234,53 @@ which mouse buttons can initiate the drag,
 \code{GdkDragAction} types is in effect, for instance \code{copy} or
 \code{move}. 
 
-When a widget is a drag source, it sends the drag data in response to
-the \signal{drag-data-get} signal using a callback. The signature of
-this callback is important, although we only use the \code{selection}
-argument, which is assigned the text that will be the data passed to
-the target widget. (Text, as we are passing text information.)
+When a widget is a drag source, it sends the data being dragged in
+response to the \signal{drag-data-get} signal using a callback. The
+signature of this callback is important, although we only use the
+\code{selection} argument, as this is assigned the text that will be the
+data passed to the target widget. (Text, as we are passing text
+information.)
 
 \begin{Schunk}
 \begin{Sinput}
- widget <-  gtkButton("Drag me")
- w <- gtkWindow(); w$add(widget)
- QT <- 
-   gtkDragSourceSet(widget,
-                    start.button.mask=c("button1-mask", "button3-mask"),
-                    targets=widgetTargetTypes[["text"]],
-                    actions="copy") ## can also be any of GdkDragAction
+ w <- gtkWindow(); w['title'] <- "Drag Source"
+ dragSourceWidget <-  gtkButton("Drag me")
+ w$add(dragSourceWidget)
+ QT <- gtkDragSourceSet(dragSourceWidget,
+                  start.button.mask=c("button1-mask", "button3-mask"),
+                  targets=widgetTargetTypes[["text"]],
+                  actions="copy") ## can also be any of GdkDragAction
  ID <- 
-   gSignalConnect(widget, "drag-data-get", 
-                  f=function(userData, widget, context, 
+   gSignalConnect(dragSourceWidget, "drag-data-get", 
+                  f=function(widget, context, 
                     selection, targetType, eventTime) {
+                    ## customize this to set the text
                     selection$setText(str="some value") 
-                    return(TRUE)
-                  },
-                  user.data.first=TRUE,
-                  data="")
+                  })
 \end{Sinput}
 \end{Schunk}
 
-To make an object a drop target, we call \function{gtkDragDestSet} on
-the object with new argument \argument{flags}{gtkDragDestSet} for
+\paragraph{Drop target}
+To make a widget a drop target, we call \function{gtkDragDestSet} on
+the object with the argument \argument{flags}{gtkDragDestSet} for
 specifying the actions \GTK\/ will perform when the widget is dropped
-on. We use the value \qcode{all} for \qcode{motion}, \qcode{highlight}, and
-\qcode{drop}. Additionally, values for
-\argument{targets}{gtkDragDestSet} and
-\argument{actions}{gtkDragDestSet} are given.
+on. We use the value \qcode{all} for \qcode{motion},
+\qcode{highlight}, and \qcode{drop}. The
+\argument{targets}{gtkDragDestSet} argument matches the type of data
+being allowed, in this case text. Finally, the value of
+\argument{action}{gtkDragDestSet} specifies what \code{GdkDragAction}
+should be sent back to the drop source widget. If the action was
+\qcode{move} then the source widget emits the \code{drag-data-delete}
+signal, so that a callback can be defined to handle the deletion of
+the data.
 
+ 
 \begin{Schunk}
 \begin{Sinput}
- widget <- gtkButton("Drop here")
- w <- gtkWindow(); w$add(widget)
- QT <- gtkDragDestSet(widget,
+ w <- gtkWindow(); w['title'] <- "Drop Target"
+ dropTargetWidget <- gtkButton("Drop here")
+ w$add(dropTargetWidget)
+ QT <- gtkDragDestSet(dropTargetWidget,
                       flags="all", 
                       targets=widgetTargetTypes[["text"]],
                       actions="copy"
@@ -2287,17 +2291,18 @@ on. We use the value \qcode{all} for \qcode{motion}, \qcode{highlight}, and
 When data is dropped, the widget emits the
 \code{drag-data-received}. The data is passed through the
 \code{selection} argument. The \code{context} argument is a
-\code{gdkDragContext}. The \code{x} and \code{y} arguments are integer
-valued and pass in the position in the widget where the drop
-occurred. In the example below, we see that text data is passed to
-this function in \code{raw} format, so it is converted with
-\function{rawToChar}.
+\code{gdkDragContext}, containing information about the drag
+event. The \code{x} and \code{y} arguments are integer valued and pass
+in the position in the widget where the drop occurred. In the example
+below, we see that text data is passed to this function in \code{raw}
+format, so it is converted with \function{rawToChar}.
 
 \begin{Schunk}
 \begin{Sinput}
  ID <- 
-   gSignalConnect(widget, "drag-data-received", 
-                  f=function(userData, widget, context, x, y, 
+   gSignalConnect(dropTargetWidget, "drag-data-received", 
+                  f=function(dropTargetWidget, 
+                    context, x, y, 
                     selection, targetType, eventTime) {
                     dropdata <- selection$getText()
                     if(class(dropdata)[1] == "raw")
@@ -2305,37 +2310,22 @@ this function in \code{raw} format, so it is converted with
                     else
                       val <- paste(dropdata, sep="")
                     print(val) ## some action
-                  },
-                  user.data.first=TRUE,
-                  data = "")
+                  })
 \end{Sinput}
 \end{Schunk}
 
-If the action was \code{"move"} then the source widget emits the
-\code{drag-data-delete} signal, so that a callback can be defined to
-handle the deletion of the data.
-
-
-
-% XXX-- 
-% Explain signature -- 
-% context: \code{?gdkDragContext} 
-% x: integer with position of drop -- relative to widget dropped on
-% y: integer with position of drop -- relative to widget dropped on
-%   -- see cairoDevice for example
-% target: the target (form of the data) to retrieve, can be use with switch()
-% eventTime:  an integer recording time of drop
-% --XXX
-
+%% JV: This could be expanded -- motion is not covered, as is done with
+%% tcltk, but I don't think it is needed without a compelling use case.
 
 
 \chapter{RGtk2: Widgets Using Models}
 \label{sec:RGtk2:widgets-with-models}
 
 Many widgets in \GTK\/ use the model, view, controller paradigm. While
-many times this is in the background, for the widgets in this chapter
+many times the deatils are in the background, for the widgets in this chapter
 one needs to be aware of the usage. This framework adds a layer of
-complexity, in exchange for more flexibility.  
+complexity, in exchange for creating smarter components that can share
+data more easily.
 
 
 
@@ -2356,7 +2346,7 @@ buffer, otherwise one will be created.
 This buffer is returned by the
 method \method{getBuffer}{gtkTextView} and may be set for a view with
 the \method{setBuffer}{gtkTextView} method. Text views are typically
-placed inside a scrolled window, and since a viewport is established,
+placed inside a scrolled window (Section~\ref{sec:RGtk2:scroll-windows}), and since a viewport is established,
 this is done with the \method{add}{gtkBin} method for scrolled
 windows.
 
@@ -2403,7 +2393,7 @@ The size and font can be globally set for a text view using the
 \method{modifyFont}{gtkWidget} method. (Specifying fonts for parts of
 the buffer requires the use of tags, described later.) The argument
 \argument{font.desc}{gtkWidgetModifyFont} specifies the new font using
-a Pango font description. These descriptions may be generated from a
+a Pango font description, which may be generated from a
 string specifying the font through the function
 \code{pangoFontDescriptionFromString}. These strings may contain up to
 3 parts: the first is a comma-separated list of font families, the
@@ -2416,11 +2406,11 @@ value might look like \code{"serif, monospace bold italic condensed
 contains more information.
 
 \paragraph{Signals}
-The text buffer emits many different types of signals. Most
-importantly, the \signal{changed} signal is emitted when the content
-of the buffer changes. The callback for a \signal{changed} signal has
-signature that returns the text buffer and any user data. Other
-signals are detailed in the help page for \function{gtkTextBuffer}.
+The text buffer emits many different types of signals detailed in the
+help page for \function{gtkTextBuffer}. Most importantly, the
+\signal{changed} signal is emitted when the content of the buffer
+changes. The callback for a \signal{changed} signal has signature that
+returns the text buffer and any user data.
 
 
 \begin{example}{Simple textview usage}{eg:RGtk2:simple-textview-usage}
@@ -2430,17 +2420,18 @@ of the view's properties.
 \begin{Sinput}
  tv <- gtkTextView()
  sw <- gtkScrolledWindow()
- sw$setPolicy("automatic","automatic")
+ sw$setPolicy("automatic", "automatic")
  sw$add(tv)
  w <- gtkWindow(); w$add(sw)
  tv['editable'] <- TRUE                  
  tv['cursor-visible'] <- TRUE            
- tv['wrap-mode'] <- "word"               # GtkWrapMode value
- tv['justification'] <- "left"           # GtkJustification value
- tv['left-margin'] <- 20                 # 0 is default
+ tv['wrap-mode'] <- "word"             # GtkWrapMode value
+ tv['justification'] <- "left"         # GtkJustification value
+ tv['left-margin'] <- 20               # 0 is default
  tb <- tv$getBuffer()                    
  tb$setText("the quick brown fox jumped over the lazy dog")
- font <- pangoFontDescriptionFromString("Serif,monospace bold italic 8")
+ font.str <- "Serif, monospace bold italic 8"
+ font <- pangoFontDescriptionFromString(font.str)
  tv$modifyFont(font)
 \end{Sinput}
 \end{Schunk}
@@ -2452,7 +2443,7 @@ of the view's properties.
 In order to do more with a text buffer, such as retrieve the text, 
 retrieve a selection, or modify attributes of just some of the text,
 one needs to become familiar with how pieces of the buffer are
-referred to within \pkg{Rgtk2}.
+referred to within \GTK.
 
 There are two methods: text iterators (iters) are a transient means to
 mark begin and end boundaries within a buffer, whereas text marks
@@ -2464,39 +2455,49 @@ these with tags to modify attributes of pieces of the buffer.
 
 %% text iters. GetStartIterm GetEndIter, GetSelectionBounds
 %% transient
-A text iterator is used to specify a position in a buffer in a transient
-manner. Iterators become invalid as soon as a buffer changes.  In
-\pkg{RGtk2}, iterators are stored as lists with components \code{iter}
-to hold a pointer to the underlying iterator and component
-\code{retval} to indicate whether the iterator when it was returned is
-valid. Many methods of the text buffer will update the iterator. This
-can happen inside a function call where the iterator is passed as an
-argument, so is unexpected to the \R\/ user. The
-\method{copy}{gtkTextIter} method will create a copy of an iterator,
-in case one is to be modifed yet the original is desired.
+
+%% An iterator
+An \dfn{iterator} is a programming object used to traverse through
+some data, such as a text buffer or table of values. Iterators are
+typically transient. They have
+methods to indicate what they point to and often update these
+values without an explicit function call. Such behaviour is unusual
+for typical \R\/ programming.
+
+
+In \GTK{} a \dfn{text iterator} is used to specify a position in a
+buffer. Iterators become invalid as soon as a buffer changes, say
+through the addition of text.  In \pkg{RGtk2}, iterators are stored as
+lists with components \code{iter} to hold a pointer to the underlying
+iterator and component \code{retval} to indicate whether the iterator
+when it was returned is valid. Many methods of the text buffer will
+update the iterator. This can happen inside a function call where the
+iterator is passed as an argument -- basically a copy is not passed
+in. The \method{copy}{gtkTextIter} method will create a copy of an
+iterator, in case one is to be modifed but it is important to keep the original.
 
 %% methods to return an iterator
-Several methods of the text buffer return iterators marking positions in the buffer. 
-The beginning and end of the
-buffer are returned by the methods
-\method{getStartIter}{gtkTextBuffer} and
-\method{getEndIter}{gtkTextBuffer}. Both of these iters are
-returned at once by the method \method{getBounds}{gtkTextBuffer} again
-as components of a list, in this case \code{start} and \code{end}.
-The current selection is returned by the method method
+Several methods of the text buffer return iterators marking positions
+in the buffer.  The beginning and end of the buffer are returned by
+the methods \method{getStartIter}{gtkTextBuffer} and
+\method{getEndIter}{gtkTextBuffer}. Both of these iters are returned
+at once by the method \method{getBounds}{gtkTextBuffer} again as
+components of a list, in this case \code{start} and \code{end}.  The
+current selection is returned by the method method
 \method{getSelectionBounds}{gtkTextBuffer}. Again, as a list of
 iterators specifying the start and end positions of the current
 selection. If there is no selection, then the component \code{retval}
-will be \code{FALSE}, otherwise it is \code{TRUE}.  
+will be \code{FALSE}, otherwise it is \code{TRUE}.
 
 The method \method{getIterAtLine}{gtkTextBuffer} will return an
-iterator pointing to the start of the line, which is specifed by line
-number starting with 0. The method \method{getIterAtLineOffset}{gtkTextBuffer} has an
-additional argument to specify the offset for a given line. An offset
-counts the number of individual characters and keeps track of the fact
-that the text encoding, UTF-8, may use more than one byte per
-character.  In addition to the text buffer, a text view also has the
-method \method{getIterAtLocation}{gtkTreeView} to return the iterator
+iterator pointing to the start of the line, which is specifed by
+$0$-based line number. The method
+\method{getIterAtLineOffset}{gtkTextBuffer} has an additional argument
+to specify the offset for a given line. An offset counts the number of
+individual characters and keeps track of the fact that the text
+encoding, UTF-8, may use more than one byte per character.  In
+addition to the text buffer, a text view also has the method
+\method{getIterAtLocation}{gtkTreeView} to return the iterator
 indicating the between-word space in the buffer closest to the point
 specified in $x$-$y$ coordinates.
 
@@ -2533,7 +2534,7 @@ of where the text is inserted. The \method{delete}{gtkTextBuffer}
 method will delete the text between the iterators specified to the
 arguments \argument{start}{gtkTextBufferDelete} and
 \argument{start}{gtkTextBufferDelete}. The
-\method{getText}{gtkTextBuffer} will get the text between the
+\method{getText}{gtkTextBuffer} method will get the text between the
 specified \argument{start}{gtkTextBufferDelete} and
 \argument{end}{gtkTextBufferDelete} iters. A similar method
 \method{getSlice}{gtkTextBuffer} will also do this, only it includes
@@ -2546,20 +2547,20 @@ mouse-button-press event. The callback has an event argument which is
 a \class{GdkEventButton} object with methods
 \method{getX}{GdkEventButton} and \method{getY}{GdkEventButton} to
 extract the \code{x} and \code{y} components of the event
-object. These give the position relative to the widget. The methods
+object. These give the position relative to the widget.~\footnote{The methods
 \method{getXRoot}{GdkEventButton} and
 \method{getYRoot}{GdkEventButton} give the position relative to the
-parent window the widget resides in.
+parent window the widget resides in.}
 
 
 \begin{Schunk}
 \begin{Sinput}
- ID <- gSignalConnect(tv, "button-press-event", f=function(obj, e, data) {
-   siter <- obj$getIterAtLocation(e$getX(), e$getY())$iter
-   niter <- siter$copy()
+ ID <- gSignalConnect(tv, "button-press-event", f=function(w, e, ...) {
+   siter <- w$getIterAtLocation(e$getX(), e$getY())$iter
+   niter <- siter$copy()                 # need copy
    siter$backwardWordStart()
    niter$forwardWordEnd()
-   val <- obj$getBuffer()$getText(siter, niter)
+   val <- w$getBuffer()$getText(siter, niter)
    print(val)                            # replace
    return(FALSE)                         # call next handler
    })
@@ -2579,9 +2580,9 @@ text.
 
 
 Marks can be defined in two steps by calling \function{gtkTextMark},
-specifying and name and a value for the gravity, and then 
+specifying a name and a value for the gravity, and then 
 positioned within a buffer, specified by an iterator, through the
-buffers \method{addMark}{gtkTextBuffer} method. The
+buffer's \method{addMark}{gtkTextBuffer} method. The
 \method{createMark}{gtkTextBuffer} method combines the two steps.
 
 There are many text buffer methods to work with marks. The
@@ -2599,7 +2600,7 @@ different parts of the text buffer. \GTK\/ uses tags to specify how
 pieces of text will differ from those of the textview overall. To
 create a tag, the \method{createTag}{gtkTextBuffer} method is
 used. This has optional argument
-\code{tag.name}{gtkTextBufferCreateTag} which can be used to refer to
+\argument{tag.name}{gtkTextBufferCreateTag} which can be used to refer to
 the tag later, and otherwise uses named arguments so specify a properties
 names and the corresponding values. These tags may be applied to the text between
 two iters using the methods \method{applyTag}{gtkTextBuffer} or
@@ -2614,12 +2615,15 @@ to apply them.
  tb <- tv$getBuffer()
  tb$setText("the quick brown fox jumped over the lazy dog")
  ##
- tag.b <- tb$createTag(tag.name="bold", weight=PangoWeight["bold"])
- tag.em <- tb$createTag(tag.name="em", style=PangoStyle["italic"])
- tag.large <- tb$createTag(tag.name="large", font="Serif normal 18")
+ tag.b <- tb$createTag(tag.name="bold", 
+                       weight=PangoWeight["bold"])
+ tag.em <- tb$createTag(tag.name="em", 
+                        style=PangoStyle["italic"])
+ tag.large <- tb$createTag(tag.name="large", 
+                           font="Serif normal 18")
  ##
- iter <- tb$getBounds()                  # or get iters another way
- tb$applyTag(tag.b, iter$start, iter$end) # iters updated
+ iter <- tb$getBounds()         # or get iters another way
+ tb$applyTag(tag.b, iter$start, iter$end)  # updates iters
  tb$applyTagByName("em", iter$start, iter$end)
 \end{Sinput}
 \end{Schunk}
@@ -2630,14 +2634,16 @@ to apply them.
 \GTK\/ can create clipboards and provides convenient access to the
 default clipboard so that the standard cut, copy and paste actions can
 be implemented. The function \function{gtkClipboardGet} returns the
-default clipboard if given no arguments. The clipboard is the lone argument for
-the method \method{copyCliboard}{gtkTextBuffer} to copy the current
-selection to the clipboard. The method
+default clipboard if given no arguments. The clipboard is the lone
+argument for the method \method{copyCliboard}{gtkTextBuffer} to copy
+the current selection to the clipboard. The method
 \method{cutClipboard}{gtkTextBuffer} has an extra argmument,
-\code{default.editable}, which is typically \code{TRUE}. To paste the
-clipboard contents into the buffer, the second argument should be an
-iterator specifying where the text should be inserted and the third
-argument \code{TRUE} if the text is to be editable.
+\code{default.editable}, which is typically \code{TRUE}. The
+\method{pasteClipboard}{gtkTextBuffer} method is used paste the
+clipboard contents into the buffer, the second argument is \code{NULL}
+to paste at the insert are, or an iterator specifying otherwise where
+the text should be inserted. The third argument is \code{TRUE} if the
+pasted text is to be editable.
 
 \begin{example}{A simple command line interface}{eg:RGtk2-command-line}
 This example shows how the text view widget can be used to make a
@@ -2820,8 +2826,8 @@ and compare to that of the return key.
    obj <- w$getBuffer()                  # w is textview
    keyval <- e$getKeyval()
    if(keyval == GDK_Return) {
-     cmd <- findCMD(obj)
-     if(nchar(cmd) > 0)
+     cmd <- findCMD(obj)                 # character(0) if nothing
+     if(length(cmd) && nchar(cmd) > 0)
        evalCMD(obj, cmd)
    }
    return(FALSE)                         # events need return value
@@ -2897,7 +2903,7 @@ argument. The column classes are important, so even if this data frame
 is empty, it should specify the desired column classes.
 
 The constructor produces an object of class \class{RGtkDataFrame}
-which has a few methods defined for it. The familiar S3 methods
+for which the familiar S3 methods
 \method{[}{RGtkDataFrame}, \method{[\ASSIGN}{RGtkDataFrame},
 \method{dim}{RGtkDataFrame}, and \method{as.data.frame}{RGtkDataFrame}
 are defined. The \code{dimnames} attributes are kept, but have no
@@ -3000,12 +3006,12 @@ columns by its index, $0$-based.  The method
 whereas an entire row can be assigned through the
 \method{set}{gtkTreeStore} method. The former has arguments
 \code{iter}, \code{column}, \code{value}, in that order; the latter
-has no \code{column} or \code{value} argument. Instead, \code{Set}
+has no \code{column} or \code{value} argument. Instead, \meth{set}
 uses positional arguments to specify the column and the value. The
 column index appears as an even argument (say $2k$) and the
 corresponding value in the odd argument (say $2k+1$).  When calling
-\code{setValue} or \code{set} the iterator updates to the next row
-Values are returned by the \method{getValue}{gtkListStore} method,
+\code{setValue} or \code{set} the iterator updates to the next row.
+Values are returned by the \method{getValue}{gtkListStore} method, in
 a list with component \code{value} storing the value.
 
 \paragraph{Finding iterators}
@@ -3040,11 +3046,11 @@ of text we have:
 \begin{Schunk}
 \begin{Sinput}
  lstore <- gtkListStore("gchararray")
- for(i in 1:nrow(Cars93)) {
+ QT <- sapply(Cars93[,1], function(i) {
    iter <- lstore$append()
    if(is.null(iter$retval)) 
-     lstore$setValue(iter$iter, 0, Cars93[i,1])
- }
+     lstore$setValue(iter$iter, 0, i)
+ })
 \end{Sinput}
 \end{Schunk}
 To retrieve a value, we have this example to get the first one in the store:
@@ -3257,7 +3263,7 @@ might be the following:
 
 The basic combo box usage was discussed in
 Section~\ref{sec:RGtk2:basic-combobox}, here we discuss more
-complicated comboboxes that use a model for the backend This data is
+complicated comboboxes that use an explicit model for the backend This data is
 tabular and may be kept in a \function{rGtkDataFrame} instance or a
 list store.  
 
@@ -3353,20 +3359,10 @@ model and also specify a cell renderer to view the data.
  varCb <- gtkComboBoxNewWithModel(varModel)
  cr <- gtkCellRendererText()
  varCb$packStart(cr)
- varCb$addAttribute(cr, "text", 0)
+ varCb$addAttribute(cr, "text", 0)       # column 1
 \end{Sinput}
 \end{Schunk}
 
-Our basic GUI uses a table for layout. Comboboxes fill and expand to fill the cell.
-\begin{Schunk}
-\begin{Sinput}
- tbl <- gtkTableNew(rows=2, columns=2, homogeneous=FALSE)
- tbl$attach(gtkLabel("Data frame"), left.attach=0,1, top.attach=0,1)
- tbl$attach(dfCb, left.attach=1,2, top.attach=0,1)
- tbl$attach(gtkLabel("Variables"), left.attach=0,1, top.attach=1,2)
- tbl$attach(varCb, left.attach=1,2, top.attach=1,2)
-\end{Sinput}
-\end{Schunk}
 This callback will be used for both the entry widget and the combobox,
 so we first check which it is and if it is the combobox, we get the
 entry widget from it. To update the display we replace the model. The
@@ -3423,10 +3419,9 @@ will read into the pixbuf.
 
 \begin{Schunk}
 \begin{Sinput}
- require(Cairo)
  makePixbufFromColor <- function(color) {
    filename <- tempfile()
-   Cairo(file=filename, width=25,height=10)
+   png(file=filename, width=25,height=10)
    grid.newpage()
    grid.draw(rectGrob(gp = gpar(fill = color)))
    dev.off()
@@ -3460,6 +3455,7 @@ This loop adds the colors and their name to the data store.
 
 Next we define the combobox using the store as the model. There are
 two cell renderers to add.
+%% CAIRO is puking in 2.11.0, png isn't working on my mac, so don't eval here
 \begin{Schunk}
 \begin{Sinput}
  combobox <- gtkComboBox(model=store)
@@ -3532,7 +3528,7 @@ two cell renderers to add.
 
 
 % These two callbacks show how to attach a callback to changes due to
-% either selecting a value from the available values or pressing
+% either selecting a value fr`om the available values or pressing
 % \kbd{enter} after entering a value.
 
 % <<>>=
@@ -3568,8 +3564,7 @@ which is assigned to the completion object through its
 for the entry widget, the entry widget's
 \method{setCompletion}{gtkEntry} method is used. The
 \code{text-column} property is used to specify which column in
-the model is used to find the matches, we use the method
-\code{SetTextColumn} in the example to set this.
+the model is used to find the matches.
 
 
 There are several properties that can be adjusted to tailor the
@@ -3596,7 +3591,7 @@ set of completions.
 
 
 \begin{example}{Text entry with completion}{eg:RGtk2:text-entry-comletion}
-This example illustrates the basic steps to add completion to a text entry.
+This example illustrates the steps to add completion to a text entry.
 
 
 The two basic widgets are defined as follows:
@@ -3615,7 +3610,7 @@ similarly named methods, and then set some properties to customize how
 the completion is handled.
 \begin{Schunk}
 \begin{Sinput}
- store <- rGtkDataFrame(data.frame(name=I(state.name)))
+ store <- rGtkDataFrame(state.name)
  completion$setModel(store)
  completion$setTextColumn(0)             # which column in model
  completion['inline-completion'] <- TRUE # inline with text edit
@@ -3642,15 +3637,6 @@ in, as that has been standardized to lower case.
 \end{Sinput}
 \end{Schunk}
 
-\begin{Schunk}
-\begin{Sinput}
- ## Our basic GUI is basic:
- w <- gtkWindow(show=FALSE)
- w$setTitle("Test of entry with completion")
- w$add(entry)
- w$showAll()
-\end{Sinput}
-\end{Schunk}
 
 
 
@@ -3730,14 +3716,13 @@ of the tree view columns.
 In addition to the text and pixbuf cell renderers discussed in
 Section~\ref{sec:RGtk2:combobox}, there are cell renderers that allow
 one to display other types of data available for the tree view widget.
-Some only make sense if the underlying data is to be edited, for
-example the combobox renderer, for these, the \code{editable}
-attribute for the cell renderer
-should be set to \code{TRUE}.
+Some only make sense if the underlying data is to be edited the
+\code{editable} (or sometimes \code{activatable}) attribute for the
+cell renderer should be set to \code{TRUE}.
 
 
-As with comboboxes, the mapping of values in the data store to the
-attributes of a cell render is done by the
+As with comboboxes, the mapping of fied values, or values in the data
+store to the attributes of a cell render is done by the
 \method{addAttribute}{gtkCellLayout} method of the tree view column.
 
 
@@ -3758,7 +3743,7 @@ must be \code{TRUE} in order for it to receive user input.
  cr['activatable'] <- TRUE               # cell can be edited
  cr['active'] <- TRUE
  QT <- gSignalConnect(cr, "toggled", function(w, path) {
-   print(as.numeric(path) + 1) ## the row
+   print(as.numeric(path) + 1) ## modify model as needed
  })
 \end{Sinput}
 \end{Schunk}
@@ -3804,15 +3789,16 @@ bar grows.  For example,
 %% numbers
 \paragraph{Cell data functions}
 Formatting numbers is a bit trickier, as the cell renderer properties
-are geared around text values. For example, to align floating point
-numbers one can do so in the model and then display as text. However,
-to do so through the cell rendererer requires one to get the value
-from the model and modify it before the cell rendererer gets it. For
-this, a cell data function is used, and not with comboboxes, but only
-tree views. A cell data function has arguments pointing to a tree view
-column, the cell renderer, the model, an
-iterator pointing to the row in the model and a data argument for user
-data. The function should set the appropriate attributes of the cell
+are oriented around text values. For example, to align floating point
+numbers one can do so in the model (e.g., using \function{sprintf} to
+format and coerce to character data) and then displaying as
+text. However, to do so through the cell rendererer requires one to
+get the value from the model and modify it before the cell rendererer
+gets it. For this, a cell data function (only with tree
+views, not comboboxes). A cell data function passing in arguments for the
+ tree view column, the cell renderer, the model, an iterator pointing
+to the row in the model and a data argument for user data. The
+function is tasked with setting the appropriate attributes of the cell
 renderer. For example, this function could be used to format floating
 point numbers:
 \begin{Schunk}
@@ -3825,37 +3811,43 @@ point numbers:
  }
 \end{Sinput}
 \end{Schunk}
+One drawback with the use of such function is they are much
+slower. However, if you are displaying numeric data with \code{NA}
+values, they need to be used to get a sensible display.
 
 %% This function will be set for the tree view column and illustrated in Example~\ref{ex:RGtk2:rGtk2DataFrame}.
+%% editable cells 
 
+\paragraph{Editable cells} When the \code{editable} property of a text
+cell (or \code{activatable} property of a toggle cell) is set to
+\code{TRUE}, then the cell contents can be changed. This allows the
+user to make changes to the underlying model through the GUI. Although
+the view automatically reflects changes made to the model, the reverse
+is not true. A callback must be assigned to the \code{editable}
+(\code{toggled}) signal for the cell renderer to implement the
+change. The callback for the \qcode{editable} signal has arguments
+\code{renderer}, \code{path} for the path of the selected row (as a
+string), and \code{new.text} containing the value of the edited text
+as a string. The tree view object and which column was edited are not
+passed in by default. These can be passed through the user data
+arugment, or set as data for the widget if needed within the callback.
 
-
-%% editable cells \paragraph{Editable cells} When the \code{editable}
-property of a text cell (or \code{activatable} property of a toggle
-cell) is set to \code{TRUE}, then the cell contents can be
-changed. This allows the user to make changes to the underlying model
-through the GUI. Although the view automatically reflects changes made
-to the model, the reverse is not true. A callback must be assigned to
-the \code{editable} (\code{toggled}) signal for the cell renderer to
-imlement the change. The callback for the \qcode{editable} signal has
-arguments \code{renderer}, \code{path} for the path of the selected
-row (as a string), and \code{new.text} containing the value of the edited text as a
-string. The tree view and which column was edited are not passed in by
-default. These can be passed through the user data arugment, or set as
-data for the widget if needed within the callback.
+For example, here is how one can update an \code{rGtk2DataFrame} model
+from within the callback.
 \begin{Schunk}
 \begin{Sinput}
  cr['editable'] <- TRUE
  ID <- gSignalConnect(cr, "edited", 
-                      f=function(cr, path, newtext, data) {
+                      f=function(cr, path, newtext, user.data) {
                         curRow <- as.numeric(path) + 1
-                        model <- data$model
-                        curCol <- data$column
+                        curCol <- user.data$column
+                        model <- user.data$model
                         model[curRow, curCol] <- newtext
                       }, data=list(model=store, column=1))
 \end{Sinput}
 \end{Schunk}
 
+\paragraph{Moving the cursor}
 Users may expect that once a cell is edited, the next cell is then set
 up to be edited. In order to do this, one must set the cursor to the
 appropriate place and set the state to editing. This is done through
@@ -3876,7 +3868,8 @@ object can be found from a string through \function{gtkTreePathNewFromString}.
 This example shows how to select one or more rows from a data frame
 that contains some information. We write it so any data frame could be
 used, although in the specific case we show a list of the installed
-packages that can be upgraded from CRAN.
+packages that can be upgraded from CRAN. The use of checkboxes for
+selection, employs the toggle cell renderer.
 
 
 To get the installed packages that can be upgraded, we use some of the
@@ -3886,7 +3879,8 @@ functions provided by the  \pkg{utils} package.
  avail <- available.packages()
  installed <- installed.packages()
  tmp <- merge(avail, installed, by="Package")
- need.upgrade <- with(tmp, as.character(Version.x) != as.character(Version.y))
+ need.upgrade <- with(tmp, as.character(Version.x) 
+                      != as.character(Version.y))
  d <- tmp[need.upgrade, c(1, 2, 16, 6)]
  names(d) <- c("Package", "Available", "Installed", "Depends")
 \end{Sinput}
@@ -3921,17 +3915,12 @@ want to call \code{doThis} on.
  view <- gtkTreeView()
  # add toggle
  togglevc <- gtkTreeViewColumn()
- view$insertColumn(togglevc, 0)
-\end{Sinput}
-\begin{Soutput}
-[1] 1
-\end{Soutput}
-\begin{Sinput}
+ QT <- view$insertColumn(togglevc, 0)
  cr <- gtkCellRendererToggle()
  togglevc$packStart(cr)
  cr['activatable'] <- TRUE
  togglevc$addAttribute(cr, "active", n)
- gSignalConnect(cr, "toggled", function(cr, path, user.data) {
+ QT <- gSignalConnect(cr, "toggled", function(cr, path, user.data) {
    view <- user.data
    row <- as.numeric(path) + 1
    model <- view$getModel()
@@ -3940,18 +3929,12 @@ want to call \code{doThis} on.
  },
                 data=view)
 \end{Sinput}
-\begin{Soutput}
-toggled 
-    662 
-attr(,"class")
-[1] "CallbackID"
-\end{Soutput}
 \end{Schunk}
 
-The text columns are added all in a similar manner.
+The text columns are added one-by-one in a similar manner:
 \begin{Schunk}
 \begin{Sinput}
- sapply(1:n, function(i) {
+ QT <- sapply(1:n, function(i) {
    vc <- gtkTreeViewColumn()
    vc$setTitle(nms[i])
    view$insertColumn(vc, i)
@@ -3961,20 +3944,32 @@ The text columns are added all in a similar manner.
    vc$addAttribute(cr, "text", i-1)
  })
 \end{Sinput}
-\begin{Soutput}
-[[1]]
-NULL
-
-[[2]]
-NULL
-
-[[3]]
-NULL
-
-[[4]]
-NULL
-\end{Soutput}
 \end{Schunk}
+
+Finally, we connect the store to the model.
+\begin{Schunk}
+\begin{Sinput}
+ view$setModel(store)
+\end{Sinput}
+\end{Schunk}
+
+To initiate the action, we create a button and assign a callback. We
+pass in the view, rather than the model, in case the model would be
+modified by the \code{doThis} call. In a real application, once a
+package is upgraded it would be removed from the display.
+\begin{Schunk}
+\begin{Sinput}
+ b <- gtkButton("click me")
+ QT <- gSignalConnect(b, "clicked", function(w, data) {
+   view <- data
+   model <- view$getModel()
+   n <- dim(model)[2]
+   vals <- model[model[, n], -n, drop=FALSE]
+   doThis(vals)
+ }, data=view)
+\end{Sinput}
+\end{Schunk}
+
 
 Our basic GUI places the view into a box container that also holds a
 button to initiate the action.
@@ -3988,43 +3983,12 @@ button to initiate the action.
  g$packStart(sw, expand=TRUE, fill=TRUE)
  sw$add(view)
  sw$setPolicy("automatic", "automatic")
-\end{Sinput}
-\end{Schunk}
-
-We add the button and its callback. We pass in the view, rather than
-the model, in case the model would be modified by the \code{doThis}
-call. In a real application, once a package is upgraded it would be
-removed from the display.
-\begin{Schunk}
-\begin{Sinput}
- b <- gtkButton("click me")
- gSignalConnect(b, "clicked", function(w, data) {
-   view <- data
-   model <- view$getModel()
-   n <- dim(model)[2]
-   vals <- model[model[, n], -n, drop=FALSE]
-   doThis(vals)
- }, data=view)
-\end{Sinput}
-\begin{Soutput}
-clicked 
-    704 
-attr(,"class")
-[1] "CallbackID"
-\end{Soutput}
-\begin{Sinput}
  g$packStart(b, expand=FALSE)
-\end{Sinput}
-\end{Schunk}
-
-Finally, we connect the store to the model and show the top-level window
-\begin{Schunk}
-\begin{Sinput}
- view$setModel(store)
  w$show()
 \end{Sinput}
 \end{Schunk}
 \end{example}
+
 %% filtering
 \paragraph{Using filtered models to restrict the displayed rows}
 \GTK\/ provides a means to show a filtered selection of rows. The
@@ -4048,11 +4012,6 @@ the model for a tree view.
 \end{Sinput}
 \end{Schunk}
 
-\begin{Schunk}
-\begin{Soutput}
-[1] 1
-\end{Soutput}
-\end{Schunk}
 
 %% searching
 \paragraph{Sorting the display}
@@ -4072,12 +4031,7 @@ different if desired). The following shows the basic steps:
  #
  view <- gtkTreeView(sorted)
  vc <- gtkTreeViewColumn()
- view$insertColumn(vc, 0)                  # first column
-\end{Sinput}
-\begin{Soutput}
-[1] 1
-\end{Soutput}
-\begin{Sinput}
+ QT <- view$insertColumn(vc, 0)                  # first column
  vc$setTitle("Click to sort")
  vc$setClickable(TRUE)
  vc$setSortColumnId(0)                   
@@ -4087,14 +4041,14 @@ different if desired). The following shows the basic steps:
  vc$addAttribute(cr, "text", 0)
 \end{Sinput}
 \end{Schunk}
-The default sorting function can be changed. The sortable stores
+The default sorting function can be changed. The sortable store's
 method \method{setSortFunc}{gtkTreeSortable} is used for this.
 The following function -- which can easily be modified to taste -- shows
 how the default sorting might be implemented.
 \begin{Schunk}
 \begin{Sinput}
- f <- function(model, iter1, iter2, data) {
-   column <- data
+ f <- function(model, iter1, iter2, user.data) {
+   column <- user.data
    val1 <- model$GetValue(iter1, column)$value
    val2 <- model$GetValue(iter2, column)$value
    val1 > val2
@@ -4111,7 +4065,7 @@ how the default sorting might be implemented.
 \GTK\/ provides a class to handle the selection of rows that the user
 makes. The selection object is returned from the tree view, through
 its \method{getSelection}{gtkTreeView} method. 
-To modify the selection possibilities, the selection's method
+To modify the selection possibilities, the selection object's method
 \method{setMode}{gtkTreeSelection} method is used, with values from
 \code{GtkSelectionMode}, including \qcode{multiple} for allowing more
 than one row to be selected and \qcode{single} for no more than one row.
@@ -4133,18 +4087,13 @@ model.
 \end{Sinput}
 \end{Schunk}
 
-\begin{Schunk}
-\begin{Soutput}
-[1] 1
-\end{Soutput}
-\end{Schunk}
 If this tree view is shown and a selection made, this code will return the value in the first column:
 \begin{Schunk}
 \begin{Sinput}
- selection$selectPath(gtkTreePathNewFromString("3")) # set for example
+ selection$selectPath(gtkTreePathNewFromString("3")) # set 
  # 
  curSel <- selection$getSelected()       # retrieve selection
- with(curSel, model$getValue(iter, 0)$value) # both model and iter in curSel
+ with(curSel, model$getValue(iter, 0)$value) # model, iter
 \end{Sinput}
 \begin{Soutput}
 [1] 21.4
@@ -4157,13 +4106,15 @@ When multiple selection is permitted, then the method
 componets \code{model} pointing to the model, and \code{retval} a list
 of tree paths. No column information is passed back by this method.
 
-For example, if we change the selection mode then select a few rows
+For example, we can change the selection mode as follows.
 \begin{Schunk}
 \begin{Sinput}
  selection$setMode("multiple")
 \end{Sinput}
 \end{Schunk}
-This code will print the selected values in the first column:
+
+This code will print the selected values in the first column (we have
+selected the first three rows):
 \begin{Schunk}
 \begin{Sinput}
  curSel <- selection$getSelectedRows()
@@ -4175,7 +4126,7 @@ This code will print the selected values in the first column:
  }
 \end{Sinput}
 \begin{Soutput}
-[1] 21.4
+[1] 21.0 22.8 21.4
 \end{Soutput}
 \end{Schunk}
                  
@@ -4188,10 +4139,6 @@ then they are basically list boxes which allow the user to select one of
 several rows. A single click selects the value, and a double click is
 often used to initiate an action. If the cells are editable, then this
 action is to edit the content.
-
-%% selection
-When a selection is made or changed, the signal \signal{changed} is emitted by
-the selection. 
 
 %% double click
 When a row is not editable, then the double-click event or a keyboard
@@ -4208,6 +4155,10 @@ of the tree view through a command like
  sapply(tree.view$getColumns(), function(i) i == column)
 \end{Sinput}
 \end{Schunk}
+
+%% selection
+The selection object emits signals for various events, in particular, when a
+selection is made or changed, the \signal{changed} signal is emitted.
 
 
 %% tree stores
@@ -4339,7 +4290,6 @@ visibility information. Our tree view packs in both a pixbuf cell
 rendererer and a text one.
 \begin{Schunk}
 \begin{Sinput}
- ## make a view
  makeView <- function(model, vis.col) {
    filteredModel <- model$filterNew()
    filteredModel$setVisibleColumn(vis.col - 1)
@@ -4392,29 +4342,30 @@ two tree views are placed side-by-side.
 The key handler moves the selected value from one side to the
 other. The issue here is that when the view is using filtering the
 selection returns values relative to the child model (the filtered
-one). In general the methods of the filtered model
-\code{convertChildPathToPath} and \code{convertChildIterToIter} will
-translate between the two models, but in this case we pass in the
+one). In general the methods \code{convertChildPathToPath} and
+\code{convertChildIterToIter} of the filtered model will translate
+between the two models, but in this case we pass in the
 \code{rGtkDataFrame} instance, not the filtered model. So we use the
 columns indicating visibility to identify which index is being
 referred to. This handler assumes the model and a value indicating the
 view (\code{from}) is passed in through the user data.
 \begin{Schunk}
 \begin{Sinput}
- moveSelected <- function(b, data) {
-   model <- data$model
+ moveSelected <- function(b, user.data) {
+   model <- user.data$model
  
-   selection <- selections[[data$from]]
+   selection <- selections[[user.data$from]]
    selected <- selection$getSelectedRows()
    if(length(selected$retval)) {
      childRows <- sapply(selected$retval, function(childPath) {
        childRow <- as.numeric(childPath$toString()) + 1
      })
-     shownIndices <- which(model[, 2 + data$from])
+     shownIndices <- which(model[, 2 + user.data$from])
      rows <- shownIndices[childRows]
  
-     model[rows, 2 + data$from] <- FALSE
-     model[rows, 2 + (3-data$from)] <- !model[rows, 2 + data$from]
+     model[rows, 2 + user.data$from] <- FALSE
+     model[rows, 2 + (3-user.data$from)] <- 
+       !model[rows, 2 + user.data$from]
    }
  }
 \end{Sinput}
@@ -4464,12 +4415,14 @@ tree  stores. The difference for the programmer is in the creation of
 the data store, not the tree view.
 
 \begin{example}{A simple tree display}{eg:RGtk2-simple-tree}
-This example illustrates that the same tree view can display both
-rectangular and heirarchical data. The data we use will come from the
-\code{Cars93} data set used in Example~\ref{eg:RGtk2:tree-store}. In
-that example we defined a simple tree store from a data frame, with a
-level for manufacturer and make for different cars. We refer to that
-model by \code{tstore} below. 
+The \constructor{gtkTreeView} widget displays either list stores or
+tree stores. The difference for the programmer is in the creation of
+the data store, not the tree view, as this example illustrates.
+
+The data we use will come from the \code{Cars93} data set used in
+Example~\ref{eg:RGtk2:tree-store}. In that example we defined a simple
+tree store from a data frame, with a level for manufacturer and make
+for different cars. We refer to that model by \code{tstore} below.
 
 
 
@@ -4499,8 +4452,8 @@ The basic view is similar to that for rectangular data already presented.
 Finally, we illustrate that the same view can be used with either model:
 \begin{Schunk}
 \begin{Sinput}
- view$setModel(store)                    # the rectangular store
- view$setModel(tstore)                   # or the tree store
+ view$setModel(store)               # the rectangular store
+ view$setModel(tstore)              # or the tree store
 \end{Sinput}
 \end{Schunk}
 \end{example}
@@ -4514,20 +4467,140 @@ creating the tree store, modifying the tree store when the tree view
 is expanded or collapsed.
   
 
+We begin by defining our tree store and an acoompanying tree
+view. This example allows sorting, so calls the
+\constructor{gtkTreeModelSortNewWithModel} function.
+\begin{Schunk}
+\begin{Sinput}
+ store <- gtkTreeStore(rep("gchararray",2))
+ sstore <- gtkTreeModelSortNewWithModel(store)
+\end{Sinput}
+\end{Schunk}
 
-We begin by defining a function that gets the ``children'' of a list
-object. For a level of the list, this function returns the named
-components, their class and a logical indicating if the component is
-recursive.
+We set an initial root.
+\begin{Schunk}
+\begin{Sinput}
+ iter <- store$append(parent=NULL)$iter
+ store$setValue(iter,column=0, "GlobalEnv")
+ store$setValue(iter,column=1,"")
+ iter <- store$append(parent=iter)
+\end{Sinput}
+\end{Schunk}
+The call of \method{append}{gtkTreeStore} is used to allow the object
+to have an expandable icon. 
+
+
+Now to define the tree view. We allow multiple selection, as an illustration.
+\begin{Schunk}
+\begin{Sinput}
+ view <- gtkTreeViewNewWithModel(sstore)
+ view$getSelection()$setMode(GtkSelectionMode["multiple"])
+\end{Sinput}
+\end{Schunk}
+
+
+The basic idea is to create the children when a request to expand a
+row is given, and to delete the children when the request to collapse
+the row is given. The following callbacks are used. First, the expand request.
+
+
+\begin{Schunk}
+\begin{Sinput}
+ ID <- gSignalConnect(view,signal="row-expanded",
+           f = function(view, iter, tpath, user.data) {
+             store <- user.data
+             p.iter <- tpathToPIter(view, tpath)
+             path <- iterToPath(view, p.iter)
+             children = getChildren(path)
+             addChildren(store, children, parentIter=p.iter)
+             ## remove errant 1st offspring. See addChildren
+             ci <- store$iterChildren(p.iter)
+             if(ci$retval) store$remove(ci$iter)
+           },
+           data=store)
+\end{Sinput}
+\end{Schunk}
+
+The callback has several functions called that we define later in this
+example. The collapse request has the following callback.
+
+\begin{Schunk}
+\begin{Sinput}
+ ID <- gSignalConnect(view,signal="row-collapsed",
+           f = function(view, iter, tpath, user.data) {
+             store <- user.data
+             p.iter <- tpathToPIter(view,tpath)
+ 
+             n = store$iterNChildren(p.iter)
+             if(n > 1) { ## n=1 gets removed when expanded
+               for(i in 1:(n-1)) {
+                 child.iter = store$iterChildren(p.iter)
+                 if(child.iter$retval)
+                   store$remove(child.iter$iter)
+               }
+             }
+           }, 
+           data=store)
+\end{Sinput}
+\end{Schunk}
+
+
+This callback simply shows how to the values when a row is activated.
+\begin{Schunk}
+\begin{Sinput}
+ ID <- gSignalConnect(view,signal="row-activated",
+           f = function(view, tpath, tcol) {
+             p.iter <- tpathToPIter(view, tpath)
+             path <- iterToPath(view, p.iter)
+             sel <- view$getSelection()
+             out <- sel$getSelectedRows()
+             if(length(out) == 0) return(c()) # nothing
+             vals <- c()
+             for(i in out$retval) {  # multiple selections
+               iter <- out$model$getIter(i)$iter
+               newValue <- out$model$getValue(iter,0)$value
+               vals <- c(vals, newValue)
+             }
+             print(vals)  # [Replace this]
+           })
+\end{Sinput}
+\end{Schunk}
+
+The main function used in the expand request is the following
+\code{addChildren} function. Its one quirk, is the addition of a fake
+child when the item has children. This forces the tree view to draw an
+icon for the user to click on to request the expansion. 
+
+\begin{Schunk}
+\begin{Sinput}
+ addChildren <- function(store, children, parentIter=NULL) {
+   if(nrow(children) == 0) 
+     return(NULL)
+   for(i in 1:nrow(children)) {
+     iter <- store$append(parent=parentIter)$iter
+     ## use last column to indicate logical
+     sapply(1:(ncol(children) - 1), function(j)              
+            store$setValue(iter, column=j-1, children[i,j]))
+     ## Add a branch if there are children
+     if(children[i, "offspring"])
+       store$append(parent=iter)
+   }
+ }
+\end{Sinput}
+\end{Schunk}
+
+The ``children'' of the list -- its named components -- are generated
+by this function. For a level of the list, this function returns the
+named components, their class and a logical indicating if the
+component is recursive.
 \begin{Schunk}
 \begin{Sinput}
  getChildren <- function(path=character(0)) {
-   
    pathToObject <- function(path) {      
-     x <- try(eval(parse(text=paste(path,collapse="$")),
-                   envir=.GlobalEnv),silent=TRUE)
-     if(inherits(x,"try-error")) {
-       cat(sprintf("Error with %s",path))
+     x <- try(eval(parse(text=paste(path, collapse="$")),
+                   envir=.GlobalEnv), silent=TRUE)
+     if(inherits(x, "try-error")) {
+       cat(sprintf("Error with %s", path))
        return(NA)
      }
      return(x)
@@ -4554,30 +4627,13 @@ recursive.
  }
 \end{Sinput}
 \end{Schunk}
+ 
 
-This function is used to add the children to a tree store.
-\begin{Schunk}
-\begin{Sinput}
- addChildren <- function(store, children, parentIter=NULL) {
-   if(nrow(children) == 0) 
-     return(NULL)
-   for(i in 1:nrow(children)) {
-     iter <- store$append(parent=parentIter)$iter
-     ## use last column to indicate logical
-     sapply(1:(ncol(children) - 1), function(j)              
-            store$setValue(iter, column=j-1, children[i,j]))
-     ## Add a branch if there are children
-     ## no better way, as this adds an extra blank line
-     ## we remove ir later.
-     if(children[i, "offspring"])
-       store$append(parent=iter)
-   }
- }
-\end{Sinput}
-\end{Schunk}
+The following are technical functions used to manipulate the path
+objects passed back to the callbacks.
 
-The various callbacks for the tree view pass back the view and a tree
-path. We define some functions to relate these values with iterators.
+This function finds the iterator for a tree path. The only issue is
+the sorted store must be handled.
 \begin{Schunk}
 \begin{Sinput}
  tpathToPIter <- function(view, tpath) {
@@ -4612,131 +4668,9 @@ specified by its iterator.
 \end{Sinput}
 \end{Schunk}
 
-Now we can begin defining our tree store. This example allows sorting,
-so calls the \constructor{gtkTreeModelSortNewWithModel} function.
-\begin{Schunk}
-\begin{Sinput}
- store = gtkTreeStore(rep("gchararray",2))
- sstore = gtkTreeModelSortNewWithModel(store)
-\end{Sinput}
-\end{Schunk}
+To finish this example, we would need to create the treeview columns
+and place within a window. 
 
-We set an initial root.
-\begin{Schunk}
-\begin{Sinput}
- iter <- store$append(parent=NULL)$iter
- store$setValue(iter,column=0,"GlobalEnv")
- store$setValue(iter,column=1,"")
- iter <- store$append(parent=iter)
-\end{Sinput}
-\end{Schunk}
-The call of \method{append}{gtkTreeStore} is used to allow the object
-to have an expandable icon. 
-
-
-Now to define the tree view. We allow multiple selection, as an illustration.
-\begin{Schunk}
-\begin{Sinput}
- view = gtkTreeViewNewWithModel(sstore)
- sel = view$getSelection()
- sel$setMode(GtkSelectionMode["multiple"])
-\end{Sinput}
-\end{Schunk}
-
-The view will have two similar columns.
-\begin{Schunk}
-\begin{Sinput}
- ## add two cell renderers -- 1 for name, 1 for type
- nms <- c("Variable name","type")
- for(i in 1:2) {
-   cr <- gtkCellRendererText()
-   vc <- gtkTreeViewColumn()
-   vc$setSortColumnId(i-1) # allow sorting
-   vc$setResizable(TRUE)
-   vc$setTitle(nms[i])
-   vc$packStart(cr,TRUE)
-   vc$addAttribute(cr,"text",i-1)
-   view$insertColumn(vc, i-1)
- }
-\end{Sinput}
-\end{Schunk}
-
-We put the tree view widget into a basic GUI.
-\begin{Schunk}
-\begin{Sinput}
- sw <- gtkScrolledWindow()
- sw$setPolicy("automatic","automatic")
- sw$add(view)
- w <- gtkWindow()
- w$setTitle("Tree view")
- w$add(sw)
-\end{Sinput}
-\end{Schunk}
-
-
-At this point, we can see the first level, but nothing will happen if
-we click on the trigger icon. We need to specify a handler for the
-\code{row-expanded} signal. The odd thing here, is that we appended an
-fake child, so that an expand icon would appear. In this, we remove it.
-
-\begin{Schunk}
-\begin{Sinput}
- ID <- gSignalConnect(view,signal="row-expanded",
-                      f = function(view, iter, tpath, user.data) {
-                        store <- user.data
-                        p.iter <- tpathToPIter(view, tpath)
-                        path <- iterToPath(view, p.iter)
-                        children = getChildren(path)
-                        addChildren(store, children, parentIter=p.iter)
-                        ## remove errant 1st offspring. See addChildren
-                        ci <- store$iterChildren(p.iter)
-                        if(ci$retval) store$remove(ci$iter)
-                      },
-                      data=store)
-\end{Sinput}
-\end{Schunk}
-
-Since the new data is generated when the row is expanded, we need
-to remove the old data when the row is closed.
-\begin{Schunk}
-\begin{Sinput}
- ID <- gSignalConnect(view,signal="row-collapsed",
-                   f = function(view, iter, tpath, user.data) {
-                     store <- user.data
-                     p.iter <- tpathToPIter(view,tpath)
- 
-                     n = store$iterNChildren(p.iter)
-                     if(n > 1) { ## n=1 gets removed when expanded
-                       for(i in 1:(n-1)) {
-                         child.iter = store$iterChildren(p.iter)
-                         if(child.iter$retval)
-                           store$remove(child.iter$iter)
-                       }
-                     }
-                   }, data=store)
-\end{Sinput}
-\end{Schunk}
-
-Finally, this handler simply shows how to get the value (or values if
-multiple selection is okay). 
-\begin{Schunk}
-\begin{Sinput}
- ID <- gSignalConnect(view,signal="row-activated",
-                      f = function(view, tpath, tcol) {
-                        p.iter <- tpathToPIter(view, tpath)
-                        path <- iterToPath(view, p.iter)
-                        sel <- view$getSelection()
-                        out <- sel$getSelectedRows()
-                        if(length(out) == 0) return(c()) # nothing
-                        vals <- c()
-                        for(i in out$retval) {  # multiple selections
-                          iter <- out$model$getIter(i)$iter
-                          vals <- c(vals, out$model$getValue(iter,0)$value)
-                        }
-                        print(vals)      # Insert Real Function Here
-                      })
-\end{Sinput}
-\end{Schunk}
 
 
 
@@ -4757,12 +4691,17 @@ multiple selection is okay).
 \label{sec:RGtk2:actions}
 
 Actions are a means to create reusable representations for some action
-to be initiated. The \constructor{gtkAction} constructor creates
-actions, taking arguments \argument{name}{gtkAction},
+to be initiated. Actions can be shared among buttons, menubars and
+toolbars. The \constructor{gtkAction} constructor creates actions,
+taking arguments \argument{name}{gtkAction},
 \argument{label}{gtkAction} (what gets shown),
 \argument{tooltip}{gtkAction}, and \argument{stock.id}{gtkAction}.
 The act associated with an action is specified by adding a callback to
-the \signal{activate} signal.
+its \signal{activate} signal.
+
+Actions can have their \code{sensitivity} property adjusted through
+their \method{SetSensitive}{gtkAction} method. This will propogate to
+all the widgets the action has a proxy connection with.
 
 Actions are connected to widgets, through the method
 \method{connectProxy}{gtkAction}. For buttons, the stock id
@@ -4771,18 +4710,15 @@ information must be added to the button through the button's
 method, with argument coming from a value of \code{GtkIconSize}, will
 return the needed image.
 
-Actions can have their \code{sensitivity} property adjusted through
-their \method{SetSensitive}{gtkAction} method. This will propogate to
-all the widgets the action has a proxy connection with.
-
 
 \begin{example}{An action object}{ex:RGtk2-action-object}
 A basic action can be defined as follows:
 \begin{Schunk}
 \begin{Sinput}
- a <- gtkAction(name="ok", label="_Ok", tooltip="An OK button", stock.id="gtk-ok")
+ a <- gtkAction(name="ok", label="_Ok", 
+                tooltip="An OK button", stock.id="gtk-ok")
  ID <- gSignalConnect(a, "activate", f = function(w, data) {
-   print(a$GetName())                    # of some useful thing
+   print(a$GetName())                    # or some useful thing
  })
 \end{Sinput}
 \end{Schunk}
@@ -4821,19 +4757,24 @@ menu bar (\command{gtkMenuBar}). To a menu bar we append menu
 items. Menu items may have sub menus (\constructor{gtkMenu}) appended, which gives
 the heirarchical nature of a menu. Popup menus are similar, although begin with a \constructor{gtkMenu} instance.  
 
+Menubars (along with the upcoming toolbars and statusbars) are placed
+within the GUI by the programmer, although convention dictates their
+position within a top-level window.
+
+
 %% attach
 \paragraph{Building the the menu}
 Submenus and added to a menu item through the
-\method{SetSubMenu}{gtkMenuItem} method. Menu items are added to a
+\method{setSubMenu}{gtkMenuItem} method. Menu items are added to a
 menu through the methods
-\method{Append}{gtkMenuShell}; \method{Prepend}{gtkMenuShell}; and
-\method{Insert}{gtkMenuShell}, the latter requiring an index where the
-insertion is to take place, with 0 being the same as \code{Prepend},
+\method{append}{gtkMenuShell}; \method{prepend}{gtkMenuShell}; and
+\method{insert}{gtkMenuShell}, the latter requiring an index where the
+insertion is to take place, with 0 being the same as \code{prepend},
 in addition to the child. After a child is added, the method
 \method{ReorderChild}{gtkMenuShell} can be used to move it to a new
 position ($0$-based). Menuitems are not typically removed, rather they
-are disabled through their \code{SetSensitive} method, but if desired
-their \method{Show}{gtkWidget} and \method{Hide}{gtkWidget} methods
+are disabled through their \code{setSensitive} method, but if desired
+their \method{show}{gtkWidget} and \method{hide}{gtkWidget} methods
 can be used to stop them from being drawn.
 
 %% Menu itmes
@@ -4841,8 +4782,8 @@ can be used to stop them from being drawn.
 % Note that accelerators are different from mnemonics. Accelerators are shortcuts for activating a menu item; they appear alongside the menu item they're a shortcut for. For example "Ctrl+Q" might appear alongside the "Quit" menu item. Mnemonics are shortcuts for GUI elements such as text entries or buttons; they appear as underlined characters. See gtk_label_new_with_mnemonic(). Menu items can have both accelerators and mnemonics, of course. 
 
 \paragraph{Menu items}
-Menu items represent actions to be taken and are created by several
-different constructors.  A basic menu item is created by
+Menu items represent actions to be taken and are created through
+several different constructors.  A basic menu item is created with
 \constructor{gtkMenuItem}. The argument \argument{label}{gtkMenuItem}
 allows one to specify the label at construction time. The related
 constructor, \constructor{gtkMenuItemNewWithMnemonic} also allows the
@@ -4852,8 +4793,8 @@ separators (\constructor{gtkSeparatorMenuItem}).
 
 A menu item for a \code{gtkAction} object can be created by its
 \method{createMenuItem}{gtkAction} method. For window managers that
-display them, any icon specified the action's \code{stock.id} argument
-will be displayed.
+display them, any icon specified through the action's \code{stock.id}
+argument will be displayed.
 
 
 To add a different image in the menu bar, the
@@ -4876,13 +4817,12 @@ the \code{active} state for the menu is set. The default is not
 active. Use the \method{GetActive}{gtkCheckMenuItem} to test if the
 state is active or not.  It may be best to set this state to active,
 so the user can identify that the item is a toggle (use the method
-\code{SetActive(TRUE)}. When the user clicks on the menu item, the
+\code{SetActive(TRUE)}. When the user clicks on the menu item, its
 \signal{toggled} signal is emitted.
 
 \begin{example}{A basic menu bar}{eg:Rgtk2-Basic}
 We illustrate how to make a basic menu bar with a plain item, an
-item with an icon, and check item. Our GUI, just adds a menubar to a
-top-level window.
+item with an icon, and a check item.
 
 We create top-level menubar and a menu item for our top level File entry with a mnemonic.
 \begin{Schunk}
@@ -4919,7 +4859,8 @@ This illustrates how to add an image to the menu bar using a stock icon. The siz
 \begin{Schunk}
 \begin{Sinput}
  quit <- gtkImageMenuItem(label="quit")
- quit$setImage(gtkImageNewFromStock("gtk-quit", size=GtkIconSize["menu"]))
+ quit$setImage(gtkImageNewFromStock("gtk-quit", 
+               size=GtkIconSize["menu"]))
 \end{Sinput}
 \end{Schunk}
 
@@ -4934,7 +4875,8 @@ A simple check menu item can be created, as follows:
 These items are appended in the desired order, by
 \begin{Schunk}
 \begin{Sinput}
- Qt <- sapply(list(open, save, happy, gtkSeparatorMenuItem(), quit), function(i) {
+ items <- list(open, save, happy, gtkSeparatorMenuItem(), quit)
+ Qt <- sapply(items, function(i) {
         fileMb$append(i)
       })
 \end{Sinput}
@@ -4944,7 +4886,9 @@ We specify a handler for the toggle button
 \begin{Sinput}
  ID <- gSignalConnect(happy, "toggled", function(b,data) {
    if(b$getActive())
-     print("User is now happy")
+     print("User is now happy ;)")
+   else
+     print("User is unhappy ;(")
  })
 \end{Sinput}
 \end{Schunk}
@@ -4959,15 +4903,6 @@ For the other  items, we specify a generic action for the \signal{activate} sign
 \end{Sinput}
 \end{Schunk}
 
-We make as simple GUI for the menubar.
-\begin{Schunk}
-\begin{Sinput}
- w <- gtkWindow(show=FALSE)
- w['title'] <- "Menubar example"
- w$add(mb)
- w$ShowAll()
-\end{Sinput}
-\end{Schunk}
 \end{example}
 
 \begin{example}{Popup menus}{ex:RGtk2-popup-menus}
@@ -4996,19 +4931,19 @@ the callback (a \code{GdkEvent}), as shown.
  w <- gtkWindow(); w$setTitle("Popup menu example")
  w$add(b)
  ID <- gSignalConnect(b,"button-press-event",
-                     f = function(w, e, userData) {
-                       if(e$getButton() == 3 ||
-                          (e$getButton() == 1 && # a mac
-                           e$getState() == GdkModifierType['control-mask'])
-                          ) {
-                         gtkMenuPopup(userData$mb,
-                                      button = e$getButton(),
-                                      activate.time = e$getTime())
-                         }
-                       return(FALSE)
-                     },
-                     data=list(mb=popup)
-                     )
+              f = function(w, e, userData) {
+                if(e$getButton() == 3 ||
+                   (e$getButton() == 1 && # a mac
+                    e$getState() == GdkModifierType['control-mask'])
+                   ) {
+                  gtkMenuPopup(userData$mb,
+                               button = e$getButton(),
+                               activate.time = e$getTime())
+                  }
+                return(FALSE)
+              },
+              data=list(mb=popup)
+              )
 \end{Sinput}
 \end{Schunk}
 
@@ -5032,8 +4967,7 @@ The above can easily be automated. The menubar widget in
 \pkg{gWidgetsRGtk2} simply maps a list with named components to the
 above, by setting menu items for each top-level component, submenus for
 each component that contains children, and menu items for components
-that do not have children. However, the next approach is preferred for
-larger menubars, as it separates out the presentation from the actions.
+that do not have children. 
 
 \section{Toolbars}
 \label{sec:RGtk2:toolbars}
@@ -5042,39 +4976,44 @@ Toolbars are like menubars only they only contain actions, there are
 no submenus. Toolbar objects are constructed by
 \constructor{gtkToolbar}. The placement of the widget at the top of a
 top-level window is done by the programmer. Toolbar items are added to
-the toolbar using the \method{Add}{gtkContainer} method. Once added,
+the toolbar using the \method{add}{gtkContainer} method. Once added,
 items can be referred to by index using the \code{[[} method.
+%%]]
 
 Toolbar items have some common properties. The buttons are comprised
 of an icon and text, and the style of their layout is specified by the
-toolbar method \method{SetStyle}{gtkToolbar}, with values coming from
+toolbar method \method{setStyle}{gtkToolbar}, with values coming from
 the \code{GtkToolbarStyle} enumeration. Toolbar items can have a
 tooltip set for them through the methods
-\method{SetTooltipText}{gtkToolItem} or
-\method{SetTooltipMarkup}{gtkToolItem}, the latter if PANGO markup is
-desired. Toolbar items can be disabled, through the method \method{SetSensitive}{gtkWidget}.
+\method{setTooltipText}{gtkToolItem} or
+\method{setTooltipMarkup}{gtkToolItem}, the latter if PANGO markup is
+desired. Toolbar items can be disabled, through the method
+\method{setSensitive}{gtkWidget}.
 
 The items can be one of a few different types. A stock toolbar item is
 constructed by \constructor{gtkToolbarButtonNewFromStock}, with the
 stock id as the argument. The constructor
 \constructor{gtkToolbarButton} creates a button that can have its
 label and icon value set through methods
-\method{SetLabel}{gtkToolbarButton} and
-\method{SetIconWidget}{gtkToolbarButton}. Additionally, there are
+\method{setLabel}{gtkToolbarButton} and
+\method{setIconWidget}{gtkToolbarButton}. Additionally, there are
 methods for setting a tooltip or specifying a stock id after
 construction. A toggle button, which toggles between looking depressed
-or not when clicked is created by \constructor{gtkToggleToolButton} or \constructor{gtkToggleToolButtonNewFromStock}.
-Additionally there are constructors to place menus
-(\constructor{gtkMenuToolButton}) and radio groups (\constructor{gtkRadioToolButton}).
+or not when clicked is created by \constructor{gtkToggleToolButton}
+(or \constructor{gtkToggleToolButtonNewFromStock}).  Additionally
+there are constructors to place menus
+(\constructor{gtkMenuToolButton}) and radio groups
+(\constructor{gtkRadioToolButton}).
   
 % signale
 The \code{clicked} signal is emitted when a toolbar button is
-pressed. For the toggle button, the \code{toggle} signal is emitteed. Other
+pressed. For the toggle button, the \code{toggle} signal is
+emitteed.
 
 
 
 \begin{example}{Basic toolbar usage}{ex:RGtk2-basic-toolbar}
-We illustrate with a toolbar, whose buttons are produced in various ways.
+We illustrate with a toolbar whose buttons are produced in various ways.
 \begin{Schunk}
 \begin{Sinput}
  tb <- gtkToolbar()
@@ -5114,29 +5053,20 @@ initiate the callback only when the button is depressed.
 We give the other buttons a simple callback when clicked:
 \begin{Schunk}
 \begin{Sinput}
- QT <- sapply(1:2, function(i) gSignalConnect(tb[[i]], "clicked", function(button, data) {
-   cat("You clicked", button$getLabel(), "\n")
- }))
+ QT <- sapply(1:2, function(i) {
+   gSignalConnect(tb[[i]], "clicked", function(button, data) {
+     cat("You clicked", button$getLabel(), "\n")
+   })
+ })
 \end{Sinput}
 \end{Schunk}
 
-\begin{Schunk}
-\begin{Sinput}
- w <- gtkWindow(show=FALSE)
- w['title'] <- "Toolbar example"
- g <- gtkVBox()
- w$add(g)
- g$packStart(tb, expand=FALSE)
- g$packStart(gtkLabel("filler"), expand=TRUE, fill=TRUE)
- w$showAll()
-\end{Sinput}
-\end{Schunk}
 \end{example}
 
 \section{Statusbars}
 \label{sec:RGtk2:statusbars}
 
-In \GTK, a statusbar is constructed through by the
+In \GTK, a statusbar is constructed through the
 \constructor{gtkStatusbar} function. Statusbars must be placed at the
 bottom of a top-level window by the programmer. In \GTK, a statusbar
 keeps various stacks of messages for display. One adds a message to
@@ -5219,14 +5149,20 @@ the callback, an empty string.
  firstActionEntries = list(
    ## name,ID,label,accelerator,tooltip,callback
    file = list("File",NULL,"_File",NULL,NULL,NULL),
-   new = list("New","gtk-new","_New","<control>N","New document",someAction),
-   sub = list("Submenu",NULL,"S_ub",NULL,NULL,NULL),
-   open = list("Open","gtk-open","_Open","<ctrl>0","Open document",someAction),
-   save = list("Save","gtk-save","_Save","<alt>S","Save document",someAction),
-   quit = list("Quit","gtk-quit","_Quit","<ctrl>Q","Quit",Quit),
-   edit = list("Edit",NULL,"_Edit",NULL,NULL,NULL),
-   undo = list("Undo","gtk-undo","_Undo","<ctrl>Z","Undo change",someAction),
-   redo = list("Redo","gtk-redo","_Redo","<ctrl>U","Redo change",someAction)
+   new = list("New", "gtk-new", "_New", "<control>N", 
+     "New document", someAction),
+   sub = list("Submenu", NULL, "S_ub", NULL, NULL, NULL),
+   open = list("Open", "gtk-open", "_Open", "<ctrl>0", 
+     "Open document", someAction),
+   save = list("Save", "gtk-save", "_Save", "<alt>S", 
+     "Save document", someAction),
+   quit = list("Quit", "gtk-quit", "_Quit", "<ctrl>Q", 
+     "Quit", Quit),
+   edit = list("Edit", NULL, "_Edit", NULL, NULL, NULL),
+   undo = list("Undo", "gtk-undo", "_Undo", "<ctrl>Z", 
+     "Undo change", someAction),
+   redo = list("Redo", "gtk-redo", "_Redo", "<ctrl>U", 
+     "Redo change", someAction)
  )
 \end{Sinput}
 \end{Schunk}
@@ -5235,7 +5171,7 @@ to the first spot in the UI manager.
 \begin{Schunk}
 \begin{Sinput}
  QT <- firstActionGroup$addActions(firstActionEntries)
- uimanager$insertActionGroup(firstActionGroup,0) # 0 -- first spot
+ uimanager$insertActionGroup(firstActionGroup, 0) # 0-based
 \end{Sinput}
 \end{Schunk}
 
@@ -5247,8 +5183,8 @@ incorporate radio groups, although this is not shown.
 \begin{Sinput}
  helpActionGroup = gtkActionGroup("helpActionGroup")
  helpActionEntries = list(
-   help = list("Help","","_Help","","",NULL),
-   about = list("About","gtk-about","_About","","",someAction)
+   help = list("Help", "", "_Help", "", "", NULL),
+   about = list("About", "gtk-about", "_About", "", "", someAction)
    )
  QT <- helpActionGroup$AddActions(helpActionEntries)
 \end{Sinput}
@@ -5262,11 +5198,14 @@ for user data, as illustrated.
 
 \begin{Schunk}
 \begin{Sinput}
- toggleAction <- gtkToggleAction("UseTooltips",label="_Use tooltips",
+ toggleAction <- gtkToggleAction("UseTooltips",
+                                 label="_Use tooltips",
                                  tooltip="Use tooltips ")
  toggleAction$setActive(TRUE)            # initially set
- ID <- gSignalConnect(toggleAction,signal = "toggled",
-                     f=function(ta,userData) cat(userData,ta$getName(),"\n"),
+ ID <- gSignalConnect(toggleAction, signal = "toggled",
+                     f=function(ta, userData)  {
+                       cat(userData,ta$getName(),"\n")
+                     },
                      data="toggled")
  helpActionGroup$addAction(toggleAction)
 \end{Sinput}
@@ -5353,9 +5292,9 @@ The statusbar is constructed with
  statusbar <- gtkStatusbar()
 \end{Sinput}
 \end{Schunk}
-Statusbars have a simple API. The \method{push} method, as used in the
-definition of the callback \code{f}, is used to add new text to the
-statusbar. The \code{pop} method reverts to the previous message.
+-- in the definition of the callback \code{f} -- is used to add new
+text to the statusbar. The \code{pop} method reverts to the previous
+message.
 
 
 Now we define a top-level window and attach a keyboard accelerator
@@ -5387,7 +5326,7 @@ Now it is a simple matter of packing the widgets into a box.
 \end{Schunk}
 
 The redo feature should only be sensitive to mouse events after a user
-has undone an action and has not done another. To set the sensitivity
+has undone an action. To set the sensitivity
 of a menu item is done through the \method{SetSensitive} method called
 on the widget. We again retrieve the menuitem or toolbar item widgets
 through their names.
@@ -5397,7 +5336,7 @@ through their names.
  uimanager$getWidget("/menubar/Edit/EditRedo")$setSensitive(FALSE)
 \end{Sinput}
 \end{Schunk}
-To reenable, use \code{TRUE} for the argument to \command{SetSensitive}
+To re-enable, use \code{TRUE} for the argument to \meth{setSensitive}
 
 We can also use the \method{SetText} method on the menuitems. For
 instance, instead of a generic ``Undo'' label, one might want to
@@ -5431,7 +5370,7 @@ shows buttons, such as \kbd{yes}, \kbd{no} and/or
 \constructor{gtkMessageDialog} simplify the construction.
 
 In \GTK\/ dialogs can be modal or not. Thre are a few ways to make a
-dialog modal. The method window \method{setModal}{gtkWindow} will do
+dialog modal. The window method \method{setModal}{gtkWindow} will do
 so, as will passing in a \code{modal} flag to some of the
 constructors. These make other GUI elements inactive, but not the \R\/
 session. Whereas, calling the \method{run}{gtkDialog} method,
@@ -5490,10 +5429,10 @@ emitted by the dialog. We connect to this close the dialog.
 \begin{Schunk}
 \begin{Sinput}
  dlg <- gtkDialogNewWithButtons(title="Enter a value", 
-                                parent=NULL, flags=0,
-                                "gtk-ok", GtkResponseType["ok"],
-                                "gtk-cancel", GtkResponseType["cancel"],
-                                show=FALSE)
+                 parent=NULL, flags=0,
+                 "gtk-ok", GtkResponseType["ok"],
+                 "gtk-cancel", GtkResponseType["cancel"],
+                 show=FALSE)
  g <- dlg$getVbox()                           # content area
  vg <- gtkVBox()
  vg['spacing'] <- 10
@@ -5501,11 +5440,12 @@ emitted by the dialog. We connect to this close the dialog.
  vg$packStart(gtkLabel("Enter a value"))
  entry <- gtkEntry()
  vg$packStart(entry)
- ID <- gSignalConnect(dlg, "response", f=function(dlg, resp, user.data) {
-   if(resp == GtkResponseType["ok"])
-     print(entry$getText())
-   dlg$Destroy()
- })
+ ID <- gSignalConnect(dlg, "response", 
+                      f=function(dlg, resp, user.data) {
+                        if(resp == GtkResponseType["ok"])
+                          print(entry$getText())
+                        dlg$Destroy()
+                      })
  dlg$showAll()
  dlg$setModal(TRUE)
 \end{Sinput}
@@ -5534,9 +5474,10 @@ An open file dialog can be created with:
 
 \begin{Schunk}
 \begin{Sinput}
- dlg <- gtkFileChooserDialog(title="Open a file", parent=NULL, action="open",
-                             "gtk-ok", GtkResponseType["ok"],
-                             "gtk-cancel", GtkResponseType["cancel"])
+ dlg <- gtkFileChooserDialog(title="Open a file", 
+                      parent=NULL, action="open",
+                      "gtk-ok", GtkResponseType["ok"],
+                      "gtk-cancel", GtkResponseType["cancel"])
 \end{Sinput}
 \end{Schunk}
 
