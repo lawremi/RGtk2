@@ -54,8 +54,12 @@ even the Windows GUI that comes with \R's Windows package. There are
 also several special purpose GUIs, like \pkg{iPlots}, which are
 largely implemented in Java, relying on \pkg{rJava}, a native
 interface between \R\/ and Java.
+
 % ML: It seems like rJava-based GUIs like CADStat and Deducer DO fall into
 % our scope, but I would hate to have to document Swing...
+%x JV: Me too! It may be artificial, but rJava does require one to write Java code
+% to do many things. For example, a simple callback, so it is in my mind
+% more on the java side of things than the R side.
 
 The bulk of this text covers four different packages for writing GUIs
 in \R. The \pkg{gWidgets} package is covered first. This provides a
@@ -66,11 +70,13 @@ toolkits, so is useful for a programmer who does not wish to invest
 too much time into perfecting a GUI. There are a few other packages
 that provide a high-level \R\/ interface to a toolkit such as
 \code{rpanel} or \code{svDialogs}, but we focus on this one.
-% ML: but gWidgets is much more general than either of those, right?
 
-The next three chapters introduce the native interfaces upon which
+% ML: but gWidgets is much more general than either of those, right?
+% JV: Yes
+
+The next three parts introduce the native interfaces upon which
 \pkg{gWidgets} is built. These offer fuller and more direct control of
-the underlying toolkit and thus are well suited the development of GUI
+the underlying toolkit and thus are well suited the development of GUIs
 that require special features or performance characteristics.  The
 first of these is the \pkg{RGtk2} package which provides a link
 between \R\/ and the cross-platform \GTK\/ library. \GTK\/ is mature,
@@ -92,9 +98,8 @@ bindings to \TK\/ were the first ones to appear for \R\/ and
 several of the GUI projects above, notably \pkg{Rcmdr}, use this
 toolkit.
 
-There is a chapter dedicated to each of these four packages. Those
-chapters are preceeded by an introductory chapter on GUIs and followed
-by a chapter on web GUIs.
+These four main parts are preceeded by an introductory chapter on GUIs
+and followed by a chapter on web GUIs.
 
 The text is written with the belief that much can be learned by
 studying examples, and so several examples are given. Some of these
@@ -109,10 +114,10 @@ This text comes with an accompanying package \pkg{\PACKAGENAME}. This
 package includes the complete code for all the examples. In order to
 save space, some examples in the text have code that is not shown. The
 package provides the functions \code{browsegWidgetsFiles},
-\code{browseTclTkFiles} and \code{browseRGtk2Files} for browsing the
-examples from the respective chapters. Additionally, this package will
-contain vignettes describing aspects that did not make it into the
-text.
+\code{browseRGtk2Files}, \code{browseQtFiles} and
+\code{browseTclTkFiles} for browsing the examples from the respective
+chapters. Additionally, this package will contain vignettes describing
+aspects that did not make it into the text.
 
 
 This text was written with the \pkg{Sweave} package. To suppress

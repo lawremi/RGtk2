@@ -49,8 +49,12 @@ even the Windows GUI that comes with \R's Windows package. There are
 also several special purpose GUIs, like \pkg{iPlots}, which are
 largely implemented in Java, relying on \pkg{rJava}, a native
 interface between \R\/ and Java.
+
 % ML: It seems like rJava-based GUIs like CADStat and Deducer DO fall into
 % our scope, but I would hate to have to document Swing...
+%x JV: Me too! It may be artificial, but rJava does require one to write Java code
+% to do many things. For example, a simple callback, so it is in my mind
+% more on the java side of things than the R side.
 
 The bulk of this text covers four different packages for writing GUIs
 in \R. The \pkg{gWidgets} package is covered first. This provides a
@@ -61,7 +65,9 @@ toolkits, so is useful for a programmer who does not wish to invest
 too much time into perfecting a GUI. There are a few other packages
 that provide a high-level \R\/ interface to a toolkit such as
 \code{rpanel} or \code{svDialogs}, but we focus on this one.
+
 % ML: but gWidgets is much more general than either of those, right?
+% JV: Yes
 
 The next three chapters introduce the native interfaces upon which
 \pkg{gWidgets} is built. These offer fuller and more direct control of

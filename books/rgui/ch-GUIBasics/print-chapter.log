@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.4.5)  17 APR 2010 15:01
+This is pdfTeX, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.4.5)  25 APR 2010 11:15
 entering extended mode
 **print-chapter
 (./print-chapter.tex
@@ -671,66 +671,66 @@ LaTeX Font Warning: Font shape `OMS/pplx/m/n' undefined
 [1{/opt/local/share/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 ]
-LaTeX Font Info:    Try loading font information for OT1+pplx on input line 156
+LaTeX Font Info:    Try loading font information for OT1+pplx on input line 152
 .
 
 (/opt/local/share/texmf-dist/tex/latex/psnfss/ot1pplx.fd
 File: ot1pplx.fd 2004/09/06 font definitions for OT1/pplx.
 )
-LaTeX Font Info:    Try loading font information for OML+zplm on input line 156
+LaTeX Font Info:    Try loading font information for OML+zplm on input line 152
 .
 
 (/opt/local/share/texmf-dist/tex/latex/psnfss/omlzplm.fd
 File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMS+zplm on input line 156
+LaTeX Font Info:    Try loading font information for OMS+zplm on input line 152
 .
 
 (/opt/local/share/texmf-dist/tex/latex/psnfss/omszplm.fd
 File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMX+zplm on input line 156
+LaTeX Font Info:    Try loading font information for OMX+zplm on input line 152
 .
 
 (/opt/local/share/texmf-dist/tex/latex/psnfss/omxzplm.fd
 File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
 )
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 156.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 152.
 
 
 (/opt/local/share/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 156.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 152.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 156.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 152.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 156.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 152.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 156.
+(Font)              scaled to size 9.37807pt on input line 152.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 156.
+(Font)              scaled to size 7.29405pt on input line 152.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 5.21004pt on input line 156.
+(Font)              scaled to size 5.21004pt on input line 152.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 156.
+(Font)              scaled to size 9.37807pt on input line 152.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 156.
+(Font)              scaled to size 7.29405pt on input line 152.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 5.21004pt on input line 156.
-LaTeX Font Info:    Try loading font information for OT1+zplm on input line 156
+(Font)              scaled to size 5.21004pt on input line 152.
+LaTeX Font Info:    Try loading font information for OT1+zplm on input line 152
 .
 
 (/opt/local/share/texmf-dist/tex/latex/psnfss/ot1zplm.fd
 File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
 ) [2] [3] [4]
 LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <10> not available
-(Font)              Font shape `T1/pplx/b/n' tried instead on input line 330.
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 333.
 
 
 Package natbib Warning: Citation `APPLE:HIG' on page 5 undefined on input line 
-330.
+333.
 
 <fig-mac-print.png, id=21, 794.97pt x 555.07375pt>
 File: fig-mac-print.png Graphic file (type png)
@@ -744,25 +744,25 @@ File: r-print-dialog.png Graphic file (type png)
 [5] [6 <./fig-mac-print.png> <./kde-print.png (PNG copy)>] [7 <./r-print-dialog
 .png (PNG copy)>]
 LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/pplx/b/n' tried instead on input line 470.
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 465.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 488.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 483.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 488.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 483.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 488.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 483.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 10.42007pt on input line 488.
+(Font)              scaled to size 10.42007pt on input line 483.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.91925pt on input line 488.
+(Font)              scaled to size 7.91925pt on input line 483.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 488.
+(Font)              scaled to size 6.25204pt on input line 483.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 10.42007pt on input line 488.
+(Font)              scaled to size 10.42007pt on input line 483.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.91925pt on input line 488.
+(Font)              scaled to size 7.91925pt on input line 483.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 488.
+(Font)              scaled to size 6.25204pt on input line 483.
 
 <spss-11-model-selection.png, id=35, 506.89375pt x 352.31625pt>
 File: spss-11-model-selection.png Graphic file (type png)
@@ -775,16 +775,16 @@ File: ex-listbox.png Graphic file (type png)
 File: tcltk-tkdensity.png Graphic file (type png)
 
 <use tcltk-tkdensity.png> [10 <./ex-listbox.png (PNG copy)> <./tcltk-tkdensity.
-png>] <fig-spotfire.png, id=49, 824.07875pt x 714.67pt>
+png>] [11] <fig-spotfire.png, id=52, 824.07875pt x 714.67pt>
 File: fig-spotfire.png Graphic file (type png)
- <use fig-spotfire.png>
-[11] [12 <./fig-spotfire.png>]
+
+<use fig-spotfire.png> [12 <./fig-spotfire.png>]
 
 Package natbib Warning: Citation `APPLE:HIG' on page 13 undefined on input line
- 787.
+ 758.
 
 
-Overfull \hbox (12.21329pt too wide) in paragraph at lines 838--855
+Overfull \hbox (12.21329pt too wide) in paragraph at lines 809--826
 \T1/pplx/m/n/10 Xerox Parc's rev-o-lu-tion-ary idea of a \T1/cmtt/m/n/10 WIMP \
 T1/pplx/m/n/10 GUI added win-dows, icons, menubars,
  []
@@ -800,10 +800,10 @@ File: Rcmdr-main-window.png Graphic file (type png)
 main-window.png>]
 
 LaTeX Warning: Reference `fig:GUI:Rcmdr-main-window' on page 16 undefined on in
-put line 997.
+put line 964.
 
 [16]
-Overfull \hbox (29.16556pt too wide) in paragraph at lines 1137--1145
+Overfull \hbox (29.16556pt too wide) in paragraph at lines 1104--1112
 []\T1/pplx/m/n/10 The chil-dren of the GUI must be or-ga-nized in some man-ner.
  In GTK+(\T1/cmtt/m/n/10 gWidgets\T1/pplx/m/n/10 ),
  []
@@ -824,7 +824,7 @@ File: box-glue-spring.png Graphic file (type png)
 ox-expand.png> <./box-glue-spring.png>]
 
 Package natbib Warning: Citation `APPLE:HIG' on page 20 undefined on input line
- 1349.
+ 1316.
 
 [20])
 
@@ -841,7 +841,7 @@ LaTeX Warning: There were undefined references.
 Here is how much of TeX's memory you used:
  7920 strings out of 94073
  103536 string characters out of 1164798
- 234939 words of memory out of 1500000
+ 234895 words of memory out of 1500000
  11079 multiletter control sequences out of 10000+50000
  55253 words of font info for 104 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
@@ -854,7 +854,7 @@ er/sftt0900.pfb></opt/local/share/texmf-dist/fonts/type1/public/cm-super/sftt10
 00.pfb></opt/local/share/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></opt/l
 ocal/share/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></opt/local/share/tex
 mf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on print-chapter.pdf (21 pages, 585208 bytes).
+Output written on print-chapter.pdf (21 pages, 585093 bytes).
 PDF statistics:
  122 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)

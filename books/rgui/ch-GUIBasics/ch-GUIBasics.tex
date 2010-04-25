@@ -73,10 +73,6 @@ some of the issues that this text will address with using GUIs.
 
 Many GUIs can be thought of as different views of some data
 model. 
-% This thought leads itself to the prevalent
-% model-view-controller architecture of many large GUI applications. 
-% For many of our examples in the text, we avoid that level of design, but
-% do try to keep separate the different aspects of GUI design. 
 In this example, the data simply consists of information holding the
 state of the game. Here we define a global variable, \code{board}, to store the
 current state of the game. 
@@ -266,6 +262,10 @@ on the screen.
 \end{Sinput}
 \end{Schunk}
 
+This example adheres to the model-view-controller design pattern that
+is implemented by virtually every complex GUI. We will encounter this
+pattern throughout this book, although it is not always explicit.
+
 %% endless tweak
 A final point, the above example illustrates a common issue when designing
 software that is particularly true of GUIs -- feature creep is an
@@ -320,10 +320,13 @@ frame, a command line, a function editor, a graphic or an arbitrarily
 complex form containing an assortment of such elements. 
 
 %% JV: control or "action" here?
-The actions that can be performed on the ``document'' are called
-through another WIMP component, the menu. Abstractly, every control in
-a window belongs to some menu. Two common ways of organizing controls
-into menus are the menubar and toolbar.
+%% ML: tried to make this clearer
+
+Abstractly, WIMP is a command language, where the user executes
+commands, often called actions, on a document by interacting with
+graphical controls. Every control in a window belongs to some abstract
+menu. Two common ways of organizing controls into menus are the
+menubar and toolbar.
 
 The parameters of an action call, if any, are controlled in
 sub-windows. These sub-windows are termed \dfnref{application windows}
@@ -391,22 +394,24 @@ without having to use a sub dialog.
 
 %% Choice of layout -- positioning, focus, use of spacing, center
 %% balance, vs. ...
-How the interfaces are laid out also varies. All are read top to
-bottom, although the Mac interface also has a very nice preview
-feature on the left side. The KDE dialog uses frames to
+How the interfaces are laid out also varies.  All
+panels are read top to bottom, although the Mac interface also has a very
+nice preview feature on the left side. The KDE dialog uses frames to
 separate out the printer arguments from the arguments that specify how
 the print job is to proceed. The Mac uses a vertical arrangement to
-guide the user through this. For the Mac, horizontal separators are used instead of
-frames to break up the areas, although a frame is used towards the
-bottom. 
+guide the user through this. For the Mac, horizontal separators are
+used instead of frames to break up the areas, although a frame is used
+towards the bottom. Apple uses a center balance for its controls. They
+are not left justified as are the KDE and Windows dialogs. Apple has
+strict user-interface guidelines and this center balance is a design
+decision.
 
-Apple uses a center balance for its controls. They are not left
-justified as are the KDE and Windows dialogs. Apple has strict
-user-interface guidelines and this center balance is a design
-decision. 
-
-
-
+%% feature exposure, Choice of options -- what to show, what to leave out
+The layout also determines how many features and choices are visible to the
+user at a given time.  For example, the Mac GUI uses ``disclosure
+buttons'' to allow access to printer properties and the PDF settings,
+whereas KDE uses a notebook container to show only a subset of the
+options at once.
 
 %% state visualization: sensitive/not; focus, not, 
 The Mac GUI provides a very nice preview of the current document
@@ -456,16 +461,6 @@ a spring to push some buttons to the left, and some to the right to
 keep separate their level of importance. The KDE buttons do so as
 well, although one can't tell from this. However, one can see the use
 of stock icons on the buttons to guide the user. 
-
-%% feature exposure, Choice of options -- what to show, what to leave out
-One of the greatest differences between these dialogs is the amount of
-features they choose to expose. For example, the Mac GUI uses ``disclosure buttons'' to allow access to
-printer properties and the PDF settings, whereas KDE uses a notebook
-container to show possible options without revealing all of their
-detail.
-
-
-
 
 \subsection{Choice of widget}
 \label{sec:choice-widget}
@@ -539,25 +534,9 @@ the potential user base is important.
 \section{Controls}
 \label{sec:GUI:basic-components}
 This section provides an overview of many common controls, i.e.,
-widgets that display some information and possibly accept user input.
+widgets that represent the actions to be performed on a document. Each
+displays some information, and most accept user input.
 
-% ML: From the WIMP perspective, the GUI is really a means for
-% executing commands, in other words, performing actions. Thus, the
-% interface needs a way to prompt the user with choices, display
-% enough data for the user to make an informed decision, and finally
-% provide a means for the user to execute the action. I think this
-% section is organized well for that, but it sort of short-changes the
-% role of widgets in data communication/visualization. Tables, for
-% example, can be useful even without selection, yet they are stuck
-% into the Selection section. The "Display of Information" is kind of
-% a let-down, because it only discusses static widgets.
-
-%% JV: Maybe putting tables and trees in a separate category from selection?
-
-% ML: We should probably cutback on the number of references to
-% particular toolkit behaviors, given that each already has its own chapter.
-
-%% JV: Good point.
 \subsection{Selection}
 \label{sec:GUI:basic-selection}
 
@@ -595,20 +574,18 @@ variable. Checkboxes have labels to indicate which variable is being
 selected. Combining multiple checkboxes into a group
 allows for the selection of one or more values at a time.  
 
-% ML: how are checkbox groups "linked"?
-%% JV: gone,
-
 \subsubsection{Radio Button Groups}
 \label{sec:GUI:radio=button-groups}
 
-A \dfn{radio button group} allows a user to select exactly one value from a
-vector of possible values. The analogy dates back to old car radios
-where there were a handful of buttons to press to select a preset channel. When a new
-button was pushed in, the old button popped up. This safety feature
-allowed drivers to keep their eyes on the road.
-Radio button groups are useful, provided there are not too many values to choose from, as
-all the values are shown. These values can be arranged in a row, a
-column or rows and columns to better use screen space.
+A \dfn{radio button group} allows a user to select exactly one value
+from a vector of possible values. The analogy dates back to old car
+radios where there were a handful of buttons to press to select a
+preset channel. When a new button was pushed in, the old button popped
+up. This safety feature allowed drivers to keep their eyes on the
+road.  Radio button groups are useful, provided there are not too many
+values to choose from, as all the values are shown. These values can
+be arranged in a row, a column or both rows and columns to better use
+screen space.
 
 %% tcltk examples
 \begin{figure}
@@ -632,7 +609,7 @@ column or rows and columns to better use screen space.
 \subsubsection{Sliders and spinbuttons}
 \label{sec:GUI:sliders}
 
-A \dfn{slider} is a widget that allows the selection of a value from a
+A \dfn{slider} is a widget that selects a value from a
 sequence of possible values (typically) through the manipulation of a
 knob that can visually range over the possible values. Some toolkits
 (e.g. Java/Swing) only allow for the sequence to have integer values. The
@@ -646,32 +623,25 @@ A \dfn{spin button} also allows the user to specify a value from a
 possible sequence of values. Typically, this widget is is drawn with a
 text box displaying the current value and two arrows to increment or
 decrement the selection. The text box can usually be edited. Some
-toolkits allow the sequence to be a more general than a numeric
-sequence. A spin button has the advantage of using less screen space,
-but is less usable if the sequence is long, although often the user
-can enter in the choice using the keyboard. A spin button is used in
-the KDE print dialog of Figure~\ref{fig:GUI:print-dialogs} to adjust
-the number of copies.
+toolkits generalize beyond a numeric sequence. For example, the
+letters of the alphabet could be a sequence. A spin button has the
+advantage of using less screen space, but is less usable if the
+sequence is long, although often the user can enter in the choice
+using the keyboard. A spin button is used in the KDE print dialog of
+Figure~\ref{fig:GUI:print-dialogs} to adjust the number of copies.
 
 
-\subsubsection{Popup menus and Combo boxes}
+\subsubsection{Combo boxes}
 \label{sec:GUI:combo-boxes}
 
 A \dfn{combo box} is a widget that allows the selection of one of
 several fixed values, while displaying just the currently selected
 one. Comboboxes may also offer the user the ability to specify a
-value, in which case they are combined with a text entry area. 
-From a screen-space perspective, they can
-efficiently allow the selection of a value from many values, although
-a choice from too many values can be annoying to the user, as anyone
-who has had to select their country out of over 100 in a web form can
-attest.
-
-% ML: I think a popup menu is more general; it's just a window that
-% pops up when the user performs an action, like a right
-% click. Perhaps the term here is 'drop-down box'.
-
-% JV: I'm going to be like Qt and just call them both comboboxes
+value, in which case they are combined with a text entry area.  From a
+screen-space perspective, they can efficiently allow the selection of
+a value from many values, although a choice from too many values can
+be annoying to the user, such as when a web form requests the
+selection of a country from hundreds of choices.
 
 \subsubsection{List boxes}
 
@@ -681,7 +651,7 @@ show in the allocated space. Some toolkits have list boxes that allow
 the values to spread out over several columns. Selection typically
 occurs with a right mouse click or through the keyboad, whereas a
 double-click will typically be programmed to initiate some
-action. Unlike comboboxes, List boxes can be used for multiple
+action. Unlike comboboxes, list boxes can be used for multiple
 selection. This is typically done by holding down either the
 \kbd{shift} or \kbd{ctrl} keys. Figure~\ref{fig:GUI:ex-tcltk} shows a
 list box created by \R\/ that is called from the function
@@ -702,11 +672,13 @@ list box created by \R\/ that is called from the function
 
 
 
-\subsection{Working with tabular and heirarchical data}
+\subsection{Displaying data}
 \label{sec:GUI:tabular-display}
 
-Two of the most data rich controls are those to display and
-interact with tabular and heiarchical data.
+Table and tree widgets support the display and manipulation of tabular
+and hierarchical data, respectively. More arbitrary data
+visualization, such as statistical plots, can be drawn within a GUI
+window, but such is beyond the scope of this section.
 
 %% JV: Need to include filtering example here
 
@@ -714,10 +686,9 @@ interact with tabular and heiarchical data.
 
 A \dfn{table widget} shows tabular data, such as a data frame, where
 each column has a specific data type and cell rendering strategy.
-Table widgets may be used to display and select tabular data, or may
-also allow the user to edit the
-data.  Figure~\ref{fig:GUI:spotfire} shows a table widget being used
-in a Spotfire web player demonstration to
+Table widgets handle the display, sorting and selection of records from a
+dataset, and may support editing.  Figure~\ref{fig:GUI:spotfire} shows
+a table widget being used in a Spotfire web player demonstration to
 display the cases that a user selects through the filtering controls.
 
 
@@ -922,14 +893,11 @@ validate the user's input, as the input must conform to some specfication.
 
 Multi-line text entry areas are used in many GUIs. The right graphic
 of Figure~\ref{fig:GUI:R-guis-exs-JGR-Rcmdr} shows a text entry area
-used by \pkg{Rcmdr} to enter in \R\/ commands; to show the output of
-\R\/ commands and to provide a message area (in lieu of a status
-bar). The ``Output Window'' shows that text may have formatting
-attributes applied to it. In this case the color of the commands
-differs from that of the output. This is accomplished by specifying
-text-changing attributes to different portions of the text. The
-difficulty is that when the text widget is changed, these positions
-must also reflect the change. 
+used by \pkg{Rcmdr} to enter \R\/ commands, to show the output of the
+commands and to provide a message area (in lieu of a status bar). The
+``Output Window'' demonstrates the utility of formatting
+attributes. In this case, attributes are used to specify the color of
+the commands, so that the input can be distinguished from the output.
 
 \begin{figure}
   \centering
@@ -979,9 +947,9 @@ must also reflect the change.
 \subsection{Display of information}
 \label{sec:GUI:info-display}
 
-Some widgets are typically used to just display information and are
-not expected to have any response to mouse clicks. These are called
-static controls in \wxWidgets. 
+Some widgets are typically used to just display information and often
+do not respond to mouse clicks. These are called static controls in
+\wxWidgets.
 
 \subsubsection{Labels}
 \label{sec:GUI:labels}
@@ -992,10 +960,9 @@ used to label other controls, so the user understands what will happen
 when that control is changed.
 
 %% markup
-A Label's text can be marked up in some toolkits. As well, regular font attributes
-can be applied to the label in the other
-toolkits. Figure~\ref{fig:GUI:Rcmdr-main-window} shows labels marked in
-red and blue in \pkg{tcltk}.
+A Label's text can be marked up in some
+toolkits. Figure~\ref{fig:GUI:Rcmdr-main-window} shows labels marked
+in red and blue in \pkg{tcltk}.
 
 \subsubsection{Statusbars}
 \label{sec:GUI:statusbars}
@@ -1004,23 +971,23 @@ A typical top-level window will have a menubar and toolbar for access
 to the possible actions, an area to display the document being worked
 on, and at the bottom of the window a statusbar for giving the user
 immediated feedback on the actions that have been
-intiated. 
+initiated. 
 
 \subsubsection{Progress bars}
 
-A progress bar is used to notify how much time is left during a long
-computation. They are often used during software installation. 
+A progress bar is used to indicate the percentage of a particular task
+that has been completed. They are often used during software installation. 
 
 
 \subsubsection{Tooltips}
 \label{sec:GUI:basic-tooltips}
 
-A tooltip is a small window that pops up when a user hovers their mouse
-over a tooltip-enabled widget. These are used to give quick feedback
-on that particular widget. They can be useful for guiding new users of
-a GUI and  annoying for familiar users. In \R\/ their implementation
-for the toolkits can be hampered due to eventloop issues.
-
+A tooltip is a small window that pops up when a user hovers their
+mouse over a tooltip-enabled widget. These are useful for providing
+extra information about a particular piece of content displayed by a
+widget. A common use-case is to guide new users of a GUI. Many
+toolkits support the display of interactive hypertext in a tooltip,
+which allows the user to request additional details.
 
 %% combined with modal dialogs
 % \subsection{Choosers}
@@ -1048,21 +1015,21 @@ A \dfnref{modal dialog box} is a dialog box that keeps the focus until
 the user takes an action to dismiss the box. They are used to notify
 the user of some action, perhaps asking for confirmation in case the
 action is destructive, such as overwriting of a file name. Modal
-dialog boxes can be disruptive to a users flow, so should be used
-sparingly. As the flow essentially stops until the window is
-dismissed, functions that call modal dialogs can return a value when
-an event occurs, rather than have a handler respond to the dismiss
-event. The \command{file.choose} function, mentioned below, is a good
-example. When used during an interactive \R\/ session, the user is
-unable to interact with the command line until a file has been
-specified and the dialog dismissed. 
+dialog boxes can be disruptive to the flow of interaction, so they
+should be used sparingly. As the flow essentially stops until the
+window is dismissed, functions that call modal dialogs can return a
+value when an event occurs, rather than have a handler respond to the
+dismiss event. The \command{file.choose} function, mentioned below, is
+a good example. When used during an interactive \R\/ session, the user
+is unable to interact with the command line until a file has been
+specified and the dialog dismissed.
 
 
 \subsubsection{File choosers}
 \label{sec:GUI:file-choosers}
 
 A file chooser allows for the selection of existing files, existing
-directories, or the specification of new files. They are familiar to
+directories, or specifying the name of a new file. They are familiar to
 any user of a GUI. A typical \R\/ installation has the functions
 \command{file.choose} and \command{tkchooseDirectory} (in the
 \pkg{tcltk} package) to select files and directories.
@@ -1078,7 +1045,7 @@ communicating a message to the user. Generally, it has a standard
 form. There is a small rectangular box that appears in the middle of
 the screen with an icon on the left and a message on the right. At the
 bottom is a button to dismiss the dialog, often labeled ``OK.'' The
-\dfnref{confirmation dialog} variant would add a ``cancel'' button
+\dfnref{confirmation dialog} variant would add a ``Cancel'' button
 which invalidates the proposed action.
 
 

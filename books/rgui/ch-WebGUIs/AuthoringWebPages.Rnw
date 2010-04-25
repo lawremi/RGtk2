@@ -80,7 +80,7 @@ df <- rbind(
             c("\\code{head}","Marks header of file"),
             c("\\code{body}","Marks off main body of file"),
             c("\\code{script}","Used to include other types of files"),
-            c("\\code{p}","A paragraph. Also, \code{br} for a line break"),
+            c("\\code{p}","A paragraph. Also, \\code{br} for a line break"),
             c("\\code{h1}","First level header. Also \\code{h2},...,\\code{h6}"),
             c("\\code{ul}", "Unordered list. Also \\code{ol}"),
             c("\\code{li}", "Denotes a list item"),

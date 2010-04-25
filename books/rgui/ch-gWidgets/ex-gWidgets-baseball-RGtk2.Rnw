@@ -1,3 +1,5 @@
+%% There is an issue with cairoDevice and R2.11.0 -- so I eval=FALSE to make this work, however,
+%% when that issue gets resolved, this should be removed
 <<echo=FALSE>>=
 ## An GUI to explore the baseball data set in the plyr package
 ## usees several gWidgets controls.
@@ -25,7 +27,7 @@ interesting things can be seen by looking at specific players, such as
 Babe Ruth (coded \code{ruthba01}) or Barry Bonds (\code{bondsba01}).
 Before beginning, we follow an example from the \pkg{plyr} package to create a
 new variable to hold the career year of a player.
-<<>>=
+<<eval=FALSE>>=
 data(baseball, package="plyr")
 calc <- function(df) 
   transform(df,
@@ -37,7 +39,7 @@ nVars <- names(b)[-c(1:5,23:24)]    # numeric variables
 @ 
 
 This example uses the \pkg{hash} package to store our data and an environment to store our widgets.
-<<>>=
+<<eval=FALSE>>=
 require(hash)
 dat <- hash()
 e <- new.env()
@@ -49,7 +51,7 @@ are all stored in an environment, \code{e} below, using names which
 are again used as keys to the hash. We also define a function
 \code{plotIt} to produce a graphic based on the current state of the
 data store, but don't reproduce it here.
-<<>>=
+<<eval=FALSE>>=
 transferData <- function() {
   out <- try(sapply(e, svalue, drop=TRUE), silent=TRUE)
   if(inherits(out,"try-error"))
@@ -60,7 +62,7 @@ transferData <- function() {
 }
 @ 
 
-<<echo=FALSE>>=
+<<echo=FALSE, eval=FALSE>>=
 ## Function to plot values given through dat
 ## not shown
 curdf <- b ## data frame being plotted. Updated in plotIt()
@@ -113,7 +115,7 @@ considered.
 Our layout will use box containers to split the top-level window into
 three panes. The middle one holds the graphic, so we set it to
 \code{expand} when the window is resized.
-<<>>=
+<<eval=FALSE>>=
 w <- gwindow("Baseball browser", visible=FALSE)
 g <-  ggroup(cont=w, horizontal=TRUE)
 lp <- ggroup(cont=g, horizontal=FALSE)
@@ -122,7 +124,7 @@ rp <- ggroup(cont=g, horizontal=FALSE, spacing=10)
 @ 
 
 The left panel holds a short description and a combobox to select the $y$-variable plotted.
-<<>>=
+<<eval=FALSE>>=
 f <- gframe("About:", cont=lp)
 l <- glabel(paste("A GUI to browse relationships",
              "in the baseball data set",
@@ -138,7 +140,7 @@ e$ylog <- gcheckbox("log", checked=FALSE, cont=g1)
 The center panel holds the \code{ggraphics} object, along wtih controls
 to select the $x$ variable. As well, we add controls to filter out the
 display by either the year a player played and/or their career year. A \code{gtable} instance is used for layout.
-<<>>=
+<<eval=FALSE>>=
 gg <- ggraphics(cont=cp)
 tbl <- glayout(cont=cp)
 tbl[1,1] <- "x="
@@ -168,7 +170,7 @@ to stand out, a compound widget is made using a \code{gedit} object to
 filter values, a \code{gtable} object to show all possible IDs, and a
 \code{gtable} object to show the selected IDs to highlight. Frames are
 used to visually combine these controls.
-<<>>=
+<<eval=FALSE>>=
 rpWidth <- 200
 f <- gframe("Restrict to Team:", cont = rp)
 teams <- data.frame(team=c("", sort(unique(b$team))), 
@@ -195,7 +197,7 @@ output. Rather than write an \code{updateUI} function to update the
 GUI at periodic intervals, we use an event-driven model. These first
 two handlers, simply toggle whether the user can control the display
 by year or career year.
-<<>>=
+<<eval=FALSE>>=
 f <- function(h,...) {
   val <- ifelse(svalue(h$obj), TRUE, FALSE)
   enabled(h$action) <- val
@@ -204,7 +206,7 @@ addHandlerChanged(e$doYear, handler=f, action=e$year)
 addHandlerChanged(e$doCareerYear, handler=f, action=e$cyear)
 @ 
 This next handler updates the graphic when any of several widgets is changed.
-<<>>=
+<<eval=FALSE>>=
 f <- function(h, ...) transferdata() && plotIt()
 QT <- sapply(list(e$x, e$xlog, e$y, e$ylog, e$year, e$cyear,
                   e$doYear, e$doCareerYear, e$lg), 
@@ -214,13 +216,13 @@ QT <- sapply(list(e$x, e$xlog, e$y, e$ylog, e$year, e$cyear,
 For \code{gtable} objects, it is more natural here to bind to a single
 mouse click, rather than the default double click.
 
-<<>>=
+<<eval=FALSE>>=
 QT <- sapply(list(e$team, e$id), function(i)
        addHandlerClicked(i, handler=function(h, ...) 
                          transferData() && plotIt()))
 @ 
 These handlers are used to select the  IDs to highlight.
-<<>>=
+<<eval=FALSE>>=
 addHandlerKeystroke(searchPlayer, handler=function(h, ...) {
   cur <- svalue(h$obj)
   ind <- grep(cur, unique(b$id))
@@ -248,7 +250,7 @@ addHandlerChanged(e$id, handler=function(h, ...) {
 Finally, we implement functionality similar to the \code{locator}
 function for the graphic. This handler labels the point nearest to a mouse click in
 the plot area.
-<<>>=
+<<eval=FALSE>>=
 distance <- function(x,y)  {
   ds <- apply(y, 1, function(i) sum((x-i)^2))
   ds[is.na(ds)] <- max(ds, na.rm=TRUE)
@@ -265,7 +267,7 @@ addHandlerClicked(gg, function(h,...) {
 @   
 
 To end, we show the GUI and initialize the plot.
-<<>>=
+<<eval=FALSE>>=
 visible(w) <- TRUE
 QT <- transferData() && plotIt()
 @ 
