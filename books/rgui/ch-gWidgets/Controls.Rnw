@@ -119,6 +119,9 @@ disable whether a widget can accept input.
 
 % A basic example of a button with a handler was given in Example~\ref{ex-gWidgets-hello-world-button}.
 
+%% ML: I don't think it would hurt to see something like that
+%% again. The reader will expect an example here.
+
 % As an example of the limitations of \pkg{gWidgets} compared to the
 % underlying toolkits, within \pkg{gWidgets} there are no methods to set
 % an icon, or add an mnemonic to the button.
@@ -157,27 +160,17 @@ disable whether a widget can accept input.
 \subsection{Actions}
 \label{sec:gWidgets-actions}
 
-In GUI programming an action is a reusable code object that can be
-shared among buttons, toolbars, and menubars. Common to these three
-controls are that the user expects some ``action'' to occur when a
-value is selected. For example, some save dialog is summoned, or some
-page is printed.
-%%In the command framework, actions initiate commands.
-Actions contain enough information to be displayed in several
-manners. An action would contain some text, an icon, perhaps some
-keyboard accelerator, and some handler to call when the action is
-selected. When a particular action is not possible due to the state of
-the GUI, it should be disabled, so as not to be sensitive to user interaction.
-
-Actions in \pkg{gWidgets} are created through the
+Actions are invisible objects representing an application command that
+is executable through one or more widgets. See \ref{sec:GUI:actions}
+for more details. Actions in \pkg{gWidgets} are created through the
 \constructor{gaction} contstructor. The arguments are
 \argument{label}{gaction}, \argument{tooltip}{gaction},
 \argument{icon}{gaction}, \argument{key.accel}{gaction} and the
 standard \argument{handler}{gaction} and
 \argument{action}{gaction}. The label appears as the text on a button,
 the menu item or toolbar text, whereas the icon will decorate the same
-if possible. For some toolkits, the tooltip pops up when the mouse hovers.
-(See also the \meth{tooltip\ASSIGN} method.)
+if possible. For some toolkits, the tooltip pops up when the mouse
+hovers.  (See also the \meth{tooltip\ASSIGN} method.)
 
 \paragraph{methods}
 The main methods for actions are \method{svalue\ASSIGN}{gaction} to
@@ -187,12 +180,12 @@ action are set through one call. In some toolkits, such as
 \pkg{RGtk2}, actions are bundled together into action groups. This
 grouping allows one to set the sensitivity of related actions at
 once. In \R, one can store like actions in a list, and get similar
-functionality by using \code{sapply}, say.
+functionality by using \code{sapply}, for example.
 
 \paragraph{buttons}
 An action can be assigned to a button by setting it as the
-\argument{action}{gbutton} argument of the \code{gbutton} constructor, in which
-case all other arguments for the constructor are ignored. 
+\argument{action}{gbutton} argument of the \code{gbutton} constructor,
+in which case all other arguments for the constructor are ignored.
 
 Otherwise, actions are used as list components which define the
 toolbar or menubar, as described in the following.
@@ -203,27 +196,22 @@ toolbar or menubar, as described in the following.
 \label{sec:gWidgets-toolbars}
 Toolbars and menubars are implemented in \pkg{gWidgets} using
 \code{gaction} items. Toolbars (and menubars) are specified using a named
-list of menu components. This is similar to how \pkg{RGtk2} can use an XML specification
-to define a user interface, but unlike how menubars and toolbars can
-be created one item at a time in the toolkits.
+list of menu components. 
 
-For a toolbar, the list has a simple structure. The list has named
-components each of which either describes a toolbar item or a
-separator. The toolbar items are specified by \code{gaction} instances
-and separators by \code{gseparator} instances with no container
-specified.
+For a toolbar, the list has a simple structure. Each named component
+either describes a toolbar item or a separator. The toolbar items are
+specified by \code{gaction} instances and separators by
+\code{gseparator} instances with no container specified.
 
 
-The \constructor{gtoolbar} constructor takes as its first argument the
-list.  As toolbars belong to the window, the corresponding
+The \constructor{gtoolbar} constructor takes the list as its first
+argument.  As toolbars belong to the window, the corresponding
 \pkg{gWigdets} objects use a \constructor{gwindow} object as the
 parent container. (Some of the toolkits relax this.)  The argument
-\argument{style}{gtoolbar} can be one of \qcode{both},
-\qcode{icons}, \qcode{text}, or \qcode{both-horiz} to specify how
-the toolbar is rendered. Toolbars in \pkg{gWidgetstcltk} are not
-native widgets, so the implementation uses aligned buttons.
-
-
+\argument{style}{gtoolbar} can be one of \qcode{both}, \qcode{icons},
+\qcode{text}, or \qcode{both-horiz} to specify how the toolbar is
+rendered. Toolbars in \pkg{gWidgetstcltk} are not native widgets, so
+the implementation uses aligned buttons.
 
 
 \subsection{Menubars, popup menus}
@@ -234,7 +222,7 @@ being defined through \code{gaction} instances, and visual separators
 by \code{gseparator} instances. Menus differ from toolbars, as
 sub-menus give a nested structure. This structure is specified using a
 nested list as the component to describe the sub menu. The lists all
-have named components, in this case the corresponding name is used to
+have named components. In this case, the corresponding name is used to
 label the sub menu item. For menu bars, it is typical that all the
 top-level components be lists, but for popup menus, this wouldn't
 necessarily be the case.
@@ -291,13 +279,13 @@ displaying a single-or multiple-line string of static text,
 window, \constructor{gedit} for a single line of editable text, and
 \constructor{gtext} for multi-line, editable text. For some toolkits,
 a \constructor{ghtml} widget is also defined, but neither \code{RGtk2}
-or \code{tcltk} have this implemented.
+nor \code{tcltk} have this implemented.
 
 \subsection{Labels}
 \label{sec:gWidgets-static-text}
 
 The \constructor{glabel} constructor produces a basic label
-widget. The label's text is specified through the
+widget. The label text is specified through the
 \argument{text}{glabel} argument. This is a character vector of length
 1 or is coerced into one by collapsing the vector with newlines. The
 \method{svalue}{glabel} method will return the text as a single
@@ -312,11 +300,10 @@ for \code{RGtk2}).
 
 The widget constructor also has the argument
 \argument{editable}{glabel}, which when specified as \code{TRUE} will
-add a handler to the event that the label is clicked that allows the
-text to be edited.  Although this is popular in some familiar
-interfaces, say the tab in a spreadsheet, it has not proven to be
-intuitive to most users, as typically labels are not expected to
-change.
+add a handler to the event so that the text can be edited when the
+label is clicked.  Although this is popular in some familiar
+interfaces, such as a spreadsheet tab, it has not proven to be
+intuitive to most users, as labels are not expected to change.
 
 
 \subsection{Statusbars}
@@ -396,24 +383,25 @@ returned as a single string with ``\backslashn'' separating the lines.
 
 The contents of the text buffer can be replaced with the
 \method{svalue\ASSIGN}{gtext} method. To clear the buffer, the
-\method{dispose}{gtext} method can be used.To add text to a buffer, the
-\method{insert}{gtext} method is used. The signature is
-\code{insert(obj,text)} where \code{text} is a character vector. New text
-is added to the end of the buffer, by default, but the
-\argument{where}{insert} argument can specify \qcode{beginning} or \qcode{at.cursor}.
+\method{dispose}{gtext} method can be used. The \method{insert}{gtext}
+method adds text to a buffer. The signature is \code{insert(obj,text)}
+where \code{text} is a character vector. New text is added to the end
+of the buffer, by default, but the \argument{where}{insert} argument
+can specify \qcode{beginning} or \qcode{at.cursor}.
 
-As with, \code{gedit}, the \method{addHandlerKeystroke}{gtext} method is used
-to set a handler to be called for each keystroke. This is the default handler.
+As with, \code{gedit}, the \method{addHandlerKeystroke}{gtext} method
+sets a handler to be called for each keystroke. This is the default
+handler.
 
 Fonts can be specified for the entire buffer or the selection using
 the specifications in Table~\ref{tab:gWidgets-font-properties}. To
 specify fonts for the entire buffer use the
-\argument{font.attr}{gtable} argument of the constructor. As well, the
-\method{font\ASSIGN}{gtext} method can be used, provided there is no
-selection when called. If there is a selection, only that text will get the specified
-font attributes. Finally, the \argument{font.attr}{insert} argument
-for the \meth{insert} method can also be specified to give font
-attributes to the newly added text.
+\argument{font.attr}{gtable} argument of the constructor. The
+\method{font\ASSIGN}{gtext} method serves the same purpose, provided
+there is no selection when called. If there is a selection, the font
+change will only be applied to the selection. Finally, the
+\argument{font.attr}{insert} argument for the \meth{insert} method
+specifies the font attributes for the inserted text.
 
 <<echo=FALSE, results=tex>>=
 df <- rbind(
@@ -441,8 +429,8 @@ cat(booktabs(df,
 A common task for a GUI control is to select a value or values from a
 set of numbers or a table of numbers. Many toolkits implement these
 widgets using a model-view-controller paradigm whereby the control is
-just one of possibly many views of the data store (the model). This
-approach isn't taken with \pkg{gWidgets}. Rather, each widget has its
+just one of possibly many views of the data model. This
+approach is avoided by \pkg{gWidgets}. Rather, each widget has its
 own data store (like a vector or data frame)
 containing the data for selection, and familar \R\/ methods are used to
 manipulate this underlying data store. The controls in \pkg{gWidgets} that
@@ -450,9 +438,8 @@ display such data have the methods \code{[}, \code{[\ASSIGN},
 \code{length}, \code{dim}, \code{names} and \code{names\ASSIGN}, as
 appropriate.
 
-This section discusses several different controls that do basically the
-same thing, but which exist primarily because they use screen space differently.
-
+This section discusses several selection controls that serve a similar
+purpose but make different use of screen space.
 
 \subsection{Checkbox widget}
 \label{sec:gWidgets-checkbox-widget}

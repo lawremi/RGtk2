@@ -271,7 +271,7 @@ action.  Well chosen icons make a big visual difference in a GUI.
 \subsubsection{Menubars}
 \label{sec:GUI:menubars}
 
-Xerox Parc's revolutionary idea of a \acronym{WIMP} GUI added windows,
+Xerox PARC's revolutionary idea of a \acronym{WIMP} GUI added windows,
 icons, menubars, and pointing devices to the desktop computing
 environment. The central role of menu bars has not diminished. For a
 GUI, the \dfn{menubar} gives access to the full range of functionality
@@ -330,6 +330,26 @@ Toolbars are used to give immediate access to the frequently used actions
 defined in the menubar. Toolbars typically have icons representing the
 action and perhaps accompanying text. They traditionally appear on the
 top of a window, but sometimes are used along the edges. 
+
+%% Might not be the best place... any other options?
+\subsubsection{Action Objects}
+\label{sec:GUI:actions}
+
+When clicking on a button, the user expects some ``action'' to
+occur. For example, some save dialog is summoned, or some page is
+printed.  GUI toolkits commonly represent such actions as formal,
+invisible objects that are proxied by widgets, usually buttons, on the
+screen.  Often, all of the primary commands supported by an
+application have a corresponding action object, and the buttons
+associated with those actions are organized into menubars and
+toolbars.
+
+An action object is essentially a data model, with each proxy widget
+acting as a view. Common components of an action include a textual
+label, an icon, perhaps a keyboard accelerator, and a handler to call
+when the action is selected. When a particular action is not possible
+due to the state of the GUI, it should be disabled, so that the
+associated widgets are not sensitive to user interaction.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
