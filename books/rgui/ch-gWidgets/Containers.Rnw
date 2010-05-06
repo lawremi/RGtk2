@@ -4,6 +4,11 @@ library(gWidgets)
 options("guiToolkit"="RGtk2") ## for examples
 @ 
 
+%% ML: Might be clearer if the examples came almost at the beginning
+%% of each section and followed by the details. For me, it's much
+%% easier to see something and then have it explained, instead of
+%% reading the details, constructing the example in my imagination,
+%% and then seeing it.
 
 % \begin{table}
 %   \centering
@@ -52,7 +57,7 @@ Windows can be closed programatically with the
 \method{dispose}{gwindow} method. Windows may also be closed through
 the window manager, by clicking a close icon in the title bar.  The
 \argument{handler}{gwindow} argument is called just before the window
-is destroyed, but will not prevent that from happening.  The
+is destroyed, but cannot prevent that from happening.  The
 \method{addHandlerUnrealize}{gwindow} method can be used to call a
 handler between the initial click of the close icon and the subsequent
 destroy event of the window. This handler must return a logical value:
@@ -237,7 +242,7 @@ In addition to the \code{ggroup} arguments, the \constructor{gframe}
 constructor has the arguments \argument{text}{gframe} to specify the
 text marking the frame and \argument{pos}{gframe} to specify the
 positioning of the text, using 0 for left and 1 for right. If the
-toolkit supports markup, such as \pkg{RGtk2}, the
+toolkit supports markup, as is the case with \pkg{RGtk2}, the
 \argument{markup}{gframe} argument takes a logical indicating if
 markup is being used in the specification of \args{text}.  The
 \method{names}{gframe} method can be used to get and set the label
@@ -268,7 +273,7 @@ has two children which are separated by a visual gutter which can be adjusted us
 the mouse to allocate the space between the two children. The children are aligned side-by-side (by default) or
 top to bottom if the \argument{horizontal}{gpanedgroup} argument is
 given as \code{FALSE}. The sash position can
-also be done programatically using the \method{svalue\ASSIGN}{gpanedgroup}
+also be configured programatically using the \method{svalue\ASSIGN}{gpanedgroup}
 method, where  a value from 0 to 1 specifies the proportion of space allocated to the leftmost (topmost) child.
 
 To add children, the container should be used as the parent container
