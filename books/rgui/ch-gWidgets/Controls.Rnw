@@ -497,7 +497,7 @@ but allows the selection of one or more of a set of items.  The
 \argument{items}{gcheckboxgroup} arugment is used to specify the
 values. The state of whether an item is selected can be set with a
 logical vector of the same size as the number of items to the
-\argument{checked}{gcheckboxgroup} argument, recycling is used. The
+\argument{checked}{gcheckboxgroup} argument; recycling is used. The
 item layout can be controlled by the
 \argument{horizontal}{gcheckboxgroup} argument. The default is a
 vertical layout (\code{horizontal=FALSE}).
@@ -527,9 +527,10 @@ constructed by \constructor{gcombobox}. The possible choices are specified to th
 \argument{items}{gcombobox}. This may be a vector of values or a data
 frame whose first column defines the choices. For toolkits which
 support icons in the combobox, if the data is specified as a data
-frame, the second column can be used to signify which stock icon is to
-be used. By design, a third column can be used to specify a tooltip,
+frame, the second column signifies which stock icon is to
+be used. By design, a third column specifies a tooltip,
 but this is not implemented for \pkg{RGtk2} and \pkg{tcltk}. 
+%% ML: this should not be hard to implement with GTK+ 2.12
 
 The argument \argument{editable}{gcombobox} accepts a logical value
 indicating if the user can supply their own value by typing into a
@@ -552,8 +553,8 @@ number of items.
 The default handler is called when the state of the widget is
 changed. This is also aliased to
 \method{addHandlerClicked}{gcombobox}. When \code{editable} is
-\code{TRUE}, then the \method{addHandlerKeystroke}{gcombobox} can be
-used to set a handler to response to keystroke events.
+\code{TRUE}, then the \method{addHandlerKeystroke}{gcombobox} method
+sets a handler to response to keystroke events.
 
 
 \begin{example}{Selection widgets}{ex-gWidgets-selection-widgets}
@@ -566,11 +567,12 @@ used to set a handler to response to keystroke events.
 
 The \constructor{gtable} constructor produces a widget that displays
 data in a tabular form from which the user can select one (or more)
-rows. The widgets performance under \pkg{gWidgetsRGtk2} is much faster
-and able to handle larger data stores than under \pkg{gWidgetstcltk},
-as there is no native table widget in \tcltk, and under
-\pkg{gWidgetsQt}. All perform well on moderate-sized data sets (10 or
-so columns and fewer than 500 rows),
+rows. The widgets performance under \pkg{gWidgetsRGtk2} and
+\pkg{gWidgetsQt} is much faster and able to handle larger data stores
+%% ML: I'm assuming gWidgetsQt will soon take advantage of the DataFrameModel
+than under \pkg{gWidgetstcltk}, as there is no native table widget in
+\tcltk. All perform well on moderate-sized data sets (10 or so columns
+and fewer than 500 rows),
 
 The data is specified through the \argument{items}{gtable}
 argument. This may be a data frame, matrix or vector. Vectors and
@@ -620,7 +622,7 @@ handler, \method{addHandlerDoubleclick}{gtable}, will assign a
 handler for a double click event. Also of interest are the
 \method{addHandlerRightclick}{gtable} and
 \method{add3rdMousePopupMenu}{gtable} methods for assigning handlers
-to  right-click events.
+to right-click events.
 
 \paragraph{Filtering}
 The arguments \argument{filter.column}{gtable} and
@@ -628,33 +630,33 @@ The arguments \argument{filter.column}{gtable} and
 can filter, or limit, the display of the values in the data store. If
 a column number is specified to \code{filter.column} then a combobox
 is added to the widget with values taken from the unique values in the
-specified column. Changing the value of the combobox, restricts the
-display of the data to just those rows which match that column's
-values. More advanced filtering can be specified using the
-\argument{filter.FUN}{gtable} argument. If this is a function, then it takes
-arguments \code{(data\_frame, filter.by)} where the data frame is the
-data, and the \code{filter.by} value is the state of a combobox whose
-values are specified through the argument
-\argument{filter.labels}{gtable}. This function should return a logical
-vector with length matching the number of rows in the data frame.
-Only rows corresponding to \code{TRUE} values will be displayed. If
-\code{filter.FUN} is the character string ``\code{manual}'' then the
-\method{visible\ASSIGN}{gtable} method can be used to control the
-filtering, again by specifying a logical vector of the proper
-length. See Example~\ref{ex-gWidgets-filter-gtable} for an
-application.
+specified column. Changing the value of the combobox restricts the
+display of the data to just those rows where the value in the filter
+column matches the combobox value. More advanced filtering can be
+specified using the \argument{filter.FUN}{gtable} argument. If this is
+a function, then it takes arguments \code{(data\_frame, filter.by)}
+where the data frame is the data, and the \code{filter.by} value is
+the state of a combobox whose values are specified through the
+argument \argument{filter.labels}{gtable}. This function should return
+a logical vector with length matching the number of rows in the data
+frame.  Only rows corresponding to \code{TRUE} values will be
+displayed. If \code{filter.FUN} is the character string
+``\code{manual}'' then the \method{visible\ASSIGN}{gtable} method can
+be used to control the filtering, again by specifying a logical vector
+of the proper length. See Example~\ref{ex-gWidgets-filter-gtable} for
+an application.
 
 
 The \constructor{gtable} widget shows clearly the trade offs between
 using \pkg{gWidgets} and a native toolkit under \R. As will be seen in
 later chapters, setting up a table to display a data frame using the
-toolkit packages directly can involve a fair amount of
-coding as compared to \constructor{gtable}, which makes it very
-easy. However, there is far less power possible from
-\pkg{gWidgets}. For example, there is no method to adjust the column
-sizes programatically (although they can be adjusted with the
-mouse),there is no means to adjust the formatting of the displayed
-text, or to embed other widgets into the tabular display.
+toolkit packages directly can involve a fair amount of coding as
+compared to \constructor{gtable}, which makes it very easy. However,
+\pkg{gWidgets} provides far less functionality. For example, there is
+no method to adjust the column sizes programatically (although they
+can be adjusted with the mouse), there is no means to adjust the
+formatting of the displayed text, or to embed other widgets into the
+tabular display.
 
 \begin{example}{Simple filtering}{ex-gWidgets-simple-filter-gtable}
   We use the \code{Cars93} data set from the \pkg{MASS} package to
@@ -695,7 +697,7 @@ function, but uses the underlying toolkit in use by
 \pkg{gWidgets}. Each cell can be edited. Users can click (or double
 click) in a cell to select it, or use the arrow and \kbd{tab} keys to
 navigate. For \pkg{gWidgetstcltk}, there is no native widget for
-editing tabular data, so the \code{tktable}, add-on widget is used
+editing tabular data, so the \code{tktable} add-on widget is used
 (\url{tktable.sourceforge.net}). A warning will be issued if this is
 not installed. Again, the widget under \pkg{gWidgetsRGtk2} is much
 faster than that under \pkg{gWidgetstcltk}, but both can load a
@@ -713,7 +715,7 @@ similar manner.
 those of a data frame. The \method{[}{gdf} and \method{[\ASSIGN}{gdf}
 methods can be used to extract and set values from the data frame by
 index. As with \code{gtable}, these are not as flexible as for a data
-frame though. In particular, it may not be possible to changes the
+frame. In particular, it may not be possible to change the
 type of a column, or add new rows or columns through these
 methods. Using no indices, as in \code{obj[,]} will return the current
 data frame, which can be assigned to some value for saving. The
@@ -731,7 +733,8 @@ The following can be used to assign handlers:
 \method{addHandlerColumnRightclick}{gdf}.
 
 
-The \constructor{gdfnotebook} constructor produces a notebook that can hold several data frames at once.
+The \constructor{gdfnotebook} constructor produces a notebook that can
+hold several data frames at once.
 
 \section{Selection from a sequence of numbers}
 \label{sec:gWidgets-select-from-sequ}
@@ -805,13 +808,13 @@ The \constructor{gtree} constructor can be used to display
 heirarchical structures, such as a file system. This constructor
 parameterizes the data to be displayed in terms of the node of the
 tree that is currently selected. The \argument{offspring}{gtree}
-argument is assigned a function of two variables, the path in the tree
-that the node in question is on and any data passed through the
-optional \argument{offspring.data}{gtree} argument. This function
-should return a data frame with each row referring to an offspring for
-the node and whose first column is a key that characterizes the node
-of the offspring, unless the argument \argument{chosencol}{gtree} is
-used to specify otherwise.
+argument is assigned a function of two arguments, the path a
+particular node and the arbitrary object passed through the optional
+\argument{offspring.data}{gtree} argument. This function should return
+a data frame with each row referring to an offspring for the node and
+whose first column is a key that identifies each of the offspring,
+unless the argument \argument{chosencol}{gtree} is used to specify
+otherwise.
 
 To indicate if a node has offspring, a function can be passed through
 the \argument{hasOffspring}{gtree} argument. This function takes the
@@ -842,10 +845,10 @@ frame with column types matching those returned by \code{offspring}.
 \paragraph{methods}
 The \method{svalue}{gtree} method returns the currently selected key,
 or node label. There is no assignment method. The \method{[}{gtree}
-method returns the path for the currently node. This is what is passed
+method returns the path for the currently selected node. This is what is passed
 to the \code{offspring} function.  The \method{update}{gtree} method
-is used to update the displayed tree.  The method
-\method{addHandlerDoubleclick}{gtree} can be used to specify a
+updates the displayed tree.  The method
+\method{addHandlerDoubleclick}{gtree} specifies a
 function to call on a double click event.
 
 \begin{example}{Using \code{gtree} to explore a recursive partition}{ex-gWidgets-gtree}
@@ -858,8 +861,8 @@ function to call on a double click event.
 The \constructor{gfile} dialog allows one to select a file or directory
 from the file system. This is a modal dialog, which returns the name
 of the selected file or directory. The \constructor{gfilebrowse}
-constructor creates a widget that has a button that allows the user to
-initiate this selection.  
+constructor creates a widget that has a button that
+initiates this selection.  
 
 The selection type is specified by the \code{type} argument with
 values of \code{open}, to select an existing file; \code{save} to
@@ -886,12 +889,12 @@ gfile(handler=function(h,...) {
 \subsection{Selecting a date}
 \label{sec:gWidgets-selecting-date}
 
-The \constructor{gcalendar} constructor returns a widget that can be
-used to select a date if the underlying toolkit supports such a widget
-or a text edit box to allow the user to enter a date. The argument
-\argument{text}{gcalendar} arugment can used to specify the initial
-text. The \argument{format}{gcalendar} is used to specify the format
-of the date.
+The \constructor{gcalendar} constructor returns a widget for selecting
+a date, if the there is a native widget in the underlying toolkit,
+or a text edit box for entering a date. The argument
+\argument{text}{gcalendar} arugment specifies the initial
+text. The format of the date is specified by the
+\argument{format}{gcalendar} argument.
 
 The methods for the widget inherit from \code{gedit}. In particular,
 the \method{svalue}{gcalendar} method returns the text in the text box
@@ -907,7 +910,7 @@ different class, pass a function, such as \code{as.Date} to the
 \subsection{Displaying icons and images store in files}
 \label{sec:gWidgets-displ-icons-imag}
 
-The \pkg{gWidgets} package provides a few stock icons, that can be
+The \pkg{gWidgets} package provides a few stock icons that can be
 added to various GUI components. A list of the defined stock icons is
 returned by the function \code{getStockIcons}. The names attribute
 defines the valid stock icon names.  For \pkg{gWidgetsRGtk2}, the size
@@ -928,7 +931,7 @@ name for the \code{filename} argument and the character string
 
 %% methods
 
-The \method{svalue\ASSIGN}{gimage} method can be used to change the
+The \method{svalue\ASSIGN}{gimage} method changes the
 graphics file. In this case, a full path name is specified, or the
 stock icon name.
 
@@ -973,15 +976,15 @@ user to easily navigate multiple graphics devices.
 \label{sec:gWidgets-modal-dialogs}
 
 The \pkg{gWidgets} package provides a few constructors to quickly make
-some basic  dialogs for showing messages or gathering
+some basic dialogs for showing messages or gathering
 information. Mostly these are modal dialogs that take control of the
 eventloop, not allowing any other part of the GUI to be active for
 programmatic interaction. As such, the constructors do not return an
-object to manipulate through its methods, but rather the value of the
-dialog specified by the user. Hence, they are used differently than
-other constructors. For example, the \code{gfile} dialog, previously described, is
-a modal dialog that pops up a means to select a file returning
-the selected file path or \code{NA}.
+object to manipulate through its methods, but rather the user response
+to the dialog. Hence, they are used differently than other
+constructors. For example, the \code{gfile} dialog, previously
+described, is a modal dialog that pops up a means to select a file
+returning the selected file path or \code{NA}.
 
 
 <<echo=FALSE, results=tex>>=
@@ -1032,12 +1035,13 @@ The dialogs, except for \code{galert}, have the standard
 typically it is easier to use the return value when programming.
 
 \paragraph{A message dialog}
-The simplest dialog is produced by \code{gmessage}, which is used to
-display a message. The user has a cancel button to dismiss the dialog.
+The simplest dialog is produced by \code{gmessage}, which
+displays a message. The user has a cancel button to dismiss the dialog.
 
 \paragraph{An alert dialog}
-The \code{galert} dialog is similar to \code{gmessage} only it is meant
-to be less obtrusive, so it is non-modal. It does not take the focus and vanishes after a time delay.
+The \code{galert} dialog is similar to \code{gmessage} only it is
+meant to be less obtrusive, so it is non-modal. It does not take the
+focus and vanishes after a time delay.
 
 \paragraph{A confirmation dialog}
 The constructor \constructor{gconfirm} produces a dialog that allows
@@ -1069,15 +1073,18 @@ pack into the dialog. This can be a simple control, or a container
 containing other widgets. 
 
 As with \code{gconfirm}, this widget returns \code{TRUE} or
-\code{FALSE} depending on the user's selection. To do something more complicated than \code{gconfirm}, a handler should be specified at construction. If the user selects
-\kbd{OK}, the handler, if specified, is called before the value \code{TRUE}
-is returned. 
+\code{FALSE} depending on the user's selection. To do something more
+complicated than \code{gconfirm}, a handler should be specified at
+construction. If the user selects \kbd{OK}, the handler, if specified,
+is called before the value \code{TRUE} is returned.
 
-This dialog is called a bit awkwardly, to allow it to work when controls need a
-parent container specified at construction time (e.g., \pkg{tcltk}). The construction is in
-three stages: an initial call to \code{gbasicdialog} to return a container which is used as
-the parent container for a child component; a construction of the dialog; then a call to the
-\code{visible} method on the dialog with \code{set=TRUE} value (not though \code{visible(obj) \ASSIGN\/ TRUE}).
+This dialog is called a bit awkwardly, to allow it to work when
+controls need a parent container specified at construction time (e.g.,
+\pkg{tcltk}). The construction is in three stages: an initial call to
+\code{gbasicdialog} to return a container which is used as the parent
+container for a child component; a construction of the dialog; then a
+call to the \code{visible} method on the dialog with \code{set=TRUE}
+value (not though \code{visible(obj) \ASSIGN\/ TRUE}).
 
 
 \begin{example}{Modal dialogs}{ex-gWidgets-modal-dialogs}

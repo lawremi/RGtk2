@@ -6,7 +6,7 @@ producing GUIs. Table~\ref{tab:gWidgets-compound-widgets} lists them.
 df <- rbind(
             c("\\constructor{gvarbrowser}", "GUI for browsing variables in the workspace"),
             c("\\constructor{gcommandline}", "Command line widget"),
-            c("\\constructor{gformlayout}", "Uses list to specify layout of a GUI"),
+            c("\\constructor{gformlayout}", "Creates a GUI from a list specifying layout"),
             c("\\constructor{ggenericwidget}", "Creates a GUI for a function based on its formal arguments or a defining list")
             )
 ##             ,c("\\constructor{ghelp}", "GUI for a help page"),
@@ -94,55 +94,59 @@ The \pkg{gWidgets} package has two means to simpify the creation of
 GUIs. The \code{gformlayout} constructor takes a list defining a
 layout and produces a GUI, the \code{ggenericwidget} constructor can
 take a function name and produce a GUI based on the formal arguments
-of the function. This too uses a list, that can be modified by the
+of the function. This too uses a list, which can be modified by the
 user before the GUI is constructed. 
 
 \subsubsection{Laying out a form}
 \label{sec:gWidgets-laying-out-form}
 
+% ML: replaced 'component' with 'element' for components of list, to
+% distuingish them from components of the GUI
+
+% ML: this is another place where it would be good to see the example first
+
 The \constructor{gformlayout} constructor takes a list defining a
 layout and creates the specified widgets. The design borrows from the
 \code{extjs} javascript libraries for web programming, where a similar
 function can be used to specify the layout of web forms. Several
-toolkits have a means to specify a layout using XML (eg. \GTK's
-Builder and \Qt's assistant), this implementation uses a list,
-assuming this is more familiar to the \R\/ user. By defining the
-layout ahead of time, pieces of the layout can be recycled for other
-layouts.
+toolkits have a means to specify a layout using XML (eg. \GTK{}
+Builder and \Qt{} Assistant); this implementation uses a list, under
+the assumption that it is more familiar to the \R\/ user. By defining
+the layout ahead of time, pieces of the layout can be recycled for
+other layouts.
 
 
 To define the layout, each component is specified using a list with
-named components. The component \code{type} indicates what component
-to be created, as a string. This can be a the name of a container
+named elements. The \code{type} element indicates the component
+to be created, as a string. This can be the name of a container
 constructor, a widget constructor or the special value
 \code{"fieldset"}. Field sets are used to group a set of common
-controls. If the component \code{name} is specified, then the
+controls. If the \code{name} element is specified, then the
 component that is created will be stored in the list returned by the
 \code{[} method.
 
-The \code{label} component can be specified to
-add a descriptive label to the layout. When used, the component
-\code{label.pos} can be tale a value \code{"top"} to have the label
-on top of the widget, or \code{"side"} to place the label on the side
-(the default positioning). The \code{label.font} component can be used
-to specify the label's font properties using a label's \meth{font\ASSIGN} method.
+The \code{label} element adds a descriptive label
+to the layout. The \code{label.pos} element controls the
+placement of the label. The value \code{"top"} places the label on top
+of the widget, while \code{"side"}, the default, puts it on the
+side. The \code{label.font} element specifies the
+font properties of the label, as with the \meth{font\ASSIGN} method.
 
 If the type is a container or fieldset, then the \code{children}
-component is a list whose components specify the children as
+element is a list whose elements specify the children as
 above. Except for fieldsets, these children can contain other
-containers or components. Fieldsets only allow components as children.
+containers or controls. Fieldsets only allow controls as children.
 
-Whether a widget is enabled or not can be controlled by specifying
-values for \code{depends.on}, \code{depends.FUN}, and
-\code{depends.signal}. If the component \code{depends.on} specifies
-the name of a previous component, then the function \code{depends.FUN}
-will be consulted when the signal specified by \code{depends.signal}
-is emitted. This uses the \code{addHandlerXXX} names with a default
-value of \code{addHandlerChanged}. The \code{depends.FUN} function has
-a single argument consisting of the value returned by \code{svalue}
-when called on the widget specified through \code{depends.on}. This
-function should return a logical indicating if the widget is enabled
-or not.
+The enabled state of a widget is controlled by \code{depends.on},
+\code{depends.FUN}, and \code{depends.signal}. If the
+\code{depends.on} element specifies the name of a previous component,
+then the function \code{depends.FUN} will be consulted when the signal
+specified by \code{depends.signal} is emitted. This uses the
+\code{addHandlerXXX} names with a default value of
+\code{addHandlerChanged}. The \code{depends.FUN} function should take a single
+argument consisting of the value returned by \code{svalue} when called
+on the widget specified through \code{depends.on}. This function
+should return a logical indicating if the widget is enabled or not.
 
 \paragraph{Methods}
 The constructor returns an object with a few methods. The
@@ -157,22 +161,21 @@ method. The \method{names}{gformlayout} method returns the names of the widgets 
   \SweaveInput{ex-gWidgets-formlayout}
 \end{example}
 
-\subsubsection{Automatically creating a GUI}
+\subsubsection{Creating a GUI for a function}
 \label{sec:gWidgets-autom-creat-gui}
 
-The \constructor{ggenericwidget} constructor can create a basic GUI
-for a function using the function's formal arguments as a guide for
-the proper widget to use to collect values for an argument of the
-function. The \pkg{fgui} package provides a similar function using
-just the \pkg{tcltk} package, only it improves \code{ggenericwidget} by
-parsing the function's help page.
+The \constructor{ggenericwidget} constructor creates a GUI for
+invoking a given function. The GUI is derived from the formal
+arguments. The \pkg{fgui} package provides a similar function. While
+it is limited to the \pkg{tcltk} toolkit, it has the advantage of
+incorporating information from the help page for the function.
 
-The implementation actually has two stages, the first creates a list
-specifying the layout of the GUI and the second a call to layout the
-GUI. This list is different from that used by \code{gformlayout}. It
+The implementation actually has two stages. The first creates a list
+specifying the layout of the GUI and the second actually constructs
+the GUI. This list is different from that used by \code{gformlayout}. It
 does not provide as much flexibility and is described in the help page
 for \code{ggenericwidget}. This list can be edited if desired and then
-used directly.
+used directly. % ML: how does this work?
 
 The formal arguments of an S3 method may be different from those of
 its generic. For instance, those for the \code{t.test} generic are
