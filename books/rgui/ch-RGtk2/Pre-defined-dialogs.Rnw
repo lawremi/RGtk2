@@ -1,3 +1,6 @@
+%% MOVEME: Do we really need these in a separate chapter? Could fold
+%% into the basic controls chapter. Dialogs are pretty basic.
+
 \section{Dialogs}
 \label{sec:dialogs}
 \GTK\/ comes with a variety of dialogs to create simple, usually

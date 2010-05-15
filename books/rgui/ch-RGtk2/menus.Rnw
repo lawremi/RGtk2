@@ -1,4 +1,8 @@
 % Menus in RGtk2
+
+% MOVEME: GtkAction is essentially a data model, with menubar and
+% toolbar as views. All of this could be moved to widgets with models chapter.
+
 <<echo=FALSE>>=
 require(RGtk2)
 @ 
@@ -245,6 +249,7 @@ w$showAll()
 @ 
 \end{example}
 
+%% MOVEME: status bars can be described in the basic controls section
 \section{Statusbars}
 \label{sec:RGtk2:statusbars}
 
