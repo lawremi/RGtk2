@@ -141,6 +141,25 @@ function(x, y)
   ans
 }
 
+print.enum <- function(x) {
+  cat(class(x)[1], ": ", names(x), " (", x[[1]], ")\n", sep = "")
+}
+print.flag <- function(x) {
+  flags <- get(class(x)[1])
+  values <- names(flags)[sapply(flags, `&`, x) > 0]
+  cat(class(x)[1], ": ", paste(values, collapse = ", "), "\n", sep = "")
+}
+
+print.enums <- function(x) {
+  cat("An enumeration with values:\n")
+  print(unclass(x))
+}
+print.flags <- function(x) {
+  cat("A flag enumeration with values:\n")
+  print(unclass(x))
+}
+
+
 # file shortcuts
 imagefile <- function(name)
 {

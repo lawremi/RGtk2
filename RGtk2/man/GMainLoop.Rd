@@ -3,6 +3,8 @@
 \alias{gTimeoutAdd}
 \alias{gIdleAdd}
 \alias{gSourceRemove}
+\alias{print.CallbackID}
+
 \title{The GLib Main Loop}
 \description{
 GLib provides an event-loop to all GLib-based libraries and applications.

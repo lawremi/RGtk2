@@ -23,7 +23,7 @@ as.GType <- function(x)
   type
 }
 
-interface.GObject <-
+interface <-
 function(obj)
 {
  attr(obj, "interfaces")
@@ -97,6 +97,9 @@ function(obj, signal, f, data = NULL, after = FALSE, user.data.first = FALSE)
     as.logical(after), as.logical(user.data.first), PACKAGE = "RGtk2")
 }
 
+print.CallbackID <- function(x)
+  cat("Connection to '", names(x), "': ", x, "\n", sep = "")
+
 gSignalHandlerDisconnect <-
 function(obj, id)
 {
@@ -135,7 +138,7 @@ function(obj)
   els
 }
 
-.gTypeGetSignals <-
+gTypeGetSignals <-
 function(type)
 {
   if(is.character(type))

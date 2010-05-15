@@ -18,7 +18,7 @@
 \alias{$<-.GObject}
 \alias{[[.GObject}
 \alias{[[<-.GObject}
-\alias{interface.GObject}
+\alias{interface}
 \alias{gObjectParentClass}
 \alias{gTypeGetPropInfo}
 \description{
@@ -43,7 +43,7 @@ gObjectGetSignals(obj)
 gObjectGetPropInfo(obj, parents = TRUE, collapse = TRUE)
 gTypeGetPropInfo(type)
 names.GObject(x)
-interface.GObject(obj)
+interface(obj)
 gObjectParentClass(obj)
 }
 \arguments{
@@ -81,7 +81,7 @@ Thus, every \code{GObject} has a type that descends from the common
 interfaces implemented by a particular object may be found in the 
 \code{interfaces} attribute of an R object representing a \code{GObject}, 
 for which, as you might expect, \code{inherits("GObject")} returns \code{TRUE}. 
-To conveniently access this attribute, use \code{interface.GObject}.
+To conveniently access this attribute, use \code{interface}.
 
 A \code{GObject} is usually constructed with the constructor belonging 
 to a particular subtype (for example, \code{\link{gtkWindowNew}} constructs a 

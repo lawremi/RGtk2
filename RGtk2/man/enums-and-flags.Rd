@@ -7,6 +7,11 @@
 \alias{&.flag}
 \alias{!.flag}
 \alias{==.enum}
+\alias{print.enum}
+\alias{print.flag}
+\alias{print.enums}
+\alias{print.flags}
+
 \description{Convenience functions and operators for operating on bitflags and enums}
 \usage{
 as.flag(x)

@@ -18,6 +18,8 @@ S3method("$<-", GObject)
 S3method("[[<-", GObject)
 S3method("[[", GObject)
 
+S3method(print, CallbackID)
+
 S3method("==", RGtkObject)
 S3method("[[", RGtkObject)
 
@@ -25,5 +27,10 @@ S3method("[[", GtkContainer)
 
 S3method("[", flags)
 S3method("==", enum)
+
+S3method(print, enum)
+S3method(print, flag)
+S3method(print, enums)
+S3method(print, flags)
 
 S3method("$", "<invalid>")
