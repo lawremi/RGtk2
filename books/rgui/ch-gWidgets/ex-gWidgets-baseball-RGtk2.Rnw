@@ -1,6 +1,6 @@
 %% There is an issue with cairoDevice and R2.11.0 -- so I eval=FALSE to make this work, however,
 %% when that issue gets resolved, this should be removed
-<<echo=FALSE>>=
+<<echo=FALSE, eval=FALSE>>=
 ## An GUI to explore the baseball data set in the plyr package
 ## usees several gWidgets controls.
 library(plyr)

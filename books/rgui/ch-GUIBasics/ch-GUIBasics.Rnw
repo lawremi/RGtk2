@@ -38,23 +38,23 @@ source("../booktabs.R")
 \SweaveInput{BasicComponentsContainers}
 
 
-\section{End of chapter notes}
-\label{sec:GUI:end-of-chapter}
-\XXX{ fill this in }
+% \section{End of chapter notes}
+% \label{sec:GUI:end-of-chapter}
+% \XXX{ fill this in }
 
-More documentation on GUIs is available in book format or online. 
+% More documentation on GUIs is available in book format or online. 
 
-For \GTK\/ there is the gtk tutorial (pygtk); GTK API; DTL's notes; example
-code in the \pkg{RGtk2} package; php-gtk cookbook
+% For \GTK\/ there is the gtk tutorial (pygtk); GTK API; DTL's notes; example
+% code in the \pkg{RGtk2} package; php-gtk cookbook
 
-For \wxWidgets the book; DTL omegahat pages; wxWidgets API;
+% For \wxWidgets the book; DTL omegahat pages; wxWidgets API;
 
-For \tcltk\/ ActiveStates API; wettenhall examples (sciviews);
-Dalgaard's papers; R mailing list; book
+% For \tcltk\/ ActiveStates API; wettenhall examples (sciviews);
+% Dalgaard's papers; R mailing list; book
 
-For \Java\/ Sun's website tutorials; API; rJava package page; 
+% For \Java\/ Sun's website tutorials; API; rJava package page; 
 
-Event loops
+% Event loops
 
 
 

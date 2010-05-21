@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.4.5)  25 APR 2010 11:15
+This is pdfTeX, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.4.5)  26 APR 2010 15:00
 entering extended mode
 **print-chapter
 (./print-chapter.tex
@@ -670,60 +670,60 @@ LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <12> not available
 
 
 {/opt/local/share/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for OT1+pplx on input line 91.
+LaTeX Font Info:    Try loading font information for OT1+pplx on input line 90.
 
 
 (/opt/local/share/texmf-dist/tex/latex/psnfss/ot1pplx.fd
 File: ot1pplx.fd 2004/09/06 font definitions for OT1/pplx.
 )
-LaTeX Font Info:    Try loading font information for OML+zplm on input line 91.
+LaTeX Font Info:    Try loading font information for OML+zplm on input line 90.
 
 
 (/opt/local/share/texmf-dist/tex/latex/psnfss/omlzplm.fd
 File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMS+zplm on input line 91.
+LaTeX Font Info:    Try loading font information for OMS+zplm on input line 90.
 
 
 (/opt/local/share/texmf-dist/tex/latex/psnfss/omszplm.fd
 File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMX+zplm on input line 91.
+LaTeX Font Info:    Try loading font information for OMX+zplm on input line 90.
 
 
 (/opt/local/share/texmf-dist/tex/latex/psnfss/omxzplm.fd
 File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
 )
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 91.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 90.
 
 (/opt/local/share/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 91.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 90.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 91.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 90.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 91.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 90.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 10.42007pt on input line 91.
+(Font)              scaled to size 10.42007pt on input line 90.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.91925pt on input line 91.
+(Font)              scaled to size 7.91925pt on input line 90.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 91.
+(Font)              scaled to size 6.25204pt on input line 90.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 10.42007pt on input line 91.
+(Font)              scaled to size 10.42007pt on input line 90.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.91925pt on input line 91.
+(Font)              scaled to size 7.91925pt on input line 90.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 91.
-LaTeX Font Info:    Try loading font information for OT1+zplm on input line 91.
+(Font)              scaled to size 6.25204pt on input line 90.
+LaTeX Font Info:    Try loading font information for OT1+zplm on input line 90.
 
 
 (/opt/local/share/texmf-dist/tex/latex/psnfss/ot1zplm.fd
 File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
 )
-<ex-33-macosx-rgtk2.png, id=12, 322.20375pt x 213.79875pt>
+<ex-33-macosx-rgtk2.png, id=12, 352.31625pt x 243.91125pt>
 File: ex-33-macosx-rgtk2.png Graphic file (type png)
 
 <use ex-33-macosx-rgtk2.png>
@@ -731,217 +731,213 @@ File: ex-33-macosx-rgtk2.png Graphic file (type png)
 File: fig-gWidgets-ex-33-tlctk.png Graphic file (type png)
 
 <use fig-gWidgets-ex-33-tlctk.png>
-<ex-33-linux-rJava.png, id=14, 404.49626pt x 303.18146pt>
-File: ex-33-linux-rJava.png Graphic file (type png)
-
-<use ex-33-linux-rJava.png>
-<ex-33-gWidgetsWWW.png, id=15, 426.59375pt x 305.14pt>
+<ex-33-linux-qt.png, id=14, 432.61626pt x 347.2975pt>
+File: ex-33-linux-qt.png Graphic file (type png)
+ <use ex-33-linux-qt.png>
+<ex-33-gWidgetsWWW.png, id=15, 456.70625pt x 335.2525pt>
 File: ex-33-gWidgetsWWW.png Graphic file (type png)
 
 <use ex-33-gWidgetsWWW.png> [2 <./ex-33-macosx-rgtk2.png> <./fig-gWidgets-ex-33
--tlctk.png> <./ex-33-linux-rJava.png> <./ex-33-gWidgetsWWW.png (PNG copy)>]
-[3]
+-tlctk.png> <./ex-33-linux-qt.png> <./ex-33-gWidgetsWWW.png>] [3]
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 312.
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 311.
 LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/pplx/b/n' tried instead on input line 335.
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 334.
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 335.
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 334.
 
-Overfull \hbox (29.78471pt too wide) in paragraph at lines 349--359
+Overfull \hbox (29.78471pt too wide) in paragraph at lines 348--358
 \T1/pplx/m/n/10 event is of in-ter-est. For ex-am-ple, for sin-gle line text wi
 d-gets, the \T1/cmtt/m/n/10 addHandlerChanged
  []
 
 [4] [5]
-Underfull \hbox (badness 2205) in paragraph at lines 413--413
+Underfull \hbox (badness 2205) in paragraph at lines 412--412
 \T1/pplx/m/n/10 value is "changed." The in-ter-pre-ta-tion of
  []
 
 
-Underfull \hbox (badness 1990) in paragraph at lines 413--413
+Underfull \hbox (badness 1990) in paragraph at lines 412--412
 []|\T1/pplx/m/n/10 Sets han-dler for when wid-get is dou-ble
  []
 
 [6] [7] [8
 
 ]
-Overfull \hbox (11.86212pt too wide) in paragraph at lines 507--518
+Overfull \hbox (11.86212pt too wide) in paragraph at lines 506--517
 \T1/pplx/m/n/10 de-stroyed, but will not pre-vent that from hap-pen-ing. The \T
 1/cmtt/m/n/10 addHandlerUnrealize
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 507--518
+Underfull \hbox (badness 10000) in paragraph at lines 506--517
 
  []
 
 [9]
-Underfull \hbox (badness 10000) in paragraph at lines 547--548
+Underfull \hbox (badness 10000) in paragraph at lines 546--547
 
  []
 
 [10]
-Overfull \hbox (8.8893pt too wide) in paragraph at lines 616--622
+Overfull \hbox (8.8893pt too wide) in paragraph at lines 615--621
 \T1/pplx/m/n/10 The \T1/cmtt/m/n/10 ggroup \T1/pplx/m/n/10 box con-tainer pro-v
 ides an ar-gu-ment \T1/cmtt/m/n/10 horizontal \T1/pplx/m/n/10 to spec-ify wheth
 er
  []
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 668--669
+Underfull \hbox (badness 10000) in paragraph at lines 667--668
 
  []
 
-<ex-gWidgets-ggroup-RGtk2.png, id=57, 328.22626pt x 349.305pt>
+<ex-gWidgets-ggroup-RGtk2.png, id=58, 328.22626pt x 349.305pt>
 File: ex-gWidgets-ggroup-RGtk2.png Graphic file (type png)
 
 <use ex-gWidgets-ggroup-RGtk2.png>
-<ex-gWidgets-ggroup-tcltk.png, id=58, 324.21124pt x 350.30875pt>
+<ex-gWidgets-ggroup-tcltk.png, id=59, 324.21124pt x 350.30875pt>
 File: ex-gWidgets-ggroup-tcltk.png Graphic file (type png)
 
 <use ex-gWidgets-ggroup-tcltk.png> [12 <./ex-gWidgets-ggroup-RGtk2.png> <./ex-g
 Widgets-ggroup-tcltk.png>]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 695.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 694.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 695.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 694.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 695.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 694.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 695.
+(Font)              scaled to size 9.37807pt on input line 694.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 695.
+(Font)              scaled to size 7.29405pt on input line 694.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 5.21004pt on input line 695.
+(Font)              scaled to size 5.21004pt on input line 694.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 695.
+(Font)              scaled to size 9.37807pt on input line 694.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 695.
+(Font)              scaled to size 7.29405pt on input line 694.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 5.21004pt on input line 695.
+(Font)              scaled to size 5.21004pt on input line 694.
  [13]
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 830.
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 829.
  [14] [15] [16] [17] [18
 
 ] [19] [20] [21]
-Underfull \hbox (badness 10000) in paragraph at lines 1208--1209
+Underfull \hbox (badness 10000) in paragraph at lines 1207--1208
 
  []
 
 [22]
-Underfull \hbox (badness 10000) in paragraph at lines 1304--1306
+Underfull \hbox (badness 10000) in paragraph at lines 1303--1305
 
  []
 
 [23]
-Overfull \hbox (3.04852pt too wide) in paragraph at lines 1409--1416
+Overfull \hbox (3.04852pt too wide) in paragraph at lines 1408--1415
 \T1/pplx/m/n/10 area is ``ac-ti-vated'' through the re-turn key be-ing pressed.
  Use \T1/cmtt/m/n/10 addHandlerBlur
  []
 
 [24]
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 1440--1441
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 1439--1440
 [][][][][][][][][][][][][][][][] 
  []
 
 [25] [26]
-Overfull \hbox (31.60379pt too wide) in paragraph at lines 1569--1570
+Overfull \hbox (31.60379pt too wide) in paragraph at lines 1568--1569
 [][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[27] [28] <ex-gWidgets-selection-widgets.png, id=116, 401.5pt x 303.1325pt>
+[27] [28] <ex-gWidgets-selection-widgets.png, id=117, 401.5pt x 303.1325pt>
 File: ex-gWidgets-selection-widgets.png Graphic file (type png)
 
 <use ex-gWidgets-selection-widgets.png> [29] [30 <./ex-gWidgets-selection-widge
 ts.png>] [31]
-Underfull \hbox (badness 10000) in paragraph at lines 1880--1882
+Underfull \hbox (badness 10000) in paragraph at lines 1879--1881
 
  []
 
 [32] [33]
-Overfull \hbox (37.09181pt too wide) in paragraph at lines 1989--1995
+Overfull \hbox (37.09181pt too wide) in paragraph at lines 1988--1994
 \T1/pplx/m/n/10 changed), \T1/cmtt/m/n/10 addHandlerClicked\T1/pplx/m/n/10 , \T
 1/cmtt/m/n/10 addHandlerDoubleclick\T1/pplx/m/n/10 , \T1/cmtt/m/n/10 addHandler
 ColumnClicked\T1/pplx/m/n/10 ,
  []
 
 [34] [35]
-Overfull \hbox (22.01959pt too wide) in paragraph at lines 2107--2114
+Overfull \hbox (22.01959pt too wide) in paragraph at lines 2106--2113
 \T1/pplx/m/n/10 method is used to up-date the dis-played tree. The method \T1/c
 mtt/m/n/10 addHandlerDoubleclick
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2115--2116
+Underfull \hbox (badness 10000) in paragraph at lines 2114--2115
 
  []
 
-[36] <ex-gWidgets-gtree.png, id=143, 401.5pt x 303.1325pt>
+[36] <ex-gWidgets-gtree.png, id=144, 431.6125pt x 333.245pt>
 File: ex-gWidgets-gtree.png Graphic file (type png)
 
 <use ex-gWidgets-gtree.png> [37] [38 <./ex-gWidgets-gtree.png>]
-Overfull \hbox (4.90318pt too wide) in paragraph at lines 2296--2300
+Overfull \hbox (4.90318pt too wide) in paragraph at lines 2295--2299
 []\T1/pplx/m/n/10 More stock icon names may be added through the func-tion \T1/
 cmtt/m/n/10 addStockIcons\T1/pplx/m/n/10 .
  []
 
 [39]
-Overfull \hbox (32.0993pt too wide) in paragraph at lines 2378--2384
+Overfull \hbox (32.0993pt too wide) in paragraph at lines 2377--2383
 \T1/pplx/m/n/10 Some toolk-its sup-port an em-bed-dable graph-ics de-vice (\T1/
 cmtt/m/n/10 RGtk2 \T1/pplx/m/n/10 through \T1/cmtt/m/n/10 cairoDevice\T1/pplx/m
 /n/10 ).
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2390--2394
+Underfull \hbox (badness 10000) in paragraph at lines 2389--2392
 
  []
 
-LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <9> not available
-(Font)              Font shape `T1/pplx/b/n' tried instead on input line 2395.
-[40] <fig-gWidgets-baseball-gui.png, id=158, 969.71239pt x 798.84161pt>
+<fig-gWidgets-baseball-gui.png, id=156, 1002.07208pt x 837.55768pt>
 File: fig-gWidgets-baseball-gui.png Graphic file (type png)
 
-<use fig-gWidgets-baseball-gui.png>
-Overfull \hbox (20.80368pt too wide) in paragraph at lines 2425--2426
+<use fig-gWidgets-baseball-gui.png> [40]
+Overfull \hbox (20.80368pt too wide) in paragraph at lines 2413--2414
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [41 <./fig-gWidgets-baseball-gui.png>] [42]
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 2509--2510
+Overfull \hbox (15.40363pt too wide) in paragraph at lines 2497--2498
 [][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 2511--2512
+Overfull \hbox (15.40363pt too wide) in paragraph at lines 2499--2500
 [][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 2517--2518
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 2505--2506
 [][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [43]
-Overfull \hbox (4.1798pt too wide) in paragraph at lines 2569--2571
+Overfull \hbox (4.1798pt too wide) in paragraph at lines 2557--2559
 \T1/pplx/m/n/10 This next han-dler up-dates the graphic when any of sev-eral wi
 d-gets is changed.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2569--2571
+Underfull \hbox (badness 10000) in paragraph at lines 2557--2559
 
  []
 
 [44] [45] [46] [47] [48]
-Overfull \hbox (0.53983pt too wide) in paragraph at lines 2960--2966
+Overfull \hbox (0.53983pt too wide) in paragraph at lines 2948--2954
 \T1/pplx/m/n/10 method will re-turn a list with com-po-nents be-ing the wid-get
 s that were named
  []
 
-<ex-gWidgets-formlayout.png, id=185, 501.875pt x 391.4625pt>
+<ex-gWidgets-formlayout.png, id=186, 531.9875pt x 421.575pt>
 File: ex-gWidgets-formlayout.png Graphic file (type png)
 
 <use ex-gWidgets-formlayout.png> [49] [50 <./ex-gWidgets-formlayout.png>]
@@ -951,13 +947,13 @@ Package natbib Warning: There were undefined citations.
 
 [52] (./print-chapter.aux) ) 
 Here is how much of TeX's memory you used:
- 8503 strings out of 94073
- 111002 string characters out of 1164798
- 247140 words of memory out of 1500000
- 11657 multiletter control sequences out of 10000+50000
- 61636 words of font info for 115 fonts, out of 1200000 for 2000
+ 8485 strings out of 94073
+ 110809 string characters out of 1164798
+ 246143 words of memory out of 1500000
+ 11641 multiletter control sequences out of 10000+50000
+ 59329 words of font info for 112 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
- 36i,13n,41p,1788b,1712s stack positions out of 5000i,500n,6000p,200000b,5000s
+ 36i,12n,41p,1788b,1714s stack positions out of 5000i,500n,6000p,200000b,5000s
 {/opt/local/share/texmf-dist/fonts/enc/dvips/cm-sup
 er/cm-super-t1.enc}{/opt/local/share/texmf-dist/fonts/enc/dvips/base/8r.enc}</o
 pt/local/share/texmf-dist/fonts/type1/bluesky/cm/cmmi10.pfb></opt/local/share/t
@@ -973,9 +969,9 @@ ist/fonts/type1/public/cm-super/sftt1095.pfb></opt/local/share/texmf-dist/fonts
 blic/cm-super/sftt1728.pfb></opt/local/share/texmf-dist/fonts/type1/urw/palatin
 o/uplb8a.pfb></opt/local/share/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb><
 /opt/local/share/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on print-chapter.pdf (52 pages, 630957 bytes).
+Output written on print-chapter.pdf (52 pages, 624003 bytes).
 PDF statistics:
- 251 PDF objects out of 1000 (max. 8388607)
+ 252 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
  51 words of extra memory for PDF output out of 10000 (max. 10000000)
 

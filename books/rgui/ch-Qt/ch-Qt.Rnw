@@ -1,1 +1,11 @@
 %% Qt section of book
+
+\chapter{Programming GUIs using Qt}
+\label{cha:progr-guis-using}
+
+Part on using \pkg{qtbase}, \pkg{qtpaint} and frieds to program GUIs
+using the Qt toolkit.
+
+[Needs writing]
+
+

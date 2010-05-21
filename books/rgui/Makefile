@@ -1,7 +1,7 @@
 ## Makefile to run latex, Sweave or Stangle
 
 #all: preface basics programming gWidgets gWidgetsEx RGtk2 RGtk2Ex tcltk www
-all: preface basics programming gWidgets RGtk2 tcltk www latex
+all: preface basics programming gWidgets RGtk2 Qt tcltk www latex
 	
 preface:
 	cd ch-Preface; $(MAKE)
@@ -20,6 +20,9 @@ gWidgets:
 
 RGtk2:
 	cd ch-RGtk2; $(MAKE)
+
+Qt:
+	cd ch-Qt; $(MAKE)
 
 # RGtk2Ex:
 # 	cd ch-RGtk2Example; $(MAKE)

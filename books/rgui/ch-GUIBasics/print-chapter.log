@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.4.5)  25 APR 2010 11:15
+This is pdfTeX, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.4.5)  26 APR 2010 14:59
 entering extended mode
 **print-chapter
 (./print-chapter.tex
@@ -732,17 +732,16 @@ LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <10> not available
 Package natbib Warning: Citation `APPLE:HIG' on page 5 undefined on input line 
 333.
 
-<fig-mac-print.png, id=21, 794.97pt x 555.07375pt>
+<fig-mac-print.png, id=21, 825.0825pt x 585.18625pt>
 File: fig-mac-print.png Graphic file (type png)
  <use fig-mac-print.png>
-<kde-print.png, id=22, 371.58292pt x 387.21506pt>
+<kde-print.png, id=22, 390.76965pt x 410.03716pt>
 File: kde-print.png Graphic file (type png)
  <use kde-print.png>
-<r-print-dialog.png, id=23, 439.6425pt x 335.2525pt>
+<r-print-dialog.png, id=23, 469.755pt x 365.365pt>
 File: r-print-dialog.png Graphic file (type png)
  <use r-print-dialog.png>
-[5] [6 <./fig-mac-print.png> <./kde-print.png (PNG copy)>] [7 <./r-print-dialog
-.png (PNG copy)>]
+[5] [6 <./fig-mac-print.png> <./kde-print.png>] [7 <./r-print-dialog.png>]
 LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <10.95> not available
 (Font)              Font shape `T1/pplx/b/n' tried instead on input line 465.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
@@ -764,18 +763,18 @@ LaTeX Font Info:    Font shape `U/msb/m/n' will be
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
 (Font)              scaled to size 6.25204pt on input line 483.
 
-<spss-11-model-selection.png, id=35, 506.89375pt x 352.31625pt>
+<spss-11-model-selection.png, id=37, 506.89375pt x 352.31625pt>
 File: spss-11-model-selection.png Graphic file (type png)
 
 <use spss-11-model-selection.png> [8] [9 <./spss-11-model-selection.png>]
-<ex-listbox.png, id=43, 183.40218pt x 152.72151pt>
+<ex-listbox.png, id=45, 183.40218pt x 152.72151pt>
 File: ex-listbox.png Graphic file (type png)
  <use ex-listbox.png>
-<tcltk-tkdensity.png, id=44, 179.99321pt x 199.76518pt>
+<tcltk-tkdensity.png, id=46, 179.99321pt x 199.76518pt>
 File: tcltk-tkdensity.png Graphic file (type png)
 
 <use tcltk-tkdensity.png> [10 <./ex-listbox.png (PNG copy)> <./tcltk-tkdensity.
-png>] [11] <fig-spotfire.png, id=52, 824.07875pt x 714.67pt>
+png>] [11] <fig-spotfire.png, id=54, 854.19125pt x 744.7825pt>
 File: fig-spotfire.png Graphic file (type png)
 
 <use fig-spotfire.png> [12 <./fig-spotfire.png>]
@@ -789,11 +788,11 @@ Overfull \hbox (12.21329pt too wide) in paragraph at lines 809--826
 T1/pplx/m/n/10 GUI added win-dows, icons, menubars,
  []
 
-[13] [14] <JGR-object-browser.png, id=64, 428.60126pt x 415.5525pt>
+[13] [14] <JGR-object-browser.png, id=66, 428.60126pt x 415.5525pt>
 File: JGR-object-browser.png Graphic file (type png)
 
 <use JGR-object-browser.png>
-<Rcmdr-main-window.png, id=65, 657.92972pt x 510.66255pt>
+<Rcmdr-main-window.png, id=67, 657.92972pt x 510.66255pt>
 File: Rcmdr-main-window.png Graphic file (type png)
 
 <use Rcmdr-main-window.png> [15 <./JGR-object-browser.png (PNG copy)> <./Rcmdr-
@@ -808,16 +807,16 @@ Overfull \hbox (29.16556pt too wide) in paragraph at lines 1104--1112
  In GTK+(\T1/cmtt/m/n/10 gWidgets\T1/pplx/m/n/10 ),
  []
 
-[17] [18] <box-horizontal.png, id=79, 451.6875pt x 331.2375pt>
+[17] [18] <box-horizontal.png, id=81, 451.6875pt x 331.2375pt>
 File: box-horizontal.png Graphic file (type png)
 
-<use box-horizontal.png> <box-alignment.png, id=80, 451.6875pt x 331.2375pt>
+<use box-horizontal.png> <box-alignment.png, id=82, 451.6875pt x 331.2375pt>
 File: box-alignment.png Graphic file (type png)
 
-<use box-alignment.png> <box-expand.png, id=81, 451.6875pt x 331.2375pt>
+<use box-alignment.png> <box-expand.png, id=83, 451.6875pt x 331.2375pt>
 File: box-expand.png Graphic file (type png)
 
-<use box-expand.png> <box-glue-spring.png, id=82, 451.6875pt x 331.2375pt>
+<use box-expand.png> <box-glue-spring.png, id=84, 451.6875pt x 331.2375pt>
 File: box-glue-spring.png Graphic file (type png)
 
 <use box-glue-spring.png> [19 <./box-horizontal.png> <./box-alignment.png> <./b
@@ -839,10 +838,10 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 7920 strings out of 94073
- 103536 string characters out of 1164798
- 234895 words of memory out of 1500000
- 11079 multiletter control sequences out of 10000+50000
+ 7919 strings out of 94073
+ 103512 string characters out of 1164798
+ 234859 words of memory out of 1500000
+ 11078 multiletter control sequences out of 10000+50000
  55253 words of font info for 104 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
  34i,12n,41p,648b,1744s stack positions out of 5000i,500n,6000p,200000b,5000s
@@ -854,9 +853,9 @@ er/sftt0900.pfb></opt/local/share/texmf-dist/fonts/type1/public/cm-super/sftt10
 00.pfb></opt/local/share/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></opt/l
 ocal/share/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></opt/local/share/tex
 mf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on print-chapter.pdf (21 pages, 585093 bytes).
+Output written on print-chapter.pdf (21 pages, 589232 bytes).
 PDF statistics:
- 122 PDF objects out of 1000 (max. 8388607)
+ 124 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
  66 words of extra memory for PDF output out of 10000 (max. 10000000)
 

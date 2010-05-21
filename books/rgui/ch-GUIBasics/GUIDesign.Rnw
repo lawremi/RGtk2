@@ -83,10 +83,10 @@ thing, there are many differences in implementation.
 
 \begin{figure}
   \centering
-  \includegraphics[width=.80\textwidth]{fig-mac-print}
+  \includegraphics[width=.75\textwidth]{fig-mac-print}
    \\
    
-  \includegraphics[width=.80\textwidth]{kde-print}
+  \includegraphics[width=.75\textwidth]{kde-print}
   \caption{Two print dialogs. One from Mac OS X 10.6 and one from KDE 3.5.}
   \label{fig:GUI:print-dialogs}
 \end{figure}

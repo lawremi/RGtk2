@@ -1270,11 +1270,6 @@ above with the view, a tree path and a view column.
 % \end{example}
 
 
-%% Tree stores
-The \constructor{gtkTreeView} widget displays either list stores or
-tree  stores. The difference for the programmer is in the creation of
-the data store, not the tree view.
-
 \begin{example}{A simple tree display}{eg:RGtk2-simple-tree}
   \SweaveInput{ex-RGtk2-simple-tree}
 \end{example}

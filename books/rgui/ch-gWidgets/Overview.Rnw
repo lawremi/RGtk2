@@ -62,13 +62,12 @@ for(j in c("RGtk2","tcltk","rJava")) {
 }
 
 @ 
-XXX      [insert Qt graphics here] 
 \begin{figure}
   \centering
   \begin{tabular}{ll}
     \includegraphics[width=0.45\textwidth]{ex-33-macosx-rgtk2} &
     \includegraphics[width=0.45\textwidth]{fig-gWidgets-ex-33-tlctk}\\
-    \includegraphics[width=0.45\textwidth]{ex-33-linux-rJava} &
+    \includegraphics[width=0.45\textwidth]{ex-33-linux-qt} &
     \includegraphics[width=0.45\textwidth]{ex-33-gWidgetsWWW}
   \end{tabular}
   \caption{The \pkg{gWidgets} package works with different operating
@@ -111,6 +110,14 @@ XXX      [insert Qt graphics here]
 %   \caption{A GUI shown using \pkg{gWidgetsWWW}.}
 %   \label{fig:gWidgetsWWW-same-gui}
 % \end{figure}
+
+We begin with an initial example illustrating how one can use
+\code{gWidgets} to create a somewhat complicated user interface/
+
+\begin{example}{A GUI for filtering and visualizing a data set}{ex:gWidgets-spotfire}
+  \SweaveInput{ex-spotfire}
+\end{example}
+
 
 \section{Getting Started}
 \label{sec:installation}

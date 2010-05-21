@@ -461,7 +461,7 @@ it is holding a mnemonic for, this is done with the
   
 \begin{figure}
   \centering
-  \includegraphics[width=.6\textwidth]{fig-RGtk2-labels}
+  \includegraphics[width=.5\textwidth]{fig-RGtk2-labels}
   \caption{Various formatting for a label: wrapping, alignment, ellipsizing, PANGO markup}
   \label{fig:RGtk2:label-formatting}
 \end{figure}
