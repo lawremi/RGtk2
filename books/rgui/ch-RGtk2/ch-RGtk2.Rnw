@@ -101,6 +101,8 @@ args <- function(name) {
 % DTL examples from omegahat
 
 % pygtk tutorial easier to read than C one (no types specifed)
+% pygtk cookbook: http://eccentric.cx/misc/pygtk/wiki/doku.php?id=pygtk
+% pygtk faq: http://faq.pygtk.org/index.py?req=index
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 <<echo=FALSE>>=

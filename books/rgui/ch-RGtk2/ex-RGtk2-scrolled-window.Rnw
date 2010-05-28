@@ -1,13 +1,20 @@
-This example shows how a scrolled window can be used to display a long list of values. The tree view
-widget can also do this, but here we can very easily customize the display of each value. In the example, we simply locates where a label is placed.
+This example shows how to display a long list of values with scrolled
+windows. The tree view widget can also do this, but here we can very
+easily customize the display of each value. In the example, we simply
+locates where a label is placed.
+
+%% ML: Don't like this example too much: scrolling over labels does
+%% not seem realistic. The most natural example in my mind is a
+%% GtkDrawingArea displaying R graphics. A plot can essentially be
+%% zoomed and panned with GtkViewport.
 
 <<ScrolledWindowExample, echo=FALSE>>=
 library(RGtk2)
 @
 
-<<>>=
+<<print=FALSE>>=
 g <- gtkVBox(spacing=0)
-QT <- sapply(state.name, function(i) {
+sapply(state.name, function(i) {
   l <- gtkLabel(i)
   l['xalign'] <- 0; l['xpad'] <- 10
   g$packStart(l, expand=TRUE, fill=TRUE)

@@ -32,47 +32,43 @@ library(RGtk2)
 First we create the icons using the fact that the objects have a function \code{icon} to draw an image.
 <<eval=FALSE>>=
 require(ggplot2)
-require(Cairo)
 iconNames <- c("GeomBar","GeomHistogram")   # 2 of many ggplot functions
 icon.size <- 16
-iconDir <- tempdir()
-fileNames <- sapply(iconNames, function(name) {
-  nm <- paste(iconDir, "/", name, ".png", sep="", collapse="")
-  Cairo(file=nm, width=icon.size, height=icon.size, type="png")
+pixbufs <- sapply(iconNames, function(name) {
+  pixmap <- gdkPixmap(drawable = NULL, width = icon.size, height = icon.size,
+                      depth = 24)
+  asCairoDevice(pixmap)
   val <- try(get(name))
   grid.newpage()
   try(grid.draw(val$icon()), silent=TRUE)
   dev.off()
-  nm
+  gdkPixbufGetFromDrawable(NULL, pixmap, NULL, 0, 0, 0, 0, -1 -1)
 })
 @ 
 The following function works through the steps to add a new icon. The
-basic ideas are sketched out in the API for \code{GtkIconsSet}.
+basic ideas are sketched out in the API for \code{GtkIconSet}.
 <<addToStockIcons, eval=FALSE>>=
-addToStockIcons <- function(iconNames, fileNames, stock.prefix="new") {
-  iconfactory <- gtkIconFactoryNew()
+addToStockIcons <- function(pixbuf, stock.prefix="new") {
+  iconfactory <- gtkIconFactory()
   
-  for(i in seq_along(iconNames)) {
-    
-    iconsource = gtkIconSourceNew()
-    iconsource$setFilename(fileNames[i])
-    
-    iconset = gtkIconSetNew()
-    iconset$addSource(iconsource)
-    
-    stockName = paste(stock.prefix, "-", iconNames[i], sep="")
+  items <- lapply(names(pixbufs), function(iconName) {
+    ## each icon has its own icon set, which is registered with icon factory
+    iconset <- gtkIconSetNewFromPixbuf(pixbufs[[iconName]])
+    stockName <- paste(stock.prefix, "-", iconNames[i], sep="")
     iconfactory$add(stockName, iconset)
     
-    items = list(test=list(stockName, iconNames[i],"","",""))
-    gtkStockAdd(items)
-  }
-  iconfactory$AddDefault()
-  invisible(TRUE)
+    ## create stock item for icon
+    as.GtkStockItem(list(stock_id = stockName, label = iconNames[i]))
+  })
+  ## register our factory of icons
+  iconfactory$addDefault()
+  ## officially register the stock items
+  gtkStockAdd(items)
 }
 @ 
 We call this function and then check that the values are added:
 <<eval=FALSE>>=
-addToStockIcons(iconNames, fileNames)
+addToStockIcons(pixbufs)
 nms <- gtkStockListIds()
 unlist(nms[grep("^new", nms)])
 @ 

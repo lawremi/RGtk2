@@ -3,14 +3,13 @@ library(RGtk2)
 @ 
 
 
-\begin{example}{Using a pixbuf to present graphs}{ex:RGtk2:pixbuf}
+\begin{example}{Using a pixmap to present graphs}{ex:RGtk2:pixbuf}
 
-  This example shows how to use a \constructor{gtkImage} object to
-  embed a graphic within \pkg{RGtk2}, as an alternative to using the
-  \pkg{cairoDevice} package. The basic idea is to use the
-  \function{Cairo} device to create a file containing the graphic, and
-  then use \constructor{gtkImageNewFromFile} to construct a widget to
-  show the graphic.
+  This example shows how to use a \constructor{GtkImage} object to
+  embed a graphic within \pkg{RGtk2}, using the
+  \pkg{cairoDevice} package. The basic idea is to draw onto an
+  off-screen pixmap using \pkg{cairoDevice} and
+  then to construct a \class{GtkImage} from the pixmap. 
 
   We begin by creating a window of a certain size.
 <<>>=    
@@ -23,7 +22,7 @@ w$showAll()
 
 The size of the image is retrieved from the size allocated to the box
 \code{g}. This allows the window to be resized prior to drawing the
-graphic. Unllke an interactive device, after drawing, this graphic
+graphic. Unlike an interactive device, after drawing, this graphic
 does not resize itself when the window resizes.
 
 <<>>=
@@ -31,20 +30,21 @@ theSize <- g$getAllocation()
 width <- theSize$width; height <- theSize$height
 @ 
 
-Now we draw a basic  graphic as a png file stored in a temporary file.
-<<eval=FALSE>>=
-filename <- tempfile()
-png(file = filename, width = width, height = height)
+Now we create a \class{GdkPixmap} of the correct dimensions and
+initialize an R graphics device that targets the pixmap. We then draw
+a simple histogram using base R graphics.
+<<>>=
+pixmap <- gdkPixmap(drawable = NULL, width = width, height = height,
+                    depth = 24)
+asCairoDevice(pixmap)
 hist(rnorm(100))
-QT <- dev.off()
 @ 
 
-The constructor may be called as \command{gtkImage(filename=filename)}
-or as follows:
+The final step is to create the \class{GtkImage} widget to display the
+pixmap: 
 <<eval=FALSE>>=
-image <- gtkImageNewFromFile(filename)
+image <- gtkImage(pixmap = pixmap)
 g$packStart(image, expand=TRUE, fill = TRUE)
-unlink(filename)                        # tidy up
 @ 
 
 \end{example}
