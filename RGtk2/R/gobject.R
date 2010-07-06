@@ -134,7 +134,7 @@ function(obj)
 {
   checkPtrType(obj, "GObject")
   type <- class(obj)[1]
-  els <- .gTypeGetSignals(type)
+  els <- gTypeGetSignals(type)
   els
 }
 

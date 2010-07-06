@@ -16,7 +16,7 @@ gdkGetWindowSize <- function(w) {
 
 gtkObjectSignalEmit <- function(obj, signal, ...) gSignalEmit(obj, signal, ...)
 gtkObjectGetSignals <- gObjectGetSignals
-gtkTypeGetSignals <- .gTypeGetSignals
+gtkTypeGetSignals <- gTypeGetSignals
 .GtkClasses <- "GtkWidget"
 getSignalInfo <- function(classes = .GtkClasses, load = TRUE) {
   sapply(classes, function(type) sapply(gtkTypeGetSignals(type), gtkSignalGetInfo))
