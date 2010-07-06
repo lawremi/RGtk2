@@ -268,7 +268,6 @@ r_gtk_data_frame_get_column_type (GtkTreeModel *tree_model,
   g_return_val_if_fail (R_GTK_IS_DATA_FRAME (tree_model), G_TYPE_INVALID);
   g_return_val_if_fail (index < GET_LENGTH (R_GTK_DATA_FRAME (tree_model)->frame) &&
 			index >= 0, G_TYPE_INVALID);
-
   type = getSValueGType(VECTOR_ELT(data_frame->frame, index));
   return type;
 }
@@ -329,7 +328,6 @@ r_gtk_data_frame_get_value (GtkTreeModel *tree_model,
   g_return_if_fail (R_GTK_IS_DATA_FRAME (tree_model));
   g_return_if_fail (column < GET_LENGTH(R_GTK_DATA_FRAME (tree_model)->frame));
   g_return_if_fail (VALID_ITER (iter, R_GTK_DATA_FRAME(tree_model)));
-
   initGValueFromVector(VECTOR_ELT(data_frame->frame, column),
   	GPOINTER_TO_INT(iter->user_data), value);
 }

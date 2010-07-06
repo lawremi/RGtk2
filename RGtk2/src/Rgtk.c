@@ -160,6 +160,9 @@ R_gtkInit(long *rargc, char **rargv, Rboolean *success)
 
   R_GTK_TYPE_PARAM_SEXP;
   
+  g_value_register_transform_func(G_TYPE_DOUBLE, G_TYPE_STRING,
+                                  transformDoubleString);
+  
   *success = TRUE;
 }
 

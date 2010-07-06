@@ -1524,35 +1524,44 @@ createGValueFromSValue(USER_OBJECT_ sval) {
 GType
 getSValueGType(USER_OBJECT_ sval)
 {
-	switch(TYPEOF(sval)) {
-     case LGLSXP:
-        return(G_TYPE_BOOLEAN);
-	 break;
-	 case INTSXP:
-	{
-		USER_OBJECT_ levels;
-		if ((levels = getAttrib(sval, install("levels"))) != NULL_USER_OBJECT)
-			return(G_TYPE_STRING);
-		else return(G_TYPE_INT);
-	}
+  switch(TYPEOF(sval)) {
+  case LGLSXP:
+    return(G_TYPE_BOOLEAN);
     break;
-      case REALSXP:
-		return(G_TYPE_DOUBLE);
-	break;
-      case EXTPTRSXP:
-	  {
-		GType type = g_type_from_name(asCString(GET_CLASS(sval)));
-		if (type == G_TYPE_INVALID)
-			return(G_TYPE_POINTER);
-        else return(type);
-	  }
-    break;
-      case STRSXP:
-	  case CHARSXP:
+  case INTSXP:
+    {
+      USER_OBJECT_ levels;
+      if ((levels = getAttrib(sval, install("levels"))) != NULL_USER_OBJECT)
         return(G_TYPE_STRING);
-    break;
+      else return(G_TYPE_INT);
     }
-	return(G_TYPE_INVALID);
+    break;
+  case REALSXP:
+    return(G_TYPE_DOUBLE);
+    break;
+  case EXTPTRSXP:
+    {
+      GType type = g_type_from_name(asCString(GET_CLASS(sval)));
+      if (type == G_TYPE_INVALID)
+        return(G_TYPE_POINTER);
+      else return(type);
+    }
+    break;
+  case STRSXP:
+  case CHARSXP:
+    return(G_TYPE_STRING);
+    break;
+  case VECSXP:
+    if (GET_LENGTH(sval)) {
+      GType first = getSValueGType(VECTOR_ELT(sval, 0));
+      for (int i = 1; i < GET_LENGTH(sval); i++)
+        if (getSValueGType(VECTOR_ELT(sval, i)) != first)
+          return(G_TYPE_INVALID);
+      return(first);
+    }
+    break;
+  }
+  return(G_TYPE_INVALID);
 }
 
 gboolean
@@ -1593,12 +1602,12 @@ initGValueFromSValue(USER_OBJECT_ sval, GValue *raw) {
 
 gboolean
 initGValueFromVector(USER_OBJECT_ sval, gint n, GValue *raw) {
-	switch(TYPEOF(sval)) {
-    case LGLSXP:
-      g_value_init(raw, G_TYPE_BOOLEAN);
-      g_value_set_boolean(raw, LOGICAL_DATA(sval)[n]);
+  switch(TYPEOF(sval)) {
+  case LGLSXP:
+    g_value_init(raw, G_TYPE_BOOLEAN);
+    g_value_set_boolean(raw, LOGICAL_DATA(sval)[n]);
     break;
-    case INTSXP:
+  case INTSXP:
     {
       USER_OBJECT_ levels;
       if ((levels = getAttrib(sval, install("levels"))) != NULL_USER_OBJECT) {
@@ -1615,20 +1624,23 @@ initGValueFromVector(USER_OBJECT_ sval, gint n, GValue *raw) {
       }
     }
     break;
-    case REALSXP:
-      g_value_init(raw, G_TYPE_DOUBLE);
-      g_value_set_double(raw, NUMERIC_DATA(sval)[n]);
+  case REALSXP:
+    g_value_init(raw, G_TYPE_DOUBLE);
+    g_value_set_double(raw, NUMERIC_DATA(sval)[n]);
     break;
-	  case STRSXP:
-	  case CHARSXP:
-      g_value_init(raw, G_TYPE_STRING);
-      g_value_set_string(raw, asCString(STRING_ELT(sval, n)));
+  case STRSXP:
+  case CHARSXP:
+    g_value_init(raw, G_TYPE_STRING);
+    g_value_set_string(raw, asCString(STRING_ELT(sval, n)));
     break;
-    default:
-      /*fprintf(stderr, "Unhandled R type %d\n", TYPEOF(sval));fflush(stderr);*/
-      return(FALSE);
+  case VECSXP:
+    initGValueFromSValue(VECTOR_ELT(sval, n), raw);
+    break;
+  default:
+    /*fprintf(stderr, "Unhandled R type %d\n", TYPEOF(sval));fflush(stderr);*/
+    return(FALSE);
   }
-	return(TRUE);
+  return(TRUE);
 }
 
 GValue*
@@ -1715,4 +1727,14 @@ asRGSListWithSink(GSList *gslist, const gchar* type) {
     }
     UNPROTECT(1);
     return list;
+}
+
+/* Attempt to override GValue's double->string conversion to use R's logic */
+
+void transformDoubleString(const GValue *src, GValue *dst) {
+  int w, d, e;
+  double n = g_value_get_double(src);
+  formatReal(&n, 1, &w, &d, &e, 0);
+  const char *formatStr = EncodeReal(n, w, d, e, '.');
+  g_value_set_string(dst, formatStr);
 }
