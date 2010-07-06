@@ -1,4 +1,5 @@
 \name{stock-items}
+\alias{stock-items}
 \title{GTK Stock Items}
 \alias{GTK_STOCK_ABOUT}
 \alias{GTK_STOCK_ADD}
