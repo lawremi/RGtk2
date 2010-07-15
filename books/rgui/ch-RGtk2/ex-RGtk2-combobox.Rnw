@@ -1,63 +1,37 @@
 %%
 This examples shows how a combobox can be used as an alternative to
-\function{gtkColorButton} to select a color. We use two cellrenderers
-for each row, one to hold an image and the other a text label.
+\function{gtkColorButton} to select a color. We use two cell renderers
+for each row, one to draw the color and the other a text label.
 <<echo=FALSE>>=
 ## Example of combo box for colors
-
-library(grid)
 library(RGtk2)
 @ 
 
-
-This function uses the \pkg{grid} package to produce a graphic that
-will read into the pixbuf.
-
-<<makePixbuf>>=
-makePixbufFromColor <- function(color) {
-  filename <- tempfile()
-  png(file=filename, width=25,height=10)
-  grid.newpage()
-  grid.draw(rectGrob(gp = gpar(fill = color)))
-  dev.off()
-  image <- gdkPixbufNewFromFile(filename)
-  unlink(filename)
-  return(image$retval)
-}
-@ 
-
-Our data store has one column for the pixbuf and one for the color
-text. The pixbuf is stored using the \code{GObject} class.
-
+Our model has a single column: the color name from the \R\/ palette.
 <<>>=
-store <- gtkListStore(c("GObject","gchararray"))
+model <- rGtkDataFrame(palette())
 @ 
 
-This loop adds the colors and their name to the data store.
-<<theColors, eval=FALSE>>=
-theColors <- palette()                  # some colors
-for(i in theColors) {
-  iter <- store$append()
-  store$setValue(iter$iter, 0, makePixbufFromColor(i))
-  store$setValue(iter$iter, 1, i)
-}
-@ 
-
-Next we define the combobox using the store as the model. There are
-two cell renderers to add.
-%% CAIRO is puking in 2.11.0, png isn't working on my mac, so don't eval here
-<<comboBox, eval=FALSE>>=               
-combobox <- gtkComboBox(model=store)
-## pixbuf
-crp <- gtkCellRendererPixbuf(); crp['xalign'] <- 0
-combobox$packStart(crp, expand=FALSE)                
-combobox$addAttribute(crp, "pixbuf", 0)
+Next we create the combo box with the model and add two cell
+renderers: one that fills itself with the color, the other that
+displays the text.
+<<comboBox>>=               
+combobox <- gtkComboBox(model)
+## color
+crc <- gtkCellRendererText()
+combobox$packStart(crc, expand=FALSE)                
+combobox$addAttribute(crc, "cell-background", 0)
+crc$width <- 25
 ## text
-crt <- gtkCellRendererText(); 
+crt <- gtkCellRendererText()
 crt['xpad'] <- 5                        # give some space
 combobox$packStart(crt)
-combobox$addAttribute(crt, "text", 1)
-@ 
+combobox$addAttribute(crt, "text", 0)
+@
+%
+We use a \class{GtkCellRendererText} to display the color as its
+background, without any text, since we cannot create an instance of
+the abstract base class \class{GtkCellRenderer}.
 
 <<echo=FALSE, eval=FALSE>>=
 ## display in a window

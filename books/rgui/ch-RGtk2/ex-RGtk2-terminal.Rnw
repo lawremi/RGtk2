@@ -1,9 +1,10 @@
+%% FIXME: the text view scrolling does not work
+
 This example shows how the text view widget can be used to make a
-simple command line. While programming a command line isn't likely to
-be the most common task in designing a GUI for a statistics
-application (presumably you are already using a good one), the example
-is familiar and shows several different, but useful, aspects
-of the widget.
+simple command line. While programming a command line is unlikely to
+be a common task in designing a GUI for a statistics
+application, the example is familiar and shows several different, but
+useful, aspects of the widget.
 
 \begin{figure}
   \centering
@@ -26,14 +27,6 @@ font <- pangoFontDescriptionFromString("Monospace")
 tv$modifyFont(font)                     # widget wide
 @ 
 
-Our main object will be the text buffer which will have only one
-view. As there is no built-in method to return a corresponding view
-from the buffer, we use the \method{setData}{gtkWidget} method to
-associate the view with the buffer.
-<<>>=
-tb$setData("textview", tv)
-@ 
-
 We will use a few formatting tags, defined next. We don't need the tag
 objects, as we refer to them later by name.
 <<>>=
@@ -45,106 +38,74 @@ aTag <- tb$createTag(tag.name="cmdError",
 aTag <- tb$createTag(tag.name="uneditable", editable=FALSE)
 @ 
 
-We define one new mark to mark the prompt for a new line. We
-need to be able to identify a new command, and this marks the
-beginning of this command.
+We define one new mark to indicate the prompt for a new line. We
+need to be able to identify a new command, and this marks its beginning.
 <<>>=
 startCmd <- gtkTextMark("startCmd", left.gravity=TRUE)
 tb$addMark(startCmd, tb$getStartIter()$iter)
 @ 
 
-We define several functions, which we think of as methods of the text
-buffer (not the text view). This first shows how to move the viewport
-so that the command line is visibile.
+We define several helper functions. This first shows how to move the
+viewport to the end of the buffer so that the command line is visibile.
 <<>>=
-moveViewport <- function(obj) {
-  tv <- obj$getData("textview")
-  endIter <- obj$getEndIter()
-  QT <- tv$scrollToIter(endIter$iter, 0)
+scrollViewport <- function(view, ...) {
+  iter <- view$getBuffer()$getEndIter()$iter
+  view$scrollToIter(iter, 0)
 }
 @ 
 
-There are two types of prompts needed. This function adds a new one or a
-continuation one. An argument allows one to specify that the
-\code{startCmd} mark is set.
+There are two types of prompts needed: one for entering a new command
+and one for a continuation. This function adds either, depending on
+its argument.
 <<>>=
-addPrompt <- function(obj, prompt=c("prompt","continue"), 
-                      setMark=TRUE) {
+addPrompt <- function(obj, prompt=c("prompt", "continue"),
+                      setMark=TRUE) 
+{
   prompt <- match.arg(prompt)
   prompt <- getOption(prompt)
   
   endIter <- obj$getEndIter()
   obj$insert(endIter$iter, prompt)
-  tv <- obj$getData("textview")
   if(setMark)
     obj$moveMarkByName("startCmd", endIter$iter)
+  obj$applyTagByName("uneditable", obj$getStartIter()$iter, 
+                     obj$getEndIter()$iter)
 }
 addPrompt(tb) ## place an initial prompt
 @ 
 
-This helper method is used to write the output of a command to the
-text buffer. We arrange to truncate large outputs. By passing in the
-tag name, we could reuse this function. If we were to streamline the
-code for this example, we might use this function to also write out the error
-messages, but leave that to the similarly defined function
-\code{addErrorMessage} (not shown).
-
-
+This helper method writes the output of a command to the text
+buffer. We arrange to truncate large outputs. By passing in the tag
+name, we can specify whether this is normal output or an error
+message.
 <<addOutput>>=
 addOutput <- function(obj, output, tagName="cmdOutput") {
-  if(length(output) > 100)              # shorten if needed
-    out <- c(output[1:100], "...")
-
   endIter <- obj$getEndIter()
   if(length(output) > 0) 
     sapply(output, function(i)  {
       obj$insertWithTagsByName(endIter$iter, i, tagName)
       obj$insert(endIter$iter, "\n", len=-1)
     })
-  
-  addPrompt(obj, "prompt", setMark=TRUE)
-  obj$applyTagByName("uneditable", obj$getStartIter()$iter, 
-                     obj$getEndIter()$iter)
-  moveViewport(obj)
-}
-@ 
-
-<<echo=FALSE>>=
-## not shown in example
-addErrorMessage <- function(obj, msg) {
-  ## add error message to end of buffer, new line with continuation prompt
-  endIter <- obj$getEndIter()
-  obj$insert(endIter$iter, "\n", len=-1)
-  sapply(msg, function(i) {
-    obj$insertWithTagsByName(endIter$iter, i,  "cmdError")
-    obj$insert(endIter$iter, "\n", len=-1)
-  })
-  addPrompt(obj, "prompt", setMark=TRUE)
-  moveViewport(obj)  
 }
 @ 
 
 This next function uses the \code{startCmd} mark and the end of the buffer
-to extract the current command. Multi-line commands are handled through
-a regular expression which should not be hard-coded to the standard
-continue prompt, but for sake of simplicity is.
+to extract the current command. Multi-line commands are parsed with a
+regular expression.
 <<>>=  
 findCMD <- function(obj) {
   endIter <- obj$getEndIter()
   startIter <- obj$getIterAtMark(startCmd)
   cmd <- obj$getText(startIter$iter, endIter$iter, TRUE)
-
-  cmd <- unlist(strsplit(cmd, "\n[+] ")) # hardcoded "+"
+  regex <- paste("\n[", getOption("continue"), "] ", sep = "")
+  cmd <- unlist(strsplit(cmd, regex))
   cmd
 }
 @ 
 
-The following function takes the current command and does the
-appropriate thing. It uses a hack (involving \code{grep}) to
-distinguish between an incomplete command and a true syntax error. The
-\code{addHistory} call refers to a function that is not shown, but is
-left to illustrate where one would add to a history stack if desired.
-
+The following function takes the current command and evaluates it. It
+uses a hack (involving \code{grep}) to distinguish between an
+incomplete command and a true syntax error. 
 <<>>=
 evalCMD <- function(obj, cmd) {
   cmd <- paste(cmd, sep="\n")
@@ -153,17 +114,23 @@ evalCMD <- function(obj, cmd) {
     if(length(grep("end", out))) {      # unexpected end of input
       ## continue
       addPrompt(obj, "continue", setMark=FALSE)
-      moveViewport(obj)
     } else {
       ## error
-      addErrorMessage(obj, out)
+      addOutput(obj, out, tagName = "cmdError")
     }
     return()
   }
-  addHistory(obj, cmd)  ## if keeping track of history
   
-  out <- capture.output(eval(parse(text = cmd), envir=.GlobalEnv))
-  addOutput(obj, out)
+  e <- parse(text = cmd)
+  out <- capture.output(vis <- withVisible(try(eval(e, .GlobalEnv), TRUE)))
+
+  addOutput(obj, out) 
+  if (inherits(vis$value, "try-error"))
+    addOutput(obj, vis$value, "cmdError")
+  else if (vis$visible)
+    addOutput(obj, capture.output(print(vis$value)))
+  
+  addPrompt(obj, "prompt", setMark=TRUE)
 }
 @ 
 
@@ -171,9 +138,8 @@ The \code{evalCMD} command is called when the \kbd{return} key is
 pressed. The \signal{key-release-event} signal passes the event
 information through to the second argument. We inspect the key value
 and compare to that of the return key. 
-
-<<connectBinding>>=
-ID <- gSignalConnect(tv, "key-release-event", f=function(w, e, data) {
+<<connectBinding, print=FALSE>>=
+gSignalConnect(tv, "key-release-event", f=function(w, e, data) {
   obj <- w$getBuffer()                  # w is textview
   keyval <- e$getKeyval()
   if(keyval == GDK_Return) {
@@ -183,7 +149,17 @@ ID <- gSignalConnect(tv, "key-release-event", f=function(w, e, data) {
   }
   return(FALSE)                         # events need return value
 })
+@
+
+% 
+Finally, We connect \function{moveViewport} to the \code{changed}
+signal of the text buffer, so that the view always scrolls to the
+bottom when the contents of the buffer are modified:
+<<print=FALSE>>=
+gSignalConnect(tb, "changed", scrollViewport, tv, after = TRUE, 
+               user.data.first = TRUE)
 @ 
+
 Figure~\ref{fig:RGtk2-terminal} shows the widget placed into a very
 simple GUI.
 <<makeGUI, echo=FALSE>>=

@@ -1,11 +1,9 @@
-The \constructor{gtkTreeView} widget displays either list stores or
-tree stores. The difference for the programmer is in the creation of
-the data store, not the tree view, as this example illustrates.
-
-The data we use will come from the \code{Cars93} data set used in
-Example~\ref{eg:RGtk2:tree-store}. In that example we defined a simple
-tree store from a data frame, with a level for manufacturer and make
-for different cars. We refer to that model by \code{tstore} below.
+Here, we demonstrate the application of \class{GtkTreeView} to the
+display of hierarchical data. We will use the model constructed in
+Example~\ref{eg:RGtk2:tree-store} from the \code{Cars93} dataset.  In
+that example we defined a simple tree store from a data frame, with a
+level for manufacturer and make for different cars. We refer to that
+model by \code{tstore} below.
 
 <<notShown, echo=FALSE>>=
 ## define tstore, but aslo in earlier example so not shown
@@ -35,12 +33,7 @@ store <- rGtkDataFrame(Cars93[,"Model", drop=FALSE])
 The basic view is similar to that for rectangular data already presented.
 <<makeView>>=
 view <- gtkTreeView()
-vc <- gtkTreeViewColumn()
-vc$setTitle("Make")
-QT <- view$insertColumn(vc, 0)
-cr <- gtkCellRendererText()
-vc$packStart(cr)
-vc$addAttribute(cr, "text", 0)
+view$insertColumnWithAttributes(0, "Make", gtkCellRendererText(), text = 0)
 @ 
 
 <<makeGUI, echo=FALSE>>=

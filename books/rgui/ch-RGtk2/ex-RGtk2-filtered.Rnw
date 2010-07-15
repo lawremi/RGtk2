@@ -1,4 +1,7 @@
-This example shows how to use \GTK's filtering feature to restrict the rows of the model shown by matching against the values entered into a text entry box. The end result is similar to an entry widget with completion.
+This example shows how to use \class{GtkTreeModelFilter} to filter
+rows according to whether they match a value entered into a text entry
+box. The end result is similar to an entry widget with completion.
+
 <<echo=FALSE>>=
 library(RGtk2)
 @ 
@@ -6,11 +9,12 @@ library(RGtk2)
 \begin{figure}
   \centering
   \includegraphics[width=.45\textwidth]{ex-RGtk2-filtered}
-  \caption{Example of a data store filtered by values typed into a text-entry widget.}
+  \caption{Example of a data store filtered by values typed into a
+    text-entry widget.}
   \label{fig:RGtk2-filtered}
 \end{figure}
 
-We use a convenient set of names and create a data frame. The
+First, we create a data frame. The
 \code{VISIBLE} column will be added to the \code{rGtkDataFrame}
 instance to adjust the visible rows.
 <<>>=
@@ -20,41 +24,31 @@ store <- rGtkDataFrame(df)
 @ 
 
 The filtered store needs to have the column specified that contains
-the logical values, in this example it is the last column.
+the logical values; in this example, it is the last column.
 <<>>=
-filteredStore <- store$filterNew()
+filteredStore <- store$filter()
 filteredStore$setVisibleColumn(ncol(df)-1)      # offset
 view <- gtkTreeView(filteredStore)
 @ 
 
-This example uses just one column, we create a basic view of it below.
+Next, we create a basic view of a single column:
 <<>>=
-vc <- gtkTreeViewColumn()
-cr <- gtkCellRendererText()
-vc$packStart(cr, TRUE)
-vc$setTitle("Col")
-vc$addAttribute(cr, "text", 0)
-QT <- view$insertColumn(vc, 0)
+view$insertColumnWithAttributes(0, "Col", gtkCellRendererText(), text = 0)
 @ 
 
 An entry widget will be used to control the filtering. In the
 callback, we adjust the \code{VISIBLE} column of the
-\code{rGtkDataFrame} instance, to reflect the rows to be shown. When
-\code{val} is an empty string, the result \function{grep} is just
-\code{TRUE}, so all rows will be shown. The
-\code{getModel} method of the filtered store is used, although we
-could have passed in that store itself.
+\code{rGtkDataFrame} instance to reflect the rows to be shown. When
+\code{val} is an empty string, the result of \function{grepl} is 
+\code{TRUE}, so all rows will be shown.
 <<>>=
 e <- gtkEntry()
-ID <- gSignalConnect(e, "changed", function(w, data) {
-  val <- w$getText()
+gSignalConnect(e, "changed", function(w, data) {
+  pattern <- w$getText()
   df <- data$getModel()
-  values <- df[,1]
-  df[, dim(df)[2]] <- sapply(values, function(i) 
-                             as.logical(length(grep(val,i))))
-},
-                     data=filteredStore)
-
+  values <- df[, "state.name"]
+  df[, "VISIBLE"] <- grepl(pattern, values)
+}, data=filteredStore)
 @ 
 
 

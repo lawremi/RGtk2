@@ -1,8 +1,8 @@
-This example shows how to select one or more rows from a data frame
-that contains some information. We write it so any data frame could be
-used, although in the specific case we show a list of the installed
-packages that can be upgraded from CRAN. The use of checkboxes for
-selection, employs the toggle cell renderer.
+This example demonstrates the construction of a GUI for selecting one
+or more rows from a data frame. We will display a list of the installed
+packages that can be upgraded from CRAN, although this code is
+trivially generalizable to any list of choices. The user selects a row
+by clicking on a checkbox produced by a toggle cell renderer.
 
 <<echo=FALSE>>=
 ## example showing how to add a toggle button on left of data display
@@ -17,65 +17,51 @@ repos["CRAN"] <- "http://streaming.stat.iastate.edu/CRAN"
 options(repos = repos)
 @ 
 <<getUpgradablePackages>>=
-avail <- available.packages()
-installed <- installed.packages()
-tmp <- merge(avail, installed, by="Package")
-need.upgrade <- with(tmp, as.character(Version.x) 
-                     != as.character(Version.y))
-d <- tmp[need.upgrade, c(1, 2, 16, 6)]
-names(d) <- c("Package", "Available", "Installed", "Depends")
+d <- old.packages()[,c("Package", "Installed", "ReposVer")]
+d <- as.data.frame(d)
 @ 
 
 
-This function will be called on the selected rows. The \code{print}
-call would be replaced with something more reasonable, such as a call
-to \function{install.packages}.
+This function will be called on the selected rows. Here, we simply
+call \function{install.packages} to update the selected packages.
 <<>>=
-doThis <- function(d) print(d)
+doUpdate <- function(d) {
+  install.packages(d$Package)
+}
 @ 
 
-The rest of this code is independent of the details of \code{d}. We first
-append a column to the data frame to store the selection information.
+To display the data frame, we first append a column to the data frame
+to store the selection information and then create a corresponding
+\class{RGtkDataFrame}.
 <<>>=
 n <- ncol(d)
-nms <- names(d)
+nms <- colnames(d)
 d$.toggle <- rep(FALSE, nrow(d))
 store <- rGtkDataFrame(d)
 @ 
 
-Our tree view shows each column using a simple text cell renderer,
-except for an initial one where the user can select the packages they
-want to call \code{doThis} on.
-<<>>=
+Our tree view shows each text column using a simple text cell renderer,
+except for the first column that contains the check boxes for selection.
+<<print=FALSE>>=
 view <- gtkTreeView()
 # add toggle
-togglevc <- gtkTreeViewColumn()
-QT <- view$insertColumn(togglevc, 0)
 cr <- gtkCellRendererToggle()
-togglevc$packStart(cr)
+view$insertColumnWithAttributes(0, "", cr, active = n)
 cr['activatable'] <- TRUE
-togglevc$addAttribute(cr, "active", n)
-QT <- gSignalConnect(cr, "toggled", function(cr, path, user.data) {
+gSignalConnect(cr, "toggled", function(cr, path, user.data) {
   view <- user.data
   row <- as.numeric(path) + 1
   model <- view$getModel()
   n <- dim(model)[2]
   model[row, n] <- !model[row, n]
-},
-               data=view)
+}, data=view)
 @ 
 
 The text columns are added one-by-one in a similar manner:
-<<>>=
-QT <- sapply(1:n, function(i) {
-  vc <- gtkTreeViewColumn()
-  vc$setTitle(nms[i])
-  view$insertColumn(vc, i)
 
-  cr <- gtkCellRendererText()
-  vc$packStart(cr)
-  vc$addAttribute(cr, "text", i-1)
-})
+<<print=FALSE>>=
+mapply(view$insertColumnWithAttributes, -1, nms, list(gtkCellRendererText()), 
+       text = 1:n-1)
 @ 
 
 Finally, we connect the store to the model.
@@ -83,23 +69,24 @@ Finally, we connect the store to the model.
 view$setModel(store)
 @ 
 
-To initiate the action, we create a button and assign a callback. We
-pass in the view, rather than the model, in case the model would be
-modified by the \code{doThis} call. In a real application, once a
-package is upgraded it would be removed from the display.
-<<>>=
-b <- gtkButton("click me")
-QT <- gSignalConnect(b, "clicked", function(w, data) {
+To allow the user to initiate the action, we create a button and
+assign a callback. We pass in the view, rather than the model, in case
+the model would be recreated by the \code{doUpdate} call. In a real
+application, once a package is upgraded it would be removed from the
+display.
+<<print=FALSE>>=
+b <- gtkButton("Update packages")
+gSignalConnect(b, "clicked", function(w, data) {
   view <- data
   model <- view$getModel()
   n <- dim(model)[2]
   vals <- model[model[, n], -n, drop=FALSE]
-  doThis(vals)
+  doUpdate(vals)
 }, data=view)
 @ 
 
 
-Our basic GUI places the view into a box container that also holds a
+Our basic GUI places the view into a box container that also holds the
 button to initiate the action.
 <<>>=
 w <- gtkWindow(show=FALSE)

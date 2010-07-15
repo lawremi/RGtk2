@@ -48,17 +48,17 @@ pixbufs <- sapply(iconNames, function(name) {
 The following function works through the steps to add a new icon. The
 basic ideas are sketched out in the API for \code{GtkIconSet}.
 <<addToStockIcons, eval=FALSE>>=
-addToStockIcons <- function(pixbuf, stock.prefix="new") {
+addToStockIcons <- function(pixbufs, stock.prefix="new") {
   iconfactory <- gtkIconFactory()
   
   items <- lapply(names(pixbufs), function(iconName) {
     ## each icon has its own icon set, which is registered with icon factory
     iconset <- gtkIconSetNewFromPixbuf(pixbufs[[iconName]])
-    stockName <- paste(stock.prefix, "-", iconNames[i], sep="")
+    stockName <- paste(stock.prefix, "-", iconName, sep="")
     iconfactory$add(stockName, iconset)
     
     ## create stock item for icon
-    as.GtkStockItem(list(stock_id = stockName, label = iconNames[i]))
+    as.GtkStockItem(list(stock_id = stockName, label = iconName))
   })
   ## register our factory of icons
   iconfactory$addDefault()

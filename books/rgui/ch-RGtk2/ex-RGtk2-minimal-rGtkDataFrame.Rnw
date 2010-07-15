@@ -1,4 +1,4 @@
-This shows the minimal number of steps to use \code{rGtk2DataFrame}
+This shows the minimal number of steps to use \code{RGtkDataFrame}
 
 <<echo-FALSE>>=
 library(RGtk2)

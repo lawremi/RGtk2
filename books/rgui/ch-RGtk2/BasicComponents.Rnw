@@ -816,12 +816,16 @@ e$getText()
 \end{example}
 
 %% signals
-The \class{GtkEditable} interface supports three signals: \signal{changed} when
-text is changed, \signal{delete-text} for delete events, and
-\signal{insert-text} for insert events. The \signal{changed} signal will
-be emitted each time there is a keypress while the widget has
-focus. When the \kbd{enter} key is pressed the \signal{activate} signal
-is also emitted. 
+The \class{GtkEditable} interface supports three signals:
+\signal{changed} when text is changed, \signal{delete-text} for delete
+events, and \signal{insert-text} for insert events. It is possible to
+prevent the insertion or deletion of text by connecting to the
+corresponding signal and stopping the signal propagation with
+\function{gSignalStopEmission}. 
+
+\class{GtkEntry} defines a number of its own signals, including the
+\signal{activate} signal, which is emitted when the \kbd{enter} key is
+pressed.
 
 %% skipped
 %% ML: I agree; kind of a hack
@@ -949,7 +953,7 @@ sapply(rev(radiogp$getGroup()), gtkBoxPackStart, object = g)
 
 The combo box is a more space efficient alternative to radio buttons
 and is better suited for when there are a large number of options. A
-basic, text-only combo box is constructed by
+basic, text-only \class{GtkComboBox} is constructed by
 \constructor{gtkComboBoxNewText}. Later we will discuss more
 complicated combo boxes, where an underlying data model is
 manipulated.
@@ -979,7 +983,7 @@ the preferred number of columns for displaying the items.
 %% signal
 The main signal to connect to is \signal{changed} which is emitted
 when the active item is changed either by the user or the programmer
-through the \code{GetActive} method.
+through the \code{getActive} method.
 
 \begin{example}{Combo box}{eg:RGtk2:simple-combo-box}
 A simple combo box may be produced as follows:

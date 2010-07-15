@@ -2,104 +2,1134 @@
 library(RGtk2)
 @ 
 
-Many widgets in \GTK\/ use the model, view, controller paradigm. While
-many times the deatils are in the background, for the widgets in this chapter
-one needs to be aware of the usage. This framework adds a layer of
-complexity, in exchange for creating smarter components that can share
-data more easily.
+%% Possible outline:
+%% - Displaying tabular data (GtkTreeView)
+%%   - Loading data frame
+%%   - Displaying data frame
+%%   - Accessing GtkTreeModel (to set up selection, and hierarchical data)
+%%   - Selection (an important concept, but common to hierarchical, below)
+%%   - Sorting/filtering
+%%   - Cell renderer details
+%% - Displaying hierarchical data (GtkTreeView)
+%%   - Loading hierarchical data
+%%   - Displaying data as a tree
+%% - Model-based combo boxes
+%% - Text entry completion
+%% - Icon views (currently omitted, probably OK)
+%% - Text views
+
+%% TODO: we need a unified example in the main text that spans loading
+%% a data frame to sorting a model, at least.
+
+Many widgets in \GTK\/ use the model, view, controller (MVC)
+paradigm. For most, like the button, the MVC pattern is implicit;
+however, widgets that primarily display data explicitly incorporate
+the MVC pattern into their design. The data model is factored out as a
+separate object, while the widget plays the role of the view and
+controller. The MVC approach adds a layer of complexity but
+facilitates the display of the dynamic data in multiple, coordinated
+views.
+
+\section{Display of tabular data}
+\label{sec:RGtk2:tabular-heirarchical-data}
+
+Widgets that display lists, tables and trees are all based on the same
+basic data model, \class{GtkTreeModel}. Although its name suggests a
+hierarchical structure, \class{GtkTreeModel} is also tabular. We first
+describe the display of an \R\/ data frame in a list or table
+view. The display of hierarchical data, as well as further details of
+the \class{GtkTreeModel} framework, are treated subsequently.
+
+\subsection{Loading a data frame}
+\label{sec:tabular-stores-tree}
+
+As an interface, \class{GtkTreeModel} may be implemented in any number
+of ways. \GTK\/ provides simple in-memory implementations for
+hierarchical and non-hierarchical data. For improved speed,
+convenience and familiarity, \pkg{RGtk2} includes a custom
+\class{GtkTreeModel} implementation called class{RGtkDataFrame}, which
+is based on an \R\/ data frame. For non-hierarchical data, this is
+usually the model of choice, so we discuss it first.
+
+\R\/ uses data frames to hold tabular data, where each column is of a
+certain class, and each row is related to some observational
+unit. This fits the structure of \class{GtkTreeModel} when there is no
+hierarchy. As such it is natural to have a means to map a data frame
+into a store for a tree view. \class{RGtkDataFrame} implements
+\class{GtkTreeModel} to perform this role and is constructed with the
+\constructor{rGtkDataFrame} function. Populating a
+\class{RGtkDataFrame} is much faster than a \GTK\/ model, because the
+data is taken directly from the data frame, without any copying or
+need to add each row individually in a slow \R\/ loop. The constructor
+takes a data frame as an argument. The column classes are important,
+so even if this data frame is empty, the user should specify the
+desired column classes upon construction.
+
+An object of class \class{RGtkDataFrame} supports the familiar S3
+methods \method{[}{RGtkDataFrame}, \method{[\ASSIGN}{RGtkDataFrame},
+\method{dim}{RGtkDataFrame}, and
+\method{as.data.frame}{RGtkDataFrame}. The \code{[$<$-} method does
+not have quite the same functionality as it does for a data
+frame. Columns can not be removed by assigning values to \code{NULL},
+and column types should not be changed. These limitations are inherit
+in the design of \GTK: columns may not be removed from
+\class{GtkTreeModel}, and views expect the data type to remain the
+same.
+
+\begin{example}{Defining and manipulating a \class{RGtkDataFrame}}{eg-RGtk2-manipulate-rGtkDataframe}
+  The basic data frame methods are similar.
+<<>>=  
+data(Cars93, package="MASS")            # mix of classes
+model <- rGtkDataFrame(Cars93)
+model[1, 4] <- 12
+model[1, 4]                              # get value
+@
+
+Factors are treated differently from character values, as is done with
+data frames, so assignment to a factor must be from one of the
+possible levels.
+
+\end{example}
+
+The data frame combination functions \Rfunction{rbind} and
+\Rfunction{cbind} are unsupported, as they would create a new data
+model, rather than modify the model in place. Thus, one should add
+rows with \method{appendRows}{rGtkDataFrame} and add columns with
+\method{appendColumns}{rGtkDataFrame} (or sub-assignment, 
+\method{[\ASSIGN}{RGtkDataFrame}).
+
+The \method{setFrame}{rGktDataFrame} method replaces the underlying
+data frame.
+<<print=FALSE>>=
+model$setFrame(Cars93[1:5, 1:5])
+@ 
+%
+Replacing the data frame is the only way to remove rows, as this is
+not possible with conventional data frame sub-assignment
+interface. Removing columns or changing their types remains
+impossible. The new data frame cannot contain more columns and rows
+than the current one. If the new data frame has more rows or columns,
+then the appropriate \code{append} method should be used first.
+
+\subsection{Displaying data as a list or table}
+\label{sec:RGtk2:mvc:GtkTreeView}
+
+%% intro
+\class{GtkTreeView} is the primary view of \class{GtkTreeModel}.  It
+serves as the list, table and tree widget in \GTK. A tree view is
+essentially a container of columns, where every column has the same
+number of rows. If the view has a single column, it is essentially a
+list. If there are multiple columns, it is a table. If the rows are
+nested, it is a tree table, where every node has values on the same
+columns.
+
+%% constructor
+A tree view is constructed by \constructor{gtkTreeView}. 
+<<rgtk2-mvc-treeview-construct>>=
+view <- gtkTreeView(model)
+@ 
+Usually, as in the above, the model is passed to the
+constructor. Otherwise, the model may be accessed with
+\method{setModel}{gtkTreeView} and \method{getModel}{gtkTreeView}.
+
+A newly created tree view displays zero columns, regardless of the
+number of columns in the model. Each column, an instance of
+\class{GtkTreeViewColumn}, must be constructed, inserted into the view and
+instructed to render content based on one or more columns in the data
+model:
+<<rgtk2-mvc-insert-column-hardway, print=FALSE>>=
+vc <- gtkTreeViewColumn()
+vc$setTitle("Manufacturer")
+cr <- gtkCellRendererText()
+vc$packStart(cr)
+vc$addAttribute(cr, "text", 0)
+vc$insertColumn(vc, 0)
+@ 
+%
+A column with
+the title ``Manufacturer'' is inserted at the first, $0$-based,
+position. For displaying a simple data frame, we only need to render
+text. Each row in a column consists of one or more cells, managed in a
+layout. The number of cells and how each cell is rendered is uniform
+down a column. As an implementation of \class{GtkCellLayout},
+\class{GtkTreeViewColumn} delegates the responsibility of rendering to
+one or more \class{GtkCellRenderer} objects. The cell renderers are
+packed into the column, which behaves much like a box
+container. Rendering of text cells is the role of
+\class{GtkCellRendererText}; we create an instance with
+\constructor{gtkCellRendererText}. There are several properties that
+control how the text is rendered. A so-called \textit{attribute} links
+a model column to a renderer property. The most important property is
+\code{text}, the text itself. In the example, we bind the \code{text}
+property to the first ($0$-indexed) column in the model.
+
+\class{GtkTreeView} provides the \method{insertColumnWithAttributes}
+convenience method to perform all of these steps with a single
+call. We invoke it to add a second column in our view:
+<<rgtk2-mvc-insert-column-easyway>>=
+view$insertColumnWithAttributes(position = -1, title = "Model", 
+                                cell = gtkCellRendererText(), text = 1)
+@ 
+% 
+The $-1$ passed as the first argument indicates that the column should
+be appended. Next, we specify the column title, a cell renderer, and
+an attribute that links the \code{text} renderer property to the
+second column in the model. In general, any number of attributes may
+be defined after the third argument.  We will use the above idiom in
+all of the following examples, as it is much more concise than
+performing each step separately.
+
+To display the entire Cars93 data frame, we insert a view column for
+every column in the data frame. Here, we reconstruct the view, inserting
+a view column for every column in the data frame, i.e., the model.
+<<rgtk2-mvc-insert-all-columns>>=
+view <- gtkTreeView(model)
+mapply(gtkTreeViewInsertColumnWithAttributes, -1, colnames(model), 
+       list(gtkCellRendererText()), text = seq_len(ncol(model)) - 1)
+@ 
+%
+Although it was relatively easy to create a \class{GtkTreeModel} for
+the data frame using \class{RGtkDataFrame}, the complexity of
+\class{GtkTreeView} complicates the task of displaying the data frame
+in a simple, textual table. When this is all that is necessary, one
+might consider \function{gdataframe} from \pkg{gWidgets}. For those
+who wish to render text in each row differently (e.g., in a different
+color) or fill cells with images, check boxes, progress bars and the
+like, direct use of the \class{GtkTreeView} API is required.
+
+\paragraph{Manipulating view columns}
+
+The \Rclass{GtkTreeView} widget is essentially a collection of
+columns. Columns are added to the tree view with the methods
+\method{insertColumn}{gtkTreeView} or, as shown above,
+\method{insertColumnWithAttributes}{gtkTreeView}.  A column can be
+moved with the \method{moveColumnAfter}{gtkTreeView} method, and
+removed with the \method{removeColumn}{gtkTreeView} method. The
+\method{getColumns}{gtkTreeView} method returns a list containing all
+of the tree view columns.
+
+There are several properties for controlling the behavior and
+dimensions of a \class{GtkTreeViewColumn} instance. The property
+\qcode{resizable} determines wheter the user can resize a column, by
+dragging with the mouse. The size properties \qcode{width},
+\qcode{min-width}, and \qcode{fixed-width} control the size. The
+visibility of the column can be adjusted through the
+\method{setVisible}{gtkTreeViewColumn} method.
+
+\paragraph{Additional Features}
+
+Tree views have several special features, including sorting,
+incremental search and drag-n-drop reordering. Sorting is discussed in
+Section~\ref{sec:RGtk2:mvc:proxies}. To turn on searching,
+\code{enable-search} should be \code{TRUE} (the default) and the
+\code{search-column} property should be set to the column to be
+searched. The tree view will popup a search box when the user types
+\kbd{control-f}. To designate an arbitrary text entry widget as the
+search box, call \method{setSearchEntry}{GtkTreeView}. The entry can
+be placed anywhere in the GUI. Columns are always reorderable by drag
+and drop. Reordering rows through drag-and-drop is enabled by the
+\code{reorderable} property.
+
+\paragraph{Aesthetic properties}
+
+\Rclass{GtkTreeView} is capable of rendering some visual guides. The
+\code{rules-hint}, if \code{TRUE}, will instruct the theme to draw
+rows in alternating colors. To show grid lines, set
+\code{enable-grid-lines} to \code{TRUE}.
+
+\subsection{Accessing \class{GtkTreeModel}}
+\label{sec:RGtk2:mvc:iterators}
+
+Although \class{RGtkDataFrame} provides a familiar interface for
+manipulating the data in a \class{GtkTreeModel}, it is often necessary
+to directly interact with the \GTK\/ API, such a when using another
+type of data model or interpreting user selections. There are two
+primary ways to index into the rows of a tree model: paths and
+iterators.
+
+To index directly into an arbitrary row, a \class{GtkTreePath} is
+appropriate. For a list, a tree path is essentially the row number,
+$0$-based; for a tree it is a sequence of integers referring to the
+offspring index at each level. The sequence of integers may be
+expressed as either a numeric/integer vector or a string, using
+\constructor{gtkTreePathNewFromIndices} or
+\constructor{gtkTreePathNewFromString}, respectively. For a flat list
+model, there is only one integer in the sequence:
+<<rgtk2-mvc-path-constructor-list>>=
+secondRow <- gtkTreePathNewFromIndices(2)
+@
+Referring to a row in a hierarchy is slightly more complex:
+<<rgtk2-mvc-path-constructor-tree>>=
+abcPath <- gtkTreePathNewFromIndices(c(1, 3, 2))
+abcPath <- gtkTreePathNewFromString("1:3:2")
+@ 
+In the above, both paths refer to the second child of the third child
+of the first top-level node. To recover the integer or string
+representation of the path, use \method{getIndices}{GtkTreePath} or
+\method{toString}{GtkTreePath}, respectively.
+
+%% iters
+
+The second means of row indexing is through an iterator,
+\class{GtkTreeIter}, which is better suited for traversing a model.
+While a tree path is an intuitive, transparent row index, an iterator,
+by contrast, is an opaque index that is efficiently incremented. It is
+probably most common for a model to be accessed in an iterative
+manner, so all of the data accessor methods for \class{GtkTreeModel}
+expect \class{GtkTreeIter}, not \class{GtkTreePath}. The \GTK\/
+designers imagined that the typical user would obtain an iterator for
+the first row and to visit each row in sequence:
+<<rgtk2-mvc-iter-traverse>>=
+iter <- model$getIterFirst()
+manufacturer <- character()
+while(iter$retval) {
+  manufacturer <- c(manufacturer, model$get(iter$iter, 0)[[1]])
+  model$iterNext(iter$iter)
+}
+@ 
+%
+In the above, we recover the manufacturer column from the Cars93 data
+frame. Whenever a \class{GtkTreeIter} is returned by a
+\class{GtkTreeModel}, the return value in \R\/ is a list of two
+components: \code{retval}, a logical indicating whether the iterator
+is valid, and \code{iter}, the pointer to the underlying C data
+structure. The call to \method{get}{GtkTreeModel} also returns a list,
+with an element for each column index passed as an argument. The
+method \method{iterNext}{gtkTreeStore} updates the passed iterator in
+place, i.e., by reference, to point to the next row. Thus, no new
+iterator is returned. This is unfamiliar behavior in \R. Instead, the
+method returns a logical value indicating whether the iterator is
+still valid, i.e. \code{FALSE} is returned if no next row exists.
+
+It is clear that the above usage is designed for languages like C,
+where multiple return values are conveniently passed by reference
+parameters. The iterator design also prevents the use of the apply
+functions, which are generally preferred over the \code{while} loop
+for reasons of performance and clarity. An improvement would be to
+obtain the number of children, generate the sequence of row indices
+and access the row for each index:
+<<rgtk2-mvc-iter-apply>>=
+nrows <- model$iterNChildren(NULL)
+manufacturer <- sapply(seq(nrows), function(i) {
+  iter <- model$iterNthChild(NULL, i)
+  model$get(iter$iter, 0)[[1]]
+})
+@
+%
+Here we use \code{NULL} to refer to the virtual root node that sits
+above the rows in our table. Unfortunately, this usage too is
+unintuitive and slow, so the benefits of \class{RGtkDataFrame} should
+be obvious.
+
+One can convert between the two representations. The method
+\method{getIter}{GtkTreeModel} on \class{GtkTreeModel} returns an
+iterator for a path. A shortcut from the string representation of the
+path to an iterator is \method{getIterFromString}{GtkTreeModel}. The
+path pointed to by an iterator is returned by
+\method{getPath}{GtkTreeModel}.
+
+One might note that \class{GtkTreeIter} is created and managed by the
+model, while \class{GtkTreePath} is model independent. It is not
+possible to use iterators across models or even across modifications
+to a model. After a model changes, an iterator is invalid. A tree path
+may still point to a valid row, though it will not in general be the
+same row from before the change. To refer to the same row across tree
+model changes, use a \class{GtkTreeRowReference}, not discussed
+further.
+
+\subsection{Selection}
+%% selection: none, single browse multiple, getSelected
+
+There are multiple modes of user interaction with a tree view: if the
+cells are not editable, then selection is the primary mode.  A single
+click selects the value, and a double click is often used to initiate
+an action. If the cells are editable, then a double click or a click
+on an already selected row will initiate editing of the
+content. Editing of cell values is a complex topic and is handled by
+derivatives of \class{GtkCellRenderer}, see
+Section~\ref{sec:RGtk2:cellrenderers}. Here, we limit our discussion
+to selection of rows.
+
+\GTK\/ provides the class \Rclass{GtkTreeSelection} to manage row
+selection. Every tree view has a single instance of
+\Rclass{GtkTreeSelection}, returned by the
+\method{getSelection}{gtkTreeView} method.
+
+The usage of the selection object depends on the selection mode, i.e.,
+whether multiple rows may be selected. The mode is configured with the
+\method{setMode}{gtkTreeSelection} method, with values from
+\code{GtkSelectionMode}, including \qcode{multiple} for allowing more
+than one row to be selected and \qcode{single} for limiting selections
+to a single row, or none.
+
+When only a single selection is possible, the method
+\method{getSelected}{gtkTreeSelection} returns the selected row as
+list, with components \code{retval} to indicate success, \code{model}
+pointing to the tree model and \code{iter} representing an iterator to
+the selected row in the model.
+
+<<print=FALSE>>=
+model <- rGtkDataFrame(mtcars)
+view <- gtkTreeView(model)
+selection <- view$getSelection()
+selection$setMode("single")
+@ 
+
+<<echo=FALSE>>=
+vc <- gtkTreeViewColumn()
+view$insertColumnWithAttributes(vc, 0, gtkCellRendererText(), text = 0)
+## pack in GUI
+sw <- gtkScrolledWindow()
+sw$add(view)
+##
+w <- gtkWindow(show=FALSE)
+w['title'] <- "Multiple selection example"
+w$add(sw)
+w$show()
+@
+%
+If this tree view is shown and a selection made, this code will
+return the value in the first column:
+<<>>=
+selection$selectPath(gtkTreePathNewFromIndices(3)) # set 
+# 
+curSel <- selection$getSelected()       # retrieve selection
+with(curSel, model$getValue(iter, 0)$value) # model, iter
+@ 
+
+When multiple selection is permitted, then the method
+\method{getSelectedRows}{gtkTreeSelection} returns a list with
+componets \code{model} pointing to the model, and \code{retval}, a list
+of tree paths. 
+
+For example, we can change the selection mode as follows.
+<<>>=
+selection$setMode("multiple")
+@ 
+
+<<notShown, echo=FALSE>>=
+selection$selectPath(gtkTreePathNewFromIndices(1)) # set for example
+selection$selectPath(gtkTreePathNewFromIndices(2)) # set for example
+selection$selectPath(gtkTreePathNewFromIndices(3)) # set for example
+@ 
+This code will print the selected values in the first column (we have
+selected the first three rows):
+<<>>=
+curSel <- selection$getSelectedRows()
+if(length(curSel$retval)) {
+  rows <- sapply(curSel$retval, gtkTreePathGetIndices) + 1L
+  curSel$model[rows, 1]
+}
+@ 
+
+To respond to a selection, connect to the \signal{changed} signal on
+\Rclass{GtkTreeSelection}. The signal itself does not contain any
+selection information; the selection object should be queried instead.
+
+%% double click
+When a row is not editable, then the double-click event or a keyboard
+command triggers the \signal{row-activated} signal for the tree
+view. The callback has arguments \code{tree.view} pointing to the
+widget that emits the signal, \code{path} storing a tree path of the
+selected row, and \code{column} containing the tree view column. The
+column number is not returned. If that is of interest, it can be
+passed in via the user data argument, or matched against the children
+of the tree view through a command like
+
+<<eval=FALSE>>=
+sapply(view$getColumns(), function(i) i == column)
+@ 
+
+\subsection{Sorting}
+
+A common GUI feature is sorting a table widget by column. By
+convention, the user clicks on the column header to toggle
+sorting. \class{GtkTreeView} supports this interaction, although the
+actual sorting occurs in the model. Any model that implements the
+\class{GtkTreeSortable} interface supports
+sorting. \class{RGtkDataFrame} falls into this category. When
+\class{GtkTreeView} is directly attached to a sortable model, it is
+only necessary to inform each view column of the model column to use
+for sorting when the header is clicked:
+<<rgtk2-mvc-sorting-clickable>>=
+vc <- view$getColumn(0)
+vc$setSetSortColumnId(0)
+@ 
+%
+In the above, clicking on the header of the first view column,
+\code{vc}, will sort by the first model column. Behind the scenes,
+\class{GtkTreeViewColumn} will set its sort column as the sort column
+on the model, i.e.:
+<<rgtk2-mvc-sorting-sortable>>=
+model$setSortColumnId(0)
+@ 
+
+Some models, however, do not implement \class{GtkTreeSortable}, such
+as \class{GtkTreeModelFilter}, introduced in the next section. Also,
+sorting a model permanately changes the order of its rows, which may
+be undesirable in some cases. The solution is to proxy the original
+model with a sortable model. The proxy obtains all of its data from the
+original model and reorders the rows according to the order of the
+sort column. \GTK\/ provides \class{GtkTreeModelSort} as a sorting
+proxy model. 
+<<basicSort>>=
+store <- rGtkDataFrame(mtcars)
+sorted <- gtkTreeModelSortNewWithModel(store)
+view <- gtkTreeView(sorted)
+view$insertColumnWithAttributes(0, "Click to sort", gtkCellRendererText(), 
+                                text = 0)
+view$getColumn(0)$setSortColumnId(0)
+@ 
+%
+When the user sorts the table, the underlying \code{store} will not be
+modified. 
+
+The default sorting function can be changed by calling the method
+\method{setSortFunc}{gtkTreeSortable} on a sortable model.  The
+following function shows how the default sorting might be implemented.
+<<sort-example, print=FALSE>>=
+f <- function(model, iter1, iter2, user.data) {
+  column <- user.data
+  val1 <- model$getValue(iter1, column)$value
+  val2 <- model$getValue(iter2, column)$value
+  as.integer(val1 - val2)
+}
+sorted$setSortFunc(sort.column.id=0, sort.func=f, user.data=0)   # column
+@ 
+
+<<notShown, echo=FALSE>>=
+## basic GUI
+sw <- gtkScrolledWindow()
+sw$add(view)
+w <- gtkWindow(show=FALSE)
+w['title'] <- "Example of sortable tree view"
+w$add(sw)
+w$show()
+@ 
+
+\subsection{Filtering}
+\label{sec:RGtk2:mvc:filtering}
+
+The previous section introduced the concept of a proxy model in
+\class{GtkTreeModelSort}. Another common application of proxying is
+filtering.  For filtering via a proxy model, \GTK\/ provides the
+\class{GtkTreeModelFilter} class. The basic idea is that an extra
+column in the base model stores logical values to indicate if a row
+should be visible. The index of that column is passed to the filter
+model, which provides only those rows where the filter column is
+\code{TRUE}.
+
+<<>>=
+df <- data.frame(col=letters[1:3], vis=c(TRUE, TRUE, FALSE))
+store <- rGtkDataFrame(df)
+filtered <- store$filter()
+filtered$setVisibleColumn(1)            # 0-based
+view <- gtkTreeView(filtered)
+@ 
+%
+The constructor of the filter model is \function{gtkTreeModelFilter},
+which, somewhat coincidentally, also works as a method on the base
+model, i.e., \code{model\$filter()}. To retrieve the original model
+from the filter, call its \code{getModel} method. The method
+\method{setVisibleColumn}{gtkTreeModelFilter} specifies which column
+in the model holds the logical values.  The configured filter model
+may now be treated as any other tree model, including attachment to a
+\class{GtkTreeView}.
+
+<<notShown, echo=FALSE>>=
+vc <- gtkTreeViewColumn()
+QT <- view$insertColumn(vc, 0)
+cr <- gtkCellRendererText()
+vc$packStart(cr)
+vc$addAttribute(cr, "text", 0)      
+
+sw <- gtkScrolledWindow()
+sw$add(view)
+w <- gtkWindow(show=FALSE)
+w$add(sw)
+w$show()
+@ 
+
+%% filter
+\begin{example}{Using filtering}{ex:RGtk2-filtered}
+  \SweaveInput{ex-RGtk2-filtered}
+\end{example}
+
+\subsection{Cell renderer details}
+\label{sec:RGtk2:cellrenderers}
+
+The values in a tree model are rendered in a rectangular cell by the
+derivatives of \class{GtkCellRenderer}. Cell renderers are
+interactive, in that they also manage editing and activation of cells.
+
+A cell renderer is independent of any data model. Its rendering role
+is limited to drawing into a specified rectangular region according to
+its current property values. An object that implements the
+\class{GtkCellLayout} interface, like \class{GtkTreeViewColumn} and
+\class{GtkComboBox} (see Section~\ref{sec:RGtk2:mvc:combobox}),
+associates a set of \emph{attributes} with a cell renderer. An
+attribute is a link between an aesthetic property of a cell renderer
+and a column in the data model. When the \class{GtkCellLayout} object
+needs to render a particular cell, it configures the properties of the
+renderer with the values from the current model row, according to the
+attributes. Thus, the mapping from data to visualization depends on
+the class of the renderer instance, its explicit property settings,
+and the attributes associated with the renderer in the cell layout.
+
+For example, to render text, a \class{GtkCellRendererText} is
+appropriate. The \code{text} property is usually linked via an
+attribute to a text column in the model, as the text would vary from
+row to row. However, the background color (the \code{background}
+property) might be common to all rows in the column and thus is set
+explicitly, without use of an attribute.
+
+%% TODO: put some sort of simple example code block here
+
+The base class \class{GtkCellRenderer} defines a number of properties
+that are common to all rendering tasks. The \code{xalign} and
+\code{yalign} properties specify the alignment, i.e., how to position
+the rendered region when it does not fill the entire cell. The
+\code{cell-background} property indicates the color for the entire
+cell background.
+
+The rest of this section describes each type of cell renderer, as well
+as some advanced features.
+
+%% text/ numbers
+\paragraph{Text cell renderers}
+
+The \constructor{gtkCellRendererText} constructor is used to display
+text and numeric values. Numeric values in the model are shown as
+strings.  The most important property is \code{text}, the actual text
+that is displayed. Other properties control the display of the text,
+such as the font \code{family} and \code{size}, the \code{foreground}
+and \code{background} colors, and whether to \code{ellipsize} or
+\code{wrap} the text if there is not enough space for display.
+
+To display right-aligned text in a Helvetica font, the following could be used:
+<<cr-right-aligned>>=
+cr <- gtkCellRendererText()
+cr['xalign'] <- 1                       # default 0.5 = centered
+cr['family'] <- "Helvetica"  
+@ 
+
+The \code{wrap} attribute can be specified as \code{TRUE}, if the
+entries are expected to be long. There are several other attributes that can
+changed. 
+
+When an attribute links the \code{text} property to a numeric column
+in the model, the property system automatically converts the number to
+its string representation. This occurs according to the same logic
+that \R\/ follows to print numeric values, so options like
+\code{scipen} and \code{digits} are considered. See the ``Overriding
+attribute mappings'' paragraph below for further customization.
+
+%% perhaps could be adapted to demonstrate the above
+% \begin{example}{A basic usage of displaying a data frame using a tree view}{ex:RGtk2-minimal-rGtkDataFrame}
+%   \SweaveInput{ex-RGtk2-minimal-rGtkDataFrame}
+% \end{example}
+
+%% combo
+\paragraph{Editable text renderers}
+
+\class{GtkCellRendererCombo} and \class{GtkCellRendererSpin} allow
+editing a text cell with a combo box or spin button,
+respectively. Populating the combo box menu requires specifying two
+properties: \code{model} and \code{text-column}. The menu items are
+retrieved from the \class{GtkTreeModel} given by \code{model} at the
+column index given by \code{text-column}.  If \code{has-entry} is
+\code{TRUE}, a combo box entry is displayed.
+<<>>=
+cr <- gtkCellRendererCombo()
+store <- rGtkDataFrame(state.name)
+cr['model'] <- store
+cr['text-column'] <- 0
+cr['editable'] <- TRUE                  # needed
+@ 
+The spin button editor is configured by passing a
+\class{GtkAdjustment} to the \code{adjustment} property.
 
 
+%% pixbuf
+\paragraph{Pixbuf cell renderers}
+
+To display an image in a cell, \class{GtkCellRendererPixbuf} is
+appropriate. The image is specified through one of its properties:
+\code{stock-id}, a stock identifier; \code{icon-name}, the name of a
+themed icon; or \code{pixbuf}, an actual \code{GdkPixbuf}
+object. It is possible to store a \class{GdkPixbuf} in a
+\class{data.frame}, and thus an \class{RGtkDataFrame}, using a \class{list}:
+<<rgtk2-mvc-pixbuf-in-df>>=
+library(RGtk2)
+apple <- gdkPixbuf(filename = imagefile("apple-red.png"))[[1]]
+floppy <- gdkPixbuf(filename = imagefile("floppybuddy.gif"))[[1]]
+logo <- gdkPixbuf(filename = imagefile("rgtk-logo.gif"))[[1]]
+rdf <- rGtkDataFrame(data.frame(image = I(list(apple, floppy, logo))))
+view <- gtkTreeView(rdf)
+view$insertColumnWithAttributes(0, "image", gtkCellRendererPixbuf(), pixbuf = 0)
+win <- gtkWindow()
+win$add(view)
+@
+
+%% ping pong
+\begin{example}{A widget for variable selection}{ex:RGtk2-pingpong}
+  \SweaveInput{ex-RGtk2-pingpong}
+\end{example}
+
+\paragraph{Toggle cell renderers}
+
+Binary data can be represented by a toggle. The
+\constructor{gtkCellRendererToggle} will create a check box in the
+cell that will appear checked if the \code{active} property is
+\code{TRUE}. If an attribute is defined for the property, then changes
+in the model will be reflected in the view. More work is required to
+modify the model in response to user interaction with the view. The
+\code{activatable} attribute for the cell must be \code{TRUE} in order
+for it to receive user input. The programmer needs to connect to the
+\signal{toggled} to update the model in response to changes in the
+active state.
+<<cellRendererToggle>>=
+cr <- gtkCellRendererToggle()
+cr['activatable'] <- TRUE               # cell can be activated
+cr['active'] <- TRUE
+gSignalConnect(cr, "toggled", function(w, path) {
+  model$active[as.numeric(path) + 1] <- w['active']
+})
+@ 
+
+To render the toggle as a radio button instead of a check box, set the
+\code{radio} property to \code{TRUE}. The programmer is responsible
+for implementing the radio button logic via the \code{toggled} signal.
+
+\begin{example}{Displaying a check box column in a tree
+    view}{ex:RGtk2-add-toggle-to-df}
+  \SweaveInput{ex-RGtk2-add-toggle-to-df}
+\end{example}
+
+%% progress bars
+\paragraph{Rendering progress in cells}
+
+To visually communicate progress within a cell, both progress bars and
+spinner animations are supported. These modes correspond to
+\class{GtkCellRendererProgress} and \class{GtkCellRendererSpinner},
+respectively.
+
+In the case of \class{GtkCellRendererProgress}, its \code{value}
+property takes a value between $0$ and $100$ indicating the amount
+finished, with a default value of $0$. Values out of this range will
+be signaled by an error message.  The \code{orientation} property,
+with values from \code{GtkProgressBarOrientation}, can adjust the
+direction that the bar grows.  For example,
+
+<<comboEditor>>=
+cr <- gtkCellRendererProgress()
+cr["value"] <- 50                       # fixed 50%
+cr['orientation'] <- "right-to-left"
+@ 
+
+For indicating progress in the absence of a definite end point,
+\class{GtkCellRendererSpinner} is more appropriate. The spinner is
+displayed when the \code{active} property is \code{TRUE}. Increment
+the \code{pulse} property to drive the animation.
+
+%% numbers
+\paragraph{Overriding attribute mappings}
+
+The default behavior for mapping model values to a renderer property
+is simple: values are extracted from the model and passed directly to
+the cell renderer property. If the data types are different, such as a
+numeric value for a string property, the value is converted using
+low-level routines defined by the property system. It is sometimes desirable to override this mapping with more complex logic.
+
+For example, conversion of numbers to strings is a non-trivial
+task. Although the logic in the \R\/ print system often performs
+acceptably, there is certainly room for customization, for example
+aligning floating point numbers by fixing the number of decimal
+places. This could be done in the model (e.g., using
+\function{sprintf} to format and coerce to character data). However,
+performing the conversion during rendering requires one to to
+intercept the model value before it is passed to the cell renderer. In
+the specific case \class{GtkTreeView}, it is possible to specify a
+callback that overrides this step.  
+
+The callback, of type \class{GtkTreeCellDataFunc}, accepts arguments
+for the tree view column, the cell renderer, the model, an iterator
+pointing to the row in the model and an argument for user data. The
+function is tasked with setting the appropriate attributes of the cell
+renderer. For example, this function could be used to format floating
+point numbers:
+<<>>=
+func <- function(viewCol, cellRend, model, iter, data) {
+  curVal <- model$getValue(iter, 0)$value
+  fVal <- sprintf("%.3f", curVal)
+  cellRend['text'] <- fVal
+  cellRend['xalign'] <- 1
+}
+@ 
+%
+The function then needs to be registered with a
+\class{GtkTreeViewColumn} that is rendering a numeric column from the model:
+<<>>=
+view <- gtkTreeView(rGtkDataFrame(data.frame(rnorm(100))))
+cr <- gtkCellRendererText()
+view$insertColumnWithAttributes(0, "numbers", cr, text = 0)
+vc <- view$getColumn(0)
+vc$setCellDataFunc(cr, func)
+@ 
+%
+The last line is the key: calling
+\method{setCellDataFunc}{GtkTreeViewColumn} registers our custom
+formatting function with the view column.
+
+One drawback with the use of such functions is that \R\/ code is
+executed every time a cell is rendered. If performance matters,
+consider pre-converting the data in the model or tweaking the
+\code{options} in \R\/ for printing real numbers, namely \code{scipen}
+and \code{digits}.
+
+For customizing rendering further and outside the scope of
+\class{GtkTreeView}, one could implement a new type of
+\class{GtkCellRenderer}. See Section~\ref{sec:rgtk2:extending-classes} for
+more details on this advanced concept.
+
+%% This function will be set for the tree view column and illustrated in Example~\ref{ex:RGtk2:rGtk2DataFrame}.
+%% editable cells 
+
+\paragraph{Editable cells} When the \code{editable} property of a text
+cell (or \code{activatable} property of a toggle cell) is set to
+\code{TRUE}, then the cell contents can be changed. This allows the
+user to make changes to the underlying model through the GUI. Although
+the view automatically reflects changes made to the model, the reverse
+is not true. A callback must be assigned to the \code{editable}
+(\code{toggled}) signal for the cell renderer to implement the
+change. The callback for the \qcode{edited} signal has arguments
+\code{renderer}, \code{path} for the path of the selected row (as a
+string), and \code{new.text} containing the value of the edited text
+as a string. The tree view object and which column was edited are not
+passed in by default. These can be passed through the user data
+argument, set as user data on the renderer, or accessed from an
+enclosing environment if needed within the callback.
+
+For example, here is how one can update an \code{RGtkDataFrame} model
+from within the callback.
+<<echo=FALSE>>=
+cr <- gtkCellRendererText()
+@ 
+<<editedSignal>>=
+cr['editable'] <- TRUE
+ID <- gSignalConnect(cr, "edited", 
+f=function(cr, path, newtext, user.data) {
+  curRow <- as.numeric(path) + 1
+  curCol <- user.data$column
+  model <- user.data$model
+  model[curRow, curCol] <- newtext
+}, data=list(model=store, column=1))
+@ 
+
+\paragraph{Moving the cursor}
+
+Users may expect that once a cell is edited, the next cell is then set
+up to be edited. In order to do this, one must advance the cursor and
+activate editing of the next cell. For \class{GtkTreeView}, this is
+done through the \method{setCursor}{gtkTreeView} method. The
+\code{path} argument takes a tree path instance, the \code{column}
+argument a tree view column object, and the flag \code{start.editing}
+indicates whether to initiate editing.
+
+% <<CellRendererExample>>=
+% cr <- gtkCellRendererText()
+% cr['family'] <- "Helvetica"             # font family for whole column
+% cr['background'] <- "goldenrod"         # background color for column
+% crp <- gtkCellRendererPixbuf();         # a pixbuf
+% crp['xalign'] <- 0
+% @
+
+% Cellrenderers define how data is to be displayed. The binding of the
+% data to the cell renderer is handled by the view, not the
+% cellrenderer.
+
+\section{Display of hierarchical data}
+\label{sec:RGtk2:mvc:GtkTreeStore}
+
+Although the \code{RGtkDataFrame} model is a convenient implementation
+of \class{GtkTreeModel}, it has its limitations. Primary among them is
+its lack of support for hierarchical data. \GTK\/ implements
+\class{GtkTreeModel} with \class{GtkListStore} and
+\class{GtkTreeStore}, which respectively store non-hierarchical and
+hierachical tabular data. \class{GtkListStore} is a flat table,
+while \class{GtkTreeStore} organizes the table into a hierarchy. Here,
+we discuss \class{GtkTreeStore}.
+
+\subsection{Loading hierarchical data}
+  
+%% ML: I'm pretty sure that RGtkDataFrame will support the same types
+%% of values as GtkListStore. It's just a little tricky to get a
+%% column of GdkPixbuf externalptr's into a data.frame. Much easier to
+%% use a character vector and associate it with the stock.id property
+%% of GtkCellRendererPixbuf, as long as the images are registered icons.
+
+%% construction
+A tree store is constructed using \constructor{gtkTreeStore}. The
+column types are specified through a character vector at the time of
+construction. The specification uses ``GTypes'' such as
+\code{gchararray} for character data, \code{gboolean} for logical
+data, \code{gint} for integer data, \code{gdouble} for numeric data,
+and \code{GObject} for \GTK\/ objects, such as pixbufs.
+
+\begin{example}{Defining a tree}{eg:RGtk2:tree-store}
+  Below, we create a tree based on the \code{Cars93} dataset, where
+  the car models are organized by manufacturer, i.e., each model row
+  is the child of its manufacturer row:
+<<>>=
+tstore <- gtkTreeStore("gchararray")
+by(Cars93, Cars93$Manufacturer, function(df) {
+  piter <- tstore$append()              # parent
+  tstore$setValue(piter$iter, column = 0, value = df$Manufacturer[1])
+  sapply(df$Model, function(model) {
+    sibiter <- tstore$append(parent = piter$iter) # child
+    if (is.null(sibiter$retval)) 
+      tstore$setValue(sibiter$iter, column = 0, value = model)
+  })
+})
+@ 
+  To retrieve a value from the tree store using its path we have:
+<<>>=
+iter <- tstore$getIterFromString("0:0")
+tstore$getValue(iter$iter, column = 0)$value
+@ 
+This obtains the first model from the first manufacturer.
+
+\end{example}
+
+As shown in this example, populating a tree store relies on two
+functions: \method{append}{GtkTreeStore}, for appending rows, and
+\method{setValue}{GtkTreeStore}, for setting row values. The iterator
+to the parent row is passed to \method{append}{GtkTreeStore}. A parent
+of \code{NULL}, the default, indicates that the row should be at the
+top level. It would also be possible to insert rows using
+\method{insert}{GtkTreeStore}, \method{insertBefore}{GtkTreeStore}, or
+\method{insertAfter}{GtkTreeStore}. The
+\method{setValue}{GtkTreeStore} method expects the row iterator and
+the column index, $0$-based.
+
+An entire row can be assigned through the \method{set}{gtkTreeStore}
+method. The method uses positional arguments to specify the column and
+the value. The column index appears as an even argument (say $2k$) and
+the corresponding value in the odd argument (say $2k+1$).  Values are
+returned by the \method{getValue}{gtkListStore} method, in a list with
+component \code{value} storing the value.
+
+Traversing a tree store is most easily achieved through the user of
+\Rclass{GtkTreeIter}, introduced previously in the context of flat
+tables. Here we perform a depth-first traversal of our \code{Cars93}
+model to obtain the model values: 
+<<rgtk2-mvc-tree-traverse>>=
+iter <- tstore$getIterFirst()
+models <- NULL
+while(iter$retval) {
+  child <- tstore$iterChildren(iter$iter)
+  while(child$retval) {
+    models <- c(models, tstore$get(child$iter, 0)[[1]])
+  }
+  tstore$iterNext(iter$iter)
+}
+@ 
+%
+The hierarchical structure introduces the method
+\method{iterChildren}{GtkTreeModel} for obtaining an iterator to the
+first child of a row. As with other methods returning iterators, the
+return value is a list, with the \code{retval} component indicating
+the validity of the iterator, stored in the \code{iter} component. The
+method \method{iterParent}{GtkTreeModel} performs the reverse,
+iterating from child to parent.
+
+\begin{figure}
+  %% \centering
+  \includegraphics[width=.7\textwidth]{traverse-tree}
+  \caption{[REPLACEME!] Graphical illustration of the functions used
+    by iters to traverse a tree store. }
+  \label{fig:traverse-iter}
+\end{figure}
+
+Rows within a store can be rearranged using several methods. Call
+\method{swap}{gtkTreeStore} to swap rows referenced by their
+iterators.  The methods \method{moveAfter}{gtkTreeStore} and
+\method{moveBefore}{gtkTreeStore} move one row after or before
+another, respectively.  The \method{reorder}{gtkTreeStore} method
+totally reorders the rows under a specified parent given a vector of
+row indices, like that returned by \Rfunction{order}.
+
+%% clearing contents
+Once added, rows may be removed using the
+\method{remove}{gtkTreeStore} method. To remove every row, call the
+\method{clear}{gtkTreeStore} method.
+
+\subsection{Displaying data as a tree}
+\label{sec:RGtk2:mvc:display-tree}
+
+Once a hierarchical dataset has been loaded into a
+\class{GtkTreeModel} implementation like \class{GtkTreeStore}, it can
+be passed to a \class{GtkTreeView} widget for display as a
+tree. Indeed, this is the same widget that displayed our flat data
+frame in the previous section. As before, \class{GtkTreeView}
+displays the \class{GtkTreeModel} as a table; however, it now adds
+controls for expanding and collapsing nodes where rows are nested.
+
+The user can click to expand or collapse a part of the tree. These
+actions correspond to the signals \code{row-expanded} and
+\code{row-collapsed}, respectively.
+
+\begin{example}{A simple tree display}{eg:RGtk2-simple-tree}
+  \SweaveInput{ex-RGtk2-simple-tree}
+\end{example}
+
+%% ## dynamic
+\begin{example}{Dynamically growing a tree}{eg:RGtk2:tree-dynamic}
+  \SweaveInput{ex-RGtk2-tree}
+\end{example}
+%% % ## mapes a list, shows how to update text view
+% \SweaveInput{ex-RGtk2-tree-show}
+
+\section{Model-based combo boxes}
+\label{sec:RGtk2:mvc:combobox}
+
+Basic combo box usage was discussed in
+Section~\ref{sec:RGtk2:basic-combobox}; here we discuss the more
+flexible and complex approach of using an explicit data model for
+storing the menu items. The item data is tabular, although it is
+limited to a single column. Thus, \class{GtkTreeModel} is again the
+appropriate model, and \class{RGtkDataFrame} is usually the
+implementation of choice.
+
+To construct a \class{GtkComboBox} based on a user-created model, one
+should pass the model to the constructor
+\constructor{gtkComboBox}. This model may be changed or set through
+the \method{setModel}{gtkComboBox} method and is returned by
+\method{getModel}{gtkComboBox}. It remains to instruct the combo box
+how to display one or more data columns in the menu. Like
+\class{GtkTreeViewColumn}, \class{GtkComboBox} implements the
+\class{GtkCellLayout} interface and thus delegates the rendering of
+model values to \class{GtkCellRenderer} instances that are packed into
+the combo box.
+
+As introduced in the previous chapter, the \class{GtkComboBoxEntry}
+widget extends \class{GtkComboBox} to provide an entry widget for the
+user to enter arbitrary values. To construct a combo box entry on top
+of a tree model, one should pass the model, as well as the column
+index that holds the textual item labels, to the
+\constructor{gtkComboBoxEntry} constructor. It is not necessary to
+create a cell renderer for displaying the text, as the entry depends
+on having text labels and thus enforces their display. It is still
+possible, of course, to add cell renderers for other model columns.
+
+The \method{getActiveIter}{gtkComboBox} returns a list containing the iterator
+pointing to the currently selected row in the model.  If no row has been
+selected, the \code{retval} component of the list is \code{FALSE}.
+The \method{setActiveIter}{gtkComboBox} sets the currently selected
+item by iterator. As discussed previously, the
+\method{getActive}{gtkComboBox} and \method{setActive}{gtkComboBox}
+behave analogously with $0$-based indices.
+
+%% signals
+\paragraph{Signals}
+
+When a user selects a value with the mouse, the \code{changed} signal
+is emitted. For combo box entry widgets, the \code{changed} signal
+will also be emitted when a new value has been entered. also make changes
+by typing in the new value. To detect when the user has finished
+entering text, one needs to retrieve the underlying \class{GtkEntry}
+widget with \method{getChild}{GtkBin} and connect to its
+\code{activate} signal.
+
+\begin{example}{Modifying the values in a combobox}{eg-RGtk2-combobox-dynamic}
+  \SweaveInput{ex-RGtk2-combobox-dynamic}
+\end{example}
+
+\begin{example}{A color selection widget}{eg:RGtk2:combobox}
+  \SweaveInput{ex-RGtk2-combobox}
+\end{example}
+
+
+\section{Text entry widgets with completion}
+\label{sec:RGtk2:entry-completion}
+
+Often, the number of possible choices is too large to list in a combo
+box. One example is a web-based search engine: the possible search
+terms, while known and finite in number, are too numerous to list. The
+auto-completing text entry has emerged as an alternative to a combo
+box and might be described as a sort of dynamic combo box entry widget. 
+When a user enters a string, partial matches to the string are
+displayed in a menu that drops down from the entry. 
+
+The \class{GtkEntryCompletion} object implements text completion in
+\GTK. An instance is constructed with
+\constructor{gtkEntryCompletion}. The underlying database is a
+\class{GtkTreeModel}, like \class{RGtkDataFrame}, set via the
+\method{setModel}{gtkEntryCompletion} method. To connect a
+\class{GtkEntryCompletion} to an actual \class{GtkEntry} widget, call
+the \method{setCompletion}{gtkEntry} method on \class{GtkEntry}.  The
+\code{text-column} property specifies the column containing the
+completion candidates. 
+
+There are several properties that can be adjusted to tailor the
+completion feature; we metion some of them. Setting the property
+\code{inline-selection} to \code{TRUE} will place the top completion
+suggestion to the entry inline as the completions are scrolled
+through; \code{inline-completion} will add the common prefix
+automatically to the entry widget; \code{popup-single-match} is a
+logical indicating if a popup is displayed on a single match;
+\code{minimum-key-length} takes an integer specifying the number of
+characters needed in the entry before completion is checked (the
+default is $1$).
+
+By default, the rows in the data model that match the current value of
+the entry widget in a case insensitive manner are displayed. This
+matching function can be overridden by setting a new \R\/ function through
+the \method{setMatchFunc}{gtkEntryCompletion} method. The signature of
+this function is the completion object, the string from the entry
+widget (lower case), an interator pointing to a row in the model and
+optionally user data that is passed through the \code{func.data}
+argument of the \code{setMatchFunc} method. This callback should
+return \code{TRUE} or \code{FALSE} depending on whether that row
+should be displayed in the set of completions.
+
+\begin{example}{Text entry with completion}{eg:RGtk2:text-entry-comletion}
+  \SweaveInput{ex-RGtk2-entry-completion}
+\end{example}
 
 \section{Text views and text buffers} %% text buffer
 \label{sec:RGtk2:textviews}
 
-Multiline text areas are displayed through  \constructor{gtkTextView}
+Multiline text areas are displayed through \class{GtkTextView}
 instances. These provide a view of an accompanying
-\code{gtkTextBuffer}, which is the model that stores the text and
+\class{GtkTextBuffer}, which is the model that stores the text and
 other objects to be rendered. The view is responsible for the display
-of the text in the buffer, so has methods for adjusting tabs, margins,
-indenting, etc. While the view stores the text so has methods for
-adding and manipulating the text.
+of the text in the buffer and has methods for adjusting tabs, margins,
+indenting, etc. The text buffer stores the actual text, and its
+methods are for adding and manipulating the text.
 
-A text view is created with \constructor{gtkTextView}. The
-\argument{buffer}{gtkTextView} argument is used to specify a text
-buffer, otherwise one will be created. 
-This buffer is returned by the
-method \method{getBuffer}{gtkTextView} and may be set for a view with
-the \method{setBuffer}{gtkTextView} method. Text views are typically
-placed inside a scrolled window (Section~\ref{sec:RGtk2:scroll-windows}), and since a viewport is established,
-this is done with the \method{add}{gtkBin} method for scrolled
-windows.
+A text view is created with \constructor{gtkTextView}. 
+%% TODO: simple example right here
+The underlying
+text buffer can be passed to the constructor. Otherwise, a buffer is
+automatically created.  This buffer is returned by the method
+\method{getBuffer}{gtkTextView} and may be set with the
+\method{setBuffer}{gtkTextView} method. Text views provide native
+scrolling support and thus are easily added to a scrolled window
+(Section~\ref{sec:RGtk2:scroll-windows}).
 
 %% simple use -- replace, Append, insert at cursor
 
-Text may be added programmatically through various 
-methods of the text buffer. The easiest to use are \method{setText}{gtkTextBuffer} which
-simply replaces the current text with that specified by
-\argument{text}{gtkTextBufferSetText}. The method
+Text may be added programmatically through various methods of the text
+buffer. The most basic \method{setText}{gtkTextBuffer} which
+simply replaces the current text. The method
 \method{insertAtCursor}{gtkTextBuffer} will add the text to the buffer
-at the current position of the cursor. Other means are described after
-the first example.
+at the current position of the cursor. 
+% TODO: another simple example here
+Other means are described in the following sections.
 
-%% properties: editable, ...
-\paragraph{Properties}
-Key properties of the text view include \code{editable}, which if assigned
-a value of \code{FALSE} will prevent users from editing the text. 
-If the view is not editable, the cursor may be hidden by setting the
-\code{cursor-visible} property to \code{FALSE}. 
-The text in a buffer may be wrapped or not. The method \method{setWrapMode}{gtkTextView}
-takes values from \code{GtkWrapMode} with default of \qcode{none}, but
-options for \qcode{char}, \qcode{word}, or \qcode{word\_char}. The
-justification for the entire buffer is controlled by the
-\code{justification} property which takes values of \qcode{left},
-\qcode{right}, \qcode{center}, or \qcode{fill} from \code{GtkJustification}.
-The global value may be overwridden for parts of the text buffer
-through the use of text tags. The left and right margins are adjusted
-through the \code{left-margin} and \code{right-margin} properties. 
-
-The text buffer has a few key properties, including \code{text} for
-storing the text and \code{has-selection} to indicate if text is
-currently selected in a view. The buffer also tracks if it has been
-modified. This information is available through the buffer's
-\method{getModified}{gtkTextBuffer} method, which returns \code{TRUE}
-if the buffer has changes. The method
-\method{setModifed}{gtkTextBuffer}, if given a value of \code{FALSE},
-allows the programmer to change this state, say after saving a
-buffer's contents.
-
-
-%% buffer - wide font
-\paragraph{Fonts}
-The size and font can be globally set for a text view using the
-\method{modifyFont}{gtkWidget} method. (Specifying fonts for parts of
-the buffer requires the use of tags, described later.) The argument
-\argument{font.desc}{gtkWidgetModifyFont} specifies the new font using
-a Pango font description, which may be generated from a
-string specifying the font through the function
-\code{pangoFontDescriptionFromString}. These strings may contain up to
-3 parts: the first is a comma-separated list of font families, the
-second a white-space separated list of style options, and the third a
-size in points or pixels if the units ``px'' are included. A typical
-value might look like \code{"serif, monospace bold italic condensed
-  16"}. The various style options are enumerated in \code{PangoStyle},
-\code{PangoVariant}, \code{PangoWeight}, \code{PangoStretch}, and
-\code{PangoGravity}. The help page for \code{PangoFontDescription}
-contains more information.
-
-\paragraph{Signals}
-The text buffer emits many different types of signals detailed in the
-help page for \function{gtkTextBuffer}. Most importantly, the
-\signal{changed} signal is emitted when the content of the buffer
-changes. The callback for a \signal{changed} signal has signature that
-returns the text buffer and any user data.
-
-
-\begin{example}{Simple textview usage}{eg:RGtk2:simple-textview-usage}
-  \SweaveInput{ex-RGtk2-simple-textview}
-\end{example}
-
-\subsection{Tags, iterators, marks}
-\label{sec:RGtk2:tags-iterators-marks}
+\subsection{\class{GtkTextBuffer} Details}
+\label{sec:RGtk2:text-buffers}
 
 In order to do more with a text buffer, such as retrieve the text, 
 retrieve a selection, or modify attributes of just some of the text,
@@ -203,15 +1233,15 @@ offsets to indicate the presence of images and widgets in the text
 buffer.
 
 \begin{example}{Finding the word one clicks on}{eg:RGtk2-find-word}
-This example shows how one can find the iterator corresponding to a
-mouse-button-press event. The callback has an event argument which is
-a \class{GdkEventButton} object with methods
-\method{getX}{GdkEventButton} and \method{getY}{GdkEventButton} to
-extract the \code{x} and \code{y} components of the event
-object. These give the position relative to the widget.~\footnote{The methods
-\method{getXRoot}{GdkEventButton} and
-\method{getYRoot}{GdkEventButton} give the position relative to the
-parent window the widget resides in.}
+  This example shows how one can find the iterator corresponding to a
+  mouse-button-press event. The callback has an event argument which is
+  a \class{GdkEventButton} object with methods
+  \method{getX}{GdkEventButton} and \method{getY}{GdkEventButton} to
+  extract the \code{x} and \code{y} components of the event
+  object. These give the position relative to the widget.~\footnote{The methods
+    \method{getXRoot}{GdkEventButton} and
+    \method{getYRoot}{GdkEventButton} give the position relative to the
+    parent window the widget resides in.}
 
 <<echo=FALSE>>=
 ## setup example, not shown
@@ -229,7 +1259,7 @@ ID <- gSignalConnect(tv, "button-press-event", f=function(w, e, ...) {
   val <- w$getBuffer()$getText(siter, niter)
   print(val)                            # replace
   return(FALSE)                         # call next handler
-  })
+})
 @   
 \end{example}
 
@@ -272,8 +1302,8 @@ two iters using the methods \method{applyTag}{gtkTextBuffer} or
 \method{applyTagByName}{gtkTextBuffer}.
 
 \begin{example}{Using text tags}{eg:RGtk2:using-text-tags}
-We define two text tags to make text bold or italic and illustrate how
-to apply them.
+  We define two text tags to make text bold or italic and illustrate how
+  to apply them.
 <<>>=
 tv <- gtkTextView()
 tb <- tv$getBuffer()
@@ -340,947 +1370,65 @@ anchor <- tb$createChildAnchor(end)     # make anchor
 tv$addChildAtAnchor(b, anchor)          # set widget at anchor
 @ 
 
+\subsection{\class{GtkTextView} Details}
+\label{sec:RGtk2:text-buffers}
 
-\section{Views of tabular and heirarchical data}
-\label{sec:RGtk2:tabular-heirarchical-data}
+%% properties: editable, ...
+\paragraph{Properties}
+Key properties of the text view include \code{editable}, which if assigned
+a value of \code{FALSE} will prevent users from editing the text. 
+If the view is not editable, the cursor may be hidden by setting the
+\code{cursor-visible} property to \code{FALSE}. 
+The text in a view may be wrapped or not. The method \method{setWrapMode}{gtkTextView}
+takes values from \code{GtkWrapMode} with default of \qcode{none}, but
+options for \qcode{char}, \qcode{word}, or \qcode{word\_char}. The
+justification for the entire buffer is controlled by the
+\code{justification} property which takes values of \qcode{left},
+\qcode{right}, \qcode{center}, or \qcode{fill} from \code{GtkJustification}.
+The global value may be overwridden for parts of the text buffer
+through the use of text tags. The left and right margins are adjusted
+through the \code{left-margin} and \code{right-margin} properties. 
 
-Widgets to create comboboxes, display tabular data values, and to
-display tree-like data are treated similarly in \GTK. Each uses the
-MVC paradigm and for these, the models are defined similarly.
-We begin by discussing the models, then present the various
-views. Each view is described by its column, which in turn have their
-cells specifed by cell renderers.
-
-
-\subsection{Tabular  stores and tree stores}
-\label{sec:tabular-stores-tree}
-
-\GTK\/ provides list stores and tree stores as models to hold tabular and
-heirarchical data to be viewed through various widgets, such as the
-combo box or tree view. Like a data frame, each row in these stores
-contains data of varying types. The main difference between the two is
-that tree stores also have information about about whether a row has
-any offspring. The list store is just a tree store where there
-are no children of the top-level offspring.
-
-For speed, much greater convenience and familiarity purposes, \pkg{RGtk2} provides a third store
-through \constructor{rGtkDataFrame} for storing data frames.
-
-\paragraph{rGtkDataFrame}
-
-\R\/ uses data frames to hold tabular data, where each column is of a
-certain class, and each row is related to some observational
-unit. This is also the way tree views are organized when no
-heirarchical structure is needed. As such it is natural to have a
-means to map a data frame into a store for a tree view. The
-\constructor{rGtkDataFrame} constructor does this, producing an object
-that can be used as the model for a view. This \R-specific
-addition to \GTK\/ not only is more convenient, it has the added bonus
-of being especially fast. The constructor takes a data frame as an
-argument. The column classes are important, so even if this data frame
-is empty, it should specify the desired column classes.
-
-The constructor produces an object of class \class{RGtkDataFrame}
-for which the familiar S3 methods
-\method{[}{RGtkDataFrame}, \method{[\ASSIGN}{RGtkDataFrame},
-\method{dim}{RGtkDataFrame}, and \method{as.data.frame}{RGtkDataFrame}
-are defined. The \code{dimnames} attributes are kept, but have no
-well-defined meaning
-for this model. The \code{[$<$-} method does not have quite the same
-functionality, as it does for a data frame. Columns can not be removed
-by assigning values to \code{NULL}, column types
-should not be changed which can be an issue with coercion to character from numeric
-say, rows can not be dropped. To add a new column or row, the methods
-\method{appendColumns}{rGtkDataFrame} and
-\method{appendRows}{rGtkDataFrame} may be used, where the new column
-or row may be given as the argument.
-
-To remove rows from this model, the \method{setFrame}{rGktDataFrame}
-method can be used to specify the new data. This method can also be used
-to replace the existing data in the model with a new data
-frame. There are few issues though. If the new data frame has more
-rows or columns, then the appropriate \code{append} method should be
-used first. As well, one should not change the column classes with the
-new frame, as views of the model may be expecting a certain class of data.
-
-\begin{example}{Defining and manipulating a data store}{eg-RGtk2-manipulate-rGtkDataframe}
-  The basic data frame methods are similar.
-<<>>=  
-data(Cars93, package="MASS")            # mix of classes
-model <- rGtkDataFrame(Cars93)
-model[1, 4] <- 12
-model[1, 4]                              # get value
-@ 
-Factors are treated differently from character values, as is done with
-data frames, so assignment to a factor must be from one of the
-possible levels.
-
-To change the backend data, we can use the \code{SetFrame} method:
-<<>>=
-QT <- model$setFrame(Cars93[1:5, 1:5])
-@ 
-\end{example}
+The text buffer has a few key properties, including \code{text} for
+storing the text and \code{has-selection} to indicate if text is
+currently selected in a view. The buffer also tracks if it has been
+modified. This information is available through the buffer's
+\method{getModified}{gtkTextBuffer} method, which returns \code{TRUE}
+if the buffer has changes. The method
+\method{setModifed}{gtkTextBuffer}, if given a value of \code{FALSE},
+allows the programmer to change this state, say after saving a
+buffer's contents.
 
 
-\paragraph{List stores and tree stores}
-Although the \code{rGtkDataFrame} model is very useful, there are
-times when it can't be employed. List stores can be used when the
-underlying data contains values that can not be stored in a data frame
-(such a images) and tree stores are used for heirarchical data. 
+%% buffer - wide font
+\paragraph{Fonts}
+The size and font can be globally set for a text view using the
+\method{modifyFont}{gtkWidget} method. (Specifying fonts for parts of
+the buffer requires the use of tags, described later.) The argument
+\argument{font.desc}{gtkWidgetModifyFont} specifies the new font using
+a Pango font description, which may be generated from a
+string specifying the font through the function
+\code{pangoFontDescriptionFromString}. These strings may contain up to
+3 parts: the first is a comma-separated list of font families, the
+second a white-space separated list of style options, and the third a
+size in points or pixels if the units ``px'' are included. A typical
+value might look like \code{"serif, monospace bold italic condensed
+  16"}. The various style options are enumerated in \code{PangoStyle},
+\code{PangoVariant}, \code{PangoWeight}, \code{PangoStretch}, and
+\code{PangoGravity}. The help page for \code{PangoFontDescription}
+contains more information.
 
-%% construction
-A tree store or list store is constructed using
-\constructor{gtkTreeStore} or  \constructor{gtkListStore}. Both are
-interfaces for the abstract \class{GtkTreeModel} class. The
-column types are specified through a character vector at the time of
-construction. The specification uses ``GTypes'' such as
-\code{gchararray} for character data, \code{gboolean} for logical data,
-\code{gint} for integer data, \code{gdouble} for numeric data, and
-\code{GObject} for \GTK\/ objects, such as pixbufs.
-
-%% iters vs. paths
-\paragraph{Iterators and tree paths}
-Similar to a text buffer, a list store uses transient iterators to
-refer to position -- in this case the row -- within a store. One can
-also refer to position through a path, which for a list store is
-essentially the row number, $0$-based, as a character; and for a tree
-is a colon-separated set of values referring to the offspring
-(\qcode{a:b:c} indicates the \code{c}th child of the \code{b}th child
-of \code{a}).  A third way, through a row reference, is not discussed
-here.
-
-%% paths
-A \class{GtkTreePath} object is created by the constructor
-\code{gtkTreePathNewFromString} which takes a string specifying the
-position. To retrieve this string from a path object, the
-\method{toString}{gtkTreePath} method can be used.
-
-%% iters
-Paths are convenient, as they are human readable, but iterators are
-empolyed by the various methods and more easily allow the programmer
-to traverse the store. One can flip between the two
-representations. The iterator referring to the path can be returned by
-the method \method{getIterFromString}{gtkTreeModel}. The method
-\method{getStringFromIter}{gtkTreeModel} will return the string. The
-tree path object itself is returned by the method
-\method{getPath}{gtkTreeModel}.  In \pkg{RGtk2} iterators are lists
-with component \code{retval} indicating if this is a valid iterator
-and a component \code{iter} holding the object of the
-\class{GtkTreeIter} class.
-
-%% adding to a storex
-\paragraph{Adding values to a store}
-Values are added to and returned from a store by specifying the row
-and column for the value. The row is specified by an iterator and the
-columns by its index, $0$-based.  The method
-\method{setValue}{gtkListStore} is used to specify value by value,
-whereas an entire row can be assigned through the
-\method{set}{gtkTreeStore} method. The former has arguments
-\code{iter}, \code{column}, \code{value}, in that order; the latter
-has no \code{column} or \code{value} argument. Instead, \meth{set}
-uses positional arguments to specify the column and the value. The
-column index appears as an even argument (say $2k$) and the
-corresponding value in the odd argument (say $2k+1$).  When calling
-\code{setValue} or \code{set} the iterator updates to the next row.
-Values are returned by the \method{getValue}{gtkListStore} method, in
-a list with component \code{value} storing the value.
-
-\paragraph{Finding iterators}
-For a list or tree model, an iterator for the first child is returned
-by \method{getIterFirst}{gtkTreeStore}. This iterator corresponds to
-the path \qcode{0}.
-The \method{append}{gtkStore}
-method for the store returns an iterator indicating the next value at
-the end of the store (this is slightly different from the \GTK\/ function which
-modifies an iterator passed as an argument).  The
-\method{prepend}{gtkTreeStore} method is similar, only returning an
-iterator pointing to the initial row.  Other methods allow for
-specifying postion relative to some row. The
-\method{insert}{gtkListStore} method is used to return an iterator
-that allows one to insert a row at a position specified to its
-\code{position} argument. (The \code{Prepend} method is similar to
-using \code{postion=0}). To avoid the two-step approach of getting the
-iterator, then assigning the value, the method
-\method{insertWithValues}{gtkListStore} can be used, where values are
-specified as with the \code{Set} method.  The
-\method{insertBefore}{gtkListStore}, and
-\method{insertAfter}{gtkListStore}, methods take an iterator,
-\code{sibling} and will return an iterator indicating the postion just
-before or after the sibling.
-
-
-
-
-\begin{example}{Appending to a list store}{eg:RGtk2:list-store}
-  To illustrate, to create a simple list store to hold a column
-of text we have:  
-<<AppendListStore>>=
-lstore <- gtkListStore("gchararray")
-QT <- sapply(Cars93[,1], function(i) {
-  iter <- lstore$append()
-  if(is.null(iter$retval)) 
-    lstore$setValue(iter$iter, 0, i)
-})
-@ 
-To retrieve a value, we have this example to get the first one in the store:
-<<>>=
-iter <- lstore$getIterFirst()           # first row
-lstore$getValue(iter$iter, column = 0)
-@ 
-\end{example}
-
-\paragraph{Adding heirarchical information}
-
-For a tree store, the methods \method{append}{gtkTreeStore},
-\method{prepend}{gtkTreeStore} etc. are similar to that for a list
-store with the difference being that a
-\argument{parent}{gtkTreeStoreAppend} argument is used for tree stores
-to specify in iterator for the parent of the new row, thereby creating
-the heirarchical structure of a tree.
-
-
-\begin{example}{Defining a tree}{eg:RGtk2:tree-store}
-  As an application, we can create a tree with parents the car
-  manufacturers in the \code{Cars93} data set, and children the makes
-  of their cars, as follows:
-<<>>=
-tstore <- gtkTreeStore("gchararray")
-Manufacturers <- Cars93$Manufacturer
-Makes <- split(Cars93[,"Model"], Manufacturers)
-for(i in unique(Manufacturers)) {
-  piter <- tstore$append()              # parent
-  tstore$setValue(piter$iter, column=0, value=i)
-  for(j in Makes[[i]]) { 
-    sibiter <- tstore$append(parent=piter$iter) # child
-    if(is.null(sibiter$retval)) 
-      tstore$setValue(sibiter$iter,column=0, value=j)
-  }
-}
-@ 
-To retrieve a value from the tree store using its path we have:
-<<>>=
-iter <- tstore$getIterFromString("0:0") #  the 1st child of root
-tstore$getValue(iter$iter,column=0)$value
-@ 
-\end{example}
-
-
-%% Manipulating rows
-\paragraph{Manipulating rows}
-Rows within a store can be rearranged using the methods
-\method{swap}{gtkTreeStore} to swap rows referenced by their
-iterators; \method{moveAfter}{gtkTreeStore} to move one row after
-another, both referenced by iterators, although if the last is blank,
-the end of the store is assumed; and
-\method{moveBefore}{gtkTreeStore}, where if the second iterator is
-blank the first position is assumed. To totally reorder the store, the
-\method{reorder}{gtkTreeStore} method is available. Its
-\argument{new.order}{gtkTreeStore} argument specifies the new
-order as row indices. For tree stores, these rows are the children of the
-\argument{parent}{gtkTreeStoreReorder} argument.
-
-%% clearing contents
-Once added, rows may be removed using the
-\method{remove}{gtkTreeStore} method. The iterator for the row to
-delete is given as an argument. The store's entire contents can be
-removed by its \method{clear}{gtkTreeStore} method.
-
-
-%% Traversing
-\paragraph{Traversing the store}
-An iterator points to a row in a tree or list store. For both lists
-and trees, an interator pointing to the next row (at the same level
-for trees) is produced by the method
-\method{iterNext}{gtkTreeStore}. This method returns \code{FALSE} if
-no next row exists. Otherwise, it updates the iterator in place. (That
-is, calling \command{store\$iterNext(iter\$iter)} updates \code{iter},
-despite it not being assigned to.) The path method \method{prev}{gtkTreePath}
-will point to the previous child at the same depth in a tree, but no
-such method is defined for iterators. One could be, for example the
-following will do so for both list and tree stores.
-
-<<PreviousIter>>=
-gtkTreeModelIterPrev <- function(object, iter) {
-  path <- object$getPath(iter)
-  ret <- path$prev()
-  if(ret)
-    return(list(retval=NULL, iter=object$getIter(path)$iter))
-  else
-    return(list(retval=FALSE,iter=NA))
-}
-@ 
-
-For trees, the method \method{iterParent}{gtkTreeModel} returns an
-iterator to point to the parent row, if no parent is found. The
-\code{retval} component is \code{FALSE}.
-There are several methods when a row has children.  The
-method \method{iterHasChild}{gtkTreeModel} returns a logical
-indicating if a row has children. The method
-\method{iterChildren}{gtkTreeModel} returns an iterator to point to
-the first child of parent. If no child exists, the \code{retval}
-component is \code{FALSE}. If an iterator for the $n$th child is desired, the
-method \method{iterNthChild}{gtkTreeModel} can be used. Again, it returns
-an iterator referring to the $n$th child, or has a \code{retval} of
-\code{FALSE} if
-none exists. To find the number of children, the method
-\method{iterNChildren}{gtkTreeModel} is provided. This method returns
-$0$ if there are no children.
-
-\begin{figure}
-%%  \centering
-  \includegraphics[width=.7\textwidth]{traverse-tree}
-  \caption{[REPLACEME!] Graphical illustration of the functions used by iters to traverse a tree store. }
-  \label{fig:traverse-iter}
-\end{figure}
-
-\subsection{Cell renderers}
-\label{sec:RGtk2:cellrenderers}
-The various views ultimately display the information in the model
-column by column (a combobox having one column). Within each column,
-the display is controlled by cell renderers, which are used to specify
-how each cell is layed out. Cell renderers are used whenever the 
-\code{gtkCellLayout} interface is implemented, such as with comboboxes
-and tree views, but also other widgets not discussed here.
-
-A cell renderer is customized by adjusting its attributes. These
-attributes are documented in the help pages for the corresponding
-constructor. These attributes can be set to one value for all rows, or
-can be set to depend on a corresponding row in the model. The latter
-allows them to change from cell to cell. For example, the \code{text}
-attribute of the text cell renderer would usually get its values from
-the model, as that would vary from cell to cell, but a background
-color (\code{background}) might be common to the column. The
-\method{addAttribute}{gtkCellLayout} method is used to associate a
-column in the store with a cell renderer's attribute.
-
-There are many different cell renderers, we mention first the text and
-pixbuf renderer, as they are commonly used in comboboxes. With the
-discussion of tree views, we mention others.
-
-%% text/ numbers
-\paragraph{Text cell renderers}
-The \constructor{gtkCellRendererText} constructor is used to display
-text and numeric values. Numeric values are shown as strings, but are
-not converted in the model.  For the text renderer, important
-properties are \code{text} to indicate the column in the data store
-that the text for the cell is to come from, \code{font} to specify the
-font from a string, \code{size} for the font size, \code{background}
-for the background color and \code{foreground} for the text color (as
-strings).
-
-To display right-aligned text in a Helvetica font, the following could be used:
-<<cr-right-aligned>>=
-cr <- gtkCellRendererText()
-cr['xalign'] <- 1                       # default 0.5 = centered
-cr['family'] <- "Helvetica"  
-@ 
-The \code{wrap} attribute can be specified as \code{TRUE}, if the
-entries are expected to be long. There are several other attributes that can
-changed. 
-
-%% pixbuf
-\paragraph{Pixbuf cell renderers}
-Graphics can be added to the cell with the renderer
-\constructor{gtkCellRendererPixbuf}. The graphic can be spepcified by
-its \code{stock-id} attribute as a character string, or
-\code{icon-name} for a themed icon. It can also be specifed as an
-image object, through the \code{pixbuf} attribute. Pixbuf objects can
-be placed in a list store using the \code{GObject} type. A simple use,
-might be the following:
-<<CellRendererPixbufExample>>=
-cr <- gtkCellRendererPixbuf()
-cr['stock.id'] <- "gtk-ok" ## or from a column in a model
-@ 
-
-
-% <<CellRendererExample>>=
-% cr <- gtkCellRendererText()
-% cr['family'] <- "Helvetica"             # font family for whole column
-% cr['background'] <- "goldenrod"         # background color for column
-% crp <- gtkCellRendererPixbuf();         # a pixbuf
-% crp['xalign'] <- 0
-% @
-
-% Cellrenderers define how data is to be displayed. The binding of the
-% data to the cell renderer is handled by the view, not the
-% cellrenderer.
-
-\subsection{Combo boxes}
-\label{sec:RGtk2:combobox}
-
-The basic combo box usage was discussed in
-Section~\ref{sec:RGtk2:basic-combobox}, here we discuss more
-complicated comboboxes that use an explicit model for the backend This data is
-tabular and may be kept in a \function{rGtkDataFrame} instance or a
-list store.  
-
-The basic \constructor{gtkComboBoxEntryNewWithModel} constructor
-allows one to specify the model, and a column where the values are
-found. For this, the cell renderers (below) are not needed.
-
-If some layout of the values in the combobox is desired, such as adding an image,
-then the constructor
-\constructor{gtkComboBox} is used. The model may be specified at the time of
-construction through the optional \argument{model}{gtkComboBox}
-argument.  This model may be changed or set through the
-\method{setModel}{gtkComboBox} method and is returned by
-\method{getModel}{gtkComboBox}.
-
-The constructor \constructor{gtkComboBoxEntry} returns a combobox
-widget that allows the user to add their own values. This constructor
-does not allow the model to be specified, so the \code{SetModel}
-method must be used. The editable combobox uses a \code{gtkEntry}
-object, which can be accessed directly through the
-\method{getChild}{gtkBin} method of the combobox.
-
-\paragraph{Cellrenderers}
-Comboboxes display rows of data, each row referred to as a cell. In \GTK\/ each cell is like a box
-container and can show different bits of information, like an image or
-text. Each bit of information is presented by a cellrenderer.
-Cellrenderers are added to the combo box by its
-\method{packStart}{gtkCellLayout} method. As with box containers, more
-than one cell renderer can be added per row.
-
-To specify the data from the model to be
-displayed, the \method{addAttribute}{gtkCellLayout} method maps
-columns of the model to attributes of the cellrenderer. 
-
-
-
-%% get value from widget
-\paragraph{Retrieving the selected value}
-For a non-editable combobox, the selected value may be retrieved by
-index or by iterator. The \method{getActive}{gtkComboBox} method
-returns the index of the current selection, $0$-based. The value is $-1$
-if no selection has been made. The
-\method{getActiveIter}{gtkComboBox} method returns an iterator
-pointing to the row in the data store. If no row has been selected,
-the \code{retval} component of the iterator is \code{FALSE}. These may
-be used with the data store to retrieve the value. The data store
-itself is returned by the \method{getModel}{gtkComboBox} method.
-
-To set the combobox to a certain index is done through the
-\method{setActive}{gtkComboBox} method, using a $0$-based index to
-specify the row.
-
-For editable comboboxes, one can first get the entry widget then call
-its \code{GetText} method. The \code{SetText} method of the entry
-widget would be used to specify the text.
-
-
-%% signals
 \paragraph{Signals}
-When a user selects a value with the mouse, the \code{changed} signal
-is emitted. For editable combo boxes, the user may also make changes
-by typing in the new value. The underlying widget is a \code{gtkEntry}
-widget, so the signal \code{changed} is emitted each time the text is
-changed and the signal \code{activate} is emitted by the
-\code{gtkEntry} widget when the \kbd{enter} key is pressed. One binds to
-the signal of the entry widget, not the combobox widget, to have a
-callback for that event.
+The text buffer emits many different types of signals detailed in the
+help page for \function{gtkTextBuffer}. Most importantly, the
+\signal{changed} signal is emitted when the content of the buffer
+changes. The callback for a \signal{changed} signal has signature that
+returns the text buffer and any user data.
 
 
-\begin{example}{Modifying the values in a combobox}{eg-RGtk2-combobox-dynamic}
-  \SweaveInput{ex-RGtk2-combobox-dynamic}
-\end{example}
-
-\begin{example}{A color selection widget}{eg:RGtk2:combobox}
- \SweaveInput{ex-RGtk2-combobox}
-\end{example}
-
-
-\subsection{Text entry widgets with completion}
-\label{sec:RGtk2:entry-completion}
-
-A common alternative to a combobox, implemented on many websites, is to add the completion features to a
-\constructor{gtkEntry} instance. When a user types a partial match,
-all available matches are offered to select from. To implement completion, one creates
-a completion object with the constructor
-\constructor{gtkEntryCompletion}. The values to complete from are
-stored in a model, the example uses an \code{rGtkDataFrame} instance,
-which is assigned to the completion object through its
-\method{setModel}{gtkEntryCompletion} method. To set the completion
-for the entry widget, the entry widget's
-\method{setCompletion}{gtkEntry} method is used. The
-\code{text-column} property is used to specify which column in
-the model is used to find the matches.
-
-
-There are several properties that can be adjusted to tailor the
-completion feature, we metion some of them. Setting the property
-\code{inline-selection} to \code{TRUE} will place the completion
-suggestion to the entry inline as the completions are scrolled
-through; \code{inline-completion} will add the common prefix
-automatically to the entry widget; \code{popup-single-match} is a
-logical indicating if a popup is displayed on a single match;
-\code{minimum-key-length} takes an integer specifying the number of
-characters needed in the entry before completion is checked, the
-default is $1$.
-
-By default, the rows in the data model that match the
-current value of the entry widget in a case insensitive manner are displayed. This
-matching function can be overridden by setting a new function through
-the \method{setMatchFunc}{gtkEntryCompletion} method. The signature of
-this function is the completion object, the string from the entry
-widget (lower case), an interator pointing to a row in the model and optionally
-user data that is passed through the \code{func.data} argument of the
-\code{SetMatchFunc} method. This method should return \code{TRUE} or
-\code{FALSE} depending on whether that row should be displayed in the
-set of completions.
-
-
-\begin{example}{Text entry with completion}{eg:RGtk2:text-entry-comletion}
-\SweaveInput{ex-RGtk2-entry-completion}
-\end{example}
-
-
-
-\subsection{Tree Views}
-\label{sec:RGtk2-tree-view}
-
-%% intro
-Both tabular data and tree-like data are displayed through tree
-views. The visual difference is that a trigger icon appears in rows which
-represent parents with children. When these are expanded, the
-children are indicated by indentation. The children are all displayed
-in a consistent tabular format.
-
-%% constructor
-A tree view is constructed by \constructor{gtkTreeView}. The
-\argument{model}{gtkTreeView} can be used to specify the underlying
-model. If not specified at the time of construction, the
-\method{setModel}{gtkTreeView} can be used. The accompanying
-\method{getModel}{gtkTreeView} model returns the model from the view.
-
-%% tree view properties
-Tree views have several properties. The \code{headers-clickable}
-property, when set to \code{TRUE}, allows the column headers to
-receive mouse clicks. This is used for sorting, when the underlying
-data store allows for that. The tree view widget can popup a search
-box when the user types \kbd{control-f} if the property
-\code{enable-search} is \code{TRUE} (the default). To turn on
-searching, a column needs to be specified through the
-\code{search-column} property. Rows may be rearranged through
-drag-and-drop if the \code{reorderable} property is set to
-\code{TRUE}. The \code{rules-hint}, if \code{TRUE}, will instruct the
-theme that the rows hold associated data. Themes will typically use this
-information to stripe alternating rows.
-
-
-%% treeviewcolumns
-\paragraph{Tree view columns}
-For speed purposes, the rendering of a tree view centers around the
-display of its columns. Each column is displayed through a tree view
-column, given by the \constructor{gtkTreeViewColumn}.
-
-%% basic properties
-One can set basic properties of the column. Each column has an
-optional header that can contain a title or even an arbitrary
-widget. The \method{setTitle}{gtkTreeViewColumn} method is used to set
-the title. This area can be \qcode{clickable}, in which case this area
-receives mouse clicks. This is most commonly used to allow sorting of
-the column by clicking on the headers, but can also be used to add
-popup menus (with a bit of wizardry).
-
-The property \qcode{resizable} determines wheter the user can resize
-the column, by dragging with the mouse. The size properties
-\qcode{width}, \qcode{min-width}, and \qcode{fixed-width} control the
-size.
-
-The visibility of the column can be adjusted through the
-\method{setVisible}{gtkTreeViewColumn} method. 
-
-
-Tree view columns are added to the tree view with the
-method \method{insertColumn}{gtkTreeView}. The
-\argument{column}{gtkTreeViewInsertColumn} argument specifies the tree
-view column, and the \argument{position}{gtkTreeViewInsertColumn}
-argument the column to insert into ($0$-based). A column can be moved
-with the \method{moveColumnAfter}{gtkTreeView} method, and removed
-with the \method{removeColumn}{gtkTreeView} method. The tree view's
-\method{getChildren}{gtkTreeView} method returns a list containing all
-of the tree view columns.
-
-%% cell renderers
-\paragraph{More on cell renderers}
-
-In addition to the text and pixbuf cell renderers discussed in
-Section~\ref{sec:RGtk2:combobox}, there are cell renderers that allow
-one to display other types of data available for the tree view widget.
-Some only make sense if the underlying data is to be edited the
-\code{editable} (or sometimes \code{activatable}) attribute for the
-cell renderer should be set to \code{TRUE}.
-
-
-As with comboboxes, the mapping of fied values, or values in the data
-store to the attributes of a cell render is done by the
-\method{addAttribute}{gtkCellLayout} method of the tree view column.
-
-
-\paragraph{Toggle cell renderers}
-Binary data can be represented by a toggle. The
-\constructor{gtkCellRendererToggle} will create a check box in the
-cell, that  will look checked or not depending on the value of its
-\code{active} attribute. If this value is found in a boolean column of
-the model, then changes to the model will be reflected in the state of
-the GUI. However, the programmer must propogate changes to the GUI (the
-view) back to the model. The \signal{toggled} signal is emitted when
-the state is changed. The \code{activatable} attribute for the cell
-must be \code{TRUE} in order for it to receive user input.
-
-<<cellRendererToggle>>=
-cr <- gtkCellRendererToggle()
-cr['activatable'] <- TRUE               # cell can be edited
-cr['active'] <- TRUE
-QT <- gSignalConnect(cr, "toggled", function(w, path) {
-  print(as.numeric(path) + 1) ## modify model as needed
-})
-@ 
-
-%% combo
-\paragraph{Combobox cell renderers}
-A cell can show a combobox for selection. The
-\constructor{gtkCellRendererCombo} produces the object. Its
-\code{model} attribute is set to give the values to choose from. The
-attribute \code{has-entry} can be set to \code{TRUE} to allow a user
-to enter values, if \code{FALSE} they can only select from the
-available ones. 
-
-<<>>=
-cr <- gtkCellRendererCombo()
-store <- rGtkDataFrame(state.name)
-cr['model'] <- store
-cr['text-column'] <- 0
-cr['editable'] <- TRUE                  # needed
-@ 
-
-%% progress bars
-\paragraph{Progress bar cell renderers}
-A progress bar can be used to display the percentage of some task. The
-\constructor{gtkCellRendererProgress} function returns the cell
-renderer. Its \code{value} attribute takes a value between $0$ and
-$100$ indicating the amount finished, with a default value of
-$0$. Values out of this range will be signaled by an error message.  The
-\code{orientation} property, with values from
-\code{GtkProgressBarOrientation}, can adjust the direction that the
-bar grows.  For example,
-
-<<comboEditor>>=
-cr <- gtkCellRendererProgress()
-cr["value"] <- 50                       # fixed 50%
-cr['orientation'] <- "right-to-left"
-@ 
-
-%% numbers
-\paragraph{Cell data functions}
-Formatting numbers is a bit trickier, as the cell renderer properties
-are oriented around text values. For example, to align floating point
-numbers one can do so in the model (e.g., using \function{sprintf} to
-format and coerce to character data) and then displaying as
-text. However, to do so through the cell rendererer requires one to
-get the value from the model and modify it before the cell rendererer
-gets it. For this, a cell data function (only with tree
-views, not comboboxes). A cell data function passing in arguments for the
- tree view column, the cell renderer, the model, an iterator pointing
-to the row in the model and a data argument for user data. The
-function is tasked with setting the appropriate attributes of the cell
-renderer. For example, this function could be used to format floating
-point numbers:
-<<>>=
-func <- function(viewCol, cellRend, model, iter, data) {
-  curVal <- model$GetValue(iter, 0)$value
-  fVal <- sprintf("%.3f", curVal)
-  cellRend['text'] <- fVal
-  cellRend['xalign'] <- 1
-}
-@ 
-One drawback with the use of such function is they are much
-slower. However, if you are displaying numeric data with \code{NA}
-values, they need to be used to get a sensible display.
-
-%% This function will be set for the tree view column and illustrated in Example~\ref{ex:RGtk2:rGtk2DataFrame}.
-%% editable cells 
-
-\paragraph{Editable cells} When the \code{editable} property of a text
-cell (or \code{activatable} property of a toggle cell) is set to
-\code{TRUE}, then the cell contents can be changed. This allows the
-user to make changes to the underlying model through the GUI. Although
-the view automatically reflects changes made to the model, the reverse
-is not true. A callback must be assigned to the \code{editable}
-(\code{toggled}) signal for the cell renderer to implement the
-change. The callback for the \qcode{editable} signal has arguments
-\code{renderer}, \code{path} for the path of the selected row (as a
-string), and \code{new.text} containing the value of the edited text
-as a string. The tree view object and which column was edited are not
-passed in by default. These can be passed through the user data
-arugment, or set as data for the widget if needed within the callback.
-
-For example, here is how one can update an \code{rGtk2DataFrame} model
-from within the callback.
-<<echo=FALSE>>=
-cr <- gtkCellRendererText()
-@ 
-<<editedSignal>>=
-cr['editable'] <- TRUE
-ID <- gSignalConnect(cr, "edited", 
-                     f=function(cr, path, newtext, user.data) {
-                       curRow <- as.numeric(path) + 1
-                       curCol <- user.data$column
-                       model <- user.data$model
-                       model[curRow, curCol] <- newtext
-                     }, data=list(model=store, column=1))
-@ 
-
-\paragraph{Moving the cursor}
-Users may expect that once a cell is edited, the next cell is then set
-up to be edited. In order to do this, one must set the cursor to the
-appropriate place and set the state to editing. This is done through
-the tree view's \method{setCursor}{gtkTreeView} method. The
-\code{path} argument takes a tree path instance, the \code{column}
-argument is for a tree view column object, and the flag
-\code{start.editing} should be set to \code{TRUE} to initiate
-editing. The tree view method \method{getColumn}{gtkTreeView} can be
-used to get the tree view column by index ($0$-based) and the path
-object can be found from a string through \function{gtkTreePathNewFromString}.
-
-
-% \begin{example}{A basic usage of displaying a data frame using a tree view}{ex:RGtk2-minimal-rGtkDataFrame}
-%   \SweaveInput{ex-RGtk2-minimal-rGtkDataFrame}
+% \begin{example}{Simple textview usage}{eg:RGtk2:simple-textview-usage}
+%   \SweaveInput{ex-RGtk2-simple-textview}
 % \end{example}
-
-\begin{example}{Displaying text columns in a tree view}{ex:RGtk2-add-toggle-to-df}
-  \SweaveInput{ex-RGtk2-add-toggle-to-df}
-\end{example}
-
-%% filtering
-\paragraph{Using filtered models to restrict the displayed rows}
-\GTK\/ provides a means to show a filtered selection of rows. The
-basic idea is that an extra column in the store stores logical values
-to indicate if a row should be visible. To implement this, a filtered
-store must be made from the original store. The
-\method{filterNew}{gtkTreeModel} method of a data store returns a
-filtered data store. The original model is found from the filtered one
-through its \code{getModel} method. The method
-\method{setVisibleColumn}{gtkTreeModelFilter} specifies which column
-in the model holds the logical values.  Finally, to use the filtered store, it is simply set as
-the model for a tree view.
-
-<<>>=
-df <- data.frame(col=letters[1:3], vis=c(TRUE, TRUE, FALSE))
-store <- rGtkDataFrame(df)
-filtered <- store$filterNew()
-filtered$setVisibleColumn(1)            # 0-based
-view <- gtkTreeView(filtered)
-@ 
-
-<<notShown, echo=FALSE>>=
-vc <- gtkTreeViewColumn()
-QT <- view$insertColumn(vc, 0)
-cr <- gtkCellRendererText()
-vc$packStart(cr)
-vc$addAttribute(cr, "text", 0)      
-
-sw <- gtkScrolledWindow()
-sw$add(view)
-w <- gtkWindow(show=FALSE)
-w$add(sw)
-w$show()
-@ 
-
-%% searching
-\paragraph{Sorting the display}
-One can implement sorting of the display by clicking on the column
-headers. This is done by creating a model that can be sorted from the
-original store. The function \function{gtkTreeModelSortNewWithModel}
-will produce a new store that is assigned as the model for the tree
-view. Then to allow a column to be sorted, one specifies first the
-\code{clickable} property of the view column, and then specifies a
-column to sort by when the column header is clicked (it can be
-different if desired). The following shows the basic steps:
-
-<<basicSort>>=
-store <- rGtkDataFrame(mtcars)
-sorted <- gtkTreeModelSortNewWithModel(store)
-#
-view <- gtkTreeView(sorted)
-vc <- gtkTreeViewColumn()
-QT <- view$insertColumn(vc, 0)                  # first column
-vc$setTitle("Click to sort")
-vc$setClickable(TRUE)
-vc$setSortColumnId(0)                   
-#
-cr <- gtkCellRendererText()
-vc$packStart(cr)
-vc$addAttribute(cr, "text", 0)
-@ 
-The default sorting function can be changed. The sortable store's
-method \method{setSortFunc}{gtkTreeSortable} is used for this.
-The following function -- which can easily be modified to taste -- shows
-how the default sorting might be implemented.
-<<sort-example>>=
-f <- function(model, iter1, iter2, user.data) {
-  column <- user.data
-  val1 <- model$GetValue(iter1, column)$value
-  val2 <- model$GetValue(iter2, column)$value
-  val1 > val2
-}
-QT <- sorted$setSortFunc(sort.column.id=0, sort.func=f, 
-                         user.data=0)   # column
-@ 
-
-<<notShown, echo=FALSE>>=
-## basic GUI
-sw <- gtkScrolledWindow()
-sw$add(view)
-w <- gtkWindow(show=FALSE)
-w['title'] <- "Example of sortable tree view"
-w$add(sw)
-w$show()
-@ 
-
-\paragraph{Selection}
-%% selection: none, single browse multiple, getSelected
-
-\GTK\/ provides a class to handle the selection of rows that the user
-makes. The selection object is returned from the tree view, through
-its \method{getSelection}{gtkTreeView} method. 
-To modify the selection possibilities, the selection object's method
-\method{setMode}{gtkTreeSelection} method is used, with values from
-\code{GtkSelectionMode}, including \qcode{multiple} for allowing more
-than one row to be selected and \qcode{single} for no more than one row.
-Additionally, the selection object has various
-methods to interact with the selection.  
-
-When only a single selection is possible, the method
-\method{getSelected}{gtkTreeSelection} returns a list with components
-\code{retval} to indicate success, \code{model} containing the model
-and \code{iter} containing an iterator to the selected row in the
-model.
-
-<<>>=
-store <- rGtkDataFrame(mtcars)
-view <- gtkTreeView(store)
-selection <- view$getSelection()
-QT <- selection$setMode("single")
-@ 
-
-<<echo=FALSE>>=
-## create some tree view columns and cell renderers
-vc <- gtkTreeViewColumn()
-QT <- view$insertColumn(vc, 0)
-cr <- gtkCellRendererText()
-vc$PackStart(cr)
-vc$addAttribute(cr, "text", 0)
-## pack in GUI
-sw <- gtkScrolledWindow()
-sw$add(view)
-##
-w <- gtkWindow(show=FALSE)
-w['title'] <- "Multiple selection example"
-w$Add(sw)
-w$show()
-@ 
-If this tree view is shown and a selection made, this code will return the value in the first column:
-<<>>=
-selection$selectPath(gtkTreePathNewFromString("3")) # set 
-# 
-curSel <- selection$getSelected()       # retrieve selection
-with(curSel, model$getValue(iter, 0)$value) # model, iter
-@ 
-
-
-When multiple selection is permitted, then the method
-\method{getSelectedRows}{gtkTreeSelection} returns a list with
-componets \code{model} pointing to the model, and \code{retval} a list
-of tree paths. No column information is passed back by this method.
-
-For example, we can change the selection mode as follows.
-<<>>=
-selection$setMode("multiple")
-@ 
-
-<<notShown, echo=FALSE>>=
-selection$selectPath(gtkTreePathNewFromString("1")) # set for example
-selection$selectPath(gtkTreePathNewFromString("2")) # set for example
-selection$selectPath(gtkTreePathNewFromString("3")) # set for example
-@ 
-This code will print the selected values in the first column (we have
-selected the first three rows):
-<<>>=
-curSel <- selection$getSelectedRows()
-if(length(curSel$retval)) {
-  rows <- sapply(curSel$retval, function(path) {
-    as.numeric(path$toString()) + 1
-  })
-  curSel$model[rows, 1]
-}
-@ 
-                 
-
-%% signals, callback
-%% row-activated -- double click
-\paragraph{Signals}
-Tree views can be used different ways: if the cells are not editable,
-then they are basically list boxes which allow the user to select one of
-several rows. A single click selects the value, and a double click is
-often used to initiate an action. If the cells are editable, then this
-action is to edit the content.
-
-%% double click
-When a row is not editable, then the double-click event or a keyboard
-command triggers the \signal{row-activated} signal for the tree
-view. The callback has arguments \code{tree.view} pointing to the
-widget that emits the signal, \code{path} storing a tree path of the
-selected row, and \code{column} containing the tree view column. The
-column number is not returned. If that is of interest, it can be
-passed in via the user data argument, or matched against the children
-of the tree view through a command like
-
-<<eval=FALSE>>=
-sapply(tree.view$getColumns(), function(i) i == column)
-@ 
-
-%% selection
-The selection object emits signals for various events, in particular, when a
-selection is made or changed, the \signal{changed} signal is emitted.
-
-
-%% tree stores
-For tree stores, the user can click to expand or collapse a part of
-the tree. The signals \code{row-expanded} and \code{row-collapsed} are
-emitted respectively by the tree view. The signature of the callback is similar to
-above with the view, a tree path and a view column.
-
-
-
-%% filter
-\begin{example}{Using filtering}{ex:RGtk2-filtered}
-  \SweaveInput{ex-RGtk2-filtered}
-\end{example}
-
-
-%% ping pong
-\begin{example}{A widget for variable selection}{ex:RGtk2-pingpong}
-   \SweaveInput{ex-RGtk2-pingpong}
- \end{example}
-
-%% editable
-% \begin{example}{An editable data frame}{ex:RGtk2-editable-dataframe}
-%   \SweaveInput{ex-RGtk2-editable-dataframe}
-% \end{example}
-
-
-\begin{example}{A simple tree display}{eg:RGtk2-simple-tree}
-  \SweaveInput{ex-RGtk2-simple-tree}
-\end{example}
-
-%% ## dynagmic
-\begin{example}{Dynamically growing a tree}{eg:RGtk2:tree-dynamic}
-\SweaveInput{ex-RGtk2-tree}
-\end{example}
-%% % ## mapes a list, shows how to update text view
-% \SweaveInput{ex-RGtk2-tree-show}
-
 
 
 
