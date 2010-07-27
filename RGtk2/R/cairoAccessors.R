@@ -117,3 +117,17 @@ function(obj)
   v <- .Call('S_CairoFontExtentsGetMaxYAdvance', obj, PACKAGE = "RGtk2")
   v
 } 
+cairoTextClusterGetNumBytes <-
+function(obj)
+{
+  checkPtrType(obj, 'CairoTextCluster')
+  v <- .Call('S_CairoTextClusterGetNumBytes', obj, PACKAGE = "RGtk2")
+  v
+} 
+cairoTextClusterGetNumGlyphs <-
+function(obj)
+{
+  checkPtrType(obj, 'CairoTextCluster')
+  v <- .Call('S_CairoTextClusterGetNumGlyphs', obj, PACKAGE = "RGtk2")
+  v
+} 

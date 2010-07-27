@@ -173,4 +173,14 @@ S_GtkTreeViewSearchPositionFunc(GtkTreeView* s_tree_view, GtkWidget* s_search_di
 S_GtkBuilderConnectFunc(GtkBuilder* s_builder, GObject* s_object, const gchar* s_signal_name, const gchar* s_handler_name, GObject* s_connect_object, guint s_flags, gpointer s_user_data);
 #endif 
 
+#if GIO_CHECK_VERSION(2, 14, 0)
+  gchar*
+S_GtkCalendarDetailFunc(GtkCalendar* s_calendar, guint s_year, guint s_month, guint s_day, gpointer s_user_data);
+#endif 
+
+#if GTK_CHECK_VERSION(2, 14, 0)
+  void
+S_GtkClipboardURIReceivedFunc(GtkCliboard* s_clipboard, gchar** s_uris, gpointer s_user_data);
+#endif 
+
 #endif

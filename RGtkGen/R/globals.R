@@ -14,7 +14,7 @@ badTypes <- c("GdkPointerHooks", "GdkDisplayPointerHooks",
               "AtkFocusHandler", "AtkPropertyChangeHandler",
               "AtkPropertyValues", "PangoFontsetSimple", "GdkInputCondition",
               "GdkStatus", "GtkArgFlags", "GtkDebugFlag", "GtkObjectFlags",
-              "GSimpleAsyncThreadFunc")
+              "GSimpleAsyncThreadFunc", "GPollFD", "GParameter")
 
 ## Functions that we cannot handle
 ## This list will certainly grow. Most of these are implemented manually.
@@ -65,7 +65,11 @@ badCFuncs <- c("gtk_editable_insert_text", "gtk_clipboard_set_with_owner",
                "cairo_rectangle_list_destroy", "cairo_get_dash",
                "gtk_builder_connect_signals",
                "gtk_tree_view_get_tooltip_context",
-               "gtk_icon_view_get_tooltip_context"
+               "gtk_icon_view_get_tooltip_context", "g_input_stream_read",
+               "g_input_stream_read_all", "g_input_stream_read_async",
+               "g_socket_receive", "g_socket_receive_from",
+               "g_socket_receive_message", "g_socket_send_message",
+               "pango_glyph_item_get_logical_widths"
                )
 
 # sometimes it's easier to fix things from the R side (simple aliasing) or
@@ -108,10 +112,14 @@ badEnums <- c("GdkGeometryHints", "GdkGCValuesMask")
 manUserFuncs <-
   c("GCompareFunc", "GCallback", "GtkSignalFunc", "GtkAccelGroupActivate",
     "cairo_read_func_t", "GtkTextBufferSerializeFunc", "GtkMenuPositionFunc",
-    "GSourceFunc", "GtkBuilderConnectFunc")
+    "GSourceFunc", "GtkBuilderConnectFunc",
+    "cairo_user_scaled_font_text_to_glyphs_func_t")
+
+## Asynchronous user functions that are fired and forgotten
+asyncUserFuncs <- c("GAsyncReadyCallback")
 
 # these structures are passed as opaque pointers to R, without any accessors
-# most of these are GLib facilities, and we're not binding GLib (yet anyway).\
+# most of these are GLib facilities, and we're not binding GLib (yet anyway).
 opaqueTypes <- c("GtkNotebookPage", "GScanner", "GNode",
                  "GMarkupParser", "GKeyFile")
 
@@ -133,7 +141,8 @@ transparentTypes <-
     "AtkTextRange", "GdkSpan", "GdkTimeCoord", "GtkPageRange",
     "GtkRecentFilterInfo", "GtkRecentData", "AtkKeyEventStruct",
     "GtkAccelKey", "AtkRectangle", "cairo_rectangle_t",
-    "cairo_rectangle_list_t")
+    "cairo_rectangle_list_t", "GFileAttributeInfo", "cairo_font_extents_t",
+    "cairo_text_cluster_t")
 
 # functions for releasing memory
 # objects are automatically assigned
@@ -181,7 +190,7 @@ CPrimitiveToGeneric <- c("gchar" = "character", "guchar" = "raw",
                          "guint8" = "raw", 
                          "guint16" = "integer", "PangoGlyphUnit" = "integer", 
                          "gint64" = "numeric", "gsize" = "numeric",
-                         "gunichar" = "numeric", 
+                         "goffset" = "numeric", "gunichar" = "numeric", 
                          "guint" = "numeric", "PangoGlyph" = "numeric", 
                          "GQuark" = "numeric", "guint32" = "numeric",
                          "GdkWChar" = "numeric",
@@ -198,13 +207,14 @@ CPrimitiveToGeneric <- c("gchar" = "character", "guchar" = "raw",
 
 CPrimitiveToGType <- c(rep("G_TYPE_CHAR",1), "G_TYPE_UCHAR",
                        rep("G_TYPE_STRING",2), rep("G_TYPE_INT",13),
-                       "G_TYPE_INT64", rep("G_TYPE_UINT", 7),
+                       rep("G_TYPE_INT64", 2), rep("G_TYPE_UINT", 7),
                        rep("G_TYPE_UINT64",2), rep("G_TYPE_FLOAT",2),
                        rep("G_TYPE_DOUBLE",2), "G_TYPE_LONG",
                        rep("G_TYPE_ULONG", 2),
                        rep("G_TYPE_BOOLEAN",2))
 names(CPrimitiveToGType) <- names(CPrimitiveToGeneric)
 CPrimitiveToGType[["gpointer"]] <- "G_TYPE_POINTER" # no R primitive equivalent
+CPrimitiveToGType[["gconstpointer"]] <- "G_TYPE_POINTER"
 
 # types that are not included as incoming parameters
 hiddenTypes <- c("GDestroyNotify", "GtkDestroyNotify", "GtkClipboardClearFunc", 
@@ -273,7 +283,11 @@ useless_funcs <- c("pango_default_break", "gdk_colormap_change",
                    "gtk_recent_chooser_set_show_numbers",
                    "gtk_recent_chooser_get_show_numbers",
                    "atk_misc_get_instance", "g_buffered_input_stream_peek",
-                   "gtk_style_get_valist")
+                   "gtk_style_get_valist",
+                   "g_async_initable_newv_async",
+                   "g_async_initable_new_valist_async",
+                   "g_initable_newv", "g_initable_new_valist"
+                   )
 
 mem_funcs <-
   c("atk_text_free_ranges",
@@ -346,8 +360,8 @@ undocumentedConcepts <- c("engines", "freetype-fonts", "modules", "opentype",
                           "atk-AtkMisc")
 
 # some sections are not appropriate for the R documentation
-omittedSections <- c("image-data", "Pathnames and patterns", "Toplevel declarations", 
-	"Styles", "Key bindings")
+omittedSections <- c("image-data", "Pathnames and patterns",
+                     "Toplevel declarations", "Styles", "Key bindings")
 
 libraryDescriptions <-
 c("ATK" = "ATK is the Accessibility Toolkit. It provides a set of generic interfaces allowing accessibility technologies to interact with a graphical user interface. For example, a screen reader uses ATK to discover the text in an interface and read it to blind users. GTK+ widgets have built-in support for accessibility using the ATK framework.",

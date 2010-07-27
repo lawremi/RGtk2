@@ -25,7 +25,7 @@ window <- gtkDialogNewWithButtons("GtkEntryCompletion",
 window$setResizable(FALSE)
 gSignalConnect(window, "response", gtkWidgetDestroy)
 vbox <- gtkVBoxNew(FALSE, 5)
-window[["vbox"]]$packStart(vbox, TRUE, TRUE, 0)
+window$getContentArea()$packStart(vbox, TRUE, TRUE, 0)
 vbox$setBorderWidth(5)
 
 label <- gtkLabelNew()

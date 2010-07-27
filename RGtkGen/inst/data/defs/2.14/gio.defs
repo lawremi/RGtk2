@@ -86,6 +86,38 @@
   (since "2.16.0")
 )
 
+(define-boxed FileAttributeInfoList
+  (in-module "gio")
+  (c-name "GFileAttributeInfoList")
+  (gtype-id "G_TYPE_FILE_ATTRIBUTE_INFO_LIST")
+  (copy-func "g_file_attribute_info_list_ref")
+  (release-func "g_file_attribute_info_list_unref")
+  (fields
+   '("GFileAttributeInfo[obj->n_infos]" "infos")
+   '("int" "n_infos")
+   )
+  (since "2.16.0")
+)
+
+; pointer definitions
+
+(define-pointer FileAttributeInfo
+  (in-module "gio")
+  (c-name "GFileAttributeInfo")
+  (gtype-id "G_TYPE_POINTER")
+  (fields
+   '("char*" "name")
+   '("GFileAttributeType" "type")
+   '("GFileAttributeInfoFlags" "flags")
+   )
+)
+
+(define-pointer IOSchedulerJob
+  (in-module "gio")
+  (c-name "GIOSchedulerJob")
+  (gtype-id "G_TYPE_POINTER")
+  )
+
 ; object definitions ...
 
 (define-object AppLaunchContext
@@ -103,6 +135,14 @@
   (gtype-id "G_TYPE_CANCELLABLE")
   (since "2.16.0")
 )
+
+(define-object FilenameCompleter
+  (in-module "gio")
+  (parent "GObject")
+  (c-name "GFilenameCompleter")
+  (gtype-id "G_TYPE_FILENAME_COMPLETER")
+  (since "2.16.0")
+  )
 
 (define-object FileEnumerator
   (in-module "gio")
@@ -135,6 +175,22 @@
   (gtype-id "G_TYPE_INPUT_STREAM")
   (since "2.16.0")
 )
+
+(define-object IOModule
+  (in-module "gio")
+  (parent "GTypeModule")
+  (c-name "GIOModule")
+  (gtype-id "G_TYPE_IO_MODULE")
+  (since "2.16.0")
+)
+
+(define-object IOModule
+  (in-module "gio")
+  (parent "GTypeModule")
+  (c-name "GIOModule")
+  (gtype-id "G_TYPE_IO_MODULE")
+  (since "2.16.0")
+  )
 
 (define-object FileInputStream
   (in-module "gio")
@@ -544,23 +600,37 @@
   (since "2.16.0")
 )
 
+(define-enum SeekType
+  (in-module "glib")
+  (c-name "GSeekType")
+  (gtype-id "G_TYPE_SEEK_TYPE")
+  (values
+   '("cur" "G_SEEK_CUR")
+   '("set" "G_SEEK_SET")
+   '("end" "G_SEEK_END")
+   )
+  )
+
 ; -*- scheme -*-
 
 ;; From gappinfo.h
 
 (define-function app_info_get_type
+  (in-module "gio")
   (c-name "g_app_info_get_type")
   (return-type "GType")
   (since "2.16.0")
 )
 
 (define-function app_launch_context_get_type
+  (in-module "gio")
   (c-name "g_app_launch_context_get_type")
   (return-type "GType")
   (since "2.16.0")
 )
 
 (define-function app_info_create_from_commandline
+  (in-module "gio")
   (c-name "g_app_info_create_from_commandline")
   (is-constructor-of "GAppInfo")
   (return-type "GAppInfo*")
@@ -703,8 +773,6 @@
   (since "2.16.0")
 )
 
-(include "gio-types.defs")
-
 (define-method set_as_default_for_type
   (of-object "GAppInfo")
   (c-name "g_app_info_set_as_default_for_type")
@@ -760,6 +828,7 @@
 ;; wrapped in gio.override
 ;;
 (define-function app_info_get_all
+  (in-module "gio")
   (c-name "g_app_info_get_all")
   (return-type "GList[GAppInfo]")
   (caller-owns-return #t)
@@ -770,6 +839,7 @@
 ;; wrapped in gio.override
 ;;
 (define-function app_info_get_all_for_type
+  (in-module "gio")
   (c-name "g_app_info_get_all_for_type")
   (return-type "GList[GAppInfo]")
   (caller-owns-return #t)
@@ -780,6 +850,7 @@
 )
 
 (define-function app_info_get_default_for_type
+  (in-module "gio")
   (c-name "g_app_info_get_default_for_type")
   (return-type "GAppInfo*")
   (parameters
@@ -790,6 +861,7 @@
 )
 
 (define-function app_info_get_default_for_uri_scheme
+  (in-module "gio")
   (c-name "g_app_info_get_default_for_uri_scheme")
   (return-type "GAppInfo*")
   (parameters
@@ -799,6 +871,7 @@
 )
 
 (define-function app_launch_context_new
+  (in-module "gio")
   (c-name "g_app_launch_context_new")
   (is-constructor-of "GAppLaunchContext")
   (return-type "GAppLaunchContext*")
@@ -850,6 +923,7 @@
 ;; From gasyncresult.h
 
 (define-function async_result_get_type
+  (in-module "gio")
   (c-name "g_async_result_get_type")
   (return-type "GType")
   (since "2.16.0")
@@ -874,12 +948,14 @@
 ;; From gbufferedinputstream.h
 
 (define-function buffered_input_stream_get_type
+  (in-module "gio")
   (c-name "g_buffered_input_stream_get_type")
   (return-type "GType")
   (since "2.16.0")
 )
 
 (define-function buffered_input_stream_new
+  (in-module "gio")
   (c-name "g_buffered_input_stream_new")
   (is-constructor-of "GBufferedInputStream")
   (return-type "GInputStream*")
@@ -890,6 +966,7 @@
 )
 
 (define-function buffered_input_stream_new_sized
+  (in-module "gio")
   (c-name "g_buffered_input_stream_new_sized")
   (return-type "GInputStream*")
   (parameters
@@ -1000,12 +1077,14 @@
 ;; From gbufferedoutputstream.h
 
 (define-function buffered_output_stream_get_type
+  (in-module "gio")
   (c-name "g_buffered_output_stream_get_type")
   (return-type "GType")
   (since "2.16.0")
 )
 
 (define-function buffered_output_stream_new
+  (in-module "gio")
   (c-name "g_buffered_output_stream_new")
   (is-constructor-of "GBufferedOutputStream")
   (return-type "GOutputStream*")
@@ -1016,6 +1095,7 @@
 )
 
 (define-function buffered_output_stream_new_sized
+  (in-module "gio")
   (c-name "g_buffered_output_stream_new_sized")
   (return-type "GOutputStream*")
   (parameters
@@ -1064,12 +1144,14 @@
 ;; From gcancellable.h
 
 (define-function cancellable_get_type
+  (in-module "gio")
   (c-name "g_cancellable_get_type")
   (return-type "GType")
   (since "2.16.0")
 )
 
 (define-function cancellable_new
+  (in-module "gio")
   (c-name "g_cancellable_new")
   (is-constructor-of "GCancellable")
   (return-type "GCancellable*")
@@ -1101,6 +1183,7 @@
 )
 
 (define-function cancellable_get_current
+  (in-module "gio")
   (c-name "g_cancellable_get_current")
   (return-type "GCancellable*")
   (since "2.16.0")
@@ -1139,6 +1222,7 @@
 ;; From gcontenttype.h
 
 (define-function content_type_equals
+  (in-module "gio")
   (c-name "g_content_type_equals")
   (return-type "gboolean")
   (parameters
@@ -1149,6 +1233,7 @@
 )
 
 (define-function content_type_is_a
+  (in-module "gio")
   (c-name "g_content_type_is_a")
   (return-type "gboolean")
   (parameters
@@ -1159,6 +1244,7 @@
 )
 
 (define-function content_type_is_unknown
+  (in-module "gio")
   (c-name "g_content_type_is_unknown")
   (return-type "gboolean")
   (parameters
@@ -1168,6 +1254,7 @@
 )
 
 (define-function content_type_get_description
+  (in-module "gio")
   (c-name "g_content_type_get_description")
   (return-type "char*")
   (parameters
@@ -1177,6 +1264,7 @@
 )
 
 (define-function content_type_get_mime_type
+  (in-module "gio")
   (c-name "g_content_type_get_mime_type")
   (return-type "char*")
   (parameters
@@ -1186,6 +1274,7 @@
 )
 
 (define-function content_type_get_icon
+  (in-module "gio")
   (c-name "g_content_type_get_icon")
   (return-type "GIcon*")
   (caller-owns-return #t)
@@ -1196,6 +1285,7 @@
 )
 
 (define-function content_type_can_be_executable
+  (in-module "gio")
   (c-name "g_content_type_can_be_executable")
   (return-type "gboolean")
   (parameters
@@ -1208,6 +1298,7 @@
 ;; wrapped in gio.override
 ;;
 (define-function content_type_guess
+  (in-module "gio")
   (docstring
 "content_type_guess([filename, data, want_uncertain]) -> mime type\n"
 "\n"
@@ -1231,6 +1322,7 @@
 ;; wrapped in gio.override
 ;;
 (define-function content_types_get_registered
+  (in-module "gio")
   (c-name "g_content_types_get_registered")
   (return-type "GList[gchar*]")
   (caller-owns-return #t)
@@ -1240,12 +1332,14 @@
 ;; From gdatainputstream.h
 
 (define-function data_input_stream_get_type
+  (in-module "gio")
   (c-name "g_data_input_stream_get_type")
   (return-type "GType")
   (since "2.16.0")
 )
 
 (define-function data_input_stream_new
+  (in-module "gio")
   (c-name "g_data_input_stream_new")
   (is-constructor-of "GDataInputStream")
   (return-type "GDataInputStream*")
@@ -1409,12 +1503,14 @@
 ;; From gdataoutputstream.h
 
 (define-function data_output_stream_get_type
+  (in-module "gio")
   (c-name "g_data_output_stream_get_type")
   (return-type "GType")
   (since "2.16.0")
 )
 
 (define-function data_output_stream_new
+  (in-module "gio")
   (c-name "g_data_output_stream_new")
   (is-constructor-of "GDataOutputStream")
   (return-type "GDataOutputStream*")
@@ -1545,6 +1641,7 @@
 ;; From gdrive.h
 
 (define-function drive_get_type
+  (in-module "gio")
   (c-name "g_drive_get_type")
   (return-type "GType")
   (since "2.16.0")
@@ -1703,6 +1800,7 @@
 ;; From gfileattribute.h
 
 (define-function file_attribute_info_list_new
+  (in-module "gio")
   (c-name "g_file_attribute_info_list_new")
   (is-constructor-of "GFileAttributeInfoList")
   (return-type "GFileAttributeInfoList*")
@@ -1758,6 +1856,7 @@
 ;; From gfileenumerator.h
 
 (define-function file_enumerator_get_type
+  (in-module "gio")
   (c-name "g_file_enumerator_get_type")
   (return-type "GType")
   (since "2.16.0")
@@ -1897,12 +1996,14 @@
 ;; From gfile.h
 
 (define-function file_get_type
+  (in-module "gio")
   (c-name "g_file_get_type")
   (return-type "GType")
   (since "2.16.0")
 )
 
 (define-function file_new_for_path
+  (in-module "gio")
   (c-name "g_file_new_for_path")
   (is-constructor-of "GFile")
   (return-type "GFile*")
@@ -1913,6 +2014,7 @@
 )
 
 (define-function file_new_for_uri
+  (in-module "gio")
   (c-name "g_file_new_for_uri")
   (is-constructor-of "GFile")
   (return-type "GFile*")
@@ -1923,6 +2025,7 @@
 )
 
 (define-function file_new_for_commandline_arg
+  (in-module "gio")
   (is-constructor-of "GFile")
   (c-name "g_file_new_for_commandline_arg")
   (return-type "GFile*")
@@ -1933,6 +2036,7 @@
 )
 
 (define-function file_parse_name
+  (in-module "gio")
   (c-name "g_file_parse_name")
   (return-type "GFile*")
   (caller-owns-return #t)
@@ -1951,10 +2055,11 @@
 )
 
 (define-function file_hash
+  (in-module "gio")
   (c-name "g_file_hash")
   (return-type "guint")
   (parameters
-    '("gconstpointer" "file")
+    '("gpointer" "file")
   )
   (since "2.16.0")
 )
@@ -3370,12 +3475,14 @@
 ;; From gfileicon.h
 
 (define-function file_icon_get_type
+  (in-module "gio")
   (c-name "g_file_icon_get_type")
   (return-type "GType")
   (since "2.16.0")
 )
 
 (define-function file_icon_new
+  (in-module "gio")
   (c-name "g_file_icon_new")
   (is-constructor-of "GFileIcon")
   (return-type "GIcon*")
@@ -3400,12 +3507,14 @@
 ;; From gfileinfo.h
 
 (define-function file_info_get_type
+  (in-module "gio")
   (c-name "g_file_info_get_type")
   (return-type "GType")
   (since "2.16.0")
 )
 
 (define-function file_info_new
+  (in-module "gio")
   (c-name "g_file_info_new")
   (is-constructor-of "GFileInfo")
   (return-type "GFileInfo*")
@@ -3941,6 +4050,7 @@
 )
 
 (define-function file_attribute_matcher_new
+  (in-module "gio")
   (c-name "g_file_attribute_matcher_new")
   (is-constructor-of "GFileAttributeMatcher")
   (return-type "GFileAttributeMatcher*")
@@ -4006,6 +4116,7 @@
 ;; From gfileinputstream.h
 
 (define-function file_input_stream_get_type
+  (in-module "gio")
   (c-name "g_file_input_stream_get_type")
   (return-type "GType")
   (since "2.16.0")
@@ -4053,6 +4164,7 @@
 ;; From gfilemonitor.h
 
 (define-function file_monitor_get_type
+  (in-module "gio")
   (c-name "g_file_monitor_get_type")
   (return-type "GType")
   (since "2.16.0")
@@ -4099,12 +4211,14 @@
 ;; From gfilenamecompleter.h
 
 (define-function filename_completer_get_type
+  (in-module "gio")
   (c-name "g_filename_completer_get_type")
   (return-type "GType")
   (since "2.16.0")
 )
 
 (define-function filename_completer_new
+  (in-module "gio")
   (c-name "g_filename_completer_new")
   (is-constructor-of "GFilenameCompleter")
   (return-type "GFilenameCompleter*")
@@ -4146,6 +4260,7 @@
 ;; From gfileoutputstream.h
 
 (define-function file_output_stream_get_type
+  (in-module "gio")
   (c-name "g_file_output_stream_get_type")
   (return-type "GType")
   (since "2.16.0")
@@ -4199,6 +4314,7 @@
 ;; From gfilterinputstream.h
 
 (define-function filter_input_stream_get_type
+  (in-module "gio")
   (c-name "g_filter_input_stream_get_type")
   (return-type "GType")
   (since "2.16.0")
@@ -4214,6 +4330,7 @@
 ;; From gfilteroutputstream.h
 
 (define-function filter_output_stream_get_type
+  (in-module "gio")
   (c-name "g_filter_output_stream_get_type")
   (return-type "GType")
   (since "2.16.0")
@@ -4229,16 +4346,18 @@
 ;; From gicon.h
 
 (define-function icon_get_type
+  (in-module "gio")
   (c-name "g_icon_get_type")
   (return-type "GType")
   (since "2.16.0")
 )
 
 (define-function icon_hash
+  (in-module "gio")
   (c-name "g_icon_hash")
   (return-type "guint")
   (parameters
-    '("gconstpointer" "icon")
+    '("gpointer" "icon")
   )
   (since "2.16.0")
 )
@@ -4256,6 +4375,7 @@
 ;; From ginputstream.h
 
 (define-function input_stream_get_type
+  (in-module "gio")
   (c-name "g_input_stream_get_type")
   (return-type "GType")
   (since "2.16.0")
@@ -4322,7 +4442,7 @@
   (c-name "g_input_stream_read_async")
   (return-type "none")
   (parameters
-    '("void*" "buffer")
+    '("gpointer" "buffer" (out))
     '("gsize" "count")
     '("int" "io_priority" (default "G_PRIORITY_DEFAULT"))
     '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
@@ -4438,96 +4558,112 @@
 ;; From gioenumtypes.h
 
 (define-function app_info_create_flags_get_type
+  (in-module "gio")
   (c-name "g_app_info_create_flags_get_type")
   (return-type "GType")
   (since "2.16.0")
 )
 
 (define-function data_stream_byte_order_get_type
+  (in-module "gio")
   (c-name "g_data_stream_byte_order_get_type")
   (return-type "GType")
   (since "2.16.0")
 )
 
 (define-function data_stream_newline_type_get_type
+  (in-module "gio")
   (c-name "g_data_stream_newline_type_get_type")
   (return-type "GType")
   (since "2.16.0")
 )
 
 (define-function file_query_info_flags_get_type
+  (in-module "gio")
   (c-name "g_file_query_info_flags_get_type")
   (return-type "GType")
   (since "2.16.0")
 )
 
 (define-function file_create_flags_get_type
+  (in-module "gio")
   (c-name "g_file_create_flags_get_type")
   (return-type "GType")
   (since "2.16.0")
 )
 
 (define-function file_copy_flags_get_type
+  (in-module "gio")
   (c-name "g_file_copy_flags_get_type")
   (return-type "GType")
   (since "2.16.0")
 )
 
 (define-function file_monitor_flags_get_type
+  (in-module "gio")
   (c-name "g_file_monitor_flags_get_type")
   (return-type "GType")
   (since "2.16.0")
 )
 
 (define-function file_attribute_type_get_type
+  (in-module "gio")
   (c-name "g_file_attribute_type_get_type")
   (return-type "GType")
   (since "2.16.0")
 )
 
 (define-function file_attribute_info_flags_get_type
+  (in-module "gio")
   (c-name "g_file_attribute_info_flags_get_type")
   (return-type "GType")
   (since "2.16.0")
 )
 
 (define-function file_attribute_status_get_type
+  (in-module "gio")
   (c-name "g_file_attribute_status_get_type")
   (return-type "GType")
   (since "2.16.0")
 )
 
 (define-function file_type_get_type
+  (in-module "gio")
   (c-name "g_file_type_get_type")
   (return-type "GType")
   (since "2.16.0")
 )
 
 (define-function file_monitor_event_get_type
+  (in-module "gio")
   (c-name "g_file_monitor_event_get_type")
   (return-type "GType")
   (since "2.16.0")
 )
 
 (define-function io_error_enum_get_type
+  (in-module "gio")
   (c-name "g_io_error_enum_get_type")
   (return-type "GType")
   (since "2.16.0")
 )
 
 (define-function ask_password_flags_get_type
+  (in-module "gio")
   (c-name "g_ask_password_flags_get_type")
   (return-type "GType")
   (since "2.16.0")
 )
 
 (define-function password_save_get_type
+  (in-module "gio")
   (c-name "g_password_save_get_type")
   (return-type "GType")
   (since "2.16.0")
 )
 
 (define-function output_stream_splice_flags_get_type
+  (in-module "gio")
   (c-name "g_output_stream_splice_flags_get_type")
   (return-type "GType")
   (since "2.16.0")
@@ -4538,12 +4674,14 @@
 ;; From gioerror.h
 
 (define-function io_error_quark
+  (in-module "gio")
   (c-name "g_io_error_quark")
   (return-type "GQuark")
   (since "2.16.0")
 )
 
 (define-function io_error_from_errno
+  (in-module "gio")
   (c-name "g_io_error_from_errno")
   (return-type "GIOErrorEnum")
   (parameters
@@ -4565,12 +4703,14 @@
 ;; From giomodule.h
 
 (define-function io_module_get_type
+  (in-module "gio")
   (c-name "g_io_module_get_type")
   (return-type "GType")
   (since "2.16.0")
 )
 
 (define-function io_module_new
+  (in-module "gio")
   (c-name "g_io_module_new")
   (is-constructor-of "GIoModule")
   (return-type "GIOModule*")
@@ -4581,6 +4721,7 @@
 )
 
 (define-function io_modules_load_all_in_directory
+  (in-module "gio")
   (c-name "g_io_modules_load_all_in_directory")
   (return-type "GList[GModule]")
   (caller-owns-return #t)
@@ -4609,6 +4750,7 @@
 ;; From gioscheduler.h
 
 (define-function io_scheduler_push_job
+  (in-module "gio")
   (c-name "g_io_scheduler_push_job")
   (return-type "none")
   (parameters
@@ -4622,6 +4764,7 @@
 )
 
 (define-function io_scheduler_cancel_all_jobs
+  (in-module "gio")
   (c-name "g_io_scheduler_cancel_all_jobs")
   (return-type "none")
   (since "2.16.0")
@@ -4656,6 +4799,7 @@
 ;; From gloadableicon.h
 
 (define-function loadable_icon_get_type
+  (in-module "gio")
   (c-name "g_loadable_icon_get_type")
   (return-type "GType")
   (since "2.16.0")
@@ -4744,6 +4888,7 @@
 ;; From glocaldirectorymonitor.h
 
 (define-function local_directory_monitor_get_type
+  (in-module "gio")
   (c-name "g_local_directory_monitor_get_type")
   (return-type "GType")
   (since "2.16.0")
@@ -4770,6 +4915,7 @@
 ;; From glocalfilemonitor.h
 
 (define-function local_file_monitor_get_type
+  (in-module "gio")
   (c-name "g_local_file_monitor_get_type")
   (return-type "GType")
   (since "2.16.0")
@@ -4788,12 +4934,14 @@
 ;; From gmemoryinputstream.h
 
 (define-function memory_input_stream_get_type
+  (in-module "gio")
   (c-name "g_memory_input_stream_get_type")
   (return-type "GType")
   (since "2.16.0")
 )
 
 (define-function memory_input_stream_new
+  (in-module "gio")
   (c-name "g_memory_input_stream_new")
   (is-constructor-of "GMemoryInputStream")
   (return-type "GInputStream*")
@@ -4801,6 +4949,7 @@
 )
 
 (define-function memory_input_stream_new_from_data
+  (in-module "gio")
   (c-name "g_memory_input_stream_new_from_data")
   (return-type "GInputStream*")
   (parameters
@@ -4831,6 +4980,7 @@
 ;; From gmemoryoutputstream.h
 
 (define-function memory_output_stream_get_type
+  (in-module "gio")
   (c-name "g_memory_output_stream_get_type")
   (return-type "GType")
   (since "2.16.0")
@@ -4840,6 +4990,7 @@
 ;; wrapped in goutputstream.override
 ;;
 (define-function memory_output_stream_new
+  (in-module "gio")
   (c-name "g_memory_output_stream_new")
   (is-constructor-of "GMemoryOutputStream")
   (return-type "GOutputStream*")
@@ -4873,6 +5024,7 @@
 ;; From gmount.h
 
 (define-function mount_get_type
+  (in-module "gio")
   (c-name "g_mount_get_type")
   (return-type "GType")
   (since "2.16.0")
@@ -5044,12 +5196,14 @@
 ;; From gmountoperation.h
 
 (define-function mount_operation_get_type
+  (in-module "gio")
   (c-name "g_mount_operation_get_type")
   (return-type "GType")
   (since "2.16.0")
 )
 
 (define-function mount_operation_new
+  (in-module "gio")
   (c-name "g_mount_operation_new")
   (is-constructor-of "GMountOperation")
   (return-type "GMountOperation*")
@@ -5173,6 +5327,7 @@
 ;; From gnativevolumemonitor.h
 
 (define-function native_volume_monitor_get_type
+  (in-module "gio")
   (c-name "g_native_volume_monitor_get_type")
   (return-type "GType")
   (since "2.16.0")
@@ -5183,6 +5338,7 @@
 ;; From goutputstream.h
 
 (define-function output_stream_get_type
+  (in-module "gio")
   (c-name "g_output_stream_get_type")
   (return-type "GType")
   (since "2.16.0")
@@ -5428,6 +5584,7 @@
 ;; From gseekable.h
 
 (define-function seekable_get_type
+  (in-module "gio")
   (c-name "g_seekable_get_type")
   (return-type "GType")
   (since "2.16.0")
@@ -5484,12 +5641,14 @@
 ;; From gsimpleasyncresult.h
 
 (define-function simple_async_result_get_type
+  (in-module "gio")
   (c-name "g_simple_async_result_get_type")
   (return-type "GType")
   (since "2.16.0")
 )
 
 (define-function simple_async_result_new
+  (in-module "gio")
   (c-name "g_simple_async_result_new")
   (is-constructor-of "GSimpleAsyncResult")
   (return-type "GSimpleAsyncResult*")
@@ -5502,9 +5661,12 @@
   (since "2.16.0")
 )
 
+; MANUAL: varargs
 (define-function simple_async_result_new_error
+  (in-module "gio")
   (c-name "g_simple_async_result_new_error")
   (return-type "GSimpleAsyncResult*")
+  (is-constructor-of "GSimpleAsyncResult")
   (parameters
     '("GObject*" "source_object")
     '("GAsyncReadyCallback" "callback")
@@ -5518,8 +5680,10 @@
 )
 
 (define-function simple_async_result_new_from_error
+  (in-module "gio")
   (c-name "g_simple_async_result_new_from_error")
   (return-type "GSimpleAsyncResult*")
+  (is-constructor-of "GSimpleAsyncResult")
   (parameters
     '("GObject*" "source_object")
     '("GAsyncReadyCallback" "callback")
@@ -5644,6 +5808,7 @@
   (since "2.16.0")
 )
 
+; MANUAL: varargs
 (define-method set_error
   (of-object "GSimpleAsyncResult")
   (c-name "g_simple_async_result_set_error")
@@ -5670,7 +5835,9 @@
   (since "2.16.0")
 )
 
+; MANUAL: varargs
 (define-function simple_async_report_error_in_idle
+  (in-module "gio")
   (c-name "g_simple_async_report_error_in_idle")
   (return-type "none")
   (parameters
@@ -5686,6 +5853,7 @@
 )
 
 (define-function simple_async_report_gerror_in_idle
+  (in-module "gio")
   (c-name "g_simple_async_report_gerror_in_idle")
   (return-type "none")
   (parameters
@@ -5702,12 +5870,14 @@
 ;; From gthemedicon.h
 
 (define-function themed_icon_get_type
+  (in-module "gio")
   (c-name "g_themed_icon_get_type")
   (return-type "GType")
   (since "2.16.0")
 )
 
 (define-function themed_icon_new
+  (in-module "gio")
   (c-name "g_themed_icon_new")
   (is-constructor-of "GThemedIcon")
   (return-type "GIcon*")
@@ -5718,6 +5888,7 @@
 )
 
 (define-function themed_icon_new_with_default_fallbacks
+  (in-module "gio")
   (c-name "g_themed_icon_new_with_default_fallbacks")
   (return-type "GIcon*")
   (parameters
@@ -5727,6 +5898,7 @@
 )
 
 (define-function themed_icon_new_from_names
+  (in-module "gio")
   (c-name "g_themed_icon_new_from_names")
   (return-type "GIcon*")
   (parameters
@@ -5763,6 +5935,7 @@
 ;; From gvfs.h
 
 (define-function vfs_get_type
+  (in-module "gio")
   (c-name "g_vfs_get_type")
   (return-type "GType")
   (since "2.16.0")
@@ -5809,12 +5982,14 @@
 )
 
 (define-function vfs_get_default
+  (in-module "gio")
   (c-name "g_vfs_get_default")
   (return-type "GVfs*")
   (since "2.16.0")
 )
 
 (define-function vfs_get_local
+  (in-module "gio")
   (c-name "g_vfs_get_local")
   (return-type "GVfs*")
   (since "2.16.0")
@@ -5838,6 +6013,7 @@
 ;; From gwin32appinfo.h
 
 (define-function win32_app_info_get_type
+  (in-module "gio")
   (c-name "g_win32_app_info_get_type")
   (return-type "GType")
   (since "2.16.0")
@@ -5848,6 +6024,7 @@
 ;; From gvolume.h
 
 (define-function volume_get_type
+  (in-module "gio")
   (c-name "g_volume_get_type")
   (return-type "GType")
   (since "2.16.0")
@@ -5972,12 +6149,14 @@
 ;; From gvolumemonitor.h
 
 (define-function volume_monitor_get_type
+  (in-module "gio")
   (c-name "g_volume_monitor_get_type")
   (return-type "GType")
   (since "2.16.0")
 )
 
 (define-function volume_monitor_get
+  (in-module "gio")
   (c-name "g_volume_monitor_get")
   (return-type "GVolumeMonitor*")
   (since "2.16.0")
@@ -6039,6 +6218,7 @@
 )
 
 (define-function volume_monitor_adopt_orphan_mount
+  (in-module "gio")
   (c-name "g_volume_monitor_adopt_orphan_mount")
   (return-type "GVolume*")
   (parameters
@@ -6103,6 +6283,17 @@
    '("const-char*" "file_contents")
    '("goffset" "file_size")
    '("gpointer" "callback_data")
+   )
+  (since "2.16.0")
+  )
+
+(define-user-function ReallocFunc
+  (in-module "gio")
+  (c-name "GReallocFunc")
+  (return-type "gpointer")
+  (parameters
+   '("gpointer" "data")
+   '("gsize" "size")
    )
   (since "2.16.0")
   )

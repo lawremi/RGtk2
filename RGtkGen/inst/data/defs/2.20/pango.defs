@@ -1,0 +1,31 @@
+;; -*- scheme -*-
+
+(include "../2.14/pango.defs")
+
+;; compatible with pango 1.26.0
+
+(define-function pango_gravity_get_for_script
+  (in-module "Pango")
+  (c-name "pango_gravity_get_for_script")
+  (return-type "PangoGravity")
+  (parameters
+    '("PangoScript" "script")
+    '("gboolean" "wide")
+    '("PangoGravity" "base_gravity")
+    '("PangoGravityHint" "hint")
+  )
+  (since "1.26.0")
+)
+
+;; MANUAL: 'logical_widths' needs allocation to glyph_item->item->num_chars
+(define-function pango_glyph_item_get_logical_widths
+  (in-module "Pango")
+  (c-name "pango_glyph_item_get_logical_widths")
+  (return-type "none")
+  (parameters
+    '("PangoGlyphItem*" "glyph_item") 
+    '("const-char*" "text")
+    '("int[]" "logical_widths" (out))
+    )
+  (since "1.26.0")
+)

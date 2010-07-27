@@ -172,3 +172,7 @@ CairoPsLevel<-c("2" = 0,
 storage.mode(CairoPsLevel) <- 'integer'
 class(CairoPsLevel) <- 'enums' 
 
+CairoTextClusterFlags<-c("backward" = 0)
+storage.mode(CairoTextClusterFlags) <- 'integer'
+class(CairoTextClusterFlags) <- 'enums' 
+

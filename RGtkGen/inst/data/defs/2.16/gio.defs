@@ -34,6 +34,7 @@
 )
 
 (define-function content_type_from_mime_type
+  (in-module "gio")
   (c-name "g_content_type_from_mime_type")
   (return-type "char*")
   (parameters
@@ -43,6 +44,7 @@
 )
 
 (define-function content_type_guess_for_tree
+  (in-module "gio")
   (c-name "g_content_type_guess_for_tree")
   (return-type "char**")
   (parameters
@@ -54,12 +56,14 @@
 ;; From gemblemedicon.h
 
 (define-function g_emblemed_icon_get_type
+  (in-module "gio")
   (c-name "g_emblemed_icon_get_type")
   (return-type "GType")
   (since "2.18.0")
 )
 
 (define-function g_emblemed_icon_new
+  (in-module "gio")
   (c-name "g_emblemed_icon_new")
   (is-constructor-of "GEmblemedIcon")
   (return-type "GIcon*")
@@ -99,12 +103,14 @@
 ;; From gemblem.h
 
 (define-function g_emblem_get_type
+  (in-module "gio")
   (c-name "g_emblem_get_type")
   (return-type "GType")
   (since "2.18.0")
 )
 
 (define-function g_emblem_new
+  (in-module "gio")
   (c-name "g_emblem_new")
   (is-constructor-of "GEmblem")
   (return-type "GEmblem*")
@@ -116,6 +122,7 @@
 )
 
 (define-function emblem_new_with_origin
+  (in-module "gio")
   (c-name "g_emblem_new_with_origin")
   (return-type "GEmblem*")
   (parameters
@@ -145,7 +152,7 @@
   (return-type "GFileType")
   (parameters
     '("GFileQueryInfoFlags" "flags")
-    '("GCancellable*" "cancellable")
+    '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
   )
   (since "2.18.0")
 )
@@ -156,7 +163,7 @@
   (return-type "gboolean")
   (unblock-threads #t)
   (parameters
-    '("GCancellable*" "cancellable")
+    '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
     '("GError**" "error" (out))
   )
   (since "2.18.0")
@@ -187,7 +194,7 @@
   (return-type "none")
   (parameters
     '("gboolean" "force_rescan")
-    '("GCancellable*" "cancellable")
+    '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
     '("GAsyncReadyCallback" "callback")
     '("gpointer" "user_data")
   )
@@ -211,7 +218,7 @@
   (return-type "gchar**")
   (parameters
     '("gboolean" "force_rescan")
-    '("GCancellable*" "cancellable")
+    '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
     '("GError**" "error" (out))
   )
   (since "2.18.0")

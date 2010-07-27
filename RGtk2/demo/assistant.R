@@ -1,6 +1,18 @@
+apply_changes_gradually <- function(data) {
+  fraction <- progress_bar$getFraction() + 0.05
+  if (fraction < 1.0) {
+    progress_bar$setFraction(fraction)
+    TRUE
+  } else {
+    assistant$destroy()
+    FALSE
+  }
+}
+
+
 on_assistant_apply <- function(widget, data)
 {
-  # do something
+  gTimeoutAdd(100, apply_changes_gradually)
 }
 
 on_assistant_prepare <- function(widget, page, data)
@@ -10,6 +22,9 @@ on_assistant_prepare <- function(widget, page, data)
 
   title <- sprintf("Sample assistant (%d of %d)", current_page + 1, n_pages)
   widget$setTitle(title)
+
+  if (current_page == 3)
+    widget$commit()
 }
 
 on_entry_changed <- function(widget, assistant)
@@ -23,6 +38,7 @@ on_entry_changed <- function(widget, assistant)
   else
     assistant$setPageComplete(current_page, FALSE)
 }
+
 
 create_page1 <- function(assistant)
 {
@@ -74,6 +90,23 @@ create_page3 <- function(assistant)
   assistant$setPageHeaderImage(label, pixbuf)
 }
 
+create_page4 <- function(assistant) {
+  page <- gtkAlignment(0.5, 0.5, 0.5, 0.0)
+
+  progress_bar <- gtkProgressBar()
+  page$add(progress_bar)
+  page$showAll()
+
+  assistant$appendPage(page)
+
+  assistant$setPageType(page, "progress")
+  assistant$setPageTitle(page, "Applying changes")
+
+  ## This prevents the assistant window from being
+  ## closed while we're "busy" applying changes.
+  page$setPageComplete(FALSE)
+}
+
 assistant <- gtkAssistant(show = F)
 
 assistant$setDefaultSize(-1, 300)
@@ -81,6 +114,7 @@ assistant$setDefaultSize(-1, 300)
 create_page1(assistant)
 create_page2(assistant)
 create_page3(assistant)
+create_page4(assistant)
 
 gSignalConnect(assistant, "cancel", gtkWidgetDestroy)
 gSignalConnect(assistant, "close", gtkWidgetDestroy)

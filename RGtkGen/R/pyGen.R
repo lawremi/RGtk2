@@ -1784,8 +1784,9 @@ function(name, params, defs)
       data <- paste(statement(data), data, sep="\n")
       sdata <- "NULL"
     } else {
-        if (length(grep("DestroyNotify", getParamTypes(params))) == 0)
-            freeData <- TRUE # like for a 'foreach' func
+        if (!any(grepl("DestroyNotify", getParamTypes(params))) &&
+            !name %in% asyncUserFuncs)
+          freeData <- TRUE # like for a 'foreach' func
         data <- sorted[[found[[1]]]]$name
         sdata <- nameToSArg(data)
     }
@@ -2288,6 +2289,9 @@ genUserFunctionCode <- function(fun, defs, name = fun$name, virtual = 0, package
     },
     "",
     statement(cassign("s_ans", invokev("R_tryEval", "e", "R_GlobalEnv", "&err"))),
+    if (name %in% asyncUserFuncs) {
+      statement(invoke("R_freeCBData", dataName))
+    },
     "",
     statement(unprotect(1)),
     "",

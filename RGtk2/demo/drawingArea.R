@@ -9,8 +9,9 @@ scribble.configure.event <- function(widget, event, data)
                widget[["allocation"]][["height"]], -1)
 
   # Initialize the pixmap to white
-  gdkDrawRectangle(pixmap, widget[["style"]][["whiteGc"]], TRUE, 0, 0,
-              widget[["allocation"]][["width"]], widget[["allocation"]][["height"]])
+  cr <- gdkCairoCreate(pixmap)
+  cr$setSourceRgb(1, 1, 1)
+  cr$paint()
 
   # We've handled the configure event, no need for further processing.
   return(TRUE)
@@ -24,27 +25,24 @@ scribble.expose.event <- function(widget, event, data)
   # is whether the GC has an inappropriate clip region set.
   #
 
-  gdkDrawDrawable(widget[["window"]],
-             widget[["style"]][["fgGc"]][[widget$state()+1]],
-             pixmap,
-             event[["area"]][["x"]], event[["area"]][["y"]],
-             event[["area"]][["x"]], event[["area"]][["y"]],
-             event[["area"]][["width"]], event[["area"]][["height"]])
-
+  cr <- gdkCairoCreate(widget[["window"]])
+  cr$setSourcePixmap(pixmap, 0, 0)
+  gdkCairoRectangle(cr, event[["area"]])
+  cr$fill()
+  
   return(FALSE)
 }
 
 # Draw a rectangle on the screen
 draw.brush <- function(widget, x, y)
+
 {
   update.rect <- c(x=x-3, y=y-3, width=6, height=6)
 
-  # Paint to the pixmap, where we store our state
-  gdkDrawRectangle(pixmap, widget[["style"]][["blackGc"]],
-              TRUE,
-              update.rect[["x"]], update.rect[["y"]],
-              update.rect[["width"]], update.rect[["height"]])
-
+  cr <- gdkCairoCreate(pixmap)
+  gdkCairoRectangle(cr, update_rect)
+  cr$fill()
+  
   # Now invalidate the affected region of the drawing area. (so it will be updated)
   gdkWindowInvalidateRect(widget[["window"]], update.rect, FALSE)
 }
@@ -99,20 +97,11 @@ checkerboard.expose <- function(da, event, data)
   # gdkWindowBeginPaintRegion() give more details on how this
   # works.
   #
-
-  # It would be a bit more efficient to keep these
-  # GC's around instead of recreating on each expose, but
-  # this is the lazy/slow way.
-  #
-
-  gc1 <- gdkGCNew(da[["window"]])
-  color <- c(red = 30000, green = 0, blue = 30000)
-  gc1$setRgbFgColor(color)
-
-  gc2 <- gdkGCNew(da[["window"]])
-  color <- c(red = 65535, green = 65535, blue = 65535)
-  gc2$setRgbFgColor(color)
-
+ 
+  cr <- gdkCairoCreate(da[["window"]])
+  gdkCairoRectangle(cr, event[["area"]])
+  cr$clip()
+ 
   xcount <- 0
   i <- SPACING
   while (i < da[["allocation"]][["width"]])
@@ -122,22 +111,18 @@ checkerboard.expose <- function(da, event, data)
       while (j < da[["allocation"]][["height"]])
     {
       if (ycount %% 2)
-        gc <- gc1
+        cr$setSourceRgb(0.45777, 0, 0.45777)
       else
-        gc <- gc2
+        cr$setSourceRgb(1, 1, 1)
 
       # If we're outside event->area, this will do nothing.
       # It might be mildly more efficient if we handled
       # the clipping ourselves, but again we're feeling lazy.
       #
 
-      gdkDrawRectangle (da[["window"]],
-                  gc,
-                  TRUE,
-                  i, j,
-                  CHECK.SIZE,
-                  CHECK.SIZE)
-
+      cr$rectangle(i, j, CHECK.SIZE, CHECK.SIZE)
+      cr$fill()
+      
       j <- j + CHECK.SIZE + SPACING
       ycount <- ycount + 1
     }

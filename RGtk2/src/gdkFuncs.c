@@ -9359,3 +9359,596 @@ S_gdk_pixbuf_apply_embedded_orientation(USER_OBJECT_ s_object)
 }
  
 
+USER_OBJECT_
+S_gdk_app_launch_context_get_type(void)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 14, 0)
+
+  GType ans;
+
+  ans = gdk_app_launch_context_get_type();
+
+  _result = asRGType(ans);
+#else
+  error("gdk_app_launch_context_get_type exists only in Gdk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_app_launch_context_new(void)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 14, 0)
+
+  GdkAppLaunchContext* ans;
+
+  ans = gdk_app_launch_context_new();
+
+  _result = toRPointerWithFinalizer(ans, "GdkAppLaunchContext", (RPointerFinalizer) g_object_unref);
+#else
+  error("gdk_app_launch_context_new exists only in Gdk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_app_launch_context_set_display(USER_OBJECT_ s_object, USER_OBJECT_ s_display)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 14, 0)
+  GdkAppLaunchContext* object = GDK_APP_LAUNCH_CONTEXT(getPtrValue(s_object));
+  GdkDisplay* display = GDK_DISPLAY_OBJECT(getPtrValue(s_display));
+
+
+  gdk_app_launch_context_set_display(object, display);
+
+#else
+  error("gdk_app_launch_context_set_display exists only in Gdk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_app_launch_context_set_screen(USER_OBJECT_ s_object, USER_OBJECT_ s_screen)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 14, 0)
+  GdkAppLaunchContext* object = GDK_APP_LAUNCH_CONTEXT(getPtrValue(s_object));
+  GdkScreen* screen = GDK_SCREEN(getPtrValue(s_screen));
+
+
+  gdk_app_launch_context_set_screen(object, screen);
+
+#else
+  error("gdk_app_launch_context_set_screen exists only in Gdk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_app_launch_context_set_desktop(USER_OBJECT_ s_object, USER_OBJECT_ s_desktop)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 14, 0)
+  GdkAppLaunchContext* object = GDK_APP_LAUNCH_CONTEXT(getPtrValue(s_object));
+  gint desktop = ((gint)asCInteger(s_desktop));
+
+
+  gdk_app_launch_context_set_desktop(object, desktop);
+
+#else
+  error("gdk_app_launch_context_set_desktop exists only in Gdk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_app_launch_context_set_timestamp(USER_OBJECT_ s_object, USER_OBJECT_ s_timestamp)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 14, 0)
+  GdkAppLaunchContext* object = GDK_APP_LAUNCH_CONTEXT(getPtrValue(s_object));
+  guint32 timestamp = ((guint32)asCNumeric(s_timestamp));
+
+
+  gdk_app_launch_context_set_timestamp(object, timestamp);
+
+#else
+  error("gdk_app_launch_context_set_timestamp exists only in Gdk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_app_launch_context_set_icon(USER_OBJECT_ s_object, USER_OBJECT_ s_icon)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 14, 0)
+  GdkAppLaunchContext* object = GDK_APP_LAUNCH_CONTEXT(getPtrValue(s_object));
+  GIcon* icon = GET_LENGTH(s_icon) == 0 ? NULL : G_ICON(getPtrValue(s_icon));
+
+
+  gdk_app_launch_context_set_icon(object, icon);
+
+#else
+  error("gdk_app_launch_context_set_icon exists only in Gdk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_app_launch_context_set_icon_name(USER_OBJECT_ s_object, USER_OBJECT_ s_icon_name)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 14, 0)
+  GdkAppLaunchContext* object = GDK_APP_LAUNCH_CONTEXT(getPtrValue(s_object));
+  const char* icon_name = GET_LENGTH(s_icon_name) == 0 ? NULL : ((const char*)asCString(s_icon_name));
+
+
+  gdk_app_launch_context_set_icon_name(object, icon_name);
+
+#else
+  error("gdk_app_launch_context_set_icon_name exists only in Gdk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_screen_get_monitor_width_mm(USER_OBJECT_ s_object, USER_OBJECT_ s_monitor_num)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 14, 0)
+  GdkScreen* object = GDK_SCREEN(getPtrValue(s_object));
+  gint monitor_num = ((gint)asCInteger(s_monitor_num));
+
+  gint ans;
+
+  ans = gdk_screen_get_monitor_width_mm(object, monitor_num);
+
+  _result = asRInteger(ans);
+#else
+  error("gdk_screen_get_monitor_width_mm exists only in Gdk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_screen_get_monitor_height_mm(USER_OBJECT_ s_object, USER_OBJECT_ s_monitor_num)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 14, 0)
+  GdkScreen* object = GDK_SCREEN(getPtrValue(s_object));
+  gint monitor_num = ((gint)asCInteger(s_monitor_num));
+
+  gint ans;
+
+  ans = gdk_screen_get_monitor_height_mm(object, monitor_num);
+
+  _result = asRInteger(ans);
+#else
+  error("gdk_screen_get_monitor_height_mm exists only in Gdk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_screen_get_monitor_plug_name(USER_OBJECT_ s_object, USER_OBJECT_ s_monitor_num)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 14, 0)
+  GdkScreen* object = GDK_SCREEN(getPtrValue(s_object));
+  gint monitor_num = ((gint)asCInteger(s_monitor_num));
+
+  gchar* ans;
+
+  ans = gdk_screen_get_monitor_plug_name(object, monitor_num);
+
+  _result = asRString(ans);
+    CLEANUP(g_free, ans);;
+#else
+  error("gdk_screen_get_monitor_plug_name exists only in Gdk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_window_redirect_to_drawable(USER_OBJECT_ s_object, USER_OBJECT_ s_drawable, USER_OBJECT_ s_src_x, USER_OBJECT_ s_src_y, USER_OBJECT_ s_dest_x, USER_OBJECT_ s_dest_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 14, 0)
+  GdkWindow* object = GDK_WINDOW(getPtrValue(s_object));
+  GdkDrawable* drawable = GDK_DRAWABLE(getPtrValue(s_drawable));
+  gint src_x = ((gint)asCInteger(s_src_x));
+  gint src_y = ((gint)asCInteger(s_src_y));
+  gint dest_x = ((gint)asCInteger(s_dest_x));
+  gint dest_y = ((gint)asCInteger(s_dest_y));
+  gint width = ((gint)asCInteger(s_width));
+  gint height = ((gint)asCInteger(s_height));
+
+
+  gdk_window_redirect_to_drawable(object, drawable, src_x, src_y, dest_x, dest_y, width, height);
+
+#else
+  error("gdk_window_redirect_to_drawable exists only in Gdk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_window_remove_redirection(USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 14, 0)
+  GdkWindow* object = GDK_WINDOW(getPtrValue(s_object));
+
+
+  gdk_window_remove_redirection(object);
+
+#else
+  error("gdk_window_remove_redirection exists only in Gdk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_pixbuf_new_from_stream(USER_OBJECT_ s_stream, USER_OBJECT_ s_cancellable)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 14, 0)
+  GInputStream* stream = G_INPUT_STREAM(getPtrValue(s_stream));
+  GCancellable* cancellable = GET_LENGTH(s_cancellable) == 0 ? NULL : G_CANCELLABLE(getPtrValue(s_cancellable));
+
+  GdkPixbuf* ans;
+  GError* error = NULL;
+
+  ans = gdk_pixbuf_new_from_stream(stream, cancellable, &error);
+
+  _result = toRPointerWithRef(ans, "GdkPixbuf");
+
+  _result = retByVal(_result, "error", asRGError(error), NULL);
+    CLEANUP(g_error_free, error);;
+#else
+  error("gdk_pixbuf_new_from_stream exists only in Gdk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_pixbuf_new_from_stream_at_scale(USER_OBJECT_ s_stream, USER_OBJECT_ s_width, USER_OBJECT_ s_height, USER_OBJECT_ s_preserve_aspect_ratio, USER_OBJECT_ s_cancellable)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 14, 0)
+  GInputStream* stream = G_INPUT_STREAM(getPtrValue(s_stream));
+  gint width = ((gint)asCInteger(s_width));
+  gint height = ((gint)asCInteger(s_height));
+  gboolean preserve_aspect_ratio = ((gboolean)asCLogical(s_preserve_aspect_ratio));
+  GCancellable* cancellable = GET_LENGTH(s_cancellable) == 0 ? NULL : G_CANCELLABLE(getPtrValue(s_cancellable));
+
+  GdkPixbuf* ans;
+  GError* error = NULL;
+
+  ans = gdk_pixbuf_new_from_stream_at_scale(stream, width, height, preserve_aspect_ratio, cancellable, &error);
+
+  _result = toRPointerWithRef(ans, "GdkPixbuf");
+
+  _result = retByVal(_result, "error", asRGError(error), NULL);
+    CLEANUP(g_error_free, error);;
+#else
+  error("gdk_pixbuf_new_from_stream_at_scale exists only in Gdk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_keymap_get_caps_lock_state(USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 16, 0)
+  GdkKeymap* object = GDK_KEYMAP(getPtrValue(s_object));
+
+  gboolean ans;
+
+  ans = gdk_keymap_get_caps_lock_state(object);
+
+  _result = asRLogical(ans);
+#else
+  error("gdk_keymap_get_caps_lock_state exists only in Gdk >= 2.16.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_cairo_reset_clip(USER_OBJECT_ s_cr, USER_OBJECT_ s_drawable)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 18, 0)
+  cairo_t* cr = ((cairo_t*)getPtrValue(s_cr));
+  GdkDrawable* drawable = GDK_DRAWABLE(getPtrValue(s_drawable));
+
+
+  gdk_cairo_reset_clip(cr, drawable);
+
+#else
+  error("gdk_cairo_reset_clip exists only in Gdk >= 2.18.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_offscreen_window_get_pixmap(USER_OBJECT_ s_window)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 18, 0)
+  GdkWindow* window = GDK_WINDOW(getPtrValue(s_window));
+
+  GdkPixmap* ans;
+
+  ans = gdk_offscreen_window_get_pixmap(window);
+
+  _result = toRPointerWithRef(ans, "GdkPixmap");
+#else
+  error("gdk_offscreen_window_get_pixmap exists only in Gdk >= 2.18.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_offscreen_window_set_embedder(USER_OBJECT_ s_window, USER_OBJECT_ s_embedder)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 18, 0)
+  GdkWindow* window = GDK_WINDOW(getPtrValue(s_window));
+  GdkWindow* embedder = GDK_WINDOW(getPtrValue(s_embedder));
+
+
+  gdk_offscreen_window_set_embedder(window, embedder);
+
+#else
+  error("gdk_offscreen_window_set_embedder exists only in Gdk >= 2.18.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_offscreen_window_get_embedder(USER_OBJECT_ s_window)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 18, 0)
+  GdkWindow* window = GDK_WINDOW(getPtrValue(s_window));
+
+  GdkWindow* ans;
+
+  ans = gdk_offscreen_window_get_embedder(window);
+
+  _result = toRPointerWithRef(ans, "GdkWindow");
+#else
+  error("gdk_offscreen_window_get_embedder exists only in Gdk >= 2.18.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_region_rect_equal(USER_OBJECT_ s_object, USER_OBJECT_ s_rectangle)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 18, 0)
+  GdkRegion* object = ((GdkRegion*)getPtrValue(s_object));
+  const GdkRectangle* rectangle = asCGdkRectangle(s_rectangle);
+
+  gboolean ans;
+
+  ans = gdk_region_rect_equal(object, rectangle);
+
+  _result = asRLogical(ans);
+#else
+  error("gdk_region_rect_equal exists only in Gdk >= 2.18.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_window_ensure_native(USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 18, 0)
+  GdkWindow* object = GDK_WINDOW(getPtrValue(s_object));
+
+  gboolean ans;
+
+  ans = gdk_window_ensure_native(object);
+
+  _result = asRLogical(ans);
+#else
+  error("gdk_window_ensure_native exists only in Gdk >= 2.18.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_window_flush(USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 18, 0)
+  GdkWindow* object = GDK_WINDOW(getPtrValue(s_object));
+
+
+  gdk_window_flush(object);
+
+#else
+  error("gdk_window_flush exists only in Gdk >= 2.18.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_window_geometry_changed(USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 18, 0)
+  GdkWindow* object = GDK_WINDOW(getPtrValue(s_object));
+
+
+  gdk_window_geometry_changed(object);
+
+#else
+  error("gdk_window_geometry_changed exists only in Gdk >= 2.18.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_window_get_cursor(USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 18, 0)
+  GdkWindow* object = GDK_WINDOW(getPtrValue(s_object));
+
+  GdkCursor* ans;
+
+  ans = gdk_window_get_cursor(object);
+
+  _result = toRPointerWithFinalizer(ans ? gdk_cursor_ref(ans) : NULL, "GdkCursor", (RPointerFinalizer) gdk_cursor_unref);
+#else
+  error("gdk_window_get_cursor exists only in Gdk >= 2.18.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_window_restack(USER_OBJECT_ s_object, USER_OBJECT_ s_sibling, USER_OBJECT_ s_above)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 18, 0)
+  GdkWindow* object = GDK_WINDOW(getPtrValue(s_object));
+  GdkWindow* sibling = GDK_WINDOW(getPtrValue(s_sibling));
+  gboolean above = ((gboolean)asCLogical(s_above));
+
+
+  gdk_window_restack(object, sibling, above);
+
+#else
+  error("gdk_window_restack exists only in Gdk >= 2.18.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_keymap_add_virtual_modifiers(USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 20, 0)
+  GdkKeymap* object = GDK_KEYMAP(getPtrValue(s_object));
+
+  GdkModifierType state;
+
+  gdk_keymap_add_virtual_modifiers(object, &state);
+
+
+  _result = retByVal(_result, "state", asRFlag(state, GDK_TYPE_MODIFIER_TYPE), NULL);
+  ;
+#else
+  error("gdk_keymap_add_virtual_modifiers exists only in Gdk >= 2.20.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_keymap_map_virtual_modifiers(USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 20, 0)
+  GdkKeymap* object = GDK_KEYMAP(getPtrValue(s_object));
+
+  gboolean ans;
+  GdkModifierType state;
+
+  ans = gdk_keymap_map_virtual_modifiers(object, &state);
+
+  _result = asRLogical(ans);
+
+  _result = retByVal(_result, "state", asRFlag(state, GDK_TYPE_MODIFIER_TYPE), NULL);
+  ;
+#else
+  error("gdk_keymap_map_virtual_modifiers exists only in Gdk >= 2.20.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_screen_get_primary_monitor(USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 20, 0)
+  GdkScreen* object = GDK_SCREEN(getPtrValue(s_object));
+
+  gint ans;
+
+  ans = gdk_screen_get_primary_monitor(object);
+
+  _result = asRInteger(ans);
+#else
+  error("gdk_screen_get_primary_monitor exists only in Gdk >= 2.20.0");
+#endif
+
+  return(_result);
+}
+ 
+

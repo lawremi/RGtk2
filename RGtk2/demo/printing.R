@@ -65,7 +65,7 @@ draw_page <- function(operation, context, page_nr, user_data)
   # prepare to write text in different font / size
   layout <- context$createPangoLayout()
   
-  desc <- pangoFontDescriptionFromString("mono")
+  desc <- pangoFontDescriptionFromString("monospace")
   desc$setSize(data$font_size * PANGO_SCALE)
   layout$setFontDescription(desc)
   
@@ -92,6 +92,15 @@ operation$setData("print_data", data)
 
 gSignalConnect(operation, "begin-print", begin_print)
 gSignalConnect(operation, "draw-page", draw_page)
+
+operation$setUseFullPage(FALSE)
+operation$setUnit("points")
+operation$setEmbedPageSetup(TRUE)
+
+settings <- gtkPrintSettings()
+uri <- file.path("file:/",  getwd(), "gtk-demo-printing-example.pdf")
+settings$set("output-uri", uri)
+operation$setPrintSettings(settings)
 
 result <- operation$run("print-dialog", NULL)
 

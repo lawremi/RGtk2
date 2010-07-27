@@ -8,12 +8,12 @@ frame <- NULL
 expose.event.callback <- function(widget, event, data)
 {
   if (!is.null(widget[["window"]]))
-    {
+    {      
       style <- widget$getStyle()
-      gdkDrawRectangle(widget[["window"]], style[["bgGc"]][[GtkStateType["normal"]+1]],
-                          TRUE,
-                          event[["area"]][["x"]], event[["area"]][["y"]],
-                          event[["area"]][["width"]], event[["area"]][["height"]])
+      cr <- gdkCairoCreate(widget[["window"]])
+      gdkCairoSetSourceColor(cr, style[["bg"]][[GtkStateType["normal"]+1L]])
+      gdkCairoRectangle(cr, event[["area"]])
+      cr$fill()
     }
 
   TRUE
@@ -26,7 +26,7 @@ change.color.callback <- function(button, data)
 
   dialog$setTransientFor(window)
 
-  colorsel <- dialog[["colorsel"]]
+  colorsel <- dialog$getColorSelection()
 
   colorsel$setPreviousColor(color)
   colorsel$setCurrentColor(color)

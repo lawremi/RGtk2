@@ -126,3 +126,13 @@ S_gdk_screen_class_init(GdkScreenClass * c, SEXP e)
   return(fun(c, e));
 } 
 
+#if GDK_CHECK_VERSION(2, 14, 0)
+void
+S_gdk_app_launch_context_class_init(GdkAppLaunchContextClass * c, SEXP e)
+{
+  static void (*fun)(GdkAppLaunchContextClass *, SEXP) = NULL;
+  if(!fun) fun = ((void (*)(GdkAppLaunchContextClass *, SEXP))R_GetCCallable("RGtk2", "S_gdk_app_launch_context_class_init"));
+  return(fun(c, e));
+}
+#endif 
+

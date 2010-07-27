@@ -983,4 +983,28 @@ S_pango_cairo_context_set_shape_renderer(USER_OBJECT_ s_object, USER_OBJECT_ s_f
   USER_OBJECT_
 S_pango_cairo_context_get_shape_renderer(USER_OBJECT_ s_object); 
 
+  USER_OBJECT_
+S_pango_renderer_draw_glyph_item(USER_OBJECT_ s_object, USER_OBJECT_ s_text, USER_OBJECT_ s_glyph_item, USER_OBJECT_ s_x, USER_OBJECT_ s_y); 
+
+  USER_OBJECT_
+S_pango_font_map_create_context(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_pango_glyph_item_iter_init_start(USER_OBJECT_ s_object, USER_OBJECT_ s_glyph_item, USER_OBJECT_ s_text); 
+
+  USER_OBJECT_
+S_pango_glyph_item_iter_init_end(USER_OBJECT_ s_object, USER_OBJECT_ s_glyph_item, USER_OBJECT_ s_text); 
+
+  USER_OBJECT_
+S_pango_glyph_item_iter_next_cluster(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_pango_glyph_item_iter_prev_cluster(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_pango_language_get_scripts(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_pango_gravity_get_for_script(USER_OBJECT_ s_script, USER_OBJECT_ s_base_gravity, USER_OBJECT_ s_hint); 
+
 #endif

@@ -626,6 +626,38 @@ gtkIconViewGetTooltipContext <-
   return(w)
 } 
 
+## varargs
+gtkStyleGet <-
+  function(object, widget.type, first.property.name, ...)
+{
+  checkPtrType(object, "GtkStyle")
+  widget.type <- as.GType(widget.type)
+  property.names <- as.character(c(first.property.name, ...))
+
+  values <- lapply(property.names, object$getStyleProperty,
+                   widget.type = widget.type)
+  lapply(values, `[[`, "value")
+}
+
+## varargs
+gtkInfoBarNewWithButtons <-
+  function(first.button.text, ...)
+{
+  w <- gtkInfoBar()
+  w$addButtons(first.button.text, ...)
+  w
+}
+gtkInfoBarAddButtons <-
+  function(object, first.button.text, ...)
+{
+  checkPtrType(object, "GtkInfoBar")
+  args <- c(first.button.text, list(...))
+  labels <- args[seq(1, length(args), 2)]
+  responses <- args[seq(2, length(args), 2)]
+  invisible(mapply(object$addButton, labels, responses))
+}
+
+
 # reason: unfortunately, the 'group' must be an exact pointer match so 
 # we delegate to 'gtkRadioButtonNewFromWidget' with the first element.
 gtkRadioButtonNew <-

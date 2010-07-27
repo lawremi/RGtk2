@@ -349,6 +349,42 @@ S_gtk_scale_button_class_init(GtkScaleButtonClass * c, SEXP e);
 void
 S_gtk_volume_button_class_init(GtkVolumeButtonClass * c, SEXP e);
 #endif 
+#if GTK_CHECK_VERSION(2, 14, 0)
+void
+S_gtk_mount_operation_class_init(GtkMountOperationClass * c, SEXP e);
+#endif 
+#if GTK_CHECK_VERSION(2, 18, 0)
+void
+S_gtk_entry_buffer_class_init(GtkEntryBufferClass * c, SEXP e);
+#endif 
+#if GTK_CHECK_VERSION(2, 18, 0)
+void
+S_gtk_info_bar_class_init(GtkInfoBarClass * c, SEXP e);
+#endif 
+#if GTK_CHECK_VERSION(2, 18, 0)
+void
+S_gtk_hsv_class_init(GtkHSVClass * c, SEXP e);
+#endif 
+#if GTK_CHECK_VERSION(2, 20, 0)
+void
+S_gtk_tool_item_group_class_init(GtkToolItemGroupClass * c, SEXP e);
+#endif 
+#if GTK_CHECK_VERSION(2, 20, 0)
+void
+S_gtk_tool_palette_class_init(GtkToolPaletteClass * c, SEXP e);
+#endif 
+#if GTK_CHECK_VERSION(2, 20, 0)
+void
+S_gtk_cell_renderer_spinner_class_init(GtkCellRendererSpinnerClass * c, SEXP e);
+#endif 
+#if GTK_CHECK_VERSION(2, 20, 0)
+void
+S_gtk_offscreen_window_class_init(GtkOffscreenWindowClass * c, SEXP e);
+#endif 
+#if GTK_CHECK_VERSION(2, 20, 0)
+void
+S_gtk_spinner_class_init(GtkSpinnerClass * c, SEXP e);
+#endif 
 void
 S_gtk_cell_editable_class_init(GtkCellEditableIface * c, SEXP e); 
 void
@@ -366,5 +402,17 @@ S_gtk_tree_sortable_class_init(GtkTreeSortableIface * c, SEXP e);
 #if GTK_CHECK_VERSION(2, 12, 0)
 void
 S_gtk_buildable_class_init(GtkBuildableIface * c, SEXP e);
+#endif 
+#if GTK_CHECK_VERSION(2, 14, 0)
+void
+S_gtk_tool_shell_class_init(GtkToolShellIface * c, SEXP e);
+#endif 
+#if GTK_CHECK_VERSION(2, 16, 0)
+void
+S_gtk_activatable_class_init(GtkActivatableIface * c, SEXP e);
+#endif 
+#if GTK_CHECK_VERSION(2, 16, 0)
+void
+S_gtk_orientable_class_init(GtkOrientableIface * c, SEXP e);
 #endif 
 #endif

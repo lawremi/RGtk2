@@ -897,6 +897,7 @@
     '("gint" "group_id")
   )
   (since "2.10.0")
+  (deprecated "setGroup")
 )
 
 (define-method get_group_id
@@ -904,6 +905,7 @@
   (c-name "gtk_notebook_get_group_id")
   (return-type "gint")
   (since "2.10.0")
+  (deprecated "getGroup")
 )
 
 (define-method get_tab_reorderable
@@ -2931,6 +2933,7 @@
     '("GdkScreen*" "screen")
   )
   (since "2.10.0")
+  (deprecated "gtkRecentManagerGetDefault")
 )
 
 (define-method set_screen
@@ -2941,6 +2944,7 @@
     '("GdkScreen*" "screen")
   )
   (since "2.10.0")
+  (deprecated "nothing")
 )
 
 (define-method add_item
@@ -3541,6 +3545,7 @@
     '("const-gchar*" "tooltip_text")
   )
   (since "2.10.0")
+  (deprecated "setTooltipText")
 )
 
 (define-method set_visible

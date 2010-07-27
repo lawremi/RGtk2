@@ -133,6 +133,26 @@ asCCairoGlyph(USER_OBJECT_ s_glyph)
 	return(glyph);
 }
 
+USER_OBJECT_
+asRCairoGlyph(cairo_glyph_t * obj)
+{
+  USER_OBJECT_ s_obj;
+  static gchar * names[] = { "index", "x", "y", NULL };
+
+  PROTECT(s_obj = allocVector(VECSXP, 3));
+
+  SET_VECTOR_ELT(s_obj, 0, asRNumeric(obj->index));
+  SET_VECTOR_ELT(s_obj, 1, asRNumeric(obj->x));
+  SET_VECTOR_ELT(s_obj, 2, asRNumeric(obj->y));
+
+  SET_NAMES(s_obj, asRStringArray(names));
+  SET_CLASS(s_obj, asRString("CairoGlyph"));
+
+  UNPROTECT(1);
+
+  return(s_obj);
+}
+
 #if CAIRO_CHECK_VERSION(1,4,0)
 USER_OBJECT_
 asRCairoRectangle(cairo_rectangle_t * obj)
@@ -177,5 +197,54 @@ asRCairoRectangleList(cairo_rectangle_list_t *list)
   
   UNPROTECT(2);
   return(s_list);
+}
+#endif
+
+#if CAIRO_CHECK_VERSION(1, 8, 0)
+cairo_text_cluster_t *
+asCCairoTextCluster(USER_OBJECT_ s_obj)
+{
+  cairo_text_cluster_t * obj;
+
+  obj = ((cairo_text_cluster_t *)R_alloc(1, sizeof(cairo_text_cluster_t)));
+
+  obj->num_bytes = ((int)asCInteger(VECTOR_ELT(s_obj, 0)));
+  obj->num_glyphs = ((int)asCInteger(VECTOR_ELT(s_obj, 1)));
+
+  return(obj);
+}
+USER_OBJECT_
+asRCairoTextCluster(cairo_text_cluster_t * obj)
+{
+  USER_OBJECT_ s_obj;
+  static gchar * names[] = { "num_bytes", "num_glyphs", NULL };
+  
+  PROTECT(s_obj = allocVector(VECSXP, 2));
+  
+  SET_VECTOR_ELT(s_obj, 0, asRInteger(obj->num_bytes));
+  SET_VECTOR_ELT(s_obj, 1, asRInteger(obj->num_glyphs));
+  
+  SET_NAMES(s_obj, asRStringArray(names));
+  SET_CLASS(s_obj, asRString("CairoTextCluster"));
+  
+  UNPROTECT(1);
+  
+  return(s_obj);
+}
+
+cairo_font_extents_t *
+asCCairoFontExtents(USER_OBJECT_ s_obj)
+{
+  cairo_font_extents_t * obj;
+
+  obj = ((cairo_font_extents_t *)R_alloc(1, sizeof(cairo_font_extents_t)));
+
+  obj->ascent = ((double)asCNumeric(VECTOR_ELT(s_obj, 0)));
+  obj->descent = ((double)asCNumeric(VECTOR_ELT(s_obj, 1)));
+  obj->height = ((double)asCNumeric(VECTOR_ELT(s_obj, 2)));
+  obj->max_x_advance = ((double)asCNumeric(VECTOR_ELT(s_obj, 3)));
+  obj->max_y_advance = ((double)asCNumeric(VECTOR_ELT(s_obj, 4)));
+
+  return(obj);
 }
 #endif

@@ -5617,3 +5617,175 @@ S_pango_cairo_context_get_shape_renderer(USER_OBJECT_ s_object)
 }
  
 
+USER_OBJECT_
+S_pango_renderer_draw_glyph_item(USER_OBJECT_ s_object, USER_OBJECT_ s_text, USER_OBJECT_ s_glyph_item, USER_OBJECT_ s_x, USER_OBJECT_ s_y)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if PANGO_CHECK_VERSION(1, 22, 0)
+  PangoRenderer* object = PANGO_RENDERER(getPtrValue(s_object));
+  const char* text = ((const char*)asCString(s_text));
+  PangoGlyphItem* glyph_item = ((PangoGlyphItem*)getPtrValue(s_glyph_item));
+  int x = ((int)asCInteger(s_x));
+  int y = ((int)asCInteger(s_y));
+
+
+  pango_renderer_draw_glyph_item(object, text, glyph_item, x, y);
+
+#else
+  error("pango_renderer_draw_glyph_item exists only in Pango >= 1.22.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_font_map_create_context(USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if PANGO_CHECK_VERSION(1, 22, 0)
+  PangoFontMap* object = PANGO_FONT_MAP(getPtrValue(s_object));
+
+  PangoContext* ans;
+
+  ans = pango_font_map_create_context(object);
+
+  _result = toRPointerWithFinalizer(ans, "PangoContext", (RPointerFinalizer) g_object_unref);
+#else
+  error("pango_font_map_create_context exists only in Pango >= 1.22.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_glyph_item_iter_init_start(USER_OBJECT_ s_object, USER_OBJECT_ s_glyph_item, USER_OBJECT_ s_text)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if PANGO_CHECK_VERSION(1, 22, 0)
+  PangoGlyphItemIter* object = ((PangoGlyphItemIter*)getPtrValue(s_object));
+  PangoGlyphItem* glyph_item = ((PangoGlyphItem*)getPtrValue(s_glyph_item));
+  const char* text = ((const char*)asCString(s_text));
+
+  gboolean ans;
+
+  ans = pango_glyph_item_iter_init_start(object, glyph_item, text);
+
+  _result = asRLogical(ans);
+#else
+  error("pango_glyph_item_iter_init_start exists only in Pango >= 1.22.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_glyph_item_iter_init_end(USER_OBJECT_ s_object, USER_OBJECT_ s_glyph_item, USER_OBJECT_ s_text)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if PANGO_CHECK_VERSION(1, 22, 0)
+  PangoGlyphItemIter* object = ((PangoGlyphItemIter*)getPtrValue(s_object));
+  PangoGlyphItem* glyph_item = ((PangoGlyphItem*)getPtrValue(s_glyph_item));
+  const char* text = ((const char*)asCString(s_text));
+
+  gboolean ans;
+
+  ans = pango_glyph_item_iter_init_end(object, glyph_item, text);
+
+  _result = asRLogical(ans);
+#else
+  error("pango_glyph_item_iter_init_end exists only in Pango >= 1.22.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_glyph_item_iter_next_cluster(USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if PANGO_CHECK_VERSION(1, 22, 0)
+  PangoGlyphItemIter* object = ((PangoGlyphItemIter*)getPtrValue(s_object));
+
+  gboolean ans;
+
+  ans = pango_glyph_item_iter_next_cluster(object);
+
+  _result = asRLogical(ans);
+#else
+  error("pango_glyph_item_iter_next_cluster exists only in Pango >= 1.22.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_glyph_item_iter_prev_cluster(USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if PANGO_CHECK_VERSION(1, 22, 0)
+  PangoGlyphItemIter* object = ((PangoGlyphItemIter*)getPtrValue(s_object));
+
+  gboolean ans;
+
+  ans = pango_glyph_item_iter_prev_cluster(object);
+
+  _result = asRLogical(ans);
+#else
+  error("pango_glyph_item_iter_prev_cluster exists only in Pango >= 1.22.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_language_get_scripts(USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if PANGO_CHECK_VERSION(1, 22, 0)
+  PangoLanguage* object = ((PangoLanguage*)getPtrValue(s_object));
+
+  PangoScript* ans;
+  int num_scripts;
+
+  ans = pango_language_get_scripts(object, &num_scripts);
+
+  _result = asREnumArrayWithSize(ans, PANGO_TYPE_SCRIPT, num_scripts);
+
+  _result = retByVal(_result, "num.scripts", asRInteger(num_scripts), NULL);
+  ;
+#else
+  error("pango_language_get_scripts exists only in Pango >= 1.22.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_gravity_get_for_script(USER_OBJECT_ s_script, USER_OBJECT_ s_base_gravity, USER_OBJECT_ s_hint)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if PANGO_CHECK_VERSION(1, 16, 0)
+  PangoScript script = ((PangoScript)asCEnum(s_script, PANGO_TYPE_SCRIPT));
+  PangoGravity base_gravity = ((PangoGravity)asCEnum(s_base_gravity, PANGO_TYPE_GRAVITY));
+  PangoGravityHint hint = ((PangoGravityHint)asCEnum(s_hint, PANGO_TYPE_GRAVITY_HINT));
+
+  PangoGravity ans;
+
+  ans = pango_gravity_get_for_script(script, base_gravity, hint);
+
+  _result = asREnum(ans, PANGO_TYPE_GRAVITY);
+#else
+  error("pango_gravity_get_for_script exists only in Pango >= 1.16.0");
+#endif
+
+  return(_result);
+}
+ 
+

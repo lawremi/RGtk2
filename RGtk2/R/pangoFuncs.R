@@ -3680,3 +3680,113 @@ function(object)
   return(w)
 } 
 
+
+pangoRendererDrawGlyphItem <-
+function(object, text, glyph.item, x, y)
+{
+  checkPtrType(object, "PangoRenderer")
+  text <- as.character(text)
+  checkPtrType(glyph.item, "PangoGlyphItem")
+  x <- as.integer(x)
+  y <- as.integer(y)
+
+  w <- .RGtkCall("S_pango_renderer_draw_glyph_item", object, text, glyph.item, x, y, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+pangoFontMapCreateContext <-
+function(object)
+{
+  checkPtrType(object, "PangoFontMap")
+
+  w <- .RGtkCall("S_pango_font_map_create_context", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoGlyphItemIterInitStart <-
+function(object, glyph.item, text)
+{
+  checkPtrType(object, "PangoGlyphItemIter")
+  checkPtrType(glyph.item, "PangoGlyphItem")
+  text <- as.character(text)
+
+  w <- .RGtkCall("S_pango_glyph_item_iter_init_start", object, glyph.item, text, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoGlyphItemIterInitEnd <-
+function(object, glyph.item, text)
+{
+  checkPtrType(object, "PangoGlyphItemIter")
+  checkPtrType(glyph.item, "PangoGlyphItem")
+  text <- as.character(text)
+
+  w <- .RGtkCall("S_pango_glyph_item_iter_init_end", object, glyph.item, text, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoGlyphItemIterNextCluster <-
+function(object)
+{
+  checkPtrType(object, "PangoGlyphItemIter")
+
+  w <- .RGtkCall("S_pango_glyph_item_iter_next_cluster", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoGlyphItemIterPrevCluster <-
+function(object)
+{
+  checkPtrType(object, "PangoGlyphItemIter")
+
+  w <- .RGtkCall("S_pango_glyph_item_iter_prev_cluster", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoLanguageGetScripts <-
+function(object)
+{
+  checkPtrType(object, "PangoLanguage")
+
+  w <- .RGtkCall("S_pango_language_get_scripts", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoGravityGetForScript <-
+function(script, base.gravity, hint)
+{
+  
+  
+  
+
+  w <- .RGtkCall("S_pango_gravity_get_for_script", script, base.gravity, hint, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoGlyphItemGetLogicalWidths <-
+function(glyph.item, text)
+{
+  checkPtrType(glyph.item, "PangoGlyphItem")
+  text <- as.character(text)
+
+  w <- .RGtkCall("S_pango_glyph_item_get_logical_widths", glyph.item, text, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+

@@ -133,7 +133,11 @@ PangoWeight<-c("ultralight" = 200,
 	"semibold" = 600,
 	"bold" = 700,
 	"ultrabold" = 800,
-	"heavy" = 900)
+	"heavy" = 900,
+	"book" = 380,
+	"ultraheavy" = 1000,
+	"thin" = 100,
+	"medium" = 500)
 storage.mode(PangoWeight) <- 'integer'
 class(PangoWeight) <- 'enums' 
 

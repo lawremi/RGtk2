@@ -1,4 +1,4 @@
-version <- "2.12"
+version <- "2.20"
 
 Sys.setenv(PYTHONPATH=paste(Sys.getenv("PYTHONPATH"), 
   "/home/larman/research/gui/RGtk2/RGtkGen/inst/pygtk",sep=":"))
@@ -12,7 +12,8 @@ sapply(source_files, source)
 
 path <- "/home/larman/research/gui/RGtk2/RGtkGen/inst/data"
 defspath <- file.path(path, "defs")
-libs <- c("atk.defs", "cairo.defs", "pango.defs", "gdk.defs", "gtk.defs")
+libs <- c("atk.defs", "cairo.defs", "pango.defs", "gio.defs", "gdk.defs",
+          "gtk.defs")
 extralibs <- c("libglade.defs")
 extrapath <- file.path(defspath, "extra")
 files <- file.path(defspath, version, libs)
@@ -20,17 +21,17 @@ files <- c(files, file.path(extrapath, extralibs))
 
 library(RGtk2)
 
-#defs<-getDefs(file.path(defspath, version, "gtk.defs"))
-#allDefs <- generateCodeFiles(files,dir=file.path(path, "gen"), allDefs=NULL)[[1]]
+defs<-getDefs(file.path(defspath, version, "gtk.defs"))
+allDefs <- generateCodeFiles(files,dir=file.path(path, "gen"), allDefs=NULL)[[1]]
 
 allDefs <- NULL
 for (f in files) allDefs <- mergeDefs(getDefs(f), allDefs)
 
 # generating the documentation
 src_dir <- "/home/larman/research/src"
-subs <- c("atk-1.22.0/docs", "pango-1.20.0/docs",
-    file.path("gtk+-2.12.12/docs/reference", c("gdk", "gtk", "gdk-pixbuf")), 
-	"cairo-1.5.12/doc/public", "libglade-2.6.2/doc")
+subs <- c("atk-1.22.0/docs", "pango-1.28.1/docs",
+    file.path("gtk+-2.20.1/docs/reference", c("gdk", "gtk", "gdk-pixbuf")), 
+	"cairo-1.8.10/doc/public", "libglade-2.6.4/doc")
 doc_dirs <- file.path(src_dir, subs, "xml")
 doc_files <- sapply(doc_dirs, dir, pattern = "xml", full.names = T)
 
@@ -50,3 +51,11 @@ sapply(c("atk", "cairo", "pango", "gdk", "gtk", "libglade"), function(api) {
   genExports(api, file.path(path, "gen"), file.path(defspath, "exports"), 
     file.path("RGtk2", deps[[api]]))
 })
+
+
+## Testing GIO:
+## A few tutorials: http://sjohannes.wordpress.com/?s=gio
+## pygobject examples: http://git.gnome.org/browse/pygobject/tree/examples/gio
+## http://svn.gnome.org/viewvc/gtkmm-documentation/trunk/examples/book/giomm/
+## http://git.gnome.org/browse/gvfs/tree/programs
+## most up to date: http://git.gnome.org/browse/glib/tree/gio/tests

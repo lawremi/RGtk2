@@ -185,6 +185,33 @@ R_RegisterCCallable("RGtk2", "S_gtk_scale_button_class_init", ((DL_FUNC)S_gtk_sc
 #if GTK_CHECK_VERSION(2, 12, 0)
 R_RegisterCCallable("RGtk2", "S_gtk_volume_button_class_init", ((DL_FUNC)S_gtk_volume_button_class_init));
 #endif 
+#if GTK_CHECK_VERSION(2, 14, 0)
+R_RegisterCCallable("RGtk2", "S_gtk_mount_operation_class_init", ((DL_FUNC)S_gtk_mount_operation_class_init));
+#endif 
+#if GTK_CHECK_VERSION(2, 18, 0)
+R_RegisterCCallable("RGtk2", "S_gtk_entry_buffer_class_init", ((DL_FUNC)S_gtk_entry_buffer_class_init));
+#endif 
+#if GTK_CHECK_VERSION(2, 18, 0)
+R_RegisterCCallable("RGtk2", "S_gtk_info_bar_class_init", ((DL_FUNC)S_gtk_info_bar_class_init));
+#endif 
+#if GTK_CHECK_VERSION(2, 18, 0)
+R_RegisterCCallable("RGtk2", "S_gtk_hsv_class_init", ((DL_FUNC)S_gtk_hsv_class_init));
+#endif 
+#if GTK_CHECK_VERSION(2, 20, 0)
+R_RegisterCCallable("RGtk2", "S_gtk_tool_item_group_class_init", ((DL_FUNC)S_gtk_tool_item_group_class_init));
+#endif 
+#if GTK_CHECK_VERSION(2, 20, 0)
+R_RegisterCCallable("RGtk2", "S_gtk_tool_palette_class_init", ((DL_FUNC)S_gtk_tool_palette_class_init));
+#endif 
+#if GTK_CHECK_VERSION(2, 20, 0)
+R_RegisterCCallable("RGtk2", "S_gtk_cell_renderer_spinner_class_init", ((DL_FUNC)S_gtk_cell_renderer_spinner_class_init));
+#endif 
+#if GTK_CHECK_VERSION(2, 20, 0)
+R_RegisterCCallable("RGtk2", "S_gtk_offscreen_window_class_init", ((DL_FUNC)S_gtk_offscreen_window_class_init));
+#endif 
+#if GTK_CHECK_VERSION(2, 20, 0)
+R_RegisterCCallable("RGtk2", "S_gtk_spinner_class_init", ((DL_FUNC)S_gtk_spinner_class_init));
+#endif 
 R_RegisterCCallable("RGtk2", "S_gtk_cell_editable_class_init", ((DL_FUNC)S_gtk_cell_editable_class_init)); 
 R_RegisterCCallable("RGtk2", "S_gtk_cell_layout_class_init", ((DL_FUNC)S_gtk_cell_layout_class_init)); 
 R_RegisterCCallable("RGtk2", "S_gtk_editable_class_init", ((DL_FUNC)S_gtk_editable_class_init)); 
@@ -194,4 +221,13 @@ R_RegisterCCallable("RGtk2", "S_gtk_tree_model_class_init", ((DL_FUNC)S_gtk_tree
 R_RegisterCCallable("RGtk2", "S_gtk_tree_sortable_class_init", ((DL_FUNC)S_gtk_tree_sortable_class_init)); 
 #if GTK_CHECK_VERSION(2, 12, 0)
 R_RegisterCCallable("RGtk2", "S_gtk_buildable_class_init", ((DL_FUNC)S_gtk_buildable_class_init));
+#endif 
+#if GTK_CHECK_VERSION(2, 14, 0)
+R_RegisterCCallable("RGtk2", "S_gtk_tool_shell_class_init", ((DL_FUNC)S_gtk_tool_shell_class_init));
+#endif 
+#if GTK_CHECK_VERSION(2, 16, 0)
+R_RegisterCCallable("RGtk2", "S_gtk_activatable_class_init", ((DL_FUNC)S_gtk_activatable_class_init));
+#endif 
+#if GTK_CHECK_VERSION(2, 16, 0)
+R_RegisterCCallable("RGtk2", "S_gtk_orientable_class_init", ((DL_FUNC)S_gtk_orientable_class_init));
 #endif 

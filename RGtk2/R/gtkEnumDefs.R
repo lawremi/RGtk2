@@ -695,6 +695,22 @@ GtkBuilderError<-c("invalid-type-function" = 0,
 storage.mode(GtkBuilderError) <- 'integer'
 class(GtkBuilderError) <- 'enums' 
 
+GtkNumberUpLayout<-c("left-to-right-top-to-bottom" = 0,
+	"left-to-right-bottom-to-top" = 1,
+	"right-to-left-top-to-bottom" = 2,
+	"right-to-left-bottom-to-top" = 3,
+	"top-to-bottom-left-to-right" = 4,
+	"top-to-bottom-right-to-left" = 5,
+	"bottom-to-top-left-to-right" = 6,
+	"bottom-to-top-right-to-left" = 7)
+storage.mode(GtkNumberUpLayout) <- 'integer'
+class(GtkNumberUpLayout) <- 'enums' 
+
+GtkEntryIconPosition<-c("primary" = 0,
+	"secondary" = 1)
+storage.mode(GtkEntryIconPosition) <- 'integer'
+class(GtkEntryIconPosition) <- 'enums' 
+
 GtkAccelFlags<-c("visible" = 1,
 	"locked" = 2,
 	"mask" = 4)
@@ -821,4 +837,9 @@ GtkRecentFilterFlags<-c("uri" = 1,
 	"age" = 32)
 storage.mode(GtkRecentFilterFlags) <- 'numeric'
 class(GtkRecentFilterFlags) <- 'flags' 
+
+GtkToolPaletteDragTargets<-c("items" = 1,
+	"groups" = 2)
+storage.mode(GtkToolPaletteDragTargets) <- 'numeric'
+class(GtkToolPaletteDragTargets) <- 'flags' 
 

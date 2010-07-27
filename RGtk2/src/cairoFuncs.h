@@ -677,4 +677,58 @@ S_cairo_ps_surface_set_eps(USER_OBJECT_ s_surface, USER_OBJECT_ s_eps);
   USER_OBJECT_
 S_cairo_ps_surface_get_eps(USER_OBJECT_ s_surface); 
 
+  USER_OBJECT_
+S_cairo_toy_font_face_create(USER_OBJECT_ s_family, USER_OBJECT_ s_slant, USER_OBJECT_ s_weight); 
+
+  USER_OBJECT_
+S_cairo_toy_font_face_get_family(USER_OBJECT_ s_font_face); 
+
+  USER_OBJECT_
+S_cairo_toy_font_face_get_slant(USER_OBJECT_ s_font_face); 
+
+  USER_OBJECT_
+S_cairo_toy_font_face_get_weight(USER_OBJECT_ s_font_face); 
+
+  USER_OBJECT_
+S_cairo_surface_get_fallback_resolution(USER_OBJECT_ s_surface); 
+
+  USER_OBJECT_
+S_cairo_surface_has_show_text_glyphs(USER_OBJECT_ s_surface); 
+
+  USER_OBJECT_
+S_cairo_show_text_glyphs(USER_OBJECT_ s_cr, USER_OBJECT_ s_utf8, USER_OBJECT_ s_glyphs, USER_OBJECT_ s_clusters, USER_OBJECT_ s_cluster_flags); 
+
+  USER_OBJECT_
+S_cairo_scaled_font_get_scale_matrix(USER_OBJECT_ s_scaled_font); 
+
+  USER_OBJECT_
+S_cairo_scaled_font_text_to_glyphs(USER_OBJECT_ s_scaled_font, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_utf8, USER_OBJECT_ s_utf8_len); 
+
+  USER_OBJECT_
+S_cairo_user_font_face_create(void); 
+
+  USER_OBJECT_
+S_cairo_user_font_face_set_init_func(USER_OBJECT_ s_font_face, USER_OBJECT_ s_init_func); 
+
+  USER_OBJECT_
+S_cairo_user_font_face_set_render_glyph_func(USER_OBJECT_ s_font_face, USER_OBJECT_ s_render_glyph_func); 
+
+  USER_OBJECT_
+S_cairo_user_font_face_set_unicode_to_glyph_func(USER_OBJECT_ s_font_face, USER_OBJECT_ s_unicode_to_glyph_func); 
+
+  USER_OBJECT_
+S_cairo_user_font_face_set_text_to_glyphs_func(USER_OBJECT_ s_font_face, USER_OBJECT_ s_text_to_glyphs_func); 
+
+  USER_OBJECT_
+S_cairo_user_font_face_get_init_func(USER_OBJECT_ s_font_face); 
+
+  USER_OBJECT_
+S_cairo_user_font_face_get_render_glyph_func(USER_OBJECT_ s_font_face); 
+
+  USER_OBJECT_
+S_cairo_user_font_face_get_unicode_to_glyph_func(USER_OBJECT_ s_font_face); 
+
+  USER_OBJECT_
+S_cairo_user_font_face_get_text_to_glyphs_func(USER_OBJECT_ s_font_face); 
+
 #endif

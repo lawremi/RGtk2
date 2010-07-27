@@ -20,3 +20,13 @@ function(x)
   
   return(x)
 }
+
+as.CairoTextCluster <-
+  function(x)
+{
+  x <- as.struct("CairoTextCluster", c("num_bytes", "num_glyphs"))
+  x[[1]] <- as.integer(x[[1]])
+  x[[2]] <- as.integer(x[[2]])
+  
+  return(x)
+}

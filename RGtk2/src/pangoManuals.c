@@ -139,3 +139,31 @@ boundPangoVersion(void) {
 #endif
   return(version);
 }
+
+/* pre-allocation of logical_widths */
+
+USER_OBJECT_
+S_pango_glyph_item_get_logical_widths(USER_OBJECT_ s_glyph_item,
+                                      USER_OBJECT_ s_text)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if PANGO_CHECK_VERSION(1, 26, 0)
+  PangoGlyphItem* glyph_item = ((PangoGlyphItem*)getPtrValue(s_glyph_item));
+  const char* text = ((const char*)asCString(s_text));
+
+  int *logical_widths = R_alloc(glyph_item->item->num_chars, sizeof(int));
+
+  pango_glyph_item_get_logical_widths(glyph_item, text, logical_widths);
+
+
+  _result = retByVal(_result, "logical.widths",
+                     asRIntegerArrayWithSize(logical_widths,
+                                             glyph_item->item->num_chars),
+                     NULL);
+  ;
+#else
+  error("pango_glyph_item_get_logical_widths exists only in Pango >= 1.26.0");
+#endif
+
+  return(_result);
+}

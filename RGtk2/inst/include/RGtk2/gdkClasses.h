@@ -35,4 +35,8 @@ void
 S_gdk_pango_renderer_class_init(GdkPangoRendererClass * c, SEXP e); 
 void
 S_gdk_screen_class_init(GdkScreenClass * c, SEXP e); 
+#if GDK_CHECK_VERSION(2, 14, 0)
+void
+S_gdk_app_launch_context_class_init(GdkAppLaunchContextClass * c, SEXP e);
+#endif 
 #endif

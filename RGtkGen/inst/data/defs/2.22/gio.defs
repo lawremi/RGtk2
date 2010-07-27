@@ -1,0 +1,6 @@
+;; -*- scheme -*-
+
+(include "../2.20/gio.defs")
+
+;; For GIO 2.24 (and probably 2.26)
+;; May need to generate this ourselves - pygobject has moved to introspection

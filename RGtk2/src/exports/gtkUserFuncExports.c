@@ -69,3 +69,9 @@ R_RegisterCCallable("RGtk2", "S_GtkTreeViewSearchPositionFunc", ((DL_FUNC)S_GtkT
 #if GTK_CHECK_VERSION(2, 12, 0)
 R_RegisterCCallable("RGtk2", "S_GtkBuilderConnectFunc", ((DL_FUNC)S_GtkBuilderConnectFunc));
 #endif 
+#if GIO_CHECK_VERSION(2, 14, 0)
+R_RegisterCCallable("RGtk2", "S_GtkCalendarDetailFunc", ((DL_FUNC)S_GtkCalendarDetailFunc));
+#endif 
+#if GTK_CHECK_VERSION(2, 14, 0)
+R_RegisterCCallable("RGtk2", "S_GtkClipboardURIReceivedFunc", ((DL_FUNC)S_GtkClipboardURIReceivedFunc));
+#endif 

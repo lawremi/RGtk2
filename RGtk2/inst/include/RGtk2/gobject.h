@@ -499,6 +499,15 @@ USER_OBJECT_ R_getGObjectProps(USER_OBJECT_ sobj, USER_OBJECT_ argNames);
 void GSListFreeStrings(GSList *gslist);
 void GListFreeStrings(GList *glist);
 
+void transformDoubleString(const GValue *src, GValue *dst);
+
+/* GSeekType enum runtime type info support (needed by GIO) */
+
+#define G_TYPE_SEEK_TYPE (g_seek_type_get_type ())
+GType g_seek_type_get_type (void) G_GNUC_CONST;
+#define G_TYPE_IO_CONDITION (g_io_condition_get_type ())
+GType g_io_condition_get_type (void) G_GNUC_CONST;
+
 /* do this by name, so that it is resolved at runtime, simplifying header dependencies */
 #if GLIB_CHECK_VERSION(2,10,0)
 #define UNOWNED_TYPE_NAME "GInitiallyUnowned"

@@ -76,11 +76,11 @@ expose.cb <- function(widget, event, data)
   #pixels <- frame$getPixels() # get the image data that was exposed
   #pixels <- pixels[(rowstride * event[["area"]][["y"]] + event[["area"]][["x"]] * 3):length(pixels)]
 
-  # only draw what we need to from the image
-  gdkDrawPixbuf(widget[["window"]],
-                widget[["style"]][["blackGc"]], frame,
-                0, 0, 0, 0, -1, -1, "normal", 0, 0)
-
+  cr <- gdkCairoCreate(widget[["window"]])
+  gdkCairoSetSourcePixbuf(cr, frame, 0, 0)
+  gdkCairoRectangle(cr, event[["area"]])
+  cr$fill()
+  
   return(TRUE)
 }
 

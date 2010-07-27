@@ -2578,3 +2578,215 @@ function(surface)
   return(w)
 } 
 
+
+cairoToyFontFaceCreate <-
+function(family, slant, weight)
+{
+  family <- as.character(family)
+  
+  
+
+  w <- .RGtkCall("S_cairo_toy_font_face_create", family, slant, weight, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+cairoToyFontFaceGetFamily <-
+function(font.face)
+{
+  checkPtrType(font.face, "CairoFontFace")
+
+  w <- .RGtkCall("S_cairo_toy_font_face_get_family", font.face, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+cairoToyFontFaceGetSlant <-
+function(font.face)
+{
+  checkPtrType(font.face, "CairoFontFace")
+
+  w <- .RGtkCall("S_cairo_toy_font_face_get_slant", font.face, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+cairoToyFontFaceGetWeight <-
+function(font.face)
+{
+  checkPtrType(font.face, "CairoFontFace")
+
+  w <- .RGtkCall("S_cairo_toy_font_face_get_weight", font.face, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+cairoSurfaceGetFallbackResolution <-
+function(surface)
+{
+  checkPtrType(surface, "CairoSurface")
+
+  w <- .RGtkCall("S_cairo_surface_get_fallback_resolution", surface, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+cairoSurfaceHasShowTextGlyphs <-
+function(surface)
+{
+  checkPtrType(surface, "CairoSurface")
+
+  w <- .RGtkCall("S_cairo_surface_has_show_text_glyphs", surface, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+cairoShowTextGlyphs <-
+function(cr, utf8, glyphs, clusters, cluster.flags)
+{
+  checkPtrType(cr, "Cairo")
+  utf8 <- as.character(utf8)
+  glyphs <- lapply(glyphs, function(x) { x <- as.CairoGlyph(x); x })
+  clusters <- lapply(clusters, function(x) { checkPtrType(x, "CairoTextCluster"); x })
+  
+
+  w <- .RGtkCall("S_cairo_show_text_glyphs", cr, utf8, glyphs, clusters, cluster.flags, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+cairoScaledFontGetScaleMatrix <-
+function(scaled.font)
+{
+  checkPtrType(scaled.font, "CairoScaledFont")
+
+  w <- .RGtkCall("S_cairo_scaled_font_get_scale_matrix", scaled.font, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+cairoScaledFontTextToGlyphs <-
+function(scaled.font, x, y, utf8, utf8.len = -1)
+{
+  checkPtrType(scaled.font, "CairoScaledFont")
+  x <- as.numeric(x)
+  y <- as.numeric(y)
+  utf8 <- as.character(utf8)
+  utf8.len <- as.integer(utf8.len)
+
+  w <- .RGtkCall("S_cairo_scaled_font_text_to_glyphs", scaled.font, x, y, utf8, utf8.len, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+cairoUserFontFaceCreate <-
+function()
+{
+  
+
+  w <- .RGtkCall("S_cairo_user_font_face_create", PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+cairoUserFontFaceSetInitFunc <-
+function(font.face, init.func)
+{
+  checkPtrType(font.face, "CairoFontFace")
+  init.func <- as.function(init.func)
+
+  w <- .RGtkCall("S_cairo_user_font_face_set_init_func", font.face, init.func, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+cairoUserFontFaceSetRenderGlyphFunc <-
+function(font.face, render.glyph.func)
+{
+  checkPtrType(font.face, "CairoFontFace")
+  render.glyph.func <- as.function(render.glyph.func)
+
+  w <- .RGtkCall("S_cairo_user_font_face_set_render_glyph_func", font.face, render.glyph.func, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+cairoUserFontFaceSetUnicodeToGlyphFunc <-
+function(font.face, unicode.to.glyph.func)
+{
+  checkPtrType(font.face, "CairoFontFace")
+  unicode.to.glyph.func <- as.function(unicode.to.glyph.func)
+
+  w <- .RGtkCall("S_cairo_user_font_face_set_unicode_to_glyph_func", font.face, unicode.to.glyph.func, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+cairoUserFontFaceSetTextToGlyphsFunc <-
+function(font.face, text.to.glyphs.func)
+{
+  checkPtrType(font.face, "CairoFontFace")
+  text.to.glyphs.func <- as.function(text.to.glyphs.func)
+
+  w <- .RGtkCall("S_cairo_user_font_face_set_text_to_glyphs_func", font.face, text.to.glyphs.func, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+cairoUserFontFaceGetInitFunc <-
+function(font.face)
+{
+  checkPtrType(font.face, "CairoFontFace")
+
+  w <- .RGtkCall("S_cairo_user_font_face_get_init_func", font.face, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+cairoUserFontFaceGetRenderGlyphFunc <-
+function(font.face)
+{
+  checkPtrType(font.face, "CairoFontFace")
+
+  w <- .RGtkCall("S_cairo_user_font_face_get_render_glyph_func", font.face, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+cairoUserFontFaceGetUnicodeToGlyphFunc <-
+function(font.face)
+{
+  checkPtrType(font.face, "CairoFontFace")
+
+  w <- .RGtkCall("S_cairo_user_font_face_get_unicode_to_glyph_func", font.face, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+cairoUserFontFaceGetTextToGlyphsFunc <-
+function(font.face)
+{
+  checkPtrType(font.face, "CairoFontFace")
+
+  w <- .RGtkCall("S_cairo_user_font_face_get_text_to_glyphs_func", font.face, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+

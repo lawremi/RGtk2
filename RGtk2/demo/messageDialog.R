@@ -23,7 +23,7 @@ interactive.dialog.clicked <- function(button, user.data)
 
   hbox <- gtkHBoxNew(FALSE, 8)
   hbox$setBorderWidth(8)
-  dialog[["vbox"]]$packStart(hbox, FALSE, FALSE, 0)
+  dialog$getContentArea()$packStart(hbox, FALSE, FALSE, 0)
 
   stock <- gtkImageNewFromStock("gtk-dialog-question", "dialog")
   hbox$packStart(stock, FALSE, FALSE, 0)

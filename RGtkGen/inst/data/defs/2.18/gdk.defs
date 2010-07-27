@@ -4,12 +4,14 @@
 (include "../2.16/gdk.defs")
 
 (define-function cairo_reset_clip
+  (in-module "Gdk")
   (c-name "gdk_cairo_reset_clip")
   (return-type "none")
   (parameters
     '("cairo_t*" "cr")
     '("GdkDrawable*" "drawable")
   )
+  (since "2.18.0")
 )
 
 
@@ -17,28 +19,34 @@
 ;; From gdkwindow.h
 
 (define-function offscreen_window_get_pixmap
+  (in-module "Gdk")
   (c-name "gdk_offscreen_window_get_pixmap")
   (return-type "GdkPixmap*")
   (parameters
     '("GdkWindow*" "window")
   )
+  (since "2.18.0")
 )
 
 (define-function offscreen_window_set_embedder
+  (in-module "Gdk")
   (c-name "gdk_offscreen_window_set_embedder")
   (return-type "none")
   (parameters
     '("GdkWindow*" "window")
     '("GdkWindow*" "embedder")
   )
+  (since "2.18.0")
 )
 
 (define-function offscreen_window_get_embedder
+  (in-module "Gdk")
   (c-name "gdk_offscreen_window_get_embedder")
   (return-type "GdkWindow*")
   (parameters
     '("GdkWindow*" "window")
   )
+  (since "2.18.0")
 )
 
 
@@ -52,6 +60,7 @@
   (parameters
     '("const-GdkRectangle*" "rectangle")
   )
+  (since "2.18.0")
 )
 
 
@@ -62,24 +71,28 @@
   (of-object "GdkWindow")
   (c-name "gdk_window_ensure_native")
   (return-type "gboolean")
+  (since "2.18.0")
 )
 
 (define-method flush
   (of-object "GdkWindow")
   (c-name "gdk_window_flush")
   (return-type "none")
+  (since "2.18.0")
 )
 
 (define-method geometry_changed
   (of-object "GdkWindow")
   (c-name "gdk_window_geometry_changed")
   (return-type "none")
+  (since "2.18.0")
 )
 
 (define-method get_cursor
   (of-object "GdkWindow")
   (c-name "gdk_window_get_cursor")
   (return-type "GdkCursor*")
+  (since "2.18.0")
 )
 
 (define-method restack
@@ -90,4 +103,5 @@
     '("GdkWindow*" "sibling")
     '("gboolean" "above")
   )
+  (since "2.18.0")
 )

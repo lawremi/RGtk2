@@ -109,3 +109,67 @@ boundCairoVersion(void) {
   INTEGER(version)[2] = CAIRO_VERSION_MICRO;
   return(version);
 }
+
+#if CAIRO_CHECK_VERSION(1, 8, 0)
+
+R_CallbackData * cairo_user_scaled_font_text_to_glyphs_func_t_cbdata;
+cairo_status_t
+S_cairo_user_scaled_font_text_to_glyphs_func_t(
+                                    cairo_scaled_font_t* s_scaled_font,
+                                    const char* s_utf8,
+                                    int s_utf8_len,
+                                    cairo_glyph_t** s_glyphs,
+                                    int* s_num_glyphs,
+                                    cairo_text_cluster_t** s_clusters,
+                                    int* s_num_clusters,
+                                    cairo_text_cluster_flags_t* s_cluster_flags)
+{
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
+  gint err;
+
+  PROTECT(e = allocVector(LANGSXP, 4+cairo_user_scaled_font_text_to_glyphs_func_t_cbdata->useData));
+  tmp = e;
+
+  SETCAR(tmp, cairo_user_scaled_font_text_to_glyphs_func_t_cbdata->function);
+  tmp = CDR(tmp);
+
+  SETCAR(tmp, toRPointerWithCairoRef(s_scaled_font, "CairoScaledFont",
+                                     cairo_scaled_font));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRString(s_utf8));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRInteger(s_utf8_len));
+  tmp = CDR(tmp);
+  if(cairo_user_scaled_font_text_to_glyphs_func_t_cbdata->useData)
+    {
+      SETCAR(tmp, cairo_user_scaled_font_text_to_glyphs_func_t_cbdata->data);
+      tmp = CDR(tmp);
+    }
+
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+
+  UNPROTECT(1);
+
+  if(err)
+    return(((cairo_status_t)0));
+
+  SEXP ans_glyphs = VECTOR_ELT(s_ans, 1);
+  *s_num_glyphs = GET_LENGTH(ans_glyphs);
+  *s_glyphs = cairo_glyph_allocate(*s_num_glyphs);
+  for (int i = 0; i < *s_num_glyphs; i++)
+    *s_glyphs[i] = *asCCairoGlyph(VECTOR_ELT(ans_glyphs, i));
+
+  SEXP ans_clusters = VECTOR_ELT(s_ans, 1);
+  *s_num_clusters = GET_LENGTH(ans_clusters);
+  *s_clusters = cairo_text_cluster_allocate(*s_num_clusters);
+  for (int i = 0; i < *s_num_clusters; i++)
+    *s_clusters[i] = *asCCairoTextCluster(VECTOR_ELT(ans_clusters, i));
+  
+  *s_cluster_flags =
+    ((cairo_text_cluster_flags_t)asCEnum(VECTOR_ELT(s_ans, 5),
+                                         CAIRO_TYPE_TEXT_CLUSTER_FLAGS));
+  return(((cairo_status_t)asCEnum(VECTOR_ELT(s_ans, 0), CAIRO_TYPE_STATUS)));
+}
+#endif 

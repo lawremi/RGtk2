@@ -5,7 +5,7 @@ assign("PangoFontFace", c("get_face_name", "describe", "list_sizes"), .virtuals)
 assign("PangoFont", c("describe", "get_coverage", "get_glyph_extents", "get_metrics", "get_font_map"), .virtuals)
 assign("PangoFontMap", c("load_font", "list_families", "load_fontset"), .virtuals)
 assign("PangoFontset", c("get_font", "get_metrics", "get_language", "foreach"), .virtuals)
-assign("PangoRenderer", c("draw_glyphs", "draw_rectangle", "draw_error_underline", "draw_shape", "draw_trapezoid", "draw_glyph", "part_changed", "begin", "end", "prepare_run"), .virtuals)
+assign("PangoRenderer", c("draw_glyphs", "draw_rectangle", "draw_error_underline", "draw_shape", "draw_trapezoid", "draw_glyph", "part_changed", "begin", "end", "prepare_run", "draw_glyph_item"), .virtuals)
 
 
 pangoAttrClassCopy <-
@@ -386,6 +386,21 @@ function(object.class, object, run)
   checkPtrType(run, "PangoGlyphItem")
 
   w <- .RGtkCall("S_pango_renderer_class_prepare_run", object.class, object, run, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+}
+
+pangoRendererClassDrawGlyphItem <-
+function(object.class, object, text, glyph.item, x, y)
+{
+  checkPtrType(object.class, "PangoRendererClass")
+  checkPtrType(object, "PangoRenderer")
+  text <- as.character(text)
+  checkPtrType(glyph.item, "PangoGlyphItem")
+  x <- as.integer(x)
+  y <- as.integer(y)
+
+  w <- .RGtkCall("S_pango_renderer_class_draw_glyph_item", object.class, object, text, glyph.item, x, y, PACKAGE = "RGtk2")
 
   return(invisible(w))
 }

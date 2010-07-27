@@ -209,6 +209,7 @@
 ;; From gtkactivatable.h
 
 (define-function gtk_activatable_get_type
+  (in-module "Gtk")
   (c-name "gtk_activatable_get_type")
   (return-type "GType")
   (since "2.16.0")
@@ -538,7 +539,24 @@
   (since "2.16.0")
 )
 
+(define-method set_icon_drag_source
+   (of-object "GtkEntry")
+   (c-name "gtk_entry_set_icon_drag_source")
+   (return-type "none")
+   (parameters
+      '("GtkEntryIconPosition" "icon_pos")
+      '("GtkTargetList*" "target_list")
+      '("GdkDragAction" "actions")
+      )
+   (since "2.16.0")
+   )
 
+(define-method get_current_icon_drag_source
+   (of-object "GtkEntry")
+   (c-name "gtk_entry_get_current_icon_drag_source")
+   (return-type "gint")
+   (since "2.16.0")
+   )
 
 ;; From gtkimagemenuitem.h
 
@@ -650,6 +668,7 @@
 ;; From gtkorientable.h
 
 (define-function gtk_orientable_get_type
+  (in-module "Gtk")
   (c-name "gtk_orientable_get_type")
   (return-type "GType")
   (since "2.16.0")
@@ -869,6 +888,7 @@
 ;; From gtkwindow.h
 
 (define-function gtk_window_get_default_icon_name
+  (in-module "Gtk")
   (c-name "gtk_window_get_default_icon_name")
   (return-type "const-gchar*")
   (since "2.16.0")

@@ -1229,6 +1229,39 @@ S_virtual_pango_renderer_prepare_run(PangoRenderer* s_object, PangoGlyphItem* s_
   if(err)
     return;
 }
+static 
+void
+S_virtual_pango_renderer_draw_glyph_item(PangoRenderer* s_object, const char* s_text, PangoGlyphItem* s_glyph_item, int s_x, int s_y)
+{
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
+  gint err;
+
+  PROTECT(e = allocVector(LANGSXP, 6));
+  tmp = e;
+
+  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoRenderer_symbol, S_GOBJECT_GET_ENV(s_object)), 10));
+  tmp = CDR(tmp);
+
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoRenderer")));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRString(s_text));
+  tmp = CDR(tmp);
+  SETCAR(tmp, toRPointerWithFinalizer(s_glyph_item, "PangoGlyphItem", (RPointerFinalizer) pango_glyph_item_free));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRInteger(s_x));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRInteger(s_y));
+  tmp = CDR(tmp);
+
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+
+  UNPROTECT(1);
+
+  if(err)
+    return;
+}
 void
 S_pango_renderer_class_init(PangoRendererClass * c, SEXP e)
 {
@@ -1260,6 +1293,10 @@ S_pango_renderer_class_init(PangoRendererClass * c, SEXP e)
     c->end = S_virtual_pango_renderer_end;
   if(VECTOR_ELT(s, 9) != NULL_USER_OBJECT)
     c->prepare_run = S_virtual_pango_renderer_prepare_run;
+#if PANGO_CHECK_VERSION(1, 22, 0)
+  if(VECTOR_ELT(s, 10) != NULL_USER_OBJECT)
+    c->draw_glyph_item = S_virtual_pango_renderer_draw_glyph_item;
+#endif
 }
 USER_OBJECT_
 S_pango_renderer_class_draw_glyphs(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_font, USER_OBJECT_ s_glyphs, USER_OBJECT_ s_x, USER_OBJECT_ s_y)
@@ -1426,6 +1463,28 @@ S_pango_renderer_class_prepare_run(USER_OBJECT_ s_object_class, USER_OBJECT_ s_o
 
   object_class->prepare_run(object, run);
 
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_pango_renderer_class_draw_glyph_item(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_text, USER_OBJECT_ s_glyph_item, USER_OBJECT_ s_x, USER_OBJECT_ s_y)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if PANGO_CHECK_VERSION(1, 22, 0)
+  PangoRendererClass* object_class = ((PangoRendererClass*)getPtrValue(s_object_class));
+  PangoRenderer* object = PANGO_RENDERER(getPtrValue(s_object));
+  const char* text = ((const char*)asCString(s_text));
+  PangoGlyphItem* glyph_item = ((PangoGlyphItem*)getPtrValue(s_glyph_item));
+  int x = ((int)asCInteger(s_x));
+  int y = ((int)asCInteger(s_y));
+
+
+  object_class->draw_glyph_item(object, text, glyph_item, x, y);
+
+#else
+  error("pango_renderer_draw_glyph_item exists only in Pango >= 1.22.0");
+#endif
 
   return(_result);
 }

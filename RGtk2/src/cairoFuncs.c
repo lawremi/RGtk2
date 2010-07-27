@@ -1101,6 +1101,7 @@ S_cairo_glyph_extents(USER_OBJECT_ s_cr, USER_OBJECT_ s_glyphs)
 
 
   _result = retByVal(_result, "extents", toRPointerWithFinalizer(extents, "CairoTextExtents", (RPointerFinalizer) g_free), NULL);
+    CLEANUP(cairo_glyph_free, ((cairo_glyph_t*)glyphs));;
   ;
 
   return(_result);
@@ -1133,6 +1134,7 @@ S_cairo_glyph_path(USER_OBJECT_ s_cr, USER_OBJECT_ s_glyphs)
 
   cairo_glyph_path(cr, glyphs, num_glyphs);
 
+    CLEANUP(cairo_glyph_free, ((cairo_glyph_t*)glyphs));;
 
   return(_result);
 }
@@ -3987,6 +3989,400 @@ S_cairo_ps_surface_get_eps(USER_OBJECT_ s_surface)
   _result = asRLogical(ans);
 #else
   error("cairo_ps_surface_get_eps exists only in cairo >= 1.6.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_toy_font_face_create(USER_OBJECT_ s_family, USER_OBJECT_ s_slant, USER_OBJECT_ s_weight)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if CAIRO_CHECK_VERSION(1, 8, 0)
+  const char* family = ((const char*)asCString(s_family));
+  cairo_font_slant_t slant = ((cairo_font_slant_t)asCEnum(s_slant, CAIRO_TYPE_FONT_SLANT));
+  cairo_font_weight_t weight = ((cairo_font_weight_t)asCEnum(s_weight, CAIRO_TYPE_FONT_WEIGHT));
+
+  cairo_font_face_t* ans;
+
+  ans = cairo_toy_font_face_create(family, slant, weight);
+
+  _result = toRPointerWithFinalizer(ans, "CairoFontFace", (RPointerFinalizer) cairo_font_face_destroy);
+#else
+  error("cairo_toy_font_face_create exists only in cairo >= 1.8.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_toy_font_face_get_family(USER_OBJECT_ s_font_face)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if CAIRO_CHECK_VERSION(1, 8, 0)
+  cairo_font_face_t* font_face = ((cairo_font_face_t*)getPtrValue(s_font_face));
+
+  const char* ans;
+
+  ans = cairo_toy_font_face_get_family(font_face);
+
+  _result = asRString(ans);
+#else
+  error("cairo_toy_font_face_get_family exists only in cairo >= 1.8.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_toy_font_face_get_slant(USER_OBJECT_ s_font_face)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if CAIRO_CHECK_VERSION(1, 8, 0)
+  cairo_font_face_t* font_face = ((cairo_font_face_t*)getPtrValue(s_font_face));
+
+  cairo_font_slant_t ans;
+
+  ans = cairo_toy_font_face_get_slant(font_face);
+
+  _result = asREnum(ans, CAIRO_TYPE_FONT_SLANT);
+#else
+  error("cairo_toy_font_face_get_slant exists only in cairo >= 1.8.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_toy_font_face_get_weight(USER_OBJECT_ s_font_face)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if CAIRO_CHECK_VERSION(1, 8, 0)
+  cairo_font_face_t* font_face = ((cairo_font_face_t*)getPtrValue(s_font_face));
+
+  cairo_font_weight_t ans;
+
+  ans = cairo_toy_font_face_get_weight(font_face);
+
+  _result = asREnum(ans, CAIRO_TYPE_FONT_WEIGHT);
+#else
+  error("cairo_toy_font_face_get_weight exists only in cairo >= 1.8.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_surface_get_fallback_resolution(USER_OBJECT_ s_surface)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if CAIRO_CHECK_VERSION(1, 8, 0)
+  cairo_surface_t* surface = ((cairo_surface_t*)getPtrValue(s_surface));
+
+  double x_pixels_per_inch;
+  double y_pixels_per_inch;
+
+  cairo_surface_get_fallback_resolution(surface, &x_pixels_per_inch, &y_pixels_per_inch);
+
+
+  _result = retByVal(_result, "x.pixels.per.inch", asRNumeric(x_pixels_per_inch), "y.pixels.per.inch", asRNumeric(y_pixels_per_inch), NULL);
+  ;
+  ;
+#else
+  error("cairo_surface_get_fallback_resolution exists only in cairo >= 1.8.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_surface_has_show_text_glyphs(USER_OBJECT_ s_surface)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if CAIRO_CHECK_VERSION(1, 8, 0)
+  cairo_surface_t* surface = ((cairo_surface_t*)getPtrValue(s_surface));
+
+  gboolean ans;
+
+  ans = cairo_surface_has_show_text_glyphs(surface);
+
+  _result = asRLogical(ans);
+#else
+  error("cairo_surface_has_show_text_glyphs exists only in cairo >= 1.8.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_show_text_glyphs(USER_OBJECT_ s_cr, USER_OBJECT_ s_utf8, USER_OBJECT_ s_glyphs, USER_OBJECT_ s_clusters, USER_OBJECT_ s_cluster_flags)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if CAIRO_CHECK_VERSION(1, 8, 0)
+  cairo_t* cr = ((cairo_t*)getPtrValue(s_cr));
+  const char* utf8 = ((const char*)asCString(s_utf8));
+  int utf8_len = ((int)GET_LENGTH(s_glyphs));
+  const cairo_glyph_t* glyphs = ((const cairo_glyph_t*)asCArrayRef(s_glyphs, cairo_glyph_t, asCCairoGlyph));
+  int num_glyphs = ((int)GET_LENGTH(s_glyphs));
+  const cairo_text_cluster_t* clusters = ((const cairo_text_cluster_t*)asCArrayRef(s_clusters, cairo_text_cluster_t, getPtrValue));
+  int num_clusters = ((int)GET_LENGTH(s_clusters));
+  cairo_text_cluster_flags_t cluster_flags = ((cairo_text_cluster_flags_t)asCEnum(s_cluster_flags, CAIRO_TYPE_TEXT_CLUSTER_FLAGS));
+
+
+  cairo_show_text_glyphs(cr, utf8, utf8_len, glyphs, num_glyphs, clusters, num_clusters, cluster_flags);
+
+    CLEANUP(cairo_glyph_free, ((cairo_glyph_t*)glyphs));;
+    CLEANUP(cairo_text_cluster_free, ((cairo_text_cluster_t*)clusters));;
+#else
+  error("cairo_show_text_glyphs exists only in cairo >= 1.8.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_scaled_font_get_scale_matrix(USER_OBJECT_ s_scaled_font)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if CAIRO_CHECK_VERSION(1, 8, 0)
+  cairo_scaled_font_t* scaled_font = ((cairo_scaled_font_t*)getPtrValue(s_scaled_font));
+
+  cairo_matrix_t* scale_matrix = ((cairo_matrix_t *)g_new0(cairo_matrix_t, 1));
+
+  cairo_scaled_font_get_scale_matrix(scaled_font, scale_matrix);
+
+
+  _result = retByVal(_result, "scale.matrix", toRPointerWithFinalizer(scale_matrix, "CairoMatrix", (RPointerFinalizer) g_free), NULL);
+  ;
+#else
+  error("cairo_scaled_font_get_scale_matrix exists only in cairo >= 1.8.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_scaled_font_text_to_glyphs(USER_OBJECT_ s_scaled_font, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_utf8, USER_OBJECT_ s_utf8_len)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if CAIRO_CHECK_VERSION(1, 8, 0)
+  cairo_scaled_font_t* scaled_font = ((cairo_scaled_font_t*)getPtrValue(s_scaled_font));
+  double x = ((double)asCNumeric(s_x));
+  double y = ((double)asCNumeric(s_y));
+  const char* utf8 = ((const char*)asCString(s_utf8));
+  int utf8_len = ((int)asCInteger(s_utf8_len));
+
+  cairo_status_t ans;
+  cairo_glyph_t* glyphs = NULL;
+  int num_glyphs;
+  cairo_text_cluster_t* clusters = NULL;
+  int num_clusters;
+  cairo_text_cluster_flags_t cluster_flags;
+
+  ans = cairo_scaled_font_text_to_glyphs(scaled_font, x, y, utf8, utf8_len, &glyphs, &num_glyphs, &clusters, &num_clusters, &cluster_flags);
+
+  _result = asREnum(ans, CAIRO_TYPE_STATUS);
+
+  _result = retByVal(_result, "glyphs", asRArrayRefWithSize(glyphs, asRCairoGlyph, num_glyphs), "num.glyphs", asRInteger(num_glyphs), "clusters", asRStructArrayWithSize(clusters, "CairoTextCluster", num_glyphs), "num.clusters", asRInteger(num_clusters), "cluster.flags", asREnum(cluster_flags, CAIRO_TYPE_TEXT_CLUSTER_FLAGS), NULL);
+    CLEANUP(cairo_glyph_free, glyphs);;
+  ;
+    CLEANUP(cairo_text_cluster_free, clusters);;
+  ;
+  ;
+#else
+  error("cairo_scaled_font_text_to_glyphs exists only in cairo >= 1.8.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_user_font_face_create(void)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if CAIRO_CHECK_VERSION(1, 8, 0)
+
+  cairo_font_face_t* ans;
+
+  ans = cairo_user_font_face_create();
+
+  _result = toRPointerWithFinalizer(ans, "CairoFontFace", (RPointerFinalizer) cairo_font_face_destroy);
+#else
+  error("cairo_user_font_face_create exists only in cairo >= 1.8.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_user_font_face_set_init_func(USER_OBJECT_ s_font_face, USER_OBJECT_ s_init_func)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if CAIRO_CHECK_VERSION(1, 8, 0)
+  cairo_user_scaled_font_init_func_t init_func = ((cairo_user_scaled_font_init_func_t)S_cairo_user_scaled_font_init_func_t);
+  extern R_CallbackData*   cairo_user_scaled_font_init_func_t_cbdata;
+cairo_user_scaled_font_init_func_t_cbdata = R_createCBData(s_init_func, NULL);
+  cairo_font_face_t* font_face = ((cairo_font_face_t*)getPtrValue(s_font_face));
+
+
+  cairo_user_font_face_set_init_func(font_face, init_func);
+
+#else
+  error("cairo_user_font_face_set_init_func exists only in cairo >= 1.8.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_user_font_face_set_render_glyph_func(USER_OBJECT_ s_font_face, USER_OBJECT_ s_render_glyph_func)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if CAIRO_CHECK_VERSION(1, 8, 0)
+  cairo_user_scaled_font_render_glyph_func_t render_glyph_func = ((cairo_user_scaled_font_render_glyph_func_t)S_cairo_user_scaled_font_render_glyph_func_t);
+  extern R_CallbackData*   cairo_user_scaled_font_render_glyph_func_t_cbdata;
+cairo_user_scaled_font_render_glyph_func_t_cbdata = R_createCBData(s_render_glyph_func, NULL);
+  cairo_font_face_t* font_face = ((cairo_font_face_t*)getPtrValue(s_font_face));
+
+
+  cairo_user_font_face_set_render_glyph_func(font_face, render_glyph_func);
+
+#else
+  error("cairo_user_font_face_set_render_glyph_func exists only in cairo >= 1.8.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_user_font_face_set_unicode_to_glyph_func(USER_OBJECT_ s_font_face, USER_OBJECT_ s_unicode_to_glyph_func)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if CAIRO_CHECK_VERSION(1, 8, 0)
+  cairo_user_scaled_font_unicode_to_glyph_func_t unicode_to_glyph_func = ((cairo_user_scaled_font_unicode_to_glyph_func_t)S_cairo_user_scaled_font_unicode_to_glyph_func_t);
+  extern R_CallbackData*   cairo_user_scaled_font_unicode_to_glyph_func_t_cbdata;
+cairo_user_scaled_font_unicode_to_glyph_func_t_cbdata = R_createCBData(s_unicode_to_glyph_func, NULL);
+  cairo_font_face_t* font_face = ((cairo_font_face_t*)getPtrValue(s_font_face));
+
+
+  cairo_user_font_face_set_unicode_to_glyph_func(font_face, unicode_to_glyph_func);
+
+#else
+  error("cairo_user_font_face_set_unicode_to_glyph_func exists only in cairo >= 1.8.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_user_font_face_set_text_to_glyphs_func(USER_OBJECT_ s_font_face, USER_OBJECT_ s_text_to_glyphs_func)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if CAIRO_CHECK_VERSION(1, 8, 0)
+  cairo_user_scaled_font_text_to_glyphs_func_t text_to_glyphs_func = ((cairo_user_scaled_font_text_to_glyphs_func_t)S_cairo_user_scaled_font_text_to_glyphs_func_t);
+  extern R_CallbackData*   cairo_user_scaled_font_text_to_glyphs_func_t_cbdata;
+cairo_user_scaled_font_text_to_glyphs_func_t_cbdata = R_createCBData(s_text_to_glyphs_func, NULL);
+  cairo_font_face_t* font_face = ((cairo_font_face_t*)getPtrValue(s_font_face));
+
+
+  cairo_user_font_face_set_text_to_glyphs_func(font_face, text_to_glyphs_func);
+
+#else
+  error("cairo_user_font_face_set_text_to_glyphs_func exists only in cairo >= 1.8.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_user_font_face_get_init_func(USER_OBJECT_ s_font_face)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if CAIRO_CHECK_VERSION(1, 8, 0)
+  cairo_font_face_t* font_face = ((cairo_font_face_t*)getPtrValue(s_font_face));
+
+  cairo_user_scaled_font_init_func_t ans;
+
+  ans = cairo_user_font_face_get_init_func(font_face);
+
+  _result = toRPointer(ans, "CairoUserScaledFontInitFunc");
+#else
+  error("cairo_user_font_face_get_init_func exists only in cairo >= 1.8.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_user_font_face_get_render_glyph_func(USER_OBJECT_ s_font_face)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if CAIRO_CHECK_VERSION(1, 8, 0)
+  cairo_font_face_t* font_face = ((cairo_font_face_t*)getPtrValue(s_font_face));
+
+  cairo_user_scaled_font_render_glyph_func_t ans;
+
+  ans = cairo_user_font_face_get_render_glyph_func(font_face);
+
+  _result = toRPointer(ans, "CairoUserScaledFontRenderGlyphFunc");
+#else
+  error("cairo_user_font_face_get_render_glyph_func exists only in cairo >= 1.8.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_user_font_face_get_unicode_to_glyph_func(USER_OBJECT_ s_font_face)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if CAIRO_CHECK_VERSION(1, 8, 0)
+  cairo_font_face_t* font_face = ((cairo_font_face_t*)getPtrValue(s_font_face));
+
+  cairo_user_scaled_font_unicode_to_glyph_func_t ans;
+
+  ans = cairo_user_font_face_get_unicode_to_glyph_func(font_face);
+
+  _result = toRPointer(ans, "CairoUserScaledFontUnicodeToGlyphFunc");
+#else
+  error("cairo_user_font_face_get_unicode_to_glyph_func exists only in cairo >= 1.8.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_user_font_face_get_text_to_glyphs_func(USER_OBJECT_ s_font_face)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if CAIRO_CHECK_VERSION(1, 8, 0)
+  cairo_font_face_t* font_face = ((cairo_font_face_t*)getPtrValue(s_font_face));
+
+  cairo_user_scaled_font_text_to_glyphs_func_t ans;
+
+  ans = cairo_user_font_face_get_text_to_glyphs_func(font_face);
+
+  _result = toRPointer(ans, "CairoUserScaledFontTextToGlyphsFunc");
+#else
+  error("cairo_user_font_face_get_text_to_glyphs_func exists only in cairo >= 1.8.0");
 #endif
 
   return(_result);

@@ -529,6 +529,7 @@
 ;; From gtkicontheme.h
 
 (define-function icon_info_new_for_pixbuf
+  (in-module "Gtk")
   (c-name "gtk_icon_info_new_for_pixbuf")
   (return-type "GtkIconInfo*")
   (parameters
@@ -566,6 +567,7 @@
 )
 
 (define-function image_new_from_gicon
+  (in-module "Gtk")
   (c-name "gtk_image_new_from_gicon")
   (return-type "GtkWidget*")
   (parameters
@@ -642,12 +644,14 @@
 ;; From gtkmountoperation.h
 
 (define-function gtk_mount_operation_get_type
+  (in-module "Gtk")
   (c-name "gtk_mount_operation_get_type")
   (return-type "GType")
   (since "2.14.0")
 )
 
 (define-function gtk_mount_operation_new
+  (in-module "Gtk")
   (c-name "gtk_mount_operation_new")
   (is-constructor-of "GtkMountOperation")
   (return-type "GMountOperation*")
@@ -854,11 +858,10 @@
   (since "2.14.0")
 )
 
-; MANUAL: need to know the data length
 (define-method get_data
  (of-object "GtkSelectionData")
  (c-name "gtk_selection_data_get_data")
- (return-type "const-guchar*")
+ (return-type "const-guchar[gtk_selection_data_get_length(object)]")
  (since "2.14.0")
 )
 
@@ -882,6 +885,7 @@
 ;; From gtkshow.h
 
 (define-function show_uri
+  (in-module "Gtk")
   (c-name "gtk_show_uri")
   (return-type "gboolean")
   (parameters
@@ -909,6 +913,7 @@
 ;; From gtkstatusicon.h
 
 (define-function status_icon_new_from_gicon
+  (in-module "Gtk")
   (c-name "gtk_status_icon_new_from_gicon")
   (return-type "GtkStatusIcon*")
   (parameters
@@ -1103,6 +1108,39 @@
    '("guint" "year")
    '("guint" "month")
    '("guint" "day")
+   '("gpointer" "user_data")
+   )
+  (since "2.14.0")
+  )
+
+;; From gtklinkbutton.h
+
+(define-method get_visited
+   (of-object "GtkLinkButton")
+   (c-name "gtk_link_button_get_visited")
+   (return-type "gboolean")
+   (since "2.14.0")
+   )
+
+(define-method set_visited
+   (of-object "GtkLinkButton")
+   (c-name "gtk_link_button_set_visited")
+   (return-type "none")
+   (parameters
+      '("gboolean" "visited")
+      )
+   (since "2.14.0")
+   )
+
+; user functions
+
+(define-user-function ClipboardURIReceivedFunc
+  (in-module "Gtk")
+  (c-name "GtkClipboardURIReceivedFunc")
+  (return-type "none")
+  (parameters
+   '("GtkCliboard*" "clipboard")
+   '("gchar**" "uris")
    '("gpointer" "user_data")
    )
   (since "2.14.0")

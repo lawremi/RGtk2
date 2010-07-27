@@ -40,9 +40,14 @@ __extension__ \
 USER_OBJECT_ asRCairoPath(cairo_path_t *path);
 cairo_path_t * asCCairoPath(USER_OBJECT_ s_path);
 cairo_glyph_t * asCCairoGlyph(USER_OBJECT_ s_glyph);
+USER_OBJECT_ asRCairoGlyph(cairo_glyph_t * obj);
 #if CAIRO_CHECK_VERSION(1,4,0)
 USER_OBJECT_ asRCairoRectangle(cairo_rectangle_t *rect);
 USER_OBJECT_ asRCairoRectangleList(cairo_rectangle_list_t *list);
 #endif
-
+#if CAIRO_CHECK_VERSION(1,8,0)
+cairo_text_cluster_t *asCCairoTextCluster(USER_OBJECT_ s_obj);
+USER_OBJECT_ asRCairoTextCluster(cairo_text_cluster_t * obj);
+cairo_font_extents_t *asCCairoFontExtents(USER_OBJECT_ s_obj);
+#endif
 #endif

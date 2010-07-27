@@ -1298,6 +1298,96 @@ S_gtk_volume_button_class_init(GtkVolumeButtonClass * c, SEXP e)
 }
 #endif 
 
+#if GTK_CHECK_VERSION(2, 14, 0)
+void
+S_gtk_mount_operation_class_init(GtkMountOperationClass * c, SEXP e)
+{
+  static void (*fun)(GtkMountOperationClass *, SEXP) = NULL;
+  if(!fun) fun = ((void (*)(GtkMountOperationClass *, SEXP))R_GetCCallable("RGtk2", "S_gtk_mount_operation_class_init"));
+  return(fun(c, e));
+}
+#endif 
+
+#if GTK_CHECK_VERSION(2, 18, 0)
+void
+S_gtk_entry_buffer_class_init(GtkEntryBufferClass * c, SEXP e)
+{
+  static void (*fun)(GtkEntryBufferClass *, SEXP) = NULL;
+  if(!fun) fun = ((void (*)(GtkEntryBufferClass *, SEXP))R_GetCCallable("RGtk2", "S_gtk_entry_buffer_class_init"));
+  return(fun(c, e));
+}
+#endif 
+
+#if GTK_CHECK_VERSION(2, 18, 0)
+void
+S_gtk_info_bar_class_init(GtkInfoBarClass * c, SEXP e)
+{
+  static void (*fun)(GtkInfoBarClass *, SEXP) = NULL;
+  if(!fun) fun = ((void (*)(GtkInfoBarClass *, SEXP))R_GetCCallable("RGtk2", "S_gtk_info_bar_class_init"));
+  return(fun(c, e));
+}
+#endif 
+
+#if GTK_CHECK_VERSION(2, 18, 0)
+void
+S_gtk_hsv_class_init(GtkHSVClass * c, SEXP e)
+{
+  static void (*fun)(GtkHSVClass *, SEXP) = NULL;
+  if(!fun) fun = ((void (*)(GtkHSVClass *, SEXP))R_GetCCallable("RGtk2", "S_gtk_hsv_class_init"));
+  return(fun(c, e));
+}
+#endif 
+
+#if GTK_CHECK_VERSION(2, 20, 0)
+void
+S_gtk_tool_item_group_class_init(GtkToolItemGroupClass * c, SEXP e)
+{
+  static void (*fun)(GtkToolItemGroupClass *, SEXP) = NULL;
+  if(!fun) fun = ((void (*)(GtkToolItemGroupClass *, SEXP))R_GetCCallable("RGtk2", "S_gtk_tool_item_group_class_init"));
+  return(fun(c, e));
+}
+#endif 
+
+#if GTK_CHECK_VERSION(2, 20, 0)
+void
+S_gtk_tool_palette_class_init(GtkToolPaletteClass * c, SEXP e)
+{
+  static void (*fun)(GtkToolPaletteClass *, SEXP) = NULL;
+  if(!fun) fun = ((void (*)(GtkToolPaletteClass *, SEXP))R_GetCCallable("RGtk2", "S_gtk_tool_palette_class_init"));
+  return(fun(c, e));
+}
+#endif 
+
+#if GTK_CHECK_VERSION(2, 20, 0)
+void
+S_gtk_cell_renderer_spinner_class_init(GtkCellRendererSpinnerClass * c, SEXP e)
+{
+  static void (*fun)(GtkCellRendererSpinnerClass *, SEXP) = NULL;
+  if(!fun) fun = ((void (*)(GtkCellRendererSpinnerClass *, SEXP))R_GetCCallable("RGtk2", "S_gtk_cell_renderer_spinner_class_init"));
+  return(fun(c, e));
+}
+#endif 
+
+#if GTK_CHECK_VERSION(2, 20, 0)
+void
+S_gtk_offscreen_window_class_init(GtkOffscreenWindowClass * c, SEXP e)
+{
+  static void (*fun)(GtkOffscreenWindowClass *, SEXP) = NULL;
+  if(!fun) fun = ((void (*)(GtkOffscreenWindowClass *, SEXP))R_GetCCallable("RGtk2", "S_gtk_offscreen_window_class_init"));
+  return(fun(c, e));
+}
+#endif 
+
+#if GTK_CHECK_VERSION(2, 20, 0)
+void
+S_gtk_spinner_class_init(GtkSpinnerClass * c, SEXP e)
+{
+  static void (*fun)(GtkSpinnerClass *, SEXP) = NULL;
+  if(!fun) fun = ((void (*)(GtkSpinnerClass *, SEXP))R_GetCCallable("RGtk2", "S_gtk_spinner_class_init"));
+  return(fun(c, e));
+}
+#endif 
+
 void
 S_gtk_cell_editable_class_init(GtkCellEditableIface * c, SEXP e)
 {
@@ -1360,6 +1450,36 @@ S_gtk_buildable_class_init(GtkBuildableIface * c, SEXP e)
 {
   static void (*fun)(GtkBuildableIface *, SEXP) = NULL;
   if(!fun) fun = ((void (*)(GtkBuildableIface *, SEXP))R_GetCCallable("RGtk2", "S_gtk_buildable_class_init"));
+  return(fun(c, e));
+}
+#endif 
+
+#if GTK_CHECK_VERSION(2, 14, 0)
+void
+S_gtk_tool_shell_class_init(GtkToolShellIface * c, SEXP e)
+{
+  static void (*fun)(GtkToolShellIface *, SEXP) = NULL;
+  if(!fun) fun = ((void (*)(GtkToolShellIface *, SEXP))R_GetCCallable("RGtk2", "S_gtk_tool_shell_class_init"));
+  return(fun(c, e));
+}
+#endif 
+
+#if GTK_CHECK_VERSION(2, 16, 0)
+void
+S_gtk_activatable_class_init(GtkActivatableIface * c, SEXP e)
+{
+  static void (*fun)(GtkActivatableIface *, SEXP) = NULL;
+  if(!fun) fun = ((void (*)(GtkActivatableIface *, SEXP))R_GetCCallable("RGtk2", "S_gtk_activatable_class_init"));
+  return(fun(c, e));
+}
+#endif 
+
+#if GTK_CHECK_VERSION(2, 16, 0)
+void
+S_gtk_orientable_class_init(GtkOrientableIface * c, SEXP e)
+{
+  static void (*fun)(GtkOrientableIface *, SEXP) = NULL;
+  if(!fun) fun = ((void (*)(GtkOrientableIface *, SEXP))R_GetCCallable("RGtk2", "S_gtk_orientable_class_init"));
   return(fun(c, e));
 }
 #endif 

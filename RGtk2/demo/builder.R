@@ -1,12 +1,13 @@
 
-quit_activate <- function(action) { }
+quit_activate <- function(action) {
+  builder$getObject("window1")$destroy()
+}
 
 about_activate <- function(action)
 {
-  about_dlg <- gtkAboutDialog()
-  about_dlg$setProgramName("GtkBuilder demo")
+  about_dlg <- builder$getObject("aboutdialog1")
   about_dlg$run()
-  about_dlg$destroy()
+  about_dlg$hide()
 }
 
 ## GtkBuilder can't find any types, so we init them here

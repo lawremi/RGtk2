@@ -8,6 +8,7 @@
   (parent "GObject")
   (c-name "GtkEntryBuffer")
   (gtype-id "GTK_TYPE_ENTRY_BUFFER")
+  (since "2.18.0")
 )
 
 (define-object InfoBar
@@ -15,6 +16,15 @@
   (parent "GtkHBox")
   (c-name "GtkInfoBar")
   (gtype-id "GTK_TYPE_INFO_BAR")
+  (since "2.18.0")
+)
+
+(define-object HSV
+   (in-module "Gtk")
+   (parent "GtkWidget")
+   (c-name "GtkHSV")
+   (gtype-id "GTK_TYPE_HSV")
+  (since "2.18.0")
 )
 
 ;; From gtkcellrenderer.h
@@ -27,6 +37,7 @@
     '("gfloat" "xalign")
     '("gfloat" "yalign")
   )
+  (since "2.18.0")
 )
 
 (define-method get_alignment
@@ -37,6 +48,7 @@
     '("gfloat*" "xalign")
     '("gfloat*" "yalign")
   )
+  (since "2.18.0")
 )
 
 (define-method set_padding
@@ -47,6 +59,7 @@
     '("gint" "xpad")
     '("gint" "ypad")
   )
+  (since "2.18.0")
 )
 
 (define-method get_padding
@@ -57,6 +70,7 @@
     '("gint*" "xpad")
     '("gint*" "ypad")
   )
+  (since "2.18.0")
 )
 
 (define-method set_visible
@@ -66,12 +80,14 @@
   (parameters
     '("gboolean" "visible")
   )
+  (since "2.18.0")
 )
 
 (define-method get_visible
   (of-object "GtkCellRenderer")
   (c-name "gtk_cell_renderer_get_visible")
   (return-type "gboolean")
+  (since "2.18.0")
 )
 
 (define-method set_sensitive
@@ -81,12 +97,14 @@
   (parameters
     '("gboolean" "sensitive")
   )
+  (since "2.18.0")
 )
 
 (define-method get_sensitive
   (of-object "GtkCellRenderer")
   (c-name "gtk_cell_renderer_get_sensitive")
   (return-type "gboolean")
+  (since "2.18.0")
 )
 
 
@@ -97,6 +115,7 @@
   (of-object "GtkCellRendererToggle")
   (c-name "gtk_cell_renderer_toggle_get_activatable")
   (return-type "gboolean")
+  (since "2.18.0")
 )
 
 (define-method set_activatable
@@ -106,6 +125,7 @@
   (parameters
     '("gboolean" "setting")
   )
+  (since "2.18.0")
 )
 
 
@@ -113,17 +133,20 @@
 ;; From gtkentry.h
 
 (define-function new_with_buffer
+  (in-module "Gtk")
   (c-name "gtk_entry_new_with_buffer")
   (return-type "GtkWidget*")
   (parameters
     '("GtkEntryBuffer*" "buffer")
   )
+  (since "2.18.0")
 )
 
 (define-method get_buffer
   (of-object "GtkEntry")
   (c-name "gtk_entry_get_buffer")
   (return-type "GtkEntryBuffer*")
+  (since "2.18.0")
 )
 
 (define-method set_buffer
@@ -133,6 +156,7 @@
   (parameters
     '("GtkEntryBuffer*" "buffer")
   )
+  (since "2.18.0")
 )
 
 
@@ -140,11 +164,14 @@
 ;; From gtkentrybuffer.h
 
 (define-function gtk_entry_buffer_get_type
+  (in-module "Gtk")
   (c-name "gtk_entry_buffer_get_type")
   (return-type "GType")
+  (since "2.18.0")
 )
 
 (define-function gtk_entry_buffer_new
+  (in-module "Gtk")
   (c-name "gtk_entry_buffer_new")
   (is-constructor-of "GtkEntryBuffer")
   (return-type "GtkEntryBuffer*")
@@ -152,24 +179,28 @@
     '("const-gchar*" "initial_chars")
     '("gint" "n_initial_chars")
   )
+  (since "2.18.0")
 )
 
 (define-method get_bytes
   (of-object "GtkEntryBuffer")
   (c-name "gtk_entry_buffer_get_bytes")
   (return-type "gsize")
+  (since "2.18.0")
 )
 
 (define-method get_length
   (of-object "GtkEntryBuffer")
   (c-name "gtk_entry_buffer_get_length")
   (return-type "guint")
+  (since "2.18.0")
 )
 
 (define-method get_text
   (of-object "GtkEntryBuffer")
   (c-name "gtk_entry_buffer_get_text")
   (return-type "const-gchar*")
+  (since "2.18.0")
 )
 
 (define-method set_text
@@ -180,6 +211,7 @@
     '("const-gchar*" "chars")
     '("gint" "n_chars")
   )
+  (since "2.18.0")
 )
 
 (define-method set_max_length
@@ -189,12 +221,14 @@
   (parameters
     '("gint" "max_length")
   )
+  (since "2.18.0")
 )
 
 (define-method get_max_length
   (of-object "GtkEntryBuffer")
   (c-name "gtk_entry_buffer_get_max_length")
   (return-type "gint")
+  (since "2.18.0")
 )
 
 (define-method insert_text
@@ -206,6 +240,7 @@
     '("const-gchar*" "chars")
     '("gint" "n_chars")
   )
+  (since "2.18.0")
 )
 
 (define-method delete_text
@@ -216,6 +251,7 @@
     '("guint" "position")
     '("gint" "n_chars")
   )
+  (since "2.18.0")
 )
 
 (define-method emit_inserted_text
@@ -227,6 +263,7 @@
     '("const-gchar*" "chars")
     '("guint" "n_chars")
   )
+  (since "2.18.0")
 )
 
 (define-method emit_deleted_text
@@ -237,6 +274,7 @@
     '("guint" "position")
     '("guint" "n_chars")
   )
+  (since "2.18.0")
 )
 
 
@@ -250,12 +288,14 @@
   (parameters
     '("gboolean" "create_folders")
   )
+  (since "2.18.0")
 )
 
 (define-method get_create_folders
   (of-object "GtkFileChooser")
   (c-name "gtk_file_chooser_get_create_folders")
   (return-type "gboolean")
+  (since "2.18.0")
 )
 
 
@@ -269,12 +309,14 @@
   (parameters
     '("gint" "item_padding")
   )
+  (since "2.18.0")
 )
 
 (define-method get_item_padding
   (of-object "GtkIconView")
   (c-name "gtk_icon_view_get_item_padding")
   (return-type "gint")
+  (since "2.18.0")
 )
 
 
@@ -282,35 +324,44 @@
 ;; From gtkinfobar.h
 
 (define-function gtk_info_bar_get_type
+  (in-module "Gtk")
   (c-name "gtk_info_bar_get_type")
   (return-type "GType")
+  (since "2.18.0")
 )
 
 (define-function gtk_info_bar_new
+  (in-module "Gtk")
   (c-name "gtk_info_bar_new")
   (is-constructor-of "GtkInfoBar")
   (return-type "GtkWidget*")
+  (since "2.18.0")
 )
 
+; MANUAL: varargs
 (define-function gtk_info_bar_new_with_buttons
+  (in-module "Gtk")
   (c-name "gtk_info_bar_new_with_buttons")
   (return-type "GtkWidget*")
   (parameters
     '("const-gchar*" "first_button_text")
   )
   (varargs #t)
+  (since "2.18.0")
 )
 
 (define-method get_action_area
   (of-object "GtkInfoBar")
   (c-name "gtk_info_bar_get_action_area")
   (return-type "GtkWidget*")
+  (since "2.18.0")
 )
 
 (define-method get_content_area
   (of-object "GtkInfoBar")
   (c-name "gtk_info_bar_get_content_area")
   (return-type "GtkWidget*")
+  (since "2.18.0")
 )
 
 (define-method add_action_widget
@@ -321,6 +372,7 @@
     '("GtkWidget*" "child")
     '("gint" "response_id")
   )
+  (since "2.18.0")
 )
 
 (define-method add_button
@@ -331,8 +383,10 @@
     '("const-gchar*" "button_text")
     '("gint" "response_id")
   )
+  (since "2.18.0")
 )
 
+; MANUAL: varargs
 (define-method add_buttons
   (of-object "GtkInfoBar")
   (c-name "gtk_info_bar_add_buttons")
@@ -341,6 +395,7 @@
     '("const-gchar*" "first_button_text")
   )
   (varargs #t)
+  (since "2.18.0")
 )
 
 (define-method set_response_sensitive
@@ -351,6 +406,7 @@
     '("gint" "response_id")
     '("gboolean" "setting")
   )
+  (since "2.18.0")
 )
 
 (define-method set_default_response
@@ -360,6 +416,7 @@
   (parameters
     '("gint" "response_id")
   )
+  (since "2.18.0")
 )
 
 (define-method response
@@ -369,6 +426,7 @@
   (parameters
     '("gint" "response_id")
   )
+  (since "2.18.0")
 )
 
 (define-method set_message_type
@@ -378,12 +436,14 @@
   (parameters
     '("GtkMessageType" "message_type")
   )
+  (since "2.18.0")
 )
 
 (define-method get_message_type
   (of-object "GtkInfoBar")
   (c-name "gtk_info_bar_get_message_type")
   (return-type "GtkMessageType")
+  (since "2.18.0")
 )
 
 
@@ -394,6 +454,7 @@
   (of-object "GtkLabel")
   (c-name "gtk_label_get_current_uri")
   (return-type "const-gchar*")
+  (since "2.18.0")
 )
 
 (define-method set_track_visited_links
@@ -403,12 +464,14 @@
   (parameters
     '("gboolean" "track_links")
   )
+  (since "2.18.0")
 )
 
 (define-method get_track_visited_links
   (of-object "GtkLabel")
   (c-name "gtk_label_get_track_visited_links")
   (return-type "gboolean")
+  (since "2.18.0")
 )
 
 
@@ -422,12 +485,14 @@
   (parameters
     '("gboolean" "reserve_toggle_size")
   )
+  (since "2.18.0")
 )
 
 (define-method get_reserve_toggle_size
   (of-object "GtkMenu")
   (c-name "gtk_menu_get_reserve_toggle_size")
   (return-type "gboolean")
+  (since "2.18.0")
 )
 
 
@@ -441,12 +506,14 @@
   (parameters
     '("gboolean" "support_selection")
   )
+  (since "2.18.0")
 )
 
 (define-method get_support_selection
   (of-object "GtkPrintOperation")
   (c-name "gtk_print_operation_get_support_selection")
   (return-type "gboolean")
+  (since "2.18.0")
 )
 
 (define-method set_has_selection
@@ -456,12 +523,14 @@
   (parameters
     '("gboolean" "has_selection")
   )
+  (since "2.18.0")
 )
 
 (define-method get_has_selection
   (of-object "GtkPrintOperation")
   (c-name "gtk_print_operation_get_has_selection")
   (return-type "gboolean")
+  (since "2.18.0")
 )
 
 (define-method set_embed_page_setup
@@ -471,18 +540,21 @@
   (parameters
     '("gboolean" "embed")
   )
+  (since "2.18.0")
 )
 
 (define-method get_embed_page_setup
   (of-object "GtkPrintOperation")
   (c-name "gtk_print_operation_get_embed_page_setup")
   (return-type "gboolean")
+  (since "2.18.0")
 )
 
 (define-method get_n_pages_to_print
   (of-object "GtkPrintOperation")
   (c-name "gtk_print_operation_get_n_pages_to_print")
   (return-type "gint")
+  (since "2.18.0")
 )
 
 
@@ -496,12 +568,14 @@
   (parameters
     '("gboolean" "flippable")
   )
+  (since "2.18.0")
 )
 
 (define-method get_flippable
   (of-object "GtkRange")
   (c-name "gtk_range_get_flippable")
   (return-type "gboolean")
+  (since "2.18.0")
 )
 
 
@@ -515,12 +589,14 @@
   (parameters
     '("const-gchar*" "title")
   )
+  (since "2.18.0")
 )
 
 (define-method get_title
   (of-object "GtkStatusIcon")
   (c-name "gtk_status_icon_get_title")
   (return-type "const-gchar*")
+  (since "2.18.0")
 )
 
 
@@ -534,6 +610,7 @@
   (parameters
     '("GtkAllocation*" "allocation")
   )
+  (since "2.18.0")
 )
 
 (define-method set_allocation
@@ -543,12 +620,14 @@
   (parameters
     '("const-GtkAllocation*" "allocation")
   )
+  (since "2.18.0")
 )
 
 (define-method get_app_paintable
   (of-object "GtkWidget")
   (c-name "gtk_widget_get_app_paintable")
   (return-type "gboolean")
+  (since "2.18.0")
 )
 
 (define-method set_can_default
@@ -558,12 +637,14 @@
   (parameters
     '("gboolean" "can_default")
   )
+  (since "2.18.0")
 )
 
 (define-method get_can_default
   (of-object "GtkWidget")
   (c-name "gtk_widget_get_can_default")
   (return-type "gboolean")
+  (since "2.18.0")
 )
 
 (define-method set_can_focus
@@ -573,18 +654,21 @@
   (parameters
     '("gboolean" "can_focus")
   )
+  (since "2.18.0")
 )
 
 (define-method get_can_focus
   (of-object "GtkWidget")
   (c-name "gtk_widget_get_can_focus")
   (return-type "gboolean")
+  (since "2.18.0")
 )
 
 (define-method get_double_buffered
   (of-object "GtkWidget")
   (c-name "gtk_widget_get_double_buffered")
   (return-type "gboolean")
+  (since "2.18.0")
 )
 
 (define-method set_has_window
@@ -594,12 +678,14 @@
   (parameters
     '("gboolean" "has_window")
   )
+  (since "2.18.0")
 )
 
 (define-method get_has_window
   (of-object "GtkWidget")
   (c-name "gtk_widget_get_has_window")
   (return-type "gboolean")
+  (since "2.18.0")
 )
 
 (define-method set_receives_default
@@ -609,24 +695,28 @@
   (parameters
     '("gboolean" "receives_default")
   )
+  (since "2.18.0")
 )
 
 (define-method get_receives_default
   (of-object "GtkWidget")
   (c-name "gtk_widget_get_receives_default")
   (return-type "gboolean")
+  (since "2.18.0")
 )
 
 (define-method get_sensitive
   (of-object "GtkWidget")
   (c-name "gtk_widget_get_sensitive")
   (return-type "gboolean")
+  (since "2.18.0")
 )
 
 (define-method get_state
   (of-object "GtkWidget")
   (c-name "gtk_widget_get_state")
   (return-type "GtkStateType")
+  (since "2.18.0")
 )
 
 (define-method set_visible
@@ -636,12 +726,14 @@
   (parameters
     '("gboolean" "visible")
   )
+  (since "2.18.0")
 )
 
 (define-method get_visible
   (of-object "GtkWidget")
   (c-name "gtk_widget_get_visible")
   (return-type "gboolean")
+  (since "2.18.0")
 )
 
 (define-method set_window
@@ -651,40 +743,147 @@
   (parameters
     '("GdkWindow*" "window")
   )
+  (since "2.18.0")
 )
 
 (define-method has_default
   (of-object "GtkWidget")
   (c-name "gtk_widget_has_default")
   (return-type "gboolean")
+  (since "2.18.0")
 )
 
 (define-method has_focus
   (of-object "GtkWidget")
   (c-name "gtk_widget_has_focus")
   (return-type "gboolean")
+  (since "2.18.0")
 )
 
 (define-method has_grab
   (of-object "GtkWidget")
   (c-name "gtk_widget_has_grab")
   (return-type "gboolean")
+  (since "2.18.0")
 )
 
 (define-method is_sensitive
   (of-object "GtkWidget")
   (c-name "gtk_widget_is_sensitive")
   (return-type "gboolean")
+  (since "2.18.0")
 )
 
 (define-method is_toplevel
   (of-object "GtkWidget")
   (c-name "gtk_widget_is_toplevel")
   (return-type "gboolean")
+  (since "2.18.0")
 )
 
 (define-method is_drawable
   (of-object "GtkWidget")
   (c-name "gtk_widget_is_drawable")
   (return-type "gboolean")
+  (since "2.18.0")
+)
+
+;; From gtkhsv.h
+
+(define-function gtk_hsv_get_type
+  (in-module "Gtk")
+   (c-name "gtk_hsv_get_type")
+   (return-type "GType")
+  (since "2.18.0")
+)
+
+(define-function gtk_hsv_new
+  (in-module "Gtk")
+   (c-name "gtk_hsv_new")
+   (is-constructor-of "GtkHsv")
+   (return-type "GtkWidget*")
+  (since "2.18.0")
+)
+
+(define-method set_color
+   (of-object "GtkHSV")
+   (c-name "gtk_hsv_set_color")
+   (return-type "none")
+   (parameters
+      '("double" "h")
+      '("double" "s")
+      '("double" "v")
+      )
+  (since "2.18.0")
+)
+
+(define-method get_color
+   (of-object "GtkHSV")
+   (c-name "gtk_hsv_get_color")
+   (return-type "none")
+   (parameters
+      '("gdouble*" "h")
+      '("gdouble*" "s")
+      '("gdouble*" "v")
+      )
+  (since "2.18.0")
+)
+
+(define-method set_metrics
+   (of-object "GtkHSV")
+   (c-name "gtk_hsv_set_metrics")
+   (return-type "none")
+   (parameters
+      '("gint" "size")
+      '("gint" "ring_width")
+      )
+  (since "2.18.0")
+)
+
+(define-method get_metrics
+   (of-object "GtkHSV")
+   (c-name "gtk_hsv_get_metrics")
+   (return-type "none")
+   (parameters
+      '("gint*" "size")
+      '("gint*" "ring_width")
+      )
+  (since "2.18.0")
+)
+
+(define-method is_adjusting
+   (of-object "GtkHSV")
+   (c-name "gtk_hsv_is_adjusting")
+   (return-type "gboolean")
+  (since "2.18.0")
+)
+
+(define-function hsv_to_rgb
+  (in-module "Gtk")
+   (c-name "gtk_hsv_to_rgb")
+   (return-type "none")
+   (parameters
+      '("gdouble" "h")
+      '("gdouble" "s")
+      '("gdouble" "v")
+      '("gdouble*" "r")
+      '("gdouble*" "g")
+      '("gdouble*" "b")
+   )
+  (since "2.18.0")
+)
+
+(define-function rgb_to_hsv
+  (in-module "Gtk")
+   (c-name "gtk_rgb_to_hsv")
+   (return-type "none")
+   (parameters
+      '("gdouble" "r")
+      '("gdouble" "g")
+      '("gdouble" "b")
+      '("gdouble*" "h")
+      '("gdouble*" "s")
+      '("gdouble*" "v")
+   )
+  (since "2.18.0")
 )

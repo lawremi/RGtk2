@@ -239,3 +239,39 @@ S_CairoFontExtentsGetMaxYAdvance (USER_OBJECT_ s_obj)
 
    return(_result);
 } 
+USER_OBJECT_
+S_CairoTextClusterGetNumBytes (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+#if CAIRO_CHECK_VERSION(1, 8, 0)
+   cairo_text_cluster_t *obj;
+   int val;
+
+   obj = ((cairo_text_cluster_t*)getPtrValue(s_obj)) ;
+   val = obj->num_bytes;
+   _result = asRInteger(val);
+#else
+  error("num_bytes exists only in cairo >= 1.8.0");
+#endif
+
+   return(_result);
+} 
+USER_OBJECT_
+S_CairoTextClusterGetNumGlyphs (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+#if CAIRO_CHECK_VERSION(1, 8, 0)
+   cairo_text_cluster_t *obj;
+   int val;
+
+   obj = ((cairo_text_cluster_t*)getPtrValue(s_obj)) ;
+   val = obj->num_glyphs;
+   _result = asRInteger(val);
+#else
+  error("num_glyphs exists only in cairo >= 1.8.0");
+#endif
+
+   return(_result);
+} 

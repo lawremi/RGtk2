@@ -21671,6 +21671,150 @@ S_gtk_volume_button_class_init(GtkVolumeButtonClass * c, SEXP e)
 }
 #endif 
 
+#if GTK_CHECK_VERSION(2, 14, 0)
+static SEXP S_GtkMountOperation_symbol;
+void
+S_gtk_mount_operation_class_init(GtkMountOperationClass * c, SEXP e)
+{
+  SEXP s;
+
+  S_GtkMountOperation_symbol = install("GtkMountOperation");
+  s = findVar(S_GtkMountOperation_symbol, e);
+  G_STRUCT_MEMBER(SEXP, c, sizeof(GtkMountOperationClass)) = e;
+
+  S_gmount_operation_class_init(((GMountOperationClass *)c), e);
+
+}
+#endif 
+
+#if GTK_CHECK_VERSION(2, 18, 0)
+static SEXP S_GtkEntryBuffer_symbol;
+void
+S_gtk_entry_buffer_class_init(GtkEntryBufferClass * c, SEXP e)
+{
+  SEXP s;
+
+  S_GtkEntryBuffer_symbol = install("GtkEntryBuffer");
+  s = findVar(S_GtkEntryBuffer_symbol, e);
+  G_STRUCT_MEMBER(SEXP, c, sizeof(GtkEntryBufferClass)) = e;
+
+  S_gobject_class_init(((GObjectClass *)c), e);
+
+}
+#endif 
+
+#if GTK_CHECK_VERSION(2, 18, 0)
+static SEXP S_GtkInfoBar_symbol;
+void
+S_gtk_info_bar_class_init(GtkInfoBarClass * c, SEXP e)
+{
+  SEXP s;
+
+  S_GtkInfoBar_symbol = install("GtkInfoBar");
+  s = findVar(S_GtkInfoBar_symbol, e);
+  G_STRUCT_MEMBER(SEXP, c, sizeof(GtkInfoBarClass)) = e;
+
+  S_gtk_hbox_class_init(((GtkHBoxClass *)c), e);
+
+}
+#endif 
+
+#if GTK_CHECK_VERSION(2, 18, 0)
+static SEXP S_GtkHSV_symbol;
+void
+S_gtk_hsv_class_init(GtkHSVClass * c, SEXP e)
+{
+  SEXP s;
+
+  S_GtkHSV_symbol = install("GtkHSV");
+  s = findVar(S_GtkHSV_symbol, e);
+  G_STRUCT_MEMBER(SEXP, c, sizeof(GtkHSVClass)) = e;
+
+  S_gtk_widget_class_init(((GtkWidgetClass *)c), e);
+
+}
+#endif 
+
+#if GTK_CHECK_VERSION(2, 20, 0)
+static SEXP S_GtkToolItemGroup_symbol;
+void
+S_gtk_tool_item_group_class_init(GtkToolItemGroupClass * c, SEXP e)
+{
+  SEXP s;
+
+  S_GtkToolItemGroup_symbol = install("GtkToolItemGroup");
+  s = findVar(S_GtkToolItemGroup_symbol, e);
+  G_STRUCT_MEMBER(SEXP, c, sizeof(GtkToolItemGroupClass)) = e;
+
+  S_gtk_container_class_init(((GtkContainerClass *)c), e);
+
+}
+#endif 
+
+#if GTK_CHECK_VERSION(2, 20, 0)
+static SEXP S_GtkToolPalette_symbol;
+void
+S_gtk_tool_palette_class_init(GtkToolPaletteClass * c, SEXP e)
+{
+  SEXP s;
+
+  S_GtkToolPalette_symbol = install("GtkToolPalette");
+  s = findVar(S_GtkToolPalette_symbol, e);
+  G_STRUCT_MEMBER(SEXP, c, sizeof(GtkToolPaletteClass)) = e;
+
+  S_gtk_container_class_init(((GtkContainerClass *)c), e);
+
+}
+#endif 
+
+#if GTK_CHECK_VERSION(2, 20, 0)
+static SEXP S_GtkCellRendererSpinner_symbol;
+void
+S_gtk_cell_renderer_spinner_class_init(GtkCellRendererSpinnerClass * c, SEXP e)
+{
+  SEXP s;
+
+  S_GtkCellRendererSpinner_symbol = install("GtkCellRendererSpinner");
+  s = findVar(S_GtkCellRendererSpinner_symbol, e);
+  G_STRUCT_MEMBER(SEXP, c, sizeof(GtkCellRendererSpinnerClass)) = e;
+
+  S_gtk_cell_renderer_class_init(((GtkCellRendererClass *)c), e);
+
+}
+#endif 
+
+#if GTK_CHECK_VERSION(2, 20, 0)
+static SEXP S_GtkOffscreenWindow_symbol;
+void
+S_gtk_offscreen_window_class_init(GtkOffscreenWindowClass * c, SEXP e)
+{
+  SEXP s;
+
+  S_GtkOffscreenWindow_symbol = install("GtkOffscreenWindow");
+  s = findVar(S_GtkOffscreenWindow_symbol, e);
+  G_STRUCT_MEMBER(SEXP, c, sizeof(GtkOffscreenWindowClass)) = e;
+
+  S_gtk_window_class_init(((GtkWindowClass *)c), e);
+
+}
+#endif 
+
+#if GTK_CHECK_VERSION(2, 20, 0)
+static SEXP S_GtkSpinner_symbol;
+void
+S_gtk_spinner_class_init(GtkSpinnerClass * c, SEXP e)
+{
+  SEXP s;
+
+  S_GtkSpinner_symbol = install("GtkSpinner");
+  s = findVar(S_GtkSpinner_symbol, e);
+  G_STRUCT_MEMBER(SEXP, c, sizeof(GtkSpinnerClass)) = e;
+
+  S_gtk_drawing_area_class_init(((GtkDrawingAreaClass *)c), e);
+
+}
+#endif 
+
 static SEXP S_GtkCellEditable_symbol;
 static 
 void
@@ -24704,4 +24848,396 @@ S_gtk_buildable_iface_get_internal_child(USER_OBJECT_ s_object_class, USER_OBJEC
   return(_result);
 }
  
+
+#if GTK_CHECK_VERSION(2, 14, 0)
+static SEXP S_GtkToolShell_symbol;
+static 
+GtkIconSize
+S_virtual_gtk_tool_shell_get_icon_size(GtkToolShell* s_object)
+{
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
+  gint err;
+
+  PROTECT(e = allocVector(LANGSXP, 2));
+  tmp = e;
+
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GtkToolShell_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
+  tmp = CDR(tmp);
+
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkToolShell")));
+  tmp = CDR(tmp);
+
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+
+  UNPROTECT(1);
+
+  if(err)
+    return(((GtkIconSize)0));
+  return(((GtkIconSize)asCEnum(s_ans, GTK_TYPE_ICON_SIZE)));
+}
+static 
+GtkOrientation
+S_virtual_gtk_tool_shell_get_orientation(GtkToolShell* s_object)
+{
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
+  gint err;
+
+  PROTECT(e = allocVector(LANGSXP, 2));
+  tmp = e;
+
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GtkToolShell_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
+  tmp = CDR(tmp);
+
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkToolShell")));
+  tmp = CDR(tmp);
+
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+
+  UNPROTECT(1);
+
+  if(err)
+    return(((GtkOrientation)0));
+  return(((GtkOrientation)asCEnum(s_ans, GTK_TYPE_ORIENTATION)));
+}
+static 
+GtkToolbarStyle
+S_virtual_gtk_tool_shell_get_style(GtkToolShell* s_object)
+{
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
+  gint err;
+
+  PROTECT(e = allocVector(LANGSXP, 2));
+  tmp = e;
+
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GtkToolShell_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
+  tmp = CDR(tmp);
+
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkToolShell")));
+  tmp = CDR(tmp);
+
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+
+  UNPROTECT(1);
+
+  if(err)
+    return(((GtkToolbarStyle)0));
+  return(((GtkToolbarStyle)asCEnum(s_ans, GTK_TYPE_TOOLBAR_STYLE)));
+}
+static 
+GtkReliefStyle
+S_virtual_gtk_tool_shell_get_relief_style(GtkToolShell* s_object)
+{
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
+  gint err;
+
+  PROTECT(e = allocVector(LANGSXP, 2));
+  tmp = e;
+
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GtkToolShell_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
+  tmp = CDR(tmp);
+
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkToolShell")));
+  tmp = CDR(tmp);
+
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+
+  UNPROTECT(1);
+
+  if(err)
+    return(((GtkReliefStyle)0));
+  return(((GtkReliefStyle)asCEnum(s_ans, GTK_TYPE_RELIEF_STYLE)));
+}
+static 
+void
+S_virtual_gtk_tool_shell_rebuild_menu(GtkToolShell* s_object)
+{
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
+  gint err;
+
+  PROTECT(e = allocVector(LANGSXP, 2));
+  tmp = e;
+
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GtkToolShell_symbol, S_GOBJECT_GET_ENV(s_object)), 4));
+  tmp = CDR(tmp);
+
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkToolShell")));
+  tmp = CDR(tmp);
+
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+
+  UNPROTECT(1);
+
+  if(err)
+    return;
+}
+void
+S_gtk_tool_shell_class_init(GtkToolShellIface * c, SEXP e)
+{
+  SEXP s;
+
+  S_GtkToolShell_symbol = install("GtkToolShell");
+  s = findVar(S_GtkToolShell_symbol, e);
+  G_STRUCT_MEMBER(SEXP, c, sizeof(GtkToolShellIface)) = e;
+
+#if GTK_CHECK_VERSION(2, 14, 0)
+  if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
+    c->get_icon_size = S_virtual_gtk_tool_shell_get_icon_size;
+#endif
+#if GTK_CHECK_VERSION(2, 14, 0)
+  if(VECTOR_ELT(s, 1) != NULL_USER_OBJECT)
+    c->get_orientation = S_virtual_gtk_tool_shell_get_orientation;
+#endif
+#if GTK_CHECK_VERSION(2, 14, 0)
+  if(VECTOR_ELT(s, 2) != NULL_USER_OBJECT)
+    c->get_style = S_virtual_gtk_tool_shell_get_style;
+#endif
+#if GTK_CHECK_VERSION(2, 14, 0)
+  if(VECTOR_ELT(s, 3) != NULL_USER_OBJECT)
+    c->get_relief_style = S_virtual_gtk_tool_shell_get_relief_style;
+#endif
+#if GTK_CHECK_VERSION(2, 14, 0)
+  if(VECTOR_ELT(s, 4) != NULL_USER_OBJECT)
+    c->rebuild_menu = S_virtual_gtk_tool_shell_rebuild_menu;
+#endif
+}
+#endif
+USER_OBJECT_
+S_gtk_tool_shell_iface_get_icon_size(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GTK_CHECK_VERSION(2, 14, 0)
+  GtkToolShellIface* object_class = ((GtkToolShellIface*)getPtrValue(s_object_class));
+  GtkToolShell* object = GTK_TOOL_SHELL(getPtrValue(s_object));
+
+  GtkIconSize ans;
+
+  ans = object_class->get_icon_size(object);
+
+  _result = asREnum(ans, GTK_TYPE_ICON_SIZE);
+#else
+  error("gtk_tool_shell_get_icon_size exists only in Gtk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tool_shell_iface_get_orientation(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GTK_CHECK_VERSION(2, 14, 0)
+  GtkToolShellIface* object_class = ((GtkToolShellIface*)getPtrValue(s_object_class));
+  GtkToolShell* object = GTK_TOOL_SHELL(getPtrValue(s_object));
+
+  GtkOrientation ans;
+
+  ans = object_class->get_orientation(object);
+
+  _result = asREnum(ans, GTK_TYPE_ORIENTATION);
+#else
+  error("gtk_tool_shell_get_orientation exists only in Gtk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tool_shell_iface_get_style(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GTK_CHECK_VERSION(2, 14, 0)
+  GtkToolShellIface* object_class = ((GtkToolShellIface*)getPtrValue(s_object_class));
+  GtkToolShell* object = GTK_TOOL_SHELL(getPtrValue(s_object));
+
+  GtkToolbarStyle ans;
+
+  ans = object_class->get_style(object);
+
+  _result = asREnum(ans, GTK_TYPE_TOOLBAR_STYLE);
+#else
+  error("gtk_tool_shell_get_style exists only in Gtk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tool_shell_iface_get_relief_style(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GTK_CHECK_VERSION(2, 14, 0)
+  GtkToolShellIface* object_class = ((GtkToolShellIface*)getPtrValue(s_object_class));
+  GtkToolShell* object = GTK_TOOL_SHELL(getPtrValue(s_object));
+
+  GtkReliefStyle ans;
+
+  ans = object_class->get_relief_style(object);
+
+  _result = asREnum(ans, GTK_TYPE_RELIEF_STYLE);
+#else
+  error("gtk_tool_shell_get_relief_style exists only in Gtk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tool_shell_iface_rebuild_menu(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GTK_CHECK_VERSION(2, 14, 0)
+  GtkToolShellIface* object_class = ((GtkToolShellIface*)getPtrValue(s_object_class));
+  GtkToolShell* object = GTK_TOOL_SHELL(getPtrValue(s_object));
+
+
+  object_class->rebuild_menu(object);
+
+#else
+  error("gtk_tool_shell_rebuild_menu exists only in Gtk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+ 
+
+#if GTK_CHECK_VERSION(2, 16, 0)
+static SEXP S_GtkActivatable_symbol;
+static 
+void
+S_virtual_gtk_activatable_update(GtkActivatable* s_object, GtkAction* s_action, const gchar* s_property_name)
+{
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
+  gint err;
+
+  PROTECT(e = allocVector(LANGSXP, 4));
+  tmp = e;
+
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GtkActivatable_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
+  tmp = CDR(tmp);
+
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkActivatable")));
+  tmp = CDR(tmp);
+  SETCAR(tmp, toRPointerWithRef(s_action, "GtkAction"));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRString(s_property_name));
+  tmp = CDR(tmp);
+
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+
+  UNPROTECT(1);
+
+  if(err)
+    return;
+}
+static 
+void
+S_virtual_gtk_activatable_sync_action_properties(GtkActivatable* s_object, GtkAction* s_action)
+{
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
+  gint err;
+
+  PROTECT(e = allocVector(LANGSXP, 3));
+  tmp = e;
+
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GtkActivatable_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
+  tmp = CDR(tmp);
+
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkActivatable")));
+  tmp = CDR(tmp);
+  SETCAR(tmp, toRPointerWithRef(s_action, "GtkAction"));
+  tmp = CDR(tmp);
+
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+
+  UNPROTECT(1);
+
+  if(err)
+    return;
+}
+void
+S_gtk_activatable_class_init(GtkActivatableIface * c, SEXP e)
+{
+  SEXP s;
+
+  S_GtkActivatable_symbol = install("GtkActivatable");
+  s = findVar(S_GtkActivatable_symbol, e);
+  G_STRUCT_MEMBER(SEXP, c, sizeof(GtkActivatableIface)) = e;
+
+#if GTK_CHECK_VERSION(2, 16, 0)
+  if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
+    c->update = S_virtual_gtk_activatable_update;
+#endif
+#if GTK_CHECK_VERSION(2, 16, 0)
+  if(VECTOR_ELT(s, 1) != NULL_USER_OBJECT)
+    c->sync_action_properties = S_virtual_gtk_activatable_sync_action_properties;
+#endif
+}
+#endif
+USER_OBJECT_
+S_gtk_activatable_iface_update(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_action, USER_OBJECT_ s_property_name)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GTK_CHECK_VERSION(2, 16, 0)
+  GtkActivatableIface* object_class = ((GtkActivatableIface*)getPtrValue(s_object_class));
+  GtkActivatable* object = GTK_ACTIVATABLE(getPtrValue(s_object));
+  GtkAction* action = GTK_ACTION(getPtrValue(s_action));
+  const gchar* property_name = ((const gchar*)asCString(s_property_name));
+
+
+  object_class->update(object, action, property_name);
+
+#else
+  error("gtk_activatable_update exists only in Gtk >= 2.16.0");
+#endif
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_activatable_iface_sync_action_properties(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_action)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GTK_CHECK_VERSION(2, 16, 0)
+  GtkActivatableIface* object_class = ((GtkActivatableIface*)getPtrValue(s_object_class));
+  GtkActivatable* object = GTK_ACTIVATABLE(getPtrValue(s_object));
+  GtkAction* action = GTK_ACTION(getPtrValue(s_action));
+
+
+  object_class->sync_action_properties(object, action);
+
+#else
+  error("gtk_activatable_sync_action_properties exists only in Gtk >= 2.16.0");
+#endif
+
+  return(_result);
+}
+ 
+
+#if GTK_CHECK_VERSION(2, 16, 0)
+static SEXP S_GtkOrientable_symbol;
+void
+S_gtk_orientable_class_init(GtkOrientableIface * c, SEXP e)
+{
+  SEXP s;
+
+  S_GtkOrientable_symbol = install("GtkOrientable");
+  s = findVar(S_GtkOrientable_symbol, e);
+  G_STRUCT_MEMBER(SEXP, c, sizeof(GtkOrientableIface)) = e;
+
+}
+#endif 
 

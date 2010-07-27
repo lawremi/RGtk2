@@ -7,7 +7,7 @@
 #include <glib-object.h>
 
 G_BEGIN_DECLS
-/* enumerations from "cairo-1.6.h" */
+/* enumerations from "cairo-1.8.h" */
 GType cairo_status_get_type (void);
 #define CAIRO_TYPE_STATUS (cairo_status_get_type())
 GType cairo_content_get_type (void);
@@ -22,6 +22,8 @@ GType cairo_line_cap_get_type (void);
 #define CAIRO_TYPE_LINE_CAP (cairo_line_cap_get_type())
 GType cairo_line_join_get_type (void);
 #define CAIRO_TYPE_LINE_JOIN (cairo_line_join_get_type())
+GType cairo_text_cluster_flags_get_type (void);
+#define CAIRO_TYPE_TEXT_CLUSTER_FLAGS (cairo_text_cluster_flags_get_type())
 GType cairo_font_slant_get_type (void);
 #define CAIRO_TYPE_FONT_SLANT (cairo_font_slant_get_type())
 GType cairo_font_weight_get_type (void);

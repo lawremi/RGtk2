@@ -2703,3 +2703,19 @@ S_gdk_screen_class_composited_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ 
 }
  
 
+#if GDK_CHECK_VERSION(2, 14, 0)
+static SEXP S_GdkAppLaunchContext_symbol;
+void
+S_gdk_app_launch_context_class_init(GdkAppLaunchContextClass * c, SEXP e)
+{
+  SEXP s;
+
+  S_GdkAppLaunchContext_symbol = install("GdkAppLaunchContext");
+  s = findVar(S_GdkAppLaunchContext_symbol, e);
+  G_STRUCT_MEMBER(SEXP, c, sizeof(GdkAppLaunchContextClass)) = e;
+
+  S_gapp_launch_context_class_init(((GAppLaunchContextClass *)c), e);
+
+}
+#endif 
+

@@ -17,12 +17,14 @@
 ;; From gdkapplaunchcontext.h
 
 (define-function gdk_app_launch_context_get_type
+  (in-module "Gdk")
   (c-name "gdk_app_launch_context_get_type")
   (return-type "GType")
   (since "2.14.0")
 )
 
 (define-function gdk_app_launch_context_new
+  (in-module "Gdk")
   (c-name "gdk_app_launch_context_new")
   (is-constructor-of "GdkAppLaunchContext")
   (return-type "GdkAppLaunchContext*")
@@ -147,5 +149,34 @@
   (of-object "GdkWindow")
   (c-name "gdk_window_remove_redirection")
   (return-type "none")
+  (since "2.14.0")
+)
+
+;; From gdk-pixbuf-core.h
+
+(define-function pixbuf_new_from_stream
+  (in-module "Gdk")
+  (c-name "gdk_pixbuf_new_from_stream")
+  (return-type "GdkPixbuf*")
+  (parameters
+   '("GInputStream*" "stream")
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GError**" "error" (out))
+   )
+  (since "2.14.0")
+)
+
+(define-function pixbuf_new_from_stream_at_scale
+  (in-module "Gdk")
+  (c-name "gdk_pixbuf_new_from_stream_at_scale")
+  (return-type "GdkPixbuf*")
+  (parameters
+   '("GInputStream*" "stream")
+   '("gint" "width" (default "-1"))
+   '("gint" "height" (default "-1"))
+   '("gboolean" "preserve_aspect_ratio" (default "1"))
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GError**" "error" (out))
+   )
   (since "2.14.0")
 )

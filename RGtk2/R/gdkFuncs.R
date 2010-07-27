@@ -6743,3 +6743,354 @@ function(object)
   return(w)
 } 
 
+
+gdkAppLaunchContextGetType <-
+function()
+{
+  
+
+  w <- .RGtkCall("S_gdk_app_launch_context_get_type", PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gdkAppLaunchContextNew <-
+function()
+{
+  
+
+  w <- .RGtkCall("S_gdk_app_launch_context_new", PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gdkAppLaunchContextSetDisplay <-
+function(object, display)
+{
+  checkPtrType(object, "GdkAppLaunchContext")
+  checkPtrType(display, "GdkDisplay")
+
+  w <- .RGtkCall("S_gdk_app_launch_context_set_display", object, display, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+gdkAppLaunchContextSetScreen <-
+function(object, screen)
+{
+  checkPtrType(object, "GdkAppLaunchContext")
+  checkPtrType(screen, "GdkScreen")
+
+  w <- .RGtkCall("S_gdk_app_launch_context_set_screen", object, screen, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+gdkAppLaunchContextSetDesktop <-
+function(object, desktop)
+{
+  checkPtrType(object, "GdkAppLaunchContext")
+  desktop <- as.integer(desktop)
+
+  w <- .RGtkCall("S_gdk_app_launch_context_set_desktop", object, desktop, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+gdkAppLaunchContextSetTimestamp <-
+function(object, timestamp)
+{
+  checkPtrType(object, "GdkAppLaunchContext")
+  timestamp <- as.numeric(timestamp)
+
+  w <- .RGtkCall("S_gdk_app_launch_context_set_timestamp", object, timestamp, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+gdkAppLaunchContextSetIcon <-
+function(object, icon = NULL)
+{
+  checkPtrType(object, "GdkAppLaunchContext")
+  if (!is.null( icon )) checkPtrType(icon, "GIcon")
+
+  w <- .RGtkCall("S_gdk_app_launch_context_set_icon", object, icon, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+gdkAppLaunchContextSetIconName <-
+function(object, icon.name = NULL)
+{
+  checkPtrType(object, "GdkAppLaunchContext")
+  if (!is.null( icon.name )) icon.name <- as.character(icon.name)
+
+  w <- .RGtkCall("S_gdk_app_launch_context_set_icon_name", object, icon.name, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+gdkScreenGetMonitorWidthMm <-
+function(object, monitor.num)
+{
+  checkPtrType(object, "GdkScreen")
+  monitor.num <- as.integer(monitor.num)
+
+  w <- .RGtkCall("S_gdk_screen_get_monitor_width_mm", object, monitor.num, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gdkScreenGetMonitorHeightMm <-
+function(object, monitor.num)
+{
+  checkPtrType(object, "GdkScreen")
+  monitor.num <- as.integer(monitor.num)
+
+  w <- .RGtkCall("S_gdk_screen_get_monitor_height_mm", object, monitor.num, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gdkScreenGetMonitorPlugName <-
+function(object, monitor.num)
+{
+  checkPtrType(object, "GdkScreen")
+  monitor.num <- as.integer(monitor.num)
+
+  w <- .RGtkCall("S_gdk_screen_get_monitor_plug_name", object, monitor.num, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gdkWindowRedirectToDrawable <-
+function(object, drawable, src.x, src.y, dest.x, dest.y, width, height)
+{
+  checkPtrType(object, "GdkWindow")
+  checkPtrType(drawable, "GdkDrawable")
+  src.x <- as.integer(src.x)
+  src.y <- as.integer(src.y)
+  dest.x <- as.integer(dest.x)
+  dest.y <- as.integer(dest.y)
+  width <- as.integer(width)
+  height <- as.integer(height)
+
+  w <- .RGtkCall("S_gdk_window_redirect_to_drawable", object, drawable, src.x, src.y, dest.x, dest.y, width, height, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+gdkWindowRemoveRedirection <-
+function(object)
+{
+  checkPtrType(object, "GdkWindow")
+
+  w <- .RGtkCall("S_gdk_window_remove_redirection", object, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+gdkPixbufNewFromStream <-
+function(stream, cancellable = NULL, .errwarn = TRUE)
+{
+  checkPtrType(stream, "GInputStream")
+  if (!is.null( cancellable )) checkPtrType(cancellable, "GCancellable")
+
+  w <- .RGtkCall("S_gdk_pixbuf_new_from_stream", stream, cancellable, PACKAGE = "RGtk2")
+
+  if(.errwarn && !is.null(w$error))
+    warning(w$error[["message"]])
+
+  return(w)
+} 
+
+
+gdkPixbufNewFromStreamAtScale <-
+function(stream, width = -1, height = -1, preserve.aspect.ratio = 1, cancellable = NULL, .errwarn = TRUE)
+{
+  checkPtrType(stream, "GInputStream")
+  width <- as.integer(width)
+  height <- as.integer(height)
+  preserve.aspect.ratio <- as.logical(preserve.aspect.ratio)
+  if (!is.null( cancellable )) checkPtrType(cancellable, "GCancellable")
+
+  w <- .RGtkCall("S_gdk_pixbuf_new_from_stream_at_scale", stream, width, height, preserve.aspect.ratio, cancellable, PACKAGE = "RGtk2")
+
+  if(.errwarn && !is.null(w$error))
+    warning(w$error[["message"]])
+
+  return(w)
+} 
+
+
+gdkKeymapGetCapsLockState <-
+function(object)
+{
+  checkPtrType(object, "GdkKeymap")
+
+  w <- .RGtkCall("S_gdk_keymap_get_caps_lock_state", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gdkCairoResetClip <-
+function(cr, drawable)
+{
+  checkPtrType(cr, "Cairo")
+  checkPtrType(drawable, "GdkDrawable")
+
+  w <- .RGtkCall("S_gdk_cairo_reset_clip", cr, drawable, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gdkOffscreenWindowGetPixmap <-
+function(window)
+{
+  checkPtrType(window, "GdkWindow")
+
+  w <- .RGtkCall("S_gdk_offscreen_window_get_pixmap", window, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gdkOffscreenWindowSetEmbedder <-
+function(window, embedder)
+{
+  checkPtrType(window, "GdkWindow")
+  checkPtrType(embedder, "GdkWindow")
+
+  w <- .RGtkCall("S_gdk_offscreen_window_set_embedder", window, embedder, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gdkOffscreenWindowGetEmbedder <-
+function(window)
+{
+  checkPtrType(window, "GdkWindow")
+
+  w <- .RGtkCall("S_gdk_offscreen_window_get_embedder", window, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gdkRegionRectEqual <-
+function(object, rectangle)
+{
+  checkPtrType(object, "GdkRegion")
+  rectangle <- as.GdkRectangle(rectangle)
+
+  w <- .RGtkCall("S_gdk_region_rect_equal", object, rectangle, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gdkWindowEnsureNative <-
+function(object)
+{
+  checkPtrType(object, "GdkWindow")
+
+  w <- .RGtkCall("S_gdk_window_ensure_native", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gdkWindowFlush <-
+function(object)
+{
+  checkPtrType(object, "GdkWindow")
+
+  w <- .RGtkCall("S_gdk_window_flush", object, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+gdkWindowGeometryChanged <-
+function(object)
+{
+  checkPtrType(object, "GdkWindow")
+
+  w <- .RGtkCall("S_gdk_window_geometry_changed", object, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+gdkWindowGetCursor <-
+function(object)
+{
+  checkPtrType(object, "GdkWindow")
+
+  w <- .RGtkCall("S_gdk_window_get_cursor", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gdkWindowRestack <-
+function(object, sibling, above)
+{
+  checkPtrType(object, "GdkWindow")
+  checkPtrType(sibling, "GdkWindow")
+  above <- as.logical(above)
+
+  w <- .RGtkCall("S_gdk_window_restack", object, sibling, above, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+gdkKeymapAddVirtualModifiers <-
+function(object)
+{
+  checkPtrType(object, "GdkKeymap")
+
+  w <- .RGtkCall("S_gdk_keymap_add_virtual_modifiers", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gdkKeymapMapVirtualModifiers <-
+function(object)
+{
+  checkPtrType(object, "GdkKeymap")
+
+  w <- .RGtkCall("S_gdk_keymap_map_virtual_modifiers", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gdkScreenGetPrimaryMonitor <-
+function(object)
+{
+  checkPtrType(object, "GdkScreen")
+
+  w <- .RGtkCall("S_gdk_screen_get_primary_monitor", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+

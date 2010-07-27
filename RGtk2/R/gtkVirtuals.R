@@ -92,6 +92,8 @@ assign("GtkRecentManager", c("changed"), .virtuals)
 assign("GtkStatusIcon", c("activate", "popup_menu", "size_changed"), .virtuals)
 assign("GtkBuildable", c("set_name", "get_name", "add_child", "set_buildable_property", "construct_child", "custom_tag_start", "custom_tag_end", "custom_finished", "parser_finished", "get_internal_child"), .virtuals)
 assign("GtkBuilder", c("get_type_from_name"), .virtuals)
+assign("GtkToolShell", c("get_icon_size", "get_orientation", "get_style", "get_relief_style", "rebuild_menu"), .virtuals)
+assign("GtkActivatable", c("update", "sync_action_properties"), .virtuals)
 
 
 gtkAccelGroupClassAccelChanged <-
@@ -6328,4 +6330,84 @@ function(object.class, object, type.name)
   w <- .RGtkCall("S_gtk_builder_class_get_type_from_name", object.class, object, type.name, PACKAGE = "RGtk2")
 
   return(w)
+}
+
+gtkToolShellIfaceGetIconSize <-
+function(object.class, object)
+{
+  checkPtrType(object.class, "GtkToolShellIface")
+  checkPtrType(object, "GtkToolShell")
+
+  w <- .RGtkCall("S_gtk_tool_shell_iface_get_icon_size", object.class, object, PACKAGE = "RGtk2")
+
+  return(w)
+}
+
+gtkToolShellIfaceGetOrientation <-
+function(object.class, object)
+{
+  checkPtrType(object.class, "GtkToolShellIface")
+  checkPtrType(object, "GtkToolShell")
+
+  w <- .RGtkCall("S_gtk_tool_shell_iface_get_orientation", object.class, object, PACKAGE = "RGtk2")
+
+  return(w)
+}
+
+gtkToolShellIfaceGetStyle <-
+function(object.class, object)
+{
+  checkPtrType(object.class, "GtkToolShellIface")
+  checkPtrType(object, "GtkToolShell")
+
+  w <- .RGtkCall("S_gtk_tool_shell_iface_get_style", object.class, object, PACKAGE = "RGtk2")
+
+  return(w)
+}
+
+gtkToolShellIfaceGetReliefStyle <-
+function(object.class, object)
+{
+  checkPtrType(object.class, "GtkToolShellIface")
+  checkPtrType(object, "GtkToolShell")
+
+  w <- .RGtkCall("S_gtk_tool_shell_iface_get_relief_style", object.class, object, PACKAGE = "RGtk2")
+
+  return(w)
+}
+
+gtkToolShellIfaceRebuildMenu <-
+function(object.class, object)
+{
+  checkPtrType(object.class, "GtkToolShellIface")
+  checkPtrType(object, "GtkToolShell")
+
+  w <- .RGtkCall("S_gtk_tool_shell_iface_rebuild_menu", object.class, object, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+}
+
+gtkActivatableIfaceUpdate <-
+function(object.class, object, action, property.name)
+{
+  checkPtrType(object.class, "GtkActivatableIface")
+  checkPtrType(object, "GtkActivatable")
+  checkPtrType(action, "GtkAction")
+  property.name <- as.character(property.name)
+
+  w <- .RGtkCall("S_gtk_activatable_iface_update", object.class, object, action, property.name, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+}
+
+gtkActivatableIfaceSyncActionProperties <-
+function(object.class, object, action)
+{
+  checkPtrType(object.class, "GtkActivatableIface")
+  checkPtrType(object, "GtkActivatable")
+  checkPtrType(action, "GtkAction")
+
+  w <- .RGtkCall("S_gtk_activatable_iface_sync_action_properties", object.class, object, action, PACKAGE = "RGtk2")
+
+  return(invisible(w))
 }

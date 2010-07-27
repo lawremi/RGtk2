@@ -8,6 +8,7 @@
  (in-module "gio")
  (c-name "GAsyncInitable")
  (gtype-id "G_TYPE_ASYNC_INITABLE")
+  (since "2.22.0")
 )
 
 
@@ -15,6 +16,7 @@
  (in-module "gio")
  (c-name "GInitable")
  (gtype-id "G_TYPE_INITABLE")
+  (since "2.22.0")
 )
 
 
@@ -22,14 +24,15 @@
  (in-module "gio")
  (c-name "GSrvTarget")
  (gtype-id "G_TYPE_SRV_TARGET")
+  (since "2.22.0")
 )
-
 
 (define-object FileIOStream
  (in-module "gio")
  (parent "GIOStream")
  (c-name "GFileIOStream")
  (gtype-id "G_TYPE_FILE_IO_STREAM")
+  (since "2.22.0")
 )
 
 
@@ -38,6 +41,7 @@
  (parent "GObject")
  (c-name "GInetAddress")
  (gtype-id "G_TYPE_INET_ADDRESS")
+  (since "2.22.0")
 )
 
 (define-object NetworkAddress
@@ -45,6 +49,7 @@
  (parent "GObject")
  (c-name "GNetworkAddress")
  (gtype-id "G_TYPE_NETWORK_ADDRESS")
+  (since "2.22.0")
 )
 
 (define-object NetworkService
@@ -52,6 +57,7 @@
  (parent "GObject")
  (c-name "GNetworkService")
  (gtype-id "G_TYPE_NETWORK_SERVICE")
+  (since "2.22.0")
 )
 
 (define-object Resolver
@@ -59,6 +65,7 @@
  (parent "GObject")
  (c-name "GResolver")
  (gtype-id "G_TYPE_RESOLVER")
+  (since "2.22.0")
 )
 
 (define-object Socket
@@ -66,6 +73,7 @@
  (parent "GObject")
  (c-name "GSocket")
  (gtype-id "G_TYPE_SOCKET")
+  (since "2.22.0")
 )
 
 (define-object SocketAddress
@@ -73,6 +81,7 @@
  (parent "GObject")
  (c-name "GSocketAddress")
  (gtype-id "G_TYPE_SOCKET_ADDRESS")
+  (since "2.22.0")
 )
 
 (define-object SocketAddressEnumerator
@@ -80,6 +89,7 @@
  (parent "GObject")
  (c-name "GSocketAddressEnumerator")
  (gtype-id "G_TYPE_SOCKET_ADDRESS_ENUMERATOR")
+  (since "2.22.0")
 )
 
 (define-object SocketClient
@@ -87,12 +97,14 @@
  (parent "GObject")
  (c-name "GSocketClient")
  (gtype-id "G_TYPE_SOCKET_CLIENT")
+  (since "2.22.0")
 )
 
 (define-object SocketConnectable
  (in-module "gio")
  (c-name "GSocketConnectable")
  (gtype-id "G_TYPE_SOCKET_CONNECTABLE")
+  (since "2.22.0")
 )
 
 (define-object SocketConnection
@@ -100,6 +112,7 @@
  (parent "GIOStream")
  (c-name "GSocketConnection")
  (gtype-id "G_TYPE_SOCKET_CONNECTION")
+  (since "2.22.0")
 )
 
 (define-object SocketControlMessage
@@ -107,6 +120,7 @@
  (parent "GObject")
  (c-name "GSocketControlMessage")
  (gtype-id "G_TYPE_SOCKET_CONTROL_MESSAGE")
+  (since "2.22.0")
 )
 
 (define-object SocketListener
@@ -114,6 +128,7 @@
  (parent "GObject")
  (c-name "GSocketListener")
  (gtype-id "G_TYPE_SOCKET_LISTENER")
+  (since "2.22.0")
 )
 
 (define-object SocketService
@@ -121,6 +136,7 @@
  (parent "GSocketListener")
  (c-name "GSocketService")
  (gtype-id "G_TYPE_SOCKET_SERVICE")
+  (since "2.22.0")
 )
 
 (define-object TcpConnection
@@ -128,6 +144,7 @@
  (parent "GSocketConnection")
  (c-name "GTcpConnection")
  (gtype-id "G_TYPE_TCP_CONNECTION")
+  (since "2.22.0")
 )
 
 (define-object ThreadedSocketService
@@ -135,6 +152,7 @@
  (parent "GSocketService")
  (c-name "GThreadedSocketService")
  (gtype-id "G_TYPE_THREADED_SOCKET_SERVICE")
+  (since "2.22.0")
 )
 
 (define-object IOStream
@@ -142,13 +160,80 @@
  (parent "GObject")
  (c-name "GIOStream")
  (gtype-id "G_TYPE_IO_STREAM")
+  (since "2.22.0")
 )
 
+(define-enum DriveStartFlags
+  (in-module "gio")
+  (c-name "GDriveStartFlags")
+  (gtype-id "G_TYPE_DRIVE_START_FLAGS")
+  (values
+   '("none" "G_DRIVE_START_NONE")
+   )
+  (since "2.22.0")
+  )
 
+; NOTE: the values in the R vector will be wrong, but if name given, it's fine
+(define-enum SocketFamily
+  (in-module "gio")
+  (c-name "GSocketFamily")
+  (gtype-id "G_TYPE_SOCKET_FAMILY")
+  (values
+   '("invalid" "G_SOCKET_FAMILY_INVALID")
+   '("unix" "G_SOCKET_FAMILY_UNIX") ; GLIB_SYSDEF_AF_UNIX (check if defined),
+   '("ipv4" "G_SOCKET_FAMILY_IPV4") ; GLIB_SYSDEF_AF_INET,
+   '("ipv6" "G_SOCKET_FAMILY_IPV6") ; GLIB_SYSDEF_AF_INET6
+   )
+  (since "2.22.0")
+  )
+
+(define-enum SocketType
+  (in-module "gio")
+  (c-name "GSocketType")
+  (gtype-id "G_TYPE_SOCKET_TYPE")
+  (values
+   '("invalid" "G_SOCKET_TYPE_INVALID")
+   '("stream" "G_SOCKET_TYPE_STREAM")
+   '("datagram" "G_SOCKET_TYPE_DATAGRAM")
+   '("seqpacket" "G_SOCKET_TYPE_SEQPACKET")
+   )
+  (since "2.22.0")
+  )
+
+(define-enum SocketProtocol
+  (in-module "gio")
+  (c-name "GSocketProtocol")
+  (gtype-id "G_TYPE_SOCKET_PROTOCOL")
+  (values
+   '("unknown" "G_SOCKET_PROTOCOL_UNKNOWN" -1)
+   '("default" "G_SOCKET_PROTOCOL_DEFAULT" 0)
+   '("tcp" "G_SOCKET_PROTOCOL_TCP" 6)
+   '("udp" "G_SOCKET_PROTOCOL_UDP" 17)
+   '("sctp" "G_SOCKET_PROTOCOL_SCTP" 132)
+   )
+  (since "2.22.0")
+  )
+
+(define-enum IOCondition
+  (in-module "glib")
+  (c-name "GIOCondition")
+  (gtype-id "G_TYPE_IO_CONDITION")
+  (values
+   '("in" "G_IO_IN") ; GLIB_SYSDEF_POLLIN,
+   '("out" "G_IO_OUT") ; GLIB_SYSDEF_POLLOUT,
+   '("pri" "G_IO_PRI") ; GLIB_SYSDEF_POLLPRI,
+   '("err" "G_IO_ERR") ; GLIB_SYSDEF_POLLERR,
+   '("hup" "G_IO_HUP") ; GLIB_SYSDEF_POLLHUP,
+   '("nval" "G_IO_NVAL") ; GLIB_SYSDEF_POLLNVAL
+   )
+  (since "2.22.0")
+  )
 
 (define-function g_async_initable_get_type
+  (in-module "gio")
  (c-name "g_async_initable_get_type")
  (return-type "GType")
+  (since "2.22.0")
 )
 
 (define-method init_async
@@ -157,10 +242,11 @@
  (return-type "none")
  (parameters
  '("int" "io_priority")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
  '("gpointer" "user_data")
  )
+  (since "2.22.0")
 )
 
 (define-method init_finish
@@ -171,23 +257,28 @@
  '("GAsyncResult*" "res")
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
+; MANUAL: varargs
 (define-function g_async_initable_new_async
+ (in-module "gio")
  (c-name "g_async_initable_new_async")
  (return-type "none")
  (parameters
  '("GType" "object_type")
  '("int" "io_priority")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
  '("gpointer" "user_data")
  '("const-gchar*" "first_property_name")
  )
  (varargs #t)
+  (since "2.22.0")
 )
 
 (define-function g_async_initable_newv_async
+  (in-module "gio")
  (c-name "g_async_initable_newv_async")
  (return-type "none")
  (parameters
@@ -195,13 +286,16 @@
  '("guint" "n_parameters")
  '("GParameter[]" "parameters")
  '("int" "io_priority")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
  '("gpointer" "user_data")
  )
+  (since "2.22.0")
 )
 
 (define-function g_async_initable_new_valist_async
+  (in-module "gio")
+
  (c-name "g_async_initable_new_valist_async")
  (return-type "none")
  (parameters
@@ -209,10 +303,11 @@
  '("const-gchar*" "first_property_name")
  '("va_list" "var_args")
  '("int" "io_priority")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
  '("gpointer" "user_data")
  )
+  (since "2.22.0")
 )
 
 (define-method new_finish
@@ -223,6 +318,7 @@
  '("GAsyncResult*" "res")
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method connect
@@ -234,6 +330,7 @@
  '("gpointer" "data")
  '("GDestroyNotify" "data_destroy_func")
  )
+  (since "2.22.0")
 )
 
 (define-method disconnect
@@ -243,6 +340,7 @@
  (parameters
  '("gulong" "handler_id")
  )
+  (since "2.22.0")
 )
 
 
@@ -253,12 +351,14 @@
  (parameters
  '("GPollFD*" "pollfd")
  )
+  (since "2.22.0")
 )
 
 (define-method release_fd
  (of-object "GCancellable")
  (c-name "g_cancellable_release_fd")
  (return-type "none")
+  (since "2.22.0")
 )
 
 ;; From gcontenttype.h
@@ -266,17 +366,20 @@
  (of-object "GDrive")
  (c-name "g_drive_can_start")
  (return-type "gboolean")
+  (since "2.22.0")
 )
 (define-method can_start_degraded
  (of-object "GDrive")
  (c-name "g_drive_can_start_degraded")
  (return-type "gboolean")
+  (since "2.22.0")
 )
--;; From gdummyfile.h
+;; From gdummyfile.h
 (define-method can_stop
  (of-object "GDrive")
  (c-name "g_drive_can_stop")
  (return-type "gboolean")
+  (since "2.22.0")
 )
 
 (define-method eject_with_operation
@@ -286,10 +389,11 @@
  (parameters
  '("GMountUnmountFlags" "flags")
  '("GMountOperation*" "mount_operation")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
  '("gpointer" "user_data")
  )
+  (since "2.22.0")
 )
 
 (define-method eject_with_operation_finish
@@ -300,12 +404,14 @@
  '("GAsyncResult*" "result")
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method get_start_stop_type
  (of-object "GDrive")
  (c-name "g_drive_get_start_stop_type")
  (return-type "GDriveStartStopType")
+  (since "2.22.0")
 )
 
 (define-method start
@@ -315,10 +421,11 @@
  (parameters
  '("GDriveStartFlags" "flags")
  '("GMountOperation*" "mount_operation")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
  '("gpointer" "user_data")
  )
+  (since "2.22.0")
 )
 
 (define-method start_finish
@@ -329,6 +436,7 @@
  '("GAsyncResult*" "result")
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method stop
@@ -338,10 +446,11 @@
  (parameters
  '("GMountUnmountFlags" "flags")
  '("GMountOperation*" "mount_operation")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
  '("gpointer" "user_data")
  )
+  (since "2.22.0")
 )
 
 (define-method stop_finish
@@ -352,6 +461,7 @@
  '("GAsyncResult*" "result")
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method create_readwrite
@@ -360,9 +470,10 @@
  (return-type "GFileIOStream*")
  (parameters
  '("GFileCreateFlags" "flags")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method create_readwrite_async
@@ -372,10 +483,11 @@
  (parameters
  '("GFileCreateFlags" "flags")
  '("int" "io_priority")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
  '("gpointer" "user_data")
  )
+  (since "2.22.0")
 )
 
 (define-method create_readwrite_finish
@@ -386,6 +498,7 @@
  '("GAsyncResult*" "res")
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method eject_mountable_with_operation
@@ -395,10 +508,11 @@
  (parameters
  '("GMountUnmountFlags" "flags")
  '("GMountOperation*" "mount_operation")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
  '("gpointer" "user_data")
  )
+  (since "2.22.0")
 )
 
 (define-method eject_mountable_with_operation_finish
@@ -409,6 +523,7 @@
  '("GAsyncResult*" "result")
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method open_readwrite
@@ -416,9 +531,10 @@
  (c-name "g_file_open_readwrite")
  (return-type "GFileIOStream*")
  (parameters
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method open_readwrite_async
@@ -427,10 +543,11 @@
  (return-type "none")
  (parameters
  '("int" "io_priority")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
  '("gpointer" "user_data")
  )
+  (since "2.22.0")
 )
 
 (define-method open_readwrite_finish
@@ -441,6 +558,7 @@
  '("GAsyncResult*" "res")
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method poll_mountable
@@ -448,10 +566,11 @@
  (c-name "g_file_poll_mountable")
  (return-type "none")
  (parameters
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
  '("gpointer" "user_data")
  )
+  (since "2.22.0")
 )
 
 (define-method poll_mountable_finish
@@ -462,6 +581,7 @@
  '("GAsyncResult*" "result")
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method replace_readwrite
@@ -472,9 +592,10 @@
  '("const-char*" "etag")
  '("gboolean" "make_backup")
  '("GFileCreateFlags" "flags")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method replace_readwrite_async
@@ -486,10 +607,11 @@
  '("gboolean" "make_backup")
  '("GFileCreateFlags" "flags")
  '("int" "io_priority")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
  '("gpointer" "user_data")
  )
+  (since "2.22.0")
 )
 
 (define-method replace_readwrite_finish
@@ -500,6 +622,7 @@
  '("GAsyncResult*" "res")
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method start_mountable
@@ -509,10 +632,11 @@
  (parameters
  '("GDriveStartFlags" "flags")
  '("GMountOperation*" "start_operation")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
  '("gpointer" "user_data")
  )
+  (since "2.22.0")
 )
 
 (define-method start_mountable_finish
@@ -523,6 +647,7 @@
  '("GAsyncResult*" "result")
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method stop_mountable
@@ -532,10 +657,11 @@
  (parameters
  '("GMountUnmountFlags" "flags")
  '("GMountOperation*" "mount_operation")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
  '("gpointer" "user_data")
  )
+  (since "2.22.0")
 )
 
 (define-method stop_mountable_finish
@@ -546,12 +672,14 @@
  '("GAsyncResult*" "result")
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method supports_thread_contexts
  (of-object "GFile")
  (c-name "g_file_supports_thread_contexts")
  (return-type "gboolean")
+  (since "2.22.0")
 )
 
 (define-method unmount_mountable_with_operation
@@ -561,10 +689,11 @@
  (parameters
  '("GMountUnmountFlags" "flags")
  '("GMountOperation*" "mount_operation")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
  '("gpointer" "user_data")
  )
+  (since "2.22.0")
 )
 
 (define-method unmount_mountable_with_operation_finish
@@ -575,6 +704,7 @@
  '("GAsyncResult*" "result")
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method has_namespace
@@ -584,6 +714,7 @@
  (parameters
  '("const-char*" "name_space")
  )
+  (since "2.22.0")
 )
 
 
@@ -595,6 +726,7 @@
  '("const-char*" "attribute")
  '("GFileAttributeStatus" "status")
  )
+  (since "2.22.0")
 )
 
 (define-method get_attribute_stringv
@@ -604,13 +736,16 @@
  (parameters
  '("const-char*" "attribute")
  )
+  (since "2.22.0")
 )
 
 
 
 (define-function g_file_io_stream_get_type
+  (in-module "gio")
  (c-name "g_file_io_stream_get_type")
  (return-type "GType")
+  (since "2.22.0")
 )
 
 (define-method query_info
@@ -619,9 +754,10 @@
  (return-type "GFileInfo*")
  (parameters
  '("const-char*" "attributes")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method query_info_async
@@ -631,10 +767,11 @@
  (parameters
  '("const-char*" "attributes")
  '("int" "io_priority")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
  '("gpointer" "user_data")
  )
+  (since "2.22.0")
 )
 
 (define-method query_info_finish
@@ -645,57 +782,70 @@
  '("GAsyncResult*" "result")
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method get_etag
  (of-object "GFileIOStream")
  (c-name "g_file_io_stream_get_etag")
  (return-type "char*")
+  (since "2.22.0")
 )
 
 
 (define-function g_inet_address_get_type
+  (in-module "gio")
  (c-name "g_inet_address_get_type")
  (return-type "GType")
+  (since "2.22.0")
 )
 
 (define-function g_inet_address_new_from_string
+  (in-module "gio")
  (c-name "g_inet_address_new_from_string")
  (return-type "GInetAddress*")
  (parameters
  '("const-gchar*" "string")
  )
+  (since "2.22.0")
 )
 
 (define-function g_inet_address_new_from_bytes
+  (in-module "gio")
  (c-name "g_inet_address_new_from_bytes")
  (return-type "GInetAddress*")
  (parameters
  '("const-guint8*" "bytes")
  '("GSocketFamily" "family")
  )
+  (since "2.22.0")
 )
 
 (define-function g_inet_address_new_loopback
+  (in-module "gio")
  (c-name "g_inet_address_new_loopback")
  (return-type "GInetAddress*")
  (parameters
  '("GSocketFamily" "family")
  )
+  (since "2.22.0")
 )
 
 (define-function g_inet_address_new_any
+  (in-module "gio")
  (c-name "g_inet_address_new_any")
  (return-type "GInetAddress*")
  (parameters
  '("GSocketFamily" "family")
  )
+  (since "2.22.0")
 )
 
 (define-method to_string
  (of-object "GInetAddress")
  (c-name "g_inet_address_to_string")
  (return-type "gchar*")
+  (since "2.22.0")
 )
 
 
@@ -711,80 +861,94 @@
  (of-object "GInetAddress")
  (c-name "g_inet_address_get_native_size")
  (return-type "gsize")
+ (since "2.22.0")
 )
 
 (define-method get_family
  (of-object "GInetAddress")
  (c-name "g_inet_address_get_family")
  (return-type "GSocketFamily")
+  (since "2.22.0")
 )
 
 (define-method get_is_any
  (of-object "GInetAddress")
  (c-name "g_inet_address_get_is_any")
  (return-type "gboolean")
+  (since "2.22.0")
 )
 
 (define-method get_is_loopback
  (of-object "GInetAddress")
  (c-name "g_inet_address_get_is_loopback")
  (return-type "gboolean")
+  (since "2.22.0")
 )
 
 (define-method get_is_link_local
  (of-object "GInetAddress")
  (c-name "g_inet_address_get_is_link_local")
  (return-type "gboolean")
+  (since "2.22.0")
 )
 
 (define-method get_is_site_local
  (of-object "GInetAddress")
  (c-name "g_inet_address_get_is_site_local")
  (return-type "gboolean")
+  (since "2.22.0")
 )
 
 (define-method get_is_multicast
  (of-object "GInetAddress")
  (c-name "g_inet_address_get_is_multicast")
  (return-type "gboolean")
+  (since "2.22.0")
 )
 
 (define-method get_is_mc_global
  (of-object "GInetAddress")
  (c-name "g_inet_address_get_is_mc_global")
  (return-type "gboolean")
+  (since "2.22.0")
 )
 
 (define-method get_is_mc_link_local
  (of-object "GInetAddress")
  (c-name "g_inet_address_get_is_mc_link_local")
  (return-type "gboolean")
+  (since "2.22.0")
 )
 
 (define-method get_is_mc_node_local
  (of-object "GInetAddress")
  (c-name "g_inet_address_get_is_mc_node_local")
  (return-type "gboolean")
+  (since "2.22.0")
 )
 
 (define-method get_is_mc_org_local
  (of-object "GInetAddress")
  (c-name "g_inet_address_get_is_mc_org_local")
  (return-type "gboolean")
+  (since "2.22.0")
 )
 
 (define-method get_is_mc_site_local
  (of-object "GInetAddress")
  (c-name "g_inet_address_get_is_mc_site_local")
  (return-type "gboolean")
+  (since "2.22.0")
 )
 
 
 
 
 (define-function g_initable_get_type
+  (in-module "gio")
  (c-name "g_initable_get_type")
  (return-type "GType")
+  (since "2.22.0")
 )
 
 (define-method init
@@ -792,62 +956,74 @@
  (c-name "g_initable_init")
  (return-type "gboolean")
  (parameters
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
+; MANUAL: varargs
 (define-function g_initable_new
+  (in-module "gio")
  (c-name "g_initable_new")
  (return-type "gpointer")
  (parameters
  '("GType" "object_type")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GError**" "error" (out))
  '("const-gchar*" "first_property_name")
  )
  (varargs #t)
+  (since "2.22.0")
 )
 
 (define-function g_initable_newv
+  (in-module "gio")
  (c-name "g_initable_newv")
  (return-type "gpointer")
  (parameters
  '("GType" "object_type")
  '("guint" "n_parameters")
  '("GParameter[]" "parameters")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-function g_initable_new_valist
+  (in-module "gio")
  (c-name "g_initable_new_valist")
  (return-type "GObject*")
  (parameters
  '("GType" "object_type")
  '("const-gchar*" "first_property_name")
  '("va_list" "var_args")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-function g_io_stream_get_type
+  (in-module "gio")
  (c-name "g_io_stream_get_type")
  (return-type "GType")
+  (since "2.22.0")
 )
 
 (define-method get_input_stream
  (of-object "GIOStream")
  (c-name "g_io_stream_get_input_stream")
  (return-type "GInputStream*")
+  (since "2.22.0")
 )
 
 (define-method get_output_stream
  (of-object "GIOStream")
  (c-name "g_io_stream_get_output_stream")
  (return-type "GOutputStream*")
+  (since "2.22.0")
 )
 
 (define-method close
@@ -855,9 +1031,10 @@
  (c-name "g_io_stream_close")
  (return-type "gboolean")
  (parameters
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method close_async
@@ -866,10 +1043,11 @@
  (return-type "none")
  (parameters
  '("int" "io_priority")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
  '("gpointer" "user_data")
  )
+  (since "2.22.0")
 )
 
 (define-method close_finish
@@ -880,18 +1058,21 @@
  '("GAsyncResult*" "result")
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method is_closed
  (of-object "GIOStream")
  (c-name "g_io_stream_is_closed")
  (return-type "gboolean")
+  (since "2.22.0")
 )
 
 (define-method has_pending
  (of-object "GIOStream")
  (c-name "g_io_stream_has_pending")
  (return-type "gboolean")
+  (since "2.22.0")
 )
 
 (define-method set_pending
@@ -901,12 +1082,14 @@
  (parameters
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method clear_pending
  (of-object "GIOStream")
  (c-name "g_io_stream_clear_pending")
  (return-type "none")
+  (since "2.22.0")
 )
 
 (define-method unmount_with_operation
@@ -916,10 +1099,11 @@
  (parameters
  '("GMountUnmountFlags" "flags")
  '("GMountOperation*" "mount_operation")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
  '("gpointer" "user_data")
  )
+  (since "2.22.0")
 )
 
 (define-method unmount_with_operation_finish
@@ -930,6 +1114,7 @@
  '("GAsyncResult*" "result")
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method eject_with_operation
@@ -939,10 +1124,11 @@
  (parameters
  '("GMountUnmountFlags" "flags")
  '("GMountOperation*" "mount_operation")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
  '("gpointer" "user_data")
  )
+  (since "2.22.0")
 )
 
 (define-method eject_with_operation_finish
@@ -953,17 +1139,21 @@
  '("GAsyncResult*" "result")
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 
 ;; From gnetworkaddress.h
 
 (define-function g_network_address_get_type
+  (in-module "gio")
  (c-name "g_network_address_get_type")
  (return-type "GType")
+  (since "2.22.0")
 )
 
 (define-function g_network_address_new
+  (in-module "gio")
  (c-name "g_network_address_new")
  (is-constructor-of "GNetworkAddress")
  (return-type "GSocketConnectable*")
@@ -971,9 +1161,11 @@
  '("const-gchar*" "hostname")
  '("guint16" "port")
  )
+  (since "2.22.0")
 )
 
 (define-function g_network_address_parse
+  (in-module "gio")
  (c-name "g_network_address_parse")
  (return-type "GSocketConnectable*")
  (parameters
@@ -981,18 +1173,21 @@
  '("guint16" "default_port")
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method get_hostname
  (of-object "GNetworkAddress")
  (c-name "g_network_address_get_hostname")
  (return-type "const-gchar*")
+  (since "2.22.0")
 )
 
 (define-method get_port
  (of-object "GNetworkAddress")
  (c-name "g_network_address_get_port")
  (return-type "guint16")
+  (since "2.22.0")
 )
 
 
@@ -1000,11 +1195,14 @@
 ;; From gnetworkservice.h
 
 (define-function g_network_service_get_type
+  (in-module "gio")
  (c-name "g_network_service_get_type")
  (return-type "GType")
+  (since "2.22.0")
 )
 
 (define-function g_network_service_new
+  (in-module "gio")
  (c-name "g_network_service_new")
  (is-constructor-of "GNetworkService")
  (return-type "GSocketConnectable*")
@@ -1013,24 +1211,28 @@
  '("const-gchar*" "protocol")
  '("const-gchar*" "domain")
  )
+  (since "2.22.0")
 )
 
 (define-method get_service
  (of-object "GNetworkService")
  (c-name "g_network_service_get_service")
  (return-type "const-gchar*")
+  (since "2.22.0")
 )
 
 (define-method get_protocol
  (of-object "GNetworkService")
  (c-name "g_network_service_get_protocol")
  (return-type "const-gchar*")
+  (since "2.22.0")
 )
 
 (define-method get_domain
  (of-object "GNetworkService")
  (c-name "g_network_service_get_domain")
  (return-type "const-gchar*")
+  (since "2.22.0")
 )
 
 
@@ -1039,19 +1241,24 @@
 ;; From gresolver.h
 
 (define-function g_resolver_get_type
+  (in-module "gio")
  (c-name "g_resolver_get_type")
  (return-type "GType")
+  (since "2.22.0")
 )
 
 (define-function g_resolver_get_default
+  (in-module "gio")
  (c-name "g_resolver_get_default")
  (return-type "GResolver*")
+  (since "2.22.0")
 )
 
 (define-method set_default
  (of-object "GResolver")
  (c-name "g_resolver_set_default")
  (return-type "none")
+  (since "2.22.0")
 )
 
 (define-method lookup_by_name
@@ -1061,9 +1268,10 @@
  (caller-owns-return #t)
  (parameters
  '("const-gchar*" "hostname")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method lookup_by_name_async
@@ -1072,10 +1280,11 @@
  (return-type "none")
  (parameters
  '("const-gchar*" "hostname")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
  '("gpointer" "user_data")
  )
+  (since "2.22.0")
 )
 
 (define-method lookup_by_name_finish
@@ -1087,14 +1296,17 @@
  '("GAsyncResult*" "result")
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-function g_resolver_free_addresses
+  (in-module "gio")
  (c-name "g_resolver_free_addresses")
  (return-type "none")
  (parameters
  '("GList*" "addresses")
  )
+  (since "2.22.0")
 )
 
 (define-method lookup_by_address
@@ -1103,9 +1315,10 @@
  (return-type "gchar*")
  (parameters
  '("GInetAddress*" "address")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method lookup_by_address_async
@@ -1114,10 +1327,11 @@
  (return-type "none")
  (parameters
  '("GInetAddress*" "address")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
  '("gpointer" "user_data")
  )
+  (since "2.22.0")
 )
 
 (define-method lookup_by_address_finish
@@ -1128,6 +1342,7 @@
  '("GAsyncResult*" "result")
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method lookup_service
@@ -1139,9 +1354,10 @@
  '("const-gchar*" "service")
  '("const-gchar*" "protocol")
  '("const-gchar*" "domain")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method lookup_service_async
@@ -1152,10 +1368,11 @@
  '("const-gchar*" "service")
  '("const-gchar*" "protocol")
  '("const-gchar*" "domain")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
  '("gpointer" "user_data")
  )
+  (since "2.22.0")
 )
 
 (define-method lookup_service_finish
@@ -1167,25 +1384,32 @@
  '("GAsyncResult*" "result")
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-function g_resolver_free_targets
+  (in-module "gio")
  (c-name "g_resolver_free_targets")
  (return-type "none")
  (parameters
  '("GList*" "targets")
  )
+  (since "2.22.0")
 )
 
 (define-function g_resolver_error_quark
+  (in-module "gio")
  (c-name "g_resolver_error_quark")
  (return-type "GQuark")
+  (since "2.22.0")
 )
 
 
 (define-function g_socket_address_enumerator_get_type
+  (in-module "gio")
  (c-name "g_socket_address_enumerator_get_type")
  (return-type "GType")
+  (since "2.22.0")
 )
 
 (define-method next
@@ -1193,9 +1417,10 @@
  (c-name "g_socket_address_enumerator_next")
  (return-type "GSocketAddress*")
  (parameters
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method next_async
@@ -1203,10 +1428,11 @@
  (c-name "g_socket_address_enumerator_next_async")
  (return-type "none")
  (parameters
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
  '("gpointer" "user_data")
  )
+  (since "2.22.0")
 )
 
 (define-method next_finish
@@ -1217,27 +1443,33 @@
  '("GAsyncResult*" "result")
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 
 (define-function g_socket_address_get_type
+  (in-module "gio")
  (c-name "g_socket_address_get_type")
  (return-type "GType")
+  (since "2.22.0")
 )
 
 (define-method get_family
  (of-object "GSocketAddress")
  (c-name "g_socket_address_get_family")
  (return-type "GSocketFamily")
+  (since "2.22.0")
 )
 
 (define-function g_socket_address_new_from_native
+  (in-module "gio")
  (c-name "g_socket_address_new_from_native")
  (return-type "GSocketAddress*")
  (parameters
  '("gpointer" "native")
  '("gsize" "len")
  )
+  (since "2.22.0")
 )
 
 (define-method to_native
@@ -1249,12 +1481,14 @@
  '("gsize" "destlen")
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method get_native_size
  (of-object "GSocketAddress")
  (c-name "g_socket_address_get_native_size")
  (return-type "gssize")
+  (since "2.22.0")
 )
 
 
@@ -1262,20 +1496,25 @@
 ;; From gsocketclient.h
 
 (define-function g_socket_client_get_type
+  (in-module "gio")
  (c-name "g_socket_client_get_type")
  (return-type "GType")
+  (since "2.22.0")
 )
 
 (define-function g_socket_client_new
+  (in-module "gio")
  (c-name "g_socket_client_new")
  (is-constructor-of "GSocketClient")
  (return-type "GSocketClient*")
+  (since "2.22.0")
 )
 
 (define-method get_family
  (of-object "GSocketClient")
  (c-name "g_socket_client_get_family")
  (return-type "GSocketFamily")
+  (since "2.22.0")
 )
 
 (define-method set_family
@@ -1285,12 +1524,14 @@
  (parameters
  '("GSocketFamily" "family")
  )
+  (since "2.22.0")
 )
 
 (define-method get_socket_type
  (of-object "GSocketClient")
  (c-name "g_socket_client_get_socket_type")
  (return-type "GSocketType")
+  (since "2.22.0")
 )
 
 (define-method set_socket_type
@@ -1300,12 +1541,14 @@
  (parameters
  '("GSocketType" "type")
  )
+  (since "2.22.0")
 )
 
 (define-method get_protocol
  (of-object "GSocketClient")
  (c-name "g_socket_client_get_protocol")
  (return-type "GSocketProtocol")
+  (since "2.22.0")
 )
 
 (define-method set_protocol
@@ -1315,12 +1558,14 @@
  (parameters
  '("GSocketProtocol" "protocol")
  )
+  (since "2.22.0")
 )
 
 (define-method get_local_address
  (of-object "GSocketClient")
  (c-name "g_socket_client_get_local_address")
  (return-type "GSocketAddress*")
+  (since "2.22.0")
 )
 
 (define-method set_local_address
@@ -1330,6 +1575,7 @@
  (parameters
  '("GSocketAddress*" "address")
  )
+  (since "2.22.0")
 )
 
 (define-method connect
@@ -1338,9 +1584,10 @@
  (return-type "GSocketConnection*")
  (parameters
  '("GSocketConnectable*" "connectable")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method connect_to_host
@@ -1350,9 +1597,10 @@
  (parameters
  '("const-gchar*" "host_and_port")
  '("guint16" "default_port")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method connect_to_service
@@ -1362,9 +1610,10 @@
  (parameters
  '("const-gchar*" "domain")
  '("const-gchar*" "service")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method connect_async
@@ -1373,10 +1622,11 @@
  (return-type "none")
  (parameters
  '("GSocketConnectable*" "connectable")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
  '("gpointer" "user_data")
  )
+  (since "2.22.0")
 )
 
 (define-method connect_finish
@@ -1387,6 +1637,7 @@
  '("GAsyncResult*" "result")
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method connect_to_host_async
@@ -1396,10 +1647,11 @@
  (parameters
  '("const-gchar*" "host_and_port")
  '("guint16" "default_port")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
  '("gpointer" "user_data")
  )
+  (since "2.22.0")
 )
 
 (define-method connect_to_host_finish
@@ -1410,6 +1662,7 @@
  '("GAsyncResult*" "result")
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method connect_to_service_async
@@ -1419,10 +1672,11 @@
  (parameters
  '("const-gchar*" "domain")
  '("const-gchar*" "service")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
  '("gpointer" "user_data")
  )
+  (since "2.22.0")
 )
 
 (define-method connect_to_service_finish
@@ -1433,6 +1687,7 @@
  '("GAsyncResult*" "result")
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 
@@ -1440,14 +1695,17 @@
 ;; From gsocketconnectable.h
 
 (define-function g_socket_connectable_get_type
+  (in-module "gio")
  (c-name "g_socket_connectable_get_type")
  (return-type "GType")
+  (since "2.22.0")
 )
 
 (define-method enumerate
  (of-object "GSocketConnectable")
  (c-name "g_socket_connectable_enumerate")
  (return-type "GSocketAddressEnumerator*")
+  (since "2.22.0")
 )
 
 
@@ -1455,14 +1713,17 @@
 ;; From gsocketconnection.h
 
 (define-function g_socket_connection_get_type
+  (in-module "gio")
  (c-name "g_socket_connection_get_type")
  (return-type "GType")
+  (since "2.22.0")
 )
 
 (define-method get_socket
  (of-object "GSocketConnection")
  (c-name "g_socket_connection_get_socket")
  (return-type "GSocket*")
+  (since "2.22.0")
 )
 
 (define-method get_local_address
@@ -1472,6 +1733,7 @@
  (parameters
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method get_remote_address
@@ -1481,9 +1743,11 @@
  (parameters
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-function g_socket_connection_factory_register_type
+  (in-module "gio")
  (c-name "g_socket_connection_factory_register_type")
  (return-type "none")
  (parameters
@@ -1492,9 +1756,11 @@
  '("GSocketType" "type")
  '("gint" "protocol")
  )
+  (since "2.22.0")
 )
 
 (define-function g_socket_connection_factory_lookup_type
+  (in-module "gio")
  (c-name "g_socket_connection_factory_lookup_type")
  (return-type "GType")
  (parameters
@@ -1502,12 +1768,14 @@
  '("GSocketType" "type")
  '("gint" "protocol_id")
  )
+  (since "2.22.0")
 )
 
 (define-method connection_factory_create_connection
  (of-object "GSocket")
  (c-name "g_socket_connection_factory_create_connection")
  (return-type "GSocketConnection*")
+  (since "2.22.0")
 )
 
 
@@ -1515,26 +1783,31 @@
 ;; From gsocketcontrolmessage.h
 
 (define-function g_socket_control_message_get_type
+  (in-module "gio")
  (c-name "g_socket_control_message_get_type")
  (return-type "GType")
+  (since "2.22.0")
 )
 
 (define-method get_size
  (of-object "GSocketControlMessage")
  (c-name "g_socket_control_message_get_size")
  (return-type "gsize")
+  (since "2.22.0")
 )
 
 (define-method get_level
  (of-object "GSocketControlMessage")
  (c-name "g_socket_control_message_get_level")
  (return-type "int")
+  (since "2.22.0")
 )
 
 (define-method get_msg_type
  (of-object "GSocketControlMessage")
  (c-name "g_socket_control_message_get_msg_type")
  (return-type "int")
+  (since "2.22.0")
 )
 
 (define-method serialize
@@ -1544,9 +1817,11 @@
  (parameters
  '("gpointer" "data")
  )
+  (since "2.22.0")
 )
 
 (define-function g_socket_control_message_deserialize
+  (in-module "gio")
  (c-name "g_socket_control_message_deserialize")
  (return-type "GSocketControlMessage*")
  (parameters
@@ -1555,6 +1830,7 @@
  '("gsize" "size")
  '("gpointer" "data")
  )
+  (since "2.22.0")
 )
 
 
@@ -1562,11 +1838,14 @@
 ;; From gsocket.h
 
 (define-function g_socket_get_type
+  (in-module "gio")
  (c-name "g_socket_get_type")
  (return-type "GType")
+  (since "2.22.0")
 )
 
 (define-function g_socket_new
+  (in-module "gio")
  (c-name "g_socket_new")
  (is-constructor-of "GSocket")
  (return-type "GSocket*")
@@ -1576,39 +1855,46 @@
  '("GSocketProtocol" "protocol")
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-function g_socket_new_from_fd
+  (in-module "gio")
  (c-name "g_socket_new_from_fd")
  (return-type "GSocket*")
  (parameters
  '("gint" "fd")
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method get_fd
  (of-object "GSocket")
  (c-name "g_socket_get_fd")
  (return-type "int")
+  (since "2.22.0")
 )
 
 (define-method get_family
  (of-object "GSocket")
  (c-name "g_socket_get_family")
  (return-type "GSocketFamily")
+  (since "2.22.0")
 )
 
 (define-method get_socket_type
  (of-object "GSocket")
  (c-name "g_socket_get_socket_type")
  (return-type "GSocketType")
+  (since "2.22.0")
 )
 
 (define-method get_protocol
  (of-object "GSocket")
  (c-name "g_socket_get_protocol")
  (return-type "GSocketProtocol")
+  (since "2.22.0")
 )
 
 (define-method get_local_address
@@ -1618,6 +1904,7 @@
  (parameters
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method get_remote_address
@@ -1627,6 +1914,7 @@
  (parameters
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method set_blocking
@@ -1636,12 +1924,14 @@
  (parameters
  '("gboolean" "blocking")
  )
+  (since "2.22.0")
 )
 
 (define-method get_blocking
  (of-object "GSocket")
  (c-name "g_socket_get_blocking")
  (return-type "gboolean")
+  (since "2.22.0")
 )
 
 (define-method set_keepalive
@@ -1651,18 +1941,21 @@
  (parameters
  '("gboolean" "keepalive")
  )
+  (since "2.22.0")
 )
 
 (define-method get_keepalive
  (of-object "GSocket")
  (c-name "g_socket_get_keepalive")
  (return-type "gboolean")
+  (since "2.22.0")
 )
 
 (define-method get_listen_backlog
  (of-object "GSocket")
  (c-name "g_socket_get_listen_backlog")
  (return-type "gint")
+  (since "2.22.0")
 )
 
 (define-method set_listen_backlog
@@ -1672,12 +1965,14 @@
  (parameters
  '("gint" "backlog")
  )
+  (since "2.22.0")
 )
 
 (define-method is_connected
  (of-object "GSocket")
  (c-name "g_socket_is_connected")
  (return-type "gboolean")
+  (since "2.22.0")
 )
 
 (define-method bind
@@ -1689,6 +1984,7 @@
  '("gboolean" "allow_reuse")
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method connect
@@ -1697,9 +1993,10 @@
  (return-type "gboolean")
  (parameters
  '("GSocketAddress*" "address")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method check_connect_result
@@ -1709,6 +2006,7 @@
  (parameters
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method condition_check
@@ -1718,6 +2016,7 @@
  (parameters
  '("GIOCondition" "condition")
  )
+  (since "2.22.0")
 )
 
 (define-method condition_wait
@@ -1726,9 +2025,10 @@
  (return-type "gboolean")
  (parameters
  '("GIOCondition" "condition")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method accept
@@ -1736,9 +2036,10 @@
  (c-name "g_socket_accept")
  (return-type "GSocket*")
  (parameters
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method listen
@@ -1748,6 +2049,7 @@
  (parameters
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 ;; MANUAL: allocate and return the buffer (raw vector) to R
@@ -1757,11 +2059,12 @@
  (c-name "g_socket_receive")
  (return-type "gssize")
  (parameters
- '("gchar*" "buffer")
+ '("guchar*" "buffer" (out))
  '("gsize" "size")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 ;; MANUAL: allocate and return the buffer (raw vector) to R
@@ -1771,12 +2074,13 @@
  (c-name "g_socket_receive_from")
  (return-type "gssize")
  (parameters
- '("GSocketAddress**" "address")
- '("gchar*" "buffer")
+ '("GSocketAddress**" "address" (out))
+ '("guchar*" "buffer" (out))
  '("gsize" "size")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method send
@@ -1786,9 +2090,10 @@
  (parameters
  '("const-gchar*" "buffer")
  '("gsize" "size")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method send_to
@@ -1799,28 +2104,32 @@
  '("GSocketAddress*" "address")
  '("const-gchar*" "buffer")
  '("gsize" "size")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
-; FIXME: this one and send_message might not be useful from R
+; MANUAL: need to allocate the 'vectors' (just one with specified size?)
 
 (define-method receive_message
  (of-object "GSocket")
  (c-name "g_socket_receive_message")
  (return-type "gssize")
  (parameters
- '("GSocketAddress*" "address" (out))
- '("GInputVector[]" "vectors")
+ '("GSocketAddress**" "address" (out))
+ '("GInputVector[]" "vectors" (out))
  '("gint" "num_vectors")
  '("GSocketControlMessage**[]" "messages" (out))
  '("gint*" "num_messages" (out))
- '("gint*" "flags" (out))
- '("GCancellable*" "cancellable")
+ '("gint*" "flags" (default "0")) ; in-out
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
+
+; MANUAL: need to allocate the 'vectors' (just one with specified size?)
 
 (define-method send_message
  (of-object "GSocket")
@@ -1830,12 +2139,13 @@
  '("GSocketAddress*" "address")
  '("GOutputVector[]" "vectors")
  '("gint" "num_vectors")
- '("GSocketControlMessage*[]" "messages")
+ '("GSocketControlMessage*[]" "messages" (null-ok) (default "NULL"))
  '("gint" "num_messages")
- '("gint" "flags")
- '("GCancellable*" "cancellable")
+ '("gint" "flags" (default "0")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method close
@@ -1845,6 +2155,7 @@
  (parameters
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method shutdown
@@ -1856,12 +2167,14 @@
  '("gboolean" "shutdown_write")
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method is_closed
  (of-object "GSocket")
  (c-name "g_socket_is_closed")
  (return-type "gboolean")
+  (since "2.22.0")
 )
 
 (define-method create_source
@@ -1870,14 +2183,16 @@
  (return-type "GSource*")
  (parameters
  '("GIOCondition" "condition")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  )
+  (since "2.22.0")
 )
 
 (define-method speaks_ipv4
  (of-object "GSocket")
  (c-name "g_socket_speaks_ipv4")
  (return-type "gboolean")
+  (since "2.22.0")
 )
 
 
@@ -1885,14 +2200,18 @@
 ;; From gsocketlistener.h
 
 (define-function g_socket_listener_get_type
+  (in-module "gio")
  (c-name "g_socket_listener_get_type")
  (return-type "GType")
+  (since "2.22.0")
 )
 
 (define-function g_socket_listener_new
+  (in-module "gio")
  (c-name "g_socket_listener_new")
  (is-constructor-of "GSocketListener")
  (return-type "GSocketListener*")
+  (since "2.22.0")
 )
 
 (define-method set_backlog
@@ -1902,6 +2221,7 @@
  (parameters
  '("int" "listen_backlog")
  )
+  (since "2.22.0")
 )
 
 (define-method add_socket
@@ -1913,6 +2233,7 @@
  '("GObject*" "source_object")
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method add_address
@@ -1927,6 +2248,7 @@
  '("GSocketAddress**" "effective_address")
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method add_inet_port
@@ -1938,6 +2260,7 @@
  '("GObject*" "source_object")
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method accept_socket
@@ -1946,9 +2269,10 @@
  (return-type "GSocket*")
  (parameters
  '("GObject**" "source_object")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method accept_socket_async
@@ -1956,10 +2280,11 @@
  (c-name "g_socket_listener_accept_socket_async")
  (return-type "none")
  (parameters
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
  '("gpointer" "user_data")
  )
+  (since "2.22.0")
 )
 
 (define-method accept_socket_finish
@@ -1971,6 +2296,7 @@
  '("GObject**" "source_object")
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method accept
@@ -1979,9 +2305,10 @@
  (return-type "GSocketConnection*")
  (parameters
  '("GObject**" "source_object")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method accept_async
@@ -1989,10 +2316,11 @@
  (c-name "g_socket_listener_accept_async")
  (return-type "none")
  (parameters
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
  '("gpointer" "user_data")
  )
+  (since "2.22.0")
 )
 
 (define-method accept_finish
@@ -2004,12 +2332,14 @@
  '("GObject**" "source_object")
  '("GError**" "error" (out))
  )
+  (since "2.22.0")
 )
 
 (define-method close
  (of-object "GSocketListener")
  (c-name "g_socket_listener_close")
  (return-type "none")
+  (since "2.22.0")
 )
 
 
@@ -2017,32 +2347,39 @@
 ;; From gsocketservice.h
 
 (define-function g_socket_service_get_type
+  (in-module "gio")
  (c-name "g_socket_service_get_type")
  (return-type "GType")
+  (since "2.22.0")
 )
 
 (define-function g_socket_service_new
+  (in-module "gio")
  (c-name "g_socket_service_new")
  (is-constructor-of "GSocketService")
  (return-type "GSocketService*")
+  (since "2.22.0")
 )
 
 (define-method start
  (of-object "GSocketService")
  (c-name "g_socket_service_start")
  (return-type "none")
+  (since "2.22.0")
 )
 
 (define-method stop
  (of-object "GSocketService")
  (c-name "g_socket_service_stop")
  (return-type "none")
+  (since "2.22.0")
 )
 
 (define-method is_active
  (of-object "GSocketService")
  (c-name "g_socket_service_is_active")
  (return-type "gboolean")
+  (since "2.22.0")
 )
 
 
@@ -2050,11 +2387,14 @@
 ;; From gsrvtarget.h
 
 (define-function g_srv_target_get_type
+  (in-module "gio")
  (c-name "g_srv_target_get_type")
  (return-type "GType")
+  (since "2.22.0")
 )
 
 (define-function g_srv_target_new
+  (in-module "gio")
  (c-name "g_srv_target_new")
  (is-constructor-of "GSrvTarget")
  (return-type "GSrvTarget*")
@@ -2064,51 +2404,60 @@
  '("guint16" "priority")
  '("guint16" "weight")
  )
+  (since "2.22.0")
 )
 
 (define-method copy
  (of-object "GSrvTarget")
  (c-name "g_srv_target_copy")
  (return-type "GSrvTarget*")
+  (since "2.22.0")
 )
 
 (define-method free
  (of-object "GSrvTarget")
  (c-name "g_srv_target_free")
  (return-type "none")
+  (since "2.22.0")
 )
 
 (define-method get_hostname
  (of-object "GSrvTarget")
  (c-name "g_srv_target_get_hostname")
  (return-type "const-gchar*")
+  (since "2.22.0")
 )
 
 (define-method get_port
  (of-object "GSrvTarget")
  (c-name "g_srv_target_get_port")
  (return-type "guint16")
+  (since "2.22.0")
 )
 
 (define-method get_priority
  (of-object "GSrvTarget")
  (c-name "g_srv_target_get_priority")
  (return-type "guint16")
+  (since "2.22.0")
 )
 
 (define-method get_weight
  (of-object "GSrvTarget")
  (c-name "g_srv_target_get_weight")
  (return-type "guint16")
+  (since "2.22.0")
 )
 
 (define-function g_srv_target_list_sort
+  (in-module "gio")
  (c-name "g_srv_target_list_sort")
  (caller-owns-return #t)
  (return-type "GList[GSrvTarget]")
  (parameters
  '("GList*" "targets")
  )
+  (since "2.22.0")
 )
 
 
@@ -2118,17 +2467,21 @@
 ;; From gthreadedsocketservice.h
 
 (define-function g_threaded_socket_service_get_type
+  (in-module "gio")
  (c-name "g_threaded_socket_service_get_type")
  (return-type "GType")
+  (since "2.22.0")
 )
 
 (define-function g_threaded_socket_service_new
+  (in-module "gio")
  (c-name "g_threaded_socket_service_new")
  (is-constructor-of "GThreadedSocketService")
  (return-type "GSocketService*")
  (parameters
  '("int" "max_threads")
  )
+  (since "2.22.0")
 )
 
 (define-method eject_with_operation
@@ -2138,18 +2491,20 @@
  (parameters
  '("GMountUnmountFlags" "flags")
  '("GMountOperation*" "mount_operation")
- '("GCancellable*" "cancellable")
+ '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
  '("gpointer" "user_data")
  )
+  (since "2.22.0")
 )
 
 (define-method eject_with_operation_finish
- (of-object "GVolume")
- (c-name "g_volume_eject_with_operation_finish")
- (return-type "gboolean")
- (parameters
- '("GAsyncResult*" "result")
- '("GError**" "error" (out))
- )
+  (of-object "GVolume")
+  (c-name "g_volume_eject_with_operation_finish")
+  (return-type "gboolean")
+  (parameters
+   '("GAsyncResult*" "result")
+   '("GError**" "error" (out))
+   )
+  (since "2.22.0")
 )

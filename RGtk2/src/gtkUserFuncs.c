@@ -1722,3 +1722,78 @@ S_GtkBuilderConnectFunc(GtkBuilder* s_builder, GObject* s_object, const gchar* s
 }
 #endif 
 
+#if GIO_CHECK_VERSION(2, 14, 0)
+
+gchar*
+S_GtkCalendarDetailFunc(GtkCalendar* s_calendar, guint s_year, guint s_month, guint s_day, gpointer s_user_data)
+{
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
+  gint err;
+
+  PROTECT(e = allocVector(LANGSXP, 5+((R_CallbackData *)s_user_data)->useData));
+  tmp = e;
+
+  SETCAR(tmp, ((R_CallbackData *)s_user_data)->function);
+  tmp = CDR(tmp);
+
+  SETCAR(tmp, toRPointerWithSink(s_calendar, "GtkCalendar"));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRNumeric(s_year));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRNumeric(s_month));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRNumeric(s_day));
+  tmp = CDR(tmp);
+  if(((R_CallbackData *)s_user_data)->useData)
+  {
+    SETCAR(tmp, ((R_CallbackData *)s_user_data)->data);
+    tmp = CDR(tmp);
+  }
+
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+
+  UNPROTECT(1);
+
+  if(err)
+    return(((gchar*)0));
+  return(((gchar*)g_strdup(asCString(s_ans))));
+}
+#endif 
+
+#if GTK_CHECK_VERSION(2, 14, 0)
+
+void
+S_GtkClipboardURIReceivedFunc(GtkCliboard* s_clipboard, gchar** s_uris, gpointer s_user_data)
+{
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
+  gint err;
+
+  PROTECT(e = allocVector(LANGSXP, 3+((R_CallbackData *)s_user_data)->useData));
+  tmp = e;
+
+  SETCAR(tmp, ((R_CallbackData *)s_user_data)->function);
+  tmp = CDR(tmp);
+
+  SETCAR(tmp, toRPointer(s_clipboard, "GtkCliboard"));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRStringArray(s_uris));
+  tmp = CDR(tmp);
+  if(((R_CallbackData *)s_user_data)->useData)
+  {
+    SETCAR(tmp, ((R_CallbackData *)s_user_data)->data);
+    tmp = CDR(tmp);
+  }
+
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+
+  UNPROTECT(1);
+
+  if(err)
+    return;
+}
+#endif 
+

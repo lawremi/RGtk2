@@ -10,12 +10,11 @@ activate.radio.action <- function(action, current)
     typename <- class(action)[1]
     value <- current$getCurrentValue()
     if (current$getActive()) {
-        dialog <- gtkMessageDialogNew(window, "destroy-with-parent", "info", "close",
-                       "You activated radio action:", name, "of type ", typename,
-                       "\nCurrent value: ", value)
-        gSignalConnect(dialog, "response", gtkWidgetDestroy)
+       text <- sprintf("You activated radio action: \"%s\" of type \"%s\".\nCurrent value: %d", name, typename, value)
+       messagelabel$setText(text)
+       infobar$setMessageType(value)
+       infobar$show()
     }
-
 }
 
 activate.action <- function(action, w)
@@ -46,7 +45,7 @@ about.cb <- function(action, window)
     gtkAboutDialogSetEmailHook(activate.email)
     gtkAboutDialogSetUrlHook(activate.url)
 
-    gtkShowAboutDialog(window, name="RGtk Example", version="2.0",
+    gtkShowAboutDialog(window, program_name="RGtk Example", version="2.0",
                        copyright="(C) M. Lawrence and D. Temple Lang",
                        license="GPL",
                        website="http://www.omegahat.org/RGtk",
@@ -153,7 +152,7 @@ window$setDefaultSize(200, 200)
 window$setTitle("RGtk is in business")
 
 # add a table layout
-table <- gtkTableNew(1, 4, FALSE)
+table <- gtkTableNew(1, 5, FALSE)
 window$add(table)
 
 agroup <- gtkActionGroupNew("AppWindowActions")
@@ -212,17 +211,19 @@ uistr <- paste(
 manager$addUiFromString(uistr)
 menubar <- manager$getWidget("/MenuBar")
 menubar$show() # location, layout behavior, padding
-table$attach(menubar, 0, 1, 0, 1, c("expand", "fill"), 0, 0, 0)
+table$attach(menubar, 0, 1, 0, 1, yoptions = 0)
 
 bar <- manager$getWidget("/ToolBar")
-bar$setTooltips(TRUE)
 bar$show()
-table$attach(bar, 0, 1, 1, 2, c("expand", "fill"), 0, 0, 0)
+table$attach(bar, 0, 1, 1, 2, yoptions = 0)
 
-scrolled.window <- gtkScrolledWindowNew()
-scrolled.window$setPolicy("automatic", "automatic")
-scrolled.window$setShadowType("in") # add scrolled window below toolbar and fill the remaining space
-table$attach(scrolled.window, 0, 1, 2, 3, c("expand", "fill"), c("expand", "fill"), 0, 0)
+infobar <- gtkInfoBar()
+infobar$setNoShowAll(TRUE)
+messagelabel <- gtkLabel("")
+infobar$getContentArea()$packStart(messagelabel)
+infobar$addButton("gtk-ok", GtkResponseType["ok"])
+gSignalConnect(infobar, "response", gtkWidgetHide)
+table$attach(infobar, 0, 1, 2, 3, yoptions = 0)
 
 # now let the user put some text in the scrolling window
 
@@ -233,7 +234,7 @@ scrolled.window$add(contents)
 # how about a cool status bar?
 
 statusbar <- gtkStatusbarNew() # squeeze it in at the bottom
-table$attach(statusbar, 0, 1, 3, 4, c("expand", "fill"), 0, 0, 0)
+table$attach(statusbar, 0, 1, 3, 4, yoptions = 0)
 
 buffer <- contents$getBuffer() # statusbar listens to buffer
 gSignalConnect(buffer, "changed", update.statusbar, statusbar)

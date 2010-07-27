@@ -1735,6 +1735,56 @@ void transformDoubleString(const GValue *src, GValue *dst) {
   int w, d, e;
   double n = g_value_get_double(src);
   formatReal(&n, 1, &w, &d, &e, 0);
+  // could get OutDec, but what about speed?
+  // Outdec = CHAR(asChar(GetOption(install("OutDec"), R_BaseEnv)))[0];
   const char *formatStr = EncodeReal(n, w, d, e, '.');
   g_value_set_string(dst, formatStr);
+}
+
+/* GLib enum runtime type info support (needed by GIO) */
+
+GType
+g_seek_type_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GFlagsValue values[] = {
+        { G_SEEK_CUR, "G_SEEK_CUR", "cur" },
+        { G_SEEK_SET, "G_SEEK_SET", "set" },
+        { G_SEEK_END, "G_SEEK_END", "end" },
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_flags_register_static (g_intern_static_string ("GSeekType"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
+}
+
+
+GType
+g_io_condition_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GFlagsValue values[] = {
+        { G_IO_IN, "G_IO_IN", "in" },
+        { G_IO_OUT, "G_IO_OUT", "out" },
+        { G_IO_PRI, "G_IO_PRI", "pri" },
+        { G_IO_ERR, "G_IO_ERR", "err" },
+        { G_IO_HUP, "G_IO_HUP", "hup" },
+        { G_IO_NVAL, "G_IO_NVAL", "nval" }, 
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_flags_register_static (g_intern_static_string ("GIOCondition"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
 }
