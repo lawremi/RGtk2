@@ -1,40 +1,39 @@
-To illustrate popup menus, we show how define a one and connect it to
-a third-mouse click. We start with a \code{gtkMenu} instance, to which we add some items.
+To illustrate popup menus, we show how construct one and display it in
+response to a mouse click. We start with a \code{gtkMenu} instance, to
+which we add some items.
 <<"menubar-ex">>=
 popup <- gtkMenu()                       # top level
-
-for(i in c("cut","copy","----","paste")) {
-  if(i == "----")
-    popup$append(gtkSeparatorMenuItem())
-  else
-    popup$append(gtkMenuItem(i))
-}
+popup$append(gtkMenuItem("cut"))
+popup$append(gtkMenuItem("copy"))
+popup$append(gtkSeparatorMenuItem())
+popup$append(gtkMenuItem("paste"))
 @ 
 
-This menu will be shown by \code{gtkMenuPopup}. This function is
-called with the menu, some optional arguments for placement, and
-values for the button that was clicked and the time of
-activation. These values can be retrieved from the second argument of
-the callback (a \code{GdkEvent}), as shown.
-<<>>=
+Let us assume that we have a button that will popup a menu when
+clicked with the third (right) mouse button:
+<<rgtk2-menus-popup-button>>=
 b <- gtkButton("Click me with right mouse button")
 w <- gtkWindow(); w$setTitle("Popup menu example")
 w$add(b)
+@
 
-ID <- gSignalConnect(b,"button-press-event",
-             f = function(w, e, userData) {
-               if(e$getButton() == 3 ||
-                  (e$getButton() == 1 && # a mac
-                   e$getState() == GdkModifierType['control-mask'])
-                  ) {
-                 gtkMenuPopup(userData$mb,
-                              button = e$getButton(),
-                              activate.time = e$getTime())
-                 }
-               return(FALSE)
-             },
-             data=list(mb=popup)
-             )
+This menu will be shown by calling \code{gtkMenuPopup} in response to
+the \code{button-press-event} signal on the button. The
+\function{gtkMenuPopup} function is called with the menu, some
+optional arguments for placement, and some values describing the
+event: the mouse button and time. The event values can be retrieved from
+the second argument of the callback (a \code{GdkEvent}).
+<<>>=
+gSignalConnect(b,"button-press-event",
+               f = function(w, e, menu) {
+                 if(e$getButton() == 3 ||
+                    (e$getButton() == 1 && # a mac
+                     e$getState() == GdkModifierType['control-mask'])) 
+                   gtkMenuPopup(menu, 
+                                button = e$getButton(),
+                                activate.time = e$getTime())
+                 return(FALSE)
+               }, data=popup)
 @ 
 
 The above will popup a menu, but until we bind to the \code{activate}

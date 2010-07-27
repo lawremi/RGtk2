@@ -1,0 +1,58 @@
+Space in a toolbar is limited, and sometimes there are several actions
+that differ only by a single parameter. A good example is the color
+tool button found in many word processors. Including a button for
+every color in the palette would consume an excessive amount of
+space. A common idiom is to embed a drop-down menu next to the button,
+much like a combo box, for specifying the color, or, in general, any
+discrete parameter.
+
+We demonstrate how one might construct a color-selecting tool
+button. Our menu will list the colors in the \R\/ palette. The
+associated button is a \class{GtkColorButton}. When the user
+clicks on the button, a more complex color selection dialog will
+appear, allowing total customization.
+<<rgtk2-mennus-toolbar-color-button>>=
+gdkColor <- gdkColorParse(palette()[1]$color)
+colorButton <- gtkColorButton(gdkColor)
+@
+% 
+\function{gtkColorButton} requires the initial color to be specified
+as a \class{GdkColor}, which we parse from the \R\/ color name.
+
+The next step is to build the menu. Each menu item will display a
+$20x20$ rectangle, filled with the color, next to the color name:
+<<rgtk2-menus-toolbar-color-menu>>=
+colorMenuItem <- function(color) {
+  da <- gtkDrawingArea()
+  da$setSizeRequest(20, 20)
+  da$modifyBg("normal", color)
+  item <- gtkImageMenuItem(color)
+  item$setImage(da)
+  item
+}
+colorItems <- sapply(palette(), colorMenuItem)
+colorMenu <- gtkMenu()
+for (item in colorItems)
+  menu$append(item)
+@
+%
+An important realization is that the image in a
+\class{GtkImageMenuItem} may be any widget that presumably draws an
+icon; it need not be an actual \class{GtkImage}. In this case, we use
+a drawing area with its background set to the color.  When an item is
+selected, its color will be set on the color button:
+<<rgtk2-menus-toolbar-color-cb, print=FALSE>>=
+colorMenuItemActivated <- function(item) {
+  color <- gdkColorParse(item$getLabel())$color
+  colorButton$setColor(color)
+}
+sapply(colorItems, gSignalConnect, "activate", colorMenuItemActivated)
+@ 
+
+Finally, we place the color button and menu together in the menu tool
+button:
+<<rgtk2-menus-toolbar-menu>>=
+menuButton <- gtkMenuToolButton(colorButton, "Color")
+menuButton$setMenu(colorMenu)
+toolbar$add(menuButton)
+@ 

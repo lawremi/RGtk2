@@ -687,6 +687,17 @@ property assigned to \code{GtkReliefStyle['none']}.
 % @ 
 % \end{example}
 
+\subsection{Statusbars}
+\label{sec:RGtk2:statusbars}
+
+In \GTK, a statusbar is constructed through the
+\constructor{gtkStatusbar} function. Statusbars must be placed at the
+bottom of a top-level window by the programmer. In \GTK, a statusbar
+keeps various stacks of messages for display. One adds a message to
+display for given stack through the \method{Push}{gtkStatusbar} method
+by specifying first an integer value for \code{context.id} and a
+message. To pop the top message on a stack and display the next, the
+method \method{Pop}{gtkStatusbar} method is available.
 
 \subsection{Images}
 \label{sec:RGtk2:images}

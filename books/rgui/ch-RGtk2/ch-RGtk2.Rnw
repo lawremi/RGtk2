@@ -47,6 +47,9 @@ args <- function(name) {
 \SweaveInput{BasicComponents}
 
 
+%% FIXME: could rename to Widgets for Viewing Data
+%% Then could add cairoDevice, introduction to GDK/Cairo
+%% Visualization is pretty important
 \chapter{RGtk2: Widgets Using Models}
 \label{sec:RGtk2:widgets-with-models}
 \SweaveInput{WidgetsWithModels}
@@ -104,10 +107,55 @@ args <- function(name) {
 % pygtk cookbook: http://eccentric.cx/misc/pygtk/wiki/doku.php?id=pygtk
 % pygtk faq: http://faq.pygtk.org/index.py?req=index
 
+
+%% Need a comparison of RGtk2 and qtbase, somewhere (appendix? qt chapter?)
+
+%% High-level comparison of frameworks:
+
+%% Feature     Qt            GTK+           R
+%% ------------------------------------------------------------------------
+%% DBus        QtDBus        GDBus (GIO)    None (RCorba is Windows Equivalent)
+%% XML UI      QtUiTools     GtkBuilder     RGG (Java)  
+%% GUI         QtGui         GTK+           tcltk
+%% Help        QtHelp        Yelp (Gnome)   R help system (primitive)   
+%% Multimedia  QtMultimedia  GStreamer      None
+%% IO/Network  QtNetwork     GIO            R connections (synchronous only)
+%% OpenGL      QtOpenGL      GlExt/Cairo    rgl
+%% Javascript  QtScript      None           None
+%% SQL         QtSql         libgda         DBI (good enough)
+%% SVG         QtSvg         cairo/librsvg  cairoDevice, svgImport, etc
+%% Web browser QtWebkit      GtkWebkit      None     
+%% XML         QtXml         libxml         XML (binds libxml)
+%% Settings    QtNetwork     GIO            Nothing really
+
+%% Notes:
+%% - Next version of RGtk2 will bind GIO.
+%% - DBus is likely useless, except on Linux
+%% - Next version of RGtk2 should support GtkBuilder
+%% - Deepayan's qtutils package integrates R docs with QtHelp
+%% - Multimedia could be useful for generating videos, etc (out of scope)
+%% - R connections are very primitive (no asynchronous I/O)
+%% - Qt provides 2D API for OpenGL
+%% - Javascript support likely useless
+%% - DBI package covers database access needs
+%% - SVG not designed for interactivity, <canvas> better
+%% - GtkWebkit should be bound in separate package (worth it?)
+%% - XML package has XML handling covered
+%% - The graphics support in QtGui is a major advantage over
+%%   Cairo-based GTK+. The QPainter API is better designed for stat
+%%   graphics and has faster backend implementations. QGraphicsView is
+%%   a mature canvas, something GTK+ lacks.
+
+%% Summary: 
+%% - Useful features in qtbase, but not RGtk2: WebKit, Multimedia
+%%   - GtkWebkit, GStreamer could be bound, but not worth it, given qtbase
+%%   - QtWebkit offers Javascript <-> Qt bridge via QtScript
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 <<echo=FALSE>>=
 options(prompt="> ")
 options(continue="+ ")
 options(width=80)
 @ 
+
 

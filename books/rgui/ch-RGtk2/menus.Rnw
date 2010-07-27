@@ -1,170 +1,287 @@
 % Menus in RGtk2
 
-% MOVEME: GtkAction is essentially a data model, with menubar and
-% toolbar as views. All of this could be moved to widgets with models chapter.
-
 <<echo=FALSE>>=
 require(RGtk2)
 @ 
 
+In the traditional WIMP-style GUI, the user executes commands by
+selecting items from a menu. In GUI terminology, such a command is
+known as an \textit{action}. A GUI may provide more than one control
+for executing a particular action. Menubars and toolbars are the two
+most common widgets for performing application-wide actions. In this
+chapter, we will introduce actions, menus and toolbars and conclude by
+explaining the mechanisms in \GTK\/ for conveniently defining and
+managing actions and associated widgets in a large application.
+
 \section{Actions}
 \label{sec:RGtk2:actions}
 
-Actions are a means to create reusable representations for some action
-to be initiated. Actions can be shared among buttons, menubars and
-toolbars. The \constructor{gtkAction} constructor creates actions,
-taking arguments \argument{name}{gtkAction},
-\argument{label}{gtkAction} (what gets shown),
-\argument{tooltip}{gtkAction}, and \argument{stock.id}{gtkAction}.
-The act associated with an action is specified by adding a callback to
-its \signal{activate} signal.
 
-Actions can have their \code{sensitivity} property adjusted through
-their \method{SetSensitive}{gtkAction} method. This will propogate to
-all the widgets the action has a proxy connection with.
-
-Actions are connected to widgets, through the method
-\method{connectProxy}{gtkAction}. For buttons, the stock id
-information must be added to the button through the button's
-\code{setImage} method. The action's \method{createIcon}{gtkAction}
-method, with argument coming from a value of \code{GtkIconSize}, will
-return the needed image.
-
-
-\begin{example}{An action object}{ex:RGtk2-action-object}
-A basic action can be defined as follows:
-<<DefineAction>>=
+\GTK\/ represents actions with the \class{GtkAction} class. A
+\class{GtkAction} can be proxied by widgets like buttons in a
+\class{GtkMenubar} or \class{GtkToolbar}.  The \constructor{gtkAction}
+function is the constructor:
+<<rgtk2-menus-actions-constructor>>=
 a <- gtkAction(name="ok", label="_Ok", 
                tooltip="An OK button", stock.id="gtk-ok")
-ID <- gSignalConnect(a, "activate", f = function(w, data) {
-  print(a$GetName())                    # or some useful thing
+@ 
+%
+The constructor takes arguments \argument{name}{gtkAction} (to
+programmatically refer to the action), \argument{label}{gtkAction}
+(the displayed text), \argument{tooltip}{gtkAction}, and
+\argument{stock.id}{gtkAction} (identifying a stock icon).  The
+command associated with an action is implemented by a callback
+connected to the \signal{activate} signal:
+<<rgtk2-menus-actions-activate, print=FALSE>>=
+gSignalConnect(a, "activate", f = function(w, data) {
+  print(a$getName())                    # or some useful thing
 })
 @ 
-To connect the action to a button, is straightforward.
+
+
+An action plays the role of a data model describing a command, while
+widgets that implement the \class{GtkActivatable} interface are the
+views and controllers. All buttons, menu items and tool items
+implement \class{GtkActivatable} and thus may serve as action
+proxies. Actions are connected to widgets through the method
+\method{connectProxy}{gtkAction}:
 <<ConnectAction>>=
 b <- gtkButton()
 a$connectProxy(b)
+@
+%
+Certain aspects of a proxy widget are coordinated through the
+action. This includes sensitivity and visibility, corresponding to the
+\code{sensitive} and \code{visible} properties. To synchronize with
+aesthetic properties like the \code{label} and icon (e.g.,
+\code{stock-id}), the \code{use-action-appearance} property must be
+set on the activatable widget:
+<<rgtk2-menus-action-appearance>>=
+a["use-action-appearance"] <- TRUE
 @ 
 
-The image must be manually placed, which is facilitated by methods for
-the button and the action object.
-<<addImageFromStockId>>=
-b$setImage(a$createIcon('button')) # GtkIconSize value
+Often, the commands in an application have a natural grouping. It can
+be convenient to coordinate the sensitivity and visibility of entire
+groups of actions. \class{GtkActionGroup} represents a group of
+actions. By convention, keyboard accelerators are organized by group,
+and the accelerator for an action is usually specified upon insertion:
+<<rgtk2-menus-action-group>>=
+group <- gtkActionGroup()
+group$addActionWithAccel(a, "<control>O")
 @ 
+
+In addition to the properties already introduced, an action may have a
+shorter label for display in a toolbar (\code{short\_label}), and
+hints for when to display its label (\code{is\_important}) and image
+(\code{always\_show\_image}).
+
+There is a special type of action that has a toggled state:
+\class{GtkToggleAction}. The \code{active} property represents the
+toggle. A further extension is \class{GtkRadioAction}, where the
+toggled state is shared across a list of radio actions, via the
+\code{group} property. Proxy widgets represent toggle and radio
+actions with controls resembling check boxes and radio buttons,
+respectively. Here, we create a toggle action for fullscreen mode:
+<<rgtk2-menus-toggle-action>>=
+fullScreen <- gtkToggleAction("fullscreen", "Full screen", "Toggle full screen")
+gSignalConnect(fullScreen, "toggled", function(action) {
+  window$fullscreen()
+})
+@
+%
+We connect to the \code{toggled} signal to respond to a change in the
+action state.
 
 <<showGUI, echo=FALSE>>=
-w <- gtkWindow(show=FALSE)
-w['title'] <- "Action with button example"
-w$add(b)
-w$showAll()
+window <- gtkWindow(show=FALSE)
+window['title'] <- "Action with button example"
+window$add(b)
+window$showAll()
 @ 
-\end{example}
+
 \section{Menus}
 \label{sec:RGtk2:menus}
 
-A menu allows access to the GUI's actions in an organized way. This
-organization relies on a choice of top-level menu items, their
-possible submenus, and grouping within the same level of a
-menu. Menubars are typically nested. Toolbars allow access more
-quickly to common actions, but do not allow for nesting.
+A menu is a compact, hierarchically organized collection of buttons,
+each of which may proxy an action. Menus listing window-level actions
+are usually contained within a menu bar at the top of the window or
+screen. Menus with options specific to a particular GUI element may
+``popup'' when the user interacts with the element, such as by
+clicking the right mouse button. Menubars and popup menus may be
+constructed by appending each menu item and submenu separately, as
+illustrated below. For menus with more than a few items, we recommend
+the strategies described in Section~\ref{sec:RGtk2:UIManager}.
 
-Menubars and popup menus  may be constructed by appending each menuitem
-and submenu separately, as illustrated below. An alternative, using a
-UI manager, is described in a subsequent section,
+\subsection{Menubars}
 
-To specify a menubar step-by-step consists of defining a top-level
-menu bar (\command{gtkMenuBar}). To a menu bar we append menu
-items. Menu items may have sub menus (\constructor{gtkMenu}) appended, which gives
-the heirarchical nature of a menu. Popup menus are similar, although begin with a \constructor{gtkMenu} instance.  
+We will first demonstrate the menu bar, leaving the popup menu for
+later.  The first step towards populating a menu bar is to construct
+the menu bar itself:
+<<rgtk2-menus-menubar>>=
+menubar <- gtkMenuBar()
+@
 
-Menubars (along with the upcoming toolbars and statusbars) are placed
-within the GUI by the programmer, although convention dictates their
-position within a top-level window.
+A menu bar is a special type of container called a menu shell. An
+instance of \class{GtkMenuShell} contains one or more menu
+items. \class{GtkMenuItem} is an implementation of
+\class{GtkActivatable}, so each menu item can proxy an
+action. Usually, a menu bar consists multiple instances of the other
+type of menu shell: the menu, \class{GtkMenu}. Here, we create a menu
+object for our ``File'' menu:
+<<rgtk2-menus-menu>>=
+fileMenu <- gtkMenu()
+@
+%
+As a menu is not itself a menu item, we first must embed the menu
+into a menu item, which is labeled with the menu title:
+<<rgtk2-menus-menuitem>>=
+fileItem <- gtkMenuItemNewWithMnemonic(label="_File")
+fileItem$setSubmenu(fileMenu)
+@
+%
+The underscore in the label indicates the key associated with the
+mnemonic for use when navigating the menu with a keyboard.  Finally,
+we append the item containing the file menu to the menu bar:
+<<rgtk2-menus-append>>=
+menubar$append(fileItem)
+@ 
+%
+In addition to \method{append}{gtkMenuShell}, it is also possible to
+\method{prepend}{gtkMenuShell} and \method{insert}{gtkMenuShell} menu
+items into a menu shell. As with any container, one can
+\method{remove}{gtkContainer} a child menu item, although the
+convention is to desensitize an item, through the \code{sensitive}
+property, when it is not currently relevant.
 
+Next, we populate our file menu with menu items that perform some
+command. For example, we may desire an open item:
+<<rgtk2-menus-open>>=
+open <- gtkMenuItemNewWithMnemonic("_Open")
+@
+%
+This item does not have an associated \class{GtkAction}, so we need to
+implement its activate signal directly:
+<<rgtk2-menus-open-activate>>=
+gSignalConnect(open, "activate", function(item) {
+  f <- file.choose()
+  file.show(f)
+})
+@ 
+%
+The item is now ready to be added to the file menu:
+<<rgtk2-menus-append-item>>=
+fileMenu$append(open)
+@ 
 
-%% attach
-\paragraph{Building the the menu}
-Submenus and added to a menu item through the
-\method{setSubMenu}{gtkMenuItem} method. Menu items are added to a
-menu through the methods
-\method{append}{gtkMenuShell}; \method{prepend}{gtkMenuShell}; and
-\method{insert}{gtkMenuShell}, the latter requiring an index where the
-insertion is to take place, with 0 being the same as \code{prepend},
-in addition to the child. After a child is added, the method
-\method{ReorderChild}{gtkMenuShell} can be used to move it to a new
-position ($0$-based). Menuitems are not typically removed, rather they
-are disabled through their \code{setSensitive} method, but if desired
-their \method{show}{gtkWidget} and \method{hide}{gtkWidget} methods
-can be used to stop them from being drawn.
+It is recommended, however, to create menu items that proxy an
+action. This will facilitate, for example, adding an equivalent
+toolbar item later. First, we create the action:
+<<rgtk2-menus-save-action>>=
+saveAction <- gtkAction("save", "Save", "Save object", "gtk-save")
+@ 
+%
+Then the appropriate menu item is generated from the action and added
+to the file menu:
+<<rgtk2-menus-save-item>>=
+save <- saveAction$createMenuItem()
+##save["use-action-appearance"] <- TRUE
+fileMenu$append(save)
+@ 
 
-%% Menu itmes
-%% From API docs for gtkAccelGroup
-% Note that accelerators are different from mnemonics. Accelerators are shortcuts for activating a menu item; they appear alongside the menu item they're a shortcut for. For example "Ctrl+Q" might appear alongside the "Quit" menu item. Mnemonics are shortcuts for GUI elements such as text entries or buttons; they appear as underlined characters. See gtk_label_new_with_mnemonic(). Menu items can have both accelerators and mnemonics, of course. 
+Toggle menu items, i.e., a label next to a check box, are also
+supported. A toggle action will create one implicitly:
+<<rgtk2-menus-toggle-item>>=
+autoSaveAction <- gtkToggleAction("autosave", "Autosave", "Enable autosave")
+autoSave <- autoSaveAction$createMenuItem()
+fileMenu$append(autoSave)
+@ 
 
-\paragraph{Menu items}
-Menu items represent actions to be taken and are created through
-several different constructors.  A basic menu item is created with
-\constructor{gtkMenuItem}. The argument \argument{label}{gtkMenuItem}
-allows one to specify the label at construction time. The related
-constructor, \constructor{gtkMenuItemNewWithMnemonic} also allows the
-specification of a label, only underscores within the string specify
-the mnemonic for the menu item.  To group menu items, one use
-separators (\constructor{gtkSeparatorMenuItem}).
+A simple way to organize menu items, besides grouping into menus, is
+to insert separators between logical groups of items. Here, we insert
+a separator item, rendered as a line, to group the open and save
+commands a part from the rest of the menu:
+<<rgtk2-menus-separator>>=
+fileMenu$append(gtkSeparatorMenuItem())
+@ 
 
-A menu item for a \code{gtkAction} object can be created by its
-\method{createMenuItem}{gtkAction} method. For window managers that
-display them, any icon specified through the action's \code{stock.id}
-argument will be displayed.
-
-
-To add a different image in the menu bar, the
-\constructor{gtkImageMenuItem} can be used. Although, the
-\argument{stock.id}{gtkImageMenuItem} argument can be used to specify
-the icon, we don't use this, as then the argument
-\argument{accel.group}{gtkImageMenuItem} must be specified. An
-accelerator group defines a set of keyboard shortcuts to initiate
-actions, such as a \kbd{Ctrl+Q} to quit. (A mnemonic is a keyboard
-shortcut to indicate a GUI element). We don't discuss creating those
-here (they are given in the UI manager example). If instead of the
-\code{stock.id} argument, just the \code{label} is specified for the
-image menu item, the image can be added later through the
-\method{SetImage}{gtkImageMenuItem} method. This takes an image object
-for an argument. 
-
-A check button menu item can be created by
-\constructor{gtkCheckMenuItem}. This menu item shows a check box when
-the \code{active} state for the menu is set. The default is not
-active. Use the \method{GetActive}{gtkCheckMenuItem} to test if the
-state is active or not.  It may be best to set this state to active,
-so the user can identify that the item is a toggle (use the method
-\code{SetActive(TRUE)}. When the user clicks on the menu item, its
-\signal{toggled} signal is emitted.
-
-\begin{example}{A basic menu bar}{eg:Rgtk2-Basic}
-  \SweaveInput{ex-RGtk2-basic-menu}
-\end{example}
+\subsection{Popup Menus}
 
 \begin{example}{Popup menus}{ex:RGtk2-popup-menus}
 \SweaveInput{ex-RGtk2-menu-popup}
 \end{example}
 
-
-The above can easily be automated. The menubar widget in
-\pkg{gWidgetsRGtk2} simply maps a list with named components to the
-above, by setting menu items for each top-level component, submenus for
-each component that contains children, and menu items for components
-that do not have children. 
-
 \section{Toolbars}
 \label{sec:RGtk2:toolbars}
 
-Toolbars are like menubars only they only contain actions, there are
-no submenus. Toolbar objects are constructed by
-\constructor{gtkToolbar}. The placement of the widget at the top of a
-top-level window is done by the programmer. Toolbar items are added to
-the toolbar using the \method{add}{gtkContainer} method. Once added,
-items can be referred to by index using the \code{[[} method.
-%%]]
+Toolbars are like menu bars in that they are containers for
+activatable items, but toolbars are not hierarchical. Thus, toolbars
+are not appropriate for storing a large number of items, only those
+that are activated most often.
+
+We begin by constructing an instance of \class{GtkToolbar}:
+<<rgtk2-menus-toolbar-construct>>=
+toolbar <- gtkToolbar()
+@ 
+
+In analogous fashion to the menu bar, toolbars are containers for tool
+items. Technically, an instance of \class{GtkToolItem} could contain
+any type of widget, though toolbars typically represent actions
+with buttons. The \class{GtkToolButton} class implements this common
+case.  Here, we create a tool button for opening a file:
+<<rgtk2-menus-toolbar-open-item>>=
+openButton <-  gtkToolButton(stock.id = "gtk-open") 
+@ 
+%
+Tool buttons have a number of properties, including \code{label} and
+several for specifying an icon. Above, we specify a stock identifier,
+for which there is a predefined translated label and theme-specific icon.
+As with any other container, the button may be added to the toolbar with
+the \method{add}{GtkContainer} method:
+<<rgtk2-menus-toolbar-add>>=
+toolbar$add(openButton)
+@ 
+%
+This appends the open button to the end of the toolbar. To insert into
+a specific position, we would call the \method{insert}{GtkToolbar} method.
+
+Usually, any application with a toolbar also has a menu bar, in which
+case many actions are shared between the two containers. Thus, it is
+often beneficial to construct a tool button directly from its
+corresponding action:
+<<rgtk2-menus-toolbar-save-item>>=
+saveButton <- saveAction$createToolItem()
+toolbar$add(saveButton)
+@ 
+%
+A tool button is created for \code{saveAction}, created in the
+previous section.
+
+Like menus, related buttons may be grouped using separators:
+<<rgtk2-menus-toolbar-separator>>=
+toolbar$add(gtkSeparatorToolItem())
+@
+
+Any toggle action will create a toggle tool button as its proxy:
+<<rgtk2-menus-toolbar-toggle>>=
+fullScreenButton <- fullScreen$createToolItem()
+toolbar$add(fullScreenButton)
+@ 
+%
+A \class{GtkToggleToolButton} embeds a \class{GtkToggleButton}, which
+is depressed whenever its \code{active} property is \code{TRUE}.
+
+A toolbar may be customized in a number of ways.
+%% Note about toolbar style and is-important, i.e., where did my text go?
+%% More complex layout is possible with 'expand' child property
+
+It is now our responsibility to place the toolbar at the top of the
+window, under the menu created in the previous section:
+<<rgtk2-menus-toolbar-place>>=
+@ 
+
+\begin{example}{Color menu tool button}{ex:RGtk2-color-tool-button}
+  \SweaveInput{ex-RGtk2-color-tool-button}
+\end{example}
 
 Toolbar items have some common properties. The buttons are comprised
 of an icon and text, and the style of their layout is specified by the
@@ -249,21 +366,7 @@ w$showAll()
 @ 
 \end{example}
 
-%% MOVEME: status bars can be described in the basic controls section
-\section{Statusbars}
-\label{sec:RGtk2:statusbars}
-
-In \GTK, a statusbar is constructed through the
-\constructor{gtkStatusbar} function. Statusbars must be placed at the
-bottom of a top-level window by the programmer. In \GTK, a statusbar
-keeps various stacks of messages for display. One adds a message to
-display for given stack through the \method{Push}{gtkStatusbar} method
-by specifying first an integer value for \code{context.id} and a
-message. To pop the top message on a stack and display the next, the
-method \method{Pop}{gtkStatusbar} method is available.
-
-
-\section{UI Managers}
+\section{Managing a large user interface}
 \label{sec:RGtk2:UIManager}
 
 
