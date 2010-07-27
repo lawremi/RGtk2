@@ -15,18 +15,35 @@ is invalid, we set the text color to red.
 require(gWidgets)
 @
 
+This regular expression is used to validate against:
+<<>>=
+validRegexpr <- "[[:digit:]]{3}-[[:digit:]]{4}"
+isValid <- function(val)
+  grepl(validRegexpr, val)
+@ 
+
+Our basic GUI follows.
 <<>>=
 w <- gwindow("Validation example")
-validRegexpr <- "[[:digit:]]{3}-[[:digit:]]{4}"
 tbl <- glayout(cont=w)
 tbl[1,1] <- "Phone number (XXX-XXXX)"
 tbl[1,2] <- (e <- gedit("", cont = tbl))
 tbl[2,2] <- (b <- gbutton("submit", cont = tbl, 
                           handler=function(h,...) print("hi")))
-## Blur is focus out event
+
+@ 
+
+We validate by checking the widget's current value against the regular
+expression when the widget loses focus. For this, the \code{blur}
+event is a focus-out event. Alternatively, one may also want to use
+\code{addHandlerKeystroke}, to validate after each key press, or
+\code{addHandlerChanged}, to validate when the value is committed
+(typically when the user presses the \kbd{enter} key).
+
+<<validate>>=
 addHandlerBlur(e, handler = function(h,...) {
   curVal <- svalue(h$obj)
-  if(grepl(validRegexpr, curVal)) {
+  if(isValid(curVal) {
     font(h$obj) <- c(color="black")
   } else {
     font(h$obj) <- c(color="red")
@@ -34,3 +51,4 @@ addHandlerBlur(e, handler = function(h,...) {
   }
 })
 @ 
+

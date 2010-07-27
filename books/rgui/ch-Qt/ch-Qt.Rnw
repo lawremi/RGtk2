@@ -1,11 +1,64 @@
 %% Qt section of book
+\SweaveOpts{keep.source=TRUE}
+
+<<echo=FALSE>>=
+options(prompt=" ")
+options(continue=" ")
+options(width=80)
+
+##' find class that has method
+##' @param obj object
+##' @param meth_name if given prints out which class this comes from
+##' @return a list with methods by class
+findMeth <- function(obj, meth_name) {
+  cls <- class(obj)
+  ind <- sapply(cls, function(i) exists(i, envir=Qt))
+  l <- lapply(cls[ind], function(i) ls(get(i, envir=Qt)()))
+  names(l) <- cls[ind]
+  for(i in 1:(length(l)-1))
+    l[[i]] <- setdiff(l[[i]], l[[i+1]])
+
+  if(!missing(meth_name)) {
+    for(i in 1:length(l)) {
+      if(meth_name %in% l[[i]])
+        print(names(l)[i])
+    }
+  }
+  invisible(l)
+}
+
+lookup <- function(obj, regxp) {
+  x <- ls(obj)
+  x[grepl(regxp, x)]
+}
+  
+@ 
+
 
 \chapter{Programming GUIs using Qt}
 \label{cha:progr-guis-using}
 
-Part on using \pkg{qtbase}, \pkg{qtpaint} and frieds to program GUIs
-using the Qt toolkit.
-
-[Needs writing]
+\SweaveInput{Overview}
 
 
+\chapter{Layout managers}
+\label{cha:layout-managers}
+
+\SweaveInput{Layouts}
+
+
+\chapter{Widgets}
+\label{cha:widgets}
+
+\SweaveInput{Widgets}
+
+\chapter{Widgets using an MVC framework}
+\label{cha:widgets-using-MVC}
+
+\SweaveInput{Widgets-MVC}
+
+
+\chapter{Qt paint}
+\label{cha:qt-paint}
+
+\SweaveInput{Qtpaint}

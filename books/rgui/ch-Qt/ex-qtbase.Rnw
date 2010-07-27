@@ -1,0 +1,198 @@
+<<>>=
+
+@ 
+
+To get a small feel for how one programs a GUI using \pkg{qtbase}, the
+\R{} package that interfaces \R{} with the \Qt{} libraries, we show
+how to produce a simple dialog to collect a date from a user.
+
+
+If the underlying libraries and package are installed, the package is loaded as any other \R{} package:
+<<>>=
+require(qtbase)
+@ 
+
+\paragraph{Constructors}
+
+As with all other toolkits, in \Qt, GUI components are created with
+constructors. For this example, we will set various properties
+later, rather than at construction time. For our GUI we have four
+basic widgets: a widget used as a container to hold the others, a
+label, a single line edit area and a button. 
+<<>>=
+w <- Qt$QWidget()
+l <- Qt$QLabel()
+e <- Qt$QLineEdit()
+b <- Qt$QPushButton()
+@ 
+
+The constructors are not found in the global environment, but rather
+are found in the \code{Qt} environment provided through
+\pkg{qtbase}. As such, the \code{\$} lookup operator is used. For this
+example, we use a \code{QWidget} as a top-level window, leaving for
+\XXX{QMainWidget reference} to discuss the \code{QMainWidget} object and its
+task-tailored features.
+
+
+%% properties
+
+Widgets in \Qt{} have various properties that set the state of the
+object. For example, the window object, \code{w}, has the
+\code{windowTitle} property that is adjusted as follows:
+<<>>=
+w$windowTitle <- "An example"
+@ 
+
+\Qt{} objects are essentially environments. In the above, the named
+component \code{windowTitle} of the environment holds the value of the
+\code{windowTitle} property of the object, so the \code{\$} use is
+simply that for environments.
+
+%% method call 
+
+More typical, is a method call. \Qt{} overloads the \code{\$} operator
+for method calls (as does \pkg{RGtk2}). For example, both the button
+object and label object have a \code{text} property. The setter
+\method{setText}{QAbstractButton} can be used to assign a value. For
+example,
+<<results=hide>>=
+l$setText("Date:")
+b$setText("Ok")
+@ 
+Although, the calling mechanism is more complicated than just the lookup of a
+function stored as the component \code{setText} (cf. \XXX{reference}), as the object is
+passed into the body of the function, the usage is similar.
+
+
+%% Layout 
+\paragraph{Layout Managers}
+\Qt{} uses layout managers to organize widgets. This is similar to
+Java/Swing and \pkg{tcltk}, but not \pkg{RGtk2}. Layout managers will
+be discussed more thoroughly in \XXX{reference on layout managers},
+but in this example we will use a grid layout to organize our
+widgets. The placement of child widgets into the grid is done through
+the \method{addWidget}{QLayout} method and requires a
+specification, by index and span, of the cells the child will occupy.
+<<results=hide>>=
+lyt <- Qt$QGridLayout()
+lyt$addWidget(l, row=0, column=0, rowSpan=1, columnSpan=1)
+lyt$addWidget(e, 0, 1, 1, 1)
+lyt$addWidget(b, 1, 1, 1, 1)
+@ 
+One can adjust properties of the layout, but we leave that discussion for later.
+
+We need to attach our layout to the widget \code{w}, which is done
+through the \method{setLayout}{QWidget} method:
+<<results=hide>>=
+w$setLayout(lyt)
+@ 
+
+To view our GUI (Figure~\ref{fig:first-gui}), we must call its \method{show}{QWidget} method.
+<<results=hide>>=
+w$show()
+@ 
+
+\begin{figure}
+  \centering
+%%  \includegraphics[]{}
+  \caption{Screenshot of our sample GUI to collect a date from the user.}
+  \label{fig:first-gui}
+\end{figure}
+
+%% interactivity
+\paragraph{Callbacks}
+As with outher GUI toolkits, we add interactivity to our GUI by
+binding callbacks to certain events.  To add a command to the clicking
+or pressing of the button is done by attaching a handler to the
+``pressed'' signal for the button (the ``clicked'' signal is only for
+mouse clicks). Widgets have various signals they emit. Additionally,
+there are window-manager events that may be of interest, but using
+them requires more work than is used below. The \function{qconnect}
+function is used to add a handler for a signal. The function needs, as
+a minimum, the object, the signal name and the handler. Herr we print
+the value stored in the ``Date'' field.
+<<results=hide>>=
+handler <- function(checked)  print(e$text)
+id <- qconnect(b, "pressed", handler)
+@ 
+We will discuss callbacks more completely in \XXX{reference}.
+
+
+%% Refinements
+\paragraph{Refinements}
+At this point, we have a working dialog built with \pkg{qtbase}. There
+is much room for refinement, which due to \Qt's many features are
+relatively easy to implement. For this example, we want to guide the
+user to fill out the date in the proper format. We could have used \Qt's
+\constructor{QDateEdit} widget to allow point-and-click selection, but
+instead show two ways to help the user fill in the information with
+the keyboard
+
+The \constructor{QLineEdit} widget has a number of ways to adjust its
+behavior. For example, an input mask provides a pattern for the user to fill
+out. For a date, we may want the value to be in the form
+``year-month-date.'' This would be specified with \code{"0000-00-00"},
+as seen by consulting the help page for \code{QLineEdit}. To add an
+input mask we have:
+
+<<results=hide>>=
+e$setInputMask("0000-00-00")
+@ 
+
+
+Further, for the line edit widget \Qt{} can implement validation of
+the entered text. There are a few built-in validators, and for this purpose
+the regular expression validator could be used, but instead we wish to
+determine if we have a valid date by seeing if we can coerce the
+string value to a date via \R's \code{as.Date} function with a format of
+\code{"\%Y-\%m-\%d"}. The method \code{setValidator} can be used to
+set the validator that is in charge of the validation. However, rather
+than passing a function, one must pass an instance of a validator class. For our
+specific needs, we need to create a new class.
+
+%% Object oriented
+\paragraph{Object-oriented support}
+The underlying \Qt{} libraries are written in C++. The object oriented
+nature is preserved by \pkg{qtbase}. Not only are the classes and
+methods implemented in \R, the ability to implement new subclasses and
+methods is also possible. For this task, we need to implement a
+subclass of the \code{QValidator} class, and for this subclass implement
+a \code{validate} method. More detail on working with classes and
+methods in \pkg{qtbase} is provided in \XXX{reference: classes}.
+
+The \function{qsetClass} function is used to set a new class. To derive a
+subclass, we need just this:
+<<results=hide>>=
+qsetClass("dateValidator", Qt$QValidator, function(parent = NULL) {
+  super(parent)
+})
+@ 
+
+The \code{validate} method is implemented as a virtual class in \Qt{},
+in \R{} we implement a method of our sub class. The
+\function{qsetMethod} is employed. The signature of the
+\code{validate} method is a string containing the input and an index
+indicating where the cursor is in the text box. The return value of
+this method indicates a state of ``Acceptable'', ``Invalid'', or if
+neither can be determined ``Intermediate.'' These values are actually
+integers, and in this case are stored within an enumeration in the
+\code{Qt\$QValidator} class.
+<<results=hide>>=
+qsetMethod("validate", dateValidator, function(input, pos) {
+  if(!grepl("^[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}$", input)) 
+    return(Qt$QValidator$Intermediate)
+  else  if(is.na(as.Date(input, format="%Y-%m-%d"))) 
+    return(Qt$QValidator$Invalid)
+  else 
+    return(Qt$QValidator$Acceptable)
+})
+@ 
+
+To use this new class, we call its constructor, which has the same
+name as the class, and then set it as a validator for the line edit
+widget:
+<<results=hide>>=
+validator <- dateValidator()
+e$setValidator(validator)
+@ 
+
