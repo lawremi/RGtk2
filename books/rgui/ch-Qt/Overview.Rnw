@@ -124,7 +124,8 @@ although generally this happens when the widget is added to a
 layout. The child gets added to the list of children of the parent
 thereby creating an object heirarchy. This allows such things as the
 communication between components during resizing of layouts or the
-automatic deletion of ancestors when a parent widget is destroyed.
+automatic deletion of ancestors when a parent widget is
+destroyed. This happens by assigning \code{NULL} as a parent.
 
 <<constructor-parent>>=
 w <- Qt$QWidget()
@@ -146,10 +147,11 @@ b <- Qt$QPushButton(icon=i, text="Ok")
 @ 
 
 
-The class name prefaced with a tilde is the destructor for a
-widget. We can call this as follows:
+It \Qt{}, the class name prefaced with a tilde is the destructor for a
+widget, but in \pkg{qtbase} it suffices to assign \code{NULL} as the
+parent through \method{setParent}{QWidget}
 <<destructor, results=hide>>=
-get("~QPushButton", b)()
+b$setParent(NULL)
 @ 
 
 \subsection{Common methods for QWidgets and QObjects}
@@ -177,8 +179,10 @@ dim(out)                                # many methods
 Widgets must have their \method{show}{QWidget} method called in order
 to have them drawn to the screen. This call happens through the
 \meth{print} method for an object inheriting from \class{QWidget}, but
-more typically is called by \Qt{} recursively showing the children when a top-level window is drawn.
-The method \method{close}{QWidget} will close the widget. 
+more typically is called by \Qt{} recursively showing the children
+when a top-level window is drawn. The method \method{raise}{QWidget}
+will raise the window to the top of the stack of windows, in case it
+is covered.  The method \method{hide}{QWidget} will hide the widget.
 
 % XXX JV: this didn't work?
 % It is not deleted
@@ -320,6 +324,11 @@ x
 @ 
 
 
+\subsection{Keyboard shortcuts}
+\label{sec:keyb-accel}
+
+\XXX{write}
+
 \subsection{Fonts}
 \label{sec:fonts}
 
@@ -351,6 +360,7 @@ adjust properties. For example, there are the methods
 \method{setStrikeout}{QFont} and \method{setBold}{QFont} among others.
 
 
+\XXX{HTML markup for labels!}
 %% Palettes (colors); roles
 
 \subsection{Styles}
