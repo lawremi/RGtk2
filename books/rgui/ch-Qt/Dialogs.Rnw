@@ -1,0 +1,26 @@
+%% Dialogs
+
+
+
+\section{Modal windows}
+\label{sec:modal-windows}
+
+
+
+\section{QDialog}
+\label{sec:qdialog}
+
+
+QMessageBox
+QInputDialog
+
+\section{Built-in dialogs}
+\label{sec:built-dialogs}
+
+QFileDialog
+QFontDialog
+QColorCialog
+QPrintDialog, QPrintPreviewDialog
+QProgressDialog
+QWizard ?
+???

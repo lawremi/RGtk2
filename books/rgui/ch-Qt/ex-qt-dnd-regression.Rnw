@@ -1,0 +1,72 @@
+An example where we use drag and drop to move points around on the
+graphics device. 
+<<>>=
+library(qtpaint)
+scene <- qscene()
+@ 
+
+We define a bounding rectangle for the layers and a data frame to
+store our date.
+<<>>=
+lims <- qrect(0,0,10,10)
+df <- data.frame(x=runif(10, 0, 10),
+                 y=runif(10, 0, 10),
+                 label=1:10)
+@ 
+The point drawing layer uses the data frame to draw circles at each point.
+<<>>=
+drawPoints <- function(layer, painter) {
+  qdrawCircle(painter, df$x, df$y, 5, fill="red")
+  res <- lm(y ~ x, df)
+  x <- xlims; y <- coef(res)[1] + x* coef(res)[2]
+  qdrawLine(painter, x, y)
+}
+player <- qlayer(scene, limits=lims, paintFun=drawPoints)
+@ 
+
+Our drag and drop requires us to identify the selected point when a
+user clicks in the graphic. The following does it within \R{} by
+grabbing the position of the mouse press event. The value of \code{d}
+gives a window to identify the point in. Once a point is identified,
+we need to set up the drag event and the MIME data to pass through the
+drag-and-drop. 
+<<>>=
+mousePress <- function(layer, event) {
+  d <- 50/600                          # adjust
+  x <- sapply(c("x","y"), function(i) get(i, event$pos())())
+  ind <- which((x[1]-d < df$x & df$x < x[1] + d) &
+               (x[2]-d < df$y & df$y < x[2] + d))
+  if(length(ind) == 0) return()
+
+  md <- Qt$QMimeData()
+  md$setText(df$label[min(ind)])
+
+  drag <- Qt$QDrag(event$widget())
+  drag$setMimeData(md)
+  drag$exec(Qt$Qt$MoveAction, Qt$Qt$CopyAction)
+}
+@ 
+
+Our drop function updates the data frame for the selected point and
+then redraws the scene.
+<<>>=
+dropFun <- function(layer, event) {
+  w <- event$widget()
+  md <- event$mimeData()
+  ind <- as.numeric(md$text())
+  x <- sapply(c("x","y"), function(i) get(i, event$pos())())
+  df[ind,1:2] <<- x[1:2]
+  qupdate(scene)
+
+  
+  event$acceptProposedAction()
+}
+dndLayer <- qlayer(scene, limits=lims,
+                   mousePressFun=mousePress,
+                   dropFun = dropFun)
+@ 
+
+<<>>=
+view <- qplotView(scene=scene)
+print(view)
+@   

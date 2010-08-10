@@ -1,2 +1,335 @@
 %% Basic widgets -- onew with MVC in next chapter
 
+\section{Labels}
+\label{sec:labels}
+
+As seen in previous example, basic labels in \Qt{} are instances of
+the \class{QLabel} class. Labels primarily display text which can be
+passed to the constructor, or set via \method{setText}{QLabel}. Labels
+can show plain text or rich text, which allows markup in an HTML style.
+The label text can be cleared through \method{clear}{QLabel}.
+(Labels can also hold images, set by \method{setPixmap}{QLabel}.)
+
+
+Label text can be adjusted through several properties
+\property{alignment}{QLabel}, \property{indent}{QLabel} (in pixels),
+\property{margin}{QLabel} (with default of $0$ pixels), and
+\property{wordWrap}{QLabel} (with default \code{FALSE}).
+
+
+<<echo=FALSE, results=hide>>=
+## labels can use rich text
+l <- Qt$QLabel("<font color='red'>Red</font>")
+l$show(); l$raise()
+@ 
+
+\section{Icons and pixmaps}
+\label{sec:icons}
+
+Icons are instances of the \class{QIcon} class. Icons may be read in
+from files or from \class{QPixmap} instances. Although one may, it is
+not necessary to define icons for different sizes and display modes
+(normal, disabled, active, selected), as \Qt{} can do so automatically.
+ 
+For example, we define an icon and add it to a button as follows. The
+call to \meth{setEnabled} shows how \Qt{} can draw the icon in a
+disabled state.
+<<results=hide>>=
+ok <- system.file("images/ok.gif", package="gWidgets")
+icon <- Qt$QIcon(ok)
+b <- Qt$QPushButton("Ok")
+b$setIcon(icon)
+b$setEnabled(FALSE)
+@ 
+
+<<echo=FALSE, results=hide>>=
+b$show(); b$raise()
+@ 
+
+The \class{QPixmap} class creates a means to represent an image on a
+paint device. One can create icons from pixmaps, and the
+\method{pixmap}{QIcon} method will return a pixmap from an icon. (The
+size  may be specified with integers, and the mode can be
+set). Pixmaps can be directly made through the constructor. For
+example, to display a graphics file, we might have
+<<results=hide>>=
+png(f <- tempfile())
+hist(rnorm(100))
+dev.off()
+pix <- Qt$QPixmap()
+pix$load(f)
+l <- Qt$QLabel()
+l$setPixmap(pix)
+@ 
+
+<<echod=FALSE, results=hide>>=
+l$show()
+l$raise()
+@ 
+
+The \class{QPixmap} class has several methods for manipulating the image.
+
+\section{Buttons}
+\label{sec:buttons}
+
+Buttons are created by \class{QPushButton} which inherits most of its
+functionality from \class{QAbstractButton}. A button has a
+\propoerty{text}{QAbstractButton} property for storing a label and an
+\property{icon}{QAbstractButton} property to show an accompanying
+image. 
+
+Buttons are associated with commands. One may bind to the inherited
+signal \signal{clicked}, which is called when the button is activated
+by the mouse, a short cut key, or a call to
+\method{clicked}{QAbstractButton}. The callback receives a logical
+value \code{checked}. Otherwise, \signal{pressed} and
+\signal{released} signals are emitted.
+
+
+\subsection{Button boxes}
+\label{sec:button-boxes}
+\class{QDialogButtonBox}
+
+Dialogs often have a standard button placement that  varies among
+operating systems. \Qt{} provides the \class{QDialogButtonBox} class
+to store buttons. This class accepts the standard buttons listed in
+the \qtenumeration{QDialogButtonBox::StandardButton} enumeration. Each
+standard button has a default role from a list of roles specified in
+\qtenumeration{QDialogButtonBox::ButtonRole}, if a non-standard button
+is desired, then a role must be specified. The method
+\method{addButton}{QDialogButtonBox} method is used to add a button,
+as specified by either a standard button or by a label and role. This
+method returns a \class{QPushButton} instance.
+
+
+In a dialog, a button may be designated as the default button for a
+dialog. To specify a default, the button's
+\method{setDefault}{QPushButton} is called with a value of
+\code{TRUE}.
+
+To get feedback, one can connect each button to the desired
+signal. More conveniently, the button box has signals
+\signal{accepted}, which is emitted when a button with the
+\code{AcceptRole} or \code{YesRole} is clicked; \signal{rejected},
+which is emitted when a button with the \code{RejectRole} or
+\code{NoRole} is clicked; \code{helpRequested}; or \code{clicked} when
+any button is clicked. For this last signal, the callback  is passed
+in the button object.
+
+\begin{example}{A yes-no-help set of buttons}{eg-qt-dialog-button-box}
+  We use a dialog button box to hold a standard set of
+  buttons. Figure~\ref{fig:qt-dialg-button-box} shows the difference
+  in their display for two different operating systems. Below, we just
+  illustrate how to specify callbacks based on the button's role, but
+  only put in stubs for their commands.
+  
+  \begin{figure}
+    \centering
+    \includegraphics[width=.6\textwidth]{fig-qt-dialog-button-box-Qt}\\
+    \includegraphics[width=.6\textwidth]{fig-qt-dialog-button-box-linux}
+    \caption{Dialog button boxes and their implementation under Mac OS X and Linux.}
+    \label{fig:qt-dialg-button-box}
+  \end{figure}
+  
+<<results=hide>>=
+db <- Qt$QDialogButtonBox()
+ok <- db$addButton(Qt$QDialogButtonBox$Ok)
+db$addButton(Qt$QDialogButtonBox$Cancel) 
+## Or: db$addButton("Cancel", Qt$QDialogButtonBox$RejectRole)
+db$addButton(Qt$QDialogButtonBox$Help)
+#
+ok$setDefault(TRUE)
+#
+qconnect(db, "accepted", function() print("accepted"))
+qconnect(db, "rejected", function() print("rejected"))
+qconnect(db, "helpRequested", function() print("help"))
+@ 
+
+<<echo=FALSE, results=hide>>=
+db$show(); db$raise()
+@ 
+
+
+
+\section{Checkboxes}
+\label{sec:checkboxes}
+
+The \class{QCheckBox} class implements a checkbox. Like the
+\class{QPushButton} class,  class inherits methods and properties from
+the \class{QAbstractButton} class. For example, the checkbox label is
+associated with the \property{text}{QCheckBox} property.
+
+\Qt{} has three states for a checkbox: the obvious
+\verb+Qt$Qt$Checked+, \verb+Qt$Qt$Unchecked+ states, and a third
+indeterminate state specified by \verb+Qt$Qt$+PartiallyChecked+. These
+are stored in the \property{checkState}{QCheckBox} for setting and getting.
+
+In addition to the inherited signals \signal{clicked},
+\signal{pressed}, and \signal{released}, The signal
+\signal{stateChanged} is emitted. Callbacks are passed the state as an integer.
+
+
+
+\subsection{Groups of checkboxes}
+\label{sec:groups-checkboxes}
+
+The \class{QButtonGroup} can be used to group together buttons, such
+as checkboxes, into logical units. The layout of the buttons is not
+managed by this widget. By default, the buttons are
+exclusive, like a radio button group, but this can be adjusted by
+passing \code{FALSE} to the method
+\method{setExclusive}{QButtonGroup}. Buttons are added to the button
+group one-by-one through the method
+\method{addButton}{QButtonGroup}. An optional ID can be passed in to
+identify the buttons, but it may be more convenient to work with the
+list of buttons returned by the \method{buttons}{QButtonGroup} method.
+
+When a button is clicked, pressed or released a signal is emitted, for example
+\signal{buttonClicked} is when a button is clicked. The callback
+receives the button object.
+
+\begin{example}{Using checkboxes to provide a filter}{eg-qt-checkbox-filter}
+  Filtering a data set by the levels of a factor is a natural
+  desire. This is commonly implemented by using a checkbox group with
+  each level assigned to a toggle. Below we show how to do so for a
+  cylinders variable, such is in the \code{Cars93} data set of the
+  \pkg{MASS} package.
+
+  We begin by defining the levels and a widget to store our buttons.
+
+<<results=hide>>=
+cyls <- c(3,4,5,6,8,"rotary")
+w <- Qt$QGroupBox("Cylinders:")
+lyt <- Qt$QVBoxLayout()
+w$setLayout(lyt)
+@ 
+
+We want to be able to select more than one button, so set the
+\property{exclusive}{QButtonGroup} property accordingly.
+<<results=hide>>=
+bg <- Qt$QButtonGroup()
+bg$setExclusive(FALSE)
+@ 
+
+Next we prepare a button for each value of \code{cyls}, add it to the
+layout and then the button group. Finally we initialize the buttons to
+all be checked.
+<<results=hide>>=
+sapply(seq_along(cyls), function(i) {
+  button <- Qt$QCheckBox(sprintf("%s Cylinders", cyls[i]))
+  lyt$addWidget(button)
+  bg$addButton(button, i)
+})
+sapply(bg$buttons(), function(i) i$setChecked(TRUE))
+@ 
+
+Our simple callback to the \signal{buttonClicked} signal shows how to
+see which buttons were checked after the button was pressed. (The
+\signal{buttonPressed} is called before the widget state reflects the
+button press.}
+<<results=hide>>=
+qconnect(bg, "buttonPressed", function(button) {
+  checked <- sapply(bg$buttons(), function(i) i$checked)
+  if(any(checked)) 
+    print(c("x",cyls[checked]))
+})
+@ 
+<<echo=FALSE, results=hide>>=
+w$show()
+w$raise()
+@ 
+\end{example}
+
+
+\section{Radio groups}
+\label{sec:radio-groups}
+
+Radio buttons are created by the \constructor{QRadioButton}
+constructor. Radio buttons, like other buttons, have a
+\property{text}{QRadioButton} and \property{icon}{QRadioButton}
+property. Radio buttons have a checked or unchecked state which can be
+queried with \method{isChecked}{QRadioButton} and set with \method{setChecked}{QRadioButton}.
+
+Radio buttons are typically exclusive. To group buttons together,
+\Qt{} uses all buttons that share the same parent
+widget. 
+
+\begin{example}{Using a radio group to filter}{eg-qt-radio-group-filter}
+
+  Instead of a group of checkboxes, we might also filter through an
+  exclusive selection. The following shows how to construct a radio
+  button group.
+  
+  First, we set the radio buttons into a list for easy manipulation. A
+  \class{QButtonGroup} could also be used here.
+<<results=hide>>=
+l <- list(Qt$QRadioButton("Weight < 3000"),
+          Qt$QRadioButton("3000 <= Weight < 4000"),
+          Qt$QRadioButton("4000 <= Weight")
+          )
+@ 
+We know define a layout for our radio button widgets. The buttons are
+children of \code{w} below, so are exclusive within that.
+<<results=hide>>=
+w <- Qt$QGroupBox("Weight:")
+lyt <- Qt$QVBoxLayout()
+w$setLayout(lyt)
+@ 
+
+We now add the widgets to the layout and set the first one to be checked.
+<<>>=
+sapply(l, function(i) lyt$addWidget(i))
+l[[1]]$setChecked()
+@ 
+
+The \signal{toggled} signal is emitted twice when a button is
+clicked: once for when the check button is clicked, and once for the
+toggle of the previously checked button. Below, we condition on the
+value of \code{checked} to restrict to one call.
+<<results=hide>>=
+sapply(l, function(i) {
+  qconnect(i, "toggled", function(checked) {
+    if(checked) {
+      ind <- which(sapply(l, function(i) i$isChecked()))
+      print(sprintf("You checked %s.", l[[ind]]$text))
+    }
+  })
+})
+@ 
+
+<<echo=FALSE,results=hide>>=
+w$show()
+w$raise()
+@           
+
+\end{example}
+
+
+
+\section{Sliders and spinboxes}
+\label{sec:sliders-spinboxes}
+
+
+\section{Single-line text}
+\label{sec:single-line-text}
+
+
+
+\section{Comboboxes}
+\label{sec:comboboxes}
+
+\section{Multi-line text}
+\label{sec:multi-line-text}
+
+
+
+\section{List views}
+\label{sec:list-views}
+
+
+
+\section{Table widget}
+\label{sec:table-widget}
+
+
+

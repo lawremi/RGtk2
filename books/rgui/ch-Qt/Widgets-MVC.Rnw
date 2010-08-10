@@ -1,1 +1,19 @@
 %% widgets using MVC framework
+
+Example: model for workspace browser
+
+\section{Model-View-Controller in Qt}
+\label{sec:model-view-contr}
+
+model, delegate, ...
+
+
+\section{Comboboxes}
+\label{sec:comboboxes}
+
+\section{Table views}
+\label{sec:table-views}
+
+\section{Tree views}
+\label{sec:tree-views}
+

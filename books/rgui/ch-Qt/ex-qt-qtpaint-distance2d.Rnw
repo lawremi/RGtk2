@@ -1,0 +1,60 @@
+This example comes from one at
+\url{http://processingjs.org/learning/basic/distance2d}. A collection
+of circles are drawn with radius that depends on the position of the
+mouse. The \argument{hoverMoveFun}{qlayer} argument for
+\function{qlayer} is used to specify a callback when the mouse
+moves. We use this to adjust the radius of the balls so that when the
+graphic is redrawn it reflects the change.
+
+
+<<echo=FALSE>>=
+library(qtpaint)
+@ 
+
+A circle is defined by a point and radius, the former specified below
+in terms of its $x$ and $y$ component.
+<<>>=
+df = data.frame(x=rep(1:5, rep(5,5)),
+  y = rep(1:5, 5),
+  r = rep(25, 25)
+)
+@ 
+
+We begin by defining our scene, as this is needed before we define the
+layers to come. We then define the limits to match our centers above.
+<<>>=
+scene <- qscene()
+lims <- qrect(0,0,6,6)
+@ 
+
+To add the points, we use another layer and the \function{qdrawCircle}
+function within the painter.
+<<>>=
+drawPoints <- function(layer, painter) {
+  qdrawCircle(painter, df$x, df$y, df$r, fill="white")
+}
+player <- qlayer(scene, limits=lims,
+                 paintFun = drawPoints)
+@ 
+
+The hover function below computes the distance from the mouse position
+(given through the \code{event} object) and adjusts the radius
+accordingly. We call \function{qupdate} within the callback so that
+the graphic is redrawn.
+<<>>=
+hoverFun <- function(layer, event) {
+  pos <- event$pos()
+  x <- pos$x(); y <- pos$y()
+  df$r <<- 5*sqrt((df$x - x)^2 + (df$y - y)^2)
+  qupdate(scene)
+}
+mlayer <- qlayer(scene,
+                 limits=lims,
+                 hoverMoveFun=hoverFun)
+@ 
+
+Finally, we create a view for the scene and display it.
+<<>>=
+view <- qplotView(scene=scene)
+print(view)
+@   

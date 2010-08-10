@@ -1,20 +1,29 @@
-This example shows how to create a simple calendar using a grid layout
-and the stacked widget. For a real calendar widget the
-\class{QCalendarWidget} is a better alternative. We use the
-\code{chron} package for its \function{day.of.week} function. This
-returns a 0-based index for the day week, starting with Sunday. To
-this we add functions \code{week.of.month}, \code{daysInMonth} and
-\code{validDate}.
+This example shows how to create a simple calendar using a grid
+layout. For a real calendar widget the \class{QCalendarWidget} is a
+better alternative, but with the aid of the functions
+\function{day.of.week} (from the \pkg{chron} package),
+\function{week.of.month} and \function{days.in.month} (easily
+written), this widget becomes a straightforward exercise
+
 <<echo=FALSE>>=
 ## not shown.
 require(qtbase)
-require(chron)
+##' from chron with slight change to arguments
+day.of.week <- function (year, month, day) {
+    ix <- year + trunc((month - 14)/12)
+    jx <- (trunc((13 * (month + 10 - (month + 10)%/%13 * 12) - 
+        1)/5) + day + 77 + (5 * (ix - (ix%/%100) * 100))%/%4 + 
+        ix%/%400 - (ix%/%100) * 2)
+    jx%%7
+}
+
 
 ## is this a valid date
 validDate <- function(year, month, day) 
   !is.na(as.Date(sprintf("%s-%s-%s", year, month, day), format="%Y-%m-%d"))
+
 ## how many days in a month
-daysInMonth <- function(year, month) {
+days.in.month <- function(year, month) {
   for(i in c(31, 30, 29, 28)) {
     if(validDate(year, month, i))
       return(i)
@@ -22,19 +31,18 @@ daysInMonth <- function(year, month) {
 }
 ## 0-based week of month
 week.of.month <- function(year, month, day) {
-  first.day <- day.of.week(month, 1, year)
+  first.day <- day.of.week(year, month, 1)
   (first.day + day - 1) %/% 7
 }
 @ 
 
-The monthly calendar will use a grid layout with the two helper
-functions indicating where to put the cell for the day. Since no cell
-spans rows or columns we use the simple form of the \meth{addWidget}
-method, although we do adjust the alignment a bit. The
-following function creates a widget to produce a monthly calendar. It
-does three things: create a widget with a grid layout; put in day
-headers; and finally add in the days one-by-one. The day headers use
-HTML markup to distinguish them from the days.
+In laying out the calendar, since no cell spans rows or columns we use
+the simple form of the \meth{addWidget} method, although we do adjust
+the alignment a bit. The following function creates a widget to
+produce a monthly calendar. It does three things: create a widget with
+a grid layout; put in day headers; and finally add in the days
+one-by-one. The day headers use HTML markup to distinguish them from
+the days.
 
 \begin{figure}
   \centering
@@ -57,10 +65,10 @@ makeMonth <- function(year, month) {
     lyt$addWidget(l, 0, i-1, Qt$Qt$AlignHCenter)
   })
   ## add days
-  sapply(1:daysInMonth(year, month),  function(day) {
+  sapply(1:days.in.month(year, month),  function(day) {
     lab <- Qt$QLabel(day)
     lyt$addWidget(lab, row=1 + week.of.month(year, month, day),
-                  column=day.of.week(month, day, year),
+                  column=day.of.week(year, month, day),
                   alignment=Qt$Qt$AlignRight)
   })
   return(w)
@@ -68,18 +76,17 @@ makeMonth <- function(year, month) {
 @ 
 
 
-We use a stacked widget to incorporate the monthly calendar into a
-simple widget that uses arrows to step through the months. We begin
-with an intial date of January 2000.
+Next, we would like to incorporate the calendar widget into an interface
+that allows the user to scroll through month-by-month beginning with:
 <<>>=
 year <- 2000; month <- 1
 @ 
 
-Our basic layout will use a vertical box layout with a nested layout
+Our basic layout will use a grid layout with a nested layout
 for the step-through controls and another holding the calendar widget.
-<<>>=
+<<results=hide>>=
 w <- Qt$QWidget()
-lyt <- Qt$QVBoxLayout()
+lyt <- Qt$QGridLayout()
 w$setLayout(lyt)
 @ 
 
@@ -87,7 +94,7 @@ Our step through controls are added through a horizontal box layout. We
 could easily use a grid layout here, but this illustrates how to use a
 stretch factor and alignment to keep the arrows on the edge and the
 label with the current month centered.
-<<>>=
+<<results=hide>>=
 prevb <- Qt$QPushButton("<")
 nextb <- Qt$QPushButton(">")
 curmo <- Qt$QLabel()
@@ -96,23 +103,21 @@ blyt <- Qt$QHBoxLayout()
 blyt$addWidget(prevb, stretch=0, Qt$Qt$AlignRight)
 blyt$addWidget(curmo, stretch=1, Qt$Qt$AlignHCenter)
 blyt$addWidget(nextb, stretch=0, Qt$Qt$AlignLeft)
-lyt$addLayout(blyt)
+lyt$addLayout(blyt, 0, 0)
 @ 
 
-Our monthy calendar will be added to the widget through a stacked
-widget. The \code{setMonth} function first checks to see if there is a
-previous widget, removing it if there is. (This isn't really
-necessary.) Then it adds in a new
+The \code{setMonth} function first checks to see if there is a
+previous widget, removing it from the layout if there is. Then it adds in a new
 monthly calendar to match the year and month.
-<<stackedWidget>>=
-stackedWidget <- Qt$QStackedWidget()
-lyt$addWidget(stackedWidget)
-
+<<stackedWidget, results=hide>>=
 setMonth <- function() {
-  cur <- stackedWidget$currentWidget()
-  if(!is.null(cur))
-    stackedWidget$removeWidget(cur)
-  stackedWidget$addWidget(makeMonth(year, month))
+  curItem <- lyt$itemAtPosition(1,0)
+  if(!is.null(curItem)) {
+    widget <- curItem$widget()
+    lyt$removeWidget(widget)
+    widget$setParent(NULL)
+  }
+  lyt$addWidget(makeMonth(year, month), 1, 0)
   curmo$setText(sprintf("%s %s", month.abb[month], year))
 }
 setMonth()                              # initial calendar
@@ -121,7 +126,7 @@ setMonth()                              # initial calendar
 We connect to the \code{clicked} signals when the buttons are
 pressed. This shows how to decrement the month and year using the
 global variables \code{month} and \code{year}. 
-<<connectSignal>>=
+<<connectSignal, results=hide>>=
 qconnect(prevb, "clicked", function() {
   if(month > 1) {
     month <<- month - 1
@@ -132,7 +137,7 @@ qconnect(prevb, "clicked", function() {
 })
 @ 
 
-<<echo=FALSE>>=
+<<echo=FALSE, results=hide>>=
 qconnect(nextb, "clicked", function() {
   if(month < 12) {
     month <<- month + 1
@@ -144,7 +149,7 @@ qconnect(nextb, "clicked", function() {
 @ 
 
 Finally, we display the GUI (Figure~\ref{fig:qt-gridlayout-calendar}.)
-<<>>=
+<<results=hide>>=
 w$show()
 w$raise()
 @ 

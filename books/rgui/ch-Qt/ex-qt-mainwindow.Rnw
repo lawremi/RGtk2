@@ -1,0 +1,120 @@
+<<MainWindowExample, echo=FALSE, results=hide>>=
+library(qtbase)
+@ 
+
+This example shows how to mock up a main window similar to the one
+presented by the web application, R-Studio. (\url{rstudio.org}). We
+begin by setting a minimum size and a title for the main window.
+
+<<results=hide>>=
+w <- Qt$QMainWindow()
+w$setMinimumSize(800, 500)
+w$setWindowTitle("Rstudio-type layout")
+@ 
+
+We add in a menu bar and toolbar. The actions are minimal, not
+including icons, commands etc. We show the file menu definitions.
+<<defineActions,results=hide>>=
+l <- list()
+mb <- Qt$QMenuBar()
+w$setMenuBar(mb)
+fmenu <- mb$addMenu("File")
+fmenu$addAction(l$new <- Qt$QAction("New", w))
+fmenu$addSeparator()
+fmenu$addAction(l$open <- Qt$QAction("Open", w))
+fmenu$addAction(l$save <- Qt$QAction("Save", w))
+fmenu$addSeparator()
+fmenu$addAction(l$quit <- Qt$QAction("Quit", w))
+@ 
+
+<<echo=FALSE, results=hide>>=
+emenu <- mb$addMenu("Edit")
+emenu$addAction(l$undo <- Qt$QAction("Undo", w))
+emenu$addAction(l$redo <- Qt$QAction("Redo", w))
+emenu$addSeparator()
+emenu$addAction(l$cut <- Qt$QAction("Cut", w))
+emenu$addAction(l$copy <- Qt$QAction("Copy", w))
+emenu$addAction(l$paste <- Qt$QAction("Paste", w))
+@ 
+
+The toolbar has just a few actions added.
+<<defineToolbar, results=hide>>=
+tb <- Qt$QToolBar()
+w$addToolBar(tb)
+tb$addAction(l$new)
+tb$addSeparator()
+tb$addAction(l$quit)
+tb$addSeparator()
+tb$addAction(l$help <- Qt$QAction("Help", w))
+@ 
+
+Our central widget holds two main areas: one for editing files and one
+for a console. As we may want to edit multiple files, we use a tab
+widget for that. A \class{QSplitter} is used to divide the space
+between the two main widgets.
+<<results=hide>>=
+centralWidget <- Qt$QSplitter()
+centralWidget$setOrientation(Qt$Qt$Vertical)
+w$setCentralWidget(centralWidget)
+@ 
+
+<<results=hide>>=
+fileNotebook <- Qt$QTabWidget()
+fileNotebook$addTab(Qt$QLabel("File notebook"), "About")
+fileNotebook$setTabsClosable(TRUE)
+centralWidget$addWidget(fileNotebook)
+@ 
+
+Our console widget is just a stub.
+<<results=hide>>=
+consoleWidget <- Qt$QLabel("Console goes here")
+centralWidget$addWidget(consoleWidget)
+@ 
+
+On the right side of the layout we will put in various tools for
+interacting with the R session. We place these into dock widgets, in
+case the user would like to place them elsewhere on the
+screen. Defining dock widgets is straightforward. We show a stub for a
+workspace browser.
+
+<<results=hide>>=
+workspaceBrowser <- Qt$QLabel("Workspace browser goes here")
+wbDockWidget <- Qt$QDockWidget("Workspace")
+wbDockWidget$setWidget(workspaceBrowser)
+@ 
+
+<<echo=FALSE,results=hide>>=
+historyBrowser <- Qt$QLabel("History browser goes here")
+hbDockWidget <- Qt$QDockWidget("History")
+hbDockWidget$setWidget(historyBrowser)
+@ 
+
+The workspace and history browser are placed in a notebook to conserve
+space. We add the workspace browser on the right side, then tabify the
+history browser.
+
+<<results=hide>>=
+w$addDockWidget(Qt$Qt$RightDockWidgetArea, wbDockWidget)
+w$tabifyDockWidget(wbDockWidget, hbDockWidget)
+@
+
+We next place a notebook to hold any graphics produced in a dock
+widget. This one occupies its own space.
+<<results=hide>>=
+plotNotebook <- Qt$QTabWidget()
+pnDockWidget <- Qt$QDockWidget("Plots")
+w$addDockWidget(Qt$Qt$RightDockWidgetArea, pnDockWidget)
+@              
+
+Finally, we make status bar and add a transient message.
+<<results=hide>>=
+sb <- Qt$QStatusBar()
+w$setStatusBar(sb)
+sb$showMessage("Mock-up layout for an IDE", 2000)
+@ 
+
+
+<<echo=FALSE, results=hide>>=
+w$show()
+w$raise()
+@ 

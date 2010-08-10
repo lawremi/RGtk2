@@ -52,10 +52,15 @@ lookup <- function(obj, regxp) {
 
 \SweaveInput{Widgets}
 
-\chapter{Widgets using an MVC framework}
+\chapter{Widgets using the MVC framework}
 \label{cha:widgets-using-MVC}
 
 \SweaveInput{Widgets-MVC}
+
+\chapter{Dialogs}
+\label{cha:dialogs}
+
+\SweaveInput{Dialogs}
 
 
 \chapter{Qt paint}

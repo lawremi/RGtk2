@@ -5,7 +5,7 @@
 \section{Overview}
 \label{sec:overview}
 
-\XXX{An overview of Qt, qtbase and its development}
+\XXX{An overview of Qt, qtbase and its development, Flesh me out}
 
 \Qt{} is an open-sourced, cross-platform application and UI
 framework. Its history begins with Haavard Nord and Eirik Chambe-Eng
@@ -32,17 +32,24 @@ underlying \Qt{} libraries, provided the latter are installed. The
 \url{http://qt.nokia.com/}.
 
 The package exports very few items. The main one is an environment,
-\Qt, that contains the bulk of the functionality. The
-components of this environment preserve the class structure from
-\Qt. For example, the \code{QWidget} class being represented through
-the component \code{Qt\$QWidget}.
+\Qt, that contains the bulk of the functionality.~\footnote{ \XXX{Is
+    this a footnote, or a main item? I put here but am not sure} The
+  \code{Qt} object provides a binding between a library and an \R{}
+  object. There are others, and these all inherit from the
+  \class{RQtLibrary} class which in turn inherits from
+  \class{environment}. As such, these library objects can be used
+  where environments are, such as with \function{ls} or \function{\$}.
+} The components of this environment are class objects that represent
+an actual C++ class, an \R{} derivative or a C++ namespace.  For
+example, the \code{QWidget} class being represented through the
+component \code{Qt\$QWidget}.
 
-These components have class
+These components inherit from class \class{RQtClass}
 <<qtwidget-class>>=
 class(Qt$QWidget)
 @ 
 
-These inherit from functions, as they act as constructors
+As well, they inherit from the \class{functions} class, as they serve as constructors
 for instances of the class. For example
 <<qwidget-object>>=
 w <- Qt$QWidget()
@@ -53,11 +60,11 @@ class inheritance structure of \Qt:
 <<qwidget-class>>=
 class(w)
 @ 
-
-Here, the \code{w} object is an environment and the properties and
-methods for this instance of the \Qt{} class that are available from
-within \R{} comprise its components. For \code{w} the first few listed
-using \function{ls}:
+%
+The base class, \class{RQtObject}, is also an environment and the
+properties and methods for this instance of the \Qt{} class that are
+available from within \R{} comprise its components. For \code{w} the
+first few listed using \function{ls}:
 <<eval=FALSE>>=
 ls(w)
 @ 
@@ -67,7 +74,8 @@ head(ls(w), n=6)
 
 Properties and methods are accessed from the environment in the usual
 manners available. The most convenient extractor is the \code{\$}
-operator, but \verb+[[+ and \code{get} will also work. The
+operator, but \verb+[[+ and \code{get} will also work. (With the
+\code{\$} operator at the command line, completion works.) The
 properties may be accessed like a component of an environment. For
 example, a \code{QWidget} has a \code{windowTitle} property which is
 used when the widget draws itself with a window. The following shows
@@ -234,17 +242,17 @@ the status bar of a top-level window through the method
 % activated by \kbd{SHIFT+F1} when the widget has focus.
 
 \paragraph{The size of a widget}
-A widget may be drawn with its own window, or embedded in a more
+A widget may be drawn with its own window, or typically embedded in a more
 complicated GUI. The size of the widget can be adjusted through
 various methods. 
 
 First, we can get the size of the widget through the
 methods \method{frameGeometry}{QWidget} and
 \method{frameSize}{QWidget}. The \code{frameGeometry} method returns a \class{QRect}
-instance, \Qt's rectangle class. Rectangles are parameterized by a
-point and two dimensions (\method{x}{QRect}, \method{y}{QRect},
+instance, \Qt's rectangle class. Rectangles are parameterized by an $x-y$
+position and two dimensions (\method{x}{QRect}, \method{y}{QRect},
 \method{width}{QRect} and \method{height}{QRect}). In this case, the
-point is the upper left coordinate and dimensions are in pixels. The 
+position refers to the upper left coordinate and dimensions are in pixels. The 
 convenience function \function{qrect} is provided to construct
 \class{QRect} instances. The
 \method{frameSize}{QWidget} method returns a \class{QSize} object with properties
@@ -271,14 +279,16 @@ desired, the methods \method{setFixedSize}{QWidget} or
 
 
 When a widget is resized, one can constrain how it changes by
-specifying a minimum size or maximum size. The properties
+specifying a minimum size or maximum size. These values work in
+combination with the size policy of the widget. The properties
 \property{minimumSize}{QWidget}, \property{minimumWidth}{QWidget},
 \property{minimumHeight}{QWidget}, \property{maximumSize}{QWidget}
-\property{maximumWidth}{QWidget} and \property{maximumHeight}{QWidget}, and their
-corresponding setters, are the germane ones.  One can also adjust
-the \property{sizePolicy} property to fine-tune how widgets
-expand. For example, buttons will only grow in the $x$ direction -- not the $y$
-direction due to their default size policy.
+\property{maximumWidth}{QWidget} and
+\property{maximumHeight}{QWidget}, and their corresponding setters,
+are the germane ones.  How these get used is determined by the
+\property{sizePolicy} property. For example, buttons will only grow in
+the $x$ direction -- not the $y$ direction due to their default size
+policy.
 
 
 
@@ -296,38 +306,40 @@ Often there can be more than two states for a property, in which case
 values other than logical ones must be used. For example, the
 label widget (among others) has a property for how its text is
 aligned. For alignment there are options left, right, center, 
-top, bottom, etc. In \Qt{} these are represented by integer values whose value
-can be gleaned from the appropriate manual page. However, \pkg{qtbase}
-provides these values as named enumerations in the \code{Qt\$Qt} object. For example, right
-alignment is specified with
+top, bottom, etc. In \pkg{qtbase} these enumerations are stored in
+the \code{Qt\$Qt} class object, or for some widgets the \class{RQtClass}
+object. For example, 
+alignment values are from the \qtenumeration{AlignmentFlag}
+enumeration and right alignment is specified by:
 <<Enumeration-example>>=
 Qt$Qt$AlignRight
 @ 
-
-Thes values are used as follows, the last case showing how the
-\verb+|+ operator is used to combine alignments.
-<<alginexample, results=hide>>=
+Whereas, the size policy enumeration are in the \class{QSizePolicy}
+class and these are in the \code{Qt\$QSizePolicy} object:
+<<>>=
+Qt$QSizsePolicy$Exanding
+@ 
+Although these enumerations can be specifed as integers, in
+\pkg{qtbase} they are of class \class{QtEnum} and have the overloaded
+operator \verb+|+ to combine values. For example, aligning text in
+label in the upper right can be done through
+<<alignexample, results=hide>>=
 l <- Qt$QLabel("Our text")
-l$setAlignment(Qt$Qt$AlignRight)
-l$setAlignment(Qt$Qt$AlignRight | Qt$Qt$AlignVCenter)
+l$setAlignment(Qt$Qt$AlignRight | Qt$Qt$AlignTop)
 @ 
 
-A full list of the enumerated values can be teased out of the
-\code{Qt\$Qt} object via
-<<x, eval=FALSE>>=
-ls(attr(Qt$Qt,"env"))
-@ 
-<<echo=FALSE>>=
-x <- ls(attr(Qt$Qt,"env"))
-x <- x[1:4]; x[5] <- "..."
-x
-@ 
+% A full list of the enumerated values can be teased out of the
+% \code{Qt\$Qt} object via
+% <<x, eval=FALSE>>=
+% ls(attr(Qt$Qt,"env"))
+% @ 
+% <<echo=FALSE>>=
+% x <- ls(attr(Qt$Qt,"env"))
+% x <- x[1:4]; x[5] <- "..."
+% x
+% @ 
 
 
-\subsection{Keyboard shortcuts}
-\label{sec:keyb-accel}
-
-\XXX{write}
 
 \subsection{Fonts}
 \label{sec:fonts}
@@ -360,7 +372,6 @@ adjust properties. For example, there are the methods
 \method{setStrikeout}{QFont} and \method{setBold}{QFont} among others.
 
 
-\XXX{HTML markup for labels!}
 %% Palettes (colors); roles
 
 \subsection{Styles}
@@ -375,20 +386,9 @@ active or inactive.
 
 
 The role an object plays determines the type of coloring it should
-receive. A palette has an enumeration of \code{ColorRole}s. From the
-man page, these
-include, among others, the following:
-<<palletteroles>>=
-qpaletteroles <- c(
-   Window=10L,          # a general background color
-   WindowText=0,        # a general foreground color
-   Base=9L,             # background color for text entry widgets
-   Text=6L,             # a foreground text color with 'Base'
-   BrightText=7L,       # Color to contrast to "Base"
-   Highlight=12L,       # indicate selected item
-   HighlightedText=13L  # text color to contrast with Highlight
-   )
-@ 
+receive. A palette has an enumeration of \code{ColorRole}s. Sample
+ones are \verb+Qt$QPalette$Highlight+, to indicate a selected item, or
+\verb+Qt$QPalette$WindowText+ to indicate a foreground color.
 
 These roles are used for setting the foreground or background role to
 give a widget a different look, as illustrated in Example~\ref{eg:qt-dnd}.
@@ -418,6 +418,8 @@ ssheet <- sprintf("* {background-image: url(%s)}", "logo.png")
 b$setStyleSheet(ssheet)
 @ 
 
+
+\XXX{HTML markup for labels!}
 
 
 
@@ -490,30 +492,42 @@ The \function{qsetClass} creates a new subclass and defines the
 constructor. The signature includes the arguments \argument{x}{qsetClass} to specify
 the name of the new class; \argument{parent}{qsetClass} to specify the
 class the new class will be a subclass of (for example,
-\code{Qt\$QWidget} -- the function, not the call, so no parentheses); 
+\code{Qt\$QWidget} -- the class, not the constructor, so no parentheses); 
 \argument{constructor}{qsetClass} to specify the function used for
 construction; and a \argument{where}{qsetClass} argument to override where the
-class is defined. Of these, the constructor is the most important. In
-the introductory example \XXX{reference} we saw this minimal use of \function{qsetClass}.
-<<results=hide>>=
+class is defined. When \function{qsetClass} is called, a variable is
+assigned into the global environment (with scoping similar to \function{methods::setClass}.
+
+
+In the introductory example \XXX{reference} we saw this minimal use of
+\function{qsetClass}.
+<<DateValidatorSnippet,results=hide, eval=FALSE>>=
 qsetClass("dateValidator", Qt$QValidator, function(parent = NULL) {
   super(parent)
 })
 @ 
+%
 Here we see \code{dateValidator} is the new class name, a sub-class of
 the \code{QValidator} class. The constructor has a single call to
-\function{super} to inherit the parent's methods. 
+\function{super}. The \function{super}
+function does not exist outside the scope of a constructor or a
+method. Within a constructor, \function{super} invokes the
+constructor of the parent (super) class, with the given
+arguments. Whereas, within a method implementation, \code{super} will
+call a method (named in the first parameter) in the parent class.
 
-Within the body of the constructor, the variable \code{this} is a
-reference to the instance of the class and the inherited method names
-are also attached, so need not be referenced through the \$\/ notation.
+Within the body of the constructor and a method, the variable
+\code{this} is a reference to the instance of the class and the
+inherited method names are also attached, so need not be referenced
+through the \$\/ notation.
 
 
 To define a method for a class the \function{qsetMethod} function is
-used. The signature includes \code{name}, for the new name;
-\code{class}, for the class being extended; and \code{FUN} to define
-the method. The dispatch happens on the class and method name, not on
-the signature of the method. In addition, there is an argument
+used. This overrides the virtual method for the class. The signature
+includes \code{name}, for the new name; \code{class}, for the class
+being extended; and \code{FUN} to define the method. The dispatch
+happens on the class and method name, not on the signature of the
+method. In addition, there is an argument
 \argument{access}{qsetMethod} to specify if the method is
 \qcode{public} (the default), \qcode{protected}, or \qcode{private}.
 
@@ -524,6 +538,8 @@ example is in Example~\ref{eg:qt-dnd}. The basic call looks like
 \code{super(meth\_name, arg1, arg2, ...)}.
 
 
+
+
 \begin{example}{A ``error label''}{eg:qt-error}
   A common practice when validation is used for text entry is to have
   a ``buddy label.'' That is an accompanying label to set an error
@@ -532,7 +548,7 @@ example is in Example~\ref{eg:qt-dnd}. The basic call looks like
   \pkg{qtbase} where we subclass the single-line text edit widget
   constructed by \class{QLineEdit}. We begin by defining our subclass
   and constructor
-<<results=hide>>=
+<<ErrorLabel, results=hide>>=
 qsetClass("ErrorLabel", Qt$QLineEdit, 
           function(text, parent=NULL, message="") {
   super(parent)
@@ -715,7 +731,7 @@ qsetClass("DropLabel", Qt$QLabel, function(text="", ...) {
 @
 We wish to override the call to \method{setText}{QLabel} above, as
 we want to store the original text in a property of the widget. Note
-the use of \function{super} below to call the next method.
+the use of \function{super} with a method definition below to call the next method.
 <<results=hide>>=
 qsetMethod("setText", DropLabel, function(str) {
   this$orig_text <- str
@@ -736,7 +752,7 @@ by changing the text and the background role.
 <<results=hide>>=
 qsetMethod("dragEnterEvent", DropLabel, function(e) {
   super("setText", "<Drop Text Here>")
-  setBackgroundRole(qpaletteroles['Highlight'])
+  setBackgroundRole(Qt$QPalette$Highlight)
 
   e$acceptProposedAction()
 })
