@@ -1,0 +1,90 @@
+<<echo=FALSE, results=hide>>=
+## selection example with table widget
+library(qtbase)
+library(MASS)
+
+w <- Qt$QGroupBox("Selection example") 
+@ 
+
+This example shows how to use the table widget to select variable
+names in a data set. The \class{QListWidget} can also be used for
+this, but with the table widget we can add more detail in other columns
+We begin by placing the table widget into a box layout.
+<<tableWidget, results=hide>>=
+tbl <- Qt$QTableWidget()
+tbl$setSizePolicy(Qt$QSizePolicy$Expanding, Qt$QSizePolicy$Expanding) 
+
+lyt <- Qt$QVBoxLayout() 
+lyt$addWidget(tbl)
+@ 
+
+We use a \class{QDialogButtonBox} to hold our two buttons.
+<<buttonBox, results=hide>>=
+db <- Qt$QDialogButtonBox()
+lyt$addWidget(db)
+
+db$addButton(Qt$QDialogButtonBox$Ok)
+db$addButton(Qt$QDialogButtonBox$Cancel) 
+
+qconnect(db, "accepted", function() runCommand())
+qconnect(db, "rejected", function() w$hide())
+@ 
+
+We assume we have a data frame, \code{df}, with two columns -- one for
+the variable name and one for detail, in this case the class of the variable.
+<<dataFrame, echo=FALSE>>=
+## populate table
+df <- Cars93
+df <- data.frame(variable=names(df),
+                 class <-sapply(sapply(df, class), paste, collapse=", "),
+                 stringsAsFactors=FALSE  ## Items like character -- not factor
+                 )
+@ 
+
+We populate our table first by setting its dimensions and then setting
+the headers. We stretch the last column and set the column width of
+the first to accomodate the longest variable name in our example.
+<<setHeaders, results=hide>>=
+tbl$clear()
+tbl$setRowCount(nrow(df))
+tbl$setColumnCount(ncol(df))
+
+tbl$setHorizontalHeaderLabels(c("Variable", "Class"))
+tbl$horizontalHeader()$setStretchLastSection(TRUE)
+tbl$setColumnWidth(0, 200)
+
+tbl$verticalHeader()$setVisible(FALSE)
+@ 
+
+Each row in this example has two items, one for the checkable item
+holding the variable name and one for detail. Here we add row by row.
+<<PopulateRows, results=hide>>=
+for(i in 1:nrow(df)) {
+  item <- Qt$QTableWidgetItem(df[i,1])
+  item$setCheckState(Qt$Qt$Unchecked)
+  tbl$setItem(i-1, 0, item)
+
+  item <- Qt$QTableWidgetItem(df[i,2])
+  item$setTextAlignment(Qt$Qt$AlignLeft)
+  tbl$setItem(i-1, 1, item)
+}
+@ 
+
+Finally, this command is called when the "Ok" button is pressed. For
+simplicity we do two passes through the data to grab the text and the
+check state (which we must coerce to get a logical value).
+<<>>=
+runCommand <- function() {
+  n <- tbl$rowCount
+  x <- sapply(seq_len(n), function(i) tbl$item(i-1, 0)$text())
+  ind <- sapply(seq_len(n), function(i) tbl$item(i-1, 0)$checkState())
+  print(x[as.logical(ind)])
+}
+@ 
+
+<<echo=FALSE, results=hide>>=
+## Show selection example
+w$setLayout(lyt)
+w$show()
+w$raise()
+@ 

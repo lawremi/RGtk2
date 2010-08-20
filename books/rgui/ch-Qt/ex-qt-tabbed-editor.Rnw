@@ -1,0 +1,280 @@
+<<echo=FALSE>>=
+## a tabbed editor
+## This has a notebook and sheets
+require(qtbase)
+@ 
+
+
+This example shows how to combine the text edit with a notebook widget
+to create a widget for editing more than one file at a time. 
+
+We begin by defining a sub-class of \class{QTextEdit} so that we can
+define a few useful properties and method. In this example, we limit
+ourselves to just a few customizations of the edit widget.
+
+<<results=hide>>=
+qsetClass("TextEditSheet", Qt$QTextEdit, function(parent=NULL) {
+  super(parent)
+
+  this$nb <- NULL                     # text edit notebook
+  this$filename <- NULL               # name of file, tab
+  
+  setLineWrapMode(Qt$QTextEdit$NoWrap)
+  setFontFamily("Courier")
+})
+@ 
+
+The \code{nb} property stores the parent notebook widget allowing us took this
+up when when we have the sheet object.
+<<results=hide>>=
+qsetMethod("setNb", TextEditSheet, function(nb) this$nb <- nb)
+@ 
+
+The file name is used for saving the sheet and for labeling the
+notebook tab. We define a getter and setter. The setter is also tasked
+with updating the tab label and illustrates how the \code{nb} property is
+employed for this.
+<<results=hide>>=
+qsetMethod("filename", TextEditSheet, function() this$filename)
+qsetMethod("setFilename", TextEditSheet, function(fname) {
+  this$filename <- fname
+  ## update tab label
+  notebook <- this$nb$notebook 
+  ind <- notebook$indexOf(this)
+  notebook$setTabText(ind, basename(fname))
+})
+@ 
+
+Next, we define a few methods for the sheet. First, one to save the
+file. We use the filename property for the suggested name to save
+as. This method uses one of \Qt's standard dialogs.
+<<results=hide>>=
+qsetMethod("saveSheet", TextEditSheet, function() {
+  fname <- Qt$QFileDialog$getSaveFileName(this, "Save file as...", filename())
+  if(!is.null(fname)) {
+    txt <- this$toPlainText()
+    writeLines(strsplit(txt, "\n")[[1]], con=fname)
+  }
+})
+@ 
+
+We will see soon, that a method to test if a given sheet is the
+currently visible sheet is useful. This method returns a logical by
+comparing the current index of the notebook with the index of the sheet.
+<<results=hide>>=
+qsetMethod("isCurrentSheet", TextEditSheet, function() {
+  notebook <- this$nb$notebook
+  notebook$currentIndex == notebook$indexOf(this)
+})
+@ 
+
+FInally we want to initialize a new sheet. This involves defining callbacks
+that update the actions in the parent notebook as appropriate. Later
+we define a minimal set of actions for this example and store them in
+the \code{tbactions} property of the parent notebook.
+<<results=hide>>=
+qsetMethod("initSheet", TextEditSheet, function() {
+
+  qconnect(this, "redoAvailable", function(yes) {
+    if(isCurrentSheet()) 
+      this$nb$tbactions$redo$setEnabled(yes)
+  })
+  qconnect(this, "undoAvailable", function(yes) {
+    if(isCurrentSheet()) 
+      this$nb$tbactions$undo$setEnabled(yes)
+  })
+  qconnect(this, "selectionChanged", function() {
+    hasSelection <- this$textCursor()$hasSelection()
+    if(isCurrentSheet()) 
+      sapply(c("cut","copy"), function(i) this$nb$tbactions[[i]]$setEnabled(hasSelection))
+  })
+  qconnect(this, "textChanged", function() {
+    if(isCurrentSheet())
+      this$nb$tbactions$save$setEnabled(this$document()$isModified())
+  })
+})
+@ 
+
+
+Next, we turn to the task of defining a notebook container. In fact we
+subclass \class{QMainWindow} so that we can add a toolbar. The
+notebook is then a property, as are the actions. Our constructor
+cusotmizes the notebook, sets up the actions and toolbar, then opens
+with a blank sheet.
+
+<<results=hide>>=
+qsetClass("TextEditNotebook", Qt$QMainWindow, function(parent=NULL) {
+  super(parent)
+
+  ## properties
+  this$tbactions <- list()
+  this$notebook <- Qt$QTabWidget()
+
+  
+  notebook$setTabsClosable(TRUE)
+  notebook$setUsesScrollButtons(TRUE)
+  qconnect(notebook, "tabCloseRequested", function(ind) notebook$removeTab(ind))
+  qconnect(this$notebook, "currentChanged", function(index) {
+    if(index > 0)
+      updateActions()
+  })
+  setCentralWidget(notebook)
+  
+  initActions()
+  makeToolbar()
+  newSheet()
+})
+@ 
+
+For our example, we implement a basic set of methods.  This one maps
+down from the parent notebook widget to a sheet.
+<<results=hide>>=
+qsetMethod("currentSheet", TextEditNotebook, function() {
+  this$notebook$currentWidget()
+})
+@ 
+
+This method is used to open a new sheet, either a blank one or some
+initial text.
+<<results=hide>>=
+qsetMethod("newSheet", TextEditNotebook, function(title="..Scratch..", str=NULL) {
+
+  a <- TextEditSheet()                  # a new sheet
+  a$setNb(this)                         # set parent notebook
+  a$initSheet()                         # initialize the sheet
+
+  if(!is.null(str))                     # set text if present
+    a$setPlainText(str)                 
+
+  this$notebook$addTab(a, "")           # add to the notebook
+  this$notebook$setCurrentIndex(this$notebook$indexOf(a))
+  a$setFilename(title)                  # also updates tab
+  
+  
+})
+@ 
+
+To open a file in a new sheet, we use a standard dialog to get the filename to
+open, then call \meth{newSheet}.
+<<results=hide>>=
+
+qsetMethod("openSheet", TextEditNotebook, function() {
+  dlg <- Qt$QFileDialog(this, "Select a file...", getwd())
+  dlg$setFileMode(Qt$QFileDialog$ExistingFile)
+  if(dlg$exec()) {
+    fname <- dlg$selectedFiles()    
+    txt <- paste(readLines(fname), collapse="\n")
+    newSheet(fname, txt)
+  }
+})
+@ 
+
+
+We have several actions possible in our GUI, such as the standard cut,
+copy and paste. We define them for the
+parent notebook, but the actions primarily work at the sheet
+level. The \meth{initActions} is called to set up the actions. We
+don't show the entire method, as it is repetitive, but is primarily of
+this type:
+<<eval=FALSE>>=
+actions <- list()                        # hold the actions
+## make an action for open. This is TextEditNotebook instance
+actions$open <- Qt$QAction("open", this)
+actions$open$setShortcut(Qt$QKeySequence("Open"))
+qconnect(actions$open, "triggered", function(obj) obj$openSheet(), user.data=this)
+## ... etc. ...
+this$tbactions <- actions
+@ 
+
+<<echo=FALSE, results=hide>>=
+## initialize the actions
+qsetMethod("initActions", TextEditNotebook, function() {
+  actions <- list()
+
+  makeAction <- function(name, call=name, obj) {
+    upperfirst <- function(str) gsub("^[a-z]",toupper(substr(str,0,1)), str)
+    x <- Qt$QAction(name, obj)
+    x$setShortcut(Qt$QKeySequence(upperfirst(name)))
+    qconnect(x, "triggered", function(l) {
+      get(l$call, l$obj$currentSheet())()
+    }, user.data=list(obj=obj, call=call))
+    actions[[name]] <<- x
+    x
+  }
+
+  sapply(c("redo","undo","cut","copy","paste"), function(i) 
+         makeAction(i, i, this)
+         )
+  x <- Qt$QAction("open", this)
+  x$setShortcut(Qt$QKeySequence("Open"))
+  qconnect(x, "triggered", function(obj) obj$openSheet(), user.data=this)
+  actions$open <- x
+
+  x <- Qt$QAction("new", this)
+  x$setShortcut(Qt$QKeySequence("New"))
+  qconnect(x, "triggered", function(obj) obj$newSheet(), user.data=this)
+  actions$new <- x
+
+  x <-  Qt$QAction("rename", this)
+  qconnect(x, "triggered", function(obj) {
+    curName <- obj$currentSheet()$filename()
+    dlg <- Qt$QInputDialog(obj)
+    dlg$setLabelText("Select a new name.")
+    dlg$setTextValue(curName)
+    txt <- dlg$exec()
+    if(txt)
+      this$currentSheet()$setFilename(make.names(dlg$textValue()))
+  }, user.data=this)
+  actions$rename <- x
+
+  x <- Qt$QAction("save", this)
+  x$setShortcut(Qt$QKeySequence("Save"))
+  qconnect(x, "triggered", function(obj) obj$currentSheet()$saveSheet(), user.data=this)
+  actions$save <- x
+  this$tbactions <- actions
+})
+@ 
+
+Whenever a new sheet is shown, the state of the actions should reflect
+that sheet. The \method{updateActions} does this task. The constructor
+has a callback for this method whenever the sheet changes.
+<<results=hide>>=
+qsetMethod("updateActions", TextEditNotebook, function() {
+  ## update actions when page changes
+  a <- this$tbactions
+  cur <- currentSheet()
+  if(is.null(cur)) return()
+  a$redo$setEnabled(FALSE)
+  a$undo$setEnabled(FALSE)
+  a$cut$setEnabled(cur$textCursor()$hasSelection())
+  a$copy$setEnabled(cur$textCursor()$hasSelection())
+  a$paste$setEnabled(cur$canPaste())
+
+})
+@ 
+
+Finally, the \meth{makeToolbar} method, which is not shown, simply maps the actions to a
+toolbar. Our GUI might also benefit from a menu bar, an exercise left
+for the reader.
+<<echo=FALSE, results=hide>>=
+## Not shown. A bit repetitive
+## Could also provide a menubar as this gets *very* crowded.
+qsetMethod("makeToolbar", TextEditNotebook, function() {
+  tb <- Qt$QToolBar()
+  a <- this$tbactions
+  tb$addAction(a$new)
+  tb$addAction(a$open)
+  tb$addAction(a$rename)
+  tb$addAction(a$save)
+  tb$addSeparator()
+  tb$addAction(a$cut)
+  tb$addAction(a$copy)
+  tb$addAction(a$paste)
+  tb$addSeparator()
+  tb$addAction(a$undo)
+  tb$addAction(a$redo)
+
+  this$addToolBar(tb)
+})
+@ 
+

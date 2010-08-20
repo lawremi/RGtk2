@@ -44,7 +44,7 @@ preferred size, but it can be resized. One can change the policy
 through the \method{setSizePolicy}{QWidget} method. One sets the value
 for the horizontal and vertical sizing. Values are taken from the
 \qtenumeration{QSizePolicy} enumeration with possible values of
-\qcode{Fixed} (\verb+Qt$QSizePolicy$Fixed+) for using the size hint;
+\qcode{Fixed} (\code{Qt\$QSizePolicy\$Fixed}) for using the size hint;
 \qcode{Minimum}, for size hint being minimal and sufficient;
 \qcode{Maximum}, for the size hint being the maximal size;
 \qcode{Preferred}; \qcode{Expanding}, for able to expand to fill the
@@ -74,7 +74,7 @@ allocated more than its maximal size, the allocation is shrunk.
 %% alignment
 When a widget is allocated additional space, the child can have its
 alignment adjusted. The enumeration \qtenumeration{Alignment}
-specifies values \qcode{Left} (\verb+Qt$Qt$AlignLeft+), \qcode{Right},
+specifies values \qcode{Left} (\code{Qt\$Qt\$AlignLeft}), \qcode{Right},
 \qcode{HCenter} (horizontal center), \qcode{Justify}, \qcode{Top},
 \qcode{Bottom}, \qcode{VCenter} (vertical center), and
 \qcode{Center}. Values may be ``or''ed together.
@@ -280,12 +280,12 @@ the \class{QFrame} class provides a general method for framed widgets
 that can be used for this purpose with the appropriate settings.
 
 The frame shape can be a box or others types but for this purpose a
-line is desired. The enumerations \verb+Qt$QFrame$HLine+ or
-\verb+Qt$QFrame$VLine+ can be passed to the method
+line is desired. The enumerations \code{Qt\$QFrame\$HLine} or
+\code{Qt\$QFrame\$VLine} can be passed to the method
 \method{setFrameShape}{QFrame} to specify a horizontal or vertical
 line. Its appearance can be altered by
-\method{setFrameShadow}{QFrame}. A value of \verb+Qt$QFrame$Sunken+
-or \verb+Qt$QFrame$Raised+ is suitable.
+\method{setFrameShadow}{QFrame}. A value of \code{Qt\$QFrame\$Sunken}
+or \code{Qt\$QFrame\$Raised} is suitable.
 
 
 \section{Grid Layouts}
@@ -423,7 +423,7 @@ if the property \property{tabsClosable}{QTabWidget} is
 close the tab.
 The tab position is adjusted through the
 \method{setTabPosition}{QTabWidget} method with enumerated values such
-as \verb+Qt\$QTabWidget\$North+. Call \method{isMovable}{QTabWidget}
+as \code{Qt\$QTabWidget\$North}. Call \method{isMovable}{QTabWidget}
 with \code{TRUE} allows the pages to be reorganized by the user.
 
 
@@ -490,7 +490,7 @@ specified as an argument.
 Split windows with handles to allocate space are created by
 \class{QSplitter}. There is no limit on the number of child panes that
 can be created. The default orientation is horizontal, set the
-\property{orientation}{QSplitter} property using \verb+Qt$Qt$Vertical+
+\property{orientation}{QSplitter} property using \code{Qt\$Qt\$Vertical}
 to change this.
 
 Child widgets are added through the \method{addWidget}{QSplitter}
@@ -502,7 +502,7 @@ The \method{moveSplitter}{QSplitter} method is not implemented, so
 programattically moving the a splitter handle is not possible.
 
 
-<<results=hide>>=
+<<splitter, results=hide>>=
 sp <- Qt$QSplitter()
 sp$addWidget(Qt$QLabel("One"))
 sp$addWidget(Qt$QLabel("Two"))
@@ -551,12 +551,15 @@ Actions inherit the \method{enabled}{QAction} method to toggle whether
 an action is sensitive to user input.
 
 
+Actions emit a \signal{triggered} signal when activated, sending to
+the callback a boolean for checked which applies for buttons.
+
 \paragraph{Keyboard shortcuts}
 \XXX{Dp keyboard shortcuts work???}
 
 A keyboard shortcut use a \class{QKeySequence} to bind a key sequence
 to the command. Key sequences can be found from the standard
-shortcuts provided in the enumeration \verb+Qt$QtKeySequence+, for
+shortcuts provided in the enumeration \code{Qt\$QtKeySequence}, for
 example 
 <<>>=
 Qt$QKeySequence$Cut
@@ -816,11 +819,11 @@ method. The method \method{actions}{QWidget} will return a list of actions.
 Toolbars can have a few styles. The orientation can be horizontal (the
 default) or vertical. The \method{setOrientation}{QToolBar} method
 adjusts this with values specified by 
-\verb+Qt$Qt$Horizontal+ or \verb+Qt$Qt$Vertical+. The toolbuttons can
+\code{Qt\$Qt\$Horizontal} or \code{Qt\$Qt\$Vertical}. The toolbuttons can
 show a combination of text and/or icons. This is specified through the
 method \method{setToolButtonStyle}{QToolBar} with values taken from
 the \qtenumeration{ToolButtonStyle} enumeration. The default is icon only, but
-one could use, say, \verb+Qt$Qt$ToolButtonTextUnderIcon+.
+one could use, say, \code{Qt\$Qt\$ToolButtonTextUnderIcon}.
 
 
 
@@ -907,7 +910,7 @@ first creating an instance of \class{QDockWidget} and then setting the
 desired widget through the dock widgets
 \method{setWidget}{QDockWidget}. Widgets may go on any side of the
 central widget. The position is specified through the
-\qtenumeration{DockWidgetArea} enumeration, with values such as \verb+Qt$Qt$LeftDockWidgetArea+.
+\qtenumeration{DockWidgetArea} enumeration, with values such as \code{Qt\$Qt\$LeftDockWidgetArea}.
 
 Dock widgets can be stacked or arranged in a notebook like manner. The
 latter is done by the \method{tabifyDockWidget}{QDockWidget}, which

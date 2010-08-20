@@ -5,7 +5,7 @@
 options(prompt=" ")
 options(continue=" ")
 options(width=80)
-
+source("../booktabs.R")
 ##' find class that has method
 ##' @param obj object
 ##' @param meth_name if given prints out which class this comes from
@@ -52,15 +52,17 @@ lookup <- function(obj, regxp) {
 
 \SweaveInput{Widgets}
 
+%% place in widget
+% \chapter{Dialogs}
+% \label{cha:dialogs}
+
+% \SweaveInput{Dialogs}
+
 \chapter{Widgets using the MVC framework}
 \label{cha:widgets-using-MVC}
 
 \SweaveInput{Widgets-MVC}
 
-\chapter{Dialogs}
-\label{cha:dialogs}
-
-\SweaveInput{Dialogs}
 
 
 \chapter{Qt paint}

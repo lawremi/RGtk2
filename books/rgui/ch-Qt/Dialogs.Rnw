@@ -2,25 +2,396 @@
 
 
 
-\section{Modal windows}
-\label{sec:modal-windows}
 
 
+\section{Dialogs}
+\label{sec:built-dialogs}
 
-\section{QDialog}
+\Qt{} implements the familiar set of standard dialogs and includes
+support to make your own. The base class for these is \class{QDialog}.
+
+The message box dialog is a simple dialog that has a primary message,
+perhaps additional informative text and or detailed text. In addition
+it may have a standard icon and buttons. \Qt{} implements these in the
+\class{QMessageBox} class, a sub class of \class{QDialog}.
+    
+\Qt{} provide two ways to create a message box. There are static
+functions where all properties are specified as arguments to the
+constructor, for example \qcode{warning} (in
+\code{Qt\$QMessageBox\$warning}). We prefer the basic constructor, and
+then to set properties through methods defined for the instance,
+although the other approach can be simpler.
+
+For such use, a dialog is constructed by defining an instance.  The
+\code{parent} is used to position the new dialog. If specified, the
+new dialog will be placed near the parent.  After specifying the
+desired properties, the dialog is shown. There are two ways to do
+so. Calling the \method{open}{QDialog} method do so in modeless
+way. Invoking the dialog this way does not block the user input,
+unlike a modal dialog which is invoked through the
+\method{exec}{QDialog} method. For modal dialogs, the return value may
+be $0$ or $1$ for cancel or accept, or may be the enumeration of the
+button pressed.  Modal dialogs may be window modal
+(\code{Qt\$Qt\$WindowModal}), where the dialog blocks all access to the
+windows which are ancestors of its parent and grandparents, or
+application modal (\code{Qt\$Qt\$ApplicationModal}) (the default) where
+all window are blocked. Such values are passed
+\method{setWindowModality}{QMessageBox}. On Mac OS X, window modal
+dialogs appear as sheets, within the parent window.  When closed,
+\class{QDialog} instances are not destroyed and can still have their
+methods called.
+
+The \class{QMessageBox} class can be quite simply used. Here we popup
+a message and move one, once the dialog is dismissed.
+<<QMessageBox, eval=FALSE>>=
+dlg <- Qt$QMessageBox()
+dlg$setText("Click to dismiss")
+dlg$exec()
+@ 
+
+Above we use the \meth{setText} method to adjust the primary
+text. Additionally we have \method{setInformativeText}{QMessageBox}
+and \method{setDetailedText}{QMessageBox} to adding more information
+and detail. The window title is adjusted through \method{setWindowTitle}{QMessageBox}.
+
+An icon be set from a standard one through the
+\method{setIcon}{QMessageBox} method, with values \qcode{Noicon},
+\qcode{Question}, \qcode{Information}, \qcode{Warning},
+\qcode{Critical} from \qtenumeration{QMessageBox::Icon} enumeration.
+Alternatively, one can specify a non-standard one through \method{setIconPixmap}{QMessageBox}.
+
+The standard button is an ``Ok'' button, but the method
+\method{setStandardButtons}{QMessageBox} uses the enumeration
+\qtenumeration{QMessageBox::StandardButton} for others. For example,
+\qcode{Open} (\code{Qt\$QMessageBox\$Open}), \qcode{Save},
+\qcode{Cancel}, etc. These can be combined through the \OR{}
+operator.
+
+When  more than one button is present, a choice of default button may
+be made to save the user from having to move the mouse to initiate the
+default command. The \method{setDefaultButton}{QMessageBox} takes
+either a standard button, or a \class{QPushButton} instance.
+
+A general message box then can take this form:
+<<QMEssageBoxAPI, results=hide>>=
+dlg <- Qt$QMessageBox()
+dlg$setWindowTitle("[This space for rent]")
+dlg$setText("This is the main text")
+dlg$setInformativeText("This should be informative")
+dlg$setDetailedText("And this is to provide\nmore detail")
+
+dlg$setIcon(Qt$QMessageBox$Critical)
+dlg$setStandardButtons(Qt$QMessageBox$Cancel | Qt$QMessageBox$Ok)
+dlg$setDefaultButton(Qt$QMessageBox$Ok)
+@ 
+We may initiate it as a modal dialog as follows:
+<<eval=FALSE>>=
+if(dlg$exec() == Qt$QMessageBox$Ok) 
+  print("A Ok")
+@ 
+
+\subsection{Input dialogs}
+\label{sec:input-dialogs}
+
+The \class{QInputDialog} class provides a convenient means to gather
+an piece of information from the user. One can ask for text, text
+chosen from a list of values, an integer or a numeric value. The type
+is chosen by which methods are used to set up the input dialog. Text
+is done through \method{setTextValue}{QInputDialog}, an integer spin
+box is created through \method{setIntRange}{QInputDialog}, a numeric
+spin box through \method{setDoubleRange}{QInputDialog} and a combobox
+thorugh \method{setComboBoxItems}{QInputDialog}. 
+
+
+Input dialogs have a ``Ok'' and ``Cancel'' button, unless an option is
+set to disable these. When used in a modal manner, the return value is
+either a $0$, for cancel, or $1$.
+
+We illustrate the various styles below. First a dialog to gather text:
+<<QInputDialog, results=hide>>=
+dlg <- Qt$QInputDialog()
+dlg$setWindowTitle("Gather text")
+dlg$setLabelText("Enter some text")
+dlg$setTextValue("Initial text")
+@ 
+<<eval=FALSE, results=hide>>=
+if(dlg$exec())
+  print(dlg$textValue())
+@ 
+
+To specify an integer spin box or double is similar. Here we see an integer:
+<<results=hide>>=
+dlg <- Qt$QInputDialog()
+dlg$setWindowTitle("Gather integer")
+dlg$setLabelText("Select a value")
+dlg$setIntRange(0L, 100L)
+dlg$setIntStep(5L)
+dlg$setIntValue(50L)
+@ 
+<<eval=FALSE>>=
+if(dlg$exec())
+  print(dlg$intValue())
+@ 
+
+Finally, the input can be combobox
+<<results=hide>>=
+dlg <- Qt$QInputDialog()
+dlg$setWindowTitle("Select an item")
+dlg$setLabelText("Select a value")
+dlg$setComboBoxItems(state.name)
+dlg$setComboBoxEditable(FALSE)
+@ 
+<<eval=FALSE>>=
+if(dlg$exec())
+  print(dlg$textValue())
+@ 
+
+However, the combobox can be adjusted, throuh an option, into a list view:
+<<results=hide>>=
+dlg$setOption(Qt$QInputDialog$UseListViewForComboBoxItems)
+@ 
+<<eval=FALSE>>=
+if(dlg$exec())
+  print(dlg$textValue())
+@ 
+
+
+\subsection{QDialog}
 \label{sec:qdialog}
 
 
-QMessageBox
-QInputDialog
+The \class{QDialog} class can be used to make modal or no-modal
+dialogs. Laying out a dialog is similar to how any window is layed
+out, as \class{QDialog} inherits for \class{QWidget}. In fact modeless
+dialogs are very similar to using a widget for the layout, although
+the \code{parent} is treated differently, dialogs always have
+top-level windows. Instead the parent is used for placment of the dialog.
 
-\section{Built-in dialogs}
-\label{sec:built-dialogs}
+What makes a dialog different is when it is modal. That is the
+\method{exec}{QDialog} call is used. This state may be broken by
+quitting the window through the window manager, or by calling the
+\method{done}{QDialog} method with an integer specifying the return
+value (say \code{Qt\$QDialog\$Accepted} or
+\code{Qt\$QDialog\$Rejected}). This closes the window and returns
+control. If the \code{Qt\$Qt\$WA\_DeleteOnClose} attribute is set, the
+dialog will be deleted, othewise it may be reused.
 
-QFileDialog
-QFontDialog
-QColorCialog
-QPrintDialog, QPrintPreviewDialog
-QProgressDialog
-QWizard ?
-???
+A simple example follows. We assume some parent window is defined as \code{parent}
+<<echo=FALSE, results=hide>>=
+## Example of a dialog created with QDialog
+## not shown
+parent <- Qt$QLabel("Some parent")
+parent$setMinimumSize(400, 400)
+parent$show()
+parent$raise()
+@ 
+
+Our dialog is defined and we adjust our window modality
+accordingly. Under \OSX, this will appear as a drop down sheet of
+the parent, not in a separate window.
+<<ADialog, results=hide>>=
+dlg <- Qt$QDialog(parent)
+dlg$setWindowModality(Qt$Qt$WindowModal)
+dlg$setWindowTitle("A simple dialog")
+@ 
+
+Our dialog here is just a basic mock up. We use a horizontal box for
+the buttons, but in an real application would use the \class{QDialogButtonBox}
+<<results=hide>>=
+dlg$setLayout(lyt <- Qt$QVBoxLayout())
+lyt$addWidget(Qt$QLabel("Layout dialog components here"))
+blyt <- Qt$QHBoxLayout()                # for buttons
+lyt$addLayout(blyt)
+@
+
+Our buttons have callbacks that call the \method{done} method. We use
+\code{user.data} to pass in the dialog reference.
+<<results=hide>>=
+ok <- Qt$QPushButton("Ok")
+cancel <- Qt$QPushButton("Cancel")
+blyt$addWidget(ok)
+blyt$addWidget(cancel)
+
+qconnect(ok, "pressed", function(dlg) dlg$done(1), user.data=dlg)
+qconnect(cancel, "pressed", function(dlg) dlg$done(0), user.data=dlg)
+@
+
+<<eval=FALSE>>=
+if(dlg$exec())
+  print("Yes")
+@ 
+
+
+
+% \subsection{Wizards}
+% \label{sec:wizards}
+
+%% \XXX{Wizards do not have a registerField method defined.}
+
+% \Qt{} provides a framework for wizards -- multipage dialogs. The
+% \class{QWizard} class implements this. Wizards are compose of pages,
+% each containing a number of fields for the user to interact
+% with. Wizards may also have different naviagational routes. 
+
+
+% <<>>=
+% wizard <- Qt$QWizard()
+% wizard$setWindowTitle("A wizard")
+
+% getAgePage <- Qt$QWizardPage(wizard)
+% getAgePage$setTitle("What is your age?")
+% lyt <- Qt$QFormLayout()
+% getAgePage$setLayout(lyt)
+% lyt$addRow("Age", (age <- Qt$QLineEdit()))
+% getAgePage$registerField("age", age)
+% wizard$addPage(getAgePage)
+
+% getToysPage <- Qt$QWizardPage(wizard)
+% getGenderpage$setTitle("What toys do you like?")
+% lyt <- Qt$QFormLayout()
+% getToysPage$setLayout(lyt)
+% lyt$addRow("Toys", (toys <- Qt$QLineEdit()))
+% getToysPage$registerField("toys", toys)
+% wizard$addPage(getToysPage)
+
+
+% getGamesPage <- Qt$QWizardPage(wizard)
+% getGenderpage$setTitle("What games do you like?")
+% lyt <- Qt$QFormLayout()
+% getGamesPage$setLayout(lyt)
+% lyt$addRow("Games", (games <- Qt$QLineEdit()))
+% getGamesPage$registerField("games", games)
+% wizard$addPage(getGamesPage)
+          
+
+
+% ret <- wizard$exec()
+
+% @ 
+
+
+\subsection{File and Directory chooing dialogs}
+\label{sec:file-direct-choosing}
+
+
+The file and directory chooser dialogs are created through the
+\class{QFileDialog} class. As with other dialogs there are static
+functions to create dialogs directly in addition to the dialog object
+that can be modified through its method.
+
+The static methods \qcode{getOpenFileName}, \qcode{getOpenFileNames},
+\qcode{getExistingDirectory}, and \qcode{getSaveFileName} are
+straighforward to use. All take as intial arguments a parent, a
+caption and a directory. Other arguments allow one to set a filter,
+say. For basic use, these are nearly as easy to use as \R's
+\function{file.choose}.
+
+To select a file anem to open we would have:
+<<QFIleDialog, eval=FALSE>>=
+fname <- Qt$QFileDialog$getOpenFileName(NULL, "Open a file...", getwd())
+@ 
+
+If a file is selected, \code{fname} will contain the full path to the
+file, otherwise it will be \code{NULL}.
+
+(For multiple selection we have
+<<eval=FALSE>>=
+fnames <- Qt$QFileDialog$getOpenFileNames(NULL, "Open file(s)...", getwd())
+@ 
+and \code{fnames} holds a character vector of the file paths or \code{NULL}.)
+
+To select a file name for saving, we have
+<<eval=FALSE>>=
+fname <- Qt$QFileDialog$getSaveFileName(NULL, "Save as...", getwd())
+@ 
+
+And to choose a directory, 
+<<eval=FALSE>>=
+dname <- Qt$QFileDialog$getExistingDirectory(NULL, "Select directory", getwd())
+@ 
+
+\paragraph{Using the constructor and its methods}
+Although the static functions provide most of the functionality, if
+desired, to modify the behaviour, one can use the regular constructor
+and modify it through the various methods.
+
+The title is adjusted through \method{setWindowTitle}{QWidget} and the
+starting directory through \method{setDirectory}{QFileDialog}. For
+file dialogs, the default suffix can be set through
+\method{setDefaultSuffix}{QFileDialog}. The file selection mode is
+adjusted via \method{setFileMode} with the values, from
+\qtenumeration{QFileDialog::FileMode}, \qcode{AnyFile},
+\qcode{ExistingFile}, \qcode{Directory} or \qcode{ExistingFiles}. 
+
+%% Filters
+There are various ways to restrict the files being shown.
+The \method{setFilter}{QFileDialog} method limits the display to
+certain file types specified through the enumeration
+\qtenumeration{QDir::Filter}, for example \qcode{Dirs}
+(\code{Qt\$QDir\$Dirs}), \qcode{files}, \qcode{Modified} etc. 
+
+To specify a filter by file extension, we use a name filter. A name
+filter is of the form \code{Description (*.ext *.ext2)} (no comma) where this
+would match files with extensions \code{ext} or \code{ext2}. Multiple
+filters can be used by separating them with two semicolons. For
+example, this would be a natural filter for \R{} users:
+<<>>=
+rfilter <- "R files (*.R .RData);; Sweave files (*.Rnw);; All files (*.*)"
+@ 
+(Such a filter can be passed as the fourth argument to \code{getOpenFileName}.)
+
+When the dialog is opened through \function{exec} it returns a value
+of $0$ for cancel or $1$ for accept. To get the specified files, the
+method \method{selectedFiles}{QFileDialog} is used. 
+
+
+\begin{example}{File dialogs}{ex:qt-r-files-dialog}
+A dialog to open an existing file can be constructed along the lines
+of the following
+<<QFileDialogAPI, results=hide>>=
+dlg <- Qt$QFileDialog(NULL)
+dlg$setWindowTitle("Choose an R file")
+dlg$setDirectory(getwd())
+dlg$setFileMode(Qt$QFileDialog$ExistingFiles)
+dlg$setNameFilter(paste("R files (*.R .RData)",
+                        "Sweave files (*.Rnw)",
+                        "All files (*.*)", sep=";;"))
+dlg$setFilter(Qt$QDir$AllEntries | Qt$QDir$CaseSensitive)
+@ 
+<<eval=FALSE>>=
+if(dlg$exec())
+  print(dlg$selectedFiles())
+@ 
+  
+\end{example}
+
+
+% \subsection{Progress dialogs}
+% \label{sec:progress-dialogs}
+
+% The \class{QProgressBar} provides a widget for displaying progress,
+% and the \class{QProgressDialog} wraps this into a dialog. Progress is
+% measured in terms of steps which may be specified by the user. WHen
+% the widget is constructed, the minimum and maximum steps are
+% specified. During the process, the value is incremented until it gets
+% to the maximum, or the dialog is dismissed.
+
+
+% <<results=hide>>=
+% dlg <- Qt$QProgressDialog()
+% dlg$setLabelText("Process is going on")
+% dlg$setMinimum(0)
+% dlg$setMaximum(10)
+% @ 
+
+% To use this, call the \method{open}{QDialog} method and update the
+% dialog through its \method{setValue}{QProgressDialog} method.
+% <<results=hide>>=
+% dlg$open()
+% for(i in 1:10) {
+%   Sys.sleep(0.2)                         # some step in process
+%   dlg$setValue(i)
+% }
+% @ 
+
+% \XXX{I'm not using this correctly}

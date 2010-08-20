@@ -1,5 +1,6 @@
 
 \section{An introductory example}
+\label{sec:qt-introductory-example}
 \SweaveInput{ex-qtbase}
 
 \section{Overview}
@@ -74,19 +75,19 @@ head(ls(w), n=6)
 
 Properties and methods are accessed from the environment in the usual
 manners available. The most convenient extractor is the \code{\$}
-operator, but \verb+[[+ and \code{get} will also work. (With the
+operator, but \code{[[} and \code{get} will also work. (With the
 \code{\$} operator at the command line, completion works.) The
 properties may be accessed like a component of an environment. For
 example, a \code{QWidget} has a \code{windowTitle} property which is
 used when the widget draws itself with a window. The following shows
-how it can be accessed and set.
+how this property can be accessed and set.
 <<windowTitle>>=
 w$windowTitle
 w$windowTitle <- "a new title"
 w$windowTitle
 @ 
 
-However, most properties in \Qt{} are accessed through getter and
+However, properties in \Qt{} are best set through
 setter methods. In this case, we have the setter
 \method{setWindowTitle}{QWidget} available
 <<windowTitleMethod, results=hide>>=
@@ -94,11 +95,12 @@ w$setWindowTitle("an even newer title")
 @ 
 
 Setter methods are typically named with the word "set" followed by the
-property name written in lower camel case, the convention \Qt{} uses
+property name, all written in lower camel case, the convention \Qt{} uses
 for its properties and method. (Class names are in upper camel case.)
 
 
 The environment structure of the object masks the fact that the
+properties and 
 methods may be defined in a parent class of the object. For example, a
 button widget is provided by the \code{QPushButton} constructor, as in
 <<pushButton>>=
@@ -306,23 +308,26 @@ Often there can be more than two states for a property, in which case
 values other than logical ones must be used. For example, the
 label widget (among others) has a property for how its text is
 aligned. For alignment there are options left, right, center, 
-top, bottom, etc. In \pkg{qtbase} these enumerations are stored in
+top, bottom, etc. Such values are stored in an enumeration in
 the \code{Qt\$Qt} class object, or for some widgets the \class{RQtClass}
-object. For example, 
+object. A flag is a combination of enumerations. For example, 
 alignment values are from the \qtenumeration{AlignmentFlag}
 enumeration and right alignment is specified by:
 <<Enumeration-example>>=
 Qt$Qt$AlignRight
 @ 
+%
 Whereas, the size policy enumeration are in the \class{QSizePolicy}
 class and these are in the \code{Qt\$QSizePolicy} object:
 <<>>=
 Qt$QSizsePolicy$Exanding
 @ 
+%
 Although these enumerations can be specifed as integers, in
 \pkg{qtbase} they are of class \class{QtEnum} and have the overloaded
-operator \verb+|+ to combine values. For example, aligning text in
-label in the upper right can be done through
+operator \OR{} to combine values. (The \OR{} operator essentially adds
+the values.) For example, aligning text in label in the upper right
+can be done through
 <<alignexample, results=hide>>=
 l <- Qt$QLabel("Our text")
 l$setAlignment(Qt$Qt$AlignRight | Qt$Qt$AlignTop)
@@ -387,8 +392,8 @@ active or inactive.
 
 The role an object plays determines the type of coloring it should
 receive. A palette has an enumeration of \code{ColorRole}s. Sample
-ones are \verb+Qt$QPalette$Highlight+, to indicate a selected item, or
-\verb+Qt$QPalette$WindowText+ to indicate a foreground color.
+ones are \code{Qt\$QPalette\$Highlight}, to indicate a selected item, or
+\code{Qt\$QPalette\$WindowText} to indicate a foreground color.
 
 These roles are used for setting the foreground or background role to
 give a widget a different look, as illustrated in Example~\ref{eg:qt-dnd}.

@@ -1,5 +1,10 @@
 %% Basic widgets -- onew with MVC in next chapter
 
+\SweaveInput{Dialogs}
+
+
+\XXX{Can labels have their text copied?}
+
 \section{Labels}
 \label{sec:labels}
 
@@ -74,7 +79,7 @@ The \class{QPixmap} class has several methods for manipulating the image.
 
 Buttons are created by \class{QPushButton} which inherits most of its
 functionality from \class{QAbstractButton}. A button has a
-\propoerty{text}{QAbstractButton} property for storing a label and an
+\property{text}{QAbstractButton} property for storing a label and an
 \property{icon}{QAbstractButton} property to show an accompanying
 image. 
 
@@ -82,7 +87,7 @@ Buttons are associated with commands. One may bind to the inherited
 signal \signal{clicked}, which is called when the button is activated
 by the mouse, a short cut key, or a call to
 \method{clicked}{QAbstractButton}. The callback receives a logical
-value \code{checked}. Otherwise, \signal{pressed} and
+value \code{checked} if the button is ``checkable.'' Otherwise, \signal{pressed} and
 \signal{released} signals are emitted.
 
 
@@ -148,7 +153,7 @@ qconnect(db, "helpRequested", function() print("help"))
 <<echo=FALSE, results=hide>>=
 db$show(); db$raise()
 @ 
-
+\end{example}
 
 
 \section{Checkboxes}
@@ -160,8 +165,8 @@ the \class{QAbstractButton} class. For example, the checkbox label is
 associated with the \property{text}{QCheckBox} property.
 
 \Qt{} has three states for a checkbox: the obvious
-\verb+Qt$Qt$Checked+, \verb+Qt$Qt$Unchecked+ states, and a third
-indeterminate state specified by \verb+Qt$Qt$+PartiallyChecked+. These
+\code{Qt\$Qt\$Checked}, \code{Qt\$Qt\$Unchecked} states, and a third
+indeterminate state specified by \code{Qt\$Qt\$PartiallyChecked}. These
 are stored in the \property{checkState}{QCheckBox} for setting and getting.
 
 In addition to the inherited signals \signal{clicked},
@@ -226,7 +231,7 @@ sapply(bg$buttons(), function(i) i$setChecked(TRUE))
 Our simple callback to the \signal{buttonClicked} signal shows how to
 see which buttons were checked after the button was pressed. (The
 \signal{buttonPressed} is called before the widget state reflects the
-button press.}
+button press.)
 <<results=hide>>=
 qconnect(bg, "buttonPressed", function(button) {
   checked <- sapply(bg$buttons(), function(i) i$checked)
@@ -261,8 +266,9 @@ widget.
   button group.
   
   First, we set the radio buttons into a list for easy manipulation. A
-  \class{QButtonGroup} could also be used here.
-<<results=hide>>=
+  \class{QButtonGroup} could also be used here, but we use an \R-based
+  approach for variety.
+<<RadioWithList,results=hide>>=
 l <- list(Qt$QRadioButton("Weight < 3000"),
           Qt$QRadioButton("3000 <= Weight < 4000"),
           Qt$QRadioButton("4000 <= Weight")
@@ -277,9 +283,9 @@ w$setLayout(lyt)
 @ 
 
 We now add the widgets to the layout and set the first one to be checked.
-<<>>=
+<<results=hide>>=
 sapply(l, function(i) lyt$addWidget(i))
-l[[1]]$setChecked()
+l[[1]]$setChecked(TRUE)
 @ 
 
 The \signal{toggled} signal is emitted twice when a button is
@@ -302,34 +308,1144 @@ w$show()
 w$raise()
 @           
 
+<<RadioWithButtonGroup, eval=FALSE, echo=FALSE, results=hide>>=
+## same example as before -- as radio button group -- only instead of an R list for storage
+## we usea QButtonGroup to store the buttons
+## Not Shown
+bg <- Qt$QButtonGroup()
+bg$setExclusive(TRUE)                   # default value
+bg$addButton(Qt$QRadioButton("Weight < 3000"), id=1)
+bg$addButton(Qt$QRadioButton("3000 <= Weight < 4000"), id=2)
+bg$addButton(Qt$QRadioButton("4000 <= Weight"), id=3)
+
+w <- Qt$QGroupBox("Weight:")
+lyt <- Qt$QVBoxLayout()
+w$setLayout(lyt)
+sapply(bg$buttons(), function(i) lyt$addWidget(i))
+
+bg$button(1)$setChecked(TRUE)
+
+qconnect(bg, "buttonClicked", function(button) {
+  print(sprintf("You checked %s.", button$text))
+})
+
+w$show()
+w$raise()
+
+## to get the current value
+curButton <- bg$checkedButton()
+if(!is.null(curButton))
+  print(curButton$text)
+
+@ 
+
+
+
+
 \end{example}
 
 
 
-\section{Sliders and spinboxes}
+\section{Sliders and spin boxes}
 \label{sec:sliders-spinboxes}
+
+Sliders and spin boxes are similar widgets used for selecting from a
+range of values. Sliders give the illusion of selecting from a
+continuum, whereas spinboxes offer a discrete choice, but underlying
+each is a selection from an arithmetic sequence. In \Qt{} the two have
+similar method names.
+
+\subsection{Sliders}
+\label{sec:sliders}
+
+Sliders are implemented by \class{QSlider} a subclass of
+\class{QAbstractSlider}, which also provides functionality for
+scrollbars. Sliders in \Qt{} are for selecting from integer
+valuves. To specify the range of possible values to select from the
+methods \method{setMinimum}{QSlider} and \method{setMaximum}{QSlider}
+are used (assuming integer values). Movement between the possible values is adjusted by
+\method{setSinglePageStep}{QSlider} with broader motion by
+\method{setPageStep}{QSlider}. (If we think of the arguments
+\code{from}, \code{to}, \code{by} of \function{seq} then these are the
+minimum, maximum and the single page step.) The actual value stored in
+the widget is found in the property \property{value}{QSlider}.
+
+Sliders can be horizontal or vertical, with a
+\qtenumeration{Qt::Orientation} value being passed to the
+\method{setOrientation}{QAbstractSlider} method.  To adjust the
+appearance to ticks for a slider, the method
+\method{setTickPosition}{QSlider} is used with values drawn from the
+\qtenumeration{QSlider::TickPosition} enumeration (for example,
+\code{Qt\$QSlider\$TicksBelow}, \qcode{TicksLeft} or the default
+\qcode{NoTicks}). The method \method{setTickInterval}{QSlider} is used
+to specify an interval between the ticks.
+
+
+The signal \signal{valueChanged} is emitted when the slider is
+moved. It passes back the current value to a callback.
+
+\subsection{Spin boxes}
+\label{sec:spin-boxes}
+
+Spin boxes are derived from \class{QAbstractSpinBox} which provides
+the base class for \class{QSpinBox} (for integers),
+\class{QDoubleSpinBox} and \class{QDateTimeEdit} (not documented here).
+
+The methods have similar names as for sliders:
+\method{setMinimum}{QSpinBox}, \method{setMaximum}{QSpinBox}, and
+\method{setValue}{QAbstractSpinBox} have similar usages. The step size
+is provided by \method{setSingleStep}{QSpinBox}.
+The property \property{wrapping} can be set to \code{TRUE} to have the
+values wrap at the ends.
+
+In \Qt{} spinbuttons can have a prefix or suffix with the
+numbers. These are set by \method{setPrefix}{QSpinBox} or \method{setSuffix}{QSpinBox}.
+
+As with sliders, the signal \signal{valueChanged} is emitted when the
+spin button is changed, 
+
+
+\begin{example}{A range selector}{eg-qt-range-selector}
+
+  We combine a slider and spinbox to make a range selection widget,
+  offering the speedier movement of the slider, with the finer
+  adjustments of the spin box.
+<<SliderSpinButton, echo=FALSE, results=hide>>=
+w <- Qt$QWidget()
+lyt <- Qt$QHBoxLayout()
+w$setLayout(lyt)
+@ 
+
+Our slider construction sets values one-by-one.
+<<results=hide>>=
+sl <- Qt$QSlider()
+sl$setMinimum(0)
+sl$setMaximum(100)
+sl$setSingleStep(1)
+sl$setPageStep(5)
+@ 
+
+To style our slider we make it horizontal, set the tick position and
+interval through the following:
+<<results=hide>>=
+sl$setOrientation(Qt$Qt$Horizontal)
+sl$setTickPosition(Qt$QSlider$TicksBelow)
+sl$setTickInterval(10)
+@ 
+
+The basic spin box construction is relatively straightforward. We add
+a "\%" suffix to make it seem like we are selecting a percent.
+<<results=hide>>=
+sp <- Qt$QSpinBox()
+sp$setMinimum(0)
+sp$setMaximum(100)
+sp$setSingleStep(1)
+sp$setSuffix("%")
+@ 
+
+To link the two widgets, we define callbacks for their
+\signal{valueChanged} signal updating the other widget when there is a
+change. This could possibly cause an infinite loop, so we check if the
+suggested value is not equal to the current one before updating.
+
+<<results=hide>>=
+qconnect(sp, "valueChanged", function(value) {
+  if(! isTRUE(all.equal(value, sl$value)))
+    sl$setValue(value)
+})
+qconnect(sl, "valueChanged", function(value) {
+  if(! isTRUE(all.equal(value, sp$value)))
+    sp$setValue(value)
+})
+@
+
+<<echo=FALSE, results=hide>>=
+## not shown
+lyt$addWidget(sl)
+lyt$addWidget(sp)
+
+w$show()
+w$raise()
+@ 
+\end{example}
+
 
 
 \section{Single-line text}
 \label{sec:single-line-text}
 
+As seen in previous examples, a widget for entering or displaying a
+single line of text is provided by the \class{QLineEdit} class. The
+\property{text} property holds the current value. The text may be set
+as the first argument to the constructor, or through the method
+\method{setText}{QLineEdit} (provided \property{readOnly}{QLineEdit}
+is \code{FALSE}). Text may be inserted through the
+\method{insert}{QLineEdit} method, replacing the currently selected
+text or inserting at the cursor. One can programatically position the
+cursor by index through the \method{setCursorPosition}{QLineEdit}
+method.  As is typical, the index is $0$ for the left most postion,
+$1$ for between the first and second character etc.  The right-most
+index can be found from \code{nchar(widget\$text)}, say. The
+\method{setSelection}{QLineEdit} takes two indices to indicate the
+left and right bounds of the selection. 
+
+When there is a selection, the methods
+\method{hasSelectedText}{QLineEdit}, \method{selectedText}{QLineEdit}
+are applicable.  If \property{dragEnabled}{QLineEdit} is \code{TRUE}
+the selected text may be dragged and dropped on the appropriate
+targets.
 
 
-\section{Comboboxes}
-\label{sec:comboboxes}
+
+If desired, it is possible to mask the displayed text with asterisks
+(common with passwords) by setting the \property{echoMode}{QLineEdit}
+property. Value are taken from the\qtenumeration{QLineEdit::EchoMode}
+enumeration, e.g., \code{Qt\$QLineEdit\$Password}.
+If desired, the property \property{displayText}{QLineEdit} holds the displayed text.
+
+
+%% \method{setPlaceHolderText}{QLineEdit} -- 4.7 and beyond
+
+
+\paragraph{Undo, redo}
+The widget keeps an undo/redo stack. The methods
+\method{modified}{QLineEdit},
+\method{isRedoAvailable}{QLineEdit},
+\method{isUndoAvailable}{QLineEdit} are helpful in tracking if the
+text has changed and \method{undo}{QLineEdit} and
+\method{redo}{QLineEdit} can go through the changes.
+
+
+
+
+The widget emits several different signals that are of use.  The
+\signal{cursorPositionChanged} signal is emitted as the cursor is
+moved. The old and new positions are passed along.  The
+\signal{selectionChanged} signal is emitted as the selection is
+updated.  The \signal{textChanged} signal is emitted when the text is
+changed. Any callback is passed the new text. Similarly for
+\signal{textEdited}, the difference beting that this signal is not
+emitted when text is set by \meth{setText}.  The distinction between
+the signals \signal{editingFinished} and \signal{returnPressed} is due
+to the former being called only if a valid entry is given.
+
+
+
+\subsection{Completion}
+\label{sec:completion}
+
+Using \Qt's \class{QCompleter} framework, a list of possible words can be
+presented for completion. The word list is generally sepecified by a
+model, but may also be specified as a character vector to the
+constructor. A simple usage is present by example.
+
+\begin{example}{Using completion on the \code{Qt} object}{eg-qt-line-edit=completion}
+
+  The \code{Qt} environment has many components. This example shows
+  how completion can assist in exploring them by name. We use a form
+  layout to arrange our two line edit widgets -- one to gather a class
+  name and one for method and property names.
+<<CompleterExample, results=hide>>=
+w <- Qt$QWidget()
+lyt <- Qt$QFormLayout()
+w$setLayout(lyt)
+
+lyt$addRow("Class name", c_name <- Qt$QLineEdit())
+lyt$addRow("Method name", m_name <- Qt$QLineEdit())
+@ 
+
+The completer for the class is constructed just one. We use
+\function{ls} to list the components of the environment. We see that
+completions are set for a line edit widget through the \method{setCompleter}{QLineEdit}>
+<<results=hide>>=
+c_comp <- Qt$QCompleter(ls(Qt))
+c_name$setCompleter(c_comp)
+@ 
+
+The completion for the methods depends on the class. As such, we
+update the completion when editing is finished for the class name.
+<<results=hide>>=
+qconnect(c_name, "editingFinished", function() {
+  cl <- c_name$text
+  val <- get(cl, envir=Qt)
+  if(!is.null(val)) {
+    m_comp <- Qt$QCompleter(ls(val()))
+    m_name$setCompleter(m_comp)
+  }
+})
+@ 
+
+
+<<echo=FALSE, results=hide>>=
+w$show()
+w$raise()
+@ 
+\end{example}
+
+
+\subsection{Masks and Validation}
+\label{sec:masks-validation}
+
+\class{QLineEdit} has various means to restrict and validate user
+input. The \property{maxLength}{QLineEdit} property can be set to
+restrict the number of allowed characters. To set a pattern for the
+possible answer, an input mask can be set through
+\method{setInputMask}{QLineEdit}. Input masks are specified through a
+string indicating a pattern (Table~\ref{tab:qt:input-mask}). For
+example, \qcode{999-99-9999} is for a U.S. Social
+Security number.
+
+\XXX{Likely if we have this table, we should list many more. I'll
+  probably cut out}
+<<echo=FALSE, results=tex>>=
+df <- rbind(
+            c("df", "ASCII alphabetic character required. A-Z, a-z."),
+            c("a",	"ASCII alphabetic character permitted but not required."),
+            c("N",	"ASCII alphanumeric character required. A-Z, a-z, 0-9."),
+            c("n",	"ASCII alphanumeric character permitted but not required."),
+            c("X",	"Any character required."),
+            c("x",	"Any character permitted but not required."),
+            c("9",	"ASCII digit required. 0-9."),
+            c("0",	"ASCII digit permitted but not required."),
+            c("D",	"ASCII digit required. 1-9."),
+            c("d",	"ASCII digit permitted but not required (1-9)."),
+            c("\\#",	"ASCII digit or plus/minus sign permitted but not required."),
+            c("H",	"Hexadecimal character required. A-F, a-f, 0-9."),
+            c("h",	"Hexadecimal character permitted but not required."),
+            c("B",	"Binary character required. 0-1."),
+            c("b",	"Binary character permitted but not required."),
+            c(">",	"All following alphabetic characters are uppercased."),
+            c("<",	"All following alphabetic characters are lowercased."),
+            c("!",	"Switch off case conversion."),
+            c("\\\\",	"Use a $\\backslash$ to escape the special characters listed above to use them as separators."))
+            
+            colnames(df) <- c("Character","Meaning")
+            cat(booktabs(df,
+                         colTypes=c("l","p{0.7\\textwidth}"),
+                         caption="Table of characters and their meanings in an input mask. \\textit{Source: \\Qt{} documentation for \\class{QLineEdit}}."),
+                label="tab:qt:input-mask")
+@
+
+A illustrated in Example~\ref{sec:qt-introductory-example}, \Qt{} also
+implements a validation framework where the value in the widget is
+validated before being committed. Values can have 3 different states
+of validity
+\qcode{Acceptable} (i.e, \code{Qt\$QValidator\$Acceptable}), \qcode{Invalid}, or the indeterminate
+\qcode{Intermediate}. Validation is implemented by implementing a
+\meth{validate} method for the widget. This requires implementing a
+subclass, as one can't add a method to one of the classes of
+\code{Qt}. This method gets passed the text to validate and the cursor
+position and returns one of the validity states.
+
+
+
+
 
 \section{Multi-line text}
 \label{sec:multi-line-text}
 
 
+Multi-line text is displayed and edited through the \class{QTextEdit}
+class. This widget allows for more than plain text. It may show rich
+text through HTML syntax including images, lists and tables. 
 
-\section{List views}
-\label{sec:list-views}
+As a basic text editor, the widget is a view for an underlying
+\class{QTextDocument} instance. The \method{document}{QTextEdit} can
+be used to retrieve that document, and \method{setDocument}{QTextEdit}
+to replace it. The method \method{toPlainText}{QTextEdit} is used to
+retrieve the text as plain text with a corresponding
+\method{setPlainText}{QTextEdit} for replacing the text. Text can also
+be added. The \method{append}{QTextEdit} will append the text to the
+end of the document, \method{insertPlainText}{QTextEdit} will insert
+the text at the current cursor position replacing any selection, and
+\method{paste}{QTextEdit} will paste the current clipboard contents
+into the current cursor position. (Use \method{copy}{QTextEdit} and
+\method{cut}{QTextEdit} to replace the clipboards contents.) More
+complicated insertions can be handled through the \class{QTextCursor} class.
+
+To illustrate
+<<QTextEdit, results=hide>>=
+te <- Qt$QTextEdit()
+te$setPlainText("The quick brown fox")
+te$append("jumped over the lazy dog")
+@ 
+
+<<echo=FALSE, results=hide>>=
+## not shown
+te$show(); te$raise()
+@ 
+
+<<>>=
+te$toPlainText()
+@ 
+
+\paragraph{Formatting}
+By default, the widget will wrap text as entered. For use as a code
+editor, this is not desirable. The \method{setLineWrapMode}{QTextEdit}
+takes values from the enumeration
+\qtenumeration{QTextEdit::LineWrapMode}, to control this. A value
+\code{Qt\$QTextEdit\$NoWrap} will turn off wrapping. When wrapping is
+enabled, one can control how with the enumeration
+\qtenumeration{QTextOption::WrapMode} and the method \method{setWordWrap}{QTextEdit}.
+
+The \method{setAlignment}{QTextEdit} method aligns the current
+paragraph with values from \qtenumeration{Qt::Alignment}.
+
+Formatting is managed by the \class{QTextFormat} with subclasses such as
+\class{QTextCharFormat},
+For formatting at the character level, and \class{QTextBlockFormat} to
+format blocks of text. (A dcoument is comprised of blocks containing
+paragraphs etc.) There are methods to adjust the alignment, font
+properties, margins etc.
+
+\XXX{How much detail here? It could certainly use more, but is it a
+  good idea?}
+
+\paragraph{The text cursor}
+The cursor position is returned from the \method{position}{QTextCursor}
+method of the text cursor, which is found through the
+\method{textCursor}{QTextEdit} method. The position is an integer
+indicating the index of the cursor if the buffer is thought of as a
+single string. To set the cursor position one first gets the text
+cursor, sets its position with \method{setPosition}{QTextCursor}, then
+sets the text edits text cursor with \method{setTextCursor}{QTextEdit}.
+
+For example, to move the cursor to the end can be done with
+<<results=hide>>=
+n <- nchar(te$toPlainText())
+cursor <- te$textCursor()
+cursor$setPosition(n)
+te$setTextCursor(cursor)
+@ 
+
+\paragraph{Selections}
+The text cursor \method{hasSelection}{QTextCursor} method indicates if
+a selection exists. If it does, the method
+\method{selection}{QTextCursor} returns a
+\class{QTextDocumentFragment} which also has a method \meth{toPlainText}.
+A selection is determined by the position of the cursor and an
+anchor. The latter is found through \method{anchor}{QTextCursor}. 
+However, to move
+the anchor is a bit more difficult.  Basically, as the name suggests,
+you keep an anchor in place and move the position. The
+\method{movePosition}{QTextCursor} method's second argument is one of
+\code{Qt\$QTextCursor\$KeepAnchor} or
+\code{Qt\$QTextCursor\$MoveAnchor}. When the anchor is kept in place and
+the cursor moved a selection is defined. The movement of the position
+can be specified through the
+\qtenumeration{QTextCursor::MoveOperation} with values like
+\qcode{Start}, \qcode{End}, \qcode{NextWord}, etc. 
+
+To set the selection to include the first three words of the text, we have:
+<<results=hide>>=
+cursor <- te$textCursor()
+cursor$movePosition(Qt$QTextCursor$Start) ## default is move anchor
+cursor$movePosition(Qt$QTextCursor$WordRight, Qt$QTextCursor$KeepAnchor, 3)
+te$setTextCursor(cursor)
+@ 
+<<getText>>=
+te$textCursor()$selection()$toPlainText()
+@ 
+
+\paragraph{Navigation}
+The widget has a 
+\method{find}{QTextEdit} method to move the selection to the next
+instance of a string. The enumeration
+\qtenumeration{QTextDocument::FindFlag} can modify the search with values
+\qcode{FindBackward}, \qcode{FindCaseSesnsitively} and \qcode{FindWholeWords}.
+
+For example, we can search through a standard typesetting string
+starting at the cursor point for the common word ``qui'' as follows:
+
+<<echo=FALSE>>=
+LoremIpsum <- paste(
+                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit,",
+                    "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                    "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi",
+                    "ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit",
+                    "in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur",
+                    "sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit",
+                    "anim id est laborum.",
+                    "\n",
+                    "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque",
+                    "laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi",
+                    "architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas",
+                    "sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione",
+                    "voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,",
+                    "consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et",
+                    "dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum",
+                    "exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi",
+                    "consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam",
+                    "nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
+                    sep="\n")
+@ 
+
+<<results=hide>>=
+te <- Qt$QTextEdit(LoremIpsum)          # some text
+te$find("qui", Qt$QTextDocument$FindWholeWords)
+te$textCursor()$selection()$toPlainText()
+@ 
+
+\paragraph{Signals}
+
+There are several useful signals that are emitted by the
+widget. Several deal with changes: \signal{cursorPositionChanged},
+\signal{selectionChanged}, \signal{textChanged}, and
+\signal{currentCharFormatChanged}.  Others allow one to easily update
+any actions to reflect the state of the widget. These include
+\signal{copyAvailable}, which passes in a boolean indicating ``yes'';
+\signal{redoAvailable}, which passes a boolean indicating
+availability; and similarly \signal{undoAvailable}.
 
 
+To get keystroke information, one can create a subclass and implement
+\signal{keyPressEvent}, say.
+
+
+\begin{example}{A tabbed text editor}{ex-qt-tabbed-text-edit}
+  \SweaveInput{ex-qt-tabbed-editor.Rnw}
+\end{example}
+
+
+\paragraph{Context menus}
+Context menus may be added to the text edit widget, provided you
+create a subclass. The following example shows how to add to the
+standard context menu, which is available by the
+\method{createStandardContextMenu}{QTextEdit} method. The key is to
+redefine the \method{contextMenuEvent}{QTextEdit} method.
+
+<<results=hide>>=
+qsetClass("QTextEditWithMenu", Qt$QTextEdit, function(parent=NULL) {
+  super(parent)
+})
+#
+qsetMethod("contextMenuEvent", QTextEditWithMenu, function(e) {
+  m <- this$createStandardContextMenu()
+  if(this$textCursor()$hasSelection()) {
+    curVal <- this$textCursor()$selection()$toPlainText()
+    comps <- utils:::matchAvailableTopics(curVal)
+    comps <- setdiff(comps, curVal)
+    if(length(comps) > 0 && length(comps) < 10) {
+      m$addSeparator()                  # add actions
+      sapply(comps, function(i) {
+        a <- Qt$QAction(i, this)
+        qconnect(a, "triggered", function(checked) {
+          this$insertPlainText(i)
+        })
+        m$addAction(a)
+      })
+    }
+  }
+  m$exec(e$globalPos())
+})
+te <- QTextEditWithMenu()
+@ 
+
+<<echo=FALSE, results=hide>>=
+te$show()
+te$raise()
+@ 
+
+
+
+<<echo=FALSE, results=hide>>=
+## Not shown
+
+##' start with command, return output in HTML
+runCommand <- function(chunk) {
+  require(R2HTML)
+  f <- tempfile()
+  chunkexps <- try(parse(text=chunk), silent=TRUE)
+  if(inherits(chunkexps, "try-error")) 
+    stop("Error")
+  
+  out <- ""
+  for(i in seq_along(chunkexps)) {
+    chunk <- chunkexps[[i]]
+    out <- paste(out, "<h3>", paste(capture.output(chunk), collapse="<br>"), "</h3><br />",  sep="")
+    HTML(eval(chunk), file=f, append=FALSE)
+    out <- paste(out, paste(readLines(f, warn=FALSE), collapse="<br>"), sep="")
+  }
+  out
+}
+  
+  
+
+
+w <- Qt$QGroupBox("Simple CLI")
+lyt <- Qt$QGridLayout()
+w$setLayout(lyt)
+
+cli <- Qt$QLineEdit()
+out <- Qt$QTextEdit()
+
+
+lyt$addWidget(Qt$QLabel("Command:"), 0, 0)
+lyt$addWidget(cli, 0, 1)
+lyt$addWidget(Qt$QLabel("Output:"), 1, 0, Qt$Qt$AlignTop)
+lyt$addWidget(out, 1, 1)
+
+lyt$setRowStretch(1,1)
+lyt$setColumnStretch(1,1)
+
+qconnect(cli, "editingFinished", function() {
+  chunk <- cli$text
+  htmlized <- runCommand(chunk)
+  out$setHtml(htmlized)
+  cli$setFocus(Qt$Qt$ActiveWindowFocusReason)
+  cli$setSelection(0, nchar(cli$text))
+})
+
+w$setMinimumSize(800,400)
+w$show()
+w$raise()
+              
+
+
+
+
+@ 
+
+
+\section{Comboboxes}
+\label{sec:comboboxes}
+
+The \class{QComboBox} class implements the combobox widget.  The
+\class{QListWidget} class implements a basic list view. Both do
+similar things -- allow selection from a list of possible vlaues,
+although differently. As such, their underlying methods are mostly
+similar although their implementations have a different class
+inheritance.  We discuss here the basic usage for comboboxes. Both
+widgets are views for an underlying model and we restrict ourselves,
+for now, to the simplest choice of these models.
+
+By basic usage we mean setting a set of values
+for the user to choose from, and for comboboxes optionally allowing
+them to type in a new value.  In the simplest use, we can define the
+items in their model through a character vector through the method
+\method{addItems}{QComboBox}. (The items must be character, so numeric
+vectors must be coerced. This works through a convesion into a
+\class{QStringList} object.)  One can remove items by index with
+\method{removeItem}{QComboBox}.  To allow a user to
+enter a value not in this list, the property
+\property{editable}{QComboBox} can be set to \code{TRUE}.
+
+
+
+Once values are entered the property
+\property{currentIndex}{QComboBox} holds the 0-based index of the
+selected value. This will be $-1$ when no selection is made, and may
+be meaningless if the user can edit the values. Use
+\method{setCurrentIndex}{QComboBox} to set the popup value by index
+($-1$ to leave unselected). The \method{count}{QComboBox} method
+returns the number of items available.
+
+The property \property{currentText}{QComboBox} returns the current
+text. This will be a blank string if there is no current index.  There
+is no corresponding \meth{setCurrentText}, rather one can use the
+\method{findText}{QComboBox} method to get the index of the specified
+string. There is an option to adjust  how finding occurs through
+the enumeration \qtenumeration{Qt::MatchFlags}.
+
+
+The signal \signal{activated} is emitted when the user chooses an
+item. The item index is passed to the callback. This signal responds
+to activation by the finishing editing of the text by the return key.
+The \signal{highlighted} signal is emitted when the popup is engaged
+and the user mouses over an entry.  For editable comboboxes, the
+signal \signal{editTextChanged} is emitted after each change to the
+text.
+
+
+\begin{example}{An example of one combobox updating another}{ex:qt-comboboxes}
+This example shows how one combobox, to select a region in the U.S.,
+is used to update another, which lists states in that region. We will
+use the following data frame for our data., which we split into a list.
+
+<<>>=
+df <- data.frame(name=state.name, region=state.region,
+                 highlight=state.x77[,1], stringsAsFactors=FALSE)
+l <- split(df, df$region)
+@ 
+
+
+
+Our \code{region} combobox is loaded with the state regions. When one
+is selected, the callback for \signal{activated} will first remove any
+items in the \code{state} combobox, then add in the appropriate
+states. The \code{ind} index is used to determine which region.
+<<results=hide>>=
+region <- Qt$QComboBox()
+region$addItems(names(l))
+region$setCurrentIndex(-1)              # no selection
+qconnect(region, "activated", function(ind) {
+  sapply(rev(seq_len(state$count)), function(i)
+         state$removeItem(i-1))         # clear states
+  state$addItems(l[[ind+1]]$name)       # add
+})
+@ 
+
+The state combobox shows how the \signal{highlighted} signal can be
+employed. In this case, information about the highlighted state is
+placed in the window;s title. Not really a great choice, but
+sufficient for this example.
+<<results=hide>>=
+state <- Qt$QComboBox()
+qconnect(state, "highlighted", function(ind) {
+  pop <- l[[region$currentText]][ind + 1, "highlight"]
+  w$setWindowTitle(sprintf("Popuplation is %s", pop))
+})
+@ 
+Finally, we use a form layout to organize the widgets.
+<<results=hide>>=
+w <- Qt$QGroupBox("Two comboboxes")
+lyt <- Qt$QFormLayout()
+w$setLayout(lyt)
+lyt$addRow("Region:", region)
+lyt$addRow("State:", state)
+@ 
+
+<<echo=FALSE, results=hide>>=
+w$show(); w$raise()
+@ 
+\end{example}
+
+
+
+\section{A list widget}
+\label{sec:list-view}
+
+The \class{QListWidget} provides an easy-to-use widget for displaying
+a set of items for selection. It uses an item-based model for its
+data. The \class{QListView} widget provides a more general framework
+with different backend models.
+As with comboboxes, we can populate the
+items directly from a character vector through the
+\method{addItems}{QListWidget} method. However, here we mostly focus
+on interacting with the widget through the item model.
+
+The items in a \class{QListWidget} instance are of the
+\class{QListWidgetItem} class. New items can be constructed directly
+through the constructor. The first argument is the text and the
+optional second argument a parent \class{QListWidget}. If no parent is
+specified, the the item may be added through the methods
+\method{addItem}{QListWidget}, or \method{insertItem}{QListWidget}
+where the row to insert is specified by index. The method
+\method{takeItem}{QListWidget} is used to remove items by their index
+and \method{clear}{QListWidget} will remove all of them.
+
+\class{QListWidgetItems} can have their text specified at construction
+or through the method \method{setText}{QListWidgetItem} and optionally
+have an icon set through the \method{setIcons}{QListWidgetItem}. There
+are also methods to set a status bar tip or a tooltip.
+
+Once an item is added to list widget it can be referenced several
+ways. The currently selected item is returned by
+\method{currentItem}{QListWidget}, whereas
+\method{currentRow}{QListWidget} returns the current row by index, and
+\method{currentIndex}{QListWidget} returns a \class{QModelIndex}
+instance (with method \meth{row} to get the index). As well, any item
+may be referenced by row index through \method{item}{QListWidget} or
+position (say within an event handler) by
+\method{itemAt}{QListWidget}. One can search for the items with the
+\method{findItems}{QListWidget} method, which returns a list of
+items. An optional second argument uses the
+\qtenumeration{Qt::MatchFlags} enumeration to adjust how matches are
+made, for example \code{Qt\$Qt\$MatchRegExp} to match by regular expression.
+
+
+
+\paragraph{Selection}
+By default, single selection mode is enabled. This can be adjusted through
+the \method{setSelectionMode}{QListWidget} argument by specifying a
+value in \qtenumeration{QAbstractItemView::SelectionMode}, such as
+\code{SingleSelection} or \code{ExtendedSelection}. The latter changes
+selection when a new item is chosen, unless the \kbd{Control} or
+\kbd{Shift} keys are pressed.
+
+To retrieve the selected values, the method
+\method{selectedItems}{QListWidget} will return the items in a list. 
+
+Setting an item to be selected is done through
+\method{setCurrentItem}. The first argument is the item, the optional
+second one the \qtenumeration{QItemSelectionModel::SelectionFlag}
+enumerations. If specified as \code{Qt\$QItemSelectionModel\$Select}
+(the default) the item will be selected, but other choices are
+possible such as \qcode{Deselect} or \qcode{Toggle}.
+
+\paragraph{Checkable items}
+The underlying items may be checkable. This is initiated by setting an
+initial check state (\method{setCheckState}{QListWidgetItem}) with a value from \qcode{Checked}
+(\code{Qt\$Qt\$Checked}), \qcode{Unchecked} or
+\qcode{PartiallyChecked}. For example, we can populate a list widget
+and set the values unchecked with.
+
+<<Checkable,results=hide>>=
+w <- Qt$QListWidget()
+w$addItems(state.name)
+sapply(1:w$count, function(i) w$item(i-1)$setCheckState(Qt$Qt$Unchecked))
+@ 
+<<echo=FALSE, results=hide>>=
+w$show(); w$raise()
+set.seed(1)
+sapply(sample(1:w$count, 30), 
+       function(i) w$item(i-1)$setCheckState(Qt$Qt$Checked))
+@ 
+Then, after checking a few we can get the state along the lines of:
+<<>>=
+sapply(1:8, function(i) as.logical(w$item(i-1)$checkState()))
+@ 
+This uses the fact that the enumeration for \qcode{Unchecked} is $0$
+and \qcode{Checked} is $w$.
+
+
+\paragraph{Signals}
+There are several signals that are emitted by the widget. Chief among
+them are \signal{itemActivated}, which is emitted when a user clicks
+on an item or presses the activation key. The latter is what
+distinguishes it from the \signal{itemClicked} signal. For capturing
+double clicks there is \signal{itemDoubleClicked}. For these three,
+the undelying item is passed to the callback. The
+\signal{itemSelectionChanged} signal is emitted when the underlying
+selection is changed.
+
+\begin{example}{Filtering example}{ex-qt-listwidget-filter}
+We illustrate the widget with a typical filtering example, where
+a user types in values to narrow down the available choices. We begin
+by setting up our widgets.
+<<FilteringByListWidget, results=hide>>=
+w <- Qt$QGroupBox("Filtering example")
+lyt <- Qt$QFormLayout()
+w$setLayout(lyt)
+
+lyt$addRow("Filter:", f <- Qt$QLineEdit())
+lyt$addRow("State:", lw <- Qt$QListWidget())
+lyt$addRow("", b <- Qt$QPushButton("Click me"))
+@ 
+
+For convenience, we use a built-in data set for our choices. He
+populate the list widget and add a tooltip indicating the area.
+<<results=hide>>=
+for(i in state.name) {
+  item <- Qt$QListWidgetItem(i, lw)             # populate
+  item$setToolTip(sprintf("%s has %s square miles", i, state.x77[i, "Area"]))
+}
+@ 
+For this example, we allow multiple selection.
+<<results=hide>>=
+lw$setSelectionMode(Qt$QAbstractItemView$ExtendedSelection)
+@ 
+
+The following callback updates the displayed items so that only ones
+matching the typed in string are displayed. Rather than compare each
+items to the matched items, we simply hide them all then unhide those
+that match.
+<<results=hide>>=
+qconnect(f, "textChanged", function(str) {
+  matching <- lw$findItems(str, Qt$Qt$MatchStartsWith)
+  sapply(seq_len(lw$count), function(i) lw$item(i-1)$setHidden(TRUE))
+  sapply(matching, function(i) i$setHidden(FALSE))
+})
+@ 
+
+
+<<echo=FALSE>>=
+## Code to show how to set a selection
+## find and set selection
+## items <- lw$findItems("New", Qt$Qt$MatchStartsWith)
+## sapply(items, function(i) {
+##   lw$setCurrentItem(i, Qt$QItemSelectionModel$Select)
+## })
+@ 
+
+The following shows how we can grab the selected values.
+<<results=hide>>=
+qconnect(b, "pressed", function() {
+  vals <- sapply(lw$selectedItems(), function(i) i$text())
+  print(vals)
+})
+@ 
+
+<<echo=FALSE, results=hide>>=
+w$show()
+w$raise()
+
+
+@ 
+\end{example}
+
+
+\begin{example}{Combining a combobox and list widget to select a
+    variable name}{eg-qt-select-variable}
+  This example shows how we can combine a combobox and a list widget
+  to select a variable name from a data frame. Here we select a value
+  by dragging it. A such we need to define a sub-class of
+  \class{QListWidget} to implement the \code{mousePressEvent}.
+  
+<<VariableSelector, results=hide>>=
+## A subclass of ListWidget so that we can drag values
+qsetClass("DraggableListWidget", Qt$QListWidget, function(parent=NULL) {
+  super(parent)
+  this$df <- NULL
+ })
+@   
+%
+The property \code{df} holds the name of the dataframe that will be
+selected through a combobox. Here is a method to set the value.
+<<results=hide>>=
+qsetMethod("setDf", DraggableListWidget, function(df) this$df <- df)
+@ 
+%
+For drag and drop we show how to serialize an arbitrary \R{} object to
+pass through to the drop target.  We pass in a list of the data frame
+name and the selected variable name. The method
+\method{setData}{QMimeData} takes a MIME type (which we arbitrarily
+define) and a value. This value will be retrieved by the
+\method{data}{QMimeData} method and we can then call
+\function{unserialize}.
+<<>>=
+qsetMethod("mousePressEvent", DraggableListWidget, function(e) {
+  item <- itemAt(e$pos())
+  val <- list(df=this$df, var=item$text())
+
+  md <- Qt$QMimeData()
+  md$setData("R/serialized-data", serialize(val, NULL))
+
+  drag <- Qt$QDrag(this)
+  drag$setMimeData(md)
+
+  drag$exec(Qt$Qt$CopyAction | Qt$Qt$MoveAction, Qt$Qt$CopyAction)
+})
+@ 
+
+
+With this, we know create a widget to hold the combobox and the list
+box. The constructor creates the widgets, lays them out, initializes
+the data sets then sets a handler to update the variable list when the
+dataframe selector does.
+<<>>=
+qsetClass("VariableSelector", Qt$QWidget, function(parent=NULL) {
+  super(parent)
+
+  this$dfcb <- Qt$QComboBox()
+  this$varList <-  DraggableListWidget()
+
+  lyt <- Qt$QVBoxLayout()
+  lyt$addWidget(dfcb)
+  lyt$addWidget(varList)
+  varList$setSizePolicy(Qt$QSizePolicy$Expanding, Qt$QSizePolicy$Expanding)
+  setLayout(lyt)
+
+  updateDataSets()
+  qconnect(dfcb, "activated", function(ind) {
+    updateVarList(dfcb$currentText)
+  })
+})
+@ 
+%
+
+Our method to update the data frame choice is a bit convoluted as we try to
+keep the currently selected data frame, if possible.
+<<>>=
+qsetMethod("updateDataSets", VariableSelector, function() {
+  curVal <- this$dfcb$currentText
+  this$dfcb$clear()
+  x <- ls(envir=.GlobalEnv)
+  dfs <- x[sapply(x, function(i) is.data.frame(get(i, inherits=TRUE)))]
+  if(length(dfs)) {
+    this$dfcb$addItems(dfs)
+    if(is.null(curVal) || !curVal %in% dfs) {
+      this$dfcb$setCurrentIndex(-1)
+      updateVarList(NULL)
+    } else {
+      this$dfcb$setCurrentIndex(which(curVal == dfs))
+      updateVarList(curVal)               # curVal NULL, or a name
+    }
+  }
+})
+@ 
+
+Finally, we need to update the list of variables to reflect the state
+of the combo box selection. Here we define a helper method to display
+an appropriate icon based on the class of the variable.
+<<>>=
+getIconFile <- function(x) UseMethod("getIconFile")
+getIconFile.default <- function(x)
+  Qt$QIcon(system.file("images/numeric.gif", package="gWidgets"))
+getIconFile.factor <- function(x)
+  Qt$QIcon(system.file("images/factor.gif", package="gWidgets"))
+getIconFile.character <- function(x)
+  Qt$QIcon(system.file("images/character.gif", package="gWidgets"))
+@ 
+
+This method populates the variable list to reflect the indicated data
+frame. As items are automatically drag enabled, we do not need to add
+anything more here, as we've implement the \code{mousePressEvent}.
+<<results=hide>>=
+qsetMethod("updateVarList", VariableSelector, function(df=NULL) {
+  this$varList$setDf(df)
+  this$varList$clear()
+  if(!is.null(df)) {
+    d <- get(df)
+    sapply(names(d), function(i) {
+      item <- Qt$QListWidgetItem(i, this$varList)
+      item$setIcon(getIconFile(d[,i]))
+    })
+  }
+})
+@ 
+\end{example}
 
 \section{Table widget}
 \label{sec:table-widget}
 
+The \class{QTableWidget} class provides a widget for displaying
+tabular data in an item-based approach, similar to
+\class{QListWidget}. The \class{QTableView} widget is more flexible,
+but also more demanding, as it has the ability to have different data
+models (which can be much faster with large tables). As such, only if
+your needs are not too complicated this widget will be a good choice.
+
+The dimensions of the table must be set prior to adding items. The methods
+\method{setRowCount}{QTableWidget} and
+\method{setColumnCount}{QTableWidget} are used.
 
 
+
+The \class{QTableWidget} class has a built in model that is built up
+item by item. Items are of class \class{QTableWidgetItem} and are
+created first, then inserted into the widget by row and column through
+the method \method{setItem}. (These operations are not vectorized and
+can be slow for large tables.)  Items can be removed by index with
+\method{takeItem}{QTableWidget}. The item can be reinserted. The
+\method{clear}{QTableWidget} will remove all items, even headers
+items, whereas, \method{clearContents}{QTableWidget} will leave the
+headers. Both keep the dimensions.
+
+As with \class{QListWidget}, items have various properties that can be
+adjusted. The text can be specified to the constructor, or set through
+\method{setText}{QTableWidgetItem}. Text alignment is specified
+through \method{setTextAlignment}{QTableWidgetItem}. The font may be
+configured through \method{setFont}{QTableWidgetItem}. The methods
+\method{setBackground}{QTableWidgetItem} and
+\method{setForegroup}{QTableWidgetItem} are used to adjust the colors.
+
+
+Items may also have icons (\method{setIcon}{QTableWidgetItem}),
+tooltips (\method{setToolTip}{QTableWidgetItem}), and statusbar tips
+(\method{setStatusTip}{QTableWidgetItem}.
+
+
+Similar to \class{QListWidget}, \class{QTableWidgetItem} instances are
+returned by the method \method{item}{QTableWidget}, with a
+specification of row and column; and by \method{itemAt}{QTableWidget},
+with a specification of a position. The \method
+{findItems}{QTableWidget} will return a list of items matching a
+string. Also, there is the method
+\method{currentItem}{QTableWidget}. From an item, the current column
+and row can be found with the methods \method{column}{QTableWidget}
+and \method{row}{QTableWidget}
+
+\paragraph{Item flags}
+Items may have several different properties: are they editable,
+draggable, ... To specify, one sets an items flags with values taken
+from the \qtenumeration{Qt::ItemFlag} enumeration. The possible values
+are: \qcode{NoItemFlags}, \qcode{ItemIsSelectable},
+\qcode{ItemIsEditable}, \qcode{ItemIsDragEnabled},
+\qcode{ItemIsDropEnabled}, \qcode{ItemIsUserCheckable},
+\qcode{ItemIsEnabled}, and \qcode{ItemIsTriState} (has three check
+states). To make an item checkable, one must first set the check
+state. By default, the widget has all these sets (except no and tri
+state). To remove a flag, one can specify all the ones they want, or
+use integer arithmetic and subtract. E.g., to remove the editable
+attribute one has this possibility:
+<<results=hide>>=
+item <- Qt$QTableWidgetItem("Not editable")
+item$setFlags(item$flags() - Qt$Qt$ItemIsEditable)
+@ 
+
+
+\paragraph{Headers}
+Columns may have headers. These are set all at once by specifying a character vector to
+\method{setHorizontalHeaderLabels}{QTableWidget}, or can be set with
+an item by \method{setHorizontalHeaderItem}{QTableWidget}. The header
+is returned by \method{horizontalHeader}{QTableWidget} which has a
+method \meth{setVisible} to toggle its visibility. Similarly, rows can
+have (vertical) headers.
+
+To specify the width of a column the method
+\method{setColumnWidth}{QTableView} is available. One specifies the
+column, then the width in pixels.  The method
+\method{horizontalHeader}{QTableView} returns an instance of class
+\class{QHeaderView}. To make the last column stretch to fill the
+available space is specified through the method
+\method{setStretchLastSection}{QHeaderView} with a value of
+\code{TRUE}.
+
+\paragraph{Sorting and Filtering}
+
+This widget can have its rows sorted by the values of a column through
+the method \method{sortItems}{QTableWidget}. One specifies the column
+by index, and an order. The default is \qcode{AscendingOrder}, the
+alternative is \code{Qt\$Qt\$DescendingOrder}. Sorting should be done
+after the table is populated with items.
+
+
+
+Rows and columns can be hidden through the methods
+\method{setRowHidden}{QTableWidget} and
+\method{setColumnHidden}{QTableWidget}. This can be used for filtering
+purposes without redrawing the table.
+
+
+\paragraph{Selection}
+\XXX{Does \class{QTableWidgetSelectionRange} work to set the selection?}
+
+For the table widget one can easily select rows, columns, blocks and
+even combinations thereof.  An underlying selection model implements
+selection, but the \class{QTableWidget} provides an interface. The
+currently selected items are returned as a list through the method
+\method{selectedItems}{QTableWidget}.
+
+A given cell may be selected by index (row then column) through the
+method \method{setCurrentCell}{QTableWidget}, or if the item instance
+is known by \method{setCurrentItem}{QTableWidget}. In addition, an
+option selection flag from the enumeration
+\qtenumeration{QItemSelectionModel::SelectionFlag} can be specified
+with values among \qcode{Select}, to add the item to the selection;
+\qcode{Clear}, to clear all selection; \qcode{Toggle}, to toggle the
+specified item; \qcode{Rows}, to extend the selection to the enclosing
+row; and similarly for \qcode{Columns}.  For an item, the method
+\method{setSelection}{QTableWidgetItem} takes a logical value to
+indicate the selection state.
+
+
+The current selection can be cleared with by selecting an item with
+the \qcode{Clear} attribute, or by grabbing the underlying selection
+model and calling its \meth{clearSelection} method. E.g, something like:
+<<eval=FALSE>>=
+tbl$selectionModel()$clearSelection()
+@ 
+
+
+\paragraph{Signals}
+
+The \class{QTableWidget} class has a number of signals it emits. They
+mostly come in pairs: ``cell'' ones passing in the row and column index and
+``item'' ones passing in an item reference. For example,
+\signal{cellClicked} and \signal{itemClicked}, both called when a cell
+is clicked. Also there are \signal{cellDoubleClicked},
+\signal{cellEntered}, \signal{cellPressed},
+\signal{currentCellChanged} and \signal{cellChanged} (with similar
+``item'' ones). Also of interest is the \signal{itemSelectionChanged}
+which is called when the selection changes.
+
+
+\begin{example}{Selection of variables}{eg:qt-selection-from-tablewidget}
+  \SweaveInput{ex-qt-table-selection}
+\end{example}
+
+
+\begin{example}{A drag and drop interface to \function{xtabs}}{eg:qt-dnd-table}
+  \SweaveInput{ex-qt-dnd-table}
+\end{example}
