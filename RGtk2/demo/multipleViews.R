@@ -1,10 +1,5 @@
 # source("/home/larman/research/RGtk2/RGtk2/demo/multipleViews.R")
 
-gray50.width <- 2
-gray50.height <- 2
-
-gray50.bits <- c(2, 1)
-
 recursive.attach.view <- function(depth, view, anchor)
 {
   if (depth > 4)
@@ -111,16 +106,6 @@ create.tags <- function(buffer)
   buffer$createTag("red.background",
 			      background = "red")
 
-  stipple <- gdkBitmapCreateFromData(NULL,
-					 gray50.bits, gray50.width,
-					 gray50.height)
-  
-  buffer$createTag("background.stipple",
-			      background_stipple = stipple)
-
-  buffer$createTag("foreground.stipple",
-			      foreground_stipple = stipple)
-
   buffer$createTag("big.gap.before.line",
 			      pixels_above_lines = 30)
 
@@ -215,13 +200,9 @@ insert.text <- function(buffer)
   buffer$insert(iter, " or ")  
   buffer$insertWithTagsByName(iter, "a red background", "red.background")
   buffer$insert(iter, " or even ")  
-  buffer$insertWithTagsByName(iter, "a stippled red background", "red.background", "background.stipple")
-
-  buffer$insert(iter, " or ")  
   buffer$insertWithTagsByName(iter,
-					    "a stippled blue foreground on solid red background",
-					    "blue.foreground", "red.background",
-					    "foreground.stipple")
+                              "a blue foreground on a red background",
+                              "blue.foreground", "red.background")
   buffer$insert(iter, " (select that to read it) can be used.\n\n")  
 
   buffer$insertWithTagsByName(iter, "Underline, strikethrough, and rise. ", "heading")
