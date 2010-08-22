@@ -65,6 +65,10 @@ S_g_input_stream_read_all(USER_OBJECT_ s_object, USER_OBJECT_ s_count,
   return(_result);
 }
 
+/* Strategy: allocate the buffer, stick it with user data. Have the
+   readFinish() call get the user data from the async result, return
+   the buffer instead of only the length (and free the buffer).  */
+
 USER_OBJECT_
 S_g_input_stream_read_async(USER_OBJECT_ s_object,
                             USER_OBJECT_ s_count, USER_OBJECT_ s_io_priority,
@@ -74,28 +78,53 @@ S_g_input_stream_read_async(USER_OBJECT_ s_object,
   USER_OBJECT_ _result = NULL_USER_OBJECT;
 #if GIO_CHECK_VERSION(2, 16, 0)
   GAsyncReadyCallback callback = ((GAsyncReadyCallback)S_GAsyncReadyCallback);
-  R_CallbackData* user_data = R_createCBData(s_callback, s_user_data);
+  R_CallbackData* user_data = R_createCBData(s_callback, s_user_data); 
   GInputStream* object = G_INPUT_STREAM(getPtrValue(s_object));
   gsize count = ((gsize)asCNumeric(s_count));
-  gpointer buffer = R_alloc(count, sizeof(guchar));
-
+  guchar* buffer = g_new(guchar, count);
   int io_priority = ((int)asCInteger(s_io_priority));
   GCancellable* cancellable = GET_LENGTH(s_cancellable) == 0 ? NULL :
     G_CANCELLABLE(getPtrValue(s_cancellable));
-
-
+  
+  user_data->extra = buffer;
+  
   g_input_stream_read_async(object, buffer, count, io_priority, cancellable,
                             callback, user_data);
-
-  _result = retByVal(_result, "buffer", asRRawArrayWithSize(buffer, count),
-                     NULL);
-
+  
 #else
   error("g_input_stream_read_async exists only in gio >= 2.16.0");
 #endif
 
   return(_result);
 }
+USER_OBJECT_
+S_g_input_stream_read_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GIO_CHECK_VERSION(2, 16, 0)
+  GInputStream* object = G_INPUT_STREAM(getPtrValue(s_object));
+  GAsyncResult* result = G_ASYNC_RESULT(getPtrValue(s_result));
+  R_CallbackData* user_data =
+    (R_CallbackData *)g_async_result_get_user_data(result);
+  
+  gssize ans;
+  GError* error = NULL;
+  guchar *buffer = (guchar *)user_data->extra;
+
+  ans = g_input_stream_read_finish(object, result, &error);
+
+  if (ans >= 0)
+    _result = asRRawArrayWithSize(buffer, ans);
+
+  _result = retByVal(_result, "error", asRGError(error), NULL);
+  CLEANUP(g_error_free, error);;
+#else
+  error("g_input_stream_read_finish exists only in gio >= 2.16.0");
+#endif
+
+  return(_result);
+}
+
 
 /* Same as that generated, we use sprintf on the R side */
 USER_OBJECT_
@@ -116,7 +145,8 @@ S_g_simple_async_result_new_error(USER_OBJECT_ s_source_object,
 
   GSimpleAsyncResult* ans;
 
-  ans = g_simple_async_result_new_error(source_object, callback, user_data, domain, code, format);
+  ans = g_simple_async_result_new_error(source_object, callback, user_data,
+                                        domain, code, "%s", format);
 
   _result = toRPointerWithRef(ans, "GSimpleAsyncResult");
 #else
@@ -137,7 +167,7 @@ S_g_simple_async_result_set_error(USER_OBJECT_ s_object, USER_OBJECT_ s_domain,
   const char* format = ((const char*)asCString(s_format));
 
 
-  g_simple_async_result_set_error(object, domain, code, format);
+  g_simple_async_result_set_error(object, domain, code, "%s", format);
 
 #else
   error("g_simple_async_result_set_error exists only in gio >= 2.16.0");
@@ -173,6 +203,8 @@ S_g_simple_async_report_error_in_idle(USER_OBJECT_ s_object,
   return(_result);
 }
 
+/* Handle properties */
+
 USER_OBJECT_
 S_g_async_initable_new_async(USER_OBJECT_ s_object_type,
                              USER_OBJECT_ s_io_priority,
@@ -185,6 +217,7 @@ S_g_async_initable_new_async(USER_OBJECT_ s_object_type,
   GAsyncReadyCallback callback = ((GAsyncReadyCallback)S_GAsyncReadyCallback);
   R_CallbackData* user_data = R_createCBData(s_callback, s_user_data);
   GType object_type = ((GType)asCNumeric(s_object_type));
+  GObjectClass *object_class = G_OBJECT_CLASS(g_type_class_ref(object_type));
   int io_priority = ((int)asCInteger(s_io_priority));
   GCancellable* cancellable = GET_LENGTH(s_cancellable) == 0 ? NULL :
     G_CANCELLABLE(getPtrValue(s_cancellable));
@@ -195,7 +228,7 @@ S_g_async_initable_new_async(USER_OBJECT_ s_object_type,
 
   for(i = 0; i < n; i++) {
     params[i].name = asCString(STRING_ELT(propNames, i));
-    R_setGValueForProperty(&params[i].value, object_type, params[i].name,
+    R_setGValueForProperty(&params[i].value, object_class, params[i].name,
                            VECTOR_ELT(s_properties, i));
   }
 
@@ -210,7 +243,6 @@ S_g_async_initable_new_async(USER_OBJECT_ s_object_type,
 
   return(_result);
 }
-
 USER_OBJECT_
 S_g_initable_new(USER_OBJECT_ s_object_type, USER_OBJECT_ s_cancellable,
                  USER_OBJECT_ s_properties)
@@ -218,6 +250,7 @@ S_g_initable_new(USER_OBJECT_ s_object_type, USER_OBJECT_ s_cancellable,
   USER_OBJECT_ _result = NULL_USER_OBJECT;
 #if GIO_CHECK_VERSION(2, 22, 0)
   GType object_type = ((GType)asCNumeric(s_object_type));
+  GObjectClass *object_class = G_OBJECT_CLASS(g_type_class_ref(object_type));
   GCancellable* cancellable = GET_LENGTH(s_cancellable) == 0 ? NULL :
     G_CANCELLABLE(getPtrValue(s_cancellable));
   
@@ -230,7 +263,7 @@ S_g_initable_new(USER_OBJECT_ s_object_type, USER_OBJECT_ s_cancellable,
 
   for(i = 0; i < n; i++) {
     params[i].name = asCString(STRING_ELT(propNames, i));
-    R_setGValueForProperty(&params[i].value, object_type, params[i].name,
+    R_setGValueForProperty(&params[i].value, object_class, params[i].name,
                            VECTOR_ELT(s_properties, i));
   }
 
@@ -292,7 +325,7 @@ S_g_socket_receive_from(USER_OBJECT_ s_object, USER_OBJECT_ s_size,
 
   gssize ans;
   GSocketAddress* address = NULL;
-  gchar buffer = R_alloc(size, sizeof(guchar));
+  guchar *buffer = R_alloc(size, sizeof(guchar));
   GError* error = NULL;
 
   ans = g_socket_receive_from(object, &address, buffer, size, cancellable,
@@ -379,7 +412,7 @@ S_g_socket_send_message(USER_OBJECT_ s_object, USER_OBJECT_ s_address,
     { RAW(s_vectors), GET_LENGTH(s_vectors) }
   };
   gint num_vectors = ((gint)GET_LENGTH(s_vectors));
-  GSocketControlMessage** messages = messages == NULL_USER_OBJECT ? NULL : ((GSocketControlMessage**)asCArray(s_messages, GSocketControlMessage*, getPtrValue));
+  GSocketControlMessage** messages = s_messages == NULL_USER_OBJECT ? NULL : ((GSocketControlMessage**)asCArray(s_messages, GSocketControlMessage*, getPtrValue));
   gint num_messages = ((gint)GET_LENGTH(s_messages));
   gint flags = ((gint)asCInteger(s_flags));
   GCancellable* cancellable = GET_LENGTH(s_cancellable) == 0 ? NULL :
@@ -397,6 +430,27 @@ S_g_socket_send_message(USER_OBJECT_ s_object, USER_OBJECT_ s_address,
   CLEANUP(g_error_free, error);;
 #else
   error("g_socket_send_message exists only in gio >= 2.22.0");
+#endif
+
+  return(_result);
+}
+
+/* Special memory management of the buffer */
+USER_OBJECT_
+S_g_memory_output_stream_new(USER_OBJECT_ s_len)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GIO_CHECK_VERSION(2, 16, 0)
+  gsize len = asCInteger(s_len);
+  gpointer data = g_new(guchar, len);
+
+  GOutputStream* ans;
+
+  ans = g_memory_output_stream_new(data, len, g_realloc, g_free);
+
+  _result = toRPointerWithFinalizer(ans, "GOutputStream", (RPointerFinalizer) g_object_unref);
+#else
+  error("g_memory_output_stream_new exists only in gio >= 2.16.0");
 #endif
 
   return(_result);
