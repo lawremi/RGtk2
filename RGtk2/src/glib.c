@@ -231,7 +231,9 @@ asRGError(GError *error)
 {
     USER_OBJECT_ s_error;
     USER_OBJECT_ names;
-
+    static gchar * classes[] = { "GError", "simpleError", "error", "condition",
+                                 NULL };
+    
     if (!error)
         return(NULL_USER_OBJECT);
 
@@ -249,6 +251,8 @@ asRGError(GError *error)
 
     SET_NAMES(s_error, names);
 
+    SET_CLASS(s_error, asRStringArray(classes));
+    
     UNPROTECT(2);
 
     return(s_error);
