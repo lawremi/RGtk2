@@ -62,3 +62,85 @@ gAsyncInitableNewAsync <-
 
   return(w)
 }
+
+## Vector of file attribute constants
+
+GFileAttributeStandard <- c(type = "standard::type",
+                            isHidden = "standard::is-hidden",
+                            isBackup = "standard::is-backup",
+                            isSymlink = "standard::is-symlink",
+                            isVirtual = "standard::is-virtual",
+                            name = "standard::name",
+                            displayName = "standard::display-name",
+                            editName = "standard::edit-name",
+                            copyName = "standard::copy-name",
+                            icon = "standard::icon",
+                            contentType = "standard::content-type",
+                            fastContentType = "standard::fast-content-type",
+                            size = "standard::size",
+                            allocatedSize = "standard::allocated-size",
+                            symlinkTarget = "standard::symlink-target",
+                            targetUri = "standard::target-uri",
+                            sortOrder = "standard::sort-order",
+                            description = "standard::description")
+GFileAttributeEtag <- c(value = "etag::value")
+GFileAttributeId <- c(file = "id::file",
+                      filesystem = "id::filesystem")
+GFileAttributeAccess <- c(canRead = "access:can-read",
+                          canWrite = "access:can-write",
+                          canExecute = "access:can-execute",
+                          canDelete = "access:can-delete",
+                          canTrash = "access:can-trash",
+                          canRename = "access:can-rename")
+GFileAttributeMountable <- c(canMount = "mountable::can-mount",
+                             canUnmount = "mountable::can-unmount",
+                             canEject = "mountable::can-eject",
+                             unixDevice = "mountable::unix-device",
+                             unixDeviceFile = "mountable::unix-device-file",
+                             halUdi = "mountable::hal-udi",
+                             canPoll = "mountable::can-poll",
+                             isMediaCheckAutomatic =
+                             "mountable::is-media-check-automatic",
+                             canStart = "mountable::can-start",
+                             canStartDegraded = "mountable::can-start-degraded",
+                             canStop = "mountable::can-stop",
+                             startStopType = "mountable::start-stop-type")
+GFileAttributeTime <- c(modified = "time::modified",
+                        modifiedUsec = "time::modified-usec",
+                        access = "time::access",
+                        accessUsec = "time::access-usec",
+                        changed = "time::changed",
+                        changedUsec = "time::changed-usec",
+                        created = "time::created",
+                        createdUsec = "time::created-usec")
+GFileAttributeUnix <- c(device = "unix::device",
+                        inode = "unix::inode",
+                        mode = "unix::mode",
+                        nlink = "unix::nlink",
+                        uid = "unix::uid",
+                        gid = "unix::gid",
+                        rdev = "unix::rdev",
+                        blockSize = "unix::block-size",
+                        blocks = "unix::blocks",
+                        isMountpoint = "unix::is-mountpoint")
+GFileAttributeDos <- c(isArchive = "dos::is-archive",
+                       isSystem = "dos::is-system")
+GFileAttributeOwner <- c(user = "owner::user",
+                         userReal = "owner::user-real",
+                         group = "owner::group")
+GFileAttributeThumbnail <- c(path = "thumbnail::path",
+                             failed = "thumbnail::failed")
+GFileAttributePreview <- c(icon = "preview::icon")
+GFileAttributeFilesystem <- c(size = "filesystem::size",
+                              free = "filesystem::free",
+                              type = "filesystem::type",
+                              readonly = "filesystem::readonly",
+                              usePreview = "filesystem::use-preview")
+GFileAttributeGvfs <- c(backend = "gvfs::backend")
+GFileAttributeTrash <- c(itemCount = "trash::item-count")
+
+## Some convenient constants for IO priority
+GPriority <- c(default = 0L, high = -100L, highIdle = 100L, defaultIdle = 200L,
+               low = 300L)
+                        
+                             
