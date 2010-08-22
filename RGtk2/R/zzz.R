@@ -33,6 +33,8 @@ function(libname, pkgname)
    if (length(grep("darwin", R.version$platform)))
      message("Please try running R inside an X11 terminal.")
  }
+
+ .initClasses()
 }
 
 .install_system_dependencies <- function()

@@ -657,6 +657,17 @@ gtkInfoBarAddButtons <-
   invisible(mapply(object$addButton, labels, responses))
 }
 
+## Create an instance of RGtkBuilder, which can find the types by name
+
+.initClasses <- function() {
+  gClass("RGtkBuilder", "GtkBuilder",
+         GtkBuilder = list(
+           get_type_from_name = function(self, name) as.GType(name)
+           )
+         )
+}
+
+gtkBuilderNew <- function() gObject("RGtkBuilder")
 
 # reason: unfortunately, the 'group' must be an exact pointer match so 
 # we delegate to 'gtkRadioButtonNewFromWidget' with the first element.
