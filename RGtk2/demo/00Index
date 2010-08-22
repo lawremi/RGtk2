@@ -28,3 +28,6 @@ slide A simple cairo-based cell sliding game implemented as a new widget class (
 text-scroll	Automatic text view scrolling
 builder	Building a GUI from XML with GtkBuilder (GTK+ 2.12)
 tooltips	Fancy tooltips with GtkTooltip (GTK+ 2.12)
+searchentry	Icons and progress pulsing in a text entry
+spinner	Spinner widget for indicating indefinite progress
+fileCopier	Copy files (including downloading remote files) asynchronously
