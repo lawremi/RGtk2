@@ -14,7 +14,10 @@ badTypes <- c("GdkPointerHooks", "GdkDisplayPointerHooks",
               "AtkFocusHandler", "AtkPropertyChangeHandler",
               "AtkPropertyValues", "PangoFontsetSimple", "GdkInputCondition",
               "GdkStatus", "GtkArgFlags", "GtkDebugFlag", "GtkObjectFlags",
-              "GSimpleAsyncThreadFunc", "GPollFD", "GParameter")
+              "GSimpleAsyncThreadFunc", "GPollFD", "GParameter",
+              ## These will be called in another thread (bad!)
+              ## Could work around it via idle handler, but too much work!
+              "GSimpleAsyncThreadFunc", "GIOSchedulerJobFunc")
 
 ## Functions that we cannot handle
 ## This list will certainly grow. Most of these are implemented manually.
@@ -66,10 +69,17 @@ badCFuncs <- c("gtk_editable_insert_text", "gtk_clipboard_set_with_owner",
                "gtk_builder_connect_signals",
                "gtk_tree_view_get_tooltip_context",
                "gtk_icon_view_get_tooltip_context", "g_input_stream_read",
-               "g_input_stream_read_all", "g_input_stream_read_async",
+               "g_input_stream_read_all",
+               "g_input_stream_read_async", "g_input_stream_read_finish",
                "g_socket_receive", "g_socket_receive_from",
                "g_socket_receive_message", "g_socket_send_message",
-               "pango_glyph_item_get_logical_widths"
+               "pango_glyph_item_get_logical_widths",
+               "g_memory_output_stream_new",
+               "g_cancellable_connect",
+               "cairo_user_font_face_set_init_func",
+               "cairo_user_font_face_set_render_glyph_func",
+               "cairo_user_font_face_set_text_to_glyphs_func",
+               "cairo_user_font_face_set_unicode_to_glyph_func"
                )
 
 # sometimes it's easier to fix things from the R side (simple aliasing) or
@@ -103,7 +113,8 @@ c("gdk_window_invalidate_maybe_recurse",
   "gtk_tree_store_insert_with_valuesv",
   "gtk_tree_view_get_tooltip_context", "gtk_icon_view_get_tooltip_context",
   "g_buffered_input_stream_peek", "g_file_attribute_info_list_ref",
-  "g_file_attribute_info_list_unref", "g_file_attribute_info_list_dup")
+  "g_file_attribute_info_list_unref", "g_file_attribute_info_list_dup",
+  "gtk_builder_new")
 
 # enums that are blocked, these two because RGtk handles them implicitly
 badEnums <- c("GdkGeometryHints", "GdkGCValuesMask")
@@ -113,7 +124,10 @@ manUserFuncs <-
   c("GCompareFunc", "GCallback", "GtkSignalFunc", "GtkAccelGroupActivate",
     "cairo_read_func_t", "GtkTextBufferSerializeFunc", "GtkMenuPositionFunc",
     "GSourceFunc", "GtkBuilderConnectFunc",
-    "cairo_user_scaled_font_text_to_glyphs_func_t")
+    "cairo_user_scaled_font_text_to_glyphs_func_t",
+    "cairo_user_scaled_font_init_func_t",
+    "cairo_user_scaled_font_render_glyph_func_t",
+    "cairo_user_scaled_font_unicode_to_glyph_func_t")
 
 ## Asynchronous user functions that are fired and forgotten
 asyncUserFuncs <- c("GAsyncReadyCallback")
@@ -232,7 +246,9 @@ finalClasses <- c("GdkDevice", "GdkVisual", "GdkPixbuf", "GdkPixbufSimpleAnim",
                   "GtkPrintSettings", "GtkRecentChooser", "GtkRecentFilter",
                   "GtkFileChooser", "GtkAccelMap", "PangoCairoFontMap",
                   "PangoContext", "PangoFontsetSimple", "PangoLayout",
-                  "PangoCairoFont", "GtkTooltip")
+                  "PangoCairoFont", "GtkTooltip", "GFileInfo", "GIOModule",
+                  "GSimpleAsyncResult", "GFileIcon", "GThemedIcon", "GEmblem",
+                  "GEmblemedIcon")
 classTypeMap <- c("GdkBitmapClass" = "GdkDrawableClass", 
   "GdkPixmapClass" = "GdkPixmapObjectClass", "GtkEditableIface" = "GtkEditableClass")
 
@@ -286,7 +302,8 @@ useless_funcs <- c("pango_default_break", "gdk_colormap_change",
                    "gtk_style_get_valist",
                    "g_async_initable_newv_async",
                    "g_async_initable_new_valist_async",
-                   "g_initable_newv", "g_initable_new_valist"
+                   "g_initable_newv", "g_initable_new_valist",
+                   "g_cancellable_connect"
                    )
 
 mem_funcs <-

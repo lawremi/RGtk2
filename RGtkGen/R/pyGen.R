@@ -1458,7 +1458,8 @@ function(fun, defs, name, sname, className = NULL, package = "RGtk2")
   # sargs[".depwarn"] <- "TRUE"
 
   # add error warning option if the function returns a GError
-  if (any(getParamTypes(params) == "GError**")) {
+  hasError <- any(getParamTypes(params) == "GError**")
+  if (hasError) {
       sargs[".errwarn"] <- TRUE
   }
 
@@ -1482,10 +1483,9 @@ function(fun, defs, name, sname, className = NULL, package = "RGtk2")
       named("PACKAGE", lit(package)))))))
  
 
-    if (".errwarn" %in% names(sargs))
+    if (hasError)
         txt <- c(txt, "",
-        ind(c("if(.errwarn && !is.null(w$error))",
-            ind(invoke("warning", "w$error[[\"message\"]]")))))
+        ind(rassign("w", invokev("handleError", "w", ".errwarn"))))
 
     if ("show" %in% names(sargs))
         txt <- c(txt, "",
@@ -1634,29 +1634,31 @@ convertToR <-
   # All I know is that it works
 function(var, ptype, fun = NULL, defs)
 {
-	type <- baseType(ptype)
-	out <- !is.null(fun$parameters[[var]]) && fun$parameters[[var]]$access == "out"
+  type <- baseType(ptype)
+  out <- !is.null(fun$parameters[[var]]) &&
+         fun$parameters[[var]]$access == "out"
   fn <- NULL
   args <- var
-  if (length(grep("G[S]?List", ptype)) > 0) { # G(S)Lists have their subtype specified in [ ]
+  ## G(S)Lists have their subtype specified in [ ]
+  if (length(grep("G[S]?List", ptype)) > 0) { 
     split <- strsplit(ptype, "\\[")[[1]]
-		fn <- asR(split[[1]])
-		type <- substr(split[[2]], 1, nchar(split[[2]]) - 1)
-		if (!is.null(fun))
+    fn <- asR(split[[1]])
+    type <- substr(split[[2]], 1, nchar(split[[2]]) - 1)
+    if (!is.null(fun))
       fun$owns <- 0 # assume the elements are not owned by caller
-		conv <- convertToR(var, type, fun, defs)
-		args <- conv$args
+    conv <- convertToR(var, type, fun, defs)
+    args <- conv$args
     args[1] <- var
-		if (length(grep("^toRPointer", conv$fun)) > 0)
-			fn <- paste(fn, sub("toRPointer", "", conv$fun), sep="")
-		else {
+    if (length(grep("^toRPointer", conv$fun)) > 0)
+      fn <- paste(fn, sub("toRPointer", "", conv$fun), sep="")
+    else {
       if (conv$fun == "asRNumeric") # unsigned integer, asRNumeric won't work
         conv$fun <- "asRUnsigned"
-			args <- c(args, cast("ElementConverter", conv$fun))
-			fn <- paste(fn, "Conv", sep = "")
-		}
-	} else if (type %in% transparentTypes) {
-		# these come first to override primitive type
+      args <- c(args, cast("ElementConverter", conv$fun))
+      fn <- paste(fn, "Conv", sep = "")
+    }
+  } else if (type %in% transparentTypes) {
+    ## these come first to override primitive type
     fn <- asR(type)
   } else if (isPrimitiveType(type)) {
     fn <- getGenericTypeAsR(type)
@@ -1785,7 +1787,7 @@ function(name, params, defs)
       sdata <- "NULL"
     } else {
         if (!any(grepl("DestroyNotify", getParamTypes(params))) &&
-            !name %in% asyncUserFuncs)
+            !type %in% asyncUserFuncs)
           freeData <- TRUE # like for a 'foreach' func
         data <- sorted[[found[[1]]]]$name
         sdata <- nameToSArg(data)
