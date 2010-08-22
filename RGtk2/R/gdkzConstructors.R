@@ -99,3 +99,5 @@ function(image.type, mime.type, .errwarn = TRUE)
 
 gdkPangoRenderer <- gdkPangoRendererNew
 
+gdkAppLaunchContext <- gdkAppLaunchContextNew
+

@@ -247,4 +247,26 @@ asCCairoFontExtents(USER_OBJECT_ s_obj)
 
   return(obj);
 }
+
+USER_OBJECT_
+asRCairoFontExtents(cairo_font_extents_t * obj)
+{
+  USER_OBJECT_ s_obj;
+  static gchar * names[] = { "ascent", "descent", "height", "max_x_advance", "max_y_advance", NULL };
+
+  PROTECT(s_obj = allocVector(VECSXP, 5));
+
+  SET_VECTOR_ELT(s_obj, 0, asRNumeric(obj->ascent));
+  SET_VECTOR_ELT(s_obj, 1, asRNumeric(obj->descent));
+  SET_VECTOR_ELT(s_obj, 2, asRNumeric(obj->height));
+  SET_VECTOR_ELT(s_obj, 3, asRNumeric(obj->max_x_advance));
+  SET_VECTOR_ELT(s_obj, 4, asRNumeric(obj->max_y_advance));
+
+  SET_NAMES(s_obj, asRStringArray(names));
+  SET_CLASS(s_obj, asRString("CairoFontExtents"));
+
+  UNPROTECT(1);
+
+  return(s_obj);
+}
 #endif

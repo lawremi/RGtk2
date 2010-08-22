@@ -112,6 +112,14 @@ GDriveStartFlags<-c("none" = 0)
 storage.mode(GDriveStartFlags) <- 'integer'
 class(GDriveStartFlags) <- 'enums' 
 
+GDriveStartStopType<-c("unknown" = 0,
+	"shutdown" = 1,
+	"network" = 2,
+	"multidisk" = 3,
+	"password" = 4)
+storage.mode(GDriveStartStopType) <- 'integer'
+class(GDriveStartStopType) <- 'enums' 
+
 GSocketFamily<-c("invalid" = 0,
 	"unix" = 1,
 	"ipv4" = 2,
@@ -163,6 +171,10 @@ GFileCreateFlags<-c("none" = 1,
 	"private" = 2)
 storage.mode(GFileCreateFlags) <- 'numeric'
 class(GFileCreateFlags) <- 'flags' 
+
+GMountMountFlags<-c("none" = 1)
+storage.mode(GMountMountFlags) <- 'numeric'
+class(GMountMountFlags) <- 'flags' 
 
 GMountUnmountFlags<-c("none" = 1,
 	"force" = 2)

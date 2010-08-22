@@ -1,5 +1,16 @@
 cairo <- cairoCreate
 
+cairoFontFace <-
+function(family, slant, weight)
+{
+  if (!missing(family)) {
+    cairoToyFontFaceCreate(family, slant, weight)
+  }
+  else {
+    cairoUserFontFaceCreate()
+  }
+}
+
 cairoPattern <-
 function(red, green, blue, alpha, surface, x0, y0, x1, y1, cx0, cy0, radius0, cx1, cy1, radius1)
 {

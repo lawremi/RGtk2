@@ -9333,9 +9333,6 @@ S_gtk_tree_selection_get_select_function(USER_OBJECT_ s_object);
 S_gtk_widget_get_snapshot(USER_OBJECT_ s_object, USER_OBJECT_ s_clip_rect); 
 
   USER_OBJECT_
-S_gtk_widget_get_allocation(USER_OBJECT_ s_object); 
-
-  USER_OBJECT_
 S_gtk_widget_get_window(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
@@ -10059,7 +10056,7 @@ S_gtk_notebook_get_action_widget(USER_OBJECT_ s_object, USER_OBJECT_ s_pack_type
 S_gtk_notebook_set_action_widget(USER_OBJECT_ s_object, USER_OBJECT_ s_widget, USER_OBJECT_ s_pack_type); 
 
   USER_OBJECT_
-S_gtk_paint_spinner(USER_OBJECT_ s_object, USER_OBJECT_ s_style, USER_OBJECT_ s_window, USER_OBJECT_ s_state_type, USER_OBJECT_ s_area, USER_OBJECT_ s_widget, USER_OBJECT_ s_detail, USER_OBJECT_ s_step, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height); 
+S_gtk_paint_spinner(USER_OBJECT_ s_object, USER_OBJECT_ s_window, USER_OBJECT_ s_state_type, USER_OBJECT_ s_area, USER_OBJECT_ s_widget, USER_OBJECT_ s_detail, USER_OBJECT_ s_step, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height); 
 
   USER_OBJECT_
 S_gtk_paned_get_handle_window(USER_OBJECT_ s_object); 

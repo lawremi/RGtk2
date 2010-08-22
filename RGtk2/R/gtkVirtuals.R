@@ -5960,8 +5960,7 @@ function(object.class, object, uri, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_recent_chooser_class_set_current_uri", object.class, object, uri, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 }
@@ -5986,8 +5985,7 @@ function(object.class, object, uri, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_recent_chooser_class_select_uri", object.class, object, uri, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 }

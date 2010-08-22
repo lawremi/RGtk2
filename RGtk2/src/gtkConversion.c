@@ -11,7 +11,7 @@ asCGtkTargetEntry(USER_OBJECT_ s_entry) {
     return(entry);
 }
 USER_OBJECT_
-asRGtkTargetEntry(GtkTargetEntry * obj)
+asRGtkTargetEntry(const GtkTargetEntry * obj)
 {
   USER_OBJECT_ s_obj;
   static gchar * names[] = { "target", "flags", "info", NULL };

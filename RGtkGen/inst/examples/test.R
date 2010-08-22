@@ -1,16 +1,16 @@
 version <- "2.20"
 
 Sys.setenv(PYTHONPATH=paste(Sys.getenv("PYTHONPATH"), 
-  "/home/larman/research/gui/RGtk2/RGtkGen/inst/pygtk",sep=":"))
+  "/home/larman/projects/R/RGtk2/RGtkGen/inst/pygtk",sep=":"))
 library(RSPython)
 library(rpart)
 
-setwd("/home/larman/research/gui/RGtk2/RGtkGen/R")
+setwd("/home/larman/projects/R/RGtk2/RGtkGen/R")
 source_files <- c("pyGen.R", "genClass.R", "genCode.S", "genCons.S",
                   "genDoc.S")
 sapply(source_files, source)
 
-path <- "/home/larman/research/gui/RGtk2/RGtkGen/inst/data"
+path <- "/home/larman/projects/R/RGtk2/RGtkGen/inst/data"
 defspath <- file.path(path, "defs")
 libs <- c("atk.defs", "cairo.defs", "pango.defs", "gio.defs", "gdk.defs",
           "gtk.defs")
@@ -21,14 +21,14 @@ files <- c(files, file.path(extrapath, extralibs))
 
 library(RGtk2)
 
-defs<-getDefs(file.path(defspath, version, "gtk.defs"))
+##defs<-getDefs(file.path(defspath, version, "gio.defs"))
 allDefs <- generateCodeFiles(files,dir=file.path(path, "gen"), allDefs=NULL)[[1]]
 
 allDefs <- NULL
 for (f in files) allDefs <- mergeDefs(getDefs(f), allDefs)
 
 # generating the documentation
-src_dir <- "/home/larman/research/src"
+src_dir <- "/home/larman/src"
 subs <- c("atk-1.22.0/docs", "pango-1.28.1/docs",
     file.path("gtk+-2.20.1/docs/reference", c("gdk", "gtk", "gdk-pixbuf")), 
 	"cairo-1.8.10/doc/public", "libglade-2.6.4/doc")

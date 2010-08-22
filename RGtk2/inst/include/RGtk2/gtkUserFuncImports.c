@@ -412,7 +412,7 @@ S_GtkBuilderConnectFunc(GtkBuilder* builder, GObject* object, const gchar* signa
 }
 #endif 
 
-#if GIO_CHECK_VERSION(2, 14, 0)
+#if GTK_CHECK_VERSION(2, 14, 0)
 gchar*
 S_GtkCalendarDetailFunc(GtkCalendar* calendar, guint year, guint month, guint day, gpointer user_data)
 {
@@ -424,10 +424,10 @@ S_GtkCalendarDetailFunc(GtkCalendar* calendar, guint year, guint month, guint da
 
 #if GTK_CHECK_VERSION(2, 14, 0)
 void
-S_GtkClipboardURIReceivedFunc(GtkCliboard* clipboard, gchar** uris, gpointer user_data)
+S_GtkClipboardURIReceivedFunc(GtkClipboard* clipboard, gchar** uris, gpointer user_data)
 {
-  static void (*fun)(GtkCliboard*, gchar**, gpointer) = NULL;
-  if(!fun) fun = ((void (*)(GtkCliboard*, gchar**, gpointer))R_GetCCallable("RGtk2", "S_GtkClipboardURIReceivedFunc"));
+  static void (*fun)(GtkClipboard*, gchar**, gpointer) = NULL;
+  if(!fun) fun = ((void (*)(GtkClipboard*, gchar**, gpointer))R_GetCCallable("RGtk2", "S_GtkClipboardURIReceivedFunc"));
   return(fun(clipboard, uris, user_data));
 }
 #endif 

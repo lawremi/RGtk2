@@ -8885,8 +8885,7 @@ function(object, folder, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_file_chooser_add_shortcut_folder", object, folder, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -8900,8 +8899,7 @@ function(object, folder, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_file_chooser_remove_shortcut_folder", object, folder, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -8926,8 +8924,7 @@ function(object, uri, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_file_chooser_add_shortcut_folder_uri", object, uri, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -8941,8 +8938,7 @@ function(object, uri, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_file_chooser_remove_shortcut_folder_uri", object, uri, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -10930,8 +10926,7 @@ function(object, icon.name, size, flags, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_icon_theme_load_icon", object, icon.name, size, flags, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -11046,8 +11041,7 @@ function(object, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_icon_info_load_icon", object, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -27663,8 +27657,7 @@ function(object, buffer, length = -1, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_ui_manager_add_ui_from_string", object, buffer, length, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -27678,8 +27671,7 @@ function(object, filename, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_ui_manager_add_ui_from_file", object, filename, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -30093,8 +30085,7 @@ function(object, filename, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_window_set_icon_from_file", object, filename, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -30151,8 +30142,7 @@ function(filename, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_window_set_default_icon_from_file", filename, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(invisible(w))
 } 
@@ -32131,8 +32121,7 @@ function(object, action, parent = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_print_operation_run", object, action, parent, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -32145,8 +32134,7 @@ function(object, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_print_operation_get_error", object, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -33301,8 +33289,7 @@ function(object, uri, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_recent_chooser_set_current_uri", object, uri, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -33338,8 +33325,7 @@ function(object, uri, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_recent_chooser_select_uri", object, uri, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -33813,8 +33799,7 @@ function(object, uri, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_recent_manager_remove_item", object, uri, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -33828,8 +33813,7 @@ function(object, uri, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_recent_manager_lookup_item", object, uri, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -33856,8 +33840,7 @@ function(object, uri, new.uri, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_recent_manager_move_item", object, uri, new.uri, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -33904,8 +33887,7 @@ function(object, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_recent_manager_purge_items", object, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -34766,8 +34748,7 @@ function(object, content.buffer, format, iter, data, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_text_buffer_deserialize", object, content.buffer, format, iter, data, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -35322,8 +35303,7 @@ function(object, filename, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_builder_add_from_file", object, filename, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -35338,8 +35318,7 @@ function(object, buffer, length, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_builder_add_from_string", object, buffer, length, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -35437,8 +35416,7 @@ function(object, pspec, string, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_builder_value_from_string", object, pspec, string, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -35453,8 +35431,7 @@ function(object, type, string, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_builder_value_from_string_type", object, type, string, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -35718,8 +35695,7 @@ function(file.name, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_page_setup_new_from_file", file.name, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -35733,8 +35709,7 @@ function(key.file, group.name, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_page_setup_new_from_key_file", key.file, group.name, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -35748,8 +35723,7 @@ function(object, file.name, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_page_setup_to_file", object, file.name, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -35787,8 +35761,7 @@ function(key.file, group.name, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_paper_size_new_from_key_file", key.file, group.name, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -35814,8 +35787,7 @@ function(file.name, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_print_settings_new_from_file", file.name, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -35829,8 +35801,7 @@ function(object, file.name, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_print_settings_to_file", object, file.name, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -35844,8 +35815,7 @@ function(key.file, group.name, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_print_settings_new_from_key_file", key.file, group.name, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -36835,8 +36805,7 @@ function(object, filename, object.ids, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_builder_add_objects_from_file", object, filename, object.ids, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -36852,8 +36821,7 @@ function(object, buffer, length, object.ids, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_builder_add_objects_from_string", object, buffer, length, object.ids, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -37073,8 +37041,7 @@ function(object, file, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_file_chooser_set_file", object, file, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -37088,8 +37055,7 @@ function(object, file, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_file_chooser_select_file", object, file, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -37126,8 +37092,7 @@ function(object, file, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_file_chooser_set_current_folder_file", object, file, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -37517,8 +37482,7 @@ function(object, key.file, group.name, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_page_setup_load_key_file", object, key.file, group.name, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -37532,8 +37496,7 @@ function(object, file.name, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_page_setup_load_file", object, file.name, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -37548,8 +37511,7 @@ function(object, key.file, group.name, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_print_settings_load_key_file", object, key.file, group.name, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -37563,8 +37525,7 @@ function(object, file.name, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_print_settings_load_file", object, file.name, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -37724,8 +37685,7 @@ function(screen = NULL, uri, timestamp, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gtk_show_uri", screen, uri, timestamp, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -37884,17 +37844,6 @@ function(object, clip.rect = NULL)
   if (!is.null( clip.rect )) clip.rect <- as.GdkRectangle(clip.rect)
 
   w <- .RGtkCall("S_gtk_widget_get_snapshot", object, clip.rect, PACKAGE = "RGtk2")
-
-  return(w)
-} 
-
-
-gtkWidgetGetAllocation <-
-function(object)
-{
-  checkPtrType(object, "GtkWidget")
-
-  w <- .RGtkCall("S_gtk_widget_get_allocation", object, PACKAGE = "RGtk2")
 
   return(w)
 } 
@@ -40740,10 +40689,9 @@ function(object, widget, pack.type)
 
 
 gtkPaintSpinner <-
-function(object, style, window, state.type, area, widget, detail, step, x, y, width, height)
+function(object, window, state.type, area, widget, detail, step, x, y, width, height)
 {
   checkPtrType(object, "GtkStyle")
-  checkPtrType(style, "GtkStyle")
   checkPtrType(window, "GdkWindow")
   
   area <- as.GdkRectangle(area)
@@ -40755,7 +40703,7 @@ function(object, style, window, state.type, area, widget, detail, step, x, y, wi
   width <- as.integer(width)
   height <- as.integer(height)
 
-  w <- .RGtkCall("S_gtk_paint_spinner", object, style, window, state.type, area, widget, detail, step, x, y, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paint_spinner", object, window, state.type, area, widget, detail, step, x, y, width, height, PACKAGE = "RGtk2")
 
   return(invisible(w))
 } 

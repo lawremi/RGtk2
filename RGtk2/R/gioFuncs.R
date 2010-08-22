@@ -30,8 +30,7 @@ function(commandline, application.name = NULL, flags = "G_APP_INFO_CREATE_NONE",
 
   w <- .RGtkCall("S_g_app_info_create_from_commandline", commandline, application.name, flags, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -124,8 +123,7 @@ function(object, files, launch.context, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_app_info_launch", object, files, launch.context, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -162,8 +160,7 @@ function(object, uris, launch.context, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_app_info_launch_uris", object, uris, launch.context, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -188,8 +185,7 @@ function(object, content.type, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_app_info_set_as_default_for_type", object, content.type, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -203,8 +199,7 @@ function(object, extension, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_app_info_set_as_default_for_extension", object, extension, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -218,8 +213,7 @@ function(object, content.type, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_app_info_add_supports_type", object, content.type, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -244,8 +238,7 @@ function(object, content.type, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_app_info_remove_supports_type", object, content.type, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -466,15 +459,14 @@ function(object, count, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_buffered_input_stream_fill", object, count, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gBufferedInputStreamFillAsync <-
-function(object, count, io.priority = "G_PRIORITY_DEFAULT", cancellable = NULL, callback, user.data)
+function(object, count, io.priority = 0, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GBufferedInputStream")
   count <- as.integer(count)
@@ -497,8 +489,7 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_buffered_input_stream_fill_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -512,8 +503,7 @@ function(object, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_buffered_input_stream_read_byte", object, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -633,15 +623,13 @@ function(object)
 
 
 gCancellableSetErrorIfCancelled <-
-function(object, error, .errwarn = TRUE)
+function(object, .errwarn = TRUE)
 {
   checkPtrType(object, "GCancellable")
-  error <- as.GError(error)
 
-  w <- .RGtkCall("S_g_cancellable_set_error_if_cancelled", object, error, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_g_cancellable_set_error_if_cancelled", object, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -891,8 +879,7 @@ function(object, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_data_input_stream_read_byte", object, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -906,8 +893,7 @@ function(object, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_data_input_stream_read_int16", object, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -921,8 +907,7 @@ function(object, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_data_input_stream_read_uint16", object, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -936,8 +921,7 @@ function(object, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_data_input_stream_read_int32", object, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -951,8 +935,7 @@ function(object, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_data_input_stream_read_uint32", object, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -966,8 +949,7 @@ function(object, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_data_input_stream_read_int64", object, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -981,8 +963,7 @@ function(object, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_data_input_stream_read_uint64", object, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -996,8 +977,7 @@ function(object, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_data_input_stream_read_line", object, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -1012,8 +992,7 @@ function(object, stop.chars, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_data_input_stream_read_until", object, stop.chars, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -1073,8 +1052,7 @@ function(object, data, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_data_output_stream_put_byte", object, data, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -1089,8 +1067,7 @@ function(object, data, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_data_output_stream_put_int16", object, data, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -1105,8 +1082,7 @@ function(object, data, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_data_output_stream_put_uint16", object, data, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -1121,8 +1097,7 @@ function(object, data, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_data_output_stream_put_int32", object, data, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -1137,8 +1112,7 @@ function(object, data, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_data_output_stream_put_uint32", object, data, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -1153,8 +1127,7 @@ function(object, data, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_data_output_stream_put_int64", object, data, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -1169,8 +1142,7 @@ function(object, data, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_data_output_stream_put_uint64", object, data, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -1185,8 +1157,7 @@ function(object, str, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_data_output_stream_put_string", object, str, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -1303,7 +1274,7 @@ function(object)
 
 
 gDriveEject <-
-function(object, flags = "G_MOUNT_UNMOUNT_NONE", cancellable = NULL, callback, user.data)
+function(object, flags = "G_MOUNT_UNMOUNT_NONE", cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GDrive")
   
@@ -1325,15 +1296,14 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_drive_eject_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gDrivePollForMedia <-
-function(object, cancellable = NULL, callback, user.data)
+function(object, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GDrive")
   if (!is.null( cancellable )) checkPtrType(cancellable, "GCancellable")
@@ -1354,8 +1324,7 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_drive_poll_for_media_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -1440,8 +1409,7 @@ function(object, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_enumerator_next_file", object, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -1455,15 +1423,14 @@ function(object, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_enumerator_close", object, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gFileEnumeratorNextFilesAsync <-
-function(object, num.files, io.priority = "G_PRIORITY_DEFAULT", cancellable = NULL, callback, user.data)
+function(object, num.files, io.priority = 0, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GFileEnumerator")
   num.files <- as.integer(num.files)
@@ -1486,15 +1453,14 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_enumerator_next_files_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gFileEnumeratorCloseAsync <-
-function(object, io.priority = "G_PRIORITY_DEFAULT", cancellable = NULL, callback, user.data)
+function(object, io.priority = 0, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GFileEnumerator")
   io.priority <- as.integer(io.priority)
@@ -1516,8 +1482,7 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_enumerator_close_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -1721,8 +1686,7 @@ function(object, display.name, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_get_child_for_display_name", object, display.name, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -1806,15 +1770,14 @@ function(object, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_read", object, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gFileReadAsync <-
-function(object, io.priority = "G_PRIORITY_DEFAULT", cancellable = NULL, callback, user.data)
+function(object, io.priority = 0, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GFile")
   io.priority <- as.integer(io.priority)
@@ -1836,8 +1799,7 @@ function(object, res, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_read_finish", object, res, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -1852,8 +1814,7 @@ function(object, flags = "G_FILE_CREATE_NONE", cancellable = NULL, .errwarn = TR
 
   w <- .RGtkCall("S_g_file_append_to", object, flags, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -1868,8 +1829,7 @@ function(object, flags = "G_FILE_CREATE_NONE", cancellable = NULL, .errwarn = TR
 
   w <- .RGtkCall("S_g_file_create", object, flags, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -1886,15 +1846,14 @@ function(object, etag, make.backup, flags = "G_FILE_CREATE_NONE", cancellable = 
 
   w <- .RGtkCall("S_g_file_replace", object, etag, make.backup, flags, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gFileAppendToAsync <-
-function(object, flags = "G_FILE_CREATE_NONE", io.priority = "G_PRIORITY_DEFAULT", cancellable = NULL, callback, user.data)
+function(object, flags = "G_FILE_CREATE_NONE", io.priority = 0, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GFile")
   
@@ -1917,15 +1876,14 @@ function(object, res, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_append_to_finish", object, res, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gFileCreateAsync <-
-function(object, flags = "G_FILE_CREATE_NONE", io.priority = "G_PRIORITY_DEFAULT", cancellable = NULL, callback, user.data)
+function(object, flags = "G_FILE_CREATE_NONE", io.priority = 0, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GFile")
   
@@ -1948,15 +1906,14 @@ function(object, res, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_create_finish", object, res, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gFileReplaceAsync <-
-function(object, etag, make.backup, flags = "G_FILE_CREATE_NONE", io.priority = "G_PRIORITY_DEFAULT", cancellable = NULL, callback, user.data)
+function(object, etag, make.backup, flags = "G_FILE_CREATE_NONE", io.priority = 0, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GFile")
   etag <- as.character(etag)
@@ -1981,8 +1938,7 @@ function(object, res, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_replace_finish", object, res, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -2010,15 +1966,14 @@ function(object, attributes, flags = "G_FILE_QUERY_INFO_NONE", cancellable = NUL
 
   w <- .RGtkCall("S_g_file_query_info", object, attributes, flags, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gFileQueryInfoAsync <-
-function(object, attributes, flags = "G_FILE_QUERY_INFO_NONE", io.priority = "G_PRIORITY_DEFAULT", cancellable = NULL, callback, user.data)
+function(object, attributes, flags = "G_FILE_QUERY_INFO_NONE", io.priority = 0, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GFile")
   attributes <- as.character(attributes)
@@ -2042,8 +1997,7 @@ function(object, res, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_query_info_finish", object, res, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -2058,15 +2012,14 @@ function(object, attributes, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_query_filesystem_info", object, attributes, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gFileQueryFilesystemInfoAsync <-
-function(object, attributes, io.priority, cancellable, callback, user.data)
+function(object, attributes, io.priority, cancellable, callback, user.data = NULL)
 {
   checkPtrType(object, "GFile")
   attributes <- as.character(attributes)
@@ -2089,8 +2042,7 @@ function(object, res, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_query_filesystem_info_finish", object, res, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -2104,15 +2056,14 @@ function(object, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_find_enclosing_mount", object, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gFileFindEnclosingMountAsync <-
-function(object, io.priority = "G_PRIORITY_DEFAULT", cancellable = NULL, callback, user.data)
+function(object, io.priority = 0, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GFile")
   io.priority <- as.integer(io.priority)
@@ -2134,8 +2085,7 @@ function(object, res, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_find_enclosing_mount_finish", object, res, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -2151,15 +2101,14 @@ function(object, attributes, flags = "G_FILE_QUERY_INFO_NONE", cancellable = NUL
 
   w <- .RGtkCall("S_g_file_enumerate_children", object, attributes, flags, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gFileEnumerateChildrenAsync <-
-function(object, attributes, flags = "G_FILE_QUERY_INFO_NONE", io.priority = "G_PRIORITY_DEFAULT", cancellable = NULL, callback, user.data)
+function(object, attributes, flags = "G_FILE_QUERY_INFO_NONE", io.priority = 0, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GFile")
   attributes <- as.character(attributes)
@@ -2183,8 +2132,7 @@ function(object, res, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_enumerate_children_finish", object, res, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -2199,15 +2147,14 @@ function(object, display.name, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_set_display_name", object, display.name, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gFileSetDisplayNameAsync <-
-function(object, display.name, io.priority = "G_PRIORITY_DEFAULT", cancellable = NULL, callback, user.data)
+function(object, display.name, io.priority = 0, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GFile")
   display.name <- as.character(display.name)
@@ -2230,8 +2177,7 @@ function(object, res, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_set_display_name_finish", object, res, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -2245,8 +2191,7 @@ function(object, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_delete", object, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -2260,8 +2205,7 @@ function(object, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_trash", object, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -2279,15 +2223,14 @@ function(object, destination, flags = "G_FILE_COPY_NONE", cancellable = NULL, pr
 
   w <- .RGtkCall("S_g_file_copy", object, destination, flags, cancellable, progress.callback, progress.callback.data, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gFileCopyAsync <-
-function(object, destination, flags = "G_FILE_COPY_NONE", io.priority = "G_PRIORITY_DEFAULT", cancellable = NULL, progress.callback, progress.callback.data, callback, user.data)
+function(object, destination, flags = "G_FILE_COPY_NONE", io.priority = 0, cancellable = NULL, progress.callback, progress.callback.data, callback, user.data = NULL)
 {
   checkPtrType(object, "GFile")
   checkPtrType(destination, "GFile")
@@ -2313,8 +2256,7 @@ function(object, res, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_copy_finish", object, res, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -2332,8 +2274,7 @@ function(object, destination, flags = "G_FILE_COPY_NONE", cancellable = NULL, pr
 
   w <- .RGtkCall("S_g_file_move", object, destination, flags, cancellable, progress.callback, progress.callback.data, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -2347,8 +2288,7 @@ function(object, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_make_directory", object, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -2363,8 +2303,7 @@ function(object, symlink.value, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_make_symbolic_link", object, symlink.value, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -2378,8 +2317,7 @@ function(object, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_query_settable_attributes", object, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -2393,8 +2331,7 @@ function(object, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_query_writable_namespaces", object, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -2412,8 +2349,7 @@ function(object, attribute, type, value.p, flags = "G_FILE_QUERY_INFO_NONE", can
 
   w <- .RGtkCall("S_g_file_set_attribute", object, attribute, type, value.p, flags, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -2429,15 +2365,14 @@ function(object, info, flags = "G_FILE_QUERY_INFO_NONE", cancellable = NULL, .er
 
   w <- .RGtkCall("S_g_file_set_attributes_from_info", object, info, flags, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gFileSetAttributesAsync <-
-function(object, info, flags = "G_FILE_QUERY_INFO_NONE", io.priority = "G_PRIORITY_DEFAULT", cancellable = NULL, callback, user.data)
+function(object, info, flags = "G_FILE_QUERY_INFO_NONE", io.priority = 0, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GFile")
   checkPtrType(info, "GFileInfo")
@@ -2454,16 +2389,14 @@ function(object, info, flags = "G_FILE_QUERY_INFO_NONE", io.priority = "G_PRIORI
 
 
 gFileSetAttributesFinish <-
-function(object, result, info, .errwarn = TRUE)
+function(object, result, .errwarn = TRUE)
 {
   checkPtrType(object, "GFile")
   checkPtrType(result, "GAsyncResult")
-  checkPtrType(info, "GFileInfo")
 
-  w <- .RGtkCall("S_g_file_set_attributes_finish", object, result, info, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_g_file_set_attributes_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -2480,8 +2413,7 @@ function(object, attribute, value, flags = "G_FILE_QUERY_INFO_NONE", cancellable
 
   w <- .RGtkCall("S_g_file_set_attribute_string", object, attribute, value, flags, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -2498,8 +2430,7 @@ function(object, attribute, value, flags = "G_FILE_QUERY_INFO_NONE", cancellable
 
   w <- .RGtkCall("S_g_file_set_attribute_byte_string", object, attribute, value, flags, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -2516,8 +2447,7 @@ function(object, attribute, value, flags = "G_FILE_QUERY_INFO_NONE", cancellable
 
   w <- .RGtkCall("S_g_file_set_attribute_uint32", object, attribute, value, flags, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -2534,8 +2464,7 @@ function(object, attribute, value, flags = "G_FILE_QUERY_INFO_NONE", cancellable
 
   w <- .RGtkCall("S_g_file_set_attribute_int32", object, attribute, value, flags, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -2552,8 +2481,7 @@ function(object, attribute, value, flags = "G_FILE_QUERY_INFO_NONE", cancellable
 
   w <- .RGtkCall("S_g_file_set_attribute_uint64", object, attribute, value, flags, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -2570,23 +2498,23 @@ function(object, attribute, value, flags = "G_FILE_QUERY_INFO_NONE", cancellable
 
   w <- .RGtkCall("S_g_file_set_attribute_int64", object, attribute, value, flags, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gFileMountEnclosingVolume <-
-function(object, mount.operation, cancellable = NULL, callback, user.data)
+function(object, flags, mount.operation, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GFile")
+  
   checkPtrType(mount.operation, "GMountOperation")
   if (!is.null( cancellable )) checkPtrType(cancellable, "GCancellable")
   callback <- as.function(callback)
   
 
-  w <- .RGtkCall("S_g_file_mount_enclosing_volume", object, mount.operation, cancellable, callback, user.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_g_file_mount_enclosing_volume", object, flags, mount.operation, cancellable, callback, user.data, PACKAGE = "RGtk2")
 
   return(invisible(w))
 } 
@@ -2600,23 +2528,23 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_mount_enclosing_volume_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gFileMountMountable <-
-function(object, mount.operation, cancellable = NULL, callback, user.data)
+function(object, flags, mount.operation, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GFile")
+  
   checkPtrType(mount.operation, "GMountOperation")
   if (!is.null( cancellable )) checkPtrType(cancellable, "GCancellable")
   callback <- as.function(callback)
   
 
-  w <- .RGtkCall("S_g_file_mount_mountable", object, mount.operation, cancellable, callback, user.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_g_file_mount_mountable", object, flags, mount.operation, cancellable, callback, user.data, PACKAGE = "RGtk2")
 
   return(invisible(w))
 } 
@@ -2630,15 +2558,14 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_mount_mountable_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gFileUnmountMountable <-
-function(object, flags = "G_MOUNT_UNMOUNT_NONE", cancellable = NULL, callback, user.data)
+function(object, flags = "G_MOUNT_UNMOUNT_NONE", cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GFile")
   
@@ -2660,15 +2587,14 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_unmount_mountable_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gFileEjectMountable <-
-function(object, flags = "G_MOUNT_UNMOUNT_NONE", cancellable = NULL, callback, user.data)
+function(object, flags = "G_MOUNT_UNMOUNT_NONE", cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GFile")
   
@@ -2690,8 +2616,7 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_eject_mountable_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -2707,8 +2632,7 @@ function(object, destination, flags = "G_FILE_COPY_NONE", cancellable = NULL, .e
 
   w <- .RGtkCall("S_g_file_copy_attributes", object, destination, flags, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -2723,8 +2647,7 @@ function(object, flags = "G_FILE_MONITOR_NONE", cancellable = NULL, .errwarn = T
 
   w <- .RGtkCall("S_g_file_monitor_directory", object, flags, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -2739,8 +2662,7 @@ function(object, flags = "G_FILE_MONITOR_NONE", cancellable = NULL, .errwarn = T
 
   w <- .RGtkCall("S_g_file_monitor_file", object, flags, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -2754,8 +2676,7 @@ function(object, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_query_default_handler", object, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -2769,15 +2690,14 @@ function(object, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_load_contents", object, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gFileLoadContentsAsync <-
-function(object, cancellable = NULL, callback, user.data)
+function(object, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GFile")
   if (!is.null( cancellable )) checkPtrType(cancellable, "GCancellable")
@@ -2798,25 +2718,9 @@ function(object, res, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_load_contents_finish", object, res, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
-} 
-
-
-gFileLoadPartialContentsAsync <-
-function(object, cancellable = NULL, read.more.callback, callback, user.data)
-{
-  checkPtrType(object, "GFile")
-  if (!is.null( cancellable )) checkPtrType(cancellable, "GCancellable")
-  read.more.callback <- as.function(read.more.callback)
-  callback <- as.function(callback)
-  
-
-  w <- .RGtkCall("S_g_file_load_partial_contents_async", object, cancellable, read.more.callback, callback, user.data, PACKAGE = "RGtk2")
-
-  return(invisible(w))
 } 
 
 
@@ -2828,8 +2732,7 @@ function(object, res, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_load_partial_contents_finish", object, res, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -2848,15 +2751,14 @@ function(object, contents, length, etag, make.backup, flags = "G_FILE_CREATE_NON
 
   w <- .RGtkCall("S_g_file_replace_contents", object, contents, length, etag, make.backup, flags, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gFileReplaceContentsAsync <-
-function(object, contents, length, etag, make.backup, flags = "G_FILE_CREATE_NONE", cancellable = NULL, callback, user.data)
+function(object, contents, length, etag, make.backup, flags = "G_FILE_CREATE_NONE", cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GFile")
   contents <- as.character(contents)
@@ -2882,8 +2784,7 @@ function(object, res, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_replace_contents_finish", object, res, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -3678,15 +3579,14 @@ function(object, attributes, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_input_stream_query_info", object, attributes, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gFileInputStreamQueryInfoAsync <-
-function(object, attributes, io.priority = "G_PRIORITY_DEFAULT", cancellable = NULL, callback, user.data)
+function(object, attributes, io.priority = 0, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GFileInputStream")
   attributes <- as.character(attributes)
@@ -3709,8 +3609,7 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_input_stream_query_info_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -3853,15 +3752,14 @@ function(object, attributes, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_output_stream_query_info", object, attributes, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gFileOutputStreamQueryInfoAsync <-
-function(object, attributes, io.priority = "G_PRIORITY_DEFAULT", cancellable = NULL, callback, user.data)
+function(object, attributes, io.priority = 0, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GFileOutputStream")
   attributes <- as.character(attributes)
@@ -3884,8 +3782,7 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_output_stream_query_info_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -4000,8 +3897,7 @@ function(object, count, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_input_stream_read", object, count, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -4016,8 +3912,7 @@ function(object, count, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_input_stream_read_all", object, count, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -4032,8 +3927,7 @@ function(object, count, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_input_stream_skip", object, count, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -4047,15 +3941,14 @@ function(object, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_input_stream_close", object, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gInputStreamReadAsync <-
-function(object, count, io.priority = "G_PRIORITY_DEFAULT", cancellable = NULL, callback, user.data)
+function(object, count, io.priority = 0, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GInputStream")
   count <- as.numeric(count)
@@ -4078,15 +3971,14 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_input_stream_read_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gInputStreamSkipAsync <-
-function(object, count, io.priority = "G_PRIORITY_DEFAULT", cancellable = NULL, callback, user.data)
+function(object, count, io.priority = 0, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GInputStream")
   count <- as.numeric(count)
@@ -4109,15 +4001,14 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_input_stream_skip_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gInputStreamCloseAsync <-
-function(object, io.priority = "G_PRIORITY_DEFAULT", cancellable = NULL, callback, user.data)
+function(object, io.priority = 0, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GInputStream")
   io.priority <- as.integer(io.priority)
@@ -4139,8 +4030,7 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_input_stream_close_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -4175,8 +4065,7 @@ function(object, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_input_stream_set_pending", object, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -4424,42 +4313,6 @@ function(dirname)
 } 
 
 
-gIOModuleLoad <-
-function(object)
-{
-  checkPtrType(object, "GIOModule")
-
-  w <- .RGtkCall("S_g_io_module_load", object, PACKAGE = "RGtk2")
-
-  return(invisible(w))
-} 
-
-
-gIOModuleUnload <-
-function(object)
-{
-  checkPtrType(object, "GIOModule")
-
-  w <- .RGtkCall("S_g_io_module_unload", object, PACKAGE = "RGtk2")
-
-  return(invisible(w))
-} 
-
-
-gIoSchedulerPushJob <-
-function(job.func, user.data, io.priority = "G_PRIORITY_DEFAULT", cancellable = NULL)
-{
-  job.func <- as.function(job.func)
-  
-  io.priority <- as.integer(io.priority)
-  if (!is.null( cancellable )) checkPtrType(cancellable, "GCancellable")
-
-  w <- .RGtkCall("S_g_io_scheduler_push_job", job.func, user.data, io.priority, cancellable, PACKAGE = "RGtk2")
-
-  return(invisible(w))
-} 
-
-
 gIoSchedulerCancelAllJobs <-
 function()
 {
@@ -4472,7 +4325,7 @@ function()
 
 
 gIoSchedulerJobSendToMainloop <-
-function(object, func, user.data)
+function(object, func, user.data = NULL)
 {
   checkPtrType(object, "GIOSchedulerJob")
   func <- as.function(func)
@@ -4485,7 +4338,7 @@ function(object, func, user.data)
 
 
 gIoSchedulerJobSendToMainloopAsync <-
-function(object, func, user.data)
+function(object, func, user.data = NULL)
 {
   checkPtrType(object, "GIOSchedulerJob")
   func <- as.function(func)
@@ -4517,15 +4370,14 @@ function(object, size, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_loadable_icon_load", object, size, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gLoadableIconLoadAsync <-
-function(object, size, cancellable = NULL, callback, user.data)
+function(object, size, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GLoadableIcon")
   size <- as.integer(size)
@@ -4548,30 +4400,7 @@ function(object, res, type, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_loadable_icon_load_finish", object, res, type, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
-
-  return(w)
-} 
-
-
-gLocalDirectoryMonitorGetType <-
-function()
-{
-  
-
-  w <- .RGtkCall("S_g_local_directory_monitor_get_type", PACKAGE = "RGtk2")
-
-  return(w)
-} 
-
-
-gLocalFileMonitorGetType <-
-function()
-{
-  
-
-  w <- .RGtkCall("S_g_local_file_monitor_get_type", PACKAGE = "RGtk2")
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -4634,11 +4463,11 @@ function()
 
 
 gMemoryOutputStreamNew <-
-function(data)
+function(len)
 {
-  data <- as.list(as.raw(data))
+  len <- as.numeric(len)
 
-  w <- .RGtkCall("S_g_memory_output_stream_new", data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_g_memory_output_stream_new", len, PACKAGE = "RGtk2")
 
   return(w)
 } 
@@ -4766,7 +4595,7 @@ function(object)
 
 
 gMountUnmount <-
-function(object, flags = "G_MOUNT_UNMOUNT_NONE", cancellable = NULL, callback, user.data)
+function(object, flags = "G_MOUNT_UNMOUNT_NONE", cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GMount")
   
@@ -4788,15 +4617,14 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_mount_unmount_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gMountEject <-
-function(object, flags = "G_MOUNT_UNMOUNT_NONE", cancellable = NULL, callback, user.data)
+function(object, flags = "G_MOUNT_UNMOUNT_NONE", cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GMount")
   
@@ -4818,23 +4646,23 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_mount_eject_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gMountRemount <-
-function(object, mount.operation, cancellable = NULL, callback, user.data)
+function(object, flags, mount.operation, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GMount")
+  
   checkPtrType(mount.operation, "GMountOperation")
   if (!is.null( cancellable )) checkPtrType(cancellable, "GCancellable")
   callback <- as.function(callback)
   
 
-  w <- .RGtkCall("S_g_mount_remount", object, mount.operation, cancellable, callback, user.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_g_mount_remount", object, flags, mount.operation, cancellable, callback, user.data, PACKAGE = "RGtk2")
 
   return(invisible(w))
 } 
@@ -4848,8 +4676,7 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_mount_remount_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -5058,8 +4885,7 @@ function(object, buffer, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_output_stream_write", object, buffer, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -5075,8 +4901,7 @@ function(object, buffer, bytes.written, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_output_stream_write_all", object, buffer, bytes.written, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -5092,8 +4917,7 @@ function(object, source, flags = "G_OUTPUT_STREAM_SPLICE_NONE", cancellable = NU
 
   w <- .RGtkCall("S_g_output_stream_splice", object, source, flags, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -5107,8 +4931,7 @@ function(object, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_output_stream_flush", object, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -5122,15 +4945,14 @@ function(object, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_output_stream_close", object, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gOutputStreamWriteAsync <-
-function(object, buffer, io.priority = "G_PRIORITY_DEFAULT", cancellable = NULL, callback, user.data)
+function(object, buffer, io.priority = 0, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GOutputStream")
   buffer <- as.list(as.raw(buffer))
@@ -5153,15 +4975,14 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_output_stream_write_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gOutputStreamSpliceAsync <-
-function(object, source, flags = "G_OUTPUT_STREAM_SPLICE_NONE", io.priority = "G_PRIORITY_DEFAULT", cancellable = NULL, callback, user.data)
+function(object, source, flags = "G_OUTPUT_STREAM_SPLICE_NONE", io.priority = 0, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GOutputStream")
   checkPtrType(source, "GInputStream")
@@ -5185,15 +5006,14 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_output_stream_splice_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gOutputStreamFlushAsync <-
-function(object, io.priority = "G_PRIORITY_DEFAULT", cancellable = NULL, callback, user.data)
+function(object, io.priority = 0, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GOutputStream")
   io.priority <- as.integer(io.priority)
@@ -5215,15 +5035,14 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_output_stream_flush_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gOutputStreamCloseAsync <-
-function(object, io.priority = "G_PRIORITY_DEFAULT", cancellable = NULL, callback, user.data)
+function(object, io.priority = 0, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GOutputStream")
   io.priority <- as.integer(io.priority)
@@ -5245,8 +5064,7 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_output_stream_close_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -5281,8 +5099,7 @@ function(object, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_output_stream_set_pending", object, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -5342,8 +5159,7 @@ function(object, offset, type = "G_SEEK_SET", cancellable = NULL, .errwarn = TRU
 
   w <- .RGtkCall("S_g_seekable_seek", object, offset, type, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -5369,8 +5185,7 @@ function(object, offset, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_seekable_truncate", object, offset, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -5388,7 +5203,7 @@ function()
 
 
 gSimpleAsyncResultNew <-
-function(source.object, callback, user.data, source.tag)
+function(source.object, callback, user.data = NULL, source.tag)
 {
   checkPtrType(source.object, "GObject")
   callback <- as.function(callback)
@@ -5402,7 +5217,7 @@ function(source.object, callback, user.data, source.tag)
 
 
 gSimpleAsyncResultNewFromError <-
-function(source.object, callback, user.data)
+function(source.object, callback, user.data = NULL)
 {
   checkPtrType(source.object, "GObject")
   callback <- as.function(callback)
@@ -5540,22 +5355,20 @@ function(object)
 
 
 gSimpleAsyncResultPropagateError <-
-function(object, dest, .errwarn = TRUE)
+function(object, .errwarn = TRUE)
 {
   checkPtrType(object, "GSimpleAsyncResult")
-  dest <- as.GError(dest)
 
-  w <- .RGtkCall("S_g_simple_async_result_propagate_error", object, dest, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_g_simple_async_result_propagate_error", object, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gSimpleAsyncReportGerrorInIdle <-
-function(object, callback, user.data)
+function(object, callback, user.data = NULL)
 {
   checkPtrType(object, "GObject")
   callback <- as.function(callback)
@@ -5726,17 +5539,6 @@ function(object)
 } 
 
 
-gWin32AppInfoGetType <-
-function()
-{
-  
-
-  w <- .RGtkCall("S_g_win32_app_info_get_type", PACKAGE = "RGtk2")
-
-  return(w)
-} 
-
-
 gVolumeGetType <-
 function()
 {
@@ -5837,15 +5639,16 @@ function(object)
 
 
 gVolumeMount <-
-function(object, mount.operation, cancellable = NULL, callback, user.data)
+function(object, flags, mount.operation, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GVolume")
+  
   checkPtrType(mount.operation, "GMountOperation")
   if (!is.null( cancellable )) checkPtrType(cancellable, "GCancellable")
   callback <- as.function(callback)
   
 
-  w <- .RGtkCall("S_g_volume_mount", object, mount.operation, cancellable, callback, user.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_g_volume_mount", object, flags, mount.operation, cancellable, callback, user.data, PACKAGE = "RGtk2")
 
   return(invisible(w))
 } 
@@ -5859,15 +5662,14 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_volume_mount_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gVolumeEject <-
-function(object, flags = "G_MOUNT_UNMOUNT_NONE", cancellable = NULL, callback, user.data)
+function(object, flags = "G_MOUNT_UNMOUNT_NONE", cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GVolume")
   
@@ -5889,8 +5691,7 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_volume_eject_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -6142,8 +5943,7 @@ function(object, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_make_directory_with_parents", object, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -6158,8 +5958,7 @@ function(object, flags = "G_FILE_MONITOR_NONE", cancellable = NULL, .errwarn = T
 
   w <- .RGtkCall("S_g_file_monitor", object, flags, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -6177,7 +5976,7 @@ function(object)
 
 
 gMountGuessContentType <-
-function(object, force.rescan, cancellable = NULL, callback, user.data)
+function(object, force.rescan, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GMount")
   force.rescan <- as.logical(force.rescan)
@@ -6199,8 +5998,7 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_mount_guess_content_type_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -6215,8 +6013,7 @@ function(object, force.rescan, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_mount_guess_content_type_sync", object, force.rescan, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -6324,7 +6121,7 @@ function(object)
 
 
 gDataInputStreamReadUntilAsync <-
-function(object, stop.chars, io.priority, cancellable = NULL, callback, user.data)
+function(object, stop.chars, io.priority, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GDataInputStream")
   stop.chars <- as.character(stop.chars)
@@ -6348,15 +6145,14 @@ function(object, result, length, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_data_input_stream_read_until_finish", object, result, length, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gDataInputStreamReadLineAsync <-
-function(object, io.priority, cancellable = NULL, callback, user.data)
+function(object, io.priority, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GDataInputStream")
   io.priority <- as.integer(io.priority)
@@ -6378,8 +6174,7 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_data_input_stream_read_line_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -6397,15 +6192,13 @@ function(object)
 
 
 gIconNewForString <-
-function(str, error, .errwarn = TRUE)
+function(str, .errwarn = TRUE)
 {
   str <- as.character(str)
-  error <- as.GError(error)
 
-  w <- .RGtkCall("S_g_icon_new_for_string", str, error, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_g_icon_new_for_string", str, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -6502,7 +6295,7 @@ function()
 
 
 gAsyncInitableInitAsync <-
-function(object, io.priority, cancellable = NULL, callback, user.data)
+function(object, io.priority, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GAsyncInitable")
   io.priority <- as.integer(io.priority)
@@ -6524,8 +6317,7 @@ function(object, res, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_async_initable_init_finish", object, res, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -6539,21 +6331,7 @@ function(object, res, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_async_initable_new_finish", object, res, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
-
-  return(w)
-} 
-
-
-gCancellableConnect <-
-function(object, callback, data)
-{
-  checkPtrType(object, "GCancellable")
-  callback <- as.function(callback)
-  
-
-  w <- .RGtkCall("S_g_cancellable_connect", object, callback, data, PACKAGE = "RGtk2")
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -6616,7 +6394,7 @@ function(object)
 
 
 gDriveEjectWithOperation <-
-function(object, flags, mount.operation, cancellable = NULL, callback, user.data)
+function(object, flags, mount.operation, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GDrive")
   
@@ -6639,8 +6417,7 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_drive_eject_with_operation_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -6658,7 +6435,7 @@ function(object)
 
 
 gDriveStart <-
-function(object, flags, mount.operation, cancellable = NULL, callback, user.data)
+function(object, flags, mount.operation, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GDrive")
   
@@ -6681,15 +6458,14 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_drive_start_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gDriveStop <-
-function(object, flags, mount.operation, cancellable = NULL, callback, user.data)
+function(object, flags, mount.operation, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GDrive")
   
@@ -6712,8 +6488,7 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_drive_stop_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -6728,15 +6503,14 @@ function(object, flags, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_create_readwrite", object, flags, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gFileCreateReadwriteAsync <-
-function(object, flags, io.priority, cancellable = NULL, callback, user.data)
+function(object, flags, io.priority, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GFile")
   
@@ -6759,15 +6533,14 @@ function(object, res, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_create_readwrite_finish", object, res, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gFileEjectMountableWithOperation <-
-function(object, flags, mount.operation, cancellable = NULL, callback, user.data)
+function(object, flags, mount.operation, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GFile")
   
@@ -6790,8 +6563,7 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_eject_mountable_with_operation_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -6805,15 +6577,14 @@ function(object, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_open_readwrite", object, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gFileOpenReadwriteAsync <-
-function(object, io.priority, cancellable = NULL, callback, user.data)
+function(object, io.priority, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GFile")
   io.priority <- as.integer(io.priority)
@@ -6835,15 +6606,14 @@ function(object, res, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_open_readwrite_finish", object, res, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gFilePollMountable <-
-function(object, cancellable = NULL, callback, user.data)
+function(object, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GFile")
   if (!is.null( cancellable )) checkPtrType(cancellable, "GCancellable")
@@ -6864,8 +6634,7 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_poll_mountable_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -6882,15 +6651,14 @@ function(object, etag, make.backup, flags, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_replace_readwrite", object, etag, make.backup, flags, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gFileReplaceReadwriteAsync <-
-function(object, etag, make.backup, flags, io.priority, cancellable = NULL, callback, user.data)
+function(object, etag, make.backup, flags, io.priority, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GFile")
   etag <- as.character(etag)
@@ -6915,15 +6683,14 @@ function(object, res, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_replace_readwrite_finish", object, res, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gFileStartMountable <-
-function(object, flags, start.operation, cancellable = NULL, callback, user.data)
+function(object, flags, start.operation, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GFile")
   
@@ -6946,15 +6713,14 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_start_mountable_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gFileStopMountable <-
-function(object, flags, mount.operation, cancellable = NULL, callback, user.data)
+function(object, flags, mount.operation, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GFile")
   
@@ -6977,8 +6743,7 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_stop_mountable_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -6996,7 +6761,7 @@ function(object)
 
 
 gFileUnmountMountableWithOperation <-
-function(object, flags, mount.operation, cancellable = NULL, callback, user.data)
+function(object, flags, mount.operation, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GFile")
   
@@ -7019,8 +6784,7 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_unmount_mountable_with_operation_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -7083,15 +6847,14 @@ function(object, attributes, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_io_stream_query_info", object, attributes, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gFileIoStreamQueryInfoAsync <-
-function(object, attributes, io.priority, cancellable = NULL, callback, user.data)
+function(object, attributes, io.priority, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GFileIOStream")
   attributes <- as.character(attributes)
@@ -7114,8 +6877,7 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_file_io_stream_query_info_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -7194,6 +6956,17 @@ function(object)
   checkPtrType(object, "GInetAddress")
 
   w <- .RGtkCall("S_g_inet_address_to_string", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gInetAddressToBytes <-
+function(object)
+{
+  checkPtrType(object, "GInetAddress")
+
+  w <- .RGtkCall("S_g_inet_address_to_bytes", object, PACKAGE = "RGtk2")
 
   return(w)
 } 
@@ -7350,8 +7123,7 @@ function(object, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_initable_init", object, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -7398,15 +7170,14 @@ function(object, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_io_stream_close", object, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gIOStreamCloseAsync <-
-function(object, io.priority, cancellable = NULL, callback, user.data)
+function(object, io.priority, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GIOStream")
   io.priority <- as.integer(io.priority)
@@ -7428,8 +7199,7 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_io_stream_close_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -7464,8 +7234,7 @@ function(object, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_io_stream_set_pending", object, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -7483,7 +7252,7 @@ function(object)
 
 
 gMountUnmountWithOperation <-
-function(object, flags, mount.operation, cancellable = NULL, callback, user.data)
+function(object, flags, mount.operation, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GMount")
   
@@ -7506,15 +7275,14 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_mount_unmount_with_operation_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gMountEjectWithOperation <-
-function(object, flags, mount.operation, cancellable = NULL, callback, user.data)
+function(object, flags, mount.operation, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GMount")
   
@@ -7537,8 +7305,7 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_mount_eject_with_operation_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -7575,8 +7342,7 @@ function(host.and.port, default.port, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_network_address_parse", host.and.port, default.port, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -7703,15 +7469,14 @@ function(object, hostname, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_resolver_lookup_by_name", object, hostname, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gResolverLookupByNameAsync <-
-function(object, hostname, cancellable = NULL, callback, user.data)
+function(object, hostname, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GResolver")
   hostname <- as.character(hostname)
@@ -7733,8 +7498,7 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_resolver_lookup_by_name_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -7760,15 +7524,14 @@ function(object, address, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_resolver_lookup_by_address", object, address, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gResolverLookupByAddressAsync <-
-function(object, address, cancellable = NULL, callback, user.data)
+function(object, address, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GResolver")
   checkPtrType(address, "GInetAddress")
@@ -7790,8 +7553,7 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_resolver_lookup_by_address_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -7808,15 +7570,14 @@ function(object, service, protocol, domain, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_resolver_lookup_service", object, service, protocol, domain, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gResolverLookupServiceAsync <-
-function(object, service, protocol, domain, cancellable = NULL, callback, user.data)
+function(object, service, protocol, domain, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GResolver")
   service <- as.character(service)
@@ -7840,8 +7601,7 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_resolver_lookup_service_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -7888,15 +7648,14 @@ function(object, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_socket_address_enumerator_next", object, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gSocketAddressEnumeratorNextAsync <-
-function(object, cancellable = NULL, callback, user.data)
+function(object, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GSocketAddressEnumerator")
   if (!is.null( cancellable )) checkPtrType(cancellable, "GCancellable")
@@ -7917,8 +7676,7 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_socket_address_enumerator_next_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -7967,8 +7725,7 @@ function(object, dest, destlen, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_socket_address_to_native", object, dest, destlen, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -8108,8 +7865,7 @@ function(object, connectable, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_socket_client_connect", object, connectable, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -8125,8 +7881,7 @@ function(object, host.and.port, default.port, cancellable = NULL, .errwarn = TRU
 
   w <- .RGtkCall("S_g_socket_client_connect_to_host", object, host.and.port, default.port, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -8142,15 +7897,14 @@ function(object, domain, service, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_socket_client_connect_to_service", object, domain, service, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gSocketClientConnectAsync <-
-function(object, connectable, cancellable = NULL, callback, user.data)
+function(object, connectable, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GSocketClient")
   checkPtrType(connectable, "GSocketConnectable")
@@ -8172,15 +7926,14 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_socket_client_connect_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gSocketClientConnectToHostAsync <-
-function(object, host.and.port, default.port, cancellable = NULL, callback, user.data)
+function(object, host.and.port, default.port, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GSocketClient")
   host.and.port <- as.character(host.and.port)
@@ -8203,15 +7956,14 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_socket_client_connect_to_host_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
 
 
 gSocketClientConnectToServiceAsync <-
-function(object, domain, service, cancellable = NULL, callback, user.data)
+function(object, domain, service, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GSocketClient")
   domain <- as.character(domain)
@@ -8234,8 +7986,7 @@ function(object, result, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_socket_client_connect_to_service_finish", object, result, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -8292,8 +8043,7 @@ function(object, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_socket_connection_get_local_address", object, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -8306,8 +8056,7 @@ function(object, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_socket_connection_get_remote_address", object, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -8441,8 +8190,7 @@ function(family, type, protocol, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_socket_new", family, type, protocol, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -8455,8 +8203,7 @@ function(fd, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_socket_new_from_fd", fd, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -8513,8 +8260,7 @@ function(object, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_socket_get_local_address", object, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -8527,8 +8273,7 @@ function(object, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_socket_get_remote_address", object, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -8623,8 +8368,7 @@ function(object, address, allow.reuse, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_socket_bind", object, address, allow.reuse, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -8639,8 +8383,7 @@ function(object, address, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_socket_connect", object, address, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -8653,8 +8396,7 @@ function(object, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_socket_check_connect_result", object, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -8681,8 +8423,7 @@ function(object, condition, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_socket_condition_wait", object, condition, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -8696,8 +8437,7 @@ function(object, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_socket_accept", object, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -8710,8 +8450,7 @@ function(object, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_socket_listen", object, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -8726,8 +8465,7 @@ function(object, size, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_socket_receive", object, size, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -8742,8 +8480,7 @@ function(object, size, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_socket_receive_from", object, size, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -8759,8 +8496,7 @@ function(object, buffer, size, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_socket_send", object, buffer, size, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -8777,8 +8513,7 @@ function(object, address, buffer, size, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_socket_send_to", object, address, buffer, size, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -8793,8 +8528,473 @@ function(object, flags = 0, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_g_socket_receive_message", object, flags, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
+
+  return(w)
+} 
+
+
+gSocketSendMessage <-
+function(object, address, vectors, messages = NULL, flags = 0, cancellable = NULL, .errwarn = TRUE)
+{
+  checkPtrType(object, "GSocket")
+  checkPtrType(address, "GSocketAddress")
+  vectors <- lapply(vectors, function(x) { checkPtrType(x, "GOutputVector"); x })
+  messages <- lapply(messages, function(x) { checkPtrType(x, "GSocketControlMessage"); x })
+  flags <- as.integer(flags)
+  if (!is.null( cancellable )) checkPtrType(cancellable, "GCancellable")
+
+  w <- .RGtkCall("S_g_socket_send_message", object, address, vectors, messages, flags, cancellable, PACKAGE = "RGtk2")
+
+  w <- handleError(w, .errwarn)
+
+  return(w)
+} 
+
+
+gSocketClose <-
+function(object, .errwarn = TRUE)
+{
+  checkPtrType(object, "GSocket")
+
+  w <- .RGtkCall("S_g_socket_close", object, PACKAGE = "RGtk2")
+
+  w <- handleError(w, .errwarn)
+
+  return(w)
+} 
+
+
+gSocketShutdown <-
+function(object, shutdown.read, shutdown.write, .errwarn = TRUE)
+{
+  checkPtrType(object, "GSocket")
+  shutdown.read <- as.logical(shutdown.read)
+  shutdown.write <- as.logical(shutdown.write)
+
+  w <- .RGtkCall("S_g_socket_shutdown", object, shutdown.read, shutdown.write, PACKAGE = "RGtk2")
+
+  w <- handleError(w, .errwarn)
+
+  return(w)
+} 
+
+
+gSocketIsClosed <-
+function(object)
+{
+  checkPtrType(object, "GSocket")
+
+  w <- .RGtkCall("S_g_socket_is_closed", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gSocketCreateSource <-
+function(object, condition, cancellable = NULL)
+{
+  checkPtrType(object, "GSocket")
+  
+  if (!is.null( cancellable )) checkPtrType(cancellable, "GCancellable")
+
+  w <- .RGtkCall("S_g_socket_create_source", object, condition, cancellable, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gSocketSpeaksIpv4 <-
+function(object)
+{
+  checkPtrType(object, "GSocket")
+
+  w <- .RGtkCall("S_g_socket_speaks_ipv4", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gSocketListenerGetType <-
+function()
+{
+  
+
+  w <- .RGtkCall("S_g_socket_listener_get_type", PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gSocketListenerNew <-
+function()
+{
+  
+
+  w <- .RGtkCall("S_g_socket_listener_new", PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gSocketListenerSetBacklog <-
+function(object, listen.backlog)
+{
+  checkPtrType(object, "GSocketListener")
+  listen.backlog <- as.integer(listen.backlog)
+
+  w <- .RGtkCall("S_g_socket_listener_set_backlog", object, listen.backlog, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+gSocketListenerAddSocket <-
+function(object, socket, source.object, .errwarn = TRUE)
+{
+  checkPtrType(object, "GSocketListener")
+  checkPtrType(socket, "GSocket")
+  checkPtrType(source.object, "GObject")
+
+  w <- .RGtkCall("S_g_socket_listener_add_socket", object, socket, source.object, PACKAGE = "RGtk2")
+
+  w <- handleError(w, .errwarn)
+
+  return(w)
+} 
+
+
+gSocketListenerAddAddress <-
+function(object, address, type, protocol, source.object, .errwarn = TRUE)
+{
+  checkPtrType(object, "GSocketListener")
+  checkPtrType(address, "GSocketAddress")
+  
+  
+  checkPtrType(source.object, "GObject")
+
+  w <- .RGtkCall("S_g_socket_listener_add_address", object, address, type, protocol, source.object, PACKAGE = "RGtk2")
+
+  w <- handleError(w, .errwarn)
+
+  return(w)
+} 
+
+
+gSocketListenerAddInetPort <-
+function(object, port, source.object, .errwarn = TRUE)
+{
+  checkPtrType(object, "GSocketListener")
+  port <- as.integer(port)
+  checkPtrType(source.object, "GObject")
+
+  w <- .RGtkCall("S_g_socket_listener_add_inet_port", object, port, source.object, PACKAGE = "RGtk2")
+
+  w <- handleError(w, .errwarn)
+
+  return(w)
+} 
+
+
+gSocketListenerAcceptSocket <-
+function(object, cancellable = NULL, .errwarn = TRUE)
+{
+  checkPtrType(object, "GSocketListener")
+  if (!is.null( cancellable )) checkPtrType(cancellable, "GCancellable")
+
+  w <- .RGtkCall("S_g_socket_listener_accept_socket", object, cancellable, PACKAGE = "RGtk2")
+
+  w <- handleError(w, .errwarn)
+
+  return(w)
+} 
+
+
+gSocketListenerAcceptSocketAsync <-
+function(object, cancellable = NULL, callback, user.data = NULL)
+{
+  checkPtrType(object, "GSocketListener")
+  if (!is.null( cancellable )) checkPtrType(cancellable, "GCancellable")
+  callback <- as.function(callback)
+  
+
+  w <- .RGtkCall("S_g_socket_listener_accept_socket_async", object, cancellable, callback, user.data, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+gSocketListenerAcceptSocketFinish <-
+function(object, result, .errwarn = TRUE)
+{
+  checkPtrType(object, "GSocketListener")
+  checkPtrType(result, "GAsyncResult")
+
+  w <- .RGtkCall("S_g_socket_listener_accept_socket_finish", object, result, PACKAGE = "RGtk2")
+
+  w <- handleError(w, .errwarn)
+
+  return(w)
+} 
+
+
+gSocketListenerAccept <-
+function(object, cancellable = NULL, .errwarn = TRUE)
+{
+  checkPtrType(object, "GSocketListener")
+  if (!is.null( cancellable )) checkPtrType(cancellable, "GCancellable")
+
+  w <- .RGtkCall("S_g_socket_listener_accept", object, cancellable, PACKAGE = "RGtk2")
+
+  w <- handleError(w, .errwarn)
+
+  return(w)
+} 
+
+
+gSocketListenerAcceptAsync <-
+function(object, cancellable = NULL, callback, user.data = NULL)
+{
+  checkPtrType(object, "GSocketListener")
+  if (!is.null( cancellable )) checkPtrType(cancellable, "GCancellable")
+  callback <- as.function(callback)
+  
+
+  w <- .RGtkCall("S_g_socket_listener_accept_async", object, cancellable, callback, user.data, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+gSocketListenerAcceptFinish <-
+function(object, result, .errwarn = TRUE)
+{
+  checkPtrType(object, "GSocketListener")
+  checkPtrType(result, "GAsyncResult")
+
+  w <- .RGtkCall("S_g_socket_listener_accept_finish", object, result, PACKAGE = "RGtk2")
+
+  w <- handleError(w, .errwarn)
+
+  return(w)
+} 
+
+
+gSocketListenerClose <-
+function(object)
+{
+  checkPtrType(object, "GSocketListener")
+
+  w <- .RGtkCall("S_g_socket_listener_close", object, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+gSocketServiceGetType <-
+function()
+{
+  
+
+  w <- .RGtkCall("S_g_socket_service_get_type", PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gSocketServiceNew <-
+function()
+{
+  
+
+  w <- .RGtkCall("S_g_socket_service_new", PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gSocketServiceStart <-
+function(object)
+{
+  checkPtrType(object, "GSocketService")
+
+  w <- .RGtkCall("S_g_socket_service_start", object, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+gSocketServiceStop <-
+function(object)
+{
+  checkPtrType(object, "GSocketService")
+
+  w <- .RGtkCall("S_g_socket_service_stop", object, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+gSocketServiceIsActive <-
+function(object)
+{
+  checkPtrType(object, "GSocketService")
+
+  w <- .RGtkCall("S_g_socket_service_is_active", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gSrvTargetGetType <-
+function()
+{
+  
+
+  w <- .RGtkCall("S_g_srv_target_get_type", PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gSrvTargetNew <-
+function(hostname, port, priority, weight)
+{
+  hostname <- as.character(hostname)
+  port <- as.integer(port)
+  priority <- as.integer(priority)
+  weight <- as.integer(weight)
+
+  w <- .RGtkCall("S_g_srv_target_new", hostname, port, priority, weight, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gSrvTargetCopy <-
+function(object)
+{
+  checkPtrType(object, "GSrvTarget")
+
+  w <- .RGtkCall("S_g_srv_target_copy", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gSrvTargetFree <-
+function(object)
+{
+  checkPtrType(object, "GSrvTarget")
+
+  w <- .RGtkCall("S_g_srv_target_free", object, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+gSrvTargetGetHostname <-
+function(object)
+{
+  checkPtrType(object, "GSrvTarget")
+
+  w <- .RGtkCall("S_g_srv_target_get_hostname", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gSrvTargetGetPort <-
+function(object)
+{
+  checkPtrType(object, "GSrvTarget")
+
+  w <- .RGtkCall("S_g_srv_target_get_port", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gSrvTargetGetPriority <-
+function(object)
+{
+  checkPtrType(object, "GSrvTarget")
+
+  w <- .RGtkCall("S_g_srv_target_get_priority", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gSrvTargetGetWeight <-
+function(object)
+{
+  checkPtrType(object, "GSrvTarget")
+
+  w <- .RGtkCall("S_g_srv_target_get_weight", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gSrvTargetListSort <-
+function(targets)
+{
+  targets <- as.GList(targets)
+
+  w <- .RGtkCall("S_g_srv_target_list_sort", targets, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gThreadedSocketServiceGetType <-
+function()
+{
+  
+
+  w <- .RGtkCall("S_g_threaded_socket_service_get_type", PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gThreadedSocketServiceNew <-
+function(max.threads)
+{
+  max.threads <- as.integer(max.threads)
+
+  w <- .RGtkCall("S_g_threaded_socket_service_new", max.threads, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gVolumeEjectWithOperation <-
+function(object, flags, mount.operation, cancellable = NULL, callback, user.data = NULL)
+{
+  checkPtrType(object, "GVolume")
+  
+  checkPtrType(mount.operation, "GMountOperation")
+  if (!is.null( cancellable )) checkPtrType(cancellable, "GCancellable")
+  callback <- as.function(callback)
+  
+
+  w <- .RGtkCall("S_g_volume_eject_with_operation", object, flags, mount.operation, cancellable, callback, user.data, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+gVolumeEjectWithOperationFinish <-
+function(object, result, .errwarn = TRUE)
+{
+  checkPtrType(object, "GVolume")
+  checkPtrType(result, "GAsyncResult")
+
+  w <- .RGtkCall("S_g_volume_eject_with_operation_finish", object, result, PACKAGE = "RGtk2")
+
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 

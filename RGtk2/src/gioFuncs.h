@@ -162,7 +162,7 @@ S_g_cancellable_new(void);
 S_g_cancellable_is_cancelled(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_g_cancellable_set_error_if_cancelled(USER_OBJECT_ s_object, USER_OBJECT_ s_error); 
+S_g_cancellable_set_error_if_cancelled(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
 S_g_cancellable_get_fd(USER_OBJECT_ s_object); 
@@ -573,7 +573,7 @@ S_g_file_set_attributes_from_info(USER_OBJECT_ s_object, USER_OBJECT_ s_info, US
 S_g_file_set_attributes_async(USER_OBJECT_ s_object, USER_OBJECT_ s_info, USER_OBJECT_ s_flags, USER_OBJECT_ s_io_priority, USER_OBJECT_ s_cancellable, USER_OBJECT_ s_callback, USER_OBJECT_ s_user_data); 
 
   USER_OBJECT_
-S_g_file_set_attributes_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result, USER_OBJECT_ s_info); 
+S_g_file_set_attributes_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result); 
 
   USER_OBJECT_
 S_g_file_set_attribute_string(USER_OBJECT_ s_object, USER_OBJECT_ s_attribute, USER_OBJECT_ s_value, USER_OBJECT_ s_flags, USER_OBJECT_ s_cancellable); 
@@ -594,13 +594,13 @@ S_g_file_set_attribute_uint64(USER_OBJECT_ s_object, USER_OBJECT_ s_attribute, U
 S_g_file_set_attribute_int64(USER_OBJECT_ s_object, USER_OBJECT_ s_attribute, USER_OBJECT_ s_value, USER_OBJECT_ s_flags, USER_OBJECT_ s_cancellable); 
 
   USER_OBJECT_
-S_g_file_mount_enclosing_volume(USER_OBJECT_ s_object, USER_OBJECT_ s_mount_operation, USER_OBJECT_ s_cancellable, USER_OBJECT_ s_callback, USER_OBJECT_ s_user_data); 
+S_g_file_mount_enclosing_volume(USER_OBJECT_ s_object, USER_OBJECT_ s_flags, USER_OBJECT_ s_mount_operation, USER_OBJECT_ s_cancellable, USER_OBJECT_ s_callback, USER_OBJECT_ s_user_data); 
 
   USER_OBJECT_
 S_g_file_mount_enclosing_volume_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result); 
 
   USER_OBJECT_
-S_g_file_mount_mountable(USER_OBJECT_ s_object, USER_OBJECT_ s_mount_operation, USER_OBJECT_ s_cancellable, USER_OBJECT_ s_callback, USER_OBJECT_ s_user_data); 
+S_g_file_mount_mountable(USER_OBJECT_ s_object, USER_OBJECT_ s_flags, USER_OBJECT_ s_mount_operation, USER_OBJECT_ s_cancellable, USER_OBJECT_ s_callback, USER_OBJECT_ s_user_data); 
 
   USER_OBJECT_
 S_g_file_mount_mountable_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result); 
@@ -637,9 +637,6 @@ S_g_file_load_contents_async(USER_OBJECT_ s_object, USER_OBJECT_ s_cancellable, 
 
   USER_OBJECT_
 S_g_file_load_contents_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_res); 
-
-  USER_OBJECT_
-S_g_file_load_partial_contents_async(USER_OBJECT_ s_object, USER_OBJECT_ s_cancellable, USER_OBJECT_ s_read_more_callback, USER_OBJECT_ s_callback, USER_OBJECT_ s_user_data); 
 
   USER_OBJECT_
 S_g_file_load_partial_contents_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_res); 
@@ -942,9 +939,6 @@ S_g_input_stream_skip(USER_OBJECT_ s_object, USER_OBJECT_ s_count, USER_OBJECT_ 
 S_g_input_stream_close(USER_OBJECT_ s_object, USER_OBJECT_ s_cancellable); 
 
   USER_OBJECT_
-S_g_input_stream_read_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result); 
-
-  USER_OBJECT_
 S_g_input_stream_skip_async(USER_OBJECT_ s_object, USER_OBJECT_ s_count, USER_OBJECT_ s_io_priority, USER_OBJECT_ s_cancellable, USER_OBJECT_ s_callback, USER_OBJECT_ s_user_data); 
 
   USER_OBJECT_
@@ -1032,15 +1026,6 @@ S_g_io_module_new(USER_OBJECT_ s_filename);
 S_g_io_modules_load_all_in_directory(USER_OBJECT_ s_dirname); 
 
   USER_OBJECT_
-S_g_io_module_load(USER_OBJECT_ s_object); 
-
-  USER_OBJECT_
-S_g_io_module_unload(USER_OBJECT_ s_object); 
-
-  USER_OBJECT_
-S_g_io_scheduler_push_job(USER_OBJECT_ s_job_func, USER_OBJECT_ s_user_data, USER_OBJECT_ s_io_priority, USER_OBJECT_ s_cancellable); 
-
-  USER_OBJECT_
 S_g_io_scheduler_cancel_all_jobs(void); 
 
   USER_OBJECT_
@@ -1062,12 +1047,6 @@ S_g_loadable_icon_load_async(USER_OBJECT_ s_object, USER_OBJECT_ s_size, USER_OB
 S_g_loadable_icon_load_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_res, USER_OBJECT_ s_type); 
 
   USER_OBJECT_
-S_g_local_directory_monitor_get_type(void); 
-
-  USER_OBJECT_
-S_g_local_file_monitor_get_type(void); 
-
-  USER_OBJECT_
 S_g_memory_input_stream_get_type(void); 
 
   USER_OBJECT_
@@ -1081,9 +1060,6 @@ S_g_memory_input_stream_add_data(USER_OBJECT_ s_object, USER_OBJECT_ s_data);
 
   USER_OBJECT_
 S_g_memory_output_stream_get_type(void); 
-
-  USER_OBJECT_
-S_g_memory_output_stream_new(USER_OBJECT_ s_data); 
 
   USER_OBJECT_
 S_g_memory_output_stream_get_data(USER_OBJECT_ s_object); 
@@ -1131,7 +1107,7 @@ S_g_mount_eject(USER_OBJECT_ s_object, USER_OBJECT_ s_flags, USER_OBJECT_ s_canc
 S_g_mount_eject_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result); 
 
   USER_OBJECT_
-S_g_mount_remount(USER_OBJECT_ s_object, USER_OBJECT_ s_mount_operation, USER_OBJECT_ s_cancellable, USER_OBJECT_ s_callback, USER_OBJECT_ s_user_data); 
+S_g_mount_remount(USER_OBJECT_ s_object, USER_OBJECT_ s_flags, USER_OBJECT_ s_mount_operation, USER_OBJECT_ s_cancellable, USER_OBJECT_ s_callback, USER_OBJECT_ s_user_data); 
 
   USER_OBJECT_
 S_g_mount_remount_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result); 
@@ -1299,7 +1275,7 @@ S_g_simple_async_result_complete_in_idle(USER_OBJECT_ s_object);
 S_g_simple_async_result_set_from_error(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_g_simple_async_result_propagate_error(USER_OBJECT_ s_object, USER_OBJECT_ s_dest); 
+S_g_simple_async_result_propagate_error(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
 S_g_simple_async_report_gerror_in_idle(USER_OBJECT_ s_object, USER_OBJECT_ s_callback, USER_OBJECT_ s_user_data); 
@@ -1347,9 +1323,6 @@ S_g_vfs_get_local(void);
 S_g_vfs_get_supported_uri_schemes(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_g_win32_app_info_get_type(void); 
-
-  USER_OBJECT_
 S_g_volume_get_type(void); 
 
   USER_OBJECT_
@@ -1377,7 +1350,7 @@ S_g_volume_can_eject(USER_OBJECT_ s_object);
 S_g_volume_should_automount(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_g_volume_mount(USER_OBJECT_ s_object, USER_OBJECT_ s_mount_operation, USER_OBJECT_ s_cancellable, USER_OBJECT_ s_callback, USER_OBJECT_ s_user_data); 
+S_g_volume_mount(USER_OBJECT_ s_object, USER_OBJECT_ s_flags, USER_OBJECT_ s_mount_operation, USER_OBJECT_ s_cancellable, USER_OBJECT_ s_callback, USER_OBJECT_ s_user_data); 
 
   USER_OBJECT_
 S_g_volume_mount_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result); 
@@ -1512,7 +1485,7 @@ S_g_data_input_stream_read_line_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_res
 S_g_icon_to_string(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_g_icon_new_for_string(USER_OBJECT_ s_str, USER_OBJECT_ s_error); 
+S_g_icon_new_for_string(USER_OBJECT_ s_str); 
 
   USER_OBJECT_
 S_g_mount_is_shadowed(USER_OBJECT_ s_object); 
@@ -1546,9 +1519,6 @@ S_g_async_initable_init_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_res);
 
   USER_OBJECT_
 S_g_async_initable_new_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_res); 
-
-  USER_OBJECT_
-S_g_cancellable_connect(USER_OBJECT_ s_object, USER_OBJECT_ s_callback, USER_OBJECT_ s_data); 
 
   USER_OBJECT_
 S_g_cancellable_disconnect(USER_OBJECT_ s_object, USER_OBJECT_ s_handler_id); 
@@ -1687,6 +1657,9 @@ S_g_inet_address_new_any(USER_OBJECT_ s_family);
 
   USER_OBJECT_
 S_g_inet_address_to_string(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_g_inet_address_to_bytes(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
 S_g_inet_address_get_native_size(USER_OBJECT_ s_object); 
@@ -2050,5 +2023,113 @@ S_g_socket_send(USER_OBJECT_ s_object, USER_OBJECT_ s_buffer, USER_OBJECT_ s_siz
 
   USER_OBJECT_
 S_g_socket_send_to(USER_OBJECT_ s_object, USER_OBJECT_ s_address, USER_OBJECT_ s_buffer, USER_OBJECT_ s_size, USER_OBJECT_ s_cancellable); 
+
+  USER_OBJECT_
+S_g_socket_close(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_g_socket_shutdown(USER_OBJECT_ s_object, USER_OBJECT_ s_shutdown_read, USER_OBJECT_ s_shutdown_write); 
+
+  USER_OBJECT_
+S_g_socket_is_closed(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_g_socket_create_source(USER_OBJECT_ s_object, USER_OBJECT_ s_condition, USER_OBJECT_ s_cancellable); 
+
+  USER_OBJECT_
+S_g_socket_speaks_ipv4(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_g_socket_listener_get_type(void); 
+
+  USER_OBJECT_
+S_g_socket_listener_new(void); 
+
+  USER_OBJECT_
+S_g_socket_listener_set_backlog(USER_OBJECT_ s_object, USER_OBJECT_ s_listen_backlog); 
+
+  USER_OBJECT_
+S_g_socket_listener_add_socket(USER_OBJECT_ s_object, USER_OBJECT_ s_socket, USER_OBJECT_ s_source_object); 
+
+  USER_OBJECT_
+S_g_socket_listener_add_address(USER_OBJECT_ s_object, USER_OBJECT_ s_address, USER_OBJECT_ s_type, USER_OBJECT_ s_protocol, USER_OBJECT_ s_source_object); 
+
+  USER_OBJECT_
+S_g_socket_listener_add_inet_port(USER_OBJECT_ s_object, USER_OBJECT_ s_port, USER_OBJECT_ s_source_object); 
+
+  USER_OBJECT_
+S_g_socket_listener_accept_socket(USER_OBJECT_ s_object, USER_OBJECT_ s_cancellable); 
+
+  USER_OBJECT_
+S_g_socket_listener_accept_socket_async(USER_OBJECT_ s_object, USER_OBJECT_ s_cancellable, USER_OBJECT_ s_callback, USER_OBJECT_ s_user_data); 
+
+  USER_OBJECT_
+S_g_socket_listener_accept_socket_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result); 
+
+  USER_OBJECT_
+S_g_socket_listener_accept(USER_OBJECT_ s_object, USER_OBJECT_ s_cancellable); 
+
+  USER_OBJECT_
+S_g_socket_listener_accept_async(USER_OBJECT_ s_object, USER_OBJECT_ s_cancellable, USER_OBJECT_ s_callback, USER_OBJECT_ s_user_data); 
+
+  USER_OBJECT_
+S_g_socket_listener_accept_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result); 
+
+  USER_OBJECT_
+S_g_socket_listener_close(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_g_socket_service_get_type(void); 
+
+  USER_OBJECT_
+S_g_socket_service_new(void); 
+
+  USER_OBJECT_
+S_g_socket_service_start(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_g_socket_service_stop(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_g_socket_service_is_active(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_g_srv_target_get_type(void); 
+
+  USER_OBJECT_
+S_g_srv_target_new(USER_OBJECT_ s_hostname, USER_OBJECT_ s_port, USER_OBJECT_ s_priority, USER_OBJECT_ s_weight); 
+
+  USER_OBJECT_
+S_g_srv_target_copy(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_g_srv_target_free(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_g_srv_target_get_hostname(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_g_srv_target_get_port(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_g_srv_target_get_priority(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_g_srv_target_get_weight(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_g_srv_target_list_sort(USER_OBJECT_ s_targets); 
+
+  USER_OBJECT_
+S_g_threaded_socket_service_get_type(void); 
+
+  USER_OBJECT_
+S_g_threaded_socket_service_new(USER_OBJECT_ s_max_threads); 
+
+  USER_OBJECT_
+S_g_volume_eject_with_operation(USER_OBJECT_ s_object, USER_OBJECT_ s_flags, USER_OBJECT_ s_mount_operation, USER_OBJECT_ s_cancellable, USER_OBJECT_ s_callback, USER_OBJECT_ s_user_data); 
+
+  USER_OBJECT_
+S_g_volume_eject_with_operation_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result); 
 
 #endif

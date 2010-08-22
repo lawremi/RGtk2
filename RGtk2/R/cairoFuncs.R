@@ -2653,7 +2653,7 @@ function(cr, utf8, glyphs, clusters, cluster.flags)
   checkPtrType(cr, "Cairo")
   utf8 <- as.character(utf8)
   glyphs <- lapply(glyphs, function(x) { x <- as.CairoGlyph(x); x })
-  clusters <- lapply(clusters, function(x) { checkPtrType(x, "CairoTextCluster"); x })
+  clusters <- lapply(clusters, function(x) { x <- as.CairoTextCluster(x); x })
   
 
   w <- .RGtkCall("S_cairo_show_text_glyphs", cr, utf8, glyphs, clusters, cluster.flags, PACKAGE = "RGtk2")

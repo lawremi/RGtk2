@@ -5539,11 +5539,11 @@ S_pango_cairo_font_map_new_for_font_type(USER_OBJECT_ s_fonttype)
 #if PANGO_CHECK_VERSION(1, 18, 0)
   cairo_font_type_t fonttype = ((cairo_font_type_t)asCEnum(s_fonttype, CAIRO_TYPE_FONT_TYPE));
 
-  PangoCairoFontMap* ans;
+  PangoFontMap* ans;
 
   ans = pango_cairo_font_map_new_for_font_type(fonttype);
 
-  _result = toRPointerWithFinalizer(ans, "PangoCairoFontMap", (RPointerFinalizer) g_object_unref);
+  _result = toRPointerWithFinalizer(ans, "PangoFontMap", (RPointerFinalizer) g_object_unref);
 #else
   error("pango_cairo_font_map_new_for_font_type exists only in Pango >= 1.18.0");
 #endif
@@ -5750,7 +5750,7 @@ S_pango_language_get_scripts(USER_OBJECT_ s_object)
 #if PANGO_CHECK_VERSION(1, 22, 0)
   PangoLanguage* object = ((PangoLanguage*)getPtrValue(s_object));
 
-  PangoScript* ans;
+  const PangoScript* ans;
   int num_scripts;
 
   ans = pango_language_get_scripts(object, &num_scripts);
@@ -5761,28 +5761,6 @@ S_pango_language_get_scripts(USER_OBJECT_ s_object)
   ;
 #else
   error("pango_language_get_scripts exists only in Pango >= 1.22.0");
-#endif
-
-  return(_result);
-}
- 
-
-USER_OBJECT_
-S_pango_gravity_get_for_script(USER_OBJECT_ s_script, USER_OBJECT_ s_base_gravity, USER_OBJECT_ s_hint)
-{
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
-#if PANGO_CHECK_VERSION(1, 16, 0)
-  PangoScript script = ((PangoScript)asCEnum(s_script, PANGO_TYPE_SCRIPT));
-  PangoGravity base_gravity = ((PangoGravity)asCEnum(s_base_gravity, PANGO_TYPE_GRAVITY));
-  PangoGravityHint hint = ((PangoGravityHint)asCEnum(s_hint, PANGO_TYPE_GRAVITY_HINT));
-
-  PangoGravity ans;
-
-  ans = pango_gravity_get_for_script(script, base_gravity, hint);
-
-  _result = asREnum(ans, PANGO_TYPE_GRAVITY);
-#else
-  error("pango_gravity_get_for_script exists only in Pango >= 1.16.0");
 #endif
 
   return(_result);

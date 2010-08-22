@@ -4,6 +4,7 @@
 #include <RGtk2/atk.h>
 #include <RGtk2/pango.h>
 #include <RGtk2/cairo.h>
+#include <RGtk2/gio.h>
 
 /* GdkPixbuf is inside Gdk, and Gdk is inside GTK+ (wrt distribution),
    so we group them all into this header.
@@ -67,7 +68,7 @@ USER_OBJECT_ asRGdkSpan(GdkSpan * obj);
 /* GTK */
 
 GtkTargetEntry* asCGtkTargetEntry(USER_OBJECT_ s_entry);
-USER_OBJECT_ asRGtkTargetEntry(GtkTargetEntry * obj);
+USER_OBJECT_ asRGtkTargetEntry(const GtkTargetEntry * obj);
 GtkFileFilterInfo* asCGtkFileFilterInfo(USER_OBJECT_ s_info);
 USER_OBJECT_ asRGtkFileFilterInfo(const GtkFileFilterInfo * obj);
 GtkSettingsValue* asCGtkSettingsValue(USER_OBJECT_ s_value);

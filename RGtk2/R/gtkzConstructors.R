@@ -109,7 +109,16 @@ function(model, show = TRUE)
   }
 }
 
-gtkComboBoxEntry <- gtkComboBoxEntryNew
+gtkComboBoxEntry <-
+function(model, text.column, show = TRUE)
+{
+  if (!missing(model)) {
+    gtkComboBoxEntryNewWithModel(model, text.column, show)
+  }
+  else {
+    gtkComboBoxEntryNew(show)
+  }
+}
 
 gtkCTree <-
 function(columns = 1, tree.column = 0, titles, show = TRUE)
@@ -499,7 +508,16 @@ gtkToggleToolButton <- gtkToggleToolButtonNew
 
 gtkToolbar <- gtkToolbarNew
 
-gtkToolButton <- gtkToolButtonNew
+gtkToolButton <-
+function(icon.widget = NULL, label = NULL, stock.id, show = TRUE)
+{
+  if (!missing(icon.widget)) {
+    gtkToolButtonNew(icon.widget, label, show)
+  }
+  else {
+    gtkToolButtonNewFromStock(stock.id, show)
+  }
+}
 
 gtkToolItem <- gtkToolItemNew
 
@@ -608,4 +626,20 @@ gtkRecentAction <- gtkRecentActionNew
 gtkScaleButton <- gtkScaleButtonNew
 
 gtkVolumeButton <- gtkVolumeButtonNew
+
+gtkMountOperation <- gtkMountOperationNew
+
+gtkEntryBuffer <- gtkEntryBufferNew
+
+gtkInfoBar <- gtkInfoBarNew
+
+gtkToolItemGroup <- gtkToolItemGroupNew
+
+gtkToolPalette <- gtkToolPaletteNew
+
+gtkCellRendererSpinner <- gtkCellRendererSpinnerNew
+
+gtkOffscreenWindow <- gtkOffscreenWindowNew
+
+gtkSpinner <- gtkSpinnerNew
 

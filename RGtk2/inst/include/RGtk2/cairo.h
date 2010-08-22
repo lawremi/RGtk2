@@ -49,5 +49,6 @@ USER_OBJECT_ asRCairoRectangleList(cairo_rectangle_list_t *list);
 cairo_text_cluster_t *asCCairoTextCluster(USER_OBJECT_ s_obj);
 USER_OBJECT_ asRCairoTextCluster(cairo_text_cluster_t * obj);
 cairo_font_extents_t *asCCairoFontExtents(USER_OBJECT_ s_obj);
+USER_OBJECT_ asRCairoFontExtents(cairo_font_extents_t * obj);
 #endif
 #endif

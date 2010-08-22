@@ -3897,8 +3897,7 @@ function(screen, command.line, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gdk_spawn_command_line_on_screen", screen, command.line, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -5454,8 +5453,7 @@ function(filename, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gdk_pixbuf_new_from_file", filename, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -5470,8 +5468,7 @@ function(filename, width, height, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gdk_pixbuf_new_from_file_at_size", filename, width, height, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -5487,8 +5484,7 @@ function(filename, width, height, preserve.aspect.ratio, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gdk_pixbuf_new_from_file_at_scale", filename, width, height, preserve.aspect.ratio, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -5543,8 +5539,7 @@ function(object, filename, type, option.keys, option.values, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gdk_pixbuf_savev", object, filename, type, option.keys, option.values, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -5562,8 +5557,7 @@ function(object, save.func, user.data, type, option.keys, option.values, .errwar
 
   w <- .RGtkCall("S_gdk_pixbuf_save_to_callbackv", object, save.func, user.data, type, option.keys, option.values, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -5579,8 +5573,7 @@ function(object, type, option.keys, option.values, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gdk_pixbuf_save_to_bufferv", object, type, option.keys, option.values, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(invisible(w))
 } 
@@ -5777,8 +5770,7 @@ function(filename, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gdk_pixbuf_animation_new_from_file", filename, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -6097,8 +6089,7 @@ function(image.type, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gdk_pixbuf_loader_new_with_type", image.type, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -6111,8 +6102,7 @@ function(mime.type, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gdk_pixbuf_loader_new_with_mime_type", mime.type, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -6126,8 +6116,7 @@ function(object, buf, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gdk_pixbuf_loader_write", object, buf, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -6162,8 +6151,7 @@ function(object, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gdk_pixbuf_loader_close", object, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -6911,8 +6899,7 @@ function(stream, cancellable = NULL, .errwarn = TRUE)
 
   w <- .RGtkCall("S_gdk_pixbuf_new_from_stream", stream, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -6929,8 +6916,7 @@ function(stream, width = -1, height = -1, preserve.aspect.ratio = 1, cancellable
 
   w <- .RGtkCall("S_gdk_pixbuf_new_from_stream_at_scale", stream, width, height, preserve.aspect.ratio, cancellable, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 

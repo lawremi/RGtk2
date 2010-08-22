@@ -502,8 +502,7 @@ function(markup.text, length = -1, accel.marker = 0, .errwarn = TRUE)
 
   w <- .RGtkCall("S_pango_parse_markup", markup.text, length, accel.marker, PACKAGE = "RGtk2")
 
-  if(.errwarn && !is.null(w$error))
-    warning(w$error[["message"]])
+  w <- handleError(w, .errwarn)
 
   return(w)
 } 
@@ -3761,19 +3760,6 @@ function(object)
   checkPtrType(object, "PangoLanguage")
 
   w <- .RGtkCall("S_pango_language_get_scripts", object, PACKAGE = "RGtk2")
-
-  return(w)
-} 
-
-
-pangoGravityGetForScript <-
-function(script, base.gravity, hint)
-{
-  
-  
-  
-
-  w <- .RGtkCall("S_pango_gravity_get_for_script", script, base.gravity, hint, PACKAGE = "RGtk2")
 
   return(w)
 } 

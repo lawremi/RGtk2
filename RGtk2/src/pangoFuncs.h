@@ -1004,7 +1004,4 @@ S_pango_glyph_item_iter_prev_cluster(USER_OBJECT_ s_object);
   USER_OBJECT_
 S_pango_language_get_scripts(USER_OBJECT_ s_object); 
 
-  USER_OBJECT_
-S_pango_gravity_get_for_script(USER_OBJECT_ s_script, USER_OBJECT_ s_base_gravity, USER_OBJECT_ s_hint); 
-
 #endif

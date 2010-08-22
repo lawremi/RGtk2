@@ -53042,26 +53042,6 @@ S_gtk_widget_get_snapshot(USER_OBJECT_ s_object, USER_OBJECT_ s_clip_rect)
  
 
 USER_OBJECT_
-S_gtk_widget_get_allocation(USER_OBJECT_ s_object)
-{
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
-#if GTK_CHECK_VERSION(2, 14, 0)
-  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
-
-  GtkAllocation ans;
-
-  ans = gtk_widget_get_allocation(object);
-
-  _result = asRGtkAllocation(ans);
-#else
-  error("gtk_widget_get_allocation exists only in Gtk >= 2.14.0");
-#endif
-
-  return(_result);
-}
- 
-
-USER_OBJECT_
 S_gtk_widget_get_window(USER_OBJECT_ s_object)
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -55972,16 +55952,18 @@ USER_OBJECT_
 S_gtk_widget_get_allocation(USER_OBJECT_ s_object)
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
-#if GTK_CHECK_VERSION(2, 14, 0)
+#if GTK_CHECK_VERSION(2, 18, 0)
   GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
 
-  GtkAllocation ans;
+  GtkAllocation* allocation = ((GtkAllocation *)g_new0(GtkAllocation, 1));
 
-  ans = gtk_widget_get_allocation(object);
+  gtk_widget_get_allocation(object, allocation);
 
-  _result = asRGtkAllocation(ans);
+
+  _result = retByVal(_result, "allocation", asRGtkAllocation(allocation), NULL);
+    CLEANUP(g_free, allocation);;
 #else
-  error("gtk_widget_get_allocation exists only in Gtk >= 2.14.0");
+  error("gtk_widget_get_allocation exists only in Gtk >= 2.18.0");
 #endif
 
   return(_result);
@@ -57837,12 +57819,11 @@ S_gtk_notebook_set_action_widget(USER_OBJECT_ s_object, USER_OBJECT_ s_widget, U
  
 
 USER_OBJECT_
-S_gtk_paint_spinner(USER_OBJECT_ s_object, USER_OBJECT_ s_style, USER_OBJECT_ s_window, USER_OBJECT_ s_state_type, USER_OBJECT_ s_area, USER_OBJECT_ s_widget, USER_OBJECT_ s_detail, USER_OBJECT_ s_step, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
+S_gtk_paint_spinner(USER_OBJECT_ s_object, USER_OBJECT_ s_window, USER_OBJECT_ s_state_type, USER_OBJECT_ s_area, USER_OBJECT_ s_widget, USER_OBJECT_ s_detail, USER_OBJECT_ s_step, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
 #if GTK_CHECK_VERSION(2, 20, 0)
   GtkStyle* object = GTK_STYLE(getPtrValue(s_object));
-  GtkStyle* style = GTK_STYLE(getPtrValue(s_style));
   GdkWindow* window = GDK_WINDOW(getPtrValue(s_window));
   GtkStateType state_type = ((GtkStateType)asCEnum(s_state_type, GTK_TYPE_STATE_TYPE));
   const GdkRectangle* area = asCGdkRectangle(s_area);
@@ -57855,7 +57836,7 @@ S_gtk_paint_spinner(USER_OBJECT_ s_object, USER_OBJECT_ s_style, USER_OBJECT_ s_
   gint height = ((gint)asCInteger(s_height));
 
 
-  gtk_paint_spinner(object, style, window, state_type, area, widget, detail, step, x, y, width, height);
+  gtk_paint_spinner(object, window, state_type, area, widget, detail, step, x, y, width, height);
 
 #else
   error("gtk_paint_spinner exists only in Gtk >= 2.20.0");
