@@ -112,7 +112,99 @@ boundCairoVersion(void) {
 
 #if CAIRO_CHECK_VERSION(1, 8, 0)
 
-R_CallbackData * cairo_user_scaled_font_text_to_glyphs_func_t_cbdata;
+cairo_user_data_key_t init_func_key;
+cairo_status_t
+S_cairo_user_scaled_font_init_func_t(cairo_scaled_font_t* s_scaled_font, cairo_t* s_cr, cairo_font_extents_t* s_extents)
+{
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
+  gint err;
+
+  cairo_font_face_t *font_face = cairo_scaled_font_get_font_face(s_scaled_font);
+  R_CallbackData *cbdata = (R_CallbackData *)cairo_font_face_get_user_data(font_face, &init_func_key);
+
+  PROTECT(e = allocVector(LANGSXP, 3+cbdata->useData));
+  tmp = e;
+
+  SETCAR(tmp, cbdata->function);
+  tmp = CDR(tmp);
+
+  SETCAR(tmp, toRPointerWithCairoRef(s_scaled_font, "CairoScaledFont", cairo_scaled_font));
+  tmp = CDR(tmp);
+  SETCAR(tmp, toRPointerWithCairoRef(s_cr, "Cairo", cairo));
+  tmp = CDR(tmp);
+  if(cbdata->useData)
+    {
+      SETCAR(tmp, cbdata->data);
+      tmp = CDR(tmp);
+    }
+
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+
+  UNPROTECT(1);
+
+  if(err)
+    return(((cairo_status_t)0));
+  {
+    cairo_font_extents_t* extents = asCCairoFontExtents(VECTOR_ELT(s_ans, 1));
+    *s_extents = *extents;
+    g_free(extents);
+  }
+  return(((cairo_status_t)asCEnum(VECTOR_ELT(s_ans, 0), CAIRO_TYPE_STATUS)));
+}
+#endif 
+
+#if CAIRO_CHECK_VERSION(1, 8, 0)
+
+cairo_user_data_key_t render_glyph_func_key;
+cairo_status_t
+S_cairo_user_scaled_font_render_glyph_func_t(cairo_scaled_font_t* s_scaled_font, gulong s_glyph, cairo_t* s_cr, cairo_font_extents_t* s_extents)
+{
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
+  gint err;
+
+  cairo_font_face_t *font_face = cairo_scaled_font_get_font_face(s_scaled_font);
+  R_CallbackData *cbdata = (R_CallbackData *)cairo_font_face_get_user_data(font_face, &render_glyph_func_key);
+
+  PROTECT(e = allocVector(LANGSXP, 4+cbdata->useData));
+  tmp = e;
+
+  SETCAR(tmp, cbdata->function);
+  tmp = CDR(tmp);
+
+  SETCAR(tmp, toRPointerWithCairoRef(s_scaled_font, "CairoScaledFont", cairo_scaled_font));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRNumeric(s_glyph));
+  tmp = CDR(tmp);
+  SETCAR(tmp, toRPointerWithCairoRef(s_cr, "Cairo", cairo));
+  tmp = CDR(tmp);
+  if(cbdata->useData)
+    {
+      SETCAR(tmp, cbdata->data);
+      tmp = CDR(tmp);
+    }
+
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+
+  UNPROTECT(1);
+
+  if(err)
+    return(((cairo_status_t)0));
+  {
+    cairo_font_extents_t* extents = asCCairoFontExtents(VECTOR_ELT(s_ans, 1));
+    *s_extents = *extents;
+    g_free(extents);
+  }
+  return(((cairo_status_t)asCEnum(VECTOR_ELT(s_ans, 0), CAIRO_TYPE_STATUS)));
+}
+#endif 
+
+#if CAIRO_CHECK_VERSION(1, 8, 0)
+
+cairo_user_data_key_t text_to_glyphs_func_key;
 cairo_status_t
 S_cairo_user_scaled_font_text_to_glyphs_func_t(
                                     cairo_scaled_font_t* s_scaled_font,
@@ -129,10 +221,13 @@ S_cairo_user_scaled_font_text_to_glyphs_func_t(
   USER_OBJECT_ s_ans;
   gint err;
 
-  PROTECT(e = allocVector(LANGSXP, 4+cairo_user_scaled_font_text_to_glyphs_func_t_cbdata->useData));
+  cairo_font_face_t *font_face = cairo_scaled_font_get_font_face(s_scaled_font);
+  R_CallbackData *cbdata = (R_CallbackData *)cairo_font_face_get_user_data(font_face, &text_to_glyphs_func_key);
+  
+  PROTECT(e = allocVector(LANGSXP, 4+cbdata->useData));
   tmp = e;
 
-  SETCAR(tmp, cairo_user_scaled_font_text_to_glyphs_func_t_cbdata->function);
+  SETCAR(tmp, cbdata->function);
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithCairoRef(s_scaled_font, "CairoScaledFont",
@@ -142,9 +237,9 @@ S_cairo_user_scaled_font_text_to_glyphs_func_t(
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_utf8_len));
   tmp = CDR(tmp);
-  if(cairo_user_scaled_font_text_to_glyphs_func_t_cbdata->useData)
+  if(cbdata->useData)
     {
-      SETCAR(tmp, cairo_user_scaled_font_text_to_glyphs_func_t_cbdata->data);
+      SETCAR(tmp, cbdata->data);
       tmp = CDR(tmp);
     }
 
@@ -173,3 +268,130 @@ S_cairo_user_scaled_font_text_to_glyphs_func_t(
   return(((cairo_status_t)asCEnum(VECTOR_ELT(s_ans, 0), CAIRO_TYPE_STATUS)));
 }
 #endif 
+
+#if CAIRO_CHECK_VERSION(1, 8, 0)
+
+cairo_user_data_key_t unicode_to_glyph_func_key;
+cairo_status_t
+S_cairo_user_scaled_font_unicode_to_glyph_func_t(cairo_scaled_font_t* s_scaled_font, gulong s_unicode, gulong* s_glyph_index)
+{
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
+  gint err;
+
+  cairo_font_face_t *font_face = cairo_scaled_font_get_font_face(s_scaled_font);
+  R_CallbackData *cbdata = (R_CallbackData *)cairo_font_face_get_user_data(font_face, &unicode_to_glyph_func_key);
+
+  PROTECT(e = allocVector(LANGSXP, 3+cbdata->useData));
+  tmp = e;
+
+  SETCAR(tmp, cbdata->function);
+  tmp = CDR(tmp);
+
+  SETCAR(tmp, toRPointerWithCairoRef(s_scaled_font, "CairoScaledFont", cairo_scaled_font));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRNumeric(s_unicode));
+  tmp = CDR(tmp);
+  if(cbdata->useData)
+    {
+      SETCAR(tmp, cbdata->data);
+      tmp = CDR(tmp);
+    }
+
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+
+  UNPROTECT(1);
+
+  if(err)
+    return(((cairo_status_t)0));
+  *s_glyph_index = ((gulong)asCNumeric(VECTOR_ELT(s_ans, 1)));
+  return(((cairo_status_t)asCEnum(VECTOR_ELT(s_ans, 0), CAIRO_TYPE_STATUS)));
+}
+#endif 
+
+USER_OBJECT_
+S_cairo_user_font_face_set_init_func(USER_OBJECT_ s_font_face, USER_OBJECT_ s_init_func)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if CAIRO_CHECK_VERSION(1, 8, 0)
+  cairo_user_scaled_font_init_func_t init_func = ((cairo_user_scaled_font_init_func_t)S_cairo_user_scaled_font_init_func_t);
+  cairo_font_face_t* font_face = ((cairo_font_face_t*)getPtrValue(s_font_face));
+  cairo_font_face_set_user_data(font_face, &init_func_key,
+                                R_createCBData(s_init_func, NULL),
+                                (cairo_destroy_func_t)R_freeCBData);
+
+  cairo_user_font_face_set_init_func(font_face, init_func);
+
+#else
+  error("cairo_user_font_face_set_init_func exists only in cairo >= 1.8.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_user_font_face_set_render_glyph_func(USER_OBJECT_ s_font_face, USER_OBJECT_ s_render_glyph_func)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if CAIRO_CHECK_VERSION(1, 8, 0)
+  cairo_user_scaled_font_render_glyph_func_t render_glyph_func = ((cairo_user_scaled_font_render_glyph_func_t)S_cairo_user_scaled_font_render_glyph_func_t);
+  cairo_font_face_t* font_face = ((cairo_font_face_t*)getPtrValue(s_font_face));
+  cairo_font_face_set_user_data(font_face, &render_glyph_func_key,
+                                R_createCBData(s_render_glyph_func, NULL),
+                                (cairo_destroy_func_t)R_freeCBData);
+
+
+  cairo_user_font_face_set_render_glyph_func(font_face, render_glyph_func);
+
+#else
+  error("cairo_user_font_face_set_render_glyph_func exists only in cairo >= 1.8.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_user_font_face_set_unicode_to_glyph_func(USER_OBJECT_ s_font_face, USER_OBJECT_ s_unicode_to_glyph_func)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if CAIRO_CHECK_VERSION(1, 8, 0)
+  cairo_user_scaled_font_unicode_to_glyph_func_t unicode_to_glyph_func = ((cairo_user_scaled_font_unicode_to_glyph_func_t)S_cairo_user_scaled_font_unicode_to_glyph_func_t);
+  cairo_font_face_t* font_face = ((cairo_font_face_t*)getPtrValue(s_font_face));
+  cairo_font_face_set_user_data(font_face, &unicode_to_glyph_func_key,
+                                R_createCBData(s_unicode_to_glyph_func, NULL),
+                                (cairo_destroy_func_t)R_freeCBData);
+
+
+  cairo_user_font_face_set_unicode_to_glyph_func(font_face, unicode_to_glyph_func);
+
+#else
+  error("cairo_user_font_face_set_unicode_to_glyph_func exists only in cairo >= 1.8.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_user_font_face_set_text_to_glyphs_func(USER_OBJECT_ s_font_face, USER_OBJECT_ s_text_to_glyphs_func)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if CAIRO_CHECK_VERSION(1, 8, 0)
+  cairo_user_scaled_font_text_to_glyphs_func_t text_to_glyphs_func = ((cairo_user_scaled_font_text_to_glyphs_func_t)S_cairo_user_scaled_font_text_to_glyphs_func_t);
+  cairo_font_face_t* font_face = ((cairo_font_face_t*)getPtrValue(s_font_face));
+  cairo_font_face_set_user_data(font_face, &text_to_glyphs_func_key,
+                                R_createCBData(s_text_to_glyphs_func, NULL),
+                                (cairo_destroy_func_t)R_freeCBData);
+
+
+  cairo_user_font_face_set_text_to_glyphs_func(font_face, text_to_glyphs_func);
+
+#else
+  error("cairo_user_font_face_set_text_to_glyphs_func exists only in cairo >= 1.8.0");
+#endif
+
+  return(_result);
+}
