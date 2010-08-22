@@ -151,7 +151,7 @@ S_pango_glyph_item_get_logical_widths(USER_OBJECT_ s_glyph_item,
   PangoGlyphItem* glyph_item = ((PangoGlyphItem*)getPtrValue(s_glyph_item));
   const char* text = ((const char*)asCString(s_text));
 
-  int *logical_widths = R_alloc(glyph_item->item->num_chars, sizeof(int));
+  int *logical_widths = (int*)R_alloc(glyph_item->item->num_chars, sizeof(int));
 
   pango_glyph_item_get_logical_widths(glyph_item, text, logical_widths);
 
