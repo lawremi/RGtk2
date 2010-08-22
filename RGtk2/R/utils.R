@@ -40,6 +40,21 @@ function(obj, fun)
 	else lapply(obj, fun)
 }
 
+handleError <- function(x, .errwarn) {
+  if (isTRUE(getOption("RGtk2::newErrorHandling"))) {
+    if (!is.null(x$error)) { # have an error, throw it
+      x$error$call <- sys.call(-1)
+      stop(x$error)
+    } else { # otherwise act as if the error was never there
+      x$error <- NULL
+      if (length(x) == 1L)
+        x <- x[[1]]
+    }
+  } else if (.errwarn && !is.null(x$error)) 
+    warning(simpleWarning(x$error[["message"]], sys.call(-1)))
+  x
+}
+
 .RGtkCall <-
 function(name, ..., PACKAGE = "RGtk2")
 {

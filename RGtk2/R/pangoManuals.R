@@ -78,9 +78,8 @@ function(markup.text, accel.marker, .errwarn = TRUE)
 
         w <- .RGtkCall("S_pango_parse_markup", markup.text, length, accel.marker)
 
-        if(.errwarn && !is.null(w$error))
-                warning(w$error[["message"]])
-
+        w <- handleError(w, .errwarn)
+        
         return(w)
 }
 pangoGlyphStringIndexToX <-
