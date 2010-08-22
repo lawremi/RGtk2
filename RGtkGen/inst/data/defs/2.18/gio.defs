@@ -35,6 +35,11 @@
   (since "2.20.0")
 )
 
+(define-virtual get_commandline
+  (of-object "GAppInfo")
+  (return-type "const-char*")
+  (since "2.20.0")
+  )
 
 (define-method read_until_async
   (of-object "GDataInputStream")
@@ -45,7 +50,7 @@
     '("gint" "io_priority")
     '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
     '("GAsyncReadyCallback" "callback")
-    '("gpointer" "user_data")
+    '("gpointer" "user_data" (null-ok) (default "NULL"))
   )
   (since "2.20.0")
 )
@@ -70,7 +75,7 @@
     '("gint" "io_priority")
     '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
     '("GAsyncReadyCallback" "callback")
-    '("gpointer" "user_data")
+    '("gpointer" "user_data" (null-ok) (default "NULL"))
   )
   (since "2.20.0")
 )
@@ -100,7 +105,7 @@
   (return-type "GIcon*")
   (parameters
     '("const-gchar*" "str")
-    '("GError**" "error")
+    '("GError**" "error" (out))
   )
   (since "2.20.0")
 )

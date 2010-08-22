@@ -1067,13 +1067,6 @@
   (since "2.14.0")
 )
 
-(define-method get_allocation
-  (of-object "GtkWidget")
-  (c-name "gtk_widget_get_allocation")
-  (return-type "GtkAllocation")
-  (since "2.14.0")
-)
-
 (define-method get_window
   (of-object "GtkWidget")
   (c-name "gtk_widget_get_window")
@@ -1100,7 +1093,7 @@
 )
 
 (define-user-function CalendarDetailFunc
-  (in-module "gio")
+  (in-module "Gtk")
   (c-name "GtkCalendarDetailFunc")
   (return-type "gchar*")
   (parameters
@@ -1139,7 +1132,7 @@
   (c-name "GtkClipboardURIReceivedFunc")
   (return-type "none")
   (parameters
-   '("GtkCliboard*" "clipboard")
+   '("GtkClipboard*" "clipboard")
    '("gchar**" "uris")
    '("gpointer" "user_data")
    )

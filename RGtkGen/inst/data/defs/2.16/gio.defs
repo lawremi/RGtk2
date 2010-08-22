@@ -196,7 +196,7 @@
     '("gboolean" "force_rescan")
     '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
     '("GAsyncReadyCallback" "callback")
-    '("gpointer" "user_data")
+    '("gpointer" "user_data" (null-ok) (default "NULL"))
   )
   (since "2.18.0")
 )
@@ -224,6 +224,39 @@
   (since "2.18.0")
 )
 
+(define-virtual guess_content_type
+  (of-object "GMount")
+  (return-type "none")
+  (parameters
+   '("gboolean" "force_rescan")
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GAsyncReadyCallback" "callback")
+   '("gpointer" "user_data" (null-ok) (default "NULL"))
+   )
+  (since "2.18.0")
+  )
+
+(define-virtual guess_content_type_finish
+  (of-object "GMount")
+  (return-type "gchar**")
+  (parameters
+   '("GAsyncResult*" "result")
+   '("GError**" "error" (out))
+   )
+  (since "2.18.0")
+  )
+
+(define-virtual guess_content_type_sync
+  (of-object "GMount")
+  (return-type "gchar**")
+  (parameters
+   '("gboolean" "force_rescan")
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GError**" "error" (out))
+   )
+  (since "2.18.0")
+  )
+
 (define-method prepend_name
   (of-object "GThemedIcon")
   (c-name "g_themed_icon_prepend_name")
@@ -244,9 +277,6 @@
   (since "2.18.0")
 )
 
-;;
-;; wrapped in gvolume.override
-;;
 (define-method enumerate_identifiers
   (of-object "GVolume")
   (c-name "g_volume_enumerate_identifiers")
@@ -260,6 +290,27 @@
   (return-type "GFile*")
   (since "2.18.0")
 )
+
+(define-virtual get_identifier
+  (of-object "GVolume")
+  (return-type "char*")
+  (parameters
+   '("const-char*" "kind")
+   )
+  (since "2.18.0")
+  )
+
+(define-virtual enumerate_identifiers
+  (of-object "GVolume")
+  (return-type "char**")
+  (since "2.18.0")
+  )
+
+(define-virtual get_activation_root
+  (of-object "GVolume")
+  (return-type "GFile*")
+  (since "2.18.0")
+  )
 
 (define-method get_container
   (of-object "GFileEnumerator")

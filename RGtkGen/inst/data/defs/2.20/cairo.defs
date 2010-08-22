@@ -245,57 +245,61 @@
   (since "1.8.0")
   )
 
-(define-user-function user_scaled_font_init_func
-  (in-module "cairo")
-  (c-name "cairo_user_scaled_font_init_func_t")
-  (return-type "cairo_status_t")
-  (parameters
-   '("cairo_scaled_font_t*" "scaled_font")
-   '("cairo_t*" "cr")
-   '("cairo_font_extents_t*" "extents" (out))
-   )
-  (since "1.8.0")
-  )
+;; MANUAL: user data stored on font face
+;; (define-user-function user_scaled_font_init_func
+;;   (in-module "cairo")
+;;   (c-name "cairo_user_scaled_font_init_func_t")
+;;   (return-type "cairo_status_t")
+;;   (parameters
+;;    '("cairo_scaled_font_t*" "scaled_font")
+;;    '("cairo_t*" "cr")
+;;    '("cairo_font_extents_t*" "extents" (out))
+;;    )
+;;   (since "1.8.0")
+;;   )
 
-(define-user-function user_scaled_font_render_glyph_func
-  (in-module "cairo")
-  (c-name "cairo_user_scaled_font_render_glyph_func_t")
-  (return-type "cairo_status_t")
-  (parameters
-   '("cairo_scaled_font_t*" "scaled_font")
-   '("gulong" "glyph")
-   '("cairo_t*" "cr")
-   '("cairo_font_extents_t*" "extents" (out))
-   )
-  (since "1.8.0")
-  )
+;; MANUAL: user data stored on font face
+;; (define-user-function user_scaled_font_render_glyph_func
+;;   (in-module "cairo")
+;;   (c-name "cairo_user_scaled_font_render_glyph_func_t")
+;;   (return-type "cairo_status_t")
+;;   (parameters
+;;    '("cairo_scaled_font_t*" "scaled_font")
+;;    '("gulong" "glyph")
+;;    '("cairo_t*" "cr")
+;;    '("cairo_font_extents_t*" "extents" (out))
+;;    )
+;;   (since "1.8.0")
+;;   )
 
 ;; MANUAL: need to allocate the 'glyphs' and 'clusters' arrays appropriately
-(define-user-function user_scaled_font_text_to_glyphs_func
-  (in-module "cairo")
-  (c-name "cairo_user_scaled_font_text_to_glyphs_func_t")
-  (return-type "cairo_status_t")
-  (parameters
-   '("cairo_scaled_font_t*" "scaled_font")
-   '("const-char*" "utf8")
-   '("int" "utf8_len")
-   '("cairo_glyph_t*[]" "glyphs" (out))
-   '("int*" "num_glyphs" (out))
-   '("cairo_text_cluster_t*[]" "clusters" (out))
-   '("int*" "num_clusters" (out))
-   '("cairo_text_cluster_flags_t*" "cluster_flags" (out))
-   )
-  (since "1.8.0")
-  )
+;; MANUAL: user data stored on font face
+;; (define-user-function user_scaled_font_text_to_glyphs_func
+;;   (in-module "cairo")
+;;   (c-name "cairo_user_scaled_font_text_to_glyphs_func_t")
+;;   (return-type "cairo_status_t")
+;;   (parameters
+;;    '("cairo_scaled_font_t*" "scaled_font")
+;;    '("const-char*" "utf8")
+;;    '("int" "utf8_len")
+;;    '("cairo_glyph_t*[]" "glyphs" (out))
+;;    '("int*" "num_glyphs" (out))
+;;    '("cairo_text_cluster_t*[]" "clusters" (out))
+;;    '("int*" "num_clusters" (out))
+;;    '("cairo_text_cluster_flags_t*" "cluster_flags" (out))
+;;    )
+;;   (since "1.8.0")
+;;   )
 
-(define-user-function user_scaled_font_unicode_to_glyph_func
-  (in-module "cairo")
-  (c-name "cairo_user_scaled_font_unicode_to_glyph_func_t")
-  (return-type "cairo_status_t")
-  (parameters
-   '("cairo_scaled_font_t*" "scaled_font")
-   '("gulong" "unicode")
-   '("gulong*" "glyph_index" (out))
-   )
-  (since "1.8.0")
-  )
+;; MANUAL: user data stored on font face
+;; (define-user-function user_scaled_font_unicode_to_glyph_func
+;;   (in-module "cairo")
+;;   (c-name "cairo_user_scaled_font_unicode_to_glyph_func_t")
+;;   (return-type "cairo_status_t")
+;;   (parameters
+;;    '("cairo_scaled_font_t*" "scaled_font")
+;;    '("gulong" "unicode")
+;;    '("gulong*" "glyph_index" (out))
+;;    )
+;;   (since "1.8.0")
+;;  )

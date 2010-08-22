@@ -86,7 +86,7 @@
 (define-method get_scripts
   (of-object "PangoLanguage")
   (c-name "pango_language_get_scripts")
-  (return-type "PangoScript[]")
+  (return-type "const-PangoScript[]")
   (parameters
    '("int" "num_scripts" (out))
    )

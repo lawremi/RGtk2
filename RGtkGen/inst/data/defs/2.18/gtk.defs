@@ -608,7 +608,7 @@
   (c-name "gtk_widget_get_allocation")
   (return-type "none")
   (parameters
-    '("GtkAllocation*" "allocation")
+    '("GtkAllocation*" "allocation" (out))
   )
   (since "2.18.0")
 )

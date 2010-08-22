@@ -100,11 +100,11 @@
   (since "2.22.0")
 )
 
-(define-object SocketConnectable
+(define-interface SocketConnectable
  (in-module "gio")
  (c-name "GSocketConnectable")
  (gtype-id "G_TYPE_SOCKET_CONNECTABLE")
-  (since "2.22.0")
+ (since "2.22.0")
 )
 
 (define-object SocketConnection
@@ -169,6 +169,20 @@
   (gtype-id "G_TYPE_DRIVE_START_FLAGS")
   (values
    '("none" "G_DRIVE_START_NONE")
+   )
+  (since "2.22.0")
+  )
+
+(define-enum DriveStartStopType
+  (in-module "gio")
+  (c-name "GDriveStartStopType")
+  (gtype-id "G_TYPE_DRIVE_START_STOP_TYPE")
+  (values
+   '("unknown" "G_DRIVE_START_STOP_TYPE_UNKNOWN")
+   '("shutdown" "G_DRIVE_START_STOP_TYPE_SHUTDOWN")
+   '("network" "G_DRIVE_START_STOP_TYPE_NETWORK")
+   '("multidisk" "G_DRIVE_START_STOP_TYPE_MULTIDISK")
+   '("password" "G_DRIVE_START_STOP_TYPE_PASSWORD")
    )
   (since "2.22.0")
   )
@@ -244,7 +258,7 @@
  '("int" "io_priority")
  '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
- '("gpointer" "user_data")
+ '("gpointer" "user_data" (null-ok) (default "NULL"))
  )
   (since "2.22.0")
 )
@@ -260,6 +274,28 @@
   (since "2.22.0")
 )
 
+(define-virtual init_async
+  (of-object "GAsyncInitable")
+  (return-type "none")
+  (parameters
+   '("int" "io_priority")
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GAsyncReadyCallback" "callback")
+   '("gpointer" "user_data" (null-ok) (default "NULL"))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual init_finish
+  (of-object "GAsyncInitable")
+  (return-type "gboolean")
+  (parameters
+   '("GAsyncResult*" "res")
+   '("GError**" "error" (out))
+   )
+  (since "2.22.0")
+  )
+
 ; MANUAL: varargs
 (define-function g_async_initable_new_async
  (in-module "gio")
@@ -270,7 +306,7 @@
  '("int" "io_priority")
  '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
- '("gpointer" "user_data")
+ '("gpointer" "user_data" (null-ok) (default "NULL"))
  '("const-gchar*" "first_property_name")
  )
  (varargs #t)
@@ -288,14 +324,13 @@
  '("int" "io_priority")
  '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
- '("gpointer" "user_data")
+ '("gpointer" "user_data" (null-ok) (default "NULL"))
  )
   (since "2.22.0")
 )
 
 (define-function g_async_initable_new_valist_async
   (in-module "gio")
-
  (c-name "g_async_initable_new_valist_async")
  (return-type "none")
  (parameters
@@ -305,7 +340,7 @@
  '("int" "io_priority")
  '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
- '("gpointer" "user_data")
+ '("gpointer" "user_data" (null-ok) (default "NULL"))
  )
   (since "2.22.0")
 )
@@ -391,7 +426,7 @@
  '("GMountOperation*" "mount_operation")
  '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
- '("gpointer" "user_data")
+ '("gpointer" "user_data" (null-ok) (default "NULL"))
  )
   (since "2.22.0")
 )
@@ -423,7 +458,7 @@
  '("GMountOperation*" "mount_operation")
  '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
- '("gpointer" "user_data")
+ '("gpointer" "user_data" (null-ok) (default "NULL"))
  )
   (since "2.22.0")
 )
@@ -448,7 +483,7 @@
  '("GMountOperation*" "mount_operation")
  '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
- '("gpointer" "user_data")
+ '("gpointer" "user_data" (null-ok) (default "NULL"))
  )
   (since "2.22.0")
 )
@@ -463,6 +498,101 @@
  )
   (since "2.22.0")
 )
+
+; virtuals
+
+(define-virtual get_start_stop_type
+  (of-object "GDrive")
+  (return-type "GDriveStartStopType")
+  (since "2.22.0")
+  )
+
+(define-virtual start
+  (of-object "GDrive")
+  (return-type "none")
+  (parameters
+   '("GDriveStartFlags" "flags")
+   '("GMountOperation*" "mount_operation")
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GAsyncReadyCallback" "callback")
+   '("gpointer" "user_data" (null-ok) (default "NULL"))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual start_finish
+  (of-object "GDrive")
+  (return-type "gboolean")
+  (parameters
+   '("GAsyncResult*" "result")
+   '("GError**" "error" (out))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual stop
+  (of-object "GDrive")
+  (return-type "none")
+  (parameters
+   '("GMountUnmountFlags" "flags")
+   '("GMountOperation*" "mount_operation")
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GAsyncReadyCallback" "callback")
+   '("gpointer" "user_data" (null-ok) (default "NULL"))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual stop_finish
+  (of-object "GDrive")
+  (return-type "gboolean")
+  (parameters
+   '("GAsyncResult*" "result")
+   '("GError**" "error" (out))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual can_start
+  (of-object "GDrive")
+  (return-type "gboolean")
+  (since "2.22.0")
+  )
+
+(define-virtual can_start_degraded
+  (of-object "GDrive")
+  (return-type "gboolean")
+  (since "2.22.0")
+  )
+
+(define-virtual can_stop
+  (of-object "GDrive")
+  (return-type "gboolean")
+  (since "2.22.0")
+  )
+
+(define-virtual eject_with_operation
+  (of-object "GDrive")
+  (return-type "none")
+  (parameters
+   '("GMountUnmountFlags" "flags")
+   '("GMountOperation*" "mount_operation")
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GAsyncReadyCallback" "callback")
+   '("gpointer" "user_data" (null-ok) (default "NULL"))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual eject_with_operation_finish
+  (of-object "GDrive")
+  (return-type "gboolean")
+  (parameters
+   '("GAsyncResult*" "result")
+   '("GError**" "error" (out))
+   )
+  (since "2.22.0")
+  )
 
 (define-method create_readwrite
  (of-object "GFile")
@@ -485,7 +615,7 @@
  '("int" "io_priority")
  '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
- '("gpointer" "user_data")
+ '("gpointer" "user_data" (null-ok) (default "NULL"))
  )
   (since "2.22.0")
 )
@@ -501,6 +631,40 @@
   (since "2.22.0")
 )
 
+(define-virtual create_readwrite
+  (of-object "GFile")
+  (return-type "GFileIOStream*")
+  (parameters
+   '("GFileCreateFlags" "flags")
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GError**" "error" (out))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual create_readwrite_async
+  (of-object "GFile")
+  (return-type "none")
+  (parameters
+   '("GFileCreateFlags" "flags")
+   '("int" "io_priority")
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GAsyncReadyCallback" "callback")
+   '("gpointer" "user_data" (null-ok) (default "NULL"))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual create_readwrite_finish
+  (of-object "GFile")
+  (return-type "GFileIOStream*")
+  (parameters
+   '("GAsyncResult*" "res")
+   '("GError**" "error" (out))
+   )
+  (since "2.22.0")
+  )
+
 (define-method eject_mountable_with_operation
  (of-object "GFile")
  (c-name "g_file_eject_mountable_with_operation")
@@ -510,7 +674,7 @@
  '("GMountOperation*" "mount_operation")
  '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
- '("gpointer" "user_data")
+ '("gpointer" "user_data" (null-ok) (default "NULL"))
  )
   (since "2.22.0")
 )
@@ -525,6 +689,29 @@
  )
   (since "2.22.0")
 )
+
+(define-virtual eject_mountable_with_operation
+  (of-object "GFile")
+  (return-type "none")
+  (parameters
+   '("GMountUnmountFlags" "flags")
+   '("GMountOperation*" "mount_operation")
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GAsyncReadyCallback" "callback")
+   '("gpointer" "user_data" (null-ok) (default "NULL"))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual eject_mountable_with_operation_finish
+  (of-object "GFile")
+  (return-type "gboolean")
+  (parameters
+   '("GAsyncResult*" "result")
+   '("GError**" "error" (out))
+   )
+  (since "2.22.0")
+  )
 
 (define-method open_readwrite
  (of-object "GFile")
@@ -545,7 +732,7 @@
  '("int" "io_priority")
  '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
- '("gpointer" "user_data")
+ '("gpointer" "user_data" (null-ok) (default "NULL"))
  )
   (since "2.22.0")
 )
@@ -561,6 +748,38 @@
   (since "2.22.0")
 )
 
+(define-virtual open_readwrite
+  (of-object "GFile")
+  (return-type "GFileIOStream*")
+  (parameters
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GError**" "error" (out))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual open_readwrite_async
+  (of-object "GFile")
+  (return-type "none")
+  (parameters
+   '("int" "io_priority")
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GAsyncReadyCallback" "callback")
+   '("gpointer" "user_data" (null-ok) (default "NULL"))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual open_readwrite_finish
+  (of-object "GFile")
+  (return-type "GFileIOStream*")
+  (parameters
+   '("GAsyncResult*" "res")
+   '("GError**" "error" (out))
+   )
+  (since "2.22.0")
+  )
+
 (define-method poll_mountable
  (of-object "GFile")
  (c-name "g_file_poll_mountable")
@@ -568,7 +787,7 @@
  (parameters
  '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
- '("gpointer" "user_data")
+ '("gpointer" "user_data" (null-ok) (default "NULL"))
  )
   (since "2.22.0")
 )
@@ -583,6 +802,27 @@
  )
   (since "2.22.0")
 )
+
+(define-virtual poll_mountable
+  (of-object "GFile")
+  (return-type "none")
+  (parameters
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GAsyncReadyCallback" "callback")
+   '("gpointer" "user_data" (null-ok) (default "NULL"))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual poll_mountable_finish
+  (of-object "GFile")
+  (return-type "gboolean")
+  (parameters
+   '("GAsyncResult*" "result")
+   '("GError**" "error" (out))
+   )
+  (since "2.22.0")
+  )
 
 (define-method replace_readwrite
  (of-object "GFile")
@@ -609,7 +849,7 @@
  '("int" "io_priority")
  '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
- '("gpointer" "user_data")
+ '("gpointer" "user_data" (null-ok) (default "NULL"))
  )
   (since "2.22.0")
 )
@@ -625,6 +865,44 @@
   (since "2.22.0")
 )
 
+(define-virtual replace_readwrite
+  (of-object "GFile")
+  (return-type "GFileIOStream*")
+  (parameters
+   '("const-char*" "etag")
+   '("gboolean" "make_backup")
+   '("GFileCreateFlags" "flags")
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GError**" "error" (out))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual replace_readwrite_async
+  (of-object "GFile")
+  (return-type "none")
+  (parameters
+   '("const-char*" "etag")
+   '("gboolean" "make_backup")
+   '("GFileCreateFlags" "flags")
+   '("int" "io_priority")
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GAsyncReadyCallback" "callback")
+   '("gpointer" "user_data" (null-ok) (default "NULL"))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual replace_readwrite_finish
+  (of-object "GFile")
+  (return-type "GFileIOStream*")
+  (parameters
+   '("GAsyncResult*" "res")
+   '("GError**" "error" (out))
+   )
+  (since "2.22.0")
+  )
+
 (define-method start_mountable
  (of-object "GFile")
  (c-name "g_file_start_mountable")
@@ -634,7 +912,7 @@
  '("GMountOperation*" "start_operation")
  '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
- '("gpointer" "user_data")
+ '("gpointer" "user_data" (null-ok) (default "NULL"))
  )
   (since "2.22.0")
 )
@@ -659,7 +937,7 @@
  '("GMountOperation*" "mount_operation")
  '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
- '("gpointer" "user_data")
+ '("gpointer" "user_data" (null-ok) (default "NULL"))
  )
   (since "2.22.0")
 )
@@ -674,6 +952,55 @@
  )
   (since "2.22.0")
 )
+
+;;
+
+(define-virtual start_mountable
+  (of-object "GFile")
+  (return-type "none")
+  (parameters
+   '("GDriveStartFlags" "flags")
+   '("GMountOperation*" "start_operation")
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GAsyncReadyCallback" "callback")
+   '("gpointer" "user_data" (null-ok) (default "NULL"))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual start_mountable_finish
+  (of-object "GFile")
+  (return-type "gboolean")
+  (parameters
+   '("GAsyncResult*" "result")
+   '("GError**" "error" (out))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual stop_mountable
+  (of-object "GFile")
+  (return-type "none")
+  (parameters
+   '("GMountUnmountFlags" "flags")
+   '("GMountOperation*" "mount_operation")
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GAsyncReadyCallback" "callback")
+   '("gpointer" "user_data" (null-ok) (default "NULL"))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual stop_mountable_finish
+  (of-object "GFile")
+  (return-type "gboolean")
+  (parameters
+   '("GAsyncResult*" "result")
+   '("GError**" "error" (out))
+   )
+  (since "2.22.0")
+  )
+;;
 
 (define-method supports_thread_contexts
  (of-object "GFile")
@@ -691,7 +1018,7 @@
  '("GMountOperation*" "mount_operation")
  '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
- '("gpointer" "user_data")
+ '("gpointer" "user_data" (null-ok) (default "NULL"))
  )
   (since "2.22.0")
 )
@@ -706,6 +1033,29 @@
  )
   (since "2.22.0")
 )
+
+(define-virtual unmount_mountable_with_operation
+  (of-object "GFile")
+  (return-type "none")
+  (parameters
+   '("GMountUnmountFlags" "flags")
+   '("GMountOperation*" "mount_operation")
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GAsyncReadyCallback" "callback")
+   '("gpointer" "user_data" (null-ok) (default "NULL"))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual unmount_mountable_with_operation_finish
+  (of-object "GFile")
+  (return-type "gboolean")
+  (parameters
+   '("GAsyncResult*" "result")
+   '("GError**" "error" (out))
+   )
+  (since "2.22.0")
+  )
 
 (define-method has_namespace
  (of-object "GFileInfo")
@@ -769,7 +1119,7 @@
  '("int" "io_priority")
  '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
- '("gpointer" "user_data")
+ '("gpointer" "user_data" (null-ok) (default "NULL"))
  )
   (since "2.22.0")
 )
@@ -791,6 +1141,47 @@
  (return-type "char*")
   (since "2.22.0")
 )
+
+
+(define-virtual query_info
+  (of-object "GFileIOStream")
+  (return-type "GFileInfo*")
+  (parameters
+   '("const-char*" "attributes")
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GError**" "error" (out))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual query_info_async
+  (of-object "GFileIOStream")
+  (return-type "none")
+  (parameters
+   '("const-char*" "attributes")
+   '("int" "io_priority")
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GAsyncReadyCallback" "callback")
+   '("gpointer" "user_data" (null-ok) (default "NULL"))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual query_info_finish
+  (of-object "GFileIOStream")
+  (return-type "GFileInfo*")
+  (parameters
+   '("GAsyncResult*" "result")
+   '("GError**" "error" (out))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual get_etag
+  (of-object "GFileIOStream")
+  (return-type "char*")
+  (since "2.22.0")
+  )
 
 
 (define-function g_inet_address_get_type
@@ -848,14 +1239,24 @@
   (since "2.22.0")
 )
 
+(define-method to_bytes
+  (of-object "GInetAddress")
+  (c-name "g_inet_address_to_bytes")
+  (return-type "const-guint8*")
+  (since "2.22.0")
+)
 
-;; FIXME codegen barfs on this one
-;;
-;;(define-method to_bytes
-;; (of-object "GInetAddress")
-;; (c-name "g_inet_address_to_bytes")
-;; (return-type "const-guint8*")
-;;)
+(define-virtual to_string
+  (of-object "GInetAddress")
+  (return-type "gchar*")
+  (since "2.22.0")
+  )
+
+(define-virtual to_bytes
+  (of-object "GInetAddress")
+  (return-type "const-guint8*")
+  (since "2.22.0")
+  )
 
 (define-method get_native_size
  (of-object "GInetAddress")
@@ -962,6 +1363,16 @@
   (since "2.22.0")
 )
 
+(define-virtual init
+  (of-object "GInitable")
+  (return-type "gboolean")
+  (parameters
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GError**" "error" (out))
+   )
+  (since "2.22.0")
+  )
+
 ; MANUAL: varargs
 (define-function g_initable_new
   (in-module "gio")
@@ -1045,7 +1456,7 @@
  '("int" "io_priority")
  '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
- '("gpointer" "user_data")
+ '("gpointer" "user_data" (null-ok) (default "NULL"))
  )
   (since "2.22.0")
 )
@@ -1060,6 +1471,50 @@
  )
   (since "2.22.0")
 )
+
+(define-virtual get_input_stream
+  (of-object "GIOStream")
+  (return-type "GInputStream*")
+  (since "2.22.0")
+  )
+
+(define-virtual get_output_stream
+  (of-object "GIOStream")
+  (return-type "GOutputStream*")
+  (since "2.22.0")
+  )
+
+(define-virtual close_fn
+  (of-object "GIOStream")
+  (return-type "gboolean")
+  (parameters
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GError**" "error" (out))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual close_async
+  (of-object "GIOStream")
+  (return-type "none")
+  (parameters
+   '("int" "io_priority")
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GAsyncReadyCallback" "callback")
+   '("gpointer" "user_data" (null-ok) (default "NULL"))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual close_finish
+  (of-object "GIOStream")
+  (return-type "gboolean")
+  (parameters
+   '("GAsyncResult*" "result")
+   '("GError**" "error" (out))
+   )
+  (since "2.22.0")
+  )
 
 (define-method is_closed
  (of-object "GIOStream")
@@ -1101,7 +1556,7 @@
  '("GMountOperation*" "mount_operation")
  '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
- '("gpointer" "user_data")
+ '("gpointer" "user_data" (null-ok) (default "NULL"))
  )
   (since "2.22.0")
 )
@@ -1126,7 +1581,7 @@
  '("GMountOperation*" "mount_operation")
  '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
- '("gpointer" "user_data")
+ '("gpointer" "user_data" (null-ok) (default "NULL"))
  )
   (since "2.22.0")
 )
@@ -1141,6 +1596,52 @@
  )
   (since "2.22.0")
 )
+
+(define-virtual unmount_with_operation
+  (of-object "GMount")
+  (return-type "none")
+  (parameters
+   '("GMountUnmountFlags" "flags")
+   '("GMountOperation*" "mount_operation")
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GAsyncReadyCallback" "callback")
+   '("gpointer" "user_data" (null-ok) (default "NULL"))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual unmount_with_operation_finish
+  (of-object "GMount")
+  (return-type "gboolean")
+  (parameters
+   '("GAsyncResult*" "result")
+   '("GError**" "error" (out))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual eject_with_operation
+  (of-object "GMount")
+  (return-type "none")
+  (parameters
+   '("GMountUnmountFlags" "flags")
+   '("GMountOperation*" "mount_operation")
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GAsyncReadyCallback" "callback")
+   '("gpointer" "user_data" (null-ok) (default "NULL"))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual eject_with_operation_finish
+  (of-object "GMount")
+  (return-type "gboolean")
+  (parameters
+   '("GAsyncResult*" "result")
+   '("GError**" "error" (out))
+   )
+  (since "2.22.0")
+  )
 
 
 ;; From gnetworkaddress.h
@@ -1282,7 +1783,7 @@
  '("const-gchar*" "hostname")
  '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
- '("gpointer" "user_data")
+ '("gpointer" "user_data" (null-ok) (default "NULL"))
  )
   (since "2.22.0")
 )
@@ -1298,6 +1799,41 @@
  )
   (since "2.22.0")
 )
+
+(define-virtual lookup_by_name
+  (of-object "GResolver")
+  (return-type "GList[GInetAddress]")
+  (caller-owns-return #t)
+  (parameters
+   '("const-gchar*" "hostname")
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GError**" "error" (out))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual lookup_by_name_async
+  (of-object "GResolver")
+  (return-type "none")
+  (parameters
+   '("const-gchar*" "hostname")
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GAsyncReadyCallback" "callback")
+   '("gpointer" "user_data" (null-ok) (default "NULL"))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual lookup_by_name_finish
+  (of-object "GResolver")
+  (return-type "GList[GInetAddress]")
+  (caller-owns-return #t)
+  (parameters
+   '("GAsyncResult*" "result")
+   '("GError**" "error" (out))
+   )
+  (since "2.22.0")
+  )
 
 (define-function g_resolver_free_addresses
   (in-module "gio")
@@ -1329,7 +1865,7 @@
  '("GInetAddress*" "address")
  '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
- '("gpointer" "user_data")
+ '("gpointer" "user_data" (null-ok) (default "NULL"))
  )
   (since "2.22.0")
 )
@@ -1370,7 +1906,7 @@
  '("const-gchar*" "domain")
  '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
- '("gpointer" "user_data")
+ '("gpointer" "user_data" (null-ok) (default "NULL"))
  )
   (since "2.22.0")
 )
@@ -1386,6 +1922,74 @@
  )
   (since "2.22.0")
 )
+
+(define-virtual lookup_by_address
+  (of-object "GResolver")
+  (return-type "gchar*")
+  (parameters
+   '("GInetAddress*" "address")
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GError**" "error" (out))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual lookup_by_address_async
+  (of-object "GResolver")
+  (return-type "none")
+  (parameters
+   '("GInetAddress*" "address")
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GAsyncReadyCallback" "callback")
+   '("gpointer" "user_data" (null-ok) (default "NULL"))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual lookup_by_address_finish
+  (of-object "GResolver")
+  (return-type "gchar*")
+  (parameters
+   '("GAsyncResult*" "result")
+   '("GError**" "error" (out))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual lookup_service
+  (of-object "GResolver")
+  (return-type "GList[GSrvTarget]")
+  (caller-owns-return #t)
+  (parameters
+   '("const-gchar*" "rrname")
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GError**" "error" (out))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual lookup_service_async
+  (of-object "GResolver")
+  (return-type "none")
+  (parameters
+   '("const-gchar*" "rrname")
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GAsyncReadyCallback" "callback")
+   '("gpointer" "user_data" (null-ok) (default "NULL"))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual lookup_service_finish
+  (of-object "GResolver")
+  (return-type "GList[GSrvTarget]")
+  (caller-owns-return #t)
+  (parameters
+   '("GAsyncResult*" "result")
+   '("GError**" "error" (out))
+   )
+  (since "2.22.0")
+  )
 
 (define-function g_resolver_free_targets
   (in-module "gio")
@@ -1430,7 +2034,7 @@
  (parameters
  '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
- '("gpointer" "user_data")
+ '("gpointer" "user_data" (null-ok) (default "NULL"))
  )
   (since "2.22.0")
 )
@@ -1446,6 +2050,37 @@
   (since "2.22.0")
 )
 
+(define-virtual next
+  (of-object "GSocketAddressEnumerator")
+  (return-type "GSocketAddress*")
+  (parameters
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GError**" "error" (out))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual next_async
+  (of-object "GSocketAddressEnumerator")
+  (return-type "none")
+  (parameters
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GAsyncReadyCallback" "callback")
+   '("gpointer" "user_data" (null-ok) (default "NULL"))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual next_finish
+  (of-object "GSocketAddressEnumerator")
+  (return-type "GSocketAddress*")
+  (parameters
+   '("GAsyncResult*" "result")
+   '("GError**" "error" (out))
+   )
+  (since "2.22.0")
+  )
+
 
 (define-function g_socket_address_get_type
   (in-module "gio")
@@ -1460,6 +2095,12 @@
  (return-type "GSocketFamily")
   (since "2.22.0")
 )
+
+(define-virtual get_family
+  (of-object "GSocketAddress")
+  (return-type "GSocketFamily")
+  (since "2.22.0")
+  )
 
 (define-function g_socket_address_new_from_native
   (in-module "gio")
@@ -1490,6 +2131,23 @@
  (return-type "gssize")
   (since "2.22.0")
 )
+
+(define-virtual to_native
+  (of-object "GSocketAddress")
+  (return-type "gboolean")
+  (parameters
+   '("gpointer" "dest")
+   '("gsize" "destlen")
+   '("GError**" "error" (out))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual get_native_size
+  (of-object "GSocketAddress")
+  (return-type "gssize")
+  (since "2.22.0")
+  )
 
 
 
@@ -1624,7 +2282,7 @@
  '("GSocketConnectable*" "connectable")
  '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
- '("gpointer" "user_data")
+ '("gpointer" "user_data" (null-ok) (default "NULL"))
  )
   (since "2.22.0")
 )
@@ -1649,7 +2307,7 @@
  '("guint16" "default_port")
  '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
- '("gpointer" "user_data")
+ '("gpointer" "user_data" (null-ok) (default "NULL"))
  )
   (since "2.22.0")
 )
@@ -1674,7 +2332,7 @@
  '("const-gchar*" "service")
  '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
- '("gpointer" "user_data")
+ '("gpointer" "user_data" (null-ok) (default "NULL"))
  )
   (since "2.22.0")
 )
@@ -1707,6 +2365,12 @@
  (return-type "GSocketAddressEnumerator*")
   (since "2.22.0")
 )
+
+(define-virtual enumerate
+  (of-object "GSocketConnectable")
+  (return-type "GSocketAddressEnumerator*")
+  (since "2.22.0")
+  )
 
 
 
@@ -1822,18 +2486,43 @@
 
 (define-function g_socket_control_message_deserialize
   (in-module "gio")
- (c-name "g_socket_control_message_deserialize")
- (return-type "GSocketControlMessage*")
- (parameters
- '("int" "level")
- '("int" "type")
- '("gsize" "size")
- '("gpointer" "data")
- )
+  (c-name "g_socket_control_message_deserialize")
+  (return-type "GSocketControlMessage*")
+  (parameters
+   '("int" "level")
+   '("int" "type")
+   '("gsize" "size")
+   '("gpointer" "data")
+   )
   (since "2.22.0")
 )
 
+(define-virtual get_size
+  (of-object "GSocketControlMessage")
+  (return-type "gsize")
+  (since "2.22.0")
+  )
 
+(define-virtual get_level
+  (of-object "GSocketControlMessage")
+  (return-type "int")
+  (since "2.22.0")
+  )
+
+(define-virtual get_type
+  (of-object "GSocketControlMessage")
+  (return-type "int")
+  (since "2.22.0")
+  )
+
+(define-virtual serialize
+  (of-object "GSocketControlMessage")
+  (return-type "none")
+  (parameters
+   '("gpointer" "data")
+   )
+  (since "2.22.0")
+  )
 
 ;; From gsocket.h
 
@@ -2113,40 +2802,40 @@
 ; MANUAL: need to allocate the 'vectors' (just one with specified size?)
 
 (define-method receive_message
- (of-object "GSocket")
- (c-name "g_socket_receive_message")
- (return-type "gssize")
- (parameters
- '("GSocketAddress**" "address" (out))
- '("GInputVector[]" "vectors" (out))
- '("gint" "num_vectors")
- '("GSocketControlMessage**[]" "messages" (out))
- '("gint*" "num_messages" (out))
- '("gint*" "flags" (default "0")) ; in-out
- '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
- '("GError**" "error" (out))
- )
+  (of-object "GSocket")
+  (c-name "g_socket_receive_message")
+  (return-type "gssize")
+  (parameters
+   '("GSocketAddress**" "address" (out))
+   '("GInputVector[]" "vectors" (out))
+   '("gint" "num_vectors")
+   '("GSocketControlMessage**[]" "messages" (out))
+   '("gint*" "num_messages" (out))
+   '("gint*" "flags" (default "0")) ; in-out
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GError**" "error" (out))
+   )
   (since "2.22.0")
-)
+  )
 
 ; MANUAL: need to allocate the 'vectors' (just one with specified size?)
 
 (define-method send_message
- (of-object "GSocket")
- (c-name "g_socket_send_message")
- (return-type "gssize")
- (parameters
- '("GSocketAddress*" "address")
- '("GOutputVector[]" "vectors")
- '("gint" "num_vectors")
- '("GSocketControlMessage*[]" "messages" (null-ok) (default "NULL"))
- '("gint" "num_messages")
- '("gint" "flags" (default "0")
- '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
- '("GError**" "error" (out))
- )
-  (since "2.22.0")
-)
+  (of-object "GSocket")
+  (c-name "g_socket_send_message")
+  (return-type "gssize")
+  (parameters
+   '("GSocketAddress*" "address")
+   '("GOutputVector[]" "vectors")
+   '("gint" "num_vectors")
+   '("GSocketControlMessage*[]" "messages" (null-ok) (default "NULL"))
+   '("gint" "num_messages")
+   '("gint" "flags" (default "0"))
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GError**" "error" (out))
+   )
+   (since "2.22.0")
+   )
 
 (define-method close
  (of-object "GSocket")
@@ -2214,6 +2903,12 @@
   (since "2.22.0")
 )
 
+(define-virtual changed
+  (of-object "GSocketListener")
+  (return-type "none")
+  (since "2.22.0")
+  )
+
 (define-method set_backlog
  (of-object "GSocketListener")
  (c-name "g_socket_listener_set_backlog")
@@ -2245,7 +2940,7 @@
  '("GSocketType" "type")
  '("GSocketProtocol" "protocol")
  '("GObject*" "source_object")
- '("GSocketAddress**" "effective_address")
+ '("GSocketAddress**" "effective_address" (out))
  '("GError**" "error" (out))
  )
   (since "2.22.0")
@@ -2268,7 +2963,7 @@
  (c-name "g_socket_listener_accept_socket")
  (return-type "GSocket*")
  (parameters
- '("GObject**" "source_object")
+  '("GObject**" "source_object"  (out))
  '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GError**" "error" (out))
  )
@@ -2282,7 +2977,7 @@
  (parameters
  '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
- '("gpointer" "user_data")
+ '("gpointer" "user_data" (null-ok) (default "NULL"))
  )
   (since "2.22.0")
 )
@@ -2293,7 +2988,7 @@
  (return-type "GSocket*")
  (parameters
  '("GAsyncResult*" "result")
- '("GObject**" "source_object")
+ '("GObject**" "source_object" (out))
  '("GError**" "error" (out))
  )
   (since "2.22.0")
@@ -2304,7 +2999,7 @@
  (c-name "g_socket_listener_accept")
  (return-type "GSocketConnection*")
  (parameters
- '("GObject**" "source_object")
+  '("GObject**" "source_object" (out))
  '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GError**" "error" (out))
  )
@@ -2318,7 +3013,7 @@
  (parameters
  '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
- '("gpointer" "user_data")
+ '("gpointer" "user_data" (null-ok) (default "NULL"))
  )
   (since "2.22.0")
 )
@@ -2329,7 +3024,7 @@
  (return-type "GSocketConnection*")
  (parameters
  '("GAsyncResult*" "result")
- '("GObject**" "source_object")
+ '("GObject**" "source_object" (out))
  '("GError**" "error" (out))
  )
   (since "2.22.0")
@@ -2493,7 +3188,7 @@
  '("GMountOperation*" "mount_operation")
  '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
  '("GAsyncReadyCallback" "callback")
- '("gpointer" "user_data")
+ '("gpointer" "user_data" (null-ok) (default "NULL"))
  )
   (since "2.22.0")
 )
@@ -2508,3 +3203,27 @@
    )
   (since "2.22.0")
 )
+
+
+(define-virtual eject_with_operation
+  (of-object "GVolume")
+  (return-type "none")
+  (parameters
+   '("GMountUnmountFlags" "flags")
+   '("GMountOperation*" "mount_operation")
+   '("GCancellable*" "cancellable" (null-ok) (default "NULL"))
+   '("GAsyncReadyCallback" "callback")
+   '("gpointer" "user_data" (null-ok) (default "NULL"))
+   )
+  (since "2.22.0")
+  )
+
+(define-virtual eject_with_operation_finish
+  (of-object "GVolume")
+  (return-type "gboolean")
+  (parameters
+   '("GAsyncResult*" "result")
+   '("GError**" "error" (out))
+   )
+  (since "2.22.0")
+  )

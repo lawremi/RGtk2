@@ -85,7 +85,7 @@
   (in-module "Pango")
   (c-name "pango_cairo_font_map_new_for_font_type")
   (is-constructor-of "PangoCairoFontMap")
-  (return-type "PangoCairoFontMap*")
+  (return-type "PangoFontMap*")
   (parameters
     '("cairo_font_type_t" "fonttype")
   )
