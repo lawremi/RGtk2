@@ -292,7 +292,8 @@ function to be invoked upon the emission of a particular signal.
 
 The signals provided by a class or interface are returned by the
 function \function{gTypeGetSignals}. For example
-<<>>=
+\XXX{JV: comment out until upgrade to RGtk2}
+<<eval=FALSE>>=
 names(gTypeGetSignals("GtkButton"))
 @ 
 shows the ``clicked'' signal in addition to others. Note that this

@@ -143,7 +143,7 @@ vc$setTitle("Manufacturer")
 cr <- gtkCellRendererText()
 vc$packStart(cr)
 vc$addAttribute(cr, "text", 0)
-vc$insertColumn(vc, 0)
+view$insertColumn(vc, 0)
 @ 
 %
 A column with
@@ -184,7 +184,8 @@ every column in the data frame. Here, we reconstruct the view, inserting
 a view column for every column in the data frame, i.e., the model.
 <<rgtk2-mvc-insert-all-columns>>=
 view <- gtkTreeView(model)
-mapply(gtkTreeViewInsertColumnWithAttributes, -1, colnames(model), 
+f <- function(...) view$insertColumnWithAttributes(...)
+mapply(f,  -1, colnames(model), 
        list(gtkCellRendererText()), text = seq_len(ncol(model)) - 1)
 @ 
 %
@@ -282,9 +283,10 @@ the first row and to visit each row in sequence:
 <<rgtk2-mvc-iter-traverse>>=
 iter <- model$getIterFirst()
 manufacturer <- character()
-while(iter$retval) {
+flag <- iter$retval
+while(flag) {
   manufacturer <- c(manufacturer, model$get(iter$iter, 0)[[1]])
-  model$iterNext(iter$iter)
+  flag <- model$iterNext(iter$iter)
 }
 @ 
 %
@@ -377,7 +379,7 @@ selection$setMode("single")
 
 <<echo=FALSE>>=
 vc <- gtkTreeViewColumn()
-view$insertColumnWithAttributes(vc, 0, gtkCellRendererText(), text = 0)
+view$insertColumnWithAttributes(0, "title", gtkCellRendererText(), text = 0)
 ## pack in GUI
 sw <- gtkScrolledWindow()
 sw$add(view)
@@ -453,7 +455,7 @@ only necessary to inform each view column of the model column to use
 for sorting when the header is clicked:
 <<rgtk2-mvc-sorting-clickable>>=
 vc <- view$getColumn(0)
-vc$setSetSortColumnId(0)
+vc$setSortColumnId(0)
 @ 
 %
 In the above, clicking on the header of the first view column,
@@ -461,7 +463,7 @@ In the above, clicking on the header of the first view column,
 \class{GtkTreeViewColumn} will set its sort column as the sort column
 on the model, i.e.:
 <<rgtk2-mvc-sorting-sortable>>=
-model$setSortColumnId(0)
+model$setSortColumnId(0, GtkSortType['ascending'])
 @ 
 
 Some models, however, do not implement \class{GtkTreeSortable}, such
@@ -923,7 +925,9 @@ Traversing a tree store is most easily achieved through the user of
 \Rclass{GtkTreeIter}, introduced previously in the context of flat
 tables. Here we perform a depth-first traversal of our \code{Cars93}
 model to obtain the model values: 
+\XXX{FIX ME}
 <<rgtk2-mvc-tree-traverse>>=
+
 iter <- tstore$getIterFirst()
 models <- NULL
 while(iter$retval) {

@@ -292,7 +292,9 @@ are the germane ones.  How these get used is determined by the
 the $x$ direction -- not the $y$ direction due to their default size
 policy.
 
-
+The method \method{update}{QWidget} is used to request a repainting of a widget
+and the method \method{updateGeometry}{QWidget} is used to notify any
+layout manager that the the size hint has changed.
 
 
 
@@ -310,7 +312,9 @@ label widget (among others) has a property for how its text is
 aligned. For alignment there are options left, right, center, 
 top, bottom, etc. Such values are stored in an enumeration in
 the \code{Qt\$Qt} class object, or for some widgets the \class{RQtClass}
-object. A flag is a combination of enumerations. For example, 
+object. An enumeration uses powers of $2$ so that a single number can
+easily represent multiple values.
+A flag is a combination of enumerations. For example, 
 alignment values are from the \qtenumeration{AlignmentFlag}
 enumeration and right alignment is specified by:
 <<Enumeration-example>>=
@@ -325,15 +329,20 @@ Qt$QSizsePolicy$Exanding
 %
 Although these enumerations can be specifed as integers, in
 \pkg{qtbase} they are of class \class{QtEnum} and have the overloaded
-operator \OR{} to combine values. (The \OR{} operator essentially adds
+operator \OR{}, to combine values, and \AND{} to check if a value
+exists in a flag. (The \OR{} operator essentially adds
 the values.) For example, aligning text in label in the upper right
 can be done through
 <<alignexample, results=hide>>=
 l <- Qt$QLabel("Our text")
-l$setAlignment(Qt$Qt$AlignRight | Qt$Qt$AlignTop)
+flag <- Qt$Qt$AlignRight | Qt$Qt$AlignTop
+l$setAlignment(flag)
 @ 
-
-% A full list of the enumerated values can be teased out of the
+To check if a value is in the flag, we have something like:
+<<>>=
+as.logical(flag & (Qt$Qt$AlignRight | Qt$Qt$AlignLeft))
+@ 
+% A full list of the enumerated values caa n be teased out of the
 % \code{Qt\$Qt} object via
 % <<x, eval=FALSE>>=
 % ls(attr(Qt$Qt,"env"))

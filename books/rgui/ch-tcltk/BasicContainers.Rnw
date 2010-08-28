@@ -482,7 +482,8 @@ child.
 The function \function{tkgrid.size} will return the number of columns and rows of the specified parent container that is managed by a grid. This can be useful when trying to position child components through the options \code{row} and \code{column}.
 
 \paragraph{Forget}
-To remove a child from the parent, the \function{tkgrid.forget} function can be used with the child object as its argument.
+To remove a child from the parent, the \function{tkgrid.forget}
+function can be used with the child object as its argument.
 
 
 \begin{example}{Using \function{tkgrid} and \function{tkpack} to draw some world flags}{ex-tcltk-flags}
@@ -494,6 +495,9 @@ To remove a child from the parent, the \function{tkgrid.forget} function can be 
   \SweaveInput{ex-tcltk-toolbar.Rnw}
 \end{example}
 
+\begin{example}{Using \function{tkgrid} to layout a calendar}{ex-tkgrid-calendar}
+  \SweaveInput{ex-tcltk-grid-layout}
+\end{example}
 
 \section{Other containers}
 \label{sec:tcltk:other-containers}

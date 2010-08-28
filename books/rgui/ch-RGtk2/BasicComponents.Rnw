@@ -168,6 +168,10 @@ l$getParent()
 Every container supports removing a child with the
 \method{remove}{gtkWidget} method. The child can later be re-added
 using \method{packStart}{gtkBox}. For instance
+<<echo=FALSE, results=hide>>=
+g <- gtkHBox()
+for(i in 1:3) g$packStart(gtkButton(i))
+@ 
 <<remove-child-widget-3>>=
 b <- g[[3]]
 g$remove(b)                             # removed
@@ -601,7 +605,7 @@ pangoLabel <- gtkLabel()
 pangoLabel$setMarkup(paste("<span foreground='blue' size='x-small'>",
                            string, "</span>"))
 sapply(list(basicLabel, ellipsized, rightJustified, pangoLabel), 
-       gtkBoxPackStart, expand = TRUE, fill = TRUE)
+       function(i) g$packStart(i,  expand = TRUE, fill = TRUE))
 w$showAll()
 @ 
 \end{example}
@@ -917,7 +921,7 @@ sapply(radiogp, gtkBoxPackStart, object = g)
 @ 
 We can set and query which button is active, as follows:
 <<>>=
-l[[3]]$setActive(TRUE)           
+g[[3]]$setActive(TRUE)           
 sapply(radiogp, `[`, "active") 
 @ 
 Here is how we might register a callback for the \code{toggled} signal.
