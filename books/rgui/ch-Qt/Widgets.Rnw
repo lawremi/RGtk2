@@ -2,29 +2,42 @@
 
 \SweaveInput{Dialogs}
 
+%% MFL: Should probably use a similar organization to RGtk2. Except
+%% for the layouts and containers.
+
+%% MFL: Also, MVC is a software engineering concept. It might be
+%% better to divide things on a conceptual axis that is more
+%% interesting to statisticians. Like basic input controls and widgets
+%% that primarily display data. Besides, at some level every
+%% widget follows the MVC pattern.
 
 \XXX{Can labels have their text copied?}
 
 \section{Labels}
 \label{sec:labels}
 
+%% QLabel maps to both GtkLabel and GtkImage
+
 As seen in previous example, basic labels in \Qt{} are instances of
-the \class{QLabel} class. Labels primarily display text which can be
-passed to the constructor, or set via \method{setText}{QLabel}. Labels
-can show plain text or rich text, which allows markup in an HTML style.
-The label text can be cleared through \method{clear}{QLabel}.
-(Labels can also hold images, set by \method{setPixmap}{QLabel}.)
-
-
-Label text can be adjusted through several properties
+the \class{QLabel} class. Labels in \Qt{} are the primary means for
+displaying static text and images. Textual labels are the most common,
+and the constructor accepts a string for the text, which can be plain
+text or, for rich text, HTML. Here we use HTML to display red text:
+<<qt-widget-label>>=
+l <- Qt$QLabel("<font color='red'>Red</font>")
+@ 
+%
+The label text is stored in the \property{text}{QLabel} property.
+Properties relevant to text layout include:
 \property{alignment}{QLabel}, \property{indent}{QLabel} (in pixels),
-\property{margin}{QLabel} (with default of $0$ pixels), and
-\property{wordWrap}{QLabel} (with default \code{FALSE}).
+\property{margin}{QLabel}, and \property{wordWrap}{QLabel}.
 
+%% FIXME: perhaps merge the icon discussion into this section? It is
+%% not clear if we want to go into great detail about images in Qt. If
+%% we did, it would probably belong in a different chapter.
 
 <<echo=FALSE, results=hide>>=
 ## labels can use rich text
-l <- Qt$QLabel("<font color='red'>Red</font>")
 l$show(); l$raise()
 @ 
 
@@ -50,6 +63,11 @@ b$setEnabled(FALSE)
 <<echo=FALSE, results=hide>>=
 b$show(); b$raise()
 @ 
+
+%% A QPixmap is a server-side image, which makes it faster to display
+%% but slower to modify. QImage is client-side. QPixmap is to
+%% GdkPixmap as QImage is to GdkPixbuf. QPicture is a vectorized
+%% image, and QMovie represents animated images.
 
 The \class{QPixmap} class creates a means to represent an image on a
 paint device. One can create icons from pixmaps, and the
@@ -530,6 +548,7 @@ the signals \signal{editingFinished} and \signal{returnPressed} is due
 to the former being called only if a valid entry is given.
 
 
+%% FIXME: belongs in the MVC chapter
 
 \subsection{Completion}
 \label{sec:completion}
@@ -639,7 +658,7 @@ position and returns one of the validity states.
 
 
 
-
+%% FIXME: MVC chapter right?
 
 \section{Multi-line text}
 \label{sec:multi-line-text}

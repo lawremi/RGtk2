@@ -178,6 +178,8 @@ neither can be determined ``Intermediate.'' These values are actually
 integers, and in this case are stored within an enumeration in the
 \code{Qt\$QValidator} class.
 <<results=hide>>=
+## FIXME: should probably use an input mask to restrict the input to 
+## 0000-00-00, then use as.Date() here to validate the date.
 qsetMethod("validate", dateValidator, function(input, pos) {
   if(!grepl("^[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}$", input)) 
     return(Qt$QValidator$Intermediate)

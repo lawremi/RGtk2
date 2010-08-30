@@ -1,16 +1,29 @@
 %% Layout managers
 
+%% MFL: This contains both layout managers and containers. Kind of
+%% inconsistent with GTK+ chapter, where containers are included with
+%% basic controls. The distinction between layouts and container
+%% widgets should be made more clear. 
+
+%% The main window should be separate, like the GTK+ menu/action/dialog chapter.
+
 %% Overview
 \Qt{} provides a set of classes to faciliate the layout of child
 widgets of a component. These layout managers, derived from the
-\class{QLayout} class, are tasked with positioning of the child
-widgets, allocation of size to the child widgets, updating size when
-the parent is resized or when child widgets are hidden or
-removed. Unlike \GTK, where this management is tied to a container
-object, \Qt{} decouples the layout from the widget. 
+\class{QLayout} class, are tasked with determining the geometry of
+child widgets, according to a specific layout algorithm. Layout
+managers will generally update the layout whenever a parameter is
+modified, a child widget is added or removed, or the size of the
+parent changes. Unlike \GTK, where this management is tied to a
+container object, \Qt{} decouples the layout from the widget.
 
-In this chapter we discuss how to program GUI layouts. An alternative
-would be to use the \Qt{} Designer application to specify the layout.
+In this chapter we discuss how to program GUI layouts. 
+%% MFL: Qt designer reference seems distracting here. It's really for
+%% constructing a GUI, not just for specifying the layout. We should
+%% probably mention somewhere else. Also, if we mention Qt designer
+%% what about GtkBuilder?
+% An alternative
+% would be to use the \Qt{} Designer application to specify the layout.
 We begin with an example that shows many of the different types of layouts.
 
 \begin{example}{Using layout managers to mock up an interface}{eg:qt-layouts}
@@ -20,15 +33,14 @@ We begin with an example that shows many of the different types of layouts.
 \section{Box layouts}
 \label{sec:box-layouts}
 
-Box layouts arrange child widgets by packing in values horizontally
-(from left to right although right to left is possible) or
-vertical. The \constructor{QHBoxLayout} constructor provides a
-horizontal layout whereas \constructor{QVBoxLayout} provides a
-vertical one. Both of these classes subclass the \class{QBoxLayout}
-class where most of the functionality is documented.  The
-\method{direction}{QBoxLayout} property specifies how the layout is
-done. By default, this is left to right or top to bottom, but can be
-set (e.g., using \code{Qt\$Qt\$LeftToRight}).
+Box layouts arrange child widgets by packing in values horizontally or
+vertical. The \class{QHBoxLayout} class implements a horizontal layout
+whereas \class{QVBoxLayout} provides a vertical one. Both of these
+classes subclass the \class{QBoxLayout} class where most of the
+functionality is documented.  The \method{direction}{QBoxLayout}
+property specifies how the layout is done. By default, this is left to
+right or top to bottom, but can be set (e.g., using
+\code{Qt\$Qt\$LeftToRight}).
 
 %% adding child widget
 Child widgets are added to a box container through the
@@ -36,26 +48,45 @@ Child widgets are added to a box container through the
 child widget, but one can specify an integer value for \code{stretch}
 and an alignment enumeration.
 
-How size gets allocated to the widgets managed by a layout depends on
-many things. The \Qt{} documentation for layouts described this as
-follows.  A widget has methods \method{sizeHint}{QWidget} to provide
-the needed size for the widget. The default policy is that this is the
-preferred size, but it can be resized. One can change the policy
-through the \method{setSizePolicy}{QWidget} method. One sets the value
-for the horizontal and vertical sizing. Values are taken from the
-\qtenumeration{QSizePolicy} enumeration with possible values of
-\qcode{Fixed} (\code{Qt\$QSizePolicy\$Fixed}) for using the size hint;
-\qcode{Minimum}, for size hint being minimal and sufficient;
-\qcode{Maximum}, for the size hint being the maximal size;
-\qcode{Preferred}; \qcode{Expanding}, for able to expand to fill the
-space; \qcode{Ignored}, to ignore the size hint and give the widget
-all the possible space. For exmaple, a button, by default, will
-expand in the horizontal direction unless the size policy is
-adjusted:
+The allocation of space to child widgets depends on several
+parameters. Every widget returns a size hint to the layout from the
+the \method{sizeHint}{QWidget} method/property. The interpretation of
+the size hint depends on the \property{sizePolicy} property. The size
+policy is an object of class \class{QSizePolicy}. It contains a
+separate policy value, taken from the \qtenumeration{QSizePolicy}
+enumeration, for the vertical and horizontal directions. The possible
+size policies are:
+\begin{description}
+\item[Fixed] to require the size hint exactly,
+\item[Minimum] to treat the size hint as the minimum, allowing expansion,
+\item[Maximum] to treat the size hint as the maximum, allowing shrinkage,
+\item[Preferred] to request the size hint, but allow for either
+  expansion or shrinkage,
+\item[Expanding] to treat like \code{Preferred}, except the widget desires 
+  as much space as possible,
+\item[MinimumExpanding] to treat like \code{Minimum}, except the widget desires 
+  as much space as possible,
+\item[Ignored] to ignore the size hint and request as much space as possible.
+\end{description}
+As an example, consider \class{QPushButton}. It is the convention that
+a button will only allow horizontal, but not vertical, expansion. It
+also requires that its has enough space to display its entire
+label. Thus a \class{QPushButton} instance returns a size hint
+depending on the label dimensions and has the policies \code{Minimum}
+and \code{Fixed} as its horizontal and vertical policies,
+respectively. We could prevent a button from expanding at all:
 <<results=hide>>=
-b <- Qt$QPushButton("Stop the expansion")
+b <- Qt$QPushButton("No expansion")
 b$setSizePolicy(Qt$QSizePolicy$Fixed, Qt$QSizePolicy$Fixed)
 @   
+
+Thus, the sizing behavior is largely inherent to the widget, rather
+than any layout parameters. This is a major difference from \GTK,
+where a widget can only request a minimum size and all else depends on
+the parent container widget. The \Qt{} approach seems better at
+encouraging consistency in the layout behavior of widgets of a
+particular type.
+
 
 %% stretch
 Stretch factors are used to proportionally allocate space to widgets

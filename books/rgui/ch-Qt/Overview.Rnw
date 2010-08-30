@@ -1,57 +1,101 @@
 
+%% ML: I like the idea of a quick-start example up front, but it
+%% should probably come after the description of the Qt library.
+
 \section{An introductory example}
 \label{sec:qt-introductory-example}
 \SweaveInput{ex-qtbase}
 
-\section{Overview}
-\label{sec:overview}
+\section{The Qt library}
+\label{sec:qt-overview}
 
 \XXX{An overview of Qt, qtbase and its development, Flesh me out}
 
-\Qt{} is an open-sourced, cross-platform application and UI
-framework. Its history begins with Haavard Nord and Eirik Chambe-Eng
-in 1991, the Trolltech company until 2008, and now Nokia, a major
-cell-phone producer. While originally not an open-source project, it
-now has licensing under the LGPL that allows its use in open-source software.
+\Qt{} is an open-sourced, cross-platform application framework that is
+perhaps best known for its widget toolkit. The features of \Qt are
+divided into about a dozen modules. We highlight some of the more
+important and interesting ones:
+\begin{description}
+\item[Core] Basic utilties, collections, threads, I/O, ...
+\item[Gui] Widgets, models, etc for graphical user interfaces
+\item[OpenGL] Convenience layer (e.g., 2D drawing API) over OpenGL
+\item[Webkit] Embeddable HTML renderer (shared with Safari, Chrome)
+\end{description}
+Other modules include functionality for networking, XML, SQL
+databases, SVG, and multimedia. However, \R{} packages already
+provide many of those features.
 
-\Qt{} is developed in C++ with extensions. There are several languages
-with bindings to \Qt{} with \R{} being one through the \pkg{qtbase} and \pkg{qtpaint}
-packages. While these packages are quite new as compared to \pkg{tcltk} and
-\pkg{RGtk2}, they are included here, as Qt provides arguably the
-richest GUI environment from within \R{} will likely be the GUI
-toolkit of choice going forward.
+The history of \Qt{} begins with Haavard Nord and Eirik Chambe-Eng in
+1991, and follows with the Trolltech company until 2008, and now
+Nokia, a major cell-phone producer. While it was originally not
+available as open-source on every platform, as of version 4 it was
+released universally under the GPL. With the release of Qt 4.5, Nokia
+placed \Qt{} under the LGPL, so it is available for use in proprietary
+software, as well. Popular software developed with \Qt{} include the
+communication application Skype and the KDE desktop for Linux.
 
-\Qt{}, a commercially supported package, has excellent documentation
-of its API and has several examples of its use using C++.
+\Qt{} is developed in C++ with extensions that require a special
+preprocessor called the \dfn{Meta Object Compiler}
+(\acronym{MOC}). The MOC allows for convenient syntax in the
+definition of signals, slots (signal handlers), and properties, which
+behave very similarly to those of \GTK.
 
-\section{The \pkg{qtbase} package}
-\label{sec:pkgqtbase-package}
+There are many languages with bindings to \Qt{}, and \R{} is one such
+language. The \pkg{qtbase} package interfaces with every module
+of \Qt. As its name suggests, \pkg{qtbase} forms the base for a number
+of \R{} packages that provide high-level special-purpose interfaces to
+\Qt{}. As these are still early in development, they will not be
+mentioned here.
 
-The \pkg{qtbase} provides the primary interface between \R{} and the
-underlying \Qt{} libraries, provided the latter are installed. The
-\Qt{} framework is available as a binary install from
+While \pkg{qtbase} is not yet as mature as \pkg{tcltk} and
+\pkg{RGtk2}, we include it in this book, as \Qt{} compares favorably
+to \GTK{} in terms of GUI features and excels in several areas,
+including its fast graphics canvas and integration of the WebKit web
+browser.~\footnote{There is a \GTK{} WebKit port, but it is not
+  included with \GTK{} itself.} In addition, \Qt{}, as a commercially
+supported package, has thorough documentation of its API, including
+many C++ examples. However, the complexity of C++ and Qt may present
+some challenges to the \R{} user. In particular, the developer should
+have a strong grounding in object-oriented programming and have a
+basic understanding of memory management.
+
+The \pkg{qtbase} package is developed as part of the
+\textit{qtinterfaces} project at R Forge:
+\url{https://r-forge.r-project.org/projects/qtinterfaces/}. It depends
+on the \Qt{} framework, available as a binary install from
 \url{http://qt.nokia.com/}.
 
-The package exports very few items. The main one is an environment,
-\Qt, that contains the bulk of the functionality.~\footnote{ \XXX{Is
-    this a footnote, or a main item? I put here but am not sure} The
-  \code{Qt} object provides a binding between a library and an \R{}
-  object. There are others, and these all inherit from the
-  \class{RQtLibrary} class which in turn inherits from
-  \class{environment}. As such, these library objects can be used
-  where environments are, such as with \function{ls} or \function{\$}.
-} The components of this environment are class objects that represent
-an actual C++ class, an \R{} derivative or a C++ namespace.  For
-example, the \code{QWidget} class being represented through the
-component \code{Qt\$QWidget}.
+\section{Classes and objects}
+\label{sec:qt-classes-objects}
 
-These components inherit from class \class{RQtClass}
+The \pkg{qtbase} package exports very few objects. The central one is
+an environment, \code{Qt}, that represents the \Qt{} library in
+\R.~\footnote{ The \code{Qt} object is an instance of
+  \class{RQtLibrary}. The \pkg{qtbase} package provides infrastructure
+  for binding any conventional C++ library, even those independent of
+  \Qt. Third party packages can define their own \class{RQtLibrary}
+  object for some other library.  }  The components of this
+environment are \class{RQtClass} objects that represent an actual C++
+class or namespace.  For example, the \code{QWidget} class is
+represented by \code{Qt\$QWidget}:
 <<qtwidget-class>>=
-class(Qt$QWidget)
+Qt$QWidget
 @ 
 
-As well, they inherit from the \class{functions} class, as they serve as constructors
-for instances of the class. For example
+An \class{RQtClass} object contains methods in the class
+scope (\textit{static} methods in C++), enumerations defined by the
+class, and additional \class{RQtClass} objects representing nested
+classes or namespaces. Here we list some of the components of
+\class{QWidget} and access one of the enumeration values:
+<<>>=
+head(names(Qt$QWidget), n = 3)
+Qt$QWidget$DrawChildren
+@ 
+%
+Most importantly, however, an instance of \class{RQtClass} is in fact
+an \R{} \class{function} object, and serves as the constructor of
+instances of the class. For example, we could construct an instance of
+\code{QWidget}:
 <<qwidget-object>>=
 w <- Qt$QWidget()
 @ 
@@ -62,110 +106,426 @@ class inheritance structure of \Qt:
 class(w)
 @ 
 %
-The base class, \class{RQtObject}, is also an environment and the
-properties and methods for this instance of the \Qt{} class that are
-available from within \R{} comprise its components. For \code{w} the
-first few listed using \function{ls}:
+The base class, \class{RQtObject}, is an environment containing
+the the properties and methods of the instance. For \code{w}, we list
+the first few using \function{ls}:
 <<eval=FALSE>>=
-ls(w)
-@ 
-<<echo=FALSE>>=
-head(ls(w), n=6)
+head(ls(w))
 @ 
 
 Properties and methods are accessed from the environment in the usual
-manners available. The most convenient extractor is the \code{\$}
-operator, but \code{[[} and \code{get} will also work. (With the
-\code{\$} operator at the command line, completion works.) The
-properties may be accessed like a component of an environment. For
+manner. The most convenient extractor is the \code{\$}
+operator, but \code{[[} 
+% ]]
+and \code{get} will also work. (With the
+\code{\$} operator at the command line, completion works.) For
 example, a \code{QWidget} has a \code{windowTitle} property which is
-used when the widget draws itself with a window. The following shows
-how this property can be accessed and set.
+used when the widget draws itself with a window:
 <<windowTitle>>=
 w$windowTitle
 w$windowTitle <- "a new title"
 w$windowTitle
 @ 
 
-However, properties in \Qt{} are best set through
-setter methods. In this case, we have the setter
-\method{setWindowTitle}{QWidget} available
-<<windowTitleMethod, results=hide>>=
-w$setWindowTitle("an even newer title")
-@ 
-
-Setter methods are typically named with the word "set" followed by the
-property name, all written in lower camel case, the convention \Qt{} uses
-for its properties and method. (Class names are in upper camel case.)
-
+Although \Qt{} defines methods for accessing properties, the \R{} user
+will normally invoke methods that perform some action. For example, we
+could show our widget:
+<<hide>>=
+w$show()
+@
+%
 
 The environment structure of the object masks the fact that the
-properties and 
-methods may be defined in a parent class of the object. For example, a
-button widget is provided by the \code{QPushButton} constructor, as in
+properties and methods may be defined in a parent class of the
+object. For example, a button widget is provided by the
+\code{QPushButton} constructor, as in
 <<pushButton>>=
 b <- Qt$QPushButton()
 @ 
-This too has a \code{windowTitle} property, but this is inherited from
-the fact that the \class{QPushButton} subclasses the \class{QWidget}
-class, as may be seen from:
+%
+\class{QPushButton} extends \class{QWidget} and thus inherits the
+properties like \code{windowTitle}:
 <<pushbutton-class>>=
 head(class(b), n=3)
+b$windowTitle
 @ 
-
-The reason this distinction  is important to know, is that the documentation for
-the method will be found with the class where the method is defined, not
-in the subclass. As there is no easy way even to tell the signature of
-these methods, being able to consult the documentation is crucial.
-
+%
+It is important to realize this distinction when referencing the
+documentation. As with \GTK, the methods are documented with the class
+that declares the method.
 
 
-\subsection{Constructors}
+\section{Methods and dispatch}
 
-As mentioned, the class name is the same as the constructor, but
-constructors may have different signatures. For example, a simple push
-button can be produced in several different ways:
+In C++, it is possible to have multiple methods and constructors with
+the same name, but different signatures. This is called
+\dfn{overloading}. An overloaded method is roughly similar to an S4
+generic, save the obvious difference that an S4 generic does not
+belong to any class. The selected overload is that with the signature
+that best matches the types of the arguments. The exact rules of
+overload resolution are beyond our scope.
+
+It is particularly common to overload constructors. For example, a
+simple push button can be constructed in several different ways. Here
+again is the invocation of the \class{QPushButton} constructor with no
+arguments:
 <<>>=
 b <- Qt$QPushButton()
 @ 
-
-\Qt{} allows one to specify a parent object at construction time,
-although generally this happens when the widget is added to a
-layout. The child gets added to the list of children of the parent
-thereby creating an object heirarchy. This allows such things as the
-communication between components during resizing of layouts or the
-automatic deletion of ancestors when a parent widget is
-destroyed. This happens by assigning \code{NULL} as a parent.
-
+%
+By convention, all classes derived from \class{QObject}, including
+\class{QWidget}, provide a constructor that accepts a parent
+\class{QObject}. This has important consequences that are discussed
+later. We demonstrate this for \class{QPushButton}:
 <<constructor-parent>>=
 w <- Qt$QWidget()
-b <- Qt$QPushButton(parent=w)
+b <- Qt$QPushButton(w)
 @ 
-
-In addition, there are convenience constructors. To set the text
-property for a button, one can pass the value to the \code{text} argument:
+%
+An alternative constructor for \class{QPushButton} accepts the text
+for the label on the button:
 <<constructor-text>>=
-b <- Qt$QPushButton(text="Button text")
-@ 
-We used a named argument, but the matching is done by position and type
-of object.
-
+b <- Qt$QPushButton("Button text")
+@
+%
 Buttons may also have icons, for example
 <<constructor-icon-parent>>=
-i <- Qt$QIcon(system.file("images/ok.gif", package="gWidgets"))
-b <- Qt$QPushButton(icon=i, text="Ok")
+icon <- Qt$QIcon(system.file("images/ok.gif", package="gWidgets"))
+b <- Qt$QPushButton(icon, "Ok")
+@ 
+%
+We have passed three different types of object as the
+first argument to \function{Qt\$QPushButton}: a \class{QWidget}, a
+string, and finally a \class{QIcon}. The dispatch depends on only on
+the type of argument, unlike the constructors in \pkg{RGtk2}, which
+dispatch based on which arguments are specified.
+
+\section{Properties}
+\label{sec:properties}
+
+Every \class{QObject}, which includes every widget, may declare a set
+of properties that represent its state. We list some of the available
+properties for our button:
+<<list-properties>>=
+head(qproperties(b))
+@
+%
+As shown in the table, every property has a type and logical settings
+for whether the property is readable and/or writeable. Virtually every
+property value may be read, and it is common for properties to be
+read-only. For example, we can fully manipulate the \code{objectName}
+property, but our attempt to modify the \code{modal} property fails: 
+<<modal-property>>=
+b$objectName <- "My button"
+b$objectName
+b$modal
+try(b$modal <- TRUE)
+@ 
+
+\Qt{} provides accessor methods for getting and setting
+properties. The getter methods have the same name as the property, so
+they are masked at the \R{} level. Setter methods are available and
+are typically named with the word "set" followed by the property name:
+<<windowTitleMethod, results=hide>>=
+b$setObjectName("My button")
+@ 
+% 
+However, it is recommended to use the replacement syntax shown in the
+previous example, for the sake of symmetry.
+
+\section{Signals}
+
+\Qt{} in C++ uses an architecture of signals and slots to have
+components communicate with each other. A component emits a signal
+when some event happens, such as a user clicking on a button. \Qt{}
+allows one to define a special type of method known as a slot in
+another component (or the same) that can be connected to the signal as
+the handler. The two components are decoupled as the emitter does not
+need to know about the receiver except through the signal
+connection. In \R{}, any function can be treated as a slot and
+connected as a signal handler. This is similar to the signal handling
+in \pkg{RGtk2}. The function \function{qconnect} establishes the
+connection of an R function to a signal. For example
+<<results=hide>>=
+b <- Qt$QPushButton("click me")
+qconnect(b, "clicked", function() print("ouch"))
+b$show()
+@ 
+
+Signals are defined by a class and are inherited by
+subclasses.  Here, we list some of the available signals for the
+\class{QPushButton} class:
+<<qt-signals-list>>=
+tail(qsignals(Qt$QPushButton))
+@ 
+%
+The signal definition specifies the callback signature, given in the
+\code{signature} column. Like other methods, signals can be overloaded
+so that there are multiple signatures for a given signal name. Signals
+can also have default arguments, and arguments with a default value
+are optional in the signal handler. We see this for the \code{clicked}
+signal, where the \code{bool} (logical) argument, indicating whether
+the button is checked, has a default value of \code{FALSE}. The
+\code{clicked} signal is automatically overloaded with a signature
+without any arguments.
+
+The \function{qconnect} function attempts to pick the correct
+signature by considering the number of formal arguments in the
+callback. When two signatures have the same number of arguments, one
+will be chosen arbitrarily. To connect to a specific signature, the
+full signature, rather than only the name, should be passed to
+qconnect. For example, the following is equivalent to the invocation
+of \function{qconnect} above:
+<<qt-signals-qconnect-sig>>=
+qconnect(b, "clicked(bool)", function(checked) print("ouch"))
+@ 
+
+Any object passed to the optional argument
+\argument{user.data}{qconnect} is passed as the last argument to the
+signal handler. The user data serves to parameterize the callback.
+
+The \code{qconnect} function returns a dummy \class{QObject} instance
+that provides the slot that wraps the \R{} function. This dummy object
+can be used with the \method{disconnect}{QObject} method on the
+sender to break the signal connection:
+<<qt-signals-disconnect>>=
+proxy <- qconnect(b, "clicked", function() print("ouch"))
+b$disconnect(proxy)
+@ 
+
+One can block all signals from being emitted with
+the \method{blockSignals}{QObject} method, which takes a logical value
+to toggle whether the signals should be blocked.
+
+Unlike \GTK, \Qt{} widgets generally do not emit hardware events, such
+as a mouse press, via signals. Instead, a method in the widget is
+invoked upon receipt of an event. The developer is expected to extend
+the widget and override the method to catch the event. The apparent
+philosophy of \Qt{} is that hardware events are low-level and thus
+should be handled by the widget, not some other instance. We will
+discuss extending classes in Section~\ref{sec:defin-class-meth}.
+Example~\ref{eg:qt-dnd} demonstrates handling widget events.
+
+\section{Enumerations and flags}
+\label{sec:qt-enums}
+
+Often, it is useful to have discrete variables with more than two
+states, in which case a logical value is no longer sufficient.  For
+example, the label widget has a property for how its text is
+aligned. It supports the alignment styles left, right, center, top,
+bottom, etc. \Qt{} defines enumerations within the relevant class or,
+for global enumerations, in the \code{Qt} namespace. Here are examples
+of both:
+<<Enumeration-example>>=
+Qt$Qt$AlignRight
+Qt$QSizePolicy$Exanding
+@
+% 
+The first is the value for right alignment from the
+\qtenumeration{Alignment} enumeration in the \code{Qt} namespace,
+while the second is from the \qtenumeration{Policy} enumeration in the
+\class{QSizePolicy} class.
+
+Although these enumerations can be specifed as integers, they are
+given the class \class{QtEnum} and have the overloaded operators
+\OR{} and \AND{} to combine values bitwise. This makes the most
+sense when the values correspond to bit flags, as is the case for the
+alignment style. For example, aligning text in label in the upper
+right can be done through
+<<alignexample, results=hide>>=
+l <- Qt$QLabel("Our text")
+l$alignment <- Qt$Qt$AlignRight | Qt$Qt$AlignTop
+@ 
+%
+To check if the alignment is to the right, we could write:
+<<>>=
+as.logical(flag & Qt$Qt$AlignRight)
+@ 
+
+\section{Defining Classes and Methods}
+\label{sec:defin-class-meth}
+
+As \Qt{} is a implemented in an object-oriented language, C++, the
+designers of the API expect the developer to extend \Qt{} classes,
+like \class{QWidget}, during the normal course of GUI
+development. This is a significant difference from \GTK, where it is
+only necessary to extend classes when one needs to fundamentally alter
+the behavior of a widget. The \pkg{qtbase} package allows the \R{}
+user to extend C++ classes in order to enhance the features of \Qt.
+
+We will demonstrate this functionality by example.  In the
+introductory example \XXX{reference} we saw this minimal use of
+\function{qsetClass}. Our aim is to extend the \code{QValidator}
+class to restrict the input in a text entry (\code{QTextEdit}) to a
+valid date. The first step is to declare the class, and then methods
+are added individually to the class definition, in an analogous manner
+to the \pkg{methods} package. We start by declaring the class:
+<<DateValidatorSnippet,results=hide, eval=FALSE>>=
+qsetClass("DateValidator", Qt$QValidator)
+@ 
+% 
+The class name is given as \code{DateValidator} and it extends the
+\code{QValidator} class in \Qt. Note that only single inheritance is
+supported.
+
+As a side-effect of the call to \function{qsetClass}, a variable
+named \code{DateValidator} has been assigned into the global
+environment (the scoping is similar to \function{methods::setClass}):
+<<list-validator-class>>=
+DateValidator
+@ 
+% 
+To define a method on our class, we call the \function{qsetMethod}
+function:
+<<validate, echo=FALSE>>=
+validateDate <- function(input, pos) {
+  if(!grepl("^[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}$", input)) 
+    return(Qt$QValidator$Intermediate)
+  else  if(is.na(as.Date(input, format="%Y-%m-%d"))) 
+    return(Qt$QValidator$Invalid)
+  else 
+    return(Qt$QValidator$Acceptable)
+}
+@ 
+<<qsetMethod>>=
+qsetMethod("validate", DateValidator, validateDate)
+@ 
+% 
+The virtual method \code{validate} declared by \class{QValidator} has
+been overriden by the \class{DateValidator} class.  The
+\function{validateDate} function implements the override and has
+been defined invisibly for brevity.
+
+As \class{DateValidator} is an \class{RQtClass} object, we can create
+an instance by invoking \function{DateValidator} like any other
+\code{function}:
+<<construct-validator>>=
+validator <- DateValidator()
+@ 
+% 
+Now that we have our validator, we can use it with a text entry:
+<<text-entry>>=
+e <- Qt$QLineEdit()
+v <- DateValidator(e)
+e$setValidator(v)
+e$show()
+@ 
+
+%% FIXME: This seems strange. There's an ErrorLabel that extends a
+%% line edit, but it is really neither a label nor a line edit. 
+%% Would be cool to do something like place an icon within the line
+%% edit that has a tooltip with the error message.
+
+\begin{example}{A ``error label''}{eg:qt-error}
+  A common practice when validation is used for text entry is to have
+  a ``buddy label.'' That is an accompanying label to set an error
+  message. As \Qt{} uses ``buddy'' for something else, we call this an
+  ``error label'' below. We show how to implement such a widget in
+  \pkg{qtbase} where we define a new type of widget that combines a
+  \class{QTextEdit} and the \class{QLabel} for reporting errors. 
+  
+  This demonstrates the definition of a custom constructor for an \R{}
+  class.  The \R\/ function implementing the constructor must be passed
+  during the call to \Rfunction{qsetClass}:
+<<ErrorLabel, results=hide>>=
+qsetClass("ErrorLabel", Qt$QLineEdit, 
+          function(text, parent=NULL, message="") {
+            super(parent)
+            
+            this$widget <- Qt$QWidget()           # for attaching
+            this$error <- Qt$QLabel()             # set height=0
+            this$error$setStyleSheet("* {color: red}")  # set color
+            
+            
+            lyt <- Qt$QGridLayout()               # layout
+            lyt$setVerticalSpacing(0)
+            lyt$addWidget(this, 0, 0, 1, 1)
+            lyt$addWidget(error, 1, 0, 1, 1)
+            this$widget$setLayout(lyt)
+            
+            if(nchar(message) > 0)
+              setMessage(message)
+            else
+              setErrorHeight(FALSE)
+            if(!missing(text)) setText(text)
+          })
+@
+
+By convention, every widget in \Qt\/ accepts its parent as an argument
+to its constructor. Via \Rfunction{super}, the parent is passed to the
+base class constructor and on up the hierarchy. The \Rfunction{super}
+function does not exist outside the scope of a constructor (or
+method). Within a constructor, \Rfunction{super} invokes the
+constructor of the parent (super) class, with the given
+arguments. Within a method implementation, \Rcode{super} will call a
+method (named in the first parameter) in the parent class (see
+Example~\ref{eg:qt-dnd}).
+
+In addition to the call to \function{super}, we define a
+\class{QWidget} instance to contain the line edit widget and its
+label. These are placed within a grid layout. The use of \code{this}
+refers to the object we are creating. The new method
+\meth{setErrorHeight} is used to flatten the height of the label when
+it is not needed and is defined below.  The final line sets the
+initial text in the line edit widget. The \R{} environment where
+\method{setText}{QLineEdit} is defined is extended by the environment
+of this constructor, so no prefix is needed in the call.
+
+  The \code{widget} component is needed to actually show the widget. We
+  create an accessor method:
+<<ErrorLabel-Example>>=
+qsetMethod("widget", ErrorLabel, function() widget)
 @ 
 
 
-It \Qt{}, the class name prefaced with a tilde is the destructor for a
-widget, but in \pkg{qtbase} it suffices to assign \code{NULL} as the
-parent through \method{setParent}{QWidget}
-<<destructor, results=hide>>=
-b$setParent(NULL)
+  We extend the API of the line edit widget for this sub class to modify
+  the message. We define three methods, one to get the message, one to
+  set it and a convenience function to clear the message.
+<<results=hide>>=
+qsetMethod("message", ErrorLabel, function() error$text)
+qsetMethod("setMessage", ErrorLabel, function(msg="") {
+  if(nchar(msg) > 0)
+    error$setText(msg)
+  setErrorHeight(nchar(msg) > 0)
+})
+qsetMethod("clear", ErrorLabel, function()  setMessage())
 @ 
 
-\subsection{Common methods for QWidgets and QObjects}
+Finally, we define the method to set the height of the label, so that
+when there is no message it has no height. We use a
+combination of setting both the minimum and maximum height.
+<<results=hide>>=
+qsetMethod("setErrorHeight", ErrorLabel, function(do.height=FALSE)  {
+  if(do.height) {
+    m <- 18; M <- 100
+  } else {
+    m <- 0; M <- 0
+  }
+  error$setMinimumHeight(m)
+  error$setMaximumHeight(m)
+})
+@ 
+
+To use this widget, we have the extra call to \code{widget()} to
+retrieve the widget to add to a GUI. In the following, we just show
+the widget.
+<<results=hide>>=
+e <- ErrorLabel()
+w <- e$widget()                # get widget to show
+w$show()                       # to view widget
+e$setMessage("A label")        # opens message
+e$clear()                      # clear message, shrink space
+@ 
+\end{example}
+
+
+%% ML: In my opinion, this material is best embedded within the
+%% discussion of the available widgets, especially the top-level
+%% window and layouts.
+
+\section{Common methods for QWidgets and QObjects}
 \label{sec:comm-meth-qwidg}
+
 The widgets we discuss in the sequel inherit many properties and
 methods from the base \class{QObject} and \class{QWidget} classes. The
 \class{QObject} class is the base class and forms the basis for the
@@ -267,7 +627,7 @@ then resetting the geometry with \method{setGeometry}{QWidget}, or
 directly through the same method when integer values are given for the
 arguments.
 
-<<ChangeGeometry, results=hid>e>=
+<<ChangeGeometry, results=hide>>=
 w <- Qt$QWidget()
 rect <- w$frameGeometry
 rect$width()
@@ -296,64 +656,8 @@ The method \method{update}{QWidget} is used to request a repainting of a widget
 and the method \method{updateGeometry}{QWidget} is used to notify any
 layout manager that the the size hint has changed.
 
-
-
-\subsection{Properties and enumerations}
-\label{sec:properties}
-
-As mentioned, widget properties are set via setters. For example a
-button may be drawn ``flat'' to remove the typical beveling indicating
-it is a button. The method \method{setFlat} accepts a logical
-indicating if the button is to be ``flat.''
-
-Often there can be more than two states for a property, in which case
-values other than logical ones must be used. For example, the
-label widget (among others) has a property for how its text is
-aligned. For alignment there are options left, right, center, 
-top, bottom, etc. Such values are stored in an enumeration in
-the \code{Qt\$Qt} class object, or for some widgets the \class{RQtClass}
-object. An enumeration uses powers of $2$ so that a single number can
-easily represent multiple values.
-A flag is a combination of enumerations. For example, 
-alignment values are from the \qtenumeration{AlignmentFlag}
-enumeration and right alignment is specified by:
-<<Enumeration-example>>=
-Qt$Qt$AlignRight
-@ 
-%
-Whereas, the size policy enumeration are in the \class{QSizePolicy}
-class and these are in the \code{Qt\$QSizePolicy} object:
-<<>>=
-Qt$QSizsePolicy$Exanding
-@ 
-%
-Although these enumerations can be specifed as integers, in
-\pkg{qtbase} they are of class \class{QtEnum} and have the overloaded
-operator \OR{}, to combine values, and \AND{} to check if a value
-exists in a flag. (The \OR{} operator essentially adds
-the values.) For example, aligning text in label in the upper right
-can be done through
-<<alignexample, results=hide>>=
-l <- Qt$QLabel("Our text")
-flag <- Qt$Qt$AlignRight | Qt$Qt$AlignTop
-l$setAlignment(flag)
-@ 
-To check if a value is in the flag, we have something like:
-<<>>=
-as.logical(flag & (Qt$Qt$AlignRight | Qt$Qt$AlignLeft))
-@ 
-% A full list of the enumerated values caa n be teased out of the
-% \code{Qt\$Qt} object via
-% <<x, eval=FALSE>>=
-% ls(attr(Qt$Qt,"env"))
-% @ 
-% <<echo=FALSE>>=
-% x <- ls(attr(Qt$Qt,"env"))
-% x <- x[1:4]; x[5] <- "..."
-% x
-% @ 
-
-
+%% ML: seems like fonts and styles can be introduced on-the-fly - not a
+%% core concept.
 
 \subsection{Fonts}
 \label{sec:fonts}
@@ -436,213 +740,8 @@ b$setStyleSheet(ssheet)
 \XXX{HTML markup for labels!}
 
 
-
-%% http://doc.trolltech.com/4.6/signalsandslots.html
-\section{Signals}
-\Qt{} in C++ uses an architecture of signals and slots to have
-components communicate with each other. A component emits a
-signal when some event happens, such as a user clicking on a
-button. \Qt{} allows one to register a slot in another component (or the
-same) that will be passed information when the signal is emitted. The
-two components are decoupled as the emitter does not need to know about
-the receiver except through the coupling. In \R{}, this isn't quite
-the case. A function takes the role of a slot (similar then to how
-\pkg{RGtk2} works via callbacks) and is called when the the signal is emitted. The
-function \function{qconnect} does the work. For example
-<<results=hide>>=
-b <- Qt$QPushButton("click me")
-qconnect(b, "clicked", function(checked) print("ouch"))
-b$show()
-@ 
-The signal names are defined within a class or inherited through subclasses. Sometimes
-the callback has arguments.~\footnote{One advantage of the signal-slot
-architecture is the type-checking of arguments.} The \signal{clicked} signal used above
-inherits from \class{QAbstractButton}, which also is a base class for
-check boxes. As such, this signal passes in information if the button
-is checked. 
-
-The optional argument \argument{user.data}{qconnect} can be used to specify data to
-parameterize the callback. This data is passed in through the last
-argument. 
-
-
-%% How to list all signals? (API only?)
-%% How to find out signature of signal call?
-
-\XXX{disconnect not (yet?) implemented}
-
-The \code{qconnect} function has no return value. In \pkg{RGkt2} the
-return value is used to remove a callback. For \Qt{}, the
-\method{disconnect}{QObject} method can be used to remove connections
-with some degree of granularity, but this method is not
-implemented in \pkg{qtbase}. Rather, one can block all signals from being emitted with
-the \method{blockSignals}{QObject} method, which takes a logical value
-to toggle whether the signals should be blocked.
-
-
-In addition to signals, \Qt{} widgets can also have event handlers for
-various events. For example, the button may have event handlers for
-things such as \code{mouseMoveEvent}. In C++ one uses virtual function
-(functions defined for instances), but in \R{} these are implemented
-as methods of sub-classes in \R. That is, you define a subclass, and
-then implement the desired methods, such as
-\function{mouseMoveEvent}. This  will be illustrated in
-Example \ref{eg:qt-dnd}.
-
-
-\section{Defining Classes and Methods}
-\label{sec:defin-class-meth}
-
-\XXX{I think I have this all wrong, but wanted to get a start}
-
-The \pkg{qtbase} package allows the \R{} user the ability to define
-classes and subclasses to extend the features of \Qt, as deemed
-necessary. Classes are related to the constructor that produces an
-instance of the class. In \R{} classes are implemented as functions
-along with static methods in an environment. This is done with a bit
-of \R{} voodoo and carried out when the base constructor is defined.
-
-The \function{qsetClass} creates a new subclass and defines the
-constructor. The signature includes the arguments \argument{x}{qsetClass} to specify
-the name of the new class; \argument{parent}{qsetClass} to specify the
-class the new class will be a subclass of (for example,
-\code{Qt\$QWidget} -- the class, not the constructor, so no parentheses); 
-\argument{constructor}{qsetClass} to specify the function used for
-construction; and a \argument{where}{qsetClass} argument to override where the
-class is defined. When \function{qsetClass} is called, a variable is
-assigned into the global environment (with scoping similar to \function{methods::setClass}.
-
-
-In the introductory example \XXX{reference} we saw this minimal use of
-\function{qsetClass}.
-<<DateValidatorSnippet,results=hide, eval=FALSE>>=
-qsetClass("dateValidator", Qt$QValidator, function(parent = NULL) {
-  super(parent)
-})
-@ 
-%
-Here we see \code{dateValidator} is the new class name, a sub-class of
-the \code{QValidator} class. The constructor has a single call to
-\function{super}. The \function{super}
-function does not exist outside the scope of a constructor or a
-method. Within a constructor, \function{super} invokes the
-constructor of the parent (super) class, with the given
-arguments. Whereas, within a method implementation, \code{super} will
-call a method (named in the first parameter) in the parent class.
-
-Within the body of the constructor and a method, the variable
-\code{this} is a reference to the instance of the class and the
-inherited method names are also attached, so need not be referenced
-through the \$\/ notation.
-
-
-To define a method for a class the \function{qsetMethod} function is
-used. This overrides the virtual method for the class. The signature
-includes \code{name}, for the new name; \code{class}, for the class
-being extended; and \code{FUN} to define the method. The dispatch
-happens on the class and method name, not on the signature of the
-method. In addition, there is an argument
-\argument{access}{qsetMethod} to specify if the method is
-\qcode{public} (the default), \qcode{protected}, or \qcode{private}.
-
-
-Within the method, the special \function{super} function can be used
-to call the next method, if the sub class overrides a method. An
-example is in Example~\ref{eg:qt-dnd}. The basic call looks like
-\code{super(meth\_name, arg1, arg2, ...)}.
-
-
-
-
-\begin{example}{A ``error label''}{eg:qt-error}
-  A common practice when validation is used for text entry is to have
-  a ``buddy label.'' That is an accompanying label to set an error
-  message. As \Qt{} uses ``buddy'' for something else, we call this an
-  ``error label'' below. We show how to implement such a widget in
-  \pkg{qtbase} where we subclass the single-line text edit widget
-  constructed by \class{QLineEdit}. We begin by defining our subclass
-  and constructor
-<<ErrorLabel, results=hide>>=
-qsetClass("ErrorLabel", Qt$QLineEdit, 
-          function(text, parent=NULL, message="") {
-  super(parent)
-  
-  this$widget <- Qt$QWidget()           # for attaching
-  this$error <- Qt$QLabel()             # set height=0
-  this$error$setStyleSheet("* {color: red}")  # set color
-
-  
-  lyt <- Qt$QGridLayout()               # layout
-  lyt$setVerticalSpacing(0)
-  lyt$addWidget(this, 0, 0, 1, 1)
-  lyt$addWidget(error, 1, 0, 1, 1)
-  this$widget$setLayout(lyt)
-
-  if(nchar(message) > 0)
-    setMessage(message)
-  else
-    setErrorHeight(FALSE)
-  if(!missing(text)) setText(text)
-})
-@
-
-In addition to the call to \function{super}, we define a
-\class{QWidget} instance to contain the line edit widget and its
-label. These are placed within a grid layout. The use of \code{this}
-refers to the object we are creating. The new method
-\meth{setErrorHeight} is used to flatten the height of the label when
-it is not needed and is defined below.  The final line sets the
-initial text in the line edit widget. The \R{} environment where
-\method{setText}{QLineEdit} is defined is extended by the environment
-of this constructor, so no prefix is needed in the call.
-
-The \code{widget} component is needed to actually show the widget. We
-create an accessor method for this
-<<ErrorLabel-Example>>=
-qsetMethod("widget", ErrorLabel, function() widget)
-@ 
-
-
-We extend the API of the line edit widget for this sub class to modify
-the message. We define three methods, one to get the message, one to
-set it and a convenience function to clear the message.
-<<results=hide>>=
-qsetMethod("message", ErrorLabel, function() error$text)
-qsetMethod("setMessage", ErrorLabel, function(msg="") {
-  if(nchar(msg) > 0)
-    error$setText(msg)
-  setErrorHeight(nchar(msg) > 0)
-  })
-qsetMethod("clear", ErrorLabel, function()  setMessage())
-@ 
-
-Finally, we define the method to set the height of the label, so that
-when there is no message it has no height. We use a
-combination of setting both the minimum and maximum height.
-<<results=hide>>=
-qsetMethod("setErrorHeight", ErrorLabel, function(do.height=FALSE)  {
-  if(do.height) {
-    m <- 18; M <- 100
-  } else {
-    m <- 0; M <- 0
-  }
-  error$setMinimumHeight(m)
-  error$setMaximumHeight(m)
-})
-@ 
- 
-To use this widget, we have the extra call to \code{widget()} to
-retrieve the widget to add to a GUI. In the following, we just show
-the widget.
-<<results=hide>>=
-e <- ErrorLabel()
-w <- e$widget()                # get widget to show
-w$show()                       # to view widget
-e$setMessage("A label")        # opens message
-e$clear()                      # clear message, shrink space
-@ 
-\end{example}
-
+%% ML: This is an advanced topic that probably belongs somewhere else,
+%% like at the end of the basic components section.
 
 \section{Drag and drop}
 \label{sec:drag-drop}
