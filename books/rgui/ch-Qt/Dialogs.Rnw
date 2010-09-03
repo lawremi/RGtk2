@@ -15,16 +15,40 @@ perhaps additional informative text and or detailed text. In addition
 it may have a standard icon and buttons. \Qt{} implements these in the
 \class{QMessageBox} class, a sub class of \class{QDialog}.
     
-\Qt{} provide two ways to create a message box. There are static
-functions where all properties are specified as arguments to the
-constructor, for example \qcode{warning} (in
-\code{Qt\$QMessageBox\$warning}). We prefer the basic constructor, and
-then to set properties through methods defined for the instance,
-although the other approach can be simpler.
+\Qt{} provide two ways to create a message box. The simplest approach
+is to call a static convenience method. The alternative, described
+later, involves creating a dialog object, configuring it, and
+presenting it to the user. This offers more control at a cost of
+convenience. Here we take the simple path for presenting a warning dialog:
+<<qt-dialogs-static-warning, eval=FALSE>>=
+response <- Qt$QMessageBox$warning(parent = NULL, title = "Warning!", 
+                                   text = "Warning message...")
+@
+%
+This blocks the flow of the program until the user responds and
+returns the standard identifier for the button that was clicked. In
+this case, there is only a single button, \qcode{QMessageBox\$Ok}. The
+dialog is \textit{modal}, meaning that the user cannot interact with
+the \qcode{parent} window until responding. If the \qcode{parent} is
+\qcode{NULL}, as in this case, input to all windows is blocked.  The
+dialog is automatically positioned near its parent, and if the parent
+is destroyed, the dialog is destroyed, as well. Additional arguments
+specify the available buttons/responses and the default response. We
+have relied on the default values for these.
 
-For such use, a dialog is constructed by defining an instance.  The
-\code{parent} is used to position the new dialog. If specified, the
-new dialog will be placed near the parent.  After specifying the
+For more control over the appearance and behavior of the dialog, we
+will take a more gradual path. First, we construct an instance of
+\class{QMessageBox}. It is possible to specify several properties at
+construction. Here is how one might construct a warning dialog:
+<<qt-dialogs-construct>>=
+dlg <- Qt$QMessageBox(icon = Qt$QMessageBox$Warning,
+                      title = "Warning!",
+                      text = "Warning text...",
+                      buttons = Qt$QMessageBox$Ok,
+                      parent = NULL)
+@ 
+
+After specifying the
 desired properties, the dialog is shown. There are two ways to do
 so. Calling the \method{open}{QDialog} method do so in modeless
 way. Invoking the dialog this way does not block the user input,
@@ -44,7 +68,6 @@ methods called.
 The \class{QMessageBox} class can be quite simply used. Here we popup
 a message and move one, once the dialog is dismissed.
 <<QMessageBox, eval=FALSE>>=
-dlg <- Qt$QMessageBox()
 dlg$setText("Click to dismiss")
 dlg$exec()
 @ 
