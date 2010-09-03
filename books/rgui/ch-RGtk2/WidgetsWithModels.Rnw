@@ -184,8 +184,7 @@ every column in the data frame. Here, we reconstruct the view, inserting
 a view column for every column in the data frame, i.e., the model.
 <<rgtk2-mvc-insert-all-columns>>=
 view <- gtkTreeView(model)
-f <- function(...) view$insertColumnWithAttributes(...)
-mapply(f,  -1, colnames(model), 
+mapply(view$insertColumnWithAttributes,  -1, colnames(model), 
        list(gtkCellRendererText()), text = seq_len(ncol(model)) - 1)
 @ 
 %
@@ -283,10 +282,9 @@ the first row and to visit each row in sequence:
 <<rgtk2-mvc-iter-traverse>>=
 iter <- model$getIterFirst()
 manufacturer <- character()
-flag <- iter$retval
-while(flag) {
+while(iter$retval) {
   manufacturer <- c(manufacturer, model$get(iter$iter, 0)[[1]])
-  flag <- model$iterNext(iter$iter)
+  model$iterNext(iter$iter)
 }
 @ 
 %
@@ -379,7 +377,7 @@ selection$setMode("single")
 
 <<echo=FALSE>>=
 vc <- gtkTreeViewColumn()
-view$insertColumnWithAttributes(0, "title", gtkCellRendererText(), text = 0)
+view$insertColumnWithAttributes(vc, 0, "title", gtkCellRendererText(), text = 0)
 ## pack in GUI
 sw <- gtkScrolledWindow()
 sw$add(view)

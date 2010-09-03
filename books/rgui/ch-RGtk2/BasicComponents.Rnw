@@ -605,7 +605,7 @@ pangoLabel <- gtkLabel()
 pangoLabel$setMarkup(paste("<span foreground='blue' size='x-small'>",
                            string, "</span>"))
 sapply(list(basicLabel, ellipsized, rightJustified, pangoLabel), 
-       function(i) g$packStart(i,  expand = TRUE, fill = TRUE))
+       g$packStart, expand = TRUE, fill = TRUE))
 w$showAll()
 @ 
 \end{example}
