@@ -1,0 +1,312 @@
+This example shows how to create a custom model to edit a data
+frame. The performance is much less responsive than that provided by
+\class{qdataFrameModel}, as the bulk of the operations are done at the
+\R{} level. We speed things up a bit, by placing column headers into
+the first row of the table, and not in the expected place. The
+numerous calls to a \meth{headerData} method implemented in \R\/
+proved to be quite slow.
+
+<<echo=FALSE>>=
+## Create a model for displaying a data frame -- like qdataFrameModel -- only
+## with more Qt-like control over the display of columnms
+## The key methods are data(), setData() and flags()
+##
+## For performance reasons,
+## we avoid header Data and put variable names in first row!
+library(qtbase)
+@ 
+
+Our basic constructor simply creates a \prop{dataframe} property and
+sets the data frame.
+<<DfModel, results=hide>>=
+qsetClass("DfModel", Qt$QAbstractTableModel, function(df=data.frame(V1=character(0)), parent=NULL) {
+  super(parent)
+  ## properties
+  this$dataframe <- NULL
+
+  setDf(df)
+})
+@ 
+We needs accessor for the \prop{dataframe} property. When setting a
+new one, we call the \meth{dataChanged} method to notify any views of
+a change.
+<<results=hide>>=
+qsetMethod("Df", DfModel, function() dataframe)
+qsetMethod("setDf", DfModel, function(df) {
+  this$dataframe <- df
+  dataChanged(index(0, 0), index(nrow(df), ncol(df)))
+})
+@ 
+
+All subclass of \class{QAbstractTableModel} must implement a few
+methods, here we do \meth{rowCount} and \meth{columnCount} using the
+dimensions of the current data frame.
+<<results=hide>>=
+qsetMethod("rowCount", DfModel, function(index) nrow(this$Df()) + 1)
+qsetMethod("columnCount", DfModel, function(index) ncol(this$Df()))
+@ 
+
+The \meth{data} method is the main method to implement. We wish to
+customize the data display based on the class of the variable
+represented in a column. We implement this with S3 methods. We define
+several. For example, to change the display role we have the following.
+
+<<displayRoleMethod, results=hide>>=
+displayRole <- function(x, row, context) UseMethod("displayRole")
+displayRole.default <- function(x, row, context) sprintf("%s", x[row])
+displayRole.numeric <- function(x, row, context) sprintf("%.2f", x[row])
+displayRole.integer <- function(x, row, context) sprintf("%d", x[row])
+@ 
+
+We see that numeric values are formatted to have $2$ decimal
+points. By setting the display role, we can store numeric data with
+all its digits, so that we can edit the entire value, but have values
+formatted along the decimal point.  The \code{context} argument is
+shown to indicate how to make the number of digits context sensitive.
+
+<<echo=FALSE, results=hide>>=
+## Not shown
+## text alignment to indicate to user different types of numeric values
+textAlignmentRole <- function(x, row, context) UseMethod("textAlignmentRole")
+textAlignmentRole.default <- function(x, row, context) Qt$Qt$AlignCenter
+textAlignmentRole.integer <- function(x, row, context) Qt$Qt$AlignRight
+textAlignmentRole.numeric <- function(x, row, context) Qt$Qt$AlignRight
+
+## sets the background color
+## returns a QBrush object
+backgroundRole <- function(x, row, context) UseMethod("backgroundRole")
+backgroundRole.default <- function(x, row, context) Qt$QBrush(Qt$QColor(0,0,0,0)) # transparent
+backgroundRole.factor <- function(x, row, context) Qt$QBrush(Qt$QColor("yellow"))
+
+##' Size hint role
+##' XXX Doesn't get called
+sizeHintRole <- function(x, row, context) UseMethod("sizeHintRole")
+sizeHintRole.default <- function(x, row, context) {
+  sz <- max(sapply(x, function(i) nchar(as.character(i))))
+  avg <- Qt$QFontMetric(Qt$QFont())$averageCharWidth()
+  Qt$QSize(sz*avg, sample(c(25L, 50L), 1))
+}
+
+## some text for a toolkitp
+toolTipRole <- function(x, row, context) UseMethod("toolTipRole")
+toolTipRole.default <- function(x, row, context)
+  sprintf("Value in vector with class %s", paste(class(x), collapse=","))
+toolTipRole.factor <- function(x, row, context) {
+  x <- levels(x)
+  n <- length(x)
+  p <- 6
+  q <- n %/% p
+  r <- n %% p
+  l <- paste(paste(apply(matrix(x[1:(p*q)], byrow=T, ncol=6), 1, paste, collapse=","), collapse=",\n"),
+        paste(x[(n-r+1):n], collapse=","), sep=",\n")
+  sprintf("Factor with levels:\n%s", l)
+}
+toolTipRole.logical <- function(x, row, context) sprintf("Logical vector")
+
+whatsThisRole <- toolTipRole
+@ 
+
+The main \meth{data} has this basic structure (we avoid showing the
+cases for all the different roles.
+<<eval=FALSE>>=
+qsetMethod("data", DfModel, function(index, role) {
+  d <- this$Df()
+  row <- index$row()
+  col <- index$column() + 1
+
+  if(role == Qt$Qt$DisplayRole) {
+    if(row > 0)
+      displayRole(d[,col], row)
+    else
+      names(d)[col]
+  } else if(role == Qt$Qt$EditRole) {
+    if(row > 0)
+      as.character(d[row, col])
+    else
+      names(d)[col]
+  } else {
+    NULL
+  }
+})
+@ 
+
+<<data,echo=FALSE, results=hide>>=
+## this is not shown in text, but is the definition of the data method
+qsetMethod("data", DfModel, function(index, role) {
+  d <- this$Df()
+  row <- index$row()
+  col <- index$column() + 1
+
+  
+  if(role == Qt$Qt$DisplayRole) {
+    if(row > 0)
+      displayRole(d[,col], row)
+    else
+      names(d)[col]
+  } else if(role == Qt$Qt$EditRole) {
+    if(row > 0)
+      as.character(d[row, col])
+    else
+      names(d)[col]
+  } else if(role == Qt$Qt$TextAlignmentRole) {
+    if(row > 0)
+      textAlignmentRole(d[, col], row)
+    else
+      Qt$Qt$AlignCenter | Qt$Qt$AlignTop
+  } else if(role == Qt$Qt$BackgroundRole) {
+    if(row > 0)
+      backgroundRole(d[, col], row)
+    else
+      Qt$QBrush(Qt$QColor("gray"))
+  } else if(role == Qt$Qt$ForegroundRole) {
+    if(row == 0)
+      Qt$QBrush(Qt$QColor("white"))
+  } else if(role == Qt$Qt$ToolTipRole) {
+    if(row > 0)
+      toolTipRole(d[,col], row)
+    else
+      ""
+  } else if(role == Qt$Qt$WhatsThisRole) {
+    if(row > 0)
+      whatsThisRole(d[,col], row)
+    else
+      ""
+  } else if(role == Qt$Qt$SizeHintRole) {
+    if(row > 0)
+      sizeHintRole(d[,col], row)
+    else
+      NULL
+  } else {
+    NULL
+  }
+})
+@ 
+
+To allow the user to edit the values we need override the \meth{flags}
+method to return \code{ItemIsEditable} in the flag, so that any views
+are aware of this ability.
+
+<<results=hide>>=
+qsetMethod("flags", DfModel, function(index) {
+  if(!index$isValid()) {
+    return(Qt$Qt$ItemIsEnabled)
+  } else {
+    curFlags <- super("flags", index)
+    return(curFlags | Qt$Qt$ItemIsEditable)
+  }
+})
+@ 
+
+
+To edit cells we need to implement a method to set data once edited
+The trick is that value is a character, so we coerce to the right type
+for the column it is in. We do this with an S3 method. For example we
+have this (among others):
+
+<<fitIn, results=hide>>=
+fitIn <- function(x, value) UseMethod("fitIn")
+fitIn.default <- function(x, value) value
+fitIn.numeric <- function(x, value) as.numeric(value)
+@ 
+
+<<notShown, echo=FALSE, results=hide>>=
+## more methods for fit in
+fitIn.integer <- function(x, value) as.integer(value)
+fitIn.logical <- function(x, value) {
+  if(toupper(value) %in% c("T","F","TRUE","FALSE")) {
+    as.logical(value)
+  } else {
+    as.logical(as.numeric(value))
+  }
+}
+@ 
+
+The \meth{setData} is responsible for taking the value from the
+delegate and assigning it into them model, we use the \code{fitIn}
+function unless it is a column header.
+<<results=hide>>=
+qsetMethod("setData", DfModel, function(index, value, role) {
+
+  if(index$isValid() && role == Qt$Qt$EditRole) {
+    d <- this$Df()
+    row <- index$row()
+    col <- index$column() + 1
+
+    if(row > 0) {
+      x <- d[, col]
+      d[row, col] <- fitIn(x, value)
+    } else {
+      names(d)[col] <- value
+    }
+    this$dataframe <- d
+    dataChanged(index, index)
+
+    return(TRUE)
+  } else {
+     super("setData", index, value, role)
+  }
+})
+@ 
+
+For a data frame editor, we may wish to extend the API for table of
+items to be \R{} specific. This method allows one to replace a column
+of values.
+
+<<results=hide>>=
+qsetMethod("setColumn", DfModel, function(col, value) {
+  ## pad with NA if needed
+  n <- nrow(this$Df())
+  if(length(value) < n)
+    value <- c(value, rep(NA, n - length(value)))
+  value <- value[1:n]
+  d <- this$Df()
+  d[,col] <- value
+  this$dataframe <- d                   # only notify about this column
+  dataChanged(index(0, col-1), index(rowCount()-1, col-1))
+  return(TRUE)
+})
+@ 
+
+We implement a method similar to the \meth{insertColumn} method, but
+specific to our task. Since we may add a new column, we call the
+"begin" and "end" methods to notify any views.
+<<addColumn, results=hide>>=
+qsetMethod("addColumn", DfModel, function(name, value) {
+  d <- this$Df()
+  if(name %in% names(d)) {
+    return(setColumn(min(which(name == names(d))), value))
+  }
+  
+  beginInsertColumns(Qt$QModelIndex(), columnCount(), columnCount())
+  d <- this$Df()
+  d[[name]] <- value
+  this$dataframe <- d
+  endInsertColumns()
+  return(TRUE)
+})
+@                
+
+To test this out, we define a model and set it in a view.
+
+<<results=hide>>=
+model <- DfModel(mtcars)
+
+view <- Qt$QTableView()
+view$setModel(model)
+@ 
+
+Finally, we customize the view by defining what triggers the delegate for
+editing and hide the row and column headers.
+<<customizeView,results=hide>>=
+triggerFlag <- Qt$QAbstractItemView$DoubleClicked | 
+               Qt$QAbstractItemView$SelectedClicked |
+               Qt$QAbstractItemView$EditKeyPressed
+view$setEditTriggers(triggerFlag)
+
+view$verticalHeader()$setHidden(TRUE)
+view$horizontalHeader()$setHidden(TRUE)
+@ 
+<<echo=FALSE, results=hide>>=
+view$show()
+view$raise()
+@ 

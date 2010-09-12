@@ -1,7 +1,3 @@
-<<>>=
-
-@ 
-
 To get a small feel for how one programs a GUI using \pkg{qtbase}, the
 \R{} package that interfaces \R{} with the \Qt{} libraries, we show
 how to produce a simple dialog to collect a date from a user.

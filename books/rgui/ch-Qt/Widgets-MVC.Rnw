@@ -6,35 +6,70 @@
 The model-view-controller architecture adds a complexity to widgets
 that is paid in order to create more flexible and efficient use of
 resources. Keeping the model separate from the view allows multiple
-views for the same data. It also allows view to be efficient when
+views for the same data. It also allows views to be more responsive when
 there are large data sets involved. The basic MVC architecture has a
 controller to act as a go-between for a model and its views. In \Qt,
-this an item in a model has a delegate that allows the user to see and
-perhaps edit the item's data within a view. Although delagates can be
-redefined, we are content to use those provided by \Qt. 
+this is different, an item in a model has a delegate that allows the user to see and
+perhaps edit the item's data within a view. Although custome delagates can be
+defined, we are content to use those provided by \Qt. 
 
 We discuss in the following various views: comboboxes, list views,
 table views and tree views. These are all familiar. The primary
 difficulty with using backend models is the specification and
-interaction with the model.
+interaction with the model. For the simplest usages, \Qt{} provides a
+set of convenience classes where the items and views are coupled.
+
 
 Models in \Qt{} are derived from the \class{QAbstractItemModel} class,
 although there are standard sub-classes for list, table and
 heirarchical models (\class{QStringListModel},
 \class{QAbstractListModel}, \class{QAbstractTableModel}, and
-\class{QStandardItemModel}). The \pkg{qtbase} package provides the
-\constructor{qdataFrameModel} constructor to provide an mapping from a
-data frame to an item model. 
+\class{QStandardItemModel}). In addition, the \pkg{qtbase} package
+provides the \constructor{qdataFrameModel} constructor to provide an
+mapping from a data frame to an item model.
 
 %% items, roles
 A model is comprised of items, each having an associated index. Items
-have associated data which may vary based on the role the item is
-playing. For example, one role describes the data for display whereas
-another role describes the data to be shown for a tooltip. Both
-descriptions, and others, are stored in the item's data. For the
-\constructor{qdataFrameModel} these roles are encoded as additional,
-specially named columns in the data frame. For simple usages, \Qt{}
-provides a set of convenience classes where the items and views are coupled.
+have associated data which may vary based on the role
+(Table~\ref{tab:qt:enum:itemDataRole}) the item is playing. For
+example, one role describes the data for display whereas another role
+describes the data for editing.  This allows a numeric item, to be
+displayed with just a few digits, but edited with all of them. Both
+descriptions, and others, are stored in the item's data and set
+through the \meth{setData} method.
+For the \constructor{qdataFrameModel} constructor these roles are
+encoded as additional, specially named, columns in the data frame.
+
+
+<<echo=FALSE, results=tex>>=
+df <- rbind(
+            c("\\code{DisplayRole}", "How data is displayed (\\class{QString})"),
+            c("\\code{EditRole}", "Data for editing (\\class{QString})"),
+            c("\\code{ToolTipRole}", "Displayed in tooltip (\\class{})"),
+            c("\\code{StatusTipRole}", "Displayed in status bar (\\class{})"),
+            c("\\code{SizeHintRole}", "Size hint for views (\\class{QSize})"),
+            c("\\code{DecorationRole}", " (\\class{QColor}, \\class{QIcon}, \\class{QPixmap})"),
+            c("\\code{FontRole}", "Font for default delegate (\\class{QFont})"),
+            c("\\code{TextAlignmentRole}", "Alignment for default delegate (\\qtenumeration{Qt::AlignmentFlag})"),
+            c("\\code{BackgroundRole}", "Background for default delegate (\\class{QBrush})"),
+            c("\\code{ForegroundRole}", "Foreground for default delegate (\\class{QBrush})"),
+            c("\\code{CheckStateRole}", "Indicates checked state of item (\\qtenumeration{Qt::CheckState})")
+            )
+            colnames(df) <- c("Constant","Description")
+            cat(booktabs(df,
+                         colTypes=c("l","p{0.7\\textwidth}"),
+                         caption="Partial list of roles that an item can hold data for and the class of the data."),
+                label="tab:qt:enum:itemDataRole")
+@
+
+
+An item has several properties that are described by the
+\qtenumeration{Qt::ItemFlag} enumeration. These indicate whether an
+item is selectable (\code{ItemIsSelectable}), editable
+(\code{ItemIsEditable}), enabled (\code{ItemIsEnabled}), checkable
+(\code{ItemIsCheckable}) etc. The \method{flags}{QAbstractItemModel}
+returns the flag recording combinations of these.
+
 
 
 
@@ -492,10 +527,10 @@ and row can be found with the methods \method{column}{QTableWidget}
 and \method{row}{QTableWidget}
 
 \paragraph{Item flags}
-Items may have several different properties: are they editable,
-draggable, ... To specify, one sets an items flags with values taken
-from the \qtenumeration{Qt::ItemFlag} enumeration. The possible values
-are: \qcode{NoItemFlags}, \qcode{ItemIsSelectable},
+As mentioned, items may have several different properties: are they
+editable, draggable, ... To specify, one sets an items flags with
+values taken from the \qtenumeration{Qt::ItemFlag} enumeration. The
+possible values are: \qcode{NoItemFlags}, \qcode{ItemIsSelectable},
 \qcode{ItemIsEditable}, \qcode{ItemIsDragEnabled},
 \qcode{ItemIsDropEnabled}, \qcode{ItemIsUserCheckable},
 \qcode{ItemIsEnabled}, and \qcode{ItemIsTriState} (has three check
@@ -596,10 +631,114 @@ which is called when the selection changes.
 \end{example}
 
 
+
+\subsection{A Tree Widget}
+\label{sec:tree-widget}
+
+The \constructor{QTreeWidget} provides a tree view based on a coupled
+tree model. It is used in a manner similar to the table widget,
+however, one must adjust for the heiarchical nature of the data it can display.
+The widget shows a specific number of columns, which is specified via
+\method{setColumnCount}{QTreeWidget}. The column headers are set through
+\method{setHeaderLabels}{QTreeWidget} by specifying a vector of column
+names. 
+
+
+%% items
+\paragraph{Tree Widget Items}
+The widget organizes itself through items, with each item having $1$
+or more columns.  The items in the tree widget are instances of the
+\class{QTreeWidgetItem} class. An item displays a value in each
+column. The method \method{setText}{QTreeWidgetItem} takes two
+arguments, an integer specifying a column, and a value to
+display. Similarly, other such item methods require one to specify the
+column. These methods include:
+\method{setTextAlignment}{QTreeWidgetItem},
+\method{setFont}{QTreeWidgetItem},
+\method{setToolTip}{QTreeWidgetItem},
+\method{setStatusTip}{QTreeWidgetItem}, and
+\method{setIcon}{QTreeWidgetItem}. To retrieve these values, the
+method \method{data}{QTreeWidgetItem} takes a column number and a
+role, such as \code{Qt\$Qt\$DisplayRole} to get the text.
+
+
+%% heiarchy
+\paragraph{Heirarchy}
+A tree is used to represent a heiarchy. The items have several methods
+related to this. Each item has a \method{parent}{QTreeWidgetItem}
+method pointing to the parent item, or \code{NULL} if a top-level
+item. The method
+\method{child}{QTreeWidgetItem} returns the child item, specified by
+index. The index of a given item in the parent is returned by
+\method{indexOfChild}{QTreeWidgetItem}. The total number of children
+for an item is returned by \method{childCount}{QTreeWidgetItem}. 
+
+New child items are added with either with
+\method{addChild}{QTreeWidgetItem}, adding at the end; or
+\method{insertChild}{QTreeWidgetItem} adding the child item at the
+specified index. Child items are removed by the
+\method{removeChild}{QTreeWidgetItem} method or the
+\method{takeChild}{QTreeWidgetItem}, if specifying by index. The
+latter returns the item to be reparented if desired.
+
+The view can be made to show if a child is present by
+calling  \method{setChildIndicatorPolicy}{QTreeWidgetItem} with a
+value of \code{Qt\$QTreeWidgetItem\$ShowIndicator} (or one of
+\code{DontShowIndicator} or
+\code{DontShowIndicatorWhenChildless}).
+
+When an item has children and an indicator is shown, the view may be
+expanded by clicking on this indicator. The method
+\method{isExpanded}{QTreeWidgetItem} returns \code{TRUE} if
+expanded. This state can be set via
+\method{setExpanded}{QTreeWidgetItem}.  The methods
+\method{setDisabled}{QTreeWidgetItem} and
+\method{setHidden}{QTreeWidgetItem} are also available to disable or
+hide an item.
+
+
+
+%% heiarchchy
+The tree widget itself also has methods related to the heirarchy. For
+the tree widget, there is an invisible root item, returned by
+\method{invisibleRootItem}{QTreeWidget}. The children of this root
+item are the ``top-level'' items, These are added through
+\method{addTopLevelItem}{QTreeWidget} or the
+\method{insertTopLevelItem}{QTreeWidget} methods, the latter requiring
+an index to specify where. The basic idea is that a top-level item is
+prepared, along with its heirarchy, then added.
+
+
+
+%% selection
+\paragraph{Selection}
+The currently selected item is returned by
+\method{currentItem}{QTreeWidget} and may be specified by item view
+\method{setCurrentItem}{QTreeWidget}. For more multiple selection, see
+the discussion on selection models~\ref{para:selection-models}. 
+
+
+
+%% signals
+\paragraph{Signals}
+The widget emits several signals, most passing the item and the column
+to the handler. Some useful signals are \signal{itemClicked},
+\signal{itemDoubleClicked}, \signal{itemExpanded}, and
+\signal{itemActivated} (for clicking or the \kbd{Enter} key).
+
+
+\begin{example}{A workspace browser}{eg:qt-workspace-browser}
+  \SweaveInput{ex-qt-treewidget}
+\end{example}
+
+
 \section{Item models and their views}
 \label{sec:using-model-with}
 
-
+In this section, we consider models and their views decoupled from
+each other. We focus our discussion to tabular data, although we note
+that \Qt{} provides various means to provide models for heiarchical
+data.
 
 
 
@@ -607,50 +746,199 @@ which is called when the selection changes.
 \label{ssec:using-data-frame}
 
 For tabular data a model can be made quite easily with the constructor
-\constructor{qdataFrameModel}. This function maps a data frame to the
-model. The data frame can contain role information. This is provided
-by adding additional columns with a specific naming convention. A
-column with name \code{a} can have its role information specified with
-another column with name \code{.a.ROLE} where \code{ROLE} is one of
-available roles, such as \code{"display"} (the default),
-\code{"decoration"}, \code{"edit"}, \code{"toolTip"},
-\code{"statusTip"}, or  \code{"textAlignment"}. 
+\constructor{qdataFrameModel} provided by \pkg{qtbase}. This function maps a data frame to the
+model, returning an instance of class \class{DataFrameModel} a
+subclass of \class{QAbstractTableModel}.
+
+The default role is for display of the data. Other roles can be
+defined by adding additional columns with a specific naming
+convention. A column with name \code{a} can have its role information
+specified with another column with name \code{.a.ROLE} where
+\code{ROLE} is one of available roles, such as \code{"decoration"}, \code{"edit"}, \code{"toolTip"},
+\code{"statusTip"}, or \code{"textAlignment"}.
 
 The following illustrates a basic usage. We use a \class{QTableView}
 instance for a view. The model is connected to the view through its
 \method{setModel}{QTableView} method.           
 
-<<results=hide>>=
-df <- data.frame(a=1:3, 
-                 b=1:3, .b.toolTip=state.name[1:3],
-                 c=1:3, .c.textAlignment=rep(Qt$Qt$AlignRight, 3),
-                 stringsAsFactors=FALSE)
-rownames(df) <- state.name[1:3]
-
-model <- qdataFrameModel(df)
-
-view <- Qt$QTableView()
-view$setModel(model)
-@ 
-
-<<echo=FALSE, results=hide>>=
-view$show(); view$raise()
-@ 
+\begin{example}{Using \constructor{qdataFrameModel} to list variables
+    in a data frame}{eg:qt-list-variables}
+  \SweaveInput{ex-qt-qdataFrameModel}
+\end{example}
 
 
 
-
-\subsection{Table models}
+\subsection{Table Models}
 \label{ssec:table-models}
 
-\ssection{Standard item models}
-\label{ssec:standard-item-models}
+The \constructor{qdataFrameModel} creates a subclass of
+\class{QAbstractTableModel}, itself of subclass of
+\class{QAbstractItemModel}. One can subclass
+\class{QAbstractTableModel} to provide a custom model for a view.
+This may be useful in different instances, for example, if the cell
+columns need to be computed dynamically or if editing of cells is
+desired.
 
+
+%% index
+Before discussing methods that must be implemented, we mention some
+useful inherited methods.  For a table model, items are organized by
+row and column. This allows one to easily refer to an item by
+index. The inherited \method{index}{QAbstractTableItem} method uses $0$-based
+row and column arguments to return a \class{QModelIndex}
+instance. In turn, this index instance has methods \method{row}{QModelIndex}
+and \method{column}{QModelIndex} for getting back the coordinate information.
+
+%% match and sort
+The \method{match}{QAbstractItemModel} can be used to return items in
+a column that match a specific string for a given role. The column is
+specified by a model index, the role by one of the
+\qtenumeration{Qt::ItemDataRole} enumeration. The
+\qtenumeration{Qt:::MatchFlag} specifies how the matching is to
+occur. Matches are returned as a list of indices.
+
+The \method{sort}{QAbstractItemModel} method can be used to sort the
+data by the values in a column. The column is specified by its index,
+and the order is one of \code{Qt\$Qt\$AscendingOrder} or \code{Qt\$Qt\$DescendingOrder}.
+
+
+\paragraph{Required methods}
+The basic implementation of a subclass must provide the methods for
+\meth{rowCount}, \meth{columnCount}, and \meth{data}.  The first two
+describe the size of the table for any views, the third describes to
+the view how to display data for a given role. The signature for the
+\meth{data} method is \code{(index, role)}. The \code{index} value, an
+instance of \class{QModelIndex}, has methods \meth{row} and
+\meth{column}, whereas \code{role} is one of the roles defined in the
+\qtenumeration{Qt::ItemDataRole} enumeration. This method should
+return the appropriate value for the given role. For example, if one
+is displaying numeric data, the \code{display} role might format the
+numeric values (showing a fixed number of digits say), yet the
+\code{edit} role might display all the digits so accuracy is not
+lost. If a role is not implemented, a value of \code{NULL} should be
+returned, as this is mapped to a null instance of \class{QVariant}.
+
+One may also implement the \meth{headerData} method to return the
+appropriate data to display in the header for a given role. The main
+one is \code{display}.
+
+\paragraph{Editable Models}
+For editable models, one must implement the \meth{flags} method to
+return a flag containing \code{ItemIsEditable} and the \meth{setData}
+method. This has signature \code{(index, value, role)} where
+\code{value} is a character string containing the edited value. When a
+value is updated, one should call the \meth{dataChanged} method to
+notify the views that a portion of the model is changed. This method
+takes two indices, together specifying a rectangle in the table.
+
+
+To provide for resizable tables, \code{Qt} requires one to call some
+functions so that any connected views can be notified. For example, an
+implemented \meth{insertColumns} should call \meth{beginInsertColumns}
+before adding the column to the model and then \meth{endInsertColumns}
+just after.
 
 
 \subsection{Table views}
 \label{ssec:table-views}
 
-\subsection{Tree views}
-\label{ssec:tree-views}
+A table model is typically displayed through the \class{QTableView}
+widget, although one can use the model -- first column only -- with \class{QListView} or even
+\class{QComboBox}. A custom view is also possible, as illustrated
+later. The table view widget inherits from \class{QAbstractItemView}
+which provides the method \method{setModel}{QAbstractItemView} to link
+the underlying model with a view. This link passes along information
+about the model being changed back to the view to process and connects
+the delegates that allow one to edit values in the view and have the
+changes propogate back to the model.
+
+Once, connected, the table view can have its properties adjusted to
+control its appearance. For example, columns (and rows) may be hidden
+or shown through the \method{setColumnHidden}{QTreeView} method. Their
+widths can be adjusted by the mouse, or through
+\method{setColumnWidth}{QTreeView}. The grid style can be adjusted
+through \method{setGridStyle}{QTreeView}.
+
+The view may allow sorting of the underlying model. This is enabled
+through \method{setSortingEnabled}{QTreeView}. The method
+\method{sortByColumn}{QTreeView} can be called specifying the column
+and a sort order (e.g. \code{Qt\$Qt\$AscendingOrder}).
+  
+
+\paragraph{Headers}
+The table view has headers, horizontal ones for the columns and
+vertical ones for the rows. The methods
+\method{verticalHeader}{QTreeView} and
+\method{horizontalHeader}{QTreeView} return instances of the
+\class{QHeaderView} class. This class has many methods. We mention
+\method{setHidden}{QHeaderView}, to suppress the header display;
+\method{showSortIndicator}{QHeaderView}, to display a sort arrow; and
+\method{setStretchLastSection}, to strech the last section to fill the
+space. For tree views, this is \code{TRUE} for horizontal headers but
+not for table views.
+
+\paragraph{Selection Models}
+\label{para:selection-models}
+
+%% selection mode
+The type of selection possible is determined by the
+\property{selectionMode}{QAbstractItemView} of the view, the options for which are enumerated in
+\qtenumeration{QAbstractItemView::SelectionMode}. Typical values are
+\code{SingleSelection} or \code{ExtendedSelection}, which allows one
+to extend their selection by pressing the \kbd{Control} or \kbd{Shift} keys while
+selecting. 
+
+%% selection model
+For abstract item views, the underlying selection is handled by a
+selection model, which is found in the \code{selectionModel}
+property. The \class{QItemSelectionModel} can return the current
+selection by rows through \method{selectedRows}{QItemSelectionModel}
+(with an argument to specify the column to check), columns
+(\method{selectedColumns}{QItemSelectionModel}) or by index with
+\method{selectedIndexes}{QItemSelectionModel}. In each case, a list of
+model indices is returned. The method \meth{row} and \meth{column} are
+useful then.  The selection model allows one specify if the selection
+will apply to the entire row or column of if selection is cell by
+cell. This is done through the selection flags
+(\qtenumeration{QItemSelectionModel::SelectionFlag})
+
+
+%% setting selection
+The selection can be updated programattically through the
+\method{setCurrentIndex}{QItemSelectionModel} method. The index and a
+selection flag must be given. The latter enumerated in
+\qtenumeration{QItemSelectionModel::SelectionFlag}, with values such
+as \code{Select}, to select the item; \code{Deselect}, \code{Clear};
+\code{Toggle}; and \code{Rows} and \code{Columns} to select the entire
+range.
+
+The selection model emits a few signal, notable
+\signal{selectionChanged} is emitted when a new selection is made.
+
+
+
+
+\begin{example}{Using a custom model to edit a data frame}{eg:qt-editable-data}
+  \SweaveInput{ex-qt-edit-data-frame}
+\end{example}
+
+\subsection{Custom Views}
+\label{sec:custom-views}
+
+One can write a custom view for a model. In the example, we show how
+to connect a label's text to the values in a column of a model. The
+base class for a view of an item model is
+\class{QAbstractItemView}. This class has many methods -- that can be
+overridden -- to cover keyboard, mouse, scrolling, selection etc. Here
+we focus on just enough for our example.
+
+\begin{example}{A label that updates as a model is updated}{eg:qt-custom-view}
+  \SweaveInput{ex-qt-custom-view}
+\end{example}
+
+
+\XXX{Should we illustrate a tree model? I don't have a good example to
+  do right now and this section is getting a bit long.}
+%% \subsection{Tree models}
+%% \label{sec:tree-models}
 

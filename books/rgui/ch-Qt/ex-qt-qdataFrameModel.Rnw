@@ -1,0 +1,59 @@
+<<echo=FALSE, results=hide>>=
+## Example of using qdataFrameModel including setting some roles
+library(qtbase)
+library(MASS)
+@ 
+
+This example will show how to use \constructor{qdataFrameModel} to
+create a means to select a variable from a data frame. We will use a
+built-in data set for this.
+<<>>=
+nms <- names(Cars93)
+d <- data.frame("Variables"=nms, stringsAsFactors=FALSE)
+@ 
+
+We will add an icon for decoration. To do so, we create a list of
+icons for each of the classes represented in the variables we
+have. Here we use some images from the \pkg{gWidgets} package.
+
+<<results=hide>>=
+icons <- sapply(c("factor", "numeric"), function(i) {
+  Qt$QPixmap(system.file(sprintf("images/%s.gif",i), package="gWidgets"))
+})
+icons$integer <- icons$numeric
+@ 
+
+To add the icons as a decoration, we simply assign to the
+appropriately named component of our data frame. Data frames can store
+such data, although the default print method does not work. 
+<<results=hide>>=
+d$.Variables.decoration <- sapply(nms, function(i) icons[class(Cars93[[i]])])
+@ 
+
+Similarly, we set an informative tooltip for each variable:
+<<results=hide>>=
+d$.Variables.toolTip <- sapply(nms, function(i) capture.output(str(Cars93[[i]])))
+@ 
+
+
+We now define a model and associate it with a view. In this example we
+use a \class{QListView} instance, although in most uses of this model
+we would use the \class{QTableView} class. We discuss views later in
+Section~\ref{ssec:table-views}.
+<<>>=
+model <- qdataFrameModel(d)
+view <- Qt$QListView()
+view$setModel(model)
+@ 
+
+For the list view, we have a few properties to adjust, in this case we
+highlight alternating rows as follows:
+<<results=hide>>=
+view$setAlternatingRowColors(TRUE)
+@ 
+
+<<echo=FALSE,results=hide>>=
+## not shown
+view$show()
+view$raise()
+@ 

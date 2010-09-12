@@ -1,0 +1,236 @@
+<<echo=FALSE, results=hide>>=
+## use QTreeWidget to make workspace browser
+require(qtbase)
+@ 
+
+This example shows how to use the tree widget item to display a
+snapshot of the current workspace. Each object in the workspace maps
+to an item, where recursive objects with names will have their
+components represented in a heiarchical manner. 
+
+When representing objects in a workspace, we need to decide if an
+object has been changed. To do this, we use the \function{digest}
+function from the \pkg{digest} package to store a simple means to
+compare a current object with a past one. To store this information,
+we create a subclass of \class{QTreeWidgetItem} with a \prop{digest} property.
+
+<<OurTreeWidgetItem, results=hide>>=
+require(digest)
+qsetClass("OurTreeWidgetItem", Qt$QTreeWidgetItem, function() {
+  this$digest <- NULL
+})
+qsetMethod("digest", OurTreeWidgetItem, function() digest)
+qsetMethod("setDigest", OurTreeWidgetItem, function(value) {
+  this$digest <- value
+})
+@            
+
+This subclass will be used for top-level items in our tree. We define
+the following to create an item from a variable name. Since we 
+call this function recursively, we have an argument indicating of the
+item is a top-level item.
+
+We could modify the display of each item to suit more sophisticated
+tastes, e.g., icons, but for this example stop by adding a column for the class of
+the object.
+
+As we use the name of an object to display it, when checking for
+recursive structures, we also check that they have a \code{names} attribute.
+
+<<results=hide>>=
+makeItem <- function(varname, obj=NULL, toplevel=FALSE) {
+  if(is.null(obj))
+    obj <- get(varname, envir=.GlobalEnv)
+
+  if(toplevel) {
+    item <- OurTreeWidgetItem()
+    item$setDigest(digest(obj))
+  } else {
+    item <- Qt$QTreeWidgetItem()
+  }
+  
+  item$setText(0, varname)
+  item$setText(1, paste(class(obj), collapse=", "))
+  ## icons, fonts children...
+
+  if(is.recursive(obj) && !is.null(attr(obj, "names"))) {
+    item$setChildIndicatorPolicy(Qt$QTreeWidgetItem$ShowIndicator)
+    for(i in names(obj)) {
+      newItem <- makeItem(i, obj[[i]])
+      item$addChild(newItem)
+    }
+  }
+  item
+}
+@ 
+
+Next we define a few simple function to add, remove and replace a
+top-level item. 
+<<results=hide>>=
+addItem <- function(tr, varname) {
+  newItem <- makeItem(varname, toplevel=TRUE)
+  tr$addTopLevelItem(newItem)
+}
+@ 
+
+We can remove an item by index with the \method{takeTopLevelItem}{QTreeWidget}
+method, but here it is more convenient to specify the item to remove.
+<<results=hide>>=
+removeItem <- function(tr, item) {
+  root <- tr$invisibleRootItem()
+  root$removeChild(item)
+}
+@ 
+
+<<results=hide>>=
+replaceItem <- function(tr, item, varname) {
+  removeItem(tr, item)
+  addItem(tr, varname)
+}
+@ 
+
+Our main function is one that checks the current workspace and updates
+the values in the tree widget accordingly. This could be set on a
+timer to be called periodically, or called in response to user
+input. 
+
+As can be seen, we consider three cases: items no longer in the
+workspace to remove, new items to add, and finally items that may be
+new. here is where we check the digest value to see if they need to be
+replaced. Rather than fuss with inserting new items, we simply add
+them to the end and the sort the values.
+
+<<updateTopLevelItems, results=hide>>=
+updateTopLevelItems <- function(tr) {
+  objs <- ls(envir=.GlobalEnv)
+
+  curObjs <- lapply(seq_len(tr$topLevelItemCount), function(i) {
+    item <- tr$topLevelItem(i-1)
+    list(item=item, value=item$data(0, role=0) )               # better role?
+  })
+  cur <- sapply(curObjs, function(i) i$value)
+  names(curObjs) <- cur
+  
+  ## we have three types here:
+  removeThese <- setdiff(cur, objs)
+  maybeSame <- intersect(cur, objs)
+  addThese <- setdiff(objs, cur)
+
+  tr$setUpdatesEnabled(FALSE)
+  for(i in removeThese) {
+    item <- curObjs[[i]]$item
+    removeItem(tr, item)
+  }
+
+  
+  for(i in maybeSame) {
+    obj <- get(i, envir=.GlobalEnv)
+    if(digest(obj) != curObjs[[i]]$item$digest()) {
+      replaceItem(tr, curObjs[[i]]$item, i)
+    }
+  }
+
+  for(i in addThese) 
+    addItem(tr, i)
+
+  tr$sortItems(0, Qt$Qt$AscendingOrder)
+  tr$setUpdatesEnabled(TRUE)  
+}
+@
+
+
+Now we define some functions for traversing the heiarchical tree
+structure. First we define a function to find the index of an item, be
+it a top-level item or an ancestor of one.
+
+<<indexfromitem, results=hide>>=
+indexFromItem <- function(tr, item) {
+  parent <- item$parent()
+  if(is.null(parent))
+    parent <- tr$invisibleRootItem()
+  parent$indexOfChild(item) + 1
+}
+@ 
+
+We find it convenient to think in terms of a path rather than an item, either a vector of
+indices or names. The \code{index} argument below decides what to
+return. the basic approach here is to walk backwards by calling the
+\meth{parent} method until it is \code{null}.
+
+<<pathfromitem, results=hide>>=
+pathFromItem <- function(tr, item, index=TRUE) {
+  getVal <- function(item) 
+    ifelse(index, indexFromItem(tr, item),
+           item$data(0, role=0))
+
+  path <- getVal(item)
+  while(!is.null(item <- item$parent())) {
+    path <- c(getVal(item), path)
+  }
+  path
+}
+@ 
+
+This function reverses the last. It takes a path, specified by
+indices, and finds the item if possible.
+<<itemfrompath, results=hide>>=
+itemFromPath <- function(tr, path) {
+  item <- tr$invisibleRootItem()
+  for(i in path) {
+    item <- item$child(i)
+    if(is.null(item))
+      return(NULL)
+  }
+  item
+}
+@ 
+
+
+As an illustration, we show how one can use
+\method{findItems}{QTreeWidget} to return a list of items matching a
+query. In this case, we pass in a regular expression to match against
+the \code{class} column (column $1$.)
+
+<<matchclass, results=hide>>=
+matchClass <- function(tr, classname) {
+  allItems <- sapply(seq_len(tr$topLevelItemCount), function(i) {
+    tr$topLevelItem(i-1)
+  })
+  matched <- tr$findItems(classname, Qt$Qt$MatchRegExp, 1) # column 1
+  sapply(allItems, function(i) i$setHidden(TRUE))
+  sapply(matched, function(i) i$setHidden(FALSE))
+}
+@ 
+
+Finally we show how this can be used. First, we set the column count
+and the header labels to match our \code{makeItem} function above.
+<<showTree, results=hide>>=
+tr <- Qt$QTreeWidget()
+tr$setColumnCount(2)                    # name, class
+tr$setHeaderLabels(c("Name", "Class"))
+@ 
+
+This call initializes the display.
+<<eval=FALSE>>=
+updateTopLevelItems(tr)
+@ 
+
+<<raiseTree, echo=FALSE, results=hide>>=
+tr$show()
+tr$raise()
+@ 
+
+An typical signal handler, to be called when an item is clicked, is
+illustrated next. Here we print both the path and a summary of the
+object in the workspace the path points to.
+<<signalHandler, results=hide>>=
+qconnect(tr, "itemClicked", function(item, column) {
+  path <- pathFromItem(tr, item, index=FALSE)
+  obj <- get(path[1], envir=.GlobalEnv)
+  if(length(path) > 1)
+    obj <- obj[[path[-1]]]              # get object
+  str(obj)
+  print(path)
+  updateTopLevelItems(tr)
+})
+@ 
