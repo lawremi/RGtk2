@@ -307,6 +307,6 @@ view$verticalHeader()$setHidden(TRUE)
 view$horizontalHeader()$setHidden(TRUE)
 @ 
 <<echo=FALSE, results=hide>>=
-view$show()
-view$raise()
+#view$show()
+#view$raise()
 @ 

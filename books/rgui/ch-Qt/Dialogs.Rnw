@@ -191,10 +191,10 @@ control is necessary, we must explicitly construct a dialog instance,
 configure it, execute it and retrieve the selected item.
 <<qt-dialogs-input-explicit>>=
 dlg <- Qt$QInputDialog()
-dlg$windowTitle <- "Select item"
-dlg$labelText <- "Select a latter"
-dlg$comboBoxItems <- LETTERS
-dlg$options <- Qt$QInputDialog$UseListViewForComboBoxItems
+dlg$setWindowTitle("Select item")
+dlg$setLabelText("Select a letter")
+dlg$setComboBoxItems(LETTERS)
+dlg$setOptions(Qt$QInputDialog$UseListViewForComboBoxItems)
 if (dlg$exec())
   print(dlg$textValue())
 @ 

@@ -216,8 +216,8 @@ updateTopLevelItems(tr)
 @ 
 
 <<raiseTree, echo=FALSE, results=hide>>=
-tr$show()
-tr$raise()
+#tr$show()
+#tr$raise()
 @ 
 
 An typical signal handler, to be called when an item is clicked, is

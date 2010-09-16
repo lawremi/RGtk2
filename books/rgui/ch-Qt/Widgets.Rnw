@@ -689,7 +689,7 @@ te$setPlainText("The quick brown fox")
 te$append("jumped over the lazy dog")
 @ 
 
-<<echo=FALSE, results=hide>>=
+<<eval=FALSE, echo=FALSE, results=hide>>=
 ## not shown
 te$show(); te$raise()
 @ 
@@ -776,7 +776,7 @@ instance of a string. The enumeration
 For example, we can search through a standard typesetting string
 starting at the cursor point for the common word ``qui'' as follows:
 
-<<echo=FALSE>>=
+<<lorumIpsum, echo=FALSE>>=
 LoremIpsum <- paste(
                     "Lorem ipsum dolor sit amet, consectetur adipisicing elit,",
                     "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -799,7 +799,7 @@ LoremIpsum <- paste(
                     sep="\n")
 @ 
 
-<<results=hide>>=
+<<findExample,results=hide>>=
 te <- Qt$QTextEdit(LoremIpsum)          # some text
 te$find("qui", Qt$QTextDocument$FindWholeWords)
 te$textCursor()$selection()$toPlainText()
@@ -833,7 +833,7 @@ standard context menu, which is available by the
 \method{createStandardContextMenu}{QTextEdit} method. The key is to
 redefine the \method{contextMenuEvent}{QTextEdit} method.
 
-<<results=hide>>=
+<<QTextEditWithMenu,results=hide>>=
 qsetClass("QTextEditWithMenu", Qt$QTextEdit, function(parent=NULL) {
   super(parent)
 })
@@ -860,14 +860,14 @@ qsetMethod("contextMenuEvent", QTextEditWithMenu, function(e) {
 te <- QTextEditWithMenu()
 @ 
 
-<<echo=FALSE, results=hide>>=
+<<raise, eval=FALSE, echo=FALSE, results=hide>>=
 te$show()
 te$raise()
 @ 
 
 
 
-<<echo=FALSE, results=hide>>=
+<<eval=FALSE, echo=FALSE, results=hide>>=
 ## Not shown
 
 ##' start with command, return output in HTML

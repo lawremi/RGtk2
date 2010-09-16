@@ -154,7 +154,7 @@ Our \code{region} combobox is loaded with the state regions. When one
 is selected, the callback for \signal{activated} will first remove any
 items in the \code{state} combobox, then add in the appropriate
 states. The \code{ind} index is used to determine which region.
-<<results=hide>>=
+<<QComboBox, results=hide>>=
 region <- Qt$QComboBox()
 region$addItems(names(l))
 region$setCurrentIndex(-1)              # no selection
@@ -169,7 +169,7 @@ The state combobox shows how the \signal{highlighted} signal can be
 employed. In this case, information about the highlighted state is
 placed in the window;s title. Not really a great choice, but
 sufficient for this example.
-<<results=hide>>=
+<<Highlighted, results=hide>>=
 state <- Qt$QComboBox()
 qconnect(state, "highlighted", function(ind) {
   pop <- l[[region$currentText]][ind + 1, "highlight"]
@@ -185,7 +185,7 @@ lyt$addRow("Region:", region)
 lyt$addRow("State:", state)
 @ 
 
-<<echo=FALSE, results=hide>>=
+<<eval=FALSE, echo=FALSE, results=hide>>=
 w$show(); w$raise()
 @ 
 \end{example}
@@ -266,7 +266,7 @@ w$addItems(state.name)
 sapply(1:w$count, function(i) w$item(i-1)$setCheckState(Qt$Qt$Unchecked))
 @ 
 <<echo=FALSE, results=hide>>=
-w$show(); w$raise()
+## w$show(); w$raise()
 set.seed(1)
 sapply(sample(1:w$count, 30), 
        function(i) w$item(i-1)$setCheckState(Qt$Qt$Checked))
@@ -305,14 +305,14 @@ lyt$addRow("", b <- Qt$QPushButton("Click me"))
 
 For convenience, we use a built-in data set for our choices. He
 populate the list widget and add a tooltip indicating the area.
-<<results=hide>>=
+<<setToolTip, results=hide>>=
 for(i in state.name) {
   item <- Qt$QListWidgetItem(i, lw)             # populate
   item$setToolTip(sprintf("%s has %s square miles", i, state.x77[i, "Area"]))
 }
 @ 
 For this example, we allow multiple selection.
-<<results=hide>>=
+<<setSelectionMode, results=hide>>=
 lw$setSelectionMode(Qt$QAbstractItemView$ExtendedSelection)
 @ 
 
@@ -320,7 +320,7 @@ The following callback updates the displayed items so that only ones
 matching the typed in string are displayed. Rather than compare each
 items to the matched items, we simply hide them all then unhide those
 that match.
-<<results=hide>>=
+<<textChanged, results=hide>>=
 qconnect(f, "textChanged", function(str) {
   matching <- lw$findItems(str, Qt$Qt$MatchStartsWith)
   sapply(seq_len(lw$count), function(i) lw$item(i-1)$setHidden(TRUE))
@@ -346,11 +346,9 @@ qconnect(b, "pressed", function() {
 })
 @ 
 
-<<echo=FALSE, results=hide>>=
+<<eval=FALSE, echo=FALSE, results=hide>>=
 w$show()
 w$raise()
-
-
 @ 
 \end{example}
 

@@ -1,4 +1,4 @@
-<<echo=FALSE, results=hide>>=
+<<qdataFrameModel_Example, echo=FALSE, results=hide>>=
 ## Example of using qdataFrameModel including setting some roles
 library(qtbase)
 library(MASS)
@@ -54,6 +54,6 @@ view$setAlternatingRowColors(TRUE)
 
 <<echo=FALSE,results=hide>>=
 ## not shown
-view$show()
-view$raise()
+#view$show()
+#view$raise()
 @ 

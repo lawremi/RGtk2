@@ -73,7 +73,7 @@ for(i in 1:nrow(df)) {
 Finally, this command is called when the "Ok" button is pressed. For
 simplicity we do two passes through the data to grab the text and the
 check state (which we must coerce to get a logical value).
-<<>>=
+<<runCommand>>=
 runCommand <- function() {
   n <- tbl$rowCount
   x <- sapply(seq_len(n), function(i) tbl$item(i-1, 0)$text())
@@ -85,6 +85,6 @@ runCommand <- function() {
 <<echo=FALSE, results=hide>>=
 ## Show selection example
 w$setLayout(lyt)
-w$show()
-w$raise()
+#w$show()
+#w$raise()
 @ 

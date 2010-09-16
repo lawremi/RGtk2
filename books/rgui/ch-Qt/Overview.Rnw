@@ -12,7 +12,7 @@
 \XXX{An overview of Qt, qtbase and its development, Flesh me out}
 
 \Qt{} is an open-sourced, cross-platform application framework that is
-perhaps best known for its widget toolkit. The features of \Qt are
+perhaps best known for its widget toolkit. The features of \Qt{} are
 divided into about a dozen modules. We highlight some of the more
 important and interesting ones:
 \begin{description}
@@ -36,7 +36,7 @@ communication application Skype and the KDE desktop for Linux.
 
 \Qt{} is developed in C++ with extensions that require a special
 preprocessor called the \dfn{Meta Object Compiler}
-(\acronym{MOC}). The MOC allows for convenient syntax in the
+(\acronym{MOC}). The \acronym{MOC} allows for convenient syntax in the
 definition of signals, slots (signal handlers), and properties, which
 behave very similarly to those of \GTK.
 
@@ -46,6 +46,8 @@ of \Qt. As its name suggests, \pkg{qtbase} forms the base for a number
 of \R{} packages that provide high-level special-purpose interfaces to
 \Qt{}. As these are still early in development, they will not be
 mentioned here.
+
+%% JV: We will mention qtpaint, do we want this last sentence above?
 
 While \pkg{qtbase} is not yet as mature as \pkg{tcltk} and
 \pkg{RGtk2}, we include it in this book, as \Qt{} compares favorably
@@ -107,9 +109,9 @@ class(w)
 @ 
 %
 The base class, \class{RQtObject}, is an environment containing
-the the properties and methods of the instance. For \code{w}, we list
+the properties and methods of the instance. For \code{w}, we list
 the first few using \function{ls}:
-<<eval=FALSE>>=
+<<>>=
 head(ls(w))
 @ 
 
@@ -122,7 +124,7 @@ and \code{get} will also work. (With the
 example, a \code{QWidget} has a \code{windowTitle} property which is
 used when the widget draws itself with a window:
 <<windowTitle>>=
-w$windowTitle
+w$windowTitle                           # initially NULL
 w$windowTitle <- "a new title"
 w$windowTitle
 @ 
@@ -130,7 +132,7 @@ w$windowTitle
 Although \Qt{} defines methods for accessing properties, the \R{} user
 will normally invoke methods that perform some action. For example, we
 could show our widget:
-<<hide>>=
+<<results=hide>>=
 w$show()
 @
 %
@@ -146,13 +148,33 @@ b <- Qt$QPushButton()
 \class{QPushButton} extends \class{QWidget} and thus inherits the
 properties like \code{windowTitle}:
 <<pushbutton-class>>=
-head(class(b), n=3)
+is(b, "QWidget")                        # Yes
 b$windowTitle
 @ 
 %
 It is important to realize this distinction when referencing the
 documentation. As with \GTK, the methods are documented with the class
 that declares the method.
+
+%% JV: Is there some well-written means to look up where a method is
+%% defined? I have this hack, but there should be a better way (I'm
+%% thinking it would be useful to find the proper help page for a method,...)
+% findMeth <- function(obj, meth_name) {
+%   cls <- class(obj)
+%   ind <- sapply(cls, function(i) exists(i, envir=Qt))
+%   l <- lapply(cls[ind], function(i) ls(get(i, envir=Qt)()))
+%   names(l) <- cls[ind]
+%   for(i in 1:(length(l)-1))
+%     l[[i]] <- setdiff(l[[i]], l[[i+1]])
+
+%   if(!missing(meth_name)) {
+%     for(i in 1:length(l)) {
+%       if(meth_name %in% l[[i]])
+%         print(names(l)[i])
+%     }
+%   }
+%   invisible(l)
+% }
 
 
 \section{Methods and dispatch}
@@ -194,14 +216,19 @@ icon <- Qt$QIcon(system.file("images/ok.gif", package="gWidgets"))
 b <- Qt$QPushButton(icon, "Ok")
 @ 
 %
-We have passed three different types of object as the
-first argument to \function{Qt\$QPushButton}: a \class{QWidget}, a
-string, and finally a \class{QIcon}. The dispatch depends on only on
-the type of argument, unlike the constructors in \pkg{RGtk2}, which
-dispatch based on which arguments are specified.
+We have passed three different types of object as the first argument
+to \function{Qt\$QPushButton}: a \class{QWidget}, a string, and
+finally a \class{QIcon}. The dispatch depends only on the type of
+argument, unlike the constructors in \pkg{RGtk2}, which dispatch based
+on which arguments are specified. (In particular, dispatch is based on
+position of argument, but not on names given to arguments. We use
+names only for clarity in our examples.)
 
 \section{Properties}
 \label{sec:properties}
+
+%% JV How does a subclass define properties so that qproperties lists
+%% them. (A qsetProperty function?)
 
 Every \class{QObject}, which includes every widget, may declare a set
 of properties that represent its state. We list some of the available
@@ -230,10 +257,14 @@ are typically named with the word "set" followed by the property name:
 b$setObjectName("My button")
 @ 
 % 
+%% JV: I'm not so sure I'd recommend this, but will defer
 However, it is recommended to use the replacement syntax shown in the
 previous example, for the sake of symmetry.
 
 \section{Signals}
+\label{sec:qt-signals}
+
+
 
 \Qt{} in C++ uses an architecture of signals and slots to have
 components communicate with each other. A component emits a signal
@@ -276,13 +307,14 @@ will be chosen arbitrarily. To connect to a specific signature, the
 full signature, rather than only the name, should be passed to
 qconnect. For example, the following is equivalent to the invocation
 of \function{qconnect} above:
-<<qt-signals-qconnect-sig>>=
+<<qt-signals-qconnect-sig, results=hide>>=
 qconnect(b, "clicked(bool)", function(checked) print("ouch"))
 @ 
 
 Any object passed to the optional argument
 \argument{user.data}{qconnect} is passed as the last argument to the
-signal handler. The user data serves to parameterize the callback.
+signal handler. The user data serves to parameterize the callback. In
+particular, it can be used to pass in a reference to the sender object itself.
 
 The \code{qconnect} function returns a dummy \class{QObject} instance
 that provides the slot that wraps the \R{} function. This dummy object
@@ -313,7 +345,8 @@ Often, it is useful to have discrete variables with more than two
 states, in which case a logical value is no longer sufficient.  For
 example, the label widget has a property for how its text is
 aligned. It supports the alignment styles left, right, center, top,
-bottom, etc. \Qt{} defines enumerations within the relevant class or,
+bottom, etc. These styles are enumerated by integer values and
+\Qt{} defines these by name within the relevant class or,
 for global enumerations, in the \code{Qt} namespace. Here are examples
 of both:
 <<Enumeration-example>>=
@@ -324,28 +357,36 @@ Qt$QSizePolicy$Exanding
 The first is the value for right alignment from the
 \qtenumeration{Alignment} enumeration in the \code{Qt} namespace,
 while the second is from the \qtenumeration{Policy} enumeration in the
-\class{QSizePolicy} class.
+\class{QSizePolicy} class (referenced here by \qtenumeration{QSizePolicy::Policy}).
 
-Although these enumerations can be specifed as integers, they are
+Although these enumerations can be specifed directly as integers, they are
 given the class \class{QtEnum} and have the overloaded operators
 \OR{} and \AND{} to combine values bitwise. This makes the most
 sense when the values correspond to bit flags, as is the case for the
-alignment style. For example, aligning text in label in the upper
+alignment style. For example, aligning the text in a label in the upper
 right can be done through
 <<alignexample, results=hide>>=
 l <- Qt$QLabel("Our text")
 l$alignment <- Qt$Qt$AlignRight | Qt$Qt$AlignTop
 @ 
 %
-To check if the alignment is to the right, we could write:
+To check if the alignment is to the right, we could query
+by:~\footnote{As flags, combinations of enumerations, are not stored
+  as integers they are not of class \class{QtEnum}, so the algebra of
+  these operators is limited.}
+%% JV: I added this footnote, not sure it isn't too pedantic but you
+%% cant do thinkgs like (enum1 | enum2) & (enum1 | enum3)
 <<>>=
-as.logical(flag & Qt$Qt$AlignRight)
+as.logical(l$alignment & Qt$Qt$AlignRight)
 @ 
 
-\section{Defining Classes and Methods}
-\label{sec:defin-class-meth}
 
-As \Qt{} is a implemented in an object-oriented language, C++, the
+
+\section{Defining Classes and Methods}
+\label{sec:qt-defin-class-meth}
+
+
+As \Qt{} is  implemented in an object-oriented language, C++, the
 designers of the API expect the developer to extend \Qt{} classes,
 like \class{QWidget}, during the normal course of GUI
 development. This is a significant difference from \GTK, where it is
@@ -354,13 +395,13 @@ the behavior of a widget. The \pkg{qtbase} package allows the \R{}
 user to extend C++ classes in order to enhance the features of \Qt.
 
 We will demonstrate this functionality by example.  In the
-introductory example \XXX{reference} we saw this minimal use of
+introductory example of Section~\ref{sec:qt-introductory-example} we saw this minimal use of
 \function{qsetClass}. Our aim is to extend the \code{QValidator}
 class to restrict the input in a text entry (\code{QTextEdit}) to a
 valid date. The first step is to declare the class, and then methods
 are added individually to the class definition, in an analogous manner
 to the \pkg{methods} package. We start by declaring the class:
-<<DateValidatorSnippet,results=hide, eval=FALSE>>=
+<<DateValidatorSnippet,results=hide>>=
 qsetClass("DateValidator", Qt$QValidator)
 @ 
 % 
@@ -375,6 +416,11 @@ environment (the scoping is similar to \function{methods::setClass}):
 DateValidator
 @ 
 % 
+
+It is an error to redefine the class as above without first deleting the object.
+
+
+
 To define a method on our class, we call the \function{qsetMethod}
 function:
 <<validate, echo=FALSE>>=
@@ -411,10 +457,115 @@ e$setValidator(v)
 e$show()
 @ 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% JV alternate to the above.
+As \Qt{} is  implemented in an object-oriented language, \proglang{C++}, the
+designers of the API expect the developer to extend \Qt{} classes,
+like \class{QWidget}, during the normal course of GUI
+development. This is a significant difference from \GTK, where it is
+only necessary to extend classes when one needs to fundamentally alter
+the behavior of a widget. The \pkg{qtbase} package allows the \R{}
+user to extend \proglang{C++} classes in order to enhance the features of \Qt.
+The \pkg{qtbase} package includes functions \function{qsetClass} and
+\function{qsetMethod} to create subclasses and methods of
+subclasses. 
+
+To create a subclass of some class, say \class{QWidget}, the basic use is simply
+<<results=hide>>=
+qsetClass("SubClass", Qt$QWidget)
+@ 
+%
+This assigns to the variable \code{SubClass} an object inheriting from
+\class{RQtClass}. (The \argument{where}{qsetClass} argument can be
+used to specify where this variable is defined, in a manner similar to
+S4's \function{setClass}.) Note the lack of parentheses for the parent
+object (\code{Qt\$QWidget}), as the parent also inherits from
+\class{RQtClass}. These objects are constructors (functions) that have
+augmented environments containing the available methods and
+properties.
+
+By default, the parent's constructor is inherited by the subclass. To
+create a new constructor, say to initialize values, or to make a
+compound widget, the \argument{constructor}{qsetClass} argument is
+used. This takes a function that will be called by positional
+arguments, so default values are used, but not by name. The function
+should allow a \code{parent} argument, to pass along a parent
+widget. A typical minimal usage might be
+<<results=hide>>=
+qsetClass("SubClass2", Qt$QWidget, function(parent=NULL) {
+  super(parent)
+  ## ... more here
+})
+@ 
+%
+Within the body of a constructor, the \function{super} variable refers
+to the parent's constructor, and in the above is used to set the
+parent object. Within the body of a constructor the variable
+\code{this} refers to the environment of the instance of the subclass
+being constructed. To set a property, we can assign to a
+component. This environment augments the constructor's environment, so
+one can refer to the methods without a prefix. For example, a simple
+constructor to pass in a window title and some special property might
+look like
+<<results=hide>>=
+qsetClass("SubClass3", Qt$QWidget, function(title, prop, parent=NULL) {
+  super(parent)
+  this$property <- prop
+  setWindowTitle(title)
+})
+@ 
+%
+
+One may define new methods, or override methods from a base class
+through the \function{qsetMethod} function. The arguments are the
+method name, the class the method is defined in, the method's
+definition, and an optional value for \argument{access}{qsetMethod}
+indicating if the method should be \qcode{public}, \qcode{protected},
+or \qcode{private}.
+
+Within the body of the method definition the variable \code{super} is
+a function, somewhat like \function{do.call}, that can be used to call
+a method from the parent class by name (the first argument) passing in
+all subsequent arguments. The functionality is similar to that
+provided by S4's \function{callNextMethod}. The variable \code{this}
+refers again to the instance's environment. Again for convenience this
+is placed into the search path of the function call.
+
+For example, methods to create accessors for a property may be
+defined as
+<<results=hide>>=
+qsetClass("SubClass4", Qt$QWidget)
+qsetMethod("property", SubClass4, function() property)
+qsetMethod("setProperty", SubClass4, function(value) {
+  this$property <- value
+})
+@ 
+%
+
+To override a base method by adding to its call can be done with the
+\function{super} function. For example, to store the window title in our
+property one might do this:
+<<results=hide>>=
+qsetMethod("setWindowTitle", SubClass4, function(value) {
+  setProperty(value)
+  super("setWindowTitle", value)
+})
+@ 
+
+
+
 %% FIXME: This seems strange. There's an ErrorLabel that extends a
 %% line edit, but it is really neither a label nor a line edit. 
 %% Would be cool to do something like place an icon within the line
 %% edit that has a tooltip with the error message.
+
+%% JV: Agreed. this section needs to  be reworked. It is hard to find
+%% the key information: qsetClass and a conversation about
+%% constructors and scope (super, this), and qsetMethod and a
+%% conversation about inheritance and scope (super, this). As well, I
+%% find the example a bit awkward too. The bit about
+%% minimumheight (too kludgy), the call of widget as it isn't a line
+%% edit, ... How do you add an icon in a line edit widget?
 
 \begin{example}{A ``error label''}{eg:qt-error}
   A common practice when validation is used for text entry is to have
@@ -435,13 +586,13 @@ qsetClass("ErrorLabel", Qt$QLineEdit,
             this$widget <- Qt$QWidget()           # for attaching
             this$error <- Qt$QLabel()             # set height=0
             this$error$setStyleSheet("* {color: red}")  # set color
-            
-            
+                        
             lyt <- Qt$QGridLayout()               # layout
+            widget$setLayout(lyt)
+
             lyt$setVerticalSpacing(0)
             lyt$addWidget(this, 0, 0, 1, 1)
             lyt$addWidget(error, 1, 0, 1, 1)
-            this$widget$setLayout(lyt)
             
             if(nchar(message) > 0)
               setMessage(message)
@@ -473,12 +624,12 @@ of this constructor, so no prefix is needed in the call.
 
   The \code{widget} component is needed to actually show the widget. We
   create an accessor method:
-<<ErrorLabel-Example>>=
+<<ErrorLabel-Example, results=hide>>=
 qsetMethod("widget", ErrorLabel, function() widget)
 @ 
 
 
-  We extend the API of the line edit widget for this sub class to modify
+  We extend the API of the line edit widget for this subclass to modify
   the message. We define three methods, one to get the message, one to
   set it and a convenience function to clear the message.
 <<results=hide>>=
@@ -536,7 +687,8 @@ this class are several methods inherited by the widgets we discuss.
 The function \function{qmethods} will show the methods defined for a
 class. It returns a data frame with variables indicating the name,
 return value, signature, and whether the method is protected and
-static. For example, for a simple button we have many methods.
+static. For example, for a simple button we have many methods, of
+which we can only discuss a handful.
 <<>>=
 out <- qmethods(Qt$QPushButton)
 dim(out)                                # many methods
@@ -549,10 +701,12 @@ dim(out)                                # many methods
 Widgets must have their \method{show}{QWidget} method called in order
 to have them drawn to the screen. This call happens through the
 \meth{print} method for an object inheriting from \class{QWidget}, but
-more typically is called by \Qt{} recursively showing the children
-when a top-level window is drawn. The method \method{raise}{QWidget}
+more typically is called recursively by \Qt{} when showing the children
+as a top-level window is drawn. The method \method{raise}{QWidget}
 will raise the window to the top of the stack of windows, in case it
 is covered.  The method \method{hide}{QWidget} will hide the widget.
+
+\XXX{JV: How to delete a widget: \code{get(sprintf("~%s", class(w)[1]), w)()}}
 
 % XXX JV: this didn't work?
 % It is not deleted
@@ -611,7 +765,7 @@ various methods.
 First, we can get the size of the widget through the
 methods \method{frameGeometry}{QWidget} and
 \method{frameSize}{QWidget}. The \code{frameGeometry} method returns a \class{QRect}
-instance, \Qt's rectangle class. Rectangles are parameterized by an $x-y$
+instance, \Qt's rectangle class for integer sizes. Rectangles are parameterized by an $x-y$
 position and two dimensions (\method{x}{QRect}, \method{y}{QRect},
 \method{width}{QRect} and \method{height}{QRect}). In this case, the
 position refers to the upper left coordinate and dimensions are in pixels. The 
@@ -622,10 +776,11 @@ convenience function \function{qrect} is provided to construct
 \function{qsize} function is a convenience constructor for objects of
 this class.
 
-The widget's fixed size can be adjusted by modifying the rectangle and
-then resetting the geometry with \method{setGeometry}{QWidget}, or
-directly through the same method when integer values are given for the
-arguments.
+The widget's size can be adjusted several ways: with the
+\method{resize}{QWidget} method,  by
+modifying the rectangle and then resetting the geometry with
+\method{setGeometry}{QWidget}, or directly through the same method
+when integer values are given for the arguments.
 
 <<ChangeGeometry, results=hide>>=
 w <- Qt$QWidget()
@@ -639,6 +794,8 @@ Although the above sets the size, it does not fix it. If that is
 desired, the methods \method{setFixedSize}{QWidget} or
 \method{setFixedWidth}{QWidget} are available.
 
+%%JV: This seems out of place and not well done. Do you think it
+%% should be in the layout section anyways?
 
 When a widget is resized, one can constrain how it changes by
 specifying a minimum size or maximum size. These values work in
@@ -656,8 +813,18 @@ The method \method{update}{QWidget} is used to request a repainting of a widget
 and the method \method{updateGeometry}{QWidget} is used to notify any
 layout manager that the the size hint has changed.
 
+%% JV: Is setUpdatesEnabled reasonable here. 
+
+
+
+
 %% ML: seems like fonts and styles can be introduced on-the-fly - not a
 %% core concept.
+
+%% JV: You are right, especially for styles, but fonts alteast seem to
+%% be a common question for beginners. This gives them some little bit
+%% in the table of contents to search for. As you can see though, I
+%% didn't put much into this
 
 \subsection{Fonts}
 \label{sec:fonts}
@@ -666,7 +833,7 @@ Fonts in \Qt{} are handled through the \class{QFont} class. In
 addition to the basic constructor, one constructor allows the
 programmer to specify a \code{family}, such as \code{helvetica};
 \code{pointsize}, an integer; \code{weight}, an enumerated value such
-as \code{Qt$QFont$Light} (or \code{Normal}, \code{DemiBold},
+as \code{Qt\$QFont\$Light} (or \code{Normal}, \code{DemiBold},
 \code{Bold}, or \code{Black}); and whether the italic version should
 be used, as a logical.
 
@@ -696,16 +863,15 @@ adjust properties. For example, there are the methods
 \label{sec:styles}
 
 \Qt{} uses styles to provide a means to customize the look and feel of
-an application for the underlying operating system. Each style
-implements a palette of colors to indicate the states ``active'' (has
-focus), ``inactive'' (does not have focus), and ``disabled'' (not sensitive to
-user input). Many widgets do not have a visible distinction between
-active or inactive.
-
-
-The role an object plays determines the type of coloring it should
-receive. A palette has an enumeration of \code{ColorRole}s. Sample
-ones are \code{Qt\$QPalette\$Highlight}, to indicate a selected item, or
+an application for the underlying operating system. It is generally
+recommended that a GUI be consistent with the given style. For
+example, each style implements a palette of colors to indicate the
+states ``active'' (has focus), ``inactive'' (does not have focus), and
+``disabled'' (not sensitive to user input). Although, many widgets do not have a
+visible distinction between active or inactive.  The role an object
+plays determines the type of coloring it should receive. A palette has
+an enumeration in \qtenumeration{QPalette::ColorRole}. Sample ones are
+\code{Qt\$QPalette\$Highlight}, to indicate a selected item, or
 \code{Qt\$QPalette\$WindowText} to indicate a foreground color.
 
 These roles are used for setting the foreground or background role to
@@ -715,12 +881,12 @@ give a widget a different look, as illustrated in Example~\ref{eg:qt-dnd}.
 \subsubsection{Style Sheets}
 \label{ssec:style-sheets}
 
-Cascading style sheets (CSS) are used by web deisgners to decouple the layout and look
-and feel of a web page from the content of the page. \Qt{} implements
-the mechanism in the \class{QWidget} class to customize a widget
-through the CSS syntax. The implemented syntax is described in the
-overview on stylesheets provided with \Qt{} documentation and is not rewritten
-here, as it is quite readable. 
+Cascading style sheets (CSS) are used by web deisgners to decouple the
+layout and look and feel of a web page from the content of the
+page. \Qt{} implements the mechanism in the \class{QWidget} class to
+customize a widget through the CSS syntax. The implemented syntax is
+described in the overview on stylesheets provided with \Qt{}
+documentation and is not summarized here, as it is quite readable.
 
 To implement a change through a style sheet involves the
 \method{setStyleSheet}{QWidget} method. For example, to change the
@@ -737,11 +903,12 @@ b$setStyleSheet(ssheet)
 @ 
 
 
-\XXX{HTML markup for labels!}
-
-
 %% ML: This is an advanced topic that probably belongs somewhere else,
 %% like at the end of the basic components section.
+
+%% JV: No argument there. I was following what I did in the tcltk
+%% chapter where I wanted an example of various events and their
+%% handlers and used drag and drop.
 
 \section{Drag and drop}
 \label{sec:drag-drop}
@@ -756,7 +923,7 @@ A drag and drop event consists of several stages: the user selects the
 object that initiates the drag event, the user then drags the object
 to a target, and finally a drop event occurs. In addition, several
 decisions must be made, e.g., will the object ``move'' or simply be
-copied. This is determined by XXX. Or,  what kind of object will be transferred (an image? text?, ...)
+copied. Or,  what kind of object will be transferred (an image? text?, ...)
 etc. The type is specified using a standard MIME specification.
 
 \paragraph{Initiating a drag and drop source} When a drag and drop sequence
@@ -769,8 +936,10 @@ specifies the type of data to be passed, as an instance of the
 on the drop event (the supported actions) and possibly what happens if
 no modifier keys are specified. These are given using the enumerations
 \qtenumeration{CopyAction}, \qtenumeration{MoveAction}, or \qtenumeration{LinkAction}.
-This is all specified in a new method for \method{mousePressEvent}{QWidget}, so
-must be done in a subclass of the widget you wish to use.
+
+This is usually specified in a method for the
+\method{mousePressEvent}{QWidget} event, so is done in a subclass of
+the widget you wish to use.
 
 \paragraph{Creating a drop target}
 The application must also set up drop sources. Each source has its
@@ -784,6 +953,7 @@ instance. This data has several methods for querying the type of data,
 as illustrated in the example. If everything is fine, one calls the
 even'ts \method{acceptProposedAction}{QDropEvent} method to set the
 drop action. One can also specify other drop actions.
+\\
 
 Additionally, one can implement methods for
 \method{dragMoveEvent}{QWidget} and
@@ -793,128 +963,5 @@ event adjust proporties of the widget to indicate it is a drop target.
 
 
 \begin{example}{Drag and drop}{eg:qt-dnd}
-
-  We will use sub classes of the label class to illustrate how one
-  implements basic drag-and-drop functionality. Out treatment follows
-  the \Qt{} tutorial on the subject. We begin by setting up
-  a label to be a drag target.
-<<DragConstructor>>=
-qsetClass("DragLabel", Qt$QLabel, function(text="", ...) {
-  parent(...)
-  setText(text)
-})
-@
-
-The main method to implement for the sub class is
-\meth{mousePressEvent}. The argument \code{e} contains event
-information for the mouse, we don't need it here. We have the minimal
-structure here: implement mime data to pass through, set up a
-\class{QDrag} instance for the data, then call the
-\method{exec}{QDrag} method to initiate.
-
-<<drag-mouse-press-event>>=
-qsetMethod("mousePressEvent", DragLabel, function(e) {
-  md <- Qt$QMimeData()
-  md$setText(text)
-
-  drag <- Qt$QDrag(this)
-  drag$setMimeData(md)
-
-  drag$exec(Qt$Qt$CopyAction | Qt$Qt$MoveAction, Qt$Qt$CopyAction)
-})
-@  
-
-
-
-Implementing a label as a drop target is a bit more work, as we
-customize its appearance. Our basic
-constructor follows:
-<<DropConstructor>>=
-qsetClass("DropLabel", Qt$QLabel, function(text="", ...) {
-  parent(...)
-
-  setText(text)
-  setAcceptDrops(TRUE)
-
-  this$bgrole <- backgroundRole()
-  setMinimumSize(200, 200)
-  setAutoFillBackground(TRUE)
-  clear()
-})
-@
-We wish to override the call to \method{setText}{QLabel} above, as
-we want to store the original text in a property of the widget. Note
-the use of \function{super} with a method definition below to call the next method.
-<<results=hide>>=
-qsetMethod("setText", DropLabel, function(str) {
-  this$orig_text <- str
-  super("setText", str)                 # next method
-})
-@
-The \meth{clear} method is used to restore the label to an initial
-state. We have saved the background role and original text as properties.
-<<clear>>=
-qsetMethod("clear", DropLabel, function() {
-  setText(this$orig_text)
-  setBackgroundRole(this$bgrole)
-})
-@
-
-The enter event notifies the user that a drop can occur on this target
-by changing the text and the background role.
-<<results=hide>>=
-qsetMethod("dragEnterEvent", DropLabel, function(e) {
-  super("setText", "<Drop Text Here>")
-  setBackgroundRole(Qt$QPalette$Highlight)
-
-  e$acceptProposedAction()
-})
-@
-
-The move and leave events are straightforward. We call \meth{clear}
-when the drag leaves the target to restore the widget.
-<<results=hide>>=
-qsetMethod("dragMoveEvent", DropLabel, function(e) {
-  e$acceptProposedAction()
-})
-
-qsetMethod("dragLeaveEvent", DropLabel, function(e) {
-  clear()
-  e$acceptProposedAction()
-})
-@
-Finally, the important drop event. The following shows how to
-implement this in more generality than is needed for this example, as
-we only have text in our mime data. The \method{setPixmap}{QLabel}
-and \method{setTextFormat}{QLabel} methods for labels will be
-discussed in Section\XXX{reference to labels}.
-<<dropevent, results=hide>>=
-qsetMethod("dropEvent", DropLabel, function(e) {
-  md <- e$mimeData()
-  
-  if(md$hasImage()) {
-    setPixmap(md$imageData())
-  } else if(md$hasHtml()) {
-    setText(md$html)
-    setTextFormat(Qt$Qt$RichText)
-  } else if(md$hasText()) {
-    setText(md$text())
-    setTextFormat(Qt$Qt$PlainText)
-  } else {
-    setText("No match")                 # replace...
-  }
-
-  setBackgroundRole(this$bgrole)
-  e$acceptProposedAction()
-})
-@
-
-<<notshown, echo=FALSE, results=hide>>=
-## test it
-l = DragLabel("drop me")
-l$show()
-
-l1 <- DropLabel("drag me")
-l1$show()
-@
+  \SweaveInput{ex-qt-drag-and-drop}
 \end{example}

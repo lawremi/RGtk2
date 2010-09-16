@@ -211,7 +211,7 @@ contingency table and a table widget to show the output. This could be
 extend to include a third variable for three-way tables, but we leave
 that exercise for the interested reader. The constructor simply calls
 two methods to be defined next.
-<<>>=
+<<XtabsWidget>>=
 qsetClass("XtabsWidget", Qt$QWidget, function(parent=NULL) {
   super(parent)
 
@@ -227,7 +227,7 @@ based on the font size. The latter is
 necessary, as otherwise the label width reflects the length of the
 dropped text. The \method{clearLabels} just sets the text and
 initializes the values for the labels. It is not shown.
-<<>>=
+<<initWidgets, results=hide>>=
 qsetMethod("initWidgets", XtabsWidget, function() {
   ## make Widgets
   this$xlabel <- DropLabelRotation()
@@ -281,7 +281,7 @@ qsetMethod("initLayout", XtabsWidget, function() {
 We don't show the layout code for this widget, it is a simple
 application of \class{QGridLayout}, but do show how we create the call
 to xtabs to create the data after the drop events.
-<<results=hide>>=
+<<makeTable, results=hide>>=
 qsetMethod("makeTable", XtabsWidget, function() {
   df <- this$xlabel$getValue()$df
   if(is.null(xVar <- this$xlabel$getValue()$var)) {
@@ -302,7 +302,7 @@ Finally, for the \class{XtabsWidget} class we define a method to
 update the table widget. We have two cases and the code repeats itself
 a bit. The basic tasks are to set the dimensions of the table, update
 the header labels, and then populate the table.
-<<>>=
+<<updateTableWidget, results=hide>>=
 qsetMethod("updateTableWidget", XtabsWidget, function(out) {
   tw <- this$tw
   tw$clear()
@@ -351,6 +351,6 @@ w$addWidget(vs <- VariableSelector())
 w$addWidget(tw <- XtabsWidget())
 w$setStretchFactor(1, 1)
 
-w$show()
-w$raise()
+#w$show()
+#w$raise()
 @ 

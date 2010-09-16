@@ -305,6 +305,6 @@ lyt$addWidget(cv$label())
 @ 
 
 <<echo=FALSE, results=hide>>=
-w$show()
-w$raise()
+#w$show()
+#w$raise()
 @ 
