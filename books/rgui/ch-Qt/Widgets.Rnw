@@ -1,5 +1,14 @@
 %% Basic widgets -- onew with MVC in next chapter
 
+This chapter covers some of the basic dialogs and widgets provided by
+\Qt, saving for later a discussion on widgets that have a model
+backend. Together with layouts, these form the basis for most user
+interfaces.
+
+
+
+
+
 \SweaveInput{Dialogs}
 
 %% MFL: Should probably use a similar organization to RGtk2. Except
@@ -10,6 +19,16 @@
 %% interesting to statisticians. Like basic input controls and widgets
 %% that primarily display data. Besides, at some level every
 %% widget follows the MVC pattern.
+
+%% JV: I can see that, but the division is basically by level of
+%% complexity. Some widgets require an understanding of the backend
+%% model, others don't. I was originally going to put the convenience
+%% widgets for tables and trees in this chapter, but it got too long
+%% so put them in the next one. I had originally thought dialogs
+%% should go later, but you've convinced me to place them earlier, due
+%% to their fundamental nature. Perhaps they could be a separate,
+%% short, chapter and then some of the combobbox/listbox/table stuff
+%% could slide in here.
 
 \XXX{Can labels have their text copied?}
 
@@ -26,71 +45,21 @@ text or, for rich text, HTML. Here we use HTML to display red text:
 <<qt-widget-label>>=
 l <- Qt$QLabel("<font color='red'>Red</font>")
 @ 
-%
+<<echo=FALSE, results=hide>>=
+## labels can use rich text
+l$show(); l$raise()
+@ 
+% 
+The class, by default, guesse if the string is rich text or not and in
+the above identifies the HTML. One can explicitly set the text format
+(\code{setTextFormat}) if need be.
+
 The label text is stored in the \property{text}{QLabel} property.
 Properties relevant to text layout include:
 \property{alignment}{QLabel}, \property{indent}{QLabel} (in pixels),
 \property{margin}{QLabel}, and \property{wordWrap}{QLabel}.
 
-%% FIXME: perhaps merge the icon discussion into this section? It is
-%% not clear if we want to go into great detail about images in Qt. If
-%% we did, it would probably belong in a different chapter.
 
-<<echo=FALSE, results=hide>>=
-## labels can use rich text
-l$show(); l$raise()
-@ 
-
-\section{Icons and pixmaps}
-\label{sec:icons}
-
-Icons are instances of the \class{QIcon} class. Icons may be read in
-from files or from \class{QPixmap} instances. Although one may, it is
-not necessary to define icons for different sizes and display modes
-(normal, disabled, active, selected), as \Qt{} can do so automatically.
- 
-For example, we define an icon and add it to a button as follows. The
-call to \meth{setEnabled} shows how \Qt{} can draw the icon in a
-disabled state.
-<<results=hide>>=
-ok <- system.file("images/ok.gif", package="gWidgets")
-icon <- Qt$QIcon(ok)
-b <- Qt$QPushButton("Ok")
-b$setIcon(icon)
-b$setEnabled(FALSE)
-@ 
-
-<<echo=FALSE, results=hide>>=
-b$show(); b$raise()
-@ 
-
-%% A QPixmap is a server-side image, which makes it faster to display
-%% but slower to modify. QImage is client-side. QPixmap is to
-%% GdkPixmap as QImage is to GdkPixbuf. QPicture is a vectorized
-%% image, and QMovie represents animated images.
-
-The \class{QPixmap} class creates a means to represent an image on a
-paint device. One can create icons from pixmaps, and the
-\method{pixmap}{QIcon} method will return a pixmap from an icon. (The
-size  may be specified with integers, and the mode can be
-set). Pixmaps can be directly made through the constructor. For
-example, to display a graphics file, we might have
-<<results=hide>>=
-png(f <- tempfile())
-hist(rnorm(100))
-dev.off()
-pix <- Qt$QPixmap()
-pix$load(f)
-l <- Qt$QLabel()
-l$setPixmap(pix)
-@ 
-
-<<echod=FALSE, results=hide>>=
-l$show()
-l$raise()
-@ 
-
-The \class{QPixmap} class has several methods for manipulating the image.
 
 \section{Buttons}
 \label{sec:buttons}
@@ -111,7 +80,6 @@ value \code{checked} if the button is ``checkable.'' Otherwise, \signal{pressed}
 
 \subsection{Button boxes}
 \label{sec:button-boxes}
-\class{QDialogButtonBox}
 
 Dialogs often have a standard button placement that  varies among
 operating systems. \Qt{} provides the \class{QDialogButtonBox} class
@@ -173,6 +141,73 @@ db$show(); db$raise()
 @ 
 \end{example}
 
+\subsection{Icons and pixmaps}
+\label{ssec:icons}
+
+%% FIXME: perhaps merge the icon discussion into this section? It is
+%% not clear if we want to go into great detail about images in Qt. If
+%% we did, it would probably belong in a different chapter.
+
+%% JV: I moved this into the button discussion and out of the label
+%% discussion and made it a subsection.
+
+In Figure~\ref{fig:qt-dialg-button-box} we see that in some toolkits buttons may carry
+a standard icon. A user can also pass in an icon through the
+\method{setIcon}{QAbstractButton} method.
+Icons are instances of the \class{QIcon} class. Icons may be read in
+from files or from \class{QPixmap} instances. Although one may, it is
+not necessary to define icons for different sizes and display modes
+(normal, disabled, active, selected), as \Qt{} can do so automatically.
+ 
+For example, we define an icon and add it to a button as follows. The
+call to \meth{setEnabled} shows how \Qt{} can draw the icon in a
+disabled state.
+<<results=hide>>=
+ok <- system.file("images/ok.gif", package="gWidgets")
+icon <- Qt$QIcon(ok)
+b <- Qt$QPushButton("Ok")
+b$setIcon(icon)
+b$setEnabled(FALSE)
+@ 
+
+<<echo=FALSE, results=hide>>=
+b$show(); b$raise()
+@ 
+
+%% A QPixmap is a server-side image, which makes it faster to display
+%% but slower to modify. QImage is client-side. QPixmap is to
+%% GdkPixmap as QImage is to GdkPixbuf. QPicture is a vectorized
+%% image, and QMovie represents animated images.
+
+The \class{QPixmap} class creates a means to represent an image on a
+paint device. One can create icons from pixmaps, and the
+\method{pixmap}{QIcon} method will return a pixmap from an icon. (The
+size  may be specified with integers, and the mode can be
+set). Pixmaps can be directly made through the constructor. For
+example, the following creates a button icon using code from the
+\pkg{ggplot} package. 
+<<echo=FALSE, results=hide>>=
+require(grid)
+require(ggplot2)
+@ 
+<<results=hide>>=
+png(f <- tempfile())
+grid.newpage()
+grid.draw(GeomHistogram$icon())
+dev.off()
+pix <- Qt$QPixmap(f)
+b <- Qt$QPushButton("Histogram")
+b$setIcon(Qt$QIcon(pix))
+@ 
+
+<<echo=FALSE, results=hide>>=
+b$show()
+b$raise()
+@ 
+
+The \class{QPixmap} class has several methods for manipulating the
+image not discussed here.
+
 
 \section{Checkboxes}
 \label{sec:checkboxes}
@@ -212,8 +247,8 @@ When a button is clicked, pressed or released a signal is emitted, for example
 receives the button object.
 
 \begin{example}{Using checkboxes to provide a filter}{eg-qt-checkbox-filter}
-  Filtering a data set by the levels of a factor is a natural
-  desire. This is commonly implemented by using a checkbox group with
+  Filtering a data set by the levels of a factor is a familiar 
+  interface. This is commonly implemented by using a checkbox group with
   each level assigned to a toggle. Below we show how to do so for a
   cylinders variable, such is in the \code{Cars93} data set of the
   \pkg{MASS} package.
@@ -221,7 +256,8 @@ receives the button object.
   We begin by defining the levels and a widget to store our buttons.
 
 <<results=hide>>=
-cyls <- c(3,4,5,6,8,"rotary")
+data(Cars93, package="MASS")
+cyls = levels(Cars93$Cylinders)
 w <- Qt$QGroupBox("Cylinders:")
 lyt <- Qt$QVBoxLayout()
 w$setLayout(lyt)
@@ -251,10 +287,12 @@ see which buttons were checked after the button was pressed. (The
 \signal{buttonPressed} is called before the widget state reflects the
 button press.)
 <<results=hide>>=
-qconnect(bg, "buttonPressed", function(button) {
+qconnect(bg, "buttonClicked", function(button) {
   checked <- sapply(bg$buttons(), function(i) i$checked)
-  if(any(checked)) 
-    print(c("x",cyls[checked]))
+  if(any(checked)) {
+    ind <- Cars93$Cylinders %in% cyls[checked]
+    print(sprintf("You've selected %d cases", sum(ind)))
+  }
 })
 @ 
 <<echo=FALSE, results=hide>>=
@@ -268,43 +306,47 @@ w$raise()
 \label{sec:radio-groups}
 
 Radio buttons are created by the \constructor{QRadioButton}
-constructor. Radio buttons, like other buttons, have a
-\property{text}{QRadioButton} and \property{icon}{QRadioButton}
-property. Radio buttons have a checked or unchecked state which can be
-queried with \method{isChecked}{QRadioButton} and set with \method{setChecked}{QRadioButton}.
+constructor, which inherits from \class{QAbstractButton}. Radio
+buttons are typically exclusive. To group buttons together, \Qt{}
+links all buttons that share the same parent widget.  Radio buttons,
+like other buttons, have a \property{text}{QRadioButton} and
+\property{icon}{QRadioButton} property. In addition, radio buttons have a checked
+or unchecked state which can be queried with
+\method{isChecked}{QRadioButton} and set with
+\method{setChecked}{QRadioButton}.
 
-Radio buttons are typically exclusive. To group buttons together,
-\Qt{} uses all buttons that share the same parent
-widget. 
+
 
 \begin{example}{Using a radio group to filter}{eg-qt-radio-group-filter}
 
-  Instead of a group of checkboxes, we might also filter through an
-  exclusive selection. The following shows how to construct a radio
-  button group.
+  Instead of a group of checkboxes, we might also filter through the
+  exclusive selection offered by radio buttons.
   
-  First, we set the radio buttons into a list for easy manipulation. A
+  First, we place the radio buttons into a list for easy manipulation. A
   \class{QButtonGroup} could also be used here, but we use an \R-based
   approach for variety.
 <<RadioWithList,results=hide>>=
-l <- list(Qt$QRadioButton("Weight < 3000"),
-          Qt$QRadioButton("3000 <= Weight < 4000"),
-          Qt$QRadioButton("4000 <= Weight")
+w <- Qt$QGroupBox("Weight:")
+l <- list(Qt$QRadioButton("Weight < 3000", w),
+          Qt$QRadioButton("3000 <= Weight < 4000", w),
+          Qt$QRadioButton("4000 <= Weight", w)
           )
 @ 
-We know define a layout for our radio button widgets. The buttons are
+%
+Next we define a layout for our radio button widgets. The buttons are
 children of \code{w} below, so are exclusive within that.
 <<results=hide>>=
-w <- Qt$QGroupBox("Weight:")
 lyt <- Qt$QVBoxLayout()
 w$setLayout(lyt)
 @ 
-
-We now add the widgets to the layout and set the first one to be checked.
+%
+To add the widgets to the layout and set the first one to be checked
+we have the following:
 <<results=hide>>=
 sapply(l, function(i) lyt$addWidget(i))
 l[[1]]$setChecked(TRUE)
 @ 
+%
 
 The \signal{toggled} signal is emitted twice when a button is
 clicked: once for when the check button is clicked, and once for the
@@ -388,8 +430,8 @@ are used (assuming integer values). Movement between the possible values is adju
 minimum, maximum and the single page step.) The actual value stored in
 the widget is found in the property \property{value}{QSlider}.
 
-Sliders can be horizontal or vertical, with a
-\qtenumeration{Qt::Orientation} value being passed to the
+Sliders can be horizontal or vertical, the orientation can be changed
+by passing a \qtenumeration{Qt::Orientation} value to the
 \method{setOrientation}{QAbstractSlider} method.  To adjust the
 appearance to ticks for a slider, the method
 \method{setTickPosition}{QSlider} is used with values drawn from the
@@ -400,20 +442,22 @@ to specify an interval between the ticks.
 
 
 The signal \signal{valueChanged} is emitted when the slider is
-moved. It passes back the current value to a callback.
+moved. It passes back the current value to a callback. The
+\signal{sliderMoved} signal is similar, only the slider must be down, as when
+being dragged by a mouse.
 
 \subsection{Spin boxes}
 \label{sec:spin-boxes}
 
 Spin boxes are derived from \class{QAbstractSpinBox} which provides
 the base class for \class{QSpinBox} (for integers),
-\class{QDoubleSpinBox} and \class{QDateTimeEdit} (not documented here).
+\class{QDoubleSpinBox} and \class{QDateTimeEdit} (not pursued here).
 
 The methods have similar names as for sliders:
 \method{setMinimum}{QSpinBox}, \method{setMaximum}{QSpinBox}, and
 \method{setValue}{QAbstractSpinBox} have similar usages. The step size
 is provided by \method{setSingleStep}{QSpinBox}.
-The property \property{wrapping} can be set to \code{TRUE} to have the
+The property \property{wrapping}{QAbstractSpinBox} can be set to \code{TRUE} to have the
 values wrap at the ends.
 
 In \Qt{} spinbuttons can have a prefix or suffix with the
@@ -424,67 +468,7 @@ spin button is changed,
 
 
 \begin{example}{A range selector}{eg-qt-range-selector}
-
-  We combine a slider and spinbox to make a range selection widget,
-  offering the speedier movement of the slider, with the finer
-  adjustments of the spin box.
-<<SliderSpinButton, echo=FALSE, results=hide>>=
-w <- Qt$QWidget()
-lyt <- Qt$QHBoxLayout()
-w$setLayout(lyt)
-@ 
-
-Our slider construction sets values one-by-one.
-<<results=hide>>=
-sl <- Qt$QSlider()
-sl$setMinimum(0)
-sl$setMaximum(100)
-sl$setSingleStep(1)
-sl$setPageStep(5)
-@ 
-
-To style our slider we make it horizontal, set the tick position and
-interval through the following:
-<<results=hide>>=
-sl$setOrientation(Qt$Qt$Horizontal)
-sl$setTickPosition(Qt$QSlider$TicksBelow)
-sl$setTickInterval(10)
-@ 
-
-The basic spin box construction is relatively straightforward. We add
-a "\%" suffix to make it seem like we are selecting a percent.
-<<results=hide>>=
-sp <- Qt$QSpinBox()
-sp$setMinimum(0)
-sp$setMaximum(100)
-sp$setSingleStep(1)
-sp$setSuffix("%")
-@ 
-
-To link the two widgets, we define callbacks for their
-\signal{valueChanged} signal updating the other widget when there is a
-change. This could possibly cause an infinite loop, so we check if the
-suggested value is not equal to the current one before updating.
-
-<<results=hide>>=
-qconnect(sp, "valueChanged", function(value) {
-  if(! isTRUE(all.equal(value, sl$value)))
-    sl$setValue(value)
-})
-qconnect(sl, "valueChanged", function(value) {
-  if(! isTRUE(all.equal(value, sp$value)))
-    sp$setValue(value)
-})
-@
-
-<<echo=FALSE, results=hide>>=
-## not shown
-lyt$addWidget(sl)
-lyt$addWidget(sp)
-
-w$show()
-w$raise()
-@ 
+\SweaveInput{ex-qt-range-selector}
 \end{example}
 
 
@@ -502,13 +486,13 @@ is \code{FALSE}). Text may be inserted through the
 text or inserting at the cursor. One can programatically position the
 cursor by index through the \method{setCursorPosition}{QLineEdit}
 method.  As is typical, the index is $0$ for the left most postion,
-$1$ for between the first and second character etc.  The right-most
+$1$ for between the first and second character, etc.  The right-most
 index can be found from \code{nchar(widget\$text)}, say. The
-\method{setSelection}{QLineEdit} takes two indices to indicate the
+\method{setSelection}{QLineEdit} method takes two indices to indicate the
 left and right bounds of the selection. 
 
 When there is a selection, the methods
-\method{hasSelectedText}{QLineEdit}, \method{selectedText}{QLineEdit}
+\method{hasSelectedText}{QLineEdit} and \method{selectedText}{QLineEdit}
 are applicable.  If \property{dragEnabled}{QLineEdit} is \code{TRUE}
 the selected text may be dragged and dropped on the appropriate
 targets.
@@ -549,6 +533,8 @@ to the former being called only if a valid entry is given.
 
 
 %% FIXME: belongs in the MVC chapter
+%% JV: I see that, but it isn't too difficult to implement and fits in
+%% right here quite naturally
 
 \subsection{Completion}
 \label{sec:completion}
@@ -556,7 +542,7 @@ to the former being called only if a valid entry is given.
 Using \Qt's \class{QCompleter} framework, a list of possible words can be
 presented for completion. The word list is generally sepecified by a
 model, but may also be specified as a character vector to the
-constructor. A simple usage is present by example.
+constructor. A simple usage is presented by example.
 
 \begin{example}{Using completion on the \code{Qt} object}{eg-qt-line-edit=completion}
 
@@ -575,7 +561,7 @@ lyt$addRow("Method name", m_name <- Qt$QLineEdit())
 
 The completer for the class is constructed just one. We use
 \function{ls} to list the components of the environment. We see that
-completions are set for a line edit widget through the \method{setCompleter}{QLineEdit}>
+completions are set for a line edit widget through the \method{setCompleter}{QLineEdit}.
 <<results=hide>>=
 c_comp <- Qt$QCompleter(ls(Qt))
 c_name$setCompleter(c_comp)
@@ -610,13 +596,14 @@ input. The \property{maxLength}{QLineEdit} property can be set to
 restrict the number of allowed characters. To set a pattern for the
 possible answer, an input mask can be set through
 \method{setInputMask}{QLineEdit}. Input masks are specified through a
-string indicating a pattern (Table~\ref{tab:qt:input-mask}). For
-example, \qcode{999-99-9999} is for a U.S. Social
-Security number.
+string indicating a pattern. For example, \qcode{999-99-9999} is for a
+U.S. Social Security number. The API for \class{QLineEdit} contains a
+full description.
 
 \XXX{Likely if we have this table, we should list many more. I'll
   probably cut out}
-<<echo=FALSE, results=tex>>=
+<<echo=FALSE, eval=FALSE, results=tex>>=
+## cut out
 df <- rbind(
             c("df", "ASCII alphabetic character required. A-Z, a-z."),
             c("a",	"ASCII alphabetic character permitted but not required."),
@@ -641,24 +628,30 @@ df <- rbind(
             colnames(df) <- c("Character","Meaning")
             cat(booktabs(df,
                          colTypes=c("l","p{0.7\\textwidth}"),
-                         caption="Table of characters and their meanings in an input mask. \\textit{Source: \\Qt{} documentation for \\class{QLineEdit}}."),
-                label="tab:qt:input-mask")
+                         caption="Table of characters and their meanings in an input mask. \\textit{Source: \\Qt{} documentation for \\class{QLineEdit}}.",
+                         label="tab:qt:input-mask"))
 @
+%
 
 A illustrated in Example~\ref{sec:qt-introductory-example}, \Qt{} also
 implements a validation framework where the value in the widget is
-validated before being committed. Values can have 3 different states
-of validity
-\qcode{Acceptable} (i.e, \code{Qt\$QValidator\$Acceptable}), \qcode{Invalid}, or the indeterminate
-\qcode{Intermediate}. Validation is implemented by implementing a
-\meth{validate} method for the widget. This requires implementing a
-subclass, as one can't add a method to one of the classes of
-\code{Qt}. This method gets passed the text to validate and the cursor
-position and returns one of the validity states.
+validated before being committed.  When a validator is set, using
+\method{setValidator}{QLineEdit} the method is called before the value
+is transferred from the GUI to the widget. The function can return one
+of three different states of validity \qcode{Acceptable} (i.e,
+\code{Qt\$QValidator\$Acceptable}), \qcode{Invalid}, or the
+indeterminate \qcode{Intermediate}. The function is passed the current
+value and the index of the cursor. 
+
+The validator must be an instance of a subclass of \class{QValidator}
+with a \meth{validate} method. This requires constructing a subclass.
 
 
 
 %% FIXME: MVC chapter right?
+%% JV: You tell me. It is definitely more involved and is just a view
+%% for QTextDocument....
+
 
 \section{Multi-line text}
 \label{sec:multi-line-text}
@@ -674,7 +667,7 @@ be used to retrieve that document, and \method{setDocument}{QTextEdit}
 to replace it. The method \method{toPlainText}{QTextEdit} is used to
 retrieve the text as plain text with a corresponding
 \method{setPlainText}{QTextEdit} for replacing the text. Text can also
-be added. The \method{append}{QTextEdit} will append the text to the
+be added. The \method{append}{QTextEdit} method will append the text to the
 end of the document, \method{insertPlainText}{QTextEdit} will insert
 the text at the current cursor position replacing any selection, and
 \method{paste}{QTextEdit} will paste the current clipboard contents
@@ -710,15 +703,15 @@ enabled, one can control how with the enumeration
 The \method{setAlignment}{QTextEdit} method aligns the current
 paragraph with values from \qtenumeration{Qt::Alignment}.
 
-Formatting is managed by the \class{QTextFormat} with subclasses such as
+Formatting is managed by the \class{QTextFormat} class with subclasses such as
 \class{QTextCharFormat},
-For formatting at the character level, and \class{QTextBlockFormat} to
+For formatting at the character level and \class{QTextBlockFormat} to
 format blocks of text. (A dcoument is comprised of blocks containing
 paragraphs etc.) There are methods to adjust the alignment, font
 properties, margins etc.
 
-\XXX{How much detail here? It could certainly use more, but is it a
-  good idea?}
+%% JV:How much detail here? It could certainly use more, but is it a
+%% good idea?
 
 \paragraph{The text cursor}
 The cursor position is returned from the \method{position}{QTextCursor}
@@ -727,7 +720,7 @@ method of the text cursor, which is found through the
 indicating the index of the cursor if the buffer is thought of as a
 single string. To set the cursor position one first gets the text
 cursor, sets its position with \method{setPosition}{QTextCursor}, then
-sets the text edits text cursor with \method{setTextCursor}{QTextEdit}.
+sets the textedit's text cursor through \method{setTextCursor}{QTextEdit}.
 
 For example, to move the cursor to the end can be done with
 <<results=hide>>=
@@ -751,7 +744,7 @@ you keep an anchor in place and move the position. The
 \code{Qt\$QTextCursor\$KeepAnchor} or
 \code{Qt\$QTextCursor\$MoveAnchor}. When the anchor is kept in place and
 the cursor moved a selection is defined. The movement of the position
-can be specified through the
+can be specified through the enumeration
 \qtenumeration{QTextCursor::MoveOperation} with values like
 \qcode{Start}, \qcode{End}, \qcode{NextWord}, etc. 
 
@@ -762,6 +755,7 @@ cursor$movePosition(Qt$QTextCursor$Start) ## default is move anchor
 cursor$movePosition(Qt$QTextCursor$WordRight, Qt$QTextCursor$KeepAnchor, 3)
 te$setTextCursor(cursor)
 @ 
+Note the extra space at the end here:
 <<getText>>=
 te$textCursor()$selection()$toPlainText()
 @ 
@@ -771,7 +765,7 @@ The widget has a
 \method{find}{QTextEdit} method to move the selection to the next
 instance of a string. The enumeration
 \qtenumeration{QTextDocument::FindFlag} can modify the search with values
-\qcode{FindBackward}, \qcode{FindCaseSesnsitively} and \qcode{FindWholeWords}.
+\qcode{FindBackward}, \qcode{FindCaseSensitively} and \qcode{FindWholeWords}.
 
 For example, we can search through a standard typesetting string
 starting at the cursor point for the common word ``qui'' as follows:
@@ -799,7 +793,7 @@ LoremIpsum <- paste(
                     sep="\n")
 @ 
 
-<<findExample,results=hide>>=
+<<findExample>>=
 te <- Qt$QTextEdit(LoremIpsum)          # some text
 te$find("qui", Qt$QTextDocument$FindWholeWords)
 te$textCursor()$selection()$toPlainText()
@@ -808,7 +802,7 @@ te$textCursor()$selection()$toPlainText()
 \paragraph{Signals}
 
 There are several useful signals that are emitted by the
-widget. Several deal with changes: \signal{cursorPositionChanged},
+widget. Some deal with changes: \signal{cursorPositionChanged},
 \signal{selectionChanged}, \signal{textChanged}, and
 \signal{currentCharFormatChanged}.  Others allow one to easily update
 any actions to reflect the state of the widget. These include
@@ -817,8 +811,8 @@ any actions to reflect the state of the widget. These include
 availability; and similarly \signal{undoAvailable}.
 
 
-To get keystroke information, one can create a subclass and implement
-\signal{keyPressEvent}, say.
+To get keystroke information, one can create a subclass and implement the
+\signal{keyPressEvent} method, say.
 
 
 \begin{example}{A tabbed text editor}{ex-qt-tabbed-text-edit}
@@ -834,9 +828,7 @@ standard context menu, which is available by the
 redefine the \method{contextMenuEvent}{QTextEdit} method.
 
 <<QTextEditWithMenu,results=hide>>=
-qsetClass("QTextEditWithMenu", Qt$QTextEdit, function(parent=NULL) {
-  super(parent)
-})
+qsetClass("QTextEditWithMenu", Qt$QTextEdit)
 #
 qsetMethod("contextMenuEvent", QTextEditWithMenu, function(e) {
   m <- this$createStandardContextMenu()

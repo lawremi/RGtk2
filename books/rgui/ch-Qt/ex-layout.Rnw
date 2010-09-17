@@ -15,16 +15,17 @@ hand using a combination of different layout managers provided by
 \Qt. Figure~\ref{fig:qt-gui-layout-ex} shows a screenshot of the
 finished layout. 
 
-\Qt{} provides the standard layouts for box layouts and grid layouts,
+\Qt{} provides standard layouts for box layouts and grid layouts,
 in addition there are notebook containers and special layouts for
-forms, as seen in the following. Our GUI is layed out from the outside
-in. The first layout used is a grid layout which will hold three main
-areas: one for table (we use  a label for now), one for a notebook, a
-layout to hold some buttons.
+forms, all seen in the following. 
 
-A \class{QWidget} instance can hold one layout specified by the
-\method{setLayout}{QWidget} method. We use  widget for a top-level
-window and specify a grid layout.
+Our GUI is layed out from the outside in. The first layout used is a
+grid layout which will hold three main areas: one for a table (we use a
+label for now), one for a notebook, and a layout to hold some buttons.
+
+A \class{QWidget} instance can hold one immediate layout set by the
+\method{setLayout}{QWidget} method. We use a widget for a top-level
+window and begin by specifing a grid layout.
 
 <<results=hide>>=
 w <- Qt$QWidget()
@@ -36,22 +37,30 @@ w$setLayout(gridLayout)
 Here we define the two main widgets and the layout for our buttons.
 
 <<mainComponents, results=hide>>=
-tableWidget <- Qt$QLabel("Table widget") # for now
+tableWidget <- Qt$QLabel("Table widget") 
 nbWidget <- Qt$QTabWidget()
 buttonLayout <- Qt$QHBoxLayout()
 @ 
 
 
 Grid layouts have two main methods, \method{addWidget}{QLayout} which
-is inherited from a base \class{QLayout} class, and
-\method{addLayout}{QGridLayout}. In addition, we specify what part of
+is inherited from the base \class{QLayout} class, and
+\method{addLayout}{QGridLayout}. To use them, we specify what part of
 the grid the child widget or layout will occupy through a 0-based row
-and column and spanning directions for both row and columns.
+and column and optionally a specification of the row and column span.
 <<results=hide>>=
 gridLayout$addWidget(tableWidget, row=0, column=0, 
-                     rowspan=5, colspan=1)
-gridLayout$addWidget(nbWidget, 0, 1, 5, 4)
-gridLayout$addLayout(buttonLayout, 5, 0, 1, 5)
+                     rowspan=1, colspan=1)
+gridLayout$addWidget(nbWidget, 0, 1)
+gridLayout$addLayout(buttonLayout, 1, 1)
+@ 
+
+When resizing, we want to give the area to the notebook widget in row
+$1$, column $1$. We do
+this by adding a weight to the stretch value.
+<<>>=
+gridLayout$setRowStretch(1, stretch=5)
+gridLayout$setColumnStretch(1, stretch=5)
 @ 
 
 %% resizing?
@@ -63,7 +72,8 @@ are specified by integers. Unallocated space is given first to widgets
 that have a non-zero stretch factor. We also set spacing of 12 pixels
 between the ``OK'' and ''Cancel'' buttons.
 <<layoutButtons, results=hide>>=
-b <- sapply(c("OK", "Cancel", "Help"), function(i) Qt$QPushButton(i))
+b <- sapply(c("OK", "Cancel", "Help"), 
+            function(i) Qt$QPushButton(i))
 buttonLayout$addStretch(1L)
 buttonLayout$addWidget(b$OK)
 buttonLayout$addSpacing(12L)
@@ -83,32 +93,30 @@ nbWidget$setTabToolTip(0, "A notebook page with a form")
 @ 
 
 We wish to layout a form inside of the notebook tab, but first create
-a framed widget using a \constructor{QGroupBox} widget. This widget
+a framed widget using a \constructor{QGroupBox} widget to hold the
+form layout. This widget
 allows us to easily specify a title. We addd this to the page using a
 box layout.
 <<nbFrame, results=hide>>=
 f <- Qt$QGroupBox()
 f$setTitle("Some form")
+#
 lyt <- Qt$QHBoxLayout()
 nbPage$setLayout(lyt)
 lyt$addWidget(f)
 @ 
 
-The form layout allows us to layout standardized forms where each row
-contains a label and a widget. This could be done with a grid layout,
-but using the form layout makes it easier for \Qt{} to style the page
-as appropriate for the underlying operating system. For illustration
-purposes, we set the horizontal alignment of the widget and the left
-align the label.
+The form layout allows us to create standardized forms where each row
+contains a label and a widget. Although, this could be done with a grid layout,
+using the form layout is more convenient, and allows \Qt{} to style the page
+as appropriate for the underlying operating system.
+
 <<nbFormLayout, results=hide>>=
 formLayout <- Qt$QFormLayout()
 f$setLayout(formLayout)
-## can override defaults:
-formLayout$setFormAlignment(Qt$Qt$AlignHCenter)
-formLayout$setLabelAlignment(Qt$Qt$AlignLeft)
 @ 
 
-Our form template just uses 3 line edit widgets. The
+Our form template just uses 3 line-edit widgets. The
 \method{addRow}{QFormLayout} method makes it easy to specify the label
 and the widget.
 <<formLayoutAddWidgets, results=hide>>=

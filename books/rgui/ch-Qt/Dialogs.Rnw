@@ -39,7 +39,7 @@ This blocks the flow of the program until the user responds and
 returns the standard identifier for the button that was clicked. Each
 type of button corresponds to a fixed type of response. The standard
 button/response codes are listed in the
-\qtenumeration{QMessageBox\$StandardButton} enumeration. In this case,
+\qtenumeration{QMessageBox::StandardButton} enumeration. In this case,
 there is only a single button, \qcode{QMessageBox\$Ok}.  The dialog is
 \textit{modal}, meaning that the user cannot interact with the
 \qcode{parent} window until responding. If the \qcode{parent} is
@@ -61,24 +61,25 @@ dlg <- Qt$QMessageBox(icon = Qt$QMessageBox$Warning,
                       parent = NULL)
 @ 
 %
-This call introduces the \property{icon} property, which is a code
-from the \qtenumeration{QMessageBox\$Icon} enumeration and identifies
+This call introduces the \prop{icon} property, which is a code
+from the \qtenumeration{QMessageBox::Icon} enumeration and identifies
 a standard, themeable icon. The icon also implies the message type,
 just as a button implies a response type. We also need to specify
 the possible responses with the \qcode{buttons} argument.
 
 Our dialog is already sufficiently complete to be displayed. However,
 we have the opportunity to specify further properties. Two of the most
-useful are \property{informativeText} and
-\property{detailedText}:
+useful are \property{informativeText}{QMessageBox} and
+\property{detailedText}{QMessageBox}:
 <<qt-dialogs-extra-text>>=
 dlg$informativeText <- "Less important warning information"
 dlg$detailedText <- "Extra details most do not care to see"
 @ 
+%
 Both provide additional textual information
-at an increasing level of detail. The \property{informativeText} will
+at an increasing level of detail. The \prop{informativeText}{QMessageBox} will
 be rendered as secondary to the actual message text. To display the
-\property{detailedText}, the user will need to interact with a control
+\prop{detailedText}, the user will need to interact with a control
 in the dialog. An example is a stack trace for the warning.
 
 After specifying the desired properties, the dialog is shown. The
@@ -96,7 +97,7 @@ button/response.
 To present a non-modal dialog, we first need to register a response
 listener, as the response will arrive asynchronously. Then we show,
 raise and activate the dialog:
-<<qt-dialogs-show>>=
+<<qt-dialogs-show, results=hide>>=
 qconnect(dlg, "finished", function(response) {
   ## handle response
   ## dlg$close() necessary?
@@ -139,9 +140,9 @@ if(dlg$exec() == Qt$QMessageBox$Ok)
 \label{sec:input-dialogs}
 
 The \class{QInputDialog} class provides a convenient means to gather
-information from the user and is thus the inverse of
+information from the user and is in a sense the inverse of
 \class{QMessageBox}. Possible input modes include selecting a value
-from a list and entering text and numbers.  By default, input dialogs
+from a list or entering text or numbers.  By default, input dialogs
 consist of an input control, an icon, and two buttons: ``Ok'' and
 ``Cancel''.
 
@@ -150,8 +151,9 @@ either by calling a static convenience method or by constructing an
 instance and configuring it before showing it. We demonstrate the
 former approach for a dialog that requests textual input:
 <<qt-dialogs-input-get-text>>=
-text <- Qt$QInputDialog$getText(parent = NULL, title = "Gather text",
-                                label = "Enter some text")
+text <- Qt$QInputDialog$getText(parent = NULL, 
+                        title = "Gather text",
+                        label = "Enter some text")
 @
 %
 The return value is the entered string, or \qcode{NULL} if the user
@@ -163,8 +165,8 @@ We can also display a dialog for integer input. Here, we ask the user
 for an even integer between 1 and 10:
 <<qt-dialogs-input-get-range>>=
 num <- Qt$QInputDialog$getInt(parent = NULL, title = "Gather integer",
-                              label = "Enter an integer from 1 to 10",
-                              value = 0, min = 2, max = 10, step = 2)
+                      label = "Enter an integer from 1 to 10",
+                      value = 0, min = 2, max = 10, step = 2)
 @ 
 %
 The number is chosen using a bounded spin box.  To request a real
@@ -174,8 +176,8 @@ The final type of input is selecting an option from a list of
 choices:
 <<qt-dialogs-input-get-item>>=
 item <- Qt$QInputDialog$getItem(parent = NULL, title = "Select item",
-                                label = "Select a letter",
-                                items = LETTERS, current = 17)
+                       label = "Select a letter",
+                       items = LETTERS, current = 17)
 @ 
 %
 The dialog contains a combo box filled with the capital letters. The
@@ -189,12 +191,14 @@ enumeration and include hiding the ``Ok'' and ``Cancel'' buttons and
 selecting an item with a list widget instead of a combo box. If such
 control is necessary, we must explicitly construct a dialog instance,
 configure it, execute it and retrieve the selected item.
-<<qt-dialogs-input-explicit>>=
+<<qt-dialogs-input-explicit, results=hide>>=
 dlg <- Qt$QInputDialog()
 dlg$setWindowTitle("Select item")
 dlg$setLabelText("Select a letter")
 dlg$setComboBoxItems(LETTERS)
 dlg$setOptions(Qt$QInputDialog$UseListViewForComboBoxItems)
+@ 
+<<>>=
 if (dlg$exec())
   print(dlg$textValue())
 @ 
@@ -245,7 +249,8 @@ blyt <- Qt$QHBoxLayout()                # for buttons
 lyt$addLayout(blyt)
 @
 
-Our buttons have callbacks that call the \method{done} method. We use
+Our buttons have callbacks that call the \method{done}{QDialog} method
+with a return value. We use
 \code{user.data} to pass in the dialog reference.
 <<results=hide>>=
 ok <- Qt$QPushButton("Ok")
@@ -352,9 +357,12 @@ would match files with extensions \code{ext} or \code{ext2}. Multiple
 filters can be used by separating them with two semicolons. For
 example, this would be a natural filter for \R{} users:
 <<>>=
-rfilter <- "R files (*.R .RData);; Sweave files (*.Rnw);; All files (*.*)"
-fnames <- Qt$QFileDialog$getOpenFileNames(NULL, "Open file(s)...", getwd(), 
-                                          rfilter)
+rfilter <- paste("R files (*.R .RData)",
+                "Sweave files (*.Rnw)",
+                "All files (*.*)", sep=";;")
+fnames <- Qt$QFileDialog$getOpenFileNames(NULL, 
+                        "Open file(s)...", getwd(), 
+                        rfilter)
 @ 
 
 \paragraph{Explicitly constructing a dialog}
@@ -370,10 +378,7 @@ like permissions.
 We construct a dialog for opening an R-related file, using the file
 names selected above as the history:
 <<QFileDialogAPI, results=hide>>=
-filter <- paste("R files (*.R .RData)",
-                "Sweave files (*.Rnw)",
-                "All files (*.*)", sep=";;")
-dlg <- Qt$QFileDialog(NULL, "Choose an R file", getwd(), filter)
+dlg <- Qt$QFileDialog(NULL, "Choose an R file", getwd(), rfilter)
 dlg$fileMode <- Qt$QFileDialog$ExistingFiles
 dlg$setHistory(fnames)
 @

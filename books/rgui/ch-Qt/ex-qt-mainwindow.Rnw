@@ -2,16 +2,25 @@
 library(qtbase)
 @ 
 
-This example shows how to mock up a main window similar to the one
-presented by the web application, R-Studio. (\url{rstudio.org}). We
-begin by setting a minimum size and a title for the main window.
+\begin{figure}
+  \centering
+  \includegraphics[width=.6\textwidth]{fig-qt-rstudio-like}
+  \caption{A mock of for a possible GUI using dockable widgets and a \class{QMainWindow} instance}
+  \label{fig:qt-r-studio}
+\end{figure}
 
+
+This example shows how to mock up a main window
+(Figure~\ref{fig-qt-r-studio}) similar to the one
+presented by the web application, R-Studio. (\url{rstudio.org}). 
+
+We begin by setting a minimum size and a title for the main window.
 <<results=hide>>=
 w <- Qt$QMainWindow()
 w$setMinimumSize(800, 500)
 w$setWindowTitle("Rstudio-type layout")
 @ 
-
+%
 We add in a menu bar and toolbar. The actions are minimal, not
 including icons, commands etc. We show the file menu definitions.
 <<defineActions,results=hide>>=
@@ -60,14 +69,20 @@ w$setCentralWidget(centralWidget)
 
 <<results=hide>>=
 fileNotebook <- Qt$QTabWidget()
-fileNotebook$addTab(Qt$QLabel("File notebook"), "About")
+l <- Qt$QLabel("File notebook")
+l$setAlignment(Qt$Qt$AlignCenter)
+fileNotebook$addTab(l, "About")
 fileNotebook$setTabsClosable(TRUE)
+qconnect(fileNotebook, "tabCloseRequested", function(ind, nb) {
+  nb$removeTab(ind)
+}, user.data=fileNotebook)
 centralWidget$addWidget(fileNotebook)
 @ 
 
 Our console widget is just a stub.
 <<results=hide>>=
 consoleWidget <- Qt$QLabel("Console goes here")
+consoleWidget$setAlignment(Qt$Qt$AlignCenter)
 centralWidget$addWidget(consoleWidget)
 @ 
 
@@ -85,13 +100,14 @@ wbDockWidget$setWidget(workspaceBrowser)
 
 <<echo=FALSE,results=hide>>=
 historyBrowser <- Qt$QLabel("History browser goes here")
+historyBrowser$setAlignment(Qt$Qt$AlignCenter)
 hbDockWidget <- Qt$QDockWidget("History")
 hbDockWidget$setWidget(historyBrowser)
 @ 
 
 The workspace and history browser are placed in a notebook to conserve
 space. We add the workspace browser on the right side, then tabify the
-history browser.
+history browser (whose construction is not shown).
 
 <<results=hide>>=
 w$addDockWidget(Qt$Qt$RightDockWidgetArea, wbDockWidget)

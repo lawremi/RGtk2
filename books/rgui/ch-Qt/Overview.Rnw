@@ -706,7 +706,8 @@ as a top-level window is drawn. The method \method{raise}{QWidget}
 will raise the window to the top of the stack of windows, in case it
 is covered.  The method \method{hide}{QWidget} will hide the widget.
 
-\XXX{JV: How to delete a widget: \code{get(sprintf("~%s", class(w)[1]), w)()}}
+%% JV: How to delete a widget: get(sprintf("~%s", class(w)[1]), w)()
+%% is awkward and doesn't always work.
 
 % XXX JV: this didn't work?
 % It is not deleted

@@ -24,7 +24,8 @@ qsetClass("TextEditSheet", Qt$QTextEdit, function(parent=NULL) {
 })
 @ 
 
-The \code{nb} property stores the parent notebook widget allowing us took this
+The \code{nb} property stores the parent notebook widget allowing us
+to look this
 up when when we have the sheet object.
 <<results=hide>>=
 qsetMethod("setNb", TextEditSheet, function(nb) this$nb <- nb)
@@ -35,7 +36,7 @@ notebook tab. We define a getter and setter. The setter is also tasked
 with updating the tab label and illustrates how the \code{nb} property is
 employed for this.
 <<results=hide>>=
-qsetMethod("filename", TextEditSheet, function() this$filename)
+qsetMethod("filename", TextEditSheet, function() filename)
 qsetMethod("setFilename", TextEditSheet, function(fname) {
   this$filename <- fname
   ## update tab label
@@ -47,10 +48,11 @@ qsetMethod("setFilename", TextEditSheet, function(fname) {
 
 Next, we define a few methods for the sheet. First, one to save the
 file. We use the filename property for the suggested name to save
-as. This method uses one of \Qt's standard dialogs.
+as.
 <<results=hide>>=
 qsetMethod("saveSheet", TextEditSheet, function() {
-  fname <- Qt$QFileDialog$getSaveFileName(this, "Save file as...", filename())
+  fname <- Qt$QFileDialog$getSaveFileName(this, 
+                         "Save file as...", filename())
   if(!is.null(fname)) {
     txt <- this$toPlainText()
     writeLines(strsplit(txt, "\n")[[1]], con=fname)
@@ -86,11 +88,14 @@ qsetMethod("initSheet", TextEditSheet, function() {
   qconnect(this, "selectionChanged", function() {
     hasSelection <- this$textCursor()$hasSelection()
     if(isCurrentSheet()) 
-      sapply(c("cut","copy"), function(i) this$nb$tbactions[[i]]$setEnabled(hasSelection))
+      sapply(c("cut","copy"), function(i) 
+             this$nb$tbactions[[i]]$setEnabled(hasSelection))
   })
   qconnect(this, "textChanged", function() {
-    if(isCurrentSheet())
-      this$nb$tbactions$save$setEnabled(this$document()$isModified())
+    if(isCurrentSheet()) {
+      mod <- this$document()$isModified()
+      this$nb$tbactions$save$setEnabled(mod)
+      }
   })
 })
 @ 
@@ -109,13 +114,13 @@ qsetClass("TextEditNotebook", Qt$QMainWindow, function(parent=NULL) {
   ## properties
   this$tbactions <- list()
   this$notebook <- Qt$QTabWidget()
-
   
   notebook$setTabsClosable(TRUE)
   notebook$setUsesScrollButtons(TRUE)
-  qconnect(notebook, "tabCloseRequested", function(ind) notebook$removeTab(ind))
-  qconnect(this$notebook, "currentChanged", function(index) {
-    if(index > 0)
+  qconnect(notebook, "tabCloseRequested", 
+           function(ind) notebook$removeTab(ind))
+  qconnect(this$notebook, "currentChanged", function(ind) {
+    if(ind > 0)
       updateActions()
   })
   setCentralWidget(notebook)
@@ -137,20 +142,20 @@ qsetMethod("currentSheet", TextEditNotebook, function() {
 This method is used to open a new sheet, either a blank one or some
 initial text.
 <<results=hide>>=
-qsetMethod("newSheet", TextEditNotebook, function(title="..Scratch..", str=NULL) {
+qsetMethod("newSheet", TextEditNotebook, 
+           function(title="..Scratch..", str=NULL) {
 
-  a <- TextEditSheet()                  # a new sheet
-  a$setNb(this)                         # set parent notebook
-  a$initSheet()                         # initialize the sheet
+             a <- TextEditSheet()         # a new sheet
+             a$setNb(this)                # set parent notebook
+             a$initSheet()                # initialize the sheet
+             
+             this$notebook$addTab(a, "")  # add to the notebook
+             ind <- this$notebook$indexOf(a)
+             this$notebook$setCurrentIndex(ind)
 
-  if(!is.null(str))                     # set text if present
-    a$setPlainText(str)                 
-
-  this$notebook$addTab(a, "")           # add to the notebook
-  this$notebook$setCurrentIndex(this$notebook$indexOf(a))
-  a$setFilename(title)                  # also updates tab
-  
-  
+             if(!is.null(str))            # set text if present
+               a$setPlainText(str)        
+             a$setFilename(title)         # also updates tab
 })
 @ 
 
@@ -236,14 +241,15 @@ qsetMethod("initActions", TextEditNotebook, function() {
 @ 
 
 Whenever a new sheet is shown, the state of the actions should reflect
-that sheet. The \method{updateActions} does this task. The constructor
+that sheet. The \meth{updateActions} method does this task. The constructor
 has a callback for this method whenever the sheet changes.
 <<results=hide>>=
 qsetMethod("updateActions", TextEditNotebook, function() {
-  ## update actions when page changes
-  a <- this$tbactions
   cur <- currentSheet()
-  if(is.null(cur)) return()
+  if(is.null(cur)) 
+    return()
+
+  a <- this$tbactions
   a$redo$setEnabled(FALSE)
   a$undo$setEnabled(FALSE)
   a$cut$setEnabled(cur$textCursor()$hasSelection())
