@@ -1,0 +1,135 @@
+<<echo=FALSE, results=hide>>=
+library(qtbase)
+@ 
+
+We will use subclasses of the label class to illustrate how one
+implements basic drag-and-drop functionality. Out treatment follows
+the \Qt{} tutorial on the subject. We begin by setting up a label to
+be a drag target.
+<<DragConstructor, results=hide>>=
+qsetClass("DragLabel", Qt$QLabel, function(text="", parent=NULL) {
+  super(parent)
+  setText(text)
+
+  setAlignment(Qt$Qt$AlignCenter)
+  setMinimumSize(200, 200)
+})
+@
+
+The main method to implement for the subclass is
+\meth{mousePressEvent}. Its argument \code{e} contains event
+information for the mouse press event, we don't need it here. We have the minimal
+structure here: implement mime data to pass through, set up a
+\class{QDrag} instance for the data, then call the
+\method{exec}{QDrag} method to initiate the drag event. The
+\meth{exec} method call has optional arguments to specify what action
+should be done. The default here is move, copy, link, for which only
+copy makes sense.
+
+<<drag-mouse-press-event>>=
+qsetMethod("mousePressEvent", DragLabel, function(e) {
+  md <- Qt$QMimeData()
+  md$setText(text)
+
+  drag <- Qt$QDrag(this)
+  drag$setMimeData(md)
+
+  drag$exec()
+})
+@  
+
+
+
+Implementing a label as a drop target is a bit more work, as we
+customize its appearance. Our basic
+constructor follows:
+<<DropConstructor, results=hide>>=
+qsetClass("DropLabel", Qt$QLabel, function(text="", parent=NULL) {
+  super(parent)
+
+  setText(text)
+  setAcceptDrops(TRUE)
+
+  this$bgrole <- backgroundRole()
+  setAlignment(Qt$Qt$AlignCenter)
+  setMinimumSize(200, 200)
+  setAutoFillBackground(TRUE)
+  clear()
+})
+@
+We wish to override the call to \method{setText}{QLabel} above, as
+we want to store the original text in a property of the widget. Note
+the use of \function{super} with a method definition below to call the next method.
+<<results=hide>>=
+qsetMethod("setText", DropLabel, function(str) {
+  this$orig_text <- str
+  super("setText", str)                 # next method
+})
+@
+The \meth{clear} method is used to restore the label to an initial
+state. We have saved the background role and original text as
+properties for this purpose.
+<<clear, results=hide>>=
+qsetMethod("clear", DropLabel, function() {
+  setText(this$orig_text)
+  setBackgroundRole(this$bgrole)
+})
+@
+
+The enter event notifies the user that a drop can occur on this target
+by changing the text and the background role.
+<<results=hide>>=
+qsetMethod("dragEnterEvent", DropLabel, function(e) {
+  super("setText", "<Drop Text Here>")
+  setBackgroundRole(Qt$QPalette$Highlight)
+
+  e$acceptProposedAction()
+})
+@
+
+The move and leave events are straightforward. We call \meth{clear}
+when the drag leaves the target to restore the widget.
+<<results=hide>>=
+qsetMethod("dragMoveEvent", DropLabel, function(e) {
+  e$acceptProposedAction()
+})
+
+qsetMethod("dragLeaveEvent", DropLabel, function(e) {
+  clear()
+#  e$acceptProposedAction()
+})
+@
+Finally, the important drop event. The following shows how to
+implement this in more generality than is needed for this example, as
+we only have text in our mime data. 
+<<dropevent, results=hide>>=
+qsetMethod("dropEvent", DropLabel, function(e) {
+  md <- e$mimeData()
+  
+  if(md$hasImage()) {
+    setPixmap(md$imageData())
+  } else if(md$hasHtml()) {
+    setText(md$html)
+    setTextFormat(Qt$Qt$RichText)
+  } else if(md$hasText()) {
+    setText(md$text())
+    setTextFormat(Qt$Qt$PlainText)
+  } else {
+    setText("No match")                 # replace...
+  }
+
+  setBackgroundRole(this$bgrole)
+  e$acceptProposedAction()
+})
+@
+
+<<notshown, echo=FALSE, results=hide>>=
+## test it
+l = DragLabel("drag me to drop label")
+l$show()
+l$raise()
+
+l1 <- DropLabel("drop onto me")
+l1$show()
+l1$raise()
+@

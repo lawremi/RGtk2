@@ -1,0 +1,58 @@
+  We combine a slider and spinbox to make a range selection widget,
+  offering the speedier movement of the slider, with the finer
+  adjustments of the spin box.
+<<SliderSpinButton, echo=FALSE, results=hide>>=
+w <- Qt$QWidget()
+lyt <- Qt$QHBoxLayout()
+w$setLayout(lyt)
+@ 
+
+Our slider construction sets values one-by-one.
+<<results=hide>>=
+sl <- Qt$QSlider()
+sl$setMinimum(0)
+sl$setMaximum(100)
+sl$setSingleStep(1)
+sl$setPageStep(5)
+@ 
+
+To style our slider we make it horizontal, set the tick position and
+interval through the following:
+<<results=hide>>=
+sl$setOrientation(Qt$Qt$Horizontal)
+sl$setTickPosition(Qt$QSlider$TicksBelow)
+sl$setTickInterval(10)
+@ 
+
+The basic spin box construction is relatively straightforward. We add
+a "\%" suffix to make it seem like we are selecting a percent.
+<<results=hide>>=
+sp <- Qt$QSpinBox()
+sp$setMinimum(0)
+sp$setMaximum(100)
+sp$setSingleStep(1)
+sp$setSuffix("%")
+@ 
+
+To link the two widgets, we define callbacks for their
+\signal{valueChanged} signal updating the other widget when there is a
+change. This could possibly cause an infinite loop, so we check if the
+suggested value is not equal to the current one before updating.
+
+<<results=hide>>=
+f <- function(value, obj) {
+  if(! isTRUE(all.equal(value, obj$value)))
+    obj$setValue(value)
+}
+qconnect(sp, "valueChanged", f, user.data=sp)
+qconnect(sl, "valueChanged", f, user.data=sl)
+@
+
+<<echo=FALSE, results=hide>>=
+## not shown
+lyt$addWidget(sl)
+lyt$addWidget(sp)
+
+w$show()
+w$raise()
+@ 
