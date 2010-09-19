@@ -14,6 +14,8 @@ interfaces.
 %% MFL: Should probably use a similar organization to RGtk2. Except
 %% for the layouts and containers.
 
+%% JV: Similar, we should move dialogs earlier there, as you have suggested
+
 %% MFL: Also, MVC is a software engineering concept. It might be
 %% better to divide things on a conceptual axis that is more
 %% interesting to statisticians. Like basic input controls and widgets

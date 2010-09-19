@@ -16,7 +16,8 @@ we create a subclass of \class{QTreeWidgetItem} with a \prop{digest} property.
 
 <<OurTreeWidgetItem, results=hide>>=
 require(digest)
-qsetClass("OurTreeWidgetItem", Qt$QTreeWidgetItem, function() {
+qsetClass("OurTreeWidgetItem", Qt$QTreeWidgetItem, function(parent=NULL) {
+  super(parent)
   this$digest <- NULL
 })
 qsetMethod("digest", OurTreeWidgetItem, function() digest)
@@ -64,7 +65,7 @@ makeItem <- function(varname, obj=NULL, toplevel=FALSE) {
 }
 @ 
 
-Next we define a few simple function to add, remove and replace a
+Next we define a few simple functions to add, remove and replace a
 top-level item. 
 <<results=hide>>=
 addItem <- function(tr, varname) {
@@ -96,9 +97,9 @@ input.
 
 As can be seen, we consider three cases: items no longer in the
 workspace to remove, new items to add, and finally items that may be
-new. here is where we check the digest value to see if they need to be
+new. Here is where we check the digest value to see if they need to be
 replaced. Rather than fuss with inserting new items, we simply add
-them to the end and the sort the values.
+them to the end and then sort the values.
 
 <<updateTopLevelItems, results=hide>>=
 updateTopLevelItems <- function(tr) {
@@ -106,7 +107,7 @@ updateTopLevelItems <- function(tr) {
 
   curObjs <- lapply(seq_len(tr$topLevelItemCount), function(i) {
     item <- tr$topLevelItem(i-1)
-    list(item=item, value=item$data(0, role=0) )               # better role?
+    list(item=item, value=item$data(0, role=Qt$Qt$DisplayRole)) 
   })
   cur <- sapply(curObjs, function(i) i$value)
   names(curObjs) <- cur

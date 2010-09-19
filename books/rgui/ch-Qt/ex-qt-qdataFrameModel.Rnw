@@ -18,7 +18,8 @@ have. Here we use some images from the \pkg{gWidgets} package.
 
 <<results=hide>>=
 icons <- sapply(c("factor", "numeric"), function(i) {
-  Qt$QPixmap(system.file(sprintf("images/%s.gif",i), package="gWidgets"))
+  Qt$QPixmap(system.file(sprintf("images/%s.gif",i), 
+                         package="gWidgets"))
 })
 icons$integer <- icons$numeric
 @ 
@@ -27,7 +28,8 @@ To add the icons as a decoration, we simply assign to the
 appropriately named component of our data frame. Data frames can store
 such data, although the default print method does not work. 
 <<results=hide>>=
-d$.Variables.decoration <- sapply(nms, function(i) icons[class(Cars93[[i]])])
+d$.Variables.decoration <- sapply(nms, function(i) 
+                                  icons[class(Cars93[[i]])])
 @ 
 
 Similarly, we set an informative tooltip for each variable:
@@ -40,7 +42,7 @@ We now define a model and associate it with a view. In this example we
 use a \class{QListView} instance, although in most uses of this model
 we would use the \class{QTableView} class. We discuss views later in
 Section~\ref{ssec:table-views}.
-<<>>=
+<<results=hide>>=
 model <- qdataFrameModel(d)
 view <- Qt$QListView()
 view$setModel(model)

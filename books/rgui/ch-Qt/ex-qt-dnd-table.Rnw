@@ -110,7 +110,7 @@ properties: a function to call for the drop event, a value beyond the
 text, and an angle for text rotation. We define accessors for these
 properties, but do not show them here.
 <<DropLabelRotation, results=hide>>=
-qsetClass("DropLabelRotation", Qt$QLabel, function( parent=NULL) {
+qsetClass("DropLabelRotation", Qt$QLabel, function(parent=NULL) {
   super(parent)
 
   this$dropFunction <- function(obj, data) {}
@@ -174,15 +174,16 @@ qsetMethod("dropEvent", DropLabelRotation, function(e) {
 @ 
 
 
-For this application we want to be able to show text in the drop label in a
-rotated state. The following allows this. We override the
+For this application we want to be able to show text in the drop label
+in a rotated state. The following allows this. We override the
 \event{paintEvent} event if the \prop{angle} property is non-zero,
-otherwise. The chapter on \pkg{qtpaint} will cover the techniques used
-in \meth{drawRotatedText}. In short we translate the origin to the
-center of the label's rectangle, rotate coordinates by the angle, then
-place the text within this new rectangle/
+otherwise we call the parent class's paint event. The chapter on
+\pkg{qtpaint} will cover the techniques used in
+\meth{drawRotatedText}. In short we translate the origin to the center
+of the label's rectangle, rotate coordinates by the angle, then place
+the text within this new rectangle/
 
-<<>>=
+<<results=hide>>=
 qsetMethod("paintEvent", DropLabelRotation, function(e) {
   if(!this$angle) {
     super("paintEvent", e)
@@ -225,7 +226,7 @@ basic: we define a widget and set a drop function. For the
 \code{ylabel} we also adjust the rotation and constrain the width
 based on the font size. The latter is
 necessary, as otherwise the label width reflects the length of the
-dropped text. The \method{clearLabels} just sets the text and
+dropped text. The \meth{clearLabels} just sets the text and
 initializes the values for the labels. It is not shown.
 <<initWidgets, results=hide>>=
 qsetMethod("initWidgets", XtabsWidget, function() {

@@ -1,0 +1,120 @@
+  This example shows how we can combine a combobox and a list widget
+  to select a variable name from a data frame. Here we select a value
+  by dragging it. A such we need to define a sub-class of
+  \class{QListWidget} to implement the \code{mousePressEvent}.
+  
+<<VariableSelector, results=hide>>=
+qsetClass("DraggableListWidget", Qt$QListWidget, 
+          function(parent=NULL) {
+            super(parent)
+            this$df <- NULL
+          })
+@   
+%
+The property \code{df} holds the name of the dataframe that will be
+selected through a combobox. Here is a method to set the value.
+<<results=hide>>=
+qsetMethod("setDf", DraggableListWidget, 
+           function(df) this$df <- df)
+@ 
+%
+For drag and drop we show how to serialize an arbitrary \R{} object to
+pass through to the drop target.  We pass in a list of the data frame
+name and the selected variable name. The method
+\method{setData}{QMimeData} takes a MIME type (which we arbitrarily
+define) and a value. This value will be retrieved by the
+\method{data}{QMimeData} method and we can then call
+\function{unserialize}.
+<<results=hide>>=
+qsetMethod("mousePressEvent", DraggableListWidget, function(e) {
+  item <- itemAt(e$pos())
+  val <- list(df=this$df, var=item$text())
+
+  md <- Qt$QMimeData()
+  md$setData("R/serialized-data", serialize(val, NULL))
+
+  drag <- Qt$QDrag(this)
+  drag$setMimeData(md)
+
+  drag$exec()
+})
+@ 
+
+
+With this, we know create a widget to hold the combobox and the list
+box. The constructor creates the widgets, lays them out, initializes
+the data sets then sets a handler to update the variable list when the
+dataframe selector does.
+<<results=hide>>=
+qsetClass("VariableSelector", Qt$QWidget, function(parent=NULL) {
+  super(parent)
+
+  this$dfcb <- Qt$QComboBox()
+  this$varList <-  DraggableListWidget()
+
+  lyt <- Qt$QVBoxLayout()
+  lyt$addWidget(dfcb)
+  lyt$addWidget(varList)
+  varList$setSizePolicy(Qt$QSizePolicy$Expanding, 
+                        Qt$QSizePolicy$Expanding)
+  setLayout(lyt)
+
+  updateDataSets()
+  qconnect(dfcb, "activated", function(ind) {
+    updateVarList(dfcb$currentText)
+  })
+})
+@ 
+%
+
+Our method to update the data frame choice is a bit convoluted as we try to
+keep the currently selected data frame, if possible.
+<<results=hide>>=
+qsetMethod("updateDataSets", VariableSelector, function() {
+  curVal <- this$dfcb$currentText
+  this$dfcb$clear()
+  x <- ls(envir=.GlobalEnv)
+  dfs <- x[sapply(x, function(i) 
+                  is.data.frame(get(i, inherits=TRUE)))]
+  if(length(dfs)) {
+    this$dfcb$addItems(dfs)
+    if(is.null(curVal) || !curVal %in% dfs) {
+      this$dfcb$setCurrentIndex(-1)
+      updateVarList(NULL)
+    } else {
+      this$dfcb$setCurrentIndex(which(curVal == dfs))
+      updateVarList(curVal)               # curVal NULL, or a name
+    }
+  }
+})
+@ 
+
+Finally, we need to update the list of variables to reflect the state
+of the combo box selection. Here we define a helper method to display
+an appropriate icon based on the class of the variable.
+<<results=hide>>=
+getIconFile <- function(x) UseMethod("getIconFile")
+getIconFile.default <- function(x)
+  Qt$QIcon(system.file("images/numeric.gif", package="gWidgets"))
+getIconFile.factor <- function(x)
+  Qt$QIcon(system.file("images/factor.gif", package="gWidgets"))
+getIconFile.character <- function(x)
+  Qt$QIcon(system.file("images/character.gif", package="gWidgets"))
+@ 
+
+This method populates the variable list to reflect the indicated data
+frame. As items are automatically drag enabled, we do not need to add
+anything more here, as we've implemented the \code{mousePressEvent}.
+<<results=hide>>=
+qsetMethod("updateVarList", VariableSelector, function(df=NULL) {
+  this$varList$setDf(df)
+  this$varList$clear()
+  if(!is.null(df)) {
+    d <- get(df)
+    sapply(names(d), function(i) {
+      item <- Qt$QListWidgetItem(i, this$varList)
+      item$setIcon(getIconFile(d[,i]))
+    })
+  }
+})
+@ 

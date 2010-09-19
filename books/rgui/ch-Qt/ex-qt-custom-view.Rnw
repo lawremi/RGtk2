@@ -235,8 +235,8 @@ although we don't consider the individual items below. Our goal is
 a simple illustration, where we provide a label with text summarizing the mean of the values
 in the first column of the model.
 
-In the constructor we call the inherited \meth{setModel} method and
-the \meth{setLabelValue} method we define later.
+In the constructor we define a label property and call our \meth{setModel} method.
+
 <<CustomView, results=hide>>=
 qsetClass("CustomView", Qt$QAbstractItemView, function(parent=NULL) {
   super(parent)
@@ -245,7 +245,7 @@ qsetClass("CustomView", Qt$QAbstractItemView, function(parent=NULL) {
   setModel(NULL)
 })
 @ 
-
+%
 The label has an accessor function which we use in our private
 \meth{setLabelValue} method defined below. Here we get the model from
 the custom view. 
@@ -264,7 +264,7 @@ qsetMethod("setLabelValue", CustomView, function() {
 },
            access="private")
 @ 
-
+%
 The main method call is when the data is changed. Here we update the
 label text when so notified.
 
@@ -273,7 +273,7 @@ qsetMethod("dataChanged", CustomView, function(upperIndex,lowerIndex) {
   setLabelValue()
 })
 @ 
-
+%
 To initialize the label text, we add a call to \meth{setLabelValue} when the model is set.
 <<results=hide>>=
 qsetMethod("setModel", CustomView, function(model) {
@@ -303,7 +303,7 @@ w$setLayout(lyt)
 lyt$addWidget(view)
 lyt$addWidget(cv$label())
 @ 
-
+%
 <<echo=FALSE, results=hide>>=
 #w$show()
 #w$raise()

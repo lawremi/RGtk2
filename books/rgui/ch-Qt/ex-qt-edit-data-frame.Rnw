@@ -27,7 +27,7 @@ qsetClass("DfModel", Qt$QAbstractTableModel, function(df=data.frame(V1=character
   setDf(df)
 })
 @ 
-We needs accessor for the \prop{dataframe} property. When setting a
+We need accessors for the \prop{dataframe} property. When setting a
 new one, we call the \meth{dataChanged} method to notify any views of
 a change.
 <<results=hide>>=
@@ -38,7 +38,7 @@ qsetMethod("setDf", DfModel, function(df) {
 })
 @ 
 
-All subclass of \class{QAbstractTableModel} must implement a few
+All subclasses of \class{QAbstractTableModel} need to implement a few
 methods, here we do \meth{rowCount} and \meth{columnCount} using the
 dimensions of the current data frame.
 <<results=hide>>=
@@ -53,9 +53,12 @@ several. For example, to change the display role we have the following.
 
 <<displayRoleMethod, results=hide>>=
 displayRole <- function(x, row, context) UseMethod("displayRole")
-displayRole.default <- function(x, row, context) sprintf("%s", x[row])
-displayRole.numeric <- function(x, row, context) sprintf("%.2f", x[row])
-displayRole.integer <- function(x, row, context) sprintf("%d", x[row])
+displayRole.default <- function(x, row, context) 
+  sprintf("%s", x[row])
+displayRole.numeric <- function(x, row, context) 
+  sprintf("%.2f", x[row])
+displayRole.integer <- function(x, row, context) 
+  sprintf("%d", x[row])
 @ 
 
 We see that numeric values are formatted to have $2$ decimal
@@ -106,7 +109,7 @@ toolTipRole.logical <- function(x, row, context) sprintf("Logical vector")
 whatsThisRole <- toolTipRole
 @ 
 
-The main \meth{data} has this basic structure (we avoid showing the
+Our \meth{data} method has this basic structure (we avoid showing the
 cases for all the different roles.
 <<eval=FALSE>>=
 qsetMethod("data", DfModel, function(index, role) {
@@ -182,7 +185,7 @@ qsetMethod("data", DfModel, function(index, role) {
 })
 @ 
 
-To allow the user to edit the values we need override the \meth{flags}
+To allow the user to edit the values we need to override the \meth{flags}
 method to return \code{ItemIsEditable} in the flag, so that any views
 are aware of this ability.
 
@@ -221,7 +224,7 @@ fitIn.logical <- function(x, value) {
 }
 @ 
 
-The \meth{setData} is responsible for taking the value from the
+The \meth{setData} method is responsible for taking the value from the
 delegate and assigning it into them model, we use the \code{fitIn}
 function unless it is a column header.
 <<results=hide>>=
@@ -248,9 +251,9 @@ qsetMethod("setData", DfModel, function(index, value, role) {
 })
 @ 
 
-For a data frame editor, we may wish to extend the API for table of
-items to be \R{} specific. This method allows one to replace a column
-of values.
+For a data frame editor, we may wish to extend the API for our table
+of items to be \R{} specific. For example, this method allows one to replace a
+column of values.
 
 <<results=hide>>=
 qsetMethod("setColumn", DfModel, function(col, value) {
@@ -261,7 +264,7 @@ qsetMethod("setColumn", DfModel, function(col, value) {
   value <- value[1:n]
   d <- this$Df()
   d[,col] <- value
-  this$dataframe <- d                   # only notify about this column
+  this$dataframe <- d          # only notify about this column
   dataChanged(index(0, col-1), index(rowCount()-1, col-1))
   return(TRUE)
 })
