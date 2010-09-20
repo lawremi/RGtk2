@@ -568,111 +568,179 @@ qsetMethod("setWindowTitle", SubClass4, function(value) {
 %% edit, ... How do you add an icon in a line edit widget?
 
 \begin{example}{A ``error label''}{eg:qt-error}
-  A common practice when validation is used for text entry is to have
-  a ``buddy label.'' That is an accompanying label to set an error
-  message. As \Qt{} uses ``buddy'' for something else, we call this an
-  ``error label'' below. We show how to implement such a widget in
-  \pkg{qtbase} where we define a new type of widget that combines a
-  \class{QTextEdit} and the \class{QLabel} for reporting errors. 
   
-  This demonstrates the definition of a custom constructor for an \R{}
-  class.  The \R\/ function implementing the constructor must be passed
-  during the call to \Rfunction{qsetClass}:
-<<ErrorLabel, results=hide>>=
-qsetClass("ErrorLabel", Qt$QLineEdit, 
-          function(text, parent=NULL, message="") {
-            super(parent)
+%% JV: Replace with this: (drawback: no a custom constructor, issue with
+%% base:::paste, versus paste is a good one; style sheet example; 
+
+This example shows how to extend the line edit widget to display an
+error state. Such a widget might prove useful when one is validating
+the entries values.
+
+To indicate an error, we will add an icon and set the tooltip to
+display an informative message. The constructor will be the default,
+so our class is defined with:
+<<LineEditWithError, results=hide>>=
+qsetClass("LineEditWithError", Qt$QLineEdit)
+@   
+
+The main method sets the error state. We use stye sheets to place an
+image to the left of the entry message and set the tooltip. The use of
+\code{base:::paste}, as opposed to simply \code{paste}, is necessary
+here as the \class{QLineEdit} class has a slot called \code{paste}
+(for copy-and-paste activities). As the search list gets modified to
+place the objects environment in front, we must reference
+\function{paste} explicitly.
+<<>>=
+qsetMethod("setError", LineEditWithError, function(msg) {
+  f <- system.file("images/cancel.gif", package="gWidgets")
+  ss <- base:::paste("* {",
+              base:::paste(sprintf("background-image:url(%s)", f),
+                    "background-repeat: no-repeat;",
+                    "background-position: left top;",
+                    "padding-left: 20px",
+                    sep=";"),
+              "}", sep="")
+  setStyleSheet(ss)
+  setToolTip(msg)
+})
+@ 
+%
+
+Clearing the error is s simple matter of resetting the properties to \code{NULL}.
+<<results=hide>>=
+qsetMethod("clearError", LineEditWithError, function() {
+  setStyleSheet(NULL)
+  setToolTip(NULL)
+})
+@ 
+%
+
+Finally, to test this out, we have the following
+<<>>=
+e <- LineEditWithError()
+e$setText("The quick brown fox...")
+e$setError("Replace with better boilerplate text")
+@ 
+%
+<<echo=FALSE, results=hide>>=
+e$show()
+e$raise()
+@ 
+
+  
+  
+  
+  
+%   A common practice when validation is used for text entry is to have
+%   a ``buddy label.'' That is an accompanying label to set an error
+%   message. As \Qt{} uses ``buddy'' for something else, we call this an
+%   ``error label'' below. We show how to implement such a widget in
+%   \pkg{qtbase} where we define a new type of widget that combines a
+%   \class{QTextEdit} and the \class{QLabel} for reporting errors. 
+  
+%   This demonstrates the definition of a custom constructor for an \R{}
+%   class.  The \R\/ function implementing the constructor must be passed
+%   during the call to \Rfunction{qsetClass}:
+% <<ErrorLabel, results=hide>>=
+% qsetClass("ErrorLabel", Qt$QLineEdit, 
+%           function(text, parent=NULL, message="") {
+%             super(parent)
             
-            this$widget <- Qt$QWidget()           # for attaching
-            this$error <- Qt$QLabel()             # set height=0
-            this$error$setStyleSheet("* {color: red}")  # set color
+%             this$widget <- Qt$QWidget()           # for attaching
+%             this$error <- Qt$QLabel()             # set height=0
+%             this$error$setStyleSheet("* {color: red}")  # set color
                         
-            lyt <- Qt$QGridLayout()               # layout
-            widget$setLayout(lyt)
+%             lyt <- Qt$QGridLayout()               # layout
+%             widget$setLayout(lyt)
 
-            lyt$setVerticalSpacing(0)
-            lyt$addWidget(this, 0, 0, 1, 1)
-            lyt$addWidget(error, 1, 0, 1, 1)
+%             lyt$setVerticalSpacing(0)
+%             lyt$addWidget(this, 0, 0, 1, 1)
+%             lyt$addWidget(error, 1, 0, 1, 1)
             
-            if(nchar(message) > 0)
-              setMessage(message)
-            else
-              setErrorHeight(FALSE)
-            if(!missing(text)) setText(text)
-          })
-@
+%             if(nchar(message) > 0)
+%               setMessage(message)
+%             else
+%               setErrorHeight(FALSE)
+%             if(!missing(text)) setText(text)
+%           })
+% @
 
-By convention, every widget in \Qt\/ accepts its parent as an argument
-to its constructor. Via \Rfunction{super}, the parent is passed to the
-base class constructor and on up the hierarchy. The \Rfunction{super}
-function does not exist outside the scope of a constructor (or
-method). Within a constructor, \Rfunction{super} invokes the
-constructor of the parent (super) class, with the given
-arguments. Within a method implementation, \Rcode{super} will call a
-method (named in the first parameter) in the parent class (see
-Example~\ref{eg:qt-dnd}).
+% By convention, every widget in \Qt\/ accepts its parent as an argument
+% to its constructor. Via \Rfunction{super}, the parent is passed to the
+% base class constructor and on up the hierarchy. The \Rfunction{super}
+% function does not exist outside the scope of a constructor (or
+% method). Within a constructor, \Rfunction{super} invokes the
+% constructor of the parent (super) class, with the given
+% arguments. Within a method implementation, \Rcode{super} will call a
+% method (named in the first parameter) in the parent class (see
+% Example~\ref{eg:qt-dnd}).
 
-In addition to the call to \function{super}, we define a
-\class{QWidget} instance to contain the line edit widget and its
-label. These are placed within a grid layout. The use of \code{this}
-refers to the object we are creating. The new method
-\meth{setErrorHeight} is used to flatten the height of the label when
-it is not needed and is defined below.  The final line sets the
-initial text in the line edit widget. The \R{} environment where
-\method{setText}{QLineEdit} is defined is extended by the environment
-of this constructor, so no prefix is needed in the call.
+% In addition to the call to \function{super}, we define a
+% \class{QWidget} instance to contain the line edit widget and its
+% label. These are placed within a grid layout. The use of \code{this}
+% refers to the object we are creating. The new method
+% \meth{setErrorHeight} is used to flatten the height of the label when
+% it is not needed and is defined below.  The final line sets the
+% initial text in the line edit widget. The \R{} environment where
+% \method{setText}{QLineEdit} is defined is extended by the environment
+% of this constructor, so no prefix is needed in the call.
 
-  The \code{widget} component is needed to actually show the widget. We
-  create an accessor method:
-<<ErrorLabel-Example, results=hide>>=
-qsetMethod("widget", ErrorLabel, function() widget)
-@ 
+%   The \code{widget} component is needed to actually show the widget. We
+%   create an accessor method:
+% <<ErrorLabel-Example, results=hide>>=
+% qsetMethod("widget", ErrorLabel, function() widget)
+% @ 
 
 
-  We extend the API of the line edit widget for this subclass to modify
-  the message. We define three methods, one to get the message, one to
-  set it and a convenience function to clear the message.
-<<results=hide>>=
-qsetMethod("message", ErrorLabel, function() error$text)
-qsetMethod("setMessage", ErrorLabel, function(msg="") {
-  if(nchar(msg) > 0)
-    error$setText(msg)
-  setErrorHeight(nchar(msg) > 0)
-})
-qsetMethod("clear", ErrorLabel, function()  setMessage())
-@ 
+%   We extend the API of the line edit widget for this subclass to modify
+%   the message. We define three methods, one to get the message, one to
+%   set it and a convenience function to clear the message.
+% <<results=hide>>=
+% qsetMethod("message", ErrorLabel, function() error$text)
+% qsetMethod("setMessage", ErrorLabel, function(msg="") {
+%   if(nchar(msg) > 0)
+%     error$setText(msg)
+%   setErrorHeight(nchar(msg) > 0)
+% })
+% qsetMethod("clear", ErrorLabel, function()  setMessage())
+% @ 
 
-Finally, we define the method to set the height of the label, so that
-when there is no message it has no height. We use a
-combination of setting both the minimum and maximum height.
-<<results=hide>>=
-qsetMethod("setErrorHeight", ErrorLabel, function(do.height=FALSE)  {
-  if(do.height) {
-    m <- 18; M <- 100
-  } else {
-    m <- 0; M <- 0
-  }
-  error$setMinimumHeight(m)
-  error$setMaximumHeight(m)
-})
-@ 
+% Finally, we define the method to set the height of the label, so that
+% when there is no message it has no height. We use a
+% combination of setting both the minimum and maximum height.
+% <<results=hide>>=
+% qsetMethod("setErrorHeight", ErrorLabel, function(do.height=FALSE)  {
+%   if(do.height) {
+%     m <- 18; M <- 100
+%   } else {
+%     m <- 0; M <- 0
+%   }
+%   error$setMinimumHeight(m)
+%   error$setMaximumHeight(m)
+% })
+% @ 
 
-To use this widget, we have the extra call to \code{widget()} to
-retrieve the widget to add to a GUI. In the following, we just show
-the widget.
-<<results=hide>>=
-e <- ErrorLabel()
-w <- e$widget()                # get widget to show
-w$show()                       # to view widget
-e$setMessage("A label")        # opens message
-e$clear()                      # clear message, shrink space
-@ 
+% To use this widget, we have the extra call to \code{widget()} to
+% retrieve the widget to add to a GUI. In the following, we just show
+% the widget.
+% <<results=hide>>=
+% e <- ErrorLabel()
+% w <- e$widget()                # get widget to show
+% w$show()                       # to view widget
+% e$setMessage("A label")        # opens message
+% e$clear()                      # clear message, shrink space
+% @ 
+
 \end{example}
 
 
 %% ML: In my opinion, this material is best embedded within the
 %% discussion of the available widgets, especially the top-level
 %% window and layouts.
+
+%% JV: Definitely for the size issues. But shouldn't some common
+%% methods be separated out (I'm thinking along the lines of inherited
+%% QWidget methods that are common to many widget)
 
 \section{Common methods for QWidgets and QObjects}
 \label{sec:comm-meth-qwidg}
