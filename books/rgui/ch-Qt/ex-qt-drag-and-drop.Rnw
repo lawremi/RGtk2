@@ -38,7 +38,23 @@ qsetMethod("mousePressEvent", DragLabel, function(e) {
 })
 @  
 
+For widgets that process mouse press events, it is typical to store
+the position of the mouse click in the mouse press event, then within
+a mouse move event check if there has been sufficient movement, after
+which the drag code is prepared. For example, we could have logic
+similar to this:
 
+<<eval=FALSE>>=
+## sample only, not used
+qsetMethod("mouseMoveEvent", DragLabel, function(e) {
+  if ((e$buttons() & Qt$Qt$LeftButton) && !is.null(dndStartPosition)) {
+    dist <- (e$x() - dndStartPosition$x())^2 +  (e$y() - dndStartPosition$y())^2
+    if (dist >= Qt$QApplication$startDragDistance()^2)
+      this$prepareDrag(e)       # some method call
+  }
+  super("mouseMoveEvent",e)
+})
+@ 
 
 Implementing a label as a drop target is a bit more work, as we
 customize its appearance. Our basic
