@@ -1,45 +1,537 @@
 %% widgets using MVC framework
-\section{Model View Controller implementation in Qt}
+
+The model, view, controller (MVC) pattern is fundamental to the design
+of widgets that display and manipulate data. Keeping the model
+separate from the view allows multiple views for the same
+data. Generally, the model is an abstract interface. Thus, the same
+view and controller components are able to operate on any data source
+(e.g., a database) for which a model implementation exists.
+
+\Qt{} provides \class{QAbstractItemModel} as the base for all of its
+data models. Like \class{GtkTreeModel}, \class{QAbstractItemModel}
+represents tables, optionally with a hierarchy. The precise
+implementation depends on the subclass. Widgets that view item models
+extend \class{QAbstractItemView} and include tables, lists, trees and
+combo boxes. This section will outline the available model
+and view implementations in \Qt{} and \pkg{qtbase}.
+
+\section{Display of tabular data}
+
+As mentioned, \Qt{} expects data to be stored in a
+\class{QAbstractItemModel}. In \R, the canonical structure for tabular
+data is \class{data.frame}. The \class{DataFrameModel} class bridges
+these structures by wrapping \class{data.frame} in an implementation
+of \class{QAbstractItemModel}. This essentially allows a
+\class{data.frame} object to be passed to any part of \Qt{} that
+expects tabular data. It also offers significant performance benefits:
+there is no need to copy the data frame into a C++ data structure,
+which would be especially slow if the looping occurred in
+\R. Displaying a simple table of data with \class{DataFrameModel} is
+much simpler than with \GTK{} and \class{RGtkDataFrame}. Here we
+show a \class{data.frame} in a table view:
+<<qt-mvc-qdfm,print=false>>=
+data(mtcars)
+model <- qdataFrameModel(mtcars)
+view <- Qt$QTableView()
+view$setModel(model)
+@ 
+%
+We could also pass our model to any other view expecting a
+\class{QAbstractItemModel}. For example, the first column could be
+displayed in a list or combo box.
+
+The \class{DataFrameModel} object is a reference, so any changes are
+reflected in all of its views. The \R{} data frame of a
+\class{DataFrameModel} may be accessed using
+\function{qdataFrame}:
+<<qt-mvc-qdfm-access>>=
+head(qdataFrame(model), 3)
+qdataFrame(model)$hpToMpg <- with(qdataFrame(model), hp / mpg)
+@ 
+%
+Our table view now contains a new column, holding the horsepower to
+miles per gallon ratio. It is important to notice that the view has
+been updated implicitly, through manipulation of the underlying model.
+
+Let us now assume that a missing value (\code{NA}) has been introduced
+into our dataset:
+<<qt-mvc-qdf-na>>=
+qdataFrame(model)$mpg[1] <- NA
+@ 
+%
+The table view will display this as "nan" or "inf", which is
+inconsitent with the notation of \R. The conversion of the numeric
+data to text is carried out by an \textit{item delegate}. Similar to a
+\GTK{} cell renderer, an item delegate is responsible for the
+rendering and editing of items (cells) in a view. Every type of item
+delegate is derived from the \class{QAbstractItemDelegate} class. By
+default, views in \Qt{} will use an instance of
+\class{QStyledItemDelegate}, which renders items according to the
+current style. As \Qt{} is unaware of the notion and encoding of
+missing values in \R, we need to give \Qt{} extra guidance. The
+\pkg{qtbase} package provides the \class{RTextFormattingDelegate}
+class for this purpose. To use it, one creates an instance and sets it
+as the item delegate for the model:
+<<qt-mvc-rtfd>>=
+delegate <- qrTextFormattingDelegate()
+model$setDelegate(delegate)
+@ 
+%
+Delegates may also be assigned on a per column or per row
+basis. \class{RTextFormattingDelegate} will handle missing values in
+numeric vectors, as well as adhere to the numeric formatting settings
+in \function{options()}, namely \qcode{digits} and \qcode{scipen}.
+
+%% TODO: basic manipulation of QTableView 
+
+\section{Displaying Lists}
+\label{sec:displaying-lists}
+
+%% It is debatable as to whether QListWidget would be more convenient
+%% than a QListView backed by either QStringListModel or
+%% DataFrameModel, especially since we have already explained the
+%% latter. Getting data onto the screen takes about one more line with
+%% the model interfaces. Interpreting user interaction (selection) is
+%% about the same level of complexity. The View classes will yield
+%% QModelIndex objects, the Widget classes yield WidgetItem
+%% objects. QModelIndex only has to be described once, and offers some
+%% advantages, like always yielding a row/column index, which is nice
+%% for indexing into other data structures. While the Widgets offer
+%% some high-level conveniences (like icons in a QListWidget),
+%% for large lists it would be too slow to configure each widget
+%% item. Much faster to just use roles in a DataFrameModel.
+
+
+It is often desirable to display a list of items, usually as text. A
+single column \class{QTableView} approximates this but also includes
+row and column headers, by default. Also, the two dimensional API of
+\class{QTableView} is more complicated than needed for a one
+dimensional list. For these and other reasons, \Qt{} provides
+\class{QListView} for displaying a single column from a
+\class{QAbstractItemModel} as a list. We can use
+\class{DataFrameModel} to quickly display the first column from a data
+frame (or anything coercible into a data frame):
+<<qt-mvc-lists-df, print=false>>=
+model <- qdataFrameModel(rownames(mtcars))
+view <- Qt$QListView()
+view$setModel(model)
+@
+%
+By default, \class{QListView} displays the first column from the
+model, although the column index can be customized. 
+
+Using a data model allows us to share data between multiple views. For
+example, we could view a data frame as a table using a
+\class{QTableView} and also display the row identifiers in a separate
+list:
+<<qt-mvc-lists-combo>>=
+mtcars.id <- cbind(makeAndModel = rownames(mtcars), mtcars)
+model <- qdataFrameModel(mtcars.id)
+tableView <- Qt$QTableView()
+tableView$setModel(model)
+listView <- Qt$QListView()
+listView$setModel(model)
+@ 
+%
+Now, when we resort the model, both views will be updated:
+<<qt-mvc-lists-sort>>=
+df <- qdataFrame(model)
+qdataFrame(model) <- df[order(df$mpg),]
+@ 
+
+When the list items are not associated with a data frame, they may be
+conveniently represented as a character vector. In this case,
+\class{DataFrameModel} is not very appropriate, as the character
+vector will be coerced to a data frame. Instead, consider
+\class{QStringListModel} from \Qt. In \pkg{qtbase},
+\class{QStringList} refers to a character vector. We demonstrate
+the use of \class{QStringListModel} to populate a list view from a
+character vector:
+<<qt-mvc-lists-qslm>>=
+model <- Qt$QStringListModel(rownames(mtcars))
+listView <- Qt$QListView()
+listView$setModel(model)
+@ 
+%
+Now we can retrieve the values as a character vector, rather than as a
+data frame:
+<<qt-mvc-lists-qslm-retrieve>>=
+head(model$stringList)
+@ 
+
+\class{QListView} supports features beyond those of a simple list,
+including features often found in file browsers and desktops. For
+example, items may be wrapped into additional columns, and an icon
+mode, supporting unrestricted layout and drag and drop, is also
+available.
+
+\section{Accessing Item Models}
+
+We have shown how \class{DataFrameModel} and \class{QStringListModel}
+allow the storage and retrieval of data in familiar data
+structures. However, this is not true of all data models, including
+most of those in \Qt. Alternative models are required, for example, in
+the case of hierarchical data. In such cases, or when interpreting
+user input, such as selection, it is necessary to interact with the
+low-level, generic API of the item/view framework.
+
+An item model refers to its rows, columns and cells with
+\class{QModelIndex} objects, which are created by the model:
+<<qt-mvc-model-index-create>>=
+index <- model$index(0, 0)
+index$row()
+index$col()
+@ 
+% 
+Our \qcode{index} refers to the first row of the
+\class{QStringListModel}, using $0$-based indices.
+The index points to a cell in the model, and we can retrieve the data
+in the cell using only the index:
+<<qt-mvc-model-index-data>>=
+firstCar <- model$data()
+@ 
+%
+This can be extended to retrieve all of the items in the list:
+<<qt-mvc-model-populate>>=
+sapply(seq(model$rowCount()), function(i) model$index(i, 0)$data())
+@ 
+
+Setting the data is also possible, yet requires calling
+\method{setData}{QAbstractItemModel} on the model, not the index:
+<<qt-mvc-model-index-data-set>>=
+model$setData(index, toupper(firstCar))
+@ 
+%
+We will leave the population of a model with the low-level API as an
+exercise for the reader. Recall that \class{DataFrameModel} and
+\class{QStringListModel} provide an interface that is much faster and
+more convenient. When using such models, it is usually only necessary
+to directly manipulate a \class{QModelIndex} when handling user input,
+as we describe in the next section.
+
+The \method{match}{QAbstractItemModel} method can be used to return
+items in a column that match a specific string for a given role. The
+column is specified by a model index and the role by one of the
+\qtenumeration{Qt::ItemDataRole} enumeration. The optional third
+argument is one of the \qtenumeration{Qt:::MatchFlag} enumeration,
+specifying how the matching is to occur. Matches are returned as a
+list of indices.
+
+\section{Item Selection}
 \label{sec:models}
 
-%% overview
-The model-view-controller architecture adds a complexity to widgets
-that is paid in order to create more flexible and efficient use of
-resources. Keeping the model separate from the view allows multiple
-views for the same data. It also allows views to be more responsive when
-there are large data sets involved. The basic MVC architecture has a
-controller to act as a go-between for a model and its views. In \Qt,
-this is different, an item in a model has a delegate that allows the user to see and
-perhaps edit the item's data within a view. Although custom delagates can be
-defined, we are content here to use those provided by \Qt. 
+Selection is likely the most common type of user interaction with
+lists and tables. The selection
+state is stored in its own data model,
+\class{QItemSelectionModel}:
+<<qt-mvc-selection-model>>=
+selModel <- view$selectionModel()
+@
+%
+This design allows views to synchronize
+selection. It also supports views on the selection state, such as a
+label indicating how many items are selected, independent of the
+particular type of item view.
 
-We discuss in the following various views: comboboxes, list views,
-table views and tree views. These are all familiar. The primary
-difficulty with using backend models is the specification and
-interaction with the model. For the simplest usages, \Qt{} provides a
-set of convenience classes where the items and views are coupled.
+There are five selection modes for item views: single, extended,
+contiguous, multi, and none. These values are defined by the
+\qtenumeration{QAbstractItemView::SelectionMode}
+enumeration. \qcode{SingleSelection} mode allows only a single item to
+be selected at once. \qcode{ExtendedSelection} mode, the default,
+supports canonical multiple selection, where a range of items is
+selected by clicking the end points while holding the \kbd{Shift} key,
+and clicking with the \kbd{Ctrl} key pressed adds arbitrary items to
+the selection.  The \qcode{ContiguousSelection} mode disallows the
+\kbd{Ctrl} key behavior. To allow selection on mouse-over, with range
+selection by clicking and dragging, choose \qcode{MultiSelection}. We
+configure our list view for single selection:
+<<qt-mvc-selection-set-mode>>=
+listView$selectionMode <- Qt$QAbstractItemView$SingleSelection
+@ 
+% 
 
+<<qt-mvc-selection-set-initial, echo=FALSE>>=
+selModel$select(model$index(2, 0), Qt$QItemSelectionModel$Select)
+@
 
-Models in \Qt{} are derived from the \class{QAbstractItemModel} class,
-although there are standard sub-classes for list, table and
-heirarchical models (\class{QStringListModel},
-\class{QAbstractListModel}, \class{QAbstractTableModel}, and
-\class{QStandardItemModel}). In addition, the \pkg{qtbase} package
-provides the \constructor{qdataFrameModel} constructor to provide an
-mapping from a data frame to an item model.
+We can query the selection model for the selected items in our
+list. Let us assume that we have selected the third row in our
+list. We retrieve the data (label) in that row:
+<<qt-mvc-selection-get-indices>>=
+indices <- selModel$selectedIndices()
+indices[[1]]$data()
+@ 
 
-%% items, roles
-A model is comprised of items, each having an associated index. Items
-have associated data which may vary based on the role
-(Table~\ref{tab:qt:enum:itemDataRole}) the item is playing. For
-example, one role describes the data for display whereas another role
-describes the data for editing.  This allows, for example, a numeric item, to be
-displayed with just a few digits, but edited with all of them. Both
-descriptions, and others, are stored in the item's data and set
-through the \meth{setData} method.
-For the \constructor{qdataFrameModel} constructor these roles are
-encoded as additional, specially named, columns in the data frame.
+<<qt-mvc-selection-multiple-set-initial, echo=FALSE>>=
+sel <- Qt$QItemSelection()
+sel$select(model$index(3, 0), model$index(5, 0))
+sel$select(model$index(10, 0), model$index(16, 0))
+sel$select(model$index(20, 0), model$index(24, 0))
+selModel$select(sel, Qt$QItemSelectionModel$Select)
+@
 
+When multiple selection is allowed, we must take care to interpret the
+selection efficiently, especially if a table has many rows. In the
+above, we obtained the selected indices. A selection is more formally
+represented by a \class{QItemSelection} object, which is a list of
+\class{QItemSelectionRange} objects. Under the assumption that the
+user has selected three separate ranges of items from the list view,
+we retrieve the selection from the selection model:
+<<qt-mvc-selection-get>>=
+selection <- selModel$selection()
+@ 
+%
+Next, we coerce the \class{QItemSelection} to an explicit list of
+\class{QItemSelectionRange} objects and generate a vector of the
+selected indices:
+<<qt-mvc-selection-as-list>>=
+indicesForSelection <- function(selection) {
+  selRanges <- as.list(selection)
+  unlist(lapply(selRanges, function(range) seq(range$top(), range$bottom())))
+}
+indicesForSelection(selection)
+@ 
+%
+Coercion with \function{as.list} is possible for any class extending
+\class{QList}; \class{QItemSelection} is the only such class the
+reader is likely to encounter. Usually, the user selects a relatively
+small number of ranges, although the ranges may be wide. Looping
+over the ranges, but not the individual indices, will be
+significantly more efficient for large selections.
+
+It is also possible to programmatically change the selection.  For
+example, we may wish to select the first list item:
+<<qt-mvc-selection-set-current>>=
+listView$setCurrent(model$index(0, 0))
+@ 
+%
+This approach is simple but only supports selecting a single item.
+The selection is most generally modified by calling the
+\method{select}{QItemSelectionModel} method on the selection model:
+<<qt-mvc-selection-select>>=
+selModel$select(model$index(0, 0), Qt$QItemSelectionModel$Select)
+@ 
+% 
+The second argument describes how the selection is to be changed with
+regard to the index. It is a flag value and thus can specify several
+options at once, all listed in
+\qtenumeration{QItemSelectionModel::SelectionFlags}. In the above, we
+issued the \qcode{Select} command. Other commands include
+\qcode{Deselect} and \qcode{Toggle}. Thus, we could deselect the item
+in similar fashion:
+<<qt-mvc-selection-deselect>>=
+selModel$select(model$index(0, 0), Qt$QItemSelectionModel$Deselect)
+@ 
+%
+To efficiently select a range of items, we construct a
+\class{QItemSelection} object and set it on the model:
+<<qt-mvc-selection-multiple-set-initial, echo=FALSE>>=
+sel <- Qt$QItemSelection(model$index(3, 0), model$index(10, 0))
+selModel$select(sel, Qt$QItemSelectionModel$Select)
+@
+%
+We have selected items $3$ to $10$. Multiple ranges may be added to
+the \class{QItemSelection} object by calling its
+\method{select}{QItemSelection} method.
+
+For tabular views, selection may be row-wise, column-wise or item-wise
+(\GTK{} supports only row-wise selection). By default, selection is by
+item. While this is common in spreadsheets, one usually desires
+row-wise selection in a table, so we will override the default:
+<<qt-mvc-selection-set-behavior>>=
+tableView$selectionBehavior <- Qt$QAbstractItemView$SelectRows
+@ 
+%
+<<qt-mvc-selection-select-row, echo=FALSE>>=
+tableView$selectRow(1)
+tableView$selectRow(2)
+@ 
+% 
+Querying a selection is essentially the same as for the list
+view, except we can request indices representing entire rows or
+columns. In this example, we are interested in the rows, where the
+user has selected the second and third rows:
+<<qt-mvc-selection-get-rows>>=
+selModel <- tableView$selectionModel()
+sapply(selModel$selectedRows(), qinvoke, "row")
+@
+%
+We invoke the \method{row}{QModelIndex} method on each returned
+\class{QModelIndex} object to get the row indices.
+When setting the selection, there are conveniences for selecting
+an entire row or column. We select the first row of the table:
+<<qt-mvc-selection-select-row>>=
+tableView$selectRow(0)
+@ 
+%
+Selecting a range of rows is very similar to selecting a range of list
+items, except we need to add the \qcode{Rows} selection flag:
+<<qt-mvc-selection-select-rows>>=
+selModel$select(sel, Qt$QItemSelectionModel$Select | 
+                Qt$QItemSelectionModel$Rows)
+@ 
+
+To respond to a change in selection, connect to the
+\signal{selectionChanged} signal on the selection model:
+<<qt-mvc-selection-changed>>=
+selectedIndices <- rep(FALSE, nrow(mtcars))
+selectChangedHandler <- function(selected, deselected) {
+  selectedIndices[indicesForSelection(selected)] <<- TRUE
+  selectedIndices[indicesForSelection(deselected)] <<- FALSE
+}
+qconnect(selModel, "selectionChanged", selectionChangedHandler)
+@ 
+%
+The change in selection is communicated as two 
+\class{QItemSelection} objects: one for the selected items, the other
+for the deselected items.  We update a vector of the selected
+indices according to the change.
+
+\section{Sorting and Filtering}
+
+One of the benefits of the MVC design is that models can serve as
+proxies for other models. Two common applications of proxy models are
+sorting and filtering. Decoupling the sorting and filtering from the
+source model avoids modifying the original data. This is a requirement
+for immutable models, like \class{DataFrameModel}. The filtering and
+sorting is dynamic, in the sense that no data is actually stored in
+the proxy. The proxy delegates to the child model, while mapping
+indices between the filtered and unfiltered (or sorted and unsorted)
+coordinate space. Thus, there is little cost in memory.
+
+\Qt{} implements both sorting and filtering in a single class:
+\class{QSortFilterProxyModel}. After constructing an instance and
+specifying the child model, the proxy model may be handed to a view
+like any other model:
+<<qt-mvc-proxy>>=
+proxy <- Qt$QSortFilterProxyModel()
+proxy$setSourceModel(model)
+tableView$setModel(proxy)
+listView$setModel(proxy)
+@ 
+%
+Our views will now draw data through the proxy, rather than from
+the original model.
+
+Both table and tree views provide an interface for the user to sort
+the underlying model. The user clicks on a column header to sort by
+the corresponding column.  Clicking multiple times toggles the sort
+order. This behavior is enabled by setting the
+\qtproperty{sortingEnabled} property:
+<<qt-mvc-proxy-sort-enable>>=
+tableView$sortingEnabled <- TRUE
+@ 
+%
+Since the sort occurs in the model, both the table view and list view
+display the sorted data. The sort has been applied to both the table
+and list view. It is also possible to sort programmatically by calling
+the \method{sort}{QAbstractItemModel} method, passing the index of the
+sort column. We sort our data by the \qcode{mpg} variable:
+<<qt-mvc-proxy-sort>>=
+proxy$sort(1)
+@ 
+%
+The built-in sorting logic understands basic data types like strings
+and numbers. Customizing the sorting requires overriding the
+\method{lessThan}{QSortFilterProxyModel} virtual method in a new
+class.
+
+\class{QSortFilterProxyModel} supports filtering by row. The column
+indicated by the \qtproperty{filterKeyColumn} property is matched
+against a string pattern. Only rows with a matching value in the key
+column are allowed past the filter. The pattern is a \class{QRegExp},
+which supports several different syntax forms, including: fixed
+strings, wildcards (globs), and regular expressions. For example, we
+can filter for cars made by Mercedes:
+<<qt-qvc-proxy-filter>>=
+proxy$filterKeyColumn <- 0
+proxy$filterRegExp <- Qt$QRegExp("^Merc")
+@ 
+%
+This approach should satisfy the majority of use cases. To achieve
+more complex filtering, including filtering of columns, subclassing is
+necessary.
+
+\section{Decorating Items}
+
+Thus far, we have only considered the display of plain text in item
+views. To move beyond this, the model needs to communicate extra
+rendering information to the view. With \GTK{}, this information is
+stored in extra columns, which are mapped to visual properties. Unlike
+\GTK{}, however, \Qt{} does not require every cell in a column to have
+the same rendering strategy or even the same type of data. Thus, \Qt{}
+stores rendering information at the item level. An item is actually
+a collection of data elements, each with a unique \textit{role}
+identifier. The mapping of roles to visual properties depends on the
+\class{QItemDelegate} associated with the item. The default item
+delegate, \class{QStyledItemDelegate}, understands most of the standard
+roles listed in the \qtenumeration{Qt::ItemDataRole} enumeration.
+
+For example, when we create a \class{DataFrameModel}, the default
+behavior is to associate the data frame values with the
+\qtenumeration{Qt\$DisplayRole}.  \class{QStyledItemDelegate} (and its
+extension \class{RTextFormattingDelegate}) convert the value to a
+string for display. Other roles control aspects like the background
+and foreground colors, the font, and the decorative icon, if any.
+
+\class{DataFrameModel} supports role-specific values for each item,
+\qcode{useRoles = TRUE} is passed to the constructor. It is then up to
+the programmer to indicate the mapping from a data frame column to a
+column and role in the model. The mapping is encoded in the column
+names. Each column name should have the syntax \qcode{[.NAME][.ROLE]},
+where \qcode{NAME} indicates the column name in the model and
+\qcode{ROLE} refers to a value in \qtenumeration{Qt::ItemDataRole},
+without the \qcode{Role} suffix. If the column name does not contain a
+period (i.e., there is no \qcode{ROLE}), the display role is assumed.
+For example, we could shade the background of the first column, the
+makes and models, in gray:
+<<qt-mvc-role-background>>=
+qdataFrame(model)$.makeAndModel.background <- list(qcolor("gray"))
+@ 
+%
+In the above, we store a list of \class{QColor} instances in our data
+frame. As a side note, if we had added that column in a call
+to \qcode{data.frame} or \function{cbind}, it would have been
+necessary to wrap the list with \qcode{I()} in order to prevent
+coercion of the list to a data frame.
+
+The set of supported data types for each role depends on the
+delegate. For delegates derived from \class{QStyledItemDelegate}, see
+\qcode{qhelp(QStyledItemDelegate)}.  Due to implicit conversion in the
+internals of \Qt{}, the number of possible inputs is much greater than
+those explicitly documented. For example, the \qcode{background} role
+demonstrated above formally accepts a \class{QBrush} object, while
+implicit conversion allows types such as \class{QColor} and
+\class{QGradient}.
+
+It is possible for a single data frame column to specify the values
+for a particular role across multiple model columns. This is useful,
+for example, when modifying the font uniformly across several columns
+of interest. Here, we bold the \qcode{mpg} and \qcode{hp} columns:
+<<qt-mvc-role-multi-font>>=
+qdataFrame(model)$.mpg.hp.font <- list(qfont(weight = Qt$QFont$Bold))
+@ 
+%
+As shown, periods separate the data frame column names in the
+\qcode{NAME} component. To apply a column to all columns in the model,
+omit the column name:
+<<qt-mvc-role-all-font>>=
+qdataFrame(model)$.font <- list(qfont(pointsize = 14))
+@ 
+
+For models other than \class{DataFrameModel}, one sets data for a
+specific role by passing the optional \argument{role}{setData}
+argument to \method{setData}{QAbstractItemModel}. The value of
+\argument{role}{setData} defaults to \qcode{EditRole}, meaning that
+the data is in an editable form. We create a list view and set the
+background of the first item to yellow:
+<<qt-mvc-role-set-data>>=
+listModel <- Qt$QStringListModel(rownames(mtcars))
+listModel$setData(listModel$index(0, 0), "yellow", Qt$Qt$BackgroundRole)
+listView <- Qt$QListView()
+listView$setModel(listModel)
+@ 
+%
 
 <<echo=FALSE, results=tex>>=
 df <- rbind(
@@ -55,29 +547,80 @@ df <- rbind(
             c("\\code{ForegroundRole}", "Foreground for default delegate (\\class{QBrush})"),
             c("\\code{CheckStateRole}", "Indicates checked state of item (\\qtenumeration{Qt::CheckState})")
             )
-            colnames(df) <- c("Constant","Description")
-            cat(booktabs(df,
-                         colTypes=c("l","p{0.7\\textwidth}"),
-                         caption="Partial list of roles that an item can hold data for and the class of the data.",
-                         label="tab:qt:enum:itemDataRole"))
+colnames(df) <- c("Constant","Description")
+cat(booktabs(df,
+             colTypes=c("l","p{0.7\\textwidth}"),
+             caption="Partial list of roles that an item can hold data for and the class of the data.",
+             label="tab:qt:enum:itemDataRole"))
 @
 
+%% Could work into previous sections
+\section{Table View Details}
+\label{ssec:table-views}
 
-An item has several properties that are described by the
-\qtenumeration{Qt::ItemFlag} enumeration. These indicate whether an
-item is selectable (\code{ItemIsSelectable}), editable
-(\code{ItemIsEditable}), enabled (\code{ItemIsEnabled}), checkable
-(\code{ItemIsCheckable}) etc. The \method{flags}{QAbstractItemModel}
-returns the flag recording combinations of these.
+Columns (similarly rows) may be hidden or shown through the
+\method{setColumnHidden}{QTreeView} method. Their widths can be
+adjusted by the mouse, or through
+\method{setColumnWidth}{QTreeView}. The grid style can be adjusted
+through \method{setGridStyle}{QTreeView}.
+
+The view may allow sorting of the underlying model. This is enabled
+through \method{setSortingEnabled}{QTreeView}. The method
+\method{sortByColumn}{QTreeView} can be called specifying the column
+and a sort order (e.g. \code{Qt\$Qt\$AscendingOrder}).
 
 
+\paragraph{Headers}
+The table view has headers, horizontal ones for the columns and
+vertical ones for the rows. The methods
+\method{verticalHeader}{QTreeView} and
+\method{horizontalHeader}{QTreeView} return instances of the
+\class{QHeaderView} class. This class has many methods. We mention
+\method{setHidden}{QHeaderView}, to suppress the header display;
+\method{showSortIndicator}{QHeaderView}, to display a sort arrow; and
+\method{setStretchLastSection}, to strech the last section to fill the
+space. For tree views, this is \code{TRUE} for horizontal headers but
+not for table views.
 
 
+\begin{example}{Using a custom model to edit a data frame}{eg:qt-editable-data}
+  \SweaveInput{ex-qt-edit-data-frame}
+\end{example}
+
+\section{Displaying Hierarchical Data}
+
+Hierarchical data is generally stored in \class{QStandardItemModel},
+the primary implementation of \class{QAbstractItemModel} provided by
+\Qt. The API of \class{QStandardItemModel} is based on
+\class{QStandardItem}, a wrapper around the actual item data. 
+
+\section{Model-based combo boxes}
+
+Combo boxes were previously introduced as containers of string items
+and accompanying icons. The high-level API is sufficient for most use
+cases; however, it is beneficial to understand that a combo box
+displays its popup menu with a \class{QListView}, which is based on a
+\class{QStandardItemModel} by default. It is possible to provide a
+custom data model for the list view. Explicitly leveraging the MVC
+pattern with a combo box affords greater aesthetic control and
+facilitates synchronizing the items with other views.
+
+For example, we can create a combo box that lists the same cars that
+are present in our table and list views:
+<<qt-mvc-combo-box>>=
+comboBox <- Qt$QComboBox()
+comboBox$setModel(model)
+@ 
+By default, the first column from the model is displayed; this is
+controlled by the \qtproperty{modelColumn} property.
+
+\section{User Editing of Data Models}
 
 
+%% MFL: Arguable as to whether we even need to discuss these in depth
+\section{Widgets With Internal Models}
 
 
-\section{The item-view classes}
 \label{sec:using-standard-item}
 
 %% decoupled/coupled with model 
@@ -87,6 +630,7 @@ view. Defining the model then is much easier. In the case of a combobox and
 a list view the model can be specified simply through a character vector.
 
 
+%% MOVEME: probably belongs in the basic controls section
 \subsection{Comboboxes}
 \label{sec:comboboxes}
 
@@ -638,75 +1182,8 @@ to the handler. Some useful signals are \signal{itemClicked},
 \end{example}
 
 
-\section{Item models and their views}
+\section{Implementing Custom Models}
 \label{sec:using-model-with}
-
-In this section, we consider models and their views decoupled from
-each other. We focus our discussion to tabular data, although we note
-that \Qt{} provides various means to provide models for heiarchical
-data.
-
-
-
-\subsection{Using a data frame for a model}
-\label{ssec:using-data-frame}
-
-For tabular data a model can be made quite easily with the constructor
-\constructor{qdataFrameModel} provided by \pkg{qtbase}. This function maps a data frame to the
-model, returning an instance of class \class{DataFrameModel} a
-subclass of \class{QAbstractTableModel}.
-
-The default role is for display of the data. Other roles can be
-defined by adding additional columns with a specific naming
-convention. A column with name \code{a} can have its role information
-specified with another column with name \code{.a.ROLE} where
-\code{ROLE} is one of available roles, such as \code{"decoration"}, \code{"edit"}, \code{"toolTip"},
-\code{"statusTip"}, or \code{"textAlignment"}.
-
-The following illustrates a basic usage. We use a \class{QTableView}
-instance for a view. The model is connected to the view through its
-\method{setModel}{QTableView} method.           
-
-\begin{example}{Using \constructor{qdataFrameModel} to list variables
-    in a data frame}{eg:qt-list-variables}
-  \SweaveInput{ex-qt-qdataFrameModel}
-\end{example}
-
-
-
-\subsection{Table Models}
-\label{ssec:table-models}
-
-The \constructor{qdataFrameModel} creates a subclass of
-\class{QAbstractTableModel}, itself a subclass of
-\class{QAbstractItemModel}. One can subclass
-\class{QAbstractTableModel} to provide a custom model for a view.
-This may be useful in different instances, for example, if the cell
-columns need to be computed dynamically or if editing of cells is
-desired.
-
-
-%% index
-Before discussing methods that must be implemented, we mention some
-useful inherited methods.  For a table model, items are organized by
-row and column. This allows one to easily refer to an item by
-index. The inherited \method{index}{QAbstractTableItem} method uses $0$-based
-row and column arguments to return a \class{QModelIndex}
-instance. In turn, this index instance has methods \method{row}{QModelIndex}
-and \method{column}{QModelIndex} for getting back the coordinate information.
-
-%% match and sort
-The \method{match}{QAbstractItemModel} method can be used to return items in
-a column that match a specific string for a given role. The column is
-specified by a model index and the role by one of the
-\qtenumeration{Qt::ItemDataRole} enumeration. The optional third
-argument is one of the 
-\qtenumeration{Qt:::MatchFlag} enumeration, specifying how the matching is to
-occur. Matches are returned as a list of indices.
-
-The \method{sort}{QAbstractItemModel} method can be used to sort the
-data by the values in a column. The column is specified by its index,
-and the order is one of \code{Qt\$Qt\$AscendingOrder} or \code{Qt\$Qt\$DescendingOrder}.
 
 
 \paragraph{Required methods}
@@ -745,92 +1222,7 @@ notified. For example, an implemented \meth{insertColumns} should call
 \meth{beginInsertColumns} before adding the column to the model and
 then \meth{endInsertColumns} just after. 
 
-
-\subsection{Table views}
-\label{ssec:table-views}
-
-A table model is typically displayed through the \class{QTableView}
-widget, although one can use the model -- first column only -- with \class{QListView} or even
-\class{QComboBox}. A custom view is also possible, as illustrated
-later. The table view widget inherits from \class{QAbstractItemView}
-which provides the method \method{setModel}{QAbstractItemView} to link
-the underlying model with a view. This link passes along information
-about the model being changed back to the view to process and connects
-the delegates that allow one to edit values in the view and have the
-changes propogate back to the model.
-
-Once, connected, the table view can have its properties adjusted to
-control its appearance. For example, columns (similarly rows) may be hidden
-or shown through the \method{setColumnHidden}{QTreeView} method. Their
-widths can be adjusted by the mouse, or through
-\method{setColumnWidth}{QTreeView}. The grid style can be adjusted
-through \method{setGridStyle}{QTreeView}.
-
-The view may allow sorting of the underlying model. This is enabled
-through \method{setSortingEnabled}{QTreeView}. The method
-\method{sortByColumn}{QTreeView} can be called specifying the column
-and a sort order (e.g. \code{Qt\$Qt\$AscendingOrder}).
-  
-
-\paragraph{Headers}
-The table view has headers, horizontal ones for the columns and
-vertical ones for the rows. The methods
-\method{verticalHeader}{QTreeView} and
-\method{horizontalHeader}{QTreeView} return instances of the
-\class{QHeaderView} class. This class has many methods. We mention
-\method{setHidden}{QHeaderView}, to suppress the header display;
-\method{showSortIndicator}{QHeaderView}, to display a sort arrow; and
-\method{setStretchLastSection}, to strech the last section to fill the
-space. For tree views, this is \code{TRUE} for horizontal headers but
-not for table views.
-
-\paragraph{Selection Models}
-\label{para:selection-models}
-
-%% selection mode
-The type of selection possible is determined by the
-\property{selectionMode}{QAbstractItemView} of the view, the options for which are enumerated in
-\qtenumeration{QAbstractItemView::SelectionMode}. Typical values are
-\code{SingleSelection} or \code{ExtendedSelection}, which allows one
-to extend their selection by pressing the \kbd{Control} or \kbd{Shift} keys while
-selecting. 
-
-%% selection model
-For abstract item views, the underlying selection is handled by a
-selection model, which is found in the \code{selectionModel}
-property. A \class{QItemSelectionModel} instance can return the current
-selection by rows through \method{selectedRows}{QItemSelectionModel}
-(with an argument to specify the column to check), columns
-(\method{selectedColumns}{QItemSelectionModel}) or by index with
-\method{selectedIndexes}{QItemSelectionModel}. In each case, a list of
-model indices is returned. The methods \meth{row} and \meth{column} are
-useful then.  The selection model allows one to specify if the selection
-will apply to the entire row or column of if selection is cell by
-cell. This is done through the selection flags
-(\qtenumeration{QItemSelectionModel::SelectionFlag})
-
-
-%% setting selection
-The selection can be updated programatically through the
-\method{setCurrentIndex}{QItemSelectionModel} method. The index and a
-selection flag must be given. The latter enumerated in
-\qtenumeration{QItemSelectionModel::SelectionFlag}, with values such
-as \code{Select}, to select the item; \code{Deselect}, \code{Clear};
-\code{Toggle}; and \code{Rows} and \code{Columns} to select the entire
-range.
-
-%% signals
-The selection model emits a few signals, notably
-\signal{selectionChanged} is emitted when a new selection is made.
-
-
-
-
-\begin{example}{Using a custom model to edit a data frame}{eg:qt-editable-data}
-  \SweaveInput{ex-qt-edit-data-frame}
-\end{example}
-
-\subsection{Custom Views}
+\section{Implemeting Custom Views}
 \label{sec:custom-views}
 
 One can write a custom view for a model. In the example, we show how

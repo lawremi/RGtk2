@@ -66,48 +66,68 @@ Properties relevant to text layout include:
 \section{Buttons}
 \label{sec:buttons}
 
-Buttons are created by \class{QPushButton} which inherits most of its
-functionality from \class{QAbstractButton}. A button has a
-\property{text}{QAbstractButton} property for storing a label and an
-\property{icon}{QAbstractButton} property to show an accompanying
-image. 
+As we have seen, the ordinary button in \Qt{} is called
+\class{QPushButton}, which inherits most of its functionality from
+\class{QAbstractButton}, the common base class for buttons. 
+%% EXAMPLE: create a button, set a property
+The label
+text and icon for the button are stored in the
+\property{text}{QAbstractButton} and \property{icon}{QAbstractButton}
+properties, respectively.
 
-Buttons are associated with commands. One may bind to the inherited
-signal \signal{clicked}, which is called when the button is activated
-by the mouse, a short cut key, or a call to
-\method{clicked}{QAbstractButton}. The callback receives a logical
-value \code{checked} if the button is ``checkable.'' Otherwise, \signal{pressed} and
-\signal{released} signals are emitted.
+A push button usually executes some command when clicked, i.e., when
+the \signal{clicked} signal is emitted.
+%% EXAMPLE: connect to clicked signal
 
-
+%% MOVEME: to dialog part
 \subsection{Button boxes}
 \label{sec:button-boxes}
 
 Dialogs often have a standard button placement that  varies among
-operating systems. \Qt{} provides the \class{QDialogButtonBox} class
-to store buttons. This class accepts the standard buttons listed in
-the \qtenumeration{QDialogButtonBox::StandardButton} enumeration. Each
-standard button has a default role from a list of roles specified in
-\qtenumeration{QDialogButtonBox::ButtonRole}, if a non-standard button
-is desired, then a role must be specified. The method
-\method{addButton}{QDialogButtonBox} method is used to add a button,
-as specified by either a standard button or by a label and role. This
-method returns a \class{QPushButton} instance.
+desktop environments. \Qt{} provides the \class{QDialogButtonBox} class
+to store buttons and arrange them according to the convention of the
+platform.
 
+<<qt-widgets-buttonbox>>=
+box <- Qt$QDialogButtonBox(Qt$QDialogButtonBox$Ok | 
+                           Qt$QDialogButtonBox$Cancel | 
+                           Qt$QDialogButtonBox$Help)
+@ 
+%
+%% EXAMPLE: create a button box, add some buttons
+To indicate the desired buttons, we pass a combination of flags from the
+\qtenumeration{QDialogButtonBox\$StandardButton} enumeration. 
+Each standard button code implies a default label and role, taken from
+the \qtenumeration{QDialogButtonBox\$ButtonRole} enumeration. In the
+above example, we added a standard \code{OK} button, with the label
+``OK'' (depending on the language) and the role \code{AcceptRole}. The
+\code{Cancel} button has the appropriate label and \code{CancelRole}
+as its role. Icons are also displayed, depending on the platform and
+theme. The benefits of using standard buttons include convenience,
+standardization, and automatic translation of labels. Buttons may be
+added after construction with the \method{addButton}{QDialogButtonBox}
+method, which accepts either a standard button code or, for custom
+buttons, or a button/label and a role identifier.
 
-In a dialog, a button may be designated as the default button for a
-dialog. To specify a default, the button's
-\method{setDefault}{QPushButton} is called with a value of
-\code{TRUE}.
+The first button added with the \code{AcceptRole} role is made the
+default. Overriding this requires adding the default button with
+\method{addButton}{QDialogButtonBox} and setting the
+\property{default} property on the returned button object.
 
-To get feedback, one can connect each button to the desired
-signal. More conveniently, the button box has signals
-\signal{accepted}, which is emitted when a button with the
-\code{AcceptRole} or \code{YesRole} is clicked; \signal{rejected},
-which is emitted when a button with the \code{RejectRole} or
-\code{NoRole} is clicked; \code{helpRequested}; or \code{clicked} when
-any button is clicked. For this last signal, the callback  is passed
-in the button object.
+To respond to user input, one can connect directly to the
+\signal{clicked} signal on a given button. It is often more
+convenient, however, to connect to one of the high-level button box
+signals, which include: \signal{accepted}, which is emitted when a
+button with the \code{AcceptRole} or \code{YesRole} is clicked;
+\signal{rejected}, which is emitted when a button with the
+\code{RejectRole} or \code{NoRole} is clicked; \code{helpRequested};
+or \code{clicked} when any button is clicked. For this last signal,
+the callback is passed the button object.
+<<qt-widgets-buttonbox-signals>>=
+qconnect(db, "accepted", function() print("accepted"))
+qconnect(db, "rejected", function() print("rejected"))
+qconnect(db, "helpRequested", function() print("help"))
+@ 
 
 \begin{example}{A yes-no-help set of buttons}{eg-qt-dialog-button-box}
   We use a dialog button box to hold a standard set of
@@ -125,17 +145,7 @@ in the button object.
   \end{figure}
   
 <<results=hide>>=
-db <- Qt$QDialogButtonBox()
-ok <- db$addButton(Qt$QDialogButtonBox$Ok)
-db$addButton(Qt$QDialogButtonBox$Cancel) 
-## Or: db$addButton("Cancel", Qt$QDialogButtonBox$RejectRole)
-db$addButton(Qt$QDialogButtonBox$Help)
-#
-ok$setDefault(TRUE)
-#
-qconnect(db, "accepted", function() print("accepted"))
-qconnect(db, "rejected", function() print("rejected"))
-qconnect(db, "helpRequested", function() print("help"))
+
 @ 
 
 <<echo=FALSE, results=hide>>=

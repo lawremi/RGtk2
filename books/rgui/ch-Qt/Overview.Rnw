@@ -1,11 +1,4 @@
 
-%% ML: I like the idea of a quick-start example up front, but it
-%% should probably come after the description of the Qt library.
-
-\section{An introductory example}
-\label{sec:qt-introductory-example}
-\SweaveInput{ex-qtbase}
-
 \section{The Qt library}
 \label{sec:qt-overview}
 
@@ -66,6 +59,13 @@ The \pkg{qtbase} package is developed as part of the
 \url{https://r-forge.r-project.org/projects/qtinterfaces/}. It depends
 on the \Qt{} framework, available as a binary install from
 \url{http://qt.nokia.com/}.
+
+%% ML: I like the idea of a quick-start example up front, but it
+%% should probably come after the description of the Qt library.
+
+\section{An introductory example}
+\label{sec:qt-introductory-example}
+\SweaveInput{ex-qtbase}
 
 \section{Classes and objects}
 \label{sec:qt-classes-objects}
@@ -559,6 +559,9 @@ qsetMethod("setWindowTitle", SubClass4, function(value) {
 %% Would be cool to do something like place an icon within the line
 %% edit that has a tooltip with the error message.
 
+%% Could pack the label into a layout on the QLineEdit, and then use
+%% the stylesheet setting to prevent text overwrite of it.
+
 %% JV: Agreed. this section needs to  be reworked. It is hard to find
 %% the key information: qsetClass and a conversation about
 %% constructors and scope (super, this), and qsetMethod and a
@@ -567,7 +570,7 @@ qsetMethod("setWindowTitle", SubClass4, function(value) {
 %% minimumheight (too kludgy), the call of widget as it isn't a line
 %% edit, ... How do you add an icon in a line edit widget?
 
-\begin{example}{A ``error label''}{eg:qt-error}
+n\begin{example}{A ``error label''}{eg:qt-error}
   
 %% JV: Replace with this: (drawback: no a custom constructor, issue with
 %% base:::paste, versus paste is a good one; style sheet example; 
