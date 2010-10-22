@@ -1,49 +1,45 @@
-In web programming it is common to have textarea entries be validated
-prior to their values being submitted. By validating ahead of time,
-the programmer can avoid the lag created by communicating with the
-server when the input is not acceptable. However, despite
-this lag not being the case for the GUIs considered now, it may still be a
-useful practice to validate the values of a text area when the
-underlying handlers are expecting a specific type of value.
-  
-The \args{coerce.with} argument can be used to specify a function
-to coerce values after an action is initiatied, but in this example we
-show how to validate the text widget when it loses focus. If the value
-is invalid, we set the text color to red.
+GUIs for \R\/ may differ a bit from many GUIs one typically interacts
+with, as \R\/ users expect to be able to use variables and expressions
+where typically one uses just characters or numbers. As such, one
+needs to evaluate expressions. This example shows how to implement a
+validation framework on a single-line edit widget so that the user has
+feedback if an expression will not evaluate properly.  If the value is
+invalid, we set the text color to red. 
 
 <<validationExample, echo=FALSE>>=
 require(gWidgets)
 @
 
-This regular expression is used to validate against:
-<<>>=
-validRegexpr <- "[[:digit:]]{3}-[[:digit:]]{4}"
-isValid <- function(val)
-  grepl(validRegexpr, val)
-@ 
-
-Our basic GUI follows.
+We use a table to layout out example:
 <<>>=
 w <- gwindow("Validation example")
 tbl <- glayout(cont=w)
-tbl[1,1] <- "Phone number (XXX-XXXX)"
+tbl[1,1] <- "R expression:"
 tbl[1,2] <- (e <- gedit("", cont = tbl))
-tbl[2,2] <- (b <- gbutton("submit", cont = tbl, 
-                          handler=function(h,...) print("hi")))
-
 @ 
 
-We validate by checking the widget's current value against the regular
-expression when the widget loses focus. For this, the \code{blur}
-event is a focus-out event. Alternatively, one may also want to use
-\code{addHandlerKeystroke}, to validate after each key press, or
-\code{addHandlerChanged}, to validate when the value is committed
-(typically when the user presses the \kbd{enter} key).
 
-<<validate>>=
-addHandlerBlur(e, handler = function(h,...) {
+We use the \pkg{evaluate} package to see if the expresssion is valid.
+<<>>=
+require(evaluate)
+isValid <- function(e) {
+  out <- try(evaluate:::evaluate(e), silent=TRUE)
+  !(inherits(out, "try-error") || 
+    is(out[[2]], "error"))
+}
+@ 
+%
+
+We validate our expression when the user commits the change, by
+pressing the return key while the widget has focus. Alternatively, we
+could have used
+\code{addHandlerKeystroke}, to validate after each key press, or
+\code{addHandlerBlu}, to validate when the widget loses focus.
+
+<<validate, results=hide>>=
+addHandlerChanged(e, handler = function(h,...) {
   curVal <- svalue(h$obj)
-  if(isValid(curVal) {
+  if(isValid(curVal)) {
     font(h$obj) <- c(color="black")
   } else {
     font(h$obj) <- c(color="red")

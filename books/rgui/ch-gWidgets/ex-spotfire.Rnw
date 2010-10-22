@@ -1,0 +1,210 @@
+%% Example of a spotfire like interface
+
+%% JV: This was for a general introduction. 
+
+A common GUI application for data analysis consists of means to
+visualize, query, aggregate and filter a data set. This example shows
+how one can create such a GUI using \pkg{gWidgets} featuring
+an embedded graphics device. In addition a visual display of the filtered data,
+and a means to filter, or narrow, the data that is under
+consideration, is presented.
+Although, our example is not too feature rich, it illustrates a
+framework that can easily be extended.
+
+The \pkg{gWidgets} package provides a programming interface (an API)
+but the link between \R{} and the graphical toolkit is provided by
+other packages. The setting of the \code{guiToolkit} below, when
+loading \pkg{gWidgets}, will cause the \code{RGtk2} package to be
+loaded, and the \GTK\/ toolkit to be used.
+
+<<notShown, echo=FALSE>>=
+library(gWidgets)
+options(guiToolkit="RGtk2")
+@ 
+
+This example is centered around filtering a data set, we choose a
+convenient one and give it a non-specific name.
+<<ourData>>=
+data("Cars93", package="MASS")
+x <- Cars93
+@ 
+
+A GUI is constructed out of widgets that are layed out within
+containers, which may be nested. In \pkg{gWidgets}, the construction
+of the widget or container and the layout are combined. In this first
+code snippet, a notebook container is placed within a toplevel
+window. The specification is done through the
+\argument{container}{gnotebook} argument, which we abbreviate to
+\code{cont}. This argument in turn is passed to the containers
+\meth{add} method.
+
+<<layout>>=
+w <- gwindow("Spotfire example", visible=FALSE)
+nb <- gnotebook(cont=w)
+@ 
+
+The \code{gwindow} argument \code{visible=FALSE} suppresses the drawing of the
+top-level window, and is used here, as it gives a snappier appearance
+when the window is being drawn.
+
+Our notebook widget will have two pages. The first is for a general
+description of the application. In this example, we use a
+\constructor{glabel} widget to display a message. When we add this
+widget to the notebook container, the extra argument
+\code{label="About"} is passed to the \method{add}{gnotebook} method
+of the notebook, and is used to create the tab label.
+
+<<page1>>=
+descr <- glabel(gettext("A basic GUI to explore a data set"), 
+                cont=nb, label=gettext("About"))
+@ 
+
+A more detailed description would be warranted in an actual
+application.
+
+Now we specify the layout for the second tab. This is a nested layout
+made up of three box containers. The first, \code{g}, uses a
+horizontal layout in which we pack to box containers that will use a
+vertical layout (when \code{horizontal=FALSE}). 
+
+<<page2>>=
+g <- ggroup(cont=nb, label=gettext("Explore..."))
+lg <- ggroup(cont=g, horizontal=FALSE) # vertical boxes
+rg <- ggroup(cont=g, horizontal=FALSE)
+@ 
+
+The left side will contain an embedded graphic device and a view of
+the filtered data. The \constructor{ggraphics} widget provides the
+graphic device. This widget is unfortunately not available for all toolkits.
+<<results=hide>>=
+ggraphics(cont = lg)
+@ 
+
+Our view of the data is provided by the \constructor{gtable} widget,
+which faciliatates the display of a data frame. The last two arguments
+allow for multiple selection (for marking points on the graphic) and
+for filtering through the \method{visible\ASSIGN}{gtable} method.
+In addition to the table, we add a label to display the number of
+cases being shown. This label is packed into a box container, and
+forced to the right side through the \method{addSpring}{ggroup} method
+of the box container.
+<<>>=
+tbl <- gtable(x, cont = lg, multiple=TRUE, filter.FUN="manual")
+size(tbl) <- c(500, 200)                # set size
+labelg <- ggroup(cont = lg)
+addSpring(labelg)
+noCases <- glabel("", cont = labelg)
+@
+
+The right panel is used to provide the user a means to filter the
+display. We place the widgets used to do this within a frame. This
+allows a label to clarify for the user what these controls do.
+<<filters>>=
+filterg <- gframe(gettext("Filter by:"), cont = rg, expand=TRUE)
+@ 
+
+We use a grid layout to arrange our filter widgets, as it just looks
+nicer. The \pkg{gWidgets} \constructor{gLayout} container provides
+this layout with a familiar interface -- matrix notation indexing. In
+this example we store the widgets in a list, \code{l}, which facilitates the
+processing of their values later on.
+<<filterLayout>>=
+lyt <- glayout(cont=filterg)
+l <- list() # store widgets
+lyt[1,1] <- "Type:"
+lyt[1,2] <- (l$Type <- gcombobox(c("", levels(x$Type)), cont=lyt))
+
+lyt[2,1] <- "Cylinders:"
+lyt[2,2] <- (l$Cylinders <- gcombobox(c("", levels(x$Cylinders)), cont=lyt))
+@ 
+
+Of course, we could use many more criteria to filter. The above
+filters are naturally represented by a combobobox. However, one could
+have used many different styles, depending on the type of data. For
+instance, one could employ a checkbox to filter through Boolean data,
+a slider to pick out numeric data, or a text box to specify a
+filtering by a string. The type of data dictates this.
+
+%% handlers
+\paragraph{Adding interactivity}
+
+The widget construction and their layout is now complete for this
+example. At this point, we need to make the GUI responsive to user
+interaction. To that matter, we create a few functions. This first to
+update the data frame when the filter controls are changed. For this
+we need to compute a logical variable indicating which rows are to be
+considered.  Within the definition of the function, we use the global
+variables \code{l}, \code{tbl} and \code{noCases}.
+<<handlers>>=
+updateDataFrame <- function(...) {
+  ind <- rep(TRUE, nrow(x))
+  for(i in c("Type", "Cylinders"))  {
+    if((val <- svalue(l[[i]])) != "") 
+      ind <- ind & (x[,i] == val)
+  }
+  
+  visible(tbl) <- ind                   # udpate table
+  
+  nsprintf <- function(n, msg1, msg2,...)
+    ngettext(n, sprintf(msg1, n), sprintf(msg2,n), ...)
+  svalue(noCases) <- nsprintf(sum(ind), "%s case", "%s cases") # label
+}
+@
+
+%% methods
+The \method{visible\ASSIGN}{gtable} and \method{svalue\ASSIGN}{glable}
+methods change the underlying widgets. The generic
+\meth{svalue\ASSIGN} is used to change the primary value for a widget
+(and \meth{svalue} returns this value). In the above, we see these
+methods used to get the values from the comboboxes and to set the text
+in the label. The \meth{visible\ASSIGN} method is another generic. In
+this example it is used to specify which rows of the data are actually
+displayed by the widget.
+
+This next function is used to update the graphic. Of course, this graphic is not
+so interesting, but in a real application, it should be.
+<<>>=
+updateGraphic <- function(...) {
+  ind <- visible(tbl)
+  if(any(ind))
+    plot(MPG.city ~ Weight, data=x[ind,])
+  else
+    plot.new()
+}
+@ 
+
+We now add a handler to be called whenever one of our comboboxes is
+changed. The \pkg{gWidgets} package provides a number of methods to
+call handlers for specific events, but the generic
+\meth{addHandlerChanged} is meant to be for the most common use.
+
+<<applyHandler>>=
+f <- function(...) {
+  updateDataFrame()
+  updateGraphic()
+}
+sapply(l, function(i) addHandlerChanged(i, handler=f))
+@ 
+
+For the data display, we wish to allow the user to view cases
+by clicking on a row. The following will do so. Note the use of
+\code{h\$obj} below, which within a handler refers to the widget that
+the event was initiated on. Passing this in to the handler can be
+useful is one wishes to avoid using global variables.
+
+<<tableHandler>>=
+addHandlerClicked(tbl, function(h,...) {
+  updateGraphic()
+  ind <- svalue(h$obj, index=TRUE)
+  points(MPG.city ~ Weight, cex=2, col="red", pch=16, data=x[ind,])
+})
+@ 
+
+To illustrate some shortcomings of \pkg{gWidgets}, there is no means
+to select points in the graphic and have the display of the data highlighted.
+
+Finally, we draw the GUI with an initial graphic (the \method{visible}{gwindow} method draws the GUI here, unlike its use with \code{gtable}).
+<<initialGraphic>>=
+visible(w) <- TRUE
+updateGraphic()
+@ 

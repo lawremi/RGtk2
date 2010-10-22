@@ -38,47 +38,211 @@ cat(booktabs(df,
 % \end{table}
 
 
+\section{A graphics device}
+\label{sec:gWidgets-graphics-device}
+
+Some toolkits support an embeddable graphics device (\pkg{gWidgetsRGtk2}
+through \pkg{cairoDevice}, \pkg{gWidgetsQt} through \pkg{qtutils}). In which case, the \constructor{ggraphics}
+constructor produces a widget that can be added to a container. The
+arguments \argument{width}{ggraphics}, \argument{height}{ggraphics},
+\argument{dpi}{ggraphics}, \argument{ps}{ggraphics} are similar to
+other graphics devices.
+
+%% current device
+When working with multiple devices, it becomes necessary to switch
+between devices. A \code{ggraphics} instance can be made to represent the
+current device if the user clicks in the window. Otherwise, the
+\method{visible\ASSIGN}{ggraphics} method can be used to set the
+object as the current device.
+
+%% handlers
+The default handler for the widget is set by
+\method{addHandlerClicked}{ggraphics}. The coordinates of the mouse
+click, in user coordinates, are passed to the handler in the
+components \code{x} and \code{y}. As well, the method
+\method{addHandlerChanged}{ggraphics} is used to assign a handler to
+call when a region is selected by dragging the mouse. The components
+\code{x} and \code{y} describe the rectangle that was traced out,
+again in user coordinates.
+
+<<ggraphicsExample, results=hide, eval=FALSE>>=
+w <- gwindow("ggraphics example")
+g <- ggraphics(cont=w)
+x <- mtcars$wt; y <- mtcars$mpg
+#
+addHandlerClicked(g, handler=function(h,...) {
+  cat(sprintf("You clicked %s x %s\n", h$x, h$y))
+})
+addHandlerChanged(g, handler=function(h,...) {
+  rx <- h$x; ry <- h$y
+  if(diff(rx) > diff(range(x))/100 && 
+     diff(ry) > diff(range(y))/100) {
+    ind <- rx[1] <= x & x <= rx[2] & ry[1] <=y & y <= ry[2]
+    if(any(ind))
+      print(cbind(x=x[ind], y=y[ind]))
+  }
+})
+#
+plot(x, y)
+@ 
+%
+
+The \constructor{ggraphicsnotebook} creates a notebook that allows the
+user to easily navigate multiple graphics devices.
+
+
+
+
+%% XXXX Move this example somewhere COMPONENT PROGRAMMING
+\begin{example}{A GUI for filtering and visualizing a data set}{ex:gWidgets-spotfire}
+\SweaveInput{ex-gWidgets-spotfire}
+\end{example}
+
+%%% 
+% \begin{example}{A GUI to explore a data set}{ex-gWidgets-baseball}
+%   \SweaveInput{ex-gWidgets-baseball-RGtk2.Rnw}
+% \end{example}
+
+
+\section{A data frame editor}
+\label{sec:gWidgets-an-editor-tabular}
+
+The \constructor{gdf} constructor returns a widget for editing data
+frames. The intent is to produce a toolkit widget atleast as powerful
+as the \function{data.entry} function. The implementations differ
+between toolkits, with some offering much more. We describe what is in
+common below, but note that some toolkits have popup menus allowing
+much more.~\footnote{ For \pkg{gWidgetstcltk}, there is no native
+  widget for editing tabular data, so the \code{tktable} add-on widget
+  is used (\url{tktable.sourceforge.net}). A warning will be issued if
+  this is not installed. For \pkg{gWidgetsRGtk2} there is also the
+  \constructor{gdfedit} constructor which is faster and has many improved
+  usability features. The \pkg{gWidgets} function merely wraps the \function{gtkDfEdit}
+  function from \pkg{RGtk2Extras}. This function is not exported by
+  \pkg{gWidgets}, so the toolkit package must be loaded. Again, as
+  with \function{gtable}, the widget under \pkg{gWidgetstcltk} is
+  slower, can load a moderately sized data frame in a reasonable
+  time. }
+
+
+The constructor has its main argument \argument{items}{gdf} to specify the data
+frame to edit. A basic usage might be:
+
+<<gdfExample>>=
+w <- gwindow("gdf example")
+df <- gdf(mtcars, cont=w)
+## ... make some edits ...
+newDataFrame <- df[,]                   # store changes
+@ 
+%
+
+Some toolkits render columns differently for different data types, and
+some toolkits use character values for all the data, so values must be
+coerced back when transferring to \R\/ values. As such, column types
+are important. Even if one is starting with a $0$-row data frame, the
+columns types should be defined as desired. Also, factors and
+character types may be treated differently, although they may render
+in a similar manner.
+
+\paragraph{Methods} The \method{svalue}{gdf} method will return the
+selected values or selected indices if \code{index=TRUE} is
+given. The \method{svalue\ASSIGN}{gdf} method is used to specify the
+selection by index. This is a vector, or for some toolkits a list with
+components \code{rows} and \code{columns} indicating the selection to
+mark.  The \method{[}{gdf} and \method{[\ASSIGN}{gdf} methods can be
+used to extract and set values from the data frame by index. As with
+\code{gtable}, these are not as flexible as for a data frame. In
+particular, it may not be possible to change the type of a column, or
+add new rows or columns through these methods. Using no indices, as in
+the above example with \code{df[,]}, will return the current data
+frame. The current data frame can be completely replaced, when no
+indices are specified in the replacement call. 
+
+There are also several methods defined that follow those of a data
+frame: \method{dimnames}{gdf}, \method{dimnames\ASSIGN}{gdf},
+\method{names}{gdf}, \method{names\ASSIGN}{gdf}, and
+\method{length}{gdf}.
+
+The following methods can be used to assign handlers (all are
+implemented in \pkg{gWidgetsRGtk2}, but not for the others):
+\method{addHandlerChanged}{gdf} (cell changed),
+\method{addHandlerClicked}{gdf}, \method{addHandlerDoubleclick}{gdf},
+\method{addHandlerColumnClicked}{gdf},
+\method{addHandlerColumnDoubleclick}{gdf}, and
+\method{addHandlerColumnRightclick}{gdf}.
+\\
+
+
+The \constructor{gdfnotebook} constructor produces a notebook that can
+hold several data frames to edit at once.
+
+
+
+
+
 \subsection{Workspace browser}
 \label{sec:gWidgets-workspace-browser}
 
 A workspace browser is constructed by \code{gvarbrowser}, providing a
-means to browse and select the objects in the current global environment. The
-quality of the implementation varies depending on the toolkit. The
-default \code{handler} object calls \code{do.call} on the object for
-the function specified through the \argument{action}{gvarbrowser}
-argument. The default is to print a \code{summary} of the object. This
-handler is called on a double click. A single click is used for
-selection. The name of the currently selected value is returned by the
-\method{svalue}{gvarbrowser} method.
+means to browse and select the objects in the current global
+environment. This workspace browser uses a tree widget to display the
+items and their named components, if applicable.
 
-% \subsection{Help browser}
-% \label{sec:gWidgets-help-browser}
+The default \argument{handler}{gvarbrowser} object calls
+\code{do.call} on the object for the function specified by name
+through the \argument{action}{gvarbrowser} argument. (The default is
+to print a \code{summary} of the object.) This handler is called on a
+double click. A single click is used for selection. One can pass in
+other handler functions if desired.  The name of the currently
+selected value is returned by the \method{svalue}{gvarbrowser} method.
 
-% The \constructor{ghelp} constructor produces a widget for showing help
-% pages using a notebook container. This widget does not use the html
-% help pages or the chm help pages, so it may not work for all operating
-% systems. (For Windows, the help browser of the GUI is much better
-% anyways.) To add a help page, the \method{add}{ghelp} method is used,
-% where the \code{value} argument describes the desired page. This can
-% be a character string containing the topic, a character string of the
-% form \code{package:::topic} to specify the package, or a list with
-% named components \code{package} and \code{topic}.  The
-% \method{dispose}{ghelp} method of notebooks can be used to remove the
-% current tab.
 
-% The \constructor{ghelpbrowser} constructor produces a stand-alone
-% GUI for displaying help pages, running examples from the help pages or
-% opening vignettes provided by the package. This GUI provides its own
-% top-level window and does not return a value for which methods are defined.
+The \method{update}{gvarbrowser} method will update the list of items
+being displayed.  As, \R\/ has no means to notify observers if its
+global workspace exists, the user can either invoke this method, or
+have the GUI poll every so often to query
+for changes (\meth{addHandlerIdle}). As the latter can be time consuming if there are many objects
+in the global environment, it isn't implemented in for each toolkit.
+
+\begin{example}{Using drag and drop with \pkg{gWidgets}}{ex-gWidgets-drag-and-drop}
+  \SweaveInput{ex-gWidgets-gvarbrowser-dnd}
+\end{example}
+
+
+
+\subsection{Help browser}
+\label{sec:gWidgets-help-browser}
+
+The \constructor{ghelp} constructor produces a widget for showing help
+pages using a notebook container. Although \R\/ has the excellent
+ways to dynamically view help pages through a web browser (in
+particuluar the \pkg{helpr} package and the standard built-in help
+page server) this widget provides an alternative.
+
+To add a help page, the \method{add}{ghelp} method is used,
+where the \code{value} argument describes the desired page. This can
+be a character string containing the topic, a character string of the
+form \code{package:::topic} to specify the package, or a list with
+named components \code{package} and \code{topic}.  The
+\method{dispose}{ghelp} method of notebooks can be used to remove the
+current tab.
+\\
+
+The \constructor{ghelpbrowser} constructor produces a stand-alone
+GUI for displaying help pages, running examples from the help pages or
+opening vignettes provided by the package. This GUI provides its own
+top-level window and does not return a value for which methods are defined.
 
 
 
 \subsection{Command line widget}
 \label{sec:gWidgets-command-line-widget}
 
+
+
 A simple command line widget is created by the
 \constructor{gcommandline} constructor. This is not meant as a
-replacement for \R's typical commandlines, but is provided for
+replacement for any of \R's commandlines, but is provided for
 lightweight usage. A text box allows users to to type in \R\/
 commands. The programmer may issue commands to be evaluated and
 displayed through the \method{svalue\ASSIGN}{gcommandline} method. The
@@ -91,7 +255,8 @@ methods return the command history.
 \label{sec:gWidgets-designing-forms}
 
 The \pkg{gWidgets} package has two means to simpify the creation of
-GUIs. The \code{gformlayout} constructor takes a list defining a
+GUIs.~\footnote{The \pkg{traitr} package provides another, but is not
+  discussed here.} The \code{gformlayout} constructor takes a list defining a
 layout and produces a GUI, the \code{ggenericwidget} constructor can
 take a function name and produce a GUI based on the formal arguments
 of the function. This too uses a list, which can be modified by the
@@ -104,6 +269,7 @@ user before the GUI is constructed.
 % distuingish them from components of the GUI
 
 % ML: this is another place where it would be good to see the example first
+%% JV: Good ideas, done.
 
 The \constructor{gformlayout} constructor takes a list defining a
 layout and creates the specified widgets. The design borrows from the
@@ -115,30 +281,63 @@ the assumption that it is more familiar to the \R\/ user. By defining
 the layout ahead of time, pieces of the layout can be recycled for
 other layouts.
 
+A simple example would be
+<<>>=
+l <- list(type="ggroup",
+          horizontal=TRUE,
+          children=list(
+            list(type="glabel",
+                 text="x:"),
+            list(name="x",
+                 label="asdfas",
+                 type="gedit",
+                 text="initial text"),
+            list(type="glabel",
+                 text="state:"),
+            list(name="y",
+                 type="gcombobox",
+                 items=state.name)
+            )
+          )
+w <- gwindow("glayout example")
+f <- gformlayout(l, cont=w)
 
-To define the layout, each component is specified using a list with
-named elements. The \code{type} element indicates the component
+@ 
+
+
+To define the layout, each list element is specified using a 
+named. The \code{type} element indicates the component
 to be created, as a string. This can be the name of a container
 constructor, a widget constructor or the special value
 \code{"fieldset"}. Field sets are used to group a set of common
-controls. If the \code{name} element is specified, then the
-component that is created will be stored in the list returned by the
-\code{[} method.
+controls. 
 
-The \code{label} element adds a descriptive label
-to the layout. The \code{label.pos} element controls the
-placement of the label. The value \code{"top"} places the label on top
-of the widget, while \code{"side"}, the default, puts it on the
-side. The \code{label.font} element specifies the
-font properties of the label, as with the \meth{font\ASSIGN} method.
+The list defining each GUI component has named elements to pass to the
+constructor, such as \code{text} and \code{items} in the above
+example, and named elements used by the \generic{gformlayout}
+constructor. For example, 
+the \code{name} element when specified, allows that
+component to be referenced through \method{svalue}{gformlayout},
+which returns the form's values in a list, or \method{[}{gformlayout},
+which returns the components in a list.
 
 If the type is a container or fieldset, then the \code{children}
 element is a list whose elements specify the children as
 above. Except for fieldsets, these children can contain other
 containers or controls. Fieldsets only allow controls as children.
 
-The enabled state of a widget is controlled by \code{depends.on},
-\code{depends.FUN}, and \code{depends.signal}. If the
+
+%% fields set and labels.
+For \code{fieldset}s the \code{label} element adds a descriptive label
+to the layout. The \code{label.pos} element controls the placement of
+the label. The value \code{"top"} places the label on top of the
+widget, while \code{"side"}, the default, puts it on the side. The
+\code{label.font} element specifies the font properties of the label,
+as with the \meth{font\ASSIGN} method.
+
+Parts of the form can be made to depend on other parts. For example, 
+whether a component is enabled or not may be controlled by the by \code{depends.on},
+\code{depends.FUN}, and \code{depends.signal} elements. If the
 \code{depends.on} element specifies the name of a previous component,
 then the function \code{depends.FUN} will be consulted when the signal
 specified by \code{depends.signal} is emitted. This uses the
@@ -148,35 +347,33 @@ argument consisting of the value returned by \code{svalue} when called
 on the widget specified through \code{depends.on}. This function
 should return a logical indicating if the widget is enabled or not.
 
-\paragraph{Methods}
-The constructor returns an object with a few methods. The
-\method{[}{gformlayout} method will return a list with
-components being the widgets that were named in the defining list. The
-\method{svalue}{gformlayout} method simply applies the \code{svalue}
-method for each component of the list returned by the \code{[}
-method. The \method{names}{gformlayout} method returns the names of the widgets in the list.
+The constructor returns an object with just a few methods. In addition to
+\meth{svalue} and \meth{[}, the \method{names}{gformlayout} method
+returns the names of the widgets in the list.
 
-
-\begin{example}{The \code{gformlayout} constructor}{ex-gWidgets-gformlayou}
-  \SweaveInput{ex-gWidgets-formlayout}
-\end{example}
+%% JV: this example will be in the package, but perhaps not needed here.
+% \begin{example}{The \code{gformlayout} constructor}{ex-gWidgets-gformlayou}
+%   \SweaveInput{ex-gWidgets-formlayout}
+% \end{example}
 
 \subsubsection{Creating a GUI for a function}
 \label{sec:gWidgets-autom-creat-gui}
 
 The \constructor{ggenericwidget} constructor creates a GUI for
 invoking a given function. The GUI is derived from the formal
-arguments. The \pkg{fgui} package provides a similar function. While
-it is limited to the \pkg{tcltk} toolkit, it has the advantage of
-incorporating information from the help page for the function.
+arguments. The \pkg{fgui} package provides a similar function, with
+some more features, although limited to the \pkg{tcltk} toolkit.
 
-The implementation actually has two stages. The first creates a list
-specifying the layout of the GUI and the second actually constructs
-the GUI. This list is different from that used by \code{gformlayout}. It
-does not provide as much flexibility and is described in the help page
-for \code{ggenericwidget}. This list can be edited if desired and then
-used directly. % ML: how does this work?
 
+The usage is straightforward. To make a GUI for a function is as
+simple as:
+<<>>=
+f <- function(x=1, variable="a") {
+  print("Something with x and variable")
+}
+g <- ggenericwidget(f, cont=gwindow())
+@ 
+%
 The formal arguments of an S3 method may be different from those of
 its generic. For instance, those for the \code{t.test} generic are
 much different (and less useful for this purpose) than the
@@ -187,5 +384,22 @@ the commands:
 w <- gwindow("t.test through ggenericwidget")
 f <- stats:::t.test.default; 
 widget <- ggenericwidget("f", cont=w)
+@ 
+
+
+The implementation has two stages. The first creates a list
+specifying the layout of the GUI and the second actually constructs
+the GUI. This list is different from that used by \code{gformlayout}. It
+does not provide as much flexibility and is described in the help page
+for \code{ggenericwidget}. This list can dumped to a text file, edited if desired and then
+sourced in later. For example:
+
+<<results=hide>>=
+tmp <- tempfile()
+cat(gWidgets:::autogenerategeneric(f), file=tmp)
+## ... do some edits ...
+source(tmp)
+w <- gwindow("Another ggeneric widget example")
+ggenericwidget(f.LIST, cont=w)          # made by autogenerategeneric
 @ 
 

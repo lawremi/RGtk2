@@ -13,18 +13,9 @@ native toolkit interface, \pkg{gWidgets} can be used to create
 moderately complex GUIs quickly and easily using a programming
 interface that is simpler and more familiar to the \R\/ user.
 
-The \pkg{gWidgets} package started as a port to \pkg{RGtk2} of the
-\pkg{iWidgets} interface, initially implemented only for Swing through
-\pkg{rJava}~\citep{iWidgets}. The \pkg{gWidgets} package enhances that
-original interface in terms of functionality and implements it for
-multiple toolkits.  
-
-Figure~\ref{fig:gWidgets-three-oses} shows how the same GUI code
-can be rendered differently depending on the OS and the
-toolkit. 
-
-%% Figure~\ref{fig:gWidgetsWWW-same-gui} shows a similar GUI
-%% using \pkg{gWidgetsWWW}.
+Figure~\ref{fig:gWidgets-three-oses} demonstrates the portability of
+\pkg{gWidgets} commands, as it shows realizations on different
+operating systems and with different graphical toolkits.
 
 <<eval=FALSE, echo=FALSE>>=
 ## show (linux, mac, windows) x (RGtk2, tcltk, rJava)
@@ -111,93 +102,39 @@ for(j in c("RGtk2","tcltk","rJava")) {
 %   \label{fig:gWidgetsWWW-same-gui}
 % \end{figure}
 
-We begin with an initial example illustrating how one can use
-\code{gWidgets} to create a somewhat complicated user interface/
-
-\begin{example}{A GUI for filtering and visualizing a data set}{ex:gWidgets-spotfire}
-  \SweaveInput{ex-spotfire}
-\end{example}
 
 
-\section{Getting Started}
-\label{sec:installation}
 
-The \pkg{gWidgets} package is installed and loaded as other \R\/
-packages that reside on CRAN. This can be done through the function
-\code{install.packages} or in an \R\/ graphical front-end through a
-dialog called from the menu bar. The \pkg{gWidgets} package only provides
-the application programming interface (API). To actually create a GUI, one
-needs to have: 
-\begin{enumerate}
-\item An underlying toolkit library. This can be either the \Tk\/
-  libraries, the \Qt\/ libraries or the \GTK\/ libraries. The
-  installation varies for each and depends on the underlying operating system.
-  
-\item An underlying \R\/
-package that provides an interface to the libraries. The \pkg{tcltk}
-package is a recommended pacakge for \R\/ and comes with the \R\/
-software itself, the \pkg{RGtk2} and \pkg{Qt} packages may be installed
-through \R's package management tools.
-\item a \pkg{gWidgetsXXX} package to link \pkg{gWidgets} to the \R\/
-  package. As of this writing, there are basically three such packages
-  \pkg{gWidgetsRGtk2}, \pkg{gWidgetsQt} and \pkg{gWidgesttcltk}.  The
-  \pkg{gWidgetsWWW} package is an independent implementation for web
-  programming that is more or less faithful to the API, but not
-  commented on further in this chapter.
-\end{enumerate}
-
-Not all features of the API are supported by a particular toolkit.
-The help pages in the \pkg{gWidgets} package describe the API, with
-the help pages in the toolkit packages indicating differences or
-omissions from the API. For the most part, the omissions are
-gracefully handled by simply providing less functionality. We make
-note of major differences here, realizing that over time they may may
-be resolved. Consult the package documentation if in doubt.
-
-%% starting package
-The \pkg{gWidgets} package is loaded as other \R\/ packages:
-<<>>=
-require(gWidgets)
-@ 
-
-A toolkit package is loaded when the first command is issued. If a
-user does not have a toolkit installed, a message instructs the user
-to install one.
-
-%% Choice of toolkit
-If a user has exactly one toolkit package installed, then that will be
-used. But it is possible for more than one to be installed, in which
-case the user is prompted to choose one through an interactive menu. This
-choice can be avoided by setting the option \args{guiToolkit} to the
-\code{XXX} in a \pkg{gWidgestXXX} package name, e.g.,
-<<>>=
-options("guiToolkit"="RGtk2")
-@ 
-
-Although in theory the different toolkits can be used
-together, in practice the different event loops created by each often
-lead to issues that can lockup the \R\/ process.
-
-
-\begin{example}{A first GUI}{eg:gWidgets:first-gui}
-  As a first illustration of the use of \pkg{gWidgets}, a
-  simple ``hello world'' type GUI can be produced through:
-<<>>=  
-w <- gwindow("Hello world example")
-b <- gbutton("Click me for a message", container=w)
-addHandlerClicked(b, handler=function(h,...) {
-  print("Hello world")
-  dispose(w)
-})
-@ 
-\end{example}
 
 \section{Constructors}
 \label{sec:constructors}
-%% constructors
-GUI objects are produced by constructors. In
-Example~\ref{eg:gWidgets:first-gui} a top-level window and button
-constructor were called. In
+
+We begin with some sample \pkg{gWidgets} commands that set up a basic
+interface allowing a user to input some test. The first line loads the
+package, the others will be described later.
+
+<<>>=
+require(gWidgets)
+options(guiToolkit="RGtk2")
+
+w <- gwindow("Text input example", visible=FALSE)
+g <- ggroup(container=w)
+l <- glabel("Your name:", cont=g)
+e <- gedit("", cont=g)
+b <- gbutton("Click", cont=g, handler=function(h,...) {
+  msg <- sprintf("Hello %s", svalue(e))
+  cat(msg, "\n")
+})
+
+visible(w) <- TRUE
+@ 
+
+
+This example defines five different widgets, a window, a box
+container, a label, a single-line, text edit area and a button. These
+GUI objects are produced by constructors.
+
+
 \pkg{gWidgets} most constructors have the following form: 
 <<eval=FALSE>>=
 gname(arguments, handler = NULL, action = NULL, 
@@ -205,31 +142,46 @@ gname(arguments, handler = NULL, action = NULL,
 @ 
 where the \code{arguments} vary depending on the object being made. 
 
+In the above, we see that the \code{gwindow} constructor, for a
+top-level window, has two arguments passed in, an unamed one for a
+window title and a value for the \code{visible} property. Whereas the
+\code{ggroup} constructor takes all the default arguments except for
+the parent container.
+
+%% container
+A top-level window does not have a parent container, but other GUI
+components do. In \pkg{gWidgets}, for the sake of portability, the
+parent container is passed to the widget constructor through the
+\args{container} argument, as it done in all the other constructors.
+This argument name can always be abbreviated \args{cont}. This defines
+the GUI layout, a topic taken up in
+Chapter~\ref{sec:gWidgets-Containers}.
+
+%% toolkit
+The \args{toolkit} argument is usually not specified. It is there to
+allow the user to mix toolkits within the same \R\/ session, but in
+practice can cause problems due to competing event loops. The default
+call \function{guiToolkit} which will query the user for a choice of
+toolkit, if one has not been specified and a choice is available. In
+our example we have the call
+<<eval=FALSE>>=
+options(guiToolkit="RGtk2")
+@ 
+to explicitly set the toolkit, thereby avoiding being asked when the
+\code{toolkit} argument is evaluted.
+
+
+
 %% return value
-The constructors produce two general types of objects: containers
-(Table~\ref{tab:gWidgets-container-constructors}) and components (the
-basic controls in Table~\ref{tab:gWidgets-control-widgets} and the
-compound widgets in Table \ref{tab:gWidgets-compound-widgets}). In
-addition to creating a GUI object, a constructor also returns a useful
-\R\/ object. Except for modal dialog constructors, this is an S4
-object of a certain class containing two components: \code{toolkit}
-and \code{widget}.
+The constructors produce three general types of objects: containers,
+such as the top level window \code{w} and the box container \code{g}
+(Table~\ref{tab:gWidgets-container-constructors}); components, such as
+a label \code{l}, the edit area \code{e} or the button \code{b}.
+(Table~\ref{tab:gWidgets-control-widgets} and
+Table~\ref{tab:gWidgets-compound-widgets}) show the basic and compound
+widgets.)  dialogs.
 
-%% modal return value
-A few constructors create modal dialogs. These do not return the
-dialog object, because the dialog will be destroyed before the
-constructor returns. The \R\/ sesssion is unresponsive while waiting
-for user input.  Consequently, modal dialogs have no methods defined
-for them.  Instead, their constructors return values reflecting the
-user response to the dialog.
 
-%% arguments
-
-%% handler and action arguments
-The arguments \args{handler} and \args{action} assign the function
-specified to \code{handler} to be a callback for the
-\code{addHandlerChanged} event. See \ref{sec:gWidgets-callbacks} for
-more details on how \pkg{gWidgets} manages callbacks.
 
 %% container argument
 % ML: this has already been well explained in preceeding chapters
@@ -237,96 +189,150 @@ more details on how \pkg{gWidgets} manages callbacks.
 % may contain contain controls or additional containers. In a GUI,
 % except for top-level windows (including dialogs), every component and
 % container is the child of some parent container. 
-For the sake of portability, the parent widget must be specified with
-the \args{container} argument when an object is constructed. This
-argument name can always be abbreviated \args{cont}.
+
 % ML: This sounds to me that it is a detail of specific toolkit implementations
 % The package does not implement layout managers. Rather, in
 % the construction of a widget in \pkg{gWidgets}, the
 % \meth{add} method for the parent container is called with the new
 % object as an argument and the values passed through the \args{...}
 % argument as arguments.  
-We remark that not all the toolkits (e.g., \pkg{RGtk2}, \pkg{qtbase})
-require one to combine the construction of an object with the
-specification of the parent container. We don't illustrate this, as
-the resulting code is not cross-toolkit.
 
-% toolkit argument
-The \code{toolkit} can be specified at time of construction allowing
-tookits, in theory, to be mixed. Otherwise, the \code{guiToolkit}
-function returns the currently selected toolkit, or queries for one if
-none is selected.  Constructors dispatch on the \code{toolkit} value
-to call the appropriate constructor in the toolkit implementation. The
-return value from the toolkit's constructor is kept in the
-\code{widget} component.
+
+% We remark that not all the toolkits (e.g., \pkg{RGtk2}, \pkg{qtbase})
+% require one to combine the construction of an object with the
+% specification of the parent container. We don't illustrate this, as
+% the resulting code is not cross-toolkit.
+
+% % toolkit argument
+% The \code{toolkit} can be specified at time of construction allowing
+% tookits, in theory, to be mixed. Otherwise, the \code{guiToolkit}
+% function returns the currently selected toolkit, or queries for one if
+% none is selected.  Constructors dispatch on the \code{toolkit} value
+% to call the appropriate constructor in the toolkit implementation. The
+% return value from the toolkit's constructor is kept in the
+% \code{widget} component.
 
 \section{Methods}
 
-%% methods 
-As with most \R\/ objects, one calls generic functions to interact
-programatically with the object. In \pkg{gWidgets}, generic functions
-have a double dispatch when called. The first dispatch is based on the
-\code{toolkit} value and the method calls a second generic,
-implemented in the toolkit-specific package, with the same name as the
-first generic, except prefixed by a period (\code{svalue} calls
-\code{.svalue}). The tookit generic then dispatches based on the class
-of the \code{widget} argument and perhaps other arguments given to the
-generic. The actual class of the S4 object returned by the first
-constructor is (mostly) not considered, but when we refer to methods
-for an object, we gloss over this double dispatch and think of it as a
-single dispatch. This design allows the toolkit packages the freedom
-to implement their own class structure.
 
-Depending on the class, the \pkg{gWidgets} package provides methods
+In addition to creating a GUI object, a constructor also returns a
+useful \R\/ object. Except for modal dialog constructors, this is an
+S4 object of a certain class containing two components: \code{toolkit}
+and \code{widget}. (Modal dialogs do not return an
+object, as the dialog will be destroyed before the
+constructor returns. Instead, their constructors return values reflecting the
+user response to the dialog.)
+
+
+GUI objects have a state determined by one or more of their
+properties. In \pkg{gWidgets} many properties are set at the time of
+construction. However, there are also several generic methods defined
+for \pkg{gWidgets} objects. ~\footnote{
+  In \pkg{gWidgets} constructors are generic functions that dispatch
+  down to the toolkit implementation after considering the
+  \args{toolkit} argument. For example, \function{gbutton} calls
+  \function{.gbutton}, defined in the toolkit implementation. This in
+  turn calls a GUI toolkit command, such as
+  \function{gtkButton}. This is then placed as a slot in an S4 object
+  which in turn is placed in another S4 object, which is the GUI
+  object available to interact iwth. As such, in \pkg{gWidgets}, generic
+  methods also have a double dispatch when called.
+ 
+  The actual class of
+  the S4 object returned by the first constructor is (mostly) not
+  considered, but when we refer to methods for an object, we gloss
+  over this double dispatch and think of it as a single dispatch. This
+  design allows the toolkit packages the freedom to implement their
+  own class structure.
+}
+
+%% s3 generics
+Depending on the class of the object, the \pkg{gWidgets} package provides methods
 for the familiar S3 generics \generic{[}, \generic{[$<$-},
 \generic{dim}, \generic{length}, \generic{names}, \generic{names$<$-},
 \generic{dimnames}, \generic{dimnames$<$-} and \generic{update}.
 
-In addition, \pkg{gWidgets} provides the new generics listed in
-Table~\ref{tab:gWidgets-methods}.  These new generics provide a means
-to query and set the primary value of the widget (\meth{svalue},
-\meth{svalue\ASSIGN}), and various functions to affect the display of
-the widget (\meth{visible\ASSIGN}, \meth{font\ASSIGN},
-\meth{enabled\ASSIGN}, \meth{focus\ASSIGN}). The methods \meth{tag}
-and \meth{tag\ASSIGN} are implemented to bypass the pass-by-copy
-issues that can make GUI programming awkward at times.
+
+%% savlue
+In our example, we see two cases of the use of generics defined by
+\pkg{gWidgets}. The call
+<<eval=FALSE>>=
+svalue(e)
+@ 
+%
+demonstrates the generic method \defn{\meth{svalue}} that can be used to get or set the
+main property of the widget. For the object \code{e}, the main
+property is the text, for the button and label widgets this property
+is the label. The \meth{svalue\ASSIGN} is used to adjust this property
+programatically. For the selection widgets, there is a natural mapping
+between vectors or data frames, and the data to be selected. In this
+case, the user may want the value selected or the index of the
+selected value. The \args{index=TRUE} argument may be given to refer
+to the index, either when getting or setting the properties value. For
+these selection widgets the \meth{[} and \meth{[\ASSIGN} methods refer
+to the underlying data to be selected from.
+
+
+
+The call, 
+<<eval=FALSE>>=
+visible(w) <- TRUE
+@ 
+%
+sets the visibility property of the top-level window. In this example,
+the \code{gwindow} contructor is passed \code{visible=FALSE} to
+suppress an initial drawing, making this method call necessary to show
+the GUI.
+
+Some other methods to adjust the widget'sunderlying properties are \meth{font\ASSIGN},
+to adjust the font of an object; \meth{size} and \meth{size\ASSIGN} to
+query and set the size of a widget; and \meth{enabled\ASSIGN}, to adjust
+if a widget is sensitive to user input. 
+
+%% tag; tag<-
+The methods \meth{tag} and
+\meth{tag\ASSIGN} are similar to the base \function{attr}
+function. However, the attributes persist across copies of the
+object. These are implemented to bypass the pass-by-copy issues that
+can make GUI programming awkward at times.
 
 %% insufficiency of API
 The \pkg{gWidgets} API provides just a handful of generic functions
-for manipulating an object compared to the number of methods typically
-provided by a GUI toolkit for a similar object. Although this
-simplicity makes \pkg{gWidgets} easier to work with, one may wish to
-get access to the underlying toolkit object to work at that level. The
-\generic{getToolkitWidget} will provide that object. We don't
-illustrate this, as we try to stay toolkit agnostic in our examples.
+for manipulating an object's properties compared to the number of
+methods typically provided by a GUI toolkit for a similar
+object. Although this simplicity makes \pkg{gWidgets} easier to work
+with, one may wish to get access to the underlying toolkit object to
+work at that level. The \generic{getToolkitWidget} will provide that
+object. We don't illustrate this, as we try to stay toolkit agnostic
+in our examples.
 
 
 %% table of new methods
 <<echo=FALSE, results=tex>>=
 df <- rbind(
-            c("\\meth{svalue, svalue\\ASSIGN}", "Get or set value for widget"),
+            c("\\meth{svalue, svalue\\ASSIGN}", "Get or set widget's main property"),
+            c("\\meth{size\\ASSIGN}","Set size of widget in pixels"),
+            c("\\meth{show}", "Show widget if not visible"),
+            c("\\meth{dispose}","Destroy widget or its parent"),
+            c("\\meth{enabled, enabled\\ASSIGN}","Adjust sensitivity to user input"),
+            c("\\meth{visible, visible\\ASSIGN}","Show or hide object. Overridden in many classes."),
+            c("\\meth{focus\\ASSIGN}","Sets focus to widget"),
+            c("\\meth{insert}","Insert text into a multi-line text widget"),
+            c("\\meth{font\\ASSIGN}","Set a widget's font"),
+            c("\\meth{update}","Update widget values"),
             c("\\meth{[, [\\ASSIGN}","Refers to values in data store"),
             c("\\meth{length}", "\\meth{length} of data store"),
             c("\\meth{dim}","\\meth{dim} of data store"),
             c("\\meth{names}","\\meth{names} of data store "),
             c("\\meth{dimnames}","\\meth{dimnames} of data store"),
-            c("\\meth{update}","Update widget values"),
-            c("\\meth{size\\ASSIGN}","Set size of widget in pixels"),
-            c("\\meth{show}", "Show widget if not visible"),
-            c("\\meth{dispose}","Destroy widget or its parent"),
-            c("\\meth{isExtant}","Does \\R\\/ object refer to GUI object that still exists"),
-            c("\\meth{enabled, enabled\\ASSIGN}","Adjust sensitivity to user input"),
-            c("\\meth{visible, visible\\ASSIGN}","Adjust widget visibility."),
-            c("\\meth{focus\\ASSIGN}","Sets focus to widget"),
-            c("\\meth{defaultWidget\\ASSIGN}","Set widget to have initial focus in a dialog"),
-            c("\\meth{insert}","Insert text into a multi-line text widget"),
-            c("\\meth{font\\ASSIGN}","Set a widget's font"),
             c("\\meth{tag, tag\\ASSIGN}","Sets an attribute for a widget that persists through copies"),
+##            c("\\meth{defaultWidget\\ASSIGN}","Set widget to have initial focus in a dialog"),
+            c("\\meth{isExtant}","Does \\R\\/ object refer to GUI object that still exists"),
             c("\\meth{getToolkitWidget}","Returns underlying toolkit widget for low-level use")
             )
 dimnames(df) <- list(NULL,c("Method", "Description"))
 cat(booktabs(df, colTypes=c("l","p{0.6\\textwidth}"),
-             caption="Generic functions provided or used in \\pkg{gWidgets} API.",
+             caption="Generic functions provided or used in the \\pkg{gWidgets} API.",
              label="tab:gWidgets-methods"))
 @ 
 % \begin{table}
@@ -372,30 +378,63 @@ cat(booktabs(df, colTypes=c("l","p{0.6\\textwidth}"),
 % toolkits allow functions, referred to as callbacks, to be called when
 % these signals are emitted, allowing the GUI to be made interactive.
 
-The package provides a number of methods to add callbacks to different
-events. These main method is \meth{addHandlerChanged}, which is used
-to assign a callback to a widget event.  In addition, there are many
-``\meth{addHandlerXXX}'' methods to assign callbacks to other events,
-in the case where more than one event is of interest. For example, for
-single line text widgets, the \meth{addHandlerChanged} responds when
-the user finishes editing, whereas \meth{addHandlerKeystroke} is
-called each time the keyboard is used.
+
+In our example, the lines
+<<eval=FALSE>>=
+b <- gbutton("Click", cont=g, handler=function(h,...) {
+  msg <- sprintf("Hello %s", svalue(e))
+  cat(msg, "\n")
+})
+@ 
+create the button object. The argument \args{handler} is used to bind a
+callback to the click event of the button. Handlers in \pkg{gWidgets}
+have a common signature \code{(h,...)} where \code{h} is a list with
+components \code{obj}, to pass in the object of the event (the button
+in this case), and
+\code{action} to pass along any value specified to \args{action}
+argument. The latter allows one to parameterize the callback. 
+
+For example, a typical idiom within a callback is
+<<eval=FALSE>>=
+prop <- svalue(h$obj)
+@ 
+%
+which assigns the object's main property to \code{prop}.  Some
+toolkits pass additional arguments through the callback's \args{...}
+argument, so for portability this argument is not optional. For some
+classes, extra information is passed along, for instance for the drop
+target generic, the component \code{dropdata} contains a string
+holding the drag-and-drop information.
+
+
+While one can specify a callback to the constructor, it is often a
+better practice to keep separate the construction of an object and the
+definition of its callback.  The package provides a number of methods
+to add callbacks for different events. The main method is
+\meth{addHandlerChanged}, which is used to assign a callback for the
+typical event for the widget, such as the clicking of a button. (The
+\args{handler} argument, when specified, uses this method call.)  In
+addition, there are many ``\meth{addHandlerXXX}'' methods to assign
+callbacks to other events, where the \code{XXX} describes the
+event. These are useful in the case where more than one event is of
+interest. For example, for single line text widgets, like \code{e} in
+our example, the \meth{addHandlerChanged} method sets a callback to
+respond when the user finishes editing, whereas a handler set by
+\meth{addHandlerKeystroke} is called each time a key is pressed.
 Table~\ref{tab:gWidgets-callback-methods} shows a list of the these
 other methods.
 
-In \pkg{gWidgets}, callbacks are functions with the signature
-\code{(h,...)} where \code{h} is a list containing the source of the
-event (the \code{obj} element), as well as user data that is specified
-when the callback is registered (the value passed through the
-\code{action} agument). Some toolkits pass additional arguments
-through the \code{...} argument, so for portability this argument is
-not optional. For some classes, extra information is passed along, for
-instance for the drop target generic, the component \code{dropdata}
-contains a string holding the drag-and-drop information.
-
-If these few methods are insufficient, and toolkit-portability is not
-of interest, then the \meth{addHandler} generic can be used to specify
-a toolkit-specific signal and a callback.
+As an example, we could have specifed the button as
+<<eval=FALSE>>=
+b <- gbutton("Click", cont=g)
+ID <- addHandlerClicked(b, handler=function(h, ...) {
+  msg <- sprintf("Hello %s", svalue(h$action))
+  cat(msg, "\n")
+}, action=e)
+@ 
+We passed in the object \code{e} through the action argument as an
+illustration. This is useful, as one not worry about the scope of the
+call to \code{svalue}.
 
 When an \meth{addHandlerXXX} method is used, the return value is an ID
 or list of IDs. This can be used with the method \meth{removeHandler}
@@ -403,28 +442,10 @@ to remove the callback, or with the methods \meth{blockHandler} and
 \meth{unblockHandler} to temporarily block a handler from being
 called.
 
-%% ML: Is the overview really the right place for this? As you said,
-%% this really needs an example. I think it could go into the control
-%% widget chapter, at the end.
+If these few methods are insufficient, and toolkit-portability is not
+of interest, then the \meth{addHandler} generic can be used to specify
+a toolkit-specific signal and a callback.
 
-\section{Drag and Drop}
-\label{sec:drag-drop}
-
-%% drag and drop
-Drag and drop support is implemented through three methods: one to set
-a widget as a drag source, one to set a widget as a drop target, and
-one to call a handler when a drop event passes over a widget. The
-\generic{addDropSource} method needs a widget and a handler to call
-when a drag and drop event is initiated. This handler should return
-the value that will be passed to the drop target. The default value is
-that returned by calling \code{svalue} on the object. The
-\generic{addDropTarget} method is used to allow a widget to receive a
-dropped value and to specify a handler to call when a value is
-dropped. The \code{dropdata} component of the first callback argument,
-\code{h}, holds the drop data. The \generic{addDropMotion} registers a
-handler for when a drag event passes over a widget.
-
-Unfortunately, drag and drop  is not well supported in \pkg{gWidgetstcltk}.
 
 <<echo=FALSE, results=tex>>=
 df <- rbind(
@@ -460,43 +481,197 @@ cat(booktabs(df, colTypes=c("l","p{0.6\\textwidth}"),
              label="tab:gWidgets-callback-methods"))
 @ 
 
+
+
+\section{Dialogs}
+\label{sec:gWidgets-modal-dialogs}
+
+The \pkg{gWidgets} package provides a few constructors to quickly make
+some basic dialogs for showing messages or gathering
+information. Mostly these are modal dialogs that take control of the
+event loop, not allowing any other part of the GUI to be active for
+programmatic interaction. As such, constructors of modal dialogs do not return an
+object to manipulate through its methods, but rather return the user response
+to the dialog. Hence, they are used differently than other
+constructors. For example, the \code{gfile} dialog, described later,
+is a modal dialog that pops up a means to select a file returning the
+selected file path or \code{NA}.
+
+
+<<echo=FALSE, results=tex>>=
+df <- rbind(
+            c("\\constructor{gfile}","File and directory selection dialog"),
+            c("\\constructor{gmessage}", "Dialog to show a message"),
+            c("\\constructor{galert}", "Unobtrusive (non-modal) dialog to show a message"),
+            c("\\constructor{gconfirm}", "Confirmation dialog"),
+            c("\\constructor{ginput}", "Dialog allowing user input"),
+            c("\\constructor{gbasicdialog}", "Flexible modal dialog")
+            )
+colnames(df) <- c("Constructor","Description")
+cat(booktabs(df,
+             colTypes=c("l","p{0.7\\textwidth}"),
+             caption="Table of constructors for basic dialogs in \\pkg{gWidgets}",
+             label="tab:gWidgets-basic-dialogs"))
+
+@ 
 % \begin{table}
 %   \centering
-%   \begin{tabular}{l@{\quad}p{.75\textwidth}}
-% %    \toprule
-%     \meth{addHandlerChanged} & Refers to the signal that is bound to
-%     when the \args{handler} argument is used by the
-%     constructor. Interpretation varies from widget to widget.\\
-%     \meth{addHandlerClicked} & Sets handler for when widget is clicked with (left)
-%     mouse button. May return position of click through components
-%     \code{x} and \code{y} of the \code{h}-list. \\ 
-%     \meth{addHandlerDoubleclick} &  Sets handler for when widget is
-%     double clicked \\
-%     \meth{addHandlerRightclick} & Sets handler for when widget is
-%     right clicked\\
-%     \meth{addHandlerKeystroke} & sets handler for when key is
-%     pressed. The \code{key} component is set to this value if possible.\\
-%     \meth{addHandlerFocus} & sets handler for when widget gets focus\\
-%     \meth{addHandlerBlur} & sets handler for when widget loses focus\\
-%     \meth{addHandlerExpose} & Sets handler for when widget is first drawn\\
-%     \meth{addHandlerDestroy} & Sets handler for when widget is destroyed\\
-%     \meth{addHandlerUnrealize} & Sets handler for when widget is
-%     undrawn on screen\\
-%     \meth{addHandlerMouseMotion} & Sets handler for when widget has
-%     mouse go over it\\
-%     \meth{addHandler} & To use underlying signal from graphical toolkit\\
-%     \meth{removeHandler}& Remove a handler from a widget\\
-%     \meth{blockHandler}& Temporarily block a handler from being called\\
-%     \meth{unblockHandler}& Restore handler that has been blocked\\
-%     \meth{addHandlerIdle} & Call a handler during idle time\\
-%     \meth{addPopupmenu} & Bind popup menu to widget\\
-%     \meth{add3rdMousePopupmenu} & Bind popup menu to right mouse click\\
-%     \meth{addDropSource} & Specify a widget as a drop source\\
-%     \meth{addDropMotion} & Sets handler to be called when drag event mouses over the widget\\
-%     \meth{addDropTarget} & Sets handler to be called on a drop event. Adds the component \code{dropdata}.\\
+%  \begin{tabular}{l@{\quad}p{.75\textwidth}}
+% %   \toprule
+%     \constructor{gfile} & File and directory selection dialog\\
+%     \constructor{gmessage} & Dialog to show a message\\
+%     \constructor{galert} & Unobtrusive (non-modal) dialog to show a message\\
+%     \constructor{gconfirm} & Confirmation dialog\\
+%     \constructor{ginput} & Dialog allowing user input\\
+%     \constructor{gbasicdialog} & Flexible modal dialog \\
 %     \bottomrule
 %   \end{tabular}
-%   \caption{Table of generic functions for adding callbacks to \pkg{gWidgets} objects}
-%   \label{tab:gWidgets-callback-methods}
+%   \caption{Table of basic dialogs in \pkg{gWidgets}}
+%   \label{tab:gWidgets-modal-dialogs}
 % \end{table}
+
+Here we describe the dialogs that can be used to display a message or
+gather a simple amount of test. The \constructor{gfile} dialog is
+described in Section~\ref{sec:gWidgets-selecting-from-file} and the \constructor{gbasicdialog}, which
+is implemented like a container, is described in Section~\ref{sec:modal-window}.
+
+
+The information dialogs are simple one-liners. For example, this
+command will cause a confirmation dialog to popup allowing the user to
+select a value which will be returned as \code{TRUE} or \code{FALSE}:
+<<eval=FALSE>>=
+gconfirm("Yes or no? Click one")
+@ 
+
+
+The information dialogs have arguments \argument{message}{gmessage}
+for a message; \argument{title}{gmessage} for the window title; and
+\argument{icon}{gmessage} to specify an icon, whose value is one of
+\qcode{info}, \qcode{warning}, \qcode{error}, or
+\qcode{question}. Buttons will appear at the bottom of the dialog, and
+are determined by choice of the constructor. The
+\argument{parent}{gmessage} argument is used to position the dialog
+near the \pkg{gWidgets} instance specified. Otherwise, placement will
+be controlled by the window manager.
+
+The dialogs, except for \code{galert}, have the standard
+\code{handler} and \code{action} arguments, for calling a handler, but
+typically it is easier to use the return value when programming.
+
+\paragraph{A message dialog}
+The simplest dialog is produced by \code{gmessage}, which
+displays a message. The user has a cancel button to dismiss the dialog.
+
+
+For example,
+<<eval=FALSE>>=
+gmessage("Message goes here", title="example dialog")
+@ 
+
+
+\paragraph{An alert dialog}
+The \code{galert} dialog is similar to \code{gmessage} only it is
+meant to be less obtrusive, so it is non-modal. It does not take the
+focus and vanishes after a time delay.
+
+\paragraph{A confirmation dialog}
+The constructor \constructor{gconfirm} produces a dialog that allows
+the user to confirm the message. This dialog returns \code{TRUE} or
+\code{FALSE} depending on the user's selection.
+
+
+Here we use the question icon for a confirmation dialog, as the message is a question.
+<<eval=FALSE>>=
+ret <- gconfirm("Really delete file?", icon="question")
+@ 
+
+
+\paragraph{An input dialog}
+The \constructor{ginput} constructor produces a dialog which allows
+the user to input a single line of text. If the user confirms the
+dialog, the value of the string is returned, otherwise if the user
+cancels the dialog through the button a value of \code{NA} is returned.
+
+
+This illustrates how to use the return value.
+<<eval=FALSE>>=
+ret <- ginput("Enter your name", icon="info")
+if(!is.na(ret)) 
+  cat("Hello",ret,"\n")
+@ 
+
+
+% \begin{example}{Modal dialogs}{ex-gWidgets-modal-dialogs}
+%   \SweaveInput{ex-gWidgets-modal-dialogs}
+% \end{example}
+
+
+
+
+
+\section{Installation}
+\label{sec:installation}
+
+The \pkg{gWidgets} package started as a port to \pkg{RGtk2} of the
+\pkg{iWidgets} interface, initially implemented only for Swing through
+\pkg{rJava}~\citep{iWidgets}. The \pkg{gWidgets} package enhances that
+original interface in terms of functionality and implemented the API
+for multiple toolkits. As such, an installation requires several
+different pieces.
+
+The \pkg{gWidgets} package is installed as other \R\/
+packages that reside on CRAN, e.g. through the function
+\code{install.packages}. The \pkg{gWidgets} package only provides
+the application programming interface (API). To actually create a GUI, one
+needs to also have: 
+\begin{enumerate}
+\item An underlying toolkit library. This can be either the \Tk\/
+  libraries, the \GTK\/ libraries or the \Qt\/ libraries. The
+  installation varies for each and depends on the underlying operating system.
+  
+\item An underlying \R\/ package that provides an interface to the
+  libraries. The \pkg{tcltk} package is a recommended pacakge for \R\/
+  and comes with the \R\/ software itself, the \pkg{RGtk2} and
+  \pkg{qtbase} packages may be installed through \R's package
+  management tools.
+  
+\item a \pkg{gWidgetsXXX} package to link \pkg{gWidgets} to the \R\/ toolkit
+  package. As of this writing, there are basically three such packages
+  \pkg{gWidgetsRGtk2}, \pkg{gWidgetsQt} and \pkg{gWidgesttcltk}.  The
+  \pkg{gWidgetsWWW} package is an independent implementation for web
+  programming that is more or less faithful to the API, but not
+  commented on further in this chapter.
+\end{enumerate}
+
+Not all features of the API are supported by a particular toolkit.
+The help pages in the \pkg{gWidgets} package describe the API, with
+the help pages in the toolkit packages indicating differences or
+omissions from the API. For the most part, the omissions are
+gracefully handled by simply providing less functionality. We make
+note of major differences here, realizing that over time they may may
+be resolved. Consult the package documentation if in doubt.
+
+% %% starting package
+% The \pkg{gWidgets} package is loaded as other \R\/ packages:
+% <<>>=
+% require(gWidgets)
+% @ 
+
+% A toolkit package is loaded when the first command is issued. If a
+% user does not have a toolkit installed, a message instructs the user
+% to install one.
+
+% %% Choice of toolkit
+% If a user has exactly one toolkit package installed, then that will be
+% used. But it is possible for more than one to be installed, in which
+% case the user is prompted to choose one through an interactive menu. This
+% choice can be avoided by setting the option \args{guiToolkit} to the
+% \code{XXX} in a \pkg{gWidgestXXX} package name, e.g.,
+% <<>>=
+% options("guiToolkit"="RGtk2")
+% @ 
+
+% Although in theory the different toolkits can be used
+% together, in practice the different event loops created by each often
+% lead to issues that can lockup the \R\/ process.
 

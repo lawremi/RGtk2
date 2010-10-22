@@ -1,10 +1,17 @@
 %% Example of hand-built filter using gtable
 
+\begin{figure}
+  \centering
+  \includegraphics[width=.8\textwidth]{fig-gWidgets-filter-example}
+  \caption{Example of using filter to narrow display of tabular data}
+  \label{fig:gWidgets-filter-example}
+\end{figure}
+
 Even with moderate-sized data sets, the number of rows can be quite large, in which case it is
 inconvenient to use a GUI for selection unless some means of searching or filtering the
 data is used. This example uses the possible CRAN sites, to show how a
 \code{gedit} instance can be used as a search box to filter the display of
-data. The \code{addHandlerKeystroke} method is used so that the search
+data (Figure~\ref{fig:gWidgets-filter-example}). The \code{addHandlerKeystroke} method is used so that the search
 results are updated as the user types.
 
 <<echo=FALSE>>=

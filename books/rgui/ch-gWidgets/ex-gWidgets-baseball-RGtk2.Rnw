@@ -5,10 +5,6 @@
 ## usees several gWidgets controls.
 library(plyr)
 library(gWidgets)
-f <- tempfile()
-sink(f)
-require(hash)                           # noisy startup
-sink()
 #  stop("Only works with RGtk2 as the toolkit")
 options("guiToolkit"="RGtk2")
 @
@@ -38,10 +34,9 @@ b <- subset(b, ab >= 25)
 nVars <- names(b)[-c(1:5,23:24)]    # numeric variables
 @ 
 
-This example uses the \pkg{hash} package to store our data and an environment to store our widgets.
+This example uses environments to store data and our widgets.
 <<eval=FALSE>>=
-require(hash)
-dat <- hash()
+dat <- new.env()
 e <- new.env()
 @ 
 
@@ -56,7 +51,7 @@ transferData <- function() {
   out <- try(sapply(e, svalue, drop=TRUE), silent=TRUE)
   if(inherits(out,"try-error"))
     return(FALSE)
-  dat[[names(out)]] <- out              # hash keys
+  sapply(names(out), function(i) assign(i, out[[i]], envir=dat))
   dat$id <- e$id[]                      # not svalue
   return(TRUE)                          # works!
 }
@@ -206,9 +201,9 @@ addHandlerChanged(e$doYear, handler=f, action=e$year)
 addHandlerChanged(e$doCareerYear, handler=f, action=e$cyear)
 @ 
 This next handler updates the graphic when any of several widgets is changed.
-<<eval=FALSE>>=
+<<eval=FALSE, results=hide>>=
 f <- function(h, ...) transferdata() && plotIt()
-QT <- sapply(list(e$x, e$xlog, e$y, e$ylog, e$year, e$cyear,
+sapply(list(e$x, e$xlog, e$y, e$ylog, e$year, e$cyear,
                   e$doYear, e$doCareerYear, e$lg), 
              function(i) addHandlerChanged(i, handler=f))
 @ 
@@ -216,8 +211,8 @@ QT <- sapply(list(e$x, e$xlog, e$y, e$ylog, e$year, e$cyear,
 For \code{gtable} objects, it is more natural here to bind to a single
 mouse click, rather than the default double click.
 
-<<eval=FALSE>>=
-QT <- sapply(list(e$team, e$id), function(i)
+<<eval=FALSE, results=hide>>=
+sapply(list(e$team, e$id), function(i)
        addHandlerClicked(i, handler=function(h, ...) 
                          transferData() && plotIt()))
 @ 
@@ -267,9 +262,9 @@ addHandlerClicked(gg, function(h,...) {
 @   
 
 To end, we show the GUI and initialize the plot.
-<<eval=FALSE>>=
+<<eval=FALSE, results=hide>>=
 visible(w) <- TRUE
-QT <- transferData() && plotIt()
+transferData() && plotIt()
 @ 
 
 The \pkg{traitr} package, an add on for \pkg{gWidgets}, can simplify

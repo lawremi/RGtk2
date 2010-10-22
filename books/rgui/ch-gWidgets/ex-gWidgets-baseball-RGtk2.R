@@ -5,7 +5,7 @@
 ## usees several gWidgets controls.
 library(plyr)
 library(gWidgets)
-library(hash)
+#library(hash)
 #  stop("Only works with RGtk2 as the toolkit")
 options("guiToolkit"="RGtk2")
 
@@ -25,12 +25,14 @@ b <- subset(b, ab >= 25)
 ###################################################
 ### chunk number 3: 
 ###################################################
-require(hash); dat <- hash()
+##require(hash); dat <- hash()
+dat <- new.env()
 transferData <- function() {
   out <- try(sapply(e, svalue, drop=TRUE), silent=TRUE)
   if(inherits(out,"try-error"))
     return(FALSE)
-  dat[[names(out)]] <- out              # hash keys
+  sapply(names(out), function(i) assign(i, out[[i]], envir=dat))
+#  dat[[names(out)]] <- out              # hash keys
   dat$id <- e$id[]                      # not svalue
   return(TRUE)                          # works!
 }

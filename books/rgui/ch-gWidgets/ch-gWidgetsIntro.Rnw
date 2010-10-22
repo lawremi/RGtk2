@@ -26,7 +26,7 @@ source("../booktabs.R")
 \SweaveInput{Overview}
 
 
-\chapter{\pkg{gWidgets}: Containers}
+\chapter{\pkg{gWidgets}: Layout}
 \label{sec:gWidgets-Containers}
 \SweaveInput{Containers}
 
@@ -34,13 +34,12 @@ source("../booktabs.R")
 
 
 \chapter{\pkg{gWidgets}: Control Widgets}
-\section{Basic controls}
-\label{sec:gWidgets-controls}
+\label{cha:control-widgets}
 \SweaveInput{Controls}
 
 
-\section{\pkg{gWidgets}: Compound widgets}
-\label{sec:compound-widgets}
+\chapter{\pkg{gWidgets}: R-specific  widgets}
+\label{cha:compound-widgets}
 \SweaveInput{CompoundWidgets}
 
 

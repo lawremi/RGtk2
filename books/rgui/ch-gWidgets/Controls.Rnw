@@ -85,37 +85,69 @@ cat(booktabs(df,
 % \end{table}
 
 
-\subsection{Buttons, Menubars, Toolbars}
+\subsection{Buttons}
 \label{sec:gWidgets-buttons}
 
-The button widget allows a user to initiate an action through clicking on
-it. Buttons have labels -- usually verbs indicating action -- and often
-icons. The \constructor{gbutton} constructor has an argument
+The button widget allows a user to initiate an action through clicking
+on it. Buttons have labels, conventionally verbs indicating action,
+and often icons. The \constructor{gbutton} constructor has an argument
 \argument{text}{gbutton} to specify the text.  For text that matches
-the stock icons of \pkg{gWidgets}, an icon will also be rendered. A list of stock icons is returned by \code{getStockIcons}. In common with the other controls, the argument
+the stock icons of \pkg{gWidgets}
+(Section~\ref{sec:gWidgets-displ-icons-imag}) an icon will
+appear. (The \code{ok} button below, but not the custom \code{par...} one.)
+
+In common with the other controls, the argument
 \argument{handler}{gbutton} is used to specify a callback and the
 \argument{action}{gbutton} argument will be passed along to this
 callback (unless it is a \code{gaction} object, whose case is described
-below).
-
+in Section~\ref{sec:gWidgets-actions}).
 The default handler is the click handler which can be specified at
-construction, or afterward through the
+construction, or afterward through 
 \method{addHandlerClicked}{gbutton}.
 
+The following example shows how a button can be used to call a sub
+dialog to collect optional information. We imagine this as part of a
+dialog to generate a plot.
 
-%% Default
-A new button may or may not have the focus when a GUI is
-constructed. If it does have the focus, then the \kbd{return} key will
-initiate the button click signal. To make a GUI start with its focus
-on a button, the \method{defaultWidget}{gWidgets} method is available. 
+<<results=hide>>=
+w <- gwindow("Make a plot")
+g <- ggroup(horizontal=FALSE, cont=w)
+glabel("... Fill me in ...", cont=g)
+bg <- ggroup(cont=g)
+addSpring(bg)
+parButton <- gbutton("par...", cont=bg)
+
+addHandlerClicked(parButton, handler=function(h,...) {
+  w1 <- gwindow("Set par values...", parent=w)
+  lyt <- glayout(cont=w1)
+  lyt[1,1, align=c(-1,0)] <- "mfrow: c(nr,nc)"
+  lyt[2,1] <- (nr <- gedit(1, cont=lyt))
+  lyt[2,2] <- (nc <- gedit(1, cont=lyt))
+  lyt[3,2] <- gbutton("ok", cont=lyt, handler=
+                      function(h,...) {
+                        x <- as.numeric(c(svalue(nr), svalue(nc)))
+                        par(mfrow=x)
+                        dispose(w1)
+                      })
+})
+@ 
+
+
 
 %% methods
-The \method{svalue}{gbutton} method will return a button's label, and
-\method{svalue\ASSIGN}{gbutton} is used to set the label text.
-Most GUIs will make a button insensitive to user input if the button's
+The button's label is its main property and can be queried or set with
+The \method{svalue}{gbutton} or \method{svalue\ASSIGN}{gbutton}.  Most
+GUIs will make a button insensitive to user input if the button's
 action is not currently permissible. Toolkits draw such buttons in a
-greyed out state. The \method{enabled\ASSIGN}{gWidgets} method can set or
-disable whether a widget can accept input.
+grayed-out state. As with other components, the \method{enabled\ASSIGN}{gWidgets} method can set
+or disable whether a widget can accept input.
+
+%% Default
+% A new button may or may not have the focus when a GUI is
+% constructed. If it does have the focus, then the \kbd{return} key will
+% initiate the button click signal. To make a GUI start with its focus
+% on a button, the \method{defaultWidget}{gWidgets} method is available. 
+
 
 % A basic example of a button with a handler was given in Example~\ref{ex-gWidgets-hello-world-button}.
 
@@ -154,148 +186,39 @@ disable whether a widget can accept input.
 % \end{example}
 
 
-
-
-
-\subsection{Actions}
-\label{sec:gWidgets-actions}
-
-Actions are invisible objects representing an application command that
-is executable through one or more widgets. See \ref{sec:GUI:actions}
-for more details. Actions in \pkg{gWidgets} are created through the
-\constructor{gaction} contstructor. The arguments are
-\argument{label}{gaction}, \argument{tooltip}{gaction},
-\argument{icon}{gaction}, \argument{key.accel}{gaction} and the
-standard \argument{handler}{gaction} and
-\argument{action}{gaction}. The label appears as the text on a button,
-the menu item or toolbar text, whereas the icon will decorate the same
-if possible. For some toolkits, the tooltip pops up when the mouse
-hovers.  (See also the \meth{tooltip\ASSIGN} method.)
-
-\paragraph{methods}
-The main methods for actions are \method{svalue\ASSIGN}{gaction} to
-set the label text and \method{enabled\ASSIGN}{gaction} to adjust
-whether the widget is sensitive to user input. All instances of the
-action are set through one call. In some toolkits, such as
-\pkg{RGtk2}, actions are bundled together into action groups. This
-grouping allows one to set the sensitivity of related actions at
-once. In \R, one can store like actions in a list, and get similar
-functionality by using \code{sapply}, for example.
-
-\paragraph{buttons}
-An action can be assigned to a button by setting it as the
-\argument{action}{gbutton} argument of the \code{gbutton} constructor,
-in which case all other arguments for the constructor are ignored.
-
-Otherwise, actions are used as list components which define the
-toolbar or menubar, as described in the following.
-
-
-
-\subsection{Toolbars}
-\label{sec:gWidgets-toolbars}
-Toolbars and menubars are implemented in \pkg{gWidgets} using
-\code{gaction} items. Toolbars (and menubars) are specified using a named
-list of menu components. 
-
-For a toolbar, the list has a simple structure. Each named component
-either describes a toolbar item or a separator. The toolbar items are
-specified by \code{gaction} instances and separators by
-\code{gseparator} instances with no container specified.
-
-
-The \constructor{gtoolbar} constructor takes the list as its first
-argument.  As toolbars belong to the window, the corresponding
-\pkg{gWigdets} objects use a \constructor{gwindow} object as the
-parent container. (Some of the toolkits relax this.)  The argument
-\argument{style}{gtoolbar} can be one of \qcode{both}, \qcode{icons},
-\qcode{text}, or \qcode{both-horiz} to specify how the toolbar is
-rendered. Toolbars in \pkg{gWidgetstcltk} are not native widgets, so
-the implementation uses aligned buttons.
-
-
-\subsection{Menubars, popup menus}
-\label{sec:gWidgets-menubars}
-
-Menubars and popup menus are specified in a similar manner as toolbars with menu items
-being defined through \code{gaction} instances, and visual separators
-by \code{gseparator} instances. Menus differ from toolbars, as
-sub-menus give a nested structure. This structure is specified using a
-nested list as the component to describe the sub menu. The lists all
-have named components. In this case, the corresponding name is used to
-label the sub menu item. For menu bars, it is typical that all the
-top-level components be lists, but for popup menus, this wouldn't
-necessarily be the case.
-
-In Mac OS X with a native toolkit, menubars may be drawn along the top
-of the screen, as is the custom of that OS. 
-
-\paragraph{Methods}
-The main methods for toolbar and menubar instances are
-the \method{svalue}{gmenu} method which will return the list. Whereas, the
-\method{svalue\ASSIGN}{gmenu} method can be used to redefine the
-menubar or toolbar. Use the \method{add}{gmenu} method to append to an
-existing menubar or toolbar, again using a list to specify the new items.
-
-
-\begin{example}{Menubar and toolbar example}{ex-gWidgets-menu-tool-status-bars}
-  \SweaveInput{ex-gWidgets-menu-tool-status-bars}
-\end{example}
-
-\paragraph{Popup menus}
-
-Popup menus can be created for a right click event through the
-\constructor{add3rdMousePopupmenu} constructor. (Or
-\kbd{control-button-1} for Mac OS X.) This constructor has arguments
-\code{obj} to specify a widget, like a button, to initiate the popup,
-\argument{menulist}{gmenu} to specify the menu and optionally an
-\argument{action}{gmenu} argument.
-
-
-\begin{example}{Popup menus}{ex-gWidgets-context-menus}
-<<>>=  
-w <- gwindow("Popup example")
-b <- gbutton("click me or right click me", cont=w, 
-             handler=function(h, ...) {
-               cat("You clicked me\n")
-             })
-f <- function(h,...) cat("you right clicked on", h$action)
-mbList <- list(one = gaction("one", action="one", handler=f),
-               two = gaction("two", action="two", handler=f)
-               )
-add3rdMousePopupmenu(b, mbList)
-@ 
-
-\end{example}
-
-
-\section{Text widgets}
-\label{sec:text-widgets}
-
-A number of widgets are geared toward the display or entry of
-text. The \pkg{gWidgets} API defines \constructor{glabel} for
-displaying a single-or multiple-line string of static text,
-\constructor{gstatusbar} to place message labels at the foot of a
-window, \constructor{gedit} for a single line of editable text, and
-\constructor{gtext} for multi-line, editable text. For some toolkits,
-a \constructor{ghtml} widget is also defined, but neither \code{RGtk2}
-nor \code{tcltk} have this implemented.
-
 \subsection{Labels}
-\label{sec:gWidgets-static-text}
+\label{asec:gWidgets-labels}
 
 The \constructor{glabel} constructor produces a basic label
-widget. The label text is specified through the
-\argument{text}{glabel} argument. This is a character vector of length
-1 or is coerced into one by collapsing the vector with newlines. The
-\method{svalue}{glabel} method will return the text as a single
-string, and the \method{svalue\ASSIGN}{glabel} method can be used to
-set the text programatically. The \method{font\ASSIGN}{glabel} method
+widget. We've seen its use in a number of examples. The main property,
+the label's text, is specified through the \argument{text}{glabel}
+argument. This is a character vector of length 1 or is coerced into
+one by collapsing the vector with newlines. The
+\method{svalue}{glabel} method will return the label text as a single
+string, whereas the \method{svalue\ASSIGN}{glabel} method is avaialable
+to set the text programatically.
+
+The \method{font\ASSIGN}{glabel} method
 can also be used to set the text markup
-(Table~\ref{tab:gWidgets-font-properties}).  For some toolkits, the
+(Table~\ref{tab:gWidgets-font-properties}).  For \pkg{gWidgetsRGtk2} the
 argument \argument{markup}{glabel} for the constructor takes a logical
-value indicating if the text is in the native markup language (PANGO
-for \code{RGtk2}).
+value indicating if the text is in the native markup language (PANGO).
+
+
+For example, to make a form's labels have some emphasis we could do:
+<<results=hide>>=
+w <- gwindow("label example")
+f <- gframe("Summary statistics:", cont=w)
+lyt <- glayout(cont=f)
+lyt[1,1] <- glabel("xbar:", cont=lyt)
+lyt[1,2] <- gedit("", cont=lyt)
+lyt[2,1] <- glabel("s:", cont=lyt)
+lyt[2,2] <- gedit("", cont=lyt)
+sapply(1:2, function(i) {
+  tmp <- lyt[i,1]
+  font(tmp) <- c(weight="bold", color="blue")
+})
+@ 
 
 
 The widget constructor also has the argument
@@ -303,41 +226,117 @@ The widget constructor also has the argument
 add a handler to the event so that the text can be edited when the
 label is clicked.  Although this is popular in some familiar
 interfaces, such as a spreadsheet tab, it has not proven to be
-intuitive to most users, as labels are not expected to change.
+intuitive to most users, as labels are not generally expected to change.
 
 
 \subsection{Statusbars}
 \label{sec:gWidgets-statusbars}
 
-Statusbars are simply labels placed at the bottom of a window to leave
+Statusbars are simply labels placed at the bottom of a top-level window to leave
 informative, but non-disruptive, messages for the user.  The
-\constructor{gstatusbar} constructor provides this widget.  The argument
-\argument{text}{gstatusbar} can be given to set the intial text away
-from its default of no message. Subsequent changes are made through
-the \method{svalue\ASSIGN}{gstatusbar} method. As with toolbars and
-menubars, a top-level window should be specified for the
-\argument{container}{gstatusbar} argument.
+\constructor{gstatusbar} constructor provides this widget.  The
+\args{container} argument should be a top-level window instance. 
+The only property is the label's text. This may be specified at
+construction with the argument
+\argument{text}{gstatusbar}. Subsequent changes are made through
+the \method{svalue\ASSIGN}{gstatusbar} method. 
+
+
+
+
+\subsection{Displaying icons and images stored in files}
+\label{sec:gWidgets-displ-icons-imag}
+
+The \pkg{gWidgets} package provides a few stock icons that can be
+added to various GUI components. A list of the defined stock icons is
+returned by the function \code{getStockIcons}.  The names attribute
+defines the valid stock icon names. It was mentioned that if a
+button's label matches a stock icon name, that icon will appear
+adjacent to the label.
+
+
+
+%% gimage
+Other graphic files and the stock icons can be displayed by the
+\constructor{gimage} widget. \footnote{Not all file types may be
+  displayed by each toolkit, in particular \pkg{gWidgetstcltk} can
+  only display gif, ppm, and xbm files.} The file to display is
+specified through the \argument{filename}{gimage} argument of the
+constructor. This value is combined with that of the
+\argument{dirname}{gimage} argument to specify the file path.  Stock
+icons, can be specified by using their name for the \code{filename}
+argument and the character string \code{"stock"} for the
+\code{dirname} argument.~\footnote{For \pkg{gWidgetsRGtk2}, the size
+  of a stock icon can be adjusted through the \argument{size}{gimage}
+  argument, with a value from \qcode{menu}, \qcode{small\_toolbar},
+  \qcode{large\_toolbar}, \qcode{button}, or \qcode{dialog}.}
+%% methods
+
+The \method{svalue\ASSIGN}{gimage} method is used to change the
+displayed file. In this case, a full path name is specified, or the
+stock icon name.
+
+The default handler is a button click handler.
+
+
+To illustrate, a simple means to display a graphic (except in
+\pkg{gWidgetstcltk} where png support is not available) is
+as follows:
+<<results=hide>>=
+f <- tempfile()
+png(f)
+hist(rnorm(100))
+dev.off()
+
+w <- gwindow("Example to show a graphic")
+gimage(basename(f), dirname(f), cont=w)
+@ 
+
+
+More stock icon names may be added through the function
+\code{addStockIcons}. This function requires a vector of stock icon
+names and a vector of corresponding file paths, and is illustrated
+through an example.
+
+
+\begin{example}{Adding and using stock icons}{ex-gWidgets-stock-icons}
+  \SweaveInput{ex-gWidgets-add-icons}
+\end{example}
+
+Finally, we mention the \constructor{gsvg} constructor is similar to \constructor{gimage}, but allows one to
+display SVG files, as produced by the \function{svg} driver, say. It
+currently is only available for \pkg{gWidgetsQt}.
+
+\section{Text editing controls}
+\label{sec:gWidgets-text-edit-contr}
 
 
 
 \subsection{Single-line, editable text}
 \label{sec:gWidgets-single-line-editable}
 
+The \pkg{gWidgets} package, following the underlying toolkits, has two
+main widgets for editing text: \constructor{gedit} for a single line
+of editable text, and \constructor{gtext} for multi-line, editable
+text.  For some toolkits, a \constructor{ghtml} widget is also
+defined, but neither \pkg{gWidgetsRGtk2} nor \pkg{gWidgetstcltk} have this
+implemented.
+
+
 The \constructor{gedit} constructor produces a widget to display a
-single line of editable text. The initial text can be set through the
-\argument{text}{gedit} argument. 
-If it is desirable to set the width of the widget, the
+single line of editable text. The main property is the initial text
+which can be set through the \argument{text}{gedit} argument.  If it
+is desirable to set the width of the widget, the
 \argument{width}{gedit} argument allows the specification in terms of
-number of characters allowed to display without horizontal scrolling. The width
-of the widget may also be specified in pixel size through the
-\method{size}{gWidgets} method.
+number of characters allowed to display without horizontal
+scrolling. The width of the widget may also be specified in pixel size
+through the \method{size}{guiWidget} method.
 
 
 \paragraph{Methods}
-The text is returned by the
-\method{svalue}{gedit} method and may be set through the
-\method{svalue\ASSIGN}{gedit} method.
-The \meth{svalue} method will return a character vector by
+The text is returned by the \method{svalue}{gedit} method and may be
+set through the \method{svalue\ASSIGN}{gedit} method.  The
+\meth{svalue} method will return a character vector by
 default. However, it may be desirable to use this widget to collect
 numeric values or perhaps some other type of variable. One could write
 code to coerce the character to the desired type, but it is sometimes
@@ -351,7 +350,15 @@ anticipate what a user wishes to type and offers a means to complete a
 word. The \method{[\ASSIGN}{gedit} method allows these values to be
 specifed through a character vector, as in \code{obj[] \ASSIGN\/ values}.
 
-
+For example, the following can be used to collect one of the 50 state
+names in the U.S.:
+<<results=hide>>=
+w <- gwindow("gedit example") 
+g <- ggroup(cont=w)
+glabel("State name:", cont=g)
+e <- gedit("", cont=g)
+e[] <- state.name
+@ 
 
 \paragraph{Handlers}
 The default handler for the \constructor{gedit} widget is called when
@@ -373,8 +380,8 @@ The \constructor{gtext} constructor produces a multi-line text editing
 widget with scrollbars to accommodate large amounts of text. The
 \argument{text}{gtext} argument is for specifying the intial
 text. The initial width and height can be
-set through similarly named arguments, which is useful under
-\pkg{tcltk}. 
+set through similarly named arguments, which is useful with
+\pkg{gWidgetstcltk}. 
 
 The \method{svalue}{gtext} method retrieves the text stored in the
 buffer. If the argument \code{drop=TRUE} is specified, then only the
@@ -384,15 +391,20 @@ returned as a single string with ``\backslashn'' separating the lines.
 The contents of the text buffer can be replaced with the
 \method{svalue\ASSIGN}{gtext} method. To clear the buffer, the
 \method{dispose}{gtext} method can be used. The \method{insert}{gtext}
-method adds text to a buffer. The signature is \code{insert(obj,text)}
+method adds text to a buffer. The signature is \code{insert(obj, text,
+  where, font.attr)}
 where \code{text} is a character vector. New text is added to the end
 of the buffer, by default, but the \argument{where}{insert} argument
 can specify \qcode{beginning} or \qcode{at.cursor}.
 
-As with, \code{gedit}, the \method{addHandlerKeystroke}{gtext} method
+
+
+
+As with \code{gedit}, the \method{addHandlerKeystroke}{gtext} method
 sets a handler to be called for each keystroke. This is the default
 handler.
 
+\paragraph{fonts}
 Fonts can be specified for the entire buffer or the selection using
 the specifications in Table~\ref{tab:gWidgets-font-properties}. To
 specify fonts for the entire buffer use the
@@ -430,7 +442,7 @@ A common task for a GUI control is to select a value or values from a
 set of numbers or a table of numbers. Many toolkits implement these
 widgets using a model-view-controller paradigm whereby the control is
 just one of possibly many views of the data model. This
-approach is avoided by \pkg{gWidgets}. Rather, each widget has its
+approach is not used by \pkg{gWidgets}. Rather, each widget has its
 own data store (like a vector or data frame)
 containing the data for selection, and familar \R\/ methods are used to
 manipulate this underlying data store. The controls in \pkg{gWidgets} that
@@ -449,17 +461,30 @@ that allows the user to set a state as \code{TRUE} or
 \code{FALSE}. The constructor has an argument
 \argument{text}{gcheckbox} to set a label and
 \argument{checked}{gcheckbox} to indicate if the widget should
-initially be checked. The default is \code{TRUE}.
+initially be checked. The default is \code{TRUE}. By default the label
+will be drawn aside a checkbox, if the argument
+\argument{use.togglebutton}{gcheckbox} is \code{TRUE}, a toggle button
+-- which appears depressed when \code{TRUE} -- is used.
 
 The \method{svalue}{gcheckbox} method returns a logical indicating if
 the widget is in the checked state. Use \method{svalue\ASSIGN}{gcheckbox} to set
 the state. The label's value is returned by the
 \method{[}{gcheckbox} method, and can be adjusted through 
-\method{[\ASSIGN}{gcheckbox}.
+\method{[\ASSIGN}{gcheckbox}. (We take the abstract view that the user
+is selecting, or not, from the length-1 vector, so \meth{[} is used to
+set the data to select from.)
 
 The default handler would be called on a click event, when the state toggles. If it is desired
 that the handler be called only in the \code{TRUE} state, say, one
-needs to check within the handler for this.
+needs to check within the handler for this. For example
+
+<<>>=
+w <- gwindow("checkbox example")
+cb <- gcheckbox("label", cont=w, handler=function(h,...) {
+  if(svalue(h$obj))                     # it is checked
+    print("define handler here")
+})
+@ 
 
 \subsection{Radio button widget}
 \label{sec:gWidgets-radio-button-widget}
@@ -467,10 +492,11 @@ needs to check within the handler for this.
 A radio button group allows the user to choose one of a few
 items. A radio button group object is returned by
 \constructor{gradio}. The items to choose from are specified as a
-vector of values to the \argument{items}{gradio} argument. These items
+vector of values to the \argument{items}{gradio} argument (2 or more). These items
 may be displayed horizontally or vertically (the default) as specified by the
 \argument{horizontal}{gradio} argument which expects a logical. The
-\argument{selected}{gradio} argument specifies the initially selected item,
+\argument{selected}{gradio} argument specifies the initially selected
+item, by index,
 with a default of the first.
 
 The currently selected item is returned by \method{svalue}{gradio} as
@@ -485,7 +511,7 @@ are referenced through the \method{[}{gradio} method, and may be set
 change the number of radio buttons.) For convenience, the
 \method{length}{gradio} method returns the number of labels.
 
-The default handler would be called on a click event.
+The handler, if given to the constructor or set with \meth{addHandlerChanged}, is called on a click event.
 
 \subsection{A group of checkboxes}
 \label{sec:gWidgets-group-checkboxes}
@@ -518,6 +544,34 @@ and if the underlying toolkit allows it, set through the
 \method{[\ASSIGN}{gcheckboxgroup} method. As with \constructor{gradio},
 the \method{length}{gcheckboxgroup} method returns the number of items.
 
+As an illustration of the related selection widgets, the following
+could be part of a GUI to illustrate densities for various kernels.
+<<>>=
+kerns <- as.character(formals(density.default)$kernel)[-1]
+
+w <- gwindow("Arguments for density example")
+lyt <- glayout(cont=w)
+
+lyt[1,1] <- "bw"
+lyt[1,2, anchor=c(-1,0)] <- 
+  gradio(c("nrd0", "nrd", "ucv", "bcv", "SJ"), cont=lyt)
+
+lyt[2,1] <- "Kernel"
+lyt[2,2, anchor=c(-1,0)] <- gcheckboxgroup(kerns, cont=lyt)
+
+lyt[3,1] <- "na.rm"
+lyt[3,2, anchor=c(-1,0)] <- 
+  gcheckbox("na.rm", checked=TRUE, use.togglebutton=TRUE, cont=lyt)
+
+lyt[4,2] <- gbutton("done", cont=lyt, handler=function(h,...) {
+  out <- sapply(1:3, function(i) {
+    widget <- lyt[i,2]
+    svalue(widget)
+  })
+  print(out)                            # make a plot...
+})
+@ 
+
 \subsection{A combobox}
 \label{sec:gWidgets-combobox}
 
@@ -528,16 +582,34 @@ constructed by \constructor{gcombobox}. The possible choices are specified to th
 frame whose first column defines the choices. For toolkits which
 support icons in the combobox, if the data is specified as a data
 frame, the second column signifies which stock icon is to
-be used. By design, a third column specifies a tooltip,
-but this is not implemented for \pkg{RGtk2} and \pkg{tcltk}. 
-%% ML: this should not be hard to implement with GTK+ 2.12
+be used. By design, a third column specifies a tooltip to appear when
+the mouse hovers over a selection,
+but this is only implemented for \pkg{gWidgetsQt}.
+
+%% ML: this should not be hard to implement with GTK+ 2.12. 
+%% JV: hard for me though :(
+
+This example shows how to create a combobox to select from the
+available icons. For toolkits that support icons in a combobox, they
+appear next to the label.
+<<comboboxExample, results=hide>>=
+nms <- getStockIcons()                  # gWidgets icons
+d <- data.frame(names=names(nms), icons=names(nms), 
+                stringsAsFactors=FALSE)
+w <- gwindow("Combobox example")
+g <- ggroup(cont=w)
+cb <- gcombobox(d, cont=g)
+
+@ 
+
 
 The argument \argument{editable}{gcombobox} accepts a logical value
 indicating if the user can supply their own value by typing into a
-text entry area. The default is \code{FALSE}. When editing is possible, the constructor also
-has the \argument{coerce.with}{gcombobox} argument like
-\code{gedit}.
+text entry area. The default is \code{FALSE}. When editing is
+possible, the constructor also has the
+\argument{coerce.with}{gcombobox} argument like \code{gedit}.
 
+\paragraph{Methods}
 The currently selected value is returned through the
 \method{svalue}{gcombobox} method. If \args{index} is \code{TRUE}, the
 index of the selected item is given if possible. The state can be set
@@ -557,11 +629,119 @@ changed. This is also aliased to
 sets a handler to response to keystroke events.
 
 
-\begin{example}{Selection widgets}{ex-gWidgets-selection-widgets}
-  \SweaveInput{ex-gWidgets-selection-widgets}
+
+\subsection{A slider control}
+\label{sec:gWidgets-slider-control}
+
+The \constructor{gslider} constructor creates a slider that allows the
+user to select a value from the specified sequence.  The arguments
+mirror that of the \code{seq} function in \R:
+\argument{from}{gslider}, \argument{to}{gslider}, and
+\argument{by}{gslider}.  In \pkg{gWidgetstcltk} the sequence must have
+integer steps. If this is not the case, the spin button control is
+used instead. In addition to the arguments to specify the sequence,
+the argument \argument{value}{gslider} is used to set the initial
+value of the widget and \argument{horizontal}{gslider} controls how
+the slider is drawn, \code{TRUE} for horizontal, \code{FALSE} for
+vertical.
+
+The \method{svalue}{gslider} method returns the currently chosen
+value. The \method{[\ASSIGN}{gslider} method can be used to update the
+sequence of values to choose from. The new assignment should be a
+regularly spaced sequence of numbers, as returned by \code{seq}.
+
+The default handler is called when the slider is changed. Example~\ref{ex-gWidgets-sliders-spingbuttons}
+shows how this can be used to update a graphic.
+
+
+\subsection{A spin button control}
+\label{sec:gWidgets-spin-button-control}
+
+The spin button control constructed by \constructor{gspinbutton} is
+similar to  \constructor{gslider}, but presents the user a different
+way to select the value. The argument \argument{digits}{gspinbutton}
+specifies how many digits are displayed. 
+
+\begin{example}{Example of sliders and spin buttons}{ex-gWidgets-sliders-spingbuttons}
+  The use of sliders and spin buttons to dynamically adjust a graphic
+  is common in \R\/ GUIs targeted towards teaching statistics. Here is
+  an example, similar to the \code{tkdensity} example of \pkg{tcltk},
+  where the slider controls the bandwidth of a density estimation and
+  the spin button the sample size of a random sample.
+<<results=hide>>=  
+w <- gwindow("Slider and Spin Button example") 
+tbl <- glayout(cont=w)
+tbl[1,1] <- "sample size"
+tbl[1,2] <- (spinner <- gspinbutton(from=10, to=100, by=5, 
+                                    value=25, cont=tbl))
+tbl[2,1] <- "adjusted bandwidth"
+tbl[2,2, expand=TRUE] <- (slider <- gslider(from=0.1, to=1, 
+           by=0.01, value=1, cont=tbl))
+
+plotGraph <- function(h,...) {
+  x <- rexp(svalue(spinner))
+  plot(density(x, adj=svalue(slider)))
+}
+sapply(list(spinner, slider), function(i) 
+  addHandlerChanged(i, handler=plotGraph))
+@ 
 \end{example}
 
-\subsection{Display of tabular data}
+
+
+
+\subsection{Selecting from the file system}
+\label{sec:gWidgets-selecting-from-file}
+
+The \constructor{gfile} dialog allows one to select a file or directory
+from the file system. This is a modal dialog, which returns the name
+of the selected file or directory. The \constructor{gfilebrowse}
+constructor creates a widget that has a button that
+initiates this selection.  
+
+The selection type is specified by the \code{type} argument with
+values of \code{open}, to select an existing file; \code{save} to
+select a file to write to; and \code{selectdir} to select a
+directory. For \code{RGtk2}, the \argument{filter}{gfile} argument can
+be used to narrow the listed files. The dialog returns the path of the
+file, or \code{NA} if the dialog was canceled. One can also specify a
+handler to the constructor to call on the file or directory name. The
+component \code{file} of the first argument to the handler contains
+the file name.
+
+<<eval=FALSE>>=
+if(!is.na(tmp <- gfile())) 
+  source(tmp)
+## or
+gfile(handler=function(h,...) {
+  if(!is.na(h$file))
+    source(h$file) 
+})   
+@ 
+%$
+
+
+\subsection{Selecting a date}
+\label{sec:gWidgets-selecting-date}
+
+The \constructor{gcalendar} constructor returns a widget for selecting
+a date, if the there is a native widget in the underlying toolkit,
+or a text edit box for entering a date. The argument
+\argument{text}{gcalendar} arugment specifies the initial
+text. The format of the date is specified by the
+\argument{format}{gcalendar} argument.
+
+The methods for the widget inherit from \code{gedit}. In particular,
+the \method{svalue}{gcalendar} method returns the text in the text box
+as a character vector formatted by the value specified by the
+\argument{format}{gcalendar} argument. To return a value of a
+different class, pass a function, such as \code{as.Date} to the
+\argument{coerce.with}{gcalendar} argument.
+
+
+
+
+\section{Display of tabular data}
 \label{sec:gWidgets-tabular-data-display}
 
 
@@ -576,16 +756,30 @@ and fewer than 500 rows),
 
 The data is specified through the \argument{items}{gtable}
 argument. This may be a data frame, matrix or vector. Vectors and
-matrices are coerced to data frames, with characters as strings not
-factors.  The data is presented in a
-tabular form, with column headers derived from the \code{names}
-attribute of the data frame.  
+matrices are coerced to data frames, with
+\code{stringsAsFactors=FALSE}.  The data is presented in a tabular
+form, with column headers derived from the \code{names} attribute of
+the data frame.
 
 The \argument{icon.FUN}{gtable} argument
-is used to place a stock icon in a left-most column.  This argument
+can be used to place a stock icon in a left-most column.  This argument
 takes a function of a single argument -- the data frame being shown --
 and should return a character vector of stock icon names, one for each
 row.
+
+To illustrate, a widget to select from the available data frames in
+the global environment can be generated with
+<<>>=
+availDfs <- function(envir=.GlobalEnv) {
+  x <- ls(envir=envir)
+  x[sapply(x, function(i) is.data.frame(get(i, envir=envir)))]
+}
+
+w <- gwindow("gtable example")
+d <- data.frame(dfs=availDfs(), stringsAsFactors=FALSE)
+dfs <- gtable(d, cont=w)
+@ 
+
 
 \paragraph{Selection}
 Users can select a row, not a cell from this widget. The value returned by a selection is
@@ -604,7 +798,7 @@ argument \code{drop} specifies if just the chosen column's value is
 returned (the default) or, if specified as \code{FALSE}, the entire row.
  
 The underlying data store is referenced by the \method{[}{gtable}
-method. Indices may be used to access just a portion. Values may be
+method. Indices may be used to access a slice. Values may be
 set using the \method{[\ASSIGN}{gtable} method, but be warned it is
 not as flexible as assigning to a data frame. The underlying
 toolkits may not like to change the type of data displayed in a
@@ -615,6 +809,14 @@ be used via \code{obj[] \ASSIGN\/ new\_data\_frame}. The methods
 column headers, and \method{dim}{gtable} and \method{length}{gtable}
 the underlying dimensions of the data store.
 
+To update the list of data frames in our \code{dfs} widget, one can define a function such as
+<<updateDfs>>=
+updateDfs <- function() {
+  dfs[] <- availDfs()
+}
+@ 
+
+
 \paragraph{Handlers}
 Selection is done through a single click. The \method{addHandlerClick}{gtable}
 method can be used to assign a handler to those events. The default
@@ -623,6 +825,18 @@ handler for a double click event. Also of interest are the
 \method{addHandlerRightclick}{gtable} and
 \method{add3rdMousePopupMenu}{gtable} methods for assigning handlers
 to right-click events.
+
+
+To add a handler to the data frame selection widget above, we could have
+<<results=hide>>=
+addHandlerDoubleclick(dfs, handler=function(h,...) {
+  val <- svalue(h$obj)
+  ## some action
+  print(summary(get(val, envir=.GlobalEnv)))
+})
+@ 
+
+
 
 \paragraph{Filtering}
 The arguments \argument{filter.column}{gtable} and
@@ -687,134 +901,21 @@ addHandlerChanged(tbl, handler=function(h,...) {
 \end{example}
 
 
-
-\subsection{An editor for tabular data}
-\label{sec:gWidgets-an-editor-tabular}
-
-The \constructor{gdf} constructor returns a widget for editing data
-frames. This is similar to the GUI provided by the \code{data.entry}
-function, but uses the underlying toolkit in use by
-\pkg{gWidgets}. Each cell can be edited. Users can click (or double
-click) in a cell to select it, or use the arrow and \kbd{tab} keys to
-navigate. For \pkg{gWidgetstcltk}, there is no native widget for
-editing tabular data, so the \code{tktable} add-on widget is used
-(\url{tktable.sourceforge.net}). A warning will be issued if this is
-not installed. Again, the widget under \pkg{gWidgetsRGtk2} is much
-faster than that under \pkg{gWidgetstcltk}, but both can load a
-moderately sized data frame in a reasonable time. (For
-\pkg{gWidgetsRGtk2} there is also the \constructor{gdfedit}
-constructor, which is faster and has better usability features.)
-
-The constructor has argument \argument{items}{gdf} to specify the data
-frame to edit and \argument{name}{gdf} to specify the data frame name,
-if desired. The column types are important, in particular factors and
-character types are treated differently, although they may render in a
-similar manner.
-
-\paragraph{Methods} There are several methods defined that follow
-those of a data frame. The \method{[}{gdf} and \method{[\ASSIGN}{gdf}
-methods can be used to extract and set values from the data frame by
-index. As with \code{gtable}, these are not as flexible as for a data
-frame. In particular, it may not be possible to change the
-type of a column, or add new rows or columns through these
-methods. Using no indices, as in \code{obj[,]} will return the current
-data frame, which can be assigned to some value for saving. The
-current data frame can be completely replaced, when no indices are
-specified in the replacement call. Additionally, the data frame
-methods \method{dimnames}{gdf}, \method{dimnames\ASSIGN}{gdf},
-\method{names}{gdf}, \method{names\ASSIGN}{gdf}, and
-\method{length}{gdf} are defined.
-
-The following can be used to assign handlers:
-\method{addHandlerChanged}{gdf} (cell changed),
-\method{addHandlerClicked}{gdf}, \method{addHandlerDoubleclick}{gdf},
-\method{addHandlerColumnClicked}{gdf},
-\method{addHandlerColumnDoubleclick}{gdf}, and
-\method{addHandlerColumnRightclick}{gdf}.
-
-
-The \constructor{gdfnotebook} constructor produces a notebook that can
-hold several data frames at once.
-
-\section{Selection from a sequence of numbers}
-\label{sec:gWidgets-select-from-sequ}
-
-The previous widgets allowed selection from a user-specified set of
-values. When these values are a sequence of numbers, the slider
-control and spin button control are also commonly used. Both of these
-widgets have arguments to specify the sequence that match those of the
-\code{seq} function in \R: \argument{from}{gslider},
-\argument{to}{gslider}, and \argument{by}{gslider}.
-
-\subsection{A slider control}
-\label{sec:gWidgets-slider-control}
-
-The \constructor{gslider} constructor creates a slider that allows the
-user to select a value from the specified sequence.  In
-\pkg{gWidgetstcltk} the sequence must have integer steps. If this is
-not the case, the spin button control is used instead. In addition to
-the arguments to specify the sequence, the argument
-\argument{value}{gslider} is used to set the initial value of the
-widget and \argument{horizontal}{gslider} controls how the slider is
-drawn, \code{TRUE} for horizontal, \code{FALSE} for vertical.
-
-The \method{svalue}{gslider} method returns the currently chosen
-value. The \method{[\ASSIGN}{gslider} method can be used to update the
-sequence of values to choose from. The new assignment should be a
-regularly spaced sequence of numbers, as returne by \code{seq}.
-
-The default handler is called when the slider is changed. Example~\ref{ex-gWidgets-sliders-spingbuttons}
-shows how this can be used to update a graphic.
-
-
-\subsection{A spin button control}
-\label{sec:gWidgets-spin-button-control}
-
-The spin button control constructed by \constructor{gspinbutton} is
-similar to  \constructor{gslider}, but presents the user a different
-way to select the value. The argument \argument{digits}{gspinbutton}
-specifies how many digits are displayed. 
-
-\begin{example}{Example of sliders and spin buttons}{ex-gWidgets-sliders-spingbuttons}
-  The use of sliders and spin buttons to dynamically adjust a graphic
-  is common in \R\/ GUIs targeted towards teaching statistics. Here is
-  an example, similar to the \code{tkdensity} example of \pkg{tcltk},
-  where the slider controls the bandwidth of a density estimation and
-  the spin button the sample size of a random sample.
-<<>>=  
-w <- gwindow("Slider and Spin Button example") 
-tbl <- glayout(cont=w)
-tbl[1,1] <- "sample size"
-tbl[1,2] <- (spinner <- gspinbutton(from=10, to=100, by=5, 
-                                    value=25, cont=tbl))
-tbl[2,1] <- "adjusted bandwidth"
-tbl[2,2, expand=TRUE] <- (slider <- gslider(from=0.1, to=1, 
-           by=0.01, value=1, cont=tbl))
-
-plotGraph <- function(h,...) {
-  x <- rexp(svalue(spinner))
-  plot(density(x, adj=svalue(slider)))
-}
-QT <- sapply(list(spinner, slider), function(i) 
-  addHandlerChanged(i, handler=plotGraph))
-@ 
-\end{example}
-
-
-\section{Display of heirarchical data}
+\section{Display of hierarchical data}
 \label{sec:gWidgets-displ-heir-data}
 
 The \constructor{gtree} constructor can be used to display
-heirarchical structures, such as a file system. This constructor
-parameterizes the data to be displayed in terms of the node of the
-tree that is currently selected. The \argument{offspring}{gtree}
-argument is assigned a function of two arguments, the path a
-particular node and the arbitrary object passed through the optional
-\argument{offspring.data}{gtree} argument. This function should return
-a data frame with each row referring to an offspring for the node and
-whose first column is a key that identifies each of the offspring,
-unless the argument \argument{chosencol}{gtree} is used to specify
-otherwise.
+heirarchical structures, such as a file system or the components of a
+list. The \constructor{gtree} implementation dynamically computes the
+child components, by parameterizing the data to be displayed in terms
+of the node of the tree that is currently selected. The
+\argument{offspring}{gtree} argument is assigned a function of two
+arguments, the path a particular node and the arbitrary object passed
+through the optional \argument{offspring.data}{gtree} argument. This
+function should return a data frame with each row referring to an
+offspring for the node and whose first column is a key that identifies
+each of the offspring, unless the argument \argument{chosencol}{gtree}
+is used to specify otherwise.
 
 To indicate if a node has offspring, a function can be passed through
 the \argument{hasOffspring}{gtree} argument. This function takes the
@@ -825,13 +926,50 @@ offspring. If it is more convenient to compute this within the
 unspecified and the second column returned by \code{offspring} is a
 logical, then that column will be used.
 
+As an illustration, this function produces an offspring function to
+explore the heirarchical structure of a list. It uses a closure to
+encapsulate the list, rather than using the
+\argument{offspring.data}{gtree} argument or a global variable.
+<<>>=
+listOffspring <- function(lst) {
+  offspring <- function(path=character(0),...) {
+    if(length(path))
+      obj <- lst[[path]]
+    else
+      obj <- lst
+    nms <- names(obj)
+    hasOffspring <- sapply(nms, function(i) {
+      newobj <- obj[[i]]
+      is.recursive(newobj) && !is.null(names(newobj))
+    })
+    data.frame(comps=nms, hasOffspring=hasOffspring, 
+               stringsAsFactors=FALSE)
+  }
+  return(offspring)                     
+}
+@ 
+%
+The above will produce a tree with just one column. By adding columns
+to the data frame above, say a column to record the class of the
+variable, more information can easily be presented
+
+To see the above used, we define a list to explore.
+<<>>=
+l <- list(a="1", b=list(a="11", b="12", c=list(a="111")))
+o <- listOffspring(l)
+w <- gwindow("Tree test")
+t <- gtree(o, cont=w)
+@ 
+%%
+
+
 A single click is used to select a row. Multiple selections are
 possible if the \argument{multiple}{gtree} argument is given a
 \code{TRUE} value.
 
 For some toolkits the \argument{icon.FUN}{gtree} can be used to
 specify a stock icon to be displayed next to the first column. This
-function, like \code{hasOffspring} has as an argument the data frame
+function, like \code{hasOffspring}, has as an argument the data frame
 returned by \code{offspring} and should return a character vector with
 each entry indicating which stock icon is to be shown.
 
@@ -842,258 +980,194 @@ is used to determine the column types. If that is not correct, the
 argument \argument{col.types}{gtree} can be used. It should be a data
 frame with column types matching those returned by \code{offspring}.
 
-\paragraph{methods}
+\paragraph{Methods}
 The \method{svalue}{gtree} method returns the currently selected key,
 or node label. There is no assignment method. The \method{[}{gtree}
-method returns the path for the currently selected node. This is what is passed
-to the \code{offspring} function.  The \method{update}{gtree} method
-updates the displayed tree.  The method
-\method{addHandlerDoubleclick}{gtree} specifies a
-function to call on a double click event.
+method returns the path for the currently selected node. This is what
+is passed to the \code{offspring} function.  The
+\method{update}{gtree} method updates the displayed tree by
+considering the children of the root node.  The method
+\method{addHandlerDoubleclick}{gtree} specifies a function to call on
+a double click event.
 
 \begin{example}{Using \code{gtree} to explore a recursive partition}{ex-gWidgets-gtree}
  \SweaveInput{ex-gWidgets-gtree}
 \end{example}
 
-\section{Selecting from the file system}
-\label{sec:gWidgets-selecting-from-file}
 
-The \constructor{gfile} dialog allows one to select a file or directory
-from the file system. This is a modal dialog, which returns the name
-of the selected file or directory. The \constructor{gfilebrowse}
-constructor creates a widget that has a button that
-initiates this selection.  
 
-The selection type is specified by the \code{type} argument with
-values of \code{open}, to select an existing file; \code{save} to
-select a file to write to; and \code{selectdir} to select a
-directory. For \code{RGtk2}, the \argument{filter}{gfile} argument can
-be used to narrow the listed files. The dialog returns the path of the
-file, or \code{NA} if the dialog was canceled. One can also specify a
-handler to the constructor to call on the file or directory name. The
-component \code{file} of the first argument to the handler contains
-the file name.
 
-<<eval=FALSE>>=
-if(!is.na(tmp <- gfile())) 
-  source(tmp)
-## or
-gfile(handler=function(h,...) {
-  if(!is.na(h$file))
-    source(h$file) 
-})   
+
+\section{Actions, menus and toolbars}
+\label{sec:gWidgets-acti-menus-toolb}
+
+%% ML: Is the overview really the right place for this? As you said,
+%% this really needs an example. I think it could go into the control
+%% widget chapter, at the end.
+%% JV: agreed, moved.
+
+Actions are invisible objects representing an application command that
+is executable through one or more widgets. See \ref{sec:GUI:actions}
+for more details. Actions in \pkg{gWidgets} are created through the
+\constructor{gaction} contstructor. The arguments are
+\argument{label}{gaction}, \argument{tooltip}{gaction},
+\argument{icon}{gaction}, \argument{key.accel}{gaction} and the
+standard \argument{handler}{gaction} and
+\argument{action}{gaction}. The label appears as the text on a button,
+the menu item or toolbar text, whereas the icon will decorate the same
+if possible. For some toolkits, the tooltip pops up when the mouse
+hovers.  (See also the \meth{tooltip\ASSIGN} method.)
+
+\paragraph{methods}
+The main methods for actions are \method{svalue\ASSIGN}{gaction} to
+set the label text and \method{enabled\ASSIGN}{gaction} to adjust
+whether the widget is sensitive to user input. All instances of the
+action are set through one call. In some toolkits, such as
+\pkg{RGtk2}, actions are bundled together into action groups. This
+grouping allows one to set the sensitivity of related actions at
+once. In \R, one can store like actions in a list, and get similar
+functionality by using \code{sapply}, for example.
+
+\paragraph{buttons}
+An action can be assigned to a button by setting it as the
+\argument{action}{gbutton} argument of the \code{gbutton} constructor,
+in which case all other arguments for the constructor are ignored.
+
+<<>>=
+w <- gwindow("gaction example")
+a <- gaction("click me", tooltip="Click for a message", icon="ok", 
+             handler=function(h,...) {
+               print("Hello")
+               })
+b <- gbutton(action=a, cont=w)
+## .. to change
+enabled(a) <- FALSE                     # can't click now
 @ 
-%$
+%%
+Action handlers generally do not have the sender object (\code{b})
+passed back to them. Instead, one uses
+the \argument{action}{gaction} argument to parameterize the call.
 
 
-\subsection{Selecting a date}
-\label{sec:gWidgets-selecting-date}
 
-The \constructor{gcalendar} constructor returns a widget for selecting
-a date, if the there is a native widget in the underlying toolkit,
-or a text edit box for entering a date. The argument
-\argument{text}{gcalendar} arugment specifies the initial
-text. The format of the date is specified by the
-\argument{format}{gcalendar} argument.
+\subsection{Toolbars}
+\label{sec:gWidgets-toolbars}
+Toolbars and menubars are implemented in \pkg{gWidgets} using
+\code{gaction} items. Toolbars (and menubars) are specified using a named
+list of menu components. 
 
-The methods for the widget inherit from \code{gedit}. In particular,
-the \method{svalue}{gcalendar} method returns the text in the text box
-as a character vector formatted by the value specified by the
-\argument{format}{gcalendar} argument. To return a value of a
-different class, pass a function, such as \code{as.Date} to the
-\argument{coerce.with}{gcalendar} argument.
+For a toolbar, the list has a simple structure. Each named component
+either describes a toolbar item or a separator. The toolbar items are
+specified by \code{gaction} instances and separators by
+\code{gseparator} instances with no container specified.
 
-
-\section{Display of graphics}
-\label{sec:gWidgets-display-grapics}
-
-\subsection{Displaying icons and images store in files}
-\label{sec:gWidgets-displ-icons-imag}
-
-The \pkg{gWidgets} package provides a few stock icons that can be
-added to various GUI components. A list of the defined stock icons is
-returned by the function \code{getStockIcons}. The names attribute
-defines the valid stock icon names.  For \pkg{gWidgetsRGtk2}, the size
-of a stock icon can be adjusted through the \argument{size}{gimage}
-argument, with a value from \qcode{menu}, \qcode{small\_toolbar},
-\qcode{large\_toolbar}, \qcode{button}, or \qcode{dialog}.
-
-Other Graphic files and the stock icons can be displayed by the
-\constructor{gimage} widget. (Not all file types may be displayed by
-each toolkit, in particular \pkg{gWidgetstcltk} can only display gif,
-ppm, and xbm files.)  The file to display is specified through the
-\argument{filename}{gimage} argument of the constructor. This value is
-combined with that of the \argument{dirname}{gimage} argument to
-specify the file path.  Stock icons, can be specified by using their
-name for the \code{filename} argument and the character string
-\code{"stock"} for the \code{dirname} argument.
-
-
-%% methods
-
-The \method{svalue\ASSIGN}{gimage} method changes the
-graphics file. In this case, a full path name is specified, or the
-stock icon name.
-
-
-More stock icon names may be added through the function
-\code{addStockIcons}. This function requires a vector of stock icon
-names and a vector of corresponding file paths, and is illustrated in
-the example.
-
-%% handlers
-The default handler is called on a click event.
-
-The \constructor{gsvg} constructor is similar, but allows one to
-display SVG files, as produced by the \function{svg} driver, say. It
-currently is only available for \pkg{gWidgetsQt}.
-
-\begin{example}{Adding and using stock icons}{ex-gWidgets-stock-icons}
-  \SweaveInput{ex-gWidgets-add-icons}
-\end{example}
-
-\subsection{A graphics device}
-\label{sec:gWidgets-graphics-device}
-
-Some toolkits support an embeddable graphics device (\pkg{RGtk2}
-through \pkg{cairoDevice}). In which case, the \constructor{ggraphics}
-constructor produces a widget that can be added to a container. The
-arguments \argument{width}{ggraphics}, \argument{height}{ggraphics},
-\argument{dpi}{ggraphics}, \argument{ps}{ggraphics} are similar to
-other graphics devices.
-
-The \constructor{ggraphicsnotebook} creates a notebook that allows the
-user to easily navigate multiple graphics devices.
-
-
-%%% 
-\begin{example}{A GUI to explore a data set}{ex-gWidgets-baseball}
-  \SweaveInput{ex-gWidgets-baseball-RGtk2.Rnw}
-\end{example}
-
-
-\section{Dialogs}
-\label{sec:gWidgets-modal-dialogs}
-
-The \pkg{gWidgets} package provides a few constructors to quickly make
-some basic dialogs for showing messages or gathering
-information. Mostly these are modal dialogs that take control of the
-eventloop, not allowing any other part of the GUI to be active for
-programmatic interaction. As such, the constructors do not return an
-object to manipulate through its methods, but rather the user response
-to the dialog. Hence, they are used differently than other
-constructors. For example, the \code{gfile} dialog, previously
-described, is a modal dialog that pops up a means to select a file
-returning the selected file path or \code{NA}.
-
-
-<<echo=FALSE, results=tex>>=
-df <- rbind(
-            c("\\constructor{gfile}","File and directory selection dialog"),
-            c("\\constructor{gmessage}", "Dialog to show a message"),
-            c("\\constructor{galert}", "Unobtrusive (non-modal) dialog to show a message"),
-            c("\\constructor{gconfirm}", "Confirmation dialog"),
-            c("\\constructor{ginput}", "Dialog allowing user input"),
-            c("\\constructor{gbasicdialog}", "Flexible modal dialog")
-            )
-colnames(df) <- c("Constructor","Description")
-cat(booktabs(df,
-             colTypes=c("l","p{0.7\\textwidth}"),
-             caption="Table of constructors for basic dialogs in \\pkg{gWidgets}",
-             label="tab:gWidgets-basic-dialogs"))
-
+For example,
+<<results=hide>>=
+w <- gwindow("gtoolbar example")
+l <- list(Open=gaction("Open", icon="open", 
+            handler=function(...) print("Open")),
+          Close=gaction("Close", icon="cancel", 
+            handler=function(...) print("Close")),
+          sep=gseparator(),
+          Quit=gaction("Quit", icon="quit", 
+            handler=function(...) print("Quit"))
+          )
+tb <- gtoolbar(l, cont=w)
+gtext("Placeholder", cont=w)
 @ 
-% \begin{table}
-%   \centering
-%  \begin{tabular}{l@{\quad}p{.75\textwidth}}
-% %   \toprule
-%     \constructor{gfile} & File and directory selection dialog\\
-%     \constructor{gmessage} & Dialog to show a message\\
-%     \constructor{galert} & Unobtrusive (non-modal) dialog to show a message\\
-%     \constructor{gconfirm} & Confirmation dialog\\
-%     \constructor{ginput} & Dialog allowing user input\\
-%     \constructor{gbasicdialog} & Flexible modal dialog \\
-%     \bottomrule
-%   \end{tabular}
-%   \caption{Table of basic dialogs in \pkg{gWidgets}}
-%   \label{tab:gWidgets-modal-dialogs}
-% \end{table}
-
-Most of these dialogs pop up a window with a common appearance. The
-constructors have arguments \argument{message}{gmessage} for a
-message; \argument{title}{gmessage} for the window title; and
-\argument{icon}{gmessage} to specify an icon, whose value is one of
-\qcode{info}, \qcode{warning}, \qcode{error}, or
-\qcode{question}. Buttons will appear at the bottom of the dialog,
-and are determined by choice of the constructor. The
-\argument{parent}{gmessage} argument will place the dialog near the
-\pkg{gWidgets} instance specified. Otherwise, placement will be
-controlled by the window manager.
-
-The dialogs, except for \code{galert}, have the standard
-\code{handler} and \code{action} arguments, for calling a handler, but
-typically it is easier to use the return value when programming.
-
-\paragraph{A message dialog}
-The simplest dialog is produced by \code{gmessage}, which
-displays a message. The user has a cancel button to dismiss the dialog.
-
-\paragraph{An alert dialog}
-The \code{galert} dialog is similar to \code{gmessage} only it is
-meant to be less obtrusive, so it is non-modal. It does not take the
-focus and vanishes after a time delay.
-
-\paragraph{A confirmation dialog}
-The constructor \constructor{gconfirm} produces a dialog that allows
-the user to confirm the message. This dialog returns \code{TRUE} or
-\code{FALSE} depending on the user's selection.
 
 
-\paragraph{An input dialog}
-The \constructor{ginput} constructor produces a dialog which allows
-the user to input a single line of text. If the user confirms the
-dialog, the value of the string is returned, otherwise if the user
-cancels the dialog through the button a value of \code{NA} is returned.
+The \constructor{gtoolbar} constructor takes the list as its first
+argument.  As toolbars belong to the window, the corresponding
+\pkg{gWigdets} objects use a \constructor{gwindow} object as the
+parent container. (Some of the toolkits relax this.)  The argument
+\argument{style}{gtoolbar} can be one of \qcode{both}, \qcode{icons},
+\qcode{text}, or \qcode{both-horiz} to specify how the toolbar is
+rendered. Toolbars in \pkg{gWidgetstcltk} are not native widgets, so
+the implementation uses aligned buttons.
 
 
+\subsection{Menubars, popup menus}
+\label{sec:gWidgets-menubars}
+
+Menubars and popup menus are specified in a similar manner as toolbars with menu items
+being defined through \code{gaction} instances, and visual separators
+by \code{gseparator} instances. Menus differ from toolbars, as
+submenus require a nested structure. This  is specified using a
+nested list as the component to describe the sub menu. The lists all
+have named components. In this case, the corresponding name is used to
+label the submenu item. For menu bars, it is typical that all the
+top-level components be lists, but for popup menus, this wouldn't
+necessarily be the case.
+
+A example of such a list might be
+<<results=hide>>=
+f <- function(h,...) print(h$action)                # a stub
+ml <- list(File=list(
+             Source=gaction("Source file...", action="source",  
+               handler=f),
+             Load=gaction("Load workspace...", action="load", 
+               handler=f),
+             sep=gseparator(),
+             New=list(
+               Plot=gaction("Plot window", action="plot", 
+                 handler=f),
+               Rfile=gaction("R file", action="file", handler=f)
+               )
+             ),
+           Help=list(
+             about=gaction("About", action="about", handler=f)
+             )
+           )
+@ 
+
+<<echo=FALSE>>=
+w <- gwindow("Menubar example")
+mb <- gmenu(ml, cont=w)
+gtext("Placeholder", cont=w)
+@ 
 
 
-\paragraph{A basic dialog}
-The \constructor{gbasicdialog} constructor allows one to place an
-arbirary widget within a modal window with \kbd{OK} and
-\kbd{Cancel}. The handler, if specified, will be called if the user
-clicks the \kbd{OK} button. This allows users to create their own
-modal dialogs.
+In Mac OS X, with a native toolkit, menubars may be drawn along the top
+of the screen, as is the custom of that OS. 
 
-As with the others, the argument \argument{title}{gbasicdialog} is
-used to specify the window title, but there is no \code{icon} or
-\code{message} arguments, as there is no standard appearance. Rather,
-the \argument{widget}{gbasicdialog} argument specifies a widget to
-pack into the dialog. This can be a simple control, or a container
-containing other widgets. 
-
-As with \code{gconfirm}, this widget returns \code{TRUE} or
-\code{FALSE} depending on the user's selection. To do something more
-complicated than \code{gconfirm}, a handler should be specified at
-construction. If the user selects \kbd{OK}, the handler, if specified,
-is called before the value \code{TRUE} is returned.
-
-This dialog is called a bit awkwardly, to allow it to work when
-controls need a parent container specified at construction time (e.g.,
-\pkg{tcltk}). The construction is in three stages: an initial call to
-\code{gbasicdialog} to return a container which is used as the parent
-container for a child component; a construction of the dialog; then a
-call to the \code{visible} method on the dialog with \code{set=TRUE}
-value (not though \code{visible(obj) \ASSIGN\/ TRUE}).
+\paragraph{Menubar and Toolbar Methods}
+The main methods for toolbar and menubar instances are
+the \method{svalue}{gmenu} method which will return the list. Whereas, the
+\method{svalue\ASSIGN}{gmenu} method can be used to redefine the
+menubar or toolbar. Use the \method{add}{gmenu} method to append to an
+existing menubar or toolbar, again using a list to specify the new items.
 
 
-\begin{example}{Modal dialogs}{ex-gWidgets-modal-dialogs}
-  \SweaveInput{ex-gWidgets-modal-dialogs}
+% \begin{example}{Menubar and toolbar example}{ex-gWidgets-menu-tool-status-bars}
+%   \SweaveInput{ex-gWidgets-menu-tool-status-bars}
+% \end{example}
+
+\paragraph{Popup menus}
+
+Popup menus can be created for a right click event through the
+\constructor{add3rdMousePopupmenu} constructor. (Or
+\kbd{control-button-1} for Mac OS X.) This constructor has arguments
+\code{obj} to specify a widget, like a button, to initiate the popup,
+\argument{menulist}{gmenu} to specify the menu and optionally an
+\argument{action}{gmenu} argument.
+
+
+\begin{example}{Popup menus}{ex-gWidgets-context-menus}
+<<>>=  
+w <- gwindow("Popup example")
+b <- gbutton("click me or right click me", cont=w, 
+             handler=function(h, ...) {
+               cat("You clicked me\n")
+             })
+f <- function(h,...) cat("you right clicked on", h$action)
+mbList <- list(one = gaction("one", action="one", handler=f),
+               two = gaction("two", action="two", handler=f)
+               )
+add3rdMousePopupmenu(b, mbList)
+@ 
+
 \end{example}
-
-
-
-
 
 
 

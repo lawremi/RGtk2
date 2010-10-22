@@ -12,17 +12,23 @@ g <- ggroup(horizontal=FALSE, cont = w)
 alertBox <- ggroup(cont = g)
 mainBox <- ggroup(cont = g, expand=TRUE)
 l <- glabel("main box label", cont = mainBox, expand=TRUE)
-ig <- NULL                              # global
+ig <- ggroup(cont=alertBox)
+igl <- glabel("", cont=ig)
+visible(alertBox) <- FALSE
 
 
 ###################################################
 ### chunk number 3: 
 ###################################################
 openAlert <- function(message="message goes here") {
-  ig <<- ggroup(cont=alertBox)
-  glabel(message, cont = ig)
+  visible(alertBox) <- TRUE
+                                        #  ig <<- ggroup(cont=alertBox)
+#  glabel(message, cont = ig)
 }
-closeAlert <- function() delete(alertBox, ig)
+closeAlert <- function() {
+  visible(alertBox) <- FALSE
+  #delete(alertBox, ig)
+}
   
 
 

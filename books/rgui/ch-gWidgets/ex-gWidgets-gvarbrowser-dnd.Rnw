@@ -1,0 +1,92 @@
+<<echo=FALSE, results=hide>>=
+library(gWidgets)
+@ 
+  We use the drag and drop features to create a means to plot
+  variables from the workspace browser.  Our basic layout is fairly
+  simple. We place the workspace browser on the left, and on the right
+  have a graphic device and few labels to act as drop targets.
+<<>>=
+w <- gwindow("Drag and drop example")
+g <- ggroup(cont=w)
+vb <- gvarbrowser(cont=g)
+g1 <- ggroup(horizontal=FALSE, cont=g, expand=TRUE)
+ggraphics(cont=g1)
+xlabel <- glabel("", cont=g1)
+ylabel <- glabel("", cont=g1)
+clear <- gbutton("clear", cont=g1)
+@   
+%
+We create a function to initialize the interface.
+<<>>=
+init_txt <- "<Drop %s variable here>"
+initUI <- function(...) {
+  svalue(xlabel) <- sprintf(init_txt, "x")
+  svalue(ylabel) <- sprintf(init_txt, "y")
+  enabled(ylabel) <- FALSE
+}
+initUI()                                # initial call
+@ 
+%
+Separating this out allows us to link it to the clear button.
+<<>>=
+addHandlerClicked(clear, handler=function(h,...) {
+  initUI()
+})
+@ 
+%
+Next, we write a function to update the user interface. In this case
+we need to figure out which state the GUI is currently in by
+considering the text in each drop label.
+<<>>=
+updateUI <- function(...) {
+  if(grepl(svalue(xlabel), sprintf(init_txt, "x"))) {
+    ## none set
+    enabled(ylabel) <- FALSE
+  } else if(grepl(svalue(ylabel), sprintf(init_txt, "y"))) {
+    ## x, not y
+    enabled(ylabel) <- TRUE
+    x <- eval(parse(text=svalue(xlabel)), envir=.GlobalEnv)
+    plot(x, xlab=svalue(xlabel))
+  } else {
+    enabled(ylabel) <- TRUE    
+    x <- eval(parse(text=svalue(xlabel)), envir=.GlobalEnv)
+    y <- eval(parse(text=svalue(ylabel)), envir=.GlobalEnv)
+    plot(x, y, xlab=svalue(xlabel), ylab=svalue(ylabel))
+  }
+}
+@ 
+
+Now we add our drag and drop information.  Drag and drop support in
+\pkg{gWidgets} is implemented through three methods: one to set a
+widget as a drag source (\generic{addDropSource}), one to set a widget
+as a drop target (\generic{addDropTarget}), and one to call a handler
+when a drop event passes over a widget (\generic{addDropMotion}).
+  
+
+The \generic{addDropSource} method needs a widget and a handler to
+call when a drag and drop event is initiated. This handler should
+return the value that will be passed to the drop target. The default
+value is that returned by calling \code{svalue} on the object. In this
+example we don't need to set this, as \generic{gvarbrowser} already
+calls this with a drop data being the variable name using the dollar
+sign notation for child components.
+    
+The \generic{addDropTarget} method is used to allow a widget to
+receive a dropped value and to specify a handler to call when a value
+is dropped. The \code{dropdata} component of the first callback
+argument, \code{h}, holds the drop data. In our example below we use
+this to update the receiver object, either the $x$ or $y$ label.
+
+<<>>=
+dropHandler <- function(h,...) {
+  svalue(h$obj) <- h$dropdata
+  updateUI()
+}
+addDropTarget(xlabel, handler=dropHandler)
+addDropTarget(ylabel, handler=dropHandler)
+@ 
+
+
+The \generic{addDropMotion} registers a handler for when a drag event
+passes over a widget. We don't need this for our GUI.
+    

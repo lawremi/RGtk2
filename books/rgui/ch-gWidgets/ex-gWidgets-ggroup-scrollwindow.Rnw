@@ -1,0 +1,24 @@
+This example shows the \args{use.scrollwindow} feature for
+\pkg{gWidgetsRGtk2}. The feature is not well implemented in the other
+toolkit packages. Widgets that list similar types of data are a common
+part of GUIs for smart phones, say. The \function{addItem} function is used to generate
+a consistent item type, in this case just a label and cancel
+button. The latter shows the \method{delete}{ggroup} method for containers.
+
+<<>>=
+w <- gwindow("Scroll window example", visible=FALSE)
+g <- ggroup(cont=w, horizontal=FALSE, use.scrollwindow=TRUE)
+
+addItem <- function(container, i) {
+  g1 <- ggroup(cont=container)
+  glabel(sprintf("data about %s", i), cont=g1)
+  addSpring(g1)
+  gimage("cancel", dir="stock", cont=g1, handler=function(h,...) {
+    delete(g, g1)
+  })
+}
+
+for(i in state.name) addItem(g, i)
+
+visible(w) <- TRUE
+@ 

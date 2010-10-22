@@ -32,10 +32,10 @@ makeColorIcon <- function(i) {
 To add icons, we need to define the stock names and the file paths for
 \code{addStockIcons}.
 
-<<>>=
+<<results=hide>>=
 icons <- sapply(someColors, makeColorIcon)
 iconNames <- paste("color-", someColors, sep="")
-QT <- addStockIcons(iconNames, icons)
+addStockIcons(iconNames, icons)
 @ 
 
 We use a table layout to show the 16 colors. As an illustration of

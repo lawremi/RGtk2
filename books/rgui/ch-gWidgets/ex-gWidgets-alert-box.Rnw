@@ -1,28 +1,29 @@
-This example shows nested \code{ggroup} containers and the use of the
+This example shows how nested \code{ggroup} containers 
+can be used to disclose or hide parts of a GUI. It uses the
 \method{delete}{ggroup} method to remove a child widget from a
-container. In this application, a box is set aside at the top of the
+container when a hide request is made. For this application, a box is set aside at the top of the
 window to hold a message that can be set via \code{openAlert} and
-closed with \code{closeAlert}. This example works better under
-\pkg{RGtk2}, as the space allocated to the alert is reclaimed when
-it is closed.
+closed with \code{closeAlert}. 
 
 <<echo=FALSE>>=
 library(gWidgets)
 @ 
 
-This code sets up the area for the alert box to appear from.
-<<>>=
+This code sets up the area for the alert box to appear from. The basic
+idea is that we keep an inner group holding a label, \code{ig}, to add and delete as necessary.
+<<alertBoxExample>>=
 w <- gwindow("Alert box example")
 g <- ggroup(horizontal=FALSE, cont = w)
 alertBox <- ggroup(cont = g)
 mainBox <- ggroup(cont = g, expand=TRUE)
 l <- glabel("main box label", cont = mainBox, expand=TRUE)
-ig <- NULL                              # global
+ig <- NULL                              
 @ 
 
 These two functions will open and close the alert box respectively. In
-this example we use the global value, \code{ig}, to store the inner group.
-<<>>=
+this example we use global values to keep track of the alert box and
+its inner group.
+<<openCloseAlert>>=
 openAlert <- function(message="message goes here") {
   ig <<- ggroup(cont=alertBox)
   glabel(message, cont = ig)
@@ -32,14 +33,15 @@ closeAlert <- function() {
     delete(alertBox, ig)
   ig <<- NULL
 }
-  
 @ 
 
+To elaborate on this example, one might decorate the message with a
+close icon so the user may dismiss the alert, or put a timer to have
+the message close after some interval.
+%
 The state of the box can be toggled programmatically via
-<<>>=
-QT <- openAlert("new message")                # open
-QT <- closeAlert()                            # close
+<<results=hide>>=
+openAlert("new message")                # open
+closeAlert()                            # close
 @ 
-
-To elaborate on this, one might add a timer to close the alert after a specified
-time interval and a close icon so the user may dismiss the alert.
+%

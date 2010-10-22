@@ -1,0 +1,185 @@
+%% Example of a spotfire like interface
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.6\textwidth]{fig-gWidgets-spotfire-gui}
+  \caption{A GUI to filter a data frame and display an accompanying graphic.}
+  \label{fig:gWidgets-spotfire-gui}
+\end{figure}
+A common GUI applicatio
+n for data analysis consists of means to
+visualize, query, aggregate and filter a data set. This example shows
+how one can create such a GUI using \pkg{gWidgets} featuring
+an embedded graphics device. In addition a visual display of the filtered data,
+and a means to filter, or narrow, the data that is under
+consideration, is presented (Figure~\ref{fig:gWidgets-spotfire-gui}).
+Although, our example is not too feature rich, it illustrates a
+framework that can easily be extended.
+
+<<notShown, echo=FALSE>>=
+library(gWidgets)
+options(guiToolkit="RGtk2")
+@ 
+
+This example is centered around filtering a data set, we choose a
+convenient one and give it a non-specific name.
+<<ourData>>=
+data("Cars93", package="MASS")
+x <- Cars93
+@ 
+
+We use a notebook to hold two tabs, one to give information and one
+for the main GUI. This basic design comes from the spotfire demos at \url{tibco.com}.
+<<layout>>=
+w <- gwindow("Spotfire example", visible=FALSE)
+nb <- gnotebook(cont=w)
+@ 
+
+
+We use a simple label for information, although a more detailed
+description would be warranted in an actual application.
+
+<<page1>>=
+descr <- glabel(gettext("A basic GUI to explore a data set"), 
+                cont=nb, label=gettext("About"))
+@ 
+%
+Now we specify the layout for the second tab. This is a nested layout
+made up of three box containers. The first, \code{g}, uses a
+horizontal layout in which we pack to box containers that will use a
+vertical layout (when \code{horizontal=FALSE}). 
+
+<<page2>>=
+g <- ggroup(cont=nb, label=gettext("Explore..."))
+lg <- ggroup(cont=g, horizontal=FALSE) # vertical boxes
+rg <- ggroup(cont=g, horizontal=FALSE)
+@ 
+
+The left side will contain an embedded graphic device and a view of
+the filtered data. The \constructor{ggraphics} widget provides the
+graphic device. This widget is unfortunately not available for all toolkits
+<<>>=
+ggraphics(cont = lg)
+@ 
+
+Our view of the data is provided by the \constructor{gtable} widget,
+which facilitates the display of a data frame. The last two arguments
+allow for multiple selection (for marking points on the graphic) and
+for filtering through the \method{visible\ASSIGN}{gtable} method.
+In addition to the table, we add a label to display the number of
+cases being shown. This label is packed into a box container, and
+forced to the right side through the \method{addSpring}{ggroup} method
+of the box container.
+<<>>=
+tbl <- gtable(x, cont = lg, multiple=TRUE, filter.FUN="manual")
+size(tbl) <- c(500, 200)                # set size
+labelg <- ggroup(cont = lg)
+addSpring(labelg)
+noCases <- glabel("", cont = labelg)
+@
+
+The right panel is used to provide the user a means to filter the
+display. We place the widgets used to do this within a frame to guide
+the user.
+<<filters>>=
+filterg <- gframe(gettext("Filter by:"), cont = rg, expand=TRUE)
+@ 
+The controls are layed out in a grid. We have two here to filter by
+type and the number of cylinders. These of course, are specific to the
+data set.
+<<filterLayout>>=
+lyt <- glayout(cont=filterg)
+l <- list() # store widgets
+lyt[1,1] <- "Type:"
+lyt[1,2] <- (l$Type <- gcombobox(c("", levels(x$Type)), cont=lyt))
+
+lyt[2,1] <- "Cylinders:"
+lyt[2,2] <- (l$Cylinders <- gcombobox(c("", levels(x$Cylinders)), cont=lyt))
+@ 
+%
+Of course, we could use many more criteria to filter. The above
+filters are naturally represented by a combobobox. However, one could
+have used many different styles, depending on the type of data. For
+instance, one could employ a checkbox to filter through Boolean data,
+a slider to pick out numeric data, or a text box to specify a
+filtering by a string. The type of data dictates this.
+
+%% handlers
+There are three main components in our GUI: the display, the table and
+the filters. We create handlers to connect these components. This
+first handler is used to
+update the data frame when the filter controls are changed. For this
+we need to compute a logical variable indicating which rows are to be
+considered.  Within the definition of the function, we use the global
+variables \code{l}, \code{tbl} and \code{noCases}.
+<<handlers>>=
+updateDataFrame <- function(...) {
+  ind <- rep(TRUE, nrow(x))
+  for(i in c("Type", "Cylinders"))  {
+    if((val <- svalue(l[[i]])) != "") 
+      ind <- ind & (x[,i] == val)
+  }
+  
+  visible(tbl) <- ind                   # udpate table
+  
+  nsprintf <- function(n, msg1, msg2,...)
+    ngettext(n, sprintf(msg1, n), sprintf(msg2,n), ...)
+  svalue(noCases) <- nsprintf(sum(ind), "%s case", "%s cases") # label
+}
+@
+
+% %% methods
+% The \method{visible\ASSIGN}{gtable} and \method{svalue\ASSIGN}{glabel}
+% methods change the underlying widgets. The generic
+% \meth{svalue\ASSIGN} is used to change the primary value for a widget
+% (and \meth{svalue} returns this value). In the above, we see these
+% methods used to get the values from the comboboxes and to set the text
+% in the label. The \meth{visible\ASSIGN} method is another generic. In
+% this example it is used to specify which rows of the data are actually
+% displayed by the widget.
+
+This next function is used to update the graphic. Of course, this graphic is not
+so interesting, but in a real application, it should be.
+<<>>=
+updateGraphic <- function(...) {
+  ind <- visible(tbl)
+  if(any(ind))
+    plot(MPG.city ~ Weight, data=x[ind,])
+  else
+    plot.new()
+}
+@ 
+
+We now add a handler to be called whenever one of our comboboxes is
+changed. This handler simply calls both our update functions.
+<<applyHandler>>=
+f <- function(h, ...) {
+  updateDataFrame()
+  updateGraphic()
+}
+sapply(l, function(i) addHandlerChanged(i, handler=f))
+@ 
+%
+For the data display, we wish to allow the user to view individual cases
+by clicking on a row of the table. The following will do so.
+
+<<tableHandler>>=
+addHandlerClicked(tbl, handler=function(h,...) {
+  updateGraphic()
+  ind <- svalue(h$obj, index=TRUE)
+  points(MPG.city ~ Weight, cex=2, col="red", pch=16, data=x[ind,])
+})
+@ 
+%
+We could also use the \method{addHandlerChanged}{ggraphics} method to
+add a handler to call when the user drags our a region in the graphics
+device, but leave this for the interested reader.
+
+
+Finally, we draw the GUI with an initial graphic (the
+\method{visible}{gwindow} method draws the GUI here, unlike its use
+with \code{gtable}).
+<<initialGraphic>>=
+visible(w) <- TRUE
+updateGraphic()
+@ 
