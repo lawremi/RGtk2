@@ -10,8 +10,8 @@ the function does nothing and returns \code{FALSE}. If \code{count} is negative,
 moves backward by 0 - \code{count} lines.}
 \usage{gtkTextIterForwardLines(object, count)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTextIter}}]  a \verb{\link{GtkTextIter}}}
-\item{\verb{count}}{[integer]  number of lines to move forward}
+\item{\verb{object}}{a \code{\link{GtkTextIter}}}
+\item{\verb{count}}{number of lines to move forward}
 }
 \value{[logical]  whether \code{iter} moved and is dereferenceable}
 \author{Derived by RGtkGen from GTK+ documentation}

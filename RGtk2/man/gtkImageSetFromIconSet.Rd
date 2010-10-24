@@ -4,9 +4,9 @@
 \description{See \code{\link{gtkImageNewFromIconSet}} for details.}
 \usage{gtkImageSetFromIconSet(object, icon.set, size)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkImage}}]  a \verb{\link{GtkImage}}}
-\item{\verb{icon.set}}{[\verb{\link{GtkIconSet}}]  a \verb{\link{GtkIconSet}}}
-\item{\verb{size}}{[\code{\link{GtkIconSize}}]  a stock icon size}
+\item{\verb{object}}{a \code{\link{GtkImage}}}
+\item{\verb{icon.set}}{a \code{\link{GtkIconSet}}}
+\item{\verb{size}}{ a stock icon size. \emph{[type int]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

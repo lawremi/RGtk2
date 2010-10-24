@@ -6,7 +6,7 @@ when this object receives focus events (in or out). If the handler is
 already added it is not added again}
 \usage{atkComponentAddFocusHandler(object, handler)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{AtkComponent}}]  The \verb{\link{AtkComponent}} to attach the \code{handler} to}
+\item{\verb{object}}{[\code{\link{AtkComponent}}]  The \code{\link{AtkComponent}} to attach the \code{handler} to}
 \item{\verb{handler}}{[AtkFocusHandler]  The \verb{AtkFocusHandler} to be attached to \code{component}}
 }
 \value{[numeric]  a handler id which can be used in atk_component_remove_focus_handler

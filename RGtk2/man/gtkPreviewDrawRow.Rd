@@ -7,13 +7,13 @@ Sets the data for a portion of a row.
 }
 \usage{gtkPreviewDrawRow(object, data, y, w)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkPreview}}] a \verb{\link{GtkPreview}}.}
-\item{\verb{data}}{[raw] the new data for the portion. It should contain
+\item{\verb{object}}{a \code{\link{GtkPreview}}.}
+\item{\verb{data}}{the new data for the portion. It should contain
        \code{w} bytes of data if the preview is of type
        GTK_TYPE_GRAYSCALE, and 3*\code{w} bytes of data
        if the preview is of type GTK_TYPE_COLOR.}
-\item{\verb{y}}{[integer] the row to change.}
-\item{\verb{w}}{[integer] the number of pixels in the row to change.}
+\item{\verb{y}}{the row to change.}
+\item{\verb{w}}{the number of pixels in the row to change.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -6,6 +6,7 @@
 \alias{GtkClipboardImageReceivedFunc}
 \alias{GtkClipboardTargetsReceivedFunc}
 \alias{GtkClipboardRichTextReceivedFunc}
+\alias{GtkClipboardURIReceivedFunc}
 \alias{GtkClipboardGetFunc}
 \alias{GtkClipboardClearFunc}
 \name{gtk-Clipboards}
@@ -26,13 +27,16 @@
 \code{\link{gtkClipboardRequestImage}(object, callback, user.data = NULL)}\cr
 \code{\link{gtkClipboardRequestTargets}(object, callback, user.data = NULL)}\cr
 \code{\link{gtkClipboardRequestRichText}(object, buffer, callback, user.data)}\cr
+\code{\link{gtkClipboardRequestUris}(object, callback, user.data)}\cr
 \code{\link{gtkClipboardWaitForContents}(object, target)}\cr
 \code{\link{gtkClipboardWaitForText}(object)}\cr
 \code{\link{gtkClipboardWaitForImage}(object)}\cr
 \code{\link{gtkClipboardWaitForRichText}(object, buffer)}\cr
+\code{\link{gtkClipboardWaitForUris}(object)}\cr
 \code{\link{gtkClipboardWaitIsTextAvailable}(object)}\cr
 \code{\link{gtkClipboardWaitIsImageAvailable}(object)}\cr
 \code{\link{gtkClipboardWaitIsRichTextAvailable}(object, buffer)}\cr
+\code{\link{gtkClipboardWaitIsUrisAvailable}(object)}\cr
 \code{\link{gtkClipboardWaitForTargets}(object)}\cr
 \code{\link{gtkClipboardWaitIsTargetAvailable}(object, target)}\cr
 \code{\link{gtkClipboardSetCanStore}(object, targets)}\cr
@@ -41,10 +45,10 @@
 }
 \section{Hierarchy}{\preformatted{GObject
    +----GtkClipboard}}
-\section{Detailed Description}{    The \verb{\link{GtkClipboard}} object represents a clipboard of data shared
+\section{Detailed Description}{    The \code{\link{GtkClipboard}} object represents a clipboard of data shared
     between different processes or between different widgets in
     the same process. Each clipboard is identified by a name encoded as a
-    \verb{\link{GdkAtom}}. (Conversion to and from strings can be done with
+    \code{\link{GdkAtom}}. (Conversion to and from strings can be done with
     \code{\link{gdkAtomIntern}} and \code{\link{gdkAtomName}}.) The default clipboard
     corresponds to the "CLIPBOARD" atom; another commonly used clipboard
     is the "PRIMARY" clipboard, which, in X, traditionally contains
@@ -66,7 +70,7 @@
     with callbacks to convert it into the various data types that you
     advertise. When the \code{clear.func} you provided is called, you
     simply free the data blob. The latter is more useful when the
-    contents of clipboard reflect the internal state of a \verb{\link{GObject}}
+    contents of clipboard reflect the internal state of a \code{\link{GObject}}
     (As an example, for the PRIMARY clipboard, when an entry widget
     provides the clipboard's contents the contents are simply the
     text within the selected region.) If the contents change, the
@@ -110,11 +114,11 @@
     are received, or when the request fails.
 
 \describe{
-\item{\code{clipboard}}{[\verb{\link{GtkClipboard}}] the \verb{\link{GtkClipboard}}}
-\item{\code{selection.data}}{[\verb{\link{GtkSelectionData}}] a \verb{\link{GtkSelectionData}} containing the data was received.
+\item{\code{clipboard}}{the \code{\link{GtkClipboard}}}
+\item{\code{selection.data}}{a \code{\link{GtkSelectionData}} containing the data was received.
                  If retrieving the data failed, then then length field
                  of \code{selection.data} will be negative.}
-\item{\code{data}}{[R object] the \code{user.data} supplied to \code{\link{gtkClipboardRequestContents}}.}
+\item{\code{data}}{the \code{user.data} supplied to \code{\link{gtkClipboardRequestContents}}.}
 }
 
 
@@ -124,10 +128,10 @@
     are received, or when the request fails.
 
 \describe{
-\item{\code{clipboard}}{[\verb{\link{GtkClipboard}}] the \verb{\link{GtkClipboard}}}
-\item{\code{text}}{[character] the text received, as a UTF-8 encoded string, or \code{NULL}
+\item{\code{clipboard}}{the \code{\link{GtkClipboard}}}
+\item{\code{text}}{the text received, as a UTF-8 encoded string, or \code{NULL}
             if retrieving the data failed.}
-\item{\code{data}}{[R object] the \code{user.data} supplied to \code{\link{gtkClipboardRequestText}}.}
+\item{\code{data}}{the \code{user.data} supplied to \code{\link{gtkClipboardRequestText}}.}
 }
 
 
@@ -138,9 +142,9 @@
   Since 2.6
 
 \describe{
-\item{\code{clipboard}}{[\verb{\link{GtkClipboard}}] the \verb{\link{GtkClipboard}}}
-\item{\code{pixbuf}}{[\verb{\link{GdkPixbuf}}] the received image}
-\item{\code{data}}{[R object] the \code{user.data} supplied to \code{\link{gtkClipboardRequestImage}}.}
+\item{\code{clipboard}}{the \code{\link{GtkClipboard}}}
+\item{\code{pixbuf}}{the received image}
+\item{\code{data}}{the \code{user.data} supplied to \code{\link{gtkClipboardRequestImage}}.}
 }
 
 
@@ -151,11 +155,11 @@
   Since 2.4
 
 \describe{
-\item{\code{clipboard}}{[\verb{\link{GtkClipboard}}] the \verb{\link{GtkClipboard}}}
-\item{\code{atoms}}{[\verb{\link{GdkAtom}}] the supported targets, as list of \verb{\link{GdkAtom}}, or \code{NULL} 
+\item{\code{clipboard}}{the \code{\link{GtkClipboard}}}
+\item{\code{atoms}}{the supported targets, as list of \code{\link{GdkAtom}}, or \code{NULL} 
             if retrieving the data failed.}
-\item{\code{n.atoms}}{[integer] the length of the \code{atoms} list.}
-\item{\code{data}}{[R object] the \code{user.data} supplied to \code{\link{gtkClipboardRequestTargets}}.}
+\item{\code{n.atoms}}{the length of the \code{atoms} list.}
+\item{\code{data}}{the \code{user.data} supplied to \code{\link{gtkClipboardRequestTargets}}.}
 }
 
 
@@ -165,11 +169,31 @@
 }
 
 \describe{
-\item{\code{clipboard}}{[\verb{\link{GtkClipboard}}] }
-\item{\code{format}}{[\verb{\link{GdkAtom}}] }
-\item{\code{text}}{[raw] }
-\item{\code{length}}{[numeric] }
-\item{\code{data}}{[R object] }
+\item{\code{clipboard}}{\emph{undocumented
+}}
+\item{\code{format}}{\emph{undocumented
+}}
+\item{\code{text}}{\emph{undocumented
+}}
+\item{\code{length}}{\emph{undocumented
+}}
+\item{\code{data}}{\emph{undocumented
+}}
+}
+
+
+}
+\item{\code{GtkClipboardURIReceivedFunc(clipboard, uris, data)}}{
+\emph{undocumented
+}
+
+\describe{
+\item{\code{clipboard}}{\emph{undocumented
+}}
+\item{\code{uris}}{\emph{undocumented
+}}
+\item{\code{data}}{\emph{undocumented
+}}
 }
 
 
@@ -182,16 +206,16 @@ of \code{selection.data}. If the data could successfully be converted into
 then it should be stored into the \code{selection.data} object by
 calling \code{\link{gtkSelectionDataSet}} (or related functions such
 as \code{\link{gtkSelectionDataSetText}}). If no data is set, the requestor
-will be informed that the attempt to get the data failed.    
+will be informed that the attempt to get the data failed.
 
 \describe{
-\item{\code{clipboard}}{[\verb{\link{GtkClipboard}}] the \verb{\link{GtkClipboard}}}
-\item{\code{selection.data}}{[\verb{\link{GtkSelectionData}}] a \verb{\link{GtkSelectionData}} argument in which the requested
+\item{\code{clipboard}}{the \code{\link{GtkClipboard}}}
+\item{\code{selection.data}}{a \code{\link{GtkSelectionData}} argument in which the requested
                      data should be stored.}
-\item{\code{info}}{[numeric] the info field corresponding to the requested
-                     target from the \verb{\link{GtkTargetEntry}} list passed to
+\item{\code{info}}{the info field corresponding to the requested
+                     target from the \code{\link{GtkTargetEntry}} list passed to
                      \code{\link{gtkClipboardSetWithData}} or \code{\link{gtkClipboardSetWithOwner}}.}
-\item{\code{user.data.or.owner}}{[R object] the \code{user.data} argument passed to \code{\link{gtkClipboardSetWithData}}, or
+\item{\code{user.data.or.owner}}{the \code{user.data} argument passed to \code{\link{gtkClipboardSetWithData}}, or
                      the \code{owner} argument passed to \code{\link{gtkClipboardSetWithOwner}}}
 }
 
@@ -203,8 +227,8 @@ or cleared. Once this has called, the \code{user.data.or.owner} argument
 will not be used again.
 
 \describe{
-\item{\code{clipboard}}{[\verb{\link{GtkClipboard}}] the \verb{\link{GtkClipboard}}}
-\item{\code{user.data.or.owner}}{[R object] the \code{user.data} argument passed to \code{\link{gtkClipboardSetWithData}}, or
+\item{\code{clipboard}}{the \code{\link{GtkClipboard}}}
+\item{\code{user.data.or.owner}}{the \code{user.data} argument passed to \code{\link{gtkClipboardSetWithData}}, or
                      the \code{owner} argument passed to \code{\link{gtkClipboardSetWithOwner}}}
 }
 
@@ -213,19 +237,18 @@ will not be used again.
 }}
 \section{Signals}{\describe{\item{\code{owner-change(clipboard, event, user.data)}}{
 The ::owner-change signal is emitted when GTK+ receives an
-event that indicates that the ownership of the selection 
-associated with \code{clipboard} has changed.  
-
-  Since  2.6
+event that indicates that the ownership of the selection
+associated with \code{clipboard} has changed.
+  Since 2.6
 
 \describe{
-\item{\code{clipboard}}{[\verb{\link{GtkClipboard}}]  the \verb{\link{GtkClipboard}} on which the signal is emitted}
-\item{\code{event}}{[\verb{\link{GdkEvent}}]  the \code{GdkEventOwnerChange} event }
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{clipboard}}{the \code{\link{GtkClipboard}} on which the signal is emitted}
+\item{\code{event}}{the \code{GdkEventOwnerChange} event }
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/gtk-Clipboards.html}}
+\references{\url{http://library.gnome.org/devel//gtk/gtk-Clipboards.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

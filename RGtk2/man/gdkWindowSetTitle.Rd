@@ -8,8 +8,8 @@ If you haven't explicitly set the icon name for the window
 user-readable strings in GDK/GTK+). \code{title} may not be \code{NULL}.}
 \usage{gdkWindowSetTitle(object, title)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a toplevel \verb{\link{GdkWindow}}}
-\item{\verb{title}}{[character]  title of \code{window}}
+\item{\verb{object}}{a toplevel \code{\link{GdkWindow}}}
+\item{\verb{title}}{title of \code{window}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

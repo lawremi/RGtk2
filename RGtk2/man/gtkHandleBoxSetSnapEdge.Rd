@@ -10,8 +10,8 @@ be chosen so that it stays in the same place on
 the screen when the handlebox is torn off.}
 \usage{gtkHandleBoxSetSnapEdge(object, edge)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkHandleBox}}] a \verb{\link{GtkHandleBox}}}
-\item{\verb{edge}}{[\code{\link{GtkPositionType}}] the snap edge, or -1 to unset the value; in which
+\item{\verb{object}}{a \code{\link{GtkHandleBox}}}
+\item{\verb{edge}}{the snap edge, or -1 to unset the value; in which
 case GTK+ will try to guess an appropriate value
 in the future.}
 }

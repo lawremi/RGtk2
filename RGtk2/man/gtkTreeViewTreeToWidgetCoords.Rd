@@ -11,14 +11,14 @@ to bin_window, please see
 }
 \usage{gtkTreeViewTreeToWidgetCoords(object, tx, ty)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTreeView}}]  a \verb{\link{GtkTreeView}}}
-\item{\verb{tx}}{[integer]  tree X coordinate}
-\item{\verb{ty}}{[integer]  tree Y coordinate}
+\item{\verb{object}}{a \code{\link{GtkTreeView}}}
+\item{\verb{tx}}{tree X coordinate}
+\item{\verb{ty}}{tree Y coordinate}
 }
 \value{
 A list containing the following elements:
-\item{\verb{wx}}{[integer]  return location for X coordinate relative to bin_window}
-\item{\verb{wy}}{[integer]  return location for Y coordinate relative to bin_window}
+\item{\verb{wx}}{return location for X coordinate relative to bin_window}
+\item{\verb{wy}}{return location for Y coordinate relative to bin_window}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -4,10 +4,10 @@
 \description{Calls \code{func} for each key-value pair of \code{settings}.}
 \usage{gtkPrintSettingsForeach(object, func, user.data = NULL)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkPrintSettings}}]  a \verb{\link{GtkPrintSettings}}}
-\item{\verb{func}}{[\verb{\link{GtkPrintSettingsFunc}}]  the function to call}
-\item{\verb{user.data}}{[R object]  user data for \code{func}}
+\item{\verb{object}}{a \code{\link{GtkPrintSettings}}}
+\item{\verb{func}}{(scope call) the function to call}
+\item{\verb{user.data}}{user data for \code{func}}
 }
-\details{  Since  2.10}
+\details{Since 2.10}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

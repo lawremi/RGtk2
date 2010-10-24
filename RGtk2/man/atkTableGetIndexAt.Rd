@@ -4,7 +4,7 @@
 \description{Gets a \verb{integer} representing the index at the specified \code{row} and \code{column}.}
 \usage{atkTableGetIndexAt(object, row, column)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{AtkTable}}]  a GObject instance that implements AtkTableIface}
+\item{\verb{object}}{[\code{\link{AtkTable}}]  a GObject instance that implements AtkTableIface}
 \item{\verb{row}}{[integer]  a \verb{integer} representing a row in \code{table}}
 \item{\verb{column}}{[integer]  a \verb{integer} representing a column in \code{table}}
 }

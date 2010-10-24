@@ -4,8 +4,8 @@
 \description{Sets a non default parent window for \code{widget}.}
 \usage{gtkWidgetSetParentWindow(object, parent.window)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}.}
-\item{\verb{parent.window}}{[\verb{\link{GdkWindow}}]  the new parent window.}
+\item{\verb{object}}{a \code{\link{GtkWidget}}.}
+\item{\verb{parent.window}}{the new parent window.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

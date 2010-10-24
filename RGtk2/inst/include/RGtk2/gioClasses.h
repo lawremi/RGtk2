@@ -151,6 +151,10 @@ S_gthreaded_socket_service_class_init(GThreadedSocketServiceClass * c, SEXP e);
 void
 S_giostream_class_init(GIOStreamClass * c, SEXP e);
 #endif 
+#if GIO_CHECK_VERSION(2, 22, 0)
+void
+S_ginet_socket_address_class_init(GInetSocketAddressClass * c, SEXP e);
+#endif 
 #if GIO_CHECK_VERSION(2, 16, 0)
 void
 S_gapp_info_class_init(GAppInfoIface * c, SEXP e);

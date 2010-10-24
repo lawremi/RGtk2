@@ -1,10 +1,12 @@
 \alias{pangoCairoFontMapCreateContext}
 \name{pangoCairoFontMapCreateContext}
 \title{pangoCairoFontMapCreateContext}
-\description{Create a \verb{\link{PangoContext}} for the given fontmap.}
+\description{
+Create a \code{\link{PangoContext}} for the given fontmap.
+\strong{WARNING: \code{pango_cairo_font_map_create_context} has been deprecated since version 1.22 and should not be used in newly-written code. Use \code{\link{pangoFontMapCreateContext}} instead.}
+}
 \usage{pangoCairoFontMapCreateContext(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{PangoCairoFontMap}}]  a \verb{\link{PangoCairoFontMap}}}}
-\details{  Since  1.10}
-\value{[\verb{\link{PangoContext}}] .}
+\arguments{\item{\verb{object}}{a \code{\link{PangoCairoFontMap}}}}
+\details{Since 1.10}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

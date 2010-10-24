@@ -10,13 +10,13 @@ screen for purposes of this function is reduced by a margin of size
 \code{within.margin}.}
 \usage{gtkTextViewScrollToMark(object, mark, within.margin, use.align = FALSE, xalign = 0.5, yalign = 0.5)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTextView}}]  a \verb{\link{GtkTextView}}}
-\item{\verb{mark}}{[\verb{\link{GtkTextMark}}]  a \verb{\link{GtkTextMark}}}
-\item{\verb{within.margin}}{[numeric]  margin as a [0.0,0.5) fraction of screen size}
-\item{\verb{use.align}}{[logical]  whether to use alignment arguments (if \code{FALSE}, just 
+\item{\verb{object}}{a \code{\link{GtkTextView}}}
+\item{\verb{mark}}{a \code{\link{GtkTextMark}}}
+\item{\verb{within.margin}}{margin as a [0.0,0.5) fraction of screen size}
+\item{\verb{use.align}}{whether to use alignment arguments (if \code{FALSE}, just 
    get the mark onscreen)}
-\item{\verb{xalign}}{[numeric]  horizontal alignment of mark within visible area}
-\item{\verb{yalign}}{[numeric]  vertical alignment of mark within visible area}
+\item{\verb{xalign}}{horizontal alignment of mark within visible area}
+\item{\verb{yalign}}{vertical alignment of mark within visible area}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

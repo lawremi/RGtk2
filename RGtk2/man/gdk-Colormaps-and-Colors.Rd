@@ -34,25 +34,25 @@ but even for other visual types, a colormap object
 is required in some circumstances.
   
 There are a couple of special colormaps that can
-be retrieved. The system colormap (retrieved 
+be retrieved. The system colormap (retrieved
 with \code{\link{gdkColormapGetSystem}}) is the default
 colormap of the system. If you are using GdkRGB,
 there is another colormap that is important - the
 colormap in which GdkRGB works, retrieved with
-\code{\link{gdkRgbGetColormap}}. However, when using GdkRGB, 
+\code{\link{gdkRgbGetColormap}}. However, when using GdkRGB,
 it is not generally necessary to allocate colors
 directly.
   
 In previous revisions of this interface, a number
-of functions that take a \verb{\link{GdkColormap}} parameter
+of functions that take a \code{\link{GdkColormap}} parameter
 were replaced with functions whose names began
 with "gdk_colormap_". This process will probably
-be extended somewhat in the future - 
-\code{\link{gdkColorWhite}}, \code{\link{gdkColorBlack}}, and 
+be extended somewhat in the future -
+\code{\link{gdkColorWhite}}, \code{\link{gdkColorBlack}}, and
 \code{\link{gdkColorChange}} will probably become aliases.}
 \section{Structures}{\describe{
 \item{\verb{GdkColor}}{
-The \verb{\link{GdkColor}} structure is used to describe an 
+The \code{\link{GdkColor}} structure is used to describe an
 allocated or unallocated color.
 \strong{\verb{GdkColor} is a \link{transparent-type}.}
 
@@ -71,9 +71,9 @@ allocated or unallocated color.
 The colormap structure contains the following public fields.
 
 \describe{
-\item{\code{size}}{[integer] For pseudo-color colormaps, the number of colors
+\item{\code{size}}{For pseudo-color colormaps, the number of colors
   in the colormap.}
-\item{\code{colors}}{[\verb{\link{GdkColor}}] An list containing the current values in the
+\item{\code{colors}}{An list containing the current values in the
   colormap. This can be used to map from pixel values
   back to RGB values. This is only meaningful for
   pseudo-color colormaps.}
@@ -82,6 +82,6 @@ The colormap structure contains the following public fields.
 }
 }}
 \section{Convenient Construction}{\code{gdkColormap} is the equivalent of \code{\link{gdkColormapNew}}.}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gdk/gdk-Colormaps-and-Colors.html}}
+\references{\url{http://library.gnome.org/devel//gdk/gdk-Colormaps-and-Colors.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

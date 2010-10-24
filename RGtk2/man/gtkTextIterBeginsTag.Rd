@@ -9,8 +9,8 @@ that the \code{\link{gtkTextIterBeginsTag}} returns \code{TRUE} if \code{iter} i
 \emph{within} a tagged range.}
 \usage{gtkTextIterBeginsTag(object, tag = NULL)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTextIter}}]  an iterator}
-\item{\verb{tag}}{[\verb{\link{GtkTextTag}}]  a \verb{\link{GtkTextTag}}, or \code{NULL}}
+\item{\verb{object}}{an iterator}
+\item{\verb{tag}}{ a \code{\link{GtkTextTag}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \value{[logical]  whether \code{iter} is the start of a range tagged with \code{tag}}
 \author{Derived by RGtkGen from GTK+ documentation}

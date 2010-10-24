@@ -24,6 +24,14 @@
 \code{\link{gtkRangeGetLowerStepperSensitivity}(object)}\cr
 \code{\link{gtkRangeSetUpperStepperSensitivity}(object, sensitivity)}\cr
 \code{\link{gtkRangeGetUpperStepperSensitivity}(object)}\cr
+\code{\link{gtkRangeGetFlippable}(object)}\cr
+\code{\link{gtkRangeSetFlippable}(object, flippable)}\cr
+\code{\link{gtkRangeGetMinSliderSize}(object)}\cr
+\code{\link{gtkRangeGetRangeRect}(object)}\cr
+\code{\link{gtkRangeGetSliderRange}(object)}\cr
+\code{\link{gtkRangeGetSliderSizeFixed}(object)}\cr
+\code{\link{gtkRangeSetMinSliderSize}(object, min.size)}\cr
+\code{\link{gtkRangeSetSliderSizeFixed}(object, size.fixed)}\cr
 
 }
 \section{Hierarchy}{\preformatted{GObject
@@ -34,13 +42,13 @@
                            +----GtkScale
                            +----GtkScrollbar}}
 \section{Interfaces}{GtkRange implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{\verb{\link{GtkRange}} is the common base class for widgets which visualize an
-adjustment, e.g scales or scrollbars. 
+ AtkImplementorIface,  \code{\link{GtkBuildable}} and  \code{\link{GtkOrientable}}.}
+\section{Detailed Description}{\code{\link{GtkRange}} is the common base class for widgets which visualize an
+adjustment, e.g scales or scrollbars.
   
-Apart from signals for monitoring the parameters of the adjustment, 
+Apart from signals for monitoring the parameters of the adjustment,
 GtkRange provides properties and methods for influencing the sensitivity
-of the "steppers". It also provides properties and methods for setting a 
+of the "steppers". It also provides properties and methods for setting a
 "fill level" on range widgets. See \code{\link{gtkRangeSetFillLevel}}.}
 \section{Structures}{\describe{\item{\verb{GtkRange}}{
 \emph{undocumented
@@ -65,9 +73,10 @@ at the end of range widgets.
 }
 
 \describe{
-\item{\code{range}}{[\verb{\link{GtkRange}}] the object which received the signal.}
-\item{\code{arg1}}{[numeric] }
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{range}}{the object which received the signal.}
+\item{\code{arg1}}{\emph{undocumented
+}}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -83,19 +92,18 @@ reached.
   
 The value parameter is unrounded.  An application that overrides
 the ::change-value signal is responsible for clamping the value to
-the desired number of decimal digits; the default GTK+ handler 
+the desired number of decimal digits; the default GTK+ handler
 clamps the value based on \code{range->round.digits}.
   
 It is not possible to use delayed update policies in an overridden
-::change-value handler.  
-
-  Since  2.6
+::change-value handler.
+  Since 2.6
 
 \describe{
-\item{\code{range}}{[\verb{\link{GtkRange}}]  the range that received the signal}
-\item{\code{scroll}}{[\code{\link{GtkScrollType}}]  the type of scroll action that was performed}
-\item{\code{value}}{[numeric]  the new value resulting from the scroll action}
-\item{\code{returns}}{[R object] \code{TRUE} to prevent other handlers from being invoked for the
+\item{\code{range}}{the range that received the signal}
+\item{\code{scroll}}{the type of scroll action that was performed}
+\item{\code{value}}{the new value resulting from the scroll action}
+\item{\code{returns}}{\code{TRUE} to prevent other handlers from being invoked for the
 signal, \code{FALSE} to propagate the signal further}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
@@ -103,29 +111,29 @@ signal, \code{FALSE} to propagate the signal further}
 
 }
 \item{\code{move-slider(range, step, user.data)}}{
-Virtual function that moves the slider. Used for keybindings.  
+Virtual function that moves the slider. Used for keybindings.
 
 \describe{
-\item{\code{range}}{[\verb{\link{GtkRange}}]  the \verb{\link{GtkRange}}}
-\item{\code{step}}{[\code{\link{GtkScrollType}}]  how to move the slider}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{range}}{the \code{\link{GtkRange}}}
+\item{\code{step}}{how to move the slider}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
 \item{\code{value-changed(range, user.data)}}{
-Emitted when the range value changes.  
+Emitted when the range value changes.
 
 \describe{
-\item{\code{range}}{[\verb{\link{GtkRange}}]  the \verb{\link{GtkRange}}}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{range}}{the \code{\link{GtkRange}}}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
 }}
 \section{Properties}{\describe{
-\item{\verb{adjustment} [\verb{\link{GtkAdjustment}} : *        : Read / Write / Construct]}{
+\item{\verb{adjustment} [\code{\link{GtkAdjustment}} : *        : Read / Write / Construct]}{
 
 The GtkAdjustment that contains the current value of this range object.
 
@@ -133,9 +141,8 @@ The GtkAdjustment that contains the current value of this range object.
 \item{\verb{fill-level} [numeric : Read / Write]}{
 
 The fill level (e.g. prebuffering of a network stream).
-See \code{\link{gtkRangeSetFillLevel}}.  
-
-  Default value: 1.79769e+308  Since  2.12
+See \code{\link{gtkRangeSetFillLevel}}.
+  Default value: 1.79769e+308  Since 2.12
 
 }
 \item{\verb{inverted} [logical : Read / Write]}{
@@ -152,18 +159,16 @@ The sensitivity policy for the stepper that points to the adjustment's lower sid
 
 The restrict-to-fill-level property controls whether slider
 movement is restricted to an upper boundary set by the
-fill level. See \code{\link{gtkRangeSetRestrictToFillLevel}}.  
-
-  Default value: TRUE  Since  2.12
+fill level. See \code{\link{gtkRangeSetRestrictToFillLevel}}.
+  Default value: TRUE  Since 2.12
 
 }
 \item{\verb{show-fill-level} [logical : Read / Write]}{
 
 The show-fill-level property controls whether fill level indicator
 graphics are displayed on the trough. See
-\code{\link{gtkRangeSetShowFillLevel}}.  
-
-  Default value: FALSE  Since  2.12
+\code{\link{gtkRangeSetShowFillLevel}}.
+  Default value: FALSE  Since 2.12
 
 }
 \item{\verb{update-policy} [\code{\link{GtkUpdateType}} : Read / Write]}{
@@ -193,6 +198,12 @@ How far in the x direction to move the arrow when the button is depressed.  Defa
 How far in the y direction to move the arrow when the button is depressed.  Default value: 0
 
 }
+\item{\verb{arrow-scaling} [numeric : Read]}{
+
+The arrow size proportion relative to the scroll button size.
+  Allowed values: [0,1]  Default value: 0.5  Since 2.14
+
+}
 \item{\verb{slider-width} [integer : Read]}{
 
 Width of scrollbar or scale thumb.  Allowed values: >= 0  Default value: 14
@@ -208,8 +219,7 @@ Length of step buttons at ends.  Allowed values: >= 0  Default value: 14
 The spacing between the stepper buttons and thumb. Note that
 setting this value to anything > 0 will automatically set the
 trough-under-steppers style property to \code{TRUE} as well. Also,
-stepper-spacing won't have any effect if there are no steppers.  
-
+stepper-spacing won't have any effect if there are no steppers.
   Allowed values: >= 0  Default value: 0
 
 }
@@ -220,10 +230,9 @@ Spacing between thumb/steppers and outer trough bevel.  Allowed values: >= 0  De
 }
 \item{\verb{trough-side-details} [logical : Read]}{
 
-When \code{TRUE}, the parts of the trough on the two sides of the 
-slider are drawn with different details.  
-
-  Default value: FALSE  Since  2.10
+When \code{TRUE}, the parts of the trough on the two sides of the
+slider are drawn with different details.
+  Default value: FALSE  Since 2.10
 
 }
 \item{\verb{trough-under-steppers} [logical : Read]}{
@@ -231,12 +240,11 @@ slider are drawn with different details.
 Whether to draw the trough across the full length of the range or
 to exclude the steppers and their spacing. Note that setting the
 \verb{"stepper-spacing"} style property to any value > 0 will
-automatically enable trough-under-steppers too.  
-
-  Default value: TRUE  Since  2.10
+automatically enable trough-under-steppers too.
+  Default value: TRUE  Since 2.10
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkRange.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkRange.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

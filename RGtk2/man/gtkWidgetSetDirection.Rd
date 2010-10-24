@@ -12,10 +12,10 @@ where the containers are arranged in an order that is explicitely
 visual rather than logical (such as buttons for text justification).}
 \usage{gtkWidgetSetDirection(object, dir)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
-\item{\verb{dir}}{[\code{\link{GtkTextDirection}}]     the new direction}
+\item{\verb{object}}{a \code{\link{GtkWidget}}}
+\item{\verb{dir}}{the new direction}
 }
 \details{If the direction is set to \code{GTK_TEXT_DIR_NONE}, then the value
-set by \code{\link{gtkWidgetSetDefaultDirection}} will be used.  }
+set by \code{\link{gtkWidgetSetDefaultDirection}} will be used.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

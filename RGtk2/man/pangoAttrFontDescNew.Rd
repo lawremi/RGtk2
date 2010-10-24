@@ -5,7 +5,7 @@
 allows setting family, style, weight, variant, stretch,
 and size simultaneously.}
 \usage{pangoAttrFontDescNew(desc)}
-\arguments{\item{\verb{desc}}{[\verb{\link{PangoFontDescription}}]  the font description}}
-\value{[\verb{\link{PangoAttribute}}]   the newly allocated \verb{\link{PangoAttribute}}.}
+\arguments{\item{\verb{desc}}{the font description}}
+\value{[\code{\link{PangoAttribute}}]   the newly allocated \code{\link{PangoAttribute}},}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

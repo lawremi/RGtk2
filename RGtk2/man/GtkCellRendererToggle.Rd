@@ -9,6 +9,8 @@
 \code{\link{gtkCellRendererToggleSetRadio}(object, radio)}\cr
 \code{\link{gtkCellRendererToggleGetActive}(object)}\cr
 \code{\link{gtkCellRendererToggleSetActive}(object, setting)}\cr
+\code{\link{gtkCellRendererToggleGetActivatable}(object)}\cr
+\code{\link{gtkCellRendererToggleSetActivatable}(object, setting)}\cr
 \code{gtkCellRendererToggle()}
 }
 \section{Hierarchy}{\preformatted{GObject
@@ -16,9 +18,9 @@
          +----GtkObject
                +----GtkCellRenderer
                      +----GtkCellRendererToggle}}
-\section{Detailed Description}{\verb{\link{GtkCellRendererToggle}} renders a toggle button in a cell. The 
-button is drawn as a radio- or checkbutton, depending on the 
-radio 
+\section{Detailed Description}{\code{\link{GtkCellRendererToggle}} renders a toggle button in a cell. The
+button is drawn as a radio- or checkbutton, depending on the
+radio
 property. When activated, it emits the toggled signal.}
 \section{Structures}{\describe{\item{\verb{GtkCellRendererToggle}}{
 \emph{undocumented
@@ -27,13 +29,13 @@ property. When activated, it emits the toggled signal.}
 }}}
 \section{Convenient Construction}{\code{gtkCellRendererToggle} is the equivalent of \code{\link{gtkCellRendererToggleNew}}.}
 \section{Signals}{\describe{\item{\code{toggled(cell.renderer, path, user.data)}}{
-The ::toggled signal is emitted when the cell is toggled.  
+The ::toggled signal is emitted when the cell is toggled.
 
 \describe{
-\item{\code{cell.renderer}}{[\verb{\link{GtkCellRendererToggle}}]  the object which received the signal}
-\item{\code{path}}{[character]  string representation of \verb{\link{GtkTreePath}} describing the 
+\item{\code{cell.renderer}}{the object which received the signal}
+\item{\code{path}}{string representation of \code{\link{GtkTreePath}} describing the
        event location}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -65,6 +67,6 @@ Draw the toggle button as a radio button.  Default value: FALSE
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkCellRendererToggle.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkCellRendererToggle.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

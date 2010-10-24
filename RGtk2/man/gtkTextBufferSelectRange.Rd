@@ -10,10 +10,10 @@ to be recalculated. This function moves them as a unit, which can
 be optimized.}
 \usage{gtkTextBufferSelectRange(object, ins, bound)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTextBuffer}}]  a \verb{\link{GtkTextBuffer}}}
-\item{\verb{ins}}{[\verb{\link{GtkTextIter}}]  where to put the "insert" mark}
-\item{\verb{bound}}{[\verb{\link{GtkTextIter}}]  where to put the "selection_bound" mark}
+\item{\verb{object}}{a \code{\link{GtkTextBuffer}}}
+\item{\verb{ins}}{where to put the "insert" mark}
+\item{\verb{bound}}{where to put the "selection_bound" mark}
 }
-\details{  Since  2.4}
+\details{Since 2.4}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

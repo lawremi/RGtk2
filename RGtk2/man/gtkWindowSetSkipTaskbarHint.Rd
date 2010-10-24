@@ -5,9 +5,9 @@
 the window in the task bar. This function sets this hint.}
 \usage{gtkWindowSetSkipTaskbarHint(object, setting)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}} }
-\item{\verb{setting}}{[logical] \code{TRUE} to keep this window from appearing in the task bar}
+\item{\verb{object}}{a \code{\link{GtkWindow}} }
+\item{\verb{setting}}{\code{TRUE} to keep this window from appearing in the task bar}
 }
-\details{  Since  2.2}
+\details{Since 2.2}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

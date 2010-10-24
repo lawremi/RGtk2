@@ -17,9 +17,9 @@
                                        +----GtkScaleButton
                                              +----GtkVolumeButton}}
 \section{Interfaces}{GtkVolumeButton implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{\verb{\link{GtkVolumeButton}} is a subclass of \verb{\link{GtkScaleButton}} that has
-been tailored for use as a volume control widget with suitable 
+ AtkImplementorIface,  \code{\link{GtkBuildable}},  \code{\link{GtkActivatable}} and  \code{\link{GtkOrientable}}.}
+\section{Detailed Description}{\code{\link{GtkVolumeButton}} is a subclass of \code{\link{GtkScaleButton}} that has
+been tailored for use as a volume control widget with suitable
 icons, tooltips and accessible labels.}
 \section{Structures}{\describe{\item{\verb{GtkVolumeButton}}{
 \emph{undocumented
@@ -27,6 +27,6 @@ icons, tooltips and accessible labels.}
 
 }}}
 \section{Convenient Construction}{\code{gtkVolumeButton} is the equivalent of \code{\link{gtkVolumeButtonNew}}.}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkVolumeButton.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkVolumeButton.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

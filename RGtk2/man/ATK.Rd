@@ -11,7 +11,7 @@ activate/interact with,}
 the screen.}
 \item{\link{AtkDocument}}{The ATK interface which represents the toplevel container for document content.}
 \item{\link{AtkEditableText}}{The ATK interface implemented by components containing user-editable text content.}
-\item{\link{AtkGObjectAccessible}}{This object class is derived from AtkObject and can be used as a basis 
+\item{\link{AtkGObjectAccessible}}{This object class is derived from AtkObject and can be used as a basis
 implementing accessible objects.}
 \item{\link{AtkHyperlink}}{An ATK object which encapsulates a link or set of links in a hypertext document.}
 \item{\link{AtkHypertext}}{The ATK interface which provides standard mechanism for manipulating hyperlinks.}
@@ -22,7 +22,7 @@ content on-screen.}
 \item{\link{AtkNoOpObject}}{An AtkObject which purports to implement all ATK interfaces.}
 \item{\link{AtkNoOpObjectFactory}}{The AtkObjectFactory which creates an AtkNoOpObject.}
 \item{\link{AtkObject}}{The base object class for the Accessibility Toolkit API.}
-\item{\link{AtkObjectFactory}}{The base object class for a factory used to create accessible objects for 
+\item{\link{AtkObjectFactory}}{The base object class for a factory used to create accessible objects for
 objects of a specific GType.}
 \item{\link{AtkRegistry}}{An object used to store the GType of the factories used to create an accessible
 object for an object of a particular GType.}
@@ -32,7 +32,7 @@ other objects.}
 \item{\link{AtkSelection}}{The ATK interface implemented by container objects whose    children
 can be selected.}
 \item{\link{atk-AtkState}}{An AtkState describes a component's particular state.}
-\item{\link{atk-AtkStateSet}}{An AtkStateSet determines a component's state set.}
+\item{\link{AtkStateSet}}{An AtkStateSet determines a component's state set.}
 \item{\link{AtkStreamableContent}}{The ATK interface which provides access to streamable content.}
 \item{\link{AtkTable}}{The ATK interface implemented for UI components which contain tabular or
 row/column information.}
@@ -42,6 +42,6 @@ row/column information.}
 select a value from a bounded range of values.}
 }
 }
-\references{\url{http://developer.gnome.org/doc/API/2.0/atk}}
+\references{\url{http://library.gnome.org/devel//atk}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{interface}

@@ -8,8 +8,8 @@ column doesn't actually affect the "fixed_width" property of the widget, just
 the actual size when displayed.}
 \usage{gtkTreeViewColumnSetFixedWidth(object, fixed.width)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTreeViewColumn}}]  A \verb{\link{GtkTreeViewColumn}}.}
-\item{\verb{fixed.width}}{[integer]  The size to set \code{tree.column} to. Must be greater than 0.}
+\item{\verb{object}}{A \code{\link{GtkTreeViewColumn}}.}
+\item{\verb{fixed.width}}{The size to set \code{tree.column} to. Must be greater than 0.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

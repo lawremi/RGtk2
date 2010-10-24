@@ -9,10 +9,10 @@ a carriage return/newline sequence. For some Unicode characters,
 the equivalent of say the letter "a" with an accent mark will be
 represented as two characters, first the letter then a "combining
 mark" that causes the accent to be rendered; so the cursor can't go
-between those two characters. See also the \verb{\link{PangoLogAttr}} structure and
+between those two characters. See also the \code{\link{PangoLogAttr}} structure and
 \code{\link{pangoBreak}} function.}
 \usage{gtkTextIterForwardCursorPosition(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkTextIter}}]  a \verb{\link{GtkTextIter}}}}
+\arguments{\item{\verb{object}}{a \code{\link{GtkTextIter}}}}
 \value{[logical] \code{TRUE} if we moved and the new position is dereferenceable}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

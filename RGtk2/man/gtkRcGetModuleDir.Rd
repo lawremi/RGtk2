@@ -6,6 +6,6 @@ For full information about the search for theme engines,
 see the docs for \env{GTK_PATH} in
 .}
 \usage{gtkRcGetModuleDir()}
-\value{[character]  the directory}
+\value{[character]  the directory.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

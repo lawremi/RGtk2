@@ -4,9 +4,9 @@
 \description{Sets the desired maximum width in characters of \code{label} to \code{n.chars}.}
 \usage{gtkLabelSetMaxWidthChars(object, n.chars)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkLabel}}]  a \verb{\link{GtkLabel}}}
-\item{\verb{n.chars}}{[integer]  the new desired maximum width, in characters.}
+\item{\verb{object}}{a \code{\link{GtkLabel}}}
+\item{\verb{n.chars}}{the new desired maximum width, in characters.}
 }
-\details{  Since  2.6}
+\details{Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

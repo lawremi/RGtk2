@@ -7,13 +7,12 @@ Loads a font for use on \code{display}.
 }
 \usage{gdkFontLoadForDisplay(display, font.name)}
 \arguments{
-\item{\verb{display}}{[\verb{\link{GdkDisplay}}]  a \verb{\link{GdkDisplay}}}
-\item{\verb{font.name}}{[character]  a XLFD describing the font to load.}
+\item{\verb{display}}{a \code{\link{GdkDisplay}}}
+\item{\verb{font.name}}{a XLFD describing the font to load.}
 }
 \details{The font may be newly loaded or looked up the font in a cache. 
-You should make no assumptions about the initial reference count.  
-
-  Since  2.2}
-\value{[\verb{\link{GdkFont}}]  a \verb{\link{GdkFont}}, or \code{NULL} if the font could not be loaded.}
+You should make no assumptions about the initial reference count.
+  Since 2.2}
+\value{[\code{\link{GdkFont}}] a \code{\link{GdkFont}}, or \code{NULL} if the font could not be loaded.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

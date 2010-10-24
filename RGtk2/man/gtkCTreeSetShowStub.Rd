@@ -7,8 +7,10 @@
 }
 \usage{gtkCTreeSetShowStub(object, show.stub)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkCTree}}] }
-\item{\verb{show.stub}}{[logical] }
+\item{\verb{object}}{\emph{undocumented
+}}
+\item{\verb{show.stub}}{\emph{undocumented
+}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

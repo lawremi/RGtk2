@@ -6,8 +6,8 @@ is set on the layout with \code{\link{pangoLayoutSetWidth}}.
 To turn off wrapping, set the width to -1.}
 \usage{pangoLayoutSetWrap(object, wrap)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{PangoLayout}}]  a \verb{\link{PangoLayout}}}
-\item{\verb{wrap}}{[\code{\link{PangoWrapMode}}]  the wrap mode}
+\item{\verb{object}}{a \code{\link{PangoLayout}}}
+\item{\verb{wrap}}{the wrap mode}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

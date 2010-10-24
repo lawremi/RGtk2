@@ -12,13 +12,13 @@ returned rectangle is equivalent to the \code{cell.area} passed to
 realized.}
 \usage{gtkTreeViewGetCellArea(object, path, column)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTreeView}}]  a \verb{\link{GtkTreeView}}}
-\item{\verb{path}}{[\verb{\link{GtkTreePath}}]  a \verb{\link{GtkTreePath}} for the row, or \code{NULL} to get only horizontal coordinates}
-\item{\verb{column}}{[\verb{\link{GtkTreeViewColumn}}]  a \verb{\link{GtkTreeViewColumn}} for the column, or \code{NULL} to get only vertical coordinates}
+\item{\verb{object}}{a \code{\link{GtkTreeView}}}
+\item{\verb{path}}{ a \code{\link{GtkTreePath}} for the row, or \code{NULL} to get only horizontal coordinates. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{column}}{ a \code{\link{GtkTreeViewColumn}} for the column, or \code{NULL} to get only vertical coordinates. \emph{[  \acronym{allow-none}  ]}}
 }
 \value{
 A list containing the following elements:
-\item{\verb{rect}}{[\verb{\link{GdkRectangle}}]  rectangle to fill with cell rect}
+\item{\verb{rect}}{rectangle to fill with cell rect}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

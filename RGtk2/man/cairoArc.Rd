@@ -8,7 +8,7 @@ less than \code{angle1} it will be progressively increased by 2*M_PI
 until it is greater than \code{angle1}.}
 \usage{cairoArc(cr, xc, yc, radius, angle1, angle2)}
 \arguments{
-\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}
+\item{\verb{cr}}{[\code{\link{Cairo}}]  a cairo context}
 \item{\verb{xc}}{[numeric]  X position of the center of the arc}
 \item{\verb{yc}}{[numeric]  Y position of the center of the arc}
 \item{\verb{radius}}{[numeric]  the radius of the arc}
@@ -41,7 +41,7 @@ in the box given by \code{x}, \code{y}, \code{width}, \code{height}:
   \preformatted{
 cr$save()
 cr$translate(x + width / 2, y + height / 2)
-cr$scale(1 / (height / 2), 1 / (width / 2))
+cr$scale(width / 2, height / 2)
 cr$arc(0, 0, 1, 0, 2 * pi)
 cr$restore()
 }  }

@@ -15,22 +15,23 @@
                            +----GtkScrollbar
                                  +----GtkHScrollbar}}
 \section{Interfaces}{GtkHScrollbar implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{The \verb{\link{GtkHScrollbar}} widget is a widget arranged horizontally creating a
-scrollbar. See \verb{\link{GtkScrollbar}} for details on
-scrollbars. \verb{\link{GtkAdjustment}} pointers may be added to handle the
+ AtkImplementorIface,  \code{\link{GtkBuildable}} and  \code{\link{GtkOrientable}}.}
+\section{Detailed Description}{The \code{\link{GtkHScrollbar}} widget is a widget arranged horizontally creating a
+scrollbar. See \code{\link{GtkScrollbar}} for details on
+scrollbars. \code{\link{GtkAdjustment}} pointers may be added to handle the
 adjustment of the scrollbar or it may be left \code{NULL} in which case one
-will be created for you. See \verb{\link{GtkAdjustment}} for details.}
+will be created for you. See \code{\link{GtkScrollbar}} for a description of what the
+fields in an adjustment represent for a scrollbar.}
 \section{Structures}{\describe{\item{\verb{GtkHScrollbar}}{
-The \verb{\link{GtkHScrollbar}} struct contains private data and should be accessed
+The \code{\link{GtkHScrollbar}} struct contains private data and should be accessed
 using the functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkHScrollbar} is the equivalent of \code{\link{gtkHScrollbarNew}}.}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkHScrollbar.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkHScrollbar.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
-\verb{\link{GtkScrollbar}}
-\verb{\link{GtkScrolledWindow}}
+\code{\link{GtkScrollbar}}
+\code{\link{GtkScrolledWindow}}
 }
 \keyword{internal}

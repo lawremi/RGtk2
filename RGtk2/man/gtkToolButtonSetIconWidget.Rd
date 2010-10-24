@@ -6,9 +6,9 @@
 "stock_id" property is also \code{NULL}, \code{button} will not have an icon.}
 \usage{gtkToolButtonSetIconWidget(object, icon.widget = NULL)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkToolButton}}]  a \verb{\link{GtkToolButton}}}
-\item{\verb{icon.widget}}{[\verb{\link{GtkWidget}}]  the widget used as icon, or \code{NULL}}
+\item{\verb{object}}{a \code{\link{GtkToolButton}}}
+\item{\verb{icon.widget}}{ the widget used as icon, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
-\details{  Since  2.4}
+\details{Since 2.4}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

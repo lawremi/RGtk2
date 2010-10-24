@@ -8,8 +8,8 @@ ascening sort or GTK_SORT_DESCENDING for descending sort.
 }
 \usage{gtkCListSetSortType(object, sort.type)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkCList}}] The \verb{\link{GtkCList}} to affect.}
-\item{\verb{sort.type}}{[\code{\link{GtkSortType}}] the \code{\link{GtkSortType}} to use}
+\item{\verb{object}}{The \code{\link{GtkCList}} to affect.}
+\item{\verb{sort.type}}{the \code{\link{GtkSortType}} to use}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

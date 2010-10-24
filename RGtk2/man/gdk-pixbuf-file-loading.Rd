@@ -7,6 +7,8 @@
 \code{\link{gdkPixbufNewFromFileAtSize}(filename, width, height, .errwarn = TRUE)}\cr
 \code{\link{gdkPixbufNewFromFileAtScale}(filename, width, height, preserve.aspect.ratio, .errwarn = TRUE)}\cr
 \code{\link{gdkPixbufGetFileInfo}(filename)}\cr
+\code{\link{gdkPixbufNewFromStream}(stream, cancellable = NULL, .errwarn = TRUE)}\cr
+\code{\link{gdkPixbufNewFromStreamAtScale}(stream, width = -1, height = -1, preserve.aspect.ratio = 1, cancellable = NULL, .errwarn = TRUE)}\cr
 }
 \section{Detailed Description}{    The \command{gdk-pixbuf} library provides a simple mechanism for loading
     an image from a file in synchronous fashion.  This means that the
@@ -17,9 +19,9 @@
     This interface can be used by applications in which blocking is
     acceptable while an image is being loaded.  It can also be used to
     load small images in general.  Applications that need progressive
-    loading can use the \verb{\link{GdkPixbufLoader}} functionality instead.
+    loading can use the \code{\link{GdkPixbufLoader}} functionality instead.
   }
-\references{\url{http://developer.gnome.org/doc/API/2.0/gdk-pixbuf/gdk-pixbuf-file-loading.html}}
+\references{\url{http://library.gnome.org/devel//gdk-pixbuf/gdk-pixbuf-file-loading.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
-\seealso{\verb{\link{GdkPixbufLoader}}}
+\seealso{\code{\link{GdkPixbufLoader}}}
 \keyword{internal}

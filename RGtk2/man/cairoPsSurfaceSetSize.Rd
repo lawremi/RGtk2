@@ -5,7 +5,7 @@
 subsequent) pages.}
 \usage{cairoPsSurfaceSetSize(surface, width.in.points, height.in.points)}
 \arguments{
-\item{\verb{surface}}{[\verb{\link{CairoSurface}}]  a PostScript \verb{\link{CairoSurface}}}
+\item{\verb{surface}}{[\code{\link{CairoSurface}}]  a PostScript \code{\link{CairoSurface}}}
 \item{\verb{width.in.points}}{[numeric]  new surface width, in points (1 point == 1/72.0 inch)}
 \item{\verb{height.in.points}}{[numeric]  new surface height, in points (1 point == 1/72.0 inch)}
 }
@@ -14,7 +14,6 @@ have been performed on the current page. The simplest way to do
 this is to call this function immediately after creating the
 surface or immediately after completing a page with either
 \code{\link{cairoShowPage}} or \code{\link{cairoCopyPage}}.  
-
-  Since  1.2}
+  Since 1.2}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

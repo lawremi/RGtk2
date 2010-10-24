@@ -7,11 +7,11 @@ Sets the vertical and horizontal shift of the specified cell.
 }
 \usage{gtkCListSetShift(object, row, column, vertical, horizontal)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkCList}}] The \verb{\link{GtkCList}} to affect.}
-\item{\verb{row}}{[integer] The row of the cell.}
-\item{\verb{column}}{[integer] The column of the cell.}
-\item{\verb{vertical}}{[integer] The value to set for the vertical shift.}
-\item{\verb{horizontal}}{[integer] The value to set for the vertical shift.}
+\item{\verb{object}}{The \code{\link{GtkCList}} to affect.}
+\item{\verb{row}}{The row of the cell.}
+\item{\verb{column}}{The column of the cell.}
+\item{\verb{vertical}}{The value to set for the vertical shift.}
+\item{\verb{horizontal}}{The value to set for the vertical shift.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

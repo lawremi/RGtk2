@@ -7,7 +7,7 @@ However this function is potentially more efficient than
 \code{\link{gtkTextIterGetLineOffset}} because it doesn't have to compute
 the offset, it just has to see whether it's 0.}
 \usage{gtkTextIterStartsLine(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkTextIter}}]  an iterator}}
+\arguments{\item{\verb{object}}{an iterator}}
 \value{[logical]  whether \code{iter} begins a line}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -4,8 +4,8 @@
 \description{Computes a bounding box in user coordinates covering the area inside the
 current clip.}
 \usage{cairoClipExtents(cr)}
-\arguments{\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}}
-\details{  Since  1.4}
+\arguments{\item{\verb{cr}}{[\code{\link{Cairo}}]  a cairo context}}
+\details{  Since 1.4}
 \value{
 A list containing the following elements:
 \item{\verb{x1}}{[numeric]  left of the resulting extents}

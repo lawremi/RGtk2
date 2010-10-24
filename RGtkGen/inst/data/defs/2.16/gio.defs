@@ -125,6 +125,7 @@
   (in-module "gio")
   (c-name "g_emblem_new_with_origin")
   (return-type "GEmblem*")
+  (is-constructor-of "GEmblem")
   (parameters
     '("GIcon*" "icon")
     '("GEmblemOrigin" "origin")
@@ -318,5 +319,3 @@
   (return-type "GFile*")
   (since "2.18.0")
 )
-
-

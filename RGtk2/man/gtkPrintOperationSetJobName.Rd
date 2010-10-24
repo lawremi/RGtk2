@@ -5,12 +5,11 @@
 the job (e.g. in monitoring applications like eggcups). }
 \usage{gtkPrintOperationSetJobName(object, job.name)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkPrintOperation}}]  a \verb{\link{GtkPrintOperation}}}
-\item{\verb{job.name}}{[character]  a string that identifies the print job}
+\item{\verb{object}}{a \code{\link{GtkPrintOperation}}}
+\item{\verb{job.name}}{a string that identifies the print job}
 }
 \details{If you don't set a job name, GTK+ picks a default one by 
-numbering successive print jobs.  
-
-  Since  2.10}
+numbering successive print jobs.
+  Since 2.10}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

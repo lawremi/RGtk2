@@ -1,16 +1,11 @@
 \alias{gtkWidgetIsSensitive}
 \name{gtkWidgetIsSensitive}
 \title{gtkWidgetIsSensitive}
-\description{Reports whether the widget is sensitive.}
-\usage{
-gtkWidgetIsSensitive(wid)
-}
-\arguments{
-\item{wid}{The widget to check for sensitivity.}
-}
-\value{
-boolean indicating whether the widget is sensitive
-}
-\author{Michael Lawrence}
+\description{Returns the widget's effective sensitivity, which means
+it is sensitive itself and also its parent widget is sensntive}
+\usage{gtkWidgetIsSensitive(object)}
+\arguments{\item{\verb{object}}{a \code{\link{GtkWidget}}}}
+\details{Since 2.18}
+\value{[logical] \code{TRUE} if the widget is effectively sensitive}
+\author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}
-\keyword{interface}

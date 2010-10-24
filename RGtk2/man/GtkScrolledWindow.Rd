@@ -29,41 +29,41 @@
                            +----GtkBin
                                  +----GtkScrolledWindow}}
 \section{Interfaces}{GtkScrolledWindow implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{\verb{\link{GtkScrolledWindow}} is a \verb{\link{GtkBin}} subclass: it's a container 
-the accepts a single child widget. \verb{\link{GtkScrolledWindow}} adds scrollbars
-to the child widget and optionally draws a beveled frame around the 
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
+\section{Detailed Description}{\code{\link{GtkScrolledWindow}} is a \code{\link{GtkBin}} subclass: it's a container
+the accepts a single child widget. \code{\link{GtkScrolledWindow}} adds scrollbars
+to the child widget and optionally draws a beveled frame around the
 child widget.
   
 The scrolled window can work in two ways. Some widgets have native
-scrolling support; these widgets have "slots" for \verb{\link{GtkAdjustment}}
-objects. 
-\strong{PLEASE NOTE:} The scrolled window installs \verb{\link{GtkAdjustment}} objects in
+scrolling support; these widgets have "slots" for \code{\link{GtkAdjustment}}
+objects.
+\strong{PLEASE NOTE:} The scrolled window installs \code{\link{GtkAdjustment}} objects in
 the child window's slots using the set_scroll_adjustments_signal,
-found in \verb{\link{GtkWidgetClass}}. (Conceptually, these widgets implement a
+found in \code{\link{GtkWidgetClass}}. (Conceptually, these widgets implement a
 "Scrollable" interface; because GTK+ 1.2 lacked interface support in
 the object system, this interface is hackily implemented as a signal
-in \verb{\link{GtkWidgetClass}}. The GTK+ 2.0 object system would allow a clean
+in \code{\link{GtkWidgetClass}}. The GTK+ 2.0 object system would allow a clean
 implementation, but it wasn't worth breaking the
 API.)
-Widgets with native scroll support include \verb{\link{GtkTreeView}}, \verb{\link{GtkTextView}}, 
-and \verb{\link{GtkLayout}}.
+Widgets with native scroll support include \code{\link{GtkTreeView}}, \code{\link{GtkTextView}},
+and \code{\link{GtkLayout}}.
   
-For widgets that lack native scrolling support, the \verb{\link{GtkViewport}}
+For widgets that lack native scrolling support, the \code{\link{GtkViewport}}
 widget acts as an adaptor class, implementing scrollability for child
-widgets that lack their own scrolling capabilities. Use \verb{\link{GtkViewport}}
-to scroll child widgets such as \verb{\link{GtkTable}}, \verb{\link{GtkBox}}, and so on.
+widgets that lack their own scrolling capabilities. Use \code{\link{GtkViewport}}
+to scroll child widgets such as \code{\link{GtkTable}}, \code{\link{GtkBox}}, and so on.
   
 If a widget has native scrolling abilities, it can be added to the
-\verb{\link{GtkScrolledWindow}} with \code{\link{gtkContainerAdd}}. If a widget does not, you
-must first add the widget to a \verb{\link{GtkViewport}}, then add the \verb{\link{GtkViewport}}
+\code{\link{GtkScrolledWindow}} with \code{\link{gtkContainerAdd}}. If a widget does not, you
+must first add the widget to a \code{\link{GtkViewport}}, then add the \code{\link{GtkViewport}}
 to the scrolled window. The convenience function
 \code{\link{gtkScrolledWindowAddWithViewport}} does exactly this, so you can
 ignore the presence of the viewport.
   
 The position of the scrollbars is controlled by the scroll
-adjustments. See \verb{\link{GtkAdjustment}} for the fields in an adjustment - for
-\verb{\link{GtkScrollbar}}, used by \verb{\link{GtkScrolledWindow}}, the "value" field
+adjustments. See \code{\link{GtkAdjustment}} for the fields in an adjustment - for
+\code{\link{GtkScrollbar}}, used by \code{\link{GtkScrolledWindow}}, the "value" field
 represents the position of the scrollbar, which must be between the
 "lower" field and "upper - page_size." The "page_size" field
 represents the size of the visible scrollable area. The
@@ -71,11 +71,11 @@ represents the size of the visible scrollable area. The
 asks to step down (using the small stepper arrows) or page down (using
 for example the PageDown key).
   
-If a \verb{\link{GtkScrolledWindow}} doesn't behave quite as you would like, or
+If a \code{\link{GtkScrolledWindow}} doesn't behave quite as you would like, or
 doesn't have exactly the right layout, it's very possible to set up
-your own scrolling with \verb{\link{GtkScrollbar}} and for example a \verb{\link{GtkTable}}.}
+your own scrolling with \code{\link{GtkScrollbar}} and for example a \code{\link{GtkTable}}.}
 \section{Structures}{\describe{\item{\verb{GtkScrolledWindow}}{
-There are no public fields in the \verb{\link{GtkScrolledWindow}} struct; it should 
+There are no public fields in the \code{\link{GtkScrolledWindow}} struct; it should
 only be accessed using the functions below.
 
 }}}
@@ -86,9 +86,11 @@ only be accessed using the functions below.
 }
 
 \describe{
-\item{\code{scrolledwindow}}{[\verb{\link{GtkScrolledWindow}}] the object which received the signal.}
-\item{\code{arg1}}{[\code{\link{GtkDirectionType}}] }
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{scrolledwindow}}{\emph{undocumented
+}}
+\item{\code{arg1}}{\emph{undocumented
+}}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -98,17 +100,20 @@ only be accessed using the functions below.
 }
 
 \describe{
-\item{\code{scrolledwindow}}{[\verb{\link{GtkScrolledWindow}}] the object which received the signal.}
-\item{\code{arg1}}{[\code{\link{GtkScrollType}}] }
-\item{\code{arg2}}{[logical] }
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{scrolledwindow}}{\emph{undocumented
+}}
+\item{\code{arg1}}{\emph{undocumented
+}}
+\item{\code{arg2}}{\emph{undocumented
+}}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
 }}
 \section{Properties}{\describe{
-\item{\verb{hadjustment} [\verb{\link{GtkAdjustment}} : *        : Read / Write / Construct]}{
+\item{\verb{hadjustment} [\code{\link{GtkAdjustment}} : *        : Read / Write / Construct]}{
 
 The GtkAdjustment for the horizontal position.
 
@@ -123,7 +128,7 @@ When the horizontal scrollbar is displayed.  Default value: GTK_POLICY_ALWAYS
 Style of bevel around the contents.  Default value: GTK_SHADOW_NONE
 
 }
-\item{\verb{vadjustment} [\verb{\link{GtkAdjustment}} : *        : Read / Write / Construct]}{
+\item{\verb{vadjustment} [\code{\link{GtkAdjustment}} : *        : Read / Write / Construct]}{
 
 The GtkAdjustment for the vertical position.
 
@@ -140,11 +145,10 @@ Where the contents are located with respect to the scrollbars. This property onl
 }
 \item{\verb{window-placement-set} [logical : Read / Write]}{
 
-Whether "window-placement" should be used to determine the location 
+Whether "window-placement" should be used to determine the location
 of the contents with respect to the scrollbars. Otherwise, the 
-"gtk-scrolled-window-placement" setting is used.  
-
-  Default value: FALSE  Since  2.10
+"gtk-scrolled-window-placement" setting is used.
+  Default value: FALSE  Since 2.10
 
 }
 }}
@@ -156,17 +160,16 @@ Number of pixels between the scrollbars and the scrolled window.  Allowed values
 }
 \item{\verb{scrollbars-within-bevel} [logical : Read]}{
 
-Whether to place scrollbars within the scrolled window's bevel.  
-
-  Default value: FALSE  Since  2.12
+Whether to place scrollbars within the scrolled window's bevel.
+  Default value: FALSE  Since 2.12
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkScrolledWindow.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkScrolledWindow.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
-\verb{\link{GtkViewport}}
-\verb{\link{GtkAdjustment}}
-\verb{\link{GtkWidgetClass}}
+\code{\link{GtkViewport}}
+\code{\link{GtkAdjustment}}
+\code{\link{GtkWidgetClass}}
 }
 \keyword{internal}

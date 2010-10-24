@@ -11,9 +11,9 @@ See \code{\link{gdkTextWidth}}.
 }
 \usage{gdkTextMeasure(object, text, text.length = -1)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GdkFont}}]  a \verb{\link{GdkFont}}}
-\item{\verb{text}}{[character]  the text to measure.}
-\item{\verb{text.length}}{[integer]  the length of the text in bytes.}
+\item{\verb{object}}{a \code{\link{GdkFont}}}
+\item{\verb{text}}{the text to measure.}
+\item{\verb{text.length}}{the length of the text in bytes.}
 }
 \value{[integer]  the right bearing of the string in pixels.}
 \author{Derived by RGtkGen from GTK+ documentation}

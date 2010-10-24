@@ -626,6 +626,18 @@
   (since "2.16.0")
 )
 
+(define-function g_app_info_launch_default_for_uri
+  (in-module "gio")
+  (c-name "g_app_info_launch_default_for_uri")
+  (return-type "gboolean")
+  (parameters
+   '("const-char*" "uri")
+   '("GAppLaunchContext*" "launch_context")
+   '("GError**" "error" (out))
+   )
+  (since "2.16.0")
+  )
+
 (define-function app_launch_context_get_type
   (in-module "gio")
   (c-name "g_app_launch_context_get_type")
@@ -1105,6 +1117,7 @@
 (define-function buffered_input_stream_new_sized
   (in-module "gio")
   (c-name "g_buffered_input_stream_new_sized")
+  (is-constructor-of "GBufferedInputStream")
   (return-type "GInputStream*")
   (parameters
     '("GInputStream*" "base_stream")
@@ -1270,6 +1283,7 @@
   (in-module "gio")
   (c-name "g_buffered_output_stream_new_sized")
   (return-type "GOutputStream*")
+  (is-constructor-of "GBufferedOutputStream")
   (parameters
     '("GOutputStream*" "base_stream")
     '("guint" "size")
@@ -5843,6 +5857,7 @@
   (in-module "gio")
   (c-name "g_memory_input_stream_new_from_data")
   (return-type "GInputStream*")
+  (is-constructor-of "GMemoryInputStream")
   (parameters
     '("const-guchar*" "data")
     '("gssize" "len")
@@ -6982,8 +6997,6 @@
   (since "2.16.0")
 )
 
-
-
 ;; From gthemedicon.h
 
 (define-function themed_icon_get_type
@@ -7007,6 +7020,7 @@
 (define-function themed_icon_new_with_default_fallbacks
   (in-module "gio")
   (c-name "g_themed_icon_new_with_default_fallbacks")
+  (is-constructor-of "GThemedIcon")
   (return-type "GIcon*")
   (parameters
     '("const-char*" "iconname")
@@ -7017,9 +7031,10 @@
 (define-function themed_icon_new_from_names
   (in-module "gio")
   (c-name "g_themed_icon_new_from_names")
+  (is-constructor-of "GThemedIcon")
   (return-type "GIcon*")
   (parameters
-    '("char**" "iconnames")
+    '("char*[]" "iconnames")
     '("int" "len")
   )
   (since "2.16.0")
@@ -7562,3 +7577,112 @@
   (since "2.16.0")
   )
 
+; extension points
+
+
+(define-pointer GIOExtension
+  (in-module "gio")
+  (c-name "GIOExtension")
+  (gtype-id "G_TYPE_POINTER")
+  )
+
+(define-pointer GIOExtensionPoint
+  (in-module "gio")
+  (c-name "GIOExtensionPoint")
+  (gtype-id "G_TYPE_POINTER")
+  )
+
+(define-function g_io_extension_point_register
+  (in-module "gio")
+  (c-name "g_io_extension_point_register")
+  (return-type "GIOExtensionPoint*")
+  (parameters
+   '("const-char*" "name")
+   )
+  (since "2.16.0")
+  )
+
+(define-function g_io_extension_point_lookup
+  (in-module "gio")
+  (c-name "g_io_extension_point_lookup")
+  (return-type "GIOExtensionPoint*")
+  (parameters
+   '("const-char*" "name")
+   )
+  (since "2.16.0")
+  )
+
+(define-method set_required_type
+  (of-object "GIOExtensionPoint")
+  (c-name "g_io_extension_point_set_required_type")
+  (return-type "none")
+  (parameters
+   '("GType" "type")
+   )
+  (since "2.16.0")
+  )
+
+(define-method get_required_type
+  (of-object "GIOExtensionPoint")
+  (c-name "g_io_extension_point_get_required_type")
+  (return-type "GType")
+  (since "2.16.0")
+  )
+
+(define-method get_extensions
+  (of-object "GIOExtensionPoint")
+  (c-name "g_io_extension_point_get_extensions")
+  (return-type "GList[GIOExtension*]")
+  (since "2.16.0")
+  )
+
+(define-method get_extension_by_name
+  (of-object "GIOExtensionPoint")
+  (c-name "g_io_extension_point_get_extension_by_name")
+  (return-type "GIOExtension*")
+  (parameters
+   '("const-char*" "name")
+   )
+  (since "2.16.0")
+  )
+
+(define-function g_io_extension_point_implement
+  (in-module "gio")
+  (c-name "g_io_extension_point_implement")
+  (return-type "GIOExtension*")
+  (parameters
+   '("const-char*" "extension_point_name")
+   '("GType" "type")
+   '("const-char*" "extension_name")
+   '("gint" "priority")
+   )
+  (since "2.16.0")
+  )
+
+(define-method get_type
+  (of-object "GIOExtension")
+  (c-name "g_io_extension_get_type")
+  (return-type "GType")
+  (since "2.16.0")
+  )
+
+(define-method get_name
+  (of-object "GIOExtension")
+  (c-name "g_io_extension_get_name")
+  (return-type "const-char*")
+  (since "2.16.0")
+  )
+
+(define-method get_priority
+  (of-object "GIOExtension")
+  (c-name "g_io_extension_get_priority")
+  (return-type "gint")
+  (since "2.16.0")
+  )
+
+(define-method ref_class
+  (of-object "GIOExtension")
+  (c-name "g_io_extension_ref_class")
+  (return-type "GTypeClass*")
+  (since "2.16.0")
+  )

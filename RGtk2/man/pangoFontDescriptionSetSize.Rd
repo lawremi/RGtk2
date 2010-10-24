@@ -5,8 +5,8 @@
 exclusive with \code{\link{pangoFontDescriptionSetAbsoluteSize}}.}
 \usage{pangoFontDescriptionSetSize(object, size)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{PangoFontDescription}}]  a \verb{\link{PangoFontDescription}}}
-\item{\verb{size}}{[integer]  the size of the font in points, scaled by PANGO_SCALE. (That is,
+\item{\verb{object}}{a \code{\link{PangoFontDescription}}}
+\item{\verb{size}}{the size of the font in points, scaled by PANGO_SCALE. (That is,
        a \code{size} value of 10 * PANGO_SCALE is a 10 point font. The conversion
        factor between points and device units depends on system configuration
        and the output device. For screen display, a logical DPI of 96 is

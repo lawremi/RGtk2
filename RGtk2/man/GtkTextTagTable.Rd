@@ -30,8 +30,10 @@ types related to the text widget and how they work together.
 }
 
 \describe{
-\item{\code{tag}}{[\verb{\link{GtkTextTag}}] }
-\item{\code{data}}{[R object] }
+\item{\code{tag}}{\emph{undocumented
+}}
+\item{\code{data}}{\emph{undocumented
+}}
 }
 
 
@@ -42,9 +44,10 @@ types related to the text widget and how they work together.
 }
 
 \describe{
-\item{\code{texttagtable}}{[\verb{\link{GtkTextTagTable}}] the object which received the signal.}
-\item{\code{arg1}}{[\verb{\link{GtkTextTag}}] }
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{texttagtable}}{the object which received the signal.}
+\item{\code{arg1}}{\emph{undocumented
+}}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -54,10 +57,12 @@ types related to the text widget and how they work together.
 }
 
 \describe{
-\item{\code{texttagtable}}{[\verb{\link{GtkTextTagTable}}] the object which received the signal.}
-\item{\code{arg1}}{[\verb{\link{GtkTextTag}}] }
-\item{\code{arg2}}{[logical] }
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{texttagtable}}{the object which received the signal.}
+\item{\code{arg1}}{\emph{undocumented
+}}
+\item{\code{arg2}}{\emph{undocumented
+}}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -67,14 +72,15 @@ types related to the text widget and how they work together.
 }
 
 \describe{
-\item{\code{texttagtable}}{[\verb{\link{GtkTextTagTable}}] the object which received the signal.}
-\item{\code{arg1}}{[\verb{\link{GtkTextTag}}] }
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{texttagtable}}{the object which received the signal.}
+\item{\code{arg1}}{\emph{undocumented
+}}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkTextTagTable.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkTextTagTable.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

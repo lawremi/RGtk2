@@ -7,9 +7,9 @@ via drag and drop. A notebook with a \code{NULL} group identificator will
 not be able to exchange tabs with any other notebook.}
 \usage{gtkNotebookSetGroup(object, group)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkNotebook}}]  a \verb{\link{GtkNotebook}}}
-\item{\verb{group}}{[R object]  a pointer to identify the notebook group, or \code{NULL} to unset it}
+\item{\verb{object}}{a \code{\link{GtkNotebook}}}
+\item{\verb{group}}{ a pointer to identify the notebook group, or \code{NULL} to unset it. \emph{[  \acronym{allow-none}  ]}}
 }
-\details{  Since  2.12}
+\details{Since 2.12}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

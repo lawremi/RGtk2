@@ -9,6 +9,6 @@ as the selection is always at the focus row.
 \strong{WARNING: \code{gtk_list_toggle_focus_row} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkListToggleFocusRow(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkList}}] the list widget.}}
+\arguments{\item{\verb{object}}{the list widget.}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

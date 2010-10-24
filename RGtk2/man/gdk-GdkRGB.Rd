@@ -25,10 +25,10 @@
 \code{\link{gdkRgbSetVerbose}(verbose)}\cr
 }
 \section{Detailed Description}{GdkRGB is a low-level module which renders RGB, grayscale, and indexed
-colormap images to a \verb{\link{GdkDrawable}}. It does this as efficiently as
+colormap images to a \code{\link{GdkDrawable}}. It does this as efficiently as
 possible, handling issues such as colormaps, visuals, dithering,
 temporary buffers, and so on. Most code should use the higher-level
-\verb{\link{GdkPixbuf}} features in place of this module; for example,
+\code{\link{GdkPixbuf}} features in place of this module; for example,
 \code{\link{gdkDrawPixbuf}} uses GdkRGB in its implementation.
   
 GdkRGB allocates a color cube to use when rendering images.  You can
@@ -40,7 +40,7 @@ Setting it to 0 means that it always tries to use the default
 colormap, and setting it to 216 means that it always creates a private
 one if it cannot allocate the 6x6x6 colormap in the default. If you
 always want a private colormap (to avoid consuming too many colormap
-entries for other apps, say), you can use 
+entries for other apps, say), you can use
 \code{gdk_rgb_set_install(TRUE)}.
 Setting the value greater than 216 exercises a bug in older versions
 of GdkRGB. Note, however, that setting it to 0 doesn't let you get
@@ -71,9 +71,9 @@ rgb_example <- function()
   # Set up the RGB buffer.
   x <- rep(0:(IMAGE_WIDTH-1), IMAGE_HEIGHT)
   y <- rep(0:(IMAGE_HEIGHT-1), IMAGE_WIDTH, each = T)
-  red <- x - x \%\% 32
-  green <- (x / 32) * 4 + y - y \%\% 32
-  blue <- y - y \%\% 32
+  red <- x - x \%% 32
+  green <- (x / 32) * 4 + y - y \%% 32
+  blue <- y - y \%% 32
   buf <- rbind(red, green, blue)
   
   # connect to expose event
@@ -96,14 +96,14 @@ colors. This is used only for \code{\link{gdkDrawIndexedImage}}.
 \strong{\verb{GdkRgbCmap} is a \link{transparent-type}.}
 
 \describe{
-\item{\code{colors}}{[numeric] The colors, represented as 0xRRGGBB integer values.}
-\item{\code{n_colors}}{[integer] The number of colors in the cmap.}
+\item{\code{colors}}{The colors, represented as 0xRRGGBB integer values.}
+\item{\code{n_colors}}{The number of colors in the cmap.}
 }
 
 }}}
 \section{Enums and Flags}{\describe{\item{\verb{GdkRgbDither}}{
 Selects whether or not GdkRGB applies dithering
-to the image on display. 
+to the image on display.
   
 Since GdkRGB currently only handles images with 8 bits per component,
 dithering on 24 bit per pixel displays is a moot point.
@@ -116,6 +116,6 @@ only.}
 }
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gdk/gdk-GdkRGB.html}}
+\references{\url{http://library.gnome.org/devel//gdk/gdk-GdkRGB.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

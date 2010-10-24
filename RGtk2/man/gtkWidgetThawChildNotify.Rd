@@ -5,6 +5,6 @@
 This causes all queued \code{\link{gtkWidgetChildNotify}} signals on \code{widget} to be 
 emitted.}
 \usage{gtkWidgetThawChildNotify(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}}
+\arguments{\item{\verb{object}}{a \code{\link{GtkWidget}}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

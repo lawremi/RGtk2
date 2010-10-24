@@ -8,8 +8,8 @@ when the pixmap is insensitive. The default value is \code{TRUE}.
 }
 \usage{gtkPixmapSetBuildInsensitive(object, build)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkPixmap}}] a \verb{\link{GtkPixmap}}.}
-\item{\verb{build}}{[logical] set to \code{TRUE} if an extra pixmap should be automatically created to use
+\item{\verb{object}}{a \code{\link{GtkPixmap}}.}
+\item{\verb{build}}{set to \code{TRUE} if an extra pixmap should be automatically created to use
 when the pixmap is insensitive.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

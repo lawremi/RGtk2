@@ -7,13 +7,13 @@ be provided to indicate that the metrics should be retrieved that
 correspond to the script(s) used by that language.}
 \usage{pangoFontGetMetrics(object, language = NULL)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{PangoFont}}]  a \verb{\link{PangoFont}}}
-\item{\verb{language}}{[\verb{\link{PangoLanguage}}]  language tag used to determine which script to get the metrics
+\item{\verb{object}}{a \code{\link{PangoFont}}}
+\item{\verb{language}}{language tag used to determine which script to get the metrics
            for, or \code{NULL} to indicate to get the metrics for the entire
            font.}
 }
 \details{If \code{font} is \code{NULL}, this function gracefully sets some sane values in the
-output variables and returns.  }
-\value{[\verb{\link{PangoFontMetrics}}]  a \verb{\link{PangoFontMetrics}} object.}
+output variables and returns.}
+\value{[\code{\link{PangoFontMetrics}}]  a \code{\link{PangoFontMetrics}} object.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

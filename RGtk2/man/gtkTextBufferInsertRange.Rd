@@ -8,12 +8,12 @@ images and tags. If \code{start} and \code{end} are in a different buffer from
 \code{buffer}, the two buffers must share the same tag table.}
 \usage{gtkTextBufferInsertRange(object, iter, start, end)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTextBuffer}}]  a \verb{\link{GtkTextBuffer}}}
-\item{\verb{iter}}{[\verb{\link{GtkTextIter}}]  a position in \code{buffer}}
-\item{\verb{start}}{[\verb{\link{GtkTextIter}}]  a position in a \verb{\link{GtkTextBuffer}}}
-\item{\verb{end}}{[\verb{\link{GtkTextIter}}]  another position in the same buffer as \code{start}}
+\item{\verb{object}}{a \code{\link{GtkTextBuffer}}}
+\item{\verb{iter}}{a position in \code{buffer}}
+\item{\verb{start}}{a position in a \code{\link{GtkTextBuffer}}}
+\item{\verb{end}}{another position in the same buffer as \code{start}}
 }
 \details{Implemented via emissions of the insert_text and apply_tag signals,
-so expect those.  }
+so expect those.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

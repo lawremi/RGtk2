@@ -8,16 +8,16 @@ and draws it onto the given drawable, \code{window}.
 }
 \usage{gtkPreviewPut(object, window, gc, srcx, srcy, destx, desty, width, height)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkPreview}}] a \verb{\link{GtkPreview}}.}
-\item{\verb{window}}{[\verb{\link{GdkWindow}}] a window or pixmap.}
-\item{\verb{gc}}{[\verb{\link{GdkGC}}] The graphics context for the operation. Only the
+\item{\verb{object}}{a \code{\link{GtkPreview}}.}
+\item{\verb{window}}{a window or pixmap.}
+\item{\verb{gc}}{The graphics context for the operation. Only the
      clip mask for this GC matters.}
-\item{\verb{srcx}}{[integer] the x coordinate of the upper left corner in the source image.}
-\item{\verb{srcy}}{[integer] the y coordinate of the upper left corner in the source image.}
-\item{\verb{destx}}{[integer] the x coordinate of the upper left corner in the destination image.}
-\item{\verb{desty}}{[integer] the y coordinate of the upper left corner in the destination image.}
-\item{\verb{width}}{[integer] the width of the rectangular portion to draw.}
-\item{\verb{height}}{[integer] the height of the rectangular portion to draw.}
+\item{\verb{srcx}}{the x coordinate of the upper left corner in the source image.}
+\item{\verb{srcy}}{the y coordinate of the upper left corner in the source image.}
+\item{\verb{destx}}{the x coordinate of the upper left corner in the destination image.}
+\item{\verb{desty}}{the y coordinate of the upper left corner in the destination image.}
+\item{\verb{width}}{the width of the rectangular portion to draw.}
+\item{\verb{height}}{the height of the rectangular portion to draw.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

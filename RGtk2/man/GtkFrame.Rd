@@ -24,7 +24,7 @@
                                  +----GtkFrame
                                        +----GtkAspectFrame}}
 \section{Interfaces}{GtkFrame implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The frame widget is a Bin that surrounds its child
 with a decorative frame and an optional label.
 If present, the label is drawn in a gap in the
@@ -33,7 +33,7 @@ label can be controlled with \code{\link{gtkFrameSetLabelAlign}}.}
 \section{GtkFrame as GtkBuildable}{The GtkFrame implementation of the GtkBuildable interface
 supports placing a child in the label position by specifying
 "label" as the "type" attribute of a <child> element.
-A normal content child can be specified without specifying 
+A normal content child can be specified without specifying
 a <child> type attribute.
   
  \emph{A UI definition fragment with GtkFrame}\preformatted{<object class="GtkFrame">
@@ -57,7 +57,7 @@ a <child> type attribute.
 Text of the frame's label.  Default value: NULL
 
 }
-\item{\verb{label-widget} [\verb{\link{GtkWidget}} : *            : Read / Write]}{
+\item{\verb{label-widget} [\code{\link{GtkWidget}} : *            : Read / Write]}{
 
 A widget to display in place of the usual frame label.
 
@@ -83,6 +83,6 @@ Appearance of the frame border.  Default value: GTK_SHADOW_ETCHED_IN
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkFrame.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkFrame.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

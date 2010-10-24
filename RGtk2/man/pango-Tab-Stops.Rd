@@ -15,10 +15,10 @@
 \code{\link{pangoTabArrayGetTabs}(object)}\cr
 \code{\link{pangoTabArrayGetPositionsInPixels}(object)}\cr
 }
-\section{Detailed Description}{Functions in this section are used to deal with \verb{\link{PangoTabArray}} objects
-that can be used to set tab stop positions in a \verb{\link{PangoLayout}}.}
+\section{Detailed Description}{Functions in this section are used to deal with \code{\link{PangoTabArray}} objects
+that can be used to set tab stop positions in a \code{\link{PangoLayout}}.}
 \section{Structures}{\describe{\item{\verb{PangoTabArray}}{
-A \verb{\link{PangoTabArray}} struct contains a list
+A \code{\link{PangoTabArray}} struct contains a list
 of tab stops. Each tab stop has an alignment and a position.
 
 }}}
@@ -28,6 +28,6 @@ A \code{\link{PangoTabAlign}} specifies where a tab stop appears relative to the
 \describe{\item{\verb{left}}{the tab stop appears to the left of the text.}}
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/pango/pango-Tab-Stops.html}}
+\references{\url{http://library.gnome.org/devel//pango/pango-Tab-Stops.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

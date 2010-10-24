@@ -1,12 +1,12 @@
 \alias{gtkRadioMenuItemNewWithLabel}
 \name{gtkRadioMenuItemNewWithLabel}
 \title{gtkRadioMenuItemNewWithLabel}
-\description{Creates a new \verb{\link{GtkRadioMenuItem}} whose child is a simple \verb{\link{GtkLabel}}.}
+\description{Creates a new \code{\link{GtkRadioMenuItem}} whose child is a simple \code{\link{GtkLabel}}.}
 \usage{gtkRadioMenuItemNewWithLabel(group = NULL, label, show = TRUE)}
 \arguments{
-\item{\verb{group}}{[list] the group to which the radio menu item is to be attached}
-\item{\verb{label}}{[character] the text for the label}
+\item{\verb{group}}{. \emph{[  \acronym{element-type}   GtkRadioMenuItem][  \acronym{transfer full}   GtkRadioMenuItem]}}
+\item{\verb{label}}{the text for the label}
 }
-\value{[\verb{\link{GtkWidget}}] a new \verb{\link{GtkRadioMenuItem}}}
+\value{[\code{\link{GtkWidget}}]  A new \code{\link{GtkRadioMenuItem}}. \emph{[  \acronym{transfer none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

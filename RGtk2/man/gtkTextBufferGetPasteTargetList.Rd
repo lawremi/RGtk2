@@ -7,8 +7,8 @@ added with \code{info} values from the \code{\link{GtkTextBufferTargetInfo}} enu
 using \code{\link{gtkTargetListAddRichTextTargets}} and
 \code{\link{gtkTargetListAddTextTargets}}.}
 \usage{gtkTextBufferGetPasteTargetList(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkTextBuffer}}]  a \verb{\link{GtkTextBuffer}}}}
-\details{  Since  2.10}
-\value{[\verb{\link{GtkTargetList}}]  the \verb{\link{GtkTargetList}}}
+\arguments{\item{\verb{object}}{a \code{\link{GtkTextBuffer}}}}
+\details{Since 2.10}
+\value{[\code{\link{GtkTargetList}}]  the \code{\link{GtkTargetList}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

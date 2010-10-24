@@ -5,11 +5,11 @@
 bounding rectangle of \code{window} resides.}
 \usage{gdkScreenGetMonitorAtWindow(object, window)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GdkScreen}}]  a \verb{\link{GdkScreen}}.}
-\item{\verb{window}}{[\verb{\link{GdkWindow}}]  a \verb{\link{GdkWindow}}}
+\item{\verb{object}}{a \code{\link{GdkScreen}}.}
+\item{\verb{window}}{a \code{\link{GdkWindow}}}
 }
-\details{  Since  2.2}
-\value{[integer]  the monitor number in which most of \code{window} is located,
+\details{Since 2.2}
+\value{[integer] the monitor number in which most of \code{window} is located,
           or if \code{window} does not intersect any monitors, a monitor,
           close to \code{window}.}
 \author{Derived by RGtkGen from GTK+ documentation}

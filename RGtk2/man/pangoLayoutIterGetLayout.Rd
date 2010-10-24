@@ -1,10 +1,10 @@
 \alias{pangoLayoutIterGetLayout}
 \name{pangoLayoutIterGetLayout}
 \title{pangoLayoutIterGetLayout}
-\description{Gets the layout associated with a \verb{\link{PangoLayoutIter}}.}
+\description{Gets the layout associated with a \code{\link{PangoLayoutIter}}.}
 \usage{pangoLayoutIterGetLayout(iter)}
-\arguments{\item{\verb{iter}}{[\verb{\link{PangoLayoutIter}}]  a \verb{\link{PangoLayoutIter}}}}
-\details{  Since  1.20}
-\value{[\verb{\link{PangoLayout}}]  the layout associated with \code{iter}.}
+\arguments{\item{\verb{iter}}{a \code{\link{PangoLayoutIter}}}}
+\details{Since 1.20}
+\value{[\code{\link{PangoLayout}}]  the layout associated with \code{iter}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

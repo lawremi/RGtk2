@@ -6,21 +6,17 @@ alignment requirements of the accelerated image-rendering code
 within cairo. Typical usage will be of the form:}
 \usage{cairoFormatStrideForWidth(format, width)}
 \arguments{
-\item{\verb{format}}{[\verb{\link{CairoFormat}}]  A \verb{\link{CairoFormat}} value}
+\item{\verb{format}}{[\code{\link{CairoFormat}}]  A \code{\link{CairoFormat}} value}
 \item{\verb{width}}{[integer]  The desired width of an image surface to be created.}
 }
-\details{\preformatted{int stride;
-unsigned char *data;
-  cairo_surface_t   *surface;
-
-stride = cairo_format_stride_for_width (format, width);
-data = malloc (stride * height);
-surface = cairo_image_surface_create_for_data (data, format,
-					  width, height);
+\details{\preformatted{
+stride <- format$strideForWidth(width)
+data <- raw(stride * height)
+surface <- cairoImageSurfaceCreateForData(data, format, width, height, stride)
 }  
-
-  Since  1.6}
+  Since 1.6}
 \value{[integer]  the appropriate stride to use given the desired
-format and width.}
+format and width, or -1 if either the format is invalid or the width
+too large.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -6,8 +6,8 @@ and \code{source2}. The resulting area is the set of pixels contained in one
 or the other of the two sources but not in both.}
 \usage{gdkRegionXor(object, source2)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GdkRegion}}]  a \verb{\link{GdkRegion}}}
-\item{\verb{source2}}{[\verb{\link{GdkRegion}}]  another \verb{\link{GdkRegion}}}
+\item{\verb{object}}{a \code{\link{GdkRegion}}}
+\item{\verb{source2}}{another \code{\link{GdkRegion}}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

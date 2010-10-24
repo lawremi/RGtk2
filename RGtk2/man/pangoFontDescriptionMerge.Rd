@@ -7,11 +7,12 @@ are not already set are affected. If \code{TRUE}, then fields that are
 already set will be replaced as well.}
 \usage{pangoFontDescriptionMerge(object, desc.to.merge, replace.existing)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{PangoFontDescription}}]  a \verb{\link{PangoFontDescription}}}
-\item{\verb{desc.to.merge}}{[\verb{\link{PangoFontDescription}}]  the \verb{\link{PangoFontDescription}} to merge from}
-\item{\verb{replace.existing}}{[logical]  if \code{TRUE}, replace fields in \code{desc} with the
+\item{\verb{object}}{a \code{\link{PangoFontDescription}}}
+\item{\verb{desc.to.merge}}{the \code{\link{PangoFontDescription}} to merge from, or \code{NULL}}
+\item{\verb{replace.existing}}{if \code{TRUE}, replace fields in \code{desc} with the
   corresponding values from \code{desc.to.merge}, even if they
   are already exist.}
 }
+\details{If \code{desc.to.merge} is \code{NULL}, this function performs nothing.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

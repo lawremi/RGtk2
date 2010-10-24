@@ -20,25 +20,21 @@
                      +----GtkDrawingArea
                            +----GtkCurve}}
 \section{Interfaces}{GtkCurve implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{\strong{PLEASE NOTE:}  This widget is considered too specialized/little-used for
- GTK+, and will in the future be moved to some other package.  If
- your application needs this widget, feel free to use it, as the
- widget does work and is useful in some applications; it's just not
- of general interest. However, we are not accepting new features for
- the widget, and it will eventually move out of the GTK+
- distribution.  
-The \verb{\link{GtkCurve}} widget allows the user to edit a curve covering a range of
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
+\section{Detailed Description}{The \code{\link{GtkCurve}} widget allows the user to edit a curve covering a range of
 values. It is typically used to fine-tune color balances in graphics
 applications like the Gimp.
   
-The \verb{\link{GtkCurve}} widget has 3 modes of operation - spline, linear and free.
+The \code{\link{GtkCurve}} widget has 3 modes of operation - spline, linear and free.
 In spline mode the user places points on the curve which are automatically
 connected together into a smooth curve. In linear mode the user places points
 on the curve which are connected by straight lines. In free mode the user can
-draw the points of the curve freely, and they are not connected at all.}
+draw the points of the curve freely, and they are not connected at all.
+  
+As of GTK+ 2.20, \code{\link{GtkCurve}} has been deprecated since it is too specialized.}
 \section{Structures}{\describe{\item{\verb{GtkCurve}}{
-The \verb{\link{GtkCurve}} struct contains private data only, and
+\strong{WARNING: \code{GtkCurve} is deprecated and should not be used in newly-written code.}
+The \code{\link{GtkCurve}} struct contains private data only, and
 should be accessed using the functions below.
 
 }}}
@@ -50,8 +46,8 @@ The curve type can be changed explicitly with a call to
 calling \code{\link{gtkCurveReset}} or \code{\link{gtkCurveSetGamma}}.
 
 \describe{
-\item{\code{curve}}{[\verb{\link{GtkCurve}}] the object which received the signal.}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{curve}}{the object which received the signal.}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -59,7 +55,7 @@ calling \code{\link{gtkCurveReset}} or \code{\link{gtkCurveSetGamma}}.
 \section{Properties}{\describe{
 \item{\verb{curve-type} [\code{\link{GtkCurveType}} : Read / Write]}{
 
-Is this curve linear, spline interpolated, or free-form.  Default value: GTK_CURVE_TYPE_LINEAR
+Is this curve linear, spline interpolated, or free-form.  Default value: GTK_CURVE_TYPE_SPLINE
 
 }
 \item{\verb{max-x} [numeric : Read / Write]}{
@@ -83,6 +79,6 @@ Minimum possible value for Y.  Default value: 0
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkCurve.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkCurve.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

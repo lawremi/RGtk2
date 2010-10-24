@@ -5,8 +5,8 @@
 is \code{NULL}, then the number of toplevel nodes is returned.}
 \usage{gtkTreeModelIterNChildren(object, iter = NULL)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTreeModel}}]  A \verb{\link{GtkTreeModel}}.}
-\item{\verb{iter}}{[\verb{\link{GtkTreeIter}}]  The \verb{\link{GtkTreeIter}}, or \code{NULL}.}
+\item{\verb{object}}{A \code{\link{GtkTreeModel}}.}
+\item{\verb{iter}}{ The \code{\link{GtkTreeIter}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \value{[integer]  The number of children of \code{iter}.}
 \author{Derived by RGtkGen from GTK+ documentation}

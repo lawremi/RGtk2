@@ -18,16 +18,42 @@
 \code{\link{gtkActionCreateToolItem}(object)}\cr
 \code{\link{gtkActionCreateMenu}(object)}\cr
 \code{\link{gtkActionConnectProxy}(object, proxy)}\cr
+\code{\link{gtkActionConnectProxy}(object, proxy)}\cr
+\code{\link{gtkActionDisconnectProxy}(object, proxy)}\cr
 \code{\link{gtkActionDisconnectProxy}(object, proxy)}\cr
 \code{\link{gtkActionGetProxies}(object)}\cr
 \code{\link{gtkActionConnectAccelerator}(object)}\cr
 \code{\link{gtkActionDisconnectAccelerator}(object)}\cr
+\code{\link{gtkActionBlockActivate}(object)}\cr
+\code{\link{gtkActionUnblockActivate}(object)}\cr
+\code{\link{gtkActionBlockActivateFrom}(object, proxy)}\cr
 \code{\link{gtkActionBlockActivateFrom}(object, proxy)}\cr
 \code{\link{gtkActionUnblockActivateFrom}(object, proxy)}\cr
+\code{\link{gtkActionUnblockActivateFrom}(object, proxy)}\cr
+\code{\link{gtkActionGetAlwaysShowImage}(object)}\cr
+\code{\link{gtkActionSetAlwaysShowImage}(object, always.show)}\cr
 \code{\link{gtkActionGetAccelPath}(object)}\cr
 \code{\link{gtkActionSetAccelPath}(object, accel.path)}\cr
 \code{\link{gtkActionGetAccelClosure}(object)}\cr
 \code{\link{gtkActionSetAccelGroup}(object, accel.group)}\cr
+\code{\link{gtkActionSetLabel}(object, label)}\cr
+\code{\link{gtkActionGetLabel}(object)}\cr
+\code{\link{gtkActionSetShortLabel}(object, short.label)}\cr
+\code{\link{gtkActionGetShortLabel}(object)}\cr
+\code{\link{gtkActionSetTooltip}(object, tooltip)}\cr
+\code{\link{gtkActionGetTooltip}(object)}\cr
+\code{\link{gtkActionSetStockId}(object, stock.id)}\cr
+\code{\link{gtkActionGetStockId}(object)}\cr
+\code{\link{gtkActionSetGicon}(object, icon)}\cr
+\code{\link{gtkActionGetGicon}(object)}\cr
+\code{\link{gtkActionSetIconName}(object, icon.name)}\cr
+\code{\link{gtkActionGetIconName}(object)}\cr
+\code{\link{gtkActionSetVisibleHorizontal}(object, visible.horizontal)}\cr
+\code{\link{gtkActionGetVisibleHorizontal}(object)}\cr
+\code{\link{gtkActionSetVisibleVertical}(object, visible.vertical)}\cr
+\code{\link{gtkActionGetVisibleVertical}(object)}\cr
+\code{\link{gtkActionSetIsImportant}(object, is.important)}\cr
+\code{\link{gtkActionGetIsImportant}(object)}\cr
 \code{gtkAction(name = NULL, label = NULL, tooltip = NULL, stock.id = NULL)}
 }
 \section{Hierarchy}{\preformatted{GObject
@@ -35,13 +61,13 @@
          +----GtkToggleAction
          +----GtkRecentAction}}
 \section{Interfaces}{GtkAction implements
- \verb{\link{GtkBuildable}}.}
+ \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{Actions represent operations that the user can be perform, along with
-some information how it should be presented in the interface. Each action 
-provides methods to create icons, menu items and toolbar items representing 
+some information how it should be presented in the interface. Each action
+provides methods to create icons, menu items and toolbar items representing
 itself.
   
-As well as the callback that is called when the action gets activated, the 
+As well as the callback that is called when the action gets activated, the
 following also gets associated with the action:
 \itemize{
 \item a name (not translated, for path lookup)
@@ -57,8 +83,8 @@ The action will also have some state information:
 \item sensitive (enabled/disabled)
 }
   
-Apart from regular actions, there are \verb{\link{GtkToggleAction}}, which can be toggled between two states and \verb{\link{GtkRadioAction}}, of which only one in a group 
-can be in the "active" state. Other actions can be implemented as \verb{\link{GtkAction}} 
+Apart from regular actions, there are \code{\link{GtkToggleAction}}, which can be toggled between two states and \code{\link{GtkRadioAction}}, of which only one in a group
+can be in the "active" state. Other actions can be implemented as \code{\link{GtkAction}}
 subclasses.
   
 Each action can have one or more proxy menu item, toolbar button or
@@ -73,21 +99,42 @@ and should not be accessed directly.
 }}}
 \section{Convenient Construction}{\code{gtkAction} is the equivalent of \code{\link{gtkActionNew}}.}
 \section{Signals}{\describe{\item{\code{activate(action, user.data)}}{
-The "activate" signal is emitted when the action is activated.  
-
-  Since  2.4
+The "activate" signal is emitted when the action is activated.
+  Since 2.4
 
 \describe{
-\item{\code{action}}{[\verb{\link{GtkAction}}]  the \verb{\link{GtkAction}}}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{action}}{the \code{\link{GtkAction}}}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }}}
 \section{Properties}{\describe{
-\item{\verb{action-group} [\verb{\link{GtkActionGroup}} : *       : Read / Write]}{
+\item{\verb{action-group} [\code{\link{GtkActionGroup}} : *       : Read / Write]}{
 
 The GtkActionGroup this GtkAction is associated with, or NULL (for internal use).
+
+}
+\item{\verb{always-show-image} [logical : Read / Write / Construct]}{
+
+If \code{TRUE}, the action's menu item proxies will ignore the \verb{"gtk-menu-images"}
+setting and always show their image, if available.
+  
+Use this property if the menu item would be useless or hard to use
+without their image.
+  Default value: FALSE  Since 2.20
+
+}
+\item{\verb{gicon} [\code{\link{GIcon}} : *                : Read / Write]}{
+
+The \code{\link{GIcon}} displayed in the \code{\link{GtkAction}}.
+  
+Note that the stock icon is preferred, if the \verb{"stock-id"} 
+property holds the id of an existing stock icon.
+  
+This is an appearance property and thus only applies if 
+\verb{"use-action-appearance"} is \code{TRUE}.
+  Since 2.16
 
 }
 \item{\verb{hide-if-empty} [logical : Read / Write]}{
@@ -98,11 +145,14 @@ When TRUE, empty menu proxies for this action are hidden.  Default value: TRUE
 \item{\verb{icon-name} [character : *                : Read / Write]}{
 
 The name of the icon from the icon theme. 
-Note that the stock icon is preferred, if
-the ::stock-id property holds the id of an
-existing stock icon.  
-
-  Default value: NULL  Since  2.10
+  
+Note that the stock icon is preferred, if the \verb{"stock-id"} 
+property holds the id of an existing stock icon, and the \code{\link{GIcon}} is
+preferred if the \verb{"gicon"} property is set. 
+  
+This is an appearance property and thus only applies if 
+\verb{"use-action-appearance"} is \code{TRUE}.
+  Default value: NULL  Since 2.10
 
 }
 \item{\verb{is-important} [logical : Read / Write]}{
@@ -114,8 +164,10 @@ Whether the action is considered important. When TRUE, toolitem proxies for this
 
 The label used for menu items and buttons that activate
 this action. If the label is \code{NULL}, GTK+ uses the stock 
-label specified via the stock-id property.  
-
+label specified via the stock-id property.
+  
+This is an appearance property and thus only applies if 
+\verb{"use-action-appearance"} is \code{TRUE}.
   Default value: NULL
 
 }
@@ -131,12 +183,20 @@ Whether the action is enabled.  Default value: TRUE
 }
 \item{\verb{short-label} [character : *                : Read / Write]}{
 
-A shorter label that may be used on toolbar buttons.  Default value: NULL
+A shorter label that may be used on toolbar buttons.
+  
+This is an appearance property and thus only applies if 
+\verb{"use-action-appearance"} is \code{TRUE}.
+  Default value: NULL
 
 }
 \item{\verb{stock-id} [character : *                : Read / Write]}{
 
-The stock icon displayed in widgets representing this action.  Default value: NULL
+The stock icon displayed in widgets representing this action.
+  
+This is an appearance property and thus only applies if 
+\verb{"use-action-appearance"} is \code{TRUE}.
+  Default value: NULL
 
 }
 \item{\verb{tooltip} [character : *                : Read / Write]}{
@@ -157,9 +217,8 @@ Whether the toolbar item is visible when the toolbar is in a horizontal orientat
 \item{\verb{visible-overflown} [logical : Read / Write]}{
 
 When \code{TRUE}, toolitem proxies for this action are represented in the 
-toolbar overflow menu.  
-
-  Default value: TRUE  Since  2.6
+toolbar overflow menu.
+  Default value: TRUE  Since 2.6
 
 }
 \item{\verb{visible-vertical} [logical : Read / Write]}{
@@ -168,10 +227,10 @@ Whether the toolbar item is visible when the toolbar is in a vertical orientatio
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkAction.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkAction.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
-\verb{\link{GtkActionGroup}}
-\verb{\link{GtkUIManager}}
+\code{\link{GtkActionGroup}}
+\code{\link{GtkUIManager}}
 }
 \keyword{internal}

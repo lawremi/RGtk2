@@ -2,16 +2,16 @@
 \name{gdkDrawRectangle}
 \title{gdkDrawRectangle}
 \description{Draws a rectangular outline or filled rectangle, using the foreground color
-and other attributes of the \verb{\link{GdkGC}}.}
+and other attributes of the \code{\link{GdkGC}}.}
 \usage{gdkDrawRectangle(object, gc, filled, x, y, width, height)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GdkDrawable}}]  a \verb{\link{GdkDrawable}} (a \verb{\link{GdkWindow}} or a \verb{\link{GdkPixmap}}).}
-\item{\verb{gc}}{[\verb{\link{GdkGC}}]  a \verb{\link{GdkGC}}.}
-\item{\verb{filled}}{[logical] \code{TRUE} if the rectangle should be filled.}
-\item{\verb{x}}{[integer]  the x coordinate of the left edge of the rectangle.}
-\item{\verb{y}}{[integer]  the y coordinate of the top edge of the rectangle.}
-\item{\verb{width}}{[integer]  the width of the rectangle.}
-\item{\verb{height}}{[integer]  the height of the rectangle.}
+\item{\verb{object}}{a \code{\link{GdkDrawable}} (a \code{\link{GdkWindow}} or a \code{\link{GdkPixmap}}).}
+\item{\verb{gc}}{a \code{\link{GdkGC}}.}
+\item{\verb{filled}}{\code{TRUE} if the rectangle should be filled.}
+\item{\verb{x}}{the x coordinate of the left edge of the rectangle.}
+\item{\verb{y}}{the y coordinate of the top edge of the rectangle.}
+\item{\verb{width}}{the width of the rectangle.}
+\item{\verb{height}}{the height of the rectangle.}
 }
 \details{A rectangle drawn filled is 1 pixel smaller in both dimensions than a 
 rectangle outlined. Calling 
@@ -19,6 +19,6 @@ rectangle outlined. Calling
 results in a filled rectangle 20 pixels wide and 20 pixels high. Calling
 \code{gdk_draw_rectangle (window, gc, FALSE, 0, 0, 20, 20)} 
 results in an outlined rectangle with corners at (0, 0), (0, 20), (20, 20),
-and (20, 0), which makes it 21 pixels wide and 21 pixels high.  }
+and (20, 0), which makes it 21 pixels wide and 21 pixels high.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

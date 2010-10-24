@@ -4,8 +4,8 @@
 \description{This function returns the previous device offset set by
 \code{\link{cairoSurfaceSetDeviceOffset}}.}
 \usage{cairoSurfaceGetDeviceOffset(surface)}
-\arguments{\item{\verb{surface}}{[\verb{\link{CairoSurface}}]  a \verb{\link{CairoSurface}}}}
-\details{  Since  1.2}
+\arguments{\item{\verb{surface}}{[\code{\link{CairoSurface}}]  a \code{\link{CairoSurface}}}}
+\details{  Since 1.2}
 \value{
 A list containing the following elements:
 \item{\verb{x.offset}}{[numeric]  the offset in the X direction, in device units}

@@ -6,9 +6,9 @@ have been allocated by GTK+, for instance, by
 \code{\link{gdkEventCopy}}.}
 \usage{gdkEventSetScreen(object, screen)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GdkEvent}}]  a \verb{\link{GdkEvent}}}
-\item{\verb{screen}}{[\verb{\link{GdkScreen}}]  a \verb{\link{GdkScreen}}}
+\item{\verb{object}}{a \code{\link{GdkEvent}}}
+\item{\verb{screen}}{a \code{\link{GdkScreen}}}
 }
-\details{  Since  2.2}
+\details{Since 2.2}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

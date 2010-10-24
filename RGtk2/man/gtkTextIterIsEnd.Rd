@@ -6,7 +6,7 @@ dereferenceable iterator in the buffer. \code{\link{gtkTextIterIsEnd}} is
 the most efficient way to check whether an iterator is the end
 iterator.}
 \usage{gtkTextIterIsEnd(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkTextIter}}]  an iterator}}
+\arguments{\item{\verb{object}}{an iterator}}
 \value{[logical]  whether \code{iter} is the end iterator}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

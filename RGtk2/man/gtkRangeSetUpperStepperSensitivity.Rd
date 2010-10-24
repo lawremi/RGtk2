@@ -5,9 +5,9 @@
 'upper' end of the GtkRange's adjustment.}
 \usage{gtkRangeSetUpperStepperSensitivity(object, sensitivity)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkRange}}]        a \verb{\link{GtkRange}}}
-\item{\verb{sensitivity}}{[\code{\link{GtkSensitivityType}}]  the upper stepper's sensitivity policy.}
+\item{\verb{object}}{a \code{\link{GtkRange}}}
+\item{\verb{sensitivity}}{the upper stepper's sensitivity policy.}
 }
-\details{  Since  2.10}
+\details{Since 2.10}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

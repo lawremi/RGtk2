@@ -6922,6 +6922,65 @@ function(stream, width = -1, height = -1, preserve.aspect.ratio = 1, cancellable
 } 
 
 
+gdkTestRenderSync <-
+function(window)
+{
+  checkPtrType(window, "GdkWindow")
+
+  w <- .RGtkCall("S_gdk_test_render_sync", window, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gdkTestSimulateKey <-
+function(window, x, y, keyval, modifiers, key.pressrelease)
+{
+  checkPtrType(window, "GdkWindow")
+  x <- as.integer(x)
+  y <- as.integer(y)
+  keyval <- as.numeric(keyval)
+  
+  
+
+  w <- .RGtkCall("S_gdk_test_simulate_key", window, x, y, keyval, modifiers, key.pressrelease, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gdkTestSimulateButton <-
+function(window, x, y, button, modifiers, button.pressrelease)
+{
+  checkPtrType(window, "GdkWindow")
+  x <- as.integer(x)
+  y <- as.integer(y)
+  button <- as.numeric(button)
+  
+  
+
+  w <- .RGtkCall("S_gdk_test_simulate_button", window, x, y, button, modifiers, button.pressrelease, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gdkPixbufSaveToStream <-
+function(object, stream, type, cancellable, .errwarn = TRUE)
+{
+  checkPtrType(object, "GdkPixbuf")
+  checkPtrType(stream, "GOutputStream")
+  type <- as.character(type)
+  checkPtrType(cancellable, "GCancellable")
+
+  w <- .RGtkCall("S_gdk_pixbuf_save_to_stream", object, stream, type, cancellable, PACKAGE = "RGtk2")
+
+  w <- handleError(w, .errwarn)
+
+  return(w)
+} 
+
+
 gdkKeymapGetCapsLockState <-
 function(object)
 {
@@ -7045,6 +7104,53 @@ function(object, sibling, above)
   w <- .RGtkCall("S_gdk_window_restack", object, sibling, above, PACKAGE = "RGtk2")
 
   return(invisible(w))
+} 
+
+
+gdkWindowIsDestroyed <-
+function(object)
+{
+  checkPtrType(object, "GdkWindow")
+
+  w <- .RGtkCall("S_gdk_window_is_destroyed", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gdkWindowGetRootCoords <-
+function(object, x, y)
+{
+  checkPtrType(object, "GdkWindow")
+  x <- as.integer(x)
+  y <- as.integer(y)
+
+  w <- .RGtkCall("S_gdk_window_get_root_coords", object, x, y, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+gdkPixbufSimpleAnimSetLoop <-
+function(object, loop)
+{
+  checkPtrType(object, "GdkPixbufSimpleAnim")
+  loop <- as.logical(loop)
+
+  w <- .RGtkCall("S_gdk_pixbuf_simple_anim_set_loop", object, loop, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+gdkPixbufSimpleAnimGetLoop <-
+function(object)
+{
+  checkPtrType(object, "GdkPixbufSimpleAnim")
+
+  w <- .RGtkCall("S_gdk_pixbuf_simple_anim_get_loop", object, PACKAGE = "RGtk2")
+
+  return(w)
 } 
 
 

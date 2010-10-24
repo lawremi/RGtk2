@@ -4,12 +4,12 @@
 \description{Create a new shape attribute. A shape is used to impose a
 particular ink and logical rectangle on the result of shaping a
 particular glyph. This might be used, for instance, for
-embedding a picture or a widget inside a \verb{\link{PangoLayout}}.}
+embedding a picture or a widget inside a \code{\link{PangoLayout}}.}
 \usage{pangoAttrShapeNew(ink.rect, logical.rect)}
 \arguments{
-\item{\verb{ink.rect}}{[\verb{\link{PangoRectangle}}]      ink rectangle to assign to each character}
-\item{\verb{logical.rect}}{[\verb{\link{PangoRectangle}}]  logical rectangle to assign to each character}
+\item{\verb{ink.rect}}{ink rectangle to assign to each character}
+\item{\verb{logical.rect}}{logical rectangle to assign to each character}
 }
-\value{[\verb{\link{PangoAttribute}}]  the newly allocated \verb{\link{PangoAttribute}}.}
+\value{[\code{\link{PangoAttribute}}]  the newly allocated \code{\link{PangoAttribute}},}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

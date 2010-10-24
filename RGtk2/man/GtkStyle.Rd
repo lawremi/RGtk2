@@ -17,6 +17,8 @@
 \code{\link{gtkStyleRenderIcon}(object, source, direction, state, size, widget = NULL, detail = NULL)}\cr
 \code{\link{gtkStyleGetFont}(object)}\cr
 \code{\link{gtkStyleSetFont}(object, font)}\cr
+\code{\link{gtkStyleGetStyleProperty}(object, widget.type, property.name)}\cr
+\code{\link{gtkStyleGet}(object, widget.type, first.property.name, ...)}\cr
 \code{\link{gtkDrawHline}(object, window, state.type, x1, x2, y)}\cr
 \code{\link{gtkDrawVline}(object, window, state.type, y1, y2, x)}\cr
 \code{\link{gtkDrawShadow}(object, window, state.type, shadow.type, x, y, width, height)}\cr
@@ -53,6 +55,7 @@
 \code{\link{gtkPaintShadow}(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height)}\cr
 \code{\link{gtkPaintShadowGap}(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height, gap.side, gap.x, gap.width)}\cr
 \code{\link{gtkPaintSlider}(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height, orientation)}\cr
+\code{\link{gtkPaintSpinner}(object, window, state.type, area, widget, detail, step, x, y, width, height)}\cr
 \code{\link{gtkPaintString}(object, window, state.type, area = NULL, widget = NULL, detail = NULL, x, y, string)}\cr
 \code{\link{gtkPaintTab}(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height)}\cr
 \code{\link{gtkPaintVline}(object, window, state.type, area = NULL, widget = NULL, detail = NULL, y1, y2, x)}\cr
@@ -60,6 +63,7 @@
 \code{\link{gtkPaintLayout}(object, window, state.type, use.text, area = NULL, widget = NULL, detail = NULL, x, y, layout)}\cr
 \code{\link{gtkPaintResizeGrip}(object, window, state.type, area = NULL, widget = NULL, detail = NULL, edge, x, y, width, height)}\cr
 \code{\link{gtkDrawInsertionCursor}(widget, drawable, area = NULL, location, is.primary, direction, draw.arrow)}\cr
+\code{\link{gtkBorderNew}()}\cr
 \code{\link{gtkBorderCopy}(object)}\cr
 \code{gtkStyle()}
 }
@@ -71,35 +75,42 @@
 }
 
 \describe{
-\item{\verb{fg}}{[\verb{\link{GdkColor}}] }
-\item{\verb{bg}}{[\verb{\link{GdkColor}}] }
-\item{\verb{light}}{[\verb{\link{GdkColor}}] }
-\item{\verb{dark}}{[\verb{\link{GdkColor}}] }
-\item{\verb{mid}}{[\verb{\link{GdkColor}}] }
-\item{\verb{text}}{[\verb{\link{GdkColor}}] }
-\item{\verb{base}}{[\verb{\link{GdkColor}}] }
-\item{\verb{textAa}}{[\verb{\link{GdkColor}}] }
-\item{\verb{white}}{[\verb{\link{GdkColor}}] }
-\item{\verb{black}}{[\verb{\link{GdkColor}}] }
-\item{\verb{fontDesc}}{[\verb{\link{PangoFontDescription}}] }
+\item{\verb{fg}}{[\code{\link{GdkColor}}] }
+\item{\verb{bg}}{[\code{\link{GdkColor}}] }
+\item{\verb{light}}{[\code{\link{GdkColor}}] }
+\item{\verb{dark}}{[\code{\link{GdkColor}}] }
+\item{\verb{mid}}{[\code{\link{GdkColor}}] }
+\item{\verb{text}}{[\code{\link{GdkColor}}] }
+\item{\verb{base}}{[\code{\link{GdkColor}}] }
+\item{\verb{textAa}}{[\code{\link{GdkColor}}] }
+\item{\verb{white}}{[\code{\link{GdkColor}}] }
+\item{\verb{black}}{[\code{\link{GdkColor}}] }
+\item{\verb{fontDesc}}{[\code{\link{PangoFontDescription}}] }
 \item{\verb{xthickness}}{[integer] }
 \item{\verb{ythickness}}{[integer] }
-\item{\verb{fgGc}}{[\verb{\link{GdkGC}}] }
-\item{\verb{bgGc}}{[\verb{\link{GdkGC}}] }
-\item{\verb{lightGc}}{[\verb{\link{GdkGC}}] }
-\item{\verb{darkGc}}{[\verb{\link{GdkGC}}] }
-\item{\verb{midGc}}{[\verb{\link{GdkGC}}] }
-\item{\verb{textGc}}{[\verb{\link{GdkGC}}] }
-\item{\verb{baseGc}}{[\verb{\link{GdkGC}}] }
-\item{\verb{textAaGc}}{[\verb{\link{GdkGC}}] }
-\item{\verb{whiteGc}}{[\verb{\link{GdkGC}}] }
-\item{\verb{blackGc}}{[\verb{\link{GdkGC}}] }
-\item{\verb{bgPixmap}}{[\verb{\link{GdkPixmap}}] }
+\item{\verb{fgGc}}{[\code{\link{GdkGC}}] }
+\item{\verb{bgGc}}{[\code{\link{GdkGC}}] }
+\item{\verb{lightGc}}{[\code{\link{GdkGC}}] }
+\item{\verb{darkGc}}{[\code{\link{GdkGC}}] }
+\item{\verb{midGc}}{[\code{\link{GdkGC}}] }
+\item{\verb{textGc}}{[\code{\link{GdkGC}}] }
+\item{\verb{baseGc}}{[\code{\link{GdkGC}}] }
+\item{\verb{textAaGc}}{[\code{\link{GdkGC}}] }
+\item{\verb{whiteGc}}{[\code{\link{GdkGC}}] }
+\item{\verb{blackGc}}{[\code{\link{GdkGC}}] }
+\item{\verb{bgPixmap}}{[\code{\link{GdkPixmap}}] }
 }
 
 }
 \item{\verb{GtkBorder}}{
-\emph{undocumented
+A struct that specifies a border around a rectangular area that can
+be of different width on each side.
+
+\describe{
+\item{\code{left}}{The width of the left border.}
+\item{\code{right}}{The width of the right border.}
+\item{\code{top}}{The width of the top border.}
+\item{\code{bottom}}{The width of the bottom border.}
 }
 
 }
@@ -110,9 +121,12 @@
 }
 
 \describe{
-\item{\code{pspec}}{[\verb{\link{GParamSpec}}] }
-\item{\code{rc.string}}{[character] }
-\item{\code{property.value}}{[R object] }
+\item{\code{pspec}}{\emph{undocumented
+}}
+\item{\code{rc.string}}{\emph{undocumented
+}}
+\item{\code{property.value}}{\emph{undocumented
+}}
 }
 
 
@@ -122,13 +136,12 @@
 Emitted when the style has been initialized for a particular
 colormap and depth. Connecting to this signal is probably seldom
 useful since most of the time applications and widgets only
-deal with styles that have been already realized.  
-
-  Since  2.4
+deal with styles that have been already realized.
+  Since 2.4
 
 \describe{
-\item{\code{style}}{[\verb{\link{GtkStyle}}]  the object which received the signal}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{style}}{the object which received the signal}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -136,19 +149,18 @@ deal with styles that have been already realized.
 \item{\code{unrealize(style, user.data)}}{
 Emitted when the aspects of the style specific to a particular colormap
 and depth are being cleaned up. A connection to this signal can be useful
-if a widget wants to cache objects like a \verb{\link{GdkGC}} as object data on \verb{\link{GtkStyle}}.
-This signal provides a convenient place to free such cached objects.  
-
-  Since  2.4
+if a widget wants to cache objects like a \code{\link{GdkGC}} as object data on \code{\link{GtkStyle}}.
+This signal provides a convenient place to free such cached objects.
+  Since 2.4
 
 \describe{
-\item{\code{style}}{[\verb{\link{GtkStyle}}]  the object which received the signal}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{style}}{the object which received the signal}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkStyle.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkStyle.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

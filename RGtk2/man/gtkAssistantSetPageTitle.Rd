@@ -5,10 +5,10 @@
 area of the assistant when \code{page} is the current page.}
 \usage{gtkAssistantSetPageTitle(object, page, title)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkAssistant}}]  a \verb{\link{GtkAssistant}}}
-\item{\verb{page}}{[\verb{\link{GtkWidget}}]  a page of \code{assistant}}
-\item{\verb{title}}{[character]  the new title for \code{page}}
+\item{\verb{object}}{a \code{\link{GtkAssistant}}}
+\item{\verb{page}}{a page of \code{assistant}}
+\item{\verb{title}}{the new title for \code{page}}
 }
-\details{  Since  2.10}
+\details{Since 2.10}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

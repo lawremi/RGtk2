@@ -6,9 +6,9 @@ current icon theme.
 See \code{\link{gtkStatusIconNewFromIconName}} for details.}
 \usage{gtkStatusIconSetFromIconName(object, icon.name)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkStatusIcon}}]  a \verb{\link{GtkStatusIcon}}}
-\item{\verb{icon.name}}{[character]  an icon name}
+\item{\verb{object}}{a \code{\link{GtkStatusIcon}}}
+\item{\verb{icon.name}}{an icon name}
 }
-\details{  Since  2.10 }
+\details{Since 2.10}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

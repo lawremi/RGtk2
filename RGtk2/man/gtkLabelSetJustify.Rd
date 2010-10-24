@@ -9,8 +9,8 @@ to set the alignment of the label as a whole, use
 effect on labels containing only a single line.}
 \usage{gtkLabelSetJustify(object, jtype)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkLabel}}]  a \verb{\link{GtkLabel}}}
-\item{\verb{jtype}}{[\code{\link{GtkJustification}}]  a \code{\link{GtkJustification}}}
+\item{\verb{object}}{a \code{\link{GtkLabel}}}
+\item{\verb{jtype}}{a \code{\link{GtkJustification}}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

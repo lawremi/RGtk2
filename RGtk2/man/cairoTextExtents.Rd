@@ -8,8 +8,8 @@ x_advance and y_advance values indicate the amount by which the
 current point would be advanced by \code{\link{cairoShowText}}.}
 \usage{cairoTextExtents(cr, utf8)}
 \arguments{
-\item{\verb{cr}}{[\verb{\link{Cairo}}]  a \verb{\link{Cairo}}}
-\item{\verb{utf8}}{[char]  a string of text, encoded in UTF-8}
+\item{\verb{cr}}{[\code{\link{Cairo}}]  a \code{\link{Cairo}}}
+\item{\verb{utf8}}{[char]  a string of text encoded in UTF-8, or \code{NULL}}
 }
 \details{Note that whitespace characters do not directly contribute to the
 size of the rectangle (extents.width and extents.height). They do
@@ -19,7 +19,7 @@ likely to not affect the size of the rectangle, though they will
 affect the x_advance and y_advance values.  }
 \value{
 A list containing the following elements:
-\item{\verb{extents}}{[\verb{\link{CairoTextExtents}}]  a \verb{\link{CairoTextExtents}} object into which the results
+\item{\verb{extents}}{[\code{\link{CairoTextExtents}}]  a \code{\link{CairoTextExtents}} object into which the results
 will be stored}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -7,8 +7,8 @@ shouldn't persist beyond the lifetime of the main window they're
 associated with, for example.}
 \usage{gtkWindowSetDestroyWithParent(object, setting)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}}
-\item{\verb{setting}}{[logical]  whether to destroy \code{window} with its transient parent}
+\item{\verb{object}}{a \code{\link{GtkWindow}}}
+\item{\verb{setting}}{whether to destroy \code{window} with its transient parent}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

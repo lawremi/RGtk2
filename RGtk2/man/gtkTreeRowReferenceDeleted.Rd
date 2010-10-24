@@ -5,8 +5,8 @@
 know that the model emitted the "row_deleted" signal.}
 \usage{gtkTreeRowReferenceDeleted(proxy, path)}
 \arguments{
-\item{\verb{proxy}}{[\verb{\link{GObject}}]  A \verb{\link{GObject}}}
-\item{\verb{path}}{[\verb{\link{GtkTreePath}}]  The path position that was deleted}
+\item{\verb{proxy}}{A \code{\link{GObject}}}
+\item{\verb{path}}{The path position that was deleted}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

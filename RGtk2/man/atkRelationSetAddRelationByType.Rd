@@ -7,10 +7,10 @@ of that type. If it is does contain a relation of that typea the target
 is added to the relation.}
 \usage{atkRelationSetAddRelationByType(object, relationship, target)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{AtkRelationSet}}]  an \verb{\link{AtkRelationSet}}}
+\item{\verb{object}}{[\code{\link{AtkRelationSet}}]  an \code{\link{AtkRelationSet}}}
 \item{\verb{relationship}}{[\code{\link{AtkRelationType}}]  an \code{\link{AtkRelationType}}}
-\item{\verb{target}}{[\verb{\link{AtkObject}}]  an \verb{\link{AtkObject}}}
+\item{\verb{target}}{[\code{\link{AtkObject}}]  an \code{\link{AtkObject}}}
 }
-\details{  Since  ATK 1.9}
+\details{  Since 1.9}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

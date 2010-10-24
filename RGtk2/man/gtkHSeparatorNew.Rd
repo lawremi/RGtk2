@@ -1,8 +1,8 @@
 \alias{gtkHSeparatorNew}
 \name{gtkHSeparatorNew}
 \title{gtkHSeparatorNew}
-\description{Creates a new \verb{\link{GtkHSeparator}}.}
+\description{Creates a new \code{\link{GtkHSeparator}}.}
 \usage{gtkHSeparatorNew(show = TRUE)}
-\value{[\verb{\link{GtkWidget}}] a new \verb{\link{GtkHSeparator}}.}
+\value{[\code{\link{GtkWidget}}] a new \code{\link{GtkHSeparator}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

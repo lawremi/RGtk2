@@ -5,6 +5,6 @@
 the class name part of the \code{WM_CLASS} property on
 toplevel windows; see the ICCCM.}
 \usage{gdkSetProgramClass(program.class)}
-\arguments{\item{\verb{program.class}}{[char] a string.}}
+\arguments{\item{\verb{program.class}}{a string.}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

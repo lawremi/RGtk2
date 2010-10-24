@@ -3,6 +3,6 @@
 \title{gtkWidgetGetDefaultColormap}
 \description{Obtains the default colormap used to create widgets.}
 \usage{gtkWidgetGetDefaultColormap()}
-\value{[\verb{\link{GdkColormap}}]  default widget colormap}
+\value{[\code{\link{GdkColormap}}]  default widget colormap. \emph{[  \acronym{transfer none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -4,8 +4,8 @@
 \description{Gets the gravity field of a font description. See
 \code{\link{pangoFontDescriptionSetGravity}}.}
 \usage{pangoFontDescriptionGetGravity(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{PangoFontDescription}}]  a \verb{\link{PangoFontDescription}}}}
-\details{  Since  1.16}
+\arguments{\item{\verb{object}}{a \code{\link{PangoFontDescription}}}}
+\details{Since 1.16}
 \value{[\code{\link{PangoGravity}}]  the gravity field for the font description. Use
   \code{\link{pangoFontDescriptionGetSetFields}} to find out if
   the field was explicitly set or not.}

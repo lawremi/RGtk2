@@ -8,9 +8,11 @@ The function that implements both \code{\link{gtkCTreeSelectRecursive}} and
 }
 \usage{gtkCTreeRealSelectRecursive(object, node, state)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkCTree}}] }
-\item{\verb{node}}{[\verb{\link{GtkCTreeNode}}] }
-\item{\verb{state}}{[integer] True for selecting, false for unselecting.}
+\item{\verb{object}}{\emph{undocumented
+}}
+\item{\verb{node}}{\emph{undocumented
+}}
+\item{\verb{state}}{True for selecting, false for unselecting.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

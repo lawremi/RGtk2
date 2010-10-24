@@ -5,7 +5,7 @@
 (with no new reference count added). Otherwise,
 \code{NULL} is returned.}
 \usage{gtkTextIterGetPixbuf(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkTextIter}}]  an iterator}}
-\value{[\verb{\link{GdkPixbuf}}]  the pixbuf at \code{iter}}
+\arguments{\item{\verb{object}}{an iterator}}
+\value{[\code{\link{GdkPixbuf}}]  the pixbuf at \code{iter}. \emph{[  \acronym{transfer none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

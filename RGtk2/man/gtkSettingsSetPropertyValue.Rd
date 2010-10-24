@@ -5,9 +5,12 @@
 }}
 \usage{gtkSettingsSetPropertyValue(object, name, svalue)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkSettings}}] }
-\item{\verb{name}}{[character] }
-\item{\verb{svalue}}{[\verb{\link{GtkSettingsValue}}] }
+\item{\verb{object}}{\emph{undocumented
+}}
+\item{\verb{name}}{\emph{undocumented
+}}
+\item{\verb{svalue}}{\emph{undocumented
+}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

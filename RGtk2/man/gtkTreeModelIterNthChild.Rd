@@ -8,14 +8,14 @@ node after this function has been called.  As a special case, if \code{parent} i
 \code{NULL}, then the \code{n}th root node is set.}
 \usage{gtkTreeModelIterNthChild(object, parent = NULL, n)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTreeModel}}]  A \verb{\link{GtkTreeModel}}.}
-\item{\verb{parent}}{[\verb{\link{GtkTreeIter}}]  The \verb{\link{GtkTreeIter}} to get the child from, or \code{NULL}.}
-\item{\verb{n}}{[integer]  Then index of the desired child.}
+\item{\verb{object}}{A \code{\link{GtkTreeModel}}.}
+\item{\verb{parent}}{ The \code{\link{GtkTreeIter}} to get the child from, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{n}}{Then index of the desired child.}
 }
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE}, if \code{parent} has an \code{n}th child.}
-\item{\verb{iter}}{[\verb{\link{GtkTreeIter}}]  The \verb{\link{GtkTreeIter}} to set to the nth child.}
+\item{\verb{iter}}{The \code{\link{GtkTreeIter}} to set to the nth child.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

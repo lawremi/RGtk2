@@ -5,10 +5,10 @@
 behavior in the \code{assistant}.}
 \usage{gtkAssistantSetPageType(object, page, type)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkAssistant}}]  a \verb{\link{GtkAssistant}}}
-\item{\verb{page}}{[\verb{\link{GtkWidget}}]  a page of \code{assistant}}
-\item{\verb{type}}{[\code{\link{GtkAssistantPageType}}]  the new type for \code{page}}
+\item{\verb{object}}{a \code{\link{GtkAssistant}}}
+\item{\verb{page}}{a page of \code{assistant}}
+\item{\verb{type}}{the new type for \code{page}}
 }
-\details{  Since  2.10}
+\details{Since 2.10}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

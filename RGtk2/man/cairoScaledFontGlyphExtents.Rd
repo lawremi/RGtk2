@@ -10,15 +10,15 @@ y_advance values indicate the amount by which the current point
 would be advanced by \code{\link{cairoShowGlyphs}}.}
 \usage{cairoScaledFontGlyphExtents(scaled.font, glyphs, num.glyphs)}
 \arguments{
-\item{\verb{scaled.font}}{[\verb{\link{CairoScaledFont}}]  a \verb{\link{CairoScaledFont}}}
-\item{\verb{glyphs}}{[\verb{\link{CairoGlyph}}]  a list of glyph IDs with X and Y offsets.}
+\item{\verb{scaled.font}}{[\code{\link{CairoScaledFont}}]  a \code{\link{CairoScaledFont}}}
+\item{\verb{glyphs}}{[\code{\link{CairoGlyph}}]  a list of glyph IDs with X and Y offsets.}
 \item{\verb{num.glyphs}}{[integer]  the number of glyphs in the \code{glyphs} list}
 }
 \details{Note that whitespace glyphs do not contribute to the size of the
 rectangle (extents.width and extents.height).  }
 \value{
 A list containing the following elements:
-\item{\verb{extents}}{[\verb{\link{CairoTextExtents}}]  a \verb{\link{CairoTextExtents}} which to store the retrieved extents.}
+\item{\verb{extents}}{[\code{\link{CairoTextExtents}}]  a \code{\link{CairoTextExtents}} which to store the retrieved extents.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

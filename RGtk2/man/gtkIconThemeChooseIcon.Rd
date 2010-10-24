@@ -8,17 +8,16 @@ can then be rendered into a pixbuf using
 combines these two steps if all you need is the pixbuf.)}
 \usage{gtkIconThemeChooseIcon(object, icon.names, size, flags)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkIconTheme}}]  a \verb{\link{GtkIconTheme}}}
-\item{\verb{icon.names}}{[character] array of icon names to lookup}
-\item{\verb{size}}{[integer]  desired icon size}
-\item{\verb{flags}}{[\code{\link{GtkIconLookupFlags}}]  flags modifying the behavior of the icon lookup}
+\item{\verb{object}}{a \code{\link{GtkIconTheme}}}
+\item{\verb{icon.names}}{array of icon names to lookup}
+\item{\verb{size}}{desired icon size}
+\item{\verb{flags}}{flags modifying the behavior of the icon lookup}
 }
 \details{If \code{icon.names} contains more than one name, this function 
 tries them all in the given order before falling back to 
-inherited icon themes.  
-
-  Since  2.12}
-\value{[\verb{\link{GtkIconInfo}}]  a \verb{\link{GtkIconInfo}} structure containing information
-about the icon, or \code{NULL} if the icon wasn't found}
+inherited icon themes.
+  Since 2.12}
+\value{[\code{\link{GtkIconInfo}}]  a \code{\link{GtkIconInfo}} structure containing information
+about the icon, or \code{NULL} if the icon wasn't found.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

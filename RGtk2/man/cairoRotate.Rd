@@ -8,7 +8,7 @@ rotation direction for positive angles is from the positive X axis
 toward the positive Y axis.}
 \usage{cairoRotate(cr, angle)}
 \arguments{
-\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}
+\item{\verb{cr}}{[\code{\link{Cairo}}]  a cairo context}
 \item{\verb{angle}}{[numeric]  angle (in radians) by which the user-space axes will be
 rotated}
 }

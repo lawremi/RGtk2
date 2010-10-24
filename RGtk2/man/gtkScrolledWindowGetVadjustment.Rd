@@ -5,7 +5,7 @@
 vertical scrollbar to the child widget's vertical scroll
 functionality.}
 \usage{gtkScrolledWindowGetVadjustment(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkScrolledWindow}}] A \verb{\link{GtkScrolledWindow}}.}}
-\value{[\verb{\link{GtkAdjustment}}] The vertical \verb{\link{GtkAdjustment}}.}
+\arguments{\item{\verb{object}}{a \code{\link{GtkScrolledWindow}}}}
+\value{[\code{\link{GtkAdjustment}}]  the vertical \code{\link{GtkAdjustment}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

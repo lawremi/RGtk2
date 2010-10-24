@@ -1,8 +1,8 @@
 \alias{gtkProgressBarNew}
 \name{gtkProgressBarNew}
 \title{gtkProgressBarNew}
-\description{Creates a new \verb{\link{GtkProgressBar}}.}
+\description{Creates a new \code{\link{GtkProgressBar}}.}
 \usage{gtkProgressBarNew(show = TRUE)}
-\value{[\verb{\link{GtkWidget}}] a \verb{\link{GtkProgressBar}}.}
+\value{[\code{\link{GtkWidget}}] a \code{\link{GtkProgressBar}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -24,6 +24,31 @@ S_g_app_info_get_type(void)
  
 
 USER_OBJECT_
+S_g_app_info_launch_default_for_uri(USER_OBJECT_ s_uri, USER_OBJECT_ s_launch_context)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GIO_CHECK_VERSION(2, 16, 0)
+  const char* uri = ((const char*)asCString(s_uri));
+  GAppLaunchContext* launch_context = G_APP_LAUNCH_CONTEXT(getPtrValue(s_launch_context));
+
+  gboolean ans;
+  GError* error = NULL;
+
+  ans = g_app_info_launch_default_for_uri(uri, launch_context, &error);
+
+  _result = asRLogical(ans);
+
+  _result = retByVal(_result, "error", asRGError(error), NULL);
+    CLEANUP(g_error_free, error);;
+#else
+  error("g_app_info_launch_default_for_uri exists only in gio >= 2.16.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
 S_g_app_launch_context_get_type(void)
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -722,7 +747,7 @@ S_g_buffered_input_stream_new_sized(USER_OBJECT_ s_base_stream, USER_OBJECT_ s_s
 
   ans = g_buffered_input_stream_new_sized(base_stream, size);
 
-  _result = toRPointerWithRef(ans, "GInputStream");
+  _result = toRPointerWithFinalizer(ans, "GInputStream", (RPointerFinalizer) g_object_unref);
 #else
   error("g_buffered_input_stream_new_sized exists only in gio >= 2.16.0");
 #endif
@@ -988,7 +1013,7 @@ S_g_buffered_output_stream_new_sized(USER_OBJECT_ s_base_stream, USER_OBJECT_ s_
 
   ans = g_buffered_output_stream_new_sized(base_stream, size);
 
-  _result = toRPointerWithRef(ans, "GOutputStream");
+  _result = toRPointerWithFinalizer(ans, "GOutputStream", (RPointerFinalizer) g_object_unref);
 #else
   error("g_buffered_output_stream_new_sized exists only in gio >= 2.16.0");
 #endif
@@ -7667,7 +7692,7 @@ S_g_memory_input_stream_new_from_data(USER_OBJECT_ s_data)
 
   ans = g_memory_input_stream_new_from_data(data, len, destroy);
 
-  _result = toRPointerWithRef(ans, "GInputStream");
+  _result = toRPointerWithFinalizer(ans, "GInputStream", (RPointerFinalizer) g_object_unref);
 #else
   error("g_memory_input_stream_new_from_data exists only in gio >= 2.16.0");
 #endif
@@ -9328,7 +9353,7 @@ S_g_themed_icon_new_with_default_fallbacks(USER_OBJECT_ s_iconname)
 
   ans = g_themed_icon_new_with_default_fallbacks(iconname);
 
-  _result = toRPointerWithRef(ans, "GIcon");
+  _result = toRPointerWithFinalizer(ans, "GIcon", (RPointerFinalizer) g_object_unref);
 #else
   error("g_themed_icon_new_with_default_fallbacks exists only in gio >= 2.16.0");
 #endif
@@ -9349,7 +9374,7 @@ S_g_themed_icon_new_from_names(USER_OBJECT_ s_iconnames, USER_OBJECT_ s_len)
 
   ans = g_themed_icon_new_from_names(iconnames, len);
 
-  _result = toRPointerWithRef(ans, "GIcon");
+  _result = toRPointerWithFinalizer(ans, "GIcon", (RPointerFinalizer) g_object_unref);
 #else
   error("g_themed_icon_new_from_names exists only in gio >= 2.16.0");
 #endif
@@ -9997,6 +10022,229 @@ S_g_volume_monitor_adopt_orphan_mount(USER_OBJECT_ s_mount)
  
 
 USER_OBJECT_
+S_g_io_extension_point_register(USER_OBJECT_ s_name)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GIO_CHECK_VERSION(2, 16, 0)
+  const char* name = ((const char*)asCString(s_name));
+
+  GIOExtensionPoint* ans;
+
+  ans = g_io_extension_point_register(name);
+
+  _result = toRPointer(ans, "GIOExtensionPoint");
+#else
+  error("g_io_extension_point_register exists only in gio >= 2.16.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_g_io_extension_point_lookup(USER_OBJECT_ s_name)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GIO_CHECK_VERSION(2, 16, 0)
+  const char* name = ((const char*)asCString(s_name));
+
+  GIOExtensionPoint* ans;
+
+  ans = g_io_extension_point_lookup(name);
+
+  _result = toRPointer(ans, "GIOExtensionPoint");
+#else
+  error("g_io_extension_point_lookup exists only in gio >= 2.16.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_g_io_extension_point_set_required_type(USER_OBJECT_ s_object, USER_OBJECT_ s_type)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GIO_CHECK_VERSION(2, 16, 0)
+  GIOExtensionPoint* object = ((GIOExtensionPoint*)getPtrValue(s_object));
+  GType type = ((GType)asCNumeric(s_type));
+
+
+  g_io_extension_point_set_required_type(object, type);
+
+#else
+  error("g_io_extension_point_set_required_type exists only in gio >= 2.16.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_g_io_extension_point_get_required_type(USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GIO_CHECK_VERSION(2, 16, 0)
+  GIOExtensionPoint* object = ((GIOExtensionPoint*)getPtrValue(s_object));
+
+  GType ans;
+
+  ans = g_io_extension_point_get_required_type(object);
+
+  _result = asRGType(ans);
+#else
+  error("g_io_extension_point_get_required_type exists only in gio >= 2.16.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_g_io_extension_point_get_extensions(USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GIO_CHECK_VERSION(2, 16, 0)
+  GIOExtensionPoint* object = ((GIOExtensionPoint*)getPtrValue(s_object));
+
+  GList* ans;
+
+  ans = g_io_extension_point_get_extensions(object);
+
+  _result = asRGList(ans, "GIOExtension");
+#else
+  error("g_io_extension_point_get_extensions exists only in gio >= 2.16.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_g_io_extension_point_get_extension_by_name(USER_OBJECT_ s_object, USER_OBJECT_ s_name)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GIO_CHECK_VERSION(2, 16, 0)
+  GIOExtensionPoint* object = ((GIOExtensionPoint*)getPtrValue(s_object));
+  const char* name = ((const char*)asCString(s_name));
+
+  GIOExtension* ans;
+
+  ans = g_io_extension_point_get_extension_by_name(object, name);
+
+  _result = toRPointer(ans, "GIOExtension");
+#else
+  error("g_io_extension_point_get_extension_by_name exists only in gio >= 2.16.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_g_io_extension_point_implement(USER_OBJECT_ s_extension_point_name, USER_OBJECT_ s_type, USER_OBJECT_ s_extension_name, USER_OBJECT_ s_priority)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GIO_CHECK_VERSION(2, 16, 0)
+  const char* extension_point_name = ((const char*)asCString(s_extension_point_name));
+  GType type = ((GType)asCNumeric(s_type));
+  const char* extension_name = ((const char*)asCString(s_extension_name));
+  gint priority = ((gint)asCInteger(s_priority));
+
+  GIOExtension* ans;
+
+  ans = g_io_extension_point_implement(extension_point_name, type, extension_name, priority);
+
+  _result = toRPointer(ans, "GIOExtension");
+#else
+  error("g_io_extension_point_implement exists only in gio >= 2.16.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_g_io_extension_get_type(USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GIO_CHECK_VERSION(2, 16, 0)
+  GIOExtension* object = ((GIOExtension*)getPtrValue(s_object));
+
+  GType ans;
+
+  ans = g_io_extension_get_type(object);
+
+  _result = asRGType(ans);
+#else
+  error("g_io_extension_get_type exists only in gio >= 2.16.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_g_io_extension_get_name(USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GIO_CHECK_VERSION(2, 16, 0)
+  GIOExtension* object = ((GIOExtension*)getPtrValue(s_object));
+
+  const char* ans;
+
+  ans = g_io_extension_get_name(object);
+
+  _result = asRString(ans);
+#else
+  error("g_io_extension_get_name exists only in gio >= 2.16.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_g_io_extension_get_priority(USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GIO_CHECK_VERSION(2, 16, 0)
+  GIOExtension* object = ((GIOExtension*)getPtrValue(s_object));
+
+  gint ans;
+
+  ans = g_io_extension_get_priority(object);
+
+  _result = asRInteger(ans);
+#else
+  error("g_io_extension_get_priority exists only in gio >= 2.16.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_g_io_extension_ref_class(USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GIO_CHECK_VERSION(2, 16, 0)
+  GIOExtension* object = ((GIOExtension*)getPtrValue(s_object));
+
+  GTypeClass* ans;
+
+  ans = g_io_extension_ref_class(object);
+
+  _result = toRPointer(ans, "GTypeClass");
+#else
+  error("g_io_extension_ref_class exists only in gio >= 2.16.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
 S_g_content_type_from_mime_type(USER_OBJECT_ s_mime_type)
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -10188,7 +10436,7 @@ S_g_emblem_new_with_origin(USER_OBJECT_ s_icon, USER_OBJECT_ s_origin)
 
   ans = g_emblem_new_with_origin(icon, origin);
 
-  _result = toRPointerWithRef(ans, "GEmblem");
+  _result = toRPointerWithFinalizer(ans, "GEmblem", (RPointerFinalizer) g_object_unref);
 #else
   error("g_emblem_new_with_origin exists only in gio >= 2.18.0");
 #endif
@@ -10715,7 +10963,7 @@ S_g_icon_new_for_string(USER_OBJECT_ s_str)
 
   ans = g_icon_new_for_string(str, &error);
 
-  _result = toRPointerWithRef(ans, "GIcon");
+  _result = toRPointerWithFinalizer(ans, "GIcon", (RPointerFinalizer) g_object_unref);
 
   _result = retByVal(_result, "error", asRGError(error), NULL);
     CLEANUP(g_error_free, error);;
@@ -11753,6 +12001,26 @@ S_g_file_info_get_attribute_stringv(USER_OBJECT_ s_object, USER_OBJECT_ s_attrib
   _result = asRStringArray(ans);
 #else
   error("g_file_info_get_attribute_stringv exists only in gio >= 2.22.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_g_file_info_set_attribute_stringv(USER_OBJECT_ s_object, USER_OBJECT_ s_attribute, USER_OBJECT_ s_attr_value)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GIO_CHECK_VERSION(2, 22, 0)
+  GFileInfo* object = G_FILE_INFO(getPtrValue(s_object));
+  const char* attribute = ((const char*)asCString(s_attribute));
+  char** attr_value = ((char**)asCStringArray(s_attr_value));
+
+
+  g_file_info_set_attribute_stringv(object, attribute, attr_value);
+
+#else
+  error("g_file_info_set_attribute_stringv exists only in gio >= 2.22.0");
 #endif
 
   return(_result);
@@ -15415,6 +15683,125 @@ S_g_volume_eject_with_operation_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_res
     CLEANUP(g_error_free, error);;
 #else
   error("g_volume_eject_with_operation_finish exists only in gio >= 2.22.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_g_inet_socket_address_new(USER_OBJECT_ s_address, USER_OBJECT_ s_port)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GIO_CHECK_VERSION(2, 22, 0)
+  GInetAddress* address = G_INET_ADDRESS(getPtrValue(s_address));
+  guint16 port = ((guint16)asCInteger(s_port));
+
+  GSocketAddress* ans;
+
+  ans = g_inet_socket_address_new(address, port);
+
+  _result = toRPointerWithFinalizer(ans, "GSocketAddress", (RPointerFinalizer) g_object_unref);
+#else
+  error("g_inet_socket_address_new exists only in gio >= 2.22.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_g_inet_socket_address_get_address(USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GIO_CHECK_VERSION(2, 22, 0)
+  GInetSocketAddress* object = G_INET_SOCKET_ADDRESS(getPtrValue(s_object));
+
+  GInetAddress* ans;
+
+  ans = g_inet_socket_address_get_address(object);
+
+  _result = toRPointerWithRef(ans, "GInetAddress");
+#else
+  error("g_inet_socket_address_get_address exists only in gio >= 2.22.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_g_inet_socket_address_get_port(USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GIO_CHECK_VERSION(2, 22, 0)
+  GInetSocketAddress* object = G_INET_SOCKET_ADDRESS(getPtrValue(s_object));
+
+  guint16 ans;
+
+  ans = g_inet_socket_address_get_port(object);
+
+  _result = asRInteger(ans);
+#else
+  error("g_inet_socket_address_get_port exists only in gio >= 2.22.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_g_tcp_connection_get_type(void)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GIO_CHECK_VERSION(2, 22, 0)
+
+  GType ans;
+
+  ans = g_tcp_connection_get_type();
+
+  _result = asRGType(ans);
+#else
+  error("g_tcp_connection_get_type exists only in gio >= 2.22.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_g_tcp_connection_set_graceful_disconnect(USER_OBJECT_ s_object, USER_OBJECT_ s_graceful_disconnect)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GIO_CHECK_VERSION(2, 22, 0)
+  GTcpConnection* object = G_TCP_CONNECTION(getPtrValue(s_object));
+  gboolean graceful_disconnect = ((gboolean)asCLogical(s_graceful_disconnect));
+
+
+  g_tcp_connection_set_graceful_disconnect(object, graceful_disconnect);
+
+#else
+  error("g_tcp_connection_set_graceful_disconnect exists only in gio >= 2.22.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_g_tcp_connection_get_graceful_disconnect(USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GIO_CHECK_VERSION(2, 22, 0)
+  GTcpConnection* object = G_TCP_CONNECTION(getPtrValue(s_object));
+
+  gboolean ans;
+
+  ans = g_tcp_connection_get_graceful_disconnect(object);
+
+  _result = asRLogical(ans);
+#else
+  error("g_tcp_connection_get_graceful_disconnect exists only in gio >= 2.22.0");
 #endif
 
   return(_result);

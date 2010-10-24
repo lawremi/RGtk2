@@ -13,13 +13,13 @@ widget.  \code{\link{gtkPropagateEvent}} is a bit higher-level, and
 \code{\link{gtkMainDoEvent}} is the highest level.}
 \usage{gtkPropagateEvent(object, event)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
-\item{\verb{event}}{[\verb{\link{GdkEvent}}]  an event}
+\item{\verb{object}}{a \code{\link{GtkWidget}}}
+\item{\verb{event}}{an event}
 }
 \details{All that said, you most likely don't want to use any of these
 functions; synthesizing events is rarely needed. Consider asking on
 the mailing list for better ways to achieve your goals. For
 example, use \code{\link{gdkWindowInvalidateRect}} or
-\code{\link{gtkWidgetQueueDraw}} instead of making up expose events.  }
+\code{\link{gtkWidgetQueueDraw}} instead of making up expose events.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

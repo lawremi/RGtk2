@@ -5,9 +5,9 @@
 \code{path} as necessary.}
 \usage{gtkTreeViewExpandToPath(object, path)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTreeView}}]  A \verb{\link{GtkTreeView}}.}
-\item{\verb{path}}{[\verb{\link{GtkTreePath}}]  path to a row.}
+\item{\verb{object}}{A \code{\link{GtkTreeView}}.}
+\item{\verb{path}}{path to a row.}
 }
-\details{  Since  2.2}
+\details{Since 2.2}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

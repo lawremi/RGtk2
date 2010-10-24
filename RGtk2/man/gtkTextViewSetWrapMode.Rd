@@ -4,8 +4,8 @@
 \description{Sets the line wrapping for the view.}
 \usage{gtkTextViewSetWrapMode(object, wrap.mode)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTextView}}]  a \verb{\link{GtkTextView}}}
-\item{\verb{wrap.mode}}{[\code{\link{GtkWrapMode}}]  a \code{\link{GtkWrapMode}}}
+\item{\verb{object}}{a \code{\link{GtkTextView}}}
+\item{\verb{wrap.mode}}{a \code{\link{GtkWrapMode}}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

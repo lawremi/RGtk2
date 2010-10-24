@@ -9,9 +9,9 @@ be used to set these explicitly), the default size will be clamped
 to the nearest permitted size.}
 \usage{gtkWindowSetDefaultSize(object, width, height)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}}
-\item{\verb{width}}{[integer]  width in pixels, or -1 to unset the default width}
-\item{\verb{height}}{[integer]  height in pixels, or -1 to unset the default height}
+\item{\verb{object}}{a \code{\link{GtkWindow}}}
+\item{\verb{width}}{width in pixels, or -1 to unset the default width}
+\item{\verb{height}}{height in pixels, or -1 to unset the default height}
 }
 \details{Unlike \code{\link{gtkWidgetSetSizeRequest}}, which sets a size request for
 a widget and thus would keep users from shrinking the window, this
@@ -33,6 +33,6 @@ shown; if a window is hidden and re-shown, it will remember the size
 it had prior to hiding, rather than using the default size.
   
 Windows can't actually be 0x0 in size, they must be at least 1x1, but
-passing 0 for \code{width} and \code{height} is OK, resulting in a 1x1 default size.  }
+passing 0 for \code{width} and \code{height} is OK, resulting in a 1x1 default size.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

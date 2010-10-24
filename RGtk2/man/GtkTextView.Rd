@@ -80,7 +80,7 @@ GObject
    +----GtkTextChildAnchor
 }}
 \section{Interfaces}{GtkTextView implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{You may wish to begin by reading the text widget
 conceptual overview which gives an overview of all the objects and data
 types related to the text widget and how they work together.
@@ -92,9 +92,9 @@ types related to the text widget and how they work together.
 
 }
 \item{\verb{GtkTextChildAnchor}}{
-A \code{GtkTextChildAnchor} is a spot in the buffer 
-where child widgets can be "anchored" (inserted inline, as if they were 
-characters). The anchor can have multiple widgets anchored, to allow for 
+A \code{GtkTextChildAnchor} is a spot in the buffer
+where child widgets can be "anchored" (inserted inline, as if they were
+characters). The anchor can have multiple widgets anchored, to allow for
 multiple views.
 
 }
@@ -127,16 +127,16 @@ multiple views.
 }}}
 \section{Signals}{\describe{
 \item{\code{backspace(text.view, user.data)}}{
-The ::backspace signal is a 
+The ::backspace signal is a
 keybinding signal 
 which gets emitted when the user asks for it.
   
 The default bindings for this signal are
-Backspace and Shift-Backspace.  
+Backspace and Shift-Backspace.
 
 \describe{
-\item{\code{text.view}}{[\verb{\link{GtkTextView}}]  the object which received the signal}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{text.view}}{the object which received the signal}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -147,11 +147,11 @@ keybinding signal
 which gets emitted to copy the selection to the clipboard.
   
 The default bindings for this signal are
-Ctrl-c and Ctrl-Insert.  
+Ctrl-c and Ctrl-Insert.
 
 \describe{
-\item{\code{text.view}}{[\verb{\link{GtkTextView}}]  the object which received the signal}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{text.view}}{the object which received the signal}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -162,11 +162,11 @@ keybinding signal
 which gets emitted to cut the selection to the clipboard.
   
 The default bindings for this signal are
-Ctrl-x and Shift-Delete.  
+Ctrl-x and Shift-Delete.
 
 \describe{
-\item{\code{text.view}}{[\verb{\link{GtkTextView}}]  the object which received the signal}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{text.view}}{the object which received the signal}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -183,25 +183,29 @@ of characters.
 The default bindings for this signal are
 Delete for deleting a character, Ctrl-Delete for 
 deleting a word and Ctrl-Backspace for deleting a word 
-backwords.  
+backwords.
 
 \describe{
-\item{\code{text.view}}{[\verb{\link{GtkTextView}}]  the object which received the signal}
-\item{\code{type}}{[\code{\link{GtkDeleteType}}]  the granularity of the deletion, as a \code{\link{GtkDeleteType}}}
-\item{\code{count}}{[integer]  the number of \code{type} units to delete}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{text.view}}{the object which received the signal}
+\item{\code{type}}{the granularity of the deletion, as a \code{\link{GtkDeleteType}}}
+\item{\code{count}}{the number of \code{type} units to delete}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{insert-at-cursor(textview, arg1, user.data)}}{
-\emph{undocumented
-}
+\item{\code{insert-at-cursor(text.view, string, user.data)}}{
+The ::insert-at-cursor signal is a
+keybinding signal
+which gets emitted when the user initiates the insertion of a 
+fixed string at the cursor.
+  
+This signal has no default bindings.
 
 \describe{
-\item{\code{textview}}{[\verb{\link{GtkTextView}}] the object which received the signal.}
-\item{\code{arg1}}{[character] }
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{text.view}}{the object which received the signal}
+\item{\code{string}}{the string to insert}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -214,7 +218,7 @@ If the cursor is not visible in \code{text.view}, this signal causes
 the viewport to be moved instead.
   
 Applications should not connect to it, but may emit it with 
-\code{gSignalEmitByName()} if they need to control scrolling 
+\code{gSignalEmitByName()} if they need to control the cursor
 programmatically.
   
 The default bindings for this signal come in two variants,
@@ -227,14 +231,14 @@ There are too many key combinations to list them all here.
 \item 
 \item 
 \item 
-}  
+}
 
 \describe{
-\item{\code{text.view}}{[\verb{\link{GtkTextView}}]  the object which received the signal}
-\item{\code{step}}{[\code{\link{GtkMovementStep}}]  the granularity of the move, as a \code{\link{GtkMovementStep}}}
-\item{\code{count}}{[integer]  the number of \code{step} units to move}
-\item{\code{extend.selection}}{[logical] \code{TRUE} if the move should extend the selection}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{text.view}}{the object which received the signal}
+\item{\code{step}}{the granularity of the move, as a \code{\link{GtkMovementStep}}}
+\item{\code{count}}{the number of \code{step} units to move}
+\item{\code{extend.selection}}{\code{TRUE} if the move should extend the selection}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -246,13 +250,13 @@ which can be bound to key combinations to allow the user
 to move the viewport, i.e. change what part of the text view
 is visible in a containing scrolled window.
   
-There are no default bindings for this signal.  
+There are no default bindings for this signal.
 
 \describe{
-\item{\code{text.view}}{[\verb{\link{GtkTextView}}]  the object which received the signal}
-\item{\code{step}}{[\code{\link{GtkScrollStep}}]  the granularity of the move, as a \code{\link{GtkMovementStep}}}
-\item{\code{count}}{[integer]  the number of \code{step} units to move}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{text.view}}{the object which received the signal}
+\item{\code{step}}{the granularity of the move, as a \code{\link{GtkMovementStep}}}
+\item{\code{count}}{the number of \code{step} units to move}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -265,13 +269,13 @@ to initiate horizontal cursor movement by pages.
   
 This signal should not be used anymore, instead use the
 \verb{"move-cursor"} signal with the \verb{GTK_MOVEMENT_HORIZONTAL_PAGES}
-granularity.  
+granularity.
 
 \describe{
-\item{\code{text.view}}{[\verb{\link{GtkTextView}}]  the object which received the signal}
-\item{\code{count}}{[integer]  the number of \code{step} units to move}
-\item{\code{extend.selection}}{[logical] \code{TRUE} if the move should extend the selection}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{text.view}}{the object which received the signal}
+\item{\code{count}}{the number of \code{step} units to move}
+\item{\code{extend.selection}}{\code{TRUE} if the move should extend the selection}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -283,23 +287,43 @@ which gets emitted to paste the contents of the clipboard
 into the text view.
   
 The default bindings for this signal are
-Ctrl-v and Shift-Insert.  
+Ctrl-v and Shift-Insert.
 
 \describe{
-\item{\code{text.view}}{[\verb{\link{GtkTextView}}]  the object which received the signal}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{text.view}}{the object which received the signal}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{populate-popup(textview, arg1, user.data)}}{
-\emph{undocumented
-}
+\item{\code{populate-popup(entry, menu, user.data)}}{
+The ::populate-popup signal gets emitted before showing the 
+context menu of the text view.
+  
+If you need to add items to the context menu, connect
+to this signal and append your menuitems to the \code{menu}.
 
 \describe{
-\item{\code{textview}}{[\verb{\link{GtkTextView}}] the object which received the signal.}
-\item{\code{arg1}}{[\verb{\link{GtkMenu}}] }
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{entry}}{The text view on which the signal is emitted}
+\item{\code{menu}}{the menu that is being populated}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
+}
+
+
+}
+\item{\code{preedit-changed(text.view, preedit, user.data)}}{
+If an input method is used, the typed text will not immediately
+be committed to the buffer. So if you are interested in the text,
+connect to this signal.
+  
+This signal is only emitted if the text at the given position
+is actually editable.
+  Since 2.20
+
+\describe{
+\item{\code{text.view}}{the object which received the signal}
+\item{\code{preedit}}{the current preedit string}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -311,36 +335,41 @@ which gets emitted to select or unselect the complete
 contents of the text view.
   
 The default bindings for this signal are Ctrl-a and Ctrl-/ 
-for selecting and Shift-Ctrl-a and Ctrl-\\ for unselecting.  
+for selecting and Shift-Ctrl-a and Ctrl-\\ for unselecting.
 
 \describe{
-\item{\code{text.view}}{[\verb{\link{GtkTextView}}]  the object which received the signal}
-\item{\code{select}}{[logical] \code{TRUE} to select, \code{FALSE} to unselect}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{text.view}}{the object which received the signal}
+\item{\code{select}}{\code{TRUE} to select, \code{FALSE} to unselect}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{set-anchor(textview, user.data)}}{
-\emph{undocumented
-}
-
-\describe{
-\item{\code{textview}}{[\verb{\link{GtkTextView}}] the object which received the signal.}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
-}
-
-
-}
-\item{\code{set-scroll-adjustments(textview, arg1, arg2, user.data)}}{
-\emph{undocumented
-}
+\item{\code{set-anchor(text.view, user.data)}}{
+The ::set-anchor signal is a
+keybinding signal
+which gets emitted when the user initiates setting the "anchor" 
+mark. The "anchor" mark gets placed at the same position as the
+"insert" mark.
+  
+This signal has no default bindings.
 
 \describe{
-\item{\code{textview}}{[\verb{\link{GtkTextView}}] the object which received the signal.}
-\item{\code{arg1}}{[\verb{\link{GtkAdjustment}}] }
-\item{\code{arg2}}{[\verb{\link{GtkAdjustment}}] }
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{text.view}}{the object which received the signal}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
+}
+
+
+}
+\item{\code{set-scroll-adjustments(horizontal, vertical, user.data)}}{
+Set the scroll adjustments for the text view. Usually scrolled containers
+like \code{\link{GtkScrolledWindow}} will emit this signal to connect two instances
+of \code{\link{GtkScrollbar}} to the scroll directions of the \code{\link{GtkTextView}}.
+
+\describe{
+\item{\code{horizontal}}{the horizontal \code{\link{GtkAdjustment}}}
+\item{\code{vertical}}{the vertical \code{\link{GtkAdjustment}}}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -350,11 +379,11 @@ The ::toggle-cursor-visible signal is a
 keybinding signal 
 which gets emitted to toggle the visibility of the cursor.
   
-The default binding for this signal is F7.  
+The default binding for this signal is F7.
 
 \describe{
-\item{\code{text.view}}{[\verb{\link{GtkTextView}}]  the object which received the signal}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{text.view}}{the object which received the signal}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -362,13 +391,13 @@ The default binding for this signal is F7.
 \item{\code{toggle-overwrite(text.view, user.data)}}{
 The ::toggle-overwrite signal is a 
 keybinding signal 
-which gets emitted to change the editability of the text view.
+which gets emitted to toggle the overwrite mode of the text view.
   
-The default bindings for this signal is Insert.  
+The default bindings for this signal is Insert.
 
 \describe{
-\item{\code{text.view}}{[\verb{\link{GtkTextView}}]  the object which received the signal}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{text.view}}{the object which received the signal}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -380,7 +409,7 @@ The default bindings for this signal is Insert.
 Whether Tab will result in a tab character being entered.  Default value: TRUE
 
 }
-\item{\verb{buffer} [\verb{\link{GtkTextBuffer}} : *        : Read / Write]}{
+\item{\verb{buffer} [\code{\link{GtkTextBuffer}} : *        : Read / Write]}{
 
 The buffer which is displayed.
 
@@ -393,6 +422,17 @@ If the insertion cursor is shown.  Default value: TRUE
 \item{\verb{editable} [logical : Read / Write]}{
 
 Whether the text can be modified by the user.  Default value: TRUE
+
+}
+\item{\verb{im-module} [character : *                : Read / Write]}{
+
+Which IM (input method) module should be used for this entry.
+See \code{\link{GtkIMContext}}.
+  
+Setting this to a non-\code{NULL} value overrides the
+system-wide IM module setting. See the GtkSettings 
+\verb{"gtk-im-module"} property.
+  Default value: NULL  Since 2.16
 
 }
 \item{\verb{indent} [integer : Read / Write]}{
@@ -435,7 +475,7 @@ Pixels of blank space between wrapped lines in a paragraph.  Allowed values: >= 
 Width of the right margin in pixels.  Allowed values: >= 0  Default value: 0
 
 }
-\item{\verb{tabs} [\verb{\link{PangoTabArray}} : *        : Read / Write]}{
+\item{\verb{tabs} [\code{\link{PangoTabArray}} : *        : Read / Write]}{
 
 Custom tabs for this text.
 
@@ -446,15 +486,15 @@ Whether to wrap lines never, at word boundaries, or at character boundaries.  De
 
 }
 }}
-\section{Style Properties}{\describe{\item{\verb{error-underline-color} [\verb{\link{GdkColor}} : *             : Read]}{
+\section{Style Properties}{\describe{\item{\verb{error-underline-color} [\code{\link{GdkColor}} : *             : Read]}{
 
 Color with which to draw error-indication underlines.
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkTextView.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkTextView.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
-\verb{\link{GtkTextBuffer}}
-\verb{\link{GtkTextIter}}
+\code{\link{GtkTextBuffer}}
+\code{\link{GtkTextIter}}
 }
 \keyword{internal}

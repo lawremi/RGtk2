@@ -3680,6 +3680,85 @@ function(object)
 } 
 
 
+pangoLanguageGetDefault <-
+function()
+{
+  
+
+  w <- .RGtkCall("S_pango_language_get_default", PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoLanguageGetSampleString <-
+function(object)
+{
+  checkPtrType(object, "PangoLanguage")
+
+  w <- .RGtkCall("S_pango_language_get_sample_string", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoBidiTypeForUnichar <-
+function(ch)
+{
+  ch <- as.numeric(ch)
+
+  w <- .RGtkCall("S_pango_bidi_type_for_unichar", ch, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoAttrTypeGetName <-
+function(type)
+{
+  
+
+  w <- .RGtkCall("S_pango_attr_type_get_name", type, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoCairoCreateContext <-
+function(cr)
+{
+  checkPtrType(cr, "Cairo")
+
+  w <- .RGtkCall("S_pango_cairo_create_context", cr, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoCairoFontMapSetDefault <-
+function(fontmap)
+{
+  checkPtrType(fontmap, "PangoCairoFontMap")
+
+  w <- .RGtkCall("S_pango_cairo_font_map_set_default", fontmap, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoCairoShowGlyphItem <-
+function(cr, text, glyph.item)
+{
+  checkPtrType(cr, "Cairo")
+  text <- as.character(text)
+  checkPtrType(glyph.item, "PangoGlyphItem")
+
+  w <- .RGtkCall("S_pango_cairo_show_glyph_item", cr, text, glyph.item, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
 pangoRendererDrawGlyphItem <-
 function(object, text, glyph.item, x, y)
 {
@@ -3765,6 +3844,17 @@ function(object)
 } 
 
 
+pangoLayoutGetBaseline <-
+function(object)
+{
+  checkPtrType(object, "PangoLayout")
+
+  w <- .RGtkCall("S_pango_layout_get_baseline", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
 pangoGlyphItemGetLogicalWidths <-
 function(glyph.item, text)
 {
@@ -3774,5 +3864,19 @@ function(glyph.item, text)
   w <- .RGtkCall("S_pango_glyph_item_get_logical_widths", glyph.item, text, PACKAGE = "RGtk2")
 
   return(invisible(w))
+} 
+
+
+pangoGravityGetForScriptAndWidth <-
+function(script, wide, base.gravity, hint)
+{
+  
+  wide <- as.logical(wide)
+  
+  
+
+  w <- .RGtkCall("S_pango_gravity_get_for_script_and_width", script, wide, base.gravity, hint, PACKAGE = "RGtk2")
+
+  return(w)
 } 
 

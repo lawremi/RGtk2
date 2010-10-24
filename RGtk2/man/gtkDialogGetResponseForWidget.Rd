@@ -5,10 +5,10 @@
 of a dialog.}
 \usage{gtkDialogGetResponseForWidget(object, widget)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkDialog}}]  a \verb{\link{GtkDialog}}}
-\item{\verb{widget}}{[\verb{\link{GtkWidget}}]  a widget in the action area of \code{dialog}}
+\item{\verb{object}}{a \code{\link{GtkDialog}}}
+\item{\verb{widget}}{a widget in the action area of \code{dialog}}
 }
-\details{  Since  2.8}
+\details{Since 2.8}
 \value{[integer]  the response id of \code{widget}, or \code{GTK_RESPONSE_NONE}
  if \code{widget} doesn't have a response id set.}
 \author{Derived by RGtkGen from GTK+ documentation}

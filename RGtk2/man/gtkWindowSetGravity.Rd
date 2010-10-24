@@ -6,10 +6,10 @@
 more details.}
 \usage{gtkWindowSetGravity(object, gravity)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}}
-\item{\verb{gravity}}{[\code{\link{GdkGravity}}]  window gravity}
+\item{\verb{object}}{a \code{\link{GtkWindow}}}
+\item{\verb{gravity}}{window gravity}
 }
 \details{The default window gravity is \verb{GDK_GRAVITY_NORTH_WEST} which will
-typically "do what you mean."  }
+typically "do what you mean."}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -1,16 +1,16 @@
 \alias{gtkTreeModelRowsReordered}
 \name{gtkTreeModelRowsReordered}
 \title{gtkTreeModelRowsReordered}
-\description{Emits the "rows_reordered" signal on \code{tree.model}.  This should be called by
+\description{Emits the "rows-reordered" signal on \code{tree.model}.  This should be called by
 models when their rows have been reordered.}
 \usage{gtkTreeModelRowsReordered(object, path, iter, new.order)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTreeModel}}]  A \verb{\link{GtkTreeModel}}}
-\item{\verb{path}}{[\verb{\link{GtkTreePath}}]  A \verb{\link{GtkTreePath}} pointing to the tree node whose children have been 
+\item{\verb{object}}{A \code{\link{GtkTreeModel}}}
+\item{\verb{path}}{A \code{\link{GtkTreePath}} pointing to the tree node whose children have been 
      reordered}
-\item{\verb{iter}}{[\verb{\link{GtkTreeIter}}]  A valid \verb{\link{GtkTreeIter}} pointing to the node whose children have been 
+\item{\verb{iter}}{A valid \code{\link{GtkTreeIter}} pointing to the node whose children have been 
      reordered, or \code{NULL} if the depth of \code{path} is 0.}
-\item{\verb{new.order}}{[integer]  a list of integers mapping the current position of each child
+\item{\verb{new.order}}{a list of integers mapping the current position of each child
      to its old position before the re-ordering,
      i.e. \code{new.order}\code{[newpos] = oldpos}.}
 }

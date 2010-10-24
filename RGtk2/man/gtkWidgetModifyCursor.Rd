@@ -7,14 +7,14 @@ style properties. All other style values are left untouched.
 See also \code{\link{gtkWidgetModifyStyle}}.}
 \usage{gtkWidgetModifyCursor(object, primary, secondary)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
-\item{\verb{primary}}{[\verb{\link{GdkColor}}]  the color to use for primary cursor (does not need to be
+\item{\verb{object}}{a \code{\link{GtkWidget}}}
+\item{\verb{primary}}{the color to use for primary cursor (does not need to be
           allocated), or \code{NULL} to undo the effect of previous calls to
           of \code{\link{gtkWidgetModifyCursor}}.}
-\item{\verb{secondary}}{[\verb{\link{GdkColor}}]  the color to use for secondary cursor (does not need to be
+\item{\verb{secondary}}{the color to use for secondary cursor (does not need to be
             allocated), or \code{NULL} to undo the effect of previous calls to
             of \code{\link{gtkWidgetModifyCursor}}.}
 }
-\details{  Since  2.12}
+\details{Since 2.12}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

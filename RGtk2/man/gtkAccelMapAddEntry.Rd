@@ -17,9 +17,12 @@ So a full valid accelerator path may look like:
 "<Gimp-Toolbox>/File/Dialogs/Tool Options...".}
 \usage{gtkAccelMapAddEntry(accel.path, accel.key, accel.mods)}
 \arguments{
-\item{\verb{accel.path}}{[character]  valid accelerator path}
-\item{\verb{accel.key}}{[numeric]   the accelerator key}
-\item{\verb{accel.mods}}{[\code{\link{GdkModifierType}}]  the accelerator modifiers}
+\item{\verb{accel.path}}{valid accelerator path}
+\item{\verb{accel.key}}{the accelerator key}
+\item{\verb{accel.mods}}{the accelerator modifiers}
 }
+\details{Note that \code{accel.path} string will be stored in a \verb{numeric}. Therefore, if you
+pass a static string, you can save some memory by interning it first with 
+\code{gInternStaticString()}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

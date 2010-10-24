@@ -6,8 +6,8 @@
 previously selected.}
 \usage{gtkTreeSelectionSetMode(object, type)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTreeSelection}}]  A \verb{\link{GtkTreeSelection}}.}
-\item{\verb{type}}{[\code{\link{GtkSelectionMode}}]  The selection mode}
+\item{\verb{object}}{A \code{\link{GtkTreeSelection}}.}
+\item{\verb{type}}{The selection mode}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

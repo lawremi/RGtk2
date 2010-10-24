@@ -4,9 +4,11 @@
 \description{Sets the URL to use for the website link.}
 \usage{gtkAboutDialogSetWebsite(object, website = NULL)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkAboutDialog}}]  a \verb{\link{GtkAboutDialog}}}
-\item{\verb{website}}{[character]  a URL string starting with "http://"}
+\item{\verb{object}}{a \code{\link{GtkAboutDialog}}}
+\item{\verb{website}}{ a URL string starting with "http://". \emph{[  \acronym{allow-none}  ]}}
 }
-\details{  Since  2.6}
+\details{Note that that the hook functions need to be set up
+before calling this function.
+  Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

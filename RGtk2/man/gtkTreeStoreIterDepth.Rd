@@ -5,8 +5,8 @@
 for anything down a level, etc.}
 \usage{gtkTreeStoreIterDepth(object, iter)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTreeStore}}]  A \verb{\link{GtkTreeStore}}}
-\item{\verb{iter}}{[\verb{\link{GtkTreeIter}}]  A valid \verb{\link{GtkTreeIter}}}
+\item{\verb{object}}{A \code{\link{GtkTreeStore}}}
+\item{\verb{iter}}{A valid \code{\link{GtkTreeIter}}}
 }
 \value{[integer]  The depth of \code{iter}}
 \author{Derived by RGtkGen from GTK+ documentation}

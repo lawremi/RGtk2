@@ -10,8 +10,8 @@ by gtk_notebook_set_tab_vborder (\code{notebook}, \code{border.width}).
 }
 \usage{gtkNotebookSetTabBorder(object, border.width)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkNotebook}}]  a \verb{\link{GtkNotebook}}}
-\item{\verb{border.width}}{[numeric]  width of the border around the tab labels.}
+\item{\verb{object}}{a \code{\link{GtkNotebook}}}
+\item{\verb{border.width}}{width of the border around the tab labels.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

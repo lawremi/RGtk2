@@ -7,11 +7,11 @@ defined as \code{widget->window} coordinates for widgets that are not
 \verb{GTK_NO_WINDOW} widgets, and are relative to \code{widget->allocation.x},
 \code{widget->allocation.y} for widgets that are \verb{GTK_NO_WINDOW} widgets.}
 \usage{gtkWidgetGetPointer(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}}
+\arguments{\item{\verb{object}}{a \code{\link{GtkWidget}}}}
 \value{
 A list containing the following elements:
-\item{\verb{x}}{[integer]  return location for the X coordinate, or \code{NULL}}
-\item{\verb{y}}{[integer]  return location for the Y coordinate, or \code{NULL}}
+\item{\verb{x}}{ return location for the X coordinate, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
+\item{\verb{y}}{ return location for the Y coordinate, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

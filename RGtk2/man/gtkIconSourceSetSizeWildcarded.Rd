@@ -8,13 +8,13 @@ the size the source applies to should be set with
 with that specific size.}
 \usage{gtkIconSourceSetSizeWildcarded(object, setting)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkIconSource}}]  a \verb{\link{GtkIconSource}}}
-\item{\verb{setting}}{[logical] \code{TRUE} to wildcard the widget state}
+\item{\verb{object}}{a \code{\link{GtkIconSource}}}
+\item{\verb{setting}}{\code{TRUE} to wildcard the widget state}
 }
-\details{\verb{\link{GtkIconSet}} prefers non-wildcarded sources (exact matches) over
+\details{\code{\link{GtkIconSet}} prefers non-wildcarded sources (exact matches) over
 wildcarded sources, and will use an exact match when possible.
-  \verb{\link{GtkIconSet}} will normally scale wildcarded source images to produce
+  \code{\link{GtkIconSet}} will normally scale wildcarded source images to produce
 an appropriate icon at a given size, but will not change the size
-of source images that match exactly.  }
+of source images that match exactly.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

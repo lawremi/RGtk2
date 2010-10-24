@@ -3,7 +3,7 @@
 \title{gtkListSetSelectionMode}
 \description{
 Set the list selection mode. The selection mode can be any value in
-\verb{""}
+\code{\link{GtkSelectionMode}}:
 \describe{
 \item{\verb{GTK_SELECTION_SINGLE}}{Zero or one element may be selected.}
 \item{\verb{GTK_SELECTION_BROWSE}}{Exactly one element is always selected (this can be false after you have
@@ -18,8 +18,8 @@ Shift key to select between the focus and the child pointed to.}
 }
 \usage{gtkListSetSelectionMode(object, mode)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkList}}] the list widget.}
-\item{\verb{mode}}{[\code{\link{GtkSelectionMode}}] the new selection mode.}
+\item{\verb{object}}{the list widget.}
+\item{\verb{mode}}{the new selection mode.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

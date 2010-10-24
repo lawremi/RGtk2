@@ -6,8 +6,8 @@ characters, rendered according to the current font_face, font_size
 (font_matrix), and font_options.}
 \usage{cairoShowText(cr, utf8)}
 \arguments{
-\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}
-\item{\verb{utf8}}{[char]  a string of text encoded in UTF-8}
+\item{\verb{cr}}{[\code{\link{Cairo}}]  a cairo context}
+\item{\verb{utf8}}{[char]  a string of text encoded in UTF-8, or \code{NULL}}
 }
 \details{This function first computes a set of glyphs for the string of
 text. The first glyph is placed so that its origin is at the

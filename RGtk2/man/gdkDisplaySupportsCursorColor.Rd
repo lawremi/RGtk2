@@ -5,8 +5,8 @@
 on \code{display}. Otherwise, cursors have only a forground
 and a background color.}
 \usage{gdkDisplaySupportsCursorColor(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GdkDisplay}}]  a \verb{\link{GdkDisplay}}}}
-\details{  Since  2.4}
+\arguments{\item{\verb{object}}{a \code{\link{GdkDisplay}}}}
+\details{Since 2.4}
 \value{[logical]  whether cursors can have multiple colors.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

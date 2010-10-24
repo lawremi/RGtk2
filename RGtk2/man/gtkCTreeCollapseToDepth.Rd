@@ -7,9 +7,11 @@ Collapse a node and its children up to the depth given.
 }
 \usage{gtkCTreeCollapseToDepth(object, node, depth)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkCTree}}] }
-\item{\verb{node}}{[\verb{\link{GtkCTreeNode}}] }
-\item{\verb{depth}}{[integer] The (absolute) depth up to which to collapse nodes.}
+\item{\verb{object}}{\emph{undocumented
+}}
+\item{\verb{node}}{\emph{undocumented
+}}
+\item{\verb{depth}}{The (absolute) depth up to which to collapse nodes.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

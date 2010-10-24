@@ -25,12 +25,12 @@
                      +----GtkProgress
                            +----GtkProgressBar}}
 \section{Interfaces}{GtkProgress implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{A \verb{\link{GtkProgress}} is the abstract base class used to derive
-a \verb{\link{GtkProgressBar}} which provides a visual representation of
-the progress of a long running operation.  }
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
+\section{Detailed Description}{A \code{\link{GtkProgress}} is the abstract base class used to derive
+a \code{\link{GtkProgressBar}} which provides a visual representation of
+the progress of a long running operation.}
 \section{Structures}{\describe{\item{\verb{GtkProgress}}{
-The \verb{\link{GtkProgress}} struct contains private data only.
+The \code{\link{GtkProgress}} struct contains private data only.
 and should be accessed using the functions below.
 
 }}}
@@ -56,6 +56,6 @@ The vertical text alignment, from 0 (top) to 1 (bottom).  Allowed values: [0,1] 
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkProgress.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkProgress.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

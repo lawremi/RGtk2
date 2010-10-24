@@ -5,8 +5,8 @@
 \code{scrolled.window}.}
 \usage{gtkScrolledWindowSetShadowType(object, type)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkScrolledWindow}}]  a \verb{\link{GtkScrolledWindow}}}
-\item{\verb{type}}{[\code{\link{GtkShadowType}}]  kind of shadow to draw around scrolled window contents}
+\item{\verb{object}}{a \code{\link{GtkScrolledWindow}}}
+\item{\verb{type}}{kind of shadow to draw around scrolled window contents}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

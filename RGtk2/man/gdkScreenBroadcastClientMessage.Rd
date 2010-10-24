@@ -5,8 +5,8 @@
 \code{screen}. }
 \usage{gdkScreenBroadcastClientMessage(object, event)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GdkScreen}}]  the \verb{\link{GdkScreen}} where the event will be broadcasted.}
-\item{\verb{event}}{[\verb{\link{GdkEvent}}]  the \verb{\link{GdkEvent}}.}
+\item{\verb{object}}{the \code{\link{GdkScreen}} where the event will be broadcasted.}
+\item{\verb{event}}{the \code{\link{GdkEvent}}.}
 }
 \details{Toplevel windows are determined by checking for the WM_STATE property, 
 as described in the Inter-Client Communication Conventions Manual (ICCCM).
@@ -15,8 +15,7 @@ sent to all children of the root window.
   
 On Windows, broadcasts a message registered with the name
 GDK_WIN32_CLIENT_MESSAGE to all top-level windows. The amount of
-data is limited to one long, i.e. four bytes.  
-
-  Since  2.2}
+data is limited to one long, i.e. four bytes.
+  Since 2.2}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

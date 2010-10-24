@@ -5,9 +5,9 @@
 It defaults to the website URL.}
 \usage{gtkAboutDialogSetWebsiteLabel(object, website.label = NULL)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkAboutDialog}}]  a \verb{\link{GtkAboutDialog}}}
-\item{\verb{website.label}}{[character]  the label used for the website link}
+\item{\verb{object}}{a \code{\link{GtkAboutDialog}}}
+\item{\verb{website.label}}{the label used for the website link}
 }
-\details{  Since  2.6}
+\details{Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -10,7 +10,7 @@ next line. If \code{iter} is on the last line in the buffer, which does
 not end in paragraph delimiters, moves to the end iterator (end of
 the last line), and returns \code{FALSE}.}
 \usage{gtkTextIterForwardToLineEnd(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkTextIter}}]  a \verb{\link{GtkTextIter}}}}
+\arguments{\item{\verb{object}}{a \code{\link{GtkTextIter}}}}
 \value{[logical] \code{TRUE} if we moved and the new location is not the end iterator}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

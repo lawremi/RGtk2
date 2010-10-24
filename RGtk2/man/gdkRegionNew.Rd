@@ -1,8 +1,8 @@
 \alias{gdkRegionNew}
 \name{gdkRegionNew}
 \title{gdkRegionNew}
-\description{Creates a new empty \verb{\link{GdkRegion}}.}
+\description{Creates a new empty \code{\link{GdkRegion}}.}
 \usage{gdkRegionNew()}
-\value{[\verb{\link{GdkRegion}}]  a new empty \verb{\link{GdkRegion}}}
+\value{[\code{\link{GdkRegion}}]  a new empty \code{\link{GdkRegion}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

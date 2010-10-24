@@ -8,14 +8,14 @@ words of a \verb{gunicode} value. Tables are searched starting
 from the last added.}
 \usage{gtkIMContextSimpleAddTable(object, data, max.seq.len, n.seqs)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkIMContextSimple}}]  A \verb{\link{GtkIMContextSimple}}}
-\item{\verb{data}}{[integer]  the table }
-\item{\verb{max.seq.len}}{[integer]  Maximum length of a sequence in the table
+\item{\verb{object}}{A \code{\link{GtkIMContextSimple}}}
+\item{\verb{data}}{the table }
+\item{\verb{max.seq.len}}{Maximum length of a sequence in the table
               (cannot be greater than \verb{GTK_MAX_COMPOSE_LEN})}
-\item{\verb{n.seqs}}{[integer]  number of sequences in the table}
+\item{\verb{n.seqs}}{number of sequences in the table}
 }
 \details{The table must be sorted in dictionary order on the
 numeric value of the key symbol fields. (Values beyond
-the length of the sequence should be zero.)  }
+the length of the sequence should be zero.)}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

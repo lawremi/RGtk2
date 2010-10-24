@@ -5,10 +5,10 @@
 which can be used to represent the accelerator to the user.}
 \usage{gtkAcceleratorGetLabel(accelerator.key, accelerator.mods)}
 \arguments{
-\item{\verb{accelerator.key}}{[numeric]   accelerator keyval}
-\item{\verb{accelerator.mods}}{[\code{\link{GdkModifierType}}]  accelerator modifier mask}
+\item{\verb{accelerator.key}}{accelerator keyval}
+\item{\verb{accelerator.mods}}{accelerator modifier mask}
 }
-\details{  Since  2.6}
+\details{Since 2.6}
 \value{[character]  a newly-allocated string representing the accelerator.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

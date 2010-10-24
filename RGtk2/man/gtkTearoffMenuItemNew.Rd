@@ -1,8 +1,8 @@
 \alias{gtkTearoffMenuItemNew}
 \name{gtkTearoffMenuItemNew}
 \title{gtkTearoffMenuItemNew}
-\description{Creates a new \verb{\link{GtkTearoffMenuItem}}.}
+\description{Creates a new \code{\link{GtkTearoffMenuItem}}.}
 \usage{gtkTearoffMenuItemNew(show = TRUE)}
-\value{[\verb{\link{GtkWidget}}] a new \verb{\link{GtkTearoffMenuItem}}.}
+\value{[\code{\link{GtkWidget}}] a new \code{\link{GtkTearoffMenuItem}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

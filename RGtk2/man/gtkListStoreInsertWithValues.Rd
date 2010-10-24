@@ -7,9 +7,9 @@ new row will be appended to the list. The row will be filled with the
 values given to this function. }
 \usage{gtkListStoreInsertWithValues(object, position, ...)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkListStore}}]  A \verb{\link{GtkListStore}}}
-\item{\verb{position}}{[integer]  position to insert the new row}
-\item{\verb{...}}{ pairs of column number and value, terminated with -1}
+\item{\verb{object}}{A \code{\link{GtkListStore}}}
+\item{\verb{position}}{position to insert the new row}
+\item{\verb{...}}{pairs of column number and value, terminated with -1}
 }
 \details{Calling
 \code{gtk_list_store_insert_with_values(list_store, iter, position...)} 
@@ -23,12 +23,11 @@ while the latter will emit row_inserted, row_changed and, if the list store
 is sorted, rows_reordered. Since emitting the rows_reordered signal
 repeatedly can affect the performance of the program, 
 \code{\link{gtkListStoreInsertWithValues}} should generally be preferred when
-inserting rows in a sorted list store.  
-
-  Since  2.6}
+inserting rows in a sorted list store.
+  Since 2.6}
 \value{
 A list containing the following elements:
-\item{\verb{iter}}{[\verb{\link{GtkTreeIter}}]  An unset \verb{\link{GtkTreeIter}} to set to the new row, or \code{NULL}.}
+\item{\verb{iter}}{ An unset \code{\link{GtkTreeIter}} to set to the new row, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -5,9 +5,9 @@
 be automatically inserted in the entry.}
 \usage{gtkEntryCompletionSetInlineCompletion(object, inline.completion)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkEntryCompletion}}]  a \verb{\link{GtkEntryCompletion}}}
-\item{\verb{inline.completion}}{[logical] \code{TRUE} to do inline completion}
+\item{\verb{object}}{a \code{\link{GtkEntryCompletion}}}
+\item{\verb{inline.completion}}{\code{TRUE} to do inline completion}
 }
-\details{  Since  2.6}
+\details{Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

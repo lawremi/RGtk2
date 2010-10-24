@@ -7,8 +7,8 @@ Adds \code{items} to the end of the \code{list}.
 }
 \usage{gtkListAppendItems(object, items)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkList}}] the list widget.}
-\item{\verb{items}}{[list] the items.}
+\item{\verb{object}}{the list widget.}
+\item{\verb{items}}{the items.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

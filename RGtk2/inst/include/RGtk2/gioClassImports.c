@@ -368,6 +368,16 @@ S_giostream_class_init(GIOStreamClass * c, SEXP e)
 }
 #endif 
 
+#if GIO_CHECK_VERSION(2, 22, 0)
+void
+S_ginet_socket_address_class_init(GInetSocketAddressClass * c, SEXP e)
+{
+  static void (*fun)(GInetSocketAddressClass *, SEXP) = NULL;
+  if(!fun) fun = ((void (*)(GInetSocketAddressClass *, SEXP))R_GetCCallable("RGtk2", "S_ginet_socket_address_class_init"));
+  return(fun(c, e));
+}
+#endif 
+
 #if GIO_CHECK_VERSION(2, 16, 0)
 void
 S_gapp_info_class_init(GAppInfoIface * c, SEXP e)

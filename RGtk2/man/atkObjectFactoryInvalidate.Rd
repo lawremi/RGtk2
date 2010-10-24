@@ -7,6 +7,6 @@ accessibles. When called, \code{factory} may need to inform
 Note: primarily used for runtime replacement of \verb{AtkObjectFactorys}
 in object registries.}
 \usage{atkObjectFactoryInvalidate(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{AtkObjectFactory}}]  an \verb{\link{AtkObjectFactory}} to invalidate}}
+\arguments{\item{\verb{object}}{[\code{\link{AtkObjectFactory}}]  an \code{\link{AtkObjectFactory}} to invalidate}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

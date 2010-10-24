@@ -105,3 +105,45 @@
   )
   (since "2.18.0")
 )
+
+
+(define-method is_destroyed
+  (of-object "GdkWindow")
+  (c-name "gdk_window_is_destroyed")
+  (return-type "gboolean")
+  (since "2.18.0")
+  )
+
+(define-method get_root_coords
+  (of-object "GdkWindow")
+  (c-name "gdk_window_get_root_coords")
+  (return-type "none")
+  (parameters
+   '("gint" "x")
+   '("gint" "y")
+   '("gint*" "root_x" (out))
+   '("gint*" "root_y" (out))
+   )
+  (since "2.18.0")
+  )
+
+; Some pixbuf stuff
+
+
+(define-method set_loop
+  (of-object "GdkPixbufSimpleAnim")
+  (c-name "gdk_pixbuf_simple_anim_set_loop")
+  (return-type "none")
+  (parameters
+   '("gboolean" "loop")
+   )
+  (since "2.18.0")
+  )
+
+(define-method get_loop
+  (of-object "GdkPixbufSimpleAnim")
+  (c-name "gdk_pixbuf_simple_anim_get_loop")
+  (return-type "gboolean")
+  (since "2.18.0")
+  )
+

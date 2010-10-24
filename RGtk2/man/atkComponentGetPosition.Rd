@@ -5,7 +5,7 @@
 a point specifying \code{component}'s top-left corner.}
 \usage{atkComponentGetPosition(object, coord.type)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{AtkComponent}}]  an \verb{\link{AtkComponent}}}
+\item{\verb{object}}{[\code{\link{AtkComponent}}]  an \code{\link{AtkComponent}}}
 \item{\verb{coord.type}}{[\code{\link{AtkCoordType}}]  specifies whether the coordinates are relative to the screen
 or to the components top level window}
 }

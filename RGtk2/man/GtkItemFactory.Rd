@@ -39,7 +39,7 @@
    +----GInitiallyUnowned
          +----GtkObject
                +----GtkItemFactory}}
-\section{Detailed Description}{As of GTK+ 2.4, \verb{\link{GtkItemFactory}} has been deprecated in favour of \verb{\link{GtkUIManager}}.}
+\section{Detailed Description}{As of GTK+ 2.4, \code{\link{GtkItemFactory}} has been deprecated in favour of \code{\link{GtkUIManager}}.}
 \section{Structures}{\describe{
 \item{\verb{GtkItemFactory}}{
 \strong{WARNING: \code{GtkItemFactory} is deprecated and should not be used in newly-written code.}
@@ -62,21 +62,23 @@
 }
 
 \describe{
-\item{\code{func.data}}{[R object] }
-\item{\code{str}}{[character] }
+\item{\code{func.data}}{\emph{undocumented
+}}
+\item{\code{str}}{\emph{undocumented
+}}
 }
 
 
 }
 \item{\code{GtkTranslateFunc(path, func.data)}}{
-The function used to translate messages in e.g. \verb{\link{GtkIconFactory}}
-and \verb{\link{GtkActionGroup}}. 
+The function used to translate messages in e.g. \code{\link{GtkIconFactory}}
+and \code{\link{GtkActionGroup}}.
 
 \describe{
-\item{\code{path}}{[character] The id of the message. In \verb{\link{GtkItemFactory}} this will be a path
-  from a \verb{\link{GtkItemFactoryEntry}}, in \verb{\link{GtkActionGroup}}, it will be a label
-  or tooltip from a \verb{\link{GtkActionEntry}}.}
-\item{\code{func.data}}{[R object] user data passed in when registering the function}
+\item{\code{path}}{The id of the message. In \code{\link{GtkItemFactory}} this will be a path
+  from a \code{\link{GtkItemFactoryEntry}}, in \code{\link{GtkActionGroup}}, it will be a label
+  or tooltip from a \code{\link{GtkActionEntry}}.}
+\item{\code{func.data}}{user data passed in when registering the function}
 }
 
 \emph{Returns:} [character] the translated message
@@ -95,9 +97,12 @@ and \verb{\link{GtkActionGroup}}.
 }
 
 \describe{
-\item{\code{callback.data}}{[R object] }
-\item{\code{callback.action}}{[numeric] }
-\item{\code{widget}}{[\verb{\link{GtkWidget}}] }
+\item{\code{callback.data}}{\emph{undocumented
+}}
+\item{\code{callback.action}}{\emph{undocumented
+}}
+\item{\code{widget}}{\emph{undocumented
+}}
 }
 
 
@@ -107,14 +112,17 @@ and \verb{\link{GtkActionGroup}}.
 }
 
 \describe{
-\item{\code{widget}}{[\verb{\link{GtkWidget}}] }
-\item{\code{callback.data}}{[R object] }
-\item{\code{callback.action}}{[numeric] }
+\item{\code{widget}}{\emph{undocumented
+}}
+\item{\code{callback.data}}{\emph{undocumented
+}}
+\item{\code{callback.action}}{\emph{undocumented
+}}
 }
 
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkItemFactory.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkItemFactory.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

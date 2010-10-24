@@ -4,8 +4,8 @@
 \description{Returns whether the status icon is embedded in a notification
 area.}
 \usage{gtkStatusIconIsEmbedded(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkStatusIcon}}]  a \verb{\link{GtkStatusIcon}}}}
-\details{  Since  2.10}
+\arguments{\item{\verb{object}}{a \code{\link{GtkStatusIcon}}}}
+\details{Since 2.10}
 \value{[logical] \code{TRUE} if the status icon is embedded in
   a notification area.}
 \author{Derived by RGtkGen from GTK+ documentation}

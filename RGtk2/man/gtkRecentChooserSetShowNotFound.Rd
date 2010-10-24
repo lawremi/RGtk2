@@ -5,9 +5,9 @@
 it didn't find.  This only applies to local resources.}
 \usage{gtkRecentChooserSetShowNotFound(object, show.not.found)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkRecentChooser}}]  a \verb{\link{GtkRecentChooser}}}
-\item{\verb{show.not.found}}{[logical]  whether to show the local items we didn't find}
+\item{\verb{object}}{a \code{\link{GtkRecentChooser}}}
+\item{\verb{show.not.found}}{whether to show the local items we didn't find}
 }
-\details{  Since  2.10}
+\details{Since 2.10}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -9,6 +9,6 @@ colors.
 \strong{WARNING: \code{gtk_preview_set_install_cmap} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkPreviewSetInstallCmap(install.cmap)}
-\arguments{\item{\verb{install.cmap}}{[integer] ignored.}}
+\arguments{\item{\verb{install.cmap}}{ignored.}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

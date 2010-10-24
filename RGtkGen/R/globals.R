@@ -14,7 +14,7 @@ badTypes <- c("GdkPointerHooks", "GdkDisplayPointerHooks",
               "AtkFocusHandler", "AtkPropertyChangeHandler",
               "AtkPropertyValues", "PangoFontsetSimple", "GdkInputCondition",
               "GdkStatus", "GtkArgFlags", "GtkDebugFlag", "GtkObjectFlags",
-              "GSimpleAsyncThreadFunc", "GPollFD", "GParameter",
+              "GPollFD", "GParameter",
               ## These will be called in another thread (bad!)
               ## Could work around it via idle handler, but too much work!
               "GSimpleAsyncThreadFunc", "GIOSchedulerJobFunc")
@@ -270,7 +270,10 @@ c("pango_context_new", "pango_fontset_simple_new",
   "gdk_pixmap_lookup_for_display", "pango_font_find_shaper",
   "gtk_disable_setlocale", "gdk_pixmap_foreign_new_for_screen",
   "atk_misc_threads_enter", "atk_misc_threads_leave", "gtk_init_check",
-  "gtk_input_add_full", "gtk_set_locale")
+  "gtk_input_add_full", "gtk_set_locale",
+  "g_cancellable_make_pollfd", "g_io_scheduler_push_job",
+  "g_simple_async_result_is_valid", "g_unix_connection_receive_fd",
+  "g_unix_connection_send_fd", "gtk_test_init")
 
 useless_funcs <- c("pango_default_break", "gdk_colormap_change",
                    "gdk_color_copy", "gdk_colors_alloc", "gdk_color_hash",
@@ -303,7 +306,12 @@ useless_funcs <- c("pango_default_break", "gdk_colormap_change",
                    "g_async_initable_newv_async",
                    "g_async_initable_new_valist_async",
                    "g_initable_newv", "g_initable_new_valist",
-                   "g_cancellable_connect"
+                   "g_cancellable_connect",
+                   "glade_xml_construct_from_buffer", # libglade is dead
+                   "g_io_module_load", "g_io_module_unload",
+                   "g_simple_async_result_set_error_va",
+                   "gtk_test_create_widget", "gtk_test_create_simple_window",
+                   "gtk_test_display_button_window"
                    )
 
 mem_funcs <-
@@ -343,38 +351,49 @@ mem_funcs <-
     "pango_tab_array_free", "gtk_target_table_free",
     "gtk_paper_size_free", "pango_script_iter_free",
     "cairo_rectangle_list_destroy", "cairo_get_reference_count",
-    "cairo_surface_get_reference_count",
+    "cairo_surface_get_reference_count", "cairo_surface_reference",
     "cairo_pattern_get_reference_count",
     "cairo_font_face_get_reference_count",
     "cairo_scaled_font_get_reference_count", "pango_glyph_item_copy",
     "pango_layout_iter_copy", "g_file_attribute_info_list_ref",
     "g_file_attribute_info_list_unref",
     "g_file_attribute_matcher_ref", "g_file_attribute_matcher_unref",
-    "pango_glyph_item_iter_copy", "pango_glyph_item_iter_free")
+    "pango_glyph_item_iter_copy", "pango_glyph_item_iter_free",
+    "cairo_text_cluster_allocate", "cairo_glyph_allocate",
+    "g_file_attribute_info_list_dup")
+
+## too tough right now
+unsupported_funcs <- c(# user data shared between two callbacks
+                       "g_file_load_partial_contents_async",
+                       # obviously, multi-threading is not supported
+                       "g_simple_async_result_run_in_thread")
 
 cleanups <- unlist(cleanupFuncs)[sapply(unlist(cleanupFuncs), function(func) nchar(func) > 0)]
 mem_funcs <- unique(c(mem_funcs, cleanups, finalizerFuncs, "g_object_unref", "g_object_ref", "g_strfreev"))
 
-undocumentedFuncs <- c(lowlevel_funcs, useless_funcs, mem_funcs)
+undocumentedFuncs <- c(lowlevel_funcs, useless_funcs, mem_funcs,
+                       unsupported_funcs)
 badRFuncs <- unique(c(badRFuncs, undocumentedFuncs))
 
 # entire concepts we're not documenting (ie, low-level functionality)
-undocumentedConcepts <- c("engines", "freetype-fonts", "modules", "opentype",
-                          "pango-engine-lang", "pango-engine-shape", "pangofc-decoder",
-                          "pangofc-font", "pangofc-fontmap", "win32-fonts", "x-fonts",
-                          "xft-fonts", "input", "threads", "x_interaction", "glossary",
-                          "gtkbindings", "gtkfeatures", "gtkobject", "gtksignal",
-                          "gtktext", "gtkthemes", "gtktree", "gtktreeitem", "gtktypeutils",
-                          "selections", "gdk-pixbuf-xlib-from-drawables",
-                          "gdk-pixbuf-xlib-rgb", "gdk-pixbuf-xlib-init",
-                          "gdk-pixbuf-xlib-rendering", "inline", "refcounting", "cairo-ft",
-                          "cairo-glitz", "cairo-quartz", "cairo-win32",
-                          "cairo-win32-fonts", "cairo-xcb-xrender", "cairo-xcb",
-                          "cairo-xlib-xrender", "cairo-xlib", "glade-build",
-                          "glade-parser", "glade-init", "atsui-fonts", "utils",
-                          "gtkpagesetupunixdialog", "gtkprinter", "gtkprintjob",
-                          "gtkprintunixdialog", "cairo-beos", "pango-vertical",
-                          "atk-AtkMisc")
+undocumentedConcepts <-
+  c("engines", "freetype-fonts", "modules",
+    "opentype", "pango-engine-lang", "pango-engine-shape",
+    "pangofc-decoder", "pangofc-font", "pangofc-fontmap", "win32-fonts",
+    "x-fonts", "xft-fonts", "input", "threads", "x_interaction",
+    "glossary", "gtkbindings", "gtkfeatures", "gtkobject", "gtksignal",
+    "gtktext", "gtkthemes", "gtktree", "gtktreeitem", "gtktypeutils",
+    "selections", "gdk-pixbuf-xlib-from-drawables", "gdk-pixbuf-xlib-rgb",
+    "gdk-pixbuf-xlib-init", "gdk-pixbuf-xlib-rendering", "inline",
+    "refcounting", "cairo-ft", "cairo-glitz", "cairo-quartz",
+    "cairo-quartz-fonts", "cairo-win32", "cairo-win32-fonts",
+    "cairo-xcb-xrender", "cairo-xcb", "cairo-xlib-xrender", "cairo-xlib",
+    "glade-build", "glade-parser", "glade-init", "atsui-fonts", "utils",
+    "gtkpagesetupunixdialog", "gtkprinter", "gtkprintjob",
+    "gtkprintunixdialog", "cairo-beos", "pango-vertical", "atk-AtkMisc",
+    "gdesktopappinfo", "gunixfdmessage", "gunixinputstream",
+    "gunixmounts", "gunixoutputstream", "gunixsocketaddress",
+    "migrating", "overview")
 
 # some sections are not appropriate for the R documentation
 omittedSections <- c("image-data", "Pathnames and patterns",
@@ -383,6 +402,7 @@ omittedSections <- c("image-data", "Pathnames and patterns",
 libraryDescriptions <-
 c("ATK" = "ATK is the Accessibility Toolkit. It provides a set of generic interfaces allowing accessibility technologies to interact with a graphical user interface. For example, a screen reader uses ATK to discover the text in an interface and read it to blind users. GTK+ widgets have built-in support for accessibility using the ATK framework.",
   "Pango" = "Pango is a library for internationalized text handling. It centers around the \\code{\\link{PangoLayout}} object, representing a paragraph of text. Pango provides the engine for \\code{\\link{GtkTextView}}, \\code{\\link{GtkLabel}}, \\code{\\link{GtkEntry}}, and other widgets that display text.",
+  "GIO" = "GIO is a modern, easy-to-use VFS API",
   "GDK" = "GDK is the abstraction layer that allows GTK+ to support multiple windowing systems. GDK provides drawing and window system facilities on X11, Windows, and the Linux framebuffer device.",
   "GTK" = "The GTK+ library itself contains widgets, that is, GUI components such as \\code{\\link{GtkButton}} or \\code{\\link{GtkTextView}}.",
   "GDK-Pixbuf" = "This is a small library which allows you to create GdkPixbuf ('pixel buffer') objects from image data or image files. Use a \\code{\\link{GdkPixbuf}} in combination with \\code{\\link{GtkImage}} to display images.",
@@ -390,7 +410,7 @@ c("ATK" = "ATK is the Accessibility Toolkit. It provides a set of generic interf
   "Libglade" = "Libglade loads and parses XML descriptions of user interfaces at runtime. It also provides functions that can be used to connect signal handlers to parts of the interface."
 )
 
-gnome_prefix <- "http://developer.gnome.org/doc/API/2.0"
+gnome_prefix <- "http://library.gnome.org/devel/"
 urlPrefices <- paste(gnome_prefix, tolower(names(libraryDescriptions)), sep="/")
 names(urlPrefices) <- tolower(names(libraryDescriptions))
 urlPrefices[["cairo"]] <- "http://www.cairographics.org/manual"
@@ -406,8 +426,8 @@ customNotes <- c(
 "gtk_menu_attach_to_widget" = "This does not yet support the callback function, sorry."
 )
 
-# functions that are not exported from the win32 DLL
-# this is just a temporary hack
+## functions that are not exported from the win32 DLL
+## this is just a temporary hack (or is it?)
 badTypes <- c(badTypes, "AtkHyperlinkImpl")
 badDLLFuncs <- c("atk_streamable_content_get_uri", "atk_value_get_minimum_increment")
 badRFuncs <- c(badRFuncs, badDLLFuncs)

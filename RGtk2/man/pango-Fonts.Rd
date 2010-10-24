@@ -67,6 +67,7 @@
 \code{\link{pangoFontFaceListSizes}(object)}\cr
 \code{\link{pangoFontFaceDescribe}(object)}\cr
 \code{\link{pangoFontFaceIsSynthesized}(object)}\cr
+\code{\link{pangoFontMapCreateContext}(object)}\cr
 \code{\link{pangoFontMapLoadFont}(object, context, desc)}\cr
 \code{\link{pangoFontMapLoadFontset}(object, context, desc, language)}\cr
 \code{\link{pangoFontMapListFamilies}(object)}\cr
@@ -93,113 +94,118 @@ GObject
    +----PangoFontset
          +----PangoFontsetSimple
 }}
-\section{Interface Derivations}{PangoFontMap is required by
- \verb{\link{PangoCairoFontMap}}.}
+\section{Interface Derivations}{PangoFont is required by
+ \code{\link{PangoCairoFont}}.  
+PangoFontMap is required by
+ \code{\link{PangoCairoFontMap}}.}
 \section{Detailed Description}{Pango supports a flexible architecture where a
 particular rendering architecture can supply an
-implementation of fonts. The \verb{\link{PangoFont}} structure
+implementation of fonts. The \code{\link{PangoFont}} structure
 represents an abstract rendering-system-independent font.
 Pango provides routines to list available fonts, and
 to load a font of a given description.}
 \section{Structures}{\describe{
 \item{\verb{PangoFontDescription}}{
-The \verb{\link{PangoFontDescription}} structure represents the description
+The \code{\link{PangoFontDescription}} structure represents the description
 of an ideal font. These structures are used both to list
 what fonts are available on the system and also for specifying
 the characteristics of a font to load.
 
 }
 \item{\verb{PangoFontMetrics}}{
-A \verb{\link{PangoFontMetrics}} structure holds the overall metric information
+A \code{\link{PangoFontMetrics}} structure holds the overall metric information
 for a font (possibly restricted to a script). The fields of this
 structure are private to implementations of a font backend. See
 the documentation of the corresponding getters for documentation
 of their meaning.
 
 \describe{
-\item{\code{ref_count}}{[numeric] reference count.  Used internally.  See \code{pangoFontMetricsRef()}
+\item{\code{ref_count}}{reference count.  Used internally.  See \code{pangoFontMetricsRef()}
             and \code{pangoFontMetricsUnref()}.}
-\item{\code{ascent}}{[integer] the distance from the baseline to the highest point of the glyphs of
+\item{\code{ascent}}{the distance from the baseline to the highest point of the glyphs of
 	 the font. This is positive in practically all fonts.}
-\item{\code{descent}}{[integer] the distance from the baseline to the lowest point of the glyphs of
+\item{\code{descent}}{the distance from the baseline to the lowest point of the glyphs of
 	 the font. This is positive in practically all fonts.}
-\item{\code{approximate_char_width}}{[integer] approximate average width of the regular glyphs of
-         the font.}
-\item{\code{approximate_digit_width}}{[integer] approximate average width of the glyphs for digits
+\item{\code{approximate_char_width}}{approximate average width of the regular glyphs of
+         the font.  Note that for this calculation, East Asian characters
+	 (those passing \code{gUnicharIswide()}) are counted as double-width.
+	 This produces a more uniform value for this measure across languages
+	 and results in more uniform and more expected UI sizes.}
+\item{\code{approximate_digit_width}}{approximate average width of the glyphs for digits
          of the font.}
-\item{\code{underline_position}}{[integer] position of the underline. This is normally negative.}
-\item{\code{underline_thickness}}{[integer] thickness of the underline.}
-\item{\code{strikethrough_position}}{[integer] position of the strikethrough line. This is
+\item{\code{underline_position}}{position of the underline. This is normally negative.}
+\item{\code{underline_thickness}}{thickness of the underline.}
+\item{\code{strikethrough_position}}{position of the strikethrough line. This is
 	 normally positive.}
-\item{\code{strikethrough_thickness}}{[integer] thickness of the strikethrough line.}
+\item{\code{strikethrough_thickness}}{thickness of the strikethrough line.}
 }
 
 }
 \item{\verb{PangoFont}}{
-The \verb{\link{PangoFont}} structure is used to represent
+The \code{\link{PangoFont}} structure is used to represent
 a font in a rendering-system-independent matter.
-To create an implementation of a \verb{\link{PangoFont}},
+To create an implementation of a \code{\link{PangoFont}},
 the rendering-system specific code should allocate
 a larger structure that contains a nested
-\verb{\link{PangoFont}}, fill in the \code{klass} member of
-the nested \verb{\link{PangoFont}} with a pointer to
+\code{\link{PangoFont}}, fill in the \code{klass} member of
+the nested \code{\link{PangoFont}} with a pointer to
 a appropriate \verb{PangoFontClass}, then call
 \code{pangoFontInit()} on the structure.
   
-The \verb{\link{PangoFont}} structure contains one member
+The \code{\link{PangoFont}} structure contains one member
 which the implementation fills in.
 
 }
 \item{\verb{PangoFontFamily}}{
-The \verb{\link{PangoFontFamily}} structure is used to represent a family of related 
-font faces. The faces in a family share a common design, but differ in 
+The \code{\link{PangoFontFamily}} structure is used to represent a family of related
+font faces. The faces in a family share a common design, but differ in
 slant, weight, width and other aspects.
 
 }
 \item{\verb{PangoFontFace}}{
-The \verb{\link{PangoFontFace}} structure is used to represent a group of fonts with 
+The \code{\link{PangoFontFace}} structure is used to represent a group of fonts with
 the same family, slant, weight, width, but varying sizes.
 
 }
 \item{\verb{PangoFontMap}}{
-The \verb{\link{PangoFontMap}} represents the set of fonts available for a
+The \code{\link{PangoFontMap}} represents the set of fonts available for a
 particular rendering system. This is a virtual object with
 implementations being specific to particular rendering systems.  To
-create an implementation of a \verb{\link{PangoFontMap}}, the rendering-system
+create an implementation of a \code{\link{PangoFontMap}}, the rendering-system
 specific code should allocate a larger structure that contains a nested
-\verb{\link{PangoFontMap}}, fill in the \code{klass} member of the nested \verb{\link{PangoFontMap}} with a
+\code{\link{PangoFontMap}}, fill in the \code{klass} member of the nested \code{\link{PangoFontMap}} with a
 pointer to a appropriate \verb{PangoFontMapClass}, then call
 \code{pangoFontMapInit()} on the structure.
   
-The \verb{\link{PangoFontMap}} structure contains one member which the implementation
+The \code{\link{PangoFontMap}} structure contains one member which the implementation
 fills in.
 
 }
 \item{\verb{PangoFontset}}{
-A \verb{\link{PangoFontset}} represents a set of \verb{\link{PangoFont}} to use
+A \code{\link{PangoFontset}} represents a set of \code{\link{PangoFont}} to use
 when rendering text. It is the result of resolving a
-\verb{\link{PangoFontDescription}} against a particular \verb{\link{PangoContext}}.
+\code{\link{PangoFontDescription}} against a particular \code{\link{PangoContext}}.
 It has operations for finding the component font for
 a particular Unicode character, and for finding a composite
 set of metrics for the entire fontset.
 
 }
 \item{\verb{PangoFontsetSimple}}{
-\verb{\link{PangoFontsetSimple}} is a implementation of the abstract
-\verb{\link{PangoFontset}} base class in terms of a list of fonts,
+\code{\link{PangoFontsetSimple}} is a implementation of the abstract
+\code{\link{PangoFontset}} base class in terms of a list of fonts,
 which the creator provides when constructing the
-\verb{\link{PangoFontsetSimple}}.
+\code{\link{PangoFontsetSimple}}.
 
 }
 }}
 \section{Enums and Flags}{\describe{
 \item{\verb{PangoStyle}}{
-An enumeration specifying the various slant styles possible for a font.  
+An enumeration specifying the various slant styles possible for a font.
 
 \describe{
-\item{\verb{normal}}{ the font is upright.}
-\item{\verb{oblique}}{ the font is slanted, but in a roman style.}
-\item{\verb{italic}}{ the font is slanted in an italic style.}
+\item{\verb{normal}}{the font is upright.}
+\item{\verb{oblique}}{the font is slanted, but in a roman style.}
+\item{\verb{italic}}{the font is slanted in an italic style.}
 }
 
 }
@@ -208,21 +214,17 @@ An enumeration specifying the weight (boldness) of a font. This is a numerical
 value ranging from 100 to 900, but there are some predefined values:
 
 \describe{
-\item{\verb{ultralight}}{the ultralight weight (= 200)}
-\item{\verb{light}}{ the light weight (=300)}
-\item{\verb{normal}}{the default weight (= 400)}
-\item{\verb{semibold}}{a weight intermediate between normal and bold (=600)}
-\item{\verb{bold}}{the bold weight (= 700)}
-\item{\verb{ultrabold}}{the ultrabold weight (= 800)}
-\item{\verb{heavy}}{the heavy weight (= 900)}
-\item{\verb{book}}{\emph{undocumented
-}}
-\item{\verb{ultraheavy}}{\emph{undocumented
-}}
-\item{\verb{thin}}{\emph{undocumented
-}}
-\item{\verb{medium}}{\emph{undocumented
-}}
+\item{\verb{ultralight}}{the thin weight (= 100; Since: 1.24)}
+\item{\verb{light}}{the ultralight weight (= 200)}
+\item{\verb{normal}}{the light weight (= 300)}
+\item{\verb{semibold}}{the book weight (= 380; Since: 1.24)}
+\item{\verb{bold}}{the default weight (= 400)}
+\item{\verb{ultrabold}}{the normal weight (= 500; Since: 1.24)}
+\item{\verb{heavy}}{the semibold weight (= 600)}
+\item{\verb{book}}{the bold weight (= 700)}
+\item{\verb{ultraheavy}}{the ultrabold weight (= 800)}
+\item{\verb{thin}}{the heavy weight (= 900)}
+\item{\verb{medium}}{the ultraheavy weight (= 1000; Since: 1.24)}
 }
 
 }
@@ -254,8 +256,8 @@ within a family.
 
 }
 \item{\verb{PangoFontMask}}{
-The bits in a \code{\link{PangoFontMask}} correspond to fields in a  
-\verb{\link{PangoFontDescription}} that have been set.
+The bits in a \code{\link{PangoFontMask}} correspond to fields in a
+\code{\link{PangoFontDescription}} that have been set.
 
 \describe{
 \item{\verb{family}}{the font family is specified.}
@@ -270,19 +272,18 @@ The bits in a \code{\link{PangoFontMask}} correspond to fields in a
 }}
 \section{User Functions}{\describe{\item{\code{PangoFontsetForeachFunc(fontset, font, data)}}{
 A callback function used by \code{\link{pangoFontsetForeach}} when enumerating
-the fonts in a fontset.  
-
-  Since  1.4
+the fonts in a fontset.
+  Since 1.4
 
 \describe{
-\item{\code{fontset}}{[\verb{\link{PangoFontset}}]  a \verb{\link{PangoFontset}}}
-\item{\code{font}}{[\verb{\link{PangoFont}}]  a font from \code{fontset}}
-\item{\code{data}}{[R object]  callback data}
+\item{\code{fontset}}{a \code{\link{PangoFontset}}}
+\item{\code{font}}{a font from \code{fontset}}
+\item{\code{data}}{callback data}
 }
 
 \emph{Returns:} [logical]  if \code{TRUE}, stop iteration and return immediately.
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/pango/pango-Fonts.html}}
+\references{\url{http://library.gnome.org/devel//pango/pango-Fonts.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

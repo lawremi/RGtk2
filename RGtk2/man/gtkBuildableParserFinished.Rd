@@ -8,9 +8,9 @@ Note that this will be called once for each time
 is called on a builder.}
 \usage{gtkBuildableParserFinished(object, builder)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkBuildable}}]  a \verb{\link{GtkBuildable}}}
-\item{\verb{builder}}{[\verb{\link{GtkBuilder}}]  a \verb{\link{GtkBuilder}}}
+\item{\verb{object}}{a \code{\link{GtkBuildable}}}
+\item{\verb{builder}}{a \code{\link{GtkBuilder}}}
 }
-\details{  Since  2.12}
+\details{Since 2.12}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

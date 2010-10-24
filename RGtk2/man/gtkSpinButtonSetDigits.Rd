@@ -5,8 +5,8 @@
 is allowed.}
 \usage{gtkSpinButtonSetDigits(object, digits)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkSpinButton}}]  a \verb{\link{GtkSpinButton}}}
-\item{\verb{digits}}{[numeric]  the number of digits after the decimal point to be displayed for the spin button's value}
+\item{\verb{object}}{a \code{\link{GtkSpinButton}}}
+\item{\verb{digits}}{the number of digits after the decimal point to be displayed for the spin button's value}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

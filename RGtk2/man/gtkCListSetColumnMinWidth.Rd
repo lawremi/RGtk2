@@ -8,9 +8,9 @@ the user from resizing it smaller than that specified.
 }
 \usage{gtkCListSetColumnMinWidth(object, column, min.width)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkCList}}] The \verb{\link{GtkCList}} to affect.}
-\item{\verb{column}}{[integer] The column to set the minimum width.}
-\item{\verb{min.width}}{[integer] The width, in pixels.}
+\item{\verb{object}}{The \code{\link{GtkCList}} to affect.}
+\item{\verb{column}}{The column to set the minimum width.}
+\item{\verb{min.width}}{The width, in pixels.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

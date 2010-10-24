@@ -10,9 +10,9 @@ with \verb{GTK_TEXT_WINDOW_WIDGET}, \verb{GTK_TEXT_WINDOW_TEXT}, or
 \verb{GTK_TEXT_WINDOW_PRIVATE}.}
 \usage{gtkTextViewSetBorderWindowSize(object, type, size)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTextView}}]  a \verb{\link{GtkTextView}}}
-\item{\verb{type}}{[\code{\link{GtkTextWindowType}}]  window to affect}
-\item{\verb{size}}{[integer]  width or height of the window}
+\item{\verb{object}}{a \code{\link{GtkTextView}}}
+\item{\verb{type}}{window to affect}
+\item{\verb{size}}{width or height of the window}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

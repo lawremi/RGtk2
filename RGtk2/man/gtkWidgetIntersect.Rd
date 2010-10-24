@@ -7,9 +7,9 @@ an intersection.  \code{intersection} may be \code{NULL} if you're only
 interested in whether there was an intersection.}
 \usage{gtkWidgetIntersect(object, area, intersection)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
-\item{\verb{area}}{[\verb{\link{GdkRectangle}}]  a rectangle}
-\item{\verb{intersection}}{[\verb{\link{GdkRectangle}}]  rectangle to store intersection of \code{widget} and \code{area}}
+\item{\verb{object}}{a \code{\link{GtkWidget}}}
+\item{\verb{area}}{a rectangle}
+\item{\verb{intersection}}{rectangle to store intersection of \code{widget} and \code{area}}
 }
 \value{[logical] \code{TRUE} if there was an intersection}
 \author{Derived by RGtkGen from GTK+ documentation}

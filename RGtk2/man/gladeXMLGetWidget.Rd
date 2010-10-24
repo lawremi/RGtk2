@@ -6,9 +6,9 @@
 anything to the widget after loading.}
 \usage{gladeXMLGetWidget(object, name)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GladeXML}}]  the GladeXML object.}
+\item{\verb{object}}{[\code{\link{GladeXML}}]  the GladeXML object.}
 \item{\verb{name}}{[char]  the name of the widget.}
 }
-\value{[\verb{\link{GtkWidget}}]  the widget matching \code{name}, or \code{NULL} if none exists.}
+\value{[\code{\link{GtkWidget}}]  the widget matching \code{name}, or \code{NULL} if none exists.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

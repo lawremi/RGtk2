@@ -36,18 +36,18 @@
 \section{Hierarchy}{\preformatted{GInterface
    +----AtkText}}
 \section{Implementations}{AtkText is implemented by
- \verb{\link{AtkNoOpObject}}.}
-\section{Detailed Description}{\verb{\link{AtkText}} should be implemented by \verb{AtkObjects} on behalf of widgets that
+ \code{\link{AtkNoOpObject}}.}
+\section{Detailed Description}{\code{\link{AtkText}} should be implemented by \verb{AtkObjects} on behalf of widgets that
 have text content which is either attributed or otherwise non-trivial.
 \verb{AtkObjects} whose text content is simple, unattributed, and very brief
 may expose that content via \code{\link{atkObjectGetName}} instead; however if the
 text is editable, multi-line, typically longer than three or four words,
 attributed, selectable, or if the object already uses the 'name' ATK
-property for other information, the \verb{\link{AtkText}} interface should be used
+property for other information, the \code{\link{AtkText}} interface should be used
 to expose the text content.  In the case of editable text content,
-\verb{\link{AtkEditableText}} (a subtype of the \verb{\link{AtkText}} interface) should be
+\code{\link{AtkEditableText}} (a subtype of the \code{\link{AtkText}} interface) should be
 implemented instead.
-  \verb{\link{AtkText}} provides not only traversal facilities and change notification
+  \code{\link{AtkText}} provides not only traversal facilities and change notification
 for text content, but also caret tracking and glyph bounding box
 calculations.  Note that the text strings are exposed as UTF-8, and are
 therefore potentially multi-byte, and caret-to-byte offset mapping makes
@@ -63,7 +63,7 @@ A structure used to describe a text range.
 \strong{\verb{AtkTextRange} is a \link{transparent-type}.}
 
 \describe{
-\item{\verb{bounds}}{[\verb{\link{AtkTextRectangle}}]  A rectangle giving the bounds of the text range}
+\item{\verb{bounds}}{[\code{\link{AtkTextRectangle}}]  A rectangle giving the bounds of the text range}
 \item{\verb{startOffset}}{[integer]  The start offset of a AtkTextRange}
 \item{\verb{endOffset}}{[integer]  The end offset of a AtkTextRange}
 \item{\verb{content}}{[character]  The text in the text range}
@@ -150,9 +150,9 @@ Describes the text attributes supported
 \item{\verb{family-name}}{ The font family name}
 \item{\verb{bg-color}}{ The background color. The value is an RGB value of the format "\code{u},\code{u},\code{u}"}
 \item{\verb{fg-color}}{The foreground color. The value is an RGB value of the format "\code{u},\code{u},\code{u}"}
-\item{\verb{bg-stipple}}{ "true" if a \verb{\link{GdkBitmap}} is set for stippling the background color.}
-\item{\verb{fg-stipple}}{ "true" if a \verb{\link{GdkBitmap}} is set for stippling the foreground color.}
-\item{\verb{wrap-mode}}{ The wrap mode of the text, if any. Values are "none", "char" or "word" }
+\item{\verb{bg-stipple}}{ "true" if a \code{\link{GdkBitmap}} is set for stippling the background color.}
+\item{\verb{fg-stipple}}{ "true" if a \code{\link{GdkBitmap}} is set for stippling the foreground color.}
+\item{\verb{wrap-mode}}{ The wrap mode of the text, if any. Values are "none", "char", "word", or "word_char".}
 \item{\verb{direction}}{ The direction of the text, if set. Values are "none", "ltr" or "rtl" }
 \item{\verb{justification}}{ The justification of the text, if set. Values are "left", "right", "center" or "fill" }
 \item{\verb{stretch}}{ The stretch of the text, if set. Values are "ultra_condensed", "extra_condensed", "condensed", "semi_condensed", "normal", "semi_expanded", "expanded", "extra_expanded" or "ultra_expanded"}
@@ -165,22 +165,22 @@ Describes the text attributes supported
 }}
 \section{Signals}{\describe{
 \item{\code{text-attributes-changed(atktext, user.data)}}{
-The "text-attributes-changed" signal is emitted when the text attributes of 
+The "text-attributes-changed" signal is emitted when the text attributes of
 the text of an object which implements AtkText changes.
 
 \describe{
-\item{\code{atktext}}{[\verb{\link{AtkText}}] the object which received the signal.}
+\item{\code{atktext}}{[\code{\link{AtkText}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
 \item{\code{text-caret-moved(atktext, arg1, user.data)}}{
-The "text-caret-moved" signal is emitted when the caret position of 
+The "text-caret-moved" signal is emitted when the caret position of
 the text of an object which implements AtkText changes.
 
 \describe{
-\item{\code{atktext}}{[\verb{\link{AtkText}}] the object which received the signal.}
+\item{\code{atktext}}{[\code{\link{AtkText}}] the object which received the signal.}
 \item{\code{arg1}}{[integer] The new position of the text caret.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -188,13 +188,13 @@ the text of an object which implements AtkText changes.
 
 }
 \item{\code{text-changed(atktext, arg1, arg2, user.data)}}{
-The "text-changed" signal is emitted when the text of the object which 
-implements the AtkText interface changes, This signal will have a detail 
-which is either "insert" or "delete" which identifies whether the text 
+The "text-changed" signal is emitted when the text of the object which
+implements the AtkText interface changes, This signal will have a detail
+which is either "insert" or "delete" which identifies whether the text
 change was an insertion or a deletion
 
 \describe{
-\item{\code{atktext}}{[\verb{\link{AtkText}}] the object which received the signal.}
+\item{\code{atktext}}{[\code{\link{AtkText}}] the object which received the signal.}
 \item{\code{arg1}}{[integer] The position (character offset) of the insertion or deletion.}
 \item{\code{arg2}}{[integer] The length (in characters) of text inserted or deleted.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
@@ -203,17 +203,17 @@ change was an insertion or a deletion
 
 }
 \item{\code{text-selection-changed(atktext, user.data)}}{
-The "text-selection-changed" signal is emitted when the selected text of 
+The "text-selection-changed" signal is emitted when the selected text of
 an object which implements AtkText changes.
 
 \describe{
-\item{\code{atktext}}{[\verb{\link{AtkText}}] the object which received the signal.}
+\item{\code{atktext}}{[\code{\link{AtkText}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/atk/AtkText.html}}
+\references{\url{http://library.gnome.org/devel//atk/AtkText.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

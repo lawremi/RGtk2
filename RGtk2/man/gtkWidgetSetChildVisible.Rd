@@ -5,8 +5,8 @@
 is mapped and \code{widget} has been shown with \code{\link{gtkWidgetShow}}. }
 \usage{gtkWidgetSetChildVisible(object, is.visible)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
-\item{\verb{is.visible}}{[logical]  if \code{TRUE}, \code{widget} should be mapped along with its parent.}
+\item{\verb{object}}{a \code{\link{GtkWidget}}}
+\item{\verb{is.visible}}{if \code{TRUE}, \code{widget} should be mapped along with its parent.}
 }
 \details{The child visibility can be set for widget before it is added to
 a container with \code{\link{gtkWidgetSetParent}}, to avoid mapping
@@ -21,6 +21,6 @@ not they are mapped. If this is not the case, the container
 can queue a resize itself.
   
 This function is only useful for container implementations and
-never should be called by an application.  }
+never should be called by an application.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

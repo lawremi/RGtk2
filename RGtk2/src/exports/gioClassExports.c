@@ -109,6 +109,9 @@ R_RegisterCCallable("RGtk2", "S_gthreaded_socket_service_class_init", ((DL_FUNC)
 #if GIO_CHECK_VERSION(2, 22, 0)
 R_RegisterCCallable("RGtk2", "S_giostream_class_init", ((DL_FUNC)S_giostream_class_init));
 #endif 
+#if GIO_CHECK_VERSION(2, 22, 0)
+R_RegisterCCallable("RGtk2", "S_ginet_socket_address_class_init", ((DL_FUNC)S_ginet_socket_address_class_init));
+#endif 
 #if GIO_CHECK_VERSION(2, 16, 0)
 R_RegisterCCallable("RGtk2", "S_gapp_info_class_init", ((DL_FUNC)S_gapp_info_class_init));
 #endif 

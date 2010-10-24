@@ -7,9 +7,9 @@ for some users, and thus may be turned off, in which case
 this setting has no effect.}
 \usage{gtkStatusIconSetBlinking(object, blinking)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkStatusIcon}}]  a \verb{\link{GtkStatusIcon}}}
-\item{\verb{blinking}}{[logical] \code{TRUE} to turn blinking on, \code{FALSE} to turn it off}
+\item{\verb{object}}{a \code{\link{GtkStatusIcon}}}
+\item{\verb{blinking}}{\code{TRUE} to turn blinking on, \code{FALSE} to turn it off}
 }
-\details{  Since  2.10}
+\details{Since 2.10}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

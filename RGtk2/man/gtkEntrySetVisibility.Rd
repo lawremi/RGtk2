@@ -7,11 +7,12 @@ as the invisible char, and will also appear that way when
 the text in the entry widget is copied elsewhere.}
 \usage{gtkEntrySetVisibility(object, visible)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkEntry}}]  a \verb{\link{GtkEntry}}}
-\item{\verb{visible}}{[logical] \code{TRUE} if the contents of the entry are displayed
+\item{\verb{object}}{a \code{\link{GtkEntry}}}
+\item{\verb{visible}}{\code{TRUE} if the contents of the entry are displayed
           as plaintext}
 }
-\details{The default invisible char is the asterisk '*', but it can
-be changed with \code{\link{gtkEntrySetInvisibleChar}}.  }
+\details{By default, GTK+ picks the best invisible character available
+in the current font, but it can be changed with
+\code{\link{gtkEntrySetInvisibleChar}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

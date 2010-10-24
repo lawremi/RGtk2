@@ -6,10 +6,10 @@ function only works with unsorted stores. If \code{position} is \code{NULL}, \co
 will be moved to the start of the list.}
 \usage{gtkListStoreMoveAfter(object, iter, position = NULL)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkListStore}}]  A \verb{\link{GtkListStore}}.}
-\item{\verb{iter}}{[\verb{\link{GtkTreeIter}}]  A \verb{\link{GtkTreeIter}}.}
-\item{\verb{position}}{[\verb{\link{GtkTreeIter}}]  A \verb{\link{GtkTreeIter}} or \code{NULL}.}
+\item{\verb{object}}{A \code{\link{GtkListStore}}.}
+\item{\verb{iter}}{A \code{\link{GtkTreeIter}}.}
+\item{\verb{position}}{ A \code{\link{GtkTreeIter}} or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
-\details{  Since  2.2}
+\details{Since 2.2}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -5,12 +5,11 @@
 Calling this function only makes sense from inside a subclass's
 methods, like in its draw_shape() for example.}
 \usage{pangoRendererGetLayout(renderer)}
-\arguments{\item{\verb{renderer}}{[\verb{\link{PangoRenderer}}]  a \verb{\link{PangoRenderer}}}}
+\arguments{\item{\verb{renderer}}{a \code{\link{PangoRenderer}}}}
 \details{The returned layout should not be modified while still being
-rendered.  
-
-  Since  1.20}
-\value{[\verb{\link{PangoLayout}}]  the layout, or \code{NULL} if no layout is being
+rendered.
+  Since 1.20}
+\value{[\code{\link{PangoLayout}}]  the layout, or \code{NULL} if no layout is being
  rendered using \code{renderer} at this time.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

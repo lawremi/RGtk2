@@ -5,6 +5,6 @@
 pixel values being drawn are combined to produce
 the final pixel values.}
 \usage{gdkGCSetFunction(object, fun)}
-\arguments{\item{\verb{object}}{[\verb{\link{GdkGC}}]  a \verb{\link{GdkGC}}.}}
+\arguments{\item{\verb{object}}{a \code{\link{GdkGC}}.}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

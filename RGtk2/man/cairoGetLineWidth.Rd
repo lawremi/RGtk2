@@ -6,7 +6,7 @@
 the CTM has changed between the calls to \code{\link{cairoSetLineWidth}} and
 \code{\link{cairoGetLineWidth}}.}
 \usage{cairoGetLineWidth(cr)}
-\arguments{\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}}
+\arguments{\item{\verb{cr}}{[\code{\link{Cairo}}]  a cairo context}}
 \value{[numeric]  the current line width.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

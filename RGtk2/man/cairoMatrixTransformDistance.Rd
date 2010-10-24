@@ -7,7 +7,7 @@ components of the transformation are ignored. The calculation of
 the returned vector is as follows:}
 \usage{cairoMatrixTransformDistance(matrix, dx, dy)}
 \arguments{
-\item{\verb{matrix}}{[\verb{\link{CairoMatrix}}]  a \verb{\link{CairoMatrix}}}
+\item{\verb{matrix}}{[\code{\link{CairoMatrix}}]  a \code{\link{CairoMatrix}}}
 \item{\verb{dx}}{[numeric]  X component of a distance vector. An in/out parameter}
 \item{\verb{dy}}{[numeric]  Y component of a distance vector. An in/out parameter}
 }

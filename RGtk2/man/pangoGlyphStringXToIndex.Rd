@@ -9,15 +9,15 @@ position; the caller must combine the result with the logical
 attributes for the text to compute the valid cursor position.}
 \usage{pangoGlyphStringXToIndex(object, text, analysis, x.pos)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{PangoGlyphString}}]     the glyphs returned from \code{\link{pangoShape}}}
-\item{\verb{text}}{[char]       the text for the run}
-\item{\verb{analysis}}{[\verb{\link{PangoAnalysis}}]   the analysis information return from \code{\link{pangoItemize}}}
-\item{\verb{x.pos}}{[integer]      the x offset (in Pango units)}
+\item{\verb{object}}{the glyphs returned from \code{\link{pangoShape}}}
+\item{\verb{text}}{the text for the run}
+\item{\verb{analysis}}{the analysis information return from \code{\link{pangoItemize}}}
+\item{\verb{x.pos}}{the x offset (in Pango units)}
 }
 \value{
 A list containing the following elements:
-\item{\verb{index}}{[integer]     location to store calculated byte index within \code{text}}
-\item{\verb{trailing}}{[integer]   location to store a boolean indicating
+\item{\verb{index}}{location to store calculated byte index within \code{text}}
+\item{\verb{trailing}}{location to store a boolean indicating
             whether the user clicked on the leading or trailing
             edge of the character.}
 }

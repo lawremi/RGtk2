@@ -7,9 +7,9 @@ this doesn't necessarily mean effective visibility. See
 for that.}
 \usage{gtkActionSetVisible(object, visible)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkAction}}]  the action object}
-\item{\verb{visible}}{[logical] \code{TRUE} to make the action visible}
+\item{\verb{object}}{the action object}
+\item{\verb{visible}}{\code{TRUE} to make the action visible}
 }
-\details{  Since  2.6}
+\details{Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

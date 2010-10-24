@@ -16,12 +16,12 @@
          +----GtkToggleAction
                +----GtkRadioAction}}
 \section{Interfaces}{GtkRadioAction implements
- \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{A \verb{\link{GtkRadioAction}} is similar to \verb{\link{GtkRadioMenuItem}}. A number of radio
-actions can be linked together so that only one may be active at any 
+ \code{\link{GtkBuildable}}.}
+\section{Detailed Description}{A \code{\link{GtkRadioAction}} is similar to \code{\link{GtkRadioMenuItem}}. A number of radio
+actions can be linked together so that only one may be active at any
 one time.}
 \section{Structures}{\describe{\item{\verb{GtkRadioAction}}{
-The \code{GtkRadioAction} struct contains 
+The \code{GtkRadioAction} struct contains
 only private members and should not be accessed directly.
 
 }}}
@@ -29,14 +29,13 @@ only private members and should not be accessed directly.
 \section{Signals}{\describe{\item{\code{changed(action, current, user.data)}}{
 The ::changed signal is emitted on every member of a radio group when the
 active member is changed. The signal gets emitted after the ::activate signals
-for the previous and current active members.  
-
-  Since  2.4
+for the previous and current active members.
+  Since 2.4
 
 \describe{
-\item{\code{action}}{[\verb{\link{GtkRadioAction}}]  the action on which the signal is emitted}
-\item{\code{current}}{[\verb{\link{GtkRadioAction}}]  the member of \code{action}s group which has just been activated}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{action}}{the action on which the signal is emitted}
+\item{\code{current}}{the member of \code{action}s group which has just been activated}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -45,30 +44,27 @@ for the previous and current active members.
 \item{\verb{current-value} [integer : Read / Write]}{
 
 The value property of the currently active member of the group to which
-this action belongs.  
-
-  Default value: 0  Since  2.10
+this action belongs.
+  Default value: 0  Since 2.10
 
 }
-\item{\verb{group} [\verb{\link{GtkRadioAction}} : *       : Write]}{
+\item{\verb{group} [\code{\link{GtkRadioAction}} : *       : Write]}{
 
-Sets a new group for a radio action.  
-
-  Since  2.4
+Sets a new group for a radio action.
+  Since 2.4
 
 }
 \item{\verb{value} [integer : Read / Write]}{
 
 The value is an arbitrary integer which can be used as a
-convenient way to determine which action in the group is 
+convenient way to determine which action in the group is
 currently active in an ::activate or ::changed signal handler.
-See \code{\link{gtkRadioActionGetCurrentValue}} and \verb{\link{GtkRadioActionEntry}}
-for convenient ways to get and set this property.  
-
-  Default value: 0  Since  2.4
+See \code{\link{gtkRadioActionGetCurrentValue}} and \code{\link{GtkRadioActionEntry}}
+for convenient ways to get and set this property.
+  Default value: 0  Since 2.4
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkRadioAction.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkRadioAction.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -7,9 +7,9 @@
 set to be GTK_TREE_VIEW_COLUMN_FIXED.}
 \usage{gtkTreeViewInsertColumn(object, column, position)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTreeView}}]  A \verb{\link{GtkTreeView}}.}
-\item{\verb{column}}{[\verb{\link{GtkTreeViewColumn}}]  The \verb{\link{GtkTreeViewColumn}} to be inserted.}
-\item{\verb{position}}{[integer]  The position to insert \code{column} in.}
+\item{\verb{object}}{A \code{\link{GtkTreeView}}.}
+\item{\verb{column}}{The \code{\link{GtkTreeViewColumn}} to be inserted.}
+\item{\verb{position}}{The position to insert \code{column} in.}
 }
 \value{[integer]  The number of columns in \code{tree.view} after insertion.}
 \author{Derived by RGtkGen from GTK+ documentation}

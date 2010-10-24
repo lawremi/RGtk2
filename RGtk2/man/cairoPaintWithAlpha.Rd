@@ -7,7 +7,7 @@ the current clip region using a mask of constant alpha value
 is faded out using the alpha value.}
 \usage{cairoPaintWithAlpha(cr, alpha)}
 \arguments{
-\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}
+\item{\verb{cr}}{[\code{\link{Cairo}}]  a cairo context}
 \item{\verb{alpha}}{[numeric]  alpha value, between 0 (transparent) and 1 (opaque)}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

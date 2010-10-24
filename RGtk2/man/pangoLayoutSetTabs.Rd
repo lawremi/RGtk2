@@ -7,8 +7,8 @@ tabs are reinstated. \code{tabs} is copied into the layout; you must
 free your copy of \code{tabs} yourself.}
 \usage{pangoLayoutSetTabs(object, tabs = NULL)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{PangoLayout}}]  a \verb{\link{PangoLayout}}}
-\item{\verb{tabs}}{[\verb{\link{PangoTabArray}}]  a \verb{\link{PangoTabArray}}}
+\item{\verb{object}}{a \code{\link{PangoLayout}}}
+\item{\verb{tabs}}{a \code{\link{PangoTabArray}}, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

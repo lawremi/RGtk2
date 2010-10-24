@@ -4,8 +4,8 @@
 \description{Reverses the effects of \code{\link{gtkWindowAddAccelGroup}}.}
 \usage{gtkWindowRemoveAccelGroup(object, accel.group)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}}
-\item{\verb{accel.group}}{[\verb{\link{GtkAccelGroup}}]  a \verb{\link{GtkAccelGroup}}}
+\item{\verb{object}}{a \code{\link{GtkWindow}}}
+\item{\verb{accel.group}}{a \code{\link{GtkAccelGroup}}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

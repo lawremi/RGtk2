@@ -5,9 +5,9 @@
 queue for \code{display}.}
 \usage{gdkDisplayPutEvent(object, event)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GdkDisplay}}]  a \verb{\link{GdkDisplay}}}
-\item{\verb{event}}{[\verb{\link{GdkEvent}}]  a \verb{\link{GdkEvent}}.}
+\item{\verb{object}}{a \code{\link{GdkDisplay}}}
+\item{\verb{event}}{a \code{\link{GdkEvent}}.}
 }
-\details{  Since  2.2}
+\details{Since 2.2}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

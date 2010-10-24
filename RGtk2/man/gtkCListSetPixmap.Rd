@@ -7,11 +7,11 @@ Sets a pixmap for the specified cell.
 }
 \usage{gtkCListSetPixmap(object, row, column, pixmap, mask = NULL)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkCList}}] The \verb{\link{GtkCList}} to affect.}
-\item{\verb{row}}{[integer] The row of the cell.}
-\item{\verb{column}}{[integer] The column of the cell.}
-\item{\verb{pixmap}}{[\verb{\link{GdkPixmap}}] A pointer to a \verb{\link{GdkPixmap}} to place in the cell.}
-\item{\verb{mask}}{[\verb{\link{GdkBitmap}}] A pointer to a \verb{\link{GdkBitmap}} mask for the cell.}
+\item{\verb{object}}{The \code{\link{GtkCList}} to affect.}
+\item{\verb{row}}{The row of the cell.}
+\item{\verb{column}}{The column of the cell.}
+\item{\verb{pixmap}}{A pointer to a \code{\link{GdkPixmap}} to place in the cell.}
+\item{\verb{mask}}{. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -1,16 +1,9 @@
 \alias{pangoLanguageToString}
 \name{pangoLanguageToString}
 \title{pangoLanguageToString}
-\description{Get the string representation of a \code{\link{PangoLanguage}}.}
-\usage{
-pangoLanguageToString(object)
-}
-\arguments{
-\item{object}{The \code{\link{PangoLanguage}} to convert to a string.}
-}
-\value{
-a string representation (the name) of the language
-}
-\author{Michael Lawrence}
+\description{Gets the RFC-3066 format string representing the given language tag.}
+\usage{pangoLanguageToString(object)}
+\arguments{\item{\verb{object}}{a language tag.}}
+\value{[char]  a string representing the language tag.}
+\author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}
-\keyword{interface}

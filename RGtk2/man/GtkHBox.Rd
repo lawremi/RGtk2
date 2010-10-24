@@ -16,12 +16,13 @@
                                  +----GtkHBox
                                        +----GtkCombo
                                        +----GtkFileChooserButton
+                                       +----GtkInfoBar
                                        +----GtkStatusbar}}
 \section{Interfaces}{GtkHBox implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+ AtkImplementorIface,  \code{\link{GtkBuildable}} and  \code{\link{GtkOrientable}}.}
 \section{Detailed Description}{GtkHBox is a container that organizes child widgets into a single row.
   
-Use the \verb{\link{GtkBox}} packing interface to determine the arrangement,
+Use the \code{\link{GtkBox}} packing interface to determine the arrangement,
 spacing, width, and alignment of GtkHBox children.
   
 All children are allocated the same height.}
@@ -31,6 +32,6 @@ All children are allocated the same height.}
 
 }}}
 \section{Convenient Construction}{\code{gtkHBox} is the equivalent of \code{\link{gtkHBoxNew}}.}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkHBox.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkHBox.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -2,13 +2,13 @@
 \name{gtkShowAboutDialog}
 \title{gtkShowAboutDialog}
 \description{This is a convenience function for showing an application's about box.
-The constructed dialog is associated with the parent window and 
+The constructed dialog is associated with the parent window and
 reused for future invocations of this function.}
 \usage{gtkShowAboutDialog(parent, ...)}
 \arguments{
-\item{\verb{parent}}{[\verb{\link{GtkWindow}}]  transient parent, or \code{NULL} for none}
-\item{\verb{...}}{ value of first property, followed by more properties, \code{NULL}-terminated}
+\item{\verb{parent}}{ transient parent, or \code{NULL} for none. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{...}}{value of first property, followed by more properties, \code{NULL}-terminated}
 }
-\details{  Since  2.6}
+\details{Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

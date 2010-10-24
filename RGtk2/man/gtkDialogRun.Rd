@@ -7,7 +7,7 @@ destroyed during the call to \code{\link{gtkDialogRun}}, \code{\link{gtkDialogRu
 \verb{GTK_RESPONSE_NONE}. Otherwise, it returns the response ID from the 
 ::response signal emission.}
 \usage{gtkDialogRun(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkDialog}}]  a \verb{\link{GtkDialog}}}}
+\arguments{\item{\verb{object}}{a \code{\link{GtkDialog}}}}
 \details{Before entering the recursive main loop, \code{\link{gtkDialogRun}} calls
 \code{\link{gtkWidgetShow}} on the dialog for you. Note that you still
 need to show any children of the dialog yourself.
@@ -37,7 +37,7 @@ Note that even though the recursive main loop gives the effect of a
 modal dialog (it prevents the user from interacting with other 
 windows in the same window group while the dialog is run), callbacks 
 such as timeouts, IO channel watches, DND drops, etc, \emph{will} 
-be triggered during a \code{\link{gtkDialogRun}} call.  }
+be triggered during a \code{\link{gtkDialogRun}} call.}
 \value{[integer]  response ID}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

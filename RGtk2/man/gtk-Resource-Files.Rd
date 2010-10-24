@@ -42,14 +42,14 @@ at runtime.}
 \section{Default files}{An application can cause GTK+ to parse a specific RC
 file by calling \code{\link{gtkRcParse}}. In addition to this,
 certain files will be read at the end of \code{\link{gtkInit}}.
-Unless modified, the files looked for will be 
-\file{<SYSCONFDIR>/gtk-2.0/gtkrc} 
+Unless modified, the files looked for will be
+\file{<SYSCONFDIR>/gtk-2.0/gtkrc}
 and \file{.gtkrc-2.0} in the users home directory.
-(\file{<SYSCONFDIR>} defaults to 
+(\file{<SYSCONFDIR>} defaults to
 \file{/usr/local/etc}. It can be changed with the
-\option{--prefix} or \option{--sysconfdir} options when 
-configuring GTK+.) Note that although the filenames contain the version 
-number 2.0, all 2.x versions of GTK+ look for these files.  
+\option{--prefix} or \option{--sysconfdir} options when
+configuring GTK+.) Note that although the filenames contain the version
+number 2.0, all 2.x versions of GTK+ look for these files.
   
 The set of these \dfn{default} files
 can be retrieved with \code{\link{gtkRcGetDefaultFiles}}
@@ -59,14 +59,14 @@ Additionally, the \env{GTK2_RC_FILES} environment variable
 can be set to a \verb{G_SEARCHPATH_SEPARATOR_S-separated} list of files
 in order to overwrite the set of default files at runtime.
   
-For each RC file, in addition to the file itself, GTK+ will look for 
-a locale-specific file that will be parsed after the main file. 
+For each RC file, in addition to the file itself, GTK+ will look for
+a locale-specific file that will be parsed after the main file.
 For instance, if \env{LANG} is set to \code{ja_JP.ujis},
-when loading the default file \file{~/.gtkrc} then GTK+ looks 
-for \file{~/.gtkrc.ja_JP} and \file{~/.gtkrc.ja}, 
+when loading the default file \file{~/.gtkrc} then GTK+ looks
+for \file{~/.gtkrc.ja_JP} and \file{~/.gtkrc.ja},
 and parses the first of those that exists.}
 \section{Optimizing RC Style Matches}{  
-Everytime a widget is created and added to the layout hierarchy of a \verb{\link{GtkWindow}}
+Everytime a widget is created and added to the layout hierarchy of a \code{\link{GtkWindow}}
 ("anchored" to be exact), a list of matching RC styles out of all RC styles read
 in so far is composed.
 For this, every RC style is matched against the widgets class path,
@@ -74,10 +74,9 @@ the widgets name path and widgets inheritance hierarchy.
 As a consequence, significant slowdown can be caused by utilization of many
 RC styles and by using RC style patterns that are slow or complicated to match
 against a given widget.
-The following ordered list provides a number of advices (prioritized by 
-effectiveness) to reduce the performance overhead associated with RC style 
+The following ordered list provides a number of advices (prioritized by
+effectiveness) to reduce the performance overhead associated with RC style
 matches:
-
 \enumerate{
 \item   Move RC styles for specific applications into RC files dedicated to those
   applications and parse application specific RC files only from
@@ -112,7 +111,7 @@ matches:
 \item   When using wildcards, use of \code{"?"} should be preferred
   over \code{"*"}. This can reduce the matching complexity from
   O(n^2) to O(n). For example \code{"Gtk*Box"} can be turned into
-  \code{"Gtk?Box"} and will still match \verb{\link{GtkHBox}} and \verb{\link{GtkVBox}}.
+  \code{"Gtk?Box"} and will still match \code{\link{GtkHBox}} and \code{\link{GtkVBox}}.
   
 \item   The use of \code{"*"} wildcards should be restricted as much
   as possible, because matching \code{"A*B*C*RestString"} can
@@ -120,16 +119,16 @@ matches:
   
 }}
 \section{Structures}{\describe{\item{\verb{GtkRcStyle}}{
-The \verb{\link{GtkRcStyle}} structure is used to represent a set
+The \code{\link{GtkRcStyle}} structure is used to represent a set
 of information about the appearance of a widget.
 This can later be composited together with other
-\verb{\link{GtkRcStyle}} structures to form a \verb{\link{GtkStyle}}.
+\code{\link{GtkRcStyle}} structures to form a \code{\link{GtkStyle}}.
 
 }}}
 \section{Enums and Flags}{\describe{
 \item{\verb{GtkRcFlags}}{
 The \code{\link{GtkRcFlags}} enumeration is used as a bitmask
-to specify which fields of a \verb{\link{GtkRcStyle}} have been
+to specify which fields of a \code{\link{GtkRcStyle}} have been
 set for each state.
 
 \describe{
@@ -227,6 +226,6 @@ specific portions of a RC file.
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/gtk-Resource-Files.html}}
+\references{\url{http://library.gnome.org/devel//gtk/gtk-Resource-Files.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

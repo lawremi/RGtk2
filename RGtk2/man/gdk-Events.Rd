@@ -140,13 +140,13 @@ Specifies the type of function passed to \code{\link{gdkEventHandlerSet}} to han
 all GDK events.
 
 \describe{
-\item{\code{event}}{[\verb{\link{GdkEvent}}] the \verb{\link{GdkEvent}} to process.}
-\item{\code{data}}{[R object] user data set when the event handler was installed with
+\item{\code{event}}{the \code{\link{GdkEvent}} to process.}
+\item{\code{data}}{user data set when the event handler was installed with
 \code{\link{gdkEventHandlerSet}}.}
 }
 
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gdk/gdk-Events.html}}
+\references{\url{http://library.gnome.org/devel//gdk/gdk-Events.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

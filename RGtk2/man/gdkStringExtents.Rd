@@ -7,16 +7,16 @@ Gets the metrics of a string.
 }
 \usage{gdkStringExtents(object, string)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GdkFont}}]  a \verb{\link{GdkFont}}.}
-\item{\verb{string}}{[character]  the string to measure.}
+\item{\verb{object}}{a \code{\link{GdkFont}}.}
+\item{\verb{string}}{the string to measure.}
 }
 \value{
 A list containing the following elements:
-\item{\verb{lbearing}}{[integer]  the left bearing of the string.}
-\item{\verb{rbearing}}{[integer]  the right bearing of the string.}
-\item{\verb{width}}{[integer]  the width of the string.}
-\item{\verb{ascent}}{[integer]  the ascent of the string.}
-\item{\verb{descent}}{[integer]  the descent of the string.}
+\item{\verb{lbearing}}{the left bearing of the string.}
+\item{\verb{rbearing}}{the right bearing of the string.}
+\item{\verb{width}}{the width of the string.}
+\item{\verb{ascent}}{the ascent of the string.}
+\item{\verb{descent}}{the descent of the string.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

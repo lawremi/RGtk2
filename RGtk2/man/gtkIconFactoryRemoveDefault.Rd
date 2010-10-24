@@ -5,6 +5,6 @@
 factories. Not normally used; you might use it for a library that
 can be unloaded or shut down.}
 \usage{gtkIconFactoryRemoveDefault(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkIconFactory}}]  a \verb{\link{GtkIconFactory}} previously added with \code{\link{gtkIconFactoryAddDefault}}}}
+\arguments{\item{\verb{object}}{a \code{\link{GtkIconFactory}} previously added with \code{\link{gtkIconFactoryAddDefault}}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

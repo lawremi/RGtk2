@@ -45,14 +45,14 @@
                                        +----GtkOptionMenu
                                        +----GtkScaleButton}}
 \section{Interfaces}{GtkButton implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{The \verb{\link{GtkButton}} widget is generally used to attach a function to that
+ AtkImplementorIface,  \code{\link{GtkBuildable}} and  \code{\link{GtkActivatable}}.}
+\section{Detailed Description}{The \code{\link{GtkButton}} widget is generally used to attach a function to that
 is called when the button is pressed.  The various signals and how to use
 them are outlined below.
   
-The \verb{\link{GtkButton}} widget can hold any valid child widget.  That is it can
-hold most any other standard \verb{\link{GtkWidget}}.  The most commonly used child is
-the \verb{\link{GtkLabel}}.}
+The \code{\link{GtkButton}} widget can hold any valid child widget.  That is it can
+hold most any other standard \code{\link{GtkWidget}}.  The most commonly used child is
+the \code{\link{GtkLabel}}.}
 \section{Structures}{\describe{\item{\verb{GtkButton}}{
 This should not be accessed directly.  Use the accessor functions below.
 
@@ -61,67 +61,63 @@ This should not be accessed directly.  Use the accessor functions below.
 \section{Signals}{\describe{
 \item{\code{activate(widget, user.data)}}{
 The ::activate signal on GtkButton is an action signal and
-emitting it causes the button to animate press then release. 
+emitting it causes the button to animate press then release.
 Applications should never connect to this signal, but use the
-\code{\link{gtkButtonClicked}} signal.  
+\code{\link{gtkButtonClicked}} signal.
 
 \describe{
-\item{\code{widget}}{[\verb{\link{GtkButton}}]  the object which received the signal.}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{widget}}{the object which received the signal.}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
 \item{\code{clicked(button, user.data)}}{
-Emitted when the button has been activated (pressed and released).  
+Emitted when the button has been activated (pressed and released).
 
 \describe{
-\item{\code{button}}{[\verb{\link{GtkButton}}]  the object that received the signal}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{button}}{the object that received the signal}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
 \item{\code{enter(button, user.data)}}{
 Emitted when the pointer enters the button.
-  \code{Deprecated}: Use the \verb{"enter-notify-event"} signal.  
 
 \describe{
-\item{\code{button}}{[\verb{\link{GtkButton}}]  the object that received the signal}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{button}}{the object that received the signal}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
 \item{\code{leave(button, user.data)}}{
 Emitted when the pointer leaves the button.
-  \code{Deprecated}: Use the \verb{"leave-notify-event"} signal.  
 
 \describe{
-\item{\code{button}}{[\verb{\link{GtkButton}}]  the object that received the signal}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{button}}{the object that received the signal}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
 \item{\code{pressed(button, user.data)}}{
 Emitted when the button is pressed.
-  \code{Deprecated}: Use the \verb{"button-press-event"} signal.  
 
 \describe{
-\item{\code{button}}{[\verb{\link{GtkButton}}]  the object that received the signal}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{button}}{the object that received the signal}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
 \item{\code{released(button, user.data)}}{
 Emitted when the button is released.
-  \code{Deprecated}: Use the \verb{"button-release-event"} signal.  
 
 \describe{
-\item{\code{button}}{[\verb{\link{GtkButton}}]  the object that received the signal}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{button}}{the object that received the signal}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -133,16 +129,15 @@ Emitted when the button is released.
 Whether the button grabs focus when it is clicked with the mouse.  Default value: TRUE
 
 }
-\item{\verb{image} [\verb{\link{GtkWidget}} : *            : Read / Write]}{
+\item{\verb{image} [\code{\link{GtkWidget}} : *            : Read / Write]}{
 
 Child widget to appear next to the button text.
 
 }
 \item{\verb{image-position} [\code{\link{GtkPositionType}} : Read / Write]}{
 
-The position of the image relative to the text inside the button.  
-
-  Default value: GTK_POS_LEFT  Since  2.10
+The position of the image relative to the text inside the button.
+  Default value: GTK_POS_LEFT  Since 2.10
 
 }
 \item{\verb{label} [character : *                : Read / Write / Construct]}{
@@ -167,20 +162,18 @@ If set, an underline in the text indicates the next character should be used for
 }
 \item{\verb{xalign} [numeric : Read / Write]}{
 
-If the child of the button is a \verb{\link{GtkMisc}} or \verb{\link{GtkAlignment}}, this property 
+If the child of the button is a \code{\link{GtkMisc}} or \code{\link{GtkAlignment}}, this property
 can be used to control it's horizontal alignment. 0.0 is left aligned, 
-1.0 is right aligned.  
-
-  Allowed values: [0,1]  Default value: 0.5  Since  2.4
+1.0 is right aligned.
+  Allowed values: [0,1]  Default value: 0.5  Since 2.4
 
 }
 \item{\verb{yalign} [numeric : Read / Write]}{
 
-If the child of the button is a \verb{\link{GtkMisc}} or \verb{\link{GtkAlignment}}, this property 
+If the child of the button is a \code{\link{GtkMisc}} or \code{\link{GtkAlignment}}, this property 
 can be used to control it's vertical alignment. 0.0 is top aligned, 
-1.0 is bottom aligned.  
-
-  Allowed values: [0,1]  Default value: 0.5  Since  2.4
+1.0 is bottom aligned.
+  Allowed values: [0,1]  Default value: 0.5  Since 2.4
 
 }
 }}
@@ -195,22 +188,26 @@ How far in the x direction to move the child when the button is depressed.  Defa
 How far in the y direction to move the child when the button is depressed.  Default value: 0
 
 }
-\item{\verb{default-border} [\verb{\link{GtkBorder}} : *            : Read]}{
+\item{\verb{default-border} [\code{\link{GtkBorder}} : *            : Read]}{
 
-Extra space to add for CAN_DEFAULT buttons.
+The "default-border" style property defines the extra space to add
+around a button that can become the default widget of its window.
+For more information about default widgets, see \code{\link{gtkWidgetGrabDefault}}.
 
 }
-\item{\verb{default-outside-border} [\verb{\link{GtkBorder}} : *            : Read]}{
+\item{\verb{default-outside-border} [\code{\link{GtkBorder}} : *            : Read]}{
 
-Extra space to add for CAN_DEFAULT buttons that is always drawn outside the border.
+The "default-outside-border" style property defines the extra outside
+space to add around a button that can become the default widget of its
+window. Extra outside space is always drawn outside the button border.
+For more information about default widgets, see \code{\link{gtkWidgetGrabDefault}}.
 
 }
 \item{\verb{displace-focus} [logical : Read]}{
 
-Whether the child_displacement_x/child_displacement_y properties 
-should also affect the focus rectangle.  
-
-  Default value: FALSE  Since  2.6
+Whether the child_displacement_x/child_displacement_y properties
+should also affect the focus rectangle.
+  Default value: FALSE  Since 2.6
 
 }
 \item{\verb{image-spacing} [integer : Read]}{
@@ -218,14 +215,13 @@ should also affect the focus rectangle.
 Spacing in pixels between the image and label.  Allowed values: >= 0  Default value: 2
 
 }
-\item{\verb{inner-border} [\verb{\link{GtkBorder}} : *            : Read]}{
+\item{\verb{inner-border} [\code{\link{GtkBorder}} : *            : Read]}{
 
-Sets the border between the button edges and child.  
-
-  Since  2.10
+Sets the border between the button edges and child.
+  Since 2.10
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkButton.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkButton.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

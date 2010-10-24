@@ -5,15 +5,15 @@
 indicating the dialog type (error, warning, etc.) and some text the
 user may want to see. When the user clicks a button a "response"
 signal is emitted with response IDs from \code{\link{GtkResponseType}}. See
-\verb{\link{GtkDialog}} for more details.}
+\code{\link{GtkDialog}} for more details.}
 \usage{gtkMessageDialogNew(parent = NULL, flags, type, buttons, ..., show = TRUE)}
 \arguments{
-\item{\verb{parent}}{[\verb{\link{GtkWindow}}]  transient parent, or \code{NULL} for none }
-\item{\verb{flags}}{[\code{\link{GtkDialogFlags}}]  flags}
-\item{\verb{type}}{[\code{\link{GtkMessageType}}]  type of message}
-\item{\verb{buttons}}{[\code{\link{GtkButtonsType}}]  set of buttons to use}
-\item{\verb{...}}{ arguments for \code{message.format}}
+\item{\verb{parent}}{ transient parent, or \code{NULL} for none. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{flags}}{flags}
+\item{\verb{type}}{type of message}
+\item{\verb{buttons}}{set of buttons to use}
+\item{\verb{...}}{arguments for \code{message.format}}
 }
-\value{[\verb{\link{GtkWidget}}]  a new \verb{\link{GtkMessageDialog}}}
+\value{[\code{\link{GtkWidget}}]  a new \code{\link{GtkMessageDialog}}. \emph{[  \acronym{transfer none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

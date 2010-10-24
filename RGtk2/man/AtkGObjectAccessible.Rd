@@ -1,7 +1,7 @@
 \alias{AtkGObjectAccessible}
 \name{AtkGObjectAccessible}
 \title{AtkGObjectAccessible}
-\description{This object class is derived from AtkObject and can be used as a basis 
+\description{This object class is derived from AtkObject and can be used as a basis
 implementing accessible objects.}
 \section{Methods and Functions}{
 \code{\link{atkGObjectAccessibleForObject}(obj)}\cr
@@ -19,6 +19,6 @@ for GnomeCanvasItem in the GAIL library.}
 The AtkGObjectAccessible structure should not be accessed directly.
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/atk/AtkGObjectAccessible.html}}
+\references{\url{http://library.gnome.org/devel//atk/AtkGObjectAccessible.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

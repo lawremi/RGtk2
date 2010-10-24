@@ -1,13 +1,13 @@
 \alias{gtkLinkButtonNewWithLabel}
 \name{gtkLinkButtonNewWithLabel}
 \title{gtkLinkButtonNewWithLabel}
-\description{Creates a new \verb{\link{GtkLinkButton}} containing a label.}
+\description{Creates a new \code{\link{GtkLinkButton}} containing a label.}
 \usage{gtkLinkButtonNewWithLabel(uri, label = NULL, show = TRUE)}
 \arguments{
-\item{\verb{uri}}{[character]  a valid URI}
-\item{\verb{label}}{[character]  the text of the button}
+\item{\verb{uri}}{a valid URI}
+\item{\verb{label}}{ the text of the button. \emph{[  \acronym{allow-none}  ]}}
 }
-\details{  Since  2.10}
-\value{[\verb{\link{GtkWidget}}]  a new link button widget.}
+\details{Since 2.10}
+\value{[\code{\link{GtkWidget}}]  a new link button widget. \emph{[  \acronym{transfer none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

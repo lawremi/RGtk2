@@ -99,7 +99,7 @@
 
 }
 \item{\verb{GtkArrowType}}{
-Used to indicate the direction in which a \verb{\link{GtkArrow}} should point.
+Used to indicate the direction in which a \code{\link{GtkArrow}} should point.
 
 \describe{
 \item{\verb{up}}{Represents an upward pointing arrow.}
@@ -122,8 +122,8 @@ container that has been allocated.}
 
 }
 \item{\verb{GtkButtonBoxStyle}}{
-Used to dictate the style that a \verb{\link{GtkButtonBox}} uses to layout the buttons it
-contains. (See also: \verb{\link{GtkVButtonBox}} and \verb{\link{GtkHButtonBox}}).
+Used to dictate the style that a \code{\link{GtkButtonBox}} uses to layout the buttons it
+contains. (See also: \code{\link{GtkVButtonBox}} and \code{\link{GtkHButtonBox}}).
 
 \describe{
 \item{\verb{default-style}}{Default packing.}
@@ -138,7 +138,7 @@ contains. (See also: \verb{\link{GtkVButtonBox}} and \verb{\link{GtkHButtonBox}}
 }
 \item{\verb{GtkCornerType}}{
 Specifies which corner a child widget should be placed in when packed into
-a \verb{\link{GtkScrolledWindow}}. This is effectively the opposite of where the scroll
+a \code{\link{GtkScrolledWindow}}. This is effectively the opposite of where the scroll
 bars are placed.
 
 \describe{
@@ -154,6 +154,7 @@ widget.}
 
 }
 \item{\verb{GtkCurveType}}{
+\strong{WARNING: \code{GtkCurveType} is deprecated and should not be used in newly-written code.}
 \emph{undocumented
 }
 
@@ -212,7 +213,7 @@ widget.}
 
 }
 \item{\verb{GtkExpanderStyle}}{
-Used to specify the style of the expanders drawn by a \verb{\link{GtkTreeView}}.
+Used to specify the style of the expanders drawn by a \code{\link{GtkTreeView}}.
 
 \describe{
 \item{\verb{collapsed}}{The style used for a collapsed subtree.}
@@ -249,8 +250,8 @@ Used to specify the style of the expanders drawn by a \verb{\link{GtkTreeView}}.
 
 }
 \item{\verb{GtkJustification}}{
-Used for justifying the text inside a \verb{\link{GtkLabel}} widget. (See also
-\verb{\link{GtkAlignment}}).
+Used for justifying the text inside a \code{\link{GtkLabel}} widget. (See also
+\code{\link{GtkAlignment}}).
 
 \describe{
 \item{\verb{left}}{The text is placed at the left edge of the label.}
@@ -282,7 +283,7 @@ Used for justifying the text inside a \verb{\link{GtkLabel}} widget. (See also
 
 }
 \item{\verb{GtkMetricType}}{
-Used to indicate which metric is used by a \verb{\link{GtkRuler}}.
+Used to indicate which metric is used by a \code{\link{GtkRuler}}.
 
 \describe{
 \item{\verb{pixels}}{Pixels.}
@@ -321,7 +322,7 @@ Used to indicate which metric is used by a \verb{\link{GtkRuler}}.
 }
 \item{\verb{GtkOrientation}}{
 Represents the orientation of widgets which can be switched between horizontal
-and vertical orientation on the fly, like \verb{\link{GtkToolbar}}.
+and vertical orientation on the fly, like \code{\link{GtkToolbar}}.
 
 \describe{
 \item{\verb{horizontal}}{The widget is in horizontal orientation.}
@@ -330,8 +331,8 @@ and vertical orientation on the fly, like \verb{\link{GtkToolbar}}.
 
 }
 \item{\verb{GtkPackType}}{
-Represents the packing location \verb{\link{GtkBox}} children. (See: \verb{\link{GtkVBox}},
-\verb{\link{GtkHBox}}, and \verb{\link{GtkButtonBox}}).
+Represents the packing location \code{\link{GtkBox}} children. (See: \code{\link{GtkVBox}},
+\code{\link{GtkHBox}}, and \code{\link{GtkButtonBox}}).
 
 \describe{
 \item{\verb{start}}{The child is packed into the start of the box}
@@ -374,20 +375,20 @@ Represents the packing location \verb{\link{GtkBox}} children. (See: \verb{\link
 
 }
 \item{\verb{GtkPolicyType}}{
-Determines when a scroll bar will be visible. 
+Determines when a scroll bar will be visible.
 
 \describe{
 \item{\verb{always}}{The scrollbar is always visible.}
 \item{\verb{automatic}}{The scrollbar will appear and disappear as necessary. For example,
-when all of a \verb{\link{GtkCList}} can not be seen.}
+when all of a \code{\link{GtkCList}} can not be seen.}
 \item{\verb{never}}{The scrollbar will never appear.}
 }
 
 }
 \item{\verb{GtkPositionType}}{
 Describes which edge of a widget a certain feature is positioned at, e.g. the
-tabs of a \verb{\link{GtkNotebook}}, the handle of a \verb{\link{GtkHandleBox}} or the label of a 
-\verb{\link{GtkScale}}.
+tabs of a \code{\link{GtkNotebook}}, the handle of a \code{\link{GtkHandleBox}} or the label of a
+\code{\link{GtkScale}}.
 
 \describe{
 \item{\verb{left}}{The feature is at the left edge.}
@@ -409,7 +410,7 @@ contains grayscale or red-green-blue data.
 
 }
 \item{\verb{GtkReliefStyle}}{
-Indicated the relief to be drawn around a \verb{\link{GtkButton}}.
+Indicated the relief to be drawn around a \code{\link{GtkButton}}.
 
 \describe{
 \item{\verb{normal}}{Draw a normal relief.}
@@ -498,13 +499,13 @@ Used to control what selections users are allowed to make.
 \item{\verb{none}}{No selection is possible.}
 \item{\verb{single}}{Zero or one element may be selected.}
 \item{\verb{browse}}{Exactly one element is selected. In some circumstances,
-  such as initially or during a search operation, it's possible for no element 
-  to be selected with \code{GTK_SELECTION_BROWSE}. What is really enforced is that 
-  the user can't deselect a currently selected element except by selecting 
+  such as initially or during a search operation, it's possible for no element
+  to be selected with \code{GTK_SELECTION_BROWSE}. What is really enforced is that
+  the user can't deselect a currently selected element except by selecting
   another element.}
 \item{\verb{multiple}}{Any number of elements may be selected. 
-   Clicks toggle the state of an item. Any number of elements may be selected. 
-   The Ctrl key may be used to enlarge the selection, and Shift key to select 
+   Clicks toggle the state of an item. Any number of elements may be selected.
+   The Ctrl key may be used to enlarge the selection, and Shift key to select
    between the focus and the child pointed to. Some widgets may also allow
    Click-drag to select a range of elements.}
 \item{\verb{extended}}{Deprecated, behaves identical to \code{GTK_SELECTION_MULTIPLE}.}
@@ -512,7 +513,7 @@ Used to control what selections users are allowed to make.
 
 }
 \item{\verb{GtkShadowType}}{
-Used to change the appearance of an outline typically provided by a \verb{\link{GtkFrame}}.
+Used to change the appearance of an outline typically provided by a \code{\link{GtkFrame}}.
 
 \describe{
 \item{\verb{none}}{No outline.}
@@ -543,7 +544,7 @@ Used to change the appearance of an outline typically provided by a \verb{\link{
 \item{\verb{GtkStateType}}{
 This type indicates the current state of a widget; the state determines how
 the widget is drawn. The \code{\link{GtkStateType}} enumeration is also used to
-identify different colors in a \verb{\link{GtkStyle}} for drawing, so states can be
+identify different colors in a \code{\link{GtkStyle}} for drawing, so states can be
 used for subparts of a widget as well as entire widgets.
 
 \describe{
@@ -562,9 +563,8 @@ unresponsive to user actions.}
 Indicates the direction a sub-menu will appear.
 
 \describe{
-\item{\verb{left}}{A sub-menu will appear}
-\item{\verb{right}}{\emph{undocumented
-}}
+\item{\verb{left}}{A sub-menu will appear to the left of the current menu.}
+\item{\verb{right}}{A sub-menu will appear to the right of the current menu.}
 }
 
 }
@@ -582,7 +582,7 @@ Indicates the direction a sub-menu will appear.
 
 }
 \item{\verb{GtkToolbarStyle}}{
-Used to customize the appearance of a \verb{\link{GtkToolbar}}. Note that 
+Used to customize the appearance of a \code{\link{GtkToolbar}}. Note that
 setting the toolbar style overrides the user's preferences
 for the default toolbar style.  Note that if the button has only
 a label set and GTK_TOOLBAR_ICONS is used, the label will be
@@ -598,21 +598,17 @@ other, rather than vertically stacked}
 
 }
 \item{\verb{GtkUpdateType}}{
-\emph{undocumented
-}
+Used by \code{\link{GtkRange}} to control the policy for notifying value changes.
 
 \describe{
-\item{\verb{continuous}}{\emph{undocumented
-}}
-\item{\verb{discontinuous}}{\emph{undocumented
-}}
-\item{\verb{delayed}}{\emph{undocumented
-}}
+\item{\verb{continuous}}{Notify updates whenever the value changed}
+\item{\verb{discontinuous}}{Notify updates when the mouse button has been released}
+\item{\verb{delayed}}{Space out updates with a small timeout}
 }
 
 }
 \item{\verb{GtkVisibility}}{
-Used by \verb{\link{GtkCList}} and \verb{\link{GtkCTree}} to indicate whether a row is visible.
+Used by \code{\link{GtkCList}} and \code{\link{GtkCTree}} to indicate whether a row is visible.
 
 \describe{
 \item{\verb{none}}{The row is not visible.}
@@ -623,7 +619,7 @@ Used by \verb{\link{GtkCList}} and \verb{\link{GtkCTree}} to indicate whether a 
 }
 \item{\verb{GtkWindowPosition}}{
 Window placement can be influenced using this enumeration. Note that
-using \verb{GTK_WIN_POS_CENTER_ALWAYS} is almost always a bad idea. 
+using \verb{GTK_WIN_POS_CENTER_ALWAYS} is almost always a bad idea.
 It won't necessarily work well with all window managers or on all windowing systems.
 
 \describe{
@@ -637,7 +633,7 @@ parent (see \code{\link{gtkWindowSetTransientFor}}).}
 
 }
 \item{\verb{GtkWindowType}}{
-A \verb{\link{GtkWindow}} can be one of these types. Most things you'd consider a
+A \code{\link{GtkWindow}} can be one of these types. Most things you'd consider a
 "window" should have type \verb{GTK_WINDOW_TOPLEVEL}; windows with this type
 are managed by the window manager and have a frame by default (call
 \code{\link{gtkWindowSetDecorated}} to toggle the frame).  Windows with type
@@ -646,7 +642,7 @@ keybindings won't work on them, the window manager won't decorate the
 window with a frame, many GTK+ features that rely on the window
 manager will not work (e.g. resize grips and
 maximization/minimization). \verb{GTK_WINDOW_POPUP} is used to implement
-widgets such as \verb{\link{GtkMenu}} or tooltips that you normally don't think of 
+widgets such as \code{\link{GtkMenu}} or tooltips that you normally don't think of
 as windows per se. Nearly all windows should be \verb{GTK_WINDOW_TOPLEVEL}.
 In particular, do not use \verb{GTK_WINDOW_POPUP} just to turn off
 the window borders; use \code{\link{gtkWindowSetDecorated}} for that.
@@ -667,6 +663,6 @@ Determines the direction of a sort.
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/gtk-Standard-Enumerations.html}}
+\references{\url{http://library.gnome.org/devel//gtk/gtk-Standard-Enumerations.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

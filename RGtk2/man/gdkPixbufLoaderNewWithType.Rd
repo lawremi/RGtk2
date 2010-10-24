@@ -9,18 +9,18 @@ that can't be reliably identified by looking at the data, or if
 the user manually forces a specific type.}
 \usage{gdkPixbufLoaderNewWithType(image.type, .errwarn = TRUE)}
 \arguments{
-\item{\verb{image.type}}{[char]  name of the image format to be loaded with the image}
+\item{\verb{image.type}}{name of the image format to be loaded with the image}
 \item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \details{The list of supported image formats depends on what image loaders
 are installed, but typically "png", "jpeg", "gif", "tiff" and 
 "xpm" are among the supported formats. To obtain the full list of
 supported image formats, call \code{\link{gdkPixbufFormatGetName}} on each 
-of the \verb{\link{GdkPixbufFormat}} structs returned by \code{\link{gdkPixbufGetFormats}}.  }
+of the \code{\link{GdkPixbufFormat}} structs returned by \code{\link{gdkPixbufGetFormats}}.}
 \value{
 A list containing the following elements:
-\item{retval}{[\verb{\link{GdkPixbufLoader}}]  A newly-created pixbuf loader.}
-\item{\verb{error}}{[\verb{\link{GError}}]  return location for an allocated \verb{\link{GError}}, or \code{NULL} to ignore errors}
+\item{retval}{[\code{\link{GdkPixbufLoader}}]  A newly-created pixbuf loader.}
+\item{\verb{error}}{ return location for an allocated \code{\link{GError}}, or \code{NULL} to ignore errors. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

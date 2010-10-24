@@ -7,8 +7,8 @@ Removes the \code{items} from the \code{list}.
 }
 \usage{gtkListRemoveItems(object, items)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkList}}] the list widget.}
-\item{\verb{items}}{[list] the items to remove.}
+\item{\verb{object}}{the list widget.}
+\item{\verb{items}}{the items to remove.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

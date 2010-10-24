@@ -9,8 +9,8 @@ unselected.
 }
 \usage{gtkListToggleRow(object, item)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkList}}] the list widget.}
-\item{\verb{item}}{[\verb{\link{GtkWidget}}] the child to toggle.}
+\item{\verb{object}}{the list widget.}
+\item{\verb{item}}{the child to toggle.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

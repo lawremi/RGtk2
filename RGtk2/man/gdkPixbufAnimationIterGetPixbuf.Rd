@@ -13,7 +13,7 @@ to the next frame, which may happen anytime you call
 (don't just add a reference), as it may get recycled as you advance
 the iterator.}
 \usage{gdkPixbufAnimationIterGetPixbuf(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GdkPixbufAnimationIter}}]  an animation iterator}}
-\value{[\verb{\link{GdkPixbuf}}]  the pixbuf to be displayed}
+\arguments{\item{\verb{object}}{an animation iterator}}
+\value{[\code{\link{GdkPixbuf}}]  the pixbuf to be displayed}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

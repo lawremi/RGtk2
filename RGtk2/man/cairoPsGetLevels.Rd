@@ -4,10 +4,10 @@
 \description{Used to retrieve the list of supported levels. See
 \code{\link{cairoPsSurfaceRestrictToLevel}}.}
 \usage{cairoPsGetLevels()}
-\details{  Since  1.6}
+\details{  Since 1.6}
 \value{
 A list containing the following elements:
-\item{\verb{levels}}{[\verb{\link{CairoPsLevel}}]  supported level list}
+\item{\verb{levels}}{[\code{\link{CairoPsLevel}}]  supported level list}
 \item{\verb{nlevels}}{[integer]  list length}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

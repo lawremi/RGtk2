@@ -4,7 +4,7 @@
 \description{Sets the role of the accessible.}
 \usage{atkObjectSetRole(object, role)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{AtkObject}}]  an \verb{\link{AtkObject}}}
+\item{\verb{object}}{[\code{\link{AtkObject}}]  an \code{\link{AtkObject}}}
 \item{\verb{role}}{[\code{\link{AtkRole}}]  an \code{\link{AtkRole}} to be set as the role}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

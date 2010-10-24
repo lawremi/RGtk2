@@ -1,7 +1,7 @@
 \alias{cairoPatternCreateLinear}
 \name{cairoPatternCreateLinear}
 \title{cairoPatternCreateLinear}
-\description{Create a new linear gradient \verb{\link{CairoPattern}} along the line defined
+\description{Create a new linear gradient \code{\link{CairoPattern}} along the line defined
 by (x0, y0) and (x1, y1).  Before using the gradient pattern, a
 number of color stops should be defined using
 \code{\link{cairoPatternAddColorStopRgb}} or
@@ -16,7 +16,7 @@ number of color stops should be defined using
 \details{Note: The coordinates here are in pattern space. For a new pattern,
 pattern space is identical to user space, but the relationship
 between the spaces can be changed with \code{\link{cairoPatternSetMatrix}}.  }
-\value{[\verb{\link{CairoPattern}}]  the newly created \verb{\link{CairoPattern}} if successful, or
+\value{[\code{\link{CairoPattern}}]  the newly created \code{\link{CairoPattern}} if successful, or
 an error pattern in case of no memory.
 
 This function will always return a valid pointer, but if an error

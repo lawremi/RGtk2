@@ -7,8 +7,8 @@ Sets the width of the horizontal border of tab labels.
 }
 \usage{gtkNotebookSetTabHborder(object, tab.hborder)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkNotebook}}]  a \verb{\link{GtkNotebook}}}
-\item{\verb{tab.hborder}}{[numeric]  width of the horizontal border of tab labels.}
+\item{\verb{object}}{a \code{\link{GtkNotebook}}}
+\item{\verb{tab.hborder}}{width of the horizontal border of tab labels.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

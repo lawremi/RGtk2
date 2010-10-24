@@ -7,10 +7,9 @@ use this to better synchronize the frame repaint with the
 application. GTK+ applications will automatically call this
 function when appropriate.}
 \usage{gdkWindowConfigureFinished(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a toplevel \verb{\link{GdkWindow}}}}
+\arguments{\item{\verb{object}}{a toplevel \code{\link{GdkWindow}}}}
 \details{This function can only be called if \code{\link{gdkWindowEnableSynchronizedConfigure}}
-was called previously.  
-
-  Since  2.6}
+was called previously.
+  Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

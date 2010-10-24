@@ -1686,6 +1686,18 @@ S_gdk_pixbuf_new_from_stream(USER_OBJECT_ s_stream, USER_OBJECT_ s_cancellable);
 S_gdk_pixbuf_new_from_stream_at_scale(USER_OBJECT_ s_stream, USER_OBJECT_ s_width, USER_OBJECT_ s_height, USER_OBJECT_ s_preserve_aspect_ratio, USER_OBJECT_ s_cancellable); 
 
   USER_OBJECT_
+S_gdk_test_render_sync(USER_OBJECT_ s_window); 
+
+  USER_OBJECT_
+S_gdk_test_simulate_key(USER_OBJECT_ s_window, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_keyval, USER_OBJECT_ s_modifiers, USER_OBJECT_ s_key_pressrelease); 
+
+  USER_OBJECT_
+S_gdk_test_simulate_button(USER_OBJECT_ s_window, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_button, USER_OBJECT_ s_modifiers, USER_OBJECT_ s_button_pressrelease); 
+
+  USER_OBJECT_
+S_gdk_pixbuf_save_to_stream(USER_OBJECT_ s_object, USER_OBJECT_ s_stream, USER_OBJECT_ s_type, USER_OBJECT_ s_cancellable); 
+
+  USER_OBJECT_
 S_gdk_keymap_get_caps_lock_state(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
@@ -1717,6 +1729,18 @@ S_gdk_window_get_cursor(USER_OBJECT_ s_object);
 
   USER_OBJECT_
 S_gdk_window_restack(USER_OBJECT_ s_object, USER_OBJECT_ s_sibling, USER_OBJECT_ s_above); 
+
+  USER_OBJECT_
+S_gdk_window_is_destroyed(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gdk_window_get_root_coords(USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OBJECT_ s_y); 
+
+  USER_OBJECT_
+S_gdk_pixbuf_simple_anim_set_loop(USER_OBJECT_ s_object, USER_OBJECT_ s_loop); 
+
+  USER_OBJECT_
+S_gdk_pixbuf_simple_anim_get_loop(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
 S_gdk_keymap_add_virtual_modifiers(USER_OBJECT_ s_object); 

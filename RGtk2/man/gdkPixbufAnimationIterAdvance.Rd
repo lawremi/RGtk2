@@ -5,8 +5,8 @@
 on the start time passed to \code{\link{gdkPixbufAnimationGetIter}}.}
 \usage{gdkPixbufAnimationIterAdvance(object, current.time)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GdkPixbufAnimationIter}}]  a \verb{\link{GdkPixbufAnimationIter}}}
-\item{\verb{current.time}}{[\verb{\link{GTimeVal}}]  current time}
+\item{\verb{object}}{a \code{\link{GdkPixbufAnimationIter}}}
+\item{\verb{current.time}}{current time}
 }
 \details{\code{current.time} would normally come from \code{gGetCurrentTime()}, and
 must be greater than or equal to the time passed to
@@ -23,7 +23,7 @@ at double speed.
 If this function returns \code{FALSE}, there's no need to update the animation
 display, assuming the display had been rendered prior to advancing;
 if \code{TRUE}, you need to call \code{gdkAnimationIterGetPixbuf()} and update the
-display with the new pixbuf.  }
+display with the new pixbuf.}
 \value{[logical] \code{TRUE} if the image may need updating}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

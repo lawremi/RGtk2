@@ -6,10 +6,10 @@ invalidates a rectangular region. See
 \code{\link{gdkWindowInvalidateRegion}} for details.}
 \usage{gdkWindowInvalidateRect(object, rect = NULL, invalidate.children)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a \verb{\link{GdkWindow}}}
-\item{\verb{rect}}{[\verb{\link{GdkRectangle}}]  rectangle to invalidate or \code{NULL} to invalidate the whole
-     window}
-\item{\verb{invalidate.children}}{[logical]  whether to also invalidate child windows}
+\item{\verb{object}}{a \code{\link{GdkWindow}}}
+\item{\verb{rect}}{ rectangle to invalidate or \code{NULL} to invalidate the whole
+     window. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{invalidate.children}}{whether to also invalidate child windows}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -1,7 +1,7 @@
 \alias{pangoLayoutIterGetLineYrange}
 \name{pangoLayoutIterGetLineYrange}
 \title{pangoLayoutIterGetLineYrange}
-\description{Divides the vertical space in the \verb{\link{PangoLayout}} being iterated over
+\description{Divides the vertical space in the \code{\link{PangoLayout}} being iterated over
 between the lines in the layout, and returns the space belonging to
 the current line.  A line's range includes the line's logical
 extents, plus half of the spacing above and below the line, if
@@ -9,11 +9,11 @@ extents, plus half of the spacing above and below the line, if
 The Y positions are in layout coordinates (origin at top left of the
 entire layout).}
 \usage{pangoLayoutIterGetLineYrange(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{PangoLayoutIter}}]  a \verb{\link{PangoLayoutIter}}}}
+\arguments{\item{\verb{object}}{a \code{\link{PangoLayoutIter}}}}
 \value{
 A list containing the following elements:
-\item{\verb{y0}}{[integer]  start of line}
-\item{\verb{y1}}{[integer]  end of line}
+\item{\verb{y0}}{start of line}
+\item{\verb{y1}}{end of line}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

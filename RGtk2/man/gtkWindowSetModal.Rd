@@ -9,8 +9,8 @@ parent; most window managers
 will then disallow lowering the dialog below the parent.}
 \usage{gtkWindowSetModal(object, modal)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}}
-\item{\verb{modal}}{[logical]  whether the window is modal}
+\item{\verb{object}}{a \code{\link{GtkWindow}}}
+\item{\verb{modal}}{whether the window is modal}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

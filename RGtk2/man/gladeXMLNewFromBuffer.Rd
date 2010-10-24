@@ -13,6 +13,6 @@ window it is embedded in.}
 \item{\verb{root}}{[char]  the widget node in \code{buffer} to start building from (or \code{NULL})}
 \item{\verb{domain}}{[char]  the translation domain to use for this interface (or \code{NULL})}
 }
-\value{[\verb{\link{GladeXML}}]  the newly created GladeXML object, or NULL on failure.}
+\value{[\code{\link{GladeXML}}]  the newly created GladeXML object, or NULL on failure.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

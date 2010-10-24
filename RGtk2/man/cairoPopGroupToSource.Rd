@@ -5,7 +5,7 @@
 \code{\link{cairoPushGroupWithContent}} and installs the resulting pattern
 as the source pattern in the given cairo context.}
 \usage{cairoPopGroupToSource(cr)}
-\arguments{\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}}
+\arguments{\item{\verb{cr}}{[\code{\link{Cairo}}]  a cairo context}}
 \details{The behavior of this function is equivalent to the sequence of
 operations:
   \preformatted{
@@ -19,7 +19,6 @@ The \code{\link{cairoPopGroup}} function calls \code{\link{cairoRestore}}, (bala
 call to \code{\link{cairoSave}} by the push_group function), so that any
 changes to the graphics state will not be visible outside the
 group.  
-
-  Since  1.2}
+  Since 1.2}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

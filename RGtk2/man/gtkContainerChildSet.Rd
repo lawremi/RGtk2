@@ -4,9 +4,9 @@
 \description{Sets one or more child properties for \code{child} and \code{container}.}
 \usage{gtkContainerChildSet(object, child, ...)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkContainer}}]  a \verb{\link{GtkContainer}}}
-\item{\verb{child}}{[\verb{\link{GtkWidget}}]  a widget which is a child of \code{container}}
-\item{\verb{...}}{ a list of property names and values, starting
+\item{\verb{object}}{a \code{\link{GtkContainer}}}
+\item{\verb{child}}{a widget which is a child of \code{container}}
+\item{\verb{...}}{a list of property names and values, starting
           with \code{first.prop.name}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

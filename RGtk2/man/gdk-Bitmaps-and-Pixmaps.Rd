@@ -20,28 +20,28 @@
          +----GdkPixmap}}
 \section{Detailed Description}{Pixmaps are offscreen drawables. They can be drawn upon with the
 standard drawing primitives, then copied to another drawable (such as
-a \verb{\link{GdkWindow}}) with \code{gdkPixmapDraw()}. The depth of a pixmap
+a \code{\link{GdkWindow}}) with \code{gdkPixmapDraw()}. The depth of a pixmap
 is the number of bits per pixels. Bitmaps are simply pixmaps
 with a depth of 1. (That is, they are monochrome bitmaps - each
 pixel can be either on or off).}
 \section{Structures}{\describe{
 \item{\verb{GdkPixmap}}{
 An opaque structure representing an offscreen drawable.
-Pointers to structures of type \verb{\link{GdkPixmap}}, \verb{\link{GdkBitmap}},
-and \verb{\link{GdkWindow}}, can often be used interchangeably. 
-The type \verb{\link{GdkDrawable}} refers generically to any of
+Pointers to structures of type \code{\link{GdkPixmap}}, \code{\link{GdkBitmap}},
+and \code{\link{GdkWindow}}, can often be used interchangeably.
+The type \code{\link{GdkDrawable}} refers generically to any of
 these types.
 
 }
 \item{\verb{GdkBitmap}}{
 An opaque structure representing an offscreen drawable of depth
-1. Pointers to structures of type \verb{\link{GdkPixmap}}, \verb{\link{GdkBitmap}}, and
-\verb{\link{GdkWindow}}, can often be used interchangeably.  The type \verb{\link{GdkDrawable}}
+1. Pointers to structures of type \code{\link{GdkPixmap}}, \code{\link{GdkBitmap}}, and
+\code{\link{GdkWindow}}, can often be used interchangeably.  The type \code{\link{GdkDrawable}}
 refers generically to any of these types.
 
 }
 }}
 \section{Convenient Construction}{\code{gdkPixmap} is the result of collapsing the constructors of \code{GdkPixmap} (\code{\link{gdkPixmapNew}}, \code{\link{gdkBitmapCreateFromData}}, \code{\link{gdkPixmapCreateFromData}}, \code{\link{gdkPixmapCreateFromXpm}}, \code{\link{gdkPixmapColormapCreateFromXpm}}, \code{\link{gdkPixmapCreateFromXpmD}}, \code{\link{gdkPixmapColormapCreateFromXpmD}}, NULL, NULL) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gdk/gdk-Bitmaps-and-Pixmaps.html}}
+\references{\url{http://library.gnome.org/devel//gdk/gdk-Bitmaps-and-Pixmaps.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

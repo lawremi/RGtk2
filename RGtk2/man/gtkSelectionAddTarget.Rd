@@ -5,10 +5,10 @@
 given widget and selection.}
 \usage{gtkSelectionAddTarget(object, selection, target, info)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkWidget}}]   a \verb{GtkTarget}}
-\item{\verb{selection}}{[\verb{\link{GdkAtom}}]  the selection}
-\item{\verb{target}}{[\verb{\link{GdkAtom}}]  target to add.}
-\item{\verb{info}}{[numeric]  A unsigned integer which will be passed back to the application.}
+\item{\verb{object}}{a \verb{GtkTarget}}
+\item{\verb{selection}}{the selection}
+\item{\verb{target}}{target to add.}
+\item{\verb{info}}{A unsigned integer which will be passed back to the application.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

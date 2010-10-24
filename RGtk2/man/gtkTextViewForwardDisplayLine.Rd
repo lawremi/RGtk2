@@ -8,11 +8,11 @@ Display lines are created by line-wrapping a paragraph. If
 wrapping is turned off, display lines and paragraphs will be the
 same. Display lines are divided differently for each view, since
 they depend on the view's width; paragraphs are the same in all
-views, since they depend on the contents of the \verb{\link{GtkTextBuffer}}.}
+views, since they depend on the contents of the \code{\link{GtkTextBuffer}}.}
 \usage{gtkTextViewForwardDisplayLine(object, iter)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTextView}}]  a \verb{\link{GtkTextView}}}
-\item{\verb{iter}}{[\verb{\link{GtkTextIter}}]  a \verb{\link{GtkTextIter}}}
+\item{\verb{object}}{a \code{\link{GtkTextView}}}
+\item{\verb{iter}}{a \code{\link{GtkTextIter}}}
 }
 \value{[logical] \code{TRUE} if \code{iter} was moved and is not on the end iterator}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -3,6 +3,6 @@
 \title{gtkDrawingAreaNew}
 \description{Creates a new drawing area.}
 \usage{gtkDrawingAreaNew(show = TRUE)}
-\value{[\verb{\link{GtkWidget}}] a new \verb{\link{GtkDrawingArea}}}
+\value{[\code{\link{GtkWidget}}] a new \code{\link{GtkDrawingArea}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -17,7 +17,7 @@
 \code{\link{gdkPixbufGetHeight}(object)}\cr
 \code{\link{gdkPixbufGetRowstride}(object)}\cr
 \code{\link{gdkPixbufGetOption}(object, key)}\cr
-\code{gdkPixbuf(width, height, filename, colorspace, has.alpha, bits.per.sample, data, preserve.aspect.ratio, rowstride, .errwarn = TRUE)}
+\code{gdkPixbuf(width = -1, height = -1, filename, colorspace, has.alpha, bits.per.sample, preserve.aspect.ratio = 1, data, stream, cancellable = NULL, rowstride, .errwarn = TRUE)}
 }
 \section{Hierarchy}{\preformatted{GObject
    +----GdkPixbuf}}
@@ -29,11 +29,11 @@
     used to represent images.  It contains information about the
     image's pixel data, its color space, bits per sample, width and
     height, and the rowstride (the number of bytes between the start of
-    one row and the start of the next). 
+    one row and the start of the next).
   
 
 }}}
-\section{Convenient Construction}{\code{gdkPixbuf} is the result of collapsing the constructors of \code{GdkPixbuf} (\code{\link{gdkPixbufNew}}, \code{\link{gdkPixbufNewFromFile}}, \code{\link{gdkPixbufNewFromFileAtSize}}, \code{\link{gdkPixbufNewFromFileAtScale}}, \code{\link{gdkPixbufNewFromData}}, \code{\link{gdkPixbufNewFromXpmData}}, NULL) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
+\section{Convenient Construction}{\code{gdkPixbuf} is the result of collapsing the constructors of \code{GdkPixbuf} (\code{\link{gdkPixbufNew}}, \code{\link{gdkPixbufNewFromFile}}, \code{\link{gdkPixbufNewFromFileAtSize}}, \code{\link{gdkPixbufNewFromFileAtScale}}, \code{\link{gdkPixbufNewFromData}}, \code{\link{gdkPixbufNewFromXpmData}}, NULL, \code{\link{gdkPixbufNewFromStream}}, \code{\link{gdkPixbufNewFromStreamAtScale}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{Enums and Flags}{\describe{
 \item{\verb{GdkPixbufError}}{
 An error code in the \verb{GDK_PIXBUF_ERROR} domain. Many \command{gdk-pixbuf}
@@ -84,9 +84,8 @@ In the future it will do full alpha compositing.}
 \section{Properties}{\describe{
 \item{\verb{bits-per-sample} [integer : Read / Write / Construct Only]}{
 
-The number of bits per sample. 
-Currently only 8 bit per sample are supported.  
-
+The number of bits per sample.
+Currently only 8 bit per sample are supported.
   Allowed values: [1,16]  Default value: 8
 
 }
@@ -108,8 +107,7 @@ The number of rows of the pixbuf.  Allowed values: >= 1  Default value: 1
 \item{\verb{n-channels} [integer : Read / Write / Construct Only]}{
 
 The number of samples per pixel. 
-Currently, only 3 or 4 samples per pixel are supported.  
-
+Currently, only 3 or 4 samples per pixel are supported.
   Allowed values: >= 0  Default value: 3
 
 }
@@ -122,8 +120,7 @@ A pointer to the pixel data of the pixbuf.
 
 The number of bytes between the start of a row and 
 the start of the next row. This number must (obviously)
-be at least as large as the width of the pixbuf.  
-
+be at least as large as the width of the pixbuf.
   Allowed values: >= 1  Default value: 1
 
 }
@@ -133,6 +130,6 @@ The number of columns of the pixbuf.  Allowed values: >= 1  Default value: 1
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gdk-pixbuf/gdk-pixbuf-gdk-pixbuf.html}}
+\references{\url{http://library.gnome.org/devel//gdk-pixbuf/gdk-pixbuf-gdk-pixbuf.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

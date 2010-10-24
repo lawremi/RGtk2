@@ -44,11 +44,11 @@
 }
 \section{Hierarchy}{\preformatted{GObject
    +----GdkGC}}
-\section{Detailed Description}{All drawing operations in GDK take a 
-\dfn{graphics context} (GC) argument. 
+\section{Detailed Description}{All drawing operations in GDK take a
+\dfn{graphics context} (GC) argument.
 A graphics context encapsulates information about
 the way things are drawn, such as the foreground
-color or line width. By using graphics contexts, 
+color or line width. By using graphics contexts,
 the number of arguments to each drawing call is
 greatly reduced, and communication overhead is
 minimized, since identical arguments do not need
@@ -62,37 +62,37 @@ in the GC, such as the dash pattern, can only
 be set by the latter method.}
 \section{Structures}{\describe{
 \item{\verb{GdkGC}}{
-The \verb{\link{GdkGC}} structure represents a graphics context.
+The \code{\link{GdkGC}} structure represents a graphics context.
 It is an opaque structure with no user-visible
 elements.
 
 }
 \item{\verb{GdkGCValues}}{
-The \verb{\link{GdkGCValues}} structure holds a set of values used
+The \code{\link{GdkGCValues}} structure holds a set of values used
 to create or modify a graphics context.
 \strong{\verb{GdkGCValues} is a \link{transparent-type}.}
 
 \describe{
-\item{\code{foreground}}{[\verb{\link{GdkColor}}] the foreground color. Note that \code{\link{gdkGCGetValues}}
+\item{\code{foreground}}{the foreground color. Note that \code{\link{gdkGCGetValues}}
   only sets the pixel value.}
-\item{\code{background}}{[\verb{\link{GdkColor}}] the background color. Note that \code{\link{gdkGCGetValues}}
+\item{\code{background}}{the background color. Note that \code{\link{gdkGCGetValues}}
   only sets the pixel value.}
-\item{\code{font}}{[\verb{\link{GdkFont}}] the default font.}
-\item{\code{function}}{[\code{\link{GdkFunction}}] the bitwise operation used when drawing.}
-\item{\code{fill}}{[\code{\link{GdkFill}}] the fill style.}
-\item{\code{tile}}{[\verb{\link{GdkPixmap}}] the tile pixmap.}
-\item{\code{stipple}}{[\verb{\link{GdkPixmap}}] the stipple bitmap.}
-\item{\code{clip_mask}}{[\verb{\link{GdkPixmap}}] the clip mask bitmap.}
-\item{\code{subwindow_mode}}{[\code{\link{GdkSubwindowMode}}] the subwindow mode.}
-\item{\code{ts_x_origin}}{[integer] the x origin of the tile or stipple.}
-\item{\code{ts_y_origin}}{[integer] the y origin of the tile or stipple.}
-\item{\code{clip_x_origin}}{[integer] the x origin of the clip mask.}
-\item{\code{clip_y_origin}}{[integer] the y origin of the clip mask.}
-\item{\code{graphics_exposures}}{[integer] whether graphics exposures are enabled.}
-\item{\code{line_width}}{[integer] the line width.}
-\item{\code{line_style}}{[\code{\link{GdkLineStyle}}] the way dashed lines are drawn.}
-\item{\code{cap_style}}{[\code{\link{GdkCapStyle}}] the way the ends of lines are drawn.}
-\item{\code{join_style}}{[\code{\link{GdkJoinStyle}}] the way joins between lines are drawn.}
+\item{\code{font}}{the default font.}
+\item{\code{function}}{the bitwise operation used when drawing.}
+\item{\code{fill}}{the fill style.}
+\item{\code{tile}}{the tile pixmap.}
+\item{\code{stipple}}{the stipple bitmap.}
+\item{\code{clip_mask}}{the clip mask bitmap.}
+\item{\code{subwindow_mode}}{the subwindow mode.}
+\item{\code{ts_x_origin}}{the x origin of the tile or stipple.}
+\item{\code{ts_y_origin}}{the y origin of the tile or stipple.}
+\item{\code{clip_x_origin}}{the x origin of the clip mask.}
+\item{\code{clip_y_origin}}{the y origin of the clip mask.}
+\item{\code{graphics_exposures}}{whether graphics exposures are enabled.}
+\item{\code{line_width}}{the line width.}
+\item{\code{line_style}}{the way dashed lines are drawn.}
+\item{\code{cap_style}}{the way the ends of lines are drawn.}
+\item{\code{join_style}}{the way joins between lines are drawn.}
 }
 
 }
@@ -101,7 +101,7 @@ to create or modify a graphics context.
 \section{Enums and Flags}{\describe{
 \item{\verb{GdkGCValuesMask}}{
 A set of bit flags used to indicate which fields
-\verb{\link{GdkGCValues}} structure are set.
+\code{\link{GdkGCValues}} structure are set.
 
 \describe{
 \item{\verb{foreground}}{the \code{foreground} is set.}
@@ -172,7 +172,7 @@ Determines how primitives are drawn.
 }
 \item{\verb{GdkSubwindowMode}}{
 Determines how drawing onto a window will affect child
-windows of that window. 
+windows of that window.
 
 \describe{
 \item{\verb{clip-by-children}}{only draw onto the window itself.}
@@ -219,6 +219,6 @@ Determines how the joins between segments of a polygon are drawn.
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gdk/gdk-Graphics-Contexts.html}}
+\references{\url{http://library.gnome.org/devel//gdk/gdk-Graphics-Contexts.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

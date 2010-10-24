@@ -31,11 +31,11 @@
 \section{Hierarchy}{\preformatted{GObject
    +----GtkTreeStore}}
 \section{Interfaces}{GtkTreeStore implements
- \verb{\link{GtkBuildable}},  \verb{\link{GtkTreeModel}},  \verb{\link{GtkTreeDragSource}},  \verb{\link{GtkTreeDragDest}} and  \verb{\link{GtkTreeSortable}}.}
-\section{Detailed Description}{The \verb{\link{GtkTreeStore}} object is a list model for use with a \verb{\link{GtkTreeView}}
-widget.  It implements the \verb{\link{GtkTreeModel}} interface, and consequentialy,
+ \code{\link{GtkTreeModel}},  \code{\link{GtkTreeDragSource}},  \code{\link{GtkTreeDragDest}},  \code{\link{GtkTreeSortable}} and  \code{\link{GtkBuildable}}.}
+\section{Detailed Description}{The \code{\link{GtkTreeStore}} object is a list model for use with a \code{\link{GtkTreeView}}
+widget.  It implements the \code{\link{GtkTreeModel}} interface, and consequentialy,
 can use all of the methods available there.  It also implements the
-\verb{\link{GtkTreeSortable}} interface so it can be sorted by the view.  Finally,
+\code{\link{GtkTreeSortable}} interface so it can be sorted by the view.  Finally,
 it also implements the tree drag and
 drop interfaces.}
 \section{GtkTreeStore as GtkBuildable}{The GtkTreeStore implementation of the GtkBuildable interface allows
@@ -57,10 +57,10 @@ column. The "type" attribute specifies the data type for the column.
 
 }}}
 \section{Convenient Construction}{\code{gtkTreeStore} is the result of collapsing the constructors of \code{GtkTreeStore} (\code{\link{gtkTreeStoreNew}}, \code{\link{gtkTreeStoreNewv}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkTreeStore.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkTreeStore.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
-\verb{\link{GtkTreeModel}}
-\verb{\link{GtkTreeStore}}
+\code{\link{GtkTreeModel}}
+\code{\link{GtkTreeStore}}
 }
 \keyword{internal}

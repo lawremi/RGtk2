@@ -144,6 +144,13 @@ function(defs = getDefs(), filePrefix="gtk", dir=c("C"="/tmp", "S"="/tmp"),
  varargs <- character(0)
  badTypeList <- character(0)
  badFuncList <- character(0)
+
+  classNames <- c(names(allDefs$interfaces),names(allDefs$objects))
+  classNames <- classNames[order(nchar(classNames))]
+  classCaps <- gsub("[a-z]", "", classNames)
+  classNames <- classNames[order(nchar(classCaps), decreasing=TRUE)]
+
+  
  for(i in getNonDiscardedNames("functions")) {
    fun <- defs$functions[[i]]
    if(fun$varargs == '1') { # we can handle out-params but not vararg funcs
@@ -163,7 +170,7 @@ function(defs = getDefs(), filePrefix="gtk", dir=c("C"="/tmp", "S"="/tmp"),
    if (fun$name %in% badRFuncs) {
        badFuncList <- c(badFuncList, fun$name)
    } else {
-	   funName = toCapPhraseName(i, TRUE, classNames = c(names(allDefs$interfaces),names(allDefs$objects)))
+	   funName = toCapPhraseName(i, TRUE, classNames = classNames)
 	   rcode <- genRCode(fun, allDefs, i, funName, package=package)
 	   definedRFuncs = c(definedRFuncs, funName)
 	   cat(rcode, "\n\n", file=RFuncs)

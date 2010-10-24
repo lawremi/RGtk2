@@ -5,9 +5,9 @@
 of the secondary credits dialog.}
 \usage{gtkAboutDialogSetAuthors(object, authors)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkAboutDialog}}]  a \verb{\link{GtkAboutDialog}}}
-\item{\verb{authors}}{[character]  a list of strings }
+\item{\verb{object}}{a \code{\link{GtkAboutDialog}}}
+\item{\verb{authors}}{a list of strings}
 }
-\details{  Since  2.6}
+\details{Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

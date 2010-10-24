@@ -8,10 +8,10 @@ then \code{\link{gtkTextBufferApplyTag}} on the inserted text;
 \code{\link{gtkTextBufferInsertWithTags}} is just a convenience function.}
 \usage{gtkTextBufferInsertWithTags(object, iter, text, ...)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTextBuffer}}]  a \verb{\link{GtkTextBuffer}}}
-\item{\verb{iter}}{[\verb{\link{GtkTextIter}}]  an iterator in \code{buffer}}
-\item{\verb{text}}{[character]  UTF-8 text}
-\item{\verb{...}}{ list of tags to apply}
+\item{\verb{object}}{a \code{\link{GtkTextBuffer}}}
+\item{\verb{iter}}{an iterator in \code{buffer}}
+\item{\verb{text}}{UTF-8 text}
+\item{\verb{...}}{list of tags to apply}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

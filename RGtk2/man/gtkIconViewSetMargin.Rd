@@ -6,9 +6,9 @@ which is inserted at the top, bottom, left and right
 of the icon view.}
 \usage{gtkIconViewSetMargin(object, margin)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkIconView}}]  a \verb{\link{GtkIconView}}}
-\item{\verb{margin}}{[integer]  the margin}
+\item{\verb{object}}{a \code{\link{GtkIconView}}}
+\item{\verb{margin}}{the margin}
 }
-\details{  Since  2.6}
+\details{Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

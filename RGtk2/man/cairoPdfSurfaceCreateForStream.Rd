@@ -5,13 +5,16 @@
 incrementally to the stream represented by \code{write.func} and \code{closure}.}
 \usage{cairoPdfSurfaceCreateForStream(write.func, closure, width.in.points, height.in.points)}
 \arguments{
-\item{\verb{write.func}}{[\verb{\link{CairoWriteFunc}}]  a \verb{\link{CairoWriteFunc}} to accept the output data}
+\item{\verb{write.func}}{[\code{\link{CairoWriteFunc}}]  a \code{\link{CairoWriteFunc}} to accept the output data, may be \code{NULL}
+             to indicate a no-op \code{write.func}. With a no-op \code{write.func},
+             the surface may be queried or used as a source without
+             generating any temporary files.}
 \item{\verb{closure}}{[R object]  the closure argument for \code{write.func}}
 \item{\verb{width.in.points}}{[numeric]  width of the surface, in points (1 point == 1/72.0 inch)}
 \item{\verb{height.in.points}}{[numeric]  height of the surface, in points (1 point == 1/72.0 inch)}
 }
-\details{  Since  1.2}
-\value{[\verb{\link{CairoSurface}}]  a pointer to the newly created surface. The caller
+\details{  Since 1.2}
+\value{[\code{\link{CairoSurface}}]  a pointer to the newly created surface. The caller
 owns the surface and should call \code{\link{cairoSurfaceDestroy}} when done
 with it.
 

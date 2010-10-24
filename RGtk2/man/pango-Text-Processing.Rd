@@ -3,7 +3,6 @@
 \alias{PangoItem}
 \alias{PangoAnalysis}
 \alias{PangoLogAttr}
-\alias{PangoDirection}
 \name{pango-Text-Processing}
 \title{Rendering}
 \description{Functions to run the rendering pipeline}
@@ -33,9 +32,6 @@
 \code{\link{pangoContextLoadFontset}(object, desc, language)}\cr
 \code{\link{pangoContextGetMetrics}(object, desc, language = NULL)}\cr
 \code{\link{pangoContextListFamilies}(object)}\cr
-\code{\link{pangoGetMirrorChar}(ch)}\cr
-\code{\link{pangoUnicharDirection}(ch)}\cr
-\code{\link{pangoFindBaseDir}(text, length = -1)}\cr
 \code{\link{pangoBreak}(text, analysis)}\cr
 \code{\link{pangoGetLogAttrs}(text, level, language)}\cr
 \code{\link{pangoFindParagraphBoundary}(text, length = -1)}\cr
@@ -50,12 +46,12 @@ The functions described in this section accomplish
 various steps of this process.}
 \section{Structures}{\describe{
 \item{\verb{PangoContext}}{
-The \verb{\link{PangoContext}} structure stores global information
-used to control the itemization process. 
+The \code{\link{PangoContext}} structure stores global information
+used to control the itemization process.
 
 }
 \item{\verb{PangoItem}}{
-The \verb{\link{PangoItem}} structure stores information about
+The \code{\link{PangoItem}} structure stores information about
 a segment of text. It contains the following fields:
 
 \describe{
@@ -63,25 +59,25 @@ a segment of text. It contains the following fields:
          string in bytes.}
 \item{\verb{length}}{[integer] the length of the segment in bytes.}
 \item{\verb{numChars}}{[integer] the length of the segment in characters.}
-\item{\verb{analysis}}{[\verb{\link{PangoAnalysis}}] the properties of the segment.}
+\item{\verb{analysis}}{[\code{\link{PangoAnalysis}}] the properties of the segment.}
 }
 
 }
 \item{\verb{PangoAnalysis}}{
-The \verb{\link{PangoAnalysis}} structure stores information about
+The \code{\link{PangoAnalysis}} structure stores information about
 the properties of a segment of text. It has the following
 fields:
 
 \describe{
-\item{\verb{font}}{[\verb{\link{PangoFont}}] the engine for doing rendering-system-dependent processing.}
+\item{\verb{font}}{[\code{\link{PangoFont}}] the engine for doing rendering-system-dependent processing.}
 \item{\verb{level}}{[raw] the engine for doing rendering-system-independent processing.}
-\item{\verb{language}}{[\verb{\link{PangoLanguage}}] the font for this segment.}
+\item{\verb{language}}{[\code{\link{PangoLanguage}}] the font for this segment.}
 \item{\verb{extraAttrs}}{[list] the bidirectional level for this segment.}
 }
 
 }
 \item{\verb{PangoLogAttr}}{
-The \verb{\link{PangoLogAttr}} structure stores information
+The \code{\link{PangoLogAttr}} structure stores information
 about the attributes of a single character.
 
 \describe{
@@ -91,7 +87,10 @@ about the attributes of a single character.
 \item{\verb{isWhite}}{[numeric] is whitespace character}
 \item{\verb{isCursorPosition}}{[numeric] if set, cursor can appear in front of character.
 	i.e. this is a grapheme boundary, or the first character
-        in the text.}
+        in the text.
+	This flag implements Unicode's
+	Grapheme
+	Cluster Boundaries (\url{http://www.unicode.org/reports/tr29/}) semantics.}
 \item{\verb{isWordStart}}{[numeric] is first character in a word}
 \item{\verb{isWordEnd}}{[numeric] is first non-word char after a word
 	Note that in degenerate cases, you could have both \code{is.word.start}
@@ -125,33 +124,6 @@ about the attributes of a single character.
 
 }
 }}
-\section{Enums and Flags}{\describe{\item{\verb{PangoDirection}}{
-The \code{\link{PangoDirection}} type represents a direction in the
-Unicode bidirectional algorithm; not every value in this
-enumeration makes sense for every usage of \code{\link{PangoDirection}};
-for example, the return value of \code{\link{pangoUnicharDirection}}
-and \code{\link{pangoFindBaseDir}} cannot be \code{PANGO_DIRECTION_WEAK_LTR}
-or \code{PANGO_DIRECTION_WEAK_RTL}, since every character is either
-neutral or has a strong direction; on the other hand
-\code{PANGO_DIRECTION_NEUTRAL} doesn't make sense to pass
-to \code{\link{pangoItemizeWithBaseDir}}.
-  
-The \code{PANGO_DIRECTION_TTB_LTR}, \code{PANGO_DIRECTION_TTB_RTL}
-values come from an earlier interpretation of this
-enumeration as the writing direction of a block of
-text and are no longer used; See \code{\link{PangoGravity}} for how
-vertical text is handled in Pango.  
-
-\describe{
-\item{\verb{ltr}}{ A strong left-to-right direction}
-\item{\verb{rtl}}{ A strong right-to-left direction}
-\item{\verb{ttb-ltr}}{ Deprecated value; treated the
-  same as \code{PANGO_DIRECTION_RTL}.}
-\item{\verb{ttb-rtl}}{ Deprecated value; treated the
-  same as \code{PANGO_DIRECTION_LTR}}
-}
-
-}}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/pango/pango-Text-Processing.html}}
+\references{\url{http://library.gnome.org/devel//pango/pango-Text-Processing.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -5,8 +5,8 @@
 specifies the type of antialiasing to do when rendering text.}
 \usage{cairoFontOptionsSetAntialias(options, antialias)}
 \arguments{
-\item{\verb{options}}{[\verb{\link{CairoFontOptions}}]  a \verb{\link{CairoFontOptions}}}
-\item{\verb{antialias}}{[\verb{\link{CairoAntialias}}]  the new antialiasing mode}
+\item{\verb{options}}{[\code{\link{CairoFontOptions}}]  a \code{\link{CairoFontOptions}}}
+\item{\verb{antialias}}{[\code{\link{CairoAntialias}}]  the new antialiasing mode}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

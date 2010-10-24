@@ -7,14 +7,17 @@
 }
 \usage{gtkCTreeNodeGetText(object, node, column)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkCTree}}] }
-\item{\verb{node}}{[\verb{\link{GtkCTreeNode}}] }
-\item{\verb{column}}{[integer] }
+\item{\verb{object}}{\emph{undocumented
+}}
+\item{\verb{node}}{\emph{undocumented
+}}
+\item{\verb{column}}{\emph{undocumented
+}}
 }
 \value{
 A list containing the following elements:
 \item{retval}{[logical] True if the given cell has text in it.}
-\item{\verb{text}}{[character] If nonnull, the pointer to the text string is assigned to *\code{text}.}
+\item{\verb{text}}{If nonnull, the pointer to the text string is assigned to *\code{text}.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -9,11 +9,11 @@ the adjustment and \code{\link{gtkContainerSetFocusVadjustment}} for setting
 the vertical adjustment.}
 \usage{gtkContainerSetFocusHadjustment(object, adjustment)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkContainer}}]  a \verb{\link{GtkContainer}}}
-\item{\verb{adjustment}}{[\verb{\link{GtkAdjustment}}]  an adjustment which should be adjusted when the focus is 
+\item{\verb{object}}{a \code{\link{GtkContainer}}}
+\item{\verb{adjustment}}{an adjustment which should be adjusted when the focus is 
   moved among the descendents of \code{container}}
 }
 \details{The adjustments have to be in pixel units and in the same coordinate 
-system as the allocation for immediate children of the container.  }
+system as the allocation for immediate children of the container.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -5,16 +5,16 @@
 offsets. See \code{\link{gdkDrawRgbImageDithalign}} for more details.}
 \usage{gdkDrawRgb32ImageDithalign(object, gc, x, y, width, height, dith, buf, xdith, ydith)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GdkDrawable}}]  a \verb{\link{GdkDrawable}}}
-\item{\verb{gc}}{[\verb{\link{GdkGC}}]  a \verb{\link{GdkGC}}}
-\item{\verb{x}}{[integer]  X coordinate on \code{drawable} where image should go}
-\item{\verb{y}}{[integer]  Y coordinate on \code{drawable} where image should go}
-\item{\verb{width}}{[integer]  width of area of image to draw}
-\item{\verb{height}}{[integer]  height of area of image to draw}
-\item{\verb{dith}}{[\code{\link{GdkRgbDither}}]  dithering mode}
-\item{\verb{buf}}{[raw]  RGB image data}
-\item{\verb{xdith}}{[integer]  X dither offset}
-\item{\verb{ydith}}{[integer]  Y dither offset}
+\item{\verb{object}}{a \code{\link{GdkDrawable}}}
+\item{\verb{gc}}{a \code{\link{GdkGC}}}
+\item{\verb{x}}{X coordinate on \code{drawable} where image should go}
+\item{\verb{y}}{Y coordinate on \code{drawable} where image should go}
+\item{\verb{width}}{width of area of image to draw}
+\item{\verb{height}}{height of area of image to draw}
+\item{\verb{dith}}{dithering mode}
+\item{\verb{buf}}{RGB image data}
+\item{\verb{xdith}}{X dither offset}
+\item{\verb{ydith}}{Y dither offset}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

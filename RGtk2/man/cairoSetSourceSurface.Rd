@@ -5,8 +5,8 @@
 and setting it as the source in \code{cr} with \code{\link{cairoSetSource}}.}
 \usage{cairoSetSourceSurface(cr, surface, x, y)}
 \arguments{
-\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}
-\item{\verb{surface}}{[\verb{\link{CairoSurface}}]  a surface to be used to set the source pattern}
+\item{\verb{cr}}{[\code{\link{Cairo}}]  a cairo context}
+\item{\verb{surface}}{[\code{\link{CairoSurface}}]  a surface to be used to set the source pattern}
 \item{\verb{x}}{[numeric]  User-space X coordinate for surface origin}
 \item{\verb{y}}{[numeric]  User-space Y coordinate for surface origin}
 }

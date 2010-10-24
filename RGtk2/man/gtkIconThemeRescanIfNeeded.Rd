@@ -5,8 +5,8 @@
 currently cached information is discarded and will be reloaded
 next time \code{icon.theme} is accessed.}
 \usage{gtkIconThemeRescanIfNeeded(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkIconTheme}}]  a \verb{\link{GtkIconTheme}}}}
-\details{  Since  2.4}
+\arguments{\item{\verb{object}}{a \code{\link{GtkIconTheme}}}}
+\details{Since 2.4}
 \value{[logical] \code{TRUE} if the icon theme has changed and needed
   to be reloaded.}
 \author{Derived by RGtkGen from GTK+ documentation}

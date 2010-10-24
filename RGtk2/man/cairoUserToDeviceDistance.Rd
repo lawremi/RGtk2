@@ -7,7 +7,7 @@ translation components of the CTM will be ignored when transforming
 (\code{dx},\code{dy}).}
 \usage{cairoUserToDeviceDistance(cr, dx, dy)}
 \arguments{
-\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}
+\item{\verb{cr}}{[\code{\link{Cairo}}]  a cairo context}
 \item{\verb{dx}}{[numeric]  X component of a distance vector (in/out parameter)}
 \item{\verb{dy}}{[numeric]  Y component of a distance vector (in/out parameter)}
 }

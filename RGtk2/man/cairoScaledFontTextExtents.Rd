@@ -10,7 +10,7 @@ the x_advance and y_advance values indicate the amount by which the
 current point would be advanced by \code{\link{cairoShowText}}.}
 \usage{cairoScaledFontTextExtents(scaled.font, utf8)}
 \arguments{
-\item{\verb{scaled.font}}{[\verb{\link{CairoScaledFont}}]  a \verb{\link{CairoScaledFont}}}
+\item{\verb{scaled.font}}{[\code{\link{CairoScaledFont}}]  a \code{\link{CairoScaledFont}}}
 \item{\verb{utf8}}{[char]  a string of text, encoded in UTF-8}
 }
 \details{Note that whitespace characters do not directly contribute to the
@@ -19,11 +19,10 @@ contribute indirectly by changing the position of non-whitespace
 characters. In particular, trailing whitespace characters are
 likely to not affect the size of the rectangle, though they will
 affect the x_advance and y_advance values.  
-
-  Since  1.2}
+  Since 1.2}
 \value{
 A list containing the following elements:
-\item{\verb{extents}}{[\verb{\link{CairoTextExtents}}]  a \verb{\link{CairoTextExtents}} which to store the retrieved extents.}
+\item{\verb{extents}}{[\code{\link{CairoTextExtents}}]  a \code{\link{CairoTextExtents}} which to store the retrieved extents.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

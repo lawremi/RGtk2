@@ -7,7 +7,7 @@ The available policies are:
 \itemize{
 \item \code{GTK_UPDATE_CONTINUOUS} - signals are sent continuously as the color
 selection changes.
-\item \code{GTK_UPDATE_DISCONTINUOUS} - signals are sent only when the mouse 
+\item \code{GTK_UPDATE_DISCONTINUOUS} - signals are sent only when the mouse
 button is released.
 \item \code{GTK_UPDATE_DELAYED} - signals are sent when the mouse button is
 released or when the mouse has been motionless for a period of
@@ -17,8 +17,8 @@ time.
 }
 \usage{gtkColorSelectionSetUpdatePolicy(object, policy)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkColorSelection}}] a \verb{\link{GtkColorSelection}}.}
-\item{\verb{policy}}{[\code{\link{GtkUpdateType}}] a \code{\link{GtkUpdateType}} value indicating the desired policy.}
+\item{\verb{object}}{a \code{\link{GtkColorSelection}}.}
+\item{\verb{policy}}{a \code{\link{GtkUpdateType}} value indicating the desired policy.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

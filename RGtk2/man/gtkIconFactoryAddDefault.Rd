@@ -8,6 +8,6 @@ There will normally be an icon factory added for each library or
 application that comes with icons. The default icon factories
 can be overridden by themes.}
 \usage{gtkIconFactoryAddDefault(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkIconFactory}}]  a \verb{\link{GtkIconFactory}}}}
+\arguments{\item{\verb{object}}{a \code{\link{GtkIconFactory}}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

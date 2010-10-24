@@ -11,8 +11,8 @@ done manually, \code{\link{gtkToggleButtonSetInconsistent}} only affects
 visual appearance, it doesn't affect the semantics of the button.}
 \usage{gtkToggleButtonSetInconsistent(object, setting)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkToggleButton}}]  a \verb{\link{GtkToggleButton}}}
-\item{\verb{setting}}{[logical] \code{TRUE} if state is inconsistent}
+\item{\verb{object}}{a \code{\link{GtkToggleButton}}}
+\item{\verb{setting}}{\code{TRUE} if state is inconsistent}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -5,15 +5,15 @@
 to widget relative coordinates.}
 \usage{gtkTreeViewConvertBinWindowToWidgetCoords(object, bx, by)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTreeView}}]  a \verb{\link{GtkTreeView}}}
-\item{\verb{bx}}{[integer]  bin_window X coordinate}
-\item{\verb{by}}{[integer]  bin_window Y coordinate}
+\item{\verb{object}}{a \code{\link{GtkTreeView}}}
+\item{\verb{bx}}{bin_window X coordinate}
+\item{\verb{by}}{bin_window Y coordinate}
 }
-\details{  Since  2.12}
+\details{Since 2.12}
 \value{
 A list containing the following elements:
-\item{\verb{wx}}{[integer]  return location for widget X coordinate}
-\item{\verb{wy}}{[integer]  return location for widget Y coordinate}
+\item{\verb{wx}}{return location for widget X coordinate}
+\item{\verb{wy}}{return location for widget Y coordinate}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -5,8 +5,9 @@
 value, replacing the current contents.}
 \usage{gtkEntrySetText(object, text)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkEntry}}]  a \verb{\link{GtkEntry}}}
-\item{\verb{text}}{[character]  the new text}
+\item{\verb{object}}{a \code{\link{GtkEntry}}}
+\item{\verb{text}}{the new text}
 }
+\details{See \code{\link{gtkEntryBufferSetText}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

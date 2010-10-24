@@ -7,10 +7,10 @@ installed. The list of all writable formats can be determined in the
 following way:}
 \usage{gdkPixbufSave(object, filename, type, ..., .errwarn = TRUE)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GdkPixbuf}}]  a \verb{\link{GdkPixbuf}}.}
-\item{\verb{filename}}{[char]  name of file to save.}
-\item{\verb{type}}{[char]  name of file format.}
-\item{\verb{...}}{ list of key-value save options}
+\item{\verb{object}}{a \code{\link{GdkPixbuf}}.}
+\item{\verb{filename}}{name of file to save.}
+\item{\verb{type}}{name of file format.}
+\item{\verb{...}}{list of key-value save options}
 \item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \details{\preformatted{
@@ -37,13 +37,29 @@ The values are UTF-8 encoded strings. The PNG compression level can
 be specified using the "compression" parameter; it's value is in an
 integer in the range of [0,9].
   
+ICC color profiles can also be embedded into PNG and TIFF images.
+The "icc-profile" value should be the complete ICC profile encoded
+into base64.
+  \preformatted{gchar *contents;
+gchar *contents_encode;
+gsize length;
+g_file_get_contents ("/home/hughsie/.color/icc/L225W.icm", &contents, &length, NULL);
+contents_encode = g_base64_encode ((const guchar *) contents, length);
+gdk_pixbuf_save (pixbuf, handle, "png", &error,
+                 "icc-profile", contents_encode,
+                 NULL);
+}  
+TIFF images recognize a "compression" option which acceps an integer value.
+Among the codecs are 1 None, 2 Huffman, 5 LZW, 7 JPEG and 8 Deflate, see
+the libtiff documentation and tiff.h for all supported codec values.
+  
 ICO images can be saved in depth 16, 24, or 32, by using the "depth"
 parameter. When the ICO saver is given "x_hot" and "y_hot" parameters,
-it produces a CUR instead of an ICO.  }
+it produces a CUR instead of an ICO.}
 \value{
 A list containing the following elements:
 \item{retval}{[logical]  whether an error was set}
-\item{\verb{error}}{[\verb{\link{GError}}]  return location for error, or \code{NULL}}
+\item{\verb{error}}{ return location for error, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

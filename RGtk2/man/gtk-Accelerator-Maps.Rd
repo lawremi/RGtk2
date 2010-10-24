@@ -33,11 +33,16 @@
 }
 
 \describe{
-\item{\code{data}}{[R object] }
-\item{\code{accel.path}}{[character] }
-\item{\code{accel.key}}{[numeric] }
-\item{\code{accel.mods}}{[\code{\link{GdkModifierType}}] }
-\item{\code{changed}}{[logical] }
+\item{\code{data}}{\emph{undocumented
+}}
+\item{\code{accel.path}}{\emph{undocumented
+}}
+\item{\code{accel.key}}{\emph{undocumented
+}}
+\item{\code{accel.mods}}{\emph{undocumented
+}}
+\item{\code{changed}}{\emph{undocumented
+}}
 }
 
 
@@ -46,20 +51,19 @@
 Notifies of a change in the global accelerator map.
 The path is also used as the detail for the signal,
 so it is possible to connect to
-changed::\\var{accel_path}.  
-
-  Since  2.4
+changed::\\var{accel_path}.
+  Since 2.4
 
 \describe{
-\item{\code{object}}{[\verb{\link{GtkAccelMap}}]  the global accel map object}
-\item{\code{accel.path}}{[character]  the path of the accelerator that changed}
-\item{\code{accel.key}}{[numeric]  the key value for the new accelerator}
-\item{\code{accel.mods}}{[\code{\link{GdkModifierType}}]  the modifier mask for the new accelerator}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{object}}{the global accel map object}
+\item{\code{accel.path}}{the path of the accelerator that changed}
+\item{\code{accel.key}}{the key value for the new accelerator}
+\item{\code{accel.mods}}{the modifier mask for the new accelerator}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/gtk-Accelerator-Maps.html}}
+\references{\url{http://library.gnome.org/devel//gtk/gtk-Accelerator-Maps.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

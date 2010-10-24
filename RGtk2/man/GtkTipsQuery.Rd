@@ -19,18 +19,18 @@
                            +----GtkLabel
                                  +----GtkTipsQuery}}
 \section{Interfaces}{GtkTipsQuery implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{The \verb{\link{GtkTipsQuery}} widget is a subclass of \verb{\link{GtkLabel}} which is used to display
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
+\section{Detailed Description}{The \code{\link{GtkTipsQuery}} widget is a subclass of \code{\link{GtkLabel}} which is used to display
 help about widgets in a user interface.
   
 A query is started with a call to \code{\link{gtkTipsQueryStartQuery}}, usually
-when some kind of 'Help' button is pressed. The \verb{\link{GtkTipsQuery}} then grabs all
+when some kind of 'Help' button is pressed. The \code{\link{GtkTipsQuery}} then grabs all
 events, stopping the user interface from functioning normally.
-Then as the user moves the mouse over the widgets, the \verb{\link{GtkTipsQuery}} displays
+Then as the user moves the mouse over the widgets, the \code{\link{GtkTipsQuery}} displays
 each widget's tooltip text.
   
 By connecting to the "widget-entered" or "widget-selected" signals, it is
-possible to customize the \verb{\link{GtkTipsQuery}} to perform other actions when widgets
+possible to customize the \code{\link{GtkTipsQuery}} to perform other actions when widgets
 are entered or selected. For example, a help browser could be opened with
 documentation on the widget selected.
   
@@ -41,7 +41,7 @@ which the user can select to stop the query (often the same button used to
 start the query).}
 \section{Structures}{\describe{\item{\verb{GtkTipsQuery}}{
 \strong{WARNING: \code{GtkTipsQuery} is deprecated and should not be used in newly-written code.}
-The \verb{\link{GtkTipsQuery}} struct contains private data only, and
+The \code{\link{GtkTipsQuery}} struct contains private data only, and
 should be accessed using the functions below.
 
 }}}
@@ -51,8 +51,8 @@ should be accessed using the functions below.
 Emitted when the query is started.
 
 \describe{
-\item{\code{tipsquery}}{[\verb{\link{GtkTipsQuery}}] the object which received the signal.}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{tipsquery}}{the object which received the signal.}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -61,8 +61,8 @@ Emitted when the query is started.
 Emitted when the query is stopped.
 
 \describe{
-\item{\code{tipsquery}}{[\verb{\link{GtkTipsQuery}}] the object which received the signal.}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{tipsquery}}{the object which received the signal.}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -71,11 +71,11 @@ Emitted when the query is stopped.
 Emitted when a widget is entered by the pointer while the query is in effect.
 
 \describe{
-\item{\code{tipsquery}}{[\verb{\link{GtkTipsQuery}}] the object which received the signal.}
-\item{\code{widget}}{[\verb{\link{GtkWidget}}] the widget that was entered by the pointer.}
-\item{\code{tip.text}}{[character] the widget's tooltip.}
-\item{\code{tip.private}}{[character] the widget's private tooltip (see \code{\link{gtkTooltipsSetTip}}).}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{tipsquery}}{the object which received the signal.}
+\item{\code{widget}}{the widget that was entered by the pointer.}
+\item{\code{tip.text}}{the widget's tooltip.}
+\item{\code{tip.private}}{the widget's private tooltip (see \code{\link{gtkTooltipsSetTip}}).}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -84,12 +84,12 @@ Emitted when a widget is entered by the pointer while the query is in effect.
 Emitted when a widget is selected during a query.
 
 \describe{
-\item{\code{tipsquery}}{[\verb{\link{GtkTipsQuery}}] the object which received the signal.}
-\item{\code{widget}}{[\verb{\link{GtkWidget}}] the widget that was selected.}
-\item{\code{tip.text}}{[character] the widget's tooltip.}
-\item{\code{tip.private}}{[character] the widget's private tooltip (see \code{\link{gtkTooltipsSetTip}}).}
-\item{\code{event}}{[\verb{\link{GdkEventButton}}] the button press or button release event.}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{tipsquery}}{the object which received the signal.}
+\item{\code{widget}}{the widget that was selected.}
+\item{\code{tip.text}}{the widget's tooltip.}
+\item{\code{tip.private}}{the widget's private tooltip (see \code{\link{gtkTooltipsSetTip}}).}
+\item{\code{event}}{the button press or button release event.}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 \emph{Returns:} [logical] \code{TRUE} if the query should be stopped.
@@ -97,7 +97,7 @@ Emitted when a widget is selected during a query.
 }
 }}
 \section{Properties}{\describe{
-\item{\verb{caller} [\verb{\link{GtkWidget}} : *            : Read / Write]}{
+\item{\verb{caller} [\code{\link{GtkWidget}} : *            : Read / Write]}{
 
 The widget that starts the tips query, usually a button.
 If it is selected while the query is in effect the query is automatically
@@ -113,19 +113,19 @@ the widget has no tooltip set.
 }
 \item{\verb{label-inactive} [character : *                : Read / Write]}{
 
-The text to display in the \verb{\link{GtkTipsQuery}} widget when the query is not in
+The text to display in the \code{\link{GtkTipsQuery}} widget when the query is not in
 effect.
   Default value: NULL
 
 }
 \item{\verb{label-no-tip} [character : *                : Read / Write]}{
 
-The text to display in the \verb{\link{GtkTipsQuery}} widget when the query is running
+The text to display in the \code{\link{GtkTipsQuery}} widget when the query is running
 and the widget that the pointer is over has no tooltip.
   Default value: NULL
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkTipsQuery.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkTipsQuery.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

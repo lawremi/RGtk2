@@ -19,14 +19,14 @@
                                  +----GtkItem
                                        +----GtkListItem}}
 \section{Interfaces}{GtkListItem implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{The \verb{\link{GtkListItem}} widget is used for each item in a \verb{\link{GtkList}}.
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
+\section{Detailed Description}{The \code{\link{GtkListItem}} widget is used for each item in a \code{\link{GtkList}}.
   
 GtkList has has been deprecated since GTK+ 2.0 and should not be used
-in newly written code. Use \verb{\link{GtkTreeView}} instead.}
+in newly written code. Use \code{\link{GtkTreeView}} instead.}
 \section{Structures}{\describe{\item{\verb{GtkListItem}}{
 \strong{WARNING: \code{GtkListItem} is deprecated and should not be used in newly-written code.}
-The \verb{\link{GtkListItem}} struct contains private data only, and should
+The \code{\link{GtkListItem}} struct contains private data only, and should
 only be accessed using the functions below.
 
 }}}
@@ -37,8 +37,8 @@ only be accessed using the functions below.
 }
 
 \describe{
-\item{\code{listitem}}{[\verb{\link{GtkListItem}}] the object which received the signal.}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{listitem}}{the object which received the signal.}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -48,11 +48,14 @@ only be accessed using the functions below.
 }
 
 \describe{
-\item{\code{listitem}}{[\verb{\link{GtkListItem}}] the object which received the signal.}
-\item{\code{scroll.type}}{[\code{\link{GtkScrollType}}] }
-\item{\code{position}}{[numeric] }
-\item{\code{auto.start.selection}}{[logical] }
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{listitem}}{the object which received the signal.}
+\item{\code{scroll.type}}{\emph{undocumented
+}}
+\item{\code{position}}{\emph{undocumented
+}}
+\item{\code{auto.start.selection}}{\emph{undocumented
+}}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -62,10 +65,12 @@ only be accessed using the functions below.
 }
 
 \describe{
-\item{\code{listitem}}{[\verb{\link{GtkListItem}}] the object which received the signal.}
-\item{\code{scroll.type}}{[\code{\link{GtkScrollType}}] }
-\item{\code{position}}{[numeric] }
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{listitem}}{the object which received the signal.}
+\item{\code{scroll.type}}{\emph{undocumented
+}}
+\item{\code{position}}{\emph{undocumented
+}}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -75,10 +80,12 @@ only be accessed using the functions below.
 }
 
 \describe{
-\item{\code{listitem}}{[\verb{\link{GtkListItem}}] the object which received the signal.}
-\item{\code{scroll.type}}{[\code{\link{GtkScrollType}}] }
-\item{\code{position}}{[numeric] }
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{listitem}}{the object which received the signal.}
+\item{\code{scroll.type}}{\emph{undocumented
+}}
+\item{\code{position}}{\emph{undocumented
+}}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -88,8 +95,8 @@ only be accessed using the functions below.
 }
 
 \describe{
-\item{\code{listitem}}{[\verb{\link{GtkListItem}}] the object which received the signal.}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{listitem}}{the object which received the signal.}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -99,8 +106,8 @@ only be accessed using the functions below.
 }
 
 \describe{
-\item{\code{listitem}}{[\verb{\link{GtkListItem}}] the object which received the signal.}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{listitem}}{the object which received the signal.}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -110,8 +117,8 @@ only be accessed using the functions below.
 }
 
 \describe{
-\item{\code{listitem}}{[\verb{\link{GtkListItem}}] the object which received the signal.}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{listitem}}{the object which received the signal.}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -121,8 +128,8 @@ only be accessed using the functions below.
 }
 
 \describe{
-\item{\code{listitem}}{[\verb{\link{GtkListItem}}] the object which received the signal.}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{listitem}}{the object which received the signal.}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -132,8 +139,8 @@ only be accessed using the functions below.
 }
 
 \describe{
-\item{\code{listitem}}{[\verb{\link{GtkListItem}}] the object which received the signal.}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{listitem}}{the object which received the signal.}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -143,13 +150,13 @@ only be accessed using the functions below.
 }
 
 \describe{
-\item{\code{listitem}}{[\verb{\link{GtkListItem}}] the object which received the signal.}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{listitem}}{the object which received the signal.}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkListItem.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkListItem.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

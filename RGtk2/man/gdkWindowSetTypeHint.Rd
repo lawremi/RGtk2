@@ -7,9 +7,9 @@ can use this information when determining the decoration and behaviour
 of the window.}
 \usage{gdkWindowSetTypeHint(object, hint)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GdkWindow}}]  A toplevel \verb{\link{GdkWindow}}}
-\item{\verb{hint}}{[\code{\link{GdkWindowTypeHint}}]  A hint of the function this window will have}
+\item{\verb{object}}{A toplevel \code{\link{GdkWindow}}}
+\item{\verb{hint}}{A hint of the function this window will have}
 }
-\details{The hint must be set before the window is mapped.  }
+\details{The hint must be set before the window is mapped.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

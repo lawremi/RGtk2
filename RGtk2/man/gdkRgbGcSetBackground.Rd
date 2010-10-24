@@ -8,8 +8,8 @@ closest approximation, in the case of limited visuals).
 }
 \usage{gdkRgbGcSetBackground(gc, rgb)}
 \arguments{
-\item{\verb{gc}}{[\verb{\link{GdkGC}}] The \verb{\link{GdkGC}} to modify.}
-\item{\verb{rgb}}{[numeric] The color, represented as a 0xRRGGBB integer value.}
+\item{\verb{gc}}{The \code{\link{GdkGC}} to modify.}
+\item{\verb{rgb}}{The color, represented as a 0xRRGGBB integer value.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

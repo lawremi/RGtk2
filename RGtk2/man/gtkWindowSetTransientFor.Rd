@@ -9,10 +9,12 @@ functions in GTK+ will sometimes call
 \code{\link{gtkWindowSetTransientFor}} on your behalf.}
 \usage{gtkWindowSetTransientFor(object, parent = NULL)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}}
-\item{\verb{parent}}{[\verb{\link{GtkWindow}}]  parent window}
+\item{\verb{object}}{a \code{\link{GtkWindow}}}
+\item{\verb{parent}}{ parent window, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
-\details{On Windows, this function puts the child window on top of the parent, 
-much as the window manager would have done on X.  }
+\details{Passing \code{NULL} for \code{parent} unsets the current transient window.
+  
+On Windows, this function puts the child window on top of the parent,
+much as the window manager would have done on X.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

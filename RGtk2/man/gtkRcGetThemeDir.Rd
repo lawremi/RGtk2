@@ -5,6 +5,5 @@
 be installed. (GTK+ does not actually use this directory
 itself.)}
 \usage{gtkRcGetThemeDir()}
-\value{[character] .}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -22,13 +22,13 @@
 conceptual overview which gives an overview of all the objects and data
 types related to the text widget and how they work together.
   
-Tags should be in the \verb{\link{GtkTextTagTable}} for a given \verb{\link{GtkTextBuffer}}
+Tags should be in the \code{\link{GtkTextTagTable}} for a given \code{\link{GtkTextBuffer}}
 before using them with that buffer.
   \code{\link{gtkTextBufferCreateTag}} is the best way to create tags.
 See \command{gtk-demo} for numerous examples.
   
-The "invisible" property was not implemented for GTK+ 2.0; it's
-planned to be implemented in future releases.}
+The "invisible" property was not implemented for GTK+ 2.0.
+It is working (with minor issues) since 2.8.}
 \section{Structures}{\describe{
 \item{\verb{GtkTextTag}}{
 \emph{undocumented
@@ -36,16 +36,16 @@ planned to be implemented in future releases.}
 
 }
 \item{\verb{GtkTextAttributes}}{
-Using \verb{\link{GtkTextAttributes}} directly should rarely be necessary. It's
+Using \code{\link{GtkTextAttributes}} directly should rarely be necessary. It's
 primarily useful with \code{\link{gtkTextIterGetAttributes}}. As with most
 GTK+ structs, the fields in this struct should only be read, never
 modified directly.
 
 \describe{
-\item{\verb{appearance}}{[\verb{\link{GtkTextAppearance}}] pointer to sub-struct containing certain attributes}
+\item{\verb{appearance}}{[\code{\link{GtkTextAppearance}}] pointer to sub-struct containing certain attributes}
 \item{\verb{justification}}{[\code{\link{GtkJustification}}] }
 \item{\verb{direction}}{[\code{\link{GtkTextDirection}}] }
-\item{\verb{font}}{[\verb{\link{PangoFontDescription}}] }
+\item{\verb{font}}{[\code{\link{PangoFontDescription}}] }
 \item{\verb{fontScale}}{[numeric] }
 \item{\verb{leftMargin}}{[integer] }
 \item{\verb{indent}}{[integer] }
@@ -53,9 +53,9 @@ modified directly.
 \item{\verb{pixelsAboveLines}}{[integer] }
 \item{\verb{pixelsBelowLines}}{[integer] }
 \item{\verb{pixelsInsideWrap}}{[integer] }
-\item{\verb{tabs}}{[\verb{\link{PangoTabArray}}] }
+\item{\verb{tabs}}{[\code{\link{PangoTabArray}}] }
 \item{\verb{wrapMode}}{[\code{\link{GtkWrapMode}}] }
-\item{\verb{language}}{[\verb{\link{PangoLanguage}}] }
+\item{\verb{language}}{[\code{\link{PangoLanguage}}] }
 \item{\verb{invisible}}{[numeric] }
 \item{\verb{bgFullHeight}}{[numeric] }
 \item{\verb{editable}}{[numeric] }
@@ -68,10 +68,10 @@ modified directly.
 }
 
 \describe{
-\item{\verb{bgColor}}{[\verb{\link{GdkColor}}] }
-\item{\verb{fgColor}}{[\verb{\link{GdkColor}}] }
-\item{\verb{bgStipple}}{[\verb{\link{GdkBitmap}}] }
-\item{\verb{fgStipple}}{[\verb{\link{GdkBitmap}}] }
+\item{\verb{bgColor}}{[\code{\link{GdkColor}}] }
+\item{\verb{fgColor}}{[\code{\link{GdkColor}}] }
+\item{\verb{bgStipple}}{[\code{\link{GdkBitmap}}] }
+\item{\verb{fgStipple}}{[\code{\link{GdkBitmap}}] }
 \item{\verb{rise}}{[integer] }
 \item{\verb{underline}}{[numeric] }
 \item{\verb{strikethrough}}{[numeric] }
@@ -98,14 +98,14 @@ Describes a type of line wrapping.
 }}}
 \section{Signals}{\describe{\item{\code{event(tag, object, event, iter, user.data)}}{
 The ::event signal is emitted when an event occurs on a region of the
-buffer marked with this tag.  
+buffer marked with this tag.
 
 \describe{
-\item{\code{tag}}{[\verb{\link{GtkTextTag}}]  the \verb{\link{GtkTextTag}} on which the signal is emitted}
-\item{\code{object}}{[\verb{\link{GObject}}]  the object the event was fired from (typically a \verb{\link{GtkTextView}})}
-\item{\code{event}}{[\verb{\link{GdkEvent}}]  the event which triggered the signal}
-\item{\code{iter}}{[\verb{\link{GtkTextIter}}]  a \verb{\link{GtkTextIter}} pointing at the location the event occured}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{tag}}{the \code{\link{GtkTextTag}} on which the signal is emitted}
+\item{\code{object}}{the object the event was fired from (typically a \code{\link{GtkTextView}})}
+\item{\code{event}}{the event which triggered the signal}
+\item{\code{iter}}{a \code{\link{GtkTextIter}} pointing at the location the event occured}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 \emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the
@@ -117,11 +117,10 @@ event. \code{FALSE} to propagate the event further.
 
 Whether the margins accumulate or override each other.
   
-When set to \code{TRUE} the margins of this tag are added to the margins 
+When set to \code{TRUE} the margins of this tag are added to the margins
 of any other non-accumulative margins present. When set to \code{FALSE} 
-the margins override one another (the default).  
-
-  Default value: FALSE  Since  2.12
+the margins override one another (the default).
+  Default value: FALSE  Since 2.12
 
 }
 \item{\verb{background} [character : *                : Write]}{
@@ -139,7 +138,7 @@ Whether the background color fills the entire line height or only the height of 
 Whether this tag affects background height.  Default value: FALSE
 
 }
-\item{\verb{background-gdk} [\verb{\link{GdkColor}} : *             : Read / Write]}{
+\item{\verb{background-gdk} [\code{\link{GdkColor}} : *             : Read / Write]}{
 
 Background color as a (possibly unallocated) GdkColor.
 
@@ -149,7 +148,7 @@ Background color as a (possibly unallocated) GdkColor.
 Whether this tag affects the background color.  Default value: FALSE
 
 }
-\item{\verb{background-stipple} [\verb{\link{GdkPixmap}} : *            : Read / Write]}{
+\item{\verb{background-stipple} [\code{\link{GdkPixmap}} : *            : Read / Write]}{
 
 Bitmap to use as a mask when drawing the text background.
 
@@ -189,12 +188,11 @@ Whether this tag affects the font family.  Default value: FALSE
 Font description as string, e.g. \\"Sans Italic 12\\". 
   
 Note that the initial value of this property depends on
-the internals of \verb{\link{PangoFontDescription}}.  
-
+the internals of \code{\link{PangoFontDescription}}.
   Default value: NULL
 
 }
-\item{\verb{font-desc} [\verb{\link{PangoFontDescription}} : *  : Read / Write]}{
+\item{\verb{font-desc} [\code{\link{PangoFontDescription}} : *  : Read / Write]}{
 
 Font description as a PangoFontDescription struct.
 
@@ -204,7 +202,7 @@ Font description as a PangoFontDescription struct.
 Foreground color as a string.  Default value: NULL
 
 }
-\item{\verb{foreground-gdk} [\verb{\link{GdkColor}} : *             : Read / Write]}{
+\item{\verb{foreground-gdk} [\code{\link{GdkColor}} : *             : Read / Write]}{
 
 Foreground color as a (possibly unallocated) GdkColor.
 
@@ -214,7 +212,7 @@ Foreground color as a (possibly unallocated) GdkColor.
 Whether this tag affects the foreground color.  Default value: FALSE
 
 }
-\item{\verb{foreground-stipple} [\verb{\link{GdkPixmap}} : *            : Read / Write]}{
+\item{\verb{foreground-stipple} [\code{\link{GdkPixmap}} : *            : Read / Write]}{
 
 Bitmap to use as a mask when drawing the text foreground.
 
@@ -240,9 +238,8 @@ Whether this text is hidden.
   
 Note that there may still be problems with the support for invisible 
 text, in particular when navigating programmatically inside a buffer
-containing invisible segments.  
-
-  Default value: FALSE  Since  2.8
+containing invisible segments.
+  Default value: FALSE  Since 2.8
 
 }
 \item{\verb{invisible-set} [logical : Read / Write]}{
@@ -267,8 +264,7 @@ hint when rendering the text. If not set, an appropriate default will be
 used.
   
 Note that the initial value of this property depends on the current
-locale, see also \code{\link{gtkGetDefaultLanguage}}.  
-
+locale, see also \code{\link{gtkGetDefaultLanguage}}.
   Default value: NULL
 
 }
@@ -294,17 +290,15 @@ Name used to refer to the text tag. NULL for anonymous tags.  Default value: NUL
 }
 \item{\verb{paragraph-background} [character : *                : Write]}{
 
-The paragraph background color as a string.  
-
-  Default value: NULL  Since  2.8
+The paragraph background color as a string.
+  Default value: NULL  Since 2.8
 
 }
-\item{\verb{paragraph-background-gdk} [\verb{\link{GdkColor}} : *             : Read / Write]}{
+\item{\verb{paragraph-background-gdk} [\code{\link{GdkColor}} : *             : Read / Write]}{
 
 The paragraph background color as a as a (possibly unallocated) 
-\verb{\link{GdkColor}}.  
-
-  Since  2.8
+\code{\link{GdkColor}}.
+  Since 2.8
 
 }
 \item{\verb{paragraph-background-set} [logical : Read / Write]}{
@@ -417,7 +411,7 @@ Font style as a PangoStyle, e.g. PANGO_STYLE_ITALIC.  Default value: PANGO_STYLE
 Whether this tag affects the font style.  Default value: FALSE
 
 }
-\item{\verb{tabs} [\verb{\link{PangoTabArray}} : *        : Read / Write]}{
+\item{\verb{tabs} [\code{\link{PangoTabArray}} : *        : Read / Write]}{
 
 Custom tabs for this text.
 
@@ -468,6 +462,6 @@ Whether this tag affects line wrap mode.  Default value: FALSE
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkTextTag.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkTextTag.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

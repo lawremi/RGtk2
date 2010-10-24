@@ -8,8 +8,8 @@ The mnemonic key can be used to activate another widget, chosen
 automatically, or explicitly using \code{\link{gtkLabelSetMnemonicWidget}}.}
 \usage{gtkLabelSetTextWithMnemonic(object, str)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkLabel}}]  a \verb{\link{GtkLabel}}}
-\item{\verb{str}}{[character]  a string}
+\item{\verb{object}}{a \code{\link{GtkLabel}}}
+\item{\verb{str}}{a string}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

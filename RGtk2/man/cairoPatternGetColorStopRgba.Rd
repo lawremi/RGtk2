@@ -6,13 +6,13 @@ gradient pattern.  Values of \code{index} are 0 to 1 less than the number
 returned by \code{\link{cairoPatternGetColorStopCount}}.}
 \usage{cairoPatternGetColorStopRgba(pattern, index)}
 \arguments{
-\item{\verb{pattern}}{[\verb{\link{CairoPattern}}]  a \verb{\link{CairoPattern}}}
+\item{\verb{pattern}}{[\code{\link{CairoPattern}}]  a \code{\link{CairoPattern}}}
 \item{\verb{index}}{[integer]  index of the stop to return data for}
 }
-\details{  Since  1.4}
+\details{  Since 1.4}
 \value{
 A list containing the following elements:
-\item{retval}{[\verb{\link{CairoStatus}}] \code{CAIRO_STATUS_SUCCESS}, or \code{CAIRO_STATUS_INVALID_INDEX}
+\item{retval}{[\code{\link{CairoStatus}}] \code{CAIRO_STATUS_SUCCESS}, or \code{CAIRO_STATUS_INVALID_INDEX}
 if \code{index} is not valid for the given pattern.  If the pattern is
 not a gradient pattern, \code{CAIRO_STATUS_PATTERN_TYPE_MISMATCH} is
 returned.}

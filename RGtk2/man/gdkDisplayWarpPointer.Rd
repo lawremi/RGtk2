@@ -9,16 +9,15 @@ creates events as if the user had moved the mouse
 instantaneously to the destination.}
 \usage{gdkDisplayWarpPointer(object, screen, x, y)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GdkDisplay}}]  a \verb{\link{GdkDisplay}}}
-\item{\verb{screen}}{[\verb{\link{GdkScreen}}]  the screen of \code{display} to warp the pointer to}
-\item{\verb{x}}{[integer]  the x coordinate of the destination}
-\item{\verb{y}}{[integer]  the y coordinate of the destination}
+\item{\verb{object}}{a \code{\link{GdkDisplay}}}
+\item{\verb{screen}}{the screen of \code{display} to warp the pointer to}
+\item{\verb{x}}{the x coordinate of the destination}
+\item{\verb{y}}{the y coordinate of the destination}
 }
 \details{Note that the pointer should normally be under the
 control of the user. This function was added to cover
 some rare use cases like keyboard navigation support
-for the color picker in the \verb{\link{GtkColorSelectionDialog}}.  
-
-  Since  2.8}
+for the color picker in the \code{\link{GtkColorSelectionDialog}}.
+  Since 2.8}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

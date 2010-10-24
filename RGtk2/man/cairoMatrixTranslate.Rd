@@ -7,7 +7,7 @@ the coordinates by \code{tx} and \code{ty}, then apply the original transformati
 to the coordinates.}
 \usage{cairoMatrixTranslate(matrix, tx, ty)}
 \arguments{
-\item{\verb{matrix}}{[\verb{\link{CairoMatrix}}]  a \verb{\link{CairoMatrix}}}
+\item{\verb{matrix}}{[\code{\link{CairoMatrix}}]  a \code{\link{CairoMatrix}}}
 \item{\verb{tx}}{[numeric]  amount to translate in the X direction}
 \item{\verb{ty}}{[numeric]  amount to translate in the Y direction}
 }

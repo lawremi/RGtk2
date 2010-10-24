@@ -4,7 +4,7 @@
 \description{Removes the specified \code{row} from the selection.}
 \usage{atkTableRemoveRowSelection(object, row)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{AtkTable}}]  a GObject instance that implements AtkTableIface}
+\item{\verb{object}}{[\code{\link{AtkTable}}]  a GObject instance that implements AtkTableIface}
 \item{\verb{row}}{[integer]  a \verb{integer} representing a row in \code{table}}
 }
 \value{[logical]  a gboolean representing if the row was successfully removed from

@@ -5,8 +5,8 @@
 number of pixels to place between children of \code{box}.}
 \usage{gtkBoxSetSpacing(object, spacing)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkBox}}]  a \verb{\link{GtkBox}}}
-\item{\verb{spacing}}{[integer]  the number of pixels to put between children}
+\item{\verb{object}}{a \code{\link{GtkBox}}}
+\item{\verb{spacing}}{the number of pixels to put between children}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

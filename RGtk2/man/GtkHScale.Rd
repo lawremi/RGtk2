@@ -16,18 +16,18 @@
                            +----GtkScale
                                  +----GtkHScale}}
 \section{Interfaces}{GtkHScale implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{The \verb{\link{GtkHScale}} widget is used to allow the user to select a value using
+ AtkImplementorIface,  \code{\link{GtkBuildable}} and  \code{\link{GtkOrientable}}.}
+\section{Detailed Description}{The \code{\link{GtkHScale}} widget is used to allow the user to select a value using
 a horizontal slider. To create one, use \code{\link{gtkHScaleNewWithRange}}.
   
 The position to show the current value, and the number of decimal places
-shown can be set using the parent \verb{\link{GtkScale}} class's functions.}
+shown can be set using the parent \code{\link{GtkScale}} class's functions.}
 \section{Structures}{\describe{\item{\verb{GtkHScale}}{
-The \verb{\link{GtkHScale}} struct contains private data only, and
+The \code{\link{GtkHScale}} struct contains private data only, and
 should be accessed using the functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkHScale} is the result of collapsing the constructors of \code{GtkHScale} (\code{\link{gtkHScaleNew}}, \code{\link{gtkHScaleNewWithRange}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkHScale.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkHScale.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

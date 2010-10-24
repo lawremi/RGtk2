@@ -6,6 +6,6 @@ known to the window manager; for all windows, unmaps them, so
 they won't be displayed. Normally done automatically as
 part of \code{\link{gtkWidgetHide}}.}
 \usage{gdkWindowHide(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a \verb{\link{GdkWindow}}}}
+\arguments{\item{\verb{object}}{a \code{\link{GdkWindow}}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

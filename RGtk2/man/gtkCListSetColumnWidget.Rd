@@ -9,9 +9,9 @@ title, instead of the standard text.
 }
 \usage{gtkCListSetColumnWidget(object, column, widget)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkCList}}] The \verb{\link{GtkCList}} to affect.}
-\item{\verb{column}}{[integer] The column whose title should be a widget.}
-\item{\verb{widget}}{[\verb{\link{GtkWidget}}] A pointer to a previously create widget.}
+\item{\verb{object}}{The \code{\link{GtkCList}} to affect.}
+\item{\verb{column}}{The column whose title should be a widget.}
+\item{\verb{widget}}{A pointer to a previously create widget.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

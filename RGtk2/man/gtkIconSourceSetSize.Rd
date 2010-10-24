@@ -5,12 +5,12 @@
 with.}
 \usage{gtkIconSourceSetSize(object, size)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkIconSource}}]  a \verb{\link{GtkIconSource}}}
-\item{\verb{size}}{[\code{\link{GtkIconSize}}]  icon size this source applies to}
+\item{\verb{object}}{a \code{\link{GtkIconSource}}}
+\item{\verb{size}}{ icon size this source applies to. \emph{[type int]}}
 }
 \details{Setting the icon size on an icon source makes no difference
 if the size is wildcarded. Therefore, you should usually
 call \code{\link{gtkIconSourceSetSizeWildcarded}} to un-wildcard it
-in addition to calling this function.  }
+in addition to calling this function.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

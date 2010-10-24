@@ -89,30 +89,29 @@
                            +----GtkCList
                                  +----GtkCTree}}
 \section{Interfaces}{GtkCTree implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{The \verb{\link{GtkCTree}} widget is used for showing a hierarchical tree 
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
+\section{Detailed Description}{The \code{\link{GtkCTree}} widget is used for showing a hierarchical tree
 to the user, for example a directory tree.
   
-The tree is internally represented as a set of \verb{\link{GtkCTreeNode}} structures.
+The tree is internally represented as a set of \code{\link{GtkCTreeNode}} structures.
   
-The interface has much in common with the \verb{\link{GtkCList}} widget: rows (nodes)
+The interface has much in common with the \code{\link{GtkCList}} widget: rows (nodes)
 can be selected by the user etc.
-   
+  
 Positions in the tree are often indicated by two arguments, a
-parent and a sibling, both \verb{\link{GtkCTreeNode}} pointers. If the parent
+parent and a sibling, both \code{\link{GtkCTreeNode}} pointers. If the parent
 is \code{NULL}, the position is at the root of the tree and if the sibling
 is \code{NULL}, it will be the last child of parent, otherwise it will be
 inserted just before the sibling.
   
 GtkCTree has been deprecated since GTK+ 2.0 and should not be used
-in newly written code. Use \verb{\link{GtkTreeView}} instead.}
+in newly written code. Use \code{\link{GtkTreeView}} instead.}
 \section{Structures}{\describe{
 \item{\verb{GtkCTree}}{
 \strong{WARNING: \code{GtkCTree} is deprecated and should not be used in newly-written code.}
-The \verb{\link{GtkCTree}} contains the following user-accessible fields.
+The \code{\link{GtkCTree}} contains the following user-accessible fields.
 These fields should be considered read-only; to set the values,
 use the methods below.
-
 \tabular{ll}{
 \verb{integer}  \code{tree_indent}  ; \tab The number of pixels each successive level of the tree is
 indented in the display. \cr
@@ -129,17 +128,16 @@ node. \cr
 \strong{WARNING: \code{GtkCTreeRow} is deprecated and should not be used in newly-written code.}
 A structure representing a single row in the tree graph.
 The values inside the structure should be considered read-only.
-This structure is derived from the \verb{\link{GtkCListRow}} structure.
-
+This structure is derived from the \code{\link{GtkCListRow}} structure.
 \tabular{ll}{
-\verb{\link{GtkCTreeNode}}   *  \code{parent}  ; \tab The parent node of the node corresponding to this row. \cr
-\verb{\link{GtkCTreeNode}}   *  \code{sibling}  ; \tab The next sibling node of the node corresponding to this row. \cr
-\verb{\link{GtkCTreeNode}}   *  \code{children}  ; \tab The first child node corresponding to this row; to access
+\code{\link{GtkCTreeNode}}   *  \code{parent}  ; \tab The parent node of the node corresponding to this row. \cr
+\code{\link{GtkCTreeNode}}   *  \code{sibling}  ; \tab The next sibling node of the node corresponding to this row. \cr
+\code{\link{GtkCTreeNode}}   *  \code{children}  ; \tab The first child node corresponding to this row; to access
 the other children, just use the siblings of that node. \cr
-\verb{\link{GdkPixmap}}   *  \code{pixmap_closed}  ; \tab  The pixmap to be shown when the node is collapsed. \cr
-\verb{\link{GdkBitmap}}   *  \code{mask_closed}  ; \tab  The mask for the above pixmap. \cr
-\verb{\link{GdkPixmap}}   *  \code{pixmap_opened}  ; \tab  The pixmap to be shown when the node is expanded. \cr
-\verb{\link{GdkBitmap}}   *  \code{mask_opened}  ; \tab  The mask for the above pixmap. \cr
+\code{\link{GdkPixmap}}   *  \code{pixmap_closed}  ; \tab  The pixmap to be shown when the node is collapsed. \cr
+\code{\link{GdkBitmap}}   *  \code{mask_closed}  ; \tab  The mask for the above pixmap. \cr
+\code{\link{GdkPixmap}}   *  \code{pixmap_opened}  ; \tab  The pixmap to be shown when the node is expanded. \cr
+\code{\link{GdkBitmap}}   *  \code{mask_opened}  ; \tab  The mask for the above pixmap. \cr
 \verb{integer}  \code{level}  ; \tab The level of this node in the tree. \cr
 \verb{numeric}  \code{is_leaf}   : 1; \tab Whether this row is a leaf. \cr
 \verb{numeric}  \code{expanded}   : 1; \tab Whether the children of this row are visible. \cr
@@ -159,7 +157,6 @@ as the functions below to access it.
 \item{\verb{GtkCTreePos}}{
 \strong{WARNING: \code{GtkCTreePos} is deprecated and should not be used in newly-written code.}
 A value specifying the position of a new node relative to an old one.
-
 \tabular{ll}{
 GTK_CTREE_POS_BEFORE \tab As a sibling, before the specified node. \cr
 GTK_CTREE_POS_AS_CHILD \tab As a child of the specified node. \cr
@@ -170,7 +167,6 @@ GTK_CTREE_POS_AFTER \tab As a sibling, after the specified node. \cr
 \item{\verb{GtkCTreeLineStyle}}{
 \strong{WARNING: \code{GtkCTreeLineStyle} is deprecated and should not be used in newly-written code.}
 The appearance of the lines in the tree graphics.
-
 \tabular{ll}{
 GTK_CTREE_LINES_NONE \tab No lines. \cr
 GTK_CTREE_LINES_SOLID \tab Solid lines. \cr
@@ -183,8 +179,6 @@ GTK_CTREE_LINES_TABBED \tab FIXME. \cr
 \strong{WARNING: \code{GtkCTreeExpanderStyle} is deprecated and should not be used in newly-written code.}
 The appearance of the expander buttons, i.e. the small buttons
 which expand or contract parts of the tree when pressed.
-
-
 \tabular{ll}{
 GTK_CTREE_EXPANDER_NONE \tab No expanders. \cr
 GTK_CTREE_EXPANDER_SQUARE \tab Square expanders. \cr
@@ -196,7 +190,6 @@ GTK_CTREE_EXPANDER_CIRCULAR \tab Round expanders. \cr
 \item{\verb{GtkCTreeExpansionType}}{
 \strong{WARNING: \code{GtkCTreeExpansionType} is deprecated and should not be used in newly-written code.}
 How to expand or collapse a part of a tree.
-
 \tabular{ll}{
 GTK_CTREE_EXPANSION_EXPAND \tab Expand this node. \cr
 GTK_CTREE_EXPANSION_EXPAND_RECURSIVE \tab Expand this node and everything below it in the hierarchy. \cr
@@ -213,9 +206,9 @@ GTK_CTREE_EXPANSION_TOGGLE_RECURSIVE \tab Toggle this node and everything below 
 A generic callback type to do something with a particular node.
 
 \describe{
-\item{\code{ctree}}{[\verb{\link{GtkCTree}}] The \verb{\link{GtkCTree}} object.}
-\item{\code{node}}{[\verb{\link{GtkCTreeNode}}] The \verb{\link{GtkCTreeNode}} in the tree.}
-\item{\code{data}}{[R object] The user data associated with the node.}
+\item{\code{ctree}}{The \code{\link{GtkCTree}} object.}
+\item{\code{node}}{The \code{\link{GtkCTreeNode}} in the tree.}
+\item{\code{data}}{The user data associated with the node.}
 }
 
 
@@ -224,11 +217,16 @@ A generic callback type to do something with a particular node.
 FIXME
 
 \describe{
-\item{\code{ctree}}{[\verb{\link{GtkCTree}}] }
-\item{\code{depth}}{[numeric] }
-\item{\code{gnode}}{[GNode] }
-\item{\code{cnode}}{[\verb{\link{GtkCTreeNode}}] }
-\item{\code{data}}{[R object] }
+\item{\code{ctree}}{\emph{undocumented
+}}
+\item{\code{depth}}{\emph{undocumented
+}}
+\item{\code{gnode}}{\emph{undocumented
+}}
+\item{\code{cnode}}{\emph{undocumented
+}}
+\item{\code{data}}{\emph{undocumented
+}}
 }
 
 
@@ -237,10 +235,14 @@ FIXME
 FIXME
 
 \describe{
-\item{\code{ctree}}{[\verb{\link{GtkCTree}}] }
-\item{\code{source.node}}{[\verb{\link{GtkCTreeNode}}] }
-\item{\code{new.parent}}{[\verb{\link{GtkCTreeNode}}] }
-\item{\code{new.sibling}}{[\verb{\link{GtkCTreeNode}}] }
+\item{\code{ctree}}{\emph{undocumented
+}}
+\item{\code{source.node}}{\emph{undocumented
+}}
+\item{\code{new.parent}}{\emph{undocumented
+}}
+\item{\code{new.sibling}}{\emph{undocumented
+}}
 }
 
 
@@ -252,9 +254,9 @@ The row which has the focus is either collapsed or expanded
 or toggled.
 
 \describe{
-\item{\code{ctree}}{[\verb{\link{GtkCTree}}] the object which received the signal.}
-\item{\code{expansion}}{[\code{\link{GtkCTreeExpansionType}}] What is being done.}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{ctree}}{the object which received the signal.}
+\item{\code{expansion}}{What is being done.}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -263,9 +265,10 @@ or toggled.
 Emitted when a node is collapsed.
 
 \describe{
-\item{\code{ctree}}{[\verb{\link{GtkCTree}}] the object which received the signal.}
-\item{\code{node}}{[\verb{\link{GtkCTreeNode}}] }
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{ctree}}{the object which received the signal.}
+\item{\code{node}}{\emph{undocumented
+}}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -274,9 +277,10 @@ Emitted when a node is collapsed.
 Emitted when a node is expanded.
 
 \describe{
-\item{\code{ctree}}{[\verb{\link{GtkCTree}}] the object which received the signal.}
-\item{\code{node}}{[\verb{\link{GtkCTreeNode}}] }
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{ctree}}{the object which received the signal.}
+\item{\code{node}}{\emph{undocumented
+}}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -285,11 +289,11 @@ Emitted when a node is expanded.
 Emitted when a node is moved.
 
 \describe{
-\item{\code{ctree}}{[\verb{\link{GtkCTree}}] the object which received the signal.}
-\item{\code{node}}{[\verb{\link{GtkCTreeNode}}] The node that is moved.}
-\item{\code{new.parent}}{[\verb{\link{GtkCTreeNode}}] The new parent of the node.}
-\item{\code{new.sibling}}{[\verb{\link{GtkCTreeNode}}] The new sibling of the node.}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{ctree}}{the object which received the signal.}
+\item{\code{node}}{The node that is moved.}
+\item{\code{new.parent}}{The new parent of the node.}
+\item{\code{new.sibling}}{The new sibling of the node.}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -298,10 +302,10 @@ Emitted when a node is moved.
 Emitted when a row is selected.
 
 \describe{
-\item{\code{ctree}}{[\verb{\link{GtkCTree}}] the object which received the signal.}
-\item{\code{node}}{[\verb{\link{GtkCTreeNode}}] The node corresponding to the selected row.}
-\item{\code{column}}{[integer] The column which was selected.}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{ctree}}{the object which received the signal.}
+\item{\code{node}}{The node corresponding to the selected row.}
+\item{\code{column}}{The column which was selected.}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -310,10 +314,11 @@ Emitted when a row is selected.
 Emitted when a node is unselected.
 
 \describe{
-\item{\code{ctree}}{[\verb{\link{GtkCTree}}] the object which received the signal.}
-\item{\code{node}}{[\verb{\link{GtkCTreeNode}}] The node  corresponding to the selected row.}
-\item{\code{column}}{[integer] }
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{ctree}}{the object which received the signal.}
+\item{\code{node}}{The node  corresponding to the selected row.}
+\item{\code{column}}{\emph{undocumented
+}}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -362,6 +367,6 @@ The column in which the actual tree graphic appears.
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkCTree.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkCTree.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

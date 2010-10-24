@@ -8,9 +8,9 @@ Applications should \emph{not} set this, it is a global
 user-configured setting.}
 \usage{gdkDisplaySetDoubleClickDistance(object, distance)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GdkDisplay}}]  a \verb{\link{GdkDisplay}}}
-\item{\verb{distance}}{[numeric]  distance in pixels}
+\item{\verb{object}}{a \code{\link{GdkDisplay}}}
+\item{\verb{distance}}{distance in pixels}
 }
-\details{  Since  2.4}
+\details{Since 2.4}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

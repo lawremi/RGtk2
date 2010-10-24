@@ -6,8 +6,8 @@ next valid row at that level, or invalidated if it previously pointed to the
 last one.}
 \usage{gtkTreeStoreRemove(object, iter)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTreeStore}}]  A \verb{\link{GtkTreeStore}}}
-\item{\verb{iter}}{[\verb{\link{GtkTreeIter}}]  A valid \verb{\link{GtkTreeIter}}}
+\item{\verb{object}}{A \code{\link{GtkTreeStore}}}
+\item{\verb{iter}}{A valid \code{\link{GtkTreeIter}}}
 }
 \value{[logical] \code{TRUE} if \code{iter} is still valid, \code{FALSE} if not.}
 \author{Derived by RGtkGen from GTK+ documentation}

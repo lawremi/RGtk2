@@ -122,12 +122,14 @@ types related to the text widget and how they work together.
 }
 
 \describe{
-\item{\code{ch}}{[numeric] }
-\item{\code{user.data}}{[R object] }
+\item{\code{ch}}{\emph{undocumented
+}}
+\item{\code{user.data}}{\emph{undocumented
+}}
 }
 
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/gtk-GtkTextIter.html}}
+\references{\url{http://library.gnome.org/devel//gtk/gtk-GtkTextIter.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

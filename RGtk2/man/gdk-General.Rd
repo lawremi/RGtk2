@@ -25,7 +25,7 @@
 \section{Detailed Description}{This section describes the GDK initialization functions and miscellaneous
 utility functions.}
 \section{Enums and Flags}{\describe{\item{\verb{GdkGrabStatus}}{
-Returned by \code{\link{gdkPointerGrab}} and \code{\link{gdkKeyboardGrab}} to indicate 
+Returned by \code{\link{gdkPointerGrab}} and \code{\link{gdkKeyboardGrab}} to indicate
 success or the reason for the failure of the grab attempt.
 
 \describe{
@@ -39,6 +39,6 @@ success or the reason for the failure of the grab attempt.
 }
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gdk/gdk-General.html}}
+\references{\url{http://library.gnome.org/devel//gdk/gdk-General.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

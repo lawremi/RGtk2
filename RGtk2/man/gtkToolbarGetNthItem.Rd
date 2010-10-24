@@ -5,11 +5,11 @@
 toolbar does not contain an \code{n}'th item.}
 \usage{gtkToolbarGetNthItem(object, n)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkToolbar}}]  a \verb{\link{GtkToolbar}}}
-\item{\verb{n}}{[integer]  A position on the toolbar}
+\item{\verb{object}}{a \code{\link{GtkToolbar}}}
+\item{\verb{n}}{A position on the toolbar}
 }
-\details{  Since  2.4}
-\value{[\verb{\link{GtkToolItem}}]  The \code{n}'th \verb{\link{GtkToolItem}} on \code{toolbar}, or \code{NULL} if there
+\details{Since 2.4}
+\value{[\code{\link{GtkToolItem}}]  The \code{n}'th \code{\link{GtkToolItem}} on \code{toolbar}, or \code{NULL} if there
 isn't an \code{n}'th item.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

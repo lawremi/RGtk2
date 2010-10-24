@@ -23,13 +23,13 @@
                                  +----GtkHBox
                                        +----GtkCombo}}
 \section{Interfaces}{GtkCombo implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{The \verb{\link{GtkCombo}} widget consists of a single-line text entry field and a drop-down
+ AtkImplementorIface,  \code{\link{GtkBuildable}} and  \code{\link{GtkOrientable}}.}
+\section{Detailed Description}{The \code{\link{GtkCombo}} widget consists of a single-line text entry field and a drop-down
 list. The drop-down list is displayed when the user clicks on a small arrow
 button to the right of the entry field.
   
-The drop-down list is a \verb{\link{GtkList}} widget and can be accessed using the
-\code{list} member of the \verb{\link{GtkCombo}}.
+The drop-down list is a \code{\link{GtkList}} widget and can be accessed using the
+\code{list} member of the \code{\link{GtkCombo}}.
 List elements can contain arbitrary widgets, but if an element is not a
 plain label, then you must use the \code{gtkListSetItemString()} function.
 This sets the string which will be placed in the text entry field when the
@@ -39,9 +39,9 @@ By default, the user can step through the items in the list using the
 arrow (cursor) keys, though this behaviour can be turned off with
 \code{\link{gtkComboSetUseArrows}}.
   
-As of GTK+ 2.4, \verb{\link{GtkCombo}} has been deprecated in favor of \verb{\link{GtkComboBox}}.
+As of GTK+ 2.4, \code{\link{GtkCombo}} has been deprecated in favor of \code{\link{GtkComboBoxEntry}}.
   
- \emph{Creating a   \code{GtkCombo}   widget with simple text 
+ \emph{Creating a   \code{GtkCombo}   widget with simple text
 items.}
 \preformatted{
 ######
@@ -81,14 +81,14 @@ combo$setItemString(item, "1st Item")
 combo[["list"]]$add(item)
 }}
 \section{Structures}{\describe{\item{\verb{GtkCombo}}{
-\strong{WARNING: \code{GtkCombo} has been deprecated since version 2.4 and should not be used in newly-written code. Use \verb{\link{GtkComboBox}} instead.}
-The \verb{\link{GtkFixedChild}} struct contains the following fields.
+\strong{WARNING: \code{GtkCombo} has been deprecated since version 2.4 and should not be used in newly-written code. Use \code{\link{GtkComboBox}} instead.}
+The \code{\link{GtkCombo}} struct contains the following fields.
 (These fields should be considered read-only. They should never be set by
 an application.)
 
 \describe{
-\item{\verb{entry}}{[\verb{\link{GtkWidget}}] the text entry field.}
-\item{\verb{list}}{[\verb{\link{GtkWidget}}] the list shown in the drop-down window.}
+\item{\verb{entry}}{[\code{\link{GtkWidget}}] the text entry field.}
+\item{\verb{list}}{[\code{\link{GtkWidget}}] the list shown in the drop-down window.}
 }
 
 }}}
@@ -120,6 +120,6 @@ Whether entered values must already be present in the list.  Default value: FALS
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkCombo.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkCombo.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

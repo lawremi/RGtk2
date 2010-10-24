@@ -18,12 +18,12 @@
                            +----GtkBin
                                  +----GtkAlignment}}
 \section{Interfaces}{GtkAlignment implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{The \verb{\link{GtkAlignment}} widget controls the alignment and size of its child widget.
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
+\section{Detailed Description}{The \code{\link{GtkAlignment}} widget controls the alignment and size of its child widget.
 It has four settings: xscale, yscale, xalign, and yalign.
   
 The scale settings are used to specify how much the child widget should
-expand to fill the space allocated to the \verb{\link{GtkAlignment}}.
+expand to fill the space allocated to the \code{\link{GtkAlignment}}.
 The values can range from 0 (meaning the child doesn't expand at all) to
 1 (meaning the child expands to fill all of the available space).
   
@@ -32,7 +32,7 @@ area. The values range from 0 (top or left) to 1 (bottom or right).
 Of course, if the scale settings are both set to 1, the alignment settings
 have no effect.}
 \section{Structures}{\describe{\item{\verb{GtkAlignment}}{
-The \verb{\link{GtkAlignment}} struct contains private data only, and should
+The \code{\link{GtkAlignment}} struct contains private data only, and should
 be accessed using the functions below.
 
 }}}
@@ -40,30 +40,26 @@ be accessed using the functions below.
 \section{Properties}{\describe{
 \item{\verb{bottom-padding} [numeric : Read / Write]}{
 
-The padding to insert at the bottom of the widget.  
-
-  Allowed values: <= G_MAXINT  Default value: 0  Since  2.4
+The padding to insert at the bottom of the widget.
+  Allowed values: <= G_MAXLONG  Default value: 0  Since 2.4
 
 }
 \item{\verb{left-padding} [numeric : Read / Write]}{
 
-The padding to insert at the left of the widget.  
-
-  Allowed values: <= G_MAXINT  Default value: 0  Since  2.4
+The padding to insert at the left of the widget.
+  Allowed values: <= G_MAXLONG  Default value: 0  Since 2.4
 
 }
 \item{\verb{right-padding} [numeric : Read / Write]}{
 
-The padding to insert at the right of the widget.  
-
-  Allowed values: <= G_MAXINT  Default value: 0  Since  2.4
+The padding to insert at the right of the widget.
+  Allowed values: <= G_MAXLONG  Default value: 0  Since 2.4
 
 }
 \item{\verb{top-padding} [numeric : Read / Write]}{
 
-The padding to insert at the top of the widget.  
-
-  Allowed values: <= G_MAXINT  Default value: 0  Since  2.4
+The padding to insert at the top of the widget.
+  Allowed values: <= G_MAXLONG  Default value: 0  Since 2.4
 
 }
 \item{\verb{xalign} [numeric : Read / Write]}{
@@ -87,6 +83,6 @@ If available vertical space is bigger than needed for the child, how much of it 
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkAlignment.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkAlignment.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

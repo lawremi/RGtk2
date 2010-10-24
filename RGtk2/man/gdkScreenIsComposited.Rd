@@ -5,11 +5,10 @@
 be expected to have their alpha channel drawn correctly on
 the screen.}
 \usage{gdkScreenIsComposited(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GdkScreen}}]  a \verb{\link{GdkScreen}}}}
+\arguments{\item{\verb{object}}{a \code{\link{GdkScreen}}}}
 \details{On X11 this function returns whether a compositing manager is
-compositing \code{screen}.  
-
-  Since  2.10}
+compositing \code{screen}.
+  Since 2.10}
 \value{[logical]  Whether windows with RGBA visuals can reasonably be
 expected to have their alpha channels drawn correctly on the screen.}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -8,7 +8,7 @@ example, a linear gradient's control vector is from (x0,y0) to
 on the start circle to the corresponding point on the end circle.}
 \usage{cairoPatternAddColorStopRgba(pattern, offset, red, green, blue, alpha)}
 \arguments{
-\item{\verb{pattern}}{[\verb{\link{CairoPattern}}]  a \verb{\link{CairoPattern}}}
+\item{\verb{pattern}}{[\code{\link{CairoPattern}}]  a \code{\link{CairoPattern}}}
 \item{\verb{offset}}{[numeric]  an offset in the range [0.0 .. 1.0]}
 \item{\verb{red}}{[numeric]  red component of color}
 \item{\verb{green}}{[numeric]  green component of color}

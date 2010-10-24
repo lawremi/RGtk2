@@ -7,7 +7,7 @@ filling parameters. Surface dimensions and clipping are not taken
 into account.}
 \usage{cairoInFill(cr, x, y)}
 \arguments{
-\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}
+\item{\verb{cr}}{[\code{\link{Cairo}}]  a cairo context}
 \item{\verb{x}}{[numeric]  X coordinate of the point to test}
 \item{\verb{y}}{[numeric]  Y coordinate of the point to test}
 }

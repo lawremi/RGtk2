@@ -38,14 +38,14 @@
                                  +----GtkVBox
                                        +----GtkColorSelection}}
 \section{Interfaces}{GtkColorSelection implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{The \verb{\link{GtkColorSelection}} is a widget that is used to select 
+ AtkImplementorIface,  \code{\link{GtkBuildable}} and  \code{\link{GtkOrientable}}.}
+\section{Detailed Description}{The \code{\link{GtkColorSelection}} is a widget that is used to select
 a color.  It consists of a color wheel and number of sliders
 and entry boxes for color parameters such as hue, saturation,
-value, red, green, blue, and opacity.  It is found on the standard 
-color selection dialog box \verb{\link{GtkColorSelectionDialog}}.}
+value, red, green, blue, and opacity.  It is found on the standard
+color selection dialog box \code{\link{GtkColorSelectionDialog}}.}
 \section{Structures}{\describe{\item{\verb{GtkColorSelection}}{
-The \verb{\link{GtkColorSelection}} struct contains private data only, 
+The \code{\link{GtkColorSelection}} struct contains private data only,
 and should be accessed using the functions below.
 
 }}}
@@ -56,8 +56,10 @@ and should be accessed using the functions below.
 }
 
 \describe{
-\item{\code{colors}}{[\verb{\link{GdkColor}}] }
-\item{\code{n.colors}}{[integer] }
+\item{\code{colors}}{\emph{undocumented
+}}
+\item{\code{n.colors}}{\emph{undocumented
+}}
 }
 
 
@@ -66,21 +68,24 @@ and should be accessed using the functions below.
   Since 2.2
 
 \describe{
-\item{\code{screen}}{[\verb{\link{GdkScreen}}] }
-\item{\code{colors}}{[\verb{\link{GdkColor}}] }
-\item{\code{n.colors}}{[integer] }
+\item{\code{screen}}{\emph{undocumented
+}}
+\item{\code{colors}}{\emph{undocumented
+}}
+\item{\code{n.colors}}{\emph{undocumented
+}}
 }
 
 
 }
 }}
 \section{Signals}{\describe{\item{\code{color-changed(colorselection, user.data)}}{
-This signal is emitted when the color changes in the \verb{\link{GtkColorSelection}}
+This signal is emitted when the color changes in the \code{\link{GtkColorSelection}}
 according to its update policy.
 
 \describe{
-\item{\code{colorselection}}{[\verb{\link{GtkColorSelection}}] the object which received the signal.}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{colorselection}}{the object which received the signal.}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -91,7 +96,7 @@ according to its update policy.
 The current opacity value (0 fully transparent, 65535 fully opaque).  Allowed values: <= 65535  Default value: 65535
 
 }
-\item{\verb{current-color} [\verb{\link{GdkColor}} : *             : Read / Write]}{
+\item{\verb{current-color} [\code{\link{GdkColor}} : *             : Read / Write]}{
 
 The current color.
 
@@ -107,6 +112,6 @@ Whether a palette should be used.  Default value: FALSE
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkColorSelection.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkColorSelection.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

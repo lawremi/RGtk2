@@ -50,7 +50,7 @@ Describes the type of the relation
 \item{\verb{parent-window-of}}{ Indicates that an object is a parent window of another object.}
 \item{\verb{description-for}}{ Indicates that another object provides descriptive information about this object; more verbose than ATK_RELATION_LABELLED_BY.}
 \item{\verb{described-by}}{ Indicates that an object provides descriptive information about another object; more verbose than ATK_RELATION_LABEL_FOR.}
-\item{\verb{last-defined}}{ Not used, this value indicates the end of the enumeration.}
+\item{\verb{last-defined}}{ Indicates an object is a cell in a treetable and is expanded to display other cells in the same column.}
 }
 
 }}}
@@ -60,12 +60,12 @@ Describes the type of the relation
 The type of the relation.  Default value: ATK_RELATION_NULL
 
 }
-\item{\verb{target} [GValueArray : Read / Write]}{
+\item{\verb{target} [GValueArray : *          : Read / Write]}{
 
 An list of the targets for the relation.
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/atk/AtkRelation.html}}
+\references{\url{http://library.gnome.org/devel//atk/AtkRelation.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

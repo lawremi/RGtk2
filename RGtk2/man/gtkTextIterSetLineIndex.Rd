@@ -7,8 +7,8 @@ the start of a character, it can't be in the middle of a UTF-8
 encoded character.}
 \usage{gtkTextIterSetLineIndex(object, byte.on.line)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTextIter}}]  a \verb{\link{GtkTextIter}}}
-\item{\verb{byte.on.line}}{[integer]  a byte index relative to the start of \code{iter}'s current line}
+\item{\verb{object}}{a \code{\link{GtkTextIter}}}
+\item{\verb{byte.on.line}}{a byte index relative to the start of \code{iter}'s current line}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -5,7 +5,7 @@
 path at position (\code{x}, \code{y}) in user-space coordinates.}
 \usage{cairoRectangle(cr, x, y, width, height)}
 \arguments{
-\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}
+\item{\verb{cr}}{[\code{\link{Cairo}}]  a cairo context}
 \item{\verb{x}}{[numeric]  the X coordinate of the top left corner of the rectangle}
 \item{\verb{y}}{[numeric]  the Y coordinate to the top left corner of the rectangle}
 \item{\verb{width}}{[numeric]  the width of the rectangle}

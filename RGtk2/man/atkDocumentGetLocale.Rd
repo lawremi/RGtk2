@@ -7,7 +7,7 @@
          a different locale, see atk_text_get_attributes and
          atk_image_get_image_locale.}
 \usage{atkDocumentGetLocale(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{AtkDocument}}]  a \verb{\link{GObject}} instance that implements AtkDocumentIface}}
+\arguments{\item{\verb{object}}{[\code{\link{AtkDocument}}]  a \code{\link{GObject}} instance that implements AtkDocumentIface}}
 \value{[character]  a UTF-8 string indicating the POSIX-style LC_MESSAGES
          locale of the document content as a whole, or NULL if
          the document content does not specify a locale.}

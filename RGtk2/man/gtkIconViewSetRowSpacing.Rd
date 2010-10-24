@@ -5,9 +5,9 @@
 which is inserted between the rows of the icon view.}
 \usage{gtkIconViewSetRowSpacing(object, row.spacing)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkIconView}}]  a \verb{\link{GtkIconView}}}
-\item{\verb{row.spacing}}{[integer]  the row spacing}
+\item{\verb{object}}{a \code{\link{GtkIconView}}}
+\item{\verb{row.spacing}}{the row spacing}
 }
-\details{  Since  2.6}
+\details{Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

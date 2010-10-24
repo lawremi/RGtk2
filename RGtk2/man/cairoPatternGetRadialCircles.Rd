@@ -4,11 +4,11 @@
 \description{Gets the gradient endpoint circles for a radial gradient, each
 specified as a center coordinate and a radius.}
 \usage{cairoPatternGetRadialCircles(pattern)}
-\arguments{\item{\verb{pattern}}{[\verb{\link{CairoPattern}}]  a \verb{\link{CairoPattern}}}}
-\details{  Since  1.4}
+\arguments{\item{\verb{pattern}}{[\code{\link{CairoPattern}}]  a \code{\link{CairoPattern}}}}
+\details{  Since 1.4}
 \value{
 A list containing the following elements:
-\item{retval}{[\verb{\link{CairoStatus}}] \code{CAIRO_STATUS_SUCCESS}, or
+\item{retval}{[\code{\link{CairoStatus}}] \code{CAIRO_STATUS_SUCCESS}, or
 \code{CAIRO_STATUS_PATTERN_TYPE_MISMATCH} if \code{pattern} is not a radial
 gradient pattern.}
 \item{\verb{x0}}{[numeric]  return value for the x coordinate of the center of the first circle, or \code{NULL}}

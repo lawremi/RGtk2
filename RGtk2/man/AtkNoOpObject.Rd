@@ -11,8 +11,8 @@
    +----AtkObject
          +----AtkNoOpObject}}
 \section{Interfaces}{AtkNoOpObject implements
- \verb{\link{AtkAction}},  \verb{\link{AtkComponent}},  \verb{\link{AtkDocument}},  \verb{\link{AtkEditableText}},  \verb{\link{AtkHypertext}},  \verb{\link{AtkImage}},  \verb{\link{AtkSelection}},  \verb{\link{AtkTable}},  \verb{\link{AtkText}} and  \verb{\link{AtkValue}}.}
-\section{Detailed Description}{An AtkNoOpObject is an AtkObject which purports to implement all ATK 
+ \code{\link{AtkComponent}},  \code{\link{AtkAction}},  \code{\link{AtkEditableText}},  \code{\link{AtkImage}},  \code{\link{AtkSelection}},  \code{\link{AtkTable}},  \code{\link{AtkText}},  \code{\link{AtkHypertext}},  \code{\link{AtkValue}} and  \code{\link{AtkDocument}}.}
+\section{Detailed Description}{An AtkNoOpObject is an AtkObject which purports to implement all ATK
 interfaces. It is the type of AtkObject which is created if an accessible
 object is requested for an object type for which no factory type is specified.}
 \section{Structures}{\describe{\item{\verb{AtkNoOpObject}}{
@@ -20,6 +20,6 @@ The AtkNoOpObject structure should not be accessed directly.
 
 }}}
 \section{Convenient Construction}{\code{atkNoOpObject} is the equivalent of \code{\link{atkNoOpObjectNew}}.}
-\references{\url{http://developer.gnome.org/doc/API/2.0/atk/AtkNoOpObject.html}}
+\references{\url{http://library.gnome.org/devel//atk/AtkNoOpObject.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

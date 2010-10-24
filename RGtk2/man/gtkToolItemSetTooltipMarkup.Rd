@@ -5,9 +5,9 @@
 See \code{\link{gtkWidgetSetTooltipMarkup}}.}
 \usage{gtkToolItemSetTooltipMarkup(object, markup)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkToolItem}}]  a \code{\link{gtkToolItem}} }
-\item{\verb{markup}}{[character]  markup text to be used as tooltip for \code{tool.item}}
+\item{\verb{object}}{a \code{\link{GtkToolItem}} }
+\item{\verb{markup}}{markup text to be used as tooltip for \code{tool.item}}
 }
-\details{  Since  2.12}
+\details{Since 2.12}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

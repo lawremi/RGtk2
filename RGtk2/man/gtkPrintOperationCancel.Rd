@@ -7,7 +7,7 @@ be called from a \verb{"begin-print"},
 signal handler to stop the currently running print 
 operation.}
 \usage{gtkPrintOperationCancel(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkPrintOperation}}]  a \verb{\link{GtkPrintOperation}}}}
-\details{  Since  2.10}
+\arguments{\item{\verb{object}}{a \code{\link{GtkPrintOperation}}}}
+\details{Since 2.10}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

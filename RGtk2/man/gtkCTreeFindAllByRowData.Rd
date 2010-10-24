@@ -7,9 +7,12 @@ Finds all nodes in the tree under \code{node} that have the given user data poin
 }
 \usage{gtkCTreeFindAllByRowData(object, node, data = NULL)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkCTree}}] }
-\item{\verb{node}}{[\verb{\link{GtkCTreeNode}}] }
-\item{\verb{data}}{[R object] }
+\item{\verb{object}}{\emph{undocumented
+}}
+\item{\verb{node}}{\emph{undocumented
+}}
+\item{\verb{data}}{\emph{undocumented
+}}
 }
 \value{[list] A list of nodes that have the given data pointer.}
 \author{Derived by RGtkGen from GTK+ documentation}

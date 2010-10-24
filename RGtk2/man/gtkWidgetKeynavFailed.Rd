@@ -8,8 +8,8 @@ value should be interpreted in a way similar to the return value of
 \code{\link{gtkWidgetChildFocus}}:}
 \usage{gtkWidgetKeynavFailed(object, direction)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
-\item{\verb{direction}}{[\code{\link{GtkDirectionType}}]  direction of focus movement}
+\item{\verb{object}}{a \code{\link{GtkWidget}}}
+\item{\verb{direction}}{direction of focus movement}
 }
 \details{When \code{TRUE} is returned, stay in the widget, the failed keyboard
 navigation is Ok and/or there is nowhere we can/should move the
@@ -33,11 +33,10 @@ navigation.
   
 A use case for providing an own implementation of ::keynav-failed 
 (either by connecting to it or by overriding it) would be a row of
-\verb{\link{GtkEntry}} widgets where the user should be able to navigate the
+\code{\link{GtkEntry}} widgets where the user should be able to navigate the
 entire row with the cursor keys, as e.g. known from user interfaces 
-that require entering license keys.  
-
-  Since  2.12}
+that require entering license keys.
+  Since 2.12}
 \value{[logical] \code{TRUE} if stopping keyboard navigation is fine, \code{FALSE}
               if the emitting widget should try to handle the keyboard
               navigation attempt in its parent container(s).}

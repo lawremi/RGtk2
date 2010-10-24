@@ -6,8 +6,8 @@ default parameters. This is equivalent
 to \code{gtk_paned_pack1 (paned, child, FALSE, TRUE)}.}
 \usage{gtkPanedAdd1(object, child)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkPaned}}] a paned widget}
-\item{\verb{child}}{[\verb{\link{GtkWidget}}] the child to add}
+\item{\verb{object}}{a paned widget}
+\item{\verb{child}}{the child to add}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

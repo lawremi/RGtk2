@@ -5,10 +5,10 @@
 calculating the size.}
 \usage{gtkSizeGroupSetIgnoreHidden(object, ignore.hidden)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkSizeGroup}}]  a \verb{\link{GtkSizeGroup}}}
-\item{\verb{ignore.hidden}}{[logical]  whether unmapped widgets should be ignored
+\item{\verb{object}}{a \code{\link{GtkSizeGroup}}}
+\item{\verb{ignore.hidden}}{whether unmapped widgets should be ignored
   when calculating the size}
 }
-\details{  Since  2.8 }
+\details{Since 2.8}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

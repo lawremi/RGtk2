@@ -8,14 +8,14 @@ constraint, call \code{\link{gtkWidgetSetSizeRequest}} to set the window's
 request to a smaller value.}
 \usage{gtkWindowResize(object, width, height)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}}
-\item{\verb{width}}{[integer]  width in pixels to resize the window to}
-\item{\verb{height}}{[integer]  height in pixels to resize the window to}
+\item{\verb{object}}{a \code{\link{GtkWindow}}}
+\item{\verb{width}}{width in pixels to resize the window to}
+\item{\verb{height}}{height in pixels to resize the window to}
 }
 \details{If \code{\link{gtkWindowResize}} is called before showing a window for the
 first time, it overrides any default size set with
 \code{\link{gtkWindowSetDefaultSize}}.
   
-Windows may not be resized smaller than 1 by 1 pixels.  }
+Windows may not be resized smaller than 1 by 1 pixels.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -6,10 +6,10 @@ version of \code{\link{gtkBuilderConnectSignals}}, except that it does not
 require GModule to function correctly.}
 \usage{gtkBuilderConnectSignalsFull(object, func, user.data)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkBuilder}}]  a \verb{\link{GtkBuilder}}}
-\item{\verb{func}}{[\verb{\link{GtkBuilderConnectFunc}}]  the function used to connect the signals}
-\item{\verb{user.data}}{[R object]  arbitrary data that will be passed to the connection function}
+\item{\verb{object}}{a \code{\link{GtkBuilder}}}
+\item{\verb{func}}{the function used to connect the signals}
+\item{\verb{user.data}}{arbitrary data that will be passed to the connection function}
 }
-\details{  Since  2.12}
+\details{Since 2.12}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

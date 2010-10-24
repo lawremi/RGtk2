@@ -9,8 +9,8 @@ automatically stopped.
 }
 \usage{gtkTipsQuerySetCaller(object, caller)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTipsQuery}}] a \verb{\link{GtkTipsQuery}}.}
-\item{\verb{caller}}{[\verb{\link{GtkWidget}}] the widget which initiates the query.}
+\item{\verb{object}}{a \code{\link{GtkTipsQuery}}.}
+\item{\verb{caller}}{the widget which initiates the query.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

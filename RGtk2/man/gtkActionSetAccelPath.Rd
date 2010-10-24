@@ -6,9 +6,12 @@ with the action will have this accel path, so that their
 accelerators are consistent.}
 \usage{gtkActionSetAccelPath(object, accel.path)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkAction}}]  the action object}
-\item{\verb{accel.path}}{[character]  the accelerator path}
+\item{\verb{object}}{the action object}
+\item{\verb{accel.path}}{the accelerator path}
 }
-\details{  Since  2.4}
+\details{Note that \code{accel.path} string will be stored in a \verb{numeric}. Therefore, if you
+pass a static string, you can save some memory by interning it first with 
+\code{gInternStaticString()}.
+  Since 2.4}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -9,7 +9,7 @@ the line and the function returns \code{TRUE}. (Note that this implies that
 in a loop calling this function, the line number may not change on
 every iteration, if your first iteration is on line 0.)}
 \usage{gtkTextIterBackwardLine(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkTextIter}}]  an iterator}}
+\arguments{\item{\verb{object}}{an iterator}}
 \value{[logical]  whether \code{iter} moved}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

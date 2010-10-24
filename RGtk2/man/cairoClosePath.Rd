@@ -6,7 +6,7 @@ beginning of the current sub-path, (the most recent point passed to
 \code{\link{cairoMoveTo}}), and closes this sub-path. After this call the
 current point will be at the joined endpoint of the sub-path.}
 \usage{cairoClosePath(cr)}
-\arguments{\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}}
+\arguments{\item{\verb{cr}}{[\code{\link{Cairo}}]  a cairo context}}
 \details{The behavior of \code{\link{cairoClosePath}} is distinct from simply calling
 \code{\link{cairoLineTo}} with the equivalent coordinate in the case of
 stroking. When a closed sub-path is stroked, there are no caps on

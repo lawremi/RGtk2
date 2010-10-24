@@ -21,6 +21,29 @@
 }
 \section{Hierarchy}{\preformatted{GObject
    +----GtkSettings}}
+\section{Detailed Description}{GtkSettings provide a mechanism to share global settings between applications.
+On the X window system, this sharing is realized by an XSettings (\url{\emph{undocumented
+}})
+manager that is usually part of the desktop environment, along with utilities
+that let the user change these settings. In the absence of an Xsettings manager,
+settings can also be specified in RC files.
+  
+Applications can override system-wide settings with \code{\link{gtkSettingsSetStringProperty}},
+\code{\link{gtkSettingsSetLongProperty}}, etc. This should be restricted to special
+cases though; GtkSettings are not meant as an application configuration
+facility. When doing so, you need to be aware that settings that are specific
+to individual widgets may not be available before the widget type has been
+realized at least once. The following example demonstrates a way to do this:
+\preformatted{  gtk_init (&argc, &argv);
+  /* make sure the type is realized */
+  g_type_class_unref (g_type_class_ref (GTK_TYPE_IMAGE_MENU_ITEM));
+  g_object_set (gtk_settings_get_default (), "gtk-menu-images", FALSE, NULL);
+}
+  
+There is one GtkSettings instance per screen. It can be obtained with
+\code{\link{gtkSettingsGetForScreen}}, but in many cases, it is more convenient
+to use \code{\link{gtkWidgetGetSettings}}. \code{\link{gtkSettingsGetDefault}} returns the
+GtkSettings instance for the default screen.}
 \section{Structures}{\describe{
 \item{\verb{GtkSettings}}{
 \emph{undocumented
@@ -37,10 +60,9 @@
 \section{Properties}{\describe{
 \item{\verb{color-hash} [GHashTable : *           : Read]}{
 
-Holds a hash table representation of the \verb{"gtk-color-scheme"} 
-setting, mapping color names to \verb{\link{GdkColor}}s.  
-
-  Since  2.10
+Holds a hash table representation of the \verb{"gtk-color-scheme"}
+setting, mapping color names to \code{\link{GdkColor}}s.
+  Since 2.10
 
 }
 \item{\verb{gtk-alternative-button-order} [logical : Read / Write]}{
@@ -52,14 +74,20 @@ Whether buttons in dialogs should use the alternative button order.  Default val
 
 Controls the direction of the sort indicators in sorted list and tree
 views. By default an arrow pointing down means the column is sorted
-in ascending order. When set to \code{TRUE}, this order will be inverted.  
+in ascending order. When set to \code{TRUE}, this order will be inverted.
+  Default value: FALSE  Since 2.12
 
-  Default value: FALSE  Since  2.12
+}
+\item{\verb{gtk-auto-mnemonics} [logical : Read / Write]}{
+
+Whether mnemonics should be automatically shown and hidden when the user
+presses the mnemonic activator.
+  Default value: FALSE  Since 2.20
 
 }
 \item{\verb{gtk-button-images} [logical : Read / Write]}{
 
-Whether stock icons should be shown in buttons.  Default value: TRUE
+Whether images should be shown on buttons.  Default value: TRUE
 
 }
 \item{\verb{gtk-can-change-accels} [logical : Read / Write]}{
@@ -91,9 +119,8 @@ when getting this property.
 Starting with GTK+ 2.12, the entries can alternatively be separated
 by ';' instead of newlines:
 \preformatted{name1: color1; name2: color2; ...
-}  
-
-  Default value: ""  Since  2.10
+}
+  Default value: ""  Since 2.10
 
 }
 \item{\verb{gtk-cursor-blink} [logical : Read / Write]}{
@@ -101,8 +128,7 @@ by ';' instead of newlines:
 Whether the cursor should blink. 
   
 Also see the \verb{"gtk-cursor-blink-timeout"} setting, 
-which allows more flexible control over cursor blinking.  
-
+which allows more flexible control over cursor blinking.
   Default value: TRUE
 
 }
@@ -117,9 +143,8 @@ Time after which the cursor stops blinking, in seconds.
 The timer is reset after each user interaction.
   
 Setting this to zero has the same effect as setting
-\verb{"gtk-cursor-blink"} to \code{FALSE}.  
-
-  Allowed values: >= 1  Default value: 2147483647  Since  2.12
+\verb{"gtk-cursor-blink"} to \code{FALSE}.
+  Allowed values: >= 1  Default value: 2147483647  Since 2.12
 
 }
 \item{\verb{gtk-cursor-theme-name} [character : *                : Read / Write]}{
@@ -150,9 +175,8 @@ Maximum time allowed between two clicks for them to be considered a double click
 \item{\verb{gtk-enable-accels} [logical : Read / Write]}{
 
 Whether menu items should have visible accelerators which can be
-activated.  
-
-  Default value: TRUE  Since  2.12
+activated.
+  Default value: TRUE  Since 2.12
 
 }
 \item{\verb{gtk-enable-animations} [logical : Read / Write]}{
@@ -160,21 +184,49 @@ activated.
 Whether to enable toolkit-wide animations.  Default value: TRUE
 
 }
+\item{\verb{gtk-enable-event-sounds} [logical : Read / Write]}{
+
+Whether to play any event sounds at all.
+  
+See the Sound Theme spec (\url{http://www.freedesktop.org/wiki/Specifications/sound-theme-spec}) 
+for more information on event sounds and sound themes.
+  
+GTK+ itself does not support event sounds, you have to use a loadable 
+module like the one that comes with libcanberra.
+  Default value: TRUE  Since 2.14
+
+}
+\item{\verb{gtk-enable-input-feedback-sounds} [logical : Read / Write]}{
+
+Whether to play event sounds as feedback to user input.
+  
+See the Sound Theme spec (\url{http://www.freedesktop.org/wiki/Specifications/sound-theme-spec}) 
+for more information on event sounds and sound themes.
+  
+GTK+ itself does not support event sounds, you have to use a loadable 
+module like the one that comes with libcanberra.
+  Default value: TRUE  Since 2.14
+
+}
 \item{\verb{gtk-enable-mnemonics} [logical : Read / Write]}{
 
 Whether labels and menu items should have visible mnemonics which
-can be activated.  
+can be activated.
+  Default value: TRUE  Since 2.12
 
-  Default value: TRUE  Since  2.12
+}
+\item{\verb{gtk-enable-tooltips} [logical : Read / Write]}{
+
+Whether tooltips should be shown on widgets.
+  Default value: TRUE  Since 2.14
 
 }
 \item{\verb{gtk-entry-password-hint-timeout} [numeric : Read / Write]}{
 
 How long to show the last input character in hidden
 entries. This value is in milliseconds. 0 disables showing the
-last char. 600 is a good value for enabling it.  
-
-  Default value: 0  Since  2.10
+last char. 600 is a good value for enabling it.
+  Default value: 0  Since 2.10
 
 }
 \item{\verb{gtk-entry-select-on-focus} [logical : Read / Write]}{
@@ -188,9 +240,8 @@ When \code{TRUE}, keyboard navigation and other input-related errors
 will cause a beep. Since the error bell is implemented using
 \code{\link{gdkWindowBeep}}, the windowing system may offer ways to
 configure the error bell in many ways, such as flashing the
-window or similar visual effects.  
-
-  Default value: TRUE  Since  2.12
+window or similar visual effects.
+  Default value: TRUE  Since 2.12
 
 }
 \item{\verb{gtk-fallback-icon-theme} [character : *                : Read / Write]}{
@@ -208,14 +259,38 @@ Name of the GtkFileChooser backend to use by default.  Default value: NULL
 Name of default font to use.  Default value: "Sans 10"
 
 }
+\item{\verb{gtk-fontconfig-timestamp} [numeric : Read / Write]}{
+
+Timestamp of current fontconfig configuration.  Default value: 0
+
+}
 \item{\verb{gtk-icon-sizes} [character : *                : Read / Write]}{
 
-List of icon sizes (gtk-menu=16,16:gtk-button=20,20...  Default value: NULL
+A list of icon sizes. The list is separated by colons, and
+item has the form:
+  \\var{size-name} = \\var{width} , \\var{height}
+  
+E.g. "gtk-menu=16,16:gtk-button=20,20:gtk-dialog=48,48". 
+GTK+ itself use the following named icon sizes: gtk-menu, 
+gtk-button, gtk-small-toolbar, gtk-large-toolbar, gtk-dnd, 
+gtk-dialog. Applications can register their own named icon 
+sizes with \code{\link{gtkIconSizeRegister}}.
+  Default value: NULL
 
 }
 \item{\verb{gtk-icon-theme-name} [character : *                : Read / Write]}{
 
 Name of icon theme to use.  Default value: "hicolor"
+
+}
+\item{\verb{gtk-im-module} [character : *                : Read / Write]}{
+
+Which IM (input method) module should be used by default. This is the 
+input method that will be used if the user has not explicitly chosen 
+another input method from the IM context menu.  
+  
+See \code{\link{GtkIMContext}} and see the \verb{"gtk-show-input-method-menu"} property.
+  Default value: NULL
 
 }
 \item{\verb{gtk-key-theme-name} [character : *                : Read / Write]}{
@@ -227,17 +302,15 @@ Name of key theme RC file to load.  Default value: NULL
 
 When \code{TRUE}, keyboard navigation should be able to reach all widgets
 by using the cursor keys only. Tab, Shift etc. keys can't be expected
-to be present on the used input device.  
-
-  Default value: FALSE  Since  2.12
+to be present on the used input device.
+  Default value: FALSE  Since 2.12
 
 }
 \item{\verb{gtk-keynav-wrap-around} [logical : Read / Write]}{
 
 When \code{TRUE}, some widgets will wrap around when doing keyboard
-navigation, such as menus, menubars and notebooks.  
-
-  Default value: TRUE  Since  2.12
+navigation, such as menus, menubars and notebooks.
+  Default value: TRUE  Since 2.12
 
 }
 \item{\verb{gtk-label-select-on-focus} [logical : Read / Write]}{
@@ -279,9 +352,8 @@ List of currently active GTK modules.  Default value: NULL
 
 A comma-separated list of print backends to use in the print
 dialog. Available print backends depend on the GTK+ installation,
-and may include "pdf", "cups" or "lpr".  
-
-  Default value: "file,cups"  Since  2.10
+and may include "file", "cups", "lpr" or "papi".
+  Default value: "file,cups"  Since 2.10
 
 }
 \item{\verb{gtk-print-preview-command} [character : *                : Read / Write]}{
@@ -294,26 +366,32 @@ containing the print settings in the format produced by
 \code{\link{gtkPrintSettingsToFile}}.
   
 The preview application is responsible for removing the pdf file
-and the print settings file when it is done.  
-
-  Default value: "evince --unlink-tempfile --preview --print-settings \%s \%f"  Since  2.10
+and the print settings file when it is done.
+  Default value: "evince --unlink-tempfile --preview --print-settings \%s \%f"  Since 2.10
 
 }
 \item{\verb{gtk-recent-files-limit} [integer : Read / Write]}{
 
 The number of recently used files that should be displayed by default by
-\verb{\link{GtkRecentChooser}} implementations and by the \verb{\link{GtkFileChooser}}. A value of
--1 means every recently used file stored.  
+\code{\link{GtkRecentChooser}} implementations and by the \code{\link{GtkFileChooser}}. A value of
+-1 means every recently used file stored.
+  Allowed values: >= -1  Default value: 50  Since 2.12
 
-  Allowed values: >= -1  Default value: 50  Since  2.12
+}
+\item{\verb{gtk-recent-files-max-age} [integer : Read / Write]}{
+
+The maximum age, in days, of the items inside the recently used
+resources list. Items older than this setting will be excised
+from the list. If set to 0, the list will always be empty; if
+set to -1, no item will be removed.
+  Allowed values: >= -1  Default value: 30  Since 2.14
 
 }
 \item{\verb{gtk-scrolled-window-placement} [\code{\link{GtkCornerType}} : Read / Write]}{
 
 Where the contents of scrolled windows are located with respect to the 
-scrollbars, if not overridden by the scrolled window's own placement.  
-
-  Default value: GTK_CORNER_TOP_LEFT  Since  2.10
+scrollbars, if not overridden by the scrolled window's own placement.
+  Default value: GTK_CORNER_TOP_LEFT  Since 2.10
 
 }
 \item{\verb{gtk-show-input-method-menu} [logical : Read / Write]}{
@@ -324,6 +402,18 @@ Whether the context menus of entries and text views should offer to change the i
 \item{\verb{gtk-show-unicode-menu} [logical : Read / Write]}{
 
 Whether the context menus of entries and text views should offer to insert control characters.  Default value: TRUE
+
+}
+\item{\verb{gtk-sound-theme-name} [character : *                : Read / Write]}{
+
+The XDG sound theme to use for event sounds.
+  
+See the Sound Theme spec (\url{http://www.freedesktop.org/wiki/Specifications/sound-theme-spec}) 
+for more information on event sounds and sound themes.
+  
+GTK+ itself does not support event sounds, you have to use a loadable 
+module like the one that comes with libcanberra.
+  Default value: "freedesktop"  Since 2.14
 
 }
 \item{\verb{gtk-split-cursor} [logical : Read / Write]}{
@@ -353,7 +443,7 @@ Repeat value for timeouts, when button is pressed.  Allowed values: >= 0  Defaul
 }
 \item{\verb{gtk-toolbar-icon-size} [\code{\link{GtkIconSize}} : Read / Write]}{
 
-Size of icons in default toolbars.  Default value: GTK_ICON_SIZE_LARGE_TOOLBAR
+The size of icons in default toolbars.  Default value: GTK_ICON_SIZE_LARGE_TOOLBAR
 
 }
 \item{\verb{gtk-toolbar-style} [\code{\link{GtkToolbarStyle}} : Read / Write]}{
@@ -367,9 +457,8 @@ Amount of time, in milliseconds, after which the browse mode
 will be disabled.
   
 See \verb{"gtk-tooltip-browse-timeout"} for more information
-about browse mode.  
-
-  Allowed values: >= 0  Default value: 500  Since  2.12
+about browse mode.
+  Allowed values: >= 0  Default value: 500  Since 2.12
 
 }
 \item{\verb{gtk-tooltip-browse-timeout} [integer : Read / Write]}{
@@ -382,26 +471,23 @@ where a tooltip was currently being displayed. If the mouse pointer
 hits another object before the browse mode timeout expires (see
 \verb{"gtk-tooltip-browse-mode-timeout"}), it will take the 
 amount of milliseconds specified by this setting to popup the tooltip
-for the new object.  
-
-  Allowed values: >= 0  Default value: 60  Since  2.12
+for the new object.
+  Allowed values: >= 0  Default value: 60  Since 2.12
 
 }
 \item{\verb{gtk-tooltip-timeout} [integer : Read / Write]}{
 
 Time, in milliseconds, after which a tooltip could appear if the
-cursor is hovering on top of a widget.  
-
-  Allowed values: >= 0  Default value: 500  Since  2.12
+cursor is hovering on top of a widget.
+  Allowed values: >= 0  Default value: 500  Since 2.12
 
 }
 \item{\verb{gtk-touchscreen-mode} [logical : Read / Write]}{
 
 When \code{TRUE}, there are no motion notify events delivered on this screen,
 and widgets can't use the pointer hovering them for any essential
-functionality.  
-
-  Default value: FALSE  Since  2.10
+functionality.
+  Default value: FALSE  Since 2.10
 
 }
 \item{\verb{gtk-xft-antialias} [integer : Read / Write]}{
@@ -430,6 +516,6 @@ Type of subpixel antialiasing; none, rgb, bgr, vrgb, vbgr.  Default value: NULL
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkSettings.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkSettings.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

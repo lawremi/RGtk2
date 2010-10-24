@@ -9,15 +9,15 @@ returned, \code{error} will be set to an error from the \verb{GDK_PIXBUF_ERROR}
 or \verb{G_FILE_ERROR} domains.}
 \usage{gdkPixbufLoaderWrite(object, buf, .errwarn = TRUE)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GdkPixbufLoader}}]  A pixbuf loader.}
-\item{\verb{buf}}{[raw]  Pointer to image data.}
+\item{\verb{object}}{A pixbuf loader.}
+\item{\verb{buf}}{Pointer to image data.}
 \item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if the write was successful, or \code{FALSE} if the loader
 cannot parse the buffer.}
-\item{\verb{error}}{[\verb{\link{GError}}]  return location for errors}
+\item{\verb{error}}{return location for errors}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

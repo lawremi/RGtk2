@@ -5,7 +5,7 @@
     a particular text offset.}
 \usage{atkTextGetCharacterExtents(object, offset, coords)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{AtkText}}]  an \verb{\link{AtkText}}}
+\item{\verb{object}}{[\code{\link{AtkText}}]  an \code{\link{AtkText}}}
 \item{\verb{offset}}{[integer]  The offset of the text character for which bounding information is required.}
 \item{\verb{coords}}{[\code{\link{AtkCoordType}}]  specify whether coordinates are relative to the screen or widget window }
 }

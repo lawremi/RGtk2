@@ -7,8 +7,10 @@ Cause the given node to be selected and emit the appropriate signal.
 }
 \usage{gtkCTreeSelect(object, node)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkCTree}}] }
-\item{\verb{node}}{[\verb{\link{GtkCTreeNode}}] }
+\item{\verb{object}}{\emph{undocumented
+}}
+\item{\verb{node}}{\emph{undocumented
+}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

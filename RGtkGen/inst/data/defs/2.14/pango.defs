@@ -4,6 +4,87 @@
 
 ;; compatible with pango 1.22.0
 
+(define-enum BidiType
+  (in-module "Pango")
+  (c-name "PangoBidiType")
+  (gtype-id "PANGO_TYPE_BIDI_TYPE")
+  (values
+   '("l" "PANGO_BIDI_TYPE_L")
+   '("lre" "PANGO_BIDI_TYPE_LRE")
+   '("lro" "PANGO_BIDI_TYPE_LRO")
+   '("r" "PANGO_BIDI_TYPE_R")
+   '("al" "PANGO_BIDI_TYPE_AL")
+   '("rle" "PANGO_BIDI_TYPE_RLE")
+   '("rlo" "PANGO_BIDI_TYPE_RLO")
+   '("pdf" "PANGO_BIDI_TYPE_PDF")
+   '("en" "PANGO_BIDI_TYPE_EN")
+   '("es" "PANGO_BIDI_TYPE_ES")
+   '("et" "PANGO_BIDI_TYPE_ET")
+   '("an" "PANGO_BIDI_TYPE_AN")
+   '("cs" "PANGO_BIDI_TYPE_CS")
+   '("nsm" "PANGO_BIDI_TYPE_NSM")
+   '("bn" "PANGO_BIDI_TYPE_BN")
+   '("b" "PANGO_BIDI_TYPE_B")
+   '("s" "PANGO_BIDI_TYPE_S")
+   '("ws" "PANGO_BIDI_TYPE_WS")
+   '("on" "PANGO_BIDI_TYPE_ON")
+   )
+  (since "1.22.0")
+  )
+
+(define-function pango_bidi_type_for_unichar
+  (in-module "Pango")
+  (c-name "pango_bidi_type_for_unichar")
+  (return-type "PangoBidiType")
+  (parameters
+   '("gunichar" "ch")
+   )
+  (since "1.22.0")
+  )
+
+(define-function pango_attr_type_get_name
+  (in-module "Pango")
+  (c-name "pango_attr_type_get_name")
+  (return-type "const-char*")
+  (parameters
+   '("PangoAttrType" "type")
+   )
+  (since "1.22.0")
+  )
+
+(define-function pango_cairo_create_context
+  (in-module "Pango")
+  (c-name "pango_cairo_create_context")
+  (return-type "PangoContext*")
+  (caller-owns-return #t)
+  (parameters
+   '("cairo_t*" "cr")
+   )
+  (since "1.22.0")
+  )
+
+(define-function pango_cairo_font_map_set_default
+  (in-module "Pango")
+  (c-name "pango_cairo_font_map_set_default")
+  (return-type "none")
+  (parameters
+   '("PangoCairoFontMap*" "fontmap")
+   )
+  (since "1.22.0")
+  )
+
+(define-function pango_cairo_show_glyph_item
+  (in-module "Pango")
+  (c-name "pango_cairo_show_glyph_item")
+  (return-type "none")
+  (parameters
+   '("cairo_t*" "cr")
+   '("const-char*" "text")
+   '("PangoGlyphItem*" "glyph_item")
+   )
+  (since "1.22.0")
+  )
+
 (define-method draw_glyph_item
   (of-object "PangoRenderer")
   (c-name "pango_renderer_draw_glyph_item")
@@ -90,6 +171,13 @@
   (parameters
    '("int" "num_scripts" (out))
    )
+  (since "1.22.0")
+  )
+
+(define-method get_baseline
+  (of-object "PangoLayout")
+  (c-name "pango_layout_get_baseline")
+  (return-type "int")
   (since "1.22.0")
   )
 

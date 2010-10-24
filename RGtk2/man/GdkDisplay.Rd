@@ -44,40 +44,39 @@
 }
 \section{Hierarchy}{\preformatted{GObject
    +----GdkDisplay}}
-\section{Detailed Description}{\verb{\link{GdkDisplay}} objects purpose are two fold:
+\section{Detailed Description}{\code{\link{GdkDisplay}} objects purpose are two fold:
 \itemize{
 \item To grab/ungrab keyboard focus and mouse pointer
-\item To manage and provide information about the \verb{\link{GdkScreen}}(s) 
-		available for this \verb{\link{GdkDisplay}}
+\item To manage and provide information about the \code{\link{GdkScreen}}(s)
+		available for this \code{\link{GdkDisplay}}
 	  
 }
-  \verb{\link{GdkDisplay}} objects are the GDK representation of the X Display which can be 
+  \code{\link{GdkDisplay}} objects are the GDK representation of the X Display which can be
   described as \emph{a workstation consisting of a keyboard a pointing
-  device (such as a mouse) and one or more screens}. 
-  It is used to open and keep track of various \verb{\link{GdkScreen}} objects currently 
-  instanciated by the application. It is also used to grab and release the keyboard 
+  device (such as a mouse) and one or more screens}.
+  It is used to open and keep track of various \code{\link{GdkScreen}} objects currently
+  instanciated by the application. It is also used to grab and release the keyboard
   and the mouse pointer.}
 \section{Structures}{\describe{\item{\verb{GdkDisplay}}{
 The \code{GdkDisplay} struct is the GDK representation
-of an X display. All its fields are private and should not be accessed directly. 
+of an X display. All its fields are private and should not be accessed directly.
   Since 2.2
 
 }}}
 \section{Convenient Construction}{\code{gdkDisplay} is the equivalent of \code{\link{gdkDisplayOpen}}.}
 \section{Signals}{\describe{\item{\code{closed(display, is.error, user.data)}}{
 The ::closed signal is emitted when the connection to the windowing
-system for \code{display} is closed.  
-
-  Since  2.2
+system for \code{display} is closed.
+  Since 2.2
 
 \describe{
-\item{\code{display}}{[\verb{\link{GdkDisplay}}]  the object on which the signal is emitted}
-\item{\code{is.error}}{[logical] \code{TRUE} if the display was closed due to an error}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{display}}{the object on which the signal is emitted}
+\item{\code{is.error}}{\code{TRUE} if the display was closed due to an error}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gdk/GdkDisplay.html}}
+\references{\url{http://library.gnome.org/devel//gdk/GdkDisplay.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

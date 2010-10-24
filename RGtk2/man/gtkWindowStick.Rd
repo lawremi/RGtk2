@@ -8,10 +8,10 @@ again, and some window managers do not support sticking
 windows. But normally the window will end up stuck. Just don't
 write code that crashes if not.}
 \usage{gtkWindowStick(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}}}
+\arguments{\item{\verb{object}}{a \code{\link{GtkWindow}}}}
 \details{It's permitted to call this function before showing a window.
   
-You can track stickiness via the "window_state_event" signal
-on \verb{\link{GtkWidget}}.  }
+You can track stickiness via the "window-state-event" signal
+on \code{\link{GtkWidget}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

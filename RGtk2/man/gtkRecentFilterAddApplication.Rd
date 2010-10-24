@@ -5,9 +5,9 @@
 that has registered them.}
 \usage{gtkRecentFilterAddApplication(object, application)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkRecentFilter}}]  a \verb{\link{GtkRecentFilter}}}
-\item{\verb{application}}{[character]  an application name}
+\item{\verb{object}}{a \code{\link{GtkRecentFilter}}}
+\item{\verb{application}}{an application name}
 }
-\details{  Since  2.10}
+\details{Since 2.10}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

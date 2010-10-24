@@ -13,10 +13,10 @@ item isn't available, so \code{\link{pangoItemSplit}} can't count the char
 length of the split items itself.}
 \usage{pangoItemSplit(orig, split.index, split.offset)}
 \arguments{
-\item{\verb{orig}}{[\verb{\link{PangoItem}}]  a \verb{\link{PangoItem}}}
-\item{\verb{split.index}}{[integer]  byte index of position to split item, relative to the start of the item}
-\item{\verb{split.offset}}{[integer]  number of chars between start of \code{orig} and \code{split.index}}
+\item{\verb{orig}}{a \code{\link{PangoItem}}}
+\item{\verb{split.index}}{byte index of position to split item, relative to the start of the item}
+\item{\verb{split.offset}}{number of chars between start of \code{orig} and \code{split.index}}
 }
-\value{[\verb{\link{PangoItem}}]  new item representing text before \code{split.index}.}
+\value{[\code{\link{PangoItem}}]  new item representing text before \code{split.index},}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

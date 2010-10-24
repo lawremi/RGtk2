@@ -6,6 +6,8 @@
 \section{Methods and Functions}{
 \code{\link{gtkIMMulticontextNew}()}\cr
 \code{\link{gtkIMMulticontextAppendMenuitems}(object, menushell)}\cr
+\code{\link{gtkIMMulticontextGetContextId}(object)}\cr
+\code{\link{gtkIMMulticontextSetContextId}(object, context.id)}\cr
 \code{gtkIMMulticontext()}
 }
 \section{Hierarchy}{\preformatted{GObject
@@ -17,6 +19,6 @@
 
 }}}
 \section{Convenient Construction}{\code{gtkIMMulticontext} is the equivalent of \code{\link{gtkIMMulticontextNew}}.}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkIMMulticontext.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkIMMulticontext.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

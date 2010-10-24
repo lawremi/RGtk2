@@ -49,10 +49,10 @@ connection process.
 
 \describe{
 \item{\code{handler.name}}{[character]  the name of the handler function to connect.}
-\item{\code{object}}{[\verb{\link{GObject}}]  the object to connect the signal to.}
+\item{\code{object}}{[\code{\link{GObject}}]  the object to connect the signal to.}
 \item{\code{signal.name}}{[character]  the name of the signal.}
 \item{\code{signal.data}}{[character]  the string value of the signal data given in the XML file.}
-\item{\code{connect.object}}{[\verb{\link{GObject}}]  non NULL if g_signal_connect_object should be used.}
+\item{\code{connect.object}}{[\code{\link{GObject}}]  non NULL if g_signal_connect_object should be used.}
 \item{\code{after}}{[logical]  TRUE if the connection should be made with g_signal_connect_after.}
 \item{\code{user.data}}{[R object]  the user data argument.}
 }
@@ -63,7 +63,7 @@ connection process.
 This prototype is for a function that creates custom widgets.  
 
 \describe{
-\item{\code{xml}}{[\verb{\link{GladeXML}}]  the GladeXML object.}
+\item{\code{xml}}{[\code{\link{GladeXML}}]  the GladeXML object.}
 \item{\code{func.name}}{[character]  the function name.}
 \item{\code{name}}{[character]  the name of the widget to be created.}
 \item{\code{string1}}{[character]  the string1 property.}
@@ -73,10 +73,10 @@ This prototype is for a function that creates custom widgets.
 \item{\code{user.data}}{[R object]  the data passed to \code{\link{gladeSetCustomHandler}}}
 }
 
-\emph{Returns:} [\verb{\link{GtkWidget}}]  the GtkWidget.
+\emph{Returns:} [\code{\link{GtkWidget}}]  the GtkWidget.
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/libglade/GladeXML.html}}
+\references{\url{http://library.gnome.org/devel//libglade/GladeXML.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

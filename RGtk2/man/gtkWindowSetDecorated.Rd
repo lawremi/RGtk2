@@ -11,10 +11,10 @@ function may not have any effect when called on a window that is
 already visible, so you should call it before calling \code{gtkWindowShow()}.}
 \usage{gtkWindowSetDecorated(object, setting)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}}
-\item{\verb{setting}}{[logical] \code{TRUE} to decorate the window}
+\item{\verb{object}}{a \code{\link{GtkWindow}}}
+\item{\verb{setting}}{\code{TRUE} to decorate the window}
 }
 \details{On Windows, this function always works, since there's no window manager
-policy involved.  }
+policy involved.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

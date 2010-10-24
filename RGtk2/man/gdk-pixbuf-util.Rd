@@ -14,7 +14,7 @@
     directly by applications, but several common operations can be
     performed by these functions instead.
   }
-\references{\url{http://developer.gnome.org/doc/API/2.0/gdk-pixbuf/gdk-pixbuf-util.html}}
+\references{\url{http://library.gnome.org/devel//gdk-pixbuf/gdk-pixbuf-util.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
-\seealso{\verb{\link{GdkPixbuf}}}
+\seealso{\code{\link{GdkPixbuf}}}
 \keyword{internal}

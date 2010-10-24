@@ -6,12 +6,13 @@ The variable argument list should contain integer column numbers,
 each column number followed by the value to be set.
 The list is terminated by a -1. For example, to set column 0 with type
 \code{G_TYPE_STRING} to "Foo", you would write \code{gtk_list_store_set (store, iter,
-0, "Foo", -1)}.}
+0, "Foo", -1)}.
+The value will be copied or referenced by the store if appropriate.}
 \usage{gtkListStoreSet(object, iter, ...)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkListStore}}]  a \verb{\link{GtkListStore}}}
-\item{\verb{iter}}{[\verb{\link{GtkTreeIter}}]  row iterator}
-\item{\verb{...}}{ pairs of column number and value, terminated with -1}
+\item{\verb{object}}{a \code{\link{GtkListStore}}}
+\item{\verb{iter}}{row iterator}
+\item{\verb{...}}{pairs of column number and value, terminated with -1}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

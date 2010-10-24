@@ -7,8 +7,8 @@ typically either you or \code{\link{gtkDialogRun}} will be monitoring the
 ::response signal and take appropriate action.}
 \usage{gtkDialogResponse(object, response.id)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkDialog}}]  a \verb{\link{GtkDialog}}}
-\item{\verb{response.id}}{[integer]  response ID }
+\item{\verb{object}}{a \code{\link{GtkDialog}}}
+\item{\verb{response.id}}{response ID }
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

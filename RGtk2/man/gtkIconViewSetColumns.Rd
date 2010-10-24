@@ -7,9 +7,9 @@ many columns the icons are arranged. If \code{columns} is
 to fill the available area.}
 \usage{gtkIconViewSetColumns(object, columns)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkIconView}}]  a \verb{\link{GtkIconView}}}
-\item{\verb{columns}}{[integer]  the number of columns}
+\item{\verb{object}}{a \code{\link{GtkIconView}}}
+\item{\verb{columns}}{the number of columns}
 }
-\details{  Since  2.6}
+\details{Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

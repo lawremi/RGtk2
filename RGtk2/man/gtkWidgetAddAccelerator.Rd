@@ -11,12 +11,12 @@ user, use \code{\link{gtkAccelMapAddEntry}} and \code{\link{gtkWidgetSetAccelPat
 \code{\link{gtkMenuItemSetAccelPath}} instead.}
 \usage{gtkWidgetAddAccelerator(object, accel.signal, accel.group, accel.key, accel.mods, accel.flags)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkWidget}}]        widget to install an accelerator on}
-\item{\verb{accel.signal}}{[character]  widget signal to emit on accelerator activation}
-\item{\verb{accel.group}}{[\verb{\link{GtkAccelGroup}}]   accel group for this widget, added to its toplevel}
-\item{\verb{accel.key}}{[numeric]     GDK keyval of the accelerator}
-\item{\verb{accel.mods}}{[\code{\link{GdkModifierType}}]    modifier key combination of the accelerator}
-\item{\verb{accel.flags}}{[\code{\link{GtkAccelFlags}}]   flag accelerators, e.g. \code{GTK_ACCEL_VISIBLE}}
+\item{\verb{object}}{widget to install an accelerator on}
+\item{\verb{accel.signal}}{widget signal to emit on accelerator activation}
+\item{\verb{accel.group}}{accel group for this widget, added to its toplevel}
+\item{\verb{accel.key}}{GDK keyval of the accelerator}
+\item{\verb{accel.mods}}{modifier key combination of the accelerator}
+\item{\verb{accel.flags}}{flag accelerators, e.g. \code{GTK_ACCEL_VISIBLE}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

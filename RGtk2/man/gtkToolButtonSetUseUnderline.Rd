@@ -8,12 +8,11 @@ the label on the tool button will be "Open" and the item on the overflow
 menu will have an underlined 'O'.}
 \usage{gtkToolButtonSetUseUnderline(object, use.underline)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkToolButton}}]  a \verb{\link{GtkToolButton}}}
-\item{\verb{use.underline}}{[logical]  whether the button label has the form "_Open"}
+\item{\verb{object}}{a \code{\link{GtkToolButton}}}
+\item{\verb{use.underline}}{whether the button label has the form "_Open"}
 }
 \details{Labels shown on tool buttons never have mnemonics on them; this property
-only affects the menu item on the overflow menu.  
-
-  Since  2.4}
+only affects the menu item on the overflow menu.
+  Since 2.4}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

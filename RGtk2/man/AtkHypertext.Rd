@@ -10,7 +10,7 @@
 \section{Hierarchy}{\preformatted{GInterface
    +----AtkHypertext}}
 \section{Implementations}{AtkHypertext is implemented by
- \verb{\link{AtkNoOpObject}}.}
+ \code{\link{AtkNoOpObject}}.}
 \section{Detailed Description}{An interface used for objects which implement linking between multiple
 resource or content locations, or multiple 'markers' within a single
 document.  A Hypertext instance is associated with one or more Hyperlinks,
@@ -25,13 +25,13 @@ The "link-selected" signal is emitted by an AtkHyperText object when one of
 the hyperlinks associated with the object is selected.
 
 \describe{
-\item{\code{atkhypertext}}{[\verb{\link{AtkHypertext}}] the object which received the signal.}
+\item{\code{atkhypertext}}{[\code{\link{AtkHypertext}}] the object which received the signal.}
 \item{\code{arg1}}{[integer] the index of the hyperlink which is selected}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/atk/AtkHypertext.html}}
+\references{\url{http://library.gnome.org/devel//atk/AtkHypertext.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

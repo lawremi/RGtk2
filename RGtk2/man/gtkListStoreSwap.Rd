@@ -5,10 +5,10 @@
 unsorted stores.}
 \usage{gtkListStoreSwap(object, a, b)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkListStore}}]  A \verb{\link{GtkListStore}}.}
-\item{\verb{a}}{[\verb{\link{GtkTreeIter}}]  A \verb{\link{GtkTreeIter}}.}
-\item{\verb{b}}{[\verb{\link{GtkTreeIter}}]  Another \verb{\link{GtkTreeIter}}.}
+\item{\verb{object}}{A \code{\link{GtkListStore}}.}
+\item{\verb{a}}{A \code{\link{GtkTreeIter}}.}
+\item{\verb{b}}{Another \code{\link{GtkTreeIter}}.}
 }
-\details{  Since  2.2}
+\details{Since 2.2}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

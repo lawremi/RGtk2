@@ -7,11 +7,16 @@ Shift the given cell the given amounts in pixels.
 }
 \usage{gtkCTreeNodeSetShift(object, node, column, vertical, horizontal)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkCTree}}] }
-\item{\verb{node}}{[\verb{\link{GtkCTreeNode}}] }
-\item{\verb{column}}{[integer] }
-\item{\verb{vertical}}{[integer] }
-\item{\verb{horizontal}}{[integer] }
+\item{\verb{object}}{\emph{undocumented
+}}
+\item{\verb{node}}{\emph{undocumented
+}}
+\item{\verb{column}}{\emph{undocumented
+}}
+\item{\verb{vertical}}{\emph{undocumented
+}}
+\item{\verb{horizontal}}{\emph{undocumented
+}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

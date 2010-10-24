@@ -5,10 +5,10 @@
 Unicode character \code{wc}.}
 \usage{pangoFontsetGetFont(object, wc)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{PangoFontset}}]  a \verb{\link{PangoFontset}}}
-\item{\verb{wc}}{[numeric]  a Unicode character}
+\item{\verb{object}}{a \code{\link{PangoFontset}}}
+\item{\verb{wc}}{a Unicode character}
 }
-\value{[\verb{\link{PangoFont}}]  a \verb{\link{PangoFont}}. The caller must call g_object_unref when finished
+\value{[\code{\link{PangoFont}}]  a \code{\link{PangoFont}}. The caller must call g_object_unref when finished
          with the font.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

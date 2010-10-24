@@ -13,6 +13,9 @@
 \code{\link{gdkKeymapGetEntriesForKeycode}(object, hardware.keycode)}\cr
 \code{\link{gdkKeymapGetDirection}(object)}\cr
 \code{\link{gdkKeymapHaveBidiLayouts}(object)}\cr
+\code{\link{gdkKeymapGetCapsLockState}(object)}\cr
+\code{\link{gdkKeymapAddVirtualModifiers}(object)}\cr
+\code{\link{gdkKeymapMapVirtualModifiers}(object)}\cr
 \code{\link{gdkKeyvalName}(keyval)}\cr
 \code{\link{gdkKeyvalFromName}(keyval.name)}\cr
 \code{\link{gdkKeyvalConvertCase}(symbol)}\cr
@@ -28,11 +31,15 @@
    +----GdkKeymap}}
 \section{Detailed Description}{Key values are the codes which are sent whenever a key is pressed or released.
 They appear in the \code{keyval} field of the
-\verb{\link{GdkEventKey}} structure, which is passed to signal handlers for the
+\code{\link{GdkEventKey}} structure, which is passed to signal handlers for the
 "key-press-event" and "key-release-event" signals.
 The complete list of key values can be found in the \file{<gdk/gdkkeysyms.h>}
-header file. \file{<gdk/gdkkeysyms.h>} is not included in \file{<gtk/gtk.h>}, 
+header file. \file{<gdk/gdkkeysyms.h>} is not included in \file{<gdk/gdk.h>},
 it must be included independently, because the file is quite large.
+  
+Key values are regularly updated from the upstream X.org X11 implementation,
+so new values are added regularly. They will be prefixed with GDK_ rather than
+XF86XK_ or XK_ (for older symbols).
   
 Key values can be converted into a string representation using
 \code{\link{gdkKeyvalName}}. The reverse function, converting a string to a key value,
@@ -42,13 +49,13 @@ The case of key values can be determined using \code{\link{gdkKeyvalIsUpper}} an
 \code{\link{gdkKeyvalIsLower}}. Key values can be converted to upper or lower case
 using \code{\link{gdkKeyvalToUpper}} and \code{\link{gdkKeyvalToLower}}.
   
-When it makes sense, key values can be converted to and from 
+When it makes sense, key values can be converted to and from
 Unicode characters with \code{\link{gdkKeyvalToUnicode}} and \code{\link{gdkUnicodeToKeyval}}.
   
-One \verb{\link{GdkKeymap}} object exists for each user display. \code{\link{gdkKeymapGetDefault}} 
-returns the \verb{\link{GdkKeymap}} for the default display; to obtain keymaps for other 
+One \code{\link{GdkKeymap}} object exists for each user display. \code{\link{gdkKeymapGetDefault}}
+returns the \code{\link{GdkKeymap}} for the default display; to obtain keymaps for other
 displays, use \code{\link{gdkKeymapGetForDisplay}}. A keymap
-is a mapping from \verb{\link{GdkKeymapKey}} to key values. You can think of a \verb{\link{GdkKeymapKey}}
+is a mapping from \code{\link{GdkKeymapKey}} to key values. You can think of a \code{\link{GdkKeymapKey}}
 as a representation of a symbol printed on a physical keyboard key. That is, it
 contains three pieces of information. First, it contains the hardware keycode;
 this is an identifying number for a physical key. Second, it contains the
@@ -58,7 +65,7 @@ with the number "1" on it also has the exclamation point ("!") character on
 it. The level indicates whether to use the "1" or the "!" symbol.  The letter
 keys are considered to have a lowercase letter at level 0, and an uppercase
 letter at level 1, though only the uppercase letter is printed.  Third, the
-\verb{\link{GdkKeymapKey}} contains a group; groups are not used on standard US keyboards,
+\code{\link{GdkKeymapKey}} contains a group; groups are not used on standard US keyboards,
 but are used in many other countries. On a keyboard with groups, there can be 3
 or 4 symbols printed on a single key. The group indicates movement in a
 horizontal direction. Usually groups are used for two different languages.  In
@@ -80,7 +87,7 @@ keyboard state.
   
 Note that \code{\link{gdkKeymapTranslateKeyboardState}} also returns the keyval, i.e. it
 goes ahead and performs the keymap lookup in addition to telling you which
-effective group/level values were used for the lookup.  \verb{\link{GdkEventKey}} already
+effective group/level values were used for the lookup.  \code{\link{GdkEventKey}} already
 contains this keyval, however, so you don't normally need to call
 \code{\link{gdkKeymapTranslateKeyboardState}} just to get the keyval.}
 \section{Structures}{\describe{
@@ -94,21 +101,21 @@ in the keymap and see what keyval it corresponds to.
 
 }
 \item{\verb{GdkKeymapKey}}{
-A \code{GdkKeymapKey} is a hardware key that can 
+A \code{GdkKeymapKey} is a hardware key that can
 be mapped to a keyval.
 \strong{\verb{GdkKeymapKey} is a \link{transparent-type}.}
 
 \describe{
-\item{\code{keycode}}{[numeric] the hardware keycode. This is an identifying number for a 
+\item{\code{keycode}}{the hardware keycode. This is an identifying number for a 
   physical key.}
-\item{\code{group}}{[integer] indicates movement in a horizontal direction. Usually groups are used 
-  for two different languages. In group 0, a key might have two English 
-  characters, and in group 1 it might have two Hebrew characters. The Hebrew 
+\item{\code{group}}{indicates movement in a horizontal direction. Usually groups are used 
+  for two different languages. In group 0, a key might have two English
+  characters, and in group 1 it might have two Hebrew characters. The Hebrew
   characters will be printed on the key next to the English characters.}
-\item{\code{level}}{[integer] indicates which symbol on the key will be used, in a vertical direction.  So on a standard US keyboard, the key with the number "1" on it also has the 
-  exclamation point ("!") character on it. The level indicates whether to use 
+\item{\code{level}}{indicates which symbol on the key will be used, in a vertical direction.  So on a standard US keyboard, the key with the number "1" on it also has the 
+  exclamation point ("!") character on it. The level indicates whether to use
   the "1" or the "!" symbol. The letter keys are considered to have a lowercase
-  letter at level 0, and an uppercase letter at level 1, though only the 
+  letter at level 0, and an uppercase letter at level 1, though only the
   uppercase letter is printed.}
 }
 
@@ -116,33 +123,44 @@ be mapped to a keyval.
 }}
 \section{Signals}{\describe{
 \item{\code{direction-changed(keymap, user.data)}}{
-The ::direction_changed signal gets emitted when the direction of
-the keymap changes.  
-
-  Since  2.0
+The ::direction-changed signal gets emitted when the direction of
+the keymap changes.
+  Since 2.0
 
 \describe{
-\item{\code{keymap}}{[\verb{\link{GdkKeymap}}]  the object on which the signal is emitted}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{keymap}}{the object on which the signal is emitted}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
 \item{\code{keys-changed(keymap, user.data)}}{
-The ::keys_changed signal is emitted when the mapping represented by
-\code{keymap} changes.  
-
-  Since  2.2
+The ::keys-changed signal is emitted when the mapping represented by
+\code{keymap} changes.
+  Since 2.2
 
 \describe{
-\item{\code{keymap}}{[\verb{\link{GdkKeymap}}]  the object on which the signal is emitted}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{keymap}}{the object on which the signal is emitted}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
+}
+
+
+}
+\item{\code{state-changed(keymap, user.data)}}{
+The ::state-changed signal is emitted when the state of the
+keyboard changes, e.g when Caps Lock is turned on or off.
+See \code{\link{gdkKeymapGetCapsLockState}}.
+  Since 2.16
+
+\describe{
+\item{\code{keymap}}{the object on which the signal is emitted}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gdk/gdk-Keyboard-Handling.html}}
+\references{\url{http://library.gnome.org/devel//gdk/gdk-Keyboard-Handling.html}}
 \note{The keyval constants exist in RGtk2 as .gdkKeyvalName, so \code{.gdkPlus} for \kbd{plus}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

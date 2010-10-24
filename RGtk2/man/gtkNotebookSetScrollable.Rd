@@ -5,8 +5,8 @@
 there are too many tabs to fit in the area.}
 \usage{gtkNotebookSetScrollable(object, scrollable)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkNotebook}}]  a \verb{\link{GtkNotebook}}}
-\item{\verb{scrollable}}{[logical] \code{TRUE} if scroll arrows should be added}
+\item{\verb{object}}{a \code{\link{GtkNotebook}}}
+\item{\verb{scrollable}}{\code{TRUE} if scroll arrows should be added}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

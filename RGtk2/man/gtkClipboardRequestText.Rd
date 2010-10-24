@@ -6,15 +6,15 @@ later received, it will be converted to UTF-8 if necessary, and
 \code{callback} will be called. }
 \usage{gtkClipboardRequestText(object, callback, user.data = NULL)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkClipboard}}]  a \verb{\link{GtkClipboard}}}
-\item{\verb{callback}}{[\verb{\link{GtkClipboardTextReceivedFunc}}]   a function to call when the text is received,
+\item{\verb{object}}{a \code{\link{GtkClipboard}}}
+\item{\verb{callback}}{a function to call when the text is received,
             or the retrieval fails. (It will always be called
             one way or the other.)}
-\item{\verb{user.data}}{[R object]  user data to pass to \code{callback}.}
+\item{\verb{user.data}}{user data to pass to \code{callback}.}
 }
 \details{The \code{text} parameter to \code{callback} will contain the resulting text if
 the request succeeded, or \code{NULL} if it failed. This could happen for
 various reasons, in particular if the clipboard was empty or if the
-contents of the clipboard could not be converted into text form.  }
+contents of the clipboard could not be converted into text form.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -6,8 +6,8 @@ The widget must first be made into a drag destination with
 \code{\link{gtkDragDestSet}}.}
 \usage{gtkDragDestSetTargetList(object, target.list)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}} that's a drag destination}
-\item{\verb{target.list}}{[\verb{\link{GtkTargetList}}]  list of droppable targets, or \code{NULL} for none}
+\item{\verb{object}}{a \code{\link{GtkWidget}} that's a drag destination}
+\item{\verb{target.list}}{ list of droppable targets, or \code{NULL} for none. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

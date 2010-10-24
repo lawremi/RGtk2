@@ -5,8 +5,8 @@
 of the transformed rectangle.  The rectangle should be in Pango units.}
 \usage{pangoMatrixTransformRectangle(object, rect)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{PangoMatrix}}]  a \verb{\link{PangoMatrix}}, or \code{NULL}}
-\item{\verb{rect}}{[\verb{\link{PangoRectangle}}]  in/out bounding box in Pango units, or \code{NULL}}
+\item{\verb{object}}{a \code{\link{PangoMatrix}}, or \code{NULL}}
+\item{\verb{rect}}{in/out bounding box in Pango units, or \code{NULL}}
 }
 \details{This function is useful for example when you want to draw a rotated
 \code{PangoLayout} to an image buffer, and want to know how large the image
@@ -22,8 +22,7 @@ first argument, for an inclusive rounded rectangle.
 However, there are valid reasons that you may want to convert
 to pixels first and then transform, for example when the transformed
 coordinates may overflow in Pango units (large matrix translation for
-example).  
-
-  Since  1.16}
+example).
+  Since 1.16}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

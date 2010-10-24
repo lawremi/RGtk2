@@ -25,11 +25,11 @@
                                              +----GtkCheckMenuItem
                                                    +----GtkRadioMenuItem}}
 \section{Interfaces}{GtkRadioMenuItem implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+ AtkImplementorIface,  \code{\link{GtkBuildable}} and  \code{\link{GtkActivatable}}.}
 \section{Detailed Description}{A radio menu item is a check menu item that belongs to a group. At each
 instant exactly one of the radio menu items from a group is selected.
   
-The group list does not need to be freed, as each \verb{\link{GtkRadioMenuItem}} will 
+The group list does not need to be freed, as each \code{\link{GtkRadioMenuItem}} will
 remove itself and its list item when it is destroyed.
   
 The correct way to create a group of radio menu items is approximatively
@@ -57,19 +57,18 @@ the interface functions.
 }
 
 \describe{
-\item{\code{radiomenuitem}}{[\verb{\link{GtkRadioMenuItem}}] the object which received the signal.}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{radiomenuitem}}{the object which received the signal.}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }}}
-\section{Properties}{\describe{\item{\verb{group} [\verb{\link{GtkRadioMenuItem}} : *     : Write]}{
+\section{Properties}{\describe{\item{\verb{group} [\code{\link{GtkRadioMenuItem}} : *     : Write]}{
 
-The radio menu item whose group this widget belongs to.  
-
-  Since  2.8
+The radio menu item whose group this widget belongs to.
+  Since 2.8
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkRadioMenuItem.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkRadioMenuItem.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

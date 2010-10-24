@@ -5,8 +5,8 @@
 as \code{src}. Frees existing values in \code{dest}.}
 \usage{gtkTextAttributesCopyValues(object, dest)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTextAttributes}}]  a \verb{\link{GtkTextAttributes}}}
-\item{\verb{dest}}{[\verb{\link{GtkTextAttributes}}]  another \verb{\link{GtkTextAttributes}}}
+\item{\verb{object}}{a \code{\link{GtkTextAttributes}}}
+\item{\verb{dest}}{another \code{\link{GtkTextAttributes}}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

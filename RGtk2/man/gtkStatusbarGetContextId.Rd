@@ -6,8 +6,8 @@ of the actual context. Note that the description is
 \emph{not} shown in the UI.}
 \usage{gtkStatusbarGetContextId(object, context.description)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkStatusbar}}]  a \verb{\link{GtkStatusbar}}}
-\item{\verb{context.description}}{[character]  textual description of what context 
+\item{\verb{object}}{a \code{\link{GtkStatusbar}}}
+\item{\verb{context.description}}{textual description of what context 
                       the new message is being used in}
 }
 \value{[numeric]  an integer id}

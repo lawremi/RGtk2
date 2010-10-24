@@ -1,9 +1,9 @@
 \alias{gtkRcStyleNew}
 \name{gtkRcStyleNew}
 \title{gtkRcStyleNew}
-\description{Creates a new \verb{\link{GtkRcStyle}} with no fields set and
+\description{Creates a new \code{\link{GtkRcStyle}} with no fields set and
 a reference count of 1.}
 \usage{gtkRcStyleNew()}
-\value{[\verb{\link{GtkRcStyle}}] the newly-created \verb{\link{GtkRcStyle}}}
+\value{[\code{\link{GtkRcStyle}}] the newly-created \code{\link{GtkRcStyle}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

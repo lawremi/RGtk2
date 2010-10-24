@@ -9,16 +9,16 @@ roughly), the window will receive expose events for the union of
 all regions that have been invalidated.}
 \usage{gtkWidgetQueueDrawArea(object, x, y, width, height)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
-\item{\verb{x}}{[integer]  x coordinate of upper-left corner of rectangle to redraw}
-\item{\verb{y}}{[integer]  y coordinate of upper-left corner of rectangle to redraw}
-\item{\verb{width}}{[integer]  width of region to draw}
-\item{\verb{height}}{[integer]  height of region to draw}
+\item{\verb{object}}{a \code{\link{GtkWidget}}}
+\item{\verb{x}}{x coordinate of upper-left corner of rectangle to redraw}
+\item{\verb{y}}{y coordinate of upper-left corner of rectangle to redraw}
+\item{\verb{width}}{width of region to draw}
+\item{\verb{height}}{height of region to draw}
 }
 \details{Normally you would only use this function in widget
 implementations. You might also use it, or
 \code{\link{gdkWindowInvalidateRect}} directly, to schedule a redraw of a
-\verb{\link{GtkDrawingArea}} or some portion thereof.
+\code{\link{GtkDrawingArea}} or some portion thereof.
   
 Frequently you can just call \code{\link{gdkWindowInvalidateRect}} or
 \code{\link{gdkWindowInvalidateRegion}} instead of this function. Those
@@ -27,6 +27,6 @@ widget and all its children.
   
 The advantage of adding to the invalidated region compared to
 simply drawing immediately is efficiency; using an invalid region
-ensures that you only have to redraw one time.  }
+ensures that you only have to redraw one time.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

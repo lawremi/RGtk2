@@ -16,22 +16,22 @@
                +----GtkWidget
                      +----GtkInvisible}}
 \section{Interfaces}{GtkInvisible implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{The \verb{\link{GtkInvisible}} widget is used internally in GTK+, and is probably not 
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
+\section{Detailed Description}{The \code{\link{GtkInvisible}} widget is used internally in GTK+, and is probably not
 very useful for application developers.
   
 It is used for reliable pointer grabs and selection handling in the code
 for drag-and-drop.}
 \section{Structures}{\describe{\item{\verb{GtkInvisible}}{
-The \verb{\link{GtkInvisible}} struct contains no public fields.
+The \code{\link{GtkInvisible}} struct contains no public fields.
 
 }}}
 \section{Convenient Construction}{\code{gtkInvisible} is the result of collapsing the constructors of \code{GtkInvisible} (\code{\link{gtkInvisibleNew}}, \code{\link{gtkInvisibleNewForScreen}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\section{Properties}{\describe{\item{\verb{screen} [\verb{\link{GdkScreen}} : *            : Read / Write]}{
+\section{Properties}{\describe{\item{\verb{screen} [\code{\link{GdkScreen}} : *            : Read / Write]}{
 
 The screen where this window will be displayed.
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkInvisible.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkInvisible.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

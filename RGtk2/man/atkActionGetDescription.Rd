@@ -4,7 +4,7 @@
 \description{Returns a description of the specified action of the object.}
 \usage{atkActionGetDescription(object, i)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{AtkAction}}]  a \verb{\link{GObject}} instance that implements AtkActionIface}
+\item{\verb{object}}{[\code{\link{AtkAction}}]  a \code{\link{GObject}} instance that implements AtkActionIface}
 \item{\verb{i}}{[integer]  the action index corresponding to the action to be performed }
 }
 \value{[character] a description string, or \code{NULL}

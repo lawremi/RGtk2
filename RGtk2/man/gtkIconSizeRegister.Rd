@@ -5,10 +5,10 @@
 etc. Returns the integer value for the size.}
 \usage{gtkIconSizeRegister(name, width, height)}
 \arguments{
-\item{\verb{name}}{[character]  name of the icon size}
-\item{\verb{width}}{[integer]  the icon width}
-\item{\verb{height}}{[integer]  the icon height}
+\item{\verb{name}}{name of the icon size}
+\item{\verb{width}}{the icon width}
+\item{\verb{height}}{the icon height}
 }
-\value{[\code{\link{GtkIconSize}}]  integer value representing the size}
+\value{[\code{\link{GtkIconSize}}]  integer value representing the size. \emph{[type int]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

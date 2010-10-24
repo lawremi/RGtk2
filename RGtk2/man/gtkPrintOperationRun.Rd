@@ -5,9 +5,9 @@
 print settings in the print dialog, and then print the document.}
 \usage{gtkPrintOperationRun(object, action, parent = NULL, .errwarn = TRUE)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkPrintOperation}}]  a \verb{\link{GtkPrintOperation}}}
-\item{\verb{action}}{[\code{\link{GtkPrintOperationAction}}]  the action to start}
-\item{\verb{parent}}{[\verb{\link{GtkWindow}}]  Transient parent of the dialog, or \code{NULL}}
+\item{\verb{object}}{a \code{\link{GtkPrintOperation}}}
+\item{\verb{action}}{the action to start}
+\item{\verb{parent}}{ Transient parent of the dialog. \emph{[  \acronym{allow-none}  ]}}
 \item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \details{Normally that this function does not return until the rendering of all 
@@ -16,12 +16,13 @@ pages is complete. You can connect to the
 information about the progress of the print operation. 
 Furthermore, it may use a recursive mainloop to show the print dialog.
   
-If you call \code{\link{gtkPrintOperationSetAllowAsync}} or set the allow-async
-property the operation will run asyncronously if this is supported on the
-platform. The \verb{"done"} signal will be emitted with the 
-operation results when the operation is done (i.e. when the dialog is 
-canceled, or when the print succeeds or fails).
-  \preformatted{
+If you call \code{\link{gtkPrintOperationSetAllowAsync}} or set the 
+\verb{"allow-async"} property the operation will run 
+asynchronously if this is supported on the platform. The 
+\verb{"done"} signal will be emitted with the result of the 
+operation when the it is done (i.e. when the dialog is canceled, or when 
+the print succeeds or fails).
+\preformatted{
 if (!is.null(settings))
   op$setPrintSettings(settings)
   
@@ -40,11 +41,11 @@ if (res[[1]] == "error") {
   error_dialog$show()
 } else if (res[[1]] == "apply")
   settings = op$getPrintSettings()
-}  
+}
+  
 Note that \code{\link{gtkPrintOperationRun}} can only be called once on a
-given \verb{\link{GtkPrintOperation}}.  
-
-  Since  2.10}
+given \code{\link{GtkPrintOperation}}.
+  Since 2.10}
 \value{
 A list containing the following elements:
 \item{retval}{[\code{\link{GtkPrintOperationResult}}]  the result of the print operation. A return value of 
@@ -53,8 +54,9 @@ A list containing the following elements:
   the used print settings with \code{\link{gtkPrintOperationGetPrintSettings}} 
   and store them for reuse with the next print operation. A value of
   \code{GTK_PRINT_OPERATION_RESULT_IN_PROGRESS} means the operation is running
-  asynchronously, and will emit the ::done signal when done.}
-\item{\verb{error}}{[\verb{\link{GError}}]  Return location for errors, or \code{NULL}}
+  asynchronously, and will emit the \verb{"done"} signal when 
+  done.}
+\item{\verb{error}}{ Return location for errors, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -1,10 +1,9 @@
 \alias{gtkEditableCutClipboard}
 \name{gtkEditableCutClipboard}
 \title{gtkEditableCutClipboard}
-\description{Causes the characters in the current selection to
-be copied to the clipboard and then deleted from
-the widget.}
+\description{Removes the contents of the currently selected content in the editable and
+puts it on the clipboard.}
 \usage{gtkEditableCutClipboard(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkEditable}}] a \verb{\link{GtkEditable}} widget.}}
+\arguments{\item{\verb{object}}{a \code{\link{GtkEditable}}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

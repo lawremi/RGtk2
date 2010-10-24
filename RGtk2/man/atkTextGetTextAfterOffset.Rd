@@ -4,7 +4,7 @@
 \description{Gets the specified text.}
 \usage{atkTextGetTextAfterOffset(object, offset, boundary.type)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{AtkText}}]  an \verb{\link{AtkText}}}
+\item{\verb{object}}{[\code{\link{AtkText}}]  an \code{\link{AtkText}}}
 \item{\verb{offset}}{[integer]  position}
 \item{\verb{boundary.type}}{[\code{\link{AtkTextBoundary}}]  An \code{\link{AtkTextBoundary}}}
 }

@@ -7,8 +7,8 @@ attached to a parent menu item, and if so it will try to use the same text as
 that menu item's label.}
 \usage{gtkMenuSetTitle(object, title)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkMenu}}]  a \verb{\link{GtkMenu}}}
-\item{\verb{title}}{[character]  a string containing the title for the menu.}
+\item{\verb{object}}{a \code{\link{GtkMenu}}}
+\item{\verb{title}}{a string containing the title for the menu.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -5,13 +5,12 @@
 \verb{GtkActionGroupEntry}s added by \code{\link{gtkActionGroupAddActions}}.}
 \usage{gtkActionGroupSetTranslateFunc(object, func, data = NULL)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkActionGroup}}]  a \verb{\link{GtkActionGroup}}}
-\item{\verb{func}}{[\verb{\link{GtkTranslateFunc}}]  a \verb{\link{GtkTranslateFunc}}}
-\item{\verb{data}}{[R object]  data to be passed to \code{func} and \code{notify}}
+\item{\verb{object}}{a \code{\link{GtkActionGroup}}}
+\item{\verb{func}}{a \code{\link{GtkTranslateFunc}}}
+\item{\verb{data}}{data to be passed to \code{func} and \code{notify}}
 }
 \details{If you're using \code{gettext()}, it is enough to set the translation domain
-with \code{\link{gtkActionGroupSetTranslationDomain}}.  
-
-  Since  2.4 }
+with \code{\link{gtkActionGroupSetTranslationDomain}}.
+  Since 2.4}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

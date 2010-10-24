@@ -14,9 +14,14 @@
 \code{\link{gtkMenuSetAccelGroup}(object, accel.group)}\cr
 \code{\link{gtkMenuGetAccelGroup}(object)}\cr
 \code{\link{gtkMenuSetAccelPath}(object, accel.path)}\cr
+\code{\link{gtkMenuGetAccelPath}(object)}\cr
 \code{\link{gtkMenuSetTitle}(object, title)}\cr
-\code{\link{gtkMenuGetTearoffState}(object)}\cr
 \code{\link{gtkMenuGetTitle}(object)}\cr
+\code{\link{gtkMenuSetMonitor}(object, monitor.num)}\cr
+\code{\link{gtkMenuGetMonitor}(object)}\cr
+\code{\link{gtkMenuGetTearoffState}(object)}\cr
+\code{\link{gtkMenuSetReserveToggleSize}(object, reserve.toggle.size)}\cr
+\code{\link{gtkMenuGetReserveToggleSize}(object)}\cr
 \code{\link{gtkMenuPopdown}(object)}\cr
 \code{\link{gtkMenuReposition}(object)}\cr
 \code{\link{gtkMenuGetActive}(object)}\cr
@@ -26,7 +31,6 @@
 \code{\link{gtkMenuDetach}(object)}\cr
 \code{\link{gtkMenuGetAttachWidget}(object)}\cr
 \code{\link{gtkMenuGetForAttachWidget}(object)}\cr
-\code{\link{gtkMenuSetMonitor}(object, monitor.num)}\cr
 \code{gtkMenu(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{GObject
@@ -38,21 +42,21 @@
                                  +----GtkMenu
                                        +----GtkRecentChooserMenu}}
 \section{Interfaces}{GtkMenu implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{A \verb{\link{GtkMenu}} is a \verb{\link{GtkMenuShell}} that implements a drop down menu consisting of
-a list of \verb{\link{GtkMenuItem}} objects which can be navigated and activated by the 
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
+\section{Detailed Description}{A \code{\link{GtkMenu}} is a \code{\link{GtkMenuShell}} that implements a drop down menu consisting of
+a list of \code{\link{GtkMenuItem}} objects which can be navigated and activated by the
 user to perform application functions.
   
-A \verb{\link{GtkMenu}} is most commonly dropped down by activating a \verb{\link{GtkMenuItem}} in a 
-\verb{\link{GtkMenuBar}} or popped up by activating a \verb{\link{GtkMenuItem}} in another \verb{\link{GtkMenu}}.  
+A \code{\link{GtkMenu}} is most commonly dropped down by activating a \code{\link{GtkMenuItem}} in a
+\code{\link{GtkMenuBar}} or popped up by activating a \code{\link{GtkMenuItem}} in another \code{\link{GtkMenu}}.
   
-A \verb{\link{GtkMenu}} can also be popped up by activating a \verb{\link{GtkOptionMenu}}.  
-Other composite widgets such as the \verb{\link{GtkNotebook}} can pop up a \verb{\link{GtkMenu}} 
+A \code{\link{GtkMenu}} can also be popped up by activating a \code{\link{GtkOptionMenu}}.
+Other composite widgets such as the \code{\link{GtkNotebook}} can pop up a \code{\link{GtkMenu}}
 as well.
   
-Applications can display a \verb{\link{GtkMenu}} as a popup menu by calling the 
+Applications can display a \code{\link{GtkMenu}} as a popup menu by calling the
 \code{\link{gtkMenuPopup}} function.  The example below shows how an application
-can pop up a menu when the 3rd mouse button is pressed.  
+can pop up a menu when the 3rd mouse button is pressed.
   
  \emph{Connecting the popup signal handler.}
 \preformatted{
@@ -85,7 +89,7 @@ my_popup_handler <- function(widget, event)
 
 }}
 \section{Structures}{\describe{\item{\verb{GtkMenu}}{
-The \verb{\link{GtkMenu}} struct contains private data only, and
+The \code{\link{GtkMenu}} struct contains private data only, and
 should be accessed using the functions below.
 
 }}}
@@ -95,15 +99,17 @@ should be accessed using the functions below.
 A user function supplied when calling \code{\link{gtkMenuPopup}} which controls the
 positioning of the menu when it is displayed.  The function sets the \code{x}
 and \code{y} parameters to the coordinates where the menu is to be drawn.
+To make the menu appear on a different monitor than the mouse pointer,
+\code{\link{gtkMenuSetMonitor}} must be called.
 
 \describe{
-\item{\code{menu}}{[\verb{\link{GtkMenu}}] a \verb{\link{GtkMenu}}.}
-\item{\code{x}}{[integer] the \verb{integer} representing the horizontal position where the
+\item{\code{menu}}{a \code{\link{GtkMenu}}.}
+\item{\code{x}}{the \verb{integer} representing the horizontal position where the
 menu shall be drawn.  This is an output parameter.}
-\item{\code{y}}{[integer] the \verb{integer} representing the vertical position where the
+\item{\code{y}}{the \verb{integer} representing the vertical position where the
 menu shall be drawn.  This is an output parameter.}
-\item{\code{push.in}}{[logical] This parameter controls how menus placed outside the monitor are handled.
-        If this is set to TRUE and part of the menu is outside the monitor then
+\item{\code{push.in}}{This parameter controls how menus placed outside the monitor are handled.
+        If this is set to \code{TRUE} and part of the menu is outside the monitor then
         GTK+ pushes the window into the visible area, effectively modifying the
         popup position.
         Note that moving and possibly resizing the menu around will alter the
@@ -111,23 +117,20 @@ menu shall be drawn.  This is an output parameter.}
         position they would have been without resizing.
         In practice, this behavior is only useful for combobox popups or option
         menus and cannot be used to simply confine a menu to monitor boundaries.
-        In that case, changing the scroll offset is not desirable.
-        To simply constrain the menu within the monitor, get its size with
-        \code{\link{gtkWidgetSizeRequest}} before showing it, and alter the coordinates
-        passed to \code{\link{gtkMenuPopup}} accordingly.}
-\item{\code{user.data}}{[R object] the data supplied by the user in the \code{\link{gtkMenuPopup}} \code{data}
+        In that case, changing the scroll offset is not desirable.}
+\item{\code{user.data}}{the data supplied by the user in the \code{\link{gtkMenuPopup}} \code{data}
 parameter.}
 }
 
 
 }
 \item{\code{GtkMenuDetachFunc(attach.widget, menu)}}{
-A user function supplied when calling \code{\link{gtkMenuAttachToWidget}} which 
+A user function supplied when calling \code{\link{gtkMenuAttachToWidget}} which
 will be called when the menu is later detached from the widget.
 
 \describe{
-\item{\code{attach.widget}}{[\verb{\link{GtkWidget}}] the \verb{\link{GtkWidget}} that the menu is being detached from.}
-\item{\code{menu}}{[\verb{\link{GtkMenu}}] the \verb{\link{GtkMenu}} being detached.}
+\item{\code{attach.widget}}{the \code{\link{GtkWidget}} that the menu is being detached from.}
+\item{\code{menu}}{the \code{\link{GtkMenu}} being detached.}
 }
 
 
@@ -138,28 +141,84 @@ will be called when the menu is later detached from the widget.
 }
 
 \describe{
-\item{\code{menu}}{[\verb{\link{GtkMenu}}] the object which received the signal.}
-\item{\code{arg1}}{[\code{\link{GtkScrollType}}] }
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{menu}}{the object which received the signal.}
+\item{\code{arg1}}{\emph{undocumented
+}}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }}}
 \section{Properties}{\describe{
+\item{\verb{accel-group} [\code{\link{GtkAccelGroup}} : *        : Read / Write]}{
+
+The accel group holding accelerators for the menu.
+  Since 2.14
+
+}
+\item{\verb{accel-path} [character : *                : Read / Write]}{
+
+An accel path used to conveniently construct accel paths of child items.
+  Default value: NULL  Since 2.14
+
+}
+\item{\verb{active} [integer : Read / Write]}{
+
+The index of the currently selected menu item, or -1 if no
+menu item is selected.
+  Allowed values: >= -1  Default value: -1  Since 2.14
+
+}
+\item{\verb{attach-widget} [\code{\link{GtkWidget}} : *            : Read / Write]}{
+
+The widget the menu is attached to. Setting this property attaches
+the menu without a \verb{GtkMenuDetachFunc}. If you need to use a detacher,
+use \code{\link{gtkMenuAttachToWidget}} directly.
+  Since 2.14
+
+}
+\item{\verb{monitor} [integer : Read / Write]}{
+
+The monitor the menu will be popped up on.
+  Allowed values: >= -1  Default value: -1  Since 2.14
+
+}
+\item{\verb{reserve-toggle-size} [logical : Read / Write]}{
+
+A boolean that indicates whether the menu reserves space for
+toggles and icons, regardless of their actual presence.
+  
+This property should only be changed from its default value
+for special-purposes such as tabular menus. Regular menus that
+are connected to a menu bar or context menus should reserve
+toggle space for consistency.
+  Default value: TRUE  Since 2.18
+
+}
 \item{\verb{tearoff-state} [logical : Read / Write]}{
 
-A boolean that indicates whether the menu is torn-off.  
-
-  Default value: FALSE  Since  2.6
+A boolean that indicates whether the menu is torn-off.
+  Default value: FALSE  Since 2.6
 
 }
 \item{\verb{tearoff-title} [character : *                : Read / Write]}{
 
-A title that may be displayed by the window manager when this menu is torn-off.  Default value: ""
+A title that may be displayed by the window manager when this menu is torn-off.  Default value: NULL
 
 }
 }}
 \section{Style Properties}{\describe{
+\item{\verb{arrow-placement} [GtkArrowPlacement : Read]}{
+
+Indicates where scroll arrows should be placed.
+  Default value: GTK_ARROWS_BOTH  Since 2.16
+
+}
+\item{\verb{arrow-scaling} [numeric : Read]}{
+
+Arbitrary constant to scale down the size of the scroll arrow.  Allowed values: [0,1]  Default value: 0.7
+
+}
 \item{\verb{double-arrows} [logical : Read]}{
 
 When scrolling, always show both arrows.  Default value: TRUE
@@ -186,6 +245,6 @@ Extra space at the top and bottom of the menu.  Allowed values: >= 0  Default va
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkMenu.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkMenu.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -7,9 +7,9 @@ children in the list or negative, \code{child} will be moved to the end
 of the list.}
 \usage{gtkNotebookReorderChild(object, child, position)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkNotebook}}]  a \verb{\link{GtkNotebook}}}
-\item{\verb{child}}{[\verb{\link{GtkWidget}}]  the child to move}
-\item{\verb{position}}{[integer]  the new position, or -1 to move to the end}
+\item{\verb{object}}{a \code{\link{GtkNotebook}}}
+\item{\verb{child}}{the child to move}
+\item{\verb{position}}{the new position, or -1 to move to the end}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

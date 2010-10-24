@@ -5,6 +5,9 @@
 \details{
 The RGtk binding to the GTK library consists of the following components:
 \describe{
+\item{\link{chap-drawing-model}}{    The GTK+ drawing model in detail}
+\item{\link{gtk-Filesystem-utilities}}{Functions for working with GIO}
+\item{\link{GtkAboutDialog}}{Display information about an application}
 \item{\link{GtkAboutDialog}}{Display information about an application}
 \item{\link{gtk-Keyboard-Accelerators}}{Groups of global keyboard accelerators for an entire GtkWindow}
 \item{\link{GtkAccelLabel}}{A label which displays an accelerator key on the right of the text}
@@ -12,6 +15,7 @@ The RGtk binding to the GTK library consists of the following components:
 \item{\link{GtkAccessible}}{Accessibility support for widgets}
 \item{\link{GtkAction}}{An action which can be triggered by a menu or toolbar item}
 \item{\link{GtkActionGroup}}{A group of actions}
+\item{\link{GtkActivatable}}{An interface for activatable widgets}
 \item{\link{GtkAdjustment}}{A GtkObject representing an adjustable bounded value}
 \item{\link{GtkAlignment}}{A widget which controls the alignment and size of its child}
 \item{\link{GtkArrow}}{Displays an arrow}
@@ -32,11 +36,12 @@ The RGtk binding to the GTK library consists of the following components:
 \item{\link{GtkCellRendererPixbuf}}{Renders a pixbuf in a cell}
 \item{\link{GtkCellRendererProgress}}{Renders numbers as progress bars}
 \item{\link{GtkCellRendererSpin}}{Renders a spin button in a cell}
+\item{\link{GtkCellRendererSpinner}}{Renders a spinning animation in a cell}
 \item{\link{GtkCellRendererText}}{Renders text in a cell}
 \item{\link{GtkCellRendererToggle}}{Renders a toggle button in a cell}
 \item{\link{GtkCellView}}{A widget displaying a single row of a GtkTreeModel}
 \item{\link{GtkCheckButton}}{Create widgets with a discrete toggle button}
-\item{\link{GtkCheckMenuItem}}{A menu item with a check box}
+\item{\link{gtk-gtkcheckmenuitem}}{A menu item with a check box}
 \item{\link{gtk-Clipboards}}{Storing data on clipboards}
 \item{\link{GtkCList}}{A multi-columned scrolling list widget}
 \item{\link{GtkColorButton}}{A button to launch a color selection dialog}
@@ -53,6 +58,7 @@ The RGtk binding to the GTK library consists of the following components:
 \item{\link{GtkDrawingArea}}{A widget for custom user interface elements}
 \item{\link{GtkEditable}}{Interface for text-editing widgets}
 \item{\link{GtkEntry}}{A single line text entry field}
+\item{\link{GtkEntryBuffer}}{Text buffer for GtkEntry}
 \item{\link{GtkEntryCompletion}}{Completion functionality for GtkEntry}
 \item{\link{gtk-Standard-Enumerations}}{Public enumerated types used throughout GTK+}
 \item{\link{GtkEventBox}}{A widget used to catch events for widgets which do not have their own window}
@@ -78,6 +84,7 @@ The RGtk binding to the GTK library consists of the following components:
 \item{\link{GtkHScale}}{A horizontal slider widget for selecting a value from a range}
 \item{\link{GtkHScrollbar}}{A horizontal scrollbar}
 \item{\link{GtkHSeparator}}{A horizontal separator}
+\item{\link{GtkHSV}}{A 'color wheel' widget}
 \item{\link{gtk-Themeable-Stock-Images}}{Manipulating stock icons}
 \item{\link{GtkIconTheme}}{Looking up icons by name}
 \item{\link{GtkIconView}}{A widget which displays a list of icons in a grid}
@@ -86,6 +93,7 @@ The RGtk binding to the GTK library consists of the following components:
 \item{\link{GtkIMContext}}{Base class for input method contexts}
 \item{\link{GtkIMContextSimple}}{An input method context supporting table-based input methods}
 \item{\link{GtkIMMulticontext}}{An input method context supporting multiple, loadable input methods}
+\item{\link{GtkInfoBar}}{Report important messages to the user}
 \item{\link{GtkInputDialog}}{Configure devices for the XInput extension}
 \item{\link{GtkInvisible}}{A widget which is not displayed}
 \item{\link{GtkItem}}{Abstract base class for GtkMenuItem, GtkListItem and GtkTreeItem}
@@ -105,8 +113,11 @@ The RGtk binding to the GTK library consists of the following components:
 \item{\link{GtkMessageDialog}}{A convenient message window}
 \item{\link{GtkMisc}}{Base class for widgets with alignments and padding}
 \item{\link{GtkNotebook}}{A tabbed notebook container}
+\item{\link{GtkOffscreenWindow}}{A toplevel container widget used to manage offscreen
+   rendering of child widgets.}
 \item{\link{GtkOldEditable}}{Base class for text-editing widgets}
 \item{\link{GtkOptionMenu}}{A widget used to choose from a list of valid choices}
+\item{\link{gtk-Orientable}}{An interface for flippable widgets}
 \item{\link{GtkPageSetup}}{Stores page setup information}
 \item{\link{GtkPaned}}{Base class for widgets with two adjustable panes}
 \item{\link{gtk-GtkPaperSize}}{Support for named paper sizes}
@@ -144,12 +155,14 @@ The RGtk binding to the GTK library consists of the following components:
 \item{\link{GtkSizeGroup}}{Grouping widgets so they request the same size}
 \item{\link{GtkSocket}}{Container for widgets from other processes}
 \item{\link{GtkSpinButton}}{Retrieve an integer or floating-point number from the user}
+\item{\link{GtkSpinner}}{Show a spinner animation}
 \item{\link{GtkStatusbar}}{Report messages of minor importance to the user}
 \item{\link{GtkStatusIcon}}{Display an icon in the system tray}
 \item{\link{gtk-Stock-Items}}{Prebuilt common menu/toolbar items and corresponding icons}
 \item{\link{GtkStyle}}{Functions for drawing widget parts}
 \item{\link{GtkTable}}{Pack widgets in regular patterns}
 \item{\link{GtkTearoffMenuItem}}{A menu item used to tear off and reattach its menu}
+\item{\link{gtk-Testing}}{Utilities for testing GTK+ applications}
 \item{\link{GtkTextBuffer}}{Stores attributed text for display in a GtkTextView}
 \item{\link{gtk-GtkTextIter}}{Text buffer iterator}
 \item{\link{GtkTextMark}}{A position in the buffer preserved across buffer modifications}
@@ -162,7 +175,10 @@ The RGtk binding to the GTK library consists of the following components:
 \item{\link{GtkToggleToolButton}}{A GtkToolItem containing a toggle button}
 \item{\link{GtkToolbar}}{Create bars of buttons and other widgets}
 \item{\link{GtkToolButton}}{A GtkToolItem subclass that displays buttons}
-\item{\link{GtkToolItem}}{The base class of widgets that can be added to GtkToolbar}
+\item{\link{GtkToolItem}}{The base class of widgets that can be added to GtkToolShell}
+\item{\link{GtkToolItemGroup}}{A sub container used in a tool palette}
+\item{\link{GtkToolPalette}}{A tool palette with categories}
+\item{\link{GtkToolShell}}{Interface for containers containing GtkToolItem widgets}
 \item{\link{GtkTooltip}}{Add tips to your widgets}
 \item{\link{GtkTooltips}}{Add tips to your widgets}
 \item{\link{gtk-GtkTreeView-drag-and-drop}}{Interfaces for drag-and-drop support in GtkTreeView}
@@ -182,14 +198,13 @@ The RGtk binding to the GTK library consists of the following components:
 \item{\link{GtkVPaned}}{A container with two panes arranged vertically}
 \item{\link{GtkVRuler}}{A vertical ruler}
 \item{\link{GtkVScale}}{A vertical slider widget for selecting a value from a range}
-\item{\link{GtkVScrollbar}}{\emph{undocumented
-}}
+\item{\link{GtkVScrollbar}}{A vertical scrollbar}
 \item{\link{GtkVSeparator}}{A vertical separator}
 \item{\link{GtkWidget}}{Base class for all widgets}
 \item{\link{GtkWindow}}{Toplevel which can contain other widgets}
 \item{\link{GtkWindowGroup}}{Limit the effect of grabs}
 }
 }
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk}}
+\references{\url{http://library.gnome.org/devel//gtk}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{interface}

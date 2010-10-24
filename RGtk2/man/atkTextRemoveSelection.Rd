@@ -4,7 +4,7 @@
 \description{Removes the specified selection.}
 \usage{atkTextRemoveSelection(object, selection.num)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{AtkText}}]  an \verb{\link{AtkText}}}
+\item{\verb{object}}{[\code{\link{AtkText}}]  an \code{\link{AtkText}}}
 \item{\verb{selection.num}}{[integer]  The selection number.  The selected regions are
 assigned numbers that correspond to how far the region is from the
 start of the text.  The selected region closest to the beginning

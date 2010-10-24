@@ -4,7 +4,7 @@
 \description{Gets the selected rows of the table by initializing **selected with 
 the selected row numbers.}
 \usage{atkTableGetSelectedRows(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{AtkTable}}]  a GObject instance that implements AtkTableIface}}
+\arguments{\item{\verb{object}}{[\code{\link{AtkTable}}]  a GObject instance that implements AtkTableIface}}
 \value{
 A list containing the following elements:
 \item{retval}{[integer]  a gint representing the number of selected rows,

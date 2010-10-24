@@ -7,12 +7,12 @@ just want to test if \code{selection} has any selected nodes.  \code{model} is f
 with the current model as a convenience.  This function will not work if you
 use \code{selection} is \verb{GTK_SELECTION_MULTIPLE}.}
 \usage{gtkTreeSelectionGetSelected(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkTreeSelection}}]  A \verb{\link{GtkTreeSelection}}.}}
+\arguments{\item{\verb{object}}{A \code{\link{GtkTreeSelection}}.}}
 \value{
 A list containing the following elements:
 \item{retval}{[logical]  TRUE, if there is a selected node.}
-\item{\verb{model}}{[\verb{\link{GtkTreeModel}}]  A pointer to set to the \verb{\link{GtkTreeModel}}, or NULL.}
-\item{\verb{iter}}{[\verb{\link{GtkTreeIter}}]  The \verb{\link{GtkTreeIter}}, or NULL.}
+\item{\verb{model}}{ A pointer to set to the \code{\link{GtkTreeModel}}, or NULL. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
+\item{\verb{iter}}{ The \code{\link{GtkTreeIter}}, or NULL. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

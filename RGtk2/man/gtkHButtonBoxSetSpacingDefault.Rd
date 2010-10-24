@@ -7,6 +7,6 @@ horizontal button box.
 \strong{WARNING: \code{gtk_hbutton_box_set_spacing_default} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkHButtonBoxSetSpacingDefault(spacing)}
-\arguments{\item{\verb{spacing}}{[integer] an integer value.}}
+\arguments{\item{\verb{spacing}}{an integer value.}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -11,6 +11,7 @@
 \code{\link{gtkHandleBoxGetHandlePosition}(object)}\cr
 \code{\link{gtkHandleBoxGetShadowType}(object)}\cr
 \code{\link{gtkHandleBoxGetSnapEdge}(object)}\cr
+\code{\link{gtkHandleBoxGetChildDetached}(object)}\cr
 \code{gtkHandleBox(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{GObject
@@ -21,8 +22,8 @@
                            +----GtkBin
                                  +----GtkHandleBox}}
 \section{Interfaces}{GtkHandleBox implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{The \verb{\link{GtkHandleBox}} widget allows a portion of a window to be "torn
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
+\section{Detailed Description}{The \code{\link{GtkHandleBox}} widget allows a portion of a window to be "torn
 off". It is a bin widget which displays its child and a handle that
 the user can drag to tear off a separate window (the \dfn{float
 window}) containing the child widget. A thin
@@ -44,10 +45,9 @@ when the handlebox is detached, the bottom edge of the handlebox's
 allocation will remain fixed as the height of the handlebox shrinks,
 so the snap edge should be set to \code{GTK_POS_BOTTOM}.}
 \section{Structures}{\describe{\item{\verb{GtkHandleBox}}{
-The \verb{\link{GtkHandleBox}} struct contains the following fields.
+The \code{\link{GtkHandleBox}} struct contains the following fields.
 (These fields should be considered read-only. They should never be set by
 an application.)
-
 \tabular{ll}{
 GtkShadowType shadow_type; \tab The shadow type for the entry. (See   \code{\link{gtkHandleBoxSetShadowType}}  ). \cr
 GtkPositionType handle_position; \tab The position of the handlebox's handle with respect
@@ -67,11 +67,11 @@ This signal is emitted when the contents of the
 handlebox are reattached to the main window.
 
 \describe{
-\item{\code{handlebox}}{[\verb{\link{GtkHandleBox}}] the object which received the signal.}
-\item{\code{widget}}{[\verb{\link{GtkWidget}}] the child widget of the handlebox.
+\item{\code{handlebox}}{the object which received the signal.}
+\item{\code{widget}}{the child widget of the handlebox.
          (this argument provides no extra information
           and is here only for backwards-compatibility)}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -81,17 +81,22 @@ This signal is emitted when the contents of the
 handlebox are detached from the main window.
 
 \describe{
-\item{\code{handlebox}}{[\verb{\link{GtkHandleBox}}] the object which received the signal.}
-\item{\code{widget}}{[\verb{\link{GtkWidget}}] the child widget of the handlebox. 
+\item{\code{handlebox}}{the object which received the signal.}
+\item{\code{widget}}{the child widget of the handlebox.
          (this argument provides no extra information
           and is here only for backwards-compatibility)}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
 }}
 \section{Properties}{\describe{
+\item{\verb{child-detached} [logical : Read]}{
+
+A boolean value indicating whether the handlebox's child is attached or detached.  Default value: FALSE
+
+}
 \item{\verb{handle-position} [\code{\link{GtkPositionType}} : Read / Write]}{
 
 Position of the handle relative to the child widget.  Default value: GTK_POS_LEFT
@@ -99,12 +104,12 @@ Position of the handle relative to the child widget.  Default value: GTK_POS_LEF
 }
 \item{\verb{shadow} [\code{\link{GtkShadowType}} : Read / Write]}{
 
-Deprecated property, use shadow_type instead.  Default value: GTK_SHADOW_ETCHED_OUT
+Deprecated property, use shadow_type instead.  Default value: GTK_SHADOW_OUT
 
 }
 \item{\verb{shadow-type} [\code{\link{GtkShadowType}} : Read / Write]}{
 
-Appearance of the shadow that surrounds the container.  Default value: GTK_SHADOW_ETCHED_OUT
+Appearance of the shadow that surrounds the container.  Default value: GTK_SHADOW_OUT
 
 }
 \item{\verb{snap-edge} [\code{\link{GtkPositionType}} : Read / Write]}{
@@ -118,6 +123,6 @@ Whether to use the value from the snap_edge property or a value derived from han
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkHandleBox.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkHandleBox.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

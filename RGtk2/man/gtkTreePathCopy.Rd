@@ -1,9 +1,9 @@
 \alias{gtkTreePathCopy}
 \name{gtkTreePathCopy}
 \title{gtkTreePathCopy}
-\description{Creates a new \verb{\link{GtkTreePath}} as a copy of \code{path}.}
+\description{Creates a new \code{\link{GtkTreePath}} as a copy of \code{path}.}
 \usage{gtkTreePathCopy(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkTreePath}}]  A \verb{\link{GtkTreePath}}.}}
-\value{[\verb{\link{GtkTreePath}}]  A new \verb{\link{GtkTreePath}}.}
+\arguments{\item{\verb{object}}{A \code{\link{GtkTreePath}}.}}
+\value{[\code{\link{GtkTreePath}}]  A new \code{\link{GtkTreePath}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

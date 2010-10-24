@@ -19,8 +19,8 @@
                            +----GtkImage
                            +----GtkPixmap}}
 \section{Interfaces}{GtkMisc implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{The \verb{\link{GtkMisc}} widget is an abstract widget which is not useful itself, but
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
+\section{Detailed Description}{The \code{\link{GtkMisc}} widget is an abstract widget which is not useful itself, but
 is used to derive subclasses which have alignment and padding attributes.
   
 The horizontal and vertical padding attributes allows extra space to be
@@ -31,10 +31,9 @@ positioned within its allocated area. Note that if the widget is added to
 a container in such a way that it expands automatically to fill its
 allocated area, the alignment settings will not alter the widgets position.}
 \section{Structures}{\describe{\item{\verb{GtkMisc}}{
-The \verb{\link{GtkMisc}} struct contains the following fields.
+The \code{\link{GtkMisc}} struct contains the following fields.
 (These fields should be considered read-only. They should never be set by
 an application.)
-
 \tabular{ll}{
 \verb{numeric}  \code{xalign}  ; \tab the horizontal alignment, from 0 (left) to 1 (right). \cr
 \verb{numeric}  \code{yalign}  ; \tab the vertical alignment, from 0 (top) to 1 (bottom). \cr
@@ -67,6 +66,6 @@ The amount of space to add on the top and bottom of the widget, in pixels.  Allo
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkMisc.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkMisc.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -7,9 +7,9 @@ Currently, this works only for the selection modes
 \code{GTK_SELECTION_SINGLE} and \code{GTK_SELECTION_BROWSE}.}
 \usage{gtkTreeViewSetHoverSelection(object, hover)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTreeView}}]  a \verb{\link{GtkTreeView}}}
-\item{\verb{hover}}{[logical] \code{TRUE} to enable hover selection mode}
+\item{\verb{object}}{a \code{\link{GtkTreeView}}}
+\item{\verb{hover}}{\code{TRUE} to enable hover selection mode}
 }
-\details{  Since  2.6}
+\details{Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

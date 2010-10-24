@@ -7,8 +7,8 @@ implementing scary features that involve deep knowledge of the
 windowing system. Don't worry about it unless you have to.}
 \usage{gdkWindowSetStaticGravities(object, use.static)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a \verb{\link{GdkWindow}}}
-\item{\verb{use.static}}{[logical] \code{TRUE} to turn on static gravity}
+\item{\verb{object}}{a \code{\link{GdkWindow}}}
+\item{\verb{use.static}}{\code{TRUE} to turn on static gravity}
 }
 \value{[logical] \code{TRUE} if the server supports static gravity}
 \author{Derived by RGtkGen from GTK+ documentation}

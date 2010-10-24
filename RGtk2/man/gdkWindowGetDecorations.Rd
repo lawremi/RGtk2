@@ -3,11 +3,11 @@
 \title{gdkWindowGetDecorations}
 \description{Returns the decorations set on the GdkWindow with \code{\link{gdkWindowSetDecorations}}}
 \usage{gdkWindowGetDecorations(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GdkWindow}}]  The toplevel \verb{\link{GdkWindow}} to get the decorations from}}
+\arguments{\item{\verb{object}}{The toplevel \code{\link{GdkWindow}} to get the decorations from}}
 \value{
 A list containing the following elements:
 \item{retval}{[logical]  TRUE if the window has decorations set, FALSE otherwise.}
-\item{\verb{decorations}}{[\code{\link{GdkWMDecoration}}]  The window decorations will be written here}
+\item{\verb{decorations}}{The window decorations will be written here}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

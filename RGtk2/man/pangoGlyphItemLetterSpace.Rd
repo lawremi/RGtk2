@@ -5,14 +5,14 @@
 give the effect of typographic letter spacing.}
 \usage{pangoGlyphItemLetterSpace(glyph.item, text, log.attrs)}
 \arguments{
-\item{\verb{glyph.item}}{[\verb{\link{PangoGlyphItem}}]  a \verb{\link{PangoGlyphItem}}}
-\item{\verb{text}}{[char]  text that \code{glyph.item} corresponds to
+\item{\verb{glyph.item}}{a \code{\link{PangoGlyphItem}}}
+\item{\verb{text}}{text that \code{glyph.item} corresponds to
   (glyph_item->item->offset is an offset from the
    start of \code{text})}
-\item{\verb{log.attrs}}{[\verb{\link{PangoLogAttr}}]  logical attributes for the item (the
+\item{\verb{log.attrs}}{logical attributes for the item (the
   first logical attribute refers to the position
   before the first character in the item)}
 }
-\details{  Since  1.6}
+\details{Since 1.6}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

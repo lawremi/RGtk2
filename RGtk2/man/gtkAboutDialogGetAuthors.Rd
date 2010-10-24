@@ -4,8 +4,8 @@
 \description{Returns the string which are displayed in the authors tab
 of the secondary credits dialog.}
 \usage{gtkAboutDialogGetAuthors(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkAboutDialog}}]  a \verb{\link{GtkAboutDialog}}}}
-\details{  Since  2.6}
+\arguments{\item{\verb{object}}{a \code{\link{GtkAboutDialog}}}}
+\details{Since 2.6}
 \value{[character]  A string list containing
  the authors.}
 \author{Derived by RGtkGen from GTK+ documentation}

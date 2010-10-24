@@ -17,11 +17,11 @@
          +----GtkToggleAction
                +----GtkRadioAction}}
 \section{Interfaces}{GtkToggleAction implements
- \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{A \verb{\link{GtkToggleAction}} corresponds roughly to a \verb{\link{GtkCheckMenuItem}}. It has an
+ \code{\link{GtkBuildable}}.}
+\section{Detailed Description}{A \code{\link{GtkToggleAction}} corresponds roughly to a \code{\link{GtkCheckMenuItem}}. It has an
 "active" state specifying whether the action has been checked or not.}
 \section{Structures}{\describe{\item{\verb{GtkToggleAction}}{
-The \code{GtkToggleAction} struct contains only 
+The \code{GtkToggleAction} struct contains only
 private members and should not be accessed directly.
 
 }}}
@@ -31,8 +31,8 @@ private members and should not be accessed directly.
 }
 
 \describe{
-\item{\code{toggleaction}}{[\verb{\link{GtkToggleAction}}] the object which received the signal.}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{toggleaction}}{the object which received the signal.}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -40,17 +40,20 @@ private members and should not be accessed directly.
 \section{Properties}{\describe{
 \item{\verb{active} [logical : Read / Write]}{
 
-If the toggle action should be active in or not.  
-
-  Default value: FALSE  Since  2.10
+If the toggle action should be active in or not.
+  Default value: FALSE  Since 2.10
 
 }
 \item{\verb{draw-as-radio} [logical : Read / Write]}{
 
-Whether the proxies for this action look like radio action proxies.  Default value: FALSE
+Whether the proxies for this action look like radio action proxies.
+  
+This is an appearance property and thus only applies if
+\verb{"use-action-appearance"} is \code{TRUE}.
+  Default value: FALSE
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkToggleAction.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkToggleAction.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

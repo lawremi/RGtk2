@@ -6,9 +6,9 @@
 level concept.}
 \usage{gtkRangeSetShowFillLevel(object, show.fill.level)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkRange}}]            A \verb{\link{GtkRange}}}
-\item{\verb{show.fill.level}}{[logical]  Whether a fill level indicator graphics is shown.}
+\item{\verb{object}}{A \code{\link{GtkRange}}}
+\item{\verb{show.fill.level}}{Whether a fill level indicator graphics is shown.}
 }
-\details{  Since  2.12}
+\details{Since 2.12}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

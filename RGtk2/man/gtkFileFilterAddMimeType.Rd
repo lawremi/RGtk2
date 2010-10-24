@@ -4,9 +4,9 @@
 \description{Adds a rule allowing a given mime type to \code{filter}.}
 \usage{gtkFileFilterAddMimeType(object, mime.type)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkFileFilter}}]  A \verb{\link{GtkFileFilter}}}
-\item{\verb{mime.type}}{[character]  name of a MIME type}
+\item{\verb{object}}{A \code{\link{GtkFileFilter}}}
+\item{\verb{mime.type}}{name of a MIME type}
 }
-\details{  Since  2.4}
+\details{Since 2.4}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

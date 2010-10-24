@@ -11,18 +11,17 @@ have left-to-right layout. Paragraphs with only neutral
 characters get their direction from the surrounding paragraphs.}
 \usage{pangoLayoutSetAutoDir(object, auto.dir)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{PangoLayout}}]  a \verb{\link{PangoLayout}}}
-\item{\verb{auto.dir}}{[logical]  if \code{TRUE}, compute the bidirectional base direction
+\item{\verb{object}}{a \code{\link{PangoLayout}}}
+\item{\verb{auto.dir}}{if \code{TRUE}, compute the bidirectional base direction
   from the layout's contents.}
 }
 \details{When \code{FALSE}, the choice between left-to-right and
 right-to-left layout is done according to the base direction
-of the layout's \verb{\link{PangoContext}}. (See \code{\link{pangoContextSetBaseDir}}).
+of the layout's \code{\link{PangoContext}}. (See \code{\link{pangoContextSetBaseDir}}).
   
 When the auto-computed direction of a paragraph differs from the
 base direction of the context, the interpretation of
-\code{PANGO_ALIGN_LEFT} and \code{PANGO_ALIGN_RIGHT} are swapped.  
-
-  Since  1.4}
+\code{PANGO_ALIGN_LEFT} and \code{PANGO_ALIGN_RIGHT} are swapped.
+  Since 1.4}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

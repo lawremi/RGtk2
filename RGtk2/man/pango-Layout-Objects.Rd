@@ -57,6 +57,7 @@
 \code{\link{pangoLayoutGetPixelExtents}(object)}\cr
 \code{\link{pangoLayoutGetSize}(object)}\cr
 \code{\link{pangoLayoutGetPixelSize}(object)}\cr
+\code{\link{pangoLayoutGetBaseline}(object)}\cr
 \code{\link{pangoLayoutGetLineCount}(object)}\cr
 \code{\link{pangoLayoutGetLine}(object, line)}\cr
 \code{\link{pangoLayoutGetLineReadonly}(object, line)}\cr
@@ -98,8 +99,8 @@ high-level driver for formatting entire paragraphs of text
 at once.}
 \section{Structures}{\describe{
 \item{\verb{PangoLayout}}{
-The \verb{\link{PangoLayout}} structure represents an entire paragraph
-of text. It is initialized with a \verb{\link{PangoContext}}, UTF-8 string
+The \code{\link{PangoLayout}} structure represents an entire paragraph
+of text. It is initialized with a \code{\link{PangoContext}}, UTF-8 string
 and set of attributes for that string. Once that is done, the
 set of formatted lines can be extracted from the object,
 the layout can be rendered, and conversion between logical
@@ -107,34 +108,34 @@ character positions within the layout's text, and the physical
 position of the resulting glyphs can be made.
   
 There are also a number of parameters to adjust the formatting
-of a \verb{\link{PangoLayout}}, which are illustrated in .
+of a \code{\link{PangoLayout}}, which are illustrated in .
 It is possible, as well, to ignore the 2-D setup, and simply
-treat the results of a \verb{\link{PangoLayout}} as a list of lines.
+treat the results of a \code{\link{PangoLayout}} as a list of lines.
   
-The \verb{\link{PangoLayout}} structure is opaque, and has no user-visible
+The \code{\link{PangoLayout}} structure is opaque, and has no user-visible
 fields.
 
 }
 \item{\verb{PangoLayoutIter}}{
-A \verb{\link{PangoLayoutIter}} structure can be used to
-iterate over the visual extents of a \verb{\link{PangoLayout}}. 
+A \code{\link{PangoLayoutIter}} structure can be used to
+iterate over the visual extents of a \code{\link{PangoLayout}}.
   
-The \verb{\link{PangoLayoutIter}} structure is opaque, and 
+The \code{\link{PangoLayoutIter}} structure is opaque, and
 has no user-visible fields.
 
 }
 \item{\verb{PangoLayoutLine}}{
-The \verb{\link{PangoLayoutLine}} structure represents one of the lines resulting
-from laying out a paragraph via \verb{\link{PangoLayout}}. \verb{\link{PangoLayoutLine}}
+The \code{\link{PangoLayoutLine}} structure represents one of the lines resulting
+from laying out a paragraph via \code{\link{PangoLayout}}. \code{\link{PangoLayoutLine}}
 structures are obtained by calling \code{\link{pangoLayoutGetLine}} and
 are only valid until the text, attributes, or settings of the
-parent \verb{\link{PangoLayout}} are modified.
+parent \code{\link{PangoLayout}} are modified.
   
 Routines for rendering PangoLayout objects are provided in
 code specific to each rendering system.
 
 \describe{
-\item{\verb{layout}}{[\verb{\link{PangoLayout}}] the parent layout for this line}
+\item{\verb{layout}}{[\code{\link{PangoLayout}}] the parent layout for this line}
 \item{\verb{startIndex}}{[integer] the start of the line as byte index into \code{layout->text}}
 \item{\verb{length}}{[integer] the length of the line in bytes}
 \item{\verb{runs}}{[list] a list containing the runs of the line in visual order}
@@ -147,7 +148,7 @@ code specific to each rendering system.
 \section{Convenient Construction}{\code{pangoLayout} is the equivalent of \code{\link{pangoLayoutNew}}.}
 \section{Enums and Flags}{\describe{
 \item{\verb{PangoWrapMode}}{
-A \code{\link{PangoWrapMode}} describes how to wrap the lines of a \verb{\link{PangoLayout}} to the desired width.
+A \code{\link{PangoWrapMode}} describes how to wrap the lines of a \code{\link{PangoLayout}} to the desired width.
 
 \describe{
 \item{\verb{word}}{wrap lines at word boundaries.}
@@ -160,19 +161,19 @@ The \code{\link{PangoEllipsizeMode}} type describes what sort of (if any)
 ellipsization should be applied to a line of text. In
 the ellipsization process characters are removed from the
 text in order to make it fit to a given width and replaced
-with an ellipsis.  
+with an ellipsis.
 
 \describe{
-\item{\verb{none}}{ No ellipsization}
-\item{\verb{start}}{ Omit characters at the start of the text}
-\item{\verb{middle}}{ Omit characters in the middle of the text}
-\item{\verb{end}}{ Omit characters at the end of the text}
+\item{\verb{none}}{No ellipsization}
+\item{\verb{start}}{Omit characters at the start of the text}
+\item{\verb{middle}}{Omit characters in the middle of the text}
+\item{\verb{end}}{Omit characters at the end of the text}
 }
 
 }
 \item{\verb{PangoAlignment}}{
-A \code{\link{PangoAlignment}} describes how to align the lines of a \verb{\link{PangoLayout}} within the
-available space. If the \verb{\link{PangoLayout}} is set to justify
+A \code{\link{PangoAlignment}} describes how to align the lines of a \code{\link{PangoLayout}} within the
+available space. If the \code{\link{PangoLayout}} is set to justify
 using \code{\link{pangoLayoutSetJustify}}, this only has effect for partial lines.
 
 \describe{
@@ -183,6 +184,6 @@ using \code{\link{pangoLayoutSetJustify}}, this only has effect for partial line
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/pango/pango-Layout-Objects.html}}
+\references{\url{http://library.gnome.org/devel//pango/pango-Layout-Objects.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

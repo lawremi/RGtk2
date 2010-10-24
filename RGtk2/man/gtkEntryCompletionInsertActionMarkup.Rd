@@ -5,10 +5,10 @@
 with markup \code{markup}.}
 \usage{gtkEntryCompletionInsertActionMarkup(object, index, markup)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkEntryCompletion}}]  A \verb{\link{GtkEntryCompletion}}.}
-\item{\verb{index}}{[integer]  The index of the item to insert.}
-\item{\verb{markup}}{[character]  Markup of the item to insert.}
+\item{\verb{object}}{A \code{\link{GtkEntryCompletion}}.}
+\item{\verb{index}}{The index of the item to insert.}
+\item{\verb{markup}}{Markup of the item to insert.}
 }
-\details{  Since  2.4}
+\details{Since 2.4}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

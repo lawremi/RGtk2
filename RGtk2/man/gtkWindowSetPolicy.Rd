@@ -5,29 +5,27 @@
 Changes how a toplevel window deals with its size request and user resize
 attempts. There are really only two reasonable ways to call this function:
 \enumerate{
-\item \code{gtk_window_set_policy (GTK_WINDOW (window), FALSE, TRUE, FALSE)} 
+\item \code{gtk_window_set_policy (GTK_WINDOW (window), FALSE, TRUE, FALSE)}
 means that the window is user-resizable.
-\item \code{gtk_window_set_policy (GTK_WINDOW (window), FALSE, FALSE, TRUE)} 
-means that the window's size is program-controlled, and should simply match 
+\item \code{gtk_window_set_policy (GTK_WINDOW (window), FALSE, FALSE, TRUE)}
+means that the window's size is program-controlled, and should simply match
 the current size request of the window's children.
 }
-The first policy is the default, that is, by default windows are designed to 
+The first policy is the default, that is, by default windows are designed to
 be resized by users.
 \strong{WARNING: \code{gtk_window_set_policy} is deprecated and should not be used in newly-written code. Use \code{\link{gtkWindowSetResizable}} instead.}
 }
 \usage{gtkWindowSetPolicy(object, allow.shrink, allow.grow, auto.shrink)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkWindow}}] the window}
-\item{\verb{allow.shrink}}{[integer] whether the user can shrink the window below its size request}
-\item{\verb{allow.grow}}{[integer] whether the user can grow the window larger than its size request}
-\item{\verb{auto.shrink}}{[integer] whether the window automatically snaps back to its size request 
+\item{\verb{object}}{the window}
+\item{\verb{allow.shrink}}{whether the user can shrink the window below its size request}
+\item{\verb{allow.grow}}{whether the user can grow the window larger than its size request}
+\item{\verb{auto.shrink}}{whether the window automatically snaps back to its size request 
               if it's larger}
 }
 \details{The basic ugly truth of this function is that it should be simply:
-\code{
- void gtk_window_set_resizable (GtkWindow* window, gboolean setting);
-}
-...which is why GTK+ 2.0 introduces \code{\link{gtkWindowSetResizable}}, which you 
+\code{ void gtk_window_set_resizable (GtkWindow* window, gboolean setting);}
+...which is why GTK+ 2.0 introduces \code{\link{gtkWindowSetResizable}}, which you
 should use instead of \code{\link{gtkWindowSetPolicy}}.
   
 If set to \code{TRUE}, the \code{allow.grow} parameter allows the user to expand the window

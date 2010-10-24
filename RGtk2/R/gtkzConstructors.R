@@ -253,19 +253,14 @@ function(model = NULL, show = TRUE)
 }
 
 gtkImage <-
-function(mask = NULL, size, pixmap = NULL, image = NULL, filename, pixbuf = NULL, stock.id, icon.set, animation, show = TRUE)
+function(size, mask = NULL, pixmap = NULL, image = NULL, filename, pixbuf = NULL, stock.id, icon.set, animation, icon, show = TRUE)
 {
-  if (!missing(icon.set)) {
-    gtkImageNewFromIconSet(icon.set, size, show)
+  if (!missing(pixmap)) {
+    gtkImageNewFromPixmap(pixmap, mask, show)
   }
   else {
     if (!missing(mask)) {
-      if (!missing(pixmap)) {
-        gtkImageNewFromPixmap(pixmap, mask, show)
-      }
-      else {
-        gtkImageNewFromImage(image, mask, show)
-      }
+      gtkImageNewFromImage(image, mask, show)
     }
     else {
       if (!missing(filename)) {
@@ -280,11 +275,21 @@ function(mask = NULL, size, pixmap = NULL, image = NULL, filename, pixbuf = NULL
             gtkImageNewFromStock(stock.id, size, show)
           }
           else {
-            if (!missing(animation)) {
-              gtkImageNewFromAnimation(animation, show)
+            if (!missing(size)) {
+              if (!missing(icon.set)) {
+                gtkImageNewFromIconSet(icon.set, size, show)
+              }
+              else {
+                gtkImageNewFromGicon(icon, size, show)
+              }
             }
             else {
-              gtkImageNew(show)
+              if (!missing(animation)) {
+                gtkImageNewFromAnimation(animation, show)
+              }
+              else {
+                gtkImageNew(show)
+              }
             }
           }
         }
@@ -607,7 +612,16 @@ gtkRecentFilter <- gtkRecentFilterNew
 
 gtkRecentManager <- gtkRecentManagerNew
 
-gtkStatusIcon <- gtkStatusIconNew
+gtkStatusIcon <-
+function(icon)
+{
+  if (!missing(icon)) {
+    gtkStatusIconNewFromGicon(icon)
+  }
+  else {
+    gtkStatusIconNew()
+  }
+}
 
 gtkRecentChooserMenu <- gtkRecentChooserMenuNewForManager
 
@@ -631,7 +645,16 @@ gtkMountOperation <- gtkMountOperationNew
 
 gtkEntryBuffer <- gtkEntryBufferNew
 
-gtkInfoBar <- gtkInfoBarNew
+gtkInfoBar <-
+function(first.button.text, ..., show = TRUE)
+{
+  if (!missing(show)) {
+    gtkInfoBarNew(show)
+  }
+  else {
+    gtkInfoBarNewWithButtons(first.button.text, ...)
+  }
+}
 
 gtkToolItemGroup <- gtkToolItemGroupNew
 

@@ -1,8 +1,8 @@
 \alias{gtkCheckButtonNew}
 \name{gtkCheckButtonNew}
 \title{gtkCheckButtonNew}
-\description{Creates a new \verb{\link{GtkCheckButton}}.}
+\description{Creates a new \code{\link{GtkCheckButton}}.}
 \usage{gtkCheckButtonNew(show = TRUE)}
-\value{[\verb{\link{GtkWidget}}] a \verb{\link{GtkWidget}}.}
+\value{[\code{\link{GtkWidget}}] a \code{\link{GtkWidget}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

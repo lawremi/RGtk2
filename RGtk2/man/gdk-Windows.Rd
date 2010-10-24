@@ -26,6 +26,7 @@
 \code{\link{gdkWindowShow}(object)}\cr
 \code{\link{gdkWindowShowUnraised}(object)}\cr
 \code{\link{gdkWindowHide}(object)}\cr
+\code{\link{gdkWindowIsDestroyed}(object)}\cr
 \code{\link{gdkWindowIsVisible}(object)}\cr
 \code{\link{gdkWindowIsViewable}(object)}\cr
 \code{\link{gdkWindowGetState}(object)}\cr
@@ -47,12 +48,15 @@
 \code{\link{gdkWindowMoveResize}(object, x, y, width, height)}\cr
 \code{\link{gdkWindowScroll}(object, dx, dy)}\cr
 \code{\link{gdkWindowMoveRegion}(object, region, x, y)}\cr
+\code{\link{gdkWindowFlush}(object)}\cr
+\code{\link{gdkWindowEnsureNative}(object)}\cr
 \code{\link{gdkWindowReparent}(object, new.parent, x, y)}\cr
 \code{\link{gdkWindowClear}(object)}\cr
 \code{\link{gdkWindowClearArea}(object, x, y, width, height)}\cr
 \code{\link{gdkWindowClearAreaE}(object, x, y, width, height)}\cr
 \code{\link{gdkWindowRaise}(object)}\cr
 \code{\link{gdkWindowLower}(object)}\cr
+\code{\link{gdkWindowRestack}(object, sibling, above)}\cr
 \code{\link{gdkWindowFocus}(object, timestamp = "GDK_CURRENT_TIME")}\cr
 \code{\link{gdkWindowRegisterDnd}(object)}\cr
 \code{\link{gdkWindowBeginResizeDrag}(object, edge, button, root.x, root.y, timestamp)}\cr
@@ -94,6 +98,7 @@
 \code{\link{gdkWindowSetBackground}(object, color)}\cr
 \code{\link{gdkWindowSetBackPixmap}(object, pixmap = NULL, parent.relative)}\cr
 \code{\link{gdkWindowSetCursor}(object, cursor = NULL)}\cr
+\code{\link{gdkWindowGetCursor}(object)}\cr
 \code{\link{gdkWindowGetUserData}(object)}\cr
 \code{\link{gdkWindowGetGeometry}(object)}\cr
 \code{\link{gdkWindowSetGeometryHints}(object, geometry)}\cr
@@ -109,6 +114,7 @@
 \code{\link{gdkWindowGetFrameExtents}(object)}\cr
 \code{\link{gdkWindowGetOrigin}(object)}\cr
 \code{\link{gdkWindowGetDeskrelativeOrigin}(object)}\cr
+\code{\link{gdkWindowGetRootCoords}(object, x, y)}\cr
 \code{\link{gdkWindowGetPointer}(object)}\cr
 \code{\link{gdkWindowGetParent}(object)}\cr
 \code{\link{gdkWindowGetToplevel}(object)}\cr
@@ -129,16 +135,27 @@
 \code{\link{gdkWindowGetToplevels}()}\cr
 \code{\link{gdkGetDefaultRootWindow}()}\cr
 \code{\link{gdkSetPointerHooks}(object, new.hooks)}\cr
+\code{\link{gdkOffscreenWindowGetPixmap}(window)}\cr
+\code{\link{gdkOffscreenWindowSetEmbedder}(window, embedder)}\cr
+\code{\link{gdkOffscreenWindowGetEmbedder}(window)}\cr
+\code{\link{gdkWindowGeometryChanged}(object)}\cr
+\code{\link{gdkWindowRedirectToDrawable}(object, drawable, src.x, src.y, dest.x, dest.y, width, height)}\cr
+\code{\link{gdkWindowRemoveRedirection}(object)}\cr
 \code{gdkWindow(parent = NULL, attributes)}
 }
 \section{Hierarchy}{\preformatted{GObject
    +----GdkDrawable
          +----GdkWindow}}
-\section{Detailed Description}{A \verb{\link{GdkWindow}} is a rectangular region on the screen. It's a low-level object,
-used to implement high-level objects such as \verb{\link{GtkWidget}} and \verb{\link{GtkWindow}} on the
-GTK+ level. A \verb{\link{GtkWindow}} is a toplevel window, the thing a user might think of 
-as a "window" with a titlebar and so on; a \verb{\link{GtkWindow}} may contain many \verb{\link{GdkWindow}}. 
-For example, each \verb{\link{GtkButton}} has a \verb{\link{GdkWindow}} associated with it.
+\section{Detailed Description}{A \code{\link{GdkWindow}} is a rectangular region on the screen. It's a low-level object,
+used to implement high-level objects such as \code{\link{GtkWidget}} and \code{\link{GtkWindow}} on the
+GTK+ level. A \code{\link{GtkWindow}} is a toplevel window, the thing a user might think of
+as a "window" with a titlebar and so on; a \code{\link{GtkWindow}} may contain many \code{\link{GdkWindow}}.
+For example, each \code{\link{GtkButton}} has a \code{\link{GdkWindow}} associated with it.}
+\section{Composited Windows}{Normally, the windowing system takes care of rendering the contents of a child
+window onto its parent window. This mechanism can be intercepted by calling
+\code{\link{gdkWindowSetComposited}} on the child window. For a
+\dfn{composited} window it is the responsibility of the
+application to render the window contents at the right spot.
   
  \emph{Composited windows}
 \preformatted{
@@ -243,57 +260,72 @@ event$window$setComposited(TRUE)
 #
 gSignalConnect(window, "expose-event", window_expose_event, after = TRUE)
 }  
-In the example , a button is 
-placed inside of an event box inside of a window. The event box is 
-set as composited and therefore is no longer automatically drawn to 
-the screen. 
+In the example , a button is
+placed inside of an event box inside of a window. The event box is
+set as composited and therefore is no longer automatically drawn to
+the screen.
   
 When the contents of the event box change, an expose event is
 generated on its parent window (which, in this case, belongs to
-the toplevel \verb{\link{GtkWindow}}). The expose handler for this widget is
+the toplevel \code{\link{GtkWindow}}). The expose handler for this widget is
 responsible for merging the changes back on the screen in the way
 that it wishes.
   
 In our case, we merge the contents with a 50\% transparency. We
 also set the background colour of the window to red. The effect is
-that the background shows through the button. }
+that the background shows through the button.}
+\section{Offscreen Windows}{Offscreen windows are more general than composited windows, since they
+allow not only to modify the rendering of the child window onto its parent,
+but also to apply coordinate transformations.
+  
+To integrate an offscreen window into a window hierarchy, one has to call
+\code{gdkWindowSetEmbedder()} and handle a number of signals. The
+\code{\link{gdkOffscreenWindowSetEmbedder}} and handle a number of signals. The
+\verb{"pick-embedded-child"} signal on the embedder window is used to
+select an offscreen child at given coordinates, and the \verb{"to-embedder"}
+and \verb{"from-embedder"} signals on the offscreen window are used to
+translate coordinates between the embedder and the offscreen window.
+  
+For rendering an offscreen window onto its embedder, the contents of the
+offscreen window are available as a pixmap, via
+\code{\link{gdkOffscreenWindowGetPixmap}}.}
 \section{Structures}{\describe{
 \item{\verb{GdkWindow}}{
 An opaque structure representing an onscreen drawable.
-Pointers to structures of type \verb{\link{GdkPixmap}}, \verb{\link{GdkBitmap}},
-and \verb{\link{GdkWindow}}, can often be used interchangeably.
-The type \verb{\link{GdkDrawable}} refers generically to any of
+Pointers to structures of type \code{\link{GdkPixmap}}, \code{\link{GdkBitmap}},
+and \code{\link{GdkWindow}}, can often be used interchangeably.
+The type \code{\link{GdkDrawable}} refers generically to any of
 these types.
 
 }
 \item{\verb{GdkGeometry}}{
-The \verb{\link{GdkGeometry}} struct gives the window manager information about 
-a window's geometry constraints. Normally you would set these on 
-the GTK+ level using \code{\link{gtkWindowSetGeometryHints}}. \verb{\link{GtkWindow}} 
-then sets the hints on the \verb{\link{GdkWindow}} it creates.
+The \code{\link{GdkGeometry}} struct gives the window manager information about
+a window's geometry constraints. Normally you would set these on
+the GTK+ level using \code{\link{gtkWindowSetGeometryHints}}. \code{\link{GtkWindow}}
+then sets the hints on the \code{\link{GdkWindow}} it creates.
   \code{\link{gdkWindowSetGeometryHints}} expects the hints to be fully valid already and
 simply passes them to the window manager; in contrast,
 \code{\link{gtkWindowSetGeometryHints}} performs some interpretation. For example,
-\verb{\link{GtkWindow}} will apply the hints to the geometry widget instead of the toplevel
+\code{\link{GtkWindow}} will apply the hints to the geometry widget instead of the toplevel
 window, if you set a geometry widget. Also, the
 \code{min.width}/\code{min.height}/\code{max.width}/\code{max.height} fields may be set to -1, and
-\verb{\link{GtkWindow}} will substitute the size request of the window or geometry widget. If
-the minimum size hint is not provided, \verb{\link{GtkWindow}} will use its requisition as
+\code{\link{GtkWindow}} will substitute the size request of the window or geometry widget. If
+the minimum size hint is not provided, \code{\link{GtkWindow}} will use its requisition as
 the minimum size.  If the minimum size is provided and a geometry widget is set,
-\verb{\link{GtkWindow}} will take the minimum size as the minimum size of the geometry widget
+\code{\link{GtkWindow}} will take the minimum size as the minimum size of the geometry widget
 rather than the entire window. The base size is treated similarly.
   
 The canonical use-case for \code{\link{gtkWindowSetGeometryHints}} is to get a terminal
 widget to resize properly. Here, the terminal text area should be the geometry
-widget; \verb{\link{GtkWindow}} will then automatically set the base size to the size of
+widget; \code{\link{GtkWindow}} will then automatically set the base size to the size of
 other widgets in the terminal window, such as the menubar and scrollbar.  Then,
 the \code{width.inc} and \code{height.inc} fields should be set to the size of one character
 in the terminal. Finally, the base size should be set to the size of one
-character. The net effect is that the minimum size of the terminal 
-will have a 1x1 character terminal area, and only terminal sizes on 
+character. The net effect is that the minimum size of the terminal
+will have a 1x1 character terminal area, and only terminal sizes on
 the "character grid" will be allowed.
   
-Here's an example of how the terminal example would be implemented, assuming 
+Here's an example of how the terminal example would be implemented, assuming
 a terminal area widget called "terminal" and a toplevel window "toplevel":
 \preformatted{
 fields <- c("base.width", "base.height", "min.width", "min.height", "width.inc",
@@ -311,17 +343,17 @@ ratio.
 \strong{\verb{GdkGeometry} is a \link{transparent-type}.}
 
 \describe{
-\item{\code{min_width}}{[integer] minimum width of window (or -1 to use requisition, with \verb{\link{GtkWindow}} only)}
-\item{\code{min_height}}{[integer] minimum height of window (or -1 to use requisition, with \verb{\link{GtkWindow}} only)}
-\item{\code{max_width}}{[integer] maximum width of window (or -1 to use requisition, with \verb{\link{GtkWindow}} only)}
-\item{\code{max_height}}{[integer] maximum height of window (or -1 to use requisition, with \verb{\link{GtkWindow}} only)}
-\item{\code{base_width}}{[integer] allowed window widths are \code{base.width} + \code{width.inc} * N where N is any integer (-1 allowed with \verb{\link{GtkWindow}})}
-\item{\code{base_height}}{[integer] allowed window widths are \code{base.height} + \code{height.inc} * N where N is any integer (-1 allowed with \verb{\link{GtkWindow}})}
-\item{\code{width_inc}}{[integer] width resize increment}
-\item{\code{height_inc}}{[integer] height resize increment}
-\item{\code{min_aspect}}{[numeric] minimum width/height ratio}
-\item{\code{max_aspect}}{[numeric] maximum width/height ratio}
-\item{\code{win_gravity}}{[\code{\link{GdkGravity}}] window gravity, see \code{\link{gtkWindowSetGravity}}}
+\item{\code{min_width}}{minimum width of window (or -1 to use requisition, with \code{\link{GtkWindow}} only)}
+\item{\code{min_height}}{minimum height of window (or -1 to use requisition, with \code{\link{GtkWindow}} only)}
+\item{\code{max_width}}{maximum width of window (or -1 to use requisition, with \code{\link{GtkWindow}} only)}
+\item{\code{max_height}}{maximum height of window (or -1 to use requisition, with \code{\link{GtkWindow}} only)}
+\item{\code{base_width}}{allowed window widths are \code{base.width} + \code{width.inc} * N where N is any integer (-1 allowed with \code{\link{GtkWindow}})}
+\item{\code{base_height}}{allowed window widths are \code{base.height} + \code{height.inc} * N where N is any integer (-1 allowed with \code{\link{GtkWindow}})}
+\item{\code{width_inc}}{width resize increment}
+\item{\code{height_inc}}{height resize increment}
+\item{\code{min_aspect}}{minimum width/height ratio}
+\item{\code{max_aspect}}{maximum width/height ratio}
+\item{\code{win_gravity}}{window gravity, see \code{\link{gtkWindowSetGravity}}}
 }
 
 }
@@ -330,26 +362,26 @@ Attributes to use for a newly-created window.
 \strong{\verb{GdkWindowAttr} is a \link{transparent-type}.}
 
 \describe{
-\item{\code{title}}{[character] title of the window (for toplevel windows)}
-\item{\code{event_mask}}{[integer] event mask (see \code{\link{gdkWindowSetEvents}})}
-\item{\code{x}}{[integer] X coordinate relative to parent window (see \code{\link{gdkWindowMove}})}
-\item{\code{y}}{[integer] Y coordinate relative to parent window (see \code{\link{gdkWindowMove}})}
-\item{\code{width}}{[integer] width of window}
-\item{\code{height}}{[integer] height of window}
-\item{\code{wclass}}{[\code{\link{GdkWindowClass}}] \verb{GDK_INPUT_OUTPUT} (normal window) or \verb{GDK_INPUT_ONLY} (invisible window that receives events)}
-\item{\code{visual}}{[\verb{\link{GdkVisual}}] \verb{\link{GdkVisual}} for window}
-\item{\code{colormap}}{[\verb{\link{GdkColormap}}] \verb{\link{GdkColormap}} for window}
-\item{\code{window_type}}{[\code{\link{GdkWindowType}}] type of window}
-\item{\code{cursor}}{[\verb{\link{GdkCursor}}] cursor for the window (see \code{\link{gdkWindowSetCursor}})}
-\item{\code{wmclass_name}}{[character] don't use (see \code{\link{gtkWindowSetWmclass}})}
-\item{\code{wmclass_class}}{[character] don't use (see \code{\link{gtkWindowSetWmclass}})}
-\item{\code{override_redirect}}{[logical] \code{TRUE} to bypass the window manager}
-\item{\code{type_hint}}{[\code{\link{GdkWindowTypeHint}}] a hint of the function of the window}
+\item{\code{title}}{title of the window (for toplevel windows)}
+\item{\code{event_mask}}{event mask (see \code{\link{gdkWindowSetEvents}})}
+\item{\code{x}}{X coordinate relative to parent window (see \code{\link{gdkWindowMove}})}
+\item{\code{y}}{Y coordinate relative to parent window (see \code{\link{gdkWindowMove}})}
+\item{\code{width}}{width of window}
+\item{\code{height}}{height of window}
+\item{\code{wclass}}{\verb{GDK_INPUT_OUTPUT} (normal window) or \verb{GDK_INPUT_ONLY} (invisible window that receives events)}
+\item{\code{visual}}{\code{\link{GdkVisual}} for window}
+\item{\code{colormap}}{\code{\link{GdkColormap}} for window}
+\item{\code{window_type}}{type of window}
+\item{\code{cursor}}{cursor for the window (see \code{\link{gdkWindowSetCursor}})}
+\item{\code{wmclass_name}}{don't use (see \code{\link{gtkWindowSetWmclass}})}
+\item{\code{wmclass_class}}{don't use (see \code{\link{gtkWindowSetWmclass}})}
+\item{\code{override_redirect}}{\code{TRUE} to bypass the window manager}
+\item{\code{type_hint}}{a hint of the function of the window}
 }
 
 }
 \item{\verb{GdkFilterReturn}}{
-Specifies the result of applying a \verb{\link{GdkFilterFunc}} to a native event.
+Specifies the result of applying a \code{\link{GdkFilterFunc}} to a native event.
 
 
 
@@ -362,17 +394,17 @@ Describes the kind of window.
 
 \describe{
 \item{\verb{root}}{root window; this window has no parent, covers the entire screen, and is created by the window system}
-\item{\verb{toplevel}}{toplevel window (used to implement \verb{\link{GtkWindow}})}
-\item{\verb{child}}{child window (used to implement e.g. \verb{\link{GtkEntry}})}
+\item{\verb{toplevel}}{toplevel window (used to implement \code{\link{GtkWindow}})}
+\item{\verb{child}}{child window (used to implement e.g. \code{\link{GtkEntry}})}
 \item{\verb{dialog}}{useless/deprecated compatibility type}
-\item{\verb{temp}}{override redirect temporary window (used to implement \verb{\link{GtkMenu}})}
+\item{\verb{temp}}{override redirect temporary window (used to implement \code{\link{GtkMenu}})}
 \item{\verb{foreign}}{foreign window (see \code{gdkWindowForeignNew()})}
 }
 
 }
 \item{\verb{GdkWindowClass}}{
-\code{GDK.INPUT.OUTPUT} windows are the standard kind of window you might expect. 
-\code{GDK.INPUT.ONLY} windows are invisible; they are used to trap events, but 
+\code{GDK.INPUT.OUTPUT} windows are the standard kind of window you might expect.
+\code{GDK.INPUT.ONLY} windows are invisible; they are used to trap events, but
 you can't draw on them.
 
 \describe{
@@ -382,12 +414,12 @@ you can't draw on them.
 
 }
 \item{\verb{GdkWindowHints}}{
-Used to indicate which fields of a \verb{\link{GdkGeometry}} struct should be paid attention
+Used to indicate which fields of a \code{\link{GdkGeometry}} struct should be paid attention
 to. Also, the presence/absence of \code{GDK.HINT.POS}, \code{GDK.HINT.USER.POS}, and
 \code{GDK.HINT.USER.SIZE} is significant, though they don't directly refer to
-\verb{\link{GdkGeometry}} fields.  \code{GDK.HINT.USER.POS} will be set automatically by \verb{\link{GtkWindow}}
-if you call \code{\link{gtkWindowMove}}. \code{GDK.HINT.USER.POS} and \code{GDK.HINT.USER.SIZE} 
-should be set if the user specified a size/position using a --geometry 
+\code{\link{GdkGeometry}} fields.  \code{GDK.HINT.USER.POS} will be set automatically by \code{\link{GtkWindow}}
+if you call \code{\link{gtkWindowMove}}. \code{GDK.HINT.USER.POS} and \code{GDK.HINT.USER.SIZE}
+should be set if the user specified a size/position using a --geometry
 command-line argument; \code{gtkWindowParseGeometry()} automatically sets these
 flags.
 
@@ -406,9 +438,9 @@ flags.
 }
 \item{\verb{GdkGravity}}{
 Defines the reference point of a window and the meaning of coordinates
-passed to \code{\link{gtkWindowMove}}. See \code{\link{gtkWindowMove}} and the "implementation 
-notes" section of the 
-Extended 
+passed to \code{\link{gtkWindowMove}}. See \code{\link{gtkWindowMove}} and the "implementation
+notes" section of the
+Extended
 Window Manager Hints (\url{http://www.freedesktop.org/Standards/wm-spec}) specification for more details.
 
 \describe{
@@ -427,7 +459,7 @@ Window Manager Hints (\url{http://www.freedesktop.org/Standards/wm-spec}) specif
 
 }
 \item{\verb{GdkWindowEdge}}{
-Determines a window edge or corner. 
+Determines a window edge or corner.
 
 \describe{
 \item{\verb{north-west}}{the top left corner.}
@@ -442,20 +474,20 @@ Determines a window edge or corner.
 
 }
 \item{\verb{GdkWindowTypeHint}}{
-These are hints for the window manager that indicate what type of function 
-the window has. The window manager can use this when determining decoration 
+These are hints for the window manager that indicate what type of function
+the window has. The window manager can use this when determining decoration
 and behaviour of the window. The hint must be set before mapping the window.
   
 See the
-Extended 
-Window Manager Hints (\url{http://www.freedesktop.org/Standards/wm-spec}) specification for more details about 
+Extended
+Window Manager Hints (\url{http://www.freedesktop.org/Standards/wm-spec}) specification for more details about
 window types.
 
 \describe{
 \item{\verb{normal}}{Normal toplevel window.}
 \item{\verb{dialog}}{Dialog window.}
 \item{\verb{menu}}{Window used to implement a menu; GTK+ uses 
-  this hint only for torn-off menus, see \verb{\link{GtkTearoffMenuItem}}.}
+  this hint only for torn-off menus, see \code{\link{GtkTearoffMenuItem}}.}
 \item{\verb{toolbar}}{Window used to implement toolbars.}
 \item{\verb{splashscreen}}{Window used to display a splash 
   screen during application startup.}
@@ -468,10 +500,10 @@ window.}
 
 }
 \item{\verb{GdkWindowAttributesType}}{
-Used to indicate which fields in the \verb{\link{GdkWindowAttr}} struct should be
+Used to indicate which fields in the \code{\link{GdkWindowAttr}} struct should be
 honored. For example, if you filled in the "cursor" and "x" fields of
-\verb{\link{GdkWindowAttr}}, pass "\code{GDK.WA.X} | \code{GDK.WA.CURSOR}" to \code{\link{gdkWindowNew}}.  Fields
-in \verb{\link{GdkWindowAttr}} not covered by a bit in this enum are required; for example,
+\code{\link{GdkWindowAttr}}, pass "\code{GDK.WA.X} | \code{GDK.WA.CURSOR}" to \code{\link{gdkWindowNew}}.  Fields
+in \code{\link{GdkWindowAttr}} not covered by a bit in this enum are required; for example,
 the \code{width}/\code{height}, \code{wclass}, and \code{window.type} fields are required, they have no
 corresponding flag in \code{\link{GdkWindowAttributesType}}.
 
@@ -488,7 +520,7 @@ corresponding flag in \code{\link{GdkWindowAttributesType}}.
 
 }
 \item{\verb{GdkFilterReturn}}{
-Specifies the result of applying a \verb{\link{GdkFilterFunc}} to a native event.
+Specifies the result of applying a \code{\link{GdkFilterFunc}} to a native event.
 
 \describe{
 \item{\verb{continue}}{event not handled, continue processing.}
@@ -499,13 +531,13 @@ Specifies the result of applying a \verb{\link{GdkFilterFunc}} to a native event
 
 }
 \item{\verb{GdkModifierType}}{
-A set of bit-flags to indicate the state of modifier keys and mouse buttons 
+A set of bit-flags to indicate the state of modifier keys and mouse buttons
 in various event types. Typical modifier keys are Shift, Control, Meta, Super,
-Hyper, Alt, Compose, Apple, CapsLock or ShiftLock. 
+Hyper, Alt, Compose, Apple, CapsLock or ShiftLock.
   
 Like the X Window System, GDK supports 8 modifier keys and 5 mouse buttons.
   
-Since 2.10, GDK recognizes which of the Meta, Super or Hyper keys are mapped 
+Since 2.10, GDK recognizes which of the Meta, Super or Hyper keys are mapped
 to Mod2 - Mod5, and indicates this by setting \code{GDK_SUPER_MASK}, \code{GDK_HYPER_MASK}
 or \code{GDK_META_MASK} in the state field of key events.
 
@@ -515,7 +547,7 @@ or \code{GDK_META_MASK} in the state field of key events.
   X server this may either be CapsLock or ShiftLock).}
 \item{\verb{control-mask}}{the Control key.}
 \item{\verb{mod1-mask}}{the fourth modifier key (it depends on the modifier 
-  mapping of the X server which key is interpreted as this modifier, but 
+  mapping of the X server which key is interpreted as this modifier, but
   normally it is the Alt key).}
 \item{\verb{mod2-mask}}{the fifth modifier key (it depends on the modifier 
   mapping of the X server which key is interpreted as this modifier).}
@@ -553,8 +585,8 @@ the window. The hint must be set before mapping the window.
 }
 \item{\verb{GdkWMFunction}}{
 These are hints originally defined by the Motif toolkit.
-The window manager can use them when determining the functions 
-to offer for the window. 
+The window manager can use them when determining the functions
+to offer for the window.
 The hint must be set before mapping the window.
 
 \describe{
@@ -570,7 +602,7 @@ The hint must be set before mapping the window.
 }}
 \section{User Functions}{\describe{\item{\code{GdkFilterFunc(xevent, event, data)}}{
 Specifies the type of function used to filter native events before they are
-converted to GDK events. 
+converted to GDK events.
   
 When a filter is called, \code{event} is unpopulated, except for
 \code{event->window}. The filter may translate the native
@@ -579,14 +611,74 @@ translation. If the filter translates the event and processing should
 continue, it should return \code{GDK_FILTER_TRANSLATE}.
 
 \describe{
-\item{\code{xevent}}{[GdkXEvent] the native event to filter.}
-\item{\code{event}}{[\verb{\link{GdkEvent}}] the GDK event to which the X event will be translated.}
-\item{\code{data}}{[R object] user data set when the filter was installed.}
+\item{\code{xevent}}{the native event to filter.}
+\item{\code{event}}{the GDK event to which the X event will be translated.}
+\item{\code{data}}{user data set when the filter was installed.}
 }
 
 \emph{Returns:} [\code{\link{GdkFilterReturn}}] a \code{\link{GdkFilterReturn}} value.
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gdk/gdk-Windows.html}}
+\section{Signals}{\describe{
+\item{\code{from-embedder(window, embedder-x, embedder-y, offscreen-x, offscreen-y, user.data)}}{
+The ::from-embedder signal is emitted to translate coordinates
+in the embedder of an offscreen window to the offscreen window.
+  
+See also \verb{"to-embedder"}.
+  Since 2.18
+
+\describe{
+\item{\code{window}}{the offscreen window on which the signal is emitted}
+\item{\code{embedder-x}}{x coordinate in the embedder window}
+\item{\code{embedder-y}}{y coordinate in the embedder window}
+\item{\code{offscreen-x}}{return location for the x coordinate in the offscreen window}
+\item{\code{offscreen-y}}{return location for the y coordinate in the offscreen window}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
+}
+
+
+}
+\item{\code{pick-embedded-child(window, x, y, user.data)}}{
+The ::pick-embedded-child signal is emitted to find an embedded
+child at the given position.
+  Since 2.18
+
+\describe{
+\item{\code{window}}{the window on which the signal is emitted}
+\item{\code{x}}{x coordinate in the window}
+\item{\code{y}}{y coordinate in the window}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
+}
+
+\emph{Returns:} [\code{\link{GdkWindow}}]  the \code{\link{GdkWindow}} of the embedded child at \code{x}, \code{y}, or \code{NULL}
+
+}
+\item{\code{to-embedder(window, offscreen-x, offscreen-y, embedder-x, embedder-y, user.data)}}{
+The ::to-embedder signal is emitted to translate coordinates
+in an offscreen window to its embedder.
+  
+See also \verb{"from-embedder"}.
+  Since 2.18
+
+\describe{
+\item{\code{window}}{the offscreen window on which the signal is emitted}
+\item{\code{offscreen-x}}{x coordinate in the offscreen window}
+\item{\code{offscreen-y}}{y coordinate in the offscreen window}
+\item{\code{embedder-x}}{return location for the x coordinate in the embedder window}
+\item{\code{embedder-y}}{return location for the y coordinate in the embedder window}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
+}
+
+
+}
+}}
+\section{Properties}{\describe{\item{\verb{cursor} [\code{\link{GdkCursor}} : *            : Read / Write]}{
+
+The mouse pointer for a \code{\link{GdkWindow}}. See \code{\link{gdkWindowSetCursor}} and
+\code{\link{gdkWindowGetCursor}} for details.
+  Since 2.18
+
+}}}
+\references{\url{http://library.gnome.org/devel//gdk/gdk-Windows.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -17,6 +17,6 @@
 
 }}}
 \section{Convenient Construction}{\code{gtkIMContextSimple} is the equivalent of \code{\link{gtkIMContextSimpleNew}}.}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkIMContextSimple.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkIMContextSimple.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

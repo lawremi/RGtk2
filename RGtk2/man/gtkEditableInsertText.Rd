@@ -1,15 +1,15 @@
 \alias{gtkEditableInsertText}
 \name{gtkEditableInsertText}
 \title{gtkEditableInsertText}
-\description{Inserts text at a given position.}
+\description{Inserts \code{new.text.length} bytes of \code{new.text} into the contents of the
+widget, at position \code{position}.}
 \usage{gtkEditableInsertText(object, new.text, position = 0)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkEditable}}] a \verb{\link{GtkEditable}} widget.}
-\item{\verb{new.text}}{[character] the text to insert.}
-\item{\verb{position}}{[integer] an inout parameter. The caller initializes it to
-           the position at which to insert the text. After the
-           call it points at the position after the newly
-           inserted text.}
+\item{\verb{object}}{a \code{\link{GtkEditable}}}
+\item{\verb{new.text}}{the text to append}
+\item{\verb{position}}{ location of the position text will be inserted at. \emph{[  \acronym{in-out}  ]}}
 }
+\details{Note that the position is in characters, not in bytes. 
+The function updates \code{position} to point after the newly inserted text.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -7,8 +7,8 @@ that can be set. Note that other attributes that do not have corresponding
 ATK_ATTRIBUTE functions may also be set for certain text widgets.}
 \usage{atkEditableTextSetRunAttributes(object, attrib.set, start.offset, end.offset)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{AtkEditableText}}]  an \verb{\link{AtkEditableText}}}
-\item{\verb{attrib.set}}{[\verb{\link{AtkAttributeSet}}]  an \verb{\link{AtkAttributeSet}}}
+\item{\verb{object}}{[\code{\link{AtkEditableText}}]  an \code{\link{AtkEditableText}}}
+\item{\verb{attrib.set}}{[\code{\link{AtkAttributeSet}}]  an \code{\link{AtkAttributeSet}}}
 \item{\verb{start.offset}}{[integer]  start of range in which to set attributes}
 \item{\verb{end.offset}}{[integer]  end of range in which to set attributes}
 }

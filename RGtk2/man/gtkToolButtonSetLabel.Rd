@@ -8,9 +8,9 @@ is determined by the "stock_id" property. If the "stock_id" property is also
 \code{NULL}, \code{button} will not have a label.}
 \usage{gtkToolButtonSetLabel(object, label = NULL)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkToolButton}}]  a \verb{\link{GtkToolButton}}}
-\item{\verb{label}}{[character]  a string that will be used as label, or \code{NULL}.}
+\item{\verb{object}}{a \code{\link{GtkToolButton}}}
+\item{\verb{label}}{ a string that will be used as label, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
-\details{  Since  2.4}
+\details{Since 2.4}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

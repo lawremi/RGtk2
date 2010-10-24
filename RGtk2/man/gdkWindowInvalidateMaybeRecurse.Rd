@@ -9,9 +9,10 @@ application would normally redraw the contents of \code{window} in
 response to those expose events.}
 \usage{gdkWindowInvalidateMaybeRecurse(object, region, child.func, user.data)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a \verb{\link{GdkWindow}}}
-\item{\verb{region}}{[\verb{\link{GdkRegion}}]  a \verb{\link{GdkRegion}}}
-\item{\verb{user.data}}{[R object]  data passed to \code{child.func}}
+\item{\verb{object}}{a \code{\link{GdkWindow}}}
+\item{\verb{region}}{a \code{\link{GdkRegion}}}
+\item{\verb{user.data}}{\emph{undocumented
+}}
 }
 \details{GDK will call \code{\link{gdkWindowProcessAllUpdates}} on your behalf
 whenever your program returns to the main loop and becomes idle, so
@@ -21,6 +22,6 @@ invalidate regions that you know should be redrawn.
 The \code{child.func} parameter controls whether the region of
 each child window that intersects \code{region} will also be invalidated.
 Only children for which \code{child.func} returns TRUE will have the area
-invalidated.  }
+invalidated.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

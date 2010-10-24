@@ -10,8 +10,8 @@ to be recalculated. This function moves them as a unit, which can
 be optimized.}
 \usage{gtkTextBufferPlaceCursor(object, where)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTextBuffer}}]  a \verb{\link{GtkTextBuffer}}}
-\item{\verb{where}}{[\verb{\link{GtkTextIter}}]  where to put the cursor}
+\item{\verb{object}}{a \code{\link{GtkTextBuffer}}}
+\item{\verb{where}}{where to put the cursor}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

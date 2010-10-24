@@ -3,6 +3,6 @@
 \title{atkStateSetNew}
 \description{Creates a new empty state set.}
 \usage{atkStateSetNew()}
-\value{[\verb{\link{AtkStateSet}}]  a new \verb{\link{AtkStateSet}} }
+\value{[\code{\link{AtkStateSet}}]  a new \code{\link{AtkStateSet}} }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

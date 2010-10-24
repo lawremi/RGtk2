@@ -5,15 +5,15 @@
 to widget coordinates.}
 \usage{gtkTreeViewConvertTreeToWidgetCoords(object, tx, ty)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTreeView}}]  a \verb{\link{GtkTreeView}}}
-\item{\verb{tx}}{[integer]  X coordinate relative to the tree}
-\item{\verb{ty}}{[integer]  Y coordinate relative to the tree}
+\item{\verb{object}}{a \code{\link{GtkTreeView}}}
+\item{\verb{tx}}{X coordinate relative to the tree}
+\item{\verb{ty}}{Y coordinate relative to the tree}
 }
-\details{  Since  2.12}
+\details{Since 2.12}
 \value{
 A list containing the following elements:
-\item{\verb{wx}}{[integer]  return location for widget X coordinate}
-\item{\verb{wy}}{[integer]  return location for widget Y coordinate}
+\item{\verb{wx}}{return location for widget X coordinate}
+\item{\verb{wy}}{return location for widget Y coordinate}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

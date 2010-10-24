@@ -23,11 +23,11 @@
                                        +----GtkHButtonBox
                                        +----GtkVButtonBox}}
 \section{Interfaces}{GtkButtonBox implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+ AtkImplementorIface,  \code{\link{GtkBuildable}} and  \code{\link{GtkOrientable}}.}
 \section{Detailed Description}{The primary purpose of this class is to keep track of the various properties
-of \verb{\link{GtkHButtonBox}} and \verb{\link{GtkVButtonBox}} widgets.
-  \code{\link{gtkButtonBoxGetChildSize}} retrieves the minimum width and height 
-for widgets in a given button box. \code{\link{gtkButtonBoxSetChildSize}} 
+of \code{\link{GtkHButtonBox}} and \code{\link{GtkVButtonBox}} widgets.
+  \code{\link{gtkButtonBoxGetChildSize}} retrieves the minimum width and height
+for widgets in a given button box. \code{\link{gtkButtonBoxSetChildSize}}
 allows those properties to be changed.
   
 The internal padding of buttons can be retrieved and changed per button box using
@@ -72,6 +72,6 @@ Minimum width of buttons inside the box.  Allowed values: >= 0  Default value: 8
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkButtonBox.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkButtonBox.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

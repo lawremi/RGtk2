@@ -7,11 +7,10 @@ if the size of the notification area changes. For other
 storage types, the size-changed signal can be used to
 react to size changes.}
 \usage{gtkStatusIconGetSize(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkStatusIcon}}]  a \verb{\link{GtkStatusIcon}}}}
+\arguments{\item{\verb{object}}{a \code{\link{GtkStatusIcon}}}}
 \details{Note that the returned size is only meaningful while the 
-status icon is embedded (see \code{\link{gtkStatusIconIsEmbedded}}).  
-
-  Since  2.10}
+status icon is embedded (see \code{\link{gtkStatusIconIsEmbedded}}).
+  Since 2.10}
 \value{[integer]  the size that is available for the image}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

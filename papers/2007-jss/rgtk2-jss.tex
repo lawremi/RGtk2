@@ -17,7 +17,7 @@ University of California, Davis}
 % A general comment: some of the descriptions are a little cryptic
 % or abstract partly because they start with the general concept
 % and then provide an example to make it concrete.
-% e.g. page 37, start of section "Constructors". And there are 
+% e.g., page 37, start of section "Constructors". And there are 
 % several more. 
 % I think it would be easier to read if the example/motivation
 % came first and then the explanation of the generalities.
@@ -33,10 +33,10 @@ University of California, Davis}
 
 %DTL2:  As a point of "grammar", we should clean up the  presence of
 %code segments within the document where the code is not part of a
-%sentence and just present on its own, e.g. page 7, end of page 12,
+%sentence and just present on its own, e.g., page 7, end of page 12,
 %page 17, etc.
 % These should be separate  figure elements in the \latex or 
-% glued into the sentence via a :, e.g. in the following code: ....
+% glued into the sentence via a :, e.g., in the following code: ....
 % As it stands, they are not grammatically correct.
 
 %DTL2: You mention that things should be transparent for the R user,
@@ -86,22 +86,18 @@ E-mail: michafla@gene.com\\
 
 % interfaces
 An interface, in the most general sense, is the boundary across which
-two
-entities communicate. In most cases, the communication is
-bidirectional, 
-involving input and output from both of the interfaced entities. In
-computing,
-there are two general types of interfaces: machine interfaces and user
-interfaces
-\citep{gui-cli}. A machine interface does not involve humans, while a 
-user interface is between a human and a machine. In this paper, the
-machines of
-interest are software, and the central software component is the
-\proglang{R} 
-platform and language for statistical computing \citep{R}.
+two entities communicate. In most cases, the communication is
+bidirectional, involving input and output from both of the interfaced
+entities. In computing, there are two general types of interfaces:
+machine interfaces and user interfaces \citep{gui-cli}. A machine
+interface does not involve humans, while a user interface is between a
+human and a machine. This paper discusses a machine interface between
+two software components, the \proglang{R} platform for statistical
+computing \citep{R} and \pkg{GTK+}, a library for constructing
+graphical user interfaces \citep{GTK-library,GTK}.
 
 % user interfaces
-Two common types of user interfaces in statistical computing are the
+Two common types of user interface in statistical computing are the
 command line interface (CLI) and the graphical user interface
 (GUI). The usual CLI consists of a textual console where the user
 types a sequence of commands at a prompt. The \proglang{R} console is
@@ -152,20 +148,20 @@ Building a GUI in \proglang{R}, as in any language, is made easier
 through the use of a 
 widget toolkit. The \pkg{tcltk} package \citep{Rnews:Dalgaard:2001a,
 Rnews:Dalgaard:2002},
-which provides access to \pkg{Tcl/Tk} \citep{ousterhout,welch}, is the
+which provides access to \proglang{Tcl/Tk} \citep{ousterhout,welch}, is the
 most often 
 used GUI toolkit for \proglang{R}. Others include \pkg{RGtk}
 \citep{RGtk}, based
-on \pkg{GTK+} \citep{GTK}; \pkg{RwxWidgets} \citep{RwxWidgets}, based
+on \pkg{GTK+}; \pkg{RwxWidgets} \citep{RwxWidgets}, based
 on
 wxWidgets \citep{wxwidgets}; and \pkg{gWidgets} \citep{gWidgets}, a
 simplified, common interface to several toolkits, including
-\pkg{GTK+}, \pkg{Tcl/Tk}
+\pkg{GTK+}, \proglang{Tcl/Tk}
 and \proglang{Java} \pkg{Swing}. There are also packages for embedding
 \proglang{R}
 graphics in custom interfaces, such as \pkg{cairoDevice} \citep{cairoDevice} and (the now defunct) \pkg{gtkDevice}
 \citep{gtkDevice} for \pkg{GTK+} and \pkg{tkrplot} 
-\citep{tkrplot} for \pkg{Tcl/Tk}.
+\citep{tkrplot} for \proglang{Tcl/Tk}.
 
 \begin{figure}[b!p]
   \begin{center}
@@ -281,11 +277,11 @@ library that implements a class-based, single-inheritance
 object-oriented system.  Each type of \pkg{GTK+} widget is a
 \pkg{GObject} class that inherits from the base \code{GtkWidget} class
 which provides the general characteristics shared by all widget
-classes, e.g. properties giving the location, color; methods for
+classes, e.g., properties giving the location, color; methods for
 hiding, showing and painting the widget. A \pkg{GObject} class
 encapsulates behaviors that all instances of the class share.  Each
 class has a single parent from which it inherits the behaviors of its
-ancestors. A class can override any of its inherited behaviors.  A
+ancestors. A class can override some specific inherited behaviors.  A
 more detailed and technical explanation of \pkg{GObject} is available
 in Section~\ref{sec:primer}.
 
@@ -373,7 +369,7 @@ The only omissions are those that would violate consistency with
 management were excluded, as memory in \proglang{R} is managed by a
 garbage collector. Array length parameters are also excluded, as the
 length of a vector is always known in \proglang{R}.
-%DTL: e.g.  some examples
+%DTL: e.g.,  some examples
 The \pkg{RGtk2} API has also been designed for ease/efficiency of use.
 Towards this end, it specifies a default value for a function
 parameter whenever sensible and uses a special object-oriented syntax,
@@ -440,7 +436,7 @@ immediately after construction.  The default value of \code{show} is
 \code{TRUE}. In this case we want to defer showing the window until
 after we finish constructing our simple GUI.
 
-%DTL: This next paragraph hangs out a little, i.e. it doesn't flow
+%DTL: This next paragraph hangs out a little, i.e., it doesn't flow
 %directly from the previous paragraphs but introduces a new concept
 %and then we move on to another.  It is okay, but it would be nice to
 %try to connect it a little more.
@@ -503,7 +499,7 @@ separator and we use lower case at the beginning of new words.
 \subsubsection{Accessing properties and fields}
 
 Properties are self-describing 
-%DTL2: explain what self-describing means here, i.e. provide run-time
+%DTL2: explain what self-describing means here, i.e., provide run-time
 %information about their type.
 % However, perhaps mentioning this here is too technical and somewhat
 % irrelevant to the user looking for an overview at this point.
@@ -725,7 +721,7 @@ multiple children is the general \code{GtkBox} class, which stacks its
 children in a specified order and in a single direction, vertical or
 horizontal. The children of a \code{GtkBox} always fill the space
 allocated to the box in the direction orthogonal to that of the
-stacking, e.g. fill the available width when stacked vertically on top
+stacking, e.g., fill the available width when stacked vertically on top
 of each other. 
 
 The \code{GtkBox} class is abstract (or virtual), meaning
@@ -838,10 +834,10 @@ in the same box. For example, in the CRAN mirrors dialog, the box
 first ensures that the mirror list and the label above it are given
 enough space to satisfy their minimum requirement. Then, since the
 mirror list is expanding, all of the extra space is made available to
-it, while the label is left only with its minimum requirement (i.e.
+it, while the label is left only with its minimum requirement (i.e.,
 enough space to show its text).
 %DTL2: against is a strange term here. I don't understand it properly.
-% So either it needs clarification or let's chose another word, e.g.
+% So either it needs clarification or let's chose another word, e.g.,
 % expands, "consuming the space given to the other children".
 %MFL2: reworded this
 % Is this really its "available space". There seems to be an
@@ -1001,7 +997,7 @@ dialog$destroy()
 If the user answered
 ``Yes'', our callback will install the latest version of the
 \pkg{RGtk2} package. The call to \code{gtkWidgetDestroy} closes the
-dialog window and renders it unusable, i.e. if the object is used in
+dialog window and renders it unusable, i.e., if the object is used in
 subsequent computations, an error will be raised, because the dialog
 widget is no longer valid.
 
@@ -1013,7 +1009,7 @@ unnecessary restriction on the number of possible response types from
 a dialog. This allows programmers to introduce response types that do
 not exist within the \code{GtkResponseType} enumeration.
 %DTL2:  slightly confusing. Can you elaborate to say what this means
-%in practice (i.e. that others can introduce additional return values)
+%in practice (i.e., that others can introduce additional return values)
 In this case, it is known from the documentation of
 %DTL2: how and can we automate this so that the relevant coversion is
 %performed.
@@ -1204,7 +1200,7 @@ parent.
 % DTL: The concept of an application window needs more explanation.
 % It is defined in section 4 (Sample Application).
 Instead, we pass \code{NULL} for the parent and \code{0} 
-% DTL2:  What does 0 correspond to, i.e. what is the name for the
+% DTL2:  What does 0 correspond to, i.e., what is the name for the
 % enumerated constant.  It is not good practice to see literals in the
 % code, especially for pedagogical purposes.
 % MFL: This is a strange case - there is no name for 0 in the 
@@ -1242,7 +1238,7 @@ view$getSelection()$setMode("browse")
 \end{Code}
 The final line configures the \code{GtkTreeView} so that exactly one
 item is always selected in the view. This prevents the user from
-providing invalid input (i.e. a multiple or empty selection). 
+providing invalid input (i.e., a multiple or empty selection). 
 %DTL: This next bit is very detailed and specific relative to all the
 %text in the document up until this point.
 %ML: I included this explanation, because the GtkTreeView is very 
@@ -1361,7 +1357,7 @@ search (See Figures~\ref{fig:rgtk2-demo-initial} and
 
 %DTL:  The different color doesn't show up too well here, which is of
 %course the point. But we should either say this or use a different
-%value (e.g. .5) or use color.
+%value (e.g., .5) or use color.
 
 %ML: I am not sure what you mean by this.
 
@@ -1498,7 +1494,7 @@ asCairoDevice(graphics)
 \end{Code}
 %DTL2: The par(pty = "s") is specific to our application, and
 %shouldn't it be done in the callback when doing the plotting just in
-%case anybody (e.g. another callback) manages to put another plot
+%case anybody (e.g., another callback) manages to put another plot
 %there with different settings.
 %moved
 The call to \code{asCairoDevice} creates an \proglang{R} graphics
@@ -1611,7 +1607,7 @@ the application.
 %not quite right. I assume a Cell Renderer would do the job as it is 
 % a view of the model in the MVC framework. And if this does slow
 % things down too much, that is a real limitation of Gtk+/RGtk and
-% something we need to admit to, i.e. that this example is not
+% something we need to admit to, i.e., that this example is not
 % suitable for
 % large datasets and one should use, e.g., Gnumeric or a dedicated
 % spreadsheet. But I think it is good to try it and if it is slow, we
@@ -1645,7 +1641,7 @@ the \code{mpg} variable.}
 We begin by creating the main window for the application and setting
 its default size, specified in number of screen pixels:
 %DTL2: Perhaps dynamically set the window title to the name of the
-%dataset currently being viewed, i.e. when we switch tabs.
+%dataset currently being viewed, i.e., when we switch tabs.
 \begin{Code}
 main_window <- gtkWindow(show = FALSE)
 main_window["title"] <- "RGtk2 Spreadsheet"
@@ -1856,7 +1852,7 @@ stack of text messages and displays the message on top of the
 stack. When a message is added to the status bar stack, it is
 immediately displayed, and when the message is removed, the previous
 one is displayed.
-%DTL2: e.g. When we add a message, it is immediately displayed and
+%DTL2: e.g., When we add a message, it is immediately displayed and
 %when we remove it, the previous one is then displayed.
 Each message is associated with a \emph{context}, and each context has
 its own ID. A context ID is a number that is generated in a consistent
@@ -1891,7 +1887,7 @@ sheets will be placed within notebook-style container.
 The following function, \code{create\_tree\_model}, will create a
 \code{GtkTreeModel} object that obtains its data from an \proglang{R}
 \code{data.frame}, passed as an argument to the function:
-%DTL2: Connect the code to the previous sentence, i.e. : or figure
+%DTL2: Connect the code to the previous sentence, i.e., : or figure
 % and put a comment or two in the code to make it clearer/more
 % accessible to the reader.
 \begin{Code}
@@ -1996,7 +1992,7 @@ create_entry <- function(model)
 }
 \end{Code}
 This uses the \code{GtkEntry} widget.
-Whenever the \code{GtkEntry} is ``activated,'' e.g. by the user
+Whenever the \code{GtkEntry} is ``activated,'' e.g., by the user
 pressing the \texttt{ENTER} key, we update the filter by the result of
 the \proglang{R} expression.
 %DTL2:  Does this do the right thing or do you need <<- rather than
@@ -2108,7 +2104,7 @@ bound by
 graphically-intensive interfaces. The focus then shifts to the
 low-level support for the \pkg{GObject} object-oriented programming
 library. The \pkg{RGtk2} user is able to manipulate objects in
-external \pkg{GObject}-based applications (i.e. top-level GUIs running
+external \pkg{GObject}-based applications (i.e., top-level GUIs running
 within the same \proglang{R} session) that are bound to \proglang{R}
 by code
 outside of the \pkg{RGtk2} package. \pkg{RGtk2} also supports defining
@@ -2173,7 +2169,7 @@ rich capabilities for handling international characters. It also
 provides cross-platform access to the font configuration of a system.
 \pkg{Pango} is most often used directly for embedding text in graphics
 when drawing to a \code{GtkDrawingArea} or an off-screen destination,
-e.g. image.
+e.g., image.
 
 \subsubsection[ATK]{\pkg{ATK}} 
 
@@ -2228,7 +2224,7 @@ documentation \citep{gobject}.
 % informative way, especially the GObject material. When reading it, I
 % wasn't certain what was going on and I know this stuff. In fact,
 % this is the standard way of doing OOP in C (with the type formalism
-% added), i.e. struct nesting to get field offsets to align for
+% added), i.e., struct nesting to get field offsets to align for
 % inheritance and function pointers. Similarly, the concept of an
 % interface being similar to that of many other languages gets lost
 % and the details obscure the concept.  The essential idea is that it
@@ -2239,7 +2235,7 @@ documentation \citep{gobject}.
 % ML: Good points.  I tried to address these issues.
 
 % It would also be better if you explain earlier why the reader needs
-% to know this stuff, i.e. where are you going with it in the paper.
+% to know this stuff, i.e., where are you going with it in the paper.
 
 % ML: This is mentioned in the section above. Does it need more?
 
@@ -2285,7 +2281,7 @@ class structure during intialization. This is the primary mechanism in
 %DTL2: Is this object or class. Presumably class and hence the
 %behaviour of all objects of that class. 
 behavior through inheritance. Each object \code{GType} also has a
-registered structure with instance-level members (i.e. fields). The
+registered structure with instance-level members (i.e., fields). The
 instance structure of a \code{GType} inherits from the parent instance
 structure using the same idiom as the class structures. An instance of
 an object \code{GType} is manifested as a value of the corresponding
@@ -2304,7 +2300,7 @@ provide values (implementations) for the methods declared by the
 interface. Any object \code{GType}, such as \code{GObject},
 may implement multiple interfaces. Like a \code{GObject}-derived
 \code{GType}, an interface has a class structure that declares its
-virtual functions (i.e. methods). Every interface class structure may
+virtual functions (i.e., methods). Every interface class structure may
 only be prefixed by \code{GTypeInterface}, so there is no inheritance
 between interfaces in \pkg{GObject}. This is a significant difference
 from many object-oriented languages. However, an interface can be made
@@ -2526,7 +2522,7 @@ containing property definitions.
 Each property is defined by a \code{GParamSpec} structure created
 using the \code{gParamSpec} function. \code{RGtkTransformedHScale}
 defines a single property named \code{expr} for holding the
-\proglang{R} \code{expression} that performs the transformation, e.g.
+\proglang{R} \code{expression} that performs the transformation, e.g.,
 \verb+x^3+. Definitions of properties may refer to any \code{GType} by
 name. The names of primitive \proglang{R} types, like \code{integer}
 and \code{character} are mapped to the corresponding (scalar)
@@ -2579,7 +2575,7 @@ respectively. There is one private method, \code{transformValue} that
 is a utility for evaluating the expression on the current value.
 
 %DTL2: This seems vague and clear only if you know the answer
-%already. i.e. it is like a legal document
+%already. i.e., it is like a legal document
 Any virtual function defined by an inherited class or registered
 interface may be overriden. Like methods, virtual functions are
 implemented as \proglang{R} functions.
@@ -2646,13 +2642,13 @@ newly created instance of the class as its only parameter.
 % - it's all in the C structure
 
 % An idiom that is useful is to have the function take the target R
-% object as an argument, e.g.
+% object as an argument, e.g.,
 %  i = function(x, y, obj = new("MyObject")) {
 %    obj@x = x; obj@y = y
 %    obj
 % }
 % as this allows another constructor function to call this 
-% one with its own extended object, e.g. 
+% one with its own extended object, e.g., 
 % ii = function(a, b, x, y, obj = new("MyDerivedObject"))
 %   obj = i(x, y, obj)
 %   obj@a = a,...
@@ -2883,7 +2879,7 @@ Parameter types are formatted like field types.
 
 There are slight differences in the way the different types of
 callables are defined in the \proglang{defs}. Functions may be marked
-as constructors, i.e. for creating objects of a specified type.
+as constructors, i.e., for creating objects of a specified type.
 Methods and virtual functions belong to an object or interface type.
 This distinguishes them from plain functions and callback functions,
 which are independent of a class. The name of the type declaring the
@@ -2989,7 +2985,7 @@ enumeration/flags type.
 \subsubsection{Function and method wrappers}
 
 Functions and methods are mapped to \proglang{R} functions of the same
-name, transformed to \emph{camelBack} form, i.e. words concatenated
+name, transformed to \emph{camelBack} form, i.e., words concatenated
 and the first letter in upper case, except for the first word.
 Although an object-oriented syntax for methods is supported, its use
 is not mandatory; every API call is possible through an \proglang{R}
@@ -3072,18 +3068,18 @@ returned.
 \subsubsection{Constructors}
 %DTL2: Provide some introduction and motivatin rather than a technical
 %process.
-%e.g. 
+%e.g., 
 
 There are often several constructor routines for a given \pkg{GTK+}
-class, e.g. for \code{GtkButton} there is \code{gtkButtonNew},
+class, e.g., for \code{GtkButton} there is \code{gtkButtonNew},
 \code{gtkButtonNewWithLabel}, \code{gtkButtonNewFromStock}. While
 bindings for each of these are available, we also want the
 \proglang{R} programmer to be able to use a single general purpose
-constructor function, e.g. \code{gtkButton()}. Depending on which
+constructor function, e.g., \code{gtkButton()}. Depending on which
 arguments are provided to \code{gtkButton()}, the code decides which
 of the low-level constructors is to be invoked.
 
-For each object class, the high-level constructor function (e.g.
+For each object class, the high-level constructor function (e.g.,
 \code{gtkButton()}), is programmatically generated. Its parameter list
 matches the union of all of the parameter lists for each constructor
 of the class. The function body delegates to one of the constructors
@@ -3131,7 +3127,7 @@ gtkButton(stock.id = "...")
 %it would be much clearer to give the general description or concept.
 % If one does describe things in this style, it requires definitions
 % so the reader can untangle what is being said.
-% Instead of opposite direction, it is the opposite "order", i.e. 
+% Instead of opposite direction, it is the opposite "order", i.e., 
 % the R function is called from some C code which converts the C
 % arguments to the R equivalents and invokes the R function,
 % converting and returning the return value as appropriate.
@@ -3237,7 +3233,7 @@ extraction function \code{[[} as in \code{obj[[name]]}. The usage of
 %MFL2: tried to clear this up
 This mechanism is based on an \proglang{R}
 wrapper function named according to the scheme
-\emph{classNameGetFieldName}, e.g. \code{gtkWidgetGetStyle} for
+\emph{classNameGetFieldName}, e.g., \code{gtkWidgetGetStyle} for
 retrieving the \code{style} field from an instance of
 \code{GtkWidget}. %DTL: add an example
 This function works much the same as the function bindings introduced
@@ -3314,7 +3310,7 @@ feasible in certain cases.  One rare case is where a complex
 \proglang{C} type has a clear analog in \proglang{R}.  An example of
 this is the \code{GString} structure, which is a convenience wrapper
 around an array of characters. This is naturally mapped to an
-\proglang{R} \code{character} vector of length 1, i.e. a single string
+\proglang{R} \code{character} vector of length 1, i.e., a single string
 and
 not a vector of characters. The more common second case is
 the conversion between \proglang{C} structures and \proglang{R} lists,
@@ -3386,7 +3382,7 @@ transferring the ownership of the memory to \proglang{R}, in the hope
 %DTL2: Can we do better than hope? At least tag these functions
 %manually?
 %MFL2: What do you mean? We could try to write our own copy/free
-% functions (i.e. make the structures boxed). But the fields are
+% functions (i.e., make the structures boxed). But the fields are
 % often declared in private headers, so maintenance would be tough.
 % In some cases, copying would be very inefficient, and reference
 % counting would not work without cooperation from the external code.
@@ -3420,12 +3416,12 @@ to use an invalidated reference, an error will be thrown.  This silent
 modification of the class attribute may surprise the \proglang{R}
 programmer, but it avoids fatal errors that may corrupt the
 \proglang{R} session
-(e.g. segmentation faults).
+(e.g., segmentation faults).
 
 \subsubsection{Arrays}
 
 \proglang{C} arrays are converted to \proglang{R} lists, 
-%DTL2: event arrays of homogeneous primitive elements, e.g. int[] or a
+%DTL2: event arrays of homogeneous primitive elements, e.g., int[] or a
 %garray of ints.
 with each
 element
@@ -3627,7 +3623,7 @@ While completely reimplementing a \proglang{C} library in
 interface stubs in a subset of \proglang{Vala}, keeping the
 implementation in \proglang{C}. This interface definition language,
 known as \proglang{VAPI}, could then be translated to a standard
-format, e.g. \proglang{GIDL}, for input to interface generation tools.
+format, e.g., \proglang{GIDL}, for input to interface generation tools.
 In the case of \proglang{GIDL}, this avoids the need for a human to
 write \proglang{XML}.
 
@@ -3684,7 +3680,7 @@ it should probably be split out of \pkg{RGtk2} as a base binding to
 In conjunction with this, the binding generation system should be
 revised
 and made public, as was done for the original \pkg{RGtk} package.
-%DTL: as we did in the original bindings, i.e. RGtk.
+%DTL: as we did in the original bindings, i.e., RGtk.
 
 \subsection{Event loop issues}
 
@@ -3736,7 +3732,7 @@ There are many different ways to construct a GUI from \proglang{R}.
 All of them,
 at some level, depend on a binding to an external widget toolkit.
 Direct bindings
-exist for \pkg{Tcl/Tk} \citep{ousterhout,welch} and \pkg{wxWidgets}
+exist for \proglang{Tcl/Tk} \citep{ousterhout,welch} and \pkg{wxWidgets}
 \citep{wxwidgets}, 
 in addition to \pkg{GTK+}. Other toolkits are indirectly accessible
 across 
@@ -3750,35 +3746,35 @@ the
 The great majority of \proglang{R} GUIs rely on the \pkg{tcltk}
 package 
 \citep{Rnews:Dalgaard:2001a, Rnews:Dalgaard:2002} that binds 
-\proglang{R} to \pkg{Tcl/Tk} \citep{ousterhout,welch}, a mature
+\proglang{R} to \proglang{Tcl/Tk} \citep{ousterhout,welch}, a mature
 light-weight cross-platform
 widget library. Applications of \pkg{tcltk} range from \pkg{limmaGUI} 
 \citep{limma}, a task-specific GUI for microarray preprocessing, to
 the more 
-general \pkg{R Commander} \citep{rcmndr}. The \pkg{tcltk} package 
+general \proglang{R} Commander \citep{rcmndr}. The \pkg{tcltk} package 
 is bundled with the core distribution of 
 \proglang{R}. This means that developers can usually count on its
 availability.
 This is not the case for \pkg{RGtk2}, which requires the user
 to install \pkg{RGtk2}, \pkg{GTK+}, and all of the libraries on which
 \pkg{GTK+}
-depends. The small footprint of \pkg{Tcl/Tk} likely delivers better
+depends. The small footprint of \proglang{Tcl/Tk} likely delivers better
 performance in
 terms of speed and memory than \pkg{GTK+} in many circumstances.
-\pkg{Tcl/Tk}
+\proglang{Tcl/Tk}
 also offers some features that base \pkg{GTK+} currently lacks, the
 canvas widget
 being one example.
 
-Unfortunately, \pkg{Tcl/Tk} development is slow and the library is
+Unfortunately, \proglang{Tcl/Tk} development is slow and the library is
 beginning to show its age. It lacks many of the widgets present in
 \pkg{GTK+} and other modern toolkits, such as tree tables, progress
-bars, and autocompleting text fields. \pkg{Tcl/Tk} widgets are often
+bars, and autocompleting text fields. \proglang{Tcl/Tk} widgets are often
 less modern or sophisticated than their \pkg{GTK+} counterparts. For
 example, a \pkg{GTK+} menu is able to be torn off as an independent
 window and the \pkg{GTK+} file chooser supports the storage of
-shortcuts. \pkg{Tcl/Tk} also lacks theme support, so it is not able to
-emulate native look and feels.  \pkg{Tcl/Tk} is
+shortcuts. \proglang{Tcl/Tk} also lacks theme support, so it is not able to
+emulate native look and feels.  \proglang{Tcl/Tk} is
 not object-oriented, and it is not possible to override the
 fundamental behavior of widgets.  While one can build so-called
 ``megawidgets'' on top of existing \pkg{Tk} widgets, this is not the
@@ -3799,7 +3795,7 @@ The Windows-specific \pkg{tcltk2} package \citep{tcltk2} is an attempt
 to overcome some
 of the limitations of the \pkg{tcltk} package by binding the
 \pkg{Tile} extension
-\citep{tcltk-tile} of \pkg{Tcl/Tk}. Tile adds support for themes,
+\citep{tcltk-tile} of \proglang{Tcl/Tk}. Tile adds support for themes,
 allowing
 emulation of native widgets and prettier GUIs, as well as new widgets
 like a tree table and progress bar. However, Tile still lags behind
@@ -3812,11 +3808,11 @@ check boxes, and combo boxes, while the \pkg{Tile} one does not.
 % extra functions it provides for DDE and such. The author could
 % easily fix that.
 
-\pkg{wxWidgets} \citep{wxwidgets} differs from \pkg{Tcl/Tk} and
+\pkg{wxWidgets} \citep{wxwidgets} differs from \proglang{Tcl/Tk} and
 \pkg{GTK+} in that it provides a common API with platform-specific
 implementations based on the native widgets of each platform, and so 
 preserves the look and feel of each platform, without
-resorting to emulation.  In contrast, \pkg{Tcl/Tk} and \pkg{GTK+}
+resorting to emulation.  In contrast, \proglang{Tcl/Tk} and \pkg{GTK+}
 provide exactly the same widgets on all platforms, leaving the look
 and feel to theme engines.  \pkg{GTK+} serves as the ``native'' Linux
 implementation of \pkg{wxWidgets}.  The first binding from
@@ -3833,7 +3829,7 @@ of \pkg{wxWidgets}.
 % Maybe you mean AWT or SWT? Anyway, the claim is gone.
 %  Both use a "common
 %denominator" approach, but both allow one to use toolkit-specific
-% facilities, but in a mre convention-oriented manner, i.e. by
+% facilities, but in a mre convention-oriented manner, i.e., by
 % defining an interface and stating that it is not implemented for one
 % or other platforms. So the code still works. Which is essentially
 % the same as using a specific tookit.
@@ -3843,13 +3839,13 @@ descriptions. However, \pkg{wxWidgets} does provide some features that
 do not exist yet in base \pkg{GTK+}, such as \proglang{HTML} display
 and a dockable window framework.
 %DTL2: I believe it does.
-%MFL2: There are libraries (e.g. WebKitGTK) but nothing in base
+%MFL2: There are libraries (e.g., WebKitGTK) but nothing in base
 % GTK+, so RGtk2 does not bind them.
 %DTL: There are many more things wxWidgets provides such as document
 %models, MDI, threads, ...
 %ML: Please feel free to add anything here.
 
-The \pkg{RDCOM} \citep{RDCOM} and \pkg{R-(D)COM} \citep{RDCOM2}
+The \pkg{RDCOM} \citep{RDCOM} and \pkg{rcom} \citep{RDCOM2}
 packages provide an interface between \proglang{R} and \pkg{DCOM}
 \citep{DCOM}. This permits manipulation of existing GUIs, such as that
 of Microsoft Office, or programmatically placing ActiveX controls on
@@ -3904,7 +3900,7 @@ implemented by multiple toolkit backends. \pkg{gWidgets} is written in
 toolkits. So far, there are three backends for \pkg{gWidgets}:
 \pkg{gWidgetsRGtk2}, based on \pkg{RGtk2}; \pkg{gWidgetsJava}, based
 on \pkg{rJava} and \pkg{Swing}; and \pkg{gWidgetsTcltk} for
-\pkg{Tcl/Tk}.  A defining characteristic of \pkg{gWidgets} is the
+\proglang{Tcl/Tk}.  A defining characteristic of \pkg{gWidgets} is the
 design of its API, which aims for simplicity and consistency with
 \proglang{R} conventions.  The goal is to accelerate the construction
 of simple GUIs by those inexperienced with GUI programming. For this
@@ -3923,7 +3919,7 @@ source license.  The most recent version (4.4) includes the
 integration of \pkg{WebKit} \citep{WebKit}, the libraries used in
 Apple's \pkg{Safari} Web browser, and so offers a wide variety of high
 quality support for rendering \proglang{HTML}, executing JavaScript,
-XPath, etc.  Bindings for \proglang{R} to Qt are in preparation.
+XPath, etc.  Bindings for \proglang{R} to Qt are in preparation \citep{qtinterfaces}.
 
 %DTL2:  A section on Qt  is missing. Deepayan has done some work and
 %so have I and we can auto-generate the bindings and probably will do
@@ -3961,12 +3957,6 @@ The package has been adopted by several projects, including:
 graphics. Future plans for \pkg{RGtk2} include more fully automating
 the code 
 generation process and keeping pace with frequent \pkg{GTK+} releases.
-
-\subsection*{Supplemental information}
-
-More information, including download instructions,
-are available at the \pkg{RGtk2} website
-\url{http://www.ggobi.org/rgtk2}.
 
 \subsection*{Acknowledgements}
 

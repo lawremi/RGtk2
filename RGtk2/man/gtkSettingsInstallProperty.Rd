@@ -4,6 +4,7 @@
 \description{\emph{undocumented
 }}
 \usage{gtkSettingsInstallProperty(pspec)}
-\arguments{\item{\verb{pspec}}{[\verb{\link{GParamSpec}}] }}
+\arguments{\item{\verb{pspec}}{\emph{undocumented
+}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

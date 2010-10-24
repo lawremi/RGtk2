@@ -5,8 +5,8 @@
 before delivering them normally.}
 \usage{gtkKeySnooperInstall(snooper, func.data = NULL)}
 \arguments{
-\item{\verb{snooper}}{[\verb{\link{GtkKeySnoopFunc}}] a \verb{\link{GtkKeySnoopFunc}}.}
-\item{\verb{func.data}}{[R object] data to pass to \code{snooper}.}
+\item{\verb{snooper}}{a \code{\link{GtkKeySnoopFunc}}.}
+\item{\verb{func.data}}{data to pass to \code{snooper}.}
 }
 \value{[numeric] a unique id for this key snooper for use with \code{\link{gtkKeySnooperRemove}}.}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -1,10 +1,10 @@
 \alias{pangoFontDescriptionGetStyle}
 \name{pangoFontDescriptionGetStyle}
 \title{pangoFontDescriptionGetStyle}
-\description{Gets the style field of a \verb{\link{PangoFontDescription}}. See
+\description{Gets the style field of a \code{\link{PangoFontDescription}}. See
 \code{\link{pangoFontDescriptionSetStyle}}.}
 \usage{pangoFontDescriptionGetStyle(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{PangoFontDescription}}]  a \verb{\link{PangoFontDescription}}}}
+\arguments{\item{\verb{object}}{a \code{\link{PangoFontDescription}}}}
 \value{[\code{\link{PangoStyle}}]  the style field for the font description.
   Use \code{\link{pangoFontDescriptionGetSetFields}} to find out if
   the field was explicitly set or not.}

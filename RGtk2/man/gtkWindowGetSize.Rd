@@ -6,7 +6,7 @@ it returns the size GTK+ will suggest to the window manager for the initial wind
 size (but this is not reliably the same as the size the window
 manager will actually select). The size obtained by
 \code{\link{gtkWindowGetSize}} is the last size received in a
-\verb{\link{GdkEventConfigure}}, that is, GTK+ uses its locally-stored size,
+\code{\link{GdkEventConfigure}}, that is, GTK+ uses its locally-stored size,
 rather than querying the X server for the size. As a result, if you
 call \code{\link{gtkWindowResize}} then immediately call
 \code{\link{gtkWindowGetSize}}, the size won't have taken effect yet. After
@@ -14,13 +14,13 @@ the window manager processes the resize request, GTK+ receives
 notification that the size has changed via a configure event, and
 the size of the window gets updated.}
 \usage{gtkWindowGetSize(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}}}
+\arguments{\item{\verb{object}}{a \code{\link{GtkWindow}}}}
 \details{Note 1: Nearly any use of this function creates a race condition,
 because the size of the window may change between the time that you
 get the size and the time that you perform some action assuming
 that size is the current size. To avoid race conditions, connect to
-"configure_event" on the window and adjust your size-dependent
-state to match the size delivered in the \verb{\link{GdkEventConfigure}}.
+"configure-event" on the window and adjust your size-dependent
+state to match the size delivered in the \code{\link{GdkEventConfigure}}.
   
 Note 2: The returned size does \emph{not} include the
 size of the window manager decorations (aka the window frame or
@@ -44,11 +44,11 @@ application cannot.
 In any case, if you insist on application-specified window
 positioning, there's \emph{still} a better way than
 doing it yourself - \code{\link{gtkWindowSetPosition}} will frequently
-handle the details for you.  }
+handle the details for you.}
 \value{
 A list containing the following elements:
-\item{\verb{width}}{[integer]  return location for width, or \code{NULL}}
-\item{\verb{height}}{[integer]  return location for height, or \code{NULL}}
+\item{\verb{width}}{ return location for width, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{height}}{ return location for height, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

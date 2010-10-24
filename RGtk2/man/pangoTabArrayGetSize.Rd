@@ -3,7 +3,7 @@
 \title{pangoTabArrayGetSize}
 \description{Gets the number of tab stops in \code{tab.array}.}
 \usage{pangoTabArrayGetSize(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{PangoTabArray}}]  a \verb{\link{PangoTabArray}}}}
+\arguments{\item{\verb{object}}{a \code{\link{PangoTabArray}}}}
 \value{[integer]  the number of tab stops in the list.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

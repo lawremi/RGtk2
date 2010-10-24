@@ -80,7 +80,7 @@ rGtkDataFrameAppendColumns <- function(x, ...) {
 	x
 }
 
-rGtkDataFrameSetFrame <- function(x, frame = data.frame()) {
+ rGtkDataFrameSetFrame <- function(x, frame = data.frame()) {
   rows <- list()
   if (nrow(frame) > 0)
     rows <- as.list(as.integer(1:nrow(frame)-1))

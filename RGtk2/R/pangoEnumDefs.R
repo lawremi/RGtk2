@@ -196,6 +196,28 @@ PangoGravityHint<-c("natural" = 0,
 storage.mode(PangoGravityHint) <- 'integer'
 class(PangoGravityHint) <- 'enums' 
 
+PangoBidiType<-c("l" = 0,
+	"lre" = 1,
+	"lro" = 2,
+	"r" = 3,
+	"al" = 4,
+	"rle" = 5,
+	"rlo" = 6,
+	"pdf" = 7,
+	"en" = 8,
+	"es" = 9,
+	"et" = 10,
+	"an" = 11,
+	"cs" = 12,
+	"nsm" = 13,
+	"bn" = 14,
+	"b" = 15,
+	"s" = 16,
+	"ws" = 17,
+	"on" = 18)
+storage.mode(PangoBidiType) <- 'integer'
+class(PangoBidiType) <- 'enums' 
+
 PangoFontMask<-c("family" = 1,
 	"style" = 2,
 	"variant" = 4,

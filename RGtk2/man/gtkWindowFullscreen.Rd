@@ -8,10 +8,9 @@ again, and not all window managers honor requests to fullscreen
 windows. But normally the window will end up fullscreen. Just
 don't write code that crashes if not.}
 \usage{gtkWindowFullscreen(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}}}
-\details{You can track the fullscreen state via the "window_state_event" signal
-on \verb{\link{GtkWidget}}.  
-
-  Since  2.2}
+\arguments{\item{\verb{object}}{a \code{\link{GtkWindow}}}}
+\details{You can track the fullscreen state via the "window-state-event" signal
+on \code{\link{GtkWidget}}.
+  Since 2.2}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

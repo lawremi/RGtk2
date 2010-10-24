@@ -5,8 +5,8 @@
 is selected for sorting.  Doing so makes the column header clickable.}
 \usage{gtkTreeViewColumnSetSortColumnId(object, sort.column.id)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTreeViewColumn}}]  a \verb{\link{GtkTreeViewColumn}}}
-\item{\verb{sort.column.id}}{[integer]  The \code{sort.column.id} of the model to sort on.}
+\item{\verb{object}}{a \code{\link{GtkTreeViewColumn}}}
+\item{\verb{sort.column.id}}{The \code{sort.column.id} of the model to sort on.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

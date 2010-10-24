@@ -4,8 +4,8 @@
 \description{Retrieves the base gravity for the context. See
 \code{\link{pangoContextSetBaseGravity}}.}
 \usage{pangoContextGetBaseGravity(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{PangoContext}}]  a \verb{\link{PangoContext}}}}
-\details{  Since  1.16}
+\arguments{\item{\verb{object}}{a \code{\link{PangoContext}}}}
+\details{Since 1.16}
 \value{[\code{\link{PangoGravity}}]  the base gravity for the context.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

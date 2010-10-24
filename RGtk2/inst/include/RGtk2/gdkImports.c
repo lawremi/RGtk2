@@ -4,6 +4,8 @@
 
 #include <RGtk2/pangoImports.c>
 
+#include <RGtk2/gioImports.c>
+
 #include <RGtk2/gdkUserFuncImports.c>
 
 #include <RGtk2/gdkClassImports.c>

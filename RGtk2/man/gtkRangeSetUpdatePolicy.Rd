@@ -11,8 +11,8 @@ be updated when the user releases the button and ends the slider
 drag operation.}
 \usage{gtkRangeSetUpdatePolicy(object, policy)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkRange}}]  a \verb{\link{GtkRange}}}
-\item{\verb{policy}}{[\code{\link{GtkUpdateType}}]  update policy}
+\item{\verb{object}}{a \code{\link{GtkRange}}}
+\item{\verb{policy}}{update policy}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

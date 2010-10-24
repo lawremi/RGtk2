@@ -5,9 +5,9 @@
 by a specified amount.}
 \usage{gtkSpinButtonSpin(object, direction, increment)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkSpinButton}}]  a \verb{\link{GtkSpinButton}} }
-\item{\verb{direction}}{[\code{\link{GtkSpinType}}]  a \code{\link{GtkSpinType}} indicating the direction to spin.}
-\item{\verb{increment}}{[numeric]  step increment to apply in the specified direction.}
+\item{\verb{object}}{a \code{\link{GtkSpinButton}} }
+\item{\verb{direction}}{a \code{\link{GtkSpinType}} indicating the direction to spin.}
+\item{\verb{increment}}{step increment to apply in the specified direction.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

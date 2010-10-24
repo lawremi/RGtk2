@@ -25,8 +25,8 @@
    +----GInitiallyUnowned
          +----GtkObject
                +----GtkRecentFilter}}
-\section{Detailed Description}{A \verb{\link{GtkRecentFilter}} can be used to restrict the files being shown
-in a \verb{\link{GtkRecentChooser}}.  Files can be filtered based on their name
+\section{Detailed Description}{A \code{\link{GtkRecentFilter}} can be used to restrict the files being shown
+in a \code{\link{GtkRecentChooser}}.  Files can be filtered based on their name
 (with \code{\link{gtkRecentFilterAddPattern}}), on their mime type (with
 \code{\link{gtkFileFilterAddMimeType}}), on the application that has
 registered them (with \code{\link{gtkRecentFilterAddApplication}}), or by
@@ -35,10 +35,10 @@ a custom filter function (with \code{\link{gtkRecentFilterAddCustom}}).
 Filtering by mime type handles aliasing and subclassing of mime
 types; e.g. a filter for text/plain also matches a file with mime
 type application/rtf, since application/rtf is a subclass of text/plain.
-Note that \verb{\link{GtkRecentFilter}} allows wildcards for the subtype of a
+Note that \code{\link{GtkRecentFilter}} allows wildcards for the subtype of a
 mime type, so you can e.g. filter for image/*.
   
-Normally, filters are used by adding them to a \verb{\link{GtkRecentChooser}},
+Normally, filters are used by adding them to a \code{\link{GtkRecentChooser}},
 see \code{\link{gtkRecentChooserAddFilter}}, but it is also possible to
 manually use a filter on a file with \code{\link{gtkRecentFilterFilter}}.
   
@@ -70,7 +70,7 @@ to pass information about the tested file to \code{\link{gtkRecentFilterFilter}}
 }}
 \section{Convenient Construction}{\code{gtkRecentFilter} is the equivalent of \code{\link{gtkRecentFilterNew}}.}
 \section{Enums and Flags}{\describe{\item{\verb{GtkRecentFilterFlags}}{
-These flags indicate what parts of a \verb{\link{GtkRecentFilterInfo}} struct
+These flags indicate what parts of a \code{\link{GtkRecentFilterInfo}} struct
 are filled or need to be filled.
 
 \describe{
@@ -91,15 +91,15 @@ The type of function that is used with custom filters,
 see \code{\link{gtkRecentFilterAddCustom}}.
 
 \describe{
-\item{\code{filter.info}}{[\verb{\link{GtkRecentFilterInfo}}] a \verb{\link{GtkRecentFilterInfo}} that is filled according
+\item{\code{filter.info}}{a \code{\link{GtkRecentFilterInfo}} that is filled according
   to the \code{needed} flags passed to \code{\link{gtkRecentFilterAddCustom}}}
-\item{\code{user.data}}{[R object] user data passed to \code{\link{gtkRecentFilterAddCustom}}}
+\item{\code{user.data}}{user data passed to \code{\link{gtkRecentFilterAddCustom}}}
 }
 
 \emph{Returns:} [logical] \code{TRUE} if the file should be displayed
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkRecentFilter.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkRecentFilter.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
-\seealso{\verb{\link{GtkRecentChooser}}}
+\seealso{\code{\link{GtkRecentChooser}}}
 \keyword{internal}

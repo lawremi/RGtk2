@@ -6,11 +6,11 @@ background, underline, etc.), overriding any attributes on the layouts
 renderered with this renderer.}
 \usage{gdkPangoRendererSetOverrideColor(object, part, color = NULL)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GdkPangoRenderer}}]  a \verb{\link{GdkPangoRenderer}}}
-\item{\verb{part}}{[\code{\link{PangoRenderPart}}]  the part to render to set the color of}
-\item{\verb{color}}{[\verb{\link{GdkColor}}]  the color to use, or \code{NULL} to unset a previously
-        set override color.}
+\item{\verb{object}}{a \code{\link{GdkPangoRenderer}}}
+\item{\verb{part}}{the part to render to set the color of}
+\item{\verb{color}}{ the color to use, or \code{NULL} to unset a previously
+        set override color. \emph{[  \acronym{allow-none}  ]}}
 }
-\details{  Since  2.6}
+\details{Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

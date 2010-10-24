@@ -5,7 +5,7 @@
 specified type.}
 \usage{atkRelationSetContains(object, relationship)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{AtkRelationSet}}]  an \verb{\link{AtkRelationSet}}}
+\item{\verb{object}}{[\code{\link{AtkRelationSet}}]  an \code{\link{AtkRelationSet}}}
 \item{\verb{relationship}}{[\code{\link{AtkRelationType}}]  an \code{\link{AtkRelationType}}}
 }
 \value{[logical] \code{TRUE} if \code{relationship} is the relationship type of a relation

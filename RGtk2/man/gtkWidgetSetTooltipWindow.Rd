@@ -8,9 +8,11 @@ the default tooltip window. If \code{custom.window} is \code{NULL}, the default
 tooltip window will be used.}
 \usage{gtkWidgetSetTooltipWindow(object, custom.window)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
-\item{\verb{custom.window}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}, or \code{NULL}}
+\item{\verb{object}}{a \code{\link{GtkWidget}}}
+\item{\verb{custom.window}}{ a \code{\link{GtkWindow}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
-\details{  Since  2.12}
+\details{If the custom window should have the default theming it needs to
+have the name "gtk-tooltip", see \code{\link{gtkWidgetSetName}}.
+  Since 2.12}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

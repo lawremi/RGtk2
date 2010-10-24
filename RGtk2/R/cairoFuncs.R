@@ -1164,17 +1164,6 @@ function(other, content, width, height)
 } 
 
 
-cairoSurfaceReference <-
-function(surface)
-{
-  checkPtrType(surface, "CairoSurface")
-
-  w <- .RGtkCall("S_cairo_surface_reference", surface, PACKAGE = "RGtk2")
-
-  return(w)
-} 
-
-
 cairoSurfaceDestroy <-
 function(surface)
 {

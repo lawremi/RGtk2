@@ -17,12 +17,12 @@
                                  +----GtkFrame
                                        +----GtkAspectFrame}}
 \section{Interfaces}{GtkAspectFrame implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{The \verb{\link{GtkAspectFrame}} is useful when you want
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
+\section{Detailed Description}{The \code{\link{GtkAspectFrame}} is useful when you want
 pack a widget so that it can resize but always retains
 the same aspect ratio. For instance, one might be
-drawing a small preview of a larger image. \verb{\link{GtkAspectFrame}}
-derives from \verb{\link{GtkFrame}}, so it can draw a label and
+drawing a small preview of a larger image. \code{\link{GtkAspectFrame}}
+derives from \code{\link{GtkFrame}}, so it can draw a label and
 a frame around the child. The frame will be
 "shrink-wrapped" to the size of the child.}
 \section{Structures}{\describe{\item{\verb{GtkAspectFrame}}{
@@ -39,7 +39,7 @@ Force aspect ratio to match that of the frame's child.  Default value: TRUE
 }
 \item{\verb{ratio} [numeric : Read / Write]}{
 
-Aspect ratio if obey_child is FALSE.  Allowed values: [0.0001,10000]  Default value: 0.5
+Aspect ratio if obey_child is FALSE.  Allowed values: [0.0001,10000]  Default value: 1
 
 }
 \item{\verb{xalign} [numeric : Read / Write]}{
@@ -53,6 +53,6 @@ Y alignment of the child.  Allowed values: [0,1]  Default value: 0.5
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkAspectFrame.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkAspectFrame.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

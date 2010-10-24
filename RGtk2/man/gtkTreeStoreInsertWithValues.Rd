@@ -7,10 +7,10 @@ the new row will be appended to the list.  The row will be filled with
 the values given to this function.}
 \usage{gtkTreeStoreInsertWithValues(object, parent, position, ...)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTreeStore}}]  A \verb{\link{GtkTreeStore}}}
-\item{\verb{parent}}{[\verb{\link{GtkTreeIter}}]  A valid \verb{\link{GtkTreeIter}}, or \code{NULL}}
-\item{\verb{position}}{[integer]  position to insert the new row}
-\item{\verb{...}}{ pairs of column number and value, terminated with -1}
+\item{\verb{object}}{A \code{\link{GtkTreeStore}}}
+\item{\verb{parent}}{ A valid \code{\link{GtkTreeIter}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{position}}{position to insert the new row}
+\item{\verb{...}}{pairs of column number and value, terminated with -1}
 }
 \details{Calling
 \code{gtk_tree_store_insert_with_values (tree_store, iter, position, ...)}
@@ -24,12 +24,11 @@ while the latter will emit row_inserted, row_changed and if the tree store
 is sorted, rows_reordered.  Since emitting the rows_reordered signal
 repeatedly can affect the performance of the program,
 \code{\link{gtkTreeStoreInsertWithValues}} should generally be preferred when
-inserting rows in a sorted tree store.  
-
-  Since  2.10}
+inserting rows in a sorted tree store.
+  Since 2.10}
 \value{
 A list containing the following elements:
-\item{\verb{iter}}{[\verb{\link{GtkTreeIter}}]  An unset \verb{\link{GtkTreeIter}} to set the new row, or \code{NULL}.}
+\item{\verb{iter}}{ An unset \code{\link{GtkTreeIter}} to set the new row, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

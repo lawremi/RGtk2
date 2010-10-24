@@ -52004,7 +52004,7 @@ S_gtk_icon_info_new_for_pixbuf(USER_OBJECT_ s_icon_theme, USER_OBJECT_ s_pixbuf)
 
   ans = gtk_icon_info_new_for_pixbuf(icon_theme, pixbuf);
 
-  _result = toRPointerWithFinalizer(ans ? gtk_icon_info_copy(ans) : NULL, "GtkIconInfo", (RPointerFinalizer) gtk_icon_info_free);
+  _result = toRPointerWithFinalizer(ans, "GtkIconInfo", (RPointerFinalizer) gtk_icon_info_free);
 #else
   error("gtk_icon_info_new_for_pixbuf exists only in Gtk >= 2.14.0");
 #endif
@@ -52796,7 +52796,7 @@ S_gtk_status_icon_new_from_gicon(USER_OBJECT_ s_icon)
 
   ans = gtk_status_icon_new_from_gicon(icon);
 
-  _result = toRPointerWithRef(ans, "GtkStatusIcon");
+  _result = toRPointerWithFinalizer(ans, "GtkStatusIcon", (RPointerFinalizer) g_object_unref);
 #else
   error("gtk_status_icon_new_from_gicon exists only in Gtk >= 2.14.0");
 #endif
@@ -53134,6 +53134,295 @@ S_gtk_link_button_set_visited(USER_OBJECT_ s_object, USER_OBJECT_ s_visited)
 
 #else
   error("gtk_link_button_set_visited exists only in Gtk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gtk_border_new(void)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GTK_CHECK_VERSION(2, 14, 0)
+
+  GtkBorder* ans;
+
+  ans = gtk_border_new();
+
+  _result = toRPointerWithFinalizer(ans, "GtkBorder", (RPointerFinalizer) gtk_border_free);
+#else
+  error("gtk_border_new exists only in Gtk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gtk_test_register_all_types(void)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GTK_CHECK_VERSION(2, 14, 0)
+
+
+  gtk_test_register_all_types();
+
+#else
+  error("gtk_test_register_all_types exists only in Gtk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gtk_test_list_all_types(void)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GTK_CHECK_VERSION(2, 14, 0)
+
+  const GType* ans;
+  guint n_types;
+
+  ans = gtk_test_list_all_types(&n_types);
+
+  _result = asRNumericArrayWithSize(ans, n_types);
+
+  _result = retByVal(_result, "n.types", asRNumeric(n_types), NULL);
+  ;
+#else
+  error("gtk_test_list_all_types exists only in Gtk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gtk_test_find_widget(USER_OBJECT_ s_widget, USER_OBJECT_ s_label_pattern, USER_OBJECT_ s_widget_type)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GTK_CHECK_VERSION(2, 14, 0)
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+  const gchar* label_pattern = ((const gchar*)asCString(s_label_pattern));
+  GType widget_type = ((GType)asCNumeric(s_widget_type));
+
+  GtkWidget* ans;
+
+  ans = gtk_test_find_widget(widget, label_pattern, widget_type);
+
+  _result = toRPointerWithSink(ans, "GtkWidget");
+#else
+  error("gtk_test_find_widget exists only in Gtk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gtk_test_create_simple_window(USER_OBJECT_ s_window_title, USER_OBJECT_ s_dialog_text)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GTK_CHECK_VERSION(2, 14, 0)
+  const gchar* window_title = ((const gchar*)asCString(s_window_title));
+  const gchar* dialog_text = ((const gchar*)asCString(s_dialog_text));
+
+  GtkWidget* ans;
+
+  ans = gtk_test_create_simple_window(window_title, dialog_text);
+
+  _result = toRPointerWithSink(ans, "GtkWidget");
+#else
+  error("gtk_test_create_simple_window exists only in Gtk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gtk_test_slider_set_perc(USER_OBJECT_ s_widget, USER_OBJECT_ s_percentage)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GTK_CHECK_VERSION(2, 14, 0)
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+  double percentage = ((double)asCNumeric(s_percentage));
+
+
+  gtk_test_slider_set_perc(widget, percentage);
+
+#else
+  error("gtk_test_slider_set_perc exists only in Gtk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gtk_test_slider_get_value(USER_OBJECT_ s_widget)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GTK_CHECK_VERSION(2, 14, 0)
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+
+  double ans;
+
+  ans = gtk_test_slider_get_value(widget);
+
+  _result = asRNumeric(ans);
+#else
+  error("gtk_test_slider_get_value exists only in Gtk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gtk_test_spin_button_click(USER_OBJECT_ s_spinner, USER_OBJECT_ s_button, USER_OBJECT_ s_upwards)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GTK_CHECK_VERSION(2, 14, 0)
+  GtkSpinButton* spinner = GTK_SPIN_BUTTON(getPtrValue(s_spinner));
+  guint button = ((guint)asCNumeric(s_button));
+  gboolean upwards = ((gboolean)asCLogical(s_upwards));
+
+  gboolean ans;
+
+  ans = gtk_test_spin_button_click(spinner, button, upwards);
+
+  _result = asRLogical(ans);
+#else
+  error("gtk_test_spin_button_click exists only in Gtk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gtk_test_widget_click(USER_OBJECT_ s_widget, USER_OBJECT_ s_button, USER_OBJECT_ s_modifiers)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GTK_CHECK_VERSION(2, 14, 0)
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+  guint button = ((guint)asCNumeric(s_button));
+  GdkModifierType modifiers = ((GdkModifierType)asCFlag(s_modifiers, GDK_TYPE_MODIFIER_TYPE));
+
+  gboolean ans;
+
+  ans = gtk_test_widget_click(widget, button, modifiers);
+
+  _result = asRLogical(ans);
+#else
+  error("gtk_test_widget_click exists only in Gtk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gtk_test_widget_send_key(USER_OBJECT_ s_widget, USER_OBJECT_ s_keyval, USER_OBJECT_ s_modifiers)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GTK_CHECK_VERSION(2, 14, 0)
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+  guint keyval = ((guint)asCNumeric(s_keyval));
+  GdkModifierType modifiers = ((GdkModifierType)asCFlag(s_modifiers, GDK_TYPE_MODIFIER_TYPE));
+
+  gboolean ans;
+
+  ans = gtk_test_widget_send_key(widget, keyval, modifiers);
+
+  _result = asRLogical(ans);
+#else
+  error("gtk_test_widget_send_key exists only in Gtk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gtk_test_text_set(USER_OBJECT_ s_widget, USER_OBJECT_ s_string)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GTK_CHECK_VERSION(2, 14, 0)
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+  const gchar* string = ((const gchar*)asCString(s_string));
+
+
+  gtk_test_text_set(widget, string);
+
+#else
+  error("gtk_test_text_set exists only in Gtk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gtk_test_text_get(USER_OBJECT_ s_widget)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GTK_CHECK_VERSION(2, 14, 0)
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+
+  gchar* ans;
+
+  ans = gtk_test_text_get(widget);
+
+  _result = asRString(ans);
+    CLEANUP(g_free, ans);;
+#else
+  error("gtk_test_text_get exists only in Gtk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gtk_test_find_sibling(USER_OBJECT_ s_base_widget, USER_OBJECT_ s_widget_type)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GTK_CHECK_VERSION(2, 14, 0)
+  GtkWidget* base_widget = GTK_WIDGET(getPtrValue(s_base_widget));
+  GType widget_type = ((GType)asCNumeric(s_widget_type));
+
+  GtkWidget* ans;
+
+  ans = gtk_test_find_sibling(base_widget, widget_type);
+
+  _result = toRPointerWithSink(ans, "GtkWidget");
+#else
+  error("gtk_test_find_sibling exists only in Gtk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gtk_test_find_label(USER_OBJECT_ s_widget, USER_OBJECT_ s_label_pattern)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GTK_CHECK_VERSION(2, 14, 0)
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+  const gchar* label_pattern = ((const gchar*)asCString(s_label_pattern));
+
+  GtkWidget* ans;
+
+  ans = gtk_test_find_label(widget, label_pattern);
+
+  _result = toRPointerWithSink(ans, "GtkWidget");
+#else
+  error("gtk_test_find_label exists only in Gtk >= 2.14.0");
 #endif
 
   return(_result);

@@ -1,10 +1,10 @@
 \alias{cairoPatternCreateForSurface}
 \name{cairoPatternCreateForSurface}
 \title{cairoPatternCreateForSurface}
-\description{Create a new \verb{\link{CairoPattern}} for the given surface.}
+\description{Create a new \code{\link{CairoPattern}} for the given surface.}
 \usage{cairoPatternCreateForSurface(surface)}
-\arguments{\item{\verb{surface}}{[\verb{\link{CairoSurface}}]  the surface}}
-\value{[\verb{\link{CairoPattern}}]  the newly created \verb{\link{CairoPattern}} if successful, or
+\arguments{\item{\verb{surface}}{[\code{\link{CairoSurface}}]  the surface}}
+\value{[\code{\link{CairoPattern}}]  the newly created \code{\link{CairoPattern}} if successful, or
 an error pattern in case of no memory.
 
 This function will always return a valid pointer, but if an error

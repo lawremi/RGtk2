@@ -16,3 +16,16 @@
     )
   (since "1.26.0")
 )
+
+(define-function pango_gravity_get_for_script_and_width
+  (in-module "Pango")
+  (c-name "pango_gravity_get_for_script_and_width")
+  (return-type "PangoGravity")
+  (parameters
+   '("PangoScript" "script")
+   '("gboolean" "wide")
+   '("PangoGravity" "base_gravity")
+   '("PangoGravityHint" "hint")
+   )
+  (since "1.26.0")
+  )

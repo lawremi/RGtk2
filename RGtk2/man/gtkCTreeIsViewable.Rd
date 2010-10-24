@@ -10,8 +10,10 @@ area of the window.
 }
 \usage{gtkCTreeIsViewable(object, node)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkCTree}}] }
-\item{\verb{node}}{[\verb{\link{GtkCTreeNode}}] }
+\item{\verb{object}}{\emph{undocumented
+}}
+\item{\verb{node}}{\emph{undocumented
+}}
 }
 \value{[logical] Whether the node is viewable.}
 \author{Derived by RGtkGen from GTK+ documentation}

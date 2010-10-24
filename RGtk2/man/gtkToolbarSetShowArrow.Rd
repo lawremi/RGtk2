@@ -7,9 +7,9 @@ items that there are not room are available through an
 overflow menu.}
 \usage{gtkToolbarSetShowArrow(object, show.arrow)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkToolbar}}]  a \verb{\link{GtkToolbar}}}
-\item{\verb{show.arrow}}{[logical]  Whether to show an overflow menu}
+\item{\verb{object}}{a \code{\link{GtkToolbar}}}
+\item{\verb{show.arrow}}{Whether to show an overflow menu}
 }
-\details{  Since  2.4}
+\details{Since 2.4}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

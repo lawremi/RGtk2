@@ -6,7 +6,6 @@ filename is identical to the result from calling
 \code{\link{pangoFontDescriptionToString}}, but with underscores instead of
 characters that are untypical in filenames, and in lower case only.}
 \usage{pangoFontDescriptionToFilename(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{PangoFontDescription}}]  a \verb{\link{PangoFontDescription}}}}
-\value{[char] .}
+\arguments{\item{\verb{object}}{a \code{\link{PangoFontDescription}}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

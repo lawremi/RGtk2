@@ -5,8 +5,8 @@
 the current label is removed.}
 \usage{gtkFrameSetLabel(object, label = NULL)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkFrame}}]  a \verb{\link{GtkFrame}}}
-\item{\verb{label}}{[character]  the text to use as the label of the frame}
+\item{\verb{object}}{a \code{\link{GtkFrame}}}
+\item{\verb{label}}{ the text to use as the label of the frame. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -8,8 +8,8 @@ on \code{gc}, calling individual "setter" functions is likely more
 convenient.}
 \usage{gdkGCSetValues(object, values)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GdkGC}}]  a \verb{\link{GdkGC}}}
-\item{\verb{values}}{[\verb{\link{GdkGCValues}}]  struct containing the new values}
+\item{\verb{object}}{a \code{\link{GdkGC}}}
+\item{\verb{values}}{struct containing the new values}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -9,7 +9,7 @@ before sending exposes to windows during
 the invalid region for each window and watch redraws as they
 occur. This allows you to diagnose inefficiencies in your application.}
 \usage{gdkWindowSetDebugUpdates(setting)}
-\arguments{\item{\verb{setting}}{[logical] \code{TRUE} to turn on update debugging}}
+\arguments{\item{\verb{setting}}{\code{TRUE} to turn on update debugging}}
 \details{In essence, because the GDK rendering model prevents all flicker,
 if you are redrawing the same region 400 times you may never
 notice, aside from noticing a speed problem. Enabling update
@@ -20,6 +20,6 @@ The --gtk-debug=updates command line option passed to GTK+ programs
 enables this debug option at application startup time. That's
 usually more useful than calling \code{\link{gdkWindowSetDebugUpdates}}
 yourself, though you might want to use this function to enable
-updates sometime after application startup time.  }
+updates sometime after application startup time.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

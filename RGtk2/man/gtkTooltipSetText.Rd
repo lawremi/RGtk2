@@ -5,9 +5,9 @@
 will be hidden. See also \code{\link{gtkTooltipSetMarkup}}.}
 \usage{gtkTooltipSetText(object, text)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTooltip}}]  a \verb{\link{GtkTooltip}}}
-\item{\verb{text}}{[character]  a text string or \code{NULL}}
+\item{\verb{object}}{a \code{\link{GtkTooltip}}}
+\item{\verb{text}}{ a text string or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
-\details{  Since  2.12}
+\details{Since 2.12}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -532,6 +532,7 @@
   (in-module "Gtk")
   (c-name "gtk_icon_info_new_for_pixbuf")
   (return-type "GtkIconInfo*")
+  (is-constructor-of "GtkIconInfo")
   (parameters
    '("GtkIconTheme*" "icon_theme")
    '("GdkPixbuf*" "pixbuf")
@@ -570,6 +571,7 @@
   (in-module "Gtk")
   (c-name "gtk_image_new_from_gicon")
   (return-type "GtkWidget*")
+  (is-constructor-of "GtkImage")
   (parameters
    '("GIcon*" "icon")
    '("GtkIconSize" "size")
@@ -915,6 +917,7 @@
 (define-function status_icon_new_from_gicon
   (in-module "Gtk")
   (c-name "gtk_status_icon_new_from_gicon")
+  (is-constructor-of "GtkStatusIcon")
   (return-type "GtkStatusIcon*")
   (parameters
    '("GIcon*" "icon")
@@ -1125,6 +1128,196 @@
    (since "2.14.0")
    )
 
+; GtkBorder
+
+(define-function gtk_border_new
+  (in-module "Gtk")
+  (c-name "gtk_border_new")
+  (is-constructor-of "GtkBorder")
+  (return-type "GtkBorder*")
+  (since "2.14.0")
+  )
+
+;; Testing
+
+(define-function gtk_test_init
+  (c-name "gtk_test_init")
+  (in-module "Gtk")
+  (return-type "none")
+  (parameters
+   '("int*" "argcp")
+   '("char***" "argvp")
+   )
+  (varargs #t)
+  (since "2.14.0")
+  )
+
+(define-function gtk_test_register_all_types
+  (c-name "gtk_test_register_all_types")
+  (in-module "Gtk")
+  (return-type "none")
+  (since "2.14.0")
+  )
+
+(define-function gtk_test_list_all_types
+  (c-name "gtk_test_list_all_types")
+  (in-module "Gtk")
+  (return-type "const-GType[]")
+  (parameters
+   '("guint*" "n_types" (out))
+   )
+  (since "2.14.0")
+)
+
+(define-function gtk_test_find_widget
+  (c-name "gtk_test_find_widget")
+  (in-module "Gtk")
+  (return-type "GtkWidget*")
+  (parameters
+   '("GtkWidget*" "widget")
+   '("const-gchar*" "label_pattern")
+   '("GType" "widget_type")
+   )
+  (since "2.14.0")
+  )
+
+(define-function gtk_test_create_widget
+  (in-module "Gtk")
+  (c-name "gtk_test_create_widget")
+  (return-type "GtkWidget*")
+  (parameters
+   '("GType" "widget_type")
+   '("const-gchar*" "first_property_name")
+   )
+  (varargs #t)
+  (since "2.14.0")
+)
+
+(define-function gtk_test_create_simple_window
+  (in-module "Gtk")
+  (c-name "gtk_test_create_simple_window")
+  (return-type "GtkWidget*")
+  (parameters
+   '("const-gchar*" "window_title")
+   '("const-gchar*" "dialog_text")
+   )
+  (since "2.14.0")
+)
+
+(define-function gtk_test_display_button_window
+  (in-module "Gtk")
+  (c-name "gtk_test_display_button_window")
+  (return-type "GtkWidget*")
+  (parameters
+   '("const-gchar*" "window_title")
+   '("const-gchar*" "dialog_text")
+   )
+  (varargs #t)
+  (since "2.14.0")
+)
+
+(define-function gtk_test_slider_set_perc
+  (in-module "Gtk")
+  (c-name "gtk_test_slider_set_perc")
+  (return-type "none")
+  (parameters
+   '("GtkWidget*" "widget")
+   '("double" "percentage")
+   )
+  (since "2.14.0")
+)
+
+(define-function gtk_test_slider_get_value
+  (in-module "Gtk")
+  (c-name "gtk_test_slider_get_value")
+  (return-type "double")
+  (parameters
+   '("GtkWidget*" "widget")
+   )
+  (since "2.14.0")
+)
+
+(define-function gtk_test_spin_button_click
+  (in-module "Gtk")
+  (c-name "gtk_test_spin_button_click")
+  (return-type "gboolean")
+  (parameters
+   '("GtkSpinButton*" "spinner")
+   '("guint" "button")
+   '("gboolean" "upwards")
+   )
+  (since "2.14.0")
+)
+
+(define-function gtk_test_widget_click
+  (in-module "Gtk")
+  (c-name "gtk_test_widget_click")
+  (return-type "gboolean")
+  (parameters
+   '("GtkWidget*" "widget")
+   '("guint" "button")
+   '("GdkModifierType" "modifiers")
+   )
+  (since "2.14.0")
+)
+
+(define-function gtk_test_widget_send_key
+  (in-module "Gtk")
+  (c-name "gtk_test_widget_send_key")
+  (return-type "gboolean")
+  (parameters
+   '("GtkWidget*" "widget")
+   '("guint" "keyval")
+   '("GdkModifierType" "modifiers")
+   )
+  (since "2.14.0")
+)
+
+(define-function gtk_test_text_set
+  (in-module "Gtk")
+  (c-name "gtk_test_text_set")
+  (return-type "none")
+  (parameters
+   '("GtkWidget*" "widget")
+   '("const-gchar*" "string")
+   )
+  (since "2.14.0")
+)
+
+(define-function gtk_test_text_get
+  (in-module "Gtk")
+  (c-name "gtk_test_text_get")
+  (return-type "gchar*")
+  (parameters
+   '("GtkWidget*" "widget")
+   )
+  (since "2.14.0")
+)
+
+(define-function gtk_test_find_sibling
+  (in-module "Gtk")
+  (c-name "gtk_test_find_sibling")
+  (return-type "GtkWidget*")
+  (parameters
+   '("GtkWidget*" "base_widget")
+   '("GType" "widget_type")
+   )
+  (since "2.14.0")
+)
+
+(define-function gtk_test_find_label
+  (in-module "Gtk")
+  (c-name "gtk_test_find_label")
+  (return-type "GtkWidget*")
+  (parameters
+   '("GtkWidget*" "widget")
+   '("const-gchar*" "label_pattern")
+   )
+  (since "2.14.0")
+)
+
+
+
 ; user functions
 
 (define-user-function ClipboardURIReceivedFunc
@@ -1138,3 +1331,4 @@
    )
   (since "2.14.0")
   )
+

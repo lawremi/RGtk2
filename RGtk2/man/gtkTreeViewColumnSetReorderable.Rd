@@ -5,8 +5,8 @@
 dragging the header.}
 \usage{gtkTreeViewColumnSetReorderable(object, reorderable)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTreeViewColumn}}]  A \verb{\link{GtkTreeViewColumn}}}
-\item{\verb{reorderable}}{[logical] \code{TRUE}, if the column can be reordered.}
+\item{\verb{object}}{A \code{\link{GtkTreeViewColumn}}}
+\item{\verb{reorderable}}{\code{TRUE}, if the column can be reordered.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

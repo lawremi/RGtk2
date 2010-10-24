@@ -13,13 +13,13 @@ to the default clipboard, i.e. they copy the selection to what the
 user sees as the clipboard.}
 \usage{gtkClipboardGetForDisplay(display, selection = "GDK_SELECTION_CLIPBOARD")}
 \arguments{
-\item{\verb{display}}{[\verb{\link{GdkDisplay}}]  the display for which the clipboard is to be retrieved or created}
-\item{\verb{selection}}{[\verb{\link{GdkAtom}}]  a \verb{\link{GdkAtom}} which identifies the clipboard
+\item{\verb{display}}{the display for which the clipboard is to be retrieved or created}
+\item{\verb{selection}}{a \code{\link{GdkAtom}} which identifies the clipboard
             to use.}
 }
 \details{(Passing \verb{GDK_NONE} is the same as using \code{gdk_atom_intern
 ("CLIPBOARD", FALSE)}. See 
-http://www.org/Standards/clipboards-spec (\url{http://www.org/Standards/clipboards-spec})
+http://www.freedesktop.org/Standards/clipboards-spec (\url{http://www.freedesktop.org/Standards/clipboards-spec})
 for a detailed discussion of the "CLIPBOARD" vs. "PRIMARY"
 selections under the X window system. On Win32 the
 \verb{GDK_SELECTION_PRIMARY} clipboard is essentially ignored.)
@@ -29,12 +29,11 @@ new clipboards, you should prefix the selection name with an
 underscore (because the ICCCM requires that nonstandard atoms are
 underscore-prefixed), and namespace it as well. For example,
 if your application called "Foo" has a special-purpose
-clipboard, you might call it "_FOO_SPECIAL_CLIPBOARD".  
-
-  Since  2.2}
-\value{[\verb{\link{GtkClipboard}}]  the appropriate clipboard object. If no
+clipboard, you might call it "_FOO_SPECIAL_CLIPBOARD".
+  Since 2.2}
+\value{[\code{\link{GtkClipboard}}]  the appropriate clipboard object. If no
             clipboard already exists, a new one will
             be created. Once a clipboard object has
-            been created, it is persistent and.}
+            been created, it is persistent and, \emph{[  \acronym{transfer none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

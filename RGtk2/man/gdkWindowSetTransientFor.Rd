@@ -7,10 +7,10 @@ window manager to do things like center \code{window} on \code{parent} and
 keep \code{window} above \code{parent}.}
 \usage{gdkWindowSetTransientFor(object, leader)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a toplevel \verb{\link{GdkWindow}}}
-\item{\verb{leader}}{[\verb{\link{GdkWindow}}]  another toplevel \verb{\link{GdkWindow}}}
+\item{\verb{object}}{a toplevel \code{\link{GdkWindow}}}
+\item{\verb{leader}}{another toplevel \code{\link{GdkWindow}}}
 }
-\details{See \code{\link{gtkWindowSetTransientFor}} if you're using \verb{\link{GtkWindow}} or
-\verb{\link{GtkDialog}}.  }
+\details{See \code{\link{gtkWindowSetTransientFor}} if you're using \code{\link{GtkWindow}} or
+\code{\link{GtkDialog}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

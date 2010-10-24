@@ -7,12 +7,18 @@ FIXME
 }
 \usage{gtkCTreeInsertGnode(object, parent, sibling, gnode, func, data = NULL)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkCTree}}] }
-\item{\verb{parent}}{[\verb{\link{GtkCTreeNode}}] }
-\item{\verb{sibling}}{[\verb{\link{GtkCTreeNode}}] }
-\item{\verb{gnode}}{[GNode] }
-\item{\verb{func}}{[\verb{\link{GtkCTreeGNodeFunc}}] }
-\item{\verb{data}}{[R object] }
+\item{\verb{object}}{\emph{undocumented
+}}
+\item{\verb{parent}}{\emph{undocumented
+}}
+\item{\verb{sibling}}{\emph{undocumented
+}}
+\item{\verb{gnode}}{\emph{undocumented
+}}
+\item{\verb{func}}{\emph{undocumented
+}}
+\item{\verb{data}}{\emph{undocumented
+}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

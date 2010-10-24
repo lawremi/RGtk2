@@ -5,10 +5,10 @@
 recently used item \code{info}.}
 \usage{gtkRecentInfoHasGroup(object, group.name)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkRecentInfo}}]  a \verb{\link{GtkRecentInfo}}}
-\item{\verb{group.name}}{[character]  name of a group}
+\item{\verb{object}}{a \code{\link{GtkRecentInfo}}}
+\item{\verb{group.name}}{name of a group}
 }
-\details{  Since  2.10}
+\details{Since 2.10}
 \value{[logical] \code{TRUE} if the group was found.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

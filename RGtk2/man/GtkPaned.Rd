@@ -11,6 +11,7 @@
 \code{\link{gtkPanedGetChild2}(object)}\cr
 \code{\link{gtkPanedSetPosition}(object, position)}\cr
 \code{\link{gtkPanedGetPosition}(object)}\cr
+\code{\link{gtkPanedGetHandleWindow}(object)}\cr
 
 }
 \section{Hierarchy}{\preformatted{GObject
@@ -22,10 +23,10 @@
                                  +----GtkHPaned
                                  +----GtkVPaned}}
 \section{Interfaces}{GtkPaned implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{\verb{\link{GtkPaned}} is the base class for widgets with two panes,
-arranged either horizontally (\verb{\link{GtkHPaned}}) or
-vertically (\verb{\link{GtkVPaned}}). Child widgets are 
+ AtkImplementorIface,  \code{\link{GtkBuildable}} and  \code{\link{GtkOrientable}}.}
+\section{Detailed Description}{\code{\link{GtkPaned}} is the base class for widgets with two panes,
+arranged either horizontally (\code{\link{GtkHPaned}}) or
+vertically (\code{\link{GtkVPaned}}). Child widgets are
 added to the panes of the widget with
 \code{\link{gtkPanedPack1}} and \code{\link{gtkPanedPack2}}. The division
 beween the two children is set by default from the
@@ -38,14 +39,14 @@ can drag to adjust the division. It does not
 draw any relief around the children or around
 the separator. (The space in which the separator
 is called the gutter.) Often, it is useful
-to put each child inside a \verb{\link{GtkFrame}} with the
+to put each child inside a \code{\link{GtkFrame}} with the
 shadow type set to \code{GTK_SHADOW_IN} so that the
 gutter appears as a ridge. No separator is drawn
 if one of the children is missing.
   
-Each child has two options that can be set, 
+Each child has two options that can be set,
 \code{resize} and \code{shrink}. If \code{resize} is true, then when the
-\verb{\link{GtkPaned}} is resized, that child will expand
+\code{\link{GtkPaned}} is resized, that child will expand
 or shrink along with the paned widget. If \code{shrink}
 is true, then when that child can be made smaller
 than its requisition by the user. Setting \code{shrink}
@@ -82,18 +83,17 @@ frame2$setSizeRequest(50, -1)
 }}}
 \section{Signals}{\describe{
 \item{\code{accept-position(widget, user.data)}}{
-The ::accept-position signal is a 
+The ::accept-position signal is a
 keybinding signal
 which gets emitted to accept the current position of the handle when 
 moving it using key bindings.
   
-The default binding for this signal is Return or Space.  
-
-  Since  2.0
+The default binding for this signal is Return or Space.
+  Since 2.0
 
 \describe{
-\item{\code{widget}}{[\verb{\link{GtkPaned}}]  the object that received the signal}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{widget}}{the object that received the signal}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -105,13 +105,12 @@ which gets emitted to cancel moving the position of the handle using key
 bindings. The position of the handle will be reset to the value prior to 
 moving it.
   
-The default binding for this signal is Escape.  
-
-  Since  2.0
+The default binding for this signal is Escape.
+  Since 2.0
 
 \describe{
-\item{\code{widget}}{[\verb{\link{GtkPaned}}]  the object that received the signal}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{widget}}{the object that received the signal}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -121,14 +120,13 @@ The ::cycle-child-focus signal is a
 keybinding signal
 which gets emitted to cycle the focus between the children of the paned.
   
-The default binding is f6.  
-
-  Since  2.0
+The default binding is f6.
+  Since 2.0
 
 \describe{
-\item{\code{widget}}{[\verb{\link{GtkPaned}}]  the object that received the signal}
-\item{\code{reversed}}{[logical]  whether cycling backward or forward}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{widget}}{the object that received the signal}
+\item{\code{reversed}}{whether cycling backward or forward}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -139,14 +137,13 @@ keybinding signal
 which gets emitted to cycle whether the paned should grab focus to allow
 the user to change position of the handle by using key bindings.
   
-The default binding for this signal is f8.  
-
-  Since  2.0
+The default binding for this signal is f8.
+  Since 2.0
 
 \describe{
-\item{\code{widget}}{[\verb{\link{GtkPaned}}]  the object that received the signal}
-\item{\code{reversed}}{[logical]  whether cycling backward or forward}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{widget}}{the object that received the signal}
+\item{\code{reversed}}{whether cycling backward or forward}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -155,14 +152,13 @@ The default binding for this signal is f8.
 The ::move-handle signal is a 
 keybinding signal
 which gets emitted to move the handle when the user is using key bindings 
-to move it.  
-
-  Since  2.0
+to move it.
+  Since 2.0
 
 \describe{
-\item{\code{widget}}{[\verb{\link{GtkPaned}}]  the object that received the signal}
-\item{\code{scroll.type}}{[\code{\link{GtkScrollType}}]  a \code{\link{GtkScrollType}}}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{widget}}{the object that received the signal}
+\item{\code{scroll.type}}{a \code{\link{GtkScrollType}}}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -173,13 +169,12 @@ keybinding signal
 which gets emitted to accept the current position of the handle and then 
 move focus to the next widget in the focus chain.
   
-The default binding is Tab.  
-
-  Since  2.0
+The default binding is Tab.
+  Since 2.0
 
 \describe{
-\item{\code{widget}}{[\verb{\link{GtkPaned}}]  the object that received the signal}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{widget}}{the object that received the signal}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -189,17 +184,15 @@ The default binding is Tab.
 \item{\verb{max-position} [integer : Read]}{
 
 The largest possible value for the position property. This property is derived from the
-size and shrinkability of the widget's children.  
-
-  Allowed values: >= 0  Default value: 2147483647  Since  2.4
+size and shrinkability of the widget's children.
+  Allowed values: >= 0  Default value: 2147483647  Since 2.4
 
 }
 \item{\verb{min-position} [integer : Read]}{
 
 The smallest possible value for the position property. This property is derived from the
-size and shrinkability of the widget's children.  
-
-  Allowed values: >= 0  Default value: 0  Since  2.4
+size and shrinkability of the widget's children.
+  Allowed values: >= 0  Default value: 0  Since 2.4
 
 }
 \item{\verb{position} [integer : Read / Write]}{
@@ -218,6 +211,6 @@ TRUE if the Position property should be used.  Default value: FALSE
 Width of handle.  Allowed values: >= 0  Default value: 5
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkPaned.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkPaned.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -5,7 +5,7 @@
 \code{y}).}
 \usage{cairoMoveTo(cr, x, y)}
 \arguments{
-\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}
+\item{\verb{cr}}{[\code{\link{Cairo}}]  a cairo context}
 \item{\verb{x}}{[numeric]  the X coordinate of the new position}
 \item{\verb{y}}{[numeric]  the Y coordinate of the new position}
 }

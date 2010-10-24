@@ -5,8 +5,8 @@
 intermediate containers.}
 \usage{gtkWidgetIsAncestor(object, ancestor)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
-\item{\verb{ancestor}}{[\verb{\link{GtkWidget}}]  another \verb{\link{GtkWidget}}}
+\item{\verb{object}}{a \code{\link{GtkWidget}}}
+\item{\verb{ancestor}}{another \code{\link{GtkWidget}}}
 }
 \value{[logical] \code{TRUE} if \code{ancestor} contains \code{widget} as a child, 
    grandchild, great grandchild, etc.}

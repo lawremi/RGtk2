@@ -6,7 +6,7 @@
 means that the meaning of the returned value varies with window
 gravity. See \code{\link{gtkWindowMove}} for more details.}
 \usage{gtkWindowGetPosition(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}}}
+\arguments{\item{\verb{object}}{a \code{\link{GtkWindow}}}}
 \details{If you haven't changed the window gravity, its gravity will be
 \verb{GDK_GRAVITY_NORTH_WEST}. This means that \code{\link{gtkWindowGetPosition}}
 gets the position of the top-left corner of the window manager
@@ -36,11 +36,11 @@ do this without getting it somewhat wrong because applications do
 not have sufficient knowledge of window manager state. The Correct
 Mechanism is to support the session management protocol (see the
 "GnomeClient" object in the GNOME libraries for example) and allow
-the window manager to save your window sizes and positions.  }
+the window manager to save your window sizes and positions.}
 \value{
 A list containing the following elements:
-\item{\verb{root.x}}{[integer]  return location for X coordinate of gravity-determined reference p\\oint}
-\item{\verb{root.y}}{[integer]  return location for Y coordinate of gravity-determined reference p\\oint}
+\item{\verb{root.x}}{ return location for X coordinate of gravity-determined reference point. \emph{[  \acronym{out}  ]}}
+\item{\verb{root.y}}{ return location for Y coordinate of gravity-determined reference point. \emph{[  \acronym{out}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

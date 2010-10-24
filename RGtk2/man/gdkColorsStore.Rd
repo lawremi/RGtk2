@@ -8,6 +8,6 @@ should not be used. See \code{\link{gdkColorChange}}.
 \strong{WARNING: \code{gdk_colors_store} is deprecated and should not be used in newly-written code.}
 }
 \usage{gdkColorsStore(object, colors)}
-\arguments{\item{\verb{colors}}{[\verb{\link{GdkColor}}]  the new color values.}}
+\arguments{\item{\verb{colors}}{the new color values.}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

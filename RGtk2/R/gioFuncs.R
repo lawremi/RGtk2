@@ -10,6 +10,20 @@ function()
 } 
 
 
+gAppInfoLaunchDefaultForUri <-
+function(uri, launch.context, .errwarn = TRUE)
+{
+  uri <- as.character(uri)
+  checkPtrType(launch.context, "GAppLaunchContext")
+
+  w <- .RGtkCall("S_g_app_info_launch_default_for_uri", uri, launch.context, PACKAGE = "RGtk2")
+
+  w <- handleError(w, .errwarn)
+
+  return(w)
+} 
+
+
 gAppLaunchContextGetType <-
 function()
 {
@@ -5787,6 +5801,132 @@ function(mount)
 } 
 
 
+gIoExtensionPointRegister <-
+function(name)
+{
+  name <- as.character(name)
+
+  w <- .RGtkCall("S_g_io_extension_point_register", name, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gIoExtensionPointLookup <-
+function(name)
+{
+  name <- as.character(name)
+
+  w <- .RGtkCall("S_g_io_extension_point_lookup", name, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gIoExtensionPointSetRequiredType <-
+function(object, type)
+{
+  checkPtrType(object, "GIOExtensionPoint")
+  type <- as.GType(type)
+
+  w <- .RGtkCall("S_g_io_extension_point_set_required_type", object, type, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+gIoExtensionPointGetRequiredType <-
+function(object)
+{
+  checkPtrType(object, "GIOExtensionPoint")
+
+  w <- .RGtkCall("S_g_io_extension_point_get_required_type", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gIoExtensionPointGetExtensions <-
+function(object)
+{
+  checkPtrType(object, "GIOExtensionPoint")
+
+  w <- .RGtkCall("S_g_io_extension_point_get_extensions", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gIoExtensionPointGetExtensionByName <-
+function(object, name)
+{
+  checkPtrType(object, "GIOExtensionPoint")
+  name <- as.character(name)
+
+  w <- .RGtkCall("S_g_io_extension_point_get_extension_by_name", object, name, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gIoExtensionPointImplement <-
+function(extension.point.name, type, extension.name, priority)
+{
+  extension.point.name <- as.character(extension.point.name)
+  type <- as.GType(type)
+  extension.name <- as.character(extension.name)
+  priority <- as.integer(priority)
+
+  w <- .RGtkCall("S_g_io_extension_point_implement", extension.point.name, type, extension.name, priority, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gIoExtensionGetType <-
+function(object)
+{
+  checkPtrType(object, "GIOExtension")
+
+  w <- .RGtkCall("S_g_io_extension_get_type", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gIoExtensionGetName <-
+function(object)
+{
+  checkPtrType(object, "GIOExtension")
+
+  w <- .RGtkCall("S_g_io_extension_get_name", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gIoExtensionGetPriority <-
+function(object)
+{
+  checkPtrType(object, "GIOExtension")
+
+  w <- .RGtkCall("S_g_io_extension_get_priority", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gIoExtensionRefClass <-
+function(object)
+{
+  checkPtrType(object, "GIOExtension")
+
+  w <- .RGtkCall("S_g_io_extension_ref_class", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
 gContentTypeFromMimeType <-
 function(mime.type)
 {
@@ -6827,7 +6967,20 @@ function(object, attribute)
 } 
 
 
-gFileIoStreamGetType <-
+gFileInfoSetAttributeStringv <-
+function(object, attribute, attr.value)
+{
+  checkPtrType(object, "GFileInfo")
+  attribute <- as.character(attribute)
+  attr.value <- as.list(as.character(attr.value))
+
+  w <- .RGtkCall("S_g_file_info_set_attribute_stringv", object, attribute, attr.value, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+gFileIOStreamGetType <-
 function()
 {
   
@@ -6838,7 +6991,7 @@ function()
 } 
 
 
-gFileIoStreamQueryInfo <-
+gFileIOStreamQueryInfo <-
 function(object, attributes, cancellable = NULL, .errwarn = TRUE)
 {
   checkPtrType(object, "GFileIOStream")
@@ -6853,7 +7006,7 @@ function(object, attributes, cancellable = NULL, .errwarn = TRUE)
 } 
 
 
-gFileIoStreamQueryInfoAsync <-
+gFileIOStreamQueryInfoAsync <-
 function(object, attributes, io.priority, cancellable = NULL, callback, user.data = NULL)
 {
   checkPtrType(object, "GFileIOStream")
@@ -6869,7 +7022,7 @@ function(object, attributes, io.priority, cancellable = NULL, callback, user.dat
 } 
 
 
-gFileIoStreamQueryInfoFinish <-
+gFileIOStreamQueryInfoFinish <-
 function(object, result, .errwarn = TRUE)
 {
   checkPtrType(object, "GFileIOStream")
@@ -6883,7 +7036,7 @@ function(object, result, .errwarn = TRUE)
 } 
 
 
-gFileIoStreamGetEtag <-
+gFileIOStreamGetEtag <-
 function(object)
 {
   checkPtrType(object, "GFileIOStream")
@@ -8995,6 +9148,74 @@ function(object, result, .errwarn = TRUE)
   w <- .RGtkCall("S_g_volume_eject_with_operation_finish", object, result, PACKAGE = "RGtk2")
 
   w <- handleError(w, .errwarn)
+
+  return(w)
+} 
+
+
+gInetSocketAddressNew <-
+function(address, port)
+{
+  checkPtrType(address, "GInetAddress")
+  port <- as.integer(port)
+
+  w <- .RGtkCall("S_g_inet_socket_address_new", address, port, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gInetSocketAddressGetAddress <-
+function(object)
+{
+  checkPtrType(object, "GInetSocketAddress")
+
+  w <- .RGtkCall("S_g_inet_socket_address_get_address", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gInetSocketAddressGetPort <-
+function(object)
+{
+  checkPtrType(object, "GInetSocketAddress")
+
+  w <- .RGtkCall("S_g_inet_socket_address_get_port", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gTcpConnectionGetType <-
+function()
+{
+  
+
+  w <- .RGtkCall("S_g_tcp_connection_get_type", PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gTcpConnectionSetGracefulDisconnect <-
+function(object, graceful.disconnect)
+{
+  checkPtrType(object, "GTcpConnection")
+  graceful.disconnect <- as.logical(graceful.disconnect)
+
+  w <- .RGtkCall("S_g_tcp_connection_set_graceful_disconnect", object, graceful.disconnect, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+gTcpConnectionGetGracefulDisconnect <-
+function(object)
+{
+  checkPtrType(object, "GTcpConnection")
+
+  w <- .RGtkCall("S_g_tcp_connection_get_graceful_disconnect", object, PACKAGE = "RGtk2")
 
   return(w)
 } 

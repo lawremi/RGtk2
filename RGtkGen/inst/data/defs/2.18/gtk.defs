@@ -343,6 +343,7 @@
   (in-module "Gtk")
   (c-name "gtk_info_bar_new_with_buttons")
   (return-type "GtkWidget*")
+  (is-constructor-of "GtkInfoBar")
   (parameters
     '("const-gchar*" "first_button_text")
   )

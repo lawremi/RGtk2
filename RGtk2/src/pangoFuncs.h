@@ -984,6 +984,27 @@ S_pango_cairo_context_set_shape_renderer(USER_OBJECT_ s_object, USER_OBJECT_ s_f
 S_pango_cairo_context_get_shape_renderer(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
+S_pango_language_get_default(void); 
+
+  USER_OBJECT_
+S_pango_language_get_sample_string(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_pango_bidi_type_for_unichar(USER_OBJECT_ s_ch); 
+
+  USER_OBJECT_
+S_pango_attr_type_get_name(USER_OBJECT_ s_type); 
+
+  USER_OBJECT_
+S_pango_cairo_create_context(USER_OBJECT_ s_cr); 
+
+  USER_OBJECT_
+S_pango_cairo_font_map_set_default(USER_OBJECT_ s_fontmap); 
+
+  USER_OBJECT_
+S_pango_cairo_show_glyph_item(USER_OBJECT_ s_cr, USER_OBJECT_ s_text, USER_OBJECT_ s_glyph_item); 
+
+  USER_OBJECT_
 S_pango_renderer_draw_glyph_item(USER_OBJECT_ s_object, USER_OBJECT_ s_text, USER_OBJECT_ s_glyph_item, USER_OBJECT_ s_x, USER_OBJECT_ s_y); 
 
   USER_OBJECT_
@@ -1003,5 +1024,11 @@ S_pango_glyph_item_iter_prev_cluster(USER_OBJECT_ s_object);
 
   USER_OBJECT_
 S_pango_language_get_scripts(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_pango_layout_get_baseline(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_pango_gravity_get_for_script_and_width(USER_OBJECT_ s_script, USER_OBJECT_ s_wide, USER_OBJECT_ s_base_gravity, USER_OBJECT_ s_hint); 
 
 #endif

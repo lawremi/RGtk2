@@ -31,14 +31,20 @@ genDocs <- function(files, defs, output, descriptions, verbose = F) {
 
 genDoc <- function(file, defs, output, verbose)
 {
+  if (basename(file) == "annotation-glossary.xml")
+    return(NA)
+  if (grepl("api-index", file))
+    return(NA)
+  
 	if (sub("\\.[^.]*$", "", basename(file)) %in% undocumentedConcepts)
 		return(NA)
 	
-	entities <- c("num" = "#", "nbsp" = " ", "sol" = "/", "mdash"="--", "percnt" = "\\%",
-		"gdk-pixbuf" = "<application>gdk-pixbuf</application>")
+	entities <- c("num" = "#", "nbsp" = " ", "sol" = "/", "mdash"="--",
+                      "percnt" = "\\%", ast = "*",
+                      "gdk-pixbuf" = "<application>gdk-pixbuf</application>")
 	text <- paste(readLines(file), collapse="\n")
 	sapply(names(entities), function(entity) 
-		text <<- gsub(paste("&", entity, ";", sep=""), entities[[entity]], text)
+               text <<- gsub(paste("&", entity, ";", sep=""), entities[[entity]], text)
 	)
 	root <- xmlTreeParse(text, asText = T, useInternalNodes = T)
 	
@@ -70,8 +76,8 @@ library_path <- "refmeta/refmiscinfo/text()"
 enum_path <- "refsect1/refsect2/title[contains(text(), 'enum')]/.."
 #struct_path <- "/refsect1/refsect2/title[not(contains(text(), ' ')) and not(contains(text(), '_')) or contains(text(), 'struct')]/.."
 struct_path <- "refsect1/refsect2/programlisting[contains(text(), 'struct')]/.."
-func_path <- "/refentry/refsect1/refsect2/title[contains(text(), ' ()') and contains(text(), '_')]/.."
-userfunc_path <- "refsect1/refsect2/title[contains(text(), ' ()') and not(contains(text(), '_'))]/.."
+func_path <- "/refentry/refsect1/refsect2/title[contains(text(), ' ()') and contains(text(), '_') and not(contains(text(), '_t '))]/.."
+userfunc_path <- "refsect1/refsect2/title[contains(text(), ' ()') and (not(contains(text(), '_')) or contains(text(), '_t '))]/.."
 func_name_path <- "indexterm/primary/text()"
 func_names_path <- paste(func_path, func_name_path, sep="/")
 
@@ -79,12 +85,15 @@ parseConcept <- function(doc, defs, verbose) {
 	entry <- getNodeSet(doc, "/refentry")[[1]]
 	concept <- list()
 	concept["title"] <- escape_text(xmlValue(getNodeSet(entry, title_path)[[1]]))
-	#name <- gsub("-", "_", xmlGetAttr(entry, "id"))
-	#if (name != xmlGetAttr(entry, "id"))
-	#	name <- toCapPhraseName(tolower(name), FALSE)
-	concept["name"] <- concept["alias"] <- xmlGetAttr(entry, "id")
+	id <- xmlGetAttr(entry, "id")
+	concept["alias"] <- id
+        funNames <- gsub("_", "", tolower(names(allDefs$functions)))
+        ## avoid case-insensitive overlap with function file
+        concept["name"] <- if (tolower(id) %in% funNames)
+          paste(id, "concept", sep = "-")
+        else id
 	if (verbose)
-		print(concept["name"])
+		message("Concept: ", concept$name)
 	concept["description"] <- markup(getNodeSet(entry, desc_path))
 	funcNames <- sapply(getNodeSet(doc, func_names_path), xmlValue)
 	concept[["Methods and Functions"]] <- toRFuncs(funcNames)
@@ -111,12 +120,16 @@ parseConcept <- function(doc, defs, verbose) {
 	constructible <- structs$realnames %in% names(defs$objects)
 	collapsed <- sapply(structs$names[constructible], changeCapitalization, F)
 	if (length(collapsed) > 0) {
-		names(collapsed) <- structs$realnames[constructible]
-		constructors <- collapsed[sapply(collapsed, exists)]
-		concept[["Convenient Construction"]] <- toCollapsed(constructors, defs)
-		concept[["Methods and Functions"]] <- c(concept[["Methods and Functions"]], 
-			paste(toSignature(constructors), collapse = rd("cr")))
-		concept[["alias"]] <- c(concept[["alias"]], constructors)
+          hasConstructor <- function(type)
+            length(setdiff(getConstructors(type, defs), undocumentedFuncs)) > 0
+          names(collapsed) <- structs$realnames[constructible]
+          constructors <- collapsed[sapply(names(collapsed), hasConstructor)]
+          concept[["Convenient Construction"]] <-
+            toCollapsed(constructors, defs)
+          concept[["Methods and Functions"]] <-
+            c(concept[["Methods and Functions"]],
+              paste(toSignature(constructors), collapse = rd("cr")))
+          concept[["alias"]] <- c(concept[["alias"]], constructors)
 	}
 	# get the fields for a structure (could be object, pointer, or boxed) and then
 	# derive accessor function name. Add that name to the aliases.
@@ -132,7 +145,7 @@ parseConcept <- function(doc, defs, verbose) {
 	concept["Properties"] <- toProperties(getNodeSet(entry, properties_path))
 	concept["Style Properties"] <- toProperties(getNodeSet(entry, style_props_path))
 	concept[["seealso"]] <- toSeeAlso(getNodeSet(entry, seealso_path))
-	concept["references"] <- toUrlReference(xmlValue(getNodeSet(entry, library_path)[[1]]), concept["name"])
+	concept["references"] <- toUrlReference(xmlValue(getNodeSet(entry, library_path)[[1]]), id)
 	concept["keyword"] <- "internal"
 	concept
 }
@@ -143,7 +156,7 @@ parseFunctions <- function(doc, defs, verbose) {
 }
 
 func_value_path <- "variablelist/varlistentry/term/emphasis[text() = 'Returns']/../../listitem/simpara"
-func_value_type_path <- "programlisting/link[1]/text()"
+func_value_type_path <- "programlisting/link[1]//text()"
 warning_path <- "warning"
 note_path <- "note|para/note"
 
@@ -161,11 +174,11 @@ parseFunction <- function(node, defs, verbose) {
 	if (name %in% undocumentedFuncs)
 		return(NA)
 	if (verbose)
-		print(name)
+		message("Function: ", name)
 	s_name <- toCapPhraseName(name, TRUE, classNames=c(names(defs$objects), names(defs$interfaces)))
 	func["name"] <- func["title"] <- func["alias"] <- s_name
 	text <- getNodeSet(node, desc_text_path)
-	func["description"] <- filter(markup(text[1]))
+	func["description"] <- if (length(text)) filter(markup(text[1])) else ""
 	warning <- getNodeSet(node, warning_path)
 	if (length(warning) > 0)
 		func[["description"]] <- c(func["description"], toWarning(warning[[1]]))
@@ -212,10 +225,13 @@ genIndex <- function(concepts, description) {
 	index <- list()
 	index["title"] <- index["name"] <- index["alias"] <- names(description)
 	index["description"] <- description[[1]]
-	index[["details"]] <- c(paste("The RGtk binding to the", names(description), "library consists of the following components:"),
-	rd("describe", sapply(concepts, function(concept) {
-		rd("item", rd("link", concept[["name"]]), concept[["description"]])
-	})))
+	index[["details"]] <-
+          c(paste("The RGtk binding to the", names(description),
+                  "library consists of the following components:"),
+            rd("describe", sapply(concepts, function(concept) {
+              rd("item", rd("link", concept[["alias"]][[1]]),
+                 concept[["description"]])
+            })))
 	url_key <- tolower(names(description))
 	index["references"] <- rd("url", urlPrefices[[url_key]])
 	index["keyword"] <- "interface"
@@ -277,14 +293,11 @@ tolink <- function(linkend, code = FALSE) {
 	if ((!islower(linkend) && exists(linkend)) || linkend %in% types || linkend %in% concepts ||
 		(mapType(linkend) %in% transparentTypes) || linkend == "GObject" || linkend == "GType") 
 	{
-                markup <- "verb"
-                if (!islower(linkend) && exists(linkend))
-                        markup <- "code"
-		if (linkend %in% types || linkend %in% transparentTypes)
+                if (linkend %in% types || linkend %in% transparentTypes)
 			linkend <- asRTypeName(linkend)
 		link <- rd("link", linkend)
                 if (!code)
-			link <- rd(markup, link)
+			link <- rd("code", link)
 		link
 	} else NULL
 }
@@ -308,7 +321,7 @@ toHierarchy <- function(tree) {
 }
 
 toUrlReference <- function(library, name) {
-	library <- tolower(sub(" Library$", "", library))
+	library <- tolower(sub(".*?([a-zA-Z-]*) Library.*", "\\1", library))
 	rd("url", paste(paste(urlPrefices[[library]], name, sep="/"), ".html", sep=""))
 }
 
@@ -316,7 +329,7 @@ xmlTraverse <- function(node, handlers) {
 	name <- xmlName(node)
   if (is.na(name))
     name <- "text"
-	##print(name)
+	##message(name)
 	val <- NULL
 	recurse <- TRUE
 	if (!(name %in% names(handlers)))
@@ -341,14 +354,16 @@ markup <- function(nodes, verbatim = FALSE, collapse="  ", code = FALSE) {
 		if (length(linkend) > 0) {
 			result <- tolink(linkend, code)
 			if (is.null(result)) {
-                          ##print(paste("bad link: ", linkend))
+                          ##message(paste("bad link: ", linkend))
                           result <- markup(xmlChildren(link), code = code)
 			}
 		} else result <- paste(child_val(link), " (", rd("url", xmlGetAttr(link, "href")), ")", sep="")
 		result
 	}
+        markup_acronym <- function(acro) rd("acronym", child_val(acro))
 	markup_type <- function(type) rd("verb", mapType(child_val(type)))
-	markup_literal <- function(literal) rd("code", child_val(literal))
+	markup_literal <- function(literal)
+          rd("code", markup(xmlChildren(literal), code = TRUE))
 	#markup_parameter <- function(param) rd("var", child_val(param))
 	markup_emphasis <- function(emph) rd("emph", markup(xmlChildren(emph)))
         markup_title <- function(title) paste("\n", markup_emphasis(title))
@@ -357,7 +372,7 @@ markup <- function(nodes, verbatim = FALSE, collapse="  ", code = FALSE) {
 	markup_program <- function(program) {
           if (length(getNodeSet(program,
                                 "parent::informalexample|parent::example")) == 0)
-            print("---MISSING PROGRAMLISTING---")
+            message("---MISSING PROGRAMLISTING---")
           rd("preformatted",
              paste(markup(xmlChildren(program), TRUE, collapse), "\n", sep=""))
 	}
@@ -376,7 +391,7 @@ markup <- function(nodes, verbatim = FALSE, collapse="  ", code = FALSE) {
                     ex <- paste(markup_title(title[[1]]), ex, sep = "\n")
                   ex
                 } else {
-			#browser()
+			message("Example '", id, "' not found")
 			NULL
 		}
 	}
@@ -435,6 +450,7 @@ markup <- function(nodes, verbatim = FALSE, collapse="  ", code = FALSE) {
 		"structfield" = markup_literal,
 		"structname" = markup_literal,
 		"function" = markup_func,
+                "emph" = markup_emphasis,
 		"emphasis" = markup_emphasis,
 		"informalexample" = markup_example,
 		"example" = markup_example,
@@ -446,7 +462,7 @@ markup <- function(nodes, verbatim = FALSE, collapse="  ", code = FALSE) {
 		"figure" = markup_ignore, "graphic" = NULL,
 		"option" = markup_option,
 		"firstterm" = markup_first, "term" = NULL,
-		"informaltable" = markup_table,
+		"informaltable" = markup_table, "table" = markup_table,
 		"variablelist" = markup_varlist,
 		"envar" = markup_envar,
 		"warning" = markup_warning, "important" = markup_important,
@@ -461,7 +477,8 @@ markup <- function(nodes, verbatim = FALSE, collapse="  ", code = FALSE) {
 		"orderedlist" = markup_ordered,
 		"indexterm" = markup_ignore,
 		"keycap" = markup_key, "keycombo" = markup_combo,
-		"abbrev" = markup_emphasis
+		"abbrev" = markup_emphasis, "acronym" = markup_acronym,
+                "tag" = markup_literal
 	)
         restrictHandlers <- function(allowed) {
           restrictedHandlers <- structure(vector("list", length(handlers)),
@@ -478,7 +495,7 @@ markup <- function(nodes, verbatim = FALSE, collapse="  ", code = FALSE) {
 	escape_all(semantics(strip(paste(sapply(nodes, xmlTraverse, handlers), collapse = collapse))))
 }
 
-escape_all <- function(text) gsub("([%])", "\\\\\\1", text)
+escape_all <- function(text) gsub("([^\\])([%])", "\\1\\\\\\2", text)
 escape_text <- function(text) {
   gsub("([\\])", "\\\\\\1", text)
 	#text
@@ -505,7 +522,7 @@ semantics <- function(text) {
 }
 
 prop_name_path <- "title/literal/text()"
-prop_type_path <- "programlisting/link/text()"
+prop_type_path <- "programlisting/link//text()"
 prop_access_path <- "programlisting/text()[2]"
 
 toProperties <- function(prop_nodes) {
@@ -612,7 +629,7 @@ toDescs <- function(nodes, item_info, name_path = desc_name_path, text_path = de
 	items <- sapply(nodes, function(node) {
 		name <- xmlValue(getNodeSet(node, name_path)[[1]])
 		if (!(gsub(".* ", "", name) %in% types || name %in% transparentTypes)) {
-			#print(paste("Omitting type: ", name))
+			#message(paste("Omitting type: ", name))
 			return(NA)
 		}
 		name <- gsub(".* ", "", name)
@@ -746,24 +763,32 @@ writeRd <- function(doc, output) {
 }
 
 filter <- function(text) {
-	sentences <- strsplit(text, "[.,]")[[1]]
-  if (length(grep("[.,]$", text)) > 0)
-    sentences <- c(sentences, "")
-  punctuation <- c("", strsplit(gsub("[^.,]*([.,])[^.,]*", "\\1 ", text), " ")[[1]])
-	funcs <- unlist(c(cleanupFuncs, finalizerFuncs, memFuncs))
-	funcs <- funcs[which(nchar(funcs) > 0)]
-	good_sentences <- as.logical(sapply(sentences, function(sentence) 
-		all(sapply(c("freed", "owned by", "g_strdup", funcs), function(func) 
-			length(grep(func, sentence, perl=T)) == 0
-		))
-	))
-	#print(good_sentences)
-	if (any(!good_sentences)) {
-		#writeLines(sentences[!good_sentences], filterFile)
-		text <- paste(punctuation[good_sentences], sentences[good_sentences], 
-      collapse="", sep="")
-	}
-	text
+  ends <- gregexpr("[.,][^a-z0-9A-Z]+", text, perl=TRUE)[[1]]
+  starts <- c(1L, ends + 1L)
+  if (tail(ends, 1) == nchar(text))
+    starts <- head(starts, -1)
+  else ends <- c(ends, nchar(text))
+  sentences <- substring(text, starts, ends)
+  ## sentences <- strsplit(text, "[.,]( | \\n)")[[1]]
+  ## if (length(grep("[.,]$", text)) > 0)
+  ##   sentences <- c(sentences, "")
+  ## punctuation <- gsub("[^.,]*([.,]( |\\n))[^.,]*", "\\1/", text)
+  ## punctuation <- c("", strsplit(punctuation, "/")[[1]])
+  funcs <- unlist(c(cleanupFuncs, finalizerFuncs, memFuncs))
+  funcs <- funcs[which(nchar(funcs) > 0)]
+  good_sentences <-
+    as.logical(sapply(sentences, function(sentence) 
+                      all(sapply(c("freed ", "owned by", "g_strdup", funcs),
+                                 function(func) 
+                                 length(grep(func, sentence, perl=T)) == 0))))
+  ##message(good_sentences)
+  if (any(!good_sentences)) {
+    ##writeLines(sentences[!good_sentences], filterFile)
+    ## text <- paste(punctuation[good_sentences], sentences[good_sentences], 
+    ##               collapse="", sep="")
+    text <- paste(sentences[good_sentences], collapse="")
+  }
+  text
 }
 
 examplefile <- function(name)

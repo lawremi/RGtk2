@@ -6,15 +6,15 @@ cell is not found in the column, \code{start.pos} and \code{width} are not chang
 \code{FALSE} is returned.}
 \usage{gtkTreeViewColumnCellGetPosition(object, cell.renderer)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTreeViewColumn}}]  a \verb{\link{GtkTreeViewColumn}}}
-\item{\verb{cell.renderer}}{[\verb{\link{GtkCellRenderer}}]  a \verb{\link{GtkCellRenderer}}}
+\item{\verb{object}}{a \code{\link{GtkTreeViewColumn}}}
+\item{\verb{cell.renderer}}{a \code{\link{GtkCellRenderer}}}
 }
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if \code{cell} belongs to \code{tree.column}.}
-\item{\verb{start.pos}}{[integer]  return location for the horizontal position of \code{cell} within
+\item{\verb{start.pos}}{return location for the horizontal position of \code{cell} within
            \code{tree.column}, may be \code{NULL}}
-\item{\verb{width}}{[integer]  return location for the width of \code{cell}, may be \code{NULL}}
+\item{\verb{width}}{return location for the width of \code{cell}, may be \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

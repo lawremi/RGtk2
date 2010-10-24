@@ -7,17 +7,18 @@ area will be set to the full area covered by \code{column}.  See also
 \code{\link{gtkTooltipSetTipArea}}.}
 \usage{gtkTreeViewSetTooltipCell(object, tooltip, path, column, cell)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTreeView}}]  a \verb{\link{GtkTreeView}}}
-\item{\verb{tooltip}}{[\verb{\link{GtkTooltip}}]  a \verb{\link{GtkTooltip}}}
-\item{\verb{path}}{[\verb{\link{GtkTreePath}}]  a \verb{\link{GtkTreePath}} or \code{NULL}}
-\item{\verb{column}}{[\verb{\link{GtkTreeViewColumn}}]  a \verb{\link{GtkTreeViewColumn}} or \code{NULL}}
-\item{\verb{cell}}{[\verb{\link{GtkCellRenderer}}]  a \verb{\link{GtkCellRenderer}} or \code{NULL}}
+\item{\verb{object}}{a \code{\link{GtkTreeView}}}
+\item{\verb{tooltip}}{a \code{\link{GtkTooltip}}}
+\item{\verb{path}}{ a \code{\link{GtkTreePath}} or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{column}}{ a \code{\link{GtkTreeViewColumn}} or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{cell}}{ a \code{\link{GtkCellRenderer}} or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{Note that if \code{path} is not specified and \code{cell} is set and part of a column
 containing the expander, the tooltip might not show and hide at the correct
 position.  In such cases \code{path} must be set to the current node under the
-mouse cursor for this function to operate correctly.  
-
-  Since  2.12}
+mouse cursor for this function to operate correctly.
+  
+See also \code{\link{gtkTreeViewSetTooltipColumn}} for a simpler alternative.
+  Since 2.12}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -4,8 +4,8 @@
 \description{Fetches the requested opacity for this window. See
 \code{\link{gtkWindowSetOpacity}}.}
 \usage{gtkWindowGetOpacity(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}}}
-\details{  Since  2.12}
+\arguments{\item{\verb{object}}{a \code{\link{GtkWindow}}}}
+\details{Since 2.12}
 \value{[numeric]  the requested opacity for this window.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

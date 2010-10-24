@@ -4,9 +4,9 @@
 \description{Sets the checked state on the toggle action.}
 \usage{gtkToggleActionSetActive(object, is.active)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkToggleAction}}]  the action object}
-\item{\verb{is.active}}{[logical]  whether the action should be checked or not}
+\item{\verb{object}}{the action object}
+\item{\verb{is.active}}{whether the action should be checked or not}
 }
-\details{  Since  2.4}
+\details{Since 2.4}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

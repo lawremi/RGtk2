@@ -7,15 +7,18 @@
 }
 \usage{gtkCTreeNodeGetPixmap(object, node, column)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkCTree}}] }
-\item{\verb{node}}{[\verb{\link{GtkCTreeNode}}] }
-\item{\verb{column}}{[integer] }
+\item{\verb{object}}{\emph{undocumented
+}}
+\item{\verb{node}}{\emph{undocumented
+}}
+\item{\verb{column}}{\emph{undocumented
+}}
 }
 \value{
 A list containing the following elements:
 \item{retval}{[logical] True if the given cell contains a pixmap.}
-\item{\verb{pixmap}}{[\verb{\link{GdkPixmap}}] If nonnull, the pointer to the pixmap is returned through this.}
-\item{\verb{mask}}{[\verb{\link{GdkBitmap}}] If nonnull, the pointer to the mask is returned through this.}
+\item{\verb{pixmap}}{If nonnull, the pointer to the pixmap is returned through this.}
+\item{\verb{mask}}{If nonnull, the pointer to the mask is returned through this.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

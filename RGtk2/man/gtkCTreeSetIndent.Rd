@@ -7,8 +7,9 @@
 }
 \usage{gtkCTreeSetIndent(object, indent)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkCTree}}] }
-\item{\verb{indent}}{[integer] The number of pixels to shift the levels of the tree.}
+\item{\verb{object}}{\emph{undocumented
+}}
+\item{\verb{indent}}{The number of pixels to shift the levels of the tree.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

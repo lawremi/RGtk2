@@ -36,12 +36,12 @@ required events are received. See \code{\link{gtkWidgetSetEvents}}.}
 \section{Structures}{\describe{
 \item{\verb{GdkEventAny}}{
 Contains the fields which are common to all event structs.
-Any event pointer can safely be cast to a pointer to a \verb{\link{GdkEventAny}} to access
+Any event pointer can safely be cast to a pointer to a \code{\link{GdkEventAny}} to access
 these fields.
 
 \describe{
 \item{\verb{type}}{[\code{\link{GdkEventType}}] the type of the event.}
-\item{\verb{window}}{[\verb{\link{GdkWindow}}] the window which received the event.}
+\item{\verb{window}}{[\code{\link{GdkWindow}}] the window which received the event.}
 \item{\verb{sendEvent}}{[raw] \code{TRUE} if the event was sent explicitly (e.g. using 
 \code{xsendevent}).}
 }
@@ -52,7 +52,7 @@ Describes a key press or key release event.
 
 \describe{
 \item{\verb{type}}{[\code{\link{GdkEventType}}] the type of the event (\code{GDK_KEY_PRESS} or \code{GDK_KEY_RELEASE}).}
-\item{\verb{window}}{[\verb{\link{GdkWindow}}] the window which received the event.}
+\item{\verb{window}}{[\code{\link{GdkWindow}}] the window which received the event.}
 \item{\verb{sendEvent}}{[raw] \code{TRUE} if the event was sent explicitly (e.g. using 
 \code{xsendevent}).}
 \item{\verb{time}}{[numeric] the time of the event in milliseconds.}
@@ -64,7 +64,7 @@ header file for a complete list of GDK key codes.}
 \item{\verb{length}}{[integer] the length of \code{string}.}
 \item{\verb{string}}{[character] a string containing the an approximation of the text that
 would result from this keypress. The only correct way to handle text
-input of text is using input methods (see \verb{\link{GtkIMContext}}), so this
+input of text is using input methods (see \code{\link{GtkIMContext}}), so this
 field is deprecated and should never be used.
 (\code{\link{gdkUnicodeToKeyval}} provides a non-deprecated way of getting
 an approximate translation for a key.) The string is encoded in the encoding
@@ -116,7 +116,7 @@ must also occur within 1/2 second of the first button press.
 \describe{
 \item{\verb{type}}{[\code{\link{GdkEventType}}] the type of the event (\code{GDK_BUTTON_PRESS}, \code{GDK_2BUTTON_PRESS},
 \code{GDK_3BUTTON_PRESS} or \code{GDK_BUTTON_RELEASE}).}
-\item{\verb{window}}{[\verb{\link{GdkWindow}}] the window which received the event.}
+\item{\verb{window}}{[\code{\link{GdkWindow}}] the window which received the event.}
 \item{\verb{sendEvent}}{[raw] \code{TRUE} if the event was sent explicitly (e.g. using 
 \code{xsendevent}).}
 \item{\verb{time}}{[numeric] the time of the event in milliseconds.}
@@ -130,20 +130,20 @@ Shift and Alt) and the pointer buttons. See \code{\link{GdkModifierType}}.}
 Normally button 1 is the left mouse button, 2 is the middle button,
 and 3 is the right button. On 2-button mice, the middle button can often
 be simulated by pressing both mouse buttons together.}
-\item{\verb{device}}{[\verb{\link{GdkDevice}}] the device where the event originated.}
+\item{\verb{device}}{[\code{\link{GdkDevice}}] the device where the event originated.}
 \item{\verb{xRoot}}{[numeric] the x coordinate of the pointer relative to the root of the screen.}
 \item{\verb{yRoot}}{[numeric] the y coordinate of the pointer relative to the root of the screen.}
 }
 
 }
 \item{\verb{GdkEventScroll}}{
-Generated from button presses for the buttons 4 to 7. Wheel mice are 
+Generated from button presses for the buttons 4 to 7. Wheel mice are
 usually configured to generate button press events for buttons 4 and 5
 when the wheel is turned.
 
 \describe{
 \item{\verb{type}}{[\code{\link{GdkEventType}}] the type of the event (\code{GDK_SCROLL}).}
-\item{\verb{window}}{[\verb{\link{GdkWindow}}] the window which received the event.}
+\item{\verb{window}}{[\code{\link{GdkWindow}}] the window which received the event.}
 \item{\verb{sendEvent}}{[raw] \code{TRUE} if the event was sent explicitly (e.g. using 
 \code{xsendevent}).}
 \item{\verb{time}}{[numeric] the time of the event in milliseconds.}
@@ -153,7 +153,7 @@ when the wheel is turned.
 Shift and Alt) and the pointer buttons. See \code{\link{GdkModifierType}}.}
 \item{\verb{direction}}{[\code{\link{GdkScrollDirection}}] the direction to scroll to (one of \code{GDK_SCROLL_UP}, 
   \code{GDK_SCROLL_DOWN}, \code{GDK_SCROLL_LEFT} and \code{GDK_SCROLL_RIGHT}).}
-\item{\verb{device}}{[\verb{\link{GdkDevice}}] the device where the event originated.}
+\item{\verb{device}}{[\code{\link{GdkDevice}}] the device where the event originated.}
 \item{\verb{xRoot}}{[numeric] the x coordinate of the pointer relative to the root of the screen.}
 \item{\verb{yRoot}}{[numeric] the y coordinate of the pointer relative to the root of the screen.}
 }
@@ -164,7 +164,7 @@ Generated when the pointer moves.
 
 \describe{
 \item{\verb{type}}{[\code{\link{GdkEventType}}] the type of the event.}
-\item{\verb{window}}{[\verb{\link{GdkWindow}}] the window which received the event.}
+\item{\verb{window}}{[\code{\link{GdkWindow}}] the window which received the event.}
 \item{\verb{sendEvent}}{[raw] \code{TRUE} if the event was sent explicitly (e.g. using 
 \code{xsendevent}).}
 \item{\verb{time}}{[numeric] the time of the event in milliseconds.}
@@ -176,7 +176,7 @@ Generated when the pointer moves.
   Shift and Alt) and the pointer buttons. See \code{\link{GdkModifierType}}.}
 \item{\verb{isHint}}{[integer] set to 1 if this event is just a hint, see the \code{GDK_POINTER_MOTION_HINT_MASK}
   value of \code{\link{GdkEventMask}}.}
-\item{\verb{device}}{[\verb{\link{GdkDevice}}] the device where the event originated.}
+\item{\verb{device}}{[\code{\link{GdkDevice}}] the device where the event originated.}
 \item{\verb{xRoot}}{[numeric] the x coordinate of the pointer relative to the root of the screen.}
 \item{\verb{yRoot}}{[numeric] the y coordinate of the pointer relative to the root of the screen.}
 }
@@ -187,12 +187,12 @@ Generated when all or part of a window becomes visible and needs to be
 redrawn.
 
 \describe{
-\item{\verb{type}}{[\code{\link{GdkEventType}}] the type of the event (\code{GDK_EXPOSE}).}
-\item{\verb{window}}{[\verb{\link{GdkWindow}}] the window which received the event.}
+\item{\verb{type}}{[\code{\link{GdkEventType}}] the type of the event (\code{GDK_EXPOSE} or \code{GDK_DAMAGE}).}
+\item{\verb{window}}{[\code{\link{GdkWindow}}] the window which received the event.}
 \item{\verb{sendEvent}}{[raw] \code{TRUE} if the event was sent explicitly (e.g. using 
 \code{xsendevent}).}
-\item{\verb{area}}{[\verb{\link{GdkRectangle}}] bounding box of \code{region}.}
-\item{\verb{region}}{[\verb{\link{GdkRegion}}] the region that needs to be redrawn.}
+\item{\verb{area}}{[\code{\link{GdkRectangle}}] bounding box of \code{region}.}
+\item{\verb{region}}{[\code{\link{GdkRegion}}] the region that needs to be redrawn.}
 \item{\verb{count}}{[integer] the number of contiguous \code{GDK_EXPOSE} events following this one.
 The only use for this is "exposure compression", i.e. handling all contiguous
 \code{GDK_EXPOSE} events in one go, though GDK performs some exposure compression
@@ -205,7 +205,7 @@ Generated when the window visibility status has changed.
 
 \describe{
 \item{\verb{type}}{[\code{\link{GdkEventType}}] the type of the event (\code{GDK_VISIBILITY_NOTIFY}).}
-\item{\verb{window}}{[\verb{\link{GdkWindow}}] the window which received the event.}
+\item{\verb{window}}{[\code{\link{GdkWindow}}] the window which received the event.}
 \item{\verb{sendEvent}}{[raw] \code{TRUE} if the event was sent explicitly (e.g. using 
 \code{xsendevent}).}
 \item{\verb{state}}{[\code{\link{GdkVisibilityState}}] the new visibility state (\code{GDK_VISIBILITY_FULLY_OBSCURED},
@@ -218,10 +218,10 @@ Generated when the pointer enters or leaves a window.
 
 \describe{
 \item{\verb{type}}{[\code{\link{GdkEventType}}] the type of the event (\code{GDK_ENTER_NOTIFY} or \code{GDK_LEAVE_NOTIFY}).}
-\item{\verb{window}}{[\verb{\link{GdkWindow}}] the window which received the event.}
+\item{\verb{window}}{[\code{\link{GdkWindow}}] the window which received the event.}
 \item{\verb{sendEvent}}{[raw] \code{TRUE} if the event was sent explicitly (e.g. using 
 \code{xsendevent}).}
-\item{\verb{context}}{[\verb{\link{GdkDragContext}}] the window that was entered or left.}
+\item{\verb{context}}{[\code{\link{GdkDragContext}}] the window that was entered or left.}
 \item{\verb{time}}{[numeric] the time of the event in milliseconds.}
 \item{\verb{xRoot}}{[integer] the x coordinate of the pointer relative to the window.}
 \item{\verb{yRoot}}{[integer] the y coordinate of the pointer relative to the window.}
@@ -233,7 +233,7 @@ Describes a change of keyboard focus.
 
 \describe{
 \item{\verb{type}}{[\code{\link{GdkEventType}}] the type of the event (\code{GDK_FOCUS_CHANGE}).}
-\item{\verb{window}}{[\verb{\link{GdkWindow}}] the window which received the event.}
+\item{\verb{window}}{[\code{\link{GdkWindow}}] the window which received the event.}
 \item{\verb{sendEvent}}{[raw] \code{TRUE} if the event was sent explicitly (e.g. using \code{xsendevent}).}
 \item{\verb{in}}{[integer] \code{TRUE} if the window has gained the keyboard focus, \code{FALSE} if it has lost
 the focus.}
@@ -245,7 +245,7 @@ Generated when a window size or position has changed.
 
 \describe{
 \item{\verb{type}}{[\code{\link{GdkEventType}}] the type of the event (\code{GDK_CONFIGURE}).}
-\item{\verb{window}}{[\verb{\link{GdkWindow}}] the window which received the event.}
+\item{\verb{window}}{[\code{\link{GdkWindow}}] the window which received the event.}
 \item{\verb{sendEvent}}{[raw] \code{TRUE} if the event was sent explicitly (e.g. using \code{xsendevent}).}
 \item{\verb{x}}{[integer] the new x coordinate of the window, relative to its parent.}
 \item{\verb{y}}{[integer] the new y coordinate of the window, relative to its parent.}
@@ -259,9 +259,9 @@ Describes a property change on a window.
 
 \describe{
 \item{\verb{type}}{[\code{\link{GdkEventType}}] the type of the event (\code{GDK_PROPERTY_NOTIFY}).}
-\item{\verb{window}}{[\verb{\link{GdkWindow}}] the window which received the event.}
+\item{\verb{window}}{[\code{\link{GdkWindow}}] the window which received the event.}
 \item{\verb{sendEvent}}{[raw] \code{TRUE} if the event was sent explicitly (e.g. using \code{xsendevent}).}
-\item{\verb{atom}}{[\verb{\link{GdkAtom}}] the property that was changed.}
+\item{\verb{atom}}{[\code{\link{GdkAtom}}] the property that was changed.}
 \item{\verb{time}}{[numeric] the time of the event in milliseconds.}
 \item{\verb{state}}{[numeric] whether the property was changed (\code{GDK_PROPERTY_NEW_VALUE}) or
 deleted (\code{GDK_PROPERTY_DELETE}).}
@@ -269,31 +269,31 @@ deleted (\code{GDK_PROPERTY_DELETE}).}
 
 }
 \item{\verb{GdkEventSelection}}{
-Generated when a selection is requested or ownership of a selection 
-is taken over by another client application. 
+Generated when a selection is requested or ownership of a selection
+is taken over by another client application.
 
 \describe{
 \item{\verb{type}}{[\code{\link{GdkEventType}}] the type of the event (\code{GDK_SELECTION_CLEAR}, \code{GDK_SELECTION_NOTIFY} or 
 \code{GDK_SELECTION_REQUEST}).}
-\item{\verb{window}}{[\verb{\link{GdkWindow}}] the window which received the event.}
+\item{\verb{window}}{[\code{\link{GdkWindow}}] the window which received the event.}
 \item{\verb{sendEvent}}{[raw] \code{TRUE} if the event was sent explicitly (e.g. using \code{xsendevent}).}
-\item{\verb{selection}}{[\verb{\link{GdkAtom}}] the selection.}
-\item{\verb{target}}{[\verb{\link{GdkAtom}}] the target to which the selection should be converted.}
-\item{\verb{property}}{[\verb{\link{GdkAtom}}] the property in which to place the result of the conversion.}
+\item{\verb{selection}}{[\code{\link{GdkAtom}}] the selection.}
+\item{\verb{target}}{[\code{\link{GdkAtom}}] the target to which the selection should be converted.}
+\item{\verb{property}}{[\code{\link{GdkAtom}}] the property in which to place the result of the conversion.}
 \item{\verb{time}}{[numeric] the time of the event in milliseconds.}
-\item{\verb{requestor}}{[\verb{\link{GdkNativeWindow}}] the native window on which to place \code{property}.}
+\item{\verb{requestor}}{[\code{\link{GdkNativeWindow}}] the native window on which to place \code{property}.}
 }
 
 }
 \item{\verb{GdkEventDND}}{
-Generated during DND operations. 
+Generated during DND operations.
 
 \describe{
 \item{\verb{type}}{[\code{\link{GdkEventType}}] the type of the event (\code{GDK_DRAG_ENTER}, \code{GDK_DRAG_LEAVE},
   \code{GDK_DRAG_MOTION}, \code{GDK_DRAG_STATUS}, \code{GDK_DROP_START} or \code{GDK_DROP_FINISHED}).}
-\item{\verb{window}}{[\verb{\link{GdkWindow}}] the window which received the event.}
+\item{\verb{window}}{[\code{\link{GdkWindow}}] the window which received the event.}
 \item{\verb{sendEvent}}{[raw] \code{TRUE} if the event was sent explicitly (e.g. using \code{xsendevent}).}
-\item{\verb{context}}{[\verb{\link{GdkDragContext}}] the \verb{\link{GdkDragContext}} for the current DND operation.}
+\item{\verb{context}}{[\code{\link{GdkDragContext}}] the \code{\link{GdkDragContext}} for the current DND operation.}
 \item{\verb{time}}{[numeric] the time of the event in milliseconds.}
 \item{\verb{xRoot}}{[integer] the x coordinate of the pointer relative to the root of the screen,
   only set for \code{GDK_DRAG_MOTION} and \code{GDK_DROP_START}.}
@@ -312,10 +312,10 @@ in or out of contact with a touch screen.
 
 \describe{
 \item{\verb{type}}{[\code{\link{GdkEventType}}] the type of the event (\code{GDK_PROXIMITY_IN} or \code{GDK_PROXIMITY_OUT}).}
-\item{\verb{window}}{[\verb{\link{GdkWindow}}] the window which received the event.}
+\item{\verb{window}}{[\code{\link{GdkWindow}}] the window which received the event.}
 \item{\verb{sendEvent}}{[raw] \code{TRUE} if the event was sent explicitly (e.g. using \code{xsendevent}).}
 \item{\verb{time}}{[numeric] the time of the event in milliseconds.}
-\item{\verb{device}}{[\verb{\link{GdkDevice}}] the device where the event originated.}
+\item{\verb{device}}{[\code{\link{GdkDevice}}] the device where the event originated.}
 }
 
 }
@@ -324,22 +324,22 @@ An event sent by another client application.
 
 \describe{
 \item{\verb{type}}{[\code{\link{GdkEventType}}] the type of the event (\code{GDK_CLIENT_EVENT}).}
-\item{\verb{window}}{[\verb{\link{GdkWindow}}] the window which received the event.}
+\item{\verb{window}}{[\code{\link{GdkWindow}}] the window which received the event.}
 \item{\verb{sendEvent}}{[raw] \code{TRUE} if the event was sent explicitly (e.g. using \code{xsendevent}).}
-\item{\verb{messageType}}{[\verb{\link{GdkAtom}}] the type of the message, which can be defined by the
+\item{\verb{messageType}}{[\code{\link{GdkAtom}}] the type of the message, which can be defined by the
 application.}
 }
 
 }
 \item{\verb{GdkEventNoExpose}}{
-Generated when the area of a \verb{\link{GdkDrawable}} being copied, with \code{\link{gdkDrawDrawable}}
+Generated when the area of a \code{\link{GdkDrawable}} being copied, with \code{\link{gdkDrawDrawable}}
 or \code{gdkWindowCopyArea()}, was completely available.
   
 FIXME: add more here.
 
 \describe{
 \item{\verb{type}}{[\code{\link{GdkEventType}}] the type of the event (\code{GDK_NO_EXPOSE}).}
-\item{\verb{window}}{[\verb{\link{GdkWindow}}] the window which received the event.}
+\item{\verb{window}}{[\code{\link{GdkWindow}}] the window which received the event.}
 \item{\verb{sendEvent}}{[raw] \code{TRUE} if the event was sent explicitly (e.g. using \code{xsendevent}).}
 }
 
@@ -349,7 +349,7 @@ Generated when the state of a toplevel window changes.
 
 \describe{
 \item{\verb{type}}{[\code{\link{GdkEventType}}] the type of the event (\code{GDK_WINDOW_STATE}).}
-\item{\verb{window}}{[\verb{\link{GdkWindow}}] the window which received the event.}
+\item{\verb{window}}{[\code{\link{GdkWindow}}] the window which received the event.}
 \item{\verb{sendEvent}}{[raw] \code{TRUE} if the event was sent explicitly (e.g. using \code{xsendevent}).}
 \item{\verb{changedMask}}{[\code{\link{GdkWindowState}}] mask specifying what flags have changed.}
 \item{\verb{newWindowState}}{[\code{\link{GdkWindowState}}] the new window state, a combination of \code{\link{GdkWindowState}} bits.}
@@ -361,7 +361,7 @@ Generated when a setting is modified.
 
 \describe{
 \item{\verb{type}}{[\code{\link{GdkEventType}}] the type of the event (\code{GDK_SETTING}).}
-\item{\verb{window}}{[\verb{\link{GdkWindow}}] the window which received the event.}
+\item{\verb{window}}{[\code{\link{GdkWindow}}] the window which received the event.}
 \item{\verb{sendEvent}}{[raw] \code{TRUE} if the event was sent explicitly (e.g. using \code{xsendevent}).}
 \item{\verb{action}}{[\code{\link{GdkSettingAction}}] what happened to the setting (\code{GDK_SETTING_ACTION_NEW},
   \code{GDK_SETTING_ACTION_CHANGED} or \code{GDK_SETTING_ACTION_DELETED}).}
@@ -376,11 +376,11 @@ only available if the X server supports the XFIXES extension.
 
 \describe{
 \item{\verb{type}}{[\code{\link{GdkEventType}}] the type of the event (\code{GDK_OWNER_CHANGE}).}
-\item{\verb{window}}{[\verb{\link{GdkWindow}}] the window which received the event}
+\item{\verb{window}}{[\code{\link{GdkWindow}}] the window which received the event}
 \item{\verb{sendEvent}}{[raw] \code{TRUE} if the event was sent explicitly (e.g. using \code{xsendevent}).}
-\item{\verb{owner}}{[\verb{\link{GdkNativeWindow}}] the new owner of the selection}
+\item{\verb{owner}}{[\code{\link{GdkNativeWindow}}] the new owner of the selection}
 \item{\verb{reason}}{[\code{\link{GdkOwnerChange}}] the reason for the ownership change as a \code{\link{GdkOwnerChange}} value}
-\item{\verb{selection}}{[\verb{\link{GdkAtom}}] the atom identifying the selection}
+\item{\verb{selection}}{[\code{\link{GdkAtom}}] the atom identifying the selection}
 \item{\verb{time}}{[numeric] the timestamp of the event}
 \item{\verb{selectionTime}}{[numeric] the time at which the selection ownership was taken over}
 }
@@ -388,21 +388,21 @@ only available if the X server supports the XFIXES extension.
 }
 \item{\verb{GdkEventGrabBroken}}{
 Generated when a pointer or keyboard grab is broken. On X11, this happens
-when the grab window becomes unviewable (i.e. it or one of its ancestors 
+when the grab window becomes unviewable (i.e. it or one of its ancestors
 is unmapped), or if the same application grabs the pointer or keyboard
 again. Note that implicit grabs (which are initiated by button presses)
-can also cause \verb{\link{GdkEventGrabBroken}} events.
+can also cause \code{\link{GdkEventGrabBroken}} events.
   Since 2.8
 
 \describe{
 \item{\verb{type}}{[\code{\link{GdkEventType}}] the type of the event (\code{GDK_GRAB_BROKEN})}
-\item{\verb{window}}{[\verb{\link{GdkWindow}}] the window which received the event, i.e. the window
+\item{\verb{window}}{[\code{\link{GdkWindow}}] the window which received the event, i.e. the window
  that previously owned the grab}
 \item{\verb{sendEvent}}{[raw] \code{TRUE} if the event was sent explicitly (e.g. using \code{xsendevent}).}
 \item{\verb{keyboard}}{[logical] \code{TRUE} if a keyboard grab was broken, \code{FALSE} if a pointer 
   grab was broken}
 \item{\verb{implicit}}{[logical] \code{TRUE} if the broken grab was implicit}
-\item{\verb{grabWindow}}{[\verb{\link{GdkWindow}}] If this event is caused by another grab in the same 
+\item{\verb{grabWindow}}{[\code{\link{GdkWindow}}] If this event is caused by another grab in the same 
   application, \code{grab.window} contains the new grab window. Otherwise
   \code{grab.window} is \code{NULL}.}
 }
@@ -411,7 +411,7 @@ can also cause \verb{\link{GdkEventGrabBroken}} events.
 }}
 \section{Enums and Flags}{\describe{
 \item{\verb{GdkScrollDirection}}{
-Specifies the direction for \verb{\link{GdkEventScroll}}. 
+Specifies the direction for \code{\link{GdkEventScroll}}.
 
 \describe{
 \item{\verb{up}}{the window is scrolled up.}
@@ -422,7 +422,7 @@ Specifies the direction for \verb{\link{GdkEventScroll}}.
 
 }
 \item{\verb{GdkVisibilityState}}{
-Specifies the visiblity status of a window for a \verb{\link{GdkEventVisibility}}.
+Specifies the visiblity status of a window for a \code{\link{GdkEventVisibility}}.
 
 \describe{
 \item{\verb{unobscured}}{the window is completely visible.}
@@ -432,7 +432,7 @@ Specifies the visiblity status of a window for a \verb{\link{GdkEventVisibility}
 
 }
 \item{\verb{GdkCrossingMode}}{
-Specifies the crossing mode for \verb{\link{GdkEventCrossing}}.
+Specifies the crossing mode for \code{\link{GdkEventCrossing}}.
 
 \describe{
 \item{\verb{normal}}{crossing because of pointer motion.}
@@ -442,7 +442,7 @@ Specifies the crossing mode for \verb{\link{GdkEventCrossing}}.
 
 }
 \item{\verb{GdkNotifyType}}{
-Specifies the kind of crossing for \verb{\link{GdkEventCrossing}}.
+Specifies the kind of crossing for \code{\link{GdkEventCrossing}}.
   
 See the X11 protocol specification of \verb{LeaveNotify} for
 full details of crossing event generation.
@@ -465,7 +465,7 @@ full details of crossing event generation.
 
 }
 \item{\verb{GdkPropertyState}}{
-Specifies the type of a property change for a \verb{\link{GdkEventProperty}}.
+Specifies the type of a property change for a \code{\link{GdkEventProperty}}.
 
 \describe{
 \item{\verb{new-value}}{the property value was changed.}
@@ -488,7 +488,7 @@ Specifies the state of a toplevel window.
 
 }
 \item{\verb{GdkSettingAction}}{
-Specifies the kind of modification applied to a setting in a \verb{\link{GdkEventSetting}}.
+Specifies the kind of modification applied to a setting in a \code{\link{GdkEventSetting}}.
 
 \describe{
 \item{\verb{new}}{a setting was added.}
@@ -508,6 +508,6 @@ Specifies why a selection ownership was changed.
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gdk/gdk-Event-Structures.html}}
+\references{\url{http://library.gnome.org/devel//gdk/gdk-Event-Structures.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

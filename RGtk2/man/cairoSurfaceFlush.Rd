@@ -8,6 +8,6 @@ drawing on the surface with cairo to drawing on it directly
 with native APIs. If the surface doesn't support direct access,
 then this function does nothing.}
 \usage{cairoSurfaceFlush(surface)}
-\arguments{\item{\verb{surface}}{[\verb{\link{CairoSurface}}]  a \verb{\link{CairoSurface}}}}
+\arguments{\item{\verb{surface}}{[\code{\link{CairoSurface}}]  a \code{\link{CairoSurface}}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

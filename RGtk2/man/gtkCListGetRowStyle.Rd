@@ -7,9 +7,9 @@ Gets the style set for the specified row.
 }
 \usage{gtkCListGetRowStyle(object, row)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkCList}}] The \verb{\link{GtkCList}} to affect.}
-\item{\verb{row}}{[integer] The row to query.}
+\item{\verb{object}}{The \code{\link{GtkCList}} to affect.}
+\item{\verb{row}}{The row to query.}
 }
-\value{[\verb{\link{GtkStyle}}] The \verb{\link{GtkStyle}} of the row.}
+\value{[\code{\link{GtkStyle}}] The \code{\link{GtkStyle}} of the row.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

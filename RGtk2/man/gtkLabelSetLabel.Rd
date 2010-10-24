@@ -7,8 +7,8 @@ on the values of the \verb{"use-underline"}" and
 \verb{"use-markup"} properties.}
 \usage{gtkLabelSetLabel(object, str)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkLabel}}]  a \verb{\link{GtkLabel}}}
-\item{\verb{str}}{[character]  the new text to set for the label}
+\item{\verb{object}}{a \code{\link{GtkLabel}}}
+\item{\verb{str}}{the new text to set for the label}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

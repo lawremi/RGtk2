@@ -4,8 +4,8 @@
 \description{Sets the shadow type of the viewport.}
 \usage{gtkViewportSetShadowType(object, type)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkViewport}}]  a \verb{\link{GtkViewport}}.}
-\item{\verb{type}}{[\code{\link{GtkShadowType}}]  the new shadow type.}
+\item{\verb{object}}{a \code{\link{GtkViewport}}.}
+\item{\verb{type}}{the new shadow type.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

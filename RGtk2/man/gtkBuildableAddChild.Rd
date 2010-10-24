@@ -5,11 +5,11 @@
 describing how the child should be added.}
 \usage{gtkBuildableAddChild(object, builder, child, type)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkBuildable}}]  a \verb{\link{GtkBuildable}}}
-\item{\verb{builder}}{[\verb{\link{GtkBuilder}}]  a \verb{\link{GtkBuilder}}}
-\item{\verb{child}}{[\verb{\link{GObject}}]  child to add}
-\item{\verb{type}}{[character]  kind of child or \code{NULL}}
+\item{\verb{object}}{a \code{\link{GtkBuildable}}}
+\item{\verb{builder}}{a \code{\link{GtkBuilder}}}
+\item{\verb{child}}{child to add}
+\item{\verb{type}}{ kind of child or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
-\details{  Since  2.12}
+\details{Since 2.12}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

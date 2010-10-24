@@ -6,9 +6,9 @@ is \verb{GTK_SELECTION_MULTIPLE}, rubber banding will allow the user to select
 multiple rows by dragging the mouse.}
 \usage{gtkTreeViewSetRubberBanding(object, enable)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTreeView}}]  a \verb{\link{GtkTreeView}}}
-\item{\verb{enable}}{[logical] \code{TRUE} to enable rubber banding}
+\item{\verb{object}}{a \code{\link{GtkTreeView}}}
+\item{\verb{enable}}{\code{TRUE} to enable rubber banding}
 }
-\details{  Since  2.10}
+\details{Since 2.10}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

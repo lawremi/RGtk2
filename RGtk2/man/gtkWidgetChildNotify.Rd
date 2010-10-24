@@ -6,10 +6,10 @@ child property \code{child.property}
 on \code{widget}.}
 \usage{gtkWidgetChildNotify(object, child.property)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
-\item{\verb{child.property}}{[character]  the name of a child property installed on the 
+\item{\verb{object}}{a \code{\link{GtkWidget}}}
+\item{\verb{child.property}}{the name of a child property installed on the 
                  class of \code{widget}'s parent}
 }
-\details{This is the analogue of \code{gObjectNotify()} for child properties.  }
+\details{This is the analogue of \code{gObjectNotify()} for child properties.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

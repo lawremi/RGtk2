@@ -35284,17 +35284,6 @@ function()
 } 
 
 
-gtkBuilderNew <-
-function()
-{
-  
-
-  w <- .RGtkCall("S_gtk_builder_new", PACKAGE = "RGtk2")
-
-  return(w)
-} 
-
-
 gtkBuilderAddFromFile <-
 function(object, filename, .errwarn = TRUE)
 {
@@ -37295,12 +37284,15 @@ function(object, icon, size)
 
 
 gtkImageNewFromGicon <-
-function(icon, size)
+function(icon, size, show = TRUE)
 {
   checkPtrType(icon, "GIcon")
   
 
   w <- .RGtkCall("S_gtk_image_new_from_gicon", icon, size, PACKAGE = "RGtk2")
+
+  if(show)
+    gtkWidgetShowAll(w)
 
   return(w)
 } 
@@ -37902,6 +37894,161 @@ function(object, visited)
   w <- .RGtkCall("S_gtk_link_button_set_visited", object, visited, PACKAGE = "RGtk2")
 
   return(invisible(w))
+} 
+
+
+gtkBorderNew <-
+function()
+{
+  
+
+  w <- .RGtkCall("S_gtk_border_new", PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gtkTestRegisterAllTypes <-
+function()
+{
+  
+
+  w <- .RGtkCall("S_gtk_test_register_all_types", PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gtkTestListAllTypes <-
+function()
+{
+  
+
+  w <- .RGtkCall("S_gtk_test_list_all_types", PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gtkTestFindWidget <-
+function(widget, label.pattern, widget.type)
+{
+  checkPtrType(widget, "GtkWidget")
+  label.pattern <- as.character(label.pattern)
+  widget.type <- as.GType(widget.type)
+
+  w <- .RGtkCall("S_gtk_test_find_widget", widget, label.pattern, widget.type, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gtkTestSliderSetPerc <-
+function(widget, percentage)
+{
+  checkPtrType(widget, "GtkWidget")
+  percentage <- as.numeric(percentage)
+
+  w <- .RGtkCall("S_gtk_test_slider_set_perc", widget, percentage, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gtkTestSliderGetValue <-
+function(widget)
+{
+  checkPtrType(widget, "GtkWidget")
+
+  w <- .RGtkCall("S_gtk_test_slider_get_value", widget, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gtkTestSpinButtonClick <-
+function(spinner, button, upwards)
+{
+  checkPtrType(spinner, "GtkSpinButton")
+  button <- as.numeric(button)
+  upwards <- as.logical(upwards)
+
+  w <- .RGtkCall("S_gtk_test_spin_button_click", spinner, button, upwards, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gtkTestWidgetClick <-
+function(widget, button, modifiers)
+{
+  checkPtrType(widget, "GtkWidget")
+  button <- as.numeric(button)
+  
+
+  w <- .RGtkCall("S_gtk_test_widget_click", widget, button, modifiers, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gtkTestWidgetSendKey <-
+function(widget, keyval, modifiers)
+{
+  checkPtrType(widget, "GtkWidget")
+  keyval <- as.numeric(keyval)
+  
+
+  w <- .RGtkCall("S_gtk_test_widget_send_key", widget, keyval, modifiers, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gtkTestTextSet <-
+function(widget, string)
+{
+  checkPtrType(widget, "GtkWidget")
+  string <- as.character(string)
+
+  w <- .RGtkCall("S_gtk_test_text_set", widget, string, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gtkTestTextGet <-
+function(widget)
+{
+  checkPtrType(widget, "GtkWidget")
+
+  w <- .RGtkCall("S_gtk_test_text_get", widget, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gtkTestFindSibling <-
+function(base.widget, widget.type)
+{
+  checkPtrType(base.widget, "GtkWidget")
+  widget.type <- as.GType(widget.type)
+
+  w <- .RGtkCall("S_gtk_test_find_sibling", base.widget, widget.type, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gtkTestFindLabel <-
+function(widget, label.pattern)
+{
+  checkPtrType(widget, "GtkWidget")
+  label.pattern <- as.character(label.pattern)
+
+  w <- .RGtkCall("S_gtk_test_find_label", widget, label.pattern, PACKAGE = "RGtk2")
+
+  return(w)
 } 
 
 

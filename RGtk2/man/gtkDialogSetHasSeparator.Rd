@@ -5,8 +5,8 @@
 \code{TRUE} by default.}
 \usage{gtkDialogSetHasSeparator(object, setting)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkDialog}}]  a \verb{\link{GtkDialog}}}
-\item{\verb{setting}}{[logical] \code{TRUE} to have a separator}
+\item{\verb{object}}{a \code{\link{GtkDialog}}}
+\item{\verb{setting}}{\code{TRUE} to have a separator}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

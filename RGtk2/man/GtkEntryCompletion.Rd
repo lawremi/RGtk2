@@ -35,32 +35,32 @@
 \section{Hierarchy}{\preformatted{GObject
    +----GtkEntryCompletion}}
 \section{Interfaces}{GtkEntryCompletion implements
- \verb{\link{GtkBuildable}} and  \verb{\link{GtkCellLayout}}.}
-\section{Detailed Description}{\verb{\link{GtkEntryCompletion}} is an auxiliary object to be used in conjunction with
-\verb{\link{GtkEntry}} to provide the completion functionality. It implements the
-\verb{\link{GtkCellLayout}} interface, to allow the user to add extra cells to the 
-\verb{\link{GtkTreeView}} with completion matches. 
+ \code{\link{GtkCellLayout}} and  \code{\link{GtkBuildable}}.}
+\section{Detailed Description}{\code{\link{GtkEntryCompletion}} is an auxiliary object to be used in conjunction with
+\code{\link{GtkEntry}} to provide the completion functionality. It implements the
+\code{\link{GtkCellLayout}} interface, to allow the user to add extra cells to the
+\code{\link{GtkTreeView}} with completion matches.
   
-"Completion functionality" means that when the user modifies the text 
-in the entry, \verb{\link{GtkEntryCompletion}} checks which rows in the model match 
+"Completion functionality" means that when the user modifies the text
+in the entry, \code{\link{GtkEntryCompletion}} checks which rows in the model match
 the current content of the entry, and displays a list of matches.
-By default, the matching is done by comparing the entry text 
-case-insensitively against the text column of the model (see 
-\code{\link{gtkEntryCompletionSetTextColumn}}), but this can be overridden with 
+By default, the matching is done by comparing the entry text
+case-insensitively against the text column of the model (see
+\code{\link{gtkEntryCompletionSetTextColumn}}), but this can be overridden with
 a custom match function (see \code{\link{gtkEntryCompletionSetMatchFunc}}).
   
-When the user selects a completion, the content of the entry is updated. 
-By default, the content of the entry is replaced by the text column of the 
+When the user selects a completion, the content of the entry is updated.
+By default, the content of the entry is replaced by the text column of the
 model, but this can be overridden by connecting to the ::match-selected signal
-and updating the entry in the signal handler. Note that you should return 
+and updating the entry in the signal handler. Note that you should return
 \code{TRUE} from the signal handler to suppress the default behaviour.
   
 To add completion functionality to an entry, use \code{\link{gtkEntrySetCompletion}}.
   
 In addition to regular completion matches, which will be inserted into the
-entry when they are selected, \verb{\link{GtkEntryCompletion}} also allows to display 
-"actions" in the popup window. Their appearance is similar to menuitems, 
-to differentiate them clearly from completion strings. When an action is 
+entry when they are selected, \code{\link{GtkEntryCompletion}} also allows to display
+"actions" in the popup window. Their appearance is similar to menuitems,
+to differentiate them clearly from completion strings. When an action is
 selected, the ::action-activated signal is emitted.}
 \section{Structures}{\describe{\item{\verb{GtkEntryCompletion}}{
 The GtkEntryCompletion struct contains only private data.
@@ -68,17 +68,17 @@ The GtkEntryCompletion struct contains only private data.
 }}}
 \section{Convenient Construction}{\code{gtkEntryCompletion} is the equivalent of \code{\link{gtkEntryCompletionNew}}.}
 \section{User Functions}{\describe{\item{\code{GtkEntryCompletionMatchFunc(completion, key, iter, user.data)}}{
-A function which decides whether the row indicated by \code{iter} matches a given 
+A function which decides whether the row indicated by \code{iter} matches a given
 \code{key}, and should be displayed as a possible completion for \code{key}. Note that
-\code{key} is normalized and case-folded (see \code{gUtf8Normalize()} and 
+\code{key} is normalized and case-folded (see \code{gUtf8Normalize()} and
 \code{gUtf8Casefold()}). If this is not appropriate, match functions have access
-to the unmodified key via \code{gtk_entry_get_text (GTK_ENTRY (gtk_entry_completion_get_entry (}.
+to the unmodified key via \code{gtk_entry_get_text (GTK_ENTRY (gtk_entry_completion_get_entry (    )))}.
 
 \describe{
-\item{\code{completion}}{[\verb{\link{GtkEntryCompletion}}] the \verb{\link{GtkEntryCompletion}}}
-\item{\code{key}}{[character] the string to match, normalized and case-folded}
-\item{\code{iter}}{[\verb{\link{GtkTreeIter}}] a \verb{\link{GtkTreeIter}} indicating the row to match}
-\item{\code{user.data}}{[R object] user data given to \code{\link{gtkEntryCompletionSetMatchFunc}}}
+\item{\code{completion}}{the \code{\link{GtkEntryCompletion}}}
+\item{\code{key}}{the string to match, normalized and case-folded}
+\item{\code{iter}}{a \code{\link{GtkTreeIter}} indicating the row to match}
+\item{\code{user.data}}{user data given to \code{\link{gtkEntryCompletionSetMatchFunc}}}
 }
 
 \emph{Returns:} [logical] \code{TRUE} if \code{iter} should be displayed as a possible completion for \code{key}
@@ -86,14 +86,13 @@ to the unmodified key via \code{gtk_entry_get_text (GTK_ENTRY (gtk_entry_complet
 }}}
 \section{Signals}{\describe{
 \item{\code{action-activated(widget, index, user.data)}}{
-Gets emitted when an action is activated.  
-
-  Since  2.4
+Gets emitted when an action is activated.
+  Since 2.4
 
 \describe{
-\item{\code{widget}}{[\verb{\link{GtkEntryCompletion}}]  the object which received the signal}
-\item{\code{index}}{[integer]  the index of the activated action}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{widget}}{the object which received the signal}
+\item{\code{index}}{the index of the activated action}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -101,16 +100,15 @@ Gets emitted when an action is activated.
 \item{\code{cursor-on-match(widget, model, iter, user.data)}}{
 Gets emitted when a match from the cursor is on a match
 of the list.The default behaviour is to replace the contents
-of the entry with the contents of the text column in the row 
-pointed to by \code{iter}.  
-
-  Since  2.12
+of the entry with the contents of the text column in the row
+pointed to by \code{iter}.
+  Since 2.12
 
 \describe{
-\item{\code{widget}}{[\verb{\link{GtkEntryCompletion}}]  the object which received the signal}
-\item{\code{model}}{[\verb{\link{GtkTreeModel}}]  the \verb{\link{GtkTreeModel}} containing the matches}
-\item{\code{iter}}{[\verb{\link{GtkTreeIter}}]  a \verb{\link{GtkTreeIter}} positioned at the selected match}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{widget}}{the object which received the signal}
+\item{\code{model}}{the \code{\link{GtkTreeModel}} containing the matches}
+\item{\code{iter}}{a \code{\link{GtkTreeIter}} positioned at the selected match}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 \emph{Returns:} [logical] \code{TRUE} if the signal has been handled
@@ -123,15 +121,14 @@ whole prefix and select the newly inserted part.
   
 Applications may connect to this signal in order to insert only a
 smaller part of the \code{prefix} into the entry - e.g. the entry used in
-the \verb{\link{GtkFileChooser}} inserts only the part of the prefix up to the 
-next '/'.  
-
-  Since  2.6
+the \code{\link{GtkFileChooser}} inserts only the part of the prefix up to the 
+next '/'.
+  Since 2.6
 
 \describe{
-\item{\code{widget}}{[\verb{\link{GtkEntryCompletion}}]  the object which received the signal}
-\item{\code{prefix}}{[character]  the common prefix of all possible completions}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{widget}}{the object which received the signal}
+\item{\code{prefix}}{the common prefix of all possible completions}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 \emph{Returns:} [logical] \code{TRUE} if the signal has been handled
@@ -141,15 +138,14 @@ next '/'.
 Gets emitted when a match from the list is selected. 
 The default behaviour is to replace the contents of the 
 entry with the contents of the text column in the row 
-pointed to by \code{iter}.  
-
-  Since  2.4
+pointed to by \code{iter}.
+  Since 2.4
 
 \describe{
-\item{\code{widget}}{[\verb{\link{GtkEntryCompletion}}]  the object which received the signal}
-\item{\code{model}}{[\verb{\link{GtkTreeModel}}]  the \verb{\link{GtkTreeModel}} containing the matches}
-\item{\code{iter}}{[\verb{\link{GtkTreeIter}}]  a \verb{\link{GtkTreeIter}} positioned at the selected match}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{widget}}{the object which received the signal}
+\item{\code{model}}{the \code{\link{GtkTreeModel}} containing the matches}
+\item{\code{iter}}{a \code{\link{GtkTreeIter}} positioned at the selected match}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 \emph{Returns:} [logical] \code{TRUE} if the signal has been handled
@@ -159,20 +155,18 @@ pointed to by \code{iter}.
 \section{Properties}{\describe{
 \item{\verb{inline-completion} [logical : Read / Write]}{
 
-Determines whether the common prefix of the possible completions 
+Determines whether the common prefix of the possible completions
 should be inserted automatically in the entry. Note that this
 requires text-column to be set, even if you are using a custom
-match function.  
-
-  Default value: FALSE  Since  2.6
+match function.
+  Default value: FALSE  Since 2.6
 
 }
 \item{\verb{inline-selection} [logical : Read / Write]}{
 
 Determines whether the possible completions on the popup
-will appear in the entry as you navigate through them.  
-
-  Default value: FALSE  Since  2.12
+will appear in the entry as you navigate through them.
+  Default value: FALSE  Since 2.12
 
 }
 \item{\verb{minimum-key-length} [integer : Read / Write]}{
@@ -180,7 +174,7 @@ will appear in the entry as you navigate through them.
 Minimum length of the search key in order to look up matches.  Allowed values: >= 0  Default value: 1
 
 }
-\item{\verb{model} [\verb{\link{GtkTreeModel}} : *         : Read / Write]}{
+\item{\verb{model} [\code{\link{GtkTreeModel}} : *         : Read / Write]}{
 
 The model to find matches in.
 
@@ -188,17 +182,15 @@ The model to find matches in.
 \item{\verb{popup-completion} [logical : Read / Write]}{
 
 Determines whether the possible completions should be 
-shown in a popup window.  
-
-  Default value: TRUE  Since  2.6
+shown in a popup window.
+  Default value: TRUE  Since 2.6
 
 }
 \item{\verb{popup-set-width} [logical : Read / Write]}{
 
 Determines whether the completions popup window will be
-resized to the width of the entry.  
-
-  Default value: TRUE  Since  2.8
+resized to the width of the entry.
+  Default value: TRUE  Since 2.8
 
 }
 \item{\verb{popup-single-match} [logical : Read / Write]}{
@@ -207,20 +199,18 @@ Determines whether the completions popup window will shown
 for a single possible completion. You probably want to set
 this to \code{FALSE} if you are using 
 inline 
-completion.  
-
-  Default value: TRUE  Since  2.8
+completion.
+  Default value: TRUE  Since 2.8
 
 }
 \item{\verb{text-column} [integer : Read / Write]}{
 
 The column of the model containing the strings.
-Note that the strings must be UTF-8.  
-
-  Allowed values: >= -1  Default value: -1  Since  2.6
+Note that the strings must be UTF-8.
+  Allowed values: >= -1  Default value: -1  Since 2.6
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkEntryCompletion.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkEntryCompletion.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

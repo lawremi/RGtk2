@@ -1,9 +1,9 @@
 \alias{gtkLabelNewWithMnemonic}
 \name{gtkLabelNewWithMnemonic}
 \title{gtkLabelNewWithMnemonic}
-\description{Creates a new \verb{\link{GtkLabel}}, containing the text in \code{str}.}
+\description{Creates a new \code{\link{GtkLabel}}, containing the text in \code{str}.}
 \usage{gtkLabelNewWithMnemonic(str = NULL, show = TRUE)}
-\arguments{\item{\verb{str}}{[character]  The text of the label, with an underscore in front of the
+\arguments{\item{\verb{str}}{The text of the label, with an underscore in front of the
       mnemonic character}}
 \details{If characters in \code{str} are preceded by an underscore, they are
 underlined. If you need a literal underscore character in a label, use
@@ -13,10 +13,10 @@ to activate another widget, chosen automatically, or explicitly using
 \code{\link{gtkLabelSetMnemonicWidget}}.
   
 If \code{\link{gtkLabelSetMnemonicWidget}} is not called, then the first 
-activatable ancestor of the \verb{\link{GtkLabel}} will be chosen as the mnemonic 
+activatable ancestor of the \code{\link{GtkLabel}} will be chosen as the mnemonic 
 widget. For instance, if the label is inside a button or menu item, 
 the button or menu item will automatically become the mnemonic widget 
-and be activated by the mnemonic.  }
-\value{[\verb{\link{GtkWidget}}]  the new \verb{\link{GtkLabel}}}
+and be activated by the mnemonic.}
+\value{[\code{\link{GtkWidget}}]  the new \code{\link{GtkLabel}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

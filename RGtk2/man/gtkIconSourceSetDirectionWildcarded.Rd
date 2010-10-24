@@ -9,10 +9,10 @@ with \code{\link{gtkIconSourceSetDirection}}, and the icon source
 will only be used with that text direction.}
 \usage{gtkIconSourceSetDirectionWildcarded(object, setting)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkIconSource}}]  a \verb{\link{GtkIconSource}}}
-\item{\verb{setting}}{[logical] \code{TRUE} to wildcard the text direction}
+\item{\verb{object}}{a \code{\link{GtkIconSource}}}
+\item{\verb{setting}}{\code{TRUE} to wildcard the text direction}
 }
-\details{\verb{\link{GtkIconSet}} prefers non-wildcarded sources (exact matches) over
-wildcarded sources, and will use an exact match when possible.  }
+\details{\code{\link{GtkIconSet}} prefers non-wildcarded sources (exact matches) over
+wildcarded sources, and will use an exact match when possible.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -6,8 +6,8 @@ path if filled, achieves an effect similar to that of
 \code{\link{cairoShowText}}.}
 \usage{cairoTextPath(cr, utf8)}
 \arguments{
-\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}
-\item{\verb{utf8}}{[char]  a string of text encoded in UTF-8}
+\item{\verb{cr}}{[\code{\link{Cairo}}]  a cairo context}
+\item{\verb{utf8}}{[char]  a string of text encoded in UTF-8, or \code{NULL}}
 }
 \details{Text conversion and positioning is done similar to \code{\link{cairoShowText}}.
   

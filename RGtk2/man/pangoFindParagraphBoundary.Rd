@@ -9,16 +9,16 @@ index of the run of delimiters is returned in
 (index after all delimiters) is stored in \code{next.paragraph.start}.}
 \usage{pangoFindParagraphBoundary(text, length = -1)}
 \arguments{
-\item{\verb{text}}{[character]  UTF-8 text}
-\item{\verb{length}}{[integer]  length of \code{text} in bytes, or -1 if nul-terminated}
+\item{\verb{text}}{UTF-8 text}
+\item{\verb{length}}{length of \code{text} in bytes, or -1 if nul-terminated}
 }
 \details{If no delimiters are found, both \code{paragraph.delimiter.index} and
 \code{next.paragraph.start} are filled with the length of \code{text} (an index one
-off the end).  }
+off the end).}
 \value{
 A list containing the following elements:
-\item{\verb{paragraph.delimiter.index}}{[integer]  return location for index of delimiter}
-\item{\verb{next.paragraph.start}}{[integer]  return location for start of next paragraph}
+\item{\verb{paragraph.delimiter.index}}{return location for index of delimiter}
+\item{\verb{next.paragraph.start}}{return location for start of next paragraph}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -5,8 +5,8 @@
 Tags in the buffer may override the default.}
 \usage{gtkTextViewSetIndent(object, indent)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTextView}}]  a \verb{\link{GtkTextView}}}
-\item{\verb{indent}}{[integer]  indentation in pixels}
+\item{\verb{object}}{a \code{\link{GtkTextView}}}
+\item{\verb{indent}}{indentation in pixels}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -8,8 +8,8 @@ emitted.
 }
 \usage{gtkListUnselectChild(object, child)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkList}}] the list widget.}
-\item{\verb{child}}{[\verb{\link{GtkWidget}}] the child to unselect.}
+\item{\verb{object}}{the list widget.}
+\item{\verb{child}}{the child to unselect.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

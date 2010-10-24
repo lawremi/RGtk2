@@ -5,11 +5,12 @@
 the item pointed to by \code{path}. See also \code{\link{gtkTooltipSetTipArea}}.}
 \usage{gtkIconViewSetTooltipCell(object, tooltip, path, cell)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkIconView}}]  a \verb{\link{GtkIconView}}}
-\item{\verb{tooltip}}{[\verb{\link{GtkTooltip}}]  a \verb{\link{GtkTooltip}}}
-\item{\verb{path}}{[\verb{\link{GtkTreePath}}]  a \verb{\link{GtkTreePath}}}
-\item{\verb{cell}}{[\verb{\link{GtkCellRenderer}}]  a \verb{\link{GtkCellRenderer}} or \code{NULL}}
+\item{\verb{object}}{a \code{\link{GtkIconView}}}
+\item{\verb{tooltip}}{a \code{\link{GtkTooltip}}}
+\item{\verb{path}}{a \code{\link{GtkTreePath}}}
+\item{\verb{cell}}{ a \code{\link{GtkCellRenderer}} or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
-\details{  Since  2.12}
+\details{See also \code{\link{gtkIconViewSetTooltipColumn}} for a simpler alternative.
+  Since 2.12}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -5,9 +5,9 @@
 containing \code{child}.}
 \usage{gtkNotebookSetTabLabelText(object, child, tab.text)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkNotebook}}]  a \verb{\link{GtkNotebook}}}
-\item{\verb{child}}{[\verb{\link{GtkWidget}}]  the page}
-\item{\verb{tab.text}}{[character]  the label text}
+\item{\verb{object}}{a \code{\link{GtkNotebook}}}
+\item{\verb{child}}{the page}
+\item{\verb{tab.text}}{the label text}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

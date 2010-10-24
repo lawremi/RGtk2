@@ -4,7 +4,7 @@
 \description{Set the horizontal and vertical resolution for image fallbacks.}
 \usage{cairoSurfaceSetFallbackResolution(surface, x.pixels.per.inch, y.pixels.per.inch)}
 \arguments{
-\item{\verb{surface}}{[\verb{\link{CairoSurface}}]  a \verb{\link{CairoSurface}}}
+\item{\verb{surface}}{[\code{\link{CairoSurface}}]  a \code{\link{CairoSurface}}}
 \item{\verb{x.pixels.per.inch}}{[numeric]  horizontal setting for pixels per inch}
 \item{\verb{y.pixels.per.inch}}{[numeric]  vertical setting for pixels per inch}
 }
@@ -26,8 +26,10 @@ backends.
 Note: The fallback resolution only takes effect at the time of
 completing a page (with \code{\link{cairoShowPage}} or \code{\link{cairoCopyPage}}) so
 there is currently no way to have more than one fallback resolution
-in effect on a single page.  
-
-  Since  1.2}
+in effect on a single page.
+  
+The default fallback resoultion is 300 pixels per inch in both
+dimensions.  
+  Since 1.2}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

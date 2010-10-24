@@ -33,6 +33,13 @@
 \code{\link{gtkSelectionDataTargetsIncludeText}(object)}\cr
 \code{\link{gtkSelectionDataTargetsIncludeUri}(object)}\cr
 \code{\link{gtkSelectionDataTargetsIncludeRichText}(object, buffer)}\cr
+\code{\link{gtkSelectionDataGetSelection}(object)}\cr
+\code{\link{gtkSelectionDataGetData}(object)}\cr
+\code{\link{gtkSelectionDataGetLength}(object)}\cr
+\code{\link{gtkSelectionDataGetDataType}(object)}\cr
+\code{\link{gtkSelectionDataGetDisplay}(object)}\cr
+\code{\link{gtkSelectionDataGetFormat}(object)}\cr
+\code{\link{gtkSelectionDataGetTarget}(object)}\cr
 \code{\link{gtkTargetsIncludeImage}(targets, writable)}\cr
 \code{\link{gtkTargetsIncludeText}(targets)}\cr
 \code{\link{gtkTargetsIncludeUri}(targets)}\cr
@@ -44,22 +51,22 @@
 }
 \section{Detailed Description}{The selection mechanism provides the basis for different types
 of communication between processes. In particular, drag and drop and
-\verb{\link{GtkClipboard}} work via selections. You will very seldom or
+\code{\link{GtkClipboard}} work via selections. You will very seldom or
 never need to use most of the functions in this section directly;
-\verb{\link{GtkClipboard}} provides a nicer interface to the same functionality.
+\code{\link{GtkClipboard}} provides a nicer interface to the same functionality.
   
 Some of the datatypes defined this section are used in
-the \verb{\link{GtkClipboard}} and drag-and-drop API's as well. The
-\verb{\link{GtkTargetEntry}} structure and \verb{\link{GtkTargetList}} objects represent
+the \code{\link{GtkClipboard}} and drag-and-drop API's as well. The
+\code{\link{GtkTargetEntry}} structure and \code{\link{GtkTargetList}} objects represent
 lists of data types that are supported when sending or
-receiving data. The \verb{\link{GtkSelectionData}} object is used to
+receiving data. The \code{\link{GtkSelectionData}} object is used to
 store a chunk of data along with the data type and other
 associated information.}
 \section{Structures}{\describe{
 \item{\verb{GtkTargetEntry}}{
-A \verb{\link{GtkTargetEntry}} structure represents a single type of
+A \code{\link{GtkTargetEntry}} structure represents a single type of
 data than can be supplied for by a widget for a selection
-or for supplied or received during drag-and-drop. It 
+or for supplied or received during drag-and-drop. It
 contains a string representing the drag type, a flags
 field (used only for drag and drop - see \code{\link{GtkTargetFlags}}),
 and an application assigned integer ID. The integer
@@ -76,14 +83,14 @@ the target type without extensive string compares.
 
 }
 \item{\verb{GtkTargetList}}{
-A \verb{\link{GtkTargetList}} structure is a reference counted list
+A \code{\link{GtkTargetList}} structure is a reference counted list
 of \verb{GtkTargetPair}. It is used to represent the same
-information as a table of \verb{\link{GtkTargetEntry}}, but in
+information as a table of \code{\link{GtkTargetEntry}}, but in
 an efficient form. This structure should be treated as
 opaque.
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/gtk-Selections.html}}
+\references{\url{http://library.gnome.org/devel//gtk/gtk-Selections.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

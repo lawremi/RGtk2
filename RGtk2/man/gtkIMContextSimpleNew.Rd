@@ -1,8 +1,8 @@
 \alias{gtkIMContextSimpleNew}
 \name{gtkIMContextSimpleNew}
 \title{gtkIMContextSimpleNew}
-\description{Creates a new \verb{\link{GtkIMContextSimple}}.}
+\description{Creates a new \code{\link{GtkIMContextSimple}}.}
 \usage{gtkIMContextSimpleNew()}
-\value{[\verb{\link{GtkIMContext}}]  a new \verb{\link{GtkIMContextSimple}}.}
+\value{[\code{\link{GtkIMContext}}]  a new \code{\link{GtkIMContextSimple}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

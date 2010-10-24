@@ -5,7 +5,7 @@
 it is not already present.}
 \usage{atkStateSetAddState(object, type)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{AtkStateSet}}]  an \verb{\link{AtkStateSet}}}
+\item{\verb{object}}{[\code{\link{AtkStateSet}}]  an \code{\link{AtkStateSet}}}
 \item{\verb{type}}{[\code{\link{AtkStateType}}]  an \code{\link{AtkStateType}}}
 }
 \value{[logical] \code{TRUE} if  the state for \code{type} is not already in \code{set}.}

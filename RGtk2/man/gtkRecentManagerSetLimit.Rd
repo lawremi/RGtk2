@@ -6,9 +6,9 @@ function should return.  If \code{limit} is set to -1, then return all the
 items.}
 \usage{gtkRecentManagerSetLimit(object, limit)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkRecentManager}}]  a \verb{\link{GtkRecentManager}}}
-\item{\verb{limit}}{[integer]  the maximum number of items to return, or -1.}
+\item{\verb{object}}{a \code{\link{GtkRecentManager}}}
+\item{\verb{limit}}{the maximum number of items to return, or -1.}
 }
-\details{  Since  2.10}
+\details{Since 2.10}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

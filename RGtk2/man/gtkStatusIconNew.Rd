@@ -3,7 +3,7 @@
 \title{gtkStatusIconNew}
 \description{Creates an empty status icon object.}
 \usage{gtkStatusIconNew()}
-\details{  Since  2.10}
-\value{[\verb{\link{GtkStatusIcon}}]  a new \verb{\link{GtkStatusIcon}}}
+\details{Since 2.10}
+\value{[\code{\link{GtkStatusIcon}}]  a new \code{\link{GtkStatusIcon}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

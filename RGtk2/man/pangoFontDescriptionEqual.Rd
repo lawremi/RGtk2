@@ -8,8 +8,8 @@ are all the same. (Two font descriptions may result in identical fonts
 being loaded, but still compare \code{FALSE}.)}
 \usage{pangoFontDescriptionEqual(object, desc2)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{PangoFontDescription}}]  a \verb{\link{PangoFontDescription}}}
-\item{\verb{desc2}}{[\verb{\link{PangoFontDescription}}]  another \verb{\link{PangoFontDescription}}}
+\item{\verb{object}}{a \code{\link{PangoFontDescription}}}
+\item{\verb{desc2}}{another \code{\link{PangoFontDescription}}}
 }
 \value{[logical] \code{TRUE} if the two font descriptions are identical,
 	 \code{FALSE} otherwise.}

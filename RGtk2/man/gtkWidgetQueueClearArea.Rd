@@ -9,15 +9,15 @@ This function is no longer different from
 background for \code{GTK_NO_WINDOW} widgets, and
 \code{\link{gtkWidgetQueueDrawArea}} would not. Now both functions ensure
 the background will be redrawn.
-\strong{WARNING: \code{gtk_widget_queue_clear_area} is deprecated and should not be used in newly-written code. Use \code{\link{gtkWidgetQueueDrawArea}} instead.}
+\strong{WARNING: \code{gtk_widget_queue_clear_area} has been deprecated since version 2.2 and should not be used in newly-written code. Use \code{\link{gtkWidgetQueueDrawArea}} instead.}
 }
 \usage{gtkWidgetQueueClearArea(object, x, y, width, height)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
-\item{\verb{x}}{[integer]  x coordinate of upper-left corner of rectangle to redraw}
-\item{\verb{y}}{[integer]  y coordinate of upper-left corner of rectangle to redraw}
-\item{\verb{width}}{[integer]  width of region to draw}
-\item{\verb{height}}{[integer]  height of region to draw}
+\item{\verb{object}}{a \code{\link{GtkWidget}}}
+\item{\verb{x}}{x coordinate of upper-left corner of rectangle to redraw}
+\item{\verb{y}}{y coordinate of upper-left corner of rectangle to redraw}
+\item{\verb{width}}{width of region to draw}
+\item{\verb{height}}{height of region to draw}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

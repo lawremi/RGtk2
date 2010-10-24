@@ -8,9 +8,9 @@ sorted.  If \code{sorted.path} does not point to a location in the child model,
 \code{NULL} is returned.}
 \usage{gtkTreeModelSortConvertPathToChildPath(object, sorted.path)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTreeModelSort}}]  A \verb{\link{GtkTreeModelSort}}}
-\item{\verb{sorted.path}}{[\verb{\link{GtkTreePath}}]  A \verb{\link{GtkTreePath}} to convert}
+\item{\verb{object}}{A \code{\link{GtkTreeModelSort}}}
+\item{\verb{sorted.path}}{A \code{\link{GtkTreePath}} to convert}
 }
-\value{[\verb{\link{GtkTreePath}}]  A newly allocated \verb{\link{GtkTreePath}}, or \code{NULL}}
+\value{[\code{\link{GtkTreePath}}]  A newly allocated \code{\link{GtkTreePath}}, or \code{NULL}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

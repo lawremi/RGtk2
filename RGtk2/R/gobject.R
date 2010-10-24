@@ -98,7 +98,7 @@ function(obj, signal, f, data = NULL, after = FALSE, user.data.first = FALSE)
                   PACKAGE = "RGtk2"))
 }
 
-print.CallbackID <- function(x)
+print.CallbackID <- function(x, ...)
   cat("Connection to '", names(x), "': ", x, "\n", sep = "")
 
 gSignalHandlerDisconnect <-

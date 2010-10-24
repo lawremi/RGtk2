@@ -6,10 +6,10 @@ so that the window may be nonrectangular. See also
 \code{\link{gdkWindowShapeCombineMask}} to use a bitmap as the mask.}
 \usage{gdkWindowShapeCombineRegion(object, shape.region = NULL, offset.x, offset.y)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a \verb{\link{GdkWindow}}}
-\item{\verb{shape.region}}{[\verb{\link{GdkRegion}}]  region of window to be non-transparent}
-\item{\verb{offset.x}}{[integer]  X position of \code{shape.region} in \code{window} coordinates}
-\item{\verb{offset.y}}{[integer]  Y position of \code{shape.region} in \code{window} coordinates}
+\item{\verb{object}}{a \code{\link{GdkWindow}}}
+\item{\verb{shape.region}}{region of window to be non-transparent}
+\item{\verb{offset.x}}{X position of \code{shape.region} in \code{window} coordinates}
+\item{\verb{offset.y}}{Y position of \code{shape.region} in \code{window} coordinates}
 }
 \details{If \code{shape.region} is \code{NULL}, the shape will be unset, so the whole
 window will be opaque again. \code{offset.x} and \code{offset.y} are ignored
@@ -21,8 +21,6 @@ very old X servers, and occasionally the implementation will be
 buggy. On servers without the shape extension, this function
 will do nothing.
   
-On the Win32 platform, this functionality is always present.
-  
-This function works on both toplevel and child windows.  }
+This function works on both toplevel and child windows.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -6,8 +6,8 @@ See \code{\link{gtkTextViewForwardDisplayLine}} for an explanation of
 display lines vs. paragraphs.}
 \usage{gtkTextViewStartsDisplayLine(object, iter)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTextView}}]  a \verb{\link{GtkTextView}}}
-\item{\verb{iter}}{[\verb{\link{GtkTextIter}}]  a \verb{\link{GtkTextIter}}}
+\item{\verb{object}}{a \code{\link{GtkTextView}}}
+\item{\verb{iter}}{a \code{\link{GtkTextIter}}}
 }
 \value{[logical] \code{TRUE} if \code{iter} begins a wrapped line}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -5,7 +5,7 @@
 The values of \code{width} and \code{height} are returned as -1 if the
 values cannot be obtained (for instance, if the object is not onscreen).}
 \usage{atkImageGetImageSize(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{AtkImage}}]  a \verb{\link{GObject}} instance that implements AtkImageIface}}
+\arguments{\item{\verb{object}}{[\code{\link{AtkImage}}]  a \code{\link{GObject}} instance that implements AtkImageIface}}
 \value{
 A list containing the following elements:
 \item{\verb{width}}{[integer]  filled with the image width, or -1 if the value cannot be obtained.}

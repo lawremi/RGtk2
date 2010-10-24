@@ -5,8 +5,8 @@
 located within the currently-visible text area.}
 \usage{gtkTextViewMoveMarkOnscreen(object, mark)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTextView}}]  a \verb{\link{GtkTextView}}}
-\item{\verb{mark}}{[\verb{\link{GtkTextMark}}]  a \verb{\link{GtkTextMark}}}
+\item{\verb{object}}{a \code{\link{GtkTextView}}}
+\item{\verb{mark}}{a \code{\link{GtkTextMark}}}
 }
 \value{[logical] \code{TRUE} if the mark moved (wasn't already onscreen)}
 \author{Derived by RGtkGen from GTK+ documentation}

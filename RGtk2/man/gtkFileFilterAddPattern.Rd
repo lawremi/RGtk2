@@ -4,9 +4,9 @@
 \description{Adds a rule allowing a shell style glob to a filter.}
 \usage{gtkFileFilterAddPattern(object, pattern)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkFileFilter}}]  a \verb{\link{GtkFileFilter}}}
-\item{\verb{pattern}}{[character]  a shell style glob}
+\item{\verb{object}}{a \code{\link{GtkFileFilter}}}
+\item{\verb{pattern}}{a shell style glob}
 }
-\details{  Since  2.4}
+\details{Since 2.4}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

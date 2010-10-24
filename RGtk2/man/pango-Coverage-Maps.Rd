@@ -15,10 +15,10 @@
 }
 \section{Detailed Description}{It is often necessary in Pango to determine if a particular font can
 represent a particular character, and also how well it can represent
-that character. The \verb{\link{PangoCoverage}} is a data structure that is used
+that character. The \code{\link{PangoCoverage}} is a data structure that is used
 to represent that information.}
 \section{Structures}{\describe{\item{\verb{PangoCoverage}}{
-The \verb{\link{PangoCoverage}} structure represents a map from Unicode characters
+The \code{\link{PangoCoverage}} structure represents a map from Unicode characters
 to \code{\link{PangoCoverageLevel}}. It is an opaque structure with no public fields.
 
 }}}
@@ -40,6 +40,6 @@ character point for a particular script.
 }
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/pango/pango-Coverage-Maps.html}}
+\references{\url{http://library.gnome.org/devel//pango/pango-Coverage-Maps.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

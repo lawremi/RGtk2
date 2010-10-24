@@ -6,13 +6,12 @@ the value that is associated with \code{key}, or \code{default.val}
 if the value does not represent a floating point number.}
 \usage{gtkPrintSettingsGetDoubleWithDefault(object, key, def)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkPrintSettings}}]  a \verb{\link{GtkPrintSettings}}}
-\item{\verb{key}}{[character]  a key}
-\item{\verb{def}}{[numeric]  the default value}
+\item{\verb{object}}{a \code{\link{GtkPrintSettings}}}
+\item{\verb{key}}{a key}
+\item{\verb{def}}{the default value}
 }
-\details{Floating point numbers are parsed with \code{gAsciiStrtod()}.  
-
-  Since  2.10}
+\details{Floating point numbers are parsed with \code{gAsciiStrtod()}.
+  Since 2.10}
 \value{[numeric]  the floating point number associated with \code{key}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

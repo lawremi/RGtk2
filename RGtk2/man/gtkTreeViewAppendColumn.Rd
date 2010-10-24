@@ -6,8 +6,8 @@ mode enabled, then \code{column} must have its "sizing" property set to be
 GTK_TREE_VIEW_COLUMN_FIXED.}
 \usage{gtkTreeViewAppendColumn(object, column)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTreeView}}]  A \verb{\link{GtkTreeView}}.}
-\item{\verb{column}}{[\verb{\link{GtkTreeViewColumn}}]  The \verb{\link{GtkTreeViewColumn}} to add.}
+\item{\verb{object}}{A \code{\link{GtkTreeView}}.}
+\item{\verb{column}}{The \code{\link{GtkTreeViewColumn}} to add.}
 }
 \value{[integer]  The number of columns in \code{tree.view} after appending.}
 \author{Derived by RGtkGen from GTK+ documentation}

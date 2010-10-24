@@ -7,12 +7,12 @@ of characters in the buffer, \code{iter} is initialized to the end iterator,
 the iterator one past the last valid character in the buffer.}
 \usage{gtkTextBufferGetIterAtOffset(object, char.offset)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTextBuffer}}]  a \verb{\link{GtkTextBuffer}} }
-\item{\verb{char.offset}}{[integer]  char offset from start of buffer, counting from 0, or -1}
+\item{\verb{object}}{a \code{\link{GtkTextBuffer}} }
+\item{\verb{char.offset}}{char offset from start of buffer, counting from 0, or -1}
 }
 \value{
 A list containing the following elements:
-\item{\verb{iter}}{[\verb{\link{GtkTextIter}}]  iterator to initialize}
+\item{\verb{iter}}{iterator to initialize}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

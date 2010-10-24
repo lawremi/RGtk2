@@ -5,8 +5,8 @@
 submenu is passed.}
 \usage{gtkMenuItemSetSubmenu(object, submenu)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkMenuItem}}]  a \verb{\link{GtkMenuItem}}}
-\item{\verb{submenu}}{[\verb{\link{GtkWidget}}]  the submenu, or \code{NULL}}
+\item{\verb{object}}{a \code{\link{GtkMenuItem}}}
+\item{\verb{submenu}}{ the submenu, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

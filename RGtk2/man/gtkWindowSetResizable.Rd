@@ -5,8 +5,8 @@
 by default.}
 \usage{gtkWindowSetResizable(object, resizable)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}}
-\item{\verb{resizable}}{[logical] \code{TRUE} if the user can resize this window}
+\item{\verb{object}}{a \code{\link{GtkWindow}}}
+\item{\verb{resizable}}{\code{TRUE} if the user can resize this window}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -7,11 +7,13 @@
 \description{Rendering with the Cairo backend}
 \section{Methods and Functions}{
 \code{\link{pangoCairoFontMapGetDefault}()}\cr
+\code{\link{pangoCairoFontMapSetDefault}(fontmap)}\cr
 \code{\link{pangoCairoFontMapNew}()}\cr
 \code{\link{pangoCairoFontMapNewForFontType}(fonttype)}\cr
 \code{\link{pangoCairoFontMapGetFontType}(object)}\cr
 \code{\link{pangoCairoFontMapSetResolution}(object, dpi)}\cr
 \code{\link{pangoCairoFontMapGetResolution}(object)}\cr
+\code{\link{pangoCairoFontMapCreateContext}(object)}\cr
 \code{\link{pangoCairoFontMapCreateContext}(object)}\cr
 \code{\link{pangoCairoFontGetScaledFont}(object)}\cr
 \code{\link{pangoCairoContextSetResolution}(context, dpi)}\cr
@@ -20,10 +22,12 @@
 \code{\link{pangoCairoContextGetFontOptions}(context)}\cr
 \code{\link{pangoCairoContextSetShapeRenderer}(object, func, data)}\cr
 \code{\link{pangoCairoContextGetShapeRenderer}(object)}\cr
+\code{\link{pangoCairoCreateContext}(cr)}\cr
 \code{\link{pangoCairoUpdateContext}(cr, context)}\cr
 \code{\link{pangoCairoCreateLayout}(cr)}\cr
 \code{\link{pangoCairoUpdateLayout}(cr, layout)}\cr
 \code{\link{pangoCairoShowGlyphString}(cr, font, glyphs)}\cr
+\code{\link{pangoCairoShowGlyphItem}(cr, text, glyph.item)}\cr
 \code{\link{pangoCairoShowLayoutLine}(cr, line)}\cr
 \code{\link{pangoCairoShowLayout}(cr, layout)}\cr
 \code{\link{pangoCairoShowErrorUnderline}(cr, x, y, width, height)}\cr
@@ -32,8 +36,12 @@
 \code{\link{pangoCairoLayoutPath}(cr, layout)}\cr
 \code{\link{pangoCairoErrorUnderlinePath}(cr, x, y, width, height)}\cr
 }
-\section{Hierarchy}{\preformatted{GInterface
-   +----PangoCairoFontMap}}
+\section{Hierarchy}{\preformatted{
+GInterface
+   +----PangoCairoFont
+GInterface
+   +----PangoCairoFontMap
+}}
 \section{Detailed Description}{The Cairo library (\url{http://cairographics.org}) is a
 vector graphics library with a powerful rendering model. It has such
 features as anti-aliased primitives, alpha-compositing, and
@@ -42,14 +50,14 @@ rendering to images, to PDF files, and to the screen on X and on other
 windowing systems. The functions in this section allow using Pango
 to render to Cairo surfaces.
   
-Using Pango with Cairo is straightforward. A \verb{\link{PangoContext}} created
+Using Pango with Cairo is straightforward. A \code{\link{PangoContext}} created
 with \code{\link{pangoCairoFontMapCreateContext}} can be used on any
 Cairo context (cairo_t), but needs to be updated to match the
 current transformation matrix and target surface of the Cairo context
 using \code{\link{pangoCairoUpdateContext}}. The convenience functions
 \code{\link{pangoCairoCreateLayout}} and \code{\link{pangoCairoUpdateLayout}} handle
 the common case where the program doesn't need to manipulate the
-properties of the \verb{\link{PangoContext}}.
+properties of the \code{\link{PangoContext}}.
   
 When you get the metrics of a layout or of a piece of a layout using
 functions such as \code{\link{pangoLayoutGetExtents}}, the reported metrics
@@ -129,19 +137,17 @@ window$showAll()
 }  }
 \section{Structures}{\describe{
 \item{\verb{PangoCairoFont}}{
-\verb{\link{PangoCairoFont}} is an interface exported by fonts for
+\code{\link{PangoCairoFont}} is an interface exported by fonts for
 use with Cairo. The actual type of the font will depend
-on the particular font technology Cairo was compiled to use.  
-
-  Since  1.18
+on the particular font technology Cairo was compiled to use.
+  Since 1.18
 
 }
 \item{\verb{PangoCairoFontMap}}{
-\verb{\link{PangoCairoFontMap}} is an interface exported by font maps for
+\code{\link{PangoCairoFontMap}} is an interface exported by font maps for
 use with Cairo. The actual type of the font map will depend
-on the particular font technology Cairo was compiled to use.  
-
-  Since  1.10
+on the particular font technology Cairo was compiled to use.
+  Since 1.10
 
 }
 }}
@@ -150,18 +156,18 @@ Function type for rendering attributes of type \code{PANGO_ATTR_SHAPE}
 with Pango's Cairo renderer.
 
 \describe{
-\item{\code{cr}}{[\verb{\link{Cairo}}] a Cairo context with current point set to where the shape should
+\item{\code{cr}}{a Cairo context with current point set to where the shape should
      be rendered}
-\item{\code{attr}}{[\verb{\link{PangoAttrShape}}] the \code{PANGO_ATTR_SHAPE} to render}
-\item{\code{do.path}}{[logical] whether only the shape path should be appended to current
+\item{\code{attr}}{the \code{PANGO_ATTR_SHAPE} to render}
+\item{\code{do.path}}{whether only the shape path should be appended to current
           path of \code{cr} and no filling/stroking done.  This will be set
 	  to \code{TRUE} when called from \code{\link{pangoCairoLayoutPath}} and
 	  \code{\link{pangoCairoLayoutLinePath}} rendering functions.}
-\item{\code{data}}{[R object] user data passed to \code{\link{pangoCairoContextSetShapeRenderer}}}
+\item{\code{data}}{user data passed to \code{\link{pangoCairoContextSetShapeRenderer}}}
 }
 
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/pango/pango-Cairo-Rendering.html}}
+\references{\url{http://library.gnome.org/devel//pango/pango-Cairo-Rendering.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

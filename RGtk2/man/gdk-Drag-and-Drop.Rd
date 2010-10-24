@@ -24,7 +24,7 @@
 \code{gdkDragContext()}
 }
 \section{Detailed Description}{These functions provide a low level interface for drag and drop.
-The X backend of GDK supports both the Xdnd and Motif drag and drop protocols 
+The X backend of GDK supports both the Xdnd and Motif drag and drop protocols
 transparently, the Win32 backend supports the WM_DROPFILES protocol.
   
 GTK+ provides a higher level abstraction based on top of these functions,
@@ -32,14 +32,14 @@ and so they are not normally needed in GTK+ applications.
 See the Drag and Drop section of
 the GTK+ documentation for more information.}
 \section{Structures}{\describe{\item{\verb{GdkDragContext}}{
-A \code{GdkDragContext} holds information about a 
+A \code{GdkDragContext} holds information about a
 drag in progress. It is used on both source and destination sides.
 
 \describe{
 \item{\verb{protocol}}{[\code{\link{GdkDragProtocol}}] the parent instance}
 \item{\verb{isSource}}{[logical] the DND protocol which governs this drag.}
-\item{\verb{sourceWindow}}{[\verb{\link{GdkWindow}}] \code{TRUE} if the context is used on the source side.}
-\item{\verb{destWindow}}{[\verb{\link{GdkWindow}}] the source of this drag.}
+\item{\verb{sourceWindow}}{[\code{\link{GdkWindow}}] \code{TRUE} if the context is used on the source side.}
+\item{\verb{destWindow}}{[\code{\link{GdkWindow}}] the source of this drag.}
 \item{\verb{targets}}{[list] the destination window of this drag.}
 \item{\verb{actions}}{[\code{\link{GdkDragAction}}] a list of targets offered by the source.}
 \item{\verb{suggestedAction}}{[\code{\link{GdkDragAction}}] a bitmask of actions proposed by the source when 
@@ -52,7 +52,7 @@ drag in progress. It is used on both source and destination sides.
 \section{Convenient Construction}{\code{gdkDragContext} is the equivalent of \code{\link{gdkDragContextNew}}.}
 \section{Enums and Flags}{\describe{
 \item{\verb{GdkDragProtocol}}{
-Used in \verb{\link{GdkDragContext}} to indicate the protocol according to
+Used in \code{\link{GdkDragContext}} to indicate the protocol according to
 which DND is done.
 
 \describe{
@@ -68,7 +68,7 @@ which DND is done.
 
 }
 \item{\verb{GdkDragAction}}{
-Used in \verb{\link{GdkDragContext}} to indicate what the destination
+Used in \code{\link{GdkDragContext}} to indicate what the destination
 should do with the dropped data.
 
 \describe{
@@ -85,6 +85,6 @@ should do with the dropped data.
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gdk/gdk-Drag-and-Drop.html}}
+\references{\url{http://library.gnome.org/devel//gdk/gdk-Drag-and-Drop.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

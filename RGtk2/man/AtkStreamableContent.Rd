@@ -27,6 +27,6 @@ a particular document, but may in some cases give access to the underlying model
 The AtkStreamableContent structure does not contain any fields.
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/atk/AtkStreamableContent.html}}
+\references{\url{http://library.gnome.org/devel//atk/AtkStreamableContent.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

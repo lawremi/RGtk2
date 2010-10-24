@@ -20,44 +20,38 @@
                            +----GtkMenuShell
                                  +----GtkMenuBar}}
 \section{Interfaces}{GtkMenuBar implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{The \verb{\link{GtkMenuBar}} is a subclass of \verb{\link{GtkMenuShell}} which contains one to many \verb{\link{GtkMenuItem}}. The result is a standard menu bar which can hold many menu items. \verb{\link{GtkMenuBar}} allows for a shadow type to be set for aesthetic purposes. The shadow types are defined in the \verb{gtk_menu_bar_set_shadow_type} function.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
+\section{Detailed Description}{The \code{\link{GtkMenuBar}} is a subclass of \code{\link{GtkMenuShell}} which contains one to many \code{\link{GtkMenuItem}}. The result is a standard menu bar which can hold many menu items. \code{\link{GtkMenuBar}} allows for a shadow type to be set for aesthetic purposes. The shadow types are defined in the \verb{gtk_menu_bar_set_shadow_type} function.}
 \section{Structures}{\describe{\item{\verb{GtkMenuBar}}{
-The \verb{\link{GtkMenuBar}} struct contains the following fields. (These fields should be considered read-only.  They should never be set by an application.)
+The \code{\link{GtkMenuBar}} struct contains the following fields. (These fields should be considered read-only.  They should never be set by an application.)
 
 }}}
 \section{Convenient Construction}{\code{gtkMenuBar} is the equivalent of \code{\link{gtkMenuBarNew}}.}
 \section{Enums and Flags}{\describe{\item{\verb{GtkPackDirection}}{
-\emph{undocumented
-}
+Determines how widgets should be packed insided menubars and
+menuitems contained in menubars.
 
 \describe{
-\item{\verb{ltr}}{\emph{undocumented
-}}
-\item{\verb{rtl}}{\emph{undocumented
-}}
-\item{\verb{ttb}}{\emph{undocumented
-}}
-\item{\verb{btt}}{\emph{undocumented
-}}
+\item{\verb{ltr}}{Widgets are packed left-to-right.}
+\item{\verb{rtl}}{Widgets are packed right-to-left.}
+\item{\verb{ttb}}{Widgets are packed top-to-bottom.}
+\item{\verb{btt}}{Widgets are packed bottom-to-top.}
 }
 
 }}}
 \section{Properties}{\describe{
 \item{\verb{child-pack-direction} [\code{\link{GtkPackDirection}} : Read / Write]}{
 
-The pack direction of the menubar. It determines how
-the widgets contained in child menuitems are arranged.  
-
-  Default value: GTK_PACK_DIRECTION_LTR  Since  2.8
+The child pack direction of the menubar. It determines how
+the widgets contained in child menuitems are arranged.
+  Default value: GTK_PACK_DIRECTION_LTR  Since 2.8
 
 }
 \item{\verb{pack-direction} [\code{\link{GtkPackDirection}} : Read / Write]}{
 
 The pack direction of the menubar. It determines how
-menuitems are arranged in the menubar.  
-
-  Default value: GTK_PACK_DIRECTION_LTR  Since  2.8
+menuitems are arranged in the menubar.
+  Default value: GTK_PACK_DIRECTION_LTR  Since 2.8
 
 }
 }}
@@ -73,11 +67,11 @@ Style of bevel around the menubar.  Default value: GTK_SHADOW_OUT
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkMenuBar.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkMenuBar.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
-\verb{\link{GtkMenuShell}}
-\verb{\link{GtkMenu}}
-\verb{\link{GtkMenuItem}}
+\code{\link{GtkMenuShell}}
+\code{\link{GtkMenu}}
+\code{\link{GtkMenuItem}}
 }
 \keyword{internal}

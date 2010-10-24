@@ -7,9 +7,12 @@
 }
 \usage{gtkCTreeIsHotSpot(object, x, y)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkCTree}}] }
-\item{\verb{x}}{[integer] }
-\item{\verb{y}}{[integer] }
+\item{\verb{object}}{\emph{undocumented
+}}
+\item{\verb{x}}{\emph{undocumented
+}}
+\item{\verb{y}}{\emph{undocumented
+}}
 }
 \value{[logical] True if the given coordinates lie on an expander button.}
 \author{Derived by RGtkGen from GTK+ documentation}

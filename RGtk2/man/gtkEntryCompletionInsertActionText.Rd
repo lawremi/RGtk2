@@ -6,10 +6,10 @@ with text \code{text}. If you want the action item to have markup, use
 \code{\link{gtkEntryCompletionInsertActionMarkup}}.}
 \usage{gtkEntryCompletionInsertActionText(object, index, text)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkEntryCompletion}}]  A \verb{\link{GtkEntryCompletion}}.}
-\item{\verb{index}}{[integer]  The index of the item to insert.}
-\item{\verb{text}}{[character]  Text of the item to insert.}
+\item{\verb{object}}{A \code{\link{GtkEntryCompletion}}.}
+\item{\verb{index}}{The index of the item to insert.}
+\item{\verb{text}}{Text of the item to insert.}
 }
-\details{  Since  2.4}
+\details{Since 2.4}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

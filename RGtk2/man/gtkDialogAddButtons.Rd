@@ -7,8 +7,8 @@ as with \code{\link{gtkDialogNewWithButtons}}. Each button must have both
 text and response ID.}
 \usage{gtkDialogAddButtons(object, ...)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkDialog}}]  a \verb{\link{GtkDialog}}}
-\item{\verb{...}}{ response ID for first button, then more text-response_id pairs}
+\item{\verb{object}}{a \code{\link{GtkDialog}}}
+\item{\verb{...}}{response ID for first button, then more text-response_id pairs}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

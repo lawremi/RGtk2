@@ -4,7 +4,7 @@
 \description{Sets the extents of \code{component}.}
 \usage{atkComponentSetExtents(object, x, y, width, height, coord.type)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{AtkComponent}}]  an \verb{\link{AtkComponent}}}
+\item{\verb{object}}{[\code{\link{AtkComponent}}]  an \code{\link{AtkComponent}}}
 \item{\verb{x}}{[integer]  x coordinate}
 \item{\verb{y}}{[integer]  y coordinate}
 \item{\verb{width}}{[integer]  width to set for \code{component}}

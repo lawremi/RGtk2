@@ -4,9 +4,9 @@
 \description{Sets the title for the font selection dialog.}
 \usage{gtkFontButtonSetTitle(object, title)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkFontButton}}]  a \verb{\link{GtkFontButton}}}
-\item{\verb{title}}{[character]  a string containing the font selection dialog title}
+\item{\verb{object}}{a \code{\link{GtkFontButton}}}
+\item{\verb{title}}{a string containing the font selection dialog title}
 }
-\details{  Since  2.4}
+\details{Since 2.4}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

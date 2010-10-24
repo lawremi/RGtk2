@@ -1,1 +1,2 @@
-# RGtk2 does not currently support GMarkup
+label <- gtkLabelNew()
+label$setMarkup("<small>Small text</small>")

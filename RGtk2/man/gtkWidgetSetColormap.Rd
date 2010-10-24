@@ -7,8 +7,8 @@ from an \code{init()} function (i.e. from the constructor
 for the widget).}
 \usage{gtkWidgetSetColormap(object, colormap)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
-\item{\verb{colormap}}{[\verb{\link{GdkColormap}}]  a colormap}
+\item{\verb{object}}{a \code{\link{GtkWidget}}}
+\item{\verb{colormap}}{a colormap}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

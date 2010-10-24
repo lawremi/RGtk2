@@ -4,9 +4,9 @@
 \description{Sets the value of \code{GTK_PRINT_SETTINGS_OUTPUT_BIN}.}
 \usage{gtkPrintSettingsSetOutputBin(object, output.bin)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkPrintSettings}}]  a \verb{\link{GtkPrintSettings}}}
-\item{\verb{output.bin}}{[character]  the output bin}
+\item{\verb{object}}{a \code{\link{GtkPrintSettings}}}
+\item{\verb{output.bin}}{the output bin}
 }
-\details{  Since  2.10}
+\details{Since 2.10}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

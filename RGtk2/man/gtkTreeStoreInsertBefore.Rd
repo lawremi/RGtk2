@@ -8,16 +8,16 @@ set, then \code{parent} must be the parent of \code{sibling}.  When \code{siblin
 \code{parent} is optional.}
 \usage{gtkTreeStoreInsertBefore(object, parent, sibling)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTreeStore}}]  A \verb{\link{GtkTreeStore}}}
-\item{\verb{parent}}{[\verb{\link{GtkTreeIter}}]  A valid \verb{\link{GtkTreeIter}}, or \code{NULL}}
-\item{\verb{sibling}}{[\verb{\link{GtkTreeIter}}]  A valid \verb{\link{GtkTreeIter}}, or \code{NULL}}
+\item{\verb{object}}{A \code{\link{GtkTreeStore}}}
+\item{\verb{parent}}{ A valid \code{\link{GtkTreeIter}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{sibling}}{ A valid \code{\link{GtkTreeIter}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{\code{iter} will be changed to point to this new row.  The row will be empty after
 this function is called.  To fill in values, you need to call
-\code{\link{gtkTreeStoreSet}} or \code{\link{gtkTreeStoreSetValue}}.  }
+\code{\link{gtkTreeStoreSet}} or \code{\link{gtkTreeStoreSetValue}}.}
 \value{
 A list containing the following elements:
-\item{\verb{iter}}{[\verb{\link{GtkTreeIter}}]  An unset \verb{\link{GtkTreeIter}} to set to the new row}
+\item{\verb{iter}}{An unset \code{\link{GtkTreeIter}} to set to the new row}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

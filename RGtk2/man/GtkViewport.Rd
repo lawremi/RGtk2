@@ -11,6 +11,7 @@
 \code{\link{gtkViewportSetVadjustment}(object, adjustment = NULL)}\cr
 \code{\link{gtkViewportSetShadowType}(object, type)}\cr
 \code{\link{gtkViewportGetShadowType}(object)}\cr
+\code{\link{gtkViewportGetBinWindow}(object)}\cr
 \code{gtkViewport(hadjustment = NULL, vadjustment = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{GObject
@@ -21,28 +22,39 @@
                            +----GtkBin
                                  +----GtkViewport}}
 \section{Interfaces}{GtkViewport implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
+\section{Detailed Description}{The \code{\link{GtkViewport}} widget acts as an adaptor class, implementing
+scrollability for child widgets that lack their own scrolling
+capabilities. Use \code{\link{GtkViewport}} to scroll child widgets such as
+\code{\link{GtkTable}}, \code{\link{GtkBox}}, and so on.
+  
+If a widget has native scrolling abilities, such as \code{\link{GtkTextView}},
+\code{\link{GtkTreeView}} or \verb{GtkIconview}, it can be added to a \code{\link{GtkScrolledWindow}}
+with \code{\link{gtkContainerAdd}}. If a widget does not, you must first add the
+widget to a \code{\link{GtkViewport}}, then add the viewport to the scrolled window.
+The convenience function \code{\link{gtkScrolledWindowAddWithViewport}} does
+exactly this, so you can ignore the presence of the viewport.}
 \section{Structures}{\describe{\item{\verb{GtkViewport}}{
 \emph{undocumented
 }
 
 }}}
 \section{Convenient Construction}{\code{gtkViewport} is the equivalent of \code{\link{gtkViewportNew}}.}
-\section{Signals}{\describe{\item{\code{set-scroll-adjustments(viewport, arg1, arg2, user.data)}}{
-\emph{undocumented
-}
+\section{Signals}{\describe{\item{\code{set-scroll-adjustments(horizontal, vertical, user.data)}}{
+Set the scroll adjustments for the viewport. Usually scrolled containers
+like \code{\link{GtkScrolledWindow}} will emit this signal to connect two instances
+of \code{\link{GtkScrollbar}} to the scroll directions of the \code{\link{GtkViewport}}.
 
 \describe{
-\item{\code{viewport}}{[\verb{\link{GtkViewport}}] the object which received the signal.}
-\item{\code{arg1}}{[\verb{\link{GtkAdjustment}}] }
-\item{\code{arg2}}{[\verb{\link{GtkAdjustment}}] }
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{horizontal}}{the horizontal \code{\link{GtkAdjustment}}}
+\item{\code{vertical}}{the vertical \code{\link{GtkAdjustment}}}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }}}
 \section{Properties}{\describe{
-\item{\verb{hadjustment} [\verb{\link{GtkAdjustment}} : *        : Read / Write / Construct]}{
+\item{\verb{hadjustment} [\code{\link{GtkAdjustment}} : *        : Read / Write / Construct]}{
 
 The GtkAdjustment that determines the values of the horizontal position for this viewport.
 
@@ -52,12 +64,16 @@ The GtkAdjustment that determines the values of the horizontal position for this
 Determines how the shadowed box around the viewport is drawn.  Default value: GTK_SHADOW_IN
 
 }
-\item{\verb{vadjustment} [\verb{\link{GtkAdjustment}} : *        : Read / Write / Construct]}{
+\item{\verb{vadjustment} [\code{\link{GtkAdjustment}} : *        : Read / Write / Construct]}{
 
 The GtkAdjustment that determines the values of the vertical position for this viewport.
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkViewport.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkViewport.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
+\seealso{
+\code{\link{GtkScrolledWindow}}
+\code{\link{GtkAdjustment}}
+}
 \keyword{internal}

@@ -5,11 +5,11 @@
 with the given context id. }
 \usage{gtkStatusbarPop(object, context.id)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkStatusbar}}]  a \verb{GtkStatusBar}}
-\item{\verb{context.id}}{[numeric]  a context identifier}
+\item{\verb{object}}{a \verb{GtkStatusBar}}
+\item{\verb{context.id}}{a context identifier}
 }
 \details{Note that this may not change the displayed message, if 
 the message at the top of the stack has a different 
-context id.  }
+context id.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

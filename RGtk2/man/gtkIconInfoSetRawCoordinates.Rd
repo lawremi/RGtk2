@@ -7,8 +7,8 @@ original form as specified in the icon theme, instead of scaled
 appropriately for the pixbuf returned by \code{\link{gtkIconInfoLoadIcon}}.}
 \usage{gtkIconInfoSetRawCoordinates(object, raw.coordinates)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkIconInfo}}]  a \verb{\link{GtkIconInfo}}}
-\item{\verb{raw.coordinates}}{[logical]  whether the coordinates of embedded rectangles
+\item{\verb{object}}{a \code{\link{GtkIconInfo}}}
+\item{\verb{raw.coordinates}}{whether the coordinates of embedded rectangles
   and attached points should be returned in their original
   (unscaled) form.}
 }
@@ -20,8 +20,7 @@ icon by using \code{\link{gtkIconInfoGetFilename}}, and seeing if it is non-\cod
 and ends in '.svg'.
   
 This function is provided primarily to allow compatibility wrappers
-for older API's, and is not expected to be useful for applications.  
-
-  Since  2.4}
+for older API's, and is not expected to be useful for applications.
+  Since 2.4}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

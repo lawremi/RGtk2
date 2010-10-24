@@ -7,12 +7,11 @@ can allow your application to show things like "out of paper" issues,
 and when the print job actually reaches the printer.}
 \usage{gtkPrintOperationSetTrackPrintStatus(object, track.status)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkPrintOperation}}]  a \verb{\link{GtkPrintOperation}}}
-\item{\verb{track.status}}{[logical] \code{TRUE} to track status after printing}
+\item{\verb{object}}{a \code{\link{GtkPrintOperation}}}
+\item{\verb{track.status}}{\code{TRUE} to track status after printing}
 }
 \details{This function is often implemented using some form of polling, so it should
-not be enabled unless needed.  
-
-  Since  2.10}
+not be enabled unless needed.
+  Since 2.10}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

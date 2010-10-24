@@ -5,8 +5,8 @@
 window. The default is to use visible windows.}
 \usage{gtkEventBoxSetVisibleWindow(object, visible.window)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkEventBox}}]  a \verb{\link{GtkEventBox}}}
-\item{\verb{visible.window}}{[logical]  boolean value}
+\item{\verb{object}}{a \code{\link{GtkEventBox}}}
+\item{\verb{visible.window}}{boolean value}
 }
 \details{In an invisible window event box, the window that the
 event box creates is a \code{GDK_INPUT_ONLY} window, which 
@@ -36,9 +36,7 @@ it won't be received by the event box.
   
 This problem doesn't occur for visible event boxes, because in
 that case, the event box window is actually the ancestor of the
-descendant windows, not just at the same place on the screen.  
-
-  Since  2.4}
+descendant windows, not just at the same place on the screen.  Since 2.4}
 \note{There is one unexpected issue for an invisible event box that has its
 window below the child. (See \code{\link{gtkEventBoxSetAboveChild}}.)
 Since the input-only window is not an ancestor window of any windows

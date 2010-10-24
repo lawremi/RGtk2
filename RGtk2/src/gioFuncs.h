@@ -6,6 +6,9 @@
 S_g_app_info_get_type(void); 
 
   USER_OBJECT_
+S_g_app_info_launch_default_for_uri(USER_OBJECT_ s_uri, USER_OBJECT_ s_launch_context); 
+
+  USER_OBJECT_
 S_g_app_launch_context_get_type(void); 
 
   USER_OBJECT_
@@ -1386,6 +1389,39 @@ S_g_volume_monitor_get_mount_for_uuid(USER_OBJECT_ s_object, USER_OBJECT_ s_uuid
 S_g_volume_monitor_adopt_orphan_mount(USER_OBJECT_ s_mount); 
 
   USER_OBJECT_
+S_g_io_extension_point_register(USER_OBJECT_ s_name); 
+
+  USER_OBJECT_
+S_g_io_extension_point_lookup(USER_OBJECT_ s_name); 
+
+  USER_OBJECT_
+S_g_io_extension_point_set_required_type(USER_OBJECT_ s_object, USER_OBJECT_ s_type); 
+
+  USER_OBJECT_
+S_g_io_extension_point_get_required_type(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_g_io_extension_point_get_extensions(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_g_io_extension_point_get_extension_by_name(USER_OBJECT_ s_object, USER_OBJECT_ s_name); 
+
+  USER_OBJECT_
+S_g_io_extension_point_implement(USER_OBJECT_ s_extension_point_name, USER_OBJECT_ s_type, USER_OBJECT_ s_extension_name, USER_OBJECT_ s_priority); 
+
+  USER_OBJECT_
+S_g_io_extension_get_type(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_g_io_extension_get_name(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_g_io_extension_get_priority(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_g_io_extension_ref_class(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
 S_g_content_type_from_mime_type(USER_OBJECT_ s_mime_type); 
 
   USER_OBJECT_
@@ -1624,6 +1660,9 @@ S_g_file_info_set_attribute_status(USER_OBJECT_ s_object, USER_OBJECT_ s_attribu
 
   USER_OBJECT_
 S_g_file_info_get_attribute_stringv(USER_OBJECT_ s_object, USER_OBJECT_ s_attribute); 
+
+  USER_OBJECT_
+S_g_file_info_set_attribute_stringv(USER_OBJECT_ s_object, USER_OBJECT_ s_attribute, USER_OBJECT_ s_attr_value); 
 
   USER_OBJECT_
 S_g_file_io_stream_get_type(void); 
@@ -2131,5 +2170,23 @@ S_g_volume_eject_with_operation(USER_OBJECT_ s_object, USER_OBJECT_ s_flags, USE
 
   USER_OBJECT_
 S_g_volume_eject_with_operation_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result); 
+
+  USER_OBJECT_
+S_g_inet_socket_address_new(USER_OBJECT_ s_address, USER_OBJECT_ s_port); 
+
+  USER_OBJECT_
+S_g_inet_socket_address_get_address(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_g_inet_socket_address_get_port(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_g_tcp_connection_get_type(void); 
+
+  USER_OBJECT_
+S_g_tcp_connection_set_graceful_disconnect(USER_OBJECT_ s_object, USER_OBJECT_ s_graceful_disconnect); 
+
+  USER_OBJECT_
+S_g_tcp_connection_get_graceful_disconnect(USER_OBJECT_ s_object); 
 
 #endif

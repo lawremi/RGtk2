@@ -6,13 +6,12 @@ direction and \code{dx} pixels in the X direction. The portions of \code{region}
 that not covered by the new position of \code{region} are invalidated.}
 \usage{gdkWindowMoveRegion(object, region, x, y)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a \verb{\link{GdkWindow}}}
-\item{\verb{region}}{[\verb{\link{GdkRegion}}]  The \verb{\link{GdkRegion}} to move}
-\item{\verb{x}}{[integer]  Amount to move in the X direction}
-\item{\verb{y}}{[integer]  Amount to move in the Y direction}
+\item{\verb{object}}{a \code{\link{GdkWindow}}}
+\item{\verb{region}}{The \code{\link{GdkRegion}} to move}
+\item{\verb{x}}{Amount to move in the X direction}
+\item{\verb{y}}{Amount to move in the Y direction}
 }
-\details{Child windows are not moved.  
-
-  Since  2.8}
+\details{Child windows are not moved.
+  Since 2.8}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -5,7 +5,7 @@
 horizontal scrollbar to the child widget's horizontal scroll
 functionality.}
 \usage{gtkScrolledWindowGetHadjustment(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkScrolledWindow}}] A \verb{\link{GtkScrolledWindow}}.}}
-\value{[\verb{\link{GtkAdjustment}}] The horizontal \verb{\link{GtkAdjustment}}.}
+\arguments{\item{\verb{object}}{a \code{\link{GtkScrolledWindow}}}}
+\value{[\code{\link{GtkAdjustment}}]  the horizontal \code{\link{GtkAdjustment}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

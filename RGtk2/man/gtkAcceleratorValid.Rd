@@ -8,8 +8,8 @@ But, you can't, for instance, use the \verb{GDK_Control_L} keyval
 as an accelerator.}
 \usage{gtkAcceleratorValid(keyval, modifiers)}
 \arguments{
-\item{\verb{keyval}}{[numeric]     a GDK keyval}
-\item{\verb{modifiers}}{[\code{\link{GdkModifierType}}]  modifier mask}
+\item{\verb{keyval}}{a GDK keyval}
+\item{\verb{modifiers}}{modifier mask}
 }
 \value{[logical] \code{TRUE} if the accelerator is valid}
 \author{Derived by RGtkGen from GTK+ documentation}

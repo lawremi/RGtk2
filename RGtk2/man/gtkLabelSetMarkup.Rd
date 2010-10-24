@@ -5,11 +5,11 @@
 label's text and attribute list based on the parse results. If the \code{str} is
 external data, you may need to escape it with \code{gMarkupEscapeText()} or
 \code{gMarkupPrintfEscaped()}:
-\preformatted{# RGtk2 does not currently support GMarkup}}
+\preformatted{## RGtk2 has no support for GMarkup}}
 \usage{gtkLabelSetMarkup(object, str)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkLabel}}]  a \verb{\link{GtkLabel}}}
-\item{\verb{str}}{[character]  a markup string (see Pango markup format)}
+\item{\verb{object}}{a \code{\link{GtkLabel}}}
+\item{\verb{str}}{a markup string (see Pango markup format)}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

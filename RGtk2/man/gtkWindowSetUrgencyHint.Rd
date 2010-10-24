@@ -5,9 +5,9 @@
 the users attention to the window. This function sets this hint.}
 \usage{gtkWindowSetUrgencyHint(object, setting)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}} }
-\item{\verb{setting}}{[logical] \code{TRUE} to mark this window as urgent}
+\item{\verb{object}}{a \code{\link{GtkWindow}} }
+\item{\verb{setting}}{\code{TRUE} to mark this window as urgent}
 }
-\details{  Since  2.8}
+\details{Since 2.8}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

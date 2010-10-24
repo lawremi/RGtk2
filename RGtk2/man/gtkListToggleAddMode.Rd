@@ -7,6 +7,6 @@ in \verb{GTK_SELECTION_EXTENDED}. Useful with \code{\link{gtkListExtendSelection
 \strong{WARNING: \code{gtk_list_toggle_add_mode} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkListToggleAddMode(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkList}}] the list widget.}}
+\arguments{\item{\verb{object}}{the list widget.}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

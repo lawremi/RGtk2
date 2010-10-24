@@ -5,7 +5,7 @@
 object's selection.}
 \usage{atkSelectionAddSelection(object, i)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{AtkSelection}}]  a \verb{\link{GObject}} instance that implements AtkSelectionIface}
+\item{\verb{object}}{[\code{\link{AtkSelection}}]  a \code{\link{GObject}} instance that implements AtkSelectionIface}
 \item{\verb{i}}{[integer]  a \verb{integer} specifying the child index.}
 }
 \value{[logical]  TRUE if success, FALSE otherwise.}

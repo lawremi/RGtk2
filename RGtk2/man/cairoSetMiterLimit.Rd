@@ -4,7 +4,7 @@
 \description{Sets the current miter limit within the cairo context.}
 \usage{cairoSetMiterLimit(cr, limit)}
 \arguments{
-\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}
+\item{\verb{cr}}{[\code{\link{Cairo}}]  a cairo context}
 \item{\verb{limit}}{[numeric]  miter limit to set}
 }
 \details{If the current line join style is set to \code{CAIRO_LINE_JOIN_MITER}
@@ -17,6 +17,15 @@ converted to a bevel.
 As with the other stroke parameters, the current line miter limit is
 examined by \code{\link{cairoStroke}}, \code{\link{cairoStrokeExtents}}, and
 \code{cairoStrokeToPath()}, but does not have any effect during path
-construction.  }
+construction.
+  
+The default miter limit value is 10.0, which will convert joins
+with interior angles less than 11 degrees to bevels instead of
+miters. For reference, a miter limit of 2.0 makes the miter cutoff
+at 60 degrees, and a miter limit of 1.414 makes the cutoff at 90
+degrees.
+  
+A miter limit for a desired angle can be computed as: miter limit =
+1/sin(angle/2)  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

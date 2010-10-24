@@ -17,7 +17,9 @@
 \code{\link{gtkAccelGroupActivate}(object, accel.quark, acceleratable, accel.key, accel.mods)}\cr
 \code{\link{gtkAccelGroupLock}(object)}\cr
 \code{\link{gtkAccelGroupUnlock}(object)}\cr
+\code{\link{gtkAccelGroupGetIsLocked}(object)}\cr
 \code{\link{gtkAccelGroupFromAccelClosure}(closure)}\cr
+\code{\link{gtkAccelGroupGetModifierMask}(object)}\cr
 \code{\link{gtkAccelGroupsActivate}(object, accel.key, accel.mods)}\cr
 \code{\link{gtkAccelGroupsFromObject}(object)}\cr
 \code{\link{gtkAccelGroupFind}(object, find.func, data = NULL)}\cr
@@ -31,12 +33,12 @@
 }
 \section{Hierarchy}{\preformatted{GObject
    +----GtkAccelGroup}}
-\section{Detailed Description}{A \verb{\link{GtkAccelGroup}} represents a group of keyboard accelerators,
-typically attached to a toplevel \verb{\link{GtkWindow}} (with
+\section{Detailed Description}{A \code{\link{GtkAccelGroup}} represents a group of keyboard accelerators,
+typically attached to a toplevel \code{\link{GtkWindow}} (with
 \code{\link{gtkWindowAddAccelGroup}}). Usually you won't need to create a
-\verb{\link{GtkAccelGroup}} directly; instead, when using \verb{\link{GtkItemFactory}}, GTK+
+\code{\link{GtkAccelGroup}} directly; instead, when using \code{\link{GtkItemFactory}}, GTK+
 automatically sets up the accelerators for your menus in the item
-factory's \verb{\link{GtkAccelGroup}}.
+factory's \code{\link{GtkAccelGroup}}.
   
 Note that \dfn{accelerators} are different from
 \dfn{mnemonics}. Accelerators are shortcuts for
@@ -71,22 +73,22 @@ An object representing and maintaining a group of accelerators.
 }
 
 \describe{
-\item{\code{accel.group}}{[\verb{\link{GtkAccelGroup}}] }
-\item{\code{acceleratable}}{[\verb{\link{GObject}}] }
-\item{\code{keyval}}{[numeric] }
-\item{\code{modifier}}{[\code{\link{GdkModifierType}}] }
+\item{\code{accel.group}}{\emph{undocumented
+}}
+\item{\code{acceleratable}}{\emph{undocumented
+}}
+\item{\code{keyval}}{\emph{undocumented
+}}
+\item{\code{modifier}}{\emph{undocumented
+}}
 }
 
 
 }
-\item{\code{GtkAccelGroupFindFunc(key, closure, data)}}{
-  Since 2.2
+\item{\code{GtkAccelGroupFindFunc()}}{
+Since 2.2
 
-\describe{
-\item{\code{key}}{[\verb{\link{GtkAccelKey}}] }
-\item{\code{closure}}{[\verb{\link{GClosure}}] }
-\item{\code{data}}{[R object] }
-}
+
 
 
 }
@@ -94,14 +96,14 @@ An object representing and maintaining a group of accelerators.
 \section{Signals}{\describe{
 \item{\code{accel-activate(accel.group, acceleratable, keyval, modifier, user.data)}}{
 The accel-activate signal is an implementation detail of
-\verb{\link{GtkAccelGroup}} and not meant to be used by applications.  
+\code{\link{GtkAccelGroup}} and not meant to be used by applications.
 
 \describe{
-\item{\code{accel.group}}{[\verb{\link{GtkAccelGroup}}]  the \verb{\link{GtkAccelGroup}} which received the signal}
-\item{\code{acceleratable}}{[\verb{\link{GObject}}]  the object on which the accelerator was activated}
-\item{\code{keyval}}{[numeric]  the accelerator keyval}
-\item{\code{modifier}}{[\code{\link{GdkModifierType}}]  the modifier combination of the accelerator}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{accel.group}}{the \code{\link{GtkAccelGroup}} which received the signal}
+\item{\code{acceleratable}}{the object on which the accelerator was activated}
+\item{\code{keyval}}{the accelerator keyval}
+\item{\code{modifier}}{the modifier combination of the accelerator}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 \emph{Returns:} [logical] \code{TRUE} if the accelerator was activated
@@ -109,23 +111,35 @@ The accel-activate signal is an implementation detail of
 }
 \item{\code{accel-changed(accel.group, keyval, modifier, accel.closure, user.data)}}{
 The accel-changed signal is emitted when a \verb{GtkAccelGroupEntry}
-is added to or removed from the accel group. 
+is added to or removed from the accel group.
   
-Widgets like \verb{\link{GtkAccelLabel}} which display an associated 
+Widgets like \code{\link{GtkAccelLabel}} which display an associated 
 accelerator should connect to this signal, and rebuild 
-their visual representation if the \code{accel.closure} is theirs.  
+their visual representation if the \code{accel.closure} is theirs.
 
 \describe{
-\item{\code{accel.group}}{[\verb{\link{GtkAccelGroup}}]  the \verb{\link{GtkAccelGroup}} which received the signal}
-\item{\code{keyval}}{[numeric]  the accelerator keyval}
-\item{\code{modifier}}{[\code{\link{GdkModifierType}}]  the modifier combination of the accelerator}
-\item{\code{accel.closure}}{[\verb{\link{GClosure}}]  the \verb{\link{GClosure}} of the accelerator}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{accel.group}}{the \code{\link{GtkAccelGroup}} which received the signal}
+\item{\code{keyval}}{the accelerator keyval}
+\item{\code{modifier}}{the modifier combination of the accelerator}
+\item{\code{accel.closure}}{the \code{\link{GClosure}} of the accelerator}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/gtk-Keyboard-Accelerators.html}}
+\section{Properties}{\describe{
+\item{\verb{is-locked} [logical : Read]}{
+
+Is the accel group locked.  Default value: FALSE
+
+}
+\item{\verb{modifier-mask} [\code{\link{GdkModifierType}} : Read]}{
+
+Modifier Mask.  Default value: GDK_SHIFT_MASK|GDK_CONTROL_MASK|GDK_MOD1_MASK|GDK_SUPER_MASK|GDK_HYPER_MASK|GDK_META_MASK
+
+}
+}}
+\references{\url{http://library.gnome.org/devel//gtk/gtk-Keyboard-Accelerators.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

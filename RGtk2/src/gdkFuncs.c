@@ -9631,7 +9631,7 @@ S_gdk_pixbuf_new_from_stream(USER_OBJECT_ s_stream, USER_OBJECT_ s_cancellable)
 
   ans = gdk_pixbuf_new_from_stream(stream, cancellable, &error);
 
-  _result = toRPointerWithRef(ans, "GdkPixbuf");
+  _result = toRPointerWithFinalizer(ans, "GdkPixbuf", (RPointerFinalizer) g_object_unref);
 
   _result = retByVal(_result, "error", asRGError(error), NULL);
     CLEANUP(g_error_free, error);;
@@ -9659,12 +9659,107 @@ S_gdk_pixbuf_new_from_stream_at_scale(USER_OBJECT_ s_stream, USER_OBJECT_ s_widt
 
   ans = gdk_pixbuf_new_from_stream_at_scale(stream, width, height, preserve_aspect_ratio, cancellable, &error);
 
-  _result = toRPointerWithRef(ans, "GdkPixbuf");
+  _result = toRPointerWithFinalizer(ans, "GdkPixbuf", (RPointerFinalizer) g_object_unref);
 
   _result = retByVal(_result, "error", asRGError(error), NULL);
     CLEANUP(g_error_free, error);;
 #else
   error("gdk_pixbuf_new_from_stream_at_scale exists only in Gdk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_test_render_sync(USER_OBJECT_ s_window)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 14, 0)
+  GdkWindow* window = GDK_WINDOW(getPtrValue(s_window));
+
+
+  gdk_test_render_sync(window);
+
+#else
+  error("gdk_test_render_sync exists only in Gdk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_test_simulate_key(USER_OBJECT_ s_window, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_keyval, USER_OBJECT_ s_modifiers, USER_OBJECT_ s_key_pressrelease)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 14, 0)
+  GdkWindow* window = GDK_WINDOW(getPtrValue(s_window));
+  gint x = ((gint)asCInteger(s_x));
+  gint y = ((gint)asCInteger(s_y));
+  guint keyval = ((guint)asCNumeric(s_keyval));
+  GdkModifierType modifiers = ((GdkModifierType)asCFlag(s_modifiers, GDK_TYPE_MODIFIER_TYPE));
+  GdkEventType key_pressrelease = ((GdkEventType)asCEnum(s_key_pressrelease, GDK_TYPE_EVENT_TYPE));
+
+  gboolean ans;
+
+  ans = gdk_test_simulate_key(window, x, y, keyval, modifiers, key_pressrelease);
+
+  _result = asRLogical(ans);
+#else
+  error("gdk_test_simulate_key exists only in Gdk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_test_simulate_button(USER_OBJECT_ s_window, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_button, USER_OBJECT_ s_modifiers, USER_OBJECT_ s_button_pressrelease)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 14, 0)
+  GdkWindow* window = GDK_WINDOW(getPtrValue(s_window));
+  gint x = ((gint)asCInteger(s_x));
+  gint y = ((gint)asCInteger(s_y));
+  guint button = ((guint)asCNumeric(s_button));
+  GdkModifierType modifiers = ((GdkModifierType)asCFlag(s_modifiers, GDK_TYPE_MODIFIER_TYPE));
+  GdkEventType button_pressrelease = ((GdkEventType)asCEnum(s_button_pressrelease, GDK_TYPE_EVENT_TYPE));
+
+  gboolean ans;
+
+  ans = gdk_test_simulate_button(window, x, y, button, modifiers, button_pressrelease);
+
+  _result = asRLogical(ans);
+#else
+  error("gdk_test_simulate_button exists only in Gdk >= 2.14.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_pixbuf_save_to_stream(USER_OBJECT_ s_object, USER_OBJECT_ s_stream, USER_OBJECT_ s_type, USER_OBJECT_ s_cancellable)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 14, 0)
+  GdkPixbuf* object = GDK_PIXBUF(getPtrValue(s_object));
+  GOutputStream* stream = G_OUTPUT_STREAM(getPtrValue(s_stream));
+  const char* type = ((const char*)asCString(s_type));
+  GCancellable* cancellable = G_CANCELLABLE(getPtrValue(s_cancellable));
+
+  gboolean ans;
+  GError* error = NULL;
+
+  ans = gdk_pixbuf_save_to_stream(object, stream, type, cancellable, &error);
+
+  _result = asRLogical(ans);
+
+  _result = retByVal(_result, "error", asRGError(error), NULL);
+    CLEANUP(g_error_free, error);;
+#else
+  error("gdk_pixbuf_save_to_stream exists only in Gdk >= 2.14.0");
 #endif
 
   return(_result);
@@ -9880,6 +9975,91 @@ S_gdk_window_restack(USER_OBJECT_ s_object, USER_OBJECT_ s_sibling, USER_OBJECT_
 
 #else
   error("gdk_window_restack exists only in Gdk >= 2.18.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_window_is_destroyed(USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 18, 0)
+  GdkWindow* object = GDK_WINDOW(getPtrValue(s_object));
+
+  gboolean ans;
+
+  ans = gdk_window_is_destroyed(object);
+
+  _result = asRLogical(ans);
+#else
+  error("gdk_window_is_destroyed exists only in Gdk >= 2.18.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_window_get_root_coords(USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OBJECT_ s_y)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 18, 0)
+  GdkWindow* object = GDK_WINDOW(getPtrValue(s_object));
+  gint x = ((gint)asCInteger(s_x));
+  gint y = ((gint)asCInteger(s_y));
+
+  gint root_x;
+  gint root_y;
+
+  gdk_window_get_root_coords(object, x, y, &root_x, &root_y);
+
+
+  _result = retByVal(_result, "root.x", asRInteger(root_x), "root.y", asRInteger(root_y), NULL);
+  ;
+  ;
+#else
+  error("gdk_window_get_root_coords exists only in Gdk >= 2.18.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_pixbuf_simple_anim_set_loop(USER_OBJECT_ s_object, USER_OBJECT_ s_loop)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 18, 0)
+  GdkPixbufSimpleAnim* object = GDK_PIXBUF_SIMPLE_ANIM(getPtrValue(s_object));
+  gboolean loop = ((gboolean)asCLogical(s_loop));
+
+
+  gdk_pixbuf_simple_anim_set_loop(object, loop);
+
+#else
+  error("gdk_pixbuf_simple_anim_set_loop exists only in Gdk >= 2.18.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_pixbuf_simple_anim_get_loop(USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 18, 0)
+  GdkPixbufSimpleAnim* object = GDK_PIXBUF_SIMPLE_ANIM(getPtrValue(s_object));
+
+  gboolean ans;
+
+  ans = gdk_pixbuf_simple_anim_get_loop(object);
+
+  _result = asRLogical(ans);
+#else
+  error("gdk_pixbuf_simple_anim_get_loop exists only in Gdk >= 2.18.0");
 #endif
 
   return(_result);

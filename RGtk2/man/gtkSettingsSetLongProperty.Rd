@@ -5,10 +5,14 @@
 }}
 \usage{gtkSettingsSetLongProperty(object, name, v.long, origin)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkSettings}}] }
-\item{\verb{name}}{[character] }
-\item{\verb{v.long}}{[numeric] }
-\item{\verb{origin}}{[character] }
+\item{\verb{object}}{\emph{undocumented
+}}
+\item{\verb{name}}{\emph{undocumented
+}}
+\item{\verb{v.long}}{\emph{undocumented
+}}
+\item{\verb{origin}}{\emph{undocumented
+}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -11,13 +11,14 @@
 \code{\link{atkHyperlinkIsInline}(object)}\cr
 \code{\link{atkHyperlinkGetNAnchors}(object)}\cr
 \code{\link{atkHyperlinkIsSelectedLink}(object)}\cr
+\code{\link{atkHyperlinkIsSelectedLink}(object)}\cr
 
 }
 \section{Hierarchy}{\preformatted{GObject
    +----AtkHyperlink}}
 \section{Interfaces}{AtkHyperlink implements
- \verb{\link{AtkAction}}.}
-\section{Detailed Description}{An ATK object which encapsulates a link or set of links 
+ \code{\link{AtkAction}}.}
+\section{Detailed Description}{An ATK object which encapsulates a link or set of links
 (for instance in the case of client-side image maps) in a hypertext document.
 It may implement the AtkAction interface.  AtkHyperlink may also be used
 to refer to inline embedded content, since it allows specification of a start
@@ -30,7 +31,7 @@ The AtkHyperlink structure should not be accessed directly.
 The signal link-activated is emitted when a link is activated.
 
 \describe{
-\item{\code{atkhyperlink}}{[\verb{\link{AtkHyperlink}}] the object which received the signal.}
+\item{\code{atkhyperlink}}{[\code{\link{AtkHyperlink}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -58,6 +59,6 @@ The start index of the AtkHyperlink object.  Allowed values: >= 0  Default value
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/atk/AtkHyperlink.html}}
+\references{\url{http://library.gnome.org/devel//atk/AtkHyperlink.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

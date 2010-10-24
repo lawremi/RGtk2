@@ -5,9 +5,9 @@
 displaying it.}
 \usage{gtkRecentChooserSetShowIcons(object, show.icons)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkRecentChooser}}]  a \verb{\link{GtkRecentChooser}}}
-\item{\verb{show.icons}}{[logical]  whether to show an icon near the resource}
+\item{\verb{object}}{a \code{\link{GtkRecentChooser}}}
+\item{\verb{show.icons}}{whether to show an icon near the resource}
 }
-\details{  Since  2.10}
+\details{Since 2.10}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -4,8 +4,8 @@
 \description{Allow the column title buttons to be clicked.}
 \usage{gtkTreeViewSetHeadersClickable(object, active)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTreeView}}]  A \verb{\link{GtkTreeView}}.}
-\item{\verb{active}}{[logical] \code{TRUE} if the columns are clickable.}
+\item{\verb{object}}{A \code{\link{GtkTreeView}}.}
+\item{\verb{active}}{\code{TRUE} if the columns are clickable.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

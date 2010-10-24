@@ -1,13 +1,13 @@
 \alias{pangoLayoutSetHeight}
 \name{pangoLayoutSetHeight}
 \title{pangoLayoutSetHeight}
-\description{Sets the height to which the \verb{\link{PangoLayout}} should be ellipsized at.  There
+\description{Sets the height to which the \code{\link{PangoLayout}} should be ellipsized at.  There
 are two different behaviors, based on whether \code{height} is positive or
 negative.}
 \usage{pangoLayoutSetHeight(object, height)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{PangoLayout}}]  a \verb{\link{PangoLayout}}.}
-\item{\verb{height}}{[integer]  the desired height of the layout in Pango units if positive,
+\item{\verb{object}}{a \code{\link{PangoLayout}}.}
+\item{\verb{height}}{the desired height of the layout in Pango units if positive,
          or desired number of lines if negative.}
 }
 \details{If \code{height} is positive, it will be the maximum height of the layout.  Only
@@ -28,8 +28,7 @@ Height setting only has effect if a positive width is set on
 \code{layout} and ellipsization mode of \code{layout} is not \code{PANGO_ELLIPSIZE_NONE}.
 The behavior is undefined if a height other than -1 is set and
 ellipsization mode is set to \code{PANGO_ELLIPSIZE_NONE}, and may change in the
-future.  
-
-  Since  1.20}
+future.
+  Since 1.20}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

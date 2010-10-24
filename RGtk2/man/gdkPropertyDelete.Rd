@@ -4,8 +4,8 @@
 \description{Deletes a property from a window.}
 \usage{gdkPropertyDelete(object, property)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GdkWindow}}] a \verb{\link{GdkWindow}}.}
-\item{\verb{property}}{[\verb{\link{GdkAtom}}] the property to delete.}
+\item{\verb{object}}{a \code{\link{GdkWindow}}.}
+\item{\verb{property}}{the property to delete.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

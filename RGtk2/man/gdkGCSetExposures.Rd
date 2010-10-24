@@ -7,8 +7,8 @@ for the corresponding regions of the destination
 drawable. (See \code{\link{gdkDrawDrawable}}).}
 \usage{gdkGCSetExposures(object, exposures)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GdkGC}}]  a \verb{\link{GdkGC}}.}
-\item{\verb{exposures}}{[logical]  if \code{TRUE}, exposure events will be generated.}
+\item{\verb{object}}{a \code{\link{GdkGC}}.}
+\item{\verb{exposures}}{if \code{TRUE}, exposure events will be generated.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

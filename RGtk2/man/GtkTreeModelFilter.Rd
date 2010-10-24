@@ -22,8 +22,8 @@
 \section{Hierarchy}{\preformatted{GObject
    +----GtkTreeModelFilter}}
 \section{Interfaces}{GtkTreeModelFilter implements
- \verb{\link{GtkTreeModel}} and  \verb{\link{GtkTreeDragSource}}.}
-\section{Detailed Description}{A \verb{\link{GtkTreeModelFilter}} is a tree model which wraps another tree model,
+ \code{\link{GtkTreeModel}} and  \code{\link{GtkTreeDragSource}}.}
+\section{Detailed Description}{A \code{\link{GtkTreeModelFilter}} is a tree model which wraps another tree model,
 and can do the following things:
 \itemize{
 \item Filter specific rows, based on data from a "visible column", a column
@@ -31,12 +31,12 @@ storing booleans indicating whether the row should be filtered or not,
 or based on the return value of a "visible function", which gets a
 model, iter and user_data and returns a boolean indicating whether the
 row should be filtered or not.
-\item Modify the "appearance" of the model, using a modify function. 
+\item Modify the "appearance" of the model, using a modify function.
 This is extremely powerful and allows for just changing
 some values and also for creating a completely different model based on
-the given child model. 
-\item Set a different root node, also known as a "virtual root". You can pass in 
-a \verb{\link{GtkTreePath}} indicating the root node for the filter at construction time.
+the given child model.
+\item Set a different root node, also known as a "virtual root". You can pass in
+a \code{\link{GtkTreePath}} indicating the root node for the filter at construction time.
 }}
 \section{Structures}{\describe{\item{\verb{GtkTreeModelFilter}}{
 The GtkTreeModelFilter struct contains only private fields.
@@ -48,10 +48,10 @@ The GtkTreeModelFilter struct contains only private fields.
 A function which decides whether the row indicated by \code{iter} is visible.
 
 \describe{
-\item{\code{model}}{[\verb{\link{GtkTreeModel}}] the child model of the \verb{\link{GtkTreeModelFilter}}}
-\item{\code{iter}}{[\verb{\link{GtkTreeIter}}] a \verb{\link{GtkTreeIter}} pointing to the row in \code{model} whose visibility 
+\item{\code{model}}{the child model of the \code{\link{GtkTreeModelFilter}}}
+\item{\code{iter}}{a \code{\link{GtkTreeIter}} pointing to the row in \code{model} whose visibility 
    is determined}
-\item{\code{data}}{[R object] user data given to \code{\link{gtkTreeModelFilterSetVisibleFunc}}}
+\item{\code{data}}{user data given to \code{\link{gtkTreeModelFilterSetVisibleFunc}}}
 }
 
 \emph{Returns:} [logical] Whether the row indicated by \code{iter} is visible.
@@ -59,37 +59,37 @@ A function which decides whether the row indicated by \code{iter} is visible.
 }
 \item{\code{GtkTreeModelFilterModifyFunc(model, iter, value, column, data)}}{
 A function which calculates display values from raw values in the model.
-It must fill \code{value} with the display value for the column \code{column} in the 
-row indicated by \code{iter}. 
+It must fill \code{value} with the display value for the column \code{column} in the
+row indicated by \code{iter}.
   
 Since this function is called for each data access, it's not a
 particularly efficient operation.
 
 \describe{
-\item{\code{model}}{[\verb{\link{GtkTreeModel}}] the \verb{\link{GtkTreeModelFilter}}}
-\item{\code{iter}}{[\verb{\link{GtkTreeIter}}] a \verb{\link{GtkTreeIter}} pointing to the row whose display values are determined}
-\item{\code{value}}{[R object] A \verb{R object} which is already initialized for with the correct type for 
+\item{\code{model}}{the \code{\link{GtkTreeModelFilter}}}
+\item{\code{iter}}{a \code{\link{GtkTreeIter}} pointing to the row whose display values are determined}
+\item{\code{value}}{A \verb{R object} which is already initialized for with the correct type for 
   the column \code{column}.}
-\item{\code{column}}{[integer] the column whose display value is determined}
-\item{\code{data}}{[R object] user data given to \code{\link{gtkTreeModelFilterSetModifyFunc}}}
+\item{\code{column}}{the column whose display value is determined}
+\item{\code{data}}{user data given to \code{\link{gtkTreeModelFilterSetModifyFunc}}}
 }
 
 
 }
 }}
 \section{Properties}{\describe{
-\item{\verb{child-model} [\verb{\link{GtkTreeModel}} : *         : Read / Write / Construct Only]}{
+\item{\verb{child-model} [\code{\link{GtkTreeModel}} : *         : Read / Write / Construct Only]}{
 
 The model for the filtermodel to filter.
 
 }
-\item{\verb{virtual-root} [\verb{\link{GtkTreePath}} : *          : Read / Write / Construct Only]}{
+\item{\verb{virtual-root} [\code{\link{GtkTreePath}} : *          : Read / Write / Construct Only]}{
 
 The virtual root (relative to the child model) for this filtermodel.
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkTreeModelFilter.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkTreeModelFilter.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
-\seealso{\verb{\link{GtkTreeModelSort}}}
+\seealso{\code{\link{GtkTreeModelSort}}}
 \keyword{internal}

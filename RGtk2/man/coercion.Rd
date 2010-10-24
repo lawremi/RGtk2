@@ -38,6 +38,7 @@
 \alias{as.CairoGlyph}
 \alias{as.GdkTrapezoid}
 \alias{as.CairoPath}
+\alias{as.CairoTextCluster}
 \name{coercion}
 \title{Coercion of R lists to C structures}
 \description{This function coerces an R list to the named C type. This helps form the basis

@@ -5,14 +5,14 @@
 is a location in the icon that can be used as anchor points for attaching
 emblems or overlays to the icon.}
 \usage{gtkIconInfoGetAttachPoints(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkIconInfo}}]  a \verb{\link{GtkIconInfo}}}}
-\details{  Since  2.4}
+\arguments{\item{\verb{object}}{a \code{\link{GtkIconInfo}}}}
+\details{Since 2.4}
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if there are any attach points for the icon.}
-\item{\verb{points}}{[\verb{\link{GdkPoint}}]  location to store pointer to a list of points, or \code{NULL}
-         free the list of points with \code{gFree()}.}
-\item{\verb{n.points}}{[integer]  location to store the number of points in \code{points}, or \code{NULL}}
+\item{\verb{points}}{ location to store pointer to a list of points, or \code{NULL}
+         free the list of points with \code{gFree()}. \emph{[  \acronym{allow-none}  ][  \acronym{out}  ]}}
+\item{\verb{n.points}}{ location to store the number of points in \code{points}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

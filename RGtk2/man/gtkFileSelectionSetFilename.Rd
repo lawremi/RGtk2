@@ -9,14 +9,14 @@ current working directory.
 }
 \usage{gtkFileSelectionSetFilename(object, filename)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkFileSelection}}]  a \verb{\link{GtkFileSelection}}.}
-\item{\verb{filename}}{[character]   a string to set as the default file name.}
+\item{\verb{object}}{a \code{\link{GtkFileSelection}}.}
+\item{\verb{filename}}{a string to set as the default file name.}
 }
 \details{This has the consequence that in order to open the requestor with a 
 working directory and an empty filename, \code{filename} must have a trailing
 directory separator.
   
 The encoding of \code{filename} is preferred GLib file name encoding, which
-may not be UTF-8. See \code{gFilenameFromUtf8()}.  }
+may not be UTF-8. See \code{gFilenameFromUtf8()}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -4,8 +4,8 @@
 \description{Set the new position of the fill level indicator.}
 \usage{gtkRangeSetFillLevel(object, fill.level)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkRange}}]  a \verb{\link{GtkRange}}}
-\item{\verb{fill.level}}{[numeric]  the new position of the fill level indicator}
+\item{\verb{object}}{a \code{\link{GtkRange}}}
+\item{\verb{fill.level}}{the new position of the fill level indicator}
 }
 \details{The "fill level" is probably best described by its most prominent
 use case, which is an indicator for the amount of pre-buffering in
@@ -21,8 +21,7 @@ to not showing the fill level.
 Additionally, it's possible to restrict the range's slider position
 to values which are smaller than the fill level. This is controller
 by \code{\link{gtkRangeSetRestrictToFillLevel}} and is by default
-enabled.  
-
-  Since  2.12}
+enabled.
+  Since 2.12}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

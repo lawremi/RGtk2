@@ -7,15 +7,15 @@ invoked if the \code{accel.key} and \code{accel.mods} from \code{\link{gtkAccelG
 match those of this connection.}
 \usage{gtkAccelGroupConnect(object, accel.key, accel.mods, accel.flags, closure)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkAccelGroup}}]       the accelerator group to install an accelerator in}
-\item{\verb{accel.key}}{[numeric]         key value of the accelerator}
-\item{\verb{accel.mods}}{[\code{\link{GdkModifierType}}]        modifier combination of the accelerator}
-\item{\verb{accel.flags}}{[\code{\link{GtkAccelFlags}}]       a flag mask to configure this accelerator}
-\item{\verb{closure}}{[\verb{\link{GClosure}}]           closure to be executed upon accelerator activation}
+\item{\verb{object}}{the accelerator group to install an accelerator in}
+\item{\verb{accel.key}}{key value of the accelerator}
+\item{\verb{accel.mods}}{modifier combination of the accelerator}
+\item{\verb{accel.flags}}{a flag mask to configure this accelerator}
+\item{\verb{closure}}{closure to be executed upon accelerator activation}
 }
-\details{The signature used for the \code{closure} is that of \verb{\link{GtkAccelGroupActivate}}.
+\details{The signature used for the \code{closure} is that of \code{\link{GtkAccelGroupActivate}}.
   
 Note that, due to implementation details, a single closure can only be
-connected to one accelerator group.  }
+connected to one accelerator group.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -7,7 +7,7 @@ the axes takes place after any existing transformation of user
 space.}
 \usage{cairoScale(cr, sx, sy)}
 \arguments{
-\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}
+\item{\verb{cr}}{[\code{\link{Cairo}}]  a cairo context}
 \item{\verb{sx}}{[numeric]  scale factor for the X dimension}
 \item{\verb{sy}}{[numeric]  scale factor for the Y dimension}
 }

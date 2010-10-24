@@ -4,8 +4,8 @@
 \description{Resize a glyph string to the given length.}
 \usage{pangoGlyphStringSetSize(object, new.len)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{PangoGlyphString}}]     a \verb{\link{PangoGlyphString}}.}
-\item{\verb{new.len}}{[integer]    the new length of the string.}
+\item{\verb{object}}{a \code{\link{PangoGlyphString}}.}
+\item{\verb{new.len}}{the new length of the string.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -8,9 +8,9 @@ coordinates and then apply the transformation in \code{b} to the
 coordinates.}
 \usage{cairoMatrixMultiply(result, a, b)}
 \arguments{
-\item{\verb{result}}{[\verb{\link{CairoMatrix}}]  a \verb{\link{CairoMatrix}} in which to store the result}
-\item{\verb{a}}{[\verb{\link{CairoMatrix}}]  a \verb{\link{CairoMatrix}}}
-\item{\verb{b}}{[\verb{\link{CairoMatrix}}]  a \verb{\link{CairoMatrix}}}
+\item{\verb{result}}{[\code{\link{CairoMatrix}}]  a \code{\link{CairoMatrix}} in which to store the result}
+\item{\verb{a}}{[\code{\link{CairoMatrix}}]  a \code{\link{CairoMatrix}}}
+\item{\verb{b}}{[\code{\link{CairoMatrix}}]  a \code{\link{CairoMatrix}}}
 }
 \details{It is allowable for \code{result} to be identical to either \code{a} or \code{b}.  }
 \author{Derived by RGtkGen from GTK+ documentation}

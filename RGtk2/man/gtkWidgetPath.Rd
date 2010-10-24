@@ -14,12 +14,12 @@ file. \code{path.reversed.p} fills in the path in reverse order,
 i.e. starting with \code{widget}'s name instead of starting with the name
 of \code{widget}'s outermost ancestor.}
 \usage{gtkWidgetPath(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}}
+\arguments{\item{\verb{object}}{a \code{\link{GtkWidget}}}}
 \value{
 A list containing the following elements:
-\item{\verb{path.length}}{[numeric]  location to store length of the path, or \code{NULL}}
-\item{\verb{path}}{[character]  location to store allocated path string, or \code{NULL} }
-\item{\verb{path.reversed}}{[character]  location to store allocated reverse path string, or \code{NULL}}
+\item{\verb{path.length}}{ location to store length of the path, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
+\item{\verb{path}}{  location to store allocated path string, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
+\item{\verb{path.reversed}}{  location to store allocated reverse path string, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

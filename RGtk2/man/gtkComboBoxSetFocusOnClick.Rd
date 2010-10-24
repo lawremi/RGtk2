@@ -7,10 +7,10 @@ like toolbars where you don't want the keyboard focus removed from
 the main area of the application.}
 \usage{gtkComboBoxSetFocusOnClick(object, focus.on.click)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkComboBox}}]  a \verb{\link{GtkComboBox}}}
-\item{\verb{focus.on.click}}{[logical]  whether the combo box grabs focus when clicked 
+\item{\verb{object}}{a \code{\link{GtkComboBox}}}
+\item{\verb{focus.on.click}}{whether the combo box grabs focus when clicked 
    with the mouse}
 }
-\details{  Since  2.6}
+\details{Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

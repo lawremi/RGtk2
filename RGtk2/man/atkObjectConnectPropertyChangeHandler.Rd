@@ -4,7 +4,7 @@
 \description{Specifies a function to be called when a property changes value.}
 \usage{atkObjectConnectPropertyChangeHandler(object, handler)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{AtkObject}}]  an \verb{\link{AtkObject}}}
+\item{\verb{object}}{[\code{\link{AtkObject}}]  an \code{\link{AtkObject}}}
 \item{\verb{handler}}{[AtkPropertyChangeHandler]  a function to be called when a property changes its value}
 }
 \value{[numeric]  a \verb{numeric} which is the handler id used in 

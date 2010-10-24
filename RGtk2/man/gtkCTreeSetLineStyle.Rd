@@ -7,8 +7,10 @@
 }
 \usage{gtkCTreeSetLineStyle(object, line.style)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkCTree}}] }
-\item{\verb{line.style}}{[\code{\link{GtkCTreeLineStyle}}] }
+\item{\verb{object}}{\emph{undocumented
+}}
+\item{\verb{line.style}}{\emph{undocumented
+}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -3,11 +3,11 @@
 \title{cairoPatternGetRgba}
 \description{Gets the solid color for a solid color pattern.}
 \usage{cairoPatternGetRgba(pattern)}
-\arguments{\item{\verb{pattern}}{[\verb{\link{CairoPattern}}]  a \verb{\link{CairoPattern}}}}
-\details{  Since  1.4}
+\arguments{\item{\verb{pattern}}{[\code{\link{CairoPattern}}]  a \code{\link{CairoPattern}}}}
+\details{  Since 1.4}
 \value{
 A list containing the following elements:
-\item{retval}{[\verb{\link{CairoStatus}}] \code{CAIRO_STATUS_SUCCESS}, or
+\item{retval}{[\code{\link{CairoStatus}}] \code{CAIRO_STATUS_SUCCESS}, or
 \code{CAIRO_STATUS_PATTERN_TYPE_MISMATCH} if the pattern is not a solid
 color pattern.}
 \item{\verb{red}}{[numeric]  return value for red component of color, or \code{NULL}}

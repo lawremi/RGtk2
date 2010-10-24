@@ -12,33 +12,32 @@
 }
 \section{Hierarchy}{\preformatted{GObject
    +----GdkDisplayManager}}
-\section{Detailed Description}{The purpose of the \verb{\link{GdkDisplayManager}} singleton object is to offer
-notification when displays appear or disappear or the default display 
+\section{Detailed Description}{The purpose of the \code{\link{GdkDisplayManager}} singleton object is to offer
+notification when displays appear or disappear or the default display
 changes.}
 \section{Structures}{\describe{\item{\verb{GdkDisplayManager}}{
-The \code{GdkDisplayManager} struct has no interesting 
+The \code{GdkDisplayManager} struct has no interesting
 fields.
   Since 2.2
 
 }}}
 \section{Signals}{\describe{\item{\code{display-opened(display.manager, display, user.data)}}{
-The ::display_opened signal is emitted when a display is opened.  
-
-  Since  2.2
+The ::display_opened signal is emitted when a display is opened.
+  Since 2.2
 
 \describe{
-\item{\code{display.manager}}{[\verb{\link{GdkDisplayManager}}]  the object on which the signal is emitted}
-\item{\code{display}}{[\verb{\link{GdkDisplay}}]  the opened display}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{display.manager}}{the object on which the signal is emitted}
+\item{\code{display}}{the opened display}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }}}
-\section{Properties}{\describe{\item{\verb{default-display} [\verb{\link{GdkDisplay}} : *           : Read / Write]}{
+\section{Properties}{\describe{\item{\verb{default-display} [\code{\link{GdkDisplay}} : *           : Read / Write]}{
 
 The default display for GDK.
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gdk/GdkDisplayManager.html}}
+\references{\url{http://library.gnome.org/devel//gdk/GdkDisplayManager.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

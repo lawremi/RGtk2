@@ -8,10 +8,10 @@ the location of the last deleted range, or left untouched if
 no text was deleted.}
 \usage{gtkTextBufferDeleteInteractive(object, start.iter, end.iter, default.editable)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTextBuffer}}]  a \verb{\link{GtkTextBuffer}}}
-\item{\verb{start.iter}}{[\verb{\link{GtkTextIter}}]  start of range to delete}
-\item{\verb{end.iter}}{[\verb{\link{GtkTextIter}}]  end of range}
-\item{\verb{default.editable}}{[logical]  whether the buffer is editable by default}
+\item{\verb{object}}{a \code{\link{GtkTextBuffer}}}
+\item{\verb{start.iter}}{start of range to delete}
+\item{\verb{end.iter}}{end of range}
+\item{\verb{default.editable}}{whether the buffer is editable by default}
 }
 \value{[logical]  whether some text was actually deleted}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -10,16 +10,16 @@ from the extents rectangle to more traditional font metrics. The units
 of the rectangles are in 1/PANGO_SCALE of a device unit.}
 \usage{pangoFontGetGlyphExtents(object, glyph)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{PangoFont}}]  a \verb{\link{PangoFont}}}
-\item{\verb{glyph}}{[numeric]  the glyph index}
+\item{\verb{object}}{a \code{\link{PangoFont}}}
+\item{\verb{glyph}}{the glyph index}
 }
 \details{If \code{font} is \code{NULL}, this function gracefully sets some sane values in the
-output variables and returns.  }
+output variables and returns.}
 \value{
 A list containing the following elements:
-\item{\verb{ink.rect}}{[\verb{\link{PangoRectangle}}]  rectangle used to store the extents of the glyph as drawn
+\item{\verb{ink.rect}}{rectangle used to store the extents of the glyph as drawn
            or \code{NULL} to indicate that the result is not needed.}
-\item{\verb{logical.rect}}{[\verb{\link{PangoRectangle}}]  rectangle used to store the logical extents of the glyph
+\item{\verb{logical.rect}}{rectangle used to store the logical extents of the glyph
            or \code{NULL} to indicate that the result is not needed.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

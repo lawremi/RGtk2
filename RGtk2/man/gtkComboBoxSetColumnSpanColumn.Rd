@@ -6,9 +6,9 @@
 how many columns an item should span.}
 \usage{gtkComboBoxSetColumnSpanColumn(object, column.span)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkComboBox}}]  A \verb{\link{GtkComboBox}}}
-\item{\verb{column.span}}{[integer]  A column in the model passed during construction}
+\item{\verb{object}}{A \code{\link{GtkComboBox}}}
+\item{\verb{column.span}}{A column in the model passed during construction}
 }
-\details{  Since  2.4}
+\details{Since 2.4}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

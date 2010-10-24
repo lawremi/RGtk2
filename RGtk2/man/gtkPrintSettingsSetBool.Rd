@@ -4,10 +4,10 @@
 \description{Sets \code{key} to a boolean value.}
 \usage{gtkPrintSettingsSetBool(object, key, value)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkPrintSettings}}]  a \verb{\link{GtkPrintSettings}}}
-\item{\verb{key}}{[character]  a key}
-\item{\verb{value}}{[logical]  a boolean}
+\item{\verb{object}}{a \code{\link{GtkPrintSettings}}}
+\item{\verb{key}}{a key}
+\item{\verb{value}}{a boolean}
 }
-\details{  Since  2.10}
+\details{Since 2.10}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

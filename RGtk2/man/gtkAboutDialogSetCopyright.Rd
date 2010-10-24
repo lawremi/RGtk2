@@ -5,9 +5,9 @@
 This should be a short string of one or two lines.}
 \usage{gtkAboutDialogSetCopyright(object, copyright = NULL)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkAboutDialog}}]  a \verb{\link{GtkAboutDialog}}}
-\item{\verb{copyright}}{[character]  the copyright string}
+\item{\verb{object}}{a \code{\link{GtkAboutDialog}}}
+\item{\verb{copyright}}{(allow-none) the copyright string}
 }
-\details{  Since  2.6}
+\details{Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

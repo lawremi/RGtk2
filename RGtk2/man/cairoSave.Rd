@@ -8,7 +8,8 @@ the saved state. Multiple calls to \code{\link{cairoSave}} and
 \code{\link{cairoRestore}} can be nested; each call to \code{\link{cairoRestore}}
 restores the state from the matching paired \code{\link{cairoSave}}.}
 \usage{cairoSave(cr)}
-\arguments{\item{\verb{cr}}{[\verb{\link{Cairo}}]  a \verb{\link{Cairo}}}}
-\details{.  }
+\arguments{\item{\verb{cr}}{[\code{\link{Cairo}}]  a \code{\link{Cairo}}}}
+\details{It isn't necessary to clear all saved states before
+a \code{\link{Cairo}} is freed.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

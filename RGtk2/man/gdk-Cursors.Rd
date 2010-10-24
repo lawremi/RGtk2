@@ -18,15 +18,15 @@ There is a number of standard cursors, but it is also
 possible to construct new cursors from pixmaps and
 pixbufs. There may be limitations as to what kinds of
 cursors can be constructed on a given display, see
-\code{\link{gdkDisplaySupportsCursorAlpha}}, 
+\code{\link{gdkDisplaySupportsCursorAlpha}},
 \code{\link{gdkDisplaySupportsCursorColor}},
 \code{\link{gdkDisplayGetDefaultCursorSize}} and
 \code{\link{gdkDisplayGetMaximalCursorSize}}.
   
 Cursors by themselves are not very interesting, they must be be
-bound to a window for users to see them. This is done with 
+bound to a window for users to see them. This is done with
 \code{\link{gdkWindowSetCursor}} or by setting the cursor member of the
-\verb{\link{GdkWindowAttr}} struct passed to \code{\link{gdkWindowNew}}.}
+\code{\link{GdkWindowAttr}} struct passed to \code{\link{gdkWindowNew}}.}
 \section{Structures}{\describe{\item{\verb{GdkCursor}}{
 A \verb{GdkCursor} structure represents a cursor.
 
@@ -192,11 +192,10 @@ The standard cursors available.
 \item{\verb{xterm}}{\emph{undocumented
 }}
 \item{\verb{last-cursor}}{last cursor type}
-\item{\verb{gdk-cursor-is-pixmap}}{type of cursors constructed with 
-\code{\link{gdkCursorNewFromPixmap}} or \code{\link{gdkCursorNewFromPixbuf}}}
+\item{\verb{gdk-cursor-is-pixmap}}{Blank cursor. Since 2.16}
 }
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gdk/gdk-Cursors.html}}
+\references{\url{http://library.gnome.org/devel//gdk/gdk-Cursors.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

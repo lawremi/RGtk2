@@ -8,6 +8,6 @@ sorted is static (and doesn't change often) and there has been a lot of
 unreffed access to nodes.  As a side effect of this function, all unreffed
 iters will be invalid.}
 \usage{gtkTreeModelSortClearCache(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkTreeModelSort}}]  A \verb{\link{GtkTreeModelSort}}}}
+\arguments{\item{\verb{object}}{A \code{\link{GtkTreeModelSort}}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

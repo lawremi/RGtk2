@@ -7,8 +7,8 @@ and display a glyph for paragraph separator characters. Used when
 you want to allow editing of newlines on a single text line.}
 \usage{pangoLayoutSetSingleParagraphMode(object, setting)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{PangoLayout}}]  a \verb{\link{PangoLayout}}}
-\item{\verb{setting}}{[logical]  new setting}
+\item{\verb{object}}{a \code{\link{PangoLayout}}}
+\item{\verb{setting}}{new setting}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

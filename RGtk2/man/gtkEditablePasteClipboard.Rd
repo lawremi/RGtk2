@@ -1,9 +1,9 @@
 \alias{gtkEditablePasteClipboard}
 \name{gtkEditablePasteClipboard}
 \title{gtkEditablePasteClipboard}
-\description{Causes the contents of the clipboard to be pasted into
-the given widget at the current cursor position.}
+\description{Pastes the content of the clipboard to the current position of the
+cursor in the editable.}
 \usage{gtkEditablePasteClipboard(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkEditable}}] a \verb{\link{GtkEditable}} widget.}}
+\arguments{\item{\verb{object}}{a \code{\link{GtkEditable}}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

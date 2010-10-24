@@ -10,9 +10,8 @@
 \section{Detailed Description}{The capital-letter functions defined here can be used to check the version of
 Pango at compile-time, and to \dfn{encode} Pango versions into
 integers.
-
 The functions can be used to check the version of the linked Pango library
 at run-time.}
-\references{\url{http://developer.gnome.org/doc/API/2.0/pango/pango-Version-Checking.html}}
+\references{\url{http://library.gnome.org/devel//pango/pango-Version-Checking.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

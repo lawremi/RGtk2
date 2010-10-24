@@ -7,9 +7,9 @@ image will be displayed or not, you don't have to call
 \code{\link{gtkWidgetShow}} on \code{image} yourself.}
 \usage{gtkButtonSetImage(object, image)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkButton}}]  a \verb{\link{GtkButton}}}
-\item{\verb{image}}{[\verb{\link{GtkWidget}}]  a widget to set as the image for the button}
+\item{\verb{object}}{a \code{\link{GtkButton}}}
+\item{\verb{image}}{a widget to set as the image for the button}
 }
-\details{  Since  2.6}
+\details{Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

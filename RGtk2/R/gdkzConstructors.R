@@ -47,28 +47,38 @@ gdkGC <- gdkGCNew
 gdkImage <- gdkImageNew
 
 gdkPixbuf <-
-function(width, height, filename, colorspace, has.alpha, bits.per.sample, data, preserve.aspect.ratio, rowstride, .errwarn = TRUE)
+function(width = -1, height = -1, filename, colorspace, has.alpha, bits.per.sample, preserve.aspect.ratio = 1, data, stream, cancellable = NULL, rowstride, .errwarn = TRUE)
 {
-  if (!missing(colorspace)) {
-    if (!missing(data)) {
-      gdkPixbufNewFromData(data, colorspace, has.alpha, bits.per.sample, width, height, rowstride)
-    }
-    else {
-      gdkPixbufNew(colorspace, has.alpha, bits.per.sample, width, height)
-    }
-  }
-  else {
-    if (!missing(width)) {
-      if (!missing(preserve.aspect.ratio)) {
-        gdkPixbufNewFromFileAtScale(filename, width, height, preserve.aspect.ratio, .errwarn)
+  if (!missing(width)) {
+    if (!missing(colorspace)) {
+      if (!missing(data)) {
+        gdkPixbufNewFromData(data, colorspace, has.alpha, bits.per.sample, width, height, rowstride)
       }
       else {
-        gdkPixbufNewFromFileAtSize(filename, width, height, .errwarn)
+        gdkPixbufNew(colorspace, has.alpha, bits.per.sample, width, height)
       }
     }
     else {
       if (!missing(filename)) {
-        gdkPixbufNewFromFile(filename, .errwarn)
+        if (!missing(preserve.aspect.ratio)) {
+          gdkPixbufNewFromFileAtScale(filename, width, height, preserve.aspect.ratio, .errwarn)
+        }
+        else {
+          gdkPixbufNewFromFileAtSize(filename, width, height, .errwarn)
+        }
+      }
+      else {
+        gdkPixbufNewFromStreamAtScale(stream, width, height, preserve.aspect.ratio, cancellable, .errwarn)
+      }
+    }
+  }
+  else {
+    if (!missing(filename)) {
+      gdkPixbufNewFromFile(filename, .errwarn)
+    }
+    else {
+      if (!missing(.errwarn)) {
+        gdkPixbufNewFromStream(stream, cancellable, .errwarn)
       }
       else {
         gdkPixbufNewFromXpmData(data)

@@ -6,8 +6,8 @@
 user space takes place after any existing transformation.}
 \usage{cairoTransform(cr, matrix)}
 \arguments{
-\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}
-\item{\verb{matrix}}{[\verb{\link{CairoMatrix}}]  a transformation to be applied to the user-space axes}
+\item{\verb{cr}}{[\code{\link{Cairo}}]  a cairo context}
+\item{\verb{matrix}}{[\code{\link{CairoMatrix}}]  a transformation to be applied to the user-space axes}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

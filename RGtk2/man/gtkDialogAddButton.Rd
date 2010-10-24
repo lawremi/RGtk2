@@ -8,10 +8,10 @@ appended to the end of the dialog's action area. The button widget is
 returned, but usually you don't need it.}
 \usage{gtkDialogAddButton(object, button.text, response.id)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkDialog}}]  a \verb{\link{GtkDialog}}}
-\item{\verb{button.text}}{[character]  text of button, or stock ID}
-\item{\verb{response.id}}{[integer]  response ID for the button}
+\item{\verb{object}}{a \code{\link{GtkDialog}}}
+\item{\verb{button.text}}{text of button, or stock ID}
+\item{\verb{response.id}}{response ID for the button}
 }
-\value{[\verb{\link{GtkWidget}}]  the button widget that was added}
+\value{[\code{\link{GtkWidget}}]  the button widget that was added}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -13,6 +13,6 @@ to speed up creating another GladeXML object for the same file}
 \item{\verb{root}}{[char]  the widget node in \code{fname} to start building from (or \code{NULL})}
 \item{\verb{domain}}{[char]  the translation domain for the XML file (or \code{NULL} for default)}
 }
-\value{[\verb{\link{GladeXML}}]  the newly created GladeXML object, or NULL on failure.}
+\value{[\code{\link{GladeXML}}]  the newly created GladeXML object, or NULL on failure.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

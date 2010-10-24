@@ -17,6 +17,6 @@ hscrollbar <- gtkHScrollbarNew(hadjustment)
 hscrollbar$setCompositeName("hscrollbar")
 gtkWidgetPopCompositeChild()
 hscrollbar$setParent(scrolled_window)
-}  }
+}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

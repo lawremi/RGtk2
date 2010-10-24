@@ -26,30 +26,29 @@
                                  +----GtkMenuBar
                                  +----GtkMenu}}
 \section{Interfaces}{GtkMenuShell implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{A \verb{\link{GtkMenuShell}} is the abstract base class used to derive the 
-\verb{\link{GtkMenu}} and \verb{\link{GtkMenuBar}} subclasses.  
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
+\section{Detailed Description}{A \code{\link{GtkMenuShell}} is the abstract base class used to derive the
+\code{\link{GtkMenu}} and \code{\link{GtkMenuBar}} subclasses.
   
-A \verb{\link{GtkMenuShell}} is a container of \verb{\link{GtkMenuItem}} objects arranged in a 
+A \code{\link{GtkMenuShell}} is a container of \code{\link{GtkMenuItem}} objects arranged in a
 list which can be navigated, selected, and activated by the user to perform
-application functions.  A \verb{\link{GtkMenuItem}} can have a submenu associated with it,
+application functions.  A \code{\link{GtkMenuItem}} can have a submenu associated with it,
 allowing for nested hierarchical menus.}
 \section{Structures}{\describe{\item{\verb{GtkMenuShell}}{
-The \verb{\link{GtkMenuShell}} struct contains the following fields.
+The \code{\link{GtkMenuShell}} struct contains the following fields.
 (These fields should be considered read-only. They should never be set by
 an application.)
-
-\tabular{ll}{\verb{list}   *children; \tab The list of   \verb{\link{GtkMenuItem}}   objects contained by this   \verb{\link{GtkMenuShell}}  . \cr}
+\tabular{ll}{\verb{list}   *children; \tab The list of   \code{\link{GtkMenuItem}}   objects contained by this   \code{\link{GtkMenuShell}}  . \cr}
 
 }}}
 \section{Enums and Flags}{\describe{\item{\verb{GtkMenuDirectionType}}{
 An enumeration representing directional movements within a menu.
 
-\tabular{ll}{
-GTK_MENU_DIR_PARENT \tab To the parent menu shell. \cr
-GTK_MENU_DIR_CHILD \tab To the submenu, if any, associated with the item. \cr
-GTK_MENU_DIR_NEXT \tab To the next menu item. \cr
-GTK_MENU_DIR_PREV \tab To the previous menu item. \cr
+\describe{
+\item{\verb{parent}}{To the parent menu shell.}
+\item{\verb{child}}{To the submenu, if any, associated with the item.}
+\item{\verb{next}}{To the next menu item.}
+\item{\verb{prev}}{To the previous menu item.}
 }
 
 }}}
@@ -59,9 +58,9 @@ An action signal that activates the current menu item within the menu
 shell.
 
 \describe{
-\item{\code{menushell}}{[\verb{\link{GtkMenuShell}}] the object which received the signal.}
-\item{\code{force.hide}}{[logical] if TRUE, hide the menu after activating the menu item.}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{menushell}}{the object which received the signal.}
+\item{\code{force.hide}}{if TRUE, hide the menu after activating the menu item.}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -71,8 +70,8 @@ An action signal which cancels the selection within the menu shell.
 Causes the GtkMenuShell::selection-done signal to be emitted.
 
 \describe{
-\item{\code{menushell}}{[\verb{\link{GtkMenuShell}}] the object which received the signal.}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{menushell}}{the object which received the signal.}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -82,9 +81,10 @@ Causes the GtkMenuShell::selection-done signal to be emitted.
 }
 
 \describe{
-\item{\code{menushell}}{[\verb{\link{GtkMenuShell}}] the object which received the signal.}
-\item{\code{arg1}}{[\code{\link{GtkDirectionType}}] }
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{menushell}}{the object which received the signal.}
+\item{\code{arg1}}{\emph{undocumented
+}}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -93,34 +93,33 @@ Causes the GtkMenuShell::selection-done signal to be emitted.
 This signal is emitted when a menu shell is deactivated.
 
 \describe{
-\item{\code{menushell}}{[\verb{\link{GtkMenuShell}}] the object which received the signal.}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{menushell}}{the object which received the signal.}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
 \item{\code{move-current(menushell, direction, user.data)}}{
-An action signal which moves the current menu item in the direction 
+An action signal which moves the current menu item in the direction
 specified by \code{direction}.
 
 \describe{
-\item{\code{menushell}}{[\verb{\link{GtkMenuShell}}] the object which received the signal.}
-\item{\code{direction}}{[\code{\link{GtkMenuDirectionType}}] the direction to move.}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{menushell}}{the object which received the signal.}
+\item{\code{direction}}{the direction to move.}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
 \item{\code{move-selected(menu.shell, distance, user.data)}}{
 The ::move-selected signal is emitted to move the selection to
-another item.  
-
-  Since  2.12
+another item.
+  Since 2.12
 
 \describe{
-\item{\code{menu.shell}}{[\verb{\link{GtkMenuShell}}]  the object on which the signal is emitted}
-\item{\code{distance}}{[integer]  +1 to move to the next item, -1 to move to the previous}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{menu.shell}}{the object on which the signal is emitted}
+\item{\code{distance}}{+1 to move to the next item, -1 to move to the previous}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 \emph{Returns:} [logical] \code{TRUE} to stop the signal emission, \code{FALSE} to continue
@@ -131,8 +130,8 @@ This signal is emitted when a selection has been completed within a menu
 shell.
 
 \describe{
-\item{\code{menushell}}{[\verb{\link{GtkMenuShell}}] the object which received the signal.}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{menushell}}{the object which received the signal.}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -142,11 +141,10 @@ shell.
 
 A boolean that determines whether the menu and its submenus grab the
 keyboard focus. See \code{\link{gtkMenuShellSetTakeFocus}} and
-\code{\link{gtkMenuShellGetTakeFocus}}.  
-
-  Default value: TRUE  Since  2.8
+\code{\link{gtkMenuShellGetTakeFocus}}.
+  Default value: TRUE  Since 2.8
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkMenuShell.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkMenuShell.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

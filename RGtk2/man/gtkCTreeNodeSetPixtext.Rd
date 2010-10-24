@@ -7,13 +7,19 @@ FIXME
 }
 \usage{gtkCTreeNodeSetPixtext(object, node, column, text, spacing, pixmap, mask = NULL)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkCTree}}] }
-\item{\verb{node}}{[\verb{\link{GtkCTreeNode}}] }
-\item{\verb{column}}{[integer] }
-\item{\verb{text}}{[character] }
-\item{\verb{spacing}}{[raw] }
-\item{\verb{pixmap}}{[\verb{\link{GdkPixmap}}] }
-\item{\verb{mask}}{[\verb{\link{GdkBitmap}}] }
+\item{\verb{object}}{\emph{undocumented
+}}
+\item{\verb{node}}{\emph{undocumented
+}}
+\item{\verb{column}}{\emph{undocumented
+}}
+\item{\verb{text}}{\emph{undocumented
+}}
+\item{\verb{spacing}}{\emph{undocumented
+}}
+\item{\verb{pixmap}}{\emph{undocumented
+}}
+\item{\verb{mask}}{. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -26,17 +26,17 @@
                                        +----GtkToggleButton
                                              +----GtkCheckButton}}
 \section{Interfaces}{GtkToggleButton implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{A \verb{\link{GtkToggleButton}} is a \verb{\link{GtkButton}} which will remain 'pressed-in' when
+ AtkImplementorIface,  \code{\link{GtkBuildable}} and  \code{\link{GtkActivatable}}.}
+\section{Detailed Description}{A \code{\link{GtkToggleButton}} is a \code{\link{GtkButton}} which will remain 'pressed-in' when
 clicked. Clicking again will cause the toggle button to return to its
 normal state.
   
 A toggle button is created by calling either \code{\link{gtkToggleButtonNew}} or
 \code{\link{gtkToggleButtonNewWithLabel}}. If using the former, it is advisable to
-pack a widget, (such as a \verb{\link{GtkLabel}} and/or a \verb{\link{GtkPixmap}}), into the toggle
-button's container. (See \verb{\link{GtkButton}} for more information).
+pack a widget, (such as a \code{\link{GtkLabel}} and/or a \code{\link{GtkPixmap}}), into the toggle
+button's container. (See \code{\link{GtkButton}} for more information).
   
-The state of a \verb{\link{GtkToggleButton}} can be set specifically using
+The state of a \code{\link{GtkToggleButton}} can be set specifically using
 \code{\link{gtkToggleButtonSetActive}}, and retrieved using
 \code{\link{gtkToggleButtonGetActive}}.
   
@@ -64,7 +64,7 @@ make_toggles <- function() {
 }
 }}
 \section{Structures}{\describe{\item{\verb{GtkToggleButton}}{
-The \verb{\link{GtkToggleButton}} struct contains private data only, and should be manipulated using the functions below.
+The \code{\link{GtkToggleButton}} struct contains private data only, and should be manipulated using the functions below.
 
 \describe{\item{\verb{drawIndicator}}{[logical] }}
 
@@ -72,11 +72,11 @@ The \verb{\link{GtkToggleButton}} struct contains private data only, and should 
 \section{Convenient Construction}{\code{gtkToggleButton} is the result of collapsing the constructors of \code{GtkToggleButton} (\code{\link{gtkToggleButtonNew}}, \code{\link{gtkToggleButtonNewWithLabel}}, \code{\link{gtkToggleButtonNewWithMnemonic}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{Signals}{\describe{\item{\code{toggled(togglebutton, user.data)}}{
 Should be connected if you wish to perform an action whenever the
-\verb{\link{GtkToggleButton}}'s state is changed.
+\code{\link{GtkToggleButton}}'s state is changed.
 
 \describe{
-\item{\code{togglebutton}}{[\verb{\link{GtkToggleButton}}] the object which received the signal.}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{togglebutton}}{the object which received the signal.}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -98,6 +98,6 @@ If the toggle button is in an "in between" state.  Default value: FALSE
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkToggleButton.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkToggleButton.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

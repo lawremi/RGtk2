@@ -1,2 +1,4 @@
-label <- gtkLabelNew()
-label$setMarkup("<small>Small text</small>")
+## Pressing Alt+H will focus the entry
+entry <- gtkEntry()
+label <- gtkLabelNewWithMnemonic("_Hello")
+label$setMnemonicWidget(entry)

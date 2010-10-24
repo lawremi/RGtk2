@@ -5,8 +5,8 @@
 of the entire text buffer, starting with 0.}
 \usage{gtkTextIterSetOffset(object, char.offset)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTextIter}}]  a \verb{\link{GtkTextIter}}}
-\item{\verb{char.offset}}{[integer]  a character number}
+\item{\verb{object}}{a \code{\link{GtkTextIter}}}
+\item{\verb{char.offset}}{a character number}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

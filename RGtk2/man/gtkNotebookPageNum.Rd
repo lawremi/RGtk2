@@ -5,8 +5,8 @@
 widget.}
 \usage{gtkNotebookPageNum(object, child)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkNotebook}}]  a \verb{\link{GtkNotebook}}}
-\item{\verb{child}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
+\item{\verb{object}}{a \code{\link{GtkNotebook}}}
+\item{\verb{child}}{a \code{\link{GtkWidget}}}
 }
 \value{[integer]  the index of the page containing \code{child}, or
   -1 if \code{child} is not in the notebook.}

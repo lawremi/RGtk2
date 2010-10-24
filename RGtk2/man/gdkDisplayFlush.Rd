@@ -8,10 +8,9 @@ to call this function explicitely. A common case where this function
 needs to be called is when an application is executing drawing commands
 from a thread other than the thread where the main loop is running.}
 \usage{gdkDisplayFlush(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GdkDisplay}}]  a \verb{\link{GdkDisplay}}}}
+\arguments{\item{\verb{object}}{a \code{\link{GdkDisplay}}}}
 \details{This is most useful for X11. On windowing systems where requests are
-handled synchronously, this function will do nothing.  
-
-  Since  2.4}
+handled synchronously, this function will do nothing.
+  Since 2.4}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

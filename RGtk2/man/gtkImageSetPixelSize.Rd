@@ -6,9 +6,9 @@ to a value != -1, it is used instead of the icon size set by
 \code{\link{gtkImageSetFromIconName}}.}
 \usage{gtkImageSetPixelSize(object, pixel.size)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkImage}}]  a \verb{\link{GtkImage}}}
-\item{\verb{pixel.size}}{[integer]  the new pixel size}
+\item{\verb{object}}{a \code{\link{GtkImage}}}
+\item{\verb{pixel.size}}{the new pixel size}
 }
-\details{  Since  2.6}
+\details{Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

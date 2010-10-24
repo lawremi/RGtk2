@@ -7,10 +7,10 @@ setting for the label is ignored if the label is selectable,
 wrapped, or ellipsized.}
 \usage{gtkLabelSetAngle(object, angle)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkLabel}}]  a \verb{\link{GtkLabel}}}
-\item{\verb{angle}}{[numeric]  the angle that the baseline of the label makes with
+\item{\verb{object}}{a \code{\link{GtkLabel}}}
+\item{\verb{angle}}{the angle that the baseline of the label makes with
   the horizontal, in degrees, measured counterclockwise}
 }
-\details{  Since  2.6}
+\details{Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -4,10 +4,10 @@
 \description{Gets the left margin in units of \code{unit}.}
 \usage{gtkPageSetupGetLeftMargin(object, unit)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkPageSetup}}]  a \verb{\link{GtkPageSetup}}}
-\item{\verb{unit}}{[\code{\link{GtkUnit}}]  the unit for the return value}
+\item{\verb{object}}{a \code{\link{GtkPageSetup}}}
+\item{\verb{unit}}{the unit for the return value}
 }
-\details{  Since  2.10}
+\details{Since 2.10}
 \value{[numeric]  the left margin}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

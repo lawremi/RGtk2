@@ -7,11 +7,11 @@ value has already allocated been allocated.
 \strong{WARNING: \code{gdk_color_white} is deprecated and should not be used in newly-written code.}
 }
 \usage{gdkColorWhite(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GdkColormap}}]  a \verb{\link{GdkColormap}}.}}
+\arguments{\item{\verb{object}}{a \code{\link{GdkColormap}}.}}
 \value{
 A list containing the following elements:
 \item{retval}{[integer] \code{TRUE} if the allocation succeeded.}
-\item{\verb{color}}{[\verb{\link{GdkColor}}]  the location to store the color.}
+\item{\verb{color}}{the location to store the color.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

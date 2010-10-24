@@ -9348,6 +9348,48 @@ S_gtk_link_button_get_visited(USER_OBJECT_ s_object);
 S_gtk_link_button_set_visited(USER_OBJECT_ s_object, USER_OBJECT_ s_visited); 
 
   USER_OBJECT_
+S_gtk_border_new(void); 
+
+  USER_OBJECT_
+S_gtk_test_register_all_types(void); 
+
+  USER_OBJECT_
+S_gtk_test_list_all_types(void); 
+
+  USER_OBJECT_
+S_gtk_test_find_widget(USER_OBJECT_ s_widget, USER_OBJECT_ s_label_pattern, USER_OBJECT_ s_widget_type); 
+
+  USER_OBJECT_
+S_gtk_test_create_simple_window(USER_OBJECT_ s_window_title, USER_OBJECT_ s_dialog_text); 
+
+  USER_OBJECT_
+S_gtk_test_slider_set_perc(USER_OBJECT_ s_widget, USER_OBJECT_ s_percentage); 
+
+  USER_OBJECT_
+S_gtk_test_slider_get_value(USER_OBJECT_ s_widget); 
+
+  USER_OBJECT_
+S_gtk_test_spin_button_click(USER_OBJECT_ s_spinner, USER_OBJECT_ s_button, USER_OBJECT_ s_upwards); 
+
+  USER_OBJECT_
+S_gtk_test_widget_click(USER_OBJECT_ s_widget, USER_OBJECT_ s_button, USER_OBJECT_ s_modifiers); 
+
+  USER_OBJECT_
+S_gtk_test_widget_send_key(USER_OBJECT_ s_widget, USER_OBJECT_ s_keyval, USER_OBJECT_ s_modifiers); 
+
+  USER_OBJECT_
+S_gtk_test_text_set(USER_OBJECT_ s_widget, USER_OBJECT_ s_string); 
+
+  USER_OBJECT_
+S_gtk_test_text_get(USER_OBJECT_ s_widget); 
+
+  USER_OBJECT_
+S_gtk_test_find_sibling(USER_OBJECT_ s_base_widget, USER_OBJECT_ s_widget_type); 
+
+  USER_OBJECT_
+S_gtk_test_find_label(USER_OBJECT_ s_widget, USER_OBJECT_ s_label_pattern); 
+
+  USER_OBJECT_
 S_gtk_action_block_activate(USER_OBJECT_ s_object); 
 
   USER_OBJECT_

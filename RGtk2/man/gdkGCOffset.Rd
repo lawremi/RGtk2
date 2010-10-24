@@ -7,9 +7,9 @@ the offset GC  has the same effect as drawing at x, y with the original
 GC.}
 \usage{gdkGCOffset(object, x.offset, y.offset)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GdkGC}}]  a \verb{\link{GdkGC}}}
-\item{\verb{x.offset}}{[integer]  amount by which to offset the GC in the X direction}
-\item{\verb{y.offset}}{[integer]  amount by which to offset the GC in the Y direction}
+\item{\verb{object}}{a \code{\link{GdkGC}}}
+\item{\verb{x.offset}}{amount by which to offset the GC in the X direction}
+\item{\verb{y.offset}}{amount by which to offset the GC in the Y direction}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

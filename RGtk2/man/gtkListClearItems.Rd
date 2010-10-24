@@ -11,9 +11,9 @@ done.
 }
 \usage{gtkListClearItems(object, start, end)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkList}}] the list widget.}
-\item{\verb{start}}{[integer] the index of the first item to remove.}
-\item{\verb{end}}{[integer] the index of the lest item to remove plus one.}
+\item{\verb{object}}{the list widget.}
+\item{\verb{start}}{the index of the first item to remove.}
+\item{\verb{end}}{the index of the lest item to remove plus one.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

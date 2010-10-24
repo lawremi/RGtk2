@@ -5,9 +5,9 @@
 See \verb{"translation-domain"}.}
 \usage{gtkBuilderSetTranslationDomain(object, domain)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkBuilder}}]  a \verb{\link{GtkBuilder}}}
-\item{\verb{domain}}{[character]  the translation domain or \code{NULL}}
+\item{\verb{object}}{a \code{\link{GtkBuilder}}}
+\item{\verb{domain}}{ the translation domain or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
-\details{  Since  2.12}
+\details{Since 2.12}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

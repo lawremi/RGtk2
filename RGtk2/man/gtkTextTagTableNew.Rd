@@ -1,9 +1,9 @@
 \alias{gtkTextTagTableNew}
 \name{gtkTextTagTableNew}
 \title{gtkTextTagTableNew}
-\description{Creates a new \verb{\link{GtkTextTagTable}}. The table contains no tags by
+\description{Creates a new \code{\link{GtkTextTagTable}}. The table contains no tags by
 default.}
 \usage{gtkTextTagTableNew()}
-\value{[\verb{\link{GtkTextTagTable}}]  a new \verb{\link{GtkTextTagTable}}}
+\value{[\code{\link{GtkTextTagTable}}]  a new \code{\link{GtkTextTagTable}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

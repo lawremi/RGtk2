@@ -25,27 +25,29 @@
 \code{\link{gtkPageSetupGetPageHeight}(object, unit)}\cr
 \code{\link{gtkPageSetupNewFromFile}(file.name, .errwarn = TRUE)}\cr
 \code{\link{gtkPageSetupNewFromKeyFile}(key.file, group.name, .errwarn = TRUE)}\cr
+\code{\link{gtkPageSetupLoadFile}(object, file.name, .errwarn = TRUE)}\cr
+\code{\link{gtkPageSetupLoadKeyFile}(object, key.file, group.name, .errwarn = TRUE)}\cr
 \code{\link{gtkPageSetupToFile}(object, file.name, .errwarn = TRUE)}\cr
 \code{\link{gtkPageSetupToKeyFile}(object, key.file, group.name)}\cr
 \code{gtkPageSetup()}
 }
 \section{Hierarchy}{\preformatted{GObject
    +----GtkPageSetup}}
-\section{Detailed Description}{A GtkPageSetup object stores the page size, orientation and margins. 
-The idea is that you can get one of these from the page setup dialog 
-and then pass it to the \verb{\link{GtkPrintOperation}} when printing. 
-The benefit of splitting this out of the \verb{\link{GtkPrintSettings}} is that 
-these affect the actual layout of the page, and thus need to be set 
-long before user prints. 
+\section{Detailed Description}{A GtkPageSetup object stores the page size, orientation and margins.
+The idea is that you can get one of these from the page setup dialog
+and then pass it to the \code{\link{GtkPrintOperation}} when printing.
+The benefit of splitting this out of the \code{\link{GtkPrintSettings}} is that
+these affect the actual layout of the page, and thus need to be set
+long before user prints.
   
-The margins specified in this object are the "print margins", i.e. the 
+The margins specified in this object are the "print margins", i.e. the
 parts of the page that the printer cannot print on. These are different
 from the layout margins that a word processor uses; they are typically
-used to determine the \emph{minimal} size for the layout 
+used to determine the \emph{minimal} size for the layout
 margins.
   
-To obtain a \verb{\link{GtkPageSetup}} use \code{\link{gtkPageSetupNew}}
-to get the defaults, or use \code{\link{gtkPrintRunPageSetupDialog}} to show 
+To obtain a \code{\link{GtkPageSetup}} use \code{\link{gtkPageSetupNew}}
+to get the defaults, or use \code{\link{gtkPrintRunPageSetupDialog}} to show
 the page setup dialog and receive the resulting page setup.
   
  \emph{A page setup dialog}
@@ -69,6 +71,6 @@ Printing support was added in GTK+ 2.10.}
 
 }}}
 \section{Convenient Construction}{\code{gtkPageSetup} is the equivalent of \code{\link{gtkPageSetupNew}}.}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkPageSetup.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkPageSetup.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -1,18 +1,18 @@
 \alias{gtkAspectFrameSet}
 \name{gtkAspectFrameSet}
 \title{gtkAspectFrameSet}
-\description{Set parameters for an existing \verb{\link{GtkAspectFrame}}.}
+\description{Set parameters for an existing \code{\link{GtkAspectFrame}}.}
 \usage{gtkAspectFrameSet(object, xalign = 0, yalign = 0, ratio = 1, obey.child = 1)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkAspectFrame}}] a \verb{\link{GtkAspectFrame}}}
-\item{\verb{xalign}}{[numeric] Horizontal alignment of the child within the allocation of
-the \verb{\link{GtkAspectFrame}}. This ranges from 0.0 (left aligned)
+\item{\verb{object}}{a \code{\link{GtkAspectFrame}}}
+\item{\verb{xalign}}{Horizontal alignment of the child within the allocation of
+the \code{\link{GtkAspectFrame}}. This ranges from 0.0 (left aligned)
 to 1.0 (right aligned)}
-\item{\verb{yalign}}{[numeric] Vertical alignment of the child within the allocation of
-the \verb{\link{GtkAspectFrame}}. This ranges from 0.0 (left aligned)
+\item{\verb{yalign}}{Vertical alignment of the child within the allocation of
+the \code{\link{GtkAspectFrame}}. This ranges from 0.0 (left aligned)
 to 1.0 (right aligned)}
-\item{\verb{ratio}}{[numeric] The desired aspect ratio.}
-\item{\verb{obey.child}}{[logical] If \code{TRUE}, \code{ratio} is ignored, and the aspect
+\item{\verb{ratio}}{The desired aspect ratio.}
+\item{\verb{obey.child}}{If \code{TRUE}, \code{ratio} is ignored, and the aspect
     ratio is taken from the requistion of the child.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

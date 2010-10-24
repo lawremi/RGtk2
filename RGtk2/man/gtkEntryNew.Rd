@@ -3,6 +3,6 @@
 \title{gtkEntryNew}
 \description{Creates a new entry.}
 \usage{gtkEntryNew(show = TRUE)}
-\value{[\verb{\link{GtkWidget}}]  a new \verb{\link{GtkEntry}}.}
+\value{[\code{\link{GtkWidget}}]  a new \code{\link{GtkEntry}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

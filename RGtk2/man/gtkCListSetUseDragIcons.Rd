@@ -8,8 +8,8 @@ doing drag-and-drop operations.
 }
 \usage{gtkCListSetUseDragIcons(object, use.icons)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkCList}}] The \verb{\link{GtkCList}} to affect.}
-\item{\verb{use.icons}}{[logical] \code{TRUE} or \code{FALSE}.}
+\item{\verb{object}}{The \code{\link{GtkCList}} to affect.}
+\item{\verb{use.icons}}{\code{TRUE} or \code{FALSE}.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -8,8 +8,8 @@ version of glade_xml_signal_autoconnect, except that it does not
 require gmodule to function correctly.}
 \usage{gladeXMLSignalAutoconnectFull(object, func, user.data)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GladeXML}}]  the GladeXML object.}
-\item{\verb{func}}{[\verb{\link{GladeXMLConnectFunc}}]  the function used to connect the signals.}
+\item{\verb{object}}{[\code{\link{GladeXML}}]  the GladeXML object.}
+\item{\verb{func}}{[\code{\link{GladeXMLConnectFunc}}]  the function used to connect the signals.}
 \item{\verb{user.data}}{[R object]  arbitrary data that will be passed to the connection function.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

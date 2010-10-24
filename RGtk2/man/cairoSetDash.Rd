@@ -8,7 +8,7 @@ stroke. The \code{offset} specifies an offset into the pattern at which
 the stroke begins.}
 \usage{cairoSetDash(cr, dashes, offset)}
 \arguments{
-\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}
+\item{\verb{cr}}{[\code{\link{Cairo}}]  a cairo context}
 \item{\verb{dashes}}{[numeric]  a list specifying alternate lengths of on and off stroke portions}
 \item{\verb{offset}}{[numeric]  an offset into the dash pattern at which the stroke should start}
 }
@@ -29,6 +29,6 @@ on and off portions of the size specified by the single value in
   
 If any value in \code{dashes} is negative, or if all values are 0, then
 \code{cr} will be put into an error state with a status of
-#\code{CAIRO_STATUS_INVALID_DASH}.  }
+\code{CAIRO_STATUS_INVALID_DASH}.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

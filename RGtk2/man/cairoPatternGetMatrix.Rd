@@ -4,8 +4,8 @@
 \description{Stores the pattern's transformation matrix into \code{matrix}.}
 \usage{cairoPatternGetMatrix(pattern, matrix)}
 \arguments{
-\item{\verb{pattern}}{[\verb{\link{CairoPattern}}]  a \verb{\link{CairoPattern}}}
-\item{\verb{matrix}}{[\verb{\link{CairoMatrix}}]  return value for the matrix}
+\item{\verb{pattern}}{[\code{\link{CairoPattern}}]  a \code{\link{CairoPattern}}}
+\item{\verb{matrix}}{[\code{\link{CairoMatrix}}]  return value for the matrix}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

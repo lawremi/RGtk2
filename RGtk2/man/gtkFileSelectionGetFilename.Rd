@@ -9,8 +9,8 @@ be copied if you plan to keep it around.
 \strong{WARNING: \code{gtk_file_selection_get_filename} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkFileSelectionGetFilename(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkFileSelection}}]  a \verb{\link{GtkFileSelection}}}}
-\details{If no file is selected then the selected directory path is returned.  }
+\arguments{\item{\verb{object}}{a \code{\link{GtkFileSelection}}}}
+\details{If no file is selected then the selected directory path is returned.}
 \value{[character]  currently-selected filename in the on-disk encoding.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

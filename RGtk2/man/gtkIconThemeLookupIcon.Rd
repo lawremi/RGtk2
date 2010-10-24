@@ -8,13 +8,13 @@ can then be rendered into a pixbuf using
 combines these two steps if all you need is the pixbuf.)}
 \usage{gtkIconThemeLookupIcon(object, icon.name, size, flags)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkIconTheme}}]  a \verb{\link{GtkIconTheme}}}
-\item{\verb{icon.name}}{[character]  the name of the icon to lookup}
-\item{\verb{size}}{[integer]  desired icon size}
-\item{\verb{flags}}{[\code{\link{GtkIconLookupFlags}}]  flags modifying the behavior of the icon lookup}
+\item{\verb{object}}{a \code{\link{GtkIconTheme}}}
+\item{\verb{icon.name}}{the name of the icon to lookup}
+\item{\verb{size}}{desired icon size}
+\item{\verb{flags}}{flags modifying the behavior of the icon lookup}
 }
-\details{  Since  2.4}
-\value{[\verb{\link{GtkIconInfo}}]  a \verb{\link{GtkIconInfo}} structure containing information
-about the icon, or \code{NULL} if the icon wasn't found}
+\details{Since 2.4}
+\value{[\code{\link{GtkIconInfo}}]  a \code{\link{GtkIconInfo}} structure containing information
+about the icon, or \code{NULL} if the icon wasn't found.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

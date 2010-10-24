@@ -6,10 +6,10 @@ The type of \code{value} must be convertible to the type of the
 column.}
 \usage{gtkTreeStoreSetValue(object, iter, column, value)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTreeStore}}]  a \verb{\link{GtkTreeStore}}}
-\item{\verb{iter}}{[\verb{\link{GtkTreeIter}}]  A valid \verb{\link{GtkTreeIter}} for the row being modified}
-\item{\verb{column}}{[integer]  column number to modify}
-\item{\verb{value}}{[R object]  new value for the cell}
+\item{\verb{object}}{a \code{\link{GtkTreeStore}}}
+\item{\verb{iter}}{A valid \code{\link{GtkTreeIter}} for the row being modified}
+\item{\verb{column}}{column number to modify}
+\item{\verb{value}}{new value for the cell}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

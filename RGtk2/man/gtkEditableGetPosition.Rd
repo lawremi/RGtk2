@@ -1,14 +1,11 @@
 \alias{gtkEditableGetPosition}
 \name{gtkEditableGetPosition}
 \title{gtkEditableGetPosition}
-\description{Retrieves the current cursor position.}
+\description{Retrieves the current position of the cursor relative to the start
+of the content of the editable. }
 \usage{gtkEditableGetPosition(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkEditable}}] a \verb{\link{GtkEditable}} widget.}}
-\value{[integer] the position of the cursor. The cursor is displayed
-           before the character with the given (base 0) index
-           in the widget. The value will be less than or
-           equal to the number of characters in the widget.
-           Note that this position is in characters, not in
-           bytes.}
+\arguments{\item{\verb{object}}{a \code{\link{GtkEditable}}}}
+\details{Note that this position is in characters, not in bytes.}
+\value{[integer]  the cursor position}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

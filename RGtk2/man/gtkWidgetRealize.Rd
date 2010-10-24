@@ -7,7 +7,7 @@ is realized.  Normally realization happens implicitly; if you show
 a widget and all its parent containers, then the widget will be
 realized and mapped automatically.}
 \usage{gtkWidgetRealize(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}}
+\arguments{\item{\verb{object}}{a \code{\link{GtkWidget}}}}
 \details{Realizing a widget requires all
 the widget's parent widgets to be realized; calling
 \code{\link{gtkWidgetRealize}} realizes the widget's parents in addition to
@@ -18,7 +18,7 @@ This function is primarily used in widget implementations, and
 isn't very useful otherwise. Many times when you think you might
 need it, a better approach is to connect to a signal that will be
 called after the widget is realized automatically, such as
-GtkWidget::expose-event. Or simply \code{gSignalConnectAfter()} to the
-GtkWidget::realize signal.  }
+GtkWidget::expose-event. Or simply \code{\link{gSignalConnect}} to the
+GtkWidget::realize signal.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

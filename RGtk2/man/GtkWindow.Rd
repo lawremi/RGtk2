@@ -34,6 +34,7 @@
 \code{\link{gtkWindowPropagateKeyEvent}(object, event)}\cr
 \code{\link{gtkWindowGetFocus}(object)}\cr
 \code{\link{gtkWindowSetFocus}(object, focus = NULL)}\cr
+\code{\link{gtkWindowGetDefaultWidget}(object)}\cr
 \code{\link{gtkWindowSetDefault}(object, default.widget = NULL)}\cr
 \code{\link{gtkWindowPresent}(object)}\cr
 \code{\link{gtkWindowPresentWithTime}(object, timestamp)}\cr
@@ -54,7 +55,6 @@
 \code{\link{gtkWindowSetFrameDimensions}(object, left, top, right, bottom)}\cr
 \code{\link{gtkWindowSetHasFrame}(object, setting)}\cr
 \code{\link{gtkWindowSetMnemonicModifier}(object, modifier)}\cr
-\code{\link{gtkWindowSetRole}(object, role)}\cr
 \code{\link{gtkWindowSetTypeHint}(object, hint)}\cr
 \code{\link{gtkWindowSetSkipTaskbarHint}(object, setting)}\cr
 \code{\link{gtkWindowSetSkipPagerHint}(object, setting)}\cr
@@ -66,6 +66,7 @@
 \code{\link{gtkWindowGetDecorated}(object)}\cr
 \code{\link{gtkWindowGetDeletable}(object)}\cr
 \code{\link{gtkWindowGetDefaultIconList}()}\cr
+\code{\link{gtkWindowGetDefaultIconName}()}\cr
 \code{\link{gtkWindowGetDefaultSize}(object)}\cr
 \code{\link{gtkWindowGetDestroyWithParent}(object)}\cr
 \code{\link{gtkWindowGetFrameDimensions}(object)}\cr
@@ -87,6 +88,7 @@
 \code{\link{gtkWindowGetAcceptFocus}(object)}\cr
 \code{\link{gtkWindowGetFocusOnMap}(object)}\cr
 \code{\link{gtkWindowGetGroup}(object)}\cr
+\code{\link{gtkWindowGetWindowType}(object)}\cr
 \code{\link{gtkWindowMove}(object, x, y)}\cr
 \code{\link{gtkWindowReshowWithInitialSize}(object)}\cr
 \code{\link{gtkWindowResize}(object, width, height)}\cr
@@ -101,6 +103,8 @@
 \code{\link{gtkWindowSetAutoStartupNotification}(setting)}\cr
 \code{\link{gtkWindowGetOpacity}(object)}\cr
 \code{\link{gtkWindowSetOpacity}(object, opacity)}\cr
+\code{\link{gtkWindowGetMnemonicsVisible}(object)}\cr
+\code{\link{gtkWindowSetMnemonicsVisible}(object, setting)}\cr
 \code{gtkWindow(type = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{GObject
@@ -112,9 +116,23 @@
                                  +----GtkWindow
                                        +----GtkDialog
                                        +----GtkAssistant
+                                       +----GtkOffscreenWindow
                                        +----GtkPlug}}
 \section{Interfaces}{GtkWindow implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
+\section{GtkWindow as GtkBuildable}{The GtkWindow implementation of the GtkBuildable interface supports a
+custom <accel-groups> element, which supports any number of <group>
+elements representing the GtkAccelGroup objects you want to add to your
+window (synonymous with \code{\link{gtkWindowAddAccelGroup}}.
+  
+ \emph{A UI definition fragment with accel groups}\preformatted{<object class="GtkWindow">
+  <accel-groups>
+    <group name="accelgroup1"/>
+  </accel-groups>
+</object>
+...
+<object class="GtkAccelGroup" id="accelgroup1"/>
+}}
 \section{Structures}{\describe{\item{\verb{GtkWindow}}{
 \emph{undocumented
 }
@@ -124,11 +142,11 @@
 \item{\verb{wmclassName}}{[character] }
 \item{\verb{wmclassClass}}{[character] }
 \item{\verb{wmRole}}{[character] }
-\item{\verb{focusWidget}}{[\verb{\link{GtkWidget}}] }
-\item{\verb{defaultWidget}}{[\verb{\link{GtkWidget}}] }
-\item{\verb{transientParent}}{[\verb{\link{GtkWindow}}] }
-\item{\verb{frame}}{[\verb{\link{GdkWindow}}] }
-\item{\verb{group}}{[\verb{\link{GtkWindowGroup}}] }
+\item{\verb{focusWidget}}{[\code{\link{GtkWidget}}] }
+\item{\verb{defaultWidget}}{[\code{\link{GtkWidget}}] }
+\item{\verb{transientParent}}{[\code{\link{GtkWindow}}] }
+\item{\verb{frame}}{[\code{\link{GdkWindow}}] }
+\item{\verb{group}}{[\code{\link{GtkWindowGroup}}] }
 \item{\verb{configureRequestCount}}{[integer] }
 \item{\verb{allowShrink}}{[numeric] }
 \item{\verb{allowGrow}}{[numeric] }
@@ -160,23 +178,27 @@
 \section{Convenient Construction}{\code{gtkWindow} is the equivalent of \code{\link{gtkWindowNew}}.}
 \section{Signals}{\describe{
 \item{\code{activate-default(window, user.data)}}{
-\emph{undocumented
-}
+The ::activate-default signal is a
+keybinding signal
+which gets emitted when the user activates the default widget
+of \code{window}.
 
 \describe{
-\item{\code{window}}{[\verb{\link{GtkWindow}}] the object which received the signal.}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{window}}{the window which received the signal}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
 \item{\code{activate-focus(window, user.data)}}{
-\emph{undocumented
-}
+The ::activate-default signal is a
+keybinding signal
+which gets emitted when the user activates the currently
+focused widget of \code{window}.
 
 \describe{
-\item{\code{window}}{[\verb{\link{GtkWindow}}] the object which received the signal.}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{window}}{the window which received the signal}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -186,20 +208,21 @@
 }
 
 \describe{
-\item{\code{window}}{[\verb{\link{GtkWindow}}] the object which received the signal.}
-\item{\code{event}}{[\verb{\link{GdkEvent}}] }
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{window}}{the object which received the signal.}
+\item{\code{event}}{\emph{undocumented
+}}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
 \item{\code{keys-changed(window, user.data)}}{
-\emph{undocumented
-}
+The ::keys-changed signal gets emitted when the set of accelerators
+or mnemonics that are associated with \code{window} changes.
 
 \describe{
-\item{\code{window}}{[\verb{\link{GtkWindow}}] the object which received the signal.}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{window}}{the window which received the signal}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -209,9 +232,10 @@
 }
 
 \describe{
-\item{\code{window}}{[\verb{\link{GtkWindow}}] the object which received the signal.}
-\item{\code{widget}}{[\verb{\link{GtkWidget}}] }
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{window}}{the object which received the signal.}
+\item{\code{widget}}{\emph{undocumented
+}}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -220,7 +244,8 @@
 \section{Properties}{\describe{
 \item{\verb{accept-focus} [logical : Read / Write]}{
 
-TRUE if the window should receive the input focus.  Default value: TRUE
+Whether the window should receive the input focus.
+  Default value: TRUE  Since 2.4
 
 }
 \item{\verb{allow-grow} [logical : Read / Write]}{
@@ -235,9 +260,8 @@ If TRUE, the window has no mimimum size. Setting this to TRUE is 99\% of the tim
 }
 \item{\verb{decorated} [logical : Read / Write]}{
 
-Whether the window should be decorated by the window manager.  
-
-  Default value: TRUE  Since  2.4
+Whether the window should be decorated by the window manager.
+  Default value: TRUE  Since 2.4
 
 }
 \item{\verb{default-height} [integer : Read / Write]}{
@@ -252,9 +276,8 @@ The default width of the window, used when initially showing the window.  Allowe
 }
 \item{\verb{deletable} [logical : Read / Write]}{
 
-Whether the window frame should have a close button.  
-
-  Default value: TRUE  Since  2.10
+Whether the window frame should have a close button.
+  Default value: TRUE  Since 2.10
 
 }
 \item{\verb{destroy-with-parent} [logical : Read / Write]}{
@@ -264,15 +287,15 @@ If this window should be destroyed when the parent is destroyed.  Default value:
 }
 \item{\verb{focus-on-map} [logical : Read / Write]}{
 
-TRUE if the window should receive the input focus when mapped.  Default value: TRUE
+Whether the window should receive the input focus when mapped.
+  Default value: TRUE  Since 2.6
 
 }
 \item{\verb{gravity} [\code{\link{GdkGravity}} : Read / Write]}{
 
 The window gravity of the window. See \code{\link{gtkWindowMove}} and \code{\link{GdkGravity}} for
-more details about window gravity.  
-
-  Default value: GDK_GRAVITY_NORTH_WEST  Since  2.4
+more details about window gravity.
+  Default value: GDK_GRAVITY_NORTH_WEST  Since 2.4
 
 }
 \item{\verb{has-toplevel-focus} [logical : Read]}{
@@ -280,7 +303,7 @@ more details about window gravity.
 Whether the input focus is within this GtkWindow.  Default value: FALSE
 
 }
-\item{\verb{icon} [\verb{\link{GdkPixbuf}} : *            : Read / Write]}{
+\item{\verb{icon} [\code{\link{GdkPixbuf}} : *            : Read / Write]}{
 
 Icon for this window.
 
@@ -288,14 +311,18 @@ Icon for this window.
 \item{\verb{icon-name} [character : *                : Read / Write]}{
 
 The :icon-name property specifies the name of the themed icon to
-use as the window icon. See \verb{\link{GtkIconTheme}} for more details.  
-
-  Default value: NULL  Since  2.6
+use as the window icon. See \code{\link{GtkIconTheme}} for more details.
+  Default value: NULL  Since 2.6
 
 }
 \item{\verb{is-active} [logical : Read]}{
 
 Whether the toplevel is the current active window.  Default value: FALSE
+
+}
+\item{\verb{mnemonics-visible} [logical : Read / Write]}{
+
+Whether mnemonics are currently visible in this window.  Default value: TRUE
 
 }
 \item{\verb{modal} [logical : Read / Write]}{
@@ -306,9 +333,8 @@ If TRUE, the window is modal (other windows are not usable while this one is up)
 \item{\verb{opacity} [numeric : Read / Write]}{
 
 The requested opacity of the window. See \code{\link{gtkWindowSetOpacity}} for
-more details about window opacity.  
-
-  Allowed values: [0,1]  Default value: 1  Since  2.12
+more details about window opacity.
+  Allowed values: [0,1]  Default value: 1  Since 2.12
 
 }
 \item{\verb{resizable} [logical : Read / Write]}{
@@ -321,7 +347,7 @@ If TRUE, users can resize the window.  Default value: TRUE
 Unique identifier for the window to be used when restoring a session.  Default value: NULL
 
 }
-\item{\verb{screen} [\verb{\link{GdkScreen}} : *            : Read / Write]}{
+\item{\verb{screen} [\code{\link{GdkScreen}} : *            : Read / Write]}{
 
 The screen where this window will be displayed.
 
@@ -340,9 +366,8 @@ TRUE if the window should not be in the task bar.  Default value: FALSE
 
 The :startup-id is a write-only property for setting window's
 startup notification identifier. See \code{\link{gtkWindowSetStartupId}}
-for more details.  
-
-  Default value: NULL  Since  2.12
+for more details.
+  Default value: NULL  Since 2.12
 
 }
 \item{\verb{title} [character : *                : Read / Write]}{
@@ -350,12 +375,11 @@ for more details.
 The title of the window.  Default value: NULL
 
 }
-\item{\verb{transient-for} [\verb{\link{GtkWindow}} : *            : Read / Write / Construct]}{
+\item{\verb{transient-for} [\code{\link{GtkWindow}} : *            : Read / Write / Construct]}{
 
 The transient parent of the window. See \code{\link{gtkWindowSetTransientFor}} for
-more details about transient windows.  
-
-  Since  2.10
+more details about transient windows.
+  Since 2.10
 
 }
 \item{\verb{type} [\code{\link{GtkWindowType}} : Read / Write / Construct Only]}{
@@ -379,6 +403,6 @@ The initial position of the window.  Default value: GTK_WIN_POS_NONE
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkWindow.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkWindow.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

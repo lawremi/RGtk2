@@ -7,7 +7,7 @@ are added with \code{info} = 0. If you need another value,
 use \code{\link{gtkTargetListAddImageTargets}} and
 \code{\link{gtkDragSourceSetTargetList}}.}
 \usage{gtkDragSourceAddImageTargets(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}} that's is a drag source}}
-\details{  Since  2.6}
+\arguments{\item{\verb{object}}{a \code{\link{GtkWidget}} that's is a drag source}}
+\details{Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

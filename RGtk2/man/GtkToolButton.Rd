@@ -5,7 +5,7 @@
 \description{A GtkToolItem subclass that displays buttons}
 \section{Methods and Functions}{
 \code{\link{gtkToolButtonNew}(icon.widget = NULL, label = NULL, show = TRUE)}\cr
-\code{\link{gtkToolButtonNewFromStock}(stock.id)}\cr
+\code{\link{gtkToolButtonNewFromStock}(stock.id, show = TRUE)}\cr
 \code{\link{gtkToolButtonSetLabel}(object, label = NULL)}\cr
 \code{\link{gtkToolButtonGetLabel}(object)}\cr
 \code{\link{gtkToolButtonSetUseUnderline}(object, use.underline)}\cr
@@ -18,7 +18,7 @@
 \code{\link{gtkToolButtonGetIconWidget}(object)}\cr
 \code{\link{gtkToolButtonSetLabelWidget}(object, label.widget = NULL)}\cr
 \code{\link{gtkToolButtonGetLabelWidget}(object)}\cr
-\code{gtkToolButton(icon.widget = NULL, label = NULL, show = TRUE)}
+\code{gtkToolButton(icon.widget = NULL, label = NULL, stock.id, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
@@ -31,38 +31,38 @@
                                              +----GtkMenuToolButton
                                              +----GtkToggleToolButton}}
 \section{Interfaces}{GtkToolButton implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{\verb{\link{GtkToolButton}}s are \verb{GtkToolItems} containing buttons.
+ AtkImplementorIface,  \code{\link{GtkBuildable}} and  \code{\link{GtkActivatable}}.}
+\section{Detailed Description}{\code{\link{GtkToolButton}}s are \verb{GtkToolItems} containing buttons.
   
-Use \code{\link{gtkToolButtonNew}} to create a new \verb{\link{GtkToolButton}}. Use
-\code{gtkToolButtonNewWithStock()} to create a \verb{\link{GtkToolButton}}
+Use \code{\link{gtkToolButtonNew}} to create a new \code{\link{GtkToolButton}}. Use
+\code{gtkToolButtonNewWithStock()} to create a \code{\link{GtkToolButton}}
 containing a stock item.
   
-The label of a \verb{\link{GtkToolButton}} is determined by the properties
-"label_widget", "label", and "stock_id". If "label_widget" is
+The label of a \code{\link{GtkToolButton}} is determined by the properties
+"label-widget", "label", and "stock-id". If "label-widget" is
 non-\code{NULL}, then that widget is used as the label. Otherwise, if
 "label" is non-\code{NULL}, that string is used as the label. Otherwise, if
-"stock_id" is non-\code{NULL}, the label is determined by the stock
+"stock-id" is non-\code{NULL}, the label is determined by the stock
 item. Otherwise, the button does not have a label.
   
-The icon of a \verb{\link{GtkToolButton}} is determined by the properties
-"icon_widget" and "stock_id". If "icon_widget" is non-\code{NULL}, then
-that widget is used as the icon. Otherwise, if "stock_id" is
+The icon of a \code{\link{GtkToolButton}} is determined by the properties
+"icon-widget" and "stock-id". If "icon-widget" is non-\code{NULL}, then
+that widget is used as the icon. Otherwise, if "stock-id" is
 non-\code{NULL}, the icon is determined by the stock item. Otherwise,
-the button does not have a label.}
+the button does not have a icon.}
 \section{Structures}{\describe{\item{\verb{GtkToolButton}}{
-The \verb{\link{GtkToolButton}} struct contains only private. It should only be
+The \code{\link{GtkToolButton}} struct contains only private. It should only be
 accessed with the function described below.
 
 }}}
-\section{Convenient Construction}{\code{gtkToolButton} is the equivalent of \code{\link{gtkToolButtonNew}}.}
+\section{Convenient Construction}{\code{gtkToolButton} is the result of collapsing the constructors of \code{GtkToolButton} (\code{\link{gtkToolButtonNew}}, \code{\link{gtkToolButtonNewFromStock}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{Signals}{\describe{\item{\code{clicked(toolbutton, user.data)}}{
 This signal is emitted when the tool button is clicked with the mouse
-or activated with the keyboard.  
+or activated with the keyboard.
 
 \describe{
-\item{\code{toolbutton}}{[\verb{\link{GtkToolButton}}]  the object that emitted the signal}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{toolbutton}}{the object that emitted the signal}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -71,13 +71,12 @@ or activated with the keyboard.
 \item{\verb{icon-name} [character : *                : Read / Write]}{
 
 The name of the themed icon displayed on the item.
-This property only has an effect if not overridden by "label", 
-"icon_widget" or "stock_id" properties.  
-
-  Default value: NULL  Since  2.8 
+This property only has an effect if not overridden by "label",
+"icon_widget" or "stock_id" properties.
+  Default value: NULL  Since 2.8
 
 }
-\item{\verb{icon-widget} [\verb{\link{GtkWidget}} : *            : Read / Write]}{
+\item{\verb{icon-widget} [\code{\link{GtkWidget}} : *            : Read / Write]}{
 
 Icon widget to display in the item.
 
@@ -87,7 +86,7 @@ Icon widget to display in the item.
 Text to show in the item.  Default value: NULL
 
 }
-\item{\verb{label-widget} [\verb{\link{GtkWidget}} : *            : Read / Write]}{
+\item{\verb{label-widget} [\code{\link{GtkWidget}} : *            : Read / Write]}{
 
 Widget to use as the item label.
 
@@ -105,9 +104,9 @@ If set, an underline in the label property indicates that the next character sho
 }}
 \section{Style Properties}{\describe{\item{\verb{icon-spacing} [integer : Read / Write]}{
 
-Spacing in pixels between the icon and label.  Allowed values: >= 0  Default value: 0
+Spacing in pixels between the icon and label.  Allowed values: >= 0  Default value: 3
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkToolButton.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkToolButton.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

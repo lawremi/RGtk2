@@ -6,10 +6,10 @@ folder of \code{chooser}, then the current folder of \code{chooser} will
 be changed to the folder containing \code{filename}.}
 \usage{gtkFileChooserSelectFilename(object, filename)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkFileChooser}}]  a \verb{\link{GtkFileChooser}}}
-\item{\verb{filename}}{[char]  the filename to select}
+\item{\verb{object}}{a \code{\link{GtkFileChooser}}}
+\item{\verb{filename}}{the filename to select}
 }
-\details{  Since  2.4}
+\details{Since 2.4}
 \value{[logical] \code{TRUE} if both the folder could be changed and the file was
 selected successfully, \code{FALSE} otherwise.}
 \author{Derived by RGtkGen from GTK+ documentation}

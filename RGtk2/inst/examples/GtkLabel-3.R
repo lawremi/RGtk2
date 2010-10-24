@@ -1,4 +1,2 @@
-# Pressing Alt+H will focus the entry
-entry <- gtkEntry()
-label <- gtkLabelNewWithMnemonic("_Hello")
-label$setMnemonicWidget(entry)
+## Pressing Alt+H will activate this button
+button <- gtkButtonNewWithMnemonic("_Hello")

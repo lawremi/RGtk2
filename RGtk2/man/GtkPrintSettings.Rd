@@ -5,6 +5,7 @@
 \alias{GtkPageOrientation}
 \alias{GtkPrintDuplex}
 \alias{GtkPrintQuality}
+\alias{GtkNumberUpLayout}
 \alias{GtkPrintPages}
 \alias{GtkPageSet}
 \name{GtkPrintSettings}
@@ -52,8 +53,15 @@
 \code{\link{gtkPrintSettingsSetNCopies}(object, num.copies)}\cr
 \code{\link{gtkPrintSettingsGetNumberUp}(object)}\cr
 \code{\link{gtkPrintSettingsSetNumberUp}(object, number.up)}\cr
+\code{\link{gtkPrintSettingsGetNumberUpLayout}(object)}\cr
+\code{\link{gtkPrintSettingsSetNumberUpLayout}(object, number.up.layout)}\cr
 \code{\link{gtkPrintSettingsGetResolution}(object)}\cr
 \code{\link{gtkPrintSettingsSetResolution}(object, resolution)}\cr
+\code{\link{gtkPrintSettingsSetResolutionXy}(object, resolution.x, resolution.y)}\cr
+\code{\link{gtkPrintSettingsGetResolutionX}(object)}\cr
+\code{\link{gtkPrintSettingsGetResolutionY}(object)}\cr
+\code{\link{gtkPrintSettingsGetPrinterLpi}(object)}\cr
+\code{\link{gtkPrintSettingsSetPrinterLpi}(object, lpi)}\cr
 \code{\link{gtkPrintSettingsGetScale}(object)}\cr
 \code{\link{gtkPrintSettingsSetScale}(object, scale)}\cr
 \code{\link{gtkPrintSettingsGetPrintPages}(object)}\cr
@@ -74,21 +82,23 @@
 \code{\link{gtkPrintSettingsSetOutputBin}(object, output.bin)}\cr
 \code{\link{gtkPrintSettingsNewFromFile}(file.name, .errwarn = TRUE)}\cr
 \code{\link{gtkPrintSettingsNewFromKeyFile}(key.file, group.name, .errwarn = TRUE)}\cr
+\code{\link{gtkPrintSettingsLoadFile}(object, file.name, .errwarn = TRUE)}\cr
+\code{\link{gtkPrintSettingsLoadKeyFile}(object, key.file, group.name, .errwarn = TRUE)}\cr
 \code{\link{gtkPrintSettingsToFile}(object, file.name, .errwarn = TRUE)}\cr
 \code{\link{gtkPrintSettingsToKeyFile}(object, key.file, group.name)}\cr
 \code{gtkPrintSettings()}
 }
 \section{Hierarchy}{\preformatted{GObject
    +----GtkPrintSettings}}
-\section{Detailed Description}{A GtkPrintSettings object represents the settings of a print dialog in 
-a system-independent way. The main use for this object is that once 
-you've printed you can get a settings object that represents the settings 
-the user chose, and the next time you print you can pass that object in so 
-that the user doesn't have to re-set all his settings. 
+\section{Detailed Description}{A GtkPrintSettings object represents the settings of a print dialog in
+a system-independent way. The main use for this object is that once
+you've printed you can get a settings object that represents the settings
+the user chose, and the next time you print you can pass that object in so
+that the user doesn't have to re-set all his settings.
   
-Its also possible to enumerate the settings so that you can easily save 
-the settings for the next time your app runs, or even store them in a 
-document. The predefined keys try to use shared values as much as possible 
+Its also possible to enumerate the settings so that you can easily save
+the settings for the next time your app runs, or even store them in a
+document. The predefined keys try to use shared values as much as possible
 so that moving such a document between systems still works.
   
 Printing support was added in GTK+ 2.10.}
@@ -158,6 +168,30 @@ Printing support was added in GTK+ 2.10.}
 }
 
 }
+\item{\verb{GtkNumberUpLayout}}{
+Used to determine the layout of pages on a sheet when printing
+multiple pages per sheet.
+
+\describe{
+\item{\verb{left-to-right-top-to-bottom}}{\emph{undocumented
+}}
+\item{\verb{left-to-right-bottom-to-top}}{\emph{undocumented
+}}
+\item{\verb{right-to-left-top-to-bottom}}{\emph{undocumented
+}}
+\item{\verb{right-to-left-bottom-to-top}}{\emph{undocumented
+}}
+\item{\verb{top-to-bottom-left-to-right}}{\emph{undocumented
+}}
+\item{\verb{top-to-bottom-right-to-left}}{\emph{undocumented
+}}
+\item{\verb{bottom-to-top-left-to-right}}{\emph{undocumented
+}}
+\item{\verb{bottom-to-top-right-to-left}}{\emph{undocumented
+}}
+}
+
+}
 \item{\verb{GtkPrintPages}}{
 \emph{undocumented
 }
@@ -192,13 +226,16 @@ Printing support was added in GTK+ 2.10.}
 }
 
 \describe{
-\item{\code{key}}{[character] }
-\item{\code{value}}{[character] }
-\item{\code{user.data}}{[R object] }
+\item{\code{key}}{\emph{undocumented
+}}
+\item{\code{value}}{\emph{undocumented
+}}
+\item{\code{user.data}}{\emph{undocumented
+}}
 }
 
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkPrintSettings.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkPrintSettings.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

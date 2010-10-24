@@ -1,11 +1,11 @@
 \alias{gtkTargetListAddTable}
 \name{gtkTargetListAddTable}
 \title{gtkTargetListAddTable}
-\description{Prepends a table of \verb{\link{GtkTargetEntry}} to a target list.}
+\description{Prepends a table of \code{\link{GtkTargetEntry}} to a target list.}
 \usage{gtkTargetListAddTable(object, targets)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTargetList}}]  a \verb{\link{GtkTargetList}}}
-\item{\verb{targets}}{[\verb{\link{GtkTargetEntry}}]  the table of \verb{\link{GtkTargetEntry}}}
+\item{\verb{object}}{a \code{\link{GtkTargetList}}}
+\item{\verb{targets}}{the table of \code{\link{GtkTargetEntry}}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

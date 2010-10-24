@@ -7,11 +7,10 @@ want to draw the whole preview area themselves should set this to \code{FALSE} a
 display the name themselves in their preview widget.}
 \usage{gtkFileChooserSetUsePreviewLabel(object, use.label)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkFileChooser}}]  a \verb{\link{GtkFileChooser}}}
-\item{\verb{use.label}}{[logical]  whether to display a stock label with the name of the previewed file}
+\item{\verb{object}}{a \code{\link{GtkFileChooser}}}
+\item{\verb{use.label}}{whether to display a stock label with the name of the previewed file}
 }
-\details{See also: \code{\link{gtkFileChooserSetPreviewWidget}}  
-
-  Since  2.4}
+\details{See also: \code{\link{gtkFileChooserSetPreviewWidget}}
+  Since 2.4}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

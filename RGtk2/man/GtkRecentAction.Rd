@@ -14,14 +14,14 @@
    +----GtkAction
          +----GtkRecentAction}}
 \section{Interfaces}{GtkRecentAction implements
- \verb{\link{GtkBuildable}} and  \verb{\link{GtkRecentChooser}}.}
+ \code{\link{GtkBuildable}} and  \code{\link{GtkRecentChooser}}.}
 \section{Detailed Description}{A GtkRecentAction represents a list of recently used files, which
-can be shown by widgets such as \verb{\link{GtkRecentChooserDialog}} or 
-\verb{\link{GtkRecentChooserMenu}}.
+can be shown by widgets such as \code{\link{GtkRecentChooserDialog}} or
+\code{\link{GtkRecentChooserMenu}}.
   
-To construct a submenu showing recently used files, use a GtkRecentAction 
-as the action for a <menuitem>. To construct a menu toolbutton showing 
-the recently used files in the popup menu, use a GtkRecentAction as the 
+To construct a submenu showing recently used files, use a GtkRecentAction
+as the action for a <menuitem>. To construct a menu toolbutton showing
+the recently used files in the popup menu, use a GtkRecentAction as the
 action for a <toolitem> element.}
 \section{Structures}{\describe{\item{\verb{GtkRecentAction}}{
 \emph{undocumented
@@ -34,6 +34,6 @@ action for a <toolitem> element.}
 Whether the items should be displayed with a number.  Default value: FALSE
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkRecentAction.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkRecentAction.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

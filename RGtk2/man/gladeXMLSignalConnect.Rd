@@ -6,7 +6,7 @@ widgets by name.  This function allows you to connect a C function to
 all signals in the GladeXML file with the given signal handler name.}
 \usage{gladeXMLSignalConnect(object, handlername, func)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GladeXML}}]  the GladeXML object}
+\item{\verb{object}}{[\code{\link{GladeXML}}]  the GladeXML object}
 \item{\verb{handlername}}{[char]  the signal handler name}
 \item{\verb{func}}{[GCallback]  the signal handler function}
 }

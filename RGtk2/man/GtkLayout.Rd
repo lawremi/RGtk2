@@ -15,6 +15,7 @@
 \code{\link{gtkLayoutGetVadjustment}(object)}\cr
 \code{\link{gtkLayoutSetHadjustment}(object, adjustment = NULL)}\cr
 \code{\link{gtkLayoutSetVadjustment}(object, adjustment = NULL)}\cr
+\code{\link{gtkLayoutGetBinWindow}(object)}\cr
 \code{gtkLayout(hadjustment = NULL, vadjustment = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{GObject
@@ -24,65 +25,65 @@
                      +----GtkContainer
                            +----GtkLayout}}
 \section{Interfaces}{GtkLayout implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{\verb{\link{GtkLayout}} is similar to \verb{\link{GtkDrawingArea}} in that it's a "blank slate"
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
+\section{Detailed Description}{\code{\link{GtkLayout}} is similar to \code{\link{GtkDrawingArea}} in that it's a "blank slate"
 and doesn't do anything but paint a blank background by default. It's
 different in that it supports scrolling natively (you can add it to a
-\verb{\link{GtkScrolledWindow}}), and it can contain child widgets, since it's a
-\verb{\link{GtkContainer}}. However if you're just going to draw, a \verb{\link{GtkDrawingArea}}
+\code{\link{GtkScrolledWindow}}), and it can contain child widgets, since it's a
+\code{\link{GtkContainer}}. However if you're just going to draw, a \code{\link{GtkDrawingArea}}
 is a better choice since it has lower overhead.
   
-When handling expose events on a \verb{\link{GtkLayout}}, you must draw to 
-GTK_LAYOUT (layout)->bin_window, rather than to 
+When handling expose events on a \code{\link{GtkLayout}}, you must draw to
+GTK_LAYOUT (layout)->bin_window, rather than to
 GTK_WIDGET (layout)->window, as you would for a drawing
 area.}
 \section{Structures}{\describe{\item{\verb{GtkLayout}}{
 \emph{undocumented
 }
 
-\describe{\item{\verb{binWindow}}{[\verb{\link{GdkWindow}}] }}
+\describe{\item{\verb{binWindow}}{[\code{\link{GdkWindow}}] }}
 
 }}}
 \section{Convenient Construction}{\code{gtkLayout} is the equivalent of \code{\link{gtkLayoutNew}}.}
-\section{Signals}{\describe{\item{\code{set-scroll-adjustments(layout, arg1, arg2, user.data)}}{
-\emph{undocumented
-}
+\section{Signals}{\describe{\item{\code{set-scroll-adjustments(horizontal, vertical, user.data)}}{
+Set the scroll adjustments for the layout. Usually scrolled containers
+like \code{\link{GtkScrolledWindow}} will emit this signal to connect two instances
+of \code{\link{GtkScrollbar}} to the scroll directions of the \code{\link{GtkLayout}}.
 
 \describe{
-\item{\code{layout}}{[\verb{\link{GtkLayout}}] the object which received the signal.}
-\item{\code{arg1}}{[\verb{\link{GtkAdjustment}}] }
-\item{\code{arg2}}{[\verb{\link{GtkAdjustment}}] }
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{horizontal}}{the horizontal \code{\link{GtkAdjustment}}}
+\item{\code{vertical}}{the vertical \code{\link{GtkAdjustment}}}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }}}
 \section{Properties}{\describe{
-\item{\verb{hadjustment} [\verb{\link{GtkAdjustment}} : *        : Read / Write]}{
+\item{\verb{hadjustment} [\code{\link{GtkAdjustment}} : *        : Read / Write]}{
 
 The GtkAdjustment for the horizontal position.
 
 }
 \item{\verb{height} [numeric : Read / Write]}{
 
-The height of the layout.  Allowed values: <= G_MAXINT  Default value: 100
+The height of the layout.  Allowed values: <= G_MAXLONG  Default value: 100
 
 }
-\item{\verb{vadjustment} [\verb{\link{GtkAdjustment}} : *        : Read / Write]}{
+\item{\verb{vadjustment} [\code{\link{GtkAdjustment}} : *        : Read / Write]}{
 
 The GtkAdjustment for the vertical position.
 
 }
 \item{\verb{width} [numeric : Read / Write]}{
 
-The width of the layout.  Allowed values: <= G_MAXINT  Default value: 100
+The width of the layout.  Allowed values: <= G_MAXLONG  Default value: 100
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkLayout.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkLayout.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
-\verb{\link{GtkDrawingArea}}
-\verb{\link{GtkScrolledWindow}}
+\code{\link{GtkDrawingArea}}
+\code{\link{GtkScrolledWindow}}
 }
 \keyword{internal}

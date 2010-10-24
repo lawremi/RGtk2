@@ -5,8 +5,8 @@
 increased.}
 \usage{gtkTreePathPrependIndex(object, index)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTreePath}}]  A \verb{\link{GtkTreePath}}.}
-\item{\verb{index}}{[integer]  The index.}
+\item{\verb{object}}{A \code{\link{GtkTreePath}}.}
+\item{\verb{index}}{The index.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

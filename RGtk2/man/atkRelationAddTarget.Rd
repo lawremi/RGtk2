@@ -5,9 +5,9 @@
 not already present.  See also \code{\link{atkObjectAddRelationship}}.}
 \usage{atkRelationAddTarget(object, target)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{AtkRelation}}]  an \verb{\link{AtkRelation}}}
-\item{\verb{target}}{[\verb{\link{AtkObject}}]  an \verb{\link{AtkObject}}}
+\item{\verb{object}}{[\code{\link{AtkRelation}}]  an \code{\link{AtkRelation}}}
+\item{\verb{target}}{[\code{\link{AtkObject}}]  an \code{\link{AtkObject}}}
 }
-\details{  Since  ATK 1.9}
+\details{  Since 1.9}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

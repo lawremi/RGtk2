@@ -20,13 +20,13 @@
                                  +----GtkButtonBox
                                        +----GtkHButtonBox}}
 \section{Interfaces}{GtkHButtonBox implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+ AtkImplementorIface,  \code{\link{GtkBuildable}} and  \code{\link{GtkOrientable}}.}
 \section{Detailed Description}{A button box should be used to provide a consistent layout of buttons
 throughout your application. The layout/spacing can be altered by the
 programmer, or if desired, by the user to alter the 'feel' of a
 program to a small degree.
   
-A \verb{\link{GtkHButtonBox}} is created with \code{\link{gtkHButtonBoxNew}}. Buttons are
+A \code{\link{GtkHButtonBox}} is created with \code{\link{gtkHButtonBoxNew}}. Buttons are
 packed into a button box the same way widgets are added to any other
 container, using \code{\link{gtkContainerAdd}}. You can also use
 \code{\link{gtkBoxPackStart}} or \code{\link{gtkBoxPackEnd}}, but for button boxes both
@@ -43,6 +43,6 @@ GtkHButtonBox does not contain any public fields.
 
 }}}
 \section{Convenient Construction}{\code{gtkHButtonBox} is the equivalent of \code{\link{gtkHButtonBoxNew}}.}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkHButtonBox.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkHButtonBox.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -6,7 +6,7 @@ for all children of \code{window}, ignoring the input shape mask of \code{window
 itself. Contrast with \code{\link{gdkWindowMergeChildInputShapes}} which includes
 the input shape mask of \code{window} in the masks to be merged.}
 \usage{gdkWindowSetChildInputShapes(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a \verb{\link{GdkWindow}}}}
-\details{  Since  2.10}
+\arguments{\item{\verb{object}}{a \code{\link{GdkWindow}}}}
+\details{Since 2.10}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

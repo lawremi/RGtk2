@@ -2,9 +2,9 @@
 \name{cairoImageSurfaceCreateForData}
 \title{cairoImageSurfaceCreateForData}
 \description{Creates an image surface for the provided pixel data. The output
-buffer must be kept around until the \verb{\link{CairoSurface}} is destroyed
+buffer must be kept around until the \code{\link{CairoSurface}} is destroyed
 or \code{\link{cairoSurfaceFinish}} is called on the surface.  The initial
-contents of \code{buffer} will be used as the initial image contents; you
+contents of \code{data} will be used as the initial image contents; you
 must explicitly clear the buffer, using, for example,
 \code{\link{cairoRectangle}} and \code{\link{cairoFill}} if you want it cleared.}
 \usage{cairoImageSurfaceCreateForData(data, format, width, height, stride)}
@@ -12,7 +12,7 @@ must explicitly clear the buffer, using, for example,
 \item{\verb{data}}{[char]  a pointer to a buffer supplied by the application in which
     to write contents. This pointer must be suitably aligned for any
     kind of variable, (for example, a pointer returned by malloc).}
-\item{\verb{format}}{[\verb{\link{CairoFormat}}]  the format of pixels in the buffer}
+\item{\verb{format}}{[\code{\link{CairoFormat}}]  the format of pixels in the buffer}
 \item{\verb{width}}{[integer]  the width of the image to be stored in the buffer}
 \item{\verb{height}}{[integer]  the height of the image to be stored in the buffer}
 \item{\verb{stride}}{[integer]  the number of bytes between the start of rows in the
@@ -28,7 +28,7 @@ call \code{\link{cairoFormatStrideForWidth}} with the desired format and
 maximum image width value, and the use the resulting stride value
 to allocate the data and to create the image surface. See
 \code{\link{cairoFormatStrideForWidth}} for example code.  }
-\value{[\verb{\link{CairoSurface}}]  a pointer to the newly created surface. The caller
+\value{[\code{\link{CairoSurface}}]  a pointer to the newly created surface. The caller
 owns the surface and should call \code{\link{cairoSurfaceDestroy}} when done
 with it.
 

@@ -1,8 +1,8 @@
 \alias{gtkTreeSortableSortColumnChanged}
 \name{gtkTreeSortableSortColumnChanged}
 \title{gtkTreeSortableSortColumnChanged}
-\description{Emits a GtkTreeSortable::sort_column_changed signal on}
+\description{Emits a \code{\link{gtkTreeSortableSortColumnChanged}} signal on \code{sortable}.}
 \usage{gtkTreeSortableSortColumnChanged(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkTreeSortable}}]  A \verb{\link{GtkTreeSortable}}}}
+\arguments{\item{\verb{object}}{A \code{\link{GtkTreeSortable}}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

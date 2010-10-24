@@ -8,9 +8,9 @@ list.
 }
 \usage{gtkCListRowMove(object, source.row, dest.row)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkCList}}] The \verb{\link{GtkCList}} to affect.}
-\item{\verb{source.row}}{[integer] The original position of the row to move.}
-\item{\verb{dest.row}}{[integer] The position to which the row should be moved.}
+\item{\verb{object}}{The \code{\link{GtkCList}} to affect.}
+\item{\verb{source.row}}{The original position of the row to move.}
+\item{\verb{dest.row}}{The position to which the row should be moved.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

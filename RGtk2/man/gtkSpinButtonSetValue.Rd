@@ -4,8 +4,8 @@
 \description{Set the value of \code{spin.button}.}
 \usage{gtkSpinButtonSetValue(object, value)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkSpinButton}}]  a \verb{\link{GtkSpinButton}}}
-\item{\verb{value}}{[numeric]  the new value}
+\item{\verb{object}}{a \code{\link{GtkSpinButton}}}
+\item{\verb{value}}{the new value}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

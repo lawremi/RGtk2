@@ -10,6 +10,7 @@
 \code{\link{gtkMessageDialogNewWithMarkup}(parent, flags, type, buttons, ..., show = TRUE)}\cr
 \code{\link{gtkMessageDialogSetMarkup}(object, str)}\cr
 \code{\link{gtkMessageDialogSetImage}(object, image)}\cr
+\code{\link{gtkMessageDialogGetImage}(object)}\cr
 \code{\link{gtkMessageDialogFormatSecondaryText}(object, ...)}\cr
 \code{\link{gtkMessageDialogFormatSecondaryMarkup}(object, ...)}\cr
 \code{gtkMessageDialog(parent, flags, type, buttons, ..., show = TRUE)}
@@ -24,11 +25,11 @@
                                        +----GtkDialog
                                              +----GtkMessageDialog}}
 \section{Interfaces}{GtkMessageDialog implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{\verb{\link{GtkMessageDialog}} presents a dialog with an image representing the type of 
-message (Error, Question, etc.) alongside some message text. It's simply a 
-convenience widget; you could construct the equivalent of \verb{\link{GtkMessageDialog}} 
-from \verb{\link{GtkDialog}} without too much effort, but \verb{\link{GtkMessageDialog}} saves typing.
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
+\section{Detailed Description}{\code{\link{GtkMessageDialog}} presents a dialog with an image representing the type of
+message (Error, Question, etc.) alongside some message text. It's simply a
+convenience widget; you could construct the equivalent of \code{\link{GtkMessageDialog}}
+from \code{\link{GtkDialog}} without too much effort, but \code{\link{GtkMessageDialog}} saves typing.
   
 The easiest way to do a modal message dialog is to use \code{\link{gtkDialogRun}}, though
 you can also pass in the \code{GTK_DIALOG_MODAL} flag, \code{\link{gtkDialogRun}} automatically
@@ -45,7 +46,7 @@ dialog$run()
 dialog$destroy()
 }
   
-You might do a non-modal \verb{\link{GtkMessageDialog}} as follows:
+You might do a non-modal \code{\link{GtkMessageDialog}} as follows:
 
  \emph{A non-modal dialog.}
 \preformatted{
@@ -60,8 +61,8 @@ gSignalConnect(dialog, "response", gtkWidgetDestroy)
 }
 
 \describe{
-\item{\verb{image}}{[\verb{\link{GtkWidget}}] }
-\item{\verb{label}}{[\verb{\link{GtkWidget}}] }
+\item{\verb{image}}{[\code{\link{GtkWidget}}] }
+\item{\verb{label}}{[\code{\link{GtkWidget}}] }
 }
 
 }}}
@@ -79,7 +80,7 @@ The type of message being displayed in the dialog.
 
 }
 \item{\verb{GtkButtonsType}}{
-Prebuilt sets of buttons for the dialog. If 
+Prebuilt sets of buttons for the dialog. If
 none of these choices are appropriate, simply use \code{GTK_BUTTONS_NONE}
 then call \code{\link{gtkDialogAddButtons}}.
 
@@ -100,51 +101,45 @@ then call \code{\link{gtkDialogAddButtons}}.
 The buttons shown in the message dialog.  Default value: GTK_BUTTONS_NONE
 
 }
-\item{\verb{image} [\verb{\link{GtkWidget}} : *            : Read / Write]}{
+\item{\verb{image} [\code{\link{GtkWidget}} : *            : Read / Write]}{
 
-The image for this dialog.  
-
-  Since  2.10
+The image for this dialog.
+  Since 2.10
 
 }
 \item{\verb{message-type} [\code{\link{GtkMessageType}} : Read / Write / Construct]}{
 
 The type of the message. The type is used to determine
-the image that is shown in the dialog, unless the image is 
-explicitly set by the ::image property.  
-
+the image that is shown in the dialog, unless the image is
+explicitly set by the ::image property.
   Default value: GTK_MESSAGE_INFO
 
 }
 \item{\verb{secondary-text} [character : *                : Read / Write]}{
 
-The secondary text of the message dialog.  
-
-  Default value: NULL  Since  2.10
+The secondary text of the message dialog.
+  Default value: NULL  Since 2.10
 
 }
 \item{\verb{secondary-use-markup} [logical : Read / Write]}{
 
 \code{TRUE} if the secondary text of the dialog includes Pango markup. 
-See \code{\link{pangoParseMarkup}}.  
-
-  Default value: FALSE  Since  2.10
+See \code{\link{pangoParseMarkup}}.
+  Default value: FALSE  Since 2.10
 
 }
 \item{\verb{text} [character : *                : Read / Write]}{
 
 The primary text of the message dialog. If the dialog has 
-a secondary text, this will appear as the title.  
-
-  Default value: NULL  Since  2.10
+a secondary text, this will appear as the title.
+  Default value: ""  Since 2.10
 
 }
 \item{\verb{use-markup} [logical : Read / Write]}{
 
 \code{TRUE} if the primary text of the dialog includes Pango markup. 
-See \code{\link{pangoParseMarkup}}.  
-
-  Default value: FALSE  Since  2.10
+See \code{\link{pangoParseMarkup}}.
+  Default value: FALSE  Since 2.10
 
 }
 }}
@@ -157,13 +152,12 @@ Width of border around the label and image in the message dialog.  Allowed value
 \item{\verb{use-separator} [logical : Read]}{
 
 Whether to draw a separator line between the message label and the buttons
-in the dialog.  
-
-  Default value: FALSE  Since  2.4
+in the dialog.
+  Default value: FALSE  Since 2.4
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkMessageDialog.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkMessageDialog.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
-\seealso{\verb{\link{GtkDialog}}}
+\seealso{\code{\link{GtkDialog}}}
 \keyword{internal}

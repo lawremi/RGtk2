@@ -43,19 +43,19 @@
          +----AtkNoOpObject}}
 \section{Detailed Description}{This class is the primary class for accessibility support via
 the Accessibility ToolKit (ATK).  Objects which are instances
-of \verb{\link{AtkObject}} (or instances of AtkObject-derived types) are
+of \code{\link{AtkObject}} (or instances of AtkObject-derived types) are
 queried for properties which relate basic (and generic) properties of a
-UI component such as name and description.  Instances of \verb{\link{AtkObject}}
+UI component such as name and description.  Instances of \code{\link{AtkObject}}
 may also be queried as to whether they implement other ATK interfaces
-(e.g. \verb{\link{AtkAction}}, \verb{\link{AtkComponent}}, etc.), as appropriate to the role
+(e.g. \code{\link{AtkAction}}, \code{\link{AtkComponent}}, etc.), as appropriate to the role
 which a given UI component plays in a user interface.
   All UI components in an application which provide useful
 information or services to the user must provide corresponding
-\verb{\link{AtkObject}} instances on request (in GTK+, for instance, usually
+\code{\link{AtkObject}} instances on request (in GTK+, for instance, usually
 on a call to #\code{\link{gtkWidgetGetAccessible}}), either via ATK support
 built into the toolkit for the widget class or ancestor class, or in
-the case of custom widgets, if the inherited \verb{\link{AtkObject}} implementation
-is insufficient, via instances of a new \verb{\link{AtkObject}} subclass. }
+the case of custom widgets, if the inherited \code{\link{AtkObject}} implementation
+is insufficient, via instances of a new \code{\link{AtkObject}} subclass.}
 \section{Structures}{\describe{
 \item{\verb{AtkObject}}{
 The AtkObject structure should not be accessed directly.
@@ -144,7 +144,7 @@ ATK_ROLE_LAST_DEFINED is not necessarily an error.
 \item{\verb{unknown}}{ The object contains some Accessible information, but its role is not known}
 \item{\verb{viewport}}{ An object usually used in a scroll pane}
 \item{\verb{window}}{ A top level window with no title or border.}
-\item{\verb{header}}{ An object that serves as a document header. \code{Since}:ATK 1.1.1}
+\item{\verb{header}}{ An object that serves as a document header. \code{Since}: ATK-1.1.1}
 \item{\verb{footer}}{ An object that serves as a document footer.  \code{Since}: ATK-1.1.1}
 \item{\verb{paragraph}}{ An object which is contains a paragraph of text content.   \code{Since}: ATK-1.1.1}
 \item{\verb{ruler}}{ An object which describes margins and tab stops, etc. for text objects which it controls (should have CONTROLLER_FOR relation to such).   \code{Since}: ATK-1.1.1}
@@ -179,7 +179,7 @@ determinations of when components occlude one another.
 }}
 \section{User Functions}{\describe{
 \item{\code{AtkFunction(data)}}{
-An AtkFunction is a function definition used for padding which has been added 
+An AtkFunction is a function definition used for padding which has been added
 to class and interface structures to allow for expansion in the future.
 
 \describe{\item{\code{data}}{[R object] a gpointer to parameter data.}}
@@ -188,11 +188,11 @@ to class and interface structures to allow for expansion in the future.
 
 }
 \item{\code{AtkPropertyChangeHandler(Param1, Param2)}}{
-An AtkPropertyChangeHandler is a function which is executed when an AtkObject's property changes value. It is specified in a call to 
+An AtkPropertyChangeHandler is a function which is executed when an AtkObject's property changes value. It is specified in a call to
 \code{\link{atkObjectConnectPropertyChangeHandler}}.
 
 \describe{
-\item{\code{Param1}}{[\verb{\link{AtkObject}}]  an \verb{\link{AtkObject}}}
+\item{\code{Param1}}{[\code{\link{AtkObject}}]  an \code{\link{AtkObject}}}
 \item{\code{Param2}}{[AtkPropertyValues]  an \verb{AtkPropertyValues}}
 }
 
@@ -207,7 +207,7 @@ object changes. For instance, a table will emit the signal when the cell
 in the table which has focus changes.
 
 \describe{
-\item{\code{atkobject}}{[\verb{\link{AtkObject}}] the object which received the signal.}
+\item{\code{atkobject}}{[\code{\link{AtkObject}}] the object which received the signal.}
 \item{\code{arg1}}{[R object] the newly focused object.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -219,7 +219,7 @@ The signal "children-changed" is emitted when a child is added or
 removed form an object. It supports two details: "add" and "remove"
 
 \describe{
-\item{\code{atkobject}}{[\verb{\link{AtkObject}}] the object which received the signal.}
+\item{\code{atkobject}}{[\code{\link{AtkObject}}] the object which received the signal.}
 \item{\code{arg1}}{[numeric] The index of the added or removed child}
 \item{\code{arg2}}{[R object] A gpointer to the child AtkObject which was added or removed}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
@@ -231,7 +231,7 @@ removed form an object. It supports two details: "add" and "remove"
 The signal "focus-event" is emitted when an object gains or loses focus.
 
 \describe{
-\item{\code{atkobject}}{[\verb{\link{AtkObject}}] the object which received the signal.}
+\item{\code{atkobject}}{[\code{\link{AtkObject}}] the object which received the signal.}
 \item{\code{arg1}}{[logical] A boolean value which indicates whether the object gained or lost focus.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -244,7 +244,7 @@ value changes. The detail identifies the name of the property whose
 value has changed.
 
 \describe{
-\item{\code{atkobject}}{[\verb{\link{AtkObject}}] the object which received the signal.}
+\item{\code{atkobject}}{[\code{\link{AtkObject}}] the object which received the signal.}
 \item{\code{arg1}}{[R object] The new value of the property which changed.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -256,7 +256,7 @@ The "state-change" signal is emitted  when an object's state changes.
 The detail value identifies the state type which has changed.
 
 \describe{
-\item{\code{atkobject}}{[\verb{\link{AtkObject}}] the object which received the signal.}
+\item{\code{atkobject}}{[\code{\link{AtkObject}}] the object which received the signal.}
 \item{\code{arg1}}{[character] The name of the state which has changed}
 \item{\code{arg2}}{[logical] A boolean which indicates whether the state has been set or unset.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
@@ -265,11 +265,11 @@ The detail value identifies the state type which has changed.
 
 }
 \item{\code{visible-data-changed(atkobject, user.data)}}{
-The "visible-data-changed" signal is emitted when the visual appearance of 
+The "visible-data-changed" signal is emitted when the visual appearance of
 the object changed.
 
 \describe{
-\item{\code{atkobject}}{[\verb{\link{AtkObject}}] the object which received the signal.}
+\item{\code{atkobject}}{[\code{\link{AtkObject}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -287,7 +287,7 @@ The accessible layer of this object.  Allowed values: >= 0  Default value: 0
 The accessible MDI value of this object.  Default value: -2147483648
 
 }
-\item{\verb{accessible-description} [character : Read / Write]}{
+\item{\verb{accessible-description} [character : *                : Read / Write]}{
 
 Description of an object, formatted for assistive technology access.  Default value: NULL
 
@@ -297,12 +297,12 @@ Description of an object, formatted for assistive technology access.  Default va
 The number of links which the current AtkHypertext has.  Allowed values: >= 0  Default value: 0
 
 }
-\item{\verb{accessible-name} [character : Read / Write]}{
+\item{\verb{accessible-name} [character : *                : Read / Write]}{
 
 Object instance's name formatted for assistive technology access.  Default value: NULL
 
 }
-\item{\verb{accessible-parent} [\verb{\link{AtkObject}} : Read / Write]}{
+\item{\verb{accessible-parent} [\code{\link{AtkObject}} : *            : Read / Write]}{
 
 Is used to notify that the parent has changed.
 
@@ -312,37 +312,37 @@ Is used to notify that the parent has changed.
 The accessible role of this object.  Allowed values: >= 0  Default value: 0
 
 }
-\item{\verb{accessible-table-caption} [character : Read / Write]}{
+\item{\verb{accessible-table-caption} [character : *                : Read / Write]}{
 
 Is used to notify that the table caption has changed; this property should not be used. accessible-table-caption-object should be used instead.  Default value: NULL
 
 }
-\item{\verb{accessible-table-caption-object} [\verb{\link{AtkObject}} : Read / Write]}{
+\item{\verb{accessible-table-caption-object} [\code{\link{AtkObject}} : *            : Read / Write]}{
 
 Is used to notify that the table caption has changed.
 
 }
-\item{\verb{accessible-table-column-description} [character : Read / Write]}{
+\item{\verb{accessible-table-column-description} [character : *                : Read / Write]}{
 
 Is used to notify that the table column description has changed.  Default value: NULL
 
 }
-\item{\verb{accessible-table-column-header} [\verb{\link{AtkObject}} : Read / Write]}{
+\item{\verb{accessible-table-column-header} [\code{\link{AtkObject}} : *            : Read / Write]}{
 
 Is used to notify that the table column header has changed.
 
 }
-\item{\verb{accessible-table-row-description} [character : Read / Write]}{
+\item{\verb{accessible-table-row-description} [character : *                : Read / Write]}{
 
 Is used to notify that the table row description has changed.  Default value: NULL
 
 }
-\item{\verb{accessible-table-row-header} [\verb{\link{AtkObject}} : Read / Write]}{
+\item{\verb{accessible-table-row-header} [\code{\link{AtkObject}} : *            : Read / Write]}{
 
 Is used to notify that the table row header has changed.
 
 }
-\item{\verb{accessible-table-summary} [\verb{\link{AtkObject}} : Read / Write]}{
+\item{\verb{accessible-table-summary} [\code{\link{AtkObject}} : *            : Read / Write]}{
 
 Is used to notify that the table summary has changed.
 
@@ -353,11 +353,11 @@ Is used to notify that the value has changed.  Allowed values: >= 0  Default val
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/atk/AtkObject.html}}
+\references{\url{http://library.gnome.org/devel//atk/AtkObject.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
-\verb{\link{AtkObjectFactory}}
-\verb{\link{AtkRegistry}}
-\verb{\link{GtkAccessible}}
+\code{\link{AtkObjectFactory}}
+\code{\link{AtkRegistry}}
+\code{\link{GtkAccessible}}
 }
 \keyword{internal}

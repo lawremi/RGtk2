@@ -10,13 +10,13 @@
                            +----GtkHSeparator
                            +----GtkVSeparator}}
 \section{Interfaces}{GtkSeparator implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{The \verb{\link{GtkSeparator}} widget is an abstract class, used only for deriving the
-subclasses \verb{\link{GtkHSeparator}} and \verb{\link{GtkVSeparator}}.}
+ AtkImplementorIface,  \code{\link{GtkBuildable}} and  \code{\link{GtkOrientable}}.}
+\section{Detailed Description}{The \code{\link{GtkSeparator}} widget is an abstract class, used only for deriving the
+subclasses \code{\link{GtkHSeparator}} and \code{\link{GtkVSeparator}}.}
 \section{Structures}{\describe{\item{\verb{GtkSeparator}}{
-The \verb{\link{GtkSeparator}} struct contains private data only.
+The \code{\link{GtkSeparator}} struct contains private data only.
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkSeparator.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkSeparator.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

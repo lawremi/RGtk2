@@ -2,15 +2,15 @@
 \name{gtkImageGet}
 \title{gtkImageGet}
 \description{
-Gets the \verb{\link{GtkImage}}.
-\strong{WARNING: \code{gtk_image_get} is deprecated and should not be used in newly-written code.}
+Gets the \code{\link{GtkImage}}.
+\strong{WARNING: \code{gtk_image_get} has been deprecated since version 2.0 and should not be used in newly-written code. Use \code{\link{gtkImageGetImage}} instead.}
 }
 \usage{gtkImageGet(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkImage}}] a \verb{\link{GtkImage}}}}
+\arguments{\item{\verb{object}}{a \code{\link{GtkImage}}}}
 \value{
 A list containing the following elements:
-\item{\verb{val}}{[\verb{\link{GdkImage}}] return location for a \verb{\link{GdkImage}}}
-\item{\verb{mask}}{[\verb{\link{GdkBitmap}}] a \verb{\link{GdkBitmap}} that indicates which parts of the image should be transparent.}
+\item{\verb{val}}{return location for a \code{\link{GdkImage}}}
+\item{\verb{mask}}{a \code{\link{GdkBitmap}} that indicates which parts of the image should be transparent.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

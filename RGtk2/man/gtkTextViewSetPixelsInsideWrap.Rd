@@ -6,8 +6,8 @@ display/wrapped lines within a paragraph. May be overridden by
 tags in \code{text.view}'s buffer.}
 \usage{gtkTextViewSetPixelsInsideWrap(object, pixels.inside.wrap)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTextView}}]  a \verb{\link{GtkTextView}}}
-\item{\verb{pixels.inside.wrap}}{[integer]  default number of pixels between wrapped lines}
+\item{\verb{object}}{a \code{\link{GtkTextView}}}
+\item{\verb{pixels.inside.wrap}}{default number of pixels between wrapped lines}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

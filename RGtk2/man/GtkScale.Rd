@@ -11,6 +11,8 @@
 \code{\link{gtkScaleGetValuePos}(object)}\cr
 \code{\link{gtkScaleGetLayout}(object)}\cr
 \code{\link{gtkScaleGetLayoutOffsets}(object)}\cr
+\code{\link{gtkScaleAddMark}(object, value, position, markup = NULL)}\cr
+\code{\link{gtkScaleClearMarks}(object)}\cr
 
 }
 \section{Hierarchy}{\preformatted{GObject
@@ -22,34 +24,33 @@
                                  +----GtkHScale
                                  +----GtkVScale}}
 \section{Interfaces}{GtkScale implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{A \verb{\link{GtkScale}} is a slider control used to select a numeric value.
-To use it, you'll probably want to investigate the methods on 
-its base class, \verb{\link{GtkRange}}, in addition to the methods for \verb{\link{GtkScale}} itself.
-To set the value of a scale, you would normally use \code{\link{gtkRangeSetValue}}. 
-To detect changes to the value, you would normally use the "value_changed" 
+ AtkImplementorIface,  \code{\link{GtkBuildable}} and  \code{\link{GtkOrientable}}.}
+\section{Detailed Description}{A \code{\link{GtkScale}} is a slider control used to select a numeric value.
+To use it, you'll probably want to investigate the methods on
+its base class, \code{\link{GtkRange}}, in addition to the methods for \code{\link{GtkScale}} itself.
+To set the value of a scale, you would normally use \code{\link{gtkRangeSetValue}}.
+To detect changes to the value, you would normally use the "value_changed"
 signal.
   
-The \verb{\link{GtkScale}} widget is an abstract class, used only for deriving the
-subclasses \verb{\link{GtkHScale}} and \verb{\link{GtkVScale}}. To create a scale widget, 
+The \code{\link{GtkScale}} widget is an abstract class, used only for deriving the
+subclasses \code{\link{GtkHScale}} and \code{\link{GtkVScale}}. To create a scale widget,
 call \code{\link{gtkHScaleNewWithRange}} or \code{\link{gtkVScaleNewWithRange}}.}
+\section{GtkScale as GtkBuildable}{GtkScale supports a custom <marks> element, which
+can contain multiple <mark> elements. The "value" and "position"
+attributes have the same meaning as \code{\link{gtkScaleAddMark}} parameters of the
+same name. If the element is not empty, its content is taken as the markup
+to show at the mark. It can be translated with the usual "translatable and
+"context" attributes.}
 \section{Structures}{\describe{\item{\verb{GtkScale}}{
-The \verb{\link{GtkScale}} struct contains the following fields.
-(These fields should be considered read-only. They should never be set by
-an application.)
-
-\tabular{ll}{
-\verb{numeric}  \code{draw_value}  ; \tab non-zero if the scale's current value is displayed next to the
-slider. \cr
-\verb{numeric}  \code{value_pos}  ; \tab the position in which the textual value is displayed, selected from
-  \code{\link{GtkPositionType}}  . \cr
-}
+The fields of the \code{\link{GtkScale}} struct should only be accessed via
+the accessor functions.
 
 }}}
-\section{Signals}{\describe{\item{\code{format-value(scale, arg1, user.data)}}{
-Signal which allows you to change how the scale value is displayed.  Connect a
-signal handler which returns an allocated string representing \code{value}.
-That string will then be used to display the scale's value.
+\section{Signals}{\describe{\item{\code{format-value(scale, value, user.data)}}{
+Signal which allows you to change how the scale value is displayed.
+Connect a signal handler which returns an allocated string representing
+\code{value}. That string will then be used to display the scale's value.
+  
 Here's an example signal handler which displays a value 1.0 as
 with "-->1.0<--".
 \preformatted{
@@ -60,12 +61,12 @@ format_value_callback <- function(scale, value)
 }
 
 \describe{
-\item{\code{scale}}{[\verb{\link{GtkScale}}] the object which received the signal.}
-\item{\code{arg1}}{[numeric] }
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{scale}}{the object which received the signal}
+\item{\code{value}}{the value to format}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [character] allocated string representing \code{value}
+\emph{Returns:} [character]  allocated string representing \code{value}
 
 }}}
 \section{Properties}{\describe{
@@ -97,6 +98,6 @@ Space between value text and the slider/trough area.  Allowed values: >= 0  Defa
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkScale.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkScale.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -10,10 +10,10 @@ that the widget must be sensitive, and the widget and all
 its ancestors mapped.}
 \usage{gtkWidgetCanActivateAccel(object, signal.id)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
-\item{\verb{signal.id}}{[numeric]  the ID of a signal installed on \code{widget}}
+\item{\verb{object}}{a \code{\link{GtkWidget}}}
+\item{\verb{signal.id}}{the ID of a signal installed on \code{widget}}
 }
-\details{  Since  2.4}
+\details{Since 2.4}
 \value{[logical] \code{TRUE} if the accelerator can be activated.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

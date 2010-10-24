@@ -10,15 +10,19 @@ See also \code{\link{gtkAccelMapAddEntry}} on the specifics of accelerator paths
 and \code{\link{gtkMenuSetAccelPath}} for a more convenient variant of this function.}
 \usage{gtkMenuItemSetAccelPath(object, accel.path)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkMenuItem}}]   a valid \verb{\link{GtkMenuItem}}}
-\item{\verb{accel.path}}{[character]  accelerator path, corresponding to this menu item's
-             functionality, or \code{NULL} to unset the current path.}
+\item{\verb{object}}{a valid \code{\link{GtkMenuItem}}}
+\item{\verb{accel.path}}{ accelerator path, corresponding to this menu item's
+             functionality, or \code{NULL} to unset the current path. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{This function is basically a convenience wrapper that handles calling
 \code{\link{gtkWidgetSetAccelPath}} with the appropriate accelerator group for
 the menu item.
   
 Note that you do need to set an accelerator on the parent menu with
-\code{\link{gtkMenuSetAccelGroup}} for this to work.  }
+\code{\link{gtkMenuSetAccelGroup}} for this to work.
+  
+Note that \code{accel.path} string will be stored in a \verb{numeric}. Therefore, if you
+pass a static string, you can save some memory by interning it first with 
+\code{gInternStaticString()}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

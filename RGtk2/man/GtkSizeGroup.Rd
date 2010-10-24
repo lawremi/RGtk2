@@ -18,13 +18,13 @@
 \section{Hierarchy}{\preformatted{GObject
    +----GtkSizeGroup}}
 \section{Interfaces}{GtkSizeGroup implements
- \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{\verb{\link{GtkSizeGroup}} provides a mechanism for grouping a number of widgets
+ \code{\link{GtkBuildable}}.}
+\section{Detailed Description}{\code{\link{GtkSizeGroup}} provides a mechanism for grouping a number of widgets
 together so they all request the same amount of space.  This is
 typically useful when you want a column of widgets to have the same
-size, but you can't use a \verb{\link{GtkTable}} widget.
+size, but you can't use a \code{\link{GtkTable}} widget.
   
-In detail, the size requested for each widget in a \verb{\link{GtkSizeGroup}} is
+In detail, the size requested for each widget in a \code{\link{GtkSizeGroup}} is
 the maximum of the sizes that would have been requested for each
 widget in the size group if they were not in the size group. The mode
 of the size group (see \code{\link{gtkSizeGroupSetMode}}) determines whether
@@ -32,12 +32,12 @@ this applies to the horizontal size, the vertical size, or both sizes.
   
 Note that size groups only affect the amount of space requested, not
 the size that the widgets finally receive. If you want the widgets in
-a \verb{\link{GtkSizeGroup}} to actually be the same size, you need to pack them in
+a \code{\link{GtkSizeGroup}} to actually be the same size, you need to pack them in
 such a way that they get the size they request and not more. For
 example, if you are packing your widgets into a table, you would not
 include the \code{GTK_FILL} flag.
-  \verb{\link{GtkSizeGroup}} objects are referenced by each widget in the size group,
-so once you have added all widgets to a \verb{\link{GtkSizeGroup}}, you can drop
+  \code{\link{GtkSizeGroup}} objects are referenced by each widget in the size group,
+so once you have added all widgets to a \code{\link{GtkSizeGroup}}, you can drop
 the initial reference to the size group with \code{gObjectUnref()}. If the
 widgets in the size group are subsequently destroyed, then they will
 be removed from the size group and drop their references on the size
@@ -74,23 +74,22 @@ of the size group. The name attribute gives the id of the widget.
 \section{Convenient Construction}{\code{gtkSizeGroup} is the equivalent of \code{\link{gtkSizeGroupNew}}.}
 \section{Enums and Flags}{\describe{\item{\verb{GtkSizeGroupMode}}{
 The mode of the size group determines the directions in which the size
-group affects the requested sizes of its component widgets.  
+group affects the requested sizes of its component widgets.
 
 \describe{
-\item{\verb{none}}{ group has no effect  }
-\item{\verb{horizontal}}{ group affects horizontal requisition}
-\item{\verb{vertical}}{ group affects vertical requisition}
-\item{\verb{both}}{ group affects both horizontal and vertical requisition}
+\item{\verb{none}}{group has no effect}
+\item{\verb{horizontal}}{group affects horizontal requisition}
+\item{\verb{vertical}}{group affects vertical requisition}
+\item{\verb{both}}{group affects both horizontal and vertical requisition}
 }
 
 }}}
 \section{Properties}{\describe{
 \item{\verb{ignore-hidden} [logical : Read / Write]}{
 
-If \code{TRUE}, unmapped widgets are ignored when determining 
-the size of the group.  
-
-  Default value: FALSE  Since  2.8
+If \code{TRUE}, unmapped widgets are ignored when determining
+the size of the group.
+  Default value: FALSE  Since 2.8
 
 }
 \item{\verb{mode} [\code{\link{GtkSizeGroupMode}} : Read / Write]}{
@@ -99,6 +98,6 @@ The directions in which the size group affects the requested sizes of its compon
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkSizeGroup.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkSizeGroup.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

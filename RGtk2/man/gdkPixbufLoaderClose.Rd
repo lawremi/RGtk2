@@ -12,14 +12,14 @@ to be finished, passing \code{NULL} for \code{error} to ignore it is
 reasonable.}
 \usage{gdkPixbufLoaderClose(object, .errwarn = TRUE)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GdkPixbufLoader}}]  A pixbuf loader.}
+\item{\verb{object}}{A pixbuf loader.}
 \item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if all image data written so far was successfully
             passed out via the update_area signal}
-\item{\verb{error}}{[\verb{\link{GError}}]  return location for a \verb{\link{GError}}, or \code{NULL} to ignore errors}
+\item{\verb{error}}{ return location for a \code{\link{GError}}, or \code{NULL} to ignore errors. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

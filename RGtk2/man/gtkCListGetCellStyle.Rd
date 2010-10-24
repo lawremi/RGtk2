@@ -7,10 +7,10 @@ Gets the current style of the specified cell.
 }
 \usage{gtkCListGetCellStyle(object, row, column)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkCList}}] The \verb{\link{GtkCList}} to affect.}
-\item{\verb{row}}{[integer] The row of the cell.}
-\item{\verb{column}}{[integer] The column of the cell.}
+\item{\verb{object}}{The \code{\link{GtkCList}} to affect.}
+\item{\verb{row}}{The row of the cell.}
+\item{\verb{column}}{The column of the cell.}
 }
-\value{[\verb{\link{GtkStyle}}] A \verb{\link{GtkStyle}} object.}
+\value{[\code{\link{GtkStyle}}] A \code{\link{GtkStyle}} object.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

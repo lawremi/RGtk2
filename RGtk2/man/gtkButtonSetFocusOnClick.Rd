@@ -7,9 +7,9 @@ you don't want the keyboard focus removed from the main area of the
 application.}
 \usage{gtkButtonSetFocusOnClick(object, focus.on.click)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkButton}}]  a \verb{\link{GtkButton}}}
-\item{\verb{focus.on.click}}{[logical]  whether the button grabs focus when clicked with the mouse}
+\item{\verb{object}}{a \code{\link{GtkButton}}}
+\item{\verb{focus.on.click}}{whether the button grabs focus when clicked with the mouse}
 }
-\details{  Since  2.4}
+\details{Since 2.4}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

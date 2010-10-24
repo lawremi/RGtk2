@@ -42,7 +42,7 @@ Encapsulates information about a key event.
 \item{\verb{state}}{[numeric]  A bitmask representing the state of the modifier keys immediately after the event takes place.   
 The meaning of the bits is currently defined to match the bitmask used by GDK in
 GdkEventType.state, see 
-http://developer.gnome.org/doc/API/2.0/gdk/gdk-Event-Structures.html\verb{\link{GdkEventKey}}}
+http://developer.gnome.org/doc/API/2.0/gdk/gdk-Event-Structures.html\code{\link{GdkEventKey}}}
 \item{\verb{keyval}}{[numeric]  A guint representing a keysym value corresponding to those used by GDK and X11: see
 /usr/X11/include/keysymdef.h.}
 \item{\verb{length}}{[integer]  The length of member \verb{string}.}
@@ -90,7 +90,7 @@ supported are events of type "focus:".  Most clients of ATK will prefer to
 attach signal handlers for the various ATK signals instead.
   \code{see}: atk_add_focus_tracker.  
 
-\describe{\item{\code{obj}}{[\verb{\link{AtkObject}}]  An \verb{\link{AtkObject}} instance for whom the callback will be called when
+\describe{\item{\code{obj}}{[\code{\link{AtkObject}}]  An \code{\link{AtkObject}} instance for whom the callback will be called when
 the specified event (e.g. 'focus:') takes place.}}
 
 
@@ -106,12 +106,12 @@ used by \verb{AtkEventListener}, if any preparation is required.
 
 }
 \item{\code{AtkKeySnoopFunc(event, func.data)}}{
-An \verb{\link{AtkKeySnoopFunc}} is a type of callback which is called whenever a key event occurs, 
+An \code{\link{AtkKeySnoopFunc}} is a type of callback which is called whenever a key event occurs, 
 if registered via atk_add_key_event_listener.  It allows for pre-emptive 
 interception of key events via the return code as described below.  
 
 \describe{
-\item{\code{event}}{[\verb{\link{AtkKeyEventStruct}}]  an AtkKeyEventStruct containing information about the key event for which
+\item{\code{event}}{[\code{\link{AtkKeyEventStruct}}]  an AtkKeyEventStruct containing information about the key event for which
 notification is being given.}
 \item{\code{func.data}}{[R object]  a block of data which will be passed to the event listener, on notification.}
 }
@@ -124,6 +124,6 @@ event dispatch to the client application should proceed as normal.
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/atk/AtkUtil.html}}
+\references{\url{http://library.gnome.org/devel//atk/AtkUtil.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -5,9 +5,9 @@
 said text if it's editable.}
 \usage{gtkTextBufferCutClipboard(object, clipboard, default.editable)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTextBuffer}}]  a \verb{\link{GtkTextBuffer}}}
-\item{\verb{clipboard}}{[\verb{\link{GtkClipboard}}]  the \verb{\link{GtkClipboard}} object to cut to}
-\item{\verb{default.editable}}{[logical]  default editability of the buffer}
+\item{\verb{object}}{a \code{\link{GtkTextBuffer}}}
+\item{\verb{clipboard}}{the \code{\link{GtkClipboard}} object to cut to}
+\item{\verb{default.editable}}{default editability of the buffer}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

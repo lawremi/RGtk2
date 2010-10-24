@@ -8,9 +8,9 @@ language bindings, or applications where you need more control over the
 signal connection process.}
 \usage{gladeXMLSignalConnectFull(object, handler.name, func, user.data)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GladeXML}}]  the GladeXML object.}
+\item{\verb{object}}{[\code{\link{GladeXML}}]  the GladeXML object.}
 \item{\verb{handler.name}}{[character]  the name of the signal handler that we want to connect.}
-\item{\verb{func}}{[\verb{\link{GladeXMLConnectFunc}}]  the function to use to connect the signals.}
+\item{\verb{func}}{[\code{\link{GladeXMLConnectFunc}}]  the function to use to connect the signals.}
 \item{\verb{user.data}}{[R object]  arbitrary data to pass to the connect function.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

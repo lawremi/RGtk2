@@ -1,21 +1,21 @@
 \alias{gdkKeymapTranslateKeyboardState}
 \name{gdkKeymapTranslateKeyboardState}
 \title{gdkKeymapTranslateKeyboardState}
-\description{Translates the contents of a \verb{\link{GdkEventKey}} into a keyval, effective
+\description{Translates the contents of a \code{\link{GdkEventKey}} into a keyval, effective
 group, and level. Modifiers that affected the translation and
 are thus unavailable for application use are returned in
-\code{consumed.modifiers}.  See \code{gdkKeyvalGetKeys()} for an explanation of
+\code{consumed.modifiers}.  See  for an explanation of
 groups and levels.  The \code{effective.group} is the group that was
 actually used for the translation; some keys such as Enter are not
 affected by the active keyboard group. The \code{level} is derived from
-\code{state}. For convenience, \verb{\link{GdkEventKey}} already contains the translated
+\code{state}. For convenience, \code{\link{GdkEventKey}} already contains the translated
 keyval, so this function isn't as useful as you might think.}
 \usage{gdkKeymapTranslateKeyboardState(object, hardware.keycode, state, group)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GdkKeymap}}]  a \verb{\link{GdkKeymap}}, or \code{NULL} to use the default}
-\item{\verb{hardware.keycode}}{[numeric]  a keycode}
-\item{\verb{state}}{[\code{\link{GdkModifierType}}]  a modifier state }
-\item{\verb{group}}{[integer]  active keyboard group}
+\item{\verb{object}}{ a \code{\link{GdkKeymap}}, or \code{NULL} to use the default. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{hardware.keycode}}{a keycode}
+\item{\verb{state}}{a modifier state}
+\item{\verb{group}}{active keyboard group}
 }
 \details{\strong{PLEASE NOTE:} \code{consumed.modifiers} gives modifiers that should be masked out
 from \code{state} when comparing this key press to a hot key. For
@@ -53,15 +53,15 @@ be returned in \code{consumed.modifiers}; multi-modifier combinations
 are returned only when actually found in \code{state}. When you store
 accelerators, you should always store them with consumed modifiers
 removed. Store \code{<Control>plus},
-not \code{<Control><Shift>plus},  }
+not \code{<Control><Shift>plus},}
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if there was a keyval bound to the keycode/state/group}
-\item{\verb{keyval}}{[numeric]  return location for keyval, or \code{NULL}}
-\item{\verb{effective.group}}{[integer]  return location for effective group, or \code{NULL}}
-\item{\verb{level}}{[integer]  return location for level, or \code{NULL}}
-\item{\verb{consumed.modifiers}}{[\code{\link{GdkModifierType}}]  return location for modifiers that were used to
-    determine the group or level, or \code{NULL}}
+\item{\verb{keyval}}{ return location for keyval, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
+\item{\verb{effective.group}}{ return location for effective group, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
+\item{\verb{level}}{  return location for level, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
+\item{\verb{consumed.modifiers}}{  return location for modifiers that were used to
+    determine the group or level, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
 }
 \note{\code{consumed.modifiers} gives modifiers that should be masked out
 from \code{state} when comparing this key press to a hot key. For

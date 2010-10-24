@@ -11,8 +11,8 @@ text as well, so it is not a reliable indicator that a pixbuf or
 widget is in the buffer.}
 \usage{gtkTextIterGetSlice(object, end)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTextIter}}]  iterator at start of a range}
-\item{\verb{end}}{[\verb{\link{GtkTextIter}}]  iterator at end of a range}
+\item{\verb{object}}{iterator at start of a range}
+\item{\verb{end}}{iterator at end of a range}
 }
 \value{[character]  slice of text from the buffer}
 \author{Derived by RGtkGen from GTK+ documentation}

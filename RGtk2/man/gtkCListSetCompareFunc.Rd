@@ -10,8 +10,8 @@ by \code{\link{gtkCListSetSortColumn}}.
 }
 \usage{gtkCListSetCompareFunc(object, cmp.func)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkCList}}] The \verb{\link{GtkCList}} to affect.}
-\item{\verb{cmp.func}}{[GtkCListCompareFunc] The \verb{GtkCompareFunction} to use.}
+\item{\verb{object}}{The \code{\link{GtkCList}} to affect.}
+\item{\verb{cmp.func}}{The \verb{GtkCompareFunction} to use.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

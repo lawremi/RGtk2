@@ -7,8 +7,8 @@ Removes the specified row from the CList.
 }
 \usage{gtkCListRemove(object, row)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkCList}}] The \verb{\link{GtkCList}} to affect.}
-\item{\verb{row}}{[integer] The row to remove.}
+\item{\verb{object}}{The \code{\link{GtkCList}} to affect.}
+\item{\verb{row}}{The row to remove.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

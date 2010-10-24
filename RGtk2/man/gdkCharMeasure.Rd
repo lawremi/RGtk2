@@ -10,8 +10,8 @@ portion when drawing text in multiple pieces.
 }
 \usage{gdkCharMeasure(object, character)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GdkFont}}]  a \verb{\link{GdkFont}}}
-\item{\verb{character}}{[character]  the character to measure.}
+\item{\verb{object}}{a \code{\link{GdkFont}}}
+\item{\verb{character}}{the character to measure.}
 }
 \value{[integer]  the right bearing of the character in pixels.}
 \author{Derived by RGtkGen from GTK+ documentation}

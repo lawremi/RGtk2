@@ -20,12 +20,12 @@
                                              +----GtkCheckButton
                                                    +----GtkRadioButton}}
 \section{Interfaces}{GtkCheckButton implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{A \verb{\link{GtkCheckButton}} places a discrete \verb{\link{GtkToggleButton}} next to a widget, (usually a \verb{\link{GtkLabel}}). See the section on \verb{\link{GtkToggleButton}} widgets for more information about toggle/check buttons.
+ AtkImplementorIface,  \code{\link{GtkBuildable}} and  \code{\link{GtkActivatable}}.}
+\section{Detailed Description}{A \code{\link{GtkCheckButton}} places a discrete \code{\link{GtkToggleButton}} next to a widget, (usually a \code{\link{GtkLabel}}). See the section on \code{\link{GtkToggleButton}} widgets for more information about toggle/check buttons.
   
-The important signal ('toggled') is also inherited from \verb{\link{GtkToggleButton}}.}
+The important signal ('toggled') is also inherited from \code{\link{GtkToggleButton}}.}
 \section{Structures}{\describe{\item{\verb{GtkCheckButton}}{
-\code{toggle_button} is a \verb{\link{GtkToggleButton}} representing the actual toggle button that composes the check button.
+\code{toggle_button} is a \code{\link{GtkToggleButton}} representing the actual toggle button that composes the check button.
 
 }}}
 \section{Convenient Construction}{\code{gtkCheckButton} is the result of collapsing the constructors of \code{GtkCheckButton} (\code{\link{gtkCheckButtonNew}}, \code{\link{gtkCheckButtonNewWithLabel}}, \code{\link{gtkCheckButtonNewWithMnemonic}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
@@ -41,6 +41,6 @@ Spacing around check or radio indicator.  Allowed values: >= 0  Default value: 2
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkCheckButton.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkCheckButton.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

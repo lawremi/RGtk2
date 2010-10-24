@@ -7,11 +7,12 @@ added. The size you set will override user preferences for the default
 icon size.}
 \usage{gtkToolbarSetIconSize(object, icon.size)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkToolbar}}]  A \verb{\link{GtkToolbar}}}
-\item{\verb{icon.size}}{[\code{\link{GtkIconSize}}]  The \code{\link{GtkIconSize}} that stock icons in the toolbar shall have.}
+\item{\verb{object}}{A \code{\link{GtkToolbar}}}
+\item{\verb{icon.size}}{ The \code{\link{GtkIconSize}} that stock icons in the
+    toolbar shall have. \emph{[type int]}}
 }
 \details{This should only be used for special-purpose toolbars, normal
 application toolbars should respect the user preferences for the
-size of icons.  }
+size of icons.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

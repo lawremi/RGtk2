@@ -49,16 +49,16 @@
                      +----GtkContainer
                            +----GtkToolbar}}
 \section{Interfaces}{GtkToolbar implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+ AtkImplementorIface,  \code{\link{GtkBuildable}},  \code{\link{GtkToolShell}} and  \code{\link{GtkOrientable}}.}
 \section{Detailed Description}{A toolbar is created with a call to \code{\link{gtkToolbarNew}}.
   
-A toolbar can contain instances of a subclass of \verb{\link{GtkToolItem}}. To add
-a \verb{\link{GtkToolItem}} to the a toolbar, use \code{\link{gtkToolbarInsert}}. To remove
+A toolbar can contain instances of a subclass of \code{\link{GtkToolItem}}. To add
+a \code{\link{GtkToolItem}} to the a toolbar, use \code{\link{gtkToolbarInsert}}. To remove
 an item from the toolbar use \code{\link{gtkContainerRemove}}. To add a button
-to the toolbar, add an instance of \verb{\link{GtkToolButton}}.
+to the toolbar, add an instance of \code{\link{GtkToolButton}}.
   
 Toolbar items can be visually grouped by adding instances of
-\verb{\link{GtkSeparatorToolItem}} to the toolbar. If a \verb{\link{GtkSeparatorToolItem}} has
+\code{\link{GtkSeparatorToolItem}} to the toolbar. If a \code{\link{GtkSeparatorToolItem}} has
 the "expand" property set to \verb{TRUE} and the "draw" property set to
 \verb{FALSE} the effect is to force all following items to the end of the
 toolbar.
@@ -66,7 +66,7 @@ toolbar.
 Creating a context menu for the toolbar can be done by connecting to
 the \verb{"popup-context-menu"} signal.}
 \section{Structures}{\describe{\item{\verb{GtkToolbar}}{
-The \verb{\link{GtkToolbar}} struct only contains private data and should only be
+The \code{\link{GtkToolbar}} struct only contains private data and should only be
 accessed through the function described below.
 
 }}}
@@ -74,15 +74,15 @@ accessed through the function described below.
 \section{Enums and Flags}{\describe{
 \item{\verb{GtkToolbarChildType}}{
 \strong{WARNING: \code{GtkToolbarChildType} is deprecated and should not be used in newly-written code.}
-\code{\link{GtkToolbarChildType}} is used to set the type of new elements that are added 
-to a \verb{\link{GtkToolbar}}.
+\code{\link{GtkToolbarChildType}} is used to set the type of new elements that are added
+to a \code{\link{GtkToolbar}}.
 
 \describe{
 \item{\verb{space}}{a space in the style of the toolbar's \code{\link{GtkToolbarSpaceStyle}}.}
-\item{\verb{button}}{a \verb{\link{GtkButton}}.}
-\item{\verb{togglebutton}}{a \verb{\link{GtkToggleButton}}.}
-\item{\verb{radiobutton}}{a \verb{\link{GtkRadioButton}}.}
-\item{\verb{widget}}{a standard \verb{\link{GtkWidget}}.}
+\item{\verb{button}}{a \code{\link{GtkButton}}.}
+\item{\verb{togglebutton}}{a \code{\link{GtkToggleButton}}.}
+\item{\verb{radiobutton}}{a \code{\link{GtkRadioButton}}.}
+\item{\verb{widget}}{a standard \code{\link{GtkWidget}}.}
 }
 
 }
@@ -102,24 +102,24 @@ to a \verb{\link{GtkToolbar}}.
 \section{Signals}{\describe{
 \item{\code{focus-home-or-end(toolbar, focus.home, user.data)}}{
 A keybinding signal used internally by GTK+. This signal can't
-be used in application code  
+be used in application code
 
 \describe{
-\item{\code{toolbar}}{[\verb{\link{GtkToolbar}}]  the \verb{\link{GtkToolbar}} which emitted the signal}
-\item{\code{focus.home}}{[logical] \code{TRUE} if the first item should be focused}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{toolbar}}{the \code{\link{GtkToolbar}} which emitted the signal}
+\item{\code{focus.home}}{\code{TRUE} if the first item should be focused}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 \emph{Returns:} [logical] \code{TRUE} if the signal was handled, \code{FALSE} if not
 
 }
 \item{\code{orientation-changed(toolbar, orientation, user.data)}}{
-Emitted when the orientation of the toolbar changes.  
+Emitted when the orientation of the toolbar changes.
 
 \describe{
-\item{\code{toolbar}}{[\verb{\link{GtkToolbar}}]  the object which emitted the signal}
-\item{\code{orientation}}{[\code{\link{GtkOrientation}}]  the new \code{\link{GtkOrientation}} of the toolbar}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{toolbar}}{the object which emitted the signal}
+\item{\code{orientation}}{the new \code{\link{GtkOrientation}} of the toolbar}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -132,55 +132,48 @@ Application developers should handle this signal if they want
 to display a context menu on the toolbar. The context-menu should
 appear at the coordinates given by \code{x} and \code{y}. The mouse button
 number is given by the \code{button} parameter. If the menu was popped
-up using the keybaord, \code{button} is -1.  
+up using the keybaord, \code{button} is -1.
 
 \describe{
-\item{\code{toolbar}}{[\verb{\link{GtkToolbar}}]  the \verb{\link{GtkToolbar}} which emitted the signal}
-\item{\code{x}}{[integer]  the x coordinate of the point where the menu should appear}
-\item{\code{y}}{[integer]  the y coordinate of the point where the menu should appear}
-\item{\code{button}}{[integer]  the mouse button the user pressed, or -1}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{toolbar}}{the \code{\link{GtkToolbar}} which emitted the signal}
+\item{\code{x}}{the x coordinate of the point where the menu should appear}
+\item{\code{y}}{the y coordinate of the point where the menu should appear}
+\item{\code{button}}{the mouse button the user pressed, or -1}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 \emph{Returns:} [logical]  return \code{TRUE} if the signal was handled, \code{FALSE} if not
 
 }
 \item{\code{style-changed(toolbar, style, user.data)}}{
-Emitted when the style of the toolbar changes.  
+Emitted when the style of the toolbar changes.
 
 \describe{
-\item{\code{toolbar}}{[\verb{\link{GtkToolbar}}]  The \verb{\link{GtkToolbar}} which emitted the signal}
-\item{\code{style}}{[\code{\link{GtkToolbarStyle}}]  the new \code{\link{GtkToolbarStyle}} of the toolbar}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{toolbar}}{The \code{\link{GtkToolbar}} which emitted the signal}
+\item{\code{style}}{the new \code{\link{GtkToolbarStyle}} of the toolbar}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
 }}
 \section{Properties}{\describe{
-\item{\verb{icon-size} [\code{\link{GtkIconSize}} : Read / Write]}{
+\item{\verb{icon-size} [integer : Read / Write]}{
 
 The size of the icons in a toolbar is normally determined by
-the toolbar-icon-size setting. When this property is set, it 
+the toolbar-icon-size setting. When this property is set, it
 overrides the setting. 
   
 This should only be used for special-purpose toolbars, normal
 application toolbars should respect the user preferences for the
-size of icons.  
-
-  Default value: GTK_ICON_SIZE_LARGE_TOOLBAR  Since  2.10
+size of icons.
+  Allowed values: >= 0  Default value: 3  Since 2.10
 
 }
 \item{\verb{icon-size-set} [logical : Read / Write]}{
 
-Is \code{TRUE} if the icon-size property has been set.  
-
-  Default value: FALSE  Since  2.10
-
-}
-\item{\verb{orientation} [\code{\link{GtkOrientation}} : Read / Write]}{
-
-The orientation of the toolbar.  Default value: GTK_ORIENTATION_HORIZONTAL
+Is \code{TRUE} if the icon-size property has been set.
+  Default value: FALSE  Since 2.10
 
 }
 \item{\verb{show-arrow} [logical : Read / Write]}{
@@ -195,9 +188,8 @@ How to draw the toolbar.  Default value: GTK_TOOLBAR_BOTH
 }
 \item{\verb{tooltips} [logical : Read / Write]}{
 
-If the tooltips of the toolbar should be active or not.  
-
-  Default value: TRUE  Since  2.8
+If the tooltips of the toolbar should be active or not.
+  Default value: TRUE  Since 2.8
 
 }
 }}
@@ -233,6 +225,6 @@ Whether spacers are vertical lines or just blank.  Default value: GTK_TOOLBAR_SP
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkToolbar.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkToolbar.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

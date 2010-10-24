@@ -64,13 +64,13 @@
          +----GtkObject
                +----GtkTreeViewColumn}}
 \section{Interfaces}{GtkTreeViewColumn implements
- \verb{\link{GtkBuildable}} and  \verb{\link{GtkCellLayout}}.}
-\section{Detailed Description}{The GtkTreeViewColumn object represents a visible column in a \verb{\link{GtkTreeView}} widget.
-It allows to set properties of the column header, and functions as a holding pen for 
+ \code{\link{GtkCellLayout}} and  \code{\link{GtkBuildable}}.}
+\section{Detailed Description}{The GtkTreeViewColumn object represents a visible column in a \code{\link{GtkTreeView}} widget.
+It allows to set properties of the column header, and functions as a holding pen for
 the cell renderers which determine how the data in the column is displayed.
   
-Please refer to the tree widget conceptual overview 
-for an overview of all the objects and data types related to the tree widget and how 
+Please refer to the tree widget conceptual overview
+for an overview of all the objects and data types related to the tree widget and how
 they work together.}
 \section{Structures}{\describe{\item{\verb{GtkTreeViewColumn}}{
 \emph{undocumented
@@ -99,11 +99,11 @@ integer from the \code{tree.model}, and render it to the "text" attribute of
 calling \code{\link{gtkTreeViewColumnSetCellDataFunc}}
 
 \describe{
-\item{\code{tree.column}}{[\verb{\link{GtkTreeViewColumn}}] A \verb{GtkTreeColumn}}
-\item{\code{cell}}{[\verb{\link{GtkCellRenderer}}] The \verb{\link{GtkCellRenderer}} that is being rendered by \code{tree.column}}
-\item{\code{tree.model}}{[\verb{\link{GtkTreeModel}}] The \verb{\link{GtkTreeModel}} being rendered}
-\item{\code{iter}}{[\verb{\link{GtkTreeIter}}] A \verb{\link{GtkTreeIter}} of the current row rendered}
-\item{\code{data}}{[R object] user data}
+\item{\code{tree.column}}{A \verb{GtkTreeColumn}}
+\item{\code{cell}}{The \code{\link{GtkCellRenderer}} that is being rendered by \code{tree.column}}
+\item{\code{tree.model}}{The \code{\link{GtkTreeModel}} being rendered}
+\item{\code{iter}}{A \code{\link{GtkTreeIter}} of the current row rendered}
+\item{\code{data}}{user data}
 }
 
 
@@ -113,8 +113,8 @@ calling \code{\link{gtkTreeViewColumnSetCellDataFunc}}
 }
 
 \describe{
-\item{\code{treeviewcolumn}}{[\verb{\link{GtkTreeViewColumn}}] the object which received the signal.}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{treeviewcolumn}}{the object which received the signal.}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -165,6 +165,13 @@ Column is user-resizable.  Default value: FALSE
 Resize mode of the column.  Default value: GTK_TREE_VIEW_COLUMN_GROW_ONLY
 
 }
+\item{\verb{sort-column-id} [integer : Read / Write]}{
+
+Logical sort column ID this column sorts on when selected for sorting. Setting the sort column ID makes the column header
+clickable. Set to \code{-1} to make the column unsortable.
+  Allowed values: >= -1  Default value: -1  Since 2.18
+
+}
 \item{\verb{sort-indicator} [logical : Read / Write]}{
 
 Whether to show a sort indicator.  Default value: FALSE
@@ -190,7 +197,7 @@ Title to appear in column header.  Default value: ""
 Whether to display the column.  Default value: TRUE
 
 }
-\item{\verb{widget} [\verb{\link{GtkWidget}} : *            : Read / Write]}{
+\item{\verb{widget} [\code{\link{GtkWidget}} : *            : Read / Write]}{
 
 Widget to put in column header button instead of column title.
 
@@ -201,19 +208,19 @@ Current width of the column.  Allowed values: >= 0  Default value: 0
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkTreeViewColumn.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkTreeViewColumn.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
-\verb{\link{GtkTreeView}}
-\verb{\link{GtkTreeSelection}}
-\verb{\link{GtkTreeSortable}}
-\verb{\link{GtkTreeModelSort}}
-\verb{\link{GtkListStore}}
-\verb{\link{GtkTreeStore}}
-\verb{\link{GtkCellRenderer}}
-\verb{\link{GtkCellEditable}}
-\verb{\link{GtkCellRendererPixbuf}}
-\verb{\link{GtkCellRendererText}}
-\verb{\link{GtkCellRendererToggle}}
+\code{\link{GtkTreeView}}
+\code{\link{GtkTreeSelection}}
+\code{\link{GtkTreeSortable}}
+\code{\link{GtkTreeModelSort}}
+\code{\link{GtkListStore}}
+\code{\link{GtkTreeStore}}
+\code{\link{GtkCellRenderer}}
+\code{\link{GtkCellEditable}}
+\code{\link{GtkCellRendererPixbuf}}
+\code{\link{GtkCellRendererText}}
+\code{\link{GtkCellRendererToggle}}
 }
 \keyword{internal}

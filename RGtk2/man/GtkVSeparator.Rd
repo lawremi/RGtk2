@@ -14,16 +14,16 @@
                      +----GtkSeparator
                            +----GtkVSeparator}}
 \section{Interfaces}{GtkVSeparator implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{The \verb{\link{GtkVSeparator}} widget is a vertical separator, used to group the
+ AtkImplementorIface,  \code{\link{GtkBuildable}} and  \code{\link{GtkOrientable}}.}
+\section{Detailed Description}{The \code{\link{GtkVSeparator}} widget is a vertical separator, used to group the
 widgets within a window. It displays a vertical line with a shadow to
 make it appear sunken into the interface.}
 \section{Structures}{\describe{\item{\verb{GtkVSeparator}}{
-The \verb{\link{GtkVSeparator}} struct contains private data only, and
+The \code{\link{GtkVSeparator}} struct contains private data only, and
 should be accessed using the functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkVSeparator} is the equivalent of \code{\link{gtkVSeparatorNew}}.}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkVSeparator.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkVSeparator.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

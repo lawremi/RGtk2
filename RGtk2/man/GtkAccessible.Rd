@@ -14,6 +14,6 @@
 }
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkAccessible.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkAccessible.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

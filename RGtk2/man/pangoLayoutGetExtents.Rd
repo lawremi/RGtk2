@@ -8,14 +8,14 @@ render the layout.  Not doing that is a very typical bug that shows up as
 right-to-left layouts not being correctly positioned in a layout with
 a set width.}
 \usage{pangoLayoutGetExtents(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{PangoLayout}}]    a \verb{\link{PangoLayout}}}}
+\arguments{\item{\verb{object}}{a \code{\link{PangoLayout}}}}
 \details{The extents are given in layout coordinates and in Pango units; layout
-coordinates begin at the top left corner of the layout.  }
+coordinates begin at the top left corner of the layout.}
 \value{
 A list containing the following elements:
-\item{\verb{ink.rect}}{[\verb{\link{PangoRectangle}}]  rectangle used to store the extents of the layout as drawn
+\item{\verb{ink.rect}}{rectangle used to store the extents of the layout as drawn
            or \code{NULL} to indicate that the result is not needed.}
-\item{\verb{logical.rect}}{[\verb{\link{PangoRectangle}}]  rectangle used to store the logical extents of the layout
+\item{\verb{logical.rect}}{rectangle used to store the logical extents of the layout
 		 or \code{NULL} to indicate that the result is not needed.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -7,9 +7,12 @@
 }
 \usage{gtkContainerForeachFull(object, callback, callback.data = NULL)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkContainer}}] }
-\item{\verb{callback}}{[\verb{\link{GtkCallback}}] }
-\item{\verb{callback.data}}{[R object] }
+\item{\verb{object}}{\emph{undocumented
+}}
+\item{\verb{callback}}{\emph{undocumented
+}}
+\item{\verb{callback.data}}{\emph{undocumented
+}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

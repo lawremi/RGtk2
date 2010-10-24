@@ -4,6 +4,6 @@
 \description{Equivalent to calling \code{\link{gtkWidgetQueueDrawArea}} for the
 entire area of a widget.}
 \usage{gtkWidgetQueueDraw(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}}
+\arguments{\item{\verb{object}}{a \code{\link{GtkWidget}}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

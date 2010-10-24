@@ -4,7 +4,7 @@
 \description{Gets the specified text.}
 \usage{atkTextGetText(object, start.offset, end.offset)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{AtkText}}]  an \verb{\link{AtkText}}}
+\item{\verb{object}}{[\code{\link{AtkText}}]  an \code{\link{AtkText}}}
 \item{\verb{start.offset}}{[integer]  start position}
 \item{\verb{end.offset}}{[integer]  end position}
 }

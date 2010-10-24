@@ -6,7 +6,7 @@ will have a colormap if the drawable from which it was created has
 a colormap, or if a colormap was set explicitely with
 \code{\link{gdkImageSetColormap}}.}
 \usage{gdkImageGetColormap(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GdkImage}}]  a \verb{\link{GdkImage}}}}
-\value{[\verb{\link{GdkColormap}}]  colormap for the image}
+\arguments{\item{\verb{object}}{a \code{\link{GdkImage}}}}
+\value{[\code{\link{GdkColormap}}]  colormap for the image}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

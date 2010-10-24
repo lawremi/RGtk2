@@ -6,14 +6,14 @@ for \code{\link{pangoFontGetGlyphExtents}} for details about the interpretation
 of the rectangles.}
 \usage{pangoGlyphStringExtents(object, font)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{PangoGlyphString}}]    a \verb{\link{PangoGlyphString}}}
-\item{\verb{font}}{[\verb{\link{PangoFont}}]      a \verb{\link{PangoFont}}}
+\item{\verb{object}}{a \code{\link{PangoGlyphString}}}
+\item{\verb{font}}{a \code{\link{PangoFont}}}
 }
 \value{
 A list containing the following elements:
-\item{\verb{ink.rect}}{[\verb{\link{PangoRectangle}}]  rectangle used to store the extents of the glyph string as drawn
+\item{\verb{ink.rect}}{rectangle used to store the extents of the glyph string as drawn
            or \code{NULL} to indicate that the result is not needed.}
-\item{\verb{logical.rect}}{[\verb{\link{PangoRectangle}}]  rectangle used to store the logical extents of the glyph string
+\item{\verb{logical.rect}}{rectangle used to store the logical extents of the glyph string
            or \code{NULL} to indicate that the result is not needed.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

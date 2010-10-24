@@ -4,9 +4,9 @@
 \description{If \code{show.style} is \code{TRUE}, the font style will be displayed along with name of the selected font.}
 \usage{gtkFontButtonSetShowStyle(object, show.style)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkFontButton}}]  a \verb{\link{GtkFontButton}}}
-\item{\verb{show.style}}{[logical] \code{TRUE} if font style should be displayed in label.}
+\item{\verb{object}}{a \code{\link{GtkFontButton}}}
+\item{\verb{show.style}}{\code{TRUE} if font style should be displayed in label.}
 }
-\details{  Since  2.4}
+\details{Since 2.4}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

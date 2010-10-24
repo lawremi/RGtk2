@@ -8,8 +8,8 @@ create the image from scratch, use the colormap of the drawable you
 intend to render the image to.}
 \usage{gdkImageSetColormap(object, colormap)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GdkImage}}]  a \verb{\link{GdkImage}}}
-\item{\verb{colormap}}{[\verb{\link{GdkColormap}}]  a \verb{\link{GdkColormap}}}
+\item{\verb{object}}{a \code{\link{GdkImage}}}
+\item{\verb{colormap}}{a \code{\link{GdkColormap}}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

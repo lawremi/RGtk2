@@ -1,16 +1,17 @@
+rgtkgen <- dirname(dirname(getwd()))
 version <- "2.20"
 
 Sys.setenv(PYTHONPATH=paste(Sys.getenv("PYTHONPATH"), 
-  "/home/larman/projects/R/RGtk2/RGtkGen/inst/pygtk",sep=":"))
+             file.path(rgtkgen, "inst", "pygtk"), sep = ":"))
 library(RSPython)
 library(rpart)
 
-setwd("/home/larman/projects/R/RGtk2/RGtkGen/R")
+setwd(file.path(rgtkgen, "R"))
 source_files <- c("pyGen.R", "genClass.R", "genCode.S", "genCons.S",
                   "genDoc.S")
 sapply(source_files, source)
 
-path <- "/home/larman/projects/R/RGtk2/RGtkGen/inst/data"
+path <- file.path(rgtkgen, "inst", "data")
 defspath <- file.path(path, "defs")
 libs <- c("atk.defs", "cairo.defs", "pango.defs", "gio.defs", "gdk.defs",
           "gtk.defs")
@@ -28,26 +29,41 @@ allDefs <- NULL
 for (f in files) allDefs <- mergeDefs(getDefs(f), allDefs)
 
 # generating the documentation
-src_dir <- "/home/larman/src"
-subs <- c("atk-1.22.0/docs", "pango-1.28.1/docs",
-    file.path("gtk+-2.20.1/docs/reference", c("gdk", "gtk", "gdk-pixbuf")), 
-	"cairo-1.8.10/doc/public", "libglade-2.6.4/doc")
+src_dir <- "/home/larman/research/src"
+subs <- c("atk-1.30.0/docs", "pango/docs",
+          "glib/docs/reference/gio",
+          file.path("gtk+/docs/reference",
+                    c("gdk", "gtk", "gdk-pixbuf")), 
+          "cairo-1.8.10/doc/public", "libglade-2.6.4/doc")
 doc_dirs <- file.path(src_dir, subs, "xml")
 doc_files <- sapply(doc_dirs, dir, pattern = "xml", full.names = T)
 
-#defs <- getDefs(files[1])
-#doc_file <- doc_files[[1]][11]
-#genDoc(doc_file, defs, file.path(path, "docgen"))
-doc_files[[4]] <- doc_files[[4]][-(1:(which(sapply(doc_files[[4]], basename) == "gtkbuilder.xml")-1))]
-#source("genDoc.S")
-genDocs(doc_files[4], allDefs, file.path(path, "docgen"), libraryDescriptions, verbose = T)
+basenames <- lapply(doc_files, basename)
+startWithFile <- function(f) {
+  lib <- which(sapply(basenames, `%in%`, x = f))
+  if (!length(lib))
+    stop("'", f, "' not found")
+  docs <- tail(doc_files, -lib + 1L)
+  docs[[1]] <- tail(docs[[1]], -match(f, basenames[[lib]]) + 1L)
+  genDocs(docs, allDefs, file.path(path, "docgen"), libraryDescriptions,
+          verbose = TRUE)
+}
+startWithFile("gtkclipboard.xml")
 
-genDocs(doc_files, allDefs, file.path(path, "docgen"), libraryDescriptions, verbose = TRUE)
+genDocs(doc_files, allDefs, file.path(path, "docgen"), libraryDescriptions,
+        verbose = TRUE)
 
-# exporting/importing routines for each API
-deps <- list(atk = "gobject", cairo = "gobject", pango = "cairo", 
-  gdk = "pango", gtk = c("gdk", "atk"), libglade = "gtk")
-sapply(c("atk", "cairo", "pango", "gdk", "gtk", "libglade"), function(api) {
+## Eventually generate constructors and regen the docs
+
+allDefs <- generateCodeFiles(files,dir=file.path(path, "gen"),
+                             constructors = TRUE, allDefs=NULL)[[1]]
+
+
+## exporting/importing routines for each API
+deps <- list(gio = "gobject", atk = "gobject", cairo = "gobject",
+             pango = "cairo", gdk = c("pango", "gio"), gtk = c("gdk", "atk"),
+             libglade = "gtk")
+sapply(names(deps), function(api) {
   genExports(api, file.path(path, "gen"), file.path(defspath, "exports"), 
     file.path("RGtk2", deps[[api]]))
 })

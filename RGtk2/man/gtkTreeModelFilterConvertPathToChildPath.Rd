@@ -7,10 +7,10 @@ point to the same location in the model not being filtered. If \code{filter.path
 does not point to a location in the child model, \code{NULL} is returned.}
 \usage{gtkTreeModelFilterConvertPathToChildPath(object, filter.path)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTreeModelFilter}}]  A \verb{\link{GtkTreeModelFilter}}.}
-\item{\verb{filter.path}}{[\verb{\link{GtkTreePath}}]  A \verb{\link{GtkTreePath}} to convert.}
+\item{\verb{object}}{A \code{\link{GtkTreeModelFilter}}.}
+\item{\verb{filter.path}}{A \code{\link{GtkTreePath}} to convert.}
 }
-\details{  Since  2.4}
-\value{[\verb{\link{GtkTreePath}}]  A newly allocated \verb{\link{GtkTreePath}}, or \code{NULL}.}
+\details{Since 2.4}
+\value{[\code{\link{GtkTreePath}}]  A newly allocated \code{\link{GtkTreePath}}, or \code{NULL}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

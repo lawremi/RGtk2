@@ -6,7 +6,7 @@ are interpreted as being relative to the screen or this widget's window
 depending on \code{coords}.}
 \usage{atkTextGetOffsetAtPoint(object, x, y, coords)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{AtkText}}]  an \verb{\link{AtkText}}}
+\item{\verb{object}}{[\code{\link{AtkText}}]  an \code{\link{AtkText}}}
 \item{\verb{x}}{[integer]  screen x-position of character}
 \item{\verb{y}}{[integer]  screen y-position of character}
 \item{\verb{coords}}{[\code{\link{AtkCoordType}}]  specify whether coordinates are relative to the screen or

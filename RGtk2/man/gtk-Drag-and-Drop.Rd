@@ -47,12 +47,11 @@ communication via the drag-and-drop metaphor. GTK+
 can do drag-and-drop (DND) via multiple protocols.
 The currently supported protocols are the Xdnd and
 Motif protocols.
-
 As well as the functions listed here, applications
 may need to use some facilities provided for
 Selections.
 Also, the Drag and Drop API makes use of signals
-in the \verb{\link{GtkWidget}} class.}
+in the \code{\link{GtkWidget}} class.}
 \section{Enums and Flags}{\describe{
 \item{\verb{GtkDestDefaults}}{
 The \code{\link{GtkDestDefaults}} enumeration specifies the various
@@ -69,8 +68,8 @@ of the user for a drag destination site.
    and the widget drag format and action are acceptable.}
 \item{\verb{drop}}{   If set for a widget, when a drop occurs, GTK+ will
    will check if the drag matches this widget's
-   list of possible targets and actions. If so, 
-   GTK+ will call \code{\link{gtkDragGetData}} on behalf 
+   list of possible targets and actions. If so,
+   GTK+ will call \code{\link{gtkDragGetData}} on behalf
    of the widget. Whether or not the drop is successful,
    GTK+ will call \code{\link{gtkDragFinish}}. If the action
    was a move, then if the drag was successful, then
@@ -83,7 +82,7 @@ of the user for a drag destination site.
 }
 \item{\verb{GtkTargetFlags}}{
 The \code{\link{GtkTargetFlags}} enumeration is used to specify
-constraints on an entry in a \verb{GtkTargetTable}. 
+constraints on an entry in a \verb{GtkTargetTable}.
 
 \describe{
 \item{\verb{app}}{   If this is set, the target will only be selected
@@ -94,6 +93,6 @@ constraints on an entry in a \verb{GtkTargetTable}.
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/gtk-Drag-and-Drop.html}}
+\references{\url{http://library.gnome.org/devel//gtk/gtk-Drag-and-Drop.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

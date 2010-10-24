@@ -10,10 +10,9 @@ libtiff). If an orientation option/tag is present, the
 appropriate transform will be performed so that the pixbuf
 is oriented correctly.}
 \usage{gdkPixbufApplyEmbeddedOrientation(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GdkPixbuf}}]  A \verb{\link{GdkPixbuf}}.}}
-\value{[\verb{\link{GdkPixbuf}}]  A newly-created pixbuf, or a reference to the
-input pixbuf (with an increased reference count).
-
-Since 2.12}
+\arguments{\item{\verb{object}}{A \code{\link{GdkPixbuf}}.}}
+\details{Since 2.12}
+\value{[\code{\link{GdkPixbuf}}]  A newly-created pixbuf, or a reference to the
+input pixbuf (with an increased reference count).}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

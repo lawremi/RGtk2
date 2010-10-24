@@ -6,9 +6,9 @@ you can only use this function with combo boxes constructed with
 \code{\link{gtkComboBoxNewText}}.}
 \usage{gtkComboBoxAppendText(object, text)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkComboBox}}]  A \verb{\link{GtkComboBox}} constructed using \code{\link{gtkComboBoxNewText}}}
-\item{\verb{text}}{[character]  A string}
+\item{\verb{object}}{A \code{\link{GtkComboBox}} constructed using \code{\link{gtkComboBoxNewText}}}
+\item{\verb{text}}{A string}
 }
-\details{  Since  2.4}
+\details{Since 2.4}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

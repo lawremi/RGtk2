@@ -14,6 +14,14 @@
 \code{\link{gtkCellRendererStopEditing}(object, canceled)}\cr
 \code{\link{gtkCellRendererGetFixedSize}(object)}\cr
 \code{\link{gtkCellRendererSetFixedSize}(object, width, height)}\cr
+\code{\link{gtkCellRendererGetVisible}(object)}\cr
+\code{\link{gtkCellRendererSetVisible}(object, visible)}\cr
+\code{\link{gtkCellRendererGetSensitive}(object)}\cr
+\code{\link{gtkCellRendererSetSensitive}(object, sensitive)}\cr
+\code{\link{gtkCellRendererGetAlignment}(object, xalign, yalign)}\cr
+\code{\link{gtkCellRendererSetAlignment}(object, xalign, yalign)}\cr
+\code{\link{gtkCellRendererGetPadding}(object, xpad, ypad)}\cr
+\code{\link{gtkCellRendererSetPadding}(object, xpad, ypad)}\cr
 
 }
 \section{Hierarchy}{\preformatted{GObject
@@ -23,35 +31,36 @@
                      +----GtkCellRendererText
                      +----GtkCellRendererPixbuf
                      +----GtkCellRendererProgress
+                     +----GtkCellRendererSpinner
                      +----GtkCellRendererToggle}}
-\section{Detailed Description}{The \verb{\link{GtkCellRenderer}} is a base class of a set of objects used for
-rendering a cell to a \verb{\link{GdkDrawable}}.  These objects are used primarily by
-the \verb{\link{GtkTreeView}} widget, though they aren't tied to them in any
-specific way.  It is worth noting that \verb{\link{GtkCellRenderer}} is not a
-\verb{\link{GtkWidget}} and cannot be treated as such.
+\section{Detailed Description}{The \code{\link{GtkCellRenderer}} is a base class of a set of objects used for
+rendering a cell to a \code{\link{GdkDrawable}}.  These objects are used primarily by
+the \code{\link{GtkTreeView}} widget, though they aren't tied to them in any
+specific way.  It is worth noting that \code{\link{GtkCellRenderer}} is not a
+\code{\link{GtkWidget}} and cannot be treated as such.
   
-The primary use of a \verb{\link{GtkCellRenderer}} is for drawing a certain graphical
-elements on a \verb{\link{GdkDrawable}}.  Typically, one cell renderer is used to
+The primary use of a \code{\link{GtkCellRenderer}} is for drawing a certain graphical
+elements on a \code{\link{GdkDrawable}}.  Typically, one cell renderer is used to
 draw many cells on the screen.  To this extent, it isn't expected that a
 CellRenderer keep any permanent state around.  Instead, any state is set
-just prior to use using \verb{\link{GObject}}s property system.  Then, the
+just prior to use using \code{\link{GObject}}s property system.  Then, the
 cell is measured using \code{\link{gtkCellRendererGetSize}}.  Finally, the cell
 is rendered in the correct location using \code{\link{gtkCellRendererRender}}.
   
 There are a number of rules that must be followed when writing a new
-\verb{\link{GtkCellRenderer}}.  First and formost, it's important that a certain set
+\code{\link{GtkCellRenderer}}.  First and formost, it's important that a certain set
 of properties will always yield a cell renderer of the same size,
-barring a \verb{\link{GtkStyle}} change.  The \verb{\link{GtkCellRenderer}} also has a number of
+barring a \code{\link{GtkStyle}} change.  The \code{\link{GtkCellRenderer}} also has a number of
 generic properties that are expected to be honored by all children.
   
-Beyond merely rendering a cell, cell renderers can optionally 
-provide active user interface elements. A cell renderer can be 
-\dfn{activatable} like \verb{\link{GtkCellRendererToggle}}, 
-which toggles when it gets activated by a mouse click, or it can be 
-\dfn{editable} like \verb{\link{GtkCellRendererText}}, which 
-allows the user to edit the text using a \verb{\link{GtkEntry}}.
-To make a cell renderer activatable or editable, you have to 
-implement the \code{activate} or \code{start.editing} virtual functions, 
+Beyond merely rendering a cell, cell renderers can optionally
+provide active user interface elements. A cell renderer can be
+\dfn{activatable} like \code{\link{GtkCellRendererToggle}},
+which toggles when it gets activated by a mouse click, or it can be
+\dfn{editable} like \code{\link{GtkCellRendererText}}, which
+allows the user to edit the text using a \code{\link{GtkEntry}}.
+To make a cell renderer activatable or editable, you have to
+implement the \code{activate} or \code{start.editing} virtual functions,
 respectively.}
 \section{Structures}{\describe{\item{\verb{GtkCellRenderer}}{
 \emph{undocumented
@@ -90,30 +99,29 @@ it cannot be individually modified.}
 \item{\code{editing-canceled(renderer, user.data)}}{
 This signal gets emitted when the user cancels the process of editing a
 cell.  For example, an editable cell renderer could be written to cancel
-editing when the user presses Escape. 
+editing when the user presses Escape.
   
-See also: \code{\link{gtkCellRendererStopEditing}}.  
-
-  Since  2.4
+See also: \code{\link{gtkCellRendererStopEditing}}.
+  Since 2.4
 
 \describe{
-\item{\code{renderer}}{[\verb{\link{GtkCellRenderer}}]  the object which received the signal}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{renderer}}{the object which received the signal}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
 \item{\code{editing-started(renderer, editable, path, user.data)}}{
 This signal gets emitted when a cell starts to be edited.
-The indended use of this signal is to do special setup
-on \code{editable}, e.g. adding a \verb{\link{GtkEntryCompletion}} or setting
-up additional columns in a \verb{\link{GtkComboBox}}.
+The intended use of this signal is to do special setup
+on \code{editable}, e.g. adding a \code{\link{GtkEntryCompletion}} or setting
+up additional columns in a \code{\link{GtkComboBox}}.
   
 Note that GTK+ doesn't guarantee that cell renderers will
 continue to use the same kind of widget for editing in future
 releases, therefore you should check the type of \code{editable}
 before doing any specific setup, as in the following example:
-  \preformatted{
+\preformatted{
 text_editing_started <- function(cell, editable, path, data)
 {
   checkPtrType(editable, "GtkEntry")
@@ -121,15 +129,14 @@ text_editing_started <- function(cell, editable, path, data)
   editable$setCompletion(completion)
 }
 
-}  
-
-  Since  2.6
+}
+  Since 2.6
 
 \describe{
-\item{\code{renderer}}{[\verb{\link{GtkCellRenderer}}]  the object which received the signal}
-\item{\code{editable}}{[\verb{\link{GtkCellEditable}}]  the \verb{\link{GtkCellEditable}}}
-\item{\code{path}}{[character]  the path identifying the edited cell}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{renderer}}{the object which received the signal}
+\item{\code{editable}}{the \code{\link{GtkCellEditable}}}
+\item{\code{path}}{the path identifying the edited cell}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -141,7 +148,7 @@ text_editing_started <- function(cell, editable, path, data)
 Cell background color as a string.  Default value: NULL
 
 }
-\item{\verb{cell-background-gdk} [\verb{\link{GdkColor}} : *             : Read / Write]}{
+\item{\verb{cell-background-gdk} [\code{\link{GdkColor}} : *             : Read / Write]}{
 
 Cell background color as a GdkColor.
 
@@ -149,6 +156,11 @@ Cell background color as a GdkColor.
 \item{\verb{cell-background-set} [logical : Read / Write]}{
 
 Whether this tag affects the cell background color.  Default value: FALSE
+
+}
+\item{\verb{editing} [logical : Read]}{
+
+Whether the cell renderer is currently in editing mode.  Default value: FALSE
 
 }
 \item{\verb{height} [integer : Read / Write]}{
@@ -207,11 +219,11 @@ The ypad.  Default value: 0
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkCellRenderer.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkCellRenderer.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
-\verb{\link{GtkCellRendererText}}
-\verb{\link{GtkCellRendererPixbuf}}
-\verb{\link{GtkCellRendererToggle}}
+\code{\link{GtkCellRendererText}}
+\code{\link{GtkCellRendererPixbuf}}
+\code{\link{GtkCellRendererToggle}}
 }
 \keyword{internal}

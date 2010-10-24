@@ -8,9 +8,9 @@ column.
 }
 \usage{gtkCListSetColumnJustification(object, column, justification)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkCList}}] The \verb{\link{GtkCList}} to affect.}
-\item{\verb{column}}{[integer] The column which should be affected.}
-\item{\verb{justification}}{[\code{\link{GtkJustification}}] A GtkJustification value for the column.}
+\item{\verb{object}}{The \code{\link{GtkCList}} to affect.}
+\item{\verb{column}}{The column which should be affected.}
+\item{\verb{justification}}{A GtkJustification value for the column.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

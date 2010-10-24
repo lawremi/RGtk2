@@ -8,7 +8,7 @@ use type checking/interface checking functions or the
 \code{atkGetAccessibleValue()} convenience method.}
 \usage{atkSelectionIsChildSelected(object, i)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{AtkSelection}}]  a \verb{\link{GObject}} instance that implements AtkSelectionIface}
+\item{\verb{object}}{[\code{\link{AtkSelection}}]  a \code{\link{GObject}} instance that implements AtkSelectionIface}
 \item{\verb{i}}{[integer]  a \verb{integer} specifying the child index.}
 }
 \value{[logical]  a gboolean representing the specified child is selected, or 0

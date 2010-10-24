@@ -8,10 +8,10 @@ rotated underlines and backgrouds when rendering a PangoLayout and is
 likely not useful for applications.}
 \usage{gdkDrawTrapezoids(drawable, gc, trapezoids)}
 \arguments{
-\item{\verb{drawable}}{[\verb{\link{GdkDrawable}}]  a \verb{\link{GdkDrawable}}}
-\item{\verb{gc}}{[\verb{\link{GdkGC}}]  a \verb{\link{GdkGC}}}
-\item{\verb{trapezoids}}{[\verb{\link{GdkTrapezoid}}]  a list of \verb{\link{GdkTrapezoid}} structures}
+\item{\verb{drawable}}{a \code{\link{GdkDrawable}}}
+\item{\verb{gc}}{a \code{\link{GdkGC}}}
+\item{\verb{trapezoids}}{a list of \code{\link{GdkTrapezoid}} structures}
 }
-\details{  Since  2.6}
+\details{Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

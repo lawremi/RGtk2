@@ -5,9 +5,9 @@
 \code{start} and \code{end} must be in ascending order.}
 \usage{gtkTextIterInRange(object, start, end)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTextIter}}]  a \verb{\link{GtkTextIter}}}
-\item{\verb{start}}{[\verb{\link{GtkTextIter}}]  start of range}
-\item{\verb{end}}{[\verb{\link{GtkTextIter}}]  end of range}
+\item{\verb{object}}{a \code{\link{GtkTextIter}}}
+\item{\verb{start}}{start of range}
+\item{\verb{end}}{end of range}
 }
 \value{[logical] \code{TRUE} if \code{iter} is in the range}
 \author{Derived by RGtkGen from GTK+ documentation}

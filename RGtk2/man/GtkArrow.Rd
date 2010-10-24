@@ -15,7 +15,7 @@
                      +----GtkMisc
                            +----GtkArrow}}
 \section{Interfaces}{GtkArrow implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{GtkArrow should be used to draw simple arrows that need to point in
 one of the four cardinal directions (up, down, left, or right).  The
 style of the arrow can be one of shadow in, shadow out, etched in, or
@@ -23,13 +23,13 @@ etched out.  Note that these directions and style types may be
 ammended in versions of Gtk to come.
   
 GtkArrow will fill any space alloted to it, but since it is inherited
-from \verb{\link{GtkMisc}}, it can be padded and/or aligned, to fill exactly the
+from \code{\link{GtkMisc}}, it can be padded and/or aligned, to fill exactly the
 space the programmer desires.
   
 Arrows are created with a call to \code{\link{gtkArrowNew}}.  The direction or
 style of an arrow can be changed after creation by using \code{\link{gtkArrowSet}}.}
 \section{Structures}{\describe{\item{\verb{GtkArrow}}{
-The \verb{\link{GtkArrow}} struct containes the following fields.
+The \code{\link{GtkArrow}} struct containes the following fields.
 (These fields should be considered read-only. They should never be set by
 an application.)
 
@@ -52,6 +52,6 @@ Appearance of the shadow surrounding the arrow.  Default value: GTK_SHADOW_OUT
 Amount of space used up by arrow.  Allowed values: [0,1]  Default value: 0.7
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkArrow.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkArrow.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -29,8 +29,8 @@
                                  +----GtkButton
                                        +----GtkFontButton}}
 \section{Interfaces}{GtkFontButton implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{The \verb{\link{GtkFontButton}} is a button which displays the currently selected font an allows to open a font selection 
+ AtkImplementorIface,  \code{\link{GtkBuildable}} and  \code{\link{GtkActivatable}}.}
+\section{Detailed Description}{The \code{\link{GtkFontButton}} is a button which displays the currently selected font an allows to open a font selection
 dialog to change the font. It is suitable widget for selecting a font in a preference dialog.}
 \section{Structures}{\describe{\item{\verb{GtkFontButton}}{
 The GtkFontButton struct has only private members and should not be used
@@ -39,19 +39,18 @@ directly.
 }}}
 \section{Convenient Construction}{\code{gtkFontButton} is the equivalent of \code{\link{gtkFontButtonNew}}.}
 \section{Signals}{\describe{\item{\code{font-set(widget, user.data)}}{
-The ::font-set signal is emitted when the user selects a font. 
+The ::font-set signal is emitted when the user selects a font.
 When handling this signal, use \code{\link{gtkFontButtonGetFontName}} 
 to find out which font was just selected.
   
 Note that this signal is only emitted when the \emph{user}
 changes the font. If you need to react to programmatic font changes
-as well, use the notify::font-name signal.  
-
-  Since  2.4
+as well, use the notify::font-name signal.
+  Since 2.4
 
 \describe{
-\item{\code{widget}}{[\verb{\link{GtkFontButton}}]  the object which received the signal.}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{widget}}{the object which received the signal.}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -59,57 +58,51 @@ as well, use the notify::font-name signal.
 \section{Properties}{\describe{
 \item{\verb{font-name} [character : *                : Read / Write]}{
 
-The name of the currently selected font.  
-
-  Default value: "Sans 12"  Since  2.4
+The name of the currently selected font.
+  Default value: "Sans 12"  Since 2.4
 
 }
 \item{\verb{show-size} [logical : Read / Write]}{
 
-If this property is set to \code{TRUE}, the selected font size will be shown 
+If this property is set to \code{TRUE}, the selected font size will be shown
 in the label. For a more WYSIWYG way to show the selected size, see the 
-::use-size property.  
-
-  Default value: TRUE  Since  2.4
+::use-size property.
+  Default value: TRUE  Since 2.4
 
 }
 \item{\verb{show-style} [logical : Read / Write]}{
 
 If this property is set to \code{TRUE}, the name of the selected font style 
 will be shown in the label. For a more WYSIWYG way to show the selected 
-style, see the ::use-font property.  
-
-  Default value: TRUE  Since  2.4
+style, see the ::use-font property.
+  Default value: TRUE  Since 2.4
 
 }
 \item{\verb{title} [character : *                : Read / Write]}{
 
-The title of the font selection dialog.  
-
-  Default value: "Pick a Font"  Since  2.4
+The title of the font selection dialog.
+  Default value: "Pick a Font"  Since 2.4
 
 }
 \item{\verb{use-font} [logical : Read / Write]}{
 
 If this property is set to \code{TRUE}, the label will be drawn 
-in the selected font.  
-
-  Default value: FALSE  Since  2.4
+in the selected font.
+  Default value: FALSE  Since 2.4
 
 }
 \item{\verb{use-size} [logical : Read / Write]}{
 
 If this property is set to \code{TRUE}, the label will be drawn 
-with the selected font size.  
-
-  Default value: FALSE  Since  2.4
+with the selected font size.
+  Default value: FALSE  Since 2.4
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkFontButton.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkFontButton.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
-\verb{\link{GtkFontSelectionDialog}}
-\verb{\link{GtkColorButton}}
+\code{\link{GtkFontSelectionDialog}}
+\code{\link{GtkColorButton}}
 }
 \keyword{internal}

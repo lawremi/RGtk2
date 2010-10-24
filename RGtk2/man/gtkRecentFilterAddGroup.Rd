@@ -5,9 +5,9 @@
 to which they belong}
 \usage{gtkRecentFilterAddGroup(object, group)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkRecentFilter}}]  a \verb{\link{GtkRecentFilter}}}
-\item{\verb{group}}{[character]  a group name}
+\item{\verb{object}}{a \code{\link{GtkRecentFilter}}}
+\item{\verb{group}}{a group name}
 }
-\details{  Since  2.10}
+\details{Since 2.10}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

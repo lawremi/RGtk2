@@ -19,19 +19,19 @@
 \code{\link{gdkVisualGetScreen}(object)}\cr
 
 }
-\section{Detailed Description}{A \verb{\link{GdkVisual}} describes a particular video hardware display format. It includes
+\section{Detailed Description}{A \code{\link{GdkVisual}} describes a particular video hardware display format. It includes
 information about the number of bits used for each color, the way the bits are
-translated into an RGB value for display, and the way the bits are stored in 
-memory. For example, a piece of display hardware might support 24-bit color, 
-16-bit color, or 8-bit color; meaning 24/16/8-bit pixel sizes. For a given 
-pixel size, pixels can be in different formats; for example the "red" element 
-of an RGB pixel may be in the top 8 bits of the pixel, or may be in the lower 
+translated into an RGB value for display, and the way the bits are stored in
+memory. For example, a piece of display hardware might support 24-bit color,
+16-bit color, or 8-bit color; meaning 24/16/8-bit pixel sizes. For a given
+pixel size, pixels can be in different formats; for example the "red" element
+of an RGB pixel may be in the top 8 bits of the pixel, or may be in the lower
 4 bits.
   
 Usually you can avoid thinking about visuals in GTK+. Visuals are useful to
-interpret the contents of a \verb{\link{GdkImage}}, but you should avoid \verb{\link{GdkImage}} precisely
-because its contents depend on the display hardware; use \verb{\link{GdkPixbuf}} instead, for
-all but the most low-level purposes. Also, anytime you provide a \verb{\link{GdkColormap}},
+interpret the contents of a \code{\link{GdkImage}}, but you should avoid \code{\link{GdkImage}} precisely
+because its contents depend on the display hardware; use \code{\link{GdkPixbuf}} instead, for
+all but the most low-level purposes. Also, anytime you provide a \code{\link{GdkColormap}},
 the visual is implied as part of the colormap (\code{\link{gdkColormapGetVisual}}), so
 you won't have to provide a visual in addition.
   
@@ -58,7 +58,7 @@ The \verb{GdkVisual} structure contains information about
 a particular visual.
 
 \describe{
-\item{\verb{type}}{[\code{\link{GdkVisualType}}] inherited portion from \verb{\link{GObject}}}
+\item{\verb{type}}{[\code{\link{GdkVisualType}}] inherited portion from \code{\link{GObject}}}
 \item{\verb{depth}}{[integer] The type of this visual.}
 \item{\verb{byteOrder}}{[\code{\link{GdkByteOrder}}] The number of bits per pixel.}
 \item{\verb{colormapSize}}{[integer] The byte-order for this visual.}
@@ -69,7 +69,7 @@ a particular visual.
     If the visual has different numbers of levels for
     different components, the value of this field is undefined.}
 \item{\verb{redMask}}{[numeric] The number of significant bits per red, green, or blue
-    when specifying colors for this visual. (For instance, for 
+    when specifying colors for this visual. (For instance, for
     \code{\link{gdkColormapAllocColor}})}
 \item{\verb{redShift}}{[integer] A mask giving the bits in a pixel value that
     correspond to the red field. Significant only for
@@ -113,11 +113,11 @@ values for display.
    pixel values into rgb values. The color map can be changed by an application.}
 \item{\verb{true-color}}{Each pixel value directly contains red, green,
    and blue components. The \code{red_mask},
-   \code{green_mask}, and 
-   \code{blue_mask} fields of the \verb{\link{GdkVisual}}
+   \code{green_mask}, and
+   \code{blue_mask} fields of the \code{\link{GdkVisual}}
    structure describe how the components are assembled into a pixel value.}
 \item{\verb{direct-color}}{Each pixel value contains red, green, and blue
-   components as for \code{GDK_VISUAL_TRUE_COLOR}, but the components are mapped via a 
+   components as for \code{GDK_VISUAL_TRUE_COLOR}, but the components are mapped via a
    color table into the final output table instead of being converted directly.}
 }
 
@@ -137,10 +137,10 @@ in memory as 0x00, 0xcc, 0xee, 0xff.}
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gdk/gdk-Visuals.html}}
+\references{\url{http://library.gnome.org/devel//gdk/gdk-Visuals.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
-\verb{\link{GdkImage}}
-\verb{\link{GdkColormap}}
+\code{\link{GdkImage}}
+\code{\link{GdkColormap}}
 }
 \keyword{internal}

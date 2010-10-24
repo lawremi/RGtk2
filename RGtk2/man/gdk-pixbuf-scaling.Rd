@@ -32,7 +32,7 @@
    with the Sun mediaLib library, these functions are instead accelerated
    using mediaLib, which provides hardware acceleration on Intel, AMD,
    and Sparc chipsets.  If desired, mediaLib support can be turned off by
-   setting the GDK_DISABLE_MEDIALIB environment variable.  
+   setting the GDK_DISABLE_MEDIALIB environment variable.
     
     The following example demonstrates handling an expose event by
     rendering the appropriate area of a source image (which is scaled
@@ -70,11 +70,10 @@ expose_cb <- function(widget, event, data)
 \section{Enums and Flags}{\describe{
 \item{\verb{GdkInterpType}}{
     This enumeration describes the different interpolation modes that
-    can be used with the scaling functions. \code{GDK.INTERP.NEAREST} is 
-    the fastest scaling method, but has horrible quality when 
-    scaling down. \code{GDK.INTERP.BILINEAR} is the best choice if you 
+    can be used with the scaling functions. \code{GDK.INTERP.NEAREST} is
+    the fastest scaling method, but has horrible quality when
+    scaling down. \code{GDK.INTERP.BILINEAR} is the best choice if you
     aren't sure what to choose, it has a good speed/quality balance.
-
     \strong{PLEASE NOTE:} 	Cubic filtering is missing from the list; hyperbolic
 	interpolation is just as fast and results in higher quality.
       
@@ -82,7 +81,7 @@ expose_cb <- function(widget, event, data)
 
 \describe{
 \item{\verb{nearest}}{Nearest neighbor sampling; this is the fastest
-and lowest quality mode. Quality is normally unacceptable when scaling 
+and lowest quality mode. Quality is normally unacceptable when scaling
 down, but may be OK when scaling up.}
 \item{\verb{tiles}}{This is an accurate simulation of the PostScript
 image operator without any interpolation enabled.  Each pixel is
@@ -115,6 +114,6 @@ To make them easier to use, their numerical values are the actual degrees.
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gdk-pixbuf/gdk-pixbuf-scaling.html}}
+\references{\url{http://library.gnome.org/devel//gdk-pixbuf/gdk-pixbuf-scaling.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

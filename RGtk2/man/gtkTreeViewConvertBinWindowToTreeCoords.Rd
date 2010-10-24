@@ -5,15 +5,15 @@
 tree (the full scrollable area of the tree).}
 \usage{gtkTreeViewConvertBinWindowToTreeCoords(object, bx, by)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTreeView}}]  a \verb{\link{GtkTreeView}}}
-\item{\verb{bx}}{[integer]  X coordinate relative to bin_window}
-\item{\verb{by}}{[integer]  Y coordinate relative to bin_window}
+\item{\verb{object}}{a \code{\link{GtkTreeView}}}
+\item{\verb{bx}}{X coordinate relative to bin_window}
+\item{\verb{by}}{Y coordinate relative to bin_window}
 }
-\details{  Since  2.12}
+\details{Since 2.12}
 \value{
 A list containing the following elements:
-\item{\verb{tx}}{[integer]  return location for tree X coordinate}
-\item{\verb{ty}}{[integer]  return location for tree Y coordinate}
+\item{\verb{tx}}{return location for tree X coordinate}
+\item{\verb{ty}}{return location for tree Y coordinate}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

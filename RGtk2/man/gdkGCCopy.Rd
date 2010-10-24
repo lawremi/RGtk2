@@ -5,8 +5,8 @@
 onto another graphics context.}
 \usage{gdkGCCopy(object, src.gc)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GdkGC}}]  the destination graphics context.}
-\item{\verb{src.gc}}{[\verb{\link{GdkGC}}]  the source graphics context.}
+\item{\verb{object}}{the destination graphics context.}
+\item{\verb{src.gc}}{the source graphics context.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -1,7 +1,7 @@
 \alias{cairoPatternCreateRgb}
 \name{cairoPatternCreateRgb}
 \title{cairoPatternCreateRgb}
-\description{Creates a new \verb{\link{CairoPattern}} corresponding to an opaque color.  The
+\description{Creates a new \code{\link{CairoPattern}} corresponding to an opaque color.  The
 color components are floating point numbers in the range 0 to 1.
 If the values passed in are outside that range, they will be
 clamped.}
@@ -11,7 +11,7 @@ clamped.}
 \item{\verb{green}}{[numeric]  green component of the color}
 \item{\verb{blue}}{[numeric]  blue component of the color}
 }
-\value{[\verb{\link{CairoPattern}}]  the newly created \verb{\link{CairoPattern}} if successful, or
+\value{[\code{\link{CairoPattern}}]  the newly created \code{\link{CairoPattern}} if successful, or
 an error pattern in case of no memory.
 
 This function will always return a valid pointer, but if an error

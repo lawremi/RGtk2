@@ -5,12 +5,11 @@
 (with \code{printf()}-style).}
 \usage{gtkMessageDialogFormatSecondaryText(object, ...)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkMessageDialog}}]  a \verb{\link{GtkMessageDialog}}}
-\item{\verb{...}}{ arguments for \code{message.format}}
+\item{\verb{object}}{a \code{\link{GtkMessageDialog}}}
+\item{\verb{...}}{arguments for \code{message.format}}
 }
 \details{Note that setting a secondary text makes the primary text become
-bold, unless you have provided explicit markup.  
-
-  Since  2.6}
+bold, unless you have provided explicit markup.
+  Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

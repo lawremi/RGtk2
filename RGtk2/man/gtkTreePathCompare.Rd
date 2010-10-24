@@ -6,8 +6,8 @@ If \code{b} appears before \code{a}, then 1 is returned.  If the two nodes are e
 then 0 is returned.}
 \usage{gtkTreePathCompare(object, b)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTreePath}}]  A \verb{\link{GtkTreePath}}.}
-\item{\verb{b}}{[\verb{\link{GtkTreePath}}]  A \verb{\link{GtkTreePath}} to compare with.}
+\item{\verb{object}}{A \code{\link{GtkTreePath}}.}
+\item{\verb{b}}{A \code{\link{GtkTreePath}} to compare with.}
 }
 \value{[integer]  The relative positions of \code{a} and \code{b}}
 \author{Derived by RGtkGen from GTK+ documentation}

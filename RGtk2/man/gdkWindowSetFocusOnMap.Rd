@@ -7,13 +7,12 @@ focus_on_map should be turned off for windows that aren't triggered
 interactively (such as popups from network activity).}
 \usage{gdkWindowSetFocusOnMap(object, focus.on.map)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a toplevel \verb{\link{GdkWindow}}}
-\item{\verb{focus.on.map}}{[logical] \code{TRUE} if the window should receive input focus when mapped}
+\item{\verb{object}}{a toplevel \code{\link{GdkWindow}}}
+\item{\verb{focus.on.map}}{\code{TRUE} if the window should receive input focus when mapped}
 }
 \details{On X, it is the responsibility of the window manager to interpret
-this hint.org window
-manager extension specification should respect it.  
-
-  Since  2.6 }
+this hint. Window managers following the freedesktop.org window
+manager extension specification should respect it.
+  Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

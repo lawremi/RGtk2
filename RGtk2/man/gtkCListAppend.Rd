@@ -7,8 +7,8 @@ Adds a row to the CList at the bottom.
 }
 \usage{gtkCListAppend(object, text)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkCList}}] The \verb{\link{GtkCList}} to affect.}
-\item{\verb{text}}{[character] An list of strings to add.}
+\item{\verb{object}}{The \code{\link{GtkCList}} to affect.}
+\item{\verb{text}}{An list of strings to add.}
 }
 \value{[integer] The number of the row added.}
 \author{Derived by RGtkGen from GTK+ documentation}

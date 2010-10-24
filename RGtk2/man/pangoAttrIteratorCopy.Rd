@@ -1,9 +1,9 @@
 \alias{pangoAttrIteratorCopy}
 \name{pangoAttrIteratorCopy}
 \title{pangoAttrIteratorCopy}
-\description{Copy a \verb{\link{PangoAttrIterator}}}
+\description{Copy a \code{\link{PangoAttrIterator}}}
 \usage{pangoAttrIteratorCopy(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{PangoAttrIterator}}]  a \verb{\link{PangoAttrIterator}}.}}
-\value{[\verb{\link{PangoAttrIterator}}]  the newly allocated \verb{\link{PangoAttrIterator}}.}
+\arguments{\item{\verb{object}}{a \code{\link{PangoAttrIterator}}.}}
+\value{[\code{\link{PangoAttrIterator}}]  the newly allocated \code{\link{PangoAttrIterator}},}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

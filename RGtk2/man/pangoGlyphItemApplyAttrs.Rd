@@ -9,9 +9,9 @@ apply the shaping process and then reapply them to the result using
 this function.}
 \usage{pangoGlyphItemApplyAttrs(glyph.item, text, list)}
 \arguments{
-\item{\verb{glyph.item}}{[\verb{\link{PangoGlyphItem}}]  a shaped item}
-\item{\verb{text}}{[char]  text that \code{list} applies to}
-\item{\verb{list}}{[\verb{\link{PangoAttrList}}]  a \verb{\link{PangoAttrList}}}
+\item{\verb{glyph.item}}{a shaped item}
+\item{\verb{text}}{text that \code{list} applies to}
+\item{\verb{list}}{a \code{\link{PangoAttrList}}}
 }
 \details{All attributes that start or end inside a cluster are applied
 to that cluster; for instance, if half of a cluster is underlined
@@ -21,9 +21,8 @@ cases, it may happen that item->extra_attrs for some of the
 result items can have multiple attributes of the same type.
   
 This function takes ownership of \code{glyph.item}; it will be reused
-as one of the elements in the list.  
-
-  Since  1.2}
+as one of the elements in the list.
+  Since 1.2}
 \value{[list]  a list of glyph items resulting from splitting
   \code{glyph.item}.}
 \author{Derived by RGtkGen from GTK+ documentation}

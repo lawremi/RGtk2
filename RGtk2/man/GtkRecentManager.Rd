@@ -50,7 +50,7 @@
 }
 \section{Hierarchy}{\preformatted{GObject
    +----GtkRecentManager}}
-\section{Detailed Description}{\verb{\link{GtkRecentManager}} provides a facility for adding, removing and
+\section{Detailed Description}{\code{\link{GtkRecentManager}} provides a facility for adding, removing and
 looking up recently used files.  Each recently used file is
 identified by its URI, and has meta-data associated to it, like
 the names and command lines of the applications that have
@@ -59,10 +59,10 @@ the same file, the mime type of the file and whether the file
 should be displayed only by the applications that have
 registered it.
   
-The \verb{\link{GtkRecentManager}} acts like a database of all the recently
-used files.  You can create new \verb{\link{GtkRecentManager}} objects, but
+The \code{\link{GtkRecentManager}} acts like a database of all the recently
+used files.  You can create new \code{\link{GtkRecentManager}} objects, but
 it is more efficient to use the standard recent manager for
-the \verb{\link{GdkScreen}} so that informations about the recently used
+the \code{\link{GdkScreen}} so that informations about the recently used
 files is shared with other people using them.  In case the
 default screen is being used, adding a new recently used
 file is as simple as:
@@ -94,23 +94,23 @@ recently used files list.
 }
 \item{\verb{GtkRecentData}}{
 Meta-data to be passed to \code{\link{gtkRecentManagerAddFull}} when
-registering a recently used resource.  
+registering a recently used resource.
 \strong{\verb{GtkRecentData} is a \link{transparent-type}.}
 
 \describe{
-\item{\verb{displayName}}{[character]  a UTF-8 encoded string, containing the name of the recently
+\item{\verb{displayName}}{[character] a UTF-8 encoded string, containing the name of the recently
   used resource to be displayed, or \code{NULL};}
-\item{\verb{description}}{[character]  a UTF-8 encoded string, containing a short description of
+\item{\verb{description}}{[character] a UTF-8 encoded string, containing a short description of
   the resource, or \code{NULL};}
-\item{\verb{mimeType}}{[character]  the MIME type of the resource;}
-\item{\verb{appName}}{[character]  the name of the application that is registering this recently
+\item{\verb{mimeType}}{[character] the MIME type of the resource;}
+\item{\verb{appName}}{[character] the name of the application that is registering this recently
   used resource;}
-\item{\verb{appExec}}{[character]  command line used to launch this resource; may contain the
-  "\%f" and "\%u" escape characters which will be expanded 
-  to the resource file path and URI respectively when the command line 
+\item{\verb{appExec}}{[character] command line used to launch this resource; may contain the
+  "\%f" and "\%u" escape characters which will be expanded
+  to the resource file path and URI respectively when the command line
   is retrieved;}
-\item{\verb{groups}}{[character]  a vector of strings containing groups names;}
-\item{\verb{isPrivate}}{[logical]  whether this resource should be displayed only by the
+\item{\verb{groups}}{[character] a vector of strings containing groups names;}
+\item{\verb{isPrivate}}{[logical] whether this resource should be displayed only by the
   applications that have registered it or not.}
 }
 
@@ -118,33 +118,32 @@ registering a recently used resource.
 }}
 \section{Convenient Construction}{\code{gtkRecentManager} is the equivalent of \code{\link{gtkRecentManagerNew}}.}
 \section{Enums and Flags}{\describe{\item{\verb{GtkRecentManagerError}}{
-Error codes for GtkRecentManager operations  
+Error codes for GtkRecentManager operations
 
 \describe{
-\item{\verb{not-found}}{ the URI specified does not exists in
+\item{\verb{not-found}}{the URI specified does not exists in
   the recently used resources list.}
-\item{\verb{invalid-uri}}{ the URI specified is not valid.}
-\item{\verb{invalid-encoding}}{ the supplied string is not
+\item{\verb{invalid-uri}}{the URI specified is not valid.}
+\item{\verb{invalid-encoding}}{the supplied string is not
   UTF-8 encoded.}
-\item{\verb{not-registered}}{ no application has registered
+\item{\verb{not-registered}}{no application has registered
   the specified item.}
-\item{\verb{read}}{ failure while reading the recently used
+\item{\verb{read}}{failure while reading the recently used
   resources file.}
-\item{\verb{write}}{ failure while writing the recently used
+\item{\verb{write}}{failure while writing the recently used
   resources file.}
-\item{\verb{unknown}}{ unspecified error.}
+\item{\verb{unknown}}{unspecified error.}
 }
 
 }}}
 \section{Signals}{\describe{\item{\code{changed(recent.manager, user.data)}}{
 Emitted when the current recently used resources manager changes its
-contents.  
-
-  Since  2.10
+contents.
+  Since 2.10
 
 \describe{
-\item{\code{recent.manager}}{[\verb{\link{GtkRecentManager}}]  the recent manager}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{recent.manager}}{the recent manager}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -153,27 +152,24 @@ contents.
 \item{\verb{filename} [character : *                : Read / Write / Construct Only]}{
 
 The full path to the file to be used to store and read the recently
-used resources list  
-
-  Default value: NULL  Since  2.10
+used resources list
+  Default value: NULL  Since 2.10
 
 }
 \item{\verb{limit} [integer : Read / Write]}{
 
 The maximum number of items to be returned by the
-\code{\link{gtkRecentManagerGetItems}} function.  
-
-  Allowed values: >= -1  Default value: -1  Since  2.10
+\code{\link{gtkRecentManagerGetItems}} function.
+  Allowed values: >= -1  Default value: -1  Since 2.10
 
 }
 \item{\verb{size} [integer : Read]}{
 
-The size of the recently used resources list.  
-
-  Allowed values: >= -1  Default value: 0  Since  2.10
+The size of the recently used resources list.
+  Allowed values: >= -1  Default value: 0  Since 2.10
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkRecentManager.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkRecentManager.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

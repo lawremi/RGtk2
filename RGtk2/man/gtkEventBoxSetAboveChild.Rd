@@ -8,11 +8,10 @@ in windows of child widgets will first got to that widget, and then
 to its parents.}
 \usage{gtkEventBoxSetAboveChild(object, above.child)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkEventBox}}]  a \verb{\link{GtkEventBox}}}
-\item{\verb{above.child}}{[logical] \code{TRUE} if the event box window is above the windows of its child}
+\item{\verb{object}}{a \code{\link{GtkEventBox}}}
+\item{\verb{above.child}}{\code{TRUE} if the event box window is above the windows of its child}
 }
-\details{The default is to keep the window below the child.  
-
-  Since  2.4}
+\details{The default is to keep the window below the child.
+  Since 2.4}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

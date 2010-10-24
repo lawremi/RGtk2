@@ -7,8 +7,8 @@ Ordering is in character offset order, i.e. the first character in the buffer
 is less than the second character in the buffer.}
 \usage{gtkTextIterCompare(object, rhs)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTextIter}}]  a \verb{\link{GtkTextIter}}}
-\item{\verb{rhs}}{[\verb{\link{GtkTextIter}}]  another \verb{\link{GtkTextIter}}}
+\item{\verb{object}}{a \code{\link{GtkTextIter}}}
+\item{\verb{rhs}}{another \code{\link{GtkTextIter}}}
 }
 \value{[integer]  -1 if \code{lhs} is less than \code{rhs}, 1 if \code{lhs} is greater, 0 if they are equal}
 \author{Derived by RGtkGen from GTK+ documentation}

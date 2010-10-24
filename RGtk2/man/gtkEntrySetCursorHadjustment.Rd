@@ -7,13 +7,12 @@ See \code{\link{gtkScrolledWindowGetHadjustment}} for a typical way of obtaining
 the adjustment.}
 \usage{gtkEntrySetCursorHadjustment(object, adjustment)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkEntry}}]  a \verb{\link{GtkEntry}}}
-\item{\verb{adjustment}}{[\verb{\link{GtkAdjustment}}]  an adjustment which should be adjusted when the cursor 
+\item{\verb{object}}{a \code{\link{GtkEntry}}}
+\item{\verb{adjustment}}{an adjustment which should be adjusted when the cursor 
              is moved, or \code{NULL}}
 }
 \details{The adjustment has to be in pixel units and in the same coordinate system 
-as the entry.  
-
-  Since  2.12}
+as the entry.
+  Since 2.12}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

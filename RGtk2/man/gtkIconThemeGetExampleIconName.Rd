@@ -5,8 +5,8 @@
 current theme (for instance, to use when presenting
 a list of themes to the user.)}
 \usage{gtkIconThemeGetExampleIconName(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkIconTheme}}]  a \verb{\link{GtkIconTheme}}}}
-\details{  Since  2.4}
+\arguments{\item{\verb{object}}{a \code{\link{GtkIconTheme}}}}
+\details{Since 2.4}
 \value{[char]  the name of an example icon or \code{NULL}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

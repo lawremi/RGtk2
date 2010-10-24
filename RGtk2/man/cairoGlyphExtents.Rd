@@ -6,17 +6,17 @@ user-space rectangle that encloses the "inked" portion of the
 glyphs, (as they would be drawn by \code{\link{cairoShowGlyphs}}).
 Additionally, the x_advance and y_advance values indicate the
 amount by which the current point would be advanced by
-cairo_show_glyphs.}
+\code{\link{cairoShowGlyphs}}.}
 \usage{cairoGlyphExtents(cr, glyphs)}
 \arguments{
-\item{\verb{cr}}{[\verb{\link{Cairo}}]  a \verb{\link{Cairo}}}
-\item{\verb{glyphs}}{[\verb{\link{CairoGlyph}}]  a list of \verb{\link{CairoGlyph}} objects}
+\item{\verb{cr}}{[\code{\link{Cairo}}]  a \code{\link{Cairo}}}
+\item{\verb{glyphs}}{[\code{\link{CairoGlyph}}]  a list of \code{\link{CairoGlyph}} objects}
 }
 \details{Note that whitespace glyphs do not contribute to the size of the
 rectangle (extents.width and extents.height).  }
 \value{
 A list containing the following elements:
-\item{\verb{extents}}{[\verb{\link{CairoTextExtents}}]  a \verb{\link{CairoTextExtents}} object into which the results
+\item{\verb{extents}}{[\code{\link{CairoTextExtents}}]  a \code{\link{CairoTextExtents}} object into which the results
 will be stored}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

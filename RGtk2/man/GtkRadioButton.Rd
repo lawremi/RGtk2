@@ -25,13 +25,13 @@
                                              +----GtkCheckButton
                                                    +----GtkRadioButton}}
 \section{Interfaces}{GtkRadioButton implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{A single radio button performs the same basic function as a \verb{\link{GtkCheckButton}},
+ AtkImplementorIface,  \code{\link{GtkBuildable}} and  \code{\link{GtkActivatable}}.}
+\section{Detailed Description}{A single radio button performs the same basic function as a \code{\link{GtkCheckButton}},
 as its position in the object hierarchy reflects. It is only when multiple
 radio buttons are grouped together that they become a different user
 interface component in their own right.  
 Every radio button is a member of some group of radio buttons. When one is selected, all other
-radio buttons in the same group are deselected. A \verb{\link{GtkRadioButton}} is one way
+radio buttons in the same group are deselected. A \code{\link{GtkRadioButton}} is one way
 of giving the user a choice from many options.
   
 Radio button widgets are created with \code{\link{gtkRadioButtonNew}}, passing NULL
@@ -41,16 +41,16 @@ argument. Optionally, \code{\link{gtkRadioButtonNewWithLabel}} can be used if yo
 want a text label on the radio button.
   
 Alternatively, when adding widgets to an existing group of radio buttons,
-use \code{\link{gtkRadioButtonNewFromWidget}} with a \verb{\link{GtkRadioButton}} that already
+use \code{\link{gtkRadioButtonNewFromWidget}} with a \code{\link{GtkRadioButton}} that already
 has a group assigned to it. The convenience function
 \code{\link{gtkRadioButtonNewWithLabelFromWidget}} is also provided.
   
-To retrieve the group a \verb{\link{GtkRadioButton}} is assigned to, use
+To retrieve the group a \code{\link{GtkRadioButton}} is assigned to, use
 \code{\link{gtkRadioButtonGetGroup}}.
   
-To remove a \verb{\link{GtkRadioButton}} from one group and make it part of a new one, use \code{\link{gtkRadioButtonSetGroup}}.
+To remove a \code{\link{GtkRadioButton}} from one group and make it part of a new one, use \code{\link{gtkRadioButtonSetGroup}}.
   
-The group list does not need to be freed, as each \verb{\link{GtkRadioButton}} will remove
+The group list does not need to be freed, as each \code{\link{GtkRadioButton}} will remove
 itself and its list item when it is destroyed.
   
  \emph{How to create a group of two radio buttons.}
@@ -79,7 +79,7 @@ create_radio_buttons <- function() {
 }  
 When an unselected button in the group is clicked the clicked button
 receives the "toggled" signal, as does the previously selected button.
-Inside the "toggled" handler, \code{\link{gtkToggleButtonGetActive}} can be used 
+Inside the "toggled" handler, \code{\link{gtkToggleButtonGetActive}} can be used
 to determine if the button has been selected or deselected.}
 \section{Structures}{\describe{\item{\verb{GtkRadioButton}}{
 Contains only private data that should be read and manipulated using the
@@ -93,22 +93,21 @@ to changes. This is emitted when a radio button switches from
 being alone to being part of a group of 2 or more buttons, or
 vice-versa, and when a button is moved from one group of 2 or
 more buttons to a different one, but not when the composition
-of the group that a button belongs to changes.  
-
-  Since  2.4
+of the group that a button belongs to changes.
+  Since 2.4
 
 \describe{
-\item{\code{style}}{[\verb{\link{GtkRadioButton}}]  the object which received the signal}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{style}}{the object which received the signal}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }}}
-\section{Properties}{\describe{\item{\verb{group} [\verb{\link{GtkRadioButton}} : *       : Write]}{
+\section{Properties}{\describe{\item{\verb{group} [\code{\link{GtkRadioButton}} : *       : Write]}{
 
 Sets a new group for a radio button.
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkRadioButton.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkRadioButton.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -8,14 +8,14 @@ change the focus tab order. So you may want to investigate those
 functions instead.}
 \usage{gtkWidgetChildFocus(object, direction)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
-\item{\verb{direction}}{[\code{\link{GtkDirectionType}}]  direction of focus movement}
+\item{\verb{object}}{a \code{\link{GtkWidget}}}
+\item{\verb{direction}}{direction of focus movement}
 }
 \details{\code{\link{gtkWidgetChildFocus}} is called by containers as the user moves
 around the window using keyboard shortcuts. \code{direction} indicates
 what kind of motion is taking place (up, down, left, right, tab
 forward, tab backward). \code{\link{gtkWidgetChildFocus}} emits the
-\verb{"focus"}" signal; widgets override the default handler
+\verb{"focus"} signal; widgets override the default handler
 for this signal in order to implement appropriate focus behavior.
   
 The default ::focus handler for a widget should return \code{TRUE} if
@@ -29,7 +29,7 @@ This function replaces \code{gtkContainerFocus()} from GTK+ 1.2.
 It was necessary to check that the child was visible, sensitive, 
 and focusable before calling \code{gtkContainerFocus()}. 
 \code{\link{gtkWidgetChildFocus}} returns \code{FALSE} if the widget is not 
-currently in a focusable state, so there's no need for those checks.  }
+currently in a focusable state, so there's no need for those checks.}
 \value{[logical] \code{TRUE} if focus ended up inside \code{widget}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

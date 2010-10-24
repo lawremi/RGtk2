@@ -1,8 +1,8 @@
 \alias{gtkMenuItemNew}
 \name{gtkMenuItemNew}
 \title{gtkMenuItemNew}
-\description{Creates a new \verb{\link{GtkMenuItem}}.}
+\description{Creates a new \code{\link{GtkMenuItem}}.}
 \usage{gtkMenuItemNew(show = TRUE)}
-\value{[\verb{\link{GtkWidget}}] the newly created \verb{\link{GtkMenuItem}}}
+\value{[\code{\link{GtkWidget}}] the newly created \code{\link{GtkMenuItem}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -1,3 +1,5 @@
+;; -*- scheme -*-
+
 ; as of pango 1.20.2
 
 (include "../2.10/pango.defs")
@@ -132,4 +134,18 @@
     '("gpointer*" "data" (out))
   )
   (since "1.18.0")
+)
+
+(define-function pango_language_get_default
+  (in-module "Pango")
+  (c-name "pango_language_get_default")
+  (return-type "PangoLanguage*")
+  (since "1.16.0")
+  )
+
+(define-method get_sample_string
+  (of-object "PangoLanguage")
+  (c-name "pango_language_get_sample_string")
+  (return-type "const-char*")
+  (since "1.16.0")
 )

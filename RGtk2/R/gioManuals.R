@@ -63,6 +63,25 @@ gAsyncInitableNewAsync <-
   return(w)
 }
 
+gInitableNew <-
+  function(object.type, cancellable, ..., .errwarn = TRUE)
+{
+  object.type <- as.GType(object.type)
+  checkPtrType(cancellable, "GCancellable")
+  
+  props <- list(...)
+  if (is.null(names(props)))
+    stop("Property values in '...' must be named")
+
+  w <- .RGtkCall("S_g_initable_new", object.type, cancellable, props,
+                 PACKAGE = "RGtk2")
+  
+  w <- handleError(w, .errwarn)
+
+  return(w)
+}
+
+
 ## Vector of file attribute constants
 
 GFileAttributeStandard <- c(type = "standard::type",

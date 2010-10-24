@@ -2,7 +2,7 @@
 \name{gtkRcReparseAll}
 \title{gtkRcReparseAll}
 \description{If the modification time on any previously read file for the
-default \verb{\link{GtkSettings}} has changed, discard all style information
+default \code{\link{GtkSettings}} has changed, discard all style information
 and then reread all previously read RC files.}
 \usage{gtkRcReparseAll()}
 \value{[logical] \code{TRUE} if the files were reread.}

@@ -18,18 +18,18 @@
                                  +----GtkToolItem
                                        +----GtkSeparatorToolItem}}
 \section{Interfaces}{GtkSeparatorToolItem implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{  A \verb{GtkSeparatorItem} is a \verb{\link{GtkToolItem}} that separates groups of other
-  \verb{GtkToolItems}. Depending on the theme, a \verb{\link{GtkSeparatorToolItem}} will
+ AtkImplementorIface,  \code{\link{GtkBuildable}} and  \code{\link{GtkActivatable}}.}
+\section{Detailed Description}{  A \verb{GtkSeparatorItem} is a \code{\link{GtkToolItem}} that separates groups of other
+  \verb{GtkToolItems}. Depending on the theme, a \code{\link{GtkSeparatorToolItem}} will
   often look like a vertical line on horizontally docked toolbars.
   
 If the property "expand" is \verb{TRUE} and the property "draw" is \verb{FALSE}, a
-\verb{\link{GtkSeparatorToolItem}} will act as a "spring" that forces other items
+\code{\link{GtkSeparatorToolItem}} will act as a "spring" that forces other items
 to the ends of the toolbar.
   
-  Use \code{\link{gtkSeparatorToolItemNew}} to create a new \verb{\link{GtkSeparatorToolItem}}.}
+  Use \code{\link{gtkSeparatorToolItemNew}} to create a new \code{\link{GtkSeparatorToolItem}}.}
 \section{Structures}{\describe{\item{\verb{GtkSeparatorToolItem}}{
-The \verb{\link{GtkSeparatorToolItem}} struct contains only private data and
+The \code{\link{GtkSeparatorToolItem}} struct contains only private data and
 should only be accessed through the functions described below.
 
 }}}
@@ -39,6 +39,6 @@ should only be accessed through the functions described below.
 Whether the separator is drawn, or just blank.  Default value: TRUE
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkSeparatorToolItem.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkSeparatorToolItem.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

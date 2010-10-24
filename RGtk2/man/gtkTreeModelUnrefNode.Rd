@@ -6,10 +6,10 @@ implement.  To be more specific, models may ignore this call as it exists
 primarily for performance reasons.}
 \usage{gtkTreeModelUnrefNode(object, iter)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTreeModel}}]  A \verb{\link{GtkTreeModel}}.}
-\item{\verb{iter}}{[\verb{\link{GtkTreeIter}}]  The \verb{\link{GtkTreeIter}}.}
+\item{\verb{object}}{A \code{\link{GtkTreeModel}}.}
+\item{\verb{iter}}{The \code{\link{GtkTreeIter}}.}
 }
 \details{For more information on what this means, see \code{\link{gtkTreeModelRefNode}}.
-Please note that nodes that are deleted are not unreffed.  }
+Please note that nodes that are deleted are not unreffed.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

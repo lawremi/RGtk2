@@ -6,6 +6,6 @@ function; most of the time, if you want the style, the widget is
 realized, and realized widgets are guaranteed to have a style
 already.}
 \usage{gtkWidgetEnsureStyle(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}}
+\arguments{\item{\verb{object}}{a \code{\link{GtkWidget}}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

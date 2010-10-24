@@ -8,8 +8,8 @@ layout is reversed for a right-to-left language like Hebrew
 or Arabic, right-justified-menu-items appear at the left.)}
 \usage{gtkMenuItemSetRightJustified(object, right.justified)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkMenuItem}}]  a \verb{\link{GtkMenuItem}}.}
-\item{\verb{right.justified}}{[logical]  if \code{TRUE} the menu item will appear at the 
+\item{\verb{object}}{a \code{\link{GtkMenuItem}}.}
+\item{\verb{right.justified}}{if \code{TRUE} the menu item will appear at the 
   far right if added to a menu bar.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

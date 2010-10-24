@@ -7,16 +7,23 @@ Get the parameters of a cell containing both a pixmap and text.
 }
 \usage{gtkCTreeNodeGetPixtext(object, node, column)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkCTree}}] }
-\item{\verb{node}}{[\verb{\link{GtkCTreeNode}}] }
-\item{\verb{column}}{[integer] }
+\item{\verb{object}}{\emph{undocumented
+}}
+\item{\verb{node}}{\emph{undocumented
+}}
+\item{\verb{column}}{\emph{undocumented
+}}
 }
 \value{
 A list containing the following elements:
-\item{\verb{text}}{[character] }
-\item{\verb{spacing}}{[raw] }
-\item{\verb{pixmap}}{[\verb{\link{GdkPixmap}}] }
-\item{\verb{mask}}{[\verb{\link{GdkBitmap}}] }
+\item{\verb{text}}{\emph{undocumented
+}}
+\item{\verb{spacing}}{\emph{undocumented
+}}
+\item{\verb{pixmap}}{\emph{undocumented
+}}
+\item{\verb{mask}}{\emph{undocumented
+}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

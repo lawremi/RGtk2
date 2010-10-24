@@ -6,7 +6,7 @@ points on the current path. If the current path is empty, returns
 an empty rectangle ((0,0), (0,0)). Stroke parameters, fill rule,
 surface dimensions and clipping are not taken into account.}
 \usage{cairoPathExtents(cr)}
-\arguments{\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}}
+\arguments{\item{\verb{cr}}{[\code{\link{Cairo}}]  a cairo context}}
 \details{Contrast with \code{\link{cairoFillExtents}} and \code{\link{cairoStrokeExtents}} which
 return the extents of only the area that would be "inked" by
 the corresponding drawing operations.
@@ -22,8 +22,7 @@ where the coordinates to both calls are identical), will be
 considered as contributing to the extents. However, a lone
 \code{\link{cairoMoveTo}} will not contribute to the results of
 \code{\link{cairoPathExtents}}.  
-
-  Since  1.6}
+  Since 1.6}
 \value{
 A list containing the following elements:
 \item{\verb{x1}}{[numeric]  left of the resulting extents}

@@ -7,7 +7,7 @@ Usually, you'll want to use \code{\link{gtkIconThemeGetDefault}}
 or \code{\link{gtkIconThemeGetForScreen}} rather than creating
 a new icon theme object for scratch.}
 \usage{gtkIconThemeNew()}
-\details{  Since  2.4}
-\value{[\verb{\link{GtkIconTheme}}]  the newly created \verb{\link{GtkIconTheme}} object.}
+\details{Since 2.4}
+\value{[\code{\link{GtkIconTheme}}]  the newly created \code{\link{GtkIconTheme}} object.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -5,11 +5,11 @@
 last time it was saved. Whenever the buffer is saved to disk, call
 gtk_text_buffer_set_modified (\code{buffer}, FALSE). When the buffer is modified,
 it will automatically toggled on the modified bit again. When the modified
-bit flips, the buffer emits a "modified_changed" signal.}
+bit flips, the buffer emits a "modified-changed" signal.}
 \usage{gtkTextBufferSetModified(object, setting)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTextBuffer}}]  a \verb{\link{GtkTextBuffer}} }
-\item{\verb{setting}}{[logical]  modification flag setting}
+\item{\verb{object}}{a \code{\link{GtkTextBuffer}} }
+\item{\verb{setting}}{modification flag setting}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

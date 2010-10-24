@@ -9,9 +9,9 @@ on a column explicity disallows user-resizing of the column.
 }
 \usage{gtkCListSetColumnAutoResize(object, column, auto.resize)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkCList}}] The \verb{\link{GtkCList}} to affect.}
-\item{\verb{column}}{[integer] The column on which to set auto-resizing.}
-\item{\verb{auto.resize}}{[logical] \code{TRUE} or \code{FALSE}.}
+\item{\verb{object}}{The \code{\link{GtkCList}} to affect.}
+\item{\verb{column}}{The column on which to set auto-resizing.}
+\item{\verb{auto.resize}}{\code{TRUE} or \code{FALSE}.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

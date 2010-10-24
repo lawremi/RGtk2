@@ -7,9 +7,9 @@ images. Applications can use this to avoid using image loaders
 with an inappropriate license, see \code{\link{gdkPixbufFormatGetLicense}}.}
 \usage{gdkPixbufFormatSetDisabled(object, disabled)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GdkPixbufFormat}}]  a \verb{\link{GdkPixbufFormat}}}
-\item{\verb{disabled}}{[logical] \code{TRUE} to disable the format \code{format}}
+\item{\verb{object}}{a \code{\link{GdkPixbufFormat}}}
+\item{\verb{disabled}}{\code{TRUE} to disable the format \code{format}}
 }
-\details{  Since  2.6}
+\details{Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

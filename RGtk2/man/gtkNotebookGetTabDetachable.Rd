@@ -4,10 +4,10 @@
 \description{Returns whether the tab contents can be detached from \code{notebook}.}
 \usage{gtkNotebookGetTabDetachable(object, child)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkNotebook}}]  a \verb{\link{GtkNotebook}}}
-\item{\verb{child}}{[\verb{\link{GtkWidget}}]  a child \verb{\link{GtkWidget}}}
+\item{\verb{object}}{a \code{\link{GtkNotebook}}}
+\item{\verb{child}}{a child \code{\link{GtkWidget}}}
 }
-\details{  Since  2.10}
+\details{Since 2.10}
 \value{[logical]  TRUE if the tab is detachable.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

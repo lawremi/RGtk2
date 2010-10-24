@@ -14,9 +14,9 @@ scrolls to the ratio \code{position}: 0 is full left, 1 is full right.
 }
 \usage{gtkListScrollHorizontal(object, scroll.type, position)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkList}}] the list widget.}
-\item{\verb{scroll.type}}{[\code{\link{GtkScrollType}}] the scrolling type.}
-\item{\verb{position}}{[numeric] the position if \code{scroll.type} is \verb{GTK_SCROLL_JUMP}}
+\item{\verb{object}}{the list widget.}
+\item{\verb{scroll.type}}{the scrolling type.}
+\item{\verb{position}}{the position if \code{scroll.type} is \verb{GTK_SCROLL_JUMP}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

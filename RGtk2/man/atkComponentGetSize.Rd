@@ -3,7 +3,7 @@
 \title{atkComponentGetSize}
 \description{Gets the size of the \code{component} in terms of width and height.}
 \usage{atkComponentGetSize(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{AtkComponent}}]  an \verb{\link{AtkComponent}}}}
+\arguments{\item{\verb{object}}{[\code{\link{AtkComponent}}]  an \code{\link{AtkComponent}}}}
 \value{
 A list containing the following elements:
 \item{\verb{width}}{[integer]  \verb{integer} to put width of \code{component}}

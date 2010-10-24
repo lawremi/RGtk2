@@ -14,9 +14,11 @@ The RGtk binding to the GDK library consists of the following components:
 \item{\link{gdk-Events}}{Functions for handling events from the window system}
 \item{\link{gdk-Fonts}}{Loading and manipulating fonts}
 \item{\link{gdk-Graphics-Contexts}}{Objects to encapsulate drawing properties}
+\item{\link{gdk-Application-launching}}{Startup notification for applications}
 \item{\link{GdkDisplay}}{Controls the keyboard/mouse pointer grabs and a set of   s}
 \item{\link{GdkDisplayManager}}{Maintains a list of all open   s}
 \item{\link{GdkScreen}}{Object representing a physical screen}
+\item{\link{gdk-Testing}}{Test utilities}
 \item{\link{gdk-General}}{Library initialization and miscellaneous functions}
 \item{\link{gdk-Images}}{A client-side area for bit-mapped graphics}
 \item{\link{gdk-Input-Devices}}{Functions for handling extended input devices}
@@ -31,6 +33,6 @@ The RGtk binding to the GDK library consists of the following components:
 \item{\link{gdk-Windows}}{Onscreen display areas in the target window system}
 }
 }
-\references{\url{http://developer.gnome.org/doc/API/2.0/gdk}}
+\references{\url{http://library.gnome.org/devel//gdk}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{interface}

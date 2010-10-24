@@ -50,14 +50,16 @@
 }
 \section{Hierarchy}{\preformatted{GObject
    +----GtkIconFactory}}
-\section{Detailed Description}{Browse the available stock icons in the list of stock IDs found here. You can also use 
+\section{Interfaces}{GtkIconFactory implements
+ \code{\link{GtkBuildable}}.}
+\section{Detailed Description}{Browse the available stock icons in the list of stock IDs found here. You can also use
 the \command{gtk-demo} application for this purpose.
   
- An icon factory manages a collection of \verb{\link{GtkIconSet}}; a \verb{\link{GtkIconSet}} manages a
- set of variants of a particular icon (i.e. a \verb{\link{GtkIconSet}} contains variants for
+ An icon factory manages a collection of \code{\link{GtkIconSet}}; a \code{\link{GtkIconSet}} manages a
+ set of variants of a particular icon (i.e. a \code{\link{GtkIconSet}} contains variants for
  different sizes and widget states). Icons in an icon factory are named by a
- stock ID, which is a simple string identifying the icon. Each \verb{\link{GtkStyle}} has a
- list of \verb{\link{GtkIconFactory}} derived from the current theme; those icon factories
+ stock ID, which is a simple string identifying the icon. Each \code{\link{GtkStyle}} has a
+ list of \code{\link{GtkIconFactory}} derived from the current theme; those icon factories
  are consulted first when searching for an icon. If the theme doesn't set a
  particular icon, GTK+ looks for the icon in a list of default icon factories,
  maintained by \code{\link{gtkIconFactoryAddDefault}} and
@@ -69,6 +71,38 @@ To display an icon, always use \code{\link{gtkStyleLookupIconSet}} on the widget
 will display the icon, or the convenience function
 \code{\link{gtkWidgetRenderIcon}}. These functions take the theme into account when
 looking up the icon to use for a given stock ID.}
+\section{GtkIconFactory as GtkBuildable}{GtkIconFactory supports a custom <sources> element, which
+can contain multiple <source> elements.
+The following attributes are allowed:
+\describe{
+\item{stock-id}{The stock id of the source, a string.
+This attribute is mandatory}
+\item{filename}{The filename of the source, a string.
+This attribute is optional}
+\item{icon-name}{The icon name for the source, a string.
+This attribute is optional.}
+\item{size}{Size of the icon, a \code{\link{GtkIconSize}} enum value.
+This attribute is optional.}
+\item{direction}{Direction of the source, a \code{\link{GtkTextDirection}} enum value.
+This attribute is optional.}
+\item{state}{State of the source, a \code{\link{GtkStateType}} enum value.
+This attribute is optional.}
+}
+  
+ \emph{A   \code{GtkIconFactory}   UI definition fragment.}\preformatted{<object class="GtkIconFactory" id="iconfactory1">
+  <sources>
+    <source stock-id="apple-red" filename="apple-red.png"/>
+  </sources>
+</object>
+<object class="GtkWindow" id="window1">
+  <child>
+    <object class="GtkButton" id="apple_button">
+      <property name="label">apple-red</property>
+      <property name="use-stock">True</property>
+    </object>
+  </child>
+</object>
+}}
 \section{Structures}{\describe{
 \item{\verb{GtkIconSource}}{
 \emph{undocumented
@@ -109,6 +143,6 @@ looking up the icon to use for a given stock ID.}
 }
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/gtk-Themeable-Stock-Images.html}}
+\references{\url{http://library.gnome.org/devel//gtk/gtk-Themeable-Stock-Images.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

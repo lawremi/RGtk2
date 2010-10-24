@@ -7,10 +7,10 @@ If characters in \code{str} are preceded by an underscore, they are underlined
 indicating that they represent a keyboard accelerator called a mnemonic.}
 \usage{gtkLabelSetMarkupWithMnemonic(object, str)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkLabel}}]  a \verb{\link{GtkLabel}}}
-\item{\verb{str}}{[character]  a markup string (see Pango markup format)}
+\item{\verb{object}}{a \code{\link{GtkLabel}}}
+\item{\verb{str}}{a markup string (see Pango markup format)}
 }
 \details{The mnemonic key can be used to activate another widget, chosen 
-automatically, or explicitly using \code{\link{gtkLabelSetMnemonicWidget}}.  }
+automatically, or explicitly using \code{\link{gtkLabelSetMnemonicWidget}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

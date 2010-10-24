@@ -5,9 +5,9 @@
 for a given widget and selection.}
 \usage{gtkSelectionAddTargets(object, selection, targets)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
-\item{\verb{selection}}{[\verb{\link{GdkAtom}}]  the selection}
-\item{\verb{targets}}{[\verb{\link{GtkTargetEntry}}]  a table of targets to add}
+\item{\verb{object}}{a \code{\link{GtkWidget}}}
+\item{\verb{selection}}{the selection}
+\item{\verb{targets}}{a table of targets to add}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -7,10 +7,10 @@ attributes should be in attribute/column order, as in
 replaced with the new attributes.}
 \usage{gtkCellLayoutSetAttributes(object, cell, ...)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkCellLayout}}]  A \verb{\link{GtkCellLayout}}.}
-\item{\verb{cell}}{[\verb{\link{GtkCellRenderer}}]  A \verb{\link{GtkCellRenderer}}.}
-\item{\verb{...}}{ A list of attributes.}
+\item{\verb{object}}{A \code{\link{GtkCellLayout}}.}
+\item{\verb{cell}}{A \code{\link{GtkCellRenderer}}.}
+\item{\verb{...}}{A list of attributes.}
 }
-\details{  Since  2.4}
+\details{Since 2.4}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

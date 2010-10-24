@@ -1089,6 +1089,16 @@
   (since "2.22.0")
 )
 
+(define-method set_attribute_stringv
+  (of-object "GFileInfo")
+  (c-name "g_file_info_set_attribute_stringv")
+  (return-type "none")
+  (parameters
+   '("const-char*" "attribute")
+   '("char**" "attr_value")
+   )
+  (since "2.22.0")
+  )
 
 
 (define-function g_file_io_stream_get_type
@@ -3225,5 +3235,67 @@
    '("GAsyncResult*" "result")
    '("GError**" "error" (out))
    )
+  (since "2.22.0")
+  )
+
+; GInetSocketAddress
+
+(define-object InetSocketAddress
+  (in-module "gio")
+  (parent "GSocketAddress")
+  (c-name "GInetSocketAddress")
+  (gtype-id "G_TYPE_INET_SOCKET_ADDRESS")
+  (since "2.22.0")
+  )
+
+(define-function g_inet_socket_address_new
+  (in-module "gio")
+  (c-name "g_inet_socket_address_new")
+  (is-constructor-of "GInetSocketAddress")
+  (return-type "GSocketAddress*")
+  (parameters
+   '("GInetAddress*" "address")
+   '("guint16" "port")
+   )
+  (since "2.22.0")
+  )
+
+(define-method get_address
+  (of-object "GInetSocketAddress")
+  (c-name "g_inet_socket_address_get_address")
+  (return-type "GInetAddress*")
+  (since "2.22.0")
+  )
+
+(define-method get_port
+  (of-object "GInetSocketAddress")
+  (c-name "g_inet_socket_address_get_port")
+  (return-type "guint16")
+  (since "2.22.0")
+  )
+
+; GTcpConnection
+
+(define-function g_tcp_connection_get_type
+  (in-module "gio")
+  (c-name "g_tcp_connection_get_type")
+  (return-type "GType")
+  (since "2.22.0")
+  )
+
+(define-method set_graceful_disconnect
+  (of-object "GTcpConnection")
+  (c-name "g_tcp_connection_set_graceful_disconnect")
+  (return-type "none")
+  (parameters
+   '("gboolean" "graceful_disconnect")
+   )
+  (since "2.22.0")
+  )
+
+(define-method get_graceful_disconnect
+  (of-object "GTcpConnection")
+  (c-name "g_tcp_connection_get_graceful_disconnect")
+  (return-type "gboolean")
   (since "2.22.0")
   )

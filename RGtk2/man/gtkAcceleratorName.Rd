@@ -7,11 +7,11 @@ For example, if you pass in \verb{GDK_q} and \verb{GDK_CONTROL_MASK},
 this function returns "<Control>q". }
 \usage{gtkAcceleratorName(accelerator.key, accelerator.mods)}
 \arguments{
-\item{\verb{accelerator.key}}{[numeric]   accelerator keyval}
-\item{\verb{accelerator.mods}}{[\code{\link{GdkModifierType}}]  accelerator modifier mask}
+\item{\verb{accelerator.key}}{accelerator keyval}
+\item{\verb{accelerator.mods}}{accelerator modifier mask}
 }
 \details{If you need to display accelerators in the user interface,
-see \code{\link{gtkAcceleratorGetLabel}}.  }
+see \code{\link{gtkAcceleratorGetLabel}}.}
 \value{[character]  a newly-allocated accelerator name}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

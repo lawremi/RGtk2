@@ -7,9 +7,7 @@ later versions compare greater than earlier versions.}
 \usage{cairoVersion()}
 \details{A run-time comparison to check that cairo's version is greater than
 or equal to version X.Y.Z could be performed as follows:
-  \preformatted{
-# This function is not that useful in R.
-# Instead, please use cairoVersionString() with compareVersion().
+  \preformatted{if (cairo_version() >= CAIRO_VERSION_ENCODE(X,Y,Z)) {...}
 }  
 See also \code{\link{cairoVersionString}} as well as the compile-time
 equivalents \code{CAIRO_VERSION} and \code{CAIRO_VERSION_STRING}.  }

@@ -6,9 +6,9 @@ license dialog. If \code{license} is \code{NULL}, the license button is
 hidden.}
 \usage{gtkAboutDialogSetLicense(object, license = NULL)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkAboutDialog}}]  a \verb{\link{GtkAboutDialog}}}
-\item{\verb{license}}{[character]  the license information or \code{NULL}}
+\item{\verb{object}}{a \code{\link{GtkAboutDialog}}}
+\item{\verb{license}}{ the license information or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
-\details{  Since  2.6}
+\details{Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

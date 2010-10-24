@@ -4,8 +4,8 @@
 \description{Set the fill mode for a graphics context.}
 \usage{gdkGCSetFill(object, fill)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GdkGC}}]  a \verb{\link{GdkGC}}.}
-\item{\verb{fill}}{[\code{\link{GdkFill}}]  the new fill mode.}
+\item{\verb{object}}{a \code{\link{GdkGC}}.}
+\item{\verb{fill}}{the new fill mode.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -5,9 +5,9 @@
 column must be of type \verb{G_TYPE_STRING}.}
 \usage{gtkIconViewSetTextColumn(object, column)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkIconView}}]  A \verb{\link{GtkIconView}}.}
-\item{\verb{column}}{[integer]  A column in the currently used model, or -1 to display no text}
+\item{\verb{object}}{A \code{\link{GtkIconView}}.}
+\item{\verb{column}}{A column in the currently used model, or -1 to display no text}
 }
-\details{  Since  2.6 }
+\details{Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

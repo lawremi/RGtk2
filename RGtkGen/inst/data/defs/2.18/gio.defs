@@ -103,6 +103,7 @@
   (in-module "gio")
   (c-name "g_icon_new_for_string")
   (return-type "GIcon*")
+  (is-constructor-of "GIcon")
   (parameters
     '("const-gchar*" "str")
     '("GError**" "error" (out))

@@ -7,7 +7,7 @@ geometry on the widget (e.g. with \code{\link{gtkWidgetSetSizeRequest}}),
 in which case it returns that geometry instead of the widget's
 requisition.}
 \usage{gtkWidgetGetChildRequisition(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}}
+\arguments{\item{\verb{object}}{a \code{\link{GtkWidget}}}}
 \details{This function differs from \code{\link{gtkWidgetSizeRequest}} in that
 it retrieves the last size request value from \code{widget->requisition},
 while \code{\link{gtkWidgetSizeRequest}} actually calls the "size_request" method
@@ -19,10 +19,10 @@ can only be used when you know that \code{widget->requisition} is
 up-to-date, that is, \code{\link{gtkWidgetSizeRequest}} has been called
 since the last time a resize was queued. In general, only container
 implementations have this information; applications should use
-\code{\link{gtkWidgetSizeRequest}}.  }
+\code{\link{gtkWidgetSizeRequest}}.}
 \value{
 A list containing the following elements:
-\item{\verb{requisition}}{[\verb{\link{GtkRequisition}}]  a \verb{\link{GtkRequisition}} to be filled in}
+\item{\verb{requisition}}{ a \code{\link{GtkRequisition}} to be filled in. \emph{[  \acronym{out}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

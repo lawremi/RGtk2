@@ -4,7 +4,7 @@
 \description{Removes a property change handler.}
 \usage{atkObjectRemovePropertyChangeHandler(object, handler.id)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{AtkObject}}]  an \verb{\link{AtkObject}}}
+\item{\verb{object}}{[\code{\link{AtkObject}}]  an \code{\link{AtkObject}}}
 \item{\verb{handler.id}}{[numeric]  a guint which identifies the handler to be removed.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

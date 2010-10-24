@@ -9,7 +9,7 @@ end iterator or one character before it, \code{iter} will now point at
 the end iterator, and \code{\link{gtkTextIterForwardChar}} returns \code{FALSE} for
 convenience when writing loops.}
 \usage{gtkTextIterForwardChar(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkTextIter}}]  an iterator}}
+\arguments{\item{\verb{object}}{an iterator}}
 \value{[logical]  whether \code{iter} moved and is dereferenceable}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -7,8 +7,8 @@
  manager whether to draw the window border.)}
 \usage{gtkWindowSetHasFrame(object, setting)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}}
-\item{\verb{setting}}{[logical]  a boolean}
+\item{\verb{object}}{a \code{\link{GtkWindow}}}
+\item{\verb{setting}}{a boolean}
 }
 \details{If this function is called on a window with setting of \code{TRUE}, before
 it is realized or showed, it will have a "frame" window around
@@ -17,6 +17,6 @@ frame_event you can receive all events targeted at the frame.
   
 This function is used by the linux-fb port to implement managed
 windows, but it could conceivably be used by X-programs that
-want to do their own window decorations.  }
+want to do their own window decorations.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

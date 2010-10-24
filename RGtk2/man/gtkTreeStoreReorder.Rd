@@ -6,12 +6,12 @@ indicated by \code{new.order}. Note that this function only works with
 unsorted stores.}
 \usage{gtkTreeStoreReorder(object, parent, new.order)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTreeStore}}]  A \verb{\link{GtkTreeStore}}.}
-\item{\verb{parent}}{[\verb{\link{GtkTreeIter}}]  A \verb{\link{GtkTreeIter}}.}
-\item{\verb{new.order}}{[integer]  a list of integers mapping the new position of each child
+\item{\verb{object}}{A \code{\link{GtkTreeStore}}.}
+\item{\verb{parent}}{A \code{\link{GtkTreeIter}}.}
+\item{\verb{new.order}}{a list of integers mapping the new position of each child
      to its old position before the re-ordering,
      i.e. \code{new.order}\code{[newpos] = oldpos}.}
 }
-\details{  Since  2.2}
+\details{Since 2.2}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

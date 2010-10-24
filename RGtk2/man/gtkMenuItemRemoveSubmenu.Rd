@@ -8,6 +8,6 @@ Removes the widget's submenu.
                   \code{\link{gtkMenuItemSetSubmenu}} instead.}
 }
 \usage{gtkMenuItemRemoveSubmenu(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkMenuItem}}]  a \verb{\link{GtkMenuItem}}}}
+\arguments{\item{\verb{object}}{a \code{\link{GtkMenuItem}}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

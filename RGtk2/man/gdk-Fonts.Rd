@@ -32,25 +32,24 @@
 \code{\link{gdkTextHeight}(object, text, text.length = -1)}\cr
 \code{\link{gdkCharHeight}(object, character)}\cr
 }
-\section{Detailed Description}{The \verb{\link{GdkFont}} data type represents a font for drawing on
+\section{Detailed Description}{The \code{\link{GdkFont}} data type represents a font for drawing on
 the screen. These functions provide support for
 loading fonts, and also for determining the dimensions
 of characters and strings when drawn with a particular
 font.
   
 Fonts in X are specified by a
-\dfn{X Logical Font Description}. 
+\dfn{X Logical Font Description}.
 The following description is considerably simplified.
-For definitive information about XLFD's see the 
+For definitive information about XLFD's see the
 X reference documentation. A X Logical Font Description (XLFD)
 consists of a sequence of fields separated (and surrounded by) '-'
 characters. For example, Adobe Helvetica Bold 12 pt, has the
-full description: 
+full description:
 \preformatted{"-adobe-helvetica-bold-r-normal--12-120-75-75-p-70-iso8859-1"
 }
   
 The fields in the XLFD are:
-
 \tabular{ll}{
 Foundry \tab the company or organization where the font originated. \cr
 Family \tab the font family (a group of related font designs). \cr
@@ -83,7 +82,6 @@ the XLFD. For instance, the above example could
 also be specified as
 \preformatted{"-*-helvetica-bold-r-normal--*-120-*-*-*-*-iso8859-1"
 }
-
 It is generally a good idea to use wildcards for any
 portion of the XLFD that your program does not care
 about specifically, since that will improve the
@@ -92,7 +90,7 @@ chances of finding a matching font.
 A \dfn{fontset} is a list of fonts
 that is used for drawing international text that may
 contain characters from a number of different character
-sets. It is represented by a list of XLFD's. 
+sets. It is represented by a list of XLFD's.
   
 The font for a given character set is determined by going
 through the list of XLFD's in order. For each one, if
@@ -107,7 +105,6 @@ on to the next font in the list.
 The functions for determining the metrics of a string
 come in several varieties that can take a number
 of forms of string input:
-
 \describe{
 \item{8-bit string}{    When using functions like \code{\link{gdkStringWidth}} that
     take a \verb{character}, if the font is of type
@@ -135,12 +132,12 @@ of forms of string input:
     }
 \item{Wide character string}{    For a number of the text-measuring functions, GDK
     provides a variant (such as \code{\link{gdkTextWidthWc}}) which
-    takes a \verb{numeric} instead of a 
+    takes a \verb{numeric} instead of a
     \verb{character}. The input is then taken to
     be a wide character string in the encoding of the
     current locale. (A wide character string is a string
     in which each character consists of several bytes,
-    and the width of each character in the string is 
+    and the width of each character in the string is
     constant.)
     }
 }
@@ -148,7 +145,6 @@ of forms of string input:
 GDK provides functions to determine a number of different
 measurements (metrics) for a given string. (Need diagram
 here).
-
 \describe{
 \item{ascent}{    The vertical distance from the origin of the drawing
     opereration to the top of the drawn character.
@@ -165,7 +161,7 @@ here).
 \item{width bearing}{    The horizontal distance from the origin of the drawing
     operation to the correct origin for drawing another
     string to follow the current one. Depending on the
-    font, this could be greater than or less than the 
+    font, this could be greater than or less than the
     right bearing.
     }
 }}
@@ -197,6 +193,6 @@ are currently:
 }
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gdk/gdk-Fonts.html}}
+\references{\url{http://library.gnome.org/devel//gdk/gdk-Fonts.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -18,8 +18,11 @@ their accelerators at runtime. More details about accelerator paths
 and their default setups can be found at \code{\link{gtkAccelMapAddEntry}}.}
 \usage{gtkMenuSetAccelPath(object, accel.path)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkMenu}}]        a valid \verb{\link{GtkMenu}}}
-\item{\verb{accel.path}}{[character]  a valid accelerator path}
+\item{\verb{object}}{a valid \code{\link{GtkMenu}}}
+\item{\verb{accel.path}}{ a valid accelerator path. \emph{[  \acronym{allow-none}  ]}}
 }
+\details{Note that \code{accel.path} string will be stored in a \verb{numeric}. Therefore, if you
+pass a static string, you can save some memory by interning it first with 
+\code{gInternStaticString()}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

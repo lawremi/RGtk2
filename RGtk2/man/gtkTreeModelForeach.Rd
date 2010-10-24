@@ -6,9 +6,9 @@ If \code{func} returns \code{TRUE}, then the tree ceases to be walked, and
 \code{\link{gtkTreeModelForeach}} returns.}
 \usage{gtkTreeModelForeach(object, func, user.data = NULL)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTreeModel}}]  A \verb{\link{GtkTreeModel}}}
-\item{\verb{func}}{[\verb{\link{GtkTreeModelForeachFunc}}]  A function to be called on each row}
-\item{\verb{user.data}}{[R object]  User data to passed to func.}
+\item{\verb{object}}{A \code{\link{GtkTreeModel}}}
+\item{\verb{func}}{A function to be called on each row}
+\item{\verb{user.data}}{User data to passed to func.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

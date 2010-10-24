@@ -7,10 +7,10 @@ corresponding to unset bits in the \code{mask} will be transparent. This
 gives a non-rectangular window.}
 \usage{gdkWindowShapeCombineMask(object, shape.mask = NULL, offset.x, offset.y)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a \verb{\link{GdkWindow}}}
-\item{\verb{shape.mask}}{[\verb{\link{GdkBitmap}}]  shape mask}
-\item{\verb{offset.x}}{[integer]  X position of shape mask with respect to \code{window}}
-\item{\verb{offset.y}}{[integer]  Y position of shape mask with respect to \code{window}}
+\item{\verb{object}}{a \code{\link{GdkWindow}}}
+\item{\verb{shape.mask}}{shape mask}
+\item{\verb{offset.x}}{X position of shape mask with respect to \code{window}}
+\item{\verb{offset.y}}{Y position of shape mask with respect to \code{window}}
 }
 \details{If \code{mask} is \code{NULL}, the shape mask will be unset, and the \code{x}/\code{y}
 parameters are not used.
@@ -21,8 +21,6 @@ very old X servers, and occasionally the implementation will be
 buggy. On servers without the shape extension, this function
 will do nothing.
   
-On the Win32 platform the functionality is always present.
-  
-This function works on both toplevel and child windows.  }
+This function works on both toplevel and child windows.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

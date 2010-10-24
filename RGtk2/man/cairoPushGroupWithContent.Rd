@@ -8,15 +8,14 @@ provide the result of any drawing to the group as a pattern,
 (either as an explicit object, or set as the source pattern).}
 \usage{cairoPushGroupWithContent(cr, content)}
 \arguments{
-\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}
-\item{\verb{content}}{[\verb{\link{CairoContent}}]  a \%\verb{\link{CairoContent}} indicating the type of group that
+\item{\verb{cr}}{[\code{\link{Cairo}}]  a cairo context}
+\item{\verb{content}}{[\code{\link{CairoContent}}]  a \code{\link{CairoContent}} indicating the type of group that
           will be created}
 }
 \details{The group will have a content type of \code{content}. The ability to
 control this content type is the only distinction between this
 function and \code{\link{cairoPushGroup}} which you should see for a more
 detailed description of group rendering.  
-
-  Since  1.2}
+  Since 1.2}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -11,8 +11,8 @@ done manually, \code{\link{gtkCheckMenuItemSetInconsistent}} only affects
 visual appearance, it doesn't affect the semantics of the widget.}
 \usage{gtkCheckMenuItemSetInconsistent(object, setting)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkCheckMenuItem}}]  a \verb{\link{GtkCheckMenuItem}}}
-\item{\verb{setting}}{[logical] \code{TRUE} to display an "inconsistent" third state check}
+\item{\verb{object}}{a \code{\link{GtkCheckMenuItem}}}
+\item{\verb{setting}}{\code{TRUE} to display an "inconsistent" third state check}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

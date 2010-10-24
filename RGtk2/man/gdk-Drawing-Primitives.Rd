@@ -48,25 +48,25 @@
          +----GdkPixmap}}
 \section{Detailed Description}{These functions provide support for drawing points, lines, arcs and text
 onto what are called 'drawables'. Drawables, as the name suggests, are things
-which support drawing onto them, and are either \verb{\link{GdkWindow}} or \verb{\link{GdkPixmap}}
+which support drawing onto them, and are either \code{\link{GdkWindow}} or \code{\link{GdkPixmap}}
 objects.
   
-Many of the drawing operations take a \verb{\link{GdkGC}} argument, which represents a
-graphics context. This \verb{\link{GdkGC}} contains a number of drawing attributes such
+Many of the drawing operations take a \code{\link{GdkGC}} argument, which represents a
+graphics context. This \code{\link{GdkGC}} contains a number of drawing attributes such
 as foreground color, background color and line width, and is used to reduce
 the number of arguments needed for each drawing operation. See the
 Graphics Contexts section for
 more information.
   
-Some of the drawing operations take Pango data structures like \verb{\link{PangoContext}},
-\verb{\link{PangoLayout}} or \verb{\link{PangoLayoutLine}} as arguments. If you're using GTK+, the ususal 
+Some of the drawing operations take Pango data structures like \code{\link{PangoContext}},
+\code{\link{PangoLayout}} or \code{\link{PangoLayoutLine}} as arguments. If you're using GTK+, the ususal
 way to obtain these structures is via \code{\link{gtkWidgetCreatePangoContext}} or
 \code{\link{gtkWidgetCreatePangoLayout}}.}
 \section{Structures}{\describe{
 \item{\verb{GdkDrawable}}{
 An opaque structure representing an object that can be
-drawn onto. This can be a \verb{\link{GdkPixmap}}, a \verb{\link{GdkBitmap}},
-or a \verb{\link{GdkWindow}}.
+drawn onto. This can be a \code{\link{GdkPixmap}}, a \code{\link{GdkBitmap}},
+or a \code{\link{GdkWindow}}.
 
 }
 \item{\verb{GdkSegment}}{
@@ -84,8 +84,8 @@ function.
 }
 \item{\verb{GdkTrapezoid}}{
 Specifies a trapezpoid for use by the \code{\link{gdkDrawTrapezoids}}.
-The trapezoids used here have parallel, horizontal top and 
-bottom edges. 
+The trapezoids used here have parallel, horizontal top and
+bottom edges.
 \strong{\verb{GdkTrapezoid} is a \link{transparent-type}.}
 
 \describe{
@@ -99,6 +99,6 @@ bottom edges.
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gdk/gdk-Drawing-Primitives.html}}
+\references{\url{http://library.gnome.org/devel//gdk/gdk-Drawing-Primitives.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

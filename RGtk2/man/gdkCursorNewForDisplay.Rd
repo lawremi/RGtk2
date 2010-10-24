@@ -21,16 +21,14 @@ Some useful ones are:
 \item \verb{GDK_BOTTOM_SIDE} (resize bottom side)
 \item \verb{GDK_SB_H_DOUBLE_ARROW} (move vertical splitter)
 \item \verb{GDK_SB_V_DOUBLE_ARROW} (move horizontal splitter)
+\item \verb{GDK_BLANK_CURSOR} (Blank cursor). Since 2.16
 }}
 \usage{gdkCursorNewForDisplay(display, cursor.type)}
 \arguments{
-\item{\verb{display}}{[\verb{\link{GdkDisplay}}]  the \verb{\link{GdkDisplay}} for which the cursor will be created}
-\item{\verb{cursor.type}}{[\code{\link{GdkCursorType}}]  cursor to create}
+\item{\verb{display}}{the \code{\link{GdkDisplay}} for which the cursor will be created}
+\item{\verb{cursor.type}}{cursor to create}
 }
-\details{To make the cursor invisible, use \code{\link{gdkCursorNewFromPixmap}} to create
-a cursor with no pixels in it.  
-
-  Since  2.2}
-\value{[\verb{\link{GdkCursor}}]  a new \verb{\link{GdkCursor}}}
+\details{Since 2.2}
+\value{[\code{\link{GdkCursor}}]  a new \code{\link{GdkCursor}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

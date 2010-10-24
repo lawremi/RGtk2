@@ -5139,6 +5139,22 @@ S_giostream_class_close_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ s_objec
 }
  
 
+#if GIO_CHECK_VERSION(2, 22, 0)
+static SEXP S_GInetSocketAddress_symbol;
+void
+S_ginet_socket_address_class_init(GInetSocketAddressClass * c, SEXP e)
+{
+  SEXP s;
+
+  S_GInetSocketAddress_symbol = install("GInetSocketAddress");
+  s = findVar(S_GInetSocketAddress_symbol, e);
+  G_STRUCT_MEMBER(SEXP, c, sizeof(GInetSocketAddressClass)) = e;
+
+  S_gsocket_address_class_init(((GSocketAddressClass *)c), e);
+
+}
+#endif 
+
 #if GIO_CHECK_VERSION(2, 16, 0)
 static SEXP S_GAppInfo_symbol;
 static 

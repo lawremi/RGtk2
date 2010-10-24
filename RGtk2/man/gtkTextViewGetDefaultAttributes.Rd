@@ -7,8 +7,9 @@ You'd typically pass the default attributes in to
 \code{\link{gtkTextIterGetAttributes}} in order to get the
 attributes in effect at a given text position.}
 \usage{gtkTextViewGetDefaultAttributes(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkTextView}}]  a \verb{\link{GtkTextView}}}}
-\details{.  }
-\value{[\verb{\link{GtkTextAttributes}}]  a new \verb{\link{GtkTextAttributes}}}
+\arguments{\item{\verb{object}}{a \code{\link{GtkTextView}}}}
+\details{
+and should be freed.}
+\value{[\code{\link{GtkTextAttributes}}]  a new \code{\link{GtkTextAttributes}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -4,7 +4,7 @@
 \description{Gets the selection mode for \code{selection}. See
 \code{\link{gtkTreeSelectionSetMode}}.}
 \usage{gtkTreeSelectionGetMode(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{GtkTreeSelection}}]  a \verb{\link{GtkTreeSelection}}}}
+\arguments{\item{\verb{object}}{a \code{\link{GtkTreeSelection}}}}
 \value{[\code{\link{GtkSelectionMode}}]  the current selection mode}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

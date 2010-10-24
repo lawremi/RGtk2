@@ -13,7 +13,7 @@
 }
 \section{Detailed Description}{These functions allow to render pixbufs on drawables. Pixbufs are
 client-side images. For details on how to create and manipulate
-pixbufs, see the \verb{\link{GdkPixbuf}} API documentation.}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gdk/gdk-Pixbufs.html}}
+pixbufs, see the \code{\link{GdkPixbuf}} API documentation.}
+\references{\url{http://library.gnome.org/devel//gdk/gdk-Pixbufs.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

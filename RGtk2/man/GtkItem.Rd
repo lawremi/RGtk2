@@ -19,11 +19,11 @@
                                        +----GtkListItem
                                        +----GtkTreeItem}}
 \section{Interfaces}{GtkItem implements
- AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
-\section{Detailed Description}{The \verb{\link{GtkItem}} widget is an abstract base class for \verb{\link{GtkMenuItem}}, \verb{\link{GtkListItem}}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
+\section{Detailed Description}{The \code{\link{GtkItem}} widget is an abstract base class for \code{\link{GtkMenuItem}}, \code{\link{GtkListItem}}
 and \verb{GtkTreeItem}.}
 \section{Structures}{\describe{\item{\verb{GtkItem}}{
-The \verb{\link{GtkItem}} struct contains private data only, and
+The \code{\link{GtkItem}} struct contains private data only, and
 should be accessed using the functions below.
 
 }}}
@@ -32,8 +32,8 @@ should be accessed using the functions below.
 Emitted when the item is deselected.
 
 \describe{
-\item{\code{item}}{[\verb{\link{GtkItem}}] the object which received the signal.}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{item}}{the object which received the signal.}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -42,8 +42,8 @@ Emitted when the item is deselected.
 Emitted when the item is selected.
 
 \describe{
-\item{\code{item}}{[\verb{\link{GtkItem}}] the object which received the signal.}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{item}}{the object which received the signal.}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -52,13 +52,13 @@ Emitted when the item is selected.
 Emitted when the item is toggled.
 
 \describe{
-\item{\code{item}}{[\verb{\link{GtkItem}}] the object which received the signal.}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{item}}{the object which received the signal.}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkItem.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkItem.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

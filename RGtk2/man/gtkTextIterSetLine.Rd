@@ -6,8 +6,8 @@
 buffer, moves \code{iter} to the start of the last line in the buffer.}
 \usage{gtkTextIterSetLine(object, line.number)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTextIter}}]  a \verb{\link{GtkTextIter}}}
-\item{\verb{line.number}}{[integer]  line number (counted from 0)}
+\item{\verb{object}}{a \code{\link{GtkTextIter}}}
+\item{\verb{line.number}}{line number (counted from 0)}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

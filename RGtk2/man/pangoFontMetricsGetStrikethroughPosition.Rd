@@ -5,8 +5,8 @@
 The value returned is the distance \emph{above} the
 baseline of the top of the strikethrough.}
 \usage{pangoFontMetricsGetStrikethroughPosition(object)}
-\arguments{\item{\verb{object}}{[\verb{\link{PangoFontMetrics}}]  a \verb{\link{PangoFontMetrics}} structure}}
-\details{  Since  1.6}
+\arguments{\item{\verb{object}}{a \code{\link{PangoFontMetrics}} structure}}
+\details{Since 1.6}
 \value{[integer]  the suggested strikethrough position, in Pango units.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

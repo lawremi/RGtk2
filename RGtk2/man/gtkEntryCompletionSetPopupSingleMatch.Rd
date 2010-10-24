@@ -7,10 +7,10 @@ are using inline
 completion.}
 \usage{gtkEntryCompletionSetPopupSingleMatch(object, popup.single.match)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkEntryCompletion}}]  a \verb{\link{GtkEntryCompletion}}}
-\item{\verb{popup.single.match}}{[logical] \code{TRUE} if the popup should appear even for a single
+\item{\verb{object}}{a \code{\link{GtkEntryCompletion}}}
+\item{\verb{popup.single.match}}{\code{TRUE} if the popup should appear even for a single
   match}
 }
-\details{  Since  2.8}
+\details{Since 2.8}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

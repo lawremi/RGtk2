@@ -5,8 +5,8 @@
 within the visible area of the widget.}
 \usage{gtkTextViewScrollMarkOnscreen(object, mark)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTextView}}]  a \verb{\link{GtkTextView}}}
-\item{\verb{mark}}{[\verb{\link{GtkTextMark}}]  a mark in the buffer for \code{text.view}}
+\item{\verb{object}}{a \code{\link{GtkTextView}}}
+\item{\verb{mark}}{a mark in the buffer for \code{text.view}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

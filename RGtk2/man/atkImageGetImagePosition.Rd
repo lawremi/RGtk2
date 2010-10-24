@@ -5,7 +5,7 @@
 images top-left corner.}
 \usage{atkImageGetImagePosition(object, coord.type)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{AtkImage}}]  a \verb{\link{GObject}} instance that implements AtkImageIface}
+\item{\verb{object}}{[\code{\link{AtkImage}}]  a \code{\link{GObject}} instance that implements AtkImageIface}
 \item{\verb{coord.type}}{[\code{\link{AtkCoordType}}]  specifies whether the coordinates are relative to the screen
 or to the components top level window}
 }

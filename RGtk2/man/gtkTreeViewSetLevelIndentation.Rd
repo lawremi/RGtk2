@@ -8,9 +8,9 @@ indentation will be used.
 This does not have any visible effects for lists.}
 \usage{gtkTreeViewSetLevelIndentation(object, indentation)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkTreeView}}]  a \verb{\link{GtkTreeView}}}
-\item{\verb{indentation}}{[integer]  the amount, in pixels, of extra indentation in \code{tree.view}.}
+\item{\verb{object}}{a \code{\link{GtkTreeView}}}
+\item{\verb{indentation}}{the amount, in pixels, of extra indentation in \code{tree.view}.}
 }
-\details{  Since  2.12}
+\details{Since 2.12}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

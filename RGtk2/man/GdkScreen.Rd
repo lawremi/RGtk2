@@ -24,9 +24,13 @@
 \code{\link{gdkScreenGetToplevelWindows}(object)}\cr
 \code{\link{gdkScreenMakeDisplayName}(object)}\cr
 \code{\link{gdkScreenGetNMonitors}(object)}\cr
+\code{\link{gdkScreenGetPrimaryMonitor}(object)}\cr
 \code{\link{gdkScreenGetMonitorGeometry}(object, monitor.num)}\cr
 \code{\link{gdkScreenGetMonitorAtPoint}(object, x, y)}\cr
 \code{\link{gdkScreenGetMonitorAtWindow}(object, window)}\cr
+\code{\link{gdkScreenGetMonitorHeightMm}(object, monitor.num)}\cr
+\code{\link{gdkScreenGetMonitorWidthMm}(object, monitor.num)}\cr
+\code{\link{gdkScreenGetMonitorPlugName}(object, monitor.num)}\cr
 \code{\link{gdkScreenBroadcastClientMessage}(object, event)}\cr
 \code{\link{gdkScreenGetSetting}(object, name)}\cr
 \code{\link{gdkScreenGetFontOptions}(object)}\cr
@@ -40,44 +44,57 @@
 }
 \section{Hierarchy}{\preformatted{GObject
    +----GdkScreen}}
-\section{Detailed Description}{\verb{\link{GdkScreen}} objects are the GDK representation of a physical screen. It is used 
+\section{Detailed Description}{\code{\link{GdkScreen}} objects are the GDK representation of a physical screen. It is used
   throughout GDK and GTK+ to specify which screen the top level windows
-  are to be displayed on. 
-  It is also used to query the screen specification and default settings such as 
+  are to be displayed on.
+  It is also used to query the screen specification and default settings such as
   the default colormap (\code{\link{gdkScreenGetDefaultColormap}}),
   the screen width (\code{\link{gdkScreenGetWidth}}), etc.
   Note that a screen may consist of multiple monitors which are merged to
-form a large screen area. }
+form a large screen area.}
 \section{Structures}{\describe{\item{\verb{GdkScreen}}{
-This is a currently just a placeholder typedef for the first argument of 
+This is a currently just a placeholder typedef for the first argument of
 the \code{window.at.pointer} function in \verb{GdkPointerHooks}. It will be used
-when GDK gets multihead support. 
+when GDK gets multihead support.
   Since 2.2
 
 }}}
 \section{Signals}{\describe{
 \item{\code{composited-changed(screen, user.data)}}{
-The ::composited_changed signal is emitted when the composited
-status of the screen changes  
-
-  Since  2.10
+The ::composited-changed signal is emitted when the composited
+status of the screen changes
+  Since 2.10
 
 \describe{
-\item{\code{screen}}{[\verb{\link{GdkScreen}}]  the object on which the signal is emitted}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{screen}}{the object on which the signal is emitted}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
+}
+
+
+}
+\item{\code{monitors-changed(screen, user.data)}}{
+The ::monitors-changed signal is emitted when the number, size
+or position of the monitors attached to the screen change.
+  
+Only for X11 and OS X for now. A future implementation for Win32
+may be a possibility.
+  Since 2.14
+
+\describe{
+\item{\code{screen}}{the object on which the signal is emitted}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
 \item{\code{size-changed(screen, user.data)}}{
-The ::size_changed signal is emitted when the pixel width or 
-height of a screen changes.  
-
-  Since  2.2
+The ::size-changed signal is emitted when the pixel width or 
+height of a screen changes.
+  Since 2.2
 
 \describe{
-\item{\code{screen}}{[\verb{\link{GdkScreen}}]  the object on which the signal is emitted}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+\item{\code{screen}}{the object on which the signal is emitted}
+\item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
@@ -95,6 +112,6 @@ The resolution for fonts on the screen.  Default value: -1
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gdk/GdkScreen.html}}
+\references{\url{http://library.gnome.org/devel//gdk/GdkScreen.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

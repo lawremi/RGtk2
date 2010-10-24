@@ -10,8 +10,8 @@ displayed).  If \code{number.of.rows} is -1, then the fixed height is unset, and
 the height is determined by the properties again.}
 \usage{gtkCellRendererTextSetFixedHeightFromFont(object, number.of.rows)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkCellRendererText}}]  A \verb{\link{GtkCellRendererText}}}
-\item{\verb{number.of.rows}}{[integer]  Number of rows of text each cell renderer is allocated, or -1}
+\item{\verb{object}}{A \code{\link{GtkCellRendererText}}}
+\item{\verb{number.of.rows}}{Number of rows of text each cell renderer is allocated, or -1}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

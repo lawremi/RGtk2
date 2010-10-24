@@ -5,10 +5,10 @@
 It is an error if \code{item} is not a child of the toolbar.}
 \usage{gtkToolbarGetItemIndex(object, item)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkToolbar}}]  a \verb{\link{GtkToolbar}}}
-\item{\verb{item}}{[\verb{\link{GtkToolItem}}]  a \verb{\link{GtkToolItem}} that is a child of \code{toolbar}}
+\item{\verb{object}}{a \code{\link{GtkToolbar}}}
+\item{\verb{item}}{a \code{\link{GtkToolItem}} that is a child of \code{toolbar}}
 }
-\details{  Since  2.4}
+\details{Since 2.4}
 \value{[integer]  the position of item on the toolbar.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

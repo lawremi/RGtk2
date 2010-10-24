@@ -9,9 +9,9 @@ itself.  Most applications should use \code{\link{gtkContainerForeach}},
 rather than \code{\link{gtkContainerForall}}.}
 \usage{gtkContainerForall(object, callback, callback.data = NULL)}
 \arguments{
-\item{\verb{object}}{[\verb{\link{GtkContainer}}]  a \verb{\link{GtkContainer}}}
-\item{\verb{callback}}{[\verb{\link{GtkCallback}}]  a callback}
-\item{\verb{callback.data}}{[R object]  callback user data}
+\item{\verb{object}}{a \code{\link{GtkContainer}}}
+\item{\verb{callback}}{a callback}
+\item{\verb{callback.data}}{callback user data}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}
