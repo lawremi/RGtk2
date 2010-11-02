@@ -1,5 +1,5 @@
 There are many reasons why one would want to create a graphical user
-interface for a package or piece of \R\/ functionality. For example,
+interface in \R. For example,
 % ML: I think many of these points are debateable, at best. The CLI is
 % extremely flexible and provides the easiest general access to
 % R. GUI's are best constrained to focused tasks and are particularly

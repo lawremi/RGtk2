@@ -10,9 +10,9 @@ source("../booktabs.R")
 
 %% Goal is 
 
-\section{Introduction}
-\label{sec:GUI:introduction}
-\SweaveInput{Introduction}
+% \section{Introduction}
+% \label{sec:GUI:introduction}
+% \SweaveInput{Introduction}
 
 
 \XXX{Space}

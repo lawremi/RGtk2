@@ -1,10 +1,10 @@
 %% Tic Tac Toe examples
 
 We begin with an example showing how one can use \R's standard
-graphics device, as a canvas for drawing a GUI, for playing a game of
+graphics device as a canvas for a game of
 tic-tac-toe against the computer. Although this example
 has nothing to do with statistics, it illustrates, in a familiar way,
-some of the issues that this text will address with using GUIs. 
+some of the issues involved in developing GUIs in \R. 
 
 
 %% ML: the note about the MVC pattern can probably come after the
@@ -15,11 +15,10 @@ some of the issues that this text will address with using GUIs.
 %% generalize a little after each step, but I think we want to lead
 %% with the concrete.
 
-Many GUIs can be thought of as different views of some data
-model. 
-In this example, the data simply consists of information holding the
-state of the game. Here we define a global variable, \code{board}, to store the
-current state of the game. 
+Many GUIs can be thought of as different views of some data model.  In
+this example, the data simply consists of information holding the
+state of the game. Here we define a global variable, \code{board}, to
+store the current state of the game.
 
 %% Model
 <<define-board>>=
@@ -27,14 +26,10 @@ board <- matrix(rep(0,9), nrow=3)       # a global
 @ 
 
 %% View
-The GUI provides the representation of the data for the user. This
-example just uses a canvas for this, but most GUIs have a combination
-of components to represent the data and allow for user
-interaction. The layout of the GUI directs the user as to how to
-interact with it and is an important factor as to whether the GUI will
-be well received. Here we define a function to layout the game board
-using the graphics device as a canvas.
-
+A GUI contains one or more views, each of which is tied to an
+underlying data model. In our case, the view is the game board that we
+display through \R\/ graphics device. The \Rfunction{layoutBoard}
+function creates this view:
 <<layoutBoard>>=
 layoutBoard <- function() {
   plot.new()
@@ -43,41 +38,45 @@ layoutBoard <- function() {
   mtext("Tic Tac Toe. Click a square:")
 }
 @ 
+%
+This example uses a single canvas as the view; more complex GUIs
+will contain multiple coordinated, interactive views. The layout of
+the GUI should help the user navigate the interface and is an
+important factor in usability.
+
 
 %% Controller
-A GUI is designed to respond to user input typically by the mouse or
-keyboard. The underlying toolkit allows the programmer to assign
+The user typically sends input to a GUI through a mouse or keyboard. 
+The underlying toolkit allows the programmer to assign
 functions to be called when some specific event occurs. Typically, the
 toolkit \textit{signals} that some action has occurred, and then
 calls \textit{callbacks} or \textit{event handlers} that have been
-assigned by the programmer. How this is implemented varies from
-toolkit to toolkit.
-
-\R's interactive graphics devices implement the \code{locator}
-function which responds to mouse clicks by user. When using this function,
-one specifies how many mouse clicks to gather and the \textit{control}
-of the program is suspended until these are gathered (or the process
-is terminated). The suspension of control makes this a \textit{modal}
-GUI. This design is common for simple dialogs that require immediate
-user attention, but not common otherwise. To make non-modal dialogs
-possible, the writers of the \R\/ packages that interface with the GUI
-toolkits have to interface with \R's event loop mechanism.
-
-
-Here we define a function to collect the player's input.
+assigned by the programmer. The implementation is toolkit
+dependent. For our game, we will use the \code{locator} function built
+into the base \R\/ graphics system:
 <<doPlay>>=
 doPlay <- function() {
   iloc <- locator(n=1, type="n")
   clickHandler(iloc)
 }
 @ 
+%
+The \code{locator} function responds to mouse clicks. One specifies
+how many mouse clicks to gather and the \textit{control} of the
+program is suspended until the user clicks the sufficient number of
+times (or somehow interrupts the loop). Such a GUI that blocks the
+flow of a program contingent on user input is known as a
+\textit{modal} GUI. This design is common for simple dialogs that
+require immediate user attention, although in general a GUI will
+listen asynchronously for user input.
 
-In the above function,
-\function{clickHandler} is an \textit{event handler}. Its job is to process the output of the
+
+In the above function \Rfunction{doPlay}, \function{clickHandler} is
+an \textit{event handler}. Its job is to process the output of the
 \function{locator} function, checking first if the user terminated
 \function{locator} using the keyboard. If not it proceeds to draw the
 move, and then, if necessary, the computer's move. Afterwards, play is
-repeated until there is a winner or a ``cat's'' game. 
+repeated until there is a winner or a ``cat's'' game.
 
 
 <<clickHandler>>=
@@ -93,24 +92,21 @@ clickHandler <- function(iloc) {
     doPlay()
 }
 @ 
-%%>>
 
 The use of \verb+<<-+ in the handler illustrates a typical issue in
-GUI design within \R. After a GUI is created, the state is
-typically modified within the scope of the callback functions. These
-callbacks need to be able to modify values outside of their scope, yet
-even if the values are passed in as argument, this is usually not
-possible while assigning within the scope of the function call, due to
-\R's pass by copy function calls. As such, global variables are often
-employed along with some strategies to avoid an explosion of variable
-names.
+GUI design in \R.  User input changes the state of the application
+through callback functions. These callbacks need to modify variables
+in some shared scope, which may be application-wide or specific to a
+component. The lexical scoping rules of \R, i.e., nesting of closures,
+has proven to be a useful strategy for managing GUI state. When this
+is inconvenient, direct manipulation of environment objects is a
+viable alternative. In the above case, we simply modify the global
+environment, which encloses \function{clickHandler}.
 
 %% validation of user input
-Validation of user input is an important task for a GUI, especially
-for Web GUIS. In the above,
+Validation of user input is an important task for a GUI. In the above,
 the \function{clickHandler} function checks to see if the user
-terminated the game early and issues a message, more helpful forms of
-validation are possible in general.
+terminated the game early and issues a message.
 
 %% Implement logic
 At this point, we have a data model, a view of the model and the
@@ -136,36 +132,35 @@ drawMove <- function(z,type="x") {
 
 %% Resizing
 One could use \code{text} to place a text ``x'' or ``o'', but this may
-not look good if the GUI is resized. Most GUI layouts allow for
-dynamic resizing. Overall this is a great advantage, for example, it
-allows translations to just worry about the text and not the layout,
-which will be different for every language.
+not scale well if the GUI is resized. Most GUI layouts allow for
+dynamic resizing. This is necessary to handle the variety of data a
+GUI will display. Even the labels, which one generally considers
+static, will display different text depending on the language (as long
+as translations are available).
 
-This function is used to test if a game is finished. The matrix
-\code{m} allows us to easily check all the possible ways to get three
-in a row.
+This function is used to test if a game is finished:
 <<isFinished>>=
 isFinished <- function() {
-  if(sum(abs(board)) >= 9) 
-    return(TRUE)
-  m <- matrix(1:9,nrow=3)
-  ways <- list(m[,1], m[,2], m[,3],
-               m[1,], m[2,], m[3,],
-               diag(m),diag(apply(m,2,rev)))
-  sums <- sapply(ways, function(i) abs(sum(board[i])))
-  if(any(sums == 3)) 
-    return(TRUE)
-  return(FALSE)
+  ## if(sum(abs(board)) >= 9) 
+  ##   return(TRUE)
+  ## m <- matrix(1:9,nrow=3)
+  ### MFL: would this code do the same thing?
+  (any(rowSums(board) == 3) || any(colSums(board) == 3) || 
+   sum(diag(board)) == 3 || sum(diag(apply(board, 2, rev))) == 3)
+  ## ways <- list(m[,1], m[,2], m[,3],
+  ##              m[1,], m[2,], m[3,],
+  ##              diag(m),diag(apply(m,2,rev)))
+  ## sums <- sapply(ways, function(i) abs(sum(board[i])))
+  ## if(any(sums == 3)) 
+  ##   return(TRUE)
+  ## return(FALSE)
 }
-@ 
+@
+%
+The matrix \code{m} allows us to easily check all the possible ways
+to get three in a row.
 
-This function picks a move for the computer.  The move is converted
-into coordinates using \code{\%\%} to get the remainder and
-\code{\%/\%} to get the quotient when dividing an integer by an
-integer. This function just chooses at random from the left over
-positions; we leave implementing a better strategy to the interested
-reader.
-
+This function picks a move for the computer:
 <<doComputerMove>>=
 doComputerMove <- function() {
   newMove <- sample(which(board == 0),1) # random !
@@ -174,14 +169,15 @@ doComputerMove <- function() {
   drawMove(z,"o")
 }
 @ 
-%%>>
-
+%
+The move is converted into coordinates using \code{\%\%} to get the
+remainder and \code{\%/\%} to get the quotient when dividing an
+integer by an integer. This function just chooses at random from the
+left over positions; we leave implementing a better strategy to the
+interested reader.
 
 %% main equivalent
-This function provides the main entry point for our GUI. To play a
-game it first lays out the board and then calls
-\function{doPlay}. When this function terminates, a message is written
-on the screen.
+Finally, we implement the main entry point for our GUI:
 <<playGame>>=
 playGame <- function() {
   layoutBoard()
@@ -189,17 +185,20 @@ playGame <- function() {
   mtext("All done\n",1)
 }
 @ 
+%
+When the game is launched, we first lay out the board and then call
+\function{doPlay}. When \function{doPlay} returns, a message is written
+on the screen.
 
 This example adheres to the model-view-controller design pattern that
 is implemented by virtually every complex GUI. We will encounter this
 pattern throughout this book, although it is not always explicit.
 
 %% endless tweak
-A final point, the above example illustrates a common issue when designing
-software that is particularly true of GUIs -- feature creep is an
-endless temptation. In this case, there are many obvious improvements:
-localizing the text messages so different languages can be used,
-implementing a better logic for the computer's moves, drawing a line
-connecting three in a row when there is a win, indicating who won when
-there is a win, etc. For many GUIs there is a necessary trade-off
-between usability and complexity.
+For many GUIs there is a necessary trade-off between usability and
+complexity. As with any software, there is always the temptation to
+continually add features without regard for the long term cost. In
+this case, there are many obvious improvements: implementing a better
+artificial intelligence, drawing a line connecting three in a row when
+there is a win, indicating who won, etc. Adding a feature adds
+complexity to the interface, which increases the burden on the user.

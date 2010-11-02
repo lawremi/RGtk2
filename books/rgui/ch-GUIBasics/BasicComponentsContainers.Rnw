@@ -1,5 +1,7 @@
 %% Containers
 
+%%% FIXME: move to \paragraph{} instead of \subsubsection{}?
+
 %% ML: Layout management is orthogonal to the type of container. This
 %% is made obvious in the design of Swing and Qt: there is a separate
 %% class hierarchy for layout managers, which are assigned to
@@ -25,268 +27,106 @@
 
 %% Widget Heirarchy
 
-Widgets in a GUI are organized in a \dfn{widget heirarchy}, where some
-widgets are parents and some children (which may in turn be
-parents). The top-level window may play a special role here, as a
-parent but not a child. This organization offers the toolkit writers
-the chance to treat each object as a standalone component. For
-example, when a GUI is resized the typical algorithm is for the parent
-to be resized, then to send a signal to the children to resize
-themselves. Another example is when a window is closed, prior to
-closing the window will signal its children that they will be
-destroyed, and they should in turn signal their children, if any.  A
-means to traverse the widget heirarchy is provided by each toolkit.
-In \pkg{tcltk} this heirarchical relationship is explicit, as a widget
-constructor -- except for top-level windows -- requires a parent
-widget when be constructed. In the other toolkits, it may be implicit.
+The KDE pring dialog of Figure~\ref{fig:GUI:print-dialogs} contains
+many of the widgets we discussed in the previous section. Before we
+can create such a dialog, we need to introduce how to position widgets
+on the screen. This process is called \textit{widget layout}.
 
-In the widget heirarchy, the parents play a different role as those
-widgets that are just children. The parents play the role of
-\dfn{containers}. Sometimes the word \dfn{widget} is reserved for GUI
-components which are not-containers. Having containers makes it
-possible to organize GUIs into indivividual components -- again, a desirable
-design feature.
+A layout emerges from the organization of the widgets into a
+hierarchy, where a parent widget positions its children within its
+allocated space.  The top-level window is parentless and forms the
+root of the hierarchy. A parent visually contains its children and
+thus is usually called a \textit{container}. This design is natural,
+because almost every GUI has a hierarchical layout. It is easy to
+apply a different layout strategy to each region of a GUI, and when a
+parent is added or removed from the GUI, so are its children.
 
-The children of the GUI must be organized in some manner. In \GTK
-(\pkg{gWidgets}), this is done through the choice of container with
-parameters being set to adjust the placement within the container when
-the child is added. In \Qt\/ and \tcltk\/ there is an added
-abstraction of a layout. A layout decouples the heirarchy from the
-layout and offers much more flexibility. In \Qt\/ this allows for a
-richer set of default layout options, and the ability to create ones
-specialized layouts.
+It is sometimes tempting for novices to simply assign a fixed position
+and dimensions for every widget in a GUI. However, such static layouts
+do not scale well to changes in the state of the application or simply
+changes to the window size dictated by the window manager. Thus, it is
+strongly encouraged to delegate the responsibility of layout to a
+\textit{layout manager} that dynamically calculates the layout as
+constraints change. Depending on the toolkit, the layout manager might
+be the container itself, or it might be a separate object to which the
+container delegates.
 
-
-
-\subsection{Top level windows}
-\label{sec:GUI:top-level-windows}
-
-The top-level window of a GUI is typically decorated with a title and
-buttons to iconify, maximize, or close. Besides the text of the title,
-the decorations are generally the domain of the window manager, often
-part of the operating system. The application controls the contents of
-the window. Generally, a top-level window will consist of a menu bar,
-a tool bar and a status bar. In between these is the area referred to
-as the \dfnref{client area} or \dfnref{content pane} where other
-containers or widgets are placed.
-
-%% client area -- wxWidgets book
-%% content pane -- java tutorial
-
-%% FRAME vs. WINDOW
-
-%% closing property
-
-The title is a property of the window and may be specified at the time
-of construction or afterwards. 
-
-On a desktop, only one window may have the focus at a time. It may or
-may not be desired that a new window receive the focus so some means
-to specify the focus at construction or later is provided by the
-toolkit.
-
-The initial placement of the window also may be specified at the time
-of construction. The top-level window of a GUI may generally be placed
-whereever it is convenient for the user, but sub-windows are often
-drawn on top of their parent window, as are modal dialog boxes. 
-
-
-%% RGtk2 -- DefaultSize
-%% rJava -- Preferred Size
-%% tcltk -- min size
-%% RwxWidgets -- DefaultSize
-
-%% ML: I don't think that the ability to set a default or minimum size
-%% depends on the toolkit. It's all determined by the windowing system
-%% and what the associated window managers are required to support. I
-%% would say that on all major platforms, one can set both a default
-%% and a minimum size, as well as toggle resizability, with any
-%% reasonable toolkit. Certainly this is true of GTK+ and Qt. The
-%% top-level window geometry is the result of negotiation between the
-%% window manager and application.
-
-The window manager usually decorates a top-level window with a close
-button. It may be necessary or desirable to specify some action to
-take place when this button is clicked. For instance, a user might be
-prompted if they wish to save changes to their work when the close
-button is pressed.
-
-it may take some time to initially layout a top-level window. Rather
-than have the window drawn and then have a blank window while this
-time passes, it is preferable to not make the window visible until the
-window is ready to draw. 
-
-
-We now describe some of the main containers.
-
-% Table~\ref{tab:GUI:containers-constructors} lists them
-% together and provides the constructor name for the different toolkits
-% discussed in this book.
-
-\subsection{Box containers}
-\label{sec:GUI:Box-containers}
-
-A box container places its children in it from left to right or from
-top to bottom.  If each child is viewed as a box, then this container
-holds them by packing them next to each other. The upper left figure in
-Figure~\ref{fig:GUI:box-possibilities} illustrates this. 
-
-When the boxes have different sizes, then some means to align them
-must be decided on. Several possibilities exists. The alignment could
-be around some center, aligned at a baseline, the top line, or each
-child can specify where to anchor itself within the allotted space
-(the upper right graphic in Figure~\ref{fig:GUI:box-possibilities}).
-
-If the space allocated for a box is larger than the space requested by
-a child component then a decision as to how that component gets placed
-needs to be made. If the component is not enlarged, then there are
-nine reasonable places -- the center and the 8 compass directions N,
-NW, W, \dots. Otherwise, it may be desirable for the component to
-expand horizontally, vertically or both (the lower left graphic in
-Figure~\ref{fig:GUI:box-possibilities}). Additionally, it is desirable
-to be able to place a fixed amount of space between child components
-or a spring between components. A spring forces all subsequent to
-children to the far right or bottom of the container (the lower right
-graphic in Figure~\ref{fig:GUI:box-possibilities}).
-
-
-When a top-level window is resized, these space allocations must be
-made. To help, the different toolkits allows the components to have a
-size specifed. Some combination of a minimum size, a preferred size, a
-default size, a specific size, or a maximum size are
-allowed. Specifying fixed sizes for components is generally frowned
-upon, as they don't scale well when a user resizes a window and they
-don't work well when different languages are used on the controls when
-an application is localized.
-
-
-\begin{figure}
-  \centering
-  \includegraphics[width=.35\textwidth]{box-horizontal}
-  \includegraphics[width=.35\textwidth]{box-alignment}\\
-  \includegraphics[width=.35\textwidth]{box-expand}
-  \includegraphics[width=.35\textwidth]{box-glue-spring}
-  \caption{
-    XXX REPLACE WITH REAL GRAPHICS XXX.
-    %%
-    Different possibilities for packing child components within
-    a box. 
-    %%
-    The upper left shows horizontal and vertical layout.
-    %% 
-    The upper right shows some possible alignements.
-    %%
-    The lower left shows that a child could possibly be anchored in
-    one of 9 positions. As well, it could ``expand'' to fill the space
-    either horizontally (as shown) or  vertically, or both.
-    %%
-    The lower right shows both a fixed amount of space between the
-    children and an expanding spring between the child components.
-}
-  \label{fig:GUI:box-possibilities}
-\end{figure}
-
-\subsubsection{Frames}
-\label{sec:GUI:frames}
-
-A box container may have a border drawn around it to visually separate
-its contents from others. This border may also have a title. In
-\GTK\/ these are called frames, but this word is reserved in \tcltk\/ and
-\Java.
-
-\subsubsection{Expanding boxes}
-\label{sec:GUI:expanding-boxes}
-
-In order to save screen space, a means to hide a boxes contents can be
-used. This hiding/showing is initiated by a mouse click on a
-disclosure button or trigger icon.
-
-\subsubsection{Paned boxes}
-\label{sec:GUI:paned-boxes}
-
-If automatic space allocation between two child components is not
-desired, but rather a means for the user to allocate the space is,
-then a \dfnref{paned container} may be used. These offer one or more
-horizontal or verticales sash that can be clicked and dragged to
-apportion space between the child omponents.
-
-   
-\subsection{Grid layout}
-\label{sec:GUI:grid-layout}
-
-By nesting box containers, a great deal of flexibility in layout can
-be achieved. However, there is still a need for the alignment of child
-components in a tabular manner. The most flexible alignments allow for
-different sizes for each column and each row, and additionally, the
-ability for the child components to span multiple columns or
-rows. Within each cell (or cells) the placement of a child component
-mirrors that of the lower left graphic of
-Figure~\ref{fig:GUI:box-possibilities}. Some specification where to
-anchor the component when there are nine possible positions plus
-expanding options must made.
-
-\subsection{Tabbed Notebooks}
-\label{sec:GUI:notebooks}
-
-A notebook is a common container to hold one or more pages (or
-children). The different pages are shown by the user through the
-clicking of a corresponding tab. The metaphor being a tabbed
-notebook. Modern web browsers take advantage of this container to
-allow several web pages to be open at once.
-
-
-
-
-\subsection{Example}
-
-The KDE pring dialog of Figure~\ref{fig:GUI:print-dialogs} shows
-most of the containers previously described. 
-
-The top-level window has the generic title ``Print -- KPDF.'' This
-window appears to have four child components: a frame labeled
-\code{Printer}, a notebook with open tab \code{C\underline{o}pies}, a
-grid layout for specifying the print system, and a box for holding
-five buttons at the bottom. 
-
-The lower left \code{\underline{O}ptions} button has \verb+<<+ to
-indicate that clicking this will close an exanding box, in this case a
-box that contains the lower three components above. So in fact, there
-are two visible child components of the top-level window.
-
-The framed box holds a grid layout with five columns and 6 rows. The
-sizes allocated to each column are visible in the first row. It is
-quickly seen that each column has a different size. The last row has a
-text entry area that spans the second and third columns. The first
-column has only labels. These are anchored to the left side of the
-allowed space. The Apple human interface guide
-\citep{APPLE:HIG} suggests using colons for text that provides
-context for controls, and the KDE designers do to. 
-
-The displayed page of the notebook shows two child components, both
-framed boxes. A pleasant amount of space between the frames and their
-child components has been chosen. The \code{Page Selection} frame has
-components including radio buttons, a text area, a horizontal
-separator, and a combo box.
-
-The print system information is displayed in a grid layout that has
-been right aligned within its parent container -- the expanded group,
-but its children are center-balanced with the label ``Print system
-currently used'' is right aligned and ``Server...'' is left aligned
-within their cells.
-
-The button box shows five buttons as child components. At first glance
-the sizing appears to show that each button is drawn to fully show its label
-with some fixed space placed between the buttons. If the dialog is
-expanded, it is seen that there is a spring between the 3rd and 4th
-buttons, so that the first 3 are aligned with the left side of the
-window and the last two the right side.
+Regardless, the type of layout is generally orthogonal to the type of
+container. For example, a container might draw a border around its
+children, and this would be independent of how its children are laid
+out.  The rest of this section is divided into two parts: container
+widgets and layout algorithms. We will continually refer back to the
+KDE print dialog example as we proceed.
 
 % The Apple guidlines\citep[Ch. 15]{APPLE:HIG} suggest using ``center
 % equalization'' for arranging widgets within a window. This means that
 % the visual weight is balanced between the right and left side of the
 % content area. This is not the case with the KDE print dialog.
 
+\subsection{Containers}
+\label{sec:containers}
 
+\subsubsection{Top level windows}
+\label{sec:GUI:top-level-windows}
+
+The top-level window of a GUI is the root of the container
+hierarchy. All other widgets are contained within it.  The
+conventional main application window will consist of a menu bar, a
+tool bar and a status bar. The primary content of the window is
+inserted between the tool bar and the status bar, in an area known as
+the \dfnref{client area} or \dfnref{content area}. In the case of a
+dialog, the content usually appears above a row of buttons, each of
+which represent a possible response. The print dialog conforms to the
+dialog convention. The print options fill the content area, and there
+is a row of buttons at the bottom for issuing a response, such as
+``Print''.
+
+A window is typically decorated with a title and buttons to iconify,
+maximize, or close. In the case of the print dialog, the top-level
+window is entitled ``Print -- KPDF.''. Besides the text of the title,
+the decorations are generally the domain of the window manager (often
+part of the operating system). The application controls the contents
+of the window.
+
+Once a window is shown, its dimensions are managed by the user,
+through the window manager. Thus, the programmer must size the window
+before it becomes visible. This is often referred to as the
+``default'' size of the window. Placing of a top-level window is
+generally left to the window manager.
+
+The top-level window forwards window manager events to the
+application. For example, an application might listen to the window
+close event in order to prompt a user if there are any unsaved changes
+to a document.
+
+% Table~\ref{tab:GUI:containers-constructors} lists them
+% together and provides the constructor name for the different toolkits
+% discussed in this book.
+
+\subsubsection{Frames}
+\label{sec:GUI:frames}
+
+A frame is a simple container that draws a border, possibly with a
+label, around its child. The purpose of a frame is to enhance
+comprehension of a GUI by visually distinguishing one group of
+components from the others. The displayed page of the notebook in
+Figure~\ref{fig:GUI:print-dialogs} contains two frames, visually
+grouping widgets by their function: either \code{Page Selection}
+or \code{Output Settings}.
+
+\subsubsection{Tabbed notebooks}
+\label{sec:GUI:notebooks}
+
+A notebook represents each of its children as a page in a notebook. A
+page is selected by clicking on a button that appears as a tab. Only a
+single child is shown at once. The tabbed notebook is a space
+efficient, categorizing container that is most appropriate when a user
+is only interested in one page at a time. Modern web browsers take
+advantage of it to allow several web pages to be open at once within
+the same window. In the KDE print dialog, detailed options are
+collapsed into a notebook in order to save space and organize the
+multitude of options into simple categories: ``Copies'', ``Advanced
+Options'', and ``Additional Tags''.
 
 % %% A table showing the values and constructors
 % %% Make changes to gnumeric spreadsheet, export
@@ -296,14 +136,137 @@ window and the last two the right side.
 %   \begin{table}
 %     \centering
 %     \caption{A table listing several containers with a constructor for the
-%       different toolkits discussed in the text.}
+%     different toolkits discussed in the text.}
 %     \begin{tabular}{lp{\PARASIZE}@{\quad}p{\PARASIZE}@{\quad}p{\PARASIZE}@{\quad}p{\PARASIZE}@{\quad}p{\PARASIZE}@{\quad}c}
-% Widget & \code{gWidgets} & \code{RGtk2} & \code{RwxWidgets} &
-% \code{tcltk} & \code{rJava} &\\
-% \hline
-% \SweaveInput{containers-constructors}
+%       Widget & \code{gWidgets} & \code{RGtk2} & \code{RwxWidgets} &
+%       \code{tcltk} & \code{rJava} &\\
+%       \hline
+%       \SweaveInput{containers-constructors}
 %     \end{tabular}
-% \label{tab:GUI:containers-constructors}
+%     \label{tab:GUI:containers-constructors}
 %   \end{table}
 % \end{landscape}
 % }
+
+
+\subsubsection{Expanding boxes}
+\label{sec:GUI:expanding-boxes}
+
+The expanding box will show or hide its children, according to the
+state of a toggle button. By way of analogy, radio buttons are to
+notebooks as check buttons are to expanding boxes. An expanding box
+allows the user to adapt a GUI to a particular use case or mode of
+operation. Often, an expanding box contains so-called ``advanced''
+widgets that are only occassionally useful and are only of interest to
+a small subset of the users. For example, the \code{Options} button in
+Figure~\ref{fig:GUI:print-dialogs} controls an expanding box that
+contains the print options, which are usually best left to their
+defaults.
+
+\subsubsection{Paned boxes}
+\label{sec:GUI:paned-boxes}
+
+Usually, a layout manager allocates screen space to widgets, but
+sometimes the user needs to adapt the allocation, according to a
+present need. For example, the user may wish to increase the size of
+an image to see the fine details. The \dfnref{paned container}
+supports this by juxtaposing two panes, either vertically (stacked) or
+horizontally. The area separating the two panes, sometimes called a
+\dfnref{sash}, can be adjusted by dragging it with the mouse.
+   
+\subsection{Layout algorithms}
+\label{sec:GUI:layout}
+
+\subsubsection{Box layout}
+\label{sec:GUI:Box-containers}
+
+The box container is perhaps the simplest and most common type of
+layout container. A box will pack its children either horizontally or
+vertically. Usually, the widgets are packed from left to right, for
+horizontal boxes, or from top to bottom, in the case of a vertical
+box.  The upper left figure in Figure~\ref{fig:GUI:box-possibilities}
+illustrates this.
+
+The box layout needs to allocate space to its children in both the
+vertical and horizontal directions. The typical box layout algortihm
+begins by satisfying the minimum size requirements of its
+children. The box may need to request more space for itself in order
+to meet the requirement. 
+
+Once the minimum requirements are satisfied, it is conventional and
+usually desirable for the widgets to fill the space in the direction
+orthogonal to the packing. For example, widgets in a horizontal box
+will fill all of their vertical space. When this is not desired, most
+box widgets support different ways of vertically (or horizontally)
+aligning the widgets (the upper right graphic in
+Figure~\ref{fig:GUI:box-possibilities}).
+
+More complex logic is involved in the allocation of space in the
+direction of packing. Any available space after meeting minimum
+requirements needs to be either allocated to the children or left
+empty. This depends on whether any children are set to expand. The
+available space will be distributed evenly to all expanding
+children. Each child may fill that space or leave it empty (the lower
+left graphic in Figure~\ref{fig:GUI:box-possibilities}). The
+non-expanding children are simply packed against their
+side of the container. If there are no expanding children, the
+remaining space is left empty in the middle (or end if there are no
+widgets packed against the other side). See the lower right
+panel in Figure~\ref{fig:GUI:box-possibilities}. One could think
+of this space being occupied by an invisible spring. Invisible
+expanding widgets also act as springs.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.35\textwidth]{box-horizontal}
+  \includegraphics[width=.35\textwidth]{box-alignment}\\
+  \includegraphics[width=.35\textwidth]{box-expand}
+  \includegraphics[width=.35\textwidth]{box-glue-spring}
+  \caption{
+    XXX REPLACE WITH REAL GRAPHICS XXX.
+    %% 
+    Different possibilities for packing child components within
+    a box. 
+    %% 
+    The upper left shows horizontal and vertical layout.
+    %% 
+    The upper right shows some possible alignements.
+    %% 
+    The lower left shows that a child could possibly be anchored in
+    one of 9 positions. As well, it could ``expand'' to fill the space
+    either horizontally (as shown) or  vertically, or both.
+    %% 
+    The lower right shows both a fixed amount of space between the
+    children and an expanding spring between the child components.
+  }
+  \label{fig:GUI:box-possibilities}
+\end{figure}
+
+The button box shows five buttons as child components. At first glance
+the sizing appears to show that each button is drawn to fully show its label
+with some fixed space placed between the buttons. If the dialog is
+expanded, it is seen that there is a spring between the 3rd and 4th
+buttons, so that the first 3 are aligned with the left side of the
+window and the last two the right side.
+
+\subsubsection{Grid layout}
+\label{sec:GUI:grid-layout}
+
+The box layout algorithm only aligns its children along a single
+dimension. The horizontal box, for example, vertically aligns its
+children. Nevertheless, nesting permits the construction of complex
+layouts using only simple boxes. However, it is sometimes desirable to
+align widgets in both dimensions, i.e., to lay them out on a grid. The
+most flexible grid layout algorithms allow non-regular sizing of rows
+and columns, as well as the ability for a widget to span multiple
+cells. Usually, a widget fills the cells allocated to it, but if this
+is not possible, it may be anchored at a specific point within their
+cell. 
+
+The widgets in the ``Printer'' frame of
+Figure~\ref{fig:GUI:box-possibilities} are subject to a grid layout
+with five columns and six rows. The first row begins with the
+``Name:'' label, and each widget in that row occupy a separate
+column. This exposes the size of each column. The first column has
+only labels, with text justified to the left.  The labels are aligned
+horizontally to each other and vertically with adjacent field.
