@@ -3,22 +3,6 @@ AC_INIT(src/Rgtk.c)
 DEFINES=
 EXTRA_MODULES=
 
-AC_ARG_ENABLE(libglade,
-  [  --disable-libglade          Disable libglade support],
-  [use_libglade=$enableval], [use_libglade=yes])
-
-if test "x$use_libglade" = "xyes"; then
-   PKG_CHECK_MODULES(LIBGLADE, libglade-2.0, have_libglade=yes, AC_MSG_WARN(libglade not found, disabling))
-fi
-
-if test "x$have_libglade" = "xyes"; then
-	DEFINES="$DEFINES -DHAVE_LIBGLADE"
-        EXTRA_MODULES="$EXTRA_MODULES libglade-2.0"
-else
-	rm R/libglade*
-	rm src/libglade*
-fi
-
 AC_ARG_ENABLE(introspection,
   [  --disable-introspection          Disable introspection support],
   [use_introspection=$enableval], [use_introspection=yes])

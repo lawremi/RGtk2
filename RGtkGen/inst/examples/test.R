@@ -15,10 +15,7 @@ path <- file.path(rgtkgen, "inst", "data")
 defspath <- file.path(path, "defs")
 libs <- c("atk.defs", "cairo.defs", "pango.defs", "gio.defs", "gdk.defs",
           "gtk.defs")
-extralibs <- c("libglade.defs")
-extrapath <- file.path(defspath, "extra")
 files <- file.path(defspath, version, libs)
-files <- c(files, file.path(extrapath, extralibs))
 
 library(RGtk2)
 
@@ -34,7 +31,7 @@ subs <- c("atk-1.30.0/docs", "pango/docs",
           "glib/docs/reference/gio",
           file.path("gtk+/docs/reference",
                     c("gdk", "gtk", "gdk-pixbuf")), 
-          "cairo-1.8.10/doc/public", "libglade-2.6.4/doc")
+          "cairo-1.8.10/doc/public")
 doc_dirs <- file.path(src_dir, subs, "xml")
 doc_files <- sapply(doc_dirs, dir, pattern = "xml", full.names = T)
 
@@ -61,8 +58,7 @@ allDefs <- generateCodeFiles(files,dir=file.path(path, "gen"),
 
 ## exporting/importing routines for each API
 deps <- list(gio = "gobject", atk = "gobject", cairo = "gobject",
-             pango = "cairo", gdk = c("pango", "gio"), gtk = c("gdk", "atk"),
-             libglade = "gtk")
+             pango = "cairo", gdk = c("pango", "gio"), gtk = c("gdk", "atk"))
 sapply(names(deps), function(api) {
   genExports(api, file.path(path, "gen"), file.path(defspath, "exports"), 
     file.path("RGtk2", deps[[api]]))
