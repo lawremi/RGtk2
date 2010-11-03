@@ -1,4 +1,3 @@
-We define the UI manager as follows
 
 \begin{figure}
   \centering
@@ -12,34 +11,34 @@ We define the UI manager as follows
 library(RGtk2)
 @ 
 
+We begin by constructing the UI manager:
 <<>>=
 uimanager = gtkUIManager()
 @ 
 
-Our actions either open a dialog to gather more information or issue a
-command. A \class{GtkAction} element is passed to the action. We
-define a stub here, that simply updates a \code{gtkStatusbar}
-instance, defined below.
+Next, we define the action groups. For demonstration purposes, our
+actions simply push the action name onto the status bar at the bottom
+of the window. Below, we define the callback that will implement every
+action:
 <<>>=
 someAction <- function(action,...) 
   statusbar$push(statusbar$getContextId("message"), action$getName())
 Quit <- function(...) win$destroy()
 @ 
 
-To show how we can sequentially add interfaces, we break up our action
-group definitions into one for ``File'' and ``Edit'' and another one
-for ``Help.'' The key is the list defining the entries. Each component
-specifies (in this order) the name; the icon; the label, with
-\code{\_} specifying the mnemonic; the keyboard accelerator, with
-\code{<control>}, \code{<alt>}, \code{<shift>} as possible prefixes, a
-tooltip, which may not work with the \R\/ event loop, and finally the
-callback. Empty values can be defined as \code{NULL} or, except for
-the callback, an empty string.
-
+We break up our action group definitions into one for ``File'' and
+``Edit'' and another one for ``Help.'' Every action is defined by a
+\class{GtkActionEntry} structure, which is represented by a list in
+\R. The components (in order) are the name; the icon; the
+label, with \code{\_} specifying the mnemonic; the keyboard
+accelerator, with \code{<control>}, \code{<alt>}, \code{<shift>} as
+possible prefixes, a tooltip, and finally the callback. Empty values
+can be defined as \code{NULL} or, except for the callback, an empty
+string.
 
 <<Define-first-action-group>>=
-firstActionGroup = gtkActionGroup("firstActionGroup")
-firstActionEntries = list(
+firstActionGroup <- gtkActionGroup("firstActionGroup")
+firstActionEntries <- list(
   ## name,ID,label,accelerator,tooltip,callback
   file = list("File",NULL,"_File",NULL,NULL,NULL),
   new = list("New", "gtk-new", "_New", "<control>N", 
@@ -58,25 +57,28 @@ firstActionEntries = list(
     "Redo change", someAction)
 )
 @ 
-We now add the actions to the action group, then add this action group
-to the first spot in the UI manager.
-<<"Insert action group">>=
-QT <- firstActionGroup$addActions(firstActionEntries)
+%
+In the above, we define the dummy actions ``File'' and ``Edit'' that
+perform no function. They are necessary for specifying the menu layout
+later. We now add the actions to the action group, then add this
+action group to the first spot in the UI manager.
+<<"Insert action group", print=FALSE>>=
+firstActionGroup$addActions(firstActionEntries)
 uimanager$insertActionGroup(firstActionGroup, 0) # 0-based
 @ 
 
-The ``Help'' actions we do a bit differently. We define a ``Use
-tooltips'' mode to be a toggle, as an illustration of that feature. One can also
-incorporate radio groups, although this is not shown.
-
-<<>>=
-helpActionGroup = gtkActionGroup("helpActionGroup")
-helpActionEntries = list(
+It is also possible to define toggle actions, as we demonstrate
+presently for the ``Help'' group. First, we define the ordinary actions:
+<<print=FALSE>>=
+helpActionGroup <- gtkActionGroup("helpActionGroup")
+helpActionEntries <- list(
   help = list("Help", "", "_Help", "", "", NULL),
   about = list("About", "gtk-about", "_About", "", "", someAction)
-  )
-QT <- helpActionGroup$AddActions(helpActionEntries)
+)
+helpActionGroup$addActions(helpActionEntries)
 @ 
+%
+Next, we define a ``Use tooltips'' toggle action.
 
 A toggle is defined with \command{gtkToggleAction} which has signature
 in a different order than the action entry. Notice, we don't have an
@@ -85,38 +87,27 @@ the \code{toggled} signal of the action element. This callback allows
 for user data, as illustrated.
 
 <<"a toggle action">>=
-toggleAction <- gtkToggleAction("UseTooltips",
-                                label="_Use tooltips",
-                                tooltip="Use tooltips ")
-toggleAction$setActive(TRUE)            # initially set
-ID <- gSignalConnect(toggleAction, signal = "toggled",
-                    f=function(ta, userData)  {
-                      cat(userData,ta$getName(),"\n")
-                    },
-                    data="toggled")
-helpActionGroup$addAction(toggleAction)
-@ 
-We insert the help action group in position 2.
+toggleActions <- list(
+  tooltips = c("UseTooltips", NULL, "Use _Tooltips", "<control>T", 
+    "Enable tooltips", someAction, TRUE)
+)
+helpActionGroup$addActions(toggleActions)
+@
+%
+The list structure for toggle actions is identical to that of the
+ordinary actions, except for the last element which indicates whether
+the action is initially active.  We insert the help action group in
+the second position.
 <<"insert help action group">>=
-uimanager$insertActionGroup(helpActionGroup,1)
+uimanager$insertActionGroup(helpActionGroup, 1)
 @ 
-The \code{SetActive} method can set the state, use \code{GetActive} to
-retrieve the state.
+%
+One can also incorporate radio actions, although this is not shown.
 
-
-Our UI Manager's layout is specified in a file. The file uses XML to
-specify where objects go. The structure of the file can be grasped
-quickly from the example. Each entry is wrapped in \code{ui} tags. The
-type of UI is either a \code{menubar}, \code{toolbar}, or
-\code{popup}.  The \code{name} properties are used to reference the
-widgets later on.  Menuitems are added with a \code{menuitem} entry
-and toolbar items the \code{toolitem} entry. These have an
-\code{action} value and an optional name (defaulting to the
-\code{action} value). The \code{separator} tags allow for some
-formatting.  The nesting of the menuitems is achieved using 
-the \code{menu} tags. A \code{placeholder} tag can be used to add
-entries at a later time.
-
+Our menubar and toolbar layout is specified as XML according to a
+schema specified by the UI manager framework. The XML can be stored in
+a file or an \R\/ character vector.  The structure of the file can be
+grasped quickly from this example:
 \begin{verbatim}
 <ui>
   <menubar name="menubar">
@@ -147,21 +138,32 @@ entries at a later time.
   </toolbar>
 </ui>
 \end{verbatim}
-%\VerbatimInput{ex-menus.xml}
+% \VerbatimInput{ex-menus.xml}
+
+The top-level element is named \code{ui}, only one of which is allowed
+in a UI definition. The children of \code{ui} represent a top-level
+action container: \code{menubar}, \code{toolbar}, or \code{popup}.
+The \code{name} attributes are used to refer to the widgets later
+on. The \code{menubar} element contains \code{menu} elements, which in
+turn contain \code{menuitem} and \code{separator} elements, as well as
+additional \code{menu} elements for nesting. The toolbars are
+populated with \code{toolitem} elements. The item elements have an
+\code{action} attribute that refers to an action in one of our action
+groups and an optional name (defaulting to the \code{action}
+value).
 
 This file is loaded into the UI manager as follows
 <<"Load UI from file">>=
 id <- uimanager$addUiFromFile("ex-menus.xml")
 @ 
-
-The \code{id} value can be used to merge and delete UI components, but
-this is not illustrated here. The menus can also be loaded from strings.
+%
+The \code{id} value can be used to merge and delete UI components
+according to the mode of the UI, but this is not illustrated here.
 
 Now we can setup a basic window template with menubar, toolbar, and
-status bar. We first get the three main widgets. We use the names from
-the UI layout to get the widgets through the \command{GetWidget}
-method of the UI manager. The menubar and toolbar are returned as
-follows, for our choice of names in the XML file.
+status bar. We first construct the three main widgets. The UI manager
+will construct our toolbar and menubar, as identified from the names
+specified in the UI definition:
 <<"Retrieve menubar and toolbar from the uimanager">>=
 menubar <- uimanager$getWidget("/menubar")
 toolbar <- uimanager$getWidget("/toolbar")
@@ -169,23 +171,18 @@ toolbar <- uimanager$getWidget("/toolbar")
 The statusbar is constructed with
 <<"define statusbar">>=
 statusbar <- gtkStatusbar()
-@ Statusbars have a simple API. The \method{push}{gtkStatusbar} method
--- in the definition of the callback \code{f} -- is used to add new
-text to the statusbar. The \code{pop} method reverts to the previous
-message.
+@ 
+%
 
-
-Now we define a top-level window and attach a keyboard accelerator
+Now we create a top-level window and attach a keyboard accelerator
 group to the window so that when the window has the focus, the
-specified keyboard shortcuts can be used.
-
+keyboard shortcuts defined for our actions are active.
 <<Define-window-add-accelerator-group>>=
 win <- gtkWindow(show=TRUE)
 win$setTitle("Window example")
-accelgroup = uimanager$getAccelGroup()  # add accel group
+accelgroup <- uimanager$getAccelGroup()
 win$addAccelGroup(accelgroup)
 @ 
-
 
 Now it is a simple matter of packing the widgets into a box.
 <<setup-box>>=
@@ -194,29 +191,15 @@ win$add(box)
 
 box$packStart(menubar, expand=FALSE, fill=FALSE,0)
 box$packStart(toolbar, expand=FALSE, fill= FALSE,0)
-contentArea = gtkVBox()
+contentArea <- gtkVBox()
 box$packStart(contentArea, expand=TRUE, fill=TRUE,0)
 contentArea$packStart(gtkLabel("Content Area"))
 box$packStart(statusbar, expand=FALSE, fill=FALSE, 0)
 @ 
 
 The redo feature should only be sensitive to mouse events after a user
-has undone an action. To set the sensitivity
-of a menu item is done through the \method{SetSensitive} method called
-on the widget. We again retrieve the menuitem or toolbar item widgets
-through their names.
-
+has undone an action. If we wanted to alter the sensitivity of the
+redo action, we would need to retrieve it from the action group:
 <<How-to-set-sensitivity>>=
-uimanager$getWidget("/menubar/Edit/EditRedo")$setSensitive(FALSE)
-@ 
-To re-enable, use \code{TRUE} for the argument to \meth{setSensitive}
-
-We can also use the \method{SetText} method on the menuitems. For
-instance, instead of a generic ``Undo'' label, one might want to
-change the text to list the most previous action.  The method is not
-for the menu item though, but rather a \code{gtkLabel} which is the
-first child. We use the list notation to access that.
-<<How-to-replace-menuitem-text>>=
-a <- uimanager$getWidget("/menubar/Edit/EditUndo")
-a[[1]]$setText("Undo add text")
+firstActionGroup$getAction("Redo")['sensitive'] <- FALSE
 @ 

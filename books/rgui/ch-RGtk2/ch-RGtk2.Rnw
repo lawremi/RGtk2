@@ -50,7 +50,7 @@ args <- function(name) {
 %% FIXME: could rename to Widgets for Viewing Data
 %% Then could add cairoDevice, introduction to GDK/Cairo
 %% Visualization is pretty important
-\chapter{RGtk2: Widgets Using Models}
+\chapter{RGtk2: Widgets Using Data Models}
 \label{sec:RGtk2:widgets-with-models}
 \SweaveInput{WidgetsWithModels}
 

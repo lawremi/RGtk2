@@ -58,12 +58,13 @@ hierarchy. As such it is natural to have a means to map a data frame
 into a store for a tree view. \class{RGtkDataFrame} implements
 \class{GtkTreeModel} to perform this role and is constructed with the
 \constructor{rGtkDataFrame} function. Populating a
-\class{RGtkDataFrame} is much faster than a \GTK\/ model, because the
-data is taken directly from the data frame, without any copying or
-need to add each row individually in a slow \R\/ loop. The constructor
-takes a data frame as an argument. The column classes are important,
-so even if this data frame is empty, the user should specify the
-desired column classes upon construction.
+\class{RGtkDataFrame} is far faster than for a \GTK\/ model, because
+data is retrieved from the data frame on demand. There is no need to
+copy the data row by row into a separate data structure. Such an
+approach would be especially slow if implemnted as a loop in \R. The
+constructor takes a data frame as an argument. The column classes are
+important, so even if this data frame is empty, the user should
+specify the desired column classes upon construction.
 
 An object of class \class{RGtkDataFrame} supports the familiar S3
 methods \method{[}{RGtkDataFrame}, \method{[\ASSIGN}{RGtkDataFrame},

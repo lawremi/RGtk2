@@ -15,15 +15,15 @@ require(RGtk2)
 %% Technical, but short beginning
 
 As the name implies, the \pkg{RGtk2} package provides a connection, or
-bindings, between \GTK\/ and \R\/ allowing nearly the full power of
-\GTK\/ to be available to the \R\/ programmer. In addition,
-\pkg{RGtk2} provides bindings to other libraries accompanying \GTK:
-the Pango libraries for font rendering; the Cairo
+bindings, between \GTK\/ and \R\/ allowing nearly the full
+functionality of \GTK\/ to be available to the \R\/ programmer. In
+addition, \pkg{RGtk2} provides bindings to other libraries
+accompanying \GTK: the Pango libraries for font rendering; the Cairo
 libraries for vector graphics; the GdkPixbuf libraries for image
-manipulation; ATK for the accessiblity toolkit;  and GDK, which
+manipulation; ATK for the accessiblity toolkit; and GDK, which
 provides an abstract layer between the windowing system, such as X11,
-and \GTK. These libraries are multi-platform and extensive and have been
-used for many major projects, such as the linux versions of the
+and \GTK. These libraries are multi-platform and extensive and have
+been used for many major projects, such as the linux versions of the
 firefox browser and open office.
 
 % Actually, the bindings to GTK are only part of the story. RGtk2 also
@@ -33,16 +33,13 @@ firefox browser and open office.
 % GtkMozEmbed (embeddable mozilla browser on linux), and ATK
 % (accessibility devices). [Michael Lawrence's announcement]
 
-The \pkg{RGtk2} package was intially conceived by Duncan Temple Lang,
-who created a means to automatically create bindings between \R\/ and
-the underlying C libraries of \GTK, resulting in \pgk{RGtk}.  For example,
-the \R\/ function \function{gtkContainerAdd} eventually calling the C
-function \code{gtk\_container\_add}. The naming convention, that
-underscores are removed and the following letter capitalized. Michael
-Lawrence, continued and greatly expanded this work in making
-\pkg{RGtk2} making it much more stable and tied to the currently
-active version of \GTK, which is discussed here.
-
+The \pkg{RGtk2} package traces its roots to the original \pkg{RGtk},
+conceived by Duncan Temple Lang, who created a means to automatically
+generate bindings between \R\/ and the underlying C routines of \GTK.
+For example, the \R\/ function \function{gtkContainerAdd} wrapped the
+C function \code{gtk\_container\_add}. \pkg{RGtk2} builds on
+\pkg{RGtk}, increasing the stability and completeness of the interface
+and updating it for the current generation of \GTK.
 
 The full API for \GTK\/ is quite large, and clearly can not be
 documented here. However, the \GTK\/ documentation is converted into
@@ -113,7 +110,7 @@ class. When a widget is destroyed, the \R\/ object is assigned the
 
 \paragraph{Methods} Methods of \pkg{RGtk2} are not generic functions
 and do not use S3 dispatch, but rather an internal
-one. However, the end result is similar -- \R\/ will step through the
+mechanism. However, the end result is similar -- \R\/ will step through the
 values returned by \function{class} until it finds an appropriately
 named method.  The call \code{obj\$method(...)} resolves to a function call
 \code{f(obj,...)}. The function is found by looking for any function
@@ -151,7 +148,7 @@ inherited by all objects whose class contains \class{GtkWidget}.
 
 
 \paragraph{Some common methods}
-Some common methods are inherited by most widgets, as they are defined
+Some common methods are inherited by all widgets, as they are defined
 in the base \class{GtkWidget} class. There are methods to traverse the
 widget heirarchy. These include \method{GetParent}{gtkWidget} to get
 the parent container; \method{GetToplevel}{gtkWidget} to get the top

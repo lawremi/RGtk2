@@ -184,8 +184,17 @@ Then the appropriate menu item is generated from the action and added
 to the file menu:
 <<rgtk2-menus-save-item>>=
 save <- saveAction$createMenuItem()
+## unnecessary?
 ##save["use-action-appearance"] <- TRUE
 fileMenu$append(save)
+@ 
+
+A simple way to organize menu items, besides grouping into menus, is
+to insert separators between logical groups of items. Here, we insert
+a separator item, rendered as a line, to group the open and save
+commands apart from the rest of the menu:
+<<rgtk2-menus-separator>>=
+fileMenu$append(gtkSeparatorMenuItem())
 @ 
 
 Toggle menu items, i.e., a label next to a check box, are also
@@ -196,12 +205,12 @@ autoSave <- autoSaveAction$createMenuItem()
 fileMenu$append(autoSave)
 @ 
 
-A simple way to organize menu items, besides grouping into menus, is
-to insert separators between logical groups of items. Here, we insert
-a separator item, rendered as a line, to group the open and save
-commands a part from the rest of the menu:
-<<rgtk2-menus-separator>>=
-fileMenu$append(gtkSeparatorMenuItem())
+Finally, we add our menubar to the top of a window:
+<<rgtk2-menus-window>>=
+mainWindow <- gtkWindow()
+vbox <- gtkVBox()
+mainWindow$add(vbox)
+vbox$packStart(menubar, FALSE, FALSE)
 @ 
 
 \subsection{Popup Menus}
@@ -214,9 +223,10 @@ fileMenu$append(gtkSeparatorMenuItem())
 \label{sec:RGtk2:toolbars}
 
 Toolbars are like menu bars in that they are containers for
-activatable items, but toolbars are not hierarchical. Thus, toolbars
-are not appropriate for storing a large number of items, only those
-that are activated most often.
+activatable items, but toolbars are not hierarchical. Also, their
+items are usually visible for the life-time of the application, not
+upon user click. Thus, toolbars are not appropriate for storing a
+large number of items, only those that are activated most often.
 
 We begin by constructing an instance of \class{GtkToolbar}:
 <<rgtk2-menus-toolbar-construct>>=
@@ -229,7 +239,7 @@ any type of widget, though toolbars typically represent actions
 with buttons. The \class{GtkToolButton} class implements this common
 case.  Here, we create a tool button for opening a file:
 <<rgtk2-menus-toolbar-open-item>>=
-openButton <-  gtkToolButton(stock.id = "gtk-open") 
+openButton <- gtkToolButton(stock.id = "gtk-open") 
 @ 
 %
 Tool buttons have a number of properties, including \code{label} and
@@ -270,128 +280,109 @@ toolbar$add(fullScreenButton)
 A \class{GtkToggleToolButton} embeds a \class{GtkToggleButton}, which
 is depressed whenever its \code{active} property is \code{TRUE}.
 
-A toolbar may be customized in a number of ways.
-%% Note about toolbar style and is-important, i.e., where did my text go?
-%% More complex layout is possible with 'expand' child property
+As mentined above, toolbars, unlike menus, are usually visible for the
+duration of the application. This is desirable, as the actions in a
+toolbar are among those most commonly performed. However, care must be
+taken to conserve screen space. The toolbar \textit{style} controls
+whether the tool items display their icons, their text, or both. The
+possible settings are in the \code{GtkToolbarStyle} enumeration. The
+default value is specified by the global \GTK\/ style (theme). Here,
+we override the default to only display images:
+<<rgtk2-menus-toolbar-style>>=
+toolbar$setStyle("icon")
+@ 
+%
+For canonical actions like \textit{open} and \textit{save}, icons are
+usually sufficient. Some actions, however, may require textual
+explanation. The \code{is-important} property on the action will
+request display of the label in a particular tool item, in addition to
+the icon:
+<<rgtk2-menus-toolbar-is-important>>=
+fullScreen["is-important"] <- TRUE
+@ 
+
+Normally, tool items are tightly packed against the left side of the
+toolbar. Sometimes, a more complex layout is desired. For example, we
+may wish to place a \textit{help} item against the right side. We can
+achieve this with an invisible item that expands against its siblings:
+<<rgtk2-menus-toolbar-expand>>=
+expander <- gtkSeparatorToolItem()
+expander["draw"] <- FALSE
+toolbar$add(expander)
+toolbar$childSetProperty(expander, "expand", TRUE)
+@ 
+%
+The dummy item is a separator with its \code{draw} property set to
+\code{FALSE}, and its \code{expand} child property set to
+\code{TRUE}. Now we can add the \textit{help} item:
+<<rgtk2-menus-toolbar-help>>=
+helpAction <- gtkAction("help", "Help", "Get help", "gtk-help")
+toolbar$add(helpAction$createToolItem())
+@ 
 
 It is now our responsibility to place the toolbar at the top of the
 window, under the menu created in the previous section:
 <<rgtk2-menus-toolbar-place>>=
+vbox$packStart(toolbar, FALSE, FALSE)
 @ 
 
 \begin{example}{Color menu tool button}{ex:RGtk2-color-tool-button}
   \SweaveInput{ex-RGtk2-color-tool-button}
 \end{example}
-
-Toolbar items have some common properties. The buttons are comprised
-of an icon and text, and the style of their layout is specified by the
-toolbar method \method{setStyle}{gtkToolbar}, with values coming from
-the \code{GtkToolbarStyle} enumeration. Toolbar items can have a
-tooltip set for them through the methods
-\method{setTooltipText}{gtkToolItem} or
-\method{setTooltipMarkup}{gtkToolItem}, the latter if PANGO markup is
-desired. Toolbar items can be disabled, through the method
-\method{setSensitive}{gtkWidget}.
-
-The items can be one of a few different types. A stock toolbar item is
-constructed by \constructor{gtkToolbarButtonNewFromStock}, with the
-stock id as the argument. The constructor
-\constructor{gtkToolbarButton} creates a button that can have its
-label and icon value set through methods
-\method{setLabel}{gtkToolbarButton} and
-\method{setIconWidget}{gtkToolbarButton}. Additionally, there are
-methods for setting a tooltip or specifying a stock id after
-construction. A toggle button, which toggles between looking depressed
-or not when clicked is created by \constructor{gtkToggleToolButton}
-(or \constructor{gtkToggleToolButtonNewFromStock}).  Additionally
-there are constructors to place menus
-(\constructor{gtkMenuToolButton}) and radio groups
-(\constructor{gtkRadioToolButton}).
   
-% signale
-The \code{clicked} signal is emitted when a toolbar button is
-pressed. For the toggle button, the \code{toggle} signal is
-emitteed.
+%% GtkToolPalette as a compromise between menus and toolbars
 
+Some applications may offer a large number of actions, where there is
+no clear subset of actions that are more commonly performed than the
+rest. It would be impractical to place a tool item for each action in
+a static toolbar. \GTK\/ provides a \textit{tool palette} widget as
+one solution, which leaves the configuration of a multi-row toolbar to
+the user. The tool items are organized into collapsible groups, and
+the grouping is customizable through drag and drop.
 
-
-\begin{example}{Basic toolbar usage}{ex:RGtk2-basic-toolbar}
-We illustrate with a toolbar whose buttons are produced in various ways.
-<<>>=
-tb <- gtkToolbar()
+\class{GtkToolPalette} is a container of \class{GtkToolItemGroup}
+widgets, each of which is a container of tool items and implements
+\class{GtkToolShell}, like \class{GtkToolbar}. We begin our brief
+example by creating a two groups of tool items:
+<<rgtk2-menus-tool-item-group>>=
+fileGroup <- gtkToolItemGroup("File")
+fileGroup$add(gtkToolButton(stock.id = "gtk-open"))
+fileGroup$add(saveAction$createToolItem())
+helpGroup <- gtkToolItemGroup("Help")
+helpGroup$add(helpAction$createToolItem())
 @ 
-A button with a stock icon is produced by a call to the appropriate constructor.
-<<>>=
-b1 <-  gtkToolButtonNewFromStock("gtk-open") 
-tb$add(b1)
+%
+The groups are then added to an instance of \class{GtkToolPalette}:
+<<rgtk2-menus-tool-palette>>=
+palette <- gtkToolPalette()
+palette$add(fileGroup)
+palette$add(helpGroup)
 @ 
-To use a custom icons, requires a few steps.
-<<>>=
-f <- system.file("images/dataframe.gif", package="gWidgets")
-image <- gtkImageNewFromFile(f)
-b2 <- gtkToolButton()
-b2$setIconWidget(image)
-b2$setLabel("Edit")
-tb$add(b2)
-@ 
-Adding a toggle button also is just a matter of calling the
-appropriate constructor. In this, example we illustrate how to
-initiate the callback only when the button is depressed.
-<<>>=
-b3 <- gtkToggleToolButtonNewFromStock("gtk-fullscreen")
-tb$add(b3)
-QT <- gSignalConnect(b3, "toggled", f=function(button, data) {
-  if(button$getActive())
-    cat("toggle button is depressed\n")
-  })
-@ 
-We give the other buttons a simple callback when clicked:
-<<>>=
-QT <- sapply(1:2, function(i) {
-  gSignalConnect(tb[[i]], "clicked", function(button, data) {
-    cat("You clicked", button$getLabel(), "\n")
-  })
-})
+%
+Finally, we can programmatically collapse a group:
+<<rgtk2-menus-tool-palette-collapse>>=
+helpGroup$setCollapsed(TRUE)
 @ 
 
-<<MakeToolbarGUI, echo=FALSE>>=
-## simple GUI to finish toolbar example
-w <- gtkWindow(show=FALSE)
-w['title'] <- "Toolbar example"
-g <- gtkVBox()
-w$add(g)
-g$packStart(tb, expand=FALSE)
-g$packStart(gtkLabel("filler"), expand=TRUE, fill=TRUE)
-w$showAll()
-@ 
-\end{example}
-
-\section{Managing a large user interface}
+\section{Managing a complex user interface}
 \label{sec:RGtk2:UIManager}
 
+Complex applications implement a large number of actions and operate
+in a number of different modes. Within a given mode, only a subset of
+actions are applicable. For example, a word processor may have an
+editing mode and a print preview mode. \GTK\/ provides a \dfn{user
+  interface manager}, \class{GtkUIManager}, to manage the layout of
+the toolbars and menubars across multiple user interface modes.
 
-A GUI is designed around actions that are accessible through the
-menubar and the toolbar. The notion of a \dfn{user interface manager}
-(\acronym{UI} manager) separates out the definitions of the actions
-from the user interface. The steps required to use \GTK's UI manager
-are 
+The steps required to use \GTK's UI manager are
 \begin{enumerate}
-\item define a UI manager,
-\item  set up an accelarator group for
-keyboard shortcuts,
-\item define our actions,
-\item create action groups to
-specify the name, label (with possible mnuemonic), keyboard
-accelerator, tooltip, icon and callback for the graphical elements
-that call the action,
-\item specify where the menu items and toolbar
-items will be placed,
-\item connect the action group to the UI manager,
-and finally
+\item construct the UI manager,
+\item define the actions in groups,
+\item specify the layout of the menubars and toolbars,
+\item connect the action group to the UI manager, 
+\item set up an accelerator group for keyboard shortcuts, and finally
 \item display the widgets.
 \end{enumerate}
-
-We show by an example how this is done. 
 
 \begin{example}{UI Manager example}{ex:RGtk2:UImanager}
   \SweaveInput{ex-RGtk2-UImanager}

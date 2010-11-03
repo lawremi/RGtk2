@@ -694,6 +694,8 @@ property assigned to \code{GtkReliefStyle['none']}.
 \subsection{Statusbars}
 \label{sec:RGtk2:statusbars}
 
+%% TODO: add GtkInfoBar
+
 In \GTK, a statusbar is constructed through the
 \constructor{gtkStatusbar} function. Statusbars must be placed at the
 bottom of a top-level window by the programmer. In \GTK, a statusbar
@@ -702,6 +704,9 @@ display for given stack through the \method{Push}{gtkStatusbar} method
 by specifying first an integer value for \code{context.id} and a
 message. To pop the top message on a stack and display the next, the
 method \method{Pop}{gtkStatusbar} method is available.
+
+%% TODO: somehow, progress bars have gotten lost
+%% TODO: with progress bars, mention GtkSpinner
 
 \subsection{Images}
 \label{sec:RGtk2:images}
@@ -848,6 +853,7 @@ pressed.
 %   \SweaveInput{ex-RGtk2-editable-label}
 % \end{example}
 
+%% TODO: add note about icons and progress in GtkEntry
 
 \subsection{Check button}
 \label{sec:RGtk2:gtkCheckbox}
@@ -1503,7 +1509,7 @@ ID <-
 
 \section{Graphics}
 
-% Describe GdkDrawable, GdkPixbuf, Cairo, GtkDrawingArea
+% Describe Cairo, GtkDrawingArea
 
 \subsection{The cairoDevice package}
 \label{sec:cairodevice-package}
