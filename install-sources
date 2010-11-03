@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cp RGtkGen/inst/data/gen/*.R RGtk2/R
+cp RGtkGen/inst/data/gen/*.c RGtk2/src
+cp RGtkGen/inst/data/gen/*.h RGtk2/src
+mv RGtk2/src/*UserFuncs.h RGtk2/inst/include/RGtk2
+mv RGtk2/src/*Classes.h RGtk2/inst/include/RGtk2
+mv RGtk2/src/*Imports.c RGtk2/inst/include/RGtk2
+mv RGtk2/src/*Exports.c RGtk2/src/exports
