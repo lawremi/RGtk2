@@ -47,7 +47,7 @@ creates a bitmap image in memory.
 The type of a surface can be queried with \code{\link{cairoSurfaceGetType}}.
   
 Memory management of \code{\link{CairoSurface}} is done with
-\code{\link{cairoSurfaceReference}} and \code{\link{cairoSurfaceDestroy}}.  
+\code{cairoSurfaceReference} and \code{\link{cairoSurfaceDestroy}}.  
 
 }}}
 \section{Convenient Construction}{\code{cairoSurface} is the result of collapsing the constructors of \code{cairo_surface_t} (\code{\link{cairoSurfaceCreateSimilar}}, \code{\link{cairoImageSurfaceCreate}}, \code{\link{cairoImageSurfaceCreateForData}}, \code{\link{cairoImageSurfaceCreateFromPng}}, \code{\link{cairoImageSurfaceCreateFromPngStream}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
