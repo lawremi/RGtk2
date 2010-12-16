@@ -4,40 +4,57 @@
 \section*{About this book}
 \label{sec:about}
 
-
-% ML: this is repeated below, do we really want to lead with this?
-\R\/ has a number of packages that provide a link between the \R\/
-user and a graphical toolkit, such as \code{tcltk}, \code{RGtk2} and
-\code{qtbase}. In addition, an \R\/ user can interface with
-Java, Python or other external languages to provide access to graphical
-toolkits within those languages. This book is about writing graphical
-user interfaces (GUI) within \R\/ that do not rely on knowing an
-external programming language.  
+Two common types of user interfaces in statistical computing are the
+command line interface (CLI) and the graphical user interface
+(GUI). The usual CLI consists of a textual console where the user
+types a sequence of commands at a prompt and the output of the
+commands is printed to the console as text. The \proglang{R} console
+is an example of a CLI. A GUI is the primary means of interacting with
+desktop environments, like Windows and Mac OS, and statistical
+software like JMP \citep{JMP}. GUIs are contained within windows, and
+resources, such as documents, are represented by graphical icons.
+User controls are packed into hierarchical drop-down menus, buttons,
+sliders, etc. The user manipulates the windows, icons and menus with a
+pointer device, such as a mouse.
 
 The R language, like its predecessor S, is designed for interactive
-use through a command line interface (CLI). However, the graphical
-user interface (GUI) has emerged as an effective alternative,
-depending on the specific task and the target user base. Currently,
-there is a range of graphical interfaces for \R\/ that are programmed
-within R. For example, several package authors have provided GUIs for
-their functions. Examples include \pkg{limmaGUI}, \pkg{caGUI},
-\pkg{clustTool}, \pkg{Metabonomic}, and others. There are a
-few tools to automatically generate such GUIs, such as the \pkg{fgui}
-package and the \function{guiDlgFunction} function from the
-\pkg{svDialogs} package. Other authors have provided graphical
-interfaces to explore data sets, such as \pkg{ggobi}, \pkg{playwith},
-\pkg{latticist} and \pkg{aplpack}. Still others have provided packages
-with GUIs aimed at allowing students to perform some simulation, e.g.,
-\pkg{teachingDemos}. The \pkg{rattle} package provides an interface
-for several data mining operations. The \pkg{Rcmdr} package provides a
-menu- and dialog-driven interface to a wide range of \R's
-functionality. There are several user-contributed plugins that extend
-the \code{Rcmdr}. Additionally, as \R\/ finds wider usage outside of
-academia, it is not uncommon for people who work in a team setting to
-desire an interface to their \R\/ code that allows non-\R\/ users
-access.
+use through a command line interface (CLI), and the CLI remains the
+primary interface to R. However, the graphical user interface (GUI)
+has emerged as an effective alternative, depending on the specific
+task and the target audience.  On some platforms, such as Windows and
+Mac OS, there are graphical front-ends that provide a CLI through a
+text console control. Although these interfaces are GUIs, they are
+still very much in essence CLIs, in that the primary mode of
+interacting with \proglang{R} is the same. Thus, these GUIs appeal
+mostly to those who are comfortable with \proglang{R} programming.  
 
-Most all of these examples are within the scope of this book. We set out to
+A separate set of GUIs targets the second group of users, those
+learning the \proglang{R} language. Since this group includes many
+students, these GUIs are often designed to teach general statistical
+concepts in addition to \proglang{R}.  A CLI component is usually
+present in the interface, though it is deemphasized by the surrounding
+GUI, which is analogous to a set of ``training wheels'' on a
+bicycle. Examples of these GUIs include Poor Man's GUI
+\citep[\pkg{pmg},][]{pmg} and \proglang{R} Commander \citep{rcmndr}.
+The \pkg{Rcmdr} package provides a menu- and dialog-driven interface
+to a wide range of \R's functionality and supports plugins. 
+
+The third group of users, those who only require \proglang{R} for
+certain tasks and do not wish to learn the language, are targeted by
+task-specific GUIs. These interfaces usually do not contain a command
+line, as the limited scope of the task does not require it. If a
+task-specific GUI fits a task particularly well, it may even appeal to
+an experienced user. There are many examples of task-specific GUIs in
+\proglang{R}. Many GUIs assist in exploratory data analysis, including
+\pkg{exploRase} \citep{explorase}, \pkg{limmaGUI} \citep{limma},
+\pkg{playwith}, \pkg{latticist}, and Rattle \citep{rattle}.  Other
+GUIs are aimed at teaching statistics, e.g.,
+\pkg{teachingDemos}. There are a few tools to automatically generate a
+GUI that invokes a particular R function, such as the \pkg{fgui}
+package and the \function{guiDlgFunction} function from the
+\pkg{svDialogs} package.
+
+All of these examples are within the scope of this book. We set out to
 show that for many purposes adding a graphical interface to one's work
 is not terribly sophisticated nor time-consuming.  This book does not
 attempt to cover the development of GUIs that require knowledge of
@@ -50,12 +67,6 @@ also several special purpose GUIs, like \pkg{iPlots}, which are
 largely implemented in Java, relying on \pkg{rJava}, a native
 interface between \R\/ and Java.
 
-% ML: It seems like rJava-based GUIs like CADStat and Deducer DO fall into
-% our scope, but I would hate to have to document Swing...
-%x JV: Me too! It may be artificial, but rJava does require one to write Java code
-% to do many things. For example, a simple callback, so it is in my mind
-% more on the java side of things than the R side.
-
 The bulk of this text covers four different packages for writing GUIs
 in \R. The \pkg{gWidgets} package is covered first. This provides a
 common programming interface over several \R\/ packages that implement
@@ -64,7 +75,8 @@ interface is much simpler -- and less powerful -- than the native
 toolkits, so is useful for a programmer who does not wish to invest
 too much time into perfecting a GUI. There are a few other packages
 that provide a high-level \R\/ interface to a toolkit such as
-\code{rpanel} or \code{svDialogs}, but we focus on this one.
+\code{rpanel} or \code{svDialogs}, but we focus on \pkg{gWidgets}, as
+it is the most general.
 
 % ML: but gWidgets is much more general than either of those, right?
 % JV: Yes
@@ -85,39 +97,32 @@ around the ability to create classes that extend the \Qt\/
 classes. \pkg{qtbase} supports this from within \R\/, although such
 object oriented concepts may be unfamiliar to many \R\/ users.
 
-Finally, we discuss the \pkg{tcltk} package, which provides the \R\/
-user access to the \TK\/ libraries. Although not as modern as \GTK\/
-nor \Qt, these libraries come pre-installed with the Windows binary,
-thus avoiding installation issues for the average end-user. The
-bindings to \TK\/ were the first ones to appear for \R\/ and 
-several of the GUI projects above, notably \pkg{Rcmdr}, use this
-toolkit.
+Finally, we discuss the \pkg{tcltk} package, which interfaces with the
+\TK\/ libraries. Although not as modern as \GTK\/ nor \Qt, these
+libraries come pre-installed with the Windows binary, thus avoiding
+installation issues for the average end-user. The bindings to \TK\/
+were the first ones to appear for \R\/ and most of the GUI projects
+above, notably \pkg{Rcmdr}, use this toolkit.
 
-These four main parts are preceeded by an introductory chapter on GUIs
-and followed by a chapter on web GUIs.
+These four main parts are preceeded by an introductory chapter on GUIs.
 
-The text is written with the belief that much can be learned by
-studying examples, and so several examples are given. Some of these
-are meant as sketches of what can be done, while a few illustrate how
-to code actual useful interfaces.  This text can't expect to cover all
-of the features of a graphical toolkit. For the \pkg{tcltk},
+This text is written with the belief that much can be learned by
+studying examples. There are examples woven through the primary text,
+as well as stand-alone demonstrations of simple yet reasonably
+complete applications. The scope of this text is limited to features
+that are of most interest to statisticians aiming to provide a
+practical interface to functionality implemented in R. Thus, not every
+dusty corner of the toolkits will be covered. For the \pkg{tcltk},
 \pkg{RGtk2} and \pkg{qtbase} packages, the underlying toolkits have
 well documented APIs.
 
-
-This text comes with an accompanying package \pkg{\PACKAGENAME}. This
-package includes the complete code for all the examples. In order to
-save space, some examples in the text have code that is not shown. The
-package provides the functions \code{browsegWidgetsFiles},
-\code{browseRGtk2Files}, \code{browseQtFiles} and
-\code{browseTclTkFiles} for browsing the examples from the respective
-chapters. Additionally, this package will contain vignettes describing
-aspects that did not make it into the text.
-
-
-This text was written with the \pkg{Sweave} package. To suppress
-superflous output an assignment to a variable named \code{QT} is made
-at times.
- 
+The package \pkg{\PACKAGENAME} accompanies this text. It includes the
+complete code for all the examples. In order to save space, some
+examples in the text have code that is not shown. The package provides
+the functions \code{browsegWidgetsFiles}, \code{browseRGtk2Files},
+\code{browseQtFiles} and \code{browseTclTkFiles} for browsing the
+examples from the respective chapters. Additionally,
+\pkg{\PACKAGENAME} will contain vignettes on topics that were omitted
+from the text.
 
 

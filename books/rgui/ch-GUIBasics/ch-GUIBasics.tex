@@ -3,48 +3,9 @@
 
 %% Goal is 
 
-\section{Introduction}
-\label{sec:GUI:introduction}
-There are many reasons why one would want to create a graphical user
-interface for a package or piece of \R\/ functionality. For example,
-% ML: I think many of these points are debateable, at best. The CLI is
-% extremely flexible and provides the easiest general access to
-% R. GUI's are best constrained to focused tasks and are particularly
-% well-suited for casual users who are not familiar with the R
-% language and the command line interface. The one about integration
-% with graphics (presumably to create interactive visualizations) is a good one.
-
-%% JV: agreed. Let's try these:
-\begin{itemize}
-%\item GUIs allow others easier access to your functions,
-%\item GUIs are useful if a function has many arguments,
-\item GUIs can make \R's functionality available to the casual \R\/ user,
-\item GUIs can be dynamic, they can direct the user how to fill in
-  arguments, can give feedback on the choice of an argument, they can
-  prevent or allow user input as appropriate,
-\item Although a command line is usually faster when the commands are
-  known, a GUI can make some less commonly used tasks easier to do.
-\item GUIs make dealing with large data sets easier both visually and
-  as an alternative to sometimes difficulte command line usage.
-\item GUIs can tightly integrate with graphics, for example the
-  rggobi interface among others.
-\end{itemize}
-% ML: It is not clear why we are arguing for a common, general GUI. The focus
-% on the book seems to be the development of special-purpose GUI's.
-
-% JV: I'm not (I hope). I just want to avoid it seeming like a waste of time
-% to learn writing GUIs in case someone (say revolutions) writes such a
-% general GUI. 
-Even as \R\/ is rapidly gaining interest, especially commercial
-interest, it lacks a common graphical user interface. This is due to
-several reasons. (1) The \R\/ language is designed for command line
-usage. (2) The GUI would need to run on all supported \R\/ platforms
-(3) the wide variety of user types means a single interface would be
-unlikely to satisfy all. Even if it did have a common interface, as
-much of \R's functionality depends on user contributions there will
-always be a demand for package programmers to provide convenient
-interfaces to their work.
-
+% \section{Introduction}
+% \label{sec:GUI:introduction}
+% \SweaveInput{Introduction}
 
 
 \XXX{Space}
@@ -57,10 +18,10 @@ interfaces to their work.
 %% Tic Tac Toe examples
 
 We begin with an example showing how one can use \R's standard
-graphics device, as a canvas for drawing a GUI, for playing a game of
+graphics device as a canvas for a game of
 tic-tac-toe against the computer. Although this example
 has nothing to do with statistics, it illustrates, in a familiar way,
-some of the issues that this text will address with using GUIs. 
+some of the issues involved in developing GUIs in \R. 
 
 
 %% ML: the note about the MVC pattern can probably come after the
@@ -71,11 +32,10 @@ some of the issues that this text will address with using GUIs.
 %% generalize a little after each step, but I think we want to lead
 %% with the concrete.
 
-Many GUIs can be thought of as different views of some data
-model. 
-In this example, the data simply consists of information holding the
-state of the game. Here we define a global variable, \code{board}, to store the
-current state of the game. 
+Many GUIs can be thought of as different views of some data model.  In
+this example, the data simply consists of information holding the
+state of the game. Here we define a global variable, \code{board}, to
+store the current state of the game.
 
 %% Model
 \begin{Schunk}
@@ -85,14 +45,10 @@ current state of the game.
 \end{Schunk}
 
 %% View
-The GUI provides the representation of the data for the user. This
-example just uses a canvas for this, but most GUIs have a combination
-of components to represent the data and allow for user
-interaction. The layout of the GUI directs the user as to how to
-interact with it and is an important factor as to whether the GUI will
-be well received. Here we define a function to layout the game board
-using the graphics device as a canvas.
-
+A GUI contains one or more views, each of which is tied to an
+underlying data model. In our case, the view is the game board that we
+display through \R\/ graphics device. The \Rfunction{layoutBoard}
+function creates this view:
 \begin{Schunk}
 \begin{Sinput}
  layoutBoard <- function() {
@@ -103,28 +59,22 @@ using the graphics device as a canvas.
  }
 \end{Sinput}
 \end{Schunk}
+%
+This example uses a single canvas as the view; more complex GUIs
+will contain multiple coordinated, interactive views. The layout of
+the GUI should help the user navigate the interface and is an
+important factor in usability.
+
 
 %% Controller
-A GUI is designed to respond to user input typically by the mouse or
-keyboard. The underlying toolkit allows the programmer to assign
+The user typically sends input to a GUI through a mouse or keyboard. 
+The underlying toolkit allows the programmer to assign
 functions to be called when some specific event occurs. Typically, the
 toolkit \textit{signals} that some action has occurred, and then
 calls \textit{callbacks} or \textit{event handlers} that have been
-assigned by the programmer. How this is implemented varies from
-toolkit to toolkit.
-
-\R's interactive graphics devices implement the \code{locator}
-function which responds to mouse clicks by user. When using this function,
-one specifies how many mouse clicks to gather and the \textit{control}
-of the program is suspended until these are gathered (or the process
-is terminated). The suspension of control makes this a \textit{modal}
-GUI. This design is common for simple dialogs that require immediate
-user attention, but not common otherwise. To make non-modal dialogs
-possible, the writers of the \R\/ packages that interface with the GUI
-toolkits have to interface with \R's event loop mechanism.
-
-
-Here we define a function to collect the player's input.
+assigned by the programmer. The implementation is toolkit
+dependent. For our game, we will use the \code{locator} function built
+into the base \R\/ graphics system:
 \begin{Schunk}
 \begin{Sinput}
  doPlay <- function() {
@@ -133,13 +83,23 @@ Here we define a function to collect the player's input.
  }
 \end{Sinput}
 \end{Schunk}
+%
+The \code{locator} function responds to mouse clicks. One specifies
+how many mouse clicks to gather and the \textit{control} of the
+program is suspended until the user clicks the sufficient number of
+times (or somehow interrupts the loop). Such a GUI that blocks the
+flow of a program contingent on user input is known as a
+\textit{modal} GUI. This design is common for simple dialogs that
+require immediate user attention, although in general a GUI will
+listen asynchronously for user input.
 
-In the above function,
-\function{clickHandler} is an \textit{event handler}. Its job is to process the output of the
+
+In the above function \Rfunction{doPlay}, \function{clickHandler} is
+an \textit{event handler}. Its job is to process the output of the
 \function{locator} function, checking first if the user terminated
 \function{locator} using the keyboard. If not it proceeds to draw the
 move, and then, if necessary, the computer's move. Afterwards, play is
-repeated until there is a winner or a ``cat's'' game. 
+repeated until there is a winner or a ``cat's'' game.
 
 
 \begin{Schunk}
@@ -157,24 +117,21 @@ repeated until there is a winner or a ``cat's'' game.
  }
 \end{Sinput}
 \end{Schunk}
-%%>>
 
 The use of \verb+<<-+ in the handler illustrates a typical issue in
-GUI design within \R. After a GUI is created, the state is
-typically modified within the scope of the callback functions. These
-callbacks need to be able to modify values outside of their scope, yet
-even if the values are passed in as argument, this is usually not
-possible while assigning within the scope of the function call, due to
-\R's pass by copy function calls. As such, global variables are often
-employed along with some strategies to avoid an explosion of variable
-names.
+GUI design in \R.  User input changes the state of the application
+through callback functions. These callbacks need to modify variables
+in some shared scope, which may be application-wide or specific to a
+component. The lexical scoping rules of \R, i.e., nesting of closures,
+has proven to be a useful strategy for managing GUI state. When this
+is inconvenient, direct manipulation of environment objects is a
+viable alternative. In the above case, we simply modify the global
+environment, which encloses \function{clickHandler}.
 
 %% validation of user input
-Validation of user input is an important task for a GUI, especially
-for Web GUIS. In the above,
+Validation of user input is an important task for a GUI. In the above,
 the \function{clickHandler} function checks to see if the user
-terminated the game early and issues a message, more helpful forms of
-validation are possible in general.
+terminated the game early and issues a message.
 
 %% Implement logic
 At this point, we have a data model, a view of the model and the
@@ -202,38 +159,37 @@ coordinates of the square to draw.
 
 %% Resizing
 One could use \code{text} to place a text ``x'' or ``o'', but this may
-not look good if the GUI is resized. Most GUI layouts allow for
-dynamic resizing. Overall this is a great advantage, for example, it
-allows translations to just worry about the text and not the layout,
-which will be different for every language.
+not scale well if the GUI is resized. Most GUI layouts allow for
+dynamic resizing. This is necessary to handle the variety of data a
+GUI will display. Even the labels, which one generally considers
+static, will display different text depending on the language (as long
+as translations are available).
 
-This function is used to test if a game is finished. The matrix
-\code{m} allows us to easily check all the possible ways to get three
-in a row.
+This function is used to test if a game is finished:
 \begin{Schunk}
 \begin{Sinput}
  isFinished <- function() {
-   if(sum(abs(board)) >= 9) 
-     return(TRUE)
-   m <- matrix(1:9,nrow=3)
-   ways <- list(m[,1], m[,2], m[,3],
-                m[1,], m[2,], m[3,],
-                diag(m),diag(apply(m,2,rev)))
-   sums <- sapply(ways, function(i) abs(sum(board[i])))
-   if(any(sums == 3)) 
-     return(TRUE)
-   return(FALSE)
+   ## if(sum(abs(board)) >= 9) 
+   ##   return(TRUE)
+   ## m <- matrix(1:9,nrow=3)
+   ### MFL: would this code do the same thing?
+   (any(rowSums(board) == 3) || any(colSums(board) == 3) || 
+    sum(diag(board)) == 3 || sum(diag(apply(board, 2, rev))) == 3)
+   ## ways <- list(m[,1], m[,2], m[,3],
+   ##              m[1,], m[2,], m[3,],
+   ##              diag(m),diag(apply(m,2,rev)))
+   ## sums <- sapply(ways, function(i) abs(sum(board[i])))
+   ## if(any(sums == 3)) 
+   ##   return(TRUE)
+   ## return(FALSE)
  }
 \end{Sinput}
 \end{Schunk}
+%
+The matrix \code{m} allows us to easily check all the possible ways
+to get three in a row.
 
-This function picks a move for the computer.  The move is converted
-into coordinates using \code{\%\%} to get the remainder and
-\code{\%/\%} to get the quotient when dividing an integer by an
-integer. This function just chooses at random from the left over
-positions; we leave implementing a better strategy to the interested
-reader.
-
+This function picks a move for the computer:
 \begin{Schunk}
 \begin{Sinput}
  doComputerMove <- function() {
@@ -244,14 +200,15 @@ reader.
  }
 \end{Sinput}
 \end{Schunk}
-%%>>
-
+%
+The move is converted into coordinates using \code{\%\%} to get the
+remainder and \code{\%/\%} to get the quotient when dividing an
+integer by an integer. This function just chooses at random from the
+left over positions; we leave implementing a better strategy to the
+interested reader.
 
 %% main equivalent
-This function provides the main entry point for our GUI. To play a
-game it first lays out the board and then calls
-\function{doPlay}. When this function terminates, a message is written
-on the screen.
+Finally, we implement the main entry point for our GUI:
 \begin{Schunk}
 \begin{Sinput}
  playGame <- function() {
@@ -261,20 +218,23 @@ on the screen.
  }
 \end{Sinput}
 \end{Schunk}
+%
+When the game is launched, we first lay out the board and then call
+\function{doPlay}. When \function{doPlay} returns, a message is written
+on the screen.
 
 This example adheres to the model-view-controller design pattern that
 is implemented by virtually every complex GUI. We will encounter this
 pattern throughout this book, although it is not always explicit.
 
 %% endless tweak
-A final point, the above example illustrates a common issue when designing
-software that is particularly true of GUIs -- feature creep is an
-endless temptation. In this case, there are many obvious improvements:
-localizing the text messages so different languages can be used,
-implementing a better logic for the computer's moves, drawing a line
-connecting three in a row when there is a win, indicating who won when
-there is a win, etc. For many GUIs there is a necessary trade-off
-between usability and complexity.
+For many GUIs there is a necessary trade-off between usability and
+complexity. As with any software, there is always the temptation to
+continually add features without regard for the long term cost. In
+this case, there are many obvious improvements: implementing a better
+artificial intelligence, drawing a line connecting three in a row when
+there is a win, indicating who won, etc. Adding a feature adds
+complexity to the interface, which increases the burden on the user.
 
 \section{GUI Design Principles}
 \label{sec:GUI:design}
@@ -533,23 +493,30 @@ the potential user base is important.
 
 \section{Controls}
 \label{sec:GUI:basic-components}
-This section provides an overview of many common controls, i.e.,
-widgets that represent the actions to be performed on a document. Each
-displays some information, and most accept user input.
+%% ML: This section and the next should probably be reorganized so
+%% that they do a better job of referring to examples. Otherwise it
+%% feels like we're stating a series of groundless generalities.
 
-\subsection{Selection}
+This section provides an overview of many common controls, i.e.,
+widgets that either accept input, display data or provide visual
+guides to help the user navigate the interface. If the reader is
+already familiar with the conventional types of widgets and how they
+are arranged on the screen, this section and the next should be
+considered optional.
+
+\subsection{Presenting options}
 \label{sec:GUI:basic-selection}
 
-A common task for a GUI is the selection of a value. In the context of
-\R\/, there are many different types of values the user may need to
-select. For example, selecting a data frame from a list of data
+The widgets that receive user input need to translate that input into
+a command that modifies the state of the application. Commands, like
+\R{} functions, often have parameters, or options. For many options,
+there is a discrete set of possible choices, and the user needs to
+select one of them. Examples include selecting a data frame from a list of data
 frames, selecting a variable in a data frame, selecting certain cases
 in a data frame, selecting a logical value for a function argument,
 selecting a numeric value for a confidence level or selecting a string
 to specify an alternative hypothesis. Clearly there can be no
-one-size-fits-all widget to handle the selection of a value. We
-describe some standard selection widgets next. 
-
+one-size-fits-all widget to handle the selection of a value.
 
 % XXX REDO FIGURE
 % \begin{figure}
@@ -569,23 +536,10 @@ describe some standard selection widgets next.
 \subsubsection{Checkboxes}
 \label{sec:GUI:checkboxes}
 
-A \dfn{checkbox} allows the user to select a logical value for a
-variable. Checkboxes have labels to indicate which variable is being
-selected. Combining multiple checkboxes into a group
-allows for the selection of one or more values at a time.  
-
-\subsubsection{Radio Button Groups}
-\label{sec:GUI:radio=button-groups}
-
-A \dfn{radio button group} allows a user to select exactly one value
-from a vector of possible values. The analogy dates back to old car
-radios where there were a handful of buttons to press to select a
-preset channel. When a new button was pushed in, the old button popped
-up. This safety feature allowed drivers to keep their eyes on the
-road.  Radio button groups are useful, provided there are not too many
-values to choose from, as all the values are shown. These values can
-be arranged in a row, a column or both rows and columns to better use
-screen space.
+A \dfn{checkbox} specifies a value for a logical
+(boolean) option. Checkboxes have labels to indicate which variable is
+being selected. Combining multiple checkboxes into a group allows for
+the selection of one or more values at a time.
 
 %% tcltk examples
 \begin{figure}
@@ -594,7 +548,7 @@ screen space.
   \includegraphics[width=.35\textwidth]{tcltk-tkdensity}
   \caption{
     Two applications of the \pkg{tcltk} package. 
-    %%
+    %% 
     The left graphic is
     produced by \command{chooseCRANmirror} and uses a list box to
     allow selection from a long list of possibiulities.
@@ -606,71 +560,247 @@ screen space.
   \label{fig:GUI:ex-tcltk}
 \end{figure}
 
-\subsubsection{Sliders and spinbuttons}
-\label{sec:GUI:sliders}
+\subsubsection{Radio button groups}
+\label{sec:GUI:radio=button-groups}
 
-A \dfn{slider} is a widget that selects a value from a
-sequence of possible values (typically) through the manipulation of a
-knob that can visually range over the possible values. Some toolkits
-(e.g. Java/Swing) only allow for the sequence to have integer values. The
-slider is a good choice for offering the user a selection of parameter
-values. The \code{tkdensity} demo of the \pkg{tcltk} package
-(Figure~\ref{fig:GUI:ex-tcltk}) uses a slider to dynamically adjust the
-bandwith of a density estimate.
-
-
-A \dfn{spin button} also allows the user to specify a value from a
-possible sequence of values. Typically, this widget is is drawn with a
-text box displaying the current value and two arrows to increment or
-decrement the selection. The text box can usually be edited. Some
-toolkits generalize beyond a numeric sequence. For example, the
-letters of the alphabet could be a sequence. A spin button has the
-advantage of using less screen space, but is less usable if the
-sequence is long, although often the user can enter in the choice
-using the keyboard. A spin button is used in the KDE print dialog of
-Figure~\ref{fig:GUI:print-dialogs} to adjust the number of copies.
-
+A \dfn{radio button group} selects exactly one value from a vector of
+possible values. The analogy dates back to old car radios where there
+were a handful of buttons to select a preset channel. When a new
+button was pushed in, the previously pressed button popped up.  Radio
+button groups are useful, provided there are not too many values to
+choose from, as all the values are shown. These values can be arranged
+in a row, a column or both rows and columns to better fill the
+available space. Figure~\ref{fig:GUI:ex-tcltk} uses radio button
+groups for choosing the distribution, kernel and sample size for the
+density plot.
 
 \subsubsection{Combo boxes}
 \label{sec:GUI:combo-boxes}
 
-A \dfn{combo box} is a widget that allows the selection of one of
-several fixed values, while displaying just the currently selected
-one. Comboboxes may also offer the user the ability to specify a
-value, in which case they are combined with a text entry area.  From a
-screen-space perspective, they can efficiently allow the selection of
-a value from many values, although a choice from too many values can
-be annoying to the user, such as when a web form requests the
-selection of a country from hundreds of choices.
+A \dfn{combo box} is similar to a radio button group, in that it
+selects one value from several. However, a combo box only displays the
+value currently selected, which reduces visual complexity and saves
+space, at the cost of an extra click to show the choices. Toolkits
+often combine a combo box with a text entry area for specifying an
+arbitrary value, possibly one that is not represented in the set of
+choices. A combo box is generally desirable over radio buttons when
+there are more than four or five choices. However, the combo box also
+has its limits. For example, some web forms require choosing a country
+from a list of hundreds. In such cases, features like incremental type
+ahead search enhance usability.
 
 \subsubsection{List boxes}
 
-A \dfn{list box} is a widget that displays in a column the list of
-possible choices. A scrollbar is used when the list is too long to
-show in the allocated space. Some toolkits have list boxes that allow
-the values to spread out over several columns. Selection typically
-occurs with a right mouse click or through the keyboad, whereas a
-double-click will typically be programmed to initiate some
-action. Unlike comboboxes, list boxes can be used for multiple
-selection. This is typically done by holding down either the
-\kbd{shift} or \kbd{ctrl} keys. Figure~\ref{fig:GUI:ex-tcltk} shows a
-list box created by \R\/ that is called from the function
-\command{chooseCRANmirror}.
+A \dfn{list box} displays a list of possible choices in a column.
+While the radio button group and combo box select only a single value,
+a list box supports multiple selection. Another difference is that the
+number of displayed choices depends dynamically on the available
+space. If a list box contains too many items to display them
+simultaneously, a scrollbar is typically provided for adjusting the
+visible range. Unlike the combo box, the choices are immediately visible
+to the user.  Figure~\ref{fig:GUI:ex-tcltk} shows a list
+box created by \R\/ that is called from the function
+\command{chooseCRANmirror}. There are too many mirrors to fit on the
+screen, but a combo box would not take advantage of the available
+space. The list box is a reasonable compromise.
 
-%List boxes are a good alternative to drop lists when the number of
-%selections gets bigger than 30. Additionally, 
+\subsubsection{Sliders and spinbuttons}
+\label{sec:GUI:sliders}
 
-% ML: what is the rationale for > 30 selections? Drop lists are
-% essentially like a list box in that regard.
-% JV: I guess personal preference. I took it out.
+A \dfn{slider} is a widget that selects a value from a sequence of
+possible values typically through the manipulation of a knob that
+moves or ``slides'' along a line that represents the range of possible
+values. Some toolkits (e.g. Java/Swing) only allow for the sequence to
+have integer values.  Some toolkits generalize beyond a numeric
+sequence. The slider is a good choice for offering the user a
+selection of ordinal or numerical parameter values. For example, the
+letters of the alphabet could be a sequence. The \code{tkdensity} demo
+of the \pkg{tcltk} package (Figure~\ref{fig:GUI:ex-tcltk}) uses a
+slider to dynamically adjust the bandwith of a density estimate.
 
-% Some toolkits allow widgets to be placed next to the entries, such as
-% checkboxes or icons. The right-most graphic in
-% Figure~\ref{fig:GUI:spss-11-model-selection} shows how SPSS places an icon
-% indicating the type of variable next to the variable name in a list
-% box, to aid in selection of the proper type of variable.
+A \dfn{spin button} plays a similar role to the slider, in that it
+selects a value within a set of bounds. Typically, this widget is
+drawn with a text box displaying the current value and two arrows to
+increment or decrement the selection. The text box can usually be
+edited directly.  A spin button has the advantage of using less screen
+space, and directly entering a specific value, if known, is easier
+than selecting it with a slider. One disadvantage is that the position
+of the selected value within the range is not as obvious compared to
+the slider. As a compromise, combining a text box with a slider is
+possible and often effective. A spin button is used in the KDE print
+dialog of Figure~\ref{fig:GUI:print-dialogs} to adjust the number of
+copies.
+
+\subsection{Inititiating an action}
+
+After the user has specified the parameters of an action, typically
+by interacting with the selection widgets presented above, it comes time to
+execute the action. Widgets that execute actions include the familiar
+buttons, which are often organized into menubars and toolbars.
+
+\subsubsection{Buttons}
+\label{sec:GUI:buttons}
+
+A \dfn{button} issue commands when pressed, usually via a mouse click.
+In Figure~\ref{fig:GUI:print-dialogs}, the ``Properties'' button, when
+clicked, opens a dialog for setting printer properties. The button
+with the wizard icon also opens a dialog.  As buttons execute an
+action, they are often labeled with a verb.~\citep{APPLE:HIG} In
+Figure~\ref{fig:GUI:spss-11-term-selection} we see how SPSS uses
+buttons in its dialogs: buttons which are not valid in the current
+state are disabled; buttons which are designed to open subsequent
+dialogs have trailing dots; and the standard actions of resetting the
+data, canceling the dialog or requesting help are given their own
+buttons on the right edge of the dialog box.
+
+To speed the user through a dialog, a button may be singled out as the
+default button, so its action will be called if the user presses the
+\kbd{return} key. Buttons may be given accelerator key
+bindings, so that their actions are executable by typing the proper key
+combination. The KDE print dialog in
+Figure~\ref{fig:GUI:print-dialogs} has these bindings indicated
+through the underlined letter on the button labels.
+
+%% ML: besides the accelerator comment, the below might be too much detail
+%% JV: I'll leave it for the toolkit chapters if appropriate.
+%% adjustments
+% The look of the button can usually be manipulated.  A button is given
+% a relief through its border, shading, and perhaps a color gradient
+% along its face. Some toolkits allow these to be optionally drawn,
+% thereby making a button look more like a label, as described below.
+% The button text may have some markup or an indication of a accelerator
+% keyboard binding, such as the \text{\underline{C}ontrasts...} button
+% in the dialog shown in the right graphic of
+% Figure~\ref{fig:GUI:spss-11-model-selection}.
+
+\subsubsection{Icons}
+\label{sec:GUI:icons}
+
+In the WIMP paradigm, an \dfn{icon} is a pictorial representation of a
+resource, such as a document or program, or, more generally, a
+concept, such as a type of file. An application GUI typically adopts
+the more general definition, where an icon is used to augment or
+replace a text label on a button, a toolbar, in a list box, etc. When
+icons appear on toolbars and buttons, they are associated with
+actions, so an icon should be a pictorial representation of an
+action. The choice of icon has a significant impact on usability.
+
+% ML: too much detail?
+% JV: agreed
+% Except for the default installation of \pkg{tcltk}, images and icons
+% may be specified in a variety of different formats.  Icons can come in
+% several different sizes from 16 by 16 pixels to 128 by 128. For
+% toolbars and menubars, the toolkit takes care of selecting the
+% appropriate icon.
 
 
+\subsubsection{Menubars}
+\label{sec:GUI:menubars}
+
+Menus play a central role in the \acronym{WIMP} desktop. The \dfn{menubar}
+contains items for many of the actions supported by the application.
+By convention, menubars are associated with a top-level window. This is
+enforced by the toolkit in \wxWidgets\/ and \Java\/ but not \tcltk\/
+and \GTK.  In Mac OS X, the menubar appears on the top line of the
+display, but other platforms place the menubar at the top of the
+top-level window. In a statistics application, the ``document'' may be
+viewed as the active data frame, a report, or a graphic.
+
+The styles used for menubars are fairly standardized, as this allows
+new users to quickly orient themselves with a GUI. The visible menu
+names are often in the order \code{File}, \code{Edit}, \code{View},
+\code{Tools}, then application specific menus, and finally a
+\code{Help} menu. Each visible menu item when clicked opens a menu of
+possible actions. The text for these actions conventionally use a
+\code{...}  to indicate that a subsequent dialog will open so that
+more information can be gathered to complete the action. The text may
+also indicate a key-board accelerator, such as \code{Find
+  \underline{N}ext F3} indicating that both ``N'' as a keyboard
+accelerator and F3 as a shortcut will initiate this same action.
+
+Not all actions will be applicable at any given time. It is
+recommended that rather than deleting these menu items, they be
+disabled, or greyed out, instead. %%~\ref{KDE:HIG}
+
+Menus may come to contain many items. To help the user navigate, menu
+items are usually grouped with either horizontal separators or
+hierarchical submenus. The latter are indicated with an arrow.
+
+The use of menus has evolved to also allow the user to set properties
+or attributes of current state of the GUI. There may be checkboxes
+drawn next to the menu item or some icon indicating the current state.
+
+Another use of menus is to bind contextual menus (popup menus) to
+certain mouse clicks on GUI elements. Typically right mouse clicks
+will pop up a menu that lists often-used commands that are appropriate
+for that widget and the current state of the GUI. In Mac OS X
+one-button users, these menus are bound to a \kbd{control}-click.
+
+\subsubsection{Toolbars}
+\label{sec:GUI:toolbars}
+
+Toolbars are used to give immediate access to the frequently used actions
+defined in the menubar. Toolbars typically have icons representing the
+action and perhaps accompanying text. They traditionally appear on the
+top of a window, but sometimes are used along the edges. 
+
+%% Might not be the best place... any other options?
+\subsubsection{Action Objects}
+\label{sec:GUI:actions}
+
+When clicking on a button, the user expects some ``action'' to
+occur. For example, some save dialog is summoned, or some page is
+printed.  GUI toolkits commonly represent such actions as formal,
+invisible objects that are proxied by widgets, usually buttons, on the
+screen.  Often, all of the primary commands supported by an
+application have a corresponding action object, and the buttons
+associated with those actions are organized into menubars and
+toolbars.
+
+An action object is essentially a data model, with each proxy widget
+acting as a view. Common components of an action include a textual
+label, an icon, perhaps a keyboard accelerator, and a handler to call
+when the action is selected. When a particular action is not possible
+due to the state of the GUI, it should be disabled, so that the
+associated widgets are not sensitive to user interaction.
+
+
+\subsection{Modal dialogs}
+\label{sec:GUI:modal-dialogs}
+
+A \dfnref{modal dialog box} is a dialog box that keeps the focus until
+the user takes an action to dismiss the box. It prompts a user for
+immediate input, for example asking for confirmation when overwriting
+a file. Modal dialog boxes can be disruptive to the flow of
+interaction, so they should be used sparingly. As the control flow is
+blocked until the window is dismissed, functions that display modal
+dialogs can return a value when an event occurs, rather than have a
+handler respond to asynchronous input. The \command{file.choose}
+function, mentioned below, is a good example. When called during an
+interactive \R\/ session, the user is unable to interact with the
+command line until a file has been specified and the dialog dismissed.
+
+\subsubsection{Message dialogs}
+\label{sec:GUI:message-dialogs}
+
+A \dfnref{message dialog} is a high-level dialog widget for
+communicating a message to the user. By convention, there is a small
+rectangular box that appears in the middle of the screen with an icon
+on the left and a message on the right. At the bottom is a button to
+dismiss the dialog, often labeled ``OK.''  Additional
+buttons/responses are possible. The \dfnref{confirmation dialog}
+variant would add a ``Cancel'' button which invalidates the proposed
+action.
+
+\subsubsection{File choosers}
+\label{sec:GUI:file-choosers}
+
+A file chooser allows for the selection of files and directories. They
+are familiar to any user of a GUI. A typical \R\/ installation has the
+functions \command{file.choose} and \command{tkchooseDirectory} (in
+the \pkg{tcltk} package) to select files and directories.
+
+Other common choosers are color choosers and font choosers.
 
 \subsection{Displaying data}
 \label{sec:GUI:tabular-display}
@@ -686,16 +816,18 @@ window, but such is beyond the scope of this section.
 
 A \dfn{table widget} shows tabular data, such as a data frame, where
 each column has a specific data type and cell rendering strategy.
-Table widgets handle the display, sorting and selection of records from a
-dataset, and may support editing.  Figure~\ref{fig:GUI:spotfire} shows
-a table widget being used in a Spotfire web player demonstration to
-display the cases that a user selects through the filtering controls.
-
+Table widgets handle the display, sorting and selection of records
+from a dataset. Depending on the configuration of the widget, cells
+may be editable.  Figure~\ref{fig:GUI:spotfire} shows a table widget
+in a Spotfire web player demonstration. It displays the cases that a
+pass a user-specified filter.
 
 \begin{figure}
   \centering
   \includegraphics[width=0.8\textwidth]{fig-spotfire}
-  \caption{A screen shot from Tibco's Spotfire web player illustrating a table widget (lower left) being used to display the selected cases that are summarized in the graphic. The right bar provides a means to filter the cases under consideration.}
+  \caption{A screen shot from Tibco's Spotfire web player illustrating
+    a table widget (lower left), displaying the cases that are
+    summarized in the graphic. The right bar filters the cases in the table. }
   \label{fig:GUI:spotfire}
 \end{figure}
 
@@ -728,7 +860,7 @@ data, and how table widgets display tabular data, like that in a data
 frame. Other widgets support the display of more complex data
 structures. If the data has a heirarchical structure, then a \dfn{tree
   widget} may be appropriate for its display. Examples of heirarchical
-data in \R, are directory structures, the components of a list, or
+data in \R are directory structures, the components of a list, or
 class hierarchies. The object browser in \pkg{JGR} uses a tree
 widget to show the components of the objects in a users session (the
 left graphic of Figure~\ref{fig:GUI:R-guis-exs-JGR-Rcmdr}). The root
@@ -738,165 +870,41 @@ data frame \code{iraq}, its variables are considered as offspring of
 the data frame. In this case these variables have no further
 offspring, as indicated by the ``page'' icon.
 
-
-\subsection{Inititiating an action}
-
-After the user has specified the parameters of an action, typically
-through the selection widgets presented above, it comes time to
-execute the action. Widgets that execute actions include the familiar
-buttons, menubars and toolbars.
-
-
-\subsubsection{Buttons}
-\label{sec:GUI:buttons}
-
-A \dfn{button} is typically used to give the user a place to click the
-mouse in order to initiate some immediate action. The ``Properties''
-button, when clicked, opens a dialog for setting printer
-properties. The button with the wizard icon also opens a dialog.  As
-buttons typically lead to an action, they often are labeled with a
-verb.~\citep{APPLE:HIG} In Figure~\ref{fig:GUI:spss-11-term-selection}
-we see how SPSS uses buttons in its dialogs: buttons which are not
-valid in the current state are disabled; buttons which are designed to open
-subsequent dialogs have trailing dots; and the standard actions of
-resetting the data, canceling the dialog or requesting help are given
-their own buttons on the right edge of the dialog box.  
-
-To speed the user through a dialog, a button may be singled out as the
-default button, so its action will be called if the user presses the
-\kbd{return} key. As well, buttons may be given accelerator key
-bindings, so as their actions are accesible by typing the proper key
-combination. The KDE print dialog in
-Figure~\ref{fig:GUI:print-dialogs} has these bindings indicated
-through the underlined letter on the button label's.
-
-%% ML: besides the accelerator comment, the below might be too much detail
-%% JV: I'll leave it for the toolkit chapters if appropriate.
-%% adjustments
-% The look of the button can usually be manipulated.  A button is given
-% a relief through its border, shading, and perhaps a color gradient
-% along its face. Some toolkits allow these to be optionally drawn,
-% thereby making a button look more like a label, as described below.
-% The button text may have some markup or an indication of a accelerator
-% keyboard binding, such as the \text{\underline{C}ontrasts...} button
-% in the dialog shown in the right graphic of
-% Figure~\ref{fig:GUI:spss-11-model-selection}.
-
-\subsubsection{Icons}
-\label{sec:GUI:icons}
-
-In the WIMP paradigm, an \dfn{icon} is a pictorial representation of a
-resource, such as a document or program, or, more generally, a
-concept, such as a type of file. An application GUI typically adopts
-the more general definition, where an icon is used to augment or
-replace a text label on a button, a toolbar, in a list box, etc. When
-icons are used on toolbars and buttons, they are associated with
-actions, so the icons should have some visual implication of an
-action.  Well chosen icons make a big visual difference in a GUI.
-
-% ML: too much detail?
-% JV: agreed
-% Except for the default installation of \pkg{tcltk}, images and icons
-% may be specified in a variety of different formats.  Icons can come in
-% several different sizes from 16 by 16 pixels to 128 by 128. For
-% toolbars and menubars, the toolkit takes care of selecting the
-% appropriate icon.
-
-
-\subsubsection{Menubars}
-\label{sec:GUI:menubars}
-
-Xerox Parc's revolutionary idea of a \acronym{WIMP} GUI added windows,
-icons, menubars, and pointing devices to the desktop computing
-environment. The central role of menu bars has not diminished. For a
-GUI, the \dfn{menubar} gives access to the full range of functionality
-available. Each common action should have a corresponding menu
-item. Menubars are traditionally associated with a top-level
-window. This is enforced by the toolkit in \wxWidgets\/ and \Java\/
-but not \tcltk\/ and \GTK.  In Mac OS X, the menubar appears on the
-top line of the display, but otherwise they typically appear at the
-top of the main window. In most modern applications, standard
-document-based design is used to organize a GUI and its actions, with
-a main window showing the document and its menu bar calling actions on
-the document, some of which may need to open subsequent application
-windows or dialogs for gathering additional user input.  In this
-model, only the main window has a menu bar, not the application
-windows or dialogs. In a statistics application, the ``document'' may
-be viewed as the active data frame, a report, or a graphic.
-
-The styles used for menubars are fairly standardized, as this allows
-new users to quickly orient themselves with a GUI. The visible menu
-names are often in the order \code{File}, \code{Edit}, \code{View},
-\code{Tools}, then application specific menus, and finally a
-\code{Help} menu. Each visible menu item when clicked opens a menu of
-possible actions. The text for these actions traditionally use a
-\code{...}  to indicate that a subsequent dialog will open so that
-more information can be gathered to complete the action, as opposed to
-some immediate action being taken. The text may also indicate a
-key-board accelerator, such as \code{Find \underline{N}ext F3}
-indicating that both ``N'' as a keyboard accelerator and F3 as a
-shortcut will initiate this same action.
-
-Not all actions will be applicable at any given time. It is
-recommended that rather than deleting these menu items, they be
-disabled, or greyed out, instead. %%~\ref{KDE:HIG}
-
-Menus can get very long. To help the user navigate, menu items are usually
-grouped together, first by being under the appropriate menu title,
-then with either horizontal separators to define subsequent groupings,
-or hierarchical submenus. The latter are indicated with an
-arrow. Several different levels are possible, but navigating through
-too many can be tedious.
-
-The use of menus has evolved to also allow the user to set properties
-or attributes of current state of the GUI. There may be checkboxes
-drawn next to the menu item or some icon indicating the current state.
-
-Another use of menus is to bind contextual menus (popup menus) to
-certain mouse clicks on GUI elements. Typically right mouse clicks
-will pop up a menu that lists often-used commands that are appropriate
-for that widget and the current state of the GUI. In Mac OS X
-one-button users, these menus are bound to a \kbd{control}-click.
-
-\subsubsection{Toolbars}
-\label{sec:GUI:toolbars}
-
-Toolbars are used to give immediate access to the frequently used actions
-defined in the menubar. Toolbars typically have icons representing the
-action and perhaps accompanying text. They traditionally appear on the
-top of a window, but sometimes are used along the edges. 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \subsection{Displaying and editing text}
 \label{sec:GUI:text-widgets}
 
-As much as possible, WIMP GUIs are designed around using the pointing
-device to select values for user input. Perhaps this is because it is
-difficult to both type and move the mouse at the same time. For
-statistical GUIs, especially for \R\/ with its powerful command line,
-the flexibity afforded by arbitrary text entry is essential for any
-moderately complex GUI. There is a distinction made between widgets
-for handling just single lines versus multiple lines of text.
+The letter \acronym{P} in \acronym{WIMP} stands for ``pointer,'' so it
+is unsurprising that \acronym{WIMP} GUIs are designed around the
+pointing device. The keyboard is generally relegated to a secondary
+role, in part because it is difficult to both type and move the mouse
+at the same time. For statistical GUIs, especially when integrating
+with the command-line interface of \R\/, the flexibity afforded by
+arbitrary text entry is essential for any moderately complex
+GUI. Toolkits generally provide separate widgets for text entry
+depending on whether the editor supports a single line or multiple
+lines.
 
 \subsubsection{Single line text}
 \label{sec:GUI:single-line-text}
 
-A text entry widget for editing a single line of text is used in the
-KDE print dialog (Figure~\ref{fig:GUI:print-dialogs}) to specify
-the page range. As range's can be complex to specify, the command line
-has an advantage. A disadvantage of using this type of widget is the need to
-validate the user's input, as the input must conform to some specfication.
+A text entry widget for editing a single line of text is found in the
+KDE print dialog (Figure~\ref{fig:GUI:print-dialogs}). It specifies
+the page range. Specifying a complex page range, which might include
+gaps, would require a complex point-and-click interface. In
+order to avoid complicating the GUI for a feature that is rarely
+useful, a simple language has been developed for specifying page
+ranges. There is overhead involved in the parsing and validation of
+such a language, but it is still preferable to the alternative.
 
 \subsubsection{Text edit boxes}
 \label{sec:GUI:textboxes}
 
-Multi-line text entry areas are used in many GUIs. The right graphic
-of Figure~\ref{fig:GUI:R-guis-exs-JGR-Rcmdr} shows a text entry area
-used by \pkg{Rcmdr} to enter \R\/ commands, to show the output of the
-commands and to provide a message area (in lieu of a status bar). The
+The right graphic
+of Figure~\ref{fig:GUI:R-guis-exs-JGR-Rcmdr} shows a multi-line text entry
+in \pkg{Rcmdr}. It provides an \R\/ console and status message area. The
 ``Output Window'' demonstrates the utility of formatting
-attributes. In this case, attributes are used to specify the color of
+attributes. In this case, attributes specify the color of
 the commands, so that the input can be distinguished from the output.
 
 \begin{figure}
@@ -944,45 +952,42 @@ the commands, so that the input can be distinguished from the output.
 % }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-\subsection{Display of information}
+\subsection{Guides and feedback}
 \label{sec:GUI:info-display}
 
-Some widgets are typically used to just display information and often
-do not respond to mouse clicks. These are called static controls in
-\wxWidgets.
+Some widgets display information but do not respond to user
+input. These are called static controls in \wxWidgets. Their main
+purpose is to guide and the user through the GUI and to display
+feedback and status messages.
 
 \subsubsection{Labels}
 \label{sec:GUI:labels}
 %% Static Text
 A label is a widget for placing text into a GUI that is typically not
-intended for editing, or even selecting with a mouse. This widget is
-used to label other controls, so the user understands what will happen
-when that control is changed.
-
-%% markup
-A Label's text can be marked up in some
-toolkits. Figure~\ref{fig:GUI:Rcmdr-main-window} shows labels marked
-in red and blue in \pkg{tcltk}.
+intended for editing, or even selecting with a mouse. The main role of
+a label is to describe another component of the GUI. Most toolkits
+support rich text in labels. Figure~\ref{fig:GUI:Rcmdr-main-window}
+shows labels marked in red and blue in \pkg{tcltk}.
 
 \subsubsection{Statusbars}
 \label{sec:GUI:statusbars}
 
-A typical top-level window will have a menubar and toolbar for access
-to the possible actions, an area to display the document being worked
-on, and at the bottom of the window a statusbar for giving the user
-immediated feedback on the actions that have been
-initiated. 
+A statusbar displays general status messages, as well as feedback on
+actions initiated by the user, such as progress or errors. In the
+traditional document-oriented GUI, statusbars are placed at the bottom.
 
 \subsubsection{Progress bars}
 
-A progress bar is used to indicate the percentage of a particular task
-that has been completed. They are often used during software installation. 
-
+A progress bar indicates progress on a particular task, which may or
+may not be bounded. A bounded progress bar usually reports progress in
+terms of percentage completed. Progress bars should be familiar, as
+they are often displayed during software installation and while
+downloading a file.
 
 \subsubsection{Tooltips}
 \label{sec:GUI:basic-tooltips}
 
-A tooltip is a small window that pops up when a user hovers their
+A tooltip is a small window that is displayed when a user hovers their
 mouse over a tooltip-enabled widget. These are useful for providing
 extra information about a particular piece of content displayed by a
 widget. A common use-case is to guide new users of a GUI. Many
@@ -1008,51 +1013,11 @@ which allows the user to request additional details.
 % A font chooser allows the selection of a font. 
 
 
-\subsection{Modal dialog boxes}
-\label{sec:GUI:modal-dialogs}
-
-A \dfnref{modal dialog box} is a dialog box that keeps the focus until
-the user takes an action to dismiss the box. They are used to notify
-the user of some action, perhaps asking for confirmation in case the
-action is destructive, such as overwriting of a file name. Modal
-dialog boxes can be disruptive to the flow of interaction, so they
-should be used sparingly. As the flow essentially stops until the
-window is dismissed, functions that call modal dialogs can return a
-value when an event occurs, rather than have a handler respond to the
-dismiss event. The \command{file.choose} function, mentioned below, is
-a good example. When used during an interactive \R\/ session, the user
-is unable to interact with the command line until a file has been
-specified and the dialog dismissed.
-
-
-\subsubsection{File choosers}
-\label{sec:GUI:file-choosers}
-
-A file chooser allows for the selection of existing files, existing
-directories, or specifying the name of a new file. They are familiar to
-any user of a GUI. A typical \R\/ installation has the functions
-\command{file.choose} and \command{tkchooseDirectory} (in the
-\pkg{tcltk} package) to select files and directories.
-
-
-Other common choosers are color choosers and font choosers.
-
-\subsubsection{Message dialogs}
-\label{sec:GUI:message-dialogs}
-
-A \dfnref{message dialog} is a high-level dialog widget for
-communicating a message to the user. Generally, it has a standard
-form. There is a small rectangular box that appears in the middle of
-the screen with an icon on the left and a message on the right. At the
-bottom is a button to dismiss the dialog, often labeled ``OK.'' The
-\dfnref{confirmation dialog} variant would add a ``Cancel'' button
-which invalidates the proposed action.
-
-
-
 \section{Containers}
 \label{sec:GUI:basic-components-containers}
 %% Containers
+
+%%% FIXME: move to \paragraph{} instead of \subsubsection{}?
 
 %% ML: Layout management is orthogonal to the type of container. This
 %% is made obvious in the design of Swing and Qt: there is a separate
@@ -1079,268 +1044,106 @@ which invalidates the proposed action.
 
 %% Widget Heirarchy
 
-Widgets in a GUI are organized in a \dfn{widget heirarchy}, where some
-widgets are parents and some children (which may in turn be
-parents). The top-level window may play a special role here, as a
-parent but not a child. This organization offers the toolkit writers
-the chance to treat each object as a standalone component. For
-example, when a GUI is resized the typical algorithm is for the parent
-to be resized, then to send a signal to the children to resize
-themselves. Another example is when a window is closed, prior to
-closing the window will signal its children that they will be
-destroyed, and they should in turn signal their children, if any.  A
-means to traverse the widget heirarchy is provided by each toolkit.
-In \pkg{tcltk} this heirarchical relationship is explicit, as a widget
-constructor -- except for top-level windows -- requires a parent
-widget when be constructed. In the other toolkits, it may be implicit.
+The KDE pring dialog of Figure~\ref{fig:GUI:print-dialogs} contains
+many of the widgets we discussed in the previous section. Before we
+can create such a dialog, we need to introduce how to position widgets
+on the screen. This process is called \textit{widget layout}.
 
-In the widget heirarchy, the parents play a different role as those
-widgets that are just children. The parents play the role of
-\dfn{containers}. Sometimes the word \dfn{widget} is reserved for GUI
-components which are not-containers. Having containers makes it
-possible to organize GUIs into indivividual components -- again, a desirable
-design feature.
+A layout emerges from the organization of the widgets into a
+hierarchy, where a parent widget positions its children within its
+allocated space.  The top-level window is parentless and forms the
+root of the hierarchy. A parent visually contains its children and
+thus is usually called a \textit{container}. This design is natural,
+because almost every GUI has a hierarchical layout. It is easy to
+apply a different layout strategy to each region of a GUI, and when a
+parent is added or removed from the GUI, so are its children.
 
-The children of the GUI must be organized in some manner. In \GTK
-(\pkg{gWidgets}), this is done through the choice of container with
-parameters being set to adjust the placement within the container when
-the child is added. In \Qt\/ and \tcltk\/ there is an added
-abstraction of a layout. A layout decouples the heirarchy from the
-layout and offers much more flexibility. In \Qt\/ this allows for a
-richer set of default layout options, and the ability to create ones
-specialized layouts.
+It is sometimes tempting for novices to simply assign a fixed position
+and dimensions for every widget in a GUI. However, such static layouts
+do not scale well to changes in the state of the application or simply
+changes to the window size dictated by the window manager. Thus, it is
+strongly encouraged to delegate the responsibility of layout to a
+\textit{layout manager} that dynamically calculates the layout as
+constraints change. Depending on the toolkit, the layout manager might
+be the container itself, or it might be a separate object to which the
+container delegates.
 
-
-
-\subsection{Top level windows}
-\label{sec:GUI:top-level-windows}
-
-The top-level window of a GUI is typically decorated with a title and
-buttons to iconify, maximize, or close. Besides the text of the title,
-the decorations are generally the domain of the window manager, often
-part of the operating system. The application controls the contents of
-the window. Generally, a top-level window will consist of a menu bar,
-a tool bar and a status bar. In between these is the area referred to
-as the \dfnref{client area} or \dfnref{content pane} where other
-containers or widgets are placed.
-
-%% client area -- wxWidgets book
-%% content pane -- java tutorial
-
-%% FRAME vs. WINDOW
-
-%% closing property
-
-The title is a property of the window and may be specified at the time
-of construction or afterwards. 
-
-On a desktop, only one window may have the focus at a time. It may or
-may not be desired that a new window receive the focus so some means
-to specify the focus at construction or later is provided by the
-toolkit.
-
-The initial placement of the window also may be specified at the time
-of construction. The top-level window of a GUI may generally be placed
-whereever it is convenient for the user, but sub-windows are often
-drawn on top of their parent window, as are modal dialog boxes. 
-
-
-%% RGtk2 -- DefaultSize
-%% rJava -- Preferred Size
-%% tcltk -- min size
-%% RwxWidgets -- DefaultSize
-
-%% ML: I don't think that the ability to set a default or minimum size
-%% depends on the toolkit. It's all determined by the windowing system
-%% and what the associated window managers are required to support. I
-%% would say that on all major platforms, one can set both a default
-%% and a minimum size, as well as toggle resizability, with any
-%% reasonable toolkit. Certainly this is true of GTK+ and Qt. The
-%% top-level window geometry is the result of negotiation between the
-%% window manager and application.
-
-The window manager usually decorates a top-level window with a close
-button. It may be necessary or desirable to specify some action to
-take place when this button is clicked. For instance, a user might be
-prompted if they wish to save changes to their work when the close
-button is pressed.
-
-it may take some time to initially layout a top-level window. Rather
-than have the window drawn and then have a blank window while this
-time passes, it is preferable to not make the window visible until the
-window is ready to draw. 
-
-
-We now describe some of the main containers.
-
-% Table~\ref{tab:GUI:containers-constructors} lists them
-% together and provides the constructor name for the different toolkits
-% discussed in this book.
-
-\subsection{Box containers}
-\label{sec:GUI:Box-containers}
-
-A box container places its children in it from left to right or from
-top to bottom.  If each child is viewed as a box, then this container
-holds them by packing them next to each other. The upper left figure in
-Figure~\ref{fig:GUI:box-possibilities} illustrates this. 
-
-When the boxes have different sizes, then some means to align them
-must be decided on. Several possibilities exists. The alignment could
-be around some center, aligned at a baseline, the top line, or each
-child can specify where to anchor itself within the allotted space
-(the upper right graphic in Figure~\ref{fig:GUI:box-possibilities}).
-
-If the space allocated for a box is larger than the space requested by
-a child component then a decision as to how that component gets placed
-needs to be made. If the component is not enlarged, then there are
-nine reasonable places -- the center and the 8 compass directions N,
-NW, W, \dots. Otherwise, it may be desirable for the component to
-expand horizontally, vertically or both (the lower left graphic in
-Figure~\ref{fig:GUI:box-possibilities}). Additionally, it is desirable
-to be able to place a fixed amount of space between child components
-or a spring between components. A spring forces all subsequent to
-children to the far right or bottom of the container (the lower right
-graphic in Figure~\ref{fig:GUI:box-possibilities}).
-
-
-When a top-level window is resized, these space allocations must be
-made. To help, the different toolkits allows the components to have a
-size specifed. Some combination of a minimum size, a preferred size, a
-default size, a specific size, or a maximum size are
-allowed. Specifying fixed sizes for components is generally frowned
-upon, as they don't scale well when a user resizes a window and they
-don't work well when different languages are used on the controls when
-an application is localized.
-
-
-\begin{figure}
-  \centering
-  \includegraphics[width=.35\textwidth]{box-horizontal}
-  \includegraphics[width=.35\textwidth]{box-alignment}\\
-  \includegraphics[width=.35\textwidth]{box-expand}
-  \includegraphics[width=.35\textwidth]{box-glue-spring}
-  \caption{
-    XXX REPLACE WITH REAL GRAPHICS XXX.
-    %%
-    Different possibilities for packing child components within
-    a box. 
-    %%
-    The upper left shows horizontal and vertical layout.
-    %% 
-    The upper right shows some possible alignements.
-    %%
-    The lower left shows that a child could possibly be anchored in
-    one of 9 positions. As well, it could ``expand'' to fill the space
-    either horizontally (as shown) or  vertically, or both.
-    %%
-    The lower right shows both a fixed amount of space between the
-    children and an expanding spring between the child components.
-}
-  \label{fig:GUI:box-possibilities}
-\end{figure}
-
-\subsubsection{Frames}
-\label{sec:GUI:frames}
-
-A box container may have a border drawn around it to visually separate
-its contents from others. This border may also have a title. In
-\GTK\/ these are called frames, but this word is reserved in \tcltk\/ and
-\Java.
-
-\subsubsection{Expanding boxes}
-\label{sec:GUI:expanding-boxes}
-
-In order to save screen space, a means to hide a boxes contents can be
-used. This hiding/showing is initiated by a mouse click on a
-disclosure button or trigger icon.
-
-\subsubsection{Paned boxes}
-\label{sec:GUI:paned-boxes}
-
-If automatic space allocation between two child components is not
-desired, but rather a means for the user to allocate the space is,
-then a \dfnref{paned container} may be used. These offer one or more
-horizontal or verticales sash that can be clicked and dragged to
-apportion space between the child omponents.
-
-   
-\subsection{Grid layout}
-\label{sec:GUI:grid-layout}
-
-By nesting box containers, a great deal of flexibility in layout can
-be achieved. However, there is still a need for the alignment of child
-components in a tabular manner. The most flexible alignments allow for
-different sizes for each column and each row, and additionally, the
-ability for the child components to span multiple columns or
-rows. Within each cell (or cells) the placement of a child component
-mirrors that of the lower left graphic of
-Figure~\ref{fig:GUI:box-possibilities}. Some specification where to
-anchor the component when there are nine possible positions plus
-expanding options must made.
-
-\subsection{Tabbed Notebooks}
-\label{sec:GUI:notebooks}
-
-A notebook is a common container to hold one or more pages (or
-children). The different pages are shown by the user through the
-clicking of a corresponding tab. The metaphor being a tabbed
-notebook. Modern web browsers take advantage of this container to
-allow several web pages to be open at once.
-
-
-
-
-\subsection{Example}
-
-The KDE pring dialog of Figure~\ref{fig:GUI:print-dialogs} shows
-most of the containers previously described. 
-
-The top-level window has the generic title ``Print -- KPDF.'' This
-window appears to have four child components: a frame labeled
-\code{Printer}, a notebook with open tab \code{C\underline{o}pies}, a
-grid layout for specifying the print system, and a box for holding
-five buttons at the bottom. 
-
-The lower left \code{\underline{O}ptions} button has \verb+<<+ to
-indicate that clicking this will close an exanding box, in this case a
-box that contains the lower three components above. So in fact, there
-are two visible child components of the top-level window.
-
-The framed box holds a grid layout with five columns and 6 rows. The
-sizes allocated to each column are visible in the first row. It is
-quickly seen that each column has a different size. The last row has a
-text entry area that spans the second and third columns. The first
-column has only labels. These are anchored to the left side of the
-allowed space. The Apple human interface guide
-\citep{APPLE:HIG} suggests using colons for text that provides
-context for controls, and the KDE designers do to. 
-
-The displayed page of the notebook shows two child components, both
-framed boxes. A pleasant amount of space between the frames and their
-child components has been chosen. The \code{Page Selection} frame has
-components including radio buttons, a text area, a horizontal
-separator, and a combo box.
-
-The print system information is displayed in a grid layout that has
-been right aligned within its parent container -- the expanded group,
-but its children are center-balanced with the label ``Print system
-currently used'' is right aligned and ``Server...'' is left aligned
-within their cells.
-
-The button box shows five buttons as child components. At first glance
-the sizing appears to show that each button is drawn to fully show its label
-with some fixed space placed between the buttons. If the dialog is
-expanded, it is seen that there is a spring between the 3rd and 4th
-buttons, so that the first 3 are aligned with the left side of the
-window and the last two the right side.
+Regardless, the type of layout is generally orthogonal to the type of
+container. For example, a container might draw a border around its
+children, and this would be independent of how its children are laid
+out.  The rest of this section is divided into two parts: container
+widgets and layout algorithms. We will continually refer back to the
+KDE print dialog example as we proceed.
 
 % The Apple guidlines\citep[Ch. 15]{APPLE:HIG} suggest using ``center
 % equalization'' for arranging widgets within a window. This means that
 % the visual weight is balanced between the right and left side of the
 % content area. This is not the case with the KDE print dialog.
 
+\subsection{Containers}
+\label{sec:containers}
 
+\subsubsection{Top level windows}
+\label{sec:GUI:top-level-windows}
+
+The top-level window of a GUI is the root of the container
+hierarchy. All other widgets are contained within it.  The
+conventional main application window will consist of a menu bar, a
+tool bar and a status bar. The primary content of the window is
+inserted between the tool bar and the status bar, in an area known as
+the \dfnref{client area} or \dfnref{content area}. In the case of a
+dialog, the content usually appears above a row of buttons, each of
+which represent a possible response. The print dialog conforms to the
+dialog convention. The print options fill the content area, and there
+is a row of buttons at the bottom for issuing a response, such as
+``Print''.
+
+A window is typically decorated with a title and buttons to iconify,
+maximize, or close. In the case of the print dialog, the top-level
+window is entitled ``Print -- KPDF.''. Besides the text of the title,
+the decorations are generally the domain of the window manager (often
+part of the operating system). The application controls the contents
+of the window.
+
+Once a window is shown, its dimensions are managed by the user,
+through the window manager. Thus, the programmer must size the window
+before it becomes visible. This is often referred to as the
+``default'' size of the window. Placing of a top-level window is
+generally left to the window manager.
+
+The top-level window forwards window manager events to the
+application. For example, an application might listen to the window
+close event in order to prompt a user if there are any unsaved changes
+to a document.
+
+% Table~\ref{tab:GUI:containers-constructors} lists them
+% together and provides the constructor name for the different toolkits
+% discussed in this book.
+
+\subsubsection{Frames}
+\label{sec:GUI:frames}
+
+A frame is a simple container that draws a border, possibly with a
+label, around its child. The purpose of a frame is to enhance
+comprehension of a GUI by visually distinguishing one group of
+components from the others. The displayed page of the notebook in
+Figure~\ref{fig:GUI:print-dialogs} contains two frames, visually
+grouping widgets by their function: either \code{Page Selection}
+or \code{Output Settings}.
+
+\subsubsection{Tabbed notebooks}
+\label{sec:GUI:notebooks}
+
+A notebook represents each of its children as a page in a notebook. A
+page is selected by clicking on a button that appears as a tab. Only a
+single child is shown at once. The tabbed notebook is a space
+efficient, categorizing container that is most appropriate when a user
+is only interested in one page at a time. Modern web browsers take
+advantage of it to allow several web pages to be open at once within
+the same window. In the KDE print dialog, detailed options are
+collapsed into a notebook in order to save space and organize the
+multitude of options into simple categories: ``Copies'', ``Advanced
+Options'', and ``Additional Tags''.
 
 % %% A table showing the values and constructors
 % %% Make changes to gnumeric spreadsheet, export
@@ -1350,17 +1153,140 @@ window and the last two the right side.
 %   \begin{table}
 %     \centering
 %     \caption{A table listing several containers with a constructor for the
-%       different toolkits discussed in the text.}
+%     different toolkits discussed in the text.}
 %     \begin{tabular}{lp{\PARASIZE}@{\quad}p{\PARASIZE}@{\quad}p{\PARASIZE}@{\quad}p{\PARASIZE}@{\quad}p{\PARASIZE}@{\quad}c}
-% Widget & \code{gWidgets} & \code{RGtk2} & \code{RwxWidgets} &
-% \code{tcltk} & \code{rJava} &\\
-% \hline
-% \SweaveInput{containers-constructors}
+%       Widget & \code{gWidgets} & \code{RGtk2} & \code{RwxWidgets} &
+%       \code{tcltk} & \code{rJava} &\\
+%       \hline
+%       \SweaveInput{containers-constructors}
 %     \end{tabular}
-% \label{tab:GUI:containers-constructors}
+%     \label{tab:GUI:containers-constructors}
 %   \end{table}
 % \end{landscape}
 % }
+
+
+\subsubsection{Expanding boxes}
+\label{sec:GUI:expanding-boxes}
+
+The expanding box will show or hide its children, according to the
+state of a toggle button. By way of analogy, radio buttons are to
+notebooks as check buttons are to expanding boxes. An expanding box
+allows the user to adapt a GUI to a particular use case or mode of
+operation. Often, an expanding box contains so-called ``advanced''
+widgets that are only occassionally useful and are only of interest to
+a small subset of the users. For example, the \code{Options} button in
+Figure~\ref{fig:GUI:print-dialogs} controls an expanding box that
+contains the print options, which are usually best left to their
+defaults.
+
+\subsubsection{Paned boxes}
+\label{sec:GUI:paned-boxes}
+
+Usually, a layout manager allocates screen space to widgets, but
+sometimes the user needs to adapt the allocation, according to a
+present need. For example, the user may wish to increase the size of
+an image to see the fine details. The \dfnref{paned container}
+supports this by juxtaposing two panes, either vertically (stacked) or
+horizontally. The area separating the two panes, sometimes called a
+\dfnref{sash}, can be adjusted by dragging it with the mouse.
+   
+\subsection{Layout algorithms}
+\label{sec:GUI:layout}
+
+\subsubsection{Box layout}
+\label{sec:GUI:Box-containers}
+
+The box container is perhaps the simplest and most common type of
+layout container. A box will pack its children either horizontally or
+vertically. Usually, the widgets are packed from left to right, for
+horizontal boxes, or from top to bottom, in the case of a vertical
+box.  The upper left figure in Figure~\ref{fig:GUI:box-possibilities}
+illustrates this.
+
+The box layout needs to allocate space to its children in both the
+vertical and horizontal directions. The typical box layout algortihm
+begins by satisfying the minimum size requirements of its
+children. The box may need to request more space for itself in order
+to meet the requirement. 
+
+Once the minimum requirements are satisfied, it is conventional and
+usually desirable for the widgets to fill the space in the direction
+orthogonal to the packing. For example, widgets in a horizontal box
+will fill all of their vertical space. When this is not desired, most
+box widgets support different ways of vertically (or horizontally)
+aligning the widgets (the upper right graphic in
+Figure~\ref{fig:GUI:box-possibilities}).
+
+More complex logic is involved in the allocation of space in the
+direction of packing. Any available space after meeting minimum
+requirements needs to be either allocated to the children or left
+empty. This depends on whether any children are set to expand. The
+available space will be distributed evenly to all expanding
+children. Each child may fill that space or leave it empty (the lower
+left graphic in Figure~\ref{fig:GUI:box-possibilities}). The
+non-expanding children are simply packed against their
+side of the container. If there are no expanding children, the
+remaining space is left empty in the middle (or end if there are no
+widgets packed against the other side). See the lower right
+panel in Figure~\ref{fig:GUI:box-possibilities}. One could think
+of this space being occupied by an invisible spring. Invisible
+expanding widgets also act as springs.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.35\textwidth]{box-horizontal}
+  \includegraphics[width=.35\textwidth]{box-alignment}\\
+  \includegraphics[width=.35\textwidth]{box-expand}
+  \includegraphics[width=.35\textwidth]{box-glue-spring}
+  \caption{
+    XXX REPLACE WITH REAL GRAPHICS XXX.
+    %% 
+    Different possibilities for packing child components within
+    a box. 
+    %% 
+    The upper left shows horizontal and vertical layout.
+    %% 
+    The upper right shows some possible alignements.
+    %% 
+    The lower left shows that a child could possibly be anchored in
+    one of 9 positions. As well, it could ``expand'' to fill the space
+    either horizontally (as shown) or  vertically, or both.
+    %% 
+    The lower right shows both a fixed amount of space between the
+    children and an expanding spring between the child components.
+  }
+  \label{fig:GUI:box-possibilities}
+\end{figure}
+
+The button box shows five buttons as child components. At first glance
+the sizing appears to show that each button is drawn to fully show its label
+with some fixed space placed between the buttons. If the dialog is
+expanded, it is seen that there is a spring between the 3rd and 4th
+buttons, so that the first 3 are aligned with the left side of the
+window and the last two the right side.
+
+\subsubsection{Grid layout}
+\label{sec:GUI:grid-layout}
+
+The box layout algorithm only aligns its children along a single
+dimension. The horizontal box, for example, vertically aligns its
+children. Nevertheless, nesting permits the construction of complex
+layouts using only simple boxes. However, it is sometimes desirable to
+align widgets in both dimensions, i.e., to lay them out on a grid. The
+most flexible grid layout algorithms allow non-regular sizing of rows
+and columns, as well as the ability for a widget to span multiple
+cells. Usually, a widget fills the cells allocated to it, but if this
+is not possible, it may be anchored at a specific point within their
+cell. 
+
+The widgets in the ``Printer'' frame of
+Figure~\ref{fig:GUI:box-possibilities} are subject to a grid layout
+with five columns and six rows. The first row begins with the
+``Name:'' label, and each widget in that row occupy a separate
+column. This exposes the size of each column. The first column has
+only labels, with text justified to the left.  The labels are aligned
+horizontally to each other and vertically with adjacent field.
 
 
 % \section{End of chapter notes}
