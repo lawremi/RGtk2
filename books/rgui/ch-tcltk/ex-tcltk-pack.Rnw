@@ -29,29 +29,29 @@ dialog is created.
 The first example just uses \code{tkpack} without any arguments except
 the side to indicate the buttons are packed in left to right, not top
 to bottom.
-<<>>=
+<<results=hide>>=
 f1 <- ttklabelframe(f, text="plain vanilla")
 tkpack(f1, expand=TRUE, fill="x")
 l <- function(f) 
   list(ttkbutton(f, text="cancel"), ttkbutton(f, text="ok"))
-QT <- sapply(l(f1), function(i) tkpack(i, side="left"))
+sapply(l(f1), function(i) tkpack(i, side="left"))
 @ 
 
 Typically the buttons are right justified. One way to do this is to
 pack in using \code{side} with a value of \qcode{right}. This shows
 how to use a blank expanding label to take up the space on the left.
-<<moveRight>>=
+<<moveRight, results=hide>>=
 f2 <- ttklabelframe(f, text="push to right")
 tkpack(f2, expand=TRUE, fill="x")
 tkpack(ttklabel(f2, text=" "), expand=TRUE, fill="x", side="left")
-QT <- sapply(l(f2), function(i) tkpack(i, side="left"))
+sapply(l(f2), function(i) tkpack(i, side="left"))
 @ 
 
 Finally, we add in some padding to conform to Apple's design specification that such
 buttons should have a 12 pixel separation.
-<<appleSays>>=
+<<appleSays, results=hide>>=
 f3 <- ttklabelframe(f, text="push to right with space")
 tkpack(f3, expand=TRUE, fill="x")
 tkpack(ttklabel(f3, text=" "), expand=TRUE, fill="x", side="left")
-QT <- sapply(l(f3), function(i) tkpack(i, side="left", padx=6))
+sapply(l(f3), function(i) tkpack(i, side="left", padx=6))
 @ 

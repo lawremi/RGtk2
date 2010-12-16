@@ -4,6 +4,13 @@
 library(tcltk)
 @ 
 
+\begin{figure}
+  \centering
+  \includegraphics[width=.4\textwidth]{fig-tcltk-toolbar.png}
+  \caption{Illustration of using \code{tkpack} to make a toolbar. }
+  \label{fig:fig-tcltk-toolbar}
+\end{figure}
+
 
 
 
@@ -32,14 +39,14 @@ tkgrid.rowconfigure(f, 0, weight=0)
 tkgrid.rowconfigure(f, 1, weight=1)
 tkgrid.columnconfigure(f, 0, weight=1)
 ## some example to pack into the content area
-tkpack(ttklabel(contentFrame, text="Some content"))
+tkpack(ttklabel(contentFrame, text="Lorem ipsum dolor sit amet..."))
 @ 
 
 Now to add some buttons to the toolbar. We first show how to create a
 new style for a button, slightly modifiying the themed button to set
-the font and padding, and eliminate the border if the OS allows. 
+the font and padding, and eliminate the border if the operating system allows. 
 <<>>=
-tcl("ttk::style","configure","Toolbar.TButton", 
+tcl("ttk::style", "configure", "Toolbar.TButton", 
     font="helvetica 12", padding=0, borderwidth=0)
 @ 
 This
@@ -87,11 +94,4 @@ changeGamma <- function(W, gamma=1.0) {
 tkbind(w,"<Enter>", function(W) changeGamma(W, gamma=0.5))
 tkbind(w,"<Leave>", function(W) changeGamma(W, gamma=1.0))
 @ 
-
-\begin{figure}
-  \centering
-  \includegraphics[width=.6\textwidth]{fig-tcltk-toolbar.png}
-  \caption{Illustration of using \code{tkpack} to make a toolbar. }
-  \label{fig:fig-tcltk-toolbar}
-\end{figure}
 

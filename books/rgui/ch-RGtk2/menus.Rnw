@@ -56,7 +56,8 @@ action. This includes sensitivity and visibility, corresponding to the
 aesthetic properties like the \code{label} and icon (e.g.,
 \code{stock-id}), the \code{use-action-appearance} property must be
 set on the activatable widget:
-<<rgtk2-menus-action-appearance>>=
+<<rgtk2-menus-action-appearance, eval=FALSE>>=
+## JV: this gave an erro
 a["use-action-appearance"] <- TRUE
 @ 
 

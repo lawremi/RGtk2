@@ -605,7 +605,7 @@ pangoLabel <- gtkLabel()
 pangoLabel$setMarkup(paste("<span foreground='blue' size='x-small'>",
                            string, "</span>"))
 sapply(list(basicLabel, ellipsized, rightJustified, pangoLabel), 
-       g$packStart, expand = TRUE, fill = TRUE))
+       g$packStart, expand = TRUE, fill = TRUE)
 w$showAll()
 @ 
 \end{example}
@@ -1434,12 +1434,12 @@ signature of this callback is important, although we only use the
 data passed to the target widget. (Text, as we are passing text
 information.)
 
-<<>>=
+<<results=hide>>=
 w <- gtkWindow(); w['title'] <- "Drag Source"
 dragSourceWidget <-  gtkButton("Drag me")
 w$add(dragSourceWidget)
 
-QT <- gtkDragSourceSet(dragSourceWidget,
+gtkDragSourceSet(dragSourceWidget,
                  start.button.mask=c("button1-mask", "button3-mask"),
                  targets=widgetTargetTypes[["text"]],
                  actions="copy") ## can also be any of GdkDragAction
@@ -1468,16 +1468,16 @@ signal, so that a callback can be defined to handle the deletion of
 the data.
 
  
-<<>>=
+<<results=hide>>=
 w <- gtkWindow(); w['title'] <- "Drop Target"
 dropTargetWidget <- gtkButton("Drop here")
 w$add(dropTargetWidget)
 
-QT <- gtkDragDestSet(dropTargetWidget,
-                     flags="all", 
-                     targets=widgetTargetTypes[["text"]],
-                     actions="copy"
-                     )
+gtkDragDestSet(dropTargetWidget,
+               flags="all", 
+               targets=widgetTargetTypes[["text"]],
+               actions="copy"
+               )
 @
 
 When data is dropped, the widget emits the

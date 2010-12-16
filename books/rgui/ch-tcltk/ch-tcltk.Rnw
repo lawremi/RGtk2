@@ -75,11 +75,13 @@ programming GUIs for X11 easier and faster. Over the years, other
 graphical toolkits have evolved and surpassed this one, but \TK\/
 still has numerous users.
 
-\TK\/ has a large number of bindings available for it, e.g. Perl, Python,
-Ruby, and through the \pkg{tcltk} package, \R. The \pkg{tcltk} package
+\TK\/ has a large number of bindings available for it, e.g. \proglang{Perl}, \proglang{Python},
+\proglang{Ruby}, and through the \pkg{tcltk} package, \R. The \pkg{tcltk} package
 was developed by Peter Dalgaard, and  included in \R\/ from version
 1.1.0. Since then, the package has been used in a number of GUI 
-projects for \R,  most notably, the \pkg{Rcmdr} GUI.
+projects for \R,  most notably, the \pkg{Rcmdr} GUI. In addition, the
+\pkg{tcltk2} package provides additional bindings and bundles in some
+useful external TCL code.
 
 \TK\/ had a major change between version 8.4 and 8.5, with the latter
 introducing themed widgets. Many widgets were rewritten, and their API
@@ -91,7 +93,7 @@ functions to construct a similar widget. For example,
 of version 2.7.0, \R\/ for windows has been bundled with this \TK\/
 version, so there are no installation issues for that platform. As of
 writing, some linux distributions and \OSX\/ still come with 8.4 which
-would need to be upgraded for the following.
+would need to be upgraded for most of the following.
 
 
 

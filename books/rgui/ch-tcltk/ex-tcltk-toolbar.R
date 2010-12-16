@@ -10,7 +10,7 @@ library(tcltk)
 ### chunk number 2: 
 ###################################################
 w <- tktoplevel(); tkwm.title(w, "Toolbar example")
-f <- ttkframe(w, padding=c(5,5,5,5))
+f <- ttkframe(w, padding=c(3,3,12,12))
 tkpack(f, expand=TRUE, fill="both")
 
 
@@ -30,31 +30,40 @@ tkgrid.rowconfigure(f, 0, weight=0)
 tkgrid.rowconfigure(f, 1, weight=1)
 tkgrid.columnconfigure(f, 0, weight=1)
 ## some example to pack into the content area
-tkpack(ttklabel(contentFrame, text="Some content for the frame"))
+tkpack(ttklabel(contentFrame, text="Lorem ipsum dolor sit amet..."))
 
 
 ###################################################
 ### chunk number 5: 
 ###################################################
-tcl("ttk::style","configure","Toolbar.TButton", font="helvetica 12", padding=0, borderwidth=0)
+tcl("ttk::style", "configure", "Toolbar.TButton", 
+    font="helvetica 12", padding=0, borderwidth=0)
+
+
+###################################################
+### chunk number 6: 
+###################################################
 makeIcon <- function(parent, stockName, command=NULL) {
-  iconFile <- system.file("images", paste(stockName,"gif",sep="."), package="gWidgets")
+  iconFile <- system.file("images", 
+                          paste(stockName,"gif",sep="."), 
+                          package="gWidgets")
   if(nchar(iconFile) == 0) {
     b <- ttkbutton(parent, text=stockName, width=6)
   } else {
     iconName <- paste("::img::",stockName, sep="")
     tkimage.create("photo", iconName, file = iconFile)
-    b <- ttkbutton(parent, image=iconName, style="Toolbar.TButton", 
-                   text=stockName, compound="top", width=6)
+    b <- ttkbutton(parent, image=iconName, 
+                   style="Toolbar.TButton", text=stockName, 
+                   compound="top", width=6)
     if(!is.null(command))
-      tkconfigure(b,command=command)
+      tkconfigure(b, command=command)
   }
   return(b)
 }
 
 
 ###################################################
-### chunk number 6: 
+### chunk number 7: 
 ###################################################
 tkpack(makeIcon(tbFrame, "ok"), side="left")
 tkpack(makeIcon(tbFrame, "quit"), side="left")
@@ -62,19 +71,15 @@ tkpack(makeIcon(tbFrame, "cancel"), side="left")
 
 
 ###################################################
-### chunk number 7: 
+### chunk number 8: 
 ###################################################
-## something to make icons highlight as we mouse over
-tkbind(w,"<Enter>", function(W) {
-  if(as.character(tkwinfo("class",W)) == "Toolbar.TButton") {
+changeGamma <- function(W, gamma=1.0) {
+  if(as.character(tkwinfo("class",W)) == "TButton") {
     img <- tkcget(W,"image"=NULL)
-    tkconfigure(img, gamma=0.5)
-  }})
-
-tkbind(w,"<Leave>", function(W) {
-  if(as.character(tkwinfo("class",W)) == "Toolbar.TButton") {
-    img <- tkcget(W,"image"=NULL)
-    tkconfigure(img, gamma=1.0)
-  }})
+    tkconfigure(img, gamma=gamma)
+  }
+}
+tkbind(w,"<Enter>", function(W) changeGamma(W, gamma=0.5))
+tkbind(w,"<Leave>", function(W) changeGamma(W, gamma=1.0))
 
 

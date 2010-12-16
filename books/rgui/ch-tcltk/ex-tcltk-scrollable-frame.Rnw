@@ -19,40 +19,55 @@ addScrollbars <- function(parent, widget) {
   tkgrid.rowconfigure(parent, 0, weight=1)
 }
 @ 
-This example shows how to use a canvas widget to create a box
-container that scrolls when more items are added than will fit in the
-display area. The basic idea is that a frame is added to the canvas
-equipped with scrollbars using the \subcommand{create
-  window}{tkcanvas} subcommand. The binding to the \Event{Configure}
-event updates the scrollregion of the canvas widget to include the
-entire canvas. This grows, as items are added to the frame. This is
-modified from an example found at \url{
-  http://mail.python.org/pipermail/python-list/1999-June/005180.html}.
+%%
+This example\footnote{This example is modified from an example found
+  at \url{
+    http://mail.python.org/pipermail/python-list/1999-June/005180.html}}
+shows how to use a canvas widget to create a box container that
+scrolls when more items are added than will fit in the display
+area. The basic idea is that a frame is added to the canvas equipped
+with scrollbars using the \subcommand{create window}{tkcanvas}
+subcommand. 
 
-This constructor returns a box container that scrolls as more items are added. The parent passed in must use the grid manager for its children.
+There are two bindings to the \Event{Configure} event. The first
+udpates the scrollregion of the canvas widget to include the entire
+canvas, which grows as items are added to the frame. The second
+binding ensures the child window is the appropriate width when the
+canvas widget resizes. The height is not adjusted, as this is
+controlled by the scrolling.
+
 <<>>=
 scrollableFrame <- function(parent, width= 300, height=300) {
   canvasWidget <- 
     tkcanvas(parent,
              borderwidth=0, highlightthickness=0,
-             background="#e3e3e3", # match themed widgets
              width=width, height=height)
   addScrollbars(parent, canvasWidget)
 
   gp <- ttkframe(canvasWidget, padding=c(0,0,0,0))
   gpID <- tkcreate(canvasWidget, "window", 0, 0, anchor="nw", 
                    window=gp)
-  
-  tkbind(gp,"<Configure>",function() {  # updates scrollregion
+  tkitemconfigure(canvasWidget, gpID, width=width)
+  ## update scrollregion
+  tkbind(gp,"<Configure>",function() {  
     bbox <- tcl(canvasWidget, "bbox", "all")
     tcl(canvasWidget,"config", scrollregion=bbox)
   })
+  ## adjust "window" width when canvas is resized.
+  tkbind(canvasWidget, "<Configure>", function(W) {
+    width <- as.numeric(tkwinfo("width", W))
+    gpwidth <- as.numeric(tkwinfo("width", gp))
+    
+    if(gpwidth < width)
+      tkitemconfigure(canvasWidget, gpID, width=width)
+  })
 
+  
   return(gp)
 }
 @ 
 
-To use it, we create a simple GUI as follows:
+To use this, we create a simple GUI as follows:
 <<>>=
 w <- tktoplevel()
 tkwm.title(w,"Scrollable frame example")

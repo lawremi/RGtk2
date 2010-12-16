@@ -36,12 +36,29 @@ scrollableFrame <- function(parent, width= 300, height=300) {
   gp <- ttkframe(canvasWidget, padding=c(0,0,0,0))
   gpID <- tkcreate(canvasWidget, "window", 0, 0, anchor="nw", 
                    window=gp)
+  tkitemconfigure(canvasWidget, gpID, width=width)
   
   tkbind(gp,"<Configure>",function() {  # changes scrollregion when items added
-    bbox <- tcl(canvasWidget, "bbox", "all")
+    bbox <- tkbbox(canvasWidget, "all")
     tcl(canvasWidget,"config", scrollregion=bbox)
   })
+  
+  tkbind(canvasWidget, "<Configure>", function(W) {
+    width <- as.numeric(tkwinfo("width", W))
+    height <- as.numeric(tkwinfo("height", W))
+    
+    gpwidth <- as.numeric(tkwinfo("width", gp))
+    gpheight <- as.numeric(tkwinfo("height", gp))
+    
+    if(gpwidth < width)
+      tkitemconfigure(canvasWidget, gpID, width=width)
+#    if(gpheight < height)
+#      tkitemconfigure(canvasWidget, gpID, height=height)
+  })
 
+         
+
+         
   return(gp)
 }
 
@@ -61,7 +78,7 @@ gp <- scrollableFrame(g, 300, 300)
 ###################################################
 fontFamilies <- as.character(tkfont.families())
 fontFamilies <- fontFamilies[grep("^[[:alpha:]]", fontFamilies)] # skip odd named ones
-for(i in 1:length(fontFamilies)) {
+for(i in 1:50) {#length(fontFamilies)) {
   fontName <- paste("tmp",i,sep="")
   try(tkfont.create(fontName, family=fontFamilies[i], size=14), silent=TRUE)
   l <- ttklabel(gp, text=fontFamilies[i], font=fontName)

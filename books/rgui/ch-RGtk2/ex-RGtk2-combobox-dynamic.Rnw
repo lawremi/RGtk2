@@ -12,7 +12,8 @@ and populate it with some datasets that are provided with \R:
 <<print=FALSE>>=
 datasets <- c("mtcars", "Cars93")
 rdf <- rGtkDataFrame(datasets)
-dfCb <- gtkComboBoxEntryNewWithModel(rdf, text.column = 2)
+#dfCb <- gtkComboBoxEntryNewWithModel(rdf, text.column = 2)
+dfCb <- gtkComboBoxEntry(); dfCb$model <- rdf
 @ 
 
 For the variable names, we construct a combo box based on an

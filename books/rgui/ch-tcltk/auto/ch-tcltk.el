@@ -3,10 +3,9 @@
     (LaTeX-add-labels
      "sec:tcltk:overview"
      "sec:tcltk:basic-containers"
-     "sec:tcltk:controls"
-     "sec:tcltk:layout"
-     "sec:tcltk:extra-libraries"
-     "sec:tcltk:rcmdr"
-     "sec:tcltk:dynamic-graphics"
-     "sec:tcltk:eoc")))
+     "sec:tcltk:widgets"
+     "sec:tcltk:dialogs")
+    (TeX-add-symbols
+     '("VirtualEvent" 1)
+     '("Event" 1))))
 

@@ -10,7 +10,6 @@ labels and buttons, one primarily uses \function{tkconfigure} and
 
 
 
-
 \section{Selection Widgets}
 \label{sec:tcltk:selection-widgets}
 
@@ -64,42 +63,53 @@ cb <- ttkcheckbutton(f, variable=value,
 tkpack(cb)
 @ 
 
-To avoid using a global variable is not trivial here. There is no easy way to pass user data through to the callback, and there is no easy way to get the \R\/ object from the values passed through the \% substitution values. The variable holding the value can be found through
+To avoid using a global variable is not trivial here. There is no easy
+way to pass user data through to the callback, and there is no easy
+way to get the \R\/ object from the values passed through the \%
+substitution values. The variable holding the value can be found
+through
 <<>>=
 tkcget(cb, "variable"=NULL)
 @ 
 
-But manipulating that is difficult.  A more general strategy within
-\R\/ would be to use a function closure to encapsulate the variables
-or an environment to store the global values.
+But then, one needs a means to lookup the variable from this id. Here is a
+wrapper for the \function{tclVar} function and a lookup function that
+use an environment created by the \pkg{tcltk} package in place of a
+global variable.
 
-
-<<addBinding, echo=FALSE>>=
-## Not shown in text.
-## This following code is one way -- certainly not the best -- to add a callback that allows one to pass in user data. 
-## this is useful to avoid using global variables
-addBinding <- function(widget, event="<Button-1>", cb, userData=NULL) {
-  subArgs <- names(formals(cb)[-1])
-  subArgs <- if(length(subArgs)) paste(subArgs, collapse=",") else ""
-  expr <- paste("function(",subArgs,") {",
-                "h <- list(widget=widget, userData=userData);",
-                "cb(h",
-                if(subArgs != "") paste(",",subArgs, collase=""),
-                ")}", sep="")
-  callback <- eval(parse(text=expr))
-  tkbind(widget,event,callback)
+<<ourTclVar>>=
+ourTclVar <- function(...) {
+  var <- tclVar(...)
+  .TkRoot$env[[as.character(var)]] <- var
+  var
 }
-## The following uses \code{addBinding} to toggle the checkbutton value when the \kbd{return}
-## key is pressed when the widget has the focus.
-addBinding(widget=cb, event="<Return>",
-           cb= function(h)  {
-             tclvalue(h$userData) <- !as.numeric(tclvalue(h$userData))
-           },
-           userData=value)
-addBinding(widget=cb, userData=value, event="<Return>",
-           cb= function(h)  {
-             tclvalue(h$userData) <- !as.numeric(tclvalue(h$userData))
-           })
+## lookup function
+getTclVarById <- function(id) {
+  .TkRoot$env[[as.character(id)]]
+}
+@ 
+
+Assuming we used \function{ourTclVar} above, then the callback above
+could be defined to avoid a global variable by:
+
+<<ourTclVarExample, echo=FALSE>>=
+w <- tktoplevel(); tkwm.title(w, "Check button example")
+f <- ttkframe(w); tkpack(f, expand=TRUE, fill="both")
+value <- ourTclVar(TRUE)
+@
+
+<<>>=
+callback <- function(W) {
+  id <- tkcget(W, "variable"=NULL)
+  print(getTclVarById(id))
+}
+@ 
+
+<<echo=FALSE>>=
+labelVar <- tclVar("check button label")
+cb <- ttkcheckbutton(f, variable=value, 
+                     textvariable=labelVar, command=callback)
+tkpack(cb)
 @ 
 
 \subsection{Radio Buttons}

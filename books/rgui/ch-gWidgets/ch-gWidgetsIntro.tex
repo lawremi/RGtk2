@@ -2011,10 +2011,6 @@ needs to check within the handler for this. For example
      print("define handler here")
  })
 \end{Sinput}
-\begin{Soutput}
-[1] "DEBUG"
-[1] FALSE
-\end{Soutput}
 \end{Schunk}
 
 \subsection{Radio button widget}
@@ -2087,33 +2083,9 @@ could be part of a GUI to illustrate densities for various kernels.
    gradio(c("nrd0", "nrd", "ucv", "bcv", "SJ"), cont=lyt)
  lyt[2,1] <- "Kernel"
  lyt[2,2, anchor=c(-1,0)] <- gcheckboxgroup(kerns, cont=lyt)
-\end{Sinput}
-\begin{Soutput}
-[1] "DEBUG"
-[1] FALSE
-[1] "DEBUG"
-[1] FALSE
-[1] "DEBUG"
-[1] FALSE
-[1] "DEBUG"
-[1] FALSE
-[1] "DEBUG"
-[1] FALSE
-[1] "DEBUG"
-[1] FALSE
-[1] "DEBUG"
-[1] FALSE
-\end{Soutput}
-\begin{Sinput}
  lyt[3,1] <- "na.rm"
  lyt[3,2, anchor=c(-1,0)] <- 
    gcheckbox("na.rm", checked=TRUE, use.togglebutton=TRUE, cont=lyt)
-\end{Sinput}
-\begin{Soutput}
-[1] "DEBUG"
-[1] TRUE
-\end{Soutput}
-\begin{Sinput}
  lyt[4,2] <- gbutton("done", cont=lyt, handler=function(h,...) {
    out <- sapply(1:3, function(i) {
      widget <- lyt[i,2]

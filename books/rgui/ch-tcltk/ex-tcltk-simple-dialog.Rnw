@@ -16,16 +16,16 @@ library(tcltk)
 @
 Although not written as a function, we set aside the values that would
 be passed in were it.
-<<>>=
+<<results=hide>>=
 title <- "message dialog"
 message <- "Do you like tcltk so far?"
 parent <- NULL
-QT <- tkimage.create("photo", "::img::tclLogo", 
-                     file = system.file("images","tclp.gif",
-                       package="ProgGUIinR"))
+tkimage.create("photo", "::img::tclLogo", 
+               file = system.file("images","tclp.gif",
+                 package="ProgGUIinR"))
 @ 
 
-The main top-level window is then given a title, then withdrawn while
+The main top-level window is given a title, then withdrawn while
 the GUI is created. 
 <<>>=
 w <- tktoplevel(); tkwm.title(w, title)

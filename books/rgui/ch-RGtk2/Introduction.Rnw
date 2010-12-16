@@ -86,7 +86,7 @@ Single inheritance can be restrictive when a class performs multiple
 roles in a program. To circumvent this, \pkg{GTK+} adopts the popular
 concept of the \textit{interface}, which is essentially a contract
 that specifies which methods, properties and signals a class must
-implement. As with languages like Java and C#, a class can
+implement. As with languages like Java and \proglang{C\#}, a class can
 \textit{implement} multiple interfaces, and an interface can be
 composed of other interfaces. An interface allows the programmer to
 treat all instances of implementing classes in a similar way. However,
@@ -447,7 +447,10 @@ on a widget. We can retrieve the flags currently set on our window:
 window$flags()
 @ % output will be much prettier with next version of RGtk2
 %
-Flag values can be combined using \function{|}, the bitwise
+Flag values can be combined using 
+%% JV: \function{\\|}, 
+\verb+|+
+the bitwise
 \textit{OR}. The \function{\&} function, the bitwise \textit{AND},
 allows one to check whether a value belongs to a combination. For
 example, we could check whether our window is top-level:

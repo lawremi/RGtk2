@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.4.5)  22 OCT 2010 15:10
+This is pdfTeX, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.4.5)  26 OCT 2010 17:08
 entering extended mode
 **print-chapter
 (./print-chapter.tex
@@ -919,178 +919,168 @@ Overfull \hbox (31.60379pt too wide) in paragraph at lines 1950--1951
  []
 
 [29] [30]
-Overfull \hbox (26.20374pt too wide) in paragraph at lines 2110--2111
+Overfull \hbox (26.20374pt too wide) in paragraph at lines 2088--2089
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 2117--2118
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 2089--2090
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [31]
-Overfull \hbox (10.14209pt too wide) in paragraph at lines 2166--2177
+Overfull \hbox (10.14209pt too wide) in paragraph at lines 2138--2149
 \T1/pplx/b/n/10 Meth-ods[] \T1/pplx/m/n/10 The cur-rently se-lected value is re
 -turned through the \T1/cmtt/m/n/10 svalue \T1/pplx/m/n/10 method.
  []
 
-[32] [33] [34] [35] [36]
-Underfull \hbox (badness 10000) in paragraph at lines 2464--2466
+[32] [33] [34] [35]
+Underfull \hbox (badness 10000) in paragraph at lines 2436--2438
 
  []
 
-<fig-gWidgets-filter-example.png, id=145, 810.02625pt x 342.27875pt>
+<fig-gWidgets-filter-example.png, id=142, 810.02625pt x 342.27875pt>
 File: fig-gWidgets-filter-example.png Graphic file (type png)
 
-<use fig-gWidgets-filter-example.png>
-
-LaTeX Warning: Reference `fig:gWidgets-filter-example' on page 37 undefined on 
-input line 2478.
-
-[37 <./fig-gWidgets-filter-example.png>]
-Overfull \hbox (18.04187pt too wide) in paragraph at lines 2545--2557
+<use fig-gWidgets-filter-example.png> [36 <./fig-gWidgets-filter-example.png>]
+Overfull \hbox (18.04187pt too wide) in paragraph at lines 2517--2529
 \T1/pplx/m/n/10 tic-u-lar node and the ar-bi-trary ob-ject passed through the o
 p-tional \T1/cmtt/m/n/10 offspring.data
  []
 
-[38] [39]
-Underfull \hbox (badness 10000) in paragraph at lines 2635--2636
+[37] [38]
+Underfull \hbox (badness 10000) in paragraph at lines 2607--2608
 
  []
 
-[40] <ex-gWidgets-gtree.png, id=160, 431.6125pt x 333.245pt>
+[39] <ex-gWidgets-gtree.png, id=157, 431.6125pt x 333.245pt>
 File: ex-gWidgets-gtree.png Graphic file (type png)
 
-<use ex-gWidgets-gtree.png>
+<use ex-gWidgets-gtree.png> [40 <./ex-gWidgets-gtree.png>]
 
 LaTeX Warning: Reference `sec:GUI:actions' on page 41 undefined on input line 2
-746.
+718.
 
-[41 <./ex-gWidgets-gtree.png>]
-Overfull \hbox (20.80368pt too wide) in paragraph at lines 2775--2776
+
+Overfull \hbox (20.80368pt too wide) in paragraph at lines 2747--2748
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[42]
-Overfull \hbox (10.00357pt too wide) in paragraph at lines 2856--2857
+[41] [42]
+Overfull \hbox (10.00357pt too wide) in paragraph at lines 2828--2829
 [][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 2868--2869
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 2840--2841
 [][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (2.88994pt too wide) in paragraph at lines 2877--2882
+Overfull \hbox (2.88994pt too wide) in paragraph at lines 2849--2854
 \T1/pplx/b/n/10 Menubar and Tool-bar Meth-ods[] \T1/pplx/m/n/10 The main meth-o
 ds for tool-bar and menubar
  []
 
-[43]
-Underfull \hbox (badness 10000) in paragraph at lines 2898--2900
+
+Underfull \hbox (badness 10000) in paragraph at lines 2870--2872
 
  []
 
-[44]
-Overfull \hbox (8.31314pt too wide) in paragraph at lines 2969--2975
+[43] [44
+
+]
+Overfull \hbox (8.31314pt too wide) in paragraph at lines 2941--2947
 \T1/pplx/m/n/10 Some toolk-its sup-port an em-bed-dable graph-ics de-vice (\T1/
 cmtt/m/n/10 gWidgetsRGtk2 \T1/pplx/m/n/10 through
  []
 
-[45
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 3024--3026
+[45]
+Underfull \hbox (badness 10000) in paragraph at lines 2996--2998
 
  []
 
 <fig-gWidgets-spotfire-gui.png, id=178, 782.925pt x 819.06pt>
 File: fig-gWidgets-spotfire-gui.png Graphic file (type png)
 
-<use fig-gWidgets-spotfire-gui.png>
-
-LaTeX Warning: Reference `fig:gWidgets-spotfire-gui' on page 46 undefined on in
-put line 3039.
-
-[46 <./fig-gWidgets-spotfire-gui.png>]
-Overfull \hbox (26.20374pt too wide) in paragraph at lines 3094--3095
+<use fig-gWidgets-spotfire-gui.png> [46 <./fig-gWidgets-spotfire-gui.png>]
+Overfull \hbox (26.20374pt too wide) in paragraph at lines 3066--3067
 [][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 3108--3109
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 3080--3081
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [47]
-Overfull \hbox (10.00357pt too wide) in paragraph at lines 3121--3122
+Overfull \hbox (10.00357pt too wide) in paragraph at lines 3093--3094
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (20.80368pt too wide) in paragraph at lines 3132--3133
+Overfull \hbox (20.80368pt too wide) in paragraph at lines 3104--3105
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (74.80423pt too wide) in paragraph at lines 3134--3135
+Overfull \hbox (74.80423pt too wide) in paragraph at lines 3106--3107
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (42.4039pt too wide) in paragraph at lines 3166--3167
+Overfull \hbox (42.4039pt too wide) in paragraph at lines 3138--3139
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [48]
-Overfull \hbox (26.20374pt too wide) in paragraph at lines 3219--3220
+Overfull \hbox (26.20374pt too wide) in paragraph at lines 3191--3192
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [49]
-Overfull \hbox (37.09181pt too wide) in paragraph at lines 3307--3315
+Overfull \hbox (37.09181pt too wide) in paragraph at lines 3279--3287
 \T1/pplx/m/n/10 changed), \T1/cmtt/m/n/10 addHandlerClicked\T1/pplx/m/n/10 , \T
 1/cmtt/m/n/10 addHandlerDoubleclick\T1/pplx/m/n/10 , \T1/cmtt/m/n/10 addHandler
 ColumnClicked\T1/pplx/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3307--3315
+Underfull \hbox (badness 10000) in paragraph at lines 3279--3287
 
  []
 
 [50]
-Overfull \hbox (26.20374pt too wide) in paragraph at lines 3362--3363
+Overfull \hbox (26.20374pt too wide) in paragraph at lines 3334--3335
 [][][][][][][][][][][][][][][][][][][] 
  []
 
 [51]
-Underfull \hbox (badness 10000) in paragraph at lines 3466--3474
+Underfull \hbox (badness 10000) in paragraph at lines 3438--3446
 
  []
 
 [52] [53]
-Overfull \hbox (27.83566pt too wide) in paragraph at lines 3583--3594
+Overfull \hbox (27.83566pt too wide) in paragraph at lines 3555--3566
 \T1/pplx/m/n/10 el-e-ment spec-i-fies the name of a pre-vi-ous com-po-nent, the
 n the func-tion \T1/cmtt/m/n/10 depends.FUN
  []
 
 
-Overfull \hbox (11.62074pt too wide) in paragraph at lines 3583--3594
+Overfull \hbox (11.62074pt too wide) in paragraph at lines 3555--3566
 \T1/pplx/m/n/10 This uses the \T1/cmtt/m/n/10 addHandlerXXX \T1/pplx/m/n/10 nam
 es with a de-fault value of \T1/cmtt/m/n/10 addHandlerChanged\T1/pplx/m/n/10 .
  []
 
 
-Overfull \hbox (25.64929pt too wide) in paragraph at lines 3583--3594
+Overfull \hbox (25.64929pt too wide) in paragraph at lines 3555--3566
 \T1/pplx/m/n/10 value re-turned by \T1/cmtt/m/n/10 svalue \T1/pplx/m/n/10 when 
 called on the wid-get spec-i-fied through \T1/cmtt/m/n/10 depends.on\T1/pplx/m/
 n/10 .
  []
 
 [54]
-Overfull \hbox (37.00385pt too wide) in paragraph at lines 3653--3654
+Overfull \hbox (37.00385pt too wide) in paragraph at lines 3625--3626
 [][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
@@ -1109,7 +1099,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 Here is how much of TeX's memory you used:
  8551 strings out of 94073
  111515 string characters out of 1164798
- 241763 words of memory out of 1500000
+ 242917 words of memory out of 1500000
  11699 multiletter control sequences out of 10000+50000
  72444 words of font info for 134 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
@@ -1132,7 +1122,7 @@ ist/fonts/type1/public/cm-super/sftt1728.pfb></opt/local/share/texmf-dist/fonts
 /type1/urw/palatino/uplb8a.pfb></opt/local/share/texmf-dist/fonts/type1/urw/pal
 atino/uplr8a.pfb></opt/local/share/texmf-dist/fonts/type1/urw/palatino/uplri8a.
 pfb>
-Output written on print-chapter.pdf (55 pages, 757406 bytes).
+Output written on print-chapter.pdf (55 pages, 755900 bytes).
 PDF statistics:
  272 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)

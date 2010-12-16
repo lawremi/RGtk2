@@ -70,11 +70,11 @@ The use of uuencoded gif images allows one to store image data as
 text. The variable \code{.imageData} contains this for the background
 image of our entry widget. The following commands create two images,
 the latter to display when the widget has the focus.
-<<>>=
-QT <- tkimage.create("photo","::image::search1", 
-                     data=.imageData, format="gif -index 0")
-QT <- tkimage.create("photo","::image::search2", 
-                     data=.imageData, format="gif -index 1")
+<<results=hide>>=
+tkimage.create("photo","::image::search1", 
+               data=.imageData, format="gif -index 0")
+tkimage.create("photo","::image::search2", 
+               data=.imageData, format="gif -index 1")
 @ 
 
 The following command creates a new style, \code{Search.field}, which has an image specified for when it is drawn, another for when it has the focus, a border set so that the magnifying glass icon isn't written over with text, and a value of \code{sticky} so that it stretches from left to right -- but not top to bottom -- when resized.

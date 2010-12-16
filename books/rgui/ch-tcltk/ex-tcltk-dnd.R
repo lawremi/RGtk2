@@ -19,11 +19,11 @@ tkpack(bDrop)
 
 
 ###################################################
-### chunk number 3: 
+### chunk number 3: dndGlobalVariables
 ###################################################
-.dragging <- FALSE
-.lastWidgetID <- ""
-.dragValue <- ""
+.dragging <- FALSE                 # currently dragging?
+.lastWidgetID <- ""                # last widget dragged over
+.dragValue <- ""                   # value to transfer
 
 
 ###################################################
@@ -32,8 +32,8 @@ tkpack(bDrop)
 ## make a drag label to pop up during dragging to show text
 ## label idea from http://www.codebykevin.com/opensource/xplat_oss.html
 ## not shown in text, but here as an example if desired
-QT <- tclServiceMode(FALSE)
-QT <- tcl("image", "create", "photo", "::dnd::icon",
+tclServiceMode(FALSE)
+tcl("image", "create", "photo", "::dnd::icon",
     data=paste(                         # uuencode gif image of document
       "R0lGODlhEAAQALMAAAAAAMbGxv//////////////////////////////////",
       "/////////////////////yH5BAEAAAEALAAAAAAQABAAAAQwMMhJ6wQ4YyuB",
@@ -43,7 +43,7 @@ dragLabel <- tktoplevel()
 tkwm.title(dragLabel, "")
 tkwm.resizable(dragLabel, FALSE,FALSE)  # no size handler in Mac OS X
 tkwm.withdraw(dragLabel)                # minimize window
-QT <- tclServiceMode(TRUE)                    # back to redrawin
+tclServiceMode(TRUE)                    # back to redrawin
 tkwm.overrideredirect(dragLabel, TRUE)  # Should remove title bar (not in Mac OS X)
 ## can set this using tkconfigure
 dragLabel_label <- ttklabel(dragLabel,image="::dnd::icon", text="this space for rent", compound="left")
@@ -51,7 +51,7 @@ tkpack(dragLabel_label)
 
 
 ###################################################
-### chunk number 5: 
+### chunk number 5: buttonPressEvent
 ###################################################
 tkbind(bDrag,"<ButtonPress-1>",function(W) {
   .dragging <<-  TRUE
@@ -70,24 +70,23 @@ tkbind(bDrag,"<ButtonPress-1>",function(W) {
 ###################################################
 ### chunk number 7: 
 ###################################################
-tkbind(bDrag,"<B1-Motion>",function(W,X,Y) {
+tkbind(bDrag, "<B1-Motion>", function(W, X, Y) {
   if(!.dragging) return()
-  ## set cursor
-  tkconfigure(W,cursor="coffee_mug") ## see cursor help page in API for more
-  ## For custom cursors cf. http://wiki.tcl.tk/8674. This failed with OS X. Note "
-  ##  .Tcl(paste(as.character(bDrag$ID),' configure -cursor "@', getwd(),'/cursor.xbm black"', sep=""))
+  ## see cursor help page in API for more options
+  ## For custom cursors cf. http://wiki.tcl.tk/8674. 
+  tkconfigure(W, cursor="coffee_mug")   # set cursor
 
   w = tkwinfo("containing", X, Y)       # widget mouse is over
-  if(as.logical(tkwinfo("exists",w)))   # does widget still exist?
+  if(as.logical(tkwinfo("exists", w)))  # does widget exist?
     tkevent.generate(w, "<<DragOver>>")
 
   ## generate drag leave if we left last widget
-  if(as.logical(tkwinfo("exists",w)) &&
+  if(as.logical(tkwinfo("exists", w)) &&
      length(as.character(w)) > 0 &&
      length(as.character(.lastWidgetID)) > 0
      ) {
     if(as.character(w)[1] != .lastWidgetID) 
-      tkevent.generate(.lastWidgetID,"<<DragLeave>>")
+      tkevent.generate(.lastWidgetID, "<<DragLeave>>")
   }
   .lastWidgetID <<- as.character(w)
 })
@@ -104,17 +103,18 @@ tkbind(bDrag,"<B1-Motion>",function(W,X,Y) {
 ###################################################
 ### chunk number 9: 
 ###################################################
- tkbind(bDrag,"<ButtonRelease-1>",function(W, X, Y) {
+ tkbind(bDrag, "<ButtonRelease-1>", function(W, X, Y) {
   if(!.dragging) return()
-  w = tkwinfo("containing", X, Y)
+  w <- tkwinfo("containing", X, Y)
     
   if(as.logical(tkwinfo("exists", w))) {
-    tkevent.generate(w,"<<DragLeave>>")
-    tkevent.generate(w,"<<DragDrop>>")
-    tkconfigure(w,cursor="")
+    tkevent.generate(w, "<<DragLeave>>")
+    tkevent.generate(w, "<<DragDrop>>")
+    tkconfigure(w, cursor="")
   }
   .dragging <<- FALSE
-  tkconfigure(W,cursor="")
+  .lastWidgetID <<- "" 
+  tkconfigure(W, cursor="")
 })
 
 
@@ -130,17 +130,17 @@ tkbind(bDrag,"<B1-Motion>",function(W,X,Y) {
 ###################################################
 tkbind(bDrop,"<<DragOver>>",function(W) {
   if(.dragging) 
-    tkconfigure(W,default="active")
+    tkconfigure(W, default="active")
 })
 
 
 ###################################################
 ### chunk number 12: 
 ###################################################
-tkbind(bDrop,"<<DragLeave>>",function(W) {
+tkbind(bDrop,"<<DragLeave>>", function(W) {
   if(.dragging)  {
     tkconfigure(W, cursor="")
-     tkconfigure(W,default="normal")  
+    tkconfigure(W, default="normal")  
    }
 })
 
@@ -148,8 +148,8 @@ tkbind(bDrop,"<<DragLeave>>",function(W) {
 ###################################################
 ### chunk number 13: 
 ###################################################
-tkbind(bDrop,"<<DragDrop>>",function(W) {
-  tkconfigure(W, text= .dragValue)
+tkbind(bDrop,"<<DragDrop>>", function(W) {
+  tkconfigure(W, text=.dragValue)
   .dragValue <- ""
 })
 

@@ -1,10 +1,9 @@
 ###################################################
 ### chunk number 1: 
 ###################################################
-data("Cars93", package="MASS")
-dfNames <- c("mtcars", "Cars93")
-dfModel <- rGtkDataFrame(dfNames)
-dfCb <- gtkComboBoxEntryNewWithModel(dfModel, text.column=0)
+datasets <- c("mtcars", "Cars93")
+rdf <- rGtkDataFrame(datasets)
+dfCb <- gtkComboBoxEntryNewWithModel(rdf, text.column = 2)
 
 
 ###################################################
@@ -12,21 +11,25 @@ dfCb <- gtkComboBoxEntryNewWithModel(dfModel, text.column=0)
 ###################################################
 variableNames <- character(0)
 varModel <- rGtkDataFrame(variableNames)
-varCb <- gtkComboBoxNewWithModel(varModel)
+varCb <- gtkComboBox(varModel)
 cr <- gtkCellRendererText()
 varCb$packStart(cr)
-varCb$addAttribute(cr, "text", 0)
+varCb$addAttribute(cr, "text", 0)       # column 1
 
 
 ###################################################
-### chunk number 3: 
+### chunk number 3: notShown
 ###################################################
+## Our basic GUI uses a table for layout. Comboboxes fill and expand to fill 
+## the cell.
 tbl <- gtkTableNew(rows=2, columns=2, homogeneous=FALSE)
-tbl$attach(gtkLabel("Data frame"), left.attach=0,1, top.attach=0,1)
-tbl$attach(dfCb, left.attach=1,2, top.attach=0,1)
+tbl$attach(gtkLabel("Data frame"), left.attach=0,1, top.attach=0,1, 
+           xoptions = 0, yoptions = 0, xpadding = 5)
+tbl$attach(dfCb, left.attach=1,2, top.attach=0,1, yoptions = 0)
 
-tbl$attach(gtkLabel("Variables"), left.attach=0,1, top.attach=1,2)
-tbl$attach(varCb, left.attach=1,2, top.attach=1,2)
+tbl$attach(gtkLabel("Variables"), left.attach=0,1, top.attach=1,2, 
+           xoptions = 0, yoptions = 0, xpadding = 5)
+tbl$attach(varCb, left.attach=1,2, top.attach=1,2, yoptions = 0)
 
 
 ###################################################
@@ -56,22 +59,11 @@ newDfSelected <- function(varCb, w, ...) {
     varCb$setActive(-1)
   }
 }
-
-
-###################################################
-### chunk number 6: 
-###################################################
-QT <- gSignalConnect(dfCb, "changed", f=newDfSelected,
-                     user.data.first=TRUE,
-                     data=varCb)
-QT <- gSignalConnect(dfCb$getChild(), "activate", f=newDfSelected,
-                     user.data.first=TRUE,
-                     data=varCb)
-QT <- gSignalConnect(varCb, "changed", f=function(w, ...) {
-  model <- w$getModel()
-  iter <- w$getActiveIter()
-  val <- model$getValue(iter$iter, column=0)
-  print(val$value)                      # add real purpose
-})
+gSignalConnect(dfCb, "changed", f=newDfSelected,
+               user.data.first=TRUE,
+               data=varCb)
+gSignalConnect(dfCb$getChild(), "activate", f=newDfSelected,
+               user.data.first=TRUE,
+               data=varCb)
 
 

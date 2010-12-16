@@ -85,9 +85,9 @@ tkadd(fileMenu, "command", label="Quit",
 @ 
 
 The edit menu has an undo and redo item. For illustration purposes we add an icon to the undo item.
-<<>>=
+<<results=hide>>=
 img <- system.file("images/up.gif",package="gWidgets")
-QT <- tkimage.create("photo", "::img::undo", 
+tkimage.create("photo", "::img::undo", 
                      file = img)
 tkadd(editMenu, "command", label="Undo",
       image="::img::undo", compound="left",
