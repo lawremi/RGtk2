@@ -3,10 +3,10 @@
 all: sweave stangle latex
 	
 sweave: 	
-	R CMD Sweave ch-*.Rnw
+	R64 CMD Sweave ch-*.Rnw
 
 stangle: 
-	R CMD Stangle ch-*.Rnw
+	R64 CMD Stangle ch-*.Rnw
 
 latex:  
 	pdflatex print-chapter
