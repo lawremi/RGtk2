@@ -1,17 +1,16 @@
 \documentclass[article,shortnames]{jss}
 %\usepackage{thumbpdf}
-\usepackage{comment}
 
 \author{Michael Lawrence\\
 Fred Hutchinson Cancer Research Center \And Duncan Temple Lang\\
 University of California, Davis}
 
-\title{\pkg{RGtk2}:\\A Graphical User Interface Toolkit for
-\proglang{R}}
+
+\title{\pkg{RGtk2}: A Graphical User Interface Toolkit for \proglang{R}}
+\Plaintitle{RGtk2: A Graphical User Interface Toolkit for R}
+\Shorttitle{\pkg{RGtk2}: A GUI Toolkit for \proglang{R}}
 
 \Plainauthor{Michael Lawrence, Duncan Temple Lang}
-\Plaintitle{\pkg{RGtk2}: A GUI Toolkit for \proglang{R}} 
-
 
 %DTL2:
 % A general comment: some of the descriptions are a little cryptic
@@ -2219,7 +2218,7 @@ modules are \code{GType}, \code{GSignal}, and the base
 following sections. For further details, please see the \pkg{GObject}
 documentation \citep{gobject}.
 
-\subsubsection{\code{GType}}
+\subsubsection[GType]{\code{GType}}
 % DTL: This is very detailed but more in a factual way than an
 % informative way, especially the GObject material. When reading it, I
 % wasn't certain what was going on and I know this stuff. In fact,
@@ -2319,7 +2318,7 @@ where the values are intended to be combined bitwise (via \code{AND} and \code{O
 operations) to represent the presence of one or more settings.
 %DTL2: technically not all have to be powers of two.
 
-\subsubsection{\code{GSignal}}
+\subsubsection[GSignal]{\code{GSignal}}
 
 One of the defining characteristics of \pkg{GObject} is its emphasis
 on \emph{signals}, which were introduced earlier in this paper in the
@@ -2961,12 +2960,10 @@ as \textsl{patch} or difference files works fairly well.
 came long after the introduction of \pkg{RGtk}, and it was decided
 that there were not enough advantages over \proglang{defs} to justify
 a
-switch. A second \proglang{XML}-based format, \proglang{GIDL}
-\citep{gidl}, has
+switch. A second \proglang{XML}-based format, \proglang{GIR}
+\citep{gobject-introspection}, has
 recently been developed as a unifying standard for representing
-\pkg{GObject}-based API's. Although no official tools for generating
-\proglang{GIDL} yet exist, it holds promise for being accepted as a
-standard, as it has the backing of \pkg{GTK+} developers. The use of
+\pkg{GObject}-based API's.  The use of
 \proglang{XML} as input to our code generation system would substitute
 the
 dependency on the \pkg{RSPython} package with the \pkg{XML} package,
