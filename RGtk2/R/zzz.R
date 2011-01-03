@@ -68,7 +68,7 @@ function(libname, pkgname)
     choice <- menu(paste(c("Install", "Do not install"), dep_name), T, 
       paste("Need", dep_name, "? (Restart R after installing)"))
     if (choice == 1) {
-      path <- file.path(tempdir(), basename(dep_url))
+      path <- file.path(tempdir(), basename(sub("\\?.*", "", dep_url)))
       if (download.file(dep_url, path, mode="wb") > 0)
         stop("Failed to download ", dep_name)
       installer(path)
@@ -77,7 +77,7 @@ function(libname, pkgname)
   }
   
   install_all <- function() {
-    if (.Platform$OS.type == "windows")
+    if (.Platform$OS.type == "windows" && .Platform$r_arch == "i386")
       config <- windows_config
     else if (length(grep("darwin", R.version$platform))) 
       config <- darwin_config
