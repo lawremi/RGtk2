@@ -1,7 +1,4 @@
 #include "RGtk2/gtk.h"
-#ifdef HAVE_LIBGLADE
-#include "RGtk2/libglade.h"
-#endif
 
 #ifdef G_OS_WIN32
 #include <windows.h>
@@ -129,7 +126,7 @@ R_gtkInit(long *rargc, char **rargv, Rboolean *success)
 
     /* Experimental timer-based piping to a file descriptor */
 #ifdef G_THREADS_ENABLED
-#ifndef FREEBSD
+#ifndef __FreeBSD__
     if (!pipe(fds)) {
       ifd = fds[0];
       ofd = fds[1];
@@ -164,6 +161,10 @@ R_gtkInit(long *rargc, char **rargv, Rboolean *success)
   
   g_value_register_transform_func(G_TYPE_DOUBLE, G_TYPE_STRING,
                                   transformDoubleString);
+  g_value_register_transform_func(G_TYPE_INT, G_TYPE_STRING,
+                                  transformIntString);
+  g_value_register_transform_func(G_TYPE_BOOLEAN, G_TYPE_STRING,
+                                  transformBooleanString);
   
   *success = TRUE;
 }
@@ -174,11 +175,9 @@ void
 R_init_RGtk2(DllInfo *dll)
 {
   #include "exports/gobjectExports.c"
+  #include "exports/gioExports.c"
   #include "exports/atkExports.c"
   #include "exports/cairoExports.c"
   #include "exports/pangoExports.c"
   #include "exports/gtkExports.c"
-  #ifdef HAVE_LIBGLADE
-  #include "exports/libgladeExports.c"
-  #endif
 }

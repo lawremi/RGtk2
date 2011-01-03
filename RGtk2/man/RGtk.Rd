@@ -29,9 +29,6 @@ such as \code{\link{GtkButton}} or \code{\link{GtkTextView}}.}
 \item{\link{Cairo}}{Cairo is a 2D graphics library with support for multiple output 
 devices. Currently supported output targets include the X Window System, win32, 
 and image buffers.}
-\item{\link{Libglade}}{Libglade loads and parses XML descriptions of user interfaces 
-at runtime. It also provides functions that can be used to connect signal handlers 
-to parts of the interface.}
 }
 
 RGtk2 also partially binds some lower-level libraries in order to support the bindings 
@@ -45,6 +42,11 @@ R objects wrapping external objects extend the \code{\link{RGtkObject}} class.
 As described above, RGtk2 binds many libraries beyond GTK+ itself. Thus, it can 
 serve many purposes besides GUI construction. For example, \link{GDKPixbuf} 
 and \link{Cairo} allow the R user to produce arbitary high-quality graphics.
+}
+\references{
+  Michael Lawrence, Duncan Temple Lang (2010). RGtk2: A Graphical User
+  Interface Toolkit for R. Journal of Statistical Software, 37(8),
+  1-52. \url{http://www.jstatsoft.org/v37/i08/}.
 }
 \author{Michael Lawrence, with excerpts from library documentation}
 \keyword{interface}
