@@ -1,7 +1,7 @@
 #ifndef S_GTK_USERFUNCS_H
 #define S_GTK_USERFUNCS_H
 #include <RGtk2/gobject.h>
-#include "RGtk2/gtk.h"
+#include <RGtk2/gtk.h>
 
 
   void

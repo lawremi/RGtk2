@@ -1,7 +1,7 @@
 #ifndef S_GIO_CLASSES_H
 #define S_GIO_CLASSES_H
 #include <RGtk2/gobject.h>
-#include "RGtk2/gio.h"
+#include <RGtk2/gio.h>
 
 #if GIO_CHECK_VERSION(2, 16, 0)
 void

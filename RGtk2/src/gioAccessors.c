@@ -1,5 +1,5 @@
 #include <RGtk2/gobject.h>
-#include "RGtk2/gio.h"
+#include <RGtk2/gio.h>
 
 USER_OBJECT_
 S_GFileAttributeInfoListGetInfos (USER_OBJECT_ s_obj)

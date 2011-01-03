@@ -1,7 +1,7 @@
 #ifndef S_CAIRO_USERFUNCS_H
 #define S_CAIRO_USERFUNCS_H
 #include <RGtk2/gobject.h>
-#include "RGtk2/cairo.h"
+#include <RGtk2/cairo.h>
 
 
   cairo_status_t

@@ -1,7 +1,7 @@
 #ifndef S_GIO_USERFUNCS_H
 #define S_GIO_USERFUNCS_H
 #include <RGtk2/gobject.h>
-#include "RGtk2/gio.h"
+#include <RGtk2/gio.h>
 
 
 #if GIO_CHECK_VERSION(2, 16, 0)

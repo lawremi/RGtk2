@@ -1,7 +1,7 @@
 #ifndef S_PANGO_USERFUNCS_H
 #define S_PANGO_USERFUNCS_H
 #include <RGtk2/gobject.h>
-#include "RGtk2/pango.h"
+#include <RGtk2/pango.h>
 
 
   gboolean

@@ -1741,6 +1741,20 @@ void transformDoubleString(const GValue *src, GValue *dst) {
   g_value_set_string(dst, formatStr);
 }
 
+void transformIntString(const GValue *src, GValue *dst) {
+  int w;
+  int n = g_value_get_int(src);
+  formatInteger(&n, 1, &w);
+  g_value_set_string(dst, EncodeInteger(n, w));
+}
+
+void transformBooleanString(const GValue *src, GValue *dst) {
+  int w;
+  gboolean n = g_value_get_boolean(src);
+  formatLogical(&n, 1, &w);
+  g_value_set_string(dst, EncodeLogical(n, w));
+}
+
 /* GLib enum runtime type info support (needed by GIO) */
 
 GType

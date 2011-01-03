@@ -1,5 +1,5 @@
 #include <RGtk2/gobject.h>
-#include "RGtk2/pango.h"
+#include <RGtk2/pango.h>
 
 #include "pangoFuncs.h"
 

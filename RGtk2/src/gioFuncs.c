@@ -1,5 +1,5 @@
 #include <RGtk2/gobject.h>
-#include "RGtk2/gio.h"
+#include <RGtk2/gio.h>
 
 #include "gioFuncs.h"
 

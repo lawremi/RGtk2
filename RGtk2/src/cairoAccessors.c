@@ -1,5 +1,5 @@
 #include <RGtk2/gobject.h>
-#include "RGtk2/cairo.h"
+#include <RGtk2/cairo.h>
 
 USER_OBJECT_
 S_CairoMatrixGetXx (USER_OBJECT_ s_obj)

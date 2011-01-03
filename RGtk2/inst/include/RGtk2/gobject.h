@@ -502,6 +502,8 @@ void GSListFreeStrings(GSList *gslist);
 void GListFreeStrings(GList *glist);
 
 void transformDoubleString(const GValue *src, GValue *dst);
+void transformIntString(const GValue *src, GValue *dst);
+void transformBooleanString(const GValue *src, GValue *dst);
 
 /* GSeekType enum runtime type info support (needed by GIO) */
 

@@ -1,5 +1,5 @@
 #include <RGtk2/gobject.h>
-#include "RGtk2/gdk.h"
+#include <RGtk2/gdk.h>
 
 #include "gdkFuncs.h"
 

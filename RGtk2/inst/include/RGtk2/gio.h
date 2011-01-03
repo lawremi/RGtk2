@@ -3,10 +3,10 @@
 
 #include <RGtk2/gobject.h>
 
+#define GIO_CHECK_VERSION GLIB_CHECK_VERSION
+
 #if GLIB_CHECK_VERSION(2, 16, 0)
 #include <gio/gio.h>
-
-#define GIO_CHECK_VERSION GLIB_CHECK_VERSION
 
 #include <RGtk2/gioUserFuncs.h>
 #include <RGtk2/gioClasses.h>

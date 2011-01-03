@@ -1,5 +1,5 @@
 #include <RGtk2/gobject.h>
-#include "RGtk2/gtk.h"
+#include <RGtk2/gtk.h>
 
 USER_OBJECT_
 S_GtkAdjustmentGetValue (USER_OBJECT_ s_obj)

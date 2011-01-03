@@ -1,7 +1,7 @@
 #ifndef S_GDK_USERFUNCS_H
 #define S_GDK_USERFUNCS_H
 #include <RGtk2/gobject.h>
-#include "RGtk2/gdk.h"
+#include <RGtk2/gdk.h>
 
 
   void

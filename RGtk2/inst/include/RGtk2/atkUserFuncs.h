@@ -1,7 +1,7 @@
 #ifndef S_ATK_USERFUNCS_H
 #define S_ATK_USERFUNCS_H
 #include <RGtk2/gobject.h>
-#include "RGtk2/atk.h"
+#include <RGtk2/atk.h>
 
 
   gint

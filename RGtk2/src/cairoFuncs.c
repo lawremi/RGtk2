@@ -1,5 +1,5 @@
 #include <RGtk2/gobject.h>
-#include "RGtk2/cairo.h"
+#include <RGtk2/cairo.h>
 
 #include "cairoFuncs.h"
 
@@ -1101,7 +1101,6 @@ S_cairo_glyph_extents(USER_OBJECT_ s_cr, USER_OBJECT_ s_glyphs)
 
 
   _result = retByVal(_result, "extents", toRPointerWithFinalizer(extents, "CairoTextExtents", (RPointerFinalizer) g_free), NULL);
-    CLEANUP(cairo_glyph_free, ((cairo_glyph_t*)glyphs));;
   ;
 
   return(_result);
@@ -1134,7 +1133,6 @@ S_cairo_glyph_path(USER_OBJECT_ s_cr, USER_OBJECT_ s_glyphs)
 
   cairo_glyph_path(cr, glyphs, num_glyphs);
 
-    CLEANUP(cairo_glyph_free, ((cairo_glyph_t*)glyphs));;
 
   return(_result);
 }
@@ -4138,8 +4136,6 @@ S_cairo_show_text_glyphs(USER_OBJECT_ s_cr, USER_OBJECT_ s_utf8, USER_OBJECT_ s_
 
   cairo_show_text_glyphs(cr, utf8, utf8_len, glyphs, num_glyphs, clusters, num_clusters, cluster_flags);
 
-    CLEANUP(cairo_glyph_free, ((cairo_glyph_t*)glyphs));;
-    CLEANUP(cairo_text_cluster_free, ((cairo_text_cluster_t*)clusters));;
 #else
   error("cairo_show_text_glyphs exists only in cairo >= 1.8.0");
 #endif

@@ -1,7 +1,7 @@
 #ifndef S_GTK_CLASSES_H
 #define S_GTK_CLASSES_H
 #include <RGtk2/gobject.h>
-#include "RGtk2/gtk.h"
+#include <RGtk2/gtk.h>
 
 void
 S_gtk_about_dialog_class_init(GtkAboutDialogClass * c, SEXP e); 

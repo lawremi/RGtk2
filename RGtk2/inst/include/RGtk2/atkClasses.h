@@ -1,7 +1,7 @@
 #ifndef S_ATK_CLASSES_H
 #define S_ATK_CLASSES_H
 #include <RGtk2/gobject.h>
-#include "RGtk2/atk.h"
+#include <RGtk2/atk.h>
 
 void
 S_atk_hyperlink_class_init(AtkHyperlinkClass * c, SEXP e); 

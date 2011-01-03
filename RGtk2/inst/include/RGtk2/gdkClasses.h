@@ -1,7 +1,7 @@
 #ifndef S_GDK_CLASSES_H
 #define S_GDK_CLASSES_H
 #include <RGtk2/gobject.h>
-#include "RGtk2/gdk.h"
+#include <RGtk2/gdk.h>
 
 void
 S_gdk_bitmap_class_init(GdkDrawableClass * c, SEXP e); 
