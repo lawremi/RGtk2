@@ -61,7 +61,7 @@ tr <- ttktreeview(f, displaycolumns="#all", columns=1)
 addScrollbars(f, tr)                    
 @ 
 
-We configure our columns headers and set a minimum
+We configure our column headers and set a minimum
 width below. Recall, the tree column is designated \qcode{\#0}.
 <<columnConfiguration>>=
 tcl(tr, "heading", "#0", text="Name")

@@ -28,10 +28,10 @@ tkpack(f, expand=TRUE, fill="both")
 
 This function simply shortens our call to \texttt{ttklabel}. We use the global \texttt{f} (a \code{ttkframe}) as the parent.
 <<>>=
-mL <- function(label) {
+mL <- function(label) { # save some typing
   if(is.numeric(label))
-    label <- format(label, digits=4)
-  ttklabel(f, text=label) # save some typing
+    label <- sprintf("%.2f", label)
+  ttklabel(f, text=label, justify="right") 
 }
 @ 
 We begin by making the table header along with a toprule.
@@ -41,7 +41,7 @@ tkgrid(mL(""), mL("2000-01-01"), mL("-- until --"),
 tkgrid(ttkseparator(f), row=1, column=1, columnspan=5, sticky="we")
 @ 
 
-This function adds a sparkline to the table. We use financial data in
+This function adds a sparkline to the table. We use stock values in
 this example, as we can conveniently employ the
 \function{get.hist.quote} function from the \pkg{tseries} package to
 get interesting data.
@@ -72,7 +72,7 @@ addSparkLine <- function(label, symbol="MSFT") {
   do.call("tcl",l)
 
   tkgrid(mL(label),mL(start), sparkLineCanvas, 
-         mL(end), mL(min), mL(max), pady=1)
+         mL(end), mL(min), mL(max), pady=2, sticky="e")
 }
 @ 
 

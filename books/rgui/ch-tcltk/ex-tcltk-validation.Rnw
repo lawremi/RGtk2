@@ -74,7 +74,7 @@ value prior to editing; \code{S} for the string being inserted or
 deleted, \code{v} for the current value of \code{validate} and
 \code{V} for the condition that triggered the callback.
 
-In the following callback definition we use \code{W} so that we can change the entry text color to black and format the data in a standard manner and \code{P} to get the entry widget's value just prior to validations.
+In the following callback definition we use \code{W} so that we can change the entry text color to black and format the data in a standard manner and \code{P} to get the entry widget's value just prior to validation.
 
 
 To begin,  we define some patterns for acceptable date formats.
@@ -96,8 +96,8 @@ isValidDate <- function(W, P) { # P is the current value
     date <- try( as.Date(P, format=i), silent=TRUE)
     if(!inherits(date, "try-error") && !is.na(date)) {
       tkconfigure(W,foreground="black") #  consult style?
-      tkdelete(W,"0","end")
-      tkinsert(W,0, format(date, format="%m/%d/%y"))
+      tkdelete(W, 0,"end")
+      tkinsert(W, 0, format(date, format="%m/%d/%y"))
       return(tcl("expr","TRUE"))        
     } 
   }

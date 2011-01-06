@@ -1,6 +1,7 @@
 ###################################################
 ### chunk number 1: 
 ###################################################
+#line 20 "ex-tcltk-sparklines.Rnw"
 ## sparklines
 library(tcltk)
 library(tseries)
@@ -13,27 +14,32 @@ tkpack(f, expand=TRUE, fill="both")
 ###################################################
 ### chunk number 2: 
 ###################################################
-mL <- function(label) {
+#line 31 "ex-tcltk-sparklines.Rnw"
+mL <- function(label) { # save some typing
   if(is.numeric(label))
-    label <- format(label, digits=4)
-  ttklabel(f, text=label) # save some typing
+    label <- sprintf("%.2f", label)
+  ttklabel(f, text=label, justify="right") 
 }
 
 
 ###################################################
 ### chunk number 3: makeHeaderRule
 ###################################################
-tkgrid(mL(""), mL("2000-01-01"), mL("-- until --"), mL("today"), mL("low"), mL("high"))
+#line 39 "ex-tcltk-sparklines.Rnw"
+tkgrid(mL(""), mL("2000-01-01"), mL("-- until --"), 
+       mL("today"), mL("low"), mL("high"))
 tkgrid(ttkseparator(f), row=1, column=1, columnspan=5, sticky="we")
 
 
 ###################################################
 ### chunk number 4: 
 ###################################################
+#line 49 "ex-tcltk-sparklines.Rnw"
 addSparkLine <- function(label, symbol="MSFT") {
   width <- 100; height=15               # fix width, height
   y <- get.hist.quote(instrument=symbol, start="2000-01-01",
-                      quote="C", provider="yahoo", retclass="zoo")$Close
+                      quote="C", provider="yahoo", 
+                      retclass="zoo")$Close
   min <- min(y); max <- max(y)
   start <- y[1]; end <- tail(y,n=1)
   rng <- range(y)
@@ -55,13 +61,14 @@ addSparkLine <- function(label, symbol="MSFT") {
   do.call("tcl",l)
 
   tkgrid(mL(label),mL(start), sparkLineCanvas, 
-         mL(end), mL(min), mL(max), pady=1)
+         mL(end), mL(min), mL(max), pady=2, sticky="e")
 }
 
 
 ###################################################
 ### chunk number 5:  eval=FALSE
 ###################################################
+## #line 81 "ex-tcltk-sparklines.Rnw"
 ## addSparkLine("Microsoft","MSFT")
 ## addSparkLine("General Electric", "GE")
 ## addSparkLine("Starbucks","SBUX")

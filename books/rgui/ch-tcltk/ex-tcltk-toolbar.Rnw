@@ -7,7 +7,7 @@ library(tcltk)
 \begin{figure}
   \centering
   \includegraphics[width=.4\textwidth]{fig-tcltk-toolbar.png}
-  \caption{Illustration of using \code{tkpack} to make a toolbar. }
+  \caption{Illustration of using \code{tkpack} and \code{tkgrid} to make a toolbar. }
   \label{fig:fig-tcltk-toolbar}
 \end{figure}
 
@@ -38,12 +38,13 @@ tkgrid(contentFrame, row=1, column=0, sticky = "news")
 tkgrid.rowconfigure(f, 0, weight=0)
 tkgrid.rowconfigure(f, 1, weight=1)
 tkgrid.columnconfigure(f, 0, weight=1)
-## some example to pack into the content area
-tkpack(ttklabel(contentFrame, text="Lorem ipsum dolor sit amet..."))
+#
+txt <- "Lorem ipsum dolor sit amet..." # sample text
+tkpack(ttklabel(contentFrame, text=txt))
 @ 
 
 Now to add some buttons to the toolbar. We first show how to create a
-new style for a button, slightly modifiying the themed button to set
+new style for a button (\code{Toolbar.TButton}), slightly modifiying the themed button to set
 the font and padding, and eliminate the border if the operating system allows. 
 <<>>=
 tcl("ttk::style", "configure", "Toolbar.TButton", 
@@ -82,16 +83,12 @@ tkpack(makeIcon(tbFrame, "quit"), side="left")
 tkpack(makeIcon(tbFrame, "cancel"), side="left")
 @ 
 
-These two bindings show how to slightly highlight the icon when the
-mouse is over that button, so that the user has some extra feedback.
+These two bindings change the state of the buttons as the mouse hovers
+over it:
+
 <<>>=
-changeGamma <- function(W, gamma=1.0) {
-  if(as.character(tkwinfo("class",W)) == "TButton") {
-    img <- tkcget(W,"image"=NULL)
-    tkconfigure(img, gamma=gamma)
-  }
-}
-tkbind(w,"<Enter>", function(W) changeGamma(W, gamma=0.5))
-tkbind(w,"<Leave>", function(W) changeGamma(W, gamma=1.0))
+setState <- function(W, state) tcl(W, "state", state)
+tkbind("TButton", "<Enter>", function(W) setState(W, "active"))
+tkbind("TButton", "<Leave>", function(W) setState(W, "!active"))
 @ 
 

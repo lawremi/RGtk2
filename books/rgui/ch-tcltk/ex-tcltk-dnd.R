@@ -1,6 +1,7 @@
 ###################################################
 ### chunk number 1: 
 ###################################################
+#line 15 "ex-tcltk-dnd.Rnw"
 ## ex-tcltk-dnd
 ## Example of drag and drop
 ## idea from http://wiki.tcl.tk/416
@@ -10,6 +11,7 @@ library(tcltk)
 ###################################################
 ### chunk number 2: 
 ###################################################
+#line 26 "ex-tcltk-dnd.Rnw"
 w <- tktoplevel()
 bDrag <- ttkbutton(w, text="Drag me")
 bDrop <- ttkbutton(w, text="Drop here")
@@ -21,14 +23,16 @@ tkpack(bDrop)
 ###################################################
 ### chunk number 3: dndGlobalVariables
 ###################################################
+#line 38 "ex-tcltk-dnd.Rnw"
 .dragging <- FALSE                 # currently dragging?
-.lastWidgetID <- ""                # last widget dragged over
 .dragValue <- ""                   # value to transfer
+.lastWidgetID <- ""                # last widget dragged over
 
 
 ###################################################
 ### chunk number 4: defineDragLabel
 ###################################################
+#line 44 "ex-tcltk-dnd.Rnw"
 ## make a drag label to pop up during dragging to show text
 ## label idea from http://www.codebykevin.com/opensource/xplat_oss.html
 ## not shown in text, but here as an example if desired
@@ -42,9 +46,11 @@ tcl("image", "create", "photo", "::dnd::icon",
 dragLabel <- tktoplevel()
 tkwm.title(dragLabel, "")
 tkwm.resizable(dragLabel, FALSE,FALSE)  # no size handler in Mac OS X
+tkwm.overrideredirect(dragLabel, TRUE)  # Should remove title bar (not in Mac OS X)
+tkwm.transient(dragLabel, w)
+tcl("wm","attributes", dragLabel, topmost=TRUE)
 tkwm.withdraw(dragLabel)                # minimize window
 tclServiceMode(TRUE)                    # back to redrawin
-tkwm.overrideredirect(dragLabel, TRUE)  # Should remove title bar (not in Mac OS X)
 ## can set this using tkconfigure
 dragLabel_label <- ttklabel(dragLabel,image="::dnd::icon", text="this space for rent", compound="left")
 tkpack(dragLabel_label)
@@ -53,28 +59,35 @@ tkpack(dragLabel_label)
 ###################################################
 ### chunk number 5: buttonPressEvent
 ###################################################
+#line 69 "ex-tcltk-dnd.Rnw"
 tkbind(bDrag,"<ButtonPress-1>",function(W) {
   .dragging <<-  TRUE
-  .lastWidgetID <<- as.character(W)
   .dragValue <<- as.character(tkcget(W,text=NULL))
+  .lastWidgetID <<- as.character(W)
+  tkconfigure(dragLabel_label, text=.dragValue)
 })
 
 
 ###################################################
 ### chunk number 6: 
 ###################################################
+#line 81 "ex-tcltk-dnd.Rnw"
 ## If using dragLabel, you can add this line to handler code:
-## tkconfigure(dragLabel_label, text=.dragValue)
+## 
 
 
 ###################################################
 ### chunk number 7: 
 ###################################################
-tkbind(bDrag, "<B1-Motion>", function(W, X, Y) {
+#line 100 "ex-tcltk-dnd.Rnw"
+
+
+tkbind(w, "<B1-Motion>", function(W, X, Y) {
   if(!.dragging) return()
   ## see cursor help page in API for more options
   ## For custom cursors cf. http://wiki.tcl.tk/8674. 
-  tkconfigure(W, cursor="coffee_mug")   # set cursor
+##  tkconfigure(W, cursor="coffee_mug")   # set cursor
+  tkconfigure(W, cursor="")   # set cursor
 
   w = tkwinfo("containing", X, Y)       # widget mouse is over
   if(as.logical(tkwinfo("exists", w)))  # does widget exist?
@@ -82,27 +95,38 @@ tkbind(bDrag, "<B1-Motion>", function(W, X, Y) {
 
   ## generate drag leave if we left last widget
   if(as.logical(tkwinfo("exists", w)) &&
-     length(as.character(w)) > 0 &&
-     length(as.character(.lastWidgetID)) > 0
+     nchar(as.character(w)) > 0 && 
+     length(.lastWidgetID) > 0          # character(0) if not tcltk widget
      ) {
-    if(as.character(w)[1] != .lastWidgetID) 
+    if(as.character(w) != .lastWidgetID) 
       tkevent.generate(.lastWidgetID, "<<DragLeave>>")
   }
   .lastWidgetID <<- as.character(w)
+
+
+  tkwm.deiconify(dragLabel)
+  tkwm.geometry(dragLabel, sprintf("+%s+%s", as.character(X), as.character(Y))) #paste("+",X,"+",Y, sep="")) # put in of
+
+
+  ## raise
+  ##
+
+
+
 })
 
 
 ###################################################
 ### chunk number 8: 
 ###################################################
+#line 123 "ex-tcltk-dnd.Rnw"
 ## if doing example with drag label, include the following in the motion event callback
-##  tkwm.deiconify(dragLabel)
-##  tkwm.geometry(dragLabel, paste("+",X,"+",Y, sep="")) # put in offset if desired
 
 
 ###################################################
 ### chunk number 9: 
 ###################################################
+#line 132 "ex-tcltk-dnd.Rnw"
  tkbind(bDrag, "<ButtonRelease-1>", function(W, X, Y) {
   if(!.dragging) return()
   w <- tkwinfo("containing", X, Y)
@@ -115,32 +139,37 @@ tkbind(bDrag, "<B1-Motion>", function(W, X, Y) {
   .dragging <<- FALSE
   .lastWidgetID <<- "" 
   tkconfigure(W, cursor="")
+
+  tkwm.withdraw(dragLabel)
 })
 
 
 ###################################################
 ### chunk number 10: 
 ###################################################
+#line 148 "ex-tcltk-dnd.Rnw"
 ## if doing dragLabel, we have this as well:
-## tkwm.withdraw(dragLabel)
+## 
 
 
 ###################################################
 ### chunk number 11: 
 ###################################################
+#line 157 "ex-tcltk-dnd.Rnw"
 tkbind(bDrop,"<<DragOver>>",function(W) {
   if(.dragging) 
-    tkconfigure(W, default="active")
+    tcl(W, "state", "active")
 })
 
 
 ###################################################
 ### chunk number 12: 
 ###################################################
+#line 166 "ex-tcltk-dnd.Rnw"
 tkbind(bDrop,"<<DragLeave>>", function(W) {
   if(.dragging)  {
     tkconfigure(W, cursor="")
-    tkconfigure(W, default="normal")  
+    tcl(W, "state", "!active")  
    }
 })
 
@@ -148,6 +177,7 @@ tkbind(bDrop,"<<DragLeave>>", function(W) {
 ###################################################
 ### chunk number 13: 
 ###################################################
+#line 178 "ex-tcltk-dnd.Rnw"
 tkbind(bDrop,"<<DragDrop>>", function(W) {
   tkconfigure(W, text=.dragValue)
   .dragValue <- ""

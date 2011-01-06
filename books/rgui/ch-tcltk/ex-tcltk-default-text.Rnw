@@ -1,0 +1,72 @@
+This example illustrates how one can wrap the \code{ttkentry} widget with a reference class to create a new widget that can have message text specified.
+
+<<>>=
+library(tcltk)
+setOldClass("tkwin")
+setOldClass("tclVar")
+@ 
+
+<<defaultValueReferenceClass>>=
+setRefClass("TtkEntryWithIntial",
+            fields=list(
+              v = "tclVar",               # tclvariable
+              widget = "tkwin"                 # widget
+              ),
+            ##
+            methods=list(
+              ## override
+              initialize=function(parent, text="", init_text="", ...) {
+                "Initialize widget"
+                v <<- tclVar(text)
+                widget <<- ttkentry(parent, textvariable=v)
+                init_text <<- init_text
+                if(nchar(init_text) > 0) {
+                  insert_init_text()
+                }
+                addBindings()
+                .self
+              },
+              insert_init_text = function() {
+                set_value(init_text)
+                tkconfigure(widget, foreground="gray70")
+              },
+              addBindings = function() {
+                tkbind(widget, "<FocusIn>", function() {
+                tkconfigure(widget, foreground="black")
+                  if(get_value() == init_text)
+                    set_value("")
+                })
+                tkbind(widget, "<FocusOut>", function() {
+                  if(nchar(get_value()) == 0)
+                    insert_init_text()
+                })
+              },
+              ## coerce_with. Function call for get_value
+              ##' @param value value to be coerce
+              ##' @param ... ignored?
+              coerce_with = function(value, ...) as.character(value),
+              ##' Set function for coercion
+              ##' @param FUN function. First argument should be value to be coerced.
+              set_coerce_with = function(FUN) coerce_with <<- FUN,
+              ## get value
+              get_value = function() {
+                value <- tclvalue(v)
+                if(as.character(value) == init_text())
+                  return("")
+                else                  
+                  coerce_with(value)
+              },
+              ##' set value
+              ##' @param the value
+              set_value = function(value) tclvalue(v) <- value
+              )
+            )
+@ 
+
+<<testIt>>=
+w = tktoplevel()
+a = getRefClass("TclVar")$new(w)
+tkpack(a$widget)
+tkpack(ttkbutton(w, text="click me"))
+@ 
+

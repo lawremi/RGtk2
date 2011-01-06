@@ -123,8 +123,8 @@ tkgrid(muCombo, row=2, column=1, sticky="ew", padx=2)
 @ 
 
 The selection of an alternative hypothesis is a natural choice for a
-combo box, but, as this alternative is available in \pkg{tcltk}, we
-use a spin box with \code{wrap=TRUE}.
+combo box or a radio button group, but, as this alternative is
+available in \pkg{tcltk}, we use a spin box with \code{wrap=TRUE}.
 <<echo=FALSE>>=
 ttkscale <- function(parent, ...) tkwidget(parent, "ttk::scale", ...)
 tkspinbox <- function(parent, ...) tkwidget(parent, "tk::spinbox", ...)
@@ -141,16 +141,16 @@ is quicker to use, but less precise than the spinbox. By sharing a
 text variable, the widgets are automatically synchronized.
 <<>>=
 putLabel(lf, "conf.level:", 3, 2)
-altFrame <- ttkframe(lf)
-tkgrid(altFrame, row=3, column=3, columnspan=2, 
+confFrame <- ttkframe(lf)
+tkgrid(confFrame, row=3, column=3, columnspan=2, 
        sticky="ew", padx=2)
-altScale <- ttkscale(altFrame, from=75, to=100, 
+confScale <- ttkscale(confFrame, from=75, to=100, 
                      variable=e$conf.level)
-tkpack(altScale, expand=TRUE, fill="y", side="left")
+tkpack(confScale, expand=TRUE, fill="y", side="left")
 
-altSpin <- tkspinbox(altFrame, from=75, to=100, increment=1, 
+confSpin <- tkspinbox(confFrame, from=75, to=100, increment=1, 
                      textvariable=e$conf.level, width=5)
-tkpack(altSpin, side="left")
+tkpack(confSpin, side="left")
 @ 
 
 A checkbox is used to set the binary variable for \code{var.equal}
@@ -174,7 +174,6 @@ bf <- ttkframe(f)
 tkpack(bf, fill="x", padx=5, pady=5)
 
 cancel <- ttkbutton(bf, text="cancel", command=function() {
-  tcl("after","cancel",updateID$ID)
   tkdestroy(w)
 })
 ok <- ttkbutton(bf, text="ok")
@@ -183,17 +182,20 @@ tkpack(ttklabel(bf, text=" "), expand=TRUE, fill="y",
        side="left")                     # add a spring
 tkpack(cancel, padx=6, side="left")
 tkpack(ok, padx=6, side="left")
-tkconfigure(ok, default="active")
 @ 
 
-The \code{ok} button is made to look active. As such we should bind to the button click and \qcode{Return} signals. First we define the callback. The \code{runTTest} function is not shown, but is written to make good use of the structure of the data store.
+For the \code{ok} button we want to gather the values and run the
+function. The following callback does this. We add it to the button,
+then make a binding to invoke either of the buttons commands when they
+have the focus and \kbd{return} is pressed. (The widgets have a
+default binding to the space bar for this.)
 <<>>=
 okCallback <- function() {
   l <- lapply(e, tclvalue)
   runTTest(l)
 }
-tkbind(ok, "<Button-1>", okCallback)
-tkbind(w, "<Return>", okCallback)        # for active binding
+tkconfigure(ok, command=okCallback)
+tkbind("TButton", "<Return>", function(W) tcl(W, "invoke"))
 @ 
 
 At this point, our GUI is complete, but we would like to have it
@@ -204,49 +206,68 @@ new data frames and it adjusts the controls depending on the current
 state.
 <<>>=
 updateUI <- function() {
-  tkconfigure(dataCombo, values=getDfs())
   dfName <- tclvalue(e$data)
+  curDfs <- getDfs()
+  tkconfigure(dataCombo, values=curDfs)
+  if(!dfName %in% curDfs) {
+    dfName <- ""
+    tclvalue(e$data) <- ""
+  }
 
   if(dfName == "") {
-    tkconfigure(xCombo, state="disabled")
+    ## disable all
+    sapply(list(xCombo, fCombo, muCombo,  veCheck),
+           function(W) tkconfigure(W, state="disabled"))
+    ## disable altSpin, confSpin, confScale
   } else {
+    ## enable univariate
+    sapply(list(xCombo,  muCombo),
+           function(W) tkconfigure(W, state="normal"))
+    ## enable altSpin, confSpin, confScale
     df <- get(dfName, envir=.GlobalEnv)
-    tkconfigure(xCombo, state="normal", values=getNumericVars(df))
-    if(! tclvalue(e$x) %in% getNumericVars(df))
+    numVars <- getNumericVars(df)
+    tkconfigure(xCombo, values=numVars)
+    if(! tclvalue(e$x) %in% numVars)
       tclvalue(e$x) <- ""
 
-    tkconfigure(fCombo, values=getTwoLevelFactor(df))
-    if(!tclvalue(e$f) %in% getTwoLevelFactor(df))
+    ## bivariate
+    availFactors <- getTwoLevelFactor(df)
+    sapply(list(fCombo, veCheck),
+           function(W) tkconfigure(W, state=ifelse(length(availFactors), "normal", "disabled")))
+    tkconfigure(fCombo, values=availFactors)
+    if(!tclvalue(e$f) %in% availFactors)
       tclvalue(e$f) <- ""
-  }
-  
-  tkconfigure(fCombo, state=
-              ifelse(tclvalue(e$x) == "", "disabled", "normal"))
-  
-  if(tclvalue(e$f) == "")  {
-    tkconfigure(muCombo, state="normal")
-    tkconfigure(veCheck, state="disabled")
-  } else {
-    tclvalue(e$mu) <- 0
-    tkconfigure(muCombo, state="disabled")
-    tkconfigure(veCheck, state="normal")
+      
   }
 }
+updateUI()
+tkbind(dataCombo, "<<ComboboxSelected>>", updateUI)
 @ 
 
-We use the \code{after} command to repeat a function call every so often. We also define a flag to stop the polling if desired. When polling, we make sure to test for existence of the parent window. 
+This function could be bound to a ``refresh'' button or we could
+arrange to have it called in the background. Using the \code{after}
+command we could periodically check for new data frames, using a task
+callback we can call this everytime a new command is issued.  As the
+call could potentially be costly, we only call if the available data
+frames have been changed. Here is one way to arrange that:
 <<>>=
-updateID <- new.env()
-updateID$flag <- TRUE
-updateID$ID <- NA
-repeatFun <- function() {
-  if(updateID$flag && as.logical(tkwinfo("exists",w))) {
-    updateUI()
-    updateID$ID <- tcl("after", 1000, repeatFun)
+require(digest)
+create_function <- function() {
+  .dfs <- digest(getDfs())
+  f <- function(...) {
+    if((val <- digest(getDfs())) != .dfs) {
+      .dfs <<- val
+      updateUI()
+    }
+    return(TRUE)
   }
 }
-repeatFun()
 @ 
+Then to create a task callback we have
+<<>>=
+id <- addTaskCallback(create_function())
+@ 
+
 % <<>>=
 % updateUI()                              # run once
 % tkbind("TCombobox","<<ComboboxSelected>>", updateUI) ## misses update on new data

@@ -1,8 +1,8 @@
 This example shows how a text buffer can be used to display the output
 of \R\/ commands, using an approach modified from \pkg{Sweave}.
 
+We begin by defining tags for formatting purposes.
 <<>>=
-## create formatting tags
 tktag.configure(t, "commandTag", foreground="blue", 
                 font="courier 12 italic")
 tktag.configure(t, "outputTag", font="courier 12")

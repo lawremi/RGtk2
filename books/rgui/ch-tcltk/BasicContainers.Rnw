@@ -8,7 +8,7 @@
 %% constructor
 Top level windows are created through the \function{tktoplevel}
 constructor. Basic options include the ability to specify the
-preferred width and height and to specify a menubar specified through
+preferred width and height and to specify a menubar through
 the \argument{menu}{tktoplevel} argument. (Menus will be covered in
 Section~\ref{sec:tcltk:menus}.)
 
@@ -20,29 +20,32 @@ function used to set the window title. As with all such functions,
 either the top-level window object, or its ID must be the first
 argument. In this case, the new title is the second.
 
+\paragraph{Suppressing the intial drawing}
 When a top-level window is constructed there is no option for it not
 to be shown.  However, one can use the \function{tclServiceMode}
 function to suspend/resume drawing of any widget through \TK. This
 function takes a logical value indicating the updating of widgets
 should be suspended. One can set the value to \code{FALSE}, initiate
-the widgets, then set to \code{TRUE} to display the widgets.  After a
-window is drawn. To iconify an already drawn window can be done
-through the \function{tkwm.withdraw} function and reversed with the
-\function{tkwm.deiconify} function. Either of these can be useful
-in the construction of complicated GUIs, as the drawing of the
-widgets can seem slow. (The same can be done through the
-\function{tkwm.state} function with an option of \qcode{withdraw} or
-\qcode{normal}.)
+the widgets, then set to \code{TRUE} to display the widgets. To
+iconify an already drawn window can be done through the
+\function{tkwm.withdraw} function and reversed with the
+\function{tkwm.deiconify} function. Either of these can be useful in
+the construction of complicated GUIs, as the drawing of the widgets
+can seem slow. (The same can be done through the \function{tkwm.state}
+function with an option of \qcode{withdraw} or \qcode{normal}.)
  
 
 
 \paragraph{Window sizing}
+
 The preferred size of a top-level window can be configured through the
 \code{width} and \code{height} arguments of the constructor.  Negative
 values means the window will not request any size. The absolute size
 and position of a top-level window in pixels can be queried or
 specified through the \function{tkwm.geometry} function. The geometry
-is specified as a string, as was described for \function{tkwinfo}.
+is specified as a string, as was described for \function{tkwinfo} in
+Section~\ref{sec:tcltk:overview:widget-properties}. If this string is
+empty, then the window will resize to accomodate its child components.
 
 The \function{tkwm.resizable} function can be used to prohibit the
 resizing of a top-level window. The syntax allows either the width or
@@ -70,10 +73,10 @@ automatically.
 
 %% transient
 \paragraph{Dialog windows}
-For dialogs, a top-level window should be related to
+For dialogs, a top-level window can be related to
 a different top-level window. The function \function{tkwm.transient}
 allows one to specify the master window as its second
-argument. (Cf. Example~\ref{ex-tcltk-window}.) The
+argument (cf. Example~\ref{ex-tcltk-window}). The
 new window will mirror the state of the master window, including if
 the master is withdrawn.
 
@@ -87,11 +90,12 @@ window managers respect this.
 
 
 %% binginds
-\paragraph{bindings}
+\paragraph{Bindings}
 Bindings for top-level windows are propogated down to all of their
 child widgets. If a common binding is desired for all the children,
-then it need only be specified once for the top-level window. For
-example, one can define keyboard accelerators this way.
+then it need only be specified once for the top-level window
+(cf. Section~\ref{sec:tcltk:events} where keyboard accelerators are
+defined this way).
 
 
 %% wm protocol
@@ -103,14 +107,14 @@ decorations. A top-level window can be removed through the
 correct window decorations. When the window decoration is clicked, the
 window manager issues a \qcode{WM\_DELETE\_WINDOW} event. To bind to
 this, a command of thie form
-\code{tkwm.protocol(win,"WM\_DELETE\_WINDOW", callback)} is used.
+\code{tkwm.protocol(win, "WM\_DELETE\_WINDOW", callback)} is used.
 
-To illustrate, if \code{w} is a top-level window, and
-\code{e} a text entry widget
-(cf. Section~\ref{sec:tcltk:multi-line-text}) then the following
-snippet of code would check to see if the text widget has been
-modified before closing the window. This uses a modal message box
-described in Section~\ref{sec:tcltk:dialogs}.
+To illustrate, if \code{w} is a top-level window, and \code{e} a text
+entry widget (cf. \function{tktext} in
+Section~\ref{sec:tcltk:multi-line-text}) then the following snippet of
+code would check to see if the text widget has been modified before
+closing the window. This uses a modal message box described in
+Section~\ref{sec:tcltk:dialogs}.
 
 <<echo=FALSE>>=
 ## set up window etc. for example
@@ -139,17 +143,17 @@ tkwm.protocol(w,"WM_DELETE_WINDOW", function() {
 })
 @ 
 
-
-%% stack of windows
-A window can be made to always be the topmost window through the
-\code{attributes} subcommand of the \code{wm} command. However, there
-is no direct \pkg{tcltk} function, so if \code{w} was to be on top, one would use the \function{tcl}
-function as follows: 
-\begin{Schunk}
-\begin{Sinput}
-tcl("wm", "attributes", w, topmost=TRUE)  
-\end{Sinput}
-\end{Schunk}
+%% Isn't working?
+% %% stack of windows
+% A window can be made to always be the topmost window through the
+% \code{attributes} subcommand of the \code{wm} command. However, there
+% is no direct \pkg{tcltk} function, so if \code{w} was to be on top, one would use the \function{tcl}
+% function as follows: 
+% \begin{Schunk}
+% \begin{Sinput}
+% tcl("wm", "attributes", w, topmost=TRUE)  
+% \end{Sinput}
+% \end{Schunk}
 
 % When more than top-level window is in use, there is a stacking order
 % describing how they are displayed. This stacking order is returned
@@ -161,7 +165,8 @@ tcl("wm", "attributes", w, topmost=TRUE)
 % Stackign order of others; topmost
 \begin{example}{A window constructor}{ex-tcltk-window}
   This example shows a possible constructor for top-level windows
-  allowing some useful options to be passed in.
+  allowing some useful options to be passed in. We use the upcoming
+  \function{ttkframe} constructor and \function{tkpack} command.
 <<newWindow>>=
 newWindow <- function(title, command, parent,
                       width, height) {
@@ -170,9 +175,9 @@ newWindow <- function(title, command, parent,
   if(!missing(title)) tkwm.title(w, title)
 
   if(!missing(command)) 
-    tkwm.protocol(w,"WM_DELETE_WINDOW", function() {
-      command()
-      tkdestroy(w)
+    tkwm.protocol(w, "WM_DELETE_WINDOW", function() {
+      if(command())                     # command returns logical
+        tkdestroy(w)
     })
 
   if(!missing(parent)) {
@@ -182,10 +187,10 @@ newWindow <- function(title, command, parent,
     }
   }
   
-  if(!missing(width)) tkconfigure(w, width=as.numeric(width))
-  if(!missing(height)) tkconfigure(w, height=as.numeric(height))
+  if(!missing(width)) tkconfigure(w, width=width)
+  if(!missing(height)) tkconfigure(w, height=height)
 
-  windowSystem <- tclvalue(tcl("tk","windowingsystem"))
+  windowSystem <- tclvalue(tcl("tk", "windowingsystem"))
   if(windowSystem == "aqua") {
     f <- ttkframe(w, padding=c(3,3,12,12))
   } else {
@@ -216,7 +221,7 @@ option can be used to to put space within the border between the
 border and subsequent children. Frames can be decorated. Use the
 option \option{borderwidth}{ttkframe} to specify a border around the frame of
 a given width, and \option{relief}{ttkframe} to set the border
-style. The value of \code{relief} is chosen from the default
+style. The value of \code{relief} is chosen from (the default)
 \qcode{flat}, \qcode{groove}, \qcode{raised}, \qcode{ridge},
 \qcode{solid}, or \qcode{sunken}.  
 
@@ -255,6 +260,7 @@ Example~\ref{ex-tcltk-non-modal-dialog} will illustrate that once
 again. When simultaneous horizontal and vertical alignment of child
 components is desired, the \function{tkgrid} function can be used to
 manage the components.
+\\
 
 %% warn against mixing XXX how to format warning?
 A GUI may use a mix of \code{pack} and \code{grid} to mangage the child components,
@@ -283,10 +289,7 @@ frames to give additional flexibility.
 The \option{after}{tkpack} and \option{before}{tkpack} options can be
 used to place the child before or after another component. These are
 used as with \code{tkpack(child1, after=child2)}. The object
-\code{child2} can be an \R\/ object or its ID. The latter might be
-useful, say when all the children are listed using the command
-\code{tkwinfo("children",parent)} which returns the IDs of the
-immediate child components.
+\code{child2} can be an \R\/ object or its ID. 
 
 
 \paragraph{forget}
@@ -294,9 +297,7 @@ Child components can be forgotten by the window manager, unmapping
 them but not destroying them, with the \subcommand{forget}{tkpack}
 subcommand, or the convenience function
 \function{tkpack.forget}. After a child component is removed this way,
-it can be re-placed in the GUI using a geometry manager. In
-\pkg{gWidgetstcltk} this is used to create a \code{gexpandgroup}
-container, as such a container is not provided by \TK.
+it can be re-placed in the GUI using a geometry manager. 
 
 \paragraph{Introspection}
 The subcommand \subcommand{slaves}{tkpack} will return a list of the
@@ -304,24 +305,30 @@ child components packed into a frame. Coercing these return values to
 character via \code{as.character} will produce the IDs of the child
 components. The subcommand \subcommand{info}{tkpack} will provide the
 packing info for a child.
+\\
 
-These commands are illlustrated below, where we show how to rotate around the
-child components in a frame,
-<<rotateButtons>>=
+These commands are illlustrated below, where we show how one might
+implement a ticker tape effect, where words scroll to the left.
+<<rotateLabels>>=
 w <- tktoplevel()
-f <- ttkframe(w)
-tkpack(f)
-# pack in button
-for(i in 1:3) {
-  b <- ttkbutton(f, text=as.character(i))
-  tkpack(b, side="left")
-}
-# rotate leftmost to rightmost
-rotate <- function() {
+f <- ttkframe(w, padding=c(3,3,12,12))
+tkpack(f, expand=TRUE, fill="both")
+#
+x <- strsplit("Lorem ipsum dolor sit amet ...", "\\s")[[1]]
+labels <- lapply(x, function(i) ttklabel(f, text=i))
+sapply(labels, function(i) tkpack(i, side="left"))
+#
+rotateLabel <- function() {
   children <- as.character(tkpack("slaves", f))
   tkpack.forget(children[1])
-  tkpack(children[1], after=children[3], side="left")
+  tkpack(children[1], after=children[length(children)], side="left")
 }
+@
+
+One could use the \code{after} command to do this in the background,
+but here we just rotate the values in a blocking loop:
+<<eval=FALSE>>=
+for(i in 1:20) {rotateLabel(); Sys.sleep(1)}
 @ 
 
 
@@ -330,7 +337,7 @@ rotate <- function() {
 \begin{figure}
   \centering
   \includegraphics[width=.6\textwidth]{fig-tcltk-padding-pady-ipady}
- \caption{Various ways to put padding between widgets using a box container and \function{tkpack}. The \code{padding} option for the box container puts padding around the cavity for all the widgets. The \code{pady} option for \function{tkpack} puts padding around the top and bottom on the border of each widget. The \code{ipady} option for \function{tkpack} puts padding within the top and bottom of the border for each child (modifying the theme under Mac OS X).}
+ \caption{Various ways to put padding between widgets using \function{tkpack}. The \code{padding} option for the box container puts padding around the cavity for all the widgets. The \code{pady} option for \function{tkpack} puts padding around the top and bottom on the border of each widget. The \code{ipady} option for \function{tkpack} puts padding within the top and bottom of the border for each child (breaking the theme under Mac OS X).}
   \label{fig:fig-pack-example}
 \end{figure}
 
@@ -405,7 +412,7 @@ sapply(allChildren, function(i) {
 \paragraph{Cavity model}
 The packing algorithm, as described in the \Tk\/ documentation, is based
 on arranging where to place a slave into the rectangular unallocated
-space called a cavity. We use the nicer terms child component and box
+space called a ``cavity.'' We use the nicer terms ``child component'' and ``box''
 to describe these. When a child is placed inside the box, say on the
 top, the space allocated to the child is the rectangular space with
 width given by the width of the box, and height the sum of the
@@ -436,7 +443,7 @@ leaving blank space around the child.
 An alternative is to have one or more of the widgets expand to fill
 the available space. Each child packed in with the 
 option \option{expand}{tkpack} set to \code{TRUE} will have
-the extra space allocated in an even manner to it. The
+the extra space allocated  to it in an even manner. The
 \option{fill}{tkpack} option is used to base the size of the child on
 the available cavity in the box -- not on the requested size of the
 child. The \code{fill} option can be \qcode{x}, \qcode{y} or
@@ -460,11 +467,11 @@ in rows and columns.  In its simplest usage, a command like
 tkgrid(child1, child2,..., childn)    
   \end{Sinput}
 \end{Schunk}
-will place the $n$ children in a new row, in columns 1 through
+will place the $n$ children in a new row, in columns $1$ through
 $n$. If desired, the specific row and column can be specified through the
 \option{row}{tkgrid} and \option{column}{tkgrid} options, counting of
 rows and columns starts with $0$.  Spanning of multiple rows and columns
-can be specified with integers $2 $or greater by the
+can be specified with integers $2$ or greater by the
 \option{rowspan}{tkgrid} and \option{colspan}{tkgrid} options. These
 options, and others, can be adjusted through the
 \function{tkgrid.configure} function.
@@ -478,7 +485,7 @@ specified sizes. The weights are configured with the
 \function{tkgrid.rowconfigure} and \function{tkgrid.columnconfigure}
 functions through the option \option{weight}{tkgrid.columnconfigure}.
 The weight is a value between $0$ and $1$. If there are just two rows, and
-the first row has weight $1/2$ and the second weight $$1, then the extra
+the first row has weight $1/2$ and the second weight $1$, then the extra
 space is allocated twice as much for the second row. The specific row
 or column must also be specified. Again. rows and columns are referenced
 starting with $0$ not the usual \R-like $1$. To specify a weight of $1$
@@ -656,8 +663,8 @@ There are several useful subcommands to extract information from the
 notebook object.  For instance, \code{index} to return the page index
 (0-based), \code{tabs} to return the page IDs, \code{select} to select
 the displayed page, and \code{forget} to remove a page from the
-notebook. Except for \code{tabs}, these require a specification of a
-tab ID.
+notebook. (There is no means to place close icons on the tabs.)
+Except for \code{tabs}, these require a specification of a tab ID.
 <<>>=
 tcl(nb, "index", "current")           # current page for tabID
 length(as.character(tcl(nb,"tabs")))  # number of pages
@@ -674,7 +681,7 @@ tcl("ttk::notebook::enableTraversal", nb)
 @ 
 
 If enabled, the shortcuts such as \kbd{control-tab} to move to the
-next tab are imlemented. If new pages are added or inserted with the
+next tab are implemented. If new pages are added or inserted with the
 option \option{underline}{ttknotebook}, which takes an integer value
 (0-based) specifying which character in the label is underlined, then
 a keyboard accelerator is added for that letter.

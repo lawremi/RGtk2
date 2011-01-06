@@ -1,0 +1,149 @@
+This example shows how to create a simple calendar using a grid
+layout. (No such widget is standard with \pkg{tcltk}.) The following relies on
+the functions \function{day.of.week} (from the \pkg{chron} package),
+\function{week.of.month} and \function{days.in.month} (easily
+written).
+
+<<echo=FALSE>>=
+library(tcltk)
+##' from chron with slight change to arguments
+day.of.week <- function (year, month, day) {
+    ix <- year + trunc((month - 14)/12)
+    jx <- (trunc((13 * (month + 10 - (month + 10)%/%13 * 12) - 
+        1)/5) + day + 77 + (5 * (ix - (ix%/%100) * 100))%/%4 + 
+        ix%/%400 - (ix%/%100) * 2)
+    jx%%7
+}
+
+
+## is this a valid date
+validDate <- function(year, month, day) 
+  !is.na(as.Date(sprintf("%s-%s-%s", year, month, day), format="%Y-%m-%d"))
+
+## how many days in a month
+days.in.month <- function(year, month) {
+  for(i in c(31, 30, 29, 28)) {
+    if(validDate(year, month, i))
+      return(i)
+  }
+}
+## 0-based week of month
+week.of.month <- function(year, month, day) {
+  first.day <- day.of.week(year, month, 1)
+  (first.day + day - 1) %/% 7
+}
+@ 
+
+
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.4\textwidth]{fig-tcltk-grid-calendar}
+  \caption{A monthly calendar illustrating various layouts.}
+  \label{fig:qt-gridlayout-calendar}
+\end{figure}
+
+
+<<>>=
+makeMonth <- function(w, year, month) {
+  ## add headers
+  days <- c("S","M","T","W","Th","F","S")
+  sapply(1:7, function(i) {
+    l <- ttklabel(w, text=days[i])       
+    tkgrid(l, row=0, column=i-1, sticky="")
+  })
+  ## add days
+  sapply(1:days.in.month(year, month),  function(day) {
+    l <- ttklabel(w, text=day)
+    tkgrid(l, row=1 + week.of.month(year, month, day),
+           column=day.of.week(year, month, day),
+           sticky="e")
+  })
+}
+@ 
+
+Next, we would like to incorporate the calendar widget into an interface
+that allows the user to scroll through month-by-month beginning with:
+<<>>=
+year <- 2000; month <- 1
+@ 
+
+Our basic layout will use a box layout with a nested layout
+for the step-through controls and another holding the calendar widget.
+<<>>=
+w <- tktoplevel()
+f <- ttkframe(w, padding=c(3,3,12,12))
+tkpack(f, expand=TRUE, fill="both", side="top")
+cframe <- ttkframe(f)
+calframe <- ttkframe(f)
+tkpack(cframe, fill="x", side="top")
+tkpack(calframe, expand=TRUE, anchor="n")
+@ 
+
+Our step through controls are packed in through a horizontal
+layout. We use anchoring and \code{expand=TRUE} to keep the arrows on the edge and the
+label with the current month centered.
+<<>>=
+prevb <- ttklabel(cframe, text="<")
+nextb <- ttklabel(cframe, text=">")
+curmo <- ttklabel(cframe)
+#
+tkpack(prevb, side="left", anchor="w")
+tkpack(curmo, side="left", anchor="center", expand=TRUE)
+tkpack(nextb, side="left", anchor="e")
+@ 
+
+The \code{setMonth} function first removes the previous calendar
+container and then
+redefines one to hold the monthly calendar. Then it adds in a new
+monthly calendar to match the year and month. The call to
+\code{makeMonth} creates the calendar, and the last line updates the
+label indicating the current month.
+<<stackedWidget>>=
+setMonth <- function() {
+  tkpack("forget", calframe)
+  calframe <<- ttkframe(f); tkpack(calframe)
+  makeMonth(calframe, year, month)
+  tkconfigure(curmo, text=sprintf("%s %s", month.abb[month], year))
+}
+setMonth()                              # initial calendar
+@ 
+
+The arrow labels are used to scroll, so we connect to the
+\event{Button-1} event the corresponding commands. This shows the
+binding to decrement the month and year using the global variables
+\code{month} and \code{year}.
+<<connectSignal>>=
+tkbind(prevb, "<Button-1>", function() {
+  if(month > 1) {
+    month <<- month - 1
+  } else {
+    month <<- 12; year <<- year - 1
+  }
+  setMonth()
+})
+@ 
+
+<<echo=FALSE>>=
+tkbind(nextb, "<Button-1>", function() {
+  if(month < 12) {
+    month <<- month + 1
+  } else {
+    month <<- 1; year <<- year + 1
+  }
+  setMonth()
+})
+@ 
+
+Our calendar is static, but if we wanted to add interactivity to a
+mouse click, we could make a binding as follows:
+  
+<<>>=
+tkbind("TLabel", "<Button-1>", function(W) {
+  day <- as.numeric(tkcget(W, "-text"))
+  if(!is.na(day))
+    print(sprintf("You selected: %s/%s/%s", month, day, year))
+})
+@   
+
+

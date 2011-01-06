@@ -1,0 +1,141 @@
+<<InitialMsg>>=
+## "R5" class for ttk entry with intial message
+library(tcltk)
+@ 
+
+In this example we show how to augment the \function{ttkentry} widget
+to allow the inclusion of an initial message to direct the user. As
+soon as the user focuses the entry area, say by clicking their mouse
+on it, the initial message clears and the user can type in their value.
+
+We use an \R{} reference class for our programming, as it nicely allows us to
+encapsulate the entry widget, its tclvariable and the initial
+message. For formatting purposes, we define the methods first, then
+the class.
+
+We begin with two methods to get and set the text. The field
+\code{v} will hold our tclvariable.
+
+<<get-set-text>>=
+get_text <- function() {
+  "Get the text value"
+  if(!is_init_msg())
+    as.character(tclvalue(v))
+  else
+    ""
+}
+#
+set_text <- function(text, hide=TRUE) {
+  "Set text into widget"
+  if(hide)
+    hide_init_msg()
+  v_local <- v
+  tclvalue(v_local) <- text
+}
+@
+
+For the initial message we define three methods. The first checks if
+the current state is the initial message. Rather than use a flag, we
+just check if the text matches the initial message, which is stored in
+the field \code{init\_msg}.
+
+<<init-msg-methods>>=
+is_init_msg <- function() {
+  "Is the init text showing?"
+  as.character(tclvalue(v)) == init_msg
+}
+@ 
+To indicate to the user that the initial message is not the current
+text, we define a style for when the initial message is being
+shown. It simply sets the foreground (text) color to gray.
+
+<<init-msg-style>>=
+.Tcl("ttk::style configure Gray.TEntry -foreground gray") # style
+@ 
+
+Now our two methos to hide and show the initial message. Outside of
+changing the text, we adjust the style option accordingly.
+<<>>=
+hide_init_msg <- function() {
+  "Hide the initial text"
+  if(is_init_msg()) {
+    tkconfigure(e, style="TEntry")
+    set_text("", hide=FALSE)
+  }
+}
+#
+show_init_msg <- function() {
+  "Show the intial text"
+  tkconfigure(e, style="Gray.TEntry")
+  set_text(init_msg, hide=FALSE)
+}
+@
+
+To switch between the initial message and the entry area we make
+bindings to the focus in and focus out events for the entry
+widget. The focus out will show the initial message if there is no
+text specified.
+
+<<add-bindings>>=
+add_bindings <- function() {
+  "Add focus bindings to make this work"
+  tkbind(e, "<FocusIn>", hide_init_msg)
+  tkbind(e, "<FocusOut>", function() {
+    if(nchar(get_text()) == 0)
+      show_init_msg()
+  })
+}
+@
+
+Now to create the reference class to hold our widget. First we set as old
+classes the class for the entry widget and the tclvariable. This
+allows us to use these as fields in the class.
+<<>>=
+setOldClass("tkwin")
+setOldClass("tclVar")
+@ 
+%
+Our entry class has a straightforward initialization method, otherwise
+we simply piece together the components we have just defined.
+<<ttkEntry-Class>>=
+ttkEntry <- setRefClass("TtkEntry",
+                        fields=list(
+                          e="tkwin", v="tclVar",
+                          init_msg="character"
+                          ),
+                        methods=list(
+                          initialize=function(parent, text, init_msg="") {
+                            v <<- tclVar()
+                            e <<- ttkentry(parent, textvariable=v)
+                            init_msg <<- init_msg
+                            if(missing(text))
+                              show_init_msg()
+                            else
+                              set_text(text)
+                            add_bindings()
+                            .self
+                          },
+                          get_text=get_text,
+                          set_text=set_text,
+                          is_init_msg=is_init_msg,
+                          hide_init_msg=hide_init_msg,
+                          show_init_msg=show_init_msg,
+                          add_bindings=add_bindings
+                          )
+                        )
+@
+
+Finally, to use this widget we call its \meth{new} method to create an
+instance. The actual entry widget is kept in the \code{e} field, so we
+pack in that below.
+<<>>=
+w <- tktoplevel()
+e <- ttkEntry$new(parent=w, init_msg="type value here")
+tkpack(e$e)
+#
+b <- ttkbutton(w, text="focus out onto this", command=function() {
+  print(e$get_text())
+})
+tkpack(b)
+@ 
+

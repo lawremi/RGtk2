@@ -3,7 +3,7 @@ icons, packing and bindings to create a non-modal dialog.
 
 \begin{figure}
   \centering
-  \includegraphics[width=.6\textwidth]{fig-tcltk-simple-dialog.png}
+  \includegraphics[width=.4\textwidth]{fig-tcltk-simple-dialog.png}
   \caption{Example of a simple dialog}
   \label{fig:fig-tcltk-simple-dialog}
 \end{figure}
@@ -46,10 +46,11 @@ if(!is.null(parent)) {
   parentWin <- tkwinfo("toplevel", parent)
   if(as.logical(tkwinfo("viewable", parentWin))) {
     tkwm.transient(w, parent)
-    ## effects OS X only now
-    tcl("wm","attributes",parentWin, notify=TRUE) # bounce
-    tkbind(parentWin,"<Enter>", function() 
-      tcl("wm","attributes",parentWin, notify=FALSE)) #stop
+    if(as.character(tcl("tk", "windowingsystem")) == "aqua") {
+      tcl("wm","attributes",parentWin, notify=TRUE) # bounce
+      tkbind(parentWin,"<Enter>", function() 
+             tcl("wm","attributes",parentWin, notify=FALSE)) #stop
+    }
   }
 }
 @ 
@@ -75,46 +76,36 @@ The buttons have their own frame, as they are layed out horizontally.
 f2 <- ttkframe(f1)
 tkpack(f2)
 @ 
+%
 The callback function for the OK button prints a message then destroys the window.
 <<>>=
 okCB <- function() {
   print("That's great")
   tkdestroy(w)
 }
-okButton <- ttkbutton(f2, text="OK", default="active")
-@ 
-We bind the callback to both a left mouse click on the button, and if the user presses \kbd{return} when the button has the focus. The \code{default="active"} argument, makes this button the one that gets the \code{Return} event when the \kbd{return} key is pressed.
-
-<<>>=
-tkbind(okButton, "<Button-1>", okCB)
-tkbind(okButton, "<Return>", okCB)
-
+okButton <- ttkbutton(f2, text="OK", command=okCB)
 cancelButton <- ttkbutton(f2, text="Cancel", 
                           command=function() tkdestroy(w))
+#
 tkpack(okButton, side="left", padx=12)  # give some space
 tkpack(cancelButton)
 @ 
+%
 
-Now we bring the dialog back from its withdrawn state, fix the size and set the focus on the OK button.
+As our interactive behaviour is consistent for both buttons, we make a
+binding to the \code{TButton} class, not indidually. The first will
+invoke the button command when the \kbd{return} key is pressed, the
+latter two will highlight a button when the focus is on it.
+<<>>=
+tkbind("TButton", "<Return>", function(W) tcl(W, "invoke"))
+tkbind("TButton", "<FocusIn>", function(W) tcl(W, "state", "active"))
+tkbind("TButton", "<FocusOut>", function(W) tcl(W, "state", "!active"))
+@ 
+%
+Now we bring the dialog back from its withdrawn state, fix the size
+and set the initial focus on the OK button.
 <<>>=
 tkwm.state(w, "normal")
 tkwm.resizable(w, FALSE, FALSE)
 tkfocus(okButton)
-@ 
-
-Finally, the following bindings make the buttons look active when the keyboard focus is on them, generating a \code{FocusIn} event, then a \code{FocusOut} event. We make a binding for the top-level window, then within the callback check to see if the widget emitting the signal is of a themed button class.
-<<echo=FALSE>>=
-## bind so that object highlights on mouseover
-## illustrates how we can bind to all the widgets
-@ 
-<<>>=
-isTButton <- function(W)  
-  as.character(tkwinfo("class",W)) == "TButton"
-tkbind(w,"<FocusIn>", function(W) {
-  if(isTButton(W)) tkconfigure(W,default="active")
-})
-
-tkbind(w,"<FocusOut>", function(W) {
-  if(isTButton(W)) tkconfigure(W,default="normal")
-})
 @ 

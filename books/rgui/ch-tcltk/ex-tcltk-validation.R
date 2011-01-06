@@ -1,6 +1,7 @@
 ###################################################
 ### chunk number 1: 
 ###################################################
+#line 2 "ex-tcltk-validation.Rnw"
 ## Example of using validation to adjust the date
 ## in case a user doesn't use desired format
 
@@ -40,6 +41,7 @@
 ###################################################
 ### chunk number 2: 
 ###################################################
+#line 40 "ex-tcltk-validation.Rnw"
 ## test of validation command
 ## trcky bit is that validation commands must return TRUE or FALSE
 ## we can do this with tcl("eval","FALSE") or .Tcl("expr false")
@@ -50,25 +52,28 @@ library(tcltk)
 ###################################################
 ### chunk number 3: 
 ###################################################
+#line 82 "ex-tcltk-validation.Rnw"
 datePatterns <- c()
-for(i in list(c("%m","%d","%Y"),
+for(i in list(c("%m","%d","%Y"),        # U.S. style
               c("%m","%d","%y"))) {
   for(j in c("/","-"," ") )
-      datePatterns[length(datePatterns)+1] <- paste(i,sep="", collapse=j)
+    datePatterns[length(datePatterns)+1] <- 
+      paste(i,sep="", collapse=j)
 }
 
 
 ###################################################
 ### chunk number 4: setValidDateCallback
 ###################################################
-isValidDate <- function(W,P) {          #  P is the current value, W entry
+#line 94 "ex-tcltk-validation.Rnw"
+isValidDate <- function(W, P) { # P is the current value
   for(i in datePatterns) {
     date <- try( as.Date(P, format=i), silent=TRUE)
     if(!inherits(date, "try-error") && !is.na(date)) {
       tkconfigure(W,foreground="black") #  consult style?
-      tkdelete(W,"0","end")
-      tkinsert(W,0, format(date, format="%m/%d/%y"))
-      return(tcl("expr","TRUE"))
+      tkdelete(W, 0,"end")
+      tkinsert(W, 0, format(date, format="%m/%d/%y"))
+      return(tcl("expr","TRUE"))        
     } 
   }
   return(tcl("expr","FALSE"))
@@ -78,6 +83,7 @@ isValidDate <- function(W,P) {          #  P is the current value, W entry
 ###################################################
 ### chunk number 5: setInvalidCallback
 ###################################################
+#line 110 "ex-tcltk-validation.Rnw"
 indicateInvalidDate <- function(W) {
   tkconfigure(W,foreground="red")
   tcl("expr","TRUE")
@@ -85,8 +91,10 @@ indicateInvalidDate <- function(W) {
 
 
 ###################################################
-### chunk number 6: 
+### chunk number 6: notShown
 ###################################################
+#line 117 "ex-tcltk-validation.Rnw"
+## A simple GUI to show the entry widget.
 w <- tktoplevel(); tkwm.title(w,"Validation of date example")
 f <- ttkframe(w, padding=c(3,3,3,12)); tkpack(f, expand=TRUE, fill="both")
 tkpack(ttklabel(f, text="Enter a date mm/dd/yy"), side="left")
@@ -95,6 +103,7 @@ tkpack(ttklabel(f, text="Enter a date mm/dd/yy"), side="left")
 ###################################################
 ### chunk number 7: entryWidgetWithValidation
 ###################################################
+#line 133 "ex-tcltk-validation.Rnw"
 e <- ttkentry(f, validate="focusout",
               validatecommand=isValidDate,
               invalidcommand=indicateInvalidDate)

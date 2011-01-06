@@ -1,9 +1,10 @@
-This example~\footnote{The idea for the example code originated with
-  \url{http://wiki.tcl.tk/416}} shows several different uses of the
-event framework to implement drag and drop behavior between two
-widgets. In \pkg{tcltk} more work is involved, than with \pkg{RGtk2}
-and \pkg{qtbase}. Steps are needed to make one widget a drop source, and other
-steps are needed to make the other widget a drop target. 
+This relatively involved example~\footnote{The idea for the example
+  code originated with \url{http://wiki.tcl.tk/416}} shows several
+different uses of the event framework to implement drag and drop
+behavior between two widgets. In \pkg{tcltk} much more work is
+involved, than with \pkg{RGtk2} and \pkg{qtbase}. Steps are needed to
+make one widget a drop source, and other steps are needed to make the
+other widget a drop target.
 
 The basic idea is that when a value is being dragged, virtual events
 are generated for the widget the cursor is over. If that widget has
@@ -35,10 +36,10 @@ Before beginning, we define three global variables that can be shared
 among drop sources to keep track of the drag and drop state. 
 <<dndGlobalVariables>>=
 .dragging <- FALSE                 # currently dragging?
-.lastWidgetID <- ""                # last widget dragged over
 .dragValue <- ""                   # value to transfer
+.lastWidgetID <- ""                # last widget dragged over
 @ 
-
+%
 <<defineDragLabel, echo=FALSE, results=hide>>=
 ## make a drag label to pop up during dragging to show text
 ## label idea from http://www.codebykevin.com/opensource/xplat_oss.html
@@ -67,11 +68,15 @@ set the values of the three global variables.
 <<buttonPressEvent>>=
 tkbind(bDrag,"<ButtonPress-1>",function(W) {
   .dragging <<-  TRUE
-  .lastWidgetID <<- as.character(W)
   .dragValue <<- as.character(tkcget(W,text=NULL))
+  .lastWidgetID <<- as.character(W)
 })
 @ 
 %
+This initiates the dragging immediately. A more common strategy is to
+record the position of the mouse click and then initiate the dragging
+after a certain minimal movement is detected.
+
 <<echo=FALSE>>=
 ## If using dragLabel, you can add this line to handler code:
 ## tkconfigure(dragLabel_label, text=.dragValue)
@@ -81,20 +86,18 @@ For mouse motion, we do several things. First we set the cursor to
 indicate a drag operation. The choice of cursor is a bit outdated. The
 comment refers to a web page showing how one can put in a custom
 cursor from an xbm file, but this doesn't work for all platforms
-(e.g., OS X). After setting the cursor, we find the ID of the widget
-the cursor is over. The motion binding is on the drag widget, but the
-widget passed to the call back is the one the motion is over. We use
-\function{tkwinfo} to find the widget containing the $x,y$-coordinates
-of the cursor position.  We then generate the
-\code{\VirtualEvent{DragOver}} virtual event for this widget, and if
-this widget is different from the previous last widget, we generate
-the \code{\VirtualEvent{DragLeave}} virtual event.
+(e.g., OS X and aqua). After setting the cursor, we find the ID of the
+widget the cursor is over. We use \function{tkwinfo} to find the
+widget containing the $x,y$-coordinates of the cursor position.  We
+then generate the \code{\VirtualEvent{DragOver}} virtual event for
+this widget, and if this widget is different from the previous last
+widget, we generate the \code{\VirtualEvent{DragLeave}} virtual event.
 
 %%  ## This failed with OS X: "
 %%  ##  .Tcl(paste(as.character(bDrag$ID),' configure -cursor "@', getwd(),'/cursor.xbm black"', sep=""))
 
 <<>>=
-tkbind(bDrag, "<B1-Motion>", function(W, X, Y) {
+tkbind(w, "<B1-Motion>", function(W, X, Y) {
   if(!.dragging) return()
   ## see cursor help page in API for more options
   ## For custom cursors cf. http://wiki.tcl.tk/8674. 
@@ -106,10 +109,10 @@ tkbind(bDrag, "<B1-Motion>", function(W, X, Y) {
 
   ## generate drag leave if we left last widget
   if(as.logical(tkwinfo("exists", w)) &&
-     length(as.character(w)) > 0 &&
-     length(as.character(.lastWidgetID)) > 0
+     nchar(as.character(w)) > 0 && 
+     length(.lastWidgetID) > 0          # character(0) if not tcltk widget
      ) {
-    if(as.character(w)[1] != .lastWidgetID) 
+    if(as.character(w) != .lastWidgetID) 
       tkevent.generate(.lastWidgetID, "<<DragLeave>>")
   }
   .lastWidgetID <<- as.character(w)
@@ -118,6 +121,7 @@ tkbind(bDrag, "<B1-Motion>", function(W, X, Y) {
 
 <<echo=FALSE>>=
 ## if doing example with drag label, include the following in the motion event callback
+## XXX Doesn't raise window above
 ##  tkwm.deiconify(dragLabel)
 ##  tkwm.geometry(dragLabel, paste("+",X,"+",Y, sep="")) # put in offset if desired
 @ 
@@ -153,16 +157,17 @@ drag value.
 <<>>=
 tkbind(bDrop,"<<DragOver>>",function(W) {
   if(.dragging) 
-    tkconfigure(W, default="active")
+    tcl(W, "state", "active")
 })
 @
 %
-If the drag event leaves the widget without dropping, we change the state back to \code{normal}.
+If the drag event leaves the widget without dropping, we change the
+state back to not active.
 <<>>=
 tkbind(bDrop,"<<DragLeave>>", function(W) {
   if(.dragging)  {
     tkconfigure(W, cursor="")
-    tkconfigure(W, default="normal")  
+    tcl(W, "state", "!active")  
    }
 })
 @

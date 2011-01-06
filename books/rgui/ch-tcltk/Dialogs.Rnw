@@ -40,6 +40,8 @@ modal. The \function{tkwait.window} will cause a top-level window to
 be modal and \function{tkgrab.release} will return the interactivity
 for the window.
 
+
+
 \subsection{File and directory selection}
 \label{sec:file-direct-select}
 
@@ -48,15 +50,14 @@ directory or for specifying a filename when saving. These are
 implemented by \constructor{tkgetOpenFile},
 \constructor{tkchooseDirectory}, and \constructor{tkgetSaveFile}
 respectively. Each of these can be called with no argument, and
-returns a \code{tclObj} that can be converted to a character string
-with \code{tclvalue}. The value is empty when there is no selection made.
+returns a \code{tclObj} object. The value is empty when there is no selection made.
 
 The dialog will appear related to a toplevel window if the argument
 \argument{parent}{tkgetOpenFile} is specified The
 \argument{initialdir}{tkgetOpenFile} and
 \argument{initialfile}{tkgetOpenFile} can be used to specify the
 initial values in the dialog.  The
-\argument{defaultextenstion}{tkgetSaveFile} argument can be used to
+\argument{defaultextension}{tkgetSaveFile} argument can be used to
 specify a default extension for the file.
 
 When browsing for files, it can be convenient to filter the available
@@ -81,19 +82,22 @@ tkadd(mb, "cascade", label="File", menu=fileMenu)
 
 tkadd(fileMenu,"command",label="Source file...",
       command= function() {
-        fname <- tkgetOpenFile(fileTypes=
+        fName <- tkgetOpenFile(filetypes=
                         "{{R files} {.R}} {{All files} *}")
-        source(tclvalue(fname))
+        if(file.exists(fName <- as.character(fName)))
+           source(tclvalue(fName))
       })
 tkadd(fileMenu, "command", label="Save workspace as...",
       command=function() {
-        fname <- tkgetSaveFile(defaultextension="Rsave")
-        save.image(file=tclvalue(fname))
+        fName <- tkgetSaveFile(defaultextension="Rsave")
+        if(nchar(fname <- as.character(fName)))
+          save.image(file=fName)
       })
 tkadd(fileMenu, "command", label="Set working directory...",
       command=function() {
-        fname <- tkchooseDirectory()
-        setwd(tclvalue(fName))
+        dName <- tkchooseDirectory()
+        if(nchar(dName <- as.character(dName)))
+          setwd(dName)
       })
 @   
 \end{example}
@@ -109,8 +113,10 @@ colorWell <- tkcanvas(f, width=40, height=16,
                       background="#ee11aa",
                       highlightbackground="#ababab") 
 tkpack(colorWell)
+tkpack(ttklabel(f, text="Click color to change"))
+#
 tkbind(colorWell,"<Button-1>", function(W) {
-  color <- tcl("tk_chooseColor", parent=w, title="Set box color")
+  color <- tcl("tk_chooseColor", parent=W, title="Set box color")
   color <- tclvalue(color)
   if(nchar(color))
     tkconfigure(W, background = color)

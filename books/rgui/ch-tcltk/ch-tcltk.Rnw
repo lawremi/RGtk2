@@ -81,19 +81,23 @@ was developed by Peter Dalgaard, and  included in \R\/ from version
 1.1.0. Since then, the package has been used in a number of GUI 
 projects for \R,  most notably, the \pkg{Rcmdr} GUI. In addition, the
 \pkg{tcltk2} package provides additional bindings and bundles in some
-useful external TCL code.
+useful external TCL code. Our focus here is just the base package.
 
-\TK\/ had a major change between version 8.4 and 8.5, with the latter
-introducing themed widgets. Many widgets were rewritten, and their API
+\TK\/ had a major change between versions 8.4 and 8.5, with the latter
+introducing themed widgets. Many widgets were rewritten and their API
 dramatically simplified. In \pkg{tcltk} there can be two different
 functions to construct a similar widget. For example,
 \function{tklabel} or \function{ttklabel}. The latter, with the
 \code{ttk} prefix, would be for the newer themed widget. We assume the
-\TK\/ version is 8.5 or higher, as this was a major step forward. As
-of version 2.7.0, \R\/ for windows has been bundled with this \TK\/
-version, so there are no installation issues for that platform. As of
-writing, some linux distributions and \OSX\/ still come with 8.4 which
-would need to be upgraded for most of the following.
+\TK\/ version is 8.5 or higher, as this was a major step forward. 
+
+Despite its limitations as a graphical toolkit, as compared to \GTK\/
+or \Qt, the \TK\/ libraries are widely used for \R\/ GUIs, as for most
+users there are no installation issues. As of version 2.7.0, \R\/ for
+windows has been bundled with the necessary \TK\/ version, so there are no
+installation issues for that platform. For linux users, it is
+typically trivial to install the newer libraries and for Mac OS X
+users, the provided binary installations include the newer \TK\/ libraries.
 
 
 
@@ -111,8 +115,8 @@ would need to be upgraded for most of the following.
 \SweaveInput{Widgets}
 
 
-\section{Dialogs}
-\label{sec:tcltk:dialogs}
-\SweaveInput{Dialogs}
+% \section{Dialogs}
+% \label{sec:tcltk:dialogs}
+% \SweaveInput{Dialogs}
 
 

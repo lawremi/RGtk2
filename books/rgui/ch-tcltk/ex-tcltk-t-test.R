@@ -1,6 +1,7 @@
 ###################################################
 ### chunk number 1: 
 ###################################################
+#line 12 "ex-tcltk-t-test.Rnw"
 ## t.test dialog
 ## using basic widgets -- no entry widgets yet
 library(tcltk)
@@ -9,6 +10,7 @@ library(tcltk)
 ###################################################
 ### chunk number 2: 
 ###################################################
+#line 18 "ex-tcltk-t-test.Rnw"
 ## helper functions
 ## not shown
 getDfs <- function(envir=.GlobalEnv) {
@@ -41,6 +43,7 @@ getTwoLevelFactor <- function(df) {
 ###################################################
 ### chunk number 3: dataModel
 ###################################################
+#line 53 "ex-tcltk-t-test.Rnw"
 ### Data model
 e <- new.env()
 e$x <- tclVar(""); e$f <- tclVar(""); e$data <- tclVar("")
@@ -49,20 +52,28 @@ e$conf.level <- tclVar(95); e$var.equal <- tclVar(FALSE)
 
 
 ###################################################
-### chunk number 4: layout
+### chunk number 4: notShown
 ###################################################
-### GUI
+#line 62 "ex-tcltk-t-test.Rnw"
+### GUI Our standard setup
 w <- tktoplevel()
 tkwm.title(w, "t-test Dialog")
 f <- ttkframe(w, padding=c(3,3,3,12))
 tkpack(f, expand=TRUE, fill="both")
+
+
+###################################################
+### chunk number 5: layout
+###################################################
+#line 72 "ex-tcltk-t-test.Rnw"
 lf <- ttklabelframe(f, text="t.test()", padding=10)
 tkpack(lf, expand=TRUE, fill="both", padx=5, pady=5)
 
 
 ###################################################
-### chunk number 5: tkgridHelper
+### chunk number 6: tkgridHelper
 ###################################################
+#line 81 "ex-tcltk-t-test.Rnw"
 putLabel <- function(parent, text, row, column) {
   label <- ttklabel(parent, text=text)
   tkgrid(label, row=row, column=column, sticky="e")
@@ -70,8 +81,9 @@ putLabel <- function(parent, text, row, column) {
 
 
 ###################################################
-### chunk number 6: 
+### chunk number 7: 
 ###################################################
+#line 96 "ex-tcltk-t-test.Rnw"
 putLabel(lf, "data:",0,0)
 dataCombo <- ttkcombobox(lf, values=getDfs(), textvariable=e$data)
 tkgrid(dataCombo, row=0, column=1, sticky="ew", padx=2)
@@ -79,8 +91,9 @@ tkfocus(dataCombo)                      # give focus
 
 
 ###################################################
-### chunk number 7: 
+### chunk number 8: notShown
 ###################################################
+#line 103 "ex-tcltk-t-test.Rnw"
 ## not shown
 putLabel(lf, "x:",1,0)
 xCombo <-  ttkcombobox(lf, values=getNumericVars(), textvariable=e$x)
@@ -88,64 +101,72 @@ tkgrid(xCombo, row=1, column=1, sticky="ew", padx=2)
 
 
 ###################################################
-### chunk number 8: 
+### chunk number 9: notShown
 ###################################################
+#line 110 "ex-tcltk-t-test.Rnw"
 ## not shown
-putLabel(lf, "f:",1,2)
+putLabel(lf, "~ f:",1,2)
 fCombo <-  ttkcombobox(lf, values=getTwoLevelFactor(), textvariable=e$f)
 tkgrid(fCombo, row=1, column=3, sticky="ew", padx=2)
 
 
 ###################################################
-### chunk number 9: mu
+### chunk number 10: mu
 ###################################################
+#line 120 "ex-tcltk-t-test.Rnw"
 putLabel(lf, "mu:", 2, 0)
 muCombo <-  ttkcombobox(lf, values=c(""), textvariable=e$mu)
 tkgrid(muCombo, row=2, column=1, sticky="ew", padx=2)
 
 
 ###################################################
-### chunk number 10: 
+### chunk number 11: 
 ###################################################
+#line 129 "ex-tcltk-t-test.Rnw"
 ttkscale <- function(parent, ...) tkwidget(parent, "ttk::scale", ...)
 tkspinbox <- function(parent, ...) tkwidget(parent, "tk::spinbox", ...)
 
 
 ###################################################
-### chunk number 11: 
+### chunk number 12: 
 ###################################################
-putLabel(lf, "alternative:", 3,0)
-altCombo <-   tkspinbox(lf, values=c("two.sided","less","greater"),
-                          textvariable=e$alternative, wrap=TRUE)
+#line 133 "ex-tcltk-t-test.Rnw"
+putLabel(lf, "alternative:", 3, 0)
+altCombo <- tkspinbox(lf, values=c("two.sided","less","greater"),
+                      textvariable=e$alternative, wrap=TRUE)
 tkgrid(altCombo, row=3, column=1, sticky="ew", padx=2)
-
-
-###################################################
-### chunk number 12: makeUpMissing
-###################################################
-
-putLabel(lf, "conf.level:", 3, 2)
-altFrame <- ttkframe(lf)
-tkgrid(altFrame, row=3, column=3, columnspan=2, sticky="ew", padx=2)
-
-altScale <- ttkscale(altFrame, from=75, to=100, variable=e$conf.level)
-tkpack(altScale, expand=TRUE, fill="y", side="left")
-
-altSpin <- tkspinbox(altFrame, from=75, to = 100, increment=1, textvariable=e$conf.level, width=5)
-tkpack(altSpin, side="left")
 
 
 ###################################################
 ### chunk number 13: 
 ###################################################
-putLabel(lf, "var.equal:", 4,0)
-veCheck <- ttkcheckbutton(lf, variable=e$var.equal)
-tkgrid(veCheck, row=4, column=1, stick="w", padx=2)
+#line 143 "ex-tcltk-t-test.Rnw"
+putLabel(lf, "conf.level:", 3, 2)
+confFrame <- ttkframe(lf)
+tkgrid(confFrame, row=3, column=3, columnspan=2, 
+       sticky="ew", padx=2)
+confScale <- ttkscale(confFrame, from=75, to=100, 
+                     variable=e$conf.level)
+tkpack(confScale, expand=TRUE, fill="y", side="left")
+
+confSpin <- tkspinbox(confFrame, from=75, to=100, increment=1, 
+                     textvariable=e$conf.level, width=5)
+tkpack(confSpin, side="left")
 
 
 ###################################################
 ### chunk number 14: 
 ###################################################
+#line 158 "ex-tcltk-t-test.Rnw"
+putLabel(lf, "var.equal:", 4, 0)
+veCheck <- ttkcheckbutton(lf, variable=e$var.equal)
+tkgrid(veCheck, row=4, column=1, stick="w", padx=2)
+
+
+###################################################
+### chunk number 15: 
+###################################################
+#line 165 "ex-tcltk-t-test.Rnw"
 tkgrid.columnconfigure(lf, 0, weight=1)
 tkgrid.columnconfigure(lf, 1, weight=10)
 tkgrid.columnconfigure(lf, 2, weight=1)
@@ -153,8 +174,9 @@ tkgrid.columnconfigure(lf, 1, weight=10)
 
 
 ###################################################
-### chunk number 15: 
+### chunk number 16: 
 ###################################################
+#line 173 "ex-tcltk-t-test.Rnw"
 bf <- ttkframe(f)
 tkpack(bf, fill="x", padx=5, pady=5)
 
@@ -164,75 +186,96 @@ cancel <- ttkbutton(bf, text="cancel", command=function() {
 })
 ok <- ttkbutton(bf, text="ok")
 
-tkpack(ttklabel(bf, text=" "), expand=TRUE, fill="y", side="left")
+tkpack(ttklabel(bf, text=" "), expand=TRUE, fill="y", 
+       side="left")                     # add a spring
 tkpack(cancel, padx=6, side="left")
 tkpack(ok, padx=6, side="left")
-tkconfigure(ok, default="active")
-
-
-###################################################
-### chunk number 16: 
-###################################################
-okCallback <- function() {
-  l <- lapply(e, tclvalue)
-  runTTest(l)
-}
-tkbind(ok, "<Button-1>", okCallback)
-tkbind(w, "<Return>", okCallback)        # for active binding
 
 
 ###################################################
 ### chunk number 17: 
 ###################################################
-updateUI <- function() {
-  tkconfigure(dataCombo, values=getDfs())
-  dfName <- tclvalue(e$data)
-
-  if(dfName == "") {
-    tkconfigure(xCombo, state="disabled")
-  } else {
-    df <- get(dfName, envir=.GlobalEnv)
-    tkconfigure(xCombo, state="normal", values=getNumericVars(df))
-    if(! tclvalue(e$x) %in% getNumericVars(df))
-      tclvalue(e$x) <- ""
-
-    tkconfigure(fCombo, values=getTwoLevelFactor(df))
-    if(!tclvalue(e$f) %in% getTwoLevelFactor(df))
-      tclvalue(e$f) <- ""
-  }
-  
-  tkconfigure(fCombo, state=
-              ifelse(tclvalue(e$x) == "", "disabled", "normal"))
-  
-  if(tclvalue(e$f) == "")  {
-    tkconfigure(muCombo, state="normal")
-    tkconfigure(veCheck, state="disabled")
-  } else {
-    tclvalue(e$mu) <- 0
-    tkconfigure(muCombo, state="disabled")
-    tkconfigure(veCheck, state="normal")
-  }
+#line 194 "ex-tcltk-t-test.Rnw"
+okCallback <- function() {
+  l <- lapply(e, tclvalue)
+  runTTest(l)
 }
+tkconfigure(ok, command=okCallback)
+tkbind("TButton", "<Return>", function(W) tcl(W, "invoke"))
 
 
 ###################################################
 ### chunk number 18: 
 ###################################################
-updateID <- new.env()
-updateID$flag <- TRUE
-updateID$ID <- NA
-repeatFun <- function() {
-  if(updateID$flag && as.logical(tkwinfo("exists",w))) {
-    updateUI()
-    updateID$ID <- tcl("after",1000, repeatFun)
+#line 209 "ex-tcltk-t-test.Rnw"
+updateUI <- function() {
+  dfName <- tclvalue(e$data)
+  curDfs <- getDfs()
+  tkconfigure(dataCombo, values=curDfs)
+  if(!dfName %in% curDfs) {
+    dfName <- ""
+    tclvalue(e$data) <- ""
+  }
+
+  if(dfName == "") {
+    ## disable all
+    sapply(list(xCombo, fCombo, muCombo,  veCheck),
+           function(W) tkconfigure(W, state="disabled"))
+    ## disable altSpin, confSpin, confScale
+  } else {
+    ## enable univariate
+    sapply(list(xCombo,  muCombo),
+           function(W) tkconfigure(W, state="normal"))
+    ## enable altSpin, confSpin, confScale
+    df <- get(dfName, envir=.GlobalEnv)
+    numVars <- getNumericVars(df)
+    tkconfigure(xCombo, values=numVars)
+    if(! tclvalue(e$x) %in% numVars)
+      tclvalue(e$x) <- ""
+
+    ## bivariate
+    availFactors <- getTwoLevelFactor(df)
+    sapply(list(fCombo, veCheck),
+           function(W) tkconfigure(W, state=ifelse(length(availFactors), "normal", "disabled")))
+    tkconfigure(fCombo, values=availFactors)
+    if(!tclvalue(e$f) %in% availFactors)
+      tclvalue(e$f) <- ""
+      
   }
 }
-repeatFun()
+tkbind(dataCombo, "<<ComboboxSelected>>", updateUI)
 
 
 ###################################################
 ### chunk number 19: 
 ###################################################
+#line 254 "ex-tcltk-t-test.Rnw"
+require(digest)
+create_function <- function() {
+  .dfs <- digest(getDfs())
+  f <- function(...) {
+    if((val <- digest(getDfs())) != .dfs) {
+      .dfs <<- val
+      updateUI()
+    }
+    return(TRUE)
+  }
+}
+
+
+###################################################
+### chunk number 20: 
+###################################################
+#line 268 "ex-tcltk-t-test.Rnw"
+id <- addTaskCallback(create_function())
+
+
+###################################################
+### chunk number 21: 
+###################################################
+#line 277 "ex-tcltk-t-test.Rnw"
+## We don't show the function runTTest.
+## It is a bit long, as care must be taken as it isn't clear if a formula should be used.  
 runTTest <- function(l) {
   ## ugly function to run t test
   if(l$data == "" || l$x == "")

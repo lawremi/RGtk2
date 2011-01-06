@@ -87,7 +87,9 @@ tkpack(filterEntry, side="left")
 \begin{figure}
   \centering
   \includegraphics[width=.8\textwidth]{fig-tcltk-filter-table.png}
-  \caption{Using \code{ttktreeview} to show various CRAN sites. This illustration adds a search-like box to filter what repositories are displayed for selection.}
+  \caption{Using \code{ttktreeview} to show various CRAN sites. This
+    illustration adds a search-like box to filter what repositories
+    are displayed for selection.}
   \label{fig:fig-tcltk-filter-table}
 \end{figure}
 
@@ -110,16 +112,20 @@ for(i in 1:3) {
   tcl(tr, "heading", i, text=nms[i])
   tcl(tr, "column", i, width=widths[i], stretch=TRUE, anchor="w")
 }
-@ 
-This following helper function is used to fill in the widget with values from a data frame.
+@
+%
+The treeview widget does not do filtering internally. As such we will
+replace all the values when filtering.  This following helper function
+is used to fill in the widget with values from a data frame.
 <<>>=
 fillTable <- function(tr, df) {
   children <- as.character(tcl(tr, "children", ""))
-  for(i in children) tcl(tr, "delete", i)
+  for(i in children) tcl(tr, "delete", i) # out with old
   shade <- c("none", "gray")
   for(i in seq_len(nrow(df))) 
-    tcl(tr, "insert", "", "end", tag=shade[i %% 2],text="",  
-        values=unlist(df[i,]))
+    tcl(tr, "insert", "", "end", tag=shade[i %% 2], 
+        text="",  
+        values=unlist(df[i,]))          # in with new
   tktag.configure(tr, "gray", background="gray95")
 }
 @ 
@@ -128,18 +134,20 @@ The initial call populates the table from the entire data frame.
 fillTable(tr, df)
 @ 
 
-The filter works by grepping the user input agains the host value. We
+The filter works by grepping the user input against the host value. We
 bind to \Event{KeyRelease} (and not \Event{KeyPress}) so we capture the last keystroke.
 <<>>=
 curInd <- 1:nrow(df)
 tkbind(filterEntry, "<KeyRelease>", function(W, K) {
   val <- tclvalue(tkget(W))
-  possVals <- apply(df,1, function(...) paste(..., collapse=" "))
+  possVals <- apply(df, 1, function(...) 
+                    paste(..., collapse=" "))
   ind<- grep(val, possVals)
   if(length(ind) == 0) ind <- 1:nrow(df)
   fillTable(tr, df[ind,])
 })
 @ 
+%
 This binding is for capturing a users selection through a double-click
 event. In the callback, we set the CRAN option then withdraw the window.
 <<>>=
