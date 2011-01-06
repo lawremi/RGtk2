@@ -28,7 +28,7 @@ board <- matrix(rep(0,9), nrow=3)       # a global
 %% View
 A GUI contains one or more views, each of which is tied to an
 underlying data model. In our case, the view is the game board that we
-display through \R\/ graphics device. The \Rfunction{layoutBoard}
+display through an \R\/ graphics device. The \Rfunction{layoutBoard}
 function creates this view:
 <<layoutBoard>>=
 layoutBoard <- function() {
@@ -138,22 +138,14 @@ GUI will display. Even the labels, which one generally considers
 static, will display different text depending on the language (as long
 as translations are available).
 
+%% JV: thanks
 This function is used to test if a game is finished:
 <<isFinished>>=
 isFinished <- function() {
-  ## if(sum(abs(board)) >= 9) 
-  ##   return(TRUE)
-  ## m <- matrix(1:9,nrow=3)
-  ### MFL: would this code do the same thing?
-  (any(rowSums(board) == 3) || any(colSums(board) == 3) || 
-   sum(diag(board)) == 3 || sum(diag(apply(board, 2, rev))) == 3)
-  ## ways <- list(m[,1], m[,2], m[,3],
-  ##              m[1,], m[2,], m[3,],
-  ##              diag(m),diag(apply(m,2,rev)))
-  ## sums <- sapply(ways, function(i) abs(sum(board[i])))
-  ## if(any(sums == 3)) 
-  ##   return(TRUE)
-  ## return(FALSE)
+  (any(abs(rowSums(board)) == 3) || 
+   any(abs(colSums(board)) == 3) || 
+   abs(sum(diag(board))) == 3 || 
+   abs(sum(diag(apply(board, 2, rev)))) == 3)
 }
 @
 %

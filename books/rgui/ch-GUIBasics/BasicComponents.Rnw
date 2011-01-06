@@ -9,6 +9,79 @@ already familiar with the conventional types of widgets and how they
 are arranged on the screen, this section and the next should be
 considered optional.
 
+
+\subsection{Choice of control}
+\label{sec:choice-widget}
+%% real estate, type of data
+
+A GUI is comprised of one or more widgets. The appropriate choice
+depends on a balance of condiderations.  For example, many widgets
+offer the user a selection from one or more possible choices.  An
+appropriate choice depends on the type and size of the information
+being displayed, the constraints on the user input, and on the space
+available in the GUI layout. As an example,
+Table~\ref{tab:gui-design-widget-type} lists suggests different types
+of widgets used for this purpose depending on the type and size of
+data and the number of items to select.
+  
+<<echo=FALSE, results=tex>>=
+df <- rbind(
+            c("Boolean","Checkbox, toggle button","-"),
+            c("Small list","radiogroup\\newline combobox\\newline list box","checkboxgroup\\newline list box"),
+            c("Moderate list","combobox\\newline list box","list box"),
+            c("Large list","list box, auto complete","list box"),
+            c("Sequential","slider\\ spinbutton",""),
+            c("Tabular","table","table"),
+            c("Heirarchical","tree","tree")
+            )
+colnames(df) <- c("Type of data","Single","Multiple")
+cat(booktabs(df,
+             colTypes=c("l","p{0.35\\textwidth}","p{0.35\\textwidth}"),
+             caption="Table of possible selection widgets by data type and size",
+             label="tab:gui-design-widget-type"))
+@ 
+
+
+Figure~\ref{fig:GUI:spss-11-term-selection} shows several such
+controls in a single GUI. A checkbox enables an intercept,
+a radio group selects either full factorial or a custom
+model, a combobox selects the ``sum of squares'' type, and a
+list box allows for multiple selection from the available
+variables in the data set. 
+
+
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.65\textwidth]{spss-11-model-selection}
+ \caption{A dialog box from SPSS version 11 for specifying terms
+    for a linear model. The graphic shows a dialog that allows
+    the user to specify individual terms in the model  using
+    several types of widgets for selection of values, such as a radio
+    group, a checkbox, combo boxes, and list boxes. }
+  \label{fig:GUI:spss-11-term-selection}
+\end{figure}
+
+%% Metaphors, user base
+For many \R\/ object types there are natural choices of widget. For
+example, values from a sequence map naturally to a slider or spin
+button; a data frame maps naturally to a table widget; or a list with
+similar structure can map naturally to a tree widget. However, certain
+\R\/ types have less common metaphors. For instance, a formula object
+can be fairly complex. Figure~\ref{fig:GUI:spss-11-term-selection}
+shows an SPSS dialog to build terms in a model. \R\/ power users may
+be much faster specifying the formula through a text entry box, but
+beginning \R\/ users coming to grips with the command line and the
+concept of a formula may benefit from the assistance of a well
+designed GUI. One might desire an interface that balances the needs of
+both types of user, or the SPSS interface may be appropriate. Knowing
+the potential user base is important.
+
+
+
+
+
+
 \subsection{Presenting options}
 \label{sec:GUI:basic-selection}
 
@@ -146,7 +219,7 @@ buttons, which are often organized into menubars and toolbars.
 \subsubsection{Buttons}
 \label{sec:GUI:buttons}
 
-A \dfn{button} issue commands when pressed, usually via a mouse click.
+A \dfn{button} issues commands when pressed, usually via a mouse click.
 In Figure~\ref{fig:GUI:print-dialogs}, the ``Properties'' button, when
 clicked, opens a dialog for setting printer properties. The button
 with the wizard icon also opens a dialog.  As buttons execute an
@@ -324,8 +397,7 @@ each column has a specific data type and cell rendering strategy.
 Table widgets handle the display, sorting and selection of records
 from a dataset. Depending on the configuration of the widget, cells
 may be editable.  Figure~\ref{fig:GUI:spotfire} shows a table widget
-in a Spotfire web player demonstration. It displays the cases that a
-pass a user-specified filter.
+in a Spotfire web player demonstration. 
 
 \begin{figure}
   \centering
@@ -365,7 +437,7 @@ data, and how table widgets display tabular data, like that in a data
 frame. Other widgets support the display of more complex data
 structures. If the data has a heirarchical structure, then a \dfn{tree
   widget} may be appropriate for its display. Examples of heirarchical
-data in \R are directory structures, the components of a list, or
+data in \R\/ are directory structures, the components of a list, or
 class hierarchies. The object browser in \pkg{JGR} uses a tree
 widget to show the components of the objects in a users session (the
 left graphic of Figure~\ref{fig:GUI:R-guis-exs-JGR-Rcmdr}). The root
@@ -406,8 +478,8 @@ such a language, but it is still preferable to the alternative.
 \label{sec:GUI:textboxes}
 
 The right graphic
-of Figure~\ref{fig:GUI:R-guis-exs-JGR-Rcmdr} shows a multi-line text entry
-in \pkg{Rcmdr}. It provides an \R\/ console and status message area. The
+of Figure~\ref{fig:GUI:R-guis-exs-JGR-Rcmdr} shows three multi-line text entries
+in an \pkg{Rcmdr} window. It provides an \R\/ console and status message area. The
 ``Output Window'' demonstrates the utility of formatting
 attributes. In this case, attributes specify the color of
 the commands, so that the input can be distinguished from the output.
@@ -461,7 +533,7 @@ the commands, so that the input can be distinguished from the output.
 \label{sec:GUI:info-display}
 
 Some widgets display information but do not respond to user
-input. These are called static controls in \wxWidgets. Their main
+input. Their main
 purpose is to guide and the user through the GUI and to display
 feedback and status messages.
 

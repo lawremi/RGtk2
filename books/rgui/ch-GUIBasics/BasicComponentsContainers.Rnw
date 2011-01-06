@@ -242,12 +242,13 @@ expanding widgets also act as springs.
   \label{fig:GUI:box-possibilities}
 \end{figure}
 
-The button box shows five buttons as child components. At first glance
-the sizing appears to show that each button is drawn to fully show its label
-with some fixed space placed between the buttons. If the dialog is
-expanded, it is seen that there is a spring between the 3rd and 4th
-buttons, so that the first 3 are aligned with the left side of the
-window and the last two the right side.
+The button box in the KDE print dialog shows five buttons as child
+components. At first glance the sizing appears to show that each
+button is drawn to fully show its label with some fixed space placed
+between the buttons. If the dialog is expanded, it is seen that there
+is a spring between the 3rd and 4th buttons, so that the first 3 are
+aligned with the left side of the window and the last two the right
+side.
 
 \subsubsection{Grid layout}
 \label{sec:GUI:grid-layout}
