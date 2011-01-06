@@ -1,0 +1,118 @@
+<<>>=
+## Example GUI for selecting ordered values from a list of possible values
+## uses two-table ping pong set up with additional arrows for ordering the selected values
+
+library(gWidgets)
+options(guiToolkit="RGtk2")
+#options(guiToolkit="tcltk")
+#options(guiToolkit="Qt")
+
+nms <- state.name
+options("stringsAsFactors"=FALSE)
+@ 
+
+<<Layout>>=
+## Layout
+w <- gwindow("Select an ordered list from a bigger list")
+
+g <- ggroup(cont=w)
+selectFrom <- gtable(data.frame(Values=nms), multiple=TRUE, cont=g, expand=TRUE)
+
+lrbg <- ggroup(cont=g, horizontal=FALSE)
+
+## use two springs to balance butons in middle
+addSpring(lrbg)
+leftButton <- gbutton(">", cont=lrbg)
+rightButton <- gbutton("<", cont=lrbg)
+addSpring(lrbg)
+
+selected <- gtable(data.frame(Values=character(0)), cont=g, expand=TRUE)
+
+udbg <- ggroup(cont=g, horizontal=FALSE)
+
+addSpring(udbg)
+upButton <- gbutton("up", cont=udbg)
+downButton <- gbutton("down", cont=udbg)
+addSpring(udbg)
+@ 
+
+<<>>=
+##' update the UI
+updateUI <- function() {
+  enabled(leftButton) <- length(svalue(selectFrom))
+  enabled(rightButton) <- length(svalue(selected))
+  enabled(upButton) <- length(svalue(selected))
+  enabled(downButton) <- length(svalue(selected)) 
+}
+@ 
+
+<<>>=
+## functions for movement of selected values
+## move selected item from left to right
+moveLeftToRight <- function() {
+  sel <- svalue(selectFrom)
+  if(length(sel)) {
+    ## update selected
+    selected[] <- c(selected[], sel)
+    svalue(selected, index=TRUE) <- length(selected[drop=TRUE])
+    ## update selectFrom
+    selectFrom[] <- setdiff(selectFrom[], sel)
+  }
+  updateUI()
+}
+
+## move selected item from right to left
+moveRightToLeft <- function() {
+  sel <- svalue(selected)
+  if(length(sel)) {
+    selected[] <- setdiff(selected[], sel)
+    selectFrom[] <- sort(c(selectFrom[], sel))
+  }
+}
+
+## in selected table move any selected item up
+moveUp <- function() {
+  sel <- svalue(selected, index=TRUE)
+  if(sel > 1) {
+    poss <- selected[]
+    poss[c(sel-1, sel)] <- poss[c(sel, sel-1)]
+    selected[] <- poss
+    svalue(selected, index=TRUE) <- sel-1
+  }
+}
+
+## in selected table move any selected item down
+moveDown <- function() {
+   sel <- svalue(selected, index=TRUE)
+   poss <- selected[]
+   n <- length(poss)
+   if(sel < n) {
+     poss[c(sel, sel+1)] <- poss[c(sel+1, sel)]
+     selected[] <- poss
+     svalue(selected, index=TRUE) <- sel + 1
+   }
+}
+@ 
+
+<<>>=
+## handlers assigning previoius functions to button clicks
+
+addHandlerClicked(selectFrom, handler=function(h,...) {
+  updateUI()
+})
+addHandlerClicked(selected, handler=function(h,...) {
+  updateUI()
+})
+addHandlerClicked(leftButton, handler=function(h,...) {
+  moveLeftToRight()
+})
+addHandlerClicked(rightButton, handler=function(h,...) {
+  moveRightToLeft()
+})
+addHandlerClicked(upButton, handler=function(h, ...) {
+  moveUp()
+})
+addHandlerClicked(downButton, handler=function(h,...) {
+  moveDown()
+})
+@ 
