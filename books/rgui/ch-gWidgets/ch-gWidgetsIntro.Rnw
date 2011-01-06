@@ -26,7 +26,7 @@ source("../booktabs.R")
 \SweaveInput{Overview}
 
 
-\chapter{\pkg{gWidgets}: Layout}
+\chapter{\pkg{gWidgets}: Container Widgets}
 \label{sec:gWidgets-Containers}
 \SweaveInput{Containers}
 

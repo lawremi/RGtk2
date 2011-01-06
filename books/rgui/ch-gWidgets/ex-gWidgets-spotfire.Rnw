@@ -6,12 +6,11 @@
   \caption{A GUI to filter a data frame and display an accompanying graphic.}
   \label{fig:gWidgets-spotfire-gui}
 \end{figure}
-A common GUI applicatio
-n for data analysis consists of means to
+A common GUI application for data analysis consists of means to
 visualize, query, aggregate and filter a data set. This example shows
-how one can create such a GUI using \pkg{gWidgets} featuring
-an embedded graphics device. In addition a visual display of the filtered data,
-and a means to filter, or narrow, the data that is under
+how one can create such a GUI using \pkg{gWidgets} featuring an
+embedded graphics device. In addition a visual display of the filtered
+data, and a means to filter, or narrow, the data that is under
 consideration, is presented (Figure~\ref{fig:gWidgets-spotfire-gui}).
 Although, our example is not too feature rich, it illustrates a
 framework that can easily be extended.
@@ -46,19 +45,19 @@ descr <- glabel(gettext("A basic GUI to explore a data set"),
 %
 Now we specify the layout for the second tab. This is a nested layout
 made up of three box containers. The first, \code{g}, uses a
-horizontal layout in which we pack to box containers that will use a
-vertical layout (when \code{horizontal=FALSE}). 
+horizontal layout in which we pack in box containers that will use a
+vertical layout.
 
 <<page2>>=
 g <- ggroup(cont=nb, label=gettext("Explore..."))
-lg <- ggroup(cont=g, horizontal=FALSE) # vertical boxes
+lg <- ggroup(cont=g, horizontal=FALSE) 
 rg <- ggroup(cont=g, horizontal=FALSE)
 @ 
 
 The left side will contain an embedded graphic device and a view of
 the filtered data. The \constructor{ggraphics} widget provides the
-graphic device. This widget is unfortunately not available for all toolkits
-<<>>=
+graphic device.
+<<results=hide>>=
 ggraphics(cont = lg)
 @ 
 
@@ -84,17 +83,19 @@ the user.
 <<filters>>=
 filterg <- gframe(gettext("Filter by:"), cont = rg, expand=TRUE)
 @ 
-The controls are layed out in a grid. We have two here to filter by
-type and the number of cylinders. These of course, are specific to the
+The controls are layed out in a grid. We have two here to filter by:
+type and the number of cylinders.
 data set.
 <<filterLayout>>=
 lyt <- glayout(cont=filterg)
 l <- list() # store widgets
 lyt[1,1] <- "Type:"
-lyt[1,2] <- (l$Type <- gcombobox(c("", levels(x$Type)), cont=lyt))
+lyt[1,2] <- (l$Type <- gcombobox(c("", levels(x$Type)), 
+                                 cont=lyt))
 
 lyt[2,1] <- "Cylinders:"
-lyt[2,2] <- (l$Cylinders <- gcombobox(c("", levels(x$Cylinders)), cont=lyt))
+lyt[2,2] <- (l$Cylinders <- 
+             gcombobox(c("", levels(x$Cylinders)), cont=lyt))
 @ 
 %
 Of course, we could use many more criteria to filter. The above
@@ -124,7 +125,7 @@ updateDataFrame <- function(...) {
   
   nsprintf <- function(n, msg1, msg2,...)
     ngettext(n, sprintf(msg1, n), sprintf(msg2,n), ...)
-  svalue(noCases) <- nsprintf(sum(ind), "%s case", "%s cases") # label
+  svalue(noCases) <- nsprintf(sum(ind), "%s case", "%s cases")
 }
 @
 
@@ -152,7 +153,7 @@ updateGraphic <- function(...) {
 
 We now add a handler to be called whenever one of our comboboxes is
 changed. This handler simply calls both our update functions.
-<<applyHandler>>=
+<<applyHandler, results=hide>>=
 f <- function(h, ...) {
   updateDataFrame()
   updateGraphic()
@@ -167,7 +168,8 @@ by clicking on a row of the table. The following will do so.
 addHandlerClicked(tbl, handler=function(h,...) {
   updateGraphic()
   ind <- svalue(h$obj, index=TRUE)
-  points(MPG.city ~ Weight, cex=2, col="red", pch=16, data=x[ind,])
+  points(MPG.city ~ Weight, cex=2, col="red", pch=16, 
+         data=x[ind,])
 })
 @ 
 %

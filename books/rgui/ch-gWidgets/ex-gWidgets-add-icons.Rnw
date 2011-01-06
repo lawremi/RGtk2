@@ -1,9 +1,9 @@
 This example shows how to add to the available stock icons and use
 \code{gimage} to display them. It creates a table to select a color
 from, as an alternative to a more complicated color chooser
-dialog. Under \pkg{gWidgetstcltk} the image files would need to be
+dialog.~\footnote{If  \pkg{gWidgetstcltk} is used the image files would need to be
 converted to \code{gif} format, as \code{png} format is not a natively
-supported image type.
+supported image type.}
 
 We begin by defining 16 arbitrary colors.
 
@@ -19,8 +19,7 @@ low-level \pkg{grid} functions to draw the image to a png file.
 require(grid)
 iconDir <- tempdir(); iconSize <- 16;
 makeColorIcon <- function(i) {
-  filename <- paste(iconDir, "/color-", i, ".png",
-                    sep="", collapse="")
+  filename <- sprintf("%s%scolor-%s.png", iconDir, .Platform$file.sep, i)
   png(file=filename, width=iconSize, height=iconSize)
   grid.newpage()
   grid.draw(rectGrob(gp=gpar(fill=i)))
@@ -29,12 +28,12 @@ makeColorIcon <- function(i) {
 }
 @ 
 
-To add icons, we need to define the stock names and the file paths for
-\code{addStockIcons}.
+To add the icons, we need to define the stock names and the file paths
+for \code{addStockIcons}.
 
 <<results=hide>>=
 icons <- sapply(someColors, makeColorIcon)
-iconNames <- paste("color-", someColors, sep="")
+iconNames <- sprintf("color-%s", someColors)
 addStockIcons(iconNames, icons)
 @ 
 
@@ -44,7 +43,7 @@ corresponding stock icon name.
 
 <<>>=
 w <- gwindow("Icon example")
-f <- function(h,...) print(h$action)
+f <- function(h,...) galert(h$action, parent=w)
 tbl <- glayout(cont=w, spacing=0)
 for(i in 1:4) {
   for(j in 1:4) {

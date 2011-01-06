@@ -31,37 +31,37 @@ options("guiToolkit"="RGtk2") ## for examples
 % \end{table}
 
 
-GUI construction involves three basic steps: creation and
-configuration of the main components; the layout of these components;
-and linking the components to make a GUI interactive. This chapter
-discusses the layout process within \pkg{gWidgets}. Layout is done by
-placing child components within parent containers which in turn may be
-nested in other containers. (This is more like \GTK, and not \Qt where
-layout managers control where the components are displayed.) The
-\pkg{gWidgets} package provides a just few useful containers:
-top-level windows, box containers, grid-like containers and notebook
-containers. Figure~\ref{fig:gWidgets-sample-layout} shows a paned
-window, a framed container, a notebook container and box containers
-used to produce a GUI to show contents of a file.
+After identifying the underlying data to manipulate and how to
+represent it, GUI construction involves three basic steps: creation
+and configuration of the main components; the layout of these
+components; and linking the components to make a GUI interactive. This
+chapter discusses the layout process within \pkg{gWidgets}. Layout in
+\pkg{gWidgets} is done by placing child components within parent
+containers which in turn may be nested in other containers. (This is
+more like \GTK, and not \Qt where layout managers control where the
+components are displayed.) The \pkg{gWidgets} package provides a just
+few types containers: top-level windows, box containers, a grid
+container, a paned container and  a notebook
+container. Figure~\ref{fig:gWidgets-sample-layout} shows most all of
+these employed to produce a GUI to select and then show contents of a file.
 
 
 %% add
-The primary method for layout is the \meth{add} method for
-containers. The basic call is of the form \code{add(parent, child,
-  extra\_arguments)}. However, this isn't typically used. In some
-toolkits, notably \pkg{tcltk}, the widget constructors require the
-specification of a parent window for the widget. To accomodate that,
-in the \pkg{gWidgets} constructors -- except for top-level windows --
-we have the argument \args{container} (which can always be shortened
-to \args{cont}). This is used to specify the
-immediate parent container, the parent window is found from
-that. Within the constructor is the call \code{add(container,
-  child,...)} where the constructor creates the child and \code{...}
-values are passed from the constructor down to the \meth{add}
-method. That is, the widget construction and layout are coupled
-together. Although, this isn't necessary when utilizing \pkg{RGtk2} or
-\pkg{qtbase} -- and the two aspects can be separated -- for the sake
-of cross-toolkit portability we don't illustrate this here.
+Except for the grid container, the primary method for containers is
+their \meth{add} method. The basic call is of the form
+\code{add(parent, child, extra\_arguments)}. However, this isn't
+typically used. In some toolkits, notably \pkg{tcltk}, the widget
+constructors require the specification of a parent window for the
+widget. To accomodate that, the \pkg{gWidgets} constructors --
+except for top-level windows -- have the argument \args{container}
+to specify the immediate parent container.  Within the constructor is
+the call \code{add(container, child,...)} where the constructor
+creates the child and \code{...}  values are passed from the
+constructor down to the \meth{add} method. That is, the widget
+construction and layout are coupled together. Although, this isn't
+necessary when utilizing \pkg{RGtk2} or \pkg{qtbase} -- and the two
+aspects can be separated -- for the sake of cross-toolkit portability
+we don't illustrate this here.
 
 
 
@@ -84,7 +84,8 @@ We can then use this as a parent container for a constructor. For example;
 <<windowTest1Container>>=
 l <- glabel("A child label", container=w)
 @ 
-Top-level windows only allow one child component. Typically, its child
+%
+However, top-level windows only allow one child component. Typically, its child
 is a container allowing multiple children such as a box container.
 
 
@@ -97,7 +98,7 @@ window is initially drawn. If not drawn, the
 \method{visible\ASSIGN}{gwindow} method, taking a logical value, can
 be used to draw the window later.  Often it is good practice to suppress
 the initial drawing, especially for displaying GUIs with several
-controls as the incremental drawing of subsequent child components can
+controls, as the incremental drawing of subsequent child components can
 make the GUI seem sluggish. As well, this allows the underlying
 toolkit to compute the necessary size before it is displayed.
 
@@ -112,26 +113,26 @@ default size, but may be adjusted later through the
 \method{size}{gwindow} method or through the window manager. 
 
 %% parent, location
-The initial placement of a window, $x+y$, will be decided by the window
-manager, unless the \argument{parent}{gwindow} argument is
+The initial placement of a window, $x+y$, will be decided by the
+window manager, unless the \argument{parent}{gwindow} argument is
 specified. If this is done with a vector of $x$ and $y$ pixel values,
-the upper left corner will be placed there. 
+the upper left corner will be placed there. The \args{parent} argument
+can also be another \code{gwindow} instance. In this case, the new
+window will be positioned over the specified window and be transient
+for the window. That is, it will be disposed when the parent window
+is. This is useful, say, when a main window opens a dialog window to
+gather values.
 
-The \args{parent} argument can also be another \code{gwindow}
-instance. In this case, the new window will be positioned over the
-specified window and be transient for the window. That is, it will be
-disposed when the parent window is. This is useful, say, when a main
-window opens a dialog window to gather values.
-
-For example,
+For example this call makes a child window of \code{w} with a square
+size of 200 pixels.
 <<childWindowTest>>=
-childw <- gwindow("A child window", parent=w, size=c(200,100))
+childw <- gwindow("A child window", parent=w, size=c(200,200))
 @ 
 
 
 %% dispose/addHandlerUnrealize
 \paragraph{Handlers}
-Windows can be closed programatically with the
+Windows objects can be closed programatically through their
 \method{dispose}{gwindow} method. Windows may also be closed through
 the window manager, by clicking a close icon in the title bar.  The
 \argument{handler}{gwindow} argument is called just before the window
@@ -154,19 +155,19 @@ statusbars is often reserved for the main window, while dialogs are
 not decorated so.  In \pkg{gWidgets} it is suggested, although not
 strictly enforced unless done so by the underlying toolkit, that these be
 added only to a top-level window.  We discuss these later in
-Section~\ref{XXX:MenusToolbarsSection}. 
+Section~\ref{sec:gWidgets-acti-menus-toolb}. 
 
 <<echo=FALSE, results=tex>>=
 df <- rbind(
             c("\\constructor{gwindow}","Creates a top-level window"),
             c("\\constructor{ggroup}","Creates a box-like container"),
-            c("\\constructor{gframe}","Creates a container with a text label"),
-            c("\\constructor{gexpandgroup}",paste("Creates a container with a label and",
+            c("\\constructor{gframe}","Creates a box container with a text label"),
+            c("\\constructor{gexpandgroup}",paste("Creates a box container with a label and",
                                                   "trigger to expand/collapse",sep=" ")),
+            c("\\constructor{glayout}","A grid container"),
             c("\\constructor{gpanedgroup}",
               paste("Creates a container for two child widgets",
                     "with a handle to assign allocation of space.",sep=" ")),
-            c("\\constructor{glayout}","A grid container"),
             c("\\constructor{gnotebook}","A tabbed notebook container for holding a collection of child widgets")
             )
 colnames(df) <- c("Constructor","Description")
@@ -192,12 +193,11 @@ used to specify the window title.
 
 
 
-As with the \function{gconfirm} dialog, this widget returns \code{TRUE} or
-\code{FALSE} depending on the user's selection. To do something more
-complicated than \code{gconfirm}, a handler should be specified at
-construction. The \argument{handler}{gbasicdialog} argument is used
-for this. The  specified
-handler is called before the dialog is disposed.
+As with the \function{gconfirm} dialog, this widget returns
+\code{TRUE} or \code{FALSE} depending on the user's selection. To do
+something more complicated than \code{gconfirm}, a handler should be
+specified at construction which is called just before the dialog is
+disposed.
 
 
 This dialog is used in a slightly different manner, requiring the use
@@ -208,20 +208,20 @@ container for a child component; a construction of the dialog; then a
 call to the \code{visible} method on the dialog with \code{set=TRUE}
 value (not though \code{visible(obj) \ASSIGN\/ TRUE}).
 
-For a basic example, we have this where the handler simply echoes back
-the text stored in the label. 
+For a basic example where the handler simply echoes back
+the text stored in the label, we have:
 <<eval=FALSE>>=
 w <- gbasicdialog("A modal dialog", handler=function(h,...) {
   print(svalue(l))                      
 })
 l <- glabel("A simple label", cont=w)
-visible(w, TRUE)                        # not visible(w) <- TRUE
+visible(w, set=TRUE)                 # not visible(w) <- TRUE
 @ 
 
 
 \begin{figure}
   \centering
-  \includegraphics[width=.7\textwidth]{fig-gWidgets-example-browser}
+  \includegraphics[width=.8\textwidth]{fig-gWidgets-example-browser}
   \caption{The example browser for gWidgets showing different layout components.}
   \label{fig:gWidgets-sample-layout}
 \end{figure}
@@ -246,8 +246,12 @@ df <- rbind(c("\\meth{add}",paste("Adds a child object to a parent container.",
                                   "argument of the widget constructor, in which case,",
                                   "the \\args{...} arguments are passed to",
                                   "this method.", sep=" ")),
-            c("\\meth{delete}", "Remove a child object from a parent container"))
-colnames(df) <- c("Method","Description")
+            c("\\meth{delete}", "Remove a child object from a parent container"),
+            c("\\meth{dispose}", "Destroy container and children"),
+            c("\\method{enabled\\ASSIGN}", "Set sensitivity of child components"),
+            c("\\meth{visible\\ASSIGN}", "Hide or show child components")
+            )
+colnames(df) <- c("Method<","Description")
 cat(booktabs(df, 
              colTypes=c("l","p{0.6\\textwidth}"),
              caption="Container methods", 
@@ -289,14 +293,12 @@ resized. These are passed through the
 
 These arguments are:
 \begin{description}
-\item[expand] When \code{expand=TRUE} is specified then the child
+\item[expand, fill] When \code{expand=TRUE} is specified then the child
   widget will expand to fill the space allocated to it. The
   \args{fill} argument can be specified as \qcode{x}, \qcode{y}, or
   the default \qcode{both} to indicate which direction to fill
-  in. 
+  in.  (This varies among the toolkits.)
   
-  Filling varies from toolkit to toolkit, in particular
-  in \pkg{gWidgetsRGtk2} one can really only specify \code{fill="both"}.
   
 \item[anchor] If a widget does not expand or if it does but does not fill in both
   directions, it can be anchored into its available space in more than
@@ -345,7 +347,7 @@ case where you wish to hide a child temporarily, the
 
 
 \paragraph{Spacing}
-For spacing between the child components, the argument
+For spacing between the child components, the constructor's argument
 \argument{spacing}{ggroup} may be used to specify, in pixels, the
 amount of space between the child widgets. For \code{ggroup}
 instances, this can later be set through the \method{svalue}{ggroup}
@@ -358,18 +360,25 @@ out buttons.
 
 For example, we might modify our button layout example to include a
 ``help'' button on the far left and the others on the right with a
-fixed amount of space between them as follows:
+fixed amount of space between them as follows (Figure~\ref{fig:gWidgets-button-layout}):
 <<results=hide>>=
 w <- gwindow("Some buttons", visible=FALSE)
-g <- ggroup(horizontal=TRUE, cont=w)
+g <- ggroup(horizontal=TRUE, spacing=6, cont=w)
 help <- gbutton("help", cont=g)
 addSpring(g)
 cancel <- gbutton("cancel", cont=g)
-addSpace(g, 12)
+addSpace(g, 12)                         # 6 + 12 + 6 pixels
 ok <- gbutton("ok", cont=g)
 visible(w) <- TRUE
 @ 
 
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.7\textwidth]{fig-gWidgets-buttons}
+  \caption{Button layout for \pkg{RGtk2} (top), \pkg{tcltk} (middle) and \pkg{qtbase} (bottom). Although same code is used for each, the different styling yields varying sizes. }
+  \label{fig:gWidgets-button-layout}
+\end{figure}
 
 To illustrate how the right panel of
 Figure~\ref{fig:gWidgets-sample-layout} was done, we used nested
@@ -389,24 +398,23 @@ nb <- gnotebook(cont=g, expand=TRUE)    # fill space
 
 
 \paragraph{Sizing}
-The overall size of a \code{ggroup} container is controlled through it
-being a child of its parent container. However, a size can be assigned
-through the \method{size\ASSIGN}{ggroup} method. This will be a
-preferred size, but need not be the actual size, as the container may
-need to be drawn larger to accomodate its children. 
+The overall size of a \code{ggroup} container is typically decided by
+how it is added to its parent. However, a requested size can be assigned
+through the \method{size\ASSIGN}{ggroup} method. 
 
 
-For \pkg{gWidgetsRGtk2} the argument
-\argument{use.scrollwindow}{ggroup}, when specified as \code{TRUE}, will
-add scrollbars to the box container so that a fixed size can be
-maintained. (Although, it is generally considered a poor idea to use
-scrollbars when there is a chance the key controls for a dialog will
-be hidden, this can be useful for displaying lists of data.)
+For some toolkits the argument \argument{use.scrollwindow}{ggroup},
+when specified as \code{TRUE}, will add scrollbars to the box
+container so that a fixed size can be maintained. Setting a requested
+size in this case is a good idea. (Although, it is generally
+considered a poor idea to use scrollbars when there is a chance the
+key controls for a dialog will be hidden, this can be useful for
+displaying lists of data.)
 
 
-\begin{example}{The \args{use.scrollwindow} argument}{ex-gWidgets-ggroup-use.scrollwindow}
-  \SweaveInput{ex-gWidgets-ggroup-scrollwindow}
-\end{example}
+% \begin{example}{The \args{use.scrollwindow} argument}{ex-gWidgets-ggroup-use.scrollwindow}
+%   \SweaveInput{ex-gWidgets-ggroup-scrollwindow}
+% \end{example}
 
 % The next example shows an alternative to the expand group widget.
 
@@ -423,16 +431,26 @@ We discuss briefly two widgets that essentially subclass the
 
 Framed containers are used to set off its child elements using a
 border and label. The \constructor{gframe} constructor produces
-them. The first argument \argument{text}{gframe} is used to specify
-the label. This can later be adjusted through the
+them. In Figure~\ref{fig:gWidgets-sample-layout} the table to select
+the file is from is nested in a frame to give the user some indication
+as to what to do.
+
+For \constructor{gframe} the first argument, \argument{text}{gframe}, is
+used to specify the label. This can later be adjusted through the
 \method{names\ASSIGN}{gframe} method. The argument
 \argument{pos}{gframe} can be specified to adjust the label's
 positioning with $0$ being the left and $1$ the right.
 
-Although not a container, the \constructor{gseparator} widget can be
-used to place a horizontal or vertical line (with the
-\code{horizontal=FALSE} argument) in a layout to separate off parts of
-the GUI. 
+
+
+The basic framed container is used along these lines:
+<<>>=
+w <- gwindow("gframe example")
+f <- gframe("gWidgets Examples:", cont=w)
+files <- list.files(system.file("Examples","ch-gWidgets", 
+                                package="ProgGUIinR"))
+vars <- gtable(files, cont=f, expand=TRUE)
+@ 
 
 
 Expandable containers are useful when their child items need not be
@@ -446,27 +464,26 @@ the entire container.
 In addition, a handler can be added that is called whenever the widget
 toggles its state.
 
-
-The basic framed container is used along these lines:
-<<>>=
-w <- gwindow("gframe example")
-f <- gframe("Select a variable:", cont=w)
-vars <- gtable(names(mtcars), cont=f, expand=TRUE)
-@ 
-
-
-The usage of an expanding group is similar. Here we show how one might
-leave optional the display of a statistical summary of a model.
+Here we show how one might leave optional the display of a statistical
+summary of a model.
 <<>>=
 res <- lm(mpg ~ wt, mtcars)
 out <- capture.output(summary(res))
 
-w <- gwindow("gexpandgroup example")
+w <- gwindow("gexpandgroup example", visible=FALSE)
 eg <- gexpandgroup("Summary", cont=w)
-l <- glabel(paste(out, collapse="\n"), cont=eg)
+l <- glabel(out, cont=eg)
 visible(eg) <- TRUE                     # display summary
+visible(w) <- TRUE
 @ 
 
+(How each toolkit resizes when the widget collapse varies.)
+
+\paragraph{Separators}
+Although not a container, the \constructor{gseparator} widget can be
+used to place a horizontal or vertical line (with the
+\code{horizontal=FALSE} argument) in a layout to separate off parts of
+the GUI. 
 
 
 
@@ -477,14 +494,81 @@ visible(eg) <- TRUE                     # display summary
 
 
 
+\section{Grid layout: the \code{glayout} container}
+\label{sec:gWidgets-glayout-container}
 
-\section{Paned containers: the \code{gpandedgroup} container}
+The layout of dialogs and forms is usually seen with some form of
+alignment between the widgets. The \constructor{glayout} constructor
+provides a grid container to do so, using matrix notation to specify
+location of the children.  
+
+To see its use, we can layout a simple form for collecting information
+as follows:
+
+<<glayoutExample, results=hide>>=  
+w <- gwindow("glayout example", visible=FALSE)
+tbl <- glayout(cont=w, spacing=5)
+right <- c(1,0); left <- c(-1,0)
+tbl[1,1, anchor=right] <- "name"
+tbl[1,2, anchor=left ] <- gedit("", cont=tbl)
+tbl[2,1, anchor=right] <- "rank"
+tbl[2,2, anchor=left ] <- gedit("", cont=tbl)
+tbl[3,1, anchor=right] <- "serial number"
+tbl[3,2, anchor=left ] <- gedit("", cont=tbl)
+visible(w) <- TRUE
+@ 
+%
+
+The constructor has a few arguments to configure the appearance of the
+container. The spacing between each cell may be specified through the
+\argument{spacing}{glayout} argument, the default is 10 pixels. A
+value of 5 is used above to tighten up the display.
+To impose a uniform cell size, the \argument{homogeneous}{glayout}
+argument can be specified with a value of \code{TRUE}. The default is
+\code{FALSE}. 
+
+As seen, children may be added to the grid at a specific row and
+column. To specify this, \R's matrix notation, \code{[\ASSIGN}, is
+used with the indices indicating the row and column.  A child may span
+more than one row or column. The corresponding index should be a
+vector of indices indicating so.  
+
+The \code{[} method may be used to
+return the child occupying position $i,j$. To return the values of the
+widgets above can be done through:
+<<>>=
+vals <- sapply(seq_len(dim(tbl)[1]), function(i) {
+  svalue(tbl[i,2])
+  })
+@ 
+
+
+When adding a child the \code{glayout} container should be specfied as
+the widget's \code{container} and also be on the left hand side of the
+\code{[\ASSIGN} call. (This is necessary only for the toolkits where a
+container must be specified, where the right hand side is used to pass
+along the parent information and the left hand side is used for the
+layout.) For convenience, if the right hand side is a string, a label
+will be generated.  To align a widget within a cell, the
+\argument{anchor}{add} argument of the \code{[\ASSIGN}{glayout} method
+is used. The example above illustrates how this can be used to achieve
+a center balance.
+
+
+% \begin{example}{Layout with \constructor{glayout}}{ex-gWidgets-glayout}
+%   This example shows how a simple form can be given an center-balanced
+%   layout using a grid container. 
+
+% \end{example}
+
+
+\section{Paned containers: the \code{gpanedgroup} container}
 \label{sec:gWidgets-gpanedgroup-container}
 
 The \constructor{gpanedgroup} constructor produces a container which
-has two children which are separated by a visual gutter which can be
-adjusted by the user with their mouse to allocate the space between the two
-children. Figure~\ref{fig:gWidgets-sample-layout} uses such a
+has two children separated by a visual gutter that can be
+adjusted by the user with their mouse to allocate the space among them.
+Figure~\ref{fig:gWidgets-sample-layout} uses such a
 container to separate the file selection controls from the file
 display ones.  For this container, the children are aligned
 side-by-side (by default) or top to bottom if the
@@ -514,11 +598,11 @@ Figure~\ref{fig:gWidgets-sample-layout} would be
 <<>>=
 d <- system.file("Examples/ch-gWidgets", package="ProgGUIinR")
 files <- list.files(d)
-
+#
 w <- gwindow("gpanedgroup example", visible=FALSE)
 pg <- gpanedgroup(cont = w)
-tbl <- gtable(files, cont=pg)
-t <- gtext("", cont=pg, expand=TRUE)
+tbl <- gtable(files, cont=pg)           # left side
+t <- gtext("", cont=pg, expand=TRUE)    # right side
 visible(w) <- TRUE
 svalue(pg) <- 0.33                      # after drawing
 @ 
@@ -549,22 +633,22 @@ The \constructor{gnotebook} constructor produces a tabbed notebook
 container. The GUI in Figure~\ref{fig:gWidgets-sample-layout} uses a
 notebook to hold different text widgets, one for each file being displayed.
 
-The \pkg{gWidgets}constructor has a few arguments. The argument
-\argument{tab.pos}{gnotebook} is used to specify the location of the
-tabs using a value of 1 through 4 with 1 being botton, 2 left side, 3
-top and 4 right side being used, with the default being 3 (similar
-numbering is used in \function{par}). The
+The \pkg{gWidgets} constructor has a few arguments. If permitted, the
+argument \argument{tab.pos}{gnotebook} is used to specify the location
+of the tabs using a value of 1 through 4 with 1 being botton, 2 left
+side, 3 top and 4 right side being used, with the default being 3
+(similar numbering as used in \function{par}). The
 \argument{closebuttons}{gnotebook} argument takes a logical indicating
 whether the tabs should have close buttons on them. In this case, the
 argument \argument{dontCloseThese}{gnotebook} can be used to specify
 which tabs, by index, should not be closable. (As of writing, this is
-not implemented in  \pkg{gWidgetstcltk}.)
+not implemented in \pkg{gWidgetstcltk}.)
 
 
 
 \paragraph{Methods}
 Pages are added through the \method{add}{gnotebook} method for the
-notebook container. The extra a \argument{label}{add} argument is used
+notebook container. The extra  \argument{label}{add} argument is used
 to specify the tab label. (As \meth{add} is called implicitly when a a
 widget is constructed, this argument is usually specified to the
 constructor.)
@@ -584,13 +668,13 @@ names attribute (the labels) and components being the child
 components. As such, the \method{names}{gnotebook} method can be used
 to retrieve the tab names, and \method{names\ASSIGN}{gnotebook} to set
 the names. The \method{length}{gnotebook} method returns the number of
-pages held by the notebook. The \meth{[} is also implemented to return the
-child components.
+pages held by the notebook. The \meth{[} method is also implemented to return the
+child components by index.
 
 
 
 \begin{example}{Tabbed notebook example}{ex-gWidgets-gnotebook}
- In theh GUI of Figure~\ref{fig:gWidgets-sample-layout} a notebook is
+ In the GUI of Figure~\ref{fig:gWidgets-sample-layout} a notebook is
  used to hold differing pages. The following is the basic setup used.
 <<>>=  
 w <- gwindow("gnotebook example")
@@ -598,7 +682,7 @@ nb <- gnotebook(cont=w)
 @ 
 
 New pages are added as follows:
-<<>>=
+<<results=hide>>=
 fname <- "DESCRIPTION"                  # or something else
 f <- system.file(fname, package="gWidgets")
 gtext(readLines(f), cont = nb, label=fname)
@@ -615,65 +699,5 @@ dispose(nb)
 @ 
 %
 \end{example}
-
-\section{Grid layout: the \code{glayout} container}
-\label{sec:gWidgets-glayout-container}
-
-The layout of dialogs and forms is usually seen with some form of
-alignment between the widgets. The \constructor{glayout} constructor
-provides a grid container to do so, using matrix notation to specify
-location of the children.  
-
-To see its use, we can layout a simple form for collecting information
-as follows:
-
-<<glayoutExample, results=hide>>=  
-w <- gwindow("glayout example", visible=FALSE)
-tbl <- glayout(cont=w, spacing=5)
-right <- c(1,0); left <- c(-1,0)
-tbl[1,1, anchor=right] <- "name"
-tbl[1,2, anchor=left ] <- (name <- gedit("", cont=tbl))
-tbl[2,1, anchor=right] <- "rank"
-tbl[2,2, anchor=left ] <- (rank <- gedit("", cont=tbl))
-tbl[3,1, anchor=right] <- "serial number"
-tbl[3,2, anchor=left ] <- (snumber <- gedit("", cont=tbl))
-visible(w) <- TRUE
-@ 
-
-
-The constructor has a few arguments to configure the appearance of the
-container. The spacing between each cell may be specified through the
-\argument{spacing}{glayout} argument, the default is 10 pixels. A
-value of 5 is used above to tighten up the display.
-To impose a uniform cell size, the \argument{homogeneous}{glayout}
-argument can be specified with a value of \code{TRUE}. The default is
-\code{FALSE}. 
-
-As seen, children may be added to the grid at a specific row and
-column. To specify this, \R's matrix notation, \code{[\ASSIGN}, is
-used with the indices indicating the row and column.  A child may span
-more than one row or column. The corresponding index should be a
-vector of indices indicating so.  The \code{[} method may be used to
-return the child occupying position $i,j$.
-
-
-To add a child, the \code{glayout} container should be specfied as the
-\code{container} and be on the left hand side of the \code{[\ASSIGN}
-call. (This is necessary only for the toolkits where a container must
-be specified, where the right hand side is used to pass along the
-parent information and the left hand side is used for the layout.) For
-convenience, if the right hand side is a string, a label will be
-generated.  To align a widget within a cell, the
-\argument{anchor}{add} argument of the \code{[\ASSIGN}{glayout} method
-is used. The example above illustrates how this can be used to achieve
-a center balance.
-
-
-% \begin{example}{Layout with \constructor{glayout}}{ex-gWidgets-glayout}
-%   This example shows how a simple form can be given an center-balanced
-%   layout using a grid container. 
-
-% \end{example}
-
 
 

@@ -3,9 +3,9 @@
 ## A calculator layout with gWidgets
 library(gWidgets)
 @ 
-The following example shows how one might use the widgets just
+This example shows how one might use the widgets just
 discussed to make a GUI that resembles a calculator. Such a GUI may offer
-familiarity to new \R\/ users, although certainly is no replacement
+familiarity to new \R\/ users, although certainly it is no replacement
 for a command line.
 
 The \constructor{glayout} container is used to neatly arrange the
@@ -21,7 +21,7 @@ buttons <- rbind(c(7:9, "(", ")"),
                  c(4:6, "*", "/"),
                  c(1:3, "+", "-"))
 bList <- list()
-w <- gwindow("glayout for a calculator")
+w <- gwindow("glayout for a calculator", visible=FALSE)
 g <- ggroup(cont=w, expand=TRUE, horizontal=FALSE)
 tbl <- glayout(cont=g, spacing=2)
                                         
@@ -39,7 +39,7 @@ tbl[6,2] <- (bList[["0"]] <- gbutton("0", cont=tbl))
 tbl[6,3] <- (bList[["."]] <- gbutton(".", cont=tbl))
 tbl[6,4:5] <- (eqButton <- gbutton("=", cont=tbl))
 
-outputArea <- gtext("", cont = g)
+visible(w) <- TRUE
 @
 
 This code defines the handler for each button except the equals button
@@ -52,7 +52,7 @@ addButton <- function(h, ...) {
   curExpr <- svalue(eqnArea)
   newChar <- svalue(h$obj)              # the button's value
   svalue(eqnArea) <- paste(curExpr, newChar, sep="")
-  svalue(outputLabel) <- ""             # clear label 
+  svalue(outputArea) <- ""             # clear label 
 }
 out <- sapply(bList, function(i) 
               addHandlerChanged(i, handler=addButton))
@@ -64,8 +64,9 @@ there are no errors, the output is displayed in the label.
 <<>>=
 addHandlerClicked(eqButton, handler = function(h,...) {
   curExpr <- svalue(eqnArea)
-  out <- try(capture.output(eval(parse(text=curExpr))), silent=TRUE)
-  if(inherits(out,"try-error")) {
+  out <- try(capture.output(eval(parse(text=curExpr))), 
+             silent=TRUE)
+  if(inherits(out, "try-error")) {
     galert("There is an error")
   } else {
     svalue(outputArea) <- out

@@ -5,7 +5,7 @@ library(gWidgets)
   variables from the workspace browser.  Our basic layout is fairly
   simple. We place the workspace browser on the left, and on the right
   have a graphic device and few labels to act as drop targets.
-<<>>=
+<<results=hide>>=
 w <- gwindow("Drag and drop example")
 g <- ggroup(cont=w)
 vb <- gvarbrowser(cont=g)
@@ -29,14 +29,13 @@ initUI()                                # initial call
 %
 Separating this out allows us to link it to the clear button.
 <<>>=
-addHandlerClicked(clear, handler=function(h,...) {
-  initUI()
-})
+addHandlerClicked(clear, handler=initUI)
 @ 
 %
-Next, we write a function to update the user interface. In this case
+Next, we write a function to update the user interface. As we didn't
+abstract out the data from the GUI,
 we need to figure out which state the GUI is currently in by
-considering the text in each drop label.
+consulting the text in each label.
 <<>>=
 updateUI <- function(...) {
   if(grepl(svalue(xlabel), sprintf(init_txt, "x"))) {
@@ -73,8 +72,8 @@ sign notation for child components.
     
 The \generic{addDropTarget} method is used to allow a widget to
 receive a dropped value and to specify a handler to call when a value
-is dropped. The \code{dropdata} component of the first callback
-argument, \code{h}, holds the drop data. In our example below we use
+is dropped. The \code{dropdata} component of the first argument of the
+callback, \code{h}, holds the drop data. In our example below we use
 this to update the receiver object, either the $x$ or $y$ label.
 
 <<>>=

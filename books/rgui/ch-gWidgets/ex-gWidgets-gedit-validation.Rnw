@@ -1,16 +1,16 @@
-GUIs for \R\/ may differ a bit from many GUIs one typically interacts
-with, as \R\/ users expect to be able to use variables and expressions
-where typically one uses just characters or numbers. As such, one
-needs to evaluate expressions. This example shows how to implement a
+GUIs for \R\/ may differ a bit from many GUIs users typically
+interacts with, as \R\/ users expect to be able to use variables and
+expressions where typically a GUI expects just characters or
+numbers. As such, it is helpful to indicate to the user if their value
+is a valid expression. This example shows how to implement a
 validation framework on a single-line edit widget so that the user has
-feedback if an expression will not evaluate properly.  If the value is
-invalid, we set the text color to red. 
+feedback when an expression will not evaluate properly.  When the
+value is invalid we set the text color to red.
 
 <<validationExample, echo=FALSE>>=
 require(gWidgets)
 @
 
-We use a table to layout out example:
 <<>>=
 w <- gwindow("Validation example")
 tbl <- glayout(cont=w)
@@ -34,7 +34,7 @@ We validate our expression when the user commits the change, by
 pressing the return key while the widget has focus. Alternatively, we
 could have used
 \code{addHandlerKeystroke}, to validate after each key press, or
-\code{addHandlerBlu}, to validate when the widget loses focus.
+\code{addHandlerBlur}, to validate when the widget loses focus.
 
 <<validate, results=hide>>=
 addHandlerChanged(e, handler = function(h,...) {

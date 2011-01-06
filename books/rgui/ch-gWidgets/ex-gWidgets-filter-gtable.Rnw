@@ -8,8 +8,8 @@
 \end{figure}
 
 Even with moderate-sized data sets, the number of rows can be quite large, in which case it is
-inconvenient to use a GUI for selection unless some means of searching or filtering the
-data is used. This example uses the possible CRAN sites, to show how a
+inconvenient to use a table for selection unless some means of searching or filtering the
+data is used. This example uses the many possible CRAN packages, to show how a
 \code{gedit} instance can be used as a search box to filter the display of
 data (Figure~\ref{fig:gWidgets-filter-example}). The \code{addHandlerKeystroke} method is used so that the search
 results are updated as the user types.
@@ -35,9 +35,8 @@ g <- ggroup(cont=w, horizontal=FALSE)
 ed <- gedit("", cont=g)
 tbl <- gtable(d, cont=g, filter.FUN="manual", expand=TRUE)
 @ 
-The \argument{filter.FUN}{gtable} provides a means to have a combobox
-control the display of the table. For this example, we desire more
-flexibility, so we specify the value of \qcode{manual}.
+The \argument{filter.FUN}{gtable} value of \qcode{manual} allows us to
+filter by specifying a logical vector.
 
 Different search criteria may be desired, so it makes sense to
 separate out this code from the GUI code using a function. The one below
@@ -48,11 +47,7 @@ the package. (That filtering could also be specified easily through the
 
 <<>>=
 ourMatch <- function(curVal, vals) {
-  ind <- grep(curVal, vals)             # indices
-  vis <- rep(FALSE, length(vals))
-  if(length(ind) > 0)
-    vis[ind] <- TRUE
-  return(vis)                           # logical
+  grepl(curVal, vals)
 }
 @ 
 
@@ -66,7 +61,7 @@ updates the display using the \meth{visible\ASSIGN} method for
 id <- addHandlerKeystroke(ed, handler=function(h, ...) {
   vals <- tbl[, 1, drop=TRUE]
   curVal <- svalue(h$obj)
-  vis <- ourMatch(curVal, as.character(vals))
+  vis <- ourMatch(curVal, vals)
   visible(tbl) <- vis
 })
 @ 
