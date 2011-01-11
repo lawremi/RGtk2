@@ -1045,6 +1045,10 @@ addHandlerChanged(tbl, handler=function(h,...) {
 \end{example}
 
 
+\begin{example}{Using the ``observer pattern'' to write a workspace view}{ex-gWidgets-ws-browser}
+  \SweaveInput{ex-gWidgets-ws-browser}
+\end{example}
+
 \section{Display of hierarchical data}
 \label{sec:gWidgets-displ-heir-data}
 

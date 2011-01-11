@@ -1,0 +1,327 @@
+This example takes the long way to make a workspace browser. The goal
+is to produce a GUI that will allow the user to view the objects in
+their current workspace. We would like these views to by dynamic
+though -- when the workspace changes we would like the views to
+update. Furthermore, we may want to have different views, such as one
+for functions and one for data sets. Such requirements lead us to the
+observer design pattern in programming, where the view is notified of changes
+to an ``observable.'' 
+
+The observer design pattern has observables, objects which record a
+list of observers and notify them when there is a change and
+observers. We will use an observable for a data model to store
+information about our current workspace and the views will be the
+observers. The basic observable pattern can be coded using Reference classes
+as:
+
+<<Observable, results=hide>>=
+setRefClass("Observable",
+            fields=list(..observers="list"),
+            methods=list(
+              add_observer=function(o) {
+                "Add an observer."
+                ..observers <<- c(..observers, o)
+              },
+              remove_observer=function(o) {
+                "Remove observer"
+                ind <- sapply(..observers,
+                              function(i) identical(i, o))
+                if(any(ind)) 
+                  ..observers[[which(ind)]] <<- NULL
+                
+              },
+              notify_observers=function(...) {
+                "Notify observers there has been a change"
+                sapply(..observers, function(o) {
+                  o$update(...)
+                })
+              }))
+
+@ 
+%
+This can get more involved (we can block observers, etc.), but we keep
+it simple for this example. 
+
+
+The basic observer pattern just creates a class for observers so that
+they have a \meth{update} method. Again, a simple implementation
+follows:
+
+
+<<Observer, results=hide>>=
+setRefClass("Observer",
+            fields=list(o = "function"),
+            methods=list(
+              update=function(...) {
+                "Call self. Arguments passed by notify_observers"
+                o(...)
+              }))
+@ 
+%
+
+Our workspace will be stored in a model instance. Below we define one
+that extends the observable class. This is meant to be subclassed. We
+define a \meth{set} method to both set a properties values and to
+notify the observers. 
+<<Model, results=hide>>=
+setRefClass("Model",
+            contains="Observable",
+            methods=list(
+              set=function(key, value, notify=TRUE) {
+                "Set key field to value. Notify observers if requested"
+                assign(key, value, inherits=TRUE)
+                if(notify)
+                  notify_observers(model=.self)
+                invisible()
+              }))
+@ 
+%
+
+
+
+To illustrate how this works, we define a simple subclass of our
+\class{Model} call and an observer.
+<<>>=
+TestModel <- setRefClass("TestModel",
+                         contains="Model",
+                         fields=list(prop1="character"))
+m <- TestModel$new()
+f <- function(model) print(model$prop1)
+o <- getRefClass("Observer")$new(o=f)
+m$set("prop1", "Some value")
+m$add_observer(o)
+m$set("prop1", "A new value")
+@ 
+
+For the task at hand, we subclass the \class{Model} class. Notifying
+the observers is potentially expensive and disruptive, so we check in
+the \meth{update} method that objects have indeed changed. The
+\pkg{digest} function is used to create a summary record of the
+workspace each time \code{update} is run. If there are changes, then
+we notify the observers. Below we filter out the values with class
+\code{envRefClass}, as they don't work well with this approach.
+
+The \code{get\_objects} method, which returns the names of the
+objects in the work space,  adds some complexity so that one can
+filter by class.
+<<WSModel, results=hide>>=
+require(digest)
+setRefClass("WSModel",
+            contains="Model",
+            fields=list(
+              ws_objects="character",
+              ws_objects_digest="character"
+              ),
+            methods=list(
+              update=function() {
+                "update vector of ws_objects if applicable"
+                x <- sort(ls(envir=.GlobalEnv))
+                ## filter out envRefClass objects --
+                isRef <- function(i) is(get(i, envir=.GlobalEnv), "envRefClass")
+                x <- x[!sapply(x, function(i) isRef(i))]
+                ds <- sapply(x, function(i) digest(get(i, envir=envir)))
+                
+                if((length(ds) != length(ws_objects_digest)) ||
+                   length(ws_objects_digest) == 0 ||
+                   any(ds != ws_objects_digest)) {
+                  ws_objects_digest <<- ds # does not notify observer
+                  ws_objects <<- x
+                  notify_observers(model=.self) # pass model to observers
+                }
+                invisible()
+              },
+              get_objects=function(klass) {
+                "Get objects. If klass given, restrict to those. 
+Klass may have ! in front, as in '!function'"
+                if(missing(klass) || length(klass) == 0)
+                  return(ws_objects)
+                ind <- sapply(ws_objects, function(i) {
+                  x <- get(i, envir=.GlobalEnv)
+                  any(sapply(klass, function(j)  {
+                    if(grepl("^!", j))
+                      !is(x, substr(j, 2, nchar(j)))
+                    else
+                      is(x, j)
+                  }))
+                })
+                if(length(ind))
+                  ws_objects[ind]
+                else
+                  character(0)
+              }))
+@ 
+%
+The \meth{update} function should be called periodically. This can be
+done through a timer or through a \code{taskCallback}, but neither is illustrated.
+
+
+
+To use this model, we create a base view class and then a widget view class:
+
+<<View, results=hide>>=
+setRefClass("View",
+            contains="Observer",
+            fields=list(model = "WSModel"),
+            methods=list(
+              set_model=function(new_model) {
+                ## set model and add view as observer
+                if(exists("model", .self)) 
+                  model$remove_observer(.self)
+                model <<- new_model
+                model$add_observer(.self)
+              },
+              update = function(...) {
+                "Update view as model has updated"
+              }))
+@ 
+%
+
+<<WidgetView, results=hide>>=
+setRefClass("WidgetView",
+            contains="View",
+            fields=list(
+              klass="character", # which classes to show
+              widget = "ANY"
+              ),
+            methods=list(
+              initialize=function(parent, model, ...) {
+                if(!missing(model)) set_model(model)
+                if(!missing(parent)) init_widget(parent, ...)
+                initFields()
+                .self
+              },
+              init_widget=function(parent, ...) {
+                "Initialize widget"
+              },
+              update=function(...) {
+                "Update method called by notify_observer"
+              }))
+@ 
+%
+
+
+The first subclass of the widget view class will be one where we show
+the values in the workspace using a table widget. To generate data on
+each object, we define some S3 classes. These are more convenient than
+a reference classes for this task. First we want a nice description of the
+size of the object:
+<<sizeOf>>=
+sizeOf <- function(x, ...) UseMethod("sizeOf")
+sizeOf.default <- function(x, ...) "NA"
+sizeOf.character <- sizeOf.numeric <- function(x, ...) sprintf("%s elements", length(x))
+sizeOf.matrix <- function(x, ...) sprintf("%s x %s", nrow(x), ncol(x))
+@ 
+
+<<echo=FALSE, results=hide>>=
+## nicer way to do this.
+nsprintf <- function(msg1, msg2, x) {
+  sprintf(ngettext(x, msg1, msg2), x)
+}
+## hidden, too long
+sizeOf.factor <- function(x, ...) nsprintf("Factor with %s level", "Factor with %s levels", length(levels(x)))
+sizeOf.data.frame <- function(x, ...) sprintf("%s x %s", nrow(x), ncol(x))
+sizeOf.list <- function(x, ...) nsprintf("%s component", "%s components", length(x))
+@ 
+%
+
+Now we, desire a short description of the type of object we have.
+<<shortDescription, results=hide>>=
+shortDescription <- function(x, ...) UseMethod("shortDescription")
+shortDescription.default <- function(x, ...) "R object"
+shortDescription.numeric <- function(x, ...) "Numeric vector"
+shortDescription.integer <- function(x, ...) "Integer"
+@ 
+%
+
+The following function produces a data frame summarizing the objects passed in
+by name to \code{x}. It is a bit awkward, as the data comes row by
+row, not column by column and we want to have a default when \code{x}
+is empty.
+<<makeDataFrame, results=hide>>=
+makeDataFrame <- function(x, envir=.GlobalEnv) {
+  if(length(x)) {
+    d <- t(sapply(x, function(i) {
+      y = get(i, envir=envir)
+      list(variable=i,
+           size=sizeOf(y),
+           description=shortDescription(y),
+           class=class(y)[1]
+           )
+    }))
+    data.frame(d, stringsAsFactors=FALSE)
+  } else {
+    data.frame(variable=character(0),
+               size=character(0), description=character(0), class=character(0),
+               stringsAsFactors=FALSE)
+  }
+}
+@ 
+
+<<echo=FALSE>>=
+library(gWidgets)
+options(guiToolkit="RGtk2")
+@ 
+%
+
+Finally, we write a \class{WidgetView} subclass to view the workspace
+objects using a \code{gtable} widget.
+<<TableView, results=hide>>=
+TableView <-
+  setRefClass("TableView",
+              contains="WidgetView",
+              methods=list(
+                init_widget=function(parent, ...) {
+                  widget <<- gtable(makeDataFrame(character(0)),
+                                    cont=parent, ...)
+                },
+                update=function(...) {
+                  widget[] <- makeDataFrame(model$get_objects(klass))
+                }))
+@ 
+%
+
+To illustrate the flexibility of this framework, we also define a
+subclass to show just the data frames in a combobox.
+
+<<DfView>>=
+DfView <-
+  setRefClass("DfView",
+              contains="TableView",
+              methods=list(
+                initFields= function(...) klass <<- "data.frame",
+                init_widget = function(parent, ...) {
+                  d <- data.frame("Data frames"=character(0),
+                                  stringsAsFactors=FALSE)
+                  widget <<- gcombobox(d, cont=parent, ...)
+                },
+                update = function(...) {
+                  widget[] <- model$get_objects(klass)
+                }))
+
+@ 
+%
+
+We can put these pieces together to make a simple GUI. The combobox is
+a bit contrived here, but having means to  select a data frame is
+common to \R\/ GUIs.
+<<testit, results=hide>>=
+w <- gwindow()
+nb <- gnotebook(cont=w)
+#
+m <- getRefClass("WSModel")$new()
+#
+view <- TableView$new(parent=nb, model=m, label="data")
+view$klass <- c("factor", "numeric", "character", "data.frame", "matrix", "list")
+#
+view1 <- TableView$new(parent=nb, model=m, label="not a function")
+view1$klass <- "!function"
+#
+view2 <- TableView$new(parent=nb, model=m, label="all")
+view3 <- DfView$new(parent=nb, model=m, label = "data frames")
+#
+m$update()
+svalue(nb) <- 1
+@ 
+
+
+              
