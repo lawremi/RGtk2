@@ -1,12 +1,14 @@
 ###################################################
 ### chunk number 1: 
 ###################################################
+#line 2 "ex-RGtk2-alert-panel.Rnw"
 require(RGtk2)
 
 
 ###################################################
 ### chunk number 2: 
 ###################################################
+#line 26 "ex-RGtk2-alert-panel.Rnw"
 newAlertPanel <- function(wrap=35,
                           icon="gtk-dialog-warning",
                           message="",
@@ -25,6 +27,7 @@ newAlertPanel <- function(wrap=35,
 ###################################################
 ### chunk number 3: 
 ###################################################
+#line 52 "ex-RGtk2-alert-panel.Rnw"
 getAlertPanelBlock <- function(obj) {
 
   obj$evb <- gtkEventBox(show=FALSE)
@@ -65,6 +68,7 @@ getAlertPanelBlock <- function(obj) {
 ###################################################
 ### chunk number 4: 
 ###################################################
+#line 93 "ex-RGtk2-alert-panel.Rnw"
 showAlertPanel <- function(obj) {
   obj$label$setText(obj$message)
   obj$evb$show()
@@ -74,12 +78,14 @@ showAlertPanel <- function(obj) {
 ###################################################
 ### chunk number 5: 
 ###################################################
+#line 102 "ex-RGtk2-alert-panel.Rnw"
 hideAlertPanel <- function(obj) obj$evb$hide()
 
 
 ###################################################
 ### chunk number 6: 
 ###################################################
+#line 107 "ex-RGtk2-alert-panel.Rnw"
 w <- gtkWindow()
 g <- gtkVBox(); w$add(g)
 
