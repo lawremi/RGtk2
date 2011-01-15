@@ -1,0 +1,102 @@
+<<notShown,echo=FALSE>>=
+## This shows an alert panel construction -- a means to place a message box at the top of a container.
+## The main point is to illustrate the use of the hide and show methods of the GtkWidgetClass and to 
+## show how labels and images can be added to an event box to allow for both coloring and for events.
+require(RGtk2)
+@ 
+
+This example shows how to create an alert panel, a hideable space at
+the top of a window to place messages. The widget we create is similar
+to that now provided by \function{GtkInfoBar}. Our point here is not
+to replicate that functionality, but rather to show how the
+\method{hide}{GtkWidget} and \method{show}{GtkWidget} methods can be
+used and how an event box is utilized to capture events and to allow
+for background painting.
+
+We will employ \R's reference methods to define our widget. We break
+up the method definitions for formatting purpose, the longest of which
+is the initialization method which creates the widgets. An event box
+is used so that we can color the background, as this isn't possible
+for a box container due to its lack of a gdk window.  To this event
+box we add a box container that will hold an icon indicating this is
+an alert, a label for the message, and another icon to indicate to the
+user how to close the alert. Since we wish to receive mouse clicks on
+close icon, we place this inside another event box. To this, we bind a
+callback to the \signal{button-press-event} signal. 
+<<>>=
+initialize <- 
+  function(message="", icon="gtk-dialog-warning", panel.color="goldenrod") {
+    "Initialize widgets"
+    widget <<- gtkEventBox(show=FALSE)
+    widget$ModifyBg(state="normal", color=panel.color)
+    ##
+    g <- gtkHBox(homogeneous=FALSE, spacing=5)
+    widget$add(g)
+    ##
+    image <- gtkImageNewFromStock(icon, size="button")
+    image['yalign'] <- .5
+    g$packStart(image, expand=FALSE)
+    ##
+    label <<- gtkLabel(message)
+    label['xalign'] <- 0; label['yalign'] <- .5
+    label$setLineWrap(TRUE)
+    g$packStart(label, expand=TRUE, fill=TRUE)
+    ##
+    xbutton <- gtkEventBox()
+    xbutton$modifyBg(state="normal", color=panel.color) 
+    xbutton$add(gtkImageNewFromStock("gtk-close", size="menu"))
+    g$packEnd(xbutton, expand=FALSE, fill=FALSE)
+    ##
+    callback <- function(...) {hide(); FALSE}
+    sapply(list(xbutton, widget), function(i) 
+           gSignalConnect(i, "button-press-event", f= callback))
+    ##
+    message <<- message                 # set message
+    ##
+    .self
+  }
+@ 
+
+Now we can define our main class.
+<<AlertPanelClass>>=
+setRefClass("AlertPanel",
+            fields = list(
+              widget="ANY",              # main event box
+              image="ANY", label="ANY",
+              icon="character", message="character"
+              ),
+            methods=list(
+              initialize=initialize,
+              set_message=function(msg) {
+                "Set message, show box"
+                message <<- msg
+                show()
+              },
+              show=function() {
+                "Show message"
+                label$setText(message)
+                widget$show()
+              },
+              hide=function() {
+                "hide message"
+                widget$hide()
+              }))
+@ 
+
+To test it out we have the following example. Our widget needs to be
+placed at the top of the window (or bottom).
+<<>>=
+w <- gtkWindow()
+g <- gtkVBox(); w$add(g)
+#
+ap <- getRefClass("AlertPanel")$new()
+g$packStart(ap$widget, expand=FALSE)
+#
+g$packStart(gtkLabel("fill space"), expand=TRUE, fill=TRUE)
+ap$set_message("New Message")
+@
+
+
+To improve this, one could also add a time to close the panel after some delay. The
+\function{gTimeoutAdd} function is used to specify a function to call
+periodically until the function returns \code{FALSE}.
