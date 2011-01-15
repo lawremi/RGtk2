@@ -33,7 +33,8 @@ store <- rGtkDataFrame(Cars93[,"Model", drop=FALSE])
 The basic view is similar to that for rectangular data already presented.
 <<makeView>>=
 view <- gtkTreeView()
-view$insertColumnWithAttributes(0, "Make", gtkCellRendererText(), text = 0)
+view$insertColumnWithAttributes(0, "Make", 
+           gtkCellRendererText(), text = 0)
 @ 
 
 <<makeGUI, echo=FALSE>>=

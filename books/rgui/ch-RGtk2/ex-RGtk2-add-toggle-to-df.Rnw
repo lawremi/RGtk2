@@ -2,7 +2,8 @@ This example demonstrates the construction of a GUI for selecting one
 or more rows from a data frame. We will display a list of the installed
 packages that can be upgraded from CRAN, although this code is
 trivially generalizable to any list of choices. The user selects a row
-by clicking on a checkbox produced by a toggle cell renderer.
+by clicking on a 
+check box produced by a toggle cell renderer.
 
 <<echo=FALSE>>=
 ## example showing how to add a toggle button on left of data display
@@ -25,9 +26,7 @@ d <- as.data.frame(d)
 This function will be called on the selected rows. Here, we simply
 call \function{install.packages} to update the selected packages.
 <<>>=
-doUpdate <- function(d) {
-  install.packages(d$Package)
-}
+doUpdate <- function(d)  install.packages(d$Package)
 @ 
 
 To display the data frame, we first append a column to the data frame
@@ -42,7 +41,7 @@ store <- rGtkDataFrame(d)
 
 Our tree view shows each text column using a simple text cell renderer,
 except for the first column that contains the check boxes for selection.
-<<print=FALSE>>=
+<<results=hide>>=
 view <- gtkTreeView()
 # add toggle
 cr <- gtkCellRendererToggle()
@@ -59,22 +58,22 @@ gSignalConnect(cr, "toggled", function(cr, path, user.data) {
 
 The text columns are added one-by-one in a similar manner:
 
-<<print=FALSE>>=
-mapply(view$insertColumnWithAttributes, -1, nms, list(gtkCellRendererText()), 
-       text = 1:n-1)
+<<results=hide>>=
+mapply(view$insertColumnWithAttributes, -1, nms, 
+       list(gtkCellRendererText()), text = 1:n-1)
 @ 
-
+%
 Finally, we connect the store to the model.
 <<>>=
 view$setModel(store)
 @ 
-
+%
 To allow the user to initiate the action, we create a button and
 assign a callback. We pass in the view, rather than the model, in case
 the model would be recreated by the \code{doUpdate} call. In a real
 application, once a package is upgraded it would be removed from the
 display.
-<<print=FALSE>>=
+<<results=hide>>=
 b <- gtkButton("Update packages")
 gSignalConnect(b, "clicked", function(w, data) {
   view <- data

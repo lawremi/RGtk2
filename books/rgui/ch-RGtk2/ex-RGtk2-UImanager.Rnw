@@ -62,14 +62,14 @@ In the above, we define the dummy actions ``File'' and ``Edit'' that
 perform no function. They are necessary for specifying the menu layout
 later. We now add the actions to the action group, then add this
 action group to the first spot in the UI manager.
-<<"Insert action group", print=FALSE>>=
+<<"Insert action group", results=hide>>=
 firstActionGroup$addActions(firstActionEntries)
 uimanager$insertActionGroup(firstActionGroup, 0) # 0-based
 @ 
 
 It is also possible to define toggle actions, as we demonstrate
 presently for the ``Help'' group. First, we define the ordinary actions:
-<<print=FALSE>>=
+<<results=hide>>=
 helpActionGroup <- gtkActionGroup("helpActionGroup")
 helpActionEntries <- list(
   help = list("Help", "", "_Help", "", "", NULL),
@@ -88,10 +88,12 @@ for user data, as illustrated.
 
 <<"a toggle action">>=
 toggleActions <- list(
-  tooltips = c("UseTooltips", NULL, "Use _Tooltips", "<control>T", 
-    "Enable tooltips", someAction, TRUE)
+        ## name, label, tooltip, stock.id              
+        tooltips = gtkToggleAction("UseTooltips", "Use tooltips", 
+          "Use tooltips to show additional information", NULL)
 )
-helpActionGroup$addActions(toggleActions)
+gSignalConnect(toggleActions[[1]], "toggled", function(...) print("toggled"))
+helpActionGroup$addAction(toggleActions$tooltips)
 @
 %
 The list structure for toggle actions is identical to that of the
@@ -201,5 +203,6 @@ The redo feature should only be sensitive to mouse events after a user
 has undone an action. If we wanted to alter the sensitivity of the
 redo action, we would need to retrieve it from the action group:
 <<How-to-set-sensitivity>>=
-firstActionGroup$getAction("Redo")['sensitive'] <- FALSE
+redo <- firstActionGroup$getAction("Redo")
+redo['sensitive'] <- FALSE
 @ 

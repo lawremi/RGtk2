@@ -25,18 +25,18 @@ event: the mouse button and time. The event values can be retrieved from
 the second argument of the callback (a \code{GdkEvent}).
 <<>>=
 gSignalConnect(b,"button-press-event",
-               f = function(w, e, menu) {
-                 if(e$getButton() == 3 ||
-                    (e$getButton() == 1 && # a mac
-                     e$getState() == GdkModifierType['control-mask'])) 
-                   gtkMenuPopup(menu, 
-                                button = e$getButton(),
-                                activate.time = e$getTime())
-                 return(FALSE)
-               }, data=popup)
+       f = function(w, e, menu) {
+         if(e$getButton() == 3 ||
+            (e$getButton() == 1 && # a mac
+             e$getState() == GdkModifierType['control-mask'])) 
+           gtkMenuPopup(menu, 
+                        button = e$getButton(),
+                        activate.time = e$getTime())
+         return(FALSE)
+       }, data=popup)
 @ 
 
-The above will popup a menu, but until we bind to the \code{activate}
+The above will popup a menu, but until we bind a callback to the \code{activate}
 signal, nothing will happen when a menu item is selected. Below we
 supply a stub for sake of illustration. The children of a popup menu
 are the menu items, including the separator which we avoid.

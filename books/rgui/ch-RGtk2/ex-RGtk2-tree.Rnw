@@ -67,9 +67,10 @@ pathToIter <- function(sstore, tpath) {
 }
 @ 
 
-We now need to convert the iterator to an ``R path'' is made up of the
-names of each component that makes up an element in the list. This
-function returns the path for a component specified by its iterator.
+We now need to convert the iterator to an ``R path,'' which is made up
+of the names of each component that makes up an element in the
+list. This function returns the path for a component specified by its
+iterator.
 <<IterToPath>>=
 iterToRPath <- function(sstore, iter) {
   store <- sstore$getModel()
@@ -95,9 +96,16 @@ getChildren <- function(path=character(0)) {
   
   getType <- function(obj) head(class(obj), n=1)
 
-  obj <- if (!length(path))
-    .GlobalEnv
-  else eval(parse(text=paste(path, collapse="$")), envir=.GlobalEnv)
+  obj <- 
+    if (!length(path)) {
+      .GlobalEnv
+    } else {
+      x <- get(path[1], envir=.GlobalEnv)
+      if(length(path) > 1)
+        get(path[1], envir=.GlobalEnv)[[path[-1]]]
+      else
+        x
+    }
 
   children <- as.list(obj)
   

@@ -45,7 +45,7 @@ An important realization is that the image in a
 icon; it need not be an actual \class{GtkImage}. In this case, we use
 a drawing area with its background set to the color.  When an item is
 selected, its color will be set on the color button:
-<<rgtk2-menus-toolbar-color-cb, print=FALSE>>=
+<<rgtk2-menus-toolbar-color-cb, results=hide>>=
 colorMenuItemActivated <- function(item) {
   color <- gdkColorParse(item$getLabel())$color
   colorButton$setColor(color)

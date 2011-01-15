@@ -13,7 +13,7 @@
 <<echo=FALSE>>=
 options(prompt=" ")
 options(continue=" ")
-options(width=80)
+options(width=65)
 
 findmethod <- function (obj, name, where=.GlobalEnv) 
 {
@@ -42,8 +42,12 @@ args <- function(name) {
 \label{sec:RGtk2-Introduction}
 \SweaveInput{Introduction}
 
-\chapter{RGtk2: Basic Components}
+\chapter{RGtk2: Windows, Containers, and Dialogs}
 \label{sec:top-level-windows}
+\SweaveInput{Containers}
+
+\chapter{RGtk2: Basic Components}
+\label{sec:basic-components}
 \SweaveInput{BasicComponents}
 
 

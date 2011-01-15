@@ -15,11 +15,11 @@ library(RGtk2)
 \end{figure}
 
 First, we create a data frame. The
-\code{VISIBLE} column will be added to the \code{rGtkDataFrame}
+\code{visible} column will be added to the \code{rGtkDataFrame}
 instance to adjust the visible rows.
 <<>>=
 df <- data.frame(state.name)
-df$VISIBLE <- rep(TRUE, nrow(df))
+df$visible <- rep(TRUE, nrow(df))
 store <- rGtkDataFrame(df)
 @ 
 
@@ -33,11 +33,12 @@ view <- gtkTreeView(filteredStore)
 
 Next, we create a basic view of a single column:
 <<>>=
-view$insertColumnWithAttributes(0, "Col", gtkCellRendererText(), text = 0)
+view$insertColumnWithAttributes(0, "Col", 
+                 gtkCellRendererText(), text = 0)
 @ 
 
 An entry widget will be used to control the filtering. In the
-callback, we adjust the \code{VISIBLE} column of the
+callback, we adjust the \code{visible} column of the
 \code{rGtkDataFrame} instance to reflect the rows to be shown. When
 \code{val} is an empty string, the result of \function{grepl} is 
 \code{TRUE}, so all rows will be shown.
@@ -47,7 +48,7 @@ gSignalConnect(e, "changed", function(w, data) {
   pattern <- w$getText()
   df <- data$getModel()
   values <- df[, "state.name"]
-  df[, "VISIBLE"] <- grepl(pattern, values)
+  df[, "visible"] <- grepl(pattern, values)
 }, data=filteredStore)
 @ 
 

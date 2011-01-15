@@ -9,7 +9,7 @@ in the current session. The other will be an ordinary combo box
 explicitly based on a \class{GtkTreeModel}, specifically an
 \code{RGtkDataFrame}. First, we construct the data frame box
 and populate it with some datasets that are provided with \R:
-<<print=FALSE>>=
+<<results=hide>>=
 datasets <- c("mtcars", "Cars93")
 rdf <- rGtkDataFrame(datasets)
 #dfCb <- gtkComboBoxEntryNewWithModel(rdf, text.column = 2)

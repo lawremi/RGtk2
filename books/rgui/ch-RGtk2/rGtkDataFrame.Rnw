@@ -90,7 +90,7 @@ example -- CodeSegments ex-gtk-tree
     first 6 columns use the text cell renderer, although each with
     some modification. The ``combo'' column shows a how a combo box
     cell renderer can be used to edit a value. The ``logical'' columns
-    shows how a checkbox cell render can be used for editing logical
+    shows how a check box cell render can be used for editing logical
     values. Finally, the last column shows a Pixbuf cell renderer.}
   \label{fig:RGtk2:rGtkDataFrame}
 \end{figure}
@@ -114,7 +114,7 @@ display it is responsible for.
 
 Each column has one or more cell renderers defined for the display of
 the data. This example shows how different cell renderers are used to
-display text, checkboxes, comboboxes and icons.  The cell render
+display text, check boxes, comboboxes and icons.  The cell render
 specifies how that text will be rendered on a cell by cell basis. The
 ``attributes'' of the cell renderer control how this is done. For
 example, for a text cell renderer the \code{text} attribute specifies
@@ -371,7 +371,7 @@ id <- gSignalConnect(cellrenderer, signal = "edited", f= callBack,
 @ 
 
 %% logical toggle
-For logical values, a checkbox is good way for the user to make
+For logical values, a check box is good way for the user to make
 changes. This is supported through \command{gtkCellRendererToggle}, as
 illustrated next. Here, the property is called \code{activatable}, not
 \code{editable}, but otherwise this looks similar, although the call

@@ -32,7 +32,7 @@ programmatically refer to the action), \argument{label}{gtkAction}
 \argument{stock.id}{gtkAction} (identifying a stock icon).  The
 command associated with an action is implemented by a callback
 connected to the \signal{activate} signal:
-<<rgtk2-menus-actions-activate, print=FALSE>>=
+<<rgtk2-menus-actions-activate, results=hide>>=
 gSignalConnect(a, "activate", f = function(w, data) {
   print(a$getName())                    # or some useful thing
 })
@@ -44,10 +44,10 @@ widgets that implement the \class{GtkActivatable} interface are the
 views and controllers. All buttons, menu items and tool items
 implement \class{GtkActivatable} and thus may serve as action
 proxies. Actions are connected to widgets through the method
-\method{connectProxy}{gtkAction}:
+\method{setRelatedAction}{gtkActivatable}:
 <<ConnectAction>>=
 b <- gtkButton()
-a$connectProxy(b)
+b$setRelatedAction(a)
 @
 %
 Certain aspects of a proxy widget are coordinated through the
@@ -57,8 +57,7 @@ aesthetic properties like the \code{label} and icon (e.g.,
 \code{stock-id}), the \code{use-action-appearance} property must be
 set on the activatable widget:
 <<rgtk2-menus-action-appearance, eval=FALSE>>=
-## JV: this gave an erro
-a["use-action-appearance"] <- TRUE
+b["use-action-appearance"] <- TRUE
 @ 
 
 Often, the commands in an application have a natural grouping. It can
@@ -86,7 +85,10 @@ respectively. Here, we create a toggle action for fullscreen mode:
 <<rgtk2-menus-toggle-action>>=
 fullScreen <- gtkToggleAction("fullscreen", "Full screen", "Toggle full screen")
 gSignalConnect(fullScreen, "toggled", function(action) {
-  window$fullscreen()
+  if(fullScreen['active'])
+    window$fullscreen()
+  else
+    window$unfullscreen()
 })
 @
 %
@@ -162,7 +164,7 @@ open <- gtkMenuItemNewWithMnemonic("_Open")
 %
 This item does not have an associated \class{GtkAction}, so we need to
 implement its activate signal directly:
-<<rgtk2-menus-open-activate>>=
+<<rgtk2-menus-open-activate, results=hide>>=
 gSignalConnect(open, "activate", function(item) {
   f <- file.choose()
   file.show(f)
@@ -201,7 +203,8 @@ fileMenu$append(gtkSeparatorMenuItem())
 Toggle menu items, i.e., a label next to a check box, are also
 supported. A toggle action will create one implicitly:
 <<rgtk2-menus-toggle-item>>=
-autoSaveAction <- gtkToggleAction("autosave", "Autosave", "Enable autosave")
+autoSaveAction <- gtkToggleAction("autosave", "Autosave", 
+                                  "Enable autosave")
 autoSave <- autoSaveAction$createMenuItem()
 fileMenu$append(autoSave)
 @ 
@@ -281,7 +284,7 @@ toolbar$add(fullScreenButton)
 A \class{GtkToggleToolButton} embeds a \class{GtkToggleButton}, which
 is depressed whenever its \code{active} property is \code{TRUE}.
 
-As mentined above, toolbars, unlike menus, are usually visible for the
+As mentioned above, toolbars, unlike menus, are usually visible for the
 duration of the application. This is desirable, as the actions in a
 toolbar are among those most commonly performed. However, care must be
 taken to conserve screen space. The toolbar \textit{style} controls
@@ -306,13 +309,16 @@ Normally, tool items are tightly packed against the left side of the
 toolbar. Sometimes, a more complex layout is desired. For example, we
 may wish to place a \textit{help} item against the right side. We can
 achieve this with an invisible item that expands against its siblings:
+
 <<rgtk2-menus-toolbar-expand>>=
 expander <- gtkSeparatorToolItem()
 expander["draw"] <- FALSE
 toolbar$add(expander)
-toolbar$childSetProperty(expander, "expand", TRUE)
+### JV XXX This causes my R to crash
+#toolbar$childSetProperty(expander, "expand", TRUE)
 @ 
-%
+
+% 
 The dummy item is a separator with its \code{draw} property set to
 \code{FALSE}, and its \code{expand} child property set to
 \code{TRUE}. Now we can add the \textit{help} item:
@@ -353,6 +359,7 @@ helpGroup <- gtkToolItemGroup("Help")
 helpGroup$add(helpAction$createToolItem())
 @ 
 %
+
 The groups are then added to an instance of \class{GtkToolPalette}:
 <<rgtk2-menus-tool-palette>>=
 palette <- gtkToolPalette()

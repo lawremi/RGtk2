@@ -1,37 +1,39 @@
 %% FIXME: the examples in this section are pretty lame
 
-\section{Dialogs}
-\label{sec:dialogs}
-
-\GTK\/ provides general infrastructure for constructing custom dialogs
-and also implements several commonplace special purpose dialogs. 
+\GTK\/ provides general infrastructure for constructing custom
+dialogs.  A dialog is a window that generally consists of an icon, a
+content area, and an action area containing a row of buttons
+representing the possible user responses.  A dialog is typically
+related to some main application window. Dialogs can be modal,
+blocking the rest of the application from any input, but this is
+optional.  \class{GtkDialog} represents a generic dialog and serves as
+the base class for all special purpose dialogs in \GTK.
 
 \subsection{Message dialogs}
 
-A dialog is a window that generally consists of an icon, a content
-area, and an action area with a row of buttons representing the
-possible user responses.  \class{GtkDialog} represents a generic
-dialog and serves as the base class for all special purpose dialogs in
-\GTK.
-
-Communicating textual messages to the user
-is perhaps the most common application of a dialog. A message dialog
-has a primary and secondary message.  We construct one presently:
-<<eval=FALSE>>=
-w <- gtkWindow()
-w['title'] <- "Parent window"
-dlg <- gtkMessageDialog(parent=w, flags="destroy-with-parent",
-                        type="question", buttons="ok",
+Communicating textual messages to the user is perhaps the most common
+application of a dialog. \GTK\/ provides the
+\constructor{gtkMessageDialog} convenience wrapper for
+\class{GtkDialog} for creating a message dialog showing a primary and
+secondary message.  We construct one presently:
+<<>>=
+w <- gtkWindow(); w['title'] <- "Parent window"
+#
+dlg <- gtkMessageDialog(parent=w, 
+                        flags="destroy-with-parent",
+                        type="question", 
+                        buttons="ok",
                         "My message")
 dlg['secondary-text'] <- "A secondary message"
 @ 
 %
+
 The \argument{flags}{gtkMessageDialog} argument allows one to specify
 a combination of values from \code{GtkDialogFlags}. These include 
 \code{destroy-with-parent} and \code{modal}. Here, the dialog will be
 destroyed upon destruction of the parent window. The
 \argument{type}{gtkMessageDialog} argument specifies the message type,
-using a value in \code{GtkMessageType}. This determines the icon that
+using one of the $4$ values from \code{GtkMessageType}, which determines the icon that
 is placed adjacent to the message text. The
 \argument{buttons}{gtkMessageDialog} argument indicates the set of
 response buttons with a value from \code{GtkButtonsType}. The
@@ -59,6 +61,8 @@ button was pressed. \class{GtkMessageDialog} will return response
 codes from the \code{GtkResponseType} enumeration. We will see an
 example of asynchronous response handling in the next section.
 
+
+
 \subsection{Custom dialogs}
 \label{sec:custom-dialogs}
 
@@ -69,9 +73,8 @@ buttons.  Usually, a \class{GtkDialog} is constructed with
 contains a set of response buttons, such as \kbd{Ok}, \kbd{Yes},
 \kbd{No} and \kbd{Cancel}.
 
-In this example, we will create a dialog with a text entry. We use the
-\constructor{gtkDialogNewWithButtons}, which allows us to specify the
-label and response code for each button:
+In this example, we will create a simple dialog showing a label and
+text entry. 
 <<>>=
 dlg <- gtkDialogNewWithButtons(title="Enter a value", 
                                parent=NULL, flags=0,
@@ -80,38 +83,45 @@ dlg <- gtkDialogNewWithButtons(title="Enter a value",
                                show=FALSE)
 @ 
 %
-If the label matches a stock ID, the icon and text are taken from the
-stock definition. We use standard responses from
-\code{GtkResponseType}, although in general the codes are simply
-integer values; interpretation is up to the programmer. 
+Buttons are added with a label and a response id, and their order is
+taken from the how they are entered. (There is no automatic ordering
+based on an operating system's conventions.)  When the button label
+matches a stock ID, the icon and text are taken from the stock
+definition. We used standard responses from \code{GtkResponseType},
+although in general the codes are simply integer values;
+interpretation is up to the programmer.
 
-We pack our label and text entry into the dialog:
-<<>>=
-vb <- dlg$getContentArea()
+To complete our dialog we use the dialog as a container for the following:
+<<OurDialogsLayout>>=
 hb <- gtkHBox()
 hb['spacing'] <- 10
-vb$packStart(hb)
-
+#
 hb$packStart(gtkLabel("Enter a value:"))
 entry <- gtkEntry()
 hb$packStart(entry)
 @ 
+
+The dialog has a content area, which is an instance of
+\class{GtkVBox}. This is
+returned by \method{getContentArea}{gtkDialog}:
+<<addToContentArea>>=
+vb <- dlg$getContentArea()
+vb$packStart(hb)
+@ 
 %
-The content of the dialog, such as a message or in this case a form,
-is stored in the \textit{content area}, a \class{GtkVBox}. This box
-has a separator and button box packed in at the end, we pack in a
-horizontal box at the beginning below to hold a label and our entry
-widget.
+The content of the dialog is drawn above an optional horizontal separator and
+button box.
 
 In the message dialog example, we called the \method{run}{GtkDialog}
-method to block the \R\/ session. Here, we set the dialog to be modal
-and connect to the \code{response} signal, which will inform us of the
-user response asynchronously. The \R\/ session is not blocked.
-<<>>=
+method to block the \R\/ session. An alternative that does not block
+the \R\/ session is to connect to the \code{response} signal of the
+modal dialog. The callback passes in the buttons' response codes
+assigned at construction.
+<<connectResponse>>=
 ID <- gSignalConnect(dlg, "response", 
                      f=function(dlg, resp, user.data) {
                        if(resp == GtkResponseType["ok"])
-                         print(entry$getText())
+                         print(entry$getText()) # Replace this
                        dlg$Destroy()
                      })
 dlg$showAll()
@@ -137,18 +147,18 @@ displays a file path and launches the dialog when clicked.
 dlg <- gtkFileChooserDialog(title="Open a file", 
                      parent=NULL, action="open",
                      "gtk-ok", GtkResponseType["ok"],
-                     "gtk-cancel", GtkResponseType["cancel"])
+                     "gtk-cancel", GtkResponseType["cancel"],
+                     show=FALSE)
 @ 
 %
-The dialog constructor allows one to spcify a title, a parent and an
+The dialog constructor allows one to specify a title, a parent and an
 action, either \code{open}, \code{save}, \code{select-folder} or
 \code{create-folder}. In addition, the dialog buttons must be
 specified, as with the last example using
 \code{gtkDialogNewWithButtons}.
 
-One can use the \code{run} method to make this modal or connect to the
-\signal{response} signal. We do the latter: 
-<<print=FALSE>>=
+We connect to the \signal{response} signal
+<<results=hide>>=
 gSignalConnect(dlg, "response", f=function(dlg, resp, data) {
   if(resp == GtkResponseType["ok"]) {
     filename <- dlg$getFilename()
@@ -188,9 +198,7 @@ prompted when attempting to overwrite an existing file.
 Other features not discussed here, include embedding of preview and
 other custom widgets, and specifying shortcut folders.
 
-\subsection{Other choosers}
-\label{sec:RGkt2:other-choosers}
-
+\paragraph{Other choosers}
 There are several other types of dialogs for making common types of
 selections. These include \code{GtkCalendar} for picking dates,
 \code{GtkColorSelectionDialog} for choosing colors, and

@@ -17,28 +17,29 @@ library(RGtk2)
 Our basic GUI is a table with 4 rows and 2 columns.
 <<>>=
 w <- gtkWindow(show=FALSE)
+w['border-width'] <- 14
 w$setTitle("example of gtkTable and attaching")
 tbl <- gtkTable(rows=4, columns=2, homogeneous=FALSE)
 w$add(tbl)
 @ 
 
-We define our widgets first then deal with their layout.
-<<>>=
+We define our widgets first then do their layout.
+<<results=hide>>=
 l1 <- gtkLabel("Sample size")
 w1 <- gtkComboBoxNewText()
-QT <- sapply(c(5, 10, 15, 30), function(i) w1$appendText(i))
-
+sapply(c(5, 10, 15, 30), gtkComboBoxAppendText, object=w1)
+#
 l2 <- gtkLabel("Show diagnostic ")
 w2 <- gtkVBox()
 rb <- list()
 rb[["t"]] <- gtkRadioButton(label="t-statistic")
 for(i in c("mean","median")) rb[[i]] <- gtkRadioButton(rb, label=i)
-QT <- sapply(rb, function(i) w2$packStart(i))
-
+sapply(rb, gtkBoxPackStart, object=w2)
+#
 w3 <- gtkButton("Run simulation")
 @ 
 
-The basic \code{AttachDeafults} method will cause the widgets to
+The basic \method{AttachDeafults}{GtkTable} method will cause the widgets to
 expand when resized, which we want to control here. As such we use
 \code{Attach}. To get the control's label to center align yet still
 have some breathing room we set its
@@ -65,7 +66,7 @@ between the controls and the button to initiate an action.
 tbl$attach(gtkHSeparator(),left.attach=0,2, top.attach=2,3, ypadding=10, yoptions="fill")
 tbl$attach(w3, left.attach=1,2, top.attach=3,4, xoptions="fill", yoptions="fill")
 @ 
-Finally, we use the \code{ShowAll} method so that it propogates to the combobox.
+To finish, we call the windows \meth{show} method.
 <<>>=
-w$showAll()                             # propogate to combo
+w$show()                             
 @ 

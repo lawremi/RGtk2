@@ -1,12 +1,12 @@
 In this chapter we give an introduction to using the \pkg{RGtk2}
 package. This package provides access to the underlying cross-platform
 \GTK\/ libraries, provided they are installed on the system. This
-tookit is modern, feature rich and widely used.  We begin with an
+toolkit is modern, feature rich and widely used.  We begin with an
 overview of how the toolkit is structured and the basic interaction
 with it. In later chapters we describe the familiar containers and
 widgets.
 
-%% intorduction
+%% introduction
 
 <<echo=FALSE>>=
 require(RGtk2)
@@ -20,7 +20,7 @@ functionality of \GTK\/ to be available to the \R\/ programmer. In
 addition, \pkg{RGtk2} provides bindings to other libraries
 accompanying \GTK: the Pango libraries for font rendering; the Cairo
 libraries for vector graphics; the GdkPixbuf libraries for image
-manipulation; ATK for the accessiblity toolkit; and GDK, which
+manipulation; ATK for the accessibility toolkit; and GDK, which
 provides an abstract layer between the windowing system, such as X11,
 and \GTK. These libraries are multi-platform and extensive and have
 been used for many major projects, such as the linux versions of the
@@ -75,7 +75,7 @@ flexible constructors, such as \function{gtkWindow} or
 
 
 The automatic creation of \R\/ functions from the \GTK\/ libraries
-gives the constructors a somwhat consistent definition. For example,
+gives the constructors a somewhat consistent definition. For example,
 <<gtkWindowNew>>=
 gtkWindowNew
 @ 
@@ -99,7 +99,7 @@ classes. In \pkg{RGtk2}, by calling \function{class} on a
 \command{gtkWindow} instance~\footnote{We use the term ``instance'' of
   a constructor to refer to the object returned by the constructor,
   which is an instance of some class.}  we can see the class
-heirarchy
+hierarchy
 <<gtkWindow-classes>>=
 class(gtkWindow())
 @ 
@@ -124,7 +124,7 @@ For instance, if \code{win} is a \function{gtkWindow} instance, then
 \function{gtkContainerAdd} and calling it as
 \code{gtkContainerAdd(win,widget)}.  The \method{\$}{GObject} method
 does the work of method dispatch.  As names are standardized in the
-process, the inteface allows method names to be specified in camelCase
+process, the interface allows method names to be specified in camelCase
 notation (first letter lower case, other words start upper case) or
 with a leading capital. The camelCase notation is consistent with many
 coding standards where methods start with lower case names and classes
@@ -150,10 +150,10 @@ inherited by all objects whose class contains \class{GtkWidget}.
 \paragraph{Some common methods}
 Some common methods are inherited by all widgets, as they are defined
 in the base \class{GtkWidget} class. There are methods to traverse the
-widget heirarchy. These include \method{GetParent}{gtkWidget} to get
+widget hierarchy. These include \method{GetParent}{gtkWidget} to get
 the parent container; \method{GetToplevel}{gtkWidget} to get the top
-widget in the objects widget heirarchy;
-\method{GetAncestor}{gtkWidget} to search up the heirarchy for an
+widget in the objects widget hierarchy;
+\method{GetAncestor}{gtkWidget} to search up the hierarchy for an
 ancestor widget of a certain type; and for container widgets, the
 method \method{GetChildren}{gtkContainer} returns a list of the
 container's children. Children are shown through a call of
@@ -431,18 +431,18 @@ disconnect a callback if desired using
 
 %% --------- Event Loop
 
-\subsection{The eventloop}
+\subsection{The event loop}
 
 
-The \pkg{RGtk2} eventloop integrates with the \R\/ event loop. Such
+The \pkg{RGtk2} event loop integrates with the \R\/ event loop. Such
 integration is tricky. In a C program, \GTK\/ programs call the
 function \code{gtk\_main} which puts control of the GUI into the main
 event loop of \GTK. This sits idle until some event occurs. According
 to the \pkg{RGtk2} website, ``The nature of the R event loop prevents
 the continuous execution of the GTK main loop, thus preventing things
 like timers and idle tasks from executing reliably. This manifests
-itself when using functionality such as GtkExpander and
-GtkEntryCompletion.''
+itself when using functionality such as \class{GtkExpander} and
+\class{GtkEntryCompletion}.''
 
 During a long calculation, the GUI can seem unresponsive. To avoid
 this the following construct can be used during the long calculation
@@ -476,8 +476,8 @@ when the Pango text attribute markup language is employed.
 
 \subsection{GtkBuildable  and Glade }
 \GTK\/ has a means to describe an interface using an XML
-specification. The inteface is then built through a \class{GtkBuilder}
-object.  The \code{glade} inteface builder can be used to create the
+specification. The interface is then built through a \class{GtkBuilder}
+object.  The \code{glade} interface builder can be used to create the
 interface through a point-and-click process and the XML file will be
 created from within \code{glad} If this appeals to you, the software
 may be downloaded from \url{http://glade.gnome.org/}. This resulting

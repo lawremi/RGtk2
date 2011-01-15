@@ -1,5 +1,3 @@
-%% FIXME: the text view scrolling does not work
-
 This example shows how the text view widget can be used to make a
 simple command line. While programming a command line is unlikely to
 be a common task in designing a GUI for a statistics
@@ -29,20 +27,23 @@ tv$modifyFont(font)                     # widget wide
 
 We will use a few formatting tags, defined next. We don't need the tag
 objects, as we refer to them later by name.
-<<>>=
-aTag <- tb$createTag(tag.name="cmdInput")
-aTag <- tb$createTag(tag.name="cmdOutput", 
-                     weight=PangoWeight["bold"])
-aTag <- tb$createTag(tag.name="cmdError", 
-                     weight=PangoStyle["italic"], foreground="red")
-aTag <- tb$createTag(tag.name="uneditable", editable=FALSE)
+<<results=hide>>=
+tb$createTag(tag.name="cmdInput")
+tb$createTag(tag.name="cmdOutput", 
+             weight=PangoWeight["bold"])
+tb$createTag(tag.name="cmdError", 
+             weight=PangoStyle["italic"], foreground="red")
+tb$createTag(tag.name="uneditable", editable=FALSE)
 @ 
 
-We define one new mark to indicate the prompt for a new line. We
-need to be able to identify a new command, and this marks its beginning.
+We define one new mark to indicate the prompt for a new line (we need to be able to identify a
+new command, and this marks its beginning) and
+another for the end of the buffer. 
 <<>>=
 startCmd <- gtkTextMark("startCmd", left.gravity=TRUE)
 tb$addMark(startCmd, tb$getStartIter()$iter)
+bufferEnd <- tb$CreateMark("bufferEnd", tb$getEndIter()$iter)
+
 @ 
 
 We define several helper functions. This first shows how to move the
@@ -50,7 +51,8 @@ viewport to the end of the buffer so that the command line is visibile.
 <<>>=
 scrollViewport <- function(view, ...) {
   iter <- view$getBuffer()$getEndIter()$iter
-  view$scrollToIter(iter, 0)
+  view$scrollToMark(bufferEnd, within.margin=0)
+  return(FALSE)
 }
 @ 
 
@@ -107,30 +109,33 @@ The following function takes the current command and evaluates it. It
 uses a hack (involving \code{grep}) to distinguish between an
 incomplete command and a true syntax error. 
 <<>>=
-evalCMD <- function(obj, cmd) {
+evalCMD <- function(tv, cmd) {
+  tb <- tv$getBuffer()
   cmd <- paste(cmd, sep="\n")
   out <- try(parse(text=cmd), silent=TRUE)
   if(inherits(out, "try-error")) {
     if(length(grep("end", out))) {      # unexpected end of input
       ## continue
-      addPrompt(obj, "continue", setMark=FALSE)
+      addPrompt(tb, "continue", setMark=FALSE)
     } else {
       ## error
-      addOutput(obj, out, tagName = "cmdError")
+      addOutput(tb, out, tagName = "cmdError")
     }
+    scrollViewport(tv)
     return()
   }
   
   e <- parse(text = cmd)
   out <- capture.output(vis <- withVisible(try(eval(e, .GlobalEnv), TRUE)))
 
-  addOutput(obj, out) 
+  addOutput(tb, out) 
   if (inherits(vis$value, "try-error"))
-    addOutput(obj, vis$value, "cmdError")
+    addOutput(tb, vis$value, "cmdError")
   else if (vis$visible)
-    addOutput(obj, capture.output(print(vis$value)))
+    addOutput(tb, capture.output(print(vis$value)))
   
-  addPrompt(obj, "prompt", setMark=TRUE)
+  addPrompt(tb, "prompt", setMark=TRUE)
+  scrollViewport(tv)  
 }
 @ 
 
@@ -138,16 +143,15 @@ The \code{evalCMD} command is called when the \kbd{return} key is
 pressed. The \signal{key-release-event} signal passes the event
 information through to the second argument. We inspect the key value
 and compare to that of the return key. 
-<<connectBinding, print=FALSE>>=
+<<connectBinding, results=hide>>=
 gSignalConnect(tv, "key-release-event", f=function(w, e, data) {
   obj <- w$getBuffer()                  # w is textview
   keyval <- e$getKeyval()
   if(keyval == GDK_Return) {
     cmd <- findCMD(obj)                 # character(0) if nothing
     if(length(cmd) && nchar(cmd) > 0)
-      evalCMD(obj, cmd)
+      evalCMD(w, cmd)
   }
-  return(FALSE)                         # events need return value
 })
 @
 
@@ -155,10 +159,10 @@ gSignalConnect(tv, "key-release-event", f=function(w, e, data) {
 Finally, We connect \function{moveViewport} to the \code{changed}
 signal of the text buffer, so that the view always scrolls to the
 bottom when the contents of the buffer are modified:
-<<print=FALSE>>=
-gSignalConnect(tb, "changed", scrollViewport, tv, after = TRUE, 
-               user.data.first = TRUE)
-@ 
+% <<results=hide>>=
+% gSignalConnect(tb, "changed", scrollViewport, tv, after = TRUE, 
+%                user.data.first = TRUE)
+% @ 
 
 Figure~\ref{fig:RGtk2-terminal} shows the widget placed into a very
 simple GUI.

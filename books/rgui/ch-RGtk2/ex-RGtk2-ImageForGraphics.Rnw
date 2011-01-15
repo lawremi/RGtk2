@@ -1,9 +1,10 @@
+
+
+
+
 <<echo=FALSE>>=
 library(RGtk2)
 @ 
-
-
-\begin{example}{Using a pixmap to present graphs}{ex:RGtk2:pixbuf}
 
   This example shows how to use a \constructor{GtkImage} object to
   embed a graphic within \pkg{RGtk2}, using the
@@ -26,7 +27,7 @@ graphic. Unlike an interactive device, after drawing, this graphic
 does not resize itself when the window resizes.
 
 <<>>=
-theSize <- g$getAllocation()
+theSize <- g$getAllocation()$allocation
 width <- theSize$width; height <- theSize$height
 @ 
 
@@ -48,4 +49,3 @@ image <- gtkImage(pixmap = pixmap)
 g$packStart(image, expand=TRUE, fill = TRUE)
 @ 
 
-\end{example}

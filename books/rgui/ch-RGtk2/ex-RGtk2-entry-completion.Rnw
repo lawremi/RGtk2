@@ -24,10 +24,10 @@ completion['popup-single-match'] <- FALSE
 @ 
 
 We wish for the text search to match against any part of a string, not
-only the beginning. Thus, we need to define our own match function. We
-get the string from the entry widget, not the passed value, as that
-has been standardized to lower case.
-<<SetMatchFunc, print=FALSE>>=
+only the beginning, so define our own match function. We get the
+string from the entry widget, not the passed value, as that has been
+standardized to lower case.
+<<SetMatchFunc, results=hide>>=
 matchAnywhere <- function(comp, str, iter, user.data) {
   model <- comp$getModel()
   rowVal <- model$getValue(iter, 0)$value   # column 0 in model

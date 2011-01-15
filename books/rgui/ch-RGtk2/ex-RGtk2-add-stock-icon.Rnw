@@ -3,6 +3,10 @@ to the list of stock icons. To generate some sample icons, we use
 those provided by objects in the \pkg{ggplot2} package.
 
 <<echo=FALSE>>=
+## This example shows, without much explanation the steps to add images
+## to the list of stock icons. To generate some sample icons, we use
+## those provided by objects in the \pkg{ggplot2} package.
+
 library(RGtk2)
 @
 
@@ -30,7 +34,7 @@ library(RGtk2)
 ## application. 
 @ 
 First we create the icons using the fact that the objects have a function \code{icon} to draw an image.
-<<eval=FALSE>>=
+<<makePixbufs>>=
 require(ggplot2)
 iconNames <- c("GeomBar","GeomHistogram")   # 2 of many ggplot functions
 icon.size <- 16
@@ -47,7 +51,7 @@ pixbufs <- sapply(iconNames, function(name) {
 @ 
 The following function works through the steps to add a new icon. The
 basic ideas are sketched out in the API for \code{GtkIconSet}.
-<<addToStockIcons, eval=FALSE>>=
+<<addToStockIcons>>=
 addToStockIcons <- function(pixbufs, stock.prefix="new") {
   iconfactory <- gtkIconFactory()
   
@@ -67,7 +71,7 @@ addToStockIcons <- function(pixbufs, stock.prefix="new") {
 }
 @ 
 We call this function and then check that the values are added:
-<<eval=FALSE>>=
+<<>>=
 addToStockIcons(pixbufs)
 nms <- gtkStockListIds()
 unlist(nms[grep("^new", nms)])
