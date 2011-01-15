@@ -351,7 +351,9 @@ the grouping is customizable through drag and drop.
 widgets, each of which is a container of tool items and implements
 \class{GtkToolShell}, like \class{GtkToolbar}. We begin our brief
 example by creating a two groups of tool items:
-<<rgtk2-menus-tool-item-group>>=
+%% JV: commented out next 3 for eval as my GTK is a bit to old to run. --Need
+%% to update
+<<rgtk2-menus-tool-item-group, eval=FALSE>>=
 fileGroup <- gtkToolItemGroup("File")
 fileGroup$add(gtkToolButton(stock.id = "gtk-open"))
 fileGroup$add(saveAction$createToolItem())
@@ -361,14 +363,14 @@ helpGroup$add(helpAction$createToolItem())
 %
 
 The groups are then added to an instance of \class{GtkToolPalette}:
-<<rgtk2-menus-tool-palette>>=
+<<rgtk2-menus-tool-palette, eval=FALSE>>=
 palette <- gtkToolPalette()
 palette$add(fileGroup)
 palette$add(helpGroup)
 @ 
 %
 Finally, we can programmatically collapse a group:
-<<rgtk2-menus-tool-palette-collapse>>=
+<<rgtk2-menus-tool-palette-collapse, eval=FALSE>>=
 helpGroup$setCollapsed(TRUE)
 @ 
 

@@ -118,7 +118,7 @@ Section~\ref{sec:gobject-primer}.
 
 \begin{figure}[h!tbp]
   \begin{center}
-    \includegraphics[width=2in]{hello-world.png}
+%%    \includegraphics[width=2in]{hello-world.png}
     \caption{\label{fig:hello-world}``Hello World'' in GTK+. 
       A window containing a single button displaying a label with the text
       \code{Hello World}.}
@@ -184,7 +184,7 @@ interfaces it implements:
  interface(window)
 \end{Sinput}
 \begin{Soutput}
-[1] "GtkBuildable"        "AtkImplementorIface"
+[1] "AtkImplementorIface" "GtkBuildable"       
 \end{Soutput}
 \end{Schunk}
 
@@ -276,7 +276,7 @@ see the first eight properties listed with:
  head(names(button), n=8)                     # or b$getPropInfo()
 \end{Sinput}
 \begin{Soutput}
-[1] "use-action-appearance" "related-action"       
+[1] "related-action"        "use-action-appearance"
 [3] "user-data"             "name"                 
 [5] "parent"                "width-request"        
 [7] "height-request"        "visible"              
@@ -945,7 +945,7 @@ layouts that are possible with a \class{GtkHBox}.
 
 \begin{figure}[h!tbp]
   \begin{center}
-    \includegraphics{packing.png}
+%%    \includegraphics{packing.png}
     \caption{\label{fig:packing}A screenshot demonstrating the effect
       of packing two buttons into \class{GtkHBox} instances using the
       \method{packStart}{GtkBox} method with different combinations of
@@ -2059,10 +2059,10 @@ A button to allow the user to hide the bar can be added as follows:
               response.id=GtkResponseType['ok']) # not just "ok"
 \end{Sinput}
 \begin{Soutput}
-<pointer: 0x1039760c0>
+<pointer: 0x10392b0c0>
 attr(,"interfaces")
-[1] "GtkActivatable"      "GtkBuildable"       
-[3] "AtkImplementorIface"
+[1] "GtkActivatable"      "AtkImplementorIface"
+[3] "GtkBuildable"       
 attr(,"class")
 [1] "GtkButton"         "GtkBin"            "GtkContainer"     
 [4] "GtkWidget"         "GtkObject"         "GInitiallyUnowned"
@@ -4901,15 +4901,19 @@ text for easier editing the next time round, then calls  \function{help}.
 We connect to two signals emitted by the combobox. First when a
 selection is made (and  \method{getActive}{gtkComboBox} returns a
 non-negative value) we call the help function.
-gSignalConnect(cb, "changed", f=function(w, ...) {
-  if(cb$getActive() >= 0) {
-    val <- w$getActiveText()
-    callHelpFunction(w, val)
-  }
-})
+\begin{Schunk}
+\begin{Sinput}
+ gSignalConnect(cb, "changed", f=function(w, ...) {
+   if(cb$getActive() >= 0) {
+     val <- w$getActiveText()
+     callHelpFunction(w, val)
+   }
+ })
+\end{Sinput}
+\end{Schunk}
 
 The \code{activate} callback checks to see if the requested value has
-not been visited previosly. If not, this calls our \function[addValue}
+not been visited previosly. If not, this calls our \function{addValue}
 function before calling the help function.
 \begin{Schunk}
 \begin{Sinput}
@@ -6104,6 +6108,608 @@ the grouping is customizable through drag and drop.
 widgets, each of which is a container of tool items and implements
 \class{GtkToolShell}, like \class{GtkToolbar}. We begin our brief
 example by creating a two groups of tool items:
+%% JV: commented out next 3 for eval as my GTK is a bit to old to run. --Need
+%% to update
 \begin{Schunk}
 \begin{Sinput}
  fileGroup <- gtkToolItemGroup("File")
+ fileGroup$add(gtkToolButton(stock.id = "gtk-open"))
+ fileGroup$add(saveAction$createToolItem())
+ helpGroup <- gtkToolItemGroup("Help")
+ helpGroup$add(helpAction$createToolItem())
+\end{Sinput}
+\end{Schunk}
+%
+
+The groups are then added to an instance of \class{GtkToolPalette}:
+\begin{Schunk}
+\begin{Sinput}
+ palette <- gtkToolPalette()
+ palette$add(fileGroup)
+ palette$add(helpGroup)
+\end{Sinput}
+\end{Schunk}
+%
+Finally, we can programmatically collapse a group:
+\begin{Schunk}
+\begin{Sinput}
+ helpGroup$setCollapsed(TRUE)
+\end{Sinput}
+\end{Schunk}
+
+\section{Managing a complex user interface}
+\label{sec:RGtk2:UIManager}
+
+Complex applications implement a large number of actions and operate
+in a number of different modes. Within a given mode, only a subset of
+actions are applicable. For example, a word processor may have an
+editing mode and a print preview mode. \GTK\/ provides a \dfn{user
+  interface manager}, \class{GtkUIManager}, to manage the layout of
+the toolbars and menubars across multiple user interface modes.
+
+The steps required to use \GTK's UI manager are
+\begin{enumerate}
+\item construct the UI manager,
+\item define the actions in groups,
+\item specify the layout of the menubars and toolbars,
+\item connect the action group to the UI manager, 
+\item set up an accelerator group for keyboard shortcuts, and finally
+\item display the widgets.
+\end{enumerate}
+
+\begin{example}{UI Manager example}{ex:RGtk2:UImanager}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.6\textwidth]{ex-RGtk2-UI}
+  \caption{A GUI made using a UI manager to layout the menubar and toolbar.}
+  \label{fig:RGtk2-UI}
+\end{figure}
+
+
+We begin by constructing the UI manager:
+\begin{Schunk}
+\begin{Sinput}
+ uimanager = gtkUIManager()
+\end{Sinput}
+\end{Schunk}
+
+Next, we define the action groups. For demonstration purposes, our
+actions simply push the action name onto the status bar at the bottom
+of the window. Below, we define the callback that will implement every
+action:
+\begin{Schunk}
+\begin{Sinput}
+ someAction <- function(action,...) 
+   statusbar$push(statusbar$getContextId("message"), action$getName())
+ Quit <- function(...) win$destroy()
+\end{Sinput}
+\end{Schunk}
+
+We break up our action group definitions into one for ``File'' and
+``Edit'' and another one for ``Help.'' Every action is defined by a
+\class{GtkActionEntry} structure, which is represented by a list in
+\R. The components (in order) are the name; the icon; the
+label, with \code{\_} specifying the mnemonic; the keyboard
+accelerator, with \code{<control>}, \code{<alt>}, \code{<shift>} as
+possible prefixes, a tooltip, and finally the callback. Empty values
+can be defined as \code{NULL} or, except for the callback, an empty
+string.
+
+\begin{Schunk}
+\begin{Sinput}
+ firstActionGroup <- gtkActionGroup("firstActionGroup")
+ firstActionEntries <- list(
+   ## name,ID,label,accelerator,tooltip,callback
+   file = list("File",NULL,"_File",NULL,NULL,NULL),
+   new = list("New", "gtk-new", "_New", "<control>N", 
+     "New document", someAction),
+   sub = list("Submenu", NULL, "S_ub", NULL, NULL, NULL),
+   open = list("Open", "gtk-open", "_Open", "<ctrl>0", 
+     "Open document", someAction),
+   save = list("Save", "gtk-save", "_Save", "<alt>S", 
+     "Save document", someAction),
+   quit = list("Quit", "gtk-quit", "_Quit", "<ctrl>Q", 
+     "Quit", Quit),
+   edit = list("Edit", NULL, "_Edit", NULL, NULL, NULL),
+   undo = list("Undo", "gtk-undo", "_Undo", "<ctrl>Z", 
+     "Undo change", someAction),
+   redo = list("Redo", "gtk-redo", "_Redo", "<ctrl>U", 
+     "Redo change", someAction)
+ )
+\end{Sinput}
+\end{Schunk}
+%
+In the above, we define the dummy actions ``File'' and ``Edit'' that
+perform no function. They are necessary for specifying the menu layout
+later. We now add the actions to the action group, then add this
+action group to the first spot in the UI manager.
+\begin{Schunk}
+\begin{Sinput}
+ firstActionGroup$addActions(firstActionEntries)
+ uimanager$insertActionGroup(firstActionGroup, 0) # 0-based
+\end{Sinput}
+\end{Schunk}
+
+It is also possible to define toggle actions, as we demonstrate
+presently for the ``Help'' group. First, we define the ordinary actions:
+\begin{Schunk}
+\begin{Sinput}
+ helpActionGroup <- gtkActionGroup("helpActionGroup")
+ helpActionEntries <- list(
+   help = list("Help", "", "_Help", "", "", NULL),
+   about = list("About", "gtk-about", "_About", "", "", someAction)
+ )
+ helpActionGroup$addActions(helpActionEntries)
+\end{Sinput}
+\end{Schunk}
+%
+Next, we define a ``Use tooltips'' toggle action.
+
+A toggle is defined with \command{gtkToggleAction} which has signature
+in a different order than the action entry. Notice, we don't have an
+icon, as the toggled icons is used.  To add a callback, we connect to
+the \code{toggled} signal of the action element. This callback allows
+for user data, as illustrated.
+
+\begin{Schunk}
+\begin{Sinput}
+ toggleActions <- list(
+         ## name, label, tooltip, stock.id              
+         tooltips = gtkToggleAction("UseTooltips", "Use tooltips", 
+           "Use tooltips to show additional information", NULL)
+ )
+ gSignalConnect(toggleActions[[1]], "toggled", function(...) print("toggled"))
+ helpActionGroup$addAction(toggleActions$tooltips)
+\end{Sinput}
+\end{Schunk}
+%
+The list structure for toggle actions is identical to that of the
+ordinary actions, except for the last element which indicates whether
+the action is initially active.  We insert the help action group in
+the second position.
+\begin{Schunk}
+\begin{Sinput}
+ uimanager$insertActionGroup(helpActionGroup, 1)
+\end{Sinput}
+\end{Schunk}
+%
+One can also incorporate radio actions, although this is not shown.
+
+Our menubar and toolbar layout is specified as XML according to a
+schema specified by the UI manager framework. The XML can be stored in
+a file or an \R\/ character vector.  The structure of the file can be
+grasped quickly from this example:
+\begin{verbatim}
+<ui>
+  <menubar name="menubar">
+    <menu name="FileMenu" action="File">
+      <menuitem name="FileNew" action="New"/>
+      <menu action="Submenu">
+	<menuitem name="FileOpen" action="Open" />
+      </menu>
+      <menuitem name="FileSave" action="Save"/>
+      <separator />
+      <menuitem name="FileQuit" action="Quit"/>
+    </menu>
+    <menu action="Edit">
+      <menuitem name="EditUndo" action="Undo" />
+      <menuitem name="EditRedo" action="Redo" />
+    </menu>
+    <menu action="Help">
+      <menuitem action="UseTooltips"/>
+      <menuitem action="About"/>
+    </menu>
+  </menubar>
+  <toolbar name="toolbar">
+    <toolitem action="New"/>
+    <toolitem action="Open"/>
+    <toolitem action="Save"/>
+    <separator />
+    <toolitem action="Quit"/>
+  </toolbar>
+</ui>
+\end{verbatim}
+% \VerbatimInput{ex-menus.xml}
+
+The top-level element is named \code{ui}, only one of which is allowed
+in a UI definition. The children of \code{ui} represent a top-level
+action container: \code{menubar}, \code{toolbar}, or \code{popup}.
+The \code{name} attributes are used to refer to the widgets later
+on. The \code{menubar} element contains \code{menu} elements, which in
+turn contain \code{menuitem} and \code{separator} elements, as well as
+additional \code{menu} elements for nesting. The toolbars are
+populated with \code{toolitem} elements. The item elements have an
+\code{action} attribute that refers to an action in one of our action
+groups and an optional name (defaulting to the \code{action}
+value).
+
+This file is loaded into the UI manager as follows
+\begin{Schunk}
+\begin{Sinput}
+ id <- uimanager$addUiFromFile("ex-menus.xml")
+\end{Sinput}
+\end{Schunk}
+%
+The \code{id} value can be used to merge and delete UI components
+according to the mode of the UI, but this is not illustrated here.
+
+Now we can setup a basic window template with menubar, toolbar, and
+status bar. We first construct the three main widgets. The UI manager
+will construct our toolbar and menubar, as identified from the names
+specified in the UI definition:
+\begin{Schunk}
+\begin{Sinput}
+ menubar <- uimanager$getWidget("/menubar")
+ toolbar <- uimanager$getWidget("/toolbar")
+\end{Sinput}
+\end{Schunk}
+The statusbar is constructed with
+\begin{Schunk}
+\begin{Sinput}
+ statusbar <- gtkStatusbar()
+\end{Sinput}
+\end{Schunk}
+%
+
+Now we create a top-level window and attach a keyboard accelerator
+group to the window so that when the window has the focus, the
+keyboard shortcuts defined for our actions are active.
+\begin{Schunk}
+\begin{Sinput}
+ win <- gtkWindow(show=TRUE)
+ win$setTitle("Window example")
+ accelgroup <- uimanager$getAccelGroup()
+ win$addAccelGroup(accelgroup)
+\end{Sinput}
+\end{Schunk}
+
+Now it is a simple matter of packing the widgets into a box.
+\begin{Schunk}
+\begin{Sinput}
+ box <- gtkVBox()
+ win$add(box)
+ box$packStart(menubar, expand=FALSE, fill=FALSE,0)
+ box$packStart(toolbar, expand=FALSE, fill= FALSE,0)
+ contentArea <- gtkVBox()
+ box$packStart(contentArea, expand=TRUE, fill=TRUE,0)
+ contentArea$packStart(gtkLabel("Content Area"))
+ box$packStart(statusbar, expand=FALSE, fill=FALSE, 0)
+\end{Sinput}
+\end{Schunk}
+
+The redo feature should only be sensitive to mouse events after a user
+has undone an action. If we wanted to alter the sensitivity of the
+redo action, we would need to retrieve it from the action group:
+\begin{Schunk}
+\begin{Sinput}
+ redo <- firstActionGroup$getAction("Redo")
+ redo['sensitive'] <- FALSE
+\end{Sinput}
+\end{Schunk}
+\end{example}
+
+
+\label{sec:RGtk2:dialogs}
+%% FIXME: the examples in this section are pretty lame
+
+\GTK\/ provides general infrastructure for constructing custom
+dialogs.  A dialog is a window that generally consists of an icon, a
+content area, and an action area containing a row of buttons
+representing the possible user responses.  A dialog is typically
+related to some main application window. Dialogs can be modal,
+blocking the rest of the application from any input, but this is
+optional.  \class{GtkDialog} represents a generic dialog and serves as
+the base class for all special purpose dialogs in \GTK.
+
+\subsection{Message dialogs}
+
+Communicating textual messages to the user is perhaps the most common
+application of a dialog. \GTK\/ provides the
+\constructor{gtkMessageDialog} convenience wrapper for
+\class{GtkDialog} for creating a message dialog showing a primary and
+secondary message.  We construct one presently:
+\begin{Schunk}
+\begin{Sinput}
+ w <- gtkWindow(); w['title'] <- "Parent window"
+ #
+ dlg <- gtkMessageDialog(parent=w, 
+                         flags="destroy-with-parent",
+                         type="question", 
+                         buttons="ok",
+                         "My message")
+ dlg['secondary-text'] <- "A secondary message"
+\end{Sinput}
+\end{Schunk}
+%
+
+The \argument{flags}{gtkMessageDialog} argument allows one to specify
+a combination of values from \code{GtkDialogFlags}. These include 
+\code{destroy-with-parent} and \code{modal}. Here, the dialog will be
+destroyed upon destruction of the parent window. The
+\argument{type}{gtkMessageDialog} argument specifies the message type,
+using one of the $4$ values from \code{GtkMessageType}, which determines the icon that
+is placed adjacent to the message text. The
+\argument{buttons}{gtkMessageDialog} argument indicates the set of
+response buttons with a value from \code{GtkButtonsType}. The
+remaining arguments are pasted together into the primary message.  The
+dialog has a \code{secondary-text} property that can be set to give a
+secondary message.
+
+Dialogs are optionally modal. Below, we enable modality by calling the
+\method{run}{gtkDialog} method, which will additionally block the \R\/
+session:
+\begin{Schunk}
+\begin{Sinput}
+ response <- dlg$run()
+ if(response == GtkResponseType["cancel"] || # for other buttons
+    response == GtkResponseType["close"] ||
+    response == GtkResponseType["delete-event"]) {
+   ## pass
+ } else if(response == GtkResponseType["ok"]) {
+   print("Ok")
+ }
+\end{Sinput}
+\begin{Soutput}
+[1] "Ok"
+\end{Soutput}
+\begin{Sinput}
+ dlg$Destroy()
+\end{Sinput}
+\end{Schunk}
+%
+The return value can then be inspected for the action, such as what
+button was pressed. \class{GtkMessageDialog} will return response
+codes from the \code{GtkResponseType} enumeration. We will see an
+example of asynchronous response handling in the next section.
+
+
+
+\subsection{Custom dialogs}
+\label{sec:custom-dialogs}
+
+The \constructor{gtkDialog} constructor returns a generic dialog
+object which can be customized, in terms of its content and response
+buttons.  Usually, a \class{GtkDialog} is constructed with
+\constructor{gtkDialogNewWithButtons}, as a dialog almost always
+contains a set of response buttons, such as \kbd{Ok}, \kbd{Yes},
+\kbd{No} and \kbd{Cancel}.
+
+In this example, we will create a simple dialog showing a label and
+text entry. 
+\begin{Schunk}
+\begin{Sinput}
+ dlg <- gtkDialogNewWithButtons(title="Enter a value", 
+                                parent=NULL, flags=0,
+                                "gtk-ok", GtkResponseType["ok"],
+                                "gtk-cancel", GtkResponseType["cancel"],
+                                show=FALSE)
+\end{Sinput}
+\end{Schunk}
+%
+Buttons are added with a label and a response id, and their order is
+taken from the how they are entered. (There is no automatic ordering
+based on an operating system's conventions.)  When the button label
+matches a stock ID, the icon and text are taken from the stock
+definition. We used standard responses from \code{GtkResponseType},
+although in general the codes are simply integer values;
+interpretation is up to the programmer.
+
+To complete our dialog we use the dialog as a container for the following:
+\begin{Schunk}
+\begin{Sinput}
+ hb <- gtkHBox()
+ hb['spacing'] <- 10
+ #
+ hb$packStart(gtkLabel("Enter a value:"))
+ entry <- gtkEntry()
+ hb$packStart(entry)
+\end{Sinput}
+\end{Schunk}
+
+The dialog has a content area, which is an instance of
+\class{GtkVBox}. This is
+returned by \method{getContentArea}{gtkDialog}:
+\begin{Schunk}
+\begin{Sinput}
+ vb <- dlg$getContentArea()
+ vb$packStart(hb)
+\end{Sinput}
+\end{Schunk}
+%
+The content of the dialog is drawn above an optional horizontal separator and
+button box.
+
+In the message dialog example, we called the \method{run}{GtkDialog}
+method to block the \R\/ session. An alternative that does not block
+the \R\/ session is to connect to the \code{response} signal of the
+modal dialog. The callback passes in the buttons' response codes
+assigned at construction.
+\begin{Schunk}
+\begin{Sinput}
+ ID <- gSignalConnect(dlg, "response", 
+                      f=function(dlg, resp, user.data) {
+                        if(resp == GtkResponseType["ok"])
+                          print(entry$getText()) # Replace this
+                        dlg$Destroy()
+                      })
+ dlg$showAll()
+ dlg$setModal(TRUE)
+\end{Sinput}
+\end{Schunk}
+
+\subsection{File chooser}
+\label{sec:RGtk2:file-chooser}
+
+A common task in a GUI is the selection of files and directories, for
+example to load or save a document. \class{GtkFileChooser} is an
+interface shared by widgets that choose files. \GTK\/ provides three
+such widgets. The first is \class{GtkFileChooserWidget}, which may be
+placed anywhere in a GUI. The other two are based on the
+first. \class{GtkFileChooserDialog} embeds the chooser widget in a
+modal dialog, while \class{GtkFileChooserButton} is a button that
+displays a file path and launches the dialog when clicked.
+
+\begin{example}{An open file dialog}{ex:RGtk2:open-file}
+  Here, we demonstrate the use of the dialog, the most popular of the
+  three.  An open file dialog can be created with:
+\begin{Schunk}
+\begin{Sinput}
+ dlg <- gtkFileChooserDialog(title="Open a file", 
+                      parent=NULL, action="open",
+                      "gtk-ok", GtkResponseType["ok"],
+                      "gtk-cancel", GtkResponseType["cancel"],
+                      show=FALSE)
+\end{Sinput}
+\end{Schunk}
+%
+The dialog constructor allows one to specify a title, a parent and an
+action, either \code{open}, \code{save}, \code{select-folder} or
+\code{create-folder}. In addition, the dialog buttons must be
+specified, as with the last example using
+\code{gtkDialogNewWithButtons}.
+
+We connect to the \signal{response} signal
+\begin{Schunk}
+\begin{Sinput}
+ gSignalConnect(dlg, "response", f=function(dlg, resp, data) {
+   if(resp == GtkResponseType["ok"]) {
+     filename <- dlg$getFilename()
+     print(filename)
+   }
+   dlg$destroy()
+ })
+\end{Sinput}
+\end{Schunk}
+%
+The file selected is returned by
+\method{getFilename}{gtkFileChooser}. If multiple selection is enabled
+with via the \code{select-multiple} property, one should call the
+plural \method{getFilenames}{gtkFileChooser}.
+
+For the open dialog, one may wish to specify one or more filters that
+narrow the available files for selection:
+\begin{Schunk}
+\begin{Sinput}
+ fileFilter <- gtkFileFilter()
+ fileFilter$setName("R files")
+ fileFilter$addPattern("*.R")
+ fileFilter$addPattern("*.Rdata")
+ dlg$addFilter(fileFilter)
+\end{Sinput}
+\end{Schunk}
+%
+The \constructor{gtkFileFilter} function constructs a filter, which is
+given a name and a set of file name patterns, before being added to
+the file chooser. Filtering by mime type is also supported.
+
+\end{example}
+
+The save file dialog would be similar. The initial filename could be
+specified with \method{setFilename}{gtkFileChooser}, or folder with
+\method{setFolder}{gtkFileChooser}. The
+\code{do-overwrite-confirmation} property controls whether the user is
+prompted when attempting to overwrite an existing file.
+
+Other features not discussed here, include embedding of preview and
+other custom widgets, and specifying shortcut folders.
+
+\paragraph{Other choosers}
+There are several other types of dialogs for making common types of
+selections. These include \code{GtkCalendar} for picking dates,
+\code{GtkColorSelectionDialog} for choosing colors, and
+\code{GtkFontSelectionDialog} for fonts. These are very high-level
+dialogs that are trivial to construct and manipulate, at a cost of
+flexibility.
+
+% \chapter{\code{cairoDevice}}
+% \label{sec:RGtk2-cairoDevice}
+% \SweaveInput{cairoDevice}
+
+% \chapter{Using \code{glade} to design GUIs}
+% \label{sec:RGtk2-glade}
+% \SweaveInput{Glade}
+
+%\section{End of chapter notes}
+%\label{sec:RGtk2:end-of-chapter}
+
+% * overview in inst
+% * gtk tutorial in R
+% * API at http://developer.gimp.org/api/2.0/gtk/
+% * ...
+
+% * widget gallery
+% http://library.gnome.org/devel/gtk/stable/ch02.html
+
+%  good source: http://developer.gnome.org/doc/GGAD/ggad.html
+
+% * http://gtk.org/documentation.html
+
+% * gtk API
+% http://library.gnome.org/devel/gtk/stable/
+
+% * pango manual 
+% http://library.gnome.org/devel/pango/stable/PangoMarkupFormat.html
+
+% * Missing discussion on standard dialogs: message, confirmations, etc.
+% filebrowser, colors selector, font selector, 
+
+% * Mention history: GIMP; GNOME; DTL RGtk; Michael Lawrence RGtk2
+% * Installation: windows; linux; mac OS X
+
+% * Info
+% php cookbook good source of info
+
+% DTL examples from omegahat
+
+% pygtk tutorial easier to read than C one (no types specifed)
+% pygtk cookbook: http://eccentric.cx/misc/pygtk/wiki/doku.php?id=pygtk
+% pygtk faq: http://faq.pygtk.org/index.py?req=index
+
+
+%% Need a comparison of RGtk2 and qtbase, somewhere (appendix? qt chapter?)
+
+%% High-level comparison of frameworks:
+
+%% Feature     Qt            GTK+           R
+%% ------------------------------------------------------------------------
+%% DBus        QtDBus        GDBus (GIO)    None (RCorba is Windows Equivalent)
+%% XML UI      QtUiTools     GtkBuilder     RGG (Java)  
+%% GUI         QtGui         GTK+           tcltk
+%% Help        QtHelp        Yelp (Gnome)   R help system (primitive)   
+%% Multimedia  QtMultimedia  GStreamer      None
+%% IO/Network  QtNetwork     GIO            R connections (synchronous only)
+%% OpenGL      QtOpenGL      GlExt/Cairo    rgl
+%% Javascript  QtScript      None           None
+%% SQL         QtSql         libgda         DBI (good enough)
+%% SVG         QtSvg         cairo/librsvg  cairoDevice, svgImport, etc
+%% Web browser QtWebkit      GtkWebkit      None     
+%% XML         QtXml         libxml         XML (binds libxml)
+%% Settings    QtNetwork     GIO            Nothing really
+
+%% Notes:
+%% - Next version of RGtk2 will bind GIO.
+%% - DBus is likely useless, except on Linux
+%% - Next version of RGtk2 should support GtkBuilder
+%% - Deepayan's qtutils package integrates R docs with QtHelp
+%% - Multimedia could be useful for generating videos, etc (out of scope)
+%% - R connections are very primitive (no asynchronous I/O)
+%% - Qt provides 2D API for OpenGL
+%% - Javascript support likely useless
+%% - DBI package covers database access needs
+%% - SVG not designed for interactivity, <canvas> better
+%% - GtkWebkit should be bound in separate package (worth it?)
+%% - XML package has XML handling covered
+%% - The graphics support in QtGui is a major advantage over
+%%   Cairo-based GTK+. The QPainter API is better designed for stat
+%%   graphics and has faster backend implementations. QGraphicsView is
+%%   a mature canvas, something GTK+ lacks.
+
+%% Summary: 
+%% - Useful features in qtbase, but not RGtk2: WebKit, Multimedia
+%%   - GtkWebkit, GStreamer could be bound, but not worth it, given qtbase
+%%   - QtWebkit offers Javascript <-> Qt bridge via QtScript
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+

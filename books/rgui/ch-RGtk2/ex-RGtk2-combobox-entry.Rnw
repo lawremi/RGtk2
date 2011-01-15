@@ -102,6 +102,7 @@ callHelpFunction <- function(cb, value) {
 We connect to two signals emitted by the combobox. First when a
 selection is made (and  \method{getActive}{gtkComboBox} returns a
 non-negative value) we call the help function.
+<<>>=
 gSignalConnect(cb, "changed", f=function(w, ...) {
   if(cb$getActive() >= 0) {
     val <- w$getActiveText()
@@ -111,7 +112,7 @@ gSignalConnect(cb, "changed", f=function(w, ...) {
 @ 
 
 The \code{activate} callback checks to see if the requested value has
-not been visited previosly. If not, this calls our \function[addValue}
+not been visited previosly. If not, this calls our \function{addValue}
 function before calling the help function.
 <<results=hide>>=
 gSignalConnect(cb$getChild(), "activate", f = function(cb, entry, ...) {
