@@ -64,8 +64,8 @@ args <- function(name) {
 \SweaveInput{menus}
 
 
-\label{sec:RGtk2:dialogs}
-\SweaveInput{Pre-defined-dialogs}
+% \label{sec:RGtk2:dialogs}
+% \SweaveInput{Pre-defined-dialogs}
 
 % \chapter{\code{cairoDevice}}
 % \label{sec:RGtk2-cairoDevice}
