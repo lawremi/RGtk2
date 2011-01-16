@@ -203,120 +203,7 @@ if (dlg$exec())
   print(dlg$textValue())
 @ 
 
-\subsection{QDialog}
-\label{sec:qdialog}
-
-Every dialog in \Qt{} inherits from \class{QDialog}, and we can leverage
-it for our own custom dialogs. 
-
-%% MFL: Custom dialogs should be custom classes derived from QDialog.
-%% We should either give a nice example of that, or forget about this.
-
-What makes a dialog different is when it is modal. That is the
-\method{exec}{QDialog} call is used. This state may be broken by
-quitting the window through the window manager, or by calling the
-\method{done}{QDialog} method with an integer specifying the return
-value (say \code{Qt\$QDialog\$Accepted} or
-\code{Qt\$QDialog\$Rejected}). This closes the window and returns
-control. If the \code{Qt\$Qt\$WA\_DeleteOnClose} attribute is set, the
-dialog will be deleted, othewise it may be reused.
-
-A simple example follows. We assume some parent window is defined as \code{parent}
-<<echo=FALSE, results=hide>>=
-## Example of a dialog created with QDialog
-## not shown
-parent <- Qt$QLabel("Some parent")
-parent$setMinimumSize(400, 400)
-parent$show()
-parent$raise()
-@ 
-
-Our dialog is defined and we adjust our window modality
-accordingly. Under \OSX, this will appear as a drop down sheet of
-the parent, not in a separate window.
-<<ADialog, results=hide>>=
-dlg <- Qt$QDialog(parent)
-dlg$setWindowModality(Qt$Qt$WindowModal)
-dlg$setWindowTitle("A simple dialog")
-@ 
-
-Our dialog here is just a basic mock up. We use a horizontal box for
-the buttons, but in an real application would use the \class{QDialogButtonBox}
-<<results=hide>>=
-dlg$setLayout(lyt <- Qt$QVBoxLayout())
-lyt$addWidget(Qt$QLabel("Layout dialog components here"))
-blyt <- Qt$QHBoxLayout()                # for buttons
-lyt$addLayout(blyt)
-@
-
-Our buttons have callbacks that call the \method{done}{QDialog} method
-with a return value. We use
-\code{user.data} to pass in the dialog reference.
-<<results=hide>>=
-ok <- Qt$QPushButton("Ok")
-cancel <- Qt$QPushButton("Cancel")
-blyt$addWidget(ok)
-blyt$addWidget(cancel)
-
-qconnect(ok, "pressed", function(dlg) dlg$done(1), user.data=dlg)
-qconnect(cancel, "pressed", function(dlg) dlg$done(0), user.data=dlg)
-@
-
-<<eval=FALSE>>=
-if(dlg$exec())
-  print("Yes")
-@ 
-
-
-
-% \subsection{Wizards}
-% \label{sec:wizards}
-
-%% \XXX{Wizards do not have a registerField method defined.}
-
-% \Qt{} provides a framework for wizards -- multipage dialogs. The
-% \class{QWizard} class implements this. Wizards are compose of pages,
-% each containing a number of fields for the user to interact
-% with. Wizards may also have different naviagational routes. 
-
-
-% <<>>=
-% wizard <- Qt$QWizard()
-% wizard$setWindowTitle("A wizard")
-
-% getAgePage <- Qt$QWizardPage(wizard)
-% getAgePage$setTitle("What is your age?")
-% lyt <- Qt$QFormLayout()
-% getAgePage$setLayout(lyt)
-% lyt$addRow("Age", (age <- Qt$QLineEdit()))
-% getAgePage$registerField("age", age)
-% wizard$addPage(getAgePage)
-
-% getToysPage <- Qt$QWizardPage(wizard)
-% getGenderpage$setTitle("What toys do you like?")
-% lyt <- Qt$QFormLayout()
-% getToysPage$setLayout(lyt)
-% lyt$addRow("Toys", (toys <- Qt$QLineEdit()))
-% getToysPage$registerField("toys", toys)
-% wizard$addPage(getToysPage)
-
-
-% getGamesPage <- Qt$QWizardPage(wizard)
-% getGenderpage$setTitle("What games do you like?")
-% lyt <- Qt$QFormLayout()
-% getGamesPage$setLayout(lyt)
-% lyt$addRow("Games", (games <- Qt$QLineEdit()))
-% getGamesPage$registerField("games", games)
-% wizard$addPage(getGamesPage)
-          
-
-
-% ret <- wizard$exec()
-
-% @ 
-
-
-\subsection{File and Directory chooing dialogs}
+\subsection{File and Directory Choosing Dialogs}
 \label{sec:file-direct-choosing}
 
 
@@ -365,8 +252,6 @@ fnames <- Qt$QFileDialog$getOpenFileNames(NULL,
                         rfilter)
 @ 
 
-\paragraph{Explicitly constructing a dialog}
-
 Although the static functions provide most of the functionality, to
 fully configure a dialog, it may be necessary to explicitly construct
 and manipulate a dialog instance. Examples of options not available
@@ -391,6 +276,165 @@ if(dlg$exec())
 @ 
 
 \end{example}
+
+\subsection{Other Choosers}
+\label{sec:choosers}
+
+\Qt/ provides several additional dialog types for choosing a
+particular type of item. These include \class{QColorDialog} for
+picking a color, and \class{QFontDialog} for selecting a font. These
+special case dialogs will not be discussed further here.
+
+%% MOVEME: to dialog part
+\subsection{Button boxes}
+\label{sec:button-boxes}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.6\textwidth]{fig-qt-dialog-button-box-Qt}\\
+  \includegraphics[width=.6\textwidth]{fig-qt-dialog-button-box-linux}
+  \caption{Dialog button boxes and their implementation under Mac OS X
+    and Linux.}
+  \label{fig:qt-dialg-button-box}
+\end{figure}
+
+Before discussing custom dialogs, we first introduce the
+\class{QDialogButtonBox} utility for arranging dialog buttons in a
+consistent and cross-platform manner. Dialogs often have a standard
+button placement that varies among desktop
+environments. \class{QDialogButtonBox} is a container of buttons that
+arranges its children according to the convention of the platform.  We
+place some standard buttons into a button box:
+<<qt-widgets-buttonbox>>=
+box <- Qt$QDialogButtonBox(Qt$QDialogButtonBox$Ok | 
+                           Qt$QDialogButtonBox$Cancel | 
+                           Qt$QDialogButtonBox$Help)
+@ 
+% 
+%% EXAMPLE: create a button box, add some buttons
+Figure~\ref{fig:qt-dialg-button-box} shows how the buttons are
+displayed on two different operating systems.  To indicate the desired
+buttons, we pass a combination of flags from the
+\qtenumeration{QDialogButtonBox\$StandardButton} enumeration.  Each
+standard button code implies a default label and role, taken from the
+\qtenumeration{QDialogButtonBox\$ButtonRole} enumeration. In the above
+example, we added a standard \code{OK} button, with the label ``OK''
+(depending on the language) and the role \code{AcceptRole}. The
+\code{Cancel} button has the appropriate label and \code{CancelRole}
+as its role. Icons are also displayed, depending on the platform and
+theme. The benefits of using standard buttons include convenience,
+standardization, and automatic translation of labels.
+
+The first button added with the \code{AcceptRole} role is made the
+default. Overriding this requires adding the default button with
+\method{addButton}{QDialogButtonBox} and setting the
+\property{default} property on the returned button object.
+
+To respond to user input, one can connect directly to the
+\signal{clicked} signal on a given button. It is often more
+convenient, however, to connect to one of the high-level button box
+signals, which include: \signal{accepted}, which is emitted when a
+button with the \code{AcceptRole} or \code{YesRole} is clicked;
+\signal{rejected}, which is emitted when a button with the
+\code{RejectRole} or \code{NoRole} is clicked; \code{helpRequested};
+or \code{clicked} when any button is clicked. For this last signal,
+the callback is passed the button object.
+<<qt-widgets-buttonbox-signals>>=
+qconnect(db, "accepted", function() print("accepted"))
+qconnect(db, "rejected", function() print("rejected"))
+qconnect(db, "helpRequested", function() print("help"))
+@ 
+
+<<echo=FALSE, results=hide>>=
+db$show(); db$raise()
+@ 
+
+\subsection{Custom Dialogs}
+\label{sec:qdialog}
+
+Every dialog in \Qt{} inherits from \class{QDialog}, and we can
+leverage it for our own custom dialogs. One approach is to construct
+an instance of \class{QDialog} and add arbitrary widgets to its
+layout. However, we suggest an alternative approach: extend
+\class{QDialog} or one of its derivates and implement the custom
+functionality in a subclass. This more formally encapsulates the state
+and behavior of the custom dialog. We demonstrate the subclass
+approach by constructing a dialog that requests a date from the
+user. 
+
+We begin by defining our class and its constructor:
+<<extend-date-dialog>>=
+qsetClass("DateDialog", Qt$QDialog, 
+function(parent = NULL) 
+{
+  super(parent = parent)
+  setWindowTitle("Choose a date")
+  this$calendar <- Qt$QCalendar()
+  buttonBox <- Qt$QDialogButtonBox(Qt$QMessageBox$Cancel | Qt$QMessageBox$Ok)
+  layout <- Qt$QBoxLayout()
+  layout$addWidget(calendar)
+  layout$addWidget(buttonBox)
+  setLayout(layout)
+})
+@ 
+%
+Our dialog consists of a calendar, implemented by the
+\class{QCalendarWidget}, and a set of response buttons, organized by a
+\class{QDialogButtonBox}. The calendar is stored as a dynamic field on
+the instance, so that we can retrieve the selected date upon request.
+
+We define a method that gets the currently selected date:
+<<extend-date-get>>=
+qsetMethod("selectedDate", "DateDialog", function(x) calendar$selectedDate)
+@ 
+
+\class{DateDialog} can be executed like any other \class{QDialog}:
+<<extend-date-exec>>=
+dateDialog <- DateDialog()
+if (dateDialog$exec())
+  message(dateDialog$selectedDate())
+@
+
+\subsection{Wizards}
+\label{sec:wizards}
+
+%% \XXX{Wizards do not have a registerField method defined.}
+%% MFL: They do, but it's protected (i.e., you have to subclass)
+
+\class{QWizard} implements a wizard -- a multipage dialog that guides
+the user through a sequential, possibly branching process. Wizards are
+composed of pages, and each page has a consistent interface, usually
+including buttons for moving backwards and forwards through the
+pages. Wizards are compose of pages, each containing a number of
+fields for the user to interact with.
+
+<<>>=
+wizard <- Qt$QWizard()
+wizard$setWindowTitle("A wizard")
+
+getAgePage <- Qt$QWizardPage(wizard)
+getAgePage$setTitle("What is your age?")
+lyt <- Qt$QFormLayout()
+getAgePage$setLayout(lyt)
+lyt$addRow("Age", (age <- Qt$QLineEdit()))
+wizard$addPage(getAgePage)
+
+getToysPage <- Qt$QWizardPage(wizard)
+getToysPage$setTitle("What toys do you like?")
+lyt <- Qt$QFormLayout()
+getToysPage$setLayout(lyt)
+lyt$addRow("Toys", (toys <- Qt$QLineEdit()))
+wizard$addPage(getToysPage)
+
+getGamesPage <- Qt$QWizardPage(wizard)
+getGamesPage$setTitle("What games do you like?")
+lyt <- Qt$QFormLayout()
+getGamesPage$setLayout(lyt)
+lyt$addRow("Games", (games <- Qt$QLineEdit()))
+wizard$addPage(getGamesPage)
+
+ret <- wizard$exec()
+@ 
 
 
 % \subsection{Progress dialogs}

@@ -17,8 +17,9 @@ modified, a child widget is added or removed, or the size of the
 parent changes. Unlike \GTK, where this management is tied to a
 container object, \Qt{} decouples the layout from the widget.
 
-In this chapter we discuss the basic layouts and end with a
-discussion on the \class{QMainWindow} class for top-level windows.
+This chapter will introduce the available layout managers. Widgets
+that function primarily as containers, such as the notebook, are
+described in the next chapter.
 
 %% MFL: Qt designer reference seems distracting here. It's really for
 %% constructing a GUI, not just for specifying the layout. We should
@@ -42,53 +43,61 @@ We begin with an example that shows many of the different types of layouts.
 \section{Box layouts}
 \label{sec:box-layouts}
 
-Box layouts arrange child widgets by packing in values horizontally or
-vertical. The \class{QHBoxLayout} class implements a horizontal layout
-whereas \class{QVBoxLayout} provides a vertical one. Both of these
-classes subclass the \class{QBoxLayout} class where most of the
-functionality is documented.  The \method{direction}{QBoxLayout}
-property specifies how the layout is done. By default, this is left to
-right or top to bottom, but can be set (e.g., using
-\code{Qt\$Qt\$LeftToRight}).
+\subsection{Adding and Manipulating Children}
 
-%% adding child widget
+Box layouts arrange child widgets as if they were packed into a box in
+either the horizontal or vertical orientation. The \class{QHBoxLayout}
+class implements a horizontal layout whereas \class{QVBoxLayout}
+provides a vertical one. Both of these classes extend the
+\class{QBoxLayout} class, where most of the functionality is
+documented.  We create a horizontal layout:
+<<qt-layout-box>>=
+hb <- Qt$QHBoxLayout()
+@ 
+%
 Child widgets are added to a box container through the
-\method{addWidget}{QLayout} method.  The basic call specifies just the
-child widget, but one can specify an integer value for \code{stretch}
-and an alignment enumeration.  In addition to adding child widgets,
-one can nest child layouts through \method{addLayout}{QLayout}.
+\method{addWidget}{QLayout} method:
+<<qt-layout-box-add>>=
+sapply(1:3, function(i) g$addWidget(Qt$QPushButton(i)))
+@
+%
+The \method{direction}{QBoxLayout} property specifies the direction in
+which the widgets are added to the layout. By default, this is left to
+right (top to bottom for a vertical box).  In addition to adding child
+widgets, one can nest child layouts by calling
+\method{addLayout}{QLayout}.
 
 %% referring to child items
-
-A count of child widgets is returned by
-\method{count}{QBoxLayout}. Some methods use an index ($0$-based) to
-refer to the child components. For example, The
-\method{insertWidget}{QBoxLayout} can be used to insert a widget, with
-arguments similar to \meth{addWidget}. Its initial argument is an
-integer specifying the \code{index}. All child widgets with this index
-or higher have their index increased by 1.  Internally, layouts store
-child components as items of class \class{QLayoutItem}. The item at a
-given numeric index is returned by \method{itemAt}{QLayout}. The
-actual child component is retrieved by passing the item to the
-layout's \meth{widget} method.
-
+Internally, layouts store child components as items of class
+\class{QLayoutItem}. The item at a given zero-based index is returned by
+\method{itemAt}{QLayout}. We get the first item in our layout:
+<<qt-layout-box-item-at>>=
+item <- g$itemAt(0)
+@ 
+%
+The actual child widget is retrieved by calling the \meth{widget}
+method on the item:
+<<qt-layout-box-widget>>=
+wid <- item$widget()
+@ 
 
 %% removing a child
-\Qt{} provides the methods
-\method{removeItem}{QLayout} and \method{removeWidget}{QLayout} to
-remove an widget from a layout. Once removed from one layout, these
-may be reparented if desired, or destroyed. This is done  by setting
-the widget's parent to \code{NULL} using
+\Qt{} provides the methods \method{removeItem}{QLayout} and
+\method{removeWidget}{QLayout} to remove an item or widget from a
+layout. Although the widget is no longer managed by a layout, its
+parent widget is unchanged. The widget will not be destroyed (removed
+from memory) as long as it has a parent. Thus, to destroy a widget,
+one should set the parent of the widget \code{NULL} using
 \method{setParent}{QWidget}.
 
-\paragraph{Size and space considerations}
-
+\subsection{Size and Space Negotiation}
 
 The allocation of space to child widgets depends on several
 factors.
 
 %% http://doc.qt.nokia.com/4.6/layout.html
-The \Qt{} documentation for layouts spells out the steps:~\footnote{\url{http://doc.qt.nokia.com/4.6/layout.html}}
+The \Qt{} documentation for layouts spells out the
+steps:~\footnote{\url{http://doc.qt.nokia.com/4.6/layout.html}}
 \begin{enumerate}
 \item All the widgets will initially be allocated an amount of space
   in accordance with their sizePolicy and sizeHint.
@@ -141,7 +150,7 @@ colnames(df) <- c("Policy","Meaning")
 
 As an example, consider \class{QPushButton}. It is the convention that
 a button will only allow horizontal, but not vertical, expansion. It
-also requires that its has enough space to display its entire
+also requires enough space to display its entire
 label. Thus a \class{QPushButton} instance returns a size hint
 depending on the label dimensions and has the policies 
 \code{Fixed} and \code{Minimum} as its vertical and horizontal policies
@@ -162,22 +171,19 @@ particular type.
 
 %% stretch
 Stretch factors are used to proportionally allocate space to widgets
-when they expand.  When more than one widget can expand, how the space
-gets allocated is determined by their stretch factors (for box layouts
-set by the second argument of the \method{addWidget}{QBoxLayout} method).
-
-
-%% minimal size
-
+when they expand.  The stretch factor may be specified as an optional
+parameter to \meth{addWidget} or modified later with
+\meth{setStretchFactor}:
+<<qt-layout-box-stretch>>=
+g$setStretchFactor(wid, 2.0) 
+@ 
 
 %% alignment
-When a widget is allocated additional space, its alignment is
-determined by an alignment specification. This can be done when the
-widget is added, or later through the \method{setAlignment}{QLayout}
-method of the layout. The alignment is specified as a flag using the
-\qtenumeration{Qt::AlignmentFlag} enumeration.
-
-
+By default, all widgets attempt to fill the allocated space; however,
+it is not always possible to achieve this effectively, as in the case
+of labels.  The position of the widget within the space may be
+specified by the \argument{alignment}{addWidget} argument to
+\method{addWidget}{QBoxLayout}.
 
 
 <<stretch_expand, echo=FALSE, results=hide>>=
@@ -238,98 +244,180 @@ w$show()
 
 %% spacing
 \paragraph{Spacing}
-For a box layout, the space between two children is controlled through
-the \method{setSpacing}{QBoxLayout} method. This sets the common width
-in pixels, which can be adjusted individually through the
-\method{addSpacing}{QBoxLayout} method. The margin area around all the
-children can be adjusted with the
-\method{setContentsMargins}{QBoxLayout} method, although this is often
-specified through the style.
 
-\paragraph{Springs and Struts}
-A stretchable blank widget can be added through the
-\method{addStretch}{QBoxLayout} method, where an integer is specified
-to indicate the stretch factor. If no other widgets have a stretch
-specified then this widget will take all the non-requested space.
-
-A strut (\method{addStrut}{QBoxLayout}) can be specified in pixels to
-restrict the dimension of the box to a minimum height (or width for
-vertical boxes).
-
-
-%% JV: needs an example, this one is not interesting
-
-<<simpleBoxExample-notShown, echo=FALSE, results=hide>>=
-w <- Qt$QWidget()
-w$setWindowTitle("Box container example")
-g <- Qt$QHBoxLayout()
-w$setLayout(g)
-g$addWidget(Qt$QLabel("left"))
-g$addStretch(1L)
-g$addWidget(Qt$QLabel("middle"))
-g$addSpacing(12L)
-g$addWidget(Qt$QPushButton("right"))
-g$count()
+There are two types of spacing between two children: fixed and
+expanding. The fixed spacing between any two children is globally
+controlled through the \method{setSpacing}{QBoxLayout} method. For
+example, we could require 5 pixels between the buttons in our layout:
+<<qt-layout-box-spacing>>=
+g$setSpacing(5)
 @ 
+%
+To add a fixed amount of space between two specific children, call the
+\meth{addSpacing} method while populating the container.
+
+An expanding, spring-like spacer between two widgets is known as a
+\textit{stretch}. We add a stretch with a factor of $2.0$ and add a
+child button that will be pressed against the right side of the box:
+<<qt-layout-box-stretch>>=
+g$addStretch(2)
+g$addWidget(Qt$QPushButton("Help..."))
+@ 
+%
+This is just a convenience for adding an invisible widget with some
+stretch factor.
+
+\paragraph{Struts}
+
+It is sometimes desirable to restrict the size of a layout in the
+perpendicular direction. For a horizontal box, this is the
+height. We could achieve this by adding a widget with its maximum
+height requirement set to the desired maximum height for the entire
+layout. As a convenience, the box layout provides the \textit{strut}
+for this purpose:
+<<qt-layout-box-strut>>=
+g$addStrut(10)
+@ 
+%
+We have limited the height of the box to $10$ pixels.
+
+\section{Grid Layouts}
+\label{sec:grid-layouts}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.6\textwidth]{fig-qt-layout-example}
+  \caption{A mocked up layout using the \class{QGridLayout} class.}
+  \label{fig:qt-layout-example}
+\end{figure}
 
 
-\subsection{Scrolling layouts}
-\label{sec:scrolling-layouts}
-
-It may be desirable to constrain the size of a layout and allow the
-user to pan through its children with scrollbars. The
-\class{QScrollArea} class makes this very straightforward, as you
-simply place a container widget into the scroll area. The method
-\method{setWidget}{QScrollArea} is used to add the child widget. 
-
+The \class{QGridLayout} class provides a grid layout for aligning its
+child widgets into rows and columns.  To illustrate grid layouts we
+mock up a GUI centered around a text area widget
+(FIgure~\ref{fig:qt-layout-example}). We create the window with the
+grid layout:
 <<results=hide>>=
-sa <- Qt$QScrollArea()
 w <- Qt$QWidget()
-sa$setWidget(w)
-## no add to the child widget w
-w$setMinimumSize(400,400)
-lyt <- Qt$QVBoxLayout()
+w$setWindowTitle("Layout example")
+lyt <- Qt$QGridLayout()
 w$setLayout(lyt)
-for(i in rownames(state.x77)) {
-  msg <- sprintf("%s had a population of %s thousand in 1977", 
-                 i, state.x77[i,"Population"])
-  lyt$addWidget(Qt$QLabel(msg))
-}
 @ 
-<<echo=FALSE, results=hide>>=
-sa$show()
-sa$raise()
+
+When we add a child to the grid layout, we need to specify the
+zero-based row and column indices:
+<<results=hide>>=
+lyt$addWidget(Qt$QLabel("Entry:"), 0, 0)
+lyt$addWidget(Qt$QLineEdit(), 0, 1, rowspan=1, colspan=2)
+@ 
+%
+In the second call to \meth{addWidget}, we pass values to the optional
+arguments for the row and column span. These are the numbers of rows
+and columns, respectively, that are spanned by the child. For our
+second row, we add a labeled combo box:
+<<results=hide>>=
+lyt$addWidget(Qt$QLabel("Choice:"), 1, 0)
+lyt$addWidget(Qt$QComboBox(), 1, 1)
+@ 
+
+%% indexing
+The method \method{itemAtPosition}{QGridLayout} returns the
+\class{QLayoutItem} instance corresponding to the specified row and
+column:
+<<qt-layout-grid-at>>=
+lineEdit <- lyt$itemAtPosition(0, 1)$widget()
 @
 %
-To ensure that a given child widget is visible, the method
-\method{ensureWidgetVisible}{QScrollArea} is available, where the
-widget is passed as the argument.  So, to ensure the value for New
-York (row $32$ in the data set) is visible, we have:
-<<results=hide>>=
-widget <- lyt$itemAt(32 - 1)$widget()
-sa$ensureWidgetVisible(widget)
+The item method \method{widget}{QLayoutItem} returns the corresponding
+widget. Removing a widget is similar to a box layout, using
+\method{removeItem}{QLayout} or \method{removeWidget}{QLayout}.  The
+methods \method{rowCount}{QGridLayout} and
+\method{columnCount}{QGridLayout} return the dimensions of the grid.
+
+%% sizing, spacing
+There are a number of parameters controlling the sizing and spacing of
+the rows and columns. The concepts apply equivalently to both rows and
+columns, so we will limit our discussion to columns, without loss of
+generality.  A minimum width is set through
+\method{setColumnMinimumWidth}{QGridLayout}. The actual minimum width
+will be increased, if necessary, to satisfy the minimal width
+requirements of the widgets in the column. If more space is available
+to a column than requested, the extra space is apportioned according
+to the \code{stretch} factors. A stretch factor is set by calling the
+\method{setColumnStretch}{QGridLayout} method.
+
+%% spacing
+The spacing between widgets can be set in both directions with
+\method{setSpacing}{QGridLayout}, or set for a particular direction
+with \method{setHorizontalSpacing}{QGridLayout} or
+\method{setVerticalSpacing}{QGridLayout}. The default values are
+derived from the style.
+
+\begin{example}{Using a grid layout}{eg-qt-gridlayout}
+  \SweaveInput{ex-qt-grid-layout-form}
+\end{example}
+
+%% Moved this example into tcltk chapter
+% \begin{example}{Using the grid layout and a stacked widget to display
+%     a calendar}{eg-qt-calendar}
+%   \SweaveInput{ex-qt-grid-layout}
+% \end{example}
+
+\section{Form layouts}
+\label{sec:form-layouts}
+
+Forms can easily be arranged with the grid layout, but \Qt{} provides
+an even more convenient form layout (\class{QFormLayout}) that has the
+added benefit of conforming to platform-specific conventions. A form
+consists of a number of rows, where each row has a label and
+an input widget. We create a form and add some rows for gathering
+parameters to the \function{dnorm} function:
+<<FormLayoutExample, results=hide>>=
+w <- Qt$QWidget()
+w$setWindowTitle("Wrapper for 'dnorm' function")
+w$setLayout(flyt <- Qt$QFormLayout())
+
+flyt$addRow("quantile", Qt$QLineEdit())
+flyt$addRow("mean", Qt$QLineEdit())
+flyt$addRow("sd", Qt$QLineEdit())
+flyt$addRow(Qt$QCheckButton("log"))
+@
+%
+<<echo=FALSE>>=
+w$show(); w$raise()
+@ 
+%
+The first three calls to \function{addRow} take a string for the label
+and a text entry for entering a numeric value. Any widget could serve
+as the label. A field may be any widget or layout. The final call to
+\function{addRow} places only a single widget in the row.  As with
+other layouts, we could call \method{setSpacing}{QFormLayout}
+to adjust the spacing between rows.
+
+To retrieve a widget from the layout, call the
+\method{itemAt}{QFormLayout} method, passing the zero-based row index
+and the role of the desired widget. Here, we obtain the edit box for
+the quantile parameter:
+<<qt-layout-form-at>>=
+quantileEdit <- flyt$itemAt(0, Qt$QFormLayout$FieldRole)
 @ 
 
-\subsection{Framed Layouts}
+%%%%%%%%%%%%%%%%%%%%%%% FOR WIDGET CHAPTER %%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Frames}
 \label{sec:framed-layouts}
 
-A frame with a title is a common decoration to a container often
-utilized to group together widgets that are naturally related. In
-\Qt{} the \class{QGroupBox} class provides a container widget which
-can then hold a layout for child items. Its method
-\method{setTitle}{QGroupBox} can be used to set the title, or it can
-be passed to the constructor. If the standard position of the title
-determined from the style is not to the likeing, it can be adjusted
-through the \method{setAlignment}{QGroupBox} method. This method takes
-from the alignment enumeration, for example \code{Qt\$Qt\$AlignLeft}.
-\code{Qt\$Qt\$AlignHCenter} or \code{Qt\$Qt\$AlignRight}.  The
-property \property{flat}{QGroupBox} can be set to \code{TRUE} to
-minimize the allocated space.
+The frame widget, \class{QGroupBox}, groups conceptually related
+widgets by drawing a border around them and displaying a title
+reflecting the common theme. \class{QGroupBox} is often used to group
+radio buttons, see Section~\ref{sec:radio-groups} for an example.  The
+title, stored in the \property{title} property, may be aligned to
+left, right or center, depending on the \property{alignment} property,
+see Figure~\ref{fig:group-box-example}. If the \property{checkable}
+property is \qcode{TRUE}, the frame contents can be enabled or
+disabled by clicking a check button.
 
-Group boxes have a \code{checkable} property that if enabled the
-widget will be drawn with a checkbox to control whether the children
-of the group box are sensitive to user input. 
-
+%% TODO: make this a figure
 <<groupBoxExample, echo=FALSE, results=hide>>=
 ## Not shown, Group box example of title, alignment, flat, checkable
 f <- Qt$QGroupBox("Example group box")
@@ -357,242 +445,137 @@ qconnect(toggleCheckable, "clicked", function(checked) {
 })
 @ 
 
-\subsection{Separators}
-\label{sec:separators}
+\section{Separators}
+\label{sec:qt-widget-separator}
 
-The \class{QGroupBox} widget provides a framed area to separate off
-related parts of GUI. Sometimes, just a separating line is all that is
-desired.  There is no separate separator widget in \Qt, unlike
-\GTK. However, the \class{QFrame} class provides a general method for
-framed widgets (such as a label) that can be used for this purpose
-with the appropriate settings.
-
-The frame shape can be a box or other types. For this purpose a
-line is desired. The enumerations \code{Qt\$QFrame\$HLine} or
-\code{Qt\$QFrame\$VLine} can be passed to the method
-\method{setFrameShape}{QFrame} to specify a horizontal or vertical
-line. Its appearance can be altered by
-\method{setFrameShadow}{QFrame}. A value of \code{Qt\$QFrame\$Sunken}
-or \code{Qt\$QFrame\$Raised} is suitable.
-
-
-\section{Grid Layouts}
-\label{sec:grid-layouts}
-
-The \class{QGridLayout} class provides a grid layout for aligning its
-child widgets into rows and columns. 
-
-%% Add a widget
-The \method{addWidget}{QGridLayout} method is used to add a child
-widget to the layout and the \method{addLayout}{QGridLayout} method
-creates nested layouts. Both methods have similar arugments. There are
-two methods. One where one specifies the child, and just a row and
-column index and optionally an alignment and another where the row and
-column indices are followed by specifications for the row and column
-span followed by an optional alignment.
-
-
-%% indexing
-The method \method{itemAtPosition}{QGridLayout} returns the
-\class{QLayoutItem} instance corresponding to the specified row and
-column. The item method \method{widget}{QLayoutItem} is used to find
-the corresponding widget. Removing a widget is similar for a box
-layout using \method{removeItem}{QLayout} or
-\method{removeWidget}{QLayout}.  The methods
-\method{rowCount}{QGridLayout} and \method{columnCount}{QGridLayout}
-can be used to find the current size of the grid.
-
-
-%% sizing, spacing
-Rows and columns are dual concepts and are so
-implemented. Consequently, both have similar methods differing only by
-the use of \code{column} or \code{row}. We discuss
-columns. A column minimum width can be set through
-\method{setColumnMinimumWidth}{QGridLayout}. If more space is
-available to a column than requested, then the extra space is
-apportioned according to the \code{stretch} factors. This can be set
-for a column through the \method{setColumnStretch}{QGridLayout}
-method. Taking an integer value $0$ or larger. 
-
-%% spacing
-The spacing between widgets can be set in both directions with
-\method{setSpacing}{QGridLayout}, or fine-tuned with
-\method{setHorizontalSpacing}{QGridLayout} or
-\method{setVerticalSpacing}{QGridLayout}. (The style may set these too
-wide for some tastes.)
-
-
-
-\begin{example}{Using a grid layout}{eg-qt-gridlayout}
-  \SweaveInput{ex-qt-grid-layout-form}
-\end{example}
-
-%% Moved this example into tcltk chapter
-% \begin{example}{Using the grid layout and a stacked widget to display
-%     a calendar}{eg-qt-calendar}
-%   \SweaveInput{ex-qt-grid-layout}
-% \end{example}
-
-\section{Form layouts}
-\label{sec:form-layouts}
-
-Forms can easily be generated with the grid layout, but \Qt{} provides
-an even more convenient form layout (\class{QFormLayout}) that has the
-added benefit of conforming to the traditional styles for the
-underlying operating system. This can be used in combination with the
-\class{QDialogButtonBox} (Section~\ref{sec:button-boxes}), which provides a
-container for buttons that also tries to maintain an appearance
-consistent with the underlying operating system.
-
-To add a child widget with a label is done through the
-\method{addRow}{QFormLayout} method, where the label, specified first,
-may be given as a string and the widget is specified second. The first
-argument can also be a widget to replace the label, and the second a
-layout for nesting layouts.  The \method{insertRow}{QFormLayout}
-method is similar, only one first specifies the row number using a
-$0$-based index. The \method{setSpacing}{QFormLayout} method can be
-used to adjust the default spacing between rows.
-
-After construction, the widget may be retrieved through the
-\method{itemAt}{QFormLayout} method. This returns a layout item, to
-get the widget call its \method{widget}{QLayoutItem} method. The
-\method{setWidget}{QFormLayout} method can be used to change a widget.
-
-
-\begin{example}{Simple use of \class{QFormLayout}}{eg-qt-qformlayout}
-The following illustrates a basic usage where three values are gathered.
-<<FormLayoutExample, results=hide>>=
-w <- Qt$QWidget()
-w$setWindowTitle("Example of a form layout")
-w$setLayout(flyt <- Qt$QFormLayout())
-
-l <- list()
-flyt$addRow("mean", l$mean <- Qt$QLineEdit())
-flyt$addRow("sd", l$sd <- Qt$QLineEdit())
-flyt$addRow("n", l$n <- Qt$QLineEdit())
+Like frames, a horizontal or vertical line is also useful for visually
+separating widgets into conceptual groups. There is no explicit line
+or separator widget in \Qt. Rather, one configures the more general
+widget \class{QFrame}, which draws a frame around its
+children. Somewhat against intuition, a frame can take the shape of a
+line:
+<<qt-widget-separator>>=
+separator <- Qt$QFrame()
+separator$frameShape <- Qt$QFrame$HLine
 @ 
-<<>>=
-w$show(); w$raise()
-@ 
-%
-The form style can be overridden using the
-\method{setFormAlignment}{QFormLayout} and
-\method{setLabelAlignment}{QFormLayout} methods. The Mac OS X default is to
-have center aligned form with right-aligned labels, whereas the
-Windows default is to have left-aligned labels. One can also override
-the default as to how the fields should grow when the widget is
-resized (\method{setFieldGrowthPolicy}{QFormLayout}).
-
-For example,
-<<results=hide>>=
-flyt$setFormAlignment(Qt$Qt$AlignLeft | Qt$Qt$AlignTop)
-flyt$setLabelAlignment(Qt$Qt$AlignLeft);
-@ 
-\end{example}
+% 
+This yields a horizontal separator. A frame shape of
+\qcode{Qt\$QFrame\$VLine} would produce a vertical separator.
 
 \section{Notebooks}
 \label{sec:notebooks}
-A notebook container is provided by the widget \class{QTabWidget}. This
-is not a layout, rather a notebook page consists of a label and
-widget. Of course, you can use a layout within the widget.
 
-Pages are added through the method \method{addTab}{QTabWidget}. One can
-specify a widget; a widget and label; or a widget, icon and
-label. As well, pages may be inserted by index with the
-\method{insertTab}{QTabWidget} method.
-
-Tabs allow the user to select from among the pages, and in \Qt{} the
-tabs can be customized. The text for a tab is adjusted through
-\method{setTabText}{QTabWidget} and the icon through
-\method{setTabIcon}{QTabWidget}. These use a 0-based index to refer to
-the tab. A tooltip can be added through
-\method{setTabToolTip}{QTabWidget}. The tabs will have close buttons
-if the property \property{tabsClosable}{QTabWidget} is
-\code{TRUE}. One connects to the \signal{tabCloseRequested} signal to
-actually close the tab.  The tab position is adjusted through the
-\method{setTabPosition}{QTabWidget} method using values in the
-enumeration \qtenumeration{QTabWidget::TabPosition}, which uses
-compass headings like \code{Qt\$QTabWidget\$North}. Calling
-\method{isMovable}{QTabWidget} with \code{TRUE} allows the pages to be
-reorganized by the user.
-
-
-When there are numerous tabs, the method
-\method{setUsesScrollButtons}{QTabWidget} can indicate if the widget
-should expand to accomodate the labels or add scroll buttons.
-
-%% navigation
-The current tab is adjusted through the
-\property{currentIndex}{QTabWidget} property. The actual widget of the
-current tab is returned by \method{curentWidget}{QTabWidget}. To
-remove a page the \method{removeTab}{QTabWidget}  is used, where tabs
-are referred to by index.
-
-\begin{example}{A tab widget}{eg:qt-notebook}
-A simple example follows. First the widget is defined with several
-properties set.
-<<results=hide>>=
+A notebook container is provided by the widget \class{QTabWidget}:
+<<qt-layout-notebook>>=
 nb <- Qt$QTabWidget()
-nb$setTabsClosable(TRUE)
-nb$setMovable(TRUE)
-nb$setUsesScrollButtons(TRUE)
-@ 
+@
 
-We can add pages with a label or with a label and an icon:
-<<results=hide>>=
+To create a page, one needs to specify the label for the tab and the
+widget to display when the page is active:
+<<qt-layout-notebook-addtab>>=
 nb$addTab(Qt$QPushButton("page 1"), "page 1")
 icon <- Qt$QIcon("small-R-logo.jpg")
 nb$addTab(Qt$QPushButton("page 2"), icon,  "page 2")
-## we add numerous tabs to see scroll buttons
-for(i in 3:10) nb$addTab(Qt$QPushButton(i), sprintf("path %s", i))
+@ 
+%
+As shown in the second call to \method{addTab}{QTabWidget}, one can
+provide an icon to display next to the tab label. We can also add a
+tooltip for a specific tab, using zero-based indexing:
+<<qt-layout-notebook-tooltip>>=
+nb$setTabToolTip(0, "This is the first page")
 @ 
 
-The close buttons put out a request for the page to be closed, but do
-not handle directly. Something along the lines of the following is then also needed.
-<<results=hide>>=
+The \property{currentIndex} property holds the zero-based index of the
+active tab. We make the second tab active:
+<<qt-layout-notebook-current>>=
+nb$currentIndex <- 1
+@ 
+
+The tabs can be positioned on any of the four sides of the notebook;
+this depends on the \property{tabPosition} property. By default, the
+tabs are on top, or \qcode{North}. We move them to the bottom:
+<<qt-layout-notebook-pos>>=
+nb$tabPosition <- Qt$QTabWidget$South
+@ 
+
+Other features include close buttons, movable pages by drag and drop,
+and scroll buttons for when the number of tabs exceeds the available
+space. We enable all of these:
+<<qt-layout-notebook-features>>=
+nb$tabsClosable <- TRUE
 qconnect(nb, "tabCloseRequested", function(index) {
   nb$removeTab(index)
 })
+nb$movable <- TRUE
+nb$usesScrollButtons <- TRUE
 @ 
-\end{example}
+%
+We need to connect to the \signal{tabCloseRequested} signal to
+actually close the tab when the close button is clicked.
 
+\paragraph{General Widget Stacking}
 
-\subsection{QStackedWidget}
-\label{sec:qstackedwidget}
+It is sometimes useful to have a widget that only shows one of its
+widgets at once, like a \class{QTabWidget}, except without the
+tabs. There is no way to hide the tabs of \class{QTabWidget}. Instead,
+one should use \class{QStackedWidget}, which stacks its children so
+that only the widget on top of the stack is visible. There is no way
+for the user to switch between children; it must be done
+programmatically. The actual layout is managed by
+\class{QStackedLayout}, which should be used directly if only a layout
+is needed, e.g., as a sub-layout.
 
-The \class{QStackedWidget} is provided by \Qt{} to hold several
-widgets at once, with only one being visible. Similar to a notebook,
-only without the tab decorations to switch pages.  For this widget,
-children are added through the \method{addWidget}{QStackedWidget}
-method and can be removed with
-\method{removeWidget}{QStackedWidget}. The latter needs a widget
-reference. The currently displayed widget can be found from
-\method{currentWidget}{QStackedWidget} (which returns \code{NULL} if
-there are no child widgets). Alternatively, one can refer to the
-widgets by index, with \method{count}{QStackedWidget} returning their
-number, and \method{currentIndex}{QStackedWidget} the current one and
-\method{indexOf}{QStackedWidget} returns the index of the widget
-specified as an argument.
+\section{Scroll Areas}
+\label{sec:scrolling-layouts}
 
+It may be desirable to constrain the size of a layout and allow the
+user to pan through its children with scrollbars. \class{QScrollArea}
+provides this functionality. It is only necessary to place the
+container widget into scroll area. First, we create a large layout:
+<<results=hide>>=
+w <- Qt$QWidget()
+w$setMinimumSize(400,400)
+lyt <- Qt$QVBoxLayout()
+w$setLayout(lyt)
+for(i in rownames(state.x77)) {
+  msg <- sprintf("%s had a population of %s thousand in 1977", 
+  i, state.x77[i,"Population"])
+  lyt$addWidget(Qt$QLabel(msg))
+}
+@ 
+%
+The final step is to create the scroll area and add \qcode{w}:
+<<results=hide>>=
+sa <- Qt$QScrollArea()
+sa$setWidget(w)
+@ 
+<<echo=FALSE, results=hide>>=
+sa$show()
+sa$raise()
+@
+% 
+To ensure that a given child widget is visible, we call the method
+\method{ensureWidgetVisible}{QScrollArea}.  To ensure the value for New
+York (row $32$ in the data set) is visible, we have:
+<<results=hide>>=
+widget <- lyt$itemAt(32 - 1)$widget()
+sa$ensureWidgetVisible(widget)
+@ 
+
+We concede that the above could be achieved more elegantly with a list
+box, which has native scrolling support. It is meant only to
+demonstrate the general use of \class{QScrollArea}.
 
 \section{Paned Windows}
 \label{sec:paned-windows}
 
-Split windows with handles to allocate space are created by
-\class{QSplitter}. There is no limit on the number of child panes that
-can be created. The default orientation is horizontal, set the
-\property{orientation}{QSplitter} property using \code{Qt\$Qt\$Vertical}
-to change this.
+\class{QSplitter} is a split pane widget, a container that splits its
+space between its children, with draggable separators that adjust the
+balance of the space allocation.
 
-Child widgets are added through the \method{addWidget}{QSplitter}
-method. These widgets are referred to by index and can be retrieved
-through the \method{widget}{QSplitter} method.
-
-\XXX{JV: This seems to be true!}
-The \method{moveSplitter}{QSplitter} method is not implemented, so
-programattically moving the a splitter handle is not possible.
-
-
+Unlike \class{GtkPaned} in \GTK{}, there is no limit on the number of
+child panes. We add three and change the orientation from horizontal
+to vertical: 
 <<splitter, results=hide>>=
 sp <- Qt$QSplitter()
 sp$addWidget(Qt$QLabel("One"))
@@ -600,424 +583,18 @@ sp$addWidget(Qt$QLabel("Two"))
 sp$addWidget(Qt$QLabel("Three"))
 sp$setOrientation(Qt$Qt$Vertical)
 @ 
+%
+We can adjust the sizes programmatically:
+<<qt-layout-splitter-set>>=
+sp$setSizes(c(100L, 200L, 300L))
+@ 
+
+% MFL: it's a protected method, only seen by subclasses
+%% \XXX{JV: This seems to be true!}
+% The \method{moveSplitter}{QSplitter} method is not implemented, so
+% programattically moving the a splitter handle is not possible.
+
 <<echo=FALSE, results=hide>>=
 sp$show()
 sp$raise()
 @ 
-
-<<>>=
-sp$widget(0)$text             # text in first widget
-@ 
-
-\section{Main windows}
-\label{sec:top-level-windows}
-
-In \Qt{} the \class{QMainWindow} class provides a widget for use as
-the primary widget in an interface. Although it is a subclass of
-\class{QWidget} -- which we have used in our examples so far as a
-top-level window -- the implementation also has preset
-areas for the standard menu bars, tool bars and status bars. As well,
-there is a possible dock area for ``dockable widgets.''
-
-A main window has just one central widget that is specified through
-the  \method{setCentralWidget}{QMainWindow} method. The central widget
-can then have a layout and numerous children.
-The title of the window is set from the inherited method \method{setWindowTitle}{QWidget}.
-
-\subsection{Actions}
-\label{sec:actions}
-
-The menubars and toolbars are representations of collections of
-actions, defined through the \class{QAction} class. As with other
-toolkits, an action encapsulates a command that may be shared among
-parts of a GUI, in this case menu bars, toolbars and keyboard
-shortcuts. In \Qt{} the action can hold the label
-(\method{setText}{QAction}), an icon (\method{setIcon}{QAction}), a
-status bar tip (\method{setStatusTip}{QAction}), a tool tip
-(\method{setToolTip}{QAction}), and a keyboard shortcut
-(\method{setShortcut}{QAction}). The text and icon may be set at
-construction time, in addition to using the above methods.
-
-Actions inherit the \method{enabled}{QAction} method to toggle whether
-an action is sensitive to user input.
-Actions emit a \signal{triggered} signal when activated (sending to
-the callback a boolean value for checked when applicable).
-
-\paragraph{Keyboard shortcuts}
-\XXX{Dp keyboard shortcuts work???}
-
-A keyboard shortcut use a \class{QKeySequence} to bind a key sequence
-to the command. Key sequences can be found from the standard
-shortcuts provided in the enumeration \code{Qt\$QtKeySequence}, for
-example 
-<<>>=
-Qt$QKeySequence$Cut
-@ 
-
-This value (or more simply the "Cut" string) can be passed to the
-constructor to create the shortcut.
-
-Using these standard shortcuts ensures that the keyboard shortcut is the standard one for
-the underlying operating system. Alternatively, custom shortcuts can
-be used, such as
-<<>>=
-Qt$QKeySequence("Ctrl-X, Ctrl-C")
-@ 
-This shows how a modifier can be specified (from \qcode{Ctrl}) a key
-(case insensitive), and how a comma can be used to create multi-key shortcuts.
-
-
-
-For buttons and labels, a shortcut key can be specified by prefixing
-the text with an ampersand \code{\&}, such as
-<<results=hide>>=
-button <- Qt$QPushButton("&Save")
-@ 
-Then the shortcut will by \kbd{Alt-S}.
-
-The shortcut event occurs when the shortcut key combination is pressed
-in the appropriate context. The default context is when the widget is
-a child of the parent window, but this can be adjusted through the
-method \method{setShortcutContext}{QAction}.
-
-\paragraph{Checkable actions, and action groups}
-\label{sec:action-groups}
-Actions can be set checkable through the
-\method{setCheckable}{QAction} method. When in a checked state, the
-\property{checked}{QAction} property is \code{TRUE}. When a checkable action is
-checked the \signal{toggled} signal is emitted, the argument
-\code{checked} passes in the state.
-
-A \class{QActionGroup} can be used to group together checkable actions
-so that only one is checkable (like radio buttons). To use this, you create an instance and
-use the \method{addAction}{QActionGroup} to link the actions to the group.
-
-\begin{example}{Creating an action}{eg:qt-create-an-action}
-  To create an action, say to "Save" an object requires a few
-  steps. It is recommended that the main constructor is passed the
-  parent widget the action will apply within.
-<<results=hide>>=
-parent <- Qt$QMainWindow()
-saveAction <- Qt$QAction("Save", parent)
-@ 
-We could also pass the icon to the constructor, but instead set the
-icon, a shortcut, a tooltip, and a statusbar tip through the action's methods.
-<<actionExample, results=hide>>=
-saveAction$setShortcut(Qt$QKeySequence("Save"))
-iconFile <- system.file("images/save.gif", package="gWidgets")
-saveAction$setIcon(Qt$QIcon(iconFile))
-saveAction$setToolTip("Save the object")
-saveAction$setStatusTip("Save the current object")
-@   
-
-The action encapsulates a command, in this case we have a stub:
-<<results=hide>>=
-qconnect(saveAction, "triggered", function(checked)
-         print("Save object"))
-@ 
-
-<<echo=FALSE,results=hide>>=
-## not shown, but connects action to a GUI element
-tb <- Qt$QToolBar()
-tb$addAction(saveAction)
-parent$addToolBar(tb)
-parent$show()
-parent$raise()
-@ 
-
-\end{example}
-
-
-\subsection{Menubars}
-\label{sec:menubars}
-
-Main windows may have a menubar. This may appear at the top of the
-window, or the menubar area on \OSX. Menubars are instances of
-\class{QMenuBar} which provides access to list of top-level submenus.
-
-These submenus are added through \method{addMenu}{QMenuBar}, where a
-string with a possible shortcut are specied to label the menu. A
-\class{QMenu} instance is returned. To submenus one can add
-\begin{enumerate}
-\item nested submenus through the \method{addMenu}{QMenu} method,
-\item an action through the \method{addAction}{QMenu} method, or
-\item a separator through \method{addSeparator}{QMenu}.
-\end{enumerate}
-
-Actions may be removed from a window through
-\method{removeAction}{QWidget}, but usually menu items are just
-disabled if their command is not applicable. 
- 
-\begin{example}{Menu items}{ex:qt-menu-items}
-  In a data editor application, one might imagine a menu item for
-  coercion of a chosen column from one type to the next. In the
-  following, we assume we have a function \code{colType} that returns the column type
-  of the selected column or \code{NA} if no column is selected. 
-<<echo=FALSE, results=hide>>=
-## not shown
-colType <- function() {x <- sample(c(NA, "factor", "numeric", "character"), 1); print(x); x}
-parent <- Qt$QMainWindow()
-parent$setWindowTitle("Action example")
-@ 
-We begin by making a menu bar, and a ``Data'' menu item. To this we
-add a few actions, and then a ``Coerce'' submenu. In the submenu, we
-use an action group so that only one type can be checked at a
-time. Actions must be added to both the action group and the submenu.
-
-<<results=hide>>=
-mb <- Qt$QMenuBar()                     # or parent$menuBar()
-menu <- mb$addMenu("Data")              # a submenu
-#
-menu$addAction(a <- Qt$QAction("Apply Function...", parent))
-qconnect(a, "triggered", function() cat("apply ..."))
-menu$addAction(a <- Qt$QAction("Relevel Factors...", parent))
-qconnect(a, "triggered", function() cat("relevel ..."))
-#
-menu$addSeparator()
-#
-cmenu <- menu$addMenu("Coerce")
-aList <- sapply(c("character", "factor", "numeric"), 
-         function(i) {
-           a <- Qt$QAction(i, parent)
-           a$setCheckable(TRUE)
-           qconnect(a, "toggled", function(checked) print(i)) ## stub
-           a
-         })
-actionGroup <- Qt$QActionGroup(w)
-sapply(aList, function(i) actionGroup$addAction(i))
-sapply(aList, function(i) cmenu$addAction(i))
-@ 
-
-In the application, we might include logic to update the menu items
-along the lines of the following. If no column type is available (no
-column is selected) we disable the submenu, otherwise we set the
-check accordingly. Of course, in the application we would ensure that
-checking the menu item updates the state in the data model through the
-\signal{triggered} handler.
-<<results=hide>>=
-updateMenus <- function() {
-  val <- colType()
-  cmenu$setEnabled(!is.na(val))
-  if(!is.na(val)) {
-    aList[[val]]$setChecked(TRUE)
-  }
-}
-@ 
-
-<<echo=FALSE, results=hide>>=
-## Not shown, just a simple way to put menu into GUI
-b <- Qt$QPushButton("click me")
-qconnect(b, "pressed", function(...) menu$popup(b$mapToGlobal(Qt$QPoint(0,0))))
-b$show(); b$raise()
-@ 
-\end{example}
-
-\subsubsection{Context menus}
-\label{sec:context-menus}
-
-Context menus can be added to widgets using the same \class{QMenu}
-widget (not \class{QMenuBar}). The \method{popup}{QMenu} method will
-cause the menu to popup, but it needs to be told where. (The
-\method{exec}{QMenu} method will also popup a menu, but blocks other
-input.) The location of the popup is specified in terms of global
-screen coordinates, but typically the location known is in terms of
-the widgets coordinates. (For example, the point $(0,0)$ being the
-upper-left corner of the widget.) The method
-\method{mapToGlobal}{QWidget} will convert for you. Position is in
-terms of a \class{QPoint} instance, which can be constructed or may be
-returned by an event handler. We illustrate both in the example.
-
-Initiating the popup menu can be done in different ways. In the
-example below, we first show how to do it when a button is
-pressed. More natural ways are to respond to right mouse clicks,
-say. These events may be found within event handlers, say the
-\code{mousePressEvent} event. (The \class{QMouseEvent} object passed
-in has a \meth{button} method that can be checked.) However, the operating system may
-provide other means to initiate a popup. Rather than program these,
-\Qt{} provides the \code{contextMenuEvent}. We can override that in a
-subclass, as illustrated in the example.
-
-\begin{example}{Popup menus}{ex:qt-popup-menu}
-We imagine a desire to popup possible function names that complete a
-string. Such suggestions are computed from a function in the \pkg{utils}
-package. We first show how to offer these in a popup menu we do this for a button press (not the most
-natural case):
-
-<<results=hide>>=
-b <- Qt$QPushButton("Completion example")
-qconnect(b, "pressed", function(...) {
-  ## compute popup
-  popup <- Qt$QMenu()
-  comps <- utils:::matchAvailableTopics("mean")
-  l <- sapply(comps, function(i) {
-    a <- Qt$QAction(i, b)
-    popup$addAction(a)
-  })
-  popup$popup(b$mapToGlobal(Qt$QPoint(0,0)))
-})
-@ 
-
-<<echo=FALSE, results=hide>>=
-b$show(); b$raise()
-@ 
-
-More naturally, we might want this menu to popup on a right mouse
-click in a line edit widget. To implement that, we define a subclass
-and reimplement the \meth{contextMenuEvent} method. We use the
-\method{globalPos}{QContextMenuEvent} method of the passed through
-event to get the appropriate position.
-
-<<popupExample, results=hide>>=
-qsetClass("popupmenuexample", Qt$QLineEdit)
-#
-qsetMethod("contextMenuEvent", popupmenuexample, function(e) {
-  popup <- Qt$QMenu()
-  comps <- utils:::matchAvailableTopics(this$text)
-  if(length(comps) > 10) 
-    comps <- comps[1:10]                # trim if large
-  sapply(comps, function(i) {
-    a <- Qt$QAction(i, this)
-    qconnect(a, "triggered", function(...) this$setText(i))
-    popup$addAction(a) 
-  })
-  popup$popup(e$globalPos())
-})
-e <- popupmenuexample()
-@ 
-<<echo=FALSE, results=hide>>=
-e$show(); e$raise()
-@ 
-  
-\end{example}
-
-\subsection{Toolbars}
-\label{sec:toolbars}
-
-Toolbars, giving easier access to a collection of actions or even
-widgets, can be readily added to a main window. The basic toolbar is
-an instance of the \class{QToolBar} class. Toolbars are added to the
-main window through the \method{addToolbar}{QMainWindow} method.
-
-To add items to a toolbar we have:
-\begin{enumerate}
-\item \method{addAction}{QToolBar} to add an action,
-\item \method{addWidget}{QToolBar} to embed a widget into the toolbar,
-\item \method{addSeparator}{QToolBar} to place a sepearator between items.
-\end{enumerate}
-
-Actions can be removed through the \method{removeAction}{QWidget}
-method, although typically they are simply disabled as
-appropriate. The method \method{actions}{QWidget} will return a list
-of actions.
-
-
-Toolbars can have a few styles. The orientation can be horizontal (the
-default) or vertical. The \method{setOrientation}{QToolBar} method
-adjusts this with values specified by 
-\code{Qt\$Qt\$Horizontal} or \code{Qt\$Qt\$Vertical}. The toolbuttons can
-show a combination of text and/or icons. This is specified through the
-method \method{setToolButtonStyle}{QToolBar} with values taken from
-the \qtenumeration{Qt::ToolButtonStyle} enumeration. The default is icon only, but
-one could use, say, \code{Qt\$Qt\$ToolButtonTextUnderIcon}.
-
-
-
-\begin{example}{A simple toolbar}{ex:qt-toolbar}
-  The following illustrates how to put in toolbar items to open and
-  save a file. We suppose we have a function \code{getIcon} that
-  returns a \class{QIcon} instance from a string.
-<<echo=FALSE, results=hide>>=
-getIcon <- function(nm) {
-  fname <- system.file(sprintf("images/%s.gif", nm), package="gWidgets")
-  Qt$QIcon(fname)
-}
-@ 
-
-We define a top-level window to hold our toolbar and be the parent for
-our actions that will be placed in the toolbar. We store them in a
-list for ease in manipulation at a later time in the program.
-<<results=hide>>=
-w <- Qt$QMainWindow()
-a <- list()
-a$open <- Qt$QAction("Open", w)
-a$open$setIcon(getIcon("open"))
-a$save <- Qt$QAction("Save", w)
-a$save$setIcon(getIcon("save"))
-@ 
-
-We define our toolbar, set its button style and then add to top-level
-window in the next few commands.
-<<results=hide>>=
-tb <- Qt$QToolBar()
-tb$setToolButtonStyle(Qt$Qt$ToolButtonTextUnderIcon)
-w$addToolBar(tb)
-@ 
-Finally, we add the actions to the toolbar.
-<<results=hide>>=
-sapply(a, function(i) tb$addAction(i))
-@ 
-<<echo=FALSE, results=hide>>=
-
-w$show()
-w$raise()
-@ 
-\end{example}
-\subsection{Statusbars}
-\label{sec:statusbars}
-
-Main windows have room for a statusbar at the bottom of the
-window. The status bar is used to show programmed messages as well as
-any status tips assigned to actions.
-
-A statusbar is an instance of the \class{QStatusBar} class. One may be
-added to a main window through the \method{setStatusBar}{QMainWindow} method.
-For some operating systems, a size grip is optional and its presence
-can be adjusted through the \property{sizeGripEnabled}{QStatusBar} property.
-
-
-Messages may be placed in the status bar of three types:
-\textit{temporary} where the message stays briefly, such as for status
-tips; \textit{normal} where the message stays, but may be hidden by
-temporary messages, and \textit{permanent} where the message is never
-hidden. In addition to messages, one can embed widgets into the
-statusbar.
-
-The \method{showMessage}{QStatusBar} method places a temporary
-message. The duration can be set by specifying a time in milliseconds
-for a second argument. Otherwise, the message can
-be removed through \method{clearMessage}{QStatusBar}.
-
-Use \method{addWidget}{QStatusBar} with a label to make a normal
-message, use \method{addPermanentWidget}{QStatusBar} to make a
-permanent message. 
-
-
-
-\subsection{Dockable widgets}
-\label{sec:dockable-widgets}
-
-In \Qt{} main windows have dockable areas where one can anchor widgets
-that can be easily detached from the main window to float if the user
-desires. An example use might be a toolbar or in a large GUI, a place
-to dock a workspace browser.
-The main methods are \method{addDockWidet}{QMainWindow} and
-\method{removeDockWidget}{QMainWindow}. Adding a dock widget requires
-first creating an instance of \class{QDockWidget} and then setting the
-desired widget through the dock widget's
-\method{setWidget}{QDockWidget} method. Widgets may go on any side of the
-central widget. The position is specified through the
-\qtenumeration{DockWidgetArea} enumeration, with values such as \code{Qt\$Qt\$LeftDockWidgetArea}.
-
-Dock widgets can be stacked or arranged in a notebook like manner. The
-latter is done by the \method{tabifyDockWidget}{QDockWidget}, which
-moves the second argument (a dock widget) on top of the first with
-tabs, like a notebook, for the user to select the widget.
-
-Floating a dock widget is intitiated by the user through clicking an
-icon in the widget's title bar or programatically through the
-\property{floating}{QDockWidget} property.
-
-
-\begin{example}{Using a main widget for the layout of an IDE}{ex:qt-rstudio-layout}
-  \SweaveInput{ex-qt-mainwindow}
-\end{example}

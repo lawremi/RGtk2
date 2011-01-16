@@ -10,7 +10,7 @@ components represented in a heiarchical manner.
 
 When representing objects in a workspace, we need to decide if an
 object has been changed. To do this, we use the \function{digest}
-function from the \pkg{digest} package to store a simple means to
+function from the \pkg{digest} package to
 compare a current object with a past one. To store this information,
 we create a subclass of \class{QTreeWidgetItem} with a \prop{digest} property.
 

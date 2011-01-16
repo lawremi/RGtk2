@@ -41,7 +41,7 @@ lookup <- function(obj, regxp) {
 \SweaveInput{Overview}
 
 
-\chapter{Layout managers}
+\chapter{Layout Managers}
 \label{cha:layout-managers}
 
 \SweaveInput{Layouts}
@@ -56,16 +56,19 @@ lookup <- function(obj, regxp) {
 % \chapter{Dialogs}
 % \label{cha:dialogs}
 
-% \SweaveInput{Dialogs}
+\SweaveInput{Dialogs}
 
 \chapter{Widgets Using Data Models}
 \label{cha:widgets-using-MVC}
 
 \SweaveInput{Widgets-MVC}
 
+\chapter{The Application Window}
 
+\SweaveInput{ApplicationWindow}
 
-\chapter{Qt paint}
-\label{cha:qt-paint}
+%% We can mention qtpaint somewhere; not sure if we need a whole chapter
+% \chapter{Qt paint}
+% \label{cha:qt-paint}
 
-\SweaveInput{Qtpaint}
+% \SweaveInput{Qtpaint}

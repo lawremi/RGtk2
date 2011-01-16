@@ -587,14 +587,80 @@ not for table views.
   \SweaveInput{ex-qt-edit-data-frame}
 \end{example}
 
+%% FIXME: these need to be ported to QTableView
+
+\begin{example}{Selection of variables}{eg:qt-selection-from-tablewidget}
+  \SweaveInput{ex-qt-table-selection}
+\end{example}
+
+\begin{example}{A drag and drop interface to \function{xtabs}}{eg:qt-dnd-table}
+  \SweaveInput{ex-qt-dnd-table}
+\end{example}
+
 \section{Displaying Hierarchical Data}
 
-Hierarchical data is generally stored in \class{QStandardItemModel},
-the primary implementation of \class{QAbstractItemModel} provided by
-\Qt. The API of \class{QStandardItemModel} is based on
-\class{QStandardItem}, a wrapper around the actual item data. 
+Hierarchical data often arises when splitting a tabular dataset by
+some combination of factors. For our demonstration, we will display
+in a tree the result of splitting the \code{Cars93} dataset by
+manufacturer.
+
+In \Qt{}, hierarchical data is generally stored in
+\class{QStandardItemModel}, the primary implementation of
+\class{QAbstractItemModel} built into \Qt. 
+
+The first step of our demonstration is to create the model, with the
+same number of rows as the \code{Cars93} dataset and a single column
+for the car model name:
+<<qt-mvc-standard-item-model>>=
+treeModel <- Qt$QStandardItemModel(nrow(Cars93), 1)
+@ 
+%
+We need to create an item for each manufacturer, and store the
+corresponding records as its children:
+<<qt-mvc-standard-item-set-item, result=FALSE>>=
+by(Cars93, Cars93$Manufacturer, function(df) {
+  manufacturer <- treeModel$index(treeModel$rowCount(), 0)
+  treeModel$setData(manufacturer, df$Manufacturer[1])
+  sapply(df$Model, function(modelName) {
+    record <- treeModel$index(manufacturer$rowCount(), 0, manufacturer)
+    treeModel$setData(record, modelName)
+  })
+})
+@
+%
+As before, we need to create a \class{QModelIndex} object for accessing
+each cell of the model. The parent index is passed as the third
+argument of the \function{index} call when creating the child index,
+\code{record}. This nested loop approach to populating a model is much
+less efficient than converting a \class{data.frame} to a
+\class{DataFrameModel}, but it is necessary to communicate the
+hierarchical information.
+
+In addition to implementing the \class{QAbstractItemModel} interface,
+\class{QStandardItemModel} also represents an item as a
+\class{QStandardItem} object. Many operations, including inserting,
+removing and manipulating children, may be performed on a
+\class{QStandardItem}, instead of directly on the model. This may be
+convenient in some circumstances.
+%% probably all I will say about that
+
+The \Rclass{QTreeView} widget displays the data in a table, with the
+conventional buttons on the left for expanding and collapsing
+nodes. We create an instance and set the model: 
+<<qt-mvc-tree-view>>=
+treeView <- Qt$QTreeView()
+treeView$setModel(treeModel)
+@ 
+%
+The \qcode{treeView} object is now ready to display the data in a GUI.
+
+%% FIXME: port to QTreeView
+\begin{example}{A workspace browser}{eg:qt-workspace-browser}
+  \SweaveInput{ex-qt-treewidget}
+\end{example}
 
 \section{Model-based combo boxes}
+\label{sec:qt-mvc-combo}
 
 Combo boxes were previously introduced as containers of string items
 and accompanying icons. The high-level API is sufficient for most use
@@ -616,571 +682,164 @@ controlled by the \qtproperty{modelColumn} property.
 
 \section{User Editing of Data Models}
 
+Some data models, including \class{DataFrameModel},
+\class{QStringListModel} and \class{QStandardItemModel} support
+modification of their data. To determine whether an item may be
+edited, call the \function{flags} method on the model, passing the
+index of the item, and check for the \code{ItemIsEditable} flag:
+<<qt-mvc-check-editable>>=
+(treeModel$index(0, 0)$flags() & Qt$ItemIsEditable) > 0
+@ 
+
+To enable editing on a column in a \class{DataFrameModel}, it is
+necessary to specify the \code{edit} role for the column. For example,
+we might add a logical column named \code{Analyze} to the
+\code{mtcars} data frame for indicating whether a record should be
+included in an analysis. We prefix \code{edit} to the column name, so
+that the user can change its value between \code{TRUE} and
+\code{FALSE}:
+<<qt-mvc-edit-analyze>>=
+df <- mtcars 
+df$Analyze.edit <- TRUE
+model <- DataFrameModel(df)
+@ 
+
+For those models that are mutable, the view may allow the user to edit
+the model. By default, derivatives of \class{QAbstractItemView} will
+initiate editing of an editable column upon double mouse button click
+or a key press. This is controlled by the \qtproperty{editTriggers}
+property, which accepts a combination of
+\qtenumeration{QAbstractItemView::EditTrigger} flags. For example, we
+could disable editing through a view:
+<<qt-mvc-edit-trigger>>=
+view$editTriggers <- Qt$QAbstractItemView$NoEditTriggers
+@ 
+
+When editing is requested, the view will pass the request to the
+delegate for the item. The standard item delegate,
+\class{QStyledItemDelegate}, will present an editing widget created by
+its instance of \class{QItemEditorFactory}. The default item editor
+factory will create a combo box for logical data, a spin box for
+numeric data, and a text edit box for character data. Other types of
+data, like times and dates, are also supported. To specify a custom
+editor widget for some data type, it is necessary to subclass
+\class{QItemEditorCreatorBase} and register an instance with the
+item editor factory.
 
 %% MFL: Arguable as to whether we even need to discuss these in depth
 \section{Widgets With Internal Models}
 
+While separating the model from the view provides substantial
+flexibility, in practice it is often sufficient and slightly more
+convenient to manipulate a view with a built-in data model. \Qt{}
+provides a set of view widgets with internal models:
+\begin{description}
+\item[\class{QListWidget}] for simple lists of items,
+\item[\class{QTableWidget}] for a flat table and
+\item[\class{QTreeWidget}] for a tree table.
+\end{description}
+In our experience, the convenience of these classes is not worth the
+loss in flexibility from relying on a hard-coded data
+model. \class{QTableWidget}, in particular, precludes the use of
+\class{DataFrameModel}, so \class{QTableWidget} is usually not nearly
+as convenient or performant as the model-based
+\class{QTableView}. Thus, we are inclined to omit a detailed
+description of these widgets. However, we will describe
+\class{QListWidget}, out of an acknowledgement that displaying a
+short simple list of items is a common task in a GUI.
 
-\label{sec:using-standard-item}
-
-%% decoupled/coupled with model 
-The use of a model separate from a view can be relatively complicated.
-As such, \Qt{} provides classes that couple a standard model and
-view. Defining the model then is much easier. In the case of a combobox and
-a list view the model can be specified simply through a character vector.
-
-
-%% MOVEME: probably belongs in the basic controls section
-\subsection{Comboboxes}
-\label{sec:comboboxes}
-
-The \class{QComboBox} class implements the combobox widget.  The
-\class{QListWidget} class implements a basic list view. Both do
-similar things -- allow selection from a list of possible vlaues,
-although differently. As such, their underlying methods are mostly
-similar although their implementations have a different class
-inheritance.  We discuss here the basic usage for comboboxes. Both
-widgets are views for an underlying model and we restrict ourselves,
-for now, to the simplest choice of these models.
-
-By basic usage we mean setting a set of values
-for the user to choose from, and for comboboxes optionally allowing
-them to type in a new value.  In the simplest use, we can define the
-items in their model through a character vector through the method
-\method{addItems}{QComboBox}. (The items must be character, so numeric
-vectors must be coerced. This works through a convesion into a
-\class{QStringList} object.)  One can remove items by index with
-\method{removeItem}{QComboBox}.  To allow a user to
-enter a value not in this list, the property
-\property{editable}{QComboBox} can be set to \code{TRUE}.
-
-
-
-Once values are entered the property
-\property{currentIndex}{QComboBox} holds the 0-based index of the
-selected value. This will be $-1$ when no selection is made, and may
-be meaningless if the user can edit the values. Use
-\method{setCurrentIndex}{QComboBox} to set the popup value by index
-($-1$ to leave unselected). The \method{count}{QComboBox} method
-returns the number of items available.
-
-The property \property{currentText}{QComboBox} returns the current
-text. This will be a blank string if there is no current index.  There
-is no corresponding \meth{setCurrentText}, rather one can use the
-\method{findText}{QComboBox} method to get the index of the specified
-string. There is an option to adjust  how finding occurs through
-the enumeration \qtenumeration{Qt::MatchFlags}.
-
-
-The signal \signal{activated} is emitted when the user chooses an
-item. When activated, the item index is passed to the callback. This
-signal is emitted when the user finishes editing of the text by
-the return key.  The \signal{highlighted} signal is emitted when the
-popup is engaged and the user mouses over an entry.  For editable
-comboboxes, the signal \signal{editTextChanged} is emitted after each
-change to the text.
-
-
-\begin{example}{An example of one combobox updating another}{ex:qt-comboboxes}
-This example shows how one combobox, to select a region in the U.S.,
-is used to update another, which lists states in that region. We will
-use the following data frame for our data., which we split into a list.
-
-<<>>=
-df <- data.frame(name=state.name, region=state.region,
-                 highlight=state.x77[,1], stringsAsFactors=FALSE)
-l <- split(df, df$region)
-@ 
-
-
-
-Our \code{region} combobox is loaded with the state regions. When one
-is selected, the callback for \signal{activated} will first remove any
-items in the \code{state} combobox, then add in the appropriate
-states. The \code{ind} index is used to determine which region.
-<<QComboBox, results=hide>>=
-region <- Qt$QComboBox()
-state <- Qt$QComboBox()
-
-region$addItems(names(l))
-region$setCurrentIndex(-1)              # no selection
-qconnect(region, "activated", function(ind) {
-  state$clear()
-  state$addItems(l[[ind+1]]$name)       # add
-})
-@ 
-
-The state combobox shows how the \signal{highlighted} signal can be
-employed. In this case, information about the highlighted state is
-placed in the window's title. Not really a great choice, but
-sufficient for this example.
-<<Highlighted, results=hide>>=
-qconnect(state, "highlighted", function(ind) {
-  pop <- l[[region$currentText]][ind + 1, "highlight"]
-  w$setWindowTitle(sprintf("Popuplation is %s", pop))
-})
-@ 
-Finally, we use a form layout to organize the widgets.
-<<results=hide>>=
-w <- Qt$QGroupBox("Two comboboxes")
-lyt <- Qt$QFormLayout()
-w$setLayout(lyt)
-lyt$addRow("Region:", region)
-lyt$addRow("State:", state)
-@ 
-
-<<eval=FALSE, echo=FALSE, results=hide>>=
-w$show(); w$raise()
-@ 
-\end{example}
-
-
-
-\subsection{A list widget}
-\label{sec:list-view}
-
-The \class{QListWidget} provides an easy-to-use widget for displaying
-a set of items for selection. It uses an item-based model for its
-data. The \class{QListView} widget provides a more general framework
-with different backend models.
-As with comboboxes, we can populate the
+\class{QListWidget} is an easy-to-use widget for displaying
+a set of items for selection. As with combo boxes, we can populate the
 items directly from a character vector through the
-\method{addItems}{QListWidget} method. However, here we mostly focus
-on interacting with the widget through the item model.
+\method{addItems}{QListWidget} method:
+<<qt-mvc-listwidget-additems>>=
+listWidget <- Qt$QListWidget()
+listWidget$addItems(state.name)
+@ 
+%
+This saves one line of code compared to populating a \class{QListView}
+via a \class{QStringListModel}. To clear a list of its items, call the
+\method{clear}{QListWidget} method. Passing an item to
+\method{takeItem}{QListWidget} will remove that specific item from the
+widget.
 
 The items in a \class{QListWidget} instance are of the
 \class{QListWidgetItem} class. New items can be constructed directly
-through the constructor. The first argument is the text and the
+through the constructor:
+<<qt-mvc-listwidget-item>>=
+item <- Qt$QListWidgetItem("Puerto Rico", listWidget)
+@
+%
+The first argument is the text and the
 optional second argument a parent \class{QListWidget}. If no parent is
 specified, the the item may be added through the methods
-\method{addItem}{QListWidget}, or \method{insertItem}{QListWidget}
-where the row to insert is specified by index. 
+\method{addItem}{QListWidget}, or \method{insertItem}{QListWidget} for
+inserting to a specific instance.
 
-\class{QListWidgetItems} can have their text specified at construction
-or through the method \method{setText}{QListWidgetItem} and optionally
-have an icon set through the \method{setIcons}{QListWidgetItem}. There
-are also methods to set a status bar tip or a tooltip.
-
-The method \method{takeItem}{QListWidget} is used to remove items
-specified by their index, \method{clear}{QListWidget} will remove all
-of them.
-
-Once an item is added to list widget it can be referenced several
-ways. The currently selected item is returned by
-\method{currentItem}{QListWidget}, whereas
-\method{currentRow}{QListWidget} returns the current row by index, and
-\method{currentIndex}{QListWidget} returns a \class{QModelIndex}
-instance (with a method \meth{row} to get the index). As well, any item
-may be referenced by row index through \method{item}{QListWidget} or
-position (say within an event handler) by
-\method{itemAt}{QListWidget}. One can search for the items with the
-\method{findItems}{QListWidget} method, which returns a list of
-items. An optional second argument uses the
-\qtenumeration{Qt::MatchFlags} enumeration to adjust how matches are
-made, for example \code{Qt\$Qt\$MatchRegExp} to match by regular expression.
-
-
-
-\paragraph{Selection}
-By default, single selection mode is enabled. This can be adjusted
-through the \method{setSelectionMode}{QListWidget} argument by
-specifying a value in
-\qtenumeration{QAbstractItemView::SelectionMode}, such as
-\code{SingleSelection} or \code{ExtendedSelection}.  Extended
-selection allows the user to extend the current selection by
-simultaneously pressing the \kbd{control} key or the \kbd{shift} key
-(selecting all items between the current selection and the newly
-selected item).  
-
-To retrieve the selected values, the method
-\method{selectedItems}{QListWidget} will return the items in a list.
-
-Setting an item to be selected is done through
-\method{setCurrentItem}. The first argument is the item, the optional
-second argument one of the
-\qtenumeration{QItemSelectionModel::SelectionFlag} enumeration. If
-specified as \code{Qt\$QItemSelectionModel\$Select} (the default) the
-item will be selected, but other choices are possible such as
-\qcode{Deselect} or \qcode{Toggle}.
-
-\paragraph{Checkable items}
-The underlying items may be checkable. This is initiated by setting an
-initial check state (\method{setCheckState}{QListWidgetItem}) with a value from \qcode{Checked}
-(\code{Qt\$Qt\$Checked}), \qcode{Unchecked} or
-\qcode{PartiallyChecked}. For example, we can populate a list widget
-and set the values unchecked with.
-
-<<Checkable,results=hide>>=
-w <- Qt$QListWidget()
-w$addItems(state.name)
-sapply(1:w$count, function(i) 
-       w$item(i-1)$setCheckState(Qt$Qt$Unchecked))
-@ 
-<<echo=FALSE, results=hide>>=
-## w$show(); w$raise()
-set.seed(1)
-sapply(sample(1:w$count, 30), 
-       function(i) w$item(i-1)$setCheckState(Qt$Qt$Checked))
-@ 
-Then, after checking a few we can get the state along the lines of:
-<<>>=
-sapply(1:8, function(i) as.logical(w$item(i-1)$checkState()))
-@ 
-This uses the fact that the enumeration for \qcode{Unchecked} is $0$
-and \qcode{Checked} is $2$.
-
-
-\paragraph{Signals}
-There are several signals that are emitted by the widget. Chief among
-them are \signal{itemActivated}, which is emitted when a user clicks
-on an item or presses the activation key. The latter is what
-distinguishes it from the \signal{itemClicked} signal. For capturing
-double clicks there is \signal{itemDoubleClicked}. For these three,
-the undelying item is passed to the callback. The
-\signal{itemSelectionChanged} signal is emitted when the underlying
-selection is changed.
-
-\begin{example}{Filtering example}{ex-qt-listwidget-filter}
-We illustrate the widget with a typical filtering example, where
-a user types in values to narrow down the available choices. We begin
-by setting up our widgets.
-<<FilteringByListWidget, results=hide>>=
-w <- Qt$QGroupBox("Filtering example")
-lyt <- Qt$QFormLayout()
-w$setLayout(lyt)
-
-lyt$addRow("Filter:", f <- Qt$QLineEdit())      # define f
-lyt$addRow("State:", lw <- Qt$QListWidget())    # define lw
-lyt$addRow("", b <- Qt$QPushButton("Click me")) # define b
+To retrieve an item given its index, we call the
+\method{item}{QListWidget} method:
+<<qt-mvc-listwidget-itemat>>=
+first <- listWidget$item(0)
+first$getText()
 @ 
 
-For convenience, we use a built-in data set for our choices. We
-populate the list widget and add a tooltip indicating the area.
-<<setToolTip, results=hide>>=
-for(i in state.name) {
-  item <- Qt$QListWidgetItem(i, lw)             # populate
-  txt <- sprintf("%s has %s square miles", i, state.x77[i, "Area"])
-  item$setToolTip(txt)
-}
-@ 
-For this example, we allow multiple selection.
-<<setSelectionMode, results=hide>>=
-lw$setSelectionMode(Qt$QAbstractItemView$ExtendedSelection)
+Many aspects of an item may be manipulated. These roughly correspond
+to the built-in roles of items in \class{QAbstractItemModel}. One may
+specify the text, font, icon, status and tool tips, and foreground and
+background colors.
+
+By default, \class{QListWidget} allows only a single item to be
+selected simultaneously. As with other \class{QAbstractItemView}
+derivatives, this may be adjusted to allow multiple selection through
+the \property{selectionMode}{QAbtractItemView} property:
+<<qt-mvc-listwidget-selectionmode>>=
+listWidget$selectionMode <- Qt$QListWidget$ExtendedSelection
 @ 
 
-The following callback updates the displayed items so that only ones
-matching the typed in string are displayed. Rather than compare each
-item to the matched items, we simply hide them all then unhide those
-that match.
-<<textChanged, results=hide>>=
-qconnect(f, "textChanged", function(str) {
-  matching <- lw$findItems(str, Qt$Qt$MatchStartsWith)
-  sapply(seq_len(lw$count), function(i) lw$item(i-1)$setHidden(TRUE))
-  sapply(matching, function(i) i$setHidden(FALSE))
+We can programmatically select the states that begin with "A":
+<<qt-mvc-listwidget-select,results=hide>>=
+sapply(grep("^A", state.name), 
+       function(i) listWidget$item(i - 1)$setSelected(TRUE))
+@
+%
+The method \method{selectedItems}{QListWidget} will return the
+selected items in a list:
+<<qt-mvc-listwidget-selected>>=
+selected <- listWidget$selectedItems()
+sapply(selected, qinvoke, "text")
+@ 
+%
+To handle changes in the selection, connect to
+\signal{itemSelectionChanged}:
+<<qt-mvc-listwidget-selectionchanged>>=
+qconnect(listWidget, "itemSelectionChanged", function() {
+  selected <- listWidget$selectedItems()
+  selectedText <- sapply(selected, qinvoke, "text")
+  message("Selected: ", paste(selectedText, collapse = ", "))
 })
 @ 
 
-
-<<echo=FALSE>>=
-## Code to show how to set a selection
-## find and set selection
-## items <- lw$findItems("New", Qt$Qt$MatchStartsWith)
-## sapply(items, function(i) {
-##   lw$setCurrentItem(i, Qt$QItemSelectionModel$Select)
-## })
-@ 
-
-The following shows how we can grab the selected values.
-<<results=hide>>=
-qconnect(b, "pressed", function() {
-  vals <- sapply(lw$selectedItems(), function(i) i$text())
-  print(vals)
+It is often easier for the user to select multiple items by clicking a
+check button next to the desired items. The check box is only shown if
+we explicitly set the check state of item. The possible values are
+\qcode{Checked}, \qcode{Unchecked} or \qcode{PartiallyChecked}. Here,
+we set all of the items to unchecked to show the check buttons and
+then check the selected items:
+<<qt-mvc-listwidget-checked, results=hide>>=
+items <- sapply(seq(listWidget$count), function(i) {
+  listWidget$item(i - 1)$setCheckedState(Qt$Qt$Unchecked)
 })
+sapply(selected, function(x) x$setCheckedState(Qt$Qt$CheckedState))
 @ 
-
-<<eval=FALSE, echo=FALSE, results=hide>>=
-w$show()
-w$raise()
-@ 
-\end{example}
-
+%
+For long lists, this looping will be time consuming. In such cases, it
+is likely preferable use \class{QListView}, \class{DataFrameModel} and
+the \qcode{CheckedStateRole}.
 
 \begin{example}{Combining a combobox and list widget to select a
     variable name}{eg-qt-select-variable}
   \SweaveInput{ex-qt-select-variable}
 \end{example}
-
-\subsection{A table widget}
-\label{sec:table-widget}
-
-The \class{QTableWidget} class provides a widget for displaying
-tabular data in an item-based approach, similar to
-\class{QListWidget}. The \class{QTableView} widget is more flexible,
-but also more demanding, as it has the ability to have different data
-models (which can be much faster with large tables). As such, only if
-your needs are not too complicated will this widget will be a good choice.
-
-The dimensions of the table must be set prior to adding items. The
-methods \method{setRowCount}{QTableWidget} and
-\method{setColumnCount}{QTableWidget} are used.
-
-
-
-The \class{QTableWidget} class has a built in model that is populated
-item by item. Items are of class \class{QTableWidgetItem} and are
-created first, then inserted into the widget, by row and column, through
-the method \method{setItem}. (These operations are not vectorized and
-can be slow for large tables.)  Items can be removed by row-and-column index with
-\method{takeItem}{QTableWidget}. The item can be reinserted. The
-\method{clear}{QTableWidget} method will remove all items, even headers
-items, whereas, \method{clearContents}{QTableWidget} will leave the
-headers. Both keep the dimensions.
-
-As with \class{QListWidget}, items have various properties that can be
-adjusted. The text can be specified to the constructor, or set through
-\method{setText}{QTableWidgetItem}. Text alignment is specified
-through \method{setTextAlignment}{QTableWidgetItem}. The font may be
-configured through \method{setFont}{QTableWidgetItem}. The methods
-\method{setBackground}{QTableWidgetItem} and
-\method{setForeground}{QTableWidgetItem} are used to adjust the colors.
-
-
-Items may also have icons (\method{setIcon}{QTableWidgetItem}),
-tooltips (\method{setToolTip}{QTableWidgetItem}), and statusbar tips
-(\method{setStatusTip}{QTableWidgetItem}).
-
-
-Similar to \class{QListWidget}, \class{QTableWidgetItem} instances are
-returned by the method \method{item}{QTableWidget}, with a
-specification of row and column; and by \method{itemAt}{QTableWidget},
-only with a specification of a position. The
-\method{findItems}{QTableWidget} method will return a list of items
-matching a string. Also, there is the method
-\method{currentItem}{QTableWidget}, to return the currently selected
-item. From an item, its column and row can be found through its
-methods \method{column}{QTableWidget} and \method{row}{QTableWidget}
-
-\paragraph{Item flags}
-As mentioned, items may have several different properties: are they
-editable, draggable, \dots ? To specify, one sets an items flags with
-values taken from the \qtenumeration{Qt::ItemFlag} enumeration. The
-possible values are: \qcode{NoItemFlags}, \qcode{ItemIsSelectable},
-\qcode{ItemIsEditable}, \qcode{ItemIsDragEnabled},
-\qcode{ItemIsDropEnabled}, \qcode{ItemIsUserCheckable},
-\qcode{ItemIsEnabled}, and \qcode{ItemIsTriState} (has three check
-states). To make an item checkable, one must first set the check
-state. By default, the widget is selectable, editable, drag and
-droppable, checkable and enabled. To remove a flag, one can specify all the ones they want, or
-use integer arithmetic and subtract. E.g., to remove the editable
-attribute one has this possibility:
-<<results=hide>>=
-item <- Qt$QTableWidgetItem("Set not editable")
-if(item$flags() & Qt$Qt$ItemIsEditable)
-  item$setFlags(item$flags() - Qt$Qt$ItemIsEditable)
-@ 
-
-
-\paragraph{Headers}
-Columns may have headers (horizontal ones, rows have vertical
-headers). These are set all at once by specifying a character vector
-to \method{setHorizontalHeaderLabels}{QTableWidget}, or can be set
-with an item by \method{setHorizontalHeaderItem}{QTableWidget}. The
-header itself, of class \class{QHeaderView}, is returned by
-\method{horizontalHeader}{QTableWidget}. Headers have the method
-\meth{setVisible} to toggle their visibility. To make the last column
-stretch to fill the available space is specified through the header
-vier method \method{setStretchLastSection}{QHeaderView} with a value
-of \code{TRUE}.  
-
-Otherwise, to specify the width of a column programmatically  the method
-\method{setColumnWidth}{QTableView} is available. One specifies the
-column, then the width in pixels.
-
-\paragraph{Sorting and Filtering}
-
-This widget can have its rows sorted by the values of a column through
-the method \method{sortItems}{QTableWidget}. One specifies the column
-by index, and an order. The default is \qcode{AscendingOrder}, the
-alternative is \code{Qt\$Qt\$DescendingOrder}. Sorting should be done
-after the table is populated with items.
-
-
-
-Rows and columns can be hidden through the table widget's methods
-\method{setRowHidden}{QTableWidget} and
-\method{setColumnHidden}{QTableWidget}. This can be used for filtering
-purposes without redrawing the table.
-
-
-\paragraph{Selection}
-\XXX{Does \class{QTableWidgetSelectionRange} work to set the selection?}
-
-For the table widget one can easily select rows, columns, blocks and
-even combinations thereof.  An underlying selection model implements
-selection, but the \class{QTableWidget} class provides an easier
-interface. The currently selected items are returned as a list through
-the method \method{selectedItems}{QTableWidget}.
-
-A given cell may be selected by index (row then column) through the
-method \method{setCurrentCell}{QTableWidget}, or if the item instance
-is known by \method{setCurrentItem}{QTableWidget}. In addition, an
-optional selection flag from the enumeration
-\qtenumeration{QItemSelectionModel::SelectionFlag} can be specified
-with values among \qcode{Select}, to add the item to the selection;
-\qcode{Clear}, to clear all selection; \qcode{Toggle}, to toggle the
-specified item; \qcode{Rows}, to extend the selection to the enclosing
-row; and similarly for \qcode{Columns}.  For an item itself, the method
-\method{setSelection}{QTableWidgetItem} takes a logical value to
-indicate the selection state.
-
-
-The current selection can be cleared by selecting an item with the
-\qcode{Clear} attribute, or by grabbing the underlying selection model
-and calling its \meth{clearSelection} method. E.g, something like:
-<<eval=FALSE>>=
-tbl$selectionModel()$clearSelection()
-@ 
-
-
-\paragraph{Signals}
-
-The \class{QTableWidget} class has a number of signals it emits. They
-mostly come in pairs: ``cell'' ones passing in the row and column index and
-``item'' ones passing in an item reference. For example,
-\signal{cellClicked} and \signal{itemClicked}, both called when a cell
-is clicked. Also there are \signal{cellDoubleClicked},
-\signal{cellEntered}, \signal{cellPressed},
-\signal{currentCellChanged} and \signal{cellChanged} (with similar
-``item'' ones). Also of interest is the \signal{itemSelectionChanged}
-which is called when the selection changes.
-
-
-\begin{example}{Selection of variables}{eg:qt-selection-from-tablewidget}
-  \SweaveInput{ex-qt-table-selection}
-\end{example}
-
-
-\begin{example}{A drag and drop interface to \function{xtabs}}{eg:qt-dnd-table}
-  \SweaveInput{ex-qt-dnd-table}
-\end{example}
-
-
-
-\subsection{A Tree Widget}
-\label{sec:tree-widget}
-
-The \constructor{QTreeWidget} provides a tree view based on a coupled
-tree model. It is used in a manner similar to the table widget,
-however, one must adjust for the heiarchical nature of the data it can display.
-The widget shows a specific number of columns, which is specified via
-\method{setColumnCount}{QTreeWidget}. The column headers are set through
-\method{setHeaderLabels}{QTreeWidget} by specifying a vector of column
-names. 
-
-
-%% items
-\paragraph{Tree Widget Items}
-The widget organizes itself through items, with each item having $1$
-or more columns.  The items in the tree widget are instances of the
-\class{QTreeWidgetItem} class. An item displays a value in each
-column. The method \method{setText}{QTreeWidgetItem} takes two
-arguments, an integer specifying a column, and a value to
-display. Similarly, other such item methods require one to specify the
-column. These methods include:
-\method{setTextAlignment}{QTreeWidgetItem},
-\method{setFont}{QTreeWidgetItem},
-\method{setToolTip}{QTreeWidgetItem},
-\method{setStatusTip}{QTreeWidgetItem}, and
-\method{setIcon}{QTreeWidgetItem}. To retrieve these values, the
-method \method{data}{QTreeWidgetItem} takes a column number and a
-role, such as \code{Qt\$Qt\$DisplayRole} to get the text.
-
-
-%% heiarchy
-\paragraph{Heirarchy}
-A tree is used to represent a heirarchy. The items have several
-methods related to this. Each item has a
-\method{parent}{QTreeWidgetItem} method pointing to the parent item,
-or \code{NULL} if a top-level item. (In the latter case, the tree
-widget's \method{invisibleRootItem}{QTreeWidget} method returns the
-parent item.)  The method \method{child}{QTreeWidgetItem} returns the
-child item, specified by index. The index of a given item in the
-parent is returned by \method{indexOfChild}{QTreeWidgetItem}. The
-total number of children for an item is returned by
-\method{childCount}{QTreeWidgetItem}. There is not a
-\code{nextSibling} method, but one could do something like:
-
-<<nextSibling>>=
-nextSibling <- function(tr, i) {
-  parent <- i$parent()
-  if(is.null(parent))
-    parent <- tr$invisibleRootItem()
-  ind <- parent$indexOfChild(item)
-  n <- parent$childCount()
-  if(ind + 1 < n)
-    parent$child(ind + 1)                   # 1 already added
-  else
-    NULL
-}
-@ 
-
-New child items are added with either with
-\method{addChild}{QTreeWidgetItem}, adding at the end; or
-\method{insertChild}{QTreeWidgetItem} adding the child item at the
-specified index. Child items are removed by the
-\method{removeChild}{QTreeWidgetItem} method or the
-\method{takeChild}{QTreeWidgetItem}, if specifying by index. The
-latter returns the item to be reparented if desired.
-
-The view can be made to show if a child is present by
-calling  \method{setChildIndicatorPolicy}{QTreeWidgetItem} with a
-value of \code{Qt\$QTreeWidgetItem\$ShowIndicator} (or one of
-\code{DontShowIndicator} or
-\code{DontShowIndicatorWhenChildless}).
-
-When an item has children and an indicator is shown, the view may be
-expanded by clicking on this indicator. The item method
-\method{isExpanded}{QTreeWidgetItem} returns \code{TRUE} when an item is
-expanded. This state can be set via
-\method{setExpanded}{QTreeWidgetItem}.  The methods
-\method{setDisabled}{QTreeWidgetItem} and
-\method{setHidden}{QTreeWidgetItem} are also available to disable or
-hide an item.
-
-
-
-%% heiarchchy
-\paragraph{Adding items to a tree}
-The children of the invisible root
-item are the ``top-level'' items. These are added through
-\method{addTopLevelItem}{QTreeWidget} or the
-\method{insertTopLevelItem}{QTreeWidget} methods, the latter requiring
-an index to specify where. The basic idea is that each top-level item is
-prepared, along with its heirarchy, then added through these methods.
-
-
-
-%% selection
-\paragraph{Selection}
-The currently selected item is returned by
-\method{currentItem}{QTreeWidget} and may be specified by item through
-\method{setCurrentItem}{QTreeWidget}. For multiple selection, see the
-discussion on selection models~\ref{para:selection-models}.
-
-
-
-%% signals
-\paragraph{Signals}
-The widget emits several signals, most passing the item and the column
-to the handler. Some useful signals are \signal{itemClicked},
-\signal{itemDoubleClicked}, \signal{itemExpanded}, and
-\signal{itemActivated} (for clicking or the \kbd{Enter} key).
-
-
-\begin{example}{A workspace browser}{eg:qt-workspace-browser}
-  \SweaveInput{ex-qt-treewidget}
-\end{example}
-
 
 \section{Implementing Custom Models}
 \label{sec:using-model-with}
@@ -1236,9 +895,253 @@ we focus on just enough for our example.
   \SweaveInput{ex-qt-custom-view}
 \end{example}
 
+\section{Viewing and Editing Text Documents}
+\label{sec:multi-line-text}
 
-\XXX{Should we illustrate a tree model? I don't have a good example to
-  do right now and this section is getting a bit long.}
-%% \subsection{Tree models}
-%% \label{sec:tree-models}
+Multi-line text is displayed and edited by the \class{QTextEdit}
+widget, which is the view and controller for the \class{QTextDocument}
+model. \class{QTextEdit} supports both plain and rich text in HTML
+format, including images, lists and tables. Although the text is
+actually stored in a \class{QTextDocument}, it is usually sufficient
+to interact with the \class{QTextEdit} directly:
+<<QTextEdit, results=hide>>=
+te <- Qt$QTextEdit()
+te$setPlainText("The quick brown fox")
+te$append("jumped over the lazy dog")
+@ 
+<<eval=FALSE, echo=FALSE, results=hide>>=
+## not shown
+te$show(); te$raise()
+@ 
+<<>>=
+te$toPlainText()
+@ 
 
+The \signal{textChanged} signal is emitted when the text is changed. 
+
+%% Worth mentioning this, given that we never manipulate the document?
+% The \method{document}{QTextEdit} can
+% be used to retrieve that document, and \method{setDocument}{QTextEdit}
+% to replace it. 
+
+\paragraph{The text cursor}
+
+To manage selections, insert special objects like tables and images,
+or apply the full range of formatting options, it is necessary to
+interact with a text cursor object, of class \class{QTextCursor}. We
+obtain the user-visible cursor and move it to the end of the document:
+<<qt-mvc-textedit-cursor>>=
+n <- nchar(te$toPlainText())
+cursor <- te$textCursor()
+cursor$setPosition(n)
+te$setTextCursor(cursor)
+@ 
+%
+Manipulating the \Robject{cursor} object does not actually modify the
+location and parameters of the cursor on the screen. We need to
+explicitly set the modified cursor object on the
+\class{QTextEdit}. This behavior is often convenient, because it
+allows us to modify arbitrary parts of the document, without affecting
+the user cursor.  For example, we could insert an image at the beginning:
+<<qt-mvc-textedit-image>>=
+cursor$setPosition(0)
+cursor$insertImage(system.file("images/ok.gif", package="gWidgets"))
+@ 
+%
+To listen to changes in the cursor position, connect to the
+\signal{cursorPositionChanged} signal on the \class{QTextEdit}.
+
+\paragraph{Selections}
+
+Selection is a component of the \class{QTextCursor} state. For plain
+text, the selected text is returned by the
+\method{selectedText}{QTextCursor} method:
+<<qt-mvc-textedit-selection>>=
+cursor$selectedText()
+@ 
+%
+The empty string indicates that the user has not selected any text.
+The selection spans from the cursor anchor to the cursor
+position. Normally, the anchor and cursor are at the same position. To
+make a selection, we move the cursor independently of its anchor.
+To set the selection to include the first three words of the text, we have:
+<<results=hide>>=
+cursor <- Qt$QTextCursor(te$document()) ## te$textCursor()
+cursor$movePosition(Qt$QTextCursor$Start)
+cursor$movePosition(Qt$QTextCursor$WordRight, Qt$QTextCursor$KeepAnchor, 3)
+te$setTextCursor(cursor)
+@
+<<qt-mvc-textedit-selection>>=
+cursor$selectedText()
+@ 
+%
+We move the cursor and anchor to the start of the document. Next, we
+move the cursor, without the anchor, across the right end of three
+words. Finally, we need to commit the modified cursor.
+
+To listen to changes in the selection (according to the user visible
+cursor), connect to \signal{selectionChanged}:
+<<qt-mvc-textedit-selectionChanged>>=
+qconnect(te, "selectionChanged", function() {
+  message("Selected text: '", te$textCursor()$selectedText(), "'")
+})
+@ 
+%
+The \signal{copyAvailable} signal is largely equivalent, except it
+passes a boolean argument indicating whether the selection is non-empty.
+
+\paragraph{Formatting}
+By default, the widget will wrap text as entered. For use as a code
+editor, this is not desirable. The \property{lineWrapMode}{QTextEdit}
+takes values from the enumeration
+\qtenumeration{QTextEdit::LineWrapMode} to control this:
+<<qt-mvc-textedit-wrap>>=
+te$lineWrapMode <- Qt$QTextEdit$NoWrap
+@
+% 
+The \method{setAlignment}{QTextEdit} method aligns the current
+paragraph (the one with the cursor) with values from
+\qtenumeration{Qt::Alignment}.
+
+\paragraph{Searching}
+The \method{find}{QTextEdit} method will search for a given string and
+adjust the cursor to select the match. For example, we can search
+through a standard typesetting string starting at the cursor point for
+the common word ``qui'' as follows:
+
+<<lorumIpsum, echo=FALSE>>=
+LoremIpsum <- paste(
+"Lorem ipsum dolor sit amet, consectetur adipisicing elit,",
+"sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi",
+"ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit",
+"in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur",
+"sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit",
+"anim id est laborum.",
+"\n",
+"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque",
+"laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi",
+"architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas",
+"sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione",
+"voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,",
+"consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et",
+"dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum",
+"exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi",
+"consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam",
+"nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
+sep="\n")
+@ 
+<<findExample>>=
+te <- Qt$QTextEdit(LoremIpsum)          # some text
+te$find("qui", Qt$QTextDocument$FindWholeWords)
+te$textCursor()$selection()$toPlainText()
+@
+%
+The second parameter to \method{find}{QTextEdit} takes a combination
+of flags from \qtenumeration{QTextDocument::FindFlag}, with values
+\qcode{FindBackward}, \qcode{FindCaseSensitively} and
+\qcode{FindWholeWords}.
+
+%% FIXME: should we move this after the application window stuff?
+\begin{example}{A tabbed text editor}{ex-qt-tabbed-text-edit}
+  \SweaveInput{ex-qt-tabbed-editor.Rnw}
+\end{example}
+
+%% FIXME: should we move this after the application window stuff?
+\paragraph{Context menus}
+Like any other widget, one can enable a context menu based on the
+actions associated with the widget. However, it is often necessary to
+tailor the context menu, depending on the state of the widget. For our
+demonstration, we aim to list candidate completions based on the
+currently selected text. This requires a subclass that overrides the
+\method{contextMenuEvent}{QWidget} method:
+<<QTextEditWithMenu,results=hide>>=
+qsetClass("QTextEditWithCompletions", Qt$QTextEdit)
+#
+qsetMethod("contextMenuEvent", QTextEditWithCompletions, function(e) {
+  m <- this$createStandardContextMenu()
+  if(this$textCursor()$hasSelection()) {
+    selection <- this$textCursor()$selectedText()
+    comps <- utils:::matchAvailableTopics(selection)
+    comps <- setdiff(comps, selection)
+    if(length(comps) > 0 && length(comps) < 10) {
+      m$addSeparator()                  # add actions
+      sapply(comps, function(i) {
+        a <- Qt$QAction(i, this)
+        qconnect(a, "triggered", function(checked) {
+          insertPlainText(i)
+        })
+        m$addAction(a)
+      })
+    }
+  }
+  m$exec(e$globalPos())
+})
+te <- QTextEditWithCompletions()
+@ 
+%
+The \method{createStandardContextMenu}{QTextEdit} method returns the
+base context menu, including functions like copy and paste. We add an
+action for every possible completion. Triggering an action will paste
+the completion into the document.
+
+<<raise, eval=FALSE, echo=FALSE, results=hide>>=
+te$show()
+te$raise()
+@ 
+
+
+
+<<eval=FALSE, echo=FALSE, results=hide>>=
+## Not shown
+
+##' start with command, return output in HTML
+runCommand <- function(chunk) {
+  require(R2HTML)
+  f <- tempfile()
+  chunkexps <- try(parse(text=chunk), silent=TRUE)
+  if(inherits(chunkexps, "try-error")) 
+  stop("Error")
+  
+  out <- ""
+  for(i in seq_along(chunkexps)) {
+    chunk <- chunkexps[[i]]
+    out <- paste(out, "<h3>", paste(capture.output(chunk), collapse="<br>"), "</h3><br />",  sep="")
+    HTML(eval(chunk), file=f, append=FALSE)
+    out <- paste(out, paste(readLines(f, warn=FALSE), collapse="<br>"), sep="")
+  }
+  out
+}
+
+
+
+
+w <- Qt$QGroupBox("Simple CLI")
+lyt <- Qt$QGridLayout()
+w$setLayout(lyt)
+
+cli <- Qt$QLineEdit()
+out <- Qt$QTextEdit()
+
+
+lyt$addWidget(Qt$QLabel("Command:"), 0, 0)
+lyt$addWidget(cli, 0, 1)
+lyt$addWidget(Qt$QLabel("Output:"), 1, 0, Qt$Qt$AlignTop)
+lyt$addWidget(out, 1, 1)
+
+lyt$setRowStretch(1,1)
+lyt$setColumnStretch(1,1)
+
+qconnect(cli, "editingFinished", function() {
+  chunk <- cli$text
+  htmlized <- runCommand(chunk)
+  out$setHtml(htmlized)
+  cli$setFocus(Qt$Qt$ActiveWindowFocusReason)
+  cli$setSelection(0, nchar(cli$text))
+})
+
+w$setMinimumSize(800,400)
+w$show()
+w$raise()
+
+@ 

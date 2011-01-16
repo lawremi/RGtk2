@@ -1,3 +1,5 @@
+%% Need to decide whether this example is still necessary
+
 <<MainWindowExample, echo=FALSE, results=hide>>=
 library(qtbase)
 @ 
@@ -5,24 +7,25 @@ library(qtbase)
 \begin{figure}
   \centering
   \includegraphics[width=.6\textwidth]{fig-qt-rstudio-like}
-  \caption{A mock of for a possible GUI using dockable widgets and a \class{QMainWindow} instance}
+  \caption{A GUI using dockable widgets and a \class{QMainWindow}
+    instance}
   \label{fig:qt-r-studio}
 \end{figure}
 
 
-This example shows how to mock up a main window
-(Figure~\ref{fig-qt-r-studio}) similar to the one
-presented by the web application, R-Studio. (\url{rstudio.org}). 
+This example shows how to begin constructing a main window
+(Figure~\ref{fig-qt-r-studio}) similar to that of the web application,
+R-Studio. (\url{rstudio.org}).
 
-We begin by setting a minimum size and a title for the main window.
+We begin by setting a minimum size and a title for the main window:
 <<results=hide>>=
 w <- Qt$QMainWindow()
 w$setMinimumSize(800, 500)
 w$setWindowTitle("Rstudio-type layout")
 @ 
 %
-We add in a menu bar and toolbar. The actions are minimal, not
-including icons, commands etc. We show the file menu definitions.
+We add a menu bar and toolbar. The actions are minimal, not
+including icons, commands etc. We only show the file menu definitions.
 <<defineActions,results=hide>>=
 l <- list()
 mb <- Qt$QMenuBar()
@@ -46,7 +49,7 @@ emenu$addAction(l$copy <- Qt$QAction("Copy", w))
 emenu$addAction(l$paste <- Qt$QAction("Paste", w))
 @ 
 
-The toolbar has just a few actions added.
+The toolbar contains only some of the most important actions:
 <<defineToolbar, results=hide>>=
 tb <- Qt$QToolBar()
 w$addToolBar(tb)
@@ -58,15 +61,16 @@ tb$addAction(l$help <- Qt$QAction("Help", w))
 @ 
 
 Our central widget holds two main areas: one for editing files and one
-for a console. As we may want to edit multiple files, we use a tab
-widget for that. A \class{QSplitter} is used to divide the space
-between the two main widgets.
+for a console. A \class{QSplitter} divides the space
+between the two main widgets:
 <<results=hide>>=
 centralWidget <- Qt$QSplitter()
 centralWidget$setOrientation(Qt$Qt$Vertical)
 w$setCentralWidget(centralWidget)
-@ 
-
+@
+%
+As we may want to edit multiple files, we embed the
+editor widgets in a tabbed notebook, with closable tabs:
 <<results=hide>>=
 fileNotebook <- Qt$QTabWidget()
 l <- Qt$QLabel("File notebook")
@@ -78,20 +82,19 @@ qconnect(fileNotebook, "tabCloseRequested", function(ind, nb) {
 }, user.data=fileNotebook)
 centralWidget$addWidget(fileNotebook)
 @ 
-
-Our console widget is just a stub.
+%
+Our console widget is just a stub:
 <<results=hide>>=
 consoleWidget <- Qt$QLabel("Console goes here")
 consoleWidget$setAlignment(Qt$Qt$AlignCenter)
 centralWidget$addWidget(consoleWidget)
 @ 
 
-On the right side of the layout we will put in various tools for
+The right side of the layout will contain various tools for
 interacting with the R session. We place these into dock widgets, in
 case the user would like to place them elsewhere on the
-screen. Defining dock widgets is straightforward. We show a stub for a
-workspace browser.
-
+screen. We show a stub for a
+workspace browser:
 <<results=hide>>=
 workspaceBrowser <- Qt$QLabel("Workspace browser goes here")
 wbDockWidget <- Qt$QDockWidget("Workspace")
@@ -107,22 +110,20 @@ hbDockWidget$setWidget(historyBrowser)
 
 The workspace and history browser are placed in a notebook to conserve
 space. We add the workspace browser on the right side, then tabify the
-history browser (whose construction is not shown).
-
+history browser (whose construction is not shown):
 <<results=hide>>=
 w$addDockWidget(Qt$Qt$RightDockWidgetArea, wbDockWidget)
 w$tabifyDockWidget(wbDockWidget, hbDockWidget)
 @
 
-We next place a notebook to hold any graphics produced in a dock
-widget. This one occupies its own space.
+We next place a plot notebook in its own space:
 <<results=hide>>=
 plotNotebook <- Qt$QTabWidget()
 pnDockWidget <- Qt$QDockWidget("Plots")
 w$addDockWidget(Qt$Qt$RightDockWidgetArea, pnDockWidget)
 @              
 
-Finally, we make status bar and add a transient message.
+Finally, we add a status bar and show a transient message.
 <<results=hide>>=
 sb <- Qt$QStatusBar()
 w$setStatusBar(sb)

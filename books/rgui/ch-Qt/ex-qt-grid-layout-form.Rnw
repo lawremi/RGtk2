@@ -11,10 +11,8 @@ library(qtbase)
 
 
 To illustrate grid layouts we mock up a GUI centered around a central
-text area widget (FIgure~\ref{fig:qt-layout-example}). If the window
-is resized, we want that widget to get the extra space allocated to.
-
-We begin by setting a grid layout for our parent widget.
+text area widget (FIgure~\ref{fig:qt-layout-example}).
+We begin by setting a grid layout for our parent widget:
 <<results=hide>>=
 w <- Qt$QWidget()
 w$setWindowTitle("Layout example")
@@ -22,21 +20,21 @@ lyt <- Qt$QGridLayout()
 w$setLayout(lyt)
 @ 
 %
-We use the default left-alignment for labels in the following. Our
-first row has a label in column 1 and a text-entry widget spanning two columns.
+Our first row has a label in column 1 and a text-entry widget spanning
+two columns.
 <<results=hide>>=
 lyt$addWidget(Qt$QLabel("Class:"), 0, 0)
 lyt$addWidget(Qt$QLineEdit(), 0, 1, rowspan=1, colspan=2)
 @ 
 %
-Our second row starts with a label and a combobox each spanning the
-default of one column.
+Our second row starts with a label and a combobox, each spanning the
+default of one column:
 <<results=hide>>=
 lyt$addWidget(Qt$QLabel("Method:"), 1, 0)
 lyt$addWidget(Qt$QComboBox(), 1, 1)
 @ 
 %
-The third column of the second row and rest of the layout is managed
+The bottom three cells in the third column are managed
 by a sublayout, in this case a vertical box layout. We use a label as
 a stub and set a frame style to have it stand out.
 <<results=hide>>=
@@ -45,33 +43,38 @@ slyt$addWidget(l <- Qt$QLabel("Category\nSelector"))
 l$setFrameStyle(Qt$QFrame$Box)
 @ 
 
-The text edit widget is added to the third row, second column. Since
-this widget will expand, we set an alignment for the
-label. Otherwise, the default alignment will center it in the vertical direction.
+The text edit widget is added to the third row, second column:
 <<results=hide>>=
 lyt$addWidget(Qt$QLabel("Text:"), 2, 0, Qt$Qt$AlignTop)
 lyt$addWidget(l <- Qt$QTextEdit(), 2, 1)
 @ 
+%
+Since this widget will expand, we align the label to the top of its
+cell. Otherwise, it will be centered in the vertical direction.
 
-Finally we add a space for information on the 4th row. Again we placd
-this in a box. By default the box would expand to fill the space of
-the two columns, but we fix this below as an illustration.
+Finally we add a space for information on the fourth row:
 <<results=hide>>=
 lyt$addWidget(l <- Qt$QLabel("More info:"), 3, 0, 
               rowspan=1, colspan=2)
 l$setSizePolicy(Qt$QSizePolicy$Fixed, Qt$QSizePolicy$Preferred)
 l$setFrameStyle(Qt$QFrame$Box)
 @ 
+%
+Again we draw a frame around the label. By default the box would
+expand to fill the space of the two columns, but we prevent this
+through a \qcode{Fixed} size policy.
 
-As it is, since there are no stretch factors set, the space allocated
-to each row and column would be identical when resized. To force the
-space to go to the text widget, we set a positive stretch factor for the 3rd row and
-2nd column. Since the others have the default stretch factor of $0$,
-this will allow that cell to grow when the widget is resized.
+Since there are no stretch factors set, the space allocated to each
+row and column would be identical when resized. To allocate extra
+space to the text area, we set a positive stretch factor for the third
+row and second column:
 <<results=hide>>=
 lyt$setRowStretch(2, 1)
 lyt$setColumnStretch(1,1)
 @ 
+%
+As it is the only item with a positive stretch factor, it will be the
+only widget to expand when the parent widget is resized.
 
 <<echo=FALSE, results=hide>>=
 w$show()
