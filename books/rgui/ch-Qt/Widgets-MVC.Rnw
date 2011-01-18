@@ -83,6 +83,7 @@ numeric vectors, as well as adhere to the numeric formatting settings
 in \function{options()}, namely \qcode{digits} and \qcode{scipen}.
 
 %% TODO: basic manipulation of QTableView 
+%% TODO: memory management (keeping models alive with a parent)
 
 \section{Displaying Lists}
 \label{sec:displaying-lists}
@@ -387,13 +388,17 @@ The change in selection is communicated as two
 for the deselected items.  We update a vector of the selected
 indices according to the change.
 
+%% Does not seem to add very much
+% \begin{example}{Selection of variables}{eg:qt-selection-from-tablewidget}
+%   \SweaveInput{ex-qt-table-selection}
+% \end{example}
+
 \section{Sorting and Filtering}
 
 One of the benefits of the MVC design is that models can serve as
 proxies for other models. Two common applications of proxy models are
 sorting and filtering. Decoupling the sorting and filtering from the
-source model avoids modifying the original data. This is a requirement
-for immutable models, like \class{DataFrameModel}. The filtering and
+source model avoids modifying the original data. The filtering and
 sorting is dynamic, in the sense that no data is actually stored in
 the proxy. The proxy delegates to the child model, while mapping
 indices between the filtered and unfiltered (or sorted and unsorted)
@@ -443,14 +448,26 @@ column are allowed past the filter. The pattern is a \class{QRegExp},
 which supports several different syntax forms, including: fixed
 strings, wildcards (globs), and regular expressions. For example, we
 can filter for cars made by Mercedes:
-<<qt-qvc-proxy-filter>>=
+<<qt-mvc-proxy-filter>>=
 proxy$filterKeyColumn <- 0
 proxy$filterRegExp <- Qt$QRegExp("^Merc")
 @ 
 %
 This approach should satisfy the majority of use cases. To achieve
 more complex filtering, including filtering of columns, subclassing is
-necessary.
+necessary. 
+
+It is also possible to hide rows and columns at the view by calling
+\method{setColumnHidden}{QTableView} or
+\method{setRowHidden}{QTableView}. For example, we hide the
+\qcode{Price} column:
+<<qt-mvc-table-hidden>>=
+tableView$setHidden(4, TRUE)
+@ 
+%
+For row filtering, the proxy model approach is usually preferable to
+hiding view rows, as the filtering will apply to all views of the
+data.
 
 \section{Decorating Items}
 
@@ -553,49 +570,6 @@ cat(booktabs(df,
              caption="Partial list of roles that an item can hold data for and the class of the data.",
              label="tab:qt:enum:itemDataRole"))
 @
-
-%% Could work into previous sections
-\section{Table View Details}
-\label{ssec:table-views}
-
-Columns (similarly rows) may be hidden or shown through the
-\method{setColumnHidden}{QTreeView} method. Their widths can be
-adjusted by the mouse, or through
-\method{setColumnWidth}{QTreeView}. The grid style can be adjusted
-through \method{setGridStyle}{QTreeView}.
-
-The view may allow sorting of the underlying model. This is enabled
-through \method{setSortingEnabled}{QTreeView}. The method
-\method{sortByColumn}{QTreeView} can be called specifying the column
-and a sort order (e.g. \code{Qt\$Qt\$AscendingOrder}).
-
-
-\paragraph{Headers}
-The table view has headers, horizontal ones for the columns and
-vertical ones for the rows. The methods
-\method{verticalHeader}{QTreeView} and
-\method{horizontalHeader}{QTreeView} return instances of the
-\class{QHeaderView} class. This class has many methods. We mention
-\method{setHidden}{QHeaderView}, to suppress the header display;
-\method{showSortIndicator}{QHeaderView}, to display a sort arrow; and
-\method{setStretchLastSection}, to strech the last section to fill the
-space. For tree views, this is \code{TRUE} for horizontal headers but
-not for table views.
-
-
-\begin{example}{Using a custom model to edit a data frame}{eg:qt-editable-data}
-  \SweaveInput{ex-qt-edit-data-frame}
-\end{example}
-
-%% FIXME: these need to be ported to QTableView
-
-\begin{example}{Selection of variables}{eg:qt-selection-from-tablewidget}
-  \SweaveInput{ex-qt-table-selection}
-\end{example}
-
-\begin{example}{A drag and drop interface to \function{xtabs}}{eg:qt-dnd-table}
-  \SweaveInput{ex-qt-dnd-table}
-\end{example}
 
 \section{Displaying Hierarchical Data}
 
@@ -726,6 +700,52 @@ editor widget for some data type, it is necessary to subclass
 \class{QItemEditorCreatorBase} and register an instance with the
 item editor factory.
 
+\section{Drag and Drop in Item Views}
+\label{sec:qt-mvc-dnd}
+
+The item views have native support for drag and drop. All of the
+built-in models, as well as \class{DataFrameModel}, communicate data
+in a common format so that drag and drop works automatically between
+views. \class{DataFrameModel} also provides its data in the R
+serialization format, corresponding to the
+\qcode{application/x-rlang-transport} MIME type. This facilitates
+implementing custom drop targets for items in R. 
+
+Dragging is enabled by setting the
+\property{dragEnabled}{QAbstractItemView} property to \qcode{TRUE}:
+<<qt-mvc-dnd-dragenabled>>=
+view$dragEnabled <- TRUE
+@ 
+%
+Enabling drops is the same as for any other widget, with one addition:
+<<qt-mvc-dnd-acceptdrops>>=
+view$acceptDrops <- TRUE
+view$showDropIndicator <- TRUE
+@
+%
+The second line tells the view to visually indicate where the item
+will be dropped. The following enables
+moving items within a view, i.e., reordering:
+<<qt-mvc-dnd-internalmove>>=
+view$dragDropMode <- Qt$QAbstractItemView$InternalMove
+@ 
+%
+However, that will prevent receiving drops from other views, and
+dragging to other views will always be a move, not a copy.
+
+Although we have enabled drag and drop on the view, the level of
+support actually depends on the model. The supported actions may be
+queried with \method{supportedDragActions}{QAbstractItemModel} and
+\method{supportedDropActions}{QAbstractItemModel}. The item flags
+determine whether an individual item may be dragged or dropped upon.
+Most of the built-in models will support both copy and move actions,
+when dragging or dropping. \class{DataFrameModel} only supports copy
+actions when dragging; dropping is not supported.
+
+\begin{example}{A drag and drop interface to \function{xtabs}}{eg:qt-dnd-table}
+  \SweaveInput{ex-qt-dnd-table}
+\end{example}
+
 %% MFL: Arguable as to whether we even need to discuss these in depth
 \section{Widgets With Internal Models}
 
@@ -739,14 +759,16 @@ provides a set of view widgets with internal models:
 \item[\class{QTreeWidget}] for a tree table.
 \end{description}
 In our experience, the convenience of these classes is not worth the
-loss in flexibility from relying on a hard-coded data
-model. \class{QTableWidget}, in particular, precludes the use of
+loss in flexibility and other advantages of the model/view design
+pattern. \class{QTableWidget}, in particular, precludes the use of
 \class{DataFrameModel}, so \class{QTableWidget} is usually not nearly
 as convenient or performant as the model-based
 \class{QTableView}. Thus, we are inclined to omit a detailed
 description of these widgets. However, we will describe
-\class{QListWidget}, out of an acknowledgement that displaying a
-short simple list of items is a common task in a GUI.
+\class{QListWidget}, out of an acknowledgement that displaying a short
+simple list of items is a common task in a GUI.
+
+\subsection{Displaying Short, Simple Lists}
 
 \class{QListWidget} is an easy-to-use widget for displaying
 a set of items for selection. As with combo boxes, we can populate the
@@ -844,7 +866,6 @@ the \qcode{CheckedStateRole}.
 \section{Implementing Custom Models}
 \label{sec:using-model-with}
 
-
 \paragraph{Required methods}
 The basic implementation of a subclass must provide the methods 
 \meth{rowCount}, \meth{columnCount}, and \meth{data}.  The first two
@@ -864,6 +885,11 @@ returned, as this is mapped to a null instance of \class{QVariant}.
 One may also implement the \meth{headerData} method to return the
 appropriate data to display in the header for a given role. The main
 one being \code{Qt\$Qt\$DisplayRole}.
+
+\begin{example}{Using a custom model to edit a data frame}{eg:qt-editable-data}
+  \SweaveInput{ex-qt-edit-data-frame}
+\end{example}
+
 
 \paragraph{Editable Models}
 For editable models, one must implement the \meth{flags} method to

@@ -7,9 +7,18 @@ w <- Qt$QGroupBox("Selection example")
 @ 
 
 This example shows how to use the table widget to select variable
-names in a data set. The \class{QListWidget} can also be used for
-this, but with the table widget we can add more detail in other columns
-We begin by placing the table widget into a box layout.
+names in a data set. \class{QListView} could also display such a list;
+we choose \class{QTableView} in order to add details in extra columns.
+We assume we have a data frame, \code{df}, with two columns -- one for
+the variable name and one for detail, in this case the class of the
+variable:
+<<dataFrame, echo=FALSE>>=
+## populate table
+df <- data.frame(variable=names(Cars93),
+                 class = sapply(sapply(Cars93, class), paste, collapse=", "))
+@ 
+
+We begin by placing the table widget into a box layout:
 <<tableWidget, results=hide>>=
 tbl <- Qt$QTableWidget()
 tbl$setSizePolicy(Qt$QSizePolicy$Expanding, Qt$QSizePolicy$Expanding) 
@@ -18,7 +27,7 @@ lyt <- Qt$QVBoxLayout()
 lyt$addWidget(tbl)
 @ 
 
-We use a \class{QDialogButtonBox} to hold our two buttons.
+We use a \class{QDialogButtonBox} to hold our two buttons:
 <<buttonBox, results=hide>>=
 db <- Qt$QDialogButtonBox()
 lyt$addWidget(db)
@@ -30,16 +39,6 @@ qconnect(db, "accepted", function() runCommand())
 qconnect(db, "rejected", function() w$hide())
 @ 
 
-We assume we have a data frame, \code{df}, with two columns -- one for
-the variable name and one for detail, in this case the class of the variable.
-<<dataFrame, echo=FALSE>>=
-## populate table
-df <- Cars93
-df <- data.frame(variable=names(df),
-                 class <-sapply(sapply(df, class), paste, collapse=", "),
-                 stringsAsFactors=FALSE  ## Items like character -- not factor
-                 )
-@ 
 
 We populate our table first by setting its dimensions and then setting
 the headers. We stretch the last column and set the column width of

@@ -2,215 +2,197 @@
 library(qtbase)
 #rm(list=ls())                           # clear out
 @ 
-<<DND-TableWidget, echo=FALSE, eval=FALSE,  results=hide>>=
-## a dnd table interface, kinda like JMP
-## This part is not shown as it appears in an earlier example
 
-## A subclass of ListWidget so that we can drag values
-qsetClass("DraggableListWidget", Qt$QListWidget, function(parent=NULL) {
-  super(parent)
-  this$df <- NULL
-})
-qsetMethod("setDf", DraggableListWidget, function(df) this$df <- df)
+\begin{figure}
+  \centering
+  \includegraphics[width=.6\textwidth]{fig-qt-table-dnd}
+  \caption{A table widget to display contingency tables and a means to
+    specify the variables through drag and drop.}
+  \label{fig:eg:qt-table-widget-dnd}
+\end{figure}
 
-qsetMethod("mousePressEvent", DraggableListWidget, function(e) {
-  item <- itemAt(e$pos())
-  val <- list(df=this$df, var=item$text())
+This examples uses a table view to display the output from
+\function{xtabs}. To specify the variables, the user drags variable
+names from a list to one of two labels, representing terms in the formula.
 
-  md <- Qt$QMimeData()
-  md$setData("R/serialized-data", serialize(val, NULL))
-
-  drag <- Qt$QDrag(this)
-  drag$setMimeData(md)
-
-  drag$exec(Qt$Qt$CopyAction | Qt$Qt$MoveAction, Qt$Qt$CopyAction)
-
-})
-
-## A new widget with a combobox and a variable list
-## This combines a combobox to select a data frame and a variable list
+First, we define the \class{VariableSelector} widget, which contains a
+combo box for choosing a data frame and a list view for the variable
+names. When a data frame is chosen in the combo box, its variables are
+shown in the list:
+<<qt-mvc-dnd-variable-selector>>=
 qsetClass("VariableSelector", Qt$QWidget, function(parent=NULL) {
   super(parent)
   ## widgets
   this$dfcb <- Qt$QComboBox()
-  this$varList <-  DraggableListWidget()
+  this$varList <- Qt$QListView()
+  this$varList$setModel(qdataFrameModel(data.frame(), this))
+  this$varList$dragEnabled <- TRUE
+
   ## layout
   lyt <- Qt$QVBoxLayout()
   lyt$addWidget(dfcb)
   lyt$addWidget(varList)
   varList$setSizePolicy(Qt$QSizePolicy$Expanding, Qt$QSizePolicy$Expanding)
   setLayout(lyt)
-
+  
   updateDataSets()
   qconnect(dfcb, "activated", function(ind) {
-    updateVarList(dfcb$currentText)
+    this$dataFrame <- dfcb$currentText
   })
 })
+@ 
+%
 
+This utility populates the combo box with a list of data frames:
+<<qt-mvc-dnd-update-datasets>>=
 qsetMethod("updateDataSets", VariableSelector, function() {
   curVal <- this$dfcb$currentText
   this$dfcb$clear()
-  x <- ls(envir=.GlobalEnv)
-  dfs <- x[sapply(x, function(i) is.data.frame(get(i, inherits=TRUE)))]
+  dfs <- names(which(unlist(eapply(.GlobalEnv, is.data.frame))))
   if(length(dfs)) {
     this$dfcb$addItems(dfs)
     if(is.null(curVal) || !curVal %in% dfs) {
-      this$dfcb$setCurrentIndex(-1)
-      updateVarList(NULL)
+      this$dfcb$currentIndex <- -1
+      this$dataFrame <- NULL
     } else {
-      this$dfcb$setCurrentIndex(which(curVal == dfs))
-      updateVarList(curVal)               # curVal NULL, or a name
+      this$dfcb$currentIndex <- which(curVal == dfs)
+      this$dataFrame <- curVal
     }
-  }
-})
-
-getIconFile <- function(x) UseMethod("getIconFile")
-getIconFile.default <- function(x)
-  Qt$QIcon(system.file("images/numeric.gif", package="gWidgets"))
-getIconFile.factor <- function(x)
-  Qt$QIcon(system.file("images/factor.gif", package="gWidgets"))
-getIconFile.character <- function(x)
-  Qt$QIcon(system.file("images/character.gif", package="gWidgets"))
-
-
-
-qsetMethod("updateVarList", VariableSelector, function(df=NULL) {
-  
-  this$varList$setDf(df)
-  this$varList$clear()
-  if(!is.null(df)) {
-    d <- get(df)
-    nms <- names(d)
-    sapply(nms, function(i) {
-      item <- Qt$QListWidgetItem(i, this$varList)
-      item$setIcon(getIconFile(d[,i]))
-    })
   }
 })
 @ 
 
+The data frame is stored in the following property:
+<<qt-mvc-dnd-dataset>>=
+qsetProperty("dataFrame", VariableSelector, write = function(df) {
+  if (is.null(df))
+    df <- data.frame()
+  else if (is.character(df)) 
+    df <- get(dfname, .GlobalEnv)
+  model <- this$varList$model()
+  qdataFrame(model) <- data.frame(variable = names(df), 
+                                  variable.decoration = I(lapply(df, getIcon)))
+  this$.dataFrame <- df
+  dataFrameChanged()
+})
+@ 
+%
+When the property is written, the variable list is updated and it
+emits this signal:
+<<qt-mvc-dnd-datasetChanged>>=
+qsetSignal("dataFrameChanged", VariableSelector)
+@ 
+%
+The \function{getIcon} generic resolves an icon from the class of a
+column:
+<<qt-mvc-dnd-getIcon>>=
+getIcon <- function(x) UseMethod("getIcon")
+getIcon.default <- function(x)
+  Qt$QIcon(system.file("images/numeric.gif", package="gWidgets"))
+getIcon.factor <- function(x)
+  Qt$QIcon(system.file("images/factor.gif", package="gWidgets"))
+getIcon.character <- function(x)
+  Qt$QIcon(system.file("images/character.gif", package="gWidgets"))
+@ 
 
-\begin{figure}
-  \centering
-  \includegraphics[width=.6\textwidth]{fig-qt-table-dnd}
-  \caption{A table widget to display contingency tables and a means to specify the variables through drag and drop.}
-  \label{fig:eg:qt-table-widget-dnd}
-\end{figure}
-
-
-
-This examples uses a table widget to display the output from
-\function{xtabs}. To specify the variable names, we use the
-\class{VariableSelector} class defined in
-Example~\ref{eg-qt-select-variable}. That provides a means to drag the
-variable. We next define a drop label, similar to that defined in
-Example~\ref{source("ex-qt-dnd-table.R")}. We show the major
-differences only. Our constructor is similar, but adds three
-properties: a function to call for the drop event, a value beyond the
-text, and an angle for text rotation. We define accessors for these
-properties, but do not show them here.
+Next, a derivative of \class{QLabel} is defined that accepts drops
+from the variable list and is capable of rotating text for displaying
+the $Y$ component:
 <<DropLabelRotation, results=hide>>=
-qsetClass("DropLabelRotation", Qt$QLabel, function(parent=NULL) {
+qsetClass("VariableLabel", Qt$QLabel, function(parent=NULL) {
   super(parent)
-
-  this$dropFunction <- function(obj, data) {}
-  this$value <- list(df=NULL, var=NULL)
-  this$angle <- 0L
-
+  this$rotation <- 0L
   setAcceptDrops(TRUE)
   setAlignment(Qt$Qt$AlignHCenter | Qt$Qt$AlignVCenter)
 })
 @ 
+%
+We define two properties, one for the rotation and the other for the
+variable name, which is not always the same as the label text:
+<<qt-mvc-dnd-rotation>>=
+qsetProperty("rotation", VariableLabel)
+qsetProperty("variableName", VariableLabel)
+@ 
+%
+To enable client code to respond to a drop, we define a signal:
+<<qt-mvc-dnd-drop>>=
+qsetSignal("variableNameDropped", VariableLabel)
+@ 
 
-<<echo=FALSE, results=hide>>=
-## Not shown. Nothing really of novelty here
-qsetMethod("setDropFunction", DropLabelRotation, function(fn) {
-  this$dropFunction <- fn
-})
-## value are names of data frame and variable
-qsetMethod("getValue", DropLabelRotation, function() this$value)
-qsetMethod("setValue", DropLabelRotation, function(value=list(df=NULL, var=NULL)) {
-  if(is.list(value))
-    this$value <- value
-})
-## rotation
-qsetMethod("setRotation", DropLabelRotation, function(angle) {
-  this$angle <- as.integer(angle)
-})
-
+This utility tries to extract a variable name from the MIME data,
+which \class{DataFrameModel} should have serialized appropriately:
+<<qt-mvc-dnd-get-variable-name>>=
+variableNameFromMimeData <- function(md) {
+  name <- NULL
+  RDA_MIME_TYPE <- "application/x-rlang-transport"
+  if(md$hasFormat(RDA_MIME_TYPE)) {
+    list <- unserialize(md$data(RDA_MIME_TYPE))
+    if (length(list) && is.character(list[[1]]))
+      name <- list[[1]]
+  }
+  name
+}
 @ 
 
 To handle the drag events we override the methods
 \event{dragEnterEvent}, \event{dragLeaveEvent}, and
-\event{dropEvent}. Only the latter is shown. For that we check for data
-with MIME type \code{R/serialized-data}. In that case, we call
-\function{unserialize} on the data and then the function in the
-\prop{dropFunction} property.
-
-<<echo=FALSE, results=hide>>=
-qsetMethod("dragEnterEvent", DropLabelRotation, function(e) {
-  setForegroundRole(Qt$QPalette$Dark)
-  e$acceptProposedAction()
+\event{dropEvent}. The first two simply change the background of the
+label to indicate a valid drop: 
+<<results=hide>>=
+qsetMethod("dragEnterEvent", VariableLabel, function(e) {
+  md <- e$mimeData()
+  if(!is.null(variableNameFromMimeData(md))) {
+    setForegroundRole(Qt$QPalette$Dark)
+    e$acceptProposedAction()
+  }
 })
-  
-
-qsetMethod("dragLeaveEvent", DropLabelRotation, function(e) {
+qsetMethod("dragLeaveEvent", VariableLabel, function(e) {
   setForegroundRole(Qt$QPalette$WindowText)
   e$accept()
 })
 @ 
 
+To handle the drop, we get the variable name, set the text of the
+label and emit the \signal{variableNameDropped}{VariableLabel} signal:
 <<dropEvent, results=hide>>=
-qsetMethod("dropEvent", DropLabelRotation, function(e) {
+qsetMethod("dropEvent", VariableLabel, function(e) {
   setForegroundRole(Qt$QPalette$WindowText)  
   md <- e$mimeData()
-  if(md$hasFormat("R/serialized-data")) {
-    data <- unserialize(md$data("R/serialized-data"))
-    dropFunction(this, data)
+  if(!is.null(this$variableName <- variableNameFromMimeData(md))) {
+    this$text <- variableName
+    variableNameDropped()
     setBackgroundRole(Qt$QPalette$Window)
     e$acceptProposedAction()
   }
 })
 @ 
 
-
-For this application we want to be able to show text in the drop label
-in a rotated state. The following allows this. We override the
-\event{paintEvent} event if the \prop{angle} property is non-zero,
-otherwise we call the parent class's paint event. The chapter on
-\pkg{qtpaint} will cover the techniques used in
-\meth{drawRotatedText}. In short we translate the origin to the center
-of the label's rectangle, rotate coordinates by the angle, then place
-the text within this new rectangle/
-
+To complete the \class{VariableLabel} class, we override the
+\event{paintEvent} event to respect the
+\property{rotation}{VariableLabel} class. Drawing low-level graphics is
+beyond our scope. In short we translate the origin to the center
+of the label rectangle, rotate the coordinate system by the angle,
+then draw the text:
 <<results=hide>>=
-qsetMethod("paintEvent", DropLabelRotation, function(e) {
-  if(!this$angle) {
-    super("paintEvent", e)
-  } else {
-    p <- Qt$QPainter()
-    p$begin(this)
-    this$drawRotatedText(p)
-    p$end()
-  }
-})
-
-qsetMethod("drawRotatedText", DropLabelRotation, function(p) {
+qsetMethod("paintEvent", VariableLabel, function(e) {
+  p <- Qt$QPainter()
+  p$begin(this)
   w <- this$width; h <- this$height
   p$save()
   p$translate(w/2, h/2)
-  p$rotate(this$angle)
-  p$drawText(qrect(-h, -w, h, w), Qt$Qt$AlignCenter, this$text)
+  p$rotate(-(this$rotation))
+  rect <- p$boundingRect(0, 0, 0, 0, Qt$Qt$AlignCenter, this$text)
+  p$drawText(rect, Qt$Qt$AlignCenter, this$text)
   p$restore()
+  p$end()
 })
 @ 
 
-
-Our main widget consists of three widgets: two drop labels for the
-contingency table and a table widget to show the output. This could be
-extend to include a third variable for three-way tables, but we leave
+Our main widget consists of three child widgets: two drop labels for the
+formula and a table widget to show the output. This could be
+extended to include a third variable for three-way tables, but we leave
 that exercise for the interested reader. The constructor simply calls
-two methods to be defined next.
+two methods:
 <<XtabsWidget>>=
 qsetClass("XtabsWidget", Qt$QWidget, function(parent=NULL) {
   super(parent)
@@ -219,48 +201,44 @@ qsetClass("XtabsWidget", Qt$QWidget, function(parent=NULL) {
   initLayout()
 })
 @ 
+%
 
-We have three widgets to initialize. The \code{xlabel} is pretty
-basic: we define a widget and set a drop function. For the
-\code{ylabel} we also adjust the rotation and constrain the width
-based on the font size. The latter is
-necessary, as otherwise the label width reflects the length of the
-dropped text. The \meth{clearLabels} just sets the text and
-initializes the values for the labels. It is not shown.
+We do not list the \method{initLayout}{XtabsWidget} method, as it
+simply adds the widgets to a grid layout. The
+\method{initWidgets}{XtabsWidget} method initializes three widgets:
 <<initWidgets, results=hide>>=
 qsetMethod("initWidgets", XtabsWidget, function() {
   ## make Widgets
-  this$xlabel <- DropLabelRotation()
-  this$ylabel <- DropLabelRotation()
+  this$xlabel <- VariableLabel()
+  qconnect(xlabel, "variableNameDropped", invokeXtabs)
+
+  this$ylabel <- VariableLabel()
   pt <- this$ylabel$font$pointSize()
-  this$ylabel$setMinimumWidth(2*pt); this$ylabel$setMaximumWidth(2*pt)
-  this$ylabel$setRotation(-90L)
-
-  this$tw <- Qt$QTableWidget()
-
+  this$ylabel$minimumWidth <- 2*pt; this$ylabel$maximumWidth <- 2*pt
+  this$ylabel$rotation <- 90L
+  qconnect(ylabel, "variableNameDropped", invokeXtabs)
+  
+  this$tableView <- Qt$QTableView()
+  this$tableView$setModel(qdataFrameModel(data.frame(), this))
   clearLabels()
-    
-  f <- function(obj, data) {
-    obj$setValue(data)
-    obj$setText(data$var)
-    this$makeTable()
-  }
-  this$xlabel$setDropFunction(f)
-  this$ylabel$setDropFunction(f)
 })
 @ 
+%
+The \code{xlabel} is straight-forward: we construct it connect to the
+drop signal. For the \code{ylabel} we also adjust the rotation and
+constrain the width based on the font size (otherwise the label width
+reflects the length of the dropped text). The \meth{clearLabels}
+method, not shown, just initializes the labels.
 
 <<echo=FALSE, results=hide>>=
 ## Not shown
 qsetMethod("clearLabels", XtabsWidget, function() {
   pt <- this$xlabel$font$pointSize()
-  this$xlabel$setText("Drop x factor here")
-  this$xlabel$setValue()
-  this$xlabel$setMinimumHeight(2*pt)
+  this$xlabel$text <- "Drop x factor here"
+  this$xlabel$minimumHeight <- 2*pt
   
-  this$ylabel$setText("Drop y factor here")
-  this$ylabel$setValue()
-  this$ylabel$setMinimumWidth(2*pt)
+  this$ylabel$text <- "Drop y factor here"
+  this$ylabel$minimumWidth <- 2*pt
 })
 @ 
 
@@ -271,86 +249,70 @@ qsetMethod("initLayout", XtabsWidget, function() {
   this$setLayout(lyt)
   lyt$addWidget(this$xlabel, 0, 1, 1, 3)
   lyt$addWidget(this$ylabel, 1, 0, 1, 1)
-  lyt$addWidget(this$tw, 1, 1, 1, 3)
+  lyt$addWidget(this$tableView, 1, 1, 1, 3)
   
   lyt$setColumnStretch(2, 1)
   lyt$setRowStretch(1, 1)
 })
 @ 
 
-We don't show the layout code for this widget, it is a simple
-application of \class{QGridLayout}, but do show how we create the call
-to xtabs to create the data after the drop events.
+This function builds the formula, invokes \function{xtabs} and updates
+the table view:
 <<makeTable, results=hide>>=
-qsetMethod("makeTable", XtabsWidget, function() {
-  df <- this$xlabel$getValue()$df
-  if(is.null(xVar <- this$xlabel$getValue()$var)) {
+qsetMethod("invokeXtabs", XtabsWidget, function() {
+  if (is.null(dataFrame))
+    return()
+  if(is.null(xVar <- this$xlabel$variableName)) {
     out <- NULL
-  } else if(is.null(yVar <- this$ylabel$getValue()$var)) {
+  } else if(is.null(yVar <- this$ylabel$variableName)) {
     f <- formula(sprintf("~ %s", xVar))
-    out <- xtabs(f, data=get(df))
+    out <- xtabs(f, data=get(dataFrame))
   } else { 
     f <- formula(sprintf("~ %s + %s", yVar, xVar))
-    out <- xtabs(f, data=get(df))
+    out <- xtabs(f, data=get(dataFrame))
   } 
   if(!is.null(out))
-    updateTableWidget(out)
+    updateTableView(out)
 })
 @ 
 
-Finally, for the \class{XtabsWidget} class we define a method to
-update the table widget. We have two cases and the code repeats itself
-a bit. The basic tasks are to set the dimensions of the table, update
-the header labels, and then populate the table.
+We define a method to update the table view:
 <<updateTableWidget, results=hide>>=
-qsetMethod("updateTableWidget", XtabsWidget, function(out) {
-  tw <- this$tw
-  tw$clear()
-  ndims <- length(dim(out))
-  if(ndims == 1) {
-    tw$setRowCount(1)
-    tw$setColumnCount(dim(out))
-
-    tw$setHorizontalHeaderLabels(names(out))
-    tw$horizontalHeader()$setVisible(TRUE)
-    tw$verticalHeader()$setVisible(FALSE)
-    sapply(seq_along(out), function(i) {
-      item <- Qt$QTableWidgetItem(as.character(out[i]))
-      item$setTextAlignment(Qt$Qt$AlignRight)
-      tw$setItem(0, i-1, item)
-    })
-
-  } else if(ndims == 2) {
-    tw$setRowCount(dim(out)[1])
-    tw$setColumnCount(dim(out)[2])
-
-    tw$setHorizontalHeaderLabels(colnames(out))
-    tw$setVerticalHeaderLabels(rownames(out))
-    tw$horizontalHeader()$setVisible(TRUE)
-    tw$verticalHeader()$setVisible(TRUE)
-
-    for(i in 1:dim(out)[1]) 
-      for(j in 1:dim(out)[2]) {
-        item <- Qt$QTableWidgetItem(as.character(out[i,j]))
-        item$setTextAlignment(Qt$Qt$AlignRight)
-        tw$setItem(i-1, j-1, item)
-      }
-  } 
+qsetMethod("updateTableView", XtabsWidget, function(table) {
+  model <- this$tableView$model()
+  if (length(dim(table)) == 1)
+    qdataFrame(model) <- data.frame(count = unclass(table))
+  else qdataFrame(model) <- data.frame(unclass(table))
 })
 @ 
 
-Figure~\ref{fig:eg:qt-table-widget-dnd} shows the widget placed within a splitter window after a
-few variables have been dragged.
+Finally, we define a property for the data frame on
+\class{XtabsWidget}:
+<<qt-mvc-dnd-dataframe-xtabs>>=
+qsetProperty("dataFrame", XtabsWidget, write = function(df) { 
+  clearLabels()
+  this$.dataFrame <- df
+})
+@ 
 
+All that remains is to place the \class{VariableSelector} and
+\class{XtabsWidget} together in a split pane and then connect a
+handler that keeps the datasets synchronized:
 <<echo=FALSE, results=hide>>=
 ## Not shown
 require(MASS); data(Cars93); data(Aids2)
+@ 
+<<results=hide>>=
 w <- Qt$QSplitter()
-w$setWindowTitle("Table Widget with dnd")
+w$setWindowTitle("GUI for xtabs()")
 w$addWidget(vs <- VariableSelector())
 w$addWidget(tw <- XtabsWidget())
 w$setStretchFactor(1, 1)
-
-#w$show()
-#w$raise()
+qconnect(vs, "dataFrameChanged", function() {
+  tw$dataFrame <- vs$dataFrame
+})
+w$show()
 @ 
+%
+Figure~\ref{fig:eg:qt-table-widget-dnd} shows the result, after the
+user has dragged two variables onto the labels.
