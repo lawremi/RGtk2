@@ -6,7 +6,7 @@ The \pkg{party} package implements a recursive partitioning algorithm
 for tree-based regression and classification models. The package
 provides an excellent \code{plot} method for the object, but in this
 example we demonstrate how the \code{gtree} widget can be used to
-display the heiarchical nature of the fitted object. As working
+display the hierarchical nature of the fitted object. As working
 directly with the return object, is not for the faint of heart, such a
 GUI can be useful.
 
@@ -19,7 +19,7 @@ data("GlaucomaM", package="ipred")      # load data
 gt <- ctree(Class ~ ., data=GlaucomaM)  # fit model
 @ 
 
-The \pkg{party} object tracks the heirarchical nature through its
+The \pkg{party} object tracks the hierarchical nature through its
 nodes. This object has a complex structure using lists to store data
 about the nodes. We define an \code{offspring} function next that
 tracks the node by number, as is done in the \pkg{party} object;

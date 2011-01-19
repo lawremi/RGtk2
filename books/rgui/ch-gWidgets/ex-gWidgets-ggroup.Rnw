@@ -1,5 +1,5 @@
 <<echo=FALSE>>=
-## example to sho nesting of vertical and horizontal box containers
+## example to show nesting of vertical and horizontal box containers
 require(gWidgets)
 @ 
 

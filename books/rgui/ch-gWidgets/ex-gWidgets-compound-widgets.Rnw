@@ -1,5 +1,5 @@
 This example shows how to use drag and drop to create a simple
-interface to plot a number value. The implemenation of drag and drop
+interface to plot a number value. The implementation of drag and drop
 is unfortunately a bit toolkit dependent. In this use, for
 \pkg{gWidgetstctlk} one must first select the value by clicking before
 dragging. For \pkg{gWidgetsRGtk2}, the \code{addDropTarget} for

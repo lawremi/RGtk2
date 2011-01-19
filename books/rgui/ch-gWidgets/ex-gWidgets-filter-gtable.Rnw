@@ -52,7 +52,7 @@ ourMatch <- function(curVal, vals) {
 @ 
 
 Finally, the \code{addHandlerKeystroke} method calls its handler
-everytime a key is released while the focus is in the edit widget. In
+every time a key is released while the focus is in the edit widget. In
 this case, the handler finds the matching indices using the
 \code{ourMatch} function, converts these into logical format, and then
 updates the display using the \meth{visible\ASSIGN} method for

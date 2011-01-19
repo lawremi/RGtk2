@@ -19,7 +19,7 @@ tbl[1,2] <- (e <- gedit("", cont = tbl))
 @ 
 
 
-We use the \pkg{evaluate} package to see if the expresssion is valid.
+We use the \pkg{evaluate} package to see if the expression is valid.
 <<>>=
 require(evaluate)
 isValid <- function(e) {

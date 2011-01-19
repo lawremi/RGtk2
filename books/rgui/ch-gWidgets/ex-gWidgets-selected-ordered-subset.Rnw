@@ -95,7 +95,7 @@ moveDown <- function() {
 @ 
 
 <<>>=
-## handlers assigning previoius functions to button clicks
+## handlers assigning previous functions to button clicks
 
 addHandlerClicked(selectFrom, handler=function(h,...) {
   updateUI()

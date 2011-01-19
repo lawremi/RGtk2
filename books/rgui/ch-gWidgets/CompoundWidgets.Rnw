@@ -118,7 +118,7 @@ plot(x, y)
 \label{sec:gWidgets-an-editor-tabular}
 
 The \constructor{gdf} constructor returns a widget for editing data
-frames. The intent is for each toolkit to produce a widget atleast as
+frames. The intent is for each toolkit to produce a widget at least as
 powerful as the \function{data.entry} function. The implementations
 differ between toolkits, with some offering much more. We describe
 what is in common below.~\footnote{ For \pkg{gWidgetstcltk}, there is
@@ -227,7 +227,7 @@ modest enough. Otherwise it can be done by request.
 The \constructor{ghelp} constructor produces a widget for showing help
 pages using a notebook container. Although \R\/ now has excellent
 ways to dynamically view help pages through a web browser (in
-particuluar the \pkg{helpr} package and the standard built-in help
+particular the \pkg{helpr} package and the standard built-in help
 page server) this widget provides an alternative.
 
 To add a help page, the \method{add}{ghelp} method is used,
@@ -265,7 +265,7 @@ methods return the command history.
 \subsection{Simplifying creation of dialogs}
 \label{sec:gWidgets-designing-forms}
 
-The \pkg{gWidgets} package has two means to simpify the creation of
+The \pkg{gWidgets} package has two means to simplify the creation of
 GUIs.~\footnote{The \pkg{traitr} package provides another, but is not
   discussed here.} The \code{gformlayout} constructor takes a list defining a
 layout and produces a GUI, the \code{ggenericwidget} constructor can
@@ -278,7 +278,7 @@ manual pages.
 % \label{sec:gWidgets-laying-out-form}
 
 % % ML: replaced 'component' with 'element' for components of list, to
-% % distuingish them from components of the GUI
+% % distinguish them from components of the GUI
 
 % % ML: this is another place where it would be good to see the example first
 % %% JV: Good ideas, done.

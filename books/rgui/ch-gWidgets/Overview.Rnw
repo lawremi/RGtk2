@@ -155,7 +155,7 @@ gname(arguments, handler = NULL, action = NULL,
 where the \code{arguments} vary depending on the object being made. 
 
 In the above, we see that the \code{gwindow} constructor, for a
-top-level window, has two arguments passed in, an unamed one for a
+top-level window, has two arguments passed in, an unnamed one for a
 window title and a value for the \code{visible} property. Whereas the
 \code{ggroup} constructor takes all the default arguments except for
 the parent container.
@@ -194,7 +194,7 @@ widgets); and dialogs.
 
 %% container argument
 % ML: this has already been well explained in preceeding chapters
-% A GUI consists of a heiarchical nesting of containers. Each container
+% A GUI consists of a hierarchical nesting of containers. Each container
 % may contain contain controls or additional containers. In a GUI,
 % except for top-level windows (including dialogs), every component and
 % container is the child of some parent container. 
@@ -214,7 +214,7 @@ widgets); and dialogs.
 
 % % toolkit argument
 % The \code{toolkit} can be specified at time of construction allowing
-% tookits, in theory, to be mixed. Otherwise, the \code{guiToolkit}
+% toolkits, in theory, to be mixed. Otherwise, the \code{guiToolkit}
 % function returns the currently selected toolkit, or queries for one if
 % none is selected.  Constructors dispatch on the \code{toolkit} value
 % to call the appropriate constructor in the toolkit implementation. The
@@ -251,7 +251,7 @@ for the familiar S3 generics \generic{[}, \generic{[$<$-},
 \generic{dimnames}, \generic{dimnames$<$-} and \generic{update}.
 
 
-%% savlue
+%% svalue
 In our example, we see two cases of the use of generics defined by
 \pkg{gWidgets}. The call
 <<eval=FALSE>>=
@@ -279,7 +279,7 @@ visible(w) <- TRUE
 @ 
 %
 sets the visibility property of the top-level window. In this example,
-the \code{gwindow} contructor is passed \code{visible=FALSE} to
+the \code{gwindow} constructor is passed \code{visible=FALSE} to
 suppress an initial drawing, making this method call necessary to show
 the GUI.
 
@@ -427,7 +427,7 @@ respond when the user finishes editing, whereas a handler set by
 Table~\ref{tab:gWidgets-callback-methods} shows a list of the these
 other methods.
 
-As an example, we could have specifed the button as
+As an example, we could have specified the button as
 <<eval=FALSE>>=
 b <- gbutton("Click", cont=g)
 ID <- addHandlerClicked(b, handler=function(h, ...) {
@@ -624,7 +624,7 @@ if(!is.na(ret))
 The \pkg{gWidgets} package interfaces with an underlying \R\/ package
 through an intermediate package. For example,
 Figure~\ref{fig:gWidgets-yuml} shows the sequence of calls to produce
-a button. First the \pkg{gWidgest} package dispatches to a toolkit
+a button. First the \pkg{gWidgets} package dispatches to a toolkit
 package (\pkg{gWidgetsRGtk2}), which in turn calls functions in the
 underlying \R\/ package (\pkg{RGtk2}) which in turn calls into the
 graphical toolkit. As such, to use \pkg{gWidgets} with the \GTK\/

@@ -132,7 +132,7 @@ childw <- gwindow("A child window", parent=w, size=c(200,200))
 
 %% dispose/addHandlerUnrealize
 \paragraph{Handlers}
-Windows objects can be closed programatically through their
+Windows objects can be closed programmatically through their
 \method{dispose}{gwindow} method. Windows may also be closed through
 the window manager, by clicking a close icon in the title bar.  The
 \argument{handler}{gwindow} argument is called just before the window
@@ -187,7 +187,7 @@ cat(booktabs(df,
 
 
 The \constructor{gbasicdialog} constructor allows one to place an
-arbirary widget within a modal window. It also adds \kbd{OK} and
+arbitrary widget within a modal window. It also adds \kbd{OK} and
 \kbd{Cancel} buttons. The argument \argument{title}{gbasicdialog} is
 used to specify the window title. 
 
@@ -317,7 +317,7 @@ of these arguments under \pkg{gWidgetsQt}.
   \centering
   \includegraphics[width=.5\textwidth]{fig-gWidgets-ggroup-expand-fill-anchor}
   \caption{Different combinations of \code{expand}, \code{fill} and
-    \code{anchor} for comboboxes in \pkg{gWidgetsQt}. The \code{fill}
+    \code{anchor} for combo boxes in \pkg{gWidgetsQt}. The \code{fill}
     and \code{anchor} arguments
     may be overridden by the underlying toolkit for some widgets.}
   \label{fig:gWidgets-ggroup-expand-fill-anchor}
@@ -448,7 +448,7 @@ The basic framed container is used along these lines:
 w <- gwindow("gframe example")
 f <- gframe("gWidgets Examples:", cont=w)
 files <- list.files(system.file("Examples","ch-gWidgets", 
-                                package="ProgGUIinR"))
+                                package="ProgGUIInR"))
 vars <- gtable(files, cont=f, expand=TRUE)
 @ 
 
@@ -543,7 +543,7 @@ vals <- sapply(seq_len(dim(tbl)[1]), function(i) {
 @ 
 
 
-When adding a child the \code{glayout} container should be specfied as
+When adding a child the \code{glayout} container should be specified as
 the widget's \code{container} and also be on the left hand side of the
 \code{[\ASSIGN} call. (This is necessary only for the toolkits where a
 container must be specified, where the right hand side is used to pass
@@ -585,7 +585,7 @@ have two children specified to the arguments
 \argument{widget1}{gpanedgroup} and \argument{widget2}{gpanedgroup}.)
 
 The main property of this container is the sash position, a value in
-$[0,1]$. This may be configured programatically
+$[0,1]$. This may be configured programmatically
 through the \method{svalue\ASSIGN}{gpanedgroup} method, where a value
 from 0 to 1 specifies the proportion of space allocated to the
 leftmost (topmost) child. This specification only works after the

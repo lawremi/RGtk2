@@ -39,7 +39,7 @@ plotGraphic <- function(...) {
   if(svalue(showLeastSquares)) {
     abline(res)
     svalue(leastSquaresOutput) <-
-      paste("Least squres: y = ",coef(res)[1],
+      paste("Least squares: y = ",coef(res)[1],
             ifelse(coef(res)[2] >0,"+","-"),
             abs(coef(res)[2]),"x")
   } else {

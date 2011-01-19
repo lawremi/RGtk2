@@ -2,7 +2,7 @@
 %% when that issue gets resolved, this should be removed
 <<echo=FALSE, eval=FALSE>>=
 ## An GUI to explore the baseball data set in the plyr package
-## usees several gWidgets controls.
+## uses several gWidgets controls.
 library(plyr)
 library(gWidgets)
 #  stop("Only works with RGtk2 as the toolkit")
@@ -118,7 +118,7 @@ cp <- ggroup(cont=g, horizontal=FALSE, expand=TRUE)
 rp <- ggroup(cont=g, horizontal=FALSE, spacing=10)
 @ 
 
-The left panel holds a short description and a combobox to select the $y$-variable plotted.
+The left panel holds a short description and a combo box to select the $y$-variable plotted.
 <<eval=FALSE>>=
 f <- gframe("About:", cont=lp)
 l <- glabel(paste("A GUI to browse relationships",
@@ -132,7 +132,7 @@ e$y <- gcombobox(nVars, selected=4, cont=g1)
 e$ylog <- gcheckbox("log", checked=FALSE, cont=g1)
 @ 
 
-The center panel holds the \code{ggraphics} object, along wtih controls
+The center panel holds the \code{ggraphics} object, along with controls
 to select the $x$ variable. As well, we add controls to filter out the
 display by either the year a player played and/or their career year. A \code{gtable} instance is used for layout.
 <<eval=FALSE>>=
@@ -159,7 +159,7 @@ enabled(e$year) <- FALSE
 
 The right panel includes a few means to filter the display of
 values. We use a simple \code{gtable} widget to allow the user to
-restrict the display to one or more teams. A combobox allows the user
+restrict the display to one or more teams. A combo box allows the user
 to restrict to one of the historic leagues. To allow certain players
 to stand out, a compound widget is made using a \code{gedit} object to
 filter values, a \code{gtable} object to show all possible IDs, and a

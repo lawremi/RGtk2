@@ -176,6 +176,10 @@ setRefClass("View",
 @ 
 %
 
+The following \class{WidgetView} class uses the template method
+pattern leaving subclasses to construct the widgets through the call
+to \meth{initialize}. 
+
 <<WidgetView, results=hide>>=
 setRefClass("WidgetView",
             contains="View",
@@ -192,9 +196,6 @@ setRefClass("WidgetView",
               },
               init_widget=function(parent, ...) {
                 "Initialize widget"
-              },
-              update=function(...) {
-                "Update method called by notify_observer"
               }))
 @ 
 %
@@ -281,7 +282,7 @@ TableView <-
 %
 
 To illustrate the flexibility of this framework, we also define a
-subclass to show just the data frames in a combobox.
+subclass to show just the data frames in a combo box.
 
 <<DfView>>=
 DfView <-
@@ -301,7 +302,7 @@ DfView <-
 @ 
 %
 
-We can put these pieces together to make a simple GUI. The combobox is
+We can put these pieces together to make a simple GUI. The combo box is
 a bit contrived here, but having means to  select a data frame is
 common to \R\/ GUIs.
 <<testit, results=hide>>=

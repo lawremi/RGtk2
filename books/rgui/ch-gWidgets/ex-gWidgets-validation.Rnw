@@ -6,5 +6,5 @@
   when the underling handlers are expecting a specific type of value.
   
   Now the \args{coerce.with} argument can be used to specify a
-  function to coerce values after an action is initiatied, but in this
+  function to coerce values after an action is initiated, but in this
   example we show how to 

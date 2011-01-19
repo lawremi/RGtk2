@@ -1,4 +1,4 @@
-%% orgainze by function
+%% organize by function
 <<echo=FALSE>>=
 library(gWidgets)
 options(guiToolkit="RGtk2")
@@ -30,13 +30,13 @@ df <- rbind(
             c("\\constructor{gtext}", "Multi-line text edit area"),
             c("\\constructor{ghtml}", "Display text marked up with HTML"),
             c("\\constructor{gdf}", "Data frame viewer and editor"),
-            c("\\constructor{gtree}", "A display for heirarchical data"),
+            c("\\constructor{gtree}", "A display for hierarchical data"),
             c("\\constructor{gimage}", "A display for icons and images"),
             c("\\constructor{ggraphics}", "A widget containing a graphics device"),
             c("\\constructor{gsvg}", "A widget to display SVG files"),            
             c("\\constructor{gfilebrowser}", "A widget to select a file or directory"),
             c("\\constructor{gcalendar}", "A widget to select a date"),
-            c("\\constructor{gaction}", "A resusable definition of an action"),
+            c("\\constructor{gaction}", "A reusable definition of an action"),
             c("\\constructor{gmenubar}", "Adds a menubar on a top-level window "),
             c("\\constructor{gtoolbar}", "Adds a toolbar to a top-level window"),
             c("\\constructor{gstatusbar}", "Adds a status bar to a top-level window"),
@@ -49,7 +49,7 @@ cat(booktabs(df,
              caption="Table of constructors for control widgets in \\pkg{gWidgets}. Most, but not all, are implemented for each toolkit.",
              label="tab:gWidgets-control-widgets"))
 @             
-%% place these as approporiate
+%% place these as appropriate
 % \begin{table}
 %   \centering
 %   \begin{tabular}{l@{\quad}p{.75\textwidth}}
@@ -68,12 +68,12 @@ cat(booktabs(df,
 %     \constructor{gtext} & multi-line text edit\\
 %     \constructor{ghtml} & Display text marked up with HTML\\
 %     \constructor{gdf} & Data frame viewer and editor\\
-%     \constructor{gtree} & Displays heirarchical data\\
+%     \constructor{gtree} & Displays hierarchical data\\
 %     \constructor{gimage} & Displays icons and images\\
 %     \constructor{ggraphics} & A widget containing a graphics device\\
 %     \constructor{gfilebrowser} & A widget to select a file or directory\\
 %     \constructor{gcalendar} & A widget to select a date\\
-%     \constructor{gaction} & a resusable definition of an action\\
+%     \constructor{gaction} & a reusable definition of an action\\
 %     \constructor{gmenubar} & Puts a menubar on a top-level window\\    
 %     \constructor{gtoolbar} & Adds a toolbar to a top-level window\\
 %     \constructor{gstatusbar} & Adds a status bar to a top-level window\\
@@ -165,7 +165,7 @@ or disable whether a widget can accept input.
 
 % \begin{example}{Hello world button}{ex-gWidgets-hello-world-button}
 %   This example shows how a button is assigned a handler to respond to
-%   click events.~\footnote{Each toolkit has its idiosyncracies. If this
+%   click events.~\footnote{Each toolkit has its idiosyncrasies. If this
 %     example is run using \pkg{RGtk2} the button will stretch to fill
 %     the space. At times this is not desired. Placing the button within
 %     a \code{ggroup} container can prevent this. Whereas, under
@@ -372,7 +372,7 @@ The underlying toolkits offer some form of auto completion where the
 entered text is matched against a list of values. These values
 anticipate what a user wishes to type and a simple means to complete a
 entry is offered. The \method{[\ASSIGN}{gedit} method allows these
-values to be specifed through a character vector, as in \code{obj[]
+values to be specified through a character vector, as in \code{obj[]
   \ASSIGN\/ values}.
 
 For example, the following can be used to collect one of the 50 state
@@ -404,7 +404,7 @@ specific key is given in the \code{key} component of the list \code{h} (the firs
 
 The \constructor{gtext} constructor produces a multi-line text editing
 widget with scrollbars to accommodate large amounts of text. The
-\argument{text}{gtext} argument is for specifying the intial text. The
+\argument{text}{gtext} argument is for specifying the initial text. The
 initial width and height can be set through similarly named
 arguments. For widgets with scrollbars, specifying an initial size is
 usually required as there otherwise is no indication as to how large
@@ -452,7 +452,7 @@ df <- rbind(
 colnames(df) <- c("Attribute","Possible value")
 cat(booktabs(df, 
              colTypes=c("l","p{0.6\\textwidth}"),
-             caption="Possible specfications for setting font properties. Font values of an object are changed with named vectors, as in \\code{font(obj)\\ASSIGN c(weight=\"bold\", size=12, color=\"red\")}", 
+             caption="Possible specifications for setting font properties. Font values of an object are changed with named vectors, as in \\code{font(obj)\\ASSIGN c(weight=\"bold\", size=12, color=\"red\")}", 
              label="tab:gWidgets-font-properties"
              ))
 @ 
@@ -476,7 +476,7 @@ the \pkg{EBImage} package allowing a user to adjust a few of the image
 properties using various selection widget.
 
 In \pkg{gWidgets} the abstract view is that the user is selecting from
-an set of items stored as a vector (or data frame). The familar \R\/
+an set of items stored as a vector (or data frame). The familiar \R\/
 methods are used to manipulate this underlying data store. The
 controls in \pkg{gWidgets} that display such data have the methods
 \code{[}, \code{[\ASSIGN}, \code{length}, \code{dim}, \code{names} and
@@ -578,7 +578,7 @@ The handler, if given to the constructor or set with \meth{addHandlerChanged}, i
 The group of checkboxes is produced by the
 \constructor{gcheckboxgroup} constructor. This convenience widget is similar to a radio group,
 only it allows the selection of none, one or more of a set of items.  The
-\argument{items}{gcheckboxgroup} arugment is used to specify the
+\argument{items}{gcheckboxgroup} argument is used to specify the
 values. The state of whether an item is selected can be set with a
 logical vector of the same size as the number of items to the
 \argument{checked}{gcheckboxgroup} argument; recycling is used. The
@@ -609,7 +609,7 @@ cbg <- gcheckboxgroup(c("Flip","Flop"), horizontal=FALSE,
 The state is retrieved as a character vector through the
 \method{svalue}{gcheckboxgroup} method. The \code{index=TRUE} argument
 instructs \meth{svalue} to return the indices instead. As a
-checkboxgroup is like both a checkbox and a radio button group, one
+checkbox group is like both a checkbox and a radio button group, one
 can set the selected values three different ways. As with a checkbox, 
 the selected values can be set by specifying a logical vector through the
 \method{svalue\ASSIGN}{gcheckboxgroup} method. As with radio button groups,
@@ -658,14 +658,14 @@ the \method{length}{gcheckboxgroup} method returns the number of items.
 % })
 % @ 
 
-\subsection{A combobox}
+\subsection{A combo box}
 \label{sec:gWidgets-combobox}
 
-Comboboxes are constructed by \constructor{gcombobox}. As with the
+Combo boxes are constructed by \constructor{gcombobox}. As with the
 other selection widgets, the choices are specified to the argument
 \argument{items}{gcombobox}. However, this may be a vector of values
 or a data frame whose first column defines the choices. For toolkits
-which support icons in the combobox, if the data is specified as a
+which support icons in the combo box widget, if the data is specified as a
 data frame, the second column signifies which stock icon is to be
 used. By design, a third column specifies a tooltip to appear when the
 mouse hovers over a possible selection, but this is only implemented
@@ -674,22 +674,22 @@ for \pkg{gWidgetsQt}.
 %% ML: this should not be hard to implement with GTK+ 2.12. 
 %% JV: hard for me though :( (http://www.daa.com.au/pipermail/pygtk/2009-January/016517.html)
 
-The combobox in Figure~\ref{fig:gWidgets-EBImage-gui} could be done through:
+The combo box in Figure~\ref{fig:gWidgets-EBImage-gui} could be done through:
 <<>>=
-w <- gwindow("Combobox example")
+w <- gwindow("gcombobox example")
 cb <- gcombobox(c("None", "Low", "High"), cont=w)
 @ 
 
 
 
-This example shows how to create a combobox to select from the
-available stock icons. For toolkits that support icons in a combobox, they
+This example shows how to create agcombo box to select from the
+available stock icons. For toolkits that support icons in a combo box, they
 appear next to the label.
 <<comboboxExample, results=hide>>=
 nms <- getStockIcons()                  # gWidgets icons
 d <- data.frame(names=names(nms), icons=names(nms), 
                 stringsAsFactors=FALSE)
-w <- gwindow("Combobox wth icons example")
+w <- gwindow("Combo box with icons example")
 cb <- gcombobox(d, cont=w)
 @ 
 
@@ -716,7 +716,7 @@ The default handler is called when the state of the widget is
 changed. This is also aliased to
 \method{addHandlerClicked}{gcombobox}. When \code{editable} is
 \code{TRUE}, then the \method{addHandlerKeystroke}{gcombobox} method
-sets a handler to responsd to keystroke events.
+sets a handler to respond to keystroke events.
 
 
 
@@ -861,7 +861,7 @@ The \constructor{gcalendar} constructor returns a widget for selecting
 a date. If there is a native widget in the underlying toolkit, this
 will be a text area with a button to open a date selection
 widget. Otherwise it is just a text entry widget.  The argument
-\argument{text}{gcalendar} arugment specifies the initial text. The
+\argument{text}{gcalendar} argument specifies the initial text. The
 format of the date is specified by the \argument{format}{gcalendar}
 argument.
 
@@ -988,15 +988,15 @@ The arguments \argument{filter.column}{gtable} and
 \argument{filter.FUN}{gtable} allow one to specify whether the user
 can filter, or limit, the display of the values in the data store. The
 simplest case is if a column number is specified to the
-\code{filter.column} argument. In which case a combobox is added to
+\code{filter.column} argument. In which case a combo box is added to
 the widget with values taken from the unique values in the specified
-column. Changing the value of the combobox restricts the display of
+column. Changing the value of the combo box restricts the display of
 the data to just those rows where the value in the filter column
-matches the combobox value. More advanced filtering can be specified
+matches the combo box value. More advanced filtering can be specified
 using the \argument{filter.FUN}{gtable} argument. If this is a
 function, then it takes arguments \code{(data\_frame, filter.by)}
 where the data frame is the data, and the \code{filter.by} value is
-the state of a combobox whose values are specified through the
+the state of a combo box whose values are specified through the
 argument \argument{filter.labels}{gtable}. This function should return
 a logical vector with length matching the number of rows in the data
 frame.  Only rows corresponding to \code{TRUE} values will be
@@ -1027,7 +1027,7 @@ w <- gwindow("gtable example")
 tbl <- gtable(Cars93, chosencol=1, filter.column=3, cont=w)
 @ 
 
-Adding a handler for the double click event is illustrated bleow. This
+Adding a handler for the double click event is illustrated below. This
 handler prints both the manufacturer and the model of the currently
 selected row when called.
 <<>>=
@@ -1053,7 +1053,7 @@ addHandlerChanged(tbl, handler=function(h,...) {
 \label{sec:gWidgets-displ-heir-data}
 
 The \constructor{gtree} constructor can be used to display
-heirarchical structures, such as a file system or the components of a
+hierarchical structures, such as a file system or the components of a
 list. The \constructor{gtree} implementation dynamically computes the
 child components, by parameterizing the data to be displayed in terms
 of the node of the tree that is currently selected. 
@@ -1075,7 +1075,7 @@ unspecified and the second column returned by \code{offspring} is a
 logical, then that column will be used.
 
 As an illustration, this function produces an offspring function to
-explore the heirarchical structure of a list. It uses a closure to
+explore the hierarchical structure of a list. It uses a closure to
 encapsulate the list, rather than using the
 \argument{offspring.data}{gtree} argument or a global variable.
 <<>>=
@@ -1159,7 +1159,7 @@ a double click event.
 Actions are invisible objects representing an application command that
 is executable through one or more widgets. See \ref{sec:GUI:actions}
 for more details. Actions in \pkg{gWidgets} are created through the
-\constructor{gaction} contstructor. The arguments are
+\constructor{gaction} constructor. The arguments are
 \argument{label}{gaction}, \argument{tooltip}{gaction},
 \argument{icon}{gaction}, \argument{key.accel}{gaction},
 \argument{parent}{gaction} and the standard
@@ -1229,7 +1229,7 @@ gtext("Placeholder", cont=w)
 
 The \constructor{gtoolbar} constructor takes the list as its first
 argument.  As toolbars belong to the window, the corresponding
-\pkg{gWigdets} objects use a \constructor{gwindow} object as the
+\pkg{gWidgets} objects use a \constructor{gwindow} object as the
 parent container. (Some of the toolkits relax this.)  The argument
 \argument{style}{gtoolbar} can be one of \qcode{both}, \qcode{icons},
 \qcode{text}, or \qcode{both-horiz} to specify how the toolbar is
@@ -1304,7 +1304,7 @@ Popup menus can be created for a right click event through the
 
 
 \begin{example}{Popup menus}{ex-gWidgets-context-menus}
-  This example shows how to add a simple popupmenu to a button.
+  This example shows how to add a simple popup menu to a button.
 <<>>=  
 w <- gwindow("Popup example")
 b <- gbutton("click me or right click me", cont=w, 

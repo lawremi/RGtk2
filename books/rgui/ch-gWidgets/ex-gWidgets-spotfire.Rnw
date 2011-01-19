@@ -99,7 +99,7 @@ lyt[2,2] <- (l$Cylinders <-
 @ 
 %
 Of course, we could use many more criteria to filter. The above
-filters are naturally represented by a combobobox. However, one could
+filters are naturally represented by a combo box. However, one could
 have used many different styles, depending on the type of data. For
 instance, one could employ a checkbox to filter through Boolean data,
 a slider to pick out numeric data, or a text box to specify a
@@ -121,7 +121,7 @@ updateDataFrame <- function(...) {
       ind <- ind & (x[,i] == val)
   }
   
-  visible(tbl) <- ind                   # udpate table
+  visible(tbl) <- ind                   # update table
   
   nsprintf <- function(n, msg1, msg2,...)
     ngettext(n, sprintf(msg1, n), sprintf(msg2,n), ...)
@@ -134,7 +134,7 @@ updateDataFrame <- function(...) {
 % methods change the underlying widgets. The generic
 % \meth{svalue\ASSIGN} is used to change the primary value for a widget
 % (and \meth{svalue} returns this value). In the above, we see these
-% methods used to get the values from the comboboxes and to set the text
+% methods used to get the values from the combo boxes and to set the text
 % in the label. The \meth{visible\ASSIGN} method is another generic. In
 % this example it is used to specify which rows of the data are actually
 % displayed by the widget.
@@ -151,7 +151,7 @@ updateGraphic <- function(...) {
 }
 @ 
 
-We now add a handler to be called whenever one of our comboboxes is
+We now add a handler to be called whenever one of our combo boxes is
 changed. This handler simply calls both our update functions.
 <<applyHandler, results=hide>>=
 f <- function(h, ...) {

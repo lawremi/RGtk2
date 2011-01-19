@@ -26,7 +26,7 @@ tbl[1,2, anchor=left]  <- (rb <- gradio(1:3, horizontal=TRUE,
 tbl[2,1, anchor=right] <- "checkbox group label"
 tbl[2,2, achor=left] <- (chb <- gcheckboxgroup(letters[1:3], 
            horizontal=FALSE, cont = tbl))
-tbl[3,1, anchor=right] <- "combobox label"
+tbl[3,1, anchor=right] <- "combo box label"
 tbl[3,2, achor=left] <- (combo <- gcombobox(state.name, 
            cont = tbl))
 enabled(f) <- svalue(cb)                # match

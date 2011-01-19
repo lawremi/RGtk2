@@ -41,7 +41,7 @@ We use a table layout to show the 16 colors. As an illustration of
 assigning a handler for a click event, we assign one that returns the
 corresponding stock icon name.
 
-<<>>=
+<<>>=    
 w <- gwindow("Icon example")
 f <- function(h,...) galert(h$action, parent=w)
 tbl <- glayout(cont=w, spacing=0)
