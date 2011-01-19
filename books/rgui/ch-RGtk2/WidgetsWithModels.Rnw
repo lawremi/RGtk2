@@ -840,12 +840,16 @@ cr <- gtkCellRendererText()
 cr['editable'] <- TRUE
 ID <- gSignalConnect(cr, "edited", 
 f=function(cr, path, newtext, user.data) {
-  curRow <- as.numeric(path) + 1
-  curCol <- user.data$column
+  i <- as.numeric(path) + 1
+  j <- user.data$column
   model <- user.data$model
-  model[curRow, curCol] <- newtext
+  model[i, j] <- newtext
 }, data=list(model=store, column=1))
 @ 
+
+Before using editable cells to create a data frame editor, one should
+see if the editor provided by the \function{gtkDfEdit} in the
+\pkg{RGtk2Extras} package satisfies the requirements.
 
 \paragraph{Moving the cursor}
 
@@ -856,6 +860,11 @@ done through the \method{setCursor}{gtkTreeView} method. The
 \code{path} argument takes a tree path instance, the \code{column}
 argument a tree view column object, and the flag \code{start.editing}
 indicates whether to initiate editing.
+
+
+\begin{example}{Using a table to gather arguments}{ex:RGtk2-options-in-table}
+  \SweaveInput{ex-RGtk2-options-in-table}
+\end{example}
 
 %% XXX JV Add in an editable table example here, mention
 %% RGtk2Extras:::gtkDfEdit
