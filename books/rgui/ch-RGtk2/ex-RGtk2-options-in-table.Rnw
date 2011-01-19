@@ -87,10 +87,11 @@ w$show()
 @ 
 
 Implementing this into a GUI requires writing a function to map the
-model's values into the appropriate call to \function{title}, a task
-we do not do here. Instead we add a bit of extra detail by providing a
-tooltip.
+model's values into the appropriate call to \function{title}. The
+\code{dirty} flag makes this easy, but this is a task we do not pursue
+here. Instead we add a bit of extra detail by providing a tooltip.
 
+\oaragraph{Tooltips}
 For this example, our function has built-in documentation. Below we
 use the \pkg{helpr} function to extract the description for
 each of the arguments. We leave this in a list, \code{descs}, for later
@@ -103,13 +104,17 @@ rd <- helpr:::parse_help(helpr:::pkg_topic(package, topic),
 descs <- rd$params$args; names(l) <- sapply(l, function(i) i$param)
 @ 
 
-To add tooltips to the tree view we first indicate that we want
-tooltips, then connect to the \signal{query-tooltip} signal to
-implement the tooltip. Within this callback we check if we have
-the appropriate context (we are in a row), then, if so, use the path to find
-the description to set in the tooltip. The descriptions use HTML for markup,
-but the tooltip only uses PANGO. As the \code{code} tag is not PANGO, 
-we change to a bold tag using \function{gsub}.
+For many widgets, adding a tooltip is as easy as setting the
+\code{tooltip-text} property through the
+\method{SetTooltipText}{GtkWidget}. However, it is more complicated in
+a treeview, as each cell should get a different tip.  To add tooltips
+to the tree view we first indicate that we want tooltips, then connect
+to the \signal{query-tooltip} signal to implement the tooltip. Within
+this callback we check if we have the appropriate context (we are in a
+row), then, if so, use the path to find the description to set in the
+tooltip. The descriptions use HTML for markup, but the tooltip only
+uses PANGO. As the \code{code} tag is not PANGO, we change to a bold
+tag using \function{gsub}.
 <<>>=
 v['has-tooltip'] <- TRUE
 gSignalConnect(v, "query-tooltip", function(w, x, y, key_mode, tooltip, user.data) {
