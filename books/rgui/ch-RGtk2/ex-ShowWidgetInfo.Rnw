@@ -11,9 +11,9 @@ require(RGtk2)
 \begin{example}{A GUI to show widget information}{ex:RGtk2:show-widget-info}
 This example show how to integrate a few widgets to make useful GUI
 for viewing information about GTK+ objects. The idea comes from the
-\command{getHeirarchy} example in the \pkg{RGtkViewers} package
+\command{getHierarchy} example in the \pkg{RGtkViewers} package
 written for \pkg{RGtk}. That used the HTML library of \GTK, which is
-not (yet) implented in \pkg{RGtk2}, as it proved buggy.
+not (yet) implemented in \pkg{RGtk2}, as it proved buggy.
 
 The user types in the name of a constructor and the GUI creates pages
 detailing the properties of the object, its signals and any methods

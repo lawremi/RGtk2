@@ -43,7 +43,7 @@ We will right align our buttons, so use the parent container's
 12-pixel gap between it and the \code{cancel} button is ensured by  the
 \code{padding} argument when the \code{cancel} button is
 added. Treating the \code{delete} button as potentially irreversible,
-we aim to have 24 pixels of seperation between it and the
+we aim to have 24 pixels of separation between it and the
 \code{cancel} button. This is given by adding 12 pixels of padding
 when this button is packed in, giving 24 in total. The blank label is
 there to fill out space if the parent container expands.

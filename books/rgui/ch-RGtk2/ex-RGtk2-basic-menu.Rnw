@@ -18,7 +18,7 @@ We now define some menu items. First a basic one:
 open <- gtkMenuItem(label="open")
 @ 
 
-Next we show how an \code{gtkAction} item can define a menuitem.
+Next we show how an \code{gtkAction} item can define a menu item.
 <<>>=
 saveAction <- gtkAction("save", "save", "Save object", "gtk-save")
 save <- saveAction$CreateMenuItem()

@@ -101,7 +101,7 @@ buttons[["fromRight"]] <- gtkButton("<")
 Our basic GUI is shown in Figure~\ref{fig:RGtk2-pingpong} where the
 two tree views are placed side-by-side.
 %The basic GUI just lays out the two tree views with the buttons in
-%between. We left out command to add scrollwindows etc.
+%between. We left out command to add scroll windows etc.
 <<basicGUI, echo=FALSE>>=
 ## Not shown, but lays out a basic GUI
 w <- gtkWindow()

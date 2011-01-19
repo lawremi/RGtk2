@@ -4,21 +4,21 @@
 library(RGtk2)
 @ 
 
-This example uses an editable combobox as an simple interface to \R's
+This example uses an editable combo box as an simple interface to \R's
 help system. We record the number of times a page is searched for. 
 
-Our model fo the combobox will be a \class{rGtkDataFrame} instance
+Our model fo the combo box will be a \class{rGtkDataFrame} instance
 where 3 variables are kept a function name, a string describing the
 number of visits and an integer to record the number of visits. We
-create the combobox with this model using the first column for the text.
+create the combo box with this model using the first column for the text.
 <<>>=
 m <- rGtkDataFrame(data.frame(fname="", visits="", novisits=0,
                               stringsAsFactors=FALSE))
 cb <- gtkComboBoxEntryNewWithModel(m, text.column=0)
 @ 
 
-It isn't possible to put tooltip information on the dropdown elements
-of a combobox, rather here we borrow from popular web browser
+It isn't possible to put tooltip information on the drop down elements
+of a combo box, rather here we borrow from popular web browser
 interfaces and add to the standard appearance of the drop down
 elements by adding in textual information about the number of
 visits. To do so we pack in a new cell renderer to accompany that
@@ -33,7 +33,7 @@ cr['style'] <- "italic"
 cr['alignment'] <- "right"
 @ 
 
-We place this in a minimal GUI with just a label to inicate what is to
+We place this in a minimal GUI with just a label to indicate what is to
 be done.
 <<Layout>>=
 w <- gtkWindow(show=FALSE)
@@ -61,14 +61,14 @@ w$show()
 %% "factor" "factor" 
 
 
-Now we configure the combobox. When a new value is typed in we need to
+Now we configure the combo box. When a new value is typed in we need to
 add it to the model. There are a few things to watch out for
 here. First, if we define the model to have $0$ rows, then the
 \code{appendRows} call will coerce the characters to factors. To avoid
 that, we check to see if we are in the initial state in which case we
 replace the first row. If not, then we update the model. In \GTK\/
 there is no means to notify the views of a model of a change of
-dimension, and in this case appending rows will cause the combobox to
+dimension, and in this case appending rows will cause the combo box to
 complain. Here we disconnect the model, update it, then reconnect it
 to the view.
 <<helperFunctions>>=
@@ -99,7 +99,7 @@ callHelpFunction <- function(cb, value) {
 }
 @ 
 
-We connect to two signals emitted by the combobox. First when a
+We connect to two signals emitted by the combo box. First when a
 selection is made (and  \method{getActive}{gtkComboBox} returns a
 non-negative value) we call the help function.
 <<>>=
@@ -112,7 +112,7 @@ gSignalConnect(cb, "changed", f=function(w, ...) {
 @ 
 
 The \code{activate} callback checks to see if the requested value has
-not been visited previosly. If not, this calls our \function{addValue}
+not been visited previously. If not, this calls our \function{ addValue}
 function before calling the help function.
 <<results=hide>>=
 gSignalConnect(cb$getChild(), "activate", f = function(cb, entry, ...) {

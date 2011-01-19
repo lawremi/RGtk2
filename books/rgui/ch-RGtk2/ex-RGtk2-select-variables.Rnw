@@ -62,7 +62,7 @@ sapply(filterModels, function(i) i$setVisibleColumn(1))
 @ 
 %
 We now layout our GUI using a horizontal box. We pack in the views and
-a box container to hold the selecion buttons. The views will be
+a box container to hold the selection buttons. The views will be
 scrollable, so we construct \class{GtkScrolledWindow} instances.
 <<guiLayout>>=
 w <- gtkWindow(show=FALSE)
@@ -101,7 +101,7 @@ packing in two cell renderers below:
 make_view_column <- function() {
   vc <- gtkTreeViewColumn()
   vc$setTitle("Variable")
-  cr <- gtkCellRendererPixbuf()
+  cr <- gtkCellRendererPixbuf()x        
   vc$packStart(cr)
   vc$addAttribute(cr, "pixbuf", 2)
   cr <- gtkCellRendererText()

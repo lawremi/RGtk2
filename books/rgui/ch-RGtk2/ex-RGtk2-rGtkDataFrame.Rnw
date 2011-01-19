@@ -91,7 +91,7 @@ gtkTreeViewAddColumnWithType <-
            "logical" = cr["activatable"] <- TRUE,
            cr["editable"] <- TRUE)
     
-    if(type == "factor") {              # combobox needs a data store
+    if(type == "factor") {              # combo box needs a data store
       cstore <- gtkListStore("gchararray")
       rGtkstore <- view$getModel()
       vals <- rGtkstore[,storeCol, drop=TRUE]

@@ -22,7 +22,7 @@ var_combo <- gtkComboBoxNewText()
 %
 
 Our layout uses boxes, a table is better but that comes later. To add
-a twist, we will hide our variable combobox until after a data frame
+a twist, we will hide our variable combo box until after a data frame
 has been initially selected.
 <<Layout>>=
 g <- gtkVBox(); w$add(g)
@@ -38,8 +38,8 @@ g2$hide()
 @
 %
 
-Finally we configure the comboboxes. When a data frame is selected we
-first clear out the variable combobox (by calling it's model's
+Finally we configure the combo boxes. When a data frame is selected we
+first clear out the variable combo box (by calling it's model's
 \meth{Clear} method) the populate.
 <<configureComboBoxes, results=hide>>=
 sapply(avail_dfs(), gtkComboBoxAppendText, object=df_combo)

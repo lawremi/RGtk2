@@ -54,7 +54,7 @@ view column number and store column number may be different, although
 aren't in our example. For editing, this method uses a toggle renderer
 for logical values, a combo box for factors (as adding new levels is
 not supported), and text renderers for other data types.
-<<addColumnWithType>>=
+<<addColumnWithType, results=hide>>=
 gtkTreeViewAddColumnWithType <-
   function(view,
            name="",
@@ -91,7 +91,7 @@ gtkTreeViewAddColumnWithType <-
            "logical" = cr["activatable"] <- TRUE,
            cr["editable"] <- TRUE)
     
-    if(type == "factor") {              # combobox needs a data store
+    if(type == "factor") {              # combo box needs a data store
       cstore <- gtkListStore("gchararray")
       rGtkstore <- view$getModel()
       vals <- rGtkstore[,storeCol, drop=TRUE]
@@ -105,10 +105,10 @@ gtkTreeViewAddColumnWithType <-
 
     
     ## connect callback to edited/toggled signal
-    QT <- gSignalConnect(cr, signal =
-                         if(type != "logical") "edited" else "toggled",
-                         f = editCallBack, 
-                         data = list(view=view,type=type,column=storeCol))
+    gSignalConnect(cr, signal =
+                   if(type != "logical") "edited" else "toggled",
+                   f = editCallBack, 
+                   data = list(view=view,type=type,column=storeCol))
   }
 @ 
 
@@ -170,12 +170,11 @@ view <- gtkTreeView(store)
 @ 
 Next to shows the data in the store inside the view.
 
-<<>>=
+<<results=hide>>=
 nms <- names(df)
-QT <- sapply(1:ncol(df), function(i) {
+sapply(1:ncol(df), function(i) {
   type <- class(df[,i])[1]
   view$addColumnWithType(name = nms[i], type, viewCol = i, storeCol = i)
-  
 })
 @ 
 
@@ -187,7 +186,7 @@ newColNo <- view$insertColumn(vc, -1)           # -1 = end
 
 
 <<echo=FALSE>>=
-## How to add key naviations defined above.
+## How to add key navigations defined above.
 ID <- view$addKeyNavigations()
 @ 
 

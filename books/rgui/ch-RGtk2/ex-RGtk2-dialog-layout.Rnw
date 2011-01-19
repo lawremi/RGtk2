@@ -44,7 +44,7 @@ expand when resized, which we want to control here. As such we use
 \code{Attach}. To get the control's label to center align yet still
 have some breathing room we set its
 \code{xalign} and  \code{xpad} properties.
-For the combobox we avoid using \qcode{expand} as otherwise it resizes
+For the combo box we avoid using \qcode{expand} as otherwise it resizes
 to fill the space allocated to the cell in the \code{y} direction.
 <<>>=
 tbl$attach(l1, left.attach=0,1, top.attach=0,1, yoptions="fill")
@@ -53,7 +53,7 @@ tbl$attach(w1, left.attach=1,2, top.attach=0,1, xoptions="fill", yoptions="fill"
 @ 
 
 We use \qcode{expand} here to attach the radio group, so that it
-expands to fill the space. The label has its \code{yalign} proporty
+expands to fill the space. The label has its \code{yalign} property
 set, so that it stays at the top of the cell, not the middle.
 <<>>=
 tbl$attach(l2, left.attach=0,1, top.attach=1,2, yoptions="fill")

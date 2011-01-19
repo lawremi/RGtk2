@@ -12,8 +12,6 @@ associated button is a \class{GtkColorButton}. When the user
 clicks on the button, a more complex color selection dialog will
 appear, allowing total customization.
 <<rgtk2-mennus-toolbar-color-button>>=
-## JV: moved )
-##gdkColor <- gdkColorParse(palette()[1]$color)
 gdkColor <- gdkColorParse(palette()[1])$color
 colorButton <- gtkColorButton(gdkColor)
 @
@@ -35,8 +33,6 @@ colorMenuItem <- function(color) {
 colorItems <- sapply(palette(), colorMenuItem)
 colorMenu <- gtkMenu()
 for (item in colorItems)
-  ## JV: fixed this
-##  menu$append(item)
   colorMenu$append(item)
 @
 %

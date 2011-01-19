@@ -1,5 +1,5 @@
 This example uses a tree to explore an \R\/ list object, such as that
-returned by one of \R's modelling functions.  As the depth of these
+returned by one of \R's modeling functions.  As the depth of these
 lists is not specified in advance, we use a dynamic approach to
 creating the tree store, modifying the tree store when the tree view
 is expanded or collapsed.

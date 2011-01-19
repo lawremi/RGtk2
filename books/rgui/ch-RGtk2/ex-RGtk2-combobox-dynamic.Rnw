@@ -12,7 +12,6 @@ and populate it with some datasets that are provided with \R:
 <<results=hide>>=
 datasets <- c("mtcars", "Cars93")
 rdf <- rGtkDataFrame(datasets)
-#dfCb <- gtkComboBoxEntryNewWithModel(rdf, text.column = 2)
 dfCb <- gtkComboBoxEntry(); dfCb$model <- rdf
 @ 
 
@@ -29,7 +28,7 @@ varCb$addAttribute(cr, "text", 0)       # column 1
 @ 
 
 <<notShown, echo=FALSE>>=
-## Our basic GUI uses a table for layout. Comboboxes fill and expand to fill 
+## Our basic GUI uses a table for layout. Combo boxes fill and expand to fill 
 ## the cell.
 tbl <- gtkTableNew(rows=2, columns=2, homogeneous=FALSE)
 tbl$attach(gtkLabel("Data frame"), left.attach=0,1, top.attach=0,1, 
@@ -42,7 +41,7 @@ tbl$attach(varCb, left.attach=1,2, top.attach=1,2, yoptions = 0)
 @ 
 <<echo=FALSE>>=
 w <- gtkWindow(show=FALSE)
-w['title'] <- "Example of comboboxes"
+w['title'] <- "Example of combo boxes"
 g <- gtkHBox()
 g$packStart(tbl, padding=15)
 w$add(g)

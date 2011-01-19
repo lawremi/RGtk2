@@ -1,5 +1,5 @@
 %%
-This examples shows how a combobox can be used as an alternative to
+This examples shows how a combo box can be used as an alternative to
 \function{gtkColorButton} to select a color. We use two cell renderers
 for each row, one to draw the color and the other a text label.
 <<echo=FALSE>>=
@@ -65,7 +65,7 @@ win$showAll()
 % \begin{example}{Editable combo box}{eg:RGtk2:editable combo box}
 
 %   This example is similar to the previous one, except it adds the
-%   ability to edit the value in the combobox.
+%   ability to edit the value in the combo box.
 
 %   The \argument{text.column}{gtkComboBoxEntryNewWithModel} argument in
 %   the constructor specifies which column in the data store contains
