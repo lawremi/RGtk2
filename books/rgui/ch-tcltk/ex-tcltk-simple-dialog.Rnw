@@ -92,8 +92,8 @@ tkpack(cancelButton)
 @ 
 %
 
-As our interactive behaviour is consistent for both buttons, we make a
-binding to the \code{TButton} class, not indidually. The first will
+As our interactive behavior is consistent for both buttons, we make a
+binding to the \code{TButton} class, not individually. The first will
 invoke the button command when the \kbd{return} key is pressed, the
 latter two will highlight a button when the focus is on it.
 <<>>=

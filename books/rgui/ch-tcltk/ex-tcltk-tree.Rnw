@@ -1,11 +1,11 @@
-This example shows how to display the heirarchical structure of an XML
+This example shows how to display the hierarchical structure of an XML
 document using the tree widget.
 <<echo=FALSE>>=
 ## not shown
 ## load in tcltk
 library(tcltk)
 
-## helper funtion to add scrollbars
+## helper function to add scrollbars
 addScrollbars <- function(parent, widget) {
   xscr <- ttkscrollbar(parent, orient="horizontal",
                        command=function(...) tkxview(widget, ...))
@@ -38,7 +38,7 @@ The \function(htmlTreeParse) (similar to \function{xmlInternalTreeParse}) to par
   \centering
   \includegraphics[width=.7\textwidth]{fig-tcltk-xml-viewer.png}
   \caption{Illustration of using \code{ttktreeview} widget to show
-    heirarchical data returned from parsing an HTML document with the
+    hierarchical data returned from parsing an HTML document with the
     \pkg{XML} package.}
   \label{fig:fig-tcltk-xml-viewer}
 \end{figure}
@@ -75,7 +75,7 @@ tcl(tr, "column", 1, minwidth=20)
 ## xmlName gives name of node
 ## xmlValue gives values stored in node -- text
 
-## issue with quoting values of tree. This taken from shQuote
+## issue with quoting values of tree. This taken from shout
 quoteIt <- function(string) {           
   doQuote <- function(x) {
     xx <- strsplit(x, '"', fixe=TRUE)[[1]]
@@ -177,7 +177,7 @@ walk the structure of the treeview widget to generate a list
 representing the structure of the data.  A potential use of this might
 be to allow a user to rearrange an XML document through drag and drop.
 The subcommand \subcommand{children}{ttktreeview} proves useful here,
-as it is used to identify the heirarchical structure. When there are children a recursive call is made.
+as it is used to identify the hierarchical structure. When there are children a recursive call is made.
 
 
 

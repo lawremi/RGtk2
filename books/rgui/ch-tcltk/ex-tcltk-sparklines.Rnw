@@ -2,7 +2,7 @@ Edward Tufte, in his book \textit{Beautiful
   Evidence}~\cite{Tufte:Beautiful-Evidence}, advocates for the use of
 \textit{sparklines} -- small, intense, simple datawords -- to show substantial
 amounts of data in a small visual space. This example shows how to use
-a \code{ttkcanvas} object to display a sparkline graph using a \texttt{line} object. The example also uses \texttt{tkgrid}
+a \code{tkcanvas} object to display a sparkline graph using a \texttt{line} object. The example also uses \texttt{tkgrid}
 to layout the information in a  table. We could have spent more time on the
 formatting of the numeric values and factoring out the data download, but leave improvements as an exercise.
 

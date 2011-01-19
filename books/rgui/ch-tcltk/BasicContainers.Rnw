@@ -20,7 +20,7 @@ function used to set the window title. As with all such functions,
 either the top-level window object, or its ID must be the first
 argument. In this case, the new title is the second.
 
-\paragraph{Suppressing the intial drawing}
+\paragraph{Suppressing the initial drawing}
 When a top-level window is constructed there is no option for it not
 to be shown.  However, one can use the \function{tclServiceMode}
 function to suspend/resume drawing of any widget through \TK. This
@@ -91,7 +91,7 @@ window managers respect this.
 
 %% binginds
 \paragraph{Bindings}
-Bindings for top-level windows are propogated down to all of their
+Bindings for top-level windows are propagated down to all of their
 child widgets. If a common binding is desired for all the children,
 then it need only be specified once for the top-level window
 (cf. Section~\ref{sec:tcltk:events} where keyboard accelerators are
@@ -106,7 +106,7 @@ decorations. A top-level window can be removed through the
 \function{tkdestroy} function, or through the user clicking on the
 correct window decorations. When the window decoration is clicked, the
 window manager issues a \qcode{WM\_DELETE\_WINDOW} event. To bind to
-this, a command of thie form
+this, a command of this form
 \code{tkwm.protocol(win, "WM\_DELETE\_WINDOW", callback)} is used.
 
 To illustrate, if \code{w} is a top-level window, and \code{e} a text
@@ -210,7 +210,7 @@ newWindow <- function(title, command, parent,
 \section{Frames}
 \label{sec:tcltk:frames}
 
-The \function{ttkframe} constructor produces a themable container
+The \function{ttkframe} constructor produces a themeable container
 that can be used to organize visible components within a GUI. It is
 often the first thing packed within a top-level window. 
 
@@ -264,7 +264,7 @@ manage the components.
 
 %% warn against mixing XXX how to format warning?
 A GUI may use a mix of \code{pack} and \code{grid} to mangage the child components,
-but all siblings in the widget heirarchy must be managed the same
+but all siblings in the widget hierarchy must be managed the same
 way. Mixing the two will typically result in a lockup of the \R\/
 session.
 
@@ -307,9 +307,9 @@ components. The subcommand \subcommand{info}{tkpack} will provide the
 packing info for a child.
 \\
 
-These commands are illlustrated below, where we show how one might
+These commands are illustrated below, where we show how one might
 implement a ticker tape effect, where words scroll to the left.
-<<rotateLabels>>=
+<<rotateLabels, results=hide>>=
 w <- tktoplevel()
 f <- ttkframe(w, padding=c(3,3,12,12))
 tkpack(f, expand=TRUE, fill="both")
@@ -563,7 +563,7 @@ is opposite of how the sash is drawn.
 %% adding
 The returned object can be used as a parent container, although one
 does not use the geometry managers to manage them. Instead, the
-\method{add}{ttkpandedwindow} command is used to add a child component. For example:
+\method{add}{ttkpanedwindow} command is used to add a child component. For example:
 <<>>=
 w <- tktoplevel(); tkwm.title(w, "Paned window example")
 pw <- ttkpanedwindow(w, orient="horizontal")

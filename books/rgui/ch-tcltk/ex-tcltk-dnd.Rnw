@@ -55,7 +55,7 @@ dragLabel <- tktoplevel()
 tkwm.title(dragLabel, "")
 tkwm.resizable(dragLabel, FALSE,FALSE)  # no size handler in Mac OS X
 tkwm.withdraw(dragLabel)                # minimize window
-tclServiceMode(TRUE)                    # back to redrawin
+tclServiceMode(TRUE)                    # back to redrawing
 tkwm.overrideredirect(dragLabel, TRUE)  # Should remove title bar (not in Mac OS X)
 ## can set this using tkconfigure
 dragLabel_label <- ttklabel(dragLabel,image="::dnd::icon", text="this space for rent", compound="left")

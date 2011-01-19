@@ -64,7 +64,7 @@ tkbind(canvas, "<B1-Motion>", moveSelected)
 @ 
 
 A further binding, for the \Event{ButtonRelease-1} event, would be
-added to do somethng after the point is released. In the original
+added to do something after the point is released. In the original
 example, the old regression line is deleted, and a new one drawn. Here
 we simply delete the \qcode{selected} tag.
 <<>>=

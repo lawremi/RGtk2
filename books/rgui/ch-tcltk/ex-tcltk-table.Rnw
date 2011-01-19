@@ -154,7 +154,7 @@ event. In the callback, we set the CRAN option then withdraw the window.
 tkbind(tr, "<Double-Button-1>", function(W, x, y) {
   sel <- as.character(tcl(W, "identify", "row", x, y))
   vals <- tcl(W, "item", sel, "-values")
-  URL <- as.character(vals)[4]          # not tcltvalue
+  URL <- as.character(vals)[4]          # not tclvalue
   repos <- getOption("repos")
   repos["CRAN"] <- gsub("/$", "", URL[1L])
   options(repos = repos)

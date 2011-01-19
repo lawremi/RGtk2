@@ -38,13 +38,13 @@
 
 <<echo=FALSE>>=
 ## test of validation command
-## trcky bit is that validation commands must return TRUE or FALSE
+## tricky bit is that validation commands must return TRUE or FALSE
 ## we can do this with tcl("eval","FALSE") or .Tcl("expr false")
 
 library(tcltk)
 @ 
 
-There is no native calendar widget in \pkg{tcltk}. This example shows how one can use the validation framework for entry wdgets to check that user-entered dates conform to an expected format. 
+There is no native calendar widget in \pkg{tcltk}. This example shows how one can use the validation framework for entry widgets to check that user-entered dates conform to an expected format. 
 
 %% The entry widget man page has many details.
 Validation happens in a few steps.  A validation command is assigned
@@ -63,7 +63,7 @@ the validation command returns \code{FALSE}, then a subsequent call to
 the specified invalidation command is made.
 
 %% Put these into a table???
-For each callback, a number of substition values are possible, in
+For each callback, a number of substitution values are possible, in
 addition to the standard ones such as \code{W} to refer to the
 widget. These are: \code{d} for the type of validation being done: 1
 for insert prevalidation, 0 for delete prevalidation, or -1 for

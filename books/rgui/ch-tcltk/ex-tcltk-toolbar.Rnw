@@ -44,7 +44,7 @@ tkpack(ttklabel(contentFrame, text=txt))
 @ 
 
 Now to add some buttons to the toolbar. We first show how to create a
-new style for a button (\code{Toolbar.TButton}), slightly modifiying the themed button to set
+new style for a button (\code{Toolbar.TButton}), slightly modifying the themed button to set
 the font and padding, and eliminate the border if the operating system allows. 
 <<>>=
 tcl("ttk::style", "configure", "Toolbar.TButton", 

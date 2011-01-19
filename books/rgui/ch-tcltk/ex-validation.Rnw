@@ -44,7 +44,7 @@
 library(tcltk)
 @ 
 
-There is no native calendar widget in \pkg{tcltk}. This example shows how one can use the validation framework for entry wdgets to check that user-entered dates conform to an expected format. First, we define some patterns for acceptable date formats.
+There is no native calendar widget in \pkg{tcltk}. This example shows how one can use the validation framework for entry widgets to check that user-entered dates conform to an expected format. First, we define some patterns for acceptable date formats.
 <<>>=
 datePatterns <- c()
 for(i in list(c("%m","%d","%Y"),
@@ -57,7 +57,7 @@ for(i in list(c("%m","%d","%Y"),
 %% The entry widget man page has many details.
 Validation happens in two phases. When a validation command is called it should check whether the current state of the entry widget is valid or not. If valid, it returns a \code{TRUE} value and \code{FALSE} otherwise. These need to be \TK\/ values, so the command \code{tcl("eval","TRUE")} (or \code{FALSE}) is used in the following for this. If the validation command returns \code{FALSE}, then a subsequent call to an invalidation command is made. Validation can happen in two modes: prevalidation where the command is evaluated prior to each edit and its return value is used to determine if to accept the change and revalidation where the validation checks if the proposed value is valid. This example will use revalidation. 
 
-For each, a number of substition values are possible, in addition to
+For each, a number of substitution values are possible, in addition to
 the standard ones such as \code{W} to refer to the widget. These are:
 \code{d} for the type of validation being done: 1 for insert
 prevalidation, 0 for delete prevalidation, or -1 for revalidation;

@@ -30,7 +30,7 @@ with scrollbars using the \subcommand{create window}{tkcanvas}
 subcommand. 
 
 There are two bindings to the \Event{Configure} event. The first
-udpates the scrollregion of the canvas widget to include the entire
+updates the scroll region of the canvas widget to include the entire
 canvas, which grows as items are added to the frame. The second
 binding ensures the child window is the appropriate width when the
 canvas widget resizes. The height is not adjusted, as this is
@@ -48,7 +48,7 @@ scrollableFrame <- function(parent, width= 300, height=300) {
   gpID <- tkcreate(canvasWidget, "window", 0, 0, anchor="nw", 
                    window=gp)
   tkitemconfigure(canvasWidget, gpID, width=width)
-  ## update scrollregion
+  ## update scroll region
   tkbind(gp,"<Configure>",function() {  
     bbox <- tcl(canvasWidget, "bbox", "all")
     tcl(canvasWidget,"config", scrollregion=bbox)

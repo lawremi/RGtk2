@@ -1,5 +1,5 @@
 <<InitialMsg>>=
-## "R5" class for ttk entry with intial message
+## "R5" class for ttk entry with initial message
 library(tcltk)
 @ 
 
@@ -53,7 +53,7 @@ shown. It simply sets the foreground (text) color to gray.
 .Tcl("ttk::style configure Gray.TEntry -foreground gray") # style
 @ 
 
-Now our two methos to hide and show the initial message. Outside of
+Now our two methods to hide and show the initial message. Outside of
 changing the text, we adjust the style option accordingly.
 <<>>=
 hide_init_msg <- function() {
@@ -65,7 +65,7 @@ hide_init_msg <- function() {
 }
 #
 show_init_msg <- function() {
-  "Show the intial text"
+  "Show the initial text"
   tkconfigure(e, style="Gray.TEntry")
   set_text(init_msg, hide=FALSE)
 }
@@ -98,31 +98,32 @@ setOldClass("tclVar")
 Our entry class has a straightforward initialization method, otherwise
 we simply piece together the components we have just defined.
 <<ttkEntry-Class>>=
-ttkEntry <- setRefClass("TtkEntry",
-                        fields=list(
-                          e="tkwin", v="tclVar",
-                          init_msg="character"
-                          ),
-                        methods=list(
-                          initialize=function(parent, text, init_msg="") {
-                            v <<- tclVar()
-                            e <<- ttkentry(parent, textvariable=v)
-                            init_msg <<- init_msg
-                            if(missing(text))
-                              show_init_msg()
-                            else
-                              set_text(text)
-                            add_bindings()
-                            .self
-                          },
-                          get_text=get_text,
-                          set_text=set_text,
-                          is_init_msg=is_init_msg,
-                          hide_init_msg=hide_init_msg,
-                          show_init_msg=show_init_msg,
-                          add_bindings=add_bindings
-                          )
-                        )
+ttkEntry <- 
+  setRefClass("TtkEntry",
+              fields=list(
+                e="tkwin", v="tclVar",
+                init_msg="character"
+                ),
+              methods=list(
+                initialize=function(parent, text, init_msg="") {
+                  v <<- tclVar()
+                  e <<- ttkentry(parent, textvariable=v)
+                  init_msg <<- init_msg
+                  if(missing(text))
+                    show_init_msg()
+                  else
+                    set_text(text)
+                  add_bindings()
+                  .self
+                },
+                get_text=get_text,
+                set_text=set_text,
+                is_init_msg=is_init_msg,
+                hide_init_msg=hide_init_msg,
+                show_init_msg=show_init_msg,
+                add_bindings=add_bindings
+                )
+              )
 @
 
 Finally, to use this widget we call its \meth{new} method to create an

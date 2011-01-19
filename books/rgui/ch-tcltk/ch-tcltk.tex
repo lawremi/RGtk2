@@ -439,7 +439,7 @@ refer to the drawn widget and not just a top-level window)
 \begin{Soutput}
 List of 2
  $ ID : chr ".2.2"
- $ env:<environment: 0x100a08390> 
+ $ env:<environment: 0x100a08240> 
  - attr(*, "class")= chr "tkwin"
 \end{Soutput}
 \end{Schunk}
@@ -1680,21 +1680,6 @@ implement a ticker tape effect, where words scroll to the left.
  x <- strsplit("Lorem ipsum dolor sit amet ...", "\\s")[[1]]
  labels <- lapply(x, function(i) ttklabel(f, text=i))
  sapply(labels, function(i) tkpack(i, side="left"))
-\end{Sinput}
-\begin{Soutput}
-[[1]]
-
-[[2]]
-
-[[3]]
-
-[[4]]
-
-[[5]]
-
-[[6]]
-\end{Soutput}
-\begin{Sinput}
  #
  rotateLabel <- function() {
    children <- as.character(tkpack("slaves", f))
@@ -3094,6 +3079,12 @@ We will use a data store to hold the values to be passed to
 \end{Sinput}
 \end{Schunk}
 
+This allows us to write a function to evaluate a $t$-test easily
+enough, although we don't illustrate that.
+
+
+
+
 
 
 Our layout is basic. Here we pack a label frame into the window to give the dialog a nicer look.
@@ -3106,9 +3097,7 @@ We will use the \code{tkgrid} geometry manager below.
 \end{Schunk}
 
 
-This next function simplifies the task of adding a label.
-
-
+This helper function simplifies the task of adding a label.
 \begin{Schunk}
 \begin{Sinput}
  putLabel <- function(parent, text, row, column) {
@@ -3117,6 +3106,7 @@ This next function simplifies the task of adding a label.
  }
 \end{Sinput}
 \end{Schunk}
+%
 
 Our first widget will be one to select a data frame. For this, a
 combobox is used, although if a large number of data frames are a
@@ -3129,7 +3119,8 @@ which allow the user to specify parts of a formula.
 \begin{Schunk}
 \begin{Sinput}
  putLabel(lf, "data:",0,0)
- dataCombo <- ttkcombobox(lf, values=getDfs(), textvariable=e$data)
+ dataCombo <- ttkcombobox(lf, state="readonly", values=getDfs(), 
+                          textvariable=e$data)
  tkgrid(dataCombo, row=0, column=1, sticky="ew", padx=2)
  tkfocus(dataCombo)                      # give focus
 \end{Sinput}
@@ -3137,26 +3128,27 @@ which allow the user to specify parts of a formula.
 
 
 
-The combobox may not be the most natural widget to gather a numeric
-value for the mean when the data is continuous, but at this point we
-haven't quite yet discussed the \code{ttkentry} widget.
+We jump ahead and use a \constructor{ttkentry} widget for the user to specify
+a mean. For this purpose, the use is straighforward.
 \begin{Schunk}
 \begin{Sinput}
  putLabel(lf, "mu:", 2, 0)
- muCombo <-  ttkcombobox(lf, values=c(""), textvariable=e$mu)
+ muCombo <-  ttkentry(lf,  textvariable=e$mu)
  tkgrid(muCombo, row=2, column=1, sticky="ew", padx=2)
 \end{Sinput}
 \end{Schunk}
 
 The selection of an alternative hypothesis is a natural choice for a
-combo box or a radio button group, but, as this alternative is
-available in \pkg{tcltk}, we use a spin box with \code{wrap=TRUE}.
+combo box or a radio button group, we use the latter.
 \begin{Schunk}
 \begin{Sinput}
  putLabel(lf, "alternative:", 3, 0)
- altCombo <- tkspinbox(lf, values=c("two.sided","less","greater"),
-                       textvariable=e$alternative, wrap=TRUE)
- tkgrid(altCombo, row=3, column=1, sticky="ew", padx=2)
+ rbFrame <- ttkframe(lf)
+ sapply(c("two.sided","less","greater"), function(i) {
+   rb <- ttkradiobutton(rbFrame, variable=e$alternative, text=i, value=i)
+   tkpack(rb, side="left")
+ })
+ tkgrid(rbFrame, row=3, column=1, sticky="ew", padx=2)
 \end{Sinput}
 \end{Schunk}
 
@@ -3197,15 +3189,14 @@ When assigning grid weights, we don't want the labels (columns 0 and 2) to expan
 \end{Sinput}
 \end{Schunk}
 
-The dialog has two control buttons we wish to include.
+The dialog has standard cancel and ok buttons.
 \begin{Schunk}
 \begin{Sinput}
  bf <- ttkframe(f)
- tkpack(bf, fill="x", padx=5, pady=5)
- cancel <- ttkbutton(bf, text="cancel", command=function() {
-   tkdestroy(w)
- })
+ cancel <- ttkbutton(bf, text="cancel")
  ok <- ttkbutton(bf, text="ok")
+ #
+ tkpack(bf, fill="x", padx=5, pady=5)
  tkpack(ttklabel(bf, text=" "), expand=TRUE, fill="y", 
         side="left")                     # add a spring
  tkpack(cancel, padx=6, side="left")
@@ -3214,17 +3205,13 @@ The dialog has two control buttons we wish to include.
 \end{Schunk}
 
 For the \code{ok} button we want to gather the values and run the
-function. The following callback does this. We add it to the button,
-then make a binding to invoke either of the buttons commands when they
-have the focus and \kbd{return} is pressed. (The widgets have a
-default binding to the space bar for this.)
+function. The \code{runTTest} function does this.  We configure both
+buttons, then add to the default button bindings to invoke either of the button's commands
+when they have the focus and \kbd{return} is pressed.
 \begin{Schunk}
 \begin{Sinput}
- okCallback <- function() {
-   l <- lapply(e, tclvalue)
-   runTTest(l)
- }
- tkconfigure(ok, command=okCallback)
+ tkconfigure(ok, command=runTTest)
+ tkconfigure(cancel, command=function() tkdestroy(w))
  tkbind("TButton", "<Return>", function(W) tcl(W, "invoke"))
 \end{Sinput}
 \end{Schunk}
@@ -3247,15 +3234,20 @@ state.
    }
  
    if(dfName == "") {
-     ## disable all
-     sapply(list(xCombo, fCombo, muCombo,  veCheck),
-            function(W) tkconfigure(W, state="disabled"))
-     ## disable altSpin, confSpin, confScale
+     ## 3 ways to disable needed !
+     sapply(list(xCombo, fCombo, muCombo,  confScale, veCheck, ok),
+            function(W) tcl(W, "state", "disabled"))
+     sapply(as.character(tkwinfo("children", rbFrame)), function(W)
+            tcl(W, "state", "disabled"))
+     tkconfigure(confSpin, state="disabled")
    } else {
-     ## enable univariate
-     sapply(list(xCombo,  muCombo),
-            function(W) tkconfigure(W, state="normal"))
-     ## enable altSpin, confSpin, confScale
+     ## enable univariate, ok
+     sapply(list(xCombo,  muCombo, confScale, ok),
+            function(W) tcl(W, "state", "!disabled"))
+     sapply(as.character(tkwinfo("children", rbFrame)), function(W)
+            tcl(W, "state", "!disabled"))
+     tkconfigure(confSpin, state="normal")
+     
      df <- get(dfName, envir=.GlobalEnv)
      numVars <- getNumericVars(df)
      tkconfigure(xCombo, values=numVars)
@@ -3265,25 +3257,15 @@ state.
      ## bivariate
      availFactors <- getTwoLevelFactor(df)
      sapply(list(fCombo, veCheck),
-            function(W) tkconfigure(W, state=ifelse(length(availFactors), "normal", "disabled")))
+            function(W) tcl(W, "state", sprintf("%sdisabled",
+                                                ifelse(length(availFactors), "!", ""))))
      tkconfigure(fCombo, values=availFactors)
      if(!tclvalue(e$f) %in% availFactors)
        tclvalue(e$f) <- ""
        
-   }
+          }
  }
  updateUI()
-\end{Sinput}
-\begin{Soutput}
-[[1]]
-
-[[2]]
-
-[[3]]
-
-[[4]]
-\end{Soutput}
-\begin{Sinput}
  tkbind(dataCombo, "<<ComboboxSelected>>", updateUI)
 \end{Sinput}
 \end{Schunk}
@@ -3320,7 +3302,6 @@ Then to create a task callback we have
 % updateUI()                              # run once
 % tkbind("TCombobox","<<ComboboxSelected>>", updateUI) ## misses update on new data
 % @ 
-
 \end{example}
 
 
@@ -3552,31 +3533,32 @@ Our entry class has a straightforward initialization method, otherwise
 we simply piece together the components we have just defined.
 \begin{Schunk}
 \begin{Sinput}
- ttkEntry <- setRefClass("TtkEntry",
-                         fields=list(
-                           e="tkwin", v="tclVar",
-                           init_msg="character"
-                           ),
-                         methods=list(
-                           initialize=function(parent, text, init_msg="") {
-                             v <<- tclVar()
-                             e <<- ttkentry(parent, textvariable=v)
-                             init_msg <<- init_msg
-                             if(missing(text))
-                               show_init_msg()
-                             else
-                               set_text(text)
-                             add_bindings()
-                             .self
-                           },
-                           get_text=get_text,
-                           set_text=set_text,
-                           is_init_msg=is_init_msg,
-                           hide_init_msg=hide_init_msg,
-                           show_init_msg=show_init_msg,
-                           add_bindings=add_bindings
-                           )
-                         )
+ ttkEntry <- 
+   setRefClass("TtkEntry",
+               fields=list(
+                 e="tkwin", v="tclVar",
+                 init_msg="character"
+                 ),
+               methods=list(
+                 initialize=function(parent, text, init_msg="") {
+                   v <<- tclVar()
+                   e <<- ttkentry(parent, textvariable=v)
+                   init_msg <<- init_msg
+                   if(missing(text))
+                     show_init_msg()
+                   else
+                     set_text(text)
+                   add_bindings()
+                   .self
+                 },
+                 get_text=get_text,
+                 set_text=set_text,
+                 is_init_msg=is_init_msg,
+                 hide_init_msg=hide_init_msg,
+                 show_init_msg=show_init_msg,
+                 add_bindings=add_bindings
+                 )
+               )
 \end{Sinput}
 \end{Schunk}
 

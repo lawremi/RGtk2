@@ -18,12 +18,12 @@ using styles is available online in Mark Roseman's \Tk\/ tutorial at
 \begin{figure}
   \centering
   \includegraphics[width=.4\textwidth]{fig-tcltk-searchentry.png}
-  \caption{Illlustration of using Tk styles to configure an entry widget to look like a Mac OS X search entry box.}
+  \caption{Illustration of using Tk styles to configure an entry widget to look like a Mac OS X search entry box.}
   \label{fig:fig-tcltk-searchentry}
 \end{figure}
 
 <<setUpStyle, echo=FALSE>>=
-## Data here is a uunendocde gif file
+## Data here is a uuencode gif file
 .imageData <- paste("R0lGODlhKgAaAOfnAFdZVllbWFpcWVtdWlxeW11fXF9hXmBiX2ZnZWhpZ2lraGxua25wbXJ0",
                "cXR2c3V3dHZ4dXh6d3x+e31/fH6AfYSGg4eJhoiKh4qMiYuNio2PjHmUqnqVq3yXrZGTkJKU",
                "kX+asJSWk32cuJWXlIGcs5aYlX6euZeZloOetZial4SftpqbmIWgt4GhvYahuIKivpudmYei",
@@ -115,7 +115,7 @@ tkpack(e)
 b <- ttkbutton(f, text="click me"); tkpack(b)
 @ 
 
-At this point, we define two bindings to insert some intial text into
+At this point, we define two bindings to insert some initial text into
 the widget to give direction to the user. The first handler is called
 on the expose event, when the widget is first drawn, and simply sets
 the initial text in gray.

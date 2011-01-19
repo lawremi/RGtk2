@@ -35,7 +35,7 @@ dims <- cbind(Benin=2:3, Cameroon=2:3,Guinea=2:3, Mali=2:3,
               Togo= 2:3)
 @ 
 
-This is a convenience function to create \function{tkframes} with different background colors. We use \function{tkframe} here -- not \function{ttkframe} -- as it has a background property.
+This is a convenience function to create \function{tkframe}s with different background colors. We use \function{tkframe} here -- not \function{ttkframe} -- as it has a background property.
 <<>>=
 makeColors <- function(parent)
   list(green  = tkframe(parent, background="green"),
@@ -128,7 +128,7 @@ l <- makeColors(win$f)
 tkgrid(l$green,  row=0, column=0, rowspan=2,    sticky="news")
 tkgrid(l$yellow, row=0, column=1, columnspan=2, sticky="news")
 tkgrid(l$red,    row=1, column=1, columnspan=2, sticky="news")
-## use grid in equal sizes to get spaing right
+## use grid in equal sizes to get spacing right
 tkgrid.rowconfigure(win$f, 0:1, weight=1)
 tkgrid.columnconfigure(win$f, 0:2, weight=1) 
 @ 

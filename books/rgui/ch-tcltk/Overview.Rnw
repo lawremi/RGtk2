@@ -98,7 +98,7 @@ The \pkg{tcltk} provides a corresponding function
 label object):
 
 <<echo=FALSE>>=
-## set up label for sweave below. Not shown
+## set up label for Sweave below. Not shown
 w <- tktoplevel()
 l <- ttklabel(w)
 tkpack(l)
@@ -192,7 +192,7 @@ buttons; and top-level containers to illustrate the basic usage of
 \pkg{tcltk}, leaving for later more detail on containers and widgets.
 
 Unlike \GTK, say, the construction of widgets in \pkg{tcltk} is linked
-to the widget heirarchy. \TK\/ widgets are constructed as children of
+to the widget hierarchy. \TK\/ widgets are constructed as children of
 a parent container with the parent specified to the constructor. When
 the \TK\/ shell, wish, is used or the \TK\/ package is loaded through
 the \TCL\/ command \code{package require Tk}, a top level window named
@@ -314,9 +314,9 @@ str(b)
 The returned widget objects are lists with two components: an ID and an
 environment. The \code{ID} component keeps a unique ID of the
 constructed widget. This is a character string, such as ``.1.2.1''
-coming from the the widget heirarchy of the object. This value is
+coming from the the widget hierarchy of the object. This value is
 generated behind the scenes by the \pkg{tcltk} package using numeric
-values to keep track of the heirarchy. The \code{env} component
+values to keep track of the hierarchy. The \code{env} component
 contains an environment that keeps a count of the subwindows, the parent
 window and any callback functions. This helps ensure that any copies
 of the widget refer to the same object~\citep{Dalgaard-DSC}. As the
@@ -333,7 +333,7 @@ possible for the \function{tcl} function.
 
 The themed widgets (those with a \code{ttk} constructor) have a state
 to determine which style is to be applied when painting the
-widget. These states can be adjusted throug the \code{state} command
+widget. These states can be adjusted through the \code{state} command
 and queried with the \code{instate} command. For example, to see if
 button widget \code{b} has the focus we have:
 <<has-focus>>=
@@ -377,7 +377,7 @@ box container so that themes are properly displayed.
 For the button and label widgets, there is an option
 \code{textvariable} to specify a \TCL\/ variable to store the text
 property. These variables are dynamically bound to the widget, so that
-changes to the variable are propogated to the GUI. (The \TCL\/
+changes to the variable are propagated to the GUI. (The \TCL\/
 variable is a model and the widget a view of the model.)  Other
 widgets allow for tcl variables to be used for this and other purposes
 The basic functions involved are \function{tclVar} to create a \TCL\/
@@ -398,7 +398,7 @@ as.character(textvar)
 @ 
 
 The advantages of \TCL\/ variables are like those of the MVC paradigm
--- a single data source can have its changes propogated to several
+-- a single data source can have its changes propagated to several
 widgets automatically. If the same text is to appear in different
 places, their usage is recommended.  One disadvantage, is that in a
 callback, the variable is not passed to the callback and must be found
@@ -433,8 +433,8 @@ x[['2']]                                # match by name, not index
 For a widget, the function \function{tkcget} is used to get the values
 of its options. If it is a themed widget, the \code{instate} command
 returns its state values. Finally, there is also \function{tkwinfo} to
-return the properties of the containing window if tge widget.  When
-widget are mapped, the ``window'' they are rendered to has properties,
+return the properties of the containing window of the widget.  When
+widgets are mapped, the ``window'' they are rendered to has properties,
 such as a class or size. If the API is of the form
 
 \begin{quotation}
@@ -474,7 +474,7 @@ window exists and 0 otherwise; the \subcommand{ismapped}{tkwinfo} sub
 command returns 1 or 0 if the window is currently mapped (drawn); the
 \subcommand{viewable}{tkwinfo} sub command is similar, only it checks
 that all parent windows are also mapped.  For traversing the widget
-heirarchy, one has available the \subcommand{parent}{tkwinfo} sub
+hierarchy, one has available the \subcommand{parent}{tkwinfo} sub
 command which returns the immediate parent of the component,
 \subcommand{toplevel}{tkwinfo} which returns the ID of the top-level
 window, and \subcommand{children}{tkwinfo} which returns the IDs of
@@ -511,7 +511,7 @@ The \code{use} sub command is used to set the theme:
 
 The writing of themes will not be covered, but in
 Example~\ref{ex-tcltk-toolbar} we show how to create a new style for a
-button. This topic is covered in some detail in the \Tk\/ tutorial by Rossman.
+button. This topic is covered in some detail in the \Tk\/ tutorial by Roseman.
 \\
 
 The example we have shown so far, would not look quite right for some
@@ -713,7 +713,7 @@ formats. (The \code{GDD} device driver can.) One may need system
 utilities to convert to the allowable formats or install add-on \TCL\/
 packages that can display other formats.
 
-To use the image, one specifird the image name to the
+To use the image, one specified the image name to the
 \option{image}{ttklabel} option:
 <<>>=
 l <- ttklabel(w, image="::img::tclLogo", text="logo text", 
@@ -799,10 +799,10 @@ widget has the focus the command will be invoked by the keyboard shortcut.
 The possible events (or sequences of events) vary from widget to
 widget. The events can be specified in a few ways. 
 
-The example below uses two types of events. A single keypress event, such as
+The example below uses two types of events. A single key press event, such as
 ``C'' or ``O'' can invoke a command and is specified by just its
 character. Whereas, the event of pressing the return key is specified
-using \code{\event{Return}}. In the following we bind the keypresses to the
+using \code{\event{Return}}. In the following we bind the key presses to the
 top-level window and the return event to any button with the default
 class \code{TButton}.
 
@@ -868,7 +868,7 @@ events listed in the \code{event} man page. These include
 \code{\VirtualEvent{Cut}}, \code{\VirtualEvent{Copy}} and
 \code{\VirtualEvent{Paste}} for working with the clipboard. New
 virtual events can be produced with the \code{tkevent.add}
-function. This takes atleast two arguments, an event name and a
+function. This takes at least two arguments, an event name and a
 sequence that will initiate that event. The \code{event} man page has
 these examples coming from the Emacs world:
 <<>>=
@@ -876,7 +876,7 @@ these examples coming from the Emacs world:
  tkevent.add("<<Save>>", "<Control-x><Control-s>")
 @ 
 %
-In addition to virtual events occuring when the sequence is performed,
+In addition to virtual events occurring when the sequence is performed,
 the \function{tkevent.generate} can be used to force an event for a
 widget. This function requires a widget (or its ID) and the event
 name. Other options can be used to specify substitution values,
@@ -946,7 +946,7 @@ widget), \code{y} and \code{Y} for the $y$-position, \code{k} and
 widget that signaled the event the callback is bound
 to. 
 
-The following trivial examplesl illustrates, whereas
+The following trivial example illustrates, whereas
 Example~\ref{ex-tcltk-dnd} will put these to use.
 
 <<>>=
@@ -991,7 +991,7 @@ tkbind(b, "<Button-1>", function() {
 %% After
 \paragraph{The after command}
 The \TCL\/ command \code{after} will execute a command after a certain
-delay (specified in milliseconds as an integer) while not interupting
+delay (specified in milliseconds as an integer) while not interrupting
 the control flow while it waits for its delay. The function is called
 in a manner like:
 \begin{Schunk}
