@@ -661,10 +661,6 @@ through the \method{setActive}{gtkComboBox} method.
 \end{example}
 
 
-\begin{example}{Dialog layout}{ex-RGtk2-dialog-layout}
-  \SweaveInput{ex-RGtk2-dialog-layout.Rnw}
-\end{example}
-
 % \begin{example}{Combo box}{eg:RGtk2:simple-combo-box}
 % A simple combo box may be produced as follows:
 % <<results=hide>>=
@@ -933,5 +929,3 @@ ID <-
 
 %% JV: This could be expanded -- motion is not covered, as is done with
 %% tcltk, but I don't think it is needed without a compelling use case.
-
-

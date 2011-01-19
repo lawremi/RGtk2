@@ -280,13 +280,12 @@ manner, so all of the data accessor methods for \class{GtkTreeModel}
 expect \class{GtkTreeIter}, not \class{GtkTreePath}. The \GTK\/
 designers imagined that the typical user would obtain an iterator for
 the first row and to visit each row in sequence:
-<<rgtk2-mvc-iter-traverse, eval=FALSE>>=
-### JV HAD issues with thi
+<<rgtk2-mvc-iter-traverse>>=
 iter <- model$getIterFirst()
 manufacturer <- character()
 while(iter$retval) {
   manufacturer <- c(manufacturer, model$get(iter$iter, 0)[[1]])
-  model$iterNext(iter$iter)
+  iter$retval <- model$iterNext(iter$iter)
 }
 @ 
 %
@@ -378,9 +377,6 @@ selection$setMode("single")
 
 <<echo=FALSE>>=
 vc <- gtkTreeViewColumn()
-
-## JV: had issues with second line
-## view$insertColumnWithAttributes(vc, 0, "title", gtkCellRendererText(), text = 0)
 view$insertColumnWithAttributes(0, "title", gtkCellRendererText(), text = 0)
 ## pack in GUI
 sw <- gtkScrolledWindow()
@@ -945,17 +941,16 @@ Traversing a tree store is most easily achieved through the use of
 tables. Here we perform a depth-first traversal of our \code{Cars93}
 model to obtain the model values: 
 
-\XXX{FIX ME}
-<<rgtk2-mvc-tree-traverse, eval=FALSE>>=
-## JV: had issues with this (older RGtk2?)
+<<rgtk2-mvc-tree-traverse>>=
 iter <- tstore$getIterFirst()
 models <- NULL
 while(iter$retval) {
   child <- tstore$iterChildren(iter$iter)
   while(child$retval) {
     models <- c(models, tstore$get(child$iter, 0)[[1]])
+    child$retval <- tstore$iterNext(child$iter)
   }
-  tstore$iterNext(iter$iter)
+  iter$retval <- tstore$iterNext(iter$iter)
 }
 @ 
 %

@@ -1,2 +1,24 @@
 %% using cairoDevice to embed graphics
 %% cairoDevice
+
+The package \pkg{cairoDevice} is an R graphics device based on the
+Cairo graphics library.  It is cross-platform and supports
+alpha-blending and antialiasing. Through its support for the
+\function{getGraphicsEvent} function, it is currently the most
+interactive cross-platform graphics device.  
+
+\pkg{RGtk2} and \pkg{cairoDevice} are integrated through the
+\function{asCairoDevice} function. If a \class{GtkDrawingArea},
+\class{GdkDrawable}, \class{Cairo} context, or \class{GtkPrintContext}
+is passed to \function{asCairoDevice}, an R graphics device will be
+initialized that targets its drawing to the object. For simply
+displaying graphics in a GUI, the \class{GtkDrawingArea} is the best
+choice. 
+% TODO: put GtkDrawingArea example here
+For more complex use cases, such as compositing a layer above
+or below the R graphic, one should pass an off-screen
+\class{GdkDrawable}, like a \class{GdkPixmap}, or a \class{Cairo}
+context. The off-screen drawing can then be composited with other
+images when displayed. Finally, passing a \class{GtkPrintContext} to
+\function{asCairoDevice} allows printing R graphics through the \GTK\/
+printing dialogs.

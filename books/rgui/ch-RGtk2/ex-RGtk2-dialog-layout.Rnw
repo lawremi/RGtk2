@@ -1,4 +1,4 @@
-This example shows how to layout some controls for a dialog with some
+This example shows how to layout a form in a dialog with some
 attention paid to how the widgets are aligned and how they respond to
 resizing of the window.
 <<echo=FALSE>>=
@@ -14,59 +14,61 @@ library(RGtk2)
 \end{figure}
 
 
-Our basic GUI is a table with 4 rows and 2 columns.
+Our form GUI is a table with 3 rows and 2 columns:
 <<>>=
 w <- gtkWindow(show=FALSE)
 w['border-width'] <- 14
-w$setTitle("example of gtkTable and attaching")
-tbl <- gtkTable(rows=4, columns=2, homogeneous=FALSE)
+w$setTitle("GtkTable Example")
+tbl <- gtkTable(rows=3, columns=2, homogeneous=FALSE)
 w$add(tbl)
 @ 
 
-We define our widgets first then do their layout.
+We construct the widgets that will be placed in the form:
 <<results=hide>>=
-l1 <- gtkLabel("Sample size")
-w1 <- gtkComboBoxNewText()
-sapply(c(5, 10, 15, 30), gtkComboBoxAppendText, object=w1)
-#
-l2 <- gtkLabel("Show diagnostic ")
-w2 <- gtkVBox()
+sizeLabel <- gtkLabel("Sample size:")
+sizeCombo <- gtkComboBoxNewText()
+sapply(c(5, 10, 15, 30), sizeCombo$appendText)
+
+diagLabel <- gtkLabel("Diagnostic:")
+diagRadios <- gtkVBox()
 rb <- list()
-rb[["t"]] <- gtkRadioButton(label="t-statistic")
-for(i in c("mean","median")) rb[[i]] <- gtkRadioButton(rb, label=i)
-sapply(rb, gtkBoxPackStart, object=w2)
-#
-w3 <- gtkButton("Run simulation")
+rb$t <- gtkRadioButton(label="t-statistic")
+rb$mean <- gtkRadioButton(rb, label="mean")
+rb$median <- gtkRadioButton(rb, label="median")
+sapply(rb, diagRadios$packStart)
+submitBox <- gtkVBox()
+submitBox$packEnd(gtkButton("Run simulation"), expand = FALSE)
 @ 
 
-The basic \method{AttachDeafults}{GtkTable} method will cause the widgets to
-expand when resized, which we want to control here. As such we use
-\code{Attach}. To get the control's label to center align yet still
-have some breathing room we set its
-\code{xalign} and  \code{xpad} properties.
-For the combo box we avoid using \qcode{expand} as otherwise it resizes
-to fill the space allocated to the cell in the \code{y} direction.
+This goal of the layout is to correctly align the labels and input
+widgets, while making efficient use of space.  The following
+attaches the combo box, radio buttons and their labels to the table:
 <<>>=
-tbl$attach(l1, left.attach=0,1, top.attach=0,1, yoptions="fill")
-l1["xalign"] <- 1; l1["xpad"] <- 5
-tbl$attach(w1, left.attach=1,2, top.attach=0,1, xoptions="fill", yoptions="fill")
+tbl$setColSpacing(0, 5)
+tbl$attach(sizeLabel, left.attach=0,1, top.attach=0,1, 
+           xoptions = c("expand", "fill"), yoptions="")
+sizeLabel["xalign"] <- 1
+tbl$attach(sizeCombo, left.attach=1,2, top.attach=0,1, xoptions="fill", 
+           yoptions="")
+tbl$attach(diagLabel, left.attach=0,1, top.attach=1,2, 
+           xoptions = c("expand", "fill"), yoptions=c("expand", "fill"))
+diagLabel["xalign"] <- 1; diagLabel["yalign"] <- 0
+radioAlign <- gtkAlignment(xalign = 0)
+radioAlign$add(diagRadios)
+tbl$attach(radioAlign, left.attach=1,2, top.attach=1,2, 
+           xoptions=c("expand", "fill"), yoptions = "")
+tbl$attach(submitBox, left.attach=1,2, top.attach=2,3, xoptions="", 
+           yoptions=c("expand", "fill"))
 @ 
+%
+The labels are allowed to expand and fill in the $X$ direction,
+because correct alignment, to the right, requires them to have the
+same size. The combo box is instructed to fill its space, as it would
+otherwise be undesirably small, due to its short menu items.  giving
+it a reasonable size and alignment. We have aligned the diagnostic
+label to the top of its cell; otherwise, it would have been in the
+middle. The radio buttons are left aligned, up against the label.
 
-We use \qcode{expand} here to attach the radio group, so that it
-expands to fill the space. The label has its \code{yalign} property
-set, so that it stays at the top of the cell, not the middle.
-<<>>=
-tbl$attach(l2, left.attach=0,1, top.attach=1,2, yoptions="fill")
-l2["xalign"] <- 1; l2['yalign'] <- 0; l2["xpad"] <- 4
-tbl$attach(w2, left.attach=1,2, top.attach=1,2, xoptions=c("expand", "fill"))
-@ 
-A separator with a bit of padding provides a visual distinction
-between the controls and the button to initiate an action.
-<<>>=
-tbl$attach(gtkHSeparator(),left.attach=0,2, top.attach=2,3, ypadding=10, yoptions="fill")
-tbl$attach(w3, left.attach=1,2, top.attach=3,4, xoptions="fill", yoptions="fill")
-@ 
-To finish, we call the windows \meth{show} method.
-<<>>=
+<<echo=false>>=
 w$show()                             
 @ 

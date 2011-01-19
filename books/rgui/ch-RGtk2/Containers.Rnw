@@ -742,3 +742,7 @@ as with \class{GtkAlignment}.
 %   \SweaveInput{ex-RGtk2-calculator-buttons.Rnw}
 % \end{example}
 
+\begin{example}{Dialog layout}{ex-RGtk2-dialog-layout}
+  \SweaveInput{ex-RGtk2-dialog-layout.Rnw}
+\end{example}
+
