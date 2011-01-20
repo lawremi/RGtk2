@@ -126,7 +126,8 @@ evalCMD <- function(tv, cmd) {
   }
   
   e <- parse(text = cmd)
-  out <- capture.output(vis <- withVisible(try(eval(e, .GlobalEnv), TRUE)))
+  out <- capture.output(vis <- 
+                 withVisible(try(eval(e, .GlobalEnv), TRUE)))
 
   addOutput(tb, out) 
   if (inherits(vis$value, "try-error"))
@@ -144,11 +145,11 @@ pressed. The \signal{key-release-event} signal passes the event
 information through to the second argument. We inspect the key value
 and compare to that of the return key. 
 <<connectBinding, results=hide>>=
-gSignalConnect(tv, "key-release-event", f=function(w, e, data) {
+gSignalConnect(tv, "key-release-event", f=function(w, e) {
   obj <- w$getBuffer()                  # w is textview
   keyval <- e$getKeyval()
   if(keyval == GDK_Return) {
-    cmd <- findCMD(obj)                 # character(0) if nothing
+    cmd <- findCMD(obj)                 # poss. character(0)
     if(length(cmd) && nchar(cmd) > 0)
       evalCMD(w, cmd)
   }

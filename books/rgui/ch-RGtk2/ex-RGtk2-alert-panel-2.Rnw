@@ -25,7 +25,8 @@ close icon, we place this inside another event box. To this, we bind a
 callback to the \signal{button-press-event} signal. 
 <<>>=
 initialize <- 
-  function(message="", icon="gtk-dialog-warning", panel.color="goldenrod") {
+  function(message="", icon="gtk-dialog-warning", 
+           panel.color="goldenrod") {
     "Initialize widgets"
     widget <<- gtkEventBox(show=FALSE)
     widget$ModifyBg(state="normal", color=panel.color)
@@ -44,21 +45,22 @@ initialize <-
     ##
     xbutton <- gtkEventBox()
     xbutton$modifyBg(state="normal", color=panel.color) 
-    xbutton$add(gtkImageNewFromStock("gtk-close", size="menu"))
+    xbutton$add(gtkImageNewFromStock("gtk-close", 
+                                     size="menu"))
     g$packEnd(xbutton, expand=FALSE, fill=FALSE)
     ##
     callback <- function(...) {hide(); FALSE}
     sapply(list(xbutton, widget), function(i) 
-           gSignalConnect(i, "button-press-event", f= callback))
+          gSignalConnect(i, "button-press-event", f=callback))
     ##
-    message <<- message                 # set message
+    message <<- message                  # set message
     ##
     .self
   }
 @ 
 
 Now we can define our main class.
-<<AlertPanelClass>>=
+<<AlertPanelClass, results=hide>>=
 setRefClass("AlertPanel",
             fields = list(
               widget="ANY",              # main event box
@@ -68,17 +70,14 @@ setRefClass("AlertPanel",
             methods=list(
               initialize=initialize,
               set_message=function(msg) {
-                "Set message, show box"
-                message <<- msg
-                show()
+                message <<- msg         # set and
+                show()                  # show
               },
               show=function() {
-                "Show message"
                 label$setText(message)
                 widget$show()
               },
               hide=function() {
-                "hide message"
                 widget$hide()
               }))
 @ 

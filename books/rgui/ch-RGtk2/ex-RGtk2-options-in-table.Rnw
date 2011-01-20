@@ -1,4 +1,4 @@
-<<editableTableForCollectingOptions, eval=FALSE>>=
+<<editableTableForCollectingOptions, echo=FALSE>>=
 ## GUI for configuring options -- in a table
 library(RGtk2)
 @ 
@@ -12,9 +12,11 @@ For this example we collect values for arguments to the
 and default value along with some additional values.
 
 <<>>=
-df <- data.frame(option=c("main","sub","xlab","ylab", "line","outer"),
+opts <- c("main","sub","xlab","ylab", "line","outer")
+df <- data.frame(option=opts,
                  value=c("","","","","0","FALSE"),
-                 coerce=c(rep("as.character", 4), "as.integer", "as.logical"),
+                 coerce=c(rep("as.character", 4), 
+                   "as.integer", "as.logical"),
                  edit_color=rep("gray95", 6),
                  dirty = rep(FALSE, 6),
                  stringsAsFactors=FALSE)
@@ -29,13 +31,14 @@ the user supplies an appropriate value. For more non-integer numbers or
 dates we might define coercion functions such as:
 <<coercionFunctions>>=
 asNumeric <- function(x) sprintf("%.2f", as.numeric(x))
-asDate <- function(x)  format(as.Date(x, "%m/%d/%y"), "%m/%d/%y")
+asDate <- function(x)  format(as.Date(x, "%m/%d/%y"), 
+                              "%m/%d/%y")
 @ 
 %
 
 Now we create our model and configure the two columns. The first
 column has a standard background color which we specify below.
-<<firstColumn>>=
+<<firstColumn, results=hide>>=
 m <- rGtkDataFrame(df)
 v <- gtkTreeView(m)
 #
@@ -49,7 +52,7 @@ v$insertColumnWithAttributes(position=-1,
 
 The second column will be editable and have a background color that is
 state dependent and indicates if a cell has been edited.
-<<secondColumn>>=
+<<secondColumn, results=hide>>=
 cr <- gtkCellRendererText()
 cr['editable'] <- TRUE
 v$insertColumnWithAttributes(position=-1,
@@ -65,7 +68,8 @@ To connect the view to the model, we connect the cell renderer to the
 the text then set the background color and \code{dirty} flag of the
 entry. The latter allows one to easily find the values which were edited.
 <<editConnect>>=
-gSignalConnect(cr, "edited", function(cr, path, new.text, user.data) {
+gSignalConnect(cr, "edited", function(cr, path, new.text, 
+                                      user.data) {
   m <- user.data$model
   i <- as.numeric(path) + 1; j <- user.data$column
   m[i,j] <- get(m[i, 'coerce'])(new.text) # format
@@ -91,7 +95,7 @@ model's values into the appropriate call to \function{title}. The
 \code{dirty} flag makes this easy, but this is a task we do not pursue
 here. Instead we add a bit of extra detail by providing a tooltip.
 
-\oaragraph{Tooltips}
+\paragraph{Tooltips}
 For this example, our function has built-in documentation. Below we
 use the \pkg{helpr} function to extract the description for
 each of the arguments. We leave this in a list, \code{descs}, for later
@@ -101,7 +105,8 @@ require(helpr, quietly=TRUE)
 package <- "graphics"; topic <- "title"
 rd <- helpr:::parse_help(helpr:::pkg_topic(package, topic), 
                          package = package)
-descs <- rd$params$args; names(l) <- sapply(l, function(i) i$param)
+descs <- rd$params$args
+names(descs) <- sapply(descs, function(i) i$param)
 @ 
 
 For many widgets, adding a tooltip is as easy as setting the
@@ -117,18 +122,19 @@ uses PANGO. As the \code{code} tag is not PANGO, we change to a bold
 tag using \function{gsub}.
 <<>>=
 v['has-tooltip'] <- TRUE
-gSignalConnect(v, "query-tooltip", function(w, x, y, key_mode, tooltip, user.data) {
-  out <- w$getTooltipContext(x, y, key_mode)
-  if(out$retval) {
-    m <- w$getModel()
-    i <- as.numeric(out$path$toString()) + 1
-    val <- m[i, "option"]
-    txt <- descs[[val]]$desc
-    txt <- gsub("code>","b>", txt)      # no code in PANGO
-    tooltip$setMarkup(txt)
-    TRUE
-  } else {
-    FALSE                               # no tooltip
-  }
-})
+gSignalConnect(v, "query-tooltip", 
+       function(w, x, y, key_mode, tooltip, user.data) {
+         out <- w$getTooltipContext(x, y, key_mode)
+         if(out$retval) {
+           m <- w$getModel()
+           i <- as.numeric(out$path$toString()) + 1
+           val <- m[i, "option"]
+           txt <- descs[[val]]$desc
+           txt <- gsub("code>","b>", txt)  # no code in PANGO
+           tooltip$setMarkup(txt)
+           TRUE
+         } else {
+           FALSE                           # no tooltip
+         }
+       })
 @ 

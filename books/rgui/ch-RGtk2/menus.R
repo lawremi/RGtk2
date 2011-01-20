@@ -8,7 +8,7 @@ require(RGtk2)
 ###################################################
 ### chunk number 2: rgtk2-menus-actions-constructor
 ###################################################
-#line 25 "SweaveInput"
+#line 29 "SweaveInput"
 a <- gtkAction(name="ok", label="_Ok", 
                tooltip="An OK button", stock.id="gtk-ok")
 
@@ -16,7 +16,7 @@ a <- gtkAction(name="ok", label="_Ok",
 ###################################################
 ### chunk number 3: rgtk2-menus-actions-activate
 ###################################################
-#line 36 "SweaveInput"
+#line 40 "SweaveInput"
 gSignalConnect(a, "activate", f = function(w, data) {
   print(a$getName())                    # or some useful thing
 })
@@ -25,7 +25,7 @@ gSignalConnect(a, "activate", f = function(w, data) {
 ###################################################
 ### chunk number 4: ConnectAction
 ###################################################
-#line 49 "SweaveInput"
+#line 53 "SweaveInput"
 b <- gtkButton()
 b$setRelatedAction(a)
 
@@ -33,14 +33,14 @@ b$setRelatedAction(a)
 ###################################################
 ### chunk number 5: rgtk2-menus-action-appearance eval=FALSE
 ###################################################
-## #line 60 "SweaveInput"
+## #line 64 "SweaveInput"
 ## b["use-action-appearance"] <- TRUE
 
 
 ###################################################
 ### chunk number 6: rgtk2-menus-action-group
 ###################################################
-#line 69 "SweaveInput"
+#line 73 "SweaveInput"
 group <- gtkActionGroup()
 group$addActionWithAccel(a, "<control>O")
 
@@ -48,7 +48,7 @@ group$addActionWithAccel(a, "<control>O")
 ###################################################
 ### chunk number 7: rgtk2-menus-toggle-action
 ###################################################
-#line 86 "SweaveInput"
+#line 90 "SweaveInput"
 fullScreen <- gtkToggleAction("fullscreen", "Full screen", "Toggle full screen")
 gSignalConnect(fullScreen, "toggled", function(action) {
   if(fullScreen['active'])
@@ -61,7 +61,7 @@ gSignalConnect(fullScreen, "toggled", function(action) {
 ###################################################
 ### chunk number 8: showGUI
 ###################################################
-#line 99 "SweaveInput"
+#line 103 "SweaveInput"
 window <- gtkWindow(show=FALSE)
 window['title'] <- "Action with button example"
 window$add(b)
@@ -71,21 +71,21 @@ window$showAll()
 ###################################################
 ### chunk number 9: rgtk2-menus-menubar
 ###################################################
-#line 124 "SweaveInput"
+#line 128 "SweaveInput"
 menubar <- gtkMenuBar()
 
 
 ###################################################
 ### chunk number 10: rgtk2-menus-menu
 ###################################################
-#line 135 "SweaveInput"
+#line 139 "SweaveInput"
 fileMenu <- gtkMenu()
 
 
 ###################################################
 ### chunk number 11: rgtk2-menus-menuitem
 ###################################################
-#line 141 "SweaveInput"
+#line 145 "SweaveInput"
 fileItem <- gtkMenuItemNewWithMnemonic(label="_File")
 fileItem$setSubmenu(fileMenu)
 
@@ -93,21 +93,21 @@ fileItem$setSubmenu(fileMenu)
 ###################################################
 ### chunk number 12: rgtk2-menus-append
 ###################################################
-#line 149 "SweaveInput"
+#line 153 "SweaveInput"
 menubar$append(fileItem)
 
 
 ###################################################
 ### chunk number 13: rgtk2-menus-open
 ###################################################
-#line 162 "SweaveInput"
+#line 166 "SweaveInput"
 open <- gtkMenuItemNewWithMnemonic("_Open")
 
 
 ###################################################
 ### chunk number 14: rgtk2-menus-open-activate
 ###################################################
-#line 168 "SweaveInput"
+#line 172 "SweaveInput"
 gSignalConnect(open, "activate", function(item) {
   f <- file.choose()
   file.show(f)
@@ -117,21 +117,21 @@ gSignalConnect(open, "activate", function(item) {
 ###################################################
 ### chunk number 15: rgtk2-menus-append-item
 ###################################################
-#line 176 "SweaveInput"
+#line 180 "SweaveInput"
 fileMenu$append(open)
 
 
 ###################################################
 ### chunk number 16: rgtk2-menus-save-action
 ###################################################
-#line 183 "SweaveInput"
+#line 187 "SweaveInput"
 saveAction <- gtkAction("save", "Save", "Save object", "gtk-save")
 
 
 ###################################################
 ### chunk number 17: rgtk2-menus-save-item
 ###################################################
-#line 189 "SweaveInput"
+#line 193 "SweaveInput"
 save <- saveAction$createMenuItem()
 ## unnecessary?
 ##save["use-action-appearance"] <- TRUE
@@ -141,14 +141,14 @@ fileMenu$append(save)
 ###################################################
 ### chunk number 18: rgtk2-menus-separator
 ###################################################
-#line 200 "SweaveInput"
+#line 204 "SweaveInput"
 fileMenu$append(gtkSeparatorMenuItem())
 
 
 ###################################################
 ### chunk number 19: rgtk2-menus-toggle-item
 ###################################################
-#line 206 "SweaveInput"
+#line 210 "SweaveInput"
 autoSaveAction <- gtkToggleAction("autosave", "Autosave", 
                                   "Enable autosave")
 autoSave <- autoSaveAction$createMenuItem()
@@ -158,7 +158,7 @@ fileMenu$append(autoSave)
 ###################################################
 ### chunk number 20: rgtk2-menus-window
 ###################################################
-#line 214 "SweaveInput"
+#line 218 "SweaveInput"
 mainWindow <- gtkWindow()
 vbox <- gtkVBox()
 mainWindow$add(vbox)
@@ -168,7 +168,7 @@ vbox$packStart(menubar, FALSE, FALSE)
 ###################################################
 ### chunk number 21: "menubar-ex"
 ###################################################
-#line 227 "SweaveInput"
+#line 231 "SweaveInput"
 popup <- gtkMenu()                       # top level
 popup$append(gtkMenuItem("cut"))
 popup$append(gtkMenuItem("copy"))
@@ -179,7 +179,7 @@ popup$append(gtkMenuItem("paste"))
 ###################################################
 ### chunk number 22: rgtk2-menus-popup-button
 ###################################################
-#line 237 "SweaveInput"
+#line 241 "SweaveInput"
 b <- gtkButton("Click me with right mouse button")
 w <- gtkWindow(); w$setTitle("Popup menu example")
 w$add(b)
@@ -188,7 +188,7 @@ w$add(b)
 ###################################################
 ### chunk number 23: 
 ###################################################
-#line 249 "SweaveInput"
+#line 253 "SweaveInput"
 gSignalConnect(b,"button-press-event",
        f = function(w, e, menu) {
          if(e$getButton() == 3 ||
@@ -204,7 +204,7 @@ gSignalConnect(b,"button-press-event",
 ###################################################
 ### chunk number 24: 
 ###################################################
-#line 266 "SweaveInput"
+#line 270 "SweaveInput"
 IDs <- sapply(popup$getChildren(), function(i) {
   if(!inherits(i, "GtkSeparatorMenuItem")) # skip these
     gSignalConnect(i, "activate",
@@ -215,28 +215,28 @@ IDs <- sapply(popup$getChildren(), function(i) {
 ###################################################
 ### chunk number 25: rgtk2-menus-toolbar-construct
 ###################################################
-#line 285 "SweaveInput"
+#line 289 "SweaveInput"
 toolbar <- gtkToolbar()
 
 
 ###################################################
 ### chunk number 26: rgtk2-menus-toolbar-open-item
 ###################################################
-#line 294 "SweaveInput"
+#line 298 "SweaveInput"
 openButton <- gtkToolButton(stock.id = "gtk-open") 
 
 
 ###################################################
 ### chunk number 27: rgtk2-menus-toolbar-add
 ###################################################
-#line 303 "SweaveInput"
+#line 307 "SweaveInput"
 toolbar$add(openButton)
 
 
 ###################################################
 ### chunk number 28: rgtk2-menus-toolbar-save-item
 ###################################################
-#line 314 "SweaveInput"
+#line 318 "SweaveInput"
 saveButton <- saveAction$createToolItem()
 toolbar$add(saveButton)
 
@@ -244,14 +244,14 @@ toolbar$add(saveButton)
 ###################################################
 ### chunk number 29: rgtk2-menus-toolbar-separator
 ###################################################
-#line 323 "SweaveInput"
+#line 327 "SweaveInput"
 toolbar$add(gtkSeparatorToolItem())
 
 
 ###################################################
 ### chunk number 30: rgtk2-menus-toolbar-toggle
 ###################################################
-#line 328 "SweaveInput"
+#line 332 "SweaveInput"
 fullScreenButton <- fullScreen$createToolItem()
 toolbar$add(fullScreenButton)
 
@@ -259,21 +259,21 @@ toolbar$add(fullScreenButton)
 ###################################################
 ### chunk number 31: rgtk2-menus-toolbar-style
 ###################################################
-#line 344 "SweaveInput"
+#line 348 "SweaveInput"
 toolbar$setStyle("icon")
 
 
 ###################################################
 ### chunk number 32: rgtk2-menus-toolbar-is-important
 ###################################################
-#line 353 "SweaveInput"
+#line 357 "SweaveInput"
 fullScreen["is-important"] <- TRUE
 
 
 ###################################################
 ### chunk number 33: rgtk2-menus-toolbar-expand
 ###################################################
-#line 362 "SweaveInput"
+#line 366 "SweaveInput"
 expander <- gtkSeparatorToolItem()
 expander["draw"] <- FALSE
 toolbar$add(expander)
@@ -284,7 +284,7 @@ toolbar$add(expander)
 ###################################################
 ### chunk number 34: rgtk2-menus-toolbar-help
 ###################################################
-#line 374 "SweaveInput"
+#line 378 "SweaveInput"
 helpAction <- gtkAction("help", "Help", "Get help", "gtk-help")
 toolbar$add(helpAction$createToolItem())
 
@@ -292,16 +292,14 @@ toolbar$add(helpAction$createToolItem())
 ###################################################
 ### chunk number 35: rgtk2-menus-toolbar-place
 ###################################################
-#line 381 "SweaveInput"
+#line 385 "SweaveInput"
 vbox$packStart(toolbar, FALSE, FALSE)
 
 
 ###################################################
 ### chunk number 36: rgtk2-mennus-toolbar-color-button
 ###################################################
-#line 399 "SweaveInput"
-## JV: moved )
-##gdkColor <- gdkColorParse(palette()[1]$color)
+#line 403 "SweaveInput"
 gdkColor <- gdkColorParse(palette()[1])$color
 colorButton <- gtkColorButton(gdkColor)
 
@@ -309,7 +307,7 @@ colorButton <- gtkColorButton(gdkColor)
 ###################################################
 ### chunk number 37: rgtk2-menus-toolbar-color-menu
 ###################################################
-#line 411 "SweaveInput"
+#line 413 "SweaveInput"
 colorMenuItem <- function(color) {
   da <- gtkDrawingArea()
   da$setSizeRequest(20, 20)
@@ -321,8 +319,6 @@ colorMenuItem <- function(color) {
 colorItems <- sapply(palette(), colorMenuItem)
 colorMenu <- gtkMenu()
 for (item in colorItems)
-  ## JV: fixed this
-##  menu$append(item)
   colorMenu$append(item)
 
 
@@ -347,60 +343,100 @@ toolbar$add(menuButton)
 
 
 ###################################################
-### chunk number 40: rgtk2-menus-tool-item-group
+### chunk number 40: rgtk2-menus-tool-item-group eval=FALSE
 ###################################################
-#line 464 "SweaveInput"
-fileGroup <- gtkToolItemGroup("File")
-fileGroup$add(gtkToolButton(stock.id = "gtk-open"))
-fileGroup$add(saveAction$createToolItem())
-helpGroup <- gtkToolItemGroup("Help")
-helpGroup$add(helpAction$createToolItem())
+## #line 469 "SweaveInput"
+## fileGroup <- gtkToolItemGroup("File")
+## fileGroup$add(gtkToolButton(stock.id = "gtk-open"))
+## fileGroup$add(saveAction$createToolItem())
+## helpGroup <- gtkToolItemGroup("Help")
+## helpGroup$add(helpAction$createToolItem())
 
 
 ###################################################
-### chunk number 41: rgtk2-menus-tool-palette
+### chunk number 41: rgtk2-menus-tool-palette eval=FALSE
 ###################################################
-#line 473 "SweaveInput"
-palette <- gtkToolPalette()
-palette$add(fileGroup)
-palette$add(helpGroup)
+## #line 479 "SweaveInput"
+## palette <- gtkToolPalette()
+## palette$add(fileGroup)
+## palette$add(helpGroup)
 
 
 ###################################################
-### chunk number 42: rgtk2-menus-tool-palette-collapse
+### chunk number 42: rgtk2-menus-tool-palette-collapse eval=FALSE
 ###################################################
-#line 480 "SweaveInput"
-helpGroup$setCollapsed(TRUE)
+## #line 486 "SweaveInput"
+## helpGroup$setCollapsed(TRUE)
 
 
 ###################################################
-### chunk number 43: not-shown
+### chunk number 43: 
 ###################################################
-#line 513 "SweaveInput"
-## sample RGtk2 menu
-library(RGtk2)
+#line 517 "SweaveInput"
+ib <- gtkInfoBar(show=FALSE)
+ib$setNoShowAll(TRUE)
 
 
 ###################################################
 ### chunk number 44: 
 ###################################################
-#line 519 "SweaveInput"
-uimanager = gtkUIManager()
+#line 528 "SweaveInput"
+l <- gtkLabel("Warning, Warning ....")
+ib$setMessageType("warning")            
+ib$getContentArea()$add(l)
 
 
 ###################################################
 ### chunk number 45: 
 ###################################################
-#line 527 "SweaveInput"
+#line 535 "SweaveInput"
+ib$addButton(button.text="gtk-ok",
+             response.id=GtkResponseType['ok'])
+
+
+###################################################
+### chunk number 46: 
+###################################################
+#line 544 "SweaveInput"
+gSignalConnect(ib, "response", function(w, response.id) w$hide())
+
+
+###################################################
+### chunk number 47: addToWinodw
+###################################################
+#line 549 "SweaveInput"
+vbox$packStart(ib, expand = FALSE)
+ib$show()
+
+
+###################################################
+### chunk number 48: not-shown
+###################################################
+#line 583 "SweaveInput"
+## sample RGtk2 menu
+library(RGtk2)
+
+
+###################################################
+### chunk number 49: 
+###################################################
+#line 589 "SweaveInput"
+uimanager = gtkUIManager()
+
+
+###################################################
+### chunk number 50: 
+###################################################
+#line 597 "SweaveInput"
 someAction <- function(action,...) 
   statusbar$push(statusbar$getContextId("message"), action$getName())
 Quit <- function(...) win$destroy()
 
 
 ###################################################
-### chunk number 46: Define-first-action-group
+### chunk number 51: Define-first-action-group
 ###################################################
-#line 543 "SweaveInput"
+#line 613 "SweaveInput"
 firstActionGroup <- gtkActionGroup("firstActionGroup")
 firstActionEntries <- list(
   ## name,ID,label,accelerator,tooltip,callback
@@ -423,17 +459,17 @@ firstActionEntries <- list(
 
 
 ###################################################
-### chunk number 47: "Insert action group"
+### chunk number 52: "Insert action group"
 ###################################################
-#line 569 "SweaveInput"
+#line 639 "SweaveInput"
 firstActionGroup$addActions(firstActionEntries)
 uimanager$insertActionGroup(firstActionGroup, 0) # 0-based
 
 
 ###################################################
-### chunk number 48: 
+### chunk number 53: 
 ###################################################
-#line 576 "SweaveInput"
+#line 646 "SweaveInput"
 helpActionGroup <- gtkActionGroup("helpActionGroup")
 helpActionEntries <- list(
   help = list("Help", "", "_Help", "", "", NULL),
@@ -443,49 +479,51 @@ helpActionGroup$addActions(helpActionEntries)
 
 
 ###################################################
-### chunk number 49: "a toggle action"
+### chunk number 54: "a toggle action"
 ###################################################
-#line 593 "SweaveInput"
+#line 663 "SweaveInput"
 toggleActions <- list(
-  tooltips = c("UseTooltips", NULL, "Use _Tooltips", "<control>T", 
-    "Enable tooltips", someAction, TRUE)
+        ## name, label, tooltip, stock.id              
+        tooltips = gtkToggleAction("UseTooltips", "Use tooltips", 
+          "Use tooltips to show additional information", NULL)
 )
-helpActionGroup$addActions(toggleActions)
+gSignalConnect(toggleActions[[1]], "toggled", function(...) print("toggled"))
+helpActionGroup$addAction(toggleActions$tooltips)
 
 
 ###################################################
-### chunk number 50: "insert help action group"
+### chunk number 55: "insert help action group"
 ###################################################
-#line 605 "SweaveInput"
+#line 677 "SweaveInput"
 uimanager$insertActionGroup(helpActionGroup, 1)
 
 
 ###################################################
-### chunk number 51: "Load UI from file"
+### chunk number 56: "Load UI from file"
 ###################################################
-#line 660 "SweaveInput"
+#line 732 "SweaveInput"
 id <- uimanager$addUiFromFile("ex-menus.xml")
 
 
 ###################################################
-### chunk number 52: "Retrieve menubar and toolbar from the uimanager"
+### chunk number 57: "Retrieve menubar and toolbar from the uimanager"
 ###################################################
-#line 671 "SweaveInput"
+#line 743 "SweaveInput"
 menubar <- uimanager$getWidget("/menubar")
 toolbar <- uimanager$getWidget("/toolbar")
 
 
 ###################################################
-### chunk number 53: "define statusbar"
+### chunk number 58: "define statusbar"
 ###################################################
-#line 676 "SweaveInput"
+#line 748 "SweaveInput"
 statusbar <- gtkStatusbar()
 
 
 ###################################################
-### chunk number 54: Define-window-add-accelerator-group
+### chunk number 59: Define-window-add-accelerator-group
 ###################################################
-#line 684 "SweaveInput"
+#line 756 "SweaveInput"
 win <- gtkWindow(show=TRUE)
 win$setTitle("Window example")
 accelgroup <- uimanager$getAccelGroup()
@@ -493,9 +531,9 @@ win$addAccelGroup(accelgroup)
 
 
 ###################################################
-### chunk number 55: setup-box
+### chunk number 60: setup-box
 ###################################################
-#line 692 "SweaveInput"
+#line 764 "SweaveInput"
 box <- gtkVBox()
 win$add(box)
 
@@ -508,9 +546,10 @@ box$packStart(statusbar, expand=FALSE, fill=FALSE, 0)
 
 
 ###################################################
-### chunk number 56: How-to-set-sensitivity
+### chunk number 61: How-to-set-sensitivity
 ###################################################
-#line 707 "SweaveInput"
-firstActionGroup$getAction("Redo")['sensitive'] <- FALSE
+#line 779 "SweaveInput"
+redo <- firstActionGroup$getAction("Redo")
+redo['sensitive'] <- FALSE
 
 

@@ -236,7 +236,7 @@ as a familiar alternative for this method. Auto-completion of property
 names is gained as a side effect.  For the button just defined, we can
 see the first eight properties listed with:
 <<showProperties>>=
-head(names(button), n=8)                     # or b$getPropInfo()
+head(names(button), n=8)                 # or b$getPropInfo()
 @ 
 
 Some common properties are: \code{parent}, to store the parent widget
@@ -304,7 +304,11 @@ information on the signals.
 The \function{gSignalConnect} (or \function{gSignalConnect}) function is used
 to add a callback to a widget's signal. Its signature is
 %% XXX tighten up output
-<<>>=
+\begin{Soutput}
+function (obj, signal, f, data = NULL, after = FALSE, 
+          user.data.first = FALSE)
+\end{Soutput}
+<<echo=FALSE, eval=FALSE>>=
 args(gSignalConnect)
 @
 %
@@ -351,11 +355,12 @@ may be surprising to the \R\/ user.
 w <- gtkWindow(); w['title'] <- "test signals"
 x <- 1; 
 b <- gtkButton("click me"); w$add(b)
-ID <- gSignalConnect(b, signal = "clicked", f = function(widget) {
-  widget$setData("x", 2)
-  x <- 2
-  return(TRUE)
-})
+ID <- gSignalConnect(b, signal = "clicked", 
+                     f = function(widget) {
+                       widget$setData("x", 2)
+                       x <- 2
+                       return(TRUE)
+                     })
 @ 
 Then after clicking, we would have
 <<echo=FALSE>>=
@@ -443,9 +448,16 @@ GtkWidgetFlags
 %
 \class{GtkWidgetFlags} represents the possible flags that can be set
 on a widget. We can retrieve the flags currently set on our window:
-<<intro-enum-gtkWidgetFlags>>=
+
+
+
+<<intro-enum-gtkWidgetFlags, results=hide>>=
 window$flags()
 @ % output will be much prettier with next version of RGtk2
+\begin{Soutput}
+GtkWidgetFlags: toplevel, realized, mapped, visible, 
+         sensitive, parent-sensitive, double-buffered
+\end{Soutput}
 %
 Flag values can be combined using 
 %% JV: \function{\\|}, 

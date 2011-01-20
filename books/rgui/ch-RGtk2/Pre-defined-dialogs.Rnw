@@ -77,10 +77,10 @@ In this example, we will create a simple dialog showing a label and
 text entry. 
 <<>>=
 dlg <- gtkDialogNewWithButtons(title="Enter a value", 
-                               parent=NULL, flags=0,
-                               "gtk-ok", GtkResponseType["ok"],
-                               "gtk-cancel", GtkResponseType["cancel"],
-                               show=FALSE)
+                       parent=NULL, flags=0,
+                       "gtk-ok", GtkResponseType["ok"],
+                       "gtk-cancel", GtkResponseType["cancel"],
+                       show=FALSE)
 @ 
 %
 Buttons are added with a label and a response id, and their order is

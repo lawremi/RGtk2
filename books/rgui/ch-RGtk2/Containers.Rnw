@@ -45,7 +45,7 @@ a new window with a title.
 <<>>=
 w <- gtkWindow(show=FALSE)              # use default type
 w$setTitle("Window title")              # set window title
-w['title']                              # or w$getTitle()
+w['title']                              # or  use getTitle
 w$setDefaultSize(250,300)               # 250 wide, 300 high
 w$show()                                # show window
 @ 
@@ -157,7 +157,7 @@ w$add(l)
 @ 
 
 <<>>=
-w$getChild()['label']                   # return label property of child
+w$getChild()['label']  # return label property of child
 @ 
 
 
@@ -224,18 +224,24 @@ likely much larger than the space the label needs to display ``Hello
 world''. However, as the window size is now controlled by the window
 manager, \class{GtkWindow} will not adjust its size. Thus, the label
 is allocated more space than it requires.
-<<layout-window-show-first-alloc>>=
-l$getAllocation()
+<<layout-window-show-first-alloc, results=hide>>=
+l$getAllocation()$allocation
 @ 
-%
+% JV: We tighten up the output here:
+<<echo=FALSE>>=
+sapply(l$getAllocation()$allocation, function(i) i)
+@ 
 If, however, we avoid showing the window until the label is added, the
 window will size itself so that the label has its natural size:
-<<layout-window-show-later>>=
+<<layout-window-show-later, results=hide>>=
 w <- gtkWindow(show=FALSE); w$setTitle("Hello world")
 l <- gtkLabel("Hello world")
 w$add(l)
 w$show()
-l$getAllocation()
+l$getAllocation()$allocation
+@ 
+<<echo=FALSE>>=
+sapply(l$getAllocation()$allocation, function(i) i)
 @ 
 %
 One might notice that it is not possible to decrease the size of the
@@ -281,6 +287,8 @@ exactly the same way; only the direction of stacking is different.
 Figure~\ref{fig:packing} illustrates a sampling of the possible
 layouts that are possible with a \class{GtkHBox}.
 
+%% JV: Michael, I don't have this figure and am not sure what to put
+%% here. Can you show me the code or a figure? THanks.
 \begin{figure}[h!tbp]
   \begin{center}
     \includegraphics{packing.png}

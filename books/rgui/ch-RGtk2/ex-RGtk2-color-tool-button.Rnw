@@ -46,7 +46,8 @@ colorMenuItemActivated <- function(item) {
   color <- gdkColorParse(item$getLabel())$color
   colorButton$setColor(color)
 }
-sapply(colorItems, gSignalConnect, "activate", colorMenuItemActivated)
+sapply(colorItems, gSignalConnect, "activate", 
+       colorMenuItemActivated)
 @ 
 
 Finally, we place the color button and menu together in the menu tool

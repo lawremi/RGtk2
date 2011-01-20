@@ -48,20 +48,24 @@ tbl$setColSpacing(0, 5)
 tbl$attach(sizeLabel, left.attach=0,1, top.attach=0,1, 
            xoptions = c("expand", "fill"), yoptions="")
 sizeLabel["xalign"] <- 1
-tbl$attach(sizeCombo, left.attach=1,2, top.attach=0,1, xoptions="fill", 
-           yoptions="")
+tbl$attach(sizeCombo, left.attach=1,2, top.attach=0,1, 
+           xoptions="fill", yoptions="")
+#
 tbl$attach(diagLabel, left.attach=0,1, top.attach=1,2, 
-           xoptions = c("expand", "fill"), yoptions=c("expand", "fill"))
+           xoptions = c("expand", "fill"), 
+           yoptions=c("expand", "fill"))
 diagLabel["xalign"] <- 1; diagLabel["yalign"] <- 0
+#
 radioAlign <- gtkAlignment(xalign = 0)
 radioAlign$add(diagRadios)
 tbl$attach(radioAlign, left.attach=1,2, top.attach=1,2, 
            xoptions=c("expand", "fill"), yoptions = "")
-tbl$attach(submitBox, left.attach=1,2, top.attach=2,3, xoptions="", 
-           yoptions=c("expand", "fill"))
+#
+tbl$attach(submitBox, left.attach=1,2, top.attach=2,3, 
+           xoptions="", yoptions=c("expand", "fill"))
 @ 
 %
-The labels are allowed to expand and fill in the $X$ direction,
+The labels are allowed to expand and fill in the $x$ direction,
 because correct alignment, to the right, requires them to have the
 same size. The combo box is instructed to fill its space, as it would
 otherwise be undesirably small, due to its short menu items.  giving

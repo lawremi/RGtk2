@@ -20,7 +20,7 @@ b$setLabel("long way")
 g$packStart(b)
 g$packStart(gtkButton(label="label only") )
 g$packStart(gtkButton(stock.id="gtk-ok") )
-g$packStart(gtkButtonNewWithMnemonic("_Mnemonic") ) # Alt-m to "click"
+g$packStart(gtkButtonNewWithMnemonic("_Mnemonic") ) # Alt-m
 w$show()
 @ 
 \end{example}
@@ -73,12 +73,12 @@ perform a command when the button is clicked.
 w <- gtkWindow(); b <- gtkButton("click me");
 w$add(b)
 
-ID <- gSignalConnect(b,"button-press-event",   # just mouse click
+ID <- gSignalConnect(b,"button-press-event",   # just mouse
                      f = function(w,e,data) {
                        print(e$getButton())    # which button
                        return(FALSE)           # propagate
                      })
-ID <- gSignalConnect(b,"clicked",              # click or keyboard
+ID <- gSignalConnect(b,"clicked",              # keyboard too
                      f = function(w,...) {
                        print("clicked")
                      })
@@ -193,7 +193,7 @@ is marked using tags to indicate the style. Some convenient tags are
 underline, and \code{<tt>} for monospace text. Hyperlinks are possible
 with \code{<a>}, as of version 2.18, and similar logic to
 \function{browseURL} is implemented for launching a web
-browser. Connect to the \signal{activate_link}{GtkLabel} signal to
+browser. Connect to the \signal{activate\_link} signal to
 override. More complicated markup involves the \code{<span>} tag
 markup, such as \code{<span color='red'>some text</span>}. As with
 HTML, the text may need to be escaped first so that designated
@@ -255,9 +255,9 @@ common operations. These identifiers are all prefixed with
 %% ML: I believe there is an example of this in the RGtk2 demos
 
 As mentioned previously, the full list of stock icons are returned in
-a list by \function{gtkStockListIds}. The first $4$ are:
+a list by \function{gtkStockListIds}. The first $3$ are:
 <<gtkStockListIds>>=
-head(unlist(gtkStockListIds()), n=4)   
+head(unlist(gtkStockListIds()), n=3)   
 @ 
 
 The use of stock identifiers over specific images is encouraged, as it
@@ -288,8 +288,11 @@ identifier.
 
 
 
-%% Alertpanel application
-%% JV replaced this with one using reference Classes
+%% Alertpanel application 
+%% JV replaced this with one using reference Classes 
+%% JV: This shows event boxes and reference classes, not a bad
+%% thing but otherwise is just an info bar which isnow added. Should
+%% we comment out?
 \begin{example}{An alert panel}{eg:RGtk2:alert-panel}
   \SweaveInput{ex-RGtk2-alert-panel-2}
 \end{example}
@@ -461,7 +464,8 @@ to allocate a list and populate it in a \code{for} loop.
   to pack the widgets, to get them to display first to last.
 <<results=hide>>=
 radiogp <- gtkRadioButton(label=vals[1])
-sapply(vals[-1], gtkRadioButtonNewWithLabelFromWidget, group = radiogp)
+sapply(vals[-1], gtkRadioButtonNewWithLabelFromWidget, 
+       group = radiogp)
 w <- gtkWindow(); 
 w['title'] <- "Radio group example"
 g <- gtkVBox(); w$add(g)
@@ -657,7 +661,7 @@ Related to a progress bar is the \class{GtkSpinner} widget, which is a
 graphical heartbeat to assure the user that the application is still
 alive during long-running operations. Spinners are commonly found in
 web browsers. The basic usage is straightforward:
-<<gtk-widget-spinner>>=
+<<gtk-widget-spinner, eval=FALSE>>=
 spinner <- gtkSpinner()
 spinner$start()
 spinner$stop()
@@ -686,8 +690,10 @@ a \class{GtkTargetEntry} structure.
 TARGET.TYPE.TEXT   <- 80                 
 TARGET.TYPE.PIXMAP <- 81                  
 widgetTargetTypes <- 
-  list(text = gtkTargetEntry("text/plain", 0, TARGET.TYPE.TEXT),
-       pixmap = gtkTargetEntry("image/x-pixmap", 0, TARGET.TYPE.PIXMAP))
+  list(text = gtkTargetEntry("text/plain", 0, 
+         TARGET.TYPE.TEXT),
+       pixmap = gtkTargetEntry("image/x-pixmap", 0, 
+         TARGET.TYPE.PIXMAP))
 @ 
 %
 The first component of \class{GtkTargetEntry} is the name, which often
@@ -703,9 +709,9 @@ dragSourceWidget <-  gtkButton("Text to drag")
 w$add(dragSourceWidget)
 
 gtkDragSourceSet(dragSourceWidget,
-                 start.button.mask=c("button1-mask", "button3-mask"),
-                 targets=widgetTargetTypes[["text"]],
-                 actions="copy")
+       start.button.mask=c("button1-mask", "button3-mask"),
+       targets=widgetTargetTypes[["text"]],
+       actions="copy")
 @ 
 %
 The \argument{start.button.mask}{gtkDragSourceSet} indicates the

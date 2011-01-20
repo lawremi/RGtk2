@@ -47,7 +47,7 @@ gSignalConnect(view, signal = "row-expanded",
                  path <- iterToRPath(sortedModel, iter)
                  children <- getChildren(path)
                  addChildren(store, children, parentIter=iter)
-                 ## remove errant 1st offspring. See addChildren
+                 ## remove errant offspring, cf. addChildren
                  ci <- store$iterChildren(iter)
                  if(ci$retval) store$remove(ci$iter)
                })
@@ -92,7 +92,8 @@ whether the object is recursive.
 <<getChildren>>=
 getChildren <- function(path=character(0)) {
   hasChildren <- function(obj) 
-    (is.list(obj) || is.environment(obj)) && !is.null(names(as.list(obj)))
+    (is.list(obj) || is.environment(obj)) && 
+  !is.null(names(as.list(obj)))
   
   getType <- function(obj) head(class(obj), n=1)
 
@@ -130,7 +131,7 @@ addChildren <- function(store, children, parentIter = NULL) {
   for(i in 1:nrow(children)) {
     iter <- store$append(parent=parentIter)$iter
     sapply(1:(ncol(children) - 1), function(j)              
-           store$setValue(iter, column = j - 1, children[i, j]))
+           store$setValue(iter, column = j-1, children[i, j]))
     ## Add a branch if there are children
     if(children[i, "offspring"])
       store$append(parent=iter)
@@ -144,18 +145,18 @@ removes the children of the newly collapsed node, so that we can add
 them again when the node is expanded.
 <<>>=
 gSignalConnect(view, signal = "row-collapsed",
-               f = function(view, iter, tpath, user.data) {
-                 sortedModel <- view$getModel()
-                 iter <- pathToIter(sortedModel, tpath)
-                 n = store$iterNChildren(iter)
-                 if(n > 1) { ## n=1 gets removed when expanded
-                   for(i in 1:(n-1)) {
-                     child.iter <- store$iterChildren(iter)
-                     if(child.iter$retval)
-                       store$remove(child.iter$iter)
-                   }
-                 }
-               })
+       f = function(view, iter, tpath, user.data) {
+         sortedModel <- view$getModel()
+         iter <- pathToIter(sortedModel, tpath)
+         n = store$iterNChildren(iter)
+         if(n > 1) { ## n=1 gets removed when expanded
+           for(i in 1:(n-1)) {
+             child.iter <- store$iterChildren(iter)
+             if(child.iter$retval)
+               store$remove(child.iter$iter)
+           }
+         }
+       })
 @ 
 
 
@@ -163,21 +164,21 @@ Our last handler simply demonstrates the retrieval of an object when its
 row is activated, i.e., double-clicked:
 <<DoubleClickHandler>>=
 gSignalConnect(view, signal = "row-activated",
-               f = function(view, tpath, tcol) {
-                 sortedModel <- view$getModel()
-                 iter <- pathToIter(sortedModel, tpath)
-                 path <- iterToRPath(sortedModel, iter)
-                 sel <- view$getSelection()
-                 out <- sel$getSelectedRows()
-                 if(length(out) == 0) return(c()) # nothing
-                 vals <- c()
-                 for(i in out$retval) {  # multiple selections
-                   iter <- sortedModel$getIter(i)$iter
-                   newValue <- sortedModel$getValue(iter, 0)$value
-                   vals <- c(vals, newValue)
-                 }
-                 print(vals)  # [Replace this]
-               })
+       f = function(view, tpath, tcol) {
+         sortedModel <- view$getModel()
+         iter <- pathToIter(sortedModel, tpath)
+         path <- iterToRPath(sortedModel, iter)
+         sel <- view$getSelection()
+         out <- sel$getSelectedRows()
+         if(length(out) == 0) return(c()) # nothing
+         vals <- c()
+         for(i in out$retval) {  # multiple selections
+           iter <- sortedModel$getIter(i)$iter
+           newValue <- sortedModel$getValue(iter, 0)$value
+           vals <- c(vals, newValue)
+         }
+         print(vals)  # [Replace this]
+       })
 @ 
  
 To finish this example, we would need to populate the tree view with

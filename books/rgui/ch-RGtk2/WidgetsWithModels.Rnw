@@ -478,8 +478,8 @@ sort column. \GTK\/ provides \class{GtkTreeModelSort} for this:
 store <- rGtkDataFrame(mtcars)
 sorted <- gtkTreeModelSortNewWithModel(store)
 view <- gtkTreeView(sorted)
-view$insertColumnWithAttributes(0, "Click to sort", gtkCellRendererText(), 
-                                text = 0)
+view$insertColumnWithAttributes(0, "Click to sort", 
+                                gtkCellRendererText(), text=0)
 view$getColumn(0)$setSortColumnId(0)
 @ 
 %
@@ -613,7 +613,7 @@ and \code{background} colors, and whether to \code{ellipsize} or
 To display right-aligned text in a Helvetica font, the following could be used:
 <<cr-right-aligned>>=
 cr <- gtkCellRendererText()
-cr['xalign'] <- 1                       # default 0.5 = centered
+cr['xalign'] <- 1                    # default 0.5 = centered
 cr['family'] <- "Helvetica"  
 @ 
 
@@ -1002,7 +1002,8 @@ actions correspond to the signals \code{row-expanded} and
   \SweaveInput{ex-RGtk2-simple-tree}
 \end{example}
 
-%% ## dynamic
+%% ## dynamic. 
+%% JV: Is this too much? Perhaps leave for the package?
 \begin{example}{Dynamically growing a tree}{eg:RGtk2:tree-dynamic}
   \SweaveInput{ex-RGtk2-tree}
 \end{example}
@@ -1315,7 +1316,8 @@ w$add(tv)
 @ 
 
 <<FindWordAtMouseClick>>=
-ID <- gSignalConnect(tv, "button-press-event", f=function(w, e, ...) {
+ID <- gSignalConnect(tv, "button-press-event", 
+                     f=function(w, e, ...) {
   siter <- w$getIterAtLocation(e$getX(), e$getY())$iter
   niter <- siter$copy()                 # need copy
   siter$backwardWordStart()

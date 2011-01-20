@@ -22,7 +22,8 @@ of the window. Below, we define the callback that will implement every
 action:
 <<>>=
 someAction <- function(action,...) 
-  statusbar$push(statusbar$getContextId("message"), action$getName())
+  statusbar$push(statusbar$getContextId("message"), 
+                 action$getName())
 Quit <- function(...) win$destroy()
 @ 
 
@@ -73,7 +74,8 @@ presently for the ``Help'' group. First, we define the ordinary actions:
 helpActionGroup <- gtkActionGroup("helpActionGroup")
 helpActionEntries <- list(
   help = list("Help", "", "_Help", "", "", NULL),
-  about = list("About", "gtk-about", "_About", "", "", someAction)
+  about = list("About", "gtk-about", "_About", "", "", 
+    someAction)
 )
 helpActionGroup$addActions(helpActionEntries)
 @ 
@@ -88,11 +90,12 @@ for user data, as illustrated.
 
 <<"a toggle action">>=
 toggleActions <- list(
-        ## name, label, tooltip, stock.id              
-        tooltips = gtkToggleAction("UseTooltips", "Use tooltips", 
-          "Use tooltips to show additional information", NULL)
+     ## name, label, tooltip, stock.id              
+     tooltips = gtkToggleAction("UseTooltips", "Use tooltips", 
+       "Use tooltips to show additional information", NULL)
 )
-gSignalConnect(toggleActions[[1]], "toggled", function(...) print("toggled"))
+gSignalConnect(toggleActions[[1]], "toggled", 
+               function(...) print("toggled"))
 helpActionGroup$addAction(toggleActions$tooltips)
 @
 %

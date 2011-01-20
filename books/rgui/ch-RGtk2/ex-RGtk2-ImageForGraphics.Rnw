@@ -36,8 +36,8 @@ initialize an R graphics device that targets the pixmap. We then draw
 a simple histogram using base R graphics.
 <<>>=
 require(cairoDevice)
-pixmap <- gdkPixmap(drawable = NULL, width = width, height = height,
-                    depth = 24)
+pixmap <- gdkPixmap(drawable = NULL, 
+                    width = width, height = height, depth = 24)
 asCairoDevice(pixmap)
 hist(rnorm(100))
 @ 

@@ -87,7 +87,8 @@ toggled state is shared across a list of radio actions, via the
 actions with controls resembling check boxes and radio buttons,
 respectively. Here, we create a toggle action for fullscreen mode:
 <<rgtk2-menus-toggle-action>>=
-fullScreen <- gtkToggleAction("fullscreen", "Full screen", "Toggle full screen")
+fullScreen <- gtkToggleAction("fullscreen", "Full screen", 
+                              "Toggle full screen")
 gSignalConnect(fullScreen, "toggled", function(action) {
   if(fullScreen['active'])
     window$fullscreen()
@@ -184,15 +185,16 @@ It is recommended, however, to create menu items that proxy an
 action. This will facilitate, for example, adding an equivalent
 toolbar item later. First, we create the action:
 <<rgtk2-menus-save-action>>=
-saveAction <- gtkAction("save", "Save", "Save object", "gtk-save")
+saveAction <- 
+  gtkAction("save", "Save", "Save object", "gtk-save")
 @ 
 %
 Then the appropriate menu item is generated from the action and added
 to the file menu:
+%%## unnecessary?
+%%##save["use-action-appearance"] <- TRUE
 <<rgtk2-menus-save-item>>=
 save <- saveAction$createMenuItem()
-## unnecessary?
-##save["use-action-appearance"] <- TRUE
 fileMenu$append(save)
 @ 
 
@@ -314,12 +316,12 @@ toolbar. Sometimes, a more complex layout is desired. For example, we
 may wish to place a \textit{help} item against the right side. We can
 achieve this with an invisible item that expands against its siblings:
 
-<<rgtk2-menus-toolbar-expand>>=
+%% JV XXX THis causes my R to crash XXX
+<<rgtk2-menus-toolbar-expand, eval=FALSE>>=
 expander <- gtkSeparatorToolItem()
 expander["draw"] <- FALSE
 toolbar$add(expander)
-### JV XXX This causes my R to crash
-#toolbar$childSetProperty(expander, "expand", TRUE)
+toolbar$childSetProperty(expander, "expand", TRUE)
 @ 
 
 % 
@@ -424,7 +426,7 @@ ib$getContentArea()$add(l)
 @ 
 
 A button to allow the user to hide the bar can be added as follows:
-<<>>=
+<<results=hide>>=
 ib$addButton(button.text="gtk-ok",
              response.id=GtkResponseType['ok'])
 @ 
@@ -434,7 +436,7 @@ defined by the stock ID \code{gtk-ok}, and the response ID will be
 passed to the \signal{response} signal when the button is clicked. Our
 handle simply closes the bar:
 <<results=hide>>=
-gSignalConnect(ib, "response", function(w, response.id) w$hide())
+gSignalConnect(ib, "response", function(w, resp.id) w$hide())
 @ 
 
 Finally, we add the info bar to our main window and show it:

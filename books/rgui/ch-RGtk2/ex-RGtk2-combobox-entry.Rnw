@@ -5,7 +5,8 @@ library(RGtk2)
 @ 
 
 This example uses an editable combo box as an simple interface to \R's
-help system. We record the number of times a page is searched for. 
+help system. Along the way, we record the number of times a page is
+searched for.
 
 Our model fo the combo box will be a \class{rGtkDataFrame} instance
 where 3 variables are kept a function name, a string describing the
@@ -17,8 +18,8 @@ m <- rGtkDataFrame(data.frame(fname="", visits="", novisits=0,
 cb <- gtkComboBoxEntryNewWithModel(m, text.column=0)
 @ 
 
-It isn't possible to put tooltip information on the drop down elements
-of a combo box, rather here we borrow from popular web browser
+It isn't currently possible to put tooltip information on the drop down elements
+of a combo box, as was done with a tree view, rather here we borrow from popular web browser
 interfaces and add to the standard appearance of the drop down
 elements by adding in textual information about the number of
 visits. To do so we pack in a new cell renderer to accompany that
@@ -92,7 +93,8 @@ callHelpFunction <- function(cb, value) {
   model <- cb$getModel()
   ind <- match(value,model[,1, drop=TRUE])
   n <- model[ind, "novisits"] <- model[ind, "novisits"] + 1
-  model[ind, "visits"] <- sprintf(ngettext(n, "%s visit", "%s visits"), n)
+  model[ind, "visits"] <- 
+    sprintf(ngettext(n, "%s visit", "%s visits"), n)
   ## select for easier editing
   cb$getChild()$selectRegion(start=0,end=-1)
   help(value)
@@ -115,7 +117,8 @@ The \code{activate} callback checks to see if the requested value has
 not been visited previously. If not, this calls our \function{ addValue}
 function before calling the help function.
 <<results=hide>>=
-gSignalConnect(cb$getChild(), "activate", f = function(cb, entry, ...) {
+gSignalConnect(cb$getChild(), "activate", 
+               f = function(cb, entry, ...) {
   val <- entry$getText()
   if(!any(val == cb$getModel()[,1, drop=TRUE])) {
     addValue(cb, val)                   # a new one
