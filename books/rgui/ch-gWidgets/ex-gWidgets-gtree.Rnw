@@ -7,7 +7,7 @@ for tree-based regression and classification models. The package
 provides an excellent \code{plot} method for the object, but in this
 example we demonstrate how the \code{gtree} widget can be used to
 display the hierarchical nature of the fitted object. As working
-directly with the return object, is not for the faint of heart, such a
+directly with the return object is not for the faint of heart, such a
 GUI can be useful.
 
 First, we fit a model from an

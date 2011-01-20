@@ -128,11 +128,11 @@ addHandlerClicked(parButton, handler=function(h,...) {
   lyt[2,1] <- (nr <- gedit(1, cont=lyt))
   lyt[2,2] <- (nc <- gedit(1, cont=lyt))
   lyt[3,2] <- gbutton("ok", cont=lyt, handler=
-                      function(h,...) {
-                        x <- as.numeric(c(svalue(nr), svalue(nc)))
-                        par(mfrow=x)
-                        dispose(w1)
-                      })
+                function(h,...) {
+                  x <- as.numeric(c(svalue(nr), svalue(nc)))
+                  par(mfrow=x)
+                  dispose(w1)
+                })
 })
 @ 
 
@@ -513,7 +513,8 @@ In Figure~\ref{fig:gWidgets-EBImage-gui} a toggle button is used for
 
 <<>>=
 w <- gwindow("Checkbox example with toggle button")
-cb <- gcheckbox("Thresh", checked=TRUE, use.togglebutton=TRUE, cont=w)
+cb <- gcheckbox("Thresh", checked=TRUE, use.togglebutton=TRUE,
+                cont=w)
 @ 
 
 The \method{svalue}{gcheckbox} method returns a logical indicating if
@@ -550,11 +551,12 @@ with a default of the first.
 
 
 In Figure~\ref{fig:gWidgets-EBImage-gui} a radio button is used for
-``ColorMode  and could be constructed as
+``ColorMode''  and could be constructed as
 
 <<>>=
 w <- gwindow("Radio button example")
-rb <- gradio(c("Color", "Grayscale"), selected=2, horizontal=FALSE, cont=w)
+rb <- gradio(c("Color", "Grayscale"), selected=2, 
+             horizontal=FALSE, cont=w)
 @ 
 
 
@@ -738,9 +740,10 @@ In Figure~\ref{fig:gWidgets-EBImage-gui} a slider is used to update
 the brightness. The call is similar to:
 <<>>=
 w <- gwindow("Slider example")
-brightness <- gslider(from=-1, to=1, by=.05, value=0, handler=function(h,...) {
-  cat("Update picture with brightness", svalue(h$obj), "\n")
-}, cont=w)
+brightness <- gslider(from=-1, to=1, by=.05, value=0, 
+   handler=function(h,...) {
+     cat("Update picture with brightness", svalue(h$obj), "\n")
+   }, cont=w)
 @ 
 
 The \method{svalue}{gslider} method returns the currently chosen
@@ -1054,9 +1057,9 @@ addHandlerChanged(tbl, handler=function(h,...) {
 
 The \constructor{gtree} constructor can be used to display
 hierarchical structures, such as a file system or the components of a
-list. The \constructor{gtree} implementation dynamically computes the
-child components, by parameterizing the data to be displayed in terms
-of the node of the tree that is currently selected. 
+list. Populating the \constructor{gtree} widget is done by dynamically computing the
+child components. A parameterizion of the data to be displayed in terms
+of the path of the node that is currently selected is used. 
 
 The \argument{offspring}{gtree} argument is assigned a function of two
 arguments, the path a particular node and the arbitrary object passed
@@ -1175,7 +1178,7 @@ container will process the shortcut.
 \paragraph{methods}
 The main methods for actions are \method{svalue\ASSIGN}{gaction} to
 set the label text and \method{enabled\ASSIGN}{gaction} to adjust
-whether the widget is sensitive to user input. All instances of the
+whether the widget is sensitive to user input. All proxies of the
 action are set through one call.
 
 \paragraph{buttons}
@@ -1185,7 +1188,8 @@ in which case all other arguments for the constructor are ignored.
 
 <<>>=
 w <- gwindow("gaction example")
-a <- gaction("click me", tooltip="Click for a message", icon="ok", 
+a <- gaction("click me", tooltip="Click for a message", 
+             icon="ok", 
              handler=function(h,...) {
                print("Hello")
                })
@@ -1195,8 +1199,10 @@ enabled(a) <- FALSE                     # can't click now
 @ 
 %%
 Action handlers generally do not have the sender object (\code{b} above)
-passed back to them. Instead, one uses
-the \argument{action}{gaction} argument to parameterize the call.
+passed back to them.
+
+% Instead, one uses the \argument{action}{gaction} argument to
+% parameterize the call.
 
 
 
@@ -1211,7 +1217,7 @@ either describes a toolbar item or a separator. The toolbar items are
 specified by \code{gaction} instances and separators by
 \code{gseparator} instances with no container specified.
 
-For example,
+For example:
 <<results=hide>>=
 w <- gwindow("gtoolbar example")
 l <- list(Open=gaction("Open", icon="open", 
@@ -1230,7 +1236,7 @@ gtext("Placeholder", cont=w)
 The \constructor{gtoolbar} constructor takes the list as its first
 argument.  As toolbars belong to the window, the corresponding
 \pkg{gWidgets} objects use a \constructor{gwindow} object as the
-parent container. (Some of the toolkits relax this.)  The argument
+parent container. (Some of the toolkits relax this to allow other containers.)  The argument
 \argument{style}{gtoolbar} can be one of \qcode{both}, \qcode{icons},
 \qcode{text}, or \qcode{both-horiz} to specify how the toolbar is
 rendered. (Toolbars in \pkg{gWidgetstcltk} are not native widgets, so

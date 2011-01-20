@@ -248,7 +248,7 @@ df <- rbind(c("\\meth{add}",paste("Adds a child object to a parent container.",
                                   "this method.", sep=" ")),
             c("\\meth{delete}", "Remove a child object from a parent container"),
             c("\\meth{dispose}", "Destroy container and children"),
-            c("\\method{enabled\\ASSIGN}", "Set sensitivity of child components"),
+            c("\\meth{enabled\\ASSIGN}", "Set sensitivity of child components"),
             c("\\meth{visible\\ASSIGN}", "Hide or show child components")
             )
 colnames(df) <- c("Method<","Description")
@@ -376,7 +376,8 @@ visible(w) <- TRUE
 \begin{figure}
   \centering
   \includegraphics[width=.7\textwidth]{fig-gWidgets-buttons}
-  \caption{Button layout for \pkg{RGtk2} (top), \pkg{tcltk} (middle) and \pkg{qtbase} (bottom). Although same code is used for each, the different styling yields varying sizes. }
+  \caption{Button layout for \pkg{RGtk2} (top), \pkg{tcltk} (middle)
+    and \pkg{qtbase} (bottom). Although the same code is used for each, the different styling yields varying sizes. }
   \label{fig:gWidgets-button-layout}
 \end{figure}
 

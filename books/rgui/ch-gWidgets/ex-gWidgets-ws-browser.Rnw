@@ -1,17 +1,18 @@
-This example takes the long way to make a workspace browser. The goal
-is to produce a GUI that will allow the user to view the objects in
-their current workspace. We would like these views to by dynamic
-though -- when the workspace changes we would like the views to
-update. Furthermore, we may want to have different views, such as one
-for functions and one for data sets. Such requirements lead us to the
-observer design pattern in programming, where the view is notified of changes
-to an ``observable.'' 
+This example takes the long way to make a workspace browser. (The
+short way is \constructor{gvarbrowser}.) The goal is to produce a GUI
+that will allow the user to view the objects in their current
+workspace. We would like these views to by dynamic though -- when the
+workspace changes we would like the views to update. Furthermore, we
+may want to have different views, such as one for functions and one
+for data sets. Such requirements lead us to the observer design
+pattern in programming, where each view is notified of changes to an
+``observable.''
 
-The observer design pattern has observables, objects which record a
+The observer design pattern uses observables, objects which record a
 list of observers and notify them when there is a change and
 observers. We will use an observable for a data model to store
 information about our current workspace and the views will be the
-observers. The basic observable pattern can be coded using Reference classes
+observers. The basic observable pattern can be coded using reference classes
 as:
 
 <<Observable, results=hide>>=
@@ -50,12 +51,12 @@ follows:
 
 <<Observer, results=hide>>=
 setRefClass("Observer",
-            fields=list(o = "function"),
-            methods=list(
-              update=function(...) {
-                "Call self. Arguments passed by notify_observers"
-                o(...)
-              }))
+      fields=list(o = "function"),
+      methods=list(
+        update=function(...) {
+          "Call self. Arguments passed by notify_observers"
+          o(...)
+        }))
 @ 
 %
 
@@ -65,15 +66,15 @@ define a \meth{set} method to both set a properties values and to
 notify the observers. 
 <<Model, results=hide>>=
 setRefClass("Model",
-            contains="Observable",
-            methods=list(
-              set=function(key, value, notify=TRUE) {
-                "Set key field to value. Notify observers if requested"
-                assign(key, value, inherits=TRUE)
-                if(notify)
-                  notify_observers(model=.self)
-                invisible()
-              }))
+      contains="Observable",
+      methods=list(
+        set=function(key, value, notify=TRUE) {
+          "Set key field to value. Notify observers."
+          assign(key, value, inherits=TRUE)
+          if(notify)
+            notify_observers(model=.self)
+          invisible()
+        }))
 @ 
 %
 
@@ -99,10 +100,10 @@ the \meth{update} method that objects have indeed changed. The
 \pkg{digest} function is used to create a summary record of the
 workspace each time \code{update} is run. If there are changes, then
 we notify the observers. Below we filter out the values with class
-\code{envRefClass}, as they don't work well with this approach.
+\code{envRefClass}.
 
 The \code{get\_objects} method, which returns the names of the
-objects in the work space,  adds some complexity so that one can
+objects in the work space,  adds some complexity, but allows us to
 filter by class.
 <<WSModel, results=hide>>=
 require(digest)
@@ -117,16 +118,18 @@ setRefClass("WSModel",
                 "update vector of ws_objects if applicable"
                 x <- sort(ls(envir=.GlobalEnv))
                 ## filter out envRefClass objects --
-                isRef <- function(i) is(get(i, envir=.GlobalEnv), "envRefClass")
+                isRef <- function(i) 
+                  is(get(i, envir=.GlobalEnv), "envRefClass")
                 x <- x[!sapply(x, function(i) isRef(i))]
-                ds <- sapply(x, function(i) digest(get(i, envir=envir)))
+                ds <- sapply(x, function(i) 
+                             digest(get(i, envir=.GlobalEnv)))
                 
                 if((length(ds) != length(ws_objects_digest)) ||
                    length(ws_objects_digest) == 0 ||
                    any(ds != ws_objects_digest)) {
-                  ws_objects_digest <<- ds # does not notify observer
+                  ws_objects_digest <<- ds 
                   ws_objects <<- x
-                  notify_observers(model=.self) # pass model to observers
+                  notify_observers(model=.self) # pass model
                 }
                 invisible()
               },
@@ -209,8 +212,10 @@ size of the object:
 <<sizeOf>>=
 sizeOf <- function(x, ...) UseMethod("sizeOf")
 sizeOf.default <- function(x, ...) "NA"
-sizeOf.character <- sizeOf.numeric <- function(x, ...) sprintf("%s elements", length(x))
-sizeOf.matrix <- function(x, ...) sprintf("%s x %s", nrow(x), ncol(x))
+sizeOf.character <- sizeOf.numeric <- 
+  function(x, ...) sprintf("%s elements", length(x))
+sizeOf.matrix <- function(x, ...) 
+  sprintf("%s x %s", nrow(x), ncol(x))
 @ 
 
 <<echo=FALSE, results=hide>>=
@@ -240,21 +245,19 @@ row, not column by column and we want to have a default when \code{x}
 is empty.
 <<makeDataFrame, results=hide>>=
 makeDataFrame <- function(x, envir=.GlobalEnv) {
+  d <- data.frame(variable=character(0),
+                  size=character(0), description=character(0), 
+                  class=character(0),
+                  stringsAsFactors=FALSE)
   if(length(x)) {
-    d <- t(sapply(x, function(i) {
-      y = get(i, envir=envir)
-      list(variable=i,
-           size=sizeOf(y),
-           description=shortDescription(y),
-           class=class(y)[1]
-           )
-    }))
-    data.frame(d, stringsAsFactors=FALSE)
-  } else {
-    data.frame(variable=character(0),
-               size=character(0), description=character(0), class=character(0),
-               stringsAsFactors=FALSE)
+    l <- lapply(x, get)
+    d <- data.frame(variable=x,
+                    size=sapply(l, sizeOf),
+                    description=sapply(l, shortDescription),
+                    class = sapply(l, function(i) class(i)[1]),
+                    stringsAsFactors=FALSE)
   }
+  d
 }
 @ 
 
@@ -269,15 +272,15 @@ objects using a \code{gtable} widget.
 <<TableView, results=hide>>=
 TableView <-
   setRefClass("TableView",
-              contains="WidgetView",
-              methods=list(
-                init_widget=function(parent, ...) {
-                  widget <<- gtable(makeDataFrame(character(0)),
-                                    cont=parent, ...)
-                },
-                update=function(...) {
-                  widget[] <- makeDataFrame(model$get_objects(klass))
-                }))
+        contains="WidgetView",
+        methods=list(
+          init_widget=function(parent, ...) {
+            widget <<- gtable(makeDataFrame(character(0)),
+                              cont=parent, ...)
+          },
+          update=function(...) {
+            widget[] <- makeDataFrame(model$get_objects(klass))
+          }))
 @ 
 %
 
@@ -312,9 +315,11 @@ nb <- gnotebook(cont=w)
 m <- getRefClass("WSModel")$new()
 #
 view <- TableView$new(parent=nb, model=m, label="data")
-view$klass <- c("factor", "numeric", "character", "data.frame", "matrix", "list")
+view$klass <- c("factor", "numeric", "character", 
+                "data.frame", "matrix", "list")
 #
-view1 <- TableView$new(parent=nb, model=m, label="not a function")
+view1 <- TableView$new(parent=nb, model=m, 
+                       label="not a function")
 view1$klass <- "!function"
 #
 view2 <- TableView$new(parent=nb, model=m, label="all")

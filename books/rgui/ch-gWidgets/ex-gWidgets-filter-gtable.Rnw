@@ -3,7 +3,7 @@
 \begin{figure}
   \centering
   \includegraphics[width=.8\textwidth]{fig-gWidgets-filter-example}
-  \caption{Example of using filter to narrow display of tabular data}
+  \caption{Example of using a filter to narrow the display of tabular data}
   \label{fig:gWidgets-filter-example}
 \end{figure}
 

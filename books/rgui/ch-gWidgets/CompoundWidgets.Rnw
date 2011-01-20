@@ -126,10 +126,11 @@ what is in common below.~\footnote{ For \pkg{gWidgetstcltk}, there is
   add-on widget is used (\url{tktable.sourceforge.net}). A warning
   will be issued if this is not installed. Again, as with
   \function{gtable}, the widget under \pkg{gWidgetstcltk} is slower,
-  but can load a moderately sized data frame in a reasonable time. For
-  \pkg{gWidgetsRGtk2} there is also the \constructor{gdfedit}
-  widget which can handler very large data sets and has many improved usability
-  features. The \pkg{gWidgets} function merely wraps the
+  but can load a moderately sized data frame in a reasonable time. 
+  
+  For \pkg{gWidgetsRGtk2} there is also the \constructor{gdfedit}
+  widget which can handle very large data sets and has many improved
+  usability features. The \pkg{gWidgets} function merely wraps the
   \function{gtkDfEdit} function from \pkg{RGtk2Extras}. This function
   is not exported by \pkg{gWidgets}, so the toolkit package must be
   loaded before use. }
@@ -228,7 +229,7 @@ The \constructor{ghelp} constructor produces a widget for showing help
 pages using a notebook container. Although \R\/ now has excellent
 ways to dynamically view help pages through a web browser (in
 particular the \pkg{helpr} package and the standard built-in help
-page server) this widget provides an alternative.
+page server) this widget provides a light-weight alternative.
 
 To add a help page, the \method{add}{ghelp} method is used,
 where the \code{value} argument describes the desired page. This can
@@ -254,7 +255,7 @@ top-level window and does not return a value for which methods are defined.
 A simple command line widget is created by the
 \constructor{gcommandline} constructor. This is not meant as a
 replacement for any of \R's commandlines, but is provided for
-lightweight usage. A text box allows users to type in \R\/
+light-weight usage. A text box allows users to type in \R\/
 commands. The programmer may issue commands to be evaluated and
 displayed through the \method{svalue\ASSIGN}{gcommandline} method. The
 \code{value} assigned is a character string holding the commands. If

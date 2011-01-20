@@ -19,7 +19,8 @@ low-level \pkg{grid} functions to draw the image to a png file.
 require(grid)
 iconDir <- tempdir(); iconSize <- 16;
 makeColorIcon <- function(i) {
-  filename <- sprintf("%s%scolor-%s.png", iconDir, .Platform$file.sep, i)
+  filename <- sprintf("%s%scolor-%s.png", iconDir, 
+                      .Platform$file.sep, i)
   png(file=filename, width=iconSize, height=iconSize)
   grid.newpage()
   grid.draw(rectGrob(gp=gpar(fill=i)))
