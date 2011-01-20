@@ -48,8 +48,8 @@ if(!is.null(parent)) {
     tkwm.transient(w, parent)
     if(as.character(tcl("tk", "windowingsystem")) == "aqua") {
       tcl("wm","attributes",parentWin, notify=TRUE) # bounce
-      tkbind(parentWin,"<Enter>", function() 
-             tcl("wm","attributes",parentWin, notify=FALSE)) #stop
+      tkbind(parentWin,"<Enter>", function()        # stop
+             tcl("wm","attributes",parentWin, notify=FALSE)) 
     }
   }
 }
@@ -98,8 +98,10 @@ invoke the button command when the \kbd{return} key is pressed, the
 latter two will highlight a button when the focus is on it.
 <<>>=
 tkbind("TButton", "<Return>", function(W) tcl(W, "invoke"))
-tkbind("TButton", "<FocusIn>", function(W) tcl(W, "state", "active"))
-tkbind("TButton", "<FocusOut>", function(W) tcl(W, "state", "!active"))
+tkbind("TButton", "<FocusIn>", function(W) 
+       tcl(W, "state", "active"))
+tkbind("TButton", "<FocusOut>", function(W) 
+       tcl(W, "state", "!active"))
 @ 
 %
 Now we bring the dialog back from its withdrawn state, fix the size

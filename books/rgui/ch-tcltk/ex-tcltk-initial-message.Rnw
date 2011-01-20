@@ -50,7 +50,7 @@ text, we define a style for when the initial message is being
 shown. It simply sets the foreground (text) color to gray.
 
 <<init-msg-style>>=
-.Tcl("ttk::style configure Gray.TEntry -foreground gray") # style
+.Tcl("ttk::style configure Gray.TEntry -foreground gray") 
 @ 
 
 Now our two methods to hide and show the initial message. Outside of
@@ -100,30 +100,30 @@ we simply piece together the components we have just defined.
 <<ttkEntry-Class>>=
 ttkEntry <- 
   setRefClass("TtkEntry",
-              fields=list(
-                e="tkwin", v="tclVar",
-                init_msg="character"
-                ),
-              methods=list(
-                initialize=function(parent, text, init_msg="") {
-                  v <<- tclVar()
-                  e <<- ttkentry(parent, textvariable=v)
-                  init_msg <<- init_msg
-                  if(missing(text))
-                    show_init_msg()
-                  else
-                    set_text(text)
-                  add_bindings()
-                  .self
-                },
-                get_text=get_text,
-                set_text=set_text,
-                is_init_msg=is_init_msg,
-                hide_init_msg=hide_init_msg,
-                show_init_msg=show_init_msg,
-                add_bindings=add_bindings
-                )
-              )
+        fields=list(
+          e="tkwin", v="tclVar",
+          init_msg="character"
+          ),
+        methods=list(
+          initialize=function(parent, text, init_msg="") {
+            v <<- tclVar()
+            e <<- ttkentry(parent, textvariable=v)
+            init_msg <<- init_msg
+            if(missing(text))
+              show_init_msg()
+            else
+              set_text(text)
+            add_bindings()
+            .self
+          },
+          get_text=get_text,
+          set_text=set_text,
+          is_init_msg=is_init_msg,
+          hide_init_msg=hide_init_msg,
+          show_init_msg=show_init_msg,
+          add_bindings=add_bindings
+          )
+        )
 @
 
 Finally, to use this widget we call its \meth{new} method to create an
@@ -134,9 +134,10 @@ w <- tktoplevel()
 e <- ttkEntry$new(parent=w, init_msg="type value here")
 tkpack(e$e)
 #
-b <- ttkbutton(w, text="focus out onto this", command=function() {
-  print(e$get_text())
-})
+b <- ttkbutton(w, text="focus out onto this", 
+               command=function() {
+                 print(e$get_text())
+               })
 tkpack(b)
 @ 
 

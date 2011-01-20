@@ -176,7 +176,7 @@ newWindow <- function(title, command, parent,
 
   if(!missing(command)) 
     tkwm.protocol(w, "WM_DELETE_WINDOW", function() {
-      if(command())                     # command returns logical
+      if(command())            # command returns logical
         tkdestroy(w)
     })
 
@@ -321,7 +321,8 @@ sapply(labels, function(i) tkpack(i, side="left"))
 rotateLabel <- function() {
   children <- as.character(tkpack("slaves", f))
   tkpack.forget(children[1])
-  tkpack(children[1], after=children[length(children)], side="left")
+  tkpack(children[1], after=children[length(children)], 
+         side="left")
 }
 @
 
@@ -654,7 +655,7 @@ tkimage.create("photo", iconName, file = iconFile)
 l2 <- ttklabel(nb, text="Page 2")
 tkadd(nb, l2, sticky="nswe", text="label 2", 
     image=iconName, compound="right")
-## put l1 first (tabID is 0), use tkinsert
+## put l1 first (a tabID of 0); use tkinsert
 l1 <- ttklabel(nb, text="Page 1")
 tkinsert(nb, 0, l1, sticky="nswe", text="label 1")
 @ 
@@ -668,9 +669,9 @@ Except for \code{tabs}, these require a specification of a tab ID.
 <<>>=
 tcl(nb, "index", "current")           # current page for tabID
 length(as.character(tcl(nb,"tabs")))  # number of pages
-tcl(nb, "select", 0)                  # select viewable page by index
-tcl(nb, "forget", l1)                 # forget removes page from notebook
-tcl(nb, "add", l1)                    # can be managed again.
+tcl(nb, "select", 0)        # select viewable page by index
+tcl(nb, "forget", l1)       # "forget" removes page from notebook
+tcl(nb, "add", l1)          # can be managed again.
 @
 %
 

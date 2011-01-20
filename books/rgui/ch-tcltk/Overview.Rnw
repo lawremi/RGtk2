@@ -806,11 +806,13 @@ using \code{\event{Return}}. In the following we bind the key presses to the
 top-level window and the return event to any button with the default
 class \code{TButton}.
 
-<<>>=
+<<bind_examples, results=hide>>=
 w <- tktoplevel()
 l <- ttklabel(w, text="Click Ok for a message")
 b1 <- ttkbutton(w, text="Cancel", command=function() tkdestroy(w))
-b2 <- ttkbutton(w, text="Ok", command=function() print("initiate an action"))
+b2 <- ttkbutton(w, text="Ok", command=function() {
+  print("initiate an action")
+})
 sapply(list(l,b1,b2), tkpack)
 tkbind(w, "C", function() tcl(b1, "invoke"))
 tkconfigure(b1, underline=0)
@@ -1015,7 +1017,9 @@ repeatCall <- function(ms=100, f, w) {
     }
   })
 }
-repeatCall(100, function() print("Running. Set someFlag <- FALSE to stop."), w)
+repeatCall(100, function() {
+  print("Running. Set someFlag <- FALSE to stop.")
+}, w)
 @ 
 %
 

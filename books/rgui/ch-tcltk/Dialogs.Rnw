@@ -116,7 +116,8 @@ tkpack(colorWell)
 tkpack(ttklabel(f, text="Click color to change"))
 #
 tkbind(colorWell,"<Button-1>", function(W) {
-  color <- tcl("tk_chooseColor", parent=W, title="Set box color")
+  color <- tcl("tk_chooseColor", parent=W, 
+               title="Set box color")
   color <- tclvalue(color)
   if(nchar(color))
     tkconfigure(W, background = color)

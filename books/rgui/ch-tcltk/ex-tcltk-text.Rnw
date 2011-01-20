@@ -19,15 +19,16 @@ evalCmdChunk <- function(t, cmds) {
   
   cmdChunks <- try(parse(text=cmds), silent=TRUE)
   if(inherits(cmdChunks,"try-error")) {
-    tkinsert(t, "end", "Error", "errorTag") # add tag for markup
+    tkinsert(t, "end", "Error", "errorTag") # add markup tag
   }
 
   for(cmd in cmdChunks) {
-    dcmd <- deparse(cmd, width.cutoff = 0.75 * getOption("width"))
+    cutoff <- 0.75 * getOption("width")
+    dcmd <- deparse(cmd, width.cutoff = cutoff)
     command <- 
       paste(getOption("prompt"),
-            paste(dcmd, collapse=paste("\n", getOption("continue"), 
-                          sep="")),
+            paste(dcmd, collapse=paste("\n", 
+                          getOption("continue"), sep="")),
             sep="", collapse="")
     tkinsert(t, "end", command, "commandTag")
     tkinsert(t, "end","\n")

@@ -106,12 +106,15 @@ updateUI <- function() {
     length(ranges) > 1 || ranges != ""
   }
   ## by index  
-  tkentryconfigure(fileMenu,1,  state=states[hasSelection(tb) + 1]) 
+  tkentryconfigure(fileMenu,1,  
+                   state=states[hasSelection(tb) + 1]) 
   ## undo -- if buffer modified, assume undo stack possible
   ## redo -- no good check for redo
   canUndo <- function(W) as.logical(tcl(W,"edit", "modified"))
-  tkentryconfigure(editMenu,"Undo", state=states[canUndo(tb) + 1])
-  tkentryconfigure(editMenu,"Redo", state=states[canUndo(tb) + 1])
+  tkentryconfigure(editMenu,"Undo", 
+                   state=states[canUndo(tb) + 1])
+  tkentryconfigure(editMenu,"Redo", 
+                   state=states[canUndo(tb) + 1])
 }
 @ 
 <<notShown, echo=FALSE>>=

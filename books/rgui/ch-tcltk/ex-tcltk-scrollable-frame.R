@@ -38,7 +38,7 @@ scrollableFrame <- function(parent, width= 300, height=300) {
   gpID <- tkcreate(canvasWidget, "window", 0, 0, anchor="nw", 
                    window=gp)
   tkitemconfigure(canvasWidget, gpID, width=width)
-  ## update scrollregion
+  ## update scroll region
   tkbind(gp,"<Configure>",function() {  
     bbox <- tcl(canvasWidget, "bbox", "all")
     tcl(canvasWidget,"config", scrollregion=bbox)

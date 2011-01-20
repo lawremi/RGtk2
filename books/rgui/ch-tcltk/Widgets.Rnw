@@ -62,7 +62,7 @@ f <- ttkframe(w); tkpack(f, expand=TRUE, fill="both")
 
 <<make-TCL-variables>>=
 value <- tclVar(TRUE)
-callback <- function() print(tclvalue(value))     # uses global
+callback <- function() print(tclvalue(value))   # uses global
 labelVar <- tclVar("check button label")
 cb <- ttkcheckbutton(f, variable=value, 
                      textvariable=labelVar, command=callback)
@@ -198,7 +198,7 @@ tkpack(f, expand=TRUE, fill="both")
 
 <<>>=
 values <- state.name
-var <- tclVar(values[1])                # initial value
+var <- tclVar(values[1])              # initial value
 @ 
 
 The constructor call is as follows:
@@ -206,7 +206,7 @@ The constructor call is as follows:
 cb <- ttkcombobox(f,
                   values=values,
                   textvariable=var,
-                  state="normal", # or "readonly"
+                  state="normal",     # or "readonly"
                   justify="left")
 tkpack(cb)
 @ 
@@ -291,7 +291,8 @@ The \constructor{ttkscale} constructor to produce a themeable scale
 (slider) control is missing~\footnote{As of the version of \pkg{tcltk}
   accompanying \R{} 2.12.0}. You can define your own simply enough:
 <<ttkscale>>=
-ttkscale <- function(parent, ...) tkwidget(parent, "ttk::scale", ...)
+ttkscale <- function(parent, ...) 
+  tkwidget(parent, "ttk::scale", ...)
 @ 
 
 The orientation is set through the option \option{orient}{ttkscale}
@@ -309,37 +310,40 @@ current value.
 
 As a workaround, we show how to display a vector of values by
 sliding through the indices and place labels at the ends of the slider
-to indicate the range. We write this using an \R{} reference class.
+to indicate the range. We write this using an \R{} reference class. 
 
 <<ttksliderclass>>=
 Slider <-
   setRefClass("TtkSlider",
-              fields=c("frame", "widget", "v", "x"),
-              methods=list(
-                initialize=function(parent, x) {
-                  x <<- x
-                  v <<- tclVar(1)
-                  frame <<- ttkframe(parent)
-                  widget <<- ttkscale(frame, from=1, to=length(x),
-                                      variable=v, orient="horizontal")
-                  #
-                  tkgrid(widget, row=0, column=0, columnspan=3, sticky="we")
-                  tkgrid(ttklabel(frame, text=x[1]), row=1, column=0)
-                  tkgrid(ttklabel(frame, text=x[length(x)]), row=1, column=2)
-                  tkgrid.columnconfigure(frame, 1, weight=1)
-                  #
-                  .self
-                },
-                get_value=function() x[as.numeric(tclvalue(v))],
-                set_value=function(value) {
-                  "Set value. Value must be in x"
-                  ind <- match(value, x)
-                  if(!is.na(ind)) {
-                    v_local <- v
-                    tclvalue(v_local) <- ind
-                  }
-                }
-                ))
+     fields=c("frame", "widget", "v", "x"),
+     methods=list(
+       initialize=function(parent, x) {
+         x <<- x
+         v <<- tclVar(1)
+         frame <<- ttkframe(parent)
+         widget <<- ttkscale(frame, from=1, to=length(x),
+                             variable=v, orient="horizontal")
+         #
+         tkgrid(widget, row=0, column=0, columnspan=3, 
+                sticky="we")
+         tkgrid(ttklabel(frame, text=x[1]), 
+                row=1, column=0)
+         tkgrid(ttklabel(frame, text=x[length(x)]), 
+                row=1, column=2)
+         tkgrid.columnconfigure(frame, 1, weight=1)
+         #
+         .self
+       },
+       get_value=function() x[as.numeric(tclvalue(v))],
+       set_value=function(value) {
+         "Set value. Value must be in x"
+         ind <- match(value, x)
+         if(!is.na(ind)) {
+           v_local <- v
+           tclvalue(v_local) <- ind
+         }
+       }
+       ))
 @ 
 
 To use this, we have:
@@ -510,9 +514,7 @@ characters, using \subcommand{delete}{ttkentry}. The first value is
 the left most index to delete (0-based), the second value the index to
 the right of the last value deleted.
 <<>>=
-tkdelete(e, 0, 4) # e.g.,  a b c d e f   -text
-                  #       | | | | | | |
-                  #       0 1 2 3 4 5 6  -index
+tkdelete(e, 0, 4)
 @ 
 
 The \subcommand{icursor}{ttkentry} command can be used to set the
@@ -577,9 +579,9 @@ The scrollbars are defined first, as follows, using the
 form.
 <<>>=
 xscr <- ttkscrollbar(parent, orient="horizontal",
-                     command=function(...) tkxview(widget, ...))
+                  command=function(...) tkxview(widget, ...))
 yscr <- ttkscrollbar(parent, orient="vertical",
-                     command=function(...) tkxview(widget, ...))
+                  command=function(...) tkxview(widget, ...))
 @ 
 The \code{view} commands set what part of the widget is being shown.
 
@@ -724,7 +726,7 @@ the buffer on the specified index, its lone argument.
 Tags are a means to assign a name to characters within the text buffer. Tags may be used to adjust the 
 foreground, background and font properties of the tagged characters from those specified globally at the time of construction of the widget, or configured thereafter. Tags can be set when the text is inserted, as with
 <<>>=
-tkinsert(t, "end", "last words", "lastWords") # lastWords is tag
+tkinsert(t, "end", "last words", "lastWords") # lastWords tag
 @ 
 
 Tags can be set after the text is added through the
@@ -866,10 +868,10 @@ listbox widget of \Tk.
 
 <<>>=
 tr <- ttktreeview(f, 
-                  columns=1,            # column identifier is "1"
-                  show="headings",      # not "#0"
-                  height=25)            
-addScrollbars(f, tr)                    # scrollbar function
+                  columns=1,        # column identifier is "1"
+                  show="headings",  # not "#0"
+                  height=25)        
+addScrollbars(f, tr)                # scrollbar function
 @ 
 
 
@@ -906,10 +908,10 @@ to the treeview display.
 <<getCRANmirrors>>=
 x <- getCRANmirrors()
 Host <- x$Host
-shade <- c("none", "gray")              # tag names
+shade <- c("none", "gray")                # tag names
 for(i in 1:length(Host))
   ID <- tkinsert(tr, "", "end", values=as.tclObj(Host[i]),
-                 tag=shade[i %% 2])              # none or gray
+                 tag=shade[i %% 2])       # none or gray
 tktag.configure(tr, "gray", background="gray95") # shade rows
 @ 
 
@@ -1134,7 +1136,7 @@ be disabled. The \argument{tearoff}{tkmenu} option can be used at
 construction time to override the default behavior. Otherwise, the
 following command will do so globally:
 <<tearoff>>=
-tcl("option","add","*tearOff", 0)       # disable tearoff menus
+tcl("option","add","*tearOff", 0)    # disable tearoff menus
 @ 
 
 A toplevel menu bar is attached to a top-level window using \code{tkconfigure}
@@ -1168,7 +1170,7 @@ b <- ttkbutton(f, text="Click me for popup")
 @ 
 
 <<>>=
-doPopup <- function(X, Y) tkpopup(pmb, X, Y) # define call back
+doPopup <- function(X, Y) tkpopup(pmb, X, Y) # define callback
 if (usingMac()) {
   tkbind(b, "<Button-2>", doPopup)      # right click
   tkbind(b, "<Control-1>", doPopup)     # Control + click
@@ -1194,32 +1196,32 @@ through visual separation. The latter is implemented with the \subcommand{add
 There are a few different types of action items that can be added:
  
 \begin{description}
-\item[Commands] 
-An action item is one associated with a command. The simplest case is
-a label in the menu that activates a command when selected through the
-mouse. The \subcommand{add command}{tkmenu} (through
-\code{tkadd(widget, "command", ...)}) allows one to specify a
-\code{label}, a \code{command} and optionally an \code{image} with a
-value for \code{compound} to adjust its layout. (Images are not shown
-in Mac OS X.) Action commands may possibly be called for different
-widgets, so the use of percent substitution is discouraged here. One can also specify that a keyboard accelerator be displayed through the option \code{accelerator}, but a separate callback must listen for this combination.
+\item[Commands] An action item is one associated with a command. The
+  simplest proxy is a button in the menu that activates a command when
+  selected with the mouse. The \subcommand{add command}{tkmenu} allows
+  one to specify a \code{label}, a \code{command} and optionally an
+  \code{image} with a value for \code{compound} to adjust its
+  layout. (Images are not shown in Mac OS X.) Action commands may
+  possibly be called for different widgets, so the use of percent
+  substitution is difficult. One can also specify that a keyboard
+  accelerator be displayed through the option \code{accelerator}, but
+  a separate callback must listen for this combination.
 
-\item[Check boxes] 
-Action items may also be checkboxes. To create one, the subcommand
-\subcommand{add checkbutton}{tkmenu} is used. The available
-arguments include \code{label} to specify the text, \code{variable} to
-specify a tcl variable to store the state, \code{onvalue} and
-\code{offvalue} to specify the state to the tcl variable, and
-\code{command} to specify a call back when the checked state is
-toggled. The initial state is set by the value in the  \TCL\/ variable.
+\item[Check boxes] Action items may also be proxied by checkboxes. To
+  create one, the subcommand \subcommand{add checkbutton}{tkmenu} is
+  used. The available arguments include \code{label} to specify the
+  text, \code{variable} to specify a tcl variable to store the state,
+  \code{onvalue} and \code{offvalue} to specify the state to the tcl
+  variable, and \code{command} to specify a call back when the checked
+  state is toggled. The initial state is set by the value in the
+  \TCL\/ variable.
 
-\item[Radio buttons] 
-Additionally, action items may be radiobutton groups. These are
-specified with the subcommand \subcommand{add
-  radiobutton}{tkmenu}. The \code{label} option is used to identify
-the entry, \code{variable} to set a text variable and to group the
-buttons that are added, and \code{command} to specify a command when
-that entry is selected.
+\item[Radio buttons] Additionally, action items may be presented
+  through radiobutton groups. These are specified with the subcommand
+  \subcommand{add radiobutton}{tkmenu}. The \code{label} option is
+  used to identify the entry, \code{variable} to set a text variable
+  and to group the buttons that are added, and \code{command} to
+  specify a command when that entry is selected.
 \end{description}
 
 Action items can also be placed after an item, rather than at the end
@@ -1274,7 +1276,7 @@ specifies the text.  Other standard text options are possible (e.g.,
 
 The type can also be an image object or a widget (a window object). Images are added by specifying an $x$ and $y$ position, possibly an anchor position, and a value for the \qcode{image} option and optionally, for state dependent display, specifying \qcode{activeimage} and \qcode{disabledimage} values. The \qcode{state} option is used to specify the current state. Window objects are added similarly in terms of their positioning, along with options for \qcode{width} and \qcode{height}. The window itself is added through the \qcode{window} option. An example shows how to add a frame widget.
 
-Once created, a screenshot of the canvas can be created through the \subcommand{postscript}{tkcanvas} subcommand, as in \code{tcl(canvas, "postscript", file="filename")}. To store the widget so that it can be recreated is not supported directly. \TCL\/ code to do so can be found at \url{http://wiki.tcl.tk/9168}.
+% Once created, a screenshot of the canvas can be created through the \subcommand{postscript}{tkcanvas} subcommand, as in \code{tcl(canvas, "postscript", file="filename")}. To store the widget so that it can be recreated is not supported directly. \TCL\/ code to do so can be found at \url{http://wiki.tcl.tk/9168}.
 
 
 \paragraph{Items and tags}

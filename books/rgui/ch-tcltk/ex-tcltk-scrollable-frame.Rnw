@@ -85,9 +85,9 @@ and the useful coercion to character by \function{as.character}.
 <<>>=
 fontFamilies <- as.character(tkfont.families())
 ## skip odd named ones
-fontFamilies <- fontFamilies[grep("^[[:alpha:]]", fontFamilies)] 
-for(i in 1:length(fontFamilies)) {
-  fontName <- paste("tmp",i,sep="")
+fontFamilies <- fontFamilies[grepl("^[[:alpha:]]", fontFamilies)] 
+for(i in seq_along(fontFamilies)) {
+  fontName <- sprintf("::font::-%s", i)
   try(tkfont.create(fontName, family=fontFamilies[i], size=14), 
       silent=TRUE)
   l <- ttklabel(gp, text=fontFamilies[i], font=fontName)

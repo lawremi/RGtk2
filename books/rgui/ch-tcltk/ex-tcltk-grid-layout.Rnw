@@ -104,7 +104,8 @@ setMonth <- function() {
   tkpack("forget", calframe)
   calframe <<- ttkframe(f); tkpack(calframe)
   makeMonth(calframe, year, month)
-  tkconfigure(curmo, text=sprintf("%s %s", month.abb[month], year))
+  tkconfigure(curmo, 
+              text=sprintf("%s %s", month.abb[month], year))
 }
 setMonth()                              # initial calendar
 @ 

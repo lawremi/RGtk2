@@ -110,7 +110,7 @@ tkbind(w, "<B1-Motion>", function(W, X, Y) {
   ## generate drag leave if we left last widget
   if(as.logical(tkwinfo("exists", w)) &&
      nchar(as.character(w)) > 0 && 
-     length(.lastWidgetID) > 0          # character(0) if not tcltk widget
+     length(.lastWidgetID) > 0          # if not tcltk character(0) 
      ) {
     if(as.character(w) != .lastWidgetID) 
       tkevent.generate(.lastWidgetID, "<<DragLeave>>")

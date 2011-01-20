@@ -170,7 +170,8 @@ tkspinbox <- function(parent, ...) tkwidget(parent, "tk::spinbox", ...)
 putLabel(lf, "alternative:", 3, 0)
 rbFrame <- ttkframe(lf)
 sapply(c("two.sided","less","greater"), function(i) {
-  rb <- ttkradiobutton(rbFrame, variable=e$alternative, text=i, value=i)
+  rb <- ttkradiobutton(rbFrame, variable=e$alternative, 
+                       text=i, value=i)
   tkpack(rb, side="left")
 })
 tkgrid(rbFrame, row=3, column=1, sticky="ew", padx=2)
@@ -249,17 +250,17 @@ updateUI <- function() {
 
   if(dfName == "") {
     ## 3 ways to disable needed !
-    sapply(list(xCombo, fCombo, muCombo,  confScale, veCheck, ok),
+    x <- list(xCombo, fCombo, muCombo,  confScale, veCheck, ok)
+    sapply(x, function(W) tcl(W, "state", "disabled"))
+    sapply(as.character(tkwinfo("children", rbFrame)), 
            function(W) tcl(W, "state", "disabled"))
-    sapply(as.character(tkwinfo("children", rbFrame)), function(W)
-           tcl(W, "state", "disabled"))
     tkconfigure(confSpin, state="disabled")
   } else {
     ## enable univariate, ok
     sapply(list(xCombo,  muCombo, confScale, ok),
            function(W) tcl(W, "state", "!disabled"))
-    sapply(as.character(tkwinfo("children", rbFrame)), function(W)
-           tcl(W, "state", "!disabled"))
+    sapply(as.character(tkwinfo("children", rbFrame)), 
+           function(W) tcl(W, "state", "!disabled"))
     tkconfigure(confSpin, state="normal")
     
     df <- get(dfName, envir=.GlobalEnv)
@@ -271,8 +272,10 @@ updateUI <- function() {
     ## bivariate
     availFactors <- getTwoLevelFactor(df)
     sapply(list(fCombo, veCheck),
-           function(W) tcl(W, "state", sprintf("%sdisabled",
-                                               ifelse(length(availFactors), "!", ""))))
+           function(W) {
+             val <- if(length(availFactors)) "!" else ""
+             tcl(W, "state", sprintf("%sdisabled", val))
+           })
     tkconfigure(fCombo, values=availFactors)
     if(!tclvalue(e$f) %in% availFactors)
       tclvalue(e$f) <- ""

@@ -114,7 +114,7 @@ e <- ttkentry(f, validate="focusout",
               invalidcommand=indicateInvalidDate)
 tkpack(e, side="left")
 
-b <- ttkbutton(f,text="click")          # something to focus on
+b <- ttkbutton(f,text="click")       # something to focus on
 tkpack(b, side="bottom")
 @ 
               

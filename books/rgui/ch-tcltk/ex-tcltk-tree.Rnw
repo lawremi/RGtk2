@@ -100,21 +100,22 @@ instance.  We only add to the \code{value} column (through the
 calls to the \code{insert} subcommand. The \code{quoteIt} function
 used is not shown, but similar to \function{shQuote} only escaping
 with double quotes, as single quotes are treated differently by
-\TCL. (Otherwise the \code{ttktreeview} widget will split values on
-spaces.)
+\TCL. (Otherwise the \code{ttktreeview}
+widget will split values on spaces without quoting. One could use a
+tclvariable here, but then extracting the string from the node becomes difficult)
 <<>>=
 insertChild <- function(tr, node, parent="") {
   l <- list(tr, "insert", parent, "end", text=xmlName(node))
   children <- xmlChildren(node)
   if(length(children) == 0) {           # add in values
     values <- paste(xmlValue(node), sep=" ", collapse=" ")
-    values <- gsub("\n", " ", values)   # treeview doesn't like
-    values <- quoteIt(values)           # \n and spaces
+    values <- gsub("\n", " ", values)   # Avoid \n and spaces
+    values <- quoteIt(values)           
     l$values <- values
   }
   treePath <- do.call("tcl", l)
 
-  if(length(children))                  # recurse
+  if(length(children))                          # recurse
     for(i in children) insertChild(tr, i, treePath)
 }
 insertChild(tr, root)
@@ -131,7 +132,7 @@ First, we show how one might introduce drag and drop to rearrange the
 rows. We begin by defining two global variables that store the row
 that is being dragged  and a flag to indicate if a drag event is ongoing.
 <<>>=
-.selectedID <- ""                       # globals
+.selectedID <- ""                               # globals
 .dragging <- FALSE
 @ 
 We provide callbacks for three events: a mouse click, mouse motion and mouse release.
