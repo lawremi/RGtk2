@@ -8,10 +8,14 @@ In the traditional WIMP-style GUI, the user executes commands by
 selecting items from a menu. In GUI terminology, such a command is
 known as an \textit{action}. A GUI may provide more than one control
 for executing a particular action. Menubars and toolbars are the two
-most common widgets for performing application-wide actions. In this
-chapter, we will introduce actions, menus and toolbars and conclude by
-explaining the mechanisms in \GTK\/ for conveniently defining and
-managing actions and associated widgets in a large application.
+most common widgets for organizing application-wide actions. An
+application also needs to report its status in an unobtrusive
+way. Thus, a typical application window contains, from top to bottom, 
+a menubar, toolbar, a large application-specific region, and a
+status bar.  In this chapter, we will introduce actions, menus,
+toolbars and status bars and conclude by explaining the mechanisms in
+\GTK\/ for conveniently defining and managing actions and associated
+widgets in a large application.
 
 \section{Actions}
 \label{sec:RGtk2:actions}
@@ -353,7 +357,8 @@ widgets, each of which is a container of tool items and implements
 example by creating a two groups of tool items:
 %% JV: commented out next 3 for eval as my GTK is a bit to old to run. --Need
 %% to update
-<<rgtk2-menus-tool-item-group, eval=FALSE>>=
+%% ML: went ahead and uncommented them, assuming you've updated
+<<rgtk2-menus-tool-item-group>>=
 fileGroup <- gtkToolItemGroup("File")
 fileGroup$add(gtkToolButton(stock.id = "gtk-open"))
 fileGroup$add(saveAction$createToolItem())
@@ -363,15 +368,79 @@ helpGroup$add(helpAction$createToolItem())
 %
 
 The groups are then added to an instance of \class{GtkToolPalette}:
-<<rgtk2-menus-tool-palette, eval=FALSE>>=
+<<rgtk2-menus-tool-palette>>=
 palette <- gtkToolPalette()
 palette$add(fileGroup)
 palette$add(helpGroup)
 @ 
 %
 Finally, we can programmatically collapse a group:
-<<rgtk2-menus-tool-palette-collapse, eval=FALSE>>=
+<<rgtk2-menus-tool-palette-collapse>>=
 helpGroup$setCollapsed(TRUE)
+@ 
+
+\section{Status Reporting}
+\label{sec:RGtk2:statusbars}
+
+\subsection{Status bars}
+
+In \GTK, a statusbar is constructed through the
+\constructor{gtkStatusbar} function. Statusbars must be placed at the
+bottom of a top-level window by the programmer. In \GTK, a statusbar
+keeps various stacks of messages for display. One adds a message to
+display for given stack through the \method{Push}{gtkStatusbar} method
+by specifying first an integer value for \code{context.id} and a
+message. To pop the top message on a stack and display the next, the
+method \method{Pop}{gtkStatusbar} method is available.
+
+\subsection{Information bars}
+\label{sec:gtkInfoBar}
+
+An information bar is similar in purpose to a message dialog, only it
+is intended to be less obtrusive. Typically, an information bar raises
+from the bottom of the window, displaying a message, possibly with
+response buttons. It then fades away after a number of seconds. The
+focus is not affected, nor is the user interrupted. \GTK\/ provides
+the \class{GtkInfoBar} class for this purpose. The use is similar to a
+dialog: one places widgets into a content area, and listens to the
+\signal{response} signal.
+
+We create our info bar:
+<<>>=
+ib <- gtkInfoBar(show=FALSE)
+ib$setNoShowAll(TRUE)
+@ 
+We call \method{setNoShowAll} to prevent the widget from being shown
+when \method{showAll} is called on the parent. Normally, an
+information bar is not shown until it has a message. 
+
+We will emit a warning message by adding a simple label with the text
+and specifying the message type as \code{warning}, from
+\code{GtkMessageType}:
+<<>>=
+l <- gtkLabel("Warning, Warning ....")
+ib$setMessageType("warning")            
+ib$getContentArea()$add(l)
+@ 
+
+A button to allow the user to hide the bar can be added as follows:
+<<>>=
+ib$addButton(button.text="gtk-ok",
+             response.id=GtkResponseType['ok'])
+@ 
+%
+This is similar to the dialog API: the appearance of the ``Ok'' button is
+defined by the stock ID \code{gtk-ok}, and the response ID will be
+passed to the \signal{response} signal when the button is clicked. Our
+handle simply closes the bar:
+<<results=hide>>=
+gSignalConnect(ib, "response", function(w, response.id) w$hide())
+@ 
+
+Finally, we add the info bar to our main window and show it:
+<<addToWinodw>>=
+vbox$packStart(ib, expand = FALSE)
+ib$show()
 @ 
 
 \section{Managing a complex user interface}

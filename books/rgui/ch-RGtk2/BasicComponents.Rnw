@@ -92,13 +92,15 @@ method can adjust this for the button, as with other widgets.
 
 %% Buttons initiate actions
 Windows often have a default action. For example, if a window contains
-a form, the default action often submits the form. If the action a
-button is to initiate is the default action for the window it can be
+a form, the default action often submits the form. If a button
+executes the default action for the window, the button can be
 set so that it is activated when the user presses \kbd{enter} while
 the parent window has the focus. To implement this, the property
 \code{can-default} must be \code{TRUE} and the widget method
 \method{grabDefault}{gtkWidget} must be called. (This is not specific
-to buttons, but any widget that can be activatable.)
+to buttons, but any widget that can be activatable.) The
+\class{GtkDialog} widget and its derivatives facilitate the use of
+buttons in this manner, see Section~\ref{sec:dialogs}.
 
 If the action that a button initiates is to be represented elsewhere
 in the GUI, say a menu bar, then a \code{GtkAction} object may be
@@ -116,18 +118,18 @@ Section~\ref{sec:RGtk2:UIManager}.
 
 The primary purpose of a label is to communicate the role of another
 widget, as we showed for the button. Labels are created by the
-\constructor{gtkLabel} constructor. Its main argument is
-\argument{str}{gtkLabel} to specify the button text, stored in the
-\code{label} property. This text can be set with either
+\constructor{gtkLabel} constructor, which takes the label text as its
+first argument. This text can be set with either
 \method{setLabel}{gtkLabel} or \method{setText}{gtkLabel} and
 retrieved with either \method{getLabel}{gtkLabel} or
 \method{getText}{gtkLabel}.  The difference being the former
 respects formatting marks.
 
 \begin{example}{Label formatting}{eg:RGtk2:label-formatting}
-  As all text in a \GTK\/ GUI is ultimately displayed by
+  As most text in a \GTK\/ GUI is ultimately displayed by
   \class{GtkLabel}, there are many formatting options available.  This
-  example demonstrates a sample of these~(Figure~\ref{fig:RGtk2:label-formatting})
+  example demonstrates a sample of
+  these~(Figure~\ref{fig:RGtk2:label-formatting})
   
   \begin{figure}
     \centering
@@ -188,10 +190,14 @@ markup language, an XML-based format that resembles basic HTML. The
 method \method{setMarkup}{gtkLabel} accepts text in the format. Text
 is marked using tags to indicate the style. Some convenient tags are
 \code{<b>} for bold, \code{<i>} for italics, \code{<ul>} for
-underline, and \code{<tt>} for monospace text. More complicated markup
-involves the \code{<span>} tag markup, such as \code{<span
-  color='red'>some text</span>}. As with HTML, the text may need to be escaped
-first so that designated entities replace reserved characters.
+underline, and \code{<tt>} for monospace text. Hyperlinks are possible
+with \code{<a>}, as of version 2.18, and similar logic to
+\function{browseURL} is implemented for launching a web
+browser. Connect to the \signal{activate_link}{GtkLabel} signal to
+override. More complicated markup involves the \code{<span>} tag
+markup, such as \code{<span color='red'>some text</span>}. As with
+HTML, the text may need to be escaped first so that designated
+entities replace reserved characters.
 
 Although mostly meant for static text display, \class{GtkLabel} has
 some interactive features. If the \code{selectable} property is set to
@@ -201,159 +207,6 @@ navigating forms. The mnemonic is specified at construction time with
 \code{gtkLabelNewWithMnemonic}. The
 \method{setMnemonicWidget}{gtkLabel} method identifies the widget to
 which the mnemonic refers.
-
-
-%% signals
-\paragraph{Signals}
-Unlike buttons, labels do not emit any specific signals, as they are
-intended to hold static text. Although a label is a \class{GtkWidget},
-it does not receive any system events. A work-around is to place the
-label within an instance of \class{GtkEventBox}. This creates a
-non-visible parent window for the label that listens to the windowing
-system. Example~\ref{eg:RGtk2:editable-label} will illustrate the use
-of an event box.  Alternatively, if a clickable label is desired, one
-could use an instance of \code{gtkButton} with its \code{relief}
-property assigned to \qcode{none}. %%\code{GtkReliefStyle['none']}.
-
-%% ML: Better to just update RGtk2 and talk about the 2.18 support for
-%% links in label markup. Link buttons are pretty limited in comparison.
-
-% \subsection{Link Buttons}
-% \label{sec:link-buttons}
-
-% A link button is a special label which shows an underlined link, such
-% as is done by a web browser (newer versions of \GTK\/ allow the label
-% of a button to contain HTML links). The \code{uri} is specified to the
-% \constructor{gtkLinkButton} constructor with an optional
-% \argument{label}{gtkLinkButton} argument. If none is specified, the
-% \code{uri} is used to provide the value. This \code{uri} is stored in
-% the \code{uri} property and the label in the \code{label} value. These
-% may be adjusted later.
-
-% As the link button inherits from the \class{gtkButton} class, the
-% \code{clicked} signal is emitted when a user clicks a mouse on the link.
-
-% \begin{example}{Basic link button usage}{eg:RGtk2:link-button}
-% <<LinkButton>>=
-% w <- gtkWindow()
-% g <- gtkVBox(); w$add(g)
-% lb <- gtkLinkButton(uri="http://www.r-project.org")
-% lb1<- gtkLinkButton(uri="http://www.r-project.org", label="R Home")
-% g$packStart(lb)
-% g$packStart(lb1)
-
-% f <- function(w,...) browseURL(w['uri'])
-
-% ID <- gSignalConnect(lb,  "clicked", f = f)
-% ID <- gSignalConnect(lb1, "clicked", f = f)
-% @ 
-% \end{example}
-
-\subsection{Statusbars}
-\label{sec:RGtk2:statusbars}
-
-
-In \GTK, a statusbar is constructed through the
-\constructor{gtkStatusbar} function. Statusbars must be placed at the
-bottom of a top-level window by the programmer. In \GTK, a statusbar
-keeps various stacks of messages for display. One adds a message to
-display for given stack through the \method{Push}{gtkStatusbar} method
-by specifying first an integer value for \code{context.id} and a
-message. To pop the top message on a stack and display the next, the
-method \method{Pop}{gtkStatusbar} method is available.
-
-%% XXX
-%% TODO: add GtkInfoBar
-%% TODO: somehow, progress bars have gotten lost
-%% TODO: with progress bars, mention GtkSpinner
-
-\subsection{Information bars}
-\label{sec:gtkInfoBar}
-
-An information bar is similar in purpose to a message dialog, only is intended to
-be less obtrusive. \GTK\/ provides the \class{GtkInfoBar} class for
-managing information bars. The use is similar to a dialog: one places
-widgets into their content area, and listens to the
-\signal{response} signal of the button. However, the presentation of the
-message in this case is a simple call to its \meth{show} method (or
-\meth{hide}). The placement of the bar is left to the user, it does
-not carry its own top-level window.
-
-A simple use might look like:
-<<>>=
-ib <- gtkInfoBar(show=FALSE)
-ib$setNoShowAll(TRUE)
-@ 
-We call \method{setNoShowAll} so that the widget isn't displayed when
-its parent container is. To this information bar we add a simple label
-and specify the message type using one of the enumerated values in \code{GtkMessageType}.
-<<>>=
-l <- gtkLabel("Warning, Warning ....")
-ib$setMessageType("warning")            
-ib$getContentArea()$add(l)
-@ 
-A button to allow the user to hide the bar can be added as follows:
-<<>>=
-ib$addButton(button.text="gtk-ok",
-             response.id=GtkResponseType['ok']) # not just "ok"
-@ 
-As with dialogs, we connect to the \signal{response} signal which is
-emitted when the button is activated.
-<<results=hide>>=
-gSignalConnect(ib, "response", function(w, ...) w$hide())
-@ 
-
-Our configuration is done. We now add the bar to a top-level window:
-<<addToWinodw>>=
-w <- gtkWindow(); w['title'] <- "Info bar example"
-g <- gtkVBox()
-w$add(g)
-g$packStart(ib, expand=FALSE)
-#
-contentArea <- gtkHBox()
-g$packStart(contentArea, expand=TRUE)
-l <- gtkLabel("Lorem ipsum so dolor ...")
-contentArea$packStart(l)
-#
-ib$show()                               # show
-@ 
-
-
-
-\subsection{Progress bars}
-\label{sec:progress-bars}
-It is common to use a progress bar to indicate to the user the amount
-of time remaining during a long running computation. The
-\constructor{gtkProgressBar} creates the widget. The typical use
-involves placing a text label to notify the user and periodically
-updating the bar to reflect the percentage of time spent. 
-
-The following will do so:
-<<>>=
-w <- gtkWindow(); w$setTitle("Progress bar example")
-pb <- gtkProgressBar()
-w$add(pb)
-#
-pb$setText("Please be patient...")
-for(i in 1:100) {
-  pb$setFraction(i/100)
-  Sys.sleep(0.05) ## replace with a step in the process
-}
-pb$setText("All done.")
-@ 
-
-
-Progress bars can also show activity but not an indication of
-duration. Activity is displayed by periodically pulsing the bar
-through the \method{pulse}{gtkProgressBar} method.
-
-
-\paragraph{\class{GtkSpinner}}
-Related to a progress bar is the \class{GtkSpinner} widget, which is
-also used to show an indefinite amount of activity, and is commonly used in
-web browser. The basic usage is straightforward: the object is created
-by \constructor{gtkSpinner} and the animation is begun and ended with
-teh respective methods \method{start}{gtkSpinner} and \method{stop}{gtkSpinner}.
 
 \subsection{Images}
 \label{sec:RGtk2:images}
@@ -769,37 +622,46 @@ changed, as with sliders.
   \SweaveInput{ex-RGtk2-range-widget}
 \end{example}
 
-\section{Graphics}
+\section{Progress Reporting}
 
-% Describe Cairo, GtkDrawingArea
+\subsection{Progress bars}
+\label{sec:progress-bars}
 
-\subsection{The cairoDevice package}
-\label{sec:cairodevice-package}
+It is common to use a progress bar to indicate to the user the
+progress of a long running computation. The
+\constructor{gtkProgressBar} creates the widget. Typically, a text
+label describes the current operation, and the progress bar
+communicates the fraction completed:
+<<>>=
+w <- gtkWindow(); w$setTitle("Progress bar example")
+pb <- gtkProgressBar()
+w$add(pb)
+#
+pb$setText("Please be patient...")
+for(i in 1:100) {
+  pb$setFraction(i/100)
+  Sys.sleep(0.05) ## replace with a step in the process
+}
+pb$setText("All done.")
+@ 
 
-The package \pkg{cairoDevice} is an R graphics device based on the
-Cairo graphics library.  It is cross-platform and supports
-alpha-blending and antialiasing. Through its support for the
-\function{getGraphicsEvent} function, it is currently the most
-interactive cross-platform graphics device.  
+Progress bars can also show indefinite activity by periodically
+pulsing the bar: 
+<<gtk-widget-progress-pulse>>=
+pb$pulse()
+@ 
 
-\pkg{RGtk2} and \pkg{cairoDevice} are integrated through the
-\function{asCairoDevice} function.If a \class{GtkDrawingArea},
-\class{GdkDrawable}, \class{Cairo} context, or \class{GtkPrintContext}
-is passed to \function{asCairoDevice}, an R graphics device will be
-initialized that targets its drawing to the
-object. Example~\ref{ex:RGtk2:pixbuf} employed this function to paint
-a histogram on a pixmap.  For simply displaying graphics in a GUI, the
-\class{GtkDrawingArea} is the best choice.
-For more complex use cases, such as compositing a layer above
-or below the R graphic, one should pass an off-screen
-\class{GdkDrawable}, like a \class{GdkPixmap}, or a \class{Cairo}
-context. The off-screen drawing can then be composited with other
-images when displayed. Finally, passing a \class{GtkPrintContext} to
-\function{asCairoDevice} allows printing R graphics through the \GTK\/
-printing dialogs.
+\subsection{Spinners}
 
-% TODO: put GtkDrawingArea example here
-
+Related to a progress bar is the \class{GtkSpinner} widget, which is a
+graphical heartbeat to assure the user that the application is still
+alive during long-running operations. Spinners are commonly found in
+web browsers. The basic usage is straightforward:
+<<gtk-widget-spinner>>=
+spinner <- gtkSpinner()
+spinner$start()
+spinner$stop()
+@ 
 
 %% JV: this is in need of rewriting
 \section{Drag and drop}
@@ -807,90 +669,71 @@ printing dialogs.
 
 %% ------------ Drag and Drop
 
-\GTK\/ has mechanisms to provide drag and drop facilities for
-widgets. To setup drag and drop actions requires setting a widget to
-be a source for a drag request, and setting a widget to be a target
-for a drop action, and assigning callbacks to respond to certain
-signals.  Only widgets which can receive signals will work for drag
-and drop, so to drag or drop on a label, say, an event box must be
-used. 
+A drag and drop operation is the movement of data from a source widget
+to a target widget. The source widget serializes the selected item as
+MIME data, and the destination interprets that data to perform some
+operation, often creating an item of its own. Our task is to configure
+the source and destination widgets, so that they listen for the
+appropriate events and understand each other. As a trivial example, we
+allow the user to drag the text from one button to another.
 
-We illustrate how to set up the dragging of a text value from one
-widget to another. Much more complicated examples are possible, but we
-do not pursue it here.
+\subsection{Initiating a Drag}
 
 When a drag and drop is initiated, different types of data may be
-transferred. \GTK\/ allows the user to specify a target type. Below,
-we define target types for text and pixmap objects. These
-give numeric IDs for lookup purposes.
+transferred. We need to define a target type for each type of data, as
+a \class{GtkTargetEntry} structure. 
 <<>>=
 TARGET.TYPE.TEXT   <- 80                 
 TARGET.TYPE.PIXMAP <- 81                  
+widgetTargetTypes <- 
+  list(text = gtkTargetEntry("text/plain", 0, TARGET.TYPE.TEXT),
+       pixmap = gtkTargetEntry("image/x-pixmap", 0, TARGET.TYPE.PIXMAP))
 @ 
-We use these to make different types of objects that can be dragged.
-<<>>=
-widgetTargetTypes <- list(
-## target -- string representing the drag type. MIME type used.
-## flag delimiting drag scope. 0 -- no limit
-## info -- application assigned value to identify
-text = gtkTargetEntry("text/plain", 0, TARGET.TYPE.TEXT),
-pixmap = gtkTargetEntry("image/x-pixmap", 0, TARGET.TYPE.PIXMAP)
-)
-@ 
+%
+The first component of \class{GtkTargetEntry} is the name, which often
+a MIME type. The flags come next, which are usually left at $0$, and
+finally we specify an arbitrary identifier for the target. We will
+only use the \qcode{text} target in this example.
 
-\paragraph{A drag source}
-A widget that can have a value dragged from it is a drag source. It is
-specified by calling
-\function{gtkDragSourceSet}. This function has arguments
-\argument{object}{gtkDragSourceSet} for the widget we are making a
-source, \argument{start.button.mask}{gtkDragSourceSet}  to specify
-which mouse buttons can initiate the drag,
-\argument{targets}{gtkDragSourceSet} to specify the target type, and
-\argument{actions}{gtkDragSourceSet} to indicate which of the
-\code{GdkDragAction} types is in effect, for instance \code{copy} or
-\code{move}. 
-
-When a widget is a drag source, it sends the data being dragged in
-response to the \signal{drag-data-get} signal using a callback. The
-signature of this callback is important, although we only use the
-\code{selection} argument, as this is assigned the text that will be the
-data passed to the target widget. (Text, as we are passing text
-information.)
-
+To instruct a widget to act as a drag source, we call
+\function{gtkDragSourceSet}:
 <<results=hide>>=
 w <- gtkWindow(); w['title'] <- "Drag Source"
-dragSourceWidget <-  gtkButton("Drag me")
+dragSourceWidget <-  gtkButton("Text to drag")
 w$add(dragSourceWidget)
 
 gtkDragSourceSet(dragSourceWidget,
                  start.button.mask=c("button1-mask", "button3-mask"),
                  targets=widgetTargetTypes[["text"]],
-                 actions="copy") ## can also be any of GdkDragAction
-
-ID <- 
-  gSignalConnect(dragSourceWidget, "drag-data-get", 
-                 f=function(widget, context, 
-                   selection, targetType, eventTime) {
-                   ## customize this to set the text
-                   selection$setText(str="some value") 
-                 })
+                 actions="copy")
 @ 
+%
+The \argument{start.button.mask}{gtkDragSourceSet} indicates the
+modifier buttons that need to be pressed to initiate the drag, with
+values from \class{GdkModifierType}. Then we specify the allowed
+targets, \qcode{text} in this case. The
+\argument{actions}{gtkDragSourceSet} argument lists the supported
+actions, such as \code{copy} or \code{move}, from the
+\class{GdkDragAction} enumeration. 
 
-\paragraph{Drop target}
+When a drag is initiated, we will receive the \signal{drag-data-get}
+signal, which needs to place some data into the passed
+\class{GtkSelectionData} object:
+<<results=hide>>=
+gSignalConnect(dragSourceWidget, "drag-data-get", 
+               function(widget, context, selection, targetType, eventTime) {
+                 selection$setText(widget$getLabel()) 
+               })
+@ 
+%
+If we had specified the \code{move}, we would also need to connect to
+\signal{drag-data-delete}, in order to delete the data that was
+moved away.
+
+\subsection{Handling Drops}
+
 To make a widget a drop target, we call \function{gtkDragDestSet} on
-the object with the argument \argument{flags}{gtkDragDestSet} for
-specifying the actions \GTK\/ will perform when the widget is dropped
-on. We use the value \qcode{all} for \qcode{motion},
-\qcode{highlight}, and \qcode{drop}. The
-\argument{targets}{gtkDragDestSet} argument matches the type of data
-being allowed, in this case text. Finally, the value of
-\argument{action}{gtkDragDestSet} specifies what \code{GdkDragAction}
-should be sent back to the drop source widget. If the action was
-\qcode{move} then the source widget emits the \code{drag-data-delete}
-signal, so that a callback can be defined to handle the deletion of
-the data.
-
- 
+the object:
 <<results=hide>>=
 w <- gtkWindow(); w['title'] <- "Drop Target"
 dropTargetWidget <- gtkButton("Drop here")
@@ -899,33 +742,39 @@ w$add(dropTargetWidget)
 gtkDragDestSet(dropTargetWidget,
                flags="all", 
                targets=widgetTargetTypes[["text"]],
-               actions="copy"
-               )
+               actions="copy")
 @
+%
+The signature is similar to that of \function{gtkDragSourceSet},
+except for the \argument{flags}{gtkDragDestSet} argument, which
+indicates which operations, of the set \code{motion}, \code{highlight}
+and \code{drop}, \GTK\/ will handle with reasonable default
+behavior. Specifying \code{all} is the most convenient course, in
+which case we only need to implement the extraction of the data from
+the \class{GtkSelectionData} object. For a drop to occur, there must be a
+non-empty intersection between the targets passed to
+\function{gtkDragSourceSet} and those passed to
+\function{gtkDragDestSet}.
 
-When data is dropped, the widget emits the
-\code{drag-data-received}. The data is passed to the callback through the
-\code{selection} argument. The \code{context} argument is a
-\code{gdkDragContext}, containing information about the drag
-event. The \code{x} and \code{y} arguments are integer valued and pass
-in the position in the widget where the drop occurred. In the example
-below, we see that text data is passed to this function in \code{raw}
-format, so it is converted with \function{rawToChar}.
-
+When data is dropped, the destination widget emits the
+\code{drag-data-received} signal. The handler is responsible for
+extracting the dragged data from \code{selection} and performing some
+operation with it. In this case, we set the text on the button:
 <<>>=
-ID <- 
-  gSignalConnect(dropTargetWidget, "drag-data-received", 
-                 f=function(dropTargetWidget, 
-                   context, x, y, 
-                   selection, targetType, eventTime) {
-                   dropdata <- selection$getText()
-                   if(class(dropdata)[1] == "raw")
-                     val <- paste(rawToChar(dropdata), sep="")
-                   else
-                     val <- paste(dropdata, sep="")
-                   print(val) ## some action
-                 })
+gSignalConnect(dropTargetWidget, "drag-data-received", 
+               function(dropTargetWidget, context, x, y, selection, targetType,
+                        eventTime) 
+               {
+                 dropdata <- selection$getText()
+                 dropTargetWidget$setLabel(rawToChar(dropdata))
+               })
 @ 
+%
+The \code{context} argument is a \code{gdkDragContext}, containing
+information about the drag event. The \code{x} and \code{y} arguments
+are integer valued and represent the position in the widget where the
+drop occurred. The text data is returned by \function{getText} as a
+\code{raw} vector, so it is converted with \function{rawToChar}.
 
 %% JV: This could be expanded -- motion is not covered, as is done with
 %% tcltk, but I don't think it is needed without a compelling use case.

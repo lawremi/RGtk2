@@ -59,7 +59,7 @@ args <- function(name) {
 \SweaveInput{WidgetsWithModels}
 
 
-\chapter{RGtk2: Menus and Dialogs}
+\chapter{RGtk2: Application Windows}
 \label{sec:RGtk2-menus}
 \SweaveInput{menus}
 
