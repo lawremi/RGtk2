@@ -4,14 +4,16 @@ require(RGtk2)
 data(mtcars); library(MASS); data(Cars93) # need some data frames
 @ 
 %
-We use two convenience functions below from the \pkg{ProgGUIInR} package to find the possible data
+The goal of this example is to populate a combo box of variables
+whenever a data frame is selected in another. We use two convenience
+functions from the \pkg{ProgGUIInR} package to find the possible data
 frames, and for a data frame to find the variables.
 <<>>=
-#require(ProgGUIinR)                     # for avail_dfs, find_vars
+#library(ProgGUIinR)                     # for avail_dfs, find_vars
 source("~/GUI/ProgGUIInR/R/misc.R")
 @ 
 
-We have a basic set of widgets:
+We create the two combo boxes and the enclosing window:
 <<Widgets>>=
 w <- gtkWindow(show=FALSE)
 w$setTitle("gtkComboBox example")
@@ -21,34 +23,32 @@ var_combo <- gtkComboBoxNewText()
 @ 
 %
 
-Our layout uses boxes, a table is better but that comes later. To add
-a twist, we will hide our variable combo box until after a data frame
-has been initially selected.
+Our layout uses boxes. A table is more appropriate, but that has not been
+introduced yet. To add a twist, we will hide our variable combo box
+until after a data frame has been initially selected.
 <<Layout>>=
 g <- gtkVBox(); w$add(g)
 #
 g1 <- gtkHBox(); g$packStart(g1)
 g1$packStart(gtkLabel("Data frames:"))
-g1$PackStart(df_combo)
+g1$packStart(df_combo)
 #
 g2 <- gtkHBox(); g$packStart(g2)
 g2$packStart(gtkLabel("Variable:"))
-g2$PackStart(var_combo)
+g2$packStart(var_combo)
 g2$hide()
 @
 %
 
-Finally we configure the combo boxes. When a data frame is selected we
-first clear out the variable combo box (by calling it's model's
-\meth{Clear} method), then populate.
+Finally, we configure the combo boxes. When a data frame is selected, we
+first clear out the variable combo box and then populate it:
 <<configureComboBoxes, results=hide>>=
-sapply(avail_dfs(), gtkComboBoxAppendText, object=df_combo)
+sapply(avail_dfs(), df_combo$appendText)
 df_combo$setActive(-1)
 #
 gSignalConnect(df_combo, "changed", function(w, ...) {
-  var_combo$getModel()$clear()          # or removeText
-  sapply(find_vars(w$getActiveText()), gtkComboBoxAppendText, 
-         object=var_combo)
+  var_combo$getModel()$clear()
+  sapply(find_vars(w$getActiveText()),  var_combo$appendText)
   g2$show()
 })
 @ 

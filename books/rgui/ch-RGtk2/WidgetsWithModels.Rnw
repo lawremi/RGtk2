@@ -1123,6 +1123,25 @@ should be displayed in the set of completions.
   \SweaveInput{ex-RGtk2-entry-completion}
 \end{example}
 
+\section{Sharing Buffers Between Text Entries}
+\label{sec:RGtk2:buffer-sharing}
+
+As of \GTK\/ version $2.18$, multiple instances of \class{GtkEntry}
+can synchronize their text through a shared buffer. Each entry obtains
+its text from the same underlying model, a
+\class{GtkEntryBuffer}. Here, we construct two entries, with a shared
+buffer:
+<<gtk-mvc-entry-buffer>>=
+buffer <- gtkEntryBuffer()
+entry1 <- gtkEntry(buffer = buffer)
+entry2 <- gtkEntry(buffer = buffer)
+entry1$setText("echo")
+entry2$getText()
+@ 
+%
+The change of text in \qcode{entry1} has been reflected in
+\qcode{entry2}.
+
 \section{Text views and text buffers} %% text buffer
 \label{sec:RGtk2:textviews}
 

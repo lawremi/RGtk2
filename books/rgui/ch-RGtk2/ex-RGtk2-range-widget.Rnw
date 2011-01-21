@@ -1,6 +1,6 @@
 This example shows how to make a range widget that combines both the
 slider and spinbutton to choose a single number. Such a widget is
-popular, as the slider is better at large changes and the spin button
+useful, as the slider is better at large changes and the spin button
 better at finer changes. In \GTK\/ we use the same
 \class{GtkAdjustment} model, so changes to one widget propagate
 without effort to the other.
@@ -10,16 +10,16 @@ without effort to the other.
 library(RGtk2)
 @ 
 
-Were this written as a function, an \R\/ user might expect the
-arguments to match those of \code{seq}:
+We name our scale parameters according to the corresponding arguments
+to the \function{seq} function:
 <<>>=
 from <- 0; to <- 100; by <- 1
 @ 
 
 The slider is drawn without a value, as the value is already displayed
 by the spin button. The call to \constructor{gtkHScale} implicitly
-creates an adjustment for the slider. The spin button is created with
-the same adjustment.
+creates an adjustment for the slider. The spin button is then created
+with the same adjustment.
 <<>>=
 slider <- gtkHScale(min=from, max=to, step=by)
 slider['draw-value'] <- FALSE
@@ -28,8 +28,8 @@ spinbutton <- gtkSpinButton(adjustment = adjustment)
 @
 %
 Our layout places the two widgets in a horizontal box container with
-the slider set to expand into the available space, but not the
-spinbutton.
+the slider, but not the spin button, set to expand into the available
+space.
 <<>>=
 g <- gtkHBox()
 g$packStart(slider, expand=TRUE, fill=TRUE, padding=5)

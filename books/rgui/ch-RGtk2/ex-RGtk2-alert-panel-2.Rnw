@@ -13,23 +13,24 @@ to replicate that functionality, but rather to show how the
 used and how an event box is utilized to capture events and to allow
 for background painting.
 
-We will employ \R's reference methods to define our widget. We break
-up the method definitions for formatting purpose, the longest of which
-is the initialization method which creates the widgets. An event box
-is used so that we can color the background, as this isn't possible
-for a box container due to its lack of a gdk window.  To this event
-box we add a box container that will hold an icon indicating this is
-an alert, a label for the message, and another icon to indicate to the
-user how to close the alert. Since we wish to receive mouse clicks on
-close icon, we place this inside another event box. To this, we bind a
-callback to the \signal{button-press-event} signal. 
+We will employ reference classes from the \pkg{methods} package to
+define our widget. We break up the method definitions for formatting
+reasons, the longest of which is the initialization method which
+creates the widgets. A box container is created for holding an icon
+indicating this is an alert, a label for the message, and another icon
+to indicate to the user how to close the alert. We place the box
+container into an event box. The event box lets us color the
+background, as this would otherwise be impossible, given that a
+\class{GtkBox} lacks a \class{GdkWindow}.  Since we wish to receive
+mouse clicks on close icon, we place this inside another event box and
+bind a callback to the \signal{button-press-event} signal.
 <<>>=
 initialize <- 
   function(message="", icon="gtk-dialog-warning", 
            panel.color="goldenrod") {
     "Initialize widgets"
     widget <<- gtkEventBox(show=FALSE)
-    widget$ModifyBg(state="normal", color=panel.color)
+    widget$modifyBg(state="normal", color=panel.color)
     ##
     g <- gtkHBox(homogeneous=FALSE, spacing=5)
     widget$add(g)
@@ -96,6 +97,6 @@ ap$set_message("New Message")
 @
 
 
-To improve this, one could also add a time to close the panel after some delay. The
-\function{gTimeoutAdd} function is used to specify a function to call
-periodically until the function returns \code{FALSE}.
+To improve this, one could also add a time to close the panel after
+some delay. The \function{gTimeoutAdd} function is used to specify a
+function to call periodically until the function returns \code{FALSE}.

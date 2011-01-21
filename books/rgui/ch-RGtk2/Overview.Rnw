@@ -475,43 +475,51 @@ when the Pango text attribute markup language is employed.
 [XXX insert bit about themes, adjusting defaults. perhaps rc files]
 
 \subsection{GtkBuildable  and Glade }
-\GTK\/ has a means to describe an interface using an XML
-specification. The interface is then built through a \class{GtkBuilder}
-object.  The \code{glade} interface builder can be used to create the
-interface through a point-and-click process and the XML file will be
-created from within \code{glad} If this appeals to you, the software
-may be downloaded from \url{http://glade.gnome.org/}. This resulting
-XML file is read into the \R\/ session along the lines of the
-following:
+
+This book focuses almost entirely on the direct programmatic
+construction of GUIs. Some developers prefer visually constructing a
+GUI by pointing, clicking and dragging in another GUI, which one might
+call a GUI builder, a type of RAD (Rapid Application Development)
+tool. \software{Glade} is the primary GUI builder for \GTK/ and
+exports an interface as XML that is loadable by \class{GtkBuilder}. It
+is freely available for all major platforms from
+\url{http://glade.gnome.org/}. Documentation is also at that
+location. 
+
+We will assume that the reader has saved an interface as a
+\class{GtkBuilder} XML file named \code{buildable.xml} and is ready to
+load it with \pkg{RGtk2}:
 <<>>=
 g <- gtkBuildableNew()
 g$addFromFile("buildable.xml")
 @ 
-The \method{getObject}{gtkBuilder} is used to extract the widgets by
-their ID. For this example, the \code{dialog1} is the top-level
-widget, for which we extract then display through a call to the
-\method{showAll}{gtkWidget} method.
+
+The \method{getObject}{gtkBuilder} extracts a widget by its ID, which
+is specified by the user through \software{Glade}. It normally
+suffices to load the top-level widget, named \code{dialog1} in this
+example, and show it:
 <<>>=
 d <- g$getObject("dialog1")
 d$showAll()
 @
-The XML specification includes a line
-\begin{verbatim}
-<signal name="clicked" handler="ok_button_clicked" />
-\end{verbatim}
 
-This specifies that the callback \code{ok\_button\_clicked} should be
-called when the widget (a button) is clicked. To add this callback
-within \R\/ we must define a function with a signature that matches
-that for this signal (\code{...} does) and then register the callbacks
-through a call to the \method{ConnectSignals}{gtkBuildable} method.
-
+In order to add behaviors to the GUI, we need to register R functions
+as signal handlers. In \software{Glade}, the user should specify the
+name of an R function as a handler for some signal. \pkg{RGtk2}
+extends \class{GtkBuilder} to look up the functions and connect them
+to the appropriate signals. Let us assume that the user has named the
+\function{ok_button_clicked} function as the handler for the
+\signal{clicked} signal on a \class{GtkButton}. The
+\method{connectSignals}{GtkBuilder} method will establish that
+connection and any others in the interface:
 <<>>=
 ok_button_clicked <- function(w, userData) {
   print("hello world")
 }
 g$connectSignals()
-@ 
+@
+%
+The GUI should now be ready for use.
 
 \section{Running scripts under Windows}
 \label{sec:RGtk2-run-scripts-under-windows}
@@ -540,12 +548,12 @@ return the \pkg{RGtk2} component to use within \pkg{RGtk2}.
 
 \GTK\/ has many sources of online documentation. The full API is found
 at \url{http://www.gtk.org/documentation.html}. Although this is in C,
-the translation to \R\/ is not so difficult. A tutorial for the python
-bindings to \GTK\/ is very useful, as the python implementation is no
-too far from \R's, can be found at
+the translation to \R\/ is not so difficult. A tutorial for the Python
+bindings to \GTK\/ is very useful, as the Python implementation is no
+too far from \R's, and can be found at
 \url{http://moeraki.com/pygtktutorial/pygtk2tutorial}. This is based
 on the C-based tutorial for \GTK. Some authors have provided tutorials
-for the more complicated widgets the treeview
+for the more complicated widgets, like the treeview
 \url{http://scentric.net/tutorial/treeview-tutorial.html} and the text
 view \url{http://www.bravegnu.org/gtktext/gtktext-0.4.html}, although
 with both one must translate the C code into \R\/ code.
