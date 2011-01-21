@@ -24,7 +24,7 @@ manipulation; ATK for the accessibility toolkit; and GDK, which
 provides an abstract layer between the windowing system, such as X11,
 and \GTK. These libraries are multi-platform and extensive and have
 been used for many major projects, such as the linux versions of the
-firefox browser and open office.
+Firefox browser and Open Office.
 
 % Actually, the bindings to GTK are only part of the story. RGtk2 also
 % offers complete bindings to Pango (font rendering), GDK (basic
@@ -36,31 +36,60 @@ firefox browser and open office.
 The \pkg{RGtk2} package traces its roots to the original \pkg{RGtk},
 conceived by Duncan Temple Lang, who created a means to automatically
 generate bindings between \R\/ and the underlying C routines of \GTK.
-For example, the \R\/ function \function{gtkContainerAdd} wrapped the
+For example, the \R\/ function \function{gtkContainerAdd} wraps the
 C function \code{gtk\_container\_add}. \pkg{RGtk2} builds on
 \pkg{RGtk}, increasing the stability and completeness of the interface
 and updating it for the current generation of \GTK.
 
-The full API for \GTK\/ is quite large, and clearly can not be
+The full API for \GTK\/ is quite large and clearly can not be
 documented here. However, the \GTK\/ documentation is converted into
-\R\/ format in the building of \pkg{RGtk2}. This conveniently allows
-the programmer to refer to the appropriate documentation within an
-\R\/ session, without having to consult the a web page, such as
-\url{http://library.gnome.org/devel/gtk/stable/} which lists the API
-of the stable versions \GTK.
+the \code{Rd} format in the building of \pkg{RGtk2}. This conveniently
+allows the programmer to refer to the appropriate documentation within
+an \R\/ session, without having to consult external, largely C-based
+documentation.
 
 
 \subsection{Installation}
 \label{sec:installation}
 
-The package requires the underlying \GTK\/ libraries to be installed. These are standard under Linux, but must be installed under Windows and Mac OS X. Each platform has pre-compiled binaries, so this is not hard for the user. The Windows binaries are provided at \url{http://www.gtk.org/download-windows.html}. Under Mac OS X, the toolkit can be compiled from source, through the \code{fink} utilities, or a binary version can be installed. Currently the latter is provided at \url{http://r.research.att.com/}, where a version to use with the Max OS X binary of \R\/ is found.
-
+The package requires the underlying \GTK\/ libraries to be
+installed. These are standard under Linux. On non-Linux platforms,
+\pkg{RGtk2} will attempt to automatically install the appropriate
+binaries when it fails to load, so it is generally sufficient to
+simply install the \pkg{RGtk2} package. When this fails, one can try
+manually installing the binaries. Each platform has pre-compiled
+binaries. The Windows binaries are provided at
+\url{http://www.gtk.org/download-windows.html}. Under Mac OS X, the
+toolkit can be compiled from source; however, it is usually more
+convenient to obtain the binaries from
+\url{http://r.research.att.com/}. Those are generously built by Simon
+Urbanek, specifically for use with the Mac OS X binary of \R\/.
 
 %%% ------- OOP --------------
 
-\section{How \GTK\/ is organized}
-\label{sec:RGtk2:constructors}
+\section{Overview of the \pkg{RGtk2} API}
 
+Constructing a GUI with \pkg{RGtk2} generally proceeds by constructing
+a widget and then configuring it by calling methods and setting
+properties. Signal handlers are connected to respond to user input and
+the widget is combined with other widgets to form the GUI. For
+example:
+<<gtk-overview-initial-example>>=
+button <- gtkButton("Click Me")
+button['image'] <- gtkImage(stock = "gtk-apply", size = "button")
+gSignalConnect(button, "clicked", function(x) message("Hello World!"))
+window <- gtkWindow(show = FALSE)
+window$add(button)
+window$showAll()
+@ 
+%
+Once one understands the syntax and themes of the above example, it is
+only a matter of reading through the documentation to discover all of
+the widgets and their features. The rest of this section will explain
+these basic components of the API.
+
+\subsection{Constructors}
+\label{sec:RGtk2:constructors}
 
 \GTK\/ objects are created using constructors such as
 \function{gtkWindowNew} and \function{gtkButtonNewWithLabel} (these
@@ -340,13 +369,13 @@ callback has varying length, setting this to \code{TRUE} can prove
 useful when not all arguments are important.
 
 %% the callback
-The signature for the callback varies for each signal and for 
-window manager events. The basic signature is \code{(w, user.data)}, where
+The signature for the callback varies for each signal and for window
+manager events. The basic signature is \code{(w, user.data)}, where
 \code{w} passes in the widget that emits the signal and
 \code{user.data} is the optional data passed through the \code{data}
-argument of \code{gSignalConnect}. Some callbacks
-have longer signatures. The API for the constructor documents the
-available signals and the signatures of the callbacks. 
+argument of \code{gSignalConnect}. Some callbacks have longer
+signatures. The help page for the class documents the available
+signals and the signatures of the callbacks.
 
 
 \paragraph{Window manager events} 
@@ -361,13 +390,11 @@ of a mouse click, or the type of key that was pressed. The help page
 
 Callbacks for signals emitted by window manager events are expected to
 return a logical value. Failure to do so can cause errors to be
-raised. For other callbacks the return value is ignored, so it is safe to
-always return a logical value. For an event callback, a return value
-of \code{TRUE} indicates that no further callbacks should be called,
-whereas \code{FALSE} indicates that the next callback should be
-called. So in the following example, only the first two callbacks are
-executed.
-
+raised. A return value of \code{TRUE} indicates that no further
+callbacks should be called, whereas \code{FALSE} indicates that the
+next callback should be called. In other words, the return value
+indicates whether the handler has consumed the event. In the following
+example, only the first two callbacks are executed:
 <<>>=
 b <- gtkButton("Click me")
 w <- gtkWindow()
@@ -385,18 +412,17 @@ id3 <- gSignalConnect(b,"button-press-event",function(b, event, data) {
 @ 
 
 \paragraph{Scope of callback functions}
-As the callback is an \R\/ function, it is passed copies of the
-object. Since \pkg{RGtk2} objects are pointers, there is no practical
-difference. So changes within the body of a callback to \pkg{RGtk2}
-objects are reflected outside the scope of the callback, unlike
-changes to most other \R\/ objects. Making changes to \R\/ objects
-within a callback can be done through the usual scoping
-rules. However, it can be convenient to use the
-\method{setData}{gObject} and \code{getData}{gObject} to pass values
-into a callback, as changes to the \code{user-data} property of a widget
-will be reflected outside the scope of the callback.
 
+A callback function often needs to modify a value outside of its
+scope. We recommend following the general approaches outlined in
+Section~\ref{sec:managing-application-state} for managing application
+state. If these are inadequate, one might leverage the ability of any
+\class{GObject}, including widgets, to store key-value pairs for the
+user.  Since an \pkg{RGtk2} object is a reference, this is a
+convenient mechanism for sharing state.
 
+The key-value pairs are accessed with the \method{getData}{GObject}
+and \method{setData}{GObject} methods, as shown in this example:
 <<>>=
 w <- gtkWindow(); w['title'] <- "test signals"
 x <- 1; 
@@ -407,26 +433,25 @@ ID <- gSignalConnect(b,signal="clicked",f = function(widget,...) {
   return(TRUE)
 })
 @ 
+%
 Then after clicking, we would have
 <<echo=FALSE>>=
 b$setData("x",2)                        # fix non-interactivity
 @ 
-
 <<>>=
 cat(x, b$getData("x"),"\n") # 1 and 2
 @ 
-
 
 %% multiple callbacks; remove; block
 \paragraph{Disconnecting, blocking and unblocking handlers}
 Multiple callbacks can be assigned to each signal. They will be
 processed in the order they were bound to the signal.  The
 \function{gSignalConnect} function returns an ID that can be used to
-disconnect a callback if desired using
-\function{gSignalHandlerDisconnect} or temporarily blocked using
-\function{gSignalHandlerBlock} and
-\function{gSignalHandlerUnblock}. The man page for
-\function{gSignalConnect} gives the details on this, and much more.
+disconnect a handler, if desired, using
+\function{gSignalHandlerDisconnect}. To temporarily block a handler,
+call \function{gSignalHandlerBlock} and then
+\function{gSignalHandlerUnblock} to unblock. The man page for
+\function{gSignalConnect} gives the details on this.
 
 
 %% --------- Event Loop
@@ -437,21 +462,19 @@ disconnect a callback if desired using
 The \pkg{RGtk2} event loop integrates with the \R\/ event loop. Such
 integration is tricky. In a C program, \GTK\/ programs call the
 function \code{gtk\_main} which puts control of the GUI into the main
-event loop of \GTK. This sits idle until some event occurs. According
-to the \pkg{RGtk2} website, ``The nature of the R event loop prevents
-the continuous execution of the GTK main loop, thus preventing things
-like timers and idle tasks from executing reliably. This manifests
-itself when using functionality such as \class{GtkExpander} and
-\class{GtkEntryCompletion}.''
+event loop of \GTK. This sits idle until some event
+occurs. \pkg{RGtk2} treats the R event loop as the master and
+interates the \GTK\/ event loop whenever R is idle. 
 
 During a long calculation, the GUI can seem unresponsive. To avoid
-this the following construct can be used during the long calculation
-to process pending events.
-
+this, one should explicitly iterate the \GTK\/ event loop with the
+following: 
 <<>>=
 while(gtkEventsPending()) 
   gtkMainIteration()
 @ 
+%
+This is often useful, for example, to update a progress bar.
 
 \subsection{Pango}
 \label{sec:pango}
@@ -468,13 +491,14 @@ When working with text within \pkg{RGtk2}, the Pango library is used,
 although the programmer need not be too aware of this fact, except
 when the Pango text attribute markup language is employed.
 
-
+%% ML: I don't know much about this, which might be an indicator that
+%% it can be omitted.
 \subsection{Themes}
 \label{sec:RGkt2:themes}
 
 [XXX insert bit about themes, adjusting defaults. perhaps rc files]
 
-\subsection{GtkBuildable  and Glade }
+\subsection{GtkBuildable  and Glade}
 
 This book focuses almost entirely on the direct programmatic
 construction of GUIs. Some developers prefer visually constructing a
@@ -521,15 +545,16 @@ g$connectSignals()
 %
 The GUI should now be ready for use.
 
-\section{Running scripts under Windows}
+\section{Launching a GUI via a Non-interactive Session}
 \label{sec:RGtk2-run-scripts-under-windows}
 
-If one assigns an icon to run an \pkg{RGtk2} script under Windows, the
-script will immediately exit and the GUI will disappear. To work
-around this, the function \function{gtkMain} is used to run the main
-loop until the function \function{gtkMainQuit} is called. This can't
-be called from the command line, so should be called through some
-event handler.
+If one runs an \pkg{RGtk2} script non-interactively, such as by
+assigning an icon to launch a GUI under Windows, R will exit after
+the script is finished and the GUI will disappear just after it
+appears. To work around this, call the function \function{gtkMain} to
+run the main loop until the function \function{gtkMainQuit} is
+called. Since there is no interactive session, \function{gtkMainQuit}
+should be called through some event handler.
 
 
 \section{RGtk2 and gWidgetsRGtk2}
