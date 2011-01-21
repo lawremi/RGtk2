@@ -1,3 +1,21 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% THIS FILE IS OBSOLETE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%
+%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%% THIS FILE IS OBSOLETE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%% 
+%%%%%%% 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%% THIS FILE IS OBSOLETE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%% 
+%%%%%%% 
+
 In this chapter we give an introduction to using the \pkg{RGtk2}
 package. This package provides access to the underlying cross-platform
 \GTK\/ libraries, provided they are installed on the system. This
@@ -92,27 +110,68 @@ these basic components of the API.
 \label{sec:RGtk2:constructors}
 
 \GTK\/ objects are created using constructors such as
-\function{gtkWindowNew} and \function{gtkButtonNewWithLabel} (these
-mapping to \code{gtk\_window\_new} and
-\code{gtk\_button\_new\_with\_label} respectively). The \pkg{RGtk2}
-package also provides convenience constructors with names not ending
-in \code{New} that may, depending on the arguments given, call
-different, but similar, constructors. We prefer these shorter, more
-flexible constructors, such as \function{gtkWindow} or
-\function{gtkButton}, but note their documentation is provided by the
-\R\/ package author and is in addition to the formal API.
-
-
-The automatic creation of \R\/ functions from the \GTK\/ libraries
-gives the constructors a somewhat consistent definition. For example,
-<<gtkWindowNew>>=
-gtkWindowNew
+\function{gtkWindowNew} and \function{gtkButtonNewWithLabel}. Here, we
+construct a button with a label: 
+<<gtk-overview-construct-button>>=
+button <- gtkButtonNewWithLabel("Click Me")
 @ 
-The \code{.RGtkCall} function provides the interface to the
-libraries. The value returned, is a pointer to an object. The
-\code{gtkWidgetShowAll} function is used to display a widget. Widgets
-may be unmapped, hidden, shown, or, if destroyed, invalid. The return
-value of the function
+
+The \pkg{RGtk2} package also provides convenience constructors with
+names not ending in \code{New} that may, depending on the arguments
+given, call different, but similar, constructors. As an alternative to
+the above example, we have:
+<<gtk-overview-construct-button-short>>=
+button <- gtkButton("Click Me")
+@ 
+%
+We prefer these shorter, more flexible constructors, such as
+\function{gtkWindow} or \function{gtkButton}, but note their
+documentation is provided by the \R\/ package author and is in
+addition to the formal API. These constructors can take many
+arguments, and only some subsets of the arguments may be specified at
+once. For example, this call
+<<gtk-overview-construct-image, results=hide>>=
+gtkImage(stock = "gtk-apply", size = "button")
+@ 
+%
+uses only two arguments, \argument{stock}{gtkImage} and
+\argument{size}{gtkImage}, which always must be specified
+together. The entire signature is more complex:
+<<gtk-overview-construct-image-args>>=
+args(gtkImage)
+@ 
+
+When a widget is constructed, it will be made visible by default and
+thus will be displayed on the screen as soon as it is added to a
+window. Windows are displayed immediately. To override this behavior,
+pass \code{show = FALSE} to the widget constructor:
+<<gtk-overview-construct-window>>=
+window <- gtkWindow(show = FALSE)
+@ 
+
+\subsection{Objects}
+\label{sec:RGtk2:objects}
+
+The objects returned by a constructor represent pointers in C. Thus,
+they are references, meaning that an object will not be copied before
+modification. This is different from the behavior of most \R\/
+objects. For example, calling \function{abs} on a numeric vector does
+not change the value assigned to the original symbol:
+<<gtk-overview-objects-value>>=
+a <- -1
+abs(a)
+a
+@ 
+%
+Setting the text label on our button, however, will change the
+original value:
+<<gtk-overview-objects-ref>>=
+gtkButtonSetLabel(button, "New text")
+gtkButtonGetLabel(button)
+@ 
+%
+If this widget were displayed on the screen, the label would also be
+updated.
 
 \subsection{Classes and methods}
 
@@ -177,46 +236,47 @@ inherited by all objects whose class contains \class{GtkWidget}.
 
 
 \paragraph{Some common methods}
+
+%% TODO: examples.. maybe move this into a larger section?
+
 Some common methods are inherited by all widgets, as they are defined
-in the base \class{GtkWidget} class. There are methods to traverse the
-widget hierarchy. These include \method{GetParent}{gtkWidget} to get
-the parent container; \method{GetToplevel}{gtkWidget} to get the top
-widget in the objects widget hierarchy;
-\method{GetAncestor}{gtkWidget} to search up the hierarchy for an
-ancestor widget of a certain type; and for container widgets, the
-method \method{GetChildren}{gtkContainer} returns a list of the
-container's children. Children are shown through a call of
-\method{Show}{gtkWidget}. This is the default for the constructors. A
-call to \method{ShowAll}{gtkWidget} will recursively call itself for
-any child components. Widgets can be hidden through the either
-\method{Hide}{gtkWidget} or \method{HideAll}{gtkWidget}. A widget will
-be destroyed through a call to \method{Destroy}{gtkWidget} (once
-destroyed, the widget will have class \Event{invalid}). There are a
-handful of methods to modify a widget's appearance, for instance
-\method{ModifyBg}{gtkWidget} to change background color of a widget
-and \method{ModifyFg}{gtkWidget} to change its foreground color.
+in the base \class{GtkWidget} class. First, there are methods to
+traverse the widget hierarchy. These include
+\method{getParent}{gtkWidget} to get the parent container;
+\method{getToplevel}{gtkWidget} to get the top widget in the objects
+widget hierarchy; \method{getAncestor}{gtkWidget} to search up the
+hierarchy for an ancestor widget of a certain type; and for container
+widgets, the method \method{getChildren}{gtkContainer} returns a list
+of the children.  Widgets are shown by calling
+\method{show}{gtkWidget}. A call to \method{showAll}{gtkWidget} will
+recursively call itself for any child components. Widgets can be
+hidden through the either \method{hide}{gtkWidget} or
+\method{hideAll}{gtkWidget}. A widget will be destroyed by
+\method{destroy}{gtkWidget} (once destroyed, any R references to the
+widget will be unusable). There are a handful of methods to modify
+widget appearance, for instance \method{modifyBg}{gtkWidget} to change
+background color of a widget and \method{modifyFg}{gtkWidget} to
+change its foreground color.
 
 
 \subsection{Properties}
 
 
 %% --------- Properties ------------
-Also inherited are widget properties. A list of properties that a
-widget has is returned by its
-\method{GetPropInfo}{gObject}. \pkg{RGtk2} provides the \R\/ generic
-\method{names}{Gobject} as a familiar alternative. For the button just
-defined, we can see the first eight properties with
+The state of a widget is described by its properties, which are
+similar to slots of an S4 object.  A list of properties for a widget
+is returned by \method{getPropInfo}{GObject}. \pkg{RGtk2}
+provides the \R\/ generic \method{names}{GObject} as a familiar
+alternative. For the button just defined, we can see the first eight
+properties with
 <<showProperties>>=
 head( names( b$getPropInfo()), n=8)
 @ 
 %% property names.
 
-Some key properties are \code{user-data} which allows one to store
-arbitrary data with the widget, use \method{GetData}{gObject} and
-\method{SetData}{gObject} to access; \code{sensitive}, which controls
-whether a widget can receive user events; and \code{width} and
-\code{height} to specify the requested minmum size if desired.
-
+Some key widget properties include \code{sensitive}, which controls
+whether a widget can receive user events; and \code{width-request} and
+\code{height-request} to request a minimum size.
 
 There are a few different ways to access these properties in a
 consistent manner. Consider the \code{label} property of a
@@ -275,14 +335,15 @@ cat(booktabs(df,
 %%% ------ constants --------
 \subsection{Enumerated types and flags}
 
-The \GTK\/ libraries have a number of constants that identify
-different states. These enumerated types are defined in the C
-code. For instance, for a toolbar, there are four possible styles with
-icons, just text, both text and icon, and both text and icon drawn
-horizontally. The flags indicating the style are stored in C in an
-enumeration \code{GtkToolbarStyle} with constants
-\code{GTK\_TOOLBAR\_ICONS}, \code{GTK\_TOOLBAR\_TEXT}, etc. In \pkg{RGtk2}
-these values are conveniently stored in the vector
+In \GTK\/, there are properties and method parameters that expect one
+value from a discrete set of possible values. Such a set is often
+implemented as an \textit{enumeration} in C, so we use that term. For
+instance, for a toolbar, there are four possible button styles: with icons,
+just text, both text and icon, and both text and icon drawn
+horizontally. The constants indicating the style are programmed as an
+enumeration called \code{GtkToolbarStyle}, with values
+\code{GTK\_TOOLBAR\_ICONS}, \code{GTK\_TOOLBAR\_TEXT}, etc. In
+\pkg{RGtk2} these values are conveniently stored in the vector
 \code{GtkToolbarStyle} with named integer values
 <<>>=
 GtkToolbarStyle
@@ -294,17 +355,22 @@ page \code{?gtk-Standard-Enumerations} and for \code{Pango} in
 prefixed with \code{Gdk} and so can be found using \function{apropos},
 say, with \code{ignore.case=TRUE}.
 
-To use these enumerated types, on can specify them by name as
+To use these enumerated types, one can index into the corresponding vector:
 <<>>=
 tb <- gtkToolbar()
 tb$setStyle( GtkToolbarStyle['icons'] )
 @ 
-
-But \pkg{RGtk2} provides the convenience of specifying the style name
-only, as in
+%
+But \pkg{RGtk2} provides the convenience of specifying the nickname of
+the value directly:
 <<>>=
 tb$setStyle("icons")
-@ 
+@
+
+A special type of enumeration is a \textit{flags} type. Flag values
+can be combined bitwise in order to specify multiple values at
+once. \pkg{RGtk2} provides methods for the bitwise operators
+\function{|} and \function{&} to 
 
 A character vector can be used when more than one value is desired.
 
@@ -459,12 +525,9 @@ call \function{gSignalHandlerBlock} and then
 \subsection{The event loop}
 
 
-The \pkg{RGtk2} event loop integrates with the \R\/ event loop. Such
-integration is tricky. In a C program, \GTK\/ programs call the
-function \code{gtk\_main} which puts control of the GUI into the main
-event loop of \GTK. This sits idle until some event
-occurs. \pkg{RGtk2} treats the R event loop as the master and
-interates the \GTK\/ event loop whenever R is idle. 
+\pkg{RGtk2} integrates the \GTK\/ and \R\/ event loops by
+treating the \R\/ loop as the master and iterating the \GTK\/ event
+loop whenever R is idle.
 
 During a long calculation, the GUI can seem unresponsive. To avoid
 this, one should explicitly iterate the \GTK\/ event loop with the

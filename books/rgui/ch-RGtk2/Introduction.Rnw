@@ -62,6 +62,27 @@ gradually constructed to demonstrate the API.
 
 %%% ------- OOP --------------
 
+\section{Synopsis of the \pkg{RGtk2} API}
+
+Constructing a GUI with \pkg{RGtk2} generally proceeds by constructing
+a widget and then configuring it by calling methods and setting
+properties. Signal handlers are connected to respond to user input and
+the widget is combined with other widgets to form the GUI. For
+example:
+<<gtk-overview-initial-example>>=
+button <- gtkButton("Click Me")
+button['image'] <- gtkImage(stock = "gtk-apply", size = "button")
+gSignalConnect(button, "clicked", function(x) message("Hello World!"))
+window <- gtkWindow(show = FALSE)
+window$add(button)
+window$showAll()
+@ 
+% 
+Once one understands the syntax and themes of the above example, it is
+only a matter of reading through the documentation to discover all of
+the widgets and their features. The rest of this chapter will explain
+these basic components of the API.
+
 \section{Objects and Classes}
 
 In any toolkit, all widget types have functionality in common. For
@@ -136,9 +157,46 @@ these functions all end with \code{New}. The ``meta'' constructor
 \function{gtkWindow}, called above, automatically delegates to one of
 the low-level constructors, based on the provided arguments.
 
+We prefer these shorter, more flexible constructors, such as
+\function{gtkWindow} or \function{gtkButton}, but note their
+documentation is provided by the \R\/ package author and is in
+addition to the formal API. These constructors can take many
+arguments, and only some subsets of the arguments may be specified at
+once. For example, this call
+<<gtk-overview-construct-image, results=hide>>=
+gtkImage(stock = "gtk-apply", size = "button")
+@ 
+% 
+uses only two arguments, \argument{stock}{gtkImage} and
+\argument{size}{gtkImage}, which always must be specified
+together. The entire signature is more complex:
+<<gtk-overview-construct-image-args>>=
+args(gtkImage)
+@ 
+
 A \GTK\/ object created by the \R\/ user has an \R-level object as its
 proxy. Thus, \code{window} is a reference to a \class{GtkWindow}
-instance.  The class hierarchy of a proxy object is represented by the
+instance. A reference object will not be copied before
+modification. This is different from the behavior of most \R\/
+objects. For example, calling \function{abs} on a numeric vector does
+not change the value assigned to the original symbol:
+<<gtk-overview-objects-value>>=
+a <- -1
+abs(a)
+a
+@ 
+% 
+Setting the text label on our button, however, will change the
+original value:
+<<gtk-overview-objects-ref>>=
+gtkButtonSetLabel(button, "New text")
+gtkButtonGetLabel(button)
+@ 
+% 
+If this widget were displayed on the screen, the label would also be
+updated.
+
+The class hierarchy of an object is represented by the
 \code{class} attribute. One interprets the attribute according to S3
 conventions, so that the class names are in order from most to least
 derived:
@@ -373,13 +431,12 @@ cat(x, b$getData("x"), "\n") # 1 and 2
 
 Callbacks for signals emitted by window manager events are expected to
 return a logical value. Failure to do so can cause errors to be
-raised. For most other callbacks the return value is ignored, so it is
-safe to always return a logical value. For window events, a
-return value of \code{TRUE} indicates that no further
+raised. A return value of \code{TRUE} indicates that no further
 callbacks should be called, whereas \code{FALSE} indicates that the
-next callback should be called. So in the following example, only the
-first two callbacks are executed when the user presses on the button.
-
+next callback should be called. In other words, the return value
+indicates whether the handler has consumed the event. In the following
+example, only the first two callbacks are executed when the user
+clicks the button:
 <<>>=
 b <- gtkButton("click")
 w <- gtkWindow()
@@ -402,11 +459,11 @@ function(b, event, data) {
 Multiple callbacks can be assigned to each signal. They will be
 processed in the order they were bound to the signal.  The
 \function{gSignalConnect} function returns an ID that can be used to
-disconnect a callback if desired using
-\function{gSignalHandlerDisconnect} or temporarily blocked using
-\function{gSignalHandlerBlock} and
-\function{gSignalHandlerUnblock}. The man page for
-\function{gSignalConnect} gives the details on this, and much more.
+disconnect a handler, if desired, using
+\function{gSignalHandlerDisconnect}. To temporarily block a handler,
+call \function{gSignalHandlerBlock} and then
+\function{gSignalHandlerUnblock} to unblock. The man page for
+\function{gSignalConnect} gives the details on this.
 
 %%% ------ constants --------
 
@@ -474,20 +531,27 @@ example, we could check whether our window is top-level:
 
 \section{The event loop}
 
-
-\pkg{RGtk2} integrates the \GTK\/ eventloop with the \R\/ event
-loop. A separate thread continuously iterates the \GTK\/ event loop,
-in synchronization with the main \R\/ thread.  Thus, if the \R\/
-thread is busy, the \GTK\/ event loop will not be iterated. During a
-long calculation, the GUI can seem unresponsive. To avoid this, the
-following construct should be inserted into the long running algorithm
-in order to ensure that \GTK\/ events are periodically processed.
-
+\pkg{RGtk2} integrates the \GTK\/ and \R\/ event loops by treating the
+\R\/ loop as the master and iterating the \GTK\/ event loop whenever R
+is idle.  During a long calculation, the GUI can seem unresponsive. To
+avoid this, the following construct should be inserted into the long
+running algorithm in order to ensure that \GTK\/ events are
+periodically processed:
 <<>>=
 while(gtkEventsPending()) 
   gtkMainIteration()
 @ 
+This is often useful, for example, to update a progress bar.
 
+If one runs an \pkg{RGtk2} script non-interactively, such as by
+assigning an icon to launch a GUI under Windows, R will exit after
+the script is finished and the GUI will disappear just after it
+appears. To work around this, call the function \function{gtkMain} to
+run the main loop until the function \function{gtkMainQuit} is
+called. Since there is no interactive session, \function{gtkMainQuit}
+should be called through some event handler.
+
+\SweaveInput{Glade}
 
 %% MOVEME: seems like integration between gWidgets and native toolkits
 %% belongs in the gWidgets chapters. Otherwise, each toolkit chapter

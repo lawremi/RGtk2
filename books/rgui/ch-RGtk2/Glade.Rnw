@@ -1,11 +1,48 @@
 %% Using Glade
 
-\subsection{Installing glade}
-\label{sec:RGtk2-install-glade}
+\section{Visual GUI Construction: Glade}
 
-\subsection{Laying out a basic GUI with \code{glade}}
-\label{sec:Rgtk2-glade-layout}
+This book focuses almost entirely on the direct programmatic
+construction of GUIs. Some developers prefer visually constructing a
+GUI by pointing, clicking and dragging in another GUI, which one might
+call a GUI builder, a type of RAD (Rapid Application Development)
+tool. \software{Glade} is the primary GUI builder for \GTK/ and
+exports an interface as XML that is loadable by \class{GtkBuilder}. It
+is freely available for all major platforms from
+\url{http://glade.gnome.org/}. Documentation is also at that
+location. 
 
-\subsection{Loading and manipulating a GUI designed with \code{glade}}
-\label{sec:RGtk2-use-glade-GUI}
+We will assume that the reader has saved an interface as a
+\class{GtkBuilder} XML file named \code{buildable.xml} and is ready to
+load it with \pkg{RGtk2}:
+<<>>=
+g <- gtkBuildableNew()
+g$addFromFile("buildable.xml")
+@ 
 
+The \method{getObject}{gtkBuilder} extracts a widget by its ID, which
+is specified by the user through \software{Glade}. It normally
+suffices to load the top-level widget, named \code{dialog1} in this
+example, and show it:
+<<>>=
+d <- g$getObject("dialog1")
+d$showAll()
+@
+
+In order to add behaviors to the GUI, we need to register R functions
+as signal handlers. In \software{Glade}, the user should specify the
+name of an R function as a handler for some signal. \pkg{RGtk2}
+extends \class{GtkBuilder} to look up the functions and connect them
+to the appropriate signals. Let us assume that the user has named the
+\function{ok_button_clicked} function as the handler for the
+\signal{clicked} signal on a \class{GtkButton}. The
+\method{connectSignals}{GtkBuilder} method will establish that
+connection and any others in the interface:
+<<>>=
+ok_button_clicked <- function(w, userData) {
+  print("hello world")
+}
+g$connectSignals()
+@
+% 
+The GUI should now be ready for use.
