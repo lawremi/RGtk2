@@ -7,12 +7,6 @@
 library(RGtk2)
 @ 
 
-\XXX{ --- GDkWindow role (events, coloring, event box): explain on need
-to know basis}
-
-\XXX{SetDecorated for gtkWindow}
-
-
 This section covers some of the basic widgets and containers of
 \GTK. We begin with a discussion of top level containers and box
 containers. Then we describe many of the basic controls, and
@@ -52,10 +46,10 @@ w$show()                                # show window
 
 \paragraph{Window size}
 The initial size of the window can be set with the
-\method{setDefaultSize}{gtkWindow} method, as shown, which takes a
+\method{setDefaultSize}{gtkWindow} method, as shown above, which takes a
 \argument{width}{gtkWindow} and \argument{height}{gtkWindow} argument
 specified in pixels. This specification allows the window to be
-resized, but must be made before the window is drawn, as the window
+resized but must be made before the window is drawn, as the window
 then falls under control of the window manager. The
 \method{setSizeRequest}{gtkWidget} method will request a minimum size,
 which the window manager will usually honor, as long as a maximum
@@ -65,11 +59,9 @@ bound is not violated. To fix the size of a window, the
 %% A container
 \paragraph{Adding a child component to a window}
 A window is a container. \class{GtkWindow} inherits from
-\class{GtkBin}, a class whose instances can contain only a single child. As
-before, this child is added through the \method{add}{gtkContainer}
-method. To display multiple widgets in a window, one simply needs to
-add a non-\class{GtkBin} container as the child widget.
-
+\class{GtkBin}, which derives from \class{GtkContainer} and allows
+only a single child. As before, this child is added through the
+\method{add}{gtkContainer} method. 
 We illustrate the basics by adding a simple label to a window.
 <<basic-window-label>>=
 w <- gtkWindow(show=FALSE); w$setTitle("Hello world")
@@ -77,26 +69,44 @@ l <- gtkLabel("Hello world")
 w$add(l)
 @
 %
+To display multiple widgets in a
+window, one simply needs to add a non-\class{GtkBin} container as the
+child widget.
 
 %% delete-event; destroy
 \paragraph{Destroying windows}
 A window is normally closed by the window manager. Most often, this
 occurs in response to the user clicking on a close button in a title
-bar. It is also possible to close a window programmatically by calling
-its \method{destroy}{gtkWidget} method. When the user clicks on the
+bar.  When the user clicks on the
 close button, the window manager requests that the window be deleted,
 and the \code{delete-event} signal is emitted. As with any window
 manager event, the default handler is overridden if a callback
 connected to \code{delete-event} returns \code{TRUE}.  This can be
 useful for confirming the intention of the user before closing the
-window. The contract of deletion is that the window should no longer
-be visible on the screen. It is not necessary for the actual window
-object to be removed from memory, although this is the default
-behavior. Calling the \code{hideOnDelete} method configures the window
-to hide but not destroy itself.
+window. For example:
+<<gtk-container-window-delete>>=
+gSignalConnect(w, "delete-event", function(event) {
+  gtkMessageDialog(parent=w, flags=0, type="question", buttons=c("yes", "no"),
+                   "Are you sure you want to quit?")
+  dlg$run() != GtkResponseType["yes"]
+})
+@ 
+%
+We describe the use of message dialogs in
+Section~\ref{sec:gtk-dialog-message}. The contract of deletion is that
+the window should no longer be visible on the screen. It is not
+necessary for the actual window object to be removed from memory,
+although this is the default behavior. Calling the \code{hideOnDelete}
+method configures the window to hide but not destroy itself.
+
+It is also possible to close a window programmatically by calling
+its \method{destroy}{gtkWidget} method:
+<<gtk-container-window-destroy>>=
+w$destroy()
+@ 
 
 \paragraph{Transient windows}
-New windows may be standalone top-level windows, or may be associated
+New windows may be standalone top-level windows or may be associated
 with some other window. For example, a dialog is usually associated
 with the primary document window. The
 \method{setTransientFor}{gtkWindow} method can be used to specify the
@@ -121,14 +131,7 @@ The above code produces a non-modal dialog window from scratch. Due to
 its transient nature, it can hide parts of the top-level window, but,
 unlike a modal dialog, it does not prevent that window from receiving
 events. \GTK\/ provides a number of convenient high-level dialogs,
-discussed later, that support modal operation.
-
-%% ML: This seems like a natural place to treat dialogs.
-%% Why leave them until the end? They are important to most any GUI.
-
-% ML: I think it's better to talk about containers and layout all in
-% one place. If a container is not often used, then less detail should
-% be given, but it should still be described here.
+discussed in Section~\ref{sec:dialogs}, that support modal operation.
 
 \section{Layout containers}
 \label{sec:RGtk2:layout}
@@ -145,31 +148,33 @@ implements automatic layout in the form of container widgets.
 \subsection{Basics}
 \label{sec:RGtk2:layout:basics}
 
-The method \method{getChildren}{GtkContainer} will return the children
-of a container as a list. Since in this case the list will be at most
-length one, the \method{getChild}{GtkWidget} method may be more
-convenient, as it directly returns the only child, if any. For
-instance, to retrieve the label text one could do:
-<<echo=FALSE>>=
+In \GTK{}, the widget hierarchy is built when children are added to a
+parent container.  In this example, a window is made the parent of a
+label: 
+<<>>=
 w <- gtkWindow(show=FALSE); w$setTitle("Hello world")
 l <- gtkLabel("Hello world")
 w$add(l)
 @ 
 
+The method \method{getChildren}{GtkContainer} will return the children
+of a container as a list. Since in this case the list will be at most
+length one, the \method{getChild}{GtkWidget} method may be more
+convenient, as it directly returns the only child, if any. For
+instance, to retrieve the label text one could do:
 <<>>=
-w$getChild()['label']  # return label property of child
+w$getChild()['label']
 @ 
-
-
 %% [[ for container
 The \method{[[}{GObject} method 
 %% ]]
-accesses the child containers by number, as a convenient wrapper
-around the \method{getChildren}{GObject} method. 
-
-In \GTK{}, the widget hierarchy is built when children are added to a
-parent container.  In our example, the window is the immediate parent
-of the label. The \code{getParent} method for \GTK\/ widgets will
+accesses the child widgets by number, as a convenient wrapper
+around the \method{getChildren}{GObject} method:
+<<gtk-container-brackets>>=
+w[[1]]['label']
+@ 
+%
+Conversely, the \code{getParent} method for \GTK\/ widgets will
 return the parent container of a widget.
 <<eval=FALSE, echo=FALSE>>=
 ## leave out?
@@ -177,39 +182,34 @@ l$getParent()
 @ 
 
 Every container supports removing a child with the
-\method{remove}{gtkWidget} method. The child can later be re-added
-using \method{packStart}{gtkBox}. For instance
-<<echo=FALSE, results=hide>>=
-g <- gtkHBox()
-for(i in 1:3) g$packStart(gtkButton(i))
-@ 
+\method{remove}{gtkWidget} method. The child can later be re-added.
+For instance
 <<remove-child-widget-3>>=
-b <- g[[3]]
-g$remove(b)                             # removed
-g$packStart(b, expand=TRUE, fill=TRUE)
+w$remove(l)
+w$add(l)
 @
 % 
 To remove a widget from the screen but not its container, use the
-\method{hide}{gtkWidget} method on the widget. This can be reversed
-with the \method{show}{gtkWidget} method. The
+\method{hide}{gtkWidget} method on the widget. The
 \method{reparent}{gtkWidget} method is a convenience for moving a
-widget between containers.
+widget between containers that ensures the child is not garbage
+collected during the transition.
 
 \subsection{Widget size negotiation}
 \label{sec:RGtk2:layout:size}
 
 We have already seen perhaps the simplest automatic layout container,
-\class{GtkWindow}, which fills all of its space with its child. While
-simple, there is a considerable amount of logic for calculating the
-size of the widget on the screen. The child will first inform the
-parent of its desired natural size. For example, a label might ask for
-the dimensions necessary to display all of its text. The container
-then decides whether to allocate the requested size or to allocate
-more or less than the requested amount. The child consumes the
-allocated space. Consider the previous example of adding a label to a
-window:
+\class{GtkWindow}, which fills all of its space with its
+child. Despite the apparent simplicity, there is a considerable amount
+of logic for calculating the size of the widget on the screen. The
+child will first inform the parent of its desired natural size. For
+example, a label might ask for the dimensions necessary to display all
+of its text. The container then decides whether to allocate the
+requested size or to allocate more or less than the requested
+amount. The child then consumes the allocated space. Consider the
+previous example of adding a label to a window:
 <<layout-window-show-first>>=
-w <- gtkWindow(show=FALSE); w$setTitle("Hello world")
+w <- gtkWindow(); w$setTitle("Hello world")
 l <- gtkLabel("Hello world")
 w$add(l)
 @ 
@@ -231,6 +231,7 @@ l$getAllocation()$allocation
 <<echo=FALSE>>=
 sapply(l$getAllocation()$allocation, function(i) i)
 @ 
+%
 If, however, we avoid showing the window until the label is added, the
 window will size itself so that the label has its natural size:
 <<layout-window-show-later, results=hide>>=
@@ -270,16 +271,16 @@ same for every level in the container hierarchy.
 The most commonly used multi-child container in \GTK\/ is the box,
 \class{GtkBox}, which packs its children as if they were in a
 box. Instances of \class{GtkBox} are constructed by \function{gtkHBox}
-or \function{gtkVBox}.  These produce horizontal or vertical
-``boxes'', respectively. Each child widget is allocated a cell in the
-box.  The cells are arranged in a single column (\class{GtkVBox}) or
-row (\class{GtkHBox}). This one dimensional stacking is usually all
-that a layout requires. The child widgets can be containers
-themselves, allowing for very flexible layouts. For special cases
-where some widgets need to span multiple rows or columns, \GTK\/
-provides the \class{GtkTable} class, which is discussed later.  Many
-of the principles we discuss in this section also apply to
-\class{GtkTable}.
+or \function{gtkVBox}.  These produce horizontal or vertical boxes,
+respectively. Each child widget is allocated a cell in the box.  The
+cells are arranged in a single column (\class{GtkVBox}) or row
+(\class{GtkHBox}). This one dimensional stacking is usually all that a
+layout requires. The child widgets can be containers themselves,
+allowing for very flexible layouts. For special cases where some
+widgets need to span multiple rows or columns and align themselves in
+both dimensions, \GTK\/ provides the \class{GtkTable} class, which is
+discussed later.  Many of the principles we discuss in this section
+also apply to \class{GtkTable}.
 
 Here we will explain and demonstrate the use of \class{GtkHBox}, the
 general horizontal box layout container. \class{GtkVBox} can be used
@@ -289,6 +290,10 @@ layouts that are possible with a \class{GtkHBox}.
 
 %% JV: Michael, I don't have this figure and am not sure what to put
 %% here. Can you show me the code or a figure? THanks.
+%% ML: I put the figure in here, but it's somewhat redundant with your
+%% example. Could we adjust your example just to show padding? It
+%% seems like we could get rid of the fourth row and add a row where
+%% fill and expand are TRUE but padding is 10.
 \begin{figure}[h!tbp]
   \begin{center}
     \includegraphics{packing.png}
@@ -318,13 +323,12 @@ always satisfies this assertion, as well as the minimum size
 requirements of its children.
 
 The \method{packStart}{GtkBox} and \method{packEnd}{GtkBox} methods pack a
-widget into a box with left and right justification (top and
+widget into a box against the left and right side (top and
 bottom for a \class{GtkVBox}), respectively. For this explanation, we
 restrict ourselves to \method{packStart}{GtkBox}, since
 \method{packEnd}{GtkBox} works the same except for the
-% DTL: direction or justification?
-justification. Below, we pack two buttons, \code{button\_a} and
-\code{button\_b} using left justification:
+direction. Below, we pack two buttons, \code{button\_a} and
+\code{button\_b} against the left side:
 <<basic-box-homo-nofill>>=
 button_a <- gtkButton("Button A")
 button_b <- gtkButton("Button B")
@@ -337,27 +341,26 @@ and then we pack \code{button\_b} against the right side of
 \code{button\_a}. This results in the first row in
 Figure~\ref{fig:packing}. The space distribution is homogeneous, but
 making the space available to a child does not mean that the child
-will fill it. That depends on the minimum size requirement of the
-child, as well as the value of the \argument{fill}{gtkBoxPackStart}
-parameter passed to \method{packStart}{GtkBox}. In this case,
+will fill it. That depends on the natural size of the child, as well
+as the value of the \argument{fill}{gtkBoxPackStart} parameter passed
+to \method{packStart}{GtkBox}. In this case,
 \argument{fill}{gtkBoxPackStart} is \code{FALSE}, so the extra space
-is not filled. When a widget is packed with the
+is not filled and the widget is aligned in the center of its
+space. When a widget is packed with the
 \argument{fill}{gtkBoxPackStart} parameter set to \code{TRUE}, the
-widget is sized to consume the available space. This results in
+widget is resized to consume the available space. This results in
 rows~$2$ and $3$ in Figure~\ref{fig:packing}.
 
 In many cases, it is desirable to give children unequal amounts of
 available space, as in rows~4--9 in Figure~\ref{fig:packing}. 
-% This is evident in the CRAN mirrors dialog, where the mirror list is
-% given more space than the \code{Please choose a mirror} label.
-To create an inhomogeneously spaced \class{GtkHBox}, we pass
+To create a heterogeneously spaced \class{GtkHBox}, we pass
 \code{FALSE} as the first argument to the constructor, as in the
 following code:
 <<basic-box-hetero>>=
 box <- gtkHBox(FALSE, 5)
 @ 
 
-An inhomongeneous layout is freed of the restriction that all widgets
+A heterogeneous layout is freed of the restriction that all widgets
 must be given the same amount of available space; it only needs to
 ensure that each child has enough space to meet its minimum size
 requirement. After satisfying this constraint, a box is often left
@@ -424,10 +427,9 @@ value and the two \code{padding} values when the children are added.
 Example~\ref{eg:RGtk2:mac-buttons} provides an example and
 Figure~\ref{fig:RGtk2-pack-start} an illustration.
 
-The \method{reorderChild}{gtkBox} method can be used
-to reorder the child widgets. The new position of the child is
-specified using 0-based indexing. This code will move the last child
-to the second position.
+The \method{reorderChild}{gtkBox} method reorders the child
+widgets. The new position of the child is specified using 0-based
+indexing. This code will move the last child to the second position:
 <<>>=
 b3 <- g[[3]]
 g$reorderChild(b3, 2 - 1)               # second is 2 - 1
@@ -438,9 +440,8 @@ g$reorderChild(b3, 2 - 1)               # second is 2 - 1
 
 We began this section with a simple example of a window containing a
 label:
-
 <<basic-layout-align-window>>=
-w <- gtkWindow(show=FALSE); w$setTitle("Hello world")
+w <- gtkWindow(); w$setTitle("Hello world")
 l <- gtkLabel("Hello world")
 w$add(l)
 @ 
@@ -488,7 +489,7 @@ a$add(l)
 \SweaveInput{Pre-defined-dialogs}
 
 
-\section{Containers}
+\section{Special-purpose Containers}
 \label{sec:containers}
 
 In Section~\ref{RGtk2:layout}, we presented \class{GtkBox} and
@@ -497,8 +498,7 @@ In Section~\ref{RGtk2:layout}, we presented \class{GtkBox} and
 include the merely decorative \class{GtkFrame}; the interactive
 \class{GtkExpander}, \class{GtkPaned} and \class{GtkNotebook}; and the
 grid-style layout container \class{GtkTable}. All of these widgets are
-derived from \class{GtkContainer}, and so share methods like
-\method{add}{GtkContainer}, which adds a child.
+derived from \class{GtkContainer}, and so share many methods.
 
 \subsection{Framed containers}
 \label{sec:RGtk2:gtkFrame}
