@@ -10,125 +10,87 @@ library(qtbase)
   \label{fig:qt-gui-layout-ex}
 \end{figure}
 
-This example illustrates how to layout a somewhat complicated GUI by
-hand using a combination of different layout managers provided by
-\Qt. Figure~\ref{fig:qt-gui-layout-ex} shows a screenshot of the
-finished layout. 
+This example uses a combination of different layout managers to
+organize a reasonably complex GUI. It serves as a synopsis of the
+layout functionality in \Qt. A more gradual and detailed introduction
+will follow this example. Figure~\ref{fig:qt-gui-layout-ex}
+shows a screenshot of the finished layout.
 
-\Qt{} provides standard layouts for box layouts and grid layouts,
-in addition there are notebook containers and special layouts for
-forms, all seen in the following. 
-
-Our GUI is layed out from the outside in. The first layout used is a
-grid layout which will hold three main areas: one for a table (we use a
-label for now), one for a notebook, and a layout to hold some buttons.
-
-A \class{QWidget} instance can hold one immediate layout set by the
-\method{setLayout}{QWidget} method. We use a widget for a top-level
-window and begin by specifing a grid layout.
-
+First, we need a widget as the top-level container. We assign a grid
+layout to the window for arranging the main components of the
+application:
 <<results=hide>>=
 w <- Qt$QWidget()
 w$setWindowTitle("Layout example")
 gridLayout <- Qt$QGridLayout()
 w$setLayout(gridLayout)
 @ 
+%
 
-Here we define the two main widgets and the layout for our buttons.
-
+There are three objects managed by the grid layout: a table (we use a
+label as a placeholder), a notebook, and a horizontal box layout for
+some buttons. We construct them
 <<mainComponents, results=hide>>=
 tableWidget <- Qt$QLabel("Table widget") 
 nbWidget <- Qt$QTabWidget()
 buttonLayout <- Qt$QHBoxLayout()
 @ 
-
-
-Grid layouts have two main methods, \method{addWidget}{QLayout} which
-is inherited from the base \class{QLayout} class, and
-\method{addLayout}{QGridLayout}. To use them, we specify what part of
-the grid the child widget or layout will occupy through a 0-based row
-and column and optionally a specification of the row and column span.
-<<results=hide>>=
+%
+and add them to the grid layout:
+<<qt-layout-ex-add>>=
 gridLayout$addWidget(tableWidget, row=0, column=0, 
                      rowspan=1, colspan=1)
 gridLayout$addWidget(nbWidget, 0, 1)
 gridLayout$addLayout(buttonLayout, 1, 1)
 @ 
 
-When resizing, we want to give the area to the notebook widget in row
-$1$, column $1$. We do
-this by adding a weight to the stretch value.
-<<>>=
-gridLayout$setRowStretch(1, stretch=5)
-gridLayout$setColumnStretch(1, stretch=5)
-@ 
-
 %% resizing?
 
-Buttons are added to our box layout through the
-\method{addWidget}{QLayout} method. In this case, we want to push the
-buttons to the right side of the GUI, so we first add a stretch. Stretches
-are specified by integers. Unallocated space is given first to widgets
-that have a non-zero stretch factor. We also set spacing of 12 pixels
-between the ``OK'' and ''Cancel'' buttons.
+We add construct our buttons and add them to the box: 
 <<layoutButtons, results=hide>>=
 b <- sapply(c("OK", "Cancel", "Help"), 
             function(i) Qt$QPushButton(i))
-buttonLayout$addStretch(1L)
+buttonLayout$setDirection(Qt$QBoxLayout$RightToLeft) 
+##buttonLayout$addStretch(1L)
 buttonLayout$addWidget(b$OK)
-buttonLayout$addSpacing(12L)
 buttonLayout$addWidget(b$Cancel)
+buttonLayout$addSpacing(12L)
 buttonLayout$addWidget(b$Help)
 @ 
+%
+We add a stretch, which acts much like a spring, to pack our
+buttons against the right side of the box. A fixed space of 12
+pixels is inserted between the ``Help'' and ''Cancel'' buttons.
 
-For our notebook widget we add pages through the
-\method{addTab}{QTabWidget} method. We pass in the child widget and a
-label below. In addition, we set a tooltip for the tab label to give
-more feedback to the user.
-
+The notebook widget is constructed next, with a single page:
 <<nbLayout, results=hide>>=
 nbPage <- Qt$QWidget()
 nbWidget$addTab(nbPage, "Tab label")
 nbWidget$setTabToolTip(0, "A notebook page with a form")
 @ 
 
-We wish to layout a form inside of the notebook tab, but first create
-a framed widget using a \constructor{QGroupBox} widget to hold the
-form layout. This widget
-allows us to easily specify a title. We addd this to the page using a
-box layout.
-<<nbFrame, results=hide>>=
-f <- Qt$QGroupBox()
-f$setTitle("Some form")
-#
-lyt <- Qt$QHBoxLayout()
-nbPage$setLayout(lyt)
-lyt$addWidget(f)
-@ 
-
 The form layout allows us to create standardized forms where each row
-contains a label and a widget. Although, this could be done with a grid layout,
+contains a label and a widget. Although this could be done with a grid layout,
 using the form layout is more convenient, and allows \Qt{} to style the page
-as appropriate for the underlying operating system.
-
+as appropriate for the underlying operating system. We place a form
+layout in the notebook page and populate it:
 <<nbFormLayout, results=hide>>=
 formLayout <- Qt$QFormLayout()
-f$setLayout(formLayout)
-@ 
-
-Our form template just uses 3 line-edit widgets. The
-\method{addRow}{QFormLayout} method makes it easy to specify the label
-and the widget.
-<<formLayoutAddWidgets, results=hide>>=
+nbPage$setLayout(formLayout)
 l <- sapply(c("name", "rank", "snumber"), function(i) Qt$QLineEdit())
 formLayout$addRow("Name", l$name)
 formLayout$addRow("Rank", l$rank)
 formLayout$addRow("Serial number", l$snumber)
 @ 
+%
+Each \method{addRow}{QFormLayout} call adds a label and an adjacent
+input widget, in this case a text entry.
 
-Finally, we set the minimum size for our GUI and call
-\method{show}{QWidget} on the top-level widget.
-<<results=hide>>=
+This includes our cursory demonstration of layout in \Qt. We have
+constructed a mock-up of a typical application layout using the box,
+grid and form layout managers.
+
+<<echo=FALSE, results=hide>>=
 w$setMinimumSize(width=500, height=400)
 w$show()
 @ 

@@ -87,44 +87,45 @@ the \signal{clicked} signal is emitted:
 <<qt-widget-button-connect>>=
 qconnect(button, "clicked", function() message("Ok clicked") )
 @ 
-%% EXAMPLE: connect to clicked signal
 
 \subsection{Icons and pixmaps}
 \label{ssec:icons}
 
-%% FIXME: perhaps merge the icon discussion into this section? It is
-%% not clear if we want to go into great detail about images in Qt. If
-%% we did, it would probably belong in a different chapter.
-
-%% JV: I moved this into the button discussion and out of the label
-%% discussion and made it a subsection.
-
-
 A button is often decorated with an icon, which serves as a visual
-indicator of the purpose of the button. The \class{QIcon} class
-represents an icon and may be loaded from a file or constructed
-from an image stored in memory as \class{QPixmap} object.
+indicator of the purpose of the button.  The \class{QIcon} class
+represents an icon. Icons may be defined for different sizes and
+display modes (normal, disabled, active, selected); however, this is
+often not necessary, as \Qt{} will automatically adapt an icon as
+necessary. As we have seen, \Qt{} automatically adds the appropriate
+icon to a standard button in a dialog.  When using \class{QPushButton} directly,
+there are no such conveniences. For our ``Ok'' button, we could add an
+icon from a file:
+<<qt-widget-button-icon>>=
+button$icon <- Qt$QIcon(system.file("images/ok.gif", package="gWidgets"))
+@ 
+%
+However, in general, this will not be consistent with the current
+style. Instead, we need to get the icon from the \class{QStyle}:
+<<qt-widget-button-icon-from-style>>=
+style <- Qt$QApplication$style()
+button$icon <- style$standardIcon(Qt$QStyle$SP_DialogOkButton)
+@ 
+%
+The \qcode{QStyle::StandardPixmap} enumeration lists all of the
+possible icons that a style should provide. In the above, we passed
+the key for an ``Ok'' button in a dialog.
 
-Although one may, it is
-not necessary to define icons for different sizes and display modes
-(normal, disabled, active, selected), as \Qt{} can do so
-automatically.
-
-%% A QPixmap is a server-side image, which makes it faster to display
-%% but slower to modify. QImage is client-side. QPixmap is to
-%% GdkPixmap as QImage is to GdkPixbuf. QPicture is a vectorized
-%% image, and QMovie represents animated images.
-
-\class{QPixmap} stores its image data in manner that is efficient for
-display on the screen \footnote{\class{QPixmap} is not to be confused
-  with \class{QImage}, which is optimized for image manipulation, or
-  the vector-based \class{QPicture}}. One can load a pixmap from a
-file or create a blank image and draw on it using the \Qt{} painting
-API (not discussed in this book). Also, using the \pkg{qtutils}
-package, we can draw a pixmap using the R graphics engine. For
-example, the following uses \pkg{ggplot2} to generate an icon
-representing a histogram. First, we create the \Qt{} graphics device
-and plot the icon with \pkg{grid}:
+We can also create a \class{QIcon} from image data in a
+\class{QPixmap} object.  \class{QPixmap} stores an image in a manner
+that is efficient for display on the screen \footnote{\class{QPixmap}
+  is not to be confused with \class{QImage}, which is optimized for
+  image manipulation, or the vector-based \class{QPicture}}. One can
+load a pixmap from a file or create a blank image and draw on it using
+the \Qt{} painting API (not discussed in this book). Also, using the
+\pkg{qtutils} package, we can draw a pixmap using the R graphics
+engine. For example, the following uses \pkg{ggplot2} to generate an
+icon representing a histogram. First, we create the \Qt{} graphics
+device and plot the icon with \pkg{grid}:
 <<echo=FALSE, results=hide>>=
 require(grid)
 require(ggplot2)
@@ -553,17 +554,18 @@ qconnect(le, "editingFinished", function() {
 To respond to any editing, without waiting for it to be committed,
 connect to the \signal{textEdited} signal.
 
-%% FIXME: belongs in the MVC chapter
 %% JV: I see that, but it isn't too difficult to implement and fits in
 %% right here quite naturally
+%% ML: agreed
 
 \subsection{Completion}
 \label{sec:completion}
 
-Using \Qt's \class{QCompleter} framework, a list of possible words can be
-presented for completion. 
+Using the \class{QCompleter} framework, a list of possible words can be
+presented for completion when text is entered into a \class{QLineEdit}. 
 
-\begin{example}{Using completion on the \code{Qt} object}{eg-qt-line-edit=completion}
+\begin{example}{Completing on \code{Qt} classes and
+    methods}{eg-qt-line-edit=completion}
 
   This example shows how completion can assist in exploring the
   classes and namespaces of the \code{Qt} library. A form layout

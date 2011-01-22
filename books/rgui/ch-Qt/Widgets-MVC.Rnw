@@ -924,12 +924,22 @@ we focus on just enough for our example.
 \section{Viewing and Editing Text Documents}
 \label{sec:multi-line-text}
 
+%% TODO: syntax highlighting
+
 Multi-line text is displayed and edited by the \class{QTextEdit}
 widget, which is the view and controller for the \class{QTextDocument}
 model. \class{QTextEdit} supports both plain and rich text in HTML
-format, including images, lists and tables. Although the text is
-actually stored in a \class{QTextDocument}, it is usually sufficient
-to interact with the \class{QTextEdit} directly:
+format, including images, lists and tables. Applications that display
+only plain text may be better served by \class{QPlainTextEdit}, which
+is faster due to a simpler layout algorithm. \class{QPlainTextEdit} is
+otherwise equivalent to \class{QTextEdit} in terms of API and
+functionality, so we will focus our discussion on \class{QTextEdit},
+with little loss of generality. 
+
+Here, we create a \class{QTextEdit} and populate it with some
+text. Although the text is actually stored in a \class{QTextDocument},
+it is usually sufficient to interact with the \class{QTextEdit}
+directly:
 <<QTextEdit, results=hide>>=
 te <- Qt$QTextEdit()
 te$setPlainText("The quick brown fox")
@@ -942,7 +952,7 @@ te$show(); te$raise()
 <<>>=
 te$toPlainText()
 @ 
-
+%
 The \signal{textChanged} signal is emitted when the text is changed. 
 
 %% Worth mentioning this, given that we never manipulate the document?

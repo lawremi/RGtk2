@@ -391,24 +391,31 @@ To check if the alignment is to the right, we could query by:
 as.logical(l$alignment & Qt$Qt$AlignRight)
 @ 
 
-\section{Defining Classes and Methods}
+\section{Extending Qt Classes from R}
 \label{sec:qt-defin-class-meth}
 
-As \Qt{} is implemented in an object-oriented language,
-C++, the designers of the API expect the developer to
-extend \Qt{} classes, like \class{QWidget}, during the normal course
-of GUI development. This is a significant difference from \GTK, where
-it is only necessary to extend classes when one needs to fundamentally
-alter the behavior of a widget. The \pkg{qtbase} package allows the
-\R{} user to extend C++ classes in order to enhance the
-features of \Qt.  The \pkg{qtbase} package includes functions
-\function{qsetClass} and \function{qsetMethod} to create subclasses
-and their methods. Methods may override virtual methods in an ancestor
-C++ class, and C++ code will invoke the \R/ implementation when
-calling the overridden virtual. It is also possible to store arbitrary
-objects in an instance of an \R/ class; we will refer to these as
-dynamic fields. They are similar to attributes on any R object. Their
-type is not checked, and they are not exposed as \Qt/ properties.
+As \Qt{} is implemented in an object-oriented language, C++, the
+designers of the API expect the developer to extend \Qt{} classes,
+like \class{QWidget}, during the normal course of GUI
+development. This is a significant difference from \GTK, where it is
+only necessary to extend classes when one needs to fundamentally alter
+the behavior of a widget. The \pkg{qtbase} package allows the \R{}
+user to extend C++ classes in order to enhance the features of \Qt.
+The \pkg{qtbase} package includes functions \function{qsetClass} and
+\function{qsetMethod} to create subclasses and their methods. Methods
+may override virtual methods in an ancestor C++ class, and C++ code
+will invoke the \R/ implementation when calling the overridden
+virtual. Properties may be defined with a getter and setter
+function. If a type is specified, and the class derives from
+\class{QObject}, the property will be exposed by \Qt. It is also
+possible to store arbitrary objects in an instance of an \R/ class; we
+will refer to these as dynamic fields. They are private to the class
+but are otherwise similar to attributes on any R object. Their type is
+not checked, and they are not exposed as \Qt/ properties. They are
+useful as a storage mechanism for implementing properties.
+
+\subsection{Defining a Class}
+\label{sec:qt-defin-class}
 
 Here, we extend \Rcode{QMessageBox} to create a dialog, shown when the
 application is closing, that asks the user whether a document should
@@ -454,9 +461,13 @@ the instance being constructed. We can set and implicitly create
 fields in the instance by using the same syntax as setting
 properties.
 
+\subsection{Defining Methods}
+\label{sec:qt-defin-methods}
+
+
 One may define new methods, or override methods from a base class
-through the \function{qsetMethod} function.  For example, methods to
-create accessors for a field may be defined with
+through the \function{qsetMethod} function.  For example, accessors
+for a field may be defined with
 <<results=hide>>=
 qsetMethod("field", SubClass, function() field)
 qsetMethod("setField", SubClass, function(value) {
@@ -465,7 +476,7 @@ qsetMethod("setField", SubClass, function(value) {
 @ 
 % 
 For an override of an existing method to be visible from C++, the
-method method must be declared virtual in C++. The
+method must be declared virtual in C++. The
 \argument{access}{qsetMethod} argument specifies the scope of the
 method: \qcode{public}, \qcode{protected}, or \qcode{private}. These
 have the same meaning as in C++.
@@ -492,6 +503,41 @@ instance$show()
 This is somewhat similar to the behavior of
 \Rfunction{callNextMethod}, except \Rfunction{super} is not restricted
 to calling the same method.
+
+\subsection{Defining Signals and Slots}
+\label{sec:qt-defin-sig-slots}
+
+Two special types of methods are slots and signals, introduced earlier
+in the chapter. These exist only for \class{QObject} derivatives. Most
+useful are signals. Here we define a signal:
+<<qt-overview-qsetSignal>>=
+qsetSignal("somethingHappened", SubClass)
+@ 
+%
+If the signal takes an argument, we need to indicate that in the
+signature:
+<<qt-overview-qsetSignal-sig>>=
+qsetSignal("somethingHappenedAtIndex(int)", SubClass)
+@ 
+%
+Writing a signature requires some familiarity with C/C++ types and
+syntax, but this is concise and consistent with how \Qt\/ describes
+its methods. Although almost always public, it is possible to make a
+signal protected or private, via the \argument{access}{qsetSignal}
+argument.
+
+Defining a slot is very similar to defining a signal, except a method
+implementation must be provided as an R function:
+<<qt-overview-qsetSlot>>=
+qsetSlot("doSomethingToIndex(int)", SubClass, function(index) {
+  # ....
+})
+@ 
+%
+The advantage of a slot compared to a method is that a slot is exposed
+to the \Qt{} metaobject system. This means that a slot could be called
+from another dynamic environment, like Javascript running in the
+\class{QScript} module or via D-Bus with the \class{QDBus} module.
 
 %% TODO: Example here? Or just refer to other examples?
 

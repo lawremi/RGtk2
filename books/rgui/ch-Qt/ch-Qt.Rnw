@@ -67,6 +67,8 @@ lookup <- function(obj, regxp) {
 
 \SweaveInput{ApplicationWindow}
 
+%% TODO: what about QWebView? In the Widgets section?
+
 %% We can mention qtpaint somewhere; not sure if we need a whole chapter
 % \chapter{Qt paint}
 % \label{cha:qt-paint}
