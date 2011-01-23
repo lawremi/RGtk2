@@ -1,15 +1,17 @@
 %% FIXME: the examples in this section are pretty lame
 
-\GTK\/ provides general infrastructure for constructing custom
+\GTK\/ provides a number of convenient dialogs for the common use
+cases, as well as general infrastructure for constructing custom
 dialogs.  A dialog is a window that generally consists of an icon, a
 content area, and an action area containing a row of buttons
-representing the possible user responses.  A dialog is typically
-related to some main application window. Dialogs can be modal,
-blocking the rest of the application from any input, but this is
-optional.  \class{GtkDialog} represents a generic dialog and serves as
-the base class for all special purpose dialogs in \GTK.
+representing the possible user responses.  Typically, a dialog belongs
+to a main application window and might be modal, in which case input
+is blocked to other parts of the GUI.  \class{GtkDialog}
+represents a generic dialog and serves as the base class for all
+special purpose dialogs in \GTK.
 
 \subsection{Message dialogs}
+\label{sec:gtk-dialog-message}
 
 Communicating textual messages to the user is perhaps the most common
 application of a dialog. \GTK\/ provides the
@@ -29,12 +31,12 @@ dlg['secondary-text'] <- "A secondary message"
 %
 
 The \argument{flags}{gtkMessageDialog} argument allows one to specify
-a combination of values from \code{GtkDialogFlags}. These include 
+a combination of values from \code{GtkDialogFlags}. These include
 \code{destroy-with-parent} and \code{modal}. Here, the dialog will be
 destroyed upon destruction of the parent window. The
 \argument{type}{gtkMessageDialog} argument specifies the message type,
-using one of the $4$ values from \code{GtkMessageType}, which determines the icon that
-is placed adjacent to the message text. The
+using one of the $4$ values from \code{GtkMessageType}, which
+determines the icon that is placed adjacent to the message text. The
 \argument{buttons}{gtkMessageDialog} argument indicates the set of
 response buttons with a value from \code{GtkButtonsType}. The
 remaining arguments are pasted together into the primary message.  The
@@ -61,8 +63,6 @@ button was pressed. \class{GtkMessageDialog} will return response
 codes from the \code{GtkResponseType} enumeration. We will see an
 example of asynchronous response handling in the next section.
 
-
-
 \subsection{Custom dialogs}
 \label{sec:custom-dialogs}
 
@@ -71,10 +71,8 @@ object which can be customized, in terms of its content and response
 buttons.  Usually, a \class{GtkDialog} is constructed with
 \constructor{gtkDialogNewWithButtons}, as a dialog almost always
 contains a set of response buttons, such as \kbd{Ok}, \kbd{Yes},
-\kbd{No} and \kbd{Cancel}.
-
-In this example, we will create a simple dialog showing a label and
-text entry. 
+\kbd{No} and \kbd{Cancel}.  In this example, we will create a simple
+dialog showing a label and text entry:
 <<>>=
 dlg <- gtkDialogNewWithButtons(title="Enter a value", 
                        parent=NULL, flags=0,
@@ -84,14 +82,16 @@ dlg <- gtkDialogNewWithButtons(title="Enter a value",
 @ 
 %
 Buttons are added with a label and a response id, and their order is
-taken from the how they are entered. (There is no automatic ordering
-based on an operating system's conventions.)  When the button label
+taken from their order in the call. There is no automatic ordering
+based on an operating system's conventions.  When the button label
 matches a stock ID, the icon and text are taken from the stock
 definition. We used standard responses from \code{GtkResponseType},
 although in general the codes are simply integer values;
 interpretation is up to the programmer.
 
-To complete our dialog we use the dialog as a container for the following:
+The dialog has a content area, which is an instance of
+\class{GtkVBox}. To complete our dialog, we place a labeled text entry
+into the content area:
 <<OurDialogsLayout>>=
 hb <- gtkHBox()
 hb['spacing'] <- 10
@@ -99,24 +99,18 @@ hb['spacing'] <- 10
 hb$packStart(gtkLabel("Enter a value:"))
 entry <- gtkEntry()
 hb$packStart(entry)
-@ 
-
-The dialog has a content area, which is an instance of
-\class{GtkVBox}. This is
-returned by \method{getContentArea}{gtkDialog}:
-<<addToContentArea>>=
+#
 vb <- dlg$getContentArea()
 vb$packStart(hb)
-@ 
+@
 %
-The content of the dialog is drawn above an optional horizontal separator and
-button box.
+The content is placed above the button box, with a separator between them.
 
 In the message dialog example, we called the \method{run}{GtkDialog}
-method to block the \R\/ session. An alternative that does not block
-the \R\/ session is to connect to the \code{response} signal of the
-modal dialog. The callback passes in the buttons' response codes
-assigned at construction.
+method to make the dialog modal. To make a non-modal dialog, do not
+call \method{run}{GtkDialog} but connect to the \code{response} signal
+of the modal dialog. The response code of the clicked button is passed
+to the callback:
 <<connectResponse>>=
 ID <- gSignalConnect(dlg, "response", 
                      f=function(dlg, resp, user.data) {
@@ -141,23 +135,23 @@ modal dialog, while \class{GtkFileChooserButton} is a button that
 displays a file path and launches the dialog when clicked.
 
 \begin{example}{An open file dialog}{ex:RGtk2:open-file}
-  Here, we demonstrate the use of the dialog, the most popular of the
-  three.  An open file dialog can be created with:
+  Here, we demonstrate the use of the dialog, the most commonly used
+  of the three.  An open file dialog can be created with:
 <<openFileDialog>>=
 dlg <- gtkFileChooserDialog(title="Open a file", 
-                     parent=NULL, action="open",
-                     "gtk-ok", GtkResponseType["ok"],
-                     "gtk-cancel", GtkResponseType["cancel"],
-                     show=FALSE)
+                            parent=NULL, action="open",
+                            "gtk-ok", GtkResponseType["ok"],
+                            "gtk-cancel", GtkResponseType["cancel"],
+                            show=FALSE)
 @ 
-%
-The dialog constructor allows one to specify a title, a parent and an
-action, either \code{open}, \code{save}, \code{select-folder} or
-\code{create-folder}. In addition, the dialog buttons must be
-specified, as with the last example using
-\code{gtkDialogNewWithButtons}.
+  % 
+  The dialog constructor allows one to specify a title, a parent and an
+  action, either \code{open}, \code{save}, \code{select-folder} or
+  \code{create-folder}. In addition, the dialog buttons must be
+  specified, as with the last example using
+  \code{gtkDialogNewWithButtons}.
 
-We connect to the \signal{response} signal
+  We connect to the \signal{response} signal
 <<results=hide>>=
 gSignalConnect(dlg, "response", f=function(dlg, resp, data) {
   if(resp == GtkResponseType["ok"]) {
@@ -167,14 +161,14 @@ gSignalConnect(dlg, "response", f=function(dlg, resp, data) {
   dlg$destroy()
 })
 @
-%
-The file selected is returned by
-\method{getFilename}{gtkFileChooser}. If multiple selection is enabled
-with via the \code{select-multiple} property, one should call the
-plural \method{getFilenames}{gtkFileChooser}.
+  % 
+  The file selected is returned by
+  \method{getFilename}{gtkFileChooser}. If multiple selection is enabled
+  with via the \code{select-multiple} property, one should call the
+  plural \method{getFilenames}{gtkFileChooser}.
 
-For the open dialog, one may wish to specify one or more filters that
-narrow the available files for selection:
+  For the open dialog, one may wish to specify one or more filters that
+  narrow the available files for selection:
 <<>>=
 fileFilter <- gtkFileFilter()
 fileFilter$setName("R files")
@@ -182,10 +176,10 @@ fileFilter$addPattern("*.R")
 fileFilter$addPattern("*.Rdata")
 dlg$addFilter(fileFilter)
 @ 
-%
-The \constructor{gtkFileFilter} function constructs a filter, which is
-given a name and a set of file name patterns, before being added to
-the file chooser. Filtering by mime type is also supported.
+  % 
+  The \constructor{gtkFileFilter} function constructs a filter, which is
+  given a name and a set of file name patterns, before being added to
+  the file chooser. Filtering by mime type is also supported.
 
 \end{example}
 
@@ -198,7 +192,8 @@ prompted when attempting to overwrite an existing file.
 Other features not discussed here, include embedding of preview and
 other custom widgets, and specifying shortcut folders.
 
-\paragraph{Other choosers}
+\subsection{Other choosers}
+
 There are several other types of dialogs for making common types of
 selections. These include \code{GtkCalendar} for picking dates,
 \code{GtkColorSelectionDialog} for choosing colors, and

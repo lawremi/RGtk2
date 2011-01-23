@@ -504,13 +504,20 @@ derived from \class{GtkContainer}, and so share many methods.
 \label{sec:RGtk2:gtkFrame}
 
 The \constructor{gtkFrame} function constructs a container that draws
-a decorative, labeled frame around its single child. This is useful
-for visually segregating a set of conceptually related widgets from
-the rest of the GUI.  The optional \argument{label}{gtkFrame} argument
-specifies the label text, stored in the \code{label} property. The
+a decorative, labeled frame around its single child:
+<<gtk-container-frame>>=
+frame <- gtkFrame("Options")
+vbox <- gtkVBox()
+vbox$packStart(gtkCheckButton("Option 1"), FALSE)
+vbox$packStart(gtkCheckButton("Option 2"), FALSE)
+frame$add(vbox)
+@ 
+%
+A frame is useful for visually segregating a set of conceptually
+related widgets from the rest of the GUI. The type of decorative
+shadow is stored in the \code{shadow-type} property.  The
 \method{setLabelAlign}{gtkFrame} aligns the label relative to the
-frame.  Frames have a decorative shadow whose type, a value of
-\code{GtkShadowType}, is stored in the \code{shadow-type} property.
+frame. This is to the left, by default.
 
 \subsection{Expandable containers}
 \label{sec:RGtk2:gtkExpander}
@@ -518,15 +525,18 @@ frame.  Frames have a decorative shadow whose type, a value of
 The \class{GtkExpander} widget provides a button that hides and shows
 a single child upon demand. This is often an effective mechanism for
 managing screen space. Expandable containers are constructed by
-\function{gtkExpander}. Use \function{gtkExpanderNewWithMnemonic} if a
-mnemonic is desired. The label text can be passed to the constructor
-or set later with the \method{setLabel}{gtkExpander} method. The
+\function{gtkExpander}:
+<<gtk-container-expander>>=
+expander <- gtkExpander("Advanced")
+expander$add(frame)
+@ 
+%
+Use \function{gtkExpanderNewWithMnemonic} if a mnemonic is desired.
 \code{expanded} property, which can be accessed with
 \method{getExpanded}{gtkExpander} and
 \method{setExpanded}{gtkExpander}, represents the visible state of the
 widget.  When the \code{expanded} property changes, the
 \signal{activate} signal is emitted.
-
 
 \subsection{Notebooks}
 \label{sec:RGtk2:gtkNotebook}
@@ -538,47 +548,50 @@ selected, its widget is made visible, while the others are hidden. If
 \class{GtkExpander} is like a check button, \class{GtkNotebook} is
 like a radio button group. 
 
-The current page number is stored in the \code{page} property.  The
-total number of pages is returned by \method{getNPages}{gtkNotebook}.
-The default position of the notebook tabs is on the top, ordered from
-left to right. The property \code{tab-pos} represents the tab position
-with a value from \code{GtkPositionType}: \qcode{left}, \qcode{right},
-\qcode{top}, or \qcode{bottom}.
+We create a notebook and add some pages:
+<<qt-layout-notebook>>=
+nb <- gtkNotebook()
+nb$appendPage(gtkLabel("Page 1"), gtkLabel("Tab 1"))
+nb$appendPage(gtkLabel("Page 2"), gtkLabel("Tab 2"))
+@
+%
+A page specification consists of a widget for the page and a widget
+for the tab. Any type of widget is accepted, although a label is
+typically used for the tab.  This allows for more complicated tabs,
+such as a box container with a label and close icon.
 
-%% adding pages
-\paragraph{Adding pages to a notebook}
-New pages can be added to the notebook with the
-\method{InsertPage}{gtkNotebook} method, which takes the widget
-associated with the page, the $0$-based insertion position (defaults
-to last), as well as
-a widget, such as a \class{GtkLabel} instance, not a string, to label
-the tab. This allows for more complicated tabs, such as a box
-container with a label and close icon. The
-\method{setTabLabelText}{gtkNotebook} method is a convenience for
-setting a label as text.  To use this method, the child widget is
-needed, which can be retrieved with the \method{[[}{GObject}
-%% ]]
-%% 
-method or the \method{getNthPage}{gtkNotebook} method. Both are a
-shortcut around retrieving all of the children as a list through
-\method{getChildren}{gtkContainer}. 
+The tabs can be positioned on any of the four sides of the notebook;
+this depends on the \property{tab-pos} property, with a value from
+\code{GtkPositionType}: \qcode{left}, \qcode{right}, \qcode{top}, or
+\qcode{bottom}. By default, the tabs are on top. We move them to the
+bottom:
+<<qt-layout-notebook-pos>>=
+nb['tab-pos'] <- "bottom"
+@ 
 
-%% page motions: reordered, deleted
-\paragraph{Manipulating pages}
-
-Methods that manipulate pages operate on the page number. To map from
-the child widget to the page number, use the method
-\method{pageNum}{gtkNotebook}.   A given page can be raised with the
-\method{setCurrentPage}{gtkNotebook} method.  Incremental movements
-are possible through the methods \method{nextPage}{gtkNotebook} and
-\method{prevPage}{gtkNotebook}.
+Methods and properties that affect pages expect the page index,
+instead of the page widget. To map from the child widget to the page
+number, use the method \method{pageNum}{gtkNotebook}.  The
+\property{page} property holds the zero-based index of the active
+tab. We make the second tab active:
+<<qt-layout-notebook-current>>=
+nb['page'] <- 1
+nb['page']
+@
+%
+To move sequentially through the pages, calll the methods
+\method{nextPage}{gtkNotebook} and
+\method{prevPage}{gtkNotebook}. When the current page changes, the
+\signal{switch-page} signal is emitted.
 
 Pages can be reordered using the \method{reorderChild}{gtkNotebook},
 although it is usually desirable to allow the user to reorder
 pages. The \method{setTabReorderable}{GtkNotebook} enables drag and
 drop reordering for a specific tab. It is also possible for the user
-to drag and drop pages between notebooks. Pages can be deleted using
-the method \method{removePage}{gtkNotebook}.
+to drag and drop pages between notebooks, as long as they belong to
+the same group, which depends on the \property{group-id}
+property. Pages can be deleted using the method
+\method{removePage}{gtkNotebook}.
 
 \paragraph{Managing Many Pages}
 
@@ -590,13 +603,6 @@ to allow the user to scroll through the tabs. In this case, the tabs
 may become difficult to navigate. Setting the \code{enable-popup}
 property to \code{TRUE} enables a right-click popup menu listing all
 of the tabs for direct navigation.
-
-\paragraph{Signals}
-
-The notebook widget emits signals when pages are toggled, added,
-removed, and reordered. The most useful is likely to be
-\signal{switch-page}, which is emitted when the current page is
-changed.
 
 \begin{example}{Adding a page with a close button}{eg:RGtk2-notebook-close-icon}
   A familiar element of notebooks in many web browsers is a tab close
@@ -616,23 +622,15 @@ gtkNotebookInsertPageWithCloseButton <-
     closeButton <- gtkButton()
     closeButton$setImage(icon)
     label$packEnd(closeButton)
-    ID <- gSignalConnect(b,"clicked",
-                         function(userData, b, ...) {
-                           nb <- userData$nb 
-                           page <- userData$page
-                           nb$removePage(nb$pageNum(page))
-                         },
-                         data = list(nb=object, page=child),
-                         user.data.first=TRUE)
-    object$insertPage(child, label, position)
+    gSignalConnect(b, "clicked", function(b) nb$removePage(index))
+    index <- object$insertPage(child, label, position)
   }
 @ 
 
-We now show a simple usage of a notebook.
+Here is a simple demonstration of its usage:
 <<results=hide>>=
 w <- gtkWindow()
 nb <- gtkNotebook(); w$add(nb)
-nb$setScrollable(TRUE)
 nb$insertPageWithCloseButton(gtkButton("hello"), 
                              label.text="page 1")
 nb$insertPageWithCloseButton(gtkButton("world"), 
