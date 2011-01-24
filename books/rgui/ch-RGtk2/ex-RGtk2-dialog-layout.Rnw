@@ -13,15 +13,14 @@ library(RGtk2)
   \label{fig:RGtk2-dialog-layout}
 \end{figure}
 
-
-Our form GUI is a table with 3 rows and 2 columns:
-<<>>=
-w <- gtkWindow(show=FALSE)
-w['border-width'] <- 14
-w$setTitle("GtkTable Example")
+Our form layout will require $3$ rows and $2$ columns:
+<<gtk-container-table-construct>>=
 tbl <- gtkTable(rows=3, columns=2, homogeneous=FALSE)
-w$add(tbl)
-@ 
+@
+%
+By default, the cells are allowed to have different sizes. This may be
+overridden by passing \qcode{homogeneous = TRUE} to the constructor,
+which forces all cells to have the same size.
 
 We construct the widgets that will be placed in the form:
 <<results=hide>>=
@@ -40,25 +39,51 @@ submitBox <- gtkVBox()
 submitBox$packEnd(gtkButton("Run simulation"), expand = FALSE)
 @ 
 
-This goal of the layout is to correctly align the labels and input
-widgets, while making efficient use of space.  The following
-attaches the combo box, radio buttons and their labels to the table:
+The labels need to be aligned to the right, up against their
+corresponding entry widgets, which should be left-aligned:
+<<gtk-container-layout-align>>=
+sizeLabel['xalign'] <- 1
+diagLabel['xalign'] <- 1; diagLabel['yalign'] <- 0
+diagAlign <- gtkAlignment(xalign = 0)
+diagAlign$add(diagRadios)
+@ 
+% 
+The labels are aligned through the \class{GtkMisc} functionality
+inherited by \class{GtkLabel}. The \class{GtkVBox} with the radio
+buttons does not support this, so we need to embed it within a
+\class{GtkAlignment}. We have aligned the diagnostic label to the top
+of its cell; otherwise, it would have been in the middle. The radio
+buttons are left aligned, up against the label.
+
+Child widgets are added to a table through the
+\method{attach}{gtkTable} method.  The child can span more than one
+cell. The arguments \argument{left.attach}{gtkTableAttach} and
+\argument{right.attach}{gtkTableAttach} specify the horizontal bounds
+of the child in terms of its left column and right column,
+respectively. Analogously, \argument{top.attach}{gtkTableAttach} and
+\argument{bottom.attach}{gtkTableAttach} define the vertical bounds.
+By default, the widgets will expand into and fill the available space,
+much as if \argument{expand}{gtkBoxPackStart} and
+\argument{fill}{gtkBoxPackStart} were passed as \code{TRUE} to
+\method{packStart}{GtkBox} (see
+Section~\ref{sec:RGtk2:layout:box}). There is no padding between
+children by default. Both the resizing behavior and padding may be
+overridden by specifying additional arguments to
+\method{attach}{GtkTable}.
+
+The following attaches the combo box, radio buttons and their labels
+to the table:
 <<>>=
-tbl$setColSpacing(0, 5)
 tbl$attach(sizeLabel, left.attach=0,1, top.attach=0,1, 
            xoptions = c("expand", "fill"), yoptions="")
-sizeLabel["xalign"] <- 1
 tbl$attach(sizeCombo, left.attach=1,2, top.attach=0,1, 
            xoptions="fill", yoptions="")
 #
 tbl$attach(diagLabel, left.attach=0,1, top.attach=1,2, 
            xoptions = c("expand", "fill"), 
            yoptions=c("expand", "fill"))
-diagLabel["xalign"] <- 1; diagLabel["yalign"] <- 0
 #
-radioAlign <- gtkAlignment(xalign = 0)
-radioAlign$add(diagRadios)
-tbl$attach(radioAlign, left.attach=1,2, top.attach=1,2, 
+tbl$attach(diagAlign, left.attach=1,2, top.attach=1,2, 
            xoptions=c("expand", "fill"), yoptions = "")
 #
 tbl$attach(submitBox, left.attach=1,2, top.attach=2,3, 
@@ -68,10 +93,22 @@ tbl$attach(submitBox, left.attach=1,2, top.attach=2,3,
 The labels are allowed to expand and fill in the $x$ direction,
 because correct alignment, to the right, requires them to have the
 same size. The combo box is instructed to fill its space, as it would
-otherwise be undesirably small, due to its short menu items.  giving
-it a reasonable size and alignment. We have aligned the diagnostic
-label to the top of its cell; otherwise, it would have been in the
-middle. The radio buttons are left aligned, up against the label.
+otherwise be undesirably small, due to its short menu items. 
+
+One can add spacing to the right of cells in a particular row or
+column. Here we add $5$ pixels of space to the right of the label
+column:
+<<gtk-container-table-spacing>>=
+tbl$setColSpacing(0, 5)
+@ 
+
+We complete the example by placing the table into a window:
+<<>>=
+w <- gtkWindow(show=FALSE)
+w['border-width'] <- 14
+w$setTitle("GtkTable Example")
+w$add(tbl)
+@ 
 
 <<echo=false>>=
 w$show()                             

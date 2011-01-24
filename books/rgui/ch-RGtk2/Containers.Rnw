@@ -647,106 +647,156 @@ The \class{GtkExpander} and \class{GtkNotebook} widgets support
 efficient use of screen real estate. However, when a widget is always
 too large to fit in a GUI, partial display is necessary. A
 \class{GtkScrolledWindow} supports this by providing scrollbars for
-the user to adjust the visible region of a single child. The range, step
-and position of \class{GtkScrollbar} are controlled by an instance of
-\class{GtkAdjustment}, just as with the slider and spin button.
+the user to adjust the visible region of a single child. The range,
+step and position of \class{GtkScrollbar} are controlled by an
+instance of \class{GtkAdjustment}, just as with the slider and spin
+button. Scrolled windows are most often used with potentialy large
+widgets like table views and when displaying images and graphics.
 
-The constructor \constructor{gtkScrolledWindow} creates a
-\class{GtkScrolledWindow} instance. By default, the horizontal and
-vertical adjustments are automatically determined, although they may
-be overridden by the programmer.
-
+Our example will embed an R graphics device in a scrolled window and
+allow the user to zoom in and out and pull on the scroll bars to pan
+the view. First, we create an R graphics device using the
+\pkg{cairoDevice} package
+<<gtk-container-scrolled-device>>=
+library(cairoDevice)
+device <- gtkDrawingArea()
+device$setSizeRequest(600, 400)
+asCairoDevice(device)
+@ 
+%
+and then embed it within a scrolled window
+<<gtk-container-scrolled-construct>>=
+scrolled <- gtkScrolledWindow()
+scrolled$addWithViewport(device)
+@ 
+%
 The widget in a scrolled window must know how to display only a part
 of itself, i.e., it must be scrollable. Some widgets, including
 \class{GtkTreeView} and \class{GtkTextView}, have native scrolling
-support. Other widgets must be embedded within the proxy
-\class{GtkViewport}. The \class{GtkScrolledWindow} convenience method
+support. Other widgets, like our \class{GtkDrawingArea}, must be
+embedded within the proxy \class{GtkViewport}. The
+\class{GtkScrolledWindow} convenience method
 \method{addWithViewport}{GtkScrolledWindow} allows the programmer to
 skip the \class{GtkViewport} step.
+
+
+Next, we define a function for scaling the plot:
+<<gtk-container-scrolled-zoom>>=
+zoomPlot <- function(x = 2.0) {
+  allocation <- device$getAllocation()$allocation
+  device$setSizeRequest(allocation$width * x, allocation$height * x)
+  updateAdjustment <- function(adj) {
+    adj$setValue(x * adj$getValue() + (x - 1) * adj$getPageSize() / 2)
+  }
+  updateAdjustment(scrolled$getHadjustment())
+  updateAdjustment(scrolled$getVadjustment())
+}
+@ 
+%
+The function gets the current size allocation from the device, scales
+it by \qcode{x} and requests the new size. It then scrolls the window
+to preserve the center point. The state of each scroll bar is
+represented by a \class{GtkAdjustment}.  We will update the value of
+the horizontal and vertical adjustments to scroll the window.  The
+value of an adjustment corresponds to the left/top position of the
+window, so we to adjust by half the page size after scaling the value.
+
+We had key press events, so that pressing \kbd{+} zooms in and
+pressing \kbd{-} zooms out:
+<<gtk-container-scrolled-key-press>>=
+gSignalConnect(scrolled, "key-press-event", function(x, event) {
+  key <- event[["keyval"]]
+  if (key == GDK_plus)
+    zoomPlot(2.0)
+  else if (key == GDK_minus)
+    zoomPlot(0.5)
+  TRUE
+})
+@ 
+
+Despite its name, the scrolled window is not a top-level window. Thus,
+it needs to be added to a top-level window:
+<<gtk-container-scrolled-window>>=
+win <- gtkWindow(show = FALSE)
+win$add(scrolled)
+win$showAll()
+@ 
+ 
+Finally, a basic scatterplot is displayed in the viewer:
+<<gtk-container-scrolled-plot>>=
+plot(mpg ~ hp, data = mtcars)
+@ 
 
 The properties \code{hscrollbar-policy} and \code{vscrollbar-policy}
 determine when the scrollbars are drawn. By default, they are always
 drawn. The \qcode{automatic} value from the \code{GtkPolicyType}
-enumeration draws the scrollbars only if needed, i.e, the
-child widget requests more space than can be allocated. The
+enumeration draws the scrollbars only if needed, i.e, if the child
+widget requests more space than can be allocated. The
 \method{setPolicy}{gtkScrolledWindow} method allows both to be set at
-once, as in the following example.
+once.
 
-\begin{example}{Scrolled window example}{eg:RGtk2:scrolled-window}
-  \SweaveInput{ex-RGtk2-scrolled-window}
-\end{example}
+% \begin{example}{Scrolled window example}{eg:RGtk2:scrolled-window}
+%   \SweaveInput{ex-RGtk2-scrolled-window}
+% \end{example}
 
 \subsection{Divided containers}
 \label{sec:RGtk2:gtkPanedWindow}
 
-The \constructor{gtkHPaned} and \constructor{gtkVPaned} constructors create
-containers that contain two widgets, arranged horizontally or
+The \constructor{gtkHPaned} and \constructor{gtkVPaned} constructors
+create containers that contain two widgets, arranged horizontally or
 vertically and separated by a handle.  The user may adjust the
 position of the handle to apportion the allocation between the
-widgets.
+widgets. We will demonstrate only the horizontal pane
+\class{GtkHPaned} here, without loss of generality.
 % An example is presented in Example \ref{eg:RGtk2:using-tree-content}. 
 
-The two children may be added two different ways. The methods
-\method{pack1}{gtkPaned} and \method{pack2}{gtkPaned} have arguments
-\argument{resize}{gtkPanedPack1}, whether the child expands with the
-parent, and \argument{shrink}{gtkPanedPack1}, whether the widget is
-allowed to shrink. The methods \method{add1}{gtkPaned} and
-\method{add2}{gtkPaned} add children such that both are allowed to
-shrink and only the second widget expands.  After children are added,
-they can be referenced from the container through the
-\method{getChild1}{gtkPaned} and \method{getChild2}{gtkPaned} methods.
+First, we construct an instance of \class{GtkHPaned}:
+<<gtk-container-paned-construct>>=
+paned <- gtkHPaned()
+@ 
+
+The two children may be added two different ways. The simplest
+approach calls \method{add1}{gtkPaned} and
+\method{add2}{gtkPaned} for adding the first and second child,
+respectively. 
+<<gtk-container-paned-add>>=
+paned$add1(gtkLabel("Left (1)"))
+paned$add2(gtkLabel("Right (2)"))
+@ 
+%
+This configures the container such that both children are allowed to
+shrink and only the second widget can expand. Such a configuration is
+appropriate for a GUI with main widget and a side pane to the
+left. More flexibility is afforded by the methods
+\method{pack1}{gtkPaned} and \method{pack2}{gtkPaned}, which have
+arguments for specifying whether the child should expand
+(\qcode{resize}) and/or \qcode{shrink}. Here we add the children such
+that both can expand and shrink:
+<<gtk-container-paned-pack>>=
+paned$pack1(gtkLabel("Left (1)"), resize = TRUE, shrink = TRUE)
+paned$pack2(gtkLabel("Right (2)"), resize = TRUE, shrink = TRUE)
+@
+%
+After children are added, they can be retrieved from the container
+through the \method{getChild1}{gtkPaned} and
+\method{getChild2}{gtkPaned} methods.
 
 The screen position of the handle can be set with the
 \method{setPosition}{gtkPaned} method.  The properties
-\code{min-position} and \code{max-position} can be used to convert a
-percentage into a screen position. The \signal{move-handle} signal is
-emitted when the gutter position is changed.
-
-
-
+\code{min-position} and \code{max-position} are useful for converting
+a percentage into a screen position. The \signal{move-handle} signal
+is emitted when the gutter position is changed.
 
 \subsection{Tabular layout}
 \label{sec:RGtk2:gtkTable}
 
-The \constructor{gtkTable} constructor produces a container for laying
-out objects in a tabular format. The container sets aside cells in a
-grid, and a child widget may occupy one or more cells. The
-\argument{homogeneous}{gtkTable} argument can be used to make all
-cells homogeneous in size. Otherwise, each column and row can have a
-different size. At the time of construction, the number rows and
-columns for the table many be specified with the
-\argument{rows}{gtkTable} and \argument{columns}{gtkTable}
-arguments. After construction, the \method{Resize}{gtkTable} method
-can be used to resize these values.
-
-%% adding children
-Child widgets are added to this container through the
-\method{attach}{gtkTable} method. Its first argument,
-\argument{child}{gtkTableAttach}, is the child widget. This widget can
-span more than one cell. The arguments
-\argument{left.attach}{gtkTableAttach} and
-\argument{right.attach}{gtkTableAttach} specify the horizontal bounds
-of the child in terms of its left column and right column,
-respectively. Analogously, \argument{top.attach}{gtkTableAttach} and
-\argument{bottom.attach}{gtkTableAttach} define the vertical bounds.
-By default, the widgets will expand into and fill the available space,
-much as if \argument{expand}{gtkBoxPackStart} and
-\argument{fill}{gtkBoxPackStart} were passed as \code{TRUE} to
-\method{packStart}{GtkBox} (see
-Section~\ref{sec:RGtk2:layout:box}). There is no padding between
-children by default. Both the resizing behavior and padding may be
-overridden by specifying additional arguments to
-\method{attach}{GtkTable}.
-
-The child properties \code{xalign} and \code{yalign} specify the
-alignment of child widgets within their allocated space. These behave
-as with \class{GtkAlignment}.
-
-%% XXX TODO add in a better example
-%% JV: this doesn't add enough it seems
-% \begin{example}{Layout of calculator buttons}{eg-RGtk2-calculator-buttons}
-%   \SweaveInput{ex-RGtk2-calculator-buttons.Rnw}
-% \end{example}
+\class{GtkTable} is a container for laying out objects in a tabular
+(or grid) format. It is \emph{not} meant for displaying tabular
+data. The container divides its space into cells of a grid, and a
+child widget may occupy one or more cells. The allocation of space
+within a row or column follows logic similar to that of box
+layouts. The most common use case of a \class{GtkTable} is form
+layout, which we will demonstrate in our example.
 
 \begin{example}{Dialog layout}{ex-RGtk2-dialog-layout}
   \SweaveInput{ex-RGtk2-dialog-layout.Rnw}
