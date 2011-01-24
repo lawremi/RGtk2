@@ -29,12 +29,12 @@ based on \pkg{GTK+ 2.0}, the current generation. This book covers
 \pkg{RGtk2} provides virtually all of the functionality in \GTK\/ to
 the \R\/ programmer. In addition, \pkg{RGtk2} interfaces with several
 other libraries in the \GTK\/ stack: Pango for font rendering; Cairo
-for vector graphics; GdkPixbuf for image manipulation; libglade for
-designing GUI layouts from an XML description; ATK for accessible
-interfaces; and GDK, an abstraction over the native windowing system,
-supporting either X11 or Windows. These libraries are multi-platform
-and extensive and have been used for many major projects, such as the
-Linux versions of Firefox and Open Office.
+for vector graphics; GdkPixbuf for image manipulation; GIO for
+synchronous and asynchronous input/output for files and network
+resources; ATK for accessible interfaces; and GDK, an abstraction over
+the native windowing system, supporting either X11 or Windows. These
+libraries are multi-platform and extensive and have been used for many
+major projects, such as the Linux versions of Firefox and Open Office.
 
 The API of each of these libraries is mapped to \R\/ in a way that is
 consistent with \R\/ conventions and familiar to the \R\/
