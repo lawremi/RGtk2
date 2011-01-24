@@ -809,3 +809,9 @@ drop occurred. The text data is returned by \function{getText} as a
 %% tcltk, but I don't think it is needed without a compelling use case.
 
 %% ML: agreed
+
+%% ML: Should this go into this chapter or the next?
+\section{Embedding R Graphics}
+\label{sec:gtk-widget-graphics}
+
+\SweaveInput{cairoDevice}

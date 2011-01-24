@@ -1,5 +1,3 @@
-%% FIXME: the examples in this section are pretty lame
-
 \GTK\/ provides a number of convenient dialogs for the common use
 cases, as well as general infrastructure for constructing custom
 dialogs.  A dialog is a window that generally consists of an icon, a
@@ -200,3 +198,11 @@ selections. These include \code{GtkCalendar} for picking dates,
 \code{GtkFontSelectionDialog} for fonts. These are very high-level
 dialogs that are trivial to construct and manipulate, at a cost of
 flexibility.
+
+\subsection{Print dialog}
+
+Rendering documents for printing is outside our scope; however, we
+will mention that \class{GtkPrintOperation} can launch the native,
+platform-specific print dialog for customizing a printing
+operation. See Example~\ref{sec:gtk-printing-graphics} for an example
+of printing R graphics using \pkg{cairoDevice}.

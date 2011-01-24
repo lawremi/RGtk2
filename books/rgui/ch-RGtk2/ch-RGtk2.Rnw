@@ -50,10 +50,6 @@ args <- function(name) {
 \label{sec:basic-components}
 \SweaveInput{BasicComponents}
 
-
-%% FIXME: could rename to Widgets for Viewing Data
-%% Then could add cairoDevice, introduction to GDK/Cairo
-%% Visualization is pretty important
 \chapter{RGtk2: Widgets Using Data Models}
 \label{sec:RGtk2:widgets-with-models}
 \SweaveInput{WidgetsWithModels}
@@ -133,14 +129,11 @@ args <- function(name) {
 %% Settings    QtNetwork     GIO            Nothing really
 
 %% Notes:
-%% - Next version of RGtk2 will bind GIO.
 %% - DBus is likely useless, except on Linux
-%% - Next version of RGtk2 should support GtkBuilder
 %% - Deepayan's qtutils package integrates R docs with QtHelp
 %% - Multimedia could be useful for generating videos, etc (out of scope)
 %% - R connections are very primitive (no asynchronous I/O)
 %% - Qt provides 2D API for OpenGL
-%% - Javascript support likely useless
 %% - DBI package covers database access needs
 %% - SVG not designed for interactivity, <canvas> better
 %% - GtkWebkit should be bound in separate package (worth it?)
