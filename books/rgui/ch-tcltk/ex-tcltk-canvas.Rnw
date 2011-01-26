@@ -27,7 +27,7 @@ tkaddtag(canvas, "point", "withtag", item)
 
 In order to indicate to the user that a point is active, in some
 sense, the following changes the fill color of the point when the
-mouse is over the point.  We add this binding using \code{tkitembind}
+mouse hovers over. We add this binding using \code{tkitembind}
 so that is will apply to all point items and only the point items.
 <<>>=
 tkitembind(canvas, "point", "<Any-Enter>", function()
@@ -50,9 +50,9 @@ tkitembind(canvas, "point", "<Button-1>",  tagSelected)
 @
 
 When the mouse moves, we use \code{tkmove} to have the currently
-selected point move too. This is done by tracking the differences
-between the last position recorded and the current position and moving
-accordingly.
+selected point move too. As \code{tkmove} is parameterized by
+differences, we track the differences
+between the last position recorded and the current position.
 <<moveSelectedPoint>>=
 moveSelected <- function(W, x, y) {
   pos <- as.numeric(c(x,y))
@@ -62,7 +62,7 @@ moveSelected <- function(W, x, y) {
 }
 tkbind(canvas, "<B1-Motion>", moveSelected)
 @ 
-
+%
 A further binding, for the \Event{ButtonRelease-1} event, would be
 added to do something after the point is released. In the original
 example, the old regression line is deleted, and a new one drawn. Here

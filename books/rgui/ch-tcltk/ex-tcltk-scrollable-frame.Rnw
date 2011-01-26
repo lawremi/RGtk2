@@ -43,7 +43,7 @@ scrollableFrame <- function(parent, width= 300, height=300) {
              borderwidth=0, highlightthickness=0,
              width=width, height=height)
   addScrollbars(parent, canvasWidget)
-
+  #
   gp <- ttkframe(canvasWidget, padding=c(0,0,0,0))
   gpID <- tkcreate(canvasWidget, "window", 0, 0, anchor="nw", 
                    window=gp)
@@ -57,12 +57,9 @@ scrollableFrame <- function(parent, width= 300, height=300) {
   tkbind(canvasWidget, "<Configure>", function(W) {
     width <- as.numeric(tkwinfo("width", W))
     gpwidth <- as.numeric(tkwinfo("width", gp))
-    
     if(gpwidth < width)
       tkitemconfigure(canvasWidget, gpID, width=width)
   })
-
-  
   return(gp)
 }
 @ 
@@ -83,14 +80,14 @@ label can be added to the frame whose font is the same as the label
 text. The available fonts are found from \function{tkfont.families}
 and the useful coercion to character by \function{as.character}.
 <<>>=
-fontFamilies <- as.character(tkfont.families())
+fFamilies <- as.character(tkfont.families())
 ## skip odd named ones
-fontFamilies <- fontFamilies[grepl("^[[:alpha:]]", fontFamilies)] 
-for(i in seq_along(fontFamilies)) {
-  fontName <- sprintf("::font::-%s", i)
-  try(tkfont.create(fontName, family=fontFamilies[i], size=14), 
+fFamilies <- fFamilies[grepl("^[[:alpha:]]", fFamilies)] 
+for(i in seq_along(fFamilies)) {
+  fName <- sprintf("::font::-%s", i)
+  try(tkfont.create(fontName, family=fFamilies[i], size=14), 
       silent=TRUE)
-  l <- ttklabel(gp, text=fontFamilies[i], font=fontName)
+  l <- ttklabel(gp, text=fFamilies[i], font=fName)
   tkpack(l, side="top", anchor="w")
 }
 @ 

@@ -26,7 +26,8 @@ f <- ttkframe(w, padding=c(3,3,3,12))
 tkpack(f, expand=TRUE, fill="both")
 @ 
 
-This function simply shortens our call to \texttt{ttklabel}. We use the global \texttt{f} (a \code{ttkframe}) as the parent.
+This function simply shortens our call to \texttt{ttklabel}. We use
+the global \texttt{f} (a \code{ttkframe}) as the parent.
 <<>>=
 mL <- function(label) { # save some typing
   if(is.numeric(label))
@@ -34,17 +35,20 @@ mL <- function(label) { # save some typing
   ttklabel(f, text=label, justify="right") 
 }
 @ 
+%
 We begin by making the table header along with a toprule.
 <<makeHeaderRule>>=
 tkgrid(mL(""), mL("2000-01-01"), mL("-- until --"), 
        mL("today"), mL("low"), mL("high"))
-tkgrid(ttkseparator(f), row=1, column=1, columnspan=5, sticky="we")
+tkgrid(ttkseparator(f), row=1, column=1, columnspan=5, 
+       sticky="we")
 @ 
-
-This function adds a sparkline to the table. We use stock values in
-this example, as we can conveniently employ the
-\function{get.hist.quote} function from the \pkg{tseries} package to
-get interesting data.
+%
+This function adds a sparkline to the table. A sparkline here is just
+a line item, but there is some work to do, in order to scale the
+values to fit the allocated space. This example uses stock values, as
+we can conveniently employ the \function{get.hist.quote} function from
+the \pkg{tseries} package to get interesting data.
 <<>>=
 addSparkLine <- function(label, symbol="MSFT") {
   width <- 100; height=15               # fix width, height
@@ -52,9 +56,10 @@ addSparkLine <- function(label, symbol="MSFT") {
                       quote="C", provider="yahoo", 
                       retclass="zoo")$Close
   min <- min(y); max <- max(y)
+  ##
   start <- y[1]; end <- tail(y,n=1)
   rng <- range(y)
-
+  ##
   sparkLineCanvas <- tkcanvas(f, width=width, height=height)
   x <- 0:(length(y)-1) * width/length(y)
   if(diff(rng) != 0) {

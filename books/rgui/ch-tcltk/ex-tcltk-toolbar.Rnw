@@ -50,9 +50,9 @@ the font and padding, and eliminate the border if the operating system allows.
 tcl("ttk::style", "configure", "Toolbar.TButton", 
     font="helvetica 12", padding=0, borderwidth=0)
 @ 
-This
-\code{makeIcon} function finds stock icons from the \pkg{gWidgets}
-package and adds them to a button.
+%
+This \code{makeIcon} function finds stock icons from the
+\pkg{gWidgets} package and adds them to a button.
 <<>>=
 makeIcon <- function(parent, stockName, command=NULL) {
   iconFile <- system.file("images", 
@@ -72,7 +72,7 @@ makeIcon <- function(parent, stockName, command=NULL) {
   return(b)
 }
 @ 
-
+%
 To illustrate, we pack in some icons. Here we use \function{tkpack}.  
 One does not use \function{tkpack} and \function{tkgrid} to manage
 children of the same parent, but these are children of \code{tbFrame},
@@ -92,3 +92,12 @@ tkbind("TButton", "<Enter>", function(W) setState(W, "active"))
 tkbind("TButton", "<Leave>", function(W) setState(W, "!active"))
 @ 
 
+If one wished to restrict the above to just the toolbar buttons, one
+could check for the style of the button, as with:
+
+<<checkStyle>>=
+function(W) {
+  if(as.character(tkcget(W, "-style")) == "Toolbar.TButton")
+    cat("... do something for toolbar buttons ...")
+}
+@ 

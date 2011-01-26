@@ -1,8 +1,6 @@
 This example shows how to create a simple calendar using a grid
-layout. (No such widget is standard with \pkg{tcltk}.) The following relies on
-the functions \function{day.of.week} (from the \pkg{chron} package),
-\function{week.of.month} and \function{days.in.month} (easily
-written).
+layout. (No such widget is standard with \pkg{tcltk}.) The following
+relies on some date functions in the \pkg{ProgGUIInR} package.
 
 <<echo=FALSE>>=
 library(tcltk)
@@ -53,7 +51,7 @@ makeMonth <- function(w, year, month) {
     tkgrid(l, row=0, column=i-1, sticky="")
   })
   ## add days
-  sapply(1:days.in.month(year, month),  function(day) {
+  sapply(seq_len(days.in.month(year, month)),  function(day) {
     l <- ttklabel(w, text=day)
     tkgrid(l, row=1 + week.of.month(year, month, day),
            column=day.of.week(year, month, day),
@@ -97,15 +95,16 @@ The \code{setMonth} function first removes the previous calendar
 container and then
 redefines one to hold the monthly calendar. Then it adds in a new
 monthly calendar to match the year and month. The call to
-\code{makeMonth} creates the calendar, and the last line updates the
-label indicating the current month.
+\code{makeMonth} creates the calendar. Packing in the frame after
+adding its child components makes the GUI seem much more responsive.
 <<stackedWidget>>=
 setMonth <- function() {
   tkpack("forget", calframe)
-  calframe <<- ttkframe(f); tkpack(calframe)
+  calframe <<- ttkframe(f)
   makeMonth(calframe, year, month)
-  tkconfigure(curmo, 
+  tkconfigure(curmo,                    # month label
               text=sprintf("%s %s", month.abb[month], year))
+  tkpack(calframe)
 }
 setMonth()                              # initial calendar
 @ 

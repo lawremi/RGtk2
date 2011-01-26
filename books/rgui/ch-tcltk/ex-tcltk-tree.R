@@ -93,20 +93,17 @@ quoteIt <- function(string) {
 ###################################################
 ### chunk number 7: 
 ###################################################
-#line 106 "ex-tcltk-tree.Rnw"
+#line 102 "ex-tcltk-tree.Rnw"
 insertChild <- function(tr, node, parent="") {
   l <- list(tr, "insert", parent, "end", text=xmlName(node))
   children <- xmlChildren(node)
   if(length(children) == 0) {           # add in values
     values <- paste(xmlValue(node), sep=" ", collapse=" ")
-#    values <- tclVar(values)
-    values <- gsub("\n", " ", values)   # treeview doesn't like
-    values <- quoteIt(values)           # \n and spaces
-    l$values <- values
+    l$values <- as.tclObj(values)        # avoid split on spaces
   }
   treePath <- do.call("tcl", l)
 
-  if(length(children))                  # recurse
+  if(length(children))                          # recurse
     for(i in children) insertChild(tr, i, treePath)
 }
 insertChild(tr, root)
@@ -115,15 +112,15 @@ insertChild(tr, root)
 ###################################################
 ### chunk number 8: 
 ###################################################
-#line 135 "ex-tcltk-tree.Rnw"
-.selectedID <- ""                       # globals
+#line 128 "ex-tcltk-tree.Rnw"
+.selectedID <- ""                               # globals
 .dragging <- FALSE
 
 
 ###################################################
 ### chunk number 9: 
 ###################################################
-#line 141 "ex-tcltk-tree.Rnw"
+#line 134 "ex-tcltk-tree.Rnw"
 tkbind(tr, "<Button-1>", function(W,x,y) {
   .selectedID <<- as.character(tcl(W, "identify","row", x, y))
 })  
@@ -132,7 +129,7 @@ tkbind(tr, "<Button-1>", function(W,x,y) {
 ###################################################
 ### chunk number 10: 
 ###################################################
-#line 149 "ex-tcltk-tree.Rnw"
+#line 142 "ex-tcltk-tree.Rnw"
 tkbind(tr, "<B1-Motion>", function(W, x, y, X, Y) {
   tkconfigure(W, cursor="diamond_cross")
   .dragging <<-TRUE
@@ -142,7 +139,7 @@ tkbind(tr, "<B1-Motion>", function(W, x, y, X, Y) {
 ###################################################
 ### chunk number 11: 
 ###################################################
-#line 163 "ex-tcltk-tree.Rnw"
+#line 156 "ex-tcltk-tree.Rnw"
 tkbind(tr, "<ButtonRelease-1>", function(W, x, y, X, Y) {
   if(.dragging && .selectedID != "") {
     w = tkwinfo("containing", X, Y)
@@ -158,12 +155,12 @@ tkbind(tr, "<ButtonRelease-1>", function(W, x, y, X, Y) {
 ###################################################
 ### chunk number 12: walkTreeReturnAList
 ###################################################
-#line 186 "ex-tcltk-tree.Rnw"
+#line 179 "ex-tcltk-tree.Rnw"
 treeToList <- function(tr) {
   l <- list()
   walkTree <- function(child, l) {
     l$name <- tclvalue(tcl(tr,"item", child, "-text"))
-    l$value <- tclvalue(tcl(tr,"item", child, "-values"))
+    l$value <- as.character(tcl(tr,"item", child, "-values"))
     children <- as.character(tcl(tr, "children", child)) 
     if(length(children)) {
       l$children <- list()

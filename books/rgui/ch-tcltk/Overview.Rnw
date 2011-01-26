@@ -2,6 +2,64 @@
 \XXX{tcl("update","idletasks")}
 \XXX{use svMisc -- atleast comment on Parse, Complete, CompletePlus}
 
+
+
+\TCL\/ (``tool command language'') is a scripting language and
+interpreter of that language.  Originally developed in the late 80s by
+John Ousterhout as a ``glue'' to combine two or more complicated
+applications together, it evolved overtime to find use not just as
+middleware, but also as a standalone development tool.
+
+\TK~\footnote{
+  %% Documentation sources
+  \Tk{} has a well documented API~\citep{TclTk:Api}
+  (\url{www.tcl.tk/man/tcl8.5}).  There are also several books to
+  supplement. We consulted the one by Welch, Jones and
+  Hobbs~\citep{beedub} often in the developement of this material. In
+  addition, the Tk Tutorial of Mark Roseman~\citep{TclTk:Tutorial}
+  (\url{www.tkdocs.com/tutorial}) provides much detail. \R{} specific
+  documentation include two excellent R News articles and a
+  proceedings
+  paper~\citep{Rnews:Dalgaard:2001a},~\citep{Rnewse:Dalgaard:2002} and
+  \citep{Dalgaard-DSC} by Peter Dalgaard, the package author. A set of
+  examples due to James Wettenhall~\citep{Wettenhall} are also quite
+  instructive. A main use of \pkg{tcltk} is within the \pkg{Rcmdr}
+  framework. Writing extensions for that is well documented in an R
+  News article~\citep{Rnews:Fox:2007} by John Fox, the package author.
+} is an extension of \TCL\/ that provides GUI components through \TCL.
+This was first developed in 1990, again by John Ousterhout. \TK\/
+quickly found widespread usage, as at the time it made programming
+GUIs for X11 easier and faster. Over the years, other graphical
+toolkits have evolved and surpassed this one, but \TK\/ still has
+numerous users.
+
+\TCL\/ and \TK\/ have a large number of bindings available for it, e.g. \proglang{Perl}, \proglang{Python},
+\proglang{Ruby}, and through the \pkg{tcltk} package, \R. The \pkg{tcltk} package
+was developed by Peter Dalgaard, and  included in \R\/ from version
+1.1.0. Since then, the package has been used in a number of GUI 
+projects for \R,  most notably, the \pkg{Rcmdr} GUI. In addition, the
+\pkg{tcltk2} package provides additional bindings and bundles in some
+useful external TCL code. Our focus here is on the base package.
+
+\TK\/ had a major change between versions 8.4 and 8.5, with the latter
+introducing themed widgets. Many widgets were rewritten and their API
+dramatically simplified. In \pkg{tcltk} there can be two different
+functions to construct a similar widget. For example,
+\function{tklabel} or \function{ttklabel}. The latter, with the
+\code{ttk} prefix, would be for the newer themed widget. As this was a
+major step forward, we will assume \TK\/ version is 8.5 or higher and
+use the themed widgets when available.
+
+Despite its limitations as a graphical toolkit, as compared to \GTK\/
+or \Qt, the \TK\/ libraries are widely used for \R\/ GUIs, as for most
+users there are no installation issues. In particular, as of version
+2.7.0, \R\/ for windows has been bundled with the necessary \TK\/
+version. For linux users, it is typically trivial to install the newer
+libraries and for Mac OS X users, the provided binary installations
+include a one click install of the newer \TK\/ libraries.
+
+
+
 \section{Interacting with \TCL}
 \label{sec:tcltk:interacting-with-tcl}
 
@@ -9,7 +67,7 @@
 %% Tclk
 Although both are scripting languages, the basic syntax of \TCL\/ is a bit unlike \R. For
 example a simple string assignment would be made at tclsh, the \TCL\/
-shell with (using \code{\%} as a prompt)
+shell with (using \code{\%} as a prompt):
 \begin{verbatim}
 % set x {hello world}
 hello world
@@ -76,7 +134,7 @@ of objects of class \class{tclObj} is returned by \function{tclvalue}
 or by coercion through the \function{as.character} function. They
 differ in how they treat spaces and new lines.  Conversion to numeric
 values is also possible through \code{as.numeric}, but conversion to
-logical requires two steps as only modes \code{character},
+logical may require two steps as only modes \code{character},
 \code{double} or \code{integer} are stored. In general though,
 conversion of complicated \TCL\/ expressions is not supported.
 
@@ -93,8 +151,8 @@ a label object (\code{.label}) would look like
 \begin{verbatim}
 % .label configure -text "new text"
 \end{verbatim}
-The \pkg{tcltk} provides a corresponding function
-\code{tkconfigure}. The above would be done as (assuming \code{l} is a
+The \pkg{tcltk} package provides a corresponding function
+\code{tkconfigure}. The above would be done in an \R-like way as (assuming \code{l} is a
 label object):
 
 <<echo=FALSE>>=
@@ -139,7 +197,7 @@ describe the configure subcommand as
 \subcommanda{configure}{ttklabel}{[options]}. (The \R\/ manual pages
 simply redirect you to the original \TK\/ documentation, so
 understanding this is important for reading the API.) However, if such
-a function shortcut is present, we will use the shortcut when we
+a function shortcut is present, we will typically use the shortcut when we
 illustrate code. 
 
 Some subcommands have further subcommands. An example
@@ -298,11 +356,11 @@ addition, buttons have a \argument{command}{ttkbutton} option to
 specify a callback for when the button is invoked. Buttons may be
 invoked by clicking and releasing the mouse on the button, by pressing
 the space bar when the button has the focus or by calling the
-\subcommand{invoke} subcommand. In the above example, clicking on the
+\subcommand{invoke}{ttkbutton} subcommand. In the above example, clicking on the
 button will call the function causing a simple message to be printed. More on callbacks in \pkg{tcltk}
 will be explained in Section~\ref{sec:tcltk:callbacks}.
 
-\paragraph{tkwidget}
+\paragraph{The tkwidget function}
 Constructors call the \function{tkwidget} function which returns an
 object of class \code{tkwin}. (In \TK\/ the term ``window'' is used to
 refer to the drawn widget and not just a top-level window)
@@ -412,18 +470,18 @@ but values are only referred to by name, not index:
 
 <<tclVarExample, echo=FALSE, eval=FALSE>>=
 x <- tclVar(1)
-print(x)                                # a tclVar object
-tclvalue(x)                             # internal name
-as.numeric(tclvalue(x))                 # get value then coerce
+print(x)                           # a tclVar object
+tclvalue(x)                        # internal name
+as.numeric(tclvalue(x))            # get value then coerce
 @ 
 
 
 <<tclArrayExample>>=
-x <- tclArray()                         # no init
-x$one <- 1; x[[2]] <- 2                 # $<- and [[<-
-x[[1]]                                  # no match by index
-names(x)                                # the stored names
-x[['2']]                                # match by name, not index
+x <- tclArray()                    # no init
+x$one <- 1; x[[2]] <- 2            # $<- and [[<-
+x[[1]]                             # no match by index
+names(x)                           # the stored names
+x[['2']]                           # match by name, not index
 @ 
 
 
@@ -497,7 +555,7 @@ theme allows the GUI to have the native look and feel of the operating
 system. (This was definitely not the case for the older \TK\/
 widgets.) There is no built in command to return the theme, so we use
 \code{.Tcl} to call the appropriate \TCL\/ command. The \code{names}
-sub command will return the available theme:
+sub command will return the available themes:
 
 <<>>=
 .Tcl("ttk::style theme names")
@@ -505,7 +563,6 @@ sub command will return the available theme:
 %
 The \code{use} sub command is used to set the theme:
 <<>>=
-@ 
 .Tcl("ttk::style theme use clam")
 @ 
 
@@ -592,18 +649,18 @@ create RGB values from intensities in $[0,1]$.  The \R\/ function
 \code{as.hexmode} function will display an integer in hexadecimal
 notation.
 
-Not all widgets have a \code{foreground} option.  In
-Example~\ref{ex:tcltk-entry-initial-message} we show how to modify a
-style to change the text color in an entry widget.
+In Example~\ref{ex:tcltk-entry-initial-message} we show how to modify
+a style, as opposed to the \code{foreground} option, to change the
+text color in an entry widget.
 
 %% fonts
 \paragraph{Fonts}
-Fonts are more involved than colors. \TK\/ version 8.5 made it more
-difficult to change font properties of individual widgets. This
+Fonts are a bit more involved than colors. \TK\/ version 8.5 made it
+more difficult to change font properties of individual widgets, this
 following the practice of centralizing style options for consistency,
 ease of maintaining code and ease of theming.  To set a font for a
 label, rather than specifying the font properties, one configures the
-\code{font} attribute using a pre-defined font name, such as
+\code{font} options using a pre-defined font name, such as
 <<>>=
 tkconfigure(l, font="TkFixedFont")
 @ 
@@ -713,7 +770,7 @@ formats. (The \code{GDD} device driver can.) One may need system
 utilities to convert to the allowable formats or install add-on \TCL\/
 packages that can display other formats.
 
-To use the image, one specified the image name to the
+To use the image, one specifies the image name to the
 \option{image}{ttklabel} option:
 <<>>=
 l <- ttklabel(w, image="::img::tclLogo", text="logo text", 
@@ -829,7 +886,7 @@ tkbind("TButton", "<Return>", function(W) {
 %
 We modified our buttons using the \code{underline} option to give the
 user an indication that the ``C'' and ``O'' keys will initiate some
-action. Out callbacks simply cause the appropriate button to
+action. Our callbacks simply cause the appropriate button to
 \code{invoke} their command. The latter one uses a percent
 substitution (below), which is how \TK\/ passes along information
 about the event to the callback. 

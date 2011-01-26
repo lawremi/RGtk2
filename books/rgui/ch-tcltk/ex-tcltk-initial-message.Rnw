@@ -1,4 +1,4 @@
-<<InitialMsg>>=
+<<InitialMsg, echo=FALSE>>=
 ## "R5" class for ttk entry with initial message
 library(tcltk)
 @ 
@@ -53,7 +53,7 @@ shown. It simply sets the foreground (text) color to gray.
 .Tcl("ttk::style configure Gray.TEntry -foreground gray") 
 @ 
 
-Now our two methods to hide and show the initial message. Outside of
+Now our two methods to hide and show the initial message are defined. Outside of
 changing the text, we adjust the style option accordingly.
 <<>>=
 hide_init_msg <- function() {
@@ -91,8 +91,7 @@ Now to create the reference class to hold our widget. First we set as old
 classes the class for the entry widget and the tclvariable. This
 allows us to use these as fields in the class.
 <<>>=
-setOldClass("tkwin")
-setOldClass("tclVar")
+setOldClass("tkwin"); setOldClass("tclVar")
 @ 
 %
 Our entry class has a straightforward initialization method, otherwise

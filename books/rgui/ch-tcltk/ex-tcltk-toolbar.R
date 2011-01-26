@@ -36,7 +36,7 @@ tkgrid.columnconfigure(f, 0, weight=1)
 #
 txt <- "Lorem ipsum dolor sit amet..." # sample text
 tkpack(ttklabel(contentFrame, text=txt))
-
+tkpack(ttkbutton(contentFrame, text="some button"))
 
 ###################################################
 ### chunk number 5: 
@@ -83,12 +83,6 @@ tkpack(makeIcon(tbFrame, "cancel"), side="left")
 ###################################################
 #line 90 "ex-tcltk-toolbar.Rnw"
 setState <- function(W, state) tcl(W, "state", state)
-setState <- function(W, state) {
-  gamma <- ifelse(state=="active", 2, 1)
-  img <- tkcget(W, "-image")
-  tkconfigure(img, gamma=gamma)
-  print(gamma)
-}
 tkbind("TButton", "<Enter>", function(W) setState(W, "active"))
 tkbind("TButton", "<Leave>", function(W) setState(W, "!active"))
 

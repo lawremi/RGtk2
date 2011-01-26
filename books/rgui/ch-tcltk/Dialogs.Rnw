@@ -9,17 +9,17 @@
 \end{figure}
 
 %% messageBox
-The \constructor{tkmessageBox} constructor can be used to create 
-simple modal dialogs allowing a user to confirm an action. This
-replaces the older \code{tkdialog} dialogs. The \code{tkmessageBox}
-dialogs use the native toolkit if possible. The arguments
-\argument{title}{tkmessageBox}, \argument{message}{tkmessageBox} and
-\argument{detail}{tkmessageBox} are used to set the text for the
-dialog. The \code{title} may not appear for all operating systems. A
-messageBox dialog has an \argument{icon}{tkmessageBox} argument. The
-default icon is \qcode{info} but could also be one of \qcode{error},
-\qcode{question} or \qcode{warning}. The buttons used are specified by
-the \argument{type}{tkmessageBox} argument with values of \qcode{ok},
+The \constructor{tkmessageBox} constructor can be used to create
+simple modal dialogs allowing a user to confirm an action, using the
+native toolkit if possible. This constructor replaces the older
+\code{tkdialog} dialogs. The arguments \argument{title}{tkmessageBox},
+\argument{message}{tkmessageBox} and \argument{detail}{tkmessageBox}
+are used to set the text for the dialog. The \code{title} may not
+appear for all operating systems. A messageBox dialog has an
+\argument{icon}{tkmessageBox} argument. The default icon is
+\qcode{info} but could also be one of \qcode{error}, \qcode{question},
+or \qcode{warning}. The buttons used are specified through the
+\argument{type}{tkmessageBox} argument with values of \qcode{ok},
 \qcode{okcancel}, \qcode{retrycancel}, \qcode{yesno}, or
 \qcode{yesnocancel}. When a button is clicked the dialog is destroyed
 and the button label returned as a value. The argument
@@ -34,12 +34,46 @@ tkmessageBox(title="Confirm", message="Really exit?",
              icon="question", type="okcancel")
 @ 
 %% 
+
+\paragraph{The tkwait function}
 If the default modal dialog is not enough -- for instance there is no
 means to gather user input -- then a toplevel window can be made
-modal. The \function{tkwait.window} will cause a top-level window to
+modal. The \function{tkwait} function will cause a top-level window to
 be modal and \function{tkgrab.release} will return the interactivity
-for the window.
+for the window. We illustrate a simple use by example, beginning by
+adding a label to a window:
 
+<<>>=
+message <- "We care ..."
+dlg <- tktoplevel(); tkwm.withdraw(dlg)
+tkwm.overrideredirect(dlg, TRUE)   # no decoration
+f <- ttkframe(dlg, padding=5)
+tkpack(f, expand=TRUE, fill="both")
+tkpack(ttklabel(f, text=message), pady=5)
+@ 
+
+We will use \function{tkwait.variable} which waits for a change to
+variable, in this case \code{flag} defined next. In the button's command
+we release the window then change this value, ending the wait.
+<<>>=
+flag <- tclVar("")
+tkpack(ttkbutton(f, text="dismiss", command=function() {
+  tkgrab.release(dlg)
+  tclvalue(flag) <- "Destroy"
+}))
+@ 
+Now we show the window and wait on the \code{flag} variable to change.
+<<>>=
+tkwm.deiconify(dlg)
+tkwait.variable(flag)
+@ 
+
+When the flag is changed, the flow returns to the program. Here we
+print a message then destroy the dialog.
+<<>>=
+print("Thanks")
+tkdestroy(dlg)
+@ 
 
 
 \subsection{File and directory selection}
@@ -50,9 +84,9 @@ directory or for specifying a filename when saving. These are
 implemented by \constructor{tkgetOpenFile},
 \constructor{tkchooseDirectory}, and \constructor{tkgetSaveFile}
 respectively. Each of these can be called with no argument, and
-returns a \code{tclObj} object. The value is empty when there is no selection made.
+each returns a \code{tclObj} object. The value is empty when there is no selection made.
 
-The dialog will appear related to a toplevel window if the argument
+The dialog will appear in a relationship with a toplevel window if the argument
 \argument{parent}{tkgetOpenFile} is specified The
 \argument{initialdir}{tkgetOpenFile} and
 \argument{initialfile}{tkgetOpenFile} can be used to specify the
@@ -105,7 +139,7 @@ tkadd(fileMenu, "command", label="Set working directory...",
 \subsection{Choosing a color}
 \Tk\/ provides the command \code{tk\_chooseColor} to construct a dialog for selection of a color by RGB value. There are three optional arguments \argument{initialcolor}{tk\_chooseColor} to specify an inital color such as \qcode{\#efefef}, \argument{parent}{tk\_chooseColor} to make the dialog a child of a specified window and \argument{title}{tk\_chooseColor} to specify a title for the dialog. The return value is in hex-coded RGB quantitles. 
 There is no constructor in \pkg{tcltk}, but one can use the dialog as follows:
-<<>>=
+<<ColorSelection>>=
 w <- tktoplevel(); tkwm.title(w, "Select a color")
 f <- ttkframe(w, padding=c(3,3,3,12))
 tkpack(f, expand=TRUE, fill="both")
@@ -119,6 +153,7 @@ tkbind(colorWell,"<Button-1>", function(W) {
   color <- tcl("tk_chooseColor", parent=W, 
                title="Set box color")
   color <- tclvalue(color)
+  print(color)
   if(nchar(color))
     tkconfigure(W, background = color)
 })

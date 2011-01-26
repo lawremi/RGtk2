@@ -43,17 +43,19 @@ We create a simple GUI with a top-level window containing the text entry widget.
 <<>>=
 w <- tktoplevel()
 tkwm.title(w, "Simple code editor")
-f <- ttkframe(w,padding=c(3,3,3,12)); 
+f <- ttkframe(w, padding=c(3,3,3,12)) 
 tkpack(f, expand=TRUE, fill="both")
 tb <- tktext(f, undo=TRUE)
 addScrollbars(f, tb)
 @ 
 
-We create a toplevel menu bar, \code{mb}, and attach it to our toplevel window. The we create a file and edit submenu.
+We create a toplevel menu bar, \code{mb}, and attach it to our
+toplevel window, then a file and edit submenu:
 <<>>=
 mb <- tkmenu(w); tkconfigure(w, menu=mb)
 fileMenu <- tkmenu(mb)
 tkadd(mb, "cascade", label="File", menu=fileMenu)
+#
 editMenu <- tkmenu(mb)
 tkadd(mb, "cascade", label="Edit", menu=editMenu)
 @ 
@@ -86,9 +88,9 @@ tkadd(fileMenu, "command", label="Quit",
 
 The edit menu has an undo and redo item. For illustration purposes we add an icon to the undo item.
 <<results=hide>>=
-img <- system.file("images/up.gif",package="gWidgets")
+img <- system.file("images/up.gif", package="gWidgets")
 tkimage.create("photo", "::img::undo", 
-                     file = img)
+                     file=img)
 tkadd(editMenu, "command", label="Undo",
       image="::img::undo", compound="left",
       command = function() tcl(tb, "edit", "undo"))
@@ -111,7 +113,7 @@ updateUI <- function() {
   ## undo -- if buffer modified, assume undo stack possible
   ## redo -- no good check for redo
   canUndo <- function(W) as.logical(tcl(W,"edit", "modified"))
-  tkentryconfigure(editMenu,"Undo", 
+  tkentryconfigure(editMenu,"Undo",     # by pattern
                    state=states[canUndo(tb) + 1])
   tkentryconfigure(editMenu,"Redo", 
                    state=states[canUndo(tb) + 1])
@@ -138,10 +140,10 @@ repeatCall(100, updateUI, w)
 We now add an accelerator entry to the menubar and a binding to the top-level window for the keyboard shortcut.
 <<addKeyboardShortcut>>=
 if(usingMac()) {
-  tkentryconfigure(editMenu,"Undo",accelerator="Cmd-z")
+  tkentryconfigure(editMenu, "Undo", accelerator="Cmd-z")
   tkbind(w,"<Option-z>", function() tcl(tb,"edit","undo"))
 } else {
-  tkentryconfigure(editMenu,"Undo",accelerator="Control-u")
+  tkentryconfigure(editMenu, "Undo", accelerator="Control-u")
   tkbind(w,"<Control-u>", function() tcl(tb,"edit","undo"))
 }
 @ 

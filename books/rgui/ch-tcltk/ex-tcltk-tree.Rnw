@@ -97,21 +97,14 @@ define the following function to recursively add to the treeview
 instance.  We only add to the \code{value} column (through the
 \code{values} option) when the node does not have children. We use
 \code{do.call}, as a convenience, to avoid constructing two different
-calls to the \code{insert} subcommand. The \code{quoteIt} function
-used is not shown, but similar to \function{shQuote} only escaping
-with double quotes, as single quotes are treated differently by
-\TCL. (Otherwise the \code{ttktreeview}
-widget will split values on spaces without quoting. One could use a
-tclvariable here, but then extracting the string from the node becomes difficult)
+calls to the \code{insert} subcommand. 
 <<>>=
 insertChild <- function(tr, node, parent="") {
   l <- list(tr, "insert", parent, "end", text=xmlName(node))
   children <- xmlChildren(node)
   if(length(children) == 0) {           # add in values
     values <- paste(xmlValue(node), sep=" ", collapse=" ")
-    values <- gsub("\n", " ", values)   # Avoid \n and spaces
-    values <- quoteIt(values)           
-    l$values <- values
+    l$values <- as.tclObj(values)        # avoid split on spaces
   }
   treePath <- do.call("tcl", l)
 
@@ -120,10 +113,10 @@ insertChild <- function(tr, node, parent="") {
 }
 insertChild(tr, root)
 @ 
-
-At this point, the GUI will allow one to explore the structure of the
+%
+At this point, the GUI will allow one to explore the markup structure of the
 XML file. We continue this example to show two things of general
-interest, but are really artificial for this example.
+interest, but that are really artificial for this example.
 
 %%\XXX{Use index parent to place at same level just below}
 
@@ -187,7 +180,7 @@ treeToList <- function(tr) {
   l <- list()
   walkTree <- function(child, l) {
     l$name <- tclvalue(tcl(tr,"item", child, "-text"))
-    l$value <- tclvalue(tcl(tr,"item", child, "-values"))
+    l$value <- as.character(tcl(tr,"item", child, "-values"))
     children <- as.character(tcl(tr, "children", child)) 
     if(length(children)) {
       l$children <- list()
@@ -196,8 +189,7 @@ treeToList <- function(tr) {
     }
     return(l)
   }
-  l <- walkTree("",l)
-  return(l)
+  walkTree("", l)
 }
 
 @ 

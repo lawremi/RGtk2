@@ -44,7 +44,7 @@
 library(tcltk)
 @ 
 
-There is no native calendar widget in \pkg{tcltk}. This example shows how one can use the validation framework for entry widgets to check that user-entered dates conform to an expected format. 
+As previously mentioned, there is no native calendar widget in \pkg{tcltk}. This example shows how one can use the validation framework for entry widgets to check that user-entered dates conform to an expected format. 
 
 %% The entry widget man page has many details.
 Validation happens in a few steps.  A validation command is assigned
@@ -95,7 +95,7 @@ isValidDate <- function(W, P) { # P is the current value
   for(i in datePatterns) {
     date <- try( as.Date(P, format=i), silent=TRUE)
     if(!inherits(date, "try-error") && !is.na(date)) {
-      tkconfigure(W,foreground="black") #  consult style?
+      tkconfigure(W, foreground="black")  # or use style
       tkdelete(W, 0,"end")
       tkinsert(W, 0, format(date, format="%m/%d/%y"))
       return(tcl("expr","TRUE"))        
@@ -127,10 +127,9 @@ command; \qcode{key} for each key press; \qcode{focusin} for when the
 widget receives the focus; \qcode{focusout} for when it loses focus;
 \qcode{focus} for both of the previous; and \qcode{all} for any of the
 previous. We use \qcode{focusout} below, so also give a button widget
-so that the focus can be set elsewhere. (As usual, \code{f} is a
-parent frame.)
+so that the focus can be set elsewhere. 
 <<entryWidgetWithValidation>>=
-e <- ttkentry(f, validate="focusout",
+e <- ttkentry(f, validate="focusout",   # f some parent
               validatecommand=isValidDate,
               invalidcommand=indicateInvalidDate)
 tkpack(e, side="left")

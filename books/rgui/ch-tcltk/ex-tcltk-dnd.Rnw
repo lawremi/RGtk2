@@ -2,7 +2,7 @@ This relatively involved example~\footnote{The idea for the example
   code originated with \url{http://wiki.tcl.tk/416}} shows several
 different uses of the event framework to implement drag and drop
 behavior between two widgets. In \pkg{tcltk} much more work is
-involved, than with \pkg{RGtk2} and \pkg{qtbase}. Steps are needed to
+involved with drag and drop, than with \pkg{RGtk2} and \pkg{qtbase}. Steps are needed to
 make one widget a drop source, and other steps are needed to make the
 other widget a drop target.
 
@@ -126,9 +126,10 @@ tkbind(w, "<B1-Motion>", function(W, X, Y) {
 ##  tkwm.geometry(dragLabel, paste("+",X,"+",Y, sep="")) # put in offset if desired
 @ 
 
-Finally, if the button is released, we generate the virtual events
-\code{\VirtualEvent{DragLeave}} and most importantly \code{\VirtualEvent{DragDrop}} for the
-widget we are over.
+Finally, if the button is released, we generate the
+\code{\VirtualEvent{DragLeave}} and, most importantly,
+\code{\VirtualEvent{DragDrop}} virtual events for the widget we are
+over.
 <<>>=
  tkbind(bDrag, "<ButtonRelease-1>", function(W, X, Y) {
   if(!.dragging) return()
