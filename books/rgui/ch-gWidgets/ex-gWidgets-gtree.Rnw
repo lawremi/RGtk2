@@ -21,7 +21,7 @@ gt <- ctree(Class ~ ., data=GlaucomaM)  # fit model
 
 The \pkg{party} object tracks the hierarchical nature through its
 nodes. This object has a complex structure using lists to store data
-about the nodes. We define an \code{offspring} function next that
+about the nodes. We define an \code{offspring} function next that:
 tracks the node by number, as is done in the \pkg{party} object;
 records whether a node has offspring through the \code{terminal}
 component (bypassing the \code{hasOffspring} function); and computes a
@@ -31,7 +31,7 @@ has only 0 or 2 rows.
 
 <<offspring>>=
 offspring <- function(key, offspring.data) {
-  if(missing(key) || length(key) == 0)  # which node?
+  if(missing(key) || length(key) == 0)  # which party node?
     node <- 1
   else
     node <- as.numeric(key[length(key)]) # key is a vector

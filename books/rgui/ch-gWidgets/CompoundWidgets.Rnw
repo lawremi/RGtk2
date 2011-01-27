@@ -54,8 +54,8 @@ other graphics devices.
 
 %% current device
 When working with multiple devices, it becomes necessary to switch
-between devices. A \code{ggraphics} instance can be made to represent
-the current device if the user clicks in the window. Otherwise, the
+between devices. A mouse click in a \code{ggraphics} instance will
+make that device the current one. Otherwise, the
 \method{visible\ASSIGN}{ggraphics} method can be used to set the
 object as the current device.  The \constructor{ggraphicsnotebook}
 creates a notebook that allows the user to easily navigate multiple
@@ -82,7 +82,7 @@ w <- gwindow("ggraphics example", visible=FALSE)
 g <- ggraphics(cont=w)
 x <- mtcars$wt; y <- mtcars$mpg
 #
-addHandlerClicked(g, handler=function(h,...) {
+addHandlerClicked(g, handler=function(h, ...) {
   cat(sprintf("You clicked %.2f x %.2f\n", h$x, h$y))
 })
 addHandlerChanged(g, handler=function(h,...) {
@@ -100,7 +100,9 @@ plot(x, y)
 @ 
 %
 
-
+The underlying toolkits may pass in more information about the event,
+such as whether a modifier key was being presed, but this isn't
+toolkit independent.
 
 
 %% XXXX Move this example somewhere COMPONENT PROGRAMMING
@@ -199,9 +201,9 @@ means to browse and select the objects in the current global
 environment. This workspace browser uses a tree widget to display the
 items and their named components.
 
-The \code{svalue} method returns name of the currently selected value
+The \code{svalue} method returns the name of the currently selected value
 using \code{\$} to refer to child elements.  One can call
-\code{svalue} on this to get the object.
+\code{svalue} on this string to get the \R\/ object.
 
 The default \argument{handler}{gvarbrowser} object calls
 \code{do.call} on the object for the function specified by name
@@ -229,7 +231,8 @@ The \constructor{ghelp} constructor produces a widget for showing help
 pages using a notebook container. Although \R\/ now has excellent
 ways to dynamically view help pages through a web browser (in
 particular the \pkg{helpr} package and the standard built-in help
-page server) this widget provides a light-weight alternative.
+page server) this widget provides a light-weight alternative that can
+be embedded in a GUI.
 
 To add a help page, the \method{add}{ghelp} method is used,
 where the \code{value} argument describes the desired page. This can

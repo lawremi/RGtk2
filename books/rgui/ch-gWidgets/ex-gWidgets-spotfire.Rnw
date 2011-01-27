@@ -85,7 +85,6 @@ filterg <- gframe(gettext("Filter by:"), cont = rg, expand=TRUE)
 @ 
 The controls are layed out in a grid. We have two here to filter by:
 type and the number of cylinders.
-data set.
 <<filterLayout>>=
 lyt <- glayout(cont=filterg)
 l <- list() # store widgets
@@ -98,10 +97,11 @@ lyt[2,2] <- (l$Cylinders <-
              gcombobox(c("", levels(x$Cylinders)), cont=lyt))
 @ 
 %
-Of course, we could use many more criteria to filter. The above
+Of course, we could use many more criteria to filter by. The above
 filters are naturally represented by a combo box. However, one could
 have used many different styles, depending on the type of data. For
 instance, one could employ a checkbox to filter through Boolean data,
+a checkbox group to allow multiple selection,
 a slider to pick out numeric data, or a text box to specify a
 filtering by a string. The type of data dictates this.
 
@@ -139,8 +139,8 @@ updateDataFrame <- function(...) {
 % this example it is used to specify which rows of the data are actually
 % displayed by the widget.
 
-This next function is used to update the graphic. Of course, this graphic is not
-so interesting, but in a real application, it should be.
+This next function is used to update the graphic. A real application
+would provide a more compelling plot.
 <<>>=
 updateGraphic <- function(...) {
   ind <- visible(tbl)
@@ -158,7 +158,7 @@ f <- function(h, ...) {
   updateDataFrame()
   updateGraphic()
 }
-sapply(l, function(i) addHandlerChanged(i, handler=f))
+sapply(l, addHandlerChanged, handler=f)
 @ 
 %
 For the data display, we wish to allow the user to view individual cases

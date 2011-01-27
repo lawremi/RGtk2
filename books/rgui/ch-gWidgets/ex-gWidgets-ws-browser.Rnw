@@ -9,7 +9,7 @@ pattern in programming, where each view is notified of changes to an
 ``observable.''
 
 The observer design pattern uses observables, objects which record a
-list of observers and notify them when there is a change and
+list of observers and notify them when there is a change, and
 observers. We will use an observable for a data model to store
 information about our current workspace and the views will be the
 observers. The basic observable pattern can be coded using reference classes
@@ -40,7 +40,8 @@ setRefClass("Observable",
 
 @ 
 %
-This can get more involved (we can block observers, etc.), but we keep
+This can get more involved (we implement signals or we could allow
+observers to be blocked, etc.), but we keep
 it simple for this example. 
 
 
@@ -91,7 +92,7 @@ f <- function(model) print(model$prop1)
 o <- getRefClass("Observer")$new(o=f)
 m$set("prop1", "Some value")
 m$add_observer(o)
-m$set("prop1", "A new value")
+m$set("prop1", "A new value")           # now f is called
 @ 
 
 For the task at hand, we subclass the \class{Model} class. Notifying
@@ -99,14 +100,59 @@ the observers is potentially expensive and disruptive, so we check in
 the \meth{update} method that objects have indeed changed. The
 \pkg{digest} function is used to create a summary record of the
 workspace each time \code{update} is run. If there are changes, then
-we notify the observers. Below we filter out the values with class
-\code{envRefClass}.
-
+we notify the observers. 
+<<udpate_fun>>=
+require(digest)
+update_fun <- function() {
+  "update vector of ws_objects if applicable"
+  x <- sort(ls(envir=.GlobalEnv))
+  ## filter out envRefClass objects --
+  isRef <- function(i) 
+    is(get(i, envir=.GlobalEnv), "envRefClass")
+  x <- x[!sapply(x, function(i) isRef(i))]
+  ds <- sapply(x, function(i) 
+               digest(get(i, envir=.GlobalEnv)))
+  
+  if((length(ds) != length(ws_objects_digest)) ||
+     length(ws_objects_digest) == 0 ||
+     any(ds != ws_objects_digest)) {
+    ws_objects_digest <<- ds 
+    ws_objects <<- x
+    notify_observers(model=.self) # pass model
+  }
+  invisible()
+}
+@ 
+%
 The \code{get\_objects} method, which returns the names of the
 objects in the work space,  adds some complexity, but allows us to
 filter by class.
+
+<<"get_objects">>=
+get_objects <- function(klass) {
+  "Get objects. If klass given, restrict to those. 
+Klass may have ! in front, as in '!function'"
+  if(missing(klass) || length(klass) == 0)
+    return(ws_objects)
+  ind <- sapply(ws_objects, function(i) {
+    x <- get(i, envir=.GlobalEnv)
+    any(sapply(klass, function(j)  {
+      if(grepl("^!", j))
+        !is(x, substr(j, 2, nchar(j)))
+      else
+        is(x, j)
+    }))
+  })
+  if(length(ind))
+    ws_objects[ind]
+  else
+    character(0)
+}
+@ 
+%
+
+Now we create our reference class.
 <<WSModel, results=hide>>=
-require(digest)
 setRefClass("WSModel",
             contains="Model",
             fields=list(
@@ -114,44 +160,8 @@ setRefClass("WSModel",
               ws_objects_digest="character"
               ),
             methods=list(
-              update=function() {
-                "update vector of ws_objects if applicable"
-                x <- sort(ls(envir=.GlobalEnv))
-                ## filter out envRefClass objects --
-                isRef <- function(i) 
-                  is(get(i, envir=.GlobalEnv), "envRefClass")
-                x <- x[!sapply(x, function(i) isRef(i))]
-                ds <- sapply(x, function(i) 
-                             digest(get(i, envir=.GlobalEnv)))
-                
-                if((length(ds) != length(ws_objects_digest)) ||
-                   length(ws_objects_digest) == 0 ||
-                   any(ds != ws_objects_digest)) {
-                  ws_objects_digest <<- ds 
-                  ws_objects <<- x
-                  notify_observers(model=.self) # pass model
-                }
-                invisible()
-              },
-              get_objects=function(klass) {
-                "Get objects. If klass given, restrict to those. 
-Klass may have ! in front, as in '!function'"
-                if(missing(klass) || length(klass) == 0)
-                  return(ws_objects)
-                ind <- sapply(ws_objects, function(i) {
-                  x <- get(i, envir=.GlobalEnv)
-                  any(sapply(klass, function(j)  {
-                    if(grepl("^!", j))
-                      !is(x, substr(j, 2, nchar(j)))
-                    else
-                      is(x, j)
-                  }))
-                })
-                if(length(ind))
-                  ws_objects[ind]
-                else
-                  character(0)
-              }))
+              update=update_fun,
+              get_objects=get_objects))
 @ 
 %
 The \meth{update} function should be called periodically. This can be
@@ -167,7 +177,7 @@ setRefClass("View",
             fields=list(model = "WSModel"),
             methods=list(
               set_model=function(new_model) {
-                ## set model and add view as observer
+                "set model and add view as observer"
                 if(exists("model", .self)) 
                   model$remove_observer(.self)
                 model <<- new_model
@@ -207,7 +217,7 @@ setRefClass("WidgetView",
 The first subclass of the widget view class will be one where we show
 the values in the workspace using a table widget. To generate data on
 each object, we define some S3 classes. These are more convenient than
-a reference classes for this task. First we want a nice description of the
+reference classes for this task. First we want a nice description of the
 size of the object:
 <<sizeOf>>=
 sizeOf <- function(x, ...) UseMethod("sizeOf")
@@ -230,9 +240,10 @@ sizeOf.list <- function(x, ...) nsprintf("%s component", "%s components", length
 @ 
 %
 
-Now we, desire a short description of the type of object we have.
+Now, we desire a short description of the type of object we have.
 <<shortDescription, results=hide>>=
-shortDescription <- function(x, ...) UseMethod("shortDescription")
+shortDescription <- function(x, ...) 
+  UseMethod("shortDescription")
 shortDescription.default <- function(x, ...) "R object"
 shortDescription.numeric <- function(x, ...) "Numeric vector"
 shortDescription.integer <- function(x, ...) "Integer"
@@ -285,7 +296,9 @@ TableView <-
 %
 
 To illustrate the flexibility of this framework, we also define a
-subclass to show just the data frames in a combo box.
+subclass to show just the data frames in a combo box. The combo box is
+a bit contrived in this example, but having a means to select a data
+frame is common to \R\/ GUIs.
 
 <<DfView>>=
 DfView <-
@@ -305,9 +318,7 @@ DfView <-
 @ 
 %
 
-We can put these pieces together to make a simple GUI. The combo box is
-a bit contrived here, but having means to  select a data frame is
-common to \R\/ GUIs.
+We can put these pieces together to make a simple GUI. 
 <<testit, results=hide>>=
 w <- gwindow()
 nb <- gnotebook(cont=w)
@@ -325,7 +336,7 @@ view1$klass <- "!function"
 view2 <- TableView$new(parent=nb, model=m, label="all")
 view3 <- DfView$new(parent=nb, model=m, label = "data frames")
 #
-m$update()
+m$update()                              # notifies views
 svalue(nb) <- 1
 @ 
 

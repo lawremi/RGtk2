@@ -35,12 +35,12 @@ moderately complex GUIs quickly and easily using a programming
 interface that is familiar to the \R\/ user.
 
 The \pkg{gWidgets} package started as a port to \pkg{RGtk2} of the
-\pkg{iWidgets} package of Simon Urbanek, initially implemented only
+\pkg{iWidgets} package of Simon Urbanek written fro 
 for Swing through \pkg{rJava}~\citep{iWidgets}. Along the way,
 \pkg{gWidgets} was extended and abstracted to work with different GUI
 toolkit backends available for \R. A separate package provides the
 interface. As of writing there are interfaces for \pkg{RGtk2},
-\pkg{qtbase}, and \pkg{tcltk}. The \pkg{gWidgetsWWW} provides a
+\pkg{qtbase}, and \pkg{tcltk}. The \pkg{gWidgetsWWW} package provides a
 similar interface for web programming, but does not use \pkg{gWidgets}
 itself.
 
@@ -129,8 +129,8 @@ be described later.
 
 
 This example defines five different widgets, a window, a box
-container, a label, a single-line, text edit area and a button. These
-GUI objects are produced by constructors.
+container, a label, a single-line text edit area and a button, all
+produced by some constructor.
 
 
 In the \pkg{gWidgets} API most constructors have the following form: 
@@ -160,7 +160,7 @@ Chapter~\ref{sec:gWidgets-Containers}.
 %% toolkit
 The \args{toolkit} argument is usually not specified. It is there to
 allow the user to mix toolkits within the same \R\/ session, but in
-practice can cause problems due to competing event loops. The default
+practice this can cause problems due to competing event loops. The default
 for the \args{toolkit} argument is a call to \function{guiToolkit}. 
 In our example we have the call
 \begin{Schunk}
@@ -173,12 +173,12 @@ choice. If there is more than one possibility, and one has not be
 selected, then the \function{guiToolkit} will query the user to choose one.
 
 %% return value
-The constructors produce three general types of objects: containers,
+The constructors produce one of three general types of objects: containers,
 such as the top level window \code{w} and the box container \code{g}
 (Table~\ref{tab:gWidgets-container-constructors}); components, such as
-a label \code{l}, the edit area \code{e} or the button \code{b}.
-(Tables~\ref{tab:gWidgets-control-widgets} and~\ref{tab:gWidgets-compound-widgets}) show the basic and compound
-widgets); and dialogs.
+a label \code{l}, the edit area \code{e}, or the button \code{b}.
+(Tables~\ref{tab:gWidgets-control-widgets}
+and~\ref{tab:gWidgets-compound-widgets}); and dialogs (Table~\ref{tab:gWidgets-basic-dialogs}).
 
 
 
@@ -226,7 +226,7 @@ response to the dialog.)
 GUI objects have a state determined by one or more of their
 properties. In \pkg{gWidgets} many properties are set at the time of
 construction. However, there are also several generic methods defined
-for \pkg{gWidgets} objects. ~\footnote{
+for \pkg{gWidgets} objects.~\footnote{
   We are a bit imprecise about the term ``method'' here. The \pkg{gWidgets}
   methods call further methods in the underlying toolkit interface
   which we think of a single method call. The actual S4 object has a
@@ -242,7 +242,7 @@ for the familiar S3 generics \generic{[}, \generic{[$<$-},
 
 
 %% svalue
-In our example, we see two cases of the use of generics defined by
+In our example, we see two cases of the use of generic methods defined by
 \pkg{gWidgets}. The call
 \begin{Schunk}
 \begin{Sinput}
@@ -250,22 +250,22 @@ In our example, we see two cases of the use of generics defined by
 \end{Sinput}
 \end{Schunk}
 %
-demonstrates the generic method \defn{\meth{svalue}} that can be used
-to get or set the main property of the widget. For the object
-\code{e}, the main property is the text, for the button and label
-widgets this property is the label. The \meth{svalue\ASSIGN}
-assignment method is used to adjust this property programatically.
-For the selection widgets, there is a natural mapping between vectors
-or data frames, and the data to be selected. In this case, the user
-may want the value selected or the index of the selected value. The
-\args{index=TRUE} argument may be given to refer to the index, either
-when getting or setting the properties value. For these selection
-widgets the familiar \meth{[} and \meth{[\ASSIGN} methods refer to the
-underlying data to be selected from.
+demonstrates the new generic \defn{\meth{svalue}} that is used to get
+or set the main property of the widget. For the object \code{e}, the
+main property is the text, for the button and label widgets this
+property is the label. The \meth{svalue\ASSIGN} assignment method is
+used to adjust this property programatically.  For the selection
+widgets, there is a natural mapping between vectors or data frames,
+and the data to be selected. In this case, the user may want the value
+selected or the index of the selected value. The \args{index=TRUE}
+argument of \meth{svalue} may be given to refer to values by their
+index. For these selection widgets the familiar \meth{[} and
+\meth{[\ASSIGN} methods refer to the underlying data to be selected
+from.
 
 
 
-The call, 
+The call
 \begin{Schunk}
 \begin{Sinput}
  visible(w) <- TRUE
@@ -274,7 +274,7 @@ The call,
 %
 sets the visibility property of the top-level window. In this example,
 the \code{gwindow} constructor is passed \code{visible=FALSE} to
-suppress an initial drawing, making this method call necessary to show
+suppress an initial drawing of the window, making this call to \meth{visible\ASSIGN} necessary to show
 the GUI.
 
 Some other methods to adjust the widget's underlying properties are \meth{font\ASSIGN},
@@ -296,7 +296,7 @@ for manipulating an object's properties compared to the number of
 methods typically provided by a GUI toolkit for a similar
 object. Although this simplicity makes \pkg{gWidgets} easier to work
 with, one may wish to get access to the underlying toolkit object to
-work at that level. The \generic{getToolkitWidget} will provide that
+take advantage of a richer API. The \generic{getToolkitWidget} will provide that
 object. We don't illustrate this, as we try to stay toolkit agnostic
 in our examples.
 
@@ -371,7 +371,7 @@ In our example, the lines
 create the button object. The constructor's argument \args{handler} is
 used to bind a callback to the click event of the button. Callbacks in
 \pkg{gWidgets} have a common signature \code{(h,...)} where \code{h}
-is a list with components \code{obj}, to pass in the object of the
+is a list with components \code{obj}, to pass in the receiver of the
 event (the button in this case), and \code{action} to pass along any
 value specified by the \args{action} argument (allowing one to
 parameterize the callback).
@@ -386,7 +386,7 @@ For example, a typical idiom within a callback is
 which assigns the object's main property to \code{prop}.  Some
 toolkits pass additional arguments through the callback's \args{...}
 argument, so for portability this part of the signature is not optional. For some
-classes, extra information is passed along. For instance, in the drop
+handler calls, extra information is passed along through \code{h}. For instance, in the drop
 target callback the component \code{h\$dropdata} 
 holds the drag-and-drop value.
 
@@ -401,7 +401,7 @@ typical event for the widget, such as the clicking of a button. (The
 addition, there are many ``\meth{addHandlerXXX}'' methods to assign
 callbacks to other events, where the \code{XXX} describes the
 event. These are useful in the case where more than one event is of
-interest. For example, for single line text widgets, like \code{e} in
+interest. For example, for single-line text widgets, like \code{e} in
 our example, the \meth{addHandlerChanged} method sets a callback to
 respond when the user finishes editing, whereas a handler set by
 \meth{addHandlerKeystroke} is called each time a key is pressed.
@@ -419,7 +419,8 @@ As an example, we could have specified the button as
 \end{Sinput}
 \end{Schunk}
 We passed in the object \code{e} through the action argument as an
-illustration. This is useful, as one need not worry about the scope of the
+illustration. This is useful, as one need not worry finding \code{e}
+throug \R's scoping rules in the
 call to \code{svalue}.
 
 The \meth{addHandlerXXX} methods return an ID.  This ID can be used
@@ -427,7 +428,7 @@ with the method \meth{removeHandler} to remove the callback, or with
 the methods \meth{blockHandler} and \meth{unblockHandler} to
 temporarily block a handler from being called.
 
-If these few methods are insufficient, and toolkit-portability is not
+If these few methods are insufficient and toolkit-portability is not
 of interest, then the \meth{addHandler} generic can be used to specify
 a toolkit-specific signal and a callback.
 
@@ -441,7 +442,7 @@ a toolkit-specific signal and a callback.
 
 Method&Description\\
 \midrule
-\meth{addHandlerChanged}&Primary handler call for when a widget's value is "changed." The interpretation of "change" depends on the widget.\\\meth{addHandlerClicked}&Sets handler for when widget is clicked with (left) mouse button. May return position of click through components \code{x} and \code{y} of the \code{h}-list. \\\meth{addHandlerDoubleclick}&Sets handler for when widget is double clicked\\\meth{addHandlerRightclick}&Sets handler for when widget is right clicked\\\meth{addHandlerKeystroke}&Sets handler for when key is pressed. The \code{key} component is set to this value if possible.\\\meth{addHandlerFocus}&Sets handler for when widget gets focus\\\meth{addHandlerBlur}&Sets handler for when widget loses focus\\\meth{addHandlerExpose}&Sets handler for when widget is first drawn\\\meth{addHandlerUnrealize}&Sets handler for when widget is undrawn on screen\\\meth{addHandlerDestroy}&Sets handler for when widget is destroyed\\\meth{addHandlerMouseMotion}&Sets handler for when widget has mouse go over it\\\meth{addDropSource}&Specify a widget as a drop source\\\meth{addDropMotion}&Sets handler to be called when drag event mouses over the widget\\\meth{addDropTarget}&Sets handler to be called on a drop event. Adds the component \code{dropdata}.\\\meth{addHandler}&(Not cross-toolkit) Allows one to specify an underlying signal from the graphical toolkit and handler\\&\\\meth{removeHandler}&Remove a handler from a widget\\\meth{blockHandler}&Temporarily block a handler from being called\\\meth{unblockHandler}&Restore handler that has been blocked\\\meth{addHandlerIdle}&Call a handler during idle time\\&\\\meth{addPopupmenu}&Bind popup menu to widget\\\meth{add3rdMousePopupmenu}&Bind popup menu to right mouse click
+\meth{addHandlerChanged}&Primary handler call for when a widget's value is "changed." The interpretation of "change" depends on the widget.\\\meth{addHandlerClicked}&Sets handler for when widget is clicked with (left) mouse button. May return position of click through components \code{x} and \code{y} of the \code{h}-list. \\\meth{addHandlerDoubleclick}&Sets handler for when widget is double clicked\\\meth{addHandlerRightclick}&Sets handler for when widget is right clicked\\\meth{addHandlerKeystroke}&Sets handler for when key is pressed. The \code{key} component is set to this value, if possible.\\\meth{addHandlerFocus}&Sets handler for when widget gets focus\\\meth{addHandlerBlur}&Sets handler for when widget loses focus\\\meth{addHandlerExpose}&Sets handler for when widget is first drawn\\\meth{addHandlerUnrealize}&Sets handler for when widget is undrawn on screen\\\meth{addHandlerDestroy}&Sets handler for when widget is destroyed\\\meth{addHandlerMouseMotion}&Sets handler for when widget has mouse go over it\\\meth{addDropSource}&Specify a widget as a drop source\\\meth{addDropMotion}&Sets handler to be called when drag event mouses over the widget\\\meth{addDropTarget}&Sets handler to be called on a drop event. Adds the component \code{dropdata}.\\\meth{addHandler}&(Not cross-toolkit) Allows one to specify an underlying signal from the graphical toolkit and handler\\&\\\meth{removeHandler}&Remove a handler from a widget\\\meth{blockHandler}&Temporarily block a handler from being called\\\meth{unblockHandler}&Restore handler that has been blocked\\\meth{addHandlerIdle}&Call a handler during idle time\\&\\\meth{addPopupmenu}&Bind popup menu to widget\\\meth{add3rdMousePopupmenu}&Bind popup menu to right mouse click
 \\ \bottomrule
 \end{tabular}
 \end{table}
@@ -454,7 +455,7 @@ The \pkg{gWidgets} package provides a few constructors to quickly make
 some basic dialogs for showing messages or gathering
 information. Mostly these are modal dialogs that take control of the
 event loop, not allowing any other part of the GUI to be active for
-programmatic interaction. As such, in \pkg{gWidgets} constructors of
+programmatic interaction. As such, in \pkg{gWidgets}, constructors of
 modal dialogs do not return an object to manipulate through its
 methods, but rather return the user response to the dialog. For example, the
 \code{gfile} dialog, described later, is a modal dialog that pops up a
@@ -611,7 +612,7 @@ the \pkg{RGtk2} package and the two \pkg{gWidgets} packages.
 The difficulty for the end user is the installation of the graphic
 toolkit, as all other packages are installed through CRAN, or are
 recommended packages with an \R\/ installation
-(\pkg{tcltk}). Table~\ref{XXX} describes the installation process for
+(\pkg{tcltk}). Table~\ref{tab:gWidgets-installation} describes the installation process for
 different operating systems and toolkits.
 
 %% JV Perhaps this belongs somewhere else in the text...
@@ -629,7 +630,7 @@ Windows&Download exe file&Install libraries, binary&In binary install of R\\Linu
 \end{tabular}
 \end{table}
 Not all features of the API are supported by a particular toolkit. In
-particular, the easiest to use (\pkg{gWidgetstcltk}) might have the
+particular, the easiest to install (\pkg{gWidgetstcltk}) might have the
 fewest features.  The help pages in the \pkg{gWidgets} package
 describe the API, with the help pages in the toolkit packages
 indicating differences or omissions from the API (e.g. \code{?gWidgetsRGtk2-package}). For the most part,
@@ -696,16 +697,16 @@ functionality.
 After identifying the underlying data to manipulate and how to
 represent it, GUI construction involves three basic steps: creation
 and configuration of the main components; the layout of these
-components; and linking the components to make a GUI interactive. This
+components; and connecting the components through callbacks to make a GUI interactive. This
 chapter discusses the layout process within \pkg{gWidgets}. Layout in
 \pkg{gWidgets} is done by placing child components within parent
 containers which in turn may be nested in other containers. (This is
-more like \GTK, and not \Qt where layout managers control where the
+more like \GTK, and not \Qt, where layout managers control where the
 components are displayed.) The \pkg{gWidgets} package provides a just
-few types containers: top-level windows, box containers, a grid
+few types of containers: top-level windows, box containers, a grid
 container, a paned container and  a notebook
 container. Figure~\ref{fig:gWidgets-sample-layout} shows most all of
-these employed to produce a GUI to select and then show contents of a file.
+these employed to produce a GUI to select and then show the contents of a file.
 
 
 %% add
@@ -713,7 +714,7 @@ Except for the grid container, the primary method for containers is
 their \meth{add} method. The basic call is of the form
 \code{add(parent, child, extra\_arguments)}. However, this isn't
 typically used. In some toolkits, notably \pkg{tcltk}, the widget
-constructors require the specification of a parent window for the
+constructors require the specification of a parent container for the
 widget. To accomodate that, the \pkg{gWidgets} constructors --
 except for top-level windows -- have the argument \args{container}
 to specify the immediate parent container.  Within the constructor is
@@ -824,7 +825,7 @@ In most GUIs,  the use of menubars, toolbars and
 statusbars is often reserved for the main window, while dialogs are
 not decorated so.  In \pkg{gWidgets} it is suggested, although not
 strictly enforced unless done so by the underlying toolkit, that these be
-added only to a top-level window.  We discuss these later in
+added only to a top-level window.  We discuss these widgets later in
 Section~\ref{sec:gWidgets-acti-menus-toolb}. 
 
 \begin{table}
@@ -869,7 +870,7 @@ There are three basic steps: an initial call to
 \function{gbasicdialog} to return a container to be used as the parent
 container for a child component; a construction of the dialog; then a
 call to the \code{visible} method on the dialog with \code{set=TRUE}
-value (not though \code{visible(obj) \ASSIGN\/ TRUE}).
+value.
 
 For a basic example where the handler simply echoes back
 the text stored in the label, we have:
@@ -951,16 +952,22 @@ customize how the child widgets respond when their parent window is
 resized. These are passed through the 
 \args{...}  argument of the constructor.
 
-These arguments are:
+These arguments are
+(Figure~\ref{fig:gWidgets-ggroup-expand-fill-anchor} shows
+combinations of these arguments under \pkg{gWidgetsQt}):
+
 \begin{description}
-\item[expand, fill] When \code{expand=TRUE} is specified then the child
-  widget will expand to fill the space allocated to it. The
-  \args{fill} argument can be specified as \qcode{x}, \qcode{y}, or
-  the default \qcode{both} to indicate which direction to fill
-  in.  (This varies among the toolkits.)
+\item[expand, fill] When \code{expand=TRUE} is specified then the
+  space allocated for the child widget will expand in some manner.
   
   
-\item[anchor] If a widget does not expand or if it does but does not fill in both
+\item[fill, anchor] When a widget is placed into is allocated space,
+  it can be desirable that it grow to fill the available space.
+  The \code{fill} argument, taking a value of \code{x}, \code{y} or
+  \code{both} indicates how the widget should expand. For many
+  toolkits, the default fill is orthogonal to the direction of packing.
+  
+  If a widget does not expand or if it does but does not fill in both
   directions, it can be anchored into its available space in more than
   one position. The \args{anchor} argument can be specified to suggest
   where to anchor the child. It takes a numeric vector representing
@@ -969,8 +976,7 @@ These arguments are:
   example, a value of \code{c(1,1)} would specify the northwest corner.
 \end{description}
 
-Figure~\ref{fig:gWidgets-ggroup-expand-fill-anchor} shows combinations
-of these arguments under \pkg{gWidgetsQt}.
+
 
 
 \begin{figure}
@@ -1004,7 +1010,8 @@ method. The method \method{addSpace}{ggroup} can add a non-uniform
 amount of space between two widgets packed next to each other, whereas
 the method \method{addSpring}{ggroup} will place an invisible spring
 between two widgets, forcing them apart.  Both are useful for laying
-out buttons.
+out buttons. We used a spring before the ``source'' button for the GUI
+in Figure~\ref{fig:gWidgets-sample-layout} .
 
 
 For example, we might modify our button layout example to include a
@@ -1032,20 +1039,21 @@ fixed amount of space between them as follows (Figure~\ref{fig:gWidgets-button-l
   \label{fig:gWidgets-button-layout}
 \end{figure}
 
-To illustrate how the right panel of
-Figure~\ref{fig:gWidgets-sample-layout} was done, we used nested
-layouts as follows:
+% To illustrate how the right panel of
+% Figure~\ref{fig:gWidgets-sample-layout} was done, we used nested
+% layouts as follows:
 
+% <<echo=FALSE>>=
+% w <- gwindow("Nested layout example")
+% @ 
 
-\begin{Schunk}
-\begin{Sinput}
- g <- ggroup(horizontal=FALSE, cont=w)
- bg <- ggroup(cont=g)                    # nested group
- addSpring(bg)
- b <- gbutton("Source", cont=bg)
- nb <- gnotebook(cont=g, expand=TRUE)    # fill space
-\end{Sinput}
-\end{Schunk}
+% <<nestedLayout, results=hide>>=
+% g <- ggroup(horizontal=FALSE, cont=w)
+% bg <- ggroup(cont=g)                    # nested group
+% addSpring(bg)
+% b <- gbutton("Source", cont=bg)
+% nb <- gnotebook(cont=g, expand=TRUE)    # fill space
+% @ 
 
 
 \paragraph{Sizing}
@@ -1187,11 +1195,11 @@ As seen, children may be added to the grid at a specific row and
 column. To specify this, \R's matrix notation, \code{[\ASSIGN}, is
 used with the indices indicating the row and column.  A child may span
 more than one row or column. The corresponding index should be a
-vector of indices indicating so.  
+contiguous vector of indices indicating so.  
 
 The \code{[} method may be used to
-return the child occupying position $i,j$. To return the values of the
-widgets above can be done through:
+return the child occupying position $i,j$. To return the main properties of the
+widgets just defined can be done through:
 \begin{Schunk}
 \begin{Sinput}
  vals <- sapply(seq_len(dim(tbl)[1]), function(i) {
@@ -1201,9 +1209,9 @@ widgets above can be done through:
 \end{Schunk}
 
 
-When adding a child the \code{glayout} container should be specified as
-the widget's \code{container} and also be on the left hand side of the
-\code{[\ASSIGN} call. (This is necessary only for the toolkits where a
+When adding a child, in addition to being on the left hand side of the
+\code{[\ASSIGN} call, the \code{glayout} container should be specified as
+the widget's parent \code{container}. (This is necessary only for the toolkits where a
 container must be specified, where the right hand side is used to pass
 along the parent information and the left hand side is used for the
 layout.) For convenience, if the right hand side is a string, a label
@@ -1293,7 +1301,8 @@ The \constructor{gnotebook} constructor produces a tabbed notebook
 container. The GUI in Figure~\ref{fig:gWidgets-sample-layout} uses a
 notebook to hold different text widgets, one for each file being displayed.
 
-The \pkg{gWidgets} constructor has a few arguments. If permitted, the
+The \pkg{gWidgets} constructor has a few arguments, not all supported
+by each toolkit. The
 argument \argument{tab.pos}{gnotebook} is used to specify the location
 of the tabs using a value of 1 through 4 with 1 being botton, 2 left
 side, 3 top and 4 right side being used, with the default being 3
@@ -1301,8 +1310,7 @@ side, 3 top and 4 right side being used, with the default being 3
 \argument{closebuttons}{gnotebook} argument takes a logical indicating
 whether the tabs should have close buttons on them. In this case, the
 argument \argument{dontCloseThese}{gnotebook} can be used to specify
-which tabs, by index, should not be closable. (As of writing, this is
-not implemented in \pkg{gWidgetstcltk}.)
+which tabs, by index, should not be closable.
 
 
 
@@ -1325,11 +1333,10 @@ from the end as otherwise the tab positions change during removal.)
 
 From some viewpoint, the notebook widget is viewed as a vector with a
 names attribute (the labels) and components being the child
-components. As such, the \method{names}{gnotebook} method can be used
-to retrieve the tab names, and \method{names\ASSIGN}{gnotebook} to set
-the names. The \method{length}{gnotebook} method returns the number of
-pages held by the notebook. The \meth{[} method is also implemented to return the
-child components by index.
+components. As such, the \meth{[} method returns the the child
+components (by index), the \method{names}{gnotebook} method refers to
+the tab names, and the \method{length}{gnotebook} method returns the
+number of pages held by the notebook.
 
 
 
@@ -1346,9 +1353,11 @@ child components by index.
 New pages are added as follows:
 \begin{Schunk}
 \begin{Sinput}
- fname <- "DESCRIPTION"                  # or something else
- f <- system.file(fname, package="gWidgets")
- gtext(readLines(f), cont = nb, label=fname)
+ addAPage <- function(fname) {
+   f <- system.file(fname, package="ProgGUIinR")
+   gtext(readLines(f), cont = nb, label=fname)
+ }
+ addAPage("DESCRIPTION")
 \end{Sinput}
 \end{Schunk}
 
@@ -1359,7 +1368,8 @@ we have:
  svalue(nb) <- length(nb)
 \end{Sinput}
 \end{Schunk}
-To remove the current  page
+%
+To remove the current page
 \begin{Schunk}
 \begin{Sinput}
  dispose(nb)
@@ -1450,11 +1460,11 @@ In common with the other controls, the argument
 \argument{handler}{gbutton} is used to specify a callback and the
 \argument{action}{gbutton} argument will be passed along to this
 callback (unless it is a \code{gaction} object, whose case is
-described in Section~\ref{sec:gWidgets-actions}).  The default handler
-is the click handler which can be specified at construction, or
-afterward through \method{addHandlerClicked}{gbutton}. The underlying
-toolkit's method of invoking a callback through keyboard navigation
-is used.
+described in Section~\ref{sec:gWidgets-acti-menus-toolb}).  The
+default handler is the click handler which can be specified at
+construction, or afterward through
+\method{addHandlerClicked}{gbutton}. The underlying toolkit's method
+of invoking a callback through keyboard navigation is used.
 
 The following example shows how a button can be used to call a sub
 dialog to collect optional information. We imagine this as part of a
@@ -1560,7 +1570,7 @@ The \method{font\ASSIGN}{glabel} method
 can also be used to set the text markup
 (Table~\ref{tab:gWidgets-font-properties}).  
 For  some of the underlying toolkits, setting the argument
-\argument{markup}{glabel} \code{TRUE} allows a native markup language
+\argument{markup}{glabel} to \code{TRUE} allows a native markup language
 to be used (\GTK\/ had PANGO, \Qt\/ has rich text).
 \\
 
@@ -1619,7 +1629,7 @@ The \pkg{gWidgets} package provides a few stock icons that can be
 added to various GUI components. A list of the defined stock icons is
 returned by the function \code{getStockIcons}.  The names attribute
 defines the valid stock icon names. It was mentioned that if a
-button's label matches a stock icon name, that icon will appear
+button's label text matches a stock icon name, that icon will appear
 adjacent to the label.
 
 
@@ -1746,7 +1756,8 @@ by the \function{svg} driver, say. It currently is not available for
 The \pkg{gWidgets} package, following the underlying toolkits, has two
 main widgets for editing text: \constructor{gedit} for a single line
 of editable text, and \constructor{gtext} for multi-line, editable
-text. Each provides much less flexibility than is possible.
+text. Each provides much less flexibility than is possible with the
+toolkit widgets.
 
 
 
@@ -1755,9 +1766,9 @@ text. Each provides much less flexibility than is possible.
 
 
 The \constructor{gedit} constructor produces a widget to display a
-single line of editable text. The main property is the initial text
-which can be set through the \argument{text}{gedit} argument.  If this
-is not specified, and the argument \argument{initial.msg}{gedit} is,
+single line of editable text. The main property is the text which can
+be set initially through the \argument{text}{gedit} argument.  If 
+not specified, and the argument \argument{initial.msg}{gedit} is,
 then this initial message is shown until the widget receives the focus
 to guide the user.  If it is desirable to set the width of the widget,
 the \argument{width}{gedit} argument allows the specification in terms
@@ -1822,7 +1833,7 @@ specific key is given in the \code{key} component of the list \code{h} (the firs
 
 \begin{example}{Validation}{ex-gWidgets-gedit-validation}
 GUIs for \R\/ may differ a bit from many GUIs users typically
-interacts with, as \R\/ users expect to be able to use variables and
+interact with, as \R\/ users expect to be able to use variables and
 expressions where typically a GUI expects just characters or
 numbers. As such, it is helpful to indicate to the user if their value
 is a valid expression. This example shows how to implement a
@@ -1855,10 +1866,13 @@ We use the \pkg{evaluate} package to see if the expression is valid.
 %
 
 We validate our expression when the user commits the change, by
-pressing the return key while the widget has focus. Alternatively, we
-could have used
-\code{addHandlerKeystroke}, to validate after each key press, or
-\code{addHandlerBlur}, to validate when the widget loses focus.
+pressing the return key while the widget has focus. 
+
+%% Just mentioned. If moved uncomment.
+% Alternatively, we
+% could have used
+% \code{addHandlerKeystroke}, to validate after each key press, or
+% \code{addHandlerBlur}, to validate when the widget loses focus.
 
 \begin{Schunk}
 \begin{Sinput}
@@ -1956,7 +1970,7 @@ The following sets up the layout of the display and buttons.
  buttons <- rbind(c(7:9, "(", ")"),
                   c(4:6, "*", "/"),
                   c(1:3, "+", "-"))
- bList <- list()
+ #
  w <- gwindow("glayout for a calculator", visible=FALSE)
  g <- ggroup(cont=w, expand=TRUE, horizontal=FALSE)
  tbl <- glayout(cont=g, spacing=2)
@@ -1964,6 +1978,8 @@ The following sets up the layout of the display and buttons.
    (eqnArea <- gedit("", cont=tbl))
  tbl[2, 1:5, anchor=c(1,0)] <- 
    (outputArea <- glabel("", cont=tbl))
+ #
+ bList <- list()
  for(i in 3:5) {
    for(j in 1:5) {
      val <- buttons[i-2, j]
@@ -1973,6 +1989,7 @@ The following sets up the layout of the display and buttons.
  tbl[6,2] <- (bList[["0"]] <- gbutton("0", cont=tbl))
  tbl[6,3] <- (bList[["."]] <- gbutton(".", cont=tbl))
  tbl[6,4:5] <- (eqButton <- gbutton("=", cont=tbl))
+ #
  visible(w) <- TRUE
 \end{Sinput}
 \end{Schunk}
@@ -1988,11 +2005,18 @@ the text for each button into the equation area.
    curExpr <- svalue(eqnArea)
    newChar <- svalue(h$obj)              # the button's value
    svalue(eqnArea) <- paste(curExpr, newChar, sep="")
-   svalue(outputArea) <- ""             # clear label 
+   svalue(outputArea) <- ""              # clear label 
  }
- out <- sapply(bList, function(i) 
-               addHandlerChanged(i, handler=addButton))
+ sapply(bList, addHandlerChanged, handler=addButton)
 \end{Sinput}
+\begin{Soutput}
+7.clicked 8.clicked 9.clicked (.clicked ).clicked 4.clicked 5.clicked 6.clicked 
+      818       819       820       821       822       823       824       825 
+*.clicked /.clicked 1.clicked 2.clicked 3.clicked +.clicked -.clicked 0.clicked 
+      826       827       828       829       830       831       832       833 
+..clicked 
+      834 
+\end{Soutput}
 \end{Schunk}
 
 When the equals sign is clicked, the expression is evaluated and if
@@ -2030,7 +2054,7 @@ methods are used to manipulate this underlying data store. The
 controls in \pkg{gWidgets} that display such data have the methods
 \code{[}, \code{[\ASSIGN}, \code{length}, \code{dim}, \code{names} and
 \code{names\ASSIGN}, as appropriate. The \code{svalue} method then
-refers to the user selected value. This selection may be a value or an
+refers to the user-selected value. This selection may be a value or an
 index, and the \meth{svalue} method has the argument \code{index} to
 specify which.
 
@@ -2041,8 +2065,8 @@ specify which.
   \label{fig:gWidgets-EBImage-gui}
 \end{figure}
 
-This section discusses several selection controls that serve a similar
-purpose but make different use of screen space.
+This section discusses several such selection controls that serve a
+similar purpose but make different use of screen space.
 
 \subsection{Checkbox widget}
 \label{sec:gWidgets-checkbox-widget}
@@ -2052,10 +2076,11 @@ that allows the user to set a state as \code{TRUE} or
 \code{FALSE}. The constructor has an argument
 \argument{text}{gcheckbox} to set a label and
 \argument{checked}{gcheckbox} to indicate if the widget should
-initially be checked. The default is \code{TRUE} (there is no third
-state). By default the label will be drawn aside a checkbox, if the
-argument \argument{use.togglebutton}{gcheckbox} is \code{TRUE}, a
-toggle button -- which appears depressed when \code{TRUE} -- is used.
+initially be checked. The default is \code{TRUE} (there is no third,
+uncommitted state as possible in some toolkits). By default the label
+will be drawn aside a box with a check, if the argument
+\argument{use.togglebutton}{gcheckbox} is \code{TRUE}, a toggle button
+-- which appears depressed when \code{TRUE} -- is used instead.
 
 In Figure~\ref{fig:gWidgets-EBImage-gui} a toggle button is used for
 ``Thresh''  and could be constructed as
@@ -2120,21 +2145,20 @@ the label text or by the index if the argument \args{index} is
 \code{TRUE}. The item may be set with the
 \method{svalue\ASSIGN}{gradio} method. Again, the item may be
 specified by the label or by an index, the latter when the argument
-\code{index=TRUE} is specified. The data store is the set of labels and
-are referenced through the \method{[}{gradio} method. They may be respecified
-with the
-\method{[\ASSIGN}{gradio} method. For convenience, the
-\method{length}{gradio} method returns the number of labels.
+\code{index=TRUE} is specified. The data store is the set of labels
+and may be respecified with the \method{[\ASSIGN}{gradio} method.
 
-The handler, if given to the constructor or set with \meth{addHandlerChanged}, is called on a click event.
+The handler, if given to the constructor or set with
+\meth{addHandlerChanged}, is called on a toggle event.
 
 \subsection{A group of checkboxes}
 \label{sec:gWidgets-group-checkboxes}
 
 
 The group of checkboxes is produced by the
-\constructor{gcheckboxgroup} constructor. This convenience widget is similar to a radio group,
-only it allows the selection of none, one or more of a set of items.  The
+\constructor{gcheckboxgroup} constructor. This convenience widget is
+similar to a radio group, only it allows the selection of none, one,
+or more than one of a set of items.  The
 \argument{items}{gcheckboxgroup} argument is used to specify the
 values. The state of whether an item is selected can be set with a
 logical vector of the same size as the number of items to the
@@ -2146,8 +2170,9 @@ vertical layout (\code{horizontal=FALSE}).
 
 For some toolkits, the argument specification \code{use.table=TRUE}
 will render the widget in a table with checkboxes to select from. This
-allows much larger sets of items to comfortably be used. This provides
-a similar functionality as using the \constructor{gtable} widget with multiple selection.
+allows much larger sets of items to comfortably be used. (This provides
+a similar functionality as using the \constructor{gtable} widget with
+multiple selection.)
 
 
 In Figure~\ref{fig:gWidgets-EBImage-gui} a group of check boxes is
@@ -2287,12 +2312,12 @@ sets a handler to respond to keystroke events.
 \subsection{A slider control}
 \label{sec:gWidgets-slider-control}
 
-The \constructor{gslider} constructor creates a slider that allows the
+The \constructor{gslider} constructor creates a scale widget that allows the
 user to select a value from the specified sequence.  The basic
 arguments mirror that of the \code{seq} function in \R:
 \argument{from}{gslider}, \argument{to}{gslider}, and
-\argument{by}{gslider}.  If \code{from} is a vector, then it is
-assumed it presents an orderable sequence of values to selecte from.
+\argument{by}{gslider}.  However, if \code{from} is a vector, then it is
+assumed it presents an orderable sequence of values to select from.
 In addition to the arguments to specify the sequence, the argument
 \argument{value}{gslider} is used to set the initial value of the
 widget and \argument{horizontal}{gslider} controls how the slider is
@@ -2314,7 +2339,7 @@ The \method{svalue}{gslider} method returns the currently chosen
 value. The \method{[\ASSIGN}{gslider} method can be used to update the
 sequence of values to choose from. 
 
-The default handler is called when the slider is changed. Example~\ref{ex-gWidgets-sliders-spingbuttons}
+The default handler is called when the slider is changed. Example~\ref{ex-gWidgets-sliders-spinbuttons}
 shows how this can be used to update a graphic.
 
 
@@ -2339,7 +2364,7 @@ adjust the contrast, a numeric value. The following will reproduce it
 \end{Schunk}
 
 
-% \begin{example}{Example of sliders and spin buttons}{ex-gWidgets-sliders-spingbuttons}
+% \begin{example}{Example of sliders and spin buttons}{ex-gWidgets-sliders-spinbuttons}
 %   The use of sliders and spin buttons to dynamically adjust a graphic
 %   is common in \R\/ GUIs targeted towards teaching statistics. Here is
 %   an example, similar to the \code{tkdensity} example of \pkg{tcltk},
@@ -2398,10 +2423,10 @@ to this action:
 The selection type is specified by the \code{type} argument with
 values of \code{open}, to select an existing file; \code{save} to
 select a file to write to; and \code{selectdir} to select a
-directory. For \code{RGtk2}, the \argument{filter}{gfile} argument,
-used above, will filter
-the possible selections. The dialog returns the path of the
-file, or \code{NA} if the dialog was canceled. 
+directory. The \argument{filter}{gfile} argument is toolkit
+dependent. For \code{RGtk2}, the \argument{filter}{gfile} argument,
+used above, will filter the possible selections. The dialog returns
+the path of the file, or \code{NA} if the dialog was canceled.
 
 Although working with the return value is easy enough, if desired, one can specify a
 handler to the constructor to call on the file or directory name. The
@@ -2484,8 +2509,8 @@ the global environment can be generated with
 \end{Schunk}
 
 Often the table widget is added to a box container with the argument
-\code{expand=TRUE}. Otherwise, The size of the widget can be specified
-by \meth{size\ASSIGN}. This can be list with components \code{width}
+\code{expand=TRUE}. Otherwise, the size of the widget should be specified
+through \meth{size\ASSIGN}. This size can be list with components \code{width}
 and \code{height} (pixel widths). As well, the component
 \code{columnWidths} can be used to specify the column
 widths. (Otherwise a heuristic is employed.)
@@ -2496,12 +2521,13 @@ single argument -- the data frame being shown -- and should return a
 character vector of stock icon names, one for each row.
 
 \paragraph{Selection}
-Users can select a case (row) -- not by observation (a cell) -- from
-this widget. The value returned by a selection is controlled by the
-constructor's arguments \argument{chosencol}{gtable}, which specifies
-which column value will be returned, as the user can only specify the
-row; and \argument{multiple}{gtable} which controls whether the user
-may select more than one row.
+Users can select by case (row) -- not by observation (column) -- from
+this widget. The actual value returned by a selection is controlled by
+the constructor's argument \argument{chosencol}{gtable}, which
+specifies which column's value will be returned for the given index,
+as the user can only specify the row. The \argument{multiple}{gtable}
+argument can be specified to allow the user to select more than one
+row.
 
 \paragraph{Methods}
 The \method{svalue}{gtable} method will return the currently selected
@@ -2518,7 +2544,7 @@ not as flexible as assigning to a data frame. The underlying
 toolkits may not like to change the type of data displayed in a
 column, so when updating a column do not assume some underlying
 coercion, as is done with \R's data frames. To replace the data store, the \code{[\ASSIGN} can
-be used via \code{obj[] \ASSIGN\/ new\_data\_frame}. The methods
+be used, as with \code{obj[] \ASSIGN\/ new\_data\_frame}. The methods
 \method{names}{gtable} and \method{names\ASSIGN}{gtable} refer to the
 column headers, and \method{dim}{gtable} and \method{length}{gtable}
 the underlying dimensions of the data store.
@@ -2543,13 +2569,13 @@ handler for a double click event. Also of interest are the
 to right-click events.
 
 
-To add a handler to the data frame selection widget above, we could have
+To add a handler to the data frame selection widget above, we could have:
 \begin{Schunk}
 \begin{Sinput}
  addHandlerDoubleclick(dfs, handler=function(h,...) {
    val <- svalue(h$obj)
-   ## some action
-   print(summary(get(val, envir=.GlobalEnv)))
+   print(summary(get(val, envir=.GlobalEnv))) # some action
+ 
  })
 \end{Sinput}
 \end{Schunk}
@@ -2702,7 +2728,7 @@ pattern in programming, where each view is notified of changes to an
 ``observable.''
 
 The observer design pattern uses observables, objects which record a
-list of observers and notify them when there is a change and
+list of observers and notify them when there is a change, and
 observers. We will use an observable for a data model to store
 information about our current workspace and the views will be the
 observers. The basic observable pattern can be coded using reference classes
@@ -2734,7 +2760,8 @@ as:
 \end{Sinput}
 \end{Schunk}
 %
-This can get more involved (we can block observers, etc.), but we keep
+This can get more involved (we implement signals or we could allow
+observers to be blocked, etc.), but we keep
 it simple for this example. 
 
 
@@ -2790,7 +2817,7 @@ To illustrate how this works, we define a simple subclass of our
  o <- getRefClass("Observer")$new(o=f)
  m$set("prop1", "Some value")
  m$add_observer(o)
- m$set("prop1", "A new value")
+ m$set("prop1", "A new value")           # now f is called
 \end{Sinput}
 \begin{Soutput}
 [1] "A new value"
@@ -2802,15 +2829,64 @@ the observers is potentially expensive and disruptive, so we check in
 the \meth{update} method that objects have indeed changed. The
 \pkg{digest} function is used to create a summary record of the
 workspace each time \code{update} is run. If there are changes, then
-we notify the observers. Below we filter out the values with class
-\code{envRefClass}.
-
-The \code{get\_objects} method, which returns the names of the
-objects in the work space,  adds some complexity, but allows us to
-filter by class.
+we notify the observers. 
 \begin{Schunk}
 \begin{Sinput}
  require(digest)
+ update_fun <- function() {
+   "update vector of ws_objects if applicable"
+   x <- sort(ls(envir=.GlobalEnv))
+   ## filter out envRefClass objects --
+   isRef <- function(i) 
+     is(get(i, envir=.GlobalEnv), "envRefClass")
+   x <- x[!sapply(x, function(i) isRef(i))]
+   ds <- sapply(x, function(i) 
+                digest(get(i, envir=.GlobalEnv)))
+   
+   if((length(ds) != length(ws_objects_digest)) ||
+      length(ws_objects_digest) == 0 ||
+      any(ds != ws_objects_digest)) {
+     ws_objects_digest <<- ds 
+     ws_objects <<- x
+     notify_observers(model=.self) # pass model
+   }
+   invisible()
+ }
+\end{Sinput}
+\end{Schunk}
+%
+The \code{get\_objects} method, which returns the names of the
+objects in the work space,  adds some complexity, but allows us to
+filter by class.
+
+\begin{Schunk}
+\begin{Sinput}
+ get_objects <- function(klass) {
+   "Get objects. If klass given, restrict to those. 
+ Klass may have ! in front, as in '!function'"
+   if(missing(klass) || length(klass) == 0)
+     return(ws_objects)
+   ind <- sapply(ws_objects, function(i) {
+     x <- get(i, envir=.GlobalEnv)
+     any(sapply(klass, function(j)  {
+       if(grepl("^!", j))
+         !is(x, substr(j, 2, nchar(j)))
+       else
+         is(x, j)
+     }))
+   })
+   if(length(ind))
+     ws_objects[ind]
+   else
+     character(0)
+ }
+\end{Sinput}
+\end{Schunk}
+%
+
+Now we create our reference class.
+\begin{Schunk}
+\begin{Sinput}
  setRefClass("WSModel",
              contains="Model",
              fields=list(
@@ -2818,44 +2894,8 @@ filter by class.
                ws_objects_digest="character"
                ),
              methods=list(
-               update=function() {
-                 "update vector of ws_objects if applicable"
-                 x <- sort(ls(envir=.GlobalEnv))
-                 ## filter out envRefClass objects --
-                 isRef <- function(i) 
-                   is(get(i, envir=.GlobalEnv), "envRefClass")
-                 x <- x[!sapply(x, function(i) isRef(i))]
-                 ds <- sapply(x, function(i) 
-                              digest(get(i, envir=.GlobalEnv)))
-                 
-                 if((length(ds) != length(ws_objects_digest)) ||
-                    length(ws_objects_digest) == 0 ||
-                    any(ds != ws_objects_digest)) {
-                   ws_objects_digest <<- ds 
-                   ws_objects <<- x
-                   notify_observers(model=.self) # pass model
-                 }
-                 invisible()
-               },
-               get_objects=function(klass) {
-                 "Get objects. If klass given, restrict to those. 
- Klass may have ! in front, as in '!function'"
-                 if(missing(klass) || length(klass) == 0)
-                   return(ws_objects)
-                 ind <- sapply(ws_objects, function(i) {
-                   x <- get(i, envir=.GlobalEnv)
-                   any(sapply(klass, function(j)  {
-                     if(grepl("^!", j))
-                       !is(x, substr(j, 2, nchar(j)))
-                     else
-                       is(x, j)
-                   }))
-                 })
-                 if(length(ind))
-                   ws_objects[ind]
-                 else
-                   character(0)
-               }))
+               update=update_fun,
+               get_objects=get_objects))
 \end{Sinput}
 \end{Schunk}
 %
@@ -2873,7 +2913,7 @@ To use this model, we create a base view class and then a widget view class:
              fields=list(model = "WSModel"),
              methods=list(
                set_model=function(new_model) {
-                 ## set model and add view as observer
+                 "set model and add view as observer"
                  if(exists("model", .self)) 
                    model$remove_observer(.self)
                  model <<- new_model
@@ -2916,7 +2956,7 @@ to \meth{initialize}.
 The first subclass of the widget view class will be one where we show
 the values in the workspace using a table widget. To generate data on
 each object, we define some S3 classes. These are more convenient than
-a reference classes for this task. First we want a nice description of the
+reference classes for this task. First we want a nice description of the
 size of the object:
 \begin{Schunk}
 \begin{Sinput}
@@ -2931,10 +2971,11 @@ size of the object:
 
 %
 
-Now we, desire a short description of the type of object we have.
+Now, we desire a short description of the type of object we have.
 \begin{Schunk}
 \begin{Sinput}
- shortDescription <- function(x, ...) UseMethod("shortDescription")
+ shortDescription <- function(x, ...) 
+   UseMethod("shortDescription")
  shortDescription.default <- function(x, ...) "R object"
  shortDescription.numeric <- function(x, ...) "Numeric vector"
  shortDescription.integer <- function(x, ...) "Integer"
@@ -2988,7 +3029,9 @@ objects using a \code{gtable} widget.
 %
 
 To illustrate the flexibility of this framework, we also define a
-subclass to show just the data frames in a combo box.
+subclass to show just the data frames in a combo box. The combo box is
+a bit contrived in this example, but having a means to select a data
+frame is common to \R\/ GUIs.
 
 \begin{Schunk}
 \begin{Sinput}
@@ -3009,9 +3052,7 @@ subclass to show just the data frames in a combo box.
 \end{Schunk}
 %
 
-We can put these pieces together to make a simple GUI. The combo box is
-a bit contrived here, but having means to  select a data frame is
-common to \R\/ GUIs.
+We can put these pieces together to make a simple GUI. 
 \begin{Schunk}
 \begin{Sinput}
  w <- gwindow()
@@ -3030,7 +3071,7 @@ common to \R\/ GUIs.
  view2 <- TableView$new(parent=nb, model=m, label="all")
  view3 <- DfView$new(parent=nb, model=m, label = "data frames")
  #
- m$update()
+ m$update()                              # notifies views
  svalue(nb) <- 1
 \end{Sinput}
 \end{Schunk}
@@ -3044,12 +3085,11 @@ common to \R\/ GUIs.
 
 The \constructor{gtree} constructor can be used to display
 hierarchical structures, such as a file system or the components of a
-list. Populating the \constructor{gtree} widget is done by dynamically computing the
-child components. A parameterizion of the data to be displayed in terms
-of the path of the node that is currently selected is used. 
-
+list. The \constructor{gtree} widget is populated dynamically by
+computing the child components. A parameterizion of the data to be
+displayed is in terms of the path of the node that is currently selected.
 The \argument{offspring}{gtree} argument is assigned a function of two
-arguments, the path a particular node and the arbitrary object passed
+arguments, the path of a particular node and the arbitrary object passed
 through the optional \argument{offspring.data}{gtree} argument. This
 function should return a data frame with each row referring to an
 offspring for the node and whose first column is a key that identifies
@@ -3062,29 +3102,26 @@ a logical vector with each value indicating which rows have
 offspring. If it is more convenient to compute this within the
 \code{offspring} function, then when \code{hasOffspring} is left
 unspecified and the second column returned by \code{offspring} is a
-logical, then that column will be used.
+logical vector, then that column will be used.
 
 As an illustration, this function produces an offspring function to
-explore the hierarchical structure of a list. It uses a closure to
-encapsulate the list, rather than using the
-\argument{offspring.data}{gtree} argument or a global variable.
+explore the hierarchical structure of a list. It has the list passed
+in through the
+\argument{offspring.data}{gtree} argument of the constructor.
 \begin{Schunk}
 \begin{Sinput}
- listOffspring <- function(lst) {
-   offspring <- function(path=character(0),...) {
-     if(length(path))
-       obj <- lst[[path]]
-     else
+ offspring <- function(path=character(0), lst, ...) {
+   if(length(path))
+     obj <- lst[[path]]
+   else
        obj <- lst
-     nms <- names(obj)
-     hasOffspring <- sapply(nms, function(i) {
-       newobj <- obj[[i]]
-       is.recursive(newobj) && !is.null(names(newobj))
-     })
-     data.frame(comps=nms, hasOffspring=hasOffspring, 
-                stringsAsFactors=FALSE)
-   }
-   return(offspring)                     
+   nms <- names(obj)
+   hasOffspring <- sapply(nms, function(i) {
+     newobj <- obj[[i]]
+     is.recursive(newobj) && !is.null(names(newobj))
+   })
+   data.frame(comps=nms, hasOffspring=hasOffspring, 
+              stringsAsFactors=FALSE)
  }
 \end{Sinput}
 \end{Schunk}
@@ -3099,9 +3136,8 @@ To see the above used, we define a list to explore.
 \begin{Schunk}
 \begin{Sinput}
  l <- list(a="1", b= list(a="21", b="22", c=list(a="231")))
- o <- listOffspring(l)
  w <- gwindow("Tree test")
- t <- gtree(o, cont=w)
+ t <- gtree(offspring, offspring.data=l, cont=w)
 \end{Sinput}
 \end{Schunk}
 %%
@@ -3157,7 +3193,7 @@ example appearing in the package's vignette.
 
 The \pkg{party} object tracks the hierarchical nature through its
 nodes. This object has a complex structure using lists to store data
-about the nodes. We define an \code{offspring} function next that
+about the nodes. We define an \code{offspring} function next that:
 tracks the node by number, as is done in the \pkg{party} object;
 records whether a node has offspring through the \code{terminal}
 component (bypassing the \code{hasOffspring} function); and computes a
@@ -3168,7 +3204,7 @@ has only 0 or 2 rows.
 \begin{Schunk}
 \begin{Sinput}
  offspring <- function(key, offspring.data) {
-   if(missing(key) || length(key) == 0)  # which node?
+   if(missing(key) || length(key) == 0)  # which party node?
      node <- 1
    else
      node <- as.numeric(key[length(key)]) # key is a vector
@@ -3239,26 +3275,21 @@ graphics for this model fit.
 \section{Actions, menus and toolbars}
 \label{sec:gWidgets-acti-menus-toolb}
 
-%% ML: Is the overview really the right place for this? As you said,
-%% this really needs an example. I think it could go into the control
-%% widget chapter, at the end.
-%% JV: agreed, moved.
 
-Actions are invisible objects representing an application command that
-is executable through one or more widgets. See \ref{sec:GUI:actions}
-for more details. Actions in \pkg{gWidgets} are created through the
-\constructor{gaction} constructor. The arguments are
-\argument{label}{gaction}, \argument{tooltip}{gaction},
-\argument{icon}{gaction}, \argument{key.accel}{gaction},
-\argument{parent}{gaction} and the standard
-\argument{handler}{gaction} and \argument{action}{gaction}. The label
-appears as the text on a button, the menu item or toolbar text,
-whereas the icon will decorate the same if possible. For some
-toolkits, the tooltip pops up when the mouse hovers.  (See also the
-\meth{tooltip\ASSIGN} method.) The key accelerator will bind a
-keyboard shortcut, such as \kbd{Control-s} to an action. The
-\code{parent} argument is used to specify a widget whose toplevel
-container will process the shortcut.
+Actions are non-graphical objects representing an application command
+that is executable through one or more widgets. Actions in
+\pkg{gWidgets} are created through the \constructor{gaction}
+constructor. The arguments are \argument{label}{gaction},
+\argument{tooltip}{gaction}, \argument{icon}{gaction},
+\argument{key.accel}{gaction}, \argument{parent}{gaction} and the
+standard \argument{handler}{gaction} and
+\argument{action}{gaction}. The label appears as the text on a button,
+the menu item or toolbar text, whereas the icon will decorate the same
+if possible. For some toolkits, the tooltip pops up when the mouse
+hovers.  (See also the \meth{tooltip\ASSIGN} method.) The key
+accelerator will bind a keyboard shortcut, such as \kbd{Control-s} to
+an action. The \code{parent} argument is used to specify a widget
+whose toplevel container will process the shortcut.
 
 \paragraph{methods}
 The main methods for actions are \method{svalue\ASSIGN}{gaction} to
@@ -3296,12 +3327,12 @@ passed back to them.
 \subsection{Toolbars}
 \label{sec:gWidgets-toolbars}
 Toolbars and menubars are implemented in \pkg{gWidgets} using
-\code{gaction} items. Toolbars (and menubars) are specified using a named
-list of menu components. 
+\code{gaction} items. Both are specified using a named
+list of action components. 
 
-For a toolbar, the list has a simple structure. Each named component
-either describes a toolbar item or a separator. The toolbar items are
-specified by \code{gaction} instances and separators by
+For a toolbar, this list has a simple structure. Each named component
+either describes a toolbar item or a separator, where the toolbar
+items are specified by \code{gaction} instances and separators by
 \code{gseparator} instances with no container specified.
 
 For example:
@@ -3317,7 +3348,7 @@ For example:
              handler=function(...) print("Quit"))
            )
  tb <- gtoolbar(l, cont=w)
- gtext("Placeholder", cont=w)
+ gtext("Lorem ipsum ...", cont=w)
 \end{Sinput}
 \end{Schunk}
 
@@ -3328,8 +3359,7 @@ argument.  As toolbars belong to the window, the corresponding
 parent container. (Some of the toolkits relax this to allow other containers.)  The argument
 \argument{style}{gtoolbar} can be one of \qcode{both}, \qcode{icons},
 \qcode{text}, or \qcode{both-horiz} to specify how the toolbar is
-rendered. (Toolbars in \pkg{gWidgetstcltk} are not native widgets, so
-the implementation uses aligned buttons.)
+rendered. 
 
 
 \subsection{Menubars, popup menus}
@@ -3476,8 +3506,8 @@ other graphics devices.
 
 %% current device
 When working with multiple devices, it becomes necessary to switch
-between devices. A \code{ggraphics} instance can be made to represent
-the current device if the user clicks in the window. Otherwise, the
+between devices. A mouse click in a \code{ggraphics} instance will
+make that device the current one. Otherwise, the
 \method{visible\ASSIGN}{ggraphics} method can be used to set the
 object as the current device.  The \constructor{ggraphicsnotebook}
 creates a notebook that allows the user to easily navigate multiple
@@ -3505,7 +3535,7 @@ This shows how the two can be used:
  g <- ggraphics(cont=w)
  x <- mtcars$wt; y <- mtcars$mpg
  #
- addHandlerClicked(g, handler=function(h,...) {
+ addHandlerClicked(g, handler=function(h, ...) {
    cat(sprintf("You clicked %.2f x %.2f\n", h$x, h$y))
  })
  addHandlerChanged(g, handler=function(h,...) {
@@ -3524,7 +3554,9 @@ This shows how the two can be used:
 \end{Schunk}
 %
 
-
+The underlying toolkits may pass in more information about the event,
+such as whether a modifier key was being presed, but this isn't
+toolkit independent.
 
 
 %% XXXX Move this example somewhere COMPONENT PROGRAMMING
@@ -3626,7 +3658,6 @@ the user.
 \end{Schunk}
 The controls are layed out in a grid. We have two here to filter by:
 type and the number of cylinders.
-data set.
 \begin{Schunk}
 \begin{Sinput}
  lyt <- glayout(cont=filterg)
@@ -3640,10 +3671,11 @@ data set.
 \end{Sinput}
 \end{Schunk}
 %
-Of course, we could use many more criteria to filter. The above
+Of course, we could use many more criteria to filter by. The above
 filters are naturally represented by a combo box. However, one could
 have used many different styles, depending on the type of data. For
 instance, one could employ a checkbox to filter through Boolean data,
+a checkbox group to allow multiple selection,
 a slider to pick out numeric data, or a text box to specify a
 filtering by a string. The type of data dictates this.
 
@@ -3683,8 +3715,8 @@ variables \code{l}, \code{tbl} and \code{noCases}.
 % this example it is used to specify which rows of the data are actually
 % displayed by the widget.
 
-This next function is used to update the graphic. Of course, this graphic is not
-so interesting, but in a real application, it should be.
+This next function is used to update the graphic. A real application
+would provide a more compelling plot.
 \begin{Schunk}
 \begin{Sinput}
  updateGraphic <- function(...) {
@@ -3705,7 +3737,7 @@ changed. This handler simply calls both our update functions.
    updateDataFrame()
    updateGraphic()
  }
- sapply(l, function(i) addHandlerChanged(i, handler=f))
+ sapply(l, addHandlerChanged, handler=f)
 \end{Sinput}
 \end{Schunk}
 %
@@ -3832,9 +3864,9 @@ means to browse and select the objects in the current global
 environment. This workspace browser uses a tree widget to display the
 items and their named components.
 
-The \code{svalue} method returns name of the currently selected value
+The \code{svalue} method returns the name of the currently selected value
 using \code{\$} to refer to child elements.  One can call
-\code{svalue} on this to get the object.
+\code{svalue} on this string to get the \R\/ object.
 
 The default \argument{handler}{gvarbrowser} object calls
 \code{do.call} on the object for the function specified by name
@@ -3959,7 +3991,8 @@ The \constructor{ghelp} constructor produces a widget for showing help
 pages using a notebook container. Although \R\/ now has excellent
 ways to dynamically view help pages through a web browser (in
 particular the \pkg{helpr} package and the standard built-in help
-page server) this widget provides a light-weight alternative.
+page server) this widget provides a light-weight alternative that can
+be embedded in a GUI.
 
 To add a help page, the \method{add}{ghelp} method is used,
 where the \code{value} argument describes the desired page. This can

@@ -34,16 +34,16 @@ options("guiToolkit"="RGtk2") ## for examples
 After identifying the underlying data to manipulate and how to
 represent it, GUI construction involves three basic steps: creation
 and configuration of the main components; the layout of these
-components; and linking the components to make a GUI interactive. This
+components; and connecting the components through callbacks to make a GUI interactive. This
 chapter discusses the layout process within \pkg{gWidgets}. Layout in
 \pkg{gWidgets} is done by placing child components within parent
 containers which in turn may be nested in other containers. (This is
-more like \GTK, and not \Qt where layout managers control where the
+more like \GTK, and not \Qt, where layout managers control where the
 components are displayed.) The \pkg{gWidgets} package provides a just
-few types containers: top-level windows, box containers, a grid
+few types of containers: top-level windows, box containers, a grid
 container, a paned container and  a notebook
 container. Figure~\ref{fig:gWidgets-sample-layout} shows most all of
-these employed to produce a GUI to select and then show contents of a file.
+these employed to produce a GUI to select and then show the contents of a file.
 
 
 %% add
@@ -51,7 +51,7 @@ Except for the grid container, the primary method for containers is
 their \meth{add} method. The basic call is of the form
 \code{add(parent, child, extra\_arguments)}. However, this isn't
 typically used. In some toolkits, notably \pkg{tcltk}, the widget
-constructors require the specification of a parent window for the
+constructors require the specification of a parent container for the
 widget. To accomodate that, the \pkg{gWidgets} constructors --
 except for top-level windows -- have the argument \args{container}
 to specify the immediate parent container.  Within the constructor is
@@ -154,7 +154,7 @@ In most GUIs,  the use of menubars, toolbars and
 statusbars is often reserved for the main window, while dialogs are
 not decorated so.  In \pkg{gWidgets} it is suggested, although not
 strictly enforced unless done so by the underlying toolkit, that these be
-added only to a top-level window.  We discuss these later in
+added only to a top-level window.  We discuss these widgets later in
 Section~\ref{sec:gWidgets-acti-menus-toolb}. 
 
 <<echo=FALSE, results=tex>>=
@@ -206,7 +206,7 @@ There are three basic steps: an initial call to
 \function{gbasicdialog} to return a container to be used as the parent
 container for a child component; a construction of the dialog; then a
 call to the \code{visible} method on the dialog with \code{set=TRUE}
-value (not though \code{visible(obj) \ASSIGN\/ TRUE}).
+value.
 
 For a basic example where the handler simply echoes back
 the text stored in the label, we have:
@@ -291,16 +291,22 @@ customize how the child widgets respond when their parent window is
 resized. These are passed through the 
 \args{...}  argument of the constructor.
 
-These arguments are:
+These arguments are
+(Figure~\ref{fig:gWidgets-ggroup-expand-fill-anchor} shows
+combinations of these arguments under \pkg{gWidgetsQt}):
+
 \begin{description}
-\item[expand, fill] When \code{expand=TRUE} is specified then the child
-  widget will expand to fill the space allocated to it. The
-  \args{fill} argument can be specified as \qcode{x}, \qcode{y}, or
-  the default \qcode{both} to indicate which direction to fill
-  in.  (This varies among the toolkits.)
+\item[expand, fill] When \code{expand=TRUE} is specified then the
+  space allocated for the child widget will expand in some manner.
   
   
-\item[anchor] If a widget does not expand or if it does but does not fill in both
+\item[fill, anchor] When a widget is placed into is allocated space,
+  it can be desirable that it grow to fill the available space.
+  The \code{fill} argument, taking a value of \code{x}, \code{y} or
+  \code{both} indicates how the widget should expand. For many
+  toolkits, the default fill is orthogonal to the direction of packing.
+  
+  If a widget does not expand or if it does but does not fill in both
   directions, it can be anchored into its available space in more than
   one position. The \args{anchor} argument can be specified to suggest
   where to anchor the child. It takes a numeric vector representing
@@ -309,8 +315,7 @@ These arguments are:
   example, a value of \code{c(1,1)} would specify the northwest corner.
 \end{description}
 
-Figure~\ref{fig:gWidgets-ggroup-expand-fill-anchor} shows combinations
-of these arguments under \pkg{gWidgetsQt}.
+
 
 
 \begin{figure}
@@ -355,7 +360,8 @@ method. The method \method{addSpace}{ggroup} can add a non-uniform
 amount of space between two widgets packed next to each other, whereas
 the method \method{addSpring}{ggroup} will place an invisible spring
 between two widgets, forcing them apart.  Both are useful for laying
-out buttons.
+out buttons. We used a spring before the ``source'' button for the GUI
+in Figure~\ref{fig:gWidgets-sample-layout} .
 
 
 For example, we might modify our button layout example to include a
@@ -381,21 +387,21 @@ visible(w) <- TRUE
   \label{fig:gWidgets-button-layout}
 \end{figure}
 
-To illustrate how the right panel of
-Figure~\ref{fig:gWidgets-sample-layout} was done, we used nested
-layouts as follows:
+% To illustrate how the right panel of
+% Figure~\ref{fig:gWidgets-sample-layout} was done, we used nested
+% layouts as follows:
 
-<<echo=FALSE>>=
-w <- gwindow("Nested layout example")
-@ 
+% <<echo=FALSE>>=
+% w <- gwindow("Nested layout example")
+% @ 
 
-<<nestedLayout, results=hide>>=
-g <- ggroup(horizontal=FALSE, cont=w)
-bg <- ggroup(cont=g)                    # nested group
-addSpring(bg)
-b <- gbutton("Source", cont=bg)
-nb <- gnotebook(cont=g, expand=TRUE)    # fill space
-@ 
+% <<nestedLayout, results=hide>>=
+% g <- ggroup(horizontal=FALSE, cont=w)
+% bg <- ggroup(cont=g)                    # nested group
+% addSpring(bg)
+% b <- gbutton("Source", cont=bg)
+% nb <- gnotebook(cont=g, expand=TRUE)    # fill space
+% @ 
 
 
 \paragraph{Sizing}
@@ -532,21 +538,21 @@ As seen, children may be added to the grid at a specific row and
 column. To specify this, \R's matrix notation, \code{[\ASSIGN}, is
 used with the indices indicating the row and column.  A child may span
 more than one row or column. The corresponding index should be a
-vector of indices indicating so.  
+contiguous vector of indices indicating so.  
 
 The \code{[} method may be used to
-return the child occupying position $i,j$. To return the values of the
-widgets above can be done through:
-<<>>=
+return the child occupying position $i,j$. To return the main properties of the
+widgets just defined can be done through:
+<<main_table_prop>>=
 vals <- sapply(seq_len(dim(tbl)[1]), function(i) {
   svalue(tbl[i,2])
   })
 @ 
 
 
-When adding a child the \code{glayout} container should be specified as
-the widget's \code{container} and also be on the left hand side of the
-\code{[\ASSIGN} call. (This is necessary only for the toolkits where a
+When adding a child, in addition to being on the left hand side of the
+\code{[\ASSIGN} call, the \code{glayout} container should be specified as
+the widget's parent \code{container}. (This is necessary only for the toolkits where a
 container must be specified, where the right hand side is used to pass
 along the parent information and the left hand side is used for the
 layout.) For convenience, if the right hand side is a string, a label
@@ -596,7 +602,7 @@ the window.
 
 A simplified version of the layout in
 Figure~\ref{fig:gWidgets-sample-layout} would be
-<<>>=
+<<layout_example>>=
 d <- system.file("Examples/ch-gWidgets", package="ProgGUIinR")
 files <- list.files(d)
 #
@@ -634,7 +640,8 @@ The \constructor{gnotebook} constructor produces a tabbed notebook
 container. The GUI in Figure~\ref{fig:gWidgets-sample-layout} uses a
 notebook to hold different text widgets, one for each file being displayed.
 
-The \pkg{gWidgets} constructor has a few arguments. If permitted, the
+The \pkg{gWidgets} constructor has a few arguments, not all supported
+by each toolkit. The
 argument \argument{tab.pos}{gnotebook} is used to specify the location
 of the tabs using a value of 1 through 4 with 1 being botton, 2 left
 side, 3 top and 4 right side being used, with the default being 3
@@ -642,8 +649,7 @@ side, 3 top and 4 right side being used, with the default being 3
 \argument{closebuttons}{gnotebook} argument takes a logical indicating
 whether the tabs should have close buttons on them. In this case, the
 argument \argument{dontCloseThese}{gnotebook} can be used to specify
-which tabs, by index, should not be closable. (As of writing, this is
-not implemented in \pkg{gWidgetstcltk}.)
+which tabs, by index, should not be closable.
 
 
 
@@ -666,36 +672,38 @@ from the end as otherwise the tab positions change during removal.)
 
 From some viewpoint, the notebook widget is viewed as a vector with a
 names attribute (the labels) and components being the child
-components. As such, the \method{names}{gnotebook} method can be used
-to retrieve the tab names, and \method{names\ASSIGN}{gnotebook} to set
-the names. The \method{length}{gnotebook} method returns the number of
-pages held by the notebook. The \meth{[} method is also implemented to return the
-child components by index.
+components. As such, the \meth{[} method returns the the child
+components (by index), the \method{names}{gnotebook} method refers to
+the tab names, and the \method{length}{gnotebook} method returns the
+number of pages held by the notebook.
 
 
 
 \begin{example}{Tabbed notebook example}{ex-gWidgets-gnotebook}
  In the GUI of Figure~\ref{fig:gWidgets-sample-layout} a notebook is
  used to hold differing pages. The following is the basic setup used.
-<<>>=  
+<<tabbed_notebook>>=  
 w <- gwindow("gnotebook example")
 nb <- gnotebook(cont=w)
 @ 
 
 New pages are added as follows:
-<<results=hide>>=
-fname <- "DESCRIPTION"                  # or something else
-f <- system.file(fname, package="gWidgets")
-gtext(readLines(f), cont = nb, label=fname)
+<<addPage, results=hide>>=
+addAPage <- function(fname) {
+  f <- system.file(fname, package="ProgGUIinR")
+  gtext(readLines(f), cont = nb, label=fname)
+}
+addAPage("DESCRIPTION")
 @ 
 
 To manipulate the displayed pages, say to set the page to the last one
 we have:
-<<>>=
+<<set_nb_page>>=
 svalue(nb) <- length(nb)
 @ 
-To remove the current  page
-<<>>=
+%
+To remove the current page
+<<rm_nb_page>>=
 dispose(nb)
 @ 
 %

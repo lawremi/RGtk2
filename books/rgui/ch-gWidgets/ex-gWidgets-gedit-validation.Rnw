@@ -1,5 +1,5 @@
 GUIs for \R\/ may differ a bit from many GUIs users typically
-interacts with, as \R\/ users expect to be able to use variables and
+interact with, as \R\/ users expect to be able to use variables and
 expressions where typically a GUI expects just characters or
 numbers. As such, it is helpful to indicate to the user if their value
 is a valid expression. This example shows how to implement a
@@ -31,10 +31,13 @@ isValid <- function(e) {
 %
 
 We validate our expression when the user commits the change, by
-pressing the return key while the widget has focus. Alternatively, we
-could have used
-\code{addHandlerKeystroke}, to validate after each key press, or
-\code{addHandlerBlur}, to validate when the widget loses focus.
+pressing the return key while the widget has focus. 
+
+%% Just mentioned. If moved uncomment.
+% Alternatively, we
+% could have used
+% \code{addHandlerKeystroke}, to validate after each key press, or
+% \code{addHandlerBlur}, to validate when the widget loses focus.
 
 <<validate, results=hide>>=
 addHandlerChanged(e, handler = function(h,...) {

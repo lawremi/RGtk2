@@ -14,12 +14,12 @@ moderately complex GUIs quickly and easily using a programming
 interface that is familiar to the \R\/ user.
 
 The \pkg{gWidgets} package started as a port to \pkg{RGtk2} of the
-\pkg{iWidgets} package of Simon Urbanek, initially implemented only
+\pkg{iWidgets} package of Simon Urbanek written fro 
 for Swing through \pkg{rJava}~\citep{iWidgets}. Along the way,
 \pkg{gWidgets} was extended and abstracted to work with different GUI
 toolkit backends available for \R. A separate package provides the
 interface. As of writing there are interfaces for \pkg{RGtk2},
-\pkg{qtbase}, and \pkg{tcltk}. The \pkg{gWidgetsWWW} provides a
+\pkg{qtbase}, and \pkg{tcltk}. The \pkg{gWidgetsWWW} package provides a
 similar interface for web programming, but does not use \pkg{gWidgets}
 itself.
 
@@ -143,8 +143,8 @@ visible(w) <- TRUE
 
 
 This example defines five different widgets, a window, a box
-container, a label, a single-line, text edit area and a button. These
-GUI objects are produced by constructors.
+container, a label, a single-line text edit area and a button, all
+produced by some constructor.
 
 
 In the \pkg{gWidgets} API most constructors have the following form: 
@@ -172,7 +172,7 @@ Chapter~\ref{sec:gWidgets-Containers}.
 %% toolkit
 The \args{toolkit} argument is usually not specified. It is there to
 allow the user to mix toolkits within the same \R\/ session, but in
-practice can cause problems due to competing event loops. The default
+practice this can cause problems due to competing event loops. The default
 for the \args{toolkit} argument is a call to \function{guiToolkit}. 
 In our example we have the call
 <<eval=FALSE>>=
@@ -183,12 +183,12 @@ choice. If there is more than one possibility, and one has not be
 selected, then the \function{guiToolkit} will query the user to choose one.
 
 %% return value
-The constructors produce three general types of objects: containers,
+The constructors produce one of three general types of objects: containers,
 such as the top level window \code{w} and the box container \code{g}
 (Table~\ref{tab:gWidgets-container-constructors}); components, such as
-a label \code{l}, the edit area \code{e} or the button \code{b}.
-(Tables~\ref{tab:gWidgets-control-widgets} and~\ref{tab:gWidgets-compound-widgets}) show the basic and compound
-widgets); and dialogs.
+a label \code{l}, the edit area \code{e}, or the button \code{b}.
+(Tables~\ref{tab:gWidgets-control-widgets}
+and~\ref{tab:gWidgets-compound-widgets}); and dialogs (Table~\ref{tab:gWidgets-basic-dialogs}).
 
 
 
@@ -236,7 +236,7 @@ response to the dialog.)
 GUI objects have a state determined by one or more of their
 properties. In \pkg{gWidgets} many properties are set at the time of
 construction. However, there are also several generic methods defined
-for \pkg{gWidgets} objects. ~\footnote{
+for \pkg{gWidgets} objects.~\footnote{
   We are a bit imprecise about the term ``method'' here. The \pkg{gWidgets}
   methods call further methods in the underlying toolkit interface
   which we think of a single method call. The actual S4 object has a
@@ -252,35 +252,35 @@ for the familiar S3 generics \generic{[}, \generic{[$<$-},
 
 
 %% svalue
-In our example, we see two cases of the use of generics defined by
+In our example, we see two cases of the use of generic methods defined by
 \pkg{gWidgets}. The call
 <<eval=FALSE>>=
 svalue(e)
 @ 
 %
-demonstrates the generic method \defn{\meth{svalue}} that can be used
-to get or set the main property of the widget. For the object
-\code{e}, the main property is the text, for the button and label
-widgets this property is the label. The \meth{svalue\ASSIGN}
-assignment method is used to adjust this property programatically.
-For the selection widgets, there is a natural mapping between vectors
-or data frames, and the data to be selected. In this case, the user
-may want the value selected or the index of the selected value. The
-\args{index=TRUE} argument may be given to refer to the index, either
-when getting or setting the properties value. For these selection
-widgets the familiar \meth{[} and \meth{[\ASSIGN} methods refer to the
-underlying data to be selected from.
+demonstrates the new generic \defn{\meth{svalue}} that is used to get
+or set the main property of the widget. For the object \code{e}, the
+main property is the text, for the button and label widgets this
+property is the label. The \meth{svalue\ASSIGN} assignment method is
+used to adjust this property programatically.  For the selection
+widgets, there is a natural mapping between vectors or data frames,
+and the data to be selected. In this case, the user may want the value
+selected or the index of the selected value. The \args{index=TRUE}
+argument of \meth{svalue} may be given to refer to values by their
+index. For these selection widgets the familiar \meth{[} and
+\meth{[\ASSIGN} methods refer to the underlying data to be selected
+from.
 
 
 
-The call, 
+The call
 <<eval=FALSE>>=
 visible(w) <- TRUE
 @ 
 %
 sets the visibility property of the top-level window. In this example,
 the \code{gwindow} constructor is passed \code{visible=FALSE} to
-suppress an initial drawing, making this method call necessary to show
+suppress an initial drawing of the window, making this call to \meth{visible\ASSIGN} necessary to show
 the GUI.
 
 Some other methods to adjust the widget's underlying properties are \meth{font\ASSIGN},
@@ -302,7 +302,7 @@ for manipulating an object's properties compared to the number of
 methods typically provided by a GUI toolkit for a similar
 object. Although this simplicity makes \pkg{gWidgets} easier to work
 with, one may wish to get access to the underlying toolkit object to
-work at that level. The \generic{getToolkitWidget} will provide that
+take advantage of a richer API. The \generic{getToolkitWidget} will provide that
 object. We don't illustrate this, as we try to stay toolkit agnostic
 in our examples.
 
@@ -392,7 +392,7 @@ b <- gbutton("Click", cont=g, handler=function(h,...) {
 create the button object. The constructor's argument \args{handler} is
 used to bind a callback to the click event of the button. Callbacks in
 \pkg{gWidgets} have a common signature \code{(h,...)} where \code{h}
-is a list with components \code{obj}, to pass in the object of the
+is a list with components \code{obj}, to pass in the receiver of the
 event (the button in this case), and \code{action} to pass along any
 value specified by the \args{action} argument (allowing one to
 parameterize the callback).
@@ -405,7 +405,7 @@ prop <- svalue(h$obj)
 which assigns the object's main property to \code{prop}.  Some
 toolkits pass additional arguments through the callback's \args{...}
 argument, so for portability this part of the signature is not optional. For some
-classes, extra information is passed along. For instance, in the drop
+handler calls, extra information is passed along through \code{h}. For instance, in the drop
 target callback the component \code{h\$dropdata} 
 holds the drag-and-drop value.
 
@@ -420,7 +420,7 @@ typical event for the widget, such as the clicking of a button. (The
 addition, there are many ``\meth{addHandlerXXX}'' methods to assign
 callbacks to other events, where the \code{XXX} describes the
 event. These are useful in the case where more than one event is of
-interest. For example, for single line text widgets, like \code{e} in
+interest. For example, for single-line text widgets, like \code{e} in
 our example, the \meth{addHandlerChanged} method sets a callback to
 respond when the user finishes editing, whereas a handler set by
 \meth{addHandlerKeystroke} is called each time a key is pressed.
@@ -436,7 +436,8 @@ ID <- addHandlerClicked(b, handler=function(h, ...) {
 }, action=e)
 @ 
 We passed in the object \code{e} through the action argument as an
-illustration. This is useful, as one need not worry about the scope of the
+illustration. This is useful, as one need not worry finding \code{e}
+throug \R's scoping rules in the
 call to \code{svalue}.
 
 The \meth{addHandlerXXX} methods return an ID.  This ID can be used
@@ -444,7 +445,7 @@ with the method \meth{removeHandler} to remove the callback, or with
 the methods \meth{blockHandler} and \meth{unblockHandler} to
 temporarily block a handler from being called.
 
-If these few methods are insufficient, and toolkit-portability is not
+If these few methods are insufficient and toolkit-portability is not
 of interest, then the \meth{addHandler} generic can be used to specify
 a toolkit-specific signal and a callback.
 
@@ -458,7 +459,7 @@ df <- rbind(
             c("\\meth{addHandlerDoubleclick}","Sets handler for when widget is double clicked"),
             c("\\meth{addHandlerRightclick}","Sets handler for when widget is right clicked"),
             c("\\meth{addHandlerKeystroke}", paste("Sets handler for when key is",
-                                                   c("pressed. The \\code{key} component is set to this value"),
+                                                   c("pressed. The \\code{key} component is set to this value,"),
                                                    c("if possible."),sep=" ")),
             c("\\meth{addHandlerFocus}","Sets handler for when widget gets focus"),
             c("\\meth{addHandlerBlur}","Sets handler for when widget loses focus"),
@@ -494,7 +495,7 @@ The \pkg{gWidgets} package provides a few constructors to quickly make
 some basic dialogs for showing messages or gathering
 information. Mostly these are modal dialogs that take control of the
 event loop, not allowing any other part of the GUI to be active for
-programmatic interaction. As such, in \pkg{gWidgets} constructors of
+programmatic interaction. As such, in \pkg{gWidgets}, constructors of
 modal dialogs do not return an object to manipulate through its
 methods, but rather return the user response to the dialog. For example, the
 \code{gfile} dialog, described later, is a modal dialog that pops up a
@@ -645,7 +646,7 @@ the \pkg{RGtk2} package and the two \pkg{gWidgets} packages.
 The difficulty for the end user is the installation of the graphic
 toolkit, as all other packages are installed through CRAN, or are
 recommended packages with an \R\/ installation
-(\pkg{tcltk}). Table~\ref{XXX} describes the installation process for
+(\pkg{tcltk}). Table~\ref{tab:gWidgets-installation} describes the installation process for
 different operating systems and toolkits.
 
 %% JV Perhaps this belongs somewhere else in the text...
@@ -668,7 +669,7 @@ cat(booktabs(df, colTypes=c("l", rep("p{0.3\\textwidth}",3)),
 @ 
 
 Not all features of the API are supported by a particular toolkit. In
-particular, the easiest to use (\pkg{gWidgetstcltk}) might have the
+particular, the easiest to install (\pkg{gWidgetstcltk}) might have the
 fewest features.  The help pages in the \pkg{gWidgets} package
 describe the API, with the help pages in the toolkit packages
 indicating differences or omissions from the API (e.g. \code{?gWidgetsRGtk2-package}). For the most part,
