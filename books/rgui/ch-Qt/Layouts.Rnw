@@ -603,43 +603,35 @@ is needed, e.g., as a sub-layout.
 \section{Scroll Areas}
 \label{sec:scrolling-layouts}
 
-It may be desirable to constrain the size of a layout and allow the
-user to pan through its children with scrollbars. \class{QScrollArea}
-provides this functionality. It is only necessary to place the
-container widget into scroll area. First, we create a large layout:
+Sometimes a widget is too large to fit in a layout and thus must be
+displayed partially. Scroll bars then allow the user to adjust the
+visible portion of the widget. Widgets that often become too large
+include tables, lists and text edit panes. These inherit from
+\class{QAbstractScrolledArea} and thus natively provide scroll bars
+without any special attention from the user. Occasionally, we are
+dealing with a widget that lacks such support and thus need to
+explicitly embed the widget in a \class{QScrollArea}. This often
+arises when displaying graphics and images. To demonstrate, we will
+create a simple zoomable image viewer.  The user can zoom in and out
+and use the scroll bars to pan around the image. First, we place an
+image in a label and add it to a scroll area:
 <<results=hide>>=
-w <- Qt$QWidget()
-w$setMinimumSize(400,400)
-lyt <- Qt$QVBoxLayout()
-w$setLayout(lyt)
-for(i in rownames(state.x77)) {
-  msg <- sprintf("%s had a population of %s thousand in 1977", 
-  i, state.x77[i,"Population"])
-  lyt$addWidget(Qt$QLabel(msg))
-}
+image <- Qt$QLabel()
+image$pixmap <- Qt$QPixmap("someimage.png")
+sa <- Qt$QScrollArea()
+sa$setWidget(image)
 @ 
 %
-The final step is to create the scroll area and add \qcode{w}:
-<<results=hide>>=
-sa <- Qt$QScrollArea()
-sa$setWidget(w)
-@ 
+
+%%%% TODO
+
+%% And don't foget to mention the corner widget
+
 <<echo=FALSE, results=hide>>=
 sa$show()
 sa$raise()
 @
 % 
-To ensure that a given child widget is visible, we call the method
-\method{ensureWidgetVisible}{QScrollArea}.  To ensure the value for New
-York (row $32$ in the data set) is visible, we have:
-<<results=hide>>=
-widget <- lyt$itemAt(32 - 1)$widget()
-sa$ensureWidgetVisible(widget)
-@ 
-
-We concede that the above could be achieved more elegantly with a list
-box, which has native scrolling support. It is meant only to
-demonstrate the general use of \class{QScrollArea}.
 
 \section{Paned Windows}
 \label{sec:paned-windows}

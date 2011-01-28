@@ -35,19 +35,19 @@ lookup <- function(obj, regxp) {
 @ 
 
 
-\chapter{Programming GUIs using Qt}
+\chapter{Qt: Overview}
 \label{cha:progr-guis-using}
 
 \SweaveInput{Overview}
 
 
-\chapter{Layout Managers}
+\chapter{Qt: Layout Managers and Containers}
 \label{cha:layout-managers}
 
 \SweaveInput{Layouts}
 
 
-\chapter{Widgets}
+\chapter{Qt: Widgets}
 \label{cha:widgets}
 
 \SweaveInput{Widgets}
@@ -58,12 +58,12 @@ lookup <- function(obj, regxp) {
 
 \SweaveInput{Dialogs}
 
-\chapter{Widgets Using Data Models}
+\chapter{Qt: Widgets Using Data Models}
 \label{cha:widgets-using-MVC}
 
 \SweaveInput{Widgets-MVC}
 
-\chapter{The Application Window}
+\chapter{Qt: Application Windows}
 
 \SweaveInput{ApplicationWindow}
 

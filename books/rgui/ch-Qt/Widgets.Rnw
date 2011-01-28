@@ -89,7 +89,7 @@ qconnect(button, "clicked", function() message("Ok clicked") )
 @ 
 
 \subsection{Icons and pixmaps}
-\label{ssec:icons}
+\label{sec:qt-icons}
 
 A button is often decorated with an icon, which serves as a visual
 indicator of the purpose of the button.  The \class{QIcon} class
@@ -327,7 +327,7 @@ w$show()
 w$raise()
 @           
 
-\section{Comboboxes}
+\section{Combo Boxes}
 \label{sec:comboboxes}
 
 A combo box allows a single selection from a drop-down list of
@@ -630,6 +630,76 @@ As illustrated in Example~\ref{sec:qt-introductory-example},
 \class{QValidator} is a much more general validation mechanism, where
 the value in the widget is checked by the validator before being
 committed.
+
+\section{Web View Widget}
+
+The \class{QtWebKit} module provides a \Qt-based implementation of the
+cross-platform \software{WebKit} API. The standards support
+is comparable to that of other WebKit implementations like
+\software{Safari} and \software{Chrome}. This includes HTML version 5,
+Javascript and SVG. The Javascript engine, provided by the
+\class{QtScript} module, allows bridging Javascript and R, which will
+not be discussed. The widget \class{QWebView} uses
+\class{QtWebKit} to render web pages in a GUI. 
+
+This is the basic usage:
+<<qt-widget-webview>>=
+webview <- Qt$QWebView()
+webview$load(Qt$QUrl("http://www.r-project.org"))
+@ 
+
+A web browser typically provides feedback on the URL loading
+process. The signals \signal{loadStarted}{QWebView},
+\signal{loadProgress}{QWebView} and \signal{loadFinished}{QWebView}
+are provided for this purpose. History information is stored in a
+\class{QWebHistory} object, retrieved by calling
+\method{history}{QWebView} on the web view. This could be used for
+implementing a ``Back'' button.
+
+%% ML: how far do we want to go with this web example? not sure how
+%% many users will be implementing a full-fledged browser.
+
+\section{Embedding R Graphics}
+\label{sec:qt-embedding-graphics}
+
+The \pkg{qtutils} package includes a \Qt-based graphics device,
+written by Deepayan Sarkar. We make a simple scatterplot:
+<<qt-widget-graphics-device>>=
+library(qtutils)
+qtDevice <- QT()
+plot(mpg ~ hp, data = mtcars)
+@ 
+%
+The \qcode{qtDevice} object may be shown directly or embedded within a
+GUI. For example, we might place it in a notebook of multiple plots:
+<<qt-widget-graphics-device-notebook>>=
+notebook <- Qt$QTabWidget()
+notebook$addTab(qtDevice, "Plot 1")
+print(notebook)
+@ 
+%
+The device provides a context menu with actions for zooming, exporting
+and printing the plot. One could execute an action programmatically by
+extracting the action from \qcode{qtDevice} and activating it.
+
+To increase performance at a slight cost of quality, we could direct
+the device to leverage hardware acceleration through OpenGL. This
+requires passing \qcode{opengl = TRUE} to the \function{QT} constructor:
+<<qt-widget-graphics-device-opengl>>=
+qtOpenGLDevice <- QT(opengl = TRUE)
+@ 
+%
+Even without the help of OpenGL, the device is faster than most other
+graphics devices, in particular \pkg{cairoDevice}, due to the general
+efficiency of \Qt\/ graphics.
+
+Internally, the device renders to a \class{QGraphicsScene}. Every
+primitive drawn by R becomes an object in the scene. Nothing is
+rasterized to pixels until the scene is displayed on the screen. This
+presents the interesting possibility of programmatically manipulating
+the graphical primitives after they have been plotted; however, this
+is beyond our scope. See Example~\ref{sec:qt-icons} for a way to
+render the scene to an off-screen \class{QPixmap} for use as an icon.
 
 \section{Drag and drop}
 \label{sec:drag-drop}

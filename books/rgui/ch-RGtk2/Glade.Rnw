@@ -1,12 +1,10 @@
 %% Using Glade
 
-\section{Visual GUI Construction: Glade}
-
 This book focuses almost entirely on the direct programmatic
 construction of GUIs. Some developers prefer visually constructing a
 GUI by pointing, clicking and dragging in another GUI, which one might
 call a GUI builder, a type of RAD (Rapid Application Development)
-tool. \software{Glade} is the primary GUI builder for \GTK/ and
+tool. \pkg{Glade} is the primary GUI builder for \GTK/ and
 exports an interface as XML that is loadable by \class{GtkBuilder}. It
 is freely available for all major platforms from
 \url{http://glade.gnome.org/}. Documentation is also at that
@@ -22,7 +20,7 @@ g$addFromFile("buildable.xml")
 @ 
 
 The \method{getObject}{gtkBuilder} extracts a widget by its ID, which
-is specified by the user through \software{Glade}. It normally
+is specified by the user through \pkg{Glade}. It normally
 suffices to load the top-level widget, named \code{dialog1} in this
 example, and show it:
 <<eval=FALSE>>=
@@ -31,7 +29,7 @@ d$showAll()
 @
 
 In order to add behaviors to the GUI, we need to register R functions
-as signal handlers. In \software{Glade}, the user should specify the
+as signal handlers. In \pkg{Glade}, the user should specify the
 name of an R function as a handler for some signal. \pkg{RGtk2}
 extends \class{GtkBuilder} to look up the functions and connect them
 to the appropriate signals. Let us assume that the user has named the

@@ -17,13 +17,14 @@ databases, SVG, and multimedia. However, \R{} packages already
 provide many of those features.
 
 The history of \Qt{} begins with Haavard Nord and Eirik Chambe-Eng in
-1991, and follows with the Trolltech company until 2008, and now
-Nokia, a major cell-phone producer. While it was originally not
-available as open-source on every platform, as of version 4 it was
-released universally under the GPL. With the release of Qt 4.5, Nokia
-placed \Qt{} under the LGPL, so it is available for use in proprietary
-software, as well. Popular software developed with \Qt{} include the
-communication application Skype and the KDE desktop for Linux.
+1991 and follows with the Trolltech company, until 2008. It is now
+owned by Nokia, a major cell-phone producer. While it was originally
+unavailable as open-source on every platform, version 4 was released
+universally under the GPL. With the release of Qt 4.5, Nokia
+additionally placed \Qt{} under the LGPL, so it is available for use
+in proprietary software, as well. Popular software developed with
+\Qt{} include the communication application Skype and the KDE desktop
+for Linux.
 
 \Qt{} is developed in C++ with extensions that require a special
 preprocessor called the \dfn{Meta Object Compiler}
@@ -49,7 +50,7 @@ graphics device based on \Rclass{QGraphicsView}.
 
 While \pkg{qtbase} is not yet as mature as \pkg{tcltk} and
 \pkg{RGtk2}, we include it in this book, as \Qt{} compares favorably
-to \GTK{} in terms of GUI features and excels in several areas,
+to \GTK{} in terms of GUI features and excels in several other areas,
 including its fast graphics canvas and integration of the WebKit web
 browser.~\footnote{There is a \GTK{} WebKit port, but it is not
   included with \GTK{} itself.} In addition, \Qt{}, as a commercially
@@ -536,8 +537,61 @@ qsetSlot("doSomethingToIndex(int)", SubClass, function(index) {
 %
 The advantage of a slot compared to a method is that a slot is exposed
 to the \Qt{} metaobject system. This means that a slot could be called
-from another dynamic environment, like Javascript running in the
-\class{QScript} module or via D-Bus with the \class{QDBus} module.
+from another dynamic environment, like from Javascript running in the
+\class{QScript} module or via the D-Bus through the \class{QDBus}
+module. It is also necessary to use slots as signal handlers for a GUI
+built with \software{QtDesigner}, see Section~\ref{sec:qt-designer}. 
+
+\subsection{Defining Properties}
+\label{sec:qt-overview-define-props}
+
+A property, introduced earlier, is a self-describing field that is
+encapsulated by a getter and a setter. We can define a property on any
+class. The \function{qsetProperty} function defines a property. This
+is the simplest usage:
+<<qt-overview-define-prop>>=
+qsetProperty("property", SubClass)
+@ 
+%
+We can now access \property{property}{SubClass} like any other
+property; for example:
+<<qt-overview-define-prop-get>>=
+instance <- SubClass()
+instance$property
+instance$property <- "value"
+instance$property
+@
+
+By default, the property value is actually stored as a (private) field
+in the object, called \qcode{.property}. One can override the default
+behavior by specifying a function for the getter and/or the setter:
+<<qt-overview-define-prop-getter-setter>>=
+qsetProperty("checkedProperty", SubClass, write = function(x) {
+  if (!is(x, "character"))
+    stop("'checkedProperty' must be a character vector")
+  this$.checkedProperty <- x
+})
+@ 
+%
+We have taken advantage of the setter override to check the validity
+of the incoming value. One might also want to override the
+\argument{read}{qsetProperty} function, for cases where a property
+depends only on other properties or on some external resource.
+
+If a class derives from \class{QObject}, as does any widget, we can
+specify the C++ type of the property to expose it to the \Qt meta
+object system:
+<<qt-overview-define-prop-typed, results=hide>>=
+qsetProperty("typedProperty", SubClass, type = "QString")
+@
+<<qt-overview-define-prop-typed-list>>=
+tail(qproperties(SubClass()), 1)
+@ 
+%
+We see that the type is now exposed via the general
+\function{qproperties} function. To force a property to be read-only,
+we could set the \argument{write}{qsetProperty} parameter to
+\qcode{NULL}.
 
 %% TODO: Example here? Or just refer to other examples?
 
@@ -777,3 +831,64 @@ e$raise()
 @ 
 
 \end{example}
+
+\section{Importing a GUI from QtDesigner}
+
+\pkg{QtDesigner} is a tool for graphical, drag-and-drop design of
+GUI forms. Although this book focuses on constructing a GUI by
+programming in R, we recognize that a graphical approach may be the
+preferable in some circumstances.  \pkg{QtDesigner} outputs a GUI
+definition as an XML file in the \qcode{UI} format. The
+\class{QUiLoader} class loads a \qcode{UI} definition through its
+\method{load}{QUiLoader} method:
+<<qt-overview-designer-load>>=
+loader <- Qt$QUiLoader()
+widget <- loader$load(Qt$QFile("designer.ui"))
+@ 
+
+The \qcode{widget} object could be shown directly; however, we first
+need to implement the behavior of the GUI by connecting to
+signals. Through the \pkg{QtDesigner} GUI, the user can connect
+signals to slots on built-in widgets. This works for some trivial
+cases, but in general one needs to handle signals with R code. There
+are two ways to accomplish this: manual or automatic.
+
+To manually connect an R handler to a signal, we first need to obtain
+the widget with the signal.  Every widget in a \qcode{UI} file is
+named, so we can call the \function{qfindChild} utility function to
+find a specific widget. Assume we have a button named ``findButton''
+and corresponding text entry ``findEntry'' in our UI file, then we
+retrieve them with
+<<qt-overview-designer-find>>=
+findButton <- qfindChild(widget, "findButton")
+findEntry <- qfindChild(widget, "findEntry")
+@ 
+%
+Then we connect to the \signal{clicked}{QPushButton} signal:
+<<qt-overview-designer-connect>>=
+qconnect(findButton, "clicked", function() {
+  findText(findEntry$text)
+})
+@ 
+
+Alternatively, we could establish the signal connections
+automatically. This requires defining each signal handler to be a slot
+in the parent object, which will need to be of a custom class:
+<<qt-overview-designer-custom-parent>>=
+qsetClass("MyMainWindow", Qt$QWidget, function() {
+  Qt$QMetaObject$connectSlotsByName(this)
+})
+@ 
+%
+The constructor calls \method{connectSlotsByName}{QMetaObject} to
+automatically establish the connections. For a slot to be connected to
+the correct signal, it must be named according to the convention
+\qcode{on_[objectName]_[signalName]}. For example,
+<<qt-overview-designed-slot-handler>>=
+qsetSlot("on_findButton_clicked", MyMainWindow, function() {
+  findText(findEntry$text)
+})
+@ 
+%
+In the case of a large, complex GUI, this automatic approach is
+probably more convenient than manually establishing the connections.

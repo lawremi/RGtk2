@@ -57,8 +57,9 @@ having to consult a web page, such as
 In this chapter, we give an overview of how \pkg{RGtk2} maps the
 \GTK\/ API, including its classes, constructors, methods, properties,
 signals and enumerations, to an \R-level API that is relatively
-familiar to, and convenient for, an \R\/ user. A simple GUI will be
-gradually constructed to demonstrate the API.
+familiar to, and convenient for, an \R\/ user. 
+% A simple GUI will be
+% gradually constructed to demonstrate the API.
 
 %%% ------- OOP --------------
 
@@ -66,9 +67,8 @@ gradually constructed to demonstrate the API.
 
 Constructing a GUI with \pkg{RGtk2} generally proceeds by constructing
 a widget and then configuring it by calling methods and setting
-properties. Signal handlers are connected to respond to user input and
-the widget is combined with other widgets to form the GUI. For
-example:
+properties. Handlers are connected to signals, and the widget is
+combined with other widgets to form the GUI. For example:
 <<gtk-overview-initial-example>>=
 button <- gtkButton("Click Me")
 button['image'] <- gtkImage(stock = "gtk-apply", size = "button")
@@ -79,9 +79,9 @@ window$showAll()
 @ 
 % 
 Once one understands the syntax and themes of the above example, it is
-only a matter of reading through the documentation to discover all of
-the widgets and their features. The rest of this chapter will explain
-these basic components of the API.
+only a matter of reading through the proceeding chapters and the
+documentation to discover all of the widgets and their features. The
+rest of this chapter will explain these basic components of the API.
 
 \section{Objects and Classes}
 
@@ -97,11 +97,20 @@ For specifying the hierarchy, \pkg{GTK+} relies on \pkg{GObject}, a
 \proglang{C} library that implements a class-based, single-inheritance
 object-oriented system. A \pkg{GObject} class encapsulates behaviors
 that all instances of the class share. Every class has at most one
-parent from which it inherits the behaviors of its ancestors. A
+parent through which it inherits the behaviors of its ancestors. A
 subclass can override some specific inherited behaviors. The interface
 defined by a class consists of constructors, methods, properties,
 and signals. 
-% TODO: example of gTypeGetAncestors
+
+The type system supports reflection, so we can, for example, obtain a
+list of the ancestors for a given class:
+<<gtk-intro-classes-ancestors>>=
+gTypeGetAncestors("GtkWidget")
+@ 
+%
+For those familiar with object-oriented programming in R, the returned
+character vector could be interpreted as it were a class attribute on
+an S3 object.
 
 Single inheritance can be restrictive when a class performs multiple
 roles in a program. To circumvent this, \pkg{GTK+} adopts the popular
@@ -112,8 +121,11 @@ implement. As with languages like Java and \proglang{C\#}, a class can
 composed of other interfaces. An interface allows the programmer to
 treat all instances of implementing classes in a similar way. However,
 unlike class inheritance, the implementation of the methods,
-properties and signals is not shared.
-% TODO: example of gTypeGetInterfaces
+properties and signals is not shared. For example, we list the
+interfaces implemented by \class{GtkWidget}:
+<<gtk-intro-class-interfaces>>=
+gTypeGetInterfaces("GtkWidget")
+@ 
 
 We explain the constructors, methods, properties and signals of
 classes and interfaces in the following sections and demonstrate them
@@ -133,12 +145,15 @@ Section~\ref{sec:gobject-primer}.
 
 \section{Constructors}
 
-The first step in our example is to create a top-level window to
-contain our GUI.  Creating an instance of a GTK\/ widget requires
-calling a single \R\/ function, known as a constructor. Following \R\/
-conventions, the constructor for a class has the same name as the
-class, except the first character is lowercase. The following
-statement constructs an instance of the \code{GtkWindow} class:
+The next few sections will contribute to a unifying example that
+displays a button in a window. When clicked, the button will print a
+message to the R console. The first step in our example is to create a
+top-level window to contain our GUI.  Creating an instance of a GTK\/
+widget requires calling a single \R\/ function, known as a
+constructor. Following \R\/ conventions, the constructor for a class
+has the same name as the class, except the first character is
+lowercase. The following statement constructs an instance of the
+\code{GtkWindow} class:
 <<intro-constructor-gtkWindow>>=
 window <- gtkWindow("toplevel", show = FALSE)
 @
@@ -156,7 +171,6 @@ implemented as a separate C function. In \pkg{RGtk2}, the names of
 these functions all end with \code{New}. The ``meta'' constructor
 \function{gtkWindow}, called above, automatically delegates to one of
 the low-level constructors, based on the provided arguments.
-
 We prefer these shorter, more flexible constructors, such as
 \function{gtkWindow} or \function{gtkButton}, but note their
 documentation is provided by the \R\/ package author and is in
@@ -270,13 +284,13 @@ button$getLabel()
 
 %% common methods
 Some common methods are inherited by most widgets, as they are defined
-in the base \class{gtkWidget} class. These include the methods 
-\method{show}{gtkWidget} to specify that the widget should be drawn;
-\method{hide}{gtkWidget} to hide the widget until specified;
-\method{destroy}{gtkWidget} to destroy a widget and clear up any
+in the base \class{GtkWidget} class. These include the methods 
+\method{show}{GtkWidget} to specify that the widget should be drawn;
+\method{hide}{GtkWidget} to hide the widget until specified;
+\method{destroy}{GtkWidget} to destroy a widget and clear up any
 references to it; \method{getParent}{gtkWidget} to find the parent
-container of the widget; \method{modifyBg}{gtkWidget} to modify the
-background color of a widget; and \method{modifyFg}{gtkWidget} to
+container of the widget; \method{modifyBg}{GtkWidget} to modify the
+background color of a widget; and \method{modifyFg}{GtkWidget} to
 modify the foreground color.
 
 
@@ -285,14 +299,14 @@ modify the foreground color.
 
 %% --------- Properties ------------
 The \GTK\/ API uses properties to store object state. Properties are
-similar to \R\/ attributes and even more so to S4 slots. They are
+similar to R attributes and even more so to S4 slots. They are
 inherited, typed, self-describing and encapsulated, so that an object
-can intercept access to the underlying data. A list of properties that
-a widget has is returned by its \method{getPropInfo}{GObject}
-method. \pkg{RGtk2} uses the \R\/ generic \method{names}{GObject}
-as a familiar alternative for this method. Auto-completion of property
-names is gained as a side effect.  For the button just defined, we can
-see the first eight properties listed with:
+can intercept access to the underlying data. A list of properties
+definitions belonging to the widget is returned by its
+\method{getPropInfo}{GObject} method. Calling \function{names} on the
+object returns the property names. Auto-completion of property names
+is gained as a side effect.  For the button just defined, we can see
+the first eight properties listed with:
 <<showProperties>>=
 head(names(button), n=8)                 # or b$getPropInfo()
 @ 
@@ -302,12 +316,12 @@ Some common properties are: \code{parent}, to store the parent widget
 with the widget; and \code{sensitive}, to control whether a widget can
 receive user events. 
 
-There are a few different ways to access these properties. \GTK\/
-provides the functions \function{gObjectGet} and \function{gObjectSet}
-to get and set properties of a widget. The set funtion treats the
-arguments names as the property names, and setting multiple properties
-at once is supported. Here we add an icon to the top-left corner of
-our window and set the title:
+There are a few different ways to access these properties. The methods
+\method{get}{GObject} and \method{set}{GObject} get and set properties
+of a widget, respectively. The set funtion treats the argument names
+as the property names, and setting multiple properties at once is
+supported. Here we add an icon to the top-left corner of our window
+and set the title:
 <<intro-props-get-set>>=
 image <- gdkPixbuf(filename = imagefile("rgtk-logo.gif"))[[1]]
 window$set(icon = image, title = "Hello World 1.0")
@@ -343,8 +357,8 @@ vector notation will be used for commonly accessed properties.
 
 \section{Events and signals}
 
-In \pkg{RGtk2}, a user action, such as a mouse click, key press, or
-drag and drop motion, triggers the widget to emit a corresponding
+In \pkg{RGtk2}, a user action, such as a mouse click, key press or
+drag and drop motion triggers the widget to emit a corresponding
 signal.  A GUI can be made interactive by specifying a callback
 function to be invoked upon the emission of a particular signal.
 
@@ -359,8 +373,8 @@ list all inherited signals, we need to loop over the hierarchy, but it
 is not common to do this in practice, as the documentation includes
 information on the signals.
 
-The \function{gSignalConnect} (or \function{gSignalConnect}) function is used
-to add a callback to a widget's signal. Its signature is
+The \function{gSignalConnect} function adds a callback to a widget's
+signal. Its signature is
 %% XXX tighten up output
 \begin{Soutput}
 function (obj, signal, f, data = NULL, after = FALSE, 
@@ -550,6 +564,10 @@ appears. To work around this, call the function \function{gtkMain} to
 run the main loop until the function \function{gtkMainQuit} is
 called. Since there is no interactive session, \function{gtkMainQuit}
 should be called through some event handler.
+
+%% FIXME: here or in the appendix?
+\section{Importing a GUI from Glade}
+\label{sec:gtk-glade}
 
 \SweaveInput{Glade}
 

@@ -2,9 +2,9 @@
 %% cairoDevice
 
 The package \pkg{cairoDevice} is an R graphics device based on the
-Cairo graphics library.  It is cross-platform and supports
-alpha-blending and antialiasing. It reports user events through the
-\function{getGraphicsEvent} function.
+Cairo graphics library.  It supports alpha-blending and antialiasing
+and reports user events through the \function{getGraphicsEvent}
+function.
 
 \pkg{RGtk2} and \pkg{cairoDevice} are integrated through the
 \function{asCairoDevice} function. If a \class{GtkDrawingArea},

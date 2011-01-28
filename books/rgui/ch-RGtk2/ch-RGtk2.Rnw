@@ -30,8 +30,10 @@ findmethod <- function (obj, name, where=.GlobalEnv)
 
 ## override NULL in output
 args <- function(name) {
-  out <- capture.output(.Internal(args(name)))
-  invisible(cat(out[-length(out)],"\n"))
+  body(name) <- NULL
+  name
+  ## out <- capture.output(base::args(name))
+  ## invisible(cat(out[-length(out)], "\n"))
 }
 @ 
 
@@ -58,6 +60,9 @@ args <- function(name) {
 \chapter{RGtk2: Application Windows}
 \label{sec:RGtk2-menus}
 \SweaveInput{menus}
+
+%% TODO: this needs to go somewhere.. appendix?
+%% \SweaveInput{Classes}
 
 
 % \label{sec:RGtk2:dialogs}

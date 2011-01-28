@@ -45,7 +45,7 @@ cat(booktabs(df,
 Figure~\ref{fig:GUI:spss-11-term-selection} shows several such
 controls in a single GUI. A checkbox enables an intercept,
 a radio group selects either full factorial or a custom
-model, a combobox selects the ``sum of squares'' type, and a
+model, a combo box selects the ``sum of squares'' type, and a
 list box allows for multiple selection from the available
 variables in the data set. 
 

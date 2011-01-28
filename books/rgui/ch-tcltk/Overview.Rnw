@@ -13,52 +13,52 @@ middleware, but also as a standalone development tool.
 \TK~\footnote{
   %% Documentation sources
   \Tk{} has a well documented API~\citep{TclTk:Api}
-  (\url{www.tcl.tk/man/tcl8.5}).  There are also several books to
-  supplement. We consulted the one by Welch, Jones and
+  (\url{www.tcl.tk/man/tcl8.5}).  There are also several books
+  to supplement. We consulted the one by Welch, Jones and
   Hobbs~\citep{beedub} often in the developement of this material. In
   addition, the Tk Tutorial of Mark Roseman~\citep{TclTk:Tutorial}
   (\url{www.tkdocs.com/tutorial}) provides much detail. \R{} specific
-  documentation include two excellent R News articles and a
-  proceedings
-  paper~\citep{Rnews:Dalgaard:2001a},~\citep{Rnewse:Dalgaard:2002} and
-  \citep{Dalgaard-DSC} by Peter Dalgaard, the package author. A set of
-  examples due to James Wettenhall~\citep{Wettenhall} are also quite
-  instructive. A main use of \pkg{tcltk} is within the \pkg{Rcmdr}
-  framework. Writing extensions for that is well documented in an R
-  News article~\citep{Rnews:Fox:2007} by John Fox, the package author.
-} is an extension of \TCL\/ that provides GUI components through \TCL.
-This was first developed in 1990, again by John Ousterhout. \TK\/
-quickly found widespread usage, as at the time it made programming
-GUIs for X11 easier and faster. Over the years, other graphical
-toolkits have evolved and surpassed this one, but \TK\/ still has
-numerous users.
+  documentation include two excellent R News
+  articles and a proceedings paper~\citep{Rnews:Dalgaard:2001a},~\citep{Rnewse:Dalgaard:2002}
+  and \citep{Dalgaard-DSC} by Peter Dalgaard, the
+  package author. A set of examples due to James
+  Wettenhall~\citep{Wettenhall} are also quite instructive. A main use
+  of \pkg{tcltk} is within the \pkg{Rcmdr} framework. Writing
+  extensions for that is well documented in an R News
+  article~\citep{Rnews:Fox:2007} by John Fox, the package author.
+}
+is an extension of \TCL\/ that provides GUI components through
+\TCL.  This was first developed in 1990, again by John
+Ousterhout. \TK\/ quickly found widespread usage, as it made
+programming GUIs for X11 easier and faster. Over the years, other
+graphical toolkits have evolved and surpassed this one, but \TK\/
+still has numerous users.
 
-\TCL\/ and \TK\/ have a large number of bindings available for it, e.g. \proglang{Perl}, \proglang{Python},
-\proglang{Ruby}, and through the \pkg{tcltk} package, \R. The \pkg{tcltk} package
-was developed by Peter Dalgaard, and  included in \R\/ from version
-1.1.0. Since then, the package has been used in a number of GUI 
-projects for \R,  most notably, the \pkg{Rcmdr} GUI. In addition, the
-\pkg{tcltk2} package provides additional bindings and bundles in some
-useful external TCL code. Our focus here is on the base package.
+\TK\/ has a large number of bindings available for it,
+e.g. \proglang{Perl}, \proglang{Python}, \proglang{Ruby}, and through
+the \pkg{tcltk} package, \R. The \pkg{tcltk} package was developed by
+Peter Dalgaard and included in \R\/ from version 1.1.0. Since then,
+the package has been used in a number of GUI projects for \R, most
+notably, the \pkg{Rcmdr} GUI. In addition, the \pkg{tcltk2} package
+provides additional bindings and bundles in some useful external TCL
+code. Our focus here is limited to the base \pkg{tcltk} package.
 
 \TK\/ had a major change between versions 8.4 and 8.5, with the latter
 introducing themed widgets. Many widgets were rewritten and their API
 dramatically simplified. In \pkg{tcltk} there can be two different
 functions to construct a similar widget. For example,
 \function{tklabel} or \function{ttklabel}. The latter, with the
-\code{ttk} prefix, would be for the newer themed widget. As this was a
-major step forward, we will assume \TK\/ version is 8.5 or higher and
-use the themed widgets when available.
+\code{ttk} prefix, corresponds to the newer themed variant of the
+widget. We assume the \TK\/ version is 8.5 or higher, as this was a
+major step forward.
 
 Despite its limitations as a graphical toolkit, as compared to \GTK\/
 or \Qt, the \TK\/ libraries are widely used for \R\/ GUIs, as for most
-users there are no installation issues. In particular, as of version
-2.7.0, \R\/ for windows has been bundled with the necessary \TK\/
-version. For linux users, it is typically trivial to install the newer
-libraries and for Mac OS X users, the provided binary installations
-include a one click install of the newer \TK\/ libraries.
-
-
+users there are no installation issues. As of version 2.7.0, \R\/ for
+Windows has been bundled with the necessary \TK\/ version, so there are no
+installation issues for that platform. For linux users, it is
+typically trivial to install the newer libraries and for Mac OS X
+users, the provided binary installations include the newer \TK\/ libraries.
 
 \section{Interacting with \TCL}
 \label{sec:tcltk:interacting-with-tcl}

@@ -114,7 +114,7 @@ display it is responsible for.
 
 Each column has one or more cell renderers defined for the display of
 the data. This example shows how different cell renderers are used to
-display text, check boxes, comboboxes and icons.  The cell render
+display text, check boxes, combo boxes and icons.  The cell render
 specifies how that text will be rendered on a cell by cell basis. The
 ``attributes'' of the cell renderer control how this is done. For
 example, for a text cell renderer the \code{text} attribute specifies

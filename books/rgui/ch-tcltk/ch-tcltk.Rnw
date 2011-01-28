@@ -42,20 +42,19 @@ print.tclObj <- noTclPrint
 %     tcl("wm","iconphoto", w, "::icon::name")
 %   }
 % }
-\chapter{Tcl Tk: Overview}
+\chapter{Tcl/Tk: Overview}
 \label{sec:tcltk:overview}
-
 
 %%\section{Overview}
 \SweaveInput{Overview}
 
 
 
-\chapter{Tcl Tk: Containers and Layout}
+\chapter{Tcl/Tk: Layout and Containers}
 \label{sec:tcltk:basic-containers}
 \SweaveInput{BasicContainers}
 
-\chapter{Tcl Tk: Widgets}
+\chapter{Tcl/Tk: Widgets}
 \label{sec:tcltk:widgets}
 \SweaveInput{Widgets}
 

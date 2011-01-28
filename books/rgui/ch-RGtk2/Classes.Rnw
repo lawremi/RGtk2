@@ -1,0 +1,178 @@
+\section{Extending GObject classes from R}
+
+\GTK, as well as several of its dependencies, with the notable
+exception of \pkg{Cairo}, is based on the \pkg{GObject}
+library for object-oriented programming in C. \pkg{GObject} forms the
+basis of many other open-source projects, including the \pkg{GNOME}
+and \pkg{XFCE} desktops and the \pkg{GStreamer} multimedia framework.
+
+Given the broad use of signals in the \GTK\/ API, it is very rarely
+necessary to extend a widget class when developing a typical
+GUI. However, it is generally good practice to encapsulate the
+behavior of a widget in a formal class. Although there are several
+such formalisms in R, \pkg{RGtk2} provides one that is congruent with
+the rest of \GTK. It interfaces with parts of \pkg{GObject} and
+permits the R programmer to create new \pkg{GObject} classes in R. A
+subclass can override certain methods inherited from its parent and
+define new methods, properties and signals. If a method is declared by
+a C class, it can only be overridden if it is a so-called
+\textit{virtual} method, and there is no documentation as to which
+methods are virtual. There is a loose convention that every signal has
+a corresponding virtual method. The ultimate resource is the C header
+files. A bug in a method override could very easily crash R, so use of
+this feature takes some commitment from the programmer. Any method
+declared by an R class may be overridden by an R subclass.
+
+Our example will be a GUI that displays a scatterplot along with a
+slider for adjusting the alpha level of the points. Usually, a slider
+operates in linear fashion. When there are a large number of points,
+on the order of tens of thousands or more, changing the alpha level
+does not have a strong visual effect until it approaches its lower
+limit. We desire greater control in the lower part of the alpha scale,
+without limiting the range of the slider. To achieve this, we need to
+perform a non-linear transformation from the slider value to the alpha
+of the plot and reflect that transformation in the label on the
+slider. One solution is to connect to the
+\signal{format-value}{GtkScale} signal to override the text in the
+label. We present an alternative that involves extending
+\class{GtkHScale} and overriding its \method{format_value}{GtkScale}
+virtual method.
+
+A class is defined by calling \function{gClass}, which is passed the
+class name, the name of the parent class and a number of list
+arguments that define the properties, signals and methods of the
+class. For the sake of cleanliness, the everything is defined as part
+of the \function{gClass} call:
+<<gtk-class-def>>=
+tform_scale_type <- 
+  gClass("RTransformedHScale", "GtkHScale",
+         .props = list(
+           gParamSpec(type = "R", name = "expr", nick = "e", 
+                      blurb = "Transformation of scale value",                 
+                      default.value = expression(x))
+           ),
+         GtkScale = list(
+           format_value = function(self, x) as.character(self$transformValue(x))
+           ),
+         .public = list(
+           getExpr = function(self) self["expr"],
+           getTransformedValue = function(self) self$transformValue(self$value)
+           ),
+         .private = list(
+           transformValue = function(self, x) eval(self$expr, list(x = x))
+          )
+         )
+@ 
+
+The class definition for \class{RTransformedHScale} starts with a
+property for the R expression that transforms the value from the
+slider to the alpha level. A property is defined by a
+\class{GParamSpec} structure that specifies a name, nickname,
+descriptive blurb, value type, and other options.  There are
+subclasses of \class{GParamSpec} for particular types that permit
+specification of further constraints. For example,
+\class{GParamSpecInt} is specific to integers and can be configured to
+restrict its valid range of integer values between a minimum and
+maximum. Many \class{GParamSpec} subclasses also permit default
+values. The \argument{type}{gParamSpec} argument may refer to any C
+type by name. The names of R types, like ``integer'' and ``character''
+are mapped to the corresponding scalar C type, if available. An ``R''
+property, like our expression, stores any native R value. The actual R
+type, as returned by \function{typeof}, may be specified as the
+\argument{s.type}{gParamSpec} argument; otherwise, it is taken from
+the default value.
+
+We turn our attention to the methods in the class definition. The
+class overrides the \method{format_value} virtual from
+\class{GtkScale} and defines two public methods, \code{getExpr} and
+\code{getTransformedValue}, for retrieving the transformation
+expression and the transformed value, respectively. There is one
+private method, \code{transformValue} that is a utility for evaluating
+the expression on the current value.
+
+Methods are implemented with R functions that are grouped into lists.
+The names of the list identify the methods. An override is placed into
+the list corresponding to the class in which the original method is
+declared.  For new methods, the division is by the access level:
+public, protected or private.  Public members may be accessed by any
+code, while protected members are restricted to methods belonging to
+the same class or a subclass. Access to private members is the most
+restricted as they are only available to methods in the same class.
+
+A function implementing a virtual method may delegate to the method
+that it overrides. This is achieved by calling the
+\function{parentHandler} function and passing it the name of the method
+and the arguments to forward to the method. This is similar to the
+\function{super} function in \pkg{qtbase}. For example, in the
+override of \signal{format\_value} in the \class{RGtkTransformedHScale}
+class, we could call \code{parentHandler("format\_value", self, x)} to
+delegate to the implementation of \signal{format\_value} in
+\class{GtkScale}.
+
+If a non-function, like a vector, is placed in the
+\argument{.public}{gClass}, \argument{.protected}{gClass} or
+\argument{.private}{gClass} list, it represents a field, which is
+initialized to the given value.
+
+Two elements of the class definition that are not in the example above
+are the list of signal definitions and the initialization function.
+The signal definition list is passed as a parameter named
+\code{.signals} and contains a list for each signal. Each list
+includes the name, return type, and parameter types of the signal. The
+types may be specified in the same format as used for property
+definitions. The initialization function, passed as the
+\code{.initialize} parameter, is invoked whenever an instance of the
+class is created, before any properties are set. It takes the newly
+created instance of the class as its only parameter.
+
+The next step in our example is to create an instance of
+\code{RGtkTransformedHScale} and to register a handler on the
+\code{value-changed} signal that will draw the plot using the
+transformed value as the alpha setting:
+<<gtk-class-madata, echo=FALSE>>=
+n <- 5000
+backbone <- rnorm(n)
+ma_data <- cbind(backbone + c(rnorm(3 * (n / 4), sd = 0.1), 
+                              rt(n/4, 80)), 
+                 backbone + c(rnorm(3 * (n / 4), , 0.1), 
+                              rt(n / 4, 80)))
+ma_data <- apply(ma_data, 2, function(col) col - min(col))
+@ 
+<<gtk-class-instance>>=
+adj <- gtkAdjustment(0.5, 0.15, 1.00, 0.05, 0.5, 0)
+s <- gObject(tform_scale_type, adjustment = adj, 
+             expr = expression(x^3))
+gSignalConnect(s, "value_changed", function(scale) {
+  plot(ma_data, col = rgb(0, 0, 0, scale$getTransformedValue()),
+       xlab = "Replicate 1", ylab = "Replicate 2", 
+       main = "Expression levels of WT at time 0", pch = 19)
+})
+@ 
+%
+Instances of any \pkg{GObject} class may be created using the
+\code{gObject} function.  The value of the \code{expr} property is set
+to the \proglang{R} expression $x^3$ when the object is created.  The
+signal handler now calls the new \code{getTransformedValue} method,
+instead of \code{getValue} as in the original version.  The
+\code{ma_data} object is a matrix of points that is meant to resemble
+expression values from two replicates of a microarray experiment.
+
+We complete the example by placing the slider and a graphics device in
+a window:
+<<gtk-class-window>>=
+win <- gtkWindow(show = FALSE)
+da <- gtkDrawingArea()
+vbox <- gtkVBox()
+vbox$packStart(da)
+vbox$packStart(s, FALSE)
+win$add(vbox)
+win$setDefaultSize(400, 400)
+
+require(cairoDevice)
+asCairoDevice(da)
+
+win$showAll()
+par(pty = "s")
+s$setValue(0.7)
+@ 
+
