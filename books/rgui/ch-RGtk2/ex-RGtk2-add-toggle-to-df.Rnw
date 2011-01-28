@@ -56,8 +56,7 @@ gSignalConnect(cr, "toggled", function(cr, path, user.data) {
 }, data=view)
 @ 
 
-The text columns are added one-by-one in a similar manner:
-
+The text columns are added in one go:
 <<results=hide>>=
 mapply(view$insertColumnWithAttributes, -1, nms, 
        list(gtkCellRendererText()), text = 1:n-1)

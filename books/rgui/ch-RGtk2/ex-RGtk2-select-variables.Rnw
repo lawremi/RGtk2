@@ -20,12 +20,14 @@ To indicate to the user the type of variables we use an icon. The
 following function will create a pixmap holding an icon that depends
 on the class of the variable. The \code{make\_icon} function from the
 \pkg{ProgGUIinR} package will be used to draw the icon.
-<<make_icon>>=
+<<echo=FALSE>>=
 #require(ProgGUIinR)                     # for make_icon
 source("~/GUI/ProgGUIInR/R/misc.R")     # for make_icon
+@ 
+%
+<<make_icon>>=
 make_icon_pixmap <- function(x, ...) {
-  require(grid)
-  require(cairoDevice)
+  require(grid); require(cairoDevice)
   pixmap <- gdkPixmap(drawable=NULL, width=16, height=16, 
                       depth=24)
   asCairoDevice(pixmap)
@@ -41,7 +43,7 @@ data frame, a corresponding \code{rGtkDataFrame} object and from that
 a filtered tree model. The filtering is done at the model level -- not
 the view level -- by specifying a column in the model to indicate if a
 row should be shown.  As such, we need two similar models.
-<<models>>=
+<<models, results=hide>>=
 mdf <- data.frame(Variables=sort(names(df)),
                   visible = rep(TRUE, ncol(df)),
                   stringsAsFactors=FALSE
@@ -57,7 +59,7 @@ models[[2]] <- rGtkDataFrame(mdf)
 %
 Here we create our filtered models and set the second column as the
 visible column.
-<<filterModels>>=
+<<filterModels, results=hide>>=
 filterModels <- sapply(models, function(i)
                        gtkTreeModelFilterNew(i))
 sapply(filterModels, function(i) i$setVisibleColumn(1)) 
@@ -66,18 +68,15 @@ sapply(filterModels, function(i) i$setVisibleColumn(1))
 We now layout our GUI using a horizontal box. We pack in the views and
 a box container to hold the selection buttons. The views will be
 scrollable, so we construct \class{GtkScrolledWindow} instances.
-<<guiLayout>>=
+<<guiLayout, results=hide>>=
 w <- gtkWindow(show=FALSE)
 g <- gtkHBox()
 w$add(g)
 
 ## scrollbars
 scrollbars <- sapply(1:2, function(i) gtkScrolledWindow())
-sapply(1:2, function(i) {
-  scrollbars[[i]]['hscrollbar-policy'] <- "automatic"
-  scrollbars[[i]]['vscrollbar-policy'] <- "automatic"
-})
-
+sapply(scrollbars, function(i) i$setPolicy("automatic", "automatic"))
+#
 buttonBox <- gtkVBox();
 #
 g$packStart(scrollbars[[1]], expand=TRUE)

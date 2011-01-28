@@ -3,14 +3,22 @@
 %% needed for the example); discussion on other containers
 %% follows. Then I moved the basic controls into a separate chapter,
 %% as this one got rather long.
+
+
+
 <<echo=FALSE>>=
 library(RGtk2)
 @ 
 
-This section covers some of the basic widgets and containers of
-\GTK. We begin with a discussion of top level containers and box
-containers. Then we describe many of the basic controls, and
-conclude with the mention of a few special-case containers.
+%% JV: 1/27/11 This intro para. needed a rewrte 
+% This section covers some of the basic widgets and containers of
+% \GTK. We begin with a discussion of top level containers and box
+% containers. Then we describe many of the basic controls, and
+% conclude with the mention of a few special-case containers.
+
+
+This chapter covers top-level windows, dialogs and the container
+objects provided by \GTK.
 
 \section{Top-level windows}
 \label{sec:RGtk2:gtkWindow}
@@ -114,7 +122,7 @@ window with which a transient (dialog) window is associated. This
 hints to the window manager that the transient window should be kept on
 top of its parent. The position relative to the parent window can be
 specified with \code{setPostion}, which takes a value from the
-\code{GtkWindowPosition} enumeration. Optionally, a dialog be can be
+\code{GtkWindowPosition} enumeration. Optionally, a dialog can be
 set to be destroyed with its parent. For example:
 <<>>=
 ## create a window and a dialog window
@@ -429,7 +437,11 @@ Figure~\ref{fig:RGtk2-pack-start} an illustration.
 
 The \method{reorderChild}{gtkBox} method reorders the child
 widgets. The new position of the child is specified using 0-based
-indexing. This code will move the last child to the second position:
+indexing. This code will move the third child of \code{g} to the second position:
+<<echo=FALSE, results=hide>>=
+g <- gtkHBox()
+sapply(1:3, function(i) g$packStart(gtkLabel(i)))
+@ 
 <<>>=
 b3 <- g[[3]]
 g$reorderChild(b3, 2 - 1)               # second is 2 - 1
@@ -561,9 +573,9 @@ typically used for the tab.  This allows for more complicated tabs,
 such as a box container with a label and close icon.
 
 The tabs can be positioned on any of the four sides of the notebook;
-this depends on the \property{tab-pos} property, with a value from
+this depends on the \property{tab-pos}{gtkNotebook} property, with a value from
 \code{GtkPositionType}: \qcode{left}, \qcode{right}, \qcode{top}, or
-\qcode{bottom}. By default, the tabs are on top. We move them to the
+\qcode{bottom}. By default, the tabs are on top. We move the current ones to the
 bottom:
 <<qt-layout-notebook-pos>>=
 nb['tab-pos'] <- "bottom"
@@ -572,7 +584,7 @@ nb['tab-pos'] <- "bottom"
 Methods and properties that affect pages expect the page index,
 instead of the page widget. To map from the child widget to the page
 number, use the method \method{pageNum}{gtkNotebook}.  The
-\property{page} property holds the zero-based index of the active
+\property{page}{gtkNotebook} property holds the zero-based index of the active
 tab. We make the second tab active:
 <<qt-layout-notebook-current>>=
 nb['page'] <- 1
@@ -618,12 +630,16 @@ gtkNotebookInsertPageWithCloseButton <-
     label <- gtkHBox()
     label$packStart(gtkLabel(label.text))
     icon <- gtkImage(pixbuf = 
-                     object$renderIcon("gtk-close", "button"))
+            object$renderIcon("gtk-close", "button", size="menu"))
     closeButton <- gtkButton()
     closeButton$setImage(icon)
+    closeButton$setRelief("none")
     label$packEnd(closeButton)
-    gSignalConnect(b, "clicked", function(b) nb$removePage(index))
-    index <- object$insertPage(child, label, position)
+    gSignalConnect(closeButton, "clicked", function(b) {
+      index <- nb$pageNum(child)
+      nb$removePage(index)
+    })
+    object$insertPage(child, label, position)
   }
 @ 
 

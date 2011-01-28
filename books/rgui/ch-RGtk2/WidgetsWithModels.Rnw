@@ -80,7 +80,7 @@ same.
 \begin{example}{Defining and manipulating a \class{RGtkDataFrame}}{eg-RGtk2-manipulate-rGtkDataframe}
   The basic data frame methods are similar.
 <<>>=  
-data(Cars93, package="MASS")            # mix of classes
+data(Cars93, package="MASS")             # mix of classes
 model <- rGtkDataFrame(Cars93)
 model[1, 4] <- 12
 model[1, 4]                              # get value
@@ -702,7 +702,7 @@ for it to receive user input. The programmer then needs to connect to the
 active state.
 <<cellRendererToggle>>=
 cr <- gtkCellRendererToggle()
-cr['activatable'] <- TRUE               # cell can be activated
+cr['activatable'] <- TRUE             # cell can be activated
 cr['active'] <- TRUE
 gSignalConnect(cr, "toggled", function(w, path) {
   model$active[as.numeric(path) + 1] <- w['active']
@@ -1131,10 +1131,14 @@ can synchronize their text through a shared buffer. Each entry obtains
 its text from the same underlying model, a
 \class{GtkEntryBuffer}. Here, we construct two entries, with a shared
 buffer:
+%% JVXXX needed to put in intial.chars, n.initial.chars into
+%% constructor. No defaults, but could be
+%% JV XXX does gtkEntry now have a buffer argument? I had to call
+%% other constructor below to run
 <<gtk-mvc-entry-buffer>>=
-buffer <- gtkEntryBuffer()
-entry1 <- gtkEntry(buffer = buffer)
-entry2 <- gtkEntry(buffer = buffer)
+buffer <- gtkEntryBuffer("", -1)        
+entry1 <- gtkEntryNewWithBuffer(buffer = buffer)
+entry2 <- gtkEntryNewWithBuffer(buffer = buffer)
 entry1$setText("echo")
 entry2$getText()
 @ 
@@ -1170,8 +1174,7 @@ w['border-width'] <- 15
 #
 tv <- gtkTextView()
 sw <- gtkScrolledWindow()
-sw['hscrollbar-policy'] <- "automatic"
-sw['vscrollbar-policy'] <- "automatic"
+sw$setPolicy("automatic", "automatic")
 #
 w$add(sw)
 @

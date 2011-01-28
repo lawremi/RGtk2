@@ -7,8 +7,8 @@ data(mtcars); library(MASS); data(Cars93) # need some data frames
 The goal of this example is to populate a combo box of variables
 whenever a data frame is selected in another. We use two convenience
 functions from the \pkg{ProgGUIInR} package to find the possible data
-frames, and for a data frame to find the variables.
-<<>>=
+frames, and for a data frame to find its variables.
+<<echo=FALSE>>=
 #library(ProgGUIinR)                     # for avail_dfs, find_vars
 source("~/GUI/ProgGUIInR/R/misc.R")
 @ 
@@ -23,8 +23,7 @@ var_combo <- gtkComboBoxNewText()
 @ 
 %
 
-Our layout uses boxes. A table is more appropriate, but that has not been
-introduced yet. To add a twist, we will hide our variable combo box
+Our layout uses boxes. To add a twist, we will hide our variable combo box
 until after a data frame has been initially selected.
 <<Layout>>=
 g <- gtkVBox(); w$add(g)

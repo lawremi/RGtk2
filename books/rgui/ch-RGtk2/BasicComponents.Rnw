@@ -55,7 +55,7 @@ mnemonic. Mnemonics are specified by prefixing the character with an
 underscore.
 
 The method \method{setRelief}{gtkButton} changes the relief style of
-the button. For example, the relief can be disable so that the button
+the button. For example, the relief can be \qcode{none} so that the button
 is drawn like a label.
 
 %% signals
@@ -301,9 +301,10 @@ identifier.
 %% ML: this is a fairly complicated example for a concept that is not
 %% so important (GtkEventBox). I don't see how it's useful for
 %% show/hide, which are pretty obvious.
-\begin{example}{An alert panel}{eg:RGtk2:alert-panel}
-  \SweaveInput{ex-RGtk2-alert-panel-2}
-\end{example}
+%% JV: killed
+% \begin{example}{An alert panel}{eg:RGtk2:alert-panel}
+%   \SweaveInput{ex-RGtk2-alert-panel-2}
+% \end{example}
 
 \section{Input Controls}
 
@@ -384,6 +385,8 @@ beginning (\code{primary}) and one at the end (\code{secondary}). For
 example, an entry might listen to its input and update its icon to
 indicate whether the entered text is valid (in this case, consisting
 only of letters):
+%% JV: Cool, I didn't know this. The tooltip doesn't seem to work for
+%% my setup.
 <<gtk-widget-entry-validate>>=
 validatedEntry <- gtkEntry()
 gSignalConnect(validatedEntry, "changed", function(entry) {
@@ -435,7 +438,7 @@ When the state is changed the \signal{toggle} signal is emitted. The
 callback should check the \code{active} property to determine if the
 button has been enabled or disabled:
 <<gtk-widget-check-button-toggle,results=hide>>=
-gSignalConnect(cb, "toggle", function(x) {
+gSignalConnect(cb, "toggled", function(x) {
   message("Button is ", if (x$active) "active" else "inactive")
 })
 @ 
@@ -465,9 +468,9 @@ one button in a group may be active at once.
 <<RadioGroupExample>>=
 labels <- c("two.sided", "less", "greater")
 radiogp <- list()                                 # list for group
-radiogp[[vals[1]]] <- gtkRadioButton(label=labels[1]) # group = NULL
+radiogp[[labels[1]]] <- gtkRadioButton(label=labels[1]) # group = NULL
 for(label in labels[-1]) 
-  radiogp[[i]] <- gtkRadioButton(radiogp, label=label)  # group is a list
+  radiogp[[label]] <- gtkRadioButton(radiogp, label=label)  # group is a list
 @ 
 %
 As a convenience, there are constructor functions ending with
@@ -506,9 +509,9 @@ sapply(radiogp, gSignalConnect, "toggled",     # connect each
   \constructor{gtkRadioButtonNewWithLabelFromWidget} function to add new
   buttons to the group:
 <<results=hide>>=
-radiogp <- gtkRadioButton(label=vals[1])
-sapply(vals[-1], gtkRadioButtonNewWithLabelFromWidget, 
-       group = radiogp)
+radiogp <- gtkRadioButton(label=labels[1])
+btns <- sapply(labels[-1], gtkRadioButtonNewWithLabelFromWidget, 
+               group = radiogp)
 w <- gtkWindow()
 w['title'] <- "Radio group example"
 g <- gtkVBox(); w$add(g)
@@ -537,14 +540,14 @@ basic, text-only \class{GtkComboBox} is constructed by
 complicated combo boxes, that are based on an external data model.
 
 We construct and populate a simple combo box:
-<<gtk-widget-combo>>=
+<<gtk-widget-combo, results=hide>>=
 combo <- gtkComboBoxNewText()
 sapply(c("two.sided", "less", "greater"), combo$appendText)
 @ 
 %
 
 The index of the currently active item is stored in the
-\property{active} property. The index, as usual, is $0$-based,
+\property{active}{gtkComboBox} property. The index, as usual, is $0$-based,
 and in this case, a value of $-1$ indicates that no value is selected.
 The \method{getActiveText}{gtkComboBox} method retrieves
 the text shown by the basic combo box.
@@ -554,8 +557,7 @@ emitted. The handler then needs to retrieve the active index:
 <<gtk-widget-combo-changed>>=
 gSignalConnect(combo, "changed",
                f = function(w, ...) {
-                 i <- w$getActive() + 1 # shift index
-                 if(i == 0) 
+                 if(w$getActive() < 0) 
                    cat("No value selected\n")
                  else
                    cat("Value is", w$getActiveText(), "\n")
@@ -596,14 +598,14 @@ sliders or other scale-based widgets. Ordinarily, it is not necessary
 to construct a \class{GtkAdjustment} explicitly. Instead, one passes
 the values as parameters to the constructor. The initial value is set
 to $10$, and the value will be rendered in a label beneath the slider,
-according to the \property{value-pos} property.
+according to the \property{value-pos}{GtkScale} property.
 
 The \signal{value-changed} signal is emitted whenever the slider is
 adjusted. Our handler updates the histogram:
 <<gtk-widget-slider-value-changed>>=
 gSignalConnect(slider, "value-changed",
                f = function(w, ...) {
-                 val <- w$getValue()
+                 val <- w$getValue() 
                  drawHistogram(val)
                })
 @ 
@@ -750,8 +752,8 @@ signal, which needs to place some data into the passed
 \class{GtkSelectionData} object:
 <<results=hide>>=
 gSignalConnect(dragSourceWidget, "drag-data-get", 
-               function(widget, context, selection, targetType, eventTime) {
-                 selection$setText(widget$getLabel()) 
+               function(widget, context, sel, tType, eTime) {
+                 sel$setText(widget$getLabel()) 
                })
 @ 
 %
@@ -791,12 +793,10 @@ extracting the dragged data from \code{selection} and performing some
 operation with it. In this case, we set the text on the button:
 <<>>=
 gSignalConnect(dropTargetWidget, "drag-data-received", 
-               function(dropTargetWidget, context, x, y, selection, targetType,
-                        eventTime) 
-               {
-                 dropdata <- selection$getText()
-                 dropTargetWidget$setLabel(rawToChar(dropdata))
-               })
+       function(widget, context, x, y, sel, tType, eTime) {
+         dropdata <- sel$getText()
+         widget$setLabel(rawToChar(dropdata))
+       })
 @ 
 %
 The \code{context} argument is a \code{gdkDragContext}, containing
@@ -811,6 +811,7 @@ drop occurred. The text data is returned by \function{getText} as a
 %% ML: agreed
 
 %% ML: Should this go into this chapter or the next?
+%% JV: Seems fine here
 \section{Embedding R Graphics}
 \label{sec:gtk-widget-graphics}
 

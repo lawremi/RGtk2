@@ -47,7 +47,7 @@ cr['background'] <- 'gray80'
 v$insertColumnWithAttributes(position=-1,
                              title="Option",
                              cell=cr,
-                             text= 1- 1)
+                             text=1 - 1)
 @ 
 
 The second column will be editable and have a background color that is
@@ -56,10 +56,10 @@ state dependent and indicates if a cell has been edited.
 cr <- gtkCellRendererText()
 cr['editable'] <- TRUE
 v$insertColumnWithAttributes(position=-1,
-                             title='Value',
+                             title="Value",
                              cell=cr,
-                             text= 2 - 1,
-                             background= 4 - 1
+                             text=2 - 1,
+                             background=4 - 1
                              )
 @ 
 
@@ -91,7 +91,7 @@ w$show()
 @ 
 
 Implementing this into a GUI requires writing a function to map the
-model's values into the appropriate call to \function{title}. The
+model's values into the appropriate call to the \function{title} function. The
 \code{dirty} flag makes this easy, but this is a task we do not pursue
 here. Instead we add a bit of extra detail by providing a tooltip.
 
@@ -110,8 +110,8 @@ names(descs) <- sapply(descs, function(i) i$param)
 @ 
 
 For many widgets, adding a tooltip is as easy as setting the
-\code{tooltip-text} property through the
-\method{SetTooltipText}{GtkWidget}. However, it is more complicated in
+\code{tooltip-text} property through 
+\method{setTooltipText}{GtkWidget}. However, it is more complicated in
 a treeview, as each cell should get a different tip.  To add tooltips
 to the tree view we first indicate that we want tooltips, then connect
 to the \signal{query-tooltip} signal to implement the tooltip. Within
@@ -121,7 +121,7 @@ tooltip. The descriptions use HTML for markup, but the tooltip only
 uses PANGO. As the \code{code} tag is not PANGO, we change to a bold
 tag using \function{gsub}.
 <<>>=
-v['has-tooltip'] <- TRUE
+v["has-tooltip"] <- TRUE
 gSignalConnect(v, "query-tooltip", 
        function(w, x, y, key_mode, tooltip, user.data) {
          out <- w$getTooltipContext(x, y, key_mode)

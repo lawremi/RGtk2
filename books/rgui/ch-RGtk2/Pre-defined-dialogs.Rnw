@@ -162,7 +162,7 @@ gSignalConnect(dlg, "response", f=function(dlg, resp, data) {
   % 
   The file selected is returned by
   \method{getFilename}{gtkFileChooser}. If multiple selection is enabled
-  with via the \code{select-multiple} property, one should call the
+  (via the \code{select-multiple} property) one should call the
   plural \method{getFilenames}{gtkFileChooser}.
 
   For the open dialog, one may wish to specify one or more filters that

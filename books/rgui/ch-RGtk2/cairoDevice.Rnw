@@ -50,30 +50,30 @@ printing dialogs.
 printOp <- gtkPrintOperation()
 @ 
 %
-  A print operation may perform several different actions: print
-  directly, print through a dialog, show a print preview or export
-  directly to a file. Before any such actions can be performed, we need
-  to implement the rendering of our document into printed form. This is
-  accomplished by connecting to the
-  \signal{draw-page}{GtkPrintOperation} signal. The handler is passed a
-  \class{GtkPrintContext}, which contains the target Cairo context. In
-  general, one would call Cairo functions to render the document,
-  which is beyond our scope. In this case, though, we can pass
-  the context directly to \pkg{cairoDevice} for rendering the R plot:
+A print operation may perform several different actions: print
+directly, print through a dialog, show a print preview or export
+directly to a file. Before any such actions can be performed, we need
+to implement the rendering of our document into printed form. This is
+accomplished by connecting to the \signal{draw-page} signal. The
+handler is passed a \class{GtkPrintContext}, which contains the target
+Cairo context. In general, one would call Cairo functions to render
+the document, which is beyond our scope. In this case, though, we can
+pass the context directly to \pkg{cairoDevice} for rendering the R
+plot:
 <<gtk-cairo-draw-page>>=
 gSignalConnect(printOp, "draw-page", function(x, context, page_nr) {
   asCairoDevice(context)
-  plot(mpg ~ hp, data = mtcars)
+  plot(mpg ~ wt, data = mtcars)
 })
 @ 
 %
   The final step is to run the operation to perform one of the
   available actions. In this example, we launch a print dialog:
-<<gtk-cairo-run-dialog>>=
+<<gtk-cairo-run-dialog, results=hide>>=
 printOp$run(action = "print-dialog", parent = NULL)
 @
 % 
   When the user confirms the dialog, the
-  \signal{draw-page}{GtkPrintOperation} handler is invoked, and the
+  \signal{draw-page} handler is invoked, and the
   rendering is sent to the printer.
 \end{example}

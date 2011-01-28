@@ -52,7 +52,7 @@ generation of \pkg{RGtk2}. This conveniently allows the programmer to
 refer to the appropriate documentation within an \R\/ session, without
 having to consult a web page, such as
 \url{http://library.gnome.org/devel/gtk/stable/}, which lists the
-\proglang{C} API of the stable versions \GTK.
+\proglang{C} API of the stable version of \GTK.
 
 In this chapter, we give an overview of how \pkg{RGtk2} maps the
 \GTK\/ API, including its classes, constructors, methods, properties,

@@ -32,7 +32,7 @@ view <- gtkTreeView(filteredStore)
 @ 
 
 Next, we create a basic view of a single column:
-<<>>=
+<<results=hide>>=
 view$insertColumnWithAttributes(0, "Col", 
                  gtkCellRendererText(), text = 0)
 @ 

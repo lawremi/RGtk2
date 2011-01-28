@@ -127,7 +127,7 @@ evalCMD <- function(tv, cmd) {
   
   e <- parse(text = cmd)
   out <- capture.output(vis <- 
-                 withVisible(try(eval(e, .GlobalEnv), TRUE)))
+                        withVisible(try(eval(e, .GlobalEnv), TRUE)))
 
   addOutput(tb, out) 
   if (inherits(vis$value, "try-error"))

@@ -15,7 +15,8 @@ location.
 We will assume that the reader has saved an interface as a
 \class{GtkBuilder} XML file named \code{buildable.xml} and is ready to
 load it with \pkg{RGtk2}:
-<<>>=
+%% JV XXX no constructor? (un eval=FALSE the next 3)
+<<eval=FALSE>>=
 g <- gtkBuildableNew()
 g$addFromFile("buildable.xml")
 @ 
@@ -24,7 +25,7 @@ The \method{getObject}{gtkBuilder} extracts a widget by its ID, which
 is specified by the user through \software{Glade}. It normally
 suffices to load the top-level widget, named \code{dialog1} in this
 example, and show it:
-<<>>=
+<<eval=FALSE>>=
 d <- g$getObject("dialog1")
 d$showAll()
 @
@@ -34,11 +35,11 @@ as signal handlers. In \software{Glade}, the user should specify the
 name of an R function as a handler for some signal. \pkg{RGtk2}
 extends \class{GtkBuilder} to look up the functions and connect them
 to the appropriate signals. Let us assume that the user has named the
-\function{ok_button_clicked} function as the handler for the
+\function{ok\_button\_clicked} function as the handler for the
 \signal{clicked} signal on a \class{GtkButton}. The
 \method{connectSignals}{GtkBuilder} method will establish that
 connection and any others in the interface:
-<<>>=
+<<eval=FALSE>>=
 ok_button_clicked <- function(w, userData) {
   print("hello world")
 }

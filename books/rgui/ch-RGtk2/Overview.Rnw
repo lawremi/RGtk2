@@ -595,7 +595,7 @@ as signal handlers. In \software{Glade}, the user should specify the
 name of an R function as a handler for some signal. \pkg{RGtk2}
 extends \class{GtkBuilder} to look up the functions and connect them
 to the appropriate signals. Let us assume that the user has named the
-\function{ok_button_clicked} function as the handler for the
+\function{ok\_button\_clicked} function as the handler for the
 \signal{clicked} signal on a \class{GtkButton}. The
 \method{connectSignals}{GtkBuilder} method will establish that
 connection and any others in the interface:
