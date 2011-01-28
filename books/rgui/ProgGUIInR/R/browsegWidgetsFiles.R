@@ -1,9 +1,17 @@
-## Simple GUI to browse gWidgets examples
+##' @include misc.R
+roxygen()
 
+##' Simple GUI to browse gWidgets examples
+##' 
+##' @param toolkit Which toolkit to use (RGtk2, tcltk or Qt)
+##' @return NULL
+##' @export
 browsegWidgetsFiles <- function(toolkit="RGtk2") {
   e <- new.env()                        # for evaluation
-  
-  library(gWidgets)
+
+  if(!.bypassRequire("gWidgets"))
+    stop("Requires gWidgets package")
+
   options(guiToolkit=toolkit)
   
   

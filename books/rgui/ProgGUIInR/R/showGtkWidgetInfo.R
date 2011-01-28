@@ -1,8 +1,13 @@
+##' @include misc.R
+roxygen()
+
+##' Show info on Gtk widgets
+##'
+##' @return NULL
+##' @export
 showGtkWidgetInfo <- function() {
-  
-  ## A GUI to get information about Gtk objects
-  ## 
-  require(RGtk2)
+  if(!.bypassRequire("RGtk2"))
+    stop("This function require RGtk2")
   
   ## Main widgets
   ## entry widget
