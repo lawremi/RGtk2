@@ -1227,6 +1227,9 @@ in \code{PangoStyle}, \code{PangoVariant}, \code{PangoWeight},
 \code{PangoStretch}, and \code{PangoGravity}. The help page for
 \code{PangoFontDescription} contains more information.
 
+%% ML: stuff that could be described: automatic scrolling, and mapping
+%% locations to text iterators. Already mentioned in the example though.
+
 \section{Text buffers}
 \label{sec:RGtk2:text-buffers}
 
@@ -1468,11 +1471,6 @@ pasted text should be editable. If we had passed \qcode{NULL}, to the
 \argument{override\_location}{pasteClipboard} argument, the insertion
 would have occured at the cursor.
 
-\begin{example}{A simple command line interface}{eg:RGtk2-command-line}
-  \SweaveInput{ex-RGtk2-terminal}
-\end{example}
-
-
 % \begin{example}{Adding parentheses highlighting}{eg:RGtk2:paren-highlight}
 %   \SweaveInput{ex-RGtk2-match-parentheses}
 % \end{example}
@@ -1499,6 +1497,11 @@ To add the widget, we call the text view method
 b <- gtkButton("click me")
 tv$addChildAtAnchor(b, anchor)
 @ 
+
+\begin{example}{A simple command line interface}{eg:RGtk2-command-line}
+  \SweaveInput{ex-RGtk2-terminal}
+\end{example}
+
 
 % \begin{example}{Simple textview usage}{eg:RGtk2:simple-textview-usage}
 %   \SweaveInput{ex-RGtk2-simple-textview}
