@@ -4,9 +4,7 @@
 The package \pkg{cairoDevice} is an R graphics device based on the
 Cairo graphics library.  It supports alpha-blending and antialiasing
 and reports user events through the \function{getGraphicsEvent}
-function.
-
-\pkg{RGtk2} and \pkg{cairoDevice} are integrated through the
+function. \pkg{RGtk2} and \pkg{cairoDevice} are integrated through the
 \function{asCairoDevice} function. If a \class{GtkDrawingArea},
 \class{GdkDrawable}, \class{Cairo} context, or \class{GtkPrintContext}
 is passed to \function{asCairoDevice}, an R graphics device will be
@@ -31,12 +29,12 @@ scatterplot. Example~\ref{sec:RGtk2:scroll-windows} goes further by
 embedding the drawing area into a scrolled window to support zooming
 and panning.
 
-For more complex use cases, such as compositing a layer above
-or below the R graphic, one should pass an off-screen
-\class{GdkDrawable}, like a \class{GdkPixmap}, or a \class{Cairo}
-context. The off-screen drawing could then be composited with other
-images when displayed. Example~\ref{ex:RGtk2:pixbuf} generates an icon
-by pointing the device to pixmap. Finally, passing a \class{GtkPrintContext} to
+For more complex use cases, such as compositing a layer above or below
+the R graphic, one should pass an off-screen \class{GdkDrawable}, like
+a \class{GdkPixmap}, or a \class{Cairo} context. The off-screen
+drawing could then be composited with other images when
+displayed. Example~\ref{ex:RGtk2:pixbuf} generates an icon by pointing
+the device to a pixmap. Finally, passing a \class{GtkPrintContext} to
 \function{asCairoDevice} allows printing R graphics through the \GTK\/
 printing dialogs.
 
@@ -44,22 +42,20 @@ printing dialogs.
   This example will show how to use the printing support in \GTK\/ for
   printing an R plot. 
   
-  A print operation is encapsulated by
-  \class{GtkPrintOperation}:
+  A print operation is encapsulated by \class{GtkPrintOperation}:
 <<gtk-cairo-print-operation>>=
 printOp <- gtkPrintOperation()
 @ 
 %
 A print operation may perform several different actions: print
-directly, print through a dialog, show a print preview or export
-directly to a file. Before any such actions can be performed, we need
-to implement the rendering of our document into printed form. This is
-accomplished by connecting to the \signal{draw-page} signal. The
-handler is passed a \class{GtkPrintContext}, which contains the target
-Cairo context. In general, one would call Cairo functions to render
-the document, which is beyond our scope. In this case, though, we can
-pass the context directly to \pkg{cairoDevice} for rendering the R
-plot:
+directly, print through a dialog, show a print preview and export to a
+file. Before performing any such action, we need to implement the
+rendering of our document into printed form. This is accomplished by
+connecting to the \signal{draw-page} signal. The handler is passed a
+\class{GtkPrintContext}, which contains the target Cairo context. In
+general, one would call Cairo functions to render the document, which
+is beyond our scope. In this case, though, we can pass the context
+directly to \pkg{cairoDevice} for rendering the R plot:
 <<gtk-cairo-draw-page>>=
 gSignalConnect(printOp, "draw-page", function(x, context, page_nr) {
   asCairoDevice(context)
@@ -75,5 +71,5 @@ printOp$run(action = "print-dialog", parent = NULL)
 % 
   When the user confirms the dialog, the
   \signal{draw-page} handler is invoked, and the
-  rendering is sent to the printer.
+  rendered page is sent to the printer.
 \end{example}

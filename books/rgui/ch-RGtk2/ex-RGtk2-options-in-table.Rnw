@@ -4,44 +4,37 @@ library(RGtk2)
 @ 
 
 This example shows one way to gather arguments or options using an
-editable cell in a table, rather than a text entry widget. Tables can
-provide compact entry areas in a familiar interface.
+editable cell in a table, rather than a separate text entry
+widget. Tables can provide compact entry areas in a familiar
+interface.
 
 For this example we collect values for arguments to the
-\function{title} function. We first create a data frame with the name
-and default value along with some additional values.
-
+\function{title} function. We first create a data frame with the
+argument name and default value, along with some additional values:
 <<>>=
 opts <- c("main","sub","xlab","ylab", "line","outer")
 df <- data.frame(option=opts,
                  value=c("","","","","0","FALSE"),
-                 coerce=c(rep("as.character", 4), 
-                   "as.integer", "as.logical"),
+                 class=c(rep("character", 4), "integer", "logical"),
                  edit_color=rep("gray95", 6),
                  dirty = rep(FALSE, 6),
                  stringsAsFactors=FALSE)
 @ 
 %
-
-The \code{coerce} value is used in editing. The different arguments
-take different data types, so internally we store them as
-characters. As such, we may need to internally coerce them to have a
-good text representation. The above ones provide some checking that
-the user supplies an appropriate value. For more non-integer numbers or
-dates we might define coercion functions such as:
-<<coercionFunctions>>=
-asNumeric <- function(x) sprintf("%.2f", as.numeric(x))
-asDate <- function(x)  format(as.Date(x, "%m/%d/%y"), 
-                              "%m/%d/%y")
-@ 
+Unfortunately, we need to coerce the default values to character, in
+order to store them in a single column. We preserve the class in the
+\code{class} column, for coercion later. The \code{edit\_color} and
+\code{dirty} columns are related to editing and explained later.
 %
 
-Now we create our model and configure the two columns. The first
-column has a standard background color which we specify below.
-<<firstColumn, results=hide>>=
+Now we create our model 
+<<model, results=hide>>=
 m <- rGtkDataFrame(df)
 v <- gtkTreeView(m)
-#
+@ 
+%
+and configure the first column
+<<firstColumn>>=
 cr <- gtkCellRendererText()
 cr['background'] <- 'gray80'
 v$insertColumnWithAttributes(position=-1,
@@ -49,34 +42,35 @@ v$insertColumnWithAttributes(position=-1,
                              cell=cr,
                              text=1 - 1)
 @ 
-
-The second column will be editable and have a background color that is
-state dependent and indicates if a cell has been edited.
+%
+The first column has a special background color which we specify
+below, which indicates that the cells are not editable.
+The second column is editable and has a background color that is
+state dependent and indicates if a cell has been edited:
 <<secondColumn, results=hide>>=
 cr <- gtkCellRendererText()
 cr['editable'] <- TRUE
-v$insertColumnWithAttributes(position=-1,
-                             title="Value",
-                             cell=cr,
-                             text=2 - 1,
-                             background=4 - 1
+v$insertColumnWithAttributes(position = -1,
+                             title = "Value",
+                             cell = cr,
+                             text = 2 - 1,
+                             background = 4 - 1
                              )
 @ 
 
-To connect the view to the model, we connect the cell renderer to the
-\signal{edited} signal. Here we use the \code{coerce} value to format
-the text then set the background color and \code{dirty} flag of the
+To attach the view to the model, we connect the cell renderer to the
+\signal{edited} signal. Here we use the \code{class} value to format
+the text and then set the background color and \code{dirty} flag of the
 entry. The latter allows one to easily find the values which were edited.
 <<editConnect>>=
 gSignalConnect(cr, "edited", function(cr, path, new.text, 
                                       user.data) {
   m <- user.data$model
   i <- as.numeric(path) + 1; j <- user.data$column
-  m[i,j] <- get(m[i, 'coerce'])(new.text) # format
-  m[i, 'dirty'] <- TRUE                   # mark dirty
-  m[i, 'edit_color'] <- 'gray70'          # change color
-},
-               data=list(model=m, column=2))
+  m[i,j] <- as(as(new.text, m[i, 'class']), "character")   # format
+  m[i, 'dirty'] <- TRUE                                    # mark dirty
+  m[i, 'edit_color'] <- 'gray70'                           # change color
+}, data=list(model=m, column=2))
 @  
 
 A simple window displays our GUI.
@@ -91,15 +85,19 @@ w$show()
 @ 
 
 Implementing this into a GUI requires writing a function to map the
-model's values into the appropriate call to the \function{title} function. The
+model values into the appropriate call to the \function{title} function. The
 \code{dirty} flag makes this easy, but this is a task we do not pursue
 here. Instead we add a bit of extra detail by providing a tooltip.
 
+%% ML: This section makes me uncomfortable, since it's relying on very
+%% volatile code. Internal routines from a package in active
+%% development, which in turn rely on undocumented and internal
+%% features of R.
 \paragraph{Tooltips}
 For this example, our function has built-in documentation. Below we
 use the \pkg{helpr} function to extract the description for
 each of the arguments. We leave this in a list, \code{descs}, for later
-lookup.
+lookup.  
 <<>>=
 require(helpr, quietly=TRUE)
 package <- "graphics"; topic <- "title"
@@ -109,17 +107,15 @@ descs <- rd$params$args
 names(descs) <- sapply(descs, function(i) i$param)
 @ 
 
-For many widgets, adding a tooltip is as easy as setting the
-\code{tooltip-text} property through 
+It is important to note that we are calling internal routines of a
+package still under active development, which in turn relies on
+volatile features of R. The purpose of this example is only to
+demonstrate tooltips on a tree view.  For many widgets, adding a
+tooltip is as easy as calling
 \method{setTooltipText}{GtkWidget}. However, it is more complicated in
-a treeview, as each cell should get a different tip.  To add tooltips
+a tree view, as each cell should get a different tip.  To add tooltips
 to the tree view we first indicate that we want tooltips, then connect
-to the \signal{query-tooltip} signal to implement the tooltip. Within
-this callback we check if we have the appropriate context (we are in a
-row), then, if so, use the path to find the description to set in the
-tooltip. The descriptions use HTML for markup, but the tooltip only
-uses PANGO. As the \code{code} tag is not PANGO, we change to a bold
-tag using \function{gsub}.
+to the \signal{query-tooltip} signal to implement the tooltip:
 <<>>=
 v["has-tooltip"] <- TRUE
 gSignalConnect(v, "query-tooltip", 
@@ -138,3 +134,9 @@ gSignalConnect(v, "query-tooltip",
          }
        })
 @ 
+%
+Within this callback we check if we have the appropriate context (we
+are in a row), then, if so, use the path to find the description to
+set in the tooltip. The descriptions use HTML for markup, but the
+tooltip only uses PANGO. As the \code{code} tag is not PANGO, we
+change to a bold tag using \function{gsub}.

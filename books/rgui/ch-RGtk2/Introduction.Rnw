@@ -375,12 +375,7 @@ information on the signals.
 
 The \function{gSignalConnect} function adds a callback to a widget's
 signal. Its signature is
-%% XXX tighten up output
-\begin{Soutput}
-function (obj, signal, f, data = NULL, after = FALSE, 
-          user.data.first = FALSE)
-\end{Soutput}
-<<echo=FALSE, eval=FALSE>>=
+<<>>=
 args(gSignalConnect)
 @
 %
@@ -402,13 +397,13 @@ gSignalConnect(button, "clicked",
 
 The \argument{data}{gSignalConnect} argument allows arbitrary data to
 be passed to the callback.  The
-\argument{user.data.first}{gSignalConnect} argument specifies if this
+\argument{user.data.first}{gSignalConnect} argument specifies if the
 \argument{data}{gSignalConnect} argument should be the first argument
 to the callback or (the default) the last.
 
-The \argument{after}{gSignalConnect} argument is a logical indicating
-if the callback should be called after the default handlers (see
-\command{?gSignalConnect}).
+The \argument{after}{gSignalConnect} argument is a logical value
+indicating if the callback should be called after the default handler
+(see \command{?gSignalConnect}).
 
 %% the callback
 The signature for the callback varies for each signal. Unless
@@ -489,16 +484,16 @@ window <- gtkWindow("toplevel", show = FALSE)
 @
 %
 The first parameter indicates the window type. The set of possible
-window types is specified by what in \proglang{C} is known as an
-\emph{enumeration}. A value from an enumeration can be thought of as a
+window types is specified by what in C is known as an
+\textit{enumeration}. A value from an enumeration can be thought of as a
 length one factor in \R. The possible values defined by the
 enumeration are analogous to the factor levels.  Since enumerations
-are foreign to \proglang{R}, \pkg{RGtk2} accepts string
+are foreign to R, \pkg{RGtk2} accepts string
 representations of enumeration values, like \code{"toplevel"}. 
 
-For every \pkg{GTK+} enumeration, \pkg{RGtk2} provides an \proglang{R}
+For every \GTK\/ enumeration, \pkg{RGtk2} provides an R
 vector that maps the nicknames to the underlying numeric values.  In
-the above case, the vector is named \code{GtkWindowType}.
+the above case, the vector is named \class{GtkWindowType}.
 <<intro-enum-GtkWindowType>>=
 GtkWindowType
 @ 

@@ -6,7 +6,7 @@
 library(RGtk2)
 @ 
 
-  This example shows how to use a \constructor{GtkImage} object to
+  This example shows how to use a \class{GtkImage} object to
   embed a graphic within \pkg{RGtk2}, using the
   \pkg{cairoDevice} package. The basic idea is to draw onto an
   off-screen pixmap using \pkg{cairoDevice} and
@@ -16,24 +16,23 @@ library(RGtk2)
 <<>>=    
 w <- gtkWindow(show=FALSE); w$setTitle("Graphic window");
 w$setSizeRequest(400,400)
-g <- gtkHBox(); w$add(g)
+hbox <- gtkHBox(); w$add(hbox)
 w$showAll()
 @ 
 
 
-The size of the image is retrieved from the size allocated to the box
-\code{g}. This allows the window to be resized prior to drawing the
+The size of the image is taken as the size allocated to the box
+\code{hbox}. This allows the window to be resized prior to drawing the
 graphic. Unlike an interactive device, after drawing, this graphic
 does not resize itself when the window resizes.
-
 <<>>=
 theSize <- g$getAllocation()$allocation
 width <- theSize$width; height <- theSize$height
 @ 
 
-Now we create a \class{GdkPixmap} of the correct dimensions and
-initialize an R graphics device that targets the pixmap. We then draw
-a simple histogram using base R graphics.
+We create a \class{GdkPixmap} of the correct dimensions and
+initialize an R graphics device that targets the pixmap. A simple
+histogram is then plotted using base R graphics.
 <<>>=
 require(cairoDevice)
 pixmap <- gdkPixmap(drawable = NULL, 
@@ -46,6 +45,6 @@ The final step is to create the \class{GtkImage} widget to display the
 pixmap: 
 <<eval=FALSE>>=
 image <- gtkImage(pixmap = pixmap)
-g$packStart(image, expand=TRUE, fill = TRUE)
+hbox$packStart(image, expand=TRUE, fill = TRUE)
 @ 
 

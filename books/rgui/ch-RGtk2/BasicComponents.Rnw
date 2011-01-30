@@ -5,7 +5,7 @@
 
 The button is the very essence of a GUI. It communicates its purpose
 to the user and executes a command in response to a simple click or
-key press. In \GTK\/, A basic button is usually constructed using
+key press. In \GTK\/, a basic button is usually constructed using
 \constructor{gtkButton}, as the following example demonstrates.
 
 \begin{example}{Button constructors}{eg:RGtk2:button-constructors}
@@ -20,7 +20,7 @@ b$setLabel("long way")
 g$packStart(b)
 g$packStart(gtkButton(label="label only") )
 g$packStart(gtkButton(stock.id="gtk-ok") )
-g$packStart(gtkButtonNewWithMnemonic("_Mnemonic") ) # Alt-m
+g$packStart(gtkButtonNewWithMnemonic("_Mnemonic") )
 w$show()
 @ 
 \end{example}
@@ -33,7 +33,7 @@ w$show()
 \end{figure}
 
 A \class{GtkButton} is simply a clickable region on the screen that is
-decorated to appear as a button. \class{GtkButton} is a subclass of
+rendered as a button. \class{GtkButton} is a subclass of
 \class{GtkBin}, so it will accept any widget as an indicator of its
 purpose. By far the most common button decoration is a label. The
 first argument of \constructor{gtkButton},
@@ -41,30 +41,27 @@ first argument of \constructor{gtkButton},
 created \class{GtkLabel}. We have seen this usage in our ``Hello
 World'' example and others.
 
-The alternative \argument{stock.id}{gtkButton} argument will use
-decorations associated with the stock identifier. For example,
-``gtk-ok'' would produce a button with a theme-dependent image (such
-as a checkmark) and the ``Ok'' label, with the appropriate mnemonic
-and translated into the current language.  The available stock
-identifiers are listed by \function{gtkStockListIds}. See
-\code{help(``stock-items'')} for more information.
+Passing the \argument{stock.id}{gtkButton} argument to
+\function{gtkButton} will use decorations associated with a so-called
+stock identifier, see Section~\ref{sec:RGtk2:stock-icons}. For
+example, ``gtk-ok'' would produce a button with a theme-dependent
+image (such as a checkmark) and the ``Ok'' label, with the appropriate
+mnemonic (see below) and language translation.  The available stock
+identifiers are listed by \function{gtkStockListIds}.
 
-The final button created in the example uses
-\constructor{gtkButtonNewWithMnemonic} to create a button with a
-mnemonic. Mnemonics are specified by prefixing the character with an
-underscore.
-
-The method \method{setRelief}{gtkButton} changes the relief style of
-the button. For example, the relief can be \qcode{none} so that the button
-is drawn like a label.
+The \constructor{gtkButtonNewWithMnemonic} constructor creates a
+button with a mnemonic. A mnemonic is a key press that will activate
+the button and is indicated by prefixing the character with an
+underscore. In our example, we pass the string ``_Mnemonic'', so
+pressing \kbd{Alt-M} will effectively press the button.
 
 %% signals
 \paragraph{Signals}
 
-The \signal{clicked} signal is emitted when the button is
-clicked on with the mouse or when the button has focus and the
-\kbd{enter} key is pressed. A callback can listen for this event to
-perform a command when the button is clicked.  
+The \signal{clicked} signal is emitted when the button is clicked with
+the mouse, when the associated mnemonic is pressed or when the button
+has focus and the \kbd{enter} key is pressed. A callback can listen
+for this event to perform a command when the button is clicked.
 
 \begin{example}{Callback example for
     \code{gtkButton}}{eg:RGtk2:gtkButton-callback}
@@ -86,13 +83,16 @@ ID <- gSignalConnect(b,"clicked",              # keyboard too
 \end{example}
 
 As buttons are intended to call an action immediately after being
-clicked, it is customary to make them insensitive to user input when
-the action is not possible. The \method{setSensitive}{gtkWidget}
-method can adjust this for the button, as with other widgets.
+clicked, it is advisable to make them insensitive to user input when
+the action is not possible. For example, we could set our button to be
+insensitive: 
+<<gtk-widget-button-sensitive>>=
+b$setSensitive(FALSE)
+@ 
 
 %% Buttons initiate actions
 Windows often have a default action. For example, if a window contains
-a form, the default action often submits the form. If a button
+a form, the default action submits the form. If a button
 executes the default action for the window, the button can be
 set so that it is activated when the user presses \kbd{enter} while
 the parent window has the focus. To implement this, the property
@@ -139,10 +139,12 @@ respects formatting marks.
     \label{fig:RGtk2:label-formatting}
   \end{figure}
   
-<<LabelFormatting, results=hide>>=
+<<gtk-widget-label-window, results=hide, echo=FALSE>>=
 w <- gtkWindow(show=FALSE); w$setTitle("Label formatting")
 w$setSizeRequest(250,300)               # narrow
 g <- gtkVBox(spacing=2); g$setBorderWidth(5); w$add(g)
+@ 
+<<LabelFormatting, results=hide>>=
 string <- "the quick brown fox jumped over the lazy dog"
 ## wrap by setting number of characters
 basicLabel <- gtkLabel(string)
@@ -194,7 +196,7 @@ underline, and \code{<tt>} for monospace text. Hyperlinks are possible
 with \code{<a>}, as of version 2.18, and similar logic to
 \function{browseURL} is implemented for launching a web
 browser. Connect to the \signal{activate\_link} signal to
-override. More complicated markup involves the \code{<span>} tag
+override it. More complicated markup involves the \code{<span>} tag
 markup, such as \code{<span color='red'>some text</span>}. As with
 HTML, the text may need to be escaped first so that designated
 entities replace reserved characters.
@@ -218,18 +220,12 @@ within a \class{GtkEventBox}, which provides the \class{GdkWindow}.
 \label{sec:RGtk2:images}
 
 It is often said that a picture can be worth a thousand
-words. Applying this to GUIs, images can often provide a more space
-efficient alternative to labels. \class{GtkImage} is the widget that
-displays images. The constructor \constructor{gtkImage} creates images from various in-memory image representations, files,
-and other sources.  Images can be loaded after construction, as well. For example,
-the \method{setFromFile}{gtkImage} method loads an image from a file.
-
-The image widget, like the label widget, does not have a parent
-\class{GdkWindow}, which means it does not receive window events. As
-with the label widget, the image widget can be placed inside a
-\constructor{gtkEventBox} container if one wishes to connect to such
-events.
-
+words. Applying this to a GUI, images are often a more space efficient
+alternative to labels. \class{GtkImage} is the widget that displays
+images. The constructor \constructor{gtkImage} creates images from
+various in-memory image representations, files, and other sources.
+Images can be loaded after construction, as well. For example, the
+\method{setFromFile}{gtkImage} method loads an image from a file.
 
 \begin{example}{Using a pixmap to present graphs}{ex:RGtk2:pixbuf}
   \SweaveInput{ex-RGtk2-ImageForGraphics}
@@ -245,6 +241,12 @@ makeIconRGtk2 <- function(w, giffile) {
   }
 }
 @ 
+
+The image widget, like the label widget, does not have a parent
+\class{GdkWindow}, which means it does not receive window events. As
+with the label widget, the image widget can be placed inside a
+\class{GtkEventBox} container if one wishes to connect to such
+events.
 
 \subsection{Stock icons}
 \label{sec:RGtk2:stock-icons}
@@ -316,29 +318,17 @@ does not yet support editable labels. \GTK\/ has two different widgets
 for editing text. One is optimized for multi-line text documents, the
 other for single line entry. We will discuss complex multi-line text
 editing in Section~\ref{sec:RGtk2:textviews}. For entering a single
-line of text, the \class{GtkEntry} widget is appropriate.
-
-\begin{example}{Insert and Delete text}{eg:RGtk2:insert-delete-text}
-  The example will show how to add then delete text.  
-<<InsertDeleteText>>=
+line of text, the \class{GtkEntry} widget is appropriate:
+<<gtk-widget-entry>>=
 e <- gtkEntry()
-e$setText("Where did that guy go?")
-add.pos <- regexpr("guy", e['text']) - 1 # before "guy"
-ret <- e$insertText("@$#%! ", position = add.pos)
-e$getText()                             # or e['text']
-e$deleteText(start = add.pos, end= ret$position)
-e$getText()
-@
-%
-
-\end{example}
+@ 
 
 The \code{text} property stores the text. This can be set with the
 method \method{setText}{gtkEntry} and retrieved with
-\method{getText}{gtkEntry}.
-
-When the user has committed an entry, e.g. by pressing the \kbd{enter}
-key, the \signal{activate} signal is emitted:
+\method{getText}{gtkEntry}.  When the user has committed an entry,
+e.g. by pressing the \kbd{enter} key, the \signal{activate} signal is
+emitted. We connect to the signal and obtain the entered text upon
+activation:
 <<gtk-widget-entry-activate>>=
 gSignalConnect(e, "activate", function() {
   message("Text entered: ", e$getText())
@@ -359,6 +349,17 @@ specified by a $0$-based index. The return value is a list with the
 component \code{position} indicating the position \textit{after} the
 new text. The \method{deleteText}{GtkEditable} method deletes text
 between two positions.
+
+The example shows how to insert and then delete text:
+<<InsertDeleteText>>=
+e$setText("Where did that guy go?")
+add.pos <- regexpr("guy", e['text']) - 1 # before "guy"
+ret <- e$insertText("@$#%! ", position = add.pos)
+e$getText()                             # or e['text']
+e$deleteText(start = add.pos, end = ret$position)
+e$getText()
+@
+% 
 
 The \class{GtkEditable} interface supports three signals:
 \signal{changed} when text is changed, \signal{delete-text} for delete
@@ -505,9 +506,9 @@ sapply(radiogp, gSignalConnect, "toggled",     # connect each
 
 \begin{example}{Radio Group via a \function{FromWidget}
     Constructor}{eg:gtk:radio-group-get-group}
-  In this example below, we illustrate two things: using the
-  \constructor{gtkRadioButtonNewWithLabelFromWidget} function to add new
-  buttons to the group:
+  In this example, we illustrate using the
+  \constructor{gtkRadioButtonNewWithLabelFromWidget} function to add
+  new buttons to the group:
 <<results=hide>>=
 radiogp <- gtkRadioButton(label=labels[1])
 btns <- sapply(labels[-1], gtkRadioButtonNewWithLabelFromWidget, 
@@ -527,17 +528,15 @@ before packing the widgets into the box.
 
 \end{example}
 
-
-%% TODO: I think GtkComboBoxEntry got lost??
-
 \subsection{Combo boxes}
-\label{sec:RGtk2:basic-combobox}
+\label{sec:RGtk2:basic:combobox}
 
 The combo box is a more space efficient alternative to radio buttons
 and is better suited for when there are a large number of options. A
 basic, text-only \class{GtkComboBox} is constructed by
-\constructor{gtkComboBoxNewText}. Later we will discuss more
-complicated combo boxes, that are based on an external data model.
+\constructor{gtkComboBoxNewText}. In
+Section~\ref{sec:RGtk2:mvc:combobox} we will discuss combo boxes that
+are based on an external data model.
 
 We construct and populate a simple combo box:
 <<gtk-widget-combo, results=hide>>=
@@ -548,7 +547,11 @@ sapply(c("two.sided", "less", "greater"), combo$appendText)
 
 The index of the currently active item is stored in the
 \property{active}{gtkComboBox} property. The index, as usual, is $0$-based,
-and in this case, a value of $-1$ indicates that no value is selected.
+and a value of $-1$ indicates that no value is selected:
+<<gtk-widget-combo-active>>=
+combo['active']
+@ 
+%
 The \method{getActiveText}{gtkComboBox} method retrieves
 the text shown by the basic combo box.
 
@@ -572,6 +575,10 @@ the preferred number of columns for displaying the items.
 \begin{example}{Using one combo box to populate another}{ex:RGtk2-comboboxes}
   \SweaveInput{ex-RGtk2-comboboxes}
 \end{example}
+
+An extension of \class{GtkComboBox}, \class{GtkComboBoxEntry},
+replaces the main button with a text entry. This supports the entry of
+arbitrary values, in addition to those present in the menu.
 
 \subsection{Sliders}
 \label{sec:RGtk2:sliders}
@@ -628,9 +635,9 @@ w$add(slider)
 A few properties define the appearance of the slider widget.  The
 \code{digits} property controls the number of digits after the decimal
 point.  The property \code{draw-value} toggles the drawing of the
-selected value near the slider. Finally, \code{value-pos}
-specifies where this value will be drawn using values from
-\code{GtkPositionType}. The default is \code{top}.
+selected value near the slider. Finally, \code{value-pos},
+demonstrated above, specifies where this value will be drawn using
+values from \code{GtkPositionType}. The default is \code{top}.
 
 \subsection{Spin buttons}
 \label{sec:RGtk2:spinboxes}
@@ -641,17 +648,18 @@ constructed with \constructor{gtkSpinButton}. As with sliders, this
 constructor requires specifying adjustment values, either as a
 \class{GtkAdjustment} or individually.  The methods
 \method{getValue}{gtkSpinButton} and \method{setValue}{gtkSpinButton}
-once again get and set the widgets value. The \code{value-changed}
-signal is emitted when the spin button is changed.
+once again get and set the value. The \code{value-changed}
+signal is emitted when the spin button value is changed.
 
 \begin{example}{A range widget}{ex:RGtk2-range-widget}
   \SweaveInput{ex-RGtk2-range-widget}
 \end{example}
 
-There are a few additional features. The property \code{snap-to-ticks}
-can be set to \code{TRUE} to force the new value to belong to the
-sequence of values in the adjustment. The \code{wrap} property
-indicates if the sequence will ``wrap'' around at the bounds.
+A spin button has a few additional features. The property
+\code{snap-to-ticks} can be set to \code{TRUE} to force the new value
+to belong to the sequence of values in the adjustment. The \code{wrap}
+property indicates whether the sequence will ``wrap'' around at the
+bounds.
 
 \section{Progress Reporting}
 
@@ -693,7 +701,6 @@ spinner$start()
 spinner$stop()
 @ 
 
-%% ML: Should this go into this chapter or the next?
 \section{Embedding R Graphics}
 \label{sec:gtk-widget-graphics}
 
@@ -716,7 +723,7 @@ allow the user to drag the text from one button to another.
 
 When a drag and drop is initiated, different types of data may be
 transferred. We need to define a target type for each type of data, as
-a \class{GtkTargetEntry} structure. 
+a \class{GtkTargetEntry} structure:
 <<>>=
 TARGET.TYPE.TEXT   <- 80                 
 TARGET.TYPE.PIXMAP <- 81                  
@@ -727,13 +734,13 @@ widgetTargetTypes <-
          TARGET.TYPE.PIXMAP))
 @ 
 %
-The first component of \class{GtkTargetEntry} is the name, which often
+The first component of \class{GtkTargetEntry} is the name, which is often
 a MIME type. The flags come next, which are usually left at $0$, and
 finally we specify an arbitrary identifier for the target. We will
 only use the \qcode{text} target in this example.
 
-To instruct a widget to act as a drag source, we call
-\function{gtkDragSourceSet}:
+We construct a button and call \function{gtkDragSourceSet} to instruct
+it to act as a drag source:
 <<results=hide>>=
 w <- gtkWindow(); w['title'] <- "Drag Source"
 dragSourceWidget <-  gtkButton("Text to drag")
@@ -745,13 +752,12 @@ gtkDragSourceSet(dragSourceWidget,
        actions="copy")
 @ 
 %
-The \argument{start.button.mask}{gtkDragSourceSet} indicates the
-modifier buttons that need to be pressed to initiate the drag, with
-values from \class{GdkModifierType}. Then we specify the allowed
-targets, \qcode{text} in this case. The
-\argument{actions}{gtkDragSourceSet} argument lists the supported
-actions, such as \code{copy} or \code{move}, from the
-\class{GdkDragAction} enumeration. 
+The \argument{start.button.mask}{gtkDragSourceSet}, with values from
+\class{GdkModifierType}, indicates the modifier buttons that need to
+be pressed to initiate the drag. The allowed target is \qcode{text} in
+this case. The \argument{actions}{gtkDragSourceSet} argument lists the
+supported actions, such as \code{copy} or \code{move}, from the
+\class{GdkDragAction} enumeration.
 
 When a drag is initiated, we will receive the \signal{drag-data-get}
 signal, which needs to place some data into the passed
@@ -763,14 +769,14 @@ gSignalConnect(dragSourceWidget, "drag-data-get",
                })
 @ 
 %
-If we had specified the \code{move}, we would also need to connect to
-\signal{drag-data-delete}, in order to delete the data that was
-moved away.
+If we had allowed the \code{move} action, we would also need to
+connect to \signal{drag-data-delete}, in order to delete the data that
+was moved away.
 
 \subsection{Handling Drops}
 
-To make a widget a drop target, we call \function{gtkDragDestSet} on
-the object:
+In a separate window from the drag source button, we construct another
+button and call \function{gtkDragDestSet} to mark it as a drag target:
 <<results=hide>>=
 w <- gtkWindow(); w['title'] <- "Drop Target"
 dropTargetWidget <- gtkButton("Drop here")
@@ -794,8 +800,8 @@ non-empty intersection between the targets passed to
 \function{gtkDragDestSet}.
 
 When data is dropped, the destination widget emits the
-\code{drag-data-received} signal. The handler is responsible for
-extracting the dragged data from \code{selection} and performing some
+\signal{drag-data-received} signal. The handler is responsible for
+extracting the dragged data from \argument{selection} and performing some
 operation with it. In this case, we set the text on the button:
 <<>>=
 gSignalConnect(dropTargetWidget, "drag-data-received", 
@@ -805,11 +811,12 @@ gSignalConnect(dropTargetWidget, "drag-data-received",
        })
 @ 
 %
-The \code{context} argument is a \code{gdkDragContext}, containing
-information about the drag event. The \code{x} and \code{y} arguments
-are integer valued and represent the position in the widget where the
-drop occurred. The text data is returned by \function{getText} as a
-\code{raw} vector, so it is converted with \function{rawToChar}.
+The \argument{context} argument is a \class{GdkDragContext},
+containing information about the drag event. The \argument{x} and
+\argument{y} arguments are integer valued and represent the position
+in the widget where the drop occurred. The text data is returned by
+\function{getText} as a \code{raw} vector, so it is converted with
+\function{rawToChar}.
 
 %% JV: This could be expanded -- motion is not covered, as is done with
 %% tcltk, but I don't think it is needed without a compelling use case.

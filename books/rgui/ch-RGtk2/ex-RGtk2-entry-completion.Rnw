@@ -4,7 +4,7 @@ require(RGtk2)
 @ 
 
 
-The two basic widgets are defined as follows:
+We create an entry with a completion database:
 <<AppendWords>>=
 entry <- gtkEntry()
 completion <- gtkEntryCompletion()
@@ -14,7 +14,7 @@ entry$setCompletion(completion)
 We will use an \code{RGtkDataFrame} instance for our completion model,
 taking a convenient list of names for our example.  We set the model
 and text column index on the completion object and then set some
-properties to customize how the completion is handled.
+properties to customize how the completion is handled:
 <<SetCompletion>>=
 store <- rGtkDataFrame(state.name)
 completion$setModel(store)
@@ -24,9 +24,7 @@ completion['popup-single-match'] <- FALSE
 @ 
 
 We wish for the text search to match against any part of a string, not
-only the beginning, so define our own match function. We get the
-string from the entry widget, not the passed value, as that has been
-standardized to lower case.
+only the beginning, so we define our own match function:
 <<SetMatchFunc, results=hide>>=
 matchAnywhere <- function(comp, str, iter, user.data) {
   model <- comp$getModel()
@@ -37,6 +35,9 @@ matchAnywhere <- function(comp, str, iter, user.data) {
 }
 completion$setMatchFunc(matchAnywhere)
 @ 
+%
+We get the string from the entry widget, not the passed value, as the
+latter has been standardized to lower case.
 
 <<notShown, echo=FALSE>>=
 ## Our basic GUI is basic:

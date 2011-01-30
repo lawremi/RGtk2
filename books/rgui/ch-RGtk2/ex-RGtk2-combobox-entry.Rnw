@@ -4,26 +4,26 @@
 library(RGtk2)
 @ 
 
-This example uses an editable combo box as an simple interface to \R's
-help system. Along the way, we record the number of times a page is
-searched for.
+This example uses an editable combo box as an simple interface to the
+\R\/ help system. Along the way, we record the number of times the
+user searches for a page.
 
-Our model fo the combo box will be a \class{rGtkDataFrame} instance
-where 3 variables are kept a function name, a string describing the
+Our model for the combo box will be an \class{RGtkDataFrame} instance
+with three columns: a function name, a string describing the
 number of visits and an integer to record the number of visits. We
-create the combo box with this model using the first column for the text.
+create the combo box with this model using the first column for the text:
 <<>>=
-m <- rGtkDataFrame(data.frame(fname="", visits="", novisits=0,
-                              stringsAsFactors=FALSE))
+m <- rGtkDataFrame(data.frame(fname=character(0), visits=character(0), 
+                              novisits=integer(0), stringsAsFactors=FALSE))
 cb <- gtkComboBoxEntryNewWithModel(m, text.column=0)
 @ 
 
-It isn't currently possible to put tooltip information on the drop down elements
-of a combo box, as was done with a tree view, rather here we borrow from popular web browser
-interfaces and add to the standard appearance of the drop down
-elements by adding in textual information about the number of
-visits. To do so we pack in a new cell renderer to accompany that
-provided by the \code{gtkComboBoxEntry} widget.
+It is not currently possible to put tooltip information on the drop
+down elements of a combo box, as was done with a tree view. Instead,
+we borrow from popular web browser interfaces and add textual
+information about the number of visits to the drop down menu. This
+requires us to pack in a new cell renderer to accompany the original
+label provided by the \code{gtkComboBoxEntry} widget:
 <<ConfigureCellRenderers>>=
 cr <- gtkCellRendererText()
 cb$packStart(cr)
@@ -32,18 +32,6 @@ cr['foreground'] <- "gray50"
 cr['ellipsize'] <- "end"
 cr['style'] <- "italic"
 cr['alignment'] <- "right"
-@ 
-
-We place this in a minimal GUI with just a label to indicate what is to
-be done.
-<<Layout>>=
-w <- gtkWindow(show=FALSE)
-w['border-width'] <- 15
-g <- gtkHBox(); w$add(g)
-g$packStart(gtkLabel("Help on:"))
-g$packStart(cb, expand=TRUE, fill=TRUE)
-#
-w$show()
 @ 
 
 %% JV: This first point seems like a misunderstanding on my part, but
@@ -61,33 +49,13 @@ w$show()
 %%        a        b 
 %% "factor" "factor" 
 
-
-Now we configure the combo box. When a new value is typed in we need to
-add it to the model. There are a few things to watch out for
-here. First, if we define the model to have $0$ rows, then the
-\code{appendRows} call will coerce the characters to factors. To avoid
-that, we check to see if we are in the initial state in which case we
-replace the first row. If not, then we update the model. In \GTK\/
-there is no means to notify the views of a model of a change of
-dimension, and in this case appending rows will cause the combo box to
-complain. Here we disconnect the model, update it, then reconnect it
-to the view.
-<<helperFunctions>>=
-addValue <- function(cb, value) {
-  model <- cb$getModel()
-  if(nrow(m) == 1 && m[1,1] == "") {
-    m[1,1] <- value; m[1,2] <- ""; m[1,3] <- 0
-  } else {                              # not first time
-    cb$setModel(NULL)
-    model$AppendRows(list(fname=value, visits="", novisits=0))
-    cb$setModel(model)
-  }
-}
-@ 
+%% ML: Just pass a data.frame to the appendRows function. The updating
+%% dimensions comment was false. It was just a bug in RGtkDataFrame
+%% that is now fixed in svn.
 
 This helper function will be called each time a help page is
 requested. It first updates the visit information, selects the
-text for easier editing the next time round, then calls  \function{help}.
+text for easier editing the next time round, then calls \function{help}.
 <<helperFunction2>>=
 callHelpFunction <- function(cb, value) {
   model <- cb$getModel()
@@ -99,12 +67,6 @@ callHelpFunction <- function(cb, value) {
   cb$getChild()$selectRegion(start=0,end=-1)
   help(value)
 }
-@ 
-
-We connect to two signals emitted by the combo box. First when a
-selection is made (and  \method{getActive}{gtkComboBox} returns a
-non-negative value) we call the help function.
-<<>>=
 gSignalConnect(cb, "changed", f=function(w, ...) {
   if(cb$getActive() >= 0) {
     val <- w$getActiveText()
@@ -112,19 +74,35 @@ gSignalConnect(cb, "changed", f=function(w, ...) {
   }
 })
 @ 
+%
 
-The \code{activate} callback checks to see if the requested value has
-not been visited previously. If not, this calls our \function{ addValue}
-function before calling the help function.
+When the user enters a new value in the entry, we need to check if we
+have previously accessed the item. If not, we add the value to our model.
 <<results=hide>>=
 gSignalConnect(cb$getChild(), "activate", 
                f = function(cb, entry, ...) {
   val <- entry$getText()
   if(!any(val == cb$getModel()[,1, drop=TRUE])) {
-    addValue(cb, val)                   # a new one
+    model <- cb$getModel()
+    model$appendRows(data.frame(fname=val, visits="", novisits=0,
+                                stringsAsFactors = FALSE))
   }
   callHelpFunction(cb, val)
 }, data=cb, user.data.first=TRUE)
 @ 
 
+We place this in a minimal GUI with a label:
+<<Layout>>=
+w <- gtkWindow(show=FALSE)
+w['border-width'] <- 15
+g <- gtkHBox(); w$add(g)
+g$packStart(gtkLabel("Help on:"))
+g$packStart(cb, expand=TRUE, fill=TRUE)
+#
+w$show()
+@ 
+
+An alternative approach would be to use the completion support of
+\class{GtkEntry}, presented next, but we leave that as an exercise to
+the reader.
 

@@ -85,9 +85,8 @@ model <- rGtkDataFrame(Cars93)
 model[1, 4] <- 12
 model[1, 4]                              # get value
 @
-
-Factors are treated differently from character values, as is done with
-data frames, so assignment to a factor must be from one of the
+%
+As with a data frame, assignment to a factor must be from one of the
 possible levels.
 
 \end{example}
@@ -125,7 +124,7 @@ nested, it is a tree table, where every node has values on the same
 columns.
 
 %% constructor
-A tree view is constructed by \constructor{gtkTreeView}. 
+A tree view is constructed by \constructor{gtkTreeView}:
 <<rgtk2-mvc-treeview-construc>>=
 view <- gtkTreeView(model)
 @ 
@@ -249,21 +248,23 @@ primary ways to index into the rows of a tree model: paths and
 iterators.
 
 To index directly into an arbitrary row, a \class{GtkTreePath} is
-appropriate. For a list, a tree path is essentially the row number,
+appropriate. For a table, a tree path is essentially the row number,
 $0$-based; for a tree it is a sequence of integers referring to the
 offspring index at each level. The sequence of integers may be
-expressed as either a numeric/integer vector or a string, using
+expressed as either a numeric vector or a string, using
 \constructor{gtkTreePathNewFromIndices} or
-\constructor{gtkTreePathNewFromString}, respectively. For a flat list
+\constructor{gtkTreePathNewFromString}, respectively. For a flat table
 model, there is only one integer in the sequence:
 <<rgtk2-mvc-path-constructor-list>>=
 secondRow <- gtkTreePathNewFromIndices(2)
 @
+%
 Referring to a row in a hierarchy is slightly more complex:
 <<rgtk2-mvc-path-constructor-tree>>=
 abcPath <- gtkTreePathNewFromIndices(c(1, 3, 2))
 abcPath <- gtkTreePathNewFromString("1:3:2")
-@ 
+@
+%
 In the above, both paths refer to the second child of the third child
 of the first top-level node. To recover the integer or string
 representation of the path, use \method{getIndices}{GtkTreePath} or
@@ -273,13 +274,13 @@ representation of the path, use \method{getIndices}{GtkTreePath} or
 
 The second means of row indexing is through an iterator,
 \class{GtkTreeIter}, which is better suited for traversing a model.
-While a tree path is an intuitive, transparent row index, an iterator,
-by contrast, is an opaque index that is efficiently incremented. It is
+While a tree path is an intuitive, transparent row index, an iterator
+is an opaque index that is efficiently incremented. It is
 probably most common for a model to be accessed in an iterative
 manner, so all of the data accessor methods for \class{GtkTreeModel}
 expect \class{GtkTreeIter}, not \class{GtkTreePath}. The \GTK\/
 designers imagined that the typical user would obtain an iterator for
-the first row and to visit each row in sequence:
+the first row and visit each row in sequence:
 <<rgtk2-mvc-iter-traverse>>=
 iter <- model$getIterFirst()
 manufacturer <- character()
@@ -322,14 +323,14 @@ above the rows in our table. Unfortunately, this usage too is
 unintuitive and slow, so the benefits of \class{RGtkDataFrame} should
 be obvious.
 
-One can convert between the two representations. The method
+One can convert between paths and iterators. The method
 \method{getIter}{GtkTreeModel} on \class{GtkTreeModel} returns an
 iterator for a path. A shortcut from the string representation of the
 path to an iterator is \method{getIterFromString}{GtkTreeModel}. The
 path pointed to by an iterator is returned by
 \method{getPath}{GtkTreeModel}.
 
-One might note that \class{GtkTreeIter} is created and managed by the
+One final point: \class{GtkTreeIter} is created and managed by the
 model, while \class{GtkTreePath} is model independent. It is not
 possible to use iterators across models or even across modifications
 to a model. After a model changes, an iterator is invalid. A tree path
@@ -360,14 +361,8 @@ whether multiple rows may be selected. The mode is configured with the
 \method{setMode}{gtkTreeSelection} method, with values from
 \code{GtkSelectionModel}, including \qcode{multiple} for allowing more
 than one row to be selected and \qcode{single} for limiting selections
-to a single row, or none.
-
-When only a single selection is possible, the method
-\method{getSelected}{gtkTreeSelection} returns the selected row as a
-list, with components \code{retval} to indicate success, \code{model}
-pointing to the tree model and \code{iter} representing an iterator to
-the selected row in the model.
-
+to a single row, or none. For example, we create a view and limit it
+to single selection:
 <<results=hide>>=
 model <- rGtkDataFrame(mtcars)
 view <- gtkTreeView(model)
@@ -375,6 +370,11 @@ selection <- view$getSelection()
 selection$setMode("single")
 @ 
 
+When only a single selection is possible, the method
+\method{getSelected}{gtkTreeSelection} returns the selected row as a
+list, with components \code{retval} to indicate success, \code{model}
+pointing to the tree model and \code{iter} representing an iterator to
+the selected row in the model.
 <<echo=FALSE>>=
 vc <- gtkTreeViewColumn()
 view$insertColumnWithAttributes(0, "title", gtkCellRendererText(), text = 0)
@@ -391,42 +391,30 @@ selection$selectPath(gtkTreePathNewFromIndices(3)) # set
 # 
 @
 %
-If this tree view is shown and a selection made, this code will
+If our tree view is shown and a selection made, this code will
 return the value in the first column:
 <<>>=
-curSel <- selection$getSelected()    # retrieve selection
-with(curSel, model$getValue(iter, 0)$value) # model, iter
+curSel <- selection$getSelected()
+with(curSel, model$getValue(iter, 0)$value)
 @ 
-
+%
 When multiple selection is permitted, then the method
 \method{getSelectedRows}{gtkTreeSelection} returns a list with
-component \code{model} pointing to the model, and \code{retval}, a list
-of tree paths. 
-
-We can change the selection mode as follows.
-<<>>=
-selection$setMode("multiple")
-@ 
-
-<<notShown, echo=FALSE>>=
-selection$selectPath(gtkTreePathNewFromIndices(1)) # set for example
-selection$selectPath(gtkTreePathNewFromIndices(2)) # set for example
-selection$selectPath(gtkTreePathNewFromIndices(3)) # set for example
-@ 
-
-If a selection is made this code will print the selected values in the first column (we have
-selected the first three rows):
-<<>>=
-curSel <- selection$getSelectedRows()
-if(length(curSel$retval)) {
-  rows <- sapply(curSel$retval, gtkTreePathGetIndices) + 1L
-  curSel$model[rows, 1]
-}
-@ 
+the \code{model} and \code{retval}, a list
+of tree paths.
 
 To respond to a selection, connect to the \signal{changed} signal on
-\class{GtkTreeSelection}. The signal itself does not contain any
-selection information; the selection object should be queried instead.
+\class{GtkTreeSelection}. Upon a selection, this handler will print
+the selected values in the first column:
+<<>>=
+gSignalConnect(selection, "changed", function(selection) {
+  curSel <- selection$getSelectedRows()
+  if(length(curSel$retval)) {
+    rows <- sapply(curSel$retval, gtkTreePathGetIndices) + 1L
+    curSel$model[rows, 1]
+  }
+})
+@ 
 
 %% double click
 When a row is not editable, then the double-click event or a keyboard
@@ -437,7 +425,6 @@ selected row, and \code{column} containing the tree view column. The
 column number is not returned. If that is of interest, it can be
 passed in via the user data argument, or matched against the children
 of the tree view through a command like
-
 <<eval=FALSE>>=
 sapply(view$getColumns(), function(i) i == column)
 @ 
@@ -496,7 +483,7 @@ f <- function(model, iter1, iter2, user.data) {
   val2 <- model$getValue(iter2, column)$value
   as.integer(val1 - val2)
 }
-sorted$setSortFunc(sort.column.id=0, sort.func=f, user.data=0)
+sorted$setSortFunc(sort.column.id=0, sort.func=f)
 @ 
 
 <<notShown, echo=FALSE>>=
@@ -521,6 +508,7 @@ should be visible. The index of that column is passed to the filter
 model, which provides only those rows where the filter column is
 \code{TRUE}.
 
+This is the basic usage:
 <<>>=
 df <- data.frame(col=letters[1:3], vis=c(TRUE, TRUE, FALSE))
 store <- rGtkDataFrame(df)
@@ -534,8 +522,11 @@ which, somewhat coincidentally, also works as a method on the base
 model, i.e., \code{model\$filter()}. To retrieve the original model
 from the filter, call its \code{getModel} method. The method
 \method{setVisibleColumn}{gtkTreeModelFilter} specifies which column
-in the model holds the logical values.  The configured filter model
-may now be treated as any other tree model, including attachment to a
+in the model holds the logical values.  To customize filtering, one
+can register a function with \method{setVisibleFunc}. The callback,
+given a row pointer, should return \code{TRUE} if the row passes the
+filter, see Example~\ref{ex:RGtk2-variable-selection}. A filter model
+may be treated as any other tree model, including attachment to a
 \class{GtkTreeView}.
 
 <<notShown, echo=FALSE>>=
@@ -583,11 +574,13 @@ and the attributes associated with the renderer in the cell layout.
 For example, to render text, a \class{GtkCellRendererText} is
 appropriate. The \code{text} property is usually linked via an
 attribute to a text column in the model, as the text would vary from
-row to row. However, the background color (the \code{background}
+row to row. However, the background color (the \code{cell-background}
 property) might be common to all rows in the column and thus is set
-explicitly, without use of an attribute.
-
-%% TODO: put some sort of simple example code block here
+explicitly, without use of an attribute:
+<<gtk-mvc-cell-explicit>>=
+renderer <- gtkCellRendererText()
+renderer['cell-background'] <- "gray"
+@ 
 
 The base class \class{GtkCellRenderer} defines a number of properties
 that are common to all rendering tasks. The \code{xalign} and
@@ -602,24 +595,21 @@ as some advanced features.
 %% text/ numbers
 \paragraph{Text cell renderers}
 
-The \constructor{gtkCellRendererText} constructor is used to display
-text and numeric values. Numeric values in the model are shown as
-strings.  The most important property is \code{text}, the actual text
-that is displayed. Other properties control the display of the text,
-such as the font \code{family} and \code{size}, the \code{foreground}
-and \code{background} colors, and whether to \code{ellipsize} or
-\code{wrap} the text if there is not enough space for display.
-
-To display right-aligned text in a Helvetica font, the following could be used:
+\constructor{GtkCellRendererText} displays text and numeric
+values. Numeric values in the model are shown as strings.  The most
+important property is \code{text}, the actual text that is
+displayed. Other properties control the display of the text, such as
+the font \code{family} and \code{size}, the \code{foreground} and
+\code{background} colors, and whether to \code{ellipsize} or
+\code{wrap} the text if there is not enough space for display. The
+\code{wrap} attribute can be specified as \code{TRUE}, if the entries
+are expected to be long. There are several other attributes that can
+changed.  We display right-aligned text in a Helvetica font:
 <<cr-right-aligned>>=
 cr <- gtkCellRendererText()
 cr['xalign'] <- 1                    # default 0.5 = centered
 cr['family'] <- "Helvetica"  
 @ 
-
-The \code{wrap} attribute can be specified as \code{TRUE}, if the
-entries are expected to be long. There are several other attributes that can
-changed. 
 
 When an attribute links the \code{text} property to a numeric column
 in the model, the property system automatically converts the number to
@@ -650,20 +640,21 @@ cr['model'] <- store
 cr['text-column'] <- 0
 cr['editable'] <- TRUE                  # needed
 @ 
-The spin button editor is configured by passing a
-\class{GtkAdjustment} to the \code{adjustment} property.
+%
+The spin button editor is configured by setting a
+\class{GtkAdjustment} on the \code{adjustment} property.
 
 
 %% pixbuf
 \paragraph{Pixbuf cell renderers}
 
 To display an image in a cell, \class{GtkCellRendererPixbuf} is
-appropriate. The image is specified through one of its properties:
+appropriate. The image is specified through one of these properties:
 \code{stock-id}, a stock identifier; \code{icon-name}, the name of a
-themed icon; or \code{pixbuf}, an actual \code{GdkPixbuf}
-object. It is possible to store a \class{GdkPixbuf} in a
-\class{data.frame}, and thus an \class{RGtkDataFrame}, using a
-\class{list}, as in the next example.
+themed icon; or \code{pixbuf}, an actual \code{GdkPixbuf} object,
+holding an image in memory. Using a \class{list}, one can store a
+\class{GdkPixbuf} in a \class{data.frame}, and thus an
+\class{RGtkDataFrame}. This is demonstrated in the next example.
 
 % <<rgtk2-mvc-pixbuf-in-df>>=
 % library(RGtk2)
@@ -730,14 +721,10 @@ respectively.
 In the case of \class{GtkCellRendererProgress}, its \code{value}
 property takes a value between $0$ and $100$ indicating the amount
 finished, with a default value of $0$. Values out of this range will
-be signaled by an error message.  The \code{orientation} property,
-with values from \code{GtkProgressBarOrientation}, can adjust the
-direction that the bar grows.  For example,
-
+be signaled by an error message.  For example,
 <<comboEditor>>=
 cr <- gtkCellRendererProgress()
-cr["value"] <- 50                       # fixed 50%
-cr['orientation'] <- "right-to-left"
+cr["value"] <- 50
 @ 
 
 For indicating progress in the absence of a definite end point,
@@ -757,21 +744,22 @@ desirable to override this mapping with more complex logic.
 
 For example, conversion of numbers to strings is a non-trivial
 task. Although the logic in the \R\/ print system often performs
-acceptably, there is certainly room for customization, for example
+acceptably, there is certainly room for customization. One example is
 aligning floating point numbers by fixing the number of decimal
 places. This could be done in the model (e.g., using
-\function{sprintf} to format and coerce to character data). However,
-performing the conversion during rendering requires one to to
-intercept the model value before it is passed to the cell renderer. In
-the specific case \class{GtkTreeView}, it is possible to specify a
-callback that overrides this step.  
+\function{sprintf} to format and coerce to character
+data). Alternatively, one could preserve the integrity of the data and
+perform the conversion during rendering. This requires intercepting
+the model value before it is passed to the cell renderer. 
 
-The callback, of type \class{GtkTreeCellDataFunc}, accepts arguments
-for the tree view column, the cell renderer, the model, an iterator
-pointing to the row in the model and an argument for user data. The
-function is tasked with setting the appropriate attributes of the cell
-renderer. For example, this function could be used to format floating
-point numbers:
+In the specific case \class{GtkTreeView}, it is possible to specify a
+callback that overrides this step.  The callback, of type
+\class{GtkTreeCellDataFunc}, is passed arguments for the tree view
+column, the cell renderer, the model, an iterator pointing to the row
+in the model and, optionally, an argument for user data. The function
+is tasked with setting the appropriate attributes of the cell
+renderer. For example, this callback would format floating point
+numbers:
 <<>>=
 func <- function(viewCol, cellRend, model, iter, data) {
   curVal <- model$getValue(iter, 0)$value
@@ -801,13 +789,10 @@ consider pre-converting the data in the model or tweaking the
 \code{options} in \R\/ for printing real numbers, namely \code{scipen}
 and \code{digits}.
 
-For customizing rendering further and outside the scope of
+For customizing rendering further, and in the general case beyond
 \class{GtkTreeView}, one could implement a new type of
-\class{GtkCellRenderer}.
-%% JV: XXX Is this going to be added? It seems like a natural extension of
-%% the JSS article.
-See Section~\ref{sec:rgtk2:extending-classes} for
-more details on this advanced concept.
+\class{GtkCellRenderer}.  See Section~\ref{sec:gtk:extending-classes}
+for more details on extending \GTK\/ classes.
 
 %% This function will be set for the tree view column and illustrated in Example~\ref{ex:RGtk2:rGtk2DataFrame}.
 %% editable cells 
@@ -822,13 +807,10 @@ is not true. A callback must be assigned to the \code{editable}
 change. The callback for the \qcode{edited} signal has arguments
 \code{renderer}, \code{path} for the path of the selected row (as a
 string), and \code{new.text} containing the value of the edited text
-as a string. The tree view object and which column was edited are not
-passed in by default. These can be passed through the user data
-argument, set as user data on the renderer, or accessed from an
-enclosing environment if needed within the callback.
-
+as a string. The tree view object and the column index are not passed
+to the callback, unless one uses a closure or user data.
 For example, here is how one can update an \code{RGtkDataFrame} model
-from within the callback.
+from within the callback:
 <<echo=FALSE>>=
 cr <- gtkCellRendererText()
 @ 
@@ -842,7 +824,7 @@ f=function(cr, path, newtext, user.data) {
   model[i, j] <- newtext
 }, data=list(model=store, column=1))
 @ 
-
+%
 Before using editable cells to create a data frame editor, one should
 see if the editor provided by the \function{gtkDfEdit} in the
 \pkg{RGtk2Extras} package satisfies the requirements.
@@ -852,10 +834,10 @@ see if the editor provided by the \function{gtkDfEdit} in the
 Users may expect that once a cell is edited, the next cell is then set
 up to be edited. In order to do this, one must advance the cursor and
 activate editing of the next cell. For \class{GtkTreeView}, this is
-done through the \method{setCursor}{gtkTreeView} method. The
+implemented by the \method{setCursor}{gtkTreeView} method. The
 \code{path} argument takes a tree path instance, the \code{column}
-argument a tree view column object, and the flag \code{start.editing}
-indicates whether to initiate editing.
+argument should be a tree view column object, and the flag
+\code{start.editing} indicates whether to initiate editing.
 
 
 \begin{example}{Using a table to gather arguments}{ex:RGtk2-options-in-table}
@@ -940,7 +922,6 @@ Traversing a tree store is most easily achieved through the use of
 \class{GtkTreeIter}, introduced previously in the context of flat
 tables. Here we perform a depth-first traversal of our \code{Cars93}
 model to obtain the model values: 
-
 <<rgtk2-mvc-tree-traverse>>=
 iter <- tstore$getIterFirst()
 models <- NULL
@@ -1004,6 +985,7 @@ actions correspond to the signals \code{row-expanded} and
 
 %% ## dynamic. 
 %% JV: Is this too much? Perhaps leave for the package?
+%% ML: Probably should move this to the package.
 \begin{example}{Dynamically growing a tree}{eg:RGtk2:tree-dynamic}
   \SweaveInput{ex-RGtk2-tree}
 \end{example}
@@ -1032,6 +1014,14 @@ how to display one or more data columns in the menu. Like
 model values to \class{GtkCellRenderer} instances that are packed into
 the combo box.
 
+The \method{getActiveIter}{gtkComboBox} returns a list containing the iterator
+pointing to the currently selected row in the model.  If no row has been
+selected, the \code{retval} component of the list is \code{FALSE}.
+The \method{setActiveIter}{gtkComboBox} sets the currently selected
+item by iterator. As discussed previously, the
+\method{getActive}{gtkComboBox} and \method{setActive}{gtkComboBox}
+behave analogously with $0$-based indices.
+
 As introduced in the previous chapter, the \class{GtkComboBoxEntry}
 widget extends \class{GtkComboBox} to provide an entry widget for the
 user to enter arbitrary values. To construct a combo box entry on top
@@ -1042,28 +1032,17 @@ create a cell renderer for displaying the text, as the entry depends
 on having text labels and thus enforces their display. It is still
 possible, of course, to add cell renderers for other model columns.
 
-The \method{getActiveIter}{gtkComboBox} returns a list containing the iterator
-pointing to the currently selected row in the model.  If no row has been
-selected, the \code{retval} component of the list is \code{FALSE}.
-The \method{setActiveIter}{gtkComboBox} sets the currently selected
-item by iterator. As discussed previously, the
-\method{getActive}{gtkComboBox} and \method{setActive}{gtkComboBox}
-behave analogously with $0$-based indices.
-
-%% signals
-\paragraph{Signals}
-
 When a user selects a value with the mouse, the \code{changed} signal
 is emitted. For combo box entry widgets, the \code{changed} signal
-will also be emitted when a new value has been entered. also make changes
-by typing in the new value. To detect when the user has finished
-entering text, one needs to retrieve the underlying \class{GtkEntry}
-widget with \method{getChild}{GtkBin} and connect to its
-\code{activate} signal.
+will also be emitted when a new value has been entered. To detect when
+the user has finished entering text, one needs to retrieve the
+underlying \class{GtkEntry} widget with \method{getChild}{GtkBin} and
+connect to its \code{activate} signal.
 
 \begin{example}{A combo box with memory}{eg:RGtk2-combobox-entry}
   \SweaveInput{ex-RGtk2-combobox-entry}
 \end{example}
+
 
 %% JV, moved this to the first intro of comoboboxes
 % \begin{example}{Modifying the values in a combobox}{eg-RGtk2-combobox-dynamic}
@@ -1119,6 +1098,7 @@ argument of the \code{setMatchFunc} method. This callback should
 return \code{TRUE} or \code{FALSE} depending on whether that row
 should be displayed in the set of completions.
 
+%% TODO: work this example into the above
 \begin{example}{Text entry with completion}{eg:RGtk2:text-entry-comletion}
   \SweaveInput{ex-RGtk2-entry-completion}
 \end{example}
@@ -1135,10 +1115,12 @@ buffer:
 %% constructor. No defaults, but could be
 %% JV XXX does gtkEntry now have a buffer argument? I had to call
 %% other constructor below to run
+%% ML: The following should work eventually. I just have to re-run the code
+%% generator.
 <<gtk-mvc-entry-buffer>>=
-buffer <- gtkEntryBuffer("", -1)        
-entry1 <- gtkEntryNewWithBuffer(buffer = buffer)
-entry2 <- gtkEntryNewWithBuffer(buffer = buffer)
+buffer <- gtkEntryBuffer()        
+entry1 <- gtkEntry(buffer = buffer)
+entry2 <- gtkEntry(buffer = buffer)
 entry1$setText("echo")
 entry2$getText()
 @ 
@@ -1146,7 +1128,7 @@ entry2$getText()
 The change of text in \qcode{entry1} has been reflected in
 \qcode{entry2}.
 
-\section{Text views and text buffers} %% text buffer
+\section{Text views} %% text buffer
 \label{sec:RGtk2:textviews}
 
 Multiline text areas are displayed through \class{GtkTextView}
@@ -1157,14 +1139,13 @@ of the text in the buffer and has methods for adjusting tabs, margins,
 indenting, etc. The text buffer stores the actual text, and its
 methods are for adding and manipulating the text.
 
-A text view is created with \constructor{gtkTextView}. 
-The underlying
+A text view is created with \constructor{gtkTextView}.  The underlying
 text buffer can be passed to the constructor. Otherwise, a buffer is
 automatically created.  This buffer is returned by the method
 \method{getBuffer}{gtkTextView} and may be set with the
 \method{setBuffer}{gtkTextView} method. Text views provide native
 scrolling support and thus are easily added to a scrolled window
-(Section~\ref{sec:RGtk2:scroll-windows}).
+(Section~\ref{sec:RGtk2:scroll-windows}). 
 
 \begin{example}{Basic \constructor{gtkTextView} usage}{eg:RGtk2:textview-basics}
   The steps to construct a text view consist of:
@@ -1187,8 +1168,8 @@ buffer$setText("Lorem ipsum dolor sit amet ...")
 @ 
 
 Manipulating the text requires an understanding of how positions are
-referred to within the buffer (iterators or marks). As an indicator, to get the
-contents of the buffer may be done as follows:
+referred to within the buffer (iterators or marks). As an indicator,
+to get the contents of the buffer may be done as follows:
 <<bufferGetText>>=
 start <- buffer$getStartIter()$iter    
 end <- buffer$getEndIter()$iter
@@ -1196,7 +1177,6 @@ buffer$getText(start, end)
 @ 
 
 \end{example}
-
 
 %% simple use -- replace, Append, insert at cursor
 
@@ -1207,30 +1187,65 @@ replaces the current text, is shown in the example above. The method
 at the current position of the cursor.  Other means are described in
 the following sections.
 
-\subsection{\class{GtkTextBuffer} Details}
+By default, the text in a view is editable. This can be disabled
+through the \property{editable}{QTextView} property. Typically, one
+then sets the \property{cursor-visible}{QTextView} property to
+\qcode{FALSE} so that the cursor is hidden:
+<<gtk-mvc-text-noneditable>>=
+tv['editable'] <- FALSE
+tv['cursor-visible'] <- FALSE
+@ 
+
+%% properties: editable, ...
+\paragraph{Formatting}
+The text view supports several general formatting options. Automatic
+line wrapping is enabled through \method{setWrapMode}{gtkTextView},
+which takes values from \code{GtkWrapMode}: \qcode{none},
+\qcode{char}, \qcode{word}, or \qcode{word\_char}. The justification
+for the entire buffer is controlled by the \code{justification}
+property which takes values of \qcode{left}, \qcode{right},
+\qcode{center}, or \qcode{fill} from \code{GtkJustification}.  The
+global value may be overridden for parts of the text buffer through
+the use of text tags, see Section~\ref{sec:gtk-mvc-text-tags}. The
+left and right margins are adjusted through the \code{left-margin} and
+\code{right-margin} properties.
+
+%% buffer - wide font
+\paragraph{Fonts}
+%% ML: do we need a general overview of Pango fonts?
+The size and font can be globally set for a text view using the
+\method{modifyFont}{gtkWidget} method. To set the font for specific
+regions, use text tags, see Section~\ref{sec:gtk-mvc-text-tags}. The
+font is specified as a Pango font description, which may be generated
+from a string through \code{pangoFontDescriptionFromString}. These
+strings may contain up to 3 parts: the first is a comma-separated list
+of font families, the second a white-space separated list of style
+options, and the third a size in points or pixels if the units ``px''
+are included. A typical value might look like \code{"serif, monospace
+  bold italic condensed 16"}. The various style options are enumerated
+in \code{PangoStyle}, \code{PangoVariant}, \code{PangoWeight},
+\code{PangoStretch}, and \code{PangoGravity}. The help page for
+\code{PangoFontDescription} contains more information.
+
+\section{Text buffers}
 \label{sec:RGtk2:text-buffers}
 
-Text buffer properties include \code{text} for
-the stored text and \code{has-selection} to indicate if text is
-currently selected in a view. The buffer also tracks if it has been
-modified. This information is available through the buffer's
-\method{getModified}{gtkTextBuffer} method, which returns \code{TRUE}
-if the buffer has changes. The method
-\method{setModifed}{gtkTextBuffer}, if given a value of \code{FALSE},
-allows the programmer to change this state, say after saving a
-buffer's contents.
+Text buffer properties include \code{text} for the stored text and
+\code{has-selection} to indicate if text is currently selected in a
+view. The buffer also tracks if it has been modified. This information
+is available through the buffer \method{getModified}{gtkTextBuffer}
+method, which returns \code{TRUE} if the buffer has changed. To clear
+this state, such as when a buffer has been saved to disk, one can pass
+\code{FALSE} to \method{setModified}{gtkTextBuffer}.
 
 In order to do more with a text buffer, such as retrieve a selection,
-or modify attributes of just some of the text, one needs to become
-familiar with how pieces of the buffer are referred to within \GTK.
+or modify text attributes, one needs to become familiar with the two
+mechanism for referencing text in a buffer: iterators and marks.  A
+text iterator is an opaque, transient pointer to a region of text,
+whereas a text mark specifies a location that remains valid across
+buffer modifications.
 
-There are two methods: text iterators (iters) are a transient means to
-mark begin and end boundaries within a buffer, whereas text marks
-specify a location that remains when a buffer is modified. One can use
-these with tags to modify attributes of pieces of the buffer.
-
-
-\paragraph{Iterators}
+\subsection{Iterators}
 
 %% text iters. GetStartIterm GetEndIter, GetSelectionBounds
 %% transient
@@ -1238,105 +1253,104 @@ these with tags to modify attributes of pieces of the buffer.
 %% An iterator
 An \dfn{iterator} is a programming object used to traverse through
 some data, such as a text buffer or table of values. Iterators are
-typically transient. They have
-methods to indicate what they point to and often update these
-values without an explicit function call. Such behavior is unusual
-for typical \R\/ programming.
-
-
-In \GTK{} a \dfn{text iterator} is used to specify a position in a
-buffer.  In \pkg{RGtk2}, iterators are stored as lists with components
-\code{iter} to hold a pointer to the underlying iterator and component
-\code{retval} to indicate whether the iterator when it was returned is
-valid. In general, iterators become invalid as soon as a buffer
-changes, say through the addition of text, however many methods of the
-text buffer will update the iterator in place. This can happen inside
-a function call where the iterator is passed as an argument. The
-\method{copy}{gtkTextIter} method will create a copy of an iterator,
-in case one is to be modified but it is important to keep the
-original.
+typically transient, in the sense that they are invalidated when their
+source is modified. An iterator is often updated by reference,
+behavior that is atypical in \R\/ programming.  In \GTK{} a \dfn{text
+  iterator} is the primary means of specifying a position in a buffer.
 
 %% methods to return an iterator
 Several methods of the text buffer return iterators marking positions
-in the buffer.  The beginning and end of the buffer are returned by
-the methods \method{getStartIter}{gtkTextBuffer} and
-\method{getEndIter}{gtkTextBuffer}. Both of these iterators are returned
-at once by the method \method{getBounds}{gtkTextBuffer} again as
-components of a list, in this case \code{start} and \code{end}.  The
-current selection is returned by the method method
-\method{getSelectionBounds}{gtkTextBuffer}. Again, as a list of
-iterators specifying the start and end positions of the current
-selection. If there is no selection, then the component \code{retval}
+in the buffer.  Iterators are returned as lists with two components:
+\code{iter}, which represents the actual C iterator object, and
+\code{retval}, a logical value indicating whether the iterator is
+valid.  The beginning and end of the buffer are returned by the
+methods \method{getStartIter}{gtkTextBuffer} and
+\method{getEndIter}{gtkTextBuffer}. Both of these iterators are
+returned together in a list by the method
+\method{getBounds}{gtkTextBuffer}.  For example:
+<<gtk-mvc-buffer-iter-bounds>>=
+bounds <- buffer$getBounds()
+bounds
+@ 
+%
+The current selection is returned by the method
+\method{getSelectionBounds}{gtkTextBuffer}, as a list of the same
+structure. If there is no selection, then the component \code{retval}
 will be \code{FALSE}, otherwise it is \code{TRUE}.
 
-The method \method{getIterAtLine}{gtkTextBuffer} will return an
+One can also obtain an iterator for a specific position in a
+document. The method \method{getIterAtLine}{gtkTextBuffer} will return an
 iterator pointing to the start of the line, which is specified by
 $0$-based line number. The method
 \method{getIterAtLineOffset}{gtkTextBuffer} has an additional argument
 to specify the offset for a given line. An offset counts the number of
 individual characters and keeps track of the fact that the text
-encoding, UTF-8, may use more than one byte per character.  In
-addition to the text buffer, a text view also has the method
+encoding, UTF-8, may use more than one byte per character. For
+example, we might request the seventh character of the first line:
+<<gtk-mvc-buffer-iter-atLineOffset>>=
+buffer$getIterAtLineOffset(0, 6)$getChar()
+@ 
+%
+In addition to the text buffer, a text view also has the method
 \method{getIterAtLocation}{gtkTreeView} to return the iterator
 indicating the between-word space in the buffer closest to the point
 specified in $x$-$y$ coordinates.
 
+Once we obtain an iterator, we typically enter a loop which performs
+some operation on the text at the iterator position and updates the
+iterator with each iteration. This requires retrieving the text to
+which an iterator refers. The character at the iterator position is
+returned by \method{getChar}{GtkTextIter}. We obtain the first
+character in the buffer:
+<<gtk-mvc-buffer-iter-getChar>>=
+bounds$start$iter$getChar()
+@ 
+%
+To obtain the text between two text
+iterators, call the \method{getText}{GtkTextIter} method on the left
+iterator, passing the right iterator as an argument:
+<<gtk-mvc-buffer-iter-getText>>=
+bounds$start$iter$getText(bounds$end$iter)
+@ 
+%
+The \method{insert}{gtkTextBuffer} method will insert
+text at a specified iterator:
+<<gtk-mvc-buffer-iter-insert>>=
+buffer$insert(bounds$start$iter, "prefix")
+@ 
+%
+The \method{delete}{gtkTextBuffer} method will delete the text between
+two iterators.  An important observation is that we always pass the
+actual iterator, i.e., the \code{iter} component of the list, to the
+above methods. Passing the original list would not work.
+
 %% iter methods
-There are several methods for iterators that allow one to refer to
-positions in the buffer relative to the iterator, for example, some
-with obvious names  move by character or characters (
+Next, we introduce the methods for updating an iterator. One can move
+an iterator forward or backward, stopping a certain type of
+landmark. Supported landmarks include characters (
 \method{forwardChar}{gtkTextIter}, \method{forwardChars}{gtkTextIter},
 \method{backwardChar}{gtkTextIter}, and
-\method{backwordChars}{gtkTextIter}),  by word (\method{forwardWordEnd}{gtkTextIter},
-\method{backwardWordStart}{gtkTextIter}), or by sentence
+\method{backwordChars}{gtkTextIter}), words
+(\method{forwardWordEnd}{gtkTextIter},
+\method{backwardWordStart}{gtkTextIter}), and sentences
 (\method{backwardSentenceStart}{gtkTextIter} and
-\method{forwardSentenceEnd}{gtkTextIter}).  There are also various methods,
-such as \method{insideWord}{gtkTextIter}, returning logical values
-indicating if the condition is met.
-To use these methods, the iterator in the
-\code{iter} component is used, not the value returned as a
-list. Example~\ref{eg:RGtk2-find-word} shows how some of the above are
-used, in particular how these methods update the iterator rather than
-return a new one.
+\method{forwardSentenceEnd}{gtkTextIter}).  There are also various
+methods, such as \method{insideWord}{gtkTextIter}, for determining the
+textual context of the iterator. Example~\ref{eg:RGtk2-find-word}
+shows how some of the above are used, in particular how these methods
+update the iterator rather than return a new one.
 
-%% using iters: Insert, Delte, GetText
-\paragraph{Modifying the buffer}
-Iterators are specified as arguments to several methods to set and
-retrieve text. The \method{insert}{gtkTextBuffer} method will insert
-text at a specified iterator. The argument
-\argument{len}{gtkTextBufferInsert} specifies how many bytes of the
-\code{text} argument are to be inserted. The default value of $-1$
-will insert the entire text. This
-method, by default, will also update the iterator to indicate the end
-of where the text is inserted. The \method{delete}{gtkTextBuffer}
-method will delete the text between the iterators specified to the
-arguments \argument{start}{gtkTextBufferDelete} and
-\argument{start}{gtkTextBufferDelete}. The
-\method{getText}{gtkTextBuffer} method will get the text between the
-specified \argument{start}{gtkTextBufferDelete} and
-\argument{end}{gtkTextBufferDelete} iters. A similar method
-\method{getSlice}{gtkTextBuffer} will also do this, only it includes
-offsets to indicate the presence of images and widgets in the text
-buffer.
-
-\begin{example}{Finding the word one clicks on}{eg:RGtk2-find-word}
-  This example shows how one can find the iterator corresponding to a
-  mouse-button-press event. The callback has an event argument which is
-  a \class{GdkEventButton} object with methods
-  \method{getX}{GdkEventButton} and \method{getY}{GdkEventButton} to
-  extract the \code{x} and \code{y} components of the event
-  object. These give the position relative to the widget.~\footnote{The methods
-    \method{getXRoot}{GdkEventButton} and
-    \method{getYRoot}{GdkEventButton} give the position relative to the
-    parent window the widget resides in.}
-
+\begin{example}{Finding the word that is clicked by the user}{eg:RGtk2-find-word}
 <<echo=FALSE>>=
 ## setup example, not shown
 w <- gtkWindow()
 tv <- gtkTextView()
 w$add(tv)
 @ 
-
+  This example shows how one can find the iterator corresponding to a
+  mouse click. We obtain the $X$ and $Y$ coordinates of the mouse
+  button press event, find the corresponding iterator, and retrieve
+  the surrounding word:
 <<FindWordAtMouseClick>>=
 ID <- gSignalConnect(tv, "button-press-event", 
                      f=function(w, e, ...) {
@@ -1344,88 +1358,115 @@ ID <- gSignalConnect(tv, "button-press-event",
   niter <- siter$copy()                 # need copy
   siter$backwardWordStart()
   niter$forwardWordEnd()
-  val <- w$getBuffer()$getText(siter, niter)
+  val <- siter$getText(niter)
   print(val)                            # replace
   return(FALSE)                         # call next handler
 })
 @   
 \end{example}
 
+\subsection{Marks}
 
-\paragraph{Marks}
-In addition to iterators, \GTK\/ provides marks to indicate positions
-in the buffer that persist through changes. For instance, the mark
-\qcode{insert} always refers to the position of the cursor. Marks have a
-gravity of \qcode{left} or \qcode{right}, with \qcode{right} being the
-default. When the text surrounding a mark is deleted, if the gravity
-is \qcode{right} the mark will remain to the right af any added
-text. 
+A text mark tracks a position in the document that is relative to
+other text and is preserved across buffer modifications. One can think
+of a mark as an invisible object stuck between two characters. A mark
+corresponds to a specific position, like an iterator, except its
+gravity sets it either to the left or right of the character. An
+example is the text cursor, the position of which is represented by a
+mark.
 
+Marks are identified by name. We retrieve the mark for the
+cursor, which is called \qcode{insert}:
+<<gtk-mvc-text-mark-insert>>=
+insert <- buffer$getMark("insert")
+@ 
 
-Marks can be defined in two steps by calling \function{gtkTextMark},
-specifying a name and a value for the gravity, and then 
-positioned within a buffer, specified by an iterator, through the
-buffer's \method{addMark}{gtkTextBuffer} method. The
-\method{createMark}{gtkTextBuffer} method combines the two steps.
+To access the text at a mark, we need to find the corresponding iterator:
+<<gtk-mvc-text-mark-getIter>>=
+insertIter <- buffer$getIterAtMark(insert)$iter
+bounds$start$iter$getText(insertIter)
+@ 
 
-There are many text buffer methods to work with marks. The
-\method{getMark}{gtkTextBuffer} method will return the mark object for
-a given name. (There are functions which refer to the name of a mark,
-and others requiring the mark object.) The method \method{getIterAtMark}{gtkTextBuffer} will return
-an iterator for the given mark to be used when an iterator is needed.
+Marks have a gravity of \qcode{left} or \qcode{right}, with
+\qcode{right} being the default. If text is inserted at a mark with
+right gravity, then the mark is moved to the end of the insertion. A
+mark with left gravity would not be moved. This is intuitive if one
+relates it to the behavior of the text cursor, which has right gravity:
+<<gtk-mvc-text-mark-gravity>>=
+insertIter$getOffset()
+buffer$insert(insertIter, "insertion")
+buffer$getIterAtMark(insert)$iter$getOffset()
+@ 
 
-%% XXX Do we need an example with marks? 
+A custom mark is created with its name, gravity and position. We
+create one for the start of the document:
+<<gtk-mvc-text-mark-construct>>=
+mark <- buffer$createMark(mark_name = "start", 
+                          where = buffer$getStartIter()$iter, 
+                          left_gravity = TRUE)
+@ 
+%
+By setting \argument{left_gravity}{createMark} to \qcode{TRUE}, the
+iterator will not move when text is inserted.
 
 %% tag Table
-\paragraph{Tags}
-Marks and iterators can be used to specify different properties for
-different parts of the text buffer. \GTK\/ uses tags to specify how
-pieces of text will differ from those of the textview overall. To
-create a tag, the \method{createTag}{gtkTextBuffer} method is
-used. This has optional argument
-\argument{tag.name}{gtkTextBufferCreateTag} which can be used to refer to
-the tag later, and otherwise uses named arguments so specify a properties
-names and the corresponding values. These tags may be applied to the text between
-two iters using the methods \method{applyTag}{gtkTextBuffer} or
-\method{applyTagByName}{gtkTextBuffer}.
+\subsection{Tags}
+\label{sec:gtk-mvc-text-tags}
 
-\begin{example}{Using text tags}{eg:RGtk2:using-text-tags}
-  We define two text tags to make text bold or italic and illustrate how
-  to apply them.
-<<>>=
-tv <- gtkTextView()
-tb <- tv$getBuffer()
-tb$setText("The quick brown fox jumped over the lazy dog.")
-##
-tag.b <- tb$createTag(tag.name="bold", 
-                      weight=PangoWeight["bold"])
-tag.em <- tb$createTag(tag.name="em", 
-                       style=PangoStyle["italic"])
-tag.large <- tb$createTag(tag.name="large", 
-                          font="Serif normal 18")
-##
-iter <- tb$getBounds()         # or get iters another way
+Tags are annotations placed on specific regions of a text buffer. To
+create a tag, we call the \method{createTag}{gtkTextBuffer} method,
+which takes an argument for each attribute to apply to the text. Here,
+we create three tags: one for bold text, one for italicized text and
+one for large text:
+<<gtk-mvc-text-tags-create>>=
+tag.b <- buffer$createTag(tag.name="bold", 
+                          weight=PangoWeight["bold"])
+tag.em <- buffer$createTag(tag.name="em", 
+                           style=PangoStyle["italic"])
+tag.large <- buffer$createTag(tag.name="large", 
+                              font="Serif normal 18")
+@ 
+%
+Next, we associate the tags with one or more regions of text:
+<<gtk-mvc-text-tags-apply>>=
+iter <- tb$getBounds()
 tb$applyTag(tag.b, iter$start, iter$end)  # updates iters
 tb$applyTagByName("em", iter$start, iter$end)
 @ 
-\end{example}
 
+\subsection{Selection and the clipboard}
 
-\paragraph{Interacting with the clipboard}
-\GTK\/ can create clipboards and provides convenient access to the
-default clipboard so that the standard cut, copy and paste actions can
-be implemented. The function \function{gtkClipboardGet} returns the
-default clipboard if given no arguments. The clipboard is the lone
-argument for the method \method{copyCliboard}{gtkTextBuffer} to copy
-the current selection to the clipboard. The method
-\method{cutClipboard}{gtkTextBuffer} has an extra argument,
-\code{default.editable}, which is typically \code{TRUE}. The
-\method{pasteClipboard}{gtkTextBuffer} method is used paste the
-clipboard contents into the buffer, the second argument is \code{NULL}
-to paste at the insert are, or an iterator specifying otherwise where
-the text should be inserted. The third argument is \code{TRUE} if the
-pasted text is to be editable.
+The selection is defined by the text buffer as the region between the
+\qcode{insert} and \qcode{selection\_bound} marks. While we could
+directly move the marks around, calling
+\method{selectRange}{GtkTextBuffer} is more efficient and
+convenient. Here, we select the first word:
+<<gtk-mvc-text-selectRange>>=
+buffer$selectRange(buffer$getStartIter()$iter, 
+                   buffer$getStartIter()$iter$forwardWordEnd())
+@ 
 
+\class{GtkTextBuffer} provides some convenience methods for
+interaction with the clipboard: \method{copyCliboard}{gtkTextBuffer},
+\method{cutClipboard}{gtkTextBuffer} and
+\method{pasteClipboard}{gtkTextBuffer}. To use these, we first need a
+clipboard object:
+<<gtk-mvc-text-clipboard-get>>=
+cb <- gtkClipboardGet()
+@ 
+%
+We can then, for example, copy the selected text (the first word) and
+paste it at the end:
+<<gtk-mvc-text-clipboard-copy-paste>>=
+buffer$copyClipboard(cb)
+buffer$pasteClipboard(cb, override_location = buffer$getEndIter()$iter, 
+                      default_editable = TRUE)
+@ 
+%
+The \argument{default\_editable}{pasteClipboard} indicates that the
+pasted text should be editable. If we had passed \qcode{NULL}, to the
+\argument{override\_location}{pasteClipboard} argument, the insertion
+would have occured at the cursor.
 
 \begin{example}{A simple command line interface}{eg:RGtk2-command-line}
   \SweaveInput{ex-RGtk2-terminal}
@@ -1437,73 +1478,27 @@ pasted text is to be editable.
 % \end{example}
 
 %% insert images or widgets
-\paragraph{Inserting non-text items}
-If desired, one can insert images and/or widgets into a text buffer,
-although this isn't a common use within statistical GUIs. The method
-\method{insertPixbuf}{gtkTextBuffer} will insert into a position
-specified by an iter a \class{GdkPixbuf} object. In the buffer, this
-will take up one character, but will not be returned by
-\method{getText}{gtkTextBuffer}. 
+\subsection{Inserting non-text items}
 
-Arbitrary child components can also be inserted. To do so an anchor
-must first be created in the text buffer. The method
-\method{createChildAnchor}{gtkTextBuffer} will return such an anchor, and
-then the text view method \method{addChildAtAnchor}{gtkTextView} can
-be used to add the child.
+If desired, one can insert images and/or widgets into a text
+buffer. The method \method{insertPixbuf}{gtkTextBuffer} will insert a
+\class{GdkPixbuf} object. The buffer will count the image as a
+character, although \method{getText}{gtkTextBuffer} will obviously not
+return the image.
 
-<<NotShown, echo=FALSE>>=
-## Not shown, but this shows how to add a button to a text view widget
-b <- gtkButton("click me")              # child
-end <- tb$getEndIter()$iter             # get  an iter
-anchor <- tb$createChildAnchor(end)     # make anchor
-tv$addChildAtAnchor(b, anchor)          # set widget at anchor
+Arbitrary child widgets, like a button, can also be inserted. First,
+one must create an anchor in the text buffer with
+\method{createChildAnchor}{gtkTextBuffer}:
+<<gtk-mvc-text-anchor>>=
+anchor <- tb$createChildAnchor(buffer$getEndIter()$iter)
 @ 
-
-\subsection{\class{GtkTextView} Details}
-\label{sec:RGtk2:text-buffers}
-
-%% properties: editable, ...
-\paragraph{Properties}
-Key properties of the text view include \code{editable}, which if assigned
-a value of \code{FALSE} will prevent users from editing the text. 
-If the view is not editable, the cursor may be hidden by setting the
-\code{cursor-visible} property to \code{FALSE}. 
-The text in a view may be wrapped or not. The method \method{setWrapMode}{gtkTextView}
-takes values from \code{GtkWrapMode} with default of \qcode{none}, but
-options for \qcode{char}, \qcode{word}, or \qcode{word\_char}. The
-justification for the entire buffer is controlled by the
-\code{justification} property which takes values of \qcode{left},
-\qcode{right}, \qcode{center}, or \qcode{fill} from \code{GtkJustification}.
-The global value may be overridden for parts of the text buffer
-through the use of text tags. The left and right margins are adjusted
-through the \code{left-margin} and \code{right-margin} properties. 
-
-
-%% buffer - wide font
-\paragraph{Fonts}
-The size and font can be globally set for a text view using the
-\method{modifyFont}{gtkWidget} method. (Specifying fonts for parts of
-the buffer requires the use of tags, described later.) The argument
-\argument{font.desc}{gtkWidgetModifyFont} specifies the new font using
-a Pango font description, which may be generated from a
-string specifying the font through the function
-\code{pangoFontDescriptionFromString}. These strings may contain up to
-3 parts: the first is a comma-separated list of font families, the
-second a white-space separated list of style options, and the third a
-size in points or pixels if the units ``px'' are included. A typical
-value might look like \code{"serif, monospace bold italic condensed
-  16"}. The various style options are enumerated in \code{PangoStyle},
-\code{PangoVariant}, \code{PangoWeight}, \code{PangoStretch}, and
-\code{PangoGravity}. The help page for \code{PangoFontDescription}
-contains more information.
-
-\paragraph{Signals}
-The text buffer emits many different types of signals detailed in the
-help page for \function{gtkTextBuffer}. Most importantly, the
-\signal{changed} signal is emitted when the content of the buffer
-changes. The callback for a \signal{changed} signal has signature that
-returns the text buffer and any user data.
-
+%
+To add the widget, we call the text view method
+\method{addChildAtAnchor}{gtkTextView}:
+<<gtk-mvc-text-addChild>>=
+b <- gtkButton("click me")
+tv$addChildAtAnchor(b, anchor)
+@ 
 
 % \begin{example}{Simple textview usage}{eg:RGtk2:simple-textview-usage}
 %   \SweaveInput{ex-RGtk2-simple-textview}

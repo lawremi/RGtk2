@@ -1,9 +1,9 @@
 This example uses a tree to explore an \R\/ list object, such as that
 returned by one of \R's modeling functions.  As the depth of these
 lists is not specified in advance, we use a dynamic approach to
-creating the tree store, modifying the tree store when the tree view
-is expanded or collapsed.
-  
+that populates the tree store when a node is expanded and removes
+nodes when their parent is collapsed.
+
 <<echo=FALSE>>=
 ## tree example
 ## a variable browser
@@ -11,8 +11,7 @@ require(RGtk2)
 @ 
 
 We begin by defining our tree store and an accompanying tree
-view. This example allows sorting, and so calls the
-\constructor{gtkTreeModelSort} function.
+view. This example allows sorting, and so creates a sort proxy model:
 <<SetUpStore>>=
 store <- gtkTreeStore(rep("gchararray", 2))
 sstore <- gtkTreeModelSort(store)
@@ -68,9 +67,8 @@ pathToIter <- function(sstore, tpath) {
 @ 
 
 We now need to convert the iterator to an ``R path,'' which is made up
-of the names of each component that makes up an element in the
-list. This function returns the path for a component specified by its
-iterator.
+of the names of each component in the list. This function returns such
+a path given an iterator:
 <<IterToPath>>=
 iterToRPath <- function(sstore, iter) {
   store <- sstore$getModel()

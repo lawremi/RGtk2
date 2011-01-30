@@ -31,6 +31,7 @@ findmethod <- function (obj, name, where=.GlobalEnv)
 ## override NULL in output
 args <- function(name) {
   body(name) <- NULL
+  environment(name) <- .GlobalEnv
   name
   ## out <- capture.output(base::args(name))
   ## invisible(cat(out[-length(out)], "\n"))

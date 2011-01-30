@@ -23,14 +23,13 @@ for(i in unique(Manufacturers)) {
 @ 
 
 
-Now, we make a simple rectangular store for the make information with
+Now, we make a simple rectangular store for the model information with
 the following:
-
 <<>>=
 store <- rGtkDataFrame(Cars93[,"Model", drop=FALSE])
 @
 
-The basic view is similar to that for rectangular data already presented.
+Creating a basic view is similar to that for rectangular data already presented:
 <<makeView>>=
 view <- gtkTreeView()
 view$insertColumnWithAttributes(0, "Make", 

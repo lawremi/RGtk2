@@ -1,15 +1,13 @@
 This example shows how to pack buttons into a box so that the spacing
-between the similar buttons is 12 pixels, but between potentially
-dangerous buttons is 24 pixels, as per the Mac human interface
-guidelines.
-\GTK\/ provides the constructor \constructor{gtkHButtonBox} for
-holding buttons, which provides a means to apply consistent styles,
-but the default styles do not allow such spacing as desired. (Had all
-we wanted was to right align the buttons, then that style is certainly
-supported.) As such, we will illustrate how this can be done through a
-combination of \code{spacing} arguments.
-We assume that our parent container, \code{g}, is a
-horizontal box container.
+between the similar buttons is 12 pixels, while potentially dangerous
+buttons are separated from the rest by 24 pixels, as per the Mac human
+interface guidelines.  
+
+\GTK\/ provides the widget \class{GtkHButtonBox} for organizing
+buttons in a manner consistent across an application. However, the
+default layout modes would not yield the desired spacing. As such, we
+will illustrate how to customize the spacing.  We assume that our
+parent container, \code{hbox}, is a horizontal box container.
 <<MacOSXstyleButton,echo=FALSE>>=
 ## not shown
 w <- gtkWindow(show=FALSE)
@@ -19,8 +17,8 @@ fg <- gtkHBox()
 fg$setSizeRequest(width=800, height=-1)
 w$add(fg)
 
-g <- gtkHBox()
-fg$packStart(g, padding=15)              # for size grip
+hbox <- gtkHBox()
+fg$packStart(hbox, padding=15)              # for size grip
 @ 
 
 
@@ -31,34 +29,33 @@ fg$packStart(g, padding=15)              # for size grip
   \label{fig:ex-RGtk2-mac-buttons}
 \end{figure}
 
-We include standard buttons, so use the stock names and icons.
+We include standard buttons, so we use the stock names and icons.
 <<StockButtons>>=
 cancel <- gtkButton(stock.id="gtk-cancel")
 ok <- gtkButton(stock.id="gtk-ok")
 delete <- gtkButton(stock.id="gtk-delete")
 @ 
 
-We will right align our buttons, so use the parent container's
-\code{PackEnd} method. The \code{ok} button has no padding, the
-12-pixel gap between it and the \code{cancel} button is ensured by  the
-\code{padding} argument when the \code{cancel} button is
-added. Treating the \code{delete} button as potentially irreversible,
-we aim to have 24 pixels of separation between it and the
-\code{cancel} button. This is given by adding 12 pixels of padding
-when this button is packed in, giving 24 in total. The blank label is
-there to fill out space if the parent container expands.
+We specify the padding as we pack the widgets into the box, from right
+to left, with \method{packEnd}{GtkBox}:
 <<macButtonPack>>=
-g$packEnd(ok, padding=0)
-g$packEnd(cancel, padding=12)
-g$packEnd(delete, padding=12)
-g$packEnd(gtkLabel(""), expand=TRUE, fill=TRUE)
+hbox$packEnd(ok, padding=0)
+hbox$packEnd(cancel, padding=12)
+hbox$packEnd(delete, padding=12)
+hbox$packEnd(gtkLabel(""), expand=TRUE, fill=TRUE)
 @ 
-We make \code{ok} the default button, so have it grab the focus and
-add a simple callback when the button is either clicked or the
-\kbd{enter} key is pressed when the button has the focus.
+%
+The padding occurs to the left and right of the child.  The \code{ok}
+button is given no padding. The \code{cancel} button is packed with 12
+pixels of spacing, which separates it from the \code{ok}
+button. Recognizing the \code{delete} button as potentially
+irreversible, we add 12 pixels of separation between it and the
+\code{cancel} button, for a total of 24 pixels. The blank label pushes
+the buttons against the right side of the box.  We instruct the
+\code{ok} button to grab focus, so that it becomes the default
+button:
 <<>>=
 ok$grabFocus()
-QT <- gSignalConnect(ok, "clicked", function(...) print("ok"))
 @ 
 
 <<echo=FALSE>>=

@@ -1,8 +1,7 @@
-This example shows how the text view widget can be used to make a
-simple command line. While programming a command line is unlikely to
-be a common task in designing a GUI for a statistics
-application, the example is familiar and shows several different, but
-useful, aspects of the widget.
+This example shows how to create a simple command line interface with
+the text view widget. While few statistical applications will include
+a command line widget, the example is familiar and shows several
+different, but useful, aspects of the widget.
 
 \begin{figure}
   \centering
@@ -25,8 +24,8 @@ font <- pangoFontDescriptionFromString("Monospace")
 tv$modifyFont(font)                     # widget wide
 @ 
 
-We will use a few formatting tags, defined next. We don't need the tag
-objects, as we refer to them later by name.
+We will use a few formatting tags, defined next. We do not need the tag
+objects as variables in the workspace, as we refer to them later by name.
 <<results=hide>>=
 tb$createTag(tag.name="cmdInput")
 tb$createTag(tag.name="cmdOutput", 
@@ -36,18 +35,15 @@ tb$createTag(tag.name="cmdError",
 tb$createTag(tag.name="uneditable", editable=FALSE)
 @ 
 
-We define one new mark to indicate the prompt for a new line (we need to be able to identify a
-new command, and this marks its beginning) and
-another for the end of the buffer. 
+We define a mark to indicate the beginning of a newly entered
+command, and another mark tracks the end of the buffer:
 <<>>=
-startCmd <- gtkTextMark("startCmd", left.gravity=TRUE)
-tb$addMark(startCmd, tb$getStartIter()$iter)
-bufferEnd <- tb$CreateMark("bufferEnd", tb$getEndIter()$iter)
-
+startCmd <- tb$createMark("startCmd", tb$getStartIter()$iter, left.gravity=TRUE)
+bufferEnd <- tb$createMark("bufferEnd", tb$getEndIter()$iter)
 @ 
 
-We define several helper functions. This first shows how to move the
-viewport to the end of the buffer so that the command line is visibile.
+This helper function shows how to move the viewport to the end of the
+buffer so that the command line is visibile:
 <<>>=
 scrollViewport <- function(view, ...) {
   iter <- view$getBuffer()$getEndIter()$iter
@@ -58,7 +54,7 @@ scrollViewport <- function(view, ...) {
 
 There are two types of prompts needed: one for entering a new command
 and one for a continuation. This function adds either, depending on
-its argument.
+its argument:
 <<>>=
 addPrompt <- function(obj, prompt=c("prompt", "continue"),
                       setMark=TRUE) 
@@ -77,9 +73,7 @@ addPrompt(tb) ## place an initial prompt
 @ 
 
 This helper method writes the output of a command to the text
-buffer. We arrange to truncate large outputs. By passing in the tag
-name, we can specify whether this is normal output or an error
-message.
+buffer:
 <<addOutput>>=
 addOutput <- function(obj, output, tagName="cmdOutput") {
   endIter <- obj$getEndIter()
@@ -90,10 +84,13 @@ addOutput <- function(obj, output, tagName="cmdOutput") {
     })
 }
 @ 
+%
+We arrange to truncate large outputs. By passing in the tag
+name, we can specify whether this is normal output or an error
+message.
 
 This next function uses the \code{startCmd} mark and the end of the buffer
-to extract the current command. Multi-line commands are parsed with a
-regular expression.
+to extract the current command:
 <<>>=  
 findCMD <- function(obj) {
   endIter <- obj$getEndIter()
@@ -104,6 +101,8 @@ findCMD <- function(obj) {
   cmd
 }
 @ 
+%
+The \qcode{regex} is used to parse multi-line commands.
 
 The following function takes the current command and evaluates it. It
 uses a hack (involving \code{grep}) to distinguish between an
@@ -141,9 +140,7 @@ evalCMD <- function(tv, cmd) {
 @ 
 
 The \code{evalCMD} command is called when the \kbd{return} key is
-pressed. The \signal{key-release-event} signal passes the event
-information through to the second argument. We inspect the key value
-and compare to that of the return key. 
+pressed:
 <<connectBinding, results=hide>>=
 gSignalConnect(tv, "key-release-event", f=function(w, e) {
   obj <- w$getBuffer()                  # w is textview
@@ -156,7 +153,8 @@ gSignalConnect(tv, "key-release-event", f=function(w, e) {
 })
 @
 
-% 
+%
+%% ML: what is going on here? why is the signal commented out?
 Finally, We connect \function{moveViewport} to the \code{changed}
 signal of the text buffer, so that the view always scrolls to the
 bottom when the contents of the buffer are modified:
