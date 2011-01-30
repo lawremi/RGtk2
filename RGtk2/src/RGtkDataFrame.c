@@ -467,7 +467,8 @@ r_gtk_data_frame_set (RGtkDataFrame *data_frame,
 	
 	data_frame->frame = frame;
 	data_frame->stamp = data_frame->stamp++;
-
+        data_frame->nrows = frame_nrows;
+        
 	for (i = 0; i < nrows; i++) {
 		gint row = changed_rows[i];
 		GtkTreePath *path = gtk_tree_path_new_from_indices(row, -1);
@@ -485,8 +486,6 @@ r_gtk_data_frame_set (RGtkDataFrame *data_frame,
   }
 	if (data_frame->sort_id != -1 && resort)
 		r_gtk_data_frame_resort(data_frame);
-  
-  data_frame->nrows = frame_nrows;
 }
 
 static void r_gtk_data_frame_set_sort_closure(RGtkDataFrame *frame, USER_OBJECT_ closure)
