@@ -1,6 +1,6 @@
-To illustrate popup menus, we show how construct one and display it in
-response to a mouse click. We start with a \code{gtkMenu} instance, to
-which we add some items.
+To illustrate popup menus, we construct one and display it in response
+to a mouse click. We start with a \code{gtkMenu} instance, to which we
+add some items:
 <<"menubar-ex">>=
 popup <- gtkMenu()                       # top level
 popup$append(gtkMenuItem("cut"))
@@ -18,11 +18,7 @@ w$add(b)
 @
 
 This menu will be shown by calling \code{gtkMenuPopup} in response to
-the \code{button-press-event} signal on the button. The
-\function{gtkMenuPopup} function is called with the menu, some
-optional arguments for placement, and some values describing the
-event: the mouse button and time. The event values can be retrieved from
-the second argument of the callback (a \code{GdkEvent}).
+the \code{button-press-event} signal on the button:
 <<>>=
 gSignalConnect(b,"button-press-event",
        f = function(w, e, menu) {
@@ -35,11 +31,15 @@ gSignalConnect(b,"button-press-event",
          return(FALSE)
        }, data=popup)
 @ 
+%
+The \function{gtkMenuPopup} function is called with the menu, some
+optional arguments for placement, and some values describing the
+event: the mouse button and time. The event values can be retrieved
+from the second argument of the callback (a \code{GdkEvent}).
 
-The above will popup a menu, but until we bind a callback to the \code{activate}
-signal, nothing will happen when a menu item is selected. Below we
-supply a stub for sake of illustration. The children of a popup menu
-are the menu items, including the separator which we avoid.
+The above will popup a menu, but until we bind a callback to the
+\code{activate} signal on each item, nothing will happen when a menu
+item is selected. Below we supply a stub for sake of illustration:
 <<>>=
 IDs <- sapply(popup$getChildren(), function(i) {
   if(!inherits(i, "GtkSeparatorMenuItem")) # skip these
@@ -47,3 +47,5 @@ IDs <- sapply(popup$getChildren(), function(i) {
                    f = function(w, data) print("replace me"))
 })
 @ 
+%
+We iterate over the children, avoiding the separator.

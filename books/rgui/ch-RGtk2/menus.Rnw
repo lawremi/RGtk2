@@ -11,7 +11,7 @@ for executing a particular action. Menu Bars and toolbars are the two
 most common widgets for organizing application-wide actions. An
 application also needs to report its status in an unobtrusive
 way. Thus, a typical application window contains, from top to bottom, 
-a menu bar, toolbar, a large application-specific region, and a
+a menu bar, a toolbar, a large application-specific region, and a
 status bar.  In this chapter, we will introduce actions, menus,
 toolbars and status bars and conclude by explaining the mechanisms in
 \GTK\/ for conveniently defining and managing actions and associated
@@ -42,7 +42,6 @@ gSignalConnect(a, "activate", f = function(w, data) {
 })
 @ 
 
-
 An action plays the role of a data model describing a command, while
 widgets that implement the \class{GtkActivatable} interface are the
 views and controllers. All buttons, menu items and tool items
@@ -56,13 +55,9 @@ b$setRelatedAction(a)
 %
 Certain aspects of a proxy widget are coordinated through the
 action. This includes sensitivity and visibility, corresponding to the
-\code{sensitive} and \code{visible} properties. To synchronize with
-aesthetic properties like the \code{label} and icon (e.g.,
-\code{stock-id}), the \code{use-action-appearance} property must be
-set on the activatable widget:
-<<rgtk2-menus-action-appearance, eval=FALSE>>=
-b["use-action-appearance"] <- TRUE
-@ 
+\code{sensitive} and \code{visible} properties. By default, aesthetic
+properties like the \code{label} and \code{stock-id} are also
+inherited.
 
 Often, the commands in an application have a natural grouping. It can
 be convenient to coordinate the sensitivity and visibility of entire
@@ -115,7 +110,7 @@ each of which may proxy an action. Menus listing window-level actions
 are usually contained within a menu bar at the top of the window or
 screen. Menus with options specific to a particular GUI element may
 ``popup'' when the user interacts with the element, such as by
-clicking the right mouse button. Menu Bars and popup menus may be
+clicking the right mouse button. Menu bars and popup menus may be
 constructed by appending each menu item and submenu separately, as
 illustrated below. For menus with more than a few items, we recommend
 the strategies described in Section~\ref{sec:RGtk2:UIManager}.
@@ -123,8 +118,7 @@ the strategies described in Section~\ref{sec:RGtk2:UIManager}.
 \subsection{Menu Bars}
 
 We will first demonstrate the menu bar, leaving the popup menu for
-later.  The first step towards populating a menu bar is to construct
-the menu bar itself:
+later.  The first step is to construct the menu bar itself:
 <<rgtk2-menus-menubar>>=
 menubar <- gtkMenuBar()
 @
@@ -183,7 +177,7 @@ fileMenu$append(open)
 
 It is recommended, however, to create menu items that proxy an
 action. This will facilitate, for example, adding an equivalent
-toolbar item later. First, we create the action:
+toolbar item later. We demonstrate with a ``Save'' action:
 <<rgtk2-menus-save-action>>=
 saveAction <- 
   gtkAction("save", "Save", "Save object", "gtk-save")
@@ -191,8 +185,6 @@ saveAction <-
 %
 Then the appropriate menu item is generated from the action and added
 to the file menu:
-%%## unnecessary?
-%%##save["use-action-appearance"] <- TRUE
 <<rgtk2-menus-save-item>>=
 save <- saveAction$createMenuItem()
 fileMenu$append(save)
@@ -245,15 +237,15 @@ toolbar <- gtkToolbar()
 
 In analogous fashion to the menu bar, toolbars are containers for tool
 items. Technically, an instance of \class{GtkToolItem} could contain
-any type of widget, though toolbars typically represent actions
-with buttons. The \class{GtkToolButton} class implements this common
+any type of widget, yet toolbars typically represent actions
+with buttons. The \class{GtkToolButton} widget implements this common
 case.  Here, we create a tool button for opening a file:
 <<rgtk2-menus-toolbar-open-item>>=
 openButton <- gtkToolButton(stock.id = "gtk-open") 
 @ 
 %
 Tool buttons have a number of properties, including \code{label} and
-several for specifying an icon. Above, we specify a stock identifier,
+several for icons. Above, we specify a stock identifier,
 for which there is a predefined translated label and theme-specific icon.
 As with any other container, the button may be added to the toolbar with
 the \method{add}{GtkContainer} method:
@@ -315,13 +307,12 @@ Normally, tool items are tightly packed against the left side of the
 toolbar. Sometimes, a more complex layout is desired. For example, we
 may wish to place a \textit{help} item against the right side. We can
 achieve this with an invisible item that expands against its siblings:
-
-%% JV XXX THis causes my R to crash XXX
-<<rgtk2-menus-toolbar-expand, eval=FALSE>>=
+%% ML: use latest svn for this
+<<rgtk2-menus-toolbar-expand>>=
 expander <- gtkSeparatorToolItem()
 expander["draw"] <- FALSE
 toolbar$add(expander)
-toolbar$childSetProperty(expander, "expand", TRUE)
+toolbar$childSet(expander, expand = TRUE)
 @ 
 
 % 
