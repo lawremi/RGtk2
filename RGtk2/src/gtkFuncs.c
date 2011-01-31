@@ -55408,7 +55408,7 @@ S_gtk_entry_buffer_new(USER_OBJECT_ s_initial_chars, USER_OBJECT_ s_n_initial_ch
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
 #if GTK_CHECK_VERSION(2, 18, 0)
-  const gchar* initial_chars = ((const gchar*)asCString(s_initial_chars));
+  const gchar* initial_chars = GET_LENGTH(s_initial_chars) == 0 ? NULL : ((const gchar*)asCString(s_initial_chars));
   gint n_initial_chars = ((gint)asCInteger(s_n_initial_chars));
 
   GtkEntryBuffer* ans;

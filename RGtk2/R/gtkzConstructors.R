@@ -147,13 +147,18 @@ function(title = NULL, parent = NULL, flags = 0, ..., show = TRUE)
 gtkDrawingArea <- gtkDrawingAreaNew
 
 gtkEntry <-
-function(max = 0, show = TRUE)
+function(max = 0, buffer, show = TRUE)
 {
   if (!missing(max)) {
     gtkEntryNewWithMaxLength(max, show)
   }
   else {
-    gtkEntryNew(show)
+    if (!missing(buffer)) {
+      gtkEntryNewWithBuffer(buffer, show)
+    }
+    else {
+      gtkEntryNew(show)
+    }
   }
 }
 

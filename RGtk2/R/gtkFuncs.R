@@ -39183,11 +39183,14 @@ function(object, setting)
 
 
 gtkEntryNewWithBuffer <-
-function(buffer)
+function(buffer, show = TRUE)
 {
   checkPtrType(buffer, "GtkEntryBuffer")
 
   w <- .RGtkCall("S_gtk_entry_new_with_buffer", buffer, PACKAGE = "RGtk2")
+
+  if(show)
+    gtkWidgetShowAll(w)
 
   return(w)
 } 
@@ -39228,9 +39231,9 @@ function()
 
 
 gtkEntryBufferNew <-
-function(initial.chars, n.initial.chars)
+function(initial.chars = NULL, n.initial.chars = -1)
 {
-  initial.chars <- as.character(initial.chars)
+  if (!is.null( initial.chars )) initial.chars <- as.character(initial.chars)
   n.initial.chars <- as.integer(n.initial.chars)
 
   w <- .RGtkCall("S_gtk_entry_buffer_new", initial.chars, n.initial.chars, PACKAGE = "RGtk2")
