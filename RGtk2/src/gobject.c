@@ -1760,32 +1760,27 @@ void transformBooleanString(const GValue *src, GValue *dst) {
 GType
 g_seek_type_get_type (void)
 {
-  static volatile gsize g_define_type_id__volatile = 0;
+  static GType etype = 0;
+  if (etype == 0) {
+    static const GFlagsValue values[] = {
+      { G_SEEK_CUR, "G_SEEK_CUR", "cur" },
+      { G_SEEK_SET, "G_SEEK_SET", "set" },
+      { G_SEEK_END, "G_SEEK_END", "end" },
+      { 0, NULL, NULL }
+    };
+    etype = 
+      g_flags_register_static (g_intern_static_string ("GSeekType"), values);
+  }
 
-  if (g_once_init_enter (&g_define_type_id__volatile))
-    {
-      static const GFlagsValue values[] = {
-        { G_SEEK_CUR, "G_SEEK_CUR", "cur" },
-        { G_SEEK_SET, "G_SEEK_SET", "set" },
-        { G_SEEK_END, "G_SEEK_END", "end" },
-        { 0, NULL, NULL }
-      };
-      GType g_define_type_id =
-        g_flags_register_static (g_intern_static_string ("GSeekType"), values);
-      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
-    }
-
-  return g_define_type_id__volatile;
+  return etype;
 }
 
 
 GType
 g_io_condition_get_type (void)
 {
-  static volatile gsize g_define_type_id__volatile = 0;
-
-  if (g_once_init_enter (&g_define_type_id__volatile))
-    {
+  static GType etype = 0;
+  if (etype == 0) {
       static const GFlagsValue values[] = {
         { G_IO_IN, "G_IO_IN", "in" },
         { G_IO_OUT, "G_IO_OUT", "out" },
@@ -1795,10 +1790,10 @@ g_io_condition_get_type (void)
         { G_IO_NVAL, "G_IO_NVAL", "nval" }, 
         { 0, NULL, NULL }
       };
-      GType g_define_type_id =
-        g_flags_register_static (g_intern_static_string ("GIOCondition"), values);
-      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+      etype =
+        g_flags_register_static (g_intern_static_string ("GIOCondition"),
+                                 values);
     }
 
-  return g_define_type_id__volatile;
+  return etype;
 }
