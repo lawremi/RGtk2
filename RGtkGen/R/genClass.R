@@ -30,9 +30,9 @@ genCClass <- function(name = "GtkWidget", virtuals, defs, package = "RGtk2")
   if (length(virtuals)) {
     wrapper_names <- paste("virtual", names(virtuals), sep="_")
     actual_names <- stripVirtual(names(virtuals), fun_name)
-    virtual_wrappers <- static(sapply(seq_along(virtuals), function(virtual_index)
+    virtual_wrappers <- sapply(seq_along(virtuals), function(virtual_index)
       genUserFunctionCode(virtuals[[virtual_index]], defs, 
-        wrapper_names[virtual_index], virtual_index)$code))
+        wrapper_names[virtual_index], virtual_index)$code)
     virtual_assigns <- paste(
       invokev("if", paste(vecind("s", seq_along(virtuals)), "!= NULL_USER_OBJECT")),
         ind(cassign(field("c", actual_names), nameToC(wrapper_names)), depth=2),

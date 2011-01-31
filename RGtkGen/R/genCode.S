@@ -131,8 +131,8 @@ function(defs = getDefs(), filePrefix="gtk", dir=c("C"="/tmp", "S"="/tmp"),
  open(RFuncs, "w")
 
  # include custom (package-specific) header, plus gobject.h (just to be safe)
- common_includes <- c('#include <RGtk2/gobject.h>\n#include "', 
-  file.path(package, filePrefix), '.h"\n\n')
+ common_includes <- c('#include <RGtk2/gobject.h>\n#include <', 
+  file.path(package, filePrefix), '.h>\n\n')
   
  # the generated wrapper file has a header that declares the wrappers
  cat(common_includes, '#include "', filePrefix,'Funcs.h"\n\n\n', file=CFuncs, sep="")

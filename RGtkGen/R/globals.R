@@ -178,7 +178,6 @@ list("GParamSpec"="g_param_spec_sink",
      "cairo_text_cluster_t[]" = "cairo_text_cluster_free")
 
 # functions for custom finalization
-
 finalizerFuncs <- list("PangoAttribute" = "pango_attribute_destroy",
                        "GtkTargetList"="gtk_target_list_unref",
                        "GdkRegion" = "gdk_region_destroy",
@@ -188,6 +187,7 @@ finalizerFuncs <- list("PangoAttribute" = "pango_attribute_destroy",
                        "PangoGlyphItem" = "pango_glyph_item_free",
                        "PangoCoverage" = "pango_coverage_unref",
                        "PangoScriptIter" = "pango_script_iter_free")
+
 # copy functions for types without a GType
 copyFuncs <- c("GdkRegion" = "gdk_region_copy",
                "PangoCoverage" = "pango_coverage_ref")

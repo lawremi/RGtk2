@@ -1137,7 +1137,9 @@ structinit <- function(...) {
   arrinit(paste("\n", ind(elements), sep=""))
 }
 # declares a function in C
-declareFunction <- function(ret, name, ptypes, pnames, prefix = T) {
+declareFunction <- function(ret, name, ptypes, pnames, prefix = TRUE,
+                            static = FALSE)
+{
     if (ret == "none")
         ret <- "void"
 
@@ -1150,10 +1152,12 @@ declareFunction <- function(ret, name, ptypes, pnames, prefix = T) {
     if (prefix)
       name <- nameToC(name)
     
-    paste(
-        ret, "\n",
-        name, "(", args, ")",
-    sep="")
+    decl <- paste(ret, "\n",
+                  name, "(", args, ")",
+                  sep="")
+    if (static)
+      decl <- static(decl)
+    decl
 }
 
 s_signature <- function(formal_args)
@@ -2018,10 +2022,13 @@ function(type, name, out = T)
 # gets the actual function used for cleaning an instance of a type
 getCleanupFunc <- function(type, name, out)
 {
-	func <- NULL
-	btype <- baseType(type)
-	if (btype %in% names(cleanupFuncs))
-    func <- cleanupFuncs[[btype]] # custom cases
+  func <- NULL
+  btype <- baseType(type)
+  ## custom array cases: in parameters are allocated on R's heap,
+  ## while 'out' parameters and return values are allocated in some
+  ## special way
+  if (btype %in% names(cleanupFuncs) && (!isArray(btype) || out))
+    func <- cleanupFuncs[[btype]]
   else if (out && isPrimitiveTypeRef(type) && getGenericTypeRef(type) == "string")
     func <- "g_strfreev" # string arrays
   else if (out && !isConst(type) && ((btype %in% transparentTypes && 
@@ -2207,7 +2214,8 @@ genUserFunctionCode <- function(fun, defs, name = fun$name, virtual = 0, package
   param_names <- names(params)
   ret_type <- toValidType(fun$return)
   
-  header <- declareFunction(ret_type, name, param_types, param_names)
+  header <- declareFunction(ret_type, name, param_types, param_names,
+                            static = virtual)
   declaration <- header
   
   export_code <- exportFunc(fun, nameToC(name), param_types, param_names, package)
@@ -2337,10 +2345,8 @@ genUserFunctionCode <- function(fun, defs, name = fun$name, virtual = 0, package
           owns=fun$owns)$code)))
   code <- c(code,
   "}")
-  
-  if (!virtual) # virtuals are conditioned differently
-    code <- since(fun, code, .error = FALSE)
-  
+
+  code <- since(fun, code, .error = FALSE)
   decl <- since(fun, statement(declaration), .error = FALSE)
   
   list(code=paste(code,collapse="\n"), decl = paste(decl, collapse="\n"),

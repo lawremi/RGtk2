@@ -1,7 +1,7 @@
 #include "RGtk2/atkClasses.h"
 static SEXP S_AtkHyperlink_symbol;
-static 
-gchar*
+
+static gchar*
 S_virtual_atk_hyperlink_get_uri(AtkHyperlink* s_object, gint s_i)
 {
   USER_OBJECT_ e;
@@ -28,8 +28,8 @@ S_virtual_atk_hyperlink_get_uri(AtkHyperlink* s_object, gint s_i)
     return(((gchar*)0));
   return(((gchar*)g_strdup(asCString(s_ans))));
 }
-static 
-AtkObject*
+
+static AtkObject*
 S_virtual_atk_hyperlink_get_object(AtkHyperlink* s_object, gint s_i)
 {
   USER_OBJECT_ e;
@@ -56,8 +56,8 @@ S_virtual_atk_hyperlink_get_object(AtkHyperlink* s_object, gint s_i)
     return(((AtkObject*)0));
   return(ATK_OBJECT(getPtrValue(s_ans)));
 }
-static 
-gint
+
+static gint
 S_virtual_atk_hyperlink_get_end_index(AtkHyperlink* s_object)
 {
   USER_OBJECT_ e;
@@ -82,8 +82,8 @@ S_virtual_atk_hyperlink_get_end_index(AtkHyperlink* s_object)
     return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
-static 
-gint
+
+static gint
 S_virtual_atk_hyperlink_get_start_index(AtkHyperlink* s_object)
 {
   USER_OBJECT_ e;
@@ -108,8 +108,8 @@ S_virtual_atk_hyperlink_get_start_index(AtkHyperlink* s_object)
     return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
-static 
-gboolean
+
+static gboolean
 S_virtual_atk_hyperlink_is_valid(AtkHyperlink* s_object)
 {
   USER_OBJECT_ e;
@@ -134,8 +134,8 @@ S_virtual_atk_hyperlink_is_valid(AtkHyperlink* s_object)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-static 
-gint
+
+static gint
 S_virtual_atk_hyperlink_get_n_anchors(AtkHyperlink* s_object)
 {
   USER_OBJECT_ e;
@@ -160,8 +160,8 @@ S_virtual_atk_hyperlink_get_n_anchors(AtkHyperlink* s_object)
     return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
-static 
-guint
+
+static guint
 S_virtual_atk_hyperlink_link_state(AtkHyperlink* s_object)
 {
   USER_OBJECT_ e;
@@ -186,8 +186,8 @@ S_virtual_atk_hyperlink_link_state(AtkHyperlink* s_object)
     return(((guint)0));
   return(((guint)asCNumeric(s_ans)));
 }
-static 
-gboolean
+
+static gboolean
 S_virtual_atk_hyperlink_is_selected_link(AtkHyperlink* s_object)
 {
   USER_OBJECT_ e;
@@ -212,8 +212,8 @@ S_virtual_atk_hyperlink_is_selected_link(AtkHyperlink* s_object)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-static 
-void
+
+static void
 S_virtual_atk_hyperlink_link_activated(AtkHyperlink* s_object)
 {
   USER_OBJECT_ e;
@@ -414,8 +414,8 @@ S_atk_hyperlink_class_link_activated(USER_OBJECT_ s_object_class, USER_OBJECT_ s
  
 
 static SEXP S_AtkObject_symbol;
-static 
-const gchar*
+
+static const gchar*
 S_virtual_atk_object_get_name(AtkObject* s_object)
 {
   USER_OBJECT_ e;
@@ -440,8 +440,8 @@ S_virtual_atk_object_get_name(AtkObject* s_object)
     return(((const gchar*)0));
   return(((const gchar*)asCString(s_ans)));
 }
-static 
-const gchar*
+
+static const gchar*
 S_virtual_atk_object_get_description(AtkObject* s_object)
 {
   USER_OBJECT_ e;
@@ -466,8 +466,8 @@ S_virtual_atk_object_get_description(AtkObject* s_object)
     return(((const gchar*)0));
   return(((const gchar*)asCString(s_ans)));
 }
-static 
-AtkObject*
+
+static AtkObject*
 S_virtual_atk_object_get_parent(AtkObject* s_object)
 {
   USER_OBJECT_ e;
@@ -492,8 +492,8 @@ S_virtual_atk_object_get_parent(AtkObject* s_object)
     return(((AtkObject*)0));
   return(ATK_OBJECT(getPtrValue(s_ans)));
 }
-static 
-gint
+
+static gint
 S_virtual_atk_object_get_n_children(AtkObject* s_object)
 {
   USER_OBJECT_ e;
@@ -518,8 +518,8 @@ S_virtual_atk_object_get_n_children(AtkObject* s_object)
     return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
-static 
-AtkObject*
+
+static AtkObject*
 S_virtual_atk_object_ref_child(AtkObject* s_object, gint s_i)
 {
   USER_OBJECT_ e;
@@ -546,8 +546,8 @@ S_virtual_atk_object_ref_child(AtkObject* s_object, gint s_i)
     return(((AtkObject*)0));
   return(ATK_OBJECT(getPtrValueWithRef(s_ans)));
 }
-static 
-gint
+
+static gint
 S_virtual_atk_object_get_index_in_parent(AtkObject* s_object)
 {
   USER_OBJECT_ e;
@@ -572,8 +572,8 @@ S_virtual_atk_object_get_index_in_parent(AtkObject* s_object)
     return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
-static 
-AtkRelationSet*
+
+static AtkRelationSet*
 S_virtual_atk_object_ref_relation_set(AtkObject* s_object)
 {
   USER_OBJECT_ e;
@@ -598,8 +598,8 @@ S_virtual_atk_object_ref_relation_set(AtkObject* s_object)
     return(((AtkRelationSet*)0));
   return(ATK_RELATION_SET(getPtrValueWithRef(s_ans)));
 }
-static 
-AtkRole
+
+static AtkRole
 S_virtual_atk_object_get_role(AtkObject* s_object)
 {
   USER_OBJECT_ e;
@@ -624,8 +624,8 @@ S_virtual_atk_object_get_role(AtkObject* s_object)
     return(((AtkRole)0));
   return(((AtkRole)asCEnum(s_ans, ATK_TYPE_ROLE)));
 }
-static 
-AtkLayer
+
+static AtkLayer
 S_virtual_atk_object_get_layer(AtkObject* s_object)
 {
   USER_OBJECT_ e;
@@ -650,8 +650,8 @@ S_virtual_atk_object_get_layer(AtkObject* s_object)
     return(((AtkLayer)0));
   return(((AtkLayer)asCEnum(s_ans, ATK_TYPE_LAYER)));
 }
-static 
-gint
+
+static gint
 S_virtual_atk_object_get_mdi_zorder(AtkObject* s_object)
 {
   USER_OBJECT_ e;
@@ -676,8 +676,8 @@ S_virtual_atk_object_get_mdi_zorder(AtkObject* s_object)
     return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
-static 
-AtkStateSet*
+
+static AtkStateSet*
 S_virtual_atk_object_ref_state_set(AtkObject* s_object)
 {
   USER_OBJECT_ e;
@@ -702,8 +702,8 @@ S_virtual_atk_object_ref_state_set(AtkObject* s_object)
     return(((AtkStateSet*)0));
   return(ATK_STATE_SET(getPtrValueWithRef(s_ans)));
 }
-static 
-void
+
+static void
 S_virtual_atk_object_set_name(AtkObject* s_object, const gchar* s_name)
 {
   USER_OBJECT_ e;
@@ -729,8 +729,8 @@ S_virtual_atk_object_set_name(AtkObject* s_object, const gchar* s_name)
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_atk_object_set_description(AtkObject* s_object, const gchar* s_description)
 {
   USER_OBJECT_ e;
@@ -756,8 +756,8 @@ S_virtual_atk_object_set_description(AtkObject* s_object, const gchar* s_descrip
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_atk_object_set_parent(AtkObject* s_object, AtkObject* s_parent)
 {
   USER_OBJECT_ e;
@@ -783,8 +783,8 @@ S_virtual_atk_object_set_parent(AtkObject* s_object, AtkObject* s_parent)
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_atk_object_set_role(AtkObject* s_object, AtkRole s_role)
 {
   USER_OBJECT_ e;
@@ -810,8 +810,8 @@ S_virtual_atk_object_set_role(AtkObject* s_object, AtkRole s_role)
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_atk_object_remove_property_change_handler(AtkObject* s_object, guint s_handler_id)
 {
   USER_OBJECT_ e;
@@ -837,8 +837,8 @@ S_virtual_atk_object_remove_property_change_handler(AtkObject* s_object, guint s
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_atk_object_initialize(AtkObject* s_object, gpointer s_data)
 {
   USER_OBJECT_ e;
@@ -864,8 +864,8 @@ S_virtual_atk_object_initialize(AtkObject* s_object, gpointer s_data)
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_atk_object_children_changed(AtkObject* s_object, guint s_change_index, AtkObject* s_changed_child)
 {
   USER_OBJECT_ e;
@@ -893,8 +893,8 @@ S_virtual_atk_object_children_changed(AtkObject* s_object, guint s_change_index,
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_atk_object_focus_event(AtkObject* s_object, gboolean s_focus_in)
 {
   USER_OBJECT_ e;
@@ -920,8 +920,8 @@ S_virtual_atk_object_focus_event(AtkObject* s_object, gboolean s_focus_in)
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_atk_object_state_change(AtkObject* s_object, const gchar* s_name, gboolean s_state_set)
 {
   USER_OBJECT_ e;
@@ -949,8 +949,8 @@ S_virtual_atk_object_state_change(AtkObject* s_object, const gchar* s_name, gboo
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_atk_object_visible_data_changed(AtkObject* s_object)
 {
   USER_OBJECT_ e;
@@ -974,8 +974,8 @@ S_virtual_atk_object_visible_data_changed(AtkObject* s_object)
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_atk_object_active_descendant_changed(AtkObject* s_object, AtkObject* s_child)
 {
   USER_OBJECT_ e;
@@ -1430,8 +1430,8 @@ S_atk_no_op_object_class_init(AtkNoOpObjectClass * c, SEXP e)
 } 
 
 static SEXP S_AtkObjectFactory_symbol;
-static 
-void
+
+static void
 S_virtual_atk_object_factory_invalidate(AtkObjectFactory* s_object)
 {
   USER_OBJECT_ e;
@@ -1569,8 +1569,8 @@ S_atk_util_class_init(AtkUtilClass * c, SEXP e)
 } 
 
 static SEXP S_AtkTable_symbol;
-static 
-AtkObject*
+
+static AtkObject*
 S_virtual_atk_table_ref_at(AtkTable* s_object, gint s_row, gint s_column)
 {
   USER_OBJECT_ e;
@@ -1599,8 +1599,8 @@ S_virtual_atk_table_ref_at(AtkTable* s_object, gint s_row, gint s_column)
     return(((AtkObject*)0));
   return(ATK_OBJECT(getPtrValueWithRef(s_ans)));
 }
-static 
-gint
+
+static gint
 S_virtual_atk_table_get_index_at(AtkTable* s_object, gint s_row, gint s_column)
 {
   USER_OBJECT_ e;
@@ -1629,8 +1629,8 @@ S_virtual_atk_table_get_index_at(AtkTable* s_object, gint s_row, gint s_column)
     return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
-static 
-gint
+
+static gint
 S_virtual_atk_table_get_column_at_index(AtkTable* s_object, gint s_index)
 {
   USER_OBJECT_ e;
@@ -1657,8 +1657,8 @@ S_virtual_atk_table_get_column_at_index(AtkTable* s_object, gint s_index)
     return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
-static 
-gint
+
+static gint
 S_virtual_atk_table_get_row_at_index(AtkTable* s_object, gint s_index)
 {
   USER_OBJECT_ e;
@@ -1685,8 +1685,8 @@ S_virtual_atk_table_get_row_at_index(AtkTable* s_object, gint s_index)
     return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
-static 
-gint
+
+static gint
 S_virtual_atk_table_get_n_columns(AtkTable* s_object)
 {
   USER_OBJECT_ e;
@@ -1711,8 +1711,8 @@ S_virtual_atk_table_get_n_columns(AtkTable* s_object)
     return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
-static 
-gint
+
+static gint
 S_virtual_atk_table_get_n_rows(AtkTable* s_object)
 {
   USER_OBJECT_ e;
@@ -1737,8 +1737,8 @@ S_virtual_atk_table_get_n_rows(AtkTable* s_object)
     return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
-static 
-gint
+
+static gint
 S_virtual_atk_table_get_column_extent_at(AtkTable* s_object, gint s_row, gint s_column)
 {
   USER_OBJECT_ e;
@@ -1767,8 +1767,8 @@ S_virtual_atk_table_get_column_extent_at(AtkTable* s_object, gint s_row, gint s_
     return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
-static 
-gint
+
+static gint
 S_virtual_atk_table_get_row_extent_at(AtkTable* s_object, gint s_row, gint s_column)
 {
   USER_OBJECT_ e;
@@ -1797,8 +1797,8 @@ S_virtual_atk_table_get_row_extent_at(AtkTable* s_object, gint s_row, gint s_col
     return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
-static 
-AtkObject*
+
+static AtkObject*
 S_virtual_atk_table_get_caption(AtkTable* s_object)
 {
   USER_OBJECT_ e;
@@ -1823,8 +1823,8 @@ S_virtual_atk_table_get_caption(AtkTable* s_object)
     return(((AtkObject*)0));
   return(ATK_OBJECT(getPtrValue(s_ans)));
 }
-static 
-const gchar*
+
+static const gchar*
 S_virtual_atk_table_get_column_description(AtkTable* s_object, gint s_column)
 {
   USER_OBJECT_ e;
@@ -1851,8 +1851,8 @@ S_virtual_atk_table_get_column_description(AtkTable* s_object, gint s_column)
     return(((const gchar*)0));
   return(((const gchar*)asCString(s_ans)));
 }
-static 
-AtkObject*
+
+static AtkObject*
 S_virtual_atk_table_get_column_header(AtkTable* s_object, gint s_column)
 {
   USER_OBJECT_ e;
@@ -1879,8 +1879,8 @@ S_virtual_atk_table_get_column_header(AtkTable* s_object, gint s_column)
     return(((AtkObject*)0));
   return(ATK_OBJECT(getPtrValue(s_ans)));
 }
-static 
-const gchar*
+
+static const gchar*
 S_virtual_atk_table_get_row_description(AtkTable* s_object, gint s_row)
 {
   USER_OBJECT_ e;
@@ -1907,8 +1907,8 @@ S_virtual_atk_table_get_row_description(AtkTable* s_object, gint s_row)
     return(((const gchar*)0));
   return(((const gchar*)asCString(s_ans)));
 }
-static 
-AtkObject*
+
+static AtkObject*
 S_virtual_atk_table_get_row_header(AtkTable* s_object, gint s_row)
 {
   USER_OBJECT_ e;
@@ -1935,8 +1935,8 @@ S_virtual_atk_table_get_row_header(AtkTable* s_object, gint s_row)
     return(((AtkObject*)0));
   return(ATK_OBJECT(getPtrValue(s_ans)));
 }
-static 
-AtkObject*
+
+static AtkObject*
 S_virtual_atk_table_get_summary(AtkTable* s_object)
 {
   USER_OBJECT_ e;
@@ -1961,8 +1961,8 @@ S_virtual_atk_table_get_summary(AtkTable* s_object)
     return(((AtkObject*)0));
   return(ATK_OBJECT(getPtrValue(s_ans)));
 }
-static 
-void
+
+static void
 S_virtual_atk_table_set_caption(AtkTable* s_object, AtkObject* s_caption)
 {
   USER_OBJECT_ e;
@@ -1988,8 +1988,8 @@ S_virtual_atk_table_set_caption(AtkTable* s_object, AtkObject* s_caption)
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_atk_table_set_column_description(AtkTable* s_object, gint s_column, const gchar* s_description)
 {
   USER_OBJECT_ e;
@@ -2017,8 +2017,8 @@ S_virtual_atk_table_set_column_description(AtkTable* s_object, gint s_column, co
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_atk_table_set_column_header(AtkTable* s_object, gint s_column, AtkObject* s_header)
 {
   USER_OBJECT_ e;
@@ -2046,8 +2046,8 @@ S_virtual_atk_table_set_column_header(AtkTable* s_object, gint s_column, AtkObje
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_atk_table_set_row_description(AtkTable* s_object, gint s_row, const gchar* s_description)
 {
   USER_OBJECT_ e;
@@ -2075,8 +2075,8 @@ S_virtual_atk_table_set_row_description(AtkTable* s_object, gint s_row, const gc
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_atk_table_set_row_header(AtkTable* s_object, gint s_row, AtkObject* s_header)
 {
   USER_OBJECT_ e;
@@ -2104,8 +2104,8 @@ S_virtual_atk_table_set_row_header(AtkTable* s_object, gint s_row, AtkObject* s_
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_atk_table_set_summary(AtkTable* s_object, AtkObject* s_accessible)
 {
   USER_OBJECT_ e;
@@ -2131,8 +2131,8 @@ S_virtual_atk_table_set_summary(AtkTable* s_object, AtkObject* s_accessible)
   if(err)
     return;
 }
-static 
-gint
+
+static gint
 S_virtual_atk_table_get_selected_columns(AtkTable* s_object, gint** s_selected)
 {
   USER_OBJECT_ e;
@@ -2158,8 +2158,8 @@ S_virtual_atk_table_get_selected_columns(AtkTable* s_object, gint** s_selected)
   *s_selected = ((gint*)asCArrayDup(VECTOR_ELT(s_ans, 1), gint, asCInteger));
   return(((gint)asCInteger(VECTOR_ELT(s_ans, 0))));
 }
-static 
-gint
+
+static gint
 S_virtual_atk_table_get_selected_rows(AtkTable* s_object, gint** s_selected)
 {
   USER_OBJECT_ e;
@@ -2185,8 +2185,8 @@ S_virtual_atk_table_get_selected_rows(AtkTable* s_object, gint** s_selected)
   *s_selected = ((gint*)asCArrayDup(VECTOR_ELT(s_ans, 1), gint, asCInteger));
   return(((gint)asCInteger(VECTOR_ELT(s_ans, 0))));
 }
-static 
-gboolean
+
+static gboolean
 S_virtual_atk_table_is_column_selected(AtkTable* s_object, gint s_column)
 {
   USER_OBJECT_ e;
@@ -2213,8 +2213,8 @@ S_virtual_atk_table_is_column_selected(AtkTable* s_object, gint s_column)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-static 
-gboolean
+
+static gboolean
 S_virtual_atk_table_is_row_selected(AtkTable* s_object, gint s_row)
 {
   USER_OBJECT_ e;
@@ -2241,8 +2241,8 @@ S_virtual_atk_table_is_row_selected(AtkTable* s_object, gint s_row)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-static 
-gboolean
+
+static gboolean
 S_virtual_atk_table_is_selected(AtkTable* s_object, gint s_row, gint s_column)
 {
   USER_OBJECT_ e;
@@ -2271,8 +2271,8 @@ S_virtual_atk_table_is_selected(AtkTable* s_object, gint s_row, gint s_column)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-static 
-gboolean
+
+static gboolean
 S_virtual_atk_table_add_row_selection(AtkTable* s_object, gint s_row)
 {
   USER_OBJECT_ e;
@@ -2299,8 +2299,8 @@ S_virtual_atk_table_add_row_selection(AtkTable* s_object, gint s_row)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-static 
-gboolean
+
+static gboolean
 S_virtual_atk_table_remove_row_selection(AtkTable* s_object, gint s_row)
 {
   USER_OBJECT_ e;
@@ -2327,8 +2327,8 @@ S_virtual_atk_table_remove_row_selection(AtkTable* s_object, gint s_row)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-static 
-gboolean
+
+static gboolean
 S_virtual_atk_table_add_column_selection(AtkTable* s_object, gint s_column)
 {
   USER_OBJECT_ e;
@@ -2355,8 +2355,8 @@ S_virtual_atk_table_add_column_selection(AtkTable* s_object, gint s_column)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-static 
-gboolean
+
+static gboolean
 S_virtual_atk_table_remove_column_selection(AtkTable* s_object, gint s_column)
 {
   USER_OBJECT_ e;
@@ -2383,8 +2383,8 @@ S_virtual_atk_table_remove_column_selection(AtkTable* s_object, gint s_column)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-static 
-void
+
+static void
 S_virtual_atk_table_row_inserted(AtkTable* s_object, gint s_row, gint s_num_inserted)
 {
   USER_OBJECT_ e;
@@ -2412,8 +2412,8 @@ S_virtual_atk_table_row_inserted(AtkTable* s_object, gint s_row, gint s_num_inse
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_atk_table_column_inserted(AtkTable* s_object, gint s_column, gint s_num_inserted)
 {
   USER_OBJECT_ e;
@@ -2441,8 +2441,8 @@ S_virtual_atk_table_column_inserted(AtkTable* s_object, gint s_column, gint s_nu
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_atk_table_row_deleted(AtkTable* s_object, gint s_row, gint s_num_deleted)
 {
   USER_OBJECT_ e;
@@ -2470,8 +2470,8 @@ S_virtual_atk_table_row_deleted(AtkTable* s_object, gint s_row, gint s_num_delet
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_atk_table_column_deleted(AtkTable* s_object, gint s_column, gint s_num_deleted)
 {
   USER_OBJECT_ e;
@@ -2499,8 +2499,8 @@ S_virtual_atk_table_column_deleted(AtkTable* s_object, gint s_column, gint s_num
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_atk_table_row_reordered(AtkTable* s_object)
 {
   USER_OBJECT_ e;
@@ -2524,8 +2524,8 @@ S_virtual_atk_table_row_reordered(AtkTable* s_object)
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_atk_table_column_reordered(AtkTable* s_object)
 {
   USER_OBJECT_ e;
@@ -2549,8 +2549,8 @@ S_virtual_atk_table_column_reordered(AtkTable* s_object)
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_atk_table_model_changed(AtkTable* s_object)
 {
   USER_OBJECT_ e;
@@ -3256,8 +3256,8 @@ S_atk_table_iface_model_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obje
  
 
 static SEXP S_AtkStreamableContent_symbol;
-static 
-gint
+
+static gint
 S_virtual_atk_streamable_content_get_n_mime_types(AtkStreamableContent* s_object)
 {
   USER_OBJECT_ e;
@@ -3282,8 +3282,8 @@ S_virtual_atk_streamable_content_get_n_mime_types(AtkStreamableContent* s_object
     return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
-static 
-const gchar*
+
+static const gchar*
 S_virtual_atk_streamable_content_get_mime_type(AtkStreamableContent* s_object, gint s_i)
 {
   USER_OBJECT_ e;
@@ -3359,8 +3359,8 @@ S_atk_streamable_content_iface_get_mime_type(USER_OBJECT_ s_object_class, USER_O
  
 
 static SEXP S_AtkSelection_symbol;
-static 
-gboolean
+
+static gboolean
 S_virtual_atk_selection_add_selection(AtkSelection* s_object, gint s_i)
 {
   USER_OBJECT_ e;
@@ -3387,8 +3387,8 @@ S_virtual_atk_selection_add_selection(AtkSelection* s_object, gint s_i)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-static 
-gboolean
+
+static gboolean
 S_virtual_atk_selection_clear_selection(AtkSelection* s_object)
 {
   USER_OBJECT_ e;
@@ -3413,8 +3413,8 @@ S_virtual_atk_selection_clear_selection(AtkSelection* s_object)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-static 
-AtkObject*
+
+static AtkObject*
 S_virtual_atk_selection_ref_selection(AtkSelection* s_object, gint s_i)
 {
   USER_OBJECT_ e;
@@ -3441,8 +3441,8 @@ S_virtual_atk_selection_ref_selection(AtkSelection* s_object, gint s_i)
     return(((AtkObject*)0));
   return(ATK_OBJECT(getPtrValueWithRef(s_ans)));
 }
-static 
-gint
+
+static gint
 S_virtual_atk_selection_get_selection_count(AtkSelection* s_object)
 {
   USER_OBJECT_ e;
@@ -3467,8 +3467,8 @@ S_virtual_atk_selection_get_selection_count(AtkSelection* s_object)
     return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
-static 
-gboolean
+
+static gboolean
 S_virtual_atk_selection_is_child_selected(AtkSelection* s_object, gint s_i)
 {
   USER_OBJECT_ e;
@@ -3495,8 +3495,8 @@ S_virtual_atk_selection_is_child_selected(AtkSelection* s_object, gint s_i)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-static 
-gboolean
+
+static gboolean
 S_virtual_atk_selection_remove_selection(AtkSelection* s_object, gint s_i)
 {
   USER_OBJECT_ e;
@@ -3523,8 +3523,8 @@ S_virtual_atk_selection_remove_selection(AtkSelection* s_object, gint s_i)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-static 
-gboolean
+
+static gboolean
 S_virtual_atk_selection_select_all_selection(AtkSelection* s_object)
 {
   USER_OBJECT_ e;
@@ -3549,8 +3549,8 @@ S_virtual_atk_selection_select_all_selection(AtkSelection* s_object)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-static 
-void
+
+static void
 S_virtual_atk_selection_selection_changed(AtkSelection* s_object)
 {
   USER_OBJECT_ e;
@@ -3732,8 +3732,8 @@ S_atk_selection_iface_selection_changed(USER_OBJECT_ s_object_class, USER_OBJECT
  
 
 static SEXP S_AtkImplementor_symbol;
-static 
-AtkObject*
+
+static AtkObject*
 S_virtual_atk_implementor_ref_accessible(AtkImplementor* s_object)
 {
   USER_OBJECT_ e;
@@ -3788,8 +3788,8 @@ S_atk_implementor_iface_ref_accessible(USER_OBJECT_ s_object_class, USER_OBJECT_
  
 
 static SEXP S_AtkImage_symbol;
-static 
-void
+
+static void
 S_virtual_atk_image_get_image_position(AtkImage* s_object, gint* s_x, gint* s_y, AtkCoordType s_coord_type)
 {
   USER_OBJECT_ e;
@@ -3817,8 +3817,8 @@ S_virtual_atk_image_get_image_position(AtkImage* s_object, gint* s_x, gint* s_y,
   *s_x = ((gint)asCInteger(VECTOR_ELT(s_ans, 0)));
   *s_y = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
 }
-static 
-const gchar*
+
+static const gchar*
 S_virtual_atk_image_get_image_description(AtkImage* s_object)
 {
   USER_OBJECT_ e;
@@ -3843,8 +3843,8 @@ S_virtual_atk_image_get_image_description(AtkImage* s_object)
     return(((const gchar*)0));
   return(((const gchar*)asCString(s_ans)));
 }
-static 
-void
+
+static void
 S_virtual_atk_image_get_image_size(AtkImage* s_object, gint* s_width, gint* s_height)
 {
   USER_OBJECT_ e;
@@ -3870,8 +3870,8 @@ S_virtual_atk_image_get_image_size(AtkImage* s_object, gint* s_width, gint* s_he
   *s_width = ((gint)asCInteger(VECTOR_ELT(s_ans, 0)));
   *s_height = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
 }
-static 
-gboolean
+
+static gboolean
 S_virtual_atk_image_set_image_description(AtkImage* s_object, const gchar* s_description)
 {
   USER_OBJECT_ e;
@@ -3992,8 +3992,8 @@ S_atk_image_iface_set_image_description(USER_OBJECT_ s_object_class, USER_OBJECT
  
 
 static SEXP S_AtkHypertext_symbol;
-static 
-AtkHyperlink*
+
+static AtkHyperlink*
 S_virtual_atk_hypertext_get_link(AtkHypertext* s_object, gint s_link_index)
 {
   USER_OBJECT_ e;
@@ -4020,8 +4020,8 @@ S_virtual_atk_hypertext_get_link(AtkHypertext* s_object, gint s_link_index)
     return(((AtkHyperlink*)0));
   return(ATK_HYPERLINK(getPtrValue(s_ans)));
 }
-static 
-gint
+
+static gint
 S_virtual_atk_hypertext_get_n_links(AtkHypertext* s_object)
 {
   USER_OBJECT_ e;
@@ -4046,8 +4046,8 @@ S_virtual_atk_hypertext_get_n_links(AtkHypertext* s_object)
     return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
-static 
-gint
+
+static gint
 S_virtual_atk_hypertext_get_link_index(AtkHypertext* s_object, gint s_char_index)
 {
   USER_OBJECT_ e;
@@ -4074,8 +4074,8 @@ S_virtual_atk_hypertext_get_link_index(AtkHypertext* s_object, gint s_char_index
     return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
-static 
-void
+
+static void
 S_virtual_atk_hypertext_link_selected(AtkHypertext* s_object, gint s_link_index)
 {
   USER_OBJECT_ e;
@@ -4186,8 +4186,8 @@ S_atk_hypertext_iface_link_selected(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
  
 
 static SEXP S_AtkEditableText_symbol;
-static 
-gboolean
+
+static gboolean
 S_virtual_atk_editable_text_set_run_attributes(AtkEditableText* s_object, AtkAttributeSet* s_attrib_set, gint s_start_offset, gint s_end_offset)
 {
   USER_OBJECT_ e;
@@ -4218,8 +4218,8 @@ S_virtual_atk_editable_text_set_run_attributes(AtkEditableText* s_object, AtkAtt
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-static 
-void
+
+static void
 S_virtual_atk_editable_text_set_text_contents(AtkEditableText* s_object, const gchar* s_string)
 {
   USER_OBJECT_ e;
@@ -4245,8 +4245,8 @@ S_virtual_atk_editable_text_set_text_contents(AtkEditableText* s_object, const g
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_atk_editable_text_insert_text(AtkEditableText* s_object, const gchar* s_string, gint s_length, gint* s_position)
 {
   USER_OBJECT_ e;
@@ -4276,8 +4276,8 @@ S_virtual_atk_editable_text_insert_text(AtkEditableText* s_object, const gchar* 
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_atk_editable_text_copy_text(AtkEditableText* s_object, gint s_start_pos, gint s_end_pos)
 {
   USER_OBJECT_ e;
@@ -4305,8 +4305,8 @@ S_virtual_atk_editable_text_copy_text(AtkEditableText* s_object, gint s_start_po
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_atk_editable_text_cut_text(AtkEditableText* s_object, gint s_start_pos, gint s_end_pos)
 {
   USER_OBJECT_ e;
@@ -4334,8 +4334,8 @@ S_virtual_atk_editable_text_cut_text(AtkEditableText* s_object, gint s_start_pos
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_atk_editable_text_delete_text(AtkEditableText* s_object, gint s_start_pos, gint s_end_pos)
 {
   USER_OBJECT_ e;
@@ -4363,8 +4363,8 @@ S_virtual_atk_editable_text_delete_text(AtkEditableText* s_object, gint s_start_
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_atk_editable_text_paste_text(AtkEditableText* s_object, gint s_position)
 {
   USER_OBJECT_ e;
@@ -4531,8 +4531,8 @@ S_atk_editable_text_iface_paste_text(USER_OBJECT_ s_object_class, USER_OBJECT_ s
  
 
 static SEXP S_AtkComponent_symbol;
-static 
-gboolean
+
+static gboolean
 S_virtual_atk_component_contains(AtkComponent* s_object, gint s_x, gint s_y, AtkCoordType s_coord_type)
 {
   USER_OBJECT_ e;
@@ -4563,8 +4563,8 @@ S_virtual_atk_component_contains(AtkComponent* s_object, gint s_x, gint s_y, Atk
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-static 
-AtkObject*
+
+static AtkObject*
 S_virtual_atk_component_ref_accessible_at_point(AtkComponent* s_object, gint s_x, gint s_y, AtkCoordType s_coord_type)
 {
   USER_OBJECT_ e;
@@ -4595,8 +4595,8 @@ S_virtual_atk_component_ref_accessible_at_point(AtkComponent* s_object, gint s_x
     return(((AtkObject*)0));
   return(ATK_OBJECT(getPtrValueWithRef(s_ans)));
 }
-static 
-void
+
+static void
 S_virtual_atk_component_get_extents(AtkComponent* s_object, gint* s_x, gint* s_y, gint* s_width, gint* s_height, AtkCoordType s_coord_type)
 {
   USER_OBJECT_ e;
@@ -4626,8 +4626,8 @@ S_virtual_atk_component_get_extents(AtkComponent* s_object, gint* s_x, gint* s_y
   *s_width = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
   *s_height = ((gint)asCInteger(VECTOR_ELT(s_ans, 3)));
 }
-static 
-void
+
+static void
 S_virtual_atk_component_get_position(AtkComponent* s_object, gint* s_x, gint* s_y, AtkCoordType s_coord_type)
 {
   USER_OBJECT_ e;
@@ -4655,8 +4655,8 @@ S_virtual_atk_component_get_position(AtkComponent* s_object, gint* s_x, gint* s_
   *s_x = ((gint)asCInteger(VECTOR_ELT(s_ans, 0)));
   *s_y = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
 }
-static 
-void
+
+static void
 S_virtual_atk_component_get_size(AtkComponent* s_object, gint* s_width, gint* s_height)
 {
   USER_OBJECT_ e;
@@ -4682,8 +4682,8 @@ S_virtual_atk_component_get_size(AtkComponent* s_object, gint* s_width, gint* s_
   *s_width = ((gint)asCInteger(VECTOR_ELT(s_ans, 0)));
   *s_height = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
 }
-static 
-gboolean
+
+static gboolean
 S_virtual_atk_component_grab_focus(AtkComponent* s_object)
 {
   USER_OBJECT_ e;
@@ -4708,8 +4708,8 @@ S_virtual_atk_component_grab_focus(AtkComponent* s_object)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-static 
-void
+
+static void
 S_virtual_atk_component_remove_focus_handler(AtkComponent* s_object, guint s_handler_id)
 {
   USER_OBJECT_ e;
@@ -4735,8 +4735,8 @@ S_virtual_atk_component_remove_focus_handler(AtkComponent* s_object, guint s_han
   if(err)
     return;
 }
-static 
-gboolean
+
+static gboolean
 S_virtual_atk_component_set_extents(AtkComponent* s_object, gint s_x, gint s_y, gint s_width, gint s_height, AtkCoordType s_coord_type)
 {
   USER_OBJECT_ e;
@@ -4771,8 +4771,8 @@ S_virtual_atk_component_set_extents(AtkComponent* s_object, gint s_x, gint s_y, 
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-static 
-gboolean
+
+static gboolean
 S_virtual_atk_component_set_position(AtkComponent* s_object, gint s_x, gint s_y, AtkCoordType s_coord_type)
 {
   USER_OBJECT_ e;
@@ -4803,8 +4803,8 @@ S_virtual_atk_component_set_position(AtkComponent* s_object, gint s_x, gint s_y,
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-static 
-gboolean
+
+static gboolean
 S_virtual_atk_component_set_size(AtkComponent* s_object, gint s_width, gint s_height)
 {
   USER_OBJECT_ e;
@@ -4833,8 +4833,8 @@ S_virtual_atk_component_set_size(AtkComponent* s_object, gint s_width, gint s_he
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-static 
-AtkLayer
+
+static AtkLayer
 S_virtual_atk_component_get_layer(AtkComponent* s_object)
 {
   USER_OBJECT_ e;
@@ -4859,8 +4859,8 @@ S_virtual_atk_component_get_layer(AtkComponent* s_object)
     return(((AtkLayer)0));
   return(((AtkLayer)asCEnum(s_ans, ATK_TYPE_LAYER)));
 }
-static 
-gint
+
+static gint
 S_virtual_atk_component_get_mdi_zorder(AtkComponent* s_object)
 {
   USER_OBJECT_ e;
@@ -4885,8 +4885,8 @@ S_virtual_atk_component_get_mdi_zorder(AtkComponent* s_object)
     return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
-static 
-void
+
+static void
 S_virtual_atk_component_bounds_changed(AtkComponent* s_object, AtkRectangle* s_bounds)
 {
   USER_OBJECT_ e;
@@ -5190,8 +5190,8 @@ S_atk_component_iface_bounds_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s
  
 
 static SEXP S_AtkAction_symbol;
-static 
-gboolean
+
+static gboolean
 S_virtual_atk_action_do_action(AtkAction* s_object, gint s_i)
 {
   USER_OBJECT_ e;
@@ -5218,8 +5218,8 @@ S_virtual_atk_action_do_action(AtkAction* s_object, gint s_i)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-static 
-gint
+
+static gint
 S_virtual_atk_action_get_n_actions(AtkAction* s_object)
 {
   USER_OBJECT_ e;
@@ -5244,8 +5244,8 @@ S_virtual_atk_action_get_n_actions(AtkAction* s_object)
     return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
-static 
-const gchar*
+
+static const gchar*
 S_virtual_atk_action_get_description(AtkAction* s_object, gint s_i)
 {
   USER_OBJECT_ e;
@@ -5272,8 +5272,8 @@ S_virtual_atk_action_get_description(AtkAction* s_object, gint s_i)
     return(((const gchar*)0));
   return(((const gchar*)asCString(s_ans)));
 }
-static 
-const gchar*
+
+static const gchar*
 S_virtual_atk_action_get_name(AtkAction* s_object, gint s_i)
 {
   USER_OBJECT_ e;
@@ -5300,8 +5300,8 @@ S_virtual_atk_action_get_name(AtkAction* s_object, gint s_i)
     return(((const gchar*)0));
   return(((const gchar*)asCString(s_ans)));
 }
-static 
-const gchar*
+
+static const gchar*
 S_virtual_atk_action_get_keybinding(AtkAction* s_object, gint s_i)
 {
   USER_OBJECT_ e;
@@ -5328,8 +5328,8 @@ S_virtual_atk_action_get_keybinding(AtkAction* s_object, gint s_i)
     return(((const gchar*)0));
   return(((const gchar*)asCString(s_ans)));
 }
-static 
-gboolean
+
+static gboolean
 S_virtual_atk_action_set_description(AtkAction* s_object, gint s_i, const gchar* s_desc)
 {
   USER_OBJECT_ e;
@@ -5358,8 +5358,8 @@ S_virtual_atk_action_set_description(AtkAction* s_object, gint s_i, const gchar*
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-static 
-const gchar*
+
+static const gchar*
 S_virtual_atk_action_get_localized_name(AtkAction* s_object, gint s_i)
 {
   USER_OBJECT_ e;
@@ -5531,8 +5531,8 @@ S_atk_action_iface_get_localized_name(USER_OBJECT_ s_object_class, USER_OBJECT_ 
  
 
 static SEXP S_AtkValue_symbol;
-static 
-void
+
+static void
 S_virtual_atk_value_get_current_value(AtkValue* s_object, GValue* s_value)
 {
   USER_OBJECT_ e;
@@ -5561,8 +5561,8 @@ S_virtual_atk_value_get_current_value(AtkValue* s_object, GValue* s_value)
   g_free(value);
 }
 }
-static 
-void
+
+static void
 S_virtual_atk_value_get_maximum_value(AtkValue* s_object, GValue* s_value)
 {
   USER_OBJECT_ e;
@@ -5591,8 +5591,8 @@ S_virtual_atk_value_get_maximum_value(AtkValue* s_object, GValue* s_value)
   g_free(value);
 }
 }
-static 
-void
+
+static void
 S_virtual_atk_value_get_minimum_value(AtkValue* s_object, GValue* s_value)
 {
   USER_OBJECT_ e;
@@ -5621,8 +5621,8 @@ S_virtual_atk_value_get_minimum_value(AtkValue* s_object, GValue* s_value)
   g_free(value);
 }
 }
-static 
-gboolean
+
+static gboolean
 S_virtual_atk_value_set_current_value(AtkValue* s_object, const GValue* s_value)
 {
   USER_OBJECT_ e;
@@ -5649,8 +5649,9 @@ S_virtual_atk_value_set_current_value(AtkValue* s_object, const GValue* s_value)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-static 
-void
+#if ATK_CHECK_VERSION(1, 11, 0)
+
+static void
 S_virtual_atk_value_get_minimum_increment(AtkValue* s_object, GValue* s_value)
 {
   USER_OBJECT_ e;
@@ -5679,6 +5680,7 @@ S_virtual_atk_value_get_minimum_increment(AtkValue* s_object, GValue* s_value)
   g_free(value);
 }
 }
+#endif
 void
 S_atk_value_class_init(AtkValueIface * c, SEXP e)
 {
@@ -5802,8 +5804,8 @@ S_atk_value_iface_get_minimum_increment(USER_OBJECT_ s_object_class, USER_OBJECT
  
 
 static SEXP S_AtkText_symbol;
-static 
-gchar*
+
+static gchar*
 S_virtual_atk_text_get_text(AtkText* s_object, gint s_start_offset, gint s_end_offset)
 {
   USER_OBJECT_ e;
@@ -5832,8 +5834,8 @@ S_virtual_atk_text_get_text(AtkText* s_object, gint s_start_offset, gint s_end_o
     return(((gchar*)0));
   return(((gchar*)g_strdup(asCString(s_ans))));
 }
-static 
-gchar*
+
+static gchar*
 S_virtual_atk_text_get_text_after_offset(AtkText* s_object, gint s_offset, AtkTextBoundary s_boundary_type, gint* s_start_offset, gint* s_end_offset)
 {
   USER_OBJECT_ e;
@@ -5864,8 +5866,8 @@ S_virtual_atk_text_get_text_after_offset(AtkText* s_object, gint s_offset, AtkTe
   *s_end_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
   return(((gchar*)g_strdup(asCString(VECTOR_ELT(s_ans, 0)))));
 }
-static 
-gchar*
+
+static gchar*
 S_virtual_atk_text_get_text_at_offset(AtkText* s_object, gint s_offset, AtkTextBoundary s_boundary_type, gint* s_start_offset, gint* s_end_offset)
 {
   USER_OBJECT_ e;
@@ -5896,8 +5898,8 @@ S_virtual_atk_text_get_text_at_offset(AtkText* s_object, gint s_offset, AtkTextB
   *s_end_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
   return(((gchar*)g_strdup(asCString(VECTOR_ELT(s_ans, 0)))));
 }
-static 
-gunichar
+
+static gunichar
 S_virtual_atk_text_get_character_at_offset(AtkText* s_object, gint s_offset)
 {
   USER_OBJECT_ e;
@@ -5924,8 +5926,8 @@ S_virtual_atk_text_get_character_at_offset(AtkText* s_object, gint s_offset)
     return(((gunichar)0));
   return(((gunichar)asCNumeric(s_ans)));
 }
-static 
-gchar*
+
+static gchar*
 S_virtual_atk_text_get_text_before_offset(AtkText* s_object, gint s_offset, AtkTextBoundary s_boundary_type, gint* s_start_offset, gint* s_end_offset)
 {
   USER_OBJECT_ e;
@@ -5956,8 +5958,8 @@ S_virtual_atk_text_get_text_before_offset(AtkText* s_object, gint s_offset, AtkT
   *s_end_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
   return(((gchar*)g_strdup(asCString(VECTOR_ELT(s_ans, 0)))));
 }
-static 
-gint
+
+static gint
 S_virtual_atk_text_get_caret_offset(AtkText* s_object)
 {
   USER_OBJECT_ e;
@@ -5982,8 +5984,8 @@ S_virtual_atk_text_get_caret_offset(AtkText* s_object)
     return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
-static 
-AtkAttributeSet*
+
+static AtkAttributeSet*
 S_virtual_atk_text_get_run_attributes(AtkText* s_object, gint s_offset, gint* s_start_offset, gint* s_end_offset)
 {
   USER_OBJECT_ e;
@@ -6012,8 +6014,8 @@ S_virtual_atk_text_get_run_attributes(AtkText* s_object, gint s_offset, gint* s_
   *s_end_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
   return(asCAtkAttributeSet(VECTOR_ELT(s_ans, 0)));
 }
-static 
-AtkAttributeSet*
+
+static AtkAttributeSet*
 S_virtual_atk_text_get_default_attributes(AtkText* s_object)
 {
   USER_OBJECT_ e;
@@ -6038,8 +6040,8 @@ S_virtual_atk_text_get_default_attributes(AtkText* s_object)
     return(((AtkAttributeSet*)0));
   return(asCAtkAttributeSet(s_ans));
 }
-static 
-void
+
+static void
 S_virtual_atk_text_get_character_extents(AtkText* s_object, gint s_offset, gint* s_x, gint* s_y, gint* s_width, gint* s_height, AtkCoordType s_coords)
 {
   USER_OBJECT_ e;
@@ -6071,8 +6073,8 @@ S_virtual_atk_text_get_character_extents(AtkText* s_object, gint s_offset, gint*
   *s_width = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
   *s_height = ((gint)asCInteger(VECTOR_ELT(s_ans, 3)));
 }
-static 
-gint
+
+static gint
 S_virtual_atk_text_get_character_count(AtkText* s_object)
 {
   USER_OBJECT_ e;
@@ -6097,8 +6099,8 @@ S_virtual_atk_text_get_character_count(AtkText* s_object)
     return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
-static 
-gint
+
+static gint
 S_virtual_atk_text_get_offset_at_point(AtkText* s_object, gint s_x, gint s_y, AtkCoordType s_coords)
 {
   USER_OBJECT_ e;
@@ -6129,8 +6131,8 @@ S_virtual_atk_text_get_offset_at_point(AtkText* s_object, gint s_x, gint s_y, At
     return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
-static 
-gint
+
+static gint
 S_virtual_atk_text_get_n_selections(AtkText* s_object)
 {
   USER_OBJECT_ e;
@@ -6155,8 +6157,8 @@ S_virtual_atk_text_get_n_selections(AtkText* s_object)
     return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
-static 
-gchar*
+
+static gchar*
 S_virtual_atk_text_get_selection(AtkText* s_object, gint s_selection_num, gint* s_start_offset, gint* s_end_offset)
 {
   USER_OBJECT_ e;
@@ -6185,8 +6187,8 @@ S_virtual_atk_text_get_selection(AtkText* s_object, gint s_selection_num, gint* 
   *s_end_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
   return(((gchar*)g_strdup(asCString(VECTOR_ELT(s_ans, 0)))));
 }
-static 
-gboolean
+
+static gboolean
 S_virtual_atk_text_add_selection(AtkText* s_object, gint s_start_offset, gint s_end_offset)
 {
   USER_OBJECT_ e;
@@ -6215,8 +6217,8 @@ S_virtual_atk_text_add_selection(AtkText* s_object, gint s_start_offset, gint s_
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-static 
-gboolean
+
+static gboolean
 S_virtual_atk_text_remove_selection(AtkText* s_object, gint s_selection_num)
 {
   USER_OBJECT_ e;
@@ -6243,8 +6245,8 @@ S_virtual_atk_text_remove_selection(AtkText* s_object, gint s_selection_num)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-static 
-gboolean
+
+static gboolean
 S_virtual_atk_text_set_selection(AtkText* s_object, gint s_selection_num, gint s_start_offset, gint s_end_offset)
 {
   USER_OBJECT_ e;
@@ -6275,8 +6277,8 @@ S_virtual_atk_text_set_selection(AtkText* s_object, gint s_selection_num, gint s
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-static 
-gboolean
+
+static gboolean
 S_virtual_atk_text_set_caret_offset(AtkText* s_object, gint s_offset)
 {
   USER_OBJECT_ e;
@@ -6303,8 +6305,8 @@ S_virtual_atk_text_set_caret_offset(AtkText* s_object, gint s_offset)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-static 
-void
+
+static void
 S_virtual_atk_text_text_changed(AtkText* s_object, gint s_position, gint s_length)
 {
   USER_OBJECT_ e;
@@ -6332,8 +6334,8 @@ S_virtual_atk_text_text_changed(AtkText* s_object, gint s_position, gint s_lengt
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_atk_text_text_caret_moved(AtkText* s_object, gint s_location)
 {
   USER_OBJECT_ e;
@@ -6359,8 +6361,8 @@ S_virtual_atk_text_text_caret_moved(AtkText* s_object, gint s_location)
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_atk_text_text_selection_changed(AtkText* s_object)
 {
   USER_OBJECT_ e;
@@ -6384,8 +6386,8 @@ S_virtual_atk_text_text_selection_changed(AtkText* s_object)
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_atk_text_text_attributes_changed(AtkText* s_object)
 {
   USER_OBJECT_ e;
@@ -6409,8 +6411,8 @@ S_virtual_atk_text_text_attributes_changed(AtkText* s_object)
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_atk_text_get_range_extents(AtkText* s_object, gint s_start_offset, gint s_end_offset, AtkCoordType s_coord_type, AtkTextRectangle* s_rect)
 {
   USER_OBJECT_ e;
@@ -6445,8 +6447,8 @@ S_virtual_atk_text_get_range_extents(AtkText* s_object, gint s_start_offset, gin
   g_free(rect);
 }
 }
-static 
-AtkTextRange**
+
+static AtkTextRange**
 S_virtual_atk_text_get_bounded_ranges(AtkText* s_object, AtkTextRectangle* s_rect, AtkCoordType s_coord_type, AtkTextClipType s_x_clip_type, AtkTextClipType s_y_clip_type)
 {
   USER_OBJECT_ e;
@@ -6976,8 +6978,8 @@ S_atk_text_iface_get_bounded_ranges(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
  
 
 static SEXP S_AtkDocument_symbol;
-static 
-const gchar*
+
+static const gchar*
 S_virtual_atk_document_get_document_type(AtkDocument* s_object)
 {
   USER_OBJECT_ e;
@@ -7002,8 +7004,8 @@ S_virtual_atk_document_get_document_type(AtkDocument* s_object)
     return(((const gchar*)0));
   return(((const gchar*)asCString(s_ans)));
 }
-static 
-gpointer
+
+static gpointer
 S_virtual_atk_document_get_document(AtkDocument* s_object)
 {
   USER_OBJECT_ e;

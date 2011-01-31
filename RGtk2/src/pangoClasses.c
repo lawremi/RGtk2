@@ -1,7 +1,7 @@
 #include "RGtk2/pangoClasses.h"
 static SEXP S_PangoFont_symbol;
-static 
-PangoFontDescription*
+
+static PangoFontDescription*
 S_virtual_pango_font_describe(PangoFont* s_object)
 {
   USER_OBJECT_ e;
@@ -26,8 +26,8 @@ S_virtual_pango_font_describe(PangoFont* s_object)
     return(((PangoFontDescription*)0));
   return(((PangoFontDescription*)pango_font_description_copy(getPtrValue(s_ans))));
 }
-static 
-PangoCoverage*
+
+static PangoCoverage*
 S_virtual_pango_font_get_coverage(PangoFont* s_object, PangoLanguage* s_lang)
 {
   USER_OBJECT_ e;
@@ -54,8 +54,8 @@ S_virtual_pango_font_get_coverage(PangoFont* s_object, PangoLanguage* s_lang)
     return(((PangoCoverage*)0));
   return(((PangoCoverage*)pango_coverage_ref(getPtrValue(s_ans))));
 }
-static 
-void
+
+static void
 S_virtual_pango_font_get_glyph_extents(PangoFont* s_object, PangoGlyph s_glyph, PangoRectangle* s_ink_rect, PangoRectangle* s_logical_rect)
 {
   USER_OBJECT_ e;
@@ -91,8 +91,8 @@ S_virtual_pango_font_get_glyph_extents(PangoFont* s_object, PangoGlyph s_glyph, 
   g_free(logical_rect);
 }
 }
-static 
-PangoFontMetrics*
+
+static PangoFontMetrics*
 S_virtual_pango_font_get_metrics(PangoFont* s_object, PangoLanguage* s_language)
 {
   USER_OBJECT_ e;
@@ -119,8 +119,8 @@ S_virtual_pango_font_get_metrics(PangoFont* s_object, PangoLanguage* s_language)
     return(((PangoFontMetrics*)0));
   return(((PangoFontMetrics*)pango_font_metrics_ref(getPtrValue(s_ans))));
 }
-static 
-PangoFontMap*
+
+static PangoFontMap*
 S_virtual_pango_font_get_font_map(PangoFont* s_object)
 {
   USER_OBJECT_ e;
@@ -256,8 +256,8 @@ S_pango_font_class_get_font_map(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obje
  
 
 static SEXP S_PangoFontFace_symbol;
-static 
-const char*
+
+static const char*
 S_virtual_pango_font_face_get_face_name(PangoFontFace* s_object)
 {
   USER_OBJECT_ e;
@@ -282,8 +282,8 @@ S_virtual_pango_font_face_get_face_name(PangoFontFace* s_object)
     return(((const char*)0));
   return(((const char*)asCString(s_ans)));
 }
-static 
-PangoFontDescription*
+
+static PangoFontDescription*
 S_virtual_pango_font_face_describe(PangoFontFace* s_object)
 {
   USER_OBJECT_ e;
@@ -308,8 +308,8 @@ S_virtual_pango_font_face_describe(PangoFontFace* s_object)
     return(((PangoFontDescription*)0));
   return(((PangoFontDescription*)pango_font_description_copy(getPtrValue(s_ans))));
 }
-static 
-void
+
+static void
 S_virtual_pango_font_face_list_sizes(PangoFontFace* s_object, int** s_sizes, int* s_n_sizes)
 {
   USER_OBJECT_ e;
@@ -407,8 +407,8 @@ S_pango_font_face_class_list_sizes(USER_OBJECT_ s_object_class, USER_OBJECT_ s_o
  
 
 static SEXP S_PangoFontFamily_symbol;
-static 
-void
+
+static void
 S_virtual_pango_font_family_list_faces(PangoFontFamily* s_object, PangoFontFace*** s_faces, int* s_n_faces)
 {
   USER_OBJECT_ e;
@@ -434,8 +434,8 @@ S_virtual_pango_font_family_list_faces(PangoFontFamily* s_object, PangoFontFace*
   *s_faces = ((PangoFontFace**)asCArrayDup(VECTOR_ELT(s_ans, 0), PangoFontFace*, getPtrValueWithRef));
   *s_n_faces = ((int)asCInteger(VECTOR_ELT(s_ans, 1)));
 }
-static 
-const char*
+
+static const char*
 S_virtual_pango_font_family_get_name(PangoFontFamily* s_object)
 {
   USER_OBJECT_ e;
@@ -460,8 +460,8 @@ S_virtual_pango_font_family_get_name(PangoFontFamily* s_object)
     return(((const char*)0));
   return(((const char*)asCString(s_ans)));
 }
-static 
-gboolean
+
+static gboolean
 S_virtual_pango_font_family_is_monospace(PangoFontFamily* s_object)
 {
   USER_OBJECT_ e;
@@ -558,8 +558,8 @@ S_pango_font_family_class_is_monospace(USER_OBJECT_ s_object_class, USER_OBJECT_
  
 
 static SEXP S_PangoFontMap_symbol;
-static 
-PangoFont*
+
+static PangoFont*
 S_virtual_pango_font_map_load_font(PangoFontMap* s_object, PangoContext* s_context, const PangoFontDescription* s_desc)
 {
   USER_OBJECT_ e;
@@ -588,8 +588,8 @@ S_virtual_pango_font_map_load_font(PangoFontMap* s_object, PangoContext* s_conte
     return(((PangoFont*)0));
   return(PANGO_FONT(getPtrValueWithRef(s_ans)));
 }
-static 
-void
+
+static void
 S_virtual_pango_font_map_list_families(PangoFontMap* s_object, PangoFontFamily*** s_families, int* s_n_families)
 {
   USER_OBJECT_ e;
@@ -615,8 +615,8 @@ S_virtual_pango_font_map_list_families(PangoFontMap* s_object, PangoFontFamily**
   *s_families = ((PangoFontFamily**)asCArrayDup(VECTOR_ELT(s_ans, 0), PangoFontFamily*, getPtrValueWithRef));
   *s_n_families = ((int)asCInteger(VECTOR_ELT(s_ans, 1)));
 }
-static 
-PangoFontset*
+
+static PangoFontset*
 S_virtual_pango_font_map_load_fontset(PangoFontMap* s_object, PangoContext* s_context, const PangoFontDescription* s_desc, PangoLanguage* s_language)
 {
   USER_OBJECT_ e;
@@ -724,8 +724,8 @@ S_pango_font_map_class_load_fontset(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
  
 
 static SEXP S_PangoFontset_symbol;
-static 
-PangoFont*
+
+static PangoFont*
 S_virtual_pango_fontset_get_font(PangoFontset* s_object, guint s_wc)
 {
   USER_OBJECT_ e;
@@ -752,8 +752,8 @@ S_virtual_pango_fontset_get_font(PangoFontset* s_object, guint s_wc)
     return(((PangoFont*)0));
   return(PANGO_FONT(getPtrValue(s_ans)));
 }
-static 
-PangoFontMetrics*
+
+static PangoFontMetrics*
 S_virtual_pango_fontset_get_metrics(PangoFontset* s_object)
 {
   USER_OBJECT_ e;
@@ -778,8 +778,8 @@ S_virtual_pango_fontset_get_metrics(PangoFontset* s_object)
     return(((PangoFontMetrics*)0));
   return(((PangoFontMetrics*)pango_font_metrics_ref(getPtrValue(s_ans))));
 }
-static 
-PangoLanguage*
+
+static PangoLanguage*
 S_virtual_pango_fontset_get_language(PangoFontset* s_object)
 {
   USER_OBJECT_ e;
@@ -804,8 +804,8 @@ S_virtual_pango_fontset_get_language(PangoFontset* s_object)
     return(((PangoLanguage*)0));
   return(((PangoLanguage*)getPtrValue(s_ans)));
 }
-static 
-void
+
+static void
 S_virtual_pango_fontset_foreach(PangoFontset* s_object, PangoFontsetForeachFunc s_func, gpointer s_data)
 {
   USER_OBJECT_ e;
@@ -921,8 +921,8 @@ S_pango_fontset_class_foreach(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object
  
 
 static SEXP S_PangoRenderer_symbol;
-static 
-void
+
+static void
 S_virtual_pango_renderer_draw_glyphs(PangoRenderer* s_object, PangoFont* s_font, PangoGlyphString* s_glyphs, int s_x, int s_y)
 {
   USER_OBJECT_ e;
@@ -954,8 +954,8 @@ S_virtual_pango_renderer_draw_glyphs(PangoRenderer* s_object, PangoFont* s_font,
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_pango_renderer_draw_rectangle(PangoRenderer* s_object, PangoRenderPart s_part, int s_x, int s_y, int s_width, int s_height)
 {
   USER_OBJECT_ e;
@@ -989,8 +989,8 @@ S_virtual_pango_renderer_draw_rectangle(PangoRenderer* s_object, PangoRenderPart
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_pango_renderer_draw_error_underline(PangoRenderer* s_object, int s_x, int s_y, int s_width, int s_height)
 {
   USER_OBJECT_ e;
@@ -1022,8 +1022,8 @@ S_virtual_pango_renderer_draw_error_underline(PangoRenderer* s_object, int s_x, 
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_pango_renderer_draw_shape(PangoRenderer* s_object, PangoAttrShape* s_attr, int s_x, int s_y)
 {
   USER_OBJECT_ e;
@@ -1053,8 +1053,8 @@ S_virtual_pango_renderer_draw_shape(PangoRenderer* s_object, PangoAttrShape* s_a
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_pango_renderer_draw_trapezoid(PangoRenderer* s_object, PangoRenderPart s_part, double s_y1_, double s_x11, double s_x21, double s_y2, double s_x12, double s_x22)
 {
   USER_OBJECT_ e;
@@ -1092,8 +1092,8 @@ S_virtual_pango_renderer_draw_trapezoid(PangoRenderer* s_object, PangoRenderPart
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_pango_renderer_draw_glyph(PangoRenderer* s_object, PangoFont* s_font, PangoGlyph s_glyph, double s_x, double s_y)
 {
   USER_OBJECT_ e;
@@ -1125,8 +1125,8 @@ S_virtual_pango_renderer_draw_glyph(PangoRenderer* s_object, PangoFont* s_font, 
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_pango_renderer_part_changed(PangoRenderer* s_object, PangoRenderPart s_part)
 {
   USER_OBJECT_ e;
@@ -1152,8 +1152,8 @@ S_virtual_pango_renderer_part_changed(PangoRenderer* s_object, PangoRenderPart s
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_pango_renderer_begin(PangoRenderer* s_object)
 {
   USER_OBJECT_ e;
@@ -1177,8 +1177,8 @@ S_virtual_pango_renderer_begin(PangoRenderer* s_object)
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_pango_renderer_end(PangoRenderer* s_object)
 {
   USER_OBJECT_ e;
@@ -1202,8 +1202,8 @@ S_virtual_pango_renderer_end(PangoRenderer* s_object)
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_pango_renderer_prepare_run(PangoRenderer* s_object, PangoGlyphItem* s_run)
 {
   USER_OBJECT_ e;
@@ -1229,8 +1229,9 @@ S_virtual_pango_renderer_prepare_run(PangoRenderer* s_object, PangoGlyphItem* s_
   if(err)
     return;
 }
-static 
-void
+#if PANGO_CHECK_VERSION(1, 22, 0)
+
+static void
 S_virtual_pango_renderer_draw_glyph_item(PangoRenderer* s_object, const char* s_text, PangoGlyphItem* s_glyph_item, int s_x, int s_y)
 {
   USER_OBJECT_ e;
@@ -1262,6 +1263,7 @@ S_virtual_pango_renderer_draw_glyph_item(PangoRenderer* s_object, const char* s_
   if(err)
     return;
 }
+#endif
 void
 S_pango_renderer_class_init(PangoRendererClass * c, SEXP e)
 {

@@ -28,8 +28,8 @@ S_gdk_colormap_class_init(GdkColormapClass * c, SEXP e)
 } 
 
 static SEXP S_GdkDisplay_symbol;
-static 
-const gchar*
+
+static const gchar*
 S_virtual_gdk_display_get_display_name(GdkDisplay* s_object)
 {
   USER_OBJECT_ e;
@@ -54,8 +54,8 @@ S_virtual_gdk_display_get_display_name(GdkDisplay* s_object)
     return(((const gchar*)0));
   return(((const gchar*)asCString(s_ans)));
 }
-static 
-gint
+
+static gint
 S_virtual_gdk_display_get_n_screens(GdkDisplay* s_object)
 {
   USER_OBJECT_ e;
@@ -80,8 +80,8 @@ S_virtual_gdk_display_get_n_screens(GdkDisplay* s_object)
     return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
-static 
-GdkScreen*
+
+static GdkScreen*
 S_virtual_gdk_display_get_screen(GdkDisplay* s_object, gint s_screen_num)
 {
   USER_OBJECT_ e;
@@ -108,8 +108,8 @@ S_virtual_gdk_display_get_screen(GdkDisplay* s_object, gint s_screen_num)
     return(((GdkScreen*)0));
   return(GDK_SCREEN(getPtrValue(s_ans)));
 }
-static 
-GdkScreen*
+
+static GdkScreen*
 S_virtual_gdk_display_get_default_screen(GdkDisplay* s_object)
 {
   USER_OBJECT_ e;
@@ -134,8 +134,8 @@ S_virtual_gdk_display_get_default_screen(GdkDisplay* s_object)
     return(((GdkScreen*)0));
   return(GDK_SCREEN(getPtrValue(s_ans)));
 }
-static 
-void
+
+static void
 S_virtual_gdk_display_closed(GdkDisplay* s_object, gboolean s_is_error)
 {
   USER_OBJECT_ e;
@@ -265,8 +265,8 @@ S_gdk_display_class_closed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, U
  
 
 static SEXP S_GdkDisplayManager_symbol;
-static 
-void
+
+static void
 S_virtual_gdk_display_manager_display_opened(GdkDisplayManager* s_object, GdkDisplay* s_display)
 {
   USER_OBJECT_ e;
@@ -337,8 +337,8 @@ S_gdk_drag_context_class_init(GdkDragContextClass * c, SEXP e)
 } 
 
 static SEXP S_GdkDrawable_symbol;
-static 
-GdkGC*
+
+static GdkGC*
 S_virtual_gdk_drawable_create_gc(GdkDrawable* s_object, GdkGCValues* s_values, GdkGCValuesMask s_mask)
 {
   USER_OBJECT_ e;
@@ -367,8 +367,8 @@ S_virtual_gdk_drawable_create_gc(GdkDrawable* s_object, GdkGCValues* s_values, G
     return(((GdkGC*)0));
   return(GDK_GC(getPtrValueWithRef(s_ans)));
 }
-static 
-void
+
+static void
 S_virtual_gdk_drawable_draw_rectangle(GdkDrawable* s_object, GdkGC* s_gc, gboolean s_filled, gint s_x, gint s_y, gint s_width, gint s_height)
 {
   USER_OBJECT_ e;
@@ -404,8 +404,8 @@ S_virtual_gdk_drawable_draw_rectangle(GdkDrawable* s_object, GdkGC* s_gc, gboole
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_gdk_drawable_draw_arc(GdkDrawable* s_object, GdkGC* s_gc, gboolean s_filled, gint s_x, gint s_y, gint s_width, gint s_height, gint s_angle1, gint s_angle2)
 {
   USER_OBJECT_ e;
@@ -445,8 +445,8 @@ S_virtual_gdk_drawable_draw_arc(GdkDrawable* s_object, GdkGC* s_gc, gboolean s_f
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_gdk_drawable_draw_polygon(GdkDrawable* s_object, GdkGC* s_gc, gboolean s_filled, GdkPoint* s_points, gint s_npoints)
 {
   USER_OBJECT_ e;
@@ -478,8 +478,8 @@ S_virtual_gdk_drawable_draw_polygon(GdkDrawable* s_object, GdkGC* s_gc, gboolean
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_gdk_drawable_draw_text(GdkDrawable* s_object, GdkFont* s_font, GdkGC* s_gc, gint s_x, gint s_y, const gchar* s_text, gint s_text_length)
 {
   USER_OBJECT_ e;
@@ -515,8 +515,8 @@ S_virtual_gdk_drawable_draw_text(GdkDrawable* s_object, GdkFont* s_font, GdkGC* 
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_gdk_drawable_draw_text_wc(GdkDrawable* s_object, GdkFont* s_font, GdkGC* s_gc, gint s_x, gint s_y, const GdkWChar* s_text, gint s_text_length)
 {
   USER_OBJECT_ e;
@@ -552,8 +552,8 @@ S_virtual_gdk_drawable_draw_text_wc(GdkDrawable* s_object, GdkFont* s_font, GdkG
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_gdk_drawable_draw_drawable(GdkDrawable* s_object, GdkGC* s_gc, GdkDrawable* s_src, gint s_xsrc, gint s_ysrc, gint s_xdest, gint s_ydest, gint s_width, gint s_height)
 {
   USER_OBJECT_ e;
@@ -593,8 +593,8 @@ S_virtual_gdk_drawable_draw_drawable(GdkDrawable* s_object, GdkGC* s_gc, GdkDraw
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_gdk_drawable_draw_points(GdkDrawable* s_object, GdkGC* s_gc, GdkPoint* s_points, gint s_npoints)
 {
   USER_OBJECT_ e;
@@ -624,8 +624,8 @@ S_virtual_gdk_drawable_draw_points(GdkDrawable* s_object, GdkGC* s_gc, GdkPoint*
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_gdk_drawable_draw_segments(GdkDrawable* s_object, GdkGC* s_gc, GdkSegment* s_segs, gint s_nsegs)
 {
   USER_OBJECT_ e;
@@ -655,8 +655,8 @@ S_virtual_gdk_drawable_draw_segments(GdkDrawable* s_object, GdkGC* s_gc, GdkSegm
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_gdk_drawable_draw_lines(GdkDrawable* s_object, GdkGC* s_gc, GdkPoint* s_points, gint s_npoints)
 {
   USER_OBJECT_ e;
@@ -686,8 +686,8 @@ S_virtual_gdk_drawable_draw_lines(GdkDrawable* s_object, GdkGC* s_gc, GdkPoint* 
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_gdk_drawable_draw_glyphs(GdkDrawable* s_object, GdkGC* s_gc, PangoFont* s_font, gint s_x, gint s_y, PangoGlyphString* s_glyphs)
 {
   USER_OBJECT_ e;
@@ -721,8 +721,8 @@ S_virtual_gdk_drawable_draw_glyphs(GdkDrawable* s_object, GdkGC* s_gc, PangoFont
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_gdk_drawable_draw_image(GdkDrawable* s_object, GdkGC* s_gc, GdkImage* s_image, gint s_xsrc, gint s_ysrc, gint s_xdest, gint s_ydest, gint s_width, gint s_height)
 {
   USER_OBJECT_ e;
@@ -762,8 +762,8 @@ S_virtual_gdk_drawable_draw_image(GdkDrawable* s_object, GdkGC* s_gc, GdkImage* 
   if(err)
     return;
 }
-static 
-gint
+
+static gint
 S_virtual_gdk_drawable_get_depth(GdkDrawable* s_object)
 {
   USER_OBJECT_ e;
@@ -788,8 +788,8 @@ S_virtual_gdk_drawable_get_depth(GdkDrawable* s_object)
     return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
-static 
-void
+
+static void
 S_virtual_gdk_drawable_get_size(GdkDrawable* s_object, gint* s_width, gint* s_height)
 {
   USER_OBJECT_ e;
@@ -815,8 +815,8 @@ S_virtual_gdk_drawable_get_size(GdkDrawable* s_object, gint* s_width, gint* s_he
   *s_width = ((gint)asCInteger(VECTOR_ELT(s_ans, 0)));
   *s_height = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
 }
-static 
-void
+
+static void
 S_virtual_gdk_drawable_set_colormap(GdkDrawable* s_object, GdkColormap* s_cmap)
 {
   USER_OBJECT_ e;
@@ -842,8 +842,8 @@ S_virtual_gdk_drawable_set_colormap(GdkDrawable* s_object, GdkColormap* s_cmap)
   if(err)
     return;
 }
-static 
-GdkColormap*
+
+static GdkColormap*
 S_virtual_gdk_drawable_get_colormap(GdkDrawable* s_object)
 {
   USER_OBJECT_ e;
@@ -868,8 +868,8 @@ S_virtual_gdk_drawable_get_colormap(GdkDrawable* s_object)
     return(((GdkColormap*)0));
   return(GDK_COLORMAP(getPtrValue(s_ans)));
 }
-static 
-GdkVisual*
+
+static GdkVisual*
 S_virtual_gdk_drawable_get_visual(GdkDrawable* s_object)
 {
   USER_OBJECT_ e;
@@ -894,8 +894,8 @@ S_virtual_gdk_drawable_get_visual(GdkDrawable* s_object)
     return(((GdkVisual*)0));
   return(GDK_VISUAL(getPtrValue(s_ans)));
 }
-static 
-GdkScreen*
+
+static GdkScreen*
 S_virtual_gdk_drawable_get_screen(GdkDrawable* s_object)
 {
   USER_OBJECT_ e;
@@ -920,8 +920,8 @@ S_virtual_gdk_drawable_get_screen(GdkDrawable* s_object)
     return(((GdkScreen*)0));
   return(GDK_SCREEN(getPtrValue(s_ans)));
 }
-static 
-GdkImage*
+
+static GdkImage*
 S_virtual_gdk_drawable_get_image(GdkDrawable* s_object, gint s_x, gint s_y, gint s_width, gint s_height)
 {
   USER_OBJECT_ e;
@@ -954,8 +954,8 @@ S_virtual_gdk_drawable_get_image(GdkDrawable* s_object, gint s_x, gint s_y, gint
     return(((GdkImage*)0));
   return(GDK_IMAGE(getPtrValue(s_ans)));
 }
-static 
-GdkRegion*
+
+static GdkRegion*
 S_virtual_gdk_drawable_get_clip_region(GdkDrawable* s_object)
 {
   USER_OBJECT_ e;
@@ -980,8 +980,8 @@ S_virtual_gdk_drawable_get_clip_region(GdkDrawable* s_object)
     return(((GdkRegion*)0));
   return(((GdkRegion*)gdk_region_copy(getPtrValue(s_ans))));
 }
-static 
-GdkRegion*
+
+static GdkRegion*
 S_virtual_gdk_drawable_get_visible_region(GdkDrawable* s_object)
 {
   USER_OBJECT_ e;
@@ -1006,8 +1006,8 @@ S_virtual_gdk_drawable_get_visible_region(GdkDrawable* s_object)
     return(((GdkRegion*)0));
   return(((GdkRegion*)gdk_region_copy(getPtrValue(s_ans))));
 }
-static 
-GdkDrawable*
+
+static GdkDrawable*
 S_virtual_gdk_drawable_get_composite_drawable(GdkDrawable* s_object, gint s_x, gint s_y, gint s_width, gint s_height, gint* s_composite_x_offset, gint* s_composite_y_offset)
 {
   USER_OBJECT_ e;
@@ -1042,8 +1042,8 @@ S_virtual_gdk_drawable_get_composite_drawable(GdkDrawable* s_object, gint s_x, g
   *s_composite_y_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
   return(GDK_DRAWABLE(getPtrValueWithRef(VECTOR_ELT(s_ans, 0))));
 }
-static 
-void
+
+static void
 S_virtual_gdk_drawable_draw_pixbuf(GdkDrawable* s_object, GdkGC* s_gc, GdkPixbuf* s_pixbuf, gint s_src_x, gint s_src_y, gint s_dest_x, gint s_dest_y, gint s_width, gint s_height, GdkRgbDither s_dither, gint s_x_dither, gint s_y_dither)
 {
   USER_OBJECT_ e;
@@ -1089,8 +1089,8 @@ S_virtual_gdk_drawable_draw_pixbuf(GdkDrawable* s_object, GdkGC* s_gc, GdkPixbuf
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_gdk_drawable_draw_glyphs_transformed(GdkDrawable* s_object, GdkGC* s_gc, PangoMatrix* s_matrix, PangoFont* s_font, gint s_x, gint s_y, PangoGlyphString* s_glyphs)
 {
   USER_OBJECT_ e;
@@ -1126,8 +1126,8 @@ S_virtual_gdk_drawable_draw_glyphs_transformed(GdkDrawable* s_object, GdkGC* s_g
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_gdk_drawable_draw_trapezoids(GdkDrawable* s_object, GdkGC* s_gc, GdkTrapezoid* s_trapezoids, gint s_n_trapezoids)
 {
   USER_OBJECT_ e;
@@ -1157,8 +1157,8 @@ S_virtual_gdk_drawable_draw_trapezoids(GdkDrawable* s_object, GdkGC* s_gc, GdkTr
   if(err)
     return;
 }
-static 
-cairo_surface_t*
+
+static cairo_surface_t*
 S_virtual_gdk_drawable_ref_cairo_surface(GdkDrawable* s_object)
 {
   USER_OBJECT_ e;
@@ -1746,8 +1746,8 @@ S_gdk_pixmap_class_init(GdkPixmapObjectClass * c, SEXP e)
 } 
 
 static SEXP S_GdkGC_symbol;
-static 
-void
+
+static void
 S_virtual_gdk_gc_get_values(GdkGC* s_object, GdkGCValues* s_values)
 {
   USER_OBJECT_ e;
@@ -1776,8 +1776,8 @@ S_virtual_gdk_gc_get_values(GdkGC* s_object, GdkGCValues* s_values)
   g_free(values);
 }
 }
-static 
-void
+
+static void
 S_virtual_gdk_gc_set_values(GdkGC* s_object, GdkGCValues* s_values, GdkGCValuesMask s_mask)
 {
   USER_OBJECT_ e;
@@ -1805,8 +1805,8 @@ S_virtual_gdk_gc_set_values(GdkGC* s_object, GdkGCValues* s_values, GdkGCValuesM
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_gdk_gc_set_dashes(GdkGC* s_object, gint s_dash_offset, gint8* s_dash_list, gint s_n)
 {
   USER_OBJECT_ e;
@@ -1905,8 +1905,8 @@ S_gdk_image_class_init(GdkImageClass * c, SEXP e)
 } 
 
 static SEXP S_GdkKeymap_symbol;
-static 
-void
+
+static void
 S_virtual_gdk_keymap_direction_changed(GdkKeymap* s_object)
 {
   USER_OBJECT_ e;
@@ -1930,8 +1930,8 @@ S_virtual_gdk_keymap_direction_changed(GdkKeymap* s_object)
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_gdk_keymap_keys_changed(GdkKeymap* s_object)
 {
   USER_OBJECT_ e;
@@ -2001,8 +2001,8 @@ S_gdk_keymap_class_keys_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obje
  
 
 static SEXP S_GdkPixbufAnimation_symbol;
-static 
-gboolean
+
+static gboolean
 S_virtual_gdk_pixbuf_animation_is_static_image(GdkPixbufAnimation* s_object)
 {
   USER_OBJECT_ e;
@@ -2027,8 +2027,8 @@ S_virtual_gdk_pixbuf_animation_is_static_image(GdkPixbufAnimation* s_object)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-static 
-GdkPixbuf*
+
+static GdkPixbuf*
 S_virtual_gdk_pixbuf_animation_get_static_image(GdkPixbufAnimation* s_object)
 {
   USER_OBJECT_ e;
@@ -2053,8 +2053,8 @@ S_virtual_gdk_pixbuf_animation_get_static_image(GdkPixbufAnimation* s_object)
     return(((GdkPixbuf*)0));
   return(GDK_PIXBUF(getPtrValue(s_ans)));
 }
-static 
-void
+
+static void
 S_virtual_gdk_pixbuf_animation_get_size(GdkPixbufAnimation* s_object, int* s_width, int* s_height)
 {
   USER_OBJECT_ e;
@@ -2080,8 +2080,8 @@ S_virtual_gdk_pixbuf_animation_get_size(GdkPixbufAnimation* s_object, int* s_wid
   *s_width = ((int)asCInteger(VECTOR_ELT(s_ans, 0)));
   *s_height = ((int)asCInteger(VECTOR_ELT(s_ans, 1)));
 }
-static 
-GdkPixbufAnimationIter*
+
+static GdkPixbufAnimationIter*
 S_virtual_gdk_pixbuf_animation_get_iter(GdkPixbufAnimation* s_object, const GTimeVal* s_start_time)
 {
   USER_OBJECT_ e;
@@ -2199,8 +2199,8 @@ S_gdk_pixbuf_animation_class_get_iter(USER_OBJECT_ s_object_class, USER_OBJECT_ 
  
 
 static SEXP S_GdkPixbufAnimationIter_symbol;
-static 
-int
+
+static int
 S_virtual_gdk_pixbuf_animation_iter_get_delay_time(GdkPixbufAnimationIter* s_object)
 {
   USER_OBJECT_ e;
@@ -2225,8 +2225,8 @@ S_virtual_gdk_pixbuf_animation_iter_get_delay_time(GdkPixbufAnimationIter* s_obj
     return(((int)0));
   return(((int)asCInteger(s_ans)));
 }
-static 
-GdkPixbuf*
+
+static GdkPixbuf*
 S_virtual_gdk_pixbuf_animation_iter_get_pixbuf(GdkPixbufAnimationIter* s_object)
 {
   USER_OBJECT_ e;
@@ -2251,8 +2251,8 @@ S_virtual_gdk_pixbuf_animation_iter_get_pixbuf(GdkPixbufAnimationIter* s_object)
     return(((GdkPixbuf*)0));
   return(GDK_PIXBUF(getPtrValue(s_ans)));
 }
-static 
-gboolean
+
+static gboolean
 S_virtual_gdk_pixbuf_animation_iter_on_currently_loading_frame(GdkPixbufAnimationIter* s_object)
 {
   USER_OBJECT_ e;
@@ -2277,8 +2277,8 @@ S_virtual_gdk_pixbuf_animation_iter_on_currently_loading_frame(GdkPixbufAnimatio
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-static 
-gboolean
+
+static gboolean
 S_virtual_gdk_pixbuf_animation_iter_advance(GdkPixbufAnimationIter* s_object, const GTimeVal* s_current_time)
 {
   USER_OBJECT_ e;
@@ -2392,8 +2392,8 @@ S_gdk_pixbuf_animation_iter_class_advance(USER_OBJECT_ s_object_class, USER_OBJE
  
 
 static SEXP S_GdkPixbufLoader_symbol;
-static 
-void
+
+static void
 S_virtual_gdk_pixbuf_loader_size_prepared(GdkPixbufLoader* s_object, int s_width, int s_height)
 {
   USER_OBJECT_ e;
@@ -2421,8 +2421,8 @@ S_virtual_gdk_pixbuf_loader_size_prepared(GdkPixbufLoader* s_object, int s_width
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_gdk_pixbuf_loader_area_prepared(GdkPixbufLoader* s_object)
 {
   USER_OBJECT_ e;
@@ -2446,8 +2446,8 @@ S_virtual_gdk_pixbuf_loader_area_prepared(GdkPixbufLoader* s_object)
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_gdk_pixbuf_loader_area_updated(GdkPixbufLoader* s_object, int s_x, int s_y, int s_width, int s_height)
 {
   USER_OBJECT_ e;
@@ -2479,8 +2479,8 @@ S_virtual_gdk_pixbuf_loader_area_updated(GdkPixbufLoader* s_object, int s_x, int
   if(err)
     return;
 }
-static 
-void
+
+static void
 S_virtual_gdk_pixbuf_loader_closed(GdkPixbufLoader* s_object)
 {
   USER_OBJECT_ e;
@@ -2602,8 +2602,8 @@ S_gdk_pango_renderer_class_init(GdkPangoRendererClass * c, SEXP e)
 } 
 
 static SEXP S_GdkScreen_symbol;
-static 
-void
+
+static void
 S_virtual_gdk_screen_size_changed(GdkScreen* s_object)
 {
   USER_OBJECT_ e;
@@ -2627,8 +2627,9 @@ S_virtual_gdk_screen_size_changed(GdkScreen* s_object)
   if(err)
     return;
 }
-static 
-void
+#if GDK_CHECK_VERSION(2, 10, 0)
+
+static void
 S_virtual_gdk_screen_composited_changed(GdkScreen* s_object)
 {
   USER_OBJECT_ e;
@@ -2652,6 +2653,7 @@ S_virtual_gdk_screen_composited_changed(GdkScreen* s_object)
   if(err)
     return;
 }
+#endif
 void
 S_gdk_screen_class_init(GdkScreenClass * c, SEXP e)
 {
