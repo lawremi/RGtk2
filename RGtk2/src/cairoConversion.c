@@ -231,6 +231,7 @@ asRCairoTextCluster(cairo_text_cluster_t * obj)
   
   return(s_obj);
 }
+#endif
 
 cairo_font_extents_t *
 asCCairoFontExtents(USER_OBJECT_ s_obj)
@@ -269,4 +270,3 @@ asRCairoFontExtents(cairo_font_extents_t * obj)
 
   return(s_obj);
 }
-#endif
