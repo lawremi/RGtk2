@@ -267,7 +267,7 @@ function(object, child, ...)
         checkPtrType(object, "GtkContainer")
         checkPtrType(child, "GtkWidget")
 
-        w <- .RGtkCall("S_gtk_container_child_set", object, child, c(...))
+        w <- .RGtkCall("S_gtk_container_child_set", object, child, list(...))
 
         return(invisible(w))
 }

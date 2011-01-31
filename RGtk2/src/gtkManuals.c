@@ -1068,7 +1068,7 @@ S_gtk_container_child_set_property(USER_OBJECT_ s_object, USER_OBJECT_ s_child, 
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
-	GParamSpec *spec = gtk_container_class_find_child_property(G_OBJECT_CLASS(object), property_name);
+	GParamSpec *spec = gtk_container_class_find_child_property(G_OBJECT_GET_CLASS(object), property_name);
 	g_value_init(&value, G_PARAM_SPEC_VALUE_TYPE(spec));
 	R_setGValueFromSValue(&value, s_value);
 	
