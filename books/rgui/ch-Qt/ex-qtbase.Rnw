@@ -54,7 +54,7 @@ to be in the form ``year-month-date.'' This would be specified with
 \code{"0000-00-00"}, as seen by consulting the help page for
 \code{QLineEdit}. To set an input mask we have:
 <<results=hide>>=
-e$setInputMask("0000-00-00")
+edit$setInputMask("0000-00-00")
 @  %% ML: inputMask is a property, but any other method example?
 
 %% Layout 
@@ -68,21 +68,21 @@ the \method{addWidget}{QLayout} method and requires a
 specification, by index and span, of the cells the child will occupy:
 <<results=hide>>=
 lyt <- Qt$QGridLayout()
-lyt$addWidget(l, row=0, column=0, rowSpan=1, columnSpan=1)
-lyt$addWidget(e, 0, 1, 1, 1)
-lyt$addWidget(b, 1, 1, 1, 1)
+lyt$addWidget(label, row=0, column=0, rowSpan=1, columnSpan=1)
+lyt$addWidget(edit, 0, 1, 1, 1)
+lyt$addWidget(button, 1, 1, 1, 1)
 @ 
 One can adjust properties of the layout, but we leave that discussion for later.
 
 We need to attach our layout to the widget \code{w}:
 <<results=hide>>=
-w$setLayout(lyt)
+window$setLayout(lyt)
 @ 
 
 Finally, to view our GUI (Figure~\ref{fig:first-gui}), we must call its
 \method{show}{QWidget} method.
 <<results=hide>>=
-w$show()
+window$show()
 @ 
 
 \begin{figure}
@@ -101,8 +101,8 @@ the programmer attaches a handler to the
 function. The function requires the object, the signal name and the
 handler. Here we print the value stored in the ``Date'' field.
 <<results=hide>>=
-handler <- function(checked)  print(e$text)
-qconnect(b, "pressed", handler)
+handler <- function(checked)  print(edit$text)
+qconnect(button, "pressed", handler)
 @ 
 We will discuss callbacks more completely in Section~\ref{sec:qt-signals}.
 
@@ -158,6 +158,6 @@ current top-level environment as a side effect of
 passed to the edit widget:
 <<results=hide>>=
 validator <- DateValidator()
-e$setValidator(validator)
+edit$setValidator(validator)
 @ 
 

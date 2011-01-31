@@ -168,6 +168,9 @@ widget will not expand and needs to be aligned within its space. By
 default, the widget is centered. We can control the alignment of a
 widget via the \method{setAlignment}{QLayout} method. For example, we
 align the label to the left side of the layout:
+<<echo=FALSE, results=hide>>=
+layout <- Qt$QHBoxLayout()
+@ 
 <<qt-layout-basic-alignment>>=
 label <- Qt$QLabel("Label")
 layout$addWidget(label)
@@ -200,7 +203,7 @@ hb <- Qt$QHBoxLayout()
 Child widgets are added to a box container through the
 \method{addWidget}{QLayout} method:
 <<qt-layout-box-add>>=
-sapply(1:3, function(i) g$addWidget(Qt$QPushButton(i)))
+sapply(1:3, function(i) hb$addWidget(Qt$QPushButton(i)))
 @
 % 
 The \method{direction}{QBoxLayout} property specifies the direction in
@@ -219,7 +222,7 @@ policy and hint can alter the effect of a stretch factor. After the
 child has been added, the stretch factor may be modified with
 \meth{setStretchFactor}:
 <<qt-layout-box-stretch>>=
-g$setStretchFactor(wid, 2.0) 
+hb$setStretchFactor(wid, 2.0) 
 @ 
 
 <<stretch_expand, echo=FALSE, results=hide>>=
@@ -329,7 +332,7 @@ child widgets into rows and columns.  To illustrate grid layouts we
 mock up a GUI centered around a text area widget
 (FIgure~\ref{fig:qt-layout-example}). To begin, we create the window
 with the grid layout:
-<<results=hide>>=
+<<hidden, results=hide>>=
 w <- Qt$QWidget()
 w$setWindowTitle("Layout example")
 lyt <- Qt$QGridLayout()
@@ -338,7 +341,7 @@ w$setLayout(lyt)
 
 When we add a child to the grid layout, we need to specify the
 zero-based row and column indices:
-<<results=hide>>=
+<<addEntryWidget, results=hide>>=
 lyt$addWidget(Qt$QLabel("Entry:"), 0, 0)
 lyt$addWidget(Qt$QLineEdit(), 0, 1, rowspan=1, colspan=2)
 @ 
@@ -347,7 +350,7 @@ In the second call to \meth{addWidget}, we pass values to the optional
 arguments for the row and column span. These are the numbers of rows
 and columns, respectively, that are spanned by the child. For our
 second row, we add a labeled combo box:
-<<results=hide>>=
+<<addChoiceWidget, results=hide>>=
 lyt$addWidget(Qt$QLabel("Choice:"), 1, 0)
 lyt$addWidget(Qt$QComboBox(), 1, 1)
 @ 
@@ -355,14 +358,14 @@ lyt$addWidget(Qt$QComboBox(), 1, 1)
 The bottom three cells in the third column are managed
 by a sublayout, in this case a vertical box layout. We use a label as
 a stub and set a frame style to have it stand out:
-<<results=hide>>=
+<<addBox, results=hide>>=
 lyt$addLayout(slyt <- Qt$QVBoxLayout(), 1, 2, rowspan=3, 1)
 slyt$addWidget(l <- Qt$QLabel("Category\nSelector"))
 l$setFrameStyle(Qt$QFrame$Box)
 @ 
 
 The text edit widget is added to the third row, second column:
-<<results=hide>>=
+<<addLabel, results=hide>>=
 lyt$addWidget(Qt$QLabel("Text:"), 2, 0, Qt$Qt$AlignTop)
 lyt$addWidget(l <- Qt$QTextEdit(), 2, 1)
 @ 
@@ -371,7 +374,7 @@ Since this widget will expand, we align the label to the top of its
 cell. Otherwise, it will be centered in the vertical direction.
 
 Finally we add a space for information on the fourth row:
-<<results=hide>>=
+<<addLabel2, results=hide>>=
 lyt$addWidget(l <- Qt$QLabel("More info:"), 3, 0, 
               rowspan=1, colspan=2)
 l$setSizePolicy(Qt$QSizePolicy$Fixed, Qt$QSizePolicy$Preferred)
@@ -455,7 +458,7 @@ w$setLayout(flyt <- Qt$QFormLayout())
 flyt$addRow("quantile", Qt$QLineEdit())
 flyt$addRow("mean", Qt$QLineEdit())
 flyt$addRow("sd", Qt$QLineEdit())
-flyt$addRow(Qt$QCheckButton("log"))
+flyt$addRow(Qt$QCheckBox("log"))
 @
 %
 <<echo=FALSE>>=

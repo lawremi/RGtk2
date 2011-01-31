@@ -306,9 +306,9 @@ environments. \class{QDialogButtonBox} is a container of buttons that
 arranges its children according to the convention of the platform.  We
 place some standard buttons into a button box:
 <<qt-widgets-buttonbox>>=
-box <- Qt$QDialogButtonBox(Qt$QDialogButtonBox$Ok | 
-                           Qt$QDialogButtonBox$Cancel | 
-                           Qt$QDialogButtonBox$Help)
+db <- Qt$QDialogButtonBox(Qt$QDialogButtonBox$Ok | 
+                          Qt$QDialogButtonBox$Cancel | 
+                          Qt$QDialogButtonBox$Help)
 @ 
 % 
 %% EXAMPLE: create a button box, add some buttons
@@ -365,13 +365,12 @@ user.
 We begin by defining our class and its constructor:
 <<extend-date-dialog>>=
 qsetClass("DateDialog", Qt$QDialog, 
-function(parent = NULL) 
-{
-  super(parent = parent)
+function(parent = NULL) {
+  super(parent=parent)
   setWindowTitle("Choose a date")
-  this$calendar <- Qt$QCalendar()
+  this$calendar <- Qt$QCalendarWidget()
   buttonBox <- Qt$QDialogButtonBox(Qt$QMessageBox$Cancel | Qt$QMessageBox$Ok)
-  layout <- Qt$QBoxLayout()
+  layout <- Qt$QVBoxLayout()
   layout$addWidget(calendar)
   layout$addWidget(buttonBox)
   setLayout(layout)
@@ -385,7 +384,7 @@ the instance, so that we can retrieve the selected date upon request.
 
 We define a method that gets the currently selected date:
 <<extend-date-get>>=
-qsetMethod("selectedDate", "DateDialog", function(x) calendar$selectedDate)
+qsetMethod("selectedDate", DateDialog, function(x) calendar$selectedDate)
 @ 
 
 \class{DateDialog} can be executed like any other \class{QDialog}:
@@ -405,8 +404,7 @@ if (dateDialog$exec())
 the user through a sequential, possibly branching process. Wizards are
 composed of pages, and each page has a consistent interface, usually
 including buttons for moving backwards and forwards through the
-pages. Wizards are compose of pages, each containing a number of
-fields for the user to interact with.
+pages. 
 
 <<>>=
 wizard <- Qt$QWizard()

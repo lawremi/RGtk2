@@ -538,6 +538,7 @@ qsetSlot("doSomethingToIndex(int)", SubClass, function(index) {
 The advantage of a slot compared to a method is that a slot is exposed
 to the \Qt{} metaobject system. This means that a slot could be called
 from another dynamic environment, like from Javascript running in the
+
 \class{QScript} module or via the D-Bus through the \class{QDBus}
 module. It is also necessary to use slots as signal handlers for a GUI
 built with \software{QtDesigner}, see Section~\ref{sec:qt-designer}. 
@@ -549,7 +550,7 @@ A property, introduced earlier, is a self-describing field that is
 encapsulated by a getter and a setter. We can define a property on any
 class. The \function{qsetProperty} function defines a property. This
 is the simplest usage:
-<<qt-overview-define-prop>>=
+<<qt-overview-define-propE>>=
 qsetProperty("property", SubClass)
 @ 
 %
@@ -595,6 +596,11 @@ we could set the \argument{write}{qsetProperty} parameter to
 
 %% TODO: Example here? Or just refer to other examples?
 
+%% JV 1/29: I think we need an example
+\begin{example}{A model for workspace objects}{ex-qt-ws-objects}
+  \SweaveInput{ex-qt-ws-model}
+\end{example}
+
 %% JV: Agreed. this section needs to  be reworked. It is hard to find
 %% the key information: qsetClass and a conversation about
 %% constructors and scope (super, this), and qsetMethod and a
@@ -615,7 +621,7 @@ systems. The \class{QWidget} class is the base class for all widgets
 and implements their shared functionality.
 
 Upon construction, widgets are invisible, so that they may be
-configured behind the scenes. The \property{property}{QWidget}
+configured behind the scenes. The \property{visible}{QWidget}
 property controls whether a widget is visible. 
 <<qt-overview-visible>>=
 w <- Qt$QWidget()
@@ -657,7 +663,7 @@ read-only; the focus may be shifted to a widget by calling its
 
 \Qt{} has a number of mechanisms for the user to query a widget for
 some description of its purpose and usage. Tooltips, stored as a
-string in the \property{toolTip}{QWidget} property, may be shown the
+string in the \property{toolTip}{QWidget} property, may be shown when the
 user hovers the mouse over the widget. Similarly, the
 \property{statusTip}{QWidget} property holds a string to be shown in
 the statusbar instead of a popup window. Finally, \Qt/ provides a
@@ -836,17 +842,19 @@ e$raise()
 
 \pkg{QtDesigner} is a tool for graphical, drag-and-drop design of
 GUI forms. Although this book focuses on constructing a GUI by
-programming in R, we recognize that a graphical approach may be the
+programming in R, we recognize that a graphical approach may be 
 preferable in some circumstances.  \pkg{QtDesigner} outputs a GUI
 definition as an XML file in the \qcode{UI} format. The
 \class{QUiLoader} class loads a \qcode{UI} definition through its
 \method{load}{QUiLoader} method:
-<<qt-overview-designer-load>>=
+%% JV commented these out until I have designer.ui to they run...
+%% JV should we put designer.ui into the package somewhere?
+<<qt-overview-designer-load, eval=FALSE>>=
 loader <- Qt$QUiLoader()
 widget <- loader$load(Qt$QFile("designer.ui"))
 @ 
 
-The \qcode{widget} object could be shown directly; however, we first
+The \code{widget} object could be shown directly; however, we first
 need to implement the behavior of the GUI by connecting to
 signals. Through the \pkg{QtDesigner} GUI, the user can connect
 signals to slots on built-in widgets. This works for some trivial
@@ -854,18 +862,18 @@ cases, but in general one needs to handle signals with R code. There
 are two ways to accomplish this: manual or automatic.
 
 To manually connect an R handler to a signal, we first need to obtain
-the widget with the signal.  Every widget in a \qcode{UI} file is
+the widget with the signal.  Every widget in a \code{UI} file is
 named, so we can call the \function{qfindChild} utility function to
 find a specific widget. Assume we have a button named ``findButton''
 and corresponding text entry ``findEntry'' in our UI file, then we
 retrieve them with
-<<qt-overview-designer-find>>=
+<<qt-overview-designer-find, eval=FALSE>>=
 findButton <- qfindChild(widget, "findButton")
 findEntry <- qfindChild(widget, "findEntry")
 @ 
 %
 Then we connect to the \signal{clicked}{QPushButton} signal:
-<<qt-overview-designer-connect>>=
+<<qt-overview-designer-connect, eval=FALSE>>=
 qconnect(findButton, "clicked", function() {
   findText(findEntry$text)
 })
@@ -874,7 +882,7 @@ qconnect(findButton, "clicked", function() {
 Alternatively, we could establish the signal connections
 automatically. This requires defining each signal handler to be a slot
 in the parent object, which will need to be of a custom class:
-<<qt-overview-designer-custom-parent>>=
+<<qt-overview-designer-custom-parent, eavl=FALSE>>=
 qsetClass("MyMainWindow", Qt$QWidget, function() {
   Qt$QMetaObject$connectSlotsByName(this)
 })
@@ -884,7 +892,7 @@ The constructor calls \method{connectSlotsByName}{QMetaObject} to
 automatically establish the connections. For a slot to be connected to
 the correct signal, it must be named according to the convention
 \qcode{on_[objectName]_[signalName]}. For example,
-<<qt-overview-designed-slot-handler>>=
+<<qt-overview-designed-slot-handler, eval=FALSE>>=
 qsetSlot("on_findButton_clicked", MyMainWindow, function() {
   findText(findEntry$text)
 })

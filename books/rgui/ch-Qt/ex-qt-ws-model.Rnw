@@ -1,0 +1,86 @@
+In this example, we revisit creating a backend storage model for a
+workspace browser (cf.  Example~\ref{ex-gWidgets-ws-browser}). With
+\pkg{gWidgets} there is not framework to integrate with, so we needed
+to define an Observable class for our model. With Qt, we can
+leverage the existing framework of signals to notify views of this
+model.
+<<ws_model, echo=FALSE>>=
+library(digest)
+library(qtbase)
+@ 
+%
+
+Our basic model subclasses \class{QObject}, not \class{QWidget}, as it has no graphical
+representation -- a job left for its views.
+
+<<>>=
+qsetClass("WSModel", Qt$QObject, function(parent=NULL) {
+  super(parent)
+  update_variables()
+})
+@ 
+%
+We have two main properties a current list of workspace objects and
+a digest hash for each, which we use for comparison purposes. The digest is a
+simple property:
+<<>>=
+qsetProperty("ws_digest", WSModel, type="character")
+@ 
+%
+When a new object is added, one deleted, or one changed, we wish to
+signal that occurence to any views of the model. For that purpose, we
+define a new signal below. We then specify this signal name to the
+\argument{notify}{qsetProperty} argument so that assignment to this
+property will emit this signal.
+<<objects_changed_property>>=
+qsetSignal("ws_objects_changed", WSModel)
+qsetProperty("ws_objects", WSModel, type="character", notify="ws_objects_changed")
+@ 
+%
+Our class has two main methods. First, we have a method to update
+the variable list. This simply compares the digest of the current
+workspace objects with a cached list. If there are differences, we
+update the objects, which in turn signals a change. 
+<<update_variables, results=hide>>=
+qsetMethod("update_variables", WSModel, function() {
+  "Update list of variables in workspace, if needed"
+  x <- sort(ls(envir=.GlobalEnv))
+  objs <- sapply(x, function(i) 
+               digest(get(i, envir=.GlobalEnv)))
+
+  if((length(objs) != length(ws_digest)) ||
+     length(ws_digest) == 0 ||
+     any(objs != ws_digest)) {
+    this$ws_digest <- objs       # update cache
+    this$ws_objects <- x         # emit signal         
+  }
+  invisible()
+})
+@ 
+%
+Our other method extracts the objects with the option of filtering by a list of classes.
+<<get_objects, results=hide>>=
+qsetMethod("get_objects", WSModel, function(klass) {
+  ## klass a character vector of class names
+  if(missing(klass) || length(klass) == 0)
+    return(ws_objects)
+  ind <- sapply(ws_objects, function(i) {
+    x <- get(i, envir=.GlobalEnv)
+    any(sapply(klass, is, object=x))
+  })
+  if(length(ind)) ws_objects[ind] else character(0)
+})
+@ 
+%
+To test it out we assign a callback to notify us that objects were changed.
+<<connectSignal, results=hide>>=
+m <- WSModel()
+qconnect(m, "ws_objects_changed", function() message("objects were updated"))
+@ 
+
+Finally, we arrange to call the update function as needed. If the
+workspace size is modest, using a task callback is a reasonable
+strategy:
+<<addTaskCallback, results=hide>>=
+addTaskCallback(function(expr, value, ok, visible) {m$update_variables(); TRUE})
+@ 
