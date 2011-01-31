@@ -139,6 +139,7 @@
   (parameters
     '("GtkEntryBuffer*" "buffer")
   )
+  (is-constructor-of "GtkEntry")
   (since "2.18.0")
 )
 
@@ -176,8 +177,8 @@
   (is-constructor-of "GtkEntryBuffer")
   (return-type "GtkEntryBuffer*")
   (parameters
-    '("const-gchar*" "initial_chars")
-    '("gint" "n_initial_chars")
+    '("const-gchar*" "initial_chars" (null-ok))
+    '("gint" "n_initial_chars" (default "-1"))
   )
   (since "2.18.0")
 )
