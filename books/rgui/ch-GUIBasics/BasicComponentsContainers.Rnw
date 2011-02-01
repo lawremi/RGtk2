@@ -36,7 +36,7 @@ A layout emerges from the organization of the widgets into a
 hierarchy, where a parent widget positions its children within its
 allocated space.  The top-level window is parentless and forms the
 root of the hierarchy. A parent visually contains its children and
-thus is usually called a \textit{container}. This design is natural,
+thus is usually called a \defn{container}. This design is natural,
 because almost every GUI has a hierarchical layout. It is easy to
 apply a different layout strategy to each region of a GUI, and when a
 parent is added or removed from the GUI, so are its children.
@@ -46,7 +46,7 @@ and dimensions for every widget in a GUI. However, such static layouts
 do not scale well to changes in the state of the application or simply
 changes to the window size dictated by the window manager. Thus, it is
 strongly encouraged to delegate the responsibility of layout to a
-\textit{layout manager} that dynamically calculates the layout as
+\defn{layout manager} that dynamically calculates the layout as
 constraints change. Depending on the toolkit, the layout manager might
 be the container itself, or it might be a separate object to which the
 container delegates.
@@ -152,9 +152,9 @@ Options'', and ``Additional Tags''.
 \subsubsection{Expanding boxes}
 \label{sec:GUI:expanding-boxes}
 
-The expanding box will show or hide its children, according to the
+An expanding container, or box, will show or hide its children, according to the
 state of a toggle button. By way of analogy, radio buttons are to
-notebooks as check buttons are to expanding boxes. An expanding box
+notebooks as check buttons are to expanding containers. An expanding box
 allows the user to adapt a GUI to a particular use case or mode of
 operation. Often, an expanding box contains so-called ``advanced''
 widgets that are only occassionally useful and are only of interest to
@@ -216,29 +216,103 @@ panel in Figure~\ref{fig:GUI:box-possibilities}. One could think
 of this space being occupied by an invisible spring. Invisible
 expanding widgets also act as springs.
 
+<<echo=FALSE, results=hide>>=
+## code to make figure
+library(tcltk)
+bw <- 1
+fm <- function(parent, expand=TRUE) {
+  f <- ttkframe(parent, padding=2)
+  tkconfigure(f, borderwidth=bw, relief="solid")
+  tkpack(f, expand=expand, fill="both", side="left", padx=2)
+  f
+}
+tl <- function(parent, txt, ...) {
+  l <- ttklabel(parent, text=txt, borderwidth=bw+2, relief="solid")
+  tkpack(l, ...)
+}
+
+w <- tktoplevel()
+tkwm.title(w, "Horizontal, vertical packing")
+f <- ttkframe(w, padding=2); tkpack(f, expand=TRUE, fill="both")
+
+f1 <- fm(f)
+tl(f1, "  1  ", expand=TRUE, fill="x", side="left")
+tl(f1, "  2  ", expand=FALSE, fill="y", side="left")
+tl(f1, "  3  ", expand=TRUE, fill="x", side="left")
+
+f1 <- fm(f)
+tl(f1, "  1  ", expand=TRUE, fill="y")
+tl(f1, "  2  ", expand=FALSE, fill="x")
+tl(f1, "  3  ", expand=TRUE, fill="y")
+tkwm.geometry(w, "300x200")
+
+w <- tktoplevel()
+tkwm.title(w, "Alignment")
+f <- ttkframe(w, padding=2); tkpack(f, expand=TRUE, fill="both")
+
+f1 <- fm(f)
+tl(f1, "  NE  ", expand=TRUE, anchor="ne", side="left")
+f1 <- fm(f)
+tl(f1, "  SW  ", expand=TRUE, anchor="sw", side="left")
+
+f1 <- fm(f)
+tl(f1, "  W  ", expand=TRUE, anchor="w", side="left")
+tkwm.geometry(w, "300x200")
+
+##
+
+w <- tktoplevel()
+tkwm.title(w, "Fill")
+f <- ttkframe(w, padding=2); tkpack(f, expand=TRUE, fill="both")
+
+
+f1 <- fm(f)
+tl(f1, "  x  " , expand=TRUE, fill="x")
+
+
+f1 <- fm(f)
+tl(f1, "  y  ", expand=TRUE, fill="y")
+
+f1 <- fm(f)
+tl(f1, "  both  ", expand=TRUE, fill="both")
+tkwm.geometry(w, "300x200")
+
+##
+
+w <- tktoplevel()
+tkwm.title(w, "Spring")
+f <- ttkframe(w, padding=4); tkpack(f, expand=TRUE, fill="both")
+
+f <- fm(f)
+tl(f, "  1  ", side="left")
+tl(f, "  2  ", side="left", padx=10)
+tkpack(ttklabel(f, text=" "), expand=TRUE, fill="both", side="left")
+tl(f, "  3  ", side="left")
+
+tkwm.geometry(w, "300x200")
+
+@ 
+
 \begin{figure}
   \centering
-  \includegraphics[width=.35\textwidth]{box-horizontal}
-  \includegraphics[width=.35\textwidth]{box-alignment}\\
-  \includegraphics[width=.35\textwidth]{box-expand}
-  \includegraphics[width=.35\textwidth]{box-glue-spring}
+  \includegraphics[width=.35\textwidth]{fig-basics-hor-ver}
+  \includegraphics[width=.35\textwidth]{fig-basics-alignment}\\
+  \includegraphics[width=.35\textwidth]{fig-basics-fill}
+  \includegraphics[width=.35\textwidth]{fig-basics-spring}
   \caption{
-    XXX REPLACE WITH REAL GRAPHICS XXX.
-    %% 
+   %% 
     Different possibilities for packing child components within
     a box. 
     %% 
     The upper left shows horizontal and vertical layout.
     %% 
-    The upper right shows some possible alignements.
+    The upper right shows some possible alignments or anchorings.
     %% 
-    The lower left shows that a child could possibly be anchored in
-    one of 9 positions. As well, it could ``expand'' to fill the space
-    either horizontally (as shown) or  vertically, or both.
+    The lower left shows that a child could ``expand'' to fill the space
+    either horizontally, vertically, or both.
     %% 
     The lower right shows both a fixed amount of space between the
-    children and an expanding spring between the child components.
-  }
+    children and an expanding spring between the child components.  }
   \label{fig:GUI:box-possibilities}
 \end{figure}
 

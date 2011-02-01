@@ -28,7 +28,8 @@ source("../booktabs.R")
 \label{sec:GUI:design}
 \SweaveInput{GUIDesign}
 
-
+%% JV should we leave this in? I'm wondering. We do it better in the
+%% chapters perhaps
 \section{Controls}
 \label{sec:GUI:basic-components}
 \SweaveInput{BasicComponents}

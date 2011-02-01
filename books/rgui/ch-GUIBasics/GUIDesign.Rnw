@@ -26,7 +26,7 @@ The most prevalent pattern of user interface design is denoted WIMP,
 which stands for Window, Icon, Menu and Pointer (i.e., mouse). The
 WIMP approach was developed at Xerox PARC in the 1970's and later
 popularized by the Apple Macintosh in 1984. This is particularly
-evident in the separation of the window from the menubar on the Mac
+evident in the separation of the window from the menu bar on the Mac
 desktop. Other graphical operating systems, such as Microsoft Windows,
 later adapted the WIMP paradigm, and libraries of reusable GUI
 components emerged to support development of applications in such
@@ -46,7 +46,7 @@ Abstractly, WIMP is a command language, where the user executes
 commands, often called actions, on a document by interacting with
 graphical controls. Every control in a window belongs to some abstract
 menu. Two common ways of organizing controls into menus are the
-menubar and toolbar.
+menu bar and toolbar.
 
 The parameters of an action call, if any, are controlled in
 sub-windows. These sub-windows are termed \dfnref{application windows}
@@ -149,10 +149,10 @@ possible, given the state of the application.
 The Mac GUI has the number of pages in focus, whereas Windows places
 the printer in focus. This allows the user to interact with the GUI
 without the mouse. Typically the \kbd{tab} key is used to step through
-the controls. GUI's often have keyboard accelerators that allow power
-users to shift the focus directly to a specific widget. Examples are
-found in the KDE dialog, where the underlined letters indicate the
-accelerator key. Most dialogs also have a default button, which will
+the controls. GUI's often have keyboard accelerators and/or mnemonics that allow power
+users to initiate actions or shift the focus directly to a specific
+widget through the keyboard. Examples are
+found in the KDE dialog. Most dialogs also have a default button, which will
 initiate the dialog action when the \kbd{return} key is pressed. The
 KDE dialog, for example, indicates that the ``print'' button is the
 default button through special shading.

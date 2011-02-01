@@ -1,7 +1,7 @@
 %% Tic Tac Toe examples
 
 We begin with an example showing how one can use \R's standard
-graphics device as a canvas for a game of
+graphics device as a canvas for a ``game'' of
 tic-tac-toe against the computer. Although this example
 has nothing to do with statistics, it illustrates, in a familiar way,
 some of the issues involved in developing GUIs in \R. 
@@ -17,19 +17,18 @@ some of the issues involved in developing GUIs in \R.
 
 Many GUIs can be thought of as different views of some data model.  In
 this example, the data simply consists of information holding the
-state of the game. Here we define a global variable, \code{board}, to
-store the current state of the game.
+state of the game, defined here in a global variable \code{board}.
 
 %% Model
 <<define-board>>=
-board <- matrix(rep(0,9), nrow=3)       # a global
+board <- matrix(rep(0,9), nrow=3)      
 @ 
 
 %% View
 A GUI contains one or more views, each of which is tied to an
 underlying data model. In our case, the view is the game board that we
 display through an \R\/ graphics device. The \Rfunction{layoutBoard}
-function creates this view:
+function creates a canvas for this view:
 <<layoutBoard>>=
 layoutBoard <- function() {
   plot.new()
@@ -39,20 +38,21 @@ layoutBoard <- function() {
 }
 @ 
 %
-This example uses a single canvas as the view; more complex GUIs
+This example uses a single view; more complex GUIs
 will contain multiple coordinated, interactive views. The layout of
 the GUI should help the user navigate the interface and is an
-important factor in usability.
+important factor in usability. Here we benefit from the universal
+familiarity with the board game.
 
 
 %% Controller
 The user typically sends input to a GUI through a mouse or keyboard. 
 The underlying toolkit allows the programmer to assign
-functions to be called when some specific event occurs. Typically, the
+functions to be called when some specific event occurs, such as user interaction. Typically, the
 toolkit \textit{signals} that some action has occurred, and then
-calls \textit{callbacks} or \textit{event handlers} that have been
-assigned by the programmer. The implementation is toolkit
-dependent. For our game, we will use the \code{locator} function built
+invokes \textit{callbacks} or \textit{event handlers} that have been
+assigned by the programmer. Each toolkit has a different implementation. is toolkit
+For our game, we will use the \code{locator} function built
 into the base \R\/ graphics system:
 <<doPlay>>=
 doPlay <- function() {
@@ -72,7 +72,7 @@ listen asynchronously for user input.
 
 
 In the above function \Rfunction{doPlay}, \function{clickHandler} is
-an \textit{event handler}. Its job is to process the output of the
+an \defn{event handler}. Its job is to process the output of the
 \function{locator} function, checking first if the user terminated
 \function{locator} using the keyboard. If not it proceeds to draw the
 move, and then, if necessary, the computer's move. Afterwards, play is
@@ -193,4 +193,5 @@ continually add features without regard for the long term cost. In
 this case, there are many obvious improvements: implementing a better
 artificial intelligence, drawing a line connecting three in a row when
 there is a win, indicating who won, etc. Adding a feature adds
-complexity to the interface, which increases the burden on the user.
+complexity to the interface, often useful, but sometime it just
+increases the burden on the user.

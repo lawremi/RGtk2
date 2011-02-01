@@ -57,7 +57,7 @@ variables in the data set.
  \caption{A dialog box from SPSS version 11 for specifying terms
     for a linear model. The graphic shows a dialog that allows
     the user to specify individual terms in the model  using
-    several types of widgets for selection of values, such as a radio
+    several types of widgets for selection of values, such as a radio button
     group, a checkbox, combo boxes, and list boxes. }
   \label{fig:GUI:spss-11-term-selection}
 \end{figure}
@@ -138,7 +138,7 @@ the selection of one or more values at a time.
   \label{fig:GUI:ex-tcltk}
 \end{figure}
 
-\subsubsection{Radio button groups}
+\subsubsection{Radio buttond}
 \label{sec:GUI:radio=button-groups}
 
 A \dfn{radio button group} selects exactly one value from a vector of
@@ -188,8 +188,10 @@ space. The list box is a reasonable compromise.
 A \dfn{slider} is a widget that selects a value from a sequence of
 possible values typically through the manipulation of a knob that
 moves or ``slides'' along a line that represents the range of possible
-values. Some toolkits (e.g. Java/Swing) only allow for the sequence to
-have integer values.  Some toolkits generalize beyond a numeric
+values. 
+%%Some toolkits (e.g. Java/Swing) only allow for the sequence to
+%%have integer values.  
+Some toolkits generalize beyond a numeric
 sequence. The slider is a good choice for offering the user a
 selection of ordinal or numerical parameter values. For example, the
 letters of the alphabet could be a sequence. The \code{tkdensity} demo
@@ -268,23 +270,23 @@ action. The choice of icon has a significant impact on usability.
 % Except for the default installation of \pkg{tcltk}, images and icons
 % may be specified in a variety of different formats.  Icons can come in
 % several different sizes from 16 by 16 pixels to 128 by 128. For
-% toolbars and menubars, the toolkit takes care of selecting the
+% toolbars and menu bars, the toolkit takes care of selecting the
 % appropriate icon.
 
 
-\subsubsection{Menubars}
+\subsubsection{Menu Bars}
 \label{sec:GUI:menubars}
 
-Menus play a central role in the \acronym{WIMP} desktop. The \dfn{menubar}
-contains items for many of the actions supported by the application.
-By convention, menubars are associated with a top-level window. This is
-enforced by the toolkit in \wxWidgets\/ and \Java\/ but not \tcltk\/
-and \GTK.  In Mac OS X, the menubar appears on the top line of the
-display, but other platforms place the menubar at the top of the
+Menus play a central role in the \acronym{WIMP} desktop. The \dfn{menu
+  bar} contains items for many of the actions supported by the
+application.  By convention, menu bars are associated with a top-level
+window. This is enforced by some toolkits and operating systems, but
+not all. In Mac OS X, the menu bar appears on the top line of the
+display, but other platforms place the menu bar at the top of the
 top-level window. In a statistics application, the ``document'' may be
-viewed as the active data frame, a report, or a graphic.
+viewed, for example, as the active data frame, a report, or a graphic.
 
-The styles used for menubars are fairly standardized, as this allows
+The styles used for menu bars are fairly standardized, as this allows
 new users to quickly orient themselves with a GUI. The visible menu
 names are often in the order \code{File}, \code{Edit}, \code{View},
 \code{Tools}, then application specific menus, and finally a
@@ -302,7 +304,7 @@ disabled, or greyed out, instead. %%~\ref{KDE:HIG}
 
 Menus may come to contain many items. To help the user navigate, menu
 items are usually grouped with either horizontal separators or
-hierarchical submenus. The latter are indicated with an arrow.
+hierarchical submenus. %%The latter are indicated with an arrow.
 
 The use of menus has evolved to also allow the user to set properties
 or attributes of current state of the GUI. There may be checkboxes
@@ -318,7 +320,7 @@ one-button users, these menus are bound to a \kbd{control}-click.
 \label{sec:GUI:toolbars}
 
 Toolbars are used to give immediate access to the frequently used actions
-defined in the menubar. Toolbars typically have icons representing the
+defined in the menu bar. Toolbars typically have icons representing the
 action and perhaps accompanying text. They traditionally appear on the
 top of a window, but sometimes are used along the edges. 
 
@@ -332,7 +334,7 @@ printed.  GUI toolkits commonly represent such actions as formal,
 invisible objects that are proxied by widgets, usually buttons, on the
 screen.  Often, all of the primary commands supported by an
 application have a corresponding action object, and the buttons
-associated with those actions are organized into menubars and
+associated with those actions are organized into menu bars and
 toolbars.
 
 An action object is essentially a data model, with each proxy widget
@@ -350,7 +352,7 @@ A \dfnref{modal dialog box} is a dialog box that keeps the focus until
 the user takes an action to dismiss the box. It prompts a user for
 immediate input, for example asking for confirmation when overwriting
 a file. Modal dialog boxes can be disruptive to the flow of
-interaction, so they should be used sparingly. As the control flow is
+interaction, so are used sparingly. As the control flow is
 blocked until the window is dismissed, functions that display modal
 dialogs can return a value when an event occurs, rather than have a
 handler respond to asynchronous input. The \command{file.choose}
@@ -543,7 +545,7 @@ feedback and status messages.
 A label is a widget for placing text into a GUI that is typically not
 intended for editing, or even selecting with a mouse. The main role of
 a label is to describe another component of the GUI. Most toolkits
-support rich text in labels. Figure~\ref{fig:GUI:Rcmdr-main-window}
+support rich text in labels. Figure~\ref{fig:GUI:R-guis-exs-JGR-Rcmdr}
 shows labels marked in red and blue in \pkg{tcltk}.
 
 \subsubsection{Statusbars}
@@ -553,23 +555,28 @@ A statusbar displays general status messages, as well as feedback on
 actions initiated by the user, such as progress or errors. In the
 traditional document-oriented GUI, statusbars are placed at the bottom.
 
+Related to status bar are info bars or alert boxes, that allow a
+programmer to leave a transient message for the user usually just
+below the toolbar.
+
+\subsubsection{Tooltips}
+\label{sec:GUI:basic-tooltips}
+
+A tooltip is a small window that is displayed when a user hovers their
+mouse over a tooltip-enabled widget. These are an embellishment for
+providing extra information about a particular piece of content
+displayed by a widget. A common use-case is to guide new users of a
+GUI. Many toolkits support the display of interactive hypertext in a
+tooltip, which allows the user to request additional details.
+
 \subsubsection{Progress bars}
 
 A progress bar indicates progress on a particular task, which may or
 may not be bounded. A bounded progress bar usually reports progress in
 terms of percentage completed. Progress bars should be familiar, as
 they are often displayed during software installation and while
-downloading a file.
-
-\subsubsection{Tooltips}
-\label{sec:GUI:basic-tooltips}
-
-A tooltip is a small window that is displayed when a user hovers their
-mouse over a tooltip-enabled widget. These are useful for providing
-extra information about a particular piece of content displayed by a
-widget. A common use-case is to guide new users of a GUI. Many
-toolkits support the display of interactive hypertext in a tooltip,
-which allows the user to request additional details.
+downloading a file. For long-running statistical procedures they can
+give useful feedback to the user that something is happening.
 
 %% combined with modal dialogs
 % \subsection{Choosers}

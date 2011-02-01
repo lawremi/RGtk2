@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.4.5)  6 JAN 2011 16:03
+This is pdfTeX, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.4.5)  31 JAN 2011 20:06
 entering extended mode
 **print-chapter
 (./print-chapter.tex
@@ -528,6 +528,9 @@ LaTeX Font Info:    Try loading font information for T1+cmss on input line 78.
 (/opt/local/share/texmf-dist/tex/latex/base/t1cmss.fd
 File: t1cmss.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
+(/opt/local/share/texmf-dist/tex/latex/everysel/everysel.sty
+Package: everysel 1999/06/08 v1.03 EverySelectfont Package (MS)
+)
 (/opt/local/share/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Package: fancyvrb 1998/07/17
 
@@ -542,7 +545,7 @@ Style option: `fancyvrb' v2.6, with DG/SPQR fixes <1998/07/17> (tvz)
 No file fancyvrb.cfg.
 )
 \hlboxlessthan=\box36
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 222.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 236.
 
  (/opt/local/share/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
@@ -646,7 +649,9 @@ LaTeX Font Info:    ... okay on input line 4.
 \MPscratchDim=\dimen176
 \MPnumerator=\count179
 \everyMPtoPDFconversion=\toks30
-) ABD: EveryShipout initializing macros (../setup2.tex
+)
+LaTeX Info: Redefining \selectfont on input line 4.
+ ABD: EveryShipout initializing macros (../setup2.tex
 (/opt/local/share/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2004/09/05 1.3 listings language file
 )
@@ -714,65 +719,60 @@ LaTeX Font Info:    Try loading font information for OT1+zplm on input line 112
 
 (/opt/local/share/texmf-dist/tex/latex/psnfss/ot1zplm.fd
 File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
-) [2]
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 177--178
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[3]
+) [2] [3]
 LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <10> not available
-(Font)              Font shape `T1/pplx/b/n' tried instead on input line 293.
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 286.
 
 
 Package natbib Warning: Citation `APPLE:HIG' on page 4 undefined on input line 
-293.
+286.
 
-[4] <fig-mac-print.png, id=21, 825.0825pt x 585.18625pt>
+<fig-mac-print.png, id=18, 825.0825pt x 585.18625pt>
 File: fig-mac-print.png Graphic file (type png)
-
-<use fig-mac-print.png> <kde-print.png, id=22, 390.76965pt x 410.03716pt>
+ <use fig-mac-print.png>
+<kde-print.png, id=19, 390.76965pt x 410.03716pt>
 File: kde-print.png Graphic file (type png)
-
-<use kde-print.png> <r-print-dialog.png, id=23, 469.755pt x 365.365pt>
+ <use kde-print.png>
+<r-print-dialog.png, id=20, 469.755pt x 365.365pt>
 File: r-print-dialog.png Graphic file (type png)
-
-<use r-print-dialog.png> [5] [6 <./fig-mac-print.png> <./kde-print.png>]
+ <use r-print-dialog.png>
+[4] [5 <./fig-mac-print.png> <./kde-print.png>] [6 <./r-print-dialog.png>]
 LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/pplx/b/n' tried instead on input line 425.
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 435.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 443.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 453.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 443.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 453.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 443.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 453.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 10.42007pt on input line 443.
+(Font)              scaled to size 10.42007pt on input line 453.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.91925pt on input line 443.
+(Font)              scaled to size 7.91925pt on input line 453.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 443.
+(Font)              scaled to size 6.25204pt on input line 453.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 10.42007pt on input line 443.
+(Font)              scaled to size 10.42007pt on input line 453.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.91925pt on input line 443.
+(Font)              scaled to size 7.91925pt on input line 453.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 443.
+(Font)              scaled to size 6.25204pt on input line 453.
 
-<spss-11-model-selection.png, id=32, 506.89375pt x 352.31625pt>
+<spss-11-model-selection.png, id=33, 506.89375pt x 352.31625pt>
 File: spss-11-model-selection.png Graphic file (type png)
 
-<use spss-11-model-selection.png> [7 <./r-print-dialog.png>] [8 <./spss-11-mode
-l-selection.png>] <ex-listbox.png, id=42, 183.40218pt x 152.72151pt>
+<use spss-11-model-selection.png> [7] [8 <./spss-11-model-selection.png>]
+<ex-listbox.png, id=42, 183.40218pt x 152.72151pt>
 File: ex-listbox.png Graphic file (type png)
-
-<use ex-listbox.png> <tcltk-tkdensity.png, id=43, 179.99321pt x 199.76518pt>
+ <use ex-listbox.png>
+<tcltk-tkdensity.png, id=43, 179.99321pt x 199.76518pt>
 File: tcltk-tkdensity.png Graphic file (type png)
 
 <use tcltk-tkdensity.png> [9] [10 <./ex-listbox.png (PNG copy)> <./tcltk-tkdens
 ity.png>]
 
 Package natbib Warning: Citation `APPLE:HIG' on page 11 undefined on input line
- 648.
+ 646.
 
 [11] [12] [13] <fig-spotfire.png, id=61, 854.19125pt x 744.7825pt>
 File: fig-spotfire.png Graphic file (type png)
@@ -785,56 +785,45 @@ File: JGR-object-browser.png Graphic file (type png)
 <Rcmdr-main-window.png, id=70, 657.92972pt x 510.66255pt>
 File: Rcmdr-main-window.png Graphic file (type png)
 
-<use Rcmdr-main-window.png>
+<use Rcmdr-main-window.png> [16 <./JGR-object-browser.png (PNG copy)> <./Rcmdr-
+main-window.png>] [17] [18] [19]
+<fig-basics-hor-ver.png, id=85, 331.2375pt x 252.945pt>
+File: fig-basics-hor-ver.png Graphic file (type png)
 
-LaTeX Warning: Reference `fig:GUI:Rcmdr-main-window' on page 16 undefined on in
-put line 969.
+<use fig-basics-hor-ver.png>
+<fig-basics-alignment.png, id=86, 331.2375pt x 252.945pt>
+File: fig-basics-alignment.png Graphic file (type png)
 
-[16 <./JGR-object-browser.png (PNG copy)> <./Rcmdr-main-window.png>] [17]
-Overfull \hbox (2.04977pt too wide) in paragraph at lines 1108--1113
-[]\T1/pplx/m/n/10 Once a win-dow is shown, its di-men-sions are man-aged by the
- user, through
- []
+<use fig-basics-alignment.png>
+<fig-basics-fill.png, id=87, 331.2375pt x 252.945pt>
+File: fig-basics-fill.png Graphic file (type png)
+ <use fig-basics-fill.png>
+<fig-basics-spring.png, id=88, 331.2375pt x 252.945pt>
+File: fig-basics-spring.png Graphic file (type png)
 
-[18] [19] <box-horizontal.png, id=85, 451.6875pt x 331.2375pt>
-File: box-horizontal.png Graphic file (type png)
-
-<use box-horizontal.png> <box-alignment.png, id=86, 451.6875pt x 331.2375pt>
-File: box-alignment.png Graphic file (type png)
-
-<use box-alignment.png> <box-expand.png, id=87, 451.6875pt x 331.2375pt>
-File: box-expand.png Graphic file (type png)
-
-<use box-expand.png> <box-glue-spring.png, id=88, 451.6875pt x 331.2375pt>
-File: box-glue-spring.png Graphic file (type png)
-
-<use box-glue-spring.png> [20 <./box-horizontal.png> <./box-alignment.png> <./b
-ox-expand.png> <./box-glue-spring.png>])
+<use fig-basics-spring.png> [20 <./fig-basics-hor-ver.png> <./fig-basics-alignm
+ent.png> <./fig-basics-fill.png> <./fig-basics-spring.png>])
 
 Package natbib Warning: There were undefined citations.
 
-[21] (./print-chapter.aux)
-
-LaTeX Warning: There were undefined references.
-
- ) 
+[21] (./print-chapter.aux) ) 
 Here is how much of TeX's memory you used:
- 7915 strings out of 94073
- 103458 string characters out of 1164798
- 237313 words of memory out of 1500000
- 11076 multiletter control sequences out of 10000+50000
+ 7932 strings out of 94073
+ 103934 string characters out of 1164798
+ 233696 words of memory out of 1500000
+ 11089 multiletter control sequences out of 10000+50000
  55253 words of font info for 104 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
- 33i,12n,41p,648b,1744s stack positions out of 5000i,500n,6000p,200000b,5000s
-{/opt/local/share/texmf-dist/fonts/enc/dvips/base/8r.enc}{/opt/local/share/te
-xmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</opt/local/share/texmf-dist/
-fonts/type1/bluesky/cm/cmsy10.pfb></opt/local/share/texmf-dist/fonts/type1/publ
-ic/cm-super/sfss1000.pfb></opt/local/share/texmf-dist/fonts/type1/public/cm-sup
-er/sftt0900.pfb></opt/local/share/texmf-dist/fonts/type1/public/cm-super/sftt10
-00.pfb></opt/local/share/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></opt/l
-ocal/share/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></opt/local/share/tex
-mf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on print-chapter.pdf (21 pages, 592168 bytes).
+ 33i,11n,41p,550b,1701s stack positions out of 5000i,500n,6000p,200000b,5000s
+{/opt/local/share/texmf-dist/fonts/enc/dvips/base/8
+r.enc}{/opt/local/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</o
+pt/local/share/texmf-dist/fonts/type1/bluesky/cm/cmsy10.pfb></opt/local/share/t
+exmf-dist/fonts/type1/public/cm-super/sfss1000.pfb></opt/local/share/texmf-dist
+/fonts/type1/public/cm-super/sftt0900.pfb></opt/local/share/texmf-dist/fonts/ty
+pe1/public/cm-super/sftt1000.pfb></opt/local/share/texmf-dist/fonts/type1/urw/p
+alatino/uplb8a.pfb></opt/local/share/texmf-dist/fonts/type1/urw/palatino/uplr8a
+.pfb></opt/local/share/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on print-chapter.pdf (21 pages, 583455 bytes).
 PDF statistics:
  124 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)

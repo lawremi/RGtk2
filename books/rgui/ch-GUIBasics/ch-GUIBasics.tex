@@ -18,7 +18,7 @@
 %% Tic Tac Toe examples
 
 We begin with an example showing how one can use \R's standard
-graphics device as a canvas for a game of
+graphics device as a canvas for a ``game'' of
 tic-tac-toe against the computer. Although this example
 has nothing to do with statistics, it illustrates, in a familiar way,
 some of the issues involved in developing GUIs in \R. 
@@ -34,21 +34,20 @@ some of the issues involved in developing GUIs in \R.
 
 Many GUIs can be thought of as different views of some data model.  In
 this example, the data simply consists of information holding the
-state of the game. Here we define a global variable, \code{board}, to
-store the current state of the game.
+state of the game, defined here in a global variable \code{board}.
 
 %% Model
 \begin{Schunk}
 \begin{Sinput}
- board <- matrix(rep(0,9), nrow=3)       # a global
+ board <- matrix(rep(0,9), nrow=3)      
 \end{Sinput}
 \end{Schunk}
 
 %% View
 A GUI contains one or more views, each of which is tied to an
 underlying data model. In our case, the view is the game board that we
-display through \R\/ graphics device. The \Rfunction{layoutBoard}
-function creates this view:
+display through an \R\/ graphics device. The \Rfunction{layoutBoard}
+function creates a canvas for this view:
 \begin{Schunk}
 \begin{Sinput}
  layoutBoard <- function() {
@@ -60,20 +59,21 @@ function creates this view:
 \end{Sinput}
 \end{Schunk}
 %
-This example uses a single canvas as the view; more complex GUIs
+This example uses a single view; more complex GUIs
 will contain multiple coordinated, interactive views. The layout of
 the GUI should help the user navigate the interface and is an
-important factor in usability.
+important factor in usability. Here we benefit from the universal
+familiarity with the board game.
 
 
 %% Controller
 The user typically sends input to a GUI through a mouse or keyboard. 
 The underlying toolkit allows the programmer to assign
-functions to be called when some specific event occurs. Typically, the
+functions to be called when some specific event occurs, such as user interaction. Typically, the
 toolkit \textit{signals} that some action has occurred, and then
-calls \textit{callbacks} or \textit{event handlers} that have been
-assigned by the programmer. The implementation is toolkit
-dependent. For our game, we will use the \code{locator} function built
+invokes \textit{callbacks} or \textit{event handlers} that have been
+assigned by the programmer. Each toolkit has a different implementation. is toolkit
+For our game, we will use the \code{locator} function built
 into the base \R\/ graphics system:
 \begin{Schunk}
 \begin{Sinput}
@@ -95,7 +95,7 @@ listen asynchronously for user input.
 
 
 In the above function \Rfunction{doPlay}, \function{clickHandler} is
-an \textit{event handler}. Its job is to process the output of the
+an \defn{event handler}. Its job is to process the output of the
 \function{locator} function, checking first if the user terminated
 \function{locator} using the keyboard. If not it proceeds to draw the
 move, and then, if necessary, the computer's move. Afterwards, play is
@@ -165,23 +165,15 @@ GUI will display. Even the labels, which one generally considers
 static, will display different text depending on the language (as long
 as translations are available).
 
+%% JV: thanks
 This function is used to test if a game is finished:
 \begin{Schunk}
 \begin{Sinput}
  isFinished <- function() {
-   ## if(sum(abs(board)) >= 9) 
-   ##   return(TRUE)
-   ## m <- matrix(1:9,nrow=3)
-   ### MFL: would this code do the same thing?
-   (any(rowSums(board) == 3) || any(colSums(board) == 3) || 
-    sum(diag(board)) == 3 || sum(diag(apply(board, 2, rev))) == 3)
-   ## ways <- list(m[,1], m[,2], m[,3],
-   ##              m[1,], m[2,], m[3,],
-   ##              diag(m),diag(apply(m,2,rev)))
-   ## sums <- sapply(ways, function(i) abs(sum(board[i])))
-   ## if(any(sums == 3)) 
-   ##   return(TRUE)
-   ## return(FALSE)
+   (any(abs(rowSums(board)) == 3) || 
+    any(abs(colSums(board)) == 3) || 
+    abs(sum(diag(board))) == 3 || 
+    abs(sum(diag(apply(board, 2, rev)))) == 3)
  }
 \end{Sinput}
 \end{Schunk}
@@ -234,7 +226,8 @@ continually add features without regard for the long term cost. In
 this case, there are many obvious improvements: implementing a better
 artificial intelligence, drawing a line connecting three in a row when
 there is a win, indicating who won, etc. Adding a feature adds
-complexity to the interface, which increases the burden on the user.
+complexity to the interface, often useful, but sometime it just
+increases the burden on the user.
 
 \section{GUI Design Principles}
 \label{sec:GUI:design}
@@ -266,16 +259,16 @@ The most prevalent pattern of user interface design is denoted WIMP,
 which stands for Window, Icon, Menu and Pointer (i.e., mouse). The
 WIMP approach was developed at Xerox PARC in the 1970's and later
 popularized by the Apple Macintosh in 1984. This is particularly
-evident in the separation of the window from the menubar on the Mac
+evident in the separation of the window from the menu bar on the Mac
 desktop. Other graphical operating systems, such as Microsoft Windows,
 later adapted the WIMP paradigm, and libraries of reusable GUI
 components emerged to support development of applications in such
-environments. Thus, GUI development in R adheres to WIMP approach.
+environments. Thus, GUI development in R adheres to a WIMP approach.
 
 The primary WIMP component from our perspective is the window. A
 typical interface design consists of a top-level window referred to as
 the \dfnref{document window} that shows the current state of a
-``document'', whatever that is taken to be. In \R\/ it could be a data
+``document,'' whatever that is taken to be. In \R\/ it could be a data
 frame, a command line, a function editor, a graphic or an arbitrarily
 complex form containing an assortment of such elements. 
 
@@ -286,7 +279,7 @@ Abstractly, WIMP is a command language, where the user executes
 commands, often called actions, on a document by interacting with
 graphical controls. Every control in a window belongs to some abstract
 menu. Two common ways of organizing controls into menus are the
-menubar and toolbar.
+menu bar and toolbar.
 
 The parameters of an action call, if any, are controlled in
 sub-windows. These sub-windows are termed \dfnref{application windows}
@@ -389,10 +382,10 @@ possible, given the state of the application.
 The Mac GUI has the number of pages in focus, whereas Windows places
 the printer in focus. This allows the user to interact with the GUI
 without the mouse. Typically the \kbd{tab} key is used to step through
-the controls. GUI's often have keyboard accelerators that allow power
-users to shift the focus directly to a specific widget. Examples are
-found in the KDE dialog, where the underlined letters indicate the
-accelerator key. Most dialogs also have a default button, which will
+the controls. GUI's often have keyboard accelerators and/or mnemonics that allow power
+users to initiate actions or shift the focus directly to a specific
+widget through the keyboard. Examples are
+found in the KDE dialog. Most dialogs also have a default button, which will
 initiate the dialog action when the \kbd{return} key is pressed. The
 KDE dialog, for example, indicates that the ``print'' button is the
 default button through special shading.
@@ -422,17 +415,34 @@ keep separate their level of importance. The KDE buttons do so as
 well, although one can't tell from this. However, one can see the use
 of stock icons on the buttons to guide the user. 
 
-\subsection{Choice of widget}
+
+%% JV should we leave this in? I'm wondering. We do it better in the
+%% chapters perhaps
+\section{Controls}
+\label{sec:GUI:basic-components}
+%% ML: This section and the next should probably be reorganized so
+%% that they do a better job of referring to examples. Otherwise it
+%% feels like we're stating a series of groundless generalities.
+
+This section provides an overview of many common controls, i.e.,
+widgets that either accept input, display data or provide visual
+guides to help the user navigate the interface. If the reader is
+already familiar with the conventional types of widgets and how they
+are arranged on the screen, this section and the next should be
+considered optional.
+
+
+\subsection{Choice of control}
 \label{sec:choice-widget}
 %% real estate, type of data
 
-A GUI is comprised of one or more widgets or controls. The appropriate
-choice of widget depends on a balance of condiderations.  For example,
-many widgets offer the user a selection from one or more possible
-choices.  An appropriate choice depends on the type and size of the
-information being displayed, the constraints on the user input, and on
-the space available in the GUI layout. As an example,
-Table~\ref{tab:gui-design-widget-type} lists suggestes different types
+A GUI is comprised of one or more widgets. The appropriate choice
+depends on a balance of condiderations.  For example, many widgets
+offer the user a selection from one or more possible choices.  An
+appropriate choice depends on the type and size of the information
+being displayed, the constraints on the user input, and on the space
+available in the GUI layout. As an example,
+Table~\ref{tab:gui-design-widget-type} lists suggests different types
 of widgets used for this purpose depending on the type and size of
 data and the number of items to select.
   
@@ -445,7 +455,7 @@ data and the number of items to select.
 
 Type of data&Single&Multiple\\
 \midrule
-Boolean&Checkbox&\\Small list&radiogroup\newline combobox\newline list box&checkboxgroup\newline list box\\Moderate list&combobox\newline list box&list box\\Large list&list box&list box\\Sequential&slider\ spinbutton&\\Tabular&table&table\\Heirarchical&tree&tree
+Boolean&Checkbox, toggle button&-\\Small list&radiogroup\newline combobox\newline list box&checkboxgroup\newline list box\\Moderate list&combobox\newline list box&list box\\Large list&list box, auto complete&list box\\Sequential&slider\ spinbutton&\\Tabular&table&table\\Heirarchical&tree&tree
 \\ \bottomrule
 \end{tabular}
 \end{table}
@@ -453,7 +463,7 @@ Boolean&Checkbox&\\Small list&radiogroup\newline combobox\newline list box&check
 Figure~\ref{fig:GUI:spss-11-term-selection} shows several such
 controls in a single GUI. A checkbox enables an intercept,
 a radio group selects either full factorial or a custom
-model, a combobox selects the ``sum of squares'' type, and a
+model, a combo box selects the ``sum of squares'' type, and a
 list box allows for multiple selection from the available
 variables in the data set. 
 
@@ -465,7 +475,7 @@ variables in the data set.
  \caption{A dialog box from SPSS version 11 for specifying terms
     for a linear model. The graphic shows a dialog that allows
     the user to specify individual terms in the model  using
-    several types of widgets for selection of values, such as a radio
+    several types of widgets for selection of values, such as a radio button
     group, a checkbox, combo boxes, and list boxes. }
   \label{fig:GUI:spss-11-term-selection}
 \end{figure}
@@ -489,20 +499,6 @@ the potential user base is important.
 
 
 
-
-
-\section{Controls}
-\label{sec:GUI:basic-components}
-%% ML: This section and the next should probably be reorganized so
-%% that they do a better job of referring to examples. Otherwise it
-%% feels like we're stating a series of groundless generalities.
-
-This section provides an overview of many common controls, i.e.,
-widgets that either accept input, display data or provide visual
-guides to help the user navigate the interface. If the reader is
-already familiar with the conventional types of widgets and how they
-are arranged on the screen, this section and the next should be
-considered optional.
 
 \subsection{Presenting options}
 \label{sec:GUI:basic-selection}
@@ -560,7 +556,7 @@ the selection of one or more values at a time.
   \label{fig:GUI:ex-tcltk}
 \end{figure}
 
-\subsubsection{Radio button groups}
+\subsubsection{Radio buttond}
 \label{sec:GUI:radio=button-groups}
 
 A \dfn{radio button group} selects exactly one value from a vector of
@@ -610,8 +606,10 @@ space. The list box is a reasonable compromise.
 A \dfn{slider} is a widget that selects a value from a sequence of
 possible values typically through the manipulation of a knob that
 moves or ``slides'' along a line that represents the range of possible
-values. Some toolkits (e.g. Java/Swing) only allow for the sequence to
-have integer values.  Some toolkits generalize beyond a numeric
+values. 
+%%Some toolkits (e.g. Java/Swing) only allow for the sequence to
+%%have integer values.  
+Some toolkits generalize beyond a numeric
 sequence. The slider is a good choice for offering the user a
 selection of ordinal or numerical parameter values. For example, the
 letters of the alphabet could be a sequence. The \code{tkdensity} demo
@@ -641,7 +639,7 @@ buttons, which are often organized into menubars and toolbars.
 \subsubsection{Buttons}
 \label{sec:GUI:buttons}
 
-A \dfn{button} issue commands when pressed, usually via a mouse click.
+A \dfn{button} issues commands when pressed, usually via a mouse click.
 In Figure~\ref{fig:GUI:print-dialogs}, the ``Properties'' button, when
 clicked, opens a dialog for setting printer properties. The button
 with the wizard icon also opens a dialog.  As buttons execute an
@@ -690,23 +688,23 @@ action. The choice of icon has a significant impact on usability.
 % Except for the default installation of \pkg{tcltk}, images and icons
 % may be specified in a variety of different formats.  Icons can come in
 % several different sizes from 16 by 16 pixels to 128 by 128. For
-% toolbars and menubars, the toolkit takes care of selecting the
+% toolbars and menu bars, the toolkit takes care of selecting the
 % appropriate icon.
 
 
-\subsubsection{Menubars}
+\subsubsection{Menu Bars}
 \label{sec:GUI:menubars}
 
-Menus play a central role in the \acronym{WIMP} desktop. The \dfn{menubar}
-contains items for many of the actions supported by the application.
-By convention, menubars are associated with a top-level window. This is
-enforced by the toolkit in \wxWidgets\/ and \Java\/ but not \tcltk\/
-and \GTK.  In Mac OS X, the menubar appears on the top line of the
-display, but other platforms place the menubar at the top of the
+Menus play a central role in the \acronym{WIMP} desktop. The \dfn{menu
+  bar} contains items for many of the actions supported by the
+application.  By convention, menu bars are associated with a top-level
+window. This is enforced by some toolkits and operating systems, but
+not all. In Mac OS X, the menu bar appears on the top line of the
+display, but other platforms place the menu bar at the top of the
 top-level window. In a statistics application, the ``document'' may be
-viewed as the active data frame, a report, or a graphic.
+viewed, for example, as the active data frame, a report, or a graphic.
 
-The styles used for menubars are fairly standardized, as this allows
+The styles used for menu bars are fairly standardized, as this allows
 new users to quickly orient themselves with a GUI. The visible menu
 names are often in the order \code{File}, \code{Edit}, \code{View},
 \code{Tools}, then application specific menus, and finally a
@@ -724,7 +722,7 @@ disabled, or greyed out, instead. %%~\ref{KDE:HIG}
 
 Menus may come to contain many items. To help the user navigate, menu
 items are usually grouped with either horizontal separators or
-hierarchical submenus. The latter are indicated with an arrow.
+hierarchical submenus. %%The latter are indicated with an arrow.
 
 The use of menus has evolved to also allow the user to set properties
 or attributes of current state of the GUI. There may be checkboxes
@@ -740,7 +738,7 @@ one-button users, these menus are bound to a \kbd{control}-click.
 \label{sec:GUI:toolbars}
 
 Toolbars are used to give immediate access to the frequently used actions
-defined in the menubar. Toolbars typically have icons representing the
+defined in the menu bar. Toolbars typically have icons representing the
 action and perhaps accompanying text. They traditionally appear on the
 top of a window, but sometimes are used along the edges. 
 
@@ -754,7 +752,7 @@ printed.  GUI toolkits commonly represent such actions as formal,
 invisible objects that are proxied by widgets, usually buttons, on the
 screen.  Often, all of the primary commands supported by an
 application have a corresponding action object, and the buttons
-associated with those actions are organized into menubars and
+associated with those actions are organized into menu bars and
 toolbars.
 
 An action object is essentially a data model, with each proxy widget
@@ -772,7 +770,7 @@ A \dfnref{modal dialog box} is a dialog box that keeps the focus until
 the user takes an action to dismiss the box. It prompts a user for
 immediate input, for example asking for confirmation when overwriting
 a file. Modal dialog boxes can be disruptive to the flow of
-interaction, so they should be used sparingly. As the control flow is
+interaction, so are used sparingly. As the control flow is
 blocked until the window is dismissed, functions that display modal
 dialogs can return a value when an event occurs, rather than have a
 handler respond to asynchronous input. The \command{file.choose}
@@ -819,8 +817,7 @@ each column has a specific data type and cell rendering strategy.
 Table widgets handle the display, sorting and selection of records
 from a dataset. Depending on the configuration of the widget, cells
 may be editable.  Figure~\ref{fig:GUI:spotfire} shows a table widget
-in a Spotfire web player demonstration. It displays the cases that a
-pass a user-specified filter.
+in a Spotfire web player demonstration. 
 
 \begin{figure}
   \centering
@@ -860,7 +857,7 @@ data, and how table widgets display tabular data, like that in a data
 frame. Other widgets support the display of more complex data
 structures. If the data has a heirarchical structure, then a \dfn{tree
   widget} may be appropriate for its display. Examples of heirarchical
-data in \R are directory structures, the components of a list, or
+data in \R\/ are directory structures, the components of a list, or
 class hierarchies. The object browser in \pkg{JGR} uses a tree
 widget to show the components of the objects in a users session (the
 left graphic of Figure~\ref{fig:GUI:R-guis-exs-JGR-Rcmdr}). The root
@@ -901,8 +898,8 @@ such a language, but it is still preferable to the alternative.
 \label{sec:GUI:textboxes}
 
 The right graphic
-of Figure~\ref{fig:GUI:R-guis-exs-JGR-Rcmdr} shows a multi-line text entry
-in \pkg{Rcmdr}. It provides an \R\/ console and status message area. The
+of Figure~\ref{fig:GUI:R-guis-exs-JGR-Rcmdr} shows three multi-line text entries
+in an \pkg{Rcmdr} window. It provides an \R\/ console and status message area. The
 ``Output Window'' demonstrates the utility of formatting
 attributes. In this case, attributes specify the color of
 the commands, so that the input can be distinguished from the output.
@@ -956,7 +953,7 @@ the commands, so that the input can be distinguished from the output.
 \label{sec:GUI:info-display}
 
 Some widgets display information but do not respond to user
-input. These are called static controls in \wxWidgets. Their main
+input. Their main
 purpose is to guide and the user through the GUI and to display
 feedback and status messages.
 
@@ -966,7 +963,7 @@ feedback and status messages.
 A label is a widget for placing text into a GUI that is typically not
 intended for editing, or even selecting with a mouse. The main role of
 a label is to describe another component of the GUI. Most toolkits
-support rich text in labels. Figure~\ref{fig:GUI:Rcmdr-main-window}
+support rich text in labels. Figure~\ref{fig:GUI:R-guis-exs-JGR-Rcmdr}
 shows labels marked in red and blue in \pkg{tcltk}.
 
 \subsubsection{Statusbars}
@@ -976,23 +973,28 @@ A statusbar displays general status messages, as well as feedback on
 actions initiated by the user, such as progress or errors. In the
 traditional document-oriented GUI, statusbars are placed at the bottom.
 
+Related to status bar are info bars or alert boxes, that allow a
+programmer to leave a transient message for the user usually just
+below the toolbar.
+
+\subsubsection{Tooltips}
+\label{sec:GUI:basic-tooltips}
+
+A tooltip is a small window that is displayed when a user hovers their
+mouse over a tooltip-enabled widget. These are an embellishment for
+providing extra information about a particular piece of content
+displayed by a widget. A common use-case is to guide new users of a
+GUI. Many toolkits support the display of interactive hypertext in a
+tooltip, which allows the user to request additional details.
+
 \subsubsection{Progress bars}
 
 A progress bar indicates progress on a particular task, which may or
 may not be bounded. A bounded progress bar usually reports progress in
 terms of percentage completed. Progress bars should be familiar, as
 they are often displayed during software installation and while
-downloading a file.
-
-\subsubsection{Tooltips}
-\label{sec:GUI:basic-tooltips}
-
-A tooltip is a small window that is displayed when a user hovers their
-mouse over a tooltip-enabled widget. These are useful for providing
-extra information about a particular piece of content displayed by a
-widget. A common use-case is to guide new users of a GUI. Many
-toolkits support the display of interactive hypertext in a tooltip,
-which allows the user to request additional details.
+downloading a file. For long-running statistical procedures they can
+give useful feedback to the user that something is happening.
 
 %% combined with modal dialogs
 % \subsection{Choosers}
@@ -1053,7 +1055,7 @@ A layout emerges from the organization of the widgets into a
 hierarchy, where a parent widget positions its children within its
 allocated space.  The top-level window is parentless and forms the
 root of the hierarchy. A parent visually contains its children and
-thus is usually called a \textit{container}. This design is natural,
+thus is usually called a \defn{container}. This design is natural,
 because almost every GUI has a hierarchical layout. It is easy to
 apply a different layout strategy to each region of a GUI, and when a
 parent is added or removed from the GUI, so are its children.
@@ -1063,7 +1065,7 @@ and dimensions for every widget in a GUI. However, such static layouts
 do not scale well to changes in the state of the application or simply
 changes to the window size dictated by the window manager. Thus, it is
 strongly encouraged to delegate the responsibility of layout to a
-\textit{layout manager} that dynamically calculates the layout as
+\defn{layout manager} that dynamically calculates the layout as
 constraints change. Depending on the toolkit, the layout manager might
 be the container itself, or it might be a separate object to which the
 container delegates.
@@ -1169,9 +1171,9 @@ Options'', and ``Additional Tags''.
 \subsubsection{Expanding boxes}
 \label{sec:GUI:expanding-boxes}
 
-The expanding box will show or hide its children, according to the
+An expanding container, or box, will show or hide its children, according to the
 state of a toggle button. By way of analogy, radio buttons are to
-notebooks as check buttons are to expanding boxes. An expanding box
+notebooks as check buttons are to expanding containers. An expanding box
 allows the user to adapt a GUI to a particular use case or mode of
 operation. Often, an expanding box contains so-called ``advanced''
 widgets that are only occassionally useful and are only of interest to
@@ -1233,38 +1235,37 @@ panel in Figure~\ref{fig:GUI:box-possibilities}. One could think
 of this space being occupied by an invisible spring. Invisible
 expanding widgets also act as springs.
 
+
 \begin{figure}
   \centering
-  \includegraphics[width=.35\textwidth]{box-horizontal}
-  \includegraphics[width=.35\textwidth]{box-alignment}\\
-  \includegraphics[width=.35\textwidth]{box-expand}
-  \includegraphics[width=.35\textwidth]{box-glue-spring}
+  \includegraphics[width=.35\textwidth]{fig-basics-hor-ver}
+  \includegraphics[width=.35\textwidth]{fig-basics-alignment}\\
+  \includegraphics[width=.35\textwidth]{fig-basics-fill}
+  \includegraphics[width=.35\textwidth]{fig-basics-spring}
   \caption{
-    XXX REPLACE WITH REAL GRAPHICS XXX.
-    %% 
+   %% 
     Different possibilities for packing child components within
     a box. 
     %% 
     The upper left shows horizontal and vertical layout.
     %% 
-    The upper right shows some possible alignements.
+    The upper right shows some possible alignments or anchorings.
     %% 
-    The lower left shows that a child could possibly be anchored in
-    one of 9 positions. As well, it could ``expand'' to fill the space
-    either horizontally (as shown) or  vertically, or both.
+    The lower left shows that a child could ``expand'' to fill the space
+    either horizontally, vertically, or both.
     %% 
     The lower right shows both a fixed amount of space between the
-    children and an expanding spring between the child components.
-  }
+    children and an expanding spring between the child components.  }
   \label{fig:GUI:box-possibilities}
 \end{figure}
 
-The button box shows five buttons as child components. At first glance
-the sizing appears to show that each button is drawn to fully show its label
-with some fixed space placed between the buttons. If the dialog is
-expanded, it is seen that there is a spring between the 3rd and 4th
-buttons, so that the first 3 are aligned with the left side of the
-window and the last two the right side.
+The button box in the KDE print dialog shows five buttons as child
+components. At first glance the sizing appears to show that each
+button is drawn to fully show its label with some fixed space placed
+between the buttons. If the dialog is expanded, it is seen that there
+is a spring between the 3rd and 4th buttons, so that the first 3 are
+aligned with the left side of the window and the last two the right
+side.
 
 \subsubsection{Grid layout}
 \label{sec:GUI:grid-layout}
