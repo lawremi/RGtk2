@@ -1117,7 +1117,7 @@ buffer:
 %% other constructor below to run
 %% ML: The following should work eventually. I just have to re-run the code
 %% generator.
-<<gtk-mvc-entry-buffer>>=
+<<gtk-mvc-entry-buffer, eval=FALSE>>=
 buffer <- gtkEntryBuffer()        
 entry1 <- gtkEntry(buffer = buffer)
 entry2 <- gtkEntry(buffer = buffer)

@@ -701,6 +701,44 @@ spinner$start()
 spinner$stop()
 @ 
 
+
+\section{Wizards}
+\labe{sec:gtk-wizards}
+
+The \class{GtkAssistant} class provides a wizard widget for \GTK. The
+basic setup is one adds pages to the assistant object and they are
+navigated in a linear manner. In our example, we will see how to
+override this. 
+
+
+Wizard pages have a certain type which must be declared. These are
+enumerated in \code{GtkAssistantPageType} and set by \method{setPageType}{gtkAssistant}. The last page must be of
+type \qcode{confirm}, \qcode{summary}, or \qcode{progress}.
+Each wizard page has a content area and buttons.  As well, each page
+in the assistant object has an optional side image, header image
+and/or page title that may be customized. The buttons allow the user
+to navigate through the wizard. The content area of a wizard page is
+simply an instance of class \class{GtkWidget} (e.g., some container) and are
+added to the assistant through the \method{appendPage}{gtkAssistant},
+\method{insertPage}{gtkAssistant}, or
+\method{prependPage}{gtkAssistant} methods. Pages are referred to by
+the \class{GtkWidget} object or their page index, $0$-based. The
+\code{forward} button on a page must be made sensitive by calling
+\method{setPageComplete}{gtkAssistant} with the widget and logical
+value.
+
+%% signal
+\paragraph{signals}
+The \code{cancel} button emits a \signal{cancel} signal that can be
+connected to for destroying the wizard widget. The \signal{apply}
+signal is emitted on a page change. The \signal{prepare} signal is
+emitted just before a page is made visible. This is needed to create
+dynamically generated pages.
+
+\begin{example}{An \code{install.packages} wizard}{eg-RGtk2-install-packages}
+  \SweaveInput{ex-RGtk2-install-wizard}
+\end{example}
+
 \section{Embedding R Graphics}
 \label{sec:gtk-widget-graphics}
 

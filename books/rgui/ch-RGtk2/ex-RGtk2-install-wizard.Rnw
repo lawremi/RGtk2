@@ -1,0 +1,260 @@
+<<installPackagesWizard, echo=FALSE>>=
+## gtk Assistant example
+require(RGtk2)
+@ 
+
+This example wraps the \function{install.packages} function into a
+wizard with different pages for the (optional) selection of a CRAN
+mirror, the selection of the package to install, the configuration
+options provided and feedback. In general, wizards are quite common
+for software installation.
+
+We begin by defining our assistant and connecting to its
+\signal{cancel} signal.
+<<defineAssistant, results=hide>>=
+asst <- gtkAssistant(show=FALSE)
+asst$setSizeRequest(500, 500)
+gSignalConnect(asst, "cancel", function(asst) asst$destroy())
+@
+
+Our pages will be computed dynamically. here we populate the pages
+using box containers and specify their respective types. 
+<<makePages, results=hide>>=
+pages <- lapply(1:5, gtkVBox, spacing=5, homogeneous=FALSE)
+page_types <- c("intro", rep("confirm",3), "summary")
+sapply(pages, gtkAssistantAppendPage, object=asst)
+sapply(pages, gtkAssistantSetPageType, object=asst, type=page_types)
+@ 
+%
+We customize each page with a logo, using a side log here.
+<<sideLogo, results=hide>>=
+image <- gdkPixbuf(filename = imagefile("rgtk-logo.gif"))[[1]]
+sapply(pages, gtkAssistantSetPageSideImage, object=asst, pixbuf=image)
+@ 
+
+When a page is about to be called we check and see if it has any
+children, if not we call a function to create the page. These
+functions are stored in a list so that they can be called by page index.
+<<>>=
+populatePage <- list()                
+gSignalConnect(asst, "prepare", function(a, w, data) {
+  page_no <- which(sapply(pages, identical, w))
+  if(!length(w$getChildren()))
+    populatePage[[page_no]]()
+})
+@
+
+Although we don't show how to create the CRAN selection page
+(cf. Example~\ref{ex:RGtk2-add-toggle-to-df} for a similar
+construction) we call \method{setForwardPageFunc}{gtkAssistant} to set
+a function that will skip this page if it is not needed. This function
+simply returns an integer with the next page number based on the last one.
+<<>>=
+asst$setForwardPageFunc(function(i, data) {
+  if(i == 0 && have_CRAN()) return(2L) else return(as.integer(i+1))
+}, data=NULL)
+@ 
+
+We have a few script globals that allow us to pass data between pages.
+<<>>=
+CRAN_package <- NA
+install_options <- list() #type, dependencies, lib
+@ 
+
+<<HelperFunctions, echo=FALSE>>=
+## Helper functions
+##' return value or NA
+##'
+gtkTreeViewGetSelectedValue <- function(object, column) {
+  cur <- object$getSelection()$getSelected()
+  if(cur$retval)
+    with(cur, object$getModel()$getValue(iter, column -1 )$value)
+  else
+    NA
+}
+
+
+have_CRAN <- function() getOption("repos")["CRAN"] != "@CRAN@"
+
+##' from getCRANmirrors
+set_CRAN <- function(url) {
+  if(is.null(url)) return()
+  repos <- getOption("repos")
+  repos["CRAN"] <- gsub("/$", "", url)
+  options(repos=repos)
+}
+@ 
+
+
+
+
+
+We now show how some of the pages are populated. The initial screen is
+a welcome and simply shows a label. It is immediately complete.
+
+<<page1>>=
+populatePage[[1]] <- function() {
+  asst$setPageTitle(pages[[1]], "Install a CRAN package")
+  pages[[1]]$packStart(l <- gtkLabel())
+  pages[[1]]$packStart(gtkLabel(), expand=TRUE) # a spring
+  
+  l$setMarkup(paste("<span font='x-large'>Install a CRAN package</span>",
+                    "This wizard will help install a package from <b>CRAN</b>",
+                    "If you have not already specified a CRAN repository, one",
+                    "you will be prompted to do so.",
+                    sep="\n"))
+  asst$setPageComplete(pages[[1]], TRUE)
+}
+@ 
+
+
+<<CRANMirror, echo=FALSE>>=
+## Not shown
+populatePage[[2]] <- function() {
+  asst$setPageTitle(pages[[2]], "Select a CRAN mirror")
+
+  CRAN_mirrors <- getCRANmirrors(all = FALSE, local.only = FALSE)[, c(1,2,4)]
+  nms <- names(CRAN_mirrors)
+  d <- rGtkDataFrame(CRAN_mirrors)
+  #
+  view <- gtkTreeView()
+  mapply(view$insertColumnWithAttributes, -1, nms[1:2], 
+         list(gtkCellRendererText()), text = 0:1)
+  view$setModel(d)
+  view$getSelection()$unselectAll()     # no selection
+  gSignalConnect(view$getSelection(), "changed", function(view, ...) {
+    CRAN_repos <- view$getSelectedValue(3)
+    set_CRAN(CRAN_repos)
+    asst$setPageComplete(pages[[2]], TRUE)
+  }, data=view, user.data.first=TRUE)
+  
+  
+  sw <- gtkScrolledWindow(); sw$add(view)
+  sw$setPolicy("automatic", "automatic")
+  
+  pages[[2]]$packStart(gtkLabel("Select a CRAN mirror"), expand=FALSE)
+  pages[[2]]$packStart(sw, expand=TRUE, fill=TRUE)
+
+}
+@ 
+  
+  
+<<SelectPacakge, echo=FALSE>>=
+## Not shown
+populatePage[[3]] <- function() {
+  asst$setPageTitle(pages[[3]], "Select a CRAN package")
+  #
+  avail_packages <- available.packages()[, c(1,2)]
+  nms <- colnames(avail_packages)
+  avail_packages_store <- rGtkDataFrame(avail_packages)
+  #
+  view <- gtkTreeView()
+  mapply(view$insertColumnWithAttributes, -1, nms, 
+         list(gtkCellRendererText()), text = 0:1)
+  view$setModel(avail_packages_store)
+  gSignalConnect(view$getSelection(), "changed", function(view, ...) {
+    CRAN_package <<- view$getSelectedValue(1)
+    asst$setPageComplete(pages[[3]], TRUE)
+  }, data=view, user.data.first=TRUE) 
+  view$getSelection()$unselectAll()     # no selection  
+  #
+  sw <- gtkScrolledWindow(); sw$add(view)
+  sw$setPolicy("automatic", "automatic")
+  #
+  pages[[3]]$packStart(gtkLabel("Select a package to install"), expand=FALSE)
+  pages[[3]]$packStart(sw, expand=TRUE, fill=TRUE)
+}
+@ 
+
+We skip showing the pages to select a CRAN site and a package, as they
+are based on the forthcoming \class{GtkTreeView} class. On the
+fourth page is a summary of the package taken from CRAN and a chance
+for the user to configure a few options for \function{install.packages}.
+<<>>=
+populatePage[[4]] <- function() {
+  asst$setPageTitle(pages[[4]], "Install CRAN package")
+  #
+  get_desc <- function(pkgname) {
+    x <- readLines(sprintf("http://cran.r-project.org/web/packages/%s/DESCRIPTION", pkgname))
+    f <- tempfile(); cat(paste(x, collapse="\n"), file=f)
+    read.dcf(f)
+  }
+  pkg_desc <- get_desc(CRAN_package)
+  #
+  l <- gtkLabel()
+  l$setMarkup(paste(
+                    sprintf("Install package: <b>%s</b>", pkg_desc[1, 'Package']),
+                    "\n",
+                    sprintf("%s", pkg_desc[1, 'Description']),
+                    sep="\n"))
+  
+  pages[[4]]$packStart(l)
+  #
+  tbl <- gtkTable()
+  pages[[4]]$packStart(tbl, expand=FALSE)
+  pages[[4]]$packStart(gtkLabel(), expand=TRUE)
+  
+  #
+  combo <- gtkComboBoxNewText()
+  pkg_types <- c("source", "mac.binary", "mac.binary.leopard", "win.binary", "win64.binary")
+  sapply(pkg_types, combo$appendText)
+  combo$setActive(which(getOption("pkgType") == pkg_types) - 1)
+  gSignalConnect(combo, "changed", function(w, ...) {
+    install_options[['type']] <<- pkg_types[1 + w$getActive()]
+  })
+  tbl$attachDefaults(gtkLabel("Package type:"), 0, 1, 0, 1)
+  tbl$attachDefaults(combo, 1, 2, 0, 1)
+
+  #
+  cb <- gtkCheckButton()
+  cb$setActive(TRUE)
+  gSignalConnect(cb, "toggled", function(w) {
+    install_options[['dependencies']] <<- w$getActive()
+  })
+  tbl$attachDefaults(gtkLabel("Install dependencies"), 0, 1, 1, 2)
+  tbl$attachDefaults(cb, 1, 2, 1, 2)
+
+  #
+  fc <- gtkFileChooserButton("Select a directory...", "select-folder")
+  fc$setFilename(.libPaths()[1])
+  gSignalConnect(fc, "selection-changed", function(w) {
+    dir <- w$getFilename()
+    install_options[['lib']] <<- dir
+  })
+  tbl$attachDefaults(gtkLabel("Where"), 0, 1, 2, 3)
+  tbl$attachDefaults(fc, 1, 2, 2, 3)
+
+  asst$setPageComplete(pages[[4]], TRUE)
+}
+@ 
+
+Our last page, where the selected package is installed, would
+naturally be of type \code{progress}, but there is no means to
+interrupt the flow of \function{install.packages} to update the
+page. A real application would reimplement that. Instead we just set a
+message once the package install attempt is done.
+<<>>=
+populatePage[[5]] <- function() {
+  asst$setPageTitle(pages[[5]], "Done")
+  install_options$pkgs <- CRAN_package
+  out <- try(do.call("install.packages", install_options), silent=TRUE)
+
+  l <- gtkLabel(); pages[[5]]$packStart(l)
+  if(!inherits(out, "try-error")) {
+    l$setMarkup(sprintf("Package %s installed successfully", CRAN_package))
+  } else {
+    l$setMarkup(paste(sprintf("Package %s failed to install", CRAN_package),
+                      paste(out, collapse="\n"),
+                      sep="\n"))
+  }
+
+  asst$setPageComplete(pages[[5]], FALSE)
+}
+@ 
+
+To finish we simply need to populate the first page and call the
+assistant's \meth{show} method.
+<<showAssistant>>=
+populatePage[[1]]()
+asst$show()
+@   
