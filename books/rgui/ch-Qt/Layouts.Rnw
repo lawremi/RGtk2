@@ -31,9 +31,9 @@ layout, \class{QHBoxLayout}:
 layout <- Qt$QHBoxLayout()
 @ 
 %
-Details specific to box layouts are presented in
-Section~\ref{sec:qt-layout-box}. \class{QHBoxLayout}, like all other
-layouts, is derived from the \class{QLayout} base class.
+\class{QHBoxLayout}, like all other layouts, is derived from the
+\class{QLayout} base class. Details specific to box layouts are
+presented in Section~\ref{sec:qt-layout-box}.
 
 A layout is not a widget. Instead, a layout is set on a
 widget, and the widget delegates the layout of its children to the
@@ -86,10 +86,7 @@ button$setParent(NULL)
 
 \subsection{Size and Space Negotiation}
 
-The allocation of space to child widgets depends on several
-factors.
-
-%% http://doc.qt.nokia.com/4.6/layout.html
+The allocation of space to child widgets depends on several factors.
 The \Qt{} documentation for layouts spells out the
 steps:~\footnote{\url{http://doc.qt.nokia.com/4.6/layout.html}}
 \begin{enumerate}
@@ -330,7 +327,7 @@ We have limited the height of the box to $10$ pixels.
 The \class{QGridLayout} class provides a grid layout for aligning its
 child widgets into rows and columns.  To illustrate grid layouts we
 mock up a GUI centered around a text area widget
-(FIgure~\ref{fig:qt-layout-example}). To begin, we create the window
+(Figure~\ref{fig:qt-layout-example}). To begin, we create the window
 with the grid layout:
 <<hidden, results=hide>>=
 w <- Qt$QWidget()
@@ -445,11 +442,11 @@ methods \method{rowCount}{QGridLayout} and
 \label{sec:form-layouts}
 
 Forms can easily be arranged with the grid layout, but \Qt{} provides
-an even more convenient form layout (\class{QFormLayout}) that has the
-added benefit of conforming to platform-specific conventions. A form
-consists of a number of rows, where each row has a label and
-an input widget. We create a form and add some rows for gathering
-parameters to the \function{dnorm} function:
+a convenient high-level form layout (\class{QFormLayout}) that
+conforms to platform-specific conventions. A form consists of a number
+of rows, where each row has a label and an input widget. We create a
+form and add some rows for gathering parameters to the
+\function{dnorm} function:
 <<FormLayoutExample, results=hide>>=
 w <- Qt$QWidget()
 w$setWindowTitle("Wrapper for 'dnorm' function")
@@ -480,18 +477,16 @@ the quantile parameter:
 quantileEdit <- flyt$itemAt(0, Qt$QFormLayout$FieldRole)
 @ 
 
-%%%%%%%%%%%%%%%%%%%%%%% FOR WIDGET CHAPTER %%%%%%%%%%%%%%%%%%%%%%%%
-
 \section{Frames}
 \label{sec:framed-layouts}
 
 The frame widget, \class{QGroupBox}, groups conceptually related
-widgets by drawing a border around them and displaying a title
-reflecting the common theme. \class{QGroupBox} is often used to group
-radio buttons, see Section~\ref{sec:radio-groups} for an example.  The
-title, stored in the \property{title} property, may be aligned to
-left, right or center, depending on the \property{alignment} property,
-see Figure~\ref{fig:group-box-example}. If the \property{checkable}
+widgets by drawing a border around them and displaying a
+title. \class{QGroupBox} is often used to group radio buttons, see
+Section~\ref{sec:radio-groups} for an example.  The title, stored in
+the \property{title} property, may be aligned to left, right or
+center, depending on the \property{alignment} property, see
+Figure~\ref{fig:group-box-example}. If the \property{checkable}
 property is \qcode{TRUE}, the frame contents can be enabled or
 disabled by clicking a check button.
 
@@ -626,9 +621,30 @@ sa$setWidget(image)
 @ 
 %
 
-%%%% TODO
+Next, we define a function for zooming the image:
+<<qt-layout-scrolled-zoom>>=
+zoomImage <- function(x = 2.0) {
+  image$resize(x * image$pixmap$size())
+  updateScrollBar <- function(sb) {
+    sb$value <- x * sb$value + (x - 1) * sb$pageStep / 2
+  }
+  updateScrollBar(sa$horizontalScrollBar())
+  updateScrollBar(sa$verticalScrollBar())
+}
+@
+%
+Of note here is that we are scaling the size of the pixmap using the
+\function{*} function, which \pkg{qtbase} is forwarding to the
+corresponding method on the \class{QSize} object. Updating the scroll
+bars is also somewhat tricky, since their value corresponds to the
+top-left, while we want to preserve the center point.  We leave the
+interface for calling the \function{zoomImage} function as an exercise
+for the interested reader.
 
-%% And don't foget to mention the corner widget
+The geometry of a scroll area is such that there is an empty space in
+the corner between the ends of the scroll bars. To place a widget in
+the corner, pass it to the
+\method{setCornerWidget}{QAbstractScrollArea} method.
 
 <<echo=FALSE, results=hide>>=
 sa$show()

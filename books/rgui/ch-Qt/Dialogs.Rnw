@@ -11,8 +11,8 @@
 for printing, selecting files, selecting colors, and, most usefully,
 sending simple messages and input requests to the user. We first
 introduce message and input dialogs. This is followed by a discussion
-of the infrastructure in \Qt{} for implementing custom
-dialogs. Finally, we briefly introduce some of the remaining
+of the infrastructure in \Qt{} for implementing custom dialogs and
+wizards. Finally, we briefly introduce some of the remaining
 high-level dialogs, such as the file selector.
 
 \subsection{Message Dialogs}
@@ -95,22 +95,26 @@ convenience methods, the return value indicates the
 button/response. 
 
 To present a non-modal dialog, we first need to register a response
-listener, as the response will arrive asynchronously. Then we show,
-raise and activate the dialog:
-<<qt-dialogs-show, results=hide>>=
+listener, as the response will arrive asynchronously:
+<<qt-dialogs-listen>>=
 qconnect(dlg, "finished", function(response) {
   ## handle response
   ## dlg$close() necessary?
 })
-dlg$show()
-dlg$raise()
-dlg$activateWindow()
 @ 
 %
 There are several signals that indicate user response, including
 \qcode{finished}, \qcode{accepted}, and \qcode{rejected}. The most
 general is \qcode{finished}, which passes the button/response code as
 its only argument.
+
+Then we show, raise and activate the dialog:
+<<qt-dialogs-show, results=hide>>=
+dlg$show()
+dlg$raise()
+dlg$activateWindow()
+@ 
+%
 
 Modal dialogs may be window modal (\code{Qt\$Qt\$WindowModal}), where
 the dialog blocks all access to its ancestor windows, or application
@@ -203,89 +207,6 @@ if (dlg$exec())
   print(dlg$textValue())
 @ 
 
-\subsection{File and Directory Choosing Dialogs}
-\label{sec:file-direct-choosing}
-
-
-\class{QFileDialog} allows the user to select files and directories,
-by default using the platform native file dialog.  As with other
-dialogs there are static methods to create dialogs with standard
-options.  These are \qcode{getOpenFileName}, \qcode{getOpenFileNames},
-\qcode{getExistingDirectory}, and \qcode{getSaveFileName}.  To select
-a file name to open we would have:
-<<QFIleDialog, eval=FALSE>>=
-fname <- Qt$QFileDialog$getOpenFileName(NULL, "Open a file...", getwd())
-@ 
-%
-All take as intial arguments a parent, a caption and a
-directory. Other arguments allow one to set a filter, say. For basic
-use, these are nearly as easy to use as \R's \function{file.choose}.
-If a file is selected, \code{fname} will contain the full path to the
-file, otherwise it will be \code{NULL}.
-
-To allow multiple selection, call the plural form of the method:
-<<eval=FALSE>>=
-fnames <- Qt$QFileDialog$getOpenFileNames(NULL, "Open file(s)...", getwd())
-@ 
-
-To select a file name for saving, we have
-<<eval=FALSE>>=
-fname <- Qt$QFileDialog$getSaveFileName(NULL, "Save as...", getwd())
-@ 
-
-And to choose a directory, 
-<<eval=FALSE>>=
-dname <- Qt$QFileDialog$getExistingDirectory(NULL, "Select directory", getwd())
-@ 
-
-To specify a filter by file extension, we use a name filter. A name
-filter is of the form \code{Description (*.ext *.ext2)} (no comma) where this
-would match files with extensions \code{ext} or \code{ext2}. Multiple
-filters can be used by separating them with two semicolons. For
-example, this would be a natural filter for \R{} users:
-<<>>=
-rfilter <- paste("R files (*.R .RData)",
-                "Sweave files (*.Rnw)",
-                "All files (*.*)", sep=";;")
-fnames <- Qt$QFileDialog$getOpenFileNames(NULL, 
-                        "Open file(s)...", getwd(), 
-                        rfilter)
-@ 
-
-Although the static functions provide most of the functionality, to
-fully configure a dialog, it may be necessary to explicitly construct
-and manipulate a dialog instance. Examples of options not available
-from the static methods are history (previously selected file names),
-sidebar shortcut URLs, and filters based on low-level file attributes
-like permissions.
-
-\begin{example}{File dialogs}{ex:qt-r-files-dialog}
-We construct a dialog for opening an R-related file, using the file
-names selected above as the history:
-<<QFileDialogAPI, results=hide>>=
-dlg <- Qt$QFileDialog(NULL, "Choose an R file", getwd(), rfilter)
-dlg$fileMode <- Qt$QFileDialog$ExistingFiles
-dlg$setHistory(fnames)
-@
-%
-The dialog is executed like any other. To get the specified files,
-call \method{selectedFiles}{QFileDialog}:
-<<eval=FALSE>>=
-if(dlg$exec())
-  print(dlg$selectedFiles())
-@ 
-
-\end{example}
-
-\subsection{Other Choosers}
-\label{sec:choosers}
-
-\Qt/ provides several additional dialog types for choosing a
-particular type of item. These include \class{QColorDialog} for
-picking a color, and \class{QFontDialog} for selecting a font. These
-special case dialogs will not be discussed further here.
-
-%% MOVEME: to dialog part
 \subsection{Button boxes}
 \label{sec:button-boxes}
 
@@ -323,12 +244,8 @@ example, we added a standard \code{OK} button, with the label ``OK''
 \code{Cancel} button has the appropriate label and \code{CancelRole}
 as its role. Icons are also displayed, depending on the platform and
 theme. The benefits of using standard buttons include convenience,
-standardization, and automatic translation of labels.
-
-The first button added with the \code{AcceptRole} role is made the
-default. Overriding this requires adding the default button with
-\method{addButton}{QDialogButtonBox} and setting the
-\property{default} property on the returned button object.
+standardization, platform consistency, and automatic translation of
+labels.
 
 To respond to user input, one can connect directly to the
 \signal{clicked} signal on a given button. It is often more
@@ -340,20 +257,26 @@ button with the \code{AcceptRole} or \code{YesRole} is clicked;
 or \code{clicked} when any button is clicked. For this last signal,
 the callback is passed the button object.
 <<qt-widgets-buttonbox-signals>>=
-qconnect(db, "accepted", function() print("accepted"))
-qconnect(db, "rejected", function() print("rejected"))
-qconnect(db, "helpRequested", function() print("help"))
+qconnect(db, "accepted", function() message("accepted"))
+qconnect(db, "rejected", function() message("rejected"))
+qconnect(db, "helpRequested", function() message("help"))
+qconnect(db, "clicked", function(button) message(button$text))
 @ 
 
 <<echo=FALSE, results=hide>>=
 db$show(); db$raise()
 @ 
 
+The first button added with the \code{AcceptRole} role is made the
+default. Overriding this requires adding the default button with
+\method{addButton}{QDialogButtonBox} and setting the
+\property{default} property on the returned button object.
+
 \subsection{Custom Dialogs}
 \label{sec:qdialog}
 
-Every dialog in \Qt{} inherits from \class{QDialog}, and we can
-leverage it for our own custom dialogs. One approach is to construct
+Every dialog in \Qt{} inherits from \class{QDialog}, which we can
+leverage for our own custom dialogs. One approach is to construct
 an instance of \class{QDialog} and add arbitrary widgets to its
 layout. However, we suggest an alternative approach: extend
 \class{QDialog} or one of its derivates and implement the custom
@@ -365,21 +288,23 @@ user.
 We begin by defining our class and its constructor:
 <<extend-date-dialog>>=
 qsetClass("DateDialog", Qt$QDialog, 
-function(parent = NULL) {
-  super(parent=parent)
-  setWindowTitle("Choose a date")
-  this$calendar <- Qt$QCalendarWidget()
-  buttonBox <- Qt$QDialogButtonBox(Qt$QMessageBox$Cancel | Qt$QMessageBox$Ok)
-  layout <- Qt$QVBoxLayout()
-  layout$addWidget(calendar)
-  layout$addWidget(buttonBox)
-  setLayout(layout)
-})
+          function(parent = NULL) {
+            super(parent=parent)
+            setWindowTitle("Choose a date")
+            this$calendar <- Qt$QCalendarWidget()
+            buttonBox <- 
+              Qt$QDialogButtonBox(Qt$QMessageBox$Cancel | 
+                                  Qt$QMessageBox$Ok)
+            layout <- Qt$QVBoxLayout()
+            layout$addWidget(calendar)
+            layout$addWidget(buttonBox)
+            setLayout(layout)
+          })
 @ 
 %
 Our dialog consists of a calendar, implemented by the
 \class{QCalendarWidget}, and a set of response buttons, organized by a
-\class{QDialogButtonBox}. The calendar is stored as a dynamic field on
+\class{QDialogButtonBox}. The calendar is stored as a field on
 the instance, so that we can retrieve the selected date upon request.
 
 We define a method that gets the currently selected date:
@@ -404,19 +329,28 @@ if (dateDialog$exec())
 the user through a sequential, possibly branching process. Wizards are
 composed of pages, and each page has a consistent interface, usually
 including buttons for moving backwards and forwards through the
-pages. 
+pages. The look and feel of a \class{QWizard} is consistent with
+platform conventions.
 
+We create a wizard object and set its title:
 <<>>=
 wizard <- Qt$QWizard()
 wizard$setWindowTitle("A wizard")
+@ 
 
+Each page is represented by a \class{QWizardPage}. We create one for
+requesting the age of the user and add the page to the wizard:
+<<>>=
 getAgePage <- Qt$QWizardPage(wizard)
 getAgePage$setTitle("What is your age?")
 lyt <- Qt$QFormLayout()
 getAgePage$setLayout(lyt)
 lyt$addRow("Age", (age <- Qt$QLineEdit()))
 wizard$addPage(getAgePage)
+@ 
 
+Two more pages are added:
+<<>>=
 getToysPage <- Qt$QWizardPage(wizard)
 getToysPage$setTitle("What toys do you like?")
 lyt <- Qt$QFormLayout()
@@ -430,9 +364,104 @@ lyt <- Qt$QFormLayout()
 getGamesPage$setLayout(lyt)
 lyt$addRow("Games", (games <- Qt$QLineEdit()))
 wizard$addPage(getGamesPage)
+@ 
 
+Finally, we run the wizard by calling its \method{exec}{QWizard}
+method:
+<<>>=
 ret <- wizard$exec()
 @ 
+
+% A wizard may be decorated with several different types of
+% images. These appear consistently across the pages. The image type is
+% indicated by a value from the enumeration
+% \qtenumeration{QWizard::WizardPixmap}, which includes
+% \qcode{WatermarkPixmap} (tall image on left), \qcode{LogoPixmap} (in
+% top right corner), \qcode{BannerPixmap} (across the top), and
+% \qcode{BackgroundPixmap}. For example, we could add a  
+
+\subsection{File and Directory Choosing Dialogs}
+\label{sec:file-direct-choosing}
+
+
+\class{QFileDialog} allows the user to select files and directories,
+by default using the platform native file dialog.  As with other
+dialogs there are static methods to create dialogs with standard
+options.  These are \qcode{getOpenFileName}, \qcode{getOpenFileNames},
+\qcode{getExistingDirectory}, and \qcode{getSaveFileName}.  To select
+a file name to open we would have:
+<<QFIleDialog, eval=FALSE>>=
+fname <- Qt$QFileDialog$getOpenFileName(NULL, "Open a file...", getwd())
+@ 
+% 
+All take as intial arguments a parent, a caption and a
+directory. Other arguments allow one to set a filter, say. For basic
+use, these are nearly as easy to use as \R's \function{file.choose}.
+If a file is selected, \code{fname} will contain the full path to the
+file, otherwise it will be \code{NULL}.
+
+To allow multiple selection, call the plural form of the method:
+<<eval=FALSE>>=
+fnames <- Qt$QFileDialog$getOpenFileNames(NULL, "Open file(s)...", getwd())
+@ 
+
+To select a file name for saving, we have
+<<eval=FALSE>>=
+fname <- Qt$QFileDialog$getSaveFileName(NULL, "Save as...", getwd())
+@ 
+
+And to choose a directory, 
+<<eval=FALSE>>=
+dname <- Qt$QFileDialog$getExistingDirectory(NULL, "Select directory", getwd())
+@ 
+
+To specify a filter by file extension, we use a name filter. A name
+filter is of the form \code{Description (*.ext *.ext2)} (no comma) where this
+would match files with extensions \code{ext} or \code{ext2}. Multiple
+filters can be used by separating them with two semicolons. For
+example, this would be a natural filter for \R{} users:
+<<>>=
+rfilter <- paste("R files (*.R .RData)",
+"Sweave files (*.Rnw)",
+"All files (*.*)", sep=";;")
+fnames <- Qt$QFileDialog$getOpenFileNames(NULL, 
+"Open file(s)...", getwd(), 
+rfilter)
+@ 
+
+Although the static functions provide most of the functionality, to
+fully configure a dialog, it may be necessary to explicitly construct
+and manipulate a dialog instance. Examples of options not available
+from the static methods are history (previously selected file names),
+sidebar shortcut URLs, and filters based on low-level file attributes
+like permissions.
+
+\begin{example}{File dialogs}{ex:qt-r-files-dialog}
+  We construct a dialog for opening an R-related file, using the file
+  names selected above as the history:
+<<QFileDialogAPI, results=hide>>=
+dlg <- Qt$QFileDialog(NULL, "Choose an R file", getwd(), rfilter)
+dlg$fileMode <- Qt$QFileDialog$ExistingFiles
+dlg$setHistory(fnames)
+@
+% 
+  The dialog is executed like any other. To get the specified files,
+  call \method{selectedFiles}{QFileDialog}:
+<<eval=FALSE>>=
+if(dlg$exec())
+  print(dlg$selectedFiles())
+@ 
+
+\end{example}
+
+\subsection{Other Choosers}
+\label{sec:choosers}
+
+\Qt/ provides several additional dialog types for choosing a
+particular type of item. These include \class{QColorDialog} for
+picking a color, and \class{QFontDialog} for selecting a font. These
+special case dialogs will not be discussed further here.
+
 
 
 % \subsection{Progress dialogs}

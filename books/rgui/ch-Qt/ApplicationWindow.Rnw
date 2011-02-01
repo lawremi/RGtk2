@@ -93,7 +93,7 @@ A checkable action in isolation behaves much like a check button. If
 checkable actions are placed together into a \class{QActionGroup}, the
 default behavior is such that only one is checked at once, analogous
 to a set of radio buttons. We could have an action for controlling the
-justification mode for text entry:
+justification mode for the text entry:
 <<qt-app-action-radio>>=
 justGroup <- Qt$QActionGroup()
 leftAction <- Qt$QAction("Left Align", justGroup)
@@ -121,7 +121,7 @@ key sequence, such as \texttt{Ctrl-O} on Windows, our action will be
 triggered. It is important not to confuse this shortcut mechanism with
 mnemonics, which are often indicated by underlining a letter in the
 label text of a menu item. A mnemonic is active only when the parent
-menu is active. These are disabled by default on Windows
+menu is active. Mnemonics are disabled by default on Windows
 and Mac installations of \Qt{} and thus are not covered here.
 
 \subsection{Menubars}
@@ -271,7 +271,7 @@ getIcon <- function(nm) {
 @ 
 
 We create each action, set its icon, and store it in a
-list for ease in manipulation at a later time in the program.
+list for ease of manipulation at a later time in the program:
 <<results=hide>>=
 fileActions <- list()
 fileActions$open <- Qt$QAction("Open", w)
@@ -335,7 +335,7 @@ There are three types of messages in a statusbar:
 \end{description}
 In addition to messages, one can embed widgets into the statusbar.
 
-We could communicate a temporary message a dataset is loaded:
+We could communicate a temporary message when a dataset is loaded:
 <<qt-app-statusbar-temporary>>=
 statusbar$showMessage("Load complete", 1000)
 @ 
@@ -354,7 +354,7 @@ statusbar$addPermanentWidget(Qt$QLabel("Version 1.0"))
 \subsection{Dockable widgets}
 \label{sec:dockable-widgets}
 
-In \Qt{} main windows support the concept of window docking. There is
+\class{QMainWindow} supports window docking. There is
 a \textit{dock area} for each of the four sides of the window (top,
 bottom, left and right). If a widget is assigned to a dock area, the
 user may, by default, drag the widget between the docking areas. If
@@ -382,12 +382,12 @@ dock$features <- Qt$QDockWidget$DockWidgetMovable |
 The \property{allowedAreas} property specifies the valid docking areas
 for a dock widget. By default, all are allowed.
 
-After configuring the dock widget, we need to add it to the main window:
+After configuring the dock widget, we add it to the main window, in
+the left docking area:
 <<qt-app-dock-add>>=
 mainWindow$addDockWidget(Qt$Qt$LeftDockWidgetArea, dock)
 @ 
 %
-We place the graphics device into the left docking area.
 
 A second graphics device could be added with the first, on a separate
 page of a tabbed notebook:
@@ -403,6 +403,6 @@ To make \Robject{dock2} a top-level window instead, we could set the
 dock2$floating <- TRUE
 @ 
 
-\begin{example}{Using a main widget for the layout of an IDE}{ex:qt-rstudio-layout}
+\begin{example}{A main window for an IDE}{ex:qt-rstudio-layout}
   \SweaveInput{ex-qt-mainwindow}
 \end{example}

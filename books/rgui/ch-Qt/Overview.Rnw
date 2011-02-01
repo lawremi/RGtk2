@@ -33,20 +33,21 @@ definition of signals, slots (signal handlers), and properties, which
 behave very similarly to those of \GTK.
 
 There are many languages with bindings to \Qt{}, and \R{} is one such
-language. The \pkg{qtbase} package interfaces with every module of
-\Qt. As its name suggests, \pkg{qtbase} forms the base for a number of
-\R{} packages that provide high-level special-purpose interfaces to
-\Qt{}. The \pkg{qtpaint} package extends the \Rclass{QGraphicsView}
-canvas to better support interactive statistical graphics. Features
-include: a layered buffering strategy, efficient spatial queries for
-mapping user actions to the data, and an OpenGL renderer optimized for
-statistical plots. An interface resembling that of the \pkg{lattice}
-package is provided for \pkg{qtpaint} by the \pkg{mosaiq} package. The
-\pkg{cranvas} package builds on \pkg{qtpaint} to provide a collection
-of high-level interactive plots in the conceptual vein of GGobi. A
-number of utilities are implemented by \pkg{qtutils}, including an
-object browser widget, an \R{} console widget, and a conventional \R{}
-graphics device based on \Rclass{QGraphicsView}.
+language. The \pkg{qtbase} package interfaces with every module of the
+library. As its name suggests, \pkg{qtbase} forms the base for a
+number of \R{} packages that provide high-level special-purpose
+interfaces to \Qt{}. The \pkg{qtpaint} package extends the
+\class{QGraphicsView} canvas to better support interactive statistical
+graphics. Features include: a layered buffering strategy, efficient
+spatial queries for mapping user actions to the data, and an OpenGL
+renderer optimized for statistical plots. An interface resembling that
+of the \pkg{lattice} package is provided for \pkg{qtpaint} by the
+\pkg{mosaiq} package. The \pkg{cranvas} package builds on
+\pkg{qtpaint} to provide a collection of high-level interactive plots
+in the conceptual vein of GGobi. A number of general utilities are
+implemented by \pkg{qtutils}, including an object browser widget, an
+\R{} console widget, and a conventional \R{} graphics device based on
+\Rclass{QGraphicsView}.
 
 While \pkg{qtbase} is not yet as mature as \pkg{tcltk} and
 \pkg{RGtk2}, we include it in this book, as \Qt{} compares favorably
@@ -60,14 +61,11 @@ some challenges to the \R{} user. In particular, the developer should
 have a strong grounding in object-oriented programming and have a
 basic understanding of memory management.
 
-The \pkg{qtbase} package is developed as part of the
-\textit{qtinterfaces} project at R Forge:
-\url{https://r-forge.r-project.org/projects/qtinterfaces/}. It depends
-on the \Qt{} framework, available as a binary install from
+%% ML: need to get this on CRAN before the book is published
+The development of \pkg{qtbase} package is hosted on Github
+(\url{http://github.com/ggobi/qtbase}).  It depends on the \Qt{}
+framework, available as a binary install from
 \url{http://qt.nokia.com/}.
-
-%% ML: I like the idea of a quick-start example up front, but it
-%% should probably come after the description of the Qt library.
 
 \section{An introductory example}
 \label{sec:qt-introductory-example}
@@ -78,6 +76,7 @@ on the \Qt{} framework, available as a binary install from
 
 The \pkg{qtbase} package exports very few objects. The central one is
 an environment, \code{Qt}, that represents the \Qt{} library in
+%% FIXME: RQtLibrary will become RSmokeLibrary, same with RQtObject, etc
 \R.~\footnote{ The \code{Qt} object is an instance of
   \class{RQtLibrary}. The \pkg{qtbase} package provides infrastructure
   for binding any conventional C++ library, even those independent of
@@ -154,7 +153,7 @@ b <- Qt$QPushButton()
 \class{QPushButton} extends \class{QWidget} and thus inherits the
 properties like \code{windowTitle}:
 <<pushbutton-class>>=
-is(b, "QWidget")                        # Yes
+is(b, "QWidget")
 b$windowTitle
 @ 
 %
@@ -246,6 +245,7 @@ head(out)
 
 %% JV How does a subclass define properties so that qproperties lists
 %% them. (A qsetProperty function?)
+%% ML: Yes, this is now introduced below.
 
 Every \class{QObject}, which includes every widget, may declare a set
 of properties that represent its state. We list some of the available
@@ -280,8 +280,6 @@ previous example, for the sake of symmetry.
 
 \section{Signals}
 \label{sec:qt-signals}
-
-
 
 \Qt{} in C++ uses an architecture of signals and slots to have
 components communicate with each other. A component emits a signal
@@ -319,19 +317,21 @@ without any arguments.
 
 The \function{qconnect} function attempts to pick the correct
 signature by considering the number of formal arguments in the
-callback. When two signatures have the same number of arguments, one
-will be chosen arbitrarily. To connect to a specific signature, the
-full signature, rather than only the name, should be passed to
-qconnect. For example, the following is equivalent to the invocation
-of \function{qconnect} above:
+callback. Rarely, two signatures will have the same number of
+arguments, in which case one will be chosen arbitrarily. To connect to
+a specific signature, the full signature, rather than only the name,
+should be passed to qconnect. For example, the following two calls are
+equivalent:
 <<qt-signals-qconnect-sig, results=hide>>=
-qconnect(b, "clicked(bool)", function(checked) print("ouch"))
+qconnect(b, "clicked", function(checked) print(checked))
+qconnect(b, "clicked(bool)", function(checked) print(checked))
 @ 
 
 Any object passed to the optional argument
 \argument{user.data}{qconnect} is passed as the last argument to the
 signal handler. The user data serves to parameterize the callback. In
-particular, it can be used to pass in a reference to the sender object itself.
+particular, it can be used to pass in a reference to the sender object
+itself, although we encourage the use of closures for this purpose.
 
 The \code{qconnect} function returns a dummy \class{QObject} instance
 that provides the slot that wraps the \R{} function. This dummy object
@@ -374,7 +374,7 @@ Qt$QSizePolicy$Exanding
 The first is the value for right alignment from the
 \qtenumeration{Alignment} enumeration in the \code{Qt} namespace,
 while the second is from the \qtenumeration{Policy} enumeration in the
-\class{QSizePolicy} class (referenced here by \qtenumeration{QSizePolicy::Policy}).
+\class{QSizePolicy} class.
 
 Although these enumerations can be specifed directly as integers, they are
 given the class \class{QtEnum} and have the overloaded operators
@@ -412,8 +412,8 @@ function. If a type is specified, and the class derives from
 possible to store arbitrary objects in an instance of an \R/ class; we
 will refer to these as dynamic fields. They are private to the class
 but are otherwise similar to attributes on any R object. Their type is
-not checked, and they are not exposed as \Qt/ properties. They are
-useful as a storage mechanism for implementing properties.
+not checked, and they are useful as a storage mechanism for
+implementing properties.
 
 \subsection{Defining a Class}
 \label{sec:qt-defin-class}
@@ -541,15 +541,16 @@ from another dynamic environment, like from Javascript running in the
 
 \class{QScript} module or via the D-Bus through the \class{QDBus}
 module. It is also necessary to use slots as signal handlers for a GUI
-built with \software{QtDesigner}, see Section~\ref{sec:qt-designer}. 
+built with \software{QtDesigner}, if one is using the automated
+connection feature, see Section~\ref{sec:qt-designer}.
 
 \subsection{Defining Properties}
 \label{sec:qt-overview-define-props}
 
 A property, introduced earlier, is a self-describing field that is
 encapsulated by a getter and a setter. We can define a property on any
-class. The \function{qsetProperty} function defines a property. This
-is the simplest usage:
+class using the \function{qsetProperty} function. Here is the simplest
+usage:
 <<qt-overview-define-propE>>=
 qsetProperty("property", SubClass)
 @ 
@@ -562,6 +563,10 @@ instance$property
 instance$property <- "value"
 instance$property
 @
+%
+However, the property is not actually exposed by the \Qt\/ meta object
+system. That requires specifying the \argument{type}{qsetProperty}
+argument, which we will cover later. 
 
 By default, the property value is actually stored as a (private) field
 in the object, called \qcode{.property}. One can override the default
@@ -575,12 +580,22 @@ qsetProperty("checkedProperty", SubClass, write = function(x) {
 @ 
 %
 We have taken advantage of the setter override to check the validity
-of the incoming value. One might also want to override the
+of the incoming value. If \qcode{NULL} is passed as the
+\argument{write}{qsetProperty} argument, the property is
+read-only. One might also want to override the
 \argument{read}{qsetProperty} function, for cases where a property
 depends only on other properties or on some external resource.
 
+To automatically emit a signal whenever a property is set, one can
+pass the name of the signal as the \argument{notify}{qsetProperty} of
+\function{qsetProperty}:
+<<qt-overview-define-prop-notify>>=
+qsetSignal("propertyChanged", SubClass)
+qsetProperty("property", SubClass, notify = "propertyChanged")
+@ 
+
 If a class derives from \class{QObject}, as does any widget, we can
-specify the C++ type of the property to expose it to the \Qt meta
+specify the C++ type of the property to expose it to the \Qt\/ meta
 object system:
 <<qt-overview-define-prop-typed, results=hide>>=
 qsetProperty("typedProperty", SubClass, type = "QString")
@@ -590,9 +605,8 @@ tail(qproperties(SubClass()), 1)
 @ 
 %
 We see that the type is now exposed via the general
-\function{qproperties} function. To force a property to be read-only,
-we could set the \argument{write}{qsetProperty} parameter to
-\qcode{NULL}.
+\function{qproperties} function. Specifying the type enables all of
+the features of a \Qt\/ property.
 
 %% TODO: Example here? Or just refer to other examples?
 
