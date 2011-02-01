@@ -1207,7 +1207,7 @@ box.  The upper left figure in Figure~\ref{fig:GUI:box-possibilities}
 illustrates this.
 
 The box layout needs to allocate space to its children in both the
-vertical and horizontal directions. The typical box layout algortihm
+vertical and horizontal directions. The typical box layout algorithm
 begins by satisfying the minimum size requirements of its
 children. The box may need to request more space for itself in order
 to meet the requirement. 
@@ -1215,18 +1215,18 @@ to meet the requirement.
 Once the minimum requirements are satisfied, it is conventional and
 usually desirable for the widgets to fill the space in the direction
 orthogonal to the packing. For example, widgets in a horizontal box
-will fill all of their vertical space. When this is not desired, most
-box widgets support different ways of vertically (or horizontally)
-aligning the widgets (the upper right graphic in
-Figure~\ref{fig:GUI:box-possibilities}).
+will fill all of their vertical space (the upper right graphic in
+Figure~\ref{fig:GUI:box-possibilities} shows some fill
+possibilities). When this is not desired, most box widgets support
+different ways of vertically (or horizontally) aligning the widgets
+(the lower left graphic in Figure~\ref{fig:GUI:box-possibilities}).
 
 More complex logic is involved in the allocation of space in the
 direction of packing. Any available space after meeting minimum
 requirements needs to be either allocated to the children or left
 empty. This depends on whether any children are set to expand. The
 available space will be distributed evenly to all expanding
-children. Each child may fill that space or leave it empty (the lower
-left graphic in Figure~\ref{fig:GUI:box-possibilities}). The
+children. Each child may fill that space or leave it empty. The
 non-expanding children are simply packed against their
 side of the container. If there are no expanding children, the
 remaining space is left empty in the middle (or end if there are no
@@ -1238,10 +1238,10 @@ expanding widgets also act as springs.
 
 \begin{figure}
   \centering
-  \includegraphics[width=.35\textwidth]{fig-basics-hor-ver}
-  \includegraphics[width=.35\textwidth]{fig-basics-alignment}\\
-  \includegraphics[width=.35\textwidth]{fig-basics-fill}
-  \includegraphics[width=.35\textwidth]{fig-basics-spring}
+  \includegraphics[width=.40\textwidth]{fig-basics-hor-ver}
+  \includegraphics[width=.40\textwidth]{fig-basics-fill}\\
+  \includegraphics[width=.40\textwidth]{fig-basics-alignment}
+  \includegraphics[width=.40\textwidth]{fig-basics-spring}
   \caption{
    %% 
     Different possibilities for packing child components within
