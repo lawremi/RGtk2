@@ -67,7 +67,7 @@ button <- Qt$QPushButton("Ok")
 @ 
 %
 <<echo=FALSE, results=hide>>=
-b$show(); b$raise()
+button$show(); button$raise()
 @ 
 %
 
@@ -131,6 +131,7 @@ require(grid)
 require(ggplot2)
 @ 
 <<results=hide>>=
+require(qtutils)
 device <- QT()
 grid.newpage()
 grid.draw(GeomHistogram$icon())
@@ -343,7 +344,7 @@ a \class{data.frame} with the name, region and population of each
 state and split that \class{data.frame} by the regions:
 <<>>=
 df <- data.frame(name=state.name, region=state.region,
-                 population=state.x77$population, stringsAsFactors=FALSE)
+                 population=state.x77[,'Population'], stringsAsFactors=FALSE)
 statesByRegion <- split(df, df$region)
 @ 
 
@@ -537,7 +538,8 @@ echoing only asterisks.
 In \Qt{} versions 4.7 and above, one can specify place holder text
 that fills the entry it is empty and unfocused. Typically, this text
 indicates the expected contents of the entry:
-<<qt-widget-lineedit-placeholder>>=
+%% JV: needs to upgrade
+<<qt-widget-lineedit-placeholder,eval=FALSE>>=
 le$text <- ""
 le$placeholderText <- "Enter some text"
 @ 
@@ -593,6 +595,7 @@ update the completion when editing is finished for the class name:
 <<results=hide>>=
 qconnect(c_name, "editingFinished", function() {
   cl <- c_name$text
+  if(cl == "") return()
   val <- get(cl, envir=Qt)
   if(!is.null(val)) {
     m_comp <- Qt$QCompleter(ls(val()))
@@ -685,7 +688,8 @@ extracting the action from \qcode{qtDevice} and activating it.
 To increase performance at a slight cost of quality, we could direct
 the device to leverage hardware acceleration through OpenGL. This
 requires passing \qcode{opengl = TRUE} to the \function{QT} constructor:
-<<qt-widget-graphics-device-opengl>>=
+%% JV: I don't see this in the git sources. Am I missing something?
+<<qt-widget-graphics-device-opengl, eval=FALSE>>=
 qtOpenGLDevice <- QT(opengl = TRUE)
 @ 
 %

@@ -14,7 +14,7 @@ has no graphical representation -- a job left for its views:
 <<>>=
 qsetClass("WSModel", Qt$QObject, function(parent=NULL) {
   super(parent)
-  update_variables()
+  updateVariables()
 })
 @ 
 
@@ -76,7 +76,7 @@ workspace size is modest, using a task callback is a reasonable
 strategy:
 <<addTaskCallback, results=hide>>=
 addTaskCallback(function(expr, value, ok, visible) {
-  m$update_variables()
+  m$updateVariables()
   TRUE
 })
 @ 

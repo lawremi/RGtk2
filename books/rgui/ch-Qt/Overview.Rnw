@@ -905,7 +905,7 @@ qsetClass("MyMainWindow", Qt$QWidget, function() {
 The constructor calls \method{connectSlotsByName}{QMetaObject} to
 automatically establish the connections. For a slot to be connected to
 the correct signal, it must be named according to the convention
-\qcode{on_[objectName]_[signalName]}. For example,
+\qcode{on\_[objectName]\_[signalName]}. For example,
 <<qt-overview-designed-slot-handler, eval=FALSE>>=
 qsetSlot("on_findButton_clicked", MyMainWindow, function() {
   findText(findEntry$text)
