@@ -601,10 +601,9 @@ important property is \code{text}, the actual text that is
 displayed. Other properties control the display of the text, such as
 the font \code{family} and \code{size}, the \code{foreground} and
 \code{background} colors, and whether to \code{ellipsize} or
-\code{wrap} the text if there is not enough space for display. The
-\code{wrap} attribute can be specified as \code{TRUE}, if the entries
-are expected to be long. There are several other attributes that can
-changed.  We display right-aligned text in a Helvetica font:
+\code{wrap} the text if there is not enough space for display. There
+are several other attributes that can changed.  For example, we
+display right-aligned text in a Helvetica font:
 <<cr-right-aligned>>=
 cr <- gtkCellRendererText()
 cr['xalign'] <- 1                    # default 0.5 = centered
@@ -618,13 +617,60 @@ that \R\/ follows to print numeric values, so options like
 \code{scipen} and \code{digits} are considered. See the ``Overriding
 attribute mappings'' paragraph below for further customization.
 
+\paragraph{Editable cells} When the \code{editable} property of a text
+cell (or \code{activatable} property of a toggle cell) is set to
+\code{TRUE}, then the cell contents can be changed. This allows the
+user to make changes to the underlying model through the GUI. Although
+the view automatically reflects changes made to the model, the reverse
+is not true. A callback must be assigned to the \code{editable}
+(\code{toggled}) signal for the cell renderer to implement the
+change. The callback for the \qcode{edited} signal has arguments
+\code{renderer}, \code{path} for the path of the selected row (as a
+string), and \code{new.text} containing the value of the edited text
+as a string. The tree view object and the column index are not passed
+to the callback, unless one uses a closure or user data.
+For example, here is how one can update an \code{RGtkDataFrame} model
+from within the callback:
+<<echo=FALSE>>=
+cr <- gtkCellRendererText()
+@ 
+<<editedSignal>>=
+cr['editable'] <- TRUE
+ID <- gSignalConnect(cr, "edited", 
+f=function(cr, path, newtext, user.data) {
+  i <- as.numeric(path) + 1
+  j <- user.data$column
+  model <- user.data$model
+  model[i, j] <- newtext
+}, data=list(model=store, column=1))
+@ 
+% 
+Before using editable cells to create a data frame editor, one should
+see if the editor provided by the \function{gtkDfEdit} in the
+\pkg{RGtk2Extras} package satisfies the requirements.
+
+Users may expect that once a cell is edited, the next cell is then set
+up to be edited. In order to do this, one must advance the cursor and
+activate editing of the next cell. For \class{GtkTreeView}, this is
+implemented by the \method{setCursor}{gtkTreeView} method. The
+\code{path} argument takes a tree path instance, the \code{column}
+argument should be a tree view column object, and the flag
+\code{start.editing} indicates whether to initiate editing.
+
+\begin{example}{Using a table to gather arguments}{ex:RGtk2-options-in-table}
+  \SweaveInput{ex-RGtk2-options-in-table}
+\end{example}
+
+%% XXX JV Add in an editable table example here, mention
+%% RGtk2Extras:::gtkDfEdit
+
 %% perhaps could be adapted to demonstrate the above
 % \begin{example}{A basic usage of displaying a data frame using a tree view}{ex:RGtk2-minimal-rGtkDataFrame}
 %   \SweaveInput{ex-RGtk2-minimal-rGtkDataFrame}
 % \end{example}
 
 %% combo
-\paragraph{Editable text renderers}
+\paragraph{Combo and spin cell renderers}
 
 \class{GtkCellRendererCombo} and \class{GtkCellRendererSpin} allow
 editing a text cell with a combo box or spin button,
@@ -711,7 +757,7 @@ responsible for implementing the radio button logic via the
 \end{example}
 
 %% progress bars
-\paragraph{Rendering progress in cells}
+\paragraph{Progress cell renderers}
 
 To visually communicate progress within a cell, both progress bars and
 spinner animations are supported. These modes correspond to
@@ -796,56 +842,6 @@ for more details on extending \GTK\/ classes.
 
 %% This function will be set for the tree view column and illustrated in Example~\ref{ex:RGtk2:rGtk2DataFrame}.
 %% editable cells 
-
-\paragraph{Editable cells} When the \code{editable} property of a text
-cell (or \code{activatable} property of a toggle cell) is set to
-\code{TRUE}, then the cell contents can be changed. This allows the
-user to make changes to the underlying model through the GUI. Although
-the view automatically reflects changes made to the model, the reverse
-is not true. A callback must be assigned to the \code{editable}
-(\code{toggled}) signal for the cell renderer to implement the
-change. The callback for the \qcode{edited} signal has arguments
-\code{renderer}, \code{path} for the path of the selected row (as a
-string), and \code{new.text} containing the value of the edited text
-as a string. The tree view object and the column index are not passed
-to the callback, unless one uses a closure or user data.
-For example, here is how one can update an \code{RGtkDataFrame} model
-from within the callback:
-<<echo=FALSE>>=
-cr <- gtkCellRendererText()
-@ 
-<<editedSignal>>=
-cr['editable'] <- TRUE
-ID <- gSignalConnect(cr, "edited", 
-f=function(cr, path, newtext, user.data) {
-  i <- as.numeric(path) + 1
-  j <- user.data$column
-  model <- user.data$model
-  model[i, j] <- newtext
-}, data=list(model=store, column=1))
-@ 
-%
-Before using editable cells to create a data frame editor, one should
-see if the editor provided by the \function{gtkDfEdit} in the
-\pkg{RGtk2Extras} package satisfies the requirements.
-
-\paragraph{Moving the cursor}
-
-Users may expect that once a cell is edited, the next cell is then set
-up to be edited. In order to do this, one must advance the cursor and
-activate editing of the next cell. For \class{GtkTreeView}, this is
-implemented by the \method{setCursor}{gtkTreeView} method. The
-\code{path} argument takes a tree path instance, the \code{column}
-argument should be a tree view column object, and the flag
-\code{start.editing} indicates whether to initiate editing.
-
-
-\begin{example}{Using a table to gather arguments}{ex:RGtk2-options-in-table}
-  \SweaveInput{ex-RGtk2-options-in-table}
-\end{example}
-
-%% XXX JV Add in an editable table example here, mention
-%% RGtk2Extras:::gtkDfEdit
 
 \section{Display of hierarchical data}
 \label{sec:RGtk2:mvc:GtkTreeStore}
