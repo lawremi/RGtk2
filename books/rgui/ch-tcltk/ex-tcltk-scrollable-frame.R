@@ -33,7 +33,7 @@ scrollableFrame <- function(parent, width= 300, height=300) {
              borderwidth=0, highlightthickness=0,
              width=width, height=height)
   addScrollbars(parent, canvasWidget)
-
+  #
   gp <- ttkframe(canvasWidget, padding=c(0,0,0,0))
   gpID <- tkcreate(canvasWidget, "window", 0, 0, anchor="nw", 
                    window=gp)
@@ -47,12 +47,9 @@ scrollableFrame <- function(parent, width= 300, height=300) {
   tkbind(canvasWidget, "<Configure>", function(W) {
     width <- as.numeric(tkwinfo("width", W))
     gpwidth <- as.numeric(tkwinfo("width", gp))
-    
     if(gpwidth < width)
       tkitemconfigure(canvasWidget, gpID, width=width)
   })
-
-  
   return(gp)
 }
 
@@ -60,7 +57,7 @@ scrollableFrame <- function(parent, width= 300, height=300) {
 ###################################################
 ### chunk number 3: 
 ###################################################
-#line 72 "ex-tcltk-scrollable-frame.Rnw"
+#line 69 "ex-tcltk-scrollable-frame.Rnw"
 w <- tktoplevel()
 tkwm.title(w,"Scrollable frame example")
 g <- ttkframe(w); tkpack(g, expand=TRUE, fill="both")
@@ -70,15 +67,15 @@ gp <- scrollableFrame(g, 300, 300)
 ###################################################
 ### chunk number 4: 
 ###################################################
-#line 86 "ex-tcltk-scrollable-frame.Rnw"
-fontFamilies <- as.character(tkfont.families())
+#line 83 "ex-tcltk-scrollable-frame.Rnw"
+fFamilies <- as.character(tkfont.families())
 ## skip odd named ones
-fontFamilies <- fontFamilies[grep("^[[:alpha:]]", fontFamilies)] 
-for(i in 1:length(fontFamilies)) {
-  fontName <- paste("tmp",i,sep="")
-  try(tkfont.create(fontName, family=fontFamilies[i], size=14), 
+fFamilies <- fFamilies[grepl("^[[:alpha:]]", fFamilies)] 
+for(i in seq_along(fFamilies)) {
+  fName <- sprintf("::font::-%s", i)
+  try(tkfont.create(fName, family=fFamilies[i], size=14), 
       silent=TRUE)
-  l <- ttklabel(gp, text=fontFamilies[i], font=fontName)
+  l <- ttklabel(gp, text=fFamilies[i], font=fName)
   tkpack(l, side="top", anchor="w")
 }
 

@@ -85,7 +85,7 @@ fFamilies <- as.character(tkfont.families())
 fFamilies <- fFamilies[grepl("^[[:alpha:]]", fFamilies)] 
 for(i in seq_along(fFamilies)) {
   fName <- sprintf("::font::-%s", i)
-  try(tkfont.create(fontName, family=fFamilies[i], size=14), 
+  try(tkfont.create(fName, family=fFamilies[i], size=14), 
       silent=TRUE)
   l <- ttklabel(gp, text=fFamilies[i], font=fName)
   tkpack(l, side="top", anchor="w")

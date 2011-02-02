@@ -1064,19 +1064,19 @@ done along the lines of:
 <<eval=FALSE>>=
 afterID <- ""
 someFlag <- TRUE
-repeatCall <- function(ms=100, f, w) {
+repeatCall <- function(ms=100, f) {
   afterID <<- tcl("after", ms, function() {
     if(someFlag) {                      
       f()
-      afterID <<- repeatCall(ms, f, w)
+      afterID <<- repeatCall(ms, f)
     }  else {
       tcl("after", "cancel", afterID)
     }
   })
 }
-repeatCall(100, function() {
+repeatCall(2000, function() {
   print("Running. Set someFlag <- FALSE to stop.")
-}, w)
+})
 @ 
 %
 

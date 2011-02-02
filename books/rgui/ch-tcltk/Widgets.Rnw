@@ -125,6 +125,10 @@ cb <- ttkcheckbutton(f, variable=value,
 tkpack(cb)
 @ 
 
+In Section~\ref{sec:tcltk:scale-widgets} we demonstrate how to encapsulate the widget and its
+variable in a reference class so that one need not worry about scoping
+rules to reference the variable. 
+
 
 \paragraph{A toggle button}
 
