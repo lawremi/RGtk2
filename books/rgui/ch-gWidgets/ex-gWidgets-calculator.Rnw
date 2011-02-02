@@ -49,7 +49,7 @@ and then assigns the handler to each button. This is done efficiently,
 using the generic \meth{addHandlerChanged}. The handler simply pastes
 the text for each button into the equation area.
 
-<<>>=
+<<results=hide>>=
 addButton <- function(h, ...) {
   curExpr <- svalue(eqnArea)
   newChar <- svalue(h$obj)              # the button's value

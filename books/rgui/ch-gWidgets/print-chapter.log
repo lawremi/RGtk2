@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.4.5)  27 JAN 2011 14:02
+This is pdfTeX, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.4.5)  1 FEB 2011 22:32
 entering extended mode
 **print-chapter
 (./print-chapter.tex
@@ -824,95 +824,76 @@ Underfull \hbox (badness 10000) in paragraph at lines 1768--1779
 
  []
 
-[28] [29] [30]
-Overfull \hbox (106.82498pt too wide) in paragraph at lines 2013--2014
-[][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (33.13226pt too wide) in paragraph at lines 2014--2015
-[][][][][][][][][][][][][][][][][][][][][][][][][][]
- []
-
-[31]
-Overfull \hbox (106.82498pt too wide) in paragraph at lines 2015--2016
-[][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (33.13226pt too wide) in paragraph at lines 2016--2017
-[][][][][][][][][][][][][][][][][][][][][][][][][][]
- []
-
+[28] [29] [30] [31]
 <fig-gWidgets-EBImage-gui.png, id=134, 809.0225pt x 648.4225pt>
 File: fig-gWidgets-EBImage-gui.png Graphic file (type png)
 
 <use fig-gWidgets-EBImage-gui.png> [32] [33 <./fig-gWidgets-EBImage-gui.png>]
 [34] [35]
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 2333--2334
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 2325--2326
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][] 
  []
 
 
 LaTeX Warning: Reference `ex-gWidgets-sliders-spinbuttons' on page 36 undefined
- on input line 2342.
+ on input line 2334.
 
-[36]
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 2413--2414
+
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 2405--2406
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][] 
  []
 
-[37] [38]
-Overfull \hbox (27.52438pt too wide) in paragraph at lines 2563--2570
+[36] [37] [38]
+Overfull \hbox (27.52438pt too wide) in paragraph at lines 2555--2562
 \T1/pplx/m/n/10 event. Also of in-ter-est are the \T1/cmtt/m/n/10 ad-dHan-dler-
 Rightclick \T1/pplx/m/n/10 and \T1/cmtt/m/n/10 add3rdMousePopupMenu
  []
 
 [39]
-Underfull \hbox (badness 10000) in paragraph at lines 2646--2648
+Underfull \hbox (badness 10000) in paragraph at lines 2638--2640
 
  []
 
 <fig-gWidgets-filter-example.png, id=161, 810.02625pt x 342.27875pt>
 File: fig-gWidgets-filter-example.png Graphic file (type png)
 
-<use fig-gWidgets-filter-example.png> [40] [41 <./fig-gWidgets-filter-example.p
-ng>] [42] [43] [44] [45]
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 3002--3003
+<use fig-gWidgets-filter-example.png> [40 <./fig-gWidgets-filter-example.png>]
+[41] [42] [43] [44] [45]
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 2994--2995
 [][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 3025--3026
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 3017--3018
 [][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 3042--3043
+Overfull \hbox (15.40363pt too wide) in paragraph at lines 3034--3035
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[46] [47] [48]
+[46] [47]
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 3173.
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 3165.
 
-Underfull \hbox (badness 10000) in paragraph at lines 3173--3174
+Underfull \hbox (badness 10000) in paragraph at lines 3165--3166
 
  []
 
-[49] <ex-gWidgets-gtree.png, id=195, 431.6125pt x 333.245pt>
+[48] <ex-gWidgets-gtree.png, id=191, 431.6125pt x 333.245pt>
 File: ex-gWidgets-gtree.png Graphic file (type png)
 
-<use ex-gWidgets-gtree.png> [50 <./ex-gWidgets-gtree.png>] [51]
-Overfull \hbox (10.00357pt too wide) in paragraph at lines 3391--3392
+<use ex-gWidgets-gtree.png> [49] [50 <./ex-gWidgets-gtree.png>] [51]
+Overfull \hbox (10.00357pt too wide) in paragraph at lines 3383--3384
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][] 
  []
 
 
-Overfull \hbox (9.99878pt too wide) in paragraph at lines 3407--3412
+Overfull \hbox (9.99878pt too wide) in paragraph at lines 3399--3404
 \T1/pplx/b/n/10 Menubar and Tool-bar Meth-ods[] \T1/pplx/m/n/10 The main meth-o
 ds for tool-bar and menubar
  []
@@ -920,12 +901,12 @@ ds for tool-bar and menubar
 [52] [53] [54
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 3520--3529
+Underfull \hbox (badness 10000) in paragraph at lines 3512--3521
 
  []
 
 [55]
-Underfull \hbox (badness 10000) in paragraph at lines 3563--3565
+Underfull \hbox (badness 10000) in paragraph at lines 3555--3557
 
  []
 
@@ -934,37 +915,37 @@ File: fig-gWidgets-spotfire-gui.png Graphic file (type png)
 
 <use fig-gWidgets-spotfire-gui.png> [56] [57 <./fig-gWidgets-spotfire-gui.png>]
 
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 3643--3644
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 3635--3636
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (10.00357pt too wide) in paragraph at lines 3656--3657
+Overfull \hbox (10.00357pt too wide) in paragraph at lines 3648--3649
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][] 
  []
 
 [58] [59]
-Overfull \hbox (3.53847pt too wide) in paragraph at lines 3842--3850
+Overfull \hbox (3.53847pt too wide) in paragraph at lines 3834--3842
 \T1/cmtt/m/n/10 Changed \T1/pplx/m/n/10 (cell changed), \T1/cmtt/m/n/10 ad-dHan
 -dlerClicked\T1/pplx/m/n/10 , \T1/cmtt/m/n/10 ad-dHan-dler-Dou-bleclick\T1/pplx
 /m/n/10 . Some
  []
 
 
-Overfull \hbox (9.78535pt too wide) in paragraph at lines 3842--3850
+Overfull \hbox (9.78535pt too wide) in paragraph at lines 3834--3842
 \T1/pplx/m/n/10 toolk-its also have \T1/cmtt/m/n/10 ad-dHan-dler-Colum-nClicked
 \T1/pplx/m/n/10 , \T1/cmtt/m/n/10 ad-dHan-dler-Colum-n-Dou-bleclick\T1/pplx/m/n
 /10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3842--3850
+Underfull \hbox (badness 10000) in paragraph at lines 3834--3842
 
  []
 
 [60] [61] [62]
-Underfull \hbox (badness 10000) in paragraph at lines 3997--4005
+Underfull \hbox (badness 10000) in paragraph at lines 3989--3997
 
  []
 
@@ -976,12 +957,15 @@ Package natbib Warning: There were undefined citations.
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 8627 strings out of 94073
- 112714 string characters out of 1164798
- 246750 words of memory out of 1500000
- 11770 multiletter control sequences out of 10000+50000
+ 8626 strings out of 94073
+ 112698 string characters out of 1164798
+ 245757 words of memory out of 1500000
+ 11769 multiletter control sequences out of 10000+50000
  70137 words of font info for 131 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
  36i,12n,41p,1800b,2361s stack positions out of 5000i,500n,6000p,200000b,5000s
@@ -1003,7 +987,7 @@ ist/fonts/type1/public/cm-super/sftt1728.pfb></opt/local/share/texmf-dist/fonts
 /type1/urw/palatino/uplb8a.pfb></opt/local/share/texmf-dist/fonts/type1/urw/pal
 atino/uplr8a.pfb></opt/local/share/texmf-dist/fonts/type1/urw/palatino/uplri8a.
 pfb>
-Output written on print-chapter.pdf (63 pages, 893015 bytes).
+Output written on print-chapter.pdf (63 pages, 891220 bytes).
 PDF statistics:
  303 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
