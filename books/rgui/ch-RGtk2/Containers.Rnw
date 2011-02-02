@@ -302,9 +302,12 @@ layouts that are possible with a \class{GtkHBox}.
 %% example. Could we adjust your example just to show padding? It
 %% seems like we could get rid of the fourth row and add a row where
 %% fill and expand are TRUE but padding is 10.
+%% JV: We need to tighten this up, but your figure has a much better
+%% layout. I'll put the two together as suggested, but keep your
+%% frames and numbering. XXX TODO
 \begin{figure}[h!tbp]
   \begin{center}
-    \includegraphics{packing.png}
+    \includegraphics[angle=90, width=.65\textwidth]{packing.png}
     \caption{\label{fig:packing}A screenshot demonstrating the effect
       of packing two buttons into \class{GtkHBox} instances using the
       \method{packStart}{GtkBox} method with different combinations of
@@ -411,7 +414,8 @@ contains several other permutations of the
 
 \begin{figure}
   \centering
-  \includegraphics[width=.85\textwidth]{ex-RGtk2-pack-start}
+%%    \includegraphics[angle=90, height=.8\textheight, width=.75\textwidth]{packing.png} 
+  \includegraphics[width=.95\textwidth]{packing.png} 
   \caption{Examples of packing widgets into a box container. The top
     row shows no padding, whereas the 2nd and 3rd illustrate the
     difference between \code{padding} (an amount around each child)

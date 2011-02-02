@@ -151,7 +151,7 @@ interfaces implemented by \class{GtkWidget}:
  gTypeGetInterfaces("GtkWidget")
 \end{Sinput}
 \begin{Soutput}
-[1] "GtkBuildable"        "AtkImplementorIface"
+[1] "AtkImplementorIface" "GtkBuildable"       
 \end{Soutput}
 \end{Schunk}
 
@@ -293,7 +293,7 @@ interfaces it implements:
  interface(window)
 \end{Sinput}
 \begin{Soutput}
-[1] "GtkBuildable"        "AtkImplementorIface"
+[1] "AtkImplementorIface" "GtkBuildable"       
 \end{Soutput}
 \end{Schunk}
 
@@ -1126,9 +1126,12 @@ layouts that are possible with a \class{GtkHBox}.
 %% example. Could we adjust your example just to show padding? It
 %% seems like we could get rid of the fourth row and add a row where
 %% fill and expand are TRUE but padding is 10.
+%% JV: We need to tighten this up, but your figure has a much better
+%% layout. I'll put the two together as suggested, but keep your
+%% frames and numbering. XXX TODO
 \begin{figure}[h!tbp]
   \begin{center}
-    \includegraphics{packing.png}
+    \includegraphics[angle=90, width=.65\textwidth]{packing.png}
     \caption{\label{fig:packing}A screenshot demonstrating the effect
       of packing two buttons into \class{GtkHBox} instances using the
       \method{packStart}{GtkBox} method with different combinations of
@@ -1238,7 +1241,8 @@ contains several other permutations of the
 
 \begin{figure}
   \centering
-  \includegraphics[width=.85\textwidth]{ex-RGtk2-pack-start}
+%%    \includegraphics[angle=90, height=.8\textheight, width=.75\textwidth]{packing.png} 
+  \includegraphics[width=.95\textwidth]{packing.png} 
   \caption{Examples of packing widgets into a box container. The top
     row shows no padding, whereas the 2nd and 3rd illustrate the
     difference between \code{padding} (an amount around each child)
@@ -2100,7 +2104,7 @@ identifiers are listed by \function{gtkStockListIds}.
 The \constructor{gtkButtonNewWithMnemonic} constructor creates a
 button with a mnemonic. A mnemonic is a key press that will activate
 the button and is indicated by prefixing the character with an
-underscore. In our example, we pass the string ``_Mnemonic'', so
+underscore. In our example, we pass the string ``\_Mnemonic'', so
 pressing \kbd{Alt-M} will effectively press the button.
 
 %% signals
@@ -2566,7 +2570,8 @@ only of letters):
    text <- entry$getText()
    if (nzchar(gsub("[a-zA-Z]", "", text))) {
      entry$setIconFromStock("primary", "gtk-no")
-     validatedEntry$setIconTooltipText("primary", "Only letters are allowed")
+     validatedEntry$setIconTooltipText("primary", 
+                                  "Only letters are allowed")
    }
    else { 
      entry$setIconFromStock("primary", "gtk-yes")
@@ -2648,10 +2653,10 @@ one button in a group may be active at once.
 \begin{Schunk}
 \begin{Sinput}
  labels <- c("two.sided", "less", "greater")
- radiogp <- list()                                 # list for group
- radiogp[[labels[1]]] <- gtkRadioButton(label=labels[1]) # group = NULL
+ radiogp <- list()                           # list for group
+ radiogp[[labels[1]]] <- gtkRadioButton(label=labels[1]) 
  for(label in labels[-1]) 
-   radiogp[[label]] <- gtkRadioButton(radiogp, label=label)  # group is a list
+   radiogp[[label]] <- gtkRadioButton(radiogp, label=label)
 \end{Sinput}
 \end{Schunk}
 %
@@ -2978,6 +2983,11 @@ communicates the fraction completed:
    pb$setFraction(i/100)
    Sys.sleep(0.05) ## replace with a step in the process
  }
+\end{Sinput}
+\begin{Soutput}
+[1] "kis"
+\end{Soutput}
+\begin{Sinput}
  pb$setText("All done.")
 \end{Sinput}
 \end{Schunk}
@@ -3006,7 +3016,7 @@ web browsers. The basic usage is straightforward:
 
 
 \section{Wizards}
-\labe{sec:gtk-wizards}
+\label{sec:gtk-wizards}
 
 The \class{GtkAssistant} class provides a wizard widget for \GTK. The
 basic setup is one adds pages to the assistant object and they are
@@ -3063,7 +3073,8 @@ using box containers and specify their respective types.
  pages <- lapply(1:5, gtkVBox, spacing=5, homogeneous=FALSE)
  page_types <- c("intro", rep("confirm",3), "summary")
  sapply(pages, gtkAssistantAppendPage, object=asst)
- sapply(pages, gtkAssistantSetPageType, object=asst, type=page_types)
+ sapply(pages, gtkAssistantSetPageType, object=asst, 
+        type=page_types)
 \end{Sinput}
 \end{Schunk}
 %
@@ -3071,7 +3082,8 @@ We customize each page with a logo, using a side log here.
 \begin{Schunk}
 \begin{Sinput}
  image <- gdkPixbuf(filename = imagefile("rgtk-logo.gif"))[[1]]
- sapply(pages, gtkAssistantSetPageSideImage, object=asst, pixbuf=image)
+ sapply(pages, gtkAssistantSetPageSideImage, object=asst, 
+        pixbuf=image)
 \end{Sinput}
 \end{Schunk}
 
@@ -3097,7 +3109,7 @@ simply returns an integer with the next page number based on the last one.
 \begin{Schunk}
 \begin{Sinput}
  asst$setForwardPageFunc(function(i, data) {
-   if(i == 0 && have_CRAN()) return(2L) else return(as.integer(i+1))
+   ifelse(i == 0 && have_CRAN(), 2L, as.integer(i + 1))
  }, data=NULL)
 \end{Sinput}
 \begin{Soutput}
@@ -3128,11 +3140,12 @@ a welcome and simply shows a label. It is immediately complete.
    pages[[1]]$packStart(l <- gtkLabel())
    pages[[1]]$packStart(gtkLabel(), expand=TRUE) # a spring
    
-   l$setMarkup(paste("<span font='x-large'>Install a CRAN package</span>",
-                     "This wizard will help install a package from <b>CRAN</b>",
-                     "If you have not already specified a CRAN repository, one",
-                     "you will be prompted to do so.",
-                     sep="\n"))
+   l$setMarkup(paste(
+        "<span font='x-large'>Install a CRAN package</span>",
+        "This wizard will help install a package from <b>CRAN</b>",
+        "If you have not already specified a CRAN repository, one",
+        "you will be prompted to do so.",
+        sep="\n"))
    asst$setPageComplete(pages[[1]], TRUE)
  }
 \end{Sinput}
@@ -3152,7 +3165,8 @@ for the user to configure a few options for \function{install.packages}.
    asst$setPageTitle(pages[[4]], "Install CRAN package")
    #
    get_desc <- function(pkgname) {
-     x <- readLines(sprintf("http://cran.r-project.org/web/packages/%s/DESCRIPTION", pkgname))
+     tpl <- "http://cran.r-project.org/web/packages/%s/DESCRIPTION"
+     x <- readLines(sprintf(tpl, pkgname))
      f <- tempfile(); cat(paste(x, collapse="\n"), file=f)
      read.dcf(f)
    }
@@ -3160,10 +3174,10 @@ for the user to configure a few options for \function{install.packages}.
    #
    l <- gtkLabel()
    l$setMarkup(paste(
-                     sprintf("Install package: <b>%s</b>", pkg_desc[1, 'Package']),
-                     "\n",
-                     sprintf("%s", pkg_desc[1, 'Description']),
-                     sep="\n"))
+     sprintf("Install package: <b>%s</b>", pkg_desc[1, 'Package']),
+     "\n",
+     sprintf("%s", pkg_desc[1, 'Description']),
+     sep="\n"))
    
    pages[[4]]$packStart(l)
    #
@@ -3173,7 +3187,8 @@ for the user to configure a few options for \function{install.packages}.
    
    #
    combo <- gtkComboBoxNewText()
-   pkg_types <- c("source", "mac.binary", "mac.binary.leopard", "win.binary", "win64.binary")
+   pkg_types <- c("source", "mac.binary", "mac.binary.leopard",
+                  "win.binary", "win64.binary")
    sapply(pkg_types, combo$appendText)
    combo$setActive(which(getOption("pkgType") == pkg_types) - 1)
    gSignalConnect(combo, "changed", function(w, ...) {
@@ -3192,7 +3207,8 @@ for the user to configure a few options for \function{install.packages}.
    tbl$attachDefaults(cb, 1, 2, 1, 2)
  
    #
-   fc <- gtkFileChooserButton("Select a directory...", "select-folder")
+   fc <- gtkFileChooserButton("Select a directory...", 
+                              "select-folder")
    fc$setFilename(.libPaths()[1])
    gSignalConnect(fc, "selection-changed", function(w) {
      dir <- w$getFilename()
@@ -3216,13 +3232,16 @@ message once the package install attempt is done.
  populatePage[[5]] <- function() {
    asst$setPageTitle(pages[[5]], "Done")
    install_options$pkgs <- CRAN_package
-   out <- try(do.call("install.packages", install_options), silent=TRUE)
+   out <- try(do.call("install.packages", install_options), 
+              silent=TRUE)
  
    l <- gtkLabel(); pages[[5]]$packStart(l)
    if(!inherits(out, "try-error")) {
-     l$setMarkup(sprintf("Package %s installed successfully", CRAN_package))
+     l$setMarkup(sprintf("Package %s installed successfully", 
+                         CRAN_package))
    } else {
-     l$setMarkup(paste(sprintf("Package %s failed to install", CRAN_package),
+     l$setMarkup(paste(sprintf("Package %s failed to install", 
+                               CRAN_package),
                        paste(out, collapse="\n"),
                        sep="\n"))
    }
@@ -4302,7 +4321,7 @@ by packing two cell renderers into the column:
    vc$setTitle("Variable")
    cr <- gtkCellRendererPixbuf()
    vc$packStart(cr)
-   vc$addAttribute(cr, "pixbuf", 2)
+   vc$addAttribute(cr, "pixbuf", 1)
    cr <- gtkCellRendererText()
    vc$packStart(cr)
    vc$addAttribute(cr, "text", 0)
@@ -4330,7 +4349,8 @@ selection:
      as.numeric(out) + 1                             # 1-based
  }
  #
- gtkTreeViewHasSelection <- function(obj) length(obj$selectedIndices()) > 0
+ gtkTreeViewHasSelection <-
+   function(obj) length(obj$selectedIndices()) > 0
 \end{Sinput}
 \end{Schunk}
 
@@ -4360,7 +4380,7 @@ is determined by the presence of a selection:
  unselectButton['sensitive'] <- FALSE
  trackSelection <- function(button, view)
    gSignalConnect(view$getSelection(), "changed", 
-                  function(x) button['sensitive'] <- view$hasSelection())
+     function(x) button['sensitive'] <- view$hasSelection())
  trackSelection(selectButton, unselectedView)
  trackSelection(unselectButton, selectedView)
 \end{Sinput}
@@ -4696,11 +4716,11 @@ argument name and default value, along with some additional values:
 \begin{Sinput}
  opts <- c("main","sub","xlab","ylab", "line","outer")
  df <- data.frame(option=opts,
-                  value=c("","","","","0","FALSE"),
-                  class=c(rep("character", 4), "integer", "logical"),
-                  edit_color=rep("gray95", 6),
-                  dirty = rep(FALSE, 6),
-                  stringsAsFactors=FALSE)
+            value=c("","","","","0","FALSE"),
+            class=c(rep("character", 4), "integer", "logical"),
+            edit_color=rep("gray95", 6),
+            dirty = rep(FALSE, 6),
+            stringsAsFactors=FALSE)
 \end{Sinput}
 \end{Schunk}
 %
@@ -4760,9 +4780,9 @@ entry. The latter allows one to easily find the values which were edited.
                                        user.data) {
    m <- user.data$model
    i <- as.numeric(path) + 1; j <- user.data$column
-   m[i,j] <- as(as(new.text, m[i, 'class']), "character")   # format
-   m[i, 'dirty'] <- TRUE                                    # mark dirty
-   m[i, 'edit_color'] <- 'gray70'                           # change color
+   m[i,j] <- as(as(new.text, m[i, 'class']), "character")   
+   m[i, 'dirty'] <- TRUE                     # mark dirty
+   m[i, 'edit_color'] <- 'gray70'            # change color
  }, data=list(model=m, column=2))
 \end{Sinput}
 \end{Schunk}
@@ -4882,7 +4902,8 @@ and \code{GObject} for \GTK\/ objects, such as pixbufs.
  tstore <- gtkTreeStore("gchararray")
  by(Cars93, Cars93$Manufacturer, function(df) {
    piter <- tstore$append()              # parent
-   tstore$setValue(piter$iter, column = 0, value = df$Manufacturer[1])
+   tstore$setValue(piter$iter, column = 0, value = 
+                   df$Manufacturer[1])
    sapply(df$Model, function(model) {
      sibiter <- tstore$append(parent = piter$iter) # child
      if (is.null(sibiter$retval)) 
@@ -4950,13 +4971,14 @@ the validity of the iterator, stored in the \code{iter} component. The
 method \method{iterParent}{GtkTreeModel} performs the reverse,
 iterating from child to parent.
 
-\begin{figure}
-  %% \centering
-  \includegraphics[width=.7\textwidth]{traverse-tree}
-  \caption{[REPLACEME!] Graphical illustration of the functions used
-    by iters to traverse a tree store. }
-  \label{fig:traverse-iter}
-\end{figure}
+%% JV can add back in such a graphic. Took out for now.
+% \begin{figure}
+%   %% \centering
+%   \includegraphics[width=.7\textwidth]{traverse-tree}
+%   \caption{[REPLACEME!] Graphical illustration of the functions used
+%     by iters to traverse a tree store. }
+%   \label{fig:traverse-iter}
+% \end{figure}
 
 Rows within a store can be rearranged using several methods. Call
 \method{swap}{gtkTreeStore} to swap rows referenced by their
@@ -5294,8 +5316,9 @@ number of visits and an integer to record the number of visits. We
 create the combo box with this model using the first column for the text:
 \begin{Schunk}
 \begin{Sinput}
- m <- rGtkDataFrame(data.frame(fname=character(0), visits=character(0), 
-                               novisits=integer(0), stringsAsFactors=FALSE))
+ m <- rGtkDataFrame(data.frame(
+              fname=character(0), visits=character(0), 
+              novisits=integer(0), stringsAsFactors=FALSE))
  cb <- gtkComboBoxEntryNewWithModel(m, text.column=0)
 \end{Sinput}
 \end{Schunk}
@@ -5695,14 +5718,14 @@ $retval
 NULL
 
 $start
-<pointer: 0x1057bce60>
+<pointer: 0x10537bd70>
 attr(,"interfaces")
 character(0)
 attr(,"class")
 [1] "GtkTextIter" "GBoxed"      "RGtkObject" 
 
 $end
-<pointer: 0x1057bcf50>
+<pointer: 0x103f79e80>
 attr(,"interfaces")
 character(0)
 attr(,"class")
@@ -5710,6 +5733,10 @@ attr(,"class")
 \end{Soutput}
 \end{Schunk}
 %
+%% JV in the following I had to change bounds$start$iter to just
+%% bounds$start. Not sure if this has changed in the newer RGtk2 -- I
+%% had trouble installing the svn version due to a missing cairo
+%% function. I'm stuck for now with the 2.18 from att.research.com package
 The current selection is returned by the method
 \method{getSelectionBounds}{gtkTextBuffer}, as a list of the same
 structure. If there is no selection, then the component \code{retval}
@@ -5726,4 +5753,1437 @@ encoding, UTF-8, may use more than one byte per character. For
 example, we might request the seventh character of the first line:
 \begin{Schunk}
 \begin{Sinput}
- buffer$getIterAtLineOffset(0, 6)$getChar()
+ iter <- buffer$getIterAtLineOffset(0, 6)
+ iter$iter$getChar()
+\end{Sinput}
+\begin{Soutput}
+[1] 105
+\end{Soutput}
+\end{Schunk}
+%
+In addition to the text buffer, a text view also has the method
+\method{getIterAtLocation}{gtkTreeView} to return the iterator
+indicating the between-word space in the buffer closest to the point
+specified in $x$-$y$ coordinates.
+
+Once we obtain an iterator, we typically enter a loop which performs
+some operation on the text at the iterator position and updates the
+iterator with each iteration. This requires retrieving the text to
+which an iterator refers. The character at the iterator position is
+returned by \method{getChar}{GtkTextIter}. We obtain the first
+character in the buffer:
+\begin{Schunk}
+\begin{Sinput}
+ bounds$start$getChar()
+\end{Sinput}
+\begin{Soutput}
+[1] 76
+\end{Soutput}
+\end{Schunk}
+%
+To obtain the text between two text
+iterators, call the \method{getText}{GtkTextIter} method on the left
+iterator, passing the right iterator as an argument:
+\begin{Schunk}
+\begin{Sinput}
+ bounds$start$getText(bounds$end)
+\end{Sinput}
+\begin{Soutput}
+[1] "Lorem ipsum dolor sit amet ..."
+\end{Soutput}
+\end{Schunk}
+%
+The \method{insert}{gtkTextBuffer} method will insert
+text at a specified iterator:
+\begin{Schunk}
+\begin{Sinput}
+ buffer$insert(bounds$start, "prefix")
+\end{Sinput}
+\end{Schunk}
+%
+The \method{delete}{gtkTextBuffer} method will delete the text between
+two iterators.  An important observation is that we always pass the
+actual iterator, i.e., the \code{iter} component of the list, to the
+above methods. Passing the original list would not work.
+
+%% iter methods
+Next, we introduce the methods for updating an iterator. One can move
+an iterator forward or backward, stopping a certain type of
+landmark. Supported landmarks include characters (
+\method{forwardChar}{gtkTextIter}, \method{forwardChars}{gtkTextIter},
+\method{backwardChar}{gtkTextIter}, and
+\method{backwordChars}{gtkTextIter}), words
+(\method{forwardWordEnd}{gtkTextIter},
+\method{backwardWordStart}{gtkTextIter}), and sentences
+(\method{backwardSentenceStart}{gtkTextIter} and
+\method{forwardSentenceEnd}{gtkTextIter}).  There are also various
+methods, such as \method{insideWord}{gtkTextIter}, for determining the
+textual context of the iterator. Example~\ref{eg:RGtk2-find-word}
+shows how some of the above are used, in particular how these methods
+update the iterator rather than return a new one.
+
+\begin{example}{Finding the word that is clicked by the user}{eg:RGtk2-find-word}
+  This example shows how one can find the iterator corresponding to a
+  mouse click. We obtain the $X$ and $Y$ coordinates of the mouse
+  button press event, find the corresponding iterator, and retrieve
+  the surrounding word:
+\begin{Schunk}
+\begin{Sinput}
+ ID <- gSignalConnect(tv, "button-press-event", 
+                      f=function(w, e, ...) {
+   siter <- w$getIterAtLocation(e$getX(), e$getY())$iter
+   niter <- siter$copy()                 # need copy
+   siter$backwardWordStart()
+   niter$forwardWordEnd()
+   val <- siter$getText(niter)
+   print(val)                            # replace
+   return(FALSE)                         # call next handler
+ })
+\end{Sinput}
+\end{Schunk}
+\end{example}
+
+\subsection{Marks}
+
+A text mark tracks a position in the document that is relative to
+other text and is preserved across buffer modifications. One can think
+of a mark as an invisible object stuck between two characters. A mark
+corresponds to a specific position, like an iterator, except its
+gravity sets it either to the left or right of the character. An
+example is the text cursor, the position of which is represented by a
+mark.
+
+Marks are identified by name. We retrieve the mark for the
+cursor, which is called \qcode{insert}:
+\begin{Schunk}
+\begin{Sinput}
+ insert <- buffer$getMark("insert")
+\end{Sinput}
+\end{Schunk}
+
+To access the text at a mark, we need to find the corresponding iterator:
+\begin{Schunk}
+\begin{Sinput}
+ insertIter <- buffer$getIterAtMark(insert)$iter
+ bounds$start$getText(insertIter)
+\end{Sinput}
+\begin{Soutput}
+[1] "Lorem ipsum dolor sit amet ..."
+\end{Soutput}
+\end{Schunk}
+
+Marks have a gravity of \qcode{left} or \qcode{right}, with
+\qcode{right} being the default. If text is inserted at a mark with
+right gravity, then the mark is moved to the end of the insertion. A
+mark with left gravity would not be moved. This is intuitive if one
+relates it to the behavior of the text cursor, which has right gravity:
+\begin{Schunk}
+\begin{Sinput}
+ insertIter$getOffset()
+\end{Sinput}
+\begin{Soutput}
+[1] 36
+\end{Soutput}
+\begin{Sinput}
+ buffer$insert(insertIter, "insertion")
+ buffer$getIterAtMark(insert)$iter$getOffset()
+\end{Sinput}
+\begin{Soutput}
+[1] 45
+\end{Soutput}
+\end{Schunk}
+
+A custom mark is created with its name, gravity and position. We
+create one for the start of the document:
+\begin{Schunk}
+\begin{Sinput}
+ mark <- buffer$createMark(mark.name = "start", 
+                           where = buffer$getStartIter()$iter, 
+                           left.gravity = TRUE)
+\end{Sinput}
+\end{Schunk}
+%
+By setting \argument{left.gravity}{gtkTextBufferCreateMark} to \qcode{TRUE}, the
+iterator will not move when text is inserted.
+
+%% tag Table
+\subsection{Tags}
+\label{sec:gtk-mvc-text-tags}
+
+Tags are annotations placed on specific regions of a text buffer. To
+create a tag, we call the \method{createTag}{gtkTextBuffer} method,
+which takes an argument for each attribute to apply to the text. Here,
+we create three tags: one for bold text, one for italicized text and
+one for large text:
+\begin{Schunk}
+\begin{Sinput}
+ tag.b <- buffer$createTag(tag.name="bold", 
+                           weight=PangoWeight["bold"])
+ tag.em <- buffer$createTag(tag.name="em", 
+                            style=PangoStyle["italic"])
+ tag.large <- buffer$createTag(tag.name="large", 
+                               font="Serif normal 18")
+\end{Sinput}
+\end{Schunk}
+%
+Next, we associate the tags with one or more regions of text:
+\begin{Schunk}
+\begin{Sinput}
+ iter <- buffer$getBounds()
+ buffer$applyTag(tag.b, iter$start, iter$end)  # updates iters
+ buffer$applyTagByName("em", iter$start, iter$end)
+\end{Sinput}
+\end{Schunk}
+
+\subsection{Selection and the clipboard}
+
+The selection is defined by the text buffer as the region between the
+\qcode{insert} and \qcode{selection\_bound} marks. While we could
+directly move the marks around, calling
+\method{selectRange}{GtkTextBuffer} is more efficient and
+convenient. Here, we select the first word:
+\begin{Schunk}
+\begin{Sinput}
+ siter <- buffer$getStartIter()$iter
+ eiter <- siter$copy(); eiter$forwardWordEnd()
+\end{Sinput}
+\begin{Soutput}
+[1] TRUE
+\end{Soutput}
+\begin{Sinput}
+ buffer$selectRange(siter, eiter)
+\end{Sinput}
+\end{Schunk}
+
+\class{GtkTextBuffer} provides some convenience methods for
+interaction with the clipboard: \method{copyCliboard}{gtkTextBuffer},
+\method{cutClipboard}{gtkTextBuffer} and
+\method{pasteClipboard}{gtkTextBuffer}. To use these, we first need a
+clipboard object:
+\begin{Schunk}
+\begin{Sinput}
+ cb <- gtkClipboardGet()
+\end{Sinput}
+\end{Schunk}
+%
+We can then, for example, copy the selected text (the first word) and
+paste it at the end:
+\begin{Schunk}
+\begin{Sinput}
+ buffer$copyClipboard(cb)
+ buffer$pasteClipboard(cb, override.location = buffer$getEndIter()$iter, 
+                       default.editable = TRUE)
+\end{Sinput}
+\end{Schunk}
+%
+The \argument{default.editable}{pasteClipboard} indicates that the
+pasted text should be editable. If we had passed \qcode{NULL}, to the
+\argument{override.location}{pasteClipboard} argument, the insertion
+would have occured at the cursor.
+
+% \begin{example}{Adding parentheses highlighting}{eg:RGtk2:paren-highlight}
+%   \SweaveInput{ex-RGtk2-match-parentheses}
+% \end{example}
+
+%% insert images or widgets
+\subsection{Inserting non-text items}
+
+If desired, one can insert images and/or widgets into a text
+buffer. The method \method{insertPixbuf}{gtkTextBuffer} will insert a
+\class{GdkPixbuf} object. The buffer will count the image as a
+character, although \method{getText}{gtkTextBuffer} will obviously not
+return the image.
+
+Arbitrary child widgets, like a button, can also be inserted. First,
+one must create an anchor in the text buffer with
+\method{createChildAnchor}{gtkTextBuffer}:
+\begin{Schunk}
+\begin{Sinput}
+ anchor <- buffer$createChildAnchor(buffer$getEndIter()$iter)
+\end{Sinput}
+\end{Schunk}
+%
+To add the widget, we call the text view method
+\method{addChildAtAnchor}{gtkTextView}:
+\begin{Schunk}
+\begin{Sinput}
+ b <- gtkButton("click me")
+ tv$addChildAtAnchor(b, anchor)
+\end{Sinput}
+\end{Schunk}
+
+\begin{example}{A simple command line interface}{eg:RGtk2-command-line}
+This example shows how to create a simple command line interface with
+the text view widget. While few statistical applications will include
+a command line widget, the example is familiar and shows several
+different, but useful, aspects of the widget.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.6\textwidth]{ex-RGtk2-terminal}
+  \caption{A basic \R\/ terminal implemented using a \code{gtkTextView} widget.}
+  \label{fig:RGtk2-terminal}
+\end{figure}
+
+
+We begin by defining our text view widget and retrieving its
+buffer. We also specify a fixed-width font for the buffer.
+\begin{Schunk}
+\begin{Sinput}
+ tv <- gtkTextView()
+ tb <- tv$getBuffer()
+ font <- pangoFontDescriptionFromString("Monospace")
+ tv$modifyFont(font)                     # widget wide
+\end{Sinput}
+\end{Schunk}
+
+We will use a few formatting tags, defined next. We do not need the tag
+objects as variables in the workspace, as we refer to them later by name.
+\begin{Schunk}
+\begin{Sinput}
+ tb$createTag(tag.name="cmdInput")
+ tb$createTag(tag.name="cmdOutput", 
+              weight=PangoWeight["bold"])
+ tb$createTag(tag.name="cmdError", 
+              weight=PangoStyle["italic"], foreground="red")
+ tb$createTag(tag.name="uneditable", editable=FALSE)
+\end{Sinput}
+\end{Schunk}
+
+We define a mark to indicate the beginning of a newly entered
+command, and another mark tracks the end of the buffer:
+\begin{Schunk}
+\begin{Sinput}
+ startCmd <- tb$createMark("startCmd", tb$getStartIter()$iter, 
+                           left.gravity=TRUE)
+ bufferEnd <- tb$createMark("bufferEnd", tb$getEndIter()$iter)
+\end{Sinput}
+\end{Schunk}
+
+This helper function shows how to move the viewport to the end of the
+buffer so that the command line is visibile:
+\begin{Schunk}
+\begin{Sinput}
+ scrollViewport <- function(view, ...) {
+   iter <- view$getBuffer()$getEndIter()$iter
+   view$scrollToMark(bufferEnd, within.margin=0)
+   return(FALSE)
+ }
+\end{Sinput}
+\end{Schunk}
+
+There are two types of prompts needed: one for entering a new command
+and one for a continuation. This function adds either, depending on
+its argument:
+\begin{Schunk}
+\begin{Sinput}
+ addPrompt <- function(obj, prompt=c("prompt", "continue"),
+                       setMark=TRUE) 
+ {
+   prompt <- match.arg(prompt)
+   prompt <- getOption(prompt)
+   
+   endIter <- obj$getEndIter()
+   obj$insert(endIter$iter, prompt)
+   if(setMark)
+     obj$moveMarkByName("startCmd", endIter$iter)
+   obj$applyTagByName("uneditable", obj$getStartIter()$iter, 
+                      obj$getEndIter()$iter)
+ }
+ addPrompt(tb) ## place an initial prompt
+\end{Sinput}
+\end{Schunk}
+
+This helper method writes the output of a command to the text
+buffer:
+\begin{Schunk}
+\begin{Sinput}
+ addOutput <- function(obj, output, tagName="cmdOutput") {
+   endIter <- obj$getEndIter()
+   if(length(output) > 0) 
+     sapply(output, function(i)  {
+       obj$insertWithTagsByName(endIter$iter, i, tagName)
+       obj$insert(endIter$iter, "\n", len=-1)
+     })
+ }
+\end{Sinput}
+\end{Schunk}
+%
+We arrange to truncate large outputs. By passing in the tag
+name, we can specify whether this is normal output or an error
+message.
+
+This next function uses the \code{startCmd} mark and the end of the buffer
+to extract the current command:
+\begin{Schunk}
+\begin{Sinput}
+ findCMD <- function(obj) {
+   endIter <- obj$getEndIter()
+   startIter <- obj$getIterAtMark(startCmd)
+   cmd <- obj$getText(startIter$iter, endIter$iter, TRUE)
+   regex <- paste("\n[", getOption("continue"), "] ", sep = "")
+   cmd <- unlist(strsplit(cmd, regex))
+   cmd
+ }
+\end{Sinput}
+\end{Schunk}
+%
+The \qcode{regex} is used to parse multi-line commands.
+
+The following function takes the current command and evaluates it. It
+uses a hack (involving \code{grep}) to distinguish between an
+incomplete command and a true syntax error. 
+\begin{Schunk}
+\begin{Sinput}
+ evalCMD <- function(tv, cmd) {
+   tb <- tv$getBuffer()
+   cmd <- paste(cmd, sep="\n")
+   out <- try(parse(text=cmd), silent=TRUE)
+   if(inherits(out, "try-error")) {
+     if(length(grep("end", out))) {      # unexpected end 
+       ## continue
+       addPrompt(tb, "continue", setMark=FALSE)
+     } else {
+       ## error
+       addOutput(tb, out, tagName = "cmdError")
+     }
+     scrollViewport(tv)
+     return()
+   }
+   
+   e <- parse(text = cmd)
+   out <- capture.output(vis <- 
+                  withVisible(try(eval(e, .GlobalEnv), TRUE)))
+ 
+   addOutput(tb, out) 
+   if (inherits(vis$value, "try-error"))
+     addOutput(tb, vis$value, "cmdError")
+   else if (vis$visible)
+     addOutput(tb, capture.output(print(vis$value)))
+   
+   addPrompt(tb, "prompt", setMark=TRUE)
+   scrollViewport(tv)  
+ }
+\end{Sinput}
+\end{Schunk}
+
+The \code{evalCMD} command is called when the \kbd{return} key is
+pressed:
+\begin{Schunk}
+\begin{Sinput}
+ gSignalConnect(tv, "key-release-event", f=function(w, e) {
+   obj <- w$getBuffer()                  # w is textview
+   keyval <- e$getKeyval()
+   if(keyval == GDK_Return) {
+     cmd <- findCMD(obj)                 # poss. character(0)
+     if(length(cmd) && nchar(cmd) > 0)
+       evalCMD(w, cmd)
+   }
+ })
+\end{Sinput}
+\end{Schunk}
+
+%
+%% ML: what is going on here? why is the signal commented out?
+Finally, We connect \function{moveViewport} to the \code{changed}
+signal of the text buffer, so that the view always scrolls to the
+bottom when the contents of the buffer are modified:
+% <<results=hide>>=
+% gSignalConnect(tb, "changed", scrollViewport, tv, after = TRUE, 
+%                user.data.first = TRUE)
+% @ 
+
+Figure~\ref{fig:RGtk2-terminal} shows the widget placed into a very
+simple GUI.
+
+
+
+\end{example}
+
+
+% \begin{example}{Simple textview usage}{eg:RGtk2:simple-textview-usage}
+%   \SweaveInput{ex-RGtk2-simple-textview}
+% \end{example}
+
+
+
+
+
+\chapter{RGtk2: Application Windows}
+\label{sec:RGtk2-menus}
+% Menus in RGtk2
+
+
+In the traditional WIMP-style GUI, the user executes commands by
+selecting items from a menu. In GUI terminology, such a command is
+known as an \textit{action}. A GUI may provide more than one control
+for executing a particular action. Menu Bars and toolbars are the two
+most common widgets for organizing application-wide actions. An
+application also needs to report its status in an unobtrusive
+way. Thus, a typical application window contains, from top to bottom, 
+a menu bar, a toolbar, a large application-specific region, and a
+status bar.  In this chapter, we will introduce actions, menus,
+toolbars and status bars and conclude by explaining the mechanisms in
+\GTK\/ for conveniently defining and managing actions and associated
+widgets in a large application.
+
+\section{Actions}
+\label{sec:RGtk2:actions}
+
+
+\GTK\/ represents actions with the \class{GtkAction} class. A
+\class{GtkAction} can be proxied by widgets like buttons in a
+\class{GtkMenubar} or \class{GtkToolbar}.  The \constructor{gtkAction}
+function is the constructor:
+\begin{Schunk}
+\begin{Sinput}
+ a <- gtkAction(name="ok", label="_Ok", 
+                tooltip="An OK button", stock.id="gtk-ok")
+\end{Sinput}
+\end{Schunk}
+%
+The constructor takes arguments \argument{name}{gtkAction} (to
+programmatically refer to the action), \argument{label}{gtkAction}
+(the displayed text), \argument{tooltip}{gtkAction}, and
+\argument{stock.id}{gtkAction} (identifying a stock icon).  The
+command associated with an action is implemented by a callback
+connected to the \signal{activate} signal:
+\begin{Schunk}
+\begin{Sinput}
+ gSignalConnect(a, "activate", f = function(w, data) {
+   print(a$getName())                    # or some useful thing
+ })
+\end{Sinput}
+\end{Schunk}
+
+An action plays the role of a data model describing a command, while
+widgets that implement the \class{GtkActivatable} interface are the
+views and controllers. All buttons, menu items and tool items
+implement \class{GtkActivatable} and thus may serve as action
+proxies. Actions are connected to widgets through the method
+\method{setRelatedAction}{gtkActivatable}:
+\begin{Schunk}
+\begin{Sinput}
+ b <- gtkButton()
+ b$setRelatedAction(a)
+\end{Sinput}
+\end{Schunk}
+%
+Certain aspects of a proxy widget are coordinated through the
+action. This includes sensitivity and visibility, corresponding to the
+\code{sensitive} and \code{visible} properties. By default, aesthetic
+properties like the \code{label} and \code{stock-id} are also
+inherited.
+
+Often, the commands in an application have a natural grouping. It can
+be convenient to coordinate the sensitivity and visibility of entire
+groups of actions. \class{GtkActionGroup} represents a group of
+actions. By convention, keyboard accelerators are organized by group,
+and the accelerator for an action is usually specified upon insertion:
+\begin{Schunk}
+\begin{Sinput}
+ group <- gtkActionGroup()
+ group$addActionWithAccel(a, "<control>O")
+\end{Sinput}
+\end{Schunk}
+
+In addition to the properties already introduced, an action may have a
+shorter label for display in a toolbar (\code{short\_label}), and
+hints for when to display its label (\code{is\_important}) and image
+(\code{always\_show\_image}).
+
+There is a special type of action that has a toggled state:
+\class{GtkToggleAction}. The \code{active} property represents the
+toggle. A further extension is \class{GtkRadioAction}, where the
+toggled state is shared across a list of radio actions, via the
+\code{group} property. Proxy widgets represent toggle and radio
+actions with controls resembling check boxes and radio buttons,
+respectively. Here, we create a toggle action for fullscreen mode:
+\begin{Schunk}
+\begin{Sinput}
+ fullScreen <- gtkToggleAction("fullscreen", "Full screen", 
+                               "Toggle full screen")
+ gSignalConnect(fullScreen, "toggled", function(action) {
+   if(fullScreen['active'])
+     window$fullscreen()
+   else
+     window$unfullscreen()
+ })
+\end{Sinput}
+\end{Schunk}
+%
+We connect to the \code{toggled} signal to respond to a change in the
+action state.
+
+
+\section{Menus}
+\label{sec:RGtk2:menus}
+
+A menu is a compact, hierarchically organized collection of buttons,
+each of which may proxy an action. Menus listing window-level actions
+are usually contained within a menu bar at the top of the window or
+screen. Menus with options specific to a particular GUI element may
+``popup'' when the user interacts with the element, such as by
+clicking the right mouse button. Menu bars and popup menus may be
+constructed by appending each menu item and submenu separately, as
+illustrated below. For menus with more than a few items, we recommend
+the strategies described in Section~\ref{sec:RGtk2:UIManager}.
+
+\subsection{Menu Bars}
+
+We will first demonstrate the menu bar, leaving the popup menu for
+later.  The first step is to construct the menu bar itself:
+\begin{Schunk}
+\begin{Sinput}
+ menubar <- gtkMenuBar()
+\end{Sinput}
+\end{Schunk}
+
+A menu bar is a special type of container called a menu shell. An
+instance of \class{GtkMenuShell} contains one or more menu
+items. \class{GtkMenuItem} is an implementation of
+\class{GtkActivatable}, so each menu item can proxy an
+action. Usually, a menu bar consists multiple instances of the other
+type of menu shell: the menu, \class{GtkMenu}. Here, we create a menu
+object for our ``File'' menu:
+\begin{Schunk}
+\begin{Sinput}
+ fileMenu <- gtkMenu()
+\end{Sinput}
+\end{Schunk}
+%
+As a menu is not itself a menu item, we first must embed the menu
+into a menu item, which is labeled with the menu title:
+\begin{Schunk}
+\begin{Sinput}
+ fileItem <- gtkMenuItemNewWithMnemonic(label="_File")
+ fileItem$setSubmenu(fileMenu)
+\end{Sinput}
+\end{Schunk}
+%
+The underscore in the label indicates the key associated with the
+mnemonic for use when navigating the menu with a keyboard.  Finally,
+we append the item containing the file menu to the menu bar:
+\begin{Schunk}
+\begin{Sinput}
+ menubar$append(fileItem)
+\end{Sinput}
+\end{Schunk}
+%
+In addition to \method{append}{gtkMenuShell}, it is also possible to
+\method{prepend}{gtkMenuShell} and \method{insert}{gtkMenuShell} menu
+items into a menu shell. As with any container, one can
+\method{remove}{gtkContainer} a child menu item, although the
+convention is to desensitize an item, through the \code{sensitive}
+property, when it is not currently relevant.
+
+Next, we populate our file menu with menu items that perform some
+command. For example, we may desire an open item:
+\begin{Schunk}
+\begin{Sinput}
+ open <- gtkMenuItemNewWithMnemonic("_Open")
+\end{Sinput}
+\end{Schunk}
+%
+This item does not have an associated \class{GtkAction}, so we need to
+implement its activate signal directly:
+\begin{Schunk}
+\begin{Sinput}
+ gSignalConnect(open, "activate", function(item) {
+   f <- file.choose()
+   file.show(f)
+ })
+\end{Sinput}
+\end{Schunk}
+%
+The item is now ready to be added to the file menu:
+\begin{Schunk}
+\begin{Sinput}
+ fileMenu$append(open)
+\end{Sinput}
+\end{Schunk}
+
+It is recommended, however, to create menu items that proxy an
+action. This will facilitate, for example, adding an equivalent
+toolbar item later. We demonstrate with a ``Save'' action:
+\begin{Schunk}
+\begin{Sinput}
+ saveAction <- 
+   gtkAction("save", "Save", "Save object", "gtk-save")
+\end{Sinput}
+\end{Schunk}
+%
+Then the appropriate menu item is generated from the action and added
+to the file menu:
+\begin{Schunk}
+\begin{Sinput}
+ save <- saveAction$createMenuItem()
+ fileMenu$append(save)
+\end{Sinput}
+\end{Schunk}
+
+A simple way to organize menu items, besides grouping into menus, is
+to insert separators between logical groups of items. Here, we insert
+a separator item, rendered as a line, to group the open and save
+commands apart from the rest of the menu:
+\begin{Schunk}
+\begin{Sinput}
+ fileMenu$append(gtkSeparatorMenuItem())
+\end{Sinput}
+\end{Schunk}
+
+Toggle menu items, i.e., a label next to a check box, are also
+supported. A toggle action will create one implicitly:
+\begin{Schunk}
+\begin{Sinput}
+ autoSaveAction <- gtkToggleAction("autosave", "Autosave", 
+                                   "Enable autosave")
+ autoSave <- autoSaveAction$createMenuItem()
+ fileMenu$append(autoSave)
+\end{Sinput}
+\end{Schunk}
+
+Finally, we add our menu bar to the top of a window:
+\begin{Schunk}
+\begin{Sinput}
+ mainWindow <- gtkWindow()
+ vbox <- gtkVBox()
+ mainWindow$add(vbox)
+ vbox$packStart(menubar, FALSE, FALSE)
+\end{Sinput}
+\end{Schunk}
+
+\subsection{Popup Menus}
+
+\begin{example}{Popup menus}{ex:RGtk2-popup-menus}
+To illustrate popup menus, we construct one and display it in response
+to a mouse click. We start with a \code{gtkMenu} instance, to which we
+add some items:
+\begin{Schunk}
+\begin{Sinput}
+ popup <- gtkMenu()                       # top level
+ popup$append(gtkMenuItem("cut"))
+ popup$append(gtkMenuItem("copy"))
+ popup$append(gtkSeparatorMenuItem())
+ popup$append(gtkMenuItem("paste"))
+\end{Sinput}
+\end{Schunk}
+
+Let us assume that we have a button that will popup a menu when
+clicked with the third (right) mouse button:
+\begin{Schunk}
+\begin{Sinput}
+ b <- gtkButton("Click me with right mouse button")
+ w <- gtkWindow(); w$setTitle("Popup menu example")
+ w$add(b)
+\end{Sinput}
+\end{Schunk}
+
+This menu will be shown by calling \code{gtkMenuPopup} in response to
+the \code{button-press-event} signal on the button:
+\begin{Schunk}
+\begin{Sinput}
+ gSignalConnect(b,"button-press-event",
+        f = function(w, e, menu) {
+          if(e$getButton() == 3 ||
+             (e$getButton() == 1 && # a mac
+              e$getState() == GdkModifierType['control-mask'])) 
+            gtkMenuPopup(menu, 
+                         button = e$getButton(),
+                         activate.time = e$getTime())
+          return(FALSE)
+        }, data=popup)
+\end{Sinput}
+\end{Schunk}
+%
+The \function{gtkMenuPopup} function is called with the menu, some
+optional arguments for placement, and some values describing the
+event: the mouse button and time. The event values can be retrieved
+from the second argument of the callback (a \code{GdkEvent}).
+
+The above will popup a menu, but until we bind a callback to the
+\code{activate} signal on each item, nothing will happen when a menu
+item is selected. Below we supply a stub for sake of illustration:
+\begin{Schunk}
+\begin{Sinput}
+ IDs <- sapply(popup$getChildren(), function(i) {
+   if(!inherits(i, "GtkSeparatorMenuItem")) # skip these
+     gSignalConnect(i, "activate",
+                    f = function(w, data) print("replace me"))
+ })
+\end{Sinput}
+\end{Schunk}
+%
+We iterate over the children, avoiding the separator.
+\end{example}
+
+\section{Toolbars}
+\label{sec:RGtk2:toolbars}
+
+Toolbars are like menu bars in that they are containers for
+activatable items, but toolbars are not hierarchical. Also, their
+items are usually visible for the life-time of the application, not
+upon user click. Thus, toolbars are not appropriate for storing a
+large number of items, only those that are activated most often.
+
+We begin by constructing an instance of \class{GtkToolbar}:
+\begin{Schunk}
+\begin{Sinput}
+ toolbar <- gtkToolbar()
+\end{Sinput}
+\end{Schunk}
+
+In analogous fashion to the menu bar, toolbars are containers for tool
+items. Technically, an instance of \class{GtkToolItem} could contain
+any type of widget, yet toolbars typically represent actions
+with buttons. The \class{GtkToolButton} widget implements this common
+case.  Here, we create a tool button for opening a file:
+\begin{Schunk}
+\begin{Sinput}
+ openButton <- gtkToolButton(stock.id = "gtk-open") 
+\end{Sinput}
+\end{Schunk}
+%
+Tool buttons have a number of properties, including \code{label} and
+several for icons. Above, we specify a stock identifier,
+for which there is a predefined translated label and theme-specific icon.
+As with any other container, the button may be added to the toolbar with
+the \method{add}{GtkContainer} method:
+\begin{Schunk}
+\begin{Sinput}
+ toolbar$add(openButton)
+\end{Sinput}
+\end{Schunk}
+%
+This appends the open button to the end of the toolbar. To insert into
+a specific position, we would call the \method{insert}{GtkToolbar} method.
+
+Usually, any application with a toolbar also has a menu bar, in which
+case many actions are shared between the two containers. Thus, it is
+often beneficial to construct a tool button directly from its
+corresponding action:
+\begin{Schunk}
+\begin{Sinput}
+ saveButton <- saveAction$createToolItem()
+ toolbar$add(saveButton)
+\end{Sinput}
+\end{Schunk}
+%
+A tool button is created for \code{saveAction}, created in the
+previous section.
+
+Like menus, related buttons may be grouped using separators:
+\begin{Schunk}
+\begin{Sinput}
+ toolbar$add(gtkSeparatorToolItem())
+\end{Sinput}
+\end{Schunk}
+
+Any toggle action will create a toggle tool button as its proxy:
+\begin{Schunk}
+\begin{Sinput}
+ fullScreenButton <- fullScreen$createToolItem()
+ toolbar$add(fullScreenButton)
+\end{Sinput}
+\end{Schunk}
+%
+A \class{GtkToggleToolButton} embeds a \class{GtkToggleButton}, which
+is depressed whenever its \code{active} property is \code{TRUE}.
+
+As mentioned above, toolbars, unlike menus, are usually visible for the
+duration of the application. This is desirable, as the actions in a
+toolbar are among those most commonly performed. However, care must be
+taken to conserve screen space. The toolbar \textit{style} controls
+whether the tool items display their icons, their text, or both. The
+possible settings are in the \code{GtkToolbarStyle} enumeration. The
+default value is specified by the global \GTK\/ style (theme). Here,
+we override the default to only display images:
+\begin{Schunk}
+\begin{Sinput}
+ toolbar$setStyle("icon")
+\end{Sinput}
+\end{Schunk}
+%
+For canonical actions like \textit{open} and \textit{save}, icons are
+usually sufficient. Some actions, however, may require textual
+explanation. The \code{is-important} property on the action will
+request display of the label in a particular tool item, in addition to
+the icon:
+\begin{Schunk}
+\begin{Sinput}
+ fullScreen["is-important"] <- TRUE
+\end{Sinput}
+\end{Schunk}
+
+Normally, tool items are tightly packed against the left side of the
+toolbar. Sometimes, a more complex layout is desired. For example, we
+may wish to place a \textit{help} item against the right side. We can
+achieve this with an invisible item that expands against its siblings:
+%% ML: use latest svn for this
+\begin{Schunk}
+\begin{Sinput}
+ expander <- gtkSeparatorToolItem()
+ expander["draw"] <- FALSE
+ toolbar$add(expander)
+ toolbar$childSet(expander, expand = TRUE)
+\end{Sinput}
+\end{Schunk}
+
+% 
+The dummy item is a separator with its \code{draw} property set to
+\code{FALSE}, and its \code{expand} child property set to
+\code{TRUE}. Now we can add the \textit{help} item:
+\begin{Schunk}
+\begin{Sinput}
+ helpAction <- gtkAction("help", "Help", "Get help", "gtk-help")
+ toolbar$add(helpAction$createToolItem())
+\end{Sinput}
+\end{Schunk}
+
+It is now our responsibility to place the toolbar at the top of the
+window, under the menu created in the previous section:
+\begin{Schunk}
+\begin{Sinput}
+ vbox$packStart(toolbar, FALSE, FALSE)
+\end{Sinput}
+\end{Schunk}
+
+\begin{example}{Color menu tool button}{ex:RGtk2-color-tool-button}
+Space in a toolbar is limited, and sometimes there are several actions
+that differ only by a single parameter. A good example is the color
+tool button found in many word processors. Including a button for
+every color in the palette would consume an excessive amount of
+space. A common idiom is to embed a drop-down menu next to the button,
+much like a combo box, for specifying the color, or, in general, any
+discrete parameter.
+
+We demonstrate how one might construct a color-selecting tool
+button. Our menu will list the colors in the \R\/ palette. The
+associated button is a \class{GtkColorButton}. When the user
+clicks on the button, a more complex color selection dialog will
+appear, allowing total customization.
+\begin{Schunk}
+\begin{Sinput}
+ gdkColor <- gdkColorParse(palette()[1])$color
+ colorButton <- gtkColorButton(gdkColor)
+\end{Sinput}
+\end{Schunk}
+% 
+\function{gtkColorButton} requires the initial color to be specified
+as a \class{GdkColor}, which we parse from the \R\/ color name.
+
+The next step is to build the menu. Each menu item will display a
+$20x20$ rectangle, filled with the color, next to the color name:
+\begin{Schunk}
+\begin{Sinput}
+ colorMenuItem <- function(color) {
+   da <- gtkDrawingArea()
+   da$setSizeRequest(20, 20)
+   da$modifyBg("normal", color)
+   item <- gtkImageMenuItem(color)
+   item$setImage(da)
+   item
+ }
+ colorItems <- sapply(palette(), colorMenuItem)
+ colorMenu <- gtkMenu()
+ for (item in colorItems)
+   colorMenu$append(item)
+\end{Sinput}
+\end{Schunk}
+%
+An important realization is that the image in a
+\class{GtkImageMenuItem} may be any widget that presumably draws an
+icon; it need not be an actual \class{GtkImage}. In this case, we use
+a drawing area with its background set to the color.  When an item is
+selected, its color will be set on the color button:
+\begin{Schunk}
+\begin{Sinput}
+ colorMenuItemActivated <- function(item) {
+   color <- gdkColorParse(item$getLabel())$color
+   colorButton$setColor(color)
+ }
+ sapply(colorItems, gSignalConnect, "activate", 
+        colorMenuItemActivated)
+\end{Sinput}
+\end{Schunk}
+
+Finally, we place the color button and menu together in the menu tool
+button:
+\begin{Schunk}
+\begin{Sinput}
+ menuButton <- gtkMenuToolButton(colorButton, "Color")
+ menuButton$setMenu(colorMenu)
+ toolbar$add(menuButton)
+\end{Sinput}
+\end{Schunk}
+\end{example}
+  
+%% GtkToolPalette as a compromise between menus and toolbars
+
+Some applications may offer a large number of actions, where there is
+no clear subset of actions that are more commonly performed than the
+rest. It would be impractical to place a tool item for each action in
+a static toolbar. \GTK\/ provides a \textit{tool palette} widget as
+one solution, which leaves the configuration of a multi-row toolbar to
+the user. The tool items are organized into collapsible groups, and
+the grouping is customizable through drag and drop.
+
+\class{GtkToolPalette} is a container of \class{GtkToolItemGroup}
+widgets, each of which is a container of tool items and implements
+\class{GtkToolShell}, like \class{GtkToolbar}. We begin our brief
+example by creating a two groups of tool items:
+%% JV: commented out next 3 for eval as my GTK is a bit to old to run. --Need
+%% to update
+%% ML: went ahead and uncommented them, assuming you've updated
+%% JV: SOrry, stuck with 2.18 for now.
+\begin{Schunk}
+\begin{Sinput}
+ fileGroup <- gtkToolItemGroup("File")
+ fileGroup$add(gtkToolButton(stock.id = "gtk-open"))
+ fileGroup$add(saveAction$createToolItem())
+ helpGroup <- gtkToolItemGroup("Help")
+ helpGroup$add(helpAction$createToolItem())
+\end{Sinput}
+\end{Schunk}
+%
+
+The groups are then added to an instance of \class{GtkToolPalette}:
+\begin{Schunk}
+\begin{Sinput}
+ palette <- gtkToolPalette()
+ palette$add(fileGroup)
+ palette$add(helpGroup)
+\end{Sinput}
+\end{Schunk}
+%
+Finally, we can programmatically collapse a group:
+\begin{Schunk}
+\begin{Sinput}
+ helpGroup$setCollapsed(TRUE)
+\end{Sinput}
+\end{Schunk}
+
+\section{Status Reporting}
+\label{sec:RGtk2:statusbars}
+
+\subsection{Status bars}
+
+In \GTK, a statusbar is constructed through the
+\constructor{gtkStatusbar} function. Statusbars must be placed at the
+bottom of a top-level window by the programmer. In \GTK, a statusbar
+keeps various stacks of messages for display. One adds a message to
+display for given stack through the \method{Push}{gtkStatusbar} method
+by specifying first an integer value for \code{context.id} and a
+message. To pop the top message on a stack and display the next, the
+method \method{Pop}{gtkStatusbar} method is available.
+
+\subsection{Information bars}
+\label{sec:gtkInfoBar}
+
+An information bar is similar in purpose to a message dialog, only it
+is intended to be less obtrusive. Typically, an information bar raises
+from the bottom of the window, displaying a message, possibly with
+response buttons. It then fades away after a number of seconds. The
+focus is not affected, nor is the user interrupted. \GTK\/ provides
+the \class{GtkInfoBar} class for this purpose. The use is similar to a
+dialog: one places widgets into a content area, and listens to the
+\signal{response} signal.
+
+We create our info bar:
+\begin{Schunk}
+\begin{Sinput}
+ ib <- gtkInfoBar(show=FALSE)
+ ib$setNoShowAll(TRUE)
+\end{Sinput}
+\end{Schunk}
+We call \method{setNoShowAll} to prevent the widget from being shown
+when \method{showAll} is called on the parent. Normally, an
+information bar is not shown until it has a message. 
+
+We will emit a warning message by adding a simple label with the text
+and specifying the message type as \code{warning}, from
+\code{GtkMessageType}:
+\begin{Schunk}
+\begin{Sinput}
+ l <- gtkLabel("Warning, Warning ....")
+ ib$setMessageType("warning")            
+ ib$getContentArea()$add(l)
+\end{Sinput}
+\end{Schunk}
+
+A button to allow the user to hide the bar can be added as follows:
+\begin{Schunk}
+\begin{Sinput}
+ ib$addButton(button.text="gtk-ok",
+              response.id=GtkResponseType['ok'])
+\end{Sinput}
+\end{Schunk}
+%
+This is similar to the dialog API: the appearance of the ``Ok'' button is
+defined by the stock ID \code{gtk-ok}, and the response ID will be
+passed to the \signal{response} signal when the button is clicked. Our
+handle simply closes the bar:
+\begin{Schunk}
+\begin{Sinput}
+ gSignalConnect(ib, "response", function(w, resp.id) w$hide())
+\end{Sinput}
+\end{Schunk}
+
+Finally, we add the info bar to our main window and show it:
+\begin{Schunk}
+\begin{Sinput}
+ vbox$packStart(ib, expand = FALSE)
+ ib$show()
+\end{Sinput}
+\end{Schunk}
+
+\section{Managing a complex user interface}
+\label{sec:RGtk2:UIManager}
+
+Complex applications implement a large number of actions and operate
+in a number of different modes. Within a given mode, only a subset of
+actions are applicable. For example, a word processor may have an
+editing mode and a print preview mode. \GTK\/ provides a \dfn{user
+  interface manager}, \class{GtkUIManager}, to manage the layout of
+the toolbars and menu bars across multiple user interface modes.
+
+The steps required to use \GTK's UI manager are
+\begin{enumerate}
+\item construct the UI manager,
+\item define the actions in groups,
+\item specify the layout of the menu bars and toolbars,
+\item connect the action group to the UI manager, 
+\item set up an accelerator group for keyboard shortcuts, and finally
+\item display the widgets.
+\end{enumerate}
+
+\begin{example}{UI Manager example}{ex:RGtk2:UImanager}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.6\textwidth]{ex-RGtk2-UI}
+  \caption{A GUI made using a UI manager to layout the menubar and toolbar.}
+  \label{fig:RGtk2-UI}
+\end{figure}
+
+
+We begin by constructing the UI manager:
+\begin{Schunk}
+\begin{Sinput}
+ uimanager = gtkUIManager()
+\end{Sinput}
+\end{Schunk}
+
+Next, we define the action groups. For demonstration purposes, our
+actions simply push the action name onto the status bar at the bottom
+of the window:
+\begin{Schunk}
+\begin{Sinput}
+ someAction <- function(action,...) 
+   statusbar$push(statusbar$getContextId("message"), 
+                  action$getName())
+\end{Sinput}
+\end{Schunk}
+%
+We also need a quit handler:
+\begin{Schunk}
+\begin{Sinput}
+ Quit <- function(...) win$destroy()
+\end{Sinput}
+\end{Schunk}
+
+We break up our action group definitions into one for ``File'',
+and ``Edit'' and one for ``Help.'' Every action is defined by a
+\class{GtkActionEntry} structure, which is represented by a list in
+\R. The components (in order) are the name; the icon; the
+label, with \code{\_} specifying the mnemonic; the keyboard
+accelerator, with \code{<control>}, \code{<alt>}, \code{<shift>} as
+possible prefixes, a tooltip, and finally the callback. Empty values
+can be defined as \code{NULL} or, except for the callback, an empty
+string.
+
+We define the actions for the ``File'' and ``Edit'' menus:
+\begin{Schunk}
+\begin{Sinput}
+ firstActionGroup <- gtkActionGroup("firstActionGroup")
+ firstActionEntries <- list(
+   ## name,ID,label,accelerator,tooltip,callback
+   file = list("File",NULL,"_File",NULL,NULL,NULL),
+   new = list("New", "gtk-new", "_New", "<control>N", 
+     "New document", someAction),
+   sub = list("Submenu", NULL, "S_ub", NULL, NULL, NULL),
+   open = list("Open", "gtk-open", "_Open", "<ctrl>0", 
+     "Open document", someAction),
+   save = list("Save", "gtk-save", "_Save", "<alt>S", 
+     "Save document", someAction),
+   quit = list("Quit", "gtk-quit", "_Quit", "<ctrl>Q", 
+     "Quit", Quit),
+   edit = list("Edit", NULL, "_Edit", NULL, NULL, NULL),
+   undo = list("Undo", "gtk-undo", "_Undo", "<ctrl>Z", 
+     "Undo change", someAction),
+   redo = list("Redo", "gtk-redo", "_Redo", "<ctrl>U", 
+     "Redo change", someAction)
+ )
+\end{Sinput}
+\end{Schunk}
+%
+In the above, we create dummy actions named ``File'' and ``Edit'' that
+perform no function. They are necessary for specifying the menu layout
+later. We now add the actions to the action group, then add this
+action group to the first spot in the UI manager:
+\begin{Schunk}
+\begin{Sinput}
+ firstActionGroup$addActions(firstActionEntries)
+ uimanager$insertActionGroup(firstActionGroup, 0) # 0-based
+\end{Sinput}
+\end{Schunk}
+
+The redo feature should only be sensitive to mouse
+events after a user has undone an action. If we wanted to alter the
+sensitivity of the redo action, we would need to retrieve it from the
+action group:
+\begin{Schunk}
+\begin{Sinput}
+ redo <- firstActionGroup$getAction("Redo")
+ redo['sensitive'] <- FALSE
+\end{Sinput}
+\end{Schunk}
+
+It is also possible to define toggle actions, as we demonstrate
+presently for the ``Help'' group. First, we define the ordinary actions:
+\begin{Schunk}
+\begin{Sinput}
+ helpActionGroup <- gtkActionGroup("helpActionGroup")
+ helpActionEntries <- list(
+   help = list("Help", "", "_Help", "", "", NULL),
+   about = list("About", "gtk-about", "_About", "", "", 
+     someAction)
+ )
+ helpActionGroup$addActions(helpActionEntries)
+\end{Sinput}
+\end{Schunk}
+%
+Next, we define a ``Use tooltips'' toggle action:
+\begin{Schunk}
+\begin{Sinput}
+ toggleActions <- list(
+   tooltips = list("UseTooltips", NULL, "Use _Tooltips", "<control>T", 
+     "Enable tooltips", someAction, TRUE)
+ )
+ helpActionGroup$addToggleActions(toggleActions)
+\end{Sinput}
+\begin{Soutput}
+NULL
+\end{Soutput}
+\end{Schunk}
+%
+The list structure for toggle action entry is identical to that of the
+ordinary actions, except for the last element which indicates whether
+the action is initially active.  One can also incorporate radio
+actions, although this is not shown.  Finally, we insert the help
+action group in the second position:
+\begin{Schunk}
+\begin{Sinput}
+ uimanager$insertActionGroup(helpActionGroup, 1)
+\end{Sinput}
+\end{Schunk}
+%
+
+Our menubar and toolbar layout is specified as XML according to a
+schema specified by the UI manager framework. The XML can be stored in
+a file or an \R\/ character vector.  The structure of the file can be
+grasped quickly from this example:
+\begin{verbatim}
+<ui>
+  <menubar name="menubar">
+    <menu name="FileMenu" action="File">
+      <menuitem name="FileNew" action="New"/>
+      <menu action="Submenu">
+	<menuitem name="FileOpen" action="Open" />
+      </menu>
+      <menuitem name="FileSave" action="Save"/>
+      <separator />
+      <menuitem name="FileQuit" action="Quit"/>
+    </menu>
+    <menu action="Edit">
+      <menuitem name="EditUndo" action="Undo" />
+      <menuitem name="EditRedo" action="Redo" />
+    </menu>
+    <menu action="Help">
+      <menuitem action="UseTooltips"/>
+      <menuitem action="About"/>
+    </menu>
+  </menubar>
+  <toolbar name="toolbar">
+    <toolitem action="New"/>
+    <toolitem action="Open"/>
+    <toolitem action="Save"/>
+    <separator />
+    <toolitem action="Quit"/>
+  </toolbar>
+</ui>
+\end{verbatim}
+% \VerbatimInput{ex-menus.xml}
+
+The top-level element is named \code{ui}, only one of which is allowed
+in a UI definition. The children of \code{ui} represent a top-level
+action container: \code{menubar}, \code{toolbar}, or \code{popup}.
+The \code{name} attributes are used to refer to the widgets later. The
+\code{menubar} element contains \code{menu} elements, which in turn
+contain \code{menuitem} and \code{separator} elements, as well as
+additional \code{menu} elements for nesting. The toolbars are
+populated with \code{toolitem} elements. The item elements have an
+\code{action} attribute that refers to an action in one of our action
+groups and an optional name (defaulting to the \code{action} value).
+
+This file is loaded into the UI manager as follows
+\begin{Schunk}
+\begin{Sinput}
+ id <- uimanager$addUiFromFile("ex-menus.xml")
+\end{Sinput}
+\end{Schunk}
+%
+The \code{id} value can be used to merge and delete UI components
+according to the mode of the UI, but this is not illustrated here.
+
+Now we can setup a basic window template with a menubar, toolbar, and
+status bar. We first construct the three main widgets. The UI manager
+will construct our toolbar and menubar, as identified from the names
+specified in the UI definition:
+\begin{Schunk}
+\begin{Sinput}
+ menubar <- uimanager$getWidget("/menubar")
+ toolbar <- uimanager$getWidget("/toolbar")
+\end{Sinput}
+\end{Schunk}
+The statusbar is constructed with
+\begin{Schunk}
+\begin{Sinput}
+ statusbar <- gtkStatusbar()
+\end{Sinput}
+\end{Schunk}
+%
+
+Now we create a top-level window and attach a keyboard accelerator
+group to the window so that when the window has the focus, the
+keyboard shortcuts defined for our actions are active:
+\begin{Schunk}
+\begin{Sinput}
+ win <- gtkWindow(show=TRUE)
+ win$setTitle("Window example")
+ accelgroup <- uimanager$getAccelGroup()
+ win$addAccelGroup(accelgroup)
+\end{Sinput}
+\end{Schunk}
+
+Now it is a simple matter of packing the widgets into a box.
+\begin{Schunk}
+\begin{Sinput}
+ box <- gtkVBox()
+ win$add(box)
+ box$packStart(menubar, expand=FALSE, fill=FALSE, 0)
+ box$packStart(toolbar, expand=FALSE, fill= FALSE, 0)
+ contentArea <- gtkVBox()
+ box$packStart(contentArea, expand=TRUE, fill=TRUE, 0)
+ contentArea$packStart(gtkLabel("Content Area"))
+ box$packStart(statusbar, expand=FALSE, fill=FALSE, 0)
+\end{Sinput}
+\end{Schunk}
+
+\end{example}
+
+%% TODO: this needs to go somewhere.. appendix?
+%% \SweaveInput{Classes}
+
+
+% \label{sec:RGtk2:dialogs}
+% \SweaveInput{Pre-defined-dialogs}
+
+% \chapter{\code{cairoDevice}}
+% \label{sec:RGtk2-cairoDevice}
+% \SweaveInput{cairoDevice}
+
+% \chapter{Using \code{glade} to design GUIs}
+% \label{sec:RGtk2-glade}
+% \SweaveInput{Glade}
+
+%\section{End of chapter notes}
+%\label{sec:RGtk2:end-of-chapter}
+
+% * overview in inst
+% * gtk tutorial in R
+% * API at http://developer.gimp.org/api/2.0/gtk/
+% * ...
+
+% * widget gallery
+% http://library.gnome.org/devel/gtk/stable/ch02.html
+
+%  good source: http://developer.gnome.org/doc/GGAD/ggad.html
+
+% * http://gtk.org/documentation.html
+
+% * gtk API
+% http://library.gnome.org/devel/gtk/stable/
+
+% * pango manual 
+% http://library.gnome.org/devel/pango/stable/PangoMarkupFormat.html
+
+% * Missing discussion on standard dialogs: message, confirmations, etc.
+% filebrowser, colors selector, font selector, 
+
+% * Mention history: GIMP; GNOME; DTL RGtk; Michael Lawrence RGtk2
+% * Installation: windows; linux; mac OS X
+
+% * Info
+% php cookbook good source of info
+
+% DTL examples from omegahat
+
+% pygtk tutorial easier to read than C one (no types specifed)
+% pygtk cookbook: http://eccentric.cx/misc/pygtk/wiki/doku.php?id=pygtk
+% pygtk faq: http://faq.pygtk.org/index.py?req=index
+
+
+%% Need a comparison of RGtk2 and qtbase, somewhere (appendix? qt chapter?)
+
+%% High-level comparison of frameworks:
+
+%% Feature     Qt            GTK+           R
+%% ------------------------------------------------------------------------
+%% DBus        QtDBus        GDBus (GIO)    None (RCorba is Windows Equivalent)
+%% XML UI      QtUiTools     GtkBuilder     RGG (Java)  
+%% GUI         QtGui         GTK+           tcltk
+%% Help        QtHelp        Yelp (Gnome)   R help system (primitive)   
+%% Multimedia  QtMultimedia  GStreamer      None
+%% IO/Network  QtNetwork     GIO            R connections (synchronous only)
+%% OpenGL      QtOpenGL      GlExt/Cairo    rgl
+%% Javascript  QtScript      None           None
+%% SQL         QtSql         libgda         DBI (good enough)
+%% SVG         QtSvg         cairo/librsvg  cairoDevice, svgImport, etc
+%% Web browser QtWebkit      GtkWebkit      None     
+%% XML         QtXml         libxml         XML (binds libxml)
+%% Settings    QtNetwork     GIO            Nothing really
+
+%% Notes:
+%% - DBus is likely useless, except on Linux
+%% - Deepayan's qtutils package integrates R docs with QtHelp
+%% - Multimedia could be useful for generating videos, etc (out of scope)
+%% - R connections are very primitive (no asynchronous I/O)
+%% - Qt provides 2D API for OpenGL
+%% - DBI package covers database access needs
+%% - SVG not designed for interactivity, <canvas> better
+%% - GtkWebkit should be bound in separate package (worth it?)
+%% - XML package has XML handling covered
+%% - The graphics support in QtGui is a major advantage over
+%%   Cairo-based GTK+. The QPainter API is better designed for stat
+%%   graphics and has faster backend implementations. QGraphicsView is
+%%   a mature canvas, something GTK+ lacks.
+
+%% Summary: 
+%% - Useful features in qtbase, but not RGtk2: WebKit, Multimedia
+%%   - GtkWebkit, GStreamer could be bound, but not worth it, given qtbase
+%%   - QtWebkit offers Javascript <-> Qt bridge via QtScript
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+

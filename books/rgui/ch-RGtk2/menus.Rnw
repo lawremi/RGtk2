@@ -308,7 +308,7 @@ toolbar. Sometimes, a more complex layout is desired. For example, we
 may wish to place a \textit{help} item against the right side. We can
 achieve this with an invisible item that expands against its siblings:
 %% ML: use latest svn for this
-<<rgtk2-menus-toolbar-expand>>=
+<<rgtk2-menus-toolbar-expand, eval=FALSE>>=
 expander <- gtkSeparatorToolItem()
 expander["draw"] <- FALSE
 toolbar$add(expander)
@@ -351,7 +351,8 @@ example by creating a two groups of tool items:
 %% JV: commented out next 3 for eval as my GTK is a bit to old to run. --Need
 %% to update
 %% ML: went ahead and uncommented them, assuming you've updated
-<<rgtk2-menus-tool-item-group>>=
+%% JV: SOrry, stuck with 2.18 for now.
+<<rgtk2-menus-tool-item-group, eval=FALSE>>=
 fileGroup <- gtkToolItemGroup("File")
 fileGroup$add(gtkToolButton(stock.id = "gtk-open"))
 fileGroup$add(saveAction$createToolItem())
@@ -361,14 +362,14 @@ helpGroup$add(helpAction$createToolItem())
 %
 
 The groups are then added to an instance of \class{GtkToolPalette}:
-<<rgtk2-menus-tool-palette>>=
+<<rgtk2-menus-tool-palette, eval=FALSE>>=
 palette <- gtkToolPalette()
 palette$add(fileGroup)
 palette$add(helpGroup)
 @ 
 %
 Finally, we can programmatically collapse a group:
-<<rgtk2-menus-tool-palette-collapse>>=
+<<rgtk2-menus-tool-palette-collapse, eval=FALSE>>=
 helpGroup$setCollapsed(TRUE)
 @ 
 

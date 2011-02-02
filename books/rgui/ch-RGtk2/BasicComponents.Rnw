@@ -52,7 +52,7 @@ identifiers are listed by \function{gtkStockListIds}.
 The \constructor{gtkButtonNewWithMnemonic} constructor creates a
 button with a mnemonic. A mnemonic is a key press that will activate
 the button and is indicated by prefixing the character with an
-underscore. In our example, we pass the string ``_Mnemonic'', so
+underscore. In our example, we pass the string ``\_Mnemonic'', so
 pressing \kbd{Alt-M} will effectively press the button.
 
 %% signals
@@ -394,7 +394,8 @@ gSignalConnect(validatedEntry, "changed", function(entry) {
   text <- entry$getText()
   if (nzchar(gsub("[a-zA-Z]", "", text))) {
     entry$setIconFromStock("primary", "gtk-no")
-    validatedEntry$setIconTooltipText("primary", "Only letters are allowed")
+    validatedEntry$setIconTooltipText("primary", 
+                                 "Only letters are allowed")
   }
   else { 
     entry$setIconFromStock("primary", "gtk-yes")
@@ -468,10 +469,10 @@ one button in a group may be active at once.
   constructor, the newly created button is added to the group:
 <<RadioGroupExample>>=
 labels <- c("two.sided", "less", "greater")
-radiogp <- list()                                 # list for group
-radiogp[[labels[1]]] <- gtkRadioButton(label=labels[1]) # group = NULL
+radiogp <- list()                           # list for group
+radiogp[[labels[1]]] <- gtkRadioButton(label=labels[1]) 
 for(label in labels[-1]) 
-  radiogp[[label]] <- gtkRadioButton(radiogp, label=label)  # group is a list
+  radiogp[[label]] <- gtkRadioButton(radiogp, label=label)
 @ 
 %
 As a convenience, there are constructor functions ending with
@@ -703,7 +704,7 @@ spinner$stop()
 
 
 \section{Wizards}
-\labe{sec:gtk-wizards}
+\label{sec:gtk-wizards}
 
 The \class{GtkAssistant} class provides a wizard widget for \GTK. The
 basic setup is one adds pages to the assistant object and they are

@@ -23,13 +23,15 @@ using box containers and specify their respective types.
 pages <- lapply(1:5, gtkVBox, spacing=5, homogeneous=FALSE)
 page_types <- c("intro", rep("confirm",3), "summary")
 sapply(pages, gtkAssistantAppendPage, object=asst)
-sapply(pages, gtkAssistantSetPageType, object=asst, type=page_types)
+sapply(pages, gtkAssistantSetPageType, object=asst, 
+       type=page_types)
 @ 
 %
 We customize each page with a logo, using a side log here.
 <<sideLogo, results=hide>>=
 image <- gdkPixbuf(filename = imagefile("rgtk-logo.gif"))[[1]]
-sapply(pages, gtkAssistantSetPageSideImage, object=asst, pixbuf=image)
+sapply(pages, gtkAssistantSetPageSideImage, object=asst, 
+       pixbuf=image)
 @ 
 
 When a page is about to be called we check and see if it has any
@@ -51,7 +53,7 @@ a function that will skip this page if it is not needed. This function
 simply returns an integer with the next page number based on the last one.
 <<>>=
 asst$setForwardPageFunc(function(i, data) {
-  if(i == 0 && have_CRAN()) return(2L) else return(as.integer(i+1))
+  ifelse(i == 0 && have_CRAN(), 2L, as.integer(i + 1))
 }, data=NULL)
 @ 
 
@@ -98,11 +100,12 @@ populatePage[[1]] <- function() {
   pages[[1]]$packStart(l <- gtkLabel())
   pages[[1]]$packStart(gtkLabel(), expand=TRUE) # a spring
   
-  l$setMarkup(paste("<span font='x-large'>Install a CRAN package</span>",
-                    "This wizard will help install a package from <b>CRAN</b>",
-                    "If you have not already specified a CRAN repository, one",
-                    "you will be prompted to do so.",
-                    sep="\n"))
+  l$setMarkup(paste(
+       "<span font='x-large'>Install a CRAN package</span>",
+       "This wizard will help install a package from <b>CRAN</b>",
+       "If you have not already specified a CRAN repository, one",
+       "you will be prompted to do so.",
+       sep="\n"))
   asst$setPageComplete(pages[[1]], TRUE)
 }
 @ 
@@ -175,7 +178,8 @@ populatePage[[4]] <- function() {
   asst$setPageTitle(pages[[4]], "Install CRAN package")
   #
   get_desc <- function(pkgname) {
-    x <- readLines(sprintf("http://cran.r-project.org/web/packages/%s/DESCRIPTION", pkgname))
+    tpl <- "http://cran.r-project.org/web/packages/%s/DESCRIPTION"
+    x <- readLines(sprintf(tpl, pkgname))
     f <- tempfile(); cat(paste(x, collapse="\n"), file=f)
     read.dcf(f)
   }
@@ -183,10 +187,10 @@ populatePage[[4]] <- function() {
   #
   l <- gtkLabel()
   l$setMarkup(paste(
-                    sprintf("Install package: <b>%s</b>", pkg_desc[1, 'Package']),
-                    "\n",
-                    sprintf("%s", pkg_desc[1, 'Description']),
-                    sep="\n"))
+    sprintf("Install package: <b>%s</b>", pkg_desc[1, 'Package']),
+    "\n",
+    sprintf("%s", pkg_desc[1, 'Description']),
+    sep="\n"))
   
   pages[[4]]$packStart(l)
   #
@@ -196,7 +200,8 @@ populatePage[[4]] <- function() {
   
   #
   combo <- gtkComboBoxNewText()
-  pkg_types <- c("source", "mac.binary", "mac.binary.leopard", "win.binary", "win64.binary")
+  pkg_types <- c("source", "mac.binary", "mac.binary.leopard",
+                 "win.binary", "win64.binary")
   sapply(pkg_types, combo$appendText)
   combo$setActive(which(getOption("pkgType") == pkg_types) - 1)
   gSignalConnect(combo, "changed", function(w, ...) {
@@ -215,7 +220,8 @@ populatePage[[4]] <- function() {
   tbl$attachDefaults(cb, 1, 2, 1, 2)
 
   #
-  fc <- gtkFileChooserButton("Select a directory...", "select-folder")
+  fc <- gtkFileChooserButton("Select a directory...", 
+                             "select-folder")
   fc$setFilename(.libPaths()[1])
   gSignalConnect(fc, "selection-changed", function(w) {
     dir <- w$getFilename()
@@ -237,13 +243,16 @@ message once the package install attempt is done.
 populatePage[[5]] <- function() {
   asst$setPageTitle(pages[[5]], "Done")
   install_options$pkgs <- CRAN_package
-  out <- try(do.call("install.packages", install_options), silent=TRUE)
+  out <- try(do.call("install.packages", install_options), 
+             silent=TRUE)
 
   l <- gtkLabel(); pages[[5]]$packStart(l)
   if(!inherits(out, "try-error")) {
-    l$setMarkup(sprintf("Package %s installed successfully", CRAN_package))
+    l$setMarkup(sprintf("Package %s installed successfully", 
+                        CRAN_package))
   } else {
-    l$setMarkup(paste(sprintf("Package %s failed to install", CRAN_package),
+    l$setMarkup(paste(sprintf("Package %s failed to install", 
+                              CRAN_package),
                       paste(out, collapse="\n"),
                       sep="\n"))
   }

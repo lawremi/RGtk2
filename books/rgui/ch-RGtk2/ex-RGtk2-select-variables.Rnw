@@ -89,7 +89,7 @@ make_view_column <- function() {
   vc$setTitle("Variable")
   cr <- gtkCellRendererPixbuf()
   vc$packStart(cr)
-  vc$addAttribute(cr, "pixbuf", 2)
+  vc$addAttribute(cr, "pixbuf", 1)
   cr <- gtkCellRendererText()
   vc$packStart(cr)
   vc$addAttribute(cr, "text", 0)
@@ -116,7 +116,8 @@ gtkTreeViewSelectedIndices <- function(object) {
     as.numeric(out) + 1                             # 1-based
 }
 #
-gtkTreeViewHasSelection <- function(obj) length(obj$selectedIndices()) > 0
+gtkTreeViewHasSelection <-
+  function(obj) length(obj$selectedIndices()) > 0
 @ 
 
 Now we create the buttons and connect to the \code{clicked}
@@ -142,7 +143,7 @@ selectButton['sensitive'] <- FALSE
 unselectButton['sensitive'] <- FALSE
 trackSelection <- function(button, view)
   gSignalConnect(view$getSelection(), "changed", 
-                 function(x) button['sensitive'] <- view$hasSelection())
+    function(x) button['sensitive'] <- view$hasSelection())
 trackSelection(selectButton, unselectedView)
 trackSelection(unselectButton, selectedView)
 @ 

@@ -14,11 +14,11 @@ argument name and default value, along with some additional values:
 <<>>=
 opts <- c("main","sub","xlab","ylab", "line","outer")
 df <- data.frame(option=opts,
-                 value=c("","","","","0","FALSE"),
-                 class=c(rep("character", 4), "integer", "logical"),
-                 edit_color=rep("gray95", 6),
-                 dirty = rep(FALSE, 6),
-                 stringsAsFactors=FALSE)
+           value=c("","","","","0","FALSE"),
+           class=c(rep("character", 4), "integer", "logical"),
+           edit_color=rep("gray95", 6),
+           dirty = rep(FALSE, 6),
+           stringsAsFactors=FALSE)
 @ 
 %
 Unfortunately, we need to coerce the default values to character, in
@@ -67,9 +67,9 @@ gSignalConnect(cr, "edited", function(cr, path, new.text,
                                       user.data) {
   m <- user.data$model
   i <- as.numeric(path) + 1; j <- user.data$column
-  m[i,j] <- as(as(new.text, m[i, 'class']), "character")   # format
-  m[i, 'dirty'] <- TRUE                                    # mark dirty
-  m[i, 'edit_color'] <- 'gray70'                           # change color
+  m[i,j] <- as(as(new.text, m[i, 'class']), "character")   
+  m[i, 'dirty'] <- TRUE                     # mark dirty
+  m[i, 'edit_color'] <- 'gray70'            # change color
 }, data=list(model=m, column=2))
 @  
 

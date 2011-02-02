@@ -883,7 +883,8 @@ and \code{GObject} for \GTK\/ objects, such as pixbufs.
 tstore <- gtkTreeStore("gchararray")
 by(Cars93, Cars93$Manufacturer, function(df) {
   piter <- tstore$append()              # parent
-  tstore$setValue(piter$iter, column = 0, value = df$Manufacturer[1])
+  tstore$setValue(piter$iter, column = 0, value = 
+                  df$Manufacturer[1])
   sapply(df$Model, function(model) {
     sibiter <- tstore$append(parent = piter$iter) # child
     if (is.null(sibiter$retval)) 
@@ -943,13 +944,14 @@ the validity of the iterator, stored in the \code{iter} component. The
 method \method{iterParent}{GtkTreeModel} performs the reverse,
 iterating from child to parent.
 
-\begin{figure}
-  %% \centering
-  \includegraphics[width=.7\textwidth]{traverse-tree}
-  \caption{[REPLACEME!] Graphical illustration of the functions used
-    by iters to traverse a tree store. }
-  \label{fig:traverse-iter}
-\end{figure}
+%% JV can add back in such a graphic. Took out for now.
+% \begin{figure}
+%   %% \centering
+%   \includegraphics[width=.7\textwidth]{traverse-tree}
+%   \caption{[REPLACEME!] Graphical illustration of the functions used
+%     by iters to traverse a tree store. }
+%   \label{fig:traverse-iter}
+% \end{figure}
 
 Rows within a store can be rearranged using several methods. Call
 \method{swap}{gtkTreeStore} to swap rows referenced by their
@@ -1276,6 +1278,10 @@ bounds <- buffer$getBounds()
 bounds
 @ 
 %
+%% JV in the following I had to change bounds$start$iter to just
+%% bounds$start. Not sure if this has changed in the newer RGtk2 -- I
+%% had trouble installing the svn version due to a missing cairo
+%% function. I'm stuck for now with the 2.18 from att.research.com package
 The current selection is returned by the method
 \method{getSelectionBounds}{gtkTextBuffer}, as a list of the same
 structure. If there is no selection, then the component \code{retval}
@@ -1291,7 +1297,8 @@ individual characters and keeps track of the fact that the text
 encoding, UTF-8, may use more than one byte per character. For
 example, we might request the seventh character of the first line:
 <<gtk-mvc-buffer-iter-atLineOffset>>=
-buffer$getIterAtLineOffset(0, 6)$getChar()
+iter <- buffer$getIterAtLineOffset(0, 6)
+iter$iter$getChar()
 @ 
 %
 In addition to the text buffer, a text view also has the method
@@ -1306,20 +1313,20 @@ which an iterator refers. The character at the iterator position is
 returned by \method{getChar}{GtkTextIter}. We obtain the first
 character in the buffer:
 <<gtk-mvc-buffer-iter-getChar>>=
-bounds$start$iter$getChar()
+bounds$start$getChar()
 @ 
 %
 To obtain the text between two text
 iterators, call the \method{getText}{GtkTextIter} method on the left
 iterator, passing the right iterator as an argument:
 <<gtk-mvc-buffer-iter-getText>>=
-bounds$start$iter$getText(bounds$end$iter)
+bounds$start$getText(bounds$end)
 @ 
 %
 The \method{insert}{gtkTextBuffer} method will insert
 text at a specified iterator:
 <<gtk-mvc-buffer-iter-insert>>=
-buffer$insert(bounds$start$iter, "prefix")
+buffer$insert(bounds$start, "prefix")
 @ 
 %
 The \method{delete}{gtkTextBuffer} method will delete the text between
@@ -1387,7 +1394,7 @@ insert <- buffer$getMark("insert")
 To access the text at a mark, we need to find the corresponding iterator:
 <<gtk-mvc-text-mark-getIter>>=
 insertIter <- buffer$getIterAtMark(insert)$iter
-bounds$start$iter$getText(insertIter)
+bounds$start$getText(insertIter)
 @ 
 
 Marks have a gravity of \qcode{left} or \qcode{right}, with
@@ -1404,12 +1411,12 @@ buffer$getIterAtMark(insert)$iter$getOffset()
 A custom mark is created with its name, gravity and position. We
 create one for the start of the document:
 <<gtk-mvc-text-mark-construct>>=
-mark <- buffer$createMark(mark_name = "start", 
+mark <- buffer$createMark(mark.name = "start", 
                           where = buffer$getStartIter()$iter, 
-                          left_gravity = TRUE)
+                          left.gravity = TRUE)
 @ 
 %
-By setting \argument{left_gravity}{createMark} to \qcode{TRUE}, the
+By setting \argument{left.gravity}{gtkTextBufferCreateMark} to \qcode{TRUE}, the
 iterator will not move when text is inserted.
 
 %% tag Table
@@ -1432,9 +1439,9 @@ tag.large <- buffer$createTag(tag.name="large",
 %
 Next, we associate the tags with one or more regions of text:
 <<gtk-mvc-text-tags-apply>>=
-iter <- tb$getBounds()
-tb$applyTag(tag.b, iter$start, iter$end)  # updates iters
-tb$applyTagByName("em", iter$start, iter$end)
+iter <- buffer$getBounds()
+buffer$applyTag(tag.b, iter$start, iter$end)  # updates iters
+buffer$applyTagByName("em", iter$start, iter$end)
 @ 
 
 \subsection{Selection and the clipboard}
@@ -1445,8 +1452,9 @@ directly move the marks around, calling
 \method{selectRange}{GtkTextBuffer} is more efficient and
 convenient. Here, we select the first word:
 <<gtk-mvc-text-selectRange>>=
-buffer$selectRange(buffer$getStartIter()$iter, 
-                   buffer$getStartIter()$iter$forwardWordEnd())
+siter <- buffer$getStartIter()$iter
+eiter <- siter$copy(); eiter$forwardWordEnd()
+buffer$selectRange(siter, eiter)
 @ 
 
 \class{GtkTextBuffer} provides some convenience methods for
@@ -1462,13 +1470,13 @@ We can then, for example, copy the selected text (the first word) and
 paste it at the end:
 <<gtk-mvc-text-clipboard-copy-paste>>=
 buffer$copyClipboard(cb)
-buffer$pasteClipboard(cb, override_location = buffer$getEndIter()$iter, 
-                      default_editable = TRUE)
+buffer$pasteClipboard(cb, override.location = buffer$getEndIter()$iter, 
+                      default.editable = TRUE)
 @ 
 %
-The \argument{default\_editable}{pasteClipboard} indicates that the
+The \argument{default.editable}{pasteClipboard} indicates that the
 pasted text should be editable. If we had passed \qcode{NULL}, to the
-\argument{override\_location}{pasteClipboard} argument, the insertion
+\argument{override.location}{pasteClipboard} argument, the insertion
 would have occured at the cursor.
 
 % \begin{example}{Adding parentheses highlighting}{eg:RGtk2:paren-highlight}
@@ -1488,7 +1496,7 @@ Arbitrary child widgets, like a button, can also be inserted. First,
 one must create an anchor in the text buffer with
 \method{createChildAnchor}{gtkTextBuffer}:
 <<gtk-mvc-text-anchor>>=
-anchor <- tb$createChildAnchor(buffer$getEndIter()$iter)
+anchor <- buffer$createChildAnchor(buffer$getEndIter()$iter)
 @ 
 %
 To add the widget, we call the text view method

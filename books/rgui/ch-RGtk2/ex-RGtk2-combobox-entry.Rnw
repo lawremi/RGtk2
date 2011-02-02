@@ -13,8 +13,9 @@ with three columns: a function name, a string describing the
 number of visits and an integer to record the number of visits. We
 create the combo box with this model using the first column for the text:
 <<>>=
-m <- rGtkDataFrame(data.frame(fname=character(0), visits=character(0), 
-                              novisits=integer(0), stringsAsFactors=FALSE))
+m <- rGtkDataFrame(data.frame(
+             fname=character(0), visits=character(0), 
+             novisits=integer(0), stringsAsFactors=FALSE))
 cb <- gtkComboBoxEntryNewWithModel(m, text.column=0)
 @ 
 

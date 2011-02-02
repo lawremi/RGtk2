@@ -38,7 +38,8 @@ tb$createTag(tag.name="uneditable", editable=FALSE)
 We define a mark to indicate the beginning of a newly entered
 command, and another mark tracks the end of the buffer:
 <<>>=
-startCmd <- tb$createMark("startCmd", tb$getStartIter()$iter, left.gravity=TRUE)
+startCmd <- tb$createMark("startCmd", tb$getStartIter()$iter, 
+                          left.gravity=TRUE)
 bufferEnd <- tb$createMark("bufferEnd", tb$getEndIter()$iter)
 @ 
 
@@ -113,7 +114,7 @@ evalCMD <- function(tv, cmd) {
   cmd <- paste(cmd, sep="\n")
   out <- try(parse(text=cmd), silent=TRUE)
   if(inherits(out, "try-error")) {
-    if(length(grep("end", out))) {      # unexpected end of input
+    if(length(grep("end", out))) {      # unexpected end 
       ## continue
       addPrompt(tb, "continue", setMark=FALSE)
     } else {
@@ -126,7 +127,7 @@ evalCMD <- function(tv, cmd) {
   
   e <- parse(text = cmd)
   out <- capture.output(vis <- 
-                        withVisible(try(eval(e, .GlobalEnv), TRUE)))
+                 withVisible(try(eval(e, .GlobalEnv), TRUE)))
 
   addOutput(tb, out) 
   if (inherits(vis$value, "try-error"))
