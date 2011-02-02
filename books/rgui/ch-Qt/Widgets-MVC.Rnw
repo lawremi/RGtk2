@@ -1,4 +1,11 @@
-%% widgets using MVC framework
+%% JV commented out setData calls -- why aren't they working? Seem to
+%% match API?
+
+%%  widgets using MVC framework
+<<echo=FALSE>>=
+require(qtbase)
+require(MASS)
+@ 
 
 The model, view, controller (MVC) pattern is fundamental to the design
 of widgets that display and manipulate data. Keeping the model
@@ -74,8 +81,9 @@ class for this purpose. To use it, one creates an instance and sets it
 as the item delegate for the model:
 <<qt-mvc-rtfd>>=
 delegate <- qrTextFormattingDelegate()
-model$setDelegate(delegate)
+view$setItemDelegate(delegate)
 @ 
+%% not model$setDelegate(delegate)
 %
 Delegates may also be assigned on a per column or per row
 basis. \class{RTextFormattingDelegate} will handle missing values in
@@ -181,7 +189,7 @@ An item model refers to its rows, columns and cells with
 <<qt-mvc-model-index-create>>=
 index <- model$index(0, 0)
 index$row()
-index$col()
+index$column()
 @ 
 % 
 Our \qcode{index} refers to the first row of the
@@ -189,18 +197,18 @@ Our \qcode{index} refers to the first row of the
 The index points to a cell in the model, and we can retrieve the data
 in the cell using only the index:
 <<qt-mvc-model-index-data>>=
-firstCar <- model$data()
+firstCar <- model$data(index)
 @ 
 %
 This can be extended to retrieve all of the items in the list:
 <<qt-mvc-model-populate>>=
-sapply(seq(model$rowCount()), function(i) model$index(i, 0)$data())
+sapply(seq(model$rowCount()), function(i) model$index(i - 1, 0)$data())
 @ 
 
 Setting the data is also possible, yet requires calling
 \method{setData}{QAbstractItemModel} on the model, not the index:
 <<qt-mvc-model-index-data-set>>=
-model$setData(index, toupper(firstCar))
+##JV XXX model$setData(index, toupper(firstCar))
 @ 
 %
 We will leave the population of a model with the low-level API as an
@@ -259,7 +267,7 @@ We can query the selection model for the selected items in our
 list. Let us assume that we have selected the third row in our
 list. We retrieve the data (label) in that row:
 <<qt-mvc-selection-get-indices>>=
-indices <- selModel$selectedIndices()
+indices <- selModel$selectedIndexes()
 indices[[1]]$data()
 @ 
 
@@ -303,7 +311,7 @@ significantly more efficient for large selections.
 It is also possible to programmatically change the selection.  For
 example, we may wish to select the first list item:
 <<qt-mvc-selection-set-current>>=
-listView$setCurrent(model$index(0, 0))
+listView$setCurrentIndex(model$index(0, 0))
 @ 
 %
 This approach is simple but only supports selecting a single item.
@@ -368,15 +376,15 @@ tableView$selectRow(0)
 Selecting a range of rows is very similar to selecting a range of list
 items, except we need to add the \qcode{Rows} selection flag:
 <<qt-mvc-selection-select-rows>>=
-selModel$select(sel, Qt$QItemSelectionModel$Select | 
-                Qt$QItemSelectionModel$Rows)
+##selModel$select(sel, Qt$QItemSelectionModel$Select | 
+##                Qt$QItemSelectionModel$Rows)
 @ 
 
 To respond to a change in selection, connect to the
 \signal{selectionChanged} signal on the selection model:
 <<qt-mvc-selection-changed>>=
 selectedIndices <- rep(FALSE, nrow(mtcars))
-selectChangedHandler <- function(selected, deselected) {
+selectionChangedHandler <- function(selected, deselected) {
   selectedIndices[indicesForSelection(selected)] <<- TRUE
   selectedIndices[indicesForSelection(deselected)] <<- FALSE
 }
@@ -462,7 +470,7 @@ It is also possible to hide rows and columns at the view by calling
 \method{setRowHidden}{QTableView}. For example, we hide the
 \qcode{Price} column:
 <<qt-mvc-table-hidden>>=
-tableView$setHidden(4, TRUE)
+tableView$setColumnHidden(4, TRUE)
 @ 
 %
 For row filtering, the proxy model approach is usually preferable to
@@ -503,6 +511,8 @@ period (i.e., there is no \qcode{ROLE}), the display role is assumed.
 For example, we could shade the background of the first column, the
 makes and models, in gray:
 <<qt-mvc-role-background>>=
+mtcars.id <- cbind(makeAndModel = rownames(mtcars), mtcars)
+model <- qdataFrameModel(mtcars.id)
 qdataFrame(model)$.makeAndModel.background <- list(qcolor("gray"))
 @ 
 %
@@ -544,7 +554,7 @@ the data is in an editable form. We create a list view and set the
 background of the first item to yellow:
 <<qt-mvc-role-set-data>>=
 listModel <- Qt$QStringListModel(rownames(mtcars))
-listModel$setData(listModel$index(0, 0), "yellow", Qt$Qt$BackgroundRole)
+#JV XXXlistModel$setData(listModel$index(0, 0), "yellow", Qt$Qt$BackgroundRole)
 listView <- Qt$QListView()
 listView$setModel(listModel)
 @ 
@@ -591,7 +601,8 @@ treeModel <- Qt$QStandardItemModel(nrow(Cars93), 1)
 %
 We need to create an item for each manufacturer, and store the
 corresponding records as its children:
-<<qt-mvc-standard-item-set-item, result=FALSE>>=
+<<qt-mvc-standard-item-set-item, results=hide, eval=FALSE>>=
+### JV XXXX the setData calls are failing here!
 by(Cars93, Cars93$Manufacturer, function(df) {
   manufacturer <- treeModel$index(treeModel$rowCount(), 0)
   treeModel$setData(manufacturer, df$Manufacturer[1])
@@ -662,7 +673,7 @@ modification of their data. To determine whether an item may be
 edited, call the \function{flags} method on the model, passing the
 index of the item, and check for the \code{ItemIsEditable} flag:
 <<qt-mvc-check-editable>>=
-(treeModel$index(0, 0)$flags() & Qt$ItemIsEditable) > 0
+(treeModel$index(0, 0)$flags() & Qt$Qt$ItemIsEditable) > 0
 @ 
 
 To enable editing on a column in a \class{DataFrameModel}, it is
@@ -675,7 +686,7 @@ that the user can change its value between \code{TRUE} and
 <<qt-mvc-edit-analyze>>=
 df <- mtcars 
 df$Analyze.edit <- TRUE
-model <- DataFrameModel(df)
+model <- qdataFrameModel(df)
 @ 
 
 For those models that are mutable, the view may allow the user to edit
@@ -802,7 +813,7 @@ To retrieve an item given its index, we call the
 \method{item}{QListWidget} method:
 <<qt-mvc-listwidget-itemat>>=
 first <- listWidget$item(0)
-first$getText()
+first$text()
 @ 
 
 Many aspects of an item may be manipulated. These roughly correspond
@@ -849,9 +860,9 @@ we set all of the items to unchecked to show the check buttons and
 then check the selected items:
 <<qt-mvc-listwidget-checked, results=hide>>=
 items <- sapply(seq(listWidget$count), function(i) {
-  listWidget$item(i - 1)$setCheckedState(Qt$Qt$Unchecked)
+  listWidget$item(i - 1)$setCheckState(Qt$Qt$Unchecked)
 })
-sapply(selected, function(x) x$setCheckedState(Qt$Qt$CheckedState))
+sapply(selected, function(x) x$setCheckState(Qt$Qt$CheckedState))
 @ 
 %
 For long lists, this looping will be time consuming. In such cases, it
