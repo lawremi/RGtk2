@@ -19,7 +19,7 @@ First, we define the \class{VariableSelector} widget, which contains a
 combo box for choosing a data frame and a list view for the variable
 names. When a data frame is chosen in the combo box, its variables are
 shown in the list:
-<<qt-mvc-dnd-variable-selector>>=
+<<qt-mvc-dnd-variable-selector, results=hide>>=
 qsetClass("VariableSelector", Qt$QWidget, function(parent=NULL) {
   super(parent)
   ## widgets
@@ -63,7 +63,7 @@ qsetMethod("updateDataSets", VariableSelector, function() {
 @ 
 
 The data frame is stored in the following property:
-<<qt-mvc-dnd-dataset>>=
+<<qt-mvc-dnd-dataset, results=hide>>=
 qsetProperty("dataFrame", VariableSelector, write = function(df) {
   if (is.null(df))
     df <- data.frame()
@@ -79,7 +79,7 @@ qsetProperty("dataFrame", VariableSelector, write = function(df) {
 %
 When the property is written, the variable list is updated and it
 emits this signal:
-<<qt-mvc-dnd-datasetChanged>>=
+<<qt-mvc-dnd-datasetChanged, results=hide>>=
 qsetSignal("dataFrameChanged", VariableSelector)
 @ 
 %
@@ -109,13 +109,13 @@ qsetClass("VariableLabel", Qt$QLabel, function(parent=NULL) {
 %
 We define two properties, one for the rotation and the other for the
 variable name, which is not always the same as the label text:
-<<qt-mvc-dnd-rotation>>=
+<<qt-mvc-dnd-rotation, results=hide>>=
 qsetProperty("rotation", VariableLabel)
 qsetProperty("variableName", VariableLabel)
 @ 
 %
 To enable client code to respond to a drop, we define a signal:
-<<qt-mvc-dnd-drop>>=
+<<qt-mvc-dnd-drop, results=hide>>=
 qsetSignal("variableNameDropped", VariableLabel)
 @ 
 
@@ -193,7 +193,7 @@ formula and a table widget to show the output. This could be
 extended to include a third variable for three-way tables, but we leave
 that exercise for the interested reader. The constructor simply calls
 two methods:
-<<XtabsWidget>>=
+<<XtabsWidget, results=hide>>=
 qsetClass("XtabsWidget", Qt$QWidget, function(parent=NULL) {
   super(parent)
 
@@ -288,7 +288,7 @@ qsetMethod("updateTableView", XtabsWidget, function(table) {
 
 Finally, we define a property for the data frame on
 \class{XtabsWidget}:
-<<qt-mvc-dnd-dataframe-xtabs>>=
+<<qt-mvc-dnd-dataframe-xtabs, results=hide>>=
 qsetProperty("dataFrame", XtabsWidget, write = function(df) { 
   clearLabels()
   this$.dataFrame <- df

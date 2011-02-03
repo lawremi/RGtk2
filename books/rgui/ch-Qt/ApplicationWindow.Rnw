@@ -16,7 +16,7 @@ mainWindow <- Qt$QMainWindow()
 The region between the toolbar and statusbar, known as the central
 widget, is completely defined by the application. We wish to display a
 spreadsheet, i.e., an editable table:
-<<qt-app-table>>=
+<<qt-app-table, results=hide>>=
 data(mtcars)
 model <- qdataFrameModel(mtcars, editable = TRUE)
 tableView <- Qt$QTableView()
@@ -54,9 +54,9 @@ openAction$statusTip <- "Load a spreadsheet from a CSV file"
 @ 
 %
 One could also set an icon from a file:
-<<qt-app-action-icon>>=
+<<qt-app-action-icon, results=hide>>=
 iconFile <- system.file("images/open.gif", package="gWidgets")
-saveAction$setIcon(Qt$QIcon(iconFile))
+openAction$setIcon(Qt$QIcon(iconFile))
 @ 
 
 %% ML: avoiding the '&' here, as it really indicates a keyboard
@@ -69,7 +69,7 @@ saveAction$setIcon(Qt$QIcon(iconFile))
 Actions emit a \signal{triggered} signal when
 activated. The application should connect to this signal to implement
 the command behind the action:
-<<qt-app-action-trigger>>=
+<<qt-app-action-trigger, results=hide>>=
 qconnect(openAction, "triggered", function() {
   filename <- Qt$QFileDialog$getOpenFilename()
   tableView$model <- qdataFrameModel(read.csv(filename), editable=TRUE)
@@ -85,7 +85,7 @@ passed to the trigger handler.
 For example, we could have an action that toggled whether the
 spreadsheet will be saved on exit:
 <<qt-app-action-toggle>>=
-saveOnExitAction <- Qt$QAction("Save on exit")
+saveOnExitAction <- Qt$QAction("Save on exit", mainWindow)
 saveOnExitAction$checkable <- TRUE
 @ 
 
@@ -95,7 +95,7 @@ default behavior is such that only one is checked at once, analogous
 to a set of radio buttons. We could have an action for controlling the
 justification mode for the text entry:
 <<qt-app-action-radio>>=
-justGroup <- Qt$QActionGroup()
+justGroup <- Qt$QActionGroup(mainWindow)
 leftAction <- Qt$QAction("Left Align", justGroup)
 leftAction$checkable <- TRUE
 rightAction <- Qt$QAction("Right Align", justGroup)
@@ -112,8 +112,8 @@ typical actions. \Qt{} abstracts some common commands via the
 may refer to multiple key combinations, depending on the command and
 the platform. We assign the appropriate shortcuts for our ``Open''
 action:
-<<qt-app-action-shortcut>>=
-openAction$setShortcuts(Qt$QKeySequence$Open)
+<<qt-app-action-shortcut, results=hide>>=
+openAction$setShortcut(Qt$QKeySequence(Qt$QKeySequence$Open))
 @ 
 %
 Whenever the window has focus and the user presses the conventional
@@ -143,7 +143,7 @@ menubar <- Qt$QMenuBar()
 A \class{QMenuBar} is a container of \class{QMenu} objects, which
 represent the submenus. We create a \class{QMenu} for the ``File'' and
 ``Edit'' menus and add them to the menubar:
-<<qt-app-menubar-addMenu>>=
+<<qt-app-menubar-addMenu, results=hide>>=
 fileMenu <- Qt$QMenu("File")
 menubar$addMenu(fileMenu)
 editMenu <- Qt$QMenu("Edit")
@@ -158,7 +158,7 @@ To each \class{QMenu} we may add:
 \end{enumerate}
 We demonstrate each of these operations by populating the ``File'' and
 ``Edit'' menus:
-<<qt-app-menubar-populate>>=
+<<qt-app-menubar-populate, results=hide>>=
 fileMenu$addAction(openAction)
 fileMenu$addSeparator()
 fileMenu$addAction(saveOnExitAction)
@@ -185,7 +185,7 @@ inappropriate container. An alternative is to place the actions in a
 menu specific to their context. This is known as a context menu. The
 simplest approach to providing a context menu involves two
 steps. First, add the desired actions to the widget:
-<<qt-app-context-add-widgets>>=
+<<qt-app-context-add-widgets, results=hide>>=
 sortMenu <- Qt$QMenu("Sort by")
 sapply(colnames(qdataFrame(model)), sortMenu$addAction)
 tableView$addAction(sortMenu$menuAction())
@@ -228,7 +228,7 @@ e$show(); e$raise()
 
 If subclassing is undesirable, one could change the context menu
 policy and connect to the signal \signal{customContextMenuRequested}:
-<<qt-app-context-signal>>=
+<<qt-app-context-signal, results=hide>>=
 e <- Qt$QLineEdit()
 e$contextMenuPolicy <- Qt$Qt$CustomContextMenu
 qconnect(e, "customContextMenuRequested", showCompletionPopup)
@@ -243,7 +243,7 @@ consuming an excessive amount of screen space. We create a
 \class{QToolBar} and add it to our main window:
 <<qt-app-toolbar>>=
 toolbar <- Qt$QToolBar()
-mainWindow$setToolBar(toolbar)
+mainWindow$addToolBar(toolbar)
 @ 
 %
 The main window places the toolbar into a toolbar area, which might
@@ -253,6 +253,8 @@ toolbar is pulled out of the toolbar area, it will become an
 independent window.
 
 To add items to a toolbar we might call
+\\
+
 \begin{enumerate}
 \item \method{addAction}{QToolBar} to add an action,
 \item \method{addWidget}{QToolBar} to embed an arbitrary widget into
@@ -274,15 +276,15 @@ We create each action, set its icon, and store it in a
 list for ease of manipulation at a later time in the program:
 <<results=hide>>=
 fileActions <- list()
-fileActions$open <- Qt$QAction("Open", w)
+fileActions$open <- Qt$QAction("Open", mainWindow)
 fileActions$open$setIcon(getIcon("open"))
-fileActions$save <- Qt$QAction("Save", w)
+fileActions$save <- Qt$QAction("Save", mainWindow)
 fileActions$save$setIcon(getIcon("save"))
 
 plotActions <- list()
-plotActions$barplot <- Qt$QAction("Barplot", w)
+plotActions$barplot <- Qt$QAction("Barplot", mainWindow)
 plotActions$barplot$setIcon(getIcon("barplot"))
-plotActions$boxplot <- Qt$QAction("Boxplot", w)
+plotActions$boxplot <- Qt$QAction("Boxplot", mainWindow)
 plotActions$boxplot$setIcon(getIcon("boxplot"))
 @ 
 
@@ -294,8 +296,8 @@ toolbar$addSeparator()
 sapply(plotActions, toolbar$addAction)
 @ 
 <<echo=FALSE, results=hide>>=
-w$show()
-w$raise()
+mainWindow$show()
+mainWindow$raise()
 @ 
 
 \class{QToolBar} will display actions as buttons, and the precise
@@ -303,7 +305,7 @@ configuration of the buttons depends on the toolbar style. For
 example, the buttons might display only text, only icons or both. By
 default, only icons are shown. We instruct our toolbar to
 display an icon, with the label underneath:
-<<qt-app-toolbar-style>>=
+<<qt-app-toolbar-style, results=hide>>=
 toolbar$setToolButtonStyle(Qt$Qt$ToolButtonTextUnderIcon)
 @ 
 
@@ -319,12 +321,13 @@ state of the program, as well as any status tips assigned to actions.
 
 A statusbar is an instance of the \class{QStatusBar} class. We create
 one and add it to our window:
-<<qt-app-statusbar>>=
+<<qt-app-statusbar, results=hide>>=
 statusbar <- Qt$QStatusBar()
 mainWindow$setStatusBar(statusbar)
 @ 
 
 There are three types of messages in a statusbar: 
+
 \begin{description}
 \item[Temporary] where the message stays briefly, such as for status
   tips;
@@ -333,10 +336,11 @@ There are three types of messages in a statusbar:
 \item[Permanent] where the message is never
   hidden and appears at the far right.
 \end{description}
+
 In addition to messages, one can embed widgets into the statusbar.
 
 We could communicate a temporary message when a dataset is loaded:
-<<qt-app-statusbar-temporary>>=
+<<qt-app-statusbar-temporary, results=hide>>=
 statusbar$showMessage("Load complete", 1000)
 @ 
 %
@@ -346,7 +350,7 @@ explicitly cleared with \method{clearMessage}{QStatusBar}.
 
 Normal and permanent messages must be placed into a \class{QLabel},
 which is then added to the statusbar like any other widget:
-<<qt-app-statusbar-perm>>=
+<<qt-app-statusbar-perm, results=hide>>=
 statusbar$addWidget(Qt$QLabel("Ready"))
 statusbar$addPermanentWidget(Qt$QLabel("Version 1.0"))
 @ 
@@ -384,14 +388,14 @@ for a dock widget. By default, all are allowed.
 
 After configuring the dock widget, we add it to the main window, in
 the left docking area:
-<<qt-app-dock-add>>=
+<<qt-app-dock-add, results=hide>>=
 mainWindow$addDockWidget(Qt$Qt$LeftDockWidgetArea, dock)
 @ 
 %
 
 A second graphics device could be added with the first, on a separate
 page of a tabbed notebook:
-<<qt-app-dock-tabify>>=
+<<qt-app-dock-tabify, results=hide>>=
 device2 <- QT()
 dock2 <- Qt$QDockWidget(device2)
 mainWindow$tabifyDockWidget(dock, dock2)

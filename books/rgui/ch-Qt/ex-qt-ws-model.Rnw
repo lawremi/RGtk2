@@ -33,7 +33,7 @@ qsetProperty("digest", WSModel)
 When a new object is added, an object is deleted, or an object is
 changed, we wish to signal that occurence to any views of the
 model. For that purpose, we define a new signal below:
-<<objects_changed_property>>=
+<<objects_changed_property, results=hide>>=
 qsetSignal("objectsChanged", WSModel)
 @ 
 %
@@ -41,7 +41,7 @@ We then specify this signal name to the
 \argument{notify}{qsetProperty} argument when defining the
 \property{objects}{WSModel} property, so that assignment will emit the
 signal:
-<<>>=
+<<results=hide>>=
 qsetProperty("objects", WSModel, notify="objectsChanged")
 @ 
 
@@ -65,10 +65,11 @@ qsetMethod("updateVariables", WSModel, function() {
 })
 @ 
 
-We assign a callback to notify us that objects were changed:
+To illustrate, we create a notifier that the obejcts were changed by assigning a callback:
 <<connectSignal, results=hide>>=
 m <- WSModel()
-qconnect(m, "objectsChanged", function() message("objects were updated"))
+qconnect(m, "objectsChanged", function() 
+         message("workspace objects were updated"))
 @ 
 
 Finally, we arrange to call the update function as needed. If the

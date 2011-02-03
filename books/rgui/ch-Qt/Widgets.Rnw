@@ -58,10 +58,10 @@ Properties relevant to text layout include:
 \section{Buttons}
 \label{sec:buttons}
 
-As we have seen, the ordinary button in \Qt{} is called
+As we have seen, the ordinary button in \Qt{} is created by
 \class{QPushButton}, which inherits most of its functionality from
 \class{QAbstractButton}, the common base class for buttons. We create
-a simple button ``Ok'' button:
+a simple ``Ok'' button:
 <<qt-widget-button>>=
 button <- Qt$QPushButton("Ok")
 @ 
@@ -84,7 +84,7 @@ icon, to indicate the disabled state.
 
 A push button usually executes some command when clicked, i.e., when
 the \signal{clicked} signal is emitted:
-<<qt-widget-button-connect>>=
+<<qt-widget-button-connect, result=hide>>=
 qconnect(button, "clicked", function() message("Ok clicked") )
 @ 
 
@@ -101,7 +101,8 @@ icon to a standard button in a dialog.  When using \class{QPushButton} directly,
 there are no such conveniences. For our ``Ok'' button, we could add an
 icon from a file:
 <<qt-widget-button-icon>>=
-button$icon <- Qt$QIcon(system.file("images/ok.gif", package="gWidgets"))
+iconFile <- system.file("images/ok.gif", package="gWidgets")
+button$icon <- Qt$QIcon(iconFile)
 @ 
 %
 However, in general, this will not be consistent with the current
@@ -282,9 +283,9 @@ l <- list(Qt$QRadioButton("Weight < 3000", w),
           Qt$QRadioButton("4000 <= Weight", w))
 @ 
 
-The simplest way to group the radio boxes into place them into the
+The simplest way to group the radio boxes is to place them into the
 same layout:
-<<qt-widget-radio-layout>>=
+<<qt-widget-radio-layout, results=hide>>=
 w <- Qt$QGroupBox("Weight:")
 lyt <- Qt$QVBoxLayout()
 w$setLayout(lyt)
@@ -294,7 +295,7 @@ l[[1]]$setChecked(TRUE)
 %
 
 As with any other derivative of \class{QAbstractButton}, the checked
-state is stored in the \property{checked}{QAbstractButton}:
+state is stored in the \property{checked}{QAbstractButton} property:
 <<qt-widget-radio-checked>>=
 l[[1]]$checked
 @ 
@@ -312,7 +313,7 @@ sapply(l, function(i) {
 @ 
 
 \class{QButtonGroup} is a useful utility for grouping radio buttons:
-<<qt-widget-radio-group>>=
+<<qt-widget-radio-group, results=hide>>=
 buttonGroup <- Qt$QButtonGroup()
 lapply(l, buttonGroup$addButton)
 @ 

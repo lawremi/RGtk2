@@ -37,7 +37,7 @@ buttonLayout <- Qt$QHBoxLayout()
 @ 
 %
 and add them to the grid layout:
-<<qt-layout-ex-add>>=
+<<qt-layout-ex-add, results=hide>>=
 gridLayout$addWidget(tableWidget, row=0, column=0, 
                      rowspan=1, colspan=1)
 gridLayout$addWidget(nbWidget, 0, 1)
@@ -46,21 +46,22 @@ gridLayout$addLayout(buttonLayout, 1, 1)
 
 %% resizing?
 
-We add construct our buttons and add them to the box: 
+Next, we construct our buttons and add them to the box putting 12
+pixels of space between the last two.
 <<layoutButtons, results=hide>>=
 b <- sapply(c("OK", "Cancel", "Help"), 
             function(i) Qt$QPushButton(i))
 buttonLayout$setDirection(Qt$QBoxLayout$RightToLeft) 
-##buttonLayout$addStretch(1L)
+buttonLayout$addStretch(1L)
 buttonLayout$addWidget(b$OK)
 buttonLayout$addWidget(b$Cancel)
 buttonLayout$addSpacing(12L)
 buttonLayout$addWidget(b$Help)
 @ 
 %
-We add a stretch, which acts much like a spring, to pack our
+We added a stretch, which acts much like a spring, to pack our
 buttons against the right side of the box. A fixed space of 12
-pixels is inserted between the ``Help'' and ''Cancel'' buttons.
+pixels is inserted between the ``Cancel'' and ''help'' buttons.
 
 The notebook widget is constructed next, with a single page:
 <<nbLayout, results=hide>>=
@@ -77,7 +78,7 @@ layout in the notebook page and populate it:
 <<nbFormLayout, results=hide>>=
 formLayout <- Qt$QFormLayout()
 nbPage$setLayout(formLayout)
-l <- sapply(c("name", "rank", "snumber"), function(i) Qt$QLineEdit())
+l <- sapply(c("name", "rank", "snumber"),  Qt$QLineEdit)
 formLayout$addRow("Name", l$name)
 formLayout$addRow("Rank", l$rank)
 formLayout$addRow("Serial number", l$snumber)

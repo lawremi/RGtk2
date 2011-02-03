@@ -117,7 +117,7 @@ The base class, \class{RQtObject}, is an environment containing
 the properties and methods of the instance. For \code{w}, we list
 the first few using \function{ls}:
 <<>>=
-head(ls(w))
+head(ls(w), n=3)
 @ 
 
 Properties and methods are accessed from the environment in the usual
@@ -237,7 +237,7 @@ would call:
 <<>>=
 out <- qmethods(Qt$QPushButton)
 dim(out)
-head(out)
+head(out, n=3)
 @ 
 
 \section{Properties}
@@ -263,7 +263,7 @@ property, but our attempt to modify the \code{modal} property fails:
 b$objectName <- "My button"
 b$objectName
 b$modal
-try(b$modal <- TRUE)
+try(b$modal <- TRUE)                    # fails
 @ 
 
 \Qt{} provides accessor methods for getting and setting
@@ -302,7 +302,7 @@ Signals are defined by a class and are inherited by
 subclasses.  Here, we list some of the available signals for the
 \class{QPushButton} class:
 <<qt-signals-list>>=
-tail(qsignals(Qt$QPushButton))
+tail(qsignals(Qt$QPushButton), n=5)
 @ 
 %
 The signal definition specifies the callback signature, given in the
@@ -368,7 +368,7 @@ for global enumerations, in the \code{Qt} namespace. Here are examples
 of both:
 <<Enumeration-example>>=
 Qt$Qt$AlignRight
-Qt$QSizePolicy$Exanding
+Qt$QSizePolicy$Expanding
 @
 % 
 The first is the value for right alignment from the
@@ -405,11 +405,11 @@ user to extend C++ classes in order to enhance the features of \Qt.
 The \pkg{qtbase} package includes functions \function{qsetClass} and
 \function{qsetMethod} to create subclasses and their methods. Methods
 may override virtual methods in an ancestor C++ class, and C++ code
-will invoke the \R/ implementation when calling the overridden
+will invoke the \R\/ implementation when calling the overridden
 virtual. Properties may be defined with a getter and setter
 function. If a type is specified, and the class derives from
 \class{QObject}, the property will be exposed by \Qt. It is also
-possible to store arbitrary objects in an instance of an \R/ class; we
+possible to store arbitrary objects in an instance of an \R\/ class; we
 will refer to these as dynamic fields. They are private to the class
 but are otherwise similar to attributes on any R object. Their type is
 not checked, and they are useful as a storage mechanism for
@@ -418,9 +418,7 @@ implementing properties.
 \subsection{Defining a Class}
 \label{sec:qt-defin-class}
 
-Here, we extend \Rcode{QMessageBox} to create a dialog, shown when the
-application is closing, that asks the user whether a document should
-be saved:
+Here, we show a generic example, and follow with a specific one.
 <<results=hide>>=
 qsetClass("SubClass", Qt$QWidget)
 @ 
@@ -433,7 +431,7 @@ SubClass
 Its value is an \class{RQtClass} object that behaves like the
 \class{RQtClass} for the built-in classes, such as
 \code{Qt\$QWidget}. There are no static methods or enumerations in an
-\R/ class, so the class object is essentially the constructor:
+\R\/ class, so the class object is essentially the constructor:
 <<qt-classes-constructor>>=
 instance <- SubClass()
 @ 
@@ -446,11 +444,12 @@ implementing the constructor should be passed as the
 subclasses should provide a \code{parent} constructor argument, for
 specifying the parent object. A typical usage would be
 <<results=hide>>=
-qsetClass("SubClass2", Qt$QWidget, function(title, prop, parent=NULL) {
-  super(parent)
-  this$property <- prop
-  setWindowTitle(title)
-})
+qsetClass("SubClass2", Qt$QWidget, 
+          function(title, prop, parent=NULL) {
+            super(parent)
+            this$property <- prop
+            setWindowTitle(title)
+          })
 @ 
 % 
 Within the body of a constructor, the \function{super} variable refers
@@ -538,7 +537,6 @@ qsetSlot("doSomethingToIndex(int)", SubClass, function(index) {
 The advantage of a slot compared to a method is that a slot is exposed
 to the \Qt{} metaobject system. This means that a slot could be called
 from another dynamic environment, like from Javascript running in the
-
 \class{QScript} module or via the D-Bus through the \class{QDBus}
 module. It is also necessary to use slots as signal handlers for a GUI
 built with \software{QtDesigner}, if one is using the automated
@@ -564,6 +562,7 @@ instance$property <- "value"
 instance$property
 @
 %
+%% JV did this change???
 However, the property is not actually exposed by the \Qt\/ meta object
 system. That requires specifying the \argument{type}{qsetProperty}
 argument, which we will cover later. 
@@ -647,10 +646,16 @@ w$visible
 The \method{show}{QWidget} and \method{hide}{QWidget} methods are
 the corresponding convenience functions for making a widget visible
 and invisible, respectively. 
-<<qt-overview-show-hide>>=
+<<qt-overview-show-hide, results=hide>>=
 w$show()
+@ 
+<<>>=
 w$visible
+@ 
+<<results=hide>>=
 w$hide()
+@ 
+<<>>=
 w$visible
 @ 
 %
@@ -680,7 +685,7 @@ some description of its purpose and usage. Tooltips, stored as a
 string in the \property{toolTip}{QWidget} property, may be shown when the
 user hovers the mouse over the widget. Similarly, the
 \property{statusTip}{QWidget} property holds a string to be shown in
-the statusbar instead of a popup window. Finally, \Qt/ provides a
+the statusbar instead of a popup window. Finally, \Qt\/ provides a
 ``What's This?'' tool that will show the text in the
 \property{whatsThis}{QWidget} property in response to query, such as
 pressing \kbd{SHIFT+F1} when the widget has focus.
@@ -690,7 +695,7 @@ determined automatically by a layout algorithm; see
 Chapter~\ref{cha:layout-managers}. To specify the size of a top-level
 window, manipulate the \property{size}{QWidget} property, which
 holds a \class{QSize} object: 
-<<qt-overview-size>>=
+<<qt-overview-size, results=hide>>=
 w$size <- qsize(400, 400)
 ## or
 w$resize(400, 400)
@@ -719,8 +724,8 @@ application font, returned by \code{Qt\$QApplication\$font()}.
 For example, we could create a 12 point, bold, italicized font from
 the helvetica family:
 <<>>=
-f <- qfont(family="helvetica", pointsize=12,  weight=Qt$QFont$Bold, 
-           italic=TRUE)
+f <- qfont(family="helvetica", pointsize=12, 
+           weight=Qt$QFont$Bold, italic=TRUE)
 @ 
 
 The font for a widget is stored in the \property{font}{QWidget}
@@ -748,7 +753,7 @@ adjust properties. For example, there are the methods
 Every platform has its own distinct look and feel, and an application
 should conform to platform conventions. \Qt{} hides these details from
 the application. Every widget has a palette, stored in its
-\property{palette} property and represented by a \class{QPalette}
+\property{palette}{QWidget} property and represented by a \class{QPalette}
 object. A \class{QPalette} maps the state of a widget to a group of
 colors that is used for painting the widget. The possible states are
 \code{active}, \code{inactive} and \code{disabled}. Each color within
@@ -765,7 +770,7 @@ palette, as illustrated in Example~\ref{eg:qt-dnd}.
 
 Cascading style sheets (CSS) are used by web deisgners to decouple the
 layout and look and feel of a web page from the content of the
-page. It is possible to customize the rendering of a widget using CSS
+page. In \Qt{} it is also possible to customize the rendering of a widget using CSS
 syntax. The supported syntax is described in the overview on
 stylesheets provided with \Qt{} documentation and is not summarized
 here, as it is quite readable.
@@ -773,18 +778,18 @@ here, as it is quite readable.
 The style sheet for a widget is stored in its
 \property{styleSheet}{QWidget} property, as a string. For example, for
 a button, we could set the background to white and the foreground to red:
-<<qt-overview-stylesheets>>=
+<<qt-overview-stylesheets, results=hide>>=
 b <- Qt$QPushButton("Style sheet example")
 b$show()
 b$styleSheet <- "QPushButton {color: red; background: white}"
 @ 
 
-The CSS syntax may be unfamiliar to \R/ programmers, so the \pkg{qtbase}
+The CSS syntax may be unfamiliar to \R\/ programmers, so the \pkg{qtbase}
 package provides an alternative interface that is reminiscent of the
 \function{par} function. We specify the above stylesheet in this syntax:
 <<qt-overview-qsetStyleSheet>>=
-qsetStyleSheet(color = "red", background = "white", what = "QPushButton", 
-               widget = b)
+qsetStyleSheet(color = "red", background = "white", 
+               what = "QPushButton", widget = b)
 @ 
 %
 The \code{widget} argument defaults to \code{NULL}, which applies the
@@ -838,8 +843,8 @@ qsetMethod("clearError", LineEditWithError, function() {
 @ 
 % 
 
-  Finally, to test this out, we have the following
-<<>>=
+<<echo=FALSE, results=hide>>=
+##  To test this out, we have the following
 e <- LineEditWithError()
 e$text <- "The quick brown fox..."
 e$setError("Replace with better boilerplate text")

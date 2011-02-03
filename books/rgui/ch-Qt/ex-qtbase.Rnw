@@ -1,5 +1,5 @@
 As a synopsis for how one programs a GUI using \pkg{qtbase}, we present
-a simple dialog allows the user to input a date. A detailed
+a simple dialog that allows the user to input a date. A detailed
 introduction to these concepts will follow this example.
 
 After ensuring that the underlying libraries are installed, the
@@ -10,7 +10,7 @@ require(qtbase)
 
 \paragraph{Constructors}
 
-As with all other toolkits, \Qt widgets are objects, and the objects
+As with all other toolkits, \Qt\/ widgets are objects, and the objects
 are created with constructors. For our GUI we have four
 basic widgets: a widget used as a container to hold the others, a
 label, a single-line edit area and a button. 
@@ -97,11 +97,11 @@ window$show()
 As with other GUI toolkits, we add interactivity to our GUI by binding
 callbacks to certain signals. To react to the clicking of the button,
 the programmer attaches a handler to the
-\signal{clicked}{QAbstractButton} signal using the \function{qconnect}
+\signal{clicked} signal using the \function{qconnect}
 function. The function requires the object, the signal name and the
 handler. Here we print the value stored in the ``Date'' field.
 <<results=hide>>=
-handler <- function(checked)  print(edit$text)
+handler <- function()  print(edit$text)
 qconnect(button, "pressed", handler)
 @ 
 We will discuss callbacks more completely in Section~\ref{sec:qt-signals}.
@@ -111,7 +111,7 @@ We will discuss callbacks more completely in Section~\ref{sec:qt-signals}.
 \class{QLineEdit} can validate text input, and we would like to
 validate the entered date.  There are a few built-in validators, and
 for this purpose the regular expression validator could be used, but
-it is would be difficult to write a sufficiently robust
+it would be difficult to write a sufficiently robust
 expression. Instead we attempt to coerce the string value to a date
 via \R's \code{as.Date} function with a format of
 \code{"\%Y-\%m-\%d"}. In \GTK{}, validation would be implemented by a
@@ -127,9 +127,10 @@ need to extend \code{QValidator} and override its \code{validate}
 virtual method.  The \function{qsetClass} function defines a new
 class:
 <<results=hide>>=
-qsetClass("DateValidator", Qt$QValidator, function(parent = NULL) {
-  super(parent)
-})
+qsetClass("DateValidator", Qt$QValidator, 
+          function(parent = NULL) {
+            super(parent)
+          })
 @ 
 
 To override \method{validate}{QValidator}, we call
@@ -160,4 +161,4 @@ passed to the edit widget:
 validator <- DateValidator()
 edit$setValidator(validator)
 @ 
-
+%

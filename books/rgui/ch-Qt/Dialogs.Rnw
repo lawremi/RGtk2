@@ -31,11 +31,11 @@ described later, involves several steps and offers more control at a
 cost of convenience. Here we take the simple path for presenting a
 warning dialog:
 <<qt-dialogs-static-warning, eval=FALSE>>=
-response <- Qt$QMessageBox$warning(parent = NULL, title = "Warning!", 
-                                   text = "Warning message...")
+response <- Qt$QMessageBox$warning(parent = NULL, 
+               title = "Warning!", text = "Warning message...")
 @
 %
-This blocks the flow of the program until the user responds and
+This call will block the flow of the program until the user responds and
 returns the standard identifier for the button that was clicked. Each
 type of button corresponds to a fixed type of response. The standard
 button/response codes are listed in the
@@ -99,7 +99,7 @@ listener, as the response will arrive asynchronously:
 <<qt-dialogs-listen>>=
 qconnect(dlg, "finished", function(response) {
   ## handle response
-  ## dlg$close() necessary?
+  dlg$close()
 })
 @ 
 %
@@ -160,7 +160,7 @@ text <- Qt$QInputDialog$getText(parent = NULL,
                         label = "Enter some text")
 @
 %
-The return value is the entered string, or \qcode{NULL} if the user
+The return value is the entered string, or \code{NULL} if the user
 cancelled the dialog. Additional parameters allow one to specify the
 initial text and to override the input mode, e.g., for password-style
 input.
@@ -168,9 +168,10 @@ input.
 We can also display a dialog for integer input. Here, we ask the user
 for an even integer between 1 and 10:
 <<qt-dialogs-input-get-range>>=
-num <- Qt$QInputDialog$getInt(parent = NULL, title = "Gather integer",
-                      label = "Enter an integer from 1 to 10",
-                      value = 0, min = 2, max = 10, step = 2)
+num <- Qt$QInputDialog$getInt(parent = NULL, 
+                       title = "Gather integer",
+                       label = "Enter an integer from 1 to 10",
+                       value = 0, min = 2, max = 10, step = 2)
 @ 
 %
 The number is chosen using a bounded spin box.  To request a real
@@ -179,9 +180,10 @@ value, call \function{Qt\$QInputDialog\$getDouble} instead.
 The final type of input is selecting an option from a list of
 choices:
 <<qt-dialogs-input-get-item>>=
-item <- Qt$QInputDialog$getItem(parent = NULL, title = "Select item",
-                       label = "Select a letter",
-                       items = LETTERS, current = 17)
+item <- Qt$QInputDialog$getItem(parent = NULL, 
+                        title = "Select item",
+                        label = "Select a letter",
+                        items = LETTERS, current = 17)
 @ 
 %
 The dialog contains a combo box filled with the capital letters. The
@@ -256,7 +258,7 @@ button with the \code{AcceptRole} or \code{YesRole} is clicked;
 \code{RejectRole} or \code{NoRole} is clicked; \code{helpRequested};
 or \code{clicked} when any button is clicked. For this last signal,
 the callback is passed the button object.
-<<qt-widgets-buttonbox-signals>>=
+<<qt-widgets-buttonbox-signals, results=hide>>=
 qconnect(db, "accepted", function() message("accepted"))
 qconnect(db, "rejected", function() message("rejected"))
 qconnect(db, "helpRequested", function() message("help"))
@@ -292,12 +294,17 @@ qsetClass("DateDialog", Qt$QDialog,
             super(parent=parent)
             setWindowTitle("Choose a date")
             this$calendar <- Qt$QCalendarWidget()
-            buttonBox <- 
-              Qt$QDialogButtonBox(Qt$QMessageBox$Cancel | 
+            #
+            buttonBox <- Qt$QDialogButtonBox(Qt$QMessageBox$Cancel | 
                                   Qt$QMessageBox$Ok)
+            qconnect(buttonBox, "accepted", function() {
+              this$close()
+              this$setResult(Qt$QMessageBox$Ok)    
+            })
+            qconnect(buttonBox, "rejected", function() this$close())
+            #
             layout <- Qt$QVBoxLayout()
-            layout$addWidget(calendar)
-            layout$addWidget(buttonBox)
+            sapply(list(calendar, buttonBox), layout$addWidget)
             setLayout(layout)
           })
 @ 
@@ -309,7 +316,8 @@ the instance, so that we can retrieve the selected date upon request.
 
 We define a method that gets the currently selected date:
 <<extend-date-get>>=
-qsetMethod("selectedDate", DateDialog, function(x) calendar$selectedDate)
+qsetMethod("selectedDate", DateDialog, 
+           function(x) calendar$selectedDate$toString())
 @ 
 
 \class{DateDialog} can be executed like any other \class{QDialog}:
@@ -333,14 +341,14 @@ pages. The look and feel of a \class{QWizard} is consistent with
 platform conventions.
 
 We create a wizard object and set its title:
-<<>>=
+<<Wizard, results=hide>>=
 wizard <- Qt$QWizard()
 wizard$setWindowTitle("A wizard")
 @ 
 
 Each page is represented by a \class{QWizardPage}. We create one for
 requesting the age of the user and add the page to the wizard:
-<<>>=
+<<results=hide>>=
 getAgePage <- Qt$QWizardPage(wizard)
 getAgePage$setTitle("What is your age?")
 lyt <- Qt$QFormLayout()
@@ -350,7 +358,7 @@ wizard$addPage(getAgePage)
 @ 
 
 Two more pages are added:
-<<>>=
+<<results=hide>>=
 getToysPage <- Qt$QWizardPage(wizard)
 getToysPage$setTitle("What toys do you like?")
 lyt <- Qt$QFormLayout()
@@ -368,7 +376,7 @@ wizard$addPage(getGamesPage)
 
 Finally, we run the wizard by calling its \method{exec}{QWizard}
 method:
-<<>>=
+<<results=hide>>=
 ret <- wizard$exec()
 @ 
 
@@ -402,31 +410,35 @@ file, otherwise it will be \code{NULL}.
 
 To allow multiple selection, call the plural form of the method:
 <<eval=FALSE>>=
-fnames <- Qt$QFileDialog$getOpenFileNames(NULL, "Open file(s)...", getwd())
+fnames <- Qt$QFileDialog$getOpenFileNames(NULL, 
+                        "Open file(s)...", getwd())
 @ 
 
 To select a file name for saving, we have
 <<eval=FALSE>>=
-fname <- Qt$QFileDialog$getSaveFileName(NULL, "Save as...", getwd())
+fname <- Qt$QFileDialog$getSaveFileName(NULL,
+                        "Save as...", getwd())
 @ 
 
 And to choose a directory, 
 <<eval=FALSE>>=
-dname <- Qt$QFileDialog$getExistingDirectory(NULL, "Select directory", getwd())
+dname <- Qt$QFileDialog$getExistingDirectory(NULL,
+                        "Select directory", getwd())
 @ 
 
-To specify a filter by file extension, we use a name filter. A name
+To specify a filter by file extension, we use a ``name filter.'' A name
 filter is of the form \code{Description (*.ext *.ext2)} (no comma) where this
 would match files with extensions \code{ext} or \code{ext2}. Multiple
 filters can be used by separating them with two semicolons. For
 example, this would be a natural filter for \R{} users:
 <<>>=
-rfilter <- paste("R files (*.R .RData)",
-"Sweave files (*.Rnw)",
-"All files (*.*)", sep=";;")
+nameFilter <- paste("R files (*.R .RData)",
+                 "Sweave files (*.Rnw)",
+                 "All files (*.*)", 
+                 sep=";;")
+#
 fnames <- Qt$QFileDialog$getOpenFileNames(NULL, 
-"Open file(s)...", getwd(), 
-rfilter)
+             "Open file(s)...", getwd(), nameFilter)
 @ 
 
 Although the static functions provide most of the functionality, to
@@ -457,7 +469,7 @@ if(dlg$exec())
 \subsection{Other Choosers}
 \label{sec:choosers}
 
-\Qt/ provides several additional dialog types for choosing a
+\Qt\/ provides several additional dialog types for choosing a
 particular type of item. These include \class{QColorDialog} for
 picking a color, and \class{QFontDialog} for selecting a font. These
 special case dialogs will not be discussed further here.

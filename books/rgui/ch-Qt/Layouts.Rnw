@@ -38,7 +38,7 @@ presented in Section~\ref{sec:qt-layout-box}.
 A layout is not a widget. Instead, a layout is set on a
 widget, and the widget delegates the layout of its children to the
 layout object:
-<<qt-layout-basic-setLayout>>=
+<<qt-layout-basic-setLayout, results=hide>>=
 wid <- Qt$QWidget()
 wid$setLayout(layout)
 @ 
@@ -46,7 +46,7 @@ wid$setLayout(layout)
 %% adding a widget
 Child widgets are added to a container through the
 \method{addWidget}{QLayout} method:
-<<qt-layout-basic-add>>=
+<<qt-layout-basic-add, results=hide>>=
 layout$addWidget(Qt$QPushButton("Push Me"))
 @
 %
@@ -71,7 +71,7 @@ button <- item$widget()
 \Qt{} provides the methods \method{removeItem}{QLayout} and
 \method{removeWidget}{QLayout} to remove an item or widget from a
 layout:
-<<qt-layout-basic-remove>>=
+<<qt-layout-basic-remove, results=hide>>=
 layout$removeWidget(button)
 @ 
 %
@@ -80,18 +80,18 @@ widget is unchanged. The widget will not be destroyed (removed from
 memory) as long as it has a parent. Thus, to destroy a widget, one
 should set the parent of the widget \code{NULL} using
 \method{setParent}{QWidget}:
-<<qt-layout-basic-setParent>>=
+<<qt-layout-basic-setParent, results=hide>>=
 button$setParent(NULL)
 @ 
 
 \subsection{Size and Space Negotiation}
 
 The allocation of space to child widgets depends on several factors.
-The \Qt{} documentation for layouts spells out the
+The \Qt{} documentation for layouts spells out well the
 steps:~\footnote{\url{http://doc.qt.nokia.com/4.6/layout.html}}
 \begin{enumerate}
 \item All the widgets will initially be allocated an amount of space
-  in accordance with their sizePolicy and sizeHint.
+  in accordance with their \property{sizePolicy}{QWidget} and \property{sizeHint}{QWidget}.
 
 \item If any of the widgets have stretch factors set, with a value
   greater than zero, then they are allocated space in proportion to
@@ -99,7 +99,7 @@ steps:~\footnote{\url{http://doc.qt.nokia.com/4.6/layout.html}}
 
 \item If any of the widgets have stretch factors set to zero they will
   only get more space if no other widgets want the space. Of these,
-  space is allocated to widgets with an Expanding size policy first.
+  space is allocated to widgets with an expanding size policy first.
 
 \item Any widgets that are allocated less space than their minimum
   size (or minimum size hint if no minimum size is specified) are
@@ -116,7 +116,7 @@ steps:~\footnote{\url{http://doc.qt.nokia.com/4.6/layout.html}}
 
 Every widget returns a size hint to the layout from the
 the \method{sizeHint}{QWidget} method/property. The interpretation of
-the size hint depends on the \property{sizePolicy} property. The size
+the size hint depends on the \property{sizePolicy}{QWidget} property. The size
 policy is an object of class \class{QSizePolicy}. It contains a
 separate policy value, taken from the \qtenumeration{QSizePolicy}
 enumeration, for the vertical and horizontal directions. The possible
@@ -168,20 +168,20 @@ align the label to the left side of the layout:
 <<echo=FALSE, results=hide>>=
 layout <- Qt$QHBoxLayout()
 @ 
-<<qt-layout-basic-alignment>>=
+<<qt-layout-basic-alignment, results=hide>>=
 label <- Qt$QLabel("Label")
 layout$addWidget(label)
 layout$setAlignment(label, Qt$Qt$AlignLeft)
 @ 
 % 
 Alignment is also possible to the top, bottom and right. The alignment
-values are flags and so many be combined to specify both vertical and
+values are flags andmay be combined with \code{\|} to specify both vertical and
 horizontal alignment.
 
-It is also possible to specify an amount of spacing between every cell
-of the layout. Here, we request $5$ pixels of space:
+The spacing between every cell
+of the layout is in the \code{spacing} property, the following requests $5$ pixels of space:
 <<qt-layout-basic-spacing>>=
-layout$spacing <- 5
+layout$spacing <- 5L
 @ 
 
 \section{Box Layouts}
@@ -199,7 +199,7 @@ hb <- Qt$QHBoxLayout()
  
 Child widgets are added to a box container through the
 \method{addWidget}{QLayout} method:
-<<qt-layout-box-add>>=
+<<qt-layout-box-add, results=hide>>=
 sapply(1:3, function(i) hb$addWidget(Qt$QPushButton(i)))
 @
 % 
@@ -286,7 +286,7 @@ expanding. Fixed spacing between any two children was already
 described. To add a fixed amount of space between two specific
 children, call the \meth{addSpacing} method while populating the
 container. The following line is from Example~\ref{eg:qt-layouts}:
-<<qt-layout-box-spacing>>=
+<<qt-layout-box-spacing, results=hide>>=
 buttonLayout$addSpacing(12L)
 @ 
 
@@ -294,7 +294,7 @@ An expanding, spring-like spacer between two widgets is known as a
 \textit{stretch}. We add a stretch with a factor of $2.0$ and
 subsequently add a child button that will be pressed against the right
 side of the box:
-<<qt-layout-box-stretch>>=
+<<qt-layout-box-stretch, results=hide>>=
 g$addStretch(2)
 g$addWidget(Qt$QPushButton("Help..."))
 @ 
@@ -304,14 +304,14 @@ stretch factor.
 
 \paragraph{Struts}
 
-It is sometimes desirable to restrict the size of a layout in the
+It is sometimes desirable to restrict the minimum size of a layout in the
 perpendicular direction. For a horizontal box, this is the height. The
 box layout provides the \textit{strut} for this purpose:
 <<qt-layout-box-strut>>=
-g$addStrut(10)
+g$addStrut(10)                    # atleast 10 pixels high
 @ 
 %
-We have limited the height of the box to $10$ pixels.
+
 
 \section{Grid Layouts}
 \label{sec:grid-layouts}
@@ -329,7 +329,7 @@ child widgets into rows and columns.  To illustrate grid layouts we
 mock up a GUI centered around a text area widget
 (Figure~\ref{fig:qt-layout-example}). To begin, we create the window
 with the grid layout:
-<<hidden, results=hide>>=
+<<LayoutExample, results=hide>>=
 w <- Qt$QWidget()
 w$setWindowTitle("Layout example")
 lyt <- Qt$QGridLayout()
@@ -399,8 +399,8 @@ allocated to each row and column would be identical when resized. To
 allocate extra space to the text area, we set a positive stretch
 factor for the third row and second column:
 <<results=hide>>=
-lyt$setRowStretch(2, 1)
-lyt$setColumnStretch(1,1)
+lyt$setRowStretch(2, 1)                 # third row
+lyt$setColumnStretch(1,1)               # second column
 @ 
 % 
 As it is the only item with a positive stretch factor, it will be the
@@ -458,7 +458,7 @@ flyt$addRow("sd", Qt$QLineEdit())
 flyt$addRow(Qt$QCheckBox("log"))
 @
 %
-<<echo=FALSE>>=
+<<echo=FALSE, results=hide>>=
 w$show(); w$raise()
 @ 
 %
@@ -484,9 +484,9 @@ The frame widget, \class{QGroupBox}, groups conceptually related
 widgets by drawing a border around them and displaying a
 title. \class{QGroupBox} is often used to group radio buttons, see
 Section~\ref{sec:radio-groups} for an example.  The title, stored in
-the \property{title} property, may be aligned to left, right or
-center, depending on the \property{alignment} property, see
-Figure~\ref{fig:group-box-example}. If the \property{checkable}
+the \property{title}{QGroupBox} property, may be aligned to left, right or
+center, depending on the \property{alignment}{QGroupBox} property, see
+Figure~\ref{fig:group-box-example}. If the \property{checkable}{QGroupBox}
 property is \qcode{TRUE}, the frame contents can be enabled or
 disabled by clicking a check button.
 
@@ -533,19 +533,19 @@ separator$frameShape <- Qt$QFrame$HLine
 @ 
 % 
 This yields a horizontal separator. A frame shape of
-\qcode{Qt\$QFrame\$VLine} would produce a vertical separator.
+\code{Qt\$QFrame\$VLine} would produce a vertical separator.
 
 \section{Notebooks}
 \label{sec:notebooks}
 
-A notebook container is provided by the widget \class{QTabWidget}:
+A notebook container is provided by the class \class{QTabWidget}:
 <<qt-layout-notebook>>=
 nb <- Qt$QTabWidget()
 @
 
 To create a page, one needs to specify the label for the tab and the
 widget to display when the page is active:
-<<qt-layout-notebook-addtab>>=
+<<qt-layout-notebook-addtab, results=hide>>=
 nb$addTab(Qt$QPushButton("page 1"), "page 1")
 icon <- Qt$QIcon("small-R-logo.jpg")
 nb$addTab(Qt$QPushButton("page 2"), icon,  "page 2")
@@ -554,7 +554,7 @@ nb$addTab(Qt$QPushButton("page 2"), icon,  "page 2")
 As shown in the second call to \method{addTab}{QTabWidget}, one can
 provide an icon to display next to the tab label. We can also add a
 tooltip for a specific tab, using zero-based indexing:
-<<qt-layout-notebook-tooltip>>=
+<<qt-layout-notebook-tooltip, results=hide>>=
 nb$setTabToolTip(0, "This is the first page")
 @ 
 
@@ -574,7 +574,7 @@ nb$tabPosition <- Qt$QTabWidget$South
 Other features include close buttons, movable pages by drag and drop,
 and scroll buttons for when the number of tabs exceeds the available
 space. We enable all of these:
-<<qt-layout-notebook-features>>=
+<<qt-layout-notebook-features, results=hide>>=
 nb$tabsClosable <- TRUE
 qconnect(nb, "tabCloseRequested", function(index) {
   nb$removeTab(index)
@@ -671,7 +671,7 @@ sp$setOrientation(Qt$Qt$Vertical)
 @ 
 %
 We can adjust the sizes programmatically:
-<<qt-layout-splitter-set>>=
+<<qt-layout-splitter-set, results=hide>>=
 sp$setSizes(c(100L, 200L, 300L))
 @ 
 

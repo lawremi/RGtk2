@@ -19,7 +19,9 @@ library(qtbase)
 Our basic constructor simply creates a \prop{dataframe} property and
 sets the data frame.
 <<DfModel, results=hide>>=
-qsetClass("DfModel", Qt$QAbstractTableModel, function(df=data.frame(V1=character(0)), parent=NULL) {
+qsetClass("DfModel", Qt$QAbstractTableModel,
+          function(df=data.frame(V1=character(0)), 
+                   parent=NULL) {
   super(parent)
   ## properties
   this$dataframe <- NULL

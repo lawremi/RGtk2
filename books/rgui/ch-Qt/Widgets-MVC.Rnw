@@ -208,7 +208,7 @@ sapply(seq(model$rowCount()), function(i) model$index(i - 1, 0)$data())
 Setting the data is also possible, yet requires calling
 \method{setData}{QAbstractItemModel} on the model, not the index:
 <<qt-mvc-model-index-data-set>>=
-##JV XXX model$setData(index, toupper(firstCar))
+#JV XXX model$setData(index, toupper(firstCar))
 @ 
 %
 We will leave the population of a model with the low-level API as an
@@ -234,7 +234,7 @@ lists and tables. The selection
 state is stored in its own data model,
 \class{QItemSelectionModel}:
 <<qt-mvc-selection-model>>=
-selModel <- view$selectionModel()
+selModel <- listView$selectionModel()
 @
 %
 This design allows views to synchronize
@@ -254,7 +254,7 @@ the selection.  The \qcode{ContiguousSelection} mode disallows the
 \kbd{Ctrl} key behavior. To allow selection on mouse-over, with range
 selection by clicking and dragging, choose \qcode{MultiSelection}. We
 configure our list view for single selection:
-<<qt-mvc-selection-set-mode>>=
+<<qt-mvc-selection-set-mode, results=hide>>=
 listView$selectionMode <- Qt$QAbstractItemView$SingleSelection
 @ 
 % 
@@ -271,7 +271,7 @@ indices <- selModel$selectedIndexes()
 indices[[1]]$data()
 @ 
 
-<<qt-mvc-selection-multiple-set-initial, echo=FALSE>>=
+<<qt-mvc-selection-multiple-set-initial, echo=FALSE, results=hide>>=
 sel <- Qt$QItemSelection()
 sel$select(model$index(3, 0), model$index(5, 0))
 sel$select(model$index(10, 0), model$index(16, 0))
@@ -317,7 +317,7 @@ listView$setCurrentIndex(model$index(0, 0))
 This approach is simple but only supports selecting a single item.
 The selection is most generally modified by calling the
 \method{select}{QItemSelectionModel} method on the selection model:
-<<qt-mvc-selection-select>>=
+<<qt-mvc-selection-select, results=hide>>=
 selModel$select(model$index(0, 0), Qt$QItemSelectionModel$Select)
 @ 
 % 
@@ -328,13 +328,13 @@ options at once, all listed in
 issued the \qcode{Select} command. Other commands include
 \qcode{Deselect} and \qcode{Toggle}. Thus, we could deselect the item
 in similar fashion:
-<<qt-mvc-selection-deselect>>=
+<<qt-mvc-selection-deselect, results=hide>>=
 selModel$select(model$index(0, 0), Qt$QItemSelectionModel$Deselect)
 @ 
 %
 To efficiently select a range of items, we construct a
 \class{QItemSelection} object and set it on the model:
-<<qt-mvc-selection-multiple-set-initial, echo=FALSE>>=
+<<qt-mvc-selection-multiple-set-initial, echo=FALSE, results=hide>>=
 sel <- Qt$QItemSelection(model$index(3, 0), model$index(10, 0))
 selModel$select(sel, Qt$QItemSelectionModel$Select)
 @
@@ -351,7 +351,7 @@ row-wise selection in a table, so we will override the default:
 tableView$selectionBehavior <- Qt$QAbstractItemView$SelectRows
 @ 
 %
-<<qt-mvc-selection-select-row, echo=FALSE>>=
+<<qt-mvc-selection-select-row, echo=FALSE, results=hide>>=
 tableView$selectRow(1)
 tableView$selectRow(2)
 @ 
@@ -359,7 +359,7 @@ tableView$selectRow(2)
 Querying a selection is essentially the same as for the list
 view, except we can request indices representing entire rows or
 columns. In this example, we are interested in the rows, where the
-user has selected the second and third rows:
+user has selected the third row (2):
 <<qt-mvc-selection-get-rows>>=
 selModel <- tableView$selectionModel()
 sapply(selModel$selectedRows(), qinvoke, "row")
@@ -369,7 +369,7 @@ We invoke the \method{row}{QModelIndex} method on each returned
 \class{QModelIndex} object to get the row indices.
 When setting the selection, there are conveniences for selecting
 an entire row or column. We select the first row of the table:
-<<qt-mvc-selection-select-row>>=
+<<qt-mvc-selection-select-row, results=hide>>=
 tableView$selectRow(0)
 @ 
 %
@@ -382,7 +382,7 @@ items, except we need to add the \qcode{Rows} selection flag:
 
 To respond to a change in selection, connect to the
 \signal{selectionChanged} signal on the selection model:
-<<qt-mvc-selection-changed>>=
+<<qt-mvc-selection-changed, results=hide>>=
 selectedIndices <- rep(FALSE, nrow(mtcars))
 selectionChangedHandler <- function(selected, deselected) {
   selectedIndices[indicesForSelection(selected)] <<- TRUE
@@ -416,7 +416,7 @@ coordinate space. Thus, there is little cost in memory.
 \class{QSortFilterProxyModel}. After constructing an instance and
 specifying the child model, the proxy model may be handed to a view
 like any other model:
-<<qt-mvc-proxy>>=
+<<qt-mvc-proxy, results=hide>>=
 proxy <- Qt$QSortFilterProxyModel()
 proxy$setSourceModel(model)
 tableView$setModel(proxy)
@@ -440,7 +440,7 @@ display the sorted data. The sort has been applied to both the table
 and list view. It is also possible to sort programmatically by calling
 the \method{sort}{QAbstractItemModel} method, passing the index of the
 sort column. We sort our data by the \qcode{mpg} variable:
-<<qt-mvc-proxy-sort>>=
+<<qt-mvc-proxy-sort, results=hide>>=
 proxy$sort(1)
 @ 
 %
@@ -469,7 +469,7 @@ It is also possible to hide rows and columns at the view by calling
 \method{setColumnHidden}{QTableView} or
 \method{setRowHidden}{QTableView}. For example, we hide the
 \qcode{Price} column:
-<<qt-mvc-table-hidden>>=
+<<qt-mvc-table-hidden, results=hide>>=
 tableView$setColumnHidden(4, TRUE)
 @ 
 %
@@ -552,7 +552,7 @@ argument to \method{setData}{QAbstractItemModel}. The value of
 \argument{role}{setData} defaults to \qcode{EditRole}, meaning that
 the data is in an editable form. We create a list view and set the
 background of the first item to yellow:
-<<qt-mvc-role-set-data>>=
+<<qt-mvc-role-set-data, results=hide>>=
 listModel <- Qt$QStringListModel(rownames(mtcars))
 #JV XXXlistModel$setData(listModel$index(0, 0), "yellow", Qt$Qt$BackgroundRole)
 listView <- Qt$QListView()
@@ -632,7 +632,7 @@ convenient in some circumstances.
 The \Rclass{QTreeView} widget displays the data in a table, with the
 conventional buttons on the left for expanding and collapsing
 nodes. We create an instance and set the model: 
-<<qt-mvc-tree-view>>=
+<<qt-mvc-tree-view, results=hide>>=
 treeView <- Qt$QTreeView()
 treeView$setModel(treeModel)
 @ 
@@ -764,11 +764,15 @@ While separating the model from the view provides substantial
 flexibility, in practice it is often sufficient and slightly more
 convenient to manipulate a view with a built-in data model. \Qt{}
 provides a set of view widgets with internal models:
+\\
+
 \begin{description}
 \item[\class{QListWidget}] for simple lists of items,
 \item[\class{QTableWidget}] for a flat table and
 \item[\class{QTreeWidget}] for a tree table.
 \end{description}
+
+
 In our experience, the convenience of these classes is not worth the
 loss in flexibility and other advantages of the model/view design
 pattern. \class{QTableWidget}, in particular, precludes the use of
@@ -785,7 +789,7 @@ simple list of items is a common task in a GUI.
 a set of items for selection. As with combo boxes, we can populate the
 items directly from a character vector through the
 \method{addItems}{QListWidget} method:
-<<qt-mvc-listwidget-additems>>=
+<<qt-mvc-listwidget-additems, results=hide>>=
 listWidget <- Qt$QListWidget()
 listWidget$addItems(state.name)
 @ 
@@ -990,7 +994,7 @@ explicitly set the modified cursor object on the
 \class{QTextEdit}. This behavior is often convenient, because it
 allows us to modify arbitrary parts of the document, without affecting
 the user cursor.  For example, we could insert an image at the beginning:
-<<qt-mvc-textedit-image>>=
+<<qt-mvc-textedit-image, results=hide>>=
 cursor$setPosition(0)
 cursor$insertImage(system.file("images/ok.gif", package="gWidgets"))
 @ 
@@ -1004,16 +1008,16 @@ Selection is a component of the \class{QTextCursor} state. For plain
 text, the selected text is returned by the
 \method{selectedText}{QTextCursor} method:
 <<qt-mvc-textedit-selection>>=
-cursor$selectedText()
+te$textCursor()$selectedText()
 @ 
 %
-The empty string indicates that the user has not selected any text.
+The \code{NULL} value indicates that the user has not selected any text.
 The selection spans from the cursor anchor to the cursor
 position. Normally, the anchor and cursor are at the same position. To
 make a selection, we move the cursor independently of its anchor.
 To set the selection to include the first three words of the text, we have:
 <<results=hide>>=
-cursor <- Qt$QTextCursor(te$document()) ## te$textCursor()
+cursor <- Qt$QTextCursor(te$document()) 
 cursor$movePosition(Qt$QTextCursor$Start)
 cursor$movePosition(Qt$QTextCursor$WordRight, Qt$QTextCursor$KeepAnchor, 3)
 te$setTextCursor(cursor)
@@ -1028,7 +1032,7 @@ words. Finally, we need to commit the modified cursor.
 
 To listen to changes in the selection (according to the user visible
 cursor), connect to \signal{selectionChanged}:
-<<qt-mvc-textedit-selectionChanged>>=
+<<qt-mvc-textedit-selectionChanged, results=hide>>=
 qconnect(te, "selectionChanged", function() {
   message("Selected text: '", te$textCursor()$selectedText(), "'")
 })
@@ -1056,7 +1060,8 @@ adjust the cursor to select the match. For example, we can search
 through a standard typesetting string starting at the cursor point for
 the common word ``qui'' as follows:
 
-<<lorumIpsum, echo=FALSE>>=
+<<LoremIpsum, echo=FALSE>>=
+## in misc.R
 LoremIpsum <- paste(
 "Lorem ipsum dolor sit amet, consectetur adipisicing elit,",
 "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",

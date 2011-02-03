@@ -52,7 +52,6 @@ lookup <- function(obj, regxp) {
 
 \SweaveInput{Widgets}
 
-\SweaveInput{Dialogs}
 
 \chapter{Qt: Widgets Using Data Models}
 \label{cha:widgets-using-MVC}
