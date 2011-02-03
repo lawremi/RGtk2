@@ -296,7 +296,10 @@ possible actions. The text for these actions conventionally use a
 more information can be gathered to complete the action. The text may
 also indicate a key-board accelerator, such as \code{Find
   \underline{N}ext F3} indicating that both ``N'' as a keyboard
-accelerator and F3 as a shortcut will initiate this same action.
+accelerator and F3 as a shortcut will initiate this same
+action. (Shortcuts are not translated, but keyboard accelerators must
+be. As such, their use is less so. In particular, keyboard
+accelerators are not supported in Mac OS X menus.)
 
 Not all actions will be applicable at any given time. It is
 recommended that rather than deleting these menu items, they be

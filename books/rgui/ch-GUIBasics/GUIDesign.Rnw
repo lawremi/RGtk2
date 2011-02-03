@@ -149,13 +149,12 @@ possible, given the state of the application.
 The Mac GUI has the number of pages in focus, whereas Windows places
 the printer in focus. This allows the user to interact with the GUI
 without the mouse. Typically the \kbd{tab} key is used to step through
-the controls. GUI's often have keyboard accelerators and/or mnemonics that allow power
-users to initiate actions or shift the focus directly to a specific
-widget through the keyboard. Examples are
-found in the KDE dialog. Most dialogs also have a default button, which will
-initiate the dialog action when the \kbd{return} key is pressed. The
-KDE dialog, for example, indicates that the ``print'' button is the
-default button through special shading.
+the controls. GUI's often have shortucts that allow power users to
+initiate actions or shift the focus directly to a specific widget
+through the keyboard.  Most dialogs also have a default button, which
+will initiate the dialog action when the \kbd{return} key is
+pressed. The KDE dialog, for example, indicates that the ``print''
+button is the default button through special shading.
 
 %% help
 % For such a common dialog, it is unlikely the user will need help. As

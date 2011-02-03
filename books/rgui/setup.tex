@@ -154,10 +154,24 @@
 % }
 % \renewcommand\lstlistlistingname{List of listings}
 
+%% This breaks long commands by hyphenating. It beats the alternative
+%% of having them run all over the margin
+\usepackage{everysel}
+\EverySelectfont{%
+\fontdimen2\font=0.4em% interword space
+\fontdimen3\font=0.2em% interword stretch
+\fontdimen4\font=0.1em% interword shrink
+\fontdimen7\font=0.1em% extra space
+\hyphenchar\font=`\-% to allow hyphenation
+}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Abbreviations (most are Rd-ish)
 %% Flag something to look at -- XXX is easy to search for
 \newcommand{\XXX}[1]{}%%{XXX-- #1 --XXX\\}
+
+
 
 
 \newcommand{\R}{\textsf{R}}
@@ -165,12 +179,13 @@
 \newcommand{\qcode}[1]{\code{"#1"}} % quoted code 
 \newcommand{\Rcode}[1]{\code{#1}}
 \newcommand{\proglang}[1]{\code{#1}} % a programming lang
-
+\newcommand{\software}[1]{\code{#1}} % some software
 
 \newcommand{\defn}[1]{\textit{#1}\index{\textit{#1}}}   % add in index
 \newcommand{\command}[1]{\code{#1}} % name of command
 \newcommand{\function}[1]{\code{#1}} % name of function
 \newcommand{\Rfunction}[1]{\function{#1}} % name of function
+\newcommand{\Robject}[1]{\code{#1}} % name of function
 \newcommand{\constructor}[1]{\function{#1}\index{#1}}
 
 \newcommand{\args}[1]{\code{#1}} % name of argument only
@@ -189,7 +204,9 @@
 \newcommand{\prop}[1]{\generic{#1}}     % single arg, no class
 \newcommand{\property}[2]{\prop{#1}\index{#2|\code{#1}}} % name of
                                % widget property
+\newcommand{\qtproperty}[1]{\prop{#1}} % qt property
 \newcommand{\qtenumeration}[1]{\generic{#1}} % an enumerated flag in
+\newcommand{\enumeration}[1]{\qtenumeration{#1}}
                                 % Qt$Qt object
 \newcommand{\OR}{$\mid$}        % for |.QtEnum
 \newcommand{\AND}{\&}        % for |.QtEnum
@@ -243,6 +260,10 @@
 \newcommand{\OSX}{Mac OS X}
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Penalties 
+\widowpenalty=30000
+\clubpenalty=30000
 
 
 \usepackage{color}
