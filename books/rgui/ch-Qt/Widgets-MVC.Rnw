@@ -1079,15 +1079,73 @@ after.
 \end{example}
 
 
-\section{Implementing Custom Views}
+\section{Alternative Views of Data Models}
 \label{sec:custom-views}
 
-One can write a custom view for a model. In the example, we show how
-to display values from a model as text in a label. The base class for
-a view of an item model is \class{QAbstractItemView}. This class has
-many virtual methods, which may be overridden to custom the handling
-of key presses, mouse actions, scrolling, selection, etc. Here we focus
-on just enough for our example.
+Thus far, we have discussed the application of
+\class{QAbstractItemView} for viewing items in a
+\class{QAbstractItemModel}. This is the canonical model/view approach
+in \Qt. The role of a \class{QAbstractItemView} is to display each
+item in a model, more or less simultaneously. Sometimes it is useful
+to view an individual item from a model in a simple widget like a
+label or even an editing widget, such as a line edit or spin box.
+For example, a GUI for entering records into a database might want to
+associate each of its widgets with a column in the model, one row at a
+time.
+
+The \class{QDataWidgetMapper} class facilitates this by associating a
+column (or row) in a model with a property on a widget. By default,
+the \textit{user} property is selected. The user property is marked as
+the primary user-facing property of a widget; there is only one per
+class. An example is the \property{text}{QLabel} property on a
+\class{QLineEdit}.
+
+\begin{example}{Mapping selected model items to a text entry}
+  
+  We will demonstrate \class{QDataWidgetMapper} by displaying a table
+  view of the \qcode{Cars93} dataset, along with a label. When a row
+  is selected, the model name of the record will be displayed in the
+  label. First, we establish the mapping:
+<<qt-mvc-mapper-map>>=
+data(Cars93, package="MASS")
+model <- qdataFrameModel(Cars93, editable=TRUE)
+mapper <- Qt$QDataWidgetMapper()
+mapper$setModel(model)
+label <- Qt$QLabel()
+mapper$addMapping(label, 1)
+@ 
+%
+  The \method{addMapping}{QDataWidgetMapper} establishes a mapping
+  between the view widget and the $0$-based column index in the
+  model. 
+  
+  Next, we construct a table view and establish a handler that
+  changes the current row of the data mapper upon selection:
+<<qt-mvc-mapper-select>>=
+tableView <- Qt$QTableView()
+tableView$setModel(model)
+qconnect(tableView$selectionModel(), "currentRowChanged", 
+         mapper$setCurrentIndex)
+@ 
+
+  Finally, we layout our GUI:
+<<qt-mvc-mapper-layout>>=
+w <- Qt$QWidget()
+lyt <- Qt$QVBoxLayout()
+w$setLayout(lyt)
+lyt$addWidget(tableView)
+lyt$addWidget(label)
+@ 
+
+\end{example}
+
+Let us consider a different problem: summarizing or aggregating
+multiple model items, such as an entire column, and displaying the
+result in a widget. For example, a label might show the mean of a
+column, and the label would be updated as the model changed.  The
+\class{QDataWidgetMapper} is not appropriate for this class, as it is
+limited to a one-to-one mapping between a model item and a widget, at
+any given time. The next example proposes an ad-hoc solution to this.
 
 \begin{example}{A label that updates as a model is updated}{eg:qt-custom-view}
   \SweaveInput{ex-qt-custom-view}

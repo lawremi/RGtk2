@@ -1,307 +1,61 @@
-This example shows how to create a simple custom view for a table
-model. We use the \class{DfModel} class developed in
-Example~\ref{eg:qt-editable-data} to provide the model.
+This example shows how to create an aggregating view for a table
+model. We will subclass \class{QLabel} to display a mean value for a
+given column. Our custom view class will be a sub-class of
+\class{QLabel}. This is a simple illustration, where we
+provide a label with text summarizing the mean of the values in the
+first column of the model.
 
-
-<<echo=FALSE, eval=FALSE, results=hide>>=
-## Uncomment to run stand alone. The DfModel class is also defined previously.
-library(qtbase)
-
-## Create a model for displaying a data frame -- like qdataFrameModel -- only
-## with more Qt-like control over the display of columnms
-## The key methods are data(), setData() and flags()
-
-qsetClass("DfModel", Qt$QAbstractTableModel, function(df=NULL, parent=NULL) {
-  super(parent)
-  ## properties
-  this$dataframe <- NULL
-  this$rownames <- NULL
-  this$colnames <- NULL
-  
-  setDf(df)
-})
-
-##' get the data frame
-qsetMethod("Df", DfModel, function() {
-  this$dataframe
-})
-
-##' set the data frame
-qsetMethod("setDf", DfModel, function(df) {
-  this$dataframe <- df
-  this$rownames <- rownames(df)
-  this$colnames <- colnames(df)
-  dataChanged(index(0, 0), index(nrow(df)-1, ncol(df) - 1))
-})
-
-qsetMethod("rowNames", DfModel, function() this$rownames)
-qsetMethod("setRowNames", DfModel, function(value) this$rownames <- value)
-qsetMethod("colNames", DfModel, function() this$colnames)
-qsetMethod("setColNames", DfModel, function(value) this$colnames <- value)
-
-##' must implement to subclass abstract table model
-qsetMethod("rowCount", DfModel, function(index) {
-  nrow(this$Df())
-})
- 
-
-##' must implement to subclass abstract table model
-qsetMethod("columnCount", DfModel, function(index) {
-  ncol(this$Df())
-})
-
-
-
-## S3 methods to adjust the role data according to column class
-
-## The display role adjusts the text displayed for the data
-## returns a character
-displayRole <- function(x, row, context) UseMethod("displayRole")
-displayRole.default <- function(x, row, context) sprintf("%s", x[row])
-displayRole.numeric <- function(x, row, context) sprintf("%.2f", x[row])
-displayRole.integer <- function(x, row, context) sprintf("%d", x[row])
-
-## texrt alignment role returns an alignment flag
-textAlignmentRole <- function(x, row, context) UseMethod("textAlignmentRole")
-textAlignmentRole.default <- function(x, row, context) Qt$Qt$AlignCenter
-textAlignmentRole.integer <- function(x, row, context) Qt$Qt$AlignRight
-textAlignmentRole.numeric <- function(x, row, context) Qt$Qt$AlignRight
-
-## sets the background color
-## returns a QBrush object
-backgroundRole <- function(x, row, context) UseMethod("backgroundRole")
-backgroundRole.default <- function(x, row, context) Qt$QBrush(Qt$QColor(0,0,0,0)) # transparent
-backgroundRole.factor <- function(x, row, context) Qt$QBrush(Qt$QColor("yellow"))
-
-##' Size hint role
-##' XXX Doesn't get called
-sizeHintRole <- function(x, row, context) UseMethod("sizeHintRole")
-sizeHintRole.default <- function(x, row, context) {
-  sz <- max(sapply(x, function(i) nchar(as.character(i))))
-  avg <- Qt$QFontMetric(Qt$QFont())$averageCharWidth()
-  Qt$QSize(sz*avg, sample(c(25L, 50L), 1))
-}
-
-## some text for a toolkitp
-toolTipRole <- function(x, row, context) UseMethod("toolTipRole")
-toolTipRole.default <- function(x, row, context)
-  sprintf("Value in vector with class %s", paste(class(x), collapse=","))
-toolTipRole.factor <- function(x, row, context) {
-  x <- levels(x)
-  n <- length(x)
-  p <- 6
-  q <- n %/% p
-  r <- n %% p
-  l <- paste(paste(apply(matrix(x[1:(p*q)], byrow=T, ncol=6), 1, paste, collapse=","), collapse=",\n"),
-        paste(x[(n-r+1):n], collapse=","), sep=",\n")
-  sprintf("Factor with levels:\n%s", l)
-}
-toolTipRole.logical <- function(x, row, context) sprintf("Logical vector")
-
-whatsThisRole <- toolTipRole
-
-##' This is themain method. Gets data for a given index based on the role
-qsetMethod("data", DfModel, function(index, role) {
-  d <- this$Df()
-  row <- index$row()
-  col <- index$column()
-
-  
-  if(role == Qt$Qt$DisplayRole) {
-    displayRole(d[,col + 1], row + 1)
-  } else if(role == Qt$Qt$EditRole) {
-    as.character(d[row + 1, col + 1])
-  } else if(role == Qt$Qt$TextAlignmentRole) {
-    textAlignmentRole(d[, col+1], row+1)
-  } else if(role == Qt$Qt$BackgroundRole) {
-    backgroundRole(d[, col+1], row+1)
-  } else if(role == Qt$Qt$ToolTipRole) {
-    toolTipRole(d[,col+1], row+1)
-  } else if(role == Qt$Qt$WhatsThisRole) {
-    whatsThisRole(d[,col+1], row+1)
-  } else if(role == Qt$Qt$SizeHintRole) {
-    sizeHintRole(d[,col+1], row+1)
-  } else {
-    NULL
-  }
-})
-
-## coerce value to fit into x
-fitIn <- function(x, value) UseMethod("fitIn")
-fitIn.default <- function(x, value) value
-fitIn.numeric <- function(x, value) as.numeric(value)
-fitIn.integer <- function(x, value) as.integer(value)
-fitIn.logical <- function(x, value) {
-  if(toupper(value) %in% c("T","F","TRUE","FALSE")) {
-    as.logical(value)
-  } else {
-    as.logical(as.numeric(value))
-  }
-}
-
-##' To edit cells we need to implement a method to set data once edited
-##' The trick is that value is a character, so we must coerce to the right type
-##' for the column it is in.
-qsetMethod("setData", DfModel, function(index, value, role) {
-
-  if(index$isValid() && role == Qt$Qt$EditRole) {
-    d <- this$Df()
-    x <- d[, index$column() + 1]
-    d[index$row() + 1, index$column() + 1] <- fitIn(x, value)
-
-    this$dataframe <- d
-    dataChanged(index, index)
-
-    return(TRUE)
-  } else {
-    #return(FALSE)
-     super("setData", index, value, role)
-  }
-})
-
-## http://doc.qt.nokia.com/4.6/model-view-creating-models.html
-##' Finally we need to implement flags() so that it returns editable if we want
-##' We might check the column in case we want to freeze some values
-qsetMethod("flags", DfModel, function(index) {
-  if(!index$isValid()) {
-    return(Qt$Qt$ItemIsEnabled)
-  } else {
-    curFlags <- super("flags", index)
-    return(curFlags | Qt$Qt$ItemIsEditable)
-  }
-})
-
-##' we implement headerData() to give the header information
-##' Calling rownames(this$Df()) is ** much slower ** so we cache the names
-qsetMethod("headerData", DfModel, function(int, orient, role) {
-  if(role == Qt$Qt$DisplayRole) {
-    if(orient & Qt$Qt$Horizontal) 
-      nms <- this$colNames()
-    else
-      nms <- this$rowNames()
-    return(nms[int+1])
-  } else {
-    NULL
-  }
-})
-
-qsetMethod("setHeaderData", DfModel, function(int, orient, value, role) {
-  d <- this$Df()
-  if(role == Qt$Qt$DisplayRole) {
-    if(orient & Qt$Qt$Horizontal)
-      colnames(d)[int + 1] <- value
-    else
-      rownames(d)[int + 1] <- value
-    headerDataChanged(orient, int, int)
-    TRUE
-  } else {
-    NULL
-  }
-})
-
-##' Some data frame helper methods
-qsetMethod("setColumn", DfModel, function(col, value) {
-  ## pad with NA if needed
-  n <- this$rowCount()
-  if(length(value) < n)
-    value <- c(value, rep(NA, n - length(value)))
-  value <- value[1:n]
-  d <- this$Df()
-  d[,col] <- value
-  this$dataframe <- d
-
-  dataChanged(index(0, col-1), index(rowCount()-1, col-1))
-  return(TRUE)
-})
-
-##' add a new column (note beginInsertColumns)
-qsetMethod("addColumn", DfModel, function(name, value) {
-  d <- this$Df()
-  if(name %in% names(d)) {
-    return(setColumn(min(which(name == names(d))), value))
-  }
-  
-  beginInsertColumns(Qt$QModelIndex(), columnCount(), columnCount())
-  d <- this$Df()
-  d[[name]] <- value
-  this$dataframe <- d
-  endInsertColumns()
-  return(TRUE)
-})
-@                
-
-Our custom view class will be a sub-class of \class{QAbstractItemView},
-although we don't consider the individual items below. Our goal is
-a simple illustration, where we provide a label with text summarizing the mean of the values
-in the first column of the model.
-
-In the constructor we define a label property and call our \meth{setModel} method.
-
+In the constructor we define a label property and call our
+\meth{setModel} method:
 <<CustomView, results=hide>>=
-qsetClass("CustomView", Qt$QAbstractItemView, function(parent=NULL) {
+library(qtbase)
+qsetClass("MeanLabel", Qt$QLabel, function(model, column = 0, parent=NULL) {
   super(parent)
-  this$label <- Qt$QLabel()
-  label$setMinimumSize(400,400)
-  setModel(NULL)
+  this$model <- model
+  this$column <- column
+  qconnect(model, "dataChanged", function(topLeft, bottomRight) {
+    if (topLeft$column() <= column && bottomRight$column() >= column)
+      updateMean()
+  })
+  updateMean()
 })
 @ 
 %
-The label has an accessor function which we use in our private
-\meth{setLabelValue} method defined below. Here we get the model from
-the custom view. 
+
+Whenever the data in the model changes, we need to update the display
+of the mean value. This private method performs the update:
 <<label, results=hide>>=
-qsetMethod("label", CustomView, function() label)
-qsetMethod("setLabelValue", CustomView, function() {
-  m <- this$model()
-  if(is.null(m)) {
+qsetMethod("updateMean", MeanLabel, function() {
+  if(is.null(model)) {
     txt <- "No model"
   } else {
-    df <- m$Df()
-    xbar <- mean(df[,1])
-    txt <- sprintf("The mean is %s", xbar)
+    df <- qdataFrame(model)
+    cname <- colnames(df)[column+1L]
+    xbar <- mean(df[,cname])
+    txt <- sprintf("Mean for '%s': %s", cname, xbar)
   }
-  label$setText(txt)
-},
-           access="private")
+  this$text <- txt
+}, access="private")
 @ 
 %
-The main method call is when the data is changed. Here we update the
-label text when so notified.
 
-<<dataChanged, results=hide>>=
-qsetMethod("dataChanged", CustomView, function(upperIndex,lowerIndex) {
-  setLabelValue()
-})
-@ 
-%
-To initialize the label text, we add a call to \meth{setLabelValue} when the model is set.
-<<results=hide>>=
-qsetMethod("setModel", CustomView, function(model) {
-  super("setModel", model)
-  setLabelValue()
-})
-@ 
-
-Finally, to test this out, we put the view in a simple GUI along with
-an instance of an editable data frame. When we modify the model
-through that, the label's text updates accordingly.
-
+To demonstrate the use of our custom view, we put it in a simple GUI
+along with an editable data frame view. When we edit the data, the
+text in our label is updated accordingly.
 <<testItOut, results=hide>>=
-model <- DfModel()
-model$setDf(mtcars)
+model <- qdataFrameModel(mtcars, editable=colnames(mtcars))
 
-view <- Qt$QTableView()
-view$setModel(model)
-view$setEditTriggers(Qt$QAbstractItemView$DoubleClicked)
+tableView <- Qt$QTableView()
+tableView$setModel(model)
+tableView$setEditTriggers(Qt$QAbstractItemView$DoubleClicked)
 
-cv <- CustomView()
-cv$setModel(model)
-  
+meanLabel <- MeanLabel(model)
+
 w <- Qt$QWidget()
-lyt <- Qt$QHBoxLayout()
+lyt <- Qt$QVBoxLayout()
 w$setLayout(lyt)
-lyt$addWidget(view)
-lyt$addWidget(cv$label())
+lyt$addWidget(tableView)
+lyt$addWidget(meanLabel)
 @ 
 %
 <<echo=FALSE, results=hide>>=

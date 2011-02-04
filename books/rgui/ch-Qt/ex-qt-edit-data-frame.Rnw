@@ -1,10 +1,11 @@
 This example shows how to create a custom model to edit a data
-frame. The performance is much less responsive than that provided by
-\class{qdataFrameModel}, as the bulk of the operations are done at the
-\R{} level. We speed things up a bit, by placing column headers into
-the first row of the table, and not in the expected place. The
-numerous calls to a \meth{headerData} method implemented in \R\/
-proved to be quite slow.
+frame. Given that \class{DataFrameModel} supports editing, there is no
+reason to actually use this model. The purpose is to illustrate the
+steps in model implementation.  The performance is poor compared to
+that of \class{DataFrameModel}, as the bulk of the operations are done
+at the \R{} level. We speed things up a bit by placing column headers
+into the first row of the table, instead of overriding the
+\meth{headerData} method, which the \Qt views call far too often. 
 
 <<echo=FALSE>>=
 ## Create a model for displaying a data frame -- like qdataFrameModel -- only
@@ -17,57 +18,55 @@ library(qtbase)
 @ 
 
 Our basic constructor simply creates a \prop{dataframe} property and
-sets the data frame.
+sets the data frame:
 <<DfModel, results=hide>>=
-qsetClass("DfModel", Qt$QAbstractTableModel,
-          function(df=data.frame(V1=character(0)), 
-                   parent=NULL) {
-  super(parent)
-  ## properties
-  this$dataframe <- NULL
-
-  setDf(df)
-})
+qsetClass("DfModel", Qt$QAbstractTableModel, 
+          function(dataframe=data.frame(V1=character(0)), parent=NULL) {
+            super(parent)
+            this$dataframe <- dataframe
+          })
 @ 
-We need accessors for the \prop{dataframe} property. When setting a
-new one, we call the \meth{dataChanged} method to notify any views of
-a change.
+
+Next, we define the \prop{dataframe} property. When a new data frame
+is set, we call the \meth{dataChanged} method to notify any views of a
+change:
 <<results=hide>>=
-qsetMethod("Df", DfModel, function() dataframe)
-qsetMethod("setDf", DfModel, function(df) {
-  this$dataframe <- df
+qsetProperty("dataframe", DfModel, write = function(df) {
+  this$.dataframe <- df
   dataChanged(index(0, 0), index(nrow(df), ncol(df)))
 })
 @ 
 
-All subclasses of \class{QAbstractTableModel} need to implement a few
-methods, here we do \meth{rowCount} and \meth{columnCount} using the
-dimensions of the current data frame.
+There are three virtual methods that we are required to implement:
+\meth{rowCount}, \meth{columnCount} and \meth{data}. The first two
+simply access the dimensions of the data frame:
 <<results=hide>>=
-qsetMethod("rowCount", DfModel, function(index) nrow(this$Df()) + 1)
-qsetMethod("columnCount", DfModel, function(index) ncol(this$Df()))
+qsetMethod("rowCount", DfModel, function(index) nrow(this$dataframe) + 1)
+qsetMethod("columnCount", DfModel, function(index) ncol(this$dataframe))
 @ 
 
 The \meth{data} method is the main method to implement. We wish to
 customize the data display based on the class of the variable
-represented in a column. We implement this with S3 methods. We define
-several. For example, to change the display role we have the following.
-
+represented in a column. We implement this with S3 methods, and
+several are defined below:
 <<displayRoleMethod, results=hide>>=
-displayRole <- function(x, row, context) UseMethod("displayRole")
-displayRole.default <- function(x, row, context) 
+displayRole <- function(x, row, ...) UseMethod("displayRole")
+displayRole.default <- function(x, row) 
   sprintf("%s", x[row])
-displayRole.numeric <- function(x, row, context) 
+displayRole.numeric <- function(x, row) 
   sprintf("%.2f", x[row])
-displayRole.integer <- function(x, row, context) 
+displayRole.integer <- function(x, row) 
   sprintf("%d", x[row])
 @ 
-
+%
 We see that numeric values are formatted to have $2$ decimal
-points. By setting the display role, we can store numeric data with
-all its digits, so that we can edit the entire value, but have values
-formatted along the decimal point.  The \code{context} argument is
-shown to indicate how to make the number of digits context sensitive.
+points. The data is still stored in its native form; a string is
+returned only for display.  An alternative approach would be to
+provide the raw data and rely on \class{RTextFormattingDelegate} to
+display the numeric values according to the current R
+configuration. However, the above approach generalizes basic numeric
+formatting.
+
 
 <<echo=FALSE, results=hide>>=
 ## Not shown
@@ -112,10 +111,10 @@ whatsThisRole <- toolTipRole
 @ 
 
 Our \meth{data} method has this basic structure (we avoid showing the
-cases for all the different roles.
+cases for all the different roles):
 <<eval=FALSE>>=
 qsetMethod("data", DfModel, function(index, role) {
-  d <- this$Df()
+  d <- this$dataframe
   row <- index$row()
   col <- index$column() + 1
 
@@ -138,7 +137,7 @@ qsetMethod("data", DfModel, function(index, role) {
 <<data,echo=FALSE, results=hide>>=
 ## this is not shown in text, but is the definition of the data method
 qsetMethod("data", DfModel, function(index, role) {
-  d <- this$Df()
+  d <- this$dataframe
   row <- index$row()
   col <- index$column() + 1
 
@@ -189,8 +188,7 @@ qsetMethod("data", DfModel, function(index, role) {
 
 To allow the user to edit the values we need to override the \meth{flags}
 method to return \code{ItemIsEditable} in the flag, so that any views
-are aware of this ability.
-
+are aware of this ability:
 <<results=hide>>=
 qsetMethod("flags", DfModel, function(index) {
   if(!index$isValid()) {
@@ -203,17 +201,16 @@ qsetMethod("flags", DfModel, function(index) {
 @ 
 
 
-To edit cells we need to implement a method to set data once edited
-The trick is that value is a character, so we coerce to the right type
-for the column it is in. We do this with an S3 method. For example we
-have this (among others):
-
+To edit cells we need to implement a method to set data once edited.
+Since the \meth{data} method provides a string for the edit role,
+\meth{setData} will be passed one, as well. We define some methods on
+the S3 generic \function{fitIn}, which will coerce the string to the
+original type. For example:
 <<fitIn, results=hide>>=
 fitIn <- function(x, value) UseMethod("fitIn")
 fitIn.default <- function(x, value) value
 fitIn.numeric <- function(x, value) as.numeric(value)
 @ 
-
 <<notShown, echo=FALSE, results=hide>>=
 ## more methods for fit in
 fitIn.integer <- function(x, value) as.integer(value)
@@ -227,13 +224,11 @@ fitIn.logical <- function(x, value) {
 @ 
 
 The \meth{setData} method is responsible for taking the value from the
-delegate and assigning it into them model, we use the \code{fitIn}
-function unless it is a column header.
+delegate and assigning it into the model:
 <<results=hide>>=
 qsetMethod("setData", DfModel, function(index, value, role) {
-
   if(index$isValid() && role == Qt$Qt$EditRole) {
-    d <- this$Df()
+    d <- this$dataframe
     row <- index$row()
     col <- index$column() + 1
 
@@ -255,16 +250,15 @@ qsetMethod("setData", DfModel, function(index, value, role) {
 
 For a data frame editor, we may wish to extend the API for our table
 of items to be \R{} specific. For example, this method allows one to replace a
-column of values.
-
+column of values:
 <<results=hide>>=
 qsetMethod("setColumn", DfModel, function(col, value) {
   ## pad with NA if needed
-  n <- nrow(this$Df())
+  n <- nrow(this$dataframe)
   if(length(value) < n)
     value <- c(value, rep(NA, n - length(value)))
   value <- value[1:n]
-  d <- this$Df()
+  d <- this$dataframe
   d[,col] <- value
   this$dataframe <- d          # only notify about this column
   dataChanged(index(0, col-1), index(rowCount()-1, col-1))
@@ -277,13 +271,11 @@ specific to our task. Since we may add a new column, we call the
 "begin" and "end" methods to notify any views.
 <<addColumn, results=hide>>=
 qsetMethod("addColumn", DfModel, function(name, value) {
-  d <- this$Df()
+  d <- this$dataframe
   if(name %in% names(d)) {
     return(setColumn(min(which(name == names(d))), value))
-  }
-  
+  }  
   beginInsertColumns(Qt$QModelIndex(), columnCount(), columnCount())
-  d <- this$Df()
   d[[name]] <- value
   this$dataframe <- d
   endInsertColumns()
@@ -291,8 +283,7 @@ qsetMethod("addColumn", DfModel, function(name, value) {
 })
 @                
 
-To test this out, we define a model and set it in a view.
-
+To demonstrate our model, we construct an instance and set it on a view:
 <<results=hide>>=
 model <- DfModel(mtcars)
 
@@ -300,14 +291,13 @@ view <- Qt$QTableView()
 view$setModel(model)
 @ 
 
-Finally, we customize the view by defining what triggers the delegate for
-editing and hide the row and column headers.
+Finally, we customize the view by defining the edit triggers and
+hiding the row and column headers:
 <<customizeView,results=hide>>=
 triggerFlag <- Qt$QAbstractItemView$DoubleClicked | 
                Qt$QAbstractItemView$SelectedClicked |
                Qt$QAbstractItemView$EditKeyPressed
 view$setEditTriggers(triggerFlag)
-
 view$verticalHeader()$setHidden(TRUE)
 view$horizontalHeader()$setHidden(TRUE)
 @ 
