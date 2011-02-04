@@ -4,8 +4,6 @@
 require(qtbase)
 @ 
 
-%% FIXME: reworked this example; probably completely broken now
-
 This example shows how to combine the text edit with a notebook widget
 to create a widget for editing more than one file at a time.  We begin
 with a sub-class of \class{QTextEdit} that specially represents a
@@ -77,9 +75,9 @@ qsetMethod("isCurrentSheet", TextEditSheet, function() {
 @ 
 
 Next, we construct the window that contains the notebook of documents.
-We subclass \class{QMainWindow} so that we can add a toolbar. Our
-constructor customizes the notebook, sets up the actions and toolbar,
-then opens with a blank sheet:
+We subclass \class{QMainWindow} (see Chapter~\ref{cha:qt:MVC}), so
+that we can add a toolbar. Our constructor customizes the notebook,
+sets up the actions and toolbar, then opens with a blank sheet:
 <<results=hide>>=
 qsetClass("TextEditWindow", Qt$QMainWindow, function(parent=NULL) {
   super(parent)

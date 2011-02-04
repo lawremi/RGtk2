@@ -24,6 +24,9 @@ and view implementations in \Qt{} and \pkg{qtbase}.
 
 \section{Display of tabular data}
 
+\subsection{Displaying an R data frame}
+\label{sec:qt:mvc:table:basics}
+
 As mentioned, \Qt{} expects data to be stored in a
 \class{QAbstractItemModel}. In \R, the canonical structure for tabular
 data is \class{data.frame}. The \class{DataFrameModel} class bridges
@@ -55,10 +58,68 @@ reflected in all of its views. The \R{} data frame of a
 head(qdataFrame(model), 3)
 qdataFrame(model)$hpToMpg <- with(qdataFrame(model), hp / mpg)
 @ 
-%
+% 
 Our table view now contains a new column, holding the horsepower to
 miles per gallon ratio. It is important to notice that the view has
 been updated implicitly, through manipulation of the underlying model.
+
+A view has a horizontal and vertical header. The horizontal header
+displays the column names, while the vertical header displays the row
+names, if any. \class{QHeaderView} is the widget responsible for
+displaying headers. It has a number of parameters, such as whether the
+column may be moved (\method{setMovable}{QHeaderView}) and the
+\property{defaultAlignment}{QHeaderView} of the labels, which, as we
+will see later, can be overridden by the model for specific
+columns. By default, the labels are centered. Here, we specify left
+alignment for the column labels:
+<<qt-mvc-table-header-align>>=
+header <- view$horizontalHeader()
+header$defaultAlignment <- Qt$AlignLeft
+@ 
+
+\class{QTableView} provides a number of aesthetic features. By
+default, a grid is drawn that delineates the cells. One can set
+\property{showGrid}{QTableView} to \qcode{FALSE} to disable this. If a
+table has more than a few columns, it may be a good idea to fill the
+row backgrounds with alternating colors:
+<<qt-mvc-table-alternating>>=
+view$alternatingRowColors <- TRUE
+@ 
+
+\subsection{Memory management}
+\label{sec:qt:mvc:table:gc}
+
+A view keeps a reference to its model, and the
+\method{model}{QAbstractItemView} method returns the model
+object. However, we offer a word of caution: since multiple views can
+refer to a single model, a view does not own its model. This means
+that if a model becomes inaccessible to R, i.e., it goes out of scope,
+the model will be garbage collected, from lack of an owner. For
+example, this does not work:
+<<qt-mvc-table-gc,print=false>>=
+brokenView <- Qt$QTableView()
+brokenView$setModel(qdataFrameModel(mtcars))
+gc()
+@ 
+<<qt-mvc-table-gc-result>>=
+brokenView$model()
+@ 
+% 
+To prevent this, one should either (1) maintain a reference to the
+model in R, which we typically do in this text, or (2) explicitly give
+the view ownership of the model by setting the view as the parent of
+the model, like this:
+<<qt-mvc-table-parent,print=false>>=
+parentalView <- Qt$QTableView()
+brokenView$setModel(qdataFrameModel(mtcars, parent = parentalView))
+gc()
+@ 
+<<qt-mvc-table-parent-result>>=
+brokenView$model()
+@ 
+
+\subsection{Formatting cells}
+\label{sec:qt:mvc:table:formatting}
 
 Let us now assume that a missing value (\code{NA}) has been introduced
 into our dataset:
@@ -78,20 +139,100 @@ current style. As \Qt{} is unaware of the notion and encoding of
 missing values in \R, we need to give \Qt{} extra guidance. The
 \pkg{qtbase} package provides the \class{RTextFormattingDelegate}
 class for this purpose. To use it, one creates an instance and sets it
-as the item delegate for the model:
+as the item delegate for the view:
 <<qt-mvc-rtfd>>=
 delegate <- qrTextFormattingDelegate()
 view$setItemDelegate(delegate)
 @ 
-%% not model$setDelegate(delegate)
-%
 Delegates may also be assigned on a per column or per row
 basis. \class{RTextFormattingDelegate} will handle missing values in
 numeric vectors, as well as adhere to the numeric formatting settings
 in \function{options()}, namely \qcode{digits} and \qcode{scipen}.
 
-%% TODO: basic manipulation of QTableView 
-%% TODO: memory management (keeping models alive with a parent)
+\subsection{Column sizing}
+\label{sec:qt:mvc:table:headers}
+
+Managing the column widths of a table view is a challenge. This
+section will describe some of the strategies and suggest some best
+practices. The appropriate strategy depends, in part, on whether the
+table is expanding in its container.
+
+When the table view is expanding, it will not necessarily fill its
+available space. To demonstrate,
+<<qt-mvc-table-embedded, results=hide>>=
+model <- qdataFrameModel(mtcars[,1:5])
+view <- Qt$QTableView()
+view$setModel(model)
+wid <- Qt$QWidget()
+wid$resize(1000, 500)
+vbox <- Qt$QVBoxLayout()
+vbox$addWidget(view)
+wid$setLayout(vbox)
+@
+%
+There is a gap between the last column and the right side of the
+window.  It is difficult to appropriately size the columns of an
+expanding table.  The simplest solution is to expand the last column:
+<<qt-mvc-table-stretchLast>>=
+header <- view$horizontalHeader()
+header$stretchLastSection <- TRUE
+@
+%
+To avoid the last column from being too large, we can set pixel widths
+on the other columns. The simplest approach is to set the
+\property{defaultSectionSize}{QHeaderView} property, which gives all
+of the columns the same initial size (except for the last):
+<<qt-mvc-table-defaultSectionSize>>=
+header$defaultSectionSize <- 150
+header$stretchLastSection <- TRUE
+@
+%
+This usually yields an appropriate initial sizing. To resize specific
+columns, we could call \method{resizeSection}{QHeaderView}. Although
+specifying exact pixel sizes is inherently inflexible, the user is
+still free to adjust the column widths.
+
+If, instead, one wishes to pack a table, so that it is not expanding,
+it may be desirable to initialize the column widths so that the
+columns optimally fit their contents:
+<<qt-mvc-table-fit>>=
+view$resizeColumnsToContents()
+@ 
+%
+This will need to be called each time the contents change.
+
+By default, the size is always under control of the user (and the
+programmer). This depends on the resize mode. The
+\property{resizeMode}{QHeaderView} property represents the default
+resize mode for all columns, and it defaults to
+\qcode{Interactive}. The other modes are \qcode{Fixed},
+\qcode{Stretch} (expanding), and \qcode{ResizeToContents} (constrained
+to width needed to fit contents). The \method{setResizeMode} method
+changes the resize mode of a specific column.  Below, we make all of
+our columns expand:
+<<qt-mvc-table-stretch>>=
+header$resizeMode <- Qt$QHeaderView$Stretch
+@ 
+%
+The drawback to any of these modes is that the resizing is no longer
+interactive; the user cannot tweak the column widths.
+
+When the size of a column is reduced such that it can no longer
+naturally display its contents, special logic is necessary. By
+default, \class{QTableView} will wrap text at word boundaries. This is
+controlled by the \property{wordWrap}{QTableView} property. When a
+single word is too long, the text will be ellipsized, i.e., truncated
+and appended with ``...''. This can be disabled with
+<<qt-mvc-table-elide>>=
+view$textElideMode <- Qt$Qt$ElideNone
+@ 
+%
+When the user attempts to reduce the size of a column to the point
+where ellipisizing would be necessary, it may be preferable to instead
+reduce the widths of the other columns. This mode is enabled with
+<<qt-mvc-table-cascade>>=
+header$cascadingSectionResizes <- TRUE
+@ 
 
 \section{Displaying Lists}
 \label{sec:displaying-lists}
@@ -197,7 +338,7 @@ Our \qcode{index} refers to the first row of the
 The index points to a cell in the model, and we can retrieve the data
 in the cell using only the index:
 <<qt-mvc-model-index-data>>=
-firstCar <- model$data(index)
+firstCar <- index$data()
 @ 
 %
 This can be extended to retrieve all of the items in the list:
@@ -208,7 +349,7 @@ sapply(seq(model$rowCount()), function(i) model$index(i - 1, 0)$data())
 Setting the data is also possible, yet requires calling
 \method{setData}{QAbstractItemModel} on the model, not the index:
 <<qt-mvc-model-index-data-set>>=
-#JV XXX model$setData(index, toupper(firstCar))
+model$setData(index, toupper(firstCar))
 @ 
 %
 We will leave the population of a model with the low-level API as an
@@ -218,29 +359,30 @@ more convenient. When using such models, it is usually only necessary
 to directly manipulate a \class{QModelIndex} when handling user input,
 as we describe in the next section.
 
-The \method{match}{QAbstractItemModel} method can be used to return
-items in a column that match a specific string for a given role. The
-column is specified by a model index and the role by one of the
-\qtenumeration{Qt::ItemDataRole} enumeration. The optional third
-argument is one of the \qtenumeration{Qt:::MatchFlag} enumeration,
-specifying how the matching is to occur. Matches are returned as a
-list of indices.
+%% ML: in my opinion, we can use R for searching data, as long as it
+%% is in a native data model. We can put this somewhere, but it
+%% doesn't really belong in the basic discussion of QModelIndex.
+% The \method{match}{QAbstractItemModel} method returns items in a
+% column that match a specific string for a given role. The column is
+% specified by a model index and the role by one of the
+% \qtenumeration{Qt::ItemDataRole} enumeration. The optional third
+% argument is one of the \qtenumeration{Qt:::MatchFlag} enumeration,
+% specifying how the matching is to occur. Matches are returned as a
+% list of indices.
 
 \section{Item Selection}
 \label{sec:models}
 
 Selection is likely the most common type of user interaction with
-lists and tables. The selection
-state is stored in its own data model,
+lists and tables. The selection state is stored in its own data model,
 \class{QItemSelectionModel}:
 <<qt-mvc-selection-model>>=
 selModel <- listView$selectionModel()
 @
 %
-This design allows views to synchronize
-selection. It also supports views on the selection state, such as a
-label indicating how many items are selected, independent of the
-particular type of item view.
+This design allows views to synchronize selection. It also supports
+views on the selection state, such as a label indicating how many
+items are selected, independent of the particular type of item view.
 
 There are five selection modes for item views: single, extended,
 contiguous, multi, and none. These values are defined by the
@@ -264,8 +406,8 @@ selModel$select(model$index(2, 0), Qt$QItemSelectionModel$Select)
 @
 
 We can query the selection model for the selected items in our
-list. Let us assume that we have selected the third row in our
-list. We retrieve the data (label) in that row:
+list. Let us assume that we have selected the third row. We retrieve
+the data (label) in that row:
 <<qt-mvc-selection-get-indices>>=
 indices <- selModel$selectedIndexes()
 indices[[1]]$data()
@@ -375,9 +517,9 @@ tableView$selectRow(0)
 %
 Selecting a range of rows is very similar to selecting a range of list
 items, except we need to add the \qcode{Rows} selection flag:
-<<qt-mvc-selection-select-rows>>=
-##selModel$select(sel, Qt$QItemSelectionModel$Select | 
-##                Qt$QItemSelectionModel$Rows)
+<<qt-mvc-selection-select-rows, results=hide>>=
+selModel$select(sel, Qt$QItemSelectionModel$Select | 
+                Qt$QItemSelectionModel$Rows)
 @ 
 
 To respond to a change in selection, connect to the
@@ -473,9 +615,10 @@ It is also possible to hide rows and columns at the view by calling
 tableView$setColumnHidden(4, TRUE)
 @ 
 %
-For row filtering, the proxy model approach is usually preferable to
-hiding view rows, as the filtering will apply to all views of the
-data.
+It is common for different views to display different types of
+information, which translates to different sets of columns. For row
+filtering, the proxy model approach is usually preferable to hiding
+view rows, as the filtering will apply to all views of the data.
 
 \section{Decorating Items}
 
@@ -554,7 +697,7 @@ the data is in an editable form. We create a list view and set the
 background of the first item to yellow:
 <<qt-mvc-role-set-data, results=hide>>=
 listModel <- Qt$QStringListModel(rownames(mtcars))
-#JV XXXlistModel$setData(listModel$index(0, 0), "yellow", Qt$Qt$BackgroundRole)
+listModel$setData(listModel$index(0, 0), "yellow", Qt$Qt$BackgroundRole)
 listView <- Qt$QListView()
 listView$setModel(listModel)
 @ 
@@ -583,50 +726,55 @@ cat(booktabs(df,
 
 \section{Displaying Hierarchical Data}
 
-Hierarchical data often arises when splitting a tabular dataset by
-some combination of factors. For our demonstration, we will display
+Hierarchical data is generally stored in \class{QStandardItemModel},
+the primary implementation of \class{QAbstractItemModel} built into
+\Qt.  Hierarchical data often arises when splitting a tabular dataset
+by some combination of factors. For our demonstration, we will display
 in a tree the result of splitting the \code{Cars93} dataset by
-manufacturer.
-
-In \Qt{}, hierarchical data is generally stored in
-\class{QStandardItemModel}, the primary implementation of
-\class{QAbstractItemModel} built into \Qt. 
-
-The first step of our demonstration is to create the model, with the
-same number of rows as the \code{Cars93} dataset and a single column
-for the car model name:
+manufacturer. The first step of our demonstration is to create the
+model, with a single column:
 <<qt-mvc-standard-item-model>>=
-treeModel <- Qt$QStandardItemModel(nrow(Cars93), 1)
+treeModel <- Qt$QStandardItemModel(rows = 0, columns = 1)
 @ 
 %
 We need to create an item for each manufacturer, and store the
 corresponding records as its children:
 <<qt-mvc-standard-item-set-item, results=hide, eval=FALSE>>=
-### JV XXXX the setData calls are failing here!
 by(Cars93, Cars93$Manufacturer, function(df) {
-  manufacturer <- treeModel$index(treeModel$rowCount(), 0)
+  treeModel$insertRow(treeModel$rowCount())
+  manufacturer <- treeModel$index(treeModel$rowCount()-1L, 0)
   treeModel$setData(manufacturer, df$Manufacturer[1])
-  sapply(df$Model, function(modelName) {
-    record <- treeModel$index(manufacturer$rowCount(), 0, manufacturer)
-    treeModel$setData(record, modelName)
-  })
+  treeModel$insertRows(0, nrow(df), manufacturer)
+  treeModel$insertColumn(0, manufacturer)
+  for (i in seq_along(df$Model)) {
+    record <- treeModel$index(i-1L, 0, manufacturer)
+    treeModel$setData(record, df$Model[i])
+  }
 })
 @
 %
-As before, we need to create a \class{QModelIndex} object for accessing
-each cell of the model. The parent index is passed as the third
-argument of the \function{index} call when creating the child index,
-\code{record}. This nested loop approach to populating a model is much
-less efficient than converting a \class{data.frame} to a
-\class{DataFrameModel}, but it is necessary to communicate the
-hierarchical information.
+As before, we need to create a \class{QModelIndex} object for
+accessing each cell of the model. We need to add rows and columns to
+each manufacturer node before creating its children. This nested loop
+approach to populating a model is much less efficient than converting
+a \class{data.frame} to a \class{DataFrameModel}, but it is necessary
+to communicate the hierarchical information.
 
 In addition to implementing the \class{QAbstractItemModel} interface,
 \class{QStandardItemModel} also represents an item as a
 \class{QStandardItem} object. Many operations, including inserting,
 removing and manipulating children, may be performed on a
 \class{QStandardItem}, instead of directly on the model. This may be
-convenient in some circumstances.
+convenient in some circumstances. For example, the code listed above
+for populating the model becomes:
+<<qt-mvc-standard-item-rewrite, results=hide>>=
+by(Cars93, Cars93$Manufacturer, function(df) {
+  manufacturer <- Qt$QStandardItem(as.character(df$Manufacturer[1]))
+  treeModel$appendRow(manufacturer)
+  children <- lapply(as.character(df$Model), Qt$QStandardItem)
+  lapply(children, manufacturer$appendRow)
+})
+@ 
 %% probably all I will say about that
 
 The \Rclass{QTreeView} widget displays the data in a table, with the
@@ -637,9 +785,16 @@ treeView <- Qt$QTreeView()
 treeView$setModel(treeModel)
 @ 
 %
-The \qcode{treeView} object is now ready to display the data in a GUI.
+Often, as in our case, a tree view only has a single column. It may be
+desirable to hide that column header with
+<<qt-mvc-tree-view-header-hidden>>=
+treeView$headerHidden <- TRUE
+@ 
+%
+Columns in a \class{QStandardItemModel} may be named by calling
+\method{setHorizontalHeaderNames}{QStandardItemModel}, as shown in the
+next example.
 
-%% FIXME: port to QTreeView
 \begin{example}{A workspace browser}{eg:qt-workspace-browser}
   \SweaveInput{ex-qt-treewidget}
 \end{example}
@@ -689,11 +844,11 @@ df$Analyze.edit <- TRUE
 model <- qdataFrameModel(df)
 @ 
 
-For those models that are mutable, the view may allow the user to edit
-the model. By default, derivatives of \class{QAbstractItemView} will
-initiate editing of an editable column upon double mouse button click
-or a key press. This is controlled by the \qtproperty{editTriggers}
-property, which accepts a combination of
+If a view is assigned an editable model, it will enter its editing mode
+upon a certain trigger.  By default, derivatives of
+\class{QAbstractItemView} will initiate editing of an editable column
+upon double mouse button click or a key press. This is controlled by
+the \qtproperty{editTriggers} property, which accepts a combination of
 \qtenumeration{QAbstractItemView::EditTrigger} flags. For example, we
 could disable editing through a view:
 <<qt-mvc-edit-trigger>>=
@@ -881,56 +1036,58 @@ the \qcode{CheckedStateRole}.
 \section{Implementing Custom Models}
 \label{sec:using-model-with}
 
+Normally, the \class{DataFrameModel} and the models in \Qt{} are
+sufficient. One can imagine other cases, however. For example, one
+might need to view an instance of a formal reference class that
+conforms to a tabular or hierarchical structure. In such case, it may
+be appropriate to implement a custom model in R. We warn the reader
+that this is a significant undertaking and, unfortunately, custom
+models do not scale well, due to frequent callbacks into R.
+
 \paragraph{Required methods}
-The basic implementation of a subclass must provide the methods 
+
+The basic implementation of a model must provide the methods
 \meth{rowCount}, \meth{columnCount}, and \meth{data}.  The first two
-describe the size of the table for any views, the third describes to
-the view how to display data for a given role. The signature for the
-\meth{data} method is \code{(index, role)}. The \code{index} value, an
-instance of \class{QModelIndex}, has methods \meth{row} and
-\meth{column}, whereas \code{role} is one of the roles defined in the
-\qtenumeration{Qt::ItemDataRole} enumeration. This method should
-return the appropriate value for the given role. For example, if one
-is displaying numeric data, the \code{display} role might format the
-numeric values (showing a fixed number of digits say), yet the
-\code{edit} role might display all the digits so accuracy is not
-lost. If a role is not implemented, a value of \code{NULL} should be
-returned, as this is mapped to a null instance of \class{QVariant}.
+describe the size of the table for any views, and the third describes
+provides data to the view for a particular cell and role. We have
+already demonstrated the use of the \meth{data} method in the previous
+sections. For example, if one is displaying numeric data, the
+\code{DisplayRole} might format the numeric values (showing a fixed
+number of digits say), yet the \code{EditRole} role might display all
+the digits so accuracy is not lost. If a role is not implemented, a
+value of \code{NULL} should be returned. One may also implement the
+\meth{headerData} method to populate the view headers.
 
-One may also implement the \meth{headerData} method to return the
-appropriate data to display in the header for a given role. The main
-one being \code{Qt\$Qt\$DisplayRole}.
+\paragraph{Editable Models}
 
-\begin{example}{Using a custom model to edit a data frame}{eg:qt-editable-data}
+For editable models, one must implement the \meth{flags} method to
+return a flag containing \code{ItemIsEditable} and the \meth{setData}
+method. When a value is updated, one should call the
+\meth{dataChanged} method to notify the views that a portion of the
+model is changed. This method takes two indices, together specifying a
+rectangle in the table.
+
+To provide for resizable tables, \code{Qt} requires one to notify the
+views about dimension changes.  For example, an implemented
+\meth{insertColumns} should call \meth{beginInsertColumns} before
+adding the column to the model and then \meth{endInsertColumns} just
+after.
+
+\begin{example}{Using a custom model to edit a data
+    frame}{eg:qt-editable-data}
   \SweaveInput{ex-qt-edit-data-frame}
 \end{example}
 
 
-\paragraph{Editable Models}
-For editable models, one must implement the \meth{flags} method to
-return a flag containing \code{ItemIsEditable} and the \meth{setData}
-method. This has signature \code{(index, value, role)} where
-\code{value} is a character string containing the edited value. When a
-value is updated, one should call the \meth{dataChanged} method to
-notify the views that a portion of the model is changed. This method
-takes two indices, together specifying a rectangle in the table.
-
-
-To provide for resizable tables, \code{Qt} requires one to call some
-(of several such) functions so that any connected views can be
-notified. For example, an implemented \meth{insertColumns} should call
-\meth{beginInsertColumns} before adding the column to the model and
-then \meth{endInsertColumns} just after. 
-
-\section{Implemeting Custom Views}
+\section{Implementing Custom Views}
 \label{sec:custom-views}
 
 One can write a custom view for a model. In the example, we show how
-to connect a label's text to the values in a column of a model. The
-base class for a view of an item model is
-\class{QAbstractItemView}. This class has many methods -- that can be
-overridden -- to cover keyboard, mouse, scrolling, selection etc. Here
-we focus on just enough for our example.
+to display values from a model as text in a label. The base class for
+a view of an item model is \class{QAbstractItemView}. This class has
+many virtual methods, which may be overridden to custom the handling
+of key presses, mouse actions, scrolling, selection, etc. Here we focus
+on just enough for our example.
 
 \begin{example}{A label that updates as a model is updated}{eg:qt-custom-view}
   \SweaveInput{ex-qt-custom-view}
@@ -938,8 +1095,6 @@ we focus on just enough for our example.
 
 \section{Viewing and Editing Text Documents}
 \label{sec:multi-line-text}
-
-%% TODO: syntax highlighting
 
 Multi-line text is displayed and edited by the \class{QTextEdit}
 widget, which is the view and controller for the \class{QTextDocument}
@@ -1094,19 +1249,12 @@ of flags from \qtenumeration{QTextDocument::FindFlag}, with values
 \qcode{FindBackward}, \qcode{FindCaseSensitively} and
 \qcode{FindWholeWords}.
 
-%% FIXME: should we move this after the application window stuff?
-\begin{example}{A tabbed text editor}{ex-qt-tabbed-text-edit}
-  \SweaveInput{ex-qt-tabbed-editor.Rnw}
-\end{example}
-
-%% FIXME: should we move this after the application window stuff?
 \paragraph{Context menus}
-Like any other widget, one can enable a context menu based on the
-actions associated with the widget. However, it is often necessary to
-tailor the context menu, depending on the state of the widget. For our
-demonstration, we aim to list candidate completions based on the
-currently selected text. This requires a subclass that overrides the
-\method{contextMenuEvent}{QWidget} method:
+
+As we introduce Section~\ref{sec:qt:app:context-menus}, one can enable
+a dynamic context menu on a widget by overriding the
+\meth{contextMenuEvent} virtual.  For our demonstration, we aim to
+list candidate completions based on the currently selected text:
 <<QTextEditWithMenu,results=hide>>=
 qsetClass("QTextEditWithCompletions", Qt$QTextEdit)
 #
@@ -1142,7 +1290,19 @@ te$show()
 te$raise()
 @ 
 
+\begin{example}{A tabbed text editor}{ex-qt-tabbed-text-edit}
+  \SweaveInput{ex-qt-tabbed-editor.Rnw}
+\end{example}
 
+\paragraph{Syntax highlighting}
+
+The text edit widget supports syntax highlighting through the
+\class{QSyntaxHighlighter} class. To implement a specific highlighting
+rule, one must subclass \class{QSyntaxHighlighter} and override the
+\meth{highlightBlock} method to apply highlighting. This is of
+somewhat special interest, so we will not give an example. For a
+syntax highlighting R code viewer and editor, see \function{qeditor}
+in the \pkg{qtutils} package.
 
 <<eval=FALSE, echo=FALSE, results=hide>>=
 ## Not shown

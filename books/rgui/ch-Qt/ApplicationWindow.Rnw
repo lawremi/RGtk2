@@ -177,7 +177,7 @@ string title and return a new \class{QAction} or {QMenu},
 respectively.
 
 \subsection{Context menus}
-\label{sec:context-menus}
+\label{sec:qt:app:context-menus}
 
 Sometimes, actions pertain to a single widget or portion of a widget,
 instead of the entire application. In such cases, the menubar is an

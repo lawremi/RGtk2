@@ -59,6 +59,7 @@ lookup <- function(obj, regxp) {
 \SweaveInput{Widgets-MVC}
 
 \chapter{Qt: Application Windows}
+\label{cha:qt:MVC}
 
 \SweaveInput{ApplicationWindow}
 
