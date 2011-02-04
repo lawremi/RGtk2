@@ -114,13 +114,15 @@ steps:~\footnote{\url{http://doc.qt.nokia.com/4.6/layout.html}}
 \end{enumerate}
 
 
-Every widget returns a size hint to the layout from the
-the \method{sizeHint}{QWidget} method/property. The interpretation of
-the size hint depends on the \property{sizePolicy}{QWidget} property. The size
-policy is an object of class \class{QSizePolicy}. It contains a
+Every widget returns a size hint to the layout from the the
+\method{sizeHint}{QWidget} method/property. The interpretation of the
+size hint depends on the \property{sizePolicy}{QWidget} property. The
+size policy is an object of class \class{QSizePolicy}. It contains a
 separate policy value, taken from the \qtenumeration{QSizePolicy}
-enumeration, for the vertical and horizontal directions. The possible
-size policies are listed in Table~\ref{tab:qt:size-policies}.
+enumeration, for the vertical and horizontal directions. If a layout
+is set on a widget, then the widget inherits its size policy from the
+layout. The possible size policies are listed in
+Table~\ref{tab:qt:size-policies}.
 
 <<echo=FALSE, results=tex>>=
 df <- rbind(
@@ -152,12 +154,12 @@ b$setSizePolicy(vertical=Qt$QSizePolicy$Fixed,
                 horizontal=Qt$QSizePolicy$Fixed)
 @   
 
-Thus, the sizing behavior is largely inherent to the widget, rather
-than any layout parameters. This is a major difference from \GTK,
-where a widget can only request a minimum size and all else depends on
-the parent container widget. The \Qt{} approach seems better at
-encouraging consistency in the layout behavior of widgets of a
-particular type.
+Thus, the sizing behavior is largely inherent to the widget or its
+layout, if any, rather than any parent layout parameters. This is a
+major difference from \GTK, where a widget can only request a minimum
+size and all else depends on the parent container widget. The \Qt{}
+approach seems better at encouraging consistency in the layout
+behavior of widgets of a particular type.
 
 Most widgets attempt to fill the allocated space; however, this is not
 always appropriate, as in the case of labels. In such cases, the
