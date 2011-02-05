@@ -7,8 +7,10 @@ first column of the model.
 
 In the constructor we define a label property and call our
 \meth{setModel} method:
-<<CustomView, results=hide>>=
+<<echo=FALSE>>=
 library(qtbase)
+@ 
+<<CustomView, results=hide>>=
 qsetClass("MeanLabel", Qt$QLabel, function(model, column = 0, parent=NULL) {
   super(parent)
   this$model <- model

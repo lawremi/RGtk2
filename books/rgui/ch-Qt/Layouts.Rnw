@@ -205,7 +205,6 @@ Child widgets are added to a box container through the
 <<qt-layout-box-add, results=hide>>=
 buttons <- sapply(letters[1:3], Qt$QPushButton)
 sapply(buttons, hb$addWidget)
-
 @
 % 
 The \method{direction}{QBoxLayout} property specifies the direction in

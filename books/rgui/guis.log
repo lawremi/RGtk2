@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.4.5)  2 FEB 2011 16:54
+This is pdfTeX, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.4.5)  5 FEB 2011 09:57
 entering extended mode
 **guis
 (./guis.tex
@@ -818,7 +818,7 @@ on.png>] [10 <./ch-GUIBasics/ex-listbox.png (PNG copy)> <./ch-GUIBasics/tcltk-t
 kdensity.png>]
 
 Package natbib Warning: Citation `APPLE:HIG' on page 11 undefined on input line
- 646.
+ 645.
 
 [11] [12] [13]
 <ch-GUIBasics/fig-spotfire.png, id=103, 854.19125pt x 744.7825pt>
@@ -1254,54 +1254,54 @@ Overfull \hbox (15.40363pt too wide) in paragraph at lines 2888--2889
  []
 
 [135] [136]
-Underfull \hbox (badness 10000) in paragraph at lines 3051--3052
+Underfull \hbox (badness 10000) in paragraph at lines 3046--3047
 
  []
 
 [137] [138]
-Overfull \hbox (20.80368pt too wide) in paragraph at lines 3145--3146
+Overfull \hbox (20.80368pt too wide) in paragraph at lines 3140--3141
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [] 
  []
 
 
-Overfull \hbox (20.80368pt too wide) in paragraph at lines 3146--3147
+Overfull \hbox (20.80368pt too wide) in paragraph at lines 3141--3142
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (20.80368pt too wide) in paragraph at lines 3168--3169
+Overfull \hbox (20.80368pt too wide) in paragraph at lines 3163--3164
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (20.80368pt too wide) in paragraph at lines 3177--3178
+Overfull \hbox (20.80368pt too wide) in paragraph at lines 3172--3173
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 3193--3194
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 3188--3189
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [139]
-Overfull \hbox (20.80368pt too wide) in paragraph at lines 3206--3207
+Overfull \hbox (20.80368pt too wide) in paragraph at lines 3201--3202
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [140]
-Overfull \hbox (12.96577pt too wide) in paragraph at lines 3270--3280
+Overfull \hbox (12.96577pt too wide) in paragraph at lines 3265--3275
 \T1/cmtt/m/n/10 vice \T1/pplx/m/n/10 are in-te-grated through the \T1/cmtt/m/n/
 10 as-CairoDe-vice \T1/pplx/m/n/10 func-tion. If a \T1/cmtt/m/n/10 Gtk-DrawingA
 rea\T1/pplx/m/n/10 ,
  []
 
 [141]
-Overfull \hbox (31.60379pt too wide) in paragraph at lines 3336--3337
+Overfull \hbox (31.60379pt too wide) in paragraph at lines 3331--3332
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
 
  []
@@ -1309,7 +1309,7 @@ Overfull \hbox (31.60379pt too wide) in paragraph at lines 3336--3337
 [142] [143] [144] [145
 
 ] [146] [147] [148]
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 3787--3788
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 3782--3783
 [][][][][][][][][][][][][][][][][][][][][][] 
  []
 
@@ -1318,55 +1318,50 @@ Overfull \hbox (4.60352pt too wide) in paragraph at lines 3787--3788
 File: ch-RGtk2/ex-RGtk2-filtered.png Graphic file (type png)
 
 <use ch-RGtk2/ex-RGtk2-filtered.png> [153] [154 <./ch-RGtk2/ex-RGtk2-filtered.p
-ng>]
-Overfull \hbox (0.93954pt too wide) in paragraph at lines 4185--4193
-\T1/pplx/b/n/10 Ed-itable text ren-der-ers[] \T1/cmtt/m/n/10 Gtk-Cell-Ren-der-e
-rCombo \T1/pplx/m/n/10 and \T1/cmtt/m/n/10 Gtk-Cell-Ren-der-erSpin
- []
-
-[155]
-Underfull \hbox (badness 10000) in paragraph at lines 4231--4232
+ng>] [155]
+Underfull \hbox (badness 10000) in paragraph at lines 4210--4211
 
  []
 
-[156] [157] [158] [159] [160]
-Overfull \hbox (4.95418pt too wide) in paragraph at lines 4573--4577
-\T1/pplx/m/n/10 modes cor-re-spond to \T1/cmtt/m/n/10 Gtk-Cell-Ren-der-erProgre
-ss \T1/pplx/m/n/10 and \T1/cmtt/m/n/10 Gtk-Cell-Ren-der-erSpin-
- []
-
-[161]
-
-LaTeX Warning: Reference `sec:gtk:extending-classes' on page 162 undefined on i
-nput line 4657.
-
-[162]
-Underfull \hbox (badness 10000) in paragraph at lines 4705--4706
+[156] [157] [158]
+Underfull \hbox (badness 10000) in paragraph at lines 4427--4428
 
  []
 
-[163] [164] [165] [166] [167]
-Underfull \hbox (badness 10000) in paragraph at lines 5042--5044
+[159] [160] [161] [162] [163]
+Overfull \hbox (0.74164pt too wide) in paragraph at lines 4769--4773
+\T1/pplx/m/n/10 cor-re-spond to \T1/cmtt/m/n/10 Gtk-Cell-Ren-der-erProgress \T1
+/pplx/m/n/10 and \T1/cmtt/m/n/10 Gtk-Cell-Ren-der-erSpin-ner\T1/pplx/m/n/10 , r
+e-
+ []
+
+[164]
+
+LaTeX Warning: Reference `sec:gtk:extending-classes' on page 165 undefined on i
+nput line 4853.
+
+[165] [166] [167]
+Underfull \hbox (badness 10000) in paragraph at lines 5033--5035
 
  []
 
 [168] [169] [170]
 
 LaTeX Warning: Reference `sec:RGtk2:basic-combobox' on page 171 undefined on in
-put line 5264.
+put line 5255.
 
 [171]
-Underfull \hbox (badness 10000) in paragraph at lines 5307--5308
+Underfull \hbox (badness 10000) in paragraph at lines 5298--5299
 
  []
 
 [172]
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 5397--5398
+Overfull \hbox (15.40363pt too wide) in paragraph at lines 5388--5389
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [173] [174] [175] [176] [177] [178] [179] [180]
-Overfull \hbox (47.80396pt too wide) in paragraph at lines 5974--5975
+Overfull \hbox (47.80396pt too wide) in paragraph at lines 5965--5966
 [][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
@@ -1374,26 +1369,26 @@ Overfull \hbox (47.80396pt too wide) in paragraph at lines 5974--5975
 File: ch-RGtk2/ex-RGtk2-terminal.png Graphic file (type png)
 
 <use ch-RGtk2/ex-RGtk2-terminal.png> [182 <./ch-RGtk2/ex-RGtk2-terminal.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 6097--6100
+Underfull \hbox (badness 10000) in paragraph at lines 6088--6091
 
  []
 
 [183] [184] [185] [186
 
 ] [187] [188] [189] [190] [191] [192]
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 6638--6639
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 6629--6630
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [193] [194]
-Overfull \hbox (6.34421pt too wide) in paragraph at lines 6799--6802
+Overfull \hbox (6.34421pt too wide) in paragraph at lines 6790--6793
 \T1/pplx/m/n/10 We call \T1/cmtt/m/n/10 set-NoShowAll\T1/pplx/m/n/10 o pre-vent
  the wid-get from be-ing shown when \T1/cmtt/m/n/10 showAll\T1/pplx/m/n/10 s
  []
 
 [195]
-Underfull \hbox (badness 10000) in paragraph at lines 6860--6861
+Underfull \hbox (badness 10000) in paragraph at lines 6851--6852
 
  []
 
@@ -1401,7 +1396,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 6860--6861
 File: ch-RGtk2/ex-RGtk2-UI.png Graphic file (type png)
 
 <use ch-RGtk2/ex-RGtk2-UI.png> [196 <./ch-RGtk2/ex-RGtk2-UI.png>] [197]
-Overfull \hbox (37.00385pt too wide) in paragraph at lines 6970--6971
+Overfull \hbox (37.00385pt too wide) in paragraph at lines 6961--6962
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -1414,241 +1409,149 @@ Overfull \hbox (37.00385pt too wide) in paragraph at lines 6970--6971
 <ch-Qt/fig-qt-datavalidator.png, id=768, 262.9825pt x 142.5325pt>
 File: ch-Qt/fig-qt-datavalidator.png Graphic file (type png)
 
-<use ch-Qt/fig-qt-datavalidator.png> [205]
-Overfull \hbox (26.20374pt too wide) in paragraph at lines 226--227
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[206 <./ch-Qt/fig-qt-datavalidator.png>]
-Overfull \hbox (67.14429pt too wide) in paragraph at lines 299--300
+<use ch-Qt/fig-qt-datavalidator.png> [205] [206 <./ch-Qt/fig-qt-datavalidator.p
+ng>]
+Overfull \hbox (67.14429pt too wide) in paragraph at lines 300--301
 [][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (10.45758pt too wide) in paragraph at lines 326--327
+Overfull \hbox (10.45758pt too wide) in paragraph at lines 327--328
 [][][][][][][][][][][][][][][][][][][] 
  []
 
-[207]
-Overfull \hbox (21.79492pt too wide) in paragraph at lines 339--340
-[][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[208]
+[207] [208]
 Overfull \hbox (20.80368pt too wide) in paragraph at lines 472--473
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][] 
  []
 
 
-Overfull \hbox (78.48163pt too wide) in paragraph at lines 502--503
-[][][][][][][][][][][][][][] 
+Overfull \hbox (61.47562pt too wide) in paragraph at lines 502--503
+[][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (50.13828pt too wide) in paragraph at lines 503--504
-[][][][][][][][][][][][][][][]
+Overfull \hbox (33.13226pt too wide) in paragraph at lines 503--504
+[][][][][][][][][][][][][][][][][][][]
  []
 
 
-Overfull \hbox (50.13828pt too wide) in paragraph at lines 504--505
-[][][][][][][][][][][][][][][][][]
- []
-
-[209]
-Overfull \hbox (50.13828pt too wide) in paragraph at lines 505--506
-[][][][][][][][][][][][][][][][][][][][]
- []
-
-
-Overfull \hbox (50.13828pt too wide) in paragraph at lines 506--507
+Overfull \hbox (33.13226pt too wide) in paragraph at lines 504--505
 [][][][][][][][][][][][][][][][][][][][][]
  []
 
-
-Overfull \hbox (50.13828pt too wide) in paragraph at lines 507--508
-[][][][][][][][][][][][][][][][][]
+[209]
+Overfull \hbox (33.13226pt too wide) in paragraph at lines 505--506
+[][][][][][][][][][][][][][][][][][][][][][]
  []
 
-
-Overfull \hbox (50.13828pt too wide) in paragraph at lines 508--509
-[][][][][][][][][][][][][][][][][][][][]
- []
-
-[210]
-Overfull \hbox (16.12625pt too wide) in paragraph at lines 612--613
-[][][][][][][][] 
- []
-
-
-Overfull \hbox (16.12625pt too wide) in paragraph at lines 613--614
-[][][][][][][][][][] 
- []
-
-
-Overfull \hbox (16.12625pt too wide) in paragraph at lines 614--615
-[][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (16.12625pt too wide) in paragraph at lines 615--616
-[][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (16.12625pt too wide) in paragraph at lines 616--617
-[][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (16.12625pt too wide) in paragraph at lines 617--618
-[][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (16.12625pt too wide) in paragraph at lines 618--619
-[][][][][][][][][][][][][][] 
- []
-
-[211]
+[210] [211]
 
 LaTeX Warning: Reference `sec:defin-class-meth' on page 212 undefined on input 
-line 676.
+line 665.
 
 
-LaTeX Warning: Reference `eg:qt-dnd' on page 212 undefined on input line 677.
+LaTeX Warning: Reference `eg:qt-dnd' on page 212 undefined on input line 666.
 
-[212] [213]
-Overfull \hbox (47.80396pt too wide) in paragraph at lines 797--798
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[214]
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 899--900
+[212] [213] [214]
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 887--888
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
+
+LaTeX Warning: Reference `sec:qt-designer' on page 215 undefined on input line 
+902.
+
 [215]
-
-LaTeX Warning: Reference `sec:qt-designer' on page 216 undefined on input line 
-915.
-
-
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 961--962
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 949--950
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [216]
-Overfull \hbox (4.2783pt too wide) in paragraph at lines 1022--1030
+Overfull \hbox (4.2783pt too wide) in paragraph at lines 1010--1018
 \T1/pplx/m/n/10 In this ex-am-ple, we re-visit cre-at-ing a back-end stor-age m
 odel for a workspace
  []
 
-[217]
-Overfull \hbox (58.60406pt too wide) in paragraph at lines 1115--1116
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][][][] 
- []
+[217] [218] [219]
 
-[218] [219]
-Overfull \hbox (26.20374pt too wide) in paragraph at lines 1282--1283
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
+LaTeX Warning: Reference `eg:qt-dnd' on page 220 undefined on input line 1299.
 
 [220]
-
-LaTeX Warning: Reference `eg:qt-dnd' on page 221 undefined on input line 1324.
-
-
-Overfull \hbox (58.60406pt too wide) in paragraph at lines 1357--1358
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][][][][][][] 
- []
-
-[221]
-Overfull \hbox (18.02571pt too wide) in paragraph at lines 1362--1368
+Overfull \hbox (18.02571pt too wide) in paragraph at lines 1332--1338
 \T1/pplx/m/n/10 The \T1/cmtt/m/n/10 wid-get \T1/pplx/m/n/10 ar-gu-ment de-fault
 s to \T1/cmtt/m/n/10 NULL\T1/pplx/m/n/10 , which ap-plies the stylesheet applic
 ation-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1373--1374
+Underfull \hbox (badness 10000) in paragraph at lines 1343--1344
 
  []
 
-[222] [223] [224]
-Underfull \hbox (badness 10000) in paragraph at lines 1537--1538
+[221] [222] [223] [224
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 1496--1497
 
  []
 
 <ch-Qt/fig-qt-layouts.png, id=834, 531.9875pt x 453.695pt>
 File: ch-Qt/fig-qt-layouts.png Graphic file (type png)
 
-<use ch-Qt/fig-qt-layouts.png> [225
-
-] [226 <./ch-Qt/fig-qt-layouts.png>]
-Overfull \hbox (37.00385pt too wide) in paragraph at lines 1637--1638
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][][][][][][][][][][] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1684--1687
+<use ch-Qt/fig-qt-layouts.png> [225] [226 <./ch-Qt/fig-qt-layouts.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 1628--1631
 
  []
 
-[227] [228]
+[227]
 
-LaTeX Warning: Reference `tab:qt:size-policies' on page 229 undefined on input 
-line 1779.
+LaTeX Warning: Reference `tab:qt:size-policies' on page 228 undefined on input 
+line 1716.
 
 
-Overfull \hbox (2.98892pt too wide) in paragraph at lines 1785--1793
+Overfull \hbox (2.98892pt too wide) in paragraph at lines 1722--1730
  [][] 
  []
 
-[229] [230] <ch-Qt/fig-qt-layout-example.png, id=855, 465.74pt x 375.4025pt>
+[228] [229] [230]
+<ch-Qt/fig-qt-layout-example.png, id=855, 460.72125pt x 375.4025pt>
 File: ch-Qt/fig-qt-layout-example.png Graphic file (type png)
 
-<use ch-Qt/fig-qt-layout-example.png> [231] [232 <./ch-Qt/fig-qt-layout-example
-.png>]
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 2031--2032
+<use ch-Qt/fig-qt-layout-example.png> [231 <./ch-Qt/fig-qt-layout-example.png>]
+
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 1951--1952
 [][][][][][][][][][][][][][][][][][][][] 
  []
 
-[233]
+[232]
 
-LaTeX Warning: Reference `fig:group-box-example' on page 234 undefined on input
- line 2148.
+LaTeX Warning: Reference `fig:group-box-example' on page 233 undefined on input
+ line 2068.
 
-[234] [235] [236] [237] [238
-
-]
-Overfull \hbox (37.00385pt too wide) in paragraph at lines 2396--2397
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+[233] [234]
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 2166--2167
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
+[235] [236] [237] [238
 
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 2397--2398
-[][][][][][][][][][][][][][][][][][][][][][][][][][] 
+]
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 2348--2349
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][] 
  []
 
 [239] [240]
-Overfull \hbox (10.00357pt too wide) in paragraph at lines 2513--2514
+Overfull \hbox (10.00357pt too wide) in paragraph at lines 2464--2465
 [][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [241]
-Overfull \hbox (42.4039pt too wide) in paragraph at lines 2552--2553
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 2505--2506
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-] 
- []
-
-
-Overfull \hbox (37.00385pt too wide) in paragraph at lines 2565--2566
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-] 
+][][][][][][][][][][][][][] 
  []
 
 <ch-Qt/fig-qt-dialog-button-box-Qt.png, id=892, 410.53375pt x 84.315pt>
@@ -1660,68 +1563,56 @@ File: ch-Qt/fig-qt-dialog-button-box-linux.png Graphic file (type png)
 
 <use ch-Qt/fig-qt-dialog-button-box-linux.png> [242] [243 <./ch-Qt/fig-qt-dialo
 g-button-box-Qt.png> <./ch-Qt/fig-qt-dialog-button-box-linux.png>]
-Overfull \hbox (58.60406pt too wide) in paragraph at lines 2728--2729
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+Overfull \hbox (31.60379pt too wide) in paragraph at lines 2642--2643
+[][][][][][][][][][][][][][][][][][] 
  []
 
-[244]
-Overfull \hbox (53.20401pt too wide) in paragraph at lines 2824--2825
+
+Overfull \hbox (31.60379pt too wide) in paragraph at lines 2648--2649
+[][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 2651--2652
+[][][][][][][][][][][][][][][][][] 
+ []
+
+[244] [245]
+Overfull \hbox (53.20401pt too wide) in paragraph at lines 2765--2766
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][] 
  []
 
-[245]
-Overfull \hbox (69.40417pt too wide) in paragraph at lines 2837--2838
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][] 
- []
 
-
-Overfull \hbox (31.60379pt too wide) in paragraph at lines 2844--2845
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (91.0044pt too wide) in paragraph at lines 2851--2852
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 2883--2884
+Overfull \hbox (31.60379pt too wide) in paragraph at lines 2828--2829
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][] 
  []
 
-[246] [247]
-Overfull \hbox (58.60406pt too wide) in paragraph at lines 3039--3040
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][][][][][][][] 
- []
-
-[248] [249]
-Overfull \hbox (58.60406pt too wide) in paragraph at lines 3220--3221
+[246] [247] [248] [249]
+Overfull \hbox (58.60406pt too wide) in paragraph at lines 3163--3164
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][] 
  []
 
 [250] [251]
-Overfull \hbox (80.20428pt too wide) in paragraph at lines 3316--3317
+Overfull \hbox (80.20428pt too wide) in paragraph at lines 3259--3260
 [][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [252] [253] [254]
-Underfull \hbox (badness 10000) in paragraph at lines 3583--3584
+Underfull \hbox (badness 10000) in paragraph at lines 3526--3527
 
  []
 
 [255] [256] [257]
-Overfull \hbox (20.80368pt too wide) in paragraph at lines 3760--3761
+Overfull \hbox (20.80368pt too wide) in paragraph at lines 3703--3704
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
 
  []
 
 [258]
-Overfull \hbox (20.80368pt too wide) in paragraph at lines 3809--3810
+Overfull \hbox (20.80368pt too wide) in paragraph at lines 3752--3753
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
 
  []
@@ -1729,421 +1620,375 @@ Overfull \hbox (20.80368pt too wide) in paragraph at lines 3809--3810
 [259] [260] [261
 
 ]
-Overfull \hbox (21.79492pt too wide) in paragraph at lines 3985--3986
+Overfull \hbox (21.79492pt too wide) in paragraph at lines 3931--3932
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (16.12625pt too wide) in paragraph at lines 3986--3987
+Overfull \hbox (16.12625pt too wide) in paragraph at lines 3932--3933
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
  []
 
 
-Overfull \hbox (16.12625pt too wide) in paragraph at lines 3987--3988
+Overfull \hbox (16.12625pt too wide) in paragraph at lines 3933--3934
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
  []
 
 
-Overfull \hbox (16.12625pt too wide) in paragraph at lines 3988--3989
+Overfull \hbox (16.12625pt too wide) in paragraph at lines 3934--3935
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][]
  []
 
+[262]
+Overfull \hbox (26.20374pt too wide) in paragraph at lines 4015--4016
+[][][][][][][][][][][][][][][][][][] 
+ []
 
-Overfull \hbox (6.07343pt too wide) in paragraph at lines 4031--4035
+[263]
+Overfull \hbox (6.07343pt too wide) in paragraph at lines 4071--4075
 \T1/pplx/m/n/10 Delegates may also be as-signed on a per col-umn or per row ba-
 sis. \T1/cmtt/m/n/10 RTextFor-
  []
 
-[262] [263]
-Overfull \hbox (47.80396pt too wide) in paragraph at lines 4189--4190
+[264] [265] [266]
+Overfull \hbox (47.80396pt too wide) in paragraph at lines 4331--4332
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (4.78891pt too wide) in paragraph at lines 4192--4193
+Overfull \hbox (4.78891pt too wide) in paragraph at lines 4334--4335
 [][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (4.78891pt too wide) in paragraph at lines 4195--4196
+Overfull \hbox (4.78891pt too wide) in paragraph at lines 4337--4338
 [][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (50.13828pt too wide) in paragraph at lines 4196--4197
+Overfull \hbox (50.13828pt too wide) in paragraph at lines 4338--4339
 [][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (21.79492pt too wide) in paragraph at lines 4198--4199
+Overfull \hbox (21.79492pt too wide) in paragraph at lines 4340--4341
 [][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (4.78891pt too wide) in paragraph at lines 4199--4200
+Overfull \hbox (4.78891pt too wide) in paragraph at lines 4341--4342
 [][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[264]
-Overfull \hbox (21.79492pt too wide) in paragraph at lines 4200--4201
+[267]
+Overfull \hbox (21.79492pt too wide) in paragraph at lines 4342--4343
 [][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (16.12625pt too wide) in paragraph at lines 4201--4202
+Overfull \hbox (16.12625pt too wide) in paragraph at lines 4343--4344
 [][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[265]
-Overfull \hbox (80.20428pt too wide) in paragraph at lines 4301--4302
+[268]
+Overfull \hbox (80.20428pt too wide) in paragraph at lines 4452--4453
 [][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 4333--4334
+Overfull \hbox (15.40363pt too wide) in paragraph at lines 4484--4485
 [][][][][][][][][][][][][][][][][][][][] 
  []
 
-[266]
-Overfull \hbox (26.20374pt too wide) in paragraph at lines 4346--4347
+[269]
+Overfull \hbox (26.20374pt too wide) in paragraph at lines 4497--4498
 [][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 4404--4405
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 4561--4562
 [][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[267] [268]
-Overfull \hbox (12.07835pt too wide) in paragraph at lines 4519--4525
+[270] [271]
+Overfull \hbox (12.07835pt too wide) in paragraph at lines 4677--4683
 \T1/pplx/m/n/10 to as-so-ciate the data frame val-ues with the \T1/cmtt/m/n/10 
 Qt$DisplayRole\T1/pplx/m/n/10 . \T1/cmtt/m/n/10 QStyledItemDel-
  []
 
 
-Overfull \hbox (20.80368pt too wide) in paragraph at lines 4541--4542
+Overfull \hbox (20.80368pt too wide) in paragraph at lines 4699--4700
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[269]
-Overfull \hbox (54.49893pt too wide) in paragraph at lines 4551--4559
+[272]
+Overfull \hbox (54.49893pt too wide) in paragraph at lines 4709--4717
 \T1/pplx/m/n/10 For del-e-gates de-rived from \T1/cmtt/m/n/10 QStyledItemDel-e-
 gate\T1/pplx/m/n/10 , see \T1/cmtt/m/n/10 "qhelp(QStyledItemDelegate)"\T1/pplx/
 m/n/10 .
  []
 
 
-Overfull \hbox (37.00385pt too wide) in paragraph at lines 4566--4567
+Overfull \hbox (37.00385pt too wide) in paragraph at lines 4724--4725
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (91.0044pt too wide) in paragraph at lines 4588--4589
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+Overfull \hbox (53.20401pt too wide) in paragraph at lines 4746--4747
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[270]
-Overfull \hbox (47.80396pt too wide) in paragraph at lines 4636--4637
-[][][][][][][][][][][][][][][][][][][][] 
+[273]
+Overfull \hbox (31.60379pt too wide) in paragraph at lines 4816--4817
+[][][][][][][][][][][][][][][][][][][] 
  []
 
+[274]
+Underfull \hbox (badness 10000) in paragraph at lines 4847--4848
 
-Underfull \hbox (badness 10000) in paragraph at lines 4672--4673
-
- []
-
-[271]
-Overfull \hbox (64.00412pt too wide) in paragraph at lines 4688--4689
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (20.80368pt too wide) in paragraph at lines 4729--4730
-[][][][][][][][][][][][][] 
- []
-
-[272]
-Overfull \hbox (10.00357pt too wide) in paragraph at lines 4787--4788
-[][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 4789--4790
-[][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[273] [274]
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 4884--4885
-[][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (37.00385pt too wide) in paragraph at lines 4887--4888
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+Overfull \hbox (26.20374pt too wide) in paragraph at lines 4880--4881
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [275]
-Overfull \hbox (4.10507pt too wide) in paragraph at lines 4958--4964
+Overfull \hbox (31.60379pt too wide) in paragraph at lines 4911--4912
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (47.80396pt too wide) in paragraph at lines 4918--4919
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (20.80368pt too wide) in paragraph at lines 4927--4929
+[][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[276]
+Overfull \hbox (4.10507pt too wide) in paragraph at lines 4997--5003
 \T1/cmtt/m/n/10 tan-dard-Item-Model \T1/pplx/m/n/10 sup-port mod-i-fi-ca-tion o
 f their data. To de-ter-mine whether
  []
 
-[276]
-Underfull \hbox (badness 10000) in paragraph at lines 5059--5060
+[277] [278]
+Underfull \hbox (badness 10000) in paragraph at lines 5098--5099
 
  []
 
-<ch-Qt/fig-qt-table-dnd.png, id=1006, 586.19pt x 281.05pt>
+<ch-Qt/fig-qt-table-dnd.png, id=1013, 586.19pt x 281.05pt>
 File: ch-Qt/fig-qt-table-dnd.png Graphic file (type png)
 
-<use ch-Qt/fig-qt-table-dnd.png> [277]
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 5079--5080
+<use ch-Qt/fig-qt-table-dnd.png>
+Overfull \hbox (15.40363pt too wide) in paragraph at lines 5118--5119
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-
-Overfull \hbox (69.40417pt too wide) in paragraph at lines 5091--5092
+[279 <./ch-Qt/fig-qt-table-dnd.png>]
+Overfull \hbox (69.40417pt too wide) in paragraph at lines 5130--5131
 [][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (10.00357pt too wide) in paragraph at lines 5109--5110
+Overfull \hbox (10.00357pt too wide) in paragraph at lines 5148--5149
 [][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[278 <./ch-Qt/fig-qt-table-dnd.png>]
-Overfull \hbox (20.80368pt too wide) in paragraph at lines 5130--5131
+
+Overfull \hbox (20.80368pt too wide) in paragraph at lines 5169--5170
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (91.0044pt too wide) in paragraph at lines 5137--5138
+Overfull \hbox (91.0044pt too wide) in paragraph at lines 5176--5177
 [][][][][][][][][][][][][][][][][][] 
  []
 
-
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 5158--5159
+[280]
+Overfull \hbox (15.40363pt too wide) in paragraph at lines 5197--5198
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][] 
  []
 
 
-Overfull \hbox (10.00357pt too wide) in paragraph at lines 5160--5161
+Overfull \hbox (10.00357pt too wide) in paragraph at lines 5199--5200
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][] 
  []
 
 
-Overfull \hbox (26.20374pt too wide) in paragraph at lines 5162--5163
+Overfull \hbox (26.20374pt too wide) in paragraph at lines 5201--5202
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][] 
  []
 
-[279]
-Overfull \hbox (26.20374pt too wide) in paragraph at lines 5240--5241
+[281]
+Overfull \hbox (26.20374pt too wide) in paragraph at lines 5279--5280
 [][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[280]
-Overfull \hbox (20.80368pt too wide) in paragraph at lines 5265--5266
+
+Overfull \hbox (20.80368pt too wide) in paragraph at lines 5304--5305
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-
-Overfull \hbox (31.60379pt too wide) in paragraph at lines 5302--5303
+[282]
+Overfull \hbox (31.60379pt too wide) in paragraph at lines 5341--5342
 [][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[281] [282]
-Underfull \hbox (badness 10000) in paragraph at lines 5390--5395
-
  []
 
 [283]
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 5520--5521
+Underfull \hbox (badness 10000) in paragraph at lines 5429--5434
+
+ []
+
+[284] [285]
+Overfull \hbox (15.40363pt too wide) in paragraph at lines 5559--5560
 [][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[284]
-Overfull \hbox (10.00357pt too wide) in paragraph at lines 5563--5564
-[][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
 
-
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 5585--5586
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[285]
-Overfull \hbox (20.80368pt too wide) in paragraph at lines 5624--5625
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][][][] 
- []
-
-
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 5638--5639
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][] 
- []
-
-
-Overfull \hbox (10.00357pt too wide) in paragraph at lines 5640--5641
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][] 
- []
-
-
-Overfull \hbox (26.20374pt too wide) in paragraph at lines 5642--5643
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][] 
- []
-
-
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 5651--5652
-[][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[286]
-Overfull \hbox (9.75313pt too wide) in paragraph at lines 5689--5697
-\T1/pplx/m/n/10 The per-for-mance is much less re-spon-sive than that pro-vided
- by \T1/cmtt/m/n/10 qdataFrameM-
- []
-
-[287]
-Overfull \hbox (31.60379pt too wide) in paragraph at lines 5732--5733
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (26.20374pt too wide) in paragraph at lines 5733--5734
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 5744--5745
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[288] [289]
-Overfull \hbox (31.60379pt too wide) in paragraph at lines 5881--5882
-[][][][][][][][][][][][][][][] 
- []
-
-[290]
-Overfull \hbox (6.34167pt too wide) in paragraph at lines 5917--5924
+Overfull \hbox (6.34167pt too wide) in paragraph at lines 5600--5606
 \T1/pplx/m/n/10 method to re-turn a flag con-tain-ing \T1/cmtt/m/n/10 ItemIsEd-
 itable \T1/pplx/m/n/10 and the \T1/cmtt/m/n/10 set-Data \T1/pplx/m/n/10 method.
 
  []
 
+[286]
+Overfull \hbox (53.20401pt too wide) in paragraph at lines 5630--5631
+[][][][][][][][][][][][][][][][][][][][][][] 
+ []
 
-Overfull \hbox (37.00385pt too wide) in paragraph at lines 5958--5959
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+
+Overfull \hbox (58.60406pt too wide) in paragraph at lines 5654--5655
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (53.20401pt too wide) in paragraph at lines 5655--5656
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[287] [288] [289]
+Overfull \hbox (31.60379pt too wide) in paragraph at lines 5799--5800
+[][][][][][][][][][][][][][][] 
+ []
+
+[290]
+Overfull \hbox (74.80423pt too wide) in paragraph at lines 5917--5918
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [291]
-Overfull \hbox (47.80396pt too wide) in paragraph at lines 5993--5994
+Overfull \hbox (15.40363pt too wide) in paragraph at lines 5921--5922
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (37.00385pt too wide) in paragraph at lines 5922--5923
 [][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [292]
-Overfull \hbox (31.60379pt too wide) in paragraph at lines 6106--6107
+Overfull \hbox (31.60379pt too wide) in paragraph at lines 6034--6035
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][] 
  []
 
 [293]
-Overfull \hbox (69.40417pt too wide) in paragraph at lines 6136--6137
+Overfull \hbox (69.40417pt too wide) in paragraph at lines 6064--6065
 [][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (20.80368pt too wide) in paragraph at lines 6158--6159
+Overfull \hbox (20.80368pt too wide) in paragraph at lines 6086--6087
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][] 
  []
 
 [294]
-Underfull \hbox (badness 10000) in paragraph at lines 6209--6210
+Overfull \hbox (42.4039pt too wide) in paragraph at lines 6146--6147
+[][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 6175--6176
 
  []
 
 
-Overfull \hbox (10.00357pt too wide) in paragraph at lines 6221--6222
+Overfull \hbox (10.00357pt too wide) in paragraph at lines 6185--6186
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [295]
-Overfull \hbox (15.40363pt too wide) in paragraph at lines 6259--6260
+Overfull \hbox (15.40363pt too wide) in paragraph at lines 6223--6224
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (26.20374pt too wide) in paragraph at lines 6273--6274
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (26.20374pt too wide) in paragraph at lines 6297--6298
+Overfull \hbox (26.20374pt too wide) in paragraph at lines 6237--6238
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [296]
-Overfull \hbox (74.80423pt too wide) in paragraph at lines 6336--6338
+Overfull \hbox (26.20374pt too wide) in paragraph at lines 6261--6262
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (74.80423pt too wide) in paragraph at lines 6300--6302
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (85.60434pt too wide) in paragraph at lines 6341--6342
+Overfull \hbox (85.60434pt too wide) in paragraph at lines 6305--6306
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][] 
  []
 
-
-Overfull \hbox (4.33936pt too wide) in paragraph at lines 6354--6356
+[297]
+Overfull \hbox (4.33936pt too wide) in paragraph at lines 6318--6320
 \T1/pplx/m/n/10 The en-closed \T1/cmtt/m/n/10 makeShee-tAc-tion \T1/pplx/m/n/10
  func-tion cre-ates an ac-tion that calls a method
  []
 
-[297]
-Overfull \hbox (4.092pt too wide) in paragraph at lines 6403--6407
+
+Overfull \hbox (4.092pt too wide) in paragraph at lines 6367--6371
 []\T1/pplx/m/n/10 The \T1/cmtt/m/n/10 up-date-Ac-tions \T1/pplx/m/n/10 method i
 s called when-ever the cur-rent sheet changes,
  []
 
-[298]
-Overfull \hbox (42.4039pt too wide) in paragraph at lines 6454--6455
-[][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[299] [300
+[298] [299] [300
 
 ]
-Overfull \hbox (0.72856pt too wide) in paragraph at lines 6488--6495
+Overfull \hbox (0.72856pt too wide) in paragraph at lines 6420--6427
 \T1/pplx/m/n/10 Many ap-pli-ca-tions have a cen-tral win-dow that typ-i-cally c
 on-tains a menubar,
  []
 
 [301]
-Overfull \hbox (47.80396pt too wide) in paragraph at lines 6573--6574
+Overfull \hbox (47.80396pt too wide) in paragraph at lines 6505--6506
 [][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [302] [303] [304]
-Underfull \hbox (badness 10000) in paragraph at lines 6773--6775
+Underfull \hbox (badness 10000) in paragraph at lines 6705--6707
 
  []
 
 [305]
-Underfull \hbox (badness 10000) in paragraph at lines 6857--6859
+Underfull \hbox (badness 10000) in paragraph at lines 6789--6791
 
  []
 
 [306]
-Underfull \hbox (badness 10000) in paragraph at lines 6942--6944
+Underfull \hbox (badness 10000) in paragraph at lines 6874--6876
 
  []
 
@@ -2153,10 +1998,10 @@ File: ch-Qt/fig-qt-rstudio-like.png Graphic file (type png)
 <use ch-Qt/fig-qt-rstudio-like.png>
 
 LaTeX Warning: Reference `fig-qt-r-studio' on page 307 undefined on input line 
-6956.
+6888.
 
 [307] [308 <./ch-Qt/fig-qt-rstudio-like.png>]
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 7019--7020
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 6951--6952
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
@@ -2438,10 +2283,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 12733 strings out of 94073
- 177731 string characters out of 1164798
- 268053 words of memory out of 1500000
- 15798 multiletter control sequences out of 10000+50000
+ 12760 strings out of 94073
+ 178060 string characters out of 1164798
+ 268284 words of memory out of 1500000
+ 15825 multiletter control sequences out of 10000+50000
  83331 words of font info for 152 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
  38i,12n,41p,1804b,1712s stack positions out of 5000i,500n,6000p,200000b,5000s
@@ -2464,7 +2309,7 @@ ist/fonts/type1/public/cm-super/sftt1200.pfb></opt/local/share/texmf-dist/fonts
 blic/cm-super/sftt2074.pfb></opt/local/share/texmf-dist/fonts/type1/urw/palatin
 o/uplb8a.pfb></opt/local/share/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb><
 /opt/local/share/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on guis.pdf (409 pages, 3231552 bytes).
+Output written on guis.pdf (409 pages, 3229125 bytes).
 PDF statistics:
  1501 PDF objects out of 1728 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.4.5)  1 FEB 2011 22:32
+This is pdfTeX, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.4.5)  5 FEB 2011 09:14
 entering extended mode
 **print-chapter
 (./print-chapter.tex
@@ -545,7 +545,7 @@ Style option: `fancyvrb' v2.6, with DG/SPQR fixes <1998/07/17> (tvz)
 No file fancyvrb.cfg.
 )
 \hlboxlessthan=\box36
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 236.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 238.
 
  (/opt/local/share/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
@@ -957,15 +957,12 @@ Package natbib Warning: There were undefined citations.
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
- 8626 strings out of 94073
- 112698 string characters out of 1164798
- 245757 words of memory out of 1500000
- 11769 multiletter control sequences out of 10000+50000
+ 8628 strings out of 94073
+ 112716 string characters out of 1164798
+ 245771 words of memory out of 1500000
+ 11771 multiletter control sequences out of 10000+50000
  70137 words of font info for 131 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
  36i,12n,41p,1800b,2361s stack positions out of 5000i,500n,6000p,200000b,5000s
@@ -987,7 +984,7 @@ ist/fonts/type1/public/cm-super/sftt1728.pfb></opt/local/share/texmf-dist/fonts
 /type1/urw/palatino/uplb8a.pfb></opt/local/share/texmf-dist/fonts/type1/urw/pal
 atino/uplr8a.pfb></opt/local/share/texmf-dist/fonts/type1/urw/palatino/uplri8a.
 pfb>
-Output written on print-chapter.pdf (63 pages, 891220 bytes).
+Output written on print-chapter.pdf (63 pages, 891224 bytes).
 PDF statistics:
  303 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)

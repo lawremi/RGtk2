@@ -1104,12 +1104,12 @@ the primary user-facing property of a widget; there is only one per
 class. An example is the \property{text}{QLabel} property on a
 \class{QLineEdit}.
 
-\begin{example}{Mapping selected model items to a text entry}
+\begin{example}{Mapping selected model items to a text entry}{ex-qt-mapping-model}
  We will demonstrate \class{QDataWidgetMapper} by displaying a table
   view of the \qcode{Cars93} dataset, along with a label. When a row
   is selected, the model name of the record will be displayed in the
   label. First, we establish the mapping:
-<<qt-mvc-mapper-map>>=
+<<qt-mvc-mapper-map, results=hide>>=
 data(Cars93, package="MASS")
 model <- qdataFrameModel(Cars93, editable=TRUE)
 mapper <- Qt$QDataWidgetMapper()
@@ -1124,7 +1124,7 @@ mapper$addMapping(label, 1)
   
   Next, we construct a table view and establish a handler that
   changes the current row of the data mapper upon selection:
-<<qt-mvc-mapper-select>>=
+<<qt-mvc-mapper-select, results=hide>>=
 tableView <- Qt$QTableView()
 tableView$setModel(model)
 qconnect(tableView$selectionModel(), "currentRowChanged", 
@@ -1132,7 +1132,7 @@ qconnect(tableView$selectionModel(), "currentRowChanged",
 @ 
 
   Finally, we layout our GUI:
-<<qt-mvc-mapper-layout>>=
+<<qt-mvc-mapper-layout, results=hide>>=
 w <- Qt$QWidget()
 lyt <- Qt$QVBoxLayout()
 w$setLayout(lyt)
@@ -1197,7 +1197,7 @@ To manage selections, insert special objects like tables and images,
 or apply the full range of formatting options, it is necessary to
 interact with a text cursor object, of class \class{QTextCursor}. We
 obtain the user-visible cursor and move it to the end of the document:
-<<qt-mvc-textedit-cursor>>=
+<<qt-mvc-textedit-cursor, results=hide>>=
 n <- nchar(te$toPlainText())
 cursor <- te$textCursor()
 cursor$setPosition(n)

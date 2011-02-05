@@ -151,7 +151,7 @@ interfaces implemented by \class{GtkWidget}:
  gTypeGetInterfaces("GtkWidget")
 \end{Sinput}
 \begin{Soutput}
-[1] "AtkImplementorIface" "GtkBuildable"       
+[1] "GtkBuildable"        "AtkImplementorIface"
 \end{Soutput}
 \end{Schunk}
 
@@ -293,7 +293,7 @@ interfaces it implements:
  interface(window)
 \end{Sinput}
 \begin{Soutput}
-[1] "AtkImplementorIface" "GtkBuildable"       
+[1] "GtkBuildable"        "AtkImplementorIface"
 \end{Soutput}
 \end{Schunk}
 
@@ -385,7 +385,7 @@ the first eight properties listed with:
  head(names(button), n=8)                 # or b$getPropInfo()
 \end{Sinput}
 \begin{Soutput}
-[1] "use-action-appearance" "related-action"       
+[1] "related-action"        "use-action-appearance"
 [3] "user-data"             "name"                 
 [5] "parent"                "width-request"        
 [7] "height-request"        "visible"              
@@ -2983,11 +2983,6 @@ communicates the fraction completed:
    pb$setFraction(i/100)
    Sys.sleep(0.05) ## replace with a step in the process
  }
-\end{Sinput}
-\begin{Soutput}
-[1] "kis"
-\end{Soutput}
-\begin{Sinput}
  pb$setText("All done.")
 \end{Sinput}
 \end{Schunk}
@@ -4155,10 +4150,9 @@ important property is \code{text}, the actual text that is
 displayed. Other properties control the display of the text, such as
 the font \code{family} and \code{size}, the \code{foreground} and
 \code{background} colors, and whether to \code{ellipsize} or
-\code{wrap} the text if there is not enough space for display. The
-\code{wrap} attribute can be specified as \code{TRUE}, if the entries
-are expected to be long. There are several other attributes that can
-changed.  We display right-aligned text in a Helvetica font:
+\code{wrap} the text if there is not enough space for display. There
+are several other attributes that can changed.  For example, we
+display right-aligned text in a Helvetica font:
 \begin{Schunk}
 \begin{Sinput}
  cr <- gtkCellRendererText()
@@ -4174,13 +4168,215 @@ that \R\/ follows to print numeric values, so options like
 \code{scipen} and \code{digits} are considered. See the ``Overriding
 attribute mappings'' paragraph below for further customization.
 
+\paragraph{Editable cells} When the \code{editable} property of a text
+cell (or \code{activatable} property of a toggle cell) is set to
+\code{TRUE}, then the cell contents can be changed. This allows the
+user to make changes to the underlying model through the GUI. Although
+the view automatically reflects changes made to the model, the reverse
+is not true. A callback must be assigned to the \code{editable}
+(\code{toggled}) signal for the cell renderer to implement the
+change. The callback for the \qcode{edited} signal has arguments
+\code{renderer}, \code{path} for the path of the selected row (as a
+string), and \code{new.text} containing the value of the edited text
+as a string. The tree view object and the column index are not passed
+to the callback, unless one uses a closure or user data.
+For example, here is how one can update an \code{RGtkDataFrame} model
+from within the callback:
+\begin{Schunk}
+\begin{Sinput}
+ cr['editable'] <- TRUE
+ ID <- gSignalConnect(cr, "edited", 
+ f=function(cr, path, newtext, user.data) {
+   i <- as.numeric(path) + 1
+   j <- user.data$column
+   model <- user.data$model
+   model[i, j] <- newtext
+ }, data=list(model=store, column=1))
+\end{Sinput}
+\end{Schunk}
+% 
+Before using editable cells to create a data frame editor, one should
+see if the editor provided by the \function{gtkDfEdit} in the
+\pkg{RGtk2Extras} package satisfies the requirements.
+
+Users may expect that once a cell is edited, the next cell is then set
+up to be edited. In order to do this, one must advance the cursor and
+activate editing of the next cell. For \class{GtkTreeView}, this is
+implemented by the \method{setCursor}{gtkTreeView} method. The
+\code{path} argument takes a tree path instance, the \code{column}
+argument should be a tree view column object, and the flag
+\code{start.editing} indicates whether to initiate editing.
+
+\begin{example}{Using a table to gather arguments}{ex:RGtk2-options-in-table}
+
+This example shows one way to gather arguments or options using an
+editable cell in a table, rather than a separate text entry
+widget. Tables can provide compact entry areas in a familiar
+interface.
+
+For this example we collect values for arguments to the
+\function{title} function. We first create a data frame with the
+argument name and default value, along with some additional values:
+\begin{Schunk}
+\begin{Sinput}
+ opts <- c("main","sub","xlab","ylab", "line","outer")
+ df <- data.frame(option=opts,
+            value=c("","","","","0","FALSE"),
+            class=c(rep("character", 4), "integer", "logical"),
+            edit_color=rep("gray95", 6),
+            dirty = rep(FALSE, 6),
+            stringsAsFactors=FALSE)
+\end{Sinput}
+\end{Schunk}
+%
+Unfortunately, we need to coerce the default values to character, in
+order to store them in a single column. We preserve the class in the
+\code{class} column, for coercion later. The \code{edit\_color} and
+\code{dirty} columns are related to editing and explained later.
+%
+
+Now we create our model 
+\begin{Schunk}
+\begin{Sinput}
+ m <- rGtkDataFrame(df)
+ v <- gtkTreeView(m)
+\end{Sinput}
+\end{Schunk}
+%
+and configure the first column
+\begin{Schunk}
+\begin{Sinput}
+ cr <- gtkCellRendererText()
+ cr['background'] <- 'gray80'
+ v$insertColumnWithAttributes(position=-1,
+                              title="Option",
+                              cell=cr,
+                              text=1 - 1)
+\end{Sinput}
+\begin{Soutput}
+[1] 1
+\end{Soutput}
+\end{Schunk}
+%
+The first column has a special background color which we specify
+below, which indicates that the cells are not editable.
+The second column is editable and has a background color that is
+state dependent and indicates if a cell has been edited:
+\begin{Schunk}
+\begin{Sinput}
+ cr <- gtkCellRendererText()
+ cr['editable'] <- TRUE
+ v$insertColumnWithAttributes(position = -1,
+                              title = "Value",
+                              cell = cr,
+                              text = 2 - 1,
+                              background = 4 - 1
+                              )
+\end{Sinput}
+\end{Schunk}
+
+To attach the view to the model, we connect the cell renderer to the
+\signal{edited} signal. Here we use the \code{class} value to format
+the text and then set the background color and \code{dirty} flag of the
+entry. The latter allows one to easily find the values which were edited.
+\begin{Schunk}
+\begin{Sinput}
+ gSignalConnect(cr, "edited", function(cr, path, new.text, 
+                                       user.data) {
+   m <- user.data$model
+   i <- as.numeric(path) + 1; j <- user.data$column
+   m[i,j] <- as(as(new.text, m[i, 'class']), "character")   
+   m[i, 'dirty'] <- TRUE                     # mark dirty
+   m[i, 'edit_color'] <- 'gray70'            # change color
+ }, data=list(model=m, column=2))
+\end{Sinput}
+\end{Schunk}
+
+A simple window displays our GUI.
+\begin{Schunk}
+\begin{Sinput}
+ w <- gtkWindow(show=FALSE)
+ w['title'] <- "Option editor"
+ w$setSizeRequest(300,500)
+ sw <- gtkScrolledWindow()
+ w$add(sw)
+ sw$add(v)
+ w$show()
+\end{Sinput}
+\end{Schunk}
+
+Implementing this into a GUI requires writing a function to map the
+model values into the appropriate call to the \function{title} function. The
+\code{dirty} flag makes this easy, but this is a task we do not pursue
+here. Instead we add a bit of extra detail by providing a tooltip.
+
+%% ML: This section makes me uncomfortable, since it's relying on very
+%% volatile code. Internal routines from a package in active
+%% development, which in turn rely on undocumented and internal
+%% features of R.
+\paragraph{Tooltips}
+For this example, our function has built-in documentation. Below we
+use the \pkg{helpr} function to extract the description for
+each of the arguments. We leave this in a list, \code{descs}, for later
+lookup.  
+\begin{Schunk}
+\begin{Sinput}
+ require(helpr, quietly=TRUE)
+ package <- "graphics"; topic <- "title"
+ rd <- helpr:::parse_help(helpr:::pkg_topic(package, topic), 
+                          package = package)
+ descs <- rd$params$args
+ names(descs) <- sapply(descs, function(i) i$param)
+\end{Sinput}
+\end{Schunk}
+
+It is important to note that we are calling internal routines of a
+package still under active development, which in turn relies on
+volatile features of R. The purpose of this example is only to
+demonstrate tooltips on a tree view.  For many widgets, adding a
+tooltip is as easy as calling
+\method{setTooltipText}{GtkWidget}. However, it is more complicated in
+a tree view, as each cell should get a different tip.  To add tooltips
+to the tree view we first indicate that we want tooltips, then connect
+to the \signal{query-tooltip} signal to implement the tooltip:
+\begin{Schunk}
+\begin{Sinput}
+ v["has-tooltip"] <- TRUE
+ gSignalConnect(v, "query-tooltip", 
+        function(w, x, y, key_mode, tooltip, user.data) {
+          out <- w$getTooltipContext(x, y, key_mode)
+          if(out$retval) {
+            m <- w$getModel()
+            i <- as.numeric(out$path$toString()) + 1
+            val <- m[i, "option"]
+            txt <- descs[[val]]$desc
+            txt <- gsub("code>","b>", txt)  # no code in PANGO
+            tooltip$setMarkup(txt)
+            TRUE
+          } else {
+            FALSE                           # no tooltip
+          }
+        })
+\end{Sinput}
+\end{Schunk}
+%
+Within this callback we check if we have the appropriate context (we
+are in a row), then, if so, use the path to find the description to
+set in the tooltip. The descriptions use HTML for markup, but the
+tooltip only uses PANGO. As the \code{code} tag is not PANGO, we
+change to a bold tag using \function{gsub}.
+\end{example}
+
+%% XXX JV Add in an editable table example here, mention
+%% RGtk2Extras:::gtkDfEdit
+
 %% perhaps could be adapted to demonstrate the above
 % \begin{example}{A basic usage of displaying a data frame using a tree view}{ex:RGtk2-minimal-rGtkDataFrame}
 %   \SweaveInput{ex-RGtk2-minimal-rGtkDataFrame}
 % \end{example}
 
 %% combo
-\paragraph{Editable text renderers}
+\paragraph{Combo and spin cell renderers}
 
 \class{GtkCellRendererCombo} and \class{GtkCellRendererSpin} allow
 editing a text cell with a combo box or spin button,
@@ -4568,7 +4764,7 @@ button to initiate the action.
 \end{example}
 
 %% progress bars
-\paragraph{Rendering progress in cells}
+\paragraph{Progress cell renderers}
 
 To visually communicate progress within a cell, both progress bars and
 spinner animations are supported. These modes correspond to
@@ -4659,211 +4855,6 @@ for more details on extending \GTK\/ classes.
 
 %% This function will be set for the tree view column and illustrated in Example~\ref{ex:RGtk2:rGtk2DataFrame}.
 %% editable cells 
-
-\paragraph{Editable cells} When the \code{editable} property of a text
-cell (or \code{activatable} property of a toggle cell) is set to
-\code{TRUE}, then the cell contents can be changed. This allows the
-user to make changes to the underlying model through the GUI. Although
-the view automatically reflects changes made to the model, the reverse
-is not true. A callback must be assigned to the \code{editable}
-(\code{toggled}) signal for the cell renderer to implement the
-change. The callback for the \qcode{edited} signal has arguments
-\code{renderer}, \code{path} for the path of the selected row (as a
-string), and \code{new.text} containing the value of the edited text
-as a string. The tree view object and the column index are not passed
-to the callback, unless one uses a closure or user data.
-For example, here is how one can update an \code{RGtkDataFrame} model
-from within the callback:
-\begin{Schunk}
-\begin{Sinput}
- cr['editable'] <- TRUE
- ID <- gSignalConnect(cr, "edited", 
- f=function(cr, path, newtext, user.data) {
-   i <- as.numeric(path) + 1
-   j <- user.data$column
-   model <- user.data$model
-   model[i, j] <- newtext
- }, data=list(model=store, column=1))
-\end{Sinput}
-\end{Schunk}
-%
-Before using editable cells to create a data frame editor, one should
-see if the editor provided by the \function{gtkDfEdit} in the
-\pkg{RGtk2Extras} package satisfies the requirements.
-
-\paragraph{Moving the cursor}
-
-Users may expect that once a cell is edited, the next cell is then set
-up to be edited. In order to do this, one must advance the cursor and
-activate editing of the next cell. For \class{GtkTreeView}, this is
-implemented by the \method{setCursor}{gtkTreeView} method. The
-\code{path} argument takes a tree path instance, the \code{column}
-argument should be a tree view column object, and the flag
-\code{start.editing} indicates whether to initiate editing.
-
-
-\begin{example}{Using a table to gather arguments}{ex:RGtk2-options-in-table}
-
-This example shows one way to gather arguments or options using an
-editable cell in a table, rather than a separate text entry
-widget. Tables can provide compact entry areas in a familiar
-interface.
-
-For this example we collect values for arguments to the
-\function{title} function. We first create a data frame with the
-argument name and default value, along with some additional values:
-\begin{Schunk}
-\begin{Sinput}
- opts <- c("main","sub","xlab","ylab", "line","outer")
- df <- data.frame(option=opts,
-            value=c("","","","","0","FALSE"),
-            class=c(rep("character", 4), "integer", "logical"),
-            edit_color=rep("gray95", 6),
-            dirty = rep(FALSE, 6),
-            stringsAsFactors=FALSE)
-\end{Sinput}
-\end{Schunk}
-%
-Unfortunately, we need to coerce the default values to character, in
-order to store them in a single column. We preserve the class in the
-\code{class} column, for coercion later. The \code{edit\_color} and
-\code{dirty} columns are related to editing and explained later.
-%
-
-Now we create our model 
-\begin{Schunk}
-\begin{Sinput}
- m <- rGtkDataFrame(df)
- v <- gtkTreeView(m)
-\end{Sinput}
-\end{Schunk}
-%
-and configure the first column
-\begin{Schunk}
-\begin{Sinput}
- cr <- gtkCellRendererText()
- cr['background'] <- 'gray80'
- v$insertColumnWithAttributes(position=-1,
-                              title="Option",
-                              cell=cr,
-                              text=1 - 1)
-\end{Sinput}
-\begin{Soutput}
-[1] 1
-\end{Soutput}
-\end{Schunk}
-%
-The first column has a special background color which we specify
-below, which indicates that the cells are not editable.
-The second column is editable and has a background color that is
-state dependent and indicates if a cell has been edited:
-\begin{Schunk}
-\begin{Sinput}
- cr <- gtkCellRendererText()
- cr['editable'] <- TRUE
- v$insertColumnWithAttributes(position = -1,
-                              title = "Value",
-                              cell = cr,
-                              text = 2 - 1,
-                              background = 4 - 1
-                              )
-\end{Sinput}
-\end{Schunk}
-
-To attach the view to the model, we connect the cell renderer to the
-\signal{edited} signal. Here we use the \code{class} value to format
-the text and then set the background color and \code{dirty} flag of the
-entry. The latter allows one to easily find the values which were edited.
-\begin{Schunk}
-\begin{Sinput}
- gSignalConnect(cr, "edited", function(cr, path, new.text, 
-                                       user.data) {
-   m <- user.data$model
-   i <- as.numeric(path) + 1; j <- user.data$column
-   m[i,j] <- as(as(new.text, m[i, 'class']), "character")   
-   m[i, 'dirty'] <- TRUE                     # mark dirty
-   m[i, 'edit_color'] <- 'gray70'            # change color
- }, data=list(model=m, column=2))
-\end{Sinput}
-\end{Schunk}
-
-A simple window displays our GUI.
-\begin{Schunk}
-\begin{Sinput}
- w <- gtkWindow(show=FALSE)
- w['title'] <- "Option editor"
- w$setSizeRequest(300,500)
- sw <- gtkScrolledWindow()
- w$add(sw)
- sw$add(v)
- w$show()
-\end{Sinput}
-\end{Schunk}
-
-Implementing this into a GUI requires writing a function to map the
-model values into the appropriate call to the \function{title} function. The
-\code{dirty} flag makes this easy, but this is a task we do not pursue
-here. Instead we add a bit of extra detail by providing a tooltip.
-
-%% ML: This section makes me uncomfortable, since it's relying on very
-%% volatile code. Internal routines from a package in active
-%% development, which in turn rely on undocumented and internal
-%% features of R.
-\paragraph{Tooltips}
-For this example, our function has built-in documentation. Below we
-use the \pkg{helpr} function to extract the description for
-each of the arguments. We leave this in a list, \code{descs}, for later
-lookup.  
-\begin{Schunk}
-\begin{Sinput}
- require(helpr, quietly=TRUE)
- package <- "graphics"; topic <- "title"
- rd <- helpr:::parse_help(helpr:::pkg_topic(package, topic), 
-                          package = package)
- descs <- rd$params$args
- names(descs) <- sapply(descs, function(i) i$param)
-\end{Sinput}
-\end{Schunk}
-
-It is important to note that we are calling internal routines of a
-package still under active development, which in turn relies on
-volatile features of R. The purpose of this example is only to
-demonstrate tooltips on a tree view.  For many widgets, adding a
-tooltip is as easy as calling
-\method{setTooltipText}{GtkWidget}. However, it is more complicated in
-a tree view, as each cell should get a different tip.  To add tooltips
-to the tree view we first indicate that we want tooltips, then connect
-to the \signal{query-tooltip} signal to implement the tooltip:
-\begin{Schunk}
-\begin{Sinput}
- v["has-tooltip"] <- TRUE
- gSignalConnect(v, "query-tooltip", 
-        function(w, x, y, key_mode, tooltip, user.data) {
-          out <- w$getTooltipContext(x, y, key_mode)
-          if(out$retval) {
-            m <- w$getModel()
-            i <- as.numeric(out$path$toString()) + 1
-            val <- m[i, "option"]
-            txt <- descs[[val]]$desc
-            txt <- gsub("code>","b>", txt)  # no code in PANGO
-            tooltip$setMarkup(txt)
-            TRUE
-          } else {
-            FALSE                           # no tooltip
-          }
-        })
-\end{Sinput}
-\end{Schunk}
-%
-Within this callback we check if we have the appropriate context (we
-are in a row), then, if so, use the path to find the description to
-set in the tooltip. The descriptions use HTML for markup, but the
-tooltip only uses PANGO. As the \code{code} tag is not PANGO, we
-change to a bold tag using \function{gsub}.
-\end{example}
-
-%% XXX JV Add in an editable table example here, mention
-%% RGtk2Extras:::gtkDfEdit
 
 \section{Display of hierarchical data}
 \label{sec:RGtk2:mvc:GtkTreeStore}
@@ -5718,14 +5709,14 @@ $retval
 NULL
 
 $start
-<pointer: 0x10537bd70>
+<pointer: 0x103b28d90>
 attr(,"interfaces")
 character(0)
 attr(,"class")
 [1] "GtkTextIter" "GBoxed"      "RGtkObject" 
 
 $end
-<pointer: 0x103f79e80>
+<pointer: 0x1057ac330>
 attr(,"interfaces")
 character(0)
 attr(,"class")

@@ -2128,7 +2128,7 @@ renderer['cell-background'] <- "gray"
 ###################################################
 ### chunk number 198: cr-right-aligned
 ###################################################
-#line 3949 "SweaveInput"
+#line 3948 "SweaveInput"
 cr <- gtkCellRendererText()
 cr['xalign'] <- 1                    # default 0.5 = centered
 cr['family'] <- "Helvetica"  
@@ -2137,7 +2137,144 @@ cr['family'] <- "Helvetica"
 ###################################################
 ### chunk number 199: 
 ###################################################
-#line 3977 "SweaveInput"
+#line 3975 "SweaveInput"
+cr <- gtkCellRendererText()
+
+
+###################################################
+### chunk number 200: editedSignal
+###################################################
+#line 3978 "SweaveInput"
+cr['editable'] <- TRUE
+ID <- gSignalConnect(cr, "edited", 
+f=function(cr, path, newtext, user.data) {
+  i <- as.numeric(path) + 1
+  j <- user.data$column
+  model <- user.data$model
+  model[i, j] <- newtext
+}, data=list(model=store, column=1))
+
+
+###################################################
+### chunk number 201: editableTableForCollectingOptions
+###################################################
+#line 4002 "SweaveInput"
+## GUI for configuring options -- in a table
+library(RGtk2)
+
+
+###################################################
+### chunk number 202: 
+###################################################
+#line 4015 "SweaveInput"
+opts <- c("main","sub","xlab","ylab", "line","outer")
+df <- data.frame(option=opts,
+           value=c("","","","","0","FALSE"),
+           class=c(rep("character", 4), "integer", "logical"),
+           edit_color=rep("gray95", 6),
+           dirty = rep(FALSE, 6),
+           stringsAsFactors=FALSE)
+
+
+###################################################
+### chunk number 203: model
+###################################################
+#line 4032 "SweaveInput"
+m <- rGtkDataFrame(df)
+v <- gtkTreeView(m)
+
+
+###################################################
+### chunk number 204: firstColumn
+###################################################
+#line 4038 "SweaveInput"
+cr <- gtkCellRendererText()
+cr['background'] <- 'gray80'
+v$insertColumnWithAttributes(position=-1,
+                             title="Option",
+                             cell=cr,
+                             text=1 - 1)
+
+
+###################################################
+### chunk number 205: secondColumn
+###################################################
+#line 4051 "SweaveInput"
+cr <- gtkCellRendererText()
+cr['editable'] <- TRUE
+v$insertColumnWithAttributes(position = -1,
+                             title = "Value",
+                             cell = cr,
+                             text = 2 - 1,
+                             background = 4 - 1
+                             )
+
+
+###################################################
+### chunk number 206: editConnect
+###################################################
+#line 4066 "SweaveInput"
+gSignalConnect(cr, "edited", function(cr, path, new.text, 
+                                      user.data) {
+  m <- user.data$model
+  i <- as.numeric(path) + 1; j <- user.data$column
+  m[i,j] <- as(as(new.text, m[i, 'class']), "character")   
+  m[i, 'dirty'] <- TRUE                     # mark dirty
+  m[i, 'edit_color'] <- 'gray70'            # change color
+}, data=list(model=m, column=2))
+
+
+###################################################
+### chunk number 207: 
+###################################################
+#line 4078 "SweaveInput"
+w <- gtkWindow(show=FALSE)
+w['title'] <- "Option editor"
+w$setSizeRequest(300,500)
+sw <- gtkScrolledWindow()
+w$add(sw)
+sw$add(v)
+w$show()
+
+
+###################################################
+### chunk number 208: 
+###################################################
+#line 4102 "SweaveInput"
+require(helpr, quietly=TRUE)
+package <- "graphics"; topic <- "title"
+rd <- helpr:::parse_help(helpr:::pkg_topic(package, topic), 
+                         package = package)
+descs <- rd$params$args
+names(descs) <- sapply(descs, function(i) i$param)
+
+
+###################################################
+### chunk number 209: 
+###################################################
+#line 4120 "SweaveInput"
+v["has-tooltip"] <- TRUE
+gSignalConnect(v, "query-tooltip", 
+       function(w, x, y, key_mode, tooltip, user.data) {
+         out <- w$getTooltipContext(x, y, key_mode)
+         if(out$retval) {
+           m <- w$getModel()
+           i <- as.numeric(out$path$toString()) + 1
+           val <- m[i, "option"]
+           txt <- descs[[val]]$desc
+           txt <- gsub("code>","b>", txt)  # no code in PANGO
+           tooltip$setMarkup(txt)
+           TRUE
+         } else {
+           FALSE                           # no tooltip
+         }
+       })
+
+
+###################################################
+### chunk number 210: 
+###################################################
+#line 4164 "SweaveInput"
 cr <- gtkCellRendererCombo()
 store <- rGtkDataFrame(state.name)
 cr['model'] <- store
@@ -2146,9 +2283,9 @@ cr['editable'] <- TRUE                  # needed
 
 
 ###################################################
-### chunk number 200: VariableSelectionExample
+### chunk number 211: VariableSelectionExample
 ###################################################
-#line 4015 "SweaveInput"
+#line 4202 "SweaveInput"
 ## Example showing implementation of variable selection widget where two tables show possible selections
 ## and selection. Similar to SPSS widget
 ## Illustrates filtered models, icons in view column
@@ -2156,24 +2293,24 @@ library(RGtk2)
 
 
 ###################################################
-### chunk number 201: 
+### chunk number 212: 
 ###################################################
-#line 4037 "SweaveInput"
+#line 4224 "SweaveInput"
 df <- get(data(Cars93, package="MASS"))
 
 
 ###################################################
-### chunk number 202: 
+### chunk number 213: 
 ###################################################
-#line 4044 "SweaveInput"
+#line 4231 "SweaveInput"
 #library(ProgGUIinR)                     # for make_icon
 source("../ProgGUIInR/R/misc.R")     # for make_icon
 
 
 ###################################################
-### chunk number 203: make_icon
+### chunk number 214: make_icon
 ###################################################
-#line 4049 "SweaveInput"
+#line 4236 "SweaveInput"
 make_icon_pixmap <- function(x, ...) {
   require(grid); require(cairoDevice)
   pixmap <- gdkPixmap(drawable=NULL, width=16, height=16, 
@@ -2187,9 +2324,9 @@ make_icon_pixmap <- function(x, ...) {
 
 
 ###################################################
-### chunk number 204: model
+### chunk number 215: model
 ###################################################
-#line 4066 "SweaveInput"
+#line 4253 "SweaveInput"
 mdf <- data.frame(Variables = I(sort(names(df))),
                   icon = I(sapply(df, make_icon_pixmap)),
                   selected = rep(FALSE, ncol(df)))
@@ -2197,9 +2334,9 @@ model <- rGtkDataFrame(mdf)
 
 
 ###################################################
-### chunk number 205: filterModels
+### chunk number 216: filterModels
 ###################################################
-#line 4076 "SweaveInput"
+#line 4263 "SweaveInput"
 selectedFilter <- model$filter()
 selectedFilter$setVisibleColumn(2)
 unselectedFilter <- model$filter()
@@ -2209,9 +2346,9 @@ unselectedFilter$setVisibleFunc(function(model, iter) {
 
 
 ###################################################
-### chunk number 206: views
+### chunk number 217: views
 ###################################################
-#line 4091 "SweaveInput"
+#line 4278 "SweaveInput"
 unselectedView <- gtkTreeView(unselectedFilter)
 selectedView <- gtkTreeView(selectedFilter)
 unselectedView$getSelection()$setMode('multiple')
@@ -2219,9 +2356,9 @@ selectedView$getSelection()$setMode('multiple')
 
 
 ###################################################
-### chunk number 207: viewColumns
+### chunk number 218: viewColumns
 ###################################################
-#line 4100 "SweaveInput"
+#line 4287 "SweaveInput"
 make_view_column <- function() {
   vc <- gtkTreeViewColumn()
   vc$setTitle("Variable")
@@ -2238,9 +2375,9 @@ selectedView$insertColumn(make_view_column(), 0)
 
 
 ###################################################
-### chunk number 208: extendAPI
+### chunk number 219: extendAPI
 ###################################################
-#line 4119 "SweaveInput"
+#line 4306 "SweaveInput"
 ## add to the gtkTreeView API for convenience
 gtkTreeViewSelectedIndices <- function(object) {
   paths <- object$getSelection()$getSelectedRows()$retval
@@ -2259,9 +2396,9 @@ gtkTreeViewHasSelection <-
 
 
 ###################################################
-### chunk number 209: buttons
+### chunk number 220: buttons
 ###################################################
-#line 4140 "SweaveInput"
+#line 4327 "SweaveInput"
 selectButton <- gtkButton(">")
 unselectButton <- gtkButton("<")
 toggleSelectionOnClick <- function(button, view) {
@@ -2275,9 +2412,9 @@ toggleSelectionOnClick(unselectButton, selectedView)
 
 
 ###################################################
-### chunk number 210: sensitiveButtons
+### chunk number 221: sensitiveButtons
 ###################################################
-#line 4155 "SweaveInput"
+#line 4342 "SweaveInput"
 selectButton['sensitive'] <- FALSE
 unselectButton['sensitive'] <- FALSE
 trackSelection <- function(button, view)
@@ -2288,9 +2425,9 @@ trackSelection(unselectButton, selectedView)
 
 
 ###################################################
-### chunk number 211: guiLayout
+### chunk number 222: guiLayout
 ###################################################
-#line 4168 "SweaveInput"
+#line 4355 "SweaveInput"
 w <- gtkWindow(show=FALSE)
 w$setDefaultSize(600, 400)
 g <- gtkHBox()
@@ -2317,16 +2454,16 @@ g$packStart(selectedScroll, expand=TRUE)
 
 
 ###################################################
-### chunk number 212: packButtons
+### chunk number 223: packButtons
 ###################################################
-#line 4195 "SweaveInput"
+#line 4382 "SweaveInput"
 w$show()
 
 
 ###################################################
-### chunk number 213: cellRendererToggle
+### chunk number 224: cellRendererToggle
 ###################################################
-#line 4219 "SweaveInput"
+#line 4406 "SweaveInput"
 cr <- gtkCellRendererToggle()
 cr['activatable'] <- TRUE             # cell can be activated
 cr['active'] <- TRUE
@@ -2336,41 +2473,41 @@ gSignalConnect(cr, "toggled", function(w, path) {
 
 
 ###################################################
-### chunk number 214: 
+### chunk number 225: 
 ###################################################
-#line 4242 "SweaveInput"
+#line 4429 "SweaveInput"
 ## example showing how to add a toggle button on left of data display
 library(RGtk2)
 
 
 ###################################################
-### chunk number 215: FixACRANforSweave
+### chunk number 226: FixACRANforSweave
 ###################################################
-#line 4249 "SweaveInput"
+#line 4436 "SweaveInput"
 repos <- getOption("repos")
 repos["CRAN"] <- "http://streaming.stat.iastate.edu/CRAN"
 options(repos = repos)
 
 
 ###################################################
-### chunk number 216: getUpgradablePackages
+### chunk number 227: getUpgradablePackages
 ###################################################
-#line 4254 "SweaveInput"
+#line 4441 "SweaveInput"
 d <- old.packages()[,c("Package", "Installed", "ReposVer")]
 d <- as.data.frame(d)
 
 
 ###################################################
-### chunk number 217: 
+### chunk number 228: 
 ###################################################
-#line 4262 "SweaveInput"
+#line 4449 "SweaveInput"
 doUpdate <- function(d)  install.packages(d$Package)
 
 
 ###################################################
-### chunk number 218: 
+### chunk number 229: 
 ###################################################
-#line 4269 "SweaveInput"
+#line 4456 "SweaveInput"
 n <- ncol(d)
 nms <- colnames(d)
 d$.toggle <- rep(FALSE, nrow(d))
@@ -2378,9 +2515,9 @@ store <- rGtkDataFrame(d)
 
 
 ###################################################
-### chunk number 219: 
+### chunk number 230: 
 ###################################################
-#line 4278 "SweaveInput"
+#line 4465 "SweaveInput"
 view <- gtkTreeView()
 # add toggle
 cr <- gtkCellRendererToggle()
@@ -2396,24 +2533,24 @@ gSignalConnect(cr, "toggled", function(cr, path, user.data) {
 
 
 ###################################################
-### chunk number 220: 
+### chunk number 231: 
 ###################################################
-#line 4294 "SweaveInput"
+#line 4481 "SweaveInput"
 mapply(view$insertColumnWithAttributes, -1, nms, 
        list(gtkCellRendererText()), text = 1:n-1)
 
 
 ###################################################
-### chunk number 221: 
+### chunk number 232: 
 ###################################################
-#line 4300 "SweaveInput"
+#line 4487 "SweaveInput"
 view$setModel(store)
 
 
 ###################################################
-### chunk number 222: 
+### chunk number 233: 
 ###################################################
-#line 4309 "SweaveInput"
+#line 4496 "SweaveInput"
 b <- gtkButton("Update packages")
 gSignalConnect(b, "clicked", function(w, data) {
   view <- data
@@ -2425,9 +2562,9 @@ gSignalConnect(b, "clicked", function(w, data) {
 
 
 ###################################################
-### chunk number 223: 
+### chunk number 234: 
 ###################################################
-#line 4323 "SweaveInput"
+#line 4510 "SweaveInput"
 w <- gtkWindow(show=FALSE)
 w$setTitle("Installed packages that need upgrading")
 w$setSizeRequest(300, 300)
@@ -2443,17 +2580,17 @@ w$show()
 
 
 ###################################################
-### chunk number 224: comboEditor
+### chunk number 235: comboEditor
 ###################################################
-#line 4351 "SweaveInput"
+#line 4538 "SweaveInput"
 cr <- gtkCellRendererProgress()
 cr["value"] <- 50
 
 
 ###################################################
-### chunk number 225: 
+### chunk number 236: 
 ###################################################
-#line 4389 "SweaveInput"
+#line 4576 "SweaveInput"
 func <- function(viewCol, cellRend, model, iter, data) {
   curVal <- model$getValue(iter, 0)$value
   fVal <- sprintf("%.3f", curVal)
@@ -2463,9 +2600,9 @@ func <- function(viewCol, cellRend, model, iter, data) {
 
 
 ###################################################
-### chunk number 226: 
+### chunk number 237: 
 ###################################################
-#line 4400 "SweaveInput"
+#line 4587 "SweaveInput"
 view <- gtkTreeView(rGtkDataFrame(data.frame(rnorm(100))))
 cr <- gtkCellRendererText()
 view$insertColumnWithAttributes(0, "numbers", cr, text = 0)
@@ -2474,146 +2611,9 @@ vc$setCellDataFunc(cr, func)
 
 
 ###################################################
-### chunk number 227: 
-###################################################
-#line 4440 "SweaveInput"
-cr <- gtkCellRendererText()
-
-
-###################################################
-### chunk number 228: editedSignal
-###################################################
-#line 4443 "SweaveInput"
-cr['editable'] <- TRUE
-ID <- gSignalConnect(cr, "edited", 
-f=function(cr, path, newtext, user.data) {
-  i <- as.numeric(path) + 1
-  j <- user.data$column
-  model <- user.data$model
-  model[i, j] <- newtext
-}, data=list(model=store, column=1))
-
-
-###################################################
-### chunk number 229: editableTableForCollectingOptions
-###################################################
-#line 4470 "SweaveInput"
-## GUI for configuring options -- in a table
-library(RGtk2)
-
-
-###################################################
-### chunk number 230: 
-###################################################
-#line 4483 "SweaveInput"
-opts <- c("main","sub","xlab","ylab", "line","outer")
-df <- data.frame(option=opts,
-           value=c("","","","","0","FALSE"),
-           class=c(rep("character", 4), "integer", "logical"),
-           edit_color=rep("gray95", 6),
-           dirty = rep(FALSE, 6),
-           stringsAsFactors=FALSE)
-
-
-###################################################
-### chunk number 231: model
-###################################################
-#line 4500 "SweaveInput"
-m <- rGtkDataFrame(df)
-v <- gtkTreeView(m)
-
-
-###################################################
-### chunk number 232: firstColumn
-###################################################
-#line 4506 "SweaveInput"
-cr <- gtkCellRendererText()
-cr['background'] <- 'gray80'
-v$insertColumnWithAttributes(position=-1,
-                             title="Option",
-                             cell=cr,
-                             text=1 - 1)
-
-
-###################################################
-### chunk number 233: secondColumn
-###################################################
-#line 4519 "SweaveInput"
-cr <- gtkCellRendererText()
-cr['editable'] <- TRUE
-v$insertColumnWithAttributes(position = -1,
-                             title = "Value",
-                             cell = cr,
-                             text = 2 - 1,
-                             background = 4 - 1
-                             )
-
-
-###################################################
-### chunk number 234: editConnect
-###################################################
-#line 4534 "SweaveInput"
-gSignalConnect(cr, "edited", function(cr, path, new.text, 
-                                      user.data) {
-  m <- user.data$model
-  i <- as.numeric(path) + 1; j <- user.data$column
-  m[i,j] <- as(as(new.text, m[i, 'class']), "character")   
-  m[i, 'dirty'] <- TRUE                     # mark dirty
-  m[i, 'edit_color'] <- 'gray70'            # change color
-}, data=list(model=m, column=2))
-
-
-###################################################
-### chunk number 235: 
-###################################################
-#line 4546 "SweaveInput"
-w <- gtkWindow(show=FALSE)
-w['title'] <- "Option editor"
-w$setSizeRequest(300,500)
-sw <- gtkScrolledWindow()
-w$add(sw)
-sw$add(v)
-w$show()
-
-
-###################################################
-### chunk number 236: 
-###################################################
-#line 4570 "SweaveInput"
-require(helpr, quietly=TRUE)
-package <- "graphics"; topic <- "title"
-rd <- helpr:::parse_help(helpr:::pkg_topic(package, topic), 
-                         package = package)
-descs <- rd$params$args
-names(descs) <- sapply(descs, function(i) i$param)
-
-
-###################################################
-### chunk number 237: 
-###################################################
-#line 4588 "SweaveInput"
-v["has-tooltip"] <- TRUE
-gSignalConnect(v, "query-tooltip", 
-       function(w, x, y, key_mode, tooltip, user.data) {
-         out <- w$getTooltipContext(x, y, key_mode)
-         if(out$retval) {
-           m <- w$getModel()
-           i <- as.numeric(out$path$toString()) + 1
-           val <- m[i, "option"]
-           txt <- descs[[val]]$desc
-           txt <- gsub("code>","b>", txt)  # no code in PANGO
-           tooltip$setMarkup(txt)
-           TRUE
-         } else {
-           FALSE                           # no tooltip
-         }
-       })
-
-
-###################################################
 ### chunk number 238: 
 ###################################################
-#line 4649 "SweaveInput"
+#line 4645 "SweaveInput"
 tstore <- gtkTreeStore("gchararray")
 by(Cars93, Cars93$Manufacturer, function(df) {
   piter <- tstore$append()              # parent
@@ -2630,7 +2630,7 @@ by(Cars93, Cars93$Manufacturer, function(df) {
 ###################################################
 ### chunk number 239: 
 ###################################################
-#line 4663 "SweaveInput"
+#line 4659 "SweaveInput"
 iter <- tstore$getIterFromString("0:0")
 tstore$getValue(iter$iter, column = 0)$value
 
@@ -2638,7 +2638,7 @@ tstore$getValue(iter$iter, column = 0)$value
 ###################################################
 ### chunk number 240: rgtk2-mvc-tree-traverse
 ###################################################
-#line 4693 "SweaveInput"
+#line 4689 "SweaveInput"
 iter <- tstore$getIterFirst()
 models <- NULL
 while(iter$retval) {
@@ -2654,7 +2654,7 @@ while(iter$retval) {
 ###################################################
 ### chunk number 241: notShown
 ###################################################
-#line 4759 "SweaveInput"
+#line 4755 "SweaveInput"
 ## define tstore, but aslo in earlier example so not shown
 data(Cars93, package="MASS")
 tstore <- gtkTreeStore("gchararray")
@@ -2674,14 +2674,14 @@ for(i in unique(Manufacturers)) {
 ###################################################
 ### chunk number 242: 
 ###################################################
-#line 4779 "SweaveInput"
+#line 4775 "SweaveInput"
 store <- rGtkDataFrame(Cars93[,"Model", drop=FALSE])
 
 
 ###################################################
 ### chunk number 243: makeView
 ###################################################
-#line 4784 "SweaveInput"
+#line 4780 "SweaveInput"
 view <- gtkTreeView()
 view$insertColumnWithAttributes(0, "Make", 
            gtkCellRendererText(), text = 0)
@@ -2690,7 +2690,7 @@ view$insertColumnWithAttributes(0, "Make",
 ###################################################
 ### chunk number 244: makeGUI
 ###################################################
-#line 4790 "SweaveInput"
+#line 4786 "SweaveInput"
 w <- gtkWindow(show=FALSE)
 w['title'] <- "Example of changing models"
 sw <- gtkScrolledWindow()
@@ -2702,7 +2702,7 @@ w$show()
 ###################################################
 ### chunk number 245: 
 ###################################################
-#line 4800 "SweaveInput"
+#line 4796 "SweaveInput"
 view$setModel(store)               # the rectangular store
 view$setModel(tstore)              # or the tree store
 
@@ -2710,7 +2710,7 @@ view$setModel(tstore)              # or the tree store
 ###################################################
 ### chunk number 246: 
 ###################################################
-#line 4816 "SweaveInput"
+#line 4812 "SweaveInput"
 ## tree example
 ## a variable browser
 require(RGtk2)
@@ -2719,7 +2719,7 @@ require(RGtk2)
 ###################################################
 ### chunk number 247: SetUpStore
 ###################################################
-#line 4824 "SweaveInput"
+#line 4820 "SweaveInput"
 store <- gtkTreeStore(rep("gchararray", 2))
 sstore <- gtkTreeModelSort(store)
 
@@ -2727,7 +2727,7 @@ sstore <- gtkTreeModelSort(store)
 ###################################################
 ### chunk number 248: 
 ###################################################
-#line 4830 "SweaveInput"
+#line 4826 "SweaveInput"
 iter <- store$append(parent=NULL)$iter
 store$setValue(iter, column=0, "GlobalEnv")
 store$setValue(iter, column=1, "environment")
@@ -2737,7 +2737,7 @@ iter <- store$append(parent=iter)
 ###################################################
 ### chunk number 249: 
 ###################################################
-#line 4841 "SweaveInput"
+#line 4837 "SweaveInput"
 view <- gtkTreeView(sstore)
 view$getSelection()$setMode("multiple")
 
@@ -2745,7 +2745,7 @@ view$getSelection()$setMode("multiple")
 ###################################################
 ### chunk number 250: 
 ###################################################
-#line 4850 "SweaveInput"
+#line 4846 "SweaveInput"
 gSignalConnect(view, signal = "row-expanded",
                f = function(view, iter, tpath, user.data) {
                  sortedModel <- view$getModel()
@@ -2762,7 +2762,7 @@ gSignalConnect(view, signal = "row-expanded",
 ###################################################
 ### chunk number 251: trePathToIter
 ###################################################
-#line 4870 "SweaveInput"
+#line 4866 "SweaveInput"
 pathToIter <- function(sstore, tpath) {
   store <- sstore$getModel()
   uspath <- sstore$convertPathToChildPath(tpath)
@@ -2773,7 +2773,7 @@ pathToIter <- function(sstore, tpath) {
 ###################################################
 ### chunk number 252: IterToPath
 ###################################################
-#line 4881 "SweaveInput"
+#line 4877 "SweaveInput"
 iterToRPath <- function(sstore, iter) {
   store <- sstore$getModel()
   indices <- store$getPath(iter)$getIndices()
@@ -2789,7 +2789,7 @@ iterToRPath <- function(sstore, iter) {
 ###################################################
 ### chunk number 253: getChildren
 ###################################################
-#line 4899 "SweaveInput"
+#line 4895 "SweaveInput"
 getChildren <- function(path=character(0)) {
   hasChildren <- function(obj) 
     (is.list(obj) || is.environment(obj)) && 
@@ -2822,7 +2822,7 @@ getChildren <- function(path=character(0)) {
 ###################################################
 ### chunk number 254: addChildren
 ###################################################
-#line 4934 "SweaveInput"
+#line 4930 "SweaveInput"
 addChildren <- function(store, children, parentIter = NULL) {
   if(nrow(children) == 0) 
     return(NULL)
@@ -2840,7 +2840,7 @@ addChildren <- function(store, children, parentIter = NULL) {
 ###################################################
 ### chunk number 255: 
 ###################################################
-#line 4953 "SweaveInput"
+#line 4949 "SweaveInput"
 gSignalConnect(view, signal = "row-collapsed",
        f = function(view, iter, tpath, user.data) {
          sortedModel <- view$getModel()
@@ -2859,7 +2859,7 @@ gSignalConnect(view, signal = "row-collapsed",
 ###################################################
 ### chunk number 256: DoubleClickHandler
 ###################################################
-#line 4972 "SweaveInput"
+#line 4968 "SweaveInput"
 gSignalConnect(view, signal = "row-activated",
        f = function(view, tpath, tcol) {
          sortedModel <- view$getModel()
@@ -2881,7 +2881,7 @@ gSignalConnect(view, signal = "row-activated",
 ###################################################
 ### chunk number 257: addRenderer
 ###################################################
-#line 4994 "SweaveInput"
+#line 4990 "SweaveInput"
 ## Now, we define our GUI. The view will have two similar columns.
 ## add two cell renderers -- 1 for name, 1 for type
 nms <- c("Variable name","type")
@@ -2900,7 +2900,7 @@ for(i in 1:2) {
 ###################################################
 ### chunk number 258: exampleGUI
 ###################################################
-#line 5010 "SweaveInput"
+#line 5006 "SweaveInput"
 ## We now place the tree view widget into a basic GUI.
 sw <- gtkScrolledWindow()
 sw$setPolicy("automatic","automatic")
@@ -2914,7 +2914,7 @@ w$add(sw)
 ###################################################
 ### chunk number 259: 
 ###################################################
-#line 5073 "SweaveInput"
+#line 5069 "SweaveInput"
 ## a combobox that learns as you go.
 ## no tooltip per item, but here we add as detail
 library(RGtk2)
@@ -2923,7 +2923,7 @@ library(RGtk2)
 ###################################################
 ### chunk number 260: 
 ###################################################
-#line 5087 "SweaveInput"
+#line 5083 "SweaveInput"
 m <- rGtkDataFrame(data.frame(
              fname=character(0), visits=character(0), 
              novisits=integer(0), stringsAsFactors=FALSE))
@@ -2933,7 +2933,7 @@ cb <- gtkComboBoxEntryNewWithModel(m, text.column=0)
 ###################################################
 ### chunk number 261: ConfigureCellRenderers
 ###################################################
-#line 5100 "SweaveInput"
+#line 5096 "SweaveInput"
 cr <- gtkCellRendererText()
 cb$packStart(cr)
 cb$addAttribute(cr, "text", 1)
@@ -2946,7 +2946,7 @@ cr['alignment'] <- "right"
 ###################################################
 ### chunk number 262: helperFunction2
 ###################################################
-#line 5132 "SweaveInput"
+#line 5128 "SweaveInput"
 callHelpFunction <- function(cb, value) {
   model <- cb$getModel()
   ind <- match(value,model[,1, drop=TRUE])
@@ -2968,7 +2968,7 @@ gSignalConnect(cb, "changed", f=function(w, ...) {
 ###################################################
 ### chunk number 263: 
 ###################################################
-#line 5154 "SweaveInput"
+#line 5150 "SweaveInput"
 gSignalConnect(cb$getChild(), "activate", 
                f = function(cb, entry, ...) {
   val <- entry$getText()
@@ -2984,7 +2984,7 @@ gSignalConnect(cb$getChild(), "activate",
 ###################################################
 ### chunk number 264: Layout
 ###################################################
-#line 5168 "SweaveInput"
+#line 5164 "SweaveInput"
 w <- gtkWindow(show=FALSE)
 w['border-width'] <- 15
 g <- gtkHBox(); w$add(g)
@@ -2997,14 +2997,14 @@ w$show()
 ###################################################
 ### chunk number 265: 
 ###################################################
-#line 5242 "SweaveInput"
+#line 5238 "SweaveInput"
 require(RGtk2)
 
 
 ###################################################
 ### chunk number 266: AppendWords
 ###################################################
-#line 5248 "SweaveInput"
+#line 5244 "SweaveInput"
 entry <- gtkEntry()
 completion <- gtkEntryCompletion()
 entry$setCompletion(completion)
@@ -3013,7 +3013,7 @@ entry$setCompletion(completion)
 ###################################################
 ### chunk number 267: SetCompletion
 ###################################################
-#line 5258 "SweaveInput"
+#line 5254 "SweaveInput"
 store <- rGtkDataFrame(state.name)
 completion$setModel(store)
 completion$setTextColumn(0)
@@ -3024,7 +3024,7 @@ completion['popup-single-match'] <- FALSE
 ###################################################
 ### chunk number 268: SetMatchFunc
 ###################################################
-#line 5268 "SweaveInput"
+#line 5264 "SweaveInput"
 matchAnywhere <- function(comp, str, iter, user.data) {
   model <- comp$getModel()
   rowVal <- model$getValue(iter, 0)$value # column 0 in model
@@ -3038,7 +3038,7 @@ completion$setMatchFunc(matchAnywhere)
 ###################################################
 ### chunk number 269: notShown
 ###################################################
-#line 5282 "SweaveInput"
+#line 5278 "SweaveInput"
 ## Our basic GUI is basic:
 w <- gtkWindow(show=FALSE)
 w$setTitle("Test of entry with completion")
@@ -3049,7 +3049,7 @@ w$showAll()
 ###################################################
 ### chunk number 270: gtk-mvc-entry-buffer eval=FALSE
 ###################################################
-## #line 5308 "SweaveInput"
+## #line 5304 "SweaveInput"
 ## buffer <- gtkEntryBuffer()        
 ## entry1 <- gtkEntry(buffer = buffer)
 ## entry2 <- gtkEntry(buffer = buffer)
@@ -3060,7 +3060,7 @@ w$showAll()
 ###################################################
 ### chunk number 271: 
 ###################################################
-#line 5340 "SweaveInput"
+#line 5336 "SweaveInput"
 w <- gtkWindow()
 w['border-width'] <- 15
 #
@@ -3074,7 +3074,7 @@ w$add(sw)
 ###################################################
 ### chunk number 272: setText
 ###################################################
-#line 5353 "SweaveInput"
+#line 5349 "SweaveInput"
 buffer <- tv$getBuffer()
 buffer$setText("Lorem ipsum dolor sit amet ...")
 
@@ -3082,7 +3082,7 @@ buffer$setText("Lorem ipsum dolor sit amet ...")
 ###################################################
 ### chunk number 273: bufferGetText
 ###################################################
-#line 5361 "SweaveInput"
+#line 5357 "SweaveInput"
 start <- buffer$getStartIter()$iter    
 end <- buffer$getEndIter()$iter
 buffer$getText(start, end)
@@ -3091,7 +3091,7 @@ buffer$getText(start, end)
 ###################################################
 ### chunk number 274: gtk-mvc-text-noneditable
 ###################################################
-#line 5382 "SweaveInput"
+#line 5378 "SweaveInput"
 tv['editable'] <- FALSE
 tv['cursor-visible'] <- FALSE
 
@@ -3099,7 +3099,7 @@ tv['cursor-visible'] <- FALSE
 ###################################################
 ### chunk number 275: gtk-mvc-buffer-iter-bounds
 ###################################################
-#line 5462 "SweaveInput"
+#line 5458 "SweaveInput"
 bounds <- buffer$getBounds()
 bounds
 
@@ -3107,7 +3107,7 @@ bounds
 ###################################################
 ### chunk number 276: gtk-mvc-buffer-iter-atLineOffset
 ###################################################
-#line 5485 "SweaveInput"
+#line 5481 "SweaveInput"
 iter <- buffer$getIterAtLineOffset(0, 6)
 iter$iter$getChar()
 
@@ -3115,28 +3115,28 @@ iter$iter$getChar()
 ###################################################
 ### chunk number 277: gtk-mvc-buffer-iter-getChar
 ###################################################
-#line 5501 "SweaveInput"
+#line 5497 "SweaveInput"
 bounds$start$getChar()
 
 
 ###################################################
 ### chunk number 278: gtk-mvc-buffer-iter-getText
 ###################################################
-#line 5508 "SweaveInput"
+#line 5504 "SweaveInput"
 bounds$start$getText(bounds$end)
 
 
 ###################################################
 ### chunk number 279: gtk-mvc-buffer-iter-insert
 ###################################################
-#line 5514 "SweaveInput"
+#line 5510 "SweaveInput"
 buffer$insert(bounds$start, "prefix")
 
 
 ###################################################
 ### chunk number 280: 
 ###################################################
-#line 5540 "SweaveInput"
+#line 5536 "SweaveInput"
 ## setup example, not shown
 w <- gtkWindow()
 tv <- gtkTextView()
@@ -3146,7 +3146,7 @@ w$add(tv)
 ###################################################
 ### chunk number 281: FindWordAtMouseClick
 ###################################################
-#line 5550 "SweaveInput"
+#line 5546 "SweaveInput"
 ID <- gSignalConnect(tv, "button-press-event", 
                      f=function(w, e, ...) {
   siter <- w$getIterAtLocation(e$getX(), e$getY())$iter
@@ -3162,14 +3162,14 @@ ID <- gSignalConnect(tv, "button-press-event",
 ###################################################
 ### chunk number 282: gtk-mvc-text-mark-insert
 ###################################################
-#line 5576 "SweaveInput"
+#line 5572 "SweaveInput"
 insert <- buffer$getMark("insert")
 
 
 ###################################################
 ### chunk number 283: gtk-mvc-text-mark-getIter
 ###################################################
-#line 5581 "SweaveInput"
+#line 5577 "SweaveInput"
 insertIter <- buffer$getIterAtMark(insert)$iter
 bounds$start$getText(insertIter)
 
@@ -3177,7 +3177,7 @@ bounds$start$getText(insertIter)
 ###################################################
 ### chunk number 284: gtk-mvc-text-mark-gravity
 ###################################################
-#line 5591 "SweaveInput"
+#line 5587 "SweaveInput"
 insertIter$getOffset()
 buffer$insert(insertIter, "insertion")
 buffer$getIterAtMark(insert)$iter$getOffset()
@@ -3186,7 +3186,7 @@ buffer$getIterAtMark(insert)$iter$getOffset()
 ###################################################
 ### chunk number 285: gtk-mvc-text-mark-construct
 ###################################################
-#line 5599 "SweaveInput"
+#line 5595 "SweaveInput"
 mark <- buffer$createMark(mark.name = "start", 
                           where = buffer$getStartIter()$iter, 
                           left.gravity = TRUE)
@@ -3195,7 +3195,7 @@ mark <- buffer$createMark(mark.name = "start",
 ###################################################
 ### chunk number 286: gtk-mvc-text-tags-create
 ###################################################
-#line 5617 "SweaveInput"
+#line 5613 "SweaveInput"
 tag.b <- buffer$createTag(tag.name="bold", 
                           weight=PangoWeight["bold"])
 tag.em <- buffer$createTag(tag.name="em", 
@@ -3207,7 +3207,7 @@ tag.large <- buffer$createTag(tag.name="large",
 ###################################################
 ### chunk number 287: gtk-mvc-text-tags-apply
 ###################################################
-#line 5627 "SweaveInput"
+#line 5623 "SweaveInput"
 iter <- buffer$getBounds()
 buffer$applyTag(tag.b, iter$start, iter$end)  # updates iters
 buffer$applyTagByName("em", iter$start, iter$end)
@@ -3216,7 +3216,7 @@ buffer$applyTagByName("em", iter$start, iter$end)
 ###################################################
 ### chunk number 288: gtk-mvc-text-selectRange
 ###################################################
-#line 5640 "SweaveInput"
+#line 5636 "SweaveInput"
 siter <- buffer$getStartIter()$iter
 eiter <- siter$copy(); eiter$forwardWordEnd()
 buffer$selectRange(siter, eiter)
@@ -3225,14 +3225,14 @@ buffer$selectRange(siter, eiter)
 ###################################################
 ### chunk number 289: gtk-mvc-text-clipboard-get
 ###################################################
-#line 5651 "SweaveInput"
+#line 5647 "SweaveInput"
 cb <- gtkClipboardGet()
 
 
 ###################################################
 ### chunk number 290: gtk-mvc-text-clipboard-copy-paste
 ###################################################
-#line 5657 "SweaveInput"
+#line 5653 "SweaveInput"
 buffer$copyClipboard(cb)
 buffer$pasteClipboard(cb, override.location = buffer$getEndIter()$iter, 
                       default.editable = TRUE)
@@ -3241,14 +3241,14 @@ buffer$pasteClipboard(cb, override.location = buffer$getEndIter()$iter,
 ###################################################
 ### chunk number 291: gtk-mvc-text-anchor
 ###################################################
-#line 5684 "SweaveInput"
+#line 5680 "SweaveInput"
 anchor <- buffer$createChildAnchor(buffer$getEndIter()$iter)
 
 
 ###################################################
 ### chunk number 292: gtk-mvc-text-addChild
 ###################################################
-#line 5690 "SweaveInput"
+#line 5686 "SweaveInput"
 b <- gtkButton("click me")
 tv$addChildAtAnchor(b, anchor)
 
@@ -3256,7 +3256,7 @@ tv$addChildAtAnchor(b, anchor)
 ###################################################
 ### chunk number 293: 
 ###################################################
-#line 5708 "SweaveInput"
+#line 5704 "SweaveInput"
 ## make a *basic* terminal in RGtk2
 library(RGtk2)
 
@@ -3264,7 +3264,7 @@ library(RGtk2)
 ###################################################
 ### chunk number 294: TextViewWidget
 ###################################################
-#line 5715 "SweaveInput"
+#line 5711 "SweaveInput"
 tv <- gtkTextView()
 tb <- tv$getBuffer()
 font <- pangoFontDescriptionFromString("Monospace")
@@ -3274,7 +3274,7 @@ tv$modifyFont(font)                     # widget wide
 ###################################################
 ### chunk number 295: 
 ###################################################
-#line 5724 "SweaveInput"
+#line 5720 "SweaveInput"
 tb$createTag(tag.name="cmdInput")
 tb$createTag(tag.name="cmdOutput", 
              weight=PangoWeight["bold"])
@@ -3286,7 +3286,7 @@ tb$createTag(tag.name="uneditable", editable=FALSE)
 ###################################################
 ### chunk number 296: 
 ###################################################
-#line 5735 "SweaveInput"
+#line 5731 "SweaveInput"
 startCmd <- tb$createMark("startCmd", tb$getStartIter()$iter, 
                           left.gravity=TRUE)
 bufferEnd <- tb$createMark("bufferEnd", tb$getEndIter()$iter)
@@ -3295,7 +3295,7 @@ bufferEnd <- tb$createMark("bufferEnd", tb$getEndIter()$iter)
 ###################################################
 ### chunk number 297: 
 ###################################################
-#line 5743 "SweaveInput"
+#line 5739 "SweaveInput"
 scrollViewport <- function(view, ...) {
   iter <- view$getBuffer()$getEndIter()$iter
   view$scrollToMark(bufferEnd, within.margin=0)
@@ -3306,7 +3306,7 @@ scrollViewport <- function(view, ...) {
 ###################################################
 ### chunk number 298: 
 ###################################################
-#line 5754 "SweaveInput"
+#line 5750 "SweaveInput"
 addPrompt <- function(obj, prompt=c("prompt", "continue"),
                       setMark=TRUE) 
 {
@@ -3326,7 +3326,7 @@ addPrompt(tb) ## place an initial prompt
 ###################################################
 ### chunk number 299: addOutput
 ###################################################
-#line 5773 "SweaveInput"
+#line 5769 "SweaveInput"
 addOutput <- function(obj, output, tagName="cmdOutput") {
   endIter <- obj$getEndIter()
   if(length(output) > 0) 
@@ -3340,7 +3340,7 @@ addOutput <- function(obj, output, tagName="cmdOutput") {
 ###################################################
 ### chunk number 300: 
 ###################################################
-#line 5790 "SweaveInput"
+#line 5786 "SweaveInput"
 findCMD <- function(obj) {
   endIter <- obj$getEndIter()
   startIter <- obj$getIterAtMark(startCmd)
@@ -3354,7 +3354,7 @@ findCMD <- function(obj) {
 ###################################################
 ### chunk number 301: 
 ###################################################
-#line 5806 "SweaveInput"
+#line 5802 "SweaveInput"
 evalCMD <- function(tv, cmd) {
   tb <- tv$getBuffer()
   cmd <- paste(cmd, sep="\n")
@@ -3389,7 +3389,7 @@ evalCMD <- function(tv, cmd) {
 ###################################################
 ### chunk number 302: connectBinding
 ###################################################
-#line 5840 "SweaveInput"
+#line 5836 "SweaveInput"
 gSignalConnect(tv, "key-release-event", f=function(w, e) {
   obj <- w$getBuffer()                  # w is textview
   keyval <- e$getKeyval()
@@ -3404,7 +3404,7 @@ gSignalConnect(tv, "key-release-event", f=function(w, e) {
 ###################################################
 ### chunk number 303: makeGUI
 ###################################################
-#line 5864 "SweaveInput"
+#line 5860 "SweaveInput"
 ## scroll window
 sw <- gtkScrolledWindow()
 sw$setPolicy("automatic", "automatic")
@@ -3421,7 +3421,7 @@ w$showAll()
 ###################################################
 ### chunk number 304: 
 ###################################################
-#line 5880 "SweaveInput"
+#line 5876 "SweaveInput"
 ## History features
 ## This is not illustrated in text, but is added here to illustrate how this might be implemented
 ## The major issue with this example is we can't trap the return or arrow keys before they move 
@@ -3499,14 +3499,14 @@ ID <- gSignalConnect(tv, "key-release-event", f=function(w, e, data) {
 ###################################################
 ### chunk number 305: 
 ###################################################
-#line 5969 "SweaveInput"
+#line 5965 "SweaveInput"
 require(RGtk2)
 
 
 ###################################################
 ### chunk number 306: rgtk2-menus-actions-constructor
 ###################################################
-#line 5994 "SweaveInput"
+#line 5990 "SweaveInput"
 a <- gtkAction(name="ok", label="_Ok", 
                tooltip="An OK button", stock.id="gtk-ok")
 
@@ -3514,7 +3514,7 @@ a <- gtkAction(name="ok", label="_Ok",
 ###################################################
 ### chunk number 307: rgtk2-menus-actions-activate
 ###################################################
-#line 6005 "SweaveInput"
+#line 6001 "SweaveInput"
 gSignalConnect(a, "activate", f = function(w, data) {
   print(a$getName())                    # or some useful thing
 })
@@ -3523,7 +3523,7 @@ gSignalConnect(a, "activate", f = function(w, data) {
 ###################################################
 ### chunk number 308: ConnectAction
 ###################################################
-#line 6017 "SweaveInput"
+#line 6013 "SweaveInput"
 b <- gtkButton()
 b$setRelatedAction(a)
 
@@ -3531,7 +3531,7 @@ b$setRelatedAction(a)
 ###################################################
 ### chunk number 309: rgtk2-menus-action-group
 ###################################################
-#line 6033 "SweaveInput"
+#line 6029 "SweaveInput"
 group <- gtkActionGroup()
 group$addActionWithAccel(a, "<control>O")
 
@@ -3539,7 +3539,7 @@ group$addActionWithAccel(a, "<control>O")
 ###################################################
 ### chunk number 310: rgtk2-menus-toggle-action
 ###################################################
-#line 6050 "SweaveInput"
+#line 6046 "SweaveInput"
 fullScreen <- gtkToggleAction("fullscreen", "Full screen", 
                               "Toggle full screen")
 gSignalConnect(fullScreen, "toggled", function(action) {
@@ -3553,7 +3553,7 @@ gSignalConnect(fullScreen, "toggled", function(action) {
 ###################################################
 ### chunk number 311: showGUI
 ###################################################
-#line 6064 "SweaveInput"
+#line 6060 "SweaveInput"
 window <- gtkWindow(show=FALSE)
 window['title'] <- "Action with button example"
 window$add(b)
@@ -3563,21 +3563,21 @@ window$showAll()
 ###################################################
 ### chunk number 312: rgtk2-menus-menubar
 ###################################################
-#line 6088 "SweaveInput"
+#line 6084 "SweaveInput"
 menubar <- gtkMenuBar()
 
 
 ###################################################
 ### chunk number 313: rgtk2-menus-menu
 ###################################################
-#line 6099 "SweaveInput"
+#line 6095 "SweaveInput"
 fileMenu <- gtkMenu()
 
 
 ###################################################
 ### chunk number 314: rgtk2-menus-menuitem
 ###################################################
-#line 6105 "SweaveInput"
+#line 6101 "SweaveInput"
 fileItem <- gtkMenuItemNewWithMnemonic(label="_File")
 fileItem$setSubmenu(fileMenu)
 
@@ -3585,21 +3585,21 @@ fileItem$setSubmenu(fileMenu)
 ###################################################
 ### chunk number 315: rgtk2-menus-append
 ###################################################
-#line 6113 "SweaveInput"
+#line 6109 "SweaveInput"
 menubar$append(fileItem)
 
 
 ###################################################
 ### chunk number 316: rgtk2-menus-open
 ###################################################
-#line 6126 "SweaveInput"
+#line 6122 "SweaveInput"
 open <- gtkMenuItemNewWithMnemonic("_Open")
 
 
 ###################################################
 ### chunk number 317: rgtk2-menus-open-activate
 ###################################################
-#line 6132 "SweaveInput"
+#line 6128 "SweaveInput"
 gSignalConnect(open, "activate", function(item) {
   f <- file.choose()
   file.show(f)
@@ -3609,14 +3609,14 @@ gSignalConnect(open, "activate", function(item) {
 ###################################################
 ### chunk number 318: rgtk2-menus-append-item
 ###################################################
-#line 6140 "SweaveInput"
+#line 6136 "SweaveInput"
 fileMenu$append(open)
 
 
 ###################################################
 ### chunk number 319: rgtk2-menus-save-action
 ###################################################
-#line 6147 "SweaveInput"
+#line 6143 "SweaveInput"
 saveAction <- 
   gtkAction("save", "Save", "Save object", "gtk-save")
 
@@ -3624,7 +3624,7 @@ saveAction <-
 ###################################################
 ### chunk number 320: rgtk2-menus-save-item
 ###################################################
-#line 6154 "SweaveInput"
+#line 6150 "SweaveInput"
 save <- saveAction$createMenuItem()
 fileMenu$append(save)
 
@@ -3632,14 +3632,14 @@ fileMenu$append(save)
 ###################################################
 ### chunk number 321: rgtk2-menus-separator
 ###################################################
-#line 6163 "SweaveInput"
+#line 6159 "SweaveInput"
 fileMenu$append(gtkSeparatorMenuItem())
 
 
 ###################################################
 ### chunk number 322: rgtk2-menus-toggle-item
 ###################################################
-#line 6169 "SweaveInput"
+#line 6165 "SweaveInput"
 autoSaveAction <- gtkToggleAction("autosave", "Autosave", 
                                   "Enable autosave")
 autoSave <- autoSaveAction$createMenuItem()
@@ -3649,7 +3649,7 @@ fileMenu$append(autoSave)
 ###################################################
 ### chunk number 323: rgtk2-menus-window
 ###################################################
-#line 6177 "SweaveInput"
+#line 6173 "SweaveInput"
 mainWindow <- gtkWindow()
 vbox <- gtkVBox()
 mainWindow$add(vbox)
@@ -3659,7 +3659,7 @@ vbox$packStart(menubar, FALSE, FALSE)
 ###################################################
 ### chunk number 324: "menubar-ex"
 ###################################################
-#line 6190 "SweaveInput"
+#line 6186 "SweaveInput"
 popup <- gtkMenu()                       # top level
 popup$append(gtkMenuItem("cut"))
 popup$append(gtkMenuItem("copy"))
@@ -3670,7 +3670,7 @@ popup$append(gtkMenuItem("paste"))
 ###################################################
 ### chunk number 325: rgtk2-menus-popup-button
 ###################################################
-#line 6200 "SweaveInput"
+#line 6196 "SweaveInput"
 b <- gtkButton("Click me with right mouse button")
 w <- gtkWindow(); w$setTitle("Popup menu example")
 w$add(b)
@@ -3679,7 +3679,7 @@ w$add(b)
 ###################################################
 ### chunk number 326: 
 ###################################################
-#line 6208 "SweaveInput"
+#line 6204 "SweaveInput"
 gSignalConnect(b,"button-press-event",
        f = function(w, e, menu) {
          if(e$getButton() == 3 ||
@@ -3695,7 +3695,7 @@ gSignalConnect(b,"button-press-event",
 ###################################################
 ### chunk number 327: 
 ###################################################
-#line 6229 "SweaveInput"
+#line 6225 "SweaveInput"
 IDs <- sapply(popup$getChildren(), function(i) {
   if(!inherits(i, "GtkSeparatorMenuItem")) # skip these
     gSignalConnect(i, "activate",
@@ -3706,28 +3706,28 @@ IDs <- sapply(popup$getChildren(), function(i) {
 ###################################################
 ### chunk number 328: rgtk2-menus-toolbar-construct
 ###################################################
-#line 6250 "SweaveInput"
+#line 6246 "SweaveInput"
 toolbar <- gtkToolbar()
 
 
 ###################################################
 ### chunk number 329: rgtk2-menus-toolbar-open-item
 ###################################################
-#line 6259 "SweaveInput"
+#line 6255 "SweaveInput"
 openButton <- gtkToolButton(stock.id = "gtk-open") 
 
 
 ###################################################
 ### chunk number 330: rgtk2-menus-toolbar-add
 ###################################################
-#line 6268 "SweaveInput"
+#line 6264 "SweaveInput"
 toolbar$add(openButton)
 
 
 ###################################################
 ### chunk number 331: rgtk2-menus-toolbar-save-item
 ###################################################
-#line 6279 "SweaveInput"
+#line 6275 "SweaveInput"
 saveButton <- saveAction$createToolItem()
 toolbar$add(saveButton)
 
@@ -3735,14 +3735,14 @@ toolbar$add(saveButton)
 ###################################################
 ### chunk number 332: rgtk2-menus-toolbar-separator
 ###################################################
-#line 6288 "SweaveInput"
+#line 6284 "SweaveInput"
 toolbar$add(gtkSeparatorToolItem())
 
 
 ###################################################
 ### chunk number 333: rgtk2-menus-toolbar-toggle
 ###################################################
-#line 6293 "SweaveInput"
+#line 6289 "SweaveInput"
 fullScreenButton <- fullScreen$createToolItem()
 toolbar$add(fullScreenButton)
 
@@ -3750,21 +3750,21 @@ toolbar$add(fullScreenButton)
 ###################################################
 ### chunk number 334: rgtk2-menus-toolbar-style
 ###################################################
-#line 6309 "SweaveInput"
+#line 6305 "SweaveInput"
 toolbar$setStyle("icon")
 
 
 ###################################################
 ### chunk number 335: rgtk2-menus-toolbar-is-important
 ###################################################
-#line 6318 "SweaveInput"
+#line 6314 "SweaveInput"
 fullScreen["is-important"] <- TRUE
 
 
 ###################################################
 ### chunk number 336: rgtk2-menus-toolbar-expand eval=FALSE
 ###################################################
-## #line 6327 "SweaveInput"
+## #line 6323 "SweaveInput"
 ## expander <- gtkSeparatorToolItem()
 ## expander["draw"] <- FALSE
 ## toolbar$add(expander)
@@ -3774,7 +3774,7 @@ fullScreen["is-important"] <- TRUE
 ###################################################
 ### chunk number 337: rgtk2-menus-toolbar-help
 ###################################################
-#line 6338 "SweaveInput"
+#line 6334 "SweaveInput"
 helpAction <- gtkAction("help", "Help", "Get help", "gtk-help")
 toolbar$add(helpAction$createToolItem())
 
@@ -3782,14 +3782,14 @@ toolbar$add(helpAction$createToolItem())
 ###################################################
 ### chunk number 338: rgtk2-menus-toolbar-place
 ###################################################
-#line 6345 "SweaveInput"
+#line 6341 "SweaveInput"
 vbox$packStart(toolbar, FALSE, FALSE)
 
 
 ###################################################
 ### chunk number 339: rgtk2-mennus-toolbar-color-button
 ###################################################
-#line 6363 "SweaveInput"
+#line 6359 "SweaveInput"
 gdkColor <- gdkColorParse(palette()[1])$color
 colorButton <- gtkColorButton(gdkColor)
 
@@ -3797,7 +3797,7 @@ colorButton <- gtkColorButton(gdkColor)
 ###################################################
 ### chunk number 340: rgtk2-menus-toolbar-color-menu
 ###################################################
-#line 6373 "SweaveInput"
+#line 6369 "SweaveInput"
 colorMenuItem <- function(color) {
   da <- gtkDrawingArea()
   da$setSizeRequest(20, 20)
@@ -3815,7 +3815,7 @@ for (item in colorItems)
 ###################################################
 ### chunk number 341: rgtk2-menus-toolbar-color-cb
 ###################################################
-#line 6393 "SweaveInput"
+#line 6389 "SweaveInput"
 colorMenuItemActivated <- function(item) {
   color <- gdkColorParse(item$getLabel())$color
   colorButton$setColor(color)
@@ -3827,7 +3827,7 @@ sapply(colorItems, gSignalConnect, "activate",
 ###################################################
 ### chunk number 342: rgtk2-menus-toolbar-menu
 ###################################################
-#line 6404 "SweaveInput"
+#line 6400 "SweaveInput"
 menuButton <- gtkMenuToolButton(colorButton, "Color")
 menuButton$setMenu(colorMenu)
 toolbar$add(menuButton)
@@ -3836,7 +3836,7 @@ toolbar$add(menuButton)
 ###################################################
 ### chunk number 343: rgtk2-menus-tool-item-group eval=FALSE
 ###################################################
-## #line 6429 "SweaveInput"
+## #line 6425 "SweaveInput"
 ## fileGroup <- gtkToolItemGroup("File")
 ## fileGroup$add(gtkToolButton(stock.id = "gtk-open"))
 ## fileGroup$add(saveAction$createToolItem())
@@ -3847,7 +3847,7 @@ toolbar$add(menuButton)
 ###################################################
 ### chunk number 344: rgtk2-menus-tool-palette eval=FALSE
 ###################################################
-## #line 6439 "SweaveInput"
+## #line 6435 "SweaveInput"
 ## palette <- gtkToolPalette()
 ## palette$add(fileGroup)
 ## palette$add(helpGroup)
@@ -3856,14 +3856,14 @@ toolbar$add(menuButton)
 ###################################################
 ### chunk number 345: rgtk2-menus-tool-palette-collapse eval=FALSE
 ###################################################
-## #line 6446 "SweaveInput"
+## #line 6442 "SweaveInput"
 ## helpGroup$setCollapsed(TRUE)
 
 
 ###################################################
 ### chunk number 346: 
 ###################################################
-#line 6477 "SweaveInput"
+#line 6473 "SweaveInput"
 ib <- gtkInfoBar(show=FALSE)
 ib$setNoShowAll(TRUE)
 
@@ -3871,7 +3871,7 @@ ib$setNoShowAll(TRUE)
 ###################################################
 ### chunk number 347: 
 ###################################################
-#line 6488 "SweaveInput"
+#line 6484 "SweaveInput"
 l <- gtkLabel("Warning, Warning ....")
 ib$setMessageType("warning")            
 ib$getContentArea()$add(l)
@@ -3880,7 +3880,7 @@ ib$getContentArea()$add(l)
 ###################################################
 ### chunk number 348: 
 ###################################################
-#line 6495 "SweaveInput"
+#line 6491 "SweaveInput"
 ib$addButton(button.text="gtk-ok",
              response.id=GtkResponseType['ok'])
 
@@ -3888,14 +3888,14 @@ ib$addButton(button.text="gtk-ok",
 ###################################################
 ### chunk number 349: 
 ###################################################
-#line 6504 "SweaveInput"
+#line 6500 "SweaveInput"
 gSignalConnect(ib, "response", function(w, resp.id) w$hide())
 
 
 ###################################################
 ### chunk number 350: addToWinodw
 ###################################################
-#line 6509 "SweaveInput"
+#line 6505 "SweaveInput"
 vbox$packStart(ib, expand = FALSE)
 ib$show()
 
@@ -3903,7 +3903,7 @@ ib$show()
 ###################################################
 ### chunk number 351: not-shown
 ###################################################
-#line 6543 "SweaveInput"
+#line 6539 "SweaveInput"
 ## sample RGtk2 menu
 library(RGtk2)
 
@@ -3911,14 +3911,14 @@ library(RGtk2)
 ###################################################
 ### chunk number 352: 
 ###################################################
-#line 6549 "SweaveInput"
+#line 6545 "SweaveInput"
 uimanager = gtkUIManager()
 
 
 ###################################################
 ### chunk number 353: 
 ###################################################
-#line 6556 "SweaveInput"
+#line 6552 "SweaveInput"
 someAction <- function(action,...) 
   statusbar$push(statusbar$getContextId("message"), 
                  action$getName())
@@ -3927,14 +3927,14 @@ someAction <- function(action,...)
 ###################################################
 ### chunk number 354: 
 ###################################################
-#line 6563 "SweaveInput"
+#line 6559 "SweaveInput"
 Quit <- function(...) win$destroy()
 
 
 ###################################################
 ### chunk number 355: Define-first-action-group
 ###################################################
-#line 6578 "SweaveInput"
+#line 6574 "SweaveInput"
 firstActionGroup <- gtkActionGroup("firstActionGroup")
 firstActionEntries <- list(
   ## name,ID,label,accelerator,tooltip,callback
@@ -3959,7 +3959,7 @@ firstActionEntries <- list(
 ###################################################
 ### chunk number 356: "Insert action group"
 ###################################################
-#line 6604 "SweaveInput"
+#line 6600 "SweaveInput"
 firstActionGroup$addActions(firstActionEntries)
 uimanager$insertActionGroup(firstActionGroup, 0) # 0-based
 
@@ -3967,7 +3967,7 @@ uimanager$insertActionGroup(firstActionGroup, 0) # 0-based
 ###################################################
 ### chunk number 357: How-to-set-sensitivity
 ###################################################
-#line 6613 "SweaveInput"
+#line 6609 "SweaveInput"
 redo <- firstActionGroup$getAction("Redo")
 redo['sensitive'] <- FALSE
 
@@ -3975,7 +3975,7 @@ redo['sensitive'] <- FALSE
 ###################################################
 ### chunk number 358: 
 ###################################################
-#line 6620 "SweaveInput"
+#line 6616 "SweaveInput"
 helpActionGroup <- gtkActionGroup("helpActionGroup")
 helpActionEntries <- list(
   help = list("Help", "", "_Help", "", "", NULL),
@@ -3988,7 +3988,7 @@ helpActionGroup$addActions(helpActionEntries)
 ###################################################
 ### chunk number 359: "a toggle action"
 ###################################################
-#line 6631 "SweaveInput"
+#line 6627 "SweaveInput"
 toggleActions <- list(
   tooltips = list("UseTooltips", NULL, "Use _Tooltips", "<control>T", 
     "Enable tooltips", someAction, TRUE)
@@ -3999,21 +3999,21 @@ helpActionGroup$addToggleActions(toggleActions)
 ###################################################
 ### chunk number 360: "insert help action group"
 ###################################################
-#line 6644 "SweaveInput"
+#line 6640 "SweaveInput"
 uimanager$insertActionGroup(helpActionGroup, 1)
 
 
 ###################################################
 ### chunk number 361: "Load UI from file"
 ###################################################
-#line 6697 "SweaveInput"
+#line 6693 "SweaveInput"
 id <- uimanager$addUiFromFile("ex-menus.xml")
 
 
 ###################################################
 ### chunk number 362: "Retrieve menubar and toolbar from the uimanager"
 ###################################################
-#line 6708 "SweaveInput"
+#line 6704 "SweaveInput"
 menubar <- uimanager$getWidget("/menubar")
 toolbar <- uimanager$getWidget("/toolbar")
 
@@ -4021,14 +4021,14 @@ toolbar <- uimanager$getWidget("/toolbar")
 ###################################################
 ### chunk number 363: "define statusbar"
 ###################################################
-#line 6713 "SweaveInput"
+#line 6709 "SweaveInput"
 statusbar <- gtkStatusbar()
 
 
 ###################################################
 ### chunk number 364: Define-window-add-accelerator-group
 ###################################################
-#line 6721 "SweaveInput"
+#line 6717 "SweaveInput"
 win <- gtkWindow(show=TRUE)
 win$setTitle("Window example")
 accelgroup <- uimanager$getAccelGroup()
@@ -4038,7 +4038,7 @@ win$addAccelGroup(accelgroup)
 ###################################################
 ### chunk number 365: setup-box
 ###################################################
-#line 6729 "SweaveInput"
+#line 6725 "SweaveInput"
 box <- gtkVBox()
 win$add(box)
 
@@ -4053,7 +4053,7 @@ box$packStart(statusbar, expand=FALSE, fill=FALSE, 0)
 ###################################################
 ### chunk number 366: 
 ###################################################
-#line 6836 "SweaveInput"
+#line 6832 "SweaveInput"
 options(prompt="> ")
 options(continue="+ ")
 options(width=80)
