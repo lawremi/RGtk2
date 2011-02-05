@@ -211,7 +211,7 @@ to width needed to fit contents). The \method{setResizeMode} method
 changes the resize mode of a specific column.  Below, we make all of
 our columns expand:
 <<qt-mvc-table-stretch>>=
-header$resizeMode <- Qt$QHeaderView$Stretch
+header$resizeMode(Qt$QHeaderView$Stretch)
 @ 
 %
 The drawback to any of these modes is that the resizing is no longer
@@ -517,7 +517,7 @@ tableView$selectRow(0)
 %
 Selecting a range of rows is very similar to selecting a range of list
 items, except we need to add the \qcode{Rows} selection flag:
-<<qt-mvc-selection-select-rows, results=hide>>=
+<<qt-mvc-selection-select-rows, results=hide, eval=FALSE>>=
 selModel$select(sel, Qt$QItemSelectionModel$Select | 
                 Qt$QItemSelectionModel$Rows)
 @ 
@@ -767,6 +767,9 @@ removing and manipulating children, may be performed on a
 \class{QStandardItem}, instead of directly on the model. This may be
 convenient in some circumstances. For example, the code listed above
 for populating the model becomes:
+<<echo=FALSE>>=
+treeModel <- Qt$QStandardItemModel(rows = 0, columns = 1)
+@ 
 <<qt-mvc-standard-item-rewrite, results=hide>>=
 by(Cars93, Cars93$Manufacturer, function(df) {
   manufacturer <- Qt$QStandardItem(as.character(df$Manufacturer[1]))
@@ -1028,10 +1031,11 @@ For long lists, this looping will be time consuming. In such cases, it
 is likely preferable use \class{QListView}, \class{DataFrameModel} and
 the \qcode{CheckedStateRole}.
 
-\begin{example}{Combining a combobox and list widget to select a
-    variable name}{eg-qt-select-variable}
-  \SweaveInput{ex-qt-select-variable}
-\end{example}
+%% JV this seems to cover the same ground as the dnd example
+% \begin{example}{Combining a combobox and list widget to select a
+%     variable name}{eg-qt-select-variable}
+%   \SweaveInput{ex-qt-select-variable}
+% \end{example}
 
 \section{Implementing Custom Models}
 \label{sec:using-model-with}
@@ -1101,8 +1105,7 @@ class. An example is the \property{text}{QLabel} property on a
 \class{QLineEdit}.
 
 \begin{example}{Mapping selected model items to a text entry}
-  
-  We will demonstrate \class{QDataWidgetMapper} by displaying a table
+ We will demonstrate \class{QDataWidgetMapper} by displaying a table
   view of the \qcode{Cars93} dataset, along with a label. When a row
   is selected, the model name of the record will be displayed in the
   label. First, we establish the mapping:

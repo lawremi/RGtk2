@@ -452,7 +452,7 @@ like permissions.
   We construct a dialog for opening an R-related file, using the file
   names selected above as the history:
 <<QFileDialogAPI, results=hide>>=
-dlg <- Qt$QFileDialog(NULL, "Choose an R file", getwd(), rfilter)
+dlg <- Qt$QFileDialog(NULL, "Choose an R file", getwd(), nameFilter)
 dlg$fileMode <- Qt$QFileDialog$ExistingFiles
 dlg$setHistory(fnames)
 @

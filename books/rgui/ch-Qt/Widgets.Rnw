@@ -84,7 +84,7 @@ icon, to indicate the disabled state.
 
 A push button usually executes some command when clicked, i.e., when
 the \signal{clicked} signal is emitted:
-<<qt-widget-button-connect, result=hide>>=
+<<qt-widget-button-connect, results=hide>>=
 qconnect(button, "clicked", function() message("Ok clicked") )
 @ 
 

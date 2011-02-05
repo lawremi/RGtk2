@@ -41,7 +41,7 @@ qsetMethod("mousePressEvent", DraggableListWidget, function(e) {
 @ 
 
 
-With this, we know create a widget to hold the combobox and the list
+With this, we now create a widget to hold the combobox and the list
 box. The constructor creates the widgets, lays them out, initializes
 the data sets then sets a handler to update the variable list when the
 dataframe selector does.
@@ -89,22 +89,16 @@ qsetMethod("updateDataSets", VariableSelector, function() {
 })
 @ 
 
-Finally, we need to update the list of variables to reflect the state
-of the combo box selection. Here we define a helper method to display
-an appropriate icon based on the class of the variable.
-<<results=hide>>=
-getIconFile <- function(x) UseMethod("getIconFile")
-getIconFile.default <- function(x)
-  Qt$QIcon(system.file("images/numeric.gif", package="gWidgets"))
-getIconFile.factor <- function(x)
-  Qt$QIcon(system.file("images/factor.gif", package="gWidgets"))
-getIconFile.character <- function(x)
-  Qt$QIcon(system.file("images/character.gif", package="gWidgets"))
+
+<<echo=FALSE>>=
+source("../ProgGUIinR/R/misc.R")
+## require(ProgGUIinR")
 @ 
 
-This method populates the variable list to reflect the indicated data
-frame. As items are automatically drag enabled, we do not need to add
-anything more here, as we've implemented the \code{mousePressEvent}.
+Finally, we need to update the list of variables to reflect the state
+of the combo box selection. As items are automatically drag enabled,
+we do not need to add anything more here, as we've implemented the
+\code{mousePressEvent}.
 <<results=hide>>=
 qsetMethod("updateVarList", VariableSelector, function(df=NULL) {
   this$varList$setDf(df)
@@ -113,7 +107,7 @@ qsetMethod("updateVarList", VariableSelector, function(df=NULL) {
     d <- get(df)
     sapply(names(d), function(i) {
       item <- Qt$QListWidgetItem(i, this$varList)
-      item$setIcon(getIconFile(d[,i]))
+      item$setIcon(make_icon(d[,i]))
     })
   }
 })

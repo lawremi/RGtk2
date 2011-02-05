@@ -148,7 +148,7 @@ label. Thus a \class{QPushButton} instance returns a size hint
 depending on the label dimensions and has the policies 
 \code{Fixed} and \code{Minimum} as its vertical and horizontal policies
 respectively. We could prevent a button from expanding at all:
-<<results=hide>>=
+<<sizePolicy, results=hide>>=
 b <- Qt$QPushButton("No expansion")
 b$setSizePolicy(vertical=Qt$QSizePolicy$Fixed, 
                 horizontal=Qt$QSizePolicy$Fixed)
@@ -170,6 +170,7 @@ align the label to the left side of the layout:
 <<echo=FALSE, results=hide>>=
 layout <- Qt$QHBoxLayout()
 @ 
+%
 <<qt-layout-basic-alignment, results=hide>>=
 label <- Qt$QLabel("Label")
 layout$addWidget(label)
@@ -177,7 +178,7 @@ layout$setAlignment(label, Qt$Qt$AlignLeft)
 @ 
 % 
 Alignment is also possible to the top, bottom and right. The alignment
-values are flags andmay be combined with \code{\|} to specify both vertical and
+values are flags andmay be combined with \OR{} to specify both vertical and
 horizontal alignment.
 
 The spacing between every cell
@@ -202,7 +203,9 @@ hb <- Qt$QHBoxLayout()
 Child widgets are added to a box container through the
 \method{addWidget}{QLayout} method:
 <<qt-layout-box-add, results=hide>>=
-sapply(1:3, function(i) hb$addWidget(Qt$QPushButton(i)))
+buttons <- sapply(letters[1:3], Qt$QPushButton)
+sapply(buttons, hb$addWidget)
+
 @
 % 
 The \method{direction}{QBoxLayout} property specifies the direction in
@@ -230,14 +233,18 @@ hb$setStretchFactor(wid, 2.0)
 ## no stretch, no expand
 w <- Qt$QWidget(); w$setWindowTitle("No stretch, no expand")
 w$setLayout(g <- Qt$QHBoxLayout())
-sapply(1:3, function(i) g$addWidget(Qt$QPushButton(i)))
+buttons <- sapply(letters[1:3], Qt$QPushButton)
+sapply(buttons, g$addWidget)
 w$setMinimumSize(400, 50)
 w$show()
 
 ## no stretch, expand for first
 w <- Qt$QWidget();  w$setWindowTitle("No stretch, no expand, size Policy")
 w$setLayout(g <- Qt$QHBoxLayout())
-sapply(1:3, function(i) g$addWidget(Qt$QPushButton(i)))
+
+buttons <- sapply(letters[1:3], Qt$QPushButton)
+sapply(buttons, g$addWidget)
+
 b <- g$itemAt(0L)$widget()
 b$setSizePolicy(Qt$QSizePolicy$Expanding, Qt$QSizePolicy$Fixed) 
 for(i in 1:2) {
@@ -250,7 +257,10 @@ w$show()
 ## stretch
 w <- Qt$QWidget(); w$setWindowTitle("Using stretch factors")
 w$setLayout(g <- Qt$QHBoxLayout())
-sapply(1:3, function(i) g$addWidget(Qt$QPushButton(i), stretch=i))
+buttons <- sapply(letters[1:3], Qt$QPushButton)
+for(i in 1:3) g$addWidget(buttons[[i]], stretch=i)
+
+
 w$setMinimumSize(400, 50)
 w$show()                
 
@@ -275,7 +285,7 @@ w$show()
 w <- Qt$QWidget()
 w$setWindowTitle("Insert example")
 w$setLayout(g <- Qt$QHBoxLayout())
-for(i in 0:2) g$addWidget(Qt$QPushButton(i))
+for(i in 0:2) g$addWidget(Qt$QPushButton(as.character(i)))
 g$insertWidget(1L, Qt$QPushButton("inserted"))
 w$show()
 @ 
@@ -587,6 +597,43 @@ nb$usesScrollButtons <- TRUE
 %
 We need to connect to the \signal{tabCloseRequested} signal to
 actually close the tab when the close button is clicked.
+
+%% JV added this, simple useful application
+\begin{example}{A help page browser}{ex-qt-help-browser}
+  This example shows how to create a help browser using the
+  \class{QWebView} class to show web pages. The only method from this
+  class we use is \method{setUrl}{QWebView}. The key to this is
+  informing \function{browseURL} to open web pages using an \R\/
+  function, as opposed to the default system browser. 
+  
+<<HelpBrowser>>=
+qsetClass("HelpBrowser", Qt$QTabWidget, function(parent=NULL) {
+  super(parent)
+  #
+  this$tabsClosable <- TRUE
+  qconnect(this, "tabCloseRequested", function(index) {
+    this$removeTab(index)
+  })
+  this$movable <- TRUE; this$usesScrollButtons <- TRUE
+  #
+  this$browser <- getOption("browser")
+  f <- function(url) openPage(url)
+  options("browser" = f)
+})
+@   
+  
+The lone method is that called to open page.
+<<openPage>>=
+qsetMethod("openPage", HelpBrowser, function(url) {
+  nm <- strsplit(url, "/")[[1]]
+  nm <- sprintf("%s: %s", nm[length(nm)-2], nm[length(nm)])
+  w <- Qt$QWebView()
+  w$setUrl(Qt$QUrl(url))
+  i <- addTab(w, nm)
+})
+@ 
+\end{example}
+
 
 \paragraph{General Widget Stacking}
 

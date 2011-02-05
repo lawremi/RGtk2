@@ -6,7 +6,7 @@ require(qtbase)
 This example shows how to use the tree widget item to display a
 snapshot of the current workspace. Each object in the workspace maps
 to an item, where recursive objects with names will have their
-components represented in a heiarchical manner. 
+components represented in a hierarchical manner. 
 
 When representing objects in a workspace, we need to decide if an
 object has been changed. To do this, we use the \function{digest}
@@ -32,6 +32,9 @@ addItem <- function(varname, parentObj, parentItem) {
   item <- Qt$QStandardItem(varname)
   item$setData(digest(obj), .DIGEST_ROLE)
   classItem <- Qt$QStandardItem(paste(class(obj), collapse = ", "))
+  print(class(item))
+  print(class(classItem))
+  
   parentItem$appendRow(list(item, classItem))
   
   nms <- NULL
@@ -59,11 +62,15 @@ updateTopLevelItems <- function(view, env = .GlobalEnv) {
   model <- view$model()
   items <- lapply(seq_len(model$rowCount()), model$item, column = 0)
   curNames <- as.character(sapply(items, qinvoke, "text"))
+
+
   
   maybeSame <- curNames %in% envNames
+  
   curDigests <- sapply(items[maybeSame], qinvoke, "data", .DIGEST_ROLE)
   envDigests <- sapply(mget(curNames[maybeSame], env), digest)
   same <- as.character(curDigests) == as.character(envDigests)
+
   
   view$updatesEnabled <- FALSE
   
@@ -102,4 +109,9 @@ view$setModel(model)
 This last call initializes the display:
 <<eval=FALSE>>=
 updateTopLevelItems(view)
+@ 
+
+<<echo=FALSE, results=hide>>=
+view$show()
+view$raise()
 @ 
