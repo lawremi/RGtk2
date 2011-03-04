@@ -26,14 +26,14 @@ allDefs <- NULL
 for (f in files) allDefs <- mergeDefs(getDefs(f), allDefs)
 
 # generating the documentation
-src_dir <- "/home/larman/research/src"
+src_dir <- "/home/larman/src"
 subs <- c("atk-1.30.0/docs", "pango/docs",
           "glib/docs/reference/gio",
           file.path("gtk+/docs/reference",
                     c("gdk", "gtk", "gdk-pixbuf")), 
           "cairo-1.8.10/doc/public")
 doc_dirs <- file.path(src_dir, subs, "xml")
-doc_files <- sapply(doc_dirs, dir, pattern = "xml", full.names = T)
+doc_files <- sapply(doc_dirs, dir, pattern = "xml", full.names = TRUE)
 
 basenames <- lapply(doc_files, basename)
 startWithFile <- function(f) {
@@ -45,7 +45,7 @@ startWithFile <- function(f) {
   genDocs(docs, allDefs, file.path(path, "docgen"), libraryDescriptions,
           verbose = TRUE)
 }
-startWithFile("gtkclipboard.xml")
+##startWithFile("gtkclipboard.xml")
 
 genDocs(doc_files, allDefs, file.path(path, "docgen"), libraryDescriptions,
         verbose = TRUE)
