@@ -1,6 +1,3 @@
-%% JV commented out setData calls -- why aren't they working? Seem to
-%% match API?
-
 %%  widgets using MVC framework
 <<echo=FALSE>>=
 require(qtbase)
