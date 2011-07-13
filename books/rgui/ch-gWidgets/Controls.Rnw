@@ -22,7 +22,7 @@ df <- rbind(
             c("\\constructor{gcheckbox}", "A checkbox"),
             c("\\constructor{gcheckboxgroup}", "A group of checkboxes"),
             c("\\constructor{gradio}", "A radio button group"),
-            c("\\constructor{gcombobox}", "A drop-down list of values, possible editable"),
+            c("\\constructor{gcombobox}", "A drop-down list of values, possibly editable"),
             c("\\constructor{gtable}", "A table (vector or data frame) of values for selection"),
             c("\\constructor{gslider}", "A slider to select from a sequence value"),
             c("\\constructor{gspinbutton}", "A spinbutton to select from a sequence of values"),
@@ -34,12 +34,12 @@ df <- rbind(
             c("\\constructor{gimage}", "A display for icons and images"),
             c("\\constructor{ggraphics}", "A widget containing a graphics device"),
             c("\\constructor{gsvg}", "A widget to display SVG files"),            
-            c("\\constructor{gfilebrowser}", "A widget to select a file or directory"),
+            c("\\constructor{gfilebrowse}", "A widget to select a file or directory"),
             c("\\constructor{gcalendar}", "A widget to select a date"),
             c("\\constructor{gaction}", "A reusable definition of an action"),
-            c("\\constructor{gmenubar}", "Adds a menubar on a top-level window "),
-            c("\\constructor{gtoolbar}", "Adds a toolbar to a top-level window"),
-            c("\\constructor{gstatusbar}", "Adds a status bar to a top-level window"),
+            c("\\constructor{gmenubar}", "Add a menubar on a top-level window "),
+            c("\\constructor{gtoolbar}", "Add a toolbar to a top-level window"),
+            c("\\constructor{gstatusbar}", "Add a status bar to a top-level window"),
             c("\\constructor{gtooltip}", "Add a tooltip to widget"),
             c("\\constructor{gseparator}", "A widget to display a horizontal or vertical line")
             )
@@ -94,7 +94,7 @@ and often icons. The \constructor{gbutton} constructor has an argument
 \argument{text}{gbutton} to specify the text.  For text that matches
 the stock icons of \pkg{gWidgets}
 (Section~\ref{sec:gWidgets-displ-icons-imag}) an icon will
-appear. (The \code{ok} button below, but not the custom \code{par...} one.)
+appear. (The \code{ok} button below, but not the \code{parButton} one.)
 
 In common with the other controls, the argument
 \argument{handler}{gbutton} is used to specify a callback and the
@@ -204,10 +204,9 @@ available to set the text programmatically.
 
 The \method{font\ASSIGN}{glabel} method
 can also be used to set the text markup
-(Table~\ref{tab:gWidgets-font-properties}).  
-For  some of the underlying toolkits, setting the argument
+(Table~\ref{tab:gWidgets-font-properties}).~\footnote{For some of the underlying toolkits, setting the argument
 \argument{markup}{glabel} to \code{TRUE} allows a native markup language
-to be used (\GTK\/ had PANGO, \Qt\/ has rich text).
+to be used (\GTK\/ had PANGO, \Qt\/ has rich text).}
 \\
 
 To make a form's labels have some emphasis we could do:
@@ -238,20 +237,21 @@ intuitive to most users, as labels are not generally expected to change.
 
 Not all toolkits have the native ability, but for those that do (\Qt) the
 \constructor{ghtml} constructor allows HTML-formatted text to be
-displayed, in a manner similar to \constructor{glabel}. There is no
-API clicking of links, etc.
+displayed, in a manner similar to \constructor{glabel}. This widget is
+intended simply for displaying HTML-formatted pages. There are no
+methods to handle the clicking of links, etc.
 
-\subsection{Statusbars}
+\subsection{Status bars}
 \label{sec:gWidgets-statusbars}
 
-Statusbars are simply labels placed at the bottom of a top-level window to leave
-informative, but non-disruptive, messages for the user.  The
-\constructor{gstatusbar} constructor provides this widget.  The
-\args{container} argument should be a top-level window instance. 
-The only property is the label's text. This may be specified at
-construction with the argument
-\argument{text}{gstatusbar}. Subsequent changes are made through
-the \method{svalue\ASSIGN}{gstatusbar} method. 
+In \pkg{gWidgets}, status bars are simply labels placed at the bottom of a
+top-level window to leave informative, but non-disruptive, messages
+for the user.  The \constructor{gstatusbar} constructor provides this
+widget.  The \args{container} argument should be a top-level window
+instance.  The only property is the label's text. This may be
+specified at construction with the argument
+\argument{text}{gstatusbar}. Subsequent changes are made through the
+\method{svalue\ASSIGN}{gstatusbar} method.
 
 
 
@@ -313,7 +313,7 @@ through the following example.
   \SweaveInput{ex-gWidgets-add-icons}
 \end{example}
 
-\paragraph{gsvg}
+\paragraph{SVG graphics}
 Finally, we mention the \constructor{gsvg} constructor is similar to
 \constructor{gimage}, but allows one to display SVG files, as produced
 by the \function{svg} driver, say. It currently is not available for
@@ -325,8 +325,8 @@ by the \function{svg} driver, say. It currently is not available for
 The \pkg{gWidgets} package, following the underlying toolkits, has two
 main widgets for editing text: \constructor{gedit} for a single line
 of editable text, and \constructor{gtext} for multi-line, editable
-text. Each provides much less flexibility than is possible with the
-toolkit widgets.
+text. Each is simple to use, but provides much less flexibility than
+is possible with the toolkit widgets.
 
 
 
@@ -368,6 +368,10 @@ type. In this case, the \argument{coerce.with}{gedit} argument can be
 used to specify a function of a single argument to call before the
 value is returned by \meth{svalue}.
 
+The \method{visible}{gedit} method is overridden to mask out the
+letters in the field, not hide the component. This allows one to use
+the widget to collect passwords.
+
 \paragraph{Auto completion}
 The underlying toolkits offer some form of auto completion where the
 entered text is matched against a list of values. These values
@@ -389,12 +393,15 @@ visible(w) <- TRUE
 
 \paragraph{Handlers}
 The default handler for the \constructor{gedit} widget is called when
-the text area is ``activated'' through the
-\kbd{return} key being pressed. Use \meth{addHandlerBlur} to add a
-callback for the event of losing focus. The
-\method{addHandlerKeystroke}{gedit} method can assign a handler to be
-called when a key is released. For the toolkits that support it, the
-specific key is given in the \code{key} component of the list \code{h} (the first argument).
+the text area is ``activated'' through the \kbd{return} key being
+pressed. Use \meth{addHandlerBlur} to add a callback for the event of
+losing focus. The \method{addHandlerKeystroke}{gedit} method can
+assign a handler to be called when a key is released. For the toolkits
+that support it, the specific key is given in the \code{key} component
+of the list \code{h} (the first argument).~\footnote{There are
+  differences in what keys are returned. Currently, only the letter
+  keys are consistently given. In particular, no modifier keys or
+  other keys are returned.}
 
 \begin{example}{Validation}{ex-gWidgets-gedit-validation}
   \SweaveInput{ex-gWidgets-gedit-validation}
@@ -418,7 +425,7 @@ returned as a single string with \qcode{\backslashn} separating the lines.
 
 The contents of the text buffer can be replaced with the
 \method{svalue\ASSIGN}{gtext} method. To clear the buffer, the
-\method{dispose}{gtext} method is used. The \method{insert}{gtext}
+\method{dispose}{gtext} method may be used. The \method{insert}{gtext}
 method adds text to a buffer. The signature is \code{insert(obj, text,
   where, font.attr)}
 where \code{text} is a character vector. New text is added to the end
@@ -426,19 +433,6 @@ of the buffer, by default, but the \argument{where}{insert} argument
 can specify \qcode{beginning} or \qcode{at.cursor}.
 
 
-
-
-
-\paragraph{Fonts}
-Fonts can be specified for the entire buffer or the selection using
-the specifications in Table~\ref{tab:gWidgets-font-properties}. To
-specify fonts for the entire buffer use the
-\argument{font.attr}{gtable} argument of the constructor. The
-\method{font\ASSIGN}{gtext} method serves the same purpose, provided
-there is no selection when called. If there is a selection, the font
-change will only be applied to the selection. Finally, the
-\argument{font.attr}{insert} argument for the \meth{insert} method
-specifies the font attributes for the inserted text.
 
 
 
@@ -458,6 +452,19 @@ cat(booktabs(df,
              ))
 @ 
 
+\paragraph{Fonts}
+Fonts can be specified for the entire buffer or the selection using
+the specifications in Table~\ref{tab:gWidgets-font-properties}. To
+specify fonts for the entire buffer use the
+\argument{font.attr}{gtable} argument of the constructor. The
+\method{font\ASSIGN}{gtext} method serves the same purpose, provided
+there is no selection when called. If there is a selection, the font
+change will only be applied to the selection. Finally, the
+\argument{font.attr}{insert} argument for the \meth{insert} method
+specifies the font attributes for the inserted text.
+\\
+
+
 As with \code{gedit}, the \method{addHandlerKeystroke}{gtext} method
 sets a handler to be called for each keystroke. This is the default
 handler.
@@ -474,17 +481,20 @@ A common task for a GUI control is to select a value or values from a
 set of numbers or a table of
 numbers. Figure~\ref{fig:gWidgets-EBImage-gui} shows a simple GUI for
 the \pkg{EBImage} package allowing a user to adjust a few of the image
-properties using various selection widget.
+properties using various selection widget. Although it is unlikely one
+would use \R{} for such a task, as opposed to Gimp say, we use this
+example, as the mapping between controls and actions should be
+familiar.
 
-In \pkg{gWidgets} the abstract view is that the user is selecting from
-an set of items stored as a vector (or data frame). The familiar \R\/
-methods are used to manipulate this underlying data store. The
-controls in \pkg{gWidgets} that display such data have the methods
-\code{[}, \code{[\ASSIGN}, \code{length}, \code{dim}, \code{names} and
-\code{names\ASSIGN}, as appropriate. The \code{svalue} method then
-refers to the user-selected value. This selection may be a value or an
-index, and the \meth{svalue} method has the argument \code{index} to
-specify which.
+In \pkg{gWidgets} the abstract view for selecction widgets is that the
+user is selecting from an set of items stored as a vector (or data
+frame). The familiar \R\/ methods are used to manipulate this
+underlying data store. The controls in \pkg{gWidgets} that display
+such data have the methods \code{[}, \code{[\ASSIGN}, \code{length},
+\code{dim}, \code{names} and \code{names\ASSIGN}, as appropriate. The
+\code{svalue} method then refers to the user-selected value. This
+selection may be a value or an index, and the \meth{svalue} method has
+the argument \code{index} to specify which.
 
 \begin{figure}
   \centering
@@ -506,7 +516,7 @@ that allows the user to set a state as \code{TRUE} or
 \argument{checked}{gcheckbox} to indicate if the widget should
 initially be checked. The default is \code{TRUE} (there is no third,
 uncommitted state as possible in some toolkits). By default the label
-will be drawn aside a box with a check, if the argument
+will be drawn aside a box which the user can check. If the argument
 \argument{use.togglebutton}{gcheckbox} is \code{TRUE}, a toggle button
 -- which appears depressed when \code{TRUE} -- is used instead.
 
@@ -567,8 +577,12 @@ the label text or by the index if the argument \args{index} is
 \code{TRUE}. The item may be set with the
 \method{svalue\ASSIGN}{gradio} method. Again, the item may be
 specified by the label or by an index, the latter when the argument
-\code{index=TRUE} is specified. The data store is the set of labels
-and may be respecified with the \method{[\ASSIGN}{gradio} method.
+\code{index=TRUE} is specified. 
+\\
+
+The data store is the set of labels and may be respecified with the
+\method{[\ASSIGN}{gradio} method.
+\\
 
 The handler, if given to the constructor or set with
 \meth{addHandlerChanged}, is called on a toggle event.
@@ -722,7 +736,35 @@ changed. This is also aliased to
 \code{TRUE}, then the \method{addHandlerKeystroke}{gcombobox} method
 sets a handler to respond to keystroke events.
 
+\begin{example}{Updating comboboxes}
+  A common pattern in many GUIs is to have one combobox update another
+  once a selection is made. The following shows how this can be
+  done. First we set up the GUI:
+<<>>=
+w <- gwindow(visible=FALSE)
+tbl <- glayout(cont=w)
+#
+tbl[1,1] <- "Manufacturer"
+tbl[1,2] <- (man <- gcombobox(sort(unique(Cars93$Manufacturer)), cont=tbl))
+tbl[2,1] <- "Model"
+tbl[2,2] <- (mod <- gcombobox(c(""), cont=tbl))
+enabled(mod) <- FALSE
+#
+visible(w) <- TRUE
+@ 
 
+The handler for \code{man} should find the possible models for the
+selected manufacture, then populate \code{mod} with these values for selection.
+<<>>=
+addHandlerChanged(man, handler=function(h,...) {
+  poss <- subset(Cars93, subset=Manufacturer == svalue(man), select="Model", drop=TRUE)
+  mod[] <- as.character(poss)
+  if(length(poss) == 1)
+    svalue(mod, index=TRUE) <- 1
+  enabled(mod) <- TRUE
+})
+@   
+\end{example}
 
 \subsection{A slider control}
 \label{sec:gWidgets-slider-control}
@@ -752,8 +794,9 @@ The \method{svalue}{gslider} method returns the currently chosen
 value. The \method{[\ASSIGN}{gslider} method can be used to update the
 sequence of values to choose from. 
 
-The default handler is called when the slider is changed. Example~\ref{ex-gWidgets-sliders-spinbuttons}
-shows how this can be used to update a graphic.
+%% removed this example
+% The default handler is called when the slider is changed. Example~\ref{ex-gWidgets-sliders-spinbuttons}
+% shows how this can be used to update a graphic.
 
 
 \subsection{A spin button control}
@@ -911,8 +954,8 @@ the global environment can be generated with
 <<>>=
 availDfs <- function(envir=.GlobalEnv) {
   x <- ls(envir=envir)
-  x[sapply(x, function(i) is.data.frame(get(i, envir=envir)))]
-  data.frame(dfs=x, stringsAsFactors=FALSE)
+  ind <- sapply(mget(x, envir), is.data.frame)
+  data.frame(dfs=x[ind], stringsAsFactors=FALSE)
 }
 #
 w <- gwindow("gtable example")
@@ -987,6 +1030,10 @@ addHandlerDoubleclick(dfs, handler=function(h,...) {
 })
 @ 
 
+%% Factor example
+\begin{example}{Collapsing factors}{eg:gWidgets-collapse-factor}
+  \SweaveInput{ex-gWidgets-collapse-factor.Rnw}
+\end{example}
 
 
 \paragraph{Filtering}

@@ -1,0 +1,132 @@
+ 
+  \begin{figure}
+    \centering
+    \includegraphics[]{fig-gWidgets-collapse-factor.png}
+    \caption{A GUI to facilitate the recoding or a factor's levels. For this, one selects the desired levels to rename or collapse, then enters a new label on the right. Activating the combobox will update the "new" column on the left.}
+    \label{fig:gWidgets-collapse-factor}
+  \end{figure}
+  
+  
+  
+  A somewhat tedious task in \R{} is the recoding or collapsing of
+  factor levels. This example provides a GUI to facilitate this. In
+  Section~\ref{sec:modal-window} we provided a function to wrap this
+  GUI within a modal dialog. Here we just setup the GUI. 
+  
+  We will use a reference class, as it allows us to couple together
+  the main method and the widgets without needing to worry about
+  scoping issues. For formatting purposes, we define the methods
+  individually, then piece together.
+  
+  Our initialization call simple stores the values and then passes on
+  the call to make the GUI.
+<<initialize>>=
+initialize <- function(f, cont=gwindow()) {
+  old <<- as.character(f)
+  make_gui(cont)
+  callSuper()
+}
+@   
+
+This \code{make\_gui} function does the hard
+work. (Figure~\ref{fig:gWidgets-collapse-factor} shows a screenshot.)
+We have just two widget, placed in a paned group. The left one is a
+table that displays two columns. The first to list the old values, the
+second to list the collapsed or recoded values. The right one is a
+combobox that allows one to enter a new factor level or select a
+current one. The handler on the combobox updates the second column of
+the table to reflect the new values. We block any handler calls to
+avoid a loop when we set the index back to 0.
+<<>>=
+make_gui <- function(cont) {
+  g <- gpanedgroup(cont=cont)
+  levs <- sort(unique(as.character(old)))
+  d <- data.frame(original=levs,
+                  new=levs, stringsAsFactors=FALSE)
+  #
+  widget <<- tbl <- gtable(d, cont=g,  multiple=TRUE)
+  size(tbl) <- c(300, 200)
+  #
+  g1 <- ggroup(cont=g, horizontal=FALSE)
+  instructions <- gettext("Select levels, then\n 
+enter a new combined level\n
+by typing or selecting a level and then enter")
+  #
+  glabel(instructions, cont=g1)
+  cb <- gcombobox(levs, selected=0, editable=TRUE, cont=g1)
+  enabled(cb) <- FALSE
+  #
+  addHandlerClicked(widget, function(h,...) {
+    ind <- svalue(widget, index=TRUE)
+    enabled(cb) <- (length(ind) > 0)
+  })
+  
+  addHandlerChanged(cb, handler=function(h,...) {
+    ind <- svalue(tbl, index=TRUE)
+    if(length(ind) == 0) 
+      return()
+    #
+    tbl[ind,2] <- svalue(cb)
+    svalue(tbl, index=TRUE) <- 0
+    blockHandler(cb)
+    cb[] <- sort(unique(tbl[,2]))
+    svalue(cb, index=TRUE) <- 0
+    unblockHandler(cb)
+  })
+}
+@   
+
+This method returns the newly recoded factor. The tediousness of the task
+is in the specification of the new levels, not necessarily this. 
+<<>>=
+get_value <- function() {
+  "Return factor with new levels"
+  old_levels <- widget[,1]
+  new_levels <- widget[,2]
+  new <- old
+  for(i in seq_along(old_levels)) # one pass
+    new[new == old_levels[i]] <- new_levels[i]
+  factor(new)
+}
+@ 
+%
+
+Finally, we stitch the above together into a reference class.
+<<>>=
+CollapseFactor <- setRefClass("CollapseFactor",
+                              fields=list(
+                               old="ANY",
+                               widget="ANY"
+                               ),
+                             methods=list(
+                               initialize=initialize,
+                               make_gui = make_gui,
+                               get_value=get_value
+                             ))
+@ 
+
+
+<<echo=FALSE, eval=FALSE>>=
+##' Collapse a factor
+##'
+##' Collapse a factor through a GUI
+##' @param f factor to collapse
+##' @param parent optional, where to place editing dialog
+##' @return releved factor
+collapseFactor <- function(f, parent=NULL) {
+  out <- character()
+  w <- gbasicdialog("Collapse factor levels", parent=parent,
+                    handler=function(h,...) {
+                      new_f <- relf$get_value()
+                      out <<- factor(new_f)
+                    })
+  g <- ggroup(cont=w)
+  relf <- CollapseFactor$new(f, cont=g)
+  visible(w, set=TRUE)
+  out
+}
+  
+## test it out
+mtcars$am <- collapseFactor(mtcars$am)
+@   
+  

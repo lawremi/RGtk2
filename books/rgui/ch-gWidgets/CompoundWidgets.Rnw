@@ -104,6 +104,32 @@ The underlying toolkits may pass in more information about the event,
 such as whether a modifier key was being presed, but this isn't
 toolkit independent.
 
+\paragraph{Using tkrplot} The \pkg{tkrplot} provides a means to embed
+graphics in \code{Tk} guis, but is not a graphics device. As such,
+there is no \code{ggraphics} implementation in
+\pkg{gWidgetstcltk}. You can embed \code{tkrplot} though. The
+following is a simplemodification the example from the help page for \code{tkrplot}:
+
+<<tkrplot>>=
+options(guiToolkit="tcltk")
+w <- gwindow("How to embed tkrplot", visible=FALSE)
+g <- ggroup(cont=w, horizontal=FALSE)
+bb<-1
+img <-tkrplot(getToolkitWidget(g), function() plot(1:20,(1:20)^bb))
+tkpack(img)                             # add widget
+f<-function(...) {
+  b <- svalue(sl)
+  print(b)
+  if (b != bb) {
+    bb <<- b
+    tkrreplot(img)
+  }
+}
+sl <- gslider(from=0.05, to=2, by=0.05, cont=g, handler=f, expand=TRUE)
+visible(w) <- TRUE
+
+@ 
+
 
 %% XXXX Move this example somewhere COMPONENT PROGRAMMING
 \begin{example}{A GUI for filtering and visualizing a data set}{ex:gWidgets-spotfire}

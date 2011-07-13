@@ -62,14 +62,16 @@ sapply(bList, addHandlerChanged, handler=addButton)
 When the equals sign is clicked, the expression is evaluated and if
 there are no errors, the output is displayed in the label.
 <<>>=
+require(evaluate)
 addHandlerClicked(eqButton, handler = function(h,...) {
   curExpr <- svalue(eqnArea)
-  out <- try(capture.output(eval(parse(text=curExpr))), 
-             silent=TRUE)
+  out <- try(evaluate:::evaluate(curExpr), silent=TRUE)
   if(inherits(out, "try-error")) {
-    galert("There is an error")
+    galert("Parse error", parent=eqButton)
+  } else if(is(out[[2]], "error")) {
+    galert(sprintf("Error: %s", out[[2]]$message), parent=eqButton)
   } else {
-    svalue(outputArea) <- out
+    svalue(outputArea) <- out[[2]]
     svalue(eqnArea) <- ""            # restart
   }
 })

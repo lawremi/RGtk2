@@ -24,8 +24,7 @@ We use the \pkg{evaluate} package to see if the expression is valid.
 require(evaluate)
 isValid <- function(e) {
   out <- try(evaluate:::evaluate(e), silent=TRUE)
-  !(inherits(out, "try-error") || 
-    is(out[[2]], "error"))
+  !(inherits(out, "try-error") ||  is(out[[2]], "error"))
 }
 @ 
 %
@@ -41,12 +40,11 @@ pressing the return key while the widget has focus.
 
 <<validate, results=hide>>=
 addHandlerChanged(e, handler = function(h,...) {
-  curVal <- svalue(h$obj)
+  curVal <- svalue(e)
   if(isValid(curVal)) {
-    font(h$obj) <- c(color="black")
+    font(e) <- c(color="black")
   } else {
-    font(h$obj) <- c(color="red")
-    focus(h$obj) <- TRUE
+    font(e) <- c(color="red")
   }
 })
 @ 

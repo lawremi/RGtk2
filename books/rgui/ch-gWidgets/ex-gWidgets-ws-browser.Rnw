@@ -25,17 +25,14 @@ setRefClass("Observable",
               },
               remove_observer=function(o) {
                 "Remove observer"
-                ind <- sapply(..observers,
-                              function(i) identical(i, o))
+                ind <- sapply(..observers, identical, y=o)
                 if(any(ind)) 
                   ..observers[[which(ind)]] <<- NULL
                 
               },
               notify_observers=function(...) {
                 "Notify observers there has been a change"
-                sapply(..observers, function(o) {
-                  o$update(...)
-                })
+                sapply(..observers, function(o) o$update(...))
               }))
 
 @ 
@@ -109,9 +106,9 @@ update_fun <- function() {
   ## filter out envRefClass objects --
   isRef <- function(i) 
     is(get(i, envir=.GlobalEnv), "envRefClass")
-  x <- x[!sapply(x, function(i) isRef(i))]
-  ds <- sapply(x, function(i) 
-               digest(get(i, envir=.GlobalEnv)))
+  ind <- sapply(mget(x, .GlobalEnv), is, class2="envRefClass")
+  x <- x[!ind]
+  ds <- sapply(mget(x,envir=.GlobalEnv), digest)
   
   if((length(ds) != length(ws_objects_digest)) ||
      length(ws_objects_digest) == 0 ||
@@ -134,8 +131,7 @@ get_objects <- function(klass) {
 Klass may have ! in front, as in '!function'"
   if(missing(klass) || length(klass) == 0)
     return(ws_objects)
-  ind <- sapply(ws_objects, function(i) {
-    x <- get(i, envir=.GlobalEnv)
+  ind <- sapply(mget(ws_objects, .GlobalEnv), function(x) {
     any(sapply(klass, function(j)  {
       if(grepl("^!", j))
         !is(x, substr(j, 2, nchar(j)))
@@ -290,7 +286,7 @@ TableView <-
                               cont=parent, ...)
           },
           update=function(...) {
-            widget[] <- makeDataFrame(model$get_objects(klass))
+            widget[] <<- makeDataFrame(model$get_objects(klass))
           }))
 @ 
 %
@@ -305,14 +301,14 @@ DfView <-
   setRefClass("DfView",
               contains="TableView",
               methods=list(
-                initFields= function(...) klass <<- "data.frame",
+                initFields = function(...) klass <<- "data.frame", # override
                 init_widget = function(parent, ...) {
                   d <- data.frame("Data frames"=character(0),
                                   stringsAsFactors=FALSE)
                   widget <<- gcombobox(d, cont=parent, ...)
                 },
                 update = function(...) {
-                  widget[] <- model$get_objects(klass)
+                  widget[] <<- model$get_objects(klass)
                 }))
 
 @ 

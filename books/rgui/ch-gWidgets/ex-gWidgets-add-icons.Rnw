@@ -10,7 +10,7 @@ We begin by defining 16 arbitrary colors.
 <<>>=
 someColors <- c("black", "red", "blue", "brown",
                 "green", "yellow", "purple",
-                paste("grey", seq(10,90,by=10), sep=""))
+                paste("grey", seq.int(10,90,by=10), sep=""))
 @ 
 
 This is the function that is used to create an icon file. We use some
@@ -19,8 +19,8 @@ low-level \pkg{grid} functions to draw the image to a png file.
 require(grid)
 iconDir <- tempdir(); iconSize <- 16;
 makeColorIcon <- function(i) {
-  filename <- sprintf("%s%scolor-%s.png", iconDir, 
-                      .Platform$file.sep, i)
+  filename <- file.path(iconDir, 
+                        sprintf("color-%s.png", i))
   png(file=filename, width=iconSize, height=iconSize)
   grid.newpage()
   grid.draw(rectGrob(gp=gpar(fill=i)))
