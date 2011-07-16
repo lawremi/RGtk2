@@ -71,7 +71,7 @@ columns. By default, the labels are centered. Here, we specify left
 alignment for the column labels:
 <<qt-mvc-table-header-align>>=
 header <- view$horizontalHeader()
-header$defaultAlignment <- Qt$AlignLeft
+header$defaultAlignment <- Qt$Qt$AlignLeft
 @ 
 
 \class{QTableView} provides a number of aesthetic features. By
@@ -208,7 +208,7 @@ to width needed to fit contents). The \method{setResizeMode} method
 changes the resize mode of a specific column.  Below, we make all of
 our columns expand:
 <<qt-mvc-table-stretch>>=
-header$resizeMode(Qt$QHeaderView$Stretch)
+header$resizeMode <- Qt$QHeaderView$Stretch
 @ 
 %
 The drawback to any of these modes is that the resizing is no longer
@@ -652,7 +652,7 @@ For example, we could shade the background of the first column, the
 makes and models, in gray:
 <<qt-mvc-role-background>>=
 mtcars.id <- cbind(makeAndModel = rownames(mtcars), mtcars)
-model <- qdataFrameModel(mtcars.id)
+model <- qdataFrameModel(mtcars.id, useRoles = TRUE)
 qdataFrame(model)$.makeAndModel.background <- list(qcolor("gray"))
 @ 
 %
@@ -664,7 +664,7 @@ coercion of the list to a data frame.
 
 The set of supported data types for each role depends on the
 delegate. For delegates derived from \class{QStyledItemDelegate}, see
-\qcode{qhelp(QStyledItemDelegate)}.  Due to implicit conversion in the
+the documentation for that class.  Due to implicit conversion in the
 internals of \Qt{}, the number of possible inputs is much greater than
 those explicitly documented. For example, the \qcode{background} role
 demonstrated above formally accepts a \class{QBrush} object, while
@@ -835,9 +835,9 @@ To enable editing on a column in a \class{DataFrameModel}, it is
 necessary to specify the \code{edit} role for the column. For example,
 we might add a logical column named \code{Analyze} to the
 \code{mtcars} data frame for indicating whether a record should be
-included in an analysis. We prefix \code{edit} to the column name, so
-that the user can change its value between \code{TRUE} and
-\code{FALSE}:
+included in an analysis. We append \code{edit} to the column name, so
+that the column performs the \code{edit} role. The user can then
+toggle the \code{Analyze} values between \code{TRUE} and \code{FALSE}:
 <<qt-mvc-edit-analyze>>=
 df <- mtcars 
 df$Analyze.edit <- TRUE
@@ -964,7 +964,7 @@ item <- Qt$QListWidgetItem("Puerto Rico", listWidget)
 %
 The first argument is the text and the
 optional second argument a parent \class{QListWidget}. If no parent is
-specified, the the item may be added through the methods
+specified, the item may be added through the methods
 \method{addItem}{QListWidget}, or \method{insertItem}{QListWidget} for
 inserting to a specific instance.
 
@@ -1209,7 +1209,9 @@ allows us to modify arbitrary parts of the document, without affecting
 the user cursor.  For example, we could insert an image at the beginning:
 <<qt-mvc-textedit-image, results=hide>>=
 cursor$setPosition(0)
-cursor$insertImage(system.file("images/ok.gif", package="gWidgets"))
+style <- Qt$QApplication$style()
+icon <- style$standardIcon(Qt$QStyle$SP_DialogOkButton)
+cursor$insertImage(icon$pixmap(icon$actualSize())$toImage())
 @ 
 %
 To listen to changes in the cursor position, connect to the

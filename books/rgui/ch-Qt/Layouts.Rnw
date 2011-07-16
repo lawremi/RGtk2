@@ -114,7 +114,7 @@ steps:~\footnote{\url{http://doc.qt.nokia.com/4.6/layout.html}}
 \end{enumerate}
 
 
-Every widget returns a size hint to the layout from the the
+Every widget returns a size hint to the layout from the
 \method{sizeHint}{QWidget} method/property. The interpretation of the
 size hint depends on the \property{sizePolicy}{QWidget} property. The
 size policy is an object of class \class{QSizePolicy}. It contains a
@@ -195,9 +195,11 @@ either the horizontal or vertical orientation. The \class{QHBoxLayout}
 class implements a horizontal layout whereas \class{QVBoxLayout}
 provides a vertical one. Both of these classes extend the
 \class{QBoxLayout} class, where most of the functionality is
-documented.  We create a horizontal layout:
+documented.  We create a horizontal layout and place it in a window:
 <<qt-layout-box>>=
 hb <- Qt$QHBoxLayout()
+w <- Qt$QWidget()
+w$setLayout(hb)
 @ 
  
 Child widgets are added to a box container through the
@@ -223,8 +225,11 @@ policy and hint can alter the effect of a stretch factor. After the
 child has been added, the stretch factor may be modified with
 \meth{setStretchFactor}:
 <<qt-layout-box-stretch>>=
-hb$setStretchFactor(wid, 2.0) 
+hb$setStretchFactor(buttons[[1]], 2.0) 
 @ 
+%
+If the layout later grows horizontally, the first button will grow
+(stretch) at twice the rate of the other buttons.
 
 <<stretch_expand, echo=FALSE, results=hide>>=
 ## Not shown
@@ -298,16 +303,20 @@ described. To add a fixed amount of space between two specific
 children, call the \meth{addSpacing} method while populating the
 container. The following line is from Example~\ref{eg:qt-layouts}:
 <<qt-layout-box-spacing, results=hide>>=
-buttonLayout$addSpacing(12L)
+hb$addSpacing(12L)
+hb$addWidget(Qt$QPushButton("d"))
 @ 
+%
+We have placed a gap of $12$ pixels between button \qcode{c} and the
+new button \qcode{d}.
 
 An expanding, spring-like spacer between two widgets is known as a
 \textit{stretch}. We add a stretch with a factor of $2.0$ and
 subsequently add a child button that will be pressed against the right
-side of the box:
+side of the box as the layout grows horizontally:
 <<qt-layout-box-stretch, results=hide>>=
-g$addStretch(2)
-g$addWidget(Qt$QPushButton("Help..."))
+hb$addStretch(2)
+hb$addWidget(Qt$QPushButton("Help..."))
 @ 
 %
 This is just a convenience for adding an invisible widget with some
@@ -485,7 +494,7 @@ To retrieve a widget from the layout, call the
 and the role of the desired widget. Here, we obtain the edit box for
 the quantile parameter:
 <<qt-layout-form-at>>=
-quantileEdit <- flyt$itemAt(0, Qt$QFormLayout$FieldRole)
+quantileEdit <- flyt$itemAt(0, Qt$QFormLayout$FieldRole)$widget()
 @ 
 
 \section{Frames}

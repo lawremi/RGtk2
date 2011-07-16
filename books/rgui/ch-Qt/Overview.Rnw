@@ -217,7 +217,8 @@ b <- Qt$QPushButton("Button text")
 %
 Buttons may also have icons, for example
 <<constructor-icon-parent>>=
-icon <- Qt$QIcon(system.file("images/ok.gif", package="gWidgets"))
+style <- Qt$QApplication$style()
+icon <- style$standardIcon(Qt$QStyle$SP_DialogOkButton)
 b <- Qt$QPushButton(icon, "Ok")
 @ 
 %
@@ -320,8 +321,11 @@ signature by considering the number of formal arguments in the
 callback. Rarely, two signatures will have the same number of
 arguments, in which case one will be chosen arbitrarily. To connect to
 a specific signature, the full signature, rather than only the name,
-should be passed to qconnect. For example, the following two calls are
-equivalent:
+should be passed to qconnect. For example, there are two signatures
+for the \code{clicked} signal: \code{clicked()} and
+\code{clicked(bool)}. Even if we only specify \code{clicked} as the signal
+name, the \code{clicked(bool)} signature is chosen, since our handler
+has a single argument. Thus, these two calls are equivalent:
 <<qt-signals-qconnect-sig, results=hide>>=
 qconnect(b, "clicked", function(checked) print(checked))
 qconnect(b, "clicked(bool)", function(checked) print(checked))
@@ -342,9 +346,11 @@ proxy <- qconnect(b, "clicked", function() print("ouch"))
 b$disconnect(proxy)
 @ 
 
-One can block all signals from being emitted with
-the \method{blockSignals}{QObject} method, which takes a logical value
-to toggle whether the signals should be blocked.
+The above will permanately disconnect the signal handler. To
+temporarily block all of the signals emitted by a particular
+\class{QObject}, call the \method{blockSignals}{QObject} method. The
+method takes a logical value indicating whether the signals should be
+blocked.
 
 Unlike \GTK, \Qt{} widgets generally do not emit hardware events, such
 as a mouse press, via signals. Instead, a method in the widget is
@@ -564,8 +570,9 @@ instance$property
 %
 %% JV did this change???
 However, the property is not actually exposed by the \Qt\/ meta object
-system. That requires specifying the \argument{type}{qsetProperty}
-argument, which we will cover later. 
+system to external systems, which would only understand \Qt\/
+types. To export a property, one must provide the
+\argument{type}{qsetProperty} argument, which we will cover later.
 
 By default, the property value is actually stored as a (private) field
 in the object, called \qcode{.property}. One can override the default
@@ -629,7 +636,7 @@ the features of a \Qt\/ property.
 The widgets we discuss in the next section inherit many properties and
 methods from the base \class{QObject} and \class{QWidget} classes. The
 \class{QObject} class is the base class and forms the basis for the
-object heirarchy. It implements the event processing and property
+object hierarchy. It implements the event processing and property
 systems. The \class{QWidget} class is the base class for all widgets
 and implements their shared functionality.
 
@@ -664,7 +671,7 @@ There is an S3 method for \meth{print} on \class{QWidget} that invokes
 children are also made visible. The method \method{raise}{QWidget}
 will raise the window to the top of the stack of windows.
 
-Similary, the property \property{enabled}{QWidget} controls whether a
+Similarly, the property \property{enabled}{QWidget} controls whether a
 widget is sensitive to user input, including mouse events.
 <<qt-overview-enabled>>=
 b <- Qt$QPushButton("button")
@@ -742,6 +749,10 @@ adjust properties. For example, there are the methods
 \method{setFamily}{QFont}, \method{setUnderline}{QFont},
 \method{setStrikeout}{QFont} and \method{setBold}{QFont} among others.
 
+To discover which fonts are available from the windowing system,
+construct a \class{QFontDatabase} and call its methods like
+\method{families}{QFontDatabase}, \method{pointSizes}{QFontDatabase},
+\method{styles}{QFontDatabase}, etc.
 
 %% Palettes (colors); roles
 
@@ -757,7 +768,7 @@ the application. Every widget has a palette, stored in its
 object. A \class{QPalette} maps the state of a widget to a group of
 colors that is used for painting the widget. The possible states are
 \code{active}, \code{inactive} and \code{disabled}. Each color within
-a group has specific role, as enumerated in
+a group has a specific role, as enumerated in
 \qtenumeration{QPalette::ColorRole}. Examples include the color for
 background (\code{Window}), the foreground (\code{WindowText}) and the
 selected state (\code{Highlight}). \Qt{} chooses the correct default
@@ -768,7 +779,7 @@ palette, as illustrated in Example~\ref{eg:qt-dnd}.
 \paragraph{Style Sheets}
 \label{ssec:style-sheets}
 
-Cascading style sheets (CSS) are used by web deisgners to decouple the
+Cascading style sheets (CSS) are used by web designers to decouple the
 layout and look and feel of a web page from the content of the
 page. In \Qt{} it is also possible to customize the rendering of a widget using CSS
 syntax. The supported syntax is described in the overview on
@@ -797,7 +808,7 @@ stylesheet application-wide through the \class{QApplication}
 instance. The default for \code{what} is \code{"*"}, meaning that the
 stylesheet applies to any widget class. The following would cause all
 widgets in the application to have the same colors as the button:
-<<qt-overview-qsetStyleSheet-defaults, eval=FALSE>>=
+<<qt-overview-qsetStyleSheet-defaults>>=
 qsetStyleSheet(color = "red", background = "white")
 @ 
 
@@ -819,7 +830,7 @@ qsetStyleSheet(color = "red", background = "white")
 qsetClass("LineEditWithError", Qt$QLineEdit)
 @   
 
-  The main method sets the error state. We use stye sheets to place an
+  The main method sets the error state. We use style sheets to place an
   image to the left of the entry message and set the tooltip.
 <<>>=
 qsetMethod("setError", LineEditWithError, function(msg) {
@@ -843,11 +854,12 @@ qsetMethod("clearError", LineEditWithError, function() {
 @ 
 % 
 
-<<echo=FALSE, results=hide>>=
+<<results=hide>>=
 ##  To test this out, we have the following
 e <- LineEditWithError()
 e$text <- "The quick brown fox..."
 e$setError("Replace with better boilerplate text")
+e$clearError()
 @ 
 % 
 <<echo=FALSE, results=hide>>=
@@ -859,19 +871,22 @@ e$raise()
 
 \section{Importing a GUI from QtDesigner}
 
-\pkg{QtDesigner} is a tool for graphical, drag-and-drop design of
-GUI forms. Although this book focuses on constructing a GUI by
-programming in R, we recognize that a graphical approach may be 
-preferable in some circumstances.  \pkg{QtDesigner} outputs a GUI
-definition as an XML file in the \qcode{UI} format. The
-\class{QUiLoader} class loads a \qcode{UI} definition through its
-\method{load}{QUiLoader} method:
+\pkg{QtDesigner} is a tool for graphical, drag-and-drop design of GUI
+forms. Although this book focuses on constructing a GUI by programming
+in R, we recognize that a graphical approach may be preferable in some
+circumstances.  \pkg{QtDesigner} outputs a GUI definition as an XML
+file in the \qcode{UI} format. The \class{QUiLoader} class loads a
+\qcode{UI} definition\footnote{The \texttt{textfinder.ui} file was
+  taken from the Qt Text Finder example at
+  \url{http://doc.qt.nokia.com/4.7-snapshot/uitools-textfinder.html}.
+} through its \method{load}{QUiLoader} method:
 %% JV commented these out until I have designer.ui to they run...
 %% JV should we put designer.ui into the package somewhere?
-<<qt-overview-designer-load, eval=FALSE>>=
+<<qt-overview-designer-load>>=
 loader <- Qt$QUiLoader()
-widget <- loader$load(Qt$QFile("designer.ui"))
+widget <- loader$load(Qt$QFile("textfinder.ui"))
 @ 
+%
 
 The \code{widget} object could be shown directly; however, we first
 need to implement the behavior of the GUI by connecting to
@@ -884,37 +899,52 @@ To manually connect an R handler to a signal, we first need to obtain
 the widget with the signal.  Every widget in a \code{UI} file is
 named, so we can call the \function{qfindChild} utility function to
 find a specific widget. Assume we have a button named ``findButton''
-and corresponding text entry ``findEntry'' in our UI file, then we
+and corresponding text entry ``lineEdit'' in our UI file, then we
 retrieve them with
-<<qt-overview-designer-find, eval=FALSE>>=
+<<qt-overview-designer-find>>=
 findButton <- qfindChild(widget, "findButton")
-findEntry <- qfindChild(widget, "findEntry")
+lineEdit <- qfindChild(widget, "lineEdit")
 @ 
 %
 Then we connect to the \signal{clicked}{QPushButton} signal:
-<<qt-overview-designer-connect, eval=FALSE>>=
+<<qt-overview-designer-connect>>=
 qconnect(findButton, "clicked", function() {
-  findText(findEntry$text)
+  findText(lineEdit$text)
 })
 @ 
+%
+Note that the \function{findText} function above is not implemented.
 
 Alternatively, we could establish the signal connections
 automatically. This requires defining each signal handler to be a slot
 in the parent object, which will need to be of a custom class:
-<<qt-overview-designer-custom-parent, eavl=FALSE>>=
+<<qt-overview-designer-custom-parent>>=
 qsetClass("MyMainWindow", Qt$QWidget, function() {
+  loader <- Qt$QUiLoader()
+  widget <- loader$load(Qt$QFile("textfinder.ui"), this)
   Qt$QMetaObject$connectSlotsByName(this)
 })
 @ 
 %
-The constructor calls \method{connectSlotsByName}{QMetaObject} to
-automatically establish the connections. For a slot to be connected to
-the correct signal, it must be named according to the convention
+The constructor first loads the UI definition, with the main window as
+the parent for the loaded interface. It then calls
+\method{connectSlotsByName}{QMetaObject} to automatically establish
+the connections. This descends the widget hierarchy, attempting to
+match signals in the descendants to slots in the top-level widget. For
+a slot to be connected to the correct signal, it must be named
+according to the convention
 \qcode{on\_[objectName]\_[signalName]}. For example,
-<<qt-overview-designed-slot-handler, eval=FALSE>>=
+<<qt-overview-designed-slot-handler>>=
 qsetSlot("on_findButton_clicked", MyMainWindow, function() {
-  findText(findEntry$text)
+  findText(lineEdit$text)
 })
+@ 
+%
+defines a handler for the \signal{clicked} signal on
+\qcode{findButton}.  Finally, the signal handler connection is
+established upon construction of the main window:
+<<qt-overview-designed-custom-construct>>=
+MyMainWindow()
 @ 
 %
 In the case of a large, complex GUI, this automatic approach is

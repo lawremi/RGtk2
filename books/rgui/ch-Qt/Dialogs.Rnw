@@ -24,7 +24,7 @@ representing a possible response. Normally, the type of message is
 indicated by an icon. If extra details are available, the dialog
 provides the option for the user to view them.
 
-\Qt{} provide two ways to create a message box. The simplest approach
+\Qt{} provides two ways to create a message box. The simplest approach
 is to call a static convenience method for issuing common types of
 messages, including warnings and simple questions. The alternative,
 described later, involves several steps and offers more control at a
@@ -402,7 +402,7 @@ a file name to open we would have:
 fname <- Qt$QFileDialog$getOpenFileName(NULL, "Open a file...", getwd())
 @ 
 % 
-All take as intial arguments a parent, a caption and a
+All take as initial arguments a parent, a caption and a
 directory. Other arguments allow one to set a filter, say. For basic
 use, these are nearly as easy to use as \R's \function{file.choose}.
 If a file is selected, \code{fname} will contain the full path to the
@@ -449,12 +449,12 @@ sidebar shortcut URLs, and filters based on low-level file attributes
 like permissions.
 
 \begin{example}{File dialogs}{ex:qt-r-files-dialog}
-  We construct a dialog for opening an R-related file, using the file
-  names selected above as the history:
+  We construct a dialog for opening an R-related file, using the
+  directory name selected above as the history:
 <<QFileDialogAPI, results=hide>>=
 dlg <- Qt$QFileDialog(NULL, "Choose an R file", getwd(), nameFilter)
 dlg$fileMode <- Qt$QFileDialog$ExistingFiles
-dlg$setHistory(fnames)
+dlg$setHistory(dname)
 @
 % 
   The dialog is executed like any other. To get the specified files,

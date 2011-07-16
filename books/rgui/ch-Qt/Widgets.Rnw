@@ -321,7 +321,7 @@ lapply(l, buttonGroup$addButton)
 Since our button group is exclusive, we can query for the currently
 checked button:
 <<qt-widget-radio-group-checked>>=
-buttonGroup$checkedButton()
+buttonGroup$checkedButton()$text
 @ 
 
 <<echo=FALSE,results=hide>>=
@@ -378,7 +378,7 @@ qconnect(region, "activated", function(ind) {
 @ 
 %
 Our handler resets the state combo box to correspond to the selected
-region, indicated by \qcode{ind}.
+region, indicated by \qcode{ind}, which is zero-based.
 
 Finally, we place the widgets in a form layout:
 <<results=hide>>=
@@ -430,7 +430,7 @@ Single step refers to the effect of pressing one of the arrow keys,
 while pressing \qcode{Page Up/Down} adjusts the slider by
 \property{pageStep}{QAbstractSlider}. 
 
-The current cursor position is give by the property
+The current cursor position is given by the property
 \property{value}{QSlider}; we set it to the middle of the range:
 <<qt-widget-slider-value>>=
 sl$value
@@ -540,7 +540,7 @@ In \Qt{} versions 4.7 and above, one can specify place holder text
 that fills the entry it is empty and unfocused. Typically, this text
 indicates the expected contents of the entry:
 %% JV: needs to upgrade
-<<qt-widget-lineedit-placeholder,eval=FALSE>>=
+<<qt-widget-lineedit-placeholder>>=
 le$text <- ""
 le$placeholderText <- "Enter some text"
 @ 
@@ -575,9 +575,9 @@ presented for completion when text is entered into a \class{QLineEdit}.
   arranges two line edit widgets -- one to gather a class name and one
   for method and property names.
 <<CompleterExample, results=hide>>=
-w <- Qt$QWidget()
+classBrowser <- Qt$QWidget()
 lyt <- Qt$QFormLayout()
-w$setLayout(lyt)
+classBrowser$setLayout(lyt)
 
 lyt$addRow("Class name", c_name <- Qt$QLineEdit())
 lyt$addRow("Method name", m_name <- Qt$QLineEdit())
@@ -660,6 +660,73 @@ are provided for this purpose. History information is stored in a
 \method{history}{QWebView} on the web view. This could be used for
 implementing a ``Back'' button.
 
+A unique feature of \class{QtWebKit} is the ability to embed Qt
+widgets into a web page. This is one mechanism for constructing hybrid
+web/desktop applications. Widget embedding is implemented through the
+standard HTML \qcode{object} tag. We can register a plugin, manifested
+as a \class{QWidget}, for a particular mime type, specified through
+the \qcode{type} attribute of the \qcode{object} element.
+
+For example, we might have the following simple HTML:
+<<qt-widget-webview-plugin-html,keep.source=TRUE>>=
+html <- 
+  c("<html xmlns='http://www.w3.org/1999/xhtml'>",
+      "<body>",
+        "<h1>Qt class browser embedded into a QWebView</h1>",
+        "Search for a class:<br/>",
+        "<object type='application/x-qt-class-browser' width='500'",
+        "        height='100'/>",
+      "</body>",
+    "</html>")
+html <- paste(html, collapse = "\n")
+@ 
+
+For our plugin, we use the class browser widget, constructed above. To
+provide the plugin, we need to implement a custom
+\class{QWebPluginFactory}:
+<<qt-widget-webview-plugin-factory>>=
+qsetClass("RPluginFactory", Qt$QWebPluginFactory)
+@ 
+
+The factory has two duties: describing its available plugins and
+creating a plugin, in the form of a \class{QWidget}, for a given mime
+type. The \method{plugins}{QWebPluginFactory} method returns a list of
+plugin descriptions:
+<<qt-widget-webview-plugin-factory-plugins>>=
+qsetMethod("plugins", RPluginFactory, function() {
+  plugin <- Qt$QWebPluginFactory$Plugin()
+  plugin$setName("Class Browser")
+  mimeType <- Qt$QWebPluginFactory$MimeType()
+  mimeType$setName("application/x-qt-class-browser")
+  plugin$setMimeTypes(list(mimeType))
+  list(plugin)
+})
+@ 
+%
+Our factory provides a single plugin, with a single mimetype that
+matches the type of the \qcode{object} element in the HTML. The
+\method{create}{QWebPluginFactory} method constructs the actual
+\class{QWidget} corresponding to the plugin:
+<<qt-widget-webview-plugin-factory-create>>=
+qsetMethod("create", RPluginFactory, 
+           function(mimeType, url, argNames, argVals) {
+             if (mimeType == "application/x-qt-class-browser")
+              classBrowser
+             else Qt$QWidget()
+           })
+@ 
+%
+If the mime type does not match our plugin, we simply return an empty
+widget.
+
+Finally, we need to enable plugins, register our factory and load the HTML:
+<<qt-widget-webview-plugin-factory-register>>=
+globalSettings <- Qt$QWebSettings$globalSettings()
+globalSettings$setAttribute(Qt$QWebSettings$PluginsEnabled, TRUE)
+webview$page()$setPluginFactory(RPluginFactory())
+webview$setHtml(html)
+@ 
+
 %% ML: how far do we want to go with this web example? not sure how
 %% many users will be implementing a full-fledged browser.
 
@@ -689,8 +756,7 @@ extracting the action from \qcode{qtDevice} and activating it.
 To increase performance at a slight cost of quality, we could direct
 the device to leverage hardware acceleration through OpenGL. This
 requires passing \qcode{opengl = TRUE} to the \function{QT} constructor:
-%% JV: I don't see this in the git sources. Am I missing something?
-<<qt-widget-graphics-device-opengl, eval=FALSE>>=
+<<qt-widget-graphics-device-opengl>>=
 qtOpenGLDevice <- QT(opengl = TRUE)
 @ 
 %

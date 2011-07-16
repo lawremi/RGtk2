@@ -55,8 +55,8 @@ openAction$statusTip <- "Load a spreadsheet from a CSV file"
 %
 One could also set an icon from a file:
 <<qt-app-action-icon, results=hide>>=
-iconFile <- system.file("images/open.gif", package="gWidgets")
-openAction$setIcon(Qt$QIcon(iconFile))
+style <- Qt$QApplication$style()
+button$icon <- style$standardIcon(Qt$QStyle$SP_DialogOpenButton)
 @ 
 
 %% ML: avoiding the '&' here, as it really indicates a keyboard
@@ -71,7 +71,7 @@ activated. The application should connect to this signal to implement
 the command behind the action:
 <<qt-app-action-trigger, results=hide>>=
 qconnect(openAction, "triggered", function() {
-  filename <- Qt$QFileDialog$getOpenFilename()
+  filename <- Qt$QFileDialog$getOpenFileName()
   tableView$model <- qdataFrameModel(read.csv(filename), editable=TRUE)
 })
 @ 
@@ -138,6 +138,7 @@ window for the application.
 We create an instance of \class{QMenuBar}:
 <<qt-app-menubar>>=
 menubar <- Qt$QMenuBar()
+mainWindow$setMenuBar(menubar)
 @ 
 %
 A \class{QMenuBar} is a container of \class{QMenu} objects, which
@@ -183,8 +184,11 @@ Sometimes, actions pertain to a single widget or portion of a widget,
 instead of the entire application. In such cases, the menubar is an
 inappropriate container. An alternative is to place the actions in a
 menu specific to their context. This is known as a context menu. The
-simplest approach to providing a context menu involves two
-steps. First, add the desired actions to the widget:
+precise user action that displays a context menu depends on the
+platform. It commonly suffices to click the right mouse button while
+the pointer is over the widget. The simplest approach to providing a
+context menu involves two steps. First, add the desired actions to the
+widget:
 <<qt-app-context-add-widgets, results=hide>>=
 sortMenu <- Qt$QMenu("Sort by")
 sapply(colnames(qdataFrame(model)), sortMenu$addAction)
@@ -371,9 +375,12 @@ widget. The first step is to wrap the widget in a \class{QDockWidget}:
 <<qt-app-dockwidget>>=
 library(qtutils)
 device <- QT()
-dock <- Qt$QDockWidget()
+dock <- Qt$QDockWidget("Device 1")
 dock$setWidget(device)
 @ 
+%
+The string passed to the \class{QDockWidget} constructor is an
+optional label/title for the docked window.
 
 By default, the dock widget is closable, movable and floatable. This
 is adjustable through the \property{features} property. For example,
@@ -397,7 +404,7 @@ A second graphics device could be added with the first, on a separate
 page of a tabbed notebook:
 <<qt-app-dock-tabify, results=hide>>=
 device2 <- QT()
-dock2 <- Qt$QDockWidget(device2)
+dock2 <- Qt$QDockWidget("Device 2", device2)
 mainWindow$tabifyDockWidget(dock, dock2)
 @ 
 %
