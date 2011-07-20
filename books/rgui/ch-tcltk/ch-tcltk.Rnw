@@ -54,9 +54,13 @@ print.tclObj <- noTclPrint
 \label{sec:tcltk:basic-containers}
 \SweaveInput{BasicContainers}
 
-\chapter{Tcl/Tk: Widgets}
+\chapter{Tcl/Tk: Dialogs and Widgets}
 \label{sec:tcltk:widgets}
 \SweaveInput{Widgets}
+
+\chapter{Tcl/Tk: Text, Tree and Canvas Widgets}
+\label{sec:tcltk:scrollabel=widgets}
+\SweaveInput{ScrollabelWidgets}
 
 
 % \section{Dialogs}

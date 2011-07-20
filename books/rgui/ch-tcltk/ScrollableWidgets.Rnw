@@ -1,0 +1,890 @@
+This chapter focuses on a few of the more complex widgets of \Tk, these being the text widget, the treeview widget and the canvas widget.
+
+\subsection{Scrollbars}
+\label{sec:tcltk:scrollbars}
+
+\TK\/ has several scrollable widgets -- those that use scrollbars.
+Widgets which accept a scrollbar (without too many extra steps) have
+the options \code{xscrollcommand} and \code{yscrollcommand}.  To use
+scrollbars in \pkg{tcltk} requires two steps: the scrollbars must be
+constructed and bound to some widget, and that widget must be told it
+has a scrollbar. This way changes to the widget can update the
+scrollbar and vice versa. Suppose, \code{parent} is a container and
+\code{widget} has these options, then the following will set up both
+horizontal and vertical scrollbars.
+<<scrollbar-example,echo=FALSE>>=
+library(tcltk)
+w <- tktoplevel(); tkwm.title(w, "Scrollbar example")
+parent <- ttkframe(w); tkpack(parent, expand=TRUE, fill="both")
+widget <- tktext(parent)
+@ 
+%
+<<>>=
+xscr <- ttkscrollbar(parent, orient="horizontal",
+                 command=function(...) tkxview(widget, ...))
+yscr <- ttkscrollbar(parent, orient="vertical",
+                 command=function(...) tkyview(widget, ...))
+@
+%
+The \function{tkxview} and \function{tkyview} functions set what part of the widget is being shown.
+
+To link the widget back to the scrollbar, the \code{set} command is
+used in a callback to the scroll command.  For this example we
+configure the options after the widget is constructed, but this can be
+done at the time of construction as well. Again, the command takes a
+standard form:
+<<>>=
+tkconfigure(widget,
+            xscrollcommand=function(...) tkset(xscr,...),
+            yscrollcommand=function(...) tkset(yscr,...))
+@ 
+
+Although scrollbars can appear anywhere, the conventional place is on
+the right and lower side of the parent. The following adds scrollbars
+using the grid manager. The combination of weights and stickiness
+below will have the scrollbars expand as expected if the window is
+resized.
+<<>>=
+tkgrid(widget, row=0, column=0, sticky="news")
+tkgrid(yscr,row=0,column=1, sticky="ns")
+tkgrid(xscr, row=1, column=0, sticky="ew")
+tkgrid.columnconfigure(parent, 0, weight=1)
+tkgrid.rowconfigure(parent, 0, weight=1)
+@ 
+%
+Although a bit tedious, this gives the programmer some flexibility in
+arranging scrollbars. To avoid doing all this in the sequel, we turn
+the above into the function \function{addScrollbars} for subsequent
+usage (not shown). In base \Tk, there are no simple means to hide
+scrollbars when not needed, although the \pkg{tcltk2} package has some
+code that may be employed for that.
+
+<<addScrollbars, echo=FALSE>>=
+## function to add scrollbars to widget and pack into grid
+## parent uses grid manager -- con't pack in other children
+addScrollbars <- function(parent, widget) {
+  xscr <- ttkscrollbar(parent, orient="horizontal",
+                       command=function(...) tkxview(widget, ...))
+  yscr <- ttkscrollbar(parent, orient="vertical",
+                       command=function(...) tkyview(widget, ...))
+  ##
+  tkconfigure(widget,
+              xscrollcommand=function(...) tkset(xscr,...),
+              yscrollcommand=function(...) tkset(yscr,...))
+  ##
+  tkgrid(widget, row=0, column=0, sticky="news")
+  tkgrid(yscr,row=0,column=1, sticky="ns")
+  tkgrid(xscr, row=1, column=0, sticky="ew")
+  tkgrid.columnconfigure(parent, 0, weight=1)
+  tkgrid.rowconfigure(parent, 0, weight=1)
+}
+@ 
+
+\subsection{Multi-line Text Widgets}
+\label{sec:tcltk:multi-line-text}
+
+The \constructor{tktext} widget creates a multi-line text editing
+widget. If constructed with no options but a parent container, the
+widget can have text entered into it by the user.
+
+<<ex-tktext-easiest>>=
+w <- tktoplevel()
+tkwm.title(w, "Simple tktext example")
+txt <- tktext(w)
+addScrollbars(w, txt)
+@ 
+%
+
+%% arguments width, height
+The text widget is not a themed widget, hence has numerous arguments
+to adjust its appearance. We mention a few here and leave the rest to
+be discovered in the manual page (along with much else). The argument
+\argument{width}{tktext} and \argument{height}{tktext} are there to
+set the initial size, with values specifying number of characters and
+number of lines (not pixels, to convert see
+Section~\ref{sec:tcltk:overview:colors-fonts}). The actual size is
+font dependent, with the default for 80 by 24 characters. The
+\argument{wrap}{tktext} argument, with a value from \qcode{none},
+\qcode{char}, or \qcode{word}, indicates if wrapping is to occur and
+if so, does it happen at any character or only a word boundary. The
+argument \argument{undo}{tktext} takes a logical value indicating if
+the undo mechanism should be used. If so, the subcommand
+\subcommand{edit}{tktext} can be used to undo a change (or the
+\kbd{control-z} keyboard shortcut).
+
+
+\paragraph{Getting text}
+%% multiline? tclvalue versus as.character
+The \subcommand{get}{tktext} subcommand is used to retrieve the text
+in the buffer. One specifies what part of the text buffer should be
+returned using indices (below). The following shows how to retrieve
+the entire contents of the buffer:
+
+<<get-values>>=
+value <- tkget(txt, "1.0", "end")
+as.character(value)                     # wrong way
+tclvalue(value)
+@ 
+
+The return value is of class \class{tclObj}.  Coercion to character
+should be done with \function{tclvalue} and not
+\function{as.character} to preserve the distinction between spaces and
+line breaks.
+
+
+\paragraph{Indices}
+As with the entry widget, several commands take indices to specify
+position within the text buffer. Only for the multi-line widget both a
+line and character are needed in some instances. These indices may be
+specified in many ways. One can use row and character numbers
+separated by a period in the pattern \code{line.char}. The line is
+$1$-based, the column $0$-based (e.g., \code{1.0} says start on the
+1st row and first character). In general, one can specify any line
+number and character on that line, with the keyword \code{end} used to
+refer to the last character on the line. 
+
+Text buffers may carry
+transient marks, in which case the use of this mark indicates the next
+character after the mark. Predefined marks include \code{end}, to  specify the end of the
+buffer, \code{insert}, to track the insertion point in the text
+buffer were the user to begin typing, and \code{current}, which 
+follows the character closest to the mouse position. 
+
+As well, pieces
+of text may be tagged. The format \code{tag.first} and \code{tag.last}
+index the range of the tag \code{tag}. Marks and tags are described
+below. If the $x$-$y$ postion of the spot is known (through percent
+substitutions say) the index can be specified by postion, as \code{\@x,y}.
+
+Indices can also be adjusted relative to the above
+specifications. This adjustment can be by a number of characters
+(\code{chars}), index positions (\code{indices}) or \code{lines}. For
+example, \code{insert + 1 lines} refers to 1 line under the insert
+point. The values \code{linestart}, \code{lineend}, \code{wordstart}
+and \code{wordend} are also available. For instance, \code{insert
+  linestart} is the beginning of the line from the insert point, while
+\code{end -1 wordstart} and \code{end - 1 chars wordend} refer to the
+beginning and ending of the last word in the buffer. (The \code{end}
+index refers to the character just after the new line so we go back 2
+steps.)
+
+\paragraph{Inserting text}
+Inserting text can be done through the \subcommand{insert}{ttktext}
+subcommand by specifying first the index then the text to add. One can
+use \code{$\backslash$n} to add new lines.
+<<tkinsert-example>>=
+tkinsert(txt, "end", "more text\n new line")  
+@ 
+Images and other windows can be added to a text buffer, but we do not discuss that here.
+
+The buffer can have its contents cleared using \code{tkdelete}, as
+with \code{tkdelete(txt, "1.0", "end")}.
+
+\paragraph{Panning the buffer: tksee}
+After text is inserted, the visible part of buffer may not be what is
+desired. The \subcommand{see}{ttktext} sub command is used to position
+the buffer on the specified index, its lone argument.
+
+
+\paragraph{Tags}
+Tags are a means to assign a name to characters within the text
+buffer. Tags may be used to adjust the foreground, background and font
+properties of the tagged characters from those specified globally at
+the time of construction of the widget, or configured thereafter. Tags
+can be set when the text is inserted by appending to the argument
+list, as with
+<<>>=
+tkinsert(txt, "end", "last words", "lastWords") # lastWords tag
+@ 
+
+Tags can be set after the text is added through the
+\subcommand{tag add}{tktext} subcommand using indices to specify
+location. The following marks the first word with the \code{firstWord}
+tag:
+<<>>=
+tktag.add(txt,"firstWord","1.0 wordstart", "1.0 wordend")
+@ 
+The \subcommand{tag configure}{tktext} can be used to configure properties of the tagged characters, for example:
+<<>>=
+tktag.configure(txt, "firstWord", foreground="red", 
+                font="helvetica 12 bold")
+@ 
+%
+There are several other configuration options for a tag. From within
+an \R\/ session, a cryptic list can be produced by calling the
+subcommand \subcommand{tag configure}{tktext} without a value for
+configuration.
+
+
+\paragraph{Selection}
+The current selection, if any, is indicated by the \code{sel} tag,
+with \code{sel.first} and \code{sel.last} providing indices to refer
+to the selection (assuming the option \code{exportSelection} was not
+modified). These tags can be used with \code{tkget} to retrieve the
+currently selected text. An error will be thrown if there is no
+current selection. To check if there is a current selection, the following may be used:
+<<>>=
+hasSelection <- function(W) {
+  ranges <- tclvalue(tcl(W, "tag", "ranges", "sel"))
+  length(ranges) > 1 || ranges != ""
+}
+@ 
+
+The cut, copy and paste commands are implemented through the \Tk\/ functions
+\function{tk\_textCut}, \function{tk\_textCopy} and
+\function{tk\_textPaste}. Their lone argument is the text widget. These
+work with the current selection and insert point. For example to cut
+the current selection, one has
+<<cutSelection>>=
+tcl("tk_textCut", txt)
+@ 
+
+\paragraph{Marks}
+Tags mark characters within a buffer, marks denote positions within a
+buffer that can be modified. For example, the marks \code{insert} and
+\code{current} refer to the position of the cursor and the current
+position of the mouse. Such information can be used to provide
+context-sensitive popup menus, as in this code example:
+<<>>=
+popupContext <- function(W, x, y) {
+  ## or use sprintf("@%s,$s", x, y) for "current"
+  cur <- tkget(W, "current wordstart", "current wordend") 
+  cur <- tclvalue(cur)
+  popupContextMenuFor(cur, x, y)        # some function
+}
+@ 
+
+To assign a new mark, one uses the \subcommand{mark set}{tktext}
+subcommand specifying a name and a position through an index. Marks
+refer to spaces within characters. The \code{gravity} of the mark can
+be \code{left} or \code{right}. When \code{right} (the default), new
+text inserted is to the left of the mark. For instance, to keep track
+of an initial insert point and the current one, the initial point
+(marked \code{leftlimit} below) can be marked with
+<<>>=
+tkmark.set(txt, "leftlimit", "insert")
+tkmark.gravity(txt, "leftlimit", "left")    # keep onleft
+tkinsert(txt, "insert", "new text")
+tkget(txt, "leftlimit", "insert")
+@ 
+%
+The use of the subcommand \subcommand{mark gravity}{tktext} is done so
+that the mark attaches to the left-most character at the insert
+point. The rightmost one changes as more text is inserted, so would
+make a poor choice here.
+
+
+\paragraph{The edit command}
+The subcommand \subcommand{edit}{tktext} can be used to undo text. As
+well, it can be used to test if the buffer has been modified, as
+follows:
+<<>>=
+tcl(txt, "edit", "undo")                  # no output
+tcl(txt, "edit", "modified")              # 1 = TRUE
+@ 
+
+
+
+\paragraph{Events}
+The text widget has a few important events.  The widget defines
+virtual events \code{\VirtualEvent{Modified}} and
+\code{\VirtualEvent{Selection}} indicating when the buffer is modified
+or the selection is changed. Like the single-line text widget, the
+events \code{\Event{KeyPress}} and \code{\Event{KeyRelease}} indicate
+key activity. The \%-substitution \code{k} gives the keycode and
+\code{K} the key symbol as a string (\code{N} is the decimal number).
+
+
+
+\begin{example}{Displaying commands in a text buffer}{ex-tcltk-text}
+  \SweaveInput{ex-tcltk-text.Rnw}
+\end{example}
+
+
+\section{Treeview widget}
+\label{sec:tcltk:treeview-widget}
+
+The themed treeview widget can be used to display rectangular data,
+like a data frame; or hierarchical data, like a list. The usage is
+similar, but for a minor change to indicate the hierarchical structure.
+
+\subsection{Rectangular data}
+
+\XXX{Images -- add comment}
+
+%% constructor
+The \constructor{ttktreeview} constructor creates the tree
+widget. There is no separate model for this widget, as there is in
+\GTK{} or \Qt, but there is a means to adjust what is displayed.  The
+argument \argument{columns}{ttktreeview} is used to specify internal
+names for the columns and indicate the number of columns. A value of
+\code{1:n} will work here unless explicit names are desired. The
+argument \argument{displaycolumns}{ttktreeview} is used to control
+which of the columns are actually displayed. The default is
+\qcode{all}, but a vector of indices or names can be given.  
+
+The size of the widget is specified two different ways.  The
+\argument{height}{ttktreeview} argument is used to adjust the number
+of visible rows. The requested width of the widget is determined by
+the combined widths of each column, whose adjustments are mentioned
+later.
+
+
+<<treeExample,echo=FALSE>>=
+w <- tktoplevel()
+tkwm.title(w, "Choose CRAN mirror")
+f <- ttkframe(w, padding=c(3,3,12,12))
+tkpack(f, expand=TRUE, fill="both")
+@ 
+
+If \code{f} is a frame, then the following call will create a treeview
+widget with just one column showing 25 rows at a time, like the older,
+non-themed, listbox widget of \Tk.
+
+<<>>=
+tr <- ttktreeview(f, 
+                  columns=1,        # column identifier is "1"
+                  show="headings",  # not "#0"
+                  height=25)        
+addScrollbars(f, tr)                # our scrollbar function
+@ 
+
+
+
+The treeview widget has an initial column for showing the tree-like
+aspect with the data. This column is referenced by \code{\#0}. The
+\argument{show}{ttktreeview} argument controls whether this column is
+shown. A value of \qcode{tree} leaves just this column shown,
+\qcode{headings} will show the other columns, but not the first, and
+the combined value of \qcode{tree headings} will display both (the
+default).  Additionally, the treeview is a scrollable widget, so has
+the arguments \argument{xscrollcommand}{ttktreeview} and
+\argument{yscrollcommand}{ttktreeview} for specifying scrollbars.
+
+\paragraph{Adding values}
+
+Rectangular data has a row and column structure. In \R, data frames
+are internally stored by column vectors, so each column may have its
+own type. The treeview widget is different, it stores all data as
+character data and one interacts with the data row by row.
+
+Values can be added to the widget through the
+\subcommanda{insert}{ttktreeview}{parent item [text] [values]}
+subcommand. This requires the specification of a parent (always the root
+\qcode{} for rectangular data) and an index for specifying the
+location of the new child amongst the previous children. The special
+value \qcode{end} indicates placement after all other children, as
+would a number larger than the number of children. A value of 0 or a
+negative value would put it at the beginning.
+
+
+In the example this is how we can add a list of possible CRAN mirrors
+to the treeview display.
+<<getCRANmirrors>>=
+x <- getCRANmirrors()
+Host <- x$Host
+shade <- c("none", "gray")                     # tag names
+for(i in seq_along(Host))
+  ID <- tkinsert(tr, "", "end", values=as.tclObj(Host[i]),
+                 tag=shade[i %% 2])            # none or gray
+tktag.configure(tr, "gray", background="gray95") # shade rows
+@ 
+
+For filling in each row's content the \code{values} option is used. If
+there is a single column, like the current example, care needs to be
+taken when adding a value. The call to \function{as.tclObj} prevents
+the widget from dropping values after the first space.~\footnote{As
+  does wrapping the values within braces.} Otherwise, we can pass a
+character vector of the proper length.
+
+
+There are a number of other options for each row. If column \code{\#0}
+is present, the \code{text} option is used to specify the text for the
+tree row and the option \code{image} can be given to specify an image
+to place to the left of the text value. Finally, we mention the
+\code{tag} option for \code{insert} that can be used to specify a tag
+for the inserted row. This allowed the use of the subcommand
+\subcommand{tag configure}{ttktreeview} to configure the background
+color. In addition, one can adjust foreground color, font or image for
+an item.
+
+
+
+\paragraph{Column properties}
+%% column properties: heading, width, minwidth, stretch
+The columns can be configured on a per-column basis. Columns can be
+referred to by the name specified through the \code{columns} argument
+or by number starting at 1 with \qcode{\#0} referring to the tree
+column. The column headings can be set through the
+\subcommand{heading}{ttktreeview} subcommand. The heading, similar to
+the button widget, can be text, an image or both. The text placement
+of the heading may be positioned through the \code{anchor} option. For
+example, this command will center the text heading of the first
+column:
+<<>>=
+tcl(tr, "heading", 1, text="Host", anchor="center")
+@ 
+
+The \subcommand{column}{ttktreeview} subcommand can be used to adjust
+a column's properties including the size of the column. The option
+\code{width} is used to specify the pixel width of the column (the
+default is large); as the widget may be resized, one can specify the
+minimum column width through the option \code{minwidth}. When more
+space is allocated to the tree widget, than is requested by the
+columns, column with a \code{TRUE} value specified to the option
+\code{stretch} are resized to fill the available space. Within each
+column, the placement of each entry within a cell is controlled by the
+\code{anchor} option, using the compass points.
+
+For example, this command will adjust properties of the lone column of \code{tr}:
+<<>>=
+tcl(tr, "column", 1, width=400,  stretch=TRUE, anchor="w")
+@ 
+
+
+\begin{example}{A convenience function for populating a table}{ex-tcltk-populate-treeview}
+  We put the above commands together into a convenience function for
+  subsequent use. The following assumes \code{m} is a character
+  matrix. It returns a list containing the enclosing frame and the
+  treeview object.  
+<<>>=
+populate_rectangular_treeview <- function(parent, m) {
+  enc_frame <- ttkframe(parent)
+  frame <- ttkframe(enc_frame)
+  tkpack(frame, expand=TRUE, fill="both")
+  tr <- ttktreeview(frame,
+                    columns=seq_len(ncol(m)),
+                    show="headings")
+  addScrollbars(frame, tr)
+  tkpack.propagate(enc_frame, FALSE)    # size from frame
+  ## headings,widths
+  font_measure <- tcl("font","measure","TkTextFont","0")
+  charWidth <- as.integer(tclvalue(font_measure))
+  sapply(seq_len(ncol(m)), function(i) {
+    tcl(tr, "heading", i, text=colnames(m)[i])
+    tcl(tr, "column", i, 
+        width=10 + charWidth*max(apply(m, 2, nchar)))
+  })
+  tcl(tr, "column", ncol(m), stretch=TRUE)
+  ## values
+  if(ncol(m) == 1)  m <- as.matrix(paste("{", m , "}", sep=""))
+  apply(m, 1, function(vals) 
+    tcl(tr, "insert", "", "end", values=vals))
+  ##
+  return(list(tr=tr, frame=enc_frame))
+}
+@   
+%
+%% From notes on ttkframe:
+%% Note that if the pack, grid, or other geometry managers are used to
+%% manage the children of the frame, by the GM's requested size will
+%% normally take precedence over the frame widget's -width and -height
+%% options. pack propagate and grid propagate can be used to change
+%% this.
+The use of \function{tkpack.propagate} allows us to control the size of
+the enclosing component by configuring the size of the enclosing
+frame. Otherwise, in the computation for requested size, the treeview
+widget will respond with a width computed by its column
+widths. However, we use a horizontal scrollbar to avoid this.
+
+To use this we need to configure the size of the scrollable frame
+widget. For example:
+<<populate_test>>=
+w <- tktoplevel()
+m <- sapply(mtcars, as.character)
+a <- populate_rectangular_treeview(w, m)
+tkconfigure(a$tr, selectmode="extended") # multiple selection
+tkconfigure(a$frame, width=300, height=200) # frame size
+tkpack(a$frame, expand=TRUE, fill="both")
+@ 
+
+\end{example}
+
+
+
+\paragraph{Item IDs}
+%% referring to rows ID
+Each row has a unique item ID generated by the widget when a row is
+added. The base ID is \qcode{} (why this is specified for the value of
+\code{parent} for rectangular data). For rectangular displays, the
+list of all IDs may be found through the \subcommand{children}{ttktreeview}
+sub command, which we will describe in the next section.  Here we see
+it used to find the children of the root. As well, we show how the
+\subcommand{index}{ttktreeview} command returns the row index.
+<<showChildrenIndex>>=
+children <- tcl(tr, "children", "")
+(children <- head(as.character(children)))     # as.character
+sapply(children, function(i) tclvalue(tkindex(tr, i)))
+@ 
+
+%% retrieving values
+\paragraph{Retrieving values}
+The \subcommand{item}{ttktreeview} subcommand can be used to get the
+values and other properties stored for each row. One specifies the item and the
+corresponding option:
+<<getValue>>=
+x <- tcl(tr, "item", children[1], "-values") # no tkitem
+as.character(x)
+@ 
+%
+The value returned from the \code{item} command can be difficult to
+parse, as \TCL\/ places braces around values with blank spaces. The coercion through
+\code{as.character} works much better at extracting the individual
+columns. A possible alternative to using the \code{item} command, is
+to instead keep the original data frame and use the index of the item
+to extract the value from the original. Since the data from the widget
+is character data, this can be much preferred to having to coerce
+values to their original class.
+
+%% deleting values
+\paragraph{Moving and deleting items}
+The \subcommand{move}{ttktreeview} subcommand can be used to replace a
+child. As with the \code{insert} command, a parent and an index for
+where the new child is to go among the existing children is needed. The
+item to be moved is referred to by its ID. The
+\subcommand{delete}{ttktreeview} and \subcommand{detach}{ttktreeview}
+can be used to remove an item from the display, as specified by its
+ID. The latter command allows for the item to be reinserted at a later
+time.
+
+
+\paragraph{Selection}
+The user may select one or more rows with the mouse, as controlled by
+the option \argument{selectmode}{ttktreeview}. Multiple rows may be
+selected with the default value of \qcode{extended}, a restriction to
+a single row is specified with \qcode{browse}, and no selection is
+possible if this is given as \code{none}.
+
+%% getting the selection
+The \subcommand{select}{ttktreeview} command will return the current
+selection. The current selection marks $0$, $1$ or more than $1$ items if
+\qcode{extended} is given for the \code{selectmode} argument.  If
+converted to a string using \code{as.character} this will be a
+character vector of the selected item IDs. Further subcommands
+\code{set}, \code{add}, \code{remove}, and \code{toggle} can be used
+to adjust the selection programatically.
+
+For example, to select the first 6 children, we have:
+<<>>=
+tkselect(tr, "set", children)
+@ 
+%
+To toggle the selection, we have:
+<<>>=
+tkselect(tr, "toggle", tcl(tr, "children", ""))
+@ 
+%
+Finally, the selected IDs are returned with:
+<<>>=
+IDs <- as.character(tkselect(tr))
+@ 
+
+%% XXX clear selection....??
+
+%% Events; handlers.
+\paragraph{Events and callbacks}
+In addition to the keyboard events \code{\Event{KeyPress}} and
+\code{\Event{KeyRelease}} and the mouse events \code{\Event{ButtonPress}},
+\code{\Event{ButtonRelease}} and \code{\Event{Motion}}, the virtual event
+\code{\VirtualEvent{TreeviewSelect}} is generated when the selection changes.
+
+Within a key or mouse event callback, the clicked on column and row can
+be identified by position, as illustrated in this example callback.
+<<>>=
+callbackExample <- function(W, x, y) {
+  col <- as.character(tkidentify(W, "column", x, y))
+  row <- as.character(tkidentify(W, "row", x, y))
+  ## now do something ...
+}
+@ 
+
+
+%% example: filter through data -- table
+\begin{example}{Filtering a table}{ex-tcltk-table}
+  \SweaveInput{ex-tcltk-table.Rnw}
+\end{example}
+
+\begin{example}{A dialog for subsetting a data frame}{ex-tcltk-subset-dialog}
+  \SweaveInput{ex-tcltk-subset-filter.Rnw}
+\end{example}
+
+
+
+%% Comment on tktable XXX Do I want more XXX
+
+\subsection{Editable tables of data}
+\label{sec:editable-tables-data}
+
+There is no native widget for editing the cells of tabular data, as is
+provided by the \function{edit} method for data frames. The
+\code{tktable} widget (\url{http://tktable.sourceforge.net/}) provides
+such an add-on to the base \TK. We don't illustrate its usage here, as
+we keep to the core set of functions provided by \TK.  An interface
+for this \TCL\/ package is provided in the \pkg{tcltk2} package
+(\function{tk2edit}).  The \code{gdf} function of \pkg{gWidgetstcltk}
+is based on this.
+
+
+
+\subsection{Hierarchical data}
+
+Specifying tree-like or hierarchical data is nearly identical to
+specifying rectangular data for the \code{ttktreeview} widget.  The
+widget provides column \code{\#0} to display this extra structure. If
+an item, except the root, has children, a trigger icon to expand the
+tree is shown. This is in addition to any text and/or an icon that is
+specified. Children are displayed in an indented manner to indicate
+the level of ancestry they have relative to the root.  To insert
+hierarchical data into the widget the same
+\subcommand{insert}{ttktreeview} subcommand is used, only instead of
+using the root item, \qcode{}, as the parent item, one uses the item
+ID corresponding to the desired parent. If the option \code{open=TRUE}
+is specified to the \code{insert} subcommand, the children of the item
+will appear, if \code{FALSE}, the user can click the trigger icon to
+see the children. The programmer can use the
+\subcommand{item}{ttktreeview} to configure this state. When the
+parent item is opened or closed, the virtual events
+\VirtualEvent{TreeviewOpen} and \VirtualEvent{TreeviewClose} will be
+signaled.
+
+%% example?
+%% tcl(tr, "insert","I001","end", text="child", open=FALSE)
+%% tcl(tr, item, "I001", open=TRUE)
+
+%% traversal 
+
+\paragraph{Traversal}
+Once a tree is constructed, the programmer can traverse
+through the items using the subcommands
+\subcommanda{parent}{ttktreeview}{item} to get the ID for the parent of the
+item; \subcommanda{prev}{ttktreeview}{item} and
+\subcommanda{next}{ttktreeview}{item} to get the immediate siblings of the
+item; and \subcommanda{children}{ttktreeview}{item} to return the children of
+the item. Again, the latter one will produce a character vector of  IDs for the
+children when coerced to character with \code{as.character}.
+
+
+
+%% tree example using XML
+\begin{example}{Using the treeview widget to show an XML file}{ex-tcltk-tree}
+  \SweaveInput{ex-tcltk-tree.Rnw}
+\end{example}
+
+
+
+\section{Menus}
+\label{sec:tcltk:menus}
+
+Menu bars and popup menus in \Tk\/ are constructed with
+\constructor{tkmenu}. The \code{parent} argument depends on what the menu is
+to do. A toplevel menu bar, such as appears at the top of a window has
+a toplevel window as its parent; a submenu of a menu bar uses the
+parent menu; and a popup menu uses a widget.  
+
+The menu widget in \Tk\/ has an option to be ``torn off.'' This
+feature was at one time common in GUIs, but now is rarely seen so it
+is recommended that this option be disabled. The
+\argument{tearoff}{tkmenu} option can be used at construction time to
+override the default behavior. Otherwise, the following command will
+do so globally:
+<<tearoff>>=
+tcl("option","add","*tearOff", 0)    # disable tearoff menus
+@ 
+%
+
+A toplevel menu bar is attached to a top-level window using \code{tkconfigure}
+to set the \code{menu} option of the window. For the aqua \TK\/
+libraries for Mac OS X, this menu will appear on the top menu bar when
+the window has the focus. For other operating systems, it appears at
+the top of the window. For Mac OS X, a default menu bar with no
+relationship to your application will be shown if a menu is not
+provided for a toplevel window. Testing for native Mac OS X may be done via
+the following function:
+<<testIfMac>>=
+usingMac <- function()  
+  as.character(tcl("tk", "windowingsystem")) == "aqua"
+@ 
+
+The \function{tkpopup} function facilitates the creation of a popup
+menu.  This function has arguments for the menu bar, and the postion
+where the menu should be popped up. For example, the following code
+will bind a popup menu, \code{pmb} (yet to be defined), to the right click event for a
+button \code{b}. As \OSX\/ may not have a third mouse button, and when
+it does it refers to it differently, the callback is bound
+conditionally to different events.
+
+<<echo=FALSE>>=
+w <- tktoplevel()
+tkwm.title(w, "Popup menu example")
+f <- ttkframe(w, padding=c(3,3,12,12))
+tkpack(f, expand=TRUE, fill="both")
+
+b <- ttkbutton(f, text="Click me for popup")
+@ 
+
+<<>>=
+doPopup <- function(X, Y) tkpopup(pmb, X, Y) # define callback
+if (usingMac()) {
+  tkbind(b, "<Button-2>", doPopup)      # right click
+  tkbind(b, "<Control-1>", doPopup)     # Control + click
+} else {
+  tkbind(b, "<Button-3>", doPopup)
+}
+@ 
+
+
+\paragraph{Adding submenus and action items}
+Menus show a hierarchical view of action items. Items are added to a
+menu through the \subcommand{add}{tkmenu} subcommand.  The nested
+structure of menus is achieved by specifying a \code{tkmenu} object as
+an item, using the \subcommand{add cascade}{tkmenu} subcommand. The
+option \code{label} is used to label the menu and the \code{menu}
+option to specify the sub-menu.
+
+Grouping of similar items can be done through nesting, or, on occasion,
+through visual separation. The latter is implemented with the \subcommand{add
+  separator}{tkmenu} subcommand.
+
+
+There are a few different types of action items that can be added:
+ 
+\begin{description}
+\item[Commands] An action item is one associated with a command. The
+  simplest proxy is a button in the menu that activates a command when
+  selected with the mouse. The \subcommand{add command}{tkmenu} allows
+  one to specify a \code{label}, a \code{command} and optionally an
+  \code{image} with a value for \code{compound} to adjust its
+  layout. Action commands may %% (Images are not shown in Mac OS X.) 
+  possibly be called for different widgets, so the use of percent
+  substitution is problematic. One can also specify that a keyboard
+  accelerator be displayed through the option \code{accelerator}, but
+  a separate callback must listen for this combination.
+
+\item[Check boxes] Action items may also be proxied by checkboxes. To
+  create one, the subcommand \subcommand{add checkbutton}{tkmenu} is
+  used. The available arguments include \code{label} to specify the
+  text, \code{variable} to specify a \TCL{} variable to store the state,
+  \code{onvalue} and \code{offvalue} to specify the state to the tcl
+  variable, and \code{command} to specify a call back when the checked
+  state is toggled. The initial state is set by the value in the
+  \TCL\/ variable.
+
+\item[Radio buttons] Additionally, action items may be presented
+  through radiobutton groups. These are specified with the subcommand
+  \subcommand{add radiobutton}{tkmenu}. The \code{label} option is
+  used to identify the entry, \code{variable} to set a text variable
+  and to group the buttons that are added, and \code{command} to
+  specify a command when that entry is selected.
+\end{description}
+
+Action items can also be placed after an item, rather than at the end
+using the \subcommand{insert command index}{tkmenu} subcommand. The
+index may be specified numerically with 0 being the first item for a
+menu.  More conveniently the index can be determined by specifying a
+pattern to match the menu's labels.
+
+
+\paragraph{Set state}
+The \code{state} option is used to retrieve and set the current state
+of the a menu item.  This value is typically \code{normal} or
+\code{disabled}, the latter to indicate the item is not available. The
+state can be set when the item is added or configured after that fact,
+through the \subcommand{entryconfigure}{tkmenu} command. This function
+needs the menu bar specified and the item specified as an index or
+pattern to match the labels.
+
+\begin{example}{Simple menu example}{ex-tcltk-menu}
+  \SweaveInput{ex-tcltk-menu.Rnw}
+\end{example}
+
+\section{Canvas Widget}
+\label{sec:tcltk:canvas-widget}
+
+ 
+The canvas widget provides an area to display lines, shapes, images
+and widgets. Methods exist to create, move and delete these objects,
+allowing the canvas widget to be the basis for creating interactive
+GUIs. The constructor \constructor{tkcanvas} for the widget, being a
+non-themeable widget, has many arguments including these standard ones:
+\argument{width}{tkcanvas}, \argument{height}{tkcanvas}, and
+\argument{background}{tkcanvas}, \argument{xscrollcommand}{tkcanvas}
+and \argument{yscrollcommand}{tkcanvas}.
+
+
+\paragraph{The create command}
+The subcommand \subcommanda{create}{tkcanvas}{type [options]} is used
+to add new items to the canvas. The options vary with the type of the
+item. The basic shape types that one can add are \qcode{line},
+\qcode{arc}, \qcode{polygon}, \qcode{rectangle}, and
+\qcode{oval}. Their options specify the size using $x$ and $y$
+coordinates. Other options allow one to specify colors, etc. The
+complete list is covered in the \code{canvas} manual page, which we
+refer the reader to, as the description is lengthy.  In the examples,
+we show how to use the \qcode{line} type to display a graph and how to
+use the \qcode{oval} type to add a point to a canvas. Additionally,
+one can add text items through the \qcode{text} type. The first
+options are the $x$ and $y$ coordinates and the \code{text} option
+specifies the text.  Other standard text options are possible (e.g.,
+\code{font}, \code{justify}, \code{anchor}).
+
+The type can also be an image object or a widget (a window object). Images are added by specifying an $x$ and $y$ position, possibly an anchor position, and a value for the \qcode{image} option and optionally, for state dependent display, specifying \qcode{activeimage} and \qcode{disabledimage} values. The \qcode{state} option is used to specify the current state. Window objects are added similarly in terms of their positioning, along with options for \qcode{width} and \qcode{height}. The window itself is added through the \qcode{window} option. An example shows how to add a frame widget.
+
+% Once created, a screenshot of the canvas can be created through the \subcommand{postscript}{tkcanvas} subcommand, as in \code{tcl(canvas, "postscript", file="filename")}. To store the widget so that it can be recreated is not supported directly. \TCL\/ code to do so can be found at \url{http://wiki.tcl.tk/9168}.
+
+
+\paragraph{Items and tags}
+The \code{tkcanvas.create} function returns an item ID. This can be
+used to refer to the item at a later stage. Optionally, tags can be
+used to group items into common groups. The \qcode{tags} option can be
+used with \code{tkcreate} when the item is created, or the
+\subcommand{addtag}{tkcanvas} subcommand can be used. The call
+\code{tkaddtag(canvas, tagName, "withtag", item)} would add the tag ``\code{tagName}''to
+the \code{item} returned by \code{tkcreate}. (The \qcode{withtag} is
+one of several search specifications.) As well, if one is
+adding a tag through a mouse click, the call \code{tkaddtag(W,
+  "tagName", "closest", x, y)} could be used with \code{W}, \code{x}
+and \code{y} coming from percent substitutions. Tags can be deleted
+through the \subcommanda{dtag}{tkcanvas}{tag} subcommand.
+
+%% interaction with items
+There are several subcommands that can be called on items as specified
+by a tag or item ID. For example, the \subcommand{itemcget}{tkcanvas}
+and \subcommand{itemconfigure}{tkcanvas} subcommands allow one to get
+and set options for a given item. The
+\subcommanda{delete}{tkcanvas}{tag\_or\_ID} subcommand can be used to
+delete an item. Items can be moved and scaled but not rotated. The
+\subcommanda{move}{tkcanvas}{tag\_or\_ID x y} subcommand implements
+incremental moves (where $x$ and $y$ specify the horizontal and
+vertical shift in pixels). The subcommand
+\subcommanda{coords}{tkcanvas}{ tag\_or\_ID [coordinates]} allows one
+to respecify the coordinates for the item. The
+\subcommand{scale}{tkcanvas} command is used to rescale items. Except for
+window objects, an item can be raised to be on top of the others
+through the \subcommanda{raise}{tkcanvas}{item\_or\_ID} subcommand.
+
+
+
+\paragraph{Bindings}
+As usual, bindings can be specified overall for the canvas, through
+\code{tkbind}. However, bindings can also be set on specific items
+through the subcommand \subcommanda{bind}{tkcanvas}{tag\_or\_ID event
+  function} (or with \code{tkitembind}). This allows
+bindings to be placed on items sharing a tag name, without having the
+binding on all items. Only mouse, keyboard or virtual events can have
+such bindings.
+
+%% do with fonts now
+\begin{example}{Using a canvas to make a scrollable frame}{ex:tcltk-scrollable-frame}
+  \SweaveInput{ex-tcltk-scrollable-frame.Rnw}
+\end{example}
+
+%% example with lines objects
+\begin{example}{Using canvas objects to show sparklines}{ex-tcltk-sparklines}
+    \SweaveInput{ex-tcltk-sparklines.Rnw}
+\end{example}
+
+%% Moving an object
+\begin{example}{Capturing mouse movements}{ex-tcltk-canvas}
+  \SweaveInput{ex-tcltk-canvas.Rnw}
+\end{example}
+
