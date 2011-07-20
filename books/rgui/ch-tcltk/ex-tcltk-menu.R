@@ -18,7 +18,7 @@ addScrollbars <- function(parent, widget,type=c("both", "x", "y")) {
 
   if(any(type %in% c("both","y"))) {
      yscr <- ttkscrollbar(parent, orient="vertical",
-                          command=function(...) tkxview(widget, ...))
+                          command=function(...) tkyview(widget, ...))
      tkconfigure(widget,
                  yscrollcommand=function(...) tkset(yscr,...))
    }

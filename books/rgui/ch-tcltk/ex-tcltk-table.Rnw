@@ -49,7 +49,7 @@ addScrollbars <- function(parent, widget) {
   xscr <- ttkscrollbar(parent, orient="horizontal",
                        command=function(...) tkxview(widget, ...))
   yscr <- ttkscrollbar(parent, orient="vertical",
-                       command=function(...) tkxview(widget, ...))
+                       command=function(...) tkyview(widget, ...))
 
   tkconfigure(widget,
               xscrollcommand=function(...) tkset(xscr,...),
@@ -62,7 +62,7 @@ addScrollbars <- function(parent, widget) {
   tkgrid.rowconfigure(parent, 0, weight=1)
 }
 @
-
+%
 We illustrate the above with a slightly improved GUI for selecting a CRAN mirror. This adds in a text box to filter the possibly large display of items to avoid scrolling through a long list. 
 <<>>=
 df <- getCRANmirrors()[, c(1,2,5,4)]
@@ -132,6 +132,7 @@ fillTable <- function(tr, df) {
   tktag.configure(tr, "gray", background="gray95")
 }
 @ 
+%
 The initial call populates the table from the entire data frame.
 <<>>=
 fillTable(tr, df)

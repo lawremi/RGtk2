@@ -22,7 +22,7 @@ library(tcltk)
 library(tseries)
 w <- tktoplevel()
 tkwm.title(w, "Sparklines example")
-f <- ttkframe(w, padding=c(3,3,3,12))
+f <- ttkframe(w, padding=c(3,3,12,12))
 tkpack(f, expand=TRUE, fill="both")
 @ 
 
@@ -70,7 +70,7 @@ addSparkLine <- function(label, symbol="MSFT") {
   }
   ## make line with: pathName create line x1 y1... xn yn 
   l <- list(sparkLineCanvas,"create","line")
-  sapply(1:length(x), function(i) {
+  sapply(seq_along(x), function(i) {
     l[[2*i + 2]] <<- x[i]
     l[[2*i + 3]] <<- y1[i]
   })

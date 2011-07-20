@@ -1,12 +1,15 @@
 This example illustrates how the basic widgets can be combined to make
 a dialog for gathering information to run a $t$-test. A realization is shown in Figure~\ref{fig:fig-tcltk-t-test}.
 
-\begin{figure}
-  \centering
-  \includegraphics[width=.75\textwidth]{fig-tcltk-t-test.png}
-  \caption{A dialog to collect values for a $t$ test.}
-  \label{fig:fig-tcltk-t-test}
-\end{figure}
+% \begin{figure}
+%   \centering
+%   \includegraphics[width=.75\textwidth]{fig-tcltk-t-test.png}
+%   \caption{A dialog to collect values for a $t$ test. This shows
+%     several of the selection widgets discussed in the chapter: a check
+%     button, radio button, combo boxes, an entry widget, a scale widget
+%     and a spinbox.}
+%   \label{fig:fig-tcltk-t-test}
+% \end{figure}
 
 <<echo=FALSE>>=
 ## t.test dialog
@@ -101,7 +104,7 @@ runTTest <- function() {
 ### GUI Our standard setup
 w <- tktoplevel()
 tkwm.title(w, "t-test Dialog")
-f <- ttkframe(w, padding=c(3,3,3,12))
+f <- ttkframe(w, padding=c(3,3,12,12))
 tkpack(f, expand=TRUE, fill="both")
 @ 
 
@@ -110,6 +113,16 @@ We will use the \code{tkgrid} geometry manager below.
 <<layout>>=
 lf <- ttklabelframe(f, text="t.test()", padding=10)
 tkpack(lf, expand=TRUE, fill="both", padx=5, pady=5)
+@ 
+
+The grid will have four columns, with columns 0 and 2 being for labels.
+We don't want the labels to expand the same way we want the widget columns to do, so we
+assign different weights:
+<<>>=
+tkgrid.columnconfigure(lf, 0, weight=1)
+tkgrid.columnconfigure(lf, 1, weight=10)
+tkgrid.columnconfigure(lf, 2, weight=1)
+tkgrid.columnconfigure(lf, 1, weight=10)
 @ 
 
 
@@ -152,7 +165,7 @@ fCombo <-  ttkcombobox(lf, values=getTwoLevelFactor(), textvariable=e$f)
 tkgrid(fCombo, row=1, column=3, sticky="ew", padx=2)
 @ 
 
-We jump ahead and use a \constructor{ttkentry} widget for the user to specify
+We use a \constructor{ttkentry} widget (Section~\ref{sec:tcltk:entry-widgets}) for the user to specify
 a mean. For this purpose, the use is straightforward.
 <<mu>>=
 putLabel(lf, "mu:", 2, 0)
@@ -185,32 +198,26 @@ putLabel(lf, "conf.level:", 3, 2)
 confFrame <- ttkframe(lf)
 tkgrid(confFrame, row=3, column=3, columnspan=2, 
        sticky="ew", padx=2)
+##
 confScale <- ttkscale(confFrame, from=75, to=100, 
                      variable=e$conf.level)
-tkpack(confScale, expand=TRUE, fill="y", side="left")
-
 confSpin <- tkspinbox(confFrame, from=75, to=100, increment=1, 
                      textvariable=e$conf.level, width=5)
+##
+tkpack(confScale, expand=TRUE, fill="y", side="left")
 tkpack(confSpin, side="left")
 @ 
 
-A checkbox is used to set the binary variable for \code{var.equal}
+A checkbox is used to collect the logical value for \code{var.equal}:
 <<>>=
 putLabel(lf, "var.equal:", 4, 0)
 veCheck <- ttkcheckbutton(lf, variable=e$var.equal)
 tkgrid(veCheck, row=4, column=1, stick="w", padx=2)
 @ 
 
-When assigning grid weights, we don't want the labels (columns 0 and 2) to expand the same way we want the other columns to do, so we assign different weights.
-<<>>=
-tkgrid.columnconfigure(lf, 0, weight=1)
-tkgrid.columnconfigure(lf, 1, weight=10)
-tkgrid.columnconfigure(lf, 2, weight=1)
-tkgrid.columnconfigure(lf, 1, weight=10)
-@ 
 
 The dialog has standard cancel and ok buttons.
-<<>>=
+<<results=hide>>=
 bf <- ttkframe(f)
 cancel <- ttkbutton(bf, text="cancel")
 ok <- ttkbutton(bf, text="ok")
@@ -218,9 +225,9 @@ ok <- ttkbutton(bf, text="ok")
 tkpack(bf, fill="x", padx=5, pady=5)
 tkpack(ttklabel(bf, text=" "), expand=TRUE, fill="y", 
        side="left")                     # add a spring
-tkpack(cancel, padx=6, side="left")
-tkpack(ok, padx=6, side="left")
+sapply(list(cancel, ok), tkpack, side="left", padx=6)
 @ 
+%
 
 For the \code{ok} button we want to gather the values and run the
 function. The \code{runTTest} function does this.  We configure both
@@ -249,7 +256,7 @@ updateUI <- function() {
   }
 
   if(dfName == "") {
-    ## 3 ways to disable needed !
+    ## 3 ways to disable needed!!
     x <- list(xCombo, fCombo, muCombo,  confScale, veCheck, ok)
     sapply(x, function(W) tcl(W, "state", "disabled"))
     sapply(as.character(tkwinfo("children", rbFrame)), 

@@ -1,15 +1,18 @@
 This relatively involved example~\footnote{The idea for the example
   code originated with \url{http://wiki.tcl.tk/416}} shows several
 different uses of the event framework to implement drag and drop
-behavior between two widgets. In \pkg{tcltk} much more work is
-involved with drag and drop, than with \pkg{RGtk2} and \pkg{qtbase}. Steps are needed to
-make one widget a drop source, and other steps are needed to make the
-other widget a drop target.
+behavior between two widgets. It certainly may be skipped on first reading.
 
-The basic idea is that when a value is being dragged, virtual events
-are generated for the widget the cursor is over. If that widget has
-callbacks bound to these events, then the drag and drop can be
-processed.
+
+In \pkg{tcltk} much more work is involved with drag and drop, than
+with \pkg{RGtk2} and \pkg{qtbase}, as there are no predefined methods
+to facilitate the process. 
+
+Here we go through the steps needed to make one widget a drop source,
+and the other a drop target The basic idea is that when a value is
+being dragged, virtual events are generated for the widget the cursor
+is over. If that widget has callbacks listening to these events, then the
+drag and drop can be processed.
 
 <<echo=FALSE>>=
 ## ex-tcltk-dnd
@@ -19,9 +22,8 @@ library(tcltk)
 @ 
 
 To begin, we create a simple GUI to hold three widgets. We use buttons
-for drag and drop, but only because we haven't yet discussed more
-natural widgets such as the text widgets. 
-
+for drag and drop, but only for convenience. Other widgets would be
+used in a real application.
 <<>>=
 w <- tktoplevel()
 bDrag <- ttkbutton(w, text="Drag me")
@@ -30,7 +32,7 @@ tkpack(bDrag)
 tkpack(ttklabel(w, text="Drag over me"))
 tkpack(bDrop)
 @ 
-
+%
 
 Before beginning, we define three global variables that can be shared
 among drop sources to keep track of the drag and drop state. 
@@ -110,7 +112,7 @@ tkbind(w, "<B1-Motion>", function(W, X, Y) {
   ## generate drag leave if we left last widget
   if(as.logical(tkwinfo("exists", w)) &&
      nchar(as.character(w)) > 0 && 
-     length(.lastWidgetID) > 0          # if not tcltk character(0) 
+     length(.lastWidgetID) > 0          # if not character(0) 
      ) {
     if(as.character(w) != .lastWidgetID) 
       tkevent.generate(.lastWidgetID, "<<DragLeave>>")

@@ -1,3 +1,7 @@
+As previously mentioned, there is no native calendar widget in
+\pkg{tcltk}. This example shows how one can use the validation
+framework for entry widgets to check that user-entered dates conform
+to an expected format.
 <<echo=FALSE>>=
 ## Example of using validation to adjust the date
 ## in case a user doesn't use desired format
@@ -34,8 +38,8 @@
 
 ## If -validatecommand is empty (the default), validation always succeeds.
 @ 
-
-
+%%%
+%
 <<echo=FALSE>>=
 ## test of validation command
 ## tricky bit is that validation commands must return TRUE or FALSE
@@ -43,8 +47,7 @@
 
 library(tcltk)
 @ 
-
-As previously mentioned, there is no native calendar widget in \pkg{tcltk}. This example shows how one can use the validation framework for entry widgets to check that user-entered dates conform to an expected format. 
+%
 
 %% The entry widget man page has many details.
 Validation happens in a few steps.  A validation command is assigned
@@ -56,7 +59,7 @@ focus or the enter key is pressed.
 
 When a validation command is called it should check
 whether the current state of the entry widget is valid or not. If
-valid, it returns a value of \code{TRUE} and \code{FALSE}
+valid, it returns a value of \code{TRUE}, \code{FALSE}
 otherwise. These need to be \TCL\/ Boolean values, so in the following,
 the command \code{tcl("eval","TRUE")} (or \code{tcl("eval", "FALSE")}) is used. If
 the validation command returns \code{FALSE}, then a subsequent call to
@@ -116,8 +119,8 @@ indicateInvalidDate <- function(W) {
 <<notShown, echo=FALSE>>=
 ## A simple GUI to show the entry widget.
 w <- tktoplevel(); tkwm.title(w,"Validation of date example")
-f <- ttkframe(w, padding=c(3,3,3,12)); tkpack(f, expand=TRUE, fill="both")
-tkpack(ttklabel(f, text="Enter a date mm/dd/yy"), side="left")
+f <- ttkframe(w, padding=c(3,3,12,12)); tkpack(f, expand=TRUE, fill="both")
+tkpack(ttklabel(f, text="Enter a date (mm/dd/yy):"), side="left", padx=2)
 @ 
 
 The \argument{validate}{ttkentry} argument is used to specify when the
@@ -129,12 +132,10 @@ widget receives the focus; \qcode{focusout} for when it loses focus;
 previous. We use \qcode{focusout} below, so also give a button widget
 so that the focus can be set elsewhere. 
 <<entryWidgetWithValidation>>=
-e <- ttkentry(f, validate="focusout",   # f some parent
+e <- ttkentry(f, validate="focusout", # f some parent
               validatecommand=isValidDate,
               invalidcommand=indicateInvalidDate)
-tkpack(e, side="left")
-
-b <- ttkbutton(f,text="click")       # something to focus on
-tkpack(b, side="bottom")
+b <- ttkbutton(f,text="click")        # something to focus on
+sapply(list(e, b), tkpack, side="left", padx=2)
 @ 
               

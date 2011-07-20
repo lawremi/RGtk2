@@ -10,7 +10,7 @@ addScrollbars <- function(parent, widget) {
   xscr <- ttkscrollbar(parent, orient="horizontal",
                        command=function(...) tkxview(widget, ...))
   yscr <- ttkscrollbar(parent, orient="vertical",
-                       command=function(...) tkxview(widget, ...))
+                       command=function(...) tkyview(widget, ...))
 
   tkconfigure(widget,
               xscrollcommand=function(...) tkset(xscr,...),
@@ -53,7 +53,7 @@ Our GUI is primitive, with just a treeview instance added.
 <<notShown, echo=FALSE>>=
 w <- tktoplevel()
 tkwm.title(w, "Treeview example with XML")
-f <- ttkframe(w, padding=c(3,3,3,12))
+f <- ttkframe(w, padding=c(3,3,12,12))
 tkpack(f, expand=TRUE, fill="both")
 @ 
 <<>>=

@@ -1,12 +1,31 @@
 This example shows how a text buffer can be used to display the output
-of \R\/ commands, using an approach modified from \pkg{Sweave}.
+of \R\/ commands, using an approach modified from \pkg{Sweave}.  We
+envision this as a piece of a larger GUI which generates the commands
+to evaluate. For this example though, we make a simple GUI
+(Figure~\ref{fig:tcltk-text-buffer-commands}).
 
-We begin by defining tags for formatting purposes.
+\begin{figure}
+  \centering
+  \includegraphics[width=.8\textwidth]{fig-tcltk-text-buffer-commands.png}
+  \caption{A text widget used to show formatted \R{} commands and their output}
+  \label{fig:tcltk-text-buffer-commands}
+\end{figure}
+
+<<makeGUI>>=
+w <- tktoplevel(); tkwm.title(w, "Text buffer example")
+f <- ttkframe(w, padding=c(3,3,12,12))
+tkpack(f, expand=TRUE, fill="both")
+txt <- tktext(f, width=80, height = 24)   # default size
+addScrollbars(f, txt)
+@ 
+ 
+To distinguish between commands and their output we define the
+following tags:
 <<>>=
-tktag.configure(t, "commandTag", foreground="blue", 
+tktag.configure(txt, "commandTag", foreground="blue", 
                 font="courier 12 italic")
-tktag.configure(t, "outputTag", font="courier 12")
-tktag.configure(t, "errorTag", foreground="red", 
+tktag.configure(txt, "outputTag", font="courier 12")
+tktag.configure(txt, "errorTag", foreground="red", 
                 font="courier 12 bold")
 @ 
 
@@ -15,7 +34,7 @@ then inserting the values into the text buffer, using the different
 markup tags specified above to indicate commands from output.
 
 <<>>=
-evalCmdChunk <- function(t, cmds) {
+evalCmdChunk <- function(txt, cmds) {
   
   cmdChunks <- try(parse(text=cmds), silent=TRUE)
   if(inherits(cmdChunks,"try-error")) {
@@ -30,13 +49,13 @@ evalCmdChunk <- function(t, cmds) {
             paste(dcmd, collapse=paste("\n", 
                           getOption("continue"), sep="")),
             sep="", collapse="")
-    tkinsert(t, "end", command, "commandTag")
-    tkinsert(t, "end","\n")
+    tkinsert(txt, "end", command, "commandTag")
+    tkinsert(txt, "end","\n")
     ## output, should check for errors in eval!
     output <- capture.output(eval(cmd, envir=.GlobalEnv))
     output <- paste(output, collapse="\n")
-    tkinsert(t, "end", output, "outputTag")
-    tkinsert(t, "end","\n")
+    tkinsert(txt, "end", output, "outputTag")
+    tkinsert(txt, "end","\n")
   }
 }
 @ 
@@ -47,7 +66,7 @@ addScrollbars <- function(parent, widget) {
   xscr <- ttkscrollbar(parent, orient="horizontal",
                        command=function(...) tkxview(widget, ...))
   yscr <- ttkscrollbar(parent, orient="vertical",
-                       command=function(...) tkxview(widget, ...))
+                       command=function(...) tkyview(widget, ...))
 
   tkconfigure(widget,
               xscrollcommand=function(...) tkset(xscr,...),
@@ -61,18 +80,8 @@ addScrollbars <- function(parent, widget) {
 }
 @
 
-We envision this as a piece of a larger GUI which generates the
-commands to evaluate. For this example though, we make a simple GUI.
 
-<<makeGUI>>=
-w <- tktoplevel(); tkwm.title(w, "Text buffer example")
-f <- ttkframe(w, padding=c(3,3,3,12))
-tkpack(f, expand=TRUE, fill="both")
-t <- tktext(f, width=80, height = 24)   # default size
-addScrollbars(f, t)
-@ 
- 
 This is how it can be used.
 <<TryIt>>=    
-evalCmdChunk(t, "2 + 2; lm(mpg ~ wt, data=mtcars)")
+evalCmdChunk(txt, "2 + 2; lm(mpg ~ wt, data=mtcars)")
 @ 

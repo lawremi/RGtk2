@@ -95,7 +95,7 @@ indicateInvalidDate <- function(W) {
 Now we define a simple GUI to show the entry widget.
 <<>>=
 w <- tktoplevel(); tkwm.title(w, "Validation of date example")
-f <- ttkframe(w, padding=c(3,3,3,12)); tkpack(f, expand=TRUE, fill="both")
+f <- ttkframe(w, padding=c(3,3,12,12)); tkpack(f, expand=TRUE, fill="both")
 tkpack(ttklabel(f, text="Enter a date mm/dd/yy"), side="left")
 @ 
 

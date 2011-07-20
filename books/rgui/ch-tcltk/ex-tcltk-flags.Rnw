@@ -48,7 +48,7 @@ This convenience function packs a frame into a top-level window.
 makeTopLevel <- function(country) {
   w <- tktoplevel()
   tkwm.title(w, country)
-  f <- ttkframe(w, padding=c(3,3,3,12))
+  f <- ttkframe(w, padding=c(3,3,12,12))
   tkpack(f, expand=TRUE, fill="both")
   return(list(w=w, f= f, country=country))
 }

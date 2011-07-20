@@ -7,9 +7,8 @@ library(tcltk)
 <<echo=FALSE>>=
 w <- tktoplevel()
 tkwm.title(w, "Examples using pack as a geometry manager")
-f <- ttkframe(w, padding=c(3,3,3,12))
+f <- ttkframe(w, padding=c(3,3,12,12))
 tkpack(f, expand=TRUE, fill="both")
-
 @ 
 
 This example shows how one can pack in action buttons, such as when a
@@ -34,7 +33,7 @@ f1 <- ttklabelframe(f, text="plain vanilla")
 tkpack(f1, expand=TRUE, fill="x")
 l <- function(f) 
   list(ttkbutton(f, text="cancel"), ttkbutton(f, text="ok"))
-sapply(l(f1), function(i) tkpack(i, side="left"))
+sapply(l(f1), tkpack, side="left")
 @ 
 
 Typically the buttons are right justified. One way to do this is to
@@ -43,9 +42,9 @@ how to use a blank expanding label to take up the space on the left.
 <<moveRight, results=hide>>=
 f2 <- ttklabelframe(f, text="push to right")
 tkpack(f2, expand=TRUE, fill="x")
-tkpack(ttklabel(f2, text=" "), expand=TRUE, fill="x", 
-       side="left")
-sapply(l(f2), function(i) tkpack(i, side="left"))
+tkpack(ttklabel(f2, text=" "), 
+       expand=TRUE, fill="x", side="left")
+sapply(l(f2), tkpack, side="left")
 @ 
 
 Finally, we add in some padding to conform to Apple's design specification that such
@@ -55,5 +54,5 @@ f3 <- ttklabelframe(f, text="push to right with space")
 tkpack(f3, expand=TRUE, fill="x")
 tkpack(ttklabel(f3, text=" "), expand=TRUE, fill="x", 
        side="left")
-sapply(l(f3), function(i) tkpack(i, side="left", padx=6))
+sapply(l(f3), tkpack, side="left", padx=6)
 @ 

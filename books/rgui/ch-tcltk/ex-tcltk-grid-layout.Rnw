@@ -36,7 +36,7 @@ week.of.month <- function(year, month, day) {
 
 \begin{figure}
   \centering
-  \includegraphics[width=.4\textwidth]{fig-tcltk-grid-calendar}
+  \includegraphics[width=.35\textwidth]{fig-tcltk-grid-calendar}
   \caption{A monthly calendar illustrating various layouts.}
   \label{fig:qt-gridlayout-calendar}
 \end{figure}

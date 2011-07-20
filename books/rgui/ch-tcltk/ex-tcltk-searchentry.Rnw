@@ -104,7 +104,8 @@ At this point, we can set up a basic GUI to illustrate the use. First a toplevel
 <<>>=
 w <- tktoplevel()
 tkwm.title(w, "Search box example")
-f <- ttkframe(w, padding=c(3,3,3,12)); tkpack(f, expand=TRUE, fill="both")
+f <- ttkframe(w, padding=c(3,3,12,12))
+tkpack(f, expand=TRUE, fill="both")
 @ 
 
 The entry widget has the style set through its \argument{style}{ttkentry} argument, as follows.

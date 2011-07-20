@@ -1,0 +1,600 @@
+%% Make a subset filter for tcltk
+%% Liviu Androvic
+%
+
+This longish example creates a framework for showing a list of similar
+items, whose length is uncertain. There are several uses of such a framework. For example, a GUI
+for formulas might have items given by terms between \code{+} values,
+or a GUI for \pkg{ggplot2} might have items which represent individual
+layers of a plot. Here we use the framework to create a dialog for the
+\argument{subset}{subset} argument of the \function{subset}
+function.~\footnote{The author's would like to thank Liviu Andronic
+  ideas related to this example.} That argument
+combines an arbitrary number of statements that produce logical values
+to produce a logical index for a data frame. For our framework, each
+item will produce one of these logical statements, and our list will
+hold the items.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.8\textwidth]{fig-tcltk-subset-filter.png}
+  \caption{A dialog for subsetting a data frame}
+  \label{fig:tcltk-subset-filter}
+\end{figure}
+%
+
+To implement this, we first create a \class{FilterList} class. Our
+class has a few properties: \code{df} to hold the data frame; \code{l}
+to hold the list items; \code{id} to hold an internal counter to
+reference the list items by; and \code{frame} to hold a
+\code{ttkframe} instance, the parent container for each item.
+
+<<echo=FALSE>>=
+library(tcltk)
+@ 
+%% Filter list reason
+%% properties
+<<FilterList>>=
+setOldClass(c("tkwin","tclVar"))
+FilterList <- setRefClass("FilterList",
+                          fields=list(
+                            df="data.frame",
+                            l="list",
+                            id="integer",
+                            frame="tkwin" 
+                            ))
+@ 
+%% could pass back enc_frame so that we can pack or grid, but we avoid this.
+%% add frame buffer so that we can ensure tkpack is okay The frame is where new items
+%% will be placed.
+
+The main interface for a filter list is limited. For management, we
+define a method to \meth{add} a list item and one to \meth{remove} a
+list item. We also need a method (\meth{get\_value}) to analyze the
+items and produce a logical vector for subsetting the data frame with.
+Beyond that we have methods to setup the GUI, a \meth{preview} method
+to see the current subsetting, and a method to select a variable from
+the data frame.
+
+
+First, we define a method to setup our GUI. The \meth{initialize}
+method will be passed a parent container. Here we pack in a frame
+(\code{enc\_frame}) to hold the pieces of our GUI.~\footnote{This
+  means that \function{tkpack} needs to be used to manage this parent.
+  An alternative would be to pass back the enclosing frame object so
+  that it can be managed as the user wants.} These consist of a frame
+to hold the items and a frame to hold the buttons. We use the
+\function{tkgrid} layout manager which allows us to grow the top frame
+as needed, yet have the buttons receive the additional expanding
+space.
+
+<<FilterListMethods>>=
+FilterList$methods(
+          setup_gui = function(parent) {
+            enc_frame <- ttkframe(parent, padding=5)
+            tkpack(enc_frame, expand=TRUE, fill="both")
+            frame <<- ttkframe(enc_frame)
+            button_frame <- ttkframe(enc_frame)
+            ## use grid to manage these
+            tkgrid(frame, sticky="news")
+            tkgrid(button_frame, sticky="new")
+            tkgrid.rowconfigure(enc_frame, 1, weight=1)
+            tkgrid.columnconfigure(enc_frame, 0, weight=1)
+            ##
+            addBtn <- 
+              ttkbutton(button_frame, text="Add", 
+                        command=function() .self$add())
+            previewBtn <- 
+              ttkbutton(button_frame, text="Preview", 
+                        command=function() .self$preview())
+            ##
+            sapply(list(addBtn, previewBtn), tkpack, 
+                   side="left", padx=5)
+          })
+@
+
+The \meth{initialize} method simply initializes our fields and then
+sets up the GUI. As the point of this is to filter a data frame, the
+\code{df} argument has no default value and must be specified.
+
+%% initialize sets the fields, setsup the GUI then returns
+<<FilterListInitialize>>=
+FilterList$methods(
+           initialize=function(df, parent, ...) {
+             initFields(df=df, l=list(), id=0)
+             setup_gui(parent)
+             callSuper(...)
+           })
+@ 
+
+Before showing a filter, we force the user to select a variable to
+filter by. This selection involves choosing one from possibly many. A
+table is an excellent choice for this, as it gracefully handles many
+values. This convenience method provides a table selection widget in a
+modal dialog window. Selection happens when a user selects one of the
+rows of the table.
+
+%% This helper function uses a table to select a single value from possible many
+<<FilterListSelectVariable>>=
+FilterList$methods(
+           select_variable=function() {
+             "Return a variable name from the data frame"
+             x <- sapply(df, function(i) class(i)[1])
+             m <- cbind(Variables=names(x), Type=x)
+             w <- tktoplevel()
+             f <- ttkframe(w, padding=c(3,3,3,12))
+             tkpack(f, expand=TRUE, fill="both")
+             ##
+             a <- populate_rectangular_treeview(f, m)
+             tkconfigure(a$frame, width=300, height=200)
+             tkpack(a$frame, expand=TRUE, fill="both")
+             ## select a value, store in out
+             out <- NA
+             tkbind(a$tr, "<<TreeviewSelect>>", function(W) {
+               sel <- tcl(W, "selection")
+               val <- tcl(W, "item", sel, "-values")
+               assign("out", as.character(val)[1], inherits=TRUE)
+               tkdestroy(w)
+             })
+             tkwait.window(w)
+             return(out)
+           })
+@ 
+%% our main method to add a new variable. We can pass in a name, but
+%% not from our GUI, where we use the just-defined select variable method
+%% our new items will come from the newFilterItem yet to be defined. We see we pass in the values (for S3 dispatch), their name, a unique id and a reference to the filter list.
+
+%% Comment, GUI might look nicer if we had use tkgrid here, but the add/remove is much easier using tkpack.
+
+Our main add method has a few tasks: to select a variable, to create a
+new filter item, create a container,  do the internal bookkeeping, and finally to call
+the items \code{make\_gui} method. The \function{newFilterItem} call
+is an S3 generic, whose dispatch finds the correct filter item class.
+<<FilterListAdd>>=
+FilterList$methods(
+           add=function(varname, ...) {
+             if(missing(varname)) 
+               varname <- select_variable()
+             x <- get(varname, df)
+             ## new item
+             id <<- id + 1
+             item <- newFilterItem(x, varname, id, .self)
+             ## make frame
+             enc_frame <- ttkframe(frame)
+             tkpack(enc_frame, expand=TRUE, fill="both", pady=2)
+             l[[as.character(id)]] <<- list(frame=enc_frame, 
+                                            item=item)
+             item$make_gui(enc_frame)
+           })
+@ 
+%
+
+To remove an object requires us to remove it from our internal list
+and from the GUI. We use \function{tkpack} to manage the items, so
+\function{tkpack.forget} is used to remove the item. In the \code{add}
+method we store the enclosing frame to make this task easy.
+%% Remove an object means to remove from the GUI and to remove from the list. We use tkpack.forget for this.
+<<FilterListRemove>>=
+FilterList$methods(
+           remove=function(id_obj, ...) {
+             "Remove. id is character or item object"
+             if(!is.character(id_obj))
+               id_obj <- id_obj$id
+             tkpack.forget(l[[id_obj]]$frame)
+             l[[id_obj]] <<- NULL
+           })
+@ 
+%
+
+%% we need a method to query all the items, combine their values and
+%% return that. Here is a simply way where we apply all to each
+%% value. One could get fancier here by allowing the user to specify
+%% and or or.
+
+Here we query all the items and combine them to create a logical index
+vector. The item interface described below will provide its own
+\meth{get\_value} method so this task is a matter of combining the
+results of each of those calls. We use \code{all} here, but if one
+wanted to extend this GUI, one area would be to allow the user to
+specify ``and'' or ``or'' between each item.
+<<FilterListGetValue>>=
+FilterList$methods(
+           get_value = function() {
+             "Return logical value for all filter items"
+             if(length(l) == 0)
+               return(rep(TRUE, length=nrow(df)))
+             ##
+             out <- sapply(l, function(i) i$item$get_value())
+             out[is.na(out)] <- FALSE   ## coerce NA to FALSE
+             apply(out, 1, "all")
+           })
+@ 
+
+The \meth{get\_value} method makes it easy to provide a \meth{preview}
+method to show the current state of the subsetting. Basically we just
+need to create a character matrix that we want to display and then use
+our previously defined \function{populate\_rectangular\_treeview} function.
+
+%% A simple preview to show the currently selected values. There is a bit of work here to convert
+%% the values from a data.frame into a matrix.
+<<>>=
+FilterList$methods(
+           preview = function() {
+             "Preview data frame"
+             ind <- get_value()
+             if(!any(ind)) {
+               message("No matches")
+               return()
+             }
+             ## coerce to character
+             m <- fl$df[ind,]
+             for(i in seq_along(m)) m[,i] <- as.character(m[,i])
+             ##
+             w <- tktoplevel()
+             f <- ttkframe(w, padding=c(3,3,3,12))
+             tkpack(f, expand=TRUE, fill="both")
+             a <- populate_rectangular_treeview(f, m)
+             tkconfigure(a$frame, width=400, height=300)
+             tkpack(a$frame, expand=TRUE, fill="both")
+             ##
+             btn <- ttkbutton(f, text="dismiss", 
+                              command=function() tkdestroy(w))
+             tkpack(btn, anchor="sw")
+             tkwait.window(w)
+           })
+@ 
+
+To use this new class, we would integrate it into a dialog, the basic
+call needed would be something along the lines of the following:
+<<eval=FALSE>>=
+w <- tktoplevel()
+require(MASS)
+flist <- FilterList$new(df=Cars93, parent=w)
+@ 
+%
+But before that will work, we need to define the filter item classes.
+
+
+\paragraph{Filter items}
+As mentioned, we use an S3 generic to select the appropriate filter
+item. These are still be be defined, but we show the default choice.
+
+%% S3 method to pick correct filter
+<<newFilterItem>>=
+newFilterItem <- function(x, nm=deparse(substitute(x)), id, 
+                          list_ref) UseMethod("newFilterItem")
+newFilterItem.default <- function(x, nm=deparse(substitute(x)), 
+                                  id, list_ref) 
+  FilterItemNumeric$new(x=x, nm=nm, id=id, list_ref=list_ref)
+@ 
+<<echo=FALSE>>=
+## not shown
+newFilterItem.character <- function(x,  nm=deparse(substitute(x)), id, list_ref) {
+  FilterItemCharacter$new(x=x, nm=nm, id=id, list_ref=list_ref)
+}
+
+newFilterItem.factor <- function(x,  nm=deparse(substitute(x)), id, list_ref) {
+  newFilterItem(as.character(x), nm, id, list_ref)
+}
+@ 
+
+A filter item needs to produce a logical vector used for indexing. At
+a minimum we require a few properties: \code{x} to store the
+variable's data that we are considering; \code{nm} to store the name
+of this variable; \code{id} to store the id of where this item is
+stored in the filter list; and \code{list\_ref} to store a reference
+to the filter list. 
+
+
+%% Basic interface for a filter item. the initialize method sets
+%% values from the properties. The get_value method is called by the
+%% Filter list's get_value method and must be defined. Remove simply
+%% calls back into the list's remove item. The make_gui method here
+%% just adds a remove button, the subclass can use this through a
+%% callSuper call.
+<<FilterItem>>=
+FilterItem <- setRefClass("FilterItem",
+                          fields=list(
+                            x="ANY",
+                            nm = "character",
+                            id = "character",
+                            list_ref="ANY"
+                            ))
+@ 
+
+The filter item interface is not complicated. The most important method
+is \code{get\_value} to return a logical variable. This was called by
+the filter list's similarly named \code{get\_value} method. As well,
+we call the item's \meth{make\_gui} method in the filter list. The
+last method is simply a \code{remove} method which calls back up into
+\meth{remove} method of the item's parent filter list.
+
+%% THe main interface for a filter item is defined below. The
+%% FilterList calls its get_value method, the remove method simply
+%% calls back into the parent, and the make_gui method sets up the
+%% grapchial interface. This parent method simply adds the remove
+%% button.
+<<FilterItemInitialize>>=
+FilterItem$methods(
+           initialize=function(...) {
+             initFields(...)
+             .self
+           },
+           get_value = function() {
+             "Return logical value of length x"
+             stop("Must be subclassed")
+           },
+           remove=function() list_ref$remove(.self),
+           make_gui = function(parent, ...) {
+             "Set up GUI, including defining widgets"
+             removeBtn <- ttkbutton(parent, text="remove",
+                                    command=function() {
+                                      .self$remove()
+                                    })
+             tkpack(removeBtn, side="right")
+           })
+@ 
+
+The interesting things happen in the subclasses. For numeric values we
+add two new properties to help with our \meth{get\_value} method: one
+to store an inequality operator and one to store an expression the
+user can enter.
+%% classes
+%% this has wo properties an inequality and a value to compare with. 
+<<FilterItemNumeric>>=
+FilterItemNumeric <- setRefClass("FilterItemNumeric",
+                                 contains="FilterItem",
+                                 fields=list(
+                                   ineqVar="tclVar",
+                                   valVar="tclVar"
+                                   ))
+@ 
+%
+
+With these two properties, our \meth{get\_value} method becomes a
+matter of pasting together an expression then evaluating it. We
+evaluate this within the data frame so that \code{valVar} could use
+variable names from the data framed. 
+<<FilterItemNumericGetValue>>=
+FilterItemNumeric$methods(
+          get_value = function() {
+            xpr <- paste(nm, tclvalue(ineqVar), tclvalue(valVar))
+            eval(parse(text=xpr), envir=list_ref$df, parent.frame())
+          })
+
+@ 
+%
+
+Our GUI has three widgets a label, a combobox for the inequality
+and an entry widget to put in values. One could simplify this, say
+wth a slider to slide through the possible values, but using an
+entry widget gives more flexibility in the specification. We see that
+we simply pack these widgets into the parent that is passed in to the method call.
+<<FilterItemNumericMakeGui>>=
+FilterItemNumeric$methods(
+          make_gui = function(parent) {
+            ## standard width for label
+            labWidth <- max(sapply(names(list_ref$df), nchar))
+            lab <- ttklabel(parent, text=nm, width=labWidth)
+            ## ineq combo
+            vals <- c(">=", ">", "==", "!=", "<", "<=")
+            ineqVar <<- tclVar("<=")
+            ineq <- ttkcombobox(parent, values=vals, 
+                                textvariable=ineqVar, width=4)
+            ## entry
+            valVar <<- tclVar(max(x, na.rm=TRUE))
+            val <- ttkentry(parent, textvariable=valVar)
+            ##
+            sapply(list(lab, ineq, val), tkpack, side="left",
+                   padx=5)
+            callSuper(parent)
+          })
+
+@ 
+%
+
+
+The character selection class, also used with factors, is more
+involved. Our \code{get\_value} method is basically \code{x \%in\%
+  cur\_vals}, where \code{cur\_vals} is a selection from all possible
+values.  We might want to use a group of checkboxes here, but that can
+get unwieldly when there are more than a handful of
+choices.~\footnote{A table of checkboxes might also be used, but this
+  isn't directly supported by the treeview widget of
+  \pkg{tcltk}. Although, for the intrepid, one could set the image
+  attribute for each row to show a check or non-check depending on the
+  state.} We opt instead for a table selection widget. That can take
+up vertical screen space. To avoid this we use a button which shows
+the currently selected values, that can be clicked to open a dialog to
+adjust these values. To keep a consistent horizontal size to these
+buttons we ``ellipsize'' the button's text in the \code{ellipsize}
+method. Some graphical toolkits, but not \Tk, have built-in
+``ellipsize'' methods which prove useful when controlling space
+allocations when translations are involved, as these can vary widely
+in the number of characters needed to display.
+
+For our new subclass, we have four additional properties, the tree
+view for selection, the button, and vectors to store the possible
+values and the currently selected values.
+<<FilterItemCharacter>>=
+FilterItemCharacter <- 
+  setRefClass("FilterItemCharacter",
+              contains="FilterItem",
+              fields=list(
+                tr="tkwin",
+                btn="tkwin",
+                poss_vals="character",
+                cur_vals="character"
+                ))
+@ 
+
+As mentioned, our \meth{get\_value} method is easy to define:
+<<>>=
+FilterItemCharacter$methods(
+          get_value = function() {
+            x %in% cur_vals
+          })
+@ 
+
+The main work is in our \meth{select\_values\_dialog}, defined
+below. We use the following helper function to preselect the currently
+selected values when the dialog is opened.
+<<sel_by_name>>=
+sel_by_name <- function(tr, nms) {
+  all_ind <- as.character(tcl(tr, "children", ""))
+  vals <- sapply(all_ind, function(i) {
+    as.character(tcl(tr, "item", i, "-values"))
+  })
+  ind <- names(vals[vals %in% nms])
+  sapply(ind, function(i) tcl(tr, "selection", "add", i))
+  sapply(setdiff(all_ind, ind), 
+         function(i) tcl(tr, "selection", "remove", i))
+}
+@ 
+
+This is the main dialog to select values. Here multiple selection is
+achieved by extending the selection through holding the \kbd{shift}
+and \kbd{control} keys while clicking on items.
+
+<<FilterItemCharacterSelectValuesDialog>>=
+FilterItemCharacter$methods(
+          select_values_dialog=function() {
+            w <- tktoplevel()
+            f <- ttkframe(w, padding=c(3,3,12,12))
+            tkpack(f, expand=TRUE, fill="both")
+            tkpack(ttklabel(f, 
+              text="Select your values by extending selection"))
+            ## selection
+            m <- matrix(poss_vals); colnames(m) = "Values"
+            a <- populate_rectangular_treeview(f, m)
+            tkconfigure(a$tr, selectmode="extended")
+            tkconfigure(a$frame, width=200, height=300)
+            tkpack(a$frame, expand=TRUE, fill="both")
+            
+            sel_by_name(a$tr, cur_vals)         # see above
+            
+            tkbind(a$tr, "<<TreeviewSelect>>", function() {
+              ind <- as.character(tcl(a$tr, "selection"))
+              cur <- sapply(ind, function(i) {
+                as.character(tcl(a$tr, "item", i, "-values"))
+              })
+              if(length(cur) == 0)
+                cur <- character(0)
+              cur_vals <<- cur
+            })
+            ## buttons
+            f1 <- ttkframe(f); tkpack(f1)
+            toggleBtn <- ttkbutton(f1, text="toggle", 
+                         command=function() toggle_sel(a$tr))
+            setBtn <- ttkbutton(f1, text="set", 
+                         command=function() tkdestroy(w))
+            sapply(list(toggleBtn, setBtn), tkpack, 
+                   side="left", padx=5)
+            ## make modal
+            tkwait.window(w)
+            tkconfigure(btn, text=ellipsize())
+          })
+@ 
+
+Here is our previously mentioned convenience method to make the button
+size uniform by ``ellipsizing'' the button's label.
+<<FilterItemShortenPoss>>=
+FilterItem$methods(ellipsize = function() {
+            tmp <- paste(cur_vals, collapse=", ")
+            if((N <- nchar(tmp)) > 50)
+              tmp <- sprintf("%s...%s", substr(tmp, 0, 15),
+                             substr(tmp, N-12,N))
+            sprintf("%50s", tmp)
+          })
+@ 
+%
+
+Our main GUI for a character or factor item then has three widgets:
+labels for the name and \code{\%in\%} operator and a button.
+<<FilterItemCharacterMakeGUI>>=
+FilterItemCharacter$methods(make_gui = function(parent) {
+            poss_vals <<- sort(unique(as.character(x)))
+            cur_vals <<- poss_vals
+            ## label, ineq, val
+            labWidth <- max(sapply(names(list_ref$df), nchar))
+            lab <- ttklabel(parent, text=nm, width=labWidth)
+            ##
+            inLab <- ttklabel(parent, text="%in%")
+            ##
+            btn <<- ttkbutton(parent, text=ellipsize(), 
+                              command=.self$select_values_dialog)
+            ##
+            sapply(list(lab, inLab), tkpack,
+                   side="left", padx=5)
+            tkpack(btn, expand=TRUE, fill="x", side="left")
+            callSuper(parent)
+          })
+@ 
+
+<<Helpers, echo=FALSE>>=
+## helpers
+## We don't show these
+addScrollbars <- function(parent, widget) {
+  xscr <- ttkscrollbar(parent, orient="horizontal",
+                       command=function(...) tkxview(widget, ...))
+  yscr <- ttkscrollbar(parent, orient="vertical",
+                       command=function(...) tkyview(widget, ...))
+
+  tkconfigure(widget,
+              xscrollcommand=function(...) tkset(xscr,...),
+              yscrollcommand=function(...) tkset(yscr,...))
+
+  tkgrid(widget, row=0, column=0, sticky="news")
+  tkgrid(yscr,row=0,column=1, sticky="ns")
+  tkgrid(xscr, row=1, column=0, sticky="ew")
+  tkgrid.columnconfigure(parent, 0, weight=1)
+  tkgrid.rowconfigure(parent, 0, weight=1)
+}
+
+populate_rectangular_treeview <- function(parent, m) {
+  enc_frame <- ttkframe(parent)
+  frame <- ttkframe(enc_frame)
+  tkpack(frame, expand=TRUE, fill="both")
+  tr <- ttktreeview(frame,
+                    columns=seq_len(ncol(m)),
+                    show="headings",
+                    selectmode="browse"
+                    )
+  addScrollbars(frame, tr)
+  tkpack.propagate(enc_frame, FALSE)
+
+
+  ## headings,widths
+  charWidth <- as.integer(tclvalue(tcl("font","measure","TkTextFont","0")))
+  sapply(seq_len(ncol(m)), function(i) {
+    tcl(tr, "heading", i, text=colnames(m)[i])
+    tcl(tr, "column", i, width=10 + charWidth*max(apply(m, 2, nchar)))
+  })
+  tcl(tr, "column", ncol(m), stretch=TRUE)
+  
+  ## values
+  if(ncol(m) == 1)  m <- as.matrix(paste("{", m , "}", sep=""))
+  apply(m, 1, function(vals) 
+    tcl(tr, "insert", "", "end", values=vals)
+        )
+  return(list(tr=tr, frame=enc_frame))
+}
+
+   
+
+cur_sel <- function(tr) {
+  ind <- as.character(tcl(tr, "selection"))
+  sapply(ind, function(i) {
+    as.character(tcl(tr, "item", i, "-values"))
+  })
+}
+
+toggle_sel <- function(tr) {
+  children <- as.character(tcl(tr, "children", ""))
+  tcl(tr, "selection", "toggle", children) 
+}
+@ 
+
+We leave it as an exercise for the reader to add a subclass for
+logical variables or date variables.
+
