@@ -5,10 +5,14 @@ trivially generalizable to any list of choices. The user selects a row
 by clicking on a 
 check box produced by a toggle cell renderer.
 
+
+
+
 <<echo=FALSE>>=
 ## example showing how to add a toggle button on left of data display
 library(RGtk2)
 @ 
+
 
 To get the installed packages that can be upgraded, we use some of the
 functions provided by the  \pkg{utils} package.
@@ -29,6 +33,12 @@ call \function{install.packages} to update the selected packages.
 doUpdate <- function(d)  install.packages(d$Package)
 @ 
 
+\begin{figure}
+  \centering
+  \includegraphics[width=.6\textwidth]{fig-RGtk2-add-toggle-to-df.png}
+  \caption{A GUI to select packages using checkboxes rendered with a \class{GtkCellRenererToggle} instance.}
+  \label{fig:RGtk2-add-toggle-to-df}
+\end{figure}
 To display the data frame, we first append a column to the data frame
 to store the selection information and then create a corresponding
 \class{RGtkDataFrame}.

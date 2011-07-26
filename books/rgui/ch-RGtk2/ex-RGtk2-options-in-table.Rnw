@@ -8,6 +8,13 @@ editable cell in a table, rather than a separate text entry
 widget. Tables can provide compact entry areas in a familiar
 interface.
 
+\begin{figure}
+  \centering
+  \includegraphics[width=.5\textwidth]{fig-RGtk2-option-editor.png}
+  \caption{A tree view used to gather arguments for a call to \function{title}.}
+  \label{fig:RGtk2-option-editor}
+\end{figure}
+
 For this example we collect values for arguments to the
 \function{title} function. We first create a data frame with the
 argument name and default value, along with some additional values:
@@ -34,7 +41,7 @@ v <- gtkTreeView(m)
 @ 
 %
 and configure the first column
-<<firstColumn>>=
+<<firstColumn, results=hide>>=
 cr <- gtkCellRendererText()
 cr['background'] <- 'gray80'
 v$insertColumnWithAttributes(position=-1,
@@ -46,7 +53,8 @@ v$insertColumnWithAttributes(position=-1,
 The first column has a special background color which we specify
 below, which indicates that the cells are not editable.
 The second column is editable and has a background color that is
-state dependent and indicates if a cell has been edited:
+state dependent and indicates if a cell has been edited (The
+\code{xlab} column in Figure~\ref{fig:RGtk2-option-editor}):
 <<secondColumn, results=hide>>=
 cr <- gtkCellRendererText()
 cr['editable'] <- TRUE
@@ -95,9 +103,14 @@ here. Instead we add a bit of extra detail by providing a tooltip.
 %% features of R.
 \paragraph{Tooltips}
 For this example, our function has built-in documentation. Below we
-use the \pkg{helpr} function to extract the description for
-each of the arguments. We leave this in a list, \code{descs}, for later
-lookup.  
+use an internal function from the \pkg{helpr} package~\footnote{It is
+  important to note that we are calling internal routines of a package
+  still under active development, which in turn relies on volatile
+  features of R. In general, such practice can lead to maintenance
+  headaches.  The purpose of this example is only to provide a natural
+  demonstration of tooltips on a tree view.} to extract the
+description for each of the arguments. We leave this in a list,
+\code{descs}, for later lookup.
 <<>>=
 require(helpr, quietly=TRUE)
 package <- "graphics"; topic <- "title"
@@ -107,10 +120,7 @@ descs <- rd$params$args
 names(descs) <- sapply(descs, function(i) i$param)
 @ 
 
-It is important to note that we are calling internal routines of a
-package still under active development, which in turn relies on
-volatile features of R. The purpose of this example is only to
-demonstrate tooltips on a tree view.  For many widgets, adding a
+For many widgets, adding a
 tooltip is as easy as calling
 \method{setTooltipText}{GtkWidget}. However, it is more complicated in
 a tree view, as each cell should get a different tip.  To add tooltips

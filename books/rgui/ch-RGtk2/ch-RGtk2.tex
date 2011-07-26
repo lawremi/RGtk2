@@ -151,7 +151,7 @@ interfaces implemented by \class{GtkWidget}:
  gTypeGetInterfaces("GtkWidget")
 \end{Sinput}
 \begin{Soutput}
-[1] "GtkBuildable"        "AtkImplementorIface"
+[1] "AtkImplementorIface" "GtkBuildable"       
 \end{Soutput}
 \end{Schunk}
 
@@ -293,7 +293,7 @@ interfaces it implements:
  interface(window)
 \end{Sinput}
 \begin{Soutput}
-[1] "GtkBuildable"        "AtkImplementorIface"
+[1] "AtkImplementorIface" "GtkBuildable"       
 \end{Soutput}
 \end{Schunk}
 
@@ -385,7 +385,7 @@ the first eight properties listed with:
  head(names(button), n=8)                 # or b$getPropInfo()
 \end{Sinput}
 \begin{Soutput}
-[1] "related-action"        "use-action-appearance"
+[1] "use-action-appearance" "related-action"       
 [3] "user-data"             "name"                 
 [5] "parent"                "width-request"        
 [7] "height-request"        "visible"              
@@ -927,6 +927,7 @@ specified with \code{setPostion}, which takes a value from the
 set to be destroyed with its parent. For example:
 \begin{Schunk}
 \begin{Sinput}
+ ## create a window and a dialog window
  w <- gtkWindow(show=FALSE); w$setTitle("Top level window")
  d <- gtkWindow(show=FALSE); d$setTitle("dialog window")
  d$setTransientFor(w)
@@ -4533,6 +4534,7 @@ the selected indices ($1$-based) and one to indicate if there is a
 selection: 
 \begin{Schunk}
 \begin{Sinput}
+ ## add to the gtkTreeView API for convenience
  gtkTreeViewSelectedIndices <- function(object) {
    paths <- object$getSelection()$getSelectedRows()$retval
    out <- sapply(paths, function(i) {
@@ -5709,14 +5711,14 @@ $retval
 NULL
 
 $start
-<pointer: 0x103b28d90>
+<pointer: 0x105399c50>
 attr(,"interfaces")
 character(0)
 attr(,"class")
 [1] "GtkTextIter" "GBoxed"      "RGtkObject" 
 
 $end
-<pointer: 0x1057ac330>
+<pointer: 0x105407c80>
 attr(,"interfaces")
 character(0)
 attr(,"class")

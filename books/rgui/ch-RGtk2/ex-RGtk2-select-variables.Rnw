@@ -11,25 +11,36 @@ library(RGtk2)
 %% complexity. Sure, the code is a little more verbose now, but it's
 %% probably more readable. The other big change was using one model
 %% and a custom filter.
+%% JV: Cool -- thanks. I use s/mapply to reinforce symmetry
 
 This example shows how to create a GUI for selecting variables from a
 data frame. The GUI is based on two lists. The left one indicates the
 variables that can be selected, and the right shows the variables that
 have been selected. An icon, indicating the variable type, is placed
-next to the variable name. A similar mechanism is part of the SPSS
-model specification GUI of
+next to the variable name (Figure~\ref{fig:RGtk2-select-variables}.) A
+similar mechanism is part of the SPSS model specification GUI of
 Figure~\ref{fig:GUI:spss-11-term-selection}. For illustration purposes
 we use the \code{Cars93} data set.
 <<>>=
 df <- get(data(Cars93, package="MASS"))
 @ 
 
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.8\textwidth]{fig-RGtk2-select-variables}
+  \caption{Illustration of an interface to select one or more
+    variables. An icon is used in the table view to indicate the
+    variable type.}
+  \label{fig:RGtk2-select-variables}
+\end{figure}
+
 First, we render an icon for each variable.  The \code{make\_icon}
 function from the \pkg{ProgGUIinR} package creates an icon as a
 \pkg{grid} object, which we render with \pkg{cairoDevice}:
 <<echo=FALSE>>=
-#library(ProgGUIinR)                     # for make_icon
-source("../ProgGUIInR/R/misc.R")     # for make_icon
+library(ProgGUIinR)                     # for make_icon
+#source("../ProgGUIInR/R/misc.R")     # for make_icon
 @ 
 % 
 <<make_icon>>=
@@ -46,9 +57,9 @@ make_icon_pixmap <- function(x, ...) {
 @ 
 
 The two list views are based on the same underlying data model, which
-contains three columns: the variable name, the icon, and
-whether the variable has been selected. We construct the corresponding
-data frame and wrap it in a \class{RGtkDataFrame}:
+contains three columns: the variable name, the icon, and whether the
+variable has been selected. We construct the corresponding data frame
+and wrap it in a \class{RGtkDataFrame} instance:
 <<model>>=
 mdf <- data.frame(Variables = I(sort(names(df))),
                   icon = I(sapply(df, make_icon_pixmap)),
@@ -75,10 +86,11 @@ need to define a custom visible function that inverts the
 
 Next, we create a view for each filter:
 <<views>>=
-unselectedView <- gtkTreeView(unselectedFilter)
-selectedView <- gtkTreeView(selectedFilter)
-unselectedView$getSelection()$setMode('multiple')
-selectedView$getSelection()$setMode('multiple')
+views <- list()
+views$unselectedView <- gtkTreeView(unselectedFilter)
+views$selectedView <- gtkTreeView(selectedFilter)
+##
+sapply(views, function(i) i$getSelection()$setMode('multiple'))
 @
 
 Each cell needs to display both an icon and a label.  This is achieved
@@ -95,8 +107,8 @@ make_view_column <- function() {
   vc$addAttribute(cr, "text", 0)
   vc
 }
-unselectedView$insertColumn(make_view_column(), 0)
-selectedView$insertColumn(make_view_column(), 0)
+mapply(gtkTreeViewInsertColumn, 
+sapply(views, function(i) i$insertColumn(make_view_column(), 0))
 @ 
 
 For later use we extend the API for a tree view -- one method to find
@@ -105,9 +117,9 @@ selection:
 <<extendAPI>>=
 ## add to the gtkTreeView API for convenience
 gtkTreeViewSelectedIndices <- function(object) {
+  model <- object$getModel()          # Filtered!
   paths <- object$getSelection()$getSelectedRows()$retval
   out <- sapply(paths, function(i) {
-    model <- object$getModel()          # Filtered!
     model$convertPathToChildPath(i)$toString()
   })
   if(length(out) == 0)
@@ -115,7 +127,7 @@ gtkTreeViewSelectedIndices <- function(object) {
   else
     as.numeric(out) + 1                             # 1-based
 }
-#
+## does object have selection?
 gtkTreeViewHasSelection <-
   function(obj) length(obj$selectedIndices()) > 0
 @ 
@@ -124,28 +136,29 @@ Now we create the buttons and connect to the \code{clicked}
 signal. The handler moves the selected values to the other list by
 toggling the \code{selected} variable:
 <<buttons, results=hide>>=
-selectButton <- gtkButton(">")
-unselectButton <- gtkButton("<")
+buttons <- list()
+buttons$unselectButton <- gtkButton("<")
+buttons$selectButton <- gtkButton(">")
 toggleSelectionOnClick <- function(button, view) {
   gSignalConnect(button, "clicked", function (x) {
+    print("clicked")
     ind <- view$selectedIndices()
     model[ind, "selected"] <- !model[ind, "selected"]
   })
 }
-toggleSelectionOnClick(selectButton, unselectedView)
-toggleSelectionOnClick(unselectButton, selectedView)
+mapply(toggleSelectionOnClick, 
+       button=buttons,
+       view=rev(views))
 @ 
 %
 We only want our buttons sensitive if there is a possible move. This
 is determined by the presence of a selection:
 <<sensitiveButtons, results=hide>>=
-selectButton['sensitive'] <- FALSE
-unselectButton['sensitive'] <- FALSE
+sapply(buttons, gtkWidgetSetSensitive, FALSE)
 trackSelection <- function(button, view)
   gSignalConnect(view$getSelection(), "changed", 
     function(x) button['sensitive'] <- view$hasSelection())
-trackSelection(selectButton, unselectedView)
-trackSelection(unselectButton, selectedView)
+mapply(trackSelection, buttons, rev(views))
 @ 
 
 We now layout our GUI using a horizontal box, into which is packed the
@@ -153,28 +166,27 @@ views and a box holding the selection buttons. The views
 will be scrollable, so we place them in scrolled windows:
 <<guiLayout, results=hide>>=
 w <- gtkWindow(show=FALSE)
+w$setTitle("Select variables example")
 w$setDefaultSize(600, 400)
 g <- gtkHBox()
 w$add(g)
-
-selectedScroll <- gtkScrolledWindow()
-selectedScroll$add(selectedView)
-selectedScroll$setPolicy("automatic", "automatic")
-
-unselectedScroll <- gtkScrolledWindow()
-unselectedScroll$add(unselectedView)
-unselectedScroll$setPolicy("automatic", "automatic")
-
+## scrollwindows
+scrolls <- list()
+scrolls$unselectedScroll <- gtkScrolledWindow()
+scrolls$selectedScroll <- gtkScrolledWindow()
+mapply(gtkContainerAdd, object=scrolls, widget=views)
+mapply(gtkScrolledWindowSetPolicy, scrolls, 
+       "automatic", "automatic")
+## buttons
 buttonBox <- gtkVBox()
 centeredBox <- gtkVBox()
 buttonBox$packStart(centeredBox, expand = TRUE, fill = FALSE)
 centeredBox$setSpacing(12)
-centeredBox$packStart(selectButton, expand = FALSE)
-centeredBox$packStart(unselectButton, expand = FALSE)
-
-g$packStart(unselectedScroll, expand=TRUE)
+sapply(buttons, centeredBox$packStart, expand=FALSE)
+##
+g$packStart(scrolls$unselectedScroll, expand=TRUE)
 g$packStart(buttonBox, expand=FALSE)
-g$packStart(selectedScroll, expand=TRUE)
+g$packStart(scrolls$selectedScroll, expand=TRUE)
 @ 
 
 Finally, we show the top-level window:
