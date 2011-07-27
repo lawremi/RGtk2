@@ -94,7 +94,8 @@ useful for confirming the intention of the user before closing the
 window. For example:
 <<gtk-container-window-delete>>=
 gSignalConnect(w, "delete-event", function(event) {
-  gtkMessageDialog(parent=w, flags=0, type="question", buttons=c("yes", "no"),
+  gtkMessageDialog(parent=w, flags=0, type="question", 
+                   buttons=c("yes", "no"),
                    "Are you sure you want to quit?")
   dlg$run() != GtkResponseType["yes"]
 })
@@ -122,7 +123,7 @@ window with which a transient (dialog) window is associated. This
 hints to the window manager that the transient window should be kept on
 top of its parent. The position relative to the parent window can be
 specified with \code{setPostion}, which takes a value from the
-\code{GtkWindowPosition} enumeration. Optionally, a dialog can be
+\gtkenum{GtkWindowPosition} enumeration. Optionally, a dialog can be
 set to be destroyed with its parent. For example:
 <<>>=
 ## create a window and a dialog window
@@ -156,9 +157,9 @@ implements automatic layout in the form of container widgets.
 \subsection{Basics}
 \label{sec:RGtk2:layout:basics}
 
-In \GTK{}, the widget hierarchy is built when children are added to a
-parent container.  In this example, a window is made the parent of a
-label: 
+In \GTK{}, the \iprogram{widget hierarchy}widget hierarchy is built
+when children are added to a parent container.  In this example, a
+window is made the parent of a label:
 <<>>=
 w <- gtkWindow(show=FALSE); w$setTitle("Hello world")
 l <- gtkLabel("Hello world")
@@ -201,7 +202,9 @@ To remove a widget from the screen but not its container, use the
 \method{hide}{gtkWidget} method on the widget. The
 \method{reparent}{gtkWidget} method is a convenience for moving a
 widget between containers that ensures the child is not garbage
-collected during the transition.
+collected during the transition.~\footnote{An object becomes available
+  for garbage collection when it has no references to it, which can
+  happen if it is removed from the parent container.}
 
 \subsection{Widget size negotiation}
 \label{sec:RGtk2:layout:size}
@@ -276,19 +279,19 @@ same for every level in the container hierarchy.
 \subsection{Box containers}
 \label{sec:RGtk2:layout:box}
 
-The most commonly used multi-child container in \GTK\/ is the box,
-\class{GtkBox}, which packs its children as if they were in a
-box. Instances of \class{GtkBox} are constructed by \function{gtkHBox}
-or \function{gtkVBox}.  These produce horizontal or vertical boxes,
-respectively. Each child widget is allocated a cell in the box.  The
-cells are arranged in a single column (\class{GtkVBox}) or row
-(\class{GtkHBox}). This one dimensional stacking is usually all that a
-layout requires. The child widgets can be containers themselves,
-allowing for very flexible layouts. For special cases where some
-widgets need to span multiple rows or columns and align themselves in
-both dimensions, \GTK\/ provides the \class{GtkTable} class, which is
-discussed later.  Many of the principles we discuss in this section
-also apply to \class{GtkTable}.
+The most commonly used multi-child container in \GTK\/ is the box
+(implemented in class \class{GtkBox}) which packs its children as if
+they were in a box. Instances of \class{GtkBox} are constructed by
+\function{gtkHBox} or \function{gtkVBox}.  These produce horizontal or
+vertical boxes, respectively. Each child widget is allocated a cell in
+the box.  The cells are arranged in a single column (\class{GtkVBox})
+or row (\class{GtkHBox}). This one dimensional stacking is usually all
+that a layout requires. The child widgets can be containers
+themselves, allowing for very flexible layouts. For special cases
+where some widgets need to span multiple rows or columns and align
+themselves in both dimensions, \GTK\/ provides the \class{GtkTable}
+class, which is discussed later.  Many of the principles we discuss in
+this section also apply to \class{GtkTable}.
 
 Here we will explain and demonstrate the use of \class{GtkHBox}, the
 general horizontal box layout container. \class{GtkVBox} can be used
@@ -415,7 +418,7 @@ contains several other permutations of the
 \begin{figure}
   \centering
 %%    \includegraphics[angle=90, height=.8\textheight, width=.75\textwidth]{packing.png} 
-  \includegraphics[width=.95\textwidth]{packing.png} 
+  \includegraphics[width=.8\textwidth]{ex-RGtk2-pack-start.png} 
   \caption{Examples of packing widgets into a box container. The top
     row shows no padding, whereas the 2nd and 3rd illustrate the
     difference between \code{padding} (an amount around each child)
@@ -425,6 +428,7 @@ contains several other permutations of the
   \label{fig:RGtk2-pack-start}
 \end{figure}
 
+\paragraph{Padding}
 There are several ways to add space around widgets in a box container.
 The \argument{spacing}{gtkHBox} argument for the constructors
 specifies the amount of space, in pixels, between the cells. This
@@ -439,6 +443,7 @@ value and the two \code{padding} values when the children are added.
 Example~\ref{eg:RGtk2:mac-buttons} provides an example and
 Figure~\ref{fig:RGtk2-pack-start} an illustration.
 
+\paragraph{Positioning}
 The \method{reorderChild}{gtkBox} method reorders the child
 widgets. The new position of the child is specified using 0-based
 indexing. This code will move the third child of \code{g} to the second position:
@@ -548,7 +553,7 @@ expander$add(frame)
 @ 
 %
 Use \function{gtkExpanderNewWithMnemonic} if a mnemonic is desired.
-\code{expanded} property, which can be accessed with
+The \code{expanded} property, which can be accessed with
 \method{getExpanded}{gtkExpander} and
 \method{setExpanded}{gtkExpander}, represents the visible state of the
 widget.  When the \code{expanded} property changes, the
@@ -573,12 +578,12 @@ nb$appendPage(gtkLabel("Page 2"), gtkLabel("Tab 2"))
 %
 A page specification consists of a widget for the page and a widget
 for the tab. Any type of widget is accepted, although a label is
-typically used for the tab.  This allows for more complicated tabs,
+typically used for the tab.  This flexibility allows for more complicated tabs,
 such as a box container with a label and close icon.
 
 The tabs can be positioned on any of the four sides of the notebook;
 this depends on the \property{tab-pos}{gtkNotebook} property, with a value from
-\code{GtkPositionType}: \qcode{left}, \qcode{right}, \qcode{top}, or
+\gtkenum{GtkPositionType}: \qcode{left}, \qcode{right}, \qcode{top}, or
 \qcode{bottom}. By default, the tabs are on top. We move the current ones to the
 bottom:
 <<qt-layout-notebook-pos>>=
@@ -628,6 +633,13 @@ of the tabs for direct navigation.
   and the page through the \code{data} argument, so that the proper
   page can be deleted.
 
+  \begin{figure}
+    \centering
+    \includegraphics[width=.5\textwidth]{fig-RGtk2-notebook-close-buttons.png}
+    \caption{Simple illustration of customized tab in a notebook. These include a close button.}
+    \label{fig:RGtk2-notebook-close-buttons}
+  \end{figure}
+  
 <<>>=
 gtkNotebookInsertPageWithCloseButton <- 
   function(object, child, label.text="", position=-1) {
@@ -646,6 +658,7 @@ gtkNotebookInsertPageWithCloseButton <-
     object$insertPage(child, label, position)
   }
 @ 
+
 
 Here is a simple demonstration of its usage:
 <<results=hide>>=
@@ -677,7 +690,7 @@ Our example will embed an R graphics device in a scrolled window and
 allow the user to zoom in and out and pull on the scroll bars to pan
 the view. First, we create an R graphics device using the
 \pkg{cairoDevice} package
-<<gtk-container-scrolled-device>>=
+<<gtk-container-scrolled-device, results=hide>>=
 library(cairoDevice)
 device <- gtkDrawingArea()
 device$setSizeRequest(600, 400)
@@ -704,9 +717,11 @@ Next, we define a function for scaling the plot:
 <<gtk-container-scrolled-zoom>>=
 zoomPlot <- function(x = 2.0) {
   allocation <- device$getAllocation()$allocation
-  device$setSizeRequest(allocation$width * x, allocation$height * x)
+  device$setSizeRequest(allocation$width * x, 
+                        allocation$height * x)
   updateAdjustment <- function(adj) {
-    adj$setValue(x * adj$getValue() + (x - 1) * adj$getPageSize() / 2)
+    adj$setValue(x * adj$getValue() + 
+                 (x - 1) * adj$getPageSize() / 2)
   }
   updateAdjustment(scrolled$getHadjustment())
   updateAdjustment(scrolled$getVadjustment())
@@ -724,8 +739,8 @@ window, so we to adjust by half the page size after scaling the value.
 We had key press events, so that pressing \kbd{+} zooms in and
 pressing \kbd{-} zooms out:
 <<gtk-container-scrolled-key-press>>=
-gSignalConnect(scrolled, "key-press-event", function(x, event) {
-  key <- event[["keyval"]]
+gSignalConnect(scrolled, "key-press-event", function(x, ev) {
+  key <- ev[["keyval"]]
   if (key == GDK_plus)
     zoomPlot(2.0)
   else if (key == GDK_minus)
@@ -764,9 +779,9 @@ once.
 
 The \constructor{gtkHPaned} and \constructor{gtkVPaned} constructors
 create containers that contain two widgets, arranged horizontally or
-vertically and separated by a handle.  The user may adjust the
-position of the handle to apportion the allocation between the
-widgets. We will demonstrate only the horizontal pane
+vertically and separated by a divider displaying a handle allowing the
+user to adjust the allocation of space between the child
+components. We will demonstrate only the horizontal pane
 \class{GtkHPaned} here, without loss of generality.
 % An example is presented in Example \ref{eg:RGtk2:using-tree-content}. 
 
@@ -815,7 +830,7 @@ is emitted when the gutter position is changed.
 data. The container divides its space into cells of a grid, and a
 child widget may occupy one or more cells. The allocation of space
 within a row or column follows logic similar to that of box
-layouts. The most common use case of a \class{GtkTable} is form
+layouts. The most common use case of a \class{GtkTable} is a form
 layout, which we will demonstrate in our example.
 
 \begin{example}{Dialog layout}{ex-RGtk2-dialog-layout}

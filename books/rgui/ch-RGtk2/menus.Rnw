@@ -287,7 +287,7 @@ duration of the application. This is desirable, as the actions in a
 toolbar are among those most commonly performed. However, care must be
 taken to conserve screen space. The toolbar \textit{style} controls
 whether the tool items display their icons, their text, or both. The
-possible settings are in the \code{GtkToolbarStyle} enumeration. The
+possible settings are in the \gtkenum{GtkToolbarStyle} enumeration. The
 default value is specified by the global \GTK\/ style (theme). Here,
 we override the default to only display images:
 <<rgtk2-menus-toolbar-style>>=

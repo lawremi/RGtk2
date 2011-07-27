@@ -72,7 +72,10 @@ combined with other widgets to form the GUI. For example:
 <<gtk-overview-initial-example>>=
 button <- gtkButton("Click Me")
 button['image'] <- gtkImage(stock = "gtk-apply", size = "button")
-gSignalConnect(button, "clicked", function(x) message("Hello World!"))
+gSignalConnect(button, "clicked", function(x) {
+  message("Hello World!")
+})
+##
 window <- gtkWindow(show = FALSE)
 window$add(button)
 window$showAll()
@@ -94,7 +97,7 @@ widget types. In the parlance of object-oriented programming, each
 type is represented by a \textit{class}.
 
 For specifying the hierarchy, \pkg{GTK+} relies on \pkg{GObject}, a
-\proglang{C} library that implements a class-based, single-inheritance
+\proglang{C} library that implements a \iprogram{classes}class-based, single-inheritance
 object-oriented system. A \pkg{GObject} class encapsulates behaviors
 that all instances of the class share. Every class has at most one
 parent through which it inherits the behaviors of its ancestors. A
@@ -102,7 +105,7 @@ subclass can override some specific inherited behaviors. The interface
 defined by a class consists of constructors, methods, properties,
 and signals. 
 
-The type system supports reflection, so we can, for example, obtain a
+The type system supports \iprogram{reflection}reflection, so we can, for example, obtain a
 list of the ancestors for a given class:
 <<gtk-intro-classes-ancestors>>=
 gTypeGetAncestors("GtkWidget")
@@ -114,7 +117,7 @@ an S3 object.
 
 Single inheritance can be restrictive when a class performs multiple
 roles in a program. To circumvent this, \pkg{GTK+} adopts the popular
-concept of the \textit{interface}, which is essentially a contract
+concept of the \iprogram{Interface}\defn{interface}, which is essentially a contract
 that specifies which methods, properties and signals a class must
 implement. As with languages like Java and \proglang{C\#}, a class can
 \textit{implement} multiple interfaces, and an interface can be
@@ -139,7 +142,7 @@ Section~\ref{sec:gobject-primer}.
     \includegraphics[width=2in]{hello-world.png}
     \caption{\label{fig:hello-world}``Hello World'' in GTK+. 
       A window containing a single button displaying a label with the text
-      \code{Hello World}.}
+      ``Hello World''.}
   \end{center}
 \end{figure}
 
@@ -184,10 +187,14 @@ gtkImage(stock = "gtk-apply", size = "button")
 uses only two arguments, \argument{stock}{gtkImage} and
 \argument{size}{gtkImage}, which always must be specified
 together. The entire signature is more complex:
-<<gtk-overview-construct-image-args>>=
+<<gtk-overview-construct-image-args, eval=FALSE>>=
 args(gtkImage)
 @ 
-
+\begin{Soutput}
+function (size, mask = NULL, pixmap = NULL, image = NULL, 
+    filename, pixbuf = NULL, stock.id, icon.set, animation, 
+    icon, show = TRUE)  
+\end{Soutput}
 A \GTK\/ object created by the \R\/ user has an \R-level object as its
 proxy. Thus, \code{window} is a reference to a \class{GtkWindow}
 instance. A reference object will not be copied before
@@ -214,9 +221,14 @@ The class hierarchy of an object is represented by the
 \code{class} attribute. One interprets the attribute according to S3
 conventions, so that the class names are in order from most to least
 derived:
-<<intro-constructor-classes>>=
+<<intro-constructor-classes, eval=FALSE>>=
 class(window)
 @
+\begin{Soutput}
+[1] "GtkWindow"   "GtkBin"      "GtkContainer"     
+[4] "GtkWidget"   "GtkObject"   "GInitiallyUnowned"
+[7] "GObject"     "RGtkObject" 
+\end{Soutput}
 %
 We find that the \class{GtkWindow} class inherits methods,
 properties, and signals from the \class{GtkBin}, \class{GtkContainer},
@@ -245,13 +257,15 @@ functions that take an instance of their class as the first argument
 and instruct the widget to perform an action.
 
 Although class information is stored in the style of S3, \pkg{RGtk2}
-introduces its own mechanism for method dispatch.  The call
-\code{obj\$method(...)}  resolves to a function call
-\code{f(obj,...)}. The function is found by looking for any function
-that matches the pattern \emph{classNameMethodName}, the concatenation
-of one of the names from \code{class(obj)} or \code{interface(obj)}
-with the method name. The search begins with the interfaces and
-proceeds through each character vector in order.
+introduces its own mechanism for method
+dispatch.~\footnote{\pkg{RGtk2} uses \R's standard dollar-sign
+  notation (also used with reference classes) for class-based method
+  dispatch.}  The call \code{obj\$method(...)}  resolves to a function
+call \code{f(obj,...)}. The function is found by looking for any
+function that matches the pattern \emph{classNameMethodName}, the
+concatenation of one of the names from \code{class(obj)} or
+\code{interface(obj)} with the method name. The search begins with the
+interfaces and proceeds through each character vector in order.
 
 For instance, if \code{win} is a \function{gtkWindow} instance, then
 to resolve the call \code{win\$add(widget)} \pkg{RGtk2} considers
@@ -300,9 +314,10 @@ modify the foreground color.
 %% --------- Properties ------------
 The \GTK\/ API uses properties to store object state. Properties are
 similar to R attributes and even more so to S4 slots. They are
-inherited, typed, self-describing and encapsulated, so that an object
-can intercept access to the underlying data. A list of properties
-definitions belonging to the widget is returned by its
+inherited, typed, self-describing and
+\iprogram{encapsulation}encapsulated, so that an object can intercept
+access to the underlying data. A list of properties definitions
+belonging to the widget is returned by its
 \method{getPropInfo}{GObject} method. Calling \function{names} on the
 object returns the property names. Auto-completion of property names
 is gained as a side effect.  For the button just defined, we can see
@@ -323,8 +338,8 @@ as the property names, and setting multiple properties at once is
 supported. Here we add an icon to the top-left corner of our window
 and set the title:
 <<intro-props-get-set>>=
-image <- gdkPixbuf(filename = imagefile("rgtk-logo.gif"))[[1]]
-window$set(icon = image, title = "Hello World 1.0")
+image <- gdkPixbuf(filename = imagefile("rgtk-logo.gif"))
+window$set(icon = image[[1]], title = "Hello World 1.0")
 @ 
 
 Additionally, most user-accessible properties have specific \code{get} and
@@ -336,8 +351,9 @@ window$setTitle("Hello World 1.0")
 window$getTitle()
 @ 
 
+\paragraph{The \code{[} and \code{[\ASSIGN} methods}
 \pkg{RGtk2} provides the convenient and familiar \code{[} and
-\code{[$<$-} methods to get and access the properties. In our example,
+\code{[\ASSIGN} methods to get and access the properties. In our example,
 we might check the window to ensure that it is not yet visible:
 <<intro-props-visible>>=
 window["visible"]
@@ -375,9 +391,13 @@ information on the signals.
 
 The \function{gSignalConnect} function adds a callback to a widget's
 signal. Its signature is
-<<>>=
+<<eval=FALSE>>=
 args(gSignalConnect)
 @
+\begin{Soutput}
+function (obj, signal, f, data = NULL, after = FALSE, 
+          user.data.first = FALSE) 
+\end{Soutput}
 %
 The basic usage is to call \function{gSignalConnect} to connect a
 callback function \argument{f}{gSignalConnect} to the signal named
@@ -413,7 +433,7 @@ window events, the second argument is a \class{GdkEvent} type, which
 can carry with it extra information about the event that occurred. The
 \GTK\/ API lists the signature of each signal.
 
-Is important to note that the widget, and possibly other arguments,
+It is important to note that the widget, and possibly other arguments,
 are references, so their manipulation has side effects outside of the
 callback. This is obviously a critical feature, but it is one that
 may be surprising to the \R\/ user.
@@ -485,7 +505,7 @@ window <- gtkWindow("toplevel", show = FALSE)
 %
 The first parameter indicates the window type. The set of possible
 window types is specified by what in C is known as an
-\textit{enumeration}. A value from an enumeration can be thought of as a
+\iprogram{enumeration}\defn{enumeration}. A value from an enumeration can be thought of as a
 length one factor in \R. The possible values defined by the
 enumeration are analogous to the factor levels.  Since enumerations
 are foreign to R, \pkg{RGtk2} accepts string

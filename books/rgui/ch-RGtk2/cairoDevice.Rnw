@@ -73,3 +73,9 @@ printOp$run(action = "print-dialog", parent = NULL)
   \signal{draw-page} handler is invoked, and the
   rendered page is sent to the printer.
 \end{example}
+
+%% JV: Added a new example combining some basic widgets, the cairo
+%% device and a reference class
+\begin{example}{The \pkg{manipulate} package in \pkg{RGtk2}}{eg-RGtk2-manipulate}
+  \SweaveInput{ex-RGtk2-manipulate}
+\end{example}

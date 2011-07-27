@@ -107,7 +107,6 @@ make_view_column <- function() {
   vc$addAttribute(cr, "text", 0)
   vc
 }
-mapply(gtkTreeViewInsertColumn, 
 sapply(views, function(i) i$insertColumn(make_view_column(), 0))
 @ 
 

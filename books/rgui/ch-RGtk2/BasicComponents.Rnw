@@ -85,7 +85,7 @@ ID <- gSignalConnect(b,"clicked",              # keyboard too
 As buttons are intended to call an action immediately after being
 clicked, it is advisable to make them insensitive to user input when
 the action is not possible. For example, we could set our button to be
-insensitive: 
+insensitive through: 
 <<gtk-widget-button-sensitive>>=
 b$setSensitive(FALSE)
 @ 
@@ -187,7 +187,7 @@ multiple lines within a label. To align the entire block of text
 within the space allocated to the label, modify the \code{xalign}
 property, as described in Section~\ref{sec:RGtk2:layout:align}.
 
-\GTK\/ allows markup of text elements using the Pango text attribute
+\GTK\/ allows markup of text elements using the \defn{Pango} text attribute
 markup language, an XML-based format that resembles basic HTML. The
 method \method{setMarkup}{gtkLabel} accepts text in the format. Text
 is marked using tags to indicate the style. Some convenient tags are
@@ -220,12 +220,13 @@ within a \class{GtkEventBox}, which provides the \class{GdkWindow}.
 \label{sec:RGtk2:images}
 
 It is often said that a picture can be worth a thousand
-words. Applying this to a GUI, images are often a more space efficient
-alternative to labels. \class{GtkImage} is the widget that displays
-images. The constructor \constructor{gtkImage} creates images from
-various in-memory image representations, files, and other sources.
-Images can be loaded after construction, as well. For example, the
-\method{setFromFile}{gtkImage} method loads an image from a file.
+words. Applying this to a GUI, images can be a valuable and more space
+efficient alternative to labels. \class{GtkImage} is the widget that
+displays images. The constructor \constructor{gtkImage} creates images
+from various in-memory image representations, files, and other
+sources.  Images can be loaded after construction, as well. For
+example, the \method{setFromFile}{gtkImage} method loads an image from
+a file.
 
 \begin{example}{Using a pixmap to present graphs}{ex:RGtk2:pixbuf}
   \SweaveInput{ex-RGtk2-ImageForGraphics}
@@ -271,7 +272,7 @@ The use of stock identifiers over specific images is encouraged, as it
 allows an application to be customized through themes. The
 \constructor{gtkButton} and \constructor{gtkImage} constructors accept
 a stock identifier passed as \code{stock.id} argument, and the icons in
-toolbars and menus are most conveniently specified by stock
+toolbars and menus are most conveniently specified by a stock
 identifier. 
 
 % ML: Sorry, but I am not sure if this illustrates an important concept
@@ -327,7 +328,7 @@ The \code{text} property stores the text. This can be set with the
 method \method{setText}{gtkEntry} and retrieved with
 \method{getText}{gtkEntry}.  When the user has committed an entry,
 e.g. by pressing the \kbd{enter} key, the \signal{activate} signal is
-emitted. We connect to the signal and obtain the entered text upon
+emitted. Here we connect to this signal to obtain the entered text upon
 activation:
 <<gtk-widget-entry-activate>>=
 gSignalConnect(e, "activate", function() {
@@ -350,16 +351,17 @@ component \code{position} indicating the position \textit{after} the
 new text. The \method{deleteText}{GtkEditable} method deletes text
 between two positions.
 
-The example shows how to insert and then delete text:
-<<InsertDeleteText>>=
-e$setText("Where did that guy go?")
-add.pos <- regexpr("guy", e['text']) - 1 # before "guy"
-ret <- e$insertText("@$#%! ", position = add.pos)
-e$getText()                             # or e['text']
-e$deleteText(start = add.pos, end = ret$position)
-e$getText()
-@
-% 
+%% JV: This needs a better example
+% The example shows how to insert and then delete text:
+% <<InsertDeleteText>>=
+% e$setText("Where did that guy go?")
+% add.pos <- regexpr("guy", e['text']) - 1 # before "guy"
+% ret <- e$insertText("@$#%! ", position = add.pos)
+% e$getText()                             # or e['text']
+% e$deleteText(start = add.pos, end = ret$position)
+% e$getText()
+% @
+% % 
 
 The \class{GtkEditable} interface supports three signals:
 \signal{changed} when text is changed, \signal{delete-text} for delete
@@ -380,12 +382,22 @@ introduced with version $2.16$, is virtually identical to that of
 Section~\ref{sec:progress-bars}. We treat icons here. This feature has
 been present since version $2.16$.
 
+\begin{figure}
+  \centering
+  \includegraphics[width=.35\textwidth]{fig-RGtk2-valid-entry.png}\quad
+    \includegraphics[width=.35\textwidth]{fig-RGtk2-invalid-entry.png}
+  \caption{Illustration of adding an icon to a \class{GtkEntry} instance to indicate if the text entered is valid or not}
+  \label{fig:RGtk2-valid-gtkentry}
+\end{figure}
+
+
 One can set an icon on an entry from a \class{GdkPixbuf}, stock ID,
-icon name, or \class{GIcon}. Two icons are possible, one at the
-beginning (\code{primary}) and one at the end (\code{secondary}). For
-example, an entry might listen to its input and update its icon to
-indicate whether the entered text is valid (in this case, consisting
-only of letters):
+icon name, or \class{GIcon}
+(Figure~\ref{fig:RGtk2-valid-gtkentry}). Two icons are possible, one
+at the beginning (\code{primary}) and one at the end
+(\code{secondary}). For example, an entry might listen to its input
+and update its icon to indicate whether the entered text is valid (in
+this case, consisting only of letters):
 %% JV: Cool, I didn't know this. The tooltip doesn't seem to work for
 %% my setup.
 <<gtk-widget-entry-validate>>=
@@ -396,8 +408,7 @@ gSignalConnect(validatedEntry, "changed", function(entry) {
     entry$setIconFromStock("primary", "gtk-no")
     validatedEntry$setIconTooltipText("primary", 
                                  "Only letters are allowed")
-  }
-  else { 
+  } else { 
     entry$setIconFromStock("primary", "gtk-yes")
     validatedEntry$setIconTooltipText("primary", NULL)
   }
@@ -796,7 +807,7 @@ The \argument{start.button.mask}{gtkDragSourceSet}, with values from
 be pressed to initiate the drag. The allowed target is \qcode{text} in
 this case. The \argument{actions}{gtkDragSourceSet} argument lists the
 supported actions, such as \code{copy} or \code{move}, from the
-\class{GdkDragAction} enumeration.
+\gtkenum{GdkDragAction} enumeration.
 
 When a drag is initiated, we will receive the \signal{drag-data-get}
 signal, which needs to place some data into the passed

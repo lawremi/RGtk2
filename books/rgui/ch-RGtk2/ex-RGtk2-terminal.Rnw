@@ -24,8 +24,9 @@ font <- pangoFontDescriptionFromString("Monospace")
 tv$modifyFont(font)                     # widget wide
 @ 
 
-We will use a few formatting tags, defined next. We do not need the tag
-objects as variables in the workspace, as we refer to them later by name.
+We will use a few formatting tags, defined next. We do not need the
+tag objects as variables in the workspace, as we refer to them later
+by name.
 <<results=hide>>=
 tb$createTag(tag.name="cmdInput")
 tb$createTag(tag.name="cmdOutput", 
@@ -43,23 +44,13 @@ startCmd <- tb$createMark("startCmd", tb$getStartIter()$iter,
 bufferEnd <- tb$createMark("bufferEnd", tb$getEndIter()$iter)
 @ 
 
-This helper function shows how to move the viewport to the end of the
-buffer so that the command line is visibile:
-<<>>=
-scrollViewport <- function(view, ...) {
-  iter <- view$getBuffer()$getEndIter()$iter
-  view$scrollToMark(bufferEnd, within.margin=0)
-  return(FALSE)
-}
-@ 
 
 There are two types of prompts needed: one for entering a new command
 and one for a continuation. This function adds either, depending on
 its argument:
 <<>>=
 addPrompt <- function(obj, prompt=c("prompt", "continue"),
-                      setMark=TRUE) 
-{
+                      setMark=TRUE) {
   prompt <- match.arg(prompt)
   prompt <- getOption(prompt)
   
@@ -78,7 +69,7 @@ buffer:
 <<addOutput>>=
 addOutput <- function(obj, output, tagName="cmdOutput") {
   endIter <- obj$getEndIter()
-  if(length(output) > 0) 
+  if(length(output) > 0)  
     sapply(output, function(i)  {
       obj$insertWithTagsByName(endIter$iter, i, tagName)
       obj$insert(endIter$iter, "\n", len=-1)
@@ -86,12 +77,12 @@ addOutput <- function(obj, output, tagName="cmdOutput") {
 }
 @ 
 %
-We arrange to truncate large outputs. By passing in the tag
-name, we can specify whether this is normal output or an error
-message.
+We didn't arrange to truncate large outputs, but that would be a nice
+addition. By passing in the tag name, we can specify whether this is
+normal output or an error message.
 
 This next function uses the \code{startCmd} mark and the end of the buffer
-to extract the current command:
+to extract the current command. The \qcode{regex} is used to parse multi-line commands.
 <<>>=  
 findCMD <- function(obj) {
   endIter <- obj$getEndIter()
@@ -103,45 +94,38 @@ findCMD <- function(obj) {
 }
 @ 
 %
-The \qcode{regex} is used to parse multi-line commands.
 
-The following function takes the current command and evaluates it. It
-uses a hack (involving \code{grep}) to distinguish between an
-incomplete command and a true syntax error. 
-<<>>=
+The following function takes the current command and evaluates it
+using the \pkg{evaluate} package. It uses a hack (involving
+\code{grepl}) to distinguish between an incomplete command and a true
+syntax error.
+
+<<evalCmd>>=
+require(evaluate)
 evalCMD <- function(tv, cmd) {
   tb <- tv$getBuffer()
-  cmd <- paste(cmd, sep="\n")
-  out <- try(parse(text=cmd), silent=TRUE)
+  out <- try(evaluate:::evaluate(cmd, .GlobalEnv), silent=TRUE)
+  
   if(inherits(out, "try-error")) {
-    if(length(grep("end", out))) {      # unexpected end 
-      ## continue
+    ## parse error
+    addOutput(tb, out, "cmdError")
+  } else if(inherits(out[[2]], "error")) {
+    if(grepl("end", out[[2]])) {        # a hack here
       addPrompt(tb, "continue", setMark=FALSE)
+      return()
     } else {
-      ## error
-      addOutput(tb, out, tagName = "cmdError")
+      addOutput(tb, out[[2]]$message, "cmdError")
     }
-    scrollViewport(tv)
-    return()
+  } else {
+    addOutput(tb, out[[2]], "cmdOutput")
   }
-  
-  e <- parse(text = cmd)
-  out <- capture.output(vis <- 
-                 withVisible(try(eval(e, .GlobalEnv), TRUE)))
-
-  addOutput(tb, out) 
-  if (inherits(vis$value, "try-error"))
-    addOutput(tb, vis$value, "cmdError")
-  else if (vis$visible)
-    addOutput(tb, capture.output(print(vis$value)))
-  
   addPrompt(tb, "prompt", setMark=TRUE)
-  scrollViewport(tv)  
 }
 @ 
 
-The \code{evalCMD} command is called when the \kbd{return} key is
-pressed:
+We arrange that the \code{evalCMD} command is called when the
+\kbd{return} key is pressed next. Other key bindings might also be of
+interest, such as one for \kbd{tab} completion.
 <<connectBinding, results=hide>>=
 gSignalConnect(tv, "key-release-event", f=function(w, e) {
   obj <- w$getBuffer()                  # w is textview
@@ -156,13 +140,20 @@ gSignalConnect(tv, "key-release-event", f=function(w, e) {
 
 %
 %% ML: what is going on here? why is the signal commented out?
+%% JV: Dunno, added it back in...
 Finally, We connect \function{moveViewport} to the \code{changed}
 signal of the text buffer, so that the view always scrolls to the
 bottom when the contents of the buffer are modified:
-% <<results=hide>>=
-% gSignalConnect(tb, "changed", scrollViewport, tv, after = TRUE, 
-%                user.data.first = TRUE)
-% @ 
+
+<<results=hide>>=
+scrollViewport <- function(view, ...) {
+  iter <- view$getBuffer()$getEndIter()$iter
+  view$scrollToMark(bufferEnd, within.margin=0)
+  return(FALSE)
+}
+gSignalConnect(tb, "changed", scrollViewport, data=tv, 
+               after = TRUE, user.data.first = TRUE)
+@ 
 
 Figure~\ref{fig:RGtk2-terminal} shows the widget placed into a very
 simple GUI.

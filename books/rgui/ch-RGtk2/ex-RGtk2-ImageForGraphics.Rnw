@@ -1,7 +1,3 @@
-
-
-
-
 <<echo=FALSE>>=
 library(RGtk2)
 @ 
@@ -33,7 +29,7 @@ width <- theSize$width; height <- theSize$height
 We create a \class{GdkPixmap} of the correct dimensions and
 initialize an R graphics device that targets the pixmap. A simple
 histogram is then plotted using base R graphics.
-<<>>=
+<<results=hide>>=
 require(cairoDevice)
 pixmap <- gdkPixmap(drawable = NULL, 
                     width = width, height = height, depth = 24)

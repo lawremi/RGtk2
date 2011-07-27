@@ -13,7 +13,7 @@
 <<echo=FALSE>>=
 options(prompt=" ")
 options(continue=" ")
-options(width=65)
+options(width=60)
 
 findmethod <- function (obj, name, where=.GlobalEnv) 
 {

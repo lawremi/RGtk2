@@ -4,7 +4,7 @@ This book focuses almost entirely on the direct programmatic
 construction of GUIs. Some developers prefer visually constructing a
 GUI by pointing, clicking and dragging in another GUI, which one might
 call a GUI builder, a type of RAD (Rapid Application Development)
-tool. \pkg{Glade} is the primary GUI builder for \GTK/ and
+tool. \pkg{Glade} is the primary GUI builder for \GTK\/ and
 exports an interface as XML that is loadable by \class{GtkBuilder}. It
 is freely available for all major platforms from
 \url{http://glade.gnome.org/}. Documentation is also at that

@@ -137,10 +137,10 @@ displays a file path and launches the dialog when clicked.
   of the three.  An open file dialog can be created with:
 <<openFileDialog>>=
 dlg <- gtkFileChooserDialog(title="Open a file", 
-                            parent=NULL, action="open",
-                            "gtk-ok", GtkResponseType["ok"],
-                            "gtk-cancel", GtkResponseType["cancel"],
-                            show=FALSE)
+                     parent=NULL, action="open",
+                     "gtk-ok", GtkResponseType["ok"],
+                     "gtk-cancel", GtkResponseType["cancel"],
+                     show=FALSE)
 @ 
   % 
   The dialog constructor allows one to specify a title, a parent and an
@@ -177,7 +177,7 @@ dlg$addFilter(fileFilter)
   % 
   The \constructor{gtkFileFilter} function constructs a filter, which is
   given a name and a set of file name patterns, before being added to
-  the file chooser. Filtering by mime type is also supported.
+  the file chooser. Filtering by MIME type is also supported.
 
 \end{example}
 

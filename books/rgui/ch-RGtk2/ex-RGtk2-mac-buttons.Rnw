@@ -42,7 +42,7 @@ to left, with \method{packEnd}{GtkBox}:
 hbox$packEnd(ok, padding=0)
 hbox$packEnd(cancel, padding=12)
 hbox$packEnd(delete, padding=12)
-hbox$packEnd(gtkLabel(""), expand=TRUE, fill=TRUE)
+hbox$packEnd(gtkLabel(""), expand=TRUE, fill=TRUE) # a spring
 @ 
 %
 The padding occurs to the left and right of the child.  The \code{ok}

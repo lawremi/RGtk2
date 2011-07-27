@@ -9,8 +9,8 @@ whenever a data frame is selected in another. We use two convenience
 functions from the \pkg{ProgGUIInR} package to find the possible data
 frames, and for a data frame to find its variables.
 <<echo=FALSE>>=
-#library(ProgGUIinR)                     # for avail_dfs, find_vars
-source("~/GUI/ProgGUIInR/R/misc.R")
+library(ProgGUIinR)                     # for avail_dfs, find_vars
+#source("~/GUI/ProgGUIInR/R/misc.R")
 @ 
 
 We create the two combo boxes and the enclosing window:

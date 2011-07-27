@@ -8,7 +8,7 @@ library(RGtk2)
 
 \begin{figure}
   \centering
-  \includegraphics[width=.5\textwidth]{ex-RGtk2-dialog-layout}
+  \includegraphics[width=.5\textwidth]{fig-RGtk2-gtktable-example.png}
   \caption{A basic dialog using a \code{gtkTable} container for layout.}
   \label{fig:RGtk2-dialog-layout}
 \end{figure}
@@ -27,7 +27,7 @@ We construct the widgets that will be placed in the form:
 sizeLabel <- gtkLabel("Sample size:")
 sizeCombo <- gtkComboBoxNewText()
 sapply(c(5, 10, 15, 30), sizeCombo$appendText)
-
+##
 diagLabel <- gtkLabel("Diagnostic:")
 diagRadios <- gtkVBox()
 rb <- list()
@@ -35,12 +35,13 @@ rb$t <- gtkRadioButton(label="t-statistic")
 rb$mean <- gtkRadioButton(rb, label="mean")
 rb$median <- gtkRadioButton(rb, label="median")
 sapply(rb, diagRadios$packStart)
+##
 submitBox <- gtkVBox()
 submitBox$packEnd(gtkButton("Run simulation"), expand = FALSE)
 @ 
 
-The labels need to be aligned to the right, up against their
-corresponding entry widgets, which should be left-aligned:
+we align the labels to the right, up against their corresponding entry
+widgets, which are left-aligned:
 <<gtk-container-layout-align>>=
 sizeLabel['xalign'] <- 1
 diagLabel['xalign'] <- 1; diagLabel['yalign'] <- 0
@@ -50,10 +51,10 @@ diagAlign$add(diagRadios)
 % 
 The labels are aligned through the \class{GtkMisc} functionality
 inherited by \class{GtkLabel}. The \class{GtkVBox} with the radio
-buttons does not support this, so we need to embed it within a
-\class{GtkAlignment}. We have aligned the diagnostic label to the top
-of its cell; otherwise, it would have been in the middle. The radio
-buttons are left aligned, up against the label.
+buttons does not support this, so we have embedde it within a
+\class{GtkAlignment} instance. We have aligned the diagnostic label to
+the top of its cell; otherwise, it would have been in the centered
+vertically. The radio buttons are left aligned, up against the label.
 
 Child widgets are added to a table through the
 \method{attach}{gtkTable} method.  The child can span more than one
@@ -78,14 +79,14 @@ tbl$attach(sizeLabel, left.attach=0,1, top.attach=0,1,
            xoptions = c("expand", "fill"), yoptions="")
 tbl$attach(sizeCombo, left.attach=1,2, top.attach=0,1, 
            xoptions="fill", yoptions="")
-#
+##
 tbl$attach(diagLabel, left.attach=0,1, top.attach=1,2, 
            xoptions = c("expand", "fill"), 
            yoptions=c("expand", "fill"))
-#
+##
 tbl$attach(diagAlign, left.attach=1,2, top.attach=1,2, 
            xoptions=c("expand", "fill"), yoptions = "")
-#
+##
 tbl$attach(submitBox, left.attach=1,2, top.attach=2,3, 
            xoptions="", yoptions=c("expand", "fill"))
 @ 
