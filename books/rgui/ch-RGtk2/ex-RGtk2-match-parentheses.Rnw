@@ -8,11 +8,11 @@ highlighted temporarily. This example shows how to add a callback to
 the \signal{changed} signal that implements this.
 
 This first method for an iter uses the method
-\method{BackwardChar}{gtkTextIter} to step back a character in the
+\method{BackwardChar}{GtkTextIter} to step back a character in the
 buffer. As iters are transient, the \GTK\/ functions that manipulate
 them update their values in place. This is why a copy is made of the
 iter passed into the function using the method
-\method{Copy}{gtkTextIter}.
+\method{Copy}{GtkTextIter}.
 
 <<>>=
 gtkTextIterGetTextAtIter <- function(iter) {
@@ -77,7 +77,7 @@ Finally, we connect a callback to the \signal{changed} signal that
 either highlights a matching pair of tokens, or removes all
 highlighted pairs. As the callback only includes the text buffer, we
 use the concept of a mark and the method
-\method{GetInsert}{gtkTextBuffer} to find the iter corresponding to
+\method{GetInsert}{GtkTextBuffer} to find the iter corresponding to
 the inserted value. 
 
 <<>>=

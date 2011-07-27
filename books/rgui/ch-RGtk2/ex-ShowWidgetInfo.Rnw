@@ -125,7 +125,7 @@ getPropertyText <- function(obj,constructor) {
   return(out)
 }
 @ 
-The signals are returned by the method \method{GetSignals}{gtkType}.
+The signals are returned by the method \method{GetSignals}{GtkType}.
 <<>>=
 getSignalText <- function(constructor) {
   signals <- gtkTypeGetSignals(constructor)
@@ -154,7 +154,7 @@ getMethodsText <- function(obj, constructor) {
 }
 @ This function is called by the handler. There is a small amount of
 error checking, then calls to the three functions just defined. The
-\method{SetText}{gtkTextBuffer} method for text buffer just replaces
+\method{SetText}{GtkTextBuffer} method for text buffer just replaces
 the data. With a bit more time, this GUI would benefit from some font
 attributes.
 <<>>=

@@ -13,19 +13,20 @@ displaying graphics in a GUI, the \class{GtkDrawingArea} is the best
 choice. 
 
 This is the simplest usage:
-<<gtk-cairo-device>>=
+<<gtk-cairo-device, results=hide>>=
 library(cairoDevice)
 device <- gtkDrawingArea()
 asCairoDevice(device)
+##
 win <- gtkWindow(show=FALSE)
 win$add(device)
 win$showAll()
 plot(mpg ~ hp, data = mtcars)
 @ 
 %
-We create the \class{GtkDrawingArea}, coerce it to a Cairo-based
-graphics device, and place it in a window. Finally, we display a
-scatterplot. Example~\ref{sec:RGtk2:scroll-windows} goes further by
+In the above, we create the \class{GtkDrawingArea}, coerce it to a
+Cairo-based graphics device, and then place it in a
+window. Example~\ref{sec:RGtk2:scroll-windows} goes further by
 embedding the drawing area into a scrolled window to support zooming
 and panning.
 

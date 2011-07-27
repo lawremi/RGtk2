@@ -125,7 +125,7 @@ gtkTreeViewAddKeyNavigations <- function(view) {
                   i = as.numeric(cursor$path$toString()) + 1
                   vc = cursor[['focus.column']] ## might be focus_column!!
                   j = which(sapply(view$getColumns(), function(i) i == vc))
-                  d = dim(view$getModel()) # rGtkStore method
+                  d = dim(view$getModel()) # RGtkStore method
                   
                   setCursorAtCell <- function(view, i, j) {
                     path <- gtkTreePathNewFromString(i-1)

@@ -11,22 +11,22 @@ then these commands are parsed and then evaluated. For command line
 usage, this loop is natural. We enter a command, press \kbd{enter} and
 then wait for the output. Lather. Rinse. Repeat. 
 
-For GUIs we expect a different behaviour. The GUI somehow sits idle,
+For GUIs we expect a different behavior. The GUI somehow sits idle,
 separate from the command line, and should only enter into the above
-loop when the user intiates some action, such as clicking on a
+loop when the user initiates some action, such as clicking on a
 button. Modal dialog boxes, such as file selectors, are an exception
 to this, there the \R\/ command loop is halted while it awaits the
 choice of file, but for the most part, a GUI should be out of the way
 unless summoned.
 
-To achieve this behaviour, the developers of the GUI packages have
+To achieve this behavior, the developers of the GUI packages have
 to accomodate the underlying event loops. Unfortunately, this is not a
 trivial matter, as there are different event loops for the different
 operating systems and the different toolkits. This can cause
 issues. For example, using \R\/ under Mac OS X has different event
-loop behaviour if used from within the GUI or from the command line;
+loop behavior if used from within the GUI or from the command line;
 under Windows the \pkg{tcltk} and the \pkg{RGtk2} event loops are
-reported to not co-exist peacable; under Linux, the \pkg{RGtk2} event
+reported to not co-exist peaceably; under Linux, the \pkg{RGtk2} event
 loop doesn't allow for tooltips to pop up. However, these things are
 minor, compared to the ability to create GUIs within \R.
 

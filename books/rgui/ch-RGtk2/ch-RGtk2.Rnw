@@ -1,5 +1,5 @@
 \SweaveOpts{keep.source=TRUE}
-% XXX- discuss GtkBin; which widgets have a window, which do not --image and label do not, and we mightwant them too,
+% XXX- discuss GtkBin; which widgets have a window, which do not --image and label do not, and we might want them too,
 %   modify_bg() only affects widgets that have an associated gtk.gdk.Window.
 % > Widgets that do not have an associated window include .... gtk.Arrow,
 % > gtk.Bin, gtk.Box, gtk.Button, gtk.CheckButton, gtk.Fixed , gtk.Image ,
@@ -63,7 +63,11 @@ args <- function(name) {
 \SweaveInput{menus}
 
 %% TODO: this needs to go somewhere.. appendix?
-%% \SweaveInput{Classes}
+%% JV, I guess here
+
+\chapter{Extending GObject Classes}
+\label{chapter:extending-GTK}
+\SweaveInput{Classes}
 
 
 % \label{sec:RGtk2:dialogs}

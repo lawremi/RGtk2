@@ -90,7 +90,7 @@ window managers respect this.
 
 
 
-%% binginds
+%% bindings
 \paragraph{Bindings}
 Bindings for top-level windows are propagated down to all of their
 child widgets. If a common binding is desired for all the children,
@@ -163,7 +163,7 @@ tkwm.protocol(w,"WM_DELETE_WINDOW", function() {
 % for this, but the command \code{tcl("wm","stackorder", win)}, where
 % \code{win} is the top-level window object will return the list.
 
-% Stackign order of others; topmost
+% Stacking order of others; topmost
 \begin{example}{A window constructor}{ex-tcltk-window}
   This example shows a possible constructor for top-level windows
   allowing some useful options to be passed in. We use the upcoming
@@ -511,8 +511,8 @@ direction, the latter in both.
 
 Figure~\ref{fig:tcltk-expand-fill-arguments} shows examples of
 different values for \qcode{fill} when \code{expand=TRUE} is
-specified. We used the following code to create the
-images:~\footnote{This example follows one of \citep{Walsh}}
+specified. Following an example of Walsh\footcite{Walsh} we used the following code to create the
+images:
 <<expandFill>>=
 w <- tktoplevel()
 tkwm.title(w, "Expand/Fill arguments")
@@ -545,7 +545,7 @@ widgets will be covered or one can resize the toplevel window.
 When components are covered, the ones that are packed in first are given
 highest priority in the size request.
 
-To force a recompuation of of the size of the toplevel window, one can
+To force a recomputation of of the size of the toplevel window, one can
 call the \subcommand{geometry}{wm} subcommand with an empty string:
 <<eval=FALSE>>=
 tkwm.geometry(tt, "")

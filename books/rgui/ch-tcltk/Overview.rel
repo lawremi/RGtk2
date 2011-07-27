@@ -19,6 +19,12 @@
 
 (bof "/Users/verzani/GUI/ch-tcltk/Overview.Rnw")
 
+(toc "toc" "    1 A first example" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 2 "1" "\\section{A first example}" 3480)
+
+("sec:first-example" "s" nil "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil "")
+
+("fig:tcltk-simple-dialog" "f" nil "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil "")
+
 (toc "toc" "    1 Interacting with \\TCL" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 2 "1" "\\section{Interacting with \\TCL}" 168)
 
 ("sec:tcltk:interacting-with-tcl" "s" "%% Tclk The basic syntax of \\TCL\\/ is a bit unlike \\R. For example a simple string assignment would " "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil)
@@ -30,6 +36,10 @@
 (toc "toc" "    2 Constructors" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 2 "2" "\\section{Constructors}" 6156)
 
 ("sec:tcltk:constructors" "s" "In this chapter, we will stick to a few basic widgets: labels and buttons; and top-level containers " "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil)
+
+(toc "toc" "      2.1 The \\code{tkwidget} function" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 3 "2.1" "\\subsection{The \\code{tkwidget} function}" 16197)
+
+("sec:codetkw-funct" "s" nil "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil "")
 
 (toc "toc" "          2.0.0.1 Options" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 5 "2.0.0.1" "\\paragraph{Options}" 7440)
 
@@ -48,6 +58,10 @@
 (toc "toc" "      2.2 \\TCL\\/ variables" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 3 "2.2" "\\subsection{\\TCL\\/ variables}" 12820)
 
 ("sec:tcltk:overview:textvariables" "s" "%% textvariables For several \\TK\\/ widgets, there is an option \\code{textvariable} for a \\TCL\\/ vari" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil)
+
+(toc "toc" "      2.3 Commands" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 3 "2.3" "\\subsection{Commands}" 20796)
+
+("sec:tcltk-intro-commands" "s" nil "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil "")
 
 (toc "toc" "      2.3 Colors and fonts" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 3 "2.3" "\\subsection{Colors and fonts}" 13886)
 
@@ -69,6 +83,8 @@
 
 ("sec:tcltk:overview:themes" "s" "%% themes -- ttkframe The themed widgets have a style that determines how they are drawn. The separa" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil)
 
+("fig:tcltk-compare-themed-non-themed" "f" nil "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil "")
+
 (toc "toc" "      2.6 Window properties and state: \\code{tkwinfo}" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 3 "2.6" "\\subsection{Window properties and state: \\code{tkwinfo}}" 21788)
 
 ("sec:tcltk:overview:widget-properties" "s" "Widgets have options which can be set through \\code{tkconfigure} and additionally, when mapped, the " "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil)
@@ -84,6 +100,8 @@
 (toc "toc" "      3.2 Events" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 3 "3.2" "\\subsection{Events}" 26292)
 
 ("sec:tcltk:events" "s" "%% (Unlike \\pkg{RGtk2}, that the event triggers a widget to emit a signal that a callback listens fo" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil)
+
+("fig:tcltk-underline-buttons" "f" nil "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil "")
 
 (toc "toc" "          3.2.0.1 Events with modifiers" "/Users/verzani/GUI/ch-tcltk/Overview.Rnw" nil 5 "3.2.0.1" "\\paragraph{Events with modifiers}" 27831)
 

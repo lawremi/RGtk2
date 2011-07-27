@@ -36,4 +36,8 @@ www:
 
 
 latex:  
-	pdflatex guis; bibtex guis; pdflatex guis
+	pdflatex --interaction scrollmode guis; 
+	bibtex guis; 
+	bibtex guis.fb; 
+	makeindex guis.idx 
+	pdflatex guis

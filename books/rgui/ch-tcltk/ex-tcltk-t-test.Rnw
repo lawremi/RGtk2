@@ -1,6 +1,7 @@
 This example illustrates how the basic widgets can be combined to make
 a dialog for gathering information to run a $t$-test. A realization is shown in Figure~\ref{fig:fig-tcltk-t-test}.
 
+%% Moved earlier in text
 % \begin{figure}
 %   \centering
 %   \includegraphics[width=.75\textwidth]{fig-tcltk-t-test.png}
@@ -20,20 +21,11 @@ library(tcltk)
 <<echo=FALSE>>=
 ## helper functions
 ## not shown
-getDfs <- function(envir=.GlobalEnv) {
-  tmp <- ls(envir=envir)
-  out <- sapply(tmp, function(i) is.data.frame(get(i, envir=envir)))
-  tmp[out]
-}
+
 getNumericVars <- function(df) {
   if(missing(df))
     return(c(""))
-  nms <- names(df)
-  ind <- sapply(df, is.numeric)
-  if(length(ind) > 0)
-    nms[ind]
-  else
-    c("")
+  ProgGUIinR:::find_vars(df, is.numeric)
 }
 getTwoLevelFactor <- function(df) {
   if(missing(df))
@@ -137,15 +129,14 @@ putLabel <- function(parent, text, row, column) {
 
 Our first widget will be one to select a data frame. For this, a
 combo box is used, although if a large number of data frames are a
-possibility, a different widget may be better suited. The
-\code{getDfs} function is not shown, but simply returns the names of
-all data frames in the global environment. Also not shown are two
+possibility, a different widget may be better suited. Also not shown are two
 similar calls to create combo boxes \code{xCombo} and \code{fCombo}
 which allow the user to specify parts of a formula.
 
 <<>>=
 putLabel(lf, "data:",0,0)
-dataCombo <- ttkcombobox(lf, state="readonly", values=getDfs(), 
+dataCombo <- ttkcombobox(lf, state="readonly", 
+                         values=ProgGUIinR:::avail_dfs(), 
                          textvariable=e$data)
 tkgrid(dataCombo, row=0, column=1, sticky="ew", padx=2)
 tkfocus(dataCombo)                      # give focus
@@ -154,7 +145,8 @@ tkfocus(dataCombo)                      # give focus
 <<notShown, echo=FALSE>>=
 ## not shown
 putLabel(lf, "x:",1,0)
-xCombo <-  ttkcombobox(lf, values=getNumericVars(), textvariable=e$x)
+xCombo <-  ttkcombobox(lf, 
+                       values=getNumericVars(), textvariable=e$x)
 tkgrid(xCombo, row=1, column=1, sticky="ew", padx=2)
 @ 
 
@@ -165,7 +157,7 @@ fCombo <-  ttkcombobox(lf, values=getTwoLevelFactor(), textvariable=e$f)
 tkgrid(fCombo, row=1, column=3, sticky="ew", padx=2)
 @ 
 
-We use a \constructor{ttkentry} widget (Section~\ref{sec:tcltk:entry-widgets}) for the user to specify
+We use a \constructor{ttkentry} widget for the user to specify
 a mean. For this purpose, the use is straightforward.
 <<mu>>=
 putLabel(lf, "mu:", 2, 0)
@@ -248,7 +240,7 @@ state.
 <<results=hide>>=
 updateUI <- function() {
   dfName <- tclvalue(e$data)
-  curDfs <- getDfs()
+  curDfs <- ProgGUIinR:::avail_dfs()
   tkconfigure(dataCombo, values=curDfs)
   if(!dfName %in% curDfs) {
     dfName <- ""
@@ -302,9 +294,9 @@ frames have been changed. Here is one way to arrange that:
 <<>>=
 require(digest)
 create_function <- function() {
-  .dfs <- digest(getDfs())
+  .dfs <- digest(ProgGUIinR:::avail_dfs())
   f <- function(...) {
-    if((val <- digest(getDfs())) != .dfs) {
+    if((val <- digest(ProgGUIinR:::avail_dfs())) != .dfs) {
       .dfs <<- val
       updateUI()
     }

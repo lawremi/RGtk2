@@ -358,8 +358,8 @@ invoked upon receipt of an event. The developer is expected to extend
 the widget and override the method to catch the event. The apparent
 philosophy of \Qt{} is that hardware events are low-level and thus
 should be handled by the widget, not some other instance. We will
-discuss extending classes in Section~\ref{sec:defin-class-meth}.
-Example~\ref{eg:qt-dnd} demonstrates handling widget events.
+discuss extending classes in Section~\ref{sec:qt-defin-class-meth}.
+
 
 \section{Enumerations and flags}
 \label{sec:qt-enums}
@@ -540,13 +540,14 @@ qsetSlot("doSomethingToIndex(int)", SubClass, function(index) {
 })
 @ 
 %
+%% JV: do we want to write about QtDesigner???
 The advantage of a slot compared to a method is that a slot is exposed
 to the \Qt{} metaobject system. This means that a slot could be called
 from another dynamic environment, like from Javascript running in the
 \class{QScript} module or via the D-Bus through the \class{QDBus}
 module. It is also necessary to use slots as signal handlers for a GUI
 built with \software{QtDesigner}, if one is using the automated
-connection feature, see Section~\ref{sec:qt-designer}.
+connection feature. %%, see Section~\ref{sec:qt-designer}.
 
 \subsection{Defining Properties}
 \label{sec:qt-overview-define-props}
@@ -774,7 +775,7 @@ background (\code{Window}), the foreground (\code{WindowText}) and the
 selected state (\code{Highlight}). \Qt{} chooses the correct default
 palette depending on the platform and the type of widget. One can
 change the colors used in rendering a widget by manipulating the
-palette, as illustrated in Example~\ref{eg:qt-dnd}.
+palette.
 
 \paragraph{Style Sheets}
 \label{ssec:style-sheets}

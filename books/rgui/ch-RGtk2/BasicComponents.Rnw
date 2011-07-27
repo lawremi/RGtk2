@@ -97,7 +97,7 @@ executes the default action for the window, the button can be
 set so that it is activated when the user presses \kbd{enter} while
 the parent window has the focus. To implement this, the property
 \code{can-default} must be \code{TRUE} and the widget method
-\method{grabDefault}{gtkWidget} must be called. (This is not specific
+\method{grabDefault}{GtkWidget} must be called. (This is not specific
 to buttons, but any widget that can be activatable.) The
 \class{GtkDialog} widget and its derivatives facilitate the use of
 buttons in this manner, see Section~\ref{sec:dialogs}.
@@ -120,9 +120,9 @@ The primary purpose of a label is to communicate the role of another
 widget, as we showed for the button. Labels are created by the
 \constructor{gtkLabel} constructor, which takes the label text as its
 first argument. This text can be set with either
-\method{setLabel}{gtkLabel} or \method{setText}{gtkLabel} and
-retrieved with either \method{getLabel}{gtkLabel} or
-\method{getText}{gtkLabel}.  The difference being the former
+\method{setLabel}{GtkLabel} or \method{setText}{GtkLabel} and
+retrieved with either \method{getLabel}{GtkLabel} or
+\method{getText}{GtkLabel}.  The difference being the former
 respects formatting marks.
 
 \begin{example}{Label formatting}{eg:RGtk2:label-formatting}
@@ -174,14 +174,14 @@ w$showAll()
 
 Many of the text formatting options are demonstrated in
 Example~\ref{eg:RGtk2:label-formatting}. Line wrapping is enabled with
-\method{setLineWrap}{gtkLabel}. Labels also support explicit line
+\method{setLineWrap}{GtkLabel}. Labels also support explicit line
 breaks, specified with ``\code{\backslashn}.'' The
-\method{setWidthChars}{gtkLabel} method is a convenience for instructing the
+\method{setWidthChars}{GtkLabel} method is a convenience for instructing the
 label to request enough space to show a specified number of
 characters in a line.  When space is at a premium, long labels can be
 ellipsized, i.e., have some of their text replaced with an
 ellipsis, ``...''.  By default this is turned off; to enable, call
-\method{setEllipsize}{gtkLabel}.  The property \code{justify}, with
+\method{setEllipsize}{GtkLabel}.  The property \code{justify}, with
 values taken from \code{GtkJustification}, controls the alignment of
 multiple lines within a label. To align the entire block of text
 within the space allocated to the label, modify the \code{xalign}
@@ -189,7 +189,7 @@ property, as described in Section~\ref{sec:RGtk2:layout:align}.
 
 \GTK\/ allows markup of text elements using the \defn{Pango} text attribute
 markup language, an XML-based format that resembles basic HTML. The
-method \method{setMarkup}{gtkLabel} accepts text in the format. Text
+method \method{setMarkup}{GtkLabel} accepts text in the format. Text
 is marked using tags to indicate the style. Some convenient tags are
 \code{<b>} for bold, \code{<i>} for italics, \code{<ul>} for
 underline, and \code{<tt>} for monospace text. Hyperlinks are possible
@@ -207,7 +207,7 @@ some interactive features. If the \code{selectable} property is set to
 Labels can hold mnemonics for other widgets; this is useful for
 navigating forms. The mnemonic is specified at construction time with
 \code{gtkLabelNewWithMnemonic}. The
-\method{setMnemonicWidget}{gtkLabel} method identifies the widget to
+\method{setMnemonicWidget}{GtkLabel} method identifies the widget to
 which the mnemonic refers.
 
 For efficiency reasons \class{GtkLabel} does not receive any input
@@ -225,7 +225,7 @@ efficient alternative to labels. \class{GtkImage} is the widget that
 displays images. The constructor \constructor{gtkImage} creates images
 from various in-memory image representations, files, and other
 sources.  Images can be loaded after construction, as well. For
-example, the \method{setFromFile}{gtkImage} method loads an image from
+example, the \method{setFromFile}{GtkImage} method loads an image from
 a file.
 
 \begin{example}{Using a pixmap to present graphs}{ex:RGtk2:pixbuf}
@@ -325,8 +325,8 @@ e <- gtkEntry()
 @ 
 
 The \code{text} property stores the text. This can be set with the
-method \method{setText}{gtkEntry} and retrieved with
-\method{getText}{gtkEntry}.  When the user has committed an entry,
+method \method{setText}{GtkEntry} and retrieved with
+\method{getText}{GtkEntry}.  When the user has committed an entry,
 e.g. by pressing the \kbd{enter} key, the \signal{activate} signal is
 emitted. Here we connect to this signal to obtain the entered text upon
 activation:
@@ -531,7 +531,7 @@ g <- gtkVBox(); w$add(g)
 sapply(rev(radiogp$getGroup()), gtkBoxPackStart, object = g)
 @ 
 %
-The \method{getGroup}{gtkRadioButton} method returns a list containing
+The \method{getGroup}{GtkRadioButton} method returns a list containing
 the radio buttons in the same group. However, it is in the reverse
 order of construction (newest first). This results from an internal
 optimization that prepends, rather than appends, the buttons to a
@@ -541,16 +541,16 @@ before packing the widgets into the box.
 \end{example}
 
 \subsection{Combo boxes}
-\label{sec:RGtk2:basic:combobox}
+\label{sec:RGtk2:basic-combobox}
 
 The combo box is a more space efficient alternative to radio buttons
-and is better suited for when there are a large number of options. A
+and is better suited when there are a large number of options. A
 basic, text-only \class{GtkComboBox} is constructed by
 \constructor{gtkComboBoxNewText}. In
 Section~\ref{sec:RGtk2:mvc:combobox} we will discuss combo boxes that
 are based on an external data model.
 
-We construct and populate a simple combo box:
+We can construct and populate a simple combo box with:
 <<gtk-widget-combo, results=hide>>=
 combo <- gtkComboBoxNewText()
 sapply(c("two.sided", "less", "greater"), combo$appendText)
@@ -559,12 +559,12 @@ sapply(c("two.sided", "less", "greater"), combo$appendText)
 
 The index of the currently active item is stored in the
 \property{active}{gtkComboBox} property. The index, as usual, is $0$-based,
-and a value of $-1$ indicates that no value is selected:
+and a value of $-1$ indicates that no value is selected (the default):
 <<gtk-widget-combo-active>>=
 combo['active']
 @ 
 %
-The \method{getActiveText}{gtkComboBox} method retrieves
+The \method{getActiveText}{GtkComboBox} method retrieves
 the text shown by the basic combo box.
 
 When the active index changes, the \signal{changed} signal is
@@ -573,16 +573,17 @@ emitted. The handler then needs to retrieve the active index:
 gSignalConnect(combo, "changed",
                f = function(w, ...) {
                  if(w$getActive() < 0) 
-                   cat("No value selected\n")
+                   message("No value selected")
                  else
-                   cat("Value is", w$getActiveText(), "\n")
+                   message("Value is", w$getActiveText())
                })
 @
 
 Although combo boxes are much more space efficient than radio buttons,
-it can be difficult to use a combo box when there are a large number
-of items. The \method{setWrapWidth}{gtkComboBox} method specifies
-the preferred number of columns for displaying the items.
+it can still be difficult to use a combo box when there are a large
+number of items. Placing the items in columns lessens this. The
+\method{setWrapWidth}{GtkComboBox} method specifies the preferred
+number of columns for displaying the items.
 
 \begin{example}{Using one combo box to populate another}{ex:RGtk2-comboboxes}
   \SweaveInput{ex-RGtk2-comboboxes}
@@ -592,86 +593,156 @@ An extension of \class{GtkComboBox}, \class{GtkComboBoxEntry},
 replaces the main button with a text entry. This supports the entry of
 arbitrary values, in addition to those present in the menu.
 
-\subsection{Sliders}
-\label{sec:RGtk2:sliders}
+
+
+\subsection{Sliders and Spin Buttons}
+\label{sec:RGtk2:sliders-spinbuttons}
 
 The slider widget and spin button widget allow selection from a
-regularly spaced, semi-continuous list of values.
-\class{GtkScale} implements a slider and may be oriented
-either horizontally or vertically. This depends on the class:
-\class{GtkHScale} or \class{GtkVScale}.  
+regularly spaced, semi-continuous list of values. Both have their
+possible values for selection determined by an instance of
+\class{GtkAdjustment}, which is used to represent ranges that have an
+upper and lower bound with step and page increments. This adjustment
+may be specified to the constructor, or more frequently will be
+created by the widget after an appropriate specification of the range.
 
-\begin{example}{A slider controlling histogram bin selection}{ex:RGtk2:sliders}
-  We demonstrate a slider for controlling the bin size of a
-  histogram. First, we create and configure the horizontal slider:
-<<gtk-widget-slider>>=
-slider <- gtkHScale(min = 1, max = 100, step = 1)
-slider$setValue(10)
-slider['value-pos'] <- "bottom"
-@ 
-%
-We specify the minimum, maximum and step values for the scale.  This
-set of values is formally represented by the \class{GtkAdjustment}
-structure, which could serve as a data model for synchronizing multiple
-sliders or other scale-based widgets. Ordinarily, it is not necessary
-to construct a \class{GtkAdjustment} explicitly. Instead, one passes
-the values as parameters to the constructor. The initial value is set
-to $10$, and the value will be rendered in a label beneath the slider,
-according to the \property{value-pos}{GtkScale} property.
+\paragraph{Sliders}
+Sliders are implemented by \class{GtkScale} with constructors
+\constructor{gtkHScale} and \constructor{gtkVScale}, the difference
+being the orientation. 
 
-The \signal{value-changed} signal is emitted whenever the slider is
-adjusted. Our handler updates the histogram:
-<<gtk-widget-slider-value-changed>>=
-gSignalConnect(slider, "value-changed",
-               f = function(w, ...) {
-                 val <- w$getValue() 
-                 drawHistogram(val)
-               })
-@ 
+These constructors have arguments \argument{min}{GtkScale},
+\argument{max}{GtkScale} and \argument{step}{GtkScale} to specify
+the range, if an adjustment is not specified. 
 
-Finally, we load the data, define the \function{drawHistogram}
-function, and finish the GUI:
-<<SliderAndHistogram, results=hide>>=
-data <- rnorm(100)
-
-library(lattice)
-drawHistogram <- function(val) print(histogram(data, nint = val))
-drawHistogram(slider$getValue())        
-
-w <- gtkWindow(); w$setTitle("Histogram bin selection")
-w$add(slider)
-@               
-\end{example}
+%% value
+The \code{value} property stores the currently selected value. When
+this is changed, the \signal{value-changed} signal is emitted. 
 
 %% properties
 A few properties define the appearance of the slider widget.  The
 \code{digits} property controls the number of digits after the decimal
 point.  The property \code{draw-value} toggles the drawing of the
-selected value near the slider. Finally, \code{value-pos},
-demonstrated above, specifies where this value will be drawn using
-values from \code{GtkPositionType}. The default is \code{top}.
+selected value near the slider. Finally, \code{value-pos}
+specifies where this value will be drawn using
+values from \gtkenum{GtkPositionType}. The default is \code{top}.
 
-\subsection{Spin buttons}
-\label{sec:RGtk2:spinboxes}
+In Example~\ref{eg-RGtk2-manipulate} we show how a slider can be used
+to update a graphic.
 
+\paragraph{Spin buttons}
 The spin button widget is very similar to the slider widget,
 conceptually and in terms of the \GTK\/ API. Spin buttons are
 constructed with \constructor{gtkSpinButton}. As with sliders, this
 constructor requires specifying adjustment values, either as a
-\class{GtkAdjustment} or individually.  The methods
-\method{getValue}{gtkSpinButton} and \method{setValue}{gtkSpinButton}
-once again get and set the value. The \code{value-changed}
-signal is emitted when the spin button value is changed.
+\class{GtkAdjustment} or through the \argument{min}{gtkSpinButton},
+\argument{max}{gtkSpinButton}, and \argument{step}{gtkSpinButton} arguments.
+The argument \argument{digits}{gtkSpinButton} is used to configure how many
+digits are displayed and \argument{climb.rate}{gtkSpinButton} can
+adjust how fast the display changes when the button is held depressed.
 
-\begin{example}{A range widget}{ex:RGtk2-range-widget}
-  \SweaveInput{ex-RGtk2-range-widget}
-\end{example}
+As with \class{GtkScale} the \code{value} property holds the state and
+the \signal{value-changed} signal is emitted when this changes.
 
 A spin button has a few additional features. The property
 \code{snap-to-ticks} can be set to \code{TRUE} to force the new value
 to belong to the sequence of values in the adjustment. The \code{wrap}
 property indicates whether the sequence will ``wrap'' around at the
-bounds.
+bounds
+
+\begin{example}{A range widget}{ex:RGtk2-range-widget}
+  \SweaveInput{ex-RGtk2-range-widget}
+\end{example}
+
+
+%% JV Rewrote this to combine, removing example of histogram
+% \subsection{Sliders}
+% \label{sec:RGtk2:sliders}
+
+% The slider widget and spin button widget allow selection from a
+% regularly spaced, semi-continuous list of values.
+% \class{GtkScale} implements a slider and may be oriented
+% either horizontally or vertically. This depends on the class:
+% \class{GtkHScale} or \class{GtkVScale}.  
+
+% 
+% \begin{example}{A slider controlling histogram bin selection}{ex:RGtk2:sliders}
+%   We demonstrate a slider for controlling the bin size of a
+%   histogram. In Example~\ref{eg-RGtk2-manipulate} we go much further
+%   in this direction.
+  
+  
+%   First, we create and configure the horizontal slider:
+% <<gtk-widget-slider>>=
+% slider <- gtkHScale(min = 1, max = 100, step = 1)
+% slider$setValue(10)
+% slider['value-pos'] <- "bottom"
+% @ 
+% %
+% We specify the minimum, maximum and step values for the scale.  This
+% set of values is formally represented by the \class{GtkAdjustment}
+% structure, which could serve as a data model for synchronizing multiple
+% sliders or other scale-based widgets. Ordinarily, it is not necessary
+% to construct a \class{GtkAdjustment} explicitly. Instead, one passes
+% the values as parameters to the constructor (which are named above, as
+% the adjustment is the first argument). The initial value is set
+% to $10$, and the value will be rendered in a label beneath the slider,
+% according to the \property{value-pos}{GtkScale} property.
+
+% The \signal{value-changed} signal is emitted whenever the slider is
+% adjusted. Our handler updates the histogram:
+% <<gtk-widget-slider-value-changed>>=
+% gSignalConnect(slider, "value-changed",
+%                f = function(w, ...) {
+%                  val <- w$getValue() 
+%                  drawHistogram(val)
+%                })
+% @ 
+
+% Finally, we load the data, define the \function{drawHistogram}
+% function, and finish the GUI:
+% <<SliderAndHistogram, results=hide>>=
+% data <- rnorm(100)
+
+% library(lattice)
+% drawHistogram <- function(val) print(histogram(data, nint = val))
+% drawHistogram(slider$getValue())        
+
+% w <- gtkWindow(); w$setTitle("Histogram bin selection")
+% w$add(slider)
+% @               
+% \end{example}
+
+% %% properties
+% A few properties define the appearance of the slider widget.  The
+% \code{digits} property controls the number of digits after the decimal
+% point.  The property \code{draw-value} toggles the drawing of the
+% selected value near the slider. Finally, \code{value-pos},
+% demonstrated above, specifies where this value will be drawn using
+% values from \code{GtkPositionType}. The default is \code{top}.
+
+% \subsection{Spin buttons}
+% \label{sec:RGtk2:spinboxes}
+
+% The spin button widget is very similar to the slider widget,
+% conceptually and in terms of the \GTK\/ API. Spin buttons are
+% constructed with \constructor{gtkSpinButton}. As with sliders, this
+% constructor requires specifying adjustment values, either as a
+% \class{GtkAdjustment} or individually.  The methods
+% \method{getValue}{gtkSpinButton} and \method{setValue}{gtkSpinButton}
+% once again get and set the value. The \code{value-changed}
+% signal is emitted when the spin button value is changed.
+
+% \begin{example}{A range widget}{ex:RGtk2-range-widget}
+%   \SweaveInput{ex-RGtk2-range-widget}
+% \end{example}
+
+% A spin button has a few additional features. The property
+% \code{snap-to-ticks} can be set to \code{TRUE} to force the new value
+% to belong to the sequence of values in the adjustment. The \code{wrap}
+% property indicates whether the sequence will ``wrap'' around at the
+% bounds
+.
 
 \section{Progress Reporting}
 
@@ -718,25 +789,24 @@ spinner$stop()
 \label{sec:gtk-wizards}
 
 The \class{GtkAssistant} class provides a wizard widget for \GTK. The
-basic setup is one adds pages to the assistant object and they are
-navigated in a linear manner. In our example, we will see how to
-override this. 
-
+simplest setup is that one adds pages to the assistant object and they
+are navigated in a linear manner. In our example, we override this.
 
 Wizard pages have a certain type which must be declared. These are
-enumerated in \code{GtkAssistantPageType} and set by \method{setPageType}{gtkAssistant}. The last page must be of
-type \qcode{confirm}, \qcode{summary}, or \qcode{progress}.
-Each wizard page has a content area and buttons.  As well, each page
-in the assistant object has an optional side image, header image
-and/or page title that may be customized. The buttons allow the user
-to navigate through the wizard. The content area of a wizard page is
-simply an instance of class \class{GtkWidget} (e.g., some container) and are
-added to the assistant through the \method{appendPage}{gtkAssistant},
-\method{insertPage}{gtkAssistant}, or
-\method{prependPage}{gtkAssistant} methods. Pages are referred to by
+enumerated in \gtkenum{GtkAssistantPageType} and set by
+\method{setPageType}{GtkAssistant}. The last page must be of type
+\qcode{confirm}, \qcode{summary}, or \qcode{progress}.  Each wizard
+page has a content area and buttons.  As well, each page in the
+assistant object has an optional side image, header image and/or page
+title that may be customized. The buttons allow the user to navigate
+through the wizard. The content area of a wizard page is simply an
+instance of class \class{GtkWidget} (e.g., some container) and are
+added to the assistant through the \method{appendPage}{GtkAssistant},
+\method{insertPage}{GtkAssistant}, or
+\method{prependPage}{GtkAssistant} methods. Pages are referred to by
 the \class{GtkWidget} object or their page index, $0$-based. The
 \code{forward} button on a page must be made sensitive by calling
-\method{setPageComplete}{gtkAssistant} with the widget and logical
+\method{setPageComplete}{GtkAssistant} with the widget and logical
 value.
 
 %% signal
@@ -744,8 +814,8 @@ value.
 The \code{cancel} button emits a \signal{cancel} signal that can be
 connected to for destroying the wizard widget. The \signal{apply}
 signal is emitted on a page change. The \signal{prepare} signal is
-emitted just before a page is made visible. This is needed to create
-dynamically generated pages.
+emitted just before a page is made visible, which is needed to create
+the dynamically generated pages in our examples.
 
 \begin{example}{An \code{install.packages} wizard}{eg-RGtk2-install-packages}
   \SweaveInput{ex-RGtk2-install-wizard}
@@ -762,12 +832,13 @@ dynamically generated pages.
 %% ------------ Drag and Drop
 
 A drag and drop operation is the movement of data from a source widget
-to a target widget. The source widget serializes the selected item as
-MIME data, and the destination interprets that data to perform some
-operation, often creating an item of its own. Our task is to configure
-the source and destination widgets, so that they listen for the
-appropriate events and understand each other. As a trivial example, we
-allow the user to drag the text from one button to another.
+to a target widget. In \GTK{} the source widget serializes the
+selected item as MIME data, and the destination interprets that data
+to perform some operation, often creating an item of its own. Our task
+is to configure the source and destination widgets, so that they
+listen for the appropriate events and understand each other. As a
+trivial example, we allow the user to drag the text from one button to
+another.
 
 \subsection{Initiating a Drag}
 
@@ -775,7 +846,7 @@ When a drag and drop is initiated, different types of data may be
 transferred. We need to define a target type for each type of data, as
 a \class{GtkTargetEntry} structure:
 <<>>=
-TARGET.TYPE.TEXT   <- 80                 
+TARGET.TYPE.TEXT   <- 80                # our enumeration
 TARGET.TYPE.PIXMAP <- 81                  
 widgetTargetTypes <- 
   list(text = gtkTargetEntry("text/plain", 0, 
@@ -851,7 +922,7 @@ non-empty intersection between the targets passed to
 
 When data is dropped, the destination widget emits the
 \signal{drag-data-received} signal. The handler is responsible for
-extracting the dragged data from \argument{selection} and performing some
+extracting the dragged data from \args{selection} and performing some
 operation with it. In this case, we set the text on the button:
 <<>>=
 gSignalConnect(dropTargetWidget, "drag-data-received", 
@@ -861,9 +932,9 @@ gSignalConnect(dropTargetWidget, "drag-data-received",
        })
 @ 
 %
-The \argument{context} argument is a \class{GdkDragContext},
-containing information about the drag event. The \argument{x} and
-\argument{y} arguments are integer valued and represent the position
+The \args{context} argument is a \class{GdkDragContext},
+containing information about the drag event. The \args{x} and
+\args{y} arguments are integer valued and represent the position
 in the widget where the drop occurred. The text data is returned by
 \function{getText} as a \code{raw} vector, so it is converted with
 \function{rawToChar}.

@@ -135,7 +135,7 @@ classes and interfaces in the following sections and demonstrate them
 in the construction of a simple ``Hello World'' GUI, shown in
 Figure~\ref{fig:hello-world}. A more detailed and technical
 explanation of \pkg{GObject} is available in
-Section~\ref{sec:gobject-primer}.
+Chapter~\ref{chapter:extending-GTK}.
 
 \begin{figure}[h!tbp]
   \begin{center}
@@ -302,7 +302,7 @@ in the base \class{GtkWidget} class. These include the methods
 \method{show}{GtkWidget} to specify that the widget should be drawn;
 \method{hide}{GtkWidget} to hide the widget until specified;
 \method{destroy}{GtkWidget} to destroy a widget and clear up any
-references to it; \method{getParent}{gtkWidget} to find the parent
+references to it; \method{getParent}{GtkWidget} to find the parent
 container of the widget; \method{modifyBg}{GtkWidget} to modify the
 background color of a widget; and \method{modifyFg}{GtkWidget} to
 modify the foreground color.
@@ -333,7 +333,7 @@ receive user events.
 
 There are a few different ways to access these properties. The methods
 \method{get}{GObject} and \method{set}{GObject} get and set properties
-of a widget, respectively. The set funtion treats the argument names
+of a widget, respectively. The set function treats the argument names
 as the property names, and setting multiple properties at once is
 supported. Here we add an icon to the top-left corner of our window
 and set the title:
@@ -513,7 +513,7 @@ representations of enumeration values, like \code{"toplevel"}.
 
 For every \GTK\/ enumeration, \pkg{RGtk2} provides an R
 vector that maps the nicknames to the underlying numeric values.  In
-the above case, the vector is named \class{GtkWindowType}.
+the above case, the vector is named \gtkenum{GtkWindowType}.
 <<intro-enum-GtkWindowType>>=
 GtkWindowType
 @ 

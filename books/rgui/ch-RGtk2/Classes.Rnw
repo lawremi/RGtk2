@@ -1,4 +1,4 @@
-\section{Extending GObject classes from R}
+%\section{Extending GObject classes from R}
 \label{sec:gtk:extending-classes}
 
 \GTK, as well as several of its dependencies, with the notable
@@ -25,7 +25,7 @@ this feature takes some commitment from the programmer. Any method
 declared by an R class may be overridden by an R subclass.
 
 Our example will be a GUI that displays a scatterplot along with a
-slider for adjusting the alpha level of the points. Usually, a slider
+slider for adjusting the alpha level of the points (Figure~\ref{}). Usually, a slider
 operates in linear fashion. When there are a large number of points,
 on the order of tens of thousands or more, changing the alpha level
 does not have a strong visual effect until it approaches its lower
@@ -36,8 +36,16 @@ of the plot and reflect that transformation in the label on the
 slider. One solution is to connect to the
 \signal{format-value}{GtkScale} signal to override the text in the
 label. We present an alternative that involves extending
-\class{GtkHScale} and overriding its \method{format_value}{GtkScale}
+\class{GtkHScale} and overriding its \method{format\_value}{GtkScale}
 virtual method.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.6\textwidth]{fig-RGtk2-extend-gobject} 
+  \caption{An interface using a custom slider to adjust alpha levels
+    in a non-linear manner}
+  \label{fig:RGtk2-extend-gobject-slider}
+\end{figure}
 
 A class is defined by calling \function{gClass}, which is passed the
 class name, the name of the parent class and a number of list
@@ -53,14 +61,17 @@ tform_scale_type <-
                       default.value = expression(x))
            ),
          GtkScale = list(
-           format_value = function(self, x) as.character(self$transformValue(x))
+           format_value = function(self, x) 
+             as.character(self$transformValue(x))
            ),
          .public = list(
            getExpr = function(self) self["expr"],
-           getTransformedValue = function(self) self$transformValue(self$value)
+           getTransformedValue = function(self) 
+             self$transformValue(self$value)
            ),
          .private = list(
-           transformValue = function(self, x) eval(self$expr, list(x = x))
+           transformValue = function(self, x) 
+             eval(self$expr, list(x = x))
           )
          )
 @ 
@@ -84,7 +95,7 @@ type, as returned by \function{typeof}, may be specified as the
 the default value.
 
 We turn our attention to the methods in the class definition. The
-class overrides the \method{format_value} virtual from
+class overrides the \method{format\_value} virtual from
 \class{GtkScale} and defines two public methods, \code{getExpr} and
 \code{getTransformedValue}, for retrieving the transformation
 expression and the transformed value, respectively. There is one
@@ -155,12 +166,12 @@ Instances of any \pkg{GObject} class may be created using the
 to the \proglang{R} expression $x^3$ when the object is created.  The
 signal handler now calls the new \code{getTransformedValue} method,
 instead of \code{getValue} as in the original version.  The
-\code{ma_data} object is a matrix of points that is meant to resemble
+\code{ma\_data} object is a matrix of points that is meant to resemble
 expression values from two replicates of a microarray experiment.
 
 We complete the example by placing the slider and a graphics device in
 a window:
-<<gtk-class-window>>=
+<<gtk-class-window, results=hide>>=
 win <- gtkWindow(show = FALSE)
 da <- gtkDrawingArea()
 vbox <- gtkVBox()
@@ -168,10 +179,10 @@ vbox$packStart(da)
 vbox$packStart(s, FALSE)
 win$add(vbox)
 win$setDefaultSize(400, 400)
-
+#
 require(cairoDevice)
 asCairoDevice(da)
-
+#
 win$showAll()
 par(pty = "s")
 s$setValue(0.7)

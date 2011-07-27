@@ -1,15 +1,11 @@
-\documentclass[showtrims]{memoir}
+\documentclass[showtrims, letterpaper]{memoir}
 
 
 \input{setup}
-%% Begin here
-
-
-
-%%\usepackage{/Users/verzani/R/R.framework/Resources/share/texmf/Sweave}
+\makeindex
 \begin{document}
 \thispagestyle{empty}
-\bibliographystyle{plainnat}
+%\bibliographystyle{plainnat}
 \input{setup2}                  % sweave
 
 \frontmatter
@@ -103,8 +99,10 @@
 % [Needs writing]
 
 %% Bibiligraphy
-\bibliography{guis}
+%%\bibliography{guis}
 %% Index
+
+\printindex
 
 
 

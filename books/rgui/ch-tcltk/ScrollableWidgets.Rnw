@@ -1,6 +1,8 @@
-This chapter focuses on a few of the more complex widgets of \Tk, these being the text widget, the treeview widget and the canvas widget.
+This chapter focuses on a few of the more complex widgets of \Tk,
+primarily the text widget, the treeview widget and the canvas
+widget.
 
-\subsection{Scrollbars}
+\section{Scrollbars}
 \label{sec:tcltk:scrollbars}
 
 \TK\/ has several scrollable widgets -- those that use scrollbars.
@@ -41,9 +43,8 @@ tkconfigure(widget,
 
 Although scrollbars can appear anywhere, the conventional place is on
 the right and lower side of the parent. The following adds scrollbars
-using the grid manager. The combination of weights and stickiness
-below will have the scrollbars expand as expected if the window is
-resized.
+using the grid manager. The combination of weights and stickiness below
+will have the scrollbars expand as expected if the window is resized.
 <<>>=
 tkgrid(widget, row=0, column=0, sticky="news")
 tkgrid(yscr,row=0,column=1, sticky="ns")
@@ -52,12 +53,12 @@ tkgrid.columnconfigure(parent, 0, weight=1)
 tkgrid.rowconfigure(parent, 0, weight=1)
 @ 
 %
-Although a bit tedious, this gives the programmer some flexibility in
-arranging scrollbars. To avoid doing all this in the sequel, we turn
-the above into the function \function{addScrollbars} for subsequent
-usage (not shown). In base \Tk, there are no simple means to hide
-scrollbars when not needed, although the \pkg{tcltk2} package has some
-code that may be employed for that.
+Although this is a bit tedious, it does give the programmer some
+flexibility in arranging scrollbars. For subsequent usage, we turn the above into the
+function \function{addScrollbars} (not shown). In
+base \Tk, there are no simple means to hide scrollbars when not
+needed, although the \pkg{tcltk2} package has some code that may be
+employed for that.
 
 <<addScrollbars, echo=FALSE>>=
 ## function to add scrollbars to widget and pack into grid
@@ -80,12 +81,12 @@ addScrollbars <- function(parent, widget) {
 }
 @ 
 
-\subsection{Multi-line Text Widgets}
+\section{Multi-line Text Widgets}
 \label{sec:tcltk:multi-line-text}
 
 The \constructor{tktext} widget creates a multi-line text editing
 widget. If constructed with no options but a parent container, the
-widget can have text entered into it by the user.
+widget can have text entered into it by the user:
 
 <<ex-tktext-easiest>>=
 w <- tktoplevel()
@@ -126,7 +127,8 @@ as.character(value)                     # wrong way
 tclvalue(value)
 @ 
 
-The return value is of class \class{tclObj}.  Coercion to character
+The return value is of class \class{tclObj}.  The above example shows
+that coercion to character
 should be done with \function{tclvalue} and not
 \function{as.character} to preserve the distinction between spaces and
 line breaks.
@@ -139,22 +141,32 @@ line and character are needed in some instances. These indices may be
 specified in many ways. One can use row and character numbers
 separated by a period in the pattern \code{line.char}. The line is
 $1$-based, the column $0$-based (e.g., \code{1.0} says start on the
-1st row and first character). In general, one can specify any line
-number and character on that line, with the keyword \code{end} used to
-refer to the last character on the line. 
+1st row and first character, although \code{0.0} will do the
+same.). In general, one can specify any line number and character on
+that line, with the keyword \code{end} used to refer to the last
+character on the line.
 
-Text buffers may carry
-transient marks, in which case the use of this mark indicates the next
-character after the mark. Predefined marks include \code{end}, to  specify the end of the
-buffer, \code{insert}, to track the insertion point in the text
-buffer were the user to begin typing, and \code{current}, which 
-follows the character closest to the mouse position. 
+Text buffers may carry transient marks, in which case the use of this
+mark indicates the next character after the mark. Predefined marks
+include \code{end}, to specify the end of the buffer, \code{insert},
+to track the insertion point in the text buffer were the user to begin
+typing, and \code{current}, which follows the character closest to the
+mouse position.
 
-As well, pieces
-of text may be tagged. The format \code{tag.first} and \code{tag.last}
-index the range of the tag \code{tag}. Marks and tags are described
-below. If the $x$-$y$ postion of the spot is known (through percent
-substitutions say) the index can be specified by postion, as \code{\@x,y}.
+%% use of index and mark
+The specification
+<<eval=FALSE>>=
+value <- tkget(txt, "1.0", "end")
+@ 
+uses the index \code{1.0} to refer to the beginning of the buffer and
+the mark \qcode{end} to refer to the character after the end.
+
+%% tags
+As well, pieces of text may be tagged. The format \code{tag.first} and
+\code{tag.last} index the range of the tag \code{tag}. Marks and tags
+are described further below. If the $x$-$y$ postion of the spot is known
+(through percent substitutions say) the index can be specified by
+postion, as \code{\@x,y}.
 
 Indices can also be adjusted relative to the above
 specifications. This adjustment can be by a number of characters
@@ -168,7 +180,7 @@ beginning and ending of the last word in the buffer. (The \code{end}
 index refers to the character just after the new line so we go back 2
 steps.)
 
-\paragraph{Inserting text}
+\paragraph{Inserting and deleting text}
 Inserting text can be done through the \subcommand{insert}{ttktext}
 subcommand by specifying first the index then the text to add. One can
 use \code{$\backslash$n} to add new lines.
@@ -202,7 +214,7 @@ Tags can be set after the text is added through the
 location. The following marks the first word with the \code{firstWord}
 tag:
 <<>>=
-tktag.add(txt,"firstWord","1.0 wordstart", "1.0 wordend")
+tktag.add(txt, "firstWord", "1.0 wordstart", "1.0 wordend")
 @ 
 The \subcommand{tag configure}{tktext} can be used to configure properties of the tagged characters, for example:
 <<>>=
@@ -230,6 +242,7 @@ hasSelection <- function(W) {
 }
 @ 
 
+\paragraph{Cut, copy and paste} 
 The cut, copy and paste commands are implemented through the \Tk\/ functions
 \function{tk\_textCut}, \function{tk\_textCopy} and
 \function{tk\_textPaste}. Their lone argument is the text widget. These
@@ -263,7 +276,7 @@ of an initial insert point and the current one, the initial point
 (marked \code{leftlimit} below) can be marked with
 <<>>=
 tkmark.set(txt, "leftlimit", "insert")
-tkmark.gravity(txt, "leftlimit", "left")    # keep onleft
+tkmark.gravity(txt, "leftlimit", "left")    # keep on left
 tkinsert(txt, "insert", "new text")
 tkget(txt, "leftlimit", "insert")
 @ 
@@ -299,6 +312,134 @@ key activity. The \%-substitution \code{k} gives the keycode and
 \begin{example}{Displaying commands in a text buffer}{ex-tcltk-text}
   \SweaveInput{ex-tcltk-text.Rnw}
 \end{example}
+
+
+
+\section{Menus}
+\label{sec:tcltk:menus}
+
+Menu bars and popup menus in \Tk\/ are constructed with
+\constructor{tkmenu}. The \code{parent} argument depends on what the menu is
+to do. A toplevel menu bar, such as appears at the top of a window has
+a toplevel window as its parent; a submenu of a menu bar uses the
+parent menu; and a popup menu uses a widget.  
+
+The menu widget in \Tk\/ has an option to be ``torn off.'' This
+feature was at one time common in GUIs, but now is rarely seen so it
+is recommended that this option be disabled. The
+\argument{tearoff}{tkmenu} option can be used at construction time to
+override the default behavior. Otherwise, the following command will
+do so globally:
+<<tearoff>>=
+tcl("option","add","*tearOff", 0)    # disable tearoff menus
+@ 
+%
+
+A toplevel menu bar is attached to a top-level window using \code{tkconfigure}
+to set the \code{menu} option of the window. For the aqua \TK\/
+libraries for Mac OS X, this menu will appear on the top menu bar when
+the window has the focus. For other operating systems, it appears at
+the top of the window. For Mac OS X, a default menu bar with no
+relationship to your application will be shown if a menu is not
+provided for a toplevel window. Testing for native Mac OS X may be done via
+the following function:
+<<testIfMac>>=
+usingMac <- function()  
+  as.character(tcl("tk", "windowingsystem")) == "aqua"
+@ 
+
+The \function{tkpopup} function facilitates the creation of a popup
+menu.  This function has arguments for the menu bar, and the postion
+where the menu should be popped up. For example, the following code
+will bind a popup menu, \code{pmb} (yet to be defined), to the right click event for a
+button \code{b}. As \OSX\/ may not have a third mouse button, and when
+it does it refers to it differently, the callback is bound
+conditionally to different events.
+
+<<echo=FALSE>>=
+w <- tktoplevel()
+tkwm.title(w, "Popup menu example")
+f <- ttkframe(w, padding=c(3,3,12,12))
+tkpack(f, expand=TRUE, fill="both")
+
+b <- ttkbutton(f, text="Click me for popup")
+@ 
+
+<<>>=
+doPopup <- function(X, Y) tkpopup(pmb, X, Y) # define callback
+if (usingMac()) {
+  tkbind(b, "<Button-2>", doPopup)      # right click
+  tkbind(b, "<Control-1>", doPopup)     # Control + click
+} else {
+  tkbind(b, "<Button-3>", doPopup)
+}
+@ 
+
+
+\paragraph{Adding submenus and action items}
+Menus show a hierarchical view of action items. Items are added to a
+menu through the \subcommand{add}{tkmenu} subcommand.  The nested
+structure of menus is achieved by specifying a \code{tkmenu} object as
+an item, using the \subcommand{add cascade}{tkmenu} subcommand. The
+option \code{label} is used to label the menu and the \code{menu}
+option to specify the sub-menu.
+
+Grouping of similar items can be done through nesting, or, on occasion,
+through visual separation. The latter is implemented with the \subcommand{add
+  separator}{tkmenu} subcommand.
+
+
+There are a few different types of action items that can be added:
+ 
+\begin{description}
+\item[Commands] An action item is one associated with a command. The
+  simplest proxy is a button in the menu that activates a command when
+  selected with the mouse. The \subcommand{add command}{tkmenu} allows
+  one to specify a \code{label}, a \code{command} and optionally an
+  \code{image} with a value for \code{compound} to adjust its
+  layout. Action commands may %% (Images are not shown in Mac OS X.) 
+  possibly be called for different widgets, so the use of percent
+  substitution is problematic. One can also specify that a keyboard
+  accelerator be displayed through the option \code{accelerator}, but
+  a separate callback must listen for this combination.
+
+\item[Check boxes] Action items may also be proxied by checkboxes. To
+  create one, the subcommand \subcommand{add checkbutton}{tkmenu} is
+  used. The available arguments include \code{label} to specify the
+  text, \code{variable} to specify a \TCL{} variable to store the state,
+  \code{onvalue} and \code{offvalue} to specify the state to the tcl
+  variable, and \code{command} to specify a call back when the checked
+  state is toggled. The initial state is set by the value in the
+  \TCL\/ variable.
+
+\item[Radio buttons] Additionally, action items may be presented
+  through radiobutton groups. These are specified with the subcommand
+  \subcommand{add radiobutton}{tkmenu}. The \code{label} option is
+  used to identify the entry, \code{variable} to set a text variable
+  and to group the buttons that are added, and \code{command} to
+  specify a command when that entry is selected.
+\end{description}
+
+Action items can also be placed after an item, rather than at the end
+using the \subcommand{insert command index}{tkmenu} subcommand. The
+index may be specified numerically with 0 being the first item for a
+menu.  More conveniently the index can be determined by specifying a
+pattern to match the menu's labels.
+
+
+\paragraph{Set state}
+The \code{state} option is used to retrieve and set the current state
+of the a menu item.  This value is typically \code{normal} or
+\code{disabled}, the latter to indicate the item is not available. The
+state can be set when the item is added or configured after that fact,
+through the \subcommand{entryconfigure}{tkmenu} command. This function
+needs the menu bar specified and the item specified as an index or
+pattern to match the labels.
+
+\begin{example}{Simple menu example}{ex-tcltk-menu}
+  \SweaveInput{ex-tcltk-menu.Rnw}
+\end{example}
+
 
 
 \section{Treeview widget}
@@ -584,7 +725,7 @@ IDs <- as.character(tkselect(tr))
 %% Events; handlers.
 \paragraph{Events and callbacks}
 In addition to the keyboard events \code{\Event{KeyPress}} and
-\code{\Event{KeyRelease}} and the mouse events \code{\Event{ButtonPress}},
+\code{\Event{KeyRelease}}, and the mouse events \code{\Event{ButtonPress}},
 \code{\Event{ButtonRelease}} and \code{\Event{Motion}}, the virtual event
 \code{\VirtualEvent{TreeviewSelect}} is generated when the selection changes.
 
@@ -670,145 +811,27 @@ children when coerced to character with \code{as.character}.
   \SweaveInput{ex-tcltk-tree.Rnw}
 \end{example}
 
-
-
-\section{Menus}
-\label{sec:tcltk:menus}
-
-Menu bars and popup menus in \Tk\/ are constructed with
-\constructor{tkmenu}. The \code{parent} argument depends on what the menu is
-to do. A toplevel menu bar, such as appears at the top of a window has
-a toplevel window as its parent; a submenu of a menu bar uses the
-parent menu; and a popup menu uses a widget.  
-
-The menu widget in \Tk\/ has an option to be ``torn off.'' This
-feature was at one time common in GUIs, but now is rarely seen so it
-is recommended that this option be disabled. The
-\argument{tearoff}{tkmenu} option can be used at construction time to
-override the default behavior. Otherwise, the following command will
-do so globally:
-<<tearoff>>=
-tcl("option","add","*tearOff", 0)    # disable tearoff menus
-@ 
-%
-
-A toplevel menu bar is attached to a top-level window using \code{tkconfigure}
-to set the \code{menu} option of the window. For the aqua \TK\/
-libraries for Mac OS X, this menu will appear on the top menu bar when
-the window has the focus. For other operating systems, it appears at
-the top of the window. For Mac OS X, a default menu bar with no
-relationship to your application will be shown if a menu is not
-provided for a toplevel window. Testing for native Mac OS X may be done via
-the following function:
-<<testIfMac>>=
-usingMac <- function()  
-  as.character(tcl("tk", "windowingsystem")) == "aqua"
-@ 
-
-The \function{tkpopup} function facilitates the creation of a popup
-menu.  This function has arguments for the menu bar, and the postion
-where the menu should be popped up. For example, the following code
-will bind a popup menu, \code{pmb} (yet to be defined), to the right click event for a
-button \code{b}. As \OSX\/ may not have a third mouse button, and when
-it does it refers to it differently, the callback is bound
-conditionally to different events.
-
-<<echo=FALSE>>=
-w <- tktoplevel()
-tkwm.title(w, "Popup menu example")
-f <- ttkframe(w, padding=c(3,3,12,12))
-tkpack(f, expand=TRUE, fill="both")
-
-b <- ttkbutton(f, text="Click me for popup")
-@ 
-
-<<>>=
-doPopup <- function(X, Y) tkpopup(pmb, X, Y) # define callback
-if (usingMac()) {
-  tkbind(b, "<Button-2>", doPopup)      # right click
-  tkbind(b, "<Control-1>", doPopup)     # Control + click
-} else {
-  tkbind(b, "<Button-3>", doPopup)
-}
-@ 
-
-
-\paragraph{Adding submenus and action items}
-Menus show a hierarchical view of action items. Items are added to a
-menu through the \subcommand{add}{tkmenu} subcommand.  The nested
-structure of menus is achieved by specifying a \code{tkmenu} object as
-an item, using the \subcommand{add cascade}{tkmenu} subcommand. The
-option \code{label} is used to label the menu and the \code{menu}
-option to specify the sub-menu.
-
-Grouping of similar items can be done through nesting, or, on occasion,
-through visual separation. The latter is implemented with the \subcommand{add
-  separator}{tkmenu} subcommand.
-
-
-There are a few different types of action items that can be added:
- 
-\begin{description}
-\item[Commands] An action item is one associated with a command. The
-  simplest proxy is a button in the menu that activates a command when
-  selected with the mouse. The \subcommand{add command}{tkmenu} allows
-  one to specify a \code{label}, a \code{command} and optionally an
-  \code{image} with a value for \code{compound} to adjust its
-  layout. Action commands may %% (Images are not shown in Mac OS X.) 
-  possibly be called for different widgets, so the use of percent
-  substitution is problematic. One can also specify that a keyboard
-  accelerator be displayed through the option \code{accelerator}, but
-  a separate callback must listen for this combination.
-
-\item[Check boxes] Action items may also be proxied by checkboxes. To
-  create one, the subcommand \subcommand{add checkbutton}{tkmenu} is
-  used. The available arguments include \code{label} to specify the
-  text, \code{variable} to specify a \TCL{} variable to store the state,
-  \code{onvalue} and \code{offvalue} to specify the state to the tcl
-  variable, and \code{command} to specify a call back when the checked
-  state is toggled. The initial state is set by the value in the
-  \TCL\/ variable.
-
-\item[Radio buttons] Additionally, action items may be presented
-  through radiobutton groups. These are specified with the subcommand
-  \subcommand{add radiobutton}{tkmenu}. The \code{label} option is
-  used to identify the entry, \code{variable} to set a text variable
-  and to group the buttons that are added, and \code{command} to
-  specify a command when that entry is selected.
-\end{description}
-
-Action items can also be placed after an item, rather than at the end
-using the \subcommand{insert command index}{tkmenu} subcommand. The
-index may be specified numerically with 0 being the first item for a
-menu.  More conveniently the index can be determined by specifying a
-pattern to match the menu's labels.
-
-
-\paragraph{Set state}
-The \code{state} option is used to retrieve and set the current state
-of the a menu item.  This value is typically \code{normal} or
-\code{disabled}, the latter to indicate the item is not available. The
-state can be set when the item is added or configured after that fact,
-through the \subcommand{entryconfigure}{tkmenu} command. This function
-needs the menu bar specified and the item specified as an index or
-pattern to match the labels.
-
-\begin{example}{Simple menu example}{ex-tcltk-menu}
-  \SweaveInput{ex-tcltk-menu.Rnw}
-\end{example}
-
 \section{Canvas Widget}
 \label{sec:tcltk:canvas-widget}
 
  
 The canvas widget provides an area to display lines, shapes, images
-and widgets. Methods exist to create, move and delete these objects,
-allowing the canvas widget to be the basis for creating interactive
-GUIs. The constructor \constructor{tkcanvas} for the widget, being a
-non-themeable widget, has many arguments including these standard ones:
-\argument{width}{tkcanvas}, \argument{height}{tkcanvas}, and
-\argument{background}{tkcanvas}, \argument{xscrollcommand}{tkcanvas}
-and \argument{yscrollcommand}{tkcanvas}.
+and widgets. The canvas widget is quite complicated and we content
+ourselves to describing a subset of its possiblities. For an excellent
+example of how it can be used to provide a useful GUI for \R{} see the
+\pkg{RnavGraph} package by Waddell and Oldford.
+
+
+As described on its manual page, the canvas widget implement
+structured graphics, displaying any number of items or objects of
+various types.  Methods exist to create, move and delete these
+objects, allowing the canvas widget to be the basis for creating
+interactive GUIs. The constructor \constructor{tkcanvas} for the
+widget, being a non-themeable widget, has many arguments including
+these standard ones: \argument{width}{tkcanvas},
+\argument{height}{tkcanvas}, and \argument{background}{tkcanvas},
+\argument{xscrollcommand}{tkcanvas} and
+\argument{yscrollcommand}{tkcanvas}.
 
 
 \paragraph{The create command}
@@ -827,9 +850,22 @@ options are the $x$ and $y$ coordinates and the \code{text} option
 specifies the text.  Other standard text options are possible (e.g.,
 \code{font}, \code{justify}, \code{anchor}).
 
-The type can also be an image object or a widget (a window object). Images are added by specifying an $x$ and $y$ position, possibly an anchor position, and a value for the \qcode{image} option and optionally, for state dependent display, specifying \qcode{activeimage} and \qcode{disabledimage} values. The \qcode{state} option is used to specify the current state. Window objects are added similarly in terms of their positioning, along with options for \qcode{width} and \qcode{height}. The window itself is added through the \qcode{window} option. An example shows how to add a frame widget.
+The type can also be an image object or a widget (a window
+object). Images are added by specifying an $x$ and $y$ position,
+possibly an anchor position, and a value for the \qcode{image} option
+and optionally, for state dependent display, specifying
+\qcode{activeimage} and \qcode{disabledimage} values. The
+\qcode{state} option is used to specify the current state. Window
+objects are added similarly in terms of their positioning, along with
+options for \qcode{width} and \qcode{height}. The window itself is
+added through the \qcode{window} option. An example shows how to add a
+frame widget.
 
-% Once created, a screenshot of the canvas can be created through the \subcommand{postscript}{tkcanvas} subcommand, as in \code{tcl(canvas, "postscript", file="filename")}. To store the widget so that it can be recreated is not supported directly. \TCL\/ code to do so can be found at \url{http://wiki.tcl.tk/9168}.
+% Once created, a screenshot of the canvas can be created through the
+% \subcommand{postscript}{tkcanvas} subcommand, as in
+% \code{tcl(canvas, "postscript", file="filename")}. To store the
+% widget so that it can be recreated is not supported directly. \TCL\/
+% code to do so can be found at \url{http://wiki.tcl.tk/9168}.
 
 
 \paragraph{Items and tags}
@@ -838,10 +874,10 @@ used to refer to the item at a later stage. Optionally, tags can be
 used to group items into common groups. The \qcode{tags} option can be
 used with \code{tkcreate} when the item is created, or the
 \subcommand{addtag}{tkcanvas} subcommand can be used. The call
-\code{tkaddtag(canvas, tagName, "withtag", item)} would add the tag ``\code{tagName}''to
-the \code{item} returned by \code{tkcreate}. (The \qcode{withtag} is
-one of several search specifications.) As well, if one is
-adding a tag through a mouse click, the call \code{tkaddtag(W,
+\code{tkaddtag(canvas, tagName, "withtag", item)} would add the tag
+``\code{tagName}''to the \code{item} returned by \code{tkcreate}. (The
+\qcode{withtag} is one of several search specifications.) As well, if
+one is adding a tag through a mouse click, the call \code{tkaddtag(W,
   "tagName", "closest", x, y)} could be used with \code{W}, \code{x}
 and \code{y} coming from percent substitutions. Tags can be deleted
 through the \subcommanda{dtag}{tkcanvas}{tag} subcommand.
@@ -858,8 +894,8 @@ incremental moves (where $x$ and $y$ specify the horizontal and
 vertical shift in pixels). The subcommand
 \subcommanda{coords}{tkcanvas}{ tag\_or\_ID [coordinates]} allows one
 to respecify the coordinates for the item. The
-\subcommand{scale}{tkcanvas} command is used to rescale items. Except for
-window objects, an item can be raised to be on top of the others
+\subcommand{scale}{tkcanvas} command is used to rescale items. Except
+for window objects, an item can be raised to be on top of the others
 through the \subcommanda{raise}{tkcanvas}{item\_or\_ID} subcommand.
 
 
@@ -868,10 +904,9 @@ through the \subcommanda{raise}{tkcanvas}{item\_or\_ID} subcommand.
 As usual, bindings can be specified overall for the canvas, through
 \code{tkbind}. However, bindings can also be set on specific items
 through the subcommand \subcommanda{bind}{tkcanvas}{tag\_or\_ID event
-  function} (or with \code{tkitembind}). This allows
-bindings to be placed on items sharing a tag name, without having the
-binding on all items. Only mouse, keyboard or virtual events can have
-such bindings.
+  function} (or with \code{tkitembind}). This allows bindings to be
+placed on items sharing a tag name, without having the binding on all
+items. Only mouse, keyboard or virtual events can have such bindings.
 
 %% do with fonts now
 \begin{example}{Using a canvas to make a scrollable frame}{ex:tcltk-scrollable-frame}

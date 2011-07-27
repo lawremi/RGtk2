@@ -1,8 +1,8 @@
  
   \begin{figure}
     \centering
-    \includegraphics[]{fig-gWidgets-collapse-factor.png}
-    \caption{A GUI to facilitate the recoding or a factor's levels. For this, one selects the desired levels to rename or collapse, then enters a new label on the right. Activating the combobox will update the "new" column on the left.}
+    \includegraphics[width=.8\textwidth]{fig-gWidgets-collapse-factor.png}
+    \caption{A GUI to facilitate the recoding or a factor's levels. For this, one selects the desired levels to rename or collapse, then enters a new label on the right. Activating the combo box will update the "new" column on the left.}
     \label{fig:gWidgets-collapse-factor}
   \end{figure}
   
@@ -33,8 +33,8 @@ work. (Figure~\ref{fig:gWidgets-collapse-factor} shows a screenshot.)
 We have just two widget, placed in a paned group. The left one is a
 table that displays two columns. The first to list the old values, the
 second to list the collapsed or recoded values. The right one is a
-combobox that allows one to enter a new factor level or select a
-current one. The handler on the combobox updates the second column of
+combo box that allows one to enter a new factor level or select a
+current one. The handler on the combo box updates the second column of
 the table to reflect the new values. We block any handler calls to
 avoid a loop when we set the index back to 0.
 <<>>=

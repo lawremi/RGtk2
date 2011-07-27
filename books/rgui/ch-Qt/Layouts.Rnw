@@ -137,8 +137,8 @@ df <- rbind(
 colnames(df) <- c("Policy","Meaning")
             cat(booktabs(df,
                          colTypes=c("l","p{0.7\\textwidth}"),
-                         caption="Possible size policies"),
-                label="tab:qt:size-policies")
+                         caption="Possible size policies",
+                         label="tab:qt:size-policies"))
 @ 
 
 As an example, consider \class{QPushButton}. It is the convention that
@@ -505,8 +505,9 @@ widgets by drawing a border around them and displaying a
 title. \class{QGroupBox} is often used to group radio buttons, see
 Section~\ref{sec:radio-groups} for an example.  The title, stored in
 the \property{title}{QGroupBox} property, may be aligned to left, right or
-center, depending on the \property{alignment}{QGroupBox} property, see
-Figure~\ref{fig:group-box-example}. If the \property{checkable}{QGroupBox}
+center, depending on the \property{alignment}{QGroupBox} property.
+%% , see Figure~\ref{fig:group-box-example}. 
+If the \property{checkable}{QGroupBox}
 property is \qcode{TRUE}, the frame contents can be enabled or
 disabled by clicking a check button.
 

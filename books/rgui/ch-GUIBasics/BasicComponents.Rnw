@@ -15,24 +15,24 @@ considered optional.
 %% real estate, type of data
 
 A GUI is comprised of one or more widgets. The appropriate choice
-depends on a balance of condiderations.  For example, many widgets
+depends on a balance of considerations.  For example, many widgets
 offer the user a selection from one or more possible choices.  An
 appropriate choice depends on the type and size of the information
 being displayed, the constraints on the user input, and on the space
 available in the GUI layout. As an example,
-Table~\ref{tab:gui-design-widget-type} lists suggests different types
+Table~\ref{tab:gui-design-widget-type} suggests different types
 of widgets used for this purpose depending on the type and size of
 data and the number of items to select.
   
 <<echo=FALSE, results=tex>>=
 df <- rbind(
             c("Boolean","Checkbox, toggle button","-"),
-            c("Small list","radiogroup\\newline combobox\\newline list box","checkboxgroup\\newline list box"),
-            c("Moderate list","combobox\\newline list box","list box"),
+            c("Small list","radio button group\\newline combo box\\newline list box","checkboxgroup\\newline list box"),
+            c("Moderate list","combo box\\newline list box","list box"),
             c("Large list","list box, auto complete","list box"),
-            c("Sequential","slider\\ spinbutton",""),
+            c("Sequential","slider\\ spin button",""),
             c("Tabular","table","table"),
-            c("Heirarchical","tree","tree")
+            c("Hierarchical","tree","tree")
             )
 colnames(df) <- c("Type of data","Single","Multiple")
 cat(booktabs(df,
@@ -129,7 +129,7 @@ the selection of one or more values at a time.
     %% 
     The left graphic is
     produced by \command{chooseCRANmirror} and uses a list box to
-    allow selection from a long list of possibiulities.
+    allow selection from a long list of possibilities.
     %% 
     The right graphic is the \code{tkdensity} demo from the
     package. It uses radio buttons and a slider to select the
@@ -138,7 +138,7 @@ the selection of one or more values at a time.
   \label{fig:GUI:ex-tcltk}
 \end{figure}
 
-\subsubsection{Radio buttond}
+\subsubsection{Radio buttons}
 \label{sec:GUI:radio=button-groups}
 
 A \dfn{radio button group} selects exactly one value from a vector of
@@ -155,17 +155,17 @@ density plot.
 \subsubsection{Combo boxes}
 \label{sec:GUI:combo-boxes}
 
-A \dfn{combo box} is similar to a radio button group, in that it
-selects one value from several. However, a combo box only displays the
-value currently selected, which reduces visual complexity and saves
-space, at the cost of an extra click to show the choices. Toolkits
-often combine a combo box with a text entry area for specifying an
-arbitrary value, possibly one that is not represented in the set of
-choices. A combo box is generally desirable over radio buttons when
-there are more than four or five choices. However, the combo box also
-has its limits. For example, some web forms require choosing a country
-from a list of hundreds. In such cases, features like incremental type
-ahead search enhance usability.
+A \dfn{combo box} is similar to a radio button group, in that it is
+used to select one value from several. However, a combo box only
+displays the value currently selected, which reduces visual complexity
+and saves space, at the cost of an extra click to show the
+choices. Toolkits often combine a combo box with a text entry area for
+specifying an arbitrary value, possibly one that is not represented in
+the set of choices. A combo box is generally desirable over radio
+buttons when there are more than four or five choices. However, the
+combo box also has its limits. For example, some web forms require
+choosing a country from a list of hundreds. In such cases, features
+like incremental type ahead search enhance usability.
 
 \subsubsection{List boxes}
 
@@ -196,7 +196,7 @@ sequence. The slider is a good choice for offering the user a
 selection of ordinal or numerical parameter values. For example, the
 letters of the alphabet could be a sequence. The \code{tkdensity} demo
 of the \pkg{tcltk} package (Figure~\ref{fig:GUI:ex-tcltk}) uses a
-slider to dynamically adjust the bandwith of a density estimate.
+slider to dynamically adjust the bandwidth of a density estimate.
 
 A \dfn{spin button} plays a similar role to the slider, in that it
 selects a value within a set of bounds. Typically, this widget is
@@ -211,7 +211,7 @@ possible and often effective. A spin button is used in the KDE print
 dialog of Figure~\ref{fig:GUI:print-dialogs} to adjust the number of
 copies.
 
-\subsection{Inititiating an action}
+\subsection{Initiating an action}
 
 After the user has specified the parameters of an action, typically
 by interacting with the selection widgets presented above, it comes time to
@@ -221,11 +221,11 @@ buttons, which are often organized into menubars and toolbars.
 \subsubsection{Buttons}
 \label{sec:GUI:buttons}
 
-A \dfn{button} issues commands when pressed, usually via a mouse click.
+A \dfn{button} issues commands when invoked, usually via a mouse click.
 In Figure~\ref{fig:GUI:print-dialogs}, the ``Properties'' button, when
 clicked, opens a dialog for setting printer properties. The button
 with the wizard icon also opens a dialog.  As buttons execute an
-action, they are often labeled with a verb.~\citep{APPLE:HIG} In
+action, they are often labeled with a verb.~\footcite{APPLE:HIG} In
 Figure~\ref{fig:GUI:spss-11-term-selection} we see how SPSS uses
 buttons in its dialogs: buttons which are not valid in the current
 state are disabled; buttons which are designed to open subsequent
@@ -235,11 +235,11 @@ buttons on the right edge of the dialog box.
 
 To speed the user through a dialog, a button may be singled out as the
 default button, so its action will be called if the user presses the
-\kbd{return} key. Buttons may be given accelerator key
-bindings, so that their actions are executable by typing the proper key
-combination. The KDE print dialog in
-Figure~\ref{fig:GUI:print-dialogs} has these bindings indicated
-through the underlined letter on the button labels.
+\kbd{return} key. Actions may be given shortcut bindings, and their
+button proxies typically reflect the proper key combination to invoke
+the action The KDE print dialog in Figure~\ref{fig:GUI:print-dialogs}
+has these bindings indicated through the underlined letter on the
+button labels.
 
 %% ML: besides the accelerator comment, the below might be too much detail
 %% JV: I'll leave it for the toolkit chapters if appropriate.
@@ -263,7 +263,8 @@ the more general definition, where an icon is used to augment or
 replace a text label on a button, a toolbar, in a list box, etc. When
 icons appear on toolbars and buttons, they are associated with
 actions, so an icon should be a pictorial representation of an
-action. The choice of icon has a significant impact on usability.
+action. The choice of icons can have a significant impact on usability
+and appearance.
 
 % ML: too much detail?
 % JV: agreed
@@ -303,7 +304,7 @@ accelerators are not supported in Mac OS X menus.)
 
 Not all actions will be applicable at any given time. It is
 recommended that rather than deleting these menu items, they be
-disabled, or greyed out, instead. %%~\ref{KDE:HIG}
+disabled, or grayed out, instead. %%~\ref{KDE:HIG}
 
 Menus may come to contain many items. To help the user navigate, menu
 items are usually grouped with either horizontal separators or
@@ -342,10 +343,12 @@ toolbars.
 
 An action object is essentially a data model, with each proxy widget
 acting as a view. Common components of an action include a textual
-label, an icon, perhaps a keyboard accelerator, and a handler to call
-when the action is selected. When a particular action is not possible
-due to the state of the GUI, it should be disabled, so that the
-associated widgets are not sensitive to user interaction.
+label, an icon, perhaps a shortcut, and a handler to call
+when the action is selected.
+%% JV this repeats the above
+% When a particular action is not possible
+% due to the state of the GUI, it should be disabled, so that the
+% associated widgets are not sensitive to user interaction.
 
 
 \subsection{Modal dialogs}
@@ -440,8 +443,8 @@ in a Spotfire web player demonstration.
 So far, we have seen how list boxes display homogeneous vectors of
 data, and how table widgets display tabular data, like that in a data
 frame. Other widgets support the display of more complex data
-structures. If the data has a heirarchical structure, then a \dfn{tree
-  widget} may be appropriate for its display. Examples of heirarchical
+structures. If the data has a hierarchical structure, then a \dfn{tree
+  widget} may be appropriate for its display. Examples of hierarchical
 data in \R\/ are directory structures, the components of a list, or
 class hierarchies. The object browser in \pkg{JGR} uses a tree
 widget to show the components of the objects in a users session (the
@@ -461,7 +464,7 @@ is unsurprising that \acronym{WIMP} GUIs are designed around the
 pointing device. The keyboard is generally relegated to a secondary
 role, in part because it is difficult to both type and move the mouse
 at the same time. For statistical GUIs, especially when integrating
-with the command-line interface of \R\/, the flexibity afforded by
+with the command-line interface of \R\/, the flexibility afforded by
 arbitrary text entry is essential for any moderately complex
 GUI. Toolkits generally provide separate widgets for text entry
 depending on whether the editor supports a single line or multiple
@@ -498,7 +501,7 @@ the commands, so that the input can be distinguished from the output.
     %% 
     The left graphic shows the object browser in the \pkg{JGR} GUI
     using a tree widget 
-    to display the possibly heirarchical nature of \R\/ objects.
+    to display the possibly hierarchical nature of \R\/ objects.
     %%
     The right graphic shows the main Rcmdr (1.3-11) window
     illustrating the use of multi-line text entry areas for a command
@@ -558,7 +561,7 @@ A statusbar displays general status messages, as well as feedback on
 actions initiated by the user, such as progress or errors. In the
 traditional document-oriented GUI, statusbars are placed at the bottom.
 
-Related to status bar are info bars or alert boxes, that allow a
+Related to status bars are info bars or alert boxes, that allow a
 programmer to leave a transient message for the user usually just
 below the toolbar.
 

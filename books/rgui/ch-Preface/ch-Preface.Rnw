@@ -16,7 +16,7 @@ types a sequence of commands at a prompt and the output of the
 commands is printed to the console as text. The \proglang{R} console
 is an example of a CLI. A GUI is the primary means of interacting with
 desktop environments, like Windows and Mac OS, and statistical
-software like JMP \citep{JMP}. GUIs are contained within windows, and
+software like JMP. GUIs are contained within windows, and
 resources, such as documents, are represented by graphical icons.
 User controls are packed into hierarchical drop-down menus, buttons,
 sliders, etc. The user manipulates the windows, icons and menus with a
@@ -27,11 +27,13 @@ use through a command line interface (CLI), and the CLI remains the
 primary interface to R. However, the graphical user interface (GUI)
 has emerged as an effective alternative, depending on the specific
 task and the target audience.  On some platforms, such as Windows and
-Mac OS, there are graphical front-ends that provide a CLI through a
-text console control. Although these interfaces are GUIs, they are
-still very much in essence CLIs, in that the primary mode of
-interacting with \proglang{R} is the same. Thus, these GUIs appeal
-mostly to those who are comfortable with \proglang{R} programming.  
+Mac OS, \R{} has graphical front-ends that provide a CLI through a
+text console control. The RStudio\texttrademark IDE is another such
+example which runs on all the major platforms and through the
+web. Although these interfaces are GUIs, they are still very much in
+essence CLIs, in that the primary mode of interacting with
+\proglang{R} is the same. Thus, these GUIs appeal mostly to those who
+are comfortable with \proglang{R} programming.
 
 A separate set of GUIs targets the second group of users, those
 learning the \proglang{R} language. Since this group includes many
@@ -39,10 +41,8 @@ students, these GUIs are often designed to teach general statistical
 concepts in addition to \proglang{R}.  A CLI component is usually
 present in the interface, though it is deemphasized by the surrounding
 GUI, which is analogous to a set of ``training wheels'' on a
-bicycle. An example of such a GUI is \proglang{R} Commander
-\citep{rcmndr}, which
-provides a menu- and dialog-driven interface
-to a wide range of \R's functionality and supports plugins. 
+bicycle. An example of such a GUI is \proglang{R} Commander, which provides a menu- and dialog-driven interface to a
+wide range of \R's functionality and supports plugins.
 
 The third group of users, those who only require \proglang{R} for
 certain tasks and do not wish to learn the language, are targeted by
@@ -51,8 +51,8 @@ line, as the limited scope of the task does not require it. If a
 task-specific GUI fits a task particularly well, it may even appeal to
 an experienced user. There are many examples of task-specific GUIs in
 \proglang{R}. Many GUIs assist in exploratory data analysis, including
-\pkg{exploRase} \citep{explorase}, \pkg{limmaGUI} \citep{limma},
-\pkg{playwith}, \pkg{latticist}, and Rattle \citep{rattle}.  Other
+\pkg{exploRase}, \pkg{limmaGUI},
+\pkg{playwith}, \pkg{latticist}, and Rattle.  Other
 GUIs are aimed at teaching statistics, e.g.,
 \pkg{teachingDemos}. There are a few tools to automatically generate a
 GUI that invokes a particular R function, such as the \pkg{fgui}
@@ -109,7 +109,7 @@ installation issues for the average end-user. The bindings to \TK\/
 were the first ones to appear for \R\/ and most of the GUI projects
 above, notably \pkg{Rcmdr}, use this toolkit.
 
-These four main parts are preceeded by an introductory chapter on GUIs.
+These four main parts are preceded by an introductory chapter on GUIs.
 
 This text is written with the belief that much can be learned by
 studying examples. There are examples woven through the primary text,
@@ -127,6 +127,12 @@ examples in the text have code that is not shown. The package provides
 the functions \code{browsegWidgetsFiles}, \code{browseRGtk2Files},
 \code{browseQtFiles} and \code{browseTclTkFiles} for browsing the
 examples from the respective chapters. 
+
+
+The authors would like to thanks the following people for their very
+helpful comments made regarding draft versions of this book; Richie
+Cotton, Erich Neuwirth, \XXX{Others?}.
+
 
 <<echo=FALSE>>=
 options(prompt=" ")

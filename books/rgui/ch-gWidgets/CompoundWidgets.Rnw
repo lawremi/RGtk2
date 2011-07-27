@@ -4,10 +4,10 @@ producing GUIs. Table~\ref{tab:gWidgets-compound-widgets} lists them.
 
 <<echo=FALSE, results=tex>>=
 df <- rbind(
-            c("\\constructor{ggraphics}", "An embeddable graphics device"),
+            c("\\constructor{ggraphics}", "Embeddable graphics device"),
             c("\\constructor{ggraphicsnotebook}", "Notebook for multiple devices"),
-            c("\\constructor{gdf}", "A data frame editor"),
-            c("\\constructor{gdf}", "Notebook for multiple \\code{gdf} instances"),
+            c("\\constructor{gdf}", "Data frame editor"),
+            c("\\constructor{gdfnotebook}", "Notebook for multiple \\code{gdf} instances"),
             c("\\constructor{gvarbrowser}", "GUI for browsing variables in the workspace"),
             c("\\constructor{gcommandline}", "Command line widget"),
             c("\\constructor{gformlayout}", "Creates a GUI from a list specifying layout"),
@@ -101,22 +101,23 @@ plot(x, y)
 %
 
 The underlying toolkits may pass in more information about the event,
-such as whether a modifier key was being presed, but this isn't
+such as whether a modifier key was being pressed, but this isn't
 toolkit independent.
 
 \paragraph{Using tkrplot} The \pkg{tkrplot} provides a means to embed
-graphics in \code{Tk} guis, but is not a graphics device. As such,
+graphics in \code{Tk} GUIs, but is not a graphics device. As such,
 there is no \code{ggraphics} implementation in
 \pkg{gWidgetstcltk}. You can embed \code{tkrplot} though. The
-following is a simplemodification the example from the help page for \code{tkrplot}:
+following is a simple modification of the example from the help page for \code{tkrplot}:
 
 <<tkrplot>>=
-options(guiToolkit="tcltk")
+options(guiToolkit="tcltk"); require(tkrplot)
 w <- gwindow("How to embed tkrplot", visible=FALSE)
 g <- ggroup(cont=w, horizontal=FALSE)
 bb<-1
-img <-tkrplot(getToolkitWidget(g), function() plot(1:20,(1:20)^bb))
-tkpack(img)                             # add widget
+img <-tkrplot(getToolkitWidget(g), 
+              fun=function() plot(1:20,(1:20)^bb))
+add(g, img)
 f<-function(...) {
   b <- svalue(sl)
   print(b)
@@ -125,7 +126,8 @@ f<-function(...) {
     tkrreplot(img)
   }
 }
-sl <- gslider(from=0.05, to=2, by=0.05, cont=g, handler=f, expand=TRUE)
+sl <- gslider(from=0.05, to=2, by=0.05, cont=g, 
+              handler=f, expand=TRUE)
 visible(w) <- TRUE
 
 @ 
@@ -240,9 +242,9 @@ other handler functions if desired.
 
 
 The \method{update}{gvarbrowser} method will update the list of items
-being displayed.  This can be can be time consuming. Some heuristics
+being displayed.  This can be time consuming. Some heuristics
 are employed to do this automatically, if the size of the workspace is
-modest enough. Otherwise it can be done by request.
+modest enough. Otherwise it can be done by programmatically.
 
 \begin{example}{Using drag and drop with \pkg{gWidgets}}{ex-gWidgets-drag-and-drop}
   \SweaveInput{ex-gWidgets-gvarbrowser-dnd}
@@ -283,7 +285,7 @@ top-level window and does not return a value for which methods are defined.
 
 A simple command line widget is created by the
 \constructor{gcommandline} constructor. This is not meant as a
-replacement for any of \R's commandlines, but is provided for
+replacement for any of \R's command lines, but is provided for
 light-weight usage. A text box allows users to type in \R\/
 commands. The programmer may issue commands to be evaluated and
 displayed through the \method{svalue\ASSIGN}{gcommandline} method. The
@@ -297,12 +299,13 @@ methods return the command history.
 
 The \pkg{gWidgets} package has two means to simplify the creation of
 GUIs.~\footnote{The \pkg{traitr} package provides another, but is not
-  discussed here.} The \code{gformlayout} constructor takes a list defining a
-layout and produces a GUI, the \code{ggenericwidget} constructor can
-take a function name and produce a GUI based on the formal arguments
-of the function. This too uses a list, which can be modified by the
-user before the GUI is constructed. We leave the details to their
-manual pages.
+  discussed here. The \pkg{fgui} package can do such a thing for
+  \pkg{tcltk}.}  The \code{gformlayout} constructor takes a list
+defining a layout and produces a GUI, the \code{ggenericwidget}
+constructor can take a function name and produce a GUI based on the
+formal arguments of the function. This too uses a list, which can be
+modified by the user before the GUI is constructed. We leave the
+details to their manual pages.
 
 % \subsubsection{Laying out a form}
 % \label{sec:gWidgets-laying-out-form}

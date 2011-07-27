@@ -11,7 +11,8 @@
 \usepackage{url}                % for \url,
 \usepackage{listings}
 \usepackage{booktabs}
-
+\usepackage[twoside,citeonce(part)]{footbib} % for citations as
+                                % footnotes use \footcite
 %%\usepackage{subfigure}          % for subcaption command
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% The page
@@ -174,14 +175,14 @@
 
 
 
-\newcommand{\R}{\textsf{R}}
+\newcommand{\R}{\proglang{R}}
 \newcommand{\code}[1]{\texttt{#1}} % code
 \newcommand{\qcode}[1]{\code{"#1"}} % quoted code 
 \newcommand{\Rcode}[1]{\code{#1}}
 \newcommand{\proglang}[1]{\code{#1}} % a programming lang
 \newcommand{\software}[1]{\code{#1}} % some software
 
-\newcommand{\defn}[1]{\textit{#1}\index{\textit{#1}}}   % add in index
+\newcommand{\defn}[1]{\textit{#1}\index{#1|textbf}}   % add in index
 \newcommand{\command}[1]{\code{#1}} % name of command
 \newcommand{\function}[1]{\code{#1}} % name of function
 \newcommand{\Rfunction}[1]{\function{#1}} % name of function
@@ -189,24 +190,26 @@
 \newcommand{\constructor}[1]{\function{#1}\index{#1}}
 
 \newcommand{\args}[1]{\code{#1}} % name of argument only
-\newcommand{\argument}[2]{\args{#1}\index{#2|\texttt{#1}}} % name of an argument, plus
-                                % function for index
-\newcommand{\subcommand}[2]{\textit{#2} \args{#1}\index{#2|\code{#1}}} % name of an tk subcommand plus
+\newcommand{\argument}[2]{\args{#1}\index{#2!\texttt{#1}}} % name of
+                                % an argument, plus
+\newcommand{\subcommand}[2]{\textit{#2} \args{#1}\index{#2!\code{#1}}} % name of an tk subcommand plus
                                 % function for index
 \newcommand{\subcommanda}[3]{\subcommand{#1}{#2} \textit{#3} }
-\newcommand{\option}[2]{\args{#1}\index{#2|\code{#1}}} % name of an option plus constructor
+\newcommand{\option}[2]{\args{#1}\index{#2!\code{#1}}} % name of an option plus constructor
 \newcommand{\class}[1]{\code{#1}}  % a class
 \newcommand{\Rclass}[1]{\class{#1}}  % an R class
 \newcommand{\generic}[1]{\code{#1}} % name of generic method -- no
-\newcommand{\meth}[1]{\generic{#1}}     % single arg, no class
-\newcommand{\method}[2]{\meth{#1}\index{#2|\code{#1}}} % name of method with
+\newcommand{\meth}[1]{\code{#1}}     % single arg, no class
+\newcommand{\method}[2]{\meth{#1}\index{#2!\texttt{#1}}} % name of method with
                                 % class for index
 \newcommand{\prop}[1]{\generic{#1}}     % single arg, no class
-\newcommand{\property}[2]{\prop{#1}\index{#2|\code{#1}}} % name of
+\newcommand{\property}[2]{\prop{#1}\index{#2!\code{#1}}} % name of
                                % widget property
 \newcommand{\qtproperty}[1]{\prop{#1}} % qt property
-\newcommand{\qtenumeration}[1]{\generic{#1}} % an enumerated flag in
+\newcommand{\qtenumeration}[1]{\generic{#1}\index{Qt enumerations!\texttt{#1}}} % an enumerated flag in
 \newcommand{\enumeration}[1]{\qtenumeration{#1}}
+%% Gtk enumeration
+\newcommand{\gtkenum}[1]{\generic{#1}\index{GTK enumerations!\texttt{#1}}}
                                 % Qt$Qt object
 \newcommand{\OR}{$\mid$}        % for |.QtEnum
 \newcommand{\AND}{\&}        % for |.QtEnum
@@ -219,9 +222,14 @@
 \newcommand{\env}[1]{\texttt{#1}} % environment setting
 \newcommand{\file}[1]{\texttt{#1}}
 \newcommand{\kbd}[1]{\textmd{#1}}
-\newcommand{\pkg}[1]{\texttt{#1}}
+\newcommand{\pkg}[1]{\texttt{#1}\index{R Package!\code{#1}}}
 \newcommand{\opt}[1]{\texttt{#1}} % R option
 \newcommand{\acronym}[1]{\texttt{#1}}
+
+%% index-only commands
+\newcommand{\iprogram}[1]{\index{Programming concepts!#1}}
+\newcommand{\ilayout}[1]{\index{Layout!#1}}
+
 
 %% HTML
 \newcommand{\tagger}[1]{\texttt{#1}}
@@ -234,10 +242,11 @@
 \newcommand{\leftBracket}{$<$}
 \newcommand{\rightBracket}{$>$}
 %% THisis from the highlight pacakge
-\newsavebox{\hlboxlessthan}%
-\setbox\hlboxlessthan=\hbox{\verb.<-.}%
-\newcommand{\ASSIGN}{{}{\usebox{\hlboxlessthan}}{}}
+%%\newsavebox{\hlboxlessthan}%
+%%\setbox\hlboxlessthan=\hbox{\verb.<-.}%
+%%\newcommand{\ASSIGN}{{}{\usebox{\hlboxlessthan}}{}}
 %%\newcommand{\ASSIGN}{\code{$<$-}}  %% <-
+\newcommand{\ASSIGN}{\code{\textless-}}  %% <-
 \newcommand{\backslashn}{\code{$\backslash$n}} %% \n
 
 \newcommand{\GTK}{GTK+}

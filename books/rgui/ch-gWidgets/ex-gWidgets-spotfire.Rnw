@@ -101,28 +101,34 @@ Of course, we could use many more criteria to filter by. The above
 filters are naturally represented by a combo box. However, one could
 have used many different styles, depending on the type of data. For
 instance, one could employ a checkbox to filter through Boolean data,
-a checkbox group to allow multiple selection,
-a slider to pick out numeric data, or a text box to specify a
-filtering by a string. The type of data dictates this.
+a checkbox group to allow multiple selection, a slider to pick out
+numeric data, or a text box to specify filtering by a string. The type
+of data dictates this. In this example it isn't needed, but since the
+layout is done, we might have code to initialize the controls in the
+filter. Adding such a call, makes it easy to save the state of the GUI.
 
 %% handlers
-There are three main components in our GUI: the display, the table and
-the filters. We create handlers to connect these components. This
-first handler is used to
-update the data frame when the filter controls are changed. For this
-we need to compute a logical variable indicating which rows are to be
-considered.  Within the definition of the function, we use the global
-variables \code{l}, \code{tbl} and \code{noCases}.
+We now move on to the task of making the three main components -- the
+display, the table and the filters -- interact with each other. We
+keep this example simple, but note that if we were to extend the
+example we would likely write using the observer pattern introduced in
+Example~\ref{ex-gWidgets-ws-browser} as that makes it easy to decouple
+the components of an interface. As it is we define function calls to
+a) update the data frame when the filters change and b) update the
+graphic.
+
+For the first, we need to compute a logical variable indicating which
+rows are to be displayed.  Within the definition of the following function, we
+use the global variables \code{l}, \code{tbl} and \code{noCases}.
 <<handlers>>=
 updateDataFrame <- function(...) {
-  ind <- rep(TRUE, nrow(x))
-  for(i in c("Type", "Cylinders"))  {
-    if((val <- svalue(l[[i]])) != "") 
-      ind <- ind & (x[,i] == val)
-  }
-  
-  visible(tbl) <- ind                   # update table
-  
+  vals <- lapply(l, svalue)
+  vals <- vals[vals != ""] 
+  out <- sapply(names(vals), function(i) x[[i]] == vals[[i]])
+  ind <- apply(out, 1, function(x) Filter("&&", x))
+  ## update table
+  visible(tbl) <- ind
+  ## update label
   nsprintf <- function(n, msg1, msg2,...)
     ngettext(n, sprintf(msg1, n), sprintf(msg2,n), ...)
   svalue(noCases) <- nsprintf(sum(ind), "%s case", "%s cases")
@@ -178,9 +184,7 @@ add a handler to call when the user drags our a region in the graphics
 device, but leave this for the interested reader.
 
 
-Finally, we draw the GUI with an initial graphic (the
-\method{visible}{gwindow} method draws the GUI here, unlike its use
-with \code{gtable}).
+Finally, we draw the GUI with an initial graphic
 <<initialGraphic>>=
 visible(w) <- TRUE
 updateGraphic()

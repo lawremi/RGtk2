@@ -51,7 +51,7 @@ pixels of spacing, which separates it from the \code{ok}
 button. Recognizing the \code{delete} button as potentially
 irreversible, we add 12 pixels of separation between it and the
 \code{cancel} button, for a total of 24 pixels. The blank label pushes
-the buttons against the right side of the box.  We instruct the
+the buttons against the right side of the box.~\ilayout{springs}  We instruct the
 \code{ok} button to grab focus, so that it becomes the default
 button:
 <<>>=

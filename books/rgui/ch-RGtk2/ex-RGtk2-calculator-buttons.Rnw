@@ -2,7 +2,7 @@
   this example we want each button click to call the same callback,
   passing in user data to parameterize the call.  To do this
   efficiently, we define a new method
-  \method{GetLabelsFromDataFrame}{gtkTable} which will map the entries
+  \method{GetLabelsFromDataFrame}{GtkTable} which will map the entries
   in a data frame to the button labels. This method is defined as,
 <<gtkTableGetLabelsFromDataFrame>>=
 gtkTableGetLabelsFromDataFrame <-

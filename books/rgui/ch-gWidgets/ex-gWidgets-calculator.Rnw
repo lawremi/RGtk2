@@ -3,10 +3,18 @@
 ## A calculator layout with gWidgets
 library(gWidgets)
 @ 
-This example shows how one might use the widgets just
-discussed to make a GUI that resembles a calculator. Such a GUI may offer
-familiarity to new \R\/ users, although certainly it is no replacement
-for a command line.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.6\textwidth]{fig-gWidgets-calculuator.png}
+  \caption{Dumbing down \R{} with \pkg{gWidgets} to make a calculator interface}
+  \label{fig:gwidgets-calculator}
+\end{figure}
+
+This example shows how one might use the widgets just discussed to
+make a GUI (Figure~\ref{fig:gwidgets-calculator}) that resembles a
+calculator. Such a GUI may offer familiarity to new \R\/ users,
+although certainly it is no replacement for a command line.
 
 The \constructor{glayout} container is used to neatly arrange the
 widgets. This example illustrates how a child widget can span a block
@@ -69,7 +77,8 @@ addHandlerClicked(eqButton, handler = function(h,...) {
   if(inherits(out, "try-error")) {
     galert("Parse error", parent=eqButton)
   } else if(is(out[[2]], "error")) {
-    galert(sprintf("Error: %s", out[[2]]$message), parent=eqButton)
+    msg <- sprintf("Error: %s", out[[2]]$message)
+    galert(msg, parent=eqButton)
   } else {
     svalue(outputArea) <- out[[2]]
     svalue(eqnArea) <- ""            # restart

@@ -3,7 +3,7 @@
 
 This example shows how a user can update a text area through selection
 from a tree. This is a common practice in statistical GUIs, although
-the implementation is more sophisiticated.
+the implementation is more sophisticated.
 
 <<echo=FALSE>>=
 library(proto)

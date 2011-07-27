@@ -35,7 +35,7 @@ current text. We do so with a style. It simply sets the foreground
 %
 Now we create methods to accomodate the initial message. We have
 methods \meth{is\_init\_msg}, to compare the current text with the
-intial message; and \meth{show\_init\_msg} and \meth{hide\_init\_msg}
+initial message; and \meth{show\_init\_msg} and \meth{hide\_init\_msg}
 to toggle the messages. The only novelty is using the
 \argument{style}{tkconfigure} option for a themeable widget.
 <<init-msg-methods>>=
@@ -58,7 +58,7 @@ TtkEntry$methods(
                  })
 @
 
-Our accessor methods, \meth{set\_text} and \meth{get\_text}, must work around a possible intial message.
+Our accessor methods, \meth{set\_text} and \meth{get\_text}, must work around a possible initial message.
 <<get-set-text>>=
 TtkEntry$methods(
                  set_text=function(text, hide=TRUE) {

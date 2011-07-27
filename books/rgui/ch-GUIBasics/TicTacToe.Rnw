@@ -27,7 +27,7 @@ board <- matrix(rep(0,9), nrow=3)
 %% View
 A GUI contains one or more views, each of which is tied to an
 underlying data model. In our case, the view is the game board that we
-display through an \R\/ graphics device. The \Rfunction{layoutBoard}
+display through an \R\/ graphics device. The \function{layoutBoard}
 function creates a canvas for this view:
 <<layoutBoard>>=
 layoutBoard <- function() {
@@ -51,7 +51,7 @@ The underlying toolkit allows the programmer to assign
 functions to be called when some specific event occurs, such as user interaction. Typically, the
 toolkit \textit{signals} that some action has occurred, and then
 invokes \textit{callbacks} or \textit{event handlers} that have been
-assigned by the programmer. Each toolkit has a different implementation. is toolkit
+assigned by the programmer. Each toolkit has a different implementation. 
 For our game, we will use the \code{locator} function built
 into the base \R\/ graphics system:
 <<doPlay>>=
@@ -71,7 +71,7 @@ require immediate user attention, although in general a GUI will
 listen asynchronously for user input.
 
 
-In the above function \Rfunction{doPlay}, \function{clickHandler} is
+In the above function \function{doPlay}, \function{clickHandler} is
 an \defn{event handler}. Its job is to process the output of the
 \function{locator} function, checking first if the user terminated
 \function{locator} using the keyboard. If not it proceeds to draw the

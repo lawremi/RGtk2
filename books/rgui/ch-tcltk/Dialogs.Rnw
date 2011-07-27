@@ -140,7 +140,7 @@ tkadd(fileMenu, "command", label="Set working directory...",
 \end{example}
 
 \subsection{Choosing a color}
-\Tk\/ provides the command \code{tk\_chooseColor} to construct a dialog for selection of a color by RGB value. There are three optional arguments \argument{initialcolor}{tk\_chooseColor} to specify an inital color such as \qcode{\#efefef}, \argument{parent}{tk\_chooseColor} to make the dialog a child of a specified window and \argument{title}{tk\_chooseColor} to specify a title for the dialog. The return value is in hex-coded RGB quantitles. 
+\Tk\/ provides the command \code{tk\_chooseColor} to construct a dialog for selection of a color by RGB value. There are three optional arguments \argument{initialcolor}{tk\_chooseColor} to specify an initial color such as \qcode{\#efefef}, \argument{parent}{tk\_chooseColor} to make the dialog a child of a specified window and \argument{title}{tk\_chooseColor} to specify a title for the dialog. The return value is in hex-coded RGB quantities. 
 There is no constructor in \pkg{tcltk}, but one can use the dialog as follows:
 <<ColorSelection>>=
 w <- tktoplevel(); tkwm.title(w, "Select a color")

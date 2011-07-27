@@ -10,7 +10,7 @@
 library(RGtk2)
 @ 
 
-%% JV: 1/27/11 This intro para. needed a rewrte 
+%% JV: 1/27/11 This intro para. needed a rewrite 
 % This section covers some of the basic widgets and containers of
 % \GTK. We begin with a discussion of top level containers and box
 % containers. Then we describe many of the basic controls, and
@@ -32,16 +32,16 @@ alternative is for ``popups'' which are meant for internal use, e.g.,
 for implementing menus. The second argument is \code{show}, which by
 default is \code{TRUE}, indicating that the window should be shown. If
 set to \code{FALSE}, the window, like other widgets, can later be
-shown by calling its \method{show}{gtkWidget} method. The
-\method{showAll}{gtkWidget} method will also show any child
-components. These can be reversed with \method{hide}{gtkWidget} and
-\method{hideAll}{gtkWidget}.
+shown by calling its \method{show}{GtkWidget} method. The
+\method{showAll}{GtkWidget} method will also show any child
+components. These can be reversed with \method{hide}{GtkWidget} and
+\method{hideAll}{GtkWidget}.
 
 %% title
 As with all objects, windows have several properties. The window title
 is stored in the \code{title} property. As usual, this property can be
 accessed via the ``get'' and ``set'' methods
-\method{getTitle}{gtkWindow} and \method{setTitle}{gtkWindow}, or
+\method{getTitle}{GtkWindow} and \method{setTitle}{gtkWindow}, or
 using the \function{[} function. To illustrate, the following sets up
 a new window with a title.
 <<>>=
@@ -54,12 +54,12 @@ w$show()                                # show window
 
 \paragraph{Window size}
 The initial size of the window can be set with the
-\method{setDefaultSize}{gtkWindow} method, as shown above, which takes a
+\method{setDefaultSize}{GtkWindow} method, as shown above, which takes a
 \argument{width}{gtkWindow} and \argument{height}{gtkWindow} argument
 specified in pixels. This specification allows the window to be
 resized but must be made before the window is drawn, as the window
 then falls under control of the window manager. The
-\method{setSizeRequest}{gtkWidget} method will request a minimum size,
+\method{setSizeRequest}{GtkWidget} method will request a minimum size,
 which the window manager will usually honor, as long as a maximum
 bound is not violated. To fix the size of a window, the
 \code{resizable} property may be set to \code{FALSE}.
@@ -69,7 +69,7 @@ bound is not violated. To fix the size of a window, the
 A window is a container. \class{GtkWindow} inherits from
 \class{GtkBin}, which derives from \class{GtkContainer} and allows
 only a single child. As before, this child is added through the
-\method{add}{gtkContainer} method. 
+\method{add}{GtkContainer} method. 
 We illustrate the basics by adding a simple label to a window.
 <<basic-window-label>>=
 w <- gtkWindow(show=FALSE); w$setTitle("Hello world")
@@ -109,7 +109,7 @@ although this is the default behavior. Calling the \code{hideOnDelete}
 method configures the window to hide but not destroy itself.
 
 It is also possible to close a window programmatically by calling
-its \method{destroy}{gtkWidget} method:
+its \method{destroy}{GtkWidget} method:
 <<gtk-container-window-destroy>>=
 w$destroy()
 @ 
@@ -118,7 +118,7 @@ w$destroy()
 New windows may be standalone top-level windows or may be associated
 with some other window. For example, a dialog is usually associated
 with the primary document window. The
-\method{setTransientFor}{gtkWindow} method can be used to specify the
+\method{setTransientFor}{GtkWindow} method can be used to specify the
 window with which a transient (dialog) window is associated. This
 hints to the window manager that the transient window should be kept on
 top of its parent. The position relative to the parent window can be
@@ -191,7 +191,7 @@ l$getParent()
 @ 
 
 Every container supports removing a child with the
-\method{remove}{gtkWidget} method. The child can later be re-added.
+\method{remove}{GtkWidget} method. The child can later be re-added.
 For instance
 <<remove-child-widget-3>>=
 w$remove(l)
@@ -199,8 +199,8 @@ w$add(l)
 @
 % 
 To remove a widget from the screen but not its container, use the
-\method{hide}{gtkWidget} method on the widget. The
-\method{reparent}{gtkWidget} method is a convenience for moving a
+\method{hide}{GtkWidget} method on the widget. The
+\method{reparent}{GtkWidget} method is a convenience for moving a
 widget between containers that ensures the child is not garbage
 collected during the transition.~\footnote{An object becomes available
   for garbage collection when it has no references to it, which can
@@ -444,7 +444,7 @@ Example~\ref{eg:RGtk2:mac-buttons} provides an example and
 Figure~\ref{fig:RGtk2-pack-start} an illustration.
 
 \paragraph{Positioning}
-The \method{reorderChild}{gtkBox} method reorders the child
+The \method{reorderChild}{GtkBox} method reorders the child
 widgets. The new position of the child is specified using 0-based
 indexing. This code will move the third child of \code{g} to the second position:
 <<echo=FALSE, results=hide>>=
@@ -511,9 +511,9 @@ a$add(l)
 
 
 \section{Special-purpose Containers}
-\label{sec:containers}
+\label{sec:RGtk2:containers}
 
-In Section~\ref{RGtk2:layout}, we presented \class{GtkBox} and
+In Section~\ref{sec:RGtk2:layout}, we presented \class{GtkBox} and
 \class{GtkAlignment}, the two most useful layout containers in
 \GTK. This section introduces some other important containers. These
 include the merely decorative \class{GtkFrame}; the interactive
@@ -537,7 +537,7 @@ frame$add(vbox)
 A frame is useful for visually segregating a set of conceptually
 related widgets from the rest of the GUI. The type of decorative
 shadow is stored in the \code{shadow-type} property.  The
-\method{setLabelAlign}{gtkFrame} aligns the label relative to the
+\method{setLabelAlign}{GtkFrame} aligns the label relative to the
 frame. This is to the left, by default.
 
 \subsection{Expandable containers}
@@ -554,8 +554,8 @@ expander$add(frame)
 %
 Use \function{gtkExpanderNewWithMnemonic} if a mnemonic is desired.
 The \code{expanded} property, which can be accessed with
-\method{getExpanded}{gtkExpander} and
-\method{setExpanded}{gtkExpander}, represents the visible state of the
+\method{getExpanded}{GtkExpander} and
+\method{setExpanded}{GtkExpander}, represents the visible state of the
 widget.  When the \code{expanded} property changes, the
 \signal{activate} signal is emitted.
 
@@ -592,7 +592,7 @@ nb['tab-pos'] <- "bottom"
 
 Methods and properties that affect pages expect the page index,
 instead of the page widget. To map from the child widget to the page
-number, use the method \method{pageNum}{gtkNotebook}.  The
+number, use the method \method{pageNum}{GtkNotebook}.  The
 \property{page}{gtkNotebook} property holds the zero-based index of the active
 tab. We make the second tab active:
 <<qt-layout-notebook-current>>=
@@ -600,19 +600,19 @@ nb['page'] <- 1
 nb['page']
 @
 %
-To move sequentially through the pages, calll the methods
-\method{nextPage}{gtkNotebook} and
-\method{prevPage}{gtkNotebook}. When the current page changes, the
+To move sequentially through the pages, call the methods
+\method{nextPage}{GtkNotebook} and
+\method{prevPage}{GtkNotebook}. When the current page changes, the
 \signal{switch-page} signal is emitted.
 
-Pages can be reordered using the \method{reorderChild}{gtkNotebook},
+Pages can be reordered using the \method{reorderChild}{GtkNotebook},
 although it is usually desirable to allow the user to reorder
 pages. The \method{setTabReorderable}{GtkNotebook} enables drag and
 drop reordering for a specific tab. It is also possible for the user
 to drag and drop pages between notebooks, as long as they belong to
 the same group, which depends on the \property{group-id}
 property. Pages can be deleted using the method
-\method{removePage}{gtkNotebook}.
+\method{removePage}{GtkNotebook}.
 
 \paragraph{Managing Many Pages}
 
@@ -628,7 +628,7 @@ of the tabs for direct navigation.
 \begin{example}{Adding a page with a close button}{eg:RGtk2-notebook-close-icon}
   A familiar element of notebooks in many web browsers is a tab close
   button. The following defines a new method
-  \method{insertPageWithCloseButton}{gtkNotebook} that will use the
+  \method{insertPageWithCloseButton}{GtkNotebook} that will use the
   themeable stock close icon.  The callback passes both the notebook
   and the page through the \code{data} argument, so that the proper
   page can be deleted.
@@ -683,7 +683,7 @@ too large to fit in a GUI, partial display is necessary. A
 the user to adjust the visible region of a single child. The range,
 step and position of \class{GtkScrollbar} are controlled by an
 instance of \class{GtkAdjustment}, just as with the slider and spin
-button. Scrolled windows are most often used with potentialy large
+button. Scrolled windows are most often used with potentially large
 widgets like table views and when displaying images and graphics.
 
 Our example will embed an R graphics device in a scrolled window and
@@ -767,7 +767,7 @@ determine when the scrollbars are drawn. By default, they are always
 drawn. The \qcode{automatic} value from the \code{GtkPolicyType}
 enumeration draws the scrollbars only if needed, i.e, if the child
 widget requests more space than can be allocated. The
-\method{setPolicy}{gtkScrolledWindow} method allows both to be set at
+\method{setPolicy}{GtkScrolledWindow} method allows both to be set at
 once.
 
 % \begin{example}{Scrolled window example}{eg:RGtk2:scrolled-window}
@@ -791,8 +791,8 @@ paned <- gtkHPaned()
 @ 
 
 The two children may be added two different ways. The simplest
-approach calls \method{add1}{gtkPaned} and
-\method{add2}{gtkPaned} for adding the first and second child,
+approach calls \method{add1}{GtkPaned} and
+\method{add2}{GtkPaned} for adding the first and second child,
 respectively. 
 <<gtk-container-paned-add>>=
 paned$add1(gtkLabel("Left (1)"))
@@ -803,7 +803,7 @@ This configures the container such that both children are allowed to
 shrink and only the second widget can expand. Such a configuration is
 appropriate for a GUI with main widget and a side pane to the
 left. More flexibility is afforded by the methods
-\method{pack1}{gtkPaned} and \method{pack2}{gtkPaned}, which have
+\method{pack1}{GtkPaned} and \method{pack2}{GtkPaned}, which have
 arguments for specifying whether the child should expand
 (\qcode{resize}) and/or \qcode{shrink}. Here we add the children such
 that both can expand and shrink:
@@ -813,11 +813,11 @@ paned$pack2(gtkLabel("Right (2)"), resize = TRUE, shrink = TRUE)
 @
 %
 After children are added, they can be retrieved from the container
-through the \method{getChild1}{gtkPaned} and
-\method{getChild2}{gtkPaned} methods.
+through the \method{getChild1}{GtkPaned} and
+\method{getChild2}{GtkPaned} methods.
 
 The screen position of the handle can be set with the
-\method{setPosition}{gtkPaned} method.  The properties
+\method{setPosition}{GtkPaned} method.  The properties
 \code{min-position} and \code{max-position} are useful for converting
 a percentage into a screen position. The \signal{move-handle} signal
 is emitted when the gutter position is changed.

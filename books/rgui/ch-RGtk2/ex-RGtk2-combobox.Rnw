@@ -41,9 +41,9 @@ win$add(combobox)
 win$showAll()
 @ 
 
-% This shows how the method \method{GetActiveIter}{gtkComboBox}
+% This shows how the method \method{GetActiveIter}{GtkComboBox}
 % indicates the selected value, which can be used by the
-% \method{GetValue}{gtkTreeStore} method of the  data store to retrieve
+% \method{GetValue}{GtkTreeStore} method of the  data store to retrieve
 % the value.
 % <<changedsignal>>=
 % ID <- gSignalConnect(combobox, "changed",
@@ -83,7 +83,7 @@ win$showAll()
 % comboentry$addAttribute(crp, "pixbuf", 0)
 % @ 
 
-% We need to call the \method{Show}{gtkWidget} method for this widget to
+% We need to call the \method{Show}{GtkWidget} method for this widget to
 % be visible.
 % <<>>=
 % comboentry$show()

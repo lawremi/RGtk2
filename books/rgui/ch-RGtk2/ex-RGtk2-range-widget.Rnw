@@ -1,9 +1,16 @@
 This example shows how to make a range widget that combines both the
-slider and spinbutton to choose a single number. Such a widget is
-useful, as the slider is better at large changes and the spin button
-better at finer changes. In \GTK\/ we use the same
-\class{GtkAdjustment} model, so changes to one widget propagate
-without effort to the other.
+slider and spinbutton to choose a single number
+(Figure~\ref{fig:RGtk2-range-widget}). Such a widget is useful, as the
+slider is better at large changes and the spin button better at finer
+changes. In \GTK\/ we use the same \class{GtkAdjustment} model, so
+changes to one widget propagate without effort to the other.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.5\textwidth]{fig-RGtk2-range-widget.png}
+  \caption{A range widget with coordinated slider and spin box sharing the same \class{GtkAdjustment} instance}
+  \label{fig:RGtk2-range-widget}
+\end{figure}
 
 <<echo=FALSE>>=
 ## make a range widget combining both a slider and spinbutton to choose a number

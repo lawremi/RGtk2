@@ -1,5 +1,5 @@
 
-% XXX- discuss GtkBin; which widgets have a window, which do not --image and label do not, and we mightwant them too,
+% XXX- discuss GtkBin; which widgets have a window, which do not --image and label do not, and we might want them too,
 %   modify_bg() only affects widgets that have an associated gtk.gdk.Window.
 % > Widgets that do not have an associated window include .... gtk.Arrow,
 % > gtk.Bin, gtk.Box, gtk.Button, gtk.CheckButton, gtk.Fixed , gtk.Image ,
@@ -154,7 +154,7 @@ interfaces implemented by \class{GtkWidget}:
  gTypeGetInterfaces("GtkWidget")
 \end{Sinput}
 \begin{Soutput}
-[1] "GtkBuildable"        "AtkImplementorIface"
+[1] "AtkImplementorIface" "GtkBuildable"       
 \end{Soutput}
 \end{Schunk}
 
@@ -163,7 +163,7 @@ classes and interfaces in the following sections and demonstrate them
 in the construction of a simple ``Hello World'' GUI, shown in
 Figure~\ref{fig:hello-world}. A more detailed and technical
 explanation of \pkg{GObject} is available in
-Section~\ref{sec:gobject-primer}.
+Chapter~\ref{chapter:extending-GTK}.
 
 \begin{figure}[h!tbp]
   \begin{center}
@@ -295,7 +295,7 @@ interfaces it implements:
  interface(window)
 \end{Sinput}
 \begin{Soutput}
-[1] "GtkBuildable"        "AtkImplementorIface"
+[1] "AtkImplementorIface" "GtkBuildable"       
 \end{Soutput}
 \end{Schunk}
 
@@ -365,7 +365,7 @@ in the base \class{GtkWidget} class. These include the methods
 \method{show}{GtkWidget} to specify that the widget should be drawn;
 \method{hide}{GtkWidget} to hide the widget until specified;
 \method{destroy}{GtkWidget} to destroy a widget and clear up any
-references to it; \method{getParent}{gtkWidget} to find the parent
+references to it; \method{getParent}{GtkWidget} to find the parent
 container of the widget; \method{modifyBg}{GtkWidget} to modify the
 background color of a widget; and \method{modifyFg}{GtkWidget} to
 modify the foreground color.
@@ -390,7 +390,7 @@ the first eight properties listed with:
  head(names(button), n=8)                 # or b$getPropInfo()
 \end{Sinput}
 \begin{Soutput}
-[1] "use-action-appearance" "related-action"       
+[1] "related-action"        "use-action-appearance"
 [3] "user-data"             "name"                 
 [5] "parent"                "width-request"        
 [7] "height-request"        "visible"              
@@ -404,7 +404,7 @@ receive user events.
 
 There are a few different ways to access these properties. The methods
 \method{get}{GObject} and \method{set}{GObject} get and set properties
-of a widget, respectively. The set funtion treats the argument names
+of a widget, respectively. The set function treats the argument names
 as the property names, and setting multiple properties at once is
 supported. Here we add an icon to the top-left corner of our window
 and set the title:
@@ -616,7 +616,7 @@ representations of enumeration values, like \code{"toplevel"}.
 
 For every \GTK\/ enumeration, \pkg{RGtk2} provides an R
 vector that maps the nicknames to the underlying numeric values.  In
-the above case, the vector is named \class{GtkWindowType}.
+the above case, the vector is named \gtkenum{GtkWindowType}.
 \begin{Schunk}
 \begin{Sinput}
  GtkWindowType
@@ -745,7 +745,7 @@ load it with \pkg{RGtk2}:
 \end{Sinput}
 \end{Schunk}
 
-The \method{getObject}{gtkBuilder} extracts a widget by its ID, which
+The \method{getObject}{GtkBuilder} extracts a widget by its ID, which
 is specified by the user through \pkg{Glade}. It normally
 suffices to load the top-level widget, named \code{dialog1} in this
 example, and show it:
@@ -804,7 +804,7 @@ The GUI should now be ready for use.
 
 
 
-%% JV: 1/27/11 This intro para. needed a rewrte 
+%% JV: 1/27/11 This intro para. needed a rewrite 
 % This section covers some of the basic widgets and containers of
 % \GTK. We begin with a discussion of top level containers and box
 % containers. Then we describe many of the basic controls, and
@@ -826,16 +826,16 @@ alternative is for ``popups'' which are meant for internal use, e.g.,
 for implementing menus. The second argument is \code{show}, which by
 default is \code{TRUE}, indicating that the window should be shown. If
 set to \code{FALSE}, the window, like other widgets, can later be
-shown by calling its \method{show}{gtkWidget} method. The
-\method{showAll}{gtkWidget} method will also show any child
-components. These can be reversed with \method{hide}{gtkWidget} and
-\method{hideAll}{gtkWidget}.
+shown by calling its \method{show}{GtkWidget} method. The
+\method{showAll}{GtkWidget} method will also show any child
+components. These can be reversed with \method{hide}{GtkWidget} and
+\method{hideAll}{GtkWidget}.
 
 %% title
 As with all objects, windows have several properties. The window title
 is stored in the \code{title} property. As usual, this property can be
 accessed via the ``get'' and ``set'' methods
-\method{getTitle}{gtkWindow} and \method{setTitle}{gtkWindow}, or
+\method{getTitle}{GtkWindow} and \method{setTitle}{gtkWindow}, or
 using the \function{[} function. To illustrate, the following sets up
 a new window with a title.
 \begin{Schunk}
@@ -855,12 +855,12 @@ a new window with a title.
 
 \paragraph{Window size}
 The initial size of the window can be set with the
-\method{setDefaultSize}{gtkWindow} method, as shown above, which takes a
+\method{setDefaultSize}{GtkWindow} method, as shown above, which takes a
 \argument{width}{gtkWindow} and \argument{height}{gtkWindow} argument
 specified in pixels. This specification allows the window to be
 resized but must be made before the window is drawn, as the window
 then falls under control of the window manager. The
-\method{setSizeRequest}{gtkWidget} method will request a minimum size,
+\method{setSizeRequest}{GtkWidget} method will request a minimum size,
 which the window manager will usually honor, as long as a maximum
 bound is not violated. To fix the size of a window, the
 \code{resizable} property may be set to \code{FALSE}.
@@ -870,7 +870,7 @@ bound is not violated. To fix the size of a window, the
 A window is a container. \class{GtkWindow} inherits from
 \class{GtkBin}, which derives from \class{GtkContainer} and allows
 only a single child. As before, this child is added through the
-\method{add}{gtkContainer} method. 
+\method{add}{GtkContainer} method. 
 We illustrate the basics by adding a simple label to a window.
 \begin{Schunk}
 \begin{Sinput}
@@ -914,7 +914,7 @@ although this is the default behavior. Calling the \code{hideOnDelete}
 method configures the window to hide but not destroy itself.
 
 It is also possible to close a window programmatically by calling
-its \method{destroy}{gtkWidget} method:
+its \method{destroy}{GtkWidget} method:
 \begin{Schunk}
 \begin{Sinput}
  w$destroy()
@@ -925,7 +925,7 @@ its \method{destroy}{gtkWidget} method:
 New windows may be standalone top-level windows or may be associated
 with some other window. For example, a dialog is usually associated
 with the primary document window. The
-\method{setTransientFor}{gtkWindow} method can be used to specify the
+\method{setTransientFor}{GtkWindow} method can be used to specify the
 window with which a transient (dialog) window is associated. This
 hints to the window manager that the transient window should be kept on
 top of its parent. The position relative to the parent window can be
@@ -1008,7 +1008,7 @@ Conversely, the \code{getParent} method for \GTK\/ widgets will
 return the parent container of a widget.
 
 Every container supports removing a child with the
-\method{remove}{gtkWidget} method. The child can later be re-added.
+\method{remove}{GtkWidget} method. The child can later be re-added.
 For instance
 \begin{Schunk}
 \begin{Sinput}
@@ -1018,8 +1018,8 @@ For instance
 \end{Schunk}
 % 
 To remove a widget from the screen but not its container, use the
-\method{hide}{gtkWidget} method on the widget. The
-\method{reparent}{gtkWidget} method is a convenience for moving a
+\method{hide}{GtkWidget} method on the widget. The
+\method{reparent}{GtkWidget} method is a convenience for moving a
 widget between containers that ensures the child is not garbage
 collected during the transition.~\footnote{An object becomes available
   for garbage collection when it has no references to it, which can
@@ -1278,7 +1278,7 @@ Example~\ref{eg:RGtk2:mac-buttons} provides an example and
 Figure~\ref{fig:RGtk2-pack-start} an illustration.
 
 \paragraph{Positioning}
-The \method{reorderChild}{gtkBox} method reorders the child
+The \method{reorderChild}{GtkBox} method reorders the child
 widgets. The new position of the child is specified using 0-based
 indexing. This code will move the third child of \code{g} to the second position:
 \begin{Schunk}
@@ -1391,7 +1391,7 @@ dialog has a \code{secondary-text} property that can be set to give a
 secondary message.
 
 Dialogs are optionally modal. Below, we enable modality by calling the
-\method{run}{gtkDialog} method, which will additionally block the \R\/
+\method{run}{GtkDialog} method, which will additionally block the \R\/
 session:
 \begin{Schunk}
 \begin{Sinput}
@@ -1414,7 +1414,7 @@ session:
 %
 The return value can then be inspected for the action, such as what
 button was pressed. \class{GtkMessageDialog} will return response
-codes from the \code{GtkResponseType} enumeration. We will see an
+codes from the \gtkenum{GtkResponseType} enumeration. We will see an
 example of asynchronous response handling in the next section.
 
 \subsection{Custom dialogs}
@@ -1527,9 +1527,9 @@ displays a file path and launches the dialog when clicked.
 \end{Schunk}
   % 
   The file selected is returned by
-  \method{getFilename}{gtkFileChooser}. If multiple selection is enabled
+  \method{getFilename}{GtkFileChooser}. If multiple selection is enabled
   (via the \code{select-multiple} property) one should call the
-  plural \method{getFilenames}{gtkFileChooser}.
+  plural \method{getFilenames}{GtkFileChooser}.
 
   For the open dialog, one may wish to specify one or more filters that
   narrow the available files for selection:
@@ -1550,8 +1550,8 @@ displays a file path and launches the dialog when clicked.
 \end{example}
 
 The save file dialog would be similar. The initial filename could be
-specified with \method{setFilename}{gtkFileChooser}, or folder with
-\method{setFolder}{gtkFileChooser}. The
+specified with \method{setFilename}{GtkFileChooser}, or folder with
+\method{setFolder}{GtkFileChooser}. The
 \code{do-overwrite-confirmation} property controls whether the user is
 prompted when attempting to overwrite an existing file.
 
@@ -1572,14 +1572,14 @@ flexibility.
 Rendering documents for printing is outside our scope; however, we
 will mention that \class{GtkPrintOperation} can launch the native,
 platform-specific print dialog for customizing a printing
-operation. See Example~\ref{sec:gtk-printing-graphics} for an example
+operation. See Example~\ref{eg:RGtk2:printing-graphics} for an example
 of printing R graphics using \pkg{cairoDevice}.
 
 
 \section{Special-purpose Containers}
 \label{sec:containers}
 
-In Section~\ref{RGtk2:layout}, we presented \class{GtkBox} and
+In Section~\ref{sec:RGtk2:layout}, we presented \class{GtkBox} and
 \class{GtkAlignment}, the two most useful layout containers in
 \GTK. This section introduces some other important containers. These
 include the merely decorative \class{GtkFrame}; the interactive
@@ -1605,7 +1605,7 @@ a decorative, labeled frame around its single child:
 A frame is useful for visually segregating a set of conceptually
 related widgets from the rest of the GUI. The type of decorative
 shadow is stored in the \code{shadow-type} property.  The
-\method{setLabelAlign}{gtkFrame} aligns the label relative to the
+\method{setLabelAlign}{GtkFrame} aligns the label relative to the
 frame. This is to the left, by default.
 
 \subsection{Expandable containers}
@@ -1624,8 +1624,8 @@ managing screen space. Expandable containers are constructed by
 %
 Use \function{gtkExpanderNewWithMnemonic} if a mnemonic is desired.
 The \code{expanded} property, which can be accessed with
-\method{getExpanded}{gtkExpander} and
-\method{setExpanded}{gtkExpander}, represents the visible state of the
+\method{getExpanded}{GtkExpander} and
+\method{setExpanded}{GtkExpander}, represents the visible state of the
 widget.  When the \code{expanded} property changes, the
 \signal{activate} signal is emitted.
 
@@ -1674,7 +1674,7 @@ bottom:
 
 Methods and properties that affect pages expect the page index,
 instead of the page widget. To map from the child widget to the page
-number, use the method \method{pageNum}{gtkNotebook}.  The
+number, use the method \method{pageNum}{GtkNotebook}.  The
 \property{page}{gtkNotebook} property holds the zero-based index of the active
 tab. We make the second tab active:
 \begin{Schunk}
@@ -1687,19 +1687,19 @@ tab. We make the second tab active:
 \end{Soutput}
 \end{Schunk}
 %
-To move sequentially through the pages, calll the methods
-\method{nextPage}{gtkNotebook} and
-\method{prevPage}{gtkNotebook}. When the current page changes, the
+To move sequentially through the pages, call the methods
+\method{nextPage}{GtkNotebook} and
+\method{prevPage}{GtkNotebook}. When the current page changes, the
 \signal{switch-page} signal is emitted.
 
-Pages can be reordered using the \method{reorderChild}{gtkNotebook},
+Pages can be reordered using the \method{reorderChild}{GtkNotebook},
 although it is usually desirable to allow the user to reorder
 pages. The \method{setTabReorderable}{GtkNotebook} enables drag and
 drop reordering for a specific tab. It is also possible for the user
 to drag and drop pages between notebooks, as long as they belong to
 the same group, which depends on the \property{group-id}
 property. Pages can be deleted using the method
-\method{removePage}{gtkNotebook}.
+\method{removePage}{GtkNotebook}.
 
 \paragraph{Managing Many Pages}
 
@@ -1715,7 +1715,7 @@ of the tabs for direct navigation.
 \begin{example}{Adding a page with a close button}{eg:RGtk2-notebook-close-icon}
   A familiar element of notebooks in many web browsers is a tab close
   button. The following defines a new method
-  \method{insertPageWithCloseButton}{gtkNotebook} that will use the
+  \method{insertPageWithCloseButton}{GtkNotebook} that will use the
   themeable stock close icon.  The callback passes both the notebook
   and the page through the \code{data} argument, so that the proper
   page can be deleted.
@@ -1774,7 +1774,7 @@ too large to fit in a GUI, partial display is necessary. A
 the user to adjust the visible region of a single child. The range,
 step and position of \class{GtkScrollbar} are controlled by an
 instance of \class{GtkAdjustment}, just as with the slider and spin
-button. Scrolled windows are most often used with potentialy large
+button. Scrolled windows are most often used with potentially large
 widgets like table views and when displaying images and graphics.
 
 Our example will embed an R graphics device in a scrolled window and
@@ -1870,7 +1870,7 @@ determine when the scrollbars are drawn. By default, they are always
 drawn. The \qcode{automatic} value from the \code{GtkPolicyType}
 enumeration draws the scrollbars only if needed, i.e, if the child
 widget requests more space than can be allocated. The
-\method{setPolicy}{gtkScrolledWindow} method allows both to be set at
+\method{setPolicy}{GtkScrolledWindow} method allows both to be set at
 once.
 
 % \begin{example}{Scrolled window example}{eg:RGtk2:scrolled-window}
@@ -1896,8 +1896,8 @@ First, we construct an instance of \class{GtkHPaned}:
 \end{Schunk}
 
 The two children may be added two different ways. The simplest
-approach calls \method{add1}{gtkPaned} and
-\method{add2}{gtkPaned} for adding the first and second child,
+approach calls \method{add1}{GtkPaned} and
+\method{add2}{GtkPaned} for adding the first and second child,
 respectively. 
 \begin{Schunk}
 \begin{Sinput}
@@ -1910,7 +1910,7 @@ This configures the container such that both children are allowed to
 shrink and only the second widget can expand. Such a configuration is
 appropriate for a GUI with main widget and a side pane to the
 left. More flexibility is afforded by the methods
-\method{pack1}{gtkPaned} and \method{pack2}{gtkPaned}, which have
+\method{pack1}{GtkPaned} and \method{pack2}{GtkPaned}, which have
 arguments for specifying whether the child should expand
 (\qcode{resize}) and/or \qcode{shrink}. Here we add the children such
 that both can expand and shrink:
@@ -1922,11 +1922,11 @@ that both can expand and shrink:
 \end{Schunk}
 %
 After children are added, they can be retrieved from the container
-through the \method{getChild1}{gtkPaned} and
-\method{getChild2}{gtkPaned} methods.
+through the \method{getChild1}{GtkPaned} and
+\method{getChild2}{GtkPaned} methods.
 
 The screen position of the handle can be set with the
-\method{setPosition}{gtkPaned} method.  The properties
+\method{setPosition}{GtkPaned} method.  The properties
 \code{min-position} and \code{max-position} are useful for converting
 a percentage into a screen position. The \signal{move-handle} signal
 is emitted when the gutter position is changed.
@@ -1998,13 +1998,13 @@ widgets, which are left-aligned:
 % 
 The labels are aligned through the \class{GtkMisc} functionality
 inherited by \class{GtkLabel}. The \class{GtkVBox} with the radio
-buttons does not support this, so we have embedde it within a
+buttons does not support this, so we have embedded it within a
 \class{GtkAlignment} instance. We have aligned the diagnostic label to
 the top of its cell; otherwise, it would have been in the centered
 vertically. The radio buttons are left aligned, up against the label.
 
 Child widgets are added to a table through the
-\method{attach}{gtkTable} method.  The child can span more than one
+\method{attach}{GtkTable} method.  The child can span more than one
 cell. The arguments \argument{left.attach}{gtkTableAttach} and
 \argument{right.attach}{gtkTableAttach} specify the horizontal bounds
 of the child in terms of its left column and right column,
@@ -2173,7 +2173,7 @@ executes the default action for the window, the button can be
 set so that it is activated when the user presses \kbd{enter} while
 the parent window has the focus. To implement this, the property
 \code{can-default} must be \code{TRUE} and the widget method
-\method{grabDefault}{gtkWidget} must be called. (This is not specific
+\method{grabDefault}{GtkWidget} must be called. (This is not specific
 to buttons, but any widget that can be activatable.) The
 \class{GtkDialog} widget and its derivatives facilitate the use of
 buttons in this manner, see Section~\ref{sec:dialogs}.
@@ -2229,7 +2229,7 @@ pixels of spacing, which separates it from the \code{ok}
 button. Recognizing the \code{delete} button as potentially
 irreversible, we add 12 pixels of separation between it and the
 \code{cancel} button, for a total of 24 pixels. The blank label pushes
-the buttons against the right side of the box.  We instruct the
+the buttons against the right side of the box.~\ilayout{springs}  We instruct the
 \code{ok} button to grab focus, so that it becomes the default
 button:
 \begin{Schunk}
@@ -2254,9 +2254,9 @@ The primary purpose of a label is to communicate the role of another
 widget, as we showed for the button. Labels are created by the
 \constructor{gtkLabel} constructor, which takes the label text as its
 first argument. This text can be set with either
-\method{setLabel}{gtkLabel} or \method{setText}{gtkLabel} and
-retrieved with either \method{getLabel}{gtkLabel} or
-\method{getText}{gtkLabel}.  The difference being the former
+\method{setLabel}{GtkLabel} or \method{setText}{GtkLabel} and
+retrieved with either \method{getLabel}{GtkLabel} or
+\method{getText}{GtkLabel}.  The difference being the former
 respects formatting marks.
 
 \begin{example}{Label formatting}{eg:RGtk2:label-formatting}
@@ -2302,14 +2302,14 @@ respects formatting marks.
 
 Many of the text formatting options are demonstrated in
 Example~\ref{eg:RGtk2:label-formatting}. Line wrapping is enabled with
-\method{setLineWrap}{gtkLabel}. Labels also support explicit line
+\method{setLineWrap}{GtkLabel}. Labels also support explicit line
 breaks, specified with ``\code{\backslashn}.'' The
-\method{setWidthChars}{gtkLabel} method is a convenience for instructing the
+\method{setWidthChars}{GtkLabel} method is a convenience for instructing the
 label to request enough space to show a specified number of
 characters in a line.  When space is at a premium, long labels can be
 ellipsized, i.e., have some of their text replaced with an
 ellipsis, ``...''.  By default this is turned off; to enable, call
-\method{setEllipsize}{gtkLabel}.  The property \code{justify}, with
+\method{setEllipsize}{GtkLabel}.  The property \code{justify}, with
 values taken from \code{GtkJustification}, controls the alignment of
 multiple lines within a label. To align the entire block of text
 within the space allocated to the label, modify the \code{xalign}
@@ -2317,7 +2317,7 @@ property, as described in Section~\ref{sec:RGtk2:layout:align}.
 
 \GTK\/ allows markup of text elements using the \defn{Pango} text attribute
 markup language, an XML-based format that resembles basic HTML. The
-method \method{setMarkup}{gtkLabel} accepts text in the format. Text
+method \method{setMarkup}{GtkLabel} accepts text in the format. Text
 is marked using tags to indicate the style. Some convenient tags are
 \code{<b>} for bold, \code{<i>} for italics, \code{<ul>} for
 underline, and \code{<tt>} for monospace text. Hyperlinks are possible
@@ -2335,7 +2335,7 @@ some interactive features. If the \code{selectable} property is set to
 Labels can hold mnemonics for other widgets; this is useful for
 navigating forms. The mnemonic is specified at construction time with
 \code{gtkLabelNewWithMnemonic}. The
-\method{setMnemonicWidget}{gtkLabel} method identifies the widget to
+\method{setMnemonicWidget}{GtkLabel} method identifies the widget to
 which the mnemonic refers.
 
 For efficiency reasons \class{GtkLabel} does not receive any input
@@ -2353,7 +2353,7 @@ efficient alternative to labels. \class{GtkImage} is the widget that
 displays images. The constructor \constructor{gtkImage} creates images
 from various in-memory image representations, files, and other
 sources.  Images can be loaded after construction, as well. For
-example, the \method{setFromFile}{gtkImage} method loads an image from
+example, the \method{setFromFile}{GtkImage} method loads an image from
 a file.
 
 \begin{example}{Using a pixmap to present graphs}{ex:RGtk2:pixbuf}
@@ -2500,8 +2500,8 @@ line of text, the \class{GtkEntry} widget is appropriate:
 \end{Schunk}
 
 The \code{text} property stores the text. This can be set with the
-method \method{setText}{gtkEntry} and retrieved with
-\method{getText}{gtkEntry}.  When the user has committed an entry,
+method \method{setText}{GtkEntry} and retrieved with
+\method{getText}{GtkEntry}.  When the user has committed an entry,
 e.g. by pressing the \kbd{enter} key, the \signal{activate} signal is
 emitted. Here we connect to this signal to obtain the entered text upon
 activation:
@@ -2730,7 +2730,7 @@ to connect a handler to each button:
 \end{Sinput}
 \end{Schunk}
 %
-The \method{getGroup}{gtkRadioButton} method returns a list containing
+The \method{getGroup}{GtkRadioButton} method returns a list containing
 the radio buttons in the same group. However, it is in the reverse
 order of construction (newest first). This results from an internal
 optimization that prepends, rather than appends, the buttons to a
@@ -2740,16 +2740,16 @@ before packing the widgets into the box.
 \end{example}
 
 \subsection{Combo boxes}
-\label{sec:RGtk2:basic:combobox}
+\label{sec:RGtk2:basic-combobox}
 
 The combo box is a more space efficient alternative to radio buttons
-and is better suited for when there are a large number of options. A
+and is better suited when there are a large number of options. A
 basic, text-only \class{GtkComboBox} is constructed by
 \constructor{gtkComboBoxNewText}. In
 Section~\ref{sec:RGtk2:mvc:combobox} we will discuss combo boxes that
 are based on an external data model.
 
-We construct and populate a simple combo box:
+We can construct and populate a simple combo box with:
 \begin{Schunk}
 \begin{Sinput}
  combo <- gtkComboBoxNewText()
@@ -2760,7 +2760,7 @@ We construct and populate a simple combo box:
 
 The index of the currently active item is stored in the
 \property{active}{gtkComboBox} property. The index, as usual, is $0$-based,
-and a value of $-1$ indicates that no value is selected:
+and a value of $-1$ indicates that no value is selected (the default):
 \begin{Schunk}
 \begin{Sinput}
  combo['active']
@@ -2770,7 +2770,7 @@ and a value of $-1$ indicates that no value is selected:
 \end{Soutput}
 \end{Schunk}
 %
-The \method{getActiveText}{gtkComboBox} method retrieves
+The \method{getActiveText}{GtkComboBox} method retrieves
 the text shown by the basic combo box.
 
 When the active index changes, the \signal{changed} signal is
@@ -2780,17 +2780,18 @@ emitted. The handler then needs to retrieve the active index:
  gSignalConnect(combo, "changed",
                 f = function(w, ...) {
                   if(w$getActive() < 0) 
-                    cat("No value selected\n")
+                    message("No value selected")
                   else
-                    cat("Value is", w$getActiveText(), "\n")
+                    message("Value is", w$getActiveText())
                 })
 \end{Sinput}
 \end{Schunk}
 
 Although combo boxes are much more space efficient than radio buttons,
-it can be difficult to use a combo box when there are a large number
-of items. The \method{setWrapWidth}{gtkComboBox} method specifies
-the preferred number of columns for displaying the items.
+it can still be difficult to use a combo box when there are a large
+number of items. Placing the items in columns lessens this. The
+\method{setWrapWidth}{GtkComboBox} method specifies the preferred
+number of columns for displaying the items.
 
 \begin{example}{Using one combo box to populate another}{ex:RGtk2-comboboxes}
 %
@@ -2851,88 +2852,77 @@ An extension of \class{GtkComboBox}, \class{GtkComboBoxEntry},
 replaces the main button with a text entry. This supports the entry of
 arbitrary values, in addition to those present in the menu.
 
-\subsection{Sliders}
-\label{sec:RGtk2:sliders}
+
+
+\subsection{Sliders and Spin Buttons}
+\label{sec:RGtk2:sliders-spinbuttons}
 
 The slider widget and spin button widget allow selection from a
-regularly spaced, semi-continuous list of values.
-\class{GtkScale} implements a slider and may be oriented
-either horizontally or vertically. This depends on the class:
-\class{GtkHScale} or \class{GtkVScale}.  
+regularly spaced, semi-continuous list of values. Both have their
+possible values for selection determined by an instance of
+\class{GtkAdjustment}, which is used to represent ranges that have an
+upper and lower bound with step and page increments. This adjustment
+may be specified to the constructor, or more frequently will be
+created by the widget after an appropriate specification of the range.
 
-\begin{example}{A slider controlling histogram bin selection}{ex:RGtk2:sliders}
-  We demonstrate a slider for controlling the bin size of a
-  histogram. First, we create and configure the horizontal slider:
-\begin{Schunk}
-\begin{Sinput}
- slider <- gtkHScale(min = 1, max = 100, step = 1)
- slider$setValue(10)
- slider['value-pos'] <- "bottom"
-\end{Sinput}
-\end{Schunk}
-%
-We specify the minimum, maximum and step values for the scale.  This
-set of values is formally represented by the \class{GtkAdjustment}
-structure, which could serve as a data model for synchronizing multiple
-sliders or other scale-based widgets. Ordinarily, it is not necessary
-to construct a \class{GtkAdjustment} explicitly. Instead, one passes
-the values as parameters to the constructor. The initial value is set
-to $10$, and the value will be rendered in a label beneath the slider,
-according to the \property{value-pos}{GtkScale} property.
+\paragraph{Sliders}
+Sliders are implemented by \class{GtkScale} with constructors
+\constructor{gtkHScale} and \constructor{gtkVScale}, the difference
+being the orientation. 
 
-The \signal{value-changed} signal is emitted whenever the slider is
-adjusted. Our handler updates the histogram:
-\begin{Schunk}
-\begin{Sinput}
- gSignalConnect(slider, "value-changed",
-                f = function(w, ...) {
-                  val <- w$getValue() 
-                  drawHistogram(val)
-                })
-\end{Sinput}
-\end{Schunk}
+These constructors have arguments \argument{min}{GtkScale},
+\argument{max}{GtkScale} and \argument{step}{GtkScale} to specify
+the range, if an adjustment is not specified. 
 
-Finally, we load the data, define the \function{drawHistogram}
-function, and finish the GUI:
-\begin{Schunk}
-\begin{Sinput}
- data <- rnorm(100)
- library(lattice)
- drawHistogram <- function(val) print(histogram(data, nint = val))
- drawHistogram(slider$getValue())        
- w <- gtkWindow(); w$setTitle("Histogram bin selection")
- w$add(slider)
-\end{Sinput}
-\end{Schunk}
-\end{example}
+%% value
+The \code{value} property stores the currently selected value. When
+this is changed, the \signal{value-changed} signal is emitted. 
 
 %% properties
 A few properties define the appearance of the slider widget.  The
 \code{digits} property controls the number of digits after the decimal
 point.  The property \code{draw-value} toggles the drawing of the
-selected value near the slider. Finally, \code{value-pos},
-demonstrated above, specifies where this value will be drawn using
-values from \code{GtkPositionType}. The default is \code{top}.
+selected value near the slider. Finally, \code{value-pos}
+specifies where this value will be drawn using
+values from \gtkenum{GtkPositionType}. The default is \code{top}.
 
-\subsection{Spin buttons}
-\label{sec:RGtk2:spinboxes}
+In Example~\ref{eg-RGtk2-manipulate} we show how a slider can be used
+to update a graphic.
 
+\paragraph{Spin buttons}
 The spin button widget is very similar to the slider widget,
 conceptually and in terms of the \GTK\/ API. Spin buttons are
 constructed with \constructor{gtkSpinButton}. As with sliders, this
 constructor requires specifying adjustment values, either as a
-\class{GtkAdjustment} or individually.  The methods
-\method{getValue}{gtkSpinButton} and \method{setValue}{gtkSpinButton}
-once again get and set the value. The \code{value-changed}
-signal is emitted when the spin button value is changed.
+\class{GtkAdjustment} or through the \argument{min}{gtkSpinButton},
+\argument{max}{gtkSpinButton}, and \argument{step}{gtkSpinButton} arguments.
+The argument \argument{digits}{gtkSpinButton} is used to configure how many
+digits are displayed and \argument{climb.rate}{gtkSpinButton} can
+adjust how fast the display changes when the button is held depressed.
+
+As with \class{GtkScale} the \code{value} property holds the state and
+the \signal{value-changed} signal is emitted when this changes.
+
+A spin button has a few additional features. The property
+\code{snap-to-ticks} can be set to \code{TRUE} to force the new value
+to belong to the sequence of values in the adjustment. The \code{wrap}
+property indicates whether the sequence will ``wrap'' around at the
+bounds
 
 \begin{example}{A range widget}{ex:RGtk2-range-widget}
 This example shows how to make a range widget that combines both the
-slider and spinbutton to choose a single number. Such a widget is
-useful, as the slider is better at large changes and the spin button
-better at finer changes. In \GTK\/ we use the same
-\class{GtkAdjustment} model, so changes to one widget propagate
-without effort to the other.
+slider and spinbutton to choose a single number
+(Figure~\ref{fig:RGtk2-range-widget}). Such a widget is useful, as the
+slider is better at large changes and the spin button better at finer
+changes. In \GTK\/ we use the same \class{GtkAdjustment} model, so
+changes to one widget propagate without effort to the other.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.5\textwidth]{fig-RGtk2-range-widget.png}
+  \caption{A range widget with coordinated slider and spin box sharing the same \class{GtkAdjustment} instance}
+  \label{fig:RGtk2-range-widget}
+\end{figure}
 
 
 We name our scale parameters according to the corresponding arguments
@@ -2970,11 +2960,95 @@ space.
 
 \end{example}
 
-A spin button has a few additional features. The property
-\code{snap-to-ticks} can be set to \code{TRUE} to force the new value
-to belong to the sequence of values in the adjustment. The \code{wrap}
-property indicates whether the sequence will ``wrap'' around at the
-bounds.
+
+%% JV Rewrote this to combine, removing example of histogram
+% \subsection{Sliders}
+% \label{sec:RGtk2:sliders}
+
+% The slider widget and spin button widget allow selection from a
+% regularly spaced, semi-continuous list of values.
+% \class{GtkScale} implements a slider and may be oriented
+% either horizontally or vertically. This depends on the class:
+% \class{GtkHScale} or \class{GtkVScale}.  
+
+% 
+% \begin{example}{A slider controlling histogram bin selection}{ex:RGtk2:sliders}
+%   We demonstrate a slider for controlling the bin size of a
+%   histogram. In Example~\ref{eg-RGtk2-manipulate} we go much further
+%   in this direction.
+  
+  
+%   First, we create and configure the horizontal slider:
+% <<gtk-widget-slider>>=
+% slider <- gtkHScale(min = 1, max = 100, step = 1)
+% slider$setValue(10)
+% slider['value-pos'] <- "bottom"
+% @ 
+% %
+% We specify the minimum, maximum and step values for the scale.  This
+% set of values is formally represented by the \class{GtkAdjustment}
+% structure, which could serve as a data model for synchronizing multiple
+% sliders or other scale-based widgets. Ordinarily, it is not necessary
+% to construct a \class{GtkAdjustment} explicitly. Instead, one passes
+% the values as parameters to the constructor (which are named above, as
+% the adjustment is the first argument). The initial value is set
+% to $10$, and the value will be rendered in a label beneath the slider,
+% according to the \property{value-pos}{GtkScale} property.
+
+% The \signal{value-changed} signal is emitted whenever the slider is
+% adjusted. Our handler updates the histogram:
+% <<gtk-widget-slider-value-changed>>=
+% gSignalConnect(slider, "value-changed",
+%                f = function(w, ...) {
+%                  val <- w$getValue() 
+%                  drawHistogram(val)
+%                })
+% @ 
+
+% Finally, we load the data, define the \function{drawHistogram}
+% function, and finish the GUI:
+% <<SliderAndHistogram, results=hide>>=
+% data <- rnorm(100)
+
+% library(lattice)
+% drawHistogram <- function(val) print(histogram(data, nint = val))
+% drawHistogram(slider$getValue())        
+
+% w <- gtkWindow(); w$setTitle("Histogram bin selection")
+% w$add(slider)
+% @               
+% \end{example}
+
+% %% properties
+% A few properties define the appearance of the slider widget.  The
+% \code{digits} property controls the number of digits after the decimal
+% point.  The property \code{draw-value} toggles the drawing of the
+% selected value near the slider. Finally, \code{value-pos},
+% demonstrated above, specifies where this value will be drawn using
+% values from \code{GtkPositionType}. The default is \code{top}.
+
+% \subsection{Spin buttons}
+% \label{sec:RGtk2:spinboxes}
+
+% The spin button widget is very similar to the slider widget,
+% conceptually and in terms of the \GTK\/ API. Spin buttons are
+% constructed with \constructor{gtkSpinButton}. As with sliders, this
+% constructor requires specifying adjustment values, either as a
+% \class{GtkAdjustment} or individually.  The methods
+% \method{getValue}{gtkSpinButton} and \method{setValue}{gtkSpinButton}
+% once again get and set the value. The \code{value-changed}
+% signal is emitted when the spin button value is changed.
+
+% \begin{example}{A range widget}{ex:RGtk2-range-widget}
+%   \SweaveInput{ex-RGtk2-range-widget}
+% \end{example}
+
+% A spin button has a few additional features. The property
+% \code{snap-to-ticks} can be set to \code{TRUE} to force the new value
+% to belong to the sequence of values in the adjustment. The \code{wrap}
+% property indicates whether the sequence will ``wrap'' around at the
+% bounds
+.
 
 \section{Progress Reporting}
 
@@ -3027,25 +3101,24 @@ web browsers. The basic usage is straightforward:
 \label{sec:gtk-wizards}
 
 The \class{GtkAssistant} class provides a wizard widget for \GTK. The
-basic setup is one adds pages to the assistant object and they are
-navigated in a linear manner. In our example, we will see how to
-override this. 
-
+simplest setup is that one adds pages to the assistant object and they
+are navigated in a linear manner. In our example, we override this.
 
 Wizard pages have a certain type which must be declared. These are
-enumerated in \code{GtkAssistantPageType} and set by \method{setPageType}{gtkAssistant}. The last page must be of
-type \qcode{confirm}, \qcode{summary}, or \qcode{progress}.
-Each wizard page has a content area and buttons.  As well, each page
-in the assistant object has an optional side image, header image
-and/or page title that may be customized. The buttons allow the user
-to navigate through the wizard. The content area of a wizard page is
-simply an instance of class \class{GtkWidget} (e.g., some container) and are
-added to the assistant through the \method{appendPage}{gtkAssistant},
-\method{insertPage}{gtkAssistant}, or
-\method{prependPage}{gtkAssistant} methods. Pages are referred to by
+enumerated in \gtkenum{GtkAssistantPageType} and set by
+\method{setPageType}{GtkAssistant}. The last page must be of type
+\qcode{confirm}, \qcode{summary}, or \qcode{progress}.  Each wizard
+page has a content area and buttons.  As well, each page in the
+assistant object has an optional side image, header image and/or page
+title that may be customized. The buttons allow the user to navigate
+through the wizard. The content area of a wizard page is simply an
+instance of class \class{GtkWidget} (e.g., some container) and are
+added to the assistant through the \method{appendPage}{GtkAssistant},
+\method{insertPage}{GtkAssistant}, or
+\method{prependPage}{GtkAssistant} methods. Pages are referred to by
 the \class{GtkWidget} object or their page index, $0$-based. The
 \code{forward} button on a page must be made sensitive by calling
-\method{setPageComplete}{gtkAssistant} with the widget and logical
+\method{setPageComplete}{GtkAssistant} with the widget and logical
 value.
 
 %% signal
@@ -3053,8 +3126,8 @@ value.
 The \code{cancel} button emits a \signal{cancel} signal that can be
 connected to for destroying the wizard widget. The \signal{apply}
 signal is emitted on a page change. The \signal{prepare} signal is
-emitted just before a page is made visible. This is needed to create
-dynamically generated pages.
+emitted just before a page is made visible, which is needed to create
+the dynamically generated pages in our examples.
 
 \begin{example}{An \code{install.packages} wizard}{eg-RGtk2-install-packages}
 
@@ -3121,7 +3194,7 @@ functions are stored in a list so that they can be called by page index.
 
 Although we don't show how to create the CRAN selection page
 (cf. Example~\ref{ex:RGtk2-add-toggle-to-df} for a similar
-construction) we call \method{setForwardPageFunc}{gtkAssistant} to set
+construction) we call \method{setForwardPageFunc}{GtkAssistant} to set
 a function that will skip this page if it is not needed. This function
 simply returns an integer with the next page number based on the last one.
 \begin{Schunk}
@@ -3310,11 +3383,7 @@ This is the simplest usage:
  library(cairoDevice)
  device <- gtkDrawingArea()
  asCairoDevice(device)
-\end{Sinput}
-\begin{Soutput}
-[1] TRUE
-\end{Soutput}
-\begin{Sinput}
+ ##
  win <- gtkWindow(show=FALSE)
  win$add(device)
  win$showAll()
@@ -3322,9 +3391,9 @@ This is the simplest usage:
 \end{Sinput}
 \end{Schunk}
 %
-We create the \class{GtkDrawingArea}, coerce it to a Cairo-based
-graphics device, and place it in a window. Finally, we display a
-scatterplot. Example~\ref{sec:RGtk2:scroll-windows} goes further by
+In the above, we create the \class{GtkDrawingArea}, coerce it to a
+Cairo-based graphics device, and then place it in a
+window. Example~\ref{sec:RGtk2:scroll-windows} goes further by
 embedding the drawing area into a scrolled window to support zooming
 and panning.
 
@@ -3383,7 +3452,7 @@ directly to \pkg{cairoDevice} for rendering the R plot:
 %% device and a reference class
 \begin{example}{The \pkg{manipulate} package in \pkg{RGtk2}}{eg-RGtk2-manipulate}
 
-The RStudio\texttrademark Workbench is an IDE for R that provides a
+The RStudio\texttrademark{} Workbench is an IDE for R that provides a
 similar interface whether run on any of its supported operating
 systems or through a web browser. Accompanying the workbench is an
 \R{} package \pkg{manipulate} that provides a convenient means to
@@ -3407,7 +3476,7 @@ license. Although we don't show the entire code here, the
 
 The \pkg{manipulate} package uses environments to store state
 etc. Here we use reference classes, as they allow for a more
-familiar programming interface. 
+structured programming interface. 
 
 A typical use of \pkg{manipulate} is along the lines of
 (Figure~\ref{fig:RGtk2-manipulate}) the following example from the
@@ -3420,7 +3489,7 @@ A typical use of \pkg{manipulate} is along the lines of
             ## controls
             x.min = slider(0,15),
             x.max = slider(15,30, initial = 25),
-            type = picker("p", "l", "b", "c", "o", "h", "s", "S"),
+            type = picker("p", "l", "b", "c", "o", "h", "s"),
             axes = checkbox(TRUE, label="Draw Axes"),
             label = checkbox(FALSE, label="Draw Labels")
             )
@@ -3503,7 +3572,7 @@ frame. Otherwise, note how each control is expected to have a
               control_table['column-spacing'] <- 10
               ## insert horizontal strut
               control_table$attach(strut <- gtkHBox(), 1,2,0,1,
-                                   xoptions="", yoptions="shrink")
+                            xoptions="", yoptions="shrink")
               strut$setSizeRequest(75, -1)
               f$add(control_table)
               paned$add(f)
@@ -3520,7 +3589,7 @@ frame. Otherwise, note how each control is expected to have a
 %
 
 The \code{control\_table} is used hold the respective controls. We
-added a \iprogram{strut}strut to request a minimum width for the
+added a \ilayout{strut}strut to request a minimum width for the
 second column, as otherwise the slider controls can render too
 narrowly.
 
@@ -3618,10 +3687,10 @@ arguments follow RStudio's.
 
 \begin{Schunk}
 \begin{Sinput}
- slider <- function(min, max, initial = min, label = NULL, 
-                    step = -1, ticks = TRUE) {
-   Slider$new(min, max, initial = min, label = label, 
-              step = step, ticks = ticks)
+ slider <- function(min, max, initial=min, label=NULL, 
+                    step=-1, ticks=TRUE) {
+   Slider$new(min, max, initial=min, label=label, 
+              step=step, ticks=ticks)
  }
 \end{Sinput}
 \end{Schunk}
@@ -3642,8 +3711,8 @@ properties. This follows the setup of the original package.
 \begin{Schunk}
 \begin{Sinput}
  Slider$methods(
-        initialize=function(min, max, initial = min, label = NULL, 
-          step = -1, ticks = TRUE) {
+        initialize=function(min, max, initial=min, label=NULL, 
+          step=-1, ticks=TRUE) {
             validate_inputs(min, max, initial, step, ticks)
             ## create slider and return it
             slider <- list(type = 0,
@@ -3658,7 +3727,7 @@ properties. This follows the setup of the original package.
 \end{Schunk}
 
 Our \meth{make\_gui} method basically defines the widget, turning the
-arguments of the constructor nito those for the \GTK{} widget. It then
+arguments of the constructor into those for the \GTK{} widget. It then
 calls the same method from the superclass to lay it the widget. Here
 we define a slider and initialize it using the values in the list,
 \code{l}. The \code{handler} is the change handler passed in from a
@@ -3688,7 +3757,7 @@ class, the three main methods are given by:
 \begin{Schunk}
 \begin{Sinput}
  Checkbox$methods(
-          initialize=function(initial = FALSE, label = NULL) {
+          initialize=function(initial=FALSE, label=NULL) {
             validate_inputs(initial, label)
             checkbox <- list(type = 2)
             initFields(l=checkbox, label=label, initial=initial)
@@ -3710,12 +3779,6 @@ the table.
 
 
 %% Try it out
-\begin{Schunk}
-\begin{Soutput}
-An object of class "Manipulate"
-<environment: 0x1227c54a8>
-\end{Soutput}
-\end{Schunk}
 \end{example}
 
 \section{Drag and drop}
@@ -3724,12 +3787,13 @@ An object of class "Manipulate"
 %% ------------ Drag and Drop
 
 A drag and drop operation is the movement of data from a source widget
-to a target widget. The source widget serializes the selected item as
-MIME data, and the destination interprets that data to perform some
-operation, often creating an item of its own. Our task is to configure
-the source and destination widgets, so that they listen for the
-appropriate events and understand each other. As a trivial example, we
-allow the user to drag the text from one button to another.
+to a target widget. In \GTK{} the source widget serializes the
+selected item as MIME data, and the destination interprets that data
+to perform some operation, often creating an item of its own. Our task
+is to configure the source and destination widgets, so that they
+listen for the appropriate events and understand each other. As a
+trivial example, we allow the user to drag the text from one button to
+another.
 
 \subsection{Initiating a Drag}
 
@@ -3738,7 +3802,7 @@ transferred. We need to define a target type for each type of data, as
 a \class{GtkTargetEntry} structure:
 \begin{Schunk}
 \begin{Sinput}
- TARGET.TYPE.TEXT   <- 80                 
+ TARGET.TYPE.TEXT   <- 80                # our enumeration
  TARGET.TYPE.PIXMAP <- 81                  
  widgetTargetTypes <- 
    list(text = gtkTargetEntry("text/plain", 0, 
@@ -3819,7 +3883,7 @@ non-empty intersection between the targets passed to
 
 When data is dropped, the destination widget emits the
 \signal{drag-data-received} signal. The handler is responsible for
-extracting the dragged data from \argument{selection} and performing some
+extracting the dragged data from \args{selection} and performing some
 operation with it. In this case, we set the text on the button:
 \begin{Schunk}
 \begin{Sinput}
@@ -3831,9 +3895,9 @@ operation with it. In this case, we set the text on the button:
 \end{Sinput}
 \end{Schunk}
 %
-The \argument{context} argument is a \class{GdkDragContext},
-containing information about the drag event. The \argument{x} and
-\argument{y} arguments are integer valued and represent the position
+The \args{context} argument is a \class{GdkDragContext},
+containing information about the drag event. The \args{x} and
+\args{y} arguments are integer valued and represent the position
 in the widget where the drop occurred. The text data is returned by
 \function{getText} as a \code{raw} vector, so it is converted with
 \function{rawToChar}.
@@ -3865,7 +3929,7 @@ in the widget where the drop occurred. The text data is returned by
 %% TODO: we need a unified example in the main text that spans loading
 %% a data frame to sorting a model, at least.
 
-Many widgets in \GTK\/ use the model, view, controller (MVC)
+Many widgets in \GTK\/ use the model, view, controller \iprogram{Model-View-Controller}(MVC)
 paradigm. For most, like the button, the MVC pattern is implicit;
 however, widgets that primarily display data explicitly incorporate
 the MVC pattern into their design. The data model is factored out as a
@@ -3900,15 +3964,16 @@ certain class, and each row is related to some observational
 unit. This fits the structure of \class{GtkTreeModel} when there is no
 hierarchy. As such it is natural to have a means to map a data frame
 into a store for a tree view. \class{RGtkDataFrame} implements
-\class{GtkTreeModel} to perform this role and is constructed with the
-\constructor{rGtkDataFrame} function. Populating a
+\class{GtkTreeModel} to perform this role and instances are
+constructed through \constructor{rGtkDataFrame}. Populating a
 \class{RGtkDataFrame} is far faster than for a \GTK\/ model, because
 data is retrieved from the data frame on demand. There is no need to
 copy the data row by row into a separate data structure. Such an
-approach would be especially slow if implemented as a loop in \R. The
-constructor takes a data frame as an argument. The column classes are
-important, so even if this data frame is empty, the user should
-specify the desired column classes upon construction.
+approach would be especially slow if implemented as a loop in
+\R.~\footnote{As is needed in \pkg{tcltk}.} The constructor takes a
+data frame as an argument. The column classes are important, so even
+if this data frame is empty, the user should specify the desired
+column classes upon construction.
 
 An object of class \class{RGtkDataFrame} supports the familiar S3
 methods \method{[}{RGtkDataFrame}, \method{[\ASSIGN}{RGtkDataFrame},
@@ -3916,7 +3981,7 @@ methods \method{[}{RGtkDataFrame}, \method{[\ASSIGN}{RGtkDataFrame},
 \method{as.data.frame}{RGtkDataFrame}. The \code{[$<$-} method does
 not have quite the same functionality as it does for a data
 frame. Columns can not be removed by assigning values to \code{NULL},
-and column types should not be changed. These limitations are inherit
+and column types should not be changed. These limitations are inherent
 in the design of \GTK: columns may not be removed from
 \class{GtkTreeModel}, and views expect the data type to remain the
 same.
@@ -3940,14 +4005,14 @@ possible levels.
 
 \end{example}
 
-The data frame combination functions \Rfunction{rbind} and
-\Rfunction{cbind} are unsupported, as they would create a new data
+The data frame combination functions \function{rbind} and
+\function{cbind} are unsupported, as they would create a new data
 model, rather than modify the model in place. Thus, one should add
-rows with \method{appendRows}{rGtkDataFrame} and add columns with
-\method{appendColumns}{rGtkDataFrame} (or sub-assignment, 
+rows with \method{appendRows}{RGtkDataFrame} and add columns with
+\method{appendColumns}{RGtkDataFrame} (or sub-assignment, 
 \method{[\ASSIGN}{RGtkDataFrame}).
 
-The \method{setFrame}{rGtkDataFrame} method replaces the underlying
+The \method{setFrame}{RGtkDataFrame} method replaces the underlying
 data frame.
 \begin{Schunk}
 \begin{Sinput}
@@ -3983,7 +4048,7 @@ A tree view is constructed by \constructor{gtkTreeView}:
 \end{Schunk}
 Usually, as in the above, the model is passed to the
 constructor. Otherwise, the model may be accessed with
-\method{setModel}{gtkTreeView} and \method{getModel}{gtkTreeView}.
+\method{setModel}{GtkTreeView} and \method{getModel}{GtkTreeView}.
 
 A newly created tree view displays zero columns, regardless of the
 number of columns in the model. Each column, an instance of
@@ -4009,22 +4074,23 @@ is uniform down a column. As an implementation of
 \class{GtkCellLayout}, \class{GtkTreeViewColumn} delegates the
 responsibility of rendering to one or more \class{GtkCellRenderer}
 objects. The cell renderers are packed into the column, which behaves
-much like a box container. Rendering of text cells is the role of
-\class{GtkCellRendererText}; we create an instance with
-\constructor{gtkCellRendererText}. There are several properties that
+much like a box container. Rendering of text cells is the role of the
+\class{GtkCellRendererText} class. There are several properties that
 control how the text is rendered. A so-called \textit{attribute} links
 a model column to a renderer property. The most important property is
 \code{text}, the text itself. In the example, we bind the \code{text}
 property to the first ($0$-indexed) column in the model.
 
 \class{GtkTreeView} provides the
-\method{insertColumnWithAttributes}{gtkTreeView} convenience method to
+\method{insertColumnWithAttributes}{GtkTreeView} convenience method to
 perform all of these steps with a single call. We invoke it to add a
 second column in our view:
 \begin{Schunk}
 \begin{Sinput}
  view$insertColumnWithAttributes(position = -1, 
-      title = "Model", cell = gtkCellRendererText(), text = 1)
+                                 title = "Model", 
+                                 cell = gtkCellRendererText(), 
+                                 text = 2 - 1) # second column
 \end{Sinput}
 \end{Schunk}
 % 
@@ -4036,35 +4102,57 @@ be defined after the third argument.  We will use the above idiom in
 all of the following examples, as it is much more concise than
 performing each step separately.
 
-To display the entire Cars93 data frame, we insert a view column for
-every column in the data frame. Here, we reconstruct the view, inserting
-a view column for every column in the data frame, i.e., the model.
+To display the entire Cars93 data frame, is not much different. Here,
+we reconstruct the view, inserting a view column for every column in
+the data frame, i.e., the model.
 \begin{Schunk}
 \begin{Sinput}
  view <- gtkTreeView(model)
- mapply(view$insertColumnWithAttributes,  -1, colnames(model), 
-        list(gtkCellRendererText()), 
-        text = seq_len(ncol(model)) - 1)
+ mapply(view$insertColumnWithAttributes,  
+        position=-1, 
+        title=colnames(model), 
+        cell=list(gtkCellRendererText()), 
+        text = seq_len(ncol(model)) - 1
+        )
+\end{Sinput}
+\end{Schunk}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.6\textwidth]{fig-RGtk2-scrollable-treeview}
+  \caption{A \class{GtkTreeView} instance shown with a scrolled window}
+  \label{fig:RGtk2-scrollable-treeview}
+\end{figure}
+
+Figure~\ref{fig:RGtk2-scrollable-treeview} shows the view within a scrollable window:
+\begin{Schunk}
+\begin{Sinput}
+ w <- gtkWindow()
+ w$setTitle("Tabular view of data frame")
+ sw <- gtkScrolledWindow()
+ w$add(sw)
+ sw$add(view)
 \end{Sinput}
 \end{Schunk}
 %
-Although it was relatively easy to create a \class{GtkTreeModel} for
-the data frame using \class{RGtkDataFrame}, the complexity of
-\class{GtkTreeView} complicates the task of displaying the data frame
-in a simple, textual table. When this is all that is necessary, one
-might consider \function{gtable} from \pkg{gWidgets}. For those
-who wish to render text in each row differently (e.g., in a different
-color) or fill cells with images, check boxes, progress bars and the
-like, direct use of the \class{GtkTreeView} API is required.
+%% JV cut this out
+% Although it was relatively easy to create a \class{GtkTreeModel} for
+% the data frame using \class{RGtkDataFrame}, the complexity of
+% \class{GtkTreeView} complicates the task of displaying the data frame
+% in a simple, textual table. When this is all that is necessary, one
+% might consider \function{gtable} from \pkg{gWidgets}. For those
+% who wish to render text in each row differently (e.g., in a different
+% color) or fill cells with images, check boxes, progress bars and the
+% like, direct use of the \class{GtkTreeView} API is required.
 
 \paragraph{Manipulating view columns}
 The \class{GtkTreeView} widget is essentially a collection of
 columns. Columns are added to the tree view with the methods
-\method{insertColumn}{gtkTreeView} or, as shown above,
-\method{insertColumnWithAttributes}{gtkTreeView}.  A column can be
-moved with the \method{moveColumnAfter}{gtkTreeView} method, and
-removed with the \method{removeColumn}{gtkTreeView} method. The
-\method{getColumns}{gtkTreeView} method returns a list containing all
+\method{insertColumn}{GtkTreeView} or, as shown above,
+\method{insertColumnWithAttributes}{GtkTreeView}.  A column can be
+moved with the \method{moveColumnAfter}{GtkTreeView} method, and
+removed with the \method{removeColumn}{GtkTreeView} method. The
+\method{getColumns}{GtkTreeView} method returns a list containing all
 of the tree view columns.
 
 There are several properties for controlling the behavior and
@@ -4073,7 +4161,7 @@ dimensions of a \class{GtkTreeViewColumn} instance. The property
 dragging with the mouse. The size properties \qcode{width},
 \qcode{min-width}, and \qcode{fixed-width} control the size. The
 visibility of the column can be adjusted through the
-\method{setVisible}{gtkTreeViewColumn} method.
+\method{setVisible}{GtkTreeViewColumn} method.
 
 \paragraph{Additional Features}
 
@@ -4134,9 +4222,16 @@ representation of the path, use \method{getIndices}{GtkTreePath} or
 \method{toString}{GtkTreePath}, respectively.
 
 %% iters
-
+\paragraph{Iterators}
 The second means of row indexing is through an iterator,
 \class{GtkTreeIter}, which is better suited for traversing a model.
+An \dfn{iterator} is a programming object used to traverse through
+some data, such as a text buffer or table of values. Iterators are
+typically transient, in the sense that they are invalidated when their
+source is modified. An iterator is often updated by reference,
+behavior that is atypical in \R\/ programming. 
+
+
 While a tree path is an intuitive, transparent row index, an iterator
 is an opaque index that is efficiently incremented. It is
 probably most common for a model to be accessed in an iterative
@@ -4162,7 +4257,7 @@ components: \code{retval}, a logical indicating whether the iterator
 is valid, and \code{iter}, the pointer to the underlying C data
 structure. The call to \method{get}{GtkTreeModel} also returns a list,
 with an element for each column index passed as an argument. The
-method \method{iterNext}{gtkTreeStore} updates the passed iterator in
+method \method{iterNext}{GtkTreeStore} updates the passed iterator in
 place, i.e., by reference, to point to the next row. Thus, no new
 iterator is returned. This is unfamiliar behavior in \R. Instead, the
 method returns a logical value indicating whether the iterator is
@@ -4190,6 +4285,7 @@ above the rows in our table. Unfortunately, this usage too is
 unintuitive and slow, so the benefits of \class{RGtkDataFrame} should
 be obvious.
 
+\paragraph{Converting between paths and iterators}
 One can convert between paths and iterators. The method
 \method{getIter}{GtkTreeModel} on \class{GtkTreeModel} returns an
 iterator for a path. A shortcut from the string representation of the
@@ -4221,11 +4317,11 @@ to selection of rows.
 \GTK\/ provides the class \class{GtkTreeSelection} to manage row
 selection. Every tree view has a single instance of
 \class{GtkTreeSelection}, returned by the
-\method{getSelection}{gtkTreeView} method.
+\method{getSelection}{GtkTreeView} method.
 
 The usage of the selection object depends on the selection mode, i.e.,
 whether multiple rows may be selected. The mode is configured with the
-\method{setMode}{gtkTreeSelection} method, with values from
+\method{setMode}{GtkTreeSelection} method, with values from
 \code{GtkSelectionModel}, including \qcode{multiple} for allowing more
 than one row to be selected and \qcode{single} for limiting selections
 to a single row, or none. For example, we create a view and limit it
@@ -4240,15 +4336,10 @@ to single selection:
 \end{Schunk}
 
 When only a single selection is possible, the method
-\method{getSelected}{gtkTreeSelection} returns the selected row as a
+\method{getSelected}{GtkTreeSelection} returns the selected row as a
 list, with components \code{retval} to indicate success, \code{model}
 pointing to the tree model and \code{iter} representing an iterator to
 the selected row in the model.
-\begin{Schunk}
-\begin{Soutput}
-[1] 1
-\end{Soutput}
-\end{Schunk}
 %
 If our tree view is shown and a selection made, this code will
 return the value in the first column:
@@ -4263,7 +4354,7 @@ return the value in the first column:
 \end{Schunk}
 %
 When multiple selection is permitted, then the method
-\method{getSelectedRows}{gtkTreeSelection} returns a list with
+\method{getSelectedRows}{GtkTreeSelection} returns a list with
 the \code{model} and \code{retval}, a list
 of tree paths.
 
@@ -4335,30 +4426,44 @@ original model and reorders the rows according to the order of the
 sort column. \GTK\/ provides \class{GtkTreeModelSort} for this:
 \begin{Schunk}
 \begin{Sinput}
- store <- rGtkDataFrame(mtcars)
+ store <- rGtkDataFrame(Cars93)
  sorted <- gtkTreeModelSortNewWithModel(store)
  view <- gtkTreeView(sorted)
- view$insertColumnWithAttributes(0, "Click to sort", 
-                                 gtkCellRendererText(), text=0)
- view$getColumn(0)$setSortColumnId(0)
+ mapply(view$insertColumnWithAttributes,
+        position=-1,
+        title=colnames(store),
+        cell=list(gtkCellRendererText()),
+        text=seq_len(ncol(store)) - 1)
+ sapply(seq_len(ncol(store)), function(i)
+        view$getColumn(i-1)$setSortColumnId(i-1))
 \end{Sinput}
 \end{Schunk}
 %
 When the user sorts the table, the underlying \code{store} will not be
 modified. 
 
+\begin{figure}
+  \centering
+  \includegraphics[width=.7\textwidth]{fig-RGtk2-sortable-treeview}
+  \caption{When a sortable model is passed to the treeview, one can click on the column headers to sort the data. The "Type" column has a custom sort function applied.}
+  \label{fig:RGtk2-sortable-treeview}
+\end{figure}
+
+
 The default sorting function can be changed by calling the method
-\method{setSortFunc}{gtkTreeSortable} on a sortable model.  The
-following function shows how the default sorting might be implemented.
+\method{setSortFunc}{GtkTreeSortable} on a sortable model.  The
+following function shows how a special sort for the \code{Type} of car
+can be implemented (Figure~\ref{fig:RGtk2-sortable-treeview}).
 \begin{Schunk}
 \begin{Sinput}
  f <- function(model, iter1, iter2, user.data) {
+   types <- c("Compact", "Small", "Sporty", "Midsize", "Large", "Van")
    column <- user.data
    val1 <- model$getValue(iter1, column)$value
    val2 <- model$getValue(iter2, column)$value
-   as.integer(val1 - val2)
+   as.integer(match(val1, types) - match(val2, types))
  }
- sorted$setSortFunc(sort.column.id=0, sort.func=f)
+ sorted$setSortFunc(sort.column.id=3-1, sort.func=f, user.data=3 - 1)
 \end{Sinput}
 \end{Schunk}
 
@@ -4378,11 +4483,13 @@ model, which provides only those rows where the filter column is
 This is the basic usage:
 \begin{Schunk}
 \begin{Sinput}
- df <- data.frame(col=letters[1:3], vis=c(TRUE, TRUE, FALSE))
- store <- rGtkDataFrame(df)
- filtered <- store$filter()
- filtered$setVisibleColumn(1)            # 0-based
+ df <- Cars93
+ model <- rGtkDataFrame(cbind(df, .visible=rep(TRUE, nrow(df))))
+ filtered <- model$filter()
+ filtered$setVisibleColumn(length(df))            # 0-based
  view <- gtkTreeView(filtered)
+ ## Adjust filter
+ model[,".visible"] <- df$MPG.highway >= 30
 \end{Sinput}
 \end{Schunk}
 %
@@ -4390,14 +4497,20 @@ The constructor of the filter model is \function{gtkTreeModelFilter},
 which, somewhat coincidentally, also works as a method on the base
 model, i.e., \code{model\$filter()}. To retrieve the original model
 from the filter, call its \code{getModel} method. The method
-\method{setVisibleColumn}{gtkTreeModelFilter} specifies which column
+\method{setVisibleColumn}{GtkTreeModelFilter} specifies which column
 in the model holds the logical values.  To customize filtering, one
-can register a function with \method{setVisibleFunc}. The callback,
+can register a function with \method{setVisibleFunc}{gtkTreeModelFilter}. The callback,
 given a row pointer, should return \code{TRUE} if the row passes the
 filter, see Example~\ref{ex:RGtk2-variable-selection}. A filter model
 may be treated as any other tree model, including attachment to a
 \class{GtkTreeView}.
 
+\begin{Schunk}
+\begin{Soutput}
+ [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18
+[19] 19 20 21 22 23 24 25 26 27
+\end{Soutput}
+\end{Schunk}
 
 %% filter
 
@@ -4572,7 +4685,7 @@ see if the editor provided by the \function{gtkDfEdit} in the
 Users may expect that once a cell is edited, the next cell is then set
 up to be edited. In order to do this, one must advance the cursor and
 activate editing of the next cell. For \class{GtkTreeView}, this is
-implemented by the \method{setCursor}{gtkTreeView} method. The
+implemented by the \method{setCursor}{GtkTreeView} method. The
 \code{path} argument takes a tree path instance, the \code{column}
 argument should be a tree view column object, and the flag
 \code{start.editing} indicates whether to initiate editing.
@@ -5217,7 +5330,7 @@ data). Alternatively, one could preserve the integrity of the data and
 perform the conversion during rendering. This requires intercepting
 the model value before it is passed to the cell renderer. 
 
-In the specific case \class{GtkTreeView}, it is possible to specify a
+In the specific case of \class{GtkTreeView}, it is possible to specify a
 callback that overrides this step.  The callback, of type
 \class{GtkTreeCellDataFunc}, is passed arguments for the tree view
 column, the cell renderer, the model, an iterator pointing to the row
@@ -5296,8 +5409,9 @@ and \code{GObject} for \GTK\/ objects, such as pixbufs.
 
 \begin{example}{Defining a tree}{eg:RGtk2:tree-store}
   Below, we create a tree based on the \code{Cars93} dataset, where
-  the car models are organized by manufacturer, i.e., each model row
-  is the child of its manufacturer row:
+  the car models (\code{Model}) are organized by manufacturer
+  (\code{Manufacturer}), i.e., each model row is the child of its
+  manufacturer row:
 \begin{Schunk}
 \begin{Sinput}
  tstore <- gtkTreeStore("gchararray")
@@ -5305,10 +5419,10 @@ and \code{GObject} for \GTK\/ objects, such as pixbufs.
    piter <- tstore$append()              # parent
    tstore$setValue(piter$iter, column = 0, value = 
                    df$Manufacturer[1])
-   sapply(df$Model, function(model) {
+   sapply(df$Model, function(car_model) {
      sibiter <- tstore$append(parent = piter$iter) # child
      if (is.null(sibiter$retval)) 
-       tstore$setValue(sibiter$iter, column = 0, value = model)
+       tstore$setValue(sibiter$iter, column=0, value=car_model)
    })
  })
 \end{Sinput}
@@ -5323,11 +5437,12 @@ and \code{GObject} for \GTK\/ objects, such as pixbufs.
 [1] "Integra"
 \end{Soutput}
 \end{Schunk}
-This obtains the first model from the first manufacturer.
-
+This obtains the first model from the first manufacturer (path \qcode{0:0}).
 \end{example}
 
-As shown in this example, populating a tree store relies on two
+
+
+As shown in the above example, populating a tree store relies on two
 functions: \method{append}{GtkTreeStore}, for appending rows, and
 \method{setValue}{GtkTreeStore}, for setting row values. The iterator
 to the parent row is passed to \method{append}{GtkTreeStore}. A parent
@@ -5336,13 +5451,13 @@ top level. It would also be possible to insert rows using
 \method{insert}{GtkTreeStore}, \method{insertBefore}{GtkTreeStore}, or
 \method{insertAfter}{GtkTreeStore}. The
 \method{setValue}{GtkTreeStore} method expects the row iterator and
-the column index, $0$-based.
+a $0$-based, column index.
 
-An entire row can be assigned through the \method{set}{gtkTreeStore}
+An entire row can be assigned through the \method{set}{GtkTreeStore}
 method. The method uses positional arguments to specify the column and
 the value. The column index appears as an even argument (say $2k$) and
 the corresponding value in the odd argument (say $2k+1$).  Values are
-returned by the \method{getValue}{gtkListStore} method, in a list with
+returned by the \method{getValue}{GtkListStore} method, in a list with
 component \code{value} storing the value.
 
 Traversing a tree store is most easily achieved through the use of
@@ -5381,18 +5496,19 @@ iterating from child to parent.
 %   \label{fig:traverse-iter}
 % \end{figure}
 
-Rows within a store can be rearranged using several methods. Call
-\method{swap}{gtkTreeStore} to swap rows referenced by their
-iterators.  The methods \method{moveAfter}{gtkTreeStore} and
-\method{moveBefore}{gtkTreeStore} move one row after or before
-another, respectively.  The \method{reorder}{gtkTreeStore} method
+\paragraph{Row manipulations}
+Rows within a store can be rearranged using several methods. Call the
+\method{swap}{GtkTreeStore} method to swap rows referenced by their
+iterators.  The methods \method{moveAfter}{GtkTreeStore} and
+\method{moveBefore}{GtkTreeStore} move one row after or before
+another, respectively.  The \method{reorder}{GtkTreeStore} method
 totally reorders the rows under a specified parent given a vector of
 row indices, like that returned by \function{order}.
 
 %% clearing contents
 Once added, rows may be removed using the
-\method{remove}{gtkTreeStore} method. To remove every row, call the
-\method{clear}{gtkTreeStore} method.
+\method{remove}{GtkTreeStore} method. To remove every row, call the
+\method{clear}{GtkTreeStore} method.
 
 \subsection{Displaying data as a tree}
 \label{sec:RGtk2:mvc:display-tree}
@@ -5406,7 +5522,7 @@ displays the \class{GtkTreeModel} as a table; however, it now adds
 controls for expanding and collapsing nodes where rows are nested.
 
 The user can click to expand or collapse a part of the tree. These
-actions correspond to the signals \code{row-expanded} and
+actions trigger the emission of the signals \code{row-expanded} and
 \code{row-collapsed}, respectively.
 
 \begin{example}{A simple tree display}{eg:RGtk2-simple-tree}
@@ -5452,209 +5568,9 @@ Finally, we illustrate that the same view can be used with either model:
 %% ## dynamic. 
 %% JV: Is this too much? Perhaps leave for the package?
 %% ML: Probably should move this to the package.
-\begin{example}{Dynamically growing a tree}{eg:RGtk2:tree-dynamic}
-This example uses a tree to explore an \R\/ list object, such as that
-returned by one of \R's modeling functions.  As the depth of these
-lists is not specified in advance, we use a dynamic approach to
-that populates the tree store when a node is expanded and removes
-nodes when their parent is collapsed.
-
-
-We begin by defining our tree store and an accompanying tree
-view. This example allows sorting, and so creates a sort proxy model:
-\begin{Schunk}
-\begin{Sinput}
- store <- gtkTreeStore(rep("gchararray", 2))
- sstore <- gtkTreeModelSort(store)
-\end{Sinput}
-\end{Schunk}
-
-We create a root row:
-\begin{Schunk}
-\begin{Sinput}
- iter <- store$append(parent=NULL)$iter
- store$setValue(iter, column=0, "GlobalEnv")
- store$setValue(iter, column=1, "environment")
- iter <- store$append(parent=iter)
-\end{Sinput}
-\end{Schunk}
-%
-It is necessary to append an empty row to the root so that root
-becomes expandable.
-
-We now define the tree view and allow for multiple selection:
-\begin{Schunk}
-\begin{Sinput}
- view <- gtkTreeView(sstore)
- view$getSelection()$setMode("multiple")
-\end{Sinput}
-\end{Schunk}
-
-The basic idea is to create child nodes when the parent is expanded
-and to delete the children when the parent is collapsed. This relies
-on the \code{row-expanded} and \code{row-collapsed} signals,
-respectively. First, we define the expansion handler:
-\begin{Schunk}
-\begin{Sinput}
- gSignalConnect(view, signal = "row-expanded",
-                f = function(view, iter, tpath, user.data) {
-                  sortedModel <- view$getModel()
-                  iter <- pathToIter(sortedModel, tpath)
-                  path <- iterToRPath(sortedModel, iter)
-                  children <- getChildren(path)
-                  addChildren(store, children, parentIter=iter)
-                  ## remove errant offspring, cf. addChildren
-                  ci <- store$iterChildren(iter)
-                  if(ci$retval) store$remove(ci$iter)
-                })
-\end{Sinput}
-\end{Schunk}
-%
-The callback calls several helper functions to map the tree path to an
-R object, get the child components of the object and add them to the
-tree. The details are in the definitions of the helper functions.
-
-The \function{pathToIter} function finds the iterator in the base tree
-model for a tree path in the sorted proxy.
-\begin{Schunk}
-\begin{Sinput}
- pathToIter <- function(sstore, tpath) {
-   store <- sstore$getModel()
-   uspath <- sstore$convertPathToChildPath(tpath)
-   store$getIter(uspath)$iter
- }
-\end{Sinput}
-\end{Schunk}
-
-We now need to convert the iterator to an ``R path,'' which is made up
-of the names of each component in the list. This function returns such
-a path given an iterator:
-\begin{Schunk}
-\begin{Sinput}
- iterToRPath <- function(sstore, iter) {
-   store <- sstore$getModel()
-   indices <- store$getPath(iter)$getIndices()
-   iter <- NULL
-   path <- sapply(indices, function(i) {
-     iter <<- store$iterNthChild(iter, i)$iter
-     store$getValue(iter, 0)$value
-   })
-   return(path[-1])
- }
-\end{Sinput}
-\end{Schunk}
-
-The \function{getChildren} function obtains the child components of a
-given \R\/ object path. If the path is empty, the children are the
-objects in the global environment, the root. The return value is a
-\class{data.frame} with three columns: object name, object class and
-whether the object is recursive.
-\begin{Schunk}
-\begin{Sinput}
- getChildren <- function(path=character(0)) {
-   hasChildren <- function(obj) 
-     (is.list(obj) || is.environment(obj)) && 
-   !is.null(names(as.list(obj)))
-   
-   getType <- function(obj) head(class(obj), n=1)
- 
-   obj <- 
-     if (!length(path)) {
-       .GlobalEnv
-     } else {
-       x <- get(path[1], envir=.GlobalEnv)
-       if(length(path) > 1)
-         get(path[1], envir=.GlobalEnv)[[path[-1]]]
-       else
-         x
-     }
- 
-   children <- as.list(obj)
-   
-   d <- data.frame(children = names(children),
-                   class = sapply(children, getType),
-                   offspring = sapply(children, hasChildren))
-   
-   ## filter out Gtk ones
-   d[!grepl("^Gtk", d$class), ]
- }
-\end{Sinput}
-\end{Schunk}
-
-The final step in the expansion handler is to add the children to the
-tree store with the \function{addChildren} function.  Its one quirk is
-the addition of a dummy child row when the item has children. This
-makes the node expandable, i.e., the tree view draws an icon for the
-user to click to request the expansion.
-\begin{Schunk}
-\begin{Sinput}
- addChildren <- function(store, children, parentIter = NULL) {
-   if(nrow(children) == 0) 
-     return(NULL)
-   for(i in 1:nrow(children)) {
-     iter <- store$append(parent=parentIter)$iter
-     sapply(1:(ncol(children) - 1), function(j)              
-            store$setValue(iter, column = j-1, children[i, j]))
-     ## Add a branch if there are children
-     if(children[i, "offspring"])
-       store$append(parent=iter)
-   }
- }
-\end{Sinput}
-\end{Schunk}
-
-Next, we define a handler for the \code{row-collapsed} signal, which
-has a similar signature as the \code{row-expanded} signal. The handler
-removes the children of the newly collapsed node, so that we can add
-them again when the node is expanded.
-\begin{Schunk}
-\begin{Sinput}
- gSignalConnect(view, signal = "row-collapsed",
-        f = function(view, iter, tpath, user.data) {
-          sortedModel <- view$getModel()
-          iter <- pathToIter(sortedModel, tpath)
-          n = store$iterNChildren(iter)
-          if(n > 1) { ## n=1 gets removed when expanded
-            for(i in 1:(n-1)) {
-              child.iter <- store$iterChildren(iter)
-              if(child.iter$retval)
-                store$remove(child.iter$iter)
-            }
-          }
-        })
-\end{Sinput}
-\end{Schunk}
-
-
-Our last handler simply demonstrates the retrieval of an object when its
-row is activated, i.e., double-clicked:
-\begin{Schunk}
-\begin{Sinput}
- gSignalConnect(view, signal = "row-activated",
-        f = function(view, tpath, tcol) {
-          sortedModel <- view$getModel()
-          iter <- pathToIter(sortedModel, tpath)
-          path <- iterToRPath(sortedModel, iter)
-          sel <- view$getSelection()
-          out <- sel$getSelectedRows()
-          if(length(out) == 0) return(c()) # nothing
-          vals <- c()
-          for(i in out$retval) {  # multiple selections
-            iter <- sortedModel$getIter(i)$iter
-            newValue <- sortedModel$getValue(iter, 0)$value
-            vals <- c(vals, newValue)
-          }
-          print(vals)  # [Replace this]
-        })
-\end{Sinput}
-\end{Schunk}
- 
-To finish this example, we would need to populate the tree view with
-columns and display the view in a window.
-
-
-
-\end{example}
+% \begin{example}{Dynamically growing a tree}{eg:RGtk2:tree-dynamic}
+%   \SweaveInput{ex-RGtk2-tree}
+% \end{example}
 %% % ## mapes a list, shows how to update text view
 % \SweaveInput{ex-RGtk2-tree-show}
 
@@ -5672,20 +5588,20 @@ implementation of choice.
 To construct a \class{GtkComboBox} based on a user-created model, one
 should pass the model to the constructor
 \constructor{gtkComboBox}. This model may be changed or set through
-the \method{setModel}{gtkComboBox} method and is returned by
-\method{getModel}{gtkComboBox}. It remains to instruct the combo box
+the \method{setModel}{GtkComboBox} method and is returned by
+\method{getModel}{GtkComboBox}. It remains to instruct the combo box
 how to display one or more data columns in the menu. Like
 \class{GtkTreeViewColumn}, \class{GtkComboBox} implements the
 \class{GtkCellLayout} interface and thus delegates the rendering of
 model values to \class{GtkCellRenderer} instances that are packed into
 the combo box.
 
-The \method{getActiveIter}{gtkComboBox} returns a list containing the iterator
+The \method{getActiveIter}{GtkComboBox} returns a list containing the iterator
 pointing to the currently selected row in the model.  If no row has been
 selected, the \code{retval} component of the list is \code{FALSE}.
-The \method{setActiveIter}{gtkComboBox} sets the currently selected
+The \method{setActiveIter}{GtkComboBox} sets the currently selected
 item by iterator. As discussed previously, the
-\method{getActive}{gtkComboBox} and \method{setActive}{gtkComboBox}
+\method{getActive}{GtkComboBox} and \method{setActive}{gtkComboBox}
 behave analogously with $0$-based indices.
 
 As introduced in the previous chapter, the \class{GtkComboBoxEntry}
@@ -5795,8 +5711,9 @@ have previously accessed the item. If not, we add the value to our model.
    val <- entry$getText()
    if(!any(val == cb$getModel()[,1, drop=TRUE])) {
      model <- cb$getModel()
-     model$appendRows(data.frame(fname=val, visits="", novisits=0,
-                                 stringsAsFactors = FALSE))
+     tmp <- data.frame(fname=val, visits="", novisits=0,
+                       stringsAsFactors = FALSE)
+     model$appendRows(tmp)
    }
    callHelpFunction(cb, val)
  }, data=cb, user.data.first=TRUE)
@@ -5849,9 +5766,9 @@ The \class{GtkEntryCompletion} object implements text completion in
 \GTK. An instance is constructed with
 \constructor{gtkEntryCompletion}. The underlying database is a
 \class{GtkTreeModel}, like \class{RGtkDataFrame}, set via the
-\method{setModel}{gtkEntryCompletion} method. To connect a
+\method{setModel}{GtkEntryCompletion} method. To connect a
 \class{GtkEntryCompletion} to an actual \class{GtkEntry} widget, call
-the \method{setCompletion}{gtkEntry} method on \class{GtkEntry}.  The
+the \method{setCompletion}{GtkEntry} method on \class{GtkEntry}.  The
 \code{text-column} property specifies the column containing the
 completion candidates. 
 
@@ -5869,7 +5786,7 @@ default is $1$).
 By default, the rows in the data model that match the current value of
 the entry widget in a case insensitive manner are displayed. This
 matching function can be overridden by setting a new \R\/ function through
-the \method{setMatchFunc}{gtkEntryCompletion} method. The signature of
+the \method{setMatchFunc}{GtkEntryCompletion} method. The signature of
 this function is the completion object, the string from the entry
 widget (lower case), an iterator pointing to a row in the model and
 optionally user data that is passed through the \code{func.data}
@@ -5969,8 +5886,8 @@ methods are for adding and manipulating the text.
 A text view is created with \constructor{gtkTextView}.  The underlying
 text buffer can be passed to the constructor. Otherwise, a buffer is
 automatically created.  This buffer is returned by the method
-\method{getBuffer}{gtkTextView} and may be set with the
-\method{setBuffer}{gtkTextView} method. Text views provide native
+\method{getBuffer}{GtkTextView} and may be set with the
+\method{setBuffer}{GtkTextView} method. Text views provide native
 scrolling support and thus are easily added to a scrolled window
 (Section~\ref{sec:RGtk2:scroll-windows}). 
 
@@ -5978,13 +5895,13 @@ scrolling support and thus are easily added to a scrolled window
   The steps to construct a text view consist of:
 \begin{Schunk}
 \begin{Sinput}
- w <- gtkWindow()
- w['border-width'] <- 15
- #
  tv <- gtkTextView()
  sw <- gtkScrolledWindow()
+ sw$add(tv)
  sw$setPolicy("automatic", "automatic")
- #
+ ##
+ w <- gtkWindow()
+ w['border-width'] <- 15
  w$add(sw)
 \end{Sinput}
 \end{Schunk}
@@ -6015,17 +5932,18 @@ to get the contents of the buffer may be done as follows:
 \end{example}
 
 %% simple use -- replace, Append, insert at cursor
-
+\paragraph{Adding text}
 Text may be added programmatically through various methods of the text
-buffer. The most basic \method{setText}{gtkTextBuffer}, which simply
+buffer. The most basic \method{setText}{GtkTextBuffer}, which simply
 replaces the current text, is shown in the example above. The method
-\method{insertAtCursor}{gtkTextBuffer} will add the text to the buffer
+\method{insertAtCursor}{GtkTextBuffer} will add the text to the buffer
 at the current position of the cursor.  Other means are described in
 the following sections.
 
+\paragraph{Properties}
 By default, the text in a view is editable. This can be disabled
-through the \property{editable}{QTextView} property. Typically, one
-then sets the \property{cursor-visible}{QTextView} property to
+through the \property{editable}{GtkTextView} property. Typically, one
+then sets the \property{cursor-visible}{GtkTextView} property to
 \qcode{FALSE} so that the cursor is hidden:
 \begin{Schunk}
 \begin{Sinput}
@@ -6037,7 +5955,7 @@ then sets the \property{cursor-visible}{QTextView} property to
 %% properties: editable, ...
 \paragraph{Formatting}
 The text view supports several general formatting options. Automatic
-line wrapping is enabled through \method{setWrapMode}{gtkTextView},
+line wrapping is enabled through \method{setWrapMode}{GtkTextView},
 which takes values from \code{GtkWrapMode}: \qcode{none},
 \qcode{char}, \qcode{word}, or \qcode{word\_char}. The justification
 for the entire buffer is controlled by the \code{justification}
@@ -6052,8 +5970,8 @@ left and right margins are adjusted through the \code{left-margin} and
 \paragraph{Fonts}
 %% ML: do we need a general overview of Pango fonts?
 The size and font can be globally set for a text view using the
-\method{modifyFont}{gtkWidget} method. To set the font for specific
-regions, use text tags, see Section~\ref{sec:gtk-mvc-text-tags}. The
+\method{modifyFont}{GtkWidget} method. To set the font for specific
+regions, use text tags (see Section~\ref{sec:gtk-mvc-text-tags}). The
 font is specified as a Pango font description, which may be generated
 from a string through \code{pangoFontDescriptionFromString}. These
 strings may contain up to 3 parts: the first is a comma-separated list
@@ -6074,10 +5992,10 @@ in \code{PangoStyle}, \code{PangoVariant}, \code{PangoWeight},
 Text buffer properties include \code{text} for the stored text and
 \code{has-selection} to indicate if text is currently selected in a
 view. The buffer also tracks if it has been modified. This information
-is available through the buffer \method{getModified}{gtkTextBuffer}
+is available through the buffer \method{getModified}{GtkTextBuffer}
 method, which returns \code{TRUE} if the buffer has changed. To clear
 this state, such as when a buffer has been saved to disk, one can pass
-\code{FALSE} to \method{setModified}{gtkTextBuffer}.
+\code{FALSE} to \method{setModified}{GtkTextBuffer}.
 
 In order to do more with a text buffer, such as retrieve a selection,
 or modify text attributes, one needs to become familiar with the two
@@ -6092,12 +6010,11 @@ buffer modifications.
 %% transient
 
 %% An iterator
-An \dfn{iterator} is a programming object used to traverse through
-some data, such as a text buffer or table of values. Iterators are
-typically transient, in the sense that they are invalidated when their
-source is modified. An iterator is often updated by reference,
-behavior that is atypical in \R\/ programming.  In \GTK{} a \dfn{text
-  iterator} is the primary means of specifying a position in a buffer.
+In \GTK{} a \dfn{text iterator} is the primary means of specifying a
+position in a buffer.  As mentioned in
+Section~\ref{sec:RGtk2:mvc:iterators}, iterators are typically
+transient, in the sense that they are invalidated or updated by
+reference when their source is modified.
 
 %% methods to return an iterator
 Several methods of the text buffer return iterators marking positions
@@ -6105,10 +6022,10 @@ in the buffer.  Iterators are returned as lists with two components:
 \code{iter}, which represents the actual C iterator object, and
 \code{retval}, a logical value indicating whether the iterator is
 valid.  The beginning and end of the buffer are returned by the
-methods \method{getStartIter}{gtkTextBuffer} and
-\method{getEndIter}{gtkTextBuffer}. Both of these iterators are
+methods \method{getStartIter}{GtkTextBuffer} and
+\method{getEndIter}{GtkTextBuffer}. Both of these iterators are
 returned together in a list by the method
-\method{getBounds}{gtkTextBuffer}.  For example:
+\method{getBounds}{GtkTextBuffer}.  For example:
 \begin{Schunk}
 \begin{Sinput}
  bounds <- buffer$getBounds()
@@ -6119,14 +6036,14 @@ $retval
 NULL
 
 $start
-<pointer: 0x123dd68e0>
+<pointer: 0x104a428e0>
 attr(,"interfaces")
 character(0)
 attr(,"class")
 [1] "GtkTextIter" "GBoxed"      "RGtkObject" 
 
 $end
-<pointer: 0x123dd6890>
+<pointer: 0x104a42890>
 attr(,"interfaces")
 character(0)
 attr(,"class")
@@ -6139,15 +6056,15 @@ attr(,"class")
 %% had trouble installing the svn version due to a missing cairo
 %% function. I'm stuck for now with the 2.18 from att.research.com package
 The current selection is returned by the method
-\method{getSelectionBounds}{gtkTextBuffer}, as a list of the same
+\method{getSelectionBounds}{GtkTextBuffer}, as a list of the same
 structure. If there is no selection, then the component \code{retval}
 will be \code{FALSE}, otherwise it is \code{TRUE}.
 
 One can also obtain an iterator for a specific position in a
-document. The method \method{getIterAtLine}{gtkTextBuffer} will return an
+document. The method \method{getIterAtLine}{GtkTextBuffer} will return an
 iterator pointing to the start of the line, which is specified by
 $0$-based line number. The method
-\method{getIterAtLineOffset}{gtkTextBuffer} has an additional argument
+\method{getIterAtLineOffset}{GtkTextBuffer} has an additional argument
 to specify the offset for a given line. An offset counts the number of
 individual characters and keeps track of the fact that the text
 encoding, UTF-8, may use more than one byte per character. For
@@ -6155,7 +6072,7 @@ example, we might request the seventh character of the first line:
 \begin{Schunk}
 \begin{Sinput}
  iter <- buffer$getIterAtLineOffset(0, 6)
- iter$iter$getChar()
+ iter$iter$getChar()                     # unicode, not text
 \end{Sinput}
 \begin{Soutput}
 [1] 105
@@ -6163,7 +6080,7 @@ example, we might request the seventh character of the first line:
 \end{Schunk}
 %
 In addition to the text buffer, a text view also has the method
-\method{getIterAtLocation}{gtkTreeView} to return the iterator
+\method{getIterAtLocation}{GtkTreeView} to return the iterator
 indicating the between-word space in the buffer closest to the point
 specified in $x$-$y$ coordinates.
 
@@ -6175,7 +6092,7 @@ returned by \method{getChar}{GtkTextIter}. We obtain the first
 character in the buffer:
 \begin{Schunk}
 \begin{Sinput}
- bounds$start$getChar()
+ bounds$start$getChar()                  # unicode
 \end{Sinput}
 \begin{Soutput}
 [1] 76
@@ -6194,7 +6111,7 @@ iterator, passing the right iterator as an argument:
 \end{Soutput}
 \end{Schunk}
 %
-The \method{insert}{gtkTextBuffer} method will insert
+The \method{insert}{GtkTextBuffer} method will insert
 text at a specified iterator:
 \begin{Schunk}
 \begin{Sinput}
@@ -6202,7 +6119,7 @@ text at a specified iterator:
 \end{Sinput}
 \end{Schunk}
 %
-The \method{delete}{gtkTextBuffer} method will delete the text between
+The \method{delete}{GtkTextBuffer} method will delete the text between
 two iterators.  An important observation is that we always pass the
 actual iterator, i.e., the \code{iter} component of the list, to the
 above methods. Passing the original list would not work.
@@ -6210,24 +6127,27 @@ above methods. Passing the original list would not work.
 %% iter methods
 Next, we introduce the methods for updating an iterator. One can move
 an iterator forward or backward, stopping a certain type of
-landmark. Supported landmarks include characters (
-\method{forwardChar}{gtkTextIter}, \method{forwardChars}{gtkTextIter},
-\method{backwardChar}{gtkTextIter}, and
-\method{backwordChars}{gtkTextIter}), words
-(\method{forwardWordEnd}{gtkTextIter},
-\method{backwardWordStart}{gtkTextIter}), and sentences
-(\method{backwardSentenceStart}{gtkTextIter} and
-\method{forwardSentenceEnd}{gtkTextIter}).  There are also various
-methods, such as \method{insideWord}{gtkTextIter}, for determining the
+landmark. Supported landmarks include characters
+(\method{forwardChar}{GtkTextIter},
+\method{forwardChars}{GtkTextIter},
+\method{backwardChar}{GtkTextIter}, and
+\method{backwordChars}{GtkTextIter}), words
+(\method{forwardWordEnd}{GtkTextIter},
+\method{backwardWordStart}{GtkTextIter}), and sentences
+(\method{backwardSentenceStart}{GtkTextIter} and
+\method{forwardSentenceEnd}{GtkTextIter}).  There are also various
+methods, such as \method{insideWord}{GtkTextIter}, for determining the
 textual context of the iterator. Example~\ref{eg:RGtk2-find-word}
 shows how some of the above are used, in particular how these methods
 update the iterator rather than return a new one.
 
 \begin{example}{Finding the word that is clicked by the user}{eg:RGtk2-find-word}
-  This example shows how one can find the iterator corresponding to a
-  mouse click. We obtain the $X$ and $Y$ coordinates of the mouse
-  button press event, find the corresponding iterator, and retrieve
-  the surrounding word:
+%%
+
+This example shows how one can find the iterator corresponding to a
+mouse click. In the callback we obtain the $X$ and $Y$ coordinates of
+the mouse button press event, find the corresponding iterator, and
+retrieve the surrounding word:
 \begin{Schunk}
 \begin{Sinput}
  ID <- gSignalConnect(tv, "button-press-event", 
@@ -6286,11 +6206,11 @@ relates it to the behavior of the text cursor, which has right gravity:
 [1] 36
 \end{Soutput}
 \begin{Sinput}
- buffer$insert(insertIter, "insertion")
+ buffer$insert(insertIter, "at insertion point")
  buffer$getIterAtMark(insert)$iter$getOffset()
 \end{Sinput}
 \begin{Soutput}
-[1] 45
+[1] 54
 \end{Soutput}
 \end{Schunk}
 
@@ -6312,7 +6232,7 @@ iterator will not move when text is inserted.
 \label{sec:gtk-mvc-text-tags}
 
 Tags are annotations placed on specific regions of a text buffer. To
-create a tag, we call the \method{createTag}{gtkTextBuffer} method,
+create a tag, we call the \method{createTag}{GtkTextBuffer} method,
 which takes an argument for each attribute to apply to the text. Here,
 we create three tags: one for bold text, one for italicized text and
 one for large text:
@@ -6347,19 +6267,14 @@ convenient. Here, we select the first word:
 \begin{Sinput}
  siter <- buffer$getStartIter()$iter
  eiter <- siter$copy(); eiter$forwardWordEnd()
-\end{Sinput}
-\begin{Soutput}
-[1] TRUE
-\end{Soutput}
-\begin{Sinput}
  buffer$selectRange(siter, eiter)
 \end{Sinput}
 \end{Schunk}
 
 \class{GtkTextBuffer} provides some convenience methods for
-interaction with the clipboard: \method{copyCliboard}{gtkTextBuffer},
-\method{cutClipboard}{gtkTextBuffer} and
-\method{pasteClipboard}{gtkTextBuffer}. To use these, we first need a
+interaction with the clipboard: \method{copyCliboard}{GtkTextBuffer},
+\method{cutClipboard}{GtkTextBuffer} and
+\method{pasteClipboard}{GtkTextBuffer}. To use these, we first need a
 clipboard object:
 \begin{Schunk}
 \begin{Sinput}
@@ -6372,15 +6287,16 @@ paste it at the end:
 \begin{Schunk}
 \begin{Sinput}
  buffer$copyClipboard(cb)
- buffer$pasteClipboard(cb, override.location = buffer$getEndIter()$iter, 
-                       default.editable = TRUE)
+ buffer$pasteClipboard(cb, 
+             override.location = buffer$getEndIter()$iter, 
+             default.editable = TRUE)
 \end{Sinput}
 \end{Schunk}
 %
 The \argument{default.editable}{pasteClipboard} indicates that the
 pasted text should be editable. If we had passed \qcode{NULL}, to the
 \argument{override.location}{pasteClipboard} argument, the insertion
-would have occured at the cursor.
+would have occurred at the cursor.
 
 % \begin{example}{Adding parentheses highlighting}{eg:RGtk2:paren-highlight}
 %   \SweaveInput{ex-RGtk2-match-parentheses}
@@ -6390,14 +6306,14 @@ would have occured at the cursor.
 \subsection{Inserting non-text items}
 
 If desired, one can insert images and/or widgets into a text
-buffer. The method \method{insertPixbuf}{gtkTextBuffer} will insert a
+buffer. The method \method{insertPixbuf}{GtkTextBuffer} will insert a
 \class{GdkPixbuf} object. The buffer will count the image as a
-character, although \method{getText}{gtkTextBuffer} will obviously not
+character, although \method{getText}{GtkTextBuffer} will obviously not
 return the image.
 
 Arbitrary child widgets, like a button, can also be inserted. First,
 one must create an anchor in the text buffer with
-\method{createChildAnchor}{gtkTextBuffer}:
+\method{createChildAnchor}{GtkTextBuffer}:
 \begin{Schunk}
 \begin{Sinput}
  anchor <- buffer$createChildAnchor(buffer$getEndIter()$iter)
@@ -6405,7 +6321,7 @@ one must create an anchor in the text buffer with
 \end{Schunk}
 %
 To add the widget, we call the text view method
-\method{addChildAtAnchor}{gtkTextView}:
+\method{addChildAtAnchor}{GtkTextView}:
 \begin{Schunk}
 \begin{Sinput}
  b <- gtkButton("click me")
@@ -6619,6 +6535,15 @@ toolbars and status bars and conclude by explaining the mechanisms in
 \GTK\/ for conveniently defining and managing actions and associated
 widgets in a large application.
 
+\begin{figure}
+  \centering
+  \includegraphics[width=.7\textwidth]{ex-RGtk2-action-items-infobar}
+  \caption{An application window mock up showing a menu bar, tool bar,
+  and info bar}
+  \label{fig:RGtk2-action-items-infobar}
+\end{figure}
+
+
 \section{Actions}
 \label{sec:RGtk2:actions}
 
@@ -6653,7 +6578,7 @@ widgets that implement the \class{GtkActivatable} interface are the
 views and controllers. All buttons, menu items and tool items
 implement \class{GtkActivatable} and thus may serve as action
 proxies. Actions are connected to widgets through the method
-\method{setRelatedAction}{gtkActivatable}:
+\method{setRelatedAction}{GtkActivatable}:
 \begin{Schunk}
 \begin{Sinput}
  b <- gtkButton()
@@ -6694,7 +6619,7 @@ respectively. Here, we create a toggle action for fullscreen mode:
 \begin{Schunk}
 \begin{Sinput}
  fullScreen <- gtkToggleAction("fullscreen", "Full screen", 
-                               "Toggle full screen")
+                               "Toggle full screen",stock.id="gtk-fullscreen")
  gSignalConnect(fullScreen, "toggled", function(action) {
    if(fullScreen['active'])
      window$fullscreen()
@@ -6724,12 +6649,14 @@ the strategies described in Section~\ref{sec:RGtk2:UIManager}.
 \subsection{Menu Bars}
 
 We will first demonstrate the menu bar, leaving the popup menu for
-later.  The first step is to construct the menu bar itself:
+later. Figure~\ref{fig:RGtk2-action-items-infobar} will show a
+realization. The first step is to construct the menu bar itself:
 \begin{Schunk}
 \begin{Sinput}
  menubar <- gtkMenuBar()
 \end{Sinput}
 \end{Schunk}
+
 
 A menu bar is a special type of container called a menu shell. An
 instance of \class{GtkMenuShell} contains one or more menu
@@ -6762,10 +6689,10 @@ we append the item containing the file menu to the menu bar:
 \end{Sinput}
 \end{Schunk}
 %
-In addition to \method{append}{gtkMenuShell}, it is also possible to
-\method{prepend}{gtkMenuShell} and \method{insert}{gtkMenuShell} menu
+In addition to \method{append}{GtkMenuShell}, it is also possible to
+\method{prepend}{GtkMenuShell} and \method{insert}{GtkMenuShell} menu
 items into a menu shell. As with any container, one can
-\method{remove}{gtkContainer} a child menu item, although the
+\method{remove}{GtkContainer} a child menu item, although the
 convention is to desensitize an item, through the \code{sensitive}
 property, when it is not currently relevant.
 
@@ -7164,10 +7091,10 @@ In \GTK, a statusbar is constructed through the
 \constructor{gtkStatusbar} function. Statusbars must be placed at the
 bottom of a top-level window by the programmer. In \GTK, a statusbar
 keeps various stacks of messages for display. One adds a message to
-display for given stack through the \method{Push}{gtkStatusbar} method
+display for given stack through the \method{Push}{GtkStatusbar} method
 by specifying first an integer value for \code{context.id} and a
 message. To pop the top message on a stack and display the next, the
-method \method{Pop}{gtkStatusbar} method is available.
+method \method{Pop}{GtkStatusbar} method is available.
 
 \subsection{Information bars}
 \label{sec:gtkInfoBar}
@@ -7188,8 +7115,8 @@ We create our info bar:
  ib$setNoShowAll(TRUE)
 \end{Sinput}
 \end{Schunk}
-We call \method{setNoShowAll} to prevent the widget from being shown
-when \method{showAll} is called on the parent. Normally, an
+We call \method{setNoShowAll}{GtkWidget} to prevent the widget from being shown
+when \method{showAll}{GtkWidget} is called on the parent. Normally, an
 information bar is not shown until it has a message. 
 
 We will emit a warning message by adding a simple label with the text
@@ -7485,7 +7412,197 @@ Now it is a simple matter of packing the widgets into a box.
 \end{example}
 
 %% TODO: this needs to go somewhere.. appendix?
-%% \SweaveInput{Classes}
+%% JV, I guess here
+
+\chapter{Extending GObject Classes}
+\label{chapter:extending-GTK}
+%\section{Extending GObject classes from R}
+\label{sec:gtk:extending-classes}
+
+\GTK, as well as several of its dependencies, with the notable
+exception of \pkg{Cairo}, is based on the \pkg{GObject}
+library for object-oriented programming in C. \pkg{GObject} forms the
+basis of many other open-source projects, including the \pkg{GNOME}
+and \pkg{XFCE} desktops and the \pkg{GStreamer} multimedia framework.
+
+Given the broad use of signals in the \GTK\/ API, it is very rarely
+necessary to extend a widget class when developing a typical
+GUI. However, it is generally good practice to encapsulate the
+behavior of a widget in a formal class. Although there are several
+such formalisms in R, \pkg{RGtk2} provides one that is congruent with
+the rest of \GTK. It interfaces with parts of \pkg{GObject} and
+permits the R programmer to create new \pkg{GObject} classes in R. A
+subclass can override certain methods inherited from its parent and
+define new methods, properties and signals. If a method is declared by
+a C class, it can only be overridden if it is a so-called
+\textit{virtual} method, and there is no documentation as to which
+methods are virtual. There is a loose convention that every signal has
+a corresponding virtual method. The ultimate resource is the C header
+files. A bug in a method override could very easily crash R, so use of
+this feature takes some commitment from the programmer. Any method
+declared by an R class may be overridden by an R subclass.
+
+Our example will be a GUI that displays a scatterplot along with a
+slider for adjusting the alpha level of the points (Figure~\ref{}). Usually, a slider
+operates in linear fashion. When there are a large number of points,
+on the order of tens of thousands or more, changing the alpha level
+does not have a strong visual effect until it approaches its lower
+limit. We desire greater control in the lower part of the alpha scale,
+without limiting the range of the slider. To achieve this, we need to
+perform a non-linear transformation from the slider value to the alpha
+of the plot and reflect that transformation in the label on the
+slider. One solution is to connect to the
+\signal{format-value}{GtkScale} signal to override the text in the
+label. We present an alternative that involves extending
+\class{GtkHScale} and overriding its \method{format\_value}{GtkScale}
+virtual method.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.6\textwidth]{fig-RGtk2-extend-gobject} 
+  \caption{An interface using a custom slider to adjust alpha levels
+    in a non-linear manner}
+  \label{fig:RGtk2-extend-gobject-slider}
+\end{figure}
+
+A class is defined by calling \function{gClass}, which is passed the
+class name, the name of the parent class and a number of list
+arguments that define the properties, signals and methods of the
+class. For the sake of cleanliness, the everything is defined as part
+of the \function{gClass} call:
+\begin{Schunk}
+\begin{Sinput}
+ tform_scale_type <- 
+   gClass("RTransformedHScale", "GtkHScale",
+          .props = list(
+            gParamSpec(type = "R", name = "expr", nick = "e", 
+                       blurb = "Transformation of scale value",                 
+                       default.value = expression(x))
+            ),
+          GtkScale = list(
+            format_value = function(self, x) 
+              as.character(self$transformValue(x))
+            ),
+          .public = list(
+            getExpr = function(self) self["expr"],
+            getTransformedValue = function(self) 
+              self$transformValue(self$value)
+            ),
+          .private = list(
+            transformValue = function(self, x) 
+              eval(self$expr, list(x = x))
+           )
+          )
+\end{Sinput}
+\end{Schunk}
+
+The class definition for \class{RTransformedHScale} starts with a
+property for the R expression that transforms the value from the
+slider to the alpha level. A property is defined by a
+\class{GParamSpec} structure that specifies a name, nickname,
+descriptive blurb, value type, and other options.  There are
+subclasses of \class{GParamSpec} for particular types that permit
+specification of further constraints. For example,
+\class{GParamSpecInt} is specific to integers and can be configured to
+restrict its valid range of integer values between a minimum and
+maximum. Many \class{GParamSpec} subclasses also permit default
+values. The \argument{type}{gParamSpec} argument may refer to any C
+type by name. The names of R types, like ``integer'' and ``character''
+are mapped to the corresponding scalar C type, if available. An ``R''
+property, like our expression, stores any native R value. The actual R
+type, as returned by \function{typeof}, may be specified as the
+\argument{s.type}{gParamSpec} argument; otherwise, it is taken from
+the default value.
+
+We turn our attention to the methods in the class definition. The
+class overrides the \method{format\_value} virtual from
+\class{GtkScale} and defines two public methods, \code{getExpr} and
+\code{getTransformedValue}, for retrieving the transformation
+expression and the transformed value, respectively. There is one
+private method, \code{transformValue} that is a utility for evaluating
+the expression on the current value.
+
+Methods are implemented with R functions that are grouped into lists.
+The names of the list identify the methods. An override is placed into
+the list corresponding to the class in which the original method is
+declared.  For new methods, the division is by the access level:
+public, protected or private.  Public members may be accessed by any
+code, while protected members are restricted to methods belonging to
+the same class or a subclass. Access to private members is the most
+restricted as they are only available to methods in the same class.
+
+A function implementing a virtual method may delegate to the method
+that it overrides. This is achieved by calling the
+\function{parentHandler} function and passing it the name of the method
+and the arguments to forward to the method. This is similar to the
+\function{super} function in \pkg{qtbase}. For example, in the
+override of \signal{format\_value} in the \class{RGtkTransformedHScale}
+class, we could call \code{parentHandler("format\_value", self, x)} to
+delegate to the implementation of \signal{format\_value} in
+\class{GtkScale}.
+
+If a non-function, like a vector, is placed in the
+\argument{.public}{gClass}, \argument{.protected}{gClass} or
+\argument{.private}{gClass} list, it represents a field, which is
+initialized to the given value.
+
+Two elements of the class definition that are not in the example above
+are the list of signal definitions and the initialization function.
+The signal definition list is passed as a parameter named
+\code{.signals} and contains a list for each signal. Each list
+includes the name, return type, and parameter types of the signal. The
+types may be specified in the same format as used for property
+definitions. The initialization function, passed as the
+\code{.initialize} parameter, is invoked whenever an instance of the
+class is created, before any properties are set. It takes the newly
+created instance of the class as its only parameter.
+
+The next step in our example is to create an instance of
+\code{RGtkTransformedHScale} and to register a handler on the
+\code{value-changed} signal that will draw the plot using the
+transformed value as the alpha setting:
+\begin{Schunk}
+\begin{Sinput}
+ adj <- gtkAdjustment(0.5, 0.15, 1.00, 0.05, 0.5, 0)
+ s <- gObject(tform_scale_type, adjustment = adj, 
+              expr = expression(x^3))
+ gSignalConnect(s, "value_changed", function(scale) {
+   plot(ma_data, col = rgb(0, 0, 0, scale$getTransformedValue()),
+        xlab = "Replicate 1", ylab = "Replicate 2", 
+        main = "Expression levels of WT at time 0", pch = 19)
+ })
+\end{Sinput}
+\end{Schunk}
+%
+Instances of any \pkg{GObject} class may be created using the
+\code{gObject} function.  The value of the \code{expr} property is set
+to the \proglang{R} expression $x^3$ when the object is created.  The
+signal handler now calls the new \code{getTransformedValue} method,
+instead of \code{getValue} as in the original version.  The
+\code{ma\_data} object is a matrix of points that is meant to resemble
+expression values from two replicates of a microarray experiment.
+
+We complete the example by placing the slider and a graphics device in
+a window:
+\begin{Schunk}
+\begin{Sinput}
+ win <- gtkWindow(show = FALSE)
+ da <- gtkDrawingArea()
+ vbox <- gtkVBox()
+ vbox$packStart(da)
+ vbox$packStart(s, FALSE)
+ win$add(vbox)
+ win$setDefaultSize(400, 400)
+ #
+ require(cairoDevice)
+ asCairoDevice(da)
+ #
+ win$showAll()
+ par(pty = "s")
+ s$setValue(0.7)
+\end{Sinput}
+\end{Schunk}
+
 
 
 % \label{sec:RGtk2:dialogs}

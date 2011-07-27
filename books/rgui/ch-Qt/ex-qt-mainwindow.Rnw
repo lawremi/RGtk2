@@ -14,7 +14,7 @@ library(qtbase)
 
 
 This example shows how to begin constructing a main window
-(Figure~\ref{fig-qt-r-studio}) similar to that of the web application
+(Figure~\ref{fig:qt-r-studio}) similar to that of the web application
 R-Studio. (\url{rstudio.org}).
 
 We begin by setting a minimum size and a title for the main window:

@@ -87,7 +87,7 @@ getAlertPanelBlock <- function(obj) {
 @ 
 
 The \code{showAlertPanel} function updates the message and then calls
-the \method{Show}{gtkWidget} method of the event box.
+the \method{Show}{GtkWidget} method of the event box.
 
 <<>>=
 showAlertPanel <- function(obj) {

@@ -18,9 +18,9 @@ interface in \R. For example,
 \item Although a command line is usually faster when the commands are
   known, a GUI can make some less commonly used tasks easier to do.
 \item GUIs make dealing with large data sets easier both visually and
-  as an alternative to sometimes difficulte command line usage.
+  as an alternative to sometimes difficult command line usage.
 \item GUIs can tightly integrate with graphics, for example the
-  rggobi interface among others.
+  \pkg{rggobi} interface among others.
 \end{itemize}
 % ML: It is not clear why we are arguing for a common, general GUI. The focus
 % on the book seems to be the development of special-purpose GUI's.

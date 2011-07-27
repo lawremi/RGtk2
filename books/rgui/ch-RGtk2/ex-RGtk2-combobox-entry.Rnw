@@ -85,8 +85,9 @@ gSignalConnect(cb$getChild(), "activate",
   val <- entry$getText()
   if(!any(val == cb$getModel()[,1, drop=TRUE])) {
     model <- cb$getModel()
-    model$appendRows(data.frame(fname=val, visits="", novisits=0,
-                                stringsAsFactors = FALSE))
+    tmp <- data.frame(fname=val, visits="", novisits=0,
+                      stringsAsFactors = FALSE)
+    model$appendRows(tmp)
   }
   callHelpFunction(cb, val)
 }, data=cb, user.data.first=TRUE)

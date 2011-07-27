@@ -19,7 +19,7 @@ g <- gtkBuildableNew()
 g$addFromFile("buildable.xml")
 @ 
 
-The \method{getObject}{gtkBuilder} extracts a widget by its ID, which
+The \method{getObject}{GtkBuilder} extracts a widget by its ID, which
 is specified by the user through \pkg{Glade}. It normally
 suffices to load the top-level widget, named \code{dialog1} in this
 example, and show it:

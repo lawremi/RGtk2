@@ -51,13 +51,13 @@ diagAlign$add(diagRadios)
 % 
 The labels are aligned through the \class{GtkMisc} functionality
 inherited by \class{GtkLabel}. The \class{GtkVBox} with the radio
-buttons does not support this, so we have embedde it within a
+buttons does not support this, so we have embedded it within a
 \class{GtkAlignment} instance. We have aligned the diagnostic label to
 the top of its cell; otherwise, it would have been in the centered
 vertically. The radio buttons are left aligned, up against the label.
 
 Child widgets are added to a table through the
-\method{attach}{gtkTable} method.  The child can span more than one
+\method{attach}{GtkTable} method.  The child can span more than one
 cell. The arguments \argument{left.attach}{gtkTableAttach} and
 \argument{right.attach}{gtkTableAttach} specify the horizontal bounds
 of the child in terms of its left column and right column,

@@ -8,9 +8,9 @@ roxygen <- function(...) {}
 ##' @param envir the environment to search in
 ##' @return a character vector with data frame names
 ##' @export
-avail_dfs <- function(envir=.GlobalEnv) {
+avail_dfs <- function(envir=parent.frame()) {
   x <- ls(envir=envir)
-  x[sapply(x, function(i) is.data.frame(get(i, envir=envir)))]
+  x[sapply(mget(x, envir=envir), is.data.frame)]
 }
 
 
@@ -39,7 +39,6 @@ find_vars.character <- function(x, cond=function(x) TRUE) {
   ## df is data frame or name of data frame in given environment
   x <- get(x, envir=.GlobalEnv)
   find_vars(x, cond)
-
 }
 
 ##' data frame method

@@ -58,7 +58,7 @@ gSignalConnect(asst, "prepare", function(a, w, data) {
 
 Although we don't show how to create the CRAN selection page
 (cf. Example~\ref{ex:RGtk2-add-toggle-to-df} for a similar
-construction) we call \method{setForwardPageFunc}{gtkAssistant} to set
+construction) we call \method{setForwardPageFunc}{GtkAssistant} to set
 a function that will skip this page if it is not needed. This function
 simply returns an integer with the next page number based on the last one.
 <<results=hide>>=

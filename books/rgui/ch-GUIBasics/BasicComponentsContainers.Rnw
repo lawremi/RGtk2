@@ -25,9 +25,9 @@
 % enough. An example of a more flexible layout strategy is to position
 % widgets on a grid.
 
-%% Widget Heirarchy
+%% Widget Hierarchy
 
-The KDE pring dialog of Figure~\ref{fig:GUI:print-dialogs} contains
+The KDE print dialog of Figure~\ref{fig:GUI:print-dialogs} contains
 many of the widgets we discussed in the previous section. Before we
 can create such a dialog, we need to introduce how to position widgets
 on the screen. This process is called \textit{widget layout}.
@@ -58,7 +58,7 @@ out.  The rest of this section is divided into two parts: container
 widgets and layout algorithms. We will continually refer back to the
 KDE print dialog example as we proceed.
 
-% The Apple guidlines\citep[Ch. 15]{APPLE:HIG} suggest using ``center
+% The Apple guidelines\footcite[Ch. 15]{APPLE:HIG} suggest using ``center
 % equalization'' for arranging widgets within a window. This means that
 % the visual weight is balanced between the right and left side of the
 % content area. This is not the case with the KDE print dialog.
@@ -91,7 +91,7 @@ of the window.
 Once a window is shown, its dimensions are managed by the user,
 through the window manager. Thus, the programmer must size the window
 before it becomes visible. This is often referred to as the
-``default'' size of the window. Placing of a top-level window is
+``default'' size of the window. Positioning of a top-level window is
 generally left to the window manager.
 
 The top-level window forwards window manager events to the
@@ -157,7 +157,7 @@ state of a toggle button. By way of analogy, radio buttons are to
 notebooks as check buttons are to expanding containers. An expanding box
 allows the user to adapt a GUI to a particular use case or mode of
 operation. Often, an expanding box contains so-called ``advanced''
-widgets that are only occassionally useful and are only of interest to
+widgets that are only occasionally useful and are only of interest to
 a small subset of the users. For example, the \code{Options} button in
 Figure~\ref{fig:GUI:print-dialogs} controls an expanding box that
 contains the print options, which are usually best left to their

@@ -22,10 +22,14 @@ gt <- ctree(Class ~ ., data=GlaucomaM)  # fit model
 The \pkg{party} object tracks the hierarchical nature through its
 nodes. This object has a complex structure using lists to store data
 about the nodes. We define an \code{offspring} function next that:
-tracks the node by number, as is done in the \pkg{party} object;
-records whether a node has offspring through the \code{terminal}
-component (bypassing the \code{hasOffspring} function); and computes a
-condition on the variable that creates the node. For this example, the
+\begin{itemize}
+\item tracks the node by number, as is done in the \pkg{party} object;
+\item records whether a node has offspring through the \code{terminal}
+  component (bypassing the \code{hasOffspring} function); and
+\item computes a
+  condition on the variable that creates the node.
+\end{itemize}
+For this example, the
 trees are all binary trees with 0 or 2 offspring so this data frame
 has only 0 or 2 rows.
 

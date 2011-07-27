@@ -25,7 +25,7 @@ queried to set one.
 options(repos="http://streaming.stat.iastate.edu/CRAN")
 @ 
 <<>>=
-d <- available.packages()       # pick a cran site
+ap <- available.packages()       # pick a cran site
 @ 
 
 This basic GUI is barebones, for example we skip adding text labels to guide the user. 
@@ -33,7 +33,7 @@ This basic GUI is barebones, for example we skip adding text labels to guide the
 w <- gwindow("test of filter")
 g <- ggroup(cont=w, horizontal=FALSE)
 ed <- gedit("", cont=g)
-tbl <- gtable(d, cont=g, filter.FUN="manual", expand=TRUE)
+tbl <- gtable(ap, cont=g, filter.FUN="manual", expand=TRUE)
 @ 
 The \argument{filter.FUN}{gtable} value of \qcode{manual} allows us to
 filter by specifying a logical vector.

@@ -6,16 +6,42 @@
 
 % JV, I will drop rJava, put in gWidgetsQt, and make brief mention of gWidgetsWWW
 
-The \pkg{gWidgets} package provides a toolkit-independent interface
-for the \R\/ user to program graphical user interfaces from within
-R. Although the package provides much less functionality than is
-available from using a native toolkit interface, \pkg{gWidgets} can be
-used to create moderately complex GUIs quickly and easily using a
-programming interface that is familiar to the \R\/ user.
+The \pkg{gWidgets} package provides a convenient means to rapidly
+create small to medium size GUIs within R. The package provides an
+abstract interface for the other graphical toolkits discussed in this
+text, allowing for similar access to each. Unlike the underlying
+toolkits, \pkg{gWidgets} has relatively few constructors and
+methods. Basically the entire set is enumerated in
+Tables~\ref{tab:gWidgets-control-widgets},
+\ref{tab:gWidgets-container-constructors}, \ref{tab:gWidgets-methods},
+and \ref{tab:gWidgets-container-methods}. This means \pkg{gWidgets} is
+relatively easy to learn, allowing for rapid prototyping. (It also
+means that as projects progress, one might need to move to a more
+powerful underlying toolkit.) 
+
+Typical uses of GUIs written in \R{} involve teaching demos, sharing
+functionality with less proficient colleagues, etc. In many cases the
+end user may have a different operating system or different set of
+graphical libraries installed.  The underlying toolkits supported by
+\pkg{gWidgets} are all cross platform, and \pkg{gWidgets} code is
+mostly cross toolkit, although differences do come up. (Compare for
+example, the same code realized on different operating system and
+toolkits in Figure~\ref{fig:gWidgets-three-oses}.) This means, there
+is a good chance that code you write, can be shared easily with
+someone else.
+
+
+
+% The \pkg{gWidgets} package provides a toolkit-independent interface
+% for the \R\/ user to program graphical user interfaces from within
+% R. Although the package provides much less functionality than is
+% available from using a native toolkit interface, \pkg{gWidgets} can be
+% used to create moderately complex GUIs quickly and easily using a
+% programming interface that is familiar to the \R\/ user.
 
 The \pkg{gWidgets} package started as a port to \pkg{RGtk2} of the
 \pkg{iWidgets} package of Simon Urbanek written for Swing through
-\pkg{rJava}~\citep{iWidgets}. Along the way, \pkg{gWidgets} was
+\pkg{rJava}~\footcite{iWidgets}. Along the way, \pkg{gWidgets} was
 extended and abstracted to work with different GUI toolkit backends
 available for \R. A separate package provides the interface. As of
 writing there are interfaces for \pkg{RGtk2}, \pkg{qtbase}, and
@@ -119,11 +145,14 @@ for(j in c("RGtk2","tcltk","Qt")) {
 \section{Constructors}
 \label{sec:constructors}
 
-We jump right in with an example leaving comments about installation
-to the end of the chapter. The following shows some sample
-\pkg{gWidgets} commands that set up a basic interface allowing a user
-to search their hard drive for files matching a user-specified pattern. The first
-line loads the package, the others will be described later.
+We jump right in with an example~\footnote{Many thanks to Richie
+  Cotton for suggesting this example and its follow up in
+  Example~\ref{eg-gwidgets-file-system-II}.} leaving comments about
+installation to the end of the chapter. The following shows some
+sample \pkg{gWidgets} commands that set up a basic interface allowing
+a user to search their hard drive for files matching a user-specified
+pattern. The first line loads the package, the others will be
+described later.
 
 % <<>>=
 % require(gWidgets)
@@ -143,36 +172,36 @@ line loads the package, the others will be described later.
 
 \begin{figure}
   \centering
-  \includegraphics[]{fig-file-search.png}
+  \includegraphics[width=.8\textwidth]{fig-file-search.png}
   \caption{A simple GUI for search for files matching a pattern. This
-    GUI uses a paned group to seperate the controls for searching from
+    GUI uses a paned group to separate the controls for searching from
     the results.}
-  \label{fig:fig-file-search}
+  \label{fig:file-search}
 \end{figure}
 
-<<>>=
+<<results=hide>>=
 require(gWidgets)
 options(guiToolkit="RGtk2")
-
+## 
 w <- gwindow("File search", visible=FALSE)
 g <- gpanedgroup(cont=w)
-#
+## label and file selection widget
 f <- ggroup(cont=g, horizontal=FALSE)
 glabel("Search for (filename):", cont=f, anchor=c(-1,0))
 txtPattern <- gedit("", initial.msg="Possibly wildcards", cont=f)
-#
+##
 glabel("Search in:", cont=f, anchor=c(-1,0))
 startDir <- gfilebrowse(text="Select a directory ...",
                         quote=FALSE,
                         type="selectdir", cont=f)
-#
+## A button to initiate the search
 searchBtn <- gbutton("Search", cont=f)
 addSpring(f)
-#
+## Area for output
 f1 <- gframe("Output:", cont=g, horizontal=FALSE)
 searchResults <- gtext("", cont=f1, expand=TRUE)
 size(searchResults) <- c(350, 200)
-#
+## add interactivity
 addHandlerChanged(searchBtn, handler=function(h,...) {
   pattern <- glob2rx(svalue(txtPattern))
   fnames <- dir(svalue(startDir), pattern, recursive=TRUE)
@@ -181,12 +210,12 @@ addHandlerChanged(searchBtn, handler=function(h,...) {
   else
     galert("No matching files found", parent=w)
 })
-#
+## display GUI
 visible(w) <- TRUE
 @ 
 
 This example shows several different widgets being used to construct a
-GUI, as seen in Figure~\ref{fig-file-search.png}. For example, on the
+GUI, as seen in Figure~\ref{fig:file-search}. For example, on the
 left is a text entry widget (\code{gedit}), a directory browsing
 widget (\code{gfilebrowse}) and a button (\code{gbutton}). On the
 right, is a multi-line text widget (\code{gtext}) in a framed
@@ -202,6 +231,7 @@ gname(arguments, handler = NULL, action = NULL,
 where the \code{arguments} vary depending on the object being made. We
 discuss now the common arguments.
 
+\paragraph{container}
 In the above, we see that the \code{gwindow} constructor, for a
 top-level window, has two arguments passed in, an unnamed one for a
 window title and a value for the \code{visible} property. Whereas the
@@ -218,26 +248,35 @@ defines the GUI layout, a topic taken up in
 Chapter~\ref{sec:gWidgets-Containers}.
 
 %% toolkit
+\paragraph{toolkit}
 The \args{toolkit} argument is usually not specified. It is there to
 allow the user to mix toolkits within the same \R\/ session, but in
 practice this can cause problems due to competing event loops. 
 In our example we have 
 <<eval=FALSE>>=
 options(guiToolkit="RGtk2")
-@ to explicitly set the toolkit. The default for the \args{toolkit}
+@ 
+%
+to explicitly set the toolkit. The default for the \args{toolkit}
 argument though is to call to \function{guiToolkit}. This function
 will check if a toolkit has been specified, or only one is
-avaiable. If neither case is so, then a menu will be provided for the
+available. If neither case is so, then a menu will be provided for the
 user to choose one.
 
+\paragraph{handler, action}
+The \args{handler} and \code{action} arguments are used to pass in
+event handlers. We discuss those in Section~\ref{sec:callbacks}.
+
+
 %% return value
+\paragraph{Side effects}
 The constructors produce one of three general types of widgets:
 \begin{description}
 \item[Containers] such as the top level window \code{w}, the paned
   group \code{g} or the frame \code{f1}
  (Table~\ref{tab:gWidgets-container-constructors});
 %
-\item[Components] such as the unamed labels, the edit area
+\item[Components] such as the unnamed labels, the edit area
   \code{txtPattern},, or the button \code{searchBtn}
   (Tables~\ref{tab:gWidgets-control-widgets}
   and~\ref{tab:gWidgets-compound-widgets});
@@ -313,10 +352,10 @@ by \pkg{gWidgets}. The call
 svalue(txtPattern)
 @ 
 %
-demonstrates the new generic \defn{\meth{svalue}} that is used to get
+demonstrates the new generic \index{svalue}{\meth{svalue}} that is used to get
 the main property of the widget. For the object \code{txtPattern}, the
 main property is the text, for the button and label widgets this
-property is the label. The \meth{svalue\ASSIGN} assignment method is
+property is the label. The \index{svalue\ASSIGN}\meth{svalue\ASSIGN} assignment method is
 used to set this property programatically. We see the call
 <<eval=FALSE>>=
 svalue(searchResults) <- fnames
@@ -395,7 +434,7 @@ df <- rbind(
             c("\\meth{names}","\\meth{names} of data store "),
             c("\\meth{dimnames}","\\meth{dimnames} of data store"),
             c("",""),
-            c("\\meth{tag, tag\\ASSIGN}","Set an attribute for a widget that persists through copies"),
+##            c("\\meth{tag, tag\\ASSIGN}","Set an attribute for a widget that persists through copies. Use sparingly."),
 ##            c("\\meth{defaultWidget\\ASSIGN}","Set widget to have initial focus in a dialog"),
             c("\\meth{getToolkitWidget}","Return underlying toolkit widget for low-level use")
             )
@@ -518,18 +557,18 @@ As an example of combining the handler and constructor, we could have
 specified the search button through:
 <<eval=FALSE>>=
 searchBtn <- gbutton("Search", cont=f,
-                     handler=function(h,...) {
-                       pattern <- glob2rx(svalue(h$action$txt))
-                       fnames <- dir(svalue(h$action$dir), 
-                                     pattern, recursive=TRUE)
-                       if(length(fnames))
-                         svalue(h$action$results) <- fnames
-                       else
-                         galert("No matching files found", parent=w)
-                     },
-                     action=list(txt=txtPattern, dir=startDir,
-                       results=searchResults)
-                     )
+             handler=function(h,...) {
+               pattern <- glob2rx(svalue(h$action$txt))
+               fnames <- dir(svalue(h$action$dir), 
+                             pattern, recursive=TRUE)
+               if(length(fnames))
+                 svalue(h$action$results) <- fnames
+               else
+                 galert("No matching files found", parent=w)
+             },
+             action=list(txt=txtPattern, dir=startDir,
+               results=searchResults)
+             )
 @ 
 %
 By passing in the other widgets through the \code{action} argument one
@@ -730,7 +769,17 @@ a button. First the \pkg{gWidgets} package dispatches to a toolkit
 package (\pkg{gWidgetsRGtk2}), which in turn calls functions in the
 underlying \R\/ package (\pkg{RGtk2}) which in turn calls into the
 graphical toolkit to produce an object. This is then packaged into an
-S4 object to manipulate.
+S4 object to manipulate.~\footnote{The S4 object consists of a
+  \pkg{gWidgets} object and a toolkit reference. The \pkg{gWidgets}
+  package simply provides generic functions that dispatch down to a
+  toolkit counterpart using this S4 object. The actual class
+  structure, methods and their inheritance is within the toolkit
+  package. (This allows one to follow the class structure of the
+  underlying graphical library.) As such, \pkg{gWidgets} simply
+  provides an interface (in the sense of constructors and methods to
+  implement) for the toolkit packages to implement. Any discussion to
+  classes, methods and inheritance for \pkg{gWidgets} here then is for
+  simplicity of exposition.}
 
 As such, to use \pkg{gWidgets} with the \GTK\/ toolkit one must have
 installed on their computer the GTK\/ libraries, the \pkg{RGtk2}
@@ -777,10 +826,11 @@ cat(booktabs(df, colTypes=c("l", rep("p{0.3\\textwidth}",3)),
 @ 
 
 Not all features of the \pkg{gWidgets} API are implemented for a
-toolkit. In particular, the easiest to install toolkit
-(\pkg{gWidgetstcltk}) might have the fewest features.  The help pages
-in the \pkg{gWidgets} package describe the API, with the help pages in
-the toolkit packages indicating differences or omissions from the API
+toolkit. In particular, the easiest to install toolkit package
+(\pkg{gWidgetstcltk}) might have the fewest features, as the \code{Tk}
+libraries are not as featureful.  The help pages in the \pkg{gWidgets}
+package describe the API, with the help pages in the toolkit packages
+indicating differences or omissions from the API
 (e.g. \code{?gWidgetsRGtk2-package}). For the most part, omissions are
 gracefully handled by simply providing less functionality.
 

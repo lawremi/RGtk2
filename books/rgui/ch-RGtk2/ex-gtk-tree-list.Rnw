@@ -1,7 +1,7 @@
  \begin{example}{Mapping a list to a tree store}{eg:RGtk2:list-tree}
 
   This example shows how to automate the process of mapping \R's
-  heirarchical list structure into \GTK's heirarchical tree store
+  hierarchical list structure into \GTK's hierarchical tree store
   structure and back. Each direction takes advantage of recursion to
   traverse the values.
 
@@ -11,7 +11,7 @@ library(RGtk2)
 @ 
 
 
-This new method \method{PopulateFromList}{gtkTreeStore} takes a list
+This new method \method{PopulateFromList}{GtkTreeStore} takes a list
 of a certain type and maps it into a tree store. This is done through
 a recursive call when the list component in question returns
 \code{TRUE} from \function{is.recursive}.
@@ -39,7 +39,7 @@ gtkTreeStorePopulateFromList <- function(store, lst, noCols=1) {
 
 This new method does the reverse of the previous. It takes a tree
 store and returns a list containing the values. Again it is done
-recursively. The method \method{IterChildren}{gtkTreeModel} is used to
+recursively. The method \method{IterChildren}{GtkTreeModel} is used to
 indicate if a recursive call is needed.
 <<>>=
 ## return list from the tree.
@@ -83,7 +83,7 @@ gtkTreeStoreGetPathNames <- function(store,iter) {
 }
 @
 
-This method \method{MakeView}{gtkTreeStore} is a convenience method to
+This method \method{MakeView}{GtkTreeStore} is a convenience method to
 create a tree view for a store. For simplicity, this uses a basic cell
 renderer, treating all cells essentially the same.
 <<>>=
@@ -139,8 +139,8 @@ view <- store$makeView()
 
 As a tree store can possibly contain many values, it is typical that
 they are put inside of a scrolled window. Since this is expected, the
-\method{Add}{gtkBin} method is used, not the
-\method{AddWithViewport}{gtkScrolledWindow}. 
+\method{Add}{GtkBin} method is used, not the
+\method{AddWithViewport}{GtkScrolledWindow}. 
 <<>>=
 sw <- gtkScrolledWindow()             # scrollwindow for view
 sw$setPolicy("automatic","automatic")

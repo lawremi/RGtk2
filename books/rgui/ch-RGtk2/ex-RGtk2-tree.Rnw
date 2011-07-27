@@ -11,7 +11,7 @@ require(RGtk2)
 @ 
 
 We begin by defining our tree store and an accompanying tree
-view. This example allows sorting, and so creates a sort proxy model:
+view. This example allows sorting, and so we create a sort proxy model:
 <<SetUpStore>>=
 store <- gtkTreeStore(rep("gchararray", 2))
 sstore <- gtkTreeModelSort(store)

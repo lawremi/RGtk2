@@ -18,7 +18,7 @@ quoteIt <- function(string) {
 }
 
 
-## covert a dta frame into a character based on
+## covert a data frame into a character based on
 .toCharacter <- function(x,width,...) UseMethod(".toCharacter")
 .toCharacter.default <- function(x,width,...) as.character(x)
 .toCharacter.integer <- function(x,width,...) {

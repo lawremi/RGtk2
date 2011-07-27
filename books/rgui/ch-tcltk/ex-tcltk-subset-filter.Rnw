@@ -60,13 +60,13 @@ the data frame.
 First, we define a method to setup our GUI. The \meth{initialize}
 method will be passed a parent container. Here we pack in a frame
 (\code{enc\_frame}) to hold the pieces of our GUI.~\footnote{This
-  means that \function{tkpack} needs to be used to manage this parent.
-  An alternative would be to pass back the enclosing frame object so
-  that it can be managed as the user wants.} These consist of a frame
-to hold the items and a frame to hold the buttons. We use the
-\function{tkgrid} layout manager which allows us to grow the top frame
-as needed, yet have the buttons receive the additional expanding
-space.
+  means that \function{tkpack} needs to be used to manage any other
+  children of this parent.  An alternative would be to pass back the
+  enclosing frame object so that it can be managed as the user wants.}
+These consist of a frame to hold the items and a frame to hold the
+buttons. We use the \function{tkgrid} layout manager which allows us
+to grow the top frame as needed, yet have the buttons receive the
+additional expanding space.
 
 <<FilterListMethods>>=
 FilterList$methods(
@@ -147,9 +147,11 @@ FilterList$methods(
 %% Comment, GUI might look nicer if we had use tkgrid here, but the add/remove is much easier using tkpack.
 
 Our main add method has a few tasks: to select a variable, to create a
-new filter item, create a container,  do the internal bookkeeping, and finally to call
-the items \code{make\_gui} method. The \function{newFilterItem} call
-is an S3 generic, whose dispatch finds the correct filter item class.
+new filter item, to create a container, to do the internal
+bookkeeping, and finally to call the items \code{make\_gui}
+method. The \function{newFilterItem} call is an S3 generic used as a
+factory method to find the correct filter item reference class to
+produce an appropriate filter for the variable.
 <<FilterListAdd>>=
 FilterList$methods(
            add=function(varname, ...) {
@@ -256,7 +258,7 @@ But before that will work, we need to define the filter item classes.
 
 
 \paragraph{Filter items}
-As mentioned, we use an S3 generic to select the appropriate filter
+As mentioned, we use an S3 generic to select the reference class to provide the appropriate filter
 item. These are still be be defined, but we show the default choice.
 
 %% S3 method to pick correct filter
@@ -365,9 +367,9 @@ FilterItemNumeric$methods(
 @ 
 %
 
-Our GUI has three widgets a label, a combobox for the inequality
+Our GUI has three widgets a label, a combo box for the inequality
 and an entry widget to put in values. One could simplify this, say
-wth a slider to slide through the possible values, but using an
+with a slider to slide through the possible values, but using an
 entry widget gives more flexibility in the specification. We see that
 we simply pack these widgets into the parent that is passed in to the method call.
 <<FilterItemNumericMakeGui>>=
@@ -398,7 +400,7 @@ The character selection class, also used with factors, is more
 involved. Our \code{get\_value} method is basically \code{x \%in\%
   cur\_vals}, where \code{cur\_vals} is a selection from all possible
 values.  We might want to use a group of checkboxes here, but that can
-get unwieldly when there are more than a handful of
+get unwieldy when there are more than a handful of
 choices.~\footnote{A table of checkboxes might also be used, but this
   isn't directly supported by the treeview widget of
   \pkg{tcltk}. Although, for the intrepid, one could set the image

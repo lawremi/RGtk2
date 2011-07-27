@@ -38,7 +38,7 @@
 
 <<echo=FALSE, eval=FALSE>>=
 ## test of validation command
-## trcky bit is that validation commands must return TRUE or FALSE
+## tricky bit is that validation commands must return TRUE or FALSE
 ## we can do this with tcl("eval","FALSE") or .Tcl("expr false")
 
 library(tcltk)

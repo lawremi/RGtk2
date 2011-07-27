@@ -17,6 +17,7 @@ toolbars and status bars and conclude by explaining the mechanisms in
 \GTK\/ for conveniently defining and managing actions and associated
 widgets in a large application.
 
+
 \section{Actions}
 \label{sec:RGtk2:actions}
 
@@ -42,12 +43,21 @@ gSignalConnect(a, "activate", f = function(w, data) {
 })
 @ 
 
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.7\textwidth]{ex-RGtk2-action-items-infobar}
+  \caption{An application window mock up showing a menu bar, tool bar,
+  and info bar}
+  \label{fig:RGtk2-action-items-infobar}
+\end{figure}
+
 An action plays the role of a data model describing a command, while
 widgets that implement the \class{GtkActivatable} interface are the
 views and controllers. All buttons, menu items and tool items
 implement \class{GtkActivatable} and thus may serve as action
 proxies. Actions are connected to widgets through the method
-\method{setRelatedAction}{gtkActivatable}:
+\method{setRelatedAction}{GtkActivatable}:
 <<ConnectAction>>=
 b <- gtkButton()
 b$setRelatedAction(a)
@@ -83,7 +93,8 @@ actions with controls resembling check boxes and radio buttons,
 respectively. Here, we create a toggle action for fullscreen mode:
 <<rgtk2-menus-toggle-action>>=
 fullScreen <- gtkToggleAction("fullscreen", "Full screen", 
-                              "Toggle full screen")
+                              "Toggle full screen",
+                              stock.id="gtk-fullscreen")
 gSignalConnect(fullScreen, "toggled", function(action) {
   if(fullScreen['active'])
     window$fullscreen()
@@ -118,10 +129,12 @@ the strategies described in Section~\ref{sec:RGtk2:UIManager}.
 \subsection{Menu Bars}
 
 We will first demonstrate the menu bar, leaving the popup menu for
-later.  The first step is to construct the menu bar itself:
+later. Figure~\ref{fig:RGtk2-action-items-infobar} will show a
+realization. The first step is to construct the menu bar itself:
 <<rgtk2-menus-menubar>>=
 menubar <- gtkMenuBar()
 @
+
 
 A menu bar is a special type of container called a menu shell. An
 instance of \class{GtkMenuShell} contains one or more menu
@@ -148,10 +161,10 @@ we append the item containing the file menu to the menu bar:
 menubar$append(fileItem)
 @ 
 %
-In addition to \method{append}{gtkMenuShell}, it is also possible to
-\method{prepend}{gtkMenuShell} and \method{insert}{gtkMenuShell} menu
+In addition to \method{append}{GtkMenuShell}, it is also possible to
+\method{prepend}{GtkMenuShell} and \method{insert}{GtkMenuShell} menu
 items into a menu shell. As with any container, one can
-\method{remove}{gtkContainer} a child menu item, although the
+\method{remove}{GtkContainer} a child menu item, although the
 convention is to desensitize an item, through the \code{sensitive}
 property, when it is not currently relevant.
 
@@ -290,7 +303,7 @@ whether the tool items display their icons, their text, or both. The
 possible settings are in the \gtkenum{GtkToolbarStyle} enumeration. The
 default value is specified by the global \GTK\/ style (theme). Here,
 we override the default to only display images:
-<<rgtk2-menus-toolbar-style>>=
+<<rgtk2-menus-toolbar-style, eval=FALSE>>=
 toolbar$setStyle("icon")
 @ 
 %
@@ -382,10 +395,10 @@ In \GTK, a statusbar is constructed through the
 \constructor{gtkStatusbar} function. Statusbars must be placed at the
 bottom of a top-level window by the programmer. In \GTK, a statusbar
 keeps various stacks of messages for display. One adds a message to
-display for given stack through the \method{Push}{gtkStatusbar} method
+display for given stack through the \method{Push}{GtkStatusbar} method
 by specifying first an integer value for \code{context.id} and a
 message. To pop the top message on a stack and display the next, the
-method \method{Pop}{gtkStatusbar} method is available.
+method \method{Pop}{GtkStatusbar} method is available.
 
 \subsection{Information bars}
 \label{sec:gtkInfoBar}
@@ -404,8 +417,8 @@ We create our info bar:
 ib <- gtkInfoBar(show=FALSE)
 ib$setNoShowAll(TRUE)
 @ 
-We call \method{setNoShowAll} to prevent the widget from being shown
-when \method{showAll} is called on the parent. Normally, an
+We call \method{setNoShowAll}{GtkWidget} to prevent the widget from being shown
+when \method{showAll}{GtkWidget} is called on the parent. Normally, an
 information bar is not shown until it has a message. 
 
 We will emit a warning message by adding a simple label with the text

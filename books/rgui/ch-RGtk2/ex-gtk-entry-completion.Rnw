@@ -30,7 +30,7 @@ completion['popup-single-match'] <- FALSE
 @ 
 
 To attach the completion widget to the entry widget, the method
-\method{SetCompletion}{gtkEntry} is used.
+\method{SetCompletion}{GtkEntry} is used.
 <<>>=
 entry$setCompletion(completion)
 @ 

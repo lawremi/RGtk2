@@ -71,7 +71,7 @@ gtkTreeStoreAddFromList <- function(store,lst) {
 This function returns the entire set of names for a given depth in the
 tree. These names can then be used to extract values from the list
 which will define our tree. The basic idea is that we walk back the
-tree using the \method{IterParent}{gtkTreeStore} method. This returns
+tree using the \method{IterParent}{GtkTreeStore} method. This returns
 an iter with a \code{FALSE} value for its \code{retval} component when
 it reaches the root of the tree.
 <<getPathNames>>=

@@ -64,7 +64,7 @@ resolveVariableArguments <- function(args) {
 
 The \pkg{manipulate} package uses environments to store state
 etc. Here we use reference classes, as they allow for a more
-familiar programming interface. 
+structured programming interface. 
 
 A typical use of \pkg{manipulate} is along the lines of
 (Figure~\ref{fig:RGtk2-manipulate}) the following example from the
@@ -192,7 +192,7 @@ Manipulate$methods(
 %
 
 The \code{control\_table} is used hold the respective controls. We
-added a \iprogram{strut}strut to request a minimum width for the
+added a \ilayout{strut}strut to request a minimum width for the
 second column, as otherwise the slider controls can render too
 narrowly.
 
@@ -334,7 +334,7 @@ Slider$methods(
 @ 
 
 Our \meth{make\_gui} method basically defines the widget, turning the
-arguments of the constructor nito those for the \GTK{} widget. It then
+arguments of the constructor into those for the \GTK{} widget. It then
 calls the same method from the superclass to lay it the widget. Here
 we define a slider and initialize it using the values in the list,
 \code{l}. The \code{handler} is the change handler passed in from a

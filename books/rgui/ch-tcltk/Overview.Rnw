@@ -10,25 +10,7 @@ John Ousterhout as a ``glue'' to combine two or more complicated
 applications together, it evolved overtime to find use not just as
 middleware, but also as a standalone development tool.
 
-\TK~\footnote{
-  %% Documentation sources
-  \Tk{} has a well documented API~\citep{TclTk:Api}
-  (\url{www.tcl.tk/man/tcl8.5}).  There are also several books to
-  supplement. We consulted the one by Welch, Jones and
-  Hobbs~\citep{beedub} often in the developement of this material. The
-  online sample chapter on Geometry Management of~\citep{Walsh} was
-  perused, as it provides a thorough discussion of that topic. In
-  addition, the Tk Tutorial of Mark Roseman~\citep{TclTk:Tutorial}
-  (\url{www.tkdocs.com/tutorial}) provides much detail. \R{} specific
-  documentation include two excellent R News articles and a
-  proceedings
-  paper~\citep{Rnews:Dalgaard:2001a},~\citep{Rnewse:Dalgaard:2002} and
-  \citep{Dalgaard-DSC} by Peter Dalgaard, the package author. A set of
-  examples due to James Wettenhall~\citep{Wettenhall} are also quite
-  instructive. A main use of \pkg{tcltk} is within the \pkg{Rcmdr}
-  framework. Writing extensions for that is well documented in an R
-  News article~\citep{Rnews:Fox:2007} by John Fox, the package author.
-} is an extension of \TCL\/ that provides GUI components through \TCL.
+\TK{} is an extension of \TCL\/ that provides GUI components through \TCL.
 This was first developed in 1990, again by John Ousterhout. \TK\/
 quickly found widespread usage, as it made programming GUIs for X11
 easier and faster. Over the years, other graphical toolkits have
@@ -62,12 +44,33 @@ typically trivial to install the newer libraries and for Mac OS X
 users, the provided binary installations include the newer \TK\/
 libraries.
 
+%% Documentation sources
+\Tk{} has a well documented API~\footcite{TclTk:Api}
+(\url{www.tcl.tk/man/tcl8.5}).  There are also several books to
+supplement. We consulted the one by Welch, Jones and
+Hobbs~\footcite{beedub} often in the development of this
+material. The online sample chapter on Geometry Management
+of~\footcite{Walsh} was perused, as it provides a thorough discussion
+of that topic. In addition, the Tk Tutorial of Mark
+Roseman~\footcite{TclTk:Tutorial} (\url{www.tkdocs.com/tutorial})
+provides much detail. \R{} specific documentation include two
+excellent R News articles and a proceedings
+paper~\footcite{Rnews:Dalgaard:2001a},~\footcite{Rnews:Dalgaard:2002}
+and \footcite{Dalgaard-DSC} by Peter Dalgaard, the package author. A
+set of examples due to James Wettenhall~\footcite{Wettenhall} are also
+quite instructive. A main use of \pkg{tcltk} is within the \pkg{Rcmdr}
+framework. Writing extensions for that is well documented in an R News
+article~\footcite{Rnews:Fox:2007} by John Fox, the package author.
+ 
 
-In this chapter we give an overview of \Tk\/ and \R's interface to
-it through the \pkg{tcltk} package using the following
-small example of a dialog to collect a name and echo
-back a message (Figure~\ref{fig:tcltk-simple-dialog}). In subsequent chapters we give more detail on the
-various widgets provided by \Tk.
+\section{A first example}
+\label{sec:first-example}
+
+In this chapter we give an overview of \Tk\/ and \R's interface to it
+through the \pkg{tcltk} package using the following small example of a
+dialog to collect a name and echo back a message
+(Figure~\ref{fig:tcltk-simple-dialog}). In subsequent chapters we give
+more detail on the various widgets provided by \Tk.
 
 \begin{figure}
   \centering
@@ -421,7 +424,7 @@ generated behind the scenes by the \pkg{tcltk} package using numeric
 values to keep track of the hierarchy. The \code{env} component
 contains an environment that keeps a count of the subwindows, the parent
 window and any callback functions. This helps ensure that any copies
-of the widget refer to the same object~\citep{Dalgaard-DSC}. As the
+of the widget refer to the same object~\footcite{Dalgaard-DSC}. As the
 construction of a new widget requires the \code{ID} and environment of
 its parent, the first argument to \function{tkwidget}, \code{parent},
 must be a \class{tkwin} object, not simply its character ID, as is
@@ -448,7 +451,7 @@ mapped. \TK\/ uses geometry managers to specify how the widget will be
 drawn within the parent container. We will discuss two such geometry
 managers in Chapter~\ref{sec:tcltk:basic-containers} \code{tkpack} and \code{tkgrid}
 
-The \code{tkack} command packs the widgets into the parent container
+The \code{tkpack} command packs the widgets into the parent container
 in a box-like manner. The example shows various arguments that adjust
 the position of the child component and how space is to be allocated
 when an excess of space is present.
@@ -463,7 +466,7 @@ when an excess of space is present.
 For the button and label widgets in out example, their \code{text}
 property is configured through calls to their constructors. Many
 widgets allow an alternative way to specify one or two important
-properties using an independet \Tcl\/ variable.
+properties using an independent \Tcl\/ variable.
 
 In the call to \code{ttkentry} in the example we had:
 
@@ -877,7 +880,10 @@ Many \pkg{tcltk} widgets, including both labels and buttons, can show
 images. In these cases, either with or without an accompanying text
 label. Constructing images to display is similar to constructing new
 fonts, in that a new image object is created and can be reused by
-various widgets. Images are created by the \function{tkimage.create}
+various widgets. This use of the flyweight design pattern allows
+memory resources to be shared as much as possible.
+
+Images are created by the \function{tkimage.create}
 function. 
 
 The following command shows how an image object can be made from the
@@ -955,7 +961,7 @@ that the user may initiate.
 
 The basic call is \code{tkbind(tag, event, script)}. 
 
-%% (Unlike \pkg{RGtk2}, that the event triggers a widget to emit a signal that a callback listens for is notneeded)
+%% (Unlike \pkg{RGtk2}, that the event triggers a widget to emit a signal that a callback listens for is not needed)
 
 \subsection{The tag}
 

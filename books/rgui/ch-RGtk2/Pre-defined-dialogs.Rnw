@@ -42,7 +42,7 @@ dialog has a \code{secondary-text} property that can be set to give a
 secondary message.
 
 Dialogs are optionally modal. Below, we enable modality by calling the
-\method{run}{gtkDialog} method, which will additionally block the \R\/
+\method{run}{GtkDialog} method, which will additionally block the \R\/
 session:
 <<>>=
 response <- dlg$run()
@@ -58,7 +58,7 @@ dlg$Destroy()
 %
 The return value can then be inspected for the action, such as what
 button was pressed. \class{GtkMessageDialog} will return response
-codes from the \code{GtkResponseType} enumeration. We will see an
+codes from the \gtkenum{GtkResponseType} enumeration. We will see an
 example of asynchronous response handling in the next section.
 
 \subsection{Custom dialogs}
@@ -161,9 +161,9 @@ gSignalConnect(dlg, "response", f=function(dlg, resp, data) {
 @
   % 
   The file selected is returned by
-  \method{getFilename}{gtkFileChooser}. If multiple selection is enabled
+  \method{getFilename}{GtkFileChooser}. If multiple selection is enabled
   (via the \code{select-multiple} property) one should call the
-  plural \method{getFilenames}{gtkFileChooser}.
+  plural \method{getFilenames}{GtkFileChooser}.
 
   For the open dialog, one may wish to specify one or more filters that
   narrow the available files for selection:
@@ -182,8 +182,8 @@ dlg$addFilter(fileFilter)
 \end{example}
 
 The save file dialog would be similar. The initial filename could be
-specified with \method{setFilename}{gtkFileChooser}, or folder with
-\method{setFolder}{gtkFileChooser}. The
+specified with \method{setFilename}{GtkFileChooser}, or folder with
+\method{setFolder}{GtkFileChooser}. The
 \code{do-overwrite-confirmation} property controls whether the user is
 prompted when attempting to overwrite an existing file.
 
@@ -204,5 +204,5 @@ flexibility.
 Rendering documents for printing is outside our scope; however, we
 will mention that \class{GtkPrintOperation} can launch the native,
 platform-specific print dialog for customizing a printing
-operation. See Example~\ref{sec:gtk-printing-graphics} for an example
+operation. See Example~\ref{eg:RGtk2:printing-graphics} for an example
 of printing R graphics using \pkg{cairoDevice}.

@@ -1,3 +1,15 @@
+* clear out XXX comments
+* check for footcite
+* check for ispell
+* check for functions that can be referenced from ProgGUIinR
+  (avail_dfs, find_varsm ,,,)
+* index by hand places
+* can I add encapsulate, decouple, command, ...
+  * convert text to R command (evaluate, eval+parse,)
+  * put addScrollbars ... to package (tcltk specific)
+
+
+
 http://code.google.com/p/r-orange/
 * gWidgets example of dialog following wxWidgets chapter
 - data store

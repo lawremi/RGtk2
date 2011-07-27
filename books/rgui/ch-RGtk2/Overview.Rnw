@@ -242,20 +242,20 @@ inherited by all objects whose class contains \class{GtkWidget}.
 Some common methods are inherited by all widgets, as they are defined
 in the base \class{GtkWidget} class. First, there are methods to
 traverse the widget hierarchy. These include
-\method{getParent}{gtkWidget} to get the parent container;
-\method{getToplevel}{gtkWidget} to get the top widget in the objects
-widget hierarchy; \method{getAncestor}{gtkWidget} to search up the
+\method{getParent}{GtkWidget} to get the parent container;
+\method{getToplevel}{GtkWidget} to get the top widget in the objects
+widget hierarchy; \method{getAncestor}{GtkWidget} to search up the
 hierarchy for an ancestor widget of a certain type; and for container
-widgets, the method \method{getChildren}{gtkContainer} returns a list
+widgets, the method \method{getChildren}{GtkContainer} returns a list
 of the children.  Widgets are shown by calling
-\method{show}{gtkWidget}. A call to \method{showAll}{gtkWidget} will
+\method{show}{GtkWidget}. A call to \method{showAll}{gtkWidget} will
 recursively call itself for any child components. Widgets can be
-hidden through the either \method{hide}{gtkWidget} or
-\method{hideAll}{gtkWidget}. A widget will be destroyed by
-\method{destroy}{gtkWidget} (once destroyed, any R references to the
+hidden through the either \method{hide}{GtkWidget} or
+\method{hideAll}{GtkWidget}. A widget will be destroyed by
+\method{destroy}{GtkWidget} (once destroyed, any R references to the
 widget will be unusable). There are a handful of methods to modify
-widget appearance, for instance \method{modifyBg}{gtkWidget} to change
-background color of a widget and \method{modifyFg}{gtkWidget} to
+widget appearance, for instance \method{modifyBg}{GtkWidget} to change
+background color of a widget and \method{modifyFg}{GtkWidget} to
 change its foreground color.
 
 
@@ -292,7 +292,7 @@ gObjectSet(b, label="a new label for our button")
 @ 
 Additionally, most user-accessible properties have specific \code{Get} and
 \code{Set} methods defined for them. In our example,  the methods
-\method{getLabel}{gtkButton} and \method{setLabel}{gtkButton} can be used.
+\method{getLabel}{GtkButton} and \method{setLabel}{GtkButton} can be used.
 <<>>=
 b$getLabel()
 b$setLabel("Again, a new label for our button")
@@ -388,7 +388,7 @@ of window manager events, such as a \code{button-press-event}. These
 events have callbacks attached in a similar manner.
 
 The signals and events that an object adds are returned by the method
-\method{GetSignals}{gObject}. For example
+\method{GetSignals}{GObject}. For example
 <<>>=
 names(b$getSignals())
 @ 
@@ -581,7 +581,7 @@ g <- gtkBuildableNew()
 g$addFromFile("buildable.xml")
 @ 
 
-The \method{getObject}{gtkBuilder} extracts a widget by its ID, which
+The \method{getObject}{GtkBuilder} extracts a widget by its ID, which
 is specified by the user through \software{Glade}. It normally
 suffices to load the top-level widget, named \code{dialog1} in this
 example, and show it:

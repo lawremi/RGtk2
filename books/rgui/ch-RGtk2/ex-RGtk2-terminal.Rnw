@@ -1,5 +1,5 @@
 This example shows how to create a simple command line interface with
-the text view widget. While few statistical applications will include
+the text view widget (Figure~\ref{fig:RGtk2-terminal}). While few statistical applications will include
 a command line widget, the example is familiar and shows several
 different, but useful, aspects of the widget.
 
@@ -155,8 +155,6 @@ gSignalConnect(tb, "changed", scrollViewport, data=tv,
                after = TRUE, user.data.first = TRUE)
 @ 
 
-Figure~\ref{fig:RGtk2-terminal} shows the widget placed into a very
-simple GUI.
 <<makeGUI, echo=FALSE>>=
 ## scroll window
 sw <- gtkScrolledWindow()
