@@ -52,6 +52,10 @@ user moves the mouse over a widget proxying the action:
 <<qt-app-action-status-tip>>=
 openAction$statusTip <- "Load a spreadsheet from a CSV file"
 @ 
+
+<<makeButtonB, echo=FALSE>>=
+button <- Qt$QPushButton()
+@ 
 %
 One could also set an icon from a file:
 <<qt-app-action-icon, results=hide>>=

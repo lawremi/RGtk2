@@ -36,7 +36,7 @@ qsetClass("VariableSelector", Qt$QWidget, function(parent=NULL) {
   setLayout(lyt)
   
   updateDataSets()
-  qconnect(dfcb, "activated", function(ind) {
+  qconnect(dfcb, "activated(int)", function(ind) {
     this$dataFrame <- dfcb$currentText
   })
 })
@@ -68,7 +68,7 @@ qsetProperty("dataFrame", VariableSelector, write = function(df) {
   if (is.null(df))
     df <- data.frame()
   else if (is.character(df)) 
-    df <- get(dfname, .GlobalEnv)
+    df <- get(df, .GlobalEnv)
   model <- this$varList$model()
   qdataFrame(model) <- data.frame(variable = names(df), 
                                   variable.decoration = I(lapply(df, getIcon)))
@@ -262,14 +262,16 @@ the table view:
 qsetMethod("invokeXtabs", XtabsWidget, function() {
   if (is.null(dataFrame))
     return()
+  if(is.character(dataFrame))
+    dataFrame <- get(dataFrame)
   if(is.null(xVar <- this$xlabel$variableName)) {
     out <- NULL
   } else if(is.null(yVar <- this$ylabel$variableName)) {
     f <- formula(sprintf("~ %s", xVar))
-    out <- xtabs(f, data=get(dataFrame))
+    out <- xtabs(f, data=dataFrame)
   } else { 
     f <- formula(sprintf("~ %s + %s", yVar, xVar))
-    out <- xtabs(f, data=get(dataFrame))
+    out <- xtabs(f, data=dataFrame)
   } 
   if(!is.null(out))
     updateTableView(out)

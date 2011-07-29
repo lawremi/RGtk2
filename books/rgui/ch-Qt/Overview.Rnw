@@ -809,6 +809,8 @@ stylesheet application-wide through the \class{QApplication}
 instance. The default for \code{what} is \code{"*"}, meaning that the
 stylesheet applies to any widget class. The following would cause all
 widgets in the application to have the same colors as the button:
+
+%% XXX JV -- need to upgrade qtbase
 <<qt-overview-qsetStyleSheet-defaults>>=
 qsetStyleSheet(color = "red", background = "white")
 @ 
@@ -847,7 +849,7 @@ qsetMethod("setError", LineEditWithError, function(msg) {
 % 
 
   We can clear the error by resetting the properties to \code{NULL}.
-<<results=hide>>=
+<<clearError,results=hide>>=
 qsetMethod("clearError", LineEditWithError, function() {
   setStyleSheet(NULL)
   setToolTip(NULL)
@@ -855,7 +857,7 @@ qsetMethod("clearError", LineEditWithError, function() {
 @ 
 % 
 
-<<results=hide>>=
+<<testOut,results=hide>>=
 ##  To test this out, we have the following
 e <- LineEditWithError()
 e$text <- "The quick brown fox..."
@@ -863,7 +865,7 @@ e$setError("Replace with better boilerplate text")
 e$clearError()
 @ 
 % 
-<<echo=FALSE, results=hide>>=
+<<show_raise,echo=FALSE, results=hide>>=
 e$show()
 e$raise()
 @ 
@@ -883,9 +885,17 @@ file in the \qcode{UI} format. The \class{QUiLoader} class loads a
 } through its \method{load}{QUiLoader} method:
 %% JV commented these out until I have designer.ui to they run...
 %% JV should we put designer.ui into the package somewhere?
-<<qt-overview-designer-load>>=
+<<has_loader, echo=FALSE>>=
+has_uiloader <- !is.null(Qt$QUiLoader)
+@ 
+<<qt-overview-designer-load, eval=FALSE>>=
 loader <- Qt$QUiLoader()
 widget <- loader$load(Qt$QFile("textfinder.ui"))
+@ 
+<<echo=FALSE>>=
+if(has_uiloader) {
+<<qt-overview-designer-load>>
+}
 @ 
 %
 
@@ -902,16 +912,26 @@ named, so we can call the \function{qfindChild} utility function to
 find a specific widget. Assume we have a button named ``findButton''
 and corresponding text entry ``lineEdit'' in our UI file, then we
 retrieve them with
-<<qt-overview-designer-find>>=
+<<qt-overview-designer-find, eval=FALSE>>=
 findButton <- qfindChild(widget, "findButton")
 lineEdit <- qfindChild(widget, "lineEdit")
 @ 
+<<echo=FALSE>>=
+if(has_uiloader) {
+<<qt-overview-designer-find>>
+}
+@ 
 %
 Then we connect to the \signal{clicked}{QPushButton} signal:
-<<qt-overview-designer-connect>>=
+<<qt-overview-designer-connect, eval=FALSE>>=
 qconnect(findButton, "clicked", function() {
   findText(lineEdit$text)
 })
+@ 
+<<echo=FALSE>>=
+if(has_uiloader) {
+<<qt-overview-designer-connect>>
+}
 @ 
 %
 Note that the \function{findText} function above is not implemented.
@@ -919,14 +939,19 @@ Note that the \function{findText} function above is not implemented.
 Alternatively, we could establish the signal connections
 automatically. This requires defining each signal handler to be a slot
 in the parent object, which will need to be of a custom class:
-<<qt-overview-designer-custom-parent>>=
+<<qt-overview-designer-custom-parent, eval=FALSE>>=
 qsetClass("MyMainWindow", Qt$QWidget, function() {
   loader <- Qt$QUiLoader()
   widget <- loader$load(Qt$QFile("textfinder.ui"), this)
   Qt$QMetaObject$connectSlotsByName(this)
 })
 @ 
-%
+<<echo=FALSE>>=
+if(has_uiloader) {
+<<qt-overview-designer-custom-parent>>
+}
+@ 
+%%
 The constructor first loads the UI definition, with the main window as
 the parent for the loaded interface. It then calls
 \method{connectSlotsByName}{QMetaObject} to automatically establish
@@ -935,18 +960,28 @@ match signals in the descendants to slots in the top-level widget. For
 a slot to be connected to the correct signal, it must be named
 according to the convention
 \qcode{on\_[objectName]\_[signalName]}. For example,
-<<qt-overview-designed-slot-handler>>=
+<<qt-overview-designed-slot-handler, eval=FALSE>>=
 qsetSlot("on_findButton_clicked", MyMainWindow, function() {
   findText(lineEdit$text)
 })
+@ 
+<<echo=FALSE>>=
+if(has_uiloader) {
+<<qt-overview-designed-slot-handler>>
+}
 @ 
 %
 defines a handler for the \signal{clicked} signal on
 \qcode{findButton}.  Finally, the signal handler connection is
 established upon construction of the main window:
-<<qt-overview-designed-custom-construct>>=
+<<qt-overview-designed-custom-construct, eval=FALSE>>=
 MyMainWindow()
 @ 
-%
+<<echo=FALSE>>=
+if(has_uiloader) {
+<<qt-overview-designed-custom-construct>>
+}
+@ 
 In the case of a large, complex GUI, this automatic approach is
 probably more convenient than manually establishing the connections.
+

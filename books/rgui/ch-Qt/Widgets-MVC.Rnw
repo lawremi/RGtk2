@@ -207,8 +207,9 @@ resize mode for all columns, and it defaults to
 to width needed to fit contents). The \method{setResizeMode} method
 changes the resize mode of a specific column.  Below, we make all of
 our columns expand:
+%% jv 7-29-11 this is a method, we had an assignment to a property
 <<qt-mvc-table-stretch>>=
-header$resizeMode <- Qt$QHeaderView$Stretch
+header$resizeMode(Qt$QHeaderView$Stretch)
 @ 
 %
 The drawback to any of these modes is that the resizing is no longer
@@ -682,7 +683,10 @@ qdataFrame(model)$.mpg.hp.font <- list(qfont(weight = Qt$QFont$Bold))
 As shown, periods separate the data frame column names in the
 \qcode{NAME} component. To apply a column to all columns in the model,
 omit the column name:
-<<qt-mvc-role-all-font>>=
+
+%% JV: 7-29-11 This is failing XXXXX
+%% Error in map[headerInd] <- match(role, cn) : replacement has length zero
+<<qt-mvc-role-all-font, eval=FALSE>>=
 qdataFrame(model)$.font <- list(qfont(pointsize = 14))
 @ 
 
@@ -1206,12 +1210,13 @@ location and parameters of the cursor on the screen. We need to
 explicitly set the modified cursor object on the
 \class{QTextEdit}. This behavior is often convenient, because it
 allows us to modify arbitrary parts of the document, without affecting
-the user cursor.  For example, we could insert an image at the beginning:
+the user cursor.  For example, we could insert a 32 by 32 pixel image at the beginning:
+%% JV 7-29-11 added qsize call to actualSize to get out of erro
 <<qt-mvc-textedit-image, results=hide>>=
 cursor$setPosition(0)
 style <- Qt$QApplication$style()
 icon <- style$standardIcon(Qt$QStyle$SP_DialogOkButton)
-cursor$insertImage(icon$pixmap(icon$actualSize())$toImage())
+cursor$insertImage(icon$pixmap(icon$actualSize(qsize(32L,32L)))$toImage())
 @ 
 %
 To listen to changes in the cursor position, connect to the

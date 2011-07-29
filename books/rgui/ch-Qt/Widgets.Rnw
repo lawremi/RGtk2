@@ -257,10 +257,11 @@ if(any(checked)) {
 @ 
 %
 
-By attaching a callback to the \signal{buttonClicked} signal, we will
+By attaching a callback to the \signal{buttonClicked}
+signal~\footnote{See Section~\ref{sec:qt-signals} for why we need the \code{(QAbstractButton)}.}, we will
 be informed when any of the buttons in the group are clicked:
 <<results=hide>>=
-qconnect(bg, "buttonClicked", function(button) {
+qconnect(bg, "buttonClicked(QAbstractButton*)", function(button) {
   message(paste("Level '", button$text, "': ", button$checked, sep = ""))
 })
 @ 
@@ -371,7 +372,7 @@ By setting it to $-1$, we make the selection to be empty.
 To respond to a change in the current index, we connect to the
 \signal{activated} signal:
 <<>>=
-qconnect(region, "activated", function(ind) {
+qconnect(region, "activated(int)", function(ind) {
   state$clear()
   state$addItems(statesByRegion[[ind+1]]$name)
 })

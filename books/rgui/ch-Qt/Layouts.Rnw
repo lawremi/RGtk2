@@ -302,6 +302,9 @@ expanding. Fixed spacing between any two children was already
 described. To add a fixed amount of space between two specific
 children, call the \meth{addSpacing} method while populating the
 container. The following line is from Example~\ref{eg:qt-layouts}:
+<<create_hb, echo=FALSE, results=hide>>=
+hb <- Qt$QHBoxLayout()
+@ 
 <<qt-layout-box-spacing, results=hide>>=
 hb$addSpacing(12L)
 hb$addWidget(Qt$QPushButton("d"))
@@ -311,7 +314,7 @@ We have placed a gap of $12$ pixels between button \qcode{c} and the
 new button \qcode{d}.
 
 An expanding, spring-like spacer between two widgets is known as a
-\textit{stretch}. We add a stretch with a factor of $2.0$ and
+\ilayout{spring}\textit{stretch}. We add a stretch with a factor of $2.0$ and
 subsequently add a child button that will be pressed against the right
 side of the box as the layout grows horizontally:
 <<qt-layout-box-stretch, results=hide>>=
@@ -326,7 +329,7 @@ stretch factor.
 
 It is sometimes desirable to restrict the minimum size of a layout in the
 perpendicular direction. For a horizontal box, this is the height. The
-box layout provides the \textit{strut} for this purpose:
+box layout provides the \ilayout{strut}\textit{strut} for this purpose:
 <<qt-layout-box-strut>>=
 g$addStrut(10)                    # atleast 10 pixels high
 @ 

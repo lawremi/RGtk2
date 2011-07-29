@@ -451,6 +451,9 @@ like permissions.
 \begin{example}{File dialogs}{ex:qt-r-files-dialog}
   We construct a dialog for opening an R-related file, using the
   directory name selected above as the history:
+<<echo=FALSE>>=
+dname <- ""
+@   
 <<QFileDialogAPI, results=hide>>=
 dlg <- Qt$QFileDialog(NULL, "Choose an R file", getwd(), nameFilter)
 dlg$fileMode <- Qt$QFileDialog$ExistingFiles
