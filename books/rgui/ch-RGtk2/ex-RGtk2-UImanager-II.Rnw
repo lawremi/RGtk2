@@ -256,8 +256,8 @@ was done. This stack has methods \code{add}, \code{undo} and
 \code{redo}, each calling the \code{do} or \code{undo} method of the
 appropriate command in the stack.
 
-With this stack a typical action callback include something like this
-one from the action to change a column name:
+With this stack a typical action callback includes something like the
+following which is from the action to change a column name:
 <<typicalAction, eval=FALSE>>=
 cmd <- Command$new(df_model, "set_col_name", j=j, value=value)
 command_stack$add(cmd)
@@ -272,13 +272,13 @@ parameters (a column number and new name) and then added to the
 command stack. The \meth{add} method calls the \code{do} method of the
 command to invoke the changing of the name.
 
-The data frame model (defined in our reference class \class{DfModel}) we define is a wrapper around an
+The data frame model (defined in our reference class \class{DfModel}) is a wrapper around an
 \class{RGtkDataFrame} object that holds the data. The method call
 above is implemented by:
 <<col_name_methods, eval=FALSE>>=
 DfModel$methods(
                 get_col_name=function(j) varnames[j,1],
-                get_col_names=function() varnames[,1],
+                get_col_names=function() varnames[ ,1],
                 set_col_name=function(j, value) {
                   "Set name, return old"
                   old <- get_col_name(j)
