@@ -21,17 +21,17 @@ w$add(b)
 ###################################################
 ### chunk number 3: 
 ###################################################
-#line 27 "ex-RGtk2-menu-popup.Rnw"
+#line 23 "ex-RGtk2-menu-popup.Rnw"
 gSignalConnect(b,"button-press-event",
-               f = function(w, e, menu) {
-                 if(e$getButton() == 3 ||
-                    (e$getButton() == 1 && # a mac
-                     e$getState() == GdkModifierType['control-mask'])) 
-                   gtkMenuPopup(menu, 
-                                button = e$getButton(),
-                                activate.time = e$getTime())
-                 return(FALSE)
-               }, data=popup)
+       f = function(w, e, menu) {
+         if(e$getButton() == 3 ||
+            (e$getButton() == 1 && # a mac
+             e$getState() == GdkModifierType['control-mask'])) 
+           gtkMenuPopup(menu, 
+                        button = e$getButton(),
+                        activate.time = e$getTime())
+         return(FALSE)
+       }, data=popup)
 
 
 ###################################################

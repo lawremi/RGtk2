@@ -1,0 +1,932 @@
+In this example, we show how to use a UI manager to create the menu
+and tool bars for a data frame editor, similar to, but with enhanced
+functionality, the one produced in some platforms by the
+\function{data.entry} function. 
+
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.7\textwidth]{fig-RGtk2-editable-dataframe}
+  \caption{An instance of an editable data frame with menu and tool
+    bars specified using an instance of \class{GtkUIManager}. This
+    example, implements the command pattern to provide simple undo and
+    redo functionality.}
+  \label{fig:RGtk2-editable-dataframe}
+\end{figure}
+
+<<helperFUnction, echo=FALSE>>=
+require(RGtk2)
+
+##' helper function to bypass lack of cached value in method call
+##'
+##' @param meth method name
+##' @param obj method of object's class
+##' @return the method
+call_meth <- function(meth, obj) {
+  if(exists(meth, obj, inherits=FALSE))
+    get(meth, obj)
+  else
+    methods:::envRefInferField(obj, meth, getClass(class(obj)), obj)
+}
+@ 
+
+
+<<echo=FALSE>>=
+## Stub UI Manager instance for use with examples
+uimanager <- gtkUIManager()
+@ 
+
+
+Our menubar and toolbar layout is specified in XML according to a
+schema specified by the UI manager framework. The XML can be stored in
+a file or an \R\/ character vector.  The structure of the file can be
+grasped quickly from this example, which we use in the sequel.
+
+<<ui-xml>>=
+ui.xml <- readLines(out <- textConnection('
+<ui>
+  <menubar name="menubar">
+    <menu name="FileMenu" action="File">
+      <menuitem action="Save"/>
+      <menuitem action="SaveAs" />
+      <menu name="Export" action="Export">
+        <menuitem action="ExportToCSV" />
+        <menuitem action="ExportToSaveFile" />
+      </menu>
+      <separator />
+      <menuitem name="FileQuit" action="CloseWindow" />
+    </menu>
+    <menu action="Edit">
+      <menuitem name="EditUndo" action="Undo" />
+      <menuitem name="EditRedo" action="Redo" />
+      <menuitem action="ChangeColumnName" />
+    </menu>
+    <menu action="Tools">
+      <menuitem action="Filter" />
+      <menuitem action="Sort" />
+    </menu>
+  </menubar>
+  <toolbar name="toolbar">
+    <toolitem action="Save"/>
+    <toolitem action="SaveAs"/>
+    <separator />
+    <toolitem action="CloseWindow"/>
+  </toolbar>
+</ui>'), warn=FALSE)
+close(out)
+@ 
+%
+
+We used indenting to show the nesting of the menus. For menus we see
+the use of menu bars, menus and menu items. The menu and menu items have a
+corresponding action associated with them, which can provide a callback.
+
+If \code{uimanager} is our \class{GtkUIManager} instance, then we can
+add this through the command:
+<<loadUIFromString>>=
+id <- uimanager$addUiFromString(ui.xml)
+@ 
+Alternately, we could load the code from a file. The return value is
+an id that can be used to unmerge this part of the UI. The ability to
+merge and unmerge parts of the UI is one main attraction for using
+this framework, although we don't illustrate that here. 
+
+<<echo=FALSE>>=
+fun <- function(...) {}
+@ 
+To define the actions, we can use lists, as in this which is used for
+the file menu:
+<<>>=
+fileL <- list(## name, ID, label, accelerator, tooltip, callback
+              list("File",NULL,"_File",NULL,NULL,NULL),
+              list("Save", "gtk-save", "Save", "<ctrl>S", 
+                   "Save data to variable", fun),
+              list("SaveAs", "gtk-save", "Save as...", NULL, 
+                   "Save data to variable", fun),
+              list("Export", NULL, "Export", NULL, NULL, NULL),
+              list("ExportToCSV", "gtk-export", "Export to CSV", 
+                   NULL, "Save data to CSV file", fun),
+              list("ExportToSaveFile", "gtk-export", 
+                   "Export to save file", NULL, 
+                   "Save data to save() file", fun),
+              list("CloseWindow", "gtk-close", "Close window", 
+                   "<ctrl>W", "Close current window", fun)
+              )
+@ 
+% 
+Each item contains $6$ pieces of information: a name (which we use in
+\code{fun} to call the appropriate method), a stock-id, a label, a
+keyboard accelerator a tooltip, and finally a callback for when the
+action is invoked.
+
+We can add these items to an action group, along the lines of
+<<addActionGroup>>=
+ag <- gtkActionGroup("FileGroup")
+ag$addActions(fileL)
+@ 
+
+We can then insert the action group in to the UI manager:
+<<>>=
+uimanager$insertActionGroup(ag, 0)
+@
+%
+The position (\code{0}) is used to determine which action will be
+called, when there is more than one similarly named.
+
+
+%% insert into GUI
+We now place the UI manager into the GUI. The UI manager specification
+create widgets which we can retrieve through its
+\meth{getWidget}{GtkUIManager} method. In the layout of our GUI, we
+have the following:
+
+<<GUILayout, eval=FALSE>>=
+w <- gtkWindow(show=FALSE)
+##
+vbox <- gtkVBox()
+w$add(vbox)
+##
+menubar <- uimanager$getWidget("/menubar")
+vbox$packStart(menubar, FALSE)
+toolbar <- uimanager$getWidget("/toolbar")
+vbox$packStart(toolbar, FALSE)
+## ...
+@ 
+%
+The \code{menubar} and  \code{toolbar} widgets are referred to by
+their path which come from the names specified in the XML description
+separated by "/". So, in the definition. the line
+\begin{verbatim}
+<ui>
+  <menubar name="menubar">
+...
+\end{verbatim}
+define the path \qcode{/menubar}, where \code{<ui>} is always
+the root element, and may be omitted.
+
+
+Finally, to connect the UI manager to the window, we add the keyboard
+accelerator group through:
+<<eval=FALSE>>=
+w$addAccelGroup(uimanager$getAccelGroup())
+@ 
+
+
+
+Figure~\ref{fig:RGtk2-editable-dataframe} shows an illustration of the
+finished application. The full details are found in the code in our accompanying
+package \pkg{ProgGUIinR}. Here we discuss how the \iprogram{command pattern}\dfn{command
+  pattern} was implemented to provide a simple undo and redo feature
+to our editing.
+
+According to \footcite{head-first-design-patterns}, the command
+pattern is used to \iprogram{encapsulate}encapsulate a request (method
+call) as an object. A basic command object has just one method,
+\meth{execute}. Any needed parameters are stored in the object as
+properties. For our implementation we use a reference class with fields:
+
+<<>>=
+Command <- setRefClass("Command",
+                       fields=list(
+                         receiver="ANY",
+                         meth="character",
+                         params="list",
+                         old_params="list"
+                         ))
+@ 
+%
+The receiver is the object the method is called on. For a simple
+function call, this could be an environment the function is found
+in. The \code{meth} property is the name of the method, \code{params}
+a list of parameters. With these we define the main methods:
+<<>>=
+Command$methods(
+                initialize=function(receiver, meth, ...) {
+                  l <- list(...)
+                  initFields(receiver=receiver, meth=meth, 
+                             params=l, old_params=l)
+                  callSuper()
+                },
+                execute=function(args) {
+                  do.call(call_meth(meth, receiver), args)
+                })
+@
+%
+
+Notice we pass in the arguments to our \meth{execute} method, rather
+than use those in the proporty \code{params}. This allows us to implement the
+\meth{do} and \meth{undo} methods in a similar manner:
+<<>>=
+Command$methods(
+                do=function() {
+                  out <- execute(params)
+                  old_params$value <<- out
+                },
+                undo=function() execute(old_params)
+                )
+
+@                             
+%
+This assumes the method executed can return a value which can be used
+to reverse the call.If a method call is not so straightforward to
+reverse, one needs only subclass the \class{Command} call and provide
+a new \code{undo} method.
+
+A simple illustration might be:
+<<illustrateCommand>>=
+x <- 1
+set_x <- function(value) {
+  old <- x
+  x <<- value
+  old
+}
+cmd <- Command$new(.GlobalEnv, "set_x", value=2)
+cmd$do();
+x
+@ 
+<<results=hide>>=
+cmd$undo();
+@
+<<>>=
+x
+@ 
+
+In our example, we create a stack of commands to keep track of what
+was done. This stack has methods \code{add}, \code{undo} and
+\code{redo}, each calling the \code{do} or \code{undo} method of the
+appropriate command in the stack.
+
+With this stack a typical action callback include something like this
+one from the action to change a column name:
+<<typicalAction, eval=FALSE>>=
+cmd <- Command$new(df_model, "set_col_name", j=j, value=value)
+command_stack$add(cmd)
+@ 
+%
+To explain, \code{df\_model} is an instance of a yet-to-be-defined
+reference class defining a data model for the data frame being edited,
+and \code{j} and \code{value} are determined by a dialog called before
+the command is created. The point is, the method call for the
+\code{df\_model} object is encapsulated along with the needed
+parameters (a column number and new name) and then added to the
+command stack. The \meth{add} method calls the \code{do} method of the
+command to invoke the changing of the name.
+
+The data frame model (defined in our reference class \class{DfModel}) we define is a wrapper around an
+\class{RGtkDataFrame} object that holds the data. The method call
+above is implemented by:
+<<col_name_methods, eval=FALSE>>=
+DfModel$methods(
+                get_col_name=function(j) varnames[j,1],
+                get_col_names=function() varnames[,1],
+                set_col_name=function(j, value) {
+                  "Set name, return old"
+                  old <- get_col_name(j)
+                  varnames[j,1] <<- value
+                  old
+                })
+@
+%%
+As can be seen we return the old value as that is needed, given how we
+implemented the \meth{do} method for the commands. We used an instance
+of \class{RGtkDataFrame} to store the variable (column) names, hence
+the double index. This allows us to listen for changed through the
+models \signal{row-changed} signal. The details, and more, are in the
+accompanying package.
+
+
+<<ensure_type, echo=FALSE, results=hide>>=
+##' S3 generic to ensure we don't change data type when assigning into column
+##'
+##' @param x column values
+##' @param value new value
+##' @return coerced new value
+ensure_type <- function(x, value) UseMethod("ensure_type")
+ensure_type.default <- function(x, value) value
+ensure_type.character <- function(x, value) as.character(value)
+ensure_type.factor <- function(x, value) {x[length(x) + 1] <- value; tail(x, n=1)}
+ensure_type.numeric <- function(x, value) as.numeric(value)
+ensure_type.integer <- function(x, value) as.integer(value)
+ensure_type.logical <- function(x, value) as.logical(value)
+@ 
+
+<<DfModel, echo=FALSE, results=hide>>=
+## Define a model to hold the model for an editable data frame
+sapply(c("RGtkDataFrame"), setOldClass)
+DfModel <- setRefClass("DfModel",
+                       fields=list(
+                         store="RGtkDataFrame",
+                         filtered="ANY",
+                         name="character",
+                         varnames="RGtkDataFrame",
+                         casenames="RGtkDataFrame"
+                         ))
+
+## Initialize along with a column for filtering
+DfModel$methods(
+                initialize=function(df, nm, ...) {
+                  store <<- rGtkDataFrame(cbind(df, `_visible`=rep(TRUE, nrow(df))))
+                  varnames <<- rGtkDataFrame(data.frame(names(df), stringsAsFactors=FALSE))
+                  casenames <<- rGtkDataFrame(data.frame(rownames(df), stringsAsFactors=FALSE))
+                  if(missing(nm))
+                    name <<- deparse(substitute(df))
+                  else
+                    name <<- nm
+                  filtered <<- store$filter()
+                  filtered$setVisibleColumn(length(df))
+                  callSuper()
+                })
+
+## Methods to work with the underlying data frame (Get, save, ...)
+DfModel$methods(
+                get_dataframe=function() {
+                  df <- store[,seq_len(ncol(store)-1)]
+                  dimnames(df) <- list(casenames[,1], varnames[,1])
+                  df
+                },
+                save=function(nm) {
+                  "Save to global workspace"
+                  if(!missing(nm))
+                    name <<- nm
+                  assign(name, get_dataframe(), envir=.GlobalEnv)
+                  
+                },
+                export_to_csv=function(f)  {
+                  "Export to csv file"
+                  write.csv(get_dataframe(), file=f)
+                },
+                export_to_save=function(f) {
+                  "Export using save()"
+                  assign(name, get_dataframe())
+                  save(list=name, file=f)
+                },
+                no_rows=function() dim(store)[1],
+                no_cols=function() dim(store)[2] - 1L
+                )
+## Methods to get and set a cell value. 
+DfModel$methods(
+                get_cell=function(i,j) {
+                  "Return cell value"
+                  store[i,j]
+                },
+                set_cell=function(i, j, value) {
+                  "Set cell, return old_value"
+                  old <- get_cell(i,j)
+                  store[i,j] <<- ensure_type(store[1,j], value)
+                  old
+                })
+## Methods for column names. Similar one for rownames could be implemented, but we
+## don't show these in our view. So leave to the reader/
+DfModel$methods(
+                get_col_name=function(j) varnames[j,1],
+                get_col_names=function() varnames[,1],
+                set_col_name=function(j, value) {
+                  "Set name, return old"
+                  old <- get_col_name(j)
+                  varnames[j,1] <<- value
+                  old
+                })
+## Code for filtering the display.
+DfModel$methods(
+                get_filter=function() {
+                  "Return logical indicating filter"
+                  store[,ncol(store)]
+                },
+                set_filter=function(value) {
+                  "Filter by value. Return old filter value"
+                  if(!is.logical(value)) stop("Filter requires a logical variable")
+                  ind <- rep(value, length.out=no_rows())
+                  old <- get_filter()
+                  store[,ncol(store)] <<- value
+                  old
+                })
+
+## In RGtk2, one can't both sort and filter by proxy. Since R makes sorting easy, 
+## we let Gtk handle the filtering and implement sorting below. The "old" value 
+## returned by this is what is needed to reverse a sort.
+DfModel$methods(
+                reorder=function(value) {
+                  "Reorder data frame. Return order(value)"
+                  perm <- as.integer(value)
+                  if(length(perm) != nrow(store)) stop("reorder requires a permutation")
+                  if(length(perm) != length(unique(perm))) stop("value has repeated values")
+                  if(min(perm) != 1 || max(perm) != nrow(store)) stop("value is not permutation of row indices")
+
+                  store[,] <<- store[perm,]
+                  order(perm)  # will revers a[ind][order(ind)] is involution
+                })
+@
+
+<<CommandStack, echo=FALSE, results=hide>>=
+## Command Stack
+## A list with ptr. delegates call of do or undo to appropriate command
+CommandStack <- setRefClass("CommandStack",
+                            fields=list(
+                              l="list",
+                              ptr="integer"
+                              ))
+## initialize method just sets the list and pointer to a default.
+CommandStack$methods(
+                     initialize=function() {
+                       initFields(l=list(), ptr=0)
+                       callSuper()
+                     })
+## do method finds the right command then delegates to the commands do method
+## undo is similar
+## The can_do and can_undo commands are used to check if the command stack allows for
+## these operations
+CommandStack$methods(
+                     do=function() {
+                       if(!can_do()) return()
+                       cmd <- l[[ptr]]
+                       ptr <<- ptr + 1
+                       cmd$do()
+                     },
+                     undo=function() {
+                       if(!can_undo()) return()
+                       cmd <- l[[ptr-1]]
+                       ptr <<- ptr - 1
+                       cmd$undo()
+                     },
+                     can_do=function() ptr > 0 && ptr <= length(l),
+                     can_undo=function() ptr > 1
+                     )
+## Methods to add to and clear the command stack
+CommandStack$methods(
+                     add=function(cmd, call=TRUE) {
+                       if(ptr <= 1) {
+                         l <<- list(cmd)
+                         ptr <<- 1
+                       } else {
+                         l <<- l[1:(ptr-1)]
+                         l[[length(l) + 1]] <<- cmd
+                       }
+                       if(call)
+                         do()
+                     },
+                     clear=function(cmd) {
+                       l <<- list(); ptr <<- 0
+                     })
+@
+
+<<addCellRenderer, echo=FALSE, results=hide>>=
+## We create our cellrenderers using an S3 generic to dispatch based on the class of the column. This
+## works out well, as the view is column based as well. The editable commands have 
+## to find a row, a column and a value before make a command to add to the command stack.
+## The row comes from the path, but must be "unfiltered" to point to the original data store. 
+## The column is passed into the function by the caller.
+
+
+##' Create an appropriate cell renderer
+##'
+##' @param x vector to display in column
+##' @param nm name of vector for title
+##' @param obj a DfModel instance
+##' @param view GtkTreeView instance we add the cellrenderer to
+##' @param command_stack a CommandStack instance needed for the callback
+##' @return NULL
+add_cellrenderer_by_class <- function(x, nm, obj, view, j, command_stack) UseMethod("add_cellrenderer_by_class")
+add_cellrenderer_by_class.default <- function(x, nm, obj, view, j, command_stack) {
+  cr <- gtkCellRendererText()
+  cr['editable'] <- TRUE
+  gSignalConnect(cr, "edited", f=function(cr, path, newtext) {
+    i <- as.numeric(path) + 1
+    i <- which(obj$get_filter())[i]     # in regular    
+    value <- newtext
+    cmd <- Command$new(obj, "set_cell", i=i, j=j, value=value)
+    command_stack$add(cmd)
+  })
+  view$insertColumnWithAttributes(position=-1, 
+                                  title=nm,
+                                  cell=cr,
+                                  text=j-1)
+}
+
+add_cellrenderer_by_class.logical <- function(x, nm, obj, view, j, command_stack) {
+  cr <- gtkCellRendererToggle()
+  cr['activatable'] <- TRUE
+  gSignalConnect(cr, "toggled", function(w, path) {
+    i <- as.numeric(path) + 1           # in filtered
+    i <- which(obj$get_filter())[i]     # in regular
+    value <- !obj$get_cell(i,j)
+    cmd <- Command$new(obj, "set_cell", i=i, j=j, value=value)
+    command_stack$add(cmd)
+  })
+  view$insertColumnWithAttributes(position=-1, 
+                                  title=nm,
+                                  cell=cr,
+                                  active=j-1)
+}
+
+add_cellrenderer_by_class.factor <- function(x, nm, obj, view, j, command_stack) {
+  cr <- gtkCellRendererCombo()
+  cr_store <- rGtkDataFrame(sort(levels(x)))
+  cr['model'] <- cr_store
+  cr['text-column'] <- 0
+  cr['has-entry'] <- FALSE
+  cr['editable'] <- TRUE
+  gSignalConnect(cr, "changed", function(w, path, iter, user.data) {
+    i <- as.numeric(path) + 1
+    i <- which(obj$get_filter())[i]     # in regular    
+    value <- cr_store$getValue(iter, 0)$value
+    cmd <- Command$new(obj, "set_cell", i=i, j=j, value=value)
+    command_stack$add(cmd)
+  })
+  view$insertColumnWithAttributes(position=-1, 
+                                  title=nm,
+                                  cell=cr,
+                                  text=j-1L)
+}
+@
+
+<<EditDataFrame, echo=FALSE, results=hide>>=
+## Main reference class to edit a data frame within a GUI
+## The view relies on a DataFrameModel and CommandStack instance, each of which is 
+## defined within the initialize method.
+EditDataFrame <- setRefClass("EditDataFrame",
+                             fields=list(
+                               df_model="ANY",
+                               command_stack="ANY",
+                               actions="list",
+                               ## layout
+                               mainwindow="ANY",
+                               statusbar="ANY",
+                               uimanager="ANY", 
+                               view="ANY"
+                               ))
+## The initialize method makes several different calls. Here we initialize the actions into action group.
+EditDataFrame$methods(
+                      initialize_actions=function(box) {
+                        ## our callback. Calls an appropriately named method of this class.
+                        fun=function(action) {
+                          meth <- action$getName()
+                          out <- try(do.call(call_meth(meth, .self), list()), silent=TRUE)
+                        }
+
+                        ## Define action groups in a list
+                        fileL <- list(## name, ID, label, accelerator, tooltip, callback
+                                      list("File",NULL,"_File",NULL,NULL,NULL),
+                                      list("Save", "gtk-save", "Save", "<ctrl>S", "Save data to variable", fun),
+                                      list("SaveAs", "gtk-save", "Save as...", NULL, "Save data to variable", fun),
+                                      list("Export", NULL, "Export", NULL, NULL, NULL),
+                                      list("ExportToCSV", "gtk-export", "Export to CSV", NULL, "Save data to CSV file", fun),
+                                      list("ExportToSaveFile", "gtk-export", "Export to save() file", NULL, "Save data to save() file", fun),
+                                      list("CloseWindow", "gtk-close", "Close window", "<ctrl>W", "Close current window", fun)
+                                      )
+
+                        editL <- list(## name, ID, label, accelerator, tooltip, callback
+                                      list("Edit", NULL, "_Edit", NULL, NULL, NULL),
+                                      list("Undo", "gtk-undo", "Undo", "<ctrl>Z",  "Undo last command", fun),
+                                      list("Redo", "gtk-redo", "Redo", "<ctrl>U", "Redo undo command", fun),
+                                      list("ChangeColumnName", "gtk-change", "Change column name",
+                                                          NULL, "Change a column name", fun)
+                                      )
+                        
+                        toolL <- list(
+                                      list("Tools", NULL, "_Tools", NULL, NULL, NULL),
+                                      list("Filter", "gtk-filter", "Filter", NULL, "Filter data frame", fun),
+                                      list("Sort", "gtk-sort", "Sort", NULL, "Sort data frame by column name", fun)                                      )
+                        l <- list(fileL, editL, toolL)
+
+                        ## create UI manager, insert action groups
+                        uimanager <<- gtkUIManager()
+                        for(i in seq_along(l)) {
+                          ag <- gtkActionGroup(sprintf("Group%s",i))
+                          ag$addActions(l[[i]])
+                          uimanager$insertActionGroup(ag, i-1)
+                        }
+                      })
+
+## Here we initialize the UI 
+EditDataFrame$methods(
+                      initialize_ui=function() {
+                        ## define xml specifying menubars and toolbars
+                        ui.xml <- readLines(out <- textConnection('
+<ui>
+  <menubar name="menubar">
+    <menu name="FileMenu" action="File">
+      <menuitem action="Save"/>
+      <menuitem action="SaveAs" />
+      <menu name="Export" action="Export">
+        <menuitem action="ExportToCSV" />
+        <menuitem action="ExportToSaveFile" />
+      </menu>
+      <separator />
+      <menuitem name="FileQuit" action="CloseWindow" />
+    </menu>
+    <menu action="Edit">
+      <menuitem name="EditUndo" action="Undo" />
+      <menuitem name="EditRedo" action="Redo" />
+      <menuitem action="ChangeColumnName" />
+    </menu>
+    <menu action="Tools">
+      <menuitem action="Filter" />
+      <menuitem action="Sort" />
+    </menu>
+  </menubar>
+  <toolbar name="toolbar">
+    <toolitem action="Save"/>
+    <toolitem action="SaveAs"/>
+    <separator />
+    <toolitem action="CloseWindow"/>
+  </toolbar>
+</ui>'), warn=FALSE)
+                        close(out)
+                        ## specify the UI using XML specification
+                        id <- uimanager$addUiFromString(paste(ui.xml, collapse="\n")) 
+                      })
+
+## Here we layout the GUI
+EditDataFrame$methods(
+                      make_gui=function() {
+                        df <- df_model$get_dataframe()
+                        nms <- names(df)
+                        view <<- gtkTreeView(df_model$filtered)
+                        sapply(seq_len(length(df)), function(j) {
+                          add_cellrenderer_by_class(df[[j]], nms[j], df_model, view, j, command_stack)
+                        })
+                        ##
+                        ## place into GUI
+                        mainwindow <<- w <- gtkWindow(show=FALSE)
+                        #
+                        vbox <- gtkVBox()
+                        w$add(vbox)
+                        #
+                        menubar <- uimanager$getWidget("/menubar")
+                        vbox$packStart(menubar, FALSE)
+                        toolbar <- uimanager$getWidget("/toolbar")
+                        vbox$packStart(toolbar, FALSE)
+                        w$addAccelGroup(uimanager$getAccelGroup())
+                        ##
+                        sw <- gtkScrolledWindow()
+                        sw$add(view)
+                        vbox$PackStart(sw, TRUE, TRUE)
+                        ##
+                        statusbar <<- gtkStatusbar()
+                        statusbar$getChildren()[[1]]$setSizeRequest(-1, 25)
+                        vbox$PackStart(statusbar, FALSE)
+                        w$show()
+                      })
+
+## This method call updates the GUI: sets the redo/undo buttons and the status bar.
+EditDataFrame$methods(
+                      update_UI=function(event="") {
+                        ## update actions
+                        ## Could save undo/redo actions as we look them up inefficiently below
+                        undo <- redo <- NULL
+                        for(i in uimanager$getActionGroups()) {
+                          tmp <- i$getAction("Redo")
+                          if(!is.null(tmp)) redo <- tmp
+                          tmp <- i$getAction("Undo")
+                          if(!is.null(tmp)) undo <- tmp
+                        }
+                        undo$setSensitive(command_stack$can_undo())
+                        redo$setSensitive(command_stack$can_do())
+
+                        ## update status bar
+                        tpl <- "Editing %s. Showing %s lines of %s."
+                        statusbar$push(statusbar$getContextId("message"),
+                                       sprintf(tpl, df_model$name,
+                                               sum(df_model$get_filter()),
+                                               df_model$no_rows()))
+                        
+                      })
+## This sets up a callback when parts of the DataFrameModel change. Here is how
+## we synchronize column names and why we used a RGtkDataFrame class to hold them in the definition
+## of the DataFrameModel class
+EditDataFrame$methods(
+                      synchronize_view=function() {
+                        gSignalConnect(df_model$store, "row-changed", function(model, path, iter) {
+                          update_UI()
+                        })
+                        gSignalConnect(df_model$varnames, "row-changed", function(model, path, iter) {
+                          j <- as.numeric(path$toString()) + 1
+                          value <- df_model$varnames[j,1]
+                          col <- view$getColumn(j-1)
+                          col['title'] <- value
+                          update_UI()
+                        })
+                      })
+## Finally an initialization method
+EditDataFrame$methods(
+                      initialize=function(df) {
+                        if(!is.data.frame(df))
+                          stop("Requires a data frame")
+                        initFields(df_model=DfModel$new(df),
+                                   command_stack=CommandStack$new())
+
+                        initialize_actions()
+                        initialize_ui()
+                        make_gui()
+                        synchronize_view()
+                        update_UI()
+                        callSuper()
+                      })
+@
+
+<<Actions, echo=FALSE, results=hide>>=
+## Actions are defined here
+## Basically we delegate down to data frame model
+## We are lazy about some dialogs, so use the gWidgets package
+require(gWidgets); options(guiToolkits="RGtk2")
+EditDataFrame$methods(
+                      Save=function() {
+                        df_model$save()
+                        command_stack$clear()
+                      })
+
+EditDataFrame$methods(
+                      Undo=function() {command_stack$undo()},
+                      Redo=function() {command_stack$do()}
+                      )
+
+EditDataFrame$methods(
+                      SaveAs=function() {
+                        current_vars <- ls(envir=.GlobalEnv)
+                        dlg <- gbasicdialog("Select a variable name...", parent=mainwindow, handler=function(h,...) {
+                          var <- svalue(e)
+                          if(nchar(var)) {
+                            if(exists(var, .GlobalEnv)) {
+                              if(!gconfirm(c("Variable exists", "Really overwrite?"), parent=dlg))
+                                return()
+                            }
+                            df_model$save(var)
+                            update_UI()
+                            command_stack$clear()
+                          }
+                        })
+                        g <- ggroup(cont=dlg, horizontal=FALSE)
+                        glabel("Variable name to save as:", cont=g)
+                        e <- gedit("", cont=g)
+                        e[] <- current_vars
+                        visible(dlg, set=TRUE)
+                      })
+
+EditDataFrame$methods(
+                      ExportToCSV=function() {
+                        f <- gfile("Select a filename", type="save")
+                        if(!is.na(f))
+                          df_model$export_to_csv(f)
+                      })
+
+EditDataFrame$methods(
+                      ExportToSaveFile=function() {
+                        f <- gfile("Select a filename", type="save")
+                        if(!is.na(f))
+                          df_model$export_to_save(f)
+                      })
+
+EditDataFrame$methods(
+                      CloseWindow=function() {
+                        if(command_stack$can_undo() || command_stack$can_do()) {
+                          if(!gconfirm(c("Really quit", "There are pending changes"),
+                                       parent=mainwindow))
+                            return()
+                        }
+                        mainwindow$destroy()
+                      })
+
+EditDataFrame$methods(
+                      ChangeColumnName=function() {
+                        j <- NA; value <- character(0)
+                        ## get column and new names
+                        dlg <- gbasicdialog("Rename a column", parent=mainwindow)
+                        g <- ggroup(horizontal=FALSE, cont=dlg)
+                        varnames <- df_model$get_col_names()
+                        tbl <- gtable(data.frame(Variables=varnames), cont=g, expand=TRUE)
+                        size(tbl) <- c(300, 250)
+                        l <- glabel("Select a variable", cont=g)
+                        e <- gedit("", cont=g); enabled(e) <- FALSE
+                        addHandlerClicked(tbl, handler=function(h,...) {
+                          val <- svalue(h$obj)
+                          assign("j", match(val, varnames), inherits=TRUE)
+                          if(!is.na(j)) {
+                            svalue(l) <- sprintf("Change %s to:", val)
+                            enabled(e) <- TRUE
+                          } else {
+                            svalue(l) <- "Select a variable"
+                            svalue(e) <- ""
+                            enabled(e) <- FALSE
+                          }
+                        })
+                        addHandlerKeystroke(e, handler=function(h,...) {
+                          assign("value", svalue(h$obj), inherits=TRUE)
+                        })
+                        ret <- visible(dlg, set=TRUE)
+                        if(ret && !is.na(j)) {
+                          cmd <- Command$new(df_model, "set_col_name", j=j, value=value)
+                          command_stack$add(cmd)
+                        }
+                      })
+                      
+EditDataFrame$methods(
+                      Filter=function() {
+                        ind <- NULL
+                        dlg <- gbasicdialog("Enter an expression", parent=mainwindow, handler=function(h,...) {
+                          val <- svalue(e)
+                          df <- df_model$get_dataframe()
+                          out <- try(eval(parse(text=val), df), silent=FALSE)
+                          if(!inherits(out, "try-error"))
+                            assign("ind", out, inherits=TRUE)
+                        })
+                        g <- ggroup(cont=dlg, horizontal=FALSE)
+                        glabel("Enter an expression to filter by:", cont=g)
+                        e <- gedit("", cont=g)
+                        ret <- visible(dlg, set=TRUE)
+                        if(ret && is.logical(ind)) {
+                          cmd <- Command$new(df_model, "set_filter", value=ind)
+                          command_stack$add(cmd)
+                        }
+                      })
+
+EditDataFrame$methods(
+                      Sort=function() {
+                        perm <- integer(0)
+                        df <- df_model$get_dataframe()
+                        varnames <- df_model$get_col_names()
+                        dlg <- gbasicdialog("Sort by:", parent=mainwindow, handler=function(h,...) {
+                          var <- svalue(tbl, index=TRUE)
+                          if(length(var) == 0) return()
+                          x <- df[,var]
+                          assign("perm", order(x, decreasing=svalue(decreasing)), inherits=TRUE)
+                        })
+                        g <- ggroup(horizontal=FALSE, cont=dlg)
+                        tbl <- gtable(data.frame(Variables=varnames), cont=g)
+                        size(tbl) <- c(300, 250)
+                        decreasing <- gcheckbox("Decreasing?", checked=FALSE, cont=g)
+                        ret <- visible(dlg, set=TRUE)
+                        ##
+                        if(ret && length(perm)) {
+                          cmd <- Command$new(df_model, "reorder",  value=perm)
+                          command_stack$add(cmd)
+                        }
+                      })
+@
+
+<<testItOut, echo=FALSE, results=hide>>=
+## Test it out....
+require(MASS)
+df <- Cars93[sample(1:93, 20),c(1, 5, 26)]; df$American <- df$Origin == "USA"
+a = EditDataFrame$new(df)
+@
+
+<<oldWay, echo=FALSE, results=hide>>=
+## Old way to add actions, menubar, For comparison
+## not called by the initialize method
+EditDataFrame$methods(
+                      initialize_actions_old=function() {
+                           ## actions. Must have a matching method
+                        al <- list()
+                        al$save <- gtkAction("Save", "Save", "Save data to variable", "gtk-save")
+                        al$saveas <- gtkAction("SaveAs", "Save as...", "Save data to variable", "gtk-save")
+                        al$exportAsCSV <- gtkAction("ExportToCSV", "Export to CSV", "Save data to CSV file", "gtk-export")
+                        al$exportAsSaveFile <- gtkAction("ExportToSaveFile", "Export to save() file", "Save data to save() file", "gtk-export")
+                        al$close <- gtkAction("CloseWindow", "Close window", "Close current window", "gtk-close")
+                        ## Edit menu
+                        al$undo <- gtkAction("Undo", "Undo", "Undo last command", "gtk-undo")
+                        al$redo <- gtkAction("Redo", "Redo", "Redo undo command", "gtk-redo")
+                        al$change_column_name <- gtkAction("ChangeColumnName", "Change column name",
+                                                          "Change a column name", "gtk-change")
+                        ## Tools
+                        al$filter <- gtkAction("Filter", "Filter", "Filter data frame", "gtk-filter")
+                        al$sort <- gtkAction("Sort", "Sort", "Sort data frame by column name", "gtk-sort")
+                        
+                        ## stub handler
+                        sapply(al, gSignalConnect, "activate", function(action) {
+                          meth <- action$getName()
+                          out <- try(do.call(get(meth, .self), list()), silent=TRUE)
+                          print(out)
+                        })
+                        
+                        actions <<- al
+                      },
+                      make_menu=function(box) {
+                        mb <- gtkMenuBar()
+
+                        fileMenu <- gtkMenu()
+                        fileItem <- gtkMenuItem("File")
+                        fileItem$setSubmenu(fileMenu)
+                        sapply(c("save","saveas", "exportAsCSV","exportAsSaveFile","close"),
+                               function(act)
+                               fileMenu$append(actions[[act]]$createMenuItem()))
+
+                        editMenu <- gtkMenu()
+                        editItem <- gtkMenuItem("Edit")
+                        editItem$setSubmenu(editMenu)
+                        sapply(c("undo","redo", "change_column_name"),
+                               function(act)
+                               editMenu$append(actions[[act]]$createMenuItem()))
+
+                        toolsMenu <- gtkMenu()
+                        toolsItem <- gtkMenuItem("Tools")
+                        toolsItem$setSubmenu(toolsMenu)
+                        sapply(c("filter", "sort"),
+                               function(act)
+                               toolsMenu$append(actions[[act]]$createMenuItem()))
+
+                        sapply(list(fileItem, editItem, toolsItem), mb$append)
+                        box$packStart(mb, FALSE)
+
+                      }
+)
+@ 

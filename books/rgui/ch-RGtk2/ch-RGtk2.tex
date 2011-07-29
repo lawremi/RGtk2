@@ -154,7 +154,7 @@ interfaces implemented by \class{GtkWidget}:
  gTypeGetInterfaces("GtkWidget")
 \end{Sinput}
 \begin{Soutput}
-[1] "AtkImplementorIface" "GtkBuildable"       
+[1] "GtkBuildable"        "AtkImplementorIface"
 \end{Soutput}
 \end{Schunk}
 
@@ -295,7 +295,7 @@ interfaces it implements:
  interface(window)
 \end{Sinput}
 \begin{Soutput}
-[1] "AtkImplementorIface" "GtkBuildable"       
+[1] "GtkBuildable"        "AtkImplementorIface"
 \end{Soutput}
 \end{Schunk}
 
@@ -1577,7 +1577,7 @@ of printing R graphics using \pkg{cairoDevice}.
 
 
 \section{Special-purpose Containers}
-\label{sec:containers}
+\label{sec:RGtk2:containers}
 
 In Section~\ref{sec:RGtk2:layout}, we presented \class{GtkBox} and
 \class{GtkAlignment}, the two most useful layout containers in
@@ -4889,6 +4889,10 @@ The spin button editor is configured by setting a
 \class{GtkAdjustment} on the \code{adjustment} property.
 
 
+The \signal{changed} signal is emitted when an items is selected in
+the combo box. The spin cell renderer inherits the \signal{edited}
+signal from \class{GtkCellRendererText}.
+
 %% pixbuf
 \paragraph{Pixbuf cell renderers}
 
@@ -6036,14 +6040,14 @@ $retval
 NULL
 
 $start
-<pointer: 0x104a428e0>
+<pointer: 0x104a78830>
 attr(,"interfaces")
 character(0)
 attr(,"class")
 [1] "GtkTextIter" "GBoxed"      "RGtkObject" 
 
 $end
-<pointer: 0x104a42890>
+<pointer: 0x104a78b00>
 attr(,"interfaces")
 character(0)
 attr(,"class")
@@ -6331,7 +6335,7 @@ To add the widget, we call the text view method
 
 \begin{example}{A simple command line interface}{eg:RGtk2-command-line}
 This example shows how to create a simple command line interface with
-the text view widget. While few statistical applications will include
+the text view widget (Figure~\ref{fig:RGtk2-terminal}). While few statistical applications will include
 a command line widget, the example is familiar and shows several
 different, but useful, aspects of the widget.
 
@@ -6501,8 +6505,6 @@ bottom when the contents of the buffer are modified:
 \end{Sinput}
 \end{Schunk}
 
-Figure~\ref{fig:RGtk2-terminal} shows the widget placed into a very
-simple GUI.
 
 
 
@@ -6535,14 +6537,6 @@ toolbars and status bars and conclude by explaining the mechanisms in
 \GTK\/ for conveniently defining and managing actions and associated
 widgets in a large application.
 
-\begin{figure}
-  \centering
-  \includegraphics[width=.7\textwidth]{ex-RGtk2-action-items-infobar}
-  \caption{An application window mock up showing a menu bar, tool bar,
-  and info bar}
-  \label{fig:RGtk2-action-items-infobar}
-\end{figure}
-
 
 \section{Actions}
 \label{sec:RGtk2:actions}
@@ -6572,6 +6566,15 @@ connected to the \signal{activate} signal:
  })
 \end{Sinput}
 \end{Schunk}
+
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.7\textwidth]{ex-RGtk2-action-items-infobar}
+  \caption{An application window mock up showing a menu bar, tool bar,
+  and info bar}
+  \label{fig:RGtk2-action-items-infobar}
+\end{figure}
 
 An action plays the role of a data model describing a command, while
 widgets that implement the \class{GtkActivatable} interface are the
@@ -6619,7 +6622,8 @@ respectively. Here, we create a toggle action for fullscreen mode:
 \begin{Schunk}
 \begin{Sinput}
  fullScreen <- gtkToggleAction("fullscreen", "Full screen", 
-                               "Toggle full screen",stock.id="gtk-fullscreen")
+                               "Toggle full screen",
+                               stock.id="gtk-fullscreen")
  gSignalConnect(fullScreen, "toggled", function(action) {
    if(fullScreen['active'])
      window$fullscreen()
@@ -7170,244 +7174,333 @@ The steps required to use \GTK's UI manager are
 \begin{enumerate}
 \item construct the UI manager,
 \item define the actions in groups,
-\item specify the layout of the menu bars and toolbars,
 \item connect the action group to the UI manager, 
-\item set up an accelerator group for keyboard shortcuts, and finally
+\item set up an accelerator group for keyboard shortcuts, 
+\item specify the layout of the menu bars and toolbars, and finally
 \item display the widgets.
 \end{enumerate}
 
 \begin{example}{UI Manager example}{ex:RGtk2:UImanager}
+In this example, we show how to use a UI manager to create the menu
+and tool bars for a data frame editor, similar to, but with enhanced
+functionality, the one produced in some platforms by the
+\function{data.entry} function. 
+
 
 \begin{figure}
   \centering
-  \includegraphics[width=.6\textwidth]{ex-RGtk2-UI}
-  \caption{A GUI made using a UI manager to layout the menubar and toolbar.}
-  \label{fig:RGtk2-UI}
+  \includegraphics[width=.7\textwidth]{fig-RGtk2-editable-dataframe}
+  \caption{An instance of an editable data frame with menu and tool
+    bars specified using an instance of \class{GtkUIManager}. This
+    example, implements the command pattern to provide simple undo and
+    redo functionality.}
+  \label{fig:RGtk2-editable-dataframe}
 \end{figure}
 
 
-We begin by constructing the UI manager:
-\begin{Schunk}
-\begin{Sinput}
- uimanager = gtkUIManager()
-\end{Sinput}
-\end{Schunk}
 
-Next, we define the action groups. For demonstration purposes, our
-actions simply push the action name onto the status bar at the bottom
-of the window:
+
+
+Our menubar and toolbar layout is specified in XML according to a
+schema specified by the UI manager framework. The XML can be stored in
+a file or an \R\/ character vector.  The structure of the file can be
+grasped quickly from this example, which we use in the sequel.
+
 \begin{Schunk}
 \begin{Sinput}
- someAction <- function(action,...) 
-   statusbar$push(statusbar$getContextId("message"), 
-                  action$getName())
+ ui.xml <- readLines(out <- textConnection('
+ <ui>
+   <menubar name="menubar">
+     <menu name="FileMenu" action="File">
+       <menuitem action="Save"/>
+       <menuitem action="SaveAs" />
+       <menu name="Export" action="Export">
+         <menuitem action="ExportToCSV" />
+         <menuitem action="ExportToSaveFile" />
+       </menu>
+       <separator />
+       <menuitem name="FileQuit" action="CloseWindow" />
+     </menu>
+     <menu action="Edit">
+       <menuitem name="EditUndo" action="Undo" />
+       <menuitem name="EditRedo" action="Redo" />
+       <menuitem action="ChangeColumnName" />
+     </menu>
+     <menu action="Tools">
+       <menuitem action="Filter" />
+       <menuitem action="Sort" />
+     </menu>
+   </menubar>
+   <toolbar name="toolbar">
+     <toolitem action="Save"/>
+     <toolitem action="SaveAs"/>
+     <separator />
+     <toolitem action="CloseWindow"/>
+   </toolbar>
+ </ui>'), warn=FALSE)
+ close(out)
 \end{Sinput}
 \end{Schunk}
 %
-We also need a quit handler:
-\begin{Schunk}
-\begin{Sinput}
- Quit <- function(...) win$destroy()
-\end{Sinput}
-\end{Schunk}
 
-We break up our action group definitions into one for ``File'',
-and ``Edit'' and one for ``Help.'' Every action is defined by a
-\class{GtkActionEntry} structure, which is represented by a list in
-\R. The components (in order) are the name; the icon; the
-label, with \code{\_} specifying the mnemonic; the keyboard
-accelerator, with \code{<control>}, \code{<alt>}, \code{<shift>} as
-possible prefixes, a tooltip, and finally the callback. Empty values
-can be defined as \code{NULL} or, except for the callback, an empty
-string.
+We used indenting to show the nesting of the menus. For menus we see
+the use of menu bars, menus and menu items. The menu and menu items have a
+corresponding action associated with them, which can provide a callback.
 
-We define the actions for the ``File'' and ``Edit'' menus:
+If \code{uimanager} is our \class{GtkUIManager} instance, then we can
+add this through the command:
 \begin{Schunk}
 \begin{Sinput}
- firstActionGroup <- gtkActionGroup("firstActionGroup")
- firstActionEntries <- list(
-   ## name,ID,label,accelerator,tooltip,callback
-   file = list("File",NULL,"_File",NULL,NULL,NULL),
-   new = list("New", "gtk-new", "_New", "<control>N", 
-     "New document", someAction),
-   sub = list("Submenu", NULL, "S_ub", NULL, NULL, NULL),
-   open = list("Open", "gtk-open", "_Open", "<ctrl>0", 
-     "Open document", someAction),
-   save = list("Save", "gtk-save", "_Save", "<alt>S", 
-     "Save document", someAction),
-   quit = list("Quit", "gtk-quit", "_Quit", "<ctrl>Q", 
-     "Quit", Quit),
-   edit = list("Edit", NULL, "_Edit", NULL, NULL, NULL),
-   undo = list("Undo", "gtk-undo", "_Undo", "<ctrl>Z", 
-     "Undo change", someAction),
-   redo = list("Redo", "gtk-redo", "_Redo", "<ctrl>U", 
-     "Redo change", someAction)
- )
+ id <- uimanager$addUiFromString(ui.xml)
 \end{Sinput}
 \end{Schunk}
-%
-In the above, we create dummy actions named ``File'' and ``Edit'' that
-perform no function. They are necessary for specifying the menu layout
-later. We now add the actions to the action group, then add this
-action group to the first spot in the UI manager:
-\begin{Schunk}
-\begin{Sinput}
- firstActionGroup$addActions(firstActionEntries)
- uimanager$insertActionGroup(firstActionGroup, 0) # 0-based
-\end{Sinput}
-\end{Schunk}
+Alternately, we could load the code from a file. The return value is
+an id that can be used to unmerge this part of the UI. The ability to
+merge and unmerge parts of the UI is one main attraction for using
+this framework, although we don't illustrate that here. 
 
-The redo feature should only be sensitive to mouse
-events after a user has undone an action. If we wanted to alter the
-sensitivity of the redo action, we would need to retrieve it from the
-action group:
+To define the actions, we can use lists, as in this which is used for
+the file menu:
 \begin{Schunk}
 \begin{Sinput}
- redo <- firstActionGroup$getAction("Redo")
- redo['sensitive'] <- FALSE
+ fileL <- list(## name, ID, label, accelerator, tooltip, callback
+               list("File",NULL,"_File",NULL,NULL,NULL),
+               list("Save", "gtk-save", "Save", "<ctrl>S", 
+                    "Save data to variable", fun),
+               list("SaveAs", "gtk-save", "Save as...", NULL, 
+                    "Save data to variable", fun),
+               list("Export", NULL, "Export", NULL, NULL, NULL),
+               list("ExportToCSV", "gtk-export", "Export to CSV", 
+                    NULL, "Save data to CSV file", fun),
+               list("ExportToSaveFile", "gtk-export", 
+                    "Export to save file", NULL, 
+                    "Save data to save() file", fun),
+               list("CloseWindow", "gtk-close", "Close window", 
+                    "<ctrl>W", "Close current window", fun)
+               )
 \end{Sinput}
 \end{Schunk}
+% 
+Each item contains $6$ pieces of information: a name (which we use in
+\code{fun} to call the appropriate method), a stock-id, a label, a
+keyboard accelerator a tooltip, and finally a callback for when the
+action is invoked.
 
-It is also possible to define toggle actions, as we demonstrate
-presently for the ``Help'' group. First, we define the ordinary actions:
+We can add these items to an action group, along the lines of
 \begin{Schunk}
 \begin{Sinput}
- helpActionGroup <- gtkActionGroup("helpActionGroup")
- helpActionEntries <- list(
-   help = list("Help", "", "_Help", "", "", NULL),
-   about = list("About", "gtk-about", "_About", "", "", 
-     someAction)
- )
- helpActionGroup$addActions(helpActionEntries)
-\end{Sinput}
-\end{Schunk}
-%
-Next, we define a ``Use tooltips'' toggle action:
-\begin{Schunk}
-\begin{Sinput}
- toggleActions <- list(
-   tooltips = list("UseTooltips", NULL, "Use _Tooltips", "<control>T", 
-     "Enable tooltips", someAction, TRUE)
- )
- helpActionGroup$addToggleActions(toggleActions)
+ ag <- gtkActionGroup("FileGroup")
+ ag$addActions(fileL)
 \end{Sinput}
 \begin{Soutput}
 NULL
 \end{Soutput}
 \end{Schunk}
-%
-The list structure for toggle action entry is identical to that of the
-ordinary actions, except for the last element which indicates whether
-the action is initially active.  One can also incorporate radio
-actions, although this is not shown.  Finally, we insert the help
-action group in the second position:
+
+We can then insert the action group in to the UI manager:
 \begin{Schunk}
 \begin{Sinput}
- uimanager$insertActionGroup(helpActionGroup, 1)
+ uimanager$insertActionGroup(ag, 0)
 \end{Sinput}
 \end{Schunk}
 %
+The position (\code{0}) is used to determine which action will be
+called, when there is more than one similarly named.
 
-Our menubar and toolbar layout is specified as XML according to a
-schema specified by the UI manager framework. The XML can be stored in
-a file or an \R\/ character vector.  The structure of the file can be
-grasped quickly from this example:
+
+%% insert into GUI
+We now place the UI manager into the GUI. The UI manager specification
+create widgets which we can retrieve through its
+\meth{getWidget}{GtkUIManager} method. In the layout of our GUI, we
+have the following:
+
+\begin{Schunk}
+\begin{Sinput}
+ w <- gtkWindow(show=FALSE)
+ ##
+ vbox <- gtkVBox()
+ w$add(vbox)
+ ##
+ menubar <- uimanager$getWidget("/menubar")
+ vbox$packStart(menubar, FALSE)
+ toolbar <- uimanager$getWidget("/toolbar")
+ vbox$packStart(toolbar, FALSE)
+ ## ...
+\end{Sinput}
+\end{Schunk}
+%
+The \code{menubar} and  \code{toolbar} widgets are referred to by
+their path which come from the names specified in the XML description
+separated by "/". So, in the definition. the line
 \begin{verbatim}
 <ui>
   <menubar name="menubar">
-    <menu name="FileMenu" action="File">
-      <menuitem name="FileNew" action="New"/>
-      <menu action="Submenu">
-	<menuitem name="FileOpen" action="Open" />
-      </menu>
-      <menuitem name="FileSave" action="Save"/>
-      <separator />
-      <menuitem name="FileQuit" action="Quit"/>
-    </menu>
-    <menu action="Edit">
-      <menuitem name="EditUndo" action="Undo" />
-      <menuitem name="EditRedo" action="Redo" />
-    </menu>
-    <menu action="Help">
-      <menuitem action="UseTooltips"/>
-      <menuitem action="About"/>
-    </menu>
-  </menubar>
-  <toolbar name="toolbar">
-    <toolitem action="New"/>
-    <toolitem action="Open"/>
-    <toolitem action="Save"/>
-    <separator />
-    <toolitem action="Quit"/>
-  </toolbar>
-</ui>
+...
 \end{verbatim}
-% \VerbatimInput{ex-menus.xml}
+define the path \qcode{/menubar}, where \code{<ui>} is always
+the root element, and may be omitted.
 
-The top-level element is named \code{ui}, only one of which is allowed
-in a UI definition. The children of \code{ui} represent a top-level
-action container: \code{menubar}, \code{toolbar}, or \code{popup}.
-The \code{name} attributes are used to refer to the widgets later. The
-\code{menubar} element contains \code{menu} elements, which in turn
-contain \code{menuitem} and \code{separator} elements, as well as
-additional \code{menu} elements for nesting. The toolbars are
-populated with \code{toolitem} elements. The item elements have an
-\code{action} attribute that refers to an action in one of our action
-groups and an optional name (defaulting to the \code{action} value).
 
-This file is loaded into the UI manager as follows
+Finally, to connect the UI manager to the window, we add the keyboard
+accelerator group through:
 \begin{Schunk}
 \begin{Sinput}
- id <- uimanager$addUiFromFile("ex-menus.xml")
+ w$addAccelGroup(uimanager$getAccelGroup())
+\end{Sinput}
+\end{Schunk}
+
+
+
+Figure~\ref{fig:RGtk2-editable-dataframe} shows an illustration of the
+finished application. The full details are found in the code in our accompanying
+package \pkg{ProgGUIinR}. Here we discuss how the \iprogram{command pattern}\dfn{command
+  pattern} was implemented to provide a simple undo and redo feature
+to our editing.
+
+According to \footcite{head-first-design-patterns}, the command
+pattern is used to \iprogram{encapsulate}encapsulate a request (method
+call) as an object. A basic command object has just one method,
+\meth{execute}. Any needed parameters are stored in the object as
+properties. For our implementation we use a reference class with fields:
+
+\begin{Schunk}
+\begin{Sinput}
+ Command <- setRefClass("Command",
+                        fields=list(
+                          receiver="ANY",
+                          meth="character",
+                          params="list",
+                          old_params="list"
+                          ))
 \end{Sinput}
 \end{Schunk}
 %
-The \code{id} value can be used to merge and delete UI components
-according to the mode of the UI, but this is not illustrated here.
-
-Now we can setup a basic window template with a menubar, toolbar, and
-status bar. We first construct the three main widgets. The UI manager
-will construct our toolbar and menubar, as identified from the names
-specified in the UI definition:
+The receiver is the object the method is called on. For a simple
+function call, this could be an environment the function is found
+in. The \code{meth} property is the name of the method, \code{params}
+a list of parameters. With these we define the main methods:
 \begin{Schunk}
 \begin{Sinput}
- menubar <- uimanager$getWidget("/menubar")
- toolbar <- uimanager$getWidget("/toolbar")
-\end{Sinput}
-\end{Schunk}
-The statusbar is constructed with
-\begin{Schunk}
-\begin{Sinput}
- statusbar <- gtkStatusbar()
+ Command$methods(
+                 initialize=function(receiver, meth, ...) {
+                   l <- list(...)
+                   initFields(receiver=receiver, meth=meth, 
+                              params=l, old_params=l)
+                   callSuper()
+                 },
+                 execute=function(args) {
+                   do.call(call_meth(meth, receiver), args)
+                 })
 \end{Sinput}
 \end{Schunk}
 %
 
-Now we create a top-level window and attach a keyboard accelerator
-group to the window so that when the window has the focus, the
-keyboard shortcuts defined for our actions are active:
+Notice we pass in the arguments to our \meth{execute} method, rather
+than use those in the proporty \code{params}. This allows us to implement the
+\meth{do} and \meth{undo} methods in a similar manner:
 \begin{Schunk}
 \begin{Sinput}
- win <- gtkWindow(show=TRUE)
- win$setTitle("Window example")
- accelgroup <- uimanager$getAccelGroup()
- win$addAccelGroup(accelgroup)
+ Command$methods(
+                 do=function() {
+                   out <- execute(params)
+                   old_params$value <<- out
+                 },
+                 undo=function() execute(old_params)
+                 )
+ 
 \end{Sinput}
+\end{Schunk}
+%
+This assumes the method executed can return a value which can be used
+to reverse the call.If a method call is not so straightforward to
+reverse, one needs only subclass the \class{Command} call and provide
+a new \code{undo} method.
+
+A simple illustration might be:
+\begin{Schunk}
+\begin{Sinput}
+ x <- 1
+ set_x <- function(value) {
+   old <- x
+   x <<- value
+   old
+ }
+ cmd <- Command$new(.GlobalEnv, "set_x", value=2)
+ cmd$do();
+ x
+\end{Sinput}
+\begin{Soutput}
+[1] 2
+\end{Soutput}
+\end{Schunk}
+\begin{Schunk}
+\begin{Sinput}
+ cmd$undo();
+\end{Sinput}
+\end{Schunk}
+\begin{Schunk}
+\begin{Sinput}
+ x
+\end{Sinput}
+\begin{Soutput}
+[1] 1
+\end{Soutput}
 \end{Schunk}
 
-Now it is a simple matter of packing the widgets into a box.
+In our example, we create a stack of commands to keep track of what
+was done. This stack has methods \code{add}, \code{undo} and
+\code{redo}, each calling the \code{do} or \code{undo} method of the
+appropriate command in the stack.
+
+With this stack a typical action callback include something like this
+one from the action to change a column name:
 \begin{Schunk}
 \begin{Sinput}
- box <- gtkVBox()
- win$add(box)
- box$packStart(menubar, expand=FALSE, fill=FALSE, 0)
- box$packStart(toolbar, expand=FALSE, fill= FALSE, 0)
- contentArea <- gtkVBox()
- box$packStart(contentArea, expand=TRUE, fill=TRUE, 0)
- contentArea$packStart(gtkLabel("Content Area"))
- box$packStart(statusbar, expand=FALSE, fill=FALSE, 0)
+ cmd <- Command$new(df_model, "set_col_name", j=j, value=value)
+ command_stack$add(cmd)
 \end{Sinput}
 \end{Schunk}
+%
+To explain, \code{df\_model} is an instance of a yet-to-be-defined
+reference class defining a data model for the data frame being edited,
+and \code{j} and \code{value} are determined by a dialog called before
+the command is created. The point is, the method call for the
+\code{df\_model} object is encapsulated along with the needed
+parameters (a column number and new name) and then added to the
+command stack. The \meth{add} method calls the \code{do} method of the
+command to invoke the changing of the name.
+
+The data frame model (defined in our reference class \class{DfModel}) we define is a wrapper around an
+\class{RGtkDataFrame} object that holds the data. The method call
+above is implemented by:
+\begin{Schunk}
+\begin{Sinput}
+ DfModel$methods(
+                 get_col_name=function(j) varnames[j,1],
+                 get_col_names=function() varnames[,1],
+                 set_col_name=function(j, value) {
+                   "Set name, return old"
+                   old <- get_col_name(j)
+                   varnames[j,1] <<- value
+                   old
+                 })
+\end{Sinput}
+\end{Schunk}
+%%
+As can be seen we return the old value as that is needed, given how we
+implemented the \meth{do} method for the commands. We used an instance
+of \class{RGtkDataFrame} to store the variable (column) names, hence
+the double index. This allows us to listen for changed through the
+models \signal{row-changed} signal. The details, and more, are in the
+accompanying package.
+
+
+
+
+
+
+
+
 
 \end{example}
 

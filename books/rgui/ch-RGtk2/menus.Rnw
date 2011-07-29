@@ -464,12 +464,12 @@ The steps required to use \GTK's UI manager are
 \begin{enumerate}
 \item construct the UI manager,
 \item define the actions in groups,
-\item specify the layout of the menu bars and toolbars,
 \item connect the action group to the UI manager, 
-\item set up an accelerator group for keyboard shortcuts, and finally
+\item set up an accelerator group for keyboard shortcuts, 
+\item specify the layout of the menu bars and toolbars, and finally
 \item display the widgets.
 \end{enumerate}
 
 \begin{example}{UI Manager example}{ex:RGtk2:UImanager}
-  \SweaveInput{ex-RGtk2-UImanager}
+  \SweaveInput{ex-RGtk2-UImanager-II}
 \end{example}

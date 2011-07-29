@@ -1,6 +1,7 @@
 ###################################################
 ### chunk number 1: ButtonNewFromStockHardWay
 ###################################################
+#line 4 "ex-RGtk2-button-new-stock-hardway.Rnw"
 b <- gtkButton()
 g <- gtkHBox()
 pbuf <- b$renderIcon("gtk-ok", size=GtkIconSize["button"]) 

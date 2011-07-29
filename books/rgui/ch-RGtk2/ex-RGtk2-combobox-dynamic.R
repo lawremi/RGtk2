@@ -1,14 +1,16 @@
 ###################################################
 ### chunk number 1: 
 ###################################################
+#line 13 "ex-RGtk2-combobox-dynamic.Rnw"
 datasets <- c("mtcars", "Cars93")
 rdf <- rGtkDataFrame(datasets)
-dfCb <- gtkComboBoxEntryNewWithModel(rdf, text.column = 2)
+dfCb <- gtkComboBoxEntry(); dfCb$model <- rdf
 
 
 ###################################################
 ### chunk number 2: 
 ###################################################
+#line 22 "ex-RGtk2-combobox-dynamic.Rnw"
 variableNames <- character(0)
 varModel <- rGtkDataFrame(variableNames)
 varCb <- gtkComboBox(varModel)
@@ -20,7 +22,8 @@ varCb$addAttribute(cr, "text", 0)       # column 1
 ###################################################
 ### chunk number 3: notShown
 ###################################################
-## Our basic GUI uses a table for layout. Comboboxes fill and expand to fill 
+#line 31 "ex-RGtk2-combobox-dynamic.Rnw"
+## Our basic GUI uses a table for layout. Combo boxes fill and expand to fill 
 ## the cell.
 tbl <- gtkTableNew(rows=2, columns=2, homogeneous=FALSE)
 tbl$attach(gtkLabel("Data frame"), left.attach=0,1, top.attach=0,1, 
@@ -35,8 +38,9 @@ tbl$attach(varCb, left.attach=1,2, top.attach=1,2, yoptions = 0)
 ###################################################
 ### chunk number 4: 
 ###################################################
+#line 43 "ex-RGtk2-combobox-dynamic.Rnw"
 w <- gtkWindow(show=FALSE)
-w['title'] <- "Example of comboboxes"
+w['title'] <- "Example of combo boxes"
 g <- gtkHBox()
 g$packStart(tbl, padding=15)
 w$add(g)
@@ -46,6 +50,7 @@ w$showAll()
 ###################################################
 ### chunk number 5: 
 ###################################################
+#line 54 "ex-RGtk2-combobox-dynamic.Rnw"
 newDfSelected <- function(varCb, w, ...) {
   if(inherits(w, "GtkComboBox"))        # get entry widget
     w <- w$getChild()

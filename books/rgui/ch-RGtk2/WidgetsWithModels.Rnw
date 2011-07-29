@@ -741,6 +741,10 @@ The spin button editor is configured by setting a
 \class{GtkAdjustment} on the \code{adjustment} property.
 
 
+The \signal{changed} signal is emitted when an items is selected in
+the combo box. The spin cell renderer inherits the \signal{edited}
+signal from \class{GtkCellRendererText}.
+
 %% pixbuf
 \paragraph{Pixbuf cell renderers}
 

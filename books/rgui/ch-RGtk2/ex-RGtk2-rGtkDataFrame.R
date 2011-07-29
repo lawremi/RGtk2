@@ -1,12 +1,14 @@
 ###################################################
 ### chunk number 1: 
 ###################################################
+#line 3 "ex-RGtk2-rGtkDataFrame.Rnw"
 library(RGtk2)
 
 
 ###################################################
 ### chunk number 2: callBackEdit
 ###################################################
+#line 17 "ex-RGtk2-rGtkDataFrame.Rnw"
 editCallBack <- function(cell, path, arg3, ...) {
   if(nargs() == 3) {
     userData <- arg3; newValue <- NA    # no newValue (toggle)
@@ -45,6 +47,7 @@ editCallBack <- function(cell, path, arg3, ...) {
 ###################################################
 ### chunk number 3: AddColumnWithType
 ###################################################
+#line 58 "ex-RGtk2-rGtkDataFrame.Rnw"
 gtkTreeViewAddColumnWithType <-
   function(view,
            name="",
@@ -81,7 +84,7 @@ gtkTreeViewAddColumnWithType <-
            "logical" = cr["activatable"] <- TRUE,
            cr["editable"] <- TRUE)
     
-    if(type == "factor") {              # combobox needs a data store
+    if(type == "factor") {              # combo box needs a data store
       cstore <- gtkListStore("gchararray")
       rGtkstore <- view$getModel()
       vals <- rGtkstore[,storeCol, drop=TRUE]
@@ -105,6 +108,7 @@ gtkTreeViewAddColumnWithType <-
 ###################################################
 ### chunk number 4: keyNav
 ###################################################
+#line 116 "ex-RGtk2-rGtkDataFrame.Rnw"
 ### -- bug with this when not editing
 gtkTreeViewAddKeyNavigations <- function(view) {
   ## keyMotionHandler example.
@@ -146,6 +150,7 @@ gtkTreeViewAddKeyNavigations <- function(view) {
 ###################################################
 ### chunk number 5: testIt
 ###################################################
+#line 157 "ex-RGtk2-rGtkDataFrame.Rnw"
 df = data.frame(
   logical = c(TRUE, TRUE, FALSE),
   character = c("one","two","three"),
@@ -158,6 +163,7 @@ df = data.frame(
 ###################################################
 ### chunk number 6: 
 ###################################################
+#line 167 "ex-RGtk2-rGtkDataFrame.Rnw"
 store <- rGtkDataFrame(df)
 view <- gtkTreeView(store)
 
@@ -165,6 +171,7 @@ view <- gtkTreeView(store)
 ###################################################
 ### chunk number 7: 
 ###################################################
+#line 173 "ex-RGtk2-rGtkDataFrame.Rnw"
 nms <- names(df)
 QT <- sapply(1:ncol(df), function(i) {
   type <- class(df[,i])[1]
@@ -176,6 +183,7 @@ QT <- sapply(1:ncol(df), function(i) {
 ###################################################
 ### chunk number 8: 
 ###################################################
+#line 183 "ex-RGtk2-rGtkDataFrame.Rnw"
 vc <- gtkTreeViewColumn()
 newColNo <- view$insertColumn(vc, -1)           # -1 = end
 
@@ -183,12 +191,14 @@ newColNo <- view$insertColumn(vc, -1)           # -1 = end
 ###################################################
 ### chunk number 9: AddNavigations
 ###################################################
+#line 189 "ex-RGtk2-rGtkDataFrame.Rnw"
 ID <- view$addKeyNavigations()
 
 
 ###################################################
 ### chunk number 10: PackWidget
 ###################################################
+#line 196 "ex-RGtk2-rGtkDataFrame.Rnw"
 sw <- gtkScrolledWindow()
 sw$setPolicy("automatic","automatic")
 sw$add(view)

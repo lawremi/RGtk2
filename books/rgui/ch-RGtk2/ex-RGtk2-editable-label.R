@@ -1,6 +1,7 @@
 ###################################################
 ### chunk number 1: EditableLabel
 ###################################################
+#line 8 "ex-RGtk2-editable-label.Rnw"
 w <- gtkWindow(); w$setTitle("Editable label")
 evb <- gtkEventBox(); 
 w$add(evb); 

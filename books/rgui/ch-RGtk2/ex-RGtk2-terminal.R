@@ -1,7 +1,7 @@
 ###################################################
 ### chunk number 1: 
 ###################################################
-#line 15 "ex-RGtk2-terminal.Rnw"
+#line 14 "ex-RGtk2-terminal.Rnw"
 ## make a *basic* terminal in RGtk2
 library(RGtk2)
 
@@ -9,7 +9,7 @@ library(RGtk2)
 ###################################################
 ### chunk number 2: TextViewWidget
 ###################################################
-#line 22 "ex-RGtk2-terminal.Rnw"
+#line 21 "ex-RGtk2-terminal.Rnw"
 tv <- gtkTextView()
 tb <- tv$getBuffer()
 font <- pangoFontDescriptionFromString("Monospace")
@@ -31,31 +31,18 @@ tb$createTag(tag.name="uneditable", editable=FALSE)
 ###################################################
 ### chunk number 4: 
 ###################################################
-#line 43 "ex-RGtk2-terminal.Rnw"
-startCmd <- gtkTextMark("startCmd", left.gravity=TRUE)
-tb$addMark(startCmd, tb$getStartIter()$iter)
-bufferEnd <- tb$CreateMark("bufferEnd", tb$getEndIter()$iter)
-
+#line 42 "ex-RGtk2-terminal.Rnw"
+startCmd <- tb$createMark("startCmd", tb$getStartIter()$iter, 
+                          left.gravity=TRUE)
+bufferEnd <- tb$createMark("bufferEnd", tb$getEndIter()$iter)
 
 
 ###################################################
 ### chunk number 5: 
 ###################################################
 #line 52 "ex-RGtk2-terminal.Rnw"
-scrollViewport <- function(view, ...) {
-  iter <- view$getBuffer()$getEndIter()$iter
-  view$scrollToMark(bufferEnd, within.margin=0)
-  return(FALSE)
-}
-
-
-###################################################
-### chunk number 6: 
-###################################################
-#line 63 "ex-RGtk2-terminal.Rnw"
 addPrompt <- function(obj, prompt=c("prompt", "continue"),
-                      setMark=TRUE) 
-{
+                      setMark=TRUE) {
   prompt <- match.arg(prompt)
   prompt <- getOption(prompt)
   
@@ -70,12 +57,12 @@ addPrompt(tb) ## place an initial prompt
 
 
 ###################################################
-### chunk number 7: addOutput
+### chunk number 6: addOutput
 ###################################################
-#line 84 "ex-RGtk2-terminal.Rnw"
+#line 70 "ex-RGtk2-terminal.Rnw"
 addOutput <- function(obj, output, tagName="cmdOutput") {
   endIter <- obj$getEndIter()
-  if(length(output) > 0) 
+  if(length(output) > 0)  
     sapply(output, function(i)  {
       obj$insertWithTagsByName(endIter$iter, i, tagName)
       obj$insert(endIter$iter, "\n", len=-1)
@@ -84,9 +71,9 @@ addOutput <- function(obj, output, tagName="cmdOutput") {
 
 
 ###################################################
-### chunk number 8: 
+### chunk number 7: 
 ###################################################
-#line 98 "ex-RGtk2-terminal.Rnw"
+#line 87 "ex-RGtk2-terminal.Rnw"
 findCMD <- function(obj) {
   endIter <- obj$getEndIter()
   startIter <- obj$getIterAtMark(startCmd)
@@ -98,48 +85,40 @@ findCMD <- function(obj) {
 
 
 ###################################################
-### chunk number 9: 
+### chunk number 8: evalCmd
 ###################################################
-#line 112 "ex-RGtk2-terminal.Rnw"
+#line 104 "ex-RGtk2-terminal.Rnw"
+require(evaluate)
 evalCMD <- function(tv, cmd) {
   tb <- tv$getBuffer()
-  cmd <- paste(cmd, sep="\n")
-  out <- try(parse(text=cmd), silent=TRUE)
+  out <- try(evaluate:::evaluate(cmd, .GlobalEnv), silent=TRUE)
+  
   if(inherits(out, "try-error")) {
-    if(length(grep("end", out))) {      # unexpected end of input
-      ## continue
+    ## parse error
+    addOutput(tb, out, "cmdError")
+  } else if(inherits(out[[2]], "error")) {
+    if(grepl("end", out[[2]])) {        # a hack here
       addPrompt(tb, "continue", setMark=FALSE)
+      return()
     } else {
-      ## error
-      addOutput(tb, out, tagName = "cmdError")
+      addOutput(tb, out[[2]]$message, "cmdError")
     }
-    scrollViewport(tv)
-    return()
+  } else {
+    addOutput(tb, out[[2]], "cmdOutput")
   }
-  
-  e <- parse(text = cmd)
-  out <- capture.output(vis <- withVisible(try(eval(e, .GlobalEnv), TRUE)))
-
-  addOutput(tb, out) 
-  if (inherits(vis$value, "try-error"))
-    addOutput(tb, vis$value, "cmdError")
-  else if (vis$visible)
-    addOutput(tb, capture.output(print(vis$value)))
-  
   addPrompt(tb, "prompt", setMark=TRUE)
-  scrollViewport(tv)  
 }
 
 
 ###################################################
-### chunk number 10: connectBinding
+### chunk number 9: connectBinding
 ###################################################
-#line 147 "ex-RGtk2-terminal.Rnw"
-gSignalConnect(tv, "key-release-event", f=function(w, e, data) {
+#line 130 "ex-RGtk2-terminal.Rnw"
+gSignalConnect(tv, "key-release-event", f=function(w, e) {
   obj <- w$getBuffer()                  # w is textview
   keyval <- e$getKeyval()
   if(keyval == GDK_Return) {
-    cmd <- findCMD(obj)                 # character(0) if nothing
+    cmd <- findCMD(obj)                 # poss. character(0)
     if(length(cmd) && nchar(cmd) > 0)
       evalCMD(w, cmd)
   }
@@ -147,9 +126,22 @@ gSignalConnect(tv, "key-release-event", f=function(w, e, data) {
 
 
 ###################################################
+### chunk number 10: 
+###################################################
+#line 149 "ex-RGtk2-terminal.Rnw"
+scrollViewport <- function(view, ...) {
+  iter <- view$getBuffer()$getEndIter()$iter
+  view$scrollToMark(bufferEnd, within.margin=0)
+  return(FALSE)
+}
+gSignalConnect(tb, "changed", scrollViewport, data=tv, 
+               after = TRUE, user.data.first = TRUE)
+
+
+###################################################
 ### chunk number 11: makeGUI
 ###################################################
-#line 170 "ex-RGtk2-terminal.Rnw"
+#line 159 "ex-RGtk2-terminal.Rnw"
 ## scroll window
 sw <- gtkScrolledWindow()
 sw$setPolicy("automatic", "automatic")
@@ -166,7 +158,7 @@ w$showAll()
 ###################################################
 ### chunk number 12: 
 ###################################################
-#line 186 "ex-RGtk2-terminal.Rnw"
+#line 175 "ex-RGtk2-terminal.Rnw"
 ## History features
 ## This is not illustrated in text, but is added here to illustrate how this might be implemented
 ## The major issue with this example is we can't trap the return or arrow keys before they move 

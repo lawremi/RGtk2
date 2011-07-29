@@ -1,63 +1,68 @@
 ###################################################
 ### chunk number 1: 
 ###################################################
+#line 6 "ex-RGtk2-filtered.Rnw"
 library(RGtk2)
 
 
 ###################################################
 ### chunk number 2: 
 ###################################################
+#line 21 "ex-RGtk2-filtered.Rnw"
 df <- data.frame(state.name)
-df$VISIBLE <- rep(TRUE, nrow(df))
+df$visible <- rep(TRUE, nrow(df))
 store <- rGtkDataFrame(df)
 
 
 ###################################################
 ### chunk number 3: 
 ###################################################
-filteredStore <- store$filterNew()
+#line 29 "ex-RGtk2-filtered.Rnw"
+filteredStore <- store$filter()
 filteredStore$setVisibleColumn(ncol(df)-1)      # offset
 view <- gtkTreeView(filteredStore)
-sw <- gtkScrolledWindow()
-sw$add(view)
 
 
 ###################################################
 ### chunk number 4: 
 ###################################################
-vc <- gtkTreeViewColumn()
-cr <- gtkCellRendererText()
-vc$packStart(cr, TRUE)
-vc$setTitle("Col")
-vc$addAttribute(cr, "text", 0)
-QT <- view$insertColumn(vc, 0)
+#line 36 "ex-RGtk2-filtered.Rnw"
+view$insertColumnWithAttributes(0, "Col", 
+                 gtkCellRendererText(), text = 0)
 
 
 ###################################################
 ### chunk number 5: 
 ###################################################
+#line 46 "ex-RGtk2-filtered.Rnw"
 e <- gtkEntry()
-ID <- gSignalConnect(e, "changed", function(w, data) {
-  val <- w$getText()
+gSignalConnect(e, "changed", function(w, data) {
+  pattern <- w$getText()
   df <- data$getModel()
-  values <- df[,1]
-  df[, dim(df)[2]] <- sapply(values, function(i) 
-                             as.logical(length(grep(val,i))))
-},
-                     data=filteredStore)
-
+  values <- df[, "state.name"]
+  df[, "visible"] <- grepl(pattern, values)
+}, data=filteredStore)
 
 
 ###################################################
 ### chunk number 6: 
 ###################################################
+#line 59 "ex-RGtk2-filtered.Rnw"
+## not shown, but this places widgets into a simple GUI
 w <- gtkWindow(show=FALSE)
+w['title'] <- "A filtered data store"
+w$setSizeRequest(width=300, height=400)
+
 g <- gtkVBox()
 w$add(g)
 g$packStart(e, expand=FALSE)
 
+## add scroll window
+sw <- gtkScrolledWindow()
+sw$setPolicy("automatic", "automatic")
+sw$add(view)
 g$packStart(sw, expand=TRUE, fill=TRUE)
-w$setSizeRequest(width=300, height=400)
+
 w$show()
 
 
