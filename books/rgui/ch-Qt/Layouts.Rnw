@@ -1,7 +1,7 @@
 %% Layout managers
 
 %% Overview
-\Qt{} provides a set of classes to faciliate the layout of child
+\Qt{} provides a set of classes to facilitate the layout of child
 widgets of a component. These layout managers, derived from the
 \class{QLayout} class, are tasked with determining the geometry of
 child widgets, according to a specific layout algorithm. Layout
@@ -55,8 +55,8 @@ calling \method{addLayout}{QLayout}.
 
 %% referring to child items
 Internally, layouts store child components as items of class
-\class{QLayoutItem}. The item at a given zero-based index is returned by
-\method{itemAt}{QLayout}. We get the first item in our layout:
+\class{QLayoutItem}. The item at a given index ($0$-based) is returned by
+the \method{itemAt}{QLayout} method. We get the first item in our layout:
 <<qt-layout-basic-item-at>>=
 item <- layout$itemAt(0)
 @ 
@@ -89,6 +89,7 @@ button$setParent(NULL)
 The allocation of space to child widgets depends on several factors.
 The \Qt{} documentation for layouts spells out well the
 steps:~\footnote{\url{http://doc.qt.nokia.com/4.6/layout.html}}
+\\
 \begin{enumerate}
 \item All the widgets will initially be allocated an amount of space
   in accordance with their \property{sizePolicy}{QWidget} and \property{sizeHint}{QWidget}.
@@ -104,15 +105,15 @@ steps:~\footnote{\url{http://doc.qt.nokia.com/4.6/layout.html}}
 \item Any widgets that are allocated less space than their minimum
   size (or minimum size hint if no minimum size is specified) are
   allocated this minimum size they require. (Widgets don't have to
-  have a minimum size or minimum size hint in which case the strech
+  have a minimum size or minimum size hint in which case the stretch
   factor is their determining factor.)
 
 \item Any widgets that are allocated more space than their maximum
   size are allocated the maximum size space they require. (Widgets do
-  not have to have a maximum size in which case the strech factor is
+  not have to have a maximum size in which case the stretch factor is
   their determining factor.)
 \end{enumerate}
-
+\vspace{12pt}
 
 Every widget returns a size hint to the layout from the
 \method{sizeHint}{QWidget} method/property. The interpretation of the
@@ -126,18 +127,18 @@ Table~\ref{tab:qt:size-policies}.
 
 <<echo=FALSE, results=tex>>=
 df <- rbind(
-            c("Fixed","to require the size hint exactly"),
-            c("Minimum", "to treat the size hint as the minimum, allowing expansion"),
-            c("Maximum", "to treat the size hint as the maximum, allowing shrinkage"),
-            c("Preferred", "to request the size hint, but allow for either expansion or shrinkage"),
-            c("Expanding", "to treat like \\code{Preferred}, except the widget desires  as much space as possible"),
-            c("MinimumExpanding", "to treat like \\code{Minimum}, except the widget desires  as much space as possible"),
-            c("Ignored", "to ignore the size hint and request as much space as possible")
+            c("Fixed","Require the size hint exactly"),
+            c("Minimum", "Treat the size hint as the minimum, allowing expansion"),
+            c("Maximum", "Treat the size hint as the maximum, allowing shrinkage"),
+            c("Preferred", "Request the size hint, but allow for either expansion or shrinkage"),
+            c("Expanding", "Treat like \\code{Preferred}, except the widget desires  as much space as possible"),
+            c("MinimumExpanding", "Treat like \\code{Minimum}, except the widget desires  as much space as possible"),
+            c("Ignored", "Ignore the size hint and request as much space as possible")
            )
 colnames(df) <- c("Policy","Meaning")
             cat(booktabs(df,
                          colTypes=c("l","p{0.7\\textwidth}"),
-                         caption="Possible size policies",
+                         caption="Possible size policies from \\class{QSizePolicy}",
                          label="tab:qt:size-policies"))
 @ 
 
@@ -166,7 +167,7 @@ always appropriate, as in the case of labels. In such cases, the
 widget will not expand and needs to be aligned within its space. By
 default, the widget is centered. We can control the alignment of a
 widget via the \method{setAlignment}{QLayout} method. For example, we
-align the label to the left side of the layout:
+align the label to the left side of the layout through:
 <<echo=FALSE, results=hide>>=
 layout <- Qt$QHBoxLayout()
 @ 
@@ -178,12 +179,12 @@ layout$setAlignment(label, Qt$Qt$AlignLeft)
 @ 
 % 
 Alignment is also possible to the top, bottom and right. The alignment
-values are flags andmay be combined with \OR{} to specify both vertical and
+values are flags and may be combined with \OR{} to specify both vertical and
 horizontal alignment.
 
 The spacing between every cell
 of the layout is in the \code{spacing} property, the following requests $5$ pixels of space:
-<<qt-layout-basic-spacing>>=
+<<qt-layout-basic-spacing,results=hide>>=
 layout$spacing <- 5L
 @ 
 
@@ -196,7 +197,7 @@ class implements a horizontal layout whereas \class{QVBoxLayout}
 provides a vertical one. Both of these classes extend the
 \class{QBoxLayout} class, where most of the functionality is
 documented.  We create a horizontal layout and place it in a window:
-<<qt-layout-box>>=
+<<qt-layout-box, results=hide>>=
 hb <- Qt$QHBoxLayout()
 w <- Qt$QWidget()
 w$setLayout(hb)
@@ -215,12 +216,12 @@ right (top to bottom for a vertical box).
 
 The \method{addWidget}{QBoxLayout} method for a box layout takes two
 optional parameters: the stretch factor and the alignment.  Stretch
-factors proportionally allocate space to widgets when they expand. For
+factors proportionally allocate space to widgets when they expand.\footnote{For
 those familiar with \GTK, the difference between a stretch factor of
 $0$ and $1$ is roughly equivalent to the difference between
 \qcode{FALSE} and \qcode{TRUE} for the value of the
 \argument{expand}{gtkBoxPackStart} parameter to
-\function{gtkBoxPackStart}. However, recall that the widget size
+\function{gtkBoxPackStart}.} However, recall that the widget size
 policy and hint can alter the effect of a stretch factor. After the
 child has been added, the stretch factor may be modified with
 \meth{setStretchFactor}:
@@ -300,7 +301,7 @@ w$show()
 There are two types of spacing between two children: fixed and
 expanding. Fixed spacing between any two children was already
 described. To add a fixed amount of space between two specific
-children, call the \meth{addSpacing} method while populating the
+children, call the \ilayout{spacing}\meth{addSpacing} method while populating the
 container. The following line is from Example~\ref{eg:qt-layouts}:
 <<create_hb, echo=FALSE, results=hide>>=
 hb <- Qt$QHBoxLayout()
@@ -331,7 +332,7 @@ It is sometimes desirable to restrict the minimum size of a layout in the
 perpendicular direction. For a horizontal box, this is the height. The
 box layout provides the \ilayout{strut}\textit{strut} for this purpose:
 <<qt-layout-box-strut>>=
-g$addStrut(10)                    # atleast 10 pixels high
+g$addStrut(10)                    # at least 10 pixels high
 @ 
 %
 
@@ -376,7 +377,7 @@ lyt$addWidget(Qt$QComboBox(), 1, 1)
 @ 
 
 The bottom three cells in the third column are managed
-by a sublayout, in this case a vertical box layout. We use a label as
+by a sub layout, in this case a vertical box layout. We use a label as
 a stub and set a frame style to have it stand out:
 <<addBox, results=hide>>=
 lyt$addLayout(slyt <- Qt$QVBoxLayout(), 1, 2, rowspan=3, 1)
@@ -474,10 +475,9 @@ form and add some rows for gathering parameters to the
 w <- Qt$QWidget()
 w$setWindowTitle("Wrapper for 'dnorm' function")
 w$setLayout(flyt <- Qt$QFormLayout())
-
-flyt$addRow("quantile", Qt$QLineEdit())
-flyt$addRow("mean", Qt$QLineEdit())
-flyt$addRow("sd", Qt$QLineEdit())
+sapply(c("quantile", "mean", "sd"), function(i) {
+  flyt$addRow(i, Qt$QLineEdit())
+})
 flyt$addRow(Qt$QCheckBox("log"))
 @
 %
@@ -497,7 +497,8 @@ To retrieve a widget from the layout, call the
 and the role of the desired widget. Here, we obtain the edit box for
 the quantile parameter:
 <<qt-layout-form-at>>=
-quantileEdit <- flyt$itemAt(0, Qt$QFormLayout$FieldRole)$widget()
+tmp <- flyt$itemAt(0, Qt$QFormLayout$FieldRole)
+quantileEdit <- tmp$widget()
 @ 
 
 \section{Frames}
@@ -510,9 +511,9 @@ Section~\ref{sec:radio-groups} for an example.  The title, stored in
 the \property{title}{QGroupBox} property, may be aligned to left, right or
 center, depending on the \property{alignment}{QGroupBox} property.
 %% , see Figure~\ref{fig:group-box-example}. 
-If the \property{checkable}{QGroupBox}
-property is \qcode{TRUE}, the frame contents can be enabled or
-disabled by clicking a check button.
+If the \property{checkable}{QGroupBox} property is \qcode{TRUE}, the
+contents can have their sensitivity to events toggled by clicking an accompanying
+check button.
 
 %% TODO: make this a figure
 <<groupBoxExample, echo=FALSE, results=hide>>=
@@ -520,7 +521,7 @@ disabled by clicking a check button.
 f <- Qt$QGroupBox("Example group box")
 lyt <- Qt$QVBoxLayout(); f$setLayout(lyt)
 lyt$addWidget(changeTitle <- Qt$QPushButton("Change title"))
-lyt$addWidget(changeAlignment <- Qt$QPushButton("Change Alignment"))
+lyt$addWidget(changeAlignment <- Qt$QPushButton("Cycle Alignment"))
 lyt$addWidget(toggleFlat <- Qt$QPushButton("Toggle flat"))
 lyt$addWidget(toggleCheckable <- Qt$QPushButton("Toggle checkable"))
 f$show()
@@ -582,7 +583,7 @@ tooltip for a specific tab, using zero-based indexing:
 nb$setTabToolTip(0, "This is the first page")
 @ 
 
-The \property{currentIndex} property holds the zero-based index of the
+The \property{currentIndex}{QTabWidget} property holds the zero-based index of the
 active tab. We make the second tab active:
 <<qt-layout-notebook-current>>=
 nb$currentIndex <- 1
@@ -591,7 +592,7 @@ nb$currentIndex <- 1
 The tabs can be positioned on any of the four sides of the notebook;
 this depends on the \property{tabPosition} property. By default, the
 tabs are on top, or \qcode{North}. We move them to the bottom:
-<<qt-layout-notebook-pos>>=
+<<qt-layout-notebook-pos, results=hide>>=
 nb$tabPosition <- Qt$QTabWidget$South
 @ 
 
@@ -618,7 +619,14 @@ actually close the tab when the close button is clicked.
   informing \function{browseURL} to open web pages using an \R\/
   function, as opposed to the default system browser. 
   
-<<HelpBrowser>>=
+  \begin{figure}
+    \centering
+    \includegraphics[width=.9\textwidth]{fig-qt-help-browser.png}
+   \caption{An example where a notebook is used to display various help pages shown in a \class{QWebView} instance}
+    \label{fig:qt-help-browser}
+  \end{figure}
+
+<<HelpBrowser, results=hide>>=
 qsetClass("HelpBrowser", Qt$QTabWidget, function(parent=NULL) {
   super(parent)
   #
@@ -634,15 +642,29 @@ qsetClass("HelpBrowser", Qt$QTabWidget, function(parent=NULL) {
 })
 @   
   
-The lone method is that called to open page.
-<<openPage>>=
+The lone new method for this class is one called to open a page. The
+\code{url} value is generated by \R's help system.
+<<openPage, results=hide>>=
 qsetMethod("openPage", HelpBrowser, function(url) {
   nm <- strsplit(url, "/")[[1]]
   nm <- sprintf("%s: %s", nm[length(nm)-2], nm[length(nm)])
   w <- Qt$QWebView()
   w$setUrl(Qt$QUrl(url))
   i <- addTab(w, nm)
+  this$currentIndex <- i
 })
+@ 
+
+Figure~\ref{fig:qt-help-browser} was created through this invocation:
+<<illustrateHelpBrowser, results=hide>>=
+w <- HelpBrowser()
+w$windowTitle <- "Help Browser example"
+w$show()
+w$raise()
+##
+options("help_type"="html")
+help("mean")
+help("boxplot")
 @ 
 \end{example}
 
@@ -721,25 +743,36 @@ space between its children, with draggable separators that adjust the
 balance of the space allocation.
 
 Unlike \class{GtkPaned} in \GTK{}, there is no limit on the number of
-child panes. We add three and change the orientation from horizontal
-to vertical: 
+child panes. We add three with \method{addWidget}{QSplitter}:
 <<splitter, results=hide>>=
 sp <- Qt$QSplitter()
 sp$addWidget(Qt$QLabel("One"))
 sp$addWidget(Qt$QLabel("Two"))
 sp$addWidget(Qt$QLabel("Three"))
+@ 
+
+
+
+The orientation can be adjusted dynamically through \method{setOrientation}{QSplitter}
+<<splitterOrientation, results=hide>>=
 sp$setOrientation(Qt$Qt$Vertical)
 @ 
 %
-We can adjust the sizes programmatically:
+
+In addition to user adjusting the space allocation with a mouse, one
+can adjust the sizes programmatically through the
+\method{setSizes}{QSplitter} method:
 <<qt-layout-splitter-set, results=hide>>=
 sp$setSizes(c(100L, 200L, 300L))
 @ 
 
+If needed, one can connect to the \signal{splitterMoved} signal. The
+callback receives the position of the moved handle and its index.
+
 % MFL: it's a protected method, only seen by subclasses
 %% \XXX{JV: This seems to be true!}
 % The \method{moveSplitter}{QSplitter} method is not implemented, so
-% programattically moving the a splitter handle is not possible.
+% programmatically moving the a splitter handle is not possible.
 
 <<echo=FALSE, results=hide>>=
 sp$show()

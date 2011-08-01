@@ -24,8 +24,9 @@ representing a possible response. Normally, the type of message is
 indicated by an icon. If extra details are available, the dialog
 provides the option for the user to view them.
 
-\Qt{} provides two ways to create a message box. The simplest approach
-is to call a static convenience method for issuing common types of
+\Qt{} provides two ways to create a message box
+(Figure~\ref{fig:qt-qmessagebox-examples}). The simplest approach is
+to call a static convenience method for issuing common types of
 messages, including warnings and simple questions. The alternative,
 described later, involves several steps and offers more control at a
 cost of convenience. Here we take the simple path for presenting a
@@ -35,19 +36,35 @@ response <- Qt$QMessageBox$warning(parent = NULL,
                title = "Warning!", text = "Warning message...")
 @
 %
-This call will block the flow of the program until the user responds and
-returns the standard identifier for the button that was clicked. Each
-type of button corresponds to a fixed type of response. The standard
-button/response codes are listed in the
+This call will block the flow of the program until the user responds
+and returns the standard identifier for the button that was
+clicked. Each type of button corresponds to a fixed type of
+response. The standard button/response codes are listed in the
 \qtenumeration{QMessageBox::StandardButton} enumeration. In this case,
 there is only a single button, \qcode{QMessageBox\$Ok}.  The dialog is
 \textit{modal}, meaning that the user cannot interact with the
 \qcode{parent} window until responding. If the \qcode{parent} is
-\qcode{NULL}, as in this case, input to all windows is blocked.  The
-dialog is automatically positioned near its parent, and if the parent
-is destroyed, the dialog is destroyed, as well. Additional arguments
-specify the available buttons/responses and the default response. We
-have relied on the default values for these.
+\qcode{NULL}, as in this case, input to all windows is
+blocked. Specifying the parent will automatically position the dialog
+near its parent, and if the parent is destroyed, the dialog is
+destroyed, as well. Additional arguments specify the available
+buttons/responses and the default response. We have relied on the
+default values for these.
+
+\begin{figure}
+  \centering
+  \begin{minipage}[c]{.45\linewidth}
+    \includegraphics[width=\textwidth]{fig-qt-dialog-qmessagebox.png}
+  \end{minipage}
+  \begin{minipage}[c]{.45\linewidth}
+    \includegraphics[width=\textwidth]{fig-qt-dialog-qmessagebox-with-details}
+ \end{minipage}
+\caption{Message dialog boxes. The left one made with the convenient
+   static method, the right -- with more detail -- using
+   \class{QMessageBox} methods.}
+  \label{fig:qt-qmessagebox-examples}
+\end{figure}
+
 
 For more control over the appearance and behavior of the dialog, we
 will take a more gradual path. First, we construct an instance of
@@ -87,7 +104,7 @@ approach to showing the dialog depends on whether the dialog should be
 modal. A modal dialog is displayed with the \method{exec}{QDialog}
 method. 
 <<qt-dialogs-exec>>=
-dlg$exec()
+dlg$exec()                              # returns response code
 @ 
 As its name implies, \method{exec}{QDialog} executes a loop
 that will block until the user responds. As with the static
@@ -96,9 +113,8 @@ button/response.
 
 To present a non-modal dialog, we first need to register a response
 listener, as the response will arrive asynchronously:
-<<qt-dialogs-listen>>=
+<<qt-dialogs-listen, results=hide>>=
 qconnect(dlg, "finished", function(response) {
-  ## handle response
   dlg$close()
 })
 @ 
@@ -143,12 +159,30 @@ if(dlg$exec() == Qt$QMessageBox$Ok)
 \subsection{Input dialogs}
 \label{sec:input-dialogs}
 
+\begin{figure}
+  \centering
+  \begin{minipage}[c]{.3\linewidth}
+   \includegraphics[width=\textwidth]{fig-qt-dialog-input-integer}
+ \end{minipage}\quad
+  \begin{minipage}[c]{.3\linewidth}
+   \includegraphics[width=\textwidth]{fig-qt-dialog-input-item}
+ \end{minipage}\quad
+  \begin{minipage}[c]{.3\linewidth}
+   \includegraphics[width=\textwidth]{fig-qt-dialog-input-text}
+ \end{minipage}
+\caption{Qt provides three static constructors for input dialogs,
+   making it straightforward to collect text, integers of selections
+   from a user.}
+  \label{fig:qt-dialogs-input}
+\end{figure}
+
+
 The \class{QInputDialog} class provides a convenient means to gather
 information from the user and is in a sense the inverse of
 \class{QMessageBox}. Possible input modes include selecting a value
 from a list or entering text or numbers.  By default, input dialogs
 consist of an input control, an icon, and two buttons: ``Ok'' and
-``Cancel''.
+``Cancel'' (Figure~\ref{fig:qt-dialogs-input}).
 
 Like \class{QMessageBox}, one can display a \class{QInputDialog}
 either by calling a static convenience method or by constructing an
@@ -169,9 +203,9 @@ We can also display a dialog for integer input. Here, we ask the user
 for an even integer between 1 and 10:
 <<qt-dialogs-input-get-range>>=
 num <- Qt$QInputDialog$getInt(parent = NULL, 
-                       title = "Gather integer",
-                       label = "Enter an integer from 1 to 10",
-                       value = 0, min = 2, max = 10, step = 2)
+                       title="Gather integer",
+                       label="Enter an integer from 1 to 10",
+                       value=0, min = 2, max = 10, step = 2)
 @ 
 %
 The number is chosen using a bounded spin box.  To request a real
@@ -202,6 +236,7 @@ dlg <- Qt$QInputDialog()
 dlg$setWindowTitle("Select item")
 dlg$setLabelText("Select a letter")
 dlg$setComboBoxItems(LETTERS)
+dlg$setTextValue(LETTERS[18])
 dlg$setOptions(Qt$QInputDialog$UseListViewForComboBoxItems)
 @ 
 <<>>=
@@ -287,21 +322,30 @@ and behavior of the custom dialog. We demonstrate the subclass
 approach by constructing a dialog that requests a date from the
 user. 
 
+\begin{figure}
+  \centering
+  \includegraphics[width=.5\textwidth]{fig-qt-date-dialog}
+  \caption{A custom dialog, embedding a date selection widget with a \class{QDialog} instance}
+  \label{fig:qt-date-dialog}
+\end{figure}
+
 We begin by defining our class and its constructor:
-<<extend-date-dialog>>=
+<<extend-date-dialog, results=hide>>=
 qsetClass("DateDialog", Qt$QDialog, 
           function(parent = NULL) {
             super(parent=parent)
             setWindowTitle("Choose a date")
             this$calendar <- Qt$QCalendarWidget()
             #
-            buttonBox <- Qt$QDialogButtonBox(Qt$QMessageBox$Cancel | 
+            buttonBox <- 
+              Qt$QDialogButtonBox(Qt$QMessageBox$Cancel | 
                                   Qt$QMessageBox$Ok)
             qconnect(buttonBox, "accepted", function() {
               this$close()
               this$setResult(Qt$QMessageBox$Ok)    
             })
-            qconnect(buttonBox, "rejected", function() this$close())
+            qconnect(buttonBox, "rejected", 
+                     function() this$close())
             #
             layout <- Qt$QVBoxLayout()
             sapply(list(calendar, buttonBox), layout$addWidget)
@@ -315,7 +359,7 @@ Our dialog consists of a calendar, implemented by the
 the instance, so that we can retrieve the selected date upon request.
 
 We define a method that gets the currently selected date:
-<<extend-date-get>>=
+<<extend-date-get, results=hide>>=
 qsetMethod("selectedDate", DateDialog, 
            function(x) calendar$selectedDate$toString())
 @ 
@@ -399,7 +443,8 @@ options.  These are \qcode{getOpenFileName}, \qcode{getOpenFileNames},
 \qcode{getExistingDirectory}, and \qcode{getSaveFileName}.  To select
 a file name to open we would have:
 <<QFIleDialog, eval=FALSE>>=
-fname <- Qt$QFileDialog$getOpenFileName(NULL, "Open a file...", getwd())
+fname <- Qt$QFileDialog$getOpenFileName(NULL, "Open a file...", 
+                                        getwd())
 @ 
 % 
 All take as initial arguments a parent, a caption and a
@@ -433,10 +478,10 @@ filters can be used by separating them with two semicolons. For
 example, this would be a natural filter for \R{} users:
 <<>>=
 nameFilter <- paste("R files (*.R .RData)",
-                 "Sweave files (*.Rnw)",
-                 "All files (*.*)", 
-                 sep=";;")
-#
+                    "Sweave files (*.Rnw)",
+                    "All files (*.*)", 
+                    sep=";;")
+##
 fnames <- Qt$QFileDialog$getOpenFileNames(NULL, 
              "Open file(s)...", getwd(), nameFilter)
 @ 
@@ -455,7 +500,8 @@ like permissions.
 dname <- ""
 @   
 <<QFileDialogAPI, results=hide>>=
-dlg <- Qt$QFileDialog(NULL, "Choose an R file", getwd(), nameFilter)
+dlg <- Qt$QFileDialog(NULL, "Choose an R file", getwd(), 
+                      nameFilter)
 dlg$fileMode <- Qt$QFileDialog$ExistingFiles
 dlg$setHistory(dname)
 @

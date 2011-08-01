@@ -8,6 +8,15 @@ package may be loaded like any other \R{} package:
 require(qtbase)
 @ 
 
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.5\textwidth]{fig-qt-datavalidator}
+  \caption{Screenshot of our sample GUI to collect a date from the user.}
+  \label{fig:first-gui}
+\end{figure}
+
+
 \paragraph{Constructors}
 
 As with all other toolkits, \Qt\/ widgets are objects, and the objects
@@ -23,7 +32,7 @@ button <- Qt$QPushButton("Ok")
 %
 The constructors are not found in the global environment, but rather
 in the \code{Qt} environment, an object exported from the \pkg{qtbase}
-namespace. As such, the \code{\$} lookup operator is used. 
+namespace. As such, the \iprogram{R's object oriented notation}\code{\$} lookup operator is used. 
 
 % For this
 % example, we use a \code{QWidget} as a top-level window, leaving for
@@ -69,7 +78,7 @@ specification, by index and span, of the cells the child will occupy:
 <<results=hide>>=
 lyt <- Qt$QGridLayout()
 lyt$addWidget(label, row=0, column=0, rowSpan=1, columnSpan=1)
-lyt$addWidget(edit, 0, 1, 1, 1)
+lyt$addWidget(edit,   0, 1, 1, 1)
 lyt$addWidget(button, 1, 1, 1, 1)
 @ 
 One can adjust properties of the layout, but we leave that discussion for later.
@@ -84,14 +93,6 @@ Finally, to view our GUI (Figure~\ref{fig:first-gui}), we must call its
 <<results=hide>>=
 window$show()
 @ 
-
-\begin{figure}
-  \centering
-  \includegraphics[width=.5\textwidth]{fig-qt-datavalidator}
-  \caption{Screenshot of our sample GUI to collect a date from the user.}
-  \label{fig:first-gui}
-\end{figure}
-
 %% interactivity
 \paragraph{Callbacks}
 As with other GUI toolkits, we add interactivity to our GUI by binding
@@ -102,7 +103,7 @@ function. The function requires the object, the signal name and the
 handler. Here we print the value stored in the ``Date'' field.
 <<results=hide>>=
 handler <- function()  print(edit$text)
-qconnect(button, "pressed", handler)
+qconnect(button, "clicked", handler)
 @ 
 We will discuss callbacks more completely in Section~\ref{sec:qt-signals}.
 

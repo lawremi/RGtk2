@@ -1,0 +1,148 @@
+<<echo=FALSE, results=hide>>=
+## An example dialog to gather arguments for read.csv
+require(qtbase)
+@ 
+%%
+%% What
+We illustrate some of the widgets and dialogs discussed in this
+chapter in the following example, which gathers arguments needed to
+import a file into \R{} through \function{read.csv}. Figure~\ref{}
+shows the finished GUI. We use a form layout to organize our controls,
+but first we need to define them.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.6\textwidth]{fig-qt-read-csv-dialog}
+  \caption{A dialog to collect argument for a call to \function{read.csv}}
+  \label{fig:qt-read-csv-dialog}
+\end{figure}
+
+%% how
+We use a named list below to store our controls where the names will
+be mapped to the control's corresponding label. A button is chosen for
+the file, which we will later use to open a file selection
+dialog. Otherwise, the choice of control is fairly straightforward.
+<<results=hide>>=
+l <- list()
+l$file <- Qt$QPushButton("click to select...")
+##
+l$header <- Qt$QCheckBox()                 # no name
+l$header$setChecked(TRUE)
+##
+l$sep <- Qt$QComboBox()
+l$sep$addItems(sprintf('%s', c(",", ";","","\t")))
+l$sep$setEditable(TRUE)
+##               
+l$quote <- Qt$QLineEdit("\"'")
+##
+l$fill <- Qt$QCheckBox()
+l$fill$setChecked(TRUE)
+@ 
+
+%% radio button
+To illustrate radio buttons, we use them for the comment
+character. Here we store the container in the list, and create a
+separate (global) variable to hold the radio buttons widgets themselves.
+<<comment.char, results=hide>>=
+l$comment.char <- Qt$QGroupBox()        # container
+comment.char <- lapply(sprintf("%s", c("","#","%")),
+                       Qt$QRadioButton, l$comment.char)
+comment.char[[1]]$setChecked(TRUE)
+## manage
+comment.char.bg <- Qt$QButtonGroup()
+sapply(comment.char, comment.char.bg$addButton)
+## layout
+lyt <- Qt$QVBoxLayout()
+l$comment.char$setLayout(lyt)
+sapply(comment.char, lyt$addWidget)
+@ 
+
+The variable name use a simple line edit widget to which we add a
+placeholder and populate for auto-completion with the current global
+workspace variable names.
+<<results=hide>>=
+l$name <- Qt$QLineEdit("")
+l$name$setPlaceholderText("Variable name to store data")
+completer <- Qt$QCompleter(ls(.GlobalEnv))
+l$name$setCompleter(completer)
+@ 
+
+%% Layout form
+The form layout goes quickly, as we can iterate over the list components:
+<<formLayout, results=hide>>=
+flyt <- Qt$QFormLayout()
+nms <- names(l)
+sapply(nms, function(i) {
+  flyt$addRow(i, l[[i]])
+})
+@ 
+
+%% Use standard buttons
+A dialog button box ensure consistency with the operating system
+conventions. 
+<<buttonBox, results=hide>>=
+buttonBox <- 
+  Qt$QDialogButtonBox(Qt$QMessageBox$Cancel | 
+                      Qt$QMessageBox$Ok)
+@ 
+
+We use a simple widget to layout the form and the buttons.
+<<windowLayout, results=hide>>=
+w <- Qt$QWidget()
+w$windowTitle <- "Read csv file"
+w$setLayout(wlyt <- Qt$QVBoxLayout())
+wlyt$addLayout(flyt)
+wlyt$addWidget(buttonBox)
+@ 
+%
+At this point, the widgets are set up and layed out. We turn to the
+task of adding interactivity. First, the file button when clicked
+should open a file selection dialog. If a file is succesfull, we
+change the button's label to indicate a selection. We use the global
+\code{fname} to store this name.
+
+<<fileHandler, results=hide>>=
+fname <- NULL
+qconnect(l$file, "clicked", function() {
+  nameFilter <- "CSV file (*.csv);; All files (*.*)"
+  fname <<- Qt$QFileDialog$getOpenFileName(w, 
+               "Select a CSV file...", getwd(), nameFilter)
+  if(!is.null(fname))
+    l$file$setText(basename(fname))
+})
+@ 
+
+We connect to the button box signals. The \signal{rejected} callback
+simply hides the dialog. The \signal{accepted} callback is more
+work. After checking that a file and variable name have been selected,
+we gather the values from the dialog through various means. These are
+stored in the list \code{args} below. Once that is done, a call to
+\code{read.csv} completes the work.
+
+<<buttonBox, results=hide>>=
+qconnect(buttonBox, "rejected", function() w$hide())
+qconnect(buttonBox, "accepted", function() {
+  if(!is.null(fname) && nchar(l$name$text) > 0) {
+    args <- list(file=fname,
+                 header=l$header$checked,
+                 sep=l$sep$currentText,
+                 quote=l$quote$text,
+                 fill=l$fill$checked
+                 )
+    args$comment.char <- comment.char.bg$checkedButton()$text
+    ##
+    assign(l$name$text, do.call("read.csv", args), .GlobalEnv)
+    w$hide()
+  } else {
+    Qt$QMessageBox$warning(parent = w, 
+       title = "Warning!",
+       text = "You need to select a file and variable name")
+  }
+})
+  
+@ 
+
+<<showAndRaise, echo=FALSE, results=hide>>=
+w$show()
+w$raise()
+@ 

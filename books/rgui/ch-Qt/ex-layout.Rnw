@@ -5,7 +5,7 @@ library(qtbase)
 
 \begin{figure}
   \centering
-  \includegraphics[width=.8\textwidth]{fig-qt-layouts}
+  \includegraphics[width=.7\textwidth]{fig-qt-layouts}
   \caption{A mock GUI illustrating various layout managers provided by \Qt.}
   \label{fig:qt-gui-layout-ex}
 \end{figure}
@@ -29,14 +29,14 @@ w$setLayout(gridLayout)
 
 There are three objects managed by the grid layout: a table (we use a
 label as a placeholder), a notebook, and a horizontal box layout for
-some buttons. We construct them
+some buttons. We construct them with:
 <<mainComponents, results=hide>>=
 tableWidget <- Qt$QLabel("Table widget") 
 nbWidget <- Qt$QTabWidget()
 buttonLayout <- Qt$QHBoxLayout()
 @ 
 %
-and add them to the grid layout:
+Then add them to the grid layout:
 <<qt-layout-ex-add, results=hide>>=
 gridLayout$addWidget(tableWidget, row=0, column=0, 
                      rowspan=1, colspan=1)
@@ -52,14 +52,14 @@ pixels of space between the last two.
 b <- sapply(c("OK", "Cancel", "Help"), 
             function(i) Qt$QPushButton(i))
 buttonLayout$setDirection(Qt$QBoxLayout$RightToLeft) 
-buttonLayout$addStretch(1L)
+buttonLayout$addStretch(1L)             # stretch
 buttonLayout$addWidget(b$OK)
 buttonLayout$addWidget(b$Cancel)
-buttonLayout$addSpacing(12L)
+buttonLayout$addSpacing(12L)            # spacing
 buttonLayout$addWidget(b$Help)
 @ 
 %
-We added a stretch, which acts much like a spring, to pack our
+We added a \ilayout{stretch}stretch, which acts much like a spring, to pack our
 buttons against the right side of the box. A fixed space of 12
 pixels is inserted between the ``Cancel'' and ''help'' buttons.
 
@@ -87,7 +87,7 @@ formLayout$addRow("Serial number", l$snumber)
 Each \method{addRow}{QFormLayout} call adds a label and an adjacent
 input widget, in this case a text entry.
 
-This includes our cursory demonstration of layout in \Qt. We have
+This concludes our cursory demonstration of layout in \Qt. We have
 constructed a mock-up of a typical application layout using the box,
 grid and form layout managers.
 

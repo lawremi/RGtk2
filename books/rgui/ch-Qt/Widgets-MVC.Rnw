@@ -4,10 +4,10 @@ require(qtbase)
 require(MASS)
 @ 
 
-The model, view, controller (MVC) pattern is fundamental to the design
+The model, view, controller (MVC) pattern\iprogram{MVC} is fundamental to the design
 of widgets that display and manipulate data. Keeping the model
 separate from the view allows multiple views for the same
-data. Generally, the model is an abstract interface. Thus, the same
+data. Generally, the model is an abstract \iprogram{interface}interface. Thus, the same
 view and controller components are able to operate on any data source
 (e.g., a database) for which a model implementation exists.
 
@@ -25,7 +25,7 @@ and view implementations in \Qt{} and \pkg{qtbase}.
 \label{sec:qt:mvc:table:basics}
 
 As mentioned, \Qt{} expects data to be stored in a
-\class{QAbstractItemModel}. In \R, the canonical structure for tabular
+\class{QAbstractItemModel} instance. In \R, the canonical structure for tabular
 data is \class{data.frame}. The \class{DataFrameModel} class bridges
 these structures by wrapping \class{data.frame} in an implementation
 of \class{QAbstractItemModel}. This essentially allows a
@@ -33,34 +33,55 @@ of \class{QAbstractItemModel}. This essentially allows a
 expects tabular data. It also offers significant performance benefits:
 there is no need to copy the data frame into a C++ data structure,
 which would be especially slow if the looping occurred in
-\R. Displaying a simple table of data with \class{DataFrameModel} is
-much simpler than with \GTK{} and \class{RGtkDataFrame}. Here we
-show a \class{data.frame} in a table view:
-<<qt-mvc-qdfm,print=false>>=
-data(mtcars)
+\R. 
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.8\textwidth]{fig-qt-tableview-basic}
+  \caption{Basic display of a data frame using just three commands}
+  \label{fig:qt-tableview-basic}
+\end{figure}
+
+
+Displaying a simple table of data with \class{DataFrameModel} is much
+simpler than with \GTK{} and \class{RGtkDataFrame} (See Section~\ref{sec:tabular-stores-tree}).
+Here we construct a widget to show a
+\class{data.frame} in a table view:
+<<qt-mvc-qdfm,print=false, results=hide>>=
 model <- qdataFrameModel(mtcars)
 view <- Qt$QTableView()
 view$setModel(model)
 @ 
 %
-We could also pass our model to any other view expecting a
+Figure~\ref{fig:qt-tableview-basic} shows the resulting widget. We
+could also pass our model to any other view expecting a
 \class{QAbstractItemModel}. For example, the first column could be
 displayed in a list or combo box.
 
-The \class{DataFrameModel} object is a reference, so any changes are
-reflected in all of its views. The \R{} data frame of a
-\class{DataFrameModel} may be accessed using
-\function{qdataFrame}:
+The \R{} data frame of a \class{DataFrameModel} may be accessed using
+\index{qdataFrame}\function{qdataFrame}:
 <<qt-mvc-qdfm-access>>=
-head(qdataFrame(model), 3)
+df <- qdataFrame(model)
+df[1:3, 1:10]
+@ 
+
+
+Assignment is possible too:
+<<>>=
 qdataFrame(model)$hpToMpg <- with(qdataFrame(model), hp / mpg)
 @ 
-% 
-Our table view now contains a new column, holding the horsepower to
-miles per gallon ratio. It is important to notice that the view has
-been updated implicitly, through manipulation of the underlying model.
+%
 
-A view has a horizontal and vertical header. The horizontal header
+% 
+
+Our table view now contains a new column, holding the horsepower to
+miles per gallon ratio. The \class{DataFrameModel} object is a
+reference so assignments can be made within function bodies. It is
+important to notice that any view of the model will reflect changes to
+the underlying model without needing additional programming.
+
+\paragraph{Headers}
+A table view has a horizontal and vertical header. The horizontal header
 displays the column names, while the vertical header displays the row
 names, if any. \class{QHeaderView} is the widget responsible for
 displaying headers. It has a number of parameters, such as whether the
@@ -74,6 +95,7 @@ header <- view$horizontalHeader()
 header$defaultAlignment <- Qt$Qt$AlignLeft
 @ 
 
+\paragraph{Aesthetic properties}
 \class{QTableView} provides a number of aesthetic features. By
 default, a grid is drawn that delineates the cells. One can set
 \property{showGrid}{QTableView} to \qcode{FALSE} to disable this. If a
@@ -91,28 +113,29 @@ A view keeps a reference to its model, and the
 object. However, we offer a word of caution: since multiple views can
 refer to a single model, a view does not own its model. This means
 that if a model becomes inaccessible to R, i.e., it goes out of scope,
-the model will be garbage collected, from lack of an owner. For
+the model will be \iprogram{garbage collection}garbage collected, from lack of an owner. For
 example, this does not work:
-<<qt-mvc-table-gc,print=false>>=
+<<qt-mvc-table-gc,results=hide>>=
 brokenView <- Qt$QTableView()
 brokenView$setModel(qdataFrameModel(mtcars))
 gc()
 @ 
 <<qt-mvc-table-gc-result>>=
-brokenView$model()
+brokenView$model()                      # NULL, garbage collected
 @ 
 % 
 To prevent this, one should either (1) maintain a reference to the
 model in R, which we typically do in this text, or (2) explicitly give
 the view ownership of the model by setting the view as the parent of
 the model, like this:
-<<qt-mvc-table-parent,print=false>>=
+<<qt-mvc-table-parent,results=hide>>=
 parentalView <- Qt$QTableView()
-brokenView$setModel(qdataFrameModel(mtcars, parent = parentalView))
+brokenView$setModel(qdataFrameModel(mtcars, 
+                                    parent=parentalView))
 gc()
 @ 
 <<qt-mvc-table-parent-result>>=
-brokenView$model()
+brokenView$model()                      # not garbage collected
 @ 
 
 \subsection{Formatting cells}
@@ -127,17 +150,17 @@ qdataFrame(model)$mpg[1] <- NA
 The table view will display this as "nan" or "inf", which is
 inconsitent with the notation of \R. The conversion of the numeric
 data to text is carried out by an \textit{item delegate}. Similar to a
-\GTK{} cell renderer, an item delegate is responsible for the
-rendering and editing of items (cells) in a view. Every type of item
-delegate is derived from the \class{QAbstractItemDelegate} class. By
-default, views in \Qt{} will use an instance of
-\class{QStyledItemDelegate}, which renders items according to the
-current style. As \Qt{} is unaware of the notion and encoding of
-missing values in \R, we need to give \Qt{} extra guidance. The
-\pkg{qtbase} package provides the \class{RTextFormattingDelegate}
-class for this purpose. To use it, one creates an instance and sets it
-as the item delegate for the view:
-<<qt-mvc-rtfd>>=
+\GTK{} cell renderer (Section~\ref{sec:RGtk2:mvc:GtkTreeView}), an
+item delegate is responsible for the rendering and editing of items
+(cells) in a view. Every type of item delegate is derived from the
+\class{QAbstractItemDelegate} class. By default, views in \Qt{} will
+use an instance of \class{QStyledItemDelegate}, which renders items
+according to the current style. As \Qt{} is unaware of the notion and
+encoding of missing values in \R, we need to give \Qt{} extra
+guidance. The \pkg{qtbase} package provides the
+\class{RTextFormattingDelegate} class for this purpose. To use it, one
+creates an instance and sets it as the item delegate for the view:
+<<qt-mvc-rtfd, results=hide>>=
 delegate <- qrTextFormattingDelegate()
 view$setItemDelegate(delegate)
 @ 
@@ -192,28 +215,28 @@ still free to adjust the column widths.
 If, instead, one wishes to pack a table, so that it is not expanding,
 it may be desirable to initialize the column widths so that the
 columns optimally fit their contents:
-<<qt-mvc-table-fit>>=
+<<qt-mvc-table-fit, results=hide>>=
 view$resizeColumnsToContents()
 @ 
 %
 This will need to be called each time the contents change.
 
 By default, the size is always under control of the user (and the
-programmer). This depends on the resize mode. The
+programmer), although this depends on the resize mode. The
 \property{resizeMode}{QHeaderView} property represents the default
 resize mode for all columns, and it defaults to
 \qcode{Interactive}. The other modes are \qcode{Fixed},
 \qcode{Stretch} (expanding), and \qcode{ResizeToContents} (constrained
-to width needed to fit contents). The \method{setResizeMode} method
+to width needed to fit contents). The \method{setResizeMode}{QHeaderView} method
 changes the resize mode of a specific column.  Below, we make all of
 our columns expand:
 %% jv 7-29-11 this is a method, we had an assignment to a property
-<<qt-mvc-table-stretch>>=
+<<qt-mvc-table-stretch, results=hide>>=
 header$resizeMode(Qt$QHeaderView$Stretch)
 @ 
 %
 The drawback to any of these modes is that the resizing is no longer
-interactive; the user cannot tweak the column widths.
+interactive: the user cannot tweak the column widths.
 
 When the size of a column is reduced such that it can no longer
 naturally display its contents, special logic is necessary. By
@@ -259,7 +282,7 @@ dimensional list. For these and other reasons, \Qt{} provides
 \class{QAbstractItemModel} as a list. We can use
 \class{DataFrameModel} to quickly display the first column from a data
 frame (or anything coercible into a data frame):
-<<qt-mvc-lists-df, print=false>>=
+<<qt-mvc-lists-df, results=hide>>=
 model <- qdataFrameModel(rownames(mtcars))
 view <- Qt$QListView()
 view$setModel(model)
@@ -272,21 +295,24 @@ Using a data model allows us to share data between multiple views. For
 example, we could view a data frame as a table using a
 \class{QTableView} and also display the row identifiers in a separate
 list:
-<<qt-mvc-lists-combo>>=
+<<qt-mvc-lists-combo, results=hide>>=
 mtcars.id <- cbind(makeAndModel = rownames(mtcars), mtcars)
 model <- qdataFrameModel(mtcars.id)
 tableView <- Qt$QTableView()
 tableView$setModel(model)
+##
 listView <- Qt$QListView()
 listView$setModel(model)
 @ 
 %
 Now, when we resort the model, both views will be updated:
-<<qt-mvc-lists-sort>>=
+<<qt-mvc-lists-sort, results=hide>>=
 df <- qdataFrame(model)
 qdataFrame(model) <- df[order(df$mpg),]
 @ 
+%
 
+\paragraph{\class{QStringListModel}}
 When the list items are not associated with a data frame, they may be
 conveniently represented as a character vector. In this case,
 \class{DataFrameModel} is not very appropriate, as the character
@@ -295,23 +321,23 @@ vector will be coerced to a data frame. Instead, consider
 \class{QStringList} refers to a character vector. We demonstrate
 the use of \class{QStringListModel} to populate a list view from a
 character vector:
-<<qt-mvc-lists-qslm>>=
+<<qt-mvc-lists-qslm, results=hide>>=
 model <- Qt$QStringListModel(rownames(mtcars))
 listView <- Qt$QListView()
 listView$setModel(model)
 @ 
 %
-Now we can retrieve the values as a character vector, rather than as a
+Now we can retrieve the values as a character vector with the
+\method{stringList}{QStringListModel} method, rather than as a
 data frame:
 <<qt-mvc-lists-qslm-retrieve>>=
-head(model$stringList)
+head(model$stringList())
 @ 
 
 \class{QListView} supports features beyond those of a simple list,
 including features often found in file browsers and desktops. For
-example, items may be wrapped into additional columns, and an icon
-mode, supporting unrestricted layout and drag and drop, is also
-available.
+example, the items may be wrapped into additional columns or displayed in an icon
+mode. The widget also supports unrestricted layout and drag and drop.
 
 \section{Accessing Item Models}
 
@@ -327,8 +353,7 @@ An item model refers to its rows, columns and cells with
 \class{QModelIndex} objects, which are created by the model:
 <<qt-mvc-model-index-create>>=
 index <- model$index(0, 0)
-index$row()
-index$column()
+c(row=index$row(), column=index$column())
 @ 
 % 
 Our \qcode{index} refers to the first row of the
@@ -336,12 +361,15 @@ Our \qcode{index} refers to the first row of the
 The index points to a cell in the model, and we can retrieve the data
 in the cell using only the index:
 <<qt-mvc-model-index-data>>=
-firstCar <- index$data()
+(firstCar <- index$data())
 @ 
 %
-This can be extended to retrieve all of the items in the list:
+We vectorize the above to retrieve all of the items in the list:
 <<qt-mvc-model-populate>>=
-sapply(seq(model$rowCount()), function(i) model$index(i - 1, 0)$data())
+out <- sapply(seq(model$rowCount()), function(i) {
+  model$index(i - 1, 0)$data()
+})
+head(out, n=6)
 @ 
 
 Setting the data is also possible, yet requires calling
@@ -382,24 +410,31 @@ This design allows views to synchronize selection. It also supports
 views on the selection state, such as a label indicating how many
 items are selected, independent of the particular type of item view.
 
-There are five selection modes for item views: single, extended,
-contiguous, multi, and none. These values are defined by the
+There are five selection modes for item views defined by the
 \qtenumeration{QAbstractItemView::SelectionMode}
-enumeration. \qcode{SingleSelection} mode allows only a single item to
-be selected at once. \qcode{ExtendedSelection} mode, the default,
+enumeration:
+\begin{description}
+\item\qcode{SingleSelection} mode allows only a single item to
+be selected at once.
+\item \qcode{ExtendedSelection} mode, the default,
 supports canonical multiple selection, where a range of items is
 selected by clicking the end points while holding the \kbd{Shift} key,
 and clicking with the \kbd{Ctrl} key pressed adds arbitrary items to
-the selection.  The \qcode{ContiguousSelection} mode disallows the
-\kbd{Ctrl} key behavior. To allow selection on mouse-over, with range
-selection by clicking and dragging, choose \qcode{MultiSelection}. We
-configure our list view for single selection:
+the selection.
+\item \qcode{ContiguousSelection} mode disallows the
+\kbd{Ctrl} key behavior. 
+\item \qcode{MultiSelection} mode allows selection on mouse-over, with range
+selection by clicking and dragging
+\end{description}
+
+
+We configure our list view for single selection with:
 <<qt-mvc-selection-set-mode, results=hide>>=
 listView$selectionMode <- Qt$QAbstractItemView$SingleSelection
 @ 
 % 
 
-<<qt-mvc-selection-set-initial, echo=FALSE>>=
+<<qt-mvc-selection-set-initial, echo=FALSE, results=hide>>=
 selModel$select(model$index(2, 0), Qt$QItemSelectionModel$Select)
 @
 
@@ -425,7 +460,7 @@ above, we obtained the selected indices. A selection is more formally
 represented by a \class{QItemSelection} object, which is a list of
 \class{QItemSelectionRange} objects. Under the assumption that the
 user has selected three separate ranges of items from the list view,
-we retrieve the selection from the selection model:
+we retrieve that selection from the selection model:
 <<qt-mvc-selection-get>>=
 selection <- selModel$selection()
 @ 
@@ -436,7 +471,9 @@ selected indices:
 <<qt-mvc-selection-as-list>>=
 indicesForSelection <- function(selection) {
   selRanges <- as.list(selection)
-  unlist(lapply(selRanges, function(range) seq(range$top(), range$bottom())))
+  lapply(selRanges, function(range) {
+    seq(range$top(), range$bottom())
+  })
 }
 indicesForSelection(selection)
 @ 
@@ -448,9 +485,10 @@ small number of ranges, although the ranges may be wide. Looping
 over the ranges, but not the individual indices, will be
 significantly more efficient for large selections.
 
+\paragraph{Assigning the selection}
 It is also possible to programmatically change the selection.  For
 example, we may wish to select the first list item:
-<<qt-mvc-selection-set-current>>=
+<<qt-mvc-selection-set-current, results=hide>>=
 listView$setCurrentIndex(model$index(0, 0))
 @ 
 %
@@ -458,7 +496,8 @@ This approach is simple but only supports selecting a single item.
 The selection is most generally modified by calling the
 \method{select}{QItemSelectionModel} method on the selection model:
 <<qt-mvc-selection-select, results=hide>>=
-selModel$select(model$index(0, 0), Qt$QItemSelectionModel$Select)
+selModel$select(model$index(0, 0), 
+                Qt$QItemSelectionModel$Select)
 @ 
 % 
 The second argument describes how the selection is to be changed with
@@ -469,7 +508,8 @@ issued the \qcode{Select} command. Other commands include
 \qcode{Deselect} and \qcode{Toggle}. Thus, we could deselect the item
 in similar fashion:
 <<qt-mvc-selection-deselect, results=hide>>=
-selModel$select(model$index(0, 0), Qt$QItemSelectionModel$Deselect)
+selModel$select(model$index(0, 0), 
+                Qt$QItemSelectionModel$Deselect)
 @ 
 %
 To efficiently select a range of items, we construct a
@@ -480,7 +520,7 @@ selModel$select(sel, Qt$QItemSelectionModel$Select)
 @
 %
 We have selected items $3$ to $10$. Multiple ranges may be added to
-the \class{QItemSelection} object by calling its
+the \class{QItemSelection} object by repeatedly calling its
 \method{select}{QItemSelection} method.
 
 For tabular views, selection may be row-wise, column-wise or item-wise
@@ -519,7 +559,9 @@ items, except we need to add the \qcode{Rows} selection flag:
 selModel$select(sel, Qt$QItemSelectionModel$Select | 
                 Qt$QItemSelectionModel$Rows)
 @ 
+%%
 
+\paragraph{The \signal{selectionChanged} signal}
 To respond to a change in selection, connect to the
 \signal{selectionChanged} signal on the selection model:
 <<qt-mvc-selection-changed, results=hide>>=
@@ -553,7 +595,8 @@ indices between the filtered and unfiltered (or sorted and unsorted)
 coordinate space. Thus, there is little cost in memory.
 
 \Qt{} implements both sorting and filtering in a single class:
-\class{QSortFilterProxyModel}. After constructing an instance and
+\class{QSortFilterProxyModel}.~\footnote{In \pkg{RGtk2} one can only
+  choose one or the other, cf. Section\ref{sec:RGtk2:mvc:proxies}.) After constructing an instance and
 specifying the child model, the proxy model may be handed to a view
 like any other model:
 <<qt-mvc-proxy, results=hide>>=

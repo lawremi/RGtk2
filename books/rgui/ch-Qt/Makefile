@@ -9,7 +9,10 @@ stangle:
 	R64 CMD Stangle ch-*.Rnw
 
 latex:  
-	pdflatex print-chapter
+	pdflatex --interaction scrollmode print-chapter
+	bibtex print-chapter.fb
+	makeindex print-chapter.idx
+	pdflatex  --interaction scrollmode print-chapter
 
 package:
 	cp *.R ../ProgGUIinR/inst/Examples/ch-Qt

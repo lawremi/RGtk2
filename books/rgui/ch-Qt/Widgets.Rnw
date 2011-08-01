@@ -82,8 +82,14 @@ commands that do not apply to the current state of the
 application. \Qt{} changes the rendering widget, including that of the
 icon, to indicate the disabled state.
 
-A push button usually executes some command when clicked, i.e., when
-the \signal{clicked} signal is emitted:
+
+\paragraph{Signals}
+A push button usually executes some command when clicked or otherwise
+invoked. The \class{QAbstractButton} class provides the signals
+\signal{clicked}, for when the button is activated; and
+\signal{pressed} and \signal{released} to track button clicks and releases.
+For example, to respond with a simple message one could have:
+
 <<qt-widget-button-connect, results=hide>>=
 qconnect(button, "clicked", function() message("Ok clicked") )
 @ 
@@ -112,7 +118,7 @@ style <- Qt$QApplication$style()
 button$icon <- style$standardIcon(Qt$QStyle$SP_DialogOkButton)
 @ 
 %
-The \qcode{QStyle::StandardPixmap} enumeration lists all of the
+The \qtenumeration{QStyle::StandardPixmap} enumeration lists all of the
 possible icons that a style should provide. In the above, we passed
 the key for an ``Ok'' button in a dialog.
 
@@ -126,7 +132,7 @@ the \Qt{} painting API (not discussed in this book). Also, using the
 \pkg{qtutils} package, we can draw a pixmap using the R graphics
 engine. For example, the following uses \pkg{ggplot2} to generate an
 icon representing a histogram. First, we create the \Qt{} graphics
-device and plot the icon with \pkg{grid}:
+device (cf. Section~\ref{sec:qt-embedding-graphics}) and plot the icon with \pkg{grid}:
 <<echo=FALSE, results=hide>>=
 require(grid)
 require(ggplot2)
@@ -134,8 +140,8 @@ require(ggplot2)
 <<results=hide>>=
 require(qtutils)
 device <- QT()
-grid.newpage()
-grid.draw(GeomHistogram$icon())
+grid:::grid.newpage()
+grid:::grid.draw(ggplot2:::GeomHistogram$icon())
 @ 
 %
 Next, we create the blank pixmap and render the device to a paint
@@ -167,8 +173,10 @@ b$raise()
 The \class{QCheckBox} class implements a checkbox. Like the
 \class{QPushButton} class, \class{QCheckBox} extends
 \class{QAbstractButton}. Thus, \class{QCheckBox} inherits the signals
-\signal{clicked}, \signal{pressed}, and \signal{released}. We create a
-check box for our demonstration:
+\signal{clicked}, \signal{pressed}, and \signal{released} and the
+signal \signal{stateChanged} is added.
+
+We create a check box for demonstration with:
 <<qt-widget-checkbox>>=
 checkBox <- Qt$QCheckBox("Option")
 @ 
@@ -184,18 +192,18 @@ that is neither checked nor unchecked. To enable this, set the
 \property{tristate}{QCheckBox} property to \qcode{TRUE}. In that case,
 one needs to call the \method{checkState}{QCheckBox} method to
 determine the state, as it is no longer boolean but from the
-\qcode{Qt::CheckState} enumeration.
+\qtenumeration{Qt::CheckState} enumeration.
 
 The \signal{stateChanged} signal is emitted whenever the checked state
 of the button changes:
-<<qt-widget-checkbox-state-changed>>=
+<<qt-widget-checkbox-state-changed, results=hide>>=
 qconnect(checkBox, "stateChanged", function(state) {
   if (state == Qt$Qt$Checked)
     message("checked")
 })
 @ 
 %
-The argument is from the \qcode{Qt::CheckState} enumeration; it is not
+The argument is from the \qtenumeration{Qt::CheckState} enumeration; it is not
 a logical vector.
 
 \subsection{Groups of checkboxes}
@@ -209,12 +217,21 @@ buttons. The \class{QButtonGroup} object, which is \emph{not} a
 widget, fills this gap, by formalizing the grouping of buttons behind
 the scenes.
 
-To demonstrate, we will construct an interface for filtering a data
-set by the levels of a factor. A common design is to have each factor
-level correspond to a check button in a group. For our example, we
-take the cylinders variable from the \code{Cars93} data set of the
-\pkg{MASS} package.  First, we create our \class{QGroupBox} as the
-container for our buttons:
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.7\textwidth]{fig-qt-group-checkbox-radio}
+  \caption{Screenshot of groups of checkboxes and radio buttons,
+    grouped using a \class{QGroupBox} instance.}
+  \label{fig:qt-group-checkbox-radio}
+\end{figure}
+To demonstrate (Figure~\ref{fig:qt-group-checkbox-radio}), we will
+construct an interface for filtering a data set by the levels of a
+factor. A common design is to have each factor level correspond to a
+check button in a group. For our example, we take the cylinders
+variable from the \code{Cars93} data set of the \pkg{MASS} package.
+First, we create our \class{QGroupBox} as the container for our
+buttons:
 <<results=hide>>=
 w <- Qt$QGroupBox("Cylinders:")
 lyt <- Qt$QVBoxLayout()
@@ -228,7 +245,7 @@ bg$exclusive <- FALSE
 @ 
 %
 By default, the buttons are exclusive, like a radio button group. We
-disable that by setting the \property{exclusive}{QButtonGroup}
+disable that above by setting the \property{exclusive}{QButtonGroup}
 property to \qcode{FALSE}.
 
 We add a button for each level of the \qcode{Cylinders} variable to
@@ -246,8 +263,13 @@ sapply(bg$buttons(), function(i) i$checked <- TRUE)
 %
 Every button is initially checked.
 
-We can retrieve a list of the buttons in the group and query their
-checked state:
+Buttons can be removed through \method{removeButton}{QButtonGroup},
+where the button object is specified for remove (not the index).
+
+
+The \method{buttons}{QButtonBroup} method returns a list of the
+managed buttons. Here we retrieve the buttons in the group and query
+their checked state:
 <<results=hide>>=
 checked <- sapply(bg$buttons(), function(i) i$checked)
 if(any(checked)) {
@@ -257,12 +279,21 @@ if(any(checked)) {
 @ 
 %
 
-By attaching a callback to the \signal{buttonClicked}
-signal~\footnote{See Section~\ref{sec:qt-signals} for why we need the \code{(QAbstractButton)}.}, we will
-be informed when any of the buttons in the group are clicked:
+
+
+Button groups emit signals paralleling the \class{QAbstractButton}
+class (in particular the \signal{buttonClicked} signal, but also
+\signal{buttonPressed} and \signal{buttonReleased}).  By attaching a
+callback to the \signal{buttonClicked} signal~\footnote{See
+  Section~\ref{sec:qt-signals} for why we need the
+  \code{(QAbstractButton*)}.}, we will be informed when any of the
+buttons in the group are clicked:
 <<results=hide>>=
-qconnect(bg, "buttonClicked(QAbstractButton*)", function(button) {
-  message(paste("Level '", button$text, "': ", button$checked, sep = ""))
+qconnect(bg, "buttonClicked(QAbstractButton*)", 
+         function(button) {
+           msg <- paste("Level '", button$text, "': ", 
+                        button$checked, sep = "")
+           message(msg)
 })
 @ 
 <<echo=FALSE, results=hide>>=
@@ -279,15 +310,17 @@ one radio button in a group may be checked at once. Continuing our
 filtering example, we create several radio buttons for choosing a
 range for the \qcode{Weight} variable in the \qcode{Cars93} dataset:
 <<RadioWithList,results=hide>>=
+w <- Qt$QGroupBox("Weight:")
 l <- list(Qt$QRadioButton("Weight < 3000", w),
           Qt$QRadioButton("3000 <= Weight < 4000", w),
           Qt$QRadioButton("4000 <= Weight", w))
 @ 
+%
+In the above we specified the parent to the constructor to group the objects.
 
-The simplest way to group the radio boxes is to place them into the
-same layout:
+The simplest way to arrange the radio boxes is to place them into the
+same layout, but the programmer is constrained to do this:
 <<qt-widget-radio-layout, results=hide>>=
-w <- Qt$QGroupBox("Weight:")
 lyt <- Qt$QVBoxLayout()
 w$setLayout(lyt)
 sapply(l, function(i) lyt$addWidget(i))
@@ -313,25 +346,89 @@ sapply(l, function(i) {
 })
 @ 
 
-\class{QButtonGroup} is a useful utility for grouping radio buttons:
+However, one need not do the internal management using a list, as
+above, if a \class{QButtonGroup} instance is used to organize the
+radio buttons (Figure~\ref{fig:qt-group-checkbox-radio}):
 <<qt-widget-radio-group, results=hide>>=
 buttonGroup <- Qt$QButtonGroup()
 lapply(l, buttonGroup$addButton)
 @ 
 %
 Since our button group is exclusive, we can query for the currently
-checked button:
+checked button through the \method{checkedButton}{QButtonGroup} method:
 <<qt-widget-radio-group-checked>>=
 buttonGroup$checkedButton()$text
 @ 
+%
+As well, we can listen for events on the button group, rather than
+listen on each radio button, as was done above. This strategy makes it
+much easier to add (or remove) items, although you do need to add (or
+remove them) to both the layout and the button group.
 
 <<echo=FALSE,results=hide>>=
 w$show()
 w$raise()
 @           
 
+<<makeFigureFromPrevious,echo=FALSE,results=hide>>=
+## Code used to make figure, just combines previous
+make_cb <- function() {
+  w <- Qt$QGroupBox("Cylinders:")
+  lyt <- Qt$QVBoxLayout()
+  w$setLayout(lyt)
+  bg <- Qt$QButtonGroup()
+  bg$exclusive <- FALSE
+  data(Cars93, package="MASS")
+  cyls <- levels(Cars93$Cylinders)
+  sapply(seq_along(cyls), function(i) {
+    button <- Qt$QCheckBox(sprintf("%s Cylinders", cyls[i]))
+    lyt$addWidget(button)
+    bg$addButton(button, i)
+  })
+  sapply(bg$buttons(), function(i) i$checked <- TRUE)
+  w
+}
+
+make_rb <- function() {
+  w <- Qt$QGroupBox("Weight:")
+  l <- list(Qt$QRadioButton("Weight < 3000", w),
+            Qt$QRadioButton("3000 <= Weight < 4000", w),
+            Qt$QRadioButton("4000 <= Weight", w))
+  lyt <- Qt$QVBoxLayout()
+  w$setLayout(lyt)
+  sapply(l, function(i) lyt$addWidget(i))
+  l[[1]]$setChecked(TRUE)
+  l[[1]]$checked
+  sapply(l, function(i) {
+    qconnect(i, "toggled", function(checked) {
+      if(checked) {
+        message(sprintf("You checked %s.", i$text))
+      }
+    })
+  })
+  buttonGroup <- Qt$QButtonGroup()
+  lapply(l, buttonGroup$addButton)
+  w
+}
+
+w <- Qt$QWidget()
+lyt <- Qt$QHBoxLayout()
+lyt$addWidget(make_cb())
+lyt$addWidget(make_rb())
+w$setLayout(lyt) 
+w$windowTitle <- "Groups of checkboxes and radio buttons"
+@ 
+
+
 \section{Combo Boxes}
 \label{sec:comboboxes}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.6\textwidth]{fig-qt-combobox-example}
+  \caption{Two comobo boxes in a form layout}
+  \label{fig:qt-combobox-example}
+\end{figure}
 
 A combo box allows a single selection from a drop-down list of
 options. In this section, we describe the basic usage of
@@ -340,17 +437,19 @@ strings and optionally allowing arbitrary input through an associated
 text entry. For the more complex approach of deriving the menu
 from a separate data model, see Section~\ref{sec:qt-mvc-combo}.
 
-This example shows how one combobox, listing regions in the U.S.,
-updates another, which lists states in that region. First, we prepare
-a \class{data.frame} with the name, region and population of each
-state and split that \class{data.frame} by the regions:
+This example shows how one combo box, listing regions in the U.S.,
+updates another, which lists states in that region
+(Figure~\ref{fig:qt-combobox-example}). First, we prepare a
+\class{data.frame} with the name, region and population of each state
+and split that \class{data.frame} by the regions:
 <<>>=
 df <- data.frame(name=state.name, region=state.region,
-                 population=state.x77[,'Population'], stringsAsFactors=FALSE)
+                 population=state.x77[,'Population'], 
+                 stringsAsFactors=FALSE)
 statesByRegion <- split(df, df$region)
 @ 
 
-We create our combo boxes, loading the \code{region} combobox with the
+We create our combo boxes, loading the \code{region} combo box with the
 regions:
 <<QComboBox, results=hide>>=
 state <- Qt$QComboBox()
@@ -360,10 +459,15 @@ region$addItems(names(statesByRegion))
 %
 The \method{addItems}{QComboBox} accepts a character vector of options
 and is the most convenient way to populate a combo box with a simple
-list of strings. The \property{currentIndex}{QComboBox} property
+list of strings. 
+
+To retrive the value, the \property{currentText}{QComboBox} property
+holds the current text, whereas the
+\property{currentIndex}{QComboBox} property
 indicates the index of the currently selected item:
 <<qt-widget-combo-currentitem>>=
-region$currentIndex
+region$currentText
+region$currentIndex                     # 0-based
 region$currentIndex <- -1
 @
 %
@@ -371,7 +475,7 @@ By setting it to $-1$, we make the selection to be empty.
 
 To respond to a change in the current index, we connect to the
 \signal{activated} signal:
-<<>>=
+<<results=hide>>=
 qconnect(region, "activated(int)", function(ind) {
   state$clear()
   state$addItems(statesByRegion[[ind+1]]$name)
@@ -383,11 +487,13 @@ region, indicated by \qcode{ind}, which is zero-based.
 
 Finally, we place the widgets in a form layout:
 <<results=hide>>=
-w <- Qt$QGroupBox("Two comboboxes")
+w <- Qt$QGroupBox("Two combo boxes")
 lyt <- Qt$QFormLayout()
 w$setLayout(lyt)
 lyt$addRow("Region:", region)
 lyt$addRow("State:", state)
+## grow comboboxes
+lyt$fieldGrowthPolicy = Qt$QFormLayout$AllNonFixedFieldsGrow
 @ 
 
 <<eval=FALSE, echo=FALSE, results=hide>>=
@@ -403,7 +509,7 @@ not be sensible for our example.
 
 Sliders and spin boxes are similar widgets used for selecting from a
 range of values. Sliders give the illusion of selecting from a
-continuum, whereas spinboxes offer a discrete choice. However,
+continuum, whereas spin boxes offer a discrete choice. However,
 underlying each is an arithmetic sequence. Our example will include
 both widgets and synchronize them for specifying a single range. The
 slider allows for quick movement across the range, while the spin box
@@ -485,7 +591,9 @@ qconnect(sl, "valueChanged", f, user.data=sp)
 @
 %
 We pass the other widget as the user data, so that state changes in
-one are forwarded to the other.
+one are forwarded to the other.  A race condition
+is avoided, as \signal{valueChanged} is only emitted when the value
+actually changes.
 
 <<SliderSpinButton, echo=FALSE, results=hide>>=
 w <- Qt$QWidget()
@@ -508,10 +616,10 @@ w$raise()
 As seen in previous examples, a widget for entering or displaying a
 single line of text is provided by the \class{QLineEdit} class:
 <<qt-widget-lineedit>>=
-le <- Qt$QLineEdit("Initial Contents")
+le <- Qt$QLineEdit("Initial contents")
 @ 
 %
-The \property{text} property holds the current value:
+The \property{text}{QLineEdit} property holds the current value:
 <<qt-widget-lineedit-text>>=
 le$text
 @ 
@@ -519,7 +627,7 @@ le$text
 
 We wish to select the text, so that the initial contents are
 overwritten when the user begins typing:
-<<qt-widget-lineedit-select>>=
+<<qt-widget-lineedit-select, results=hide>>=
 le$setSelection(start = 0, length = nchar(le$text))
 @ 
 %
@@ -543,13 +651,13 @@ indicates the expected contents of the entry:
 %% JV: needs to upgrade
 <<qt-widget-lineedit-placeholder>>=
 le$text <- ""
-le$placeholderText <- "Enter some text"
+le$setPlaceholderText("Enter some text")
 @ 
 
 The \signal{editingFinished} signal is emitted when the user has
 committed the edit, typically by pressing the return key, and the
 input has been validated:
-<<qt-widget-lineedit-editingFinished>>=
+<<qt-widget-lineedit-editingFinished, results=hide>>=
 qconnect(le, "editingFinished", function() {
   message("Entered text: '", le$text, "'")
 })
@@ -574,7 +682,9 @@ presented for completion when text is entered into a \class{QLineEdit}.
   This example shows how completion can assist in exploring the
   classes and namespaces of the \code{Qt} library. A form layout
   arranges two line edit widgets -- one to gather a class name and one
-  for method and property names.
+  for method and property names. See
+  Figure~\ref{fig:qt-qwebview-embedded} to see this widget example
+  embedded into a web page.
 <<CompleterExample, results=hide>>=
 classBrowser <- Qt$QWidget()
 lyt <- Qt$QFormLayout()
@@ -608,6 +718,9 @@ qconnect(c_name, "editingFinished", function() {
 
 
 <<echo=FALSE, results=hide>>=
+w <- Qt$QWidget()
+w$windowTitle <- "Completion example"
+w$setLayout(lyt)
 w$show()
 w$raise()
 @ 
@@ -636,6 +749,12 @@ As illustrated in Example~\ref{sec:qt-introductory-example},
 the value in the widget is checked by the validator before being
 committed.
 
+%% JV 7-31-11 added an example combining the widgets.
+\begin{example}{A dialog for calling \function{read.csv}}{eg-qt-read-csv-dialog}
+  \SweaveInput{ex-qt-read-csv}
+\end{example}
+
+
 \section{Web View Widget}
 
 The \class{QtWebKit} module provides a \Qt-based implementation of the
@@ -648,7 +767,7 @@ not be discussed. The widget \class{QWebView} uses
 \class{QtWebKit} to render web pages in a GUI. 
 
 This is the basic usage:
-<<qt-widget-webview>>=
+<<qt-widget-webview, results=hide>>=
 webview <- Qt$QWebView()
 webview$load(Qt$QUrl("http://www.r-project.org"))
 @ 
@@ -661,39 +780,50 @@ are provided for this purpose. History information is stored in a
 \method{history}{QWebView} on the web view. This could be used for
 implementing a ``Back'' button.
 
-A unique feature of \class{QtWebKit} is the ability to embed Qt
-widgets into a web page. This is one mechanism for constructing hybrid
-web/desktop applications. Widget embedding is implemented through the
-standard HTML \qcode{object} tag. We can register a plugin, manifested
-as a \class{QWidget}, for a particular mime type, specified through
-the \qcode{type} attribute of the \qcode{object} element.
+\paragraph{Embedding \Qt\/ widgets}
+A unique feature of \class{QtWebKit} is the ability to embed \Qt{}
+widgets into a web page (Figure~\ref{fig:qt-qwebview-embedded}). This
+is one mechanism for constructing hybrid web/desktop
+applications. Widget embedding is implemented through the standard
+HTML \qcode{object} tag. We can register a plugin, manifested as a
+\class{QWidget}, for a particular mime type, specified through the
+\qcode{type} attribute of the \qcode{object} element.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.8\textwidth]{fig-qt-qwebview-embedded}
+  \caption{An example of \class{QWebView} holding an embedded widget within a web page}
+  \label{fig:qt-qwebview-embedded}
+\end{figure}
+
 
 For example, we might have the following simple HTML:
 <<qt-widget-webview-plugin-html,keep.source=TRUE>>=
-html <- 
-  c("<html xmlns='http://www.w3.org/1999/xhtml'>",
-      "<body>",
-        "<h1>Qt class browser embedded into a QWebView</h1>",
-        "Search for a class:<br/>",
-        "<object type='application/x-qt-class-browser' width='500'",
-        "        height='100'/>",
-      "</body>",
-    "</html>")
+html <- readLines(out <- textConnection("
+<html xmlns='http://www.w3.org/1999/xhtml'>
+  <body>
+    <h1>Qt class browser embedded into a QWebView</h1>
+    Search for a class:<br/>
+    <object type='application/x-qt-class-browser' width='500'
+            height='100'/>
+  </body>
+</html>
+")); close(out)
 html <- paste(html, collapse = "\n")
 @ 
 
-For our plugin, we use the class browser widget, constructed above. To
-provide the plugin, we need to implement a custom
-\class{QWebPluginFactory}:
-<<qt-widget-webview-plugin-factory>>=
+For our plugin, we use the class browser widget, constructed in
+Example~\ref{eg-qt-line-edit=completion}. To provide the plugin, we
+need to implement a custom \class{QWebPluginFactory}:
+<<qt-widget-webview-plugin-factory, results=hide>>=
 qsetClass("RPluginFactory", Qt$QWebPluginFactory)
 @ 
-
+%
 The factory has two duties: describing its available plugins and
 creating a plugin, in the form of a \class{QWidget}, for a given mime
 type. The \method{plugins}{QWebPluginFactory} method returns a list of
 plugin descriptions:
-<<qt-widget-webview-plugin-factory-plugins>>=
+<<qt-widget-webview-plugin-factory-plugins, results=hide>>=
 qsetMethod("plugins", RPluginFactory, function() {
   plugin <- Qt$QWebPluginFactory$Plugin()
   plugin$setName("Class Browser")
@@ -704,11 +834,11 @@ qsetMethod("plugins", RPluginFactory, function() {
 })
 @ 
 %
-Our factory provides a single plugin, with a single mimetype that
+Our factory provides a single plugin, with a single MIME type that
 matches the type of the \qcode{object} element in the HTML. The
 \method{create}{QWebPluginFactory} method constructs the actual
 \class{QWidget} corresponding to the plugin:
-<<qt-widget-webview-plugin-factory-create>>=
+<<qt-widget-webview-plugin-factory-create, results=hide>>=
 qsetMethod("create", RPluginFactory, 
            function(mimeType, url, argNames, argVals) {
              if (mimeType == "application/x-qt-class-browser")
@@ -721,7 +851,7 @@ If the mime type does not match our plugin, we simply return an empty
 widget.
 
 Finally, we need to enable plugins, register our factory and load the HTML:
-<<qt-widget-webview-plugin-factory-register>>=
+<<qt-widget-webview-plugin-factory-register, results=hide>>=
 globalSettings <- Qt$QWebSettings$globalSettings()
 globalSettings$setAttribute(Qt$QWebSettings$PluginsEnabled, TRUE)
 webview$page()$setPluginFactory(RPluginFactory())
@@ -803,7 +933,7 @@ widget receiving the mouse press event, needs to encode chosen
 graphical object as mime data. This might be as an image, text or
 other data type. This occurs in the
 \method{mouseEventHandler}{QWidget} of the source:
-<<drag-mouse-press-event>>=
+<<drag-mouse-press-event, results=hide>>=
 qsetMethod("mousePressEvent", DragLabel, function(e) {
   md <- Qt$QMimeData()
   md$setText(text)
@@ -852,7 +982,7 @@ background. The background role is preserved so that we can restore it
 later after applying highlighting.
 
 First, we define a couple of utility methods:
-<<qt-dnd-utility>>=
+<<qt-dnd-utility, results=hide>>=
 qsetMethod("clear", DropLabel, function() {
   setText(this$orig_text)
   setBackgroundRole(this$bgrole)
@@ -885,7 +1015,7 @@ mouse cursor, indicating that a drop is possible. A secondary role of
 this handler is to indicate that the target is receptive to drops; we
 highlight the background of the label and change the text. To undo the
 highlighting, we override the \method{dragLeaveEvent}{QWidget} method:
-<<results=hide>>=
+<<results=hide, results=hide>>=
 qsetMethod("dragLeaveEvent", DropLabel, function(e) {
   clear()
 })
@@ -918,7 +1048,7 @@ qsetMethod("dropEvent", DropLabel, function(e) {
 We are passed a \class{QDropEvent} object, which contains the
 \class{QMimeData} set on the \class{QDrag} by the source. The data is
 extracted and translated to one or more properties of the target. The
-final step is to accept the drop event, so that the DnD operation is
+final step is to accept the drop event, so that the drag-and-drop operation is
 completed.
 
 % moved into main text
