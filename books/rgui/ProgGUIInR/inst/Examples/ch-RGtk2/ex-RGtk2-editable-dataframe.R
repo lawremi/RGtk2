@@ -1,12 +1,14 @@
 ###################################################
 ### chunk number 1: 
 ###################################################
+#line 3 "ex-RGtk2-editable-dataframe.Rnw"
 library(RGtk2)
 
 
 ###################################################
 ### chunk number 2: 
 ###################################################
+#line 17 "ex-RGtk2-editable-dataframe.Rnw"
 editCallBack <- function(cell, path, arg3, ...) {
   if(nargs() == 3) {
     userData <- arg3; newValue <- NA    # no newValue (toggle)
@@ -43,8 +45,9 @@ editCallBack <- function(cell, path, arg3, ...) {
 
 
 ###################################################
-### chunk number 3: 
+### chunk number 3: addColumnWithType
 ###################################################
+#line 58 "ex-RGtk2-editable-dataframe.Rnw"
 gtkTreeViewAddColumnWithType <-
   function(view,
            name="",
@@ -81,7 +84,7 @@ gtkTreeViewAddColumnWithType <-
            "logical" = cr["activatable"] <- TRUE,
            cr["editable"] <- TRUE)
     
-    if(type == "factor") {              # combobox needs a data store
+    if(type == "factor") {              # combo box needs a data store
       cstore <- gtkListStore("gchararray")
       rGtkstore <- view$getModel()
       vals <- rGtkstore[,storeCol, drop=TRUE]
@@ -95,16 +98,17 @@ gtkTreeViewAddColumnWithType <-
 
     
     ## connect callback to edited/toggled signal
-    QT <- gSignalConnect(cr, signal =
-                         if(type != "logical") "edited" else "toggled",
-                         f = editCallBack, 
-                         data = list(view=view,type=type,column=storeCol))
+    gSignalConnect(cr, signal =
+                   if(type != "logical") "edited" else "toggled",
+                   f = editCallBack, 
+                   data = list(view=view,type=type,column=storeCol))
   }
 
 
 ###################################################
 ### chunk number 4: 
 ###################################################
+#line 116 "ex-RGtk2-editable-dataframe.Rnw"
 ### -- bug with this when not editing
 gtkTreeViewAddKeyNavigations <- function(view) {
   ## keyMotionHandler example.
@@ -117,7 +121,7 @@ gtkTreeViewAddKeyNavigations <- function(view) {
                   i = as.numeric(cursor$path$toString()) + 1
                   vc = cursor[['focus.column']] ## might be focus_column!!
                   j = which(sapply(view$getColumns(), function(i) i == vc))
-                  d = dim(view$getModel()) # rGtkStore method
+                  d = dim(view$getModel()) # RGtkStore method
                   
                   setCursorAtCell <- function(view, i, j) {
                     path <- gtkTreePathNewFromString(i-1)
@@ -146,6 +150,7 @@ gtkTreeViewAddKeyNavigations <- function(view) {
 ###################################################
 ### chunk number 5: 
 ###################################################
+#line 157 "ex-RGtk2-editable-dataframe.Rnw"
 ## test it
 df = data.frame(
   logical = c(TRUE, TRUE, FALSE),
@@ -159,6 +164,7 @@ df = data.frame(
 ###################################################
 ### chunk number 6: 
 ###################################################
+#line 168 "ex-RGtk2-editable-dataframe.Rnw"
 store <- rGtkDataFrame(df)
 view <- gtkTreeView(store)
 
@@ -166,17 +172,18 @@ view <- gtkTreeView(store)
 ###################################################
 ### chunk number 7: 
 ###################################################
+#line 174 "ex-RGtk2-editable-dataframe.Rnw"
 nms <- names(df)
-QT <- sapply(1:ncol(df), function(i) {
+sapply(1:ncol(df), function(i) {
   type <- class(df[,i])[1]
   view$addColumnWithType(name = nms[i], type, viewCol = i, storeCol = i)
-  
 })
 
 
 ###################################################
 ### chunk number 8: 
 ###################################################
+#line 183 "ex-RGtk2-editable-dataframe.Rnw"
 vc <- gtkTreeViewColumn()
 newColNo <- view$insertColumn(vc, -1)           # -1 = end
 
@@ -184,13 +191,15 @@ newColNo <- view$insertColumn(vc, -1)           # -1 = end
 ###################################################
 ### chunk number 9: 
 ###################################################
-## How to add key naviations defined above.
+#line 189 "ex-RGtk2-editable-dataframe.Rnw"
+## How to add key navigations defined above.
 ID <- view$addKeyNavigations()
 
 
 ###################################################
 ### chunk number 10: 
 ###################################################
+#line 197 "ex-RGtk2-editable-dataframe.Rnw"
 sw <- gtkScrolledWindow()
 sw$setPolicy("automatic","automatic")
 sw$add(view)

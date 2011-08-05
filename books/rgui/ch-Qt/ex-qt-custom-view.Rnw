@@ -1,9 +1,16 @@
 This example shows how to create an aggregating view for a table
-model. We will subclass \class{QLabel} to display a mean value for a
-given column. Our custom view class will be a sub-class of
-\class{QLabel}. This is a simple illustration, where we
-provide a label with text summarizing the mean of the values in the
-first column of the model.
+model. We will subclass \class{QLabel} to create a widget
+(Figure~\ref{fig:qt-custom-view}) that is synchronized to display the
+mean value of a given column.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.7\textwidth]{fig-qt-custom-view}
+  \caption{Using a label as a custom view. In this case, when the
+    editing is committed, the label is updated to reflect the new mean.}
+  \label{fig:qt-custom-view}
+\end{figure}
+
 
 In the constructor we define a label property and call our
 \meth{setModel} method:
@@ -11,21 +18,25 @@ In the constructor we define a label property and call our
 library(qtbase)
 @ 
 <<CustomView, results=hide>>=
-qsetClass("MeanLabel", Qt$QLabel, function(model, column = 0, parent=NULL) {
+qsetClass("MeanLabel", Qt$QLabel, function(model, column = 0, 
+                                           parent=NULL) {
   super(parent)
   this$model <- model
   this$column <- column
-  qconnect(model, "dataChanged", function(topLeft, bottomRight) {
-    if (topLeft$column() <= column && bottomRight$column() >= column)
-      updateMean()
-  })
-  updateMean()
+  updateMean()                          # initialize text
+  ##
+  qconnect(model, "dataChanged", 
+           function(topLeft, bottomRight) {
+             if (topLeft$column() <= column && 
+                 bottomRight$column() >= column)
+               updateMean()
+           })
 })
 @ 
 %
 
-Whenever the data in the model changes, we need to update the display
-of the mean value. This private method performs the update:
+Whenever the data in the model changes, we want to update the display
+of the mean value. In the above we call this private method to perform the update:
 <<label, results=hide>>=
 qsetMethod("updateMean", MeanLabel, function() {
   if(is.null(model)) {
@@ -50,9 +61,9 @@ model <- qdataFrameModel(mtcars, editable=colnames(mtcars))
 tableView <- Qt$QTableView()
 tableView$setModel(model)
 tableView$setEditTriggers(Qt$QAbstractItemView$DoubleClicked)
-
+##
 meanLabel <- MeanLabel(model)
-
+##
 w <- Qt$QWidget()
 lyt <- Qt$QVBoxLayout()
 w$setLayout(lyt)
@@ -61,6 +72,6 @@ lyt$addWidget(meanLabel)
 @ 
 %
 <<echo=FALSE, results=hide>>=
-#w$show()
-#w$raise()
+w$show()
+w$raise()
 @ 

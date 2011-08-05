@@ -11,7 +11,7 @@ for executing a particular action. Menu Bars and toolbars are the two
 most common widgets for organizing application-wide actions. An
 application also needs to report its status in an unobtrusive
 way. Thus, a typical application window contains, from top to bottom, 
-a menu bar, a toolbar, a large application-specific region, and a
+a menubar, a toolbar, a large application-specific region, and a
 status bar.  In this chapter, we will introduce actions, menus,
 toolbars and status bars and conclude by explaining the mechanisms in
 \GTK\/ for conveniently defining and managing actions and associated
@@ -47,7 +47,7 @@ gSignalConnect(a, "activate", f = function(w, data) {
 \begin{figure}
   \centering
   \includegraphics[width=.7\textwidth]{ex-RGtk2-action-items-infobar}
-  \caption{An application window mock up showing a menu bar, tool bar,
+  \caption{An application window mock up showing a menubar, toolbar,
   and info bar}
   \label{fig:RGtk2-action-items-infobar}
 \end{figure}
@@ -118,29 +118,29 @@ window$showAll()
 
 A menu is a compact, hierarchically organized collection of buttons,
 each of which may proxy an action. Menus listing window-level actions
-are usually contained within a menu bar at the top of the window or
+are usually contained within a menubar at the top of the window or
 screen. Menus with options specific to a particular GUI element may
 ``popup'' when the user interacts with the element, such as by
-clicking the right mouse button. Menu bars and popup menus may be
+clicking the right mouse button. Menubars and popup menus may be
 constructed by appending each menu item and submenu separately, as
 illustrated below. For menus with more than a few items, we recommend
 the strategies described in Section~\ref{sec:RGtk2:UIManager}.
 
-\subsection{Menu Bars}
+\subsection{Menubars}
 
-We will first demonstrate the menu bar, leaving the popup menu for
+We will first demonstrate the menubar, leaving the popup menu for
 later. Figure~\ref{fig:RGtk2-action-items-infobar} will show a
-realization. The first step is to construct the menu bar itself:
+realization. The first step is to construct the menubar itself:
 <<rgtk2-menus-menubar>>=
 menubar <- gtkMenuBar()
 @
 
 
-A menu bar is a special type of container called a menu shell. An
+A menubar is a special type of container called a menu shell. An
 instance of \class{GtkMenuShell} contains one or more menu
 items. \class{GtkMenuItem} is an implementation of
 \class{GtkActivatable}, so each menu item can proxy an
-action. Usually, a menu bar consists multiple instances of the other
+action. Usually, a menubar consists multiple instances of the other
 type of menu shell: the menu, \class{GtkMenu}. Here, we create a menu
 object for our ``File'' menu:
 <<rgtk2-menus-menu>>=
@@ -156,7 +156,7 @@ fileItem$setSubmenu(fileMenu)
 %
 The underscore in the label indicates the key associated with the
 mnemonic for use when navigating the menu with a keyboard.  Finally,
-we append the item containing the file menu to the menu bar:
+we append the item containing the file menu to the menubar:
 <<rgtk2-menus-append>>=
 menubar$append(fileItem)
 @ 
@@ -220,7 +220,7 @@ autoSave <- autoSaveAction$createMenuItem()
 fileMenu$append(autoSave)
 @ 
 
-Finally, we add our menu bar to the top of a window:
+Finally, we add our menubar to the top of a window:
 <<rgtk2-menus-window>>=
 mainWindow <- gtkWindow()
 vbox <- gtkVBox()
@@ -228,7 +228,7 @@ mainWindow$add(vbox)
 vbox$packStart(menubar, FALSE, FALSE)
 @ 
 
-\subsection{Popup Menus}
+\subsection{Popup menus}
 
 \begin{example}{Popup menus}{ex:RGtk2-popup-menus}
 \SweaveInput{ex-RGtk2-menu-popup}
@@ -237,7 +237,7 @@ vbox$packStart(menubar, FALSE, FALSE)
 \section{Toolbars}
 \label{sec:RGtk2:toolbars}
 
-Toolbars are like menu bars in that they are containers for
+Toolbars are like menubars in that they are containers for
 activatable items, but toolbars are not hierarchical. Also, their
 items are usually visible for the life-time of the application, not
 upon user click. Thus, toolbars are not appropriate for storing a
@@ -248,7 +248,7 @@ We begin by constructing an instance of \class{GtkToolbar}:
 toolbar <- gtkToolbar()
 @ 
 
-In analogous fashion to the menu bar, toolbars are containers for tool
+In analogous fashion to the menubar, toolbars are containers for tool
 items. Technically, an instance of \class{GtkToolItem} could contain
 any type of widget, yet toolbars typically represent actions
 with buttons. The \class{GtkToolButton} widget implements this common
@@ -269,7 +269,7 @@ toolbar$add(openButton)
 This appends the open button to the end of the toolbar. To insert into
 a specific position, we would call the \method{insert}{GtkToolbar} method.
 
-Usually, any application with a toolbar also has a menu bar, in which
+Usually, any application with a toolbar also has a menubar, in which
 case many actions are shared between the two containers. Thus, it is
 often beneficial to construct a tool button directly from its
 corresponding action:
@@ -386,14 +386,14 @@ Finally, we can programmatically collapse a group:
 helpGroup$setCollapsed(TRUE)
 @ 
 
-\section{Status Reporting}
+\section{Status reporting}
 \label{sec:RGtk2:statusbars}
 
-\subsection{Status bars}
+\subsection{Statusbars}
 
-In \GTK, a statusbar is constructed through the
+In \GTK, a status bar is constructed through the
 \constructor{gtkStatusbar} function. Statusbars must be placed at the
-bottom of a top-level window by the programmer. In \GTK, a statusbar
+bottom of a top-level window by the programmer. In \GTK, a status bar
 keeps various stacks of messages for display. One adds a message to
 display for given stack through the \method{Push}{GtkStatusbar} method
 by specifying first an integer value for \code{context.id} and a
@@ -458,18 +458,20 @@ in a number of different modes. Within a given mode, only a subset of
 actions are applicable. For example, a word processor may have an
 editing mode and a print preview mode. \GTK\/ provides a \dfn{user
   interface manager}, \class{GtkUIManager}, to manage the layout of
-the toolbars and menu bars across multiple user interface modes.
+the toolbars and menubars across multiple user interface modes. We
+illustrate through an example.
 
-The steps required to use \GTK's UI manager are
+The steps required to use \GTK's UI manager are:
 \begin{enumerate}
 \item construct the UI manager,
+\item specify in XML the layout of the menubars and toolbars,
 \item define the actions in groups,
 \item connect the action group to the UI manager, 
 \item set up an accelerator group for keyboard shortcuts, 
-\item specify the layout of the menu bars and toolbars, and finally
+and finally
 \item display the widgets.
 \end{enumerate}
 
-\begin{example}{UI Manager example}{ex:RGtk2:UImanager}
+\begin{example}{UI manager example}{ex:RGtk2:UImanager}
   \SweaveInput{ex-RGtk2-UImanager-II}
 \end{example}

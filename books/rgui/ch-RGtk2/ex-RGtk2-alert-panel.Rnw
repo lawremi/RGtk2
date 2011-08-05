@@ -11,7 +11,7 @@ require(RGtk2)
 
 This example puts together images, buttons, labels and box containers
 to create an alert panel, or information bar. This is an area that
-seems to drop down from the menu bar to give users feedback about an
+seems to drop down from the menubar to give users feedback about an
 action that is less disruptive than a modal dialog. A similar widget
 is used in the Firefox browser with its popup blocker. Although, as of version
 2.18, a similar feature is available in \GTK\/ through the

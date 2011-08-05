@@ -15,7 +15,7 @@ of the infrastructure in \Qt{} for implementing custom dialogs and
 wizards. Finally, we briefly introduce some of the remaining
 high-level dialogs, such as the file selector.
 
-\subsection{Message Dialogs}
+\subsection{Message dialogs}
 
 All dialogs in \Qt{} are derived from \class{QDialog}. The message
 dialog, \class{QMessageBox}, communicates a textual message to the
@@ -80,7 +80,7 @@ dlg <- Qt$QMessageBox(icon = Qt$QMessageBox$Warning,
 %
 This call introduces the \prop{icon} property, which is a code
 from the \qtenumeration{QMessageBox::Icon} enumeration and identifies
-a standard, themeable icon. The icon also implies the message type,
+a standard, \igui{stock icons}themeable icon. The icon also implies the message type,
 just as a button implies a response type. We also need to specify
 the possible responses with the \qcode{buttons} argument.
 
@@ -101,7 +101,7 @@ in the dialog. An example is a stack trace for the warning.
 
 After specifying the desired properties, the dialog is shown. The
 approach to showing the dialog depends on whether the dialog should be
-modal. A modal dialog is displayed with the \method{exec}{QDialog}
+modal. A \igui{modal dialog}modal dialog is displayed with the \method{exec}{QDialog}
 method. 
 <<qt-dialogs-exec>>=
 dlg$exec()                              # returns response code
@@ -309,7 +309,7 @@ default. Overriding this requires adding the default button with
 \method{addButton}{QDialogButtonBox} and setting the
 \property{default} property on the returned button object.
 
-\subsection{Custom Dialogs}
+\subsection{Custom dialogs}
 \label{sec:qdialog}
 
 Every dialog in \Qt{} inherits from \class{QDialog}, which we can
@@ -432,7 +432,7 @@ ret <- wizard$exec()
 % top right corner), \qcode{BannerPixmap} (across the top), and
 % \qcode{BackgroundPixmap}. For example, we could add a  
 
-\subsection{File and Directory Choosing Dialogs}
+\subsection{File and directory choosing dialogs}
 \label{sec:file-direct-choosing}
 
 
@@ -515,7 +515,7 @@ if(dlg$exec())
 
 \end{example}
 
-\subsection{Other Choosers}
+\subsection{Other choosers}
 \label{sec:choosers}
 
 \Qt\/ provides several additional dialog types for choosing a

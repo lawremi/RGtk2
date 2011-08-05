@@ -1,6 +1,7 @@
 ###################################################
 ### chunk number 1: 
 ###################################################
+#line 14 "ex-RGtk2-terminal.Rnw"
 ## make a *basic* terminal in RGtk2
 library(RGtk2)
 
@@ -8,6 +9,7 @@ library(RGtk2)
 ###################################################
 ### chunk number 2: TextViewWidget
 ###################################################
+#line 21 "ex-RGtk2-terminal.Rnw"
 tv <- gtkTextView()
 tb <- tv$getBuffer()
 font <- pangoFontDescriptionFromString("Monospace")
@@ -17,151 +19,135 @@ tv$modifyFont(font)                     # widget wide
 ###################################################
 ### chunk number 3: 
 ###################################################
-tb$setData("textview", tv)
+#line 31 "ex-RGtk2-terminal.Rnw"
+tb$createTag(tag.name="cmdInput")
+tb$createTag(tag.name="cmdOutput", 
+             weight=PangoWeight["bold"])
+tb$createTag(tag.name="cmdError", 
+             weight=PangoStyle["italic"], foreground="red")
+tb$createTag(tag.name="uneditable", editable=FALSE)
 
 
 ###################################################
 ### chunk number 4: 
 ###################################################
-aTag <- tb$createTag(tag.name="cmdInput")
-aTag <- tb$createTag(tag.name="cmdOutput", weight=PangoWeight["bold"])
-aTag <- tb$createTag(tag.name="cmdError", weight=PangoStyle["italic"], foreground="red")
-aTag <- tb$createTag(tag.name="uneditable", editable=FALSE)
+#line 42 "ex-RGtk2-terminal.Rnw"
+startCmd <- tb$createMark("startCmd", tb$getStartIter()$iter, 
+                          left.gravity=TRUE)
+bufferEnd <- tb$createMark("bufferEnd", tb$getEndIter()$iter)
 
 
 ###################################################
 ### chunk number 5: 
 ###################################################
-startCmd <- gtkTextMark("startCmd", left.gravity=TRUE)
-tb$addMark(startCmd, tb$getStartIter()$iter)
-
-
-###################################################
-### chunk number 6: 
-###################################################
-moveViewport <- function(obj) {
-  tv <- obj$getData("textview")
+#line 52 "ex-RGtk2-terminal.Rnw"
+addPrompt <- function(obj, prompt=c("prompt", "continue"),
+                      setMark=TRUE) {
+  prompt <- match.arg(prompt)
+  prompt <- getOption(prompt)
+  
   endIter <- obj$getEndIter()
-  QT <- tv$scrollToIter(endIter$iter, 0)
+  obj$insert(endIter$iter, prompt)
+  if(setMark)
+    obj$moveMarkByName("startCmd", endIter$iter)
+  obj$applyTagByName("uneditable", obj$getStartIter()$iter, 
+                     obj$getEndIter()$iter)
+}
+addPrompt(tb) ## place an initial prompt
+
+
+###################################################
+### chunk number 6: addOutput
+###################################################
+#line 70 "ex-RGtk2-terminal.Rnw"
+addOutput <- function(obj, output, tagName="cmdOutput") {
+  endIter <- obj$getEndIter()
+  if(length(output) > 0)  
+    sapply(output, function(i)  {
+      obj$insertWithTagsByName(endIter$iter, i, tagName)
+      obj$insert(endIter$iter, "\n", len=-1)
+    })
 }
 
 
 ###################################################
 ### chunk number 7: 
 ###################################################
-addPrompt <- function(obj, prompt=c("prompt","continue"), setMark=TRUE) {
-  prompt <- match.arg(prompt)
-  prompt <- getOption(prompt)
-  
-  endIter <- obj$getEndIter()
-  obj$insert(endIter$iter, prompt)
-  tv <- obj$getData("textview")
-  if(setMark)
-    obj$moveMarkByName("startCmd", endIter$iter)
-}
-
-
-###################################################
-### chunk number 8: addOutput
-###################################################
-addOutput <- function(obj, output, tagName="cmdOutput") {
-  ## add output to end of buffer, new line with continuation prompt
-  if(length(output) > 100) 
-    out <- c(output[1:100], "...")
-
-  endIter <- obj$getEndIter()
-  if(length(output) > 0) 
-    sapply(output, function(i)  {
-      obj$insertWithTagsByName(endIter$iter, i, tagName)
-      obj$insert(endIter$iter, "\n", len=-1)
-    })
-  
-  addPrompt(obj, "prompt", setMark=TRUE)
-  obj$applyTagByName("uneditable", obj$getStartIter()$iter, 
-                     obj$getEndIter()$iter)
-  moveViewport(obj)
-}
-
-
-###################################################
-### chunk number 9: 
-###################################################
-addErrorMessage <- function(obj, msg) {
-  ## add error message to end of buffer, new line with continuation prompt
-  endIter <- obj$getEndIter()
-  obj$insert(endIter$iter, "\n", len=-1)
-  sapply(msg, function(i) {
-    obj$insertWithTagsByName(endIter$iter, i,  "cmdError")
-    obj$insert(endIter$iter, "\n", len=-1)
-  })
-  addPrompt(obj, "prompt", setMark=TRUE)
-  moveViewport(obj)  
-}
-
-
-###################################################
-### chunk number 10: 
-###################################################
+#line 87 "ex-RGtk2-terminal.Rnw"
 findCMD <- function(obj) {
-  ## get current command
   endIter <- obj$getEndIter()
   startIter <- obj$getIterAtMark(startCmd)
   cmd <- obj$getText(startIter$iter, endIter$iter, TRUE)
-
-  cmd <- unlist(strsplit(cmd, "\n[+] ")) # hardcoded "+"
+  regex <- paste("\n[", getOption("continue"), "] ", sep = "")
+  cmd <- unlist(strsplit(cmd, regex))
   cmd
 }
 
 
 ###################################################
-### chunk number 11: 
+### chunk number 8: evalCmd
 ###################################################
-evalCMD <- function(obj, cmd) {
-  cmd <- paste(cmd, sep="\n")
-  out <- try(parse(text=cmd), silent=TRUE)
-  if(inherits(out, "try-error")) {
-    if(length(grep("end", out))) {      # unexpected end of input
-      ## continue
-      addPrompt(obj, "continue", setMark=FALSE)
-      moveViewport(obj)
-    } else {
-      ## error
-      addErrorMessage(obj, out)
-    }
-    return()
-  }
-  addHistory(obj, cmd)  ## if keeping track of history
+#line 104 "ex-RGtk2-terminal.Rnw"
+require(evaluate)
+evalCMD <- function(tv, cmd) {
+  tb <- tv$getBuffer()
+  out <- try(evaluate:::evaluate(cmd, .GlobalEnv), silent=TRUE)
   
-  out <- capture.output(eval(parse(text = cmd), envir=.GlobalEnv))
-  addOutput(obj, out)
-
+  if(inherits(out, "try-error")) {
+    ## parse error
+    addOutput(tb, out, "cmdError")
+  } else if(inherits(out[[2]], "error")) {
+    if(grepl("end", out[[2]])) {        # a hack here
+      addPrompt(tb, "continue", setMark=FALSE)
+      return()
+    } else {
+      addOutput(tb, out[[2]]$message, "cmdError")
+    }
+  } else {
+    addOutput(tb, out[[2]], "cmdOutput")
+  }
+  addPrompt(tb, "prompt", setMark=TRUE)
 }
 
 
 ###################################################
-### chunk number 12: connectBinding
+### chunk number 9: connectBinding
 ###################################################
-gSignalConnect(tv, "key-release-event", f=function(w, e, data) {
+#line 130 "ex-RGtk2-terminal.Rnw"
+gSignalConnect(tv, "key-release-event", f=function(w, e) {
   obj <- w$getBuffer()                  # w is textview
   keyval <- e$getKeyval()
   if(keyval == GDK_Return) {
-    ## run return handler
-    cmd <- findCMD(obj)
-    if(nchar(cmd) > 0)
-      evalCMD(obj, cmd)
+    cmd <- findCMD(obj)                 # poss. character(0)
+    if(length(cmd) && nchar(cmd) > 0)
+      evalCMD(w, cmd)
   }
-  return(TRUE)                          # events need return value
 })
 
 
 ###################################################
-### chunk number 13: 
+### chunk number 10: 
 ###################################################
-addPrompt(tb) ## initial prompt
+#line 149 "ex-RGtk2-terminal.Rnw"
+scrollViewport <- function(view, ...) {
+  iter <- view$getBuffer()$getEndIter()$iter
+  view$scrollToMark(bufferEnd, within.margin=0)
+  return(FALSE)
+}
+gSignalConnect(tb, "changed", scrollViewport, data=tv, 
+               after = TRUE, user.data.first = TRUE)
+
+
+###################################################
+### chunk number 11: makeGUI
+###################################################
+#line 159 "ex-RGtk2-terminal.Rnw"
+## scroll window
 sw <- gtkScrolledWindow()
 sw$setPolicy("automatic", "automatic")
 sw$add(tv)
 
+## top-level window
 w <- gtkWindow(show=FALSE)
 w$setTitle("A terminal")
 w$add(sw)
@@ -170,8 +156,9 @@ w$showAll()
 
 
 ###################################################
-### chunk number 14: 
+### chunk number 12: 
 ###################################################
+#line 175 "ex-RGtk2-terminal.Rnw"
 ## History features
 ## This is not illustrated in text, but is added here to illustrate how this might be implemented
 ## The major issue with this example is we can't trap the return or arrow keys before they move 
@@ -230,7 +217,7 @@ scrollHistoryDown <- function(obj) {
 
 ## History bindings
 ## this uses Control-p and Control-n to move
-gSignalConnect(tv, "key-release-event", f=function(w, e, data) {
+ID <- gSignalConnect(tv, "key-release-event", f=function(w, e, data) {
   if(e$GetState() != GdkModifierType['control-mask'])
     return(TRUE)
 

@@ -43,8 +43,6 @@ source("../booktabs.R")
 \SweaveInput{CompoundWidgets}
 
 
-\XXX{Need to have an example with drag and drop}
-
 
 %\section{End of chapter notes}
 %\label{sec:gWidgets:eoc}

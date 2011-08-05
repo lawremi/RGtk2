@@ -303,7 +303,7 @@ The container produced by \constructor{gwindow} is intended to contain
 just a single child widget, not several. This section demonstrates
 variations on box containers that can be used to hold multiple child
 components. Through nesting, fairly complicated layouts can be
-produced.
+produced.\ilayout{box layout}
 
 
 
@@ -424,10 +424,16 @@ implemented.~\footnote{These arguments are not implemented
 
 \begin{figure}
   \centering
-  \includegraphics[width=.3\textwidth]{fig-gWidgets-expand-RGtk2.png}
-  \includegraphics[width=.3\textwidth]{fig-gWidgets-expand-tcltk.png}
-  \includegraphics[width=.3\textwidth]{fig-gWidgets-expand-Qt.png}
-  % \includegraphics[width=.5\textwidth]{fig-gWidgets-ggroup-expand-fill-anchor}
+  \begin{minipage}[c]{.32\linewidth}
+    \includegraphics[width=1\textwidth]{fig-gWidgets-expand-RGtk2.png}    
+  \end{minipage}
+  \begin{minipage}[c]{.32\linewidth}
+    \includegraphics[width=1\textwidth]{fig-gWidgets-expand-tcltk.png}    
+  \end{minipage}
+  \begin{minipage}[c]{.32\linewidth}
+    \includegraphics[width=1\textwidth]{fig-gWidgets-expand-Qt.png}    
+  \end{minipage}
+ % \includegraphics[width=.5\textwidth]{fig-gWidgets-ggroup-expand-fill-anchor}
   % \caption{Different combinations of \code{expand}, \code{fill} and
   %   \code{anchor} for combo boxes in \pkg{gWidgetsQt}. The \code{fill}
   %   and \code{anchor} arguments
@@ -459,7 +465,7 @@ update(w)
 @ 
 
 
-\paragraph{delete}
+\paragraph{Deleting components}
 The \method{delete}{ggroup} method can be used to remove a child
 component from a container. In some toolkits, this child may be added
 back at a later time (with \method{add}{ggroup}), but this isn't part
@@ -478,9 +484,9 @@ For spacing between the child components, the constructor's argument
 \argument{spacing}{ggroup} may be used to specify, in pixels, the
 amount of space between the child widgets. For \code{ggroup}
 instances, this can later be set through the \method{svalue}{ggroup}
-method. The method \method{addSpace}{ggroup} can add a non-uniform
+method. \ilayout{struts}The method \method{addSpace}{ggroup} can add a non-uniform
 amount of space between two widgets packed next to each other, whereas
-the method \method{addSpring}{ggroup} will place an invisible spring
+the method \ilayout{springs}\method{addSpring}{ggroup} will place an invisible spring
 between two widgets, forcing them apart.  Both are useful for laying
 out buttons. We used a spring before the ``source'' button for the GUI
 in Figure~\ref{fig:gWidgets-sample-layout} to push it to the right.
@@ -627,6 +633,7 @@ the GUI.
 \section{Grid layout: the \code{glayout} container}
 \label{sec:gWidgets-glayout-container}
 
+\ilayout{grid layout}
 The layout of dialogs and forms is usually seen with some form of
 alignment between the widgets. The \constructor{glayout} constructor
 provides a grid container to do so, using matrix notation to specify

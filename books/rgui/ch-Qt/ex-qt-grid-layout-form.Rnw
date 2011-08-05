@@ -27,7 +27,7 @@ lyt$addWidget(Qt$QLabel("Class:"), 0, 0)
 lyt$addWidget(Qt$QLineEdit(), 0, 1, rowspan=1, colspan=2)
 @ 
 %
-Our second row starts with a label and a combobox, each spanning the
+Our second row starts with a label and a combo box, each spanning the
 default of one column:
 <<results=hide>>=
 lyt$addWidget(Qt$QLabel("Method:"), 1, 0)
@@ -35,7 +35,7 @@ lyt$addWidget(Qt$QComboBox(), 1, 1)
 @ 
 %
 The bottom three cells in the third column are managed
-by a sublayout, in this case a vertical box layout. We use a label as
+by a sub-layout, in this case a vertical box layout. We use a label as
 a stub and set a frame style to have it stand out.
 <<results=hide>>=
 lyt$addLayout(slyt <- Qt$QVBoxLayout(), 1, 2, rowspan=3, 1)

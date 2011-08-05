@@ -9,7 +9,7 @@ important and interesting ones:
 \\
 
 \begin{description}
-\item[Core] Basic utilties, collections, threads, I/O, ...
+\item[Core] Basic utilities, collections, threads, I/O, ...
 \item[Gui] Widgets, models, etc for graphical user interfaces
 \item[OpenGL] Convenience layer (e.g., 2D drawing API) over OpenGL
 \item[Webkit] Embeddable HTML renderer (shared with Safari, Chrome)
@@ -26,7 +26,7 @@ unavailable as open-source on every platform, version 4 was released
 universally under the GPL. With the release of Qt 4.5, Nokia
 additionally placed \Qt{} under the LGPL, so it is available for use
 in proprietary software, as well. We assume version 4.7.3 or later in
-the follwing. Popular software developed with \Qt{} include the
+the following. Popular software developed with \Qt{} include the
 communication application Skype and the KDE desktop for Linux. The
 desktop version of RStudio cleverly uses \Qt's \class{QWebView} widget
 to leverage \Qt's cross-platform availability to present a
@@ -53,7 +53,7 @@ of the \pkg{lattice} package is provided for \pkg{qtpaint} by the
 in the conceptual vein of GGobi. A number of general utilities are
 implemented by \pkg{qtutils}, including an object browser widget, an
 \R{} console widget, and a conventional \R{} graphics device based on
-\Rclass{QGraphicsView}.
+\class{QGraphicsView}.
 
 While \pkg{qtbase} is not yet as mature as \pkg{tcltk} and
 \pkg{RGtk2}, we include it in this book, as \Qt{} compares favorably
@@ -96,7 +96,7 @@ Qt$QWidget
 @ 
 
 An \class{RQtClass} object contains methods in the class
-scope (\textit{static} methods in C++), enumerations defined by the
+\iprogram{variable scope}scope (\textit{static} methods in C++), enumerations defined by the
 class, and additional \class{RQtClass} objects representing nested
 classes or namespaces. Here we list some of the components of
 \class{QWidget}:
@@ -121,7 +121,7 @@ w <- Qt$QWidget()
 @ 
 
 The \code{w} object has a class structure that reflects the
-class inheritance structure of \Qt:
+\iprogram{class structure}class inheritance structure of \Qt:
 <<qwidget-class, results=hide>>=
 class(w)
 @ 
@@ -130,7 +130,7 @@ class(w)
 [4] "UserDefinedDatabase" "environment"   "RQtObject"         
 \end{Soutput}
 %
-The base class, \class{RQtObject}, is an environment containing
+The base class, \class{RQtObject}, is an \iprogram{reflection}environment containing
 the properties and methods of the instance. For \code{w}, we list
 the first few using \function{ls}:
 <<results=hide>>=
@@ -250,7 +250,7 @@ on which arguments are specified. (In particular, dispatch in \Qt{} is based on
 position of argument, but not on names given to arguments. We use
 names only for clarity in our examples.)
 
-The function \index{qmethods}\function{qmethods} will show the methods defined for a
+The function \index{general}{qmethods}\function{qmethods} will show the methods defined for a
 class. It returns a data frame with variables indicating the name,
 return value, signature, and whether the method is protected and
 static. For example, to learn the methods for a simple button, we
@@ -270,7 +270,7 @@ head(out[,1:3], n=3)
 
 Every \class{QObject}, which includes every widget, may declare a set
 of properties that represent its state. We list some of the available
-properties for our button:\index{qproperties}
+properties for our button:\index{general}{qproperties}
 <<list-properties>>=
 head(qproperties(b))
 @
@@ -295,13 +295,13 @@ are typically named with the word "set" followed by the property name:
 b$setObjectName("My button")
 @ 
 % 
-%% JV: I'm not so sure I'd recommend this, but will defer
 However, it is recommended to use the replacement syntax shown in the
 previous example, for the sake of symmetry.
 
 \section{Signals}
 \label{sec:qt-signals}
 
+\iprogram{signals}\iprogram{event handlers}
 \Qt{} in C++ uses an architecture of signals and slots to have
 components communicate with each other. A component emits a signal
 when some event happens, such as a user clicking on a button. \Qt{}
@@ -311,7 +311,7 @@ the handler. The two components are decoupled as the emitter does not
 need to know about the receiver except through the signal
 connection. In \R{}, any function can be treated as a slot and
 connected as a signal handler. This is similar to the signal handling
-in \pkg{RGtk2}. The function \index{qconnect}\function{qconnect} establishes the
+in \pkg{RGtk2}. The function \index{general}{qconnect}\function{qconnect} establishes the
 connection of an R function to a signal. For example
 <<results=hide>>=
 b <- Qt$QPushButton("click me")
@@ -373,7 +373,7 @@ temporarily block all of the signals emitted by a particular
 method takes a logical value indicating whether the signals should be
 blocked.
 
-\paragraph{Hardware events}
+\paragraph{Hardware events}\iprogram{hardware events}
 Unlike \GTK, \Qt{} widgets generally do not emit hardware events, such
 as a mouse press, via signals. Instead, a method in the widget is
 invoked upon receipt of an event. The developer is expected to extend
@@ -386,11 +386,12 @@ discuss extending classes in Section~\ref{sec:qt-defin-class-meth}.
 \section{Enumerations and flags}
 \label{sec:qt-enums}
 
+\iprogram{enumeration}
 Often, it is useful to have discrete variables with more than two
 states, in which case a logical value is no longer sufficient.  For
 example, the label widget has a property for how its text is
 aligned. It supports the alignment styles left, right, center, top,
-bottom, etc. These styles are \iprogram{enumerations}enumerated by
+bottom, etc. These styles are \iprogram{enumeration}enumerated by
 integer values and \Qt{} defines these by name within the relevant
 class or, for global enumerations, in the \code{Qt} namespace. Here
 are examples of both:
@@ -404,7 +405,7 @@ The first is the value for right alignment from the
 while the second is from the \qtenumeration{Policy} enumeration in the
 \class{QSizePolicy} class.
 
-Although these enumerations can be specifed directly as integers, they are
+Although these enumerations can be specified directly as integers, they are
 given the class \class{QtEnum} and have the overloaded operators
 \OR{} and \AND{} to combine values bitwise. This makes the most
 sense when the values correspond to bit flags, as is the case for the
@@ -443,7 +444,7 @@ but are otherwise similar to attributes on any R object. Their type is
 not checked, and they are useful as a storage mechanism for
 implementing properties.
 
-\subsection{Defining a Class}
+\subsection{Defining a class}
 \label{sec:qt-defin-class}
 
 Here, we show a generic example, and follow with a specific one.
@@ -480,7 +481,7 @@ qsetClass("SubClass2", Qt$QWidget,
           })
 @ 
 % 
-Within the body of a constructor, the \index{super}\function{super} variable refers
+Within the body of a constructor, the \index{general}{super}\function{super} variable refers
 to the constructor of the parent class, often called the ``super''
 class. In the above, we call \code{super} to delegate the registration
 of the parent to the \class{QWidget} constructor. Another special
@@ -494,7 +495,7 @@ properties.
 
 
 One may define new methods, or override methods from a base class
-through the \index{qsetmethod}\function{qsetMethod} function.  For example, accessors
+through the \index{general}{qsetmethod}\function{qsetMethod} function.  For example, accessors
 for a field may be defined with
 <<results=hide>>=
 qsetMethod("field", SubClass, function() field)
@@ -510,7 +511,7 @@ method: \qcode{public} (default), \qcode{protected}, or \qcode{private}. These
 have the same meaning as in C++.
 
 As with a constructor, the symbol \code{this} in a method definition
-refers to the instance.  There is also a \index{super}\function{super} function
+refers to the instance.  There is also a \index{general}{super}\function{super} function
 that behaves similarly to the \function{super} found in a
 constructor: it searches for an inherited method of a given name and
 invokes it with the passed arguments:
@@ -529,7 +530,7 @@ instance$show()
 @ 
 % 
 This is somewhat similar to the behavior of
-\Rfunction{callNextMethod}, except \Rfunction{super} is not restricted
+\function{callNextMethod}, except \function{super} is not restricted
 to calling the same method.
 
 \subsection{Defining signals and slots}
@@ -571,12 +572,12 @@ module. It is also necessary to use slots as signal handlers for a GUI
 built with \software{QtDesigner}, if one is using the automated
 connection feature (see Section~\ref{sec:qt-designer}).
 
-\subsection{Defining Properties}
+\subsection{Defining properties}
 \label{sec:qt-overview-define-props}
 
 A property, introduced earlier, is a self-describing field that is
 encapsulated by a getter and a setter. We can define a property on any
-class using the \index{qsetProperty}\function{qsetProperty} function. Here is the simplest
+class using the \index{general}{qsetProperty}\function{qsetProperty} function. Here is the simplest
 usage:
 <<qt-overview-define-propE>>=
 qsetProperty("property", SubClass)
@@ -599,7 +600,9 @@ types. To export a property, one must provide the
 
 By default, the property value is actually stored as a (private) field
 in the object, called \qcode{.property}. One can override the default
-behavior by specifying a function for the getter and/or the setter:
+behavior by specifying to the \argument{read}{qsetProperty} or
+\argument{write}{qsetProperty} arguments a function for the getter
+and/or the setter:
 <<qt-overview-define-prop-getter-setter, results=hide>>=
 qsetProperty("checkedProperty", SubClass, write = function(x) {
   if (!is(x, "character"))
@@ -637,23 +640,13 @@ We see that the type is now exposed via the general
 \function{qproperties} function. Specifying the type enables all of
 the features of a \Qt\/ property.
 
-%% TODO: Example here? Or just refer to other examples?
-
 %% JV 1/29: I think we need an example
-\begin{example}{A model for workspace objects}{ex-qt-ws-objects}
+\begin{example}{A watcher for workspace objects}{ex-qt-ws-objects}
   \SweaveInput{ex-qt-ws-model}
 \end{example}
 
-%% JV: Agreed. this section needs to  be reworked. It is hard to find
-%% the key information: qsetClass and a conversation about
-%% constructors and scope (super, this), and qsetMethod and a
-%% conversation about inheritance and scope (super, this). As well, I
-%% find the example a bit awkward too. The bit about
-%% minimumheight (too kludgy), the call of widget as it isn't a line
-%% edit, ... How do you add an icon in a line edit widget?
 
-
-\section{\class{QWidget} Basics}
+\section{\class{QWidget} basics}
 \label{sec:comm-meth-qwidg}
 
 The widgets we discuss in the next section inherit many properties and
@@ -704,7 +697,7 @@ b$enabled
 %
 
 Only one widget can have the keyboard focus at once. The user shifts
-the focus by tab-navigation or mouse clicks (although this behaviour
+the focus by tab-navigation or mouse clicks (although this behavior
 can be customized, cf. \method{focusPolicy}{QWidget}). When a widget
 has the focus, its \property{focus}{QWidget} property is
 \code{TRUE}. The property is read-only; the focus is shifted
@@ -716,7 +709,7 @@ some description of its purpose and usage. Tooltips, stored as a
 string in the \property{toolTip}{QWidget} property, may be shown when the
 user hovers the mouse over the widget. Similarly, the
 \property{statusTip}{QWidget} property holds a string to be shown in
-the statusbar instead of a popup window. Finally, \Qt\/ provides a
+the status bar instead of a popup window. Finally, \Qt\/ provides a
 ``What's This?'' tool that will show the text in the
 \property{whatsThis}{QWidget} property in response to query, such as
 pressing \kbd{SHIFT+F1} when the widget has focus.
@@ -800,9 +793,8 @@ palette depending on the platform and the type of widget. One can
 change the colors used in rendering a widget by manipulating the
 palette.
 
-\paragraph{Style Sheets}
+\paragraph{Style sheets}
 \label{ssec:style-sheets}
-
 Cascading style sheets (CSS) are used by web designers to decouple the
 layout and look and feel of a web page from the content of the
 page. In \Qt{} it is also possible to customize the rendering of a widget using CSS
@@ -854,7 +846,7 @@ widgets in the application to have the same colors as the button:
 \begin{figure}
   \centering
   \includegraphics[width=.6\textwidth]{fig-qt-style-sheet-example}
-  \caption{Styling a widget with a style sheet can dramatiically alter its appearance}
+  \caption{Styling a widget with a style sheet can dramatically alter its appearance}
   \label{fig:qt-style-sheet}
 \end{figure}
 
@@ -863,12 +855,10 @@ widgets in the application to have the same colors as the button:
 qsetStyleSheet(color = "red", background = "white")
 @ 
 
-\begin{example}{A ``error label''}{eg:qt-error}
-  
-  %% JV: Replace with this: (drawback: no a custom constructor, issue with
+\begin{example}{An ``error label''}{eg:qt-error}
+ %% JV: Replace with this: (drawback: no a custom constructor, issue with
   %% base:::paste, versus paste is a good one; style sheet example; 
-
-  This example extends the line edit widget to display an error state
+ This example extends the line edit widget to display an error state
   via an icon embedded within the entry box. Such a widget might prove
   useful when one is validating entered values. Our implementation
   uses a stylesheet to place the icon in the background and to prevent
@@ -876,7 +866,7 @@ qsetStyleSheet(color = "red", background = "white")
 
   \begin{figure}
     \centering
-    \includegraphics[width=.6\textwidth]{fig-qt-line-edit-error}
+    \includegraphics[width=.7\textwidth]{fig-qt-line-edit-error}
     \caption{Using a stylesheet to customize the line edit class to show an error indicator}
     \label{fig:qt-line-edit-error}
   \end{figure}
@@ -933,6 +923,7 @@ w$raise()
 \end{example}
 
 \section{Importing a GUI from QtDesigner}
+\label{sec:qt-designer}
 
 \pkg{QtDesigner} is a tool for graphical, drag-and-drop design of GUI
 forms. Although this book focuses on constructing a GUI by programming

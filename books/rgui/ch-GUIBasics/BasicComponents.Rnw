@@ -14,16 +14,7 @@ considered optional.
 \label{sec:choice-widget}
 %% real estate, type of data
 
-A GUI is comprised of one or more widgets. The appropriate choice
-depends on a balance of considerations.  For example, many widgets
-offer the user a selection from one or more possible choices.  An
-appropriate choice depends on the type and size of the information
-being displayed, the constraints on the user input, and on the space
-available in the GUI layout. As an example,
-Table~\ref{tab:gui-design-widget-type} suggests different types
-of widgets used for this purpose depending on the type and size of
-data and the number of items to select.
-  
+
 <<echo=FALSE, results=tex>>=
 df <- rbind(
             c("Boolean","Checkbox, toggle button","-"),
@@ -41,9 +32,19 @@ cat(booktabs(df,
              label="tab:gui-design-widget-type"))
 @ 
 
+A GUI is comprised of one or more widgets. The appropriate choice
+depends on a balance of considerations.  For example, many widgets
+offer the user a selection from one or more possible choices.  An
+appropriate choice depends on the type and size of the information
+being displayed, the constraints on the user input, and on the space
+available in the layout. As an example,
+Table~\ref{tab:gui-design-widget-type} suggests different types
+of widgets used for this purpose depending on the type and size of
+data and the number of items to select.
+  
 
 Figure~\ref{fig:GUI:spss-11-term-selection} shows several such
-controls in a single GUI. A checkbox enables an intercept,
+controls in a single dialog. A checkbox enables an intercept,
 a radio group selects either full factorial or a custom
 model, a combo box selects the ``sum of squares'' type, and a
 list box allows for multiple selection from the available
@@ -51,16 +52,6 @@ variables in the data set.
 
 
 
-\begin{figure}
-  \centering
-  \includegraphics[width=.65\textwidth]{spss-11-model-selection}
- \caption{A dialog box from SPSS version 11 for specifying terms
-    for a linear model. The graphic shows a dialog that allows
-    the user to specify individual terms in the model  using
-    several types of widgets for selection of values, such as a radio button
-    group, a checkbox, combo boxes, and list boxes. }
-  \label{fig:GUI:spss-11-term-selection}
-\end{figure}
 
 %% Metaphors, user base
 For many \R\/ object types there are natural choices of widget. For
@@ -80,6 +71,16 @@ the potential user base is important.
 
 
 
+\begin{figure}
+  \centering
+  \includegraphics[width=.65\textwidth]{spss-11-formula-editor}
+ \caption{A dialog box from SPSS version 11 for specifying terms
+    for a linear model. The graphic shows a dialog that allows
+    the user to specify individual terms in the model  using
+    several types of widgets for selection of values, such as a radio button
+    group, a checkbox, combo boxes, and list boxes. }
+  \label{fig:GUI:spss-11-term-selection}
+\end{figure}
 
 
 \subsection{Presenting options}
@@ -111,6 +112,7 @@ one-size-fits-all widget to handle the selection of a value.
 %   \label{fig:GUI:spss-11-model-selection}
 % \end{figure}
 
+
 \subsubsection{Checkboxes}
 \label{sec:GUI:checkboxes}
 
@@ -119,24 +121,6 @@ A \dfn{checkbox} specifies a value for a logical
 being selected. Combining multiple checkboxes into a group allows for
 the selection of one or more values at a time.
 
-%% tcltk examples
-\begin{figure}
-  \centering
-  \includegraphics[width=.35\textwidth]{ex-listbox}
-  \includegraphics[width=.35\textwidth]{tcltk-tkdensity}
-  \caption{
-    Two applications of the \pkg{tcltk} package. 
-    %% 
-    The left graphic is
-    produced by \command{chooseCRANmirror} and uses a list box to
-    allow selection from a long list of possibilities.
-    %% 
-    The right graphic is the \code{tkdensity} demo from the
-    package. It uses radio buttons and a slider to select the
-    parameter values for a density plot.
-  }
-  \label{fig:GUI:ex-tcltk}
-\end{figure}
 
 \subsubsection{Radio buttons}
 \label{sec:GUI:radio=button-groups}
@@ -165,7 +149,7 @@ the set of choices. A combo box is generally desirable over radio
 buttons when there are more than four or five choices. However, the
 combo box also has its limits. For example, some web forms require
 choosing a country from a list of hundreds. In such cases, features
-like incremental type ahead search enhance usability.
+like incremental type ahead search are a common alternative.
 
 \subsubsection{List boxes}
 
@@ -182,7 +166,30 @@ box created by \R\/ that is called from the function
 screen, but a combo box would not take advantage of the available
 space. The list box is a reasonable compromise.
 
-\subsubsection{Sliders and spinbuttons}
+%% tcltk examples
+\begin{figure}
+  \centering
+  \begin{minipage}[c]{.45\linewidth}
+    \includegraphics[width=1\textwidth]{ex-listbox}
+  \end{minipage}
+  \begin{minipage}[c]{.45\linewidth}
+    \includegraphics[width=1\textwidth]{tcltk-tkdensity}    
+  \end{minipage}
+ \caption{
+    Two applications of the \pkg{tcltk} package. 
+    %% 
+    The left graphic is
+    produced by \command{chooseCRANmirror} and uses a list box to
+    allow selection from a long list of possibilities.
+    %% 
+    The right graphic is the \code{tkdensity} demo from the \pkg{tcltk}
+    package. It uses radio buttons and a slider to select the
+    parameter values for a density plot.
+  }
+  \label{fig:GUI:ex-tcltk}
+\end{figure}
+
+\subsubsection{Sliders and spin buttons}
 \label{sec:GUI:sliders}
 
 A \dfn{slider} is a widget that selects a value from a sequence of
@@ -263,9 +270,7 @@ the more general definition, where an icon is used to augment or
 replace a text label on a button, a toolbar, in a list box, etc. When
 icons appear on toolbars and buttons, they are associated with
 actions, so an icon should be a pictorial representation of an
-action. The choice of icons can have a significant impact on usability
-and appearance.
-
+action.
 % ML: too much detail?
 % JV: agreed
 % Except for the default installation of \pkg{tcltk}, images and icons
@@ -288,7 +293,7 @@ top-level window. In a statistics application, the ``document'' may be
 viewed, for example, as the active data frame, a report, or a graphic.
 
 The styles used for menu bars are fairly standardized, as this allows
-new users to quickly orient themselves with a GUI. The visible menu
+new users to quickly orient themselves within a GUI. The visible menu
 names are often in the order \code{File}, \code{Edit}, \code{View},
 \code{Tools}, then application specific menus, and finally a
 \code{Help} menu. Each visible menu item when clicked opens a menu of
@@ -364,7 +369,7 @@ dialogs can return a value when an event occurs, rather than have a
 handler respond to asynchronous input. The \command{file.choose}
 function, mentioned below, is a good example. When called during an
 interactive \R\/ session, the user is unable to interact with the
-command line until a file has been specified and the dialog dismissed.
+command line until a file has been specified or the dialog dismissed.
 
 \subsubsection{Message dialogs}
 \label{sec:GUI:message-dialogs}
@@ -394,7 +399,7 @@ Other common choosers are color choosers and font choosers.
 Table and tree widgets support the display and manipulation of tabular
 and hierarchical data, respectively. More arbitrary data
 visualization, such as statistical plots, can be drawn within a GUI
-window, but such is beyond the scope of this section.
+window. All the toolkits we discuss have some means to embed \R's graphics.
 
 %% JV: Need to include filtering example here
 
@@ -446,14 +451,14 @@ frame. Other widgets support the display of more complex data
 structures. If the data has a hierarchical structure, then a \dfn{tree
   widget} may be appropriate for its display. Examples of hierarchical
 data in \R\/ are directory structures, the components of a list, or
-class hierarchies. The object browser in \pkg{JGR} uses a tree
-widget to show the components of the objects in a users session (the
-left graphic of Figure~\ref{fig:GUI:R-guis-exs-JGR-Rcmdr}). The root
-node of the tree is the ``data'' folder, and each data object in the
-global workspace is treated as an offspring of this root node. For the
-data frame \code{iraq}, its variables are considered as offspring of
-the data frame. In this case these variables have no further
-offspring, as indicated by the ``page'' icon.
+class hierarchies. The object browser in \pkg{JGR} uses a tree widget
+to show the components of the objects in a users session
+(Figure~\ref{fig:GUI:R-guis-exs-JGR}). The root node of the tree is
+the ``data'' folder, and each data object in the global workspace is
+treated as an offspring of this root node. For the data frame
+\code{iraq}, its variables are considered as offspring of the data
+frame. In this case these variables have no further offspring, as
+indicated by the ``page'' icon.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \subsection{Displaying and editing text}
@@ -485,28 +490,23 @@ such a language, but it is still preferable to the alternative.
 \subsubsection{Text edit boxes}
 \label{sec:GUI:textboxes}
 
-The right graphic
-of Figure~\ref{fig:GUI:R-guis-exs-JGR-Rcmdr} shows three multi-line text entries
-in an \pkg{Rcmdr} window. It provides an \R\/ console and status message area. The
-``Output Window'' demonstrates the utility of formatting
-attributes. In this case, attributes specify the color of
+Figure~\ref{fig:GUI:R-guis-exs-Rcmdr} shows three multi-line text
+entries in an \pkg{Rcmdr} window. It provides an \R\/ console and
+status message area. The ``Output Window'' demonstrates the utility of
+formatting attributes. In this case, attributes specify the color of
 the commands, so that the input can be distinguished from the output.
+
+
 
 \begin{figure}
   \centering
-  \includegraphics[width=.35\textwidth]{JGR-object-browser}
-  \includegraphics[width=.5\textwidth]{Rcmdr-main-window}
-  \caption{
-    Some windows from \R\/ GUIs.
-    %% 
-    The left graphic shows the object browser in the \pkg{JGR} GUI
-    using a tree widget 
-    to display the possibly hierarchical nature of \R\/ objects.
-    %%
-    The right graphic shows the main Rcmdr (1.3-11) window
-    illustrating the use of multi-line text entry areas for a command
-    area, an output area and a message area.}
-  \label{fig:GUI:R-guis-exs-JGR-Rcmdr}
+  \includegraphics[width=.6\textwidth]{JGR-object-browser}
+ \caption{
+   The object browser in the \pkg{JGR} GUI
+   using a tree widget 
+   to display the possibly hierarchical nature of \R\/ objects.
+   }
+ \label{fig:GUI:R-guis-exs-JGR}
 \end{figure}
 
 
@@ -551,7 +551,7 @@ feedback and status messages.
 A label is a widget for placing text into a GUI that is typically not
 intended for editing, or even selecting with a mouse. The main role of
 a label is to describe another component of the GUI. Most toolkits
-support rich text in labels. Figure~\ref{fig:GUI:R-guis-exs-JGR-Rcmdr}
+support rich text in labels. Figure~\ref{fig:GUI:R-guis-exs-Rcmdr}
 shows labels marked in red and blue in \pkg{tcltk}.
 
 \subsubsection{Statusbars}
@@ -602,3 +602,13 @@ give useful feedback to the user that something is happening.
 
 % A font chooser allows the selection of a font. 
 
+
+\begin{figure}
+  \centering
+ \includegraphics[width=.8\textwidth]{Rcmdr-main-window}
+  \caption{
+    Screenshot showing the main Rcmdr (1.3-11) window
+    illustrating the use of multi-line text entry areas for a command
+    area, an output area and a message area.}
+  \label{fig:GUI:R-guis-exs-Rcmdr}
+\end{figure}

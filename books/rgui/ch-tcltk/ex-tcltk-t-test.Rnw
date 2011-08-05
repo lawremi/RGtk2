@@ -1,5 +1,6 @@
 This example illustrates how the basic widgets can be combined to make
-a dialog for gathering information to run a $t$-test. A realization is shown in Figure~\ref{fig:fig-tcltk-t-test}.
+a dialog for gathering information to run a $t$-test. A realization is
+shown in Figure~\ref{fig:fig-tcltk-t-test}.
 
 %% Moved earlier in text
 % \begin{figure}
@@ -287,10 +288,11 @@ tkbind(dataCombo, "<<ComboboxSelected>>", updateUI)
 
 This function could be bound to a ``refresh'' button or we could
 arrange to have it called in the background. Using the \code{after}
-command we could periodically check for new data frames, using a task
-callback we can call this every time a new command is issued.  As the
-call could potentially be costly, we only call if the available data
-frames have been changed. Here is one way to arrange that:
+command we could periodically check for new data frames, using a
+\iprogram{task callback}task callback we can call this every time a
+new command is issued.  As the call could potentially be costly, we
+only call if the available data frames have been changed. Here is one
+way to arrange that:
 <<>>=
 require(digest)
 create_function <- function() {

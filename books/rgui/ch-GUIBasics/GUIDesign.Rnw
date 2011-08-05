@@ -33,7 +33,7 @@ components emerged to support development of applications in such
 environments. Thus, GUI development in R adheres to a WIMP approach.
 
 The primary WIMP component from our perspective is the window. A
-typical interface design consists of a top-level window referred to as
+typical interface design consists of a \igui{top-level window}top-level window referred to as
 the \dfnref{document window} that shows the current state of a
 ``document,'' whatever that is taken to be. In \R\/ it could be a data
 frame, a command line, a function editor, a graphic or an arbitrarily
@@ -50,7 +50,7 @@ menu bar and toolbar.
 
 The parameters of an action call, if any, are controlled in
 sub-windows. These sub-windows are termed \dfnref{application windows}
-by Apple~\footcite{APPLE:HIG}, but we prefer the term \dfnref{dialogs},
+by Apple~\footcite{APPLE:HIG}, but we prefer the term \igui{dialogs}\dfnref{dialogs},
 or \dfnref{dialog boxes}. These terms may also refer to smaller
 sub-windows that are used for alerts or confirmation. The program
 often needs to wait for user input before continuing with an action,
@@ -67,10 +67,12 @@ invisible widgets to lay out the other widgets in a window.
 There is a wide variety of available widget types, and widgets may be
 combined in an infinite number of ways. Thus, there are often numerous
 means to achieve the same goals. For example,
-Figures~\ref{fig:GUI:print-dialogs} and \ref{fig:GUI:print-dialogs-R} show three dialogs that perform
-the same task -- collect arguments from the user to customize the
-printing of a document. Although all were designed to do the same
-thing, there are many differences in implementation.
+Figures~\ref{fig:GUI:print-dialogs} and \ref{fig:GUI:print-dialogs-R}
+show three dialogs, representing typical dialogs from the three main
+operating systems, that perform the same task -- collect arguments
+from the user to customize the printing of a document. Although all
+were designed to do the same thing, there are many differences in
+implementation.
 
 %% ML: Print dialogs might be problematic, especially with Firefox, which
 %% (through GTK+) will use the platform native print dialog. On Linux,
@@ -95,7 +97,7 @@ thing, there are many differences in implementation.
 \begin{figure}
   \centering
   \includegraphics[width=.80\textwidth]{r-print-dialog}
-  \caption{\R's print dialog under windows XP using XP's native dialog.}
+  \caption{\R's print dialog under Windows XP using XP's native dialog.}
   \label{fig:GUI:print-dialogs-R}
 \end{figure}
 
@@ -104,10 +106,10 @@ In some cases, typical usage suggests one control over another. The
 choice of printer for each is specified through a combo box. However,
 for other choices a variety of widgets are employed. For example, the
 control to indicate the number of copies for the Mac is a simple text
-entry window, whereas for the KDE and \R\/ dialog it
-is a spinbutton. The latter minimizes user error, say through entering
+entry window, whereas for the KDE and Windows dialog it
+is a spin button. The latter minimizes user error, say through entering
 a non-positive integer. The KDE and Mac dialogs have icons to
-compactly represent actions, whereas the \R\/ example has none. The
+compactly represent actions, whereas the the Windows example has none. The
 landscape icon for the Mac is very clear and provides this feature
 without having to use a sub dialog.
 
@@ -178,6 +180,6 @@ cancel the printing. The Windows ones are set on the right and consist
 of the standard ``OK'' and ``Cancel'' buttons. The Mac interface uses
 a spring to push some buttons to the left, and some to the right to
 keep separate their level of importance. The KDE buttons do so as
-well, although one can't tell from this. However, one can see the use
+well, although one can't tell from the image. However, one can see the use
 of stock icons on the buttons to guide the user. 
 

@@ -1,43 +1,48 @@
 ###################################################
 ### chunk number 1: 
 ###################################################
+#line 3 "ex-RGtk2-entry-completion.Rnw"
 require(RGtk2)
 
 
 ###################################################
 ### chunk number 2: AppendWords
 ###################################################
+#line 9 "ex-RGtk2-entry-completion.Rnw"
 entry <- gtkEntry()
-completion <- gtkEntryCompletionNew()
+completion <- gtkEntryCompletion()
 entry$setCompletion(completion)
 
 
 ###################################################
 ### chunk number 3: SetCompletion
 ###################################################
-words <- names(mtcars)                  # for data frame values
-store <- rGtkDataFrame(as.data.frame(words))
+#line 19 "ex-RGtk2-entry-completion.Rnw"
+store <- rGtkDataFrame(state.name)
 completion$setModel(store)
-completion$setTextColumn(0)             # which column in model
-completion['inline-completion'] <- TRUE # inline with text edit
+completion$setTextColumn(0)
+completion['inline-completion'] <- TRUE
 completion['popup-single-match'] <- FALSE
 
 
 ###################################################
 ### chunk number 4: SetMatchFunc
 ###################################################
-f <- function(comp, str, iter, user.data) {
+#line 29 "ex-RGtk2-entry-completion.Rnw"
+matchAnywhere <- function(comp, str, iter, user.data) {
   model <- comp$getModel()
-  rowVal <- model$getValue(iter, 0)     # column 0 in model
-  isMatch <- length(grep(str, rowVal))
-  return(as.logical(isMatch))
+  rowVal <- model$getValue(iter, 0)$value # column 0 in model
+  
+  str <- comp$getEntry()$getText()      # case sensitive
+  grepl(str, rowVal)
 }
-QT <- completion$setMatchFunc(func=f)
+completion$setMatchFunc(matchAnywhere)
 
 
 ###################################################
-### chunk number 5: 
+### chunk number 5: notShown
 ###################################################
+#line 43 "ex-RGtk2-entry-completion.Rnw"
 ## Our basic GUI is basic:
 w <- gtkWindow(show=FALSE)
 w$setTitle("Test of entry with completion")

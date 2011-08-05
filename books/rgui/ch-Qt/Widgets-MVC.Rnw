@@ -4,7 +4,7 @@ require(qtbase)
 require(MASS)
 @ 
 
-The model, view, controller (MVC) pattern\iprogram{MVC} is fundamental to the design
+The model, view, controller (MVC) pattern\iprogram{model-view-controller} is fundamental to the design
 of widgets that display and manipulate data. Keeping the model
 separate from the view allows multiple views for the same
 data. Generally, the model is an abstract \iprogram{interface}interface. Thus, the same
@@ -44,7 +44,7 @@ which would be especially slow if the looping occurred in
 
 
 Displaying a simple table of data with \class{DataFrameModel} is much
-simpler than with \GTK{} and \class{RGtkDataFrame} (See Section~\ref{sec:tabular-stores-tree}).
+simpler than with \GTK{} and \class{RGtkDataFrame}.
 Here we construct a widget to show a
 \class{data.frame} in a table view:
 <<qt-mvc-qdfm,print=false, results=hide>>=
@@ -59,7 +59,7 @@ could also pass our model to any other view expecting a
 displayed in a list or combo box.
 
 The \R{} data frame of a \class{DataFrameModel} may be accessed using
-\index{qdataFrame}\function{qdataFrame}:
+\index{general}{qdataFrame}\function{qdataFrame}:
 <<qt-mvc-qdfm-access>>=
 df <- qdataFrame(model)
 df[1:3, 1:10]
@@ -121,7 +121,7 @@ brokenView$setModel(qdataFrameModel(mtcars))
 gc()
 @ 
 <<qt-mvc-table-gc-result>>=
-brokenView$model()                      # NULL, garbage collected
+brokenView$model()              # NULL, garbage collected
 @ 
 % 
 To prevent this, one should either (1) maintain a reference to the
@@ -135,7 +135,7 @@ brokenView$setModel(qdataFrameModel(mtcars,
 gc()
 @ 
 <<qt-mvc-table-parent-result>>=
-brokenView$model()                      # not garbage collected
+brokenView$model()              # not garbage collected
 @ 
 
 \subsection{Formatting cells}
@@ -148,7 +148,7 @@ qdataFrame(model)$mpg[1] <- NA
 @ 
 %
 The table view will display this as "nan" or "inf", which is
-inconsitent with the notation of \R. The conversion of the numeric
+inconstant with the notation of \R. The conversion of the numeric
 data to text is carried out by an \textit{item delegate}. Similar to a
 \GTK{} cell renderer (Section~\ref{sec:RGtk2:mvc:GtkTreeView}), an
 item delegate is responsible for the rendering and editing of items
@@ -339,7 +339,7 @@ including features often found in file browsers and desktops. For
 example, the items may be wrapped into additional columns or displayed in an icon
 mode. The widget also supports unrestricted layout and drag and drop.
 
-\section{Accessing Item Models}
+\section{Accessing item models}
 
 We have shown how \class{DataFrameModel} and \class{QStringListModel}
 allow the storage and retrieval of data in familiar data
@@ -396,9 +396,10 @@ as we describe in the next section.
 % specifying how the matching is to occur. Matches are returned as a
 % list of indices.
 
-\section{Item Selection}
+\section{Item selection}
 \label{sec:models}
 
+\igui{selection}
 Selection is likely the most common type of user interaction with
 lists and tables. The selection state is stored in its own data model,
 \class{QItemSelectionModel}:
@@ -583,7 +584,7 @@ indices according to the change.
 %   \SweaveInput{ex-qt-table-selection}
 % \end{example}
 
-\section{Sorting and Filtering}
+\section{Sorting and filtering}
 
 One of the benefits of the MVC design is that models can serve as
 proxies for other models. Two common applications of proxy models are
@@ -596,9 +597,9 @@ coordinate space. Thus, there is little cost in memory.
 
 \Qt{} implements both sorting and filtering in a single class:
 \class{QSortFilterProxyModel}.~\footnote{In \pkg{RGtk2} one can only
-  choose one or the other, cf. Section\ref{sec:RGtk2:mvc:proxies}.) After constructing an instance and
-specifying the child model, the proxy model may be handed to a view
-like any other model:
+  choose one or the other, cf. Section\ref{sec:RGtk2:mvc:proxies}.}
+After constructing an instance and specifying the child model, the
+proxy model may be handed to a view like any other model:
 <<qt-mvc-proxy, results=hide>>=
 proxy <- Qt$QSortFilterProxyModel()
 proxy$setSourceModel(model)
@@ -661,7 +662,7 @@ information, which translates to different sets of columns. For row
 filtering, the proxy model approach is usually preferable to hiding
 view rows, as the filtering will apply to all views of the data.
 
-\section{Decorating Items}
+\section{Decorating items}
 
 Thus far, we have only considered the display of plain text in item
 views. To move beyond this, the model needs to communicate extra
@@ -674,7 +675,9 @@ a collection of data elements, each with a unique \textit{role}
 identifier. The mapping of roles to visual properties depends on the
 \class{QItemDelegate} associated with the item. The default item
 delegate, \class{QStyledItemDelegate}, understands most of the standard
-roles listed in the \qtenumeration{Qt::ItemDataRole} enumeration.
+roles listed in the \qtenumeration{Qt::ItemDataRole}
+enumeration. Table~\ref{tab:qt:enum:itemDataRole} selectively lists
+this enumeration.
 
 For example, when we create a \class{DataFrameModel}, the default
 behavior is to associate the data frame values with the
@@ -683,28 +686,34 @@ extension \class{RTextFormattingDelegate}) convert the value to a
 string for display. Other roles control aspects like the background
 and foreground colors, the font, and the decorative icon, if any.
 
-\class{DataFrameModel} supports role-specific values for each item,
-\qcode{useRoles = TRUE} is passed to the constructor. It is then up to
-the programmer to indicate the mapping from a data frame column to a
-column and role in the model. The mapping is encoded in the column
-names. Each column name should have the syntax \qcode{[.NAME][.ROLE]},
-where \qcode{NAME} indicates the column name in the model and
+\paragraph{\class{DataFrameModel} roles}
+\class{DataFrameModel} instances support role-specific values for each
+item, provided \qcode{useRoles = TRUE} is passed to the
+constructor. It is then up to the programmer to indicate the mapping
+from a data frame column to a column and role in the model. The
+mapping is encoded in the column names. Each column name should have
+the syntax \qcode{[.NAME][.ROLE]}, where \qcode{NAME} indicates the
+column name in the model~\footnote{\qcode{NAME} can refer to multiple
+  columns, if separated by periods, or all columns if omitted.} and
 \qcode{ROLE} refers to a value in \qtenumeration{Qt::ItemDataRole},
 without the \qcode{Role} suffix. If the column name does not contain a
 period (i.e., there is no \qcode{ROLE}), the display role is assumed.
-For example, we could shade the background of the first column, the
+
+
+For example, to customize the rownames, we could shade the background of the first column, the
 makes and models, in gray:
 <<qt-mvc-role-background>>=
-mtcars.id <- cbind(makeAndModel = rownames(mtcars), mtcars)
+mtcars.id <- cbind(makeAndModel=rownames(mtcars), mtcars)
 model <- qdataFrameModel(mtcars.id, useRoles = TRUE)
 qdataFrame(model)$.makeAndModel.background <- list(qcolor("gray"))
 @ 
 %
 In the above, we store a list of \class{QColor} instances in our data
-frame. As a side note, if we had added that column in a call
-to \qcode{data.frame} or \function{cbind}, it would have been
-necessary to wrap the list with \qcode{I()} in order to prevent
-coercion of the list to a data frame.
+frame.~\footnote{Storing values directly into a data frame requires
+  some care, which we avoid here. If we had added that column in a
+  call to \qcode{data.frame} or \function{cbind}, it would have been
+  necessary to wrap the list with \code{I()} in order to prevent
+  coercion of the list to a data frame.}
 
 The set of supported data types for each role depends on the
 delegate. For delegates derived from \class{QStyledItemDelegate}, see
@@ -720,12 +729,30 @@ for a particular role across multiple model columns. This is useful,
 for example, when modifying the font uniformly across several columns
 of interest. Here, we bold the \qcode{mpg} and \qcode{hp} columns:
 <<qt-mvc-role-multi-font>>=
-qdataFrame(model)$.mpg.hp.font <- list(qfont(weight = Qt$QFont$Bold))
+qdataFrame(model)$.mpg.hp.font <- 
+  list(qfont(weight = Qt$QFont$Bold))
 @ 
 %
-As shown, periods separate the data frame column names in the
-\qcode{NAME} component. To apply a column to all columns in the model,
-omit the column name:
+
+
+After these modifications, the model can be passed to a view, as in Figure~\ref{fig:qt-dataframemodel-role-example}.
+
+<<showView, results=hide>>=
+view <- Qt$QTableView()
+view$setModel(model)
+view$verticalHeader()$hide()       # hide default row names
+@ 
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.8\textwidth]{fig-qt-dataframemodel-role-example}
+  \caption{Example decorating cell items using role specification of \class{DataFrameModel}}
+  \label{fig:qt-dataframemodel-role-example}
+\end{figure}
+
+If the \qcode{NAME} component is omitted, the role will apply to all
+columns in the model, as with this specification to change the font
+size.
 
 %% JV: 7-29-11 This is failing XXXXX
 %% Error in map[headerInd] <- match(role, cn) : replacement has length zero
@@ -733,15 +760,20 @@ omit the column name:
 qdataFrame(model)$.font <- list(qfont(pointsize = 14))
 @ 
 
+
+\paragraph{Roles in other models}
 For models other than \class{DataFrameModel}, one sets data for a
 specific role by passing the optional \argument{role}{setData}
-argument to \method{setData}{QAbstractItemModel}. The value of
-\argument{role}{setData} defaults to \qcode{EditRole}, meaning that
-the data is in an editable form. We create a list view and set the
-background of the first item to yellow:
+argument to the model's \method{setData}{QAbstractItemModel}
+method. The value of \argument{role}{setData} defaults to
+\qcode{EditRole}, meaning that the data is in an editable form. 
+
+Here, we show how to create a list view and set the background of the
+first item to yellow:
 <<qt-mvc-role-set-data, results=hide>>=
 listModel <- Qt$QStringListModel(rownames(mtcars))
-listModel$setData(listModel$index(0, 0), "yellow", Qt$Qt$BackgroundRole)
+listModel$setData(listModel$index(0, 0), "yellow", 
+                  Qt$Qt$BackgroundRole)
 listView <- Qt$QListView()
 listView$setModel(listModel)
 @ 
@@ -768,11 +800,11 @@ cat(booktabs(df,
              label="tab:qt:enum:itemDataRole"))
 @
 
-\section{Displaying Hierarchical Data}
+\section{Displaying hierarchical data}
 
 Hierarchical data is generally stored in \class{QStandardItemModel},
 the primary implementation of \class{QAbstractItemModel} built into
-\Qt.  Hierarchical data often arises when splitting a tabular dataset
+\Qt.  Hierarchical data in \R{} often arises when splitting a tabular dataset
 by some combination of factors. For our demonstration, we will display
 in a tree the result of splitting the \code{Cars93} dataset by
 manufacturer. The first step of our demonstration is to create the
@@ -783,7 +815,7 @@ treeModel <- Qt$QStandardItemModel(rows = 0, columns = 1)
 %
 We need to create an item for each manufacturer, and store the
 corresponding records as its children:
-<<qt-mvc-standard-item-set-item, results=hide, eval=FALSE>>=
+<<qt-mvc-standard-item-set-item, results=hide>>=
 by(Cars93, Cars93$Manufacturer, function(df) {
   treeModel$insertRow(treeModel$rowCount())
   manufacturer <- treeModel$index(treeModel$rowCount()-1L, 0)
@@ -796,7 +828,23 @@ by(Cars93, Cars93$Manufacturer, function(df) {
   }
 })
 @
-%
+
+
+\begin{figure}
+  \centering
+  \begin{minipage}[c]{.32\textwidth}
+    \includegraphics[width=\textwidth]{fig-qt-treemodel-treeview}
+  \end{minipage}\quad
+  \begin{minipage}[c]{.32\textwidth}
+    \includegraphics[width=\textwidth]{fig-qt-treemodel-tableview}
+  \end{minipage}\quad
+  \begin{minipage}[c]{.32\textwidth}
+    \includegraphics[width=\textwidth]{fig-qt-treemodel-listview}
+  \end{minipage}
+  \caption{The \code{treeModel} instance viewed in a tree view, a table view and a list view}
+  \label{fig:qt-treemodel-views}
+\end{figure}
+
 As before, we need to create a \class{QModelIndex} object for
 accessing each cell of the model. We need to add rows and columns to
 each manufacturer node before creating its children. This nested loop
@@ -804,19 +852,21 @@ approach to populating a model is much less efficient than converting
 a \class{data.frame} to a \class{DataFrameModel}, but it is necessary
 to communicate the hierarchical information.
 
+\paragraph{The \class{QStandardItem} class}
 In addition to implementing the \class{QAbstractItemModel} interface,
 \class{QStandardItemModel} also represents an item as a
 \class{QStandardItem} object. Many operations, including inserting,
 removing and manipulating children, may be performed on a
 \class{QStandardItem}, instead of directly on the model. This may be
 convenient in some circumstances. For example, the code listed above
-for populating the model becomes:
+for populating the model simplifies to:
 <<echo=FALSE>>=
 treeModel <- Qt$QStandardItemModel(rows = 0, columns = 1)
 @ 
 <<qt-mvc-standard-item-rewrite, results=hide>>=
 by(Cars93, Cars93$Manufacturer, function(df) {
-  manufacturer <- Qt$QStandardItem(as.character(df$Manufacturer[1]))
+  man <- as.character(df$Manufacturer[1])
+  manufacturer <- Qt$QStandardItem(man)
   treeModel$appendRow(manufacturer)
   children <- lapply(as.character(df$Model), Qt$QStandardItem)
   lapply(children, manufacturer$appendRow)
@@ -824,7 +874,7 @@ by(Cars93, Cars93$Manufacturer, function(df) {
 @ 
 %% probably all I will say about that
 
-The \Rclass{QTreeView} widget displays the data in a table, with the
+The \class{QTreeView} widget displays the data in a table, with the
 conventional buttons on the left for expanding and collapsing
 nodes. We create an instance and set the model: 
 <<qt-mvc-tree-view, results=hide>>=
@@ -832,12 +882,38 @@ treeView <- Qt$QTreeView()
 treeView$setModel(treeModel)
 @ 
 %
+
+<<echo=FALSE, results=hide>>=
+## How to see model three ways
+view <- Qt$QTreeView()
+view$windowTitle <- "QTreeView"
+view$headerHidden <- TRUE
+view$setModel(treeModel); view$show(); view$raise()
+##
+view <- Qt$QTableView()
+view$windowTitle <- "QTableView"
+view$setModel(treeModel); view$show(); view$raise()
+##
+view <- Qt$QListView()
+view$windowTitle <- "QListView"
+view$setModel(treeModel); view$show(); view$raise()
+@ 
+
+
 Often, as in our case, a tree view only has a single column. It may be
 desirable to hide that column header with
 <<qt-mvc-tree-view-header-hidden>>=
 treeView$headerHidden <- TRUE
 @ 
 %
+
+
+%
+Figure~\ref{fig:qt-treemodel-views} shows the \code{treeModel} in
+the three separate types of views we've discussed, the left most being
+with in a \class{QTreeView} instance, as just illustrated.
+
+
 Columns in a \class{QStandardItemModel} may be named by calling
 \method{setHorizontalHeaderNames}{QStandardItemModel}, as shown in the
 next example.
@@ -860,14 +936,14 @@ facilitates synchronizing the items with other views.
 
 For example, we can create a combo box that lists the same cars that
 are present in our table and list views:
-<<qt-mvc-combo-box>>=
+<<qt-mvc-combo-box, results=hide>>=
 comboBox <- Qt$QComboBox()
 comboBox$setModel(model)
 @ 
 By default, the first column from the model is displayed; this is
 controlled by the \qtproperty{modelColumn} property.
 
-\section{User Editing of Data Models}
+\section{User editing of data models}
 
 Some data models, including \class{DataFrameModel},
 \class{QStringListModel} and \class{QStandardItemModel} support
@@ -885,10 +961,12 @@ we might add a logical column named \code{Analyze} to the
 included in an analysis. We append \code{edit} to the column name, so
 that the column performs the \code{edit} role. The user can then
 toggle the \code{Analyze} values between \code{TRUE} and \code{FALSE}:
-<<qt-mvc-edit-analyze>>=
+
+%% JV 8-3 XXX I can't get this to work!!
+<<qt-mvc-edit-analyze, eval=FALSE>>=
 df <- mtcars 
 df$Analyze.edit <- TRUE
-model <- qdataFrameModel(df)
+model <- qdataFrameModel(df, useRoles=TRUE)
 @ 
 
 If a view is assigned an editable model, it will enter its editing mode
@@ -913,7 +991,7 @@ editor widget for some data type, it is necessary to subclass
 \class{QItemEditorCreatorBase} and register an instance with the
 item editor factory.
 
-\section{Drag and Drop in Item Views}
+\section{Drag and drop in item views}
 \label{sec:qt-mvc-dnd}
 
 The item views have native support for drag and drop. All of the
@@ -960,7 +1038,7 @@ actions when dragging; dropping is not supported.
 \end{example}
 
 %% MFL: Arguable as to whether we even need to discuss these in depth
-\section{Widgets With Internal Models}
+\section{Widgets with internal models}
 
 While separating the model from the view provides substantial
 flexibility, in practice it is often sufficient and slightly more
@@ -985,17 +1063,18 @@ description of these widgets. However, we will describe
 \class{QListWidget}, out of an acknowledgement that displaying a short
 simple list of items is a common task in a GUI.
 
-\subsection{Displaying Short, Simple Lists}
+\subsection{Displaying short, simple lists}
 
-\class{QListWidget} is an easy-to-use widget for displaying
-a set of items for selection. As with combo boxes, we can populate the
-items directly from a character vector through the
-\method{addItems}{QListWidget} method:
+\class{QListWidget} is an easy-to-use widget for displaying a set of
+items for selection. (Figure~\ref{fig:qt-listwidget-styles}.)  As with
+combo boxes, we can populate the items directly from a character
+vector through the \method{addItems}{QListWidget} method:
 <<qt-mvc-listwidget-additems, results=hide>>=
 listWidget <- Qt$QListWidget()
 listWidget$addItems(state.name)
 @ 
 %
+
 This saves one line of code compared to populating a \class{QListView}
 via a \class{QStringListModel}. To clear a list of its items, call the
 \method{clear}{QListWidget} method. Passing an item to
@@ -1050,29 +1129,58 @@ sapply(selected, qinvoke, "text")
 %
 To handle changes in the selection, connect to
 \signal{itemSelectionChanged}:
-<<qt-mvc-listwidget-selectionchanged>>=
+<<qt-mvc-listwidget-selectionchanged, results=hide>>=
 qconnect(listWidget, "itemSelectionChanged", function() {
   selected <- listWidget$selectedItems()
   selectedText <- sapply(selected, qinvoke, "text")
   message("Selected: ", paste(selectedText, collapse = ", "))
 })
 @ 
+%%
 
+\begin{figure}
+  \centering
+  \begin{minipage}[c]{.45\textwidth}
+    \includegraphics[width=\textwidth]{fig-qt-listwidget-selection}
+  \end{minipage}\quad
+  \begin{minipage}[c]{.45\textwidth}
+        \includegraphics[width=\textwidth]{fig-qt-listwidget-checkbutton}
+  \end{minipage}
+  \caption{Two easily implemented styles for selecting items from a
+    \class{QListWidget} instance: the traditional selection and using
+    checkbuttons.}
+  \label{fig:qt-listwidget-styles}
+\end{figure}
+
+
+\paragraph{Using check buttons for selection}
 It is often easier for the user to select multiple items by clicking a
-check button next to the desired items. The check box is only shown if
+check button next to the desired items. The right figure in
+Figure~\ref{fig:qt-listwidget-styles} shows an example. The check box is only shown if
 we explicitly set the check state of item. The possible values are
 \qcode{Checked}, \qcode{Unchecked} or \qcode{PartiallyChecked}. Here,
-we set all of the items to unchecked to show the check buttons and
-then check the selected items:
+we set all of the items to unchecked to show the check buttons,
+check the selected items, then turn off selection.
 <<qt-mvc-listwidget-checked, results=hide>>=
-items <- sapply(seq(listWidget$count), function(i) {
-  listWidget$item(i - 1)$setCheckState(Qt$Qt$Unchecked)
-})
-sapply(selected, function(x) x$setCheckState(Qt$Qt$CheckedState))
+items <- sapply(seq(listWidget$count) - 1L, listWidget$item)
+sapply(items, "qinvoke", "setCheckState", Qt$Qt$Unchecked)
+## check selected
+selected <- listWidget$selectedItems()
+sapply(selected, function(x) x$setCheckState(Qt$Qt$Checked))
+## clear selection now
+listWidget$selectionModel()$clear()
+listWidget$selectionMode <- Qt$QListWidget$NoSelection
 @ 
 %
+To get the selected items, one can \iprogram{iterator}iterate over the items, as above,
+and invoke the \method{checkedState}{QListWidgetItem} method:
+<<>>=
+state <- sapply(items, "qinvoke", "checkState")
+head(state, n=8)                        # 2 is checked, 0 not
+@ 
+
 For long lists, this looping will be time consuming. In such cases, it
-is likely preferable use \class{QListView}, \class{DataFrameModel} and
+is likely preferable to use \class{QListView}, \class{DataFrameModel} and
 the \qcode{CheckedStateRole}.
 
 %% JV this seems to cover the same ground as the dnd example
@@ -1081,7 +1189,7 @@ the \qcode{CheckedStateRole}.
 %   \SweaveInput{ex-qt-select-variable}
 % \end{example}
 
-\section{Implementing Custom Models}
+\section{Implementing custom models}
 \label{sec:using-model-with}
 
 Normally, the \class{DataFrameModel} and the models in \Qt{} are
@@ -1094,21 +1202,21 @@ models do not scale well, due to frequent callbacks into R.
 
 \paragraph{Required methods}
 
-The basic implementation of a model must provide the methods
-\meth{rowCount}, \meth{columnCount}, and \meth{data}.  The first two
-describe the size of the table for any views, and the third describes
-provides data to the view for a particular cell and role. We have
+The basic interface of a model requires that at a minimum the methods
+\meth{rowCount}, \meth{columnCount}, and \meth{data} must be provided.
+The first two describe the size of the table for any views. We have
 already demonstrated the use of the \meth{data} method in the previous
-sections. For example, if one is displaying numeric data, the
+sections, it provides data to the view for a particular cell
+\textit{and} role. For example, if one is displaying numeric data, the
 \code{DisplayRole} might format the numeric values (showing a fixed
 number of digits say), yet the \code{EditRole} role might display all
 the digits so accuracy is not lost. If a role is not implemented, a
 value of \code{NULL} should be returned. One may also implement the
 \meth{headerData} method to populate the view headers.
 
-\paragraph{Editable Models}
+\paragraph{Editable models}
 
-For editable models, one must implement the \meth{flags} method to
+For editable models, one must also implement the \meth{flags} method to
 return a flag containing \code{ItemIsEditable} and the \meth{setData}
 method. When a value is updated, one should call the
 \meth{dataChanged} method to notify the views that a portion of the
@@ -1127,7 +1235,7 @@ after.
 \end{example}
 
 
-\section{Alternative Views of Data Models}
+\section{Implementing custom views}
 \label{sec:custom-views}
 
 Thus far, we have discussed the application of
@@ -1149,41 +1257,7 @@ class. An example is the \property{text}{QLabel} property on a
 \class{QLineEdit}.
 
 \begin{example}{Mapping selected model items to a text entry}{ex-qt-mapping-model}
- We will demonstrate \class{QDataWidgetMapper} by displaying a table
-  view of the \qcode{Cars93} dataset, along with a label. When a row
-  is selected, the model name of the record will be displayed in the
-  label. First, we establish the mapping:
-<<qt-mvc-mapper-map, results=hide>>=
-data(Cars93, package="MASS")
-model <- qdataFrameModel(Cars93, editable=TRUE)
-mapper <- Qt$QDataWidgetMapper()
-mapper$setModel(model)
-label <- Qt$QLabel()
-mapper$addMapping(label, 1)
-@ 
-%
-  The \method{addMapping}{QDataWidgetMapper} establishes a mapping
-  between the view widget and the $0$-based column index in the
-  model. 
-  
-  Next, we construct a table view and establish a handler that
-  changes the current row of the data mapper upon selection:
-<<qt-mvc-mapper-select, results=hide>>=
-tableView <- Qt$QTableView()
-tableView$setModel(model)
-qconnect(tableView$selectionModel(), "currentRowChanged", 
-         mapper$setCurrentIndex)
-@ 
-
-  Finally, we layout our GUI:
-<<qt-mvc-mapper-layout, results=hide>>=
-w <- Qt$QWidget()
-lyt <- Qt$QVBoxLayout()
-w$setLayout(lyt)
-lyt$addWidget(tableView)
-lyt$addWidget(label)
-@ 
-
+  \SweaveInput{ex-qt-mapping-model}
 \end{example}
 
 Let us consider a different problem: summarizing or aggregating
@@ -1198,49 +1272,84 @@ any given time. The next example proposes an ad-hoc solution to this.
   \SweaveInput{ex-qt-custom-view}
 \end{example}
 
-\section{Viewing and Editing Text Documents}
+\section{Viewing and editing text documents}
 \label{sec:multi-line-text}
 
 Multi-line text is displayed and edited by the \class{QTextEdit}
-widget, which is the view and controller for the \class{QTextDocument}
-model. \class{QTextEdit} supports both plain and rich text in HTML
-format, including images, lists and tables. Applications that display
-only plain text may be better served by \class{QPlainTextEdit}, which
-is faster due to a simpler layout algorithm. \class{QPlainTextEdit} is
+widget, which is the view and controller for a \class{QTextDocument}
+model. The model may be shared amongst many different views, allowing
+for synchronized buffers.
+
+\class{QTextEdit} supports both plain and rich text in HTML format,
+including images, lists and tables. Applications that display only
+plain text may be better served by \class{QPlainTextEdit}, which is
+faster due to a simpler layout algorithm. \class{QPlainTextEdit} is
 otherwise equivalent to \class{QTextEdit} in terms of API and
 functionality, so we will focus our discussion on \class{QTextEdit},
-with little loss of generality. 
+with little loss of generality.
 
-Here, we create a \class{QTextEdit} and populate it with some
-text. Although the text is actually stored in a \class{QTextDocument},
+\paragraph{Constructor}
+Here, we create a \class{QTextEdit} instance and populate it with some
+text. Although the text is actually stored in a \class{QTextDocument} instance,
 it is usually sufficient to interact with the \class{QTextEdit}
 directly:
 <<QTextEdit, results=hide>>=
 te <- Qt$QTextEdit()
-te$setPlainText("The quick brown fox")
-te$append("jumped over the lazy dog")
 @ 
 <<eval=FALSE, echo=FALSE, results=hide>>=
 ## not shown
 te$show(); te$raise()
 @ 
+
+The underlying \class{QTextDocument} instance can be set by the
+\method{setDocument}{QTextEdit} method, but need not be, as one is
+created on construction.
+
+Adding text to the document can be done easily through the slots
+\method{setPlainText}{QTextEdit}, which replaces the existing text, or
+\method{append}{QTextEdit} which appends the text as a new paragraph
+to the end of the buffer.
+<<>>=
+te$setPlainText("The quick brown fox")
+te$append("jumped over the lazy dog")
+@ 
+
+As described in its manual page, the widget works on paragraphs and
+characters, a paragraph being a formatted string, word-wrapped to fit
+into the width of the widget. For plain text, new lines signify
+paragraphs.
+
+To return the contents of the model as text, the
+\method{toPlainText}{QTextEdit} method is available:
+
 <<>>=
 te$toPlainText()
 @ 
 %
-The \signal{textChanged} signal is emitted when the text is changed. 
+The hard line break \backslashn{} is present, as \meth{append} created
+a new paragraph.
 
-%% Worth mentioning this, given that we never manipulate the document?
-% The \method{document}{QTextEdit} can
-% be used to retrieve that document, and \method{setDocument}{QTextEdit}
-% to replace it. 
+%% undo/redo
+When text is added to a buffer, it can be undone through the
+\method{undo}{QTextEdit} slot. There is also \code{redo} to reverse
+the decision and \code{undoAvailable} and \code{redoAvailable} to check
+for the possibility of each action.
+
+\paragraph{HTML support}
+Instead of plain text, one can also add and insert HTML formatted text
+for display. The slots \method{setHTML}{QTextEdit} and
+\method{append}{QTextEdit} may be used. The
+\method{toPlainText}{QTextEdit} method will return the text with
+mark-up stripped off, whereas \method{toHtml}{QTextEdit} will return
+the source HTML of the page.
 
 \paragraph{The text cursor}
 
 To manage selections, insert special objects like tables and images,
 or apply the full range of formatting options, it is necessary to
-interact with a text cursor object, of class \class{QTextCursor}. We
-obtain the user-visible cursor and move it to the end of the document:
+interact with a text cursor object, of class
+\class{QTextCursor}. Here, we obtain the user-visible cursor and move
+it to the end of the document:
 <<qt-mvc-textedit-cursor, results=hide>>=
 n <- nchar(te$toPlainText())
 cursor <- te$textCursor()
@@ -1251,71 +1360,137 @@ te$setTextCursor(cursor)
 Manipulating the \Robject{cursor} object does not actually modify the
 location and parameters of the cursor on the screen. We need to
 explicitly set the modified cursor object on the
-\class{QTextEdit}. This behavior is often convenient, because it
+\class{QTextEdit} through its \method{setTextCursor}{QTextEdit} method. This behavior is often convenient, because it
 allows us to modify arbitrary parts of the document, without affecting
 the user cursor.  For example, we could insert a 32 by 32 pixel image at the beginning:
 %% JV 7-29-11 added qsize call to actualSize to get out of erro
 <<qt-mvc-textedit-image, results=hide>>=
-cursor$setPosition(0)
+cursor$setPosition(0)                   # move to beginning
 style <- Qt$QApplication$style()
 icon <- style$standardIcon(Qt$QStyle$SP_DialogOkButton)
 cursor$insertImage(icon$pixmap(icon$actualSize(qsize(32L,32L)))$toImage())
 @ 
-%
-To listen to changes in the cursor position, connect to the
-\signal{cursorPositionChanged} signal on the \class{QTextEdit}.
+%%
 
-\paragraph{Selections}
+In the above we moved the cursor through its
+\method{setPosition}{QTextCursor} method. If the document is viewed as
+a single string of characters, the position $i$ would refer to the
+space between the $i$th and $i+1$st character, $0$ being the initial
+point in the document.
 
+A text cursor has a position and an anchor. The
+\igui{text selection}selection is the text between the two. When moving
+the cursor through its \method{movePosition}{QTextCursor} method, one
+can choose to move or keep the anchor in place. The motion of the
+cursor is described by the \qtenumeration{QTextCursor\$MoveOperation}
+enumeration, with several values such as \qcode{Start}, \qcode{End},
+\qcode{StartOfLine}, \qcode{EndOfLine}, \qcode{StartOfWord},
+\qcode{EndOfWord} etc. For example, to move the cursor to the start of
+the second line, we could do:
+<<results=hide>>=
+cursor <- te$textCursor()
+cursor$movePosition(Qt$QTextCursor$Start) # MoveAnchor is default
+cursor$movePosition(Qt$QTextCursor$Down)  # down one line
+te$setTextCursor(cursor)
+@ 
+%%
+
+
+
+\paragraph{Selection}
 Selection is a component of the \class{QTextCursor} state. For plain
 text, the selected text is returned by the
 \method{selectedText}{QTextCursor} method:
 <<qt-mvc-textedit-selection>>=
-te$textCursor()$selectedText()
+te$textCursor()$selectedText()          # no current selection
 @ 
 %
-The \code{NULL} value indicates that the user has not selected any text.
-The selection spans from the cursor anchor to the cursor
-position. Normally, the anchor and cursor are at the same position. To
-make a selection, we move the cursor independently of its anchor.
-To set the selection to include the first three words of the text, we have:
+The \code{NULL} value indicates that the user has not selected any
+text.  Normally, the anchor and cursor are at the same position. To
+make a selection programatically, we move the cursor independently of
+its anchor. The \qtenumeration{QTextCursor\$MoveMode} enumeration with
+values \qcode{MoveAnchor} and \qcode{KeepAnchor} may be specified to
+\meth{movePostion} to control this. Here we set the selection to
+include the first three words of the text in the second line, we have:
 <<results=hide>>=
 cursor <- Qt$QTextCursor(te$document()) 
-cursor$movePosition(Qt$QTextCursor$Start)
-cursor$movePosition(Qt$QTextCursor$WordRight, Qt$QTextCursor$KeepAnchor, 3)
+cursor$movePosition(Qt$QTextCursor$Start) # as before
+cursor$movePosition(Qt$QTextCursor$Down) 
+cursor$movePosition(Qt$QTextCursor$WordRight, 
+                    Qt$QTextCursor$KeepAnchor, 3)
 te$setTextCursor(cursor)
 @
+%%
+The $3$ specified to \meth{movePostion} calls the action $3$ times.
+
+Now our selection yields:
 <<qt-mvc-textedit-selection>>=
 cursor$selectedText()
 @ 
-%
-We move the cursor and anchor to the start of the document. Next, we
-move the cursor, without the anchor, across the right end of three
-words. Finally, we need to commit the modified cursor.
 
-To listen to changes in the selection (according to the user visible
-cursor), connect to \signal{selectionChanged}:
+
+\paragraph{Signals}
+
+There are several different signals to connect to, emitted by
+\class{QTextEdit} instances: the \signal{textChanged} signal when the text is changed;
+the \signal{cursorPositionChanged} signal is emitted when the cursor
+position changes; and the \signal{selectionChanged} signal is emitted
+when the selection (according to the user visible
+cursor) changes. For the latter, the \signal{copyAvailable} signal is largely equivalent, except it
+passes a boolean argument indicating whether the selection is non-empty.
+
 <<qt-mvc-textedit-selectionChanged, results=hide>>=
+qconnect(te, "textChanged", function() {
+  message("Text has changed to", te$toPlainText())
+})
+##
+qconnect(te, "cursorPositionChanged", function() {
+  message("Cursor has changed. It is now in position", 
+          te$textCursor()$position())
+})
+##
 qconnect(te, "selectionChanged", function() {
-  message("Selected text: '", te$textCursor()$selectedText(), "'")
+  message("text: ", te$textCursor()$selectedText())
 })
 @ 
 %
-The \signal{copyAvailable} signal is largely equivalent, except it
-passes a boolean argument indicating whether the selection is non-empty.
 
-\paragraph{Formatting}
+\paragraph{Formatting properties}
 By default, the widget will wrap text as entered. For use as a code
-editor, this is not desirable. The \property{lineWrapMode}{QTextEdit}
+editor, this is not desirable. The \property{lineWrapMode}{QTextEdit} property
 takes values from the enumeration
 \qtenumeration{QTextEdit::LineWrapMode} to control this:
 <<qt-mvc-textedit-wrap>>=
 te$lineWrapMode <- Qt$QTextEdit$NoWrap
 @
 % 
+One can fix the wrapping at a certain number of characters by using a
+wrap mode of\code{FixedColumnWidth} and setting the count through
+\method{lineWrapColumnOrWidth}{QTextEdit}.
+
+
 The \method{setAlignment}{QTextEdit} method aligns the current
 paragraph (the one with the cursor) with values from
 \qtenumeration{Qt::Alignment}.
+
+\paragraph{Character attributes}
+The widget keeps track of a current set of formatting options a class
+\class{QTextCharFormat}. The text edit methods
+\method{setCurrentFont}{QTextEdit},
+\method{setFontFamily}{QTextEdit}, and \method{setFontWeight}{QTextEdit},
+among others, can be used to modify the current settings. If called
+when there is a selection, the change will be applied to the selection
+in addition to any new text.
+
+\paragraph{Syntax highlighting}
+
+The text edit widget supports syntax highlighting through the
+\class{QSyntaxHighlighter} class. To implement a specific highlighting
+rule, one must subclass \class{QSyntaxHighlighter} and override the
+\meth{highlightBlock} method to apply highlighting. This is of
+somewhat special interest, so we will not give an example. For a
+syntax highlighting R code viewer and editor, see \function{qeditor}
+in the \pkg{qtutils} package.
 
 \paragraph{Searching}
 The \method{find}{QTextEdit} method will search for a given string and
@@ -1358,59 +1533,62 @@ of flags from \qtenumeration{QTextDocument::FindFlag}, with values
 \qcode{FindWholeWords}.
 
 \paragraph{Context menus}
-
-As we introduce Section~\ref{sec:qt:app:context-menus}, one can enable
-a dynamic context menu on a widget by overriding the
-\meth{contextMenuEvent} virtual.  For our demonstration, we aim to
-list candidate completions based on the currently selected text:
+As we introduce in Section~\ref{sec:qt:app:context-menus} of
+Chapter~\ref{cha:qt:MVC}, one can enable a dynamic context menu on a
+widget by overriding the \meth{contextMenuEvent} virtual.  For our
+demonstration, we aim to list candidate completions based on the
+currently selected text:
 <<QTextEditWithMenu,results=hide>>=
 qsetClass("QTextEditWithCompletions", Qt$QTextEdit)
-#
-qsetMethod("contextMenuEvent", QTextEditWithCompletions, function(e) {
-  m <- this$createStandardContextMenu()
+##
+qsetMethod("contextMenuEvent", QTextEditWithCompletions, 
+           function(e) {
+  menu <- this$createStandardContextMenu()
   if(this$textCursor()$hasSelection()) {
     selection <- this$textCursor()$selectedText()
     comps <- utils:::matchAvailableTopics(selection)
     comps <- setdiff(comps, selection)
-    if(length(comps) > 0 && length(comps) < 10) {
-      m$addSeparator()                  # add actions
+    if(length(comps) > 0 && length(comps) < 25) {
+      menu$addSeparator()                  # add actions
       sapply(comps, function(i) {
         a <- Qt$QAction(i, this)
         qconnect(a, "triggered", function(checked) {
           insertPlainText(i)
         })
-        m$addAction(a)
+        menu$addAction(a)
       })
     }
   }
-  m$exec(e$globalPos())
+  menu$exec(e$globalPos())
 })
 te <- QTextEditWithCompletions()
 @ 
 %
+\begin{figure}
+  \centering
+  \includegraphics[width=.5\textwidth]{fig-qt-textedit-view-context-menu}
+  \caption{Context menu showing completion candidates for the token
+    \qcode{mean.} taken from the current selection.}
+  \label{fig:qt-textedit-view-context-menu}
+\end{figure}
+
+
 The \method{createStandardContextMenu}{QTextEdit} method returns the
 base context menu, including functions like copy and paste. We add an
-action for every possible completion. Triggering an action will paste
-the completion into the document.
+action for every possible completion
+(Figure~\ref{fig:qt-textedit-view-context-menu}). Triggering an action
+will paste the completion into the document replacing the current
+selection with the chosen completion candidate.
 
 <<raise, eval=FALSE, echo=FALSE, results=hide>>=
 te$show()
 te$raise()
 @ 
 
-\begin{example}{A tabbed text editor}{ex-qt-tabbed-text-edit}
-  \SweaveInput{ex-qt-tabbed-editor.Rnw}
-\end{example}
-
-\paragraph{Syntax highlighting}
-
-The text edit widget supports syntax highlighting through the
-\class{QSyntaxHighlighter} class. To implement a specific highlighting
-rule, one must subclass \class{QSyntaxHighlighter} and override the
-\meth{highlightBlock} method to apply highlighting. This is of
-somewhat special interest, so we will not give an example. For a
-syntax highlighting R code viewer and editor, see \function{qeditor}
-in the \pkg{qtutils} package.
+%% JV 8-3-11 Removed this, it seemed to long for what it offered
+% \begin{example}{A tabbed text editor}{ex-qt-tabbed-text-edit}
+%   \SweaveInput{ex-qt-tabbed-editor.Rnw}
+% \end{example}
 
 <<eval=FALSE, echo=FALSE, results=hide>>=
 ## Not shown

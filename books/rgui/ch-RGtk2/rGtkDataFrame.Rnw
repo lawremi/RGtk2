@@ -57,7 +57,7 @@ iter can also be a path, which is useful for tree structures
 access via GetValue(iter,col); SetValue(iter,col,value)
 
 
-\subsection{Comboboxes}
+\subsection{Combo boxes}
 \label{sec:RGtk2:comboboxes}
 
 * use liststore

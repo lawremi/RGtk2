@@ -1,4 +1,4 @@
-  This example shows how we can combine a combobox and a list widget
+  This example shows how we can combine a combo box and a list widget
   to select a variable name from a data frame. Here we select a value
   by dragging it. A such we need to define a sub-class of
   \class{QListWidget} to implement the \code{mousePressEvent}.
@@ -12,7 +12,7 @@ qsetClass("DraggableListWidget", Qt$QListWidget,
 @   
 %
 The property \code{df} holds the name of the dataframe that will be
-selected through a combobox. Here is a method to set the value.
+selected through a combo box. Here is a method to set the value.
 <<results=hide>>=
 qsetMethod("setDf", DraggableListWidget, 
            function(df) this$df <- df)
@@ -41,7 +41,7 @@ qsetMethod("mousePressEvent", DraggableListWidget, function(e) {
 @ 
 
 
-With this, we now create a widget to hold the combobox and the list
+With this, we now create a widget to hold the combo box and the list
 box. The constructor creates the widgets, lays them out, initializes
 the data sets then sets a handler to update the variable list when the
 dataframe selector does.

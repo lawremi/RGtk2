@@ -75,7 +75,9 @@ more detail on the various widgets provided by \Tk.
 \begin{figure}
   \centering
   \includegraphics[width=.6\textwidth]{fig-tcltk-themed-dialog.png}
-  \caption{A simple dialog to collect a name for later use. This illustrates 3 basic widgets: a label, entry widget and button.}
+  \caption{A simple dialog to collect a name for later use
+    illustrating three basic widgets: a label, entry widget and
+    button.}
   \label{fig:tcltk-simple-dialog}
 \end{figure}
 
@@ -102,7 +104,8 @@ g1 <- ttkframe(f); tkpack(g1, anchor="ne")
 btn <- ttkbutton(g1, text="Click")
 tkpack(btn, side="right")
 #
-handler = function() print(sprintf("Hello %s", tclvalue(txtVar)))
+msg <- sprintf("Hello %s", tclvalue(txtVar))
+handler <- function() print(msg)
 tkconfigure(btn, command=handler)
 @ 
 
@@ -186,7 +189,7 @@ to run within an \R\/ session. \TCL\/ packages may be read in with
 
 \paragraph{The \class{tclObj} class}
 The \pkg{tcltk} package creates objects with a few different classes,
-\class{tclObj} being the primary one (\class{tclVar} and \class{tkwin}
+\iprogram{class structure}\class{tclObj} being the primary one (\class{tclVar} and \class{tkwin}
 are two other important ones).  The \class{tclObj} objects print with
 the leading \code{<Tcl>}. The string representation of objects of
 class \class{tclObj} is returned by \function{tclvalue} or by coercion
@@ -265,7 +268,7 @@ is to set the selection. In the \R\/ function, the second command is
 appended with a dot, as in \code{tkselection.set}. (There are a few
 necessary exceptions to this.)
 
-\paragraph{The tcl function} 
+\paragraph{The \class{tcl} function} 
 Within \pkg{tcltk}, the \function{tkconfigure} function is defined by
 
 \begin{Sinput}
@@ -369,7 +372,7 @@ a 3-d effect around the label should look, if specified. Possible
 values are \qcode{flat}, \qcode{groove}, \qcode{raised},
 \qcode{ridge}, \qcode{solid}, or \qcode{sunken}.
 
-\paragraph{The functions tkconfigure, tkcget}
+\paragraph{The functions \class{tkconfigure}, \class{tkcget}}
 Option values may be set through the constructor, or adjusted
 afterwards by \function{tkconfigure}. A listing (in \TCL\/ code) of possible options
 that can be adjusted may be seen by calling \function{tkconfigure}
@@ -538,7 +541,8 @@ In the definition of the button we saw:
 <<>>=
 btn <- ttkbutton(g1, text="Click")
 #
-handler = function() print(sprintf("Hello %s", tclvalue(txtVar)))
+msg <- sprintf("Hello %s", tclvalue(txtVar))
+handler <- function() print(msg)
 tkconfigure(btn, command=handler)
 @ 
 
@@ -584,9 +588,13 @@ tkpack(f, expand=TRUE, fill="both")
 
 \begin{figure}
   \centering
-    \includegraphics[width=.4\textwidth]{fig-tcltk-themed-dialog.png}
-    \includegraphics[width=.4\textwidth]{fig-tcltk-non-themed-dialog.png}
-  \caption{Comparison of themed versus non-themed dialog. The right
+  \begin{minipage}[c]{.45\linewidth}
+    \includegraphics[width=\textwidth]{fig-tcltk-themed-dialog.png}    
+  \end{minipage}\quad
+  \begin{minipage}[c]{.45\linewidth}
+   \includegraphics[width=\textwidth]{fig-tcltk-non-themed-dialog.png}
+ \end{minipage}
+ \caption{Comparison of themed versus non-themed dialog. The right
     one does not use an inner \code{ttkframe} and in addition to not
     having padding, has a mismatched color.}
   \label{fig:tcltk-compare-themed-non-themed}
@@ -808,7 +816,7 @@ df <- rbind(
             c("\\code{TkDefaultFont}","Default font for all GUI items not otherwise specified"),
             c("\\code{TkTextFont}","Font for text widgets"),
             c("\\code{TkFixedFont}","Fixed-width font"),
-            c("\\code{TkMenuFont}","Menu bar fonts"),
+            c("\\code{TkMenuFont}","Menubar fonts"),
             c("\\code{TkHeadingFont}","Font for column headings"),
             c("\\code{TkCaptionFont}","Caption font (dialogs)"),
             c("\\code{TkSmallCaptionFont}","Smaller caption font"),
@@ -820,8 +828,8 @@ cat(booktabs(df,
              label="tab:tcltk-std-fonts"))
 @ 
 %
-\paragraph{tkfont.create}
-The \function{tkfont.create} function can be used to create a new font, as with the following commands:
+\paragraph{Using \code{tkfont.create}}
+The \index{tkfont!\code{create}}\function{tkfont.create} function can be used to create a new font, as with the following commands:
 <<>>=
 tkfont.create("ourFont", family="Helvetica", size=12, 
               weight="bold")
@@ -880,11 +888,10 @@ Many \pkg{tcltk} widgets, including both labels and buttons, can show
 images. In these cases, either with or without an accompanying text
 label. Constructing images to display is similar to constructing new
 fonts, in that a new image object is created and can be reused by
-various widgets. This use of the flyweight design pattern allows
-memory resources to be shared as much as possible.
+various widgets. This shared use of resources reduces memory
+consumption, and is an example of the flyweight design pattern.
 
-Images are created by the \function{tkimage.create}
-function. 
+Images are created by the \function{tkimage.create} function.
 
 The following command shows how an image object can be made from the
 file \code{tclp.gif} in the current directory:
@@ -950,7 +957,7 @@ tkconfigure("::img::tclLogo", palette="fullcolor")
 
 
 
-\section{Events and Callbacks}
+\section{Events and callbacks}
 \label{sec:tcltk:overview:events-callbacks}
 
 The button widget has the \code{command} option for assigning a
@@ -994,6 +1001,7 @@ widget has the focus the command will be invoked by the keyboard shortcut.
 
 \subsection{Events}
 \label{sec:tcltk:events}
+\iprogram{signals}
 
 %% possible events
 %% keys
@@ -1066,7 +1074,7 @@ commonly used ones are \code{Return} (as above), \code{ButtonPress},
 \code{ButtonRelease}, \code{KeyPress}, \code{KeyRelease},
 \code{FocusIn}, and \code{FocusOut}.
 
-\paragraph{Window manager events}
+\paragraph{Window manager events}\iprogram{window manager events}
 Some events are based on window manager events. The \code{\Event{Configure}}
 event happens when a component is resized. The \code{\Event{Map}} and
 \code{\Event{Unmap}} events happen when a component is drawn or undrawn.
@@ -1108,6 +1116,7 @@ drop features.
 %% \XXX{ use of tcl(``eval'',''break'') to avoid calling subsequent callbacks} -- doesn't work
 %% See PD's comments here on callbacks http://article.gmane.org/gmane.comp.lang.r.general/136705
 
+\iprogram{event handlers}
 The \pkg{tcltk} package implements callbacks in a manner different
 from \TK, as the callback functions are \R\/ functions, not \TK\/
 procedures. This is much more convenient, but introduces some slight
@@ -1204,7 +1213,7 @@ tkbind(b, "<Button-1>", function() {
 
 %% After
 \paragraph{The after command}
-The \TCL\/ command \code{after} will execute a command after a certain
+The \TCL\/ command \iprogram{timers}\code{after} will execute a command after a certain
 delay (specified in milliseconds as an integer) while not interrupting
 the control flow while it waits for its delay. The function is called
 in a manner like:
@@ -1236,7 +1245,7 @@ repeatCall(2000, function() {
 %
 
 
-\begin{example}{Drag and Drop}{ex-tcltk-dnd}
+\begin{example}{Drag and drop}{ex-tcltk-dnd}
   \SweaveInput{ex-tcltk-dnd.Rnw}
 \end{example}
 

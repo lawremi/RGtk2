@@ -1,42 +1,134 @@
+This example shows how to use the tree widget item to display a
+snapshot of the current
+workspace. Figure~\ref{fig:qt-ws-browser-treewidget} shows an illustration. Each object in the workspace maps
+to an item, where recursive objects with names will have their
+components represented in a hierarchical manner. In
+Example~\ref{ex-qt-ws-objects} we created a class \class{WSWatcher} to monitor the
+workspace for changes, now we build on that example.
+
 <<echo=FALSE, results=hide>>=
 ## use QTreeView to make workspace browser
 require(qtbase)
 @ 
 
-This example shows how to use the tree widget item to display a
-snapshot of the current workspace. Each object in the workspace maps
-to an item, where recursive objects with names will have their
-components represented in a hierarchical manner. 
 
-When representing objects in a workspace, we need to decide if an
-object has been changed. To do this, we use the \function{digest}
-function from the \pkg{digest} package to
-compare a current object with a past one. To store this information,
-we will use a custom \qcode{digest} role in the item model.
-<<qt-mvc-tree-digest-role, results=hide>>=
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.7\textwidth]{fig-qt-ws-browser-treewidget}
+  \caption{The completed workspace browser showing a hierarchical view
+  of the objects in the global environment.}
+  \label{fig:qt-ws-browser-treewidget}
+\end{figure}
+
+<<echo=FALSE, results=hide>>=
+## From an earlier example
+###################################################
+### chunk number 1: ws_watcher
+###################################################
+#line 10 "ex-qt-ws-model.Rnw"
+library(qtbase)
+
+
+###################################################
+### chunk number 2: 
+###################################################
+#line 17 "ex-qt-ws-model.Rnw"
+qsetClass("WSWatcher", Qt$QObject, function(parent=NULL) {
+  super(parent)
+  updateVariables()
+})
+
+
+###################################################
+### chunk number 3: 
+###################################################
+#line 27 "ex-qt-ws-model.Rnw"
 library(digest)
-.DIGEST_ROLE <- Qt$Qt$UserRole + 1L
-@ 
-%
-Using a custom role in this manner is convenient but dangerous:
-third-party code could attempt to store a differenet type of data
-using the same role ID. It is thus important to document any reserved
-roles.
 
-The \function{addItem} function creates an item from a named component
+
+###################################################
+### chunk number 4: 
+###################################################
+#line 32 "ex-qt-ws-model.Rnw"
+qsetProperty("digests", WSWatcher)
+
+
+###################################################
+### chunk number 5: objects_changed_property
+###################################################
+#line 39 "ex-qt-ws-model.Rnw"
+qsetSignal("objectsChanged", WSWatcher)
+
+
+###################################################
+### chunk number 6: 
+###################################################
+#line 47 "ex-qt-ws-model.Rnw"
+qsetProperty("objects", WSWatcher, notify="objectsChanged")
+
+
+###################################################
+### chunk number 7: 
+###################################################
+#line 52 "ex-qt-ws-model.Rnw"
+qsetProperty("old_digests", WSWatcher)
+qsetProperty("old_objects", WSWatcher)
+
+
+###################################################
+### chunk number 8: update_variables
+###################################################
+#line 62 "ex-qt-ws-model.Rnw"
+qsetMethod("updateVariables", WSWatcher, function() {
+  x <- sort(ls(envir=.GlobalEnv))
+  objs <- sapply(mget(x, .GlobalEnv), digest)
+
+  if((length(objs) != length(digests)) ||
+     length(digests) == 0 ||
+     any(objs != digests)) {
+    this$old_digests <- digests         # old
+    this$old_objects <- objects
+    this$digests <- objs                # update cache
+    this$objects <- x                   # emits signal         
+  }
+  invisible()
+})
+
+
+###################################################
+### chunk number 9: change_add
+###################################################
+#line 84 "ex-qt-ws-model.Rnw"
+qsetMethod("changedVariables", WSWatcher, function() {
+  changed <- setdiff(old_digests, digests)
+  old_objects[old_digests %in% changed]
+})
+##
+qsetMethod("addedVariables", WSWatcher, function() {
+  added <- setdiff(digests, old_digests)
+  objects[digests %in% added]
+})
+
+
+
+@ 
+
+
+
+The following \function{addItem} function creates an item from a named component
 of a parent object and adds the new item under the given parent index:
 <<results=hide>>=
 addItem <- function(varname, parentObj, parentItem) {
+          
   obj <- parentObj[[varname]]
-  
+  ## main interaction with tree model
   item <- Qt$QStandardItem(varname)
-  item$setData(digest(obj), .DIGEST_ROLE)
-  classItem <- Qt$QStandardItem(paste(class(obj), collapse = ", "))
-  print(class(item))
-  print(class(classItem))
-  
+  classItem <- Qt$QStandardItem(paste(class(obj), 
+                                      collapse = ", "))
   parentItem$appendRow(list(item, classItem))
-  
+
+  ## Recursively create ancestor items, if needed
   nms <- NULL
   if (is.recursive(obj)) {
     if (is.environment(obj))
@@ -44,74 +136,89 @@ addItem <- function(varname, parentObj, parentItem) {
     else if (!is.null(names(obj)))
       nms <- names(obj)
   }
-  
   sapply(nms, addItem, parentItem = item, parentObj = obj)
 }
 @ 
 
-Our main function is one that checks the current workspace and updates
-the values in the tree widget accordingly. This could be set on a
-timer to be called periodically, or called in response to user
-input. We consider three cases: items no longer in the
-workspace to remove, new items to add, and finally items that may have
-changed and need to be replaced.
+Our main function is one called when changes are made to the workspace.
+There are two cases: we need to remove expired items and
+we need to add new ones. 
 <<updateTopLevelItems, results=hide>>=
-updateTopLevelItems <- function(view, env = .GlobalEnv) {
-  envNames <- ls(envir=env)
-
+updateTopLevelItems <- function(ws_watcher, view, 
+                                env=.GlobalEnv) {
+  ## remove these (by index)
+  remove <- ws_watcher$changedVariables()
+  cur_shown <- sapply(seq(model$rowCount()), 
+                      function(i) model$index(i-1, 0)$data())
+  inds <- which(cur_shown == remove)
+  removeInds <- sort(inds, decreasing=TRUE)  
+  ## add these (by variable name)
+  newNames <- ws_watcher$addedVariables()
+  
+  ## replace/add these
   model <- view$model()
-  items <- lapply(seq_len(model$rowCount()), model$item, column = 0)
-  curNames <- as.character(sapply(items, qinvoke, "text"))
-
-
-  
-  maybeSame <- curNames %in% envNames
-  
-  curDigests <- sapply(items[maybeSame], qinvoke, "data", .DIGEST_ROLE)
-  envDigests <- sapply(mget(curNames[maybeSame], env), digest)
-  same <- as.character(curDigests) == as.character(envDigests)
-
-  
   view$updatesEnabled <- FALSE
-  
-  remove <- !maybeSame
-  remove[maybeSame] <- !same
-  sapply(sort(which(remove)-1L, decreasing=TRUE), model$removeRow)
-  
-  replaceNames <- curNames[maybeSame][!same]
-  newNames <- setdiff(envNames, curNames)
-  
-  sapply(c(replaceNames, newNames), addItem, parentObj = env,
+  if(length(removeInds))
+    sapply(removeInds -1L, model$removeRow)
+  sapply(newNames, addItem, parentObj = env, # add
          parentItem = model$invisibleRootItem())
-  
   model$sort(0, Qt$Qt$AscendingOrder)
   view$updatesEnabled <- TRUE
 }
 @
 %
-First, we obtain the names and digests for each top-level row. Then,
-the digests are compared. Names that no longer exist in the
-environment or have mismatching digests are removed. We need to sort
-the indices in decreasing order so as not invalidate any
-indices. The names for the changed objects are then readded, before we
-add the new names. Finally, we sort the model. While the model is
-being modified, we freeze the view.
+We remove objects corresponding to expired digests by their index. We
+need to sort the indices in decreasing order so as not to invalidate
+any indices. Then we add in new or changed variable names. Finally,
+the model is sorted. We set the \property{updatesEnabled} property to
+freeze the view while the model is updated to make a smoother
+transition.
+
+<<>>=
+initializeTopLevelItems <- function(ws_watcher, view, 
+                                    env=.GlobalEnv) {
+   curNames <- ws_watcher$objects
+   
+   model <- view$model()
+   view$updatesEnabled <- FALSE
+   sapply(curNames, addItem, parentObj = env, # add
+          parentItem = model$invisibleRootItem())
+   model$sort(0, Qt$Qt$AscendingOrder)
+   view$updatesEnabled <- TRUE
+}
+@ 
 
 Finally, we construct the model and view:
 <<showTree, results=hide>>=
 model <- Qt$QStandardItemModel(rows = 0, columns = 2)
 model$setHorizontalHeaderLabels(c("Name", "Class"))
 view <- Qt$QTreeView()
+view$windowTitle <- "Workspace Browser"
 view$headerHidden <- FALSE
 view$setModel(model)
 @ 
 %
-This last call initializes the display:
-<<eval=FALSE>>=
-updateTopLevelItems(view)
+This last call initializes the workspace model and display:
+<<initialize, eval=FALSE>>=
+ws_watcher <- WSWatcher()
+ws_watcher$updateVariables()
+initializeTopLevelItems(ws_watcher, view)
 @ 
 
-<<echo=FALSE, results=hide>>=
+Assuming we are updating the workspace model by some means, all that
+remains is calling the function to update the top-level items as needed:
+<<objectsChanged, results=hide, eval=FALSE>>=
+qconnect(ws_watcher, "objectsChanged", function() 
+         updateTopLevelItems(ws_watcher, view))
+@ 
+
+<<taskCallback, echo=FALSE, results=hide, eval=FALSE>>=
+## add callback
+id <- addTaskCallback(function(expr, value, ok, visible) {
+  ws_watcher$updateVariables()
+  TRUE
+})
+## view
 view$show()
 view$raise()
 @ 

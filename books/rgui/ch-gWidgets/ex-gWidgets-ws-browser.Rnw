@@ -26,7 +26,7 @@ This pattern where a central, dynamic source of data is to used and
 shared amongst many different pieces of a GUI is a common one. To
 address the complexity that arises as the components of a GUI get more
 intertwined, standard design patterns have been employed. For this
-task, the \defn{Observer Pattern} is often used. This pattern is
+task, the \iprogram{observer pattern}\defn{Observer Pattern} is often used. This pattern is
 defined in~\footcite{head-first-design-patterns} to describe a
 one-to-many relationship between a set of objects where when the state
 of one object changes, all of its dependents are notified.
@@ -193,7 +193,7 @@ rather we define a \code{refresh} method to synchronize the workspace
 with our model object. We then notify observers if there is a
 change. This model needs to track changes in the underlying
 workspace. This can be done calling the \code{refresh} method at
-periodic intervals, through a \code{taskCallback}, or by user request.
+periodic intervals, through a \textit{taskCallback}, or by user request.
 
 <<udpate_fun>>=
 require(digest)
@@ -268,7 +268,7 @@ setRefClass("WSView",
 @ 
 %
 
-The following \class{WidgetView} class uses the template method
+The following \class{WidgetView} class uses the \iprogram{template pattern}template method
 pattern leaving subclasses to construct the widgets through the call
 to \meth{initialize}. 
 

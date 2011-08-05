@@ -37,7 +37,7 @@ l <- glabel("Test of DOM widgets", cont=w)
 
 
 By disabling a \code{gaction} instance, we change the sensitivity of
-all its realizations. Here this will only affect the menu bar.
+all its realizations. Here this will only affect the menubar.
 
 <<>>=
 enabled(aUndo) <- FALSE

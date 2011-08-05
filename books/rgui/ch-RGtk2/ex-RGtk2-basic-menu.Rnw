@@ -1,4 +1,4 @@
-We illustrate how to make a basic menu bar with a plain item, an
+We illustrate how to make a basic menubar with a plain item, an
 item with an icon, and a check item.
 
 We create top-level menubar and a menu item for our top level File entry with a mnemonic.
@@ -24,7 +24,7 @@ saveAction <- gtkAction("save", "save", "Save object", "gtk-save")
 save <- saveAction$CreateMenuItem()
 @ 
 
-This illustrates how to add an image to the menu bar using a stock icon. The size specification is important to get the correct look.
+This illustrates how to add an image to the menubar using a stock icon. The size specification is important to get the correct look.
 <<>>=
 quit <- gtkImageMenuItem(label="quit")
 quit$setImage(gtkImageNewFromStock("gtk-quit", 

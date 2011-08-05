@@ -32,6 +32,7 @@ many of the widgets we discussed in the previous section. Before we
 can create such a dialog, we need to introduce how to position widgets
 on the screen. This process is called \textit{widget layout}.
 
+\ilayout{widget hierarchy}
 A layout emerges from the organization of the widgets into a
 hierarchy, where a parent widget positions its children within its
 allocated space.  The top-level window is parentless and forms the
@@ -170,9 +171,9 @@ Usually, a layout manager allocates screen space to widgets, but
 sometimes the user needs to adapt the allocation, according to a
 present need. For example, the user may wish to increase the size of
 an image to see the fine details. The \dfnref{paned container}
-supports this by juxtaposing two panes, either vertically (stacked) or
-horizontally. The area separating the two panes, sometimes called a
-\dfnref{sash}, can be adjusted by dragging it with the mouse.
+supports this by juxtaposing panes, either vertically (stacked) or
+horizontally. The area separating the panes, sometimes called a
+\dfnref{sash}, can be adjusted by the user with the mouse.
    
 \subsection{Layout algorithms}
 \label{sec:GUI:layout}
@@ -180,14 +181,15 @@ horizontally. The area separating the two panes, sometimes called a
 \subsubsection{Box layout}
 \label{sec:GUI:Box-containers}
 
-The box container is perhaps the simplest and most common type of
-layout container. A box will pack its children either horizontally or
-vertically. Usually, the widgets are packed from left to right, for
-horizontal boxes, or from top to bottom, in the case of a vertical
-box.  The upper left figure in Figure~\ref{fig:GUI:box-possibilities}
-illustrates this.
+\ilayout{box layout}The box layout is the most common type of layout algorithm for
+positioning child components. A box will pack its children either
+horizontally or vertically~\footnote{The \code{pack} command of
+  \pkg{tcltk} can mix the two directions}. Usually, the widgets are
+packed from left to right, for horizontal boxes, or from top to
+bottom, in the case of a vertical box.  The upper left figure in
+Figure~\ref{fig:GUI:box-possibilities} illustrates these possibilities.
 
-The box layout needs to allocate space to its children in both the
+\ilayout{resizing}The box layout needs to allocate space to its children in both the
 vertical and horizontal directions. The typical box layout algorithm
 begins by satisfying the minimum size requirements of its
 children. The box may need to request more space for itself in order
@@ -213,7 +215,7 @@ side of the container. If there are no expanding children, the
 remaining space is left empty in the middle (or end if there are no
 widgets packed against the other side). See the lower right
 panel in Figure~\ref{fig:GUI:box-possibilities}. One could think
-of this space being occupied by an invisible spring. Invisible
+of this space being occupied by an invisible \ilayout{spring}spring. Invisible
 expanding widgets also act as springs.
 
 <<echo=FALSE, results=hide>>=
@@ -331,7 +333,8 @@ The box layout algorithm only aligns its children along a single
 dimension. The horizontal box, for example, vertically aligns its
 children. Nevertheless, nesting permits the construction of complex
 layouts using only simple boxes. However, it is sometimes desirable to
-align widgets in both dimensions, i.e., to lay them out on a grid. The
+align widgets in both dimensions, i.e., to lay them out on a
+\ilayout{grid layout}grid. The
 most flexible grid layout algorithms allow non-regular sizing of rows
 and columns, as well as the ability for a widget to span multiple
 cells. Usually, a widget fills the cells allocated to it, but if this

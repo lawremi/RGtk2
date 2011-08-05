@@ -19,7 +19,17 @@ tbl[1,2] <- (e <- gedit("", cont = tbl))
 @ 
 
 
-We use the \pkg{evaluate} package to see if the expression is valid.
+We use the \iprogram{evaluating strings}\pkg{evaluate} package to see
+if the expression is valid.~\footnote{The basic way to evaluate an
+  \R{} expression given as a string is to use the combination of
+  \function{eval} and \function{parse}, as in
+  \code{eval(parse(text=string))}. The resulting output can usually be
+  captured with the \function{capture.output} function. However, there
+  can be errors: parse errors or otherwise. A few packages provide
+  functions to assist with this task, notably the \function{evaluate}
+  function in the same-named \pkg{evaluate} package, and the
+  \function{Parse} and \function{captureAll} functions in the
+  \pkg{svMisc} package. We use both in this part of the text.}
 <<>>=
 require(evaluate)
 isValid <- function(e) {

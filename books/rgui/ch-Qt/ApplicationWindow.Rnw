@@ -1,19 +1,29 @@
 Many applications have a central window that typically contains a
-menubar, toolbar, an application-specific area, and a statusbar at the
+menubar, toolbar, an application-specific area, and a status bar at the
 bottom. This is known as an application window and is implemented by
 the \class{QMainWindow} widget. Although any widget in \Qt{} might
 serve as a top-level window, \class{QMainWindow} has explicit support
 for a menubar, toolbar and status bar, and also provides a framework
 for dockable windows. 
 
+
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.8\textwidth]{fig-qt-mainwindow-example}
+  \caption{An example of a GUI with a menu-, tool- and status bars, alond with dockable windows, constructed using a \class{QMainWindow} instance}
+  \label{fig:qt-mainwindow-example}
+\end{figure}
+
+
 To demonstrate the \class{QMainWindow} framework, we will create a
-simple spreadsheet application. First, we construct a
+simple spreadsheet application (Figure~\ref{fig:qt-mainwindow-example}). First, we construct a
 \class{QMainWindow} object:
 <<qt-app-construct>>=
 mainWindow <- Qt$QMainWindow()
 @ 
 
-The region between the toolbar and statusbar, known as the central
+The region between the toolbar and status bar, known as the central
 widget, is completely defined by the application. We wish to display a
 spreadsheet, i.e., an editable table:
 <<qt-app-table, results=hide>>=
@@ -35,7 +45,7 @@ the GUI, might share the same action. Thus, it is sensible to separate
 the definition of an action from any individual control. An action is
 defined by the \class{QAction} class. As with other toolkits, an
 action encapsulates a command that may be shared among parts of a GUI,
-in this case menu bars, toolbars and keyboard shortcuts. The
+in this case menubars, toolbars and keyboard shortcuts. The
 properties of a \class{QAction} include the label \qtproperty{text},
 \qtproperty{icon}, \qtproperty{toolTip}, \qtproperty{statusTip},
 keyboard \qtproperty{shortcut} and whether the action is
@@ -46,7 +56,7 @@ We construct an action for opening a file:
 openAction <- Qt$QAction("Open", mainWindow)
 @
 % 
-The label text is passed to the constructor. We can specify additional
+The label text is passed to the constructor along with the parent window. We can specify additional
 properties, such as the text to display in the status bar when the
 user moves the mouse over a widget proxying the action:
 <<qt-app-action-status-tip>>=
@@ -76,9 +86,13 @@ the command behind the action:
 <<qt-app-action-trigger, results=hide>>=
 qconnect(openAction, "triggered", function() {
   filename <- Qt$QFileDialog$getOpenFileName()
-  tableView$model <- qdataFrameModel(read.csv(filename), editable=TRUE)
+  tableView$model <- 
+    qdataFrameModel(read.csv(filename), editable=TRUE)
 })
 @ 
+
+
+
 
 \paragraph{Toggle and radio actions}
 
@@ -93,6 +107,12 @@ saveOnExitAction <- Qt$QAction("Save on exit", mainWindow)
 saveOnExitAction$checkable <- TRUE
 @ 
 
+The \code{checked} property reports if the action has been checked or
+not. For this type of action, one would query this on exit. For other
+implementations, where the action should be enacted immediately, one
+would connect to the \signal{changed} signal.
+
+
 A checkable action in isolation behaves much like a check button. If
 checkable actions are placed together into a \class{QActionGroup}, the
 default behavior is such that only one is checked at once, analogous
@@ -100,12 +120,22 @@ to a set of radio buttons. We could have an action for controlling the
 justification mode for the text entry:
 <<qt-app-action-radio>>=
 justGroup <- Qt$QActionGroup(mainWindow)
-leftAction <- Qt$QAction("Left Align", justGroup)
-leftAction$checkable <- TRUE
-rightAction <- Qt$QAction("Right Align", justGroup)
-rightAction$checkable <- TRUE
-centerAction <- Qt$QAction("Center", justGroup)
-centerAction$checkable <- TRUE
+justAction <- list()
+justAction$left <- Qt$QAction("Left Align", justGroup)
+justAction$right <- Qt$QAction("Right Align", justGroup)
+justAction$center <- Qt$QAction("Center", justGroup)
+sapply(justAction, function(i) i$checkable <- TRUE)
+@ 
+%%
+Here we connect to each actions \signal{changed} signal to broadcast
+what button was pressed.
+<<results=hide>>=
+sapply(justAction, function(i) 
+       qconnect(i, "changed", function() {
+         button_no <- which(sapply(justAction, "[[", "checked"))
+         message("Button ", button_no, " was depressed")
+       })
+       )
 @ 
 
 \paragraph{Keyboard shortcuts}
@@ -139,13 +169,14 @@ applications share a menubar area at the top of the screen. On other
 platforms, the menubar is typically found at the top of the main
 window for the application.
 
-We create an instance of \class{QMenuBar}:
-<<qt-app-menubar>>=
+We create an instance of \class{QMenuBar} and set it for the main
+window with:
+<<qt-app-menubar, results=hide>>=
 menubar <- Qt$QMenuBar()
 mainWindow$setMenuBar(menubar)
 @ 
 %
-A \class{QMenuBar} is a container of \class{QMenu} objects, which
+A \class{QMenuBar} instance is a container for \class{QMenu} objects, which
 represent the submenus. We create a \class{QMenu} for the ``File'' and
 ``Edit'' menus and add them to the menubar:
 <<qt-app-menubar-addMenu, results=hide>>=
@@ -155,12 +186,15 @@ editMenu <- Qt$QMenu("Edit")
 menubar$addMenu(editMenu)
 @ 
 
-To each \class{QMenu} we may add:
+To each \class{QMenu} we may add:\\
+
 \begin{enumerate}
 \item an action through the \method{addAction}{QMenu} method,
 \item a separator through \method{addSeparator}{QMenu} or, 
 \item nested submenus through the \method{addMenu}{QMenu} method.
 \end{enumerate}
+\vspace{12pt}
+
 We demonstrate each of these operations by populating the ``File'' and
 ``Edit'' menus:
 <<qt-app-menubar-populate, results=hide>>=
@@ -171,9 +205,7 @@ fileMenu$addSeparator()
 quitAction <- fileMenu$addAction("Quit")
 
 justMenu <- editMenu$addMenu("Justification")
-justMenu$addAction(leftAction)
-justMenu$addAction(rightAction)
-justMenu$addAction(centerAction)
+sapply(justAction, justMenu$addAction)
 @ 
 %
 In the above, we take advantage of the convenient overloads of
@@ -210,36 +242,52 @@ however, is that the actions need to be defined prior to the context
 menu request. For example, if we allowed adding and removing columns
 in the spreadsheet, we would need to adjust the actions in the sort
 context menu. Another example is a code entry widget, where a popup
-window could list possible code completions. Under the default context
-menu policy, we can implement this logic in an override of the
-\method{contextMenuEvent}{QWidget} virtual method:
-<<qt-app-context-dynamic, results=hide>>=
-showCompletionPopup <- function(e) {
-  popup <- Qt$QMenu()
-  comps <- utils:::matchAvailableTopics(this$text)
-  comps <- head(comps, 10) # trim if large
-  sapply(comps, function(i) {
-    a <- popup$addAction(i)
-    qconnect(a, "triggered", function(...) this$setText(i))
-  })
-  popup$popup(e$globalPos())
-}
+window could list possible code completions (as seen in
+Section~\ref{sec:multi-line-text}). There we implemented this logic in an override of the
+\method{contextMenuEvent}{QWidget} virtual method.
 
-qsetClass("CodeEntry", Qt$QLineEdit)
-qsetMethod("contextMenuEvent", CodeEntry, showCompletionPopup)
+% Under the default context menu
+% policy, we can implement this logic in an override of the
+% \method{contextMenuEvent}{QWidget} virtual method:
+% <<qt-app-context-dynamic, results=hide>>=
+% showCompletionPopup <- function(e) {
+%   popup <- Qt$QMenu()
+%   comps <- utils:::matchAvailableTopics(this$text)
+%   comps <- head(comps, 10) # trim if large
+%   sapply(comps, function(i) {
+%     a <- popup$addAction(i)
+%     qconnect(a, "triggered", function(...) this$setText(i))
+%   })
+%   popup$popup(e$globalPos())
+% }
 
-e <- CodeEntry()
-@ 
-<<echo=FALSE, results=hide>>=
-e$show(); e$raise()
-@ 
+% qsetClass("CodeEntry", Qt$QLineEdit)
+% qsetMethod("contextMenuEvent", CodeEntry, showCompletionPopup)
+
+% e <- CodeEntry()
+% @ 
+% <<echo=FALSE, results=hide>>=
+% e$show(); e$raise()
+% @ 
 
 If subclassing is undesirable, one could change the context menu
 policy and connect to the signal \signal{customContextMenuRequested}:
 <<qt-app-context-signal, results=hide>>=
-e <- Qt$QLineEdit()
-e$contextMenuPolicy <- Qt$Qt$CustomContextMenu
-qconnect(e, "customContextMenuRequested", showCompletionPopup)
+showCompletionPopup <- function(event, ed) {
+  popup <- Qt$QMenu()
+  comps <- utils:::matchAvailableTopics(ed$text)
+  comps <- head(comps, 10) # trim if large
+  sapply(comps, function(i) {
+    a <- popup$addAction(i)
+    qconnect(a, "triggered", function(...) ed$setText(i))
+  })
+  popup$popup(ed$mapToGlobal(qpoint(0L,0L)))
+}
+##
+ed <- Qt$QLineEdit()
+ed$contextMenuPolicy <- Qt$Qt$CustomContextMenu
+qconnect(ed, "customContextMenuRequested", 
+         showCompletionPopup, user.data=ed)
 @ 
 
 \subsection{Toolbars}
@@ -249,7 +297,7 @@ The toolbar manages a compact layout of frequently executed actions,
 so that the actions are readily available to the user without
 consuming an excessive amount of screen space. We create a
 \class{QToolBar} and add it to our main window:
-<<qt-app-toolbar>>=
+<<qt-app-toolbar, results=hide>>=
 toolbar <- Qt$QToolBar()
 mainWindow$addToolBar(toolbar)
 @ 
@@ -262,12 +310,11 @@ independent window.
 
 To add items to a toolbar we might call
 \\
-
 \begin{enumerate}
 \item \method{addAction}{QToolBar} to add an action,
 \item \method{addWidget}{QToolBar} to embed an arbitrary widget into
   the toolbar,
-\item \method{addSeparator}{QToolBar} to place a sepearator between items.
+\item \method{addSeparator}{QToolBar} to place a separator between items.
 \end{enumerate}
 
 Before adding some actions to our toolbar, we define a function
@@ -323,18 +370,18 @@ is also possible; see the \property{orientation} property.
 \subsection{Statusbars}
 \label{sec:statusbars}
 
-Main windows reserve an area for a statusbar at the bottom of the
+Main windows reserve an area for a status bar at the bottom of the
 window. The status bar is used to display messages about the current
 state of the program, as well as any status tips assigned to actions.
 
-A statusbar is an instance of the \class{QStatusBar} class. We create
+A status bar is an instance of the \class{QStatusBar} class. We create
 one and add it to our window:
 <<qt-app-statusbar, results=hide>>=
 statusbar <- Qt$QStatusBar()
 mainWindow$setStatusBar(statusbar)
 @ 
 
-There are three types of messages in a statusbar: 
+There are three types of messages in a status bar: 
 
 \begin{description}
 \item[Temporary] where the message stays briefly, such as for status
@@ -345,19 +392,20 @@ There are three types of messages in a statusbar:
   hidden and appears at the far right.
 \end{description}
 
-In addition to messages, one can embed widgets into the statusbar.
+In addition to messages, one can embed widgets into the status bar.
+\\
 
 We could communicate a temporary message when a dataset is loaded:
 <<qt-app-statusbar-temporary, results=hide>>=
 statusbar$showMessage("Load complete", 1000)
 @ 
 %
-The second argument is optional and indicates the duration of the
+The second argument above is optional and indicates the duration of the
 message in milliseconds. If not specified, the message must be
 explicitly cleared with \method{clearMessage}{QStatusBar}.
 
 Normal and permanent messages must be placed into a \class{QLabel},
-which is then added to the statusbar like any other widget:
+which is then added to the status bar like any other widget:
 <<qt-app-statusbar-perm, results=hide>>=
 statusbar$addWidget(Qt$QLabel("Ready"))
 statusbar$addPermanentWidget(Qt$QLabel("Version 1.0"))
@@ -394,7 +442,7 @@ dock$features <- Qt$QDockWidget$DockWidgetMovable |
                  Qt$QDockWidget$DockWidgetFloatable
 @ 
 %
-The \property{allowedAreas} property specifies the valid docking areas
+The \prop{allowedAreas} property specifies the valid docking areas
 for a dock widget. By default, all are allowed.
 
 After configuring the dock widget, we add it to the main window, in

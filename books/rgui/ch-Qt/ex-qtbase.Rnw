@@ -67,7 +67,7 @@ edit$setInputMask("0000-00-00")
 @  %% ML: inputMask is a property, but any other method example?
 
 %% Layout 
-\paragraph{Layout Managers}
+\paragraph{Layout managers}
 \Qt{} uses layout managers to organize widgets. This is similar to
 Java/Swing and \pkg{tcltk}, but not \pkg{RGtk2}. Layout managers will
 be discussed more thoroughly in Chapter~\ref{cha:layout-managers},

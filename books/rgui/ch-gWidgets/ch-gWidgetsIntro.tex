@@ -220,7 +220,7 @@ following basic form:
 where the \code{arguments} vary depending on the object being made. We
 discuss now the common arguments.
 
-\paragraph{container}
+\paragraph{Containers}
 In the above, we see that the \code{gwindow} constructor, for a
 top-level window, has two arguments passed in, an unnamed one for a
 window title and a value for the \code{visible} property. Whereas the
@@ -229,7 +229,7 @@ the parent container.
 
 %% container
 A top-level window does not have a parent container, but other GUI
-components do. In \pkg{gWidgets}, for the sake of portability, the
+components do.\ilayout{widget hierarchy} In \pkg{gWidgets}, for the sake of portability, the
 parent container is passed to the widget constructor through the
 \args{container} argument, as it done in all the other constructors.
 This argument name can always be abbreviated \args{cont}. This nesting
@@ -237,7 +237,7 @@ defines the GUI layout, a topic taken up in
 Chapter~\ref{sec:gWidgets-Containers}.
 
 %% toolkit
-\paragraph{toolkit}
+\paragraph{The \code{toolkit} argument}
 The \args{toolkit} argument is usually not specified. It is there to
 allow the user to mix toolkits within the same \R\/ session, but in
 practice this can cause problems due to competing event loops. 
@@ -254,7 +254,7 @@ will check if a toolkit has been specified, or only one is
 available. If neither case is so, then a menu will be provided for the
 user to choose one.
 
-\paragraph{handler, action}
+\paragraph{The \code{handler} and \code{action} arguments}
 The \args{handler} and \code{action} arguments are used to pass in
 event handlers. We discuss those in Section~\ref{sec:callbacks}.
 
@@ -348,7 +348,7 @@ by \pkg{gWidgets}. The call
 demonstrates the new generic \index{svalue}{\meth{svalue}} that is used to get
 the main property of the widget. For the object \code{txtPattern}, the
 main property is the text, for the button and label widgets this
-property is the label. The \index{svalue\ASSIGN}\meth{svalue\ASSIGN} assignment method is
+property is the label. The \meth{svalue\ASSIGN} assignment method is
 used to set this property programatically. We see the call
 \begin{Schunk}
 \begin{Sinput}
@@ -399,15 +399,19 @@ input.
 % can make GUI programming awkward at times.
 
 %% insufficiency of API
+\paragraph{The underlying toolkit widget}
 The \pkg{gWidgets} API provides just a handful of generic functions
 for manipulating an object's properties compared to the number of
 methods typically provided by a GUI toolkit for a similar
 object. Although this simplicity makes \pkg{gWidgets} easier to work
 with, one may wish to get access to the underlying toolkit object to
 take advantage of a richer API. In most cases, the
-\generic{getToolkitWidget} will provide that object. We don't
-illustrate this here, as we try to stay toolkit agnostic in our
-examples.
+\generic{getToolkitWidget} will provide that object.  For convenience,
+the method \method{\$}{guiWidget} is implemented to call a method on
+the underlying toolkit widget and the methods \verb+[[+
+and \verb+[[<-+ are implemented to inspect and set
+properties of the underlying widget.  We don't illustrate here though,
+as we try to stay toolkit agnostic in our examples.
 
 
 %% table of new methods
@@ -456,7 +460,7 @@ Method&Description\\
 %   \label{tab:gWidgets-methods}
 % \end{table}
 
-\section{Event Handlers}
+\section{Event handlers}
 \label{sec:callbacks}
 
 %% callbacks 
@@ -466,7 +470,7 @@ Method&Description\\
 % toolkits allow functions, referred to as callbacks, to be called when
 % these signals are emitted, allowing the GUI to be made interactive.
 
-
+\igui{event handlers}
 In our example, the search button is created with:
 \begin{Schunk}
 \begin{Sinput}
@@ -732,7 +736,7 @@ This illustrates how to use the return value.
 \label{sec:installation}
 
 
-
+\iprogram{method dispatch}\iprogram{class structure}
 The \pkg{gWidgets} package interfaces with an underlying \R\/ package
 through an intermediate package. For example,
 Figure~\ref{fig:gWidgets-yuml} shows the sequence of calls to produce
@@ -1140,7 +1144,7 @@ The container produced by \constructor{gwindow} is intended to contain
 just a single child widget, not several. This section demonstrates
 variations on box containers that can be used to hold multiple child
 components. Through nesting, fairly complicated layouts can be
-produced.
+produced.\ilayout{box layout}
 
 
 
@@ -1240,10 +1244,16 @@ implemented.~\footnote{These arguments are not implemented
 
 \begin{figure}
   \centering
-  \includegraphics[width=.3\textwidth]{fig-gWidgets-expand-RGtk2.png}
-  \includegraphics[width=.3\textwidth]{fig-gWidgets-expand-tcltk.png}
-  \includegraphics[width=.3\textwidth]{fig-gWidgets-expand-Qt.png}
-  % \includegraphics[width=.5\textwidth]{fig-gWidgets-ggroup-expand-fill-anchor}
+  \begin{minipage}[c]{.32\linewidth}
+    \includegraphics[width=1\textwidth]{fig-gWidgets-expand-RGtk2.png}    
+  \end{minipage}
+  \begin{minipage}[c]{.32\linewidth}
+    \includegraphics[width=1\textwidth]{fig-gWidgets-expand-tcltk.png}    
+  \end{minipage}
+  \begin{minipage}[c]{.32\linewidth}
+    \includegraphics[width=1\textwidth]{fig-gWidgets-expand-Qt.png}    
+  \end{minipage}
+ % \includegraphics[width=.5\textwidth]{fig-gWidgets-ggroup-expand-fill-anchor}
   % \caption{Different combinations of \code{expand}, \code{fill} and
   %   \code{anchor} for combo boxes in \pkg{gWidgetsQt}. The \code{fill}
   %   and \code{anchor} arguments
@@ -1263,7 +1273,7 @@ implemented.~\footnote{These arguments are not implemented
 \end{figure}
 
 
-\paragraph{delete}
+\paragraph{Deleting components}
 The \method{delete}{ggroup} method can be used to remove a child
 component from a container. In some toolkits, this child may be added
 back at a later time (with \method{add}{ggroup}), but this isn't part
@@ -1282,9 +1292,9 @@ For spacing between the child components, the constructor's argument
 \argument{spacing}{ggroup} may be used to specify, in pixels, the
 amount of space between the child widgets. For \code{ggroup}
 instances, this can later be set through the \method{svalue}{ggroup}
-method. The method \method{addSpace}{ggroup} can add a non-uniform
+method. \ilayout{struts}The method \method{addSpace}{ggroup} can add a non-uniform
 amount of space between two widgets packed next to each other, whereas
-the method \method{addSpring}{ggroup} will place an invisible spring
+the method \ilayout{springs}\method{addSpring}{ggroup} will place an invisible spring
 between two widgets, forcing them apart.  Both are useful for laying
 out buttons. We used a spring before the ``source'' button for the GUI
 in Figure~\ref{fig:gWidgets-sample-layout} to push it to the right.
@@ -1436,6 +1446,7 @@ the GUI.
 \section{Grid layout: the \code{glayout} container}
 \label{sec:gWidgets-glayout-container}
 
+\ilayout{grid layout}
 The layout of dialogs and forms is usually seen with some form of
 alignment between the widgets. The \constructor{glayout} constructor
 provides a grid container to do so, using matrix notation to specify
@@ -1919,7 +1930,7 @@ specified at construction with the argument
 \label{sec:gWidgets-displ-icons-imag}
 
 The \pkg{gWidgets} package provides a few stock icons that can be
-added to various GUI components. A list of the defined stock icons is
+added to various GUI components. \igui{stock icons}A list of the defined stock icons is
 returned by the function \code{getStockIcons}.  The names attribute
 defines the valid stock icon names. It was mentioned that if a
 button's label text matches a stock icon name, that icon will appear
@@ -2160,7 +2171,17 @@ value is invalid we set the text color to red.
 \end{Schunk}
 
 
-We use the \pkg{evaluate} package to see if the expression is valid.
+We use the \iprogram{evaluating strings}\pkg{evaluate} package to see
+if the expression is valid.~\footnote{The basic way to evaluate an
+  \R{} expression given as a string is to use the combination of
+  \function{eval} and \function{parse}, as in
+  \code{eval(parse(text=string))}. The resulting output can usually be
+  captured with the \function{capture.output} function. However, there
+  can be errors: parse errors or otherwise. A few packages provide
+  functions to assist with this task, notably the \function{evaluate}
+  function in the same-named \pkg{evaluate} package, and the
+  \function{Parse} function in the \pkg{svMisc} package. We use both
+  in this part of the text.}
 \begin{Schunk}
 \begin{Sinput}
  require(evaluate)
@@ -2276,7 +2297,7 @@ widgets. This example illustrates how a child widget can span a block
 of multiple cells by using the appropriate indexing. Furthermore, the
 \args{spacing} argument is used to tighten up the appearance. The
 example also illustrates a useful strategy of storing the widgets
-using a list for subsequent manipulations.
+using a list for subsequent manipulations.\iprogram{iteration}
 
 The following sets up the layout of the display and buttons.
 \begin{Schunk}
@@ -2326,7 +2347,8 @@ the text for each button into the equation area.
 \end{Schunk}
 
 When the equals sign is clicked, the expression is evaluated and if
-there are no errors, the output is displayed in the label.
+there are no errors, the output is displayed in the
+label.\iprogram{evaluating strings}
 \begin{Schunk}
 \begin{Sinput}
  require(evaluate)
@@ -3440,7 +3462,7 @@ This pattern where a central, dynamic source of data is to used and
 shared amongst many different pieces of a GUI is a common one. To
 address the complexity that arises as the components of a GUI get more
 intertwined, standard design patterns have been employed. For this
-task, the \defn{Observer Pattern} is often used. This pattern is
+task, the \iprogram{observer pattern}\defn{Observer Pattern} is often used. This pattern is
 defined in~\footcite{head-first-design-patterns} to describe a
 one-to-many relationship between a set of objects where when the state
 of one object changes, all of its dependents are notified.
@@ -3605,7 +3627,7 @@ rather we define a \code{refresh} method to synchronize the workspace
 with our model object. We then notify observers if there is a
 change. This model needs to track changes in the underlying
 workspace. This can be done calling the \code{refresh} method at
-periodic intervals, through a \code{taskCallback}, or by user request.
+periodic intervals, through a \textit{taskCallback}, or by user request.
 
 \begin{Schunk}
 \begin{Sinput}
@@ -3686,7 +3708,7 @@ which makes it easier to remove a model -- but keep it simple here.
 \end{Schunk}
 %
 
-The following \class{WidgetView} class uses the template method
+The following \class{WidgetView} class uses the \iprogram{template pattern}template method
 pattern leaving subclasses to construct the widgets through the call
 to \meth{initialize}. 
 
@@ -4063,13 +4085,13 @@ text, whereas the icon will decorate the same if possible. For some
 toolkits, the tooltip pops up when the mouse hovers. The \code{parent} argument is used to
 specify a widget whose toplevel container will process the shortcut.
 
-\paragraph{methods}
+\paragraph{Methods}
 The main methods for actions are \method{svalue\ASSIGN}{gaction} to
 set the label text and \method{enabled\ASSIGN}{gaction} to adjust
 whether the widget is sensitive to user input. All proxies of the
 action are set through one call. There is no method to invoke the action.
 
-\paragraph{buttons}
+\paragraph{Buttons}
 An action can be assigned to a button by setting it as the
 \argument{action}{gbutton} argument of the \code{gbutton} constructor,
 in which case all other arguments for the constructor are ignored.
@@ -4161,7 +4183,7 @@ by \code{gseparator} instances. Menus differ from toolbars, as
 submenus require a nested structure. This  is specified using a
 nested list as the component to describe the sub menu. The lists all
 have named components. In this case, the corresponding name is used to
-label the submenu item. For menu bars, it is typical that all the
+label the submenu item. For menubars, it is typical that all the
 top-level components be lists, but for popup menus, this wouldn't
 necessarily be the case.
 
@@ -4199,7 +4221,7 @@ that OS.
   \label{fig:fig-gWidgets-menubar-disabled}
 \end{figure}
 
-\paragraph{Menubar and Toolbar Methods}
+\paragraph{Menubar and toolbar Methods}
 The main methods for toolbar and menubar instances are
 the \method{svalue}{gmenu} method which will return the list. Whereas, the
 \method{svalue\ASSIGN}{gmenu} method can be used to redefine the
@@ -4771,9 +4793,9 @@ Separating this out allows us to link it to the clear button.
 \end{Schunk}
 %
 Next, we write a function to update the user interface. As we didn't
-abstract out the data from the GUI,
-we need to figure out which state the GUI is currently in by
-consulting the text in each label.
+abstract out the data from the GUI, we need to figure out which state
+the GUI is currently in by consulting the text in each
+label.\iprogram{evaluating strings}
 \begin{Schunk}
 \begin{Sinput}
  updateUI <- function(...) {
@@ -4801,7 +4823,7 @@ widget as a drag source (\generic{addDropSource}), one to set a widget
 as a drop target (\generic{addDropTarget}), and one to call a handler
 when a drop event passes over a widget (\generic{addDropMotion}).
   
-
+\iprogram{drag and drop}
 The \generic{addDropSource} method needs a widget and a handler to
 call when a drag and drop event is initiated. This handler should
 return the value that will be passed to the drop target. The default
@@ -5032,8 +5054,6 @@ details to their manual pages.
 % @ 
 
 
-
-\XXX{Need to have an example with drag and drop}
 
 
 %\section{End of chapter notes}

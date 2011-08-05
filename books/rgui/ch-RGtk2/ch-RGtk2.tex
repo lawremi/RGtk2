@@ -87,7 +87,8 @@ combined with other widgets to form the GUI. For example:
 \begin{Schunk}
 \begin{Sinput}
  button <- gtkButton("Click Me")
- button['image'] <- gtkImage(stock = "gtk-apply", size = "button")
+ button['image'] <- gtkImage(stock = "gtk-apply", 
+                             size = "button")
  gSignalConnect(button, "clicked", function(x) {
    message("Hello World!")
  })
@@ -103,7 +104,7 @@ only a matter of reading through the proceeding chapters and the
 documentation to discover all of the widgets and their features. The
 rest of this chapter will explain these basic components of the API.
 
-\section{Objects and Classes}
+\section{Objects and classes}
 
 In any toolkit, all widget types have functionality in common. For
 example, they are all drawn on the screen in a consistent style. They
@@ -114,7 +115,7 @@ widget types. In the parlance of object-oriented programming, each
 type is represented by a \textit{class}.
 
 For specifying the hierarchy, \pkg{GTK+} relies on \pkg{GObject}, a
-\proglang{C} library that implements a \iprogram{classes}class-based, single-inheritance
+\proglang{C} library that implements a \iprogram{class structure}class-based, single-inheritance
 object-oriented system. A \pkg{GObject} class encapsulates behaviors
 that all instances of the class share. Every class has at most one
 parent through which it inherits the behaviors of its ancestors. A
@@ -140,7 +141,7 @@ an S3 object.
 
 Single inheritance can be restrictive when a class performs multiple
 roles in a program. To circumvent this, \pkg{GTK+} adopts the popular
-concept of the \iprogram{Interface}\defn{interface}, which is essentially a contract
+concept of the \iprogram{interface}\defn{interface}, which is essentially a contract
 that specifies which methods, properties and signals a class must
 implement. As with languages like Java and \proglang{C\#}, a class can
 \textit{implement} multiple interfaces, and an interface can be
@@ -231,7 +232,7 @@ function (size, mask = NULL, pixmap = NULL, image = NULL,
 \end{Soutput}
 A \GTK\/ object created by the \R\/ user has an \R-level object as its
 proxy. Thus, \code{window} is a reference to a \class{GtkWindow}
-instance. A reference object will not be copied before
+instance. \iprogram{references}\iprogram{variable scope}A reference object will not be copied before
 modification. This is different from the behavior of most \R\/
 objects. For example, calling \function{abs} on a numeric vector does
 not change the value assigned to the original symbol:
@@ -313,10 +314,10 @@ functions that take an instance of their class as the first argument
 and instruct the widget to perform an action.
 
 Although class information is stored in the style of S3, \pkg{RGtk2}
-introduces its own mechanism for method
+introduces its own mechanism for method\iprogram{method dispatch}
 dispatch.~\footnote{\pkg{RGtk2} uses \R's standard dollar-sign
   notation (also used with reference classes) for class-based method
-  dispatch.}  The call \code{obj\$method(...)}  resolves to a function
+  dispatch.}  \iprogram{R's object oriented notation}The call \code{obj\$method(...)}  resolves to a function
 call \code{f(obj,...)}. The function is found by looking for any
 function that matches the pattern \emph{classNameMethodName}, the
 concatenation of one of the names from \code{class(obj)} or
@@ -390,7 +391,7 @@ the first eight properties listed with:
  head(names(button), n=8)                 # or b$getPropInfo()
 \end{Sinput}
 \begin{Soutput}
-[1] "related-action"        "use-action-appearance"
+[1] "use-action-appearance" "related-action"       
 [3] "user-data"             "name"                 
 [5] "parent"                "width-request"        
 [7] "height-request"        "visible"              
@@ -819,7 +820,7 @@ objects provided by \GTK.
 
 %% constructor Show/Hide
 As we saw in our ``Hello World'' example, top-level windows are
-constructed by the \constructor{gtkWindow} constructor. This function
+constructed by the \igui{top-level window}\constructor{gtkWindow} constructor. This function
 has arguments \code{type} to specify the type of window to create. The
 default is a top-level window, which we will always use, as the
 alternative is for ``popups'' which are meant for internal use, e.g.,
@@ -1020,7 +1021,8 @@ For instance
 To remove a widget from the screen but not its container, use the
 \method{hide}{GtkWidget} method on the widget. The
 \method{reparent}{GtkWidget} method is a convenience for moving a
-widget between containers that ensures the child is not garbage
+widget between containers that ensures the child is not
+\iprogram{garbage collection}garbage
 collected during the transition.~\footnote{An object becomes available
   for garbage collection when it has no references to it, which can
   happen if it is removed from the parent container.}
@@ -1111,7 +1113,7 @@ same for every level in the container hierarchy.
 \label{sec:RGtk2:layout:box}
 
 The most commonly used multi-child container in \GTK\/ is the box
-(implemented in class \class{GtkBox}) which packs its children as if
+(implemented in class \class{GtkBox}) which \ilayout{box layout}packs its children as if
 they were in a box. Instances of \class{GtkBox} are constructed by
 \function{gtkHBox} or \function{gtkVBox}.  These produce horizontal or
 vertical boxes, respectively. Each child widget is allocated a cell in
@@ -1576,7 +1578,7 @@ operation. See Example~\ref{eg:RGtk2:printing-graphics} for an example
 of printing R graphics using \pkg{cairoDevice}.
 
 
-\section{Special-purpose Containers}
+\section{Special-purpose containers}
 \label{sec:RGtk2:containers}
 
 In Section~\ref{sec:RGtk2:layout}, we presented \class{GtkBox} and
@@ -1701,8 +1703,7 @@ the same group, which depends on the \property{group-id}
 property. Pages can be deleted using the method
 \method{removePage}{GtkNotebook}.
 
-\paragraph{Managing Many Pages}
-
+\paragraph{Managing many pages}
 By default, a notebook will request enough space to display all of its
 tabs. If there are many tabs, space may be wasted. \class{GtkNotebook}
 solves this with the scrolling idiom. If the
@@ -1935,7 +1936,7 @@ is emitted when the gutter position is changed.
 \label{sec:RGtk2:gtkTable}
 
 \class{GtkTable} is a container for laying out objects in a tabular
-(or grid) format. It is \emph{not} meant for displaying tabular
+(or grid) \ilayout{grid layout}format. It is \emph{not} meant for displaying tabular
 data. The container divides its space into cells of a grid, and a
 child widget may occupy one or more cells. The allocation of space
 within a row or column follows logic similar to that of box
@@ -2179,7 +2180,7 @@ to buttons, but any widget that can be activatable.) The
 buttons in this manner, see Section~\ref{sec:dialogs}.
 
 If the action that a button initiates is to be represented elsewhere
-in the GUI, say a menu bar, then a \code{GtkAction} object may be
+in the GUI, say a menubar, then a \code{GtkAction} object may be
 appropriate. Action objects are covered in
 Section~\ref{sec:RGtk2:UIManager}.
 
@@ -2245,7 +2246,7 @@ button:
 
 \end{example}
 
-\section{Static Text and Images}
+\section{Static text and images}
 
 \subsection{Labels}
 \label{sec:RGtk2:gtkLabel}
@@ -2482,7 +2483,7 @@ identifier.
 %   \SweaveInput{ex-RGtk2-alert-panel-2}
 % \end{example}
 
-\section{Input Controls}
+\section{Input controls}
 
 \subsection{Text entry}
 \label{sec:RGtk2:gtkEntry}
@@ -2518,7 +2519,7 @@ number of characters. The \argument{max}{gtkEntry} argument to
 \function{gtkEntry} specifies this, but that usage is
 deprecated. Instead, one should call \method{setMaxLength}{GtkEntry}.
 
-\paragraph{The \class{GtkEditable} Interface}
+\paragraph{The \class{GtkEditable} interface}
 
 Editing text programmatically relies on the \class{GtkEditable}
 interface, which \class{GtkEntry} implements. The method
@@ -2547,7 +2548,7 @@ prevent the insertion or deletion of text by connecting to the
 corresponding signal and stopping the signal propagation with
 \function{gSignalStopEmission}. 
 
-\paragraph{Advanced \class{GtkEntry} Features}
+\paragraph{Advanced \class{GtkEntry} features}
 
 \class{GtkEntry} has a number of features beyond basic text entry,
 including: completion, buffer sharing, icons, and progress
@@ -2561,9 +2562,13 @@ been present since version $2.16$.
 
 \begin{figure}
   \centering
-  \includegraphics[width=.35\textwidth]{fig-RGtk2-valid-entry.png}\quad
-    \includegraphics[width=.35\textwidth]{fig-RGtk2-invalid-entry.png}
-  \caption{Illustration of adding an icon to a \class{GtkEntry} instance to indicate if the text entered is valid or not}
+  \begin{minipage}[c]{.45\linewidth}
+    \includegraphics[width=\textwidth]{fig-RGtk2-valid-entry.png}\quad
+ \end{minipage}\quad
+ \begin{minipage}[c]{.45\linewidth}
+   \includegraphics[width=\textwidth]{fig-RGtk2-invalid-entry.png}
+ \end{minipage}
+ \caption{Illustration of adding an icon to a \class{GtkEntry} instance to indicate if the text entered is valid or not}
   \label{fig:RGtk2-valid-gtkentry}
 \end{figure}
 
@@ -2657,7 +2662,7 @@ creates an instance of \class{GtkRadioButton}, an extension of
 \class{GtkCheckButton}. Each radio button belongs to a group and only
 one button in a group may be active at once.
 
-\begin{example}{Basic Radio Button Usage}{eg:gtk:radio-group-group-list} 
+\begin{example}{Basic radio button usage}{eg:gtk:radio-group-group-list} 
   When we construct a radio button, we need to add it to a
   group. There is no explicit group object; rather, the buttons are
   chained together as a linked list. By default, a newly constructed
@@ -2713,8 +2718,8 @@ to connect a handler to each button:
 \end{Schunk}
 \end{example}
 
-\begin{example}{Radio Group via a \function{FromWidget}
-    Constructor}{eg:gtk:radio-group-get-group}
+\begin{example}{Radio group via a \function{FromWidget}
+    constructor}{eg:gtk:radio-group-get-group}
   In this example, we illustrate using the
   \constructor{gtkRadioButtonNewWithLabelFromWidget} function to add
   new buttons to the group:
@@ -2854,7 +2859,7 @@ arbitrary values, in addition to those present in the menu.
 
 
 
-\subsection{Sliders and Spin Buttons}
+\subsection{Sliders and Spin buttons}
 \label{sec:RGtk2:sliders-spinbuttons}
 
 The slider widget and spin button widget allow selection from a
@@ -3050,7 +3055,7 @@ space.
 % bounds
 .
 
-\section{Progress Reporting}
+\section{Progress reporting}
 
 \subsection{Progress bars}
 \label{sec:progress-bars}
@@ -3244,11 +3249,10 @@ just a welcome and simply shows a label.
   
 
 We skip showing the pages to select a CRAN site and a package, as they
-are based on the forthcoming \class{GtkTreeView} class. On the
-fourth page is a summary of the package taken from CRAN and a chance
-for the user to configure a few options for the
-\function{install.packages} function. See
-Figure~\ref{fig:RGtk2-install-wizard} for a realization.
+are based on the forthcoming \class{GtkTreeView} class. On the fourth
+page (cf.  Figure~\ref{fig:RGtk2-install-wizard} for a realization) is
+a summary of the package taken from CRAN and a chance for the user to
+configure a few options for the \function{install.packages} function.
 \begin{Schunk}
 \begin{Sinput}
  populatePage[[4]] <- function() {
@@ -3296,7 +3300,8 @@ Figure~\ref{fig:RGtk2-install-wizard} for a realization.
    gSignalConnect(cb, "toggled", function(w) {
      install_options[['dependencies']] <<- w$getActive()
    })
-   tbl$attachDefaults(gtkLabel("Install dependencies"), 0, 1, 1, 2)
+   tbl$attachDefaults(gtkLabel("Install dependencies"),
+                      0, 1, 1, 2)
    tbl$attachDefaults(cb, 1, 2, 1, 2)
  
    ##
@@ -3360,7 +3365,7 @@ assistant's \meth{show} method.
 \end{Schunk}
 \end{example}
 
-\section{Embedding R Graphics}
+\section{Embedding R graphics}
 \label{sec:gtk-widget-graphics}
 
 %% using cairoDevice to embed graphics
@@ -3406,7 +3411,7 @@ the device to a pixmap. Finally, passing a \class{GtkPrintContext} to
 \function{asCairoDevice} allows printing R graphics through the \GTK\/
 printing dialogs.
 
-\begin{example}{Printing R Graphics}{eg:RGtk2:printing-graphics}
+\begin{example}{Printing R graphics}{eg:RGtk2:printing-graphics}
   This example will show how to use the printing support in \GTK\/ for
   printing an R plot. 
   
@@ -3589,7 +3594,7 @@ frame. Otherwise, note how each control is expected to have a
 %
 
 The \code{control\_table} is used hold the respective controls. We
-added a \ilayout{strut}strut to request a minimum width for the
+added a \ilayout{struts}strut to request a minimum width for the
 second column, as otherwise the slider controls can render too
 narrowly.
 
@@ -3795,7 +3800,7 @@ listen for the appropriate events and understand each other. As a
 trivial example, we allow the user to drag the text from one button to
 another.
 
-\subsection{Initiating a Drag}
+\subsection{Initiating a drag}
 
 When a drag and drop is initiated, different types of data may be
 transferred. We need to define a target type for each type of data, as
@@ -3854,7 +3859,7 @@ If we had allowed the \code{move} action, we would also need to
 connect to \signal{drag-data-delete}, in order to delete the data that
 was moved away.
 
-\subsection{Handling Drops}
+\subsection{Handling drops}
 
 In a separate window from the drag source button, we construct another
 button and call \function{gtkDragDestSet} to mark it as a drag target:
@@ -3929,7 +3934,7 @@ in the widget where the drop occurred. The text data is returned by
 %% TODO: we need a unified example in the main text that spans loading
 %% a data frame to sorting a model, at least.
 
-Many widgets in \GTK\/ use the model, view, controller \iprogram{Model-View-Controller}(MVC)
+Many widgets in \GTK\/ use the model, view, controller \iprogram{model-view-controller}(MVC)
 paradigm. For most, like the button, the MVC pattern is implicit;
 however, widgets that primarily display data explicitly incorporate
 the MVC pattern into their design. The data model is factored out as a
@@ -4163,8 +4168,7 @@ dragging with the mouse. The size properties \qcode{width},
 visibility of the column can be adjusted through the
 \method{setVisible}{GtkTreeViewColumn} method.
 
-\paragraph{Additional Features}
-
+\paragraph{Additional features}
 Tree views have several special features, including sorting,
 incremental search and drag-n-drop reordering. Sorting is discussed in
 Section~\ref{sec:RGtk2:mvc:proxies}. To turn on searching,
@@ -4223,13 +4227,14 @@ representation of the path, use \method{getIndices}{GtkTreePath} or
 
 %% iters
 \paragraph{Iterators}
-The second means of row indexing is through an iterator,
-\class{GtkTreeIter}, which is better suited for traversing a model.
-An \dfn{iterator} is a programming object used to traverse through
-some data, such as a text buffer or table of values. Iterators are
-typically transient, in the sense that they are invalidated when their
-source is modified. An iterator is often updated by reference,
-behavior that is atypical in \R\/ programming. 
+\iprogram{iterators} The second means of row indexing is through an
+iterator, \class{GtkTreeIter}, which is better suited for traversing a
+model.  An \dfn{iterator} is a programming object\iprogram{iterator
+  pattern} used to traverse through some data, such as a text buffer
+or table of values. Iterators are typically transient, in the sense
+that they are invalidated when their source is modified. An iterator
+is often updated by reference\iprogram{references}, behavior that is
+atypical in \R\/ programming.
 
 
 While a tree path is an intuitive, transparent row index, an iterator
@@ -4265,8 +4270,8 @@ still valid, i.e. \code{FALSE} is returned if no next row exists.
 
 It is clear that the above usage is designed for languages like C,
 where multiple return values are conveniently passed by reference
-parameters. The iterator design also prevents the use of the apply
-functions, which are generally preferred over the \code{while} loop
+parameters. This iterator design also prevents the use of the apply
+functions (\R's iterators), which are generally preferred over the \code{while} loop
 for reasons of performance and clarity. An improvement would be to
 obtain the number of children, generate the sequence of row indices
 and access the row for each index:
@@ -5849,7 +5854,7 @@ latter has been standardized to lower case.
 
 \end{example}
 
-\section{Sharing Buffers Between Text Entries}
+\section{Sharing buffers between text entries}
 \label{sec:RGtk2:buffer-sharing}
 
 As of \GTK\/ version $2.18$, multiple instances of \class{GtkEntry}
@@ -6040,14 +6045,14 @@ $retval
 NULL
 
 $start
-<pointer: 0x104a78830>
+<pointer: 0x10529f8c0>
 attr(,"interfaces")
 character(0)
 attr(,"class")
 [1] "GtkTextIter" "GBoxed"      "RGtkObject" 
 
 $end
-<pointer: 0x104a78b00>
+<pointer: 0x10529f870>
 attr(,"interfaces")
 character(0)
 attr(,"class")
@@ -6439,7 +6444,7 @@ to extract the current command. The \qcode{regex} is used to parse multi-line co
 \end{Schunk}
 %
 
-The following function takes the current command and evaluates it
+The following function takes the \iprogram{evaluating strings}current command and evaluates it
 using the \pkg{evaluate} package. It uses a hack (involving
 \code{grepl}) to distinguish between an incomplete command and a true
 syntax error.
@@ -6531,7 +6536,7 @@ for executing a particular action. Menu Bars and toolbars are the two
 most common widgets for organizing application-wide actions. An
 application also needs to report its status in an unobtrusive
 way. Thus, a typical application window contains, from top to bottom, 
-a menu bar, a toolbar, a large application-specific region, and a
+a menubar, a toolbar, a large application-specific region, and a
 status bar.  In this chapter, we will introduce actions, menus,
 toolbars and status bars and conclude by explaining the mechanisms in
 \GTK\/ for conveniently defining and managing actions and associated
@@ -6571,7 +6576,7 @@ connected to the \signal{activate} signal:
 \begin{figure}
   \centering
   \includegraphics[width=.7\textwidth]{ex-RGtk2-action-items-infobar}
-  \caption{An application window mock up showing a menu bar, tool bar,
+  \caption{An application window mock up showing a menubar, toolbar,
   and info bar}
   \label{fig:RGtk2-action-items-infobar}
 \end{figure}
@@ -6642,19 +6647,19 @@ action state.
 
 A menu is a compact, hierarchically organized collection of buttons,
 each of which may proxy an action. Menus listing window-level actions
-are usually contained within a menu bar at the top of the window or
+are usually contained within a menubar at the top of the window or
 screen. Menus with options specific to a particular GUI element may
 ``popup'' when the user interacts with the element, such as by
-clicking the right mouse button. Menu bars and popup menus may be
+clicking the right mouse button. Menubars and popup menus may be
 constructed by appending each menu item and submenu separately, as
 illustrated below. For menus with more than a few items, we recommend
 the strategies described in Section~\ref{sec:RGtk2:UIManager}.
 
-\subsection{Menu Bars}
+\subsection{Menubars}
 
-We will first demonstrate the menu bar, leaving the popup menu for
+We will first demonstrate the menubar, leaving the popup menu for
 later. Figure~\ref{fig:RGtk2-action-items-infobar} will show a
-realization. The first step is to construct the menu bar itself:
+realization. The first step is to construct the menubar itself:
 \begin{Schunk}
 \begin{Sinput}
  menubar <- gtkMenuBar()
@@ -6662,11 +6667,11 @@ realization. The first step is to construct the menu bar itself:
 \end{Schunk}
 
 
-A menu bar is a special type of container called a menu shell. An
+A menubar is a special type of container called a menu shell. An
 instance of \class{GtkMenuShell} contains one or more menu
 items. \class{GtkMenuItem} is an implementation of
 \class{GtkActivatable}, so each menu item can proxy an
-action. Usually, a menu bar consists multiple instances of the other
+action. Usually, a menubar consists multiple instances of the other
 type of menu shell: the menu, \class{GtkMenu}. Here, we create a menu
 object for our ``File'' menu:
 \begin{Schunk}
@@ -6686,7 +6691,7 @@ into a menu item, which is labeled with the menu title:
 %
 The underscore in the label indicates the key associated with the
 mnemonic for use when navigating the menu with a keyboard.  Finally,
-we append the item containing the file menu to the menu bar:
+we append the item containing the file menu to the menubar:
 \begin{Schunk}
 \begin{Sinput}
  menubar$append(fileItem)
@@ -6766,7 +6771,7 @@ supported. A toggle action will create one implicitly:
 \end{Sinput}
 \end{Schunk}
 
-Finally, we add our menu bar to the top of a window:
+Finally, we add our menubar to the top of a window:
 \begin{Schunk}
 \begin{Sinput}
  mainWindow <- gtkWindow()
@@ -6776,7 +6781,7 @@ Finally, we add our menu bar to the top of a window:
 \end{Sinput}
 \end{Schunk}
 
-\subsection{Popup Menus}
+\subsection{Popup menus}
 
 \begin{example}{Popup menus}{ex:RGtk2-popup-menus}
 To illustrate popup menus, we construct one and display it in response
@@ -6843,7 +6848,7 @@ We iterate over the children, avoiding the separator.
 \section{Toolbars}
 \label{sec:RGtk2:toolbars}
 
-Toolbars are like menu bars in that they are containers for
+Toolbars are like menubars in that they are containers for
 activatable items, but toolbars are not hierarchical. Also, their
 items are usually visible for the life-time of the application, not
 upon user click. Thus, toolbars are not appropriate for storing a
@@ -6856,7 +6861,7 @@ We begin by constructing an instance of \class{GtkToolbar}:
 \end{Sinput}
 \end{Schunk}
 
-In analogous fashion to the menu bar, toolbars are containers for tool
+In analogous fashion to the menubar, toolbars are containers for tool
 items. Technically, an instance of \class{GtkToolItem} could contain
 any type of widget, yet toolbars typically represent actions
 with buttons. The \class{GtkToolButton} widget implements this common
@@ -6881,7 +6886,7 @@ the \method{add}{GtkContainer} method:
 This appends the open button to the end of the toolbar. To insert into
 a specific position, we would call the \method{insert}{GtkToolbar} method.
 
-Usually, any application with a toolbar also has a menu bar, in which
+Usually, any application with a toolbar also has a menubar, in which
 case many actions are shared between the two containers. Thus, it is
 often beneficial to construct a tool button directly from its
 corresponding action:
@@ -7086,14 +7091,14 @@ Finally, we can programmatically collapse a group:
 \end{Sinput}
 \end{Schunk}
 
-\section{Status Reporting}
+\section{Status reporting}
 \label{sec:RGtk2:statusbars}
 
-\subsection{Status bars}
+\subsection{Statusbars}
 
-In \GTK, a statusbar is constructed through the
+In \GTK, a status bar is constructed through the
 \constructor{gtkStatusbar} function. Statusbars must be placed at the
-bottom of a top-level window by the programmer. In \GTK, a statusbar
+bottom of a top-level window by the programmer. In \GTK, a status bar
 keeps various stacks of messages for display. One adds a message to
 display for given stack through the \method{Push}{GtkStatusbar} method
 by specifying first an integer value for \code{context.id} and a
@@ -7168,21 +7173,23 @@ in a number of different modes. Within a given mode, only a subset of
 actions are applicable. For example, a word processor may have an
 editing mode and a print preview mode. \GTK\/ provides a \dfn{user
   interface manager}, \class{GtkUIManager}, to manage the layout of
-the toolbars and menu bars across multiple user interface modes.
+the toolbars and menubars across multiple user interface modes. We
+illustrate through an example.
 
-The steps required to use \GTK's UI manager are
+The steps required to use \GTK's UI manager are:
 \begin{enumerate}
 \item construct the UI manager,
+\item specify in XML the layout of the menubars and toolbars,
 \item define the actions in groups,
 \item connect the action group to the UI manager, 
 \item set up an accelerator group for keyboard shortcuts, 
-\item specify the layout of the menu bars and toolbars, and finally
+and finally
 \item display the widgets.
 \end{enumerate}
 
-\begin{example}{UI Manager example}{ex:RGtk2:UImanager}
+\begin{example}{UI manager example}{ex:RGtk2:UImanager}
 In this example, we show how to use a UI manager to create the menu
-and tool bars for a data frame editor, similar to, but with enhanced
+and toolbars for a data frame editor, similar to, but with enhanced
 functionality, the one produced in some platforms by the
 \function{data.entry} function. 
 
@@ -7244,7 +7251,7 @@ grasped quickly from this example, which we use in the sequel.
 %
 
 We used indenting to show the nesting of the menus. For menus we see
-the use of menu bars, menus and menu items. The menu and menu items have a
+the use of menubars, menus and menu items. The menu and menu items have a
 corresponding action associated with them, which can provide a callback.
 
 If \code{uimanager} is our \class{GtkUIManager} instance, then we can
@@ -7358,7 +7365,7 @@ package \pkg{ProgGUIinR}. Here we discuss how the \iprogram{command pattern}\dfn
 to our editing.
 
 According to \footcite{head-first-design-patterns}, the command
-pattern is used to \iprogram{encapsulate}encapsulate a request (method
+pattern is used to \iprogram{encapsulation}encapsulate a request (method
 call) as an object. A basic command object has just one method,
 \meth{execute}. Any needed parameters are stored in the object as
 properties. For our implementation we use a reference class with fields:
@@ -7452,8 +7459,8 @@ was done. This stack has methods \code{add}, \code{undo} and
 \code{redo}, each calling the \code{do} or \code{undo} method of the
 appropriate command in the stack.
 
-With this stack a typical action callback include something like this
-one from the action to change a column name:
+With this stack a typical action callback includes something like the
+following which is from the action to change a column name:
 \begin{Schunk}
 \begin{Sinput}
  cmd <- Command$new(df_model, "set_col_name", j=j, value=value)
@@ -7470,14 +7477,14 @@ parameters (a column number and new name) and then added to the
 command stack. The \meth{add} method calls the \code{do} method of the
 command to invoke the changing of the name.
 
-The data frame model (defined in our reference class \class{DfModel}) we define is a wrapper around an
+The data frame model (defined in our reference class \class{DfModel}) is a wrapper around an
 \class{RGtkDataFrame} object that holds the data. The method call
 above is implemented by:
 \begin{Schunk}
 \begin{Sinput}
  DfModel$methods(
                  get_col_name=function(j) varnames[j,1],
-                 get_col_names=function() varnames[,1],
+                 get_col_names=function() varnames[ ,1],
                  set_col_name=function(j, value) {
                    "Set name, return old"
                    old <- get_col_name(j)
@@ -7536,7 +7543,7 @@ this feature takes some commitment from the programmer. Any method
 declared by an R class may be overridden by an R subclass.
 
 Our example will be a GUI that displays a scatterplot along with a
-slider for adjusting the alpha level of the points (Figure~\ref{}). Usually, a slider
+slider for adjusting the alpha level of the points (Figure~\ref{fig:RGtk2-extend-gobject-slider}). Usually, a slider
 operates in linear fashion. When there are a large number of points,
 on the order of tens of thousands or more, changing the alpha level
 does not have a strong visual effect until it approaches its lower

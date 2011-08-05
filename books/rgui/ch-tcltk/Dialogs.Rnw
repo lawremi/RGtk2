@@ -9,6 +9,7 @@
 \end{figure}
 
 %% messageBox
+\igui{modal dialog}
 The \constructor{tkmessageBox} constructor can be used to create
 simple modal dialogs allowing a user to confirm an action, using the
 native toolkit if possible. This constructor replaces the older

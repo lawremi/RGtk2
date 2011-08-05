@@ -180,11 +180,10 @@ populatePage[[3]] <- function() {
 @ 
 
 We skip showing the pages to select a CRAN site and a package, as they
-are based on the forthcoming \class{GtkTreeView} class. On the
-fourth page is a summary of the package taken from CRAN and a chance
-for the user to configure a few options for the
-\function{install.packages} function. See
-Figure~\ref{fig:RGtk2-install-wizard} for a realization.
+are based on the forthcoming \class{GtkTreeView} class. On the fourth
+page (cf.  Figure~\ref{fig:RGtk2-install-wizard} for a realization) is
+a summary of the package taken from CRAN and a chance for the user to
+configure a few options for the \function{install.packages} function.
 <<>>=
 populatePage[[4]] <- function() {
   asst$setPageTitle(pages[[4]], "Install a CRAN package")
@@ -231,7 +230,8 @@ populatePage[[4]] <- function() {
   gSignalConnect(cb, "toggled", function(w) {
     install_options[['dependencies']] <<- w$getActive()
   })
-  tbl$attachDefaults(gtkLabel("Install dependencies"), 0, 1, 1, 2)
+  tbl$attachDefaults(gtkLabel("Install dependencies"),
+                     0, 1, 1, 2)
   tbl$attachDefaults(cb, 1, 2, 1, 2)
 
   ##

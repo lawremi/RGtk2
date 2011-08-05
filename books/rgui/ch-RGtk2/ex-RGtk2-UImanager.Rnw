@@ -175,7 +175,7 @@ specified in the UI definition:
 menubar <- uimanager$getWidget("/menubar")
 toolbar <- uimanager$getWidget("/toolbar")
 @ 
-The statusbar is constructed with
+The status bar is constructed with
 <<"define statusbar">>=
 statusbar <- gtkStatusbar()
 @ 

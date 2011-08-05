@@ -59,7 +59,7 @@ buttonLayout$addSpacing(12L)            # spacing
 buttonLayout$addWidget(b$Help)
 @ 
 %
-We added a \ilayout{stretch}stretch, which acts much like a spring, to pack our
+We added a stretch, which acts much like a spring, to pack our
 buttons against the right side of the box. A fixed space of 12
 pixels is inserted between the ``Cancel'' and ''help'' buttons.
 

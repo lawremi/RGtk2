@@ -20,10 +20,10 @@ also described here.
   \SweaveInput{ex-layout}
 \end{example}
 
-\section{Layout Basics}
+\section{Layout basics}
 \label{sec:qt-layout-basic}
 
-\subsection{Adding and Manipulating Children}
+\subsection{Adding and manipulating children}
 
 We will demonstrate the basics of layout in \Qt\/ with a horizontal box
 layout, \class{QHBoxLayout}:
@@ -84,9 +84,9 @@ should set the parent of the widget \code{NULL} using
 button$setParent(NULL)
 @ 
 
-\subsection{Size and Space Negotiation}
+\subsection{Size and space negotiation}
 
-The allocation of space to child widgets depends on several factors.
+\ilayout{Space allocation}The allocation of space to child widgets depends on several factors.
 The \Qt{} documentation for layouts spells out well the
 steps:~\footnote{\url{http://doc.qt.nokia.com/4.6/layout.html}}
 \\
@@ -188,9 +188,10 @@ of the layout is in the \code{spacing} property, the following requests $5$ pixe
 layout$spacing <- 5L
 @ 
 
-\section{Box Layouts}
+\section{Box layouts}
 \label{sec:qt-layout-box}
 
+\ilayout{box layout}
 Box layouts arrange child widgets as if they were packed into a box in
 either the horizontal or vertical orientation. The \class{QHBoxLayout}
 class implements a horizontal layout whereas \class{QVBoxLayout}
@@ -215,7 +216,7 @@ which the widgets are added to the layout. By default, this is left to
 right (top to bottom for a vertical box).  
 
 The \method{addWidget}{QBoxLayout} method for a box layout takes two
-optional parameters: the stretch factor and the alignment.  Stretch
+optional parameters: the \ilayout{stretch}stretch factor and the alignment.  Stretch
 factors proportionally allocate space to widgets when they expand.\footnote{For
 those familiar with \GTK, the difference between a stretch factor of
 $0$ and $1$ is roughly equivalent to the difference between
@@ -315,7 +316,7 @@ We have placed a gap of $12$ pixels between button \qcode{c} and the
 new button \qcode{d}.
 
 An expanding, spring-like spacer between two widgets is known as a
-\ilayout{spring}\textit{stretch}. We add a stretch with a factor of $2.0$ and
+\ilayout{springs}\textit{stretch}. We add a stretch with a factor of $2.0$ and
 subsequently add a child button that will be pressed against the right
 side of the box as the layout grows horizontally:
 <<qt-layout-box-stretch, results=hide>>=
@@ -330,14 +331,14 @@ stretch factor.
 
 It is sometimes desirable to restrict the minimum size of a layout in the
 perpendicular direction. For a horizontal box, this is the height. The
-box layout provides the \ilayout{strut}\textit{strut} for this purpose:
+box layout provides the \ilayout{struts}\textit{strut} for this purpose:
 <<qt-layout-box-strut>>=
 g$addStrut(10)                    # at least 10 pixels high
 @ 
 %
 
 
-\section{Grid Layouts}
+\section{Grid layouts}
 \label{sec:grid-layouts}
 
 \begin{figure}
@@ -347,7 +348,7 @@ g$addStrut(10)                    # at least 10 pixels high
   \label{fig:qt-layout-example}
 \end{figure}
 
-
+\ilayout{grid layout}
 The \class{QGridLayout} class provides a grid layout for aligning its
 child widgets into rows and columns.  To illustrate grid layouts we
 mock up a GUI centered around a text area widget
@@ -669,8 +670,7 @@ help("boxplot")
 \end{example}
 
 
-\paragraph{General Widget Stacking}
-
+\paragraph{General widget stacking}
 It is sometimes useful to have a widget that only shows one of its
 widgets at once, like a \class{QTabWidget}, except without the
 tabs. There is no way to hide the tabs of \class{QTabWidget}. Instead,
@@ -681,7 +681,7 @@ programmatically. The actual layout is managed by
 \class{QStackedLayout}, which should be used directly if only a layout
 is needed, e.g., as a sub-layout.
 
-\section{Scroll Areas}
+\section{Scroll areas}
 \label{sec:scrolling-layouts}
 
 Sometimes a widget is too large to fit in a layout and thus must be
@@ -735,7 +735,7 @@ sa$raise()
 @
 % 
 
-\section{Paned Windows}
+\section{Paned windows}
 \label{sec:paned-windows}
 
 \class{QSplitter} is a split pane widget, a container that splits its

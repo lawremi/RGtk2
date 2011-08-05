@@ -1,12 +1,18 @@
 ###################################################
 ### chunk number 1: 
 ###################################################
+#line 6 "ex-RGtk2-add-stock-icon.Rnw"
+## This example shows, without much explanation the steps to add images
+## to the list of stock icons. To generate some sample icons, we use
+## those provided by objects in the \pkg{ggplot2} package.
+
 library(RGtk2)
 
 
 ###################################################
 ### chunk number 2: 
 ###################################################
+#line 16 "ex-RGtk2-add-stock-icon.Rnw"
 ## This example shows how to add new icons to the stock icons
 ## It uses as an icon source the elements of ggplot2, which have an icon 
 ## built into them.
@@ -29,53 +35,52 @@ library(RGtk2)
 
 
 ###################################################
-### chunk number 3: 
+### chunk number 3: makePixbufs
 ###################################################
+#line 38 "ex-RGtk2-add-stock-icon.Rnw"
 require(ggplot2)
-require(Cairo)
 iconNames <- c("GeomBar","GeomHistogram")   # 2 of many ggplot functions
 icon.size <- 16
-iconDir <- tempdir()
-fileNames <- sapply(iconNames, function(name) {
-  nm <- paste(iconDir, "/", name, ".png", sep="", collapse="")
-  Cairo(file=nm, width=icon.size, height=icon.size, type="png")
+pixbufs <- sapply(iconNames, function(name) {
+  pixmap <- gdkPixmap(drawable = NULL, width = icon.size, height = icon.size,
+                      depth = 24)
+  asCairoDevice(pixmap)
   val <- try(get(name))
   grid.newpage()
   try(grid.draw(val$icon()), silent=TRUE)
   dev.off()
-  nm
+  gdkPixbufGetFromDrawable(NULL, pixmap, NULL, 0, 0, 0, 0, -1 -1)
 })
 
 
 ###################################################
 ### chunk number 4: addToStockIcons
 ###################################################
-addToStockIcons <- function(iconNames, fileNames, stock.prefix="new") {
-  iconfactory <- gtkIconFactoryNew()
+#line 55 "ex-RGtk2-add-stock-icon.Rnw"
+addToStockIcons <- function(pixbufs, stock.prefix="new") {
+  iconfactory <- gtkIconFactory()
   
-  for(i in seq_along(iconNames)) {
-    
-    iconsource = gtkIconSourceNew()
-    iconsource$setFilename(fileNames[i])
-    
-    iconset = gtkIconSetNew()
-    iconset$addSource(iconsource)
-    
-    stockName = paste(stock.prefix, "-", iconNames[i], sep="")
+  items <- lapply(names(pixbufs), function(iconName) {
+    ## each icon has its own icon set, which is registered with icon factory
+    iconset <- gtkIconSetNewFromPixbuf(pixbufs[[iconName]])
+    stockName <- paste(stock.prefix, "-", iconName, sep="")
     iconfactory$add(stockName, iconset)
     
-    items = list(test=list(stockName, iconNames[i],"","",""))
-    gtkStockAdd(items)
-  }
-  iconfactory$AddDefault()
-  invisible(TRUE)
+    ## create stock item for icon
+    as.GtkStockItem(list(stock_id = stockName, label = iconName))
+  })
+  ## register our factory of icons
+  iconfactory$addDefault()
+  ## officially register the stock items
+  gtkStockAdd(items)
 }
 
 
 ###################################################
 ### chunk number 5: 
 ###################################################
-addToStockIcons(iconNames, fileNames)
+#line 75 "ex-RGtk2-add-stock-icon.Rnw"
+addToStockIcons(pixbufs)
 nms <- gtkStockListIds()
 unlist(nms[grep("^new", nms)])
 

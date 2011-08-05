@@ -21,7 +21,7 @@ library(RGtk2)
 %% TODO: we need a unified example in the main text that spans loading
 %% a data frame to sorting a model, at least.
 
-Many widgets in \GTK\/ use the model, view, controller \iprogram{Model-View-Controller}(MVC)
+Many widgets in \GTK\/ use the model, view, controller \iprogram{model-view-controller}(MVC)
 paradigm. For most, like the button, the MVC pattern is implicit;
 however, widgets that primarily display data explicitly incorporate
 the MVC pattern into their design. The data model is factored out as a
@@ -238,8 +238,7 @@ dragging with the mouse. The size properties \qcode{width},
 visibility of the column can be adjusted through the
 \method{setVisible}{GtkTreeViewColumn} method.
 
-\paragraph{Additional Features}
-
+\paragraph{Additional features}
 Tree views have several special features, including sorting,
 incremental search and drag-n-drop reordering. Sorting is discussed in
 Section~\ref{sec:RGtk2:mvc:proxies}. To turn on searching,
@@ -294,13 +293,14 @@ representation of the path, use \method{getIndices}{GtkTreePath} or
 
 %% iters
 \paragraph{Iterators}
-The second means of row indexing is through an iterator,
-\class{GtkTreeIter}, which is better suited for traversing a model.
-An \dfn{iterator} is a programming object used to traverse through
-some data, such as a text buffer or table of values. Iterators are
-typically transient, in the sense that they are invalidated when their
-source is modified. An iterator is often updated by reference,
-behavior that is atypical in \R\/ programming. 
+\iprogram{iterators} The second means of row indexing is through an
+iterator, \class{GtkTreeIter}, which is better suited for traversing a
+model.  An \dfn{iterator} is a programming object\iprogram{iterator
+  pattern} used to traverse through some data, such as a text buffer
+or table of values. Iterators are typically transient, in the sense
+that they are invalidated when their source is modified. An iterator
+is often updated by reference\iprogram{references}, behavior that is
+atypical in \R\/ programming.
 
 
 While a tree path is an intuitive, transparent row index, an iterator
@@ -334,8 +334,8 @@ still valid, i.e. \code{FALSE} is returned if no next row exists.
 
 It is clear that the above usage is designed for languages like C,
 where multiple return values are conveniently passed by reference
-parameters. The iterator design also prevents the use of the apply
-functions, which are generally preferred over the \code{while} loop
+parameters. This iterator design also prevents the use of the apply
+functions (\R's iterators), which are generally preferred over the \code{while} loop
 for reasons of performance and clarity. An improvement would be to
 obtain the number of children, generate the sequence of row indices
 and access the row for each index:
@@ -1158,7 +1158,7 @@ should be displayed in the set of completions.
   \SweaveInput{ex-RGtk2-entry-completion}
 \end{example}
 
-\section{Sharing Buffers Between Text Entries}
+\section{Sharing buffers between text entries}
 \label{sec:RGtk2:buffer-sharing}
 
 As of \GTK\/ version $2.18$, multiple instances of \class{GtkEntry}

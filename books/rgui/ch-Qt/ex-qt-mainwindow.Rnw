@@ -6,8 +6,8 @@ library(qtbase)
 
 \begin{figure}
   \centering
-  \includegraphics[width=.6\textwidth]{fig-qt-rstudio-like}
-  \caption{A GUI using dockable widgets and a \class{QMainWindow}
+  \includegraphics[width=.9\textwidth]{fig-qt-rstudio-like}
+  \caption{A GUI mockup using dockable widgets and a \class{QMainWindow}
     instance}
   \label{fig:qt-r-studio}
 \end{figure}
@@ -15,16 +15,16 @@ library(qtbase)
 
 This example shows how to begin constructing a main window
 (Figure~\ref{fig:qt-r-studio}) similar to that of the web application
-R-Studio. (\url{rstudio.org}).
+R-Studio (\url{www.studio.org}).
 
 We begin by setting a minimum size and a title for the main window:
 <<results=hide>>=
 w <- Qt$QMainWindow()
 w$setMinimumSize(800, 500)
 w$setWindowTitle("Rstudio-type layout")
-@ 
+@  
 %
-We add a menu bar and toolbar. Here only the file menu definitions are
+We add a menubar and toolbar. Here only the file menu definitions are
 shown:
 <<defineActions,results=hide>>=
 l <- list()
@@ -126,7 +126,7 @@ Finally, we add a status bar and show a transient message:
 <<results=hide>>=
 sb <- Qt$QStatusBar()
 w$setStatusBar(sb)
-sb$showMessage("Mock-up layout for an IDE", 2000)
+sb$showMessage("Mock-up layout for an IDE", 20000)
 @ 
 
 

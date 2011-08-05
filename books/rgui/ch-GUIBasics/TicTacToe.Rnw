@@ -2,7 +2,7 @@
 
 We begin with an example showing how one can use \R's standard
 graphics device as a canvas for a ``game'' of
-tic-tac-toe against the computer. Although this example
+tic-tac-toe against the computer (Figure~\ref{fig:basics-tic-tac-toe}). Although this example
 has nothing to do with statistics, it illustrates, in a familiar way,
 some of the issues involved in developing GUIs in \R. 
 
@@ -49,8 +49,8 @@ familiarity with the board game.
 The user typically sends input to a GUI through a mouse or keyboard. 
 The underlying toolkit allows the programmer to assign
 functions to be called when some specific event occurs, such as user interaction. Typically, the
-toolkit \textit{signals} that some action has occurred, and then
-invokes \textit{callbacks} or \textit{event handlers} that have been
+toolkit \igui{signals}\textit{signals} that some action has occurred, and then
+invokes \igui{event handlers}\textit{callbacks} or \textit{event handlers} that have been
 assigned by the programmer. Each toolkit has a different implementation. 
 For our game, we will use the \code{locator} function built
 into the base \R\/ graphics system:
@@ -66,9 +66,17 @@ how many mouse clicks to gather and the \textit{control} of the
 program is suspended until the user clicks the sufficient number of
 times (or somehow interrupts the loop). Such a GUI that blocks the
 flow of a program contingent on user input is known as a
-\textit{modal} GUI. This design is common for simple dialogs that
+\igui{modal dialogs}\textit{modal} GUI. This design is common for simple dialogs that
 require immediate user attention, although in general a GUI will
 listen asynchronously for user input.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.6\textwidth]{fig-basics-tic-tac-toe}
+  \caption{Using a graphics device for a game of tic-tac-toe}
+  \label{fig:basics-tic-tac-toe}
+\end{figure}
+
 
 
 In the above function \function{doPlay}, \function{clickHandler} is
@@ -96,7 +104,7 @@ clickHandler <- function(iloc) {
 The use of \verb+<<-+ in the handler illustrates a typical issue in
 GUI design in \R.  User input changes the state of the application
 through callback functions. These callbacks need to modify variables
-in some shared scope, which may be application-wide or specific to a
+\iprogram{variable scope}in some shared scope, which may be application-wide or specific to a
 component. The lexical scoping rules of \R, i.e., nesting of closures,
 has proven to be a useful strategy for managing GUI state. When this
 is inconvenient, direct manipulation of environment objects is a
@@ -104,7 +112,7 @@ viable alternative. In the above case, we simply modify the global
 environment, which encloses \function{clickHandler}.
 
 %% validation of user input
-Validation of user input is an important task for a GUI. In the above,
+\iprogram{validation}Validation of user input is an important task for a GUI. In the above,
 the \function{clickHandler} function checks to see if the user
 terminated the game early and issues a message.
 
@@ -133,7 +141,7 @@ drawMove <- function(z,type="x") {
 %% Resizing
 One could use \code{text} to place a text ``x'' or ``o'', but this may
 not scale well if the GUI is resized. Most GUI layouts allow for
-dynamic resizing. This is necessary to handle the variety of data a
+\ilayout{resizing}dynamic resizing. This is necessary to handle the variety of data a
 GUI will display. Even the labels, which one generally considers
 static, will display different text depending on the language (as long
 as translations are available).
@@ -172,6 +180,7 @@ interested reader.
 Finally, we implement the main entry point for our GUI:
 <<playGame>>=
 playGame <- function() {
+  board <<- matrix(rep(0,9), nrow=3)  
   layoutBoard()
   doPlay()
   mtext("All done\n",1)

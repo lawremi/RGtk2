@@ -33,9 +33,9 @@ addHandlerClicked(clear, handler=initUI)
 @ 
 %
 Next, we write a function to update the user interface. As we didn't
-abstract out the data from the GUI,
-we need to figure out which state the GUI is currently in by
-consulting the text in each label.
+abstract out the data from the GUI, we need to figure out which state
+the GUI is currently in by consulting the text in each
+label.\iprogram{evaluating strings}
 <<>>=
 updateUI <- function(...) {
   if(grepl(svalue(xlabel), sprintf(init_txt, "x"))) {
@@ -61,7 +61,7 @@ widget as a drag source (\generic{addDropSource}), one to set a widget
 as a drop target (\generic{addDropTarget}), and one to call a handler
 when a drop event passes over a widget (\generic{addDropMotion}).
   
-
+\iprogram{drag and drop}
 The \generic{addDropSource} method needs a widget and a handler to
 call when a drag and drop event is initiated. This handler should
 return the value that will be passed to the drop target. The default

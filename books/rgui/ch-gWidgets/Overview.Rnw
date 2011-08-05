@@ -231,7 +231,7 @@ gname(arguments, handler = NULL, action = NULL,
 where the \code{arguments} vary depending on the object being made. We
 discuss now the common arguments.
 
-\paragraph{container}
+\paragraph{Containers}
 In the above, we see that the \code{gwindow} constructor, for a
 top-level window, has two arguments passed in, an unnamed one for a
 window title and a value for the \code{visible} property. Whereas the
@@ -240,7 +240,7 @@ the parent container.
 
 %% container
 A top-level window does not have a parent container, but other GUI
-components do. In \pkg{gWidgets}, for the sake of portability, the
+components do.\ilayout{widget hierarchy} In \pkg{gWidgets}, for the sake of portability, the
 parent container is passed to the widget constructor through the
 \args{container} argument, as it done in all the other constructors.
 This argument name can always be abbreviated \args{cont}. This nesting
@@ -248,7 +248,7 @@ defines the GUI layout, a topic taken up in
 Chapter~\ref{sec:gWidgets-Containers}.
 
 %% toolkit
-\paragraph{toolkit}
+\paragraph{The \code{toolkit} argument}
 The \args{toolkit} argument is usually not specified. It is there to
 allow the user to mix toolkits within the same \R\/ session, but in
 practice this can cause problems due to competing event loops. 
@@ -263,7 +263,7 @@ will check if a toolkit has been specified, or only one is
 available. If neither case is so, then a menu will be provided for the
 user to choose one.
 
-\paragraph{handler, action}
+\paragraph{The \code{handler} and \code{action} arguments}
 The \args{handler} and \code{action} arguments are used to pass in
 event handlers. We discuss those in Section~\ref{sec:callbacks}.
 
@@ -355,7 +355,7 @@ svalue(txtPattern)
 demonstrates the new generic \index{svalue}{\meth{svalue}} that is used to get
 the main property of the widget. For the object \code{txtPattern}, the
 main property is the text, for the button and label widgets this
-property is the label. The \index{svalue\ASSIGN}\meth{svalue\ASSIGN} assignment method is
+property is the label. The \meth{svalue\ASSIGN} assignment method is
 used to set this property programatically. We see the call
 <<eval=FALSE>>=
 svalue(searchResults) <- fnames
@@ -402,15 +402,19 @@ input.
 % can make GUI programming awkward at times.
 
 %% insufficiency of API
+\paragraph{The underlying toolkit widget}
 The \pkg{gWidgets} API provides just a handful of generic functions
 for manipulating an object's properties compared to the number of
 methods typically provided by a GUI toolkit for a similar
 object. Although this simplicity makes \pkg{gWidgets} easier to work
 with, one may wish to get access to the underlying toolkit object to
 take advantage of a richer API. In most cases, the
-\generic{getToolkitWidget} will provide that object. We don't
-illustrate this here, as we try to stay toolkit agnostic in our
-examples.
+\generic{getToolkitWidget} will provide that object.  For convenience,
+the method \method{\$}{guiWidget} is implemented to call a method on
+the underlying toolkit widget and the methods \verb+[[+
+and \verb+[[<-+ are implemented to inspect and set
+properties of the underlying widget.  We don't illustrate here though,
+as we try to stay toolkit agnostic in our examples.
 
 
 %% table of new methods
@@ -476,7 +480,7 @@ cat(booktabs(df, colTypes=c("l","p{0.6\\textwidth}"),
 %   \label{tab:gWidgets-methods}
 % \end{table}
 
-\section{Event Handlers}
+\section{Event handlers}
 \label{sec:callbacks}
 
 %% callbacks 
@@ -486,7 +490,7 @@ cat(booktabs(df, colTypes=c("l","p{0.6\\textwidth}"),
 % toolkits allow functions, referred to as callbacks, to be called when
 % these signals are emitted, allowing the GUI to be made interactive.
 
-
+\igui{event handlers}
 In our example, the search button is created with:
 <<eval=FALSE>>=
 searchBtn <- gbutton("Search", cont=f)
@@ -761,7 +765,7 @@ if(!is.na(ret))
 \label{sec:installation}
 
 
-
+\iprogram{method dispatch}\iprogram{class structure}
 The \pkg{gWidgets} package interfaces with an underlying \R\/ package
 through an intermediate package. For example,
 Figure~\ref{fig:gWidgets-yuml} shows the sequence of calls to produce

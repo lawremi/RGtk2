@@ -1,67 +1,43 @@
 ###################################################
 ### chunk number 1: 
 ###################################################
+#line 6 "ex-RGtk2-combobox.Rnw"
 ## Example of combo box for colors
-
-library(grid)
 library(RGtk2)
 
 
 ###################################################
-### chunk number 2: makePixbuf
+### chunk number 2: 
 ###################################################
-require(Cairo)
-makePixbufFromColor <- function(color) {
-  filename <- tempfile()
-  Cairo(file=filename, width=25,height=10)
-  grid.newpage()
-  grid.draw(rectGrob(gp = gpar(fill = color)))
-  dev.off()
-  image <- gdkPixbufNewFromFile(filename)
-  unlink(filename)
-  return(image$retval)
-}
+#line 12 "ex-RGtk2-combobox.Rnw"
+model <- rGtkDataFrame(palette())
 
 
 ###################################################
-### chunk number 3: 
+### chunk number 3: comboBox
 ###################################################
-store <- gtkListStore(c("GObject","gchararray"))
-
-
-###################################################
-### chunk number 4: theColors
-###################################################
-theColors <- palette()                  # some colors
-for(i in theColors) {
-  iter <- store$append()
-  store$setValue(iter$iter, 0, makePixbufFromColor(i))
-  store$setValue(iter$iter, 1, i)
-}
-
-
-###################################################
-### chunk number 5: comboBox
-###################################################
-combobox <- gtkComboBox(model=store)
-## pixbuf
-crp <- gtkCellRendererPixbuf(); crp['xalign'] <- 0
-combobox$packStart(crp, expand=FALSE)                
-combobox$addAttribute(crp, "pixbuf", 0)
+#line 19 "ex-RGtk2-combobox.Rnw"
+combobox <- gtkComboBox(model)
+## color
+crc <- gtkCellRendererText()
+combobox$packStart(crc, expand=FALSE)                
+combobox$addAttribute(crc, "cell-background", 0)
+crc$width <- 25
 ## text
-crt <- gtkCellRendererText(); 
+crt <- gtkCellRendererText()
 crt['xpad'] <- 5                        # give some space
 combobox$packStart(crt)
-combobox$addAttribute(crt, "text", 1)
+combobox$addAttribute(crt, "text", 0)
 
 
 ###################################################
-### chunk number 6: 
+### chunk number 4:  eval=FALSE
 ###################################################
-## display in a window
-win <- gtkWindow(show=FALSE)
-win$setTitle("Color test")
-win$add(combobox)
-win$showAll()
+## #line 37 "ex-RGtk2-combobox.Rnw"
+## ## display in a window
+## win <- gtkWindow(show=FALSE)
+## win$setTitle("Color test")
+## win$add(combobox)
+## win$showAll()
 
 

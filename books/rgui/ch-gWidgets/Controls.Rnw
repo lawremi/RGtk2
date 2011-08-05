@@ -260,7 +260,7 @@ specified at construction with the argument
 \label{sec:gWidgets-displ-icons-imag}
 
 The \pkg{gWidgets} package provides a few stock icons that can be
-added to various GUI components. A list of the defined stock icons is
+added to various GUI components. \igui{stock icons}A list of the defined stock icons is
 returned by the function \code{getStockIcons}.  The names attribute
 defines the valid stock icon names. It was mentioned that if a
 button's label text matches a stock icon name, that icon will appear
@@ -1355,13 +1355,13 @@ text, whereas the icon will decorate the same if possible. For some
 toolkits, the tooltip pops up when the mouse hovers. The \code{parent} argument is used to
 specify a widget whose toplevel container will process the shortcut.
 
-\paragraph{methods}
+\paragraph{Methods}
 The main methods for actions are \method{svalue\ASSIGN}{gaction} to
 set the label text and \method{enabled\ASSIGN}{gaction} to adjust
 whether the widget is sensitive to user input. All proxies of the
 action are set through one call. There is no method to invoke the action.
 
-\paragraph{buttons}
+\paragraph{Buttons}
 An action can be assigned to a button by setting it as the
 \argument{action}{gbutton} argument of the \code{gbutton} constructor,
 in which case all other arguments for the constructor are ignored.
@@ -1447,7 +1447,7 @@ by \code{gseparator} instances. Menus differ from toolbars, as
 submenus require a nested structure. This  is specified using a
 nested list as the component to describe the sub menu. The lists all
 have named components. In this case, the corresponding name is used to
-label the submenu item. For menu bars, it is typical that all the
+label the submenu item. For menubars, it is typical that all the
 top-level components be lists, but for popup menus, this wouldn't
 necessarily be the case.
 
@@ -1489,7 +1489,7 @@ that OS.
   \label{fig:fig-gWidgets-menubar-disabled}
 \end{figure}
 
-\paragraph{Menubar and Toolbar Methods}
+\paragraph{Menubar and toolbar Methods}
 The main methods for toolbar and menubar instances are
 the \method{svalue}{gmenu} method which will return the list. Whereas, the
 \method{svalue\ASSIGN}{gmenu} method can be used to redefine the

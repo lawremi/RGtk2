@@ -267,7 +267,7 @@ Buttons can be removed through \method{removeButton}{QButtonGroup},
 where the button object is specified for remove (not the index).
 
 
-The \method{buttons}{QButtonBroup} method returns a list of the
+The \method{buttons}{QButtonGroup} method returns a list of the
 managed buttons. Here we retrieve the buttons in the group and query
 their checked state:
 <<results=hide>>=
@@ -420,13 +420,13 @@ w$windowTitle <- "Groups of checkboxes and radio buttons"
 @ 
 
 
-\section{Combo Boxes}
+\section{Combo boxes}
 \label{sec:comboboxes}
 
 \begin{figure}
   \centering
   \includegraphics[width=.6\textwidth]{fig-qt-combobox-example}
-  \caption{Two comobo boxes in a form layout}
+  \caption{Two combo boxes in a form layout}
   \label{fig:qt-combobox-example}
 \end{figure}
 
@@ -492,7 +492,7 @@ lyt <- Qt$QFormLayout()
 w$setLayout(lyt)
 lyt$addRow("Region:", region)
 lyt$addRow("State:", state)
-## grow comboboxes
+## grow combo boxes
 lyt$fieldGrowthPolicy = Qt$QFormLayout$AllNonFixedFieldsGrow
 @ 
 
@@ -727,7 +727,7 @@ w$raise()
 \end{example}
 
 
-\subsection{Masks and Validation}
+\subsection{Masks and validation}
 \label{sec:masks-validation}
 
 \class{QLineEdit} has various means to restrict and validate user
@@ -755,7 +755,7 @@ committed.
 \end{example}
 
 
-\section{Web View Widget}
+\section{QtWebKit widget}
 
 The \class{QtWebKit} module provides a \Qt-based implementation of the
 cross-platform \software{WebKit} API. The standards support
@@ -861,7 +861,7 @@ webview$setHtml(html)
 %% ML: how far do we want to go with this web example? not sure how
 %% many users will be implementing a full-fledged browser.
 
-\section{Embedding R Graphics}
+\section{Embedding R graphics}
 \label{sec:qt-embedding-graphics}
 
 The \pkg{qtutils} package includes a \Qt-based graphics device,
@@ -916,16 +916,17 @@ and finally drops the object on the target. For our example, we will
 enable the dragging of text from one label to another, following the
 \Qt{} tutorial.
 
-\subsection{Initiating a Drag} 
+\subsection{Initiating a drag} 
 We begin by setting up a label to be a drag target:
 <<DragConstructor, results=hide>>=
-qsetClass("DragLabel", Qt$QLabel, function(text="", parent=NULL) {
-  super(parent)
-  setText(text)
-
-  setAlignment(Qt$Qt$AlignCenter)
-  setMinimumSize(200, 200)
-})
+qsetClass("DragLabel", Qt$QLabel, 
+          function(text="", parent=NULL) {
+            super(parent)
+            setText(text)
+            ##
+            setAlignment(Qt$Qt$AlignCenter)
+            setMinimumSize(200, 200)
+          })
 @
 
 When a drag and drop sequence is initiated, the source, i.e., the
@@ -955,13 +956,14 @@ to initiate the drag. It is also possible to call
 it is being dragged to its target.
 
 
-\subsection{Handling a Drop}
+\subsection{Handling a drop}
 
 Implementing a label as a drop target is a bit more work, as we
 customize its appearance. Our basic
 constructor follows:
 <<DropConstructor, results=hide>>=
-qsetClass("DropLabel", Qt$QLabel, function(text="", parent=NULL) {
+qsetClass("DropLabel", Qt$QLabel, function(text="", 
+                                           parent=NULL) {
   super(parent)
 
   setText(text)

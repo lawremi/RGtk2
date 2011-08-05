@@ -39,7 +39,7 @@ the device to a pixmap. Finally, passing a \class{GtkPrintContext} to
 \function{asCairoDevice} allows printing R graphics through the \GTK\/
 printing dialogs.
 
-\begin{example}{Printing R Graphics}{eg:RGtk2:printing-graphics}
+\begin{example}{Printing R graphics}{eg:RGtk2:printing-graphics}
   This example will show how to use the printing support in \GTK\/ for
   printing an R plot. 
   

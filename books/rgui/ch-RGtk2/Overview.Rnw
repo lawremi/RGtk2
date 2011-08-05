@@ -335,6 +335,7 @@ cat(booktabs(df,
 %%% ------ constants --------
 \subsection{Enumerated types and flags}
 
+\iprogram{enumeration}
 In \GTK\/, there are properties and method parameters that expect one
 value from a discrete set of possible values. Such a set is often
 implemented as an \textit{enumeration} in C, so we use that term. For
@@ -378,7 +379,7 @@ A character vector can be used when more than one value is desired.
 
 \subsection{Events and signals}
 
-
+\iprogram{event handlers}
 In \pkg{RGtk2} user events, such as mouse clicks, keyboard usage,
 drag and drops, etc. trigger \pkg{RGtk2} widgets to signal the action.
 A GUI can be made interactive, by adding callbacks to a widget to
@@ -444,7 +445,7 @@ signatures. The help page for the class documents the available
 signals and the signatures of the callbacks.
 
 
-\paragraph{Window manager events} 
+\paragraph{Window manager events} \iprogram{window manager events}
 For window manager events, the basic
 signature is \code{(w, event, user.data)}, where the 
 second argument is a \class{GdkEvent} object (or a subclass). These
@@ -608,7 +609,7 @@ g$connectSignals()
 %
 The GUI should now be ready for use.
 
-\section{Launching a GUI via a Non-interactive Session}
+\section{Launching a GUI via a non-interactive Session}
 \label{sec:RGtk2-run-scripts-under-windows}
 
 If one runs an \pkg{RGtk2} script non-interactively, such as by

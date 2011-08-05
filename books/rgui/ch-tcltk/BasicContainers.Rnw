@@ -7,6 +7,7 @@
 %%\XXX{Window Styles}
 
 %% constructor
+\igui{top-level windows}
 Top level windows are created through the \function{tktoplevel}
 constructor. Basic options include the ability to specify the
 preferred width and height and to specify a menubar through
@@ -226,7 +227,7 @@ style. The value of \code{relief} is chosen from (the default)
 \qcode{flat}, \qcode{groove}, \qcode{raised}, \qcode{ridge},
 \qcode{solid}, or \qcode{sunken}.  
 
-\subsection{Label Frames}
+\subsection{Label frames}
 \label{sec:tcltk:label-frames}
 
 The \constructor{ttklabelframe} constructor produces a frame with an
@@ -246,7 +247,7 @@ values of \qcode{horizontal} (the default) or \qcode{vertical}. This
 widget must be told to stretch when added to a container, as described
 in the next section.
 
-\section{Geometry Managers}
+\section{Geometry managers}
 \label{sec:tcltk:geometry-managers}
 
 \TCL\/ uses \secdfn{geometry managers}{tcltk} to place child
@@ -281,6 +282,7 @@ session.
 %%\XXX{Comment that pack can pack into other parent?}
 
 %% side
+\ilayout{box layout}
 We have illustrated how \constructor{tkpack} can be used to manage how
 child components are viewed within their parent. The basic usage
 \code{tkpack(child)} will pack in the child components from top to
@@ -306,7 +308,7 @@ Example~\ref{ex-tcltk-subset-dialog} shows a usage.  After a child
 component is removed this way, it can be re-placed in the GUI using a
 geometry manager.
 
-\paragraph{Introspection}
+\paragraph{Introspection}\iprogram{reflection}
 The subcommand \subcommand{slaves}{tkpack} will return a list of the
 child components packed into a frame. Coercing these return values to
 character via \code{as.character} will produce the IDs of the child
@@ -386,6 +388,7 @@ tkpack(ttkbutton(f, text="ipady"), ipady=10)
 tkpack(ttkbutton(f, text="ipady"), ipady=10)
 @ 
 
+\ilayout{spacing}
 In addition to the \code{padding} option for a frame container, the
 \option{ipadx}{tkpack}, \option{ipady}{tkpack}, \option{padx}{tkpack},
 and \option{pady}{tkpack} options can be used to add space around the
@@ -444,7 +447,7 @@ sides.
 
 
 %% has a thorough explanation: http://www.rigacci.org/docs/biblio/online/lperltk/ch02.html
-\paragraph{The anchor, expand, fill arguments}
+\paragraph{The anchor, expand, fill arguments}\ilayout{alignment}
 When there is more space in the box than requested by the child
 component, there are other options. The \option{anchor}{tkpack} option
 can be used to anchor the child to a place in the box by specifying
@@ -600,6 +603,7 @@ by the parent, and not the underlying table widget.
 
 \subsection{Grid}
 \label{sec:tcltk:grid}
+\ilayout{grid layout}
 The \function{tkgrid} geometry manager is used to align child widgets
 in rows and columns.  In its simplest usage, a command like
 \begin{Schunk}
@@ -617,12 +621,12 @@ options, and others, can be adjusted through the
 \function{tkgrid.configure} function.
 
 
-\paragraph{The tkgrid.rowconfigure, tkgrid.columnconfigure commands}
+\paragraph{The \code{tkgrid.rowconfigure} and \code{tkgrid.columnconfigure} commands}
 When the managed container is resized, the grid manager consults
 weights that are assigned to each row and column to see how to
 allocate the extra space. Allocation is based on proportions, not
 specified sizes. The weights are configured with the
-\function{tkgrid.rowconfigure} and \function{tkgrid.columnconfigure}
+\index{tkgrid!\code{rowconfigure}}\function{tkgrid.rowconfigure} and \function{tkgrid.columnconfigure}
 functions through the option \option{weight}{tkgrid.columnconfigure}.
 The weight is a value between $0$ and $1$. If there are just two rows, and
 the first row has weight $1/2$ and the second weight $1$, then the extra
@@ -689,7 +693,7 @@ function can be used with the child object as its argument.
 \label{sec:tcltk:other-containers}
 \TK\/ provides just a few other basic containers, here we describe paned windows and notebooks.
 
-\subsection{Paned Windows}
+\subsection{Paned windows}
 \label{sec:tcltk:paned-windows}
 
 A paned window, with sashes to control the individual pane sizes, is constructed by the function

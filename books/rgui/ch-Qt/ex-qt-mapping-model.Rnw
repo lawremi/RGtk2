@@ -1,0 +1,46 @@
+We will demonstrate \class{QDataWidgetMapper} by displaying a table
+view of the \code{Cars93} dataset, along with a label. When a row is
+selected, the \code{Model} name of the record will be displayed in the
+label. First, we establish the mapping:
+<<qt-mvc-mapper-map, results=hide>>=
+data(Cars93, package="MASS")
+model <- qdataFrameModel(Cars93, editable=names(Cars93))
+mapper <- Qt$QDataWidgetMapper()
+mapper$setModel(model)
+##
+label <- Qt$QLineEdit()
+mapper$addMapping(label, 1)
+@ 
+%
+The \method{addMapping}{QDataWidgetMapper} establishes a mapping
+between the view widget and the $0$-based column index in the
+model. The method prefix is \code{add} not \code{set} as more than one
+mapping is possible.
+  
+\begin{figure}
+  \centering
+  \includegraphics[width=.8\textwidth]{fig-qt-qdatawidgetmapper}
+  \caption{The \class{QDataWidgetMapper} maps the cell value in a
+    column to a property of one or more widgets. Here the line edit
+    widget is synchronized with the \code{Model} of the selected row.}
+  \label{fig:qt-qdatawidgetmapper}
+\end{figure}
+
+Next, we construct a table view and establish a handler that changes
+the current row of the data mapper upon selection:
+<<qt-mvc-mapper-select, results=hide>>=
+tableView <- Qt$QTableView()
+tableView$setModel(model)
+qconnect(tableView$selectionModel(), "currentRowChanged", 
+         function(cur, prev) mapper$setCurrentIndex(cur$row()))
+@ 
+
+Finally, we layout our GUI (Figure~\ref{fig:qt-qdatawidgetmapper}):
+<<qt-mvc-mapper-layout, results=hide>>=
+w <- Qt$QWidget()
+lyt <- Qt$QVBoxLayout()
+w$setLayout(lyt)
+lyt$addWidget(tableView)
+lyt$addWidget(label)
+@ 
+

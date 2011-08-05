@@ -25,7 +25,7 @@ objects provided by \GTK.
 
 %% constructor Show/Hide
 As we saw in our ``Hello World'' example, top-level windows are
-constructed by the \constructor{gtkWindow} constructor. This function
+constructed by the \igui{top-level window}\constructor{gtkWindow} constructor. This function
 has arguments \code{type} to specify the type of window to create. The
 default is a top-level window, which we will always use, as the
 alternative is for ``popups'' which are meant for internal use, e.g.,
@@ -201,7 +201,8 @@ w$add(l)
 To remove a widget from the screen but not its container, use the
 \method{hide}{GtkWidget} method on the widget. The
 \method{reparent}{GtkWidget} method is a convenience for moving a
-widget between containers that ensures the child is not garbage
+widget between containers that ensures the child is not
+\iprogram{garbage collection}garbage
 collected during the transition.~\footnote{An object becomes available
   for garbage collection when it has no references to it, which can
   happen if it is removed from the parent container.}
@@ -280,7 +281,7 @@ same for every level in the container hierarchy.
 \label{sec:RGtk2:layout:box}
 
 The most commonly used multi-child container in \GTK\/ is the box
-(implemented in class \class{GtkBox}) which packs its children as if
+(implemented in class \class{GtkBox}) which \ilayout{box layout}packs its children as if
 they were in a box. Instances of \class{GtkBox} are constructed by
 \function{gtkHBox} or \function{gtkVBox}.  These produce horizontal or
 vertical boxes, respectively. Each child widget is allocated a cell in
@@ -510,7 +511,7 @@ a$add(l)
 \SweaveInput{Pre-defined-dialogs}
 
 
-\section{Special-purpose Containers}
+\section{Special-purpose containers}
 \label{sec:RGtk2:containers}
 
 In Section~\ref{sec:RGtk2:layout}, we presented \class{GtkBox} and
@@ -614,8 +615,7 @@ the same group, which depends on the \property{group-id}
 property. Pages can be deleted using the method
 \method{removePage}{GtkNotebook}.
 
-\paragraph{Managing Many Pages}
-
+\paragraph{Managing many pages}
 By default, a notebook will request enough space to display all of its
 tabs. If there are many tabs, space may be wasted. \class{GtkNotebook}
 solves this with the scrolling idiom. If the
@@ -826,7 +826,7 @@ is emitted when the gutter position is changed.
 \label{sec:RGtk2:gtkTable}
 
 \class{GtkTable} is a container for laying out objects in a tabular
-(or grid) format. It is \emph{not} meant for displaying tabular
+(or grid) \ilayout{grid layout}format. It is \emph{not} meant for displaying tabular
 data. The container divides its space into cells of a grid, and a
 child widget may occupy one or more cells. The allocation of space
 within a row or column follows logic similar to that of box

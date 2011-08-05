@@ -33,7 +33,10 @@ addScrollbars <- function(parent, widget,type=c("both", "x", "y")) {
   }
 }
 @ 
-This example shows how one might make a very simple code editor using a text-entry widget. We use the \pkg{svMisc} package, as it defines a few GUI helpers which we use.
+%%
+This example shows how one might make a very simple code editor using
+a text-entry widget. \iprogram{evaluate strings}We use the \pkg{svMisc} package, as it defines a
+few GUI helpers which we use.
 <<>>=
 library(svMisc)                         # for some helpers
 showCmd <- function(cmd) writeLine(captureAll(Parse(cmd)))
@@ -51,7 +54,7 @@ addScrollbars(f, tb)
 @ 
 %
 
-Using \function{tkmenu}, we create a toplevel menu bar, \code{mb}, and
+Using \function{tkmenu}, we create a toplevel menubar, \code{mb}, and
 attach it to our toplevel window. Following we makefile and edit submenus.
 <<>>=
 mb <- tkmenu(w); tkconfigure(w, menu=mb)
@@ -63,7 +66,7 @@ tkadd(mb, "cascade", label="Edit", menu=editMenu)
 @ 
 %
 
-To these sub menu bars, we add action items. First a command to
+To these sub menubars, we add action items. First a command to
 evaluate the contents of the buffer.
 <<>>=
 tkadd(fileMenu, "command", label="Evaluate buffer",

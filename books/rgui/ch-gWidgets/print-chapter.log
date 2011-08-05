@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.4.5)  26 JUL 2011 13:39
+This is pdfTeX, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.4.5)  5 AUG 2011 18:43
 entering extended mode
 **print-chapter
 (./print-chapter.tex
@@ -507,6 +507,16 @@ File: listings.cfg 2004/09/05 1.3 listings configuration
 ))
 Package: listings 2004/10/17 1.3b (Carsten Heinz)
 
+(/opt/local/share/texmf-dist/tex/latex/misc209/multind.sty)
+\general@idxfile=\write4
+\openout4 = `general.idx'.
+
+
+Writing index file general.idx 
+\concepts@idxfile=\write5
+\openout5 = `concepts.idx'.
+
+Writing index file concepts.idx 
 (/opt/local/share/texmf-dist/tex/latex/footbib/footbib.sty
 Package: footbib 2004/06/04 v2.0.4 (E.Domenjoud)
 
@@ -527,7 +537,7 @@ Type  X <return>  to quit or cross your fingers and just type <return>.
 
 
 \fb@ins=\insert229
-\fb@auxout=\write4
+\fb@auxout=\write6
 \fb@numunit=\count161
 \fb@citeunit=\count162
 \fb@xrefunit=\count163
@@ -549,12 +559,12 @@ LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
 Package: mathpazo 2005/04/12 PSNFSS-v9.2a Palatino w/ Pazo Math (D.Puga, WaS) 
 \symupright=\mathgroup8
 )
-LaTeX Font Info:    Try loading font information for T1+pplx on input line 79.
+LaTeX Font Info:    Try loading font information for T1+pplx on input line 84.
 
 (/opt/local/share/texmf-dist/tex/latex/psnfss/t1pplx.fd
 File: t1pplx.fd 2004/09/06 font definitions for T1/pplx.
 )
-LaTeX Font Info:    Try loading font information for T1+cmss on input line 79.
+LaTeX Font Info:    Try loading font information for T1+cmss on input line 84.
 
 (/opt/local/share/texmf-dist/tex/latex/base/t1cmss.fd
 File: t1cmss.fd 1999/05/25 v2.5h Standard LaTeX font definitions
@@ -571,7 +581,7 @@ Style option: `fancyvrb' v2.6, with DG/SPQR fixes <1998/07/17> (tvz)
 \FV@TabBox=\box35
 \c@FancyVerbLine=\count169
 \FV@StepNumber=\count170
-\FV@OutFile=\write5
+\FV@OutFile=\write7
 
 No file fancyvrb.cfg.
 ) (/opt/local/share/texmf-dist/tex/latex/graphics/color.sty
@@ -647,29 +657,22 @@ LaTeX Info: Redefining \cite on input line 602.
 )
 \c@Example=\count180
 \c@CodeExample=\count181
-)
-\print-chapter@idxfile=\write6
-\openout6 = `print-chapter.idx'.
-
-
-Writing index file print-chapter.idx 
-(./print-chapter.aux)
+) (./print-chapter.aux)
 \openout1 = `print-chapter.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-
-(/opt/local/share/texmf-dist/tex/context/base/supp-pdf.tex
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+ (/opt/local/share/texmf-dist/tex/context/base/supp-pdf.tex
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count182
 \scratchdimen=\dimen176
@@ -684,9 +687,9 @@ LaTeX Font Info:    ... okay on input line 5.
 \@bracelevel=\count187
 \@bgrouplineno=\count188
 ) (./print-chapter.fb.aux)
-\openout4 = `print-chapter.fb.aux'.
+\openout6 = `print-chapter.fb.aux'.
 
-LaTeX Info: Redefining \selectfont on input line 5.
+LaTeX Info: Redefining \selectfont on input line 3.
 
 ABD: EveryShipout initializing macros (../setup2.tex
 (/opt/local/share/texmf-dist/tex/latex/listings/lstlang1.sty
@@ -816,9 +819,11 @@ Overfull \hbox (15.40363pt too wide) in paragraph at lines 177--178
 t.png> <./ex-33-gWidgetsWWW.png>] [3 <./fig-file-search.png>]
 LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <10> not available
 (Font)              Font shape `T1/pplx/b/n' tried instead on input line 224.
+LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10> not available
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 241.
  [4] [5] [6]
 [7]
-Underfull \hbox (badness 1038) in paragraph at lines 584--584
+Underfull \hbox (badness 1038) in paragraph at lines 588--588
 []|\T1/pplx/m/n/10 Set han-dler for when wid-get is dou-ble
  []
 
@@ -826,19 +831,19 @@ Underfull \hbox (badness 1038) in paragraph at lines 584--584
 File: fig-gWidgets-yuml.png Graphic file (type png)
 
 <use fig-gWidgets-yuml.png>
-Overfull \hbox (43.9631pt too wide) in paragraph at lines 785--793
+Overfull \hbox (43.9631pt too wide) in paragraph at lines 789--797
  [][] 
  []
 
 [11 <./fig-gWidgets-yuml.png>] [12]
-LaTeX Font Info:    Try loading font information for OMS+pplx on input line 863
+LaTeX Font Info:    Try loading font information for OMS+pplx on input line 867
 .
-LaTeX Font Info:    No file OMSpplx.fd. on input line 863.
+LaTeX Font Info:    No file OMSpplx.fd. on input line 867.
 
 
 LaTeX Font Warning: Font shape `OMS/pplx/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbullet' on input line 863.
+(Font)              for symbol `textbullet' on input line 867.
 
 <fig-gWidgets-example-browser.png, id=64, 833.1125pt x 554.07pt>
 File: fig-gWidgets-example-browser.png Graphic file (type png)
@@ -852,10 +857,10 @@ File: fig-example-browser-schematic.png Graphic file (type png)
 ] [14 <./fig-gWidgets-example-browser.png> <./fig-example-browser-schematic.png
 >] [15] [16]
 LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/pplx/b/n' tried instead on input line 1077.
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 1081.
  [17]
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 1162.
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 1166.
  [18]
 <fig-gWidgets-expand-RGtk2.png, id=89, 374.39874pt x 286.06876pt>
 File: fig-gWidgets-expand-RGtk2.png Graphic file (type png)
@@ -868,23 +873,22 @@ File: fig-gWidgets-expand-tcltk.png Graphic file (type png)
 <fig-gWidgets-expand-Qt.png, id=91, 398.48875pt x 315.1775pt>
 File: fig-gWidgets-expand-Qt.png Graphic file (type png)
 
-<use fig-gWidgets-expand-Qt.png> [19]
-<fig-gWidgets-buttons.png, id=96, 607.26875pt x 337.26pt>
+<use fig-gWidgets-expand-Qt.png> [19] [20 <./fig-gWidgets-expand-RGtk2.png> <./
+fig-gWidgets-expand-tcltk.png> <./fig-gWidgets-expand-Qt.png>]
+<fig-gWidgets-buttons.png, id=102, 607.26875pt x 337.26pt>
 File: fig-gWidgets-buttons.png Graphic file (type png)
 
-<use fig-gWidgets-buttons.png> [20 <./fig-gWidgets-expand-RGtk2.png> <./fig-gWi
-dgets-expand-tcltk.png> <./fig-gWidgets-expand-Qt.png>] [21 <./fig-gWidgets-but
-tons.png>]
+<use fig-gWidgets-buttons.png> [21 <./fig-gWidgets-buttons.png>]
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 1436.
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 1446.
  [22] [23]
-Overfull \hbox (4.0107pt too wide) in paragraph at lines 1606--1613
+Overfull \hbox (4.0107pt too wide) in paragraph at lines 1617--1624
 []\T1/pplx/m/n/10 The \T1/cmtt/m/n/10 svalue[] \T1/pplx/m/n/10 method re-turns 
 the in-dex of the cur-rently raised tab, whereas
  []
 
 [24]
-Overfull \hbox (20.80368pt too wide) in paragraph at lines 1650--1651
+Overfull \hbox (20.80368pt too wide) in paragraph at lines 1661--1662
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -892,12 +896,12 @@ Overfull \hbox (20.80368pt too wide) in paragraph at lines 1650--1651
 [25] [26
 
 ] [27] [28]
-Underfull \hbox (badness 10000) in paragraph at lines 1862--1868
+Underfull \hbox (badness 10000) in paragraph at lines 1873--1879
 
  []
 
 [29]
-Underfull \hbox (badness 10000) in paragraph at lines 1950--1952
+Underfull \hbox (badness 10000) in paragraph at lines 1961--1963
 
  []
 
@@ -905,34 +909,34 @@ Underfull \hbox (badness 10000) in paragraph at lines 1950--1952
 File: fig-gWidgets-icon-example.png Graphic file (type png)
 
 <use fig-gWidgets-icon-example.png> [31 <./fig-gWidgets-icon-example.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 2069--2080
+Underfull \hbox (badness 10000) in paragraph at lines 2080--2091
 
  []
 
-[32] [33]
-Underfull \hbox (badness 10000) in paragraph at lines 2242--2252
+[32] [33] [34]
+Underfull \hbox (badness 10000) in paragraph at lines 2263--2273
 
  []
 
-[34]
-Underfull \hbox (badness 10000) in paragraph at lines 2259--2261
+
+Underfull \hbox (badness 10000) in paragraph at lines 2280--2282
 
  []
 
 <fig-gWidgets-calculuator.png, id=151, 338.26375pt x 274.02374pt>
 File: fig-gWidgets-calculuator.png Graphic file (type png)
 
-<use fig-gWidgets-calculuator.png> [35 <./fig-gWidgets-calculuator.png>]
-[36] <fig-gWidgets-EBImage-gui.png, id=159, 809.0225pt x 648.4225pt>
+<use fig-gWidgets-calculuator.png> [35] [36 <./fig-gWidgets-calculuator.png>]
+<fig-gWidgets-EBImage-gui.png, id=159, 809.0225pt x 648.4225pt>
 File: fig-gWidgets-EBImage-gui.png Graphic file (type png)
 
 <use fig-gWidgets-EBImage-gui.png> [37] [38 <./fig-gWidgets-EBImage-gui.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 2456--2463
+Underfull \hbox (badness 10000) in paragraph at lines 2478--2485
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2464--2467
+Underfull \hbox (badness 10000) in paragraph at lines 2486--2489
 
  []
 
@@ -941,114 +945,112 @@ File: fig-gWidgets-mean-default.png Graphic file (type png)
 
 <use fig-gWidgets-mean-default.png> [41 <./fig-gWidgets-mean-default.png>]
 [42]
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 2792--2793
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 2814--2815
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][] 
  []
 
 [43]
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 2895--2896
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 2917--2918
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][] 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 2951--2953
+[44]
+Underfull \hbox (badness 10000) in paragraph at lines 2973--2975
 
  []
 
-<fig-gWidgets-file-search-advanced.png, id=186, 833.1125pt x 378.41376pt>
+<fig-gWidgets-file-search-advanced.png, id=189, 833.1125pt x 378.41376pt>
 File: fig-gWidgets-file-search-advanced.png Graphic file (type png)
 
-<use fig-gWidgets-file-search-advanced.png> [44] [45 <./fig-gWidgets-file-searc
-h-advanced.png>] [46] [47]
-Overfull \hbox (27.52438pt too wide) in paragraph at lines 3143--3150
+<use fig-gWidgets-file-search-advanced.png> [45 <./fig-gWidgets-file-search-adv
+anced.png>] [46] [47]
+Overfull \hbox (27.52438pt too wide) in paragraph at lines 3165--3172
 \T1/pplx/m/n/10 event. Also of in-ter-est are the \T1/cmtt/m/n/10 ad-dHan-dler-
 Rightclick[] \T1/pplx/m/n/10 and \T1/cmtt/m/n/10 add3rdMousePopupMenu[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3164--3165
+Underfull \hbox (badness 10000) in paragraph at lines 3186--3187
 
  []
 
 <fig-gWidgets-collapse-factor.png, id=200, 652.4375pt x 303.1325pt>
 File: fig-gWidgets-collapse-factor.png Graphic file (type png)
 
-<use fig-gWidgets-collapse-factor.png> [48 <./fig-gWidgets-collapse-factor.png>
-] [49] [50]
-Underfull \hbox (badness 10000) in paragraph at lines 3341--3343
+<use fig-gWidgets-collapse-factor.png> [48] [49 <./fig-gWidgets-collapse-factor
+.png>] [50]
+Underfull \hbox (badness 10000) in paragraph at lines 3363--3365
 
  []
 
 <fig-gWidgets-filter-example.png, id=212, 810.02625pt x 342.27875pt>
 File: fig-gWidgets-filter-example.png Graphic file (type png)
 
-<use fig-gWidgets-filter-example.png> [51 <./fig-gWidgets-filter-example.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 3414--3421
+<use fig-gWidgets-filter-example.png> [51] [52 <./fig-gWidgets-filter-example.p
+ng>]
+Underfull \hbox (badness 10000) in paragraph at lines 3436--3443
 
  []
 
-<fig-gWidgets-ws-browser.png, id=217, 525.965pt x 311.1625pt>
+<fig-gWidgets-ws-browser.png, id=220, 525.965pt x 311.1625pt>
 File: fig-gWidgets-ws-browser.png Graphic file (type png)
 
-<use fig-gWidgets-ws-browser.png> [52] [53 <./fig-gWidgets-ws-browser.png>]
+<use fig-gWidgets-ws-browser.png> [53 <./fig-gWidgets-ws-browser.png>]
 <fig-gWidgets-observable-observer-uml.png, id=225, 773.89125pt x 212.795pt>
 File: fig-gWidgets-observable-observer-uml.png Graphic file (type png)
 
 <use fig-gWidgets-observable-observer-uml.png> [54 <./fig-gWidgets-observable-o
 bserver-uml.png>] [55] [56]
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 3705--3706
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 3727--3728
 [][][][][][][][][][][][][][][][][][][] 
  []
 
-
-Overfull \hbox (1.74821pt too wide) in paragraph at lines 3739--3743
+[57]
+Overfull \hbox (1.74821pt too wide) in paragraph at lines 3761--3765
 []\T1/pplx/m/n/10 This sub-class of the wid-get view class shows the val-ues in
  the workspace
  []
 
-[57]
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 3788--3789
+
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 3810--3811
 [][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [58]
-Overfull \hbox (10.00357pt too wide) in paragraph at lines 3839--3840
+Overfull \hbox (10.00357pt too wide) in paragraph at lines 3861--3862
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
 
  []
 
-[59]
-LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 3941.
-
-Underfull \hbox (badness 10000) in paragraph at lines 3941--3942
+[59] [60]
+Underfull \hbox (badness 10000) in paragraph at lines 3963--3964
 
  []
 
-[60] [61] <ex-gWidgets-gtree.png, id=253, 431.6125pt x 333.245pt>
+[61] <ex-gWidgets-gtree.png, id=253, 431.6125pt x 333.245pt>
 File: ex-gWidgets-gtree.png Graphic file (type png)
 
-<use ex-gWidgets-gtree.png> [62 <./ex-gWidgets-gtree.png>] [63]
-<fig-gWidgets-menubar-disabled.png, id=261, 433.62pt x 335.2525pt>
+<use ex-gWidgets-gtree.png> [62 <./ex-gWidgets-gtree.png>] [63] [64]
+<fig-gWidgets-menubar-disabled.png, id=264, 433.62pt x 335.2525pt>
 File: fig-gWidgets-menubar-disabled.png Graphic file (type png)
 
-<use fig-gWidgets-menubar-disabled.png> [64]
-Overfull \hbox (9.99878pt too wide) in paragraph at lines 4203--4208
-\T1/pplx/b/n/10 Menubar and Tool-bar Meth-ods[] \T1/pplx/m/n/10 The main meth-o
+<use fig-gWidgets-menubar-disabled.png>
+Overfull \hbox (7.76878pt too wide) in paragraph at lines 4225--4230
+\T1/pplx/b/n/10 Menubar and tool-bar Meth-ods[] \T1/pplx/m/n/10 The main meth-o
 ds for tool-bar and menubar
  []
 
 [65 <./fig-gWidgets-menubar-disabled.png>] [66]
-Underfull \hbox (badness 10000) in paragraph at lines 4332--4341
+Underfull \hbox (badness 10000) in paragraph at lines 4354--4363
 
  []
 
 [67
 
 ] [68]
-Underfull \hbox (badness 10000) in paragraph at lines 4410--4412
+Underfull \hbox (badness 10000) in paragraph at lines 4432--4434
 
  []
 
@@ -1056,89 +1058,109 @@ Underfull \hbox (badness 10000) in paragraph at lines 4410--4412
 File: fig-gWidgets-spotfire-gui.png Graphic file (type png)
 
 <use fig-gWidgets-spotfire-gui.png> [69 <./fig-gWidgets-spotfire-gui.png>]
-Overfull \hbox (4.60352pt too wide) in paragraph at lines 4490--4491
+Overfull \hbox (4.60352pt too wide) in paragraph at lines 4512--4513
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (10.00357pt too wide) in paragraph at lines 4503--4504
+Overfull \hbox (10.00357pt too wide) in paragraph at lines 4525--4526
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][] 
  []
 
 [70] [71] [72]
-Overfull \hbox (3.53847pt too wide) in paragraph at lines 4693--4701
+Overfull \hbox (3.53847pt too wide) in paragraph at lines 4715--4723
 \T1/cmtt/m/n/10 Changed[] \T1/pplx/m/n/10 (cell changed), \T1/cmtt/m/n/10 ad-dH
 an-dlerClicked[]\T1/pplx/m/n/10 , \T1/cmtt/m/n/10 ad-dHan-dler-Dou-bleclick[]\T
 1/pplx/m/n/10 . Some
  []
 
 
-Overfull \hbox (9.78535pt too wide) in paragraph at lines 4693--4701
+Overfull \hbox (9.78535pt too wide) in paragraph at lines 4715--4723
 \T1/pplx/m/n/10 toolk-its also have \T1/cmtt/m/n/10 ad-dHan-dler-Colum-nClicked
 []\T1/pplx/m/n/10 , \T1/cmtt/m/n/10 ad-dHan-dler-Colum-n-Dou-bleclick[]\T1/pplx
 /m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4693--4701
+Underfull \hbox (badness 10000) in paragraph at lines 4715--4723
 
  []
 
 [73] [74]
-Underfull \hbox (badness 10000) in paragraph at lines 4848--4856
+Underfull \hbox (badness 10000) in paragraph at lines 4870--4878
 
  []
 
-[75]) (./print-chapter.ind [76]
-Overfull \hbox (5.67981pt too wide) in paragraph at lines 23--24
-[]\T1/pplx/m/n/10 addHandlerColumnDoubleclick, 73 
- []
+[75]) [76]
+
+! Class memoir Error: Font command \bf is not supported.
+
+See the memoir class documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.8 \printindex{concepts}{Concept index}
+                                        
+Use \textbf, or \bfseries{...}, or the oldfontcommands option
+
+(./concepts.ind [77
 
 
-Overfull \hbox (1.04947pt too wide) in paragraph at lines 30--31
-[]\T1/pplx/m/n/10 addHandlerKeystroke, 7, 9, 33, 35,
- []
+])
 
-[77
+! Class memoir Error: Font command \bf is not supported.
 
+See the memoir class documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.9 \printindex{general}{Class and method index}
+                                                
+Use \textbf, or \bfseries{...}, or the oldfontcommands option
 
-]
-Overfull \hbox (3.42041pt too wide) in paragraph at lines 133--134
+(./general.ind
+Overfull \hbox (3.42041pt too wide) in paragraph at lines 78--79
 []| \T1/cmtt/m/n/10 ad-dHan-dler-Colum-nClicked\T1/pplx/m/n/10 , 73 
  []
 
 
-Overfull \hbox (11.2154pt too wide) in paragraph at lines 134--135
+Overfull \hbox (11.2154pt too wide) in paragraph at lines 79--80
 []| \T1/cmtt/m/n/10 ad-dHan-dler-Colum-n-Dou-bleclick\T1/pplx/m/n/10 ,
  []
 
 
-Overfull \hbox (5.96667pt too wide) in paragraph at lines 135--136
+Overfull \hbox (5.96667pt too wide) in paragraph at lines 80--81
 []| \T1/cmtt/m/n/10 ad-dHan-dler-Colum-n-Rightclick\T1/pplx/m/n/10 ,
  []
 
-[78] [79] [80]
-Overfull \hbox (0.5329pt too wide) in paragraph at lines 361--363
+[78
+
+
+] [79] [80]
+Overfull \hbox (0.5329pt too wide) in paragraph at lines 289--291
 []| \T1/cmtt/m/n/10 gWid-get-sRGtk2\T1/pplx/m/n/10 , 11, 19, 20, 30,
  []
 
 
-Overfull \hbox (3.0329pt too wide) in paragraph at lines 365--366
-[]| \T1/cmtt/m/n/10 gWid-get-st-cltk\T1/pplx/m/n/10 , 11, 15, 20, 30--
+Overfull \hbox (3.0329pt too wide) in paragraph at lines 293--294
+[]| \T1/cmtt/m/n/10 gWid-get-st-cltk\T1/pplx/m/n/10 , 12, 15, 20, 30--
  []
 
 [81]) (./print-chapter.fb.aux) (./print-chapter.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 8999 strings out of 94073
- 118860 string characters out of 1164798
- 251910 words of memory out of 1500000
- 12112 multiletter control sequences out of 10000+50000
- 71122 words of font info for 132 fonts, out of 1200000 for 2000
+ 9018 strings out of 94073
+ 119151 string characters out of 1164798
+ 250404 words of memory out of 1500000
+ 12121 multiletter control sequences out of 10000+50000
+ 72038 words of font info for 134 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
  38i,12n,41p,1788b,2404s stack positions out of 5000i,500n,6000p,200000b,5000s
 {/opt/local/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/opt/l
@@ -1157,7 +1179,7 @@ ocal/share/texmf-dist/fonts/type1/public/cm-super/sftt1728.pfb></opt/local/shar
 e/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></opt/local/share/texmf-dist/f
 onts/type1/urw/palatino/uplr8a.pfb></opt/local/share/texmf-dist/fonts/type1/urw
 /palatino/uplri8a.pfb>
-Output written on print-chapter.pdf (81 pages, 1196176 bytes).
+Output written on print-chapter.pdf (81 pages, 1198342 bytes).
 PDF statistics:
  377 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)

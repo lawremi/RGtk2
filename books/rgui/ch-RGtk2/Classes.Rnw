@@ -25,7 +25,7 @@ this feature takes some commitment from the programmer. Any method
 declared by an R class may be overridden by an R subclass.
 
 Our example will be a GUI that displays a scatterplot along with a
-slider for adjusting the alpha level of the points (Figure~\ref{}). Usually, a slider
+slider for adjusting the alpha level of the points (Figure~\ref{fig:RGtk2-extend-gobject-slider}). Usually, a slider
 operates in linear fashion. When there are a large number of points,
 on the order of tens of thousands or more, changing the alpha level
 does not have a strong visual effect until it approaches its lower

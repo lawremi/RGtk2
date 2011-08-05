@@ -1,3 +1,4 @@
+<<eval=FALSE>>=
 This example comes from one at
 \url{http://processingjs.org/learning/basic/distance2d}. A collection
 of circles are drawn with radius that depends on the position of the
@@ -5,7 +6,7 @@ mouse. The \argument{hoverMoveFun}{qlayer} argument for
 \function{qlayer} is used to specify a callback when the mouse
 moves. We use this to adjust the radius of the balls so that when the
 graphic is redrawn it reflects the change.
-
+@ 
 
 <<echo=FALSE>>=
 library(qtpaint)

@@ -95,7 +95,7 @@ findCMD <- function(obj) {
 @ 
 %
 
-The following function takes the current command and evaluates it
+The following function takes the \iprogram{evaluating strings}current command and evaluates it
 using the \pkg{evaluate} package. It uses a hack (involving
 \code{grepl}) to distinguish between an incomplete command and a true
 syntax error.

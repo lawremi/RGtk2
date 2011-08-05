@@ -5,16 +5,17 @@ library(qtbase)
 
 \begin{figure}
   \centering
-  \includegraphics[width=.6\textwidth]{fig-qt-table-dnd}
+  \includegraphics[width=.8\textwidth]{fig-qt-table-dnd}
   \caption{A table widget to display contingency tables and a means to
     specify the variables through drag and drop.}
   \label{fig:eg:qt-table-widget-dnd}
 \end{figure}
 
-This examples uses a table view to display the output from
+This example uses a table view to display the output from
 \function{xtabs}. To specify the variables, the user drags variable
 names from a list to one of two labels, representing terms in the formula.
 
+\paragraph{A \class{VariableSelector} class}
 First, we define the \class{VariableSelector} widget, which contains a
 combo box for choosing a data frame and a list view for the variable
 names. When a data frame is chosen in the combo box, its variables are
@@ -32,7 +33,8 @@ qsetClass("VariableSelector", Qt$QWidget, function(parent=NULL) {
   lyt <- Qt$QVBoxLayout()
   lyt$addWidget(dfcb)
   lyt$addWidget(varList)
-  varList$setSizePolicy(Qt$QSizePolicy$Expanding, Qt$QSizePolicy$Expanding)
+  varList$setSizePolicy(Qt$QSizePolicy$Expanding, 
+                        Qt$QSizePolicy$Expanding)
   setLayout(lyt)
   
   updateDataSets()
@@ -46,9 +48,9 @@ qsetClass("VariableSelector", Qt$QWidget, function(parent=NULL) {
 This utility populates the combo box with a list of data frames:
 <<qt-mvc-dnd-update-datasets>>=
 qsetMethod("updateDataSets", VariableSelector, function() {
-  curVal <- this$dfcb$currentText
-  this$dfcb$clear()
-  dfs <- names(which(unlist(eapply(.GlobalEnv, is.data.frame))))
+  curVal <- dfcb$currentText
+  dfcb$clear()
+  dfs <- ProgGUIinR:::avail_dfs()
   if(length(dfs)) {
     this$dfcb$addItems(dfs)
     if(is.null(curVal) || !curVal %in% dfs) {
@@ -62,42 +64,70 @@ qsetMethod("updateDataSets", VariableSelector, function() {
 })
 @ 
 
-The data frame is stored in the following property:
-<<qt-mvc-dnd-dataset, results=hide>>=
-qsetProperty("dataFrame", VariableSelector, write = function(df) {
-  if (is.null(df))
-    df <- data.frame()
-  else if (is.character(df)) 
-    df <- get(df, .GlobalEnv)
-  model <- this$varList$model()
-  qdataFrame(model) <- data.frame(variable = names(df), 
-                                  variable.decoration = I(lapply(df, getIcon)))
-  this$.dataFrame <- df
-  dataFrameChanged()
-})
+The data frame is stored in the following call to
+\function{qsetProperty}. We overwrite the underlying \meth{write}
+method to also update our model for the variable list.
+<<qt-mvc-dnd-dataset, results=hide, echo=FALSE>>=
+## not shown, has spurious call to set attribute
+qsetProperty("dataFrame", VariableSelector, 
+             write = function(df) {
+               if (is.null(df))
+                 df <- data.frame()
+               else if (is.character(df)) 
+                 df <- get(df, .GlobalEnv)
+               model <- varList$model()
+               attr(model, "useRoles") <- FALSE      # Shouldn't need
+               qdataFrame(model) <- data.frame(variable=names(df))
+               this$.dataFrame <- df
+               dataFrameChanged()
+             })
+@ 
+
+<<eval=FALSE>>=
+qsetProperty("dataFrame", VariableSelector, 
+             write = function(df) {
+               if (is.null(df))
+                 df <- data.frame()
+               else if (is.character(df)) 
+                 df <- get(df, .GlobalEnv)
+               ##
+               model <- varList$model()
+               qdataFrame(model) <- 
+                 data.frame(variable=names(df))
+               this$.dataFrame <- df
+               dataFrameChanged()
+             })
 @ 
 %
-When the property is written, the variable list is updated and it
-emits this signal:
+<<didntWork, echo=FALSE, eval=FALSE>>=
+## XXXX The icon bit isn't working out for me.
+## This isn't working for me right now...
+## in VariableSelector
+this$varList$setModel(qdataFrameModel(data.frame(), this, userRoles=TRUE))
+## The \function{getIcon} helper function provides an icon from the class of a
+## column:
+require(grid)
+getIcon <- function(x) {
+  f <- tempfile()
+  png(file=f, width=16, height=16)
+  grid::grid.newpage()
+  grid::grid.draw(ProgGUIinR::make_icon(x))
+  dev.off()
+  Qt$QIcon(f)
+}
+qdataFrame(model) <- data.frame(variable=names(df),
+                                variable.decoration=I(lapply(df, getIcon)))
+
+@ 
+When the property is written the variable selector will emit this signal:
 <<qt-mvc-dnd-datasetChanged, results=hide>>=
 qsetSignal("dataFrameChanged", VariableSelector)
 @ 
-%
-The \function{getIcon} generic resolves an icon from the class of a
-column:
-<<qt-mvc-dnd-getIcon>>=
-getIcon <- function(x) UseMethod("getIcon")
-getIcon.default <- function(x)
-  Qt$QIcon(system.file("images/numeric.gif", package="gWidgets"))
-getIcon.factor <- function(x)
-  Qt$QIcon(system.file("images/factor.gif", package="gWidgets"))
-getIcon.character <- function(x)
-  Qt$QIcon(system.file("images/character.gif", package="gWidgets"))
-@ 
 
+\paragraph{A \class{QLabel} subclass}
 Next, a derivative of \class{QLabel} is defined that accepts drops
 from the variable list and is capable of rotating text for displaying
-the $Y$ component:
+the $y$-label component:
 <<DropLabelRotation, results=hide>>=
 qsetClass("VariableLabel", Qt$QLabel, function(parent=NULL) {
   super(parent)
@@ -152,13 +182,14 @@ qsetMethod("dragLeaveEvent", VariableLabel, function(e) {
 })
 @ 
 
-To handle the drop, we get the variable name, set the text of the
+To respond to a drop event, we get the variable name, set the text of the
 label and emit the \signal{variableNameDropped}{VariableLabel} signal:
 <<dropEvent, results=hide>>=
 qsetMethod("dropEvent", VariableLabel, function(e) {
   setForegroundRole(Qt$QPalette$WindowText)  
   md <- e$mimeData()
-  if(!is.null(this$variableName <- variableNameFromMimeData(md))) {
+  this$variableName <- variableNameFromMimeData(md)
+  if(!is.null(variableName)) {
     this$text <- variableName
     variableNameDropped()
     setBackgroundRole(Qt$QPalette$Window)
@@ -169,25 +200,26 @@ qsetMethod("dropEvent", VariableLabel, function(e) {
 
 To complete the \class{VariableLabel} class, we override the
 \event{paintEvent} event to respect the
-\property{rotation}{VariableLabel} class. Drawing low-level graphics is
-beyond our scope. In short we translate the origin to the center
+\prop{rotation} property. Drawing low-level graphics is
+beyond our scope. In short, we translate the origin to the center
 of the label rectangle, rotate the coordinate system by the angle,
 then draw the text:
 <<results=hide>>=
 qsetMethod("paintEvent", VariableLabel, function(e) {
   p <- Qt$QPainter()
   p$begin(this)
-  w <- this$width; h <- this$height
+  
   p$save()
-  p$translate(w/2, h/2)
-  p$rotate(-(this$rotation))
-  rect <- p$boundingRect(0, 0, 0, 0, Qt$Qt$AlignCenter, this$text)
-  p$drawText(rect, Qt$Qt$AlignCenter, this$text)
+  p$translate(width/2, height/2)
+  p$rotate(-(rotation))
+  rect <- p$boundingRect(0, 0, 0, 0, Qt$Qt$AlignCenter, text)
+  p$drawText(rect, Qt$Qt$AlignCenter, text)
   p$restore()
   p$end()
 })
 @ 
 
+\paragraph{An \class{XTabsWidget} class}
 Our main widget consists of three child widgets: two drop labels for the
 formula and a table widget to show the output. This could be
 extended to include a third variable for three-way tables, but we leave
@@ -196,7 +228,6 @@ two methods:
 <<XtabsWidget, results=hide>>=
 qsetClass("XtabsWidget", Qt$QWidget, function(parent=NULL) {
   super(parent)
-
   initWidgets()
   initLayout()
 })
@@ -208,37 +239,36 @@ simply adds the widgets to a grid layout. The
 \method{initWidgets}{XtabsWidget} method initializes three widgets:
 <<initWidgets, results=hide>>=
 qsetMethod("initWidgets", XtabsWidget, function() {
-  ## make Widgets
   this$xlabel <- VariableLabel()
   qconnect(xlabel, "variableNameDropped", invokeXtabs)
 
   this$ylabel <- VariableLabel()
-  pt <- this$ylabel$font$pointSize()
-  this$ylabel$minimumWidth <- 2*pt; this$ylabel$maximumWidth <- 2*pt
-  this$ylabel$rotation <- 90L
+  pt <- ylabel$font$pointSize()
+  ylabel$minimumWidth <- 2*pt; ylabel$maximumWidth <- 2*pt
+  ylabel$rotation <- 90L
   qconnect(ylabel, "variableNameDropped", invokeXtabs)
   
   this$tableView <- Qt$QTableView()
-  this$tableView$setModel(qdataFrameModel(data.frame(), this))
+  tableView$setModel(qdataFrameModel(data.frame(), this))
   clearLabels()
 })
 @ 
 %
-The \code{xlabel} is straight-forward: we construct it connect to the
+The \code{xlabel} is straight-forward: we construct it, then connect to the
 drop signal. For the \code{ylabel} we also adjust the rotation and
 constrain the width based on the font size (otherwise the label width
 reflects the length of the dropped text). The \meth{clearLabels}
-method, not shown, just initializes the labels.
+method (not shown) just initializes the labels.
 
 <<echo=FALSE, results=hide>>=
 ## Not shown
 qsetMethod("clearLabels", XtabsWidget, function() {
-  pt <- this$xlabel$font$pointSize()
-  this$xlabel$text <- "Drop x factor here"
-  this$xlabel$minimumHeight <- 2*pt
+  pt <- xlabel$font$pointSize()
+  xlabel$text <- "Drop x factor here"
+  xlabel$minimumHeight <- 2*pt
   
-  this$ylabel$text <- "Drop y factor here"
-  this$ylabel$minimumWidth <- 2*pt
+  ylabel$text <- "Drop y factor here"
+  ylabel$minimumWidth <- 2*pt
 })
 @ 
 
@@ -246,10 +276,10 @@ qsetMethod("clearLabels", XtabsWidget, function() {
 ## Not shown
 qsetMethod("initLayout", XtabsWidget, function() {
   lyt <- Qt$QGridLayout()
-  this$setLayout(lyt)
-  lyt$addWidget(this$xlabel, 0, 1, 1, 3)
-  lyt$addWidget(this$ylabel, 1, 0, 1, 1)
-  lyt$addWidget(this$tableView, 1, 1, 1, 3)
+  setLayout(lyt)
+  lyt$addWidget(xlabel, 0, 1, 1, 3)
+  lyt$addWidget(ylabel, 1, 0, 1, 1)
+  lyt$addWidget(tableView, 1, 1, 1, 3)
   
   lyt$setColumnStretch(2, 1)
   lyt$setRowStretch(1, 1)
@@ -257,39 +287,61 @@ qsetMethod("initLayout", XtabsWidget, function() {
 @ 
 
 This function builds the formula, invokes \function{xtabs} and updates
-the table view:
-<<makeTable, results=hide>>=
-qsetMethod("invokeXtabs", XtabsWidget, function() {
-  if (is.null(dataFrame))
-    return()
+the table view, we hide the conditional call to \function{xtabs}.
+<<echo=FALSE>>=
+## Hide call to xtabs
+## Return NULL if not okay, otherwise a table object
+call_xtabs <- function(dataFrame, xVar, yVar) {
   if(is.character(dataFrame))
     dataFrame <- get(dataFrame)
-  if(is.null(xVar <- this$xlabel$variableName)) {
+  if(is.null(xVar)) {
     out <- NULL
-  } else if(is.null(yVar <- this$ylabel$variableName)) {
+  } else if(is.null(yVar)) {
     f <- formula(sprintf("~ %s", xVar))
     out <- xtabs(f, data=dataFrame)
   } else { 
     f <- formula(sprintf("~ %s + %s", yVar, xVar))
     out <- xtabs(f, data=dataFrame)
   } 
-  if(!is.null(out))
-    updateTableView(out)
+  out
+}
+@ 
+<<makeTable, results=hide>>=
+qsetMethod("invokeXtabs", XtabsWidget, function() {
+  if (is.null(dataFrame))
+    return()
+  xVar <- xlabel$variableName
+  yVar <- ylabel$variableName
+  
+  if(!is.null(out <- call_xtabs(dataFrame, xVar, yVar)))
+     updateTableView(out)
 })
 @ 
 
 We define a method to update the table view:
-<<updateTableWidget, results=hide>>=
+<<updateTableWidget, results=hide, echo=FALSE>>=
+## not shown, as we have spurious call to set attribute
 qsetMethod("updateTableView", XtabsWidget, function(table) {
-  model <- this$tableView$model()
+  model <- tableView$model()
+  attr(model, "useRoles") <- FALSE      # shouldn't need
   if (length(dim(table)) == 1)
     qdataFrame(model) <- data.frame(count = unclass(table))
   else qdataFrame(model) <- data.frame(unclass(table))
 })
 @ 
 
-Finally, we define a property for the data frame on
-\class{XtabsWidget}:
+<<eval=FALSE>>=
+qsetMethod("updateTableView", XtabsWidget, function(table) {
+  model <- tableView$model()
+  if (length(dim(table)) == 1)
+    qdataFrame(model) <- data.frame(count = unclass(table))
+  else qdataFrame(model) <- data.frame(unclass(table))
+})
+@ 
+%
+
+Finally, we define a property for the data frame held in the
+\class{XtabsWidget} class:
 <<qt-mvc-dnd-dataframe-xtabs, results=hide>>=
 qsetProperty("dataFrame", XtabsWidget, write = function(df) { 
   clearLabels()

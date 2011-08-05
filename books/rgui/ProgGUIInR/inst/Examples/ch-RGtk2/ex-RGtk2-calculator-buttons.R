@@ -1,6 +1,7 @@
 ###################################################
 ### chunk number 1: gtkTableGetLabelsFromDataFrame
 ###################################################
+#line 8 "ex-RGtk2-calculator-buttons.Rnw"
 gtkTableGetLabelsFromDataFrame <-
   function(object, dataFrame, callBack, userData=NULL) {
     checkPtrType(object, "GtkTable")
@@ -22,6 +23,7 @@ gtkTableGetLabelsFromDataFrame <-
 ###################################################
 ### chunk number 2: buttonLayout
 ###################################################
+#line 29 "ex-RGtk2-calculator-buttons.Rnw"
 m = rbind(
   c("^", "(", ")", " / ", " == "),
   c(7  ,   8,   9, " * ", " > "),
@@ -34,6 +36,7 @@ m = rbind(
 ###################################################
 ### chunk number 3: buttonGUI
 ###################################################
+#line 40 "ex-RGtk2-calculator-buttons.Rnw"
 tab <- gtkTable(homogeneous=TRUE)       # same size buttons
 tab$getLabelsFromDataFrame(m, function(userData, b) 
                            cat(b$getLabel()))

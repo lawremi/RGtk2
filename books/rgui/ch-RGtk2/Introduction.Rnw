@@ -71,7 +71,8 @@ properties. Handlers are connected to signals, and the widget is
 combined with other widgets to form the GUI. For example:
 <<gtk-overview-initial-example>>=
 button <- gtkButton("Click Me")
-button['image'] <- gtkImage(stock = "gtk-apply", size = "button")
+button['image'] <- gtkImage(stock = "gtk-apply", 
+                            size = "button")
 gSignalConnect(button, "clicked", function(x) {
   message("Hello World!")
 })
@@ -86,7 +87,7 @@ only a matter of reading through the proceeding chapters and the
 documentation to discover all of the widgets and their features. The
 rest of this chapter will explain these basic components of the API.
 
-\section{Objects and Classes}
+\section{Objects and classes}
 
 In any toolkit, all widget types have functionality in common. For
 example, they are all drawn on the screen in a consistent style. They
@@ -97,7 +98,7 @@ widget types. In the parlance of object-oriented programming, each
 type is represented by a \textit{class}.
 
 For specifying the hierarchy, \pkg{GTK+} relies on \pkg{GObject}, a
-\proglang{C} library that implements a \iprogram{classes}class-based, single-inheritance
+\proglang{C} library that implements a \iprogram{class structure}class-based, single-inheritance
 object-oriented system. A \pkg{GObject} class encapsulates behaviors
 that all instances of the class share. Every class has at most one
 parent through which it inherits the behaviors of its ancestors. A
@@ -117,7 +118,7 @@ an S3 object.
 
 Single inheritance can be restrictive when a class performs multiple
 roles in a program. To circumvent this, \pkg{GTK+} adopts the popular
-concept of the \iprogram{Interface}\defn{interface}, which is essentially a contract
+concept of the \iprogram{interface}\defn{interface}, which is essentially a contract
 that specifies which methods, properties and signals a class must
 implement. As with languages like Java and \proglang{C\#}, a class can
 \textit{implement} multiple interfaces, and an interface can be
@@ -197,7 +198,7 @@ function (size, mask = NULL, pixmap = NULL, image = NULL,
 \end{Soutput}
 A \GTK\/ object created by the \R\/ user has an \R-level object as its
 proxy. Thus, \code{window} is a reference to a \class{GtkWindow}
-instance. A reference object will not be copied before
+instance. \iprogram{references}\iprogram{variable scope}A reference object will not be copied before
 modification. This is different from the behavior of most \R\/
 objects. For example, calling \function{abs} on a numeric vector does
 not change the value assigned to the original symbol:
@@ -257,10 +258,10 @@ functions that take an instance of their class as the first argument
 and instruct the widget to perform an action.
 
 Although class information is stored in the style of S3, \pkg{RGtk2}
-introduces its own mechanism for method
+introduces its own mechanism for method\iprogram{method dispatch}
 dispatch.~\footnote{\pkg{RGtk2} uses \R's standard dollar-sign
   notation (also used with reference classes) for class-based method
-  dispatch.}  The call \code{obj\$method(...)}  resolves to a function
+  dispatch.}  \iprogram{R's object oriented notation}The call \code{obj\$method(...)}  resolves to a function
 call \code{f(obj,...)}. The function is found by looking for any
 function that matches the pattern \emph{classNameMethodName}, the
 concatenation of one of the names from \code{class(obj)} or

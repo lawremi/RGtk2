@@ -5,31 +5,43 @@ steps in model implementation.  The performance is poor compared to
 that of \class{DataFrameModel}, as the bulk of the operations are done
 at the \R{} level. We speed things up a bit by placing column headers
 into the first row of the table, instead of overriding the
-\meth{headerData} method, which the \Qt views call far too often. 
+\meth{headerData} method, which the \Qt{} views call far too often. 
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.9\textwidth]{fig-qt-user-defined-model}
+  \caption{A view providing a means to edit a data frame's
+    contents. The underlying model subclasses
+    \class{QAbstractTableModel}, providing customizability for a lack
+    of responsiveness.}
+  \label{fig:qt-user-defined-model}
+\end{figure}
 
 <<echo=FALSE>>=
 ## Create a model for displaying a data frame -- like qdataFrameModel -- only
 ## with more Qt-like control over the display of columnms
 ## The key methods are data(), setData() and flags()
 ##
-## For performance reasons,
+## For performance reasons -- which are considerable here and the main reason
+## we discourage this approach -- 
 ## we avoid header Data and put variable names in first row!
 library(qtbase)
 @ 
 
-Our basic constructor simply creates a \prop{dataframe} property and
-sets the data frame:
+Our basic constructor simply assigns to a \prop{dataframe} property the
+data frame passed to it.
 <<DfModel, results=hide>>=
 qsetClass("DfModel", Qt$QAbstractTableModel, 
-          function(dataframe=data.frame(V1=character(0)), parent=NULL) {
+          function(dataframe=data.frame(V1=character(0)), 
+                   parent=NULL) {
             super(parent)
             this$dataframe <- dataframe
           })
 @ 
 
-Next, we define the \prop{dataframe} property. When a new data frame
-is set, we call the \meth{dataChanged} method to notify any views of a
-change:
+He we configure the \prop{dataframe} property, implementing a
+\meth{write} method so that assigning to this property will call the
+\meth{dataChanged} method to notify any views of a change:
 <<results=hide>>=
 qsetProperty("dataframe", DfModel, write = function(df) {
   this$.dataframe <- df
@@ -37,18 +49,20 @@ qsetProperty("dataframe", DfModel, write = function(df) {
 })
 @ 
 
-There are three virtual methods that we are required to implement:
+As mentioned, there are three virtual methods required by the interface:
 \meth{rowCount}, \meth{columnCount} and \meth{data}. The first two
-simply access the dimensions of the data frame:
+delegate down to \function{nrow} and \function{ncol}:
 <<results=hide>>=
-qsetMethod("rowCount", DfModel, function(index) nrow(this$dataframe) + 1)
-qsetMethod("columnCount", DfModel, function(index) ncol(this$dataframe))
+qsetMethod("rowCount", DfModel, 
+           function(index) nrow(this$dataframe) + 1)
+qsetMethod("columnCount", DfModel, 
+           function(index) ncol(this$dataframe))
 @ 
 
-The \meth{data} method is the main method to implement. We wish to
-customize the data display based on the class of the variable
-represented in a column. We implement this with S3 methods, and
-several are defined below:
+The \meth{data} method is then the main method to implement. Here we
+wish to customize the data display based on the class of the variable
+represented in a column, a natural use of S3 methods, which dispatch on
+exactly that. Here is a method for defining the display role:
 <<displayRoleMethod, results=hide>>=
 displayRole <- function(x, row, ...) UseMethod("displayRole")
 displayRole.default <- function(x, row) 
@@ -91,7 +105,7 @@ sizeHintRole.default <- function(x, row, context) {
   Qt$QSize(sz*avg, sample(c(25L, 50L), 1))
 }
 
-## some text for a toolkitp
+## some text for a tooltip
 toolTipRole <- function(x, row, context) UseMethod("toolTipRole")
 toolTipRole.default <- function(x, row, context)
   sprintf("Value in vector with class %s", paste(class(x), collapse=","))
@@ -114,7 +128,7 @@ Our \meth{data} method has this basic structure (we avoid showing the
 cases for all the different roles):
 <<eval=FALSE>>=
 qsetMethod("data", DfModel, function(index, role) {
-  d <- this$dataframe
+  d <- dataframe
   row <- index$row()
   col <- index$column() + 1
 
@@ -137,7 +151,7 @@ qsetMethod("data", DfModel, function(index, role) {
 <<data,echo=FALSE, results=hide>>=
 ## this is not shown in text, but is the definition of the data method
 qsetMethod("data", DfModel, function(index, role) {
-  d <- this$dataframe
+  d <- dataframe
   row <- index$row()
   col <- index$column() + 1
 
@@ -201,7 +215,7 @@ qsetMethod("flags", DfModel, function(index) {
 @ 
 
 
-To edit cells we need to implement a method to set data once edited.
+To edit cells we also need to implement a method to set the data once edited.
 Since the \meth{data} method provides a string for the edit role,
 \meth{setData} will be passed one, as well. We define some methods on
 the S3 generic \function{fitIn}, which will coerce the string to the
@@ -275,7 +289,8 @@ qsetMethod("addColumn", DfModel, function(name, value) {
   if(name %in% names(d)) {
     return(setColumn(min(which(name == names(d))), value))
   }  
-  beginInsertColumns(Qt$QModelIndex(), columnCount(), columnCount())
+  beginInsertColumns(Qt$QModelIndex(),
+                     columnCount(), columnCount())
   d[[name]] <- value
   this$dataframe <- d
   endInsertColumns()

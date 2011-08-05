@@ -1,6 +1,7 @@
 ###################################################
 ### chunk number 1: 
 ###################################################
+#line 5 "ex-RGtk2-tree-show.Rnw"
 library(proto)
 library(RGtk2)
 
@@ -8,6 +9,7 @@ library(RGtk2)
 ###################################################
 ### chunk number 2: AnObject
 ###################################################
+#line 18 "ex-RGtk2-tree-show.Rnw"
 AnObject <-
   proto(new=function(.,...) .$proto(...),
         data = NULL,                    # where to show
@@ -18,6 +20,7 @@ AnObject <-
 ###################################################
 ### chunk number 3: 
 ###################################################
+#line 29 "ex-RGtk2-tree-show.Rnw"
 tv <- gtkTextView()
 tv.sw <- gtkScrolledWindow()
 tv.sw$SetPolicy("automatic","automatic")
@@ -27,6 +30,7 @@ tv.sw$Add(tv)
 ###################################################
 ### chunk number 4: 
 ###################################################
+#line 39 "ex-RGtk2-tree-show.Rnw"
 showText <- AnObject$new()
 showText$data <- tv
 showText$show <- function(.) {
@@ -38,6 +42,7 @@ showText$show <- function(.) {
 ###################################################
 ### chunk number 5: 
 ###################################################
+#line 53 "ex-RGtk2-tree-show.Rnw"
 gtkTreeStoreAddFromList <- function(store,lst) {
   ## we stop descending when we hit a proto object
   is.proto <- function(.) inherits(.,"proto")
@@ -59,6 +64,7 @@ gtkTreeStoreAddFromList <- function(store,lst) {
 ###################################################
 ### chunk number 6: getPathNames
 ###################################################
+#line 78 "ex-RGtk2-tree-show.Rnw"
 gtkTreeStoreGetPathNames <- function(store,iter, path) {
   if(missing(iter)) {
     str <- path$ToString()
@@ -77,6 +83,7 @@ gtkTreeStoreGetPathNames <- function(store,iter, path) {
 ###################################################
 ### chunk number 7: 
 ###################################################
+#line 96 "ex-RGtk2-tree-show.Rnw"
 showView <- function(view)  {
   cr <- gtkCellRendererText()
   vc <- gtkTreeViewColumn()
@@ -95,6 +102,7 @@ showView <- function(view)  {
 ###################################################
 ### chunk number 8: MakeList
 ###################################################
+#line 114 "ex-RGtk2-tree-show.Rnw"
 lst <- list(flintstone = list(
               husband = showText$new(message="fred"),
               wife = showText$new(message="wilma")
@@ -109,6 +117,7 @@ lst <- list(flintstone = list(
 ###################################################
 ### chunk number 9: 
 ###################################################
+#line 129 "ex-RGtk2-tree-show.Rnw"
 store <- gtkTreeStore("gchararray")
 store$AddFromList(lst["flintstone"])
 store$AddFromList(lst["rubble"])
@@ -117,11 +126,12 @@ store$AddFromList(lst["rubble"])
 ###################################################
 ### chunk number 10: 
 ###################################################
+#line 140 "ex-RGtk2-tree-show.Rnw"
 view <- gtkTreeViewNewWithModel(store)
 ## callback
 ID <- gSignalConnect(view,"row-activated",
                      f = function(view,path, column, data) {
-                       store <- view$GetModel()
+                       store <- view$getModel()
                        nms <- store$GetPathNames(path=path)
                        if(is.proto(data[[nms]]))
                          data[[nms]]$show()   # vectorized [[
@@ -131,6 +141,7 @@ ID <- gSignalConnect(view,"row-activated",
 ###################################################
 ### chunk number 11: 
 ###################################################
+#line 156 "ex-RGtk2-tree-show.Rnw"
 ## simple layout
 w <- gtkWindow(); w$SetTitle("Tree view")
 g <- gtkHPaned(); w$Add(g)

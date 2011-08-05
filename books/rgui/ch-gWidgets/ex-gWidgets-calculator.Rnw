@@ -21,7 +21,7 @@ widgets. This example illustrates how a child widget can span a block
 of multiple cells by using the appropriate indexing. Furthermore, the
 \args{spacing} argument is used to tighten up the appearance. The
 example also illustrates a useful strategy of storing the widgets
-using a list for subsequent manipulations.
+using a list for subsequent manipulations.\iprogram{iteration}
 
 The following sets up the layout of the display and buttons.
 <<>>=
@@ -68,7 +68,8 @@ sapply(bList, addHandlerChanged, handler=addButton)
 @ 
 
 When the equals sign is clicked, the expression is evaluated and if
-there are no errors, the output is displayed in the label.
+there are no errors, the output is displayed in the
+label.\iprogram{evaluating strings}
 <<>>=
 require(evaluate)
 addHandlerClicked(eqButton, handler = function(h,...) {

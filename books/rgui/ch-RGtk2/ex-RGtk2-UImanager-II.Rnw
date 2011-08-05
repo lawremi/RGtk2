@@ -1,5 +1,5 @@
 In this example, we show how to use a UI manager to create the menu
-and tool bars for a data frame editor, similar to, but with enhanced
+and toolbars for a data frame editor, similar to, but with enhanced
 functionality, the one produced in some platforms by the
 \function{data.entry} function. 
 
@@ -78,7 +78,7 @@ close(out)
 %
 
 We used indenting to show the nesting of the menus. For menus we see
-the use of menu bars, menus and menu items. The menu and menu items have a
+the use of menubars, menus and menu items. The menu and menu items have a
 corresponding action associated with them, which can provide a callback.
 
 If \code{uimanager} is our \class{GtkUIManager} instance, then we can
@@ -180,7 +180,7 @@ package \pkg{ProgGUIinR}. Here we discuss how the \iprogram{command pattern}\dfn
 to our editing.
 
 According to \footcite{head-first-design-patterns}, the command
-pattern is used to \iprogram{encapsulate}encapsulate a request (method
+pattern is used to \iprogram{encapsulation}encapsulate a request (method
 call) as an object. A basic command object has just one method,
 \meth{execute}. Any needed parameters are stored in the object as
 properties. For our implementation we use a reference class with fields:

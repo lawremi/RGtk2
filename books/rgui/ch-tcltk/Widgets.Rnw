@@ -23,7 +23,7 @@ before finishing up with the more involved \constructor{tktext},
 
 
 
-\section{Selection Widgets}
+\section{Selection widgets}
 \label{sec:tcltk:selection-widgets}
 
 This section covers the many different ways to present data for the
@@ -153,7 +153,7 @@ tkconfigure(cb, style="Toolbutton")
 
 The ``Toolbutton'' style in general is for placing widgets into toolbars.
 
-\subsection{Radio Buttons}
+\subsection{Radio buttons}
 \label{sec:tcltk:radio-buttons}
 
 Radiobuttons are basically differently styled checkbuttons linked through a shared \TCL\/
@@ -188,7 +188,7 @@ sapply(values, function(i) {
 })
 @ 
 
-\subsection{Entry Widgets}
+\subsection{Entry widgets}
 \label{sec:tcltk:entry-widgets}
 
 The \constructor{ttkentry} constructor provides a single line text

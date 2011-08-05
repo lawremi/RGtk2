@@ -152,7 +152,7 @@ qsetMethod("makeToolbar", TextEditWindow, function() {
 })
 @ 
 %
-Our GUI might also benefit from a menu bar, an exercise left
+Our GUI might also benefit from a menubar, an exercise left
 for the reader.
 
 This method opens a new sheet, with optional initial text:

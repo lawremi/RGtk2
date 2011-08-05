@@ -81,7 +81,7 @@ addScrollbars <- function(parent, widget) {
 }
 @ 
 
-\section{Multi-line Text Widgets}
+\section{Multi-line text widgets}
 \label{sec:tcltk:multi-line-text}
 
 The \constructor{tktext} widget creates a multi-line text editing
@@ -192,7 +192,7 @@ Images and other windows can be added to a text buffer, but we do not discuss th
 The buffer can have its contents cleared using \code{tkdelete}, as
 with \code{tkdelete(txt, "1.0", "end")}.
 
-\paragraph{Panning the buffer: tksee}
+\paragraph{Panning the buffer: \code{tksee}}
 After text is inserted, the visible part of buffer may not be what is
 desired. The \subcommand{see}{ttktext} sub command is used to position
 the buffer on the specified index, its lone argument.
@@ -318,10 +318,10 @@ key activity. The \%-substitution \code{k} gives the keycode and
 \section{Menus}
 \label{sec:tcltk:menus}
 
-Menu bars and popup menus in \Tk\/ are constructed with
+Menubars and popup menus in \Tk\/ are constructed with
 \constructor{tkmenu}. The \code{parent} argument depends on what the menu is
-to do. A toplevel menu bar, such as appears at the top of a window has
-a toplevel window as its parent; a submenu of a menu bar uses the
+to do. A toplevel menubar, such as appears at the top of a window has
+a toplevel window as its parent; a submenu of a menubar uses the
 parent menu; and a popup menu uses a widget.  
 
 The menu widget in \Tk\/ has an option to be ``torn off.'' This
@@ -335,11 +335,11 @@ tcl("option","add","*tearOff", 0)    # disable tearoff menus
 @ 
 %
 
-A toplevel menu bar is attached to a top-level window using \code{tkconfigure}
+A toplevel menubar is attached to a top-level window using \code{tkconfigure}
 to set the \code{menu} option of the window. For the aqua \TK\/
-libraries for Mac OS X, this menu will appear on the top menu bar when
+libraries for Mac OS X, this menu will appear on the top menubar when
 the window has the focus. For other operating systems, it appears at
-the top of the window. For Mac OS X, a default menu bar with no
+the top of the window. For Mac OS X, a default menubar with no
 relationship to your application will be shown if a menu is not
 provided for a toplevel window. Testing for native Mac OS X may be done via
 the following function:
@@ -349,7 +349,7 @@ usingMac <- function()
 @ 
 
 The \function{tkpopup} function facilitates the creation of a popup
-menu.  This function has arguments for the menu bar, and the postion
+menu.  This function has arguments for the menubar, and the postion
 where the menu should be popped up. For example, the following code
 will bind a popup menu, \code{pmb} (yet to be defined), to the right click event for a
 button \code{b}. As \OSX\/ may not have a third mouse button, and when
@@ -433,7 +433,7 @@ of the a menu item.  This value is typically \code{normal} or
 \code{disabled}, the latter to indicate the item is not available. The
 state can be set when the item is added or configured after that fact,
 through the \subcommand{entryconfigure}{tkmenu} command. This function
-needs the menu bar specified and the item specified as an index or
+needs the menubar specified and the item specified as an index or
 pattern to match the labels.
 
 \begin{example}{Simple menu example}{ex-tcltk-menu}
@@ -811,7 +811,7 @@ children when coerced to character with \code{as.character}.
   \SweaveInput{ex-tcltk-tree.Rnw}
 \end{example}
 
-\section{Canvas Widget}
+\section{Canvas widget}
 \label{sec:tcltk:canvas-widget}
 
  

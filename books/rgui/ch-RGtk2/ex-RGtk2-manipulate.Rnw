@@ -192,7 +192,7 @@ Manipulate$methods(
 %
 
 The \code{control\_table} is used hold the respective controls. We
-added a \ilayout{strut}strut to request a minimum width for the
+added a \ilayout{struts}strut to request a minimum width for the
 second column, as otherwise the slider controls can render too
 narrowly.
 

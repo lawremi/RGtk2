@@ -1,130 +1,179 @@
 ###################################################
 ### chunk number 1: 
 ###################################################
+#line 8 "ex-RGtk2-tree.Rnw"
 ## tree example
 ## a variable browser
 require(RGtk2)
 
 
 ###################################################
-### chunk number 2: getChildren
+### chunk number 2: SetUpStore
 ###################################################
-getChildren <- function(path) {
-  
-  pathToObject <- function(path) {      
-    x <- try(eval(parse(text=paste(path,collapse="$")),
-                  envir=.GlobalEnv),silent=TRUE)
-    if(inherits(x,"try-error")) {
-      cat(sprintf("Error with %s",path))
-      return(NA)
-    }
-    return(x)
-  }
+#line 16 "ex-RGtk2-tree.Rnw"
+store <- gtkTreeStore(rep("gchararray", 2))
+sstore <- gtkTreeModelSort(store)
 
-  theChildren <- function(path) {
-    if(missing(path) || length(path) == 0)
-      ls(envir=.GlobalEnv)
-    else
-      names(pathToObject(path))
-  }
-  hasChildren <- function(obj) is.recursive(obj) && !is.null(names(obj))
-  
-  getType <- function(obj) head(class(obj), n=1)
 
-  children <- theChildren(path)
-  ## filter out Gtk ones
-  
-  objs <- sapply(children,function(i) pathToObject(c(path,i)))
-  d <- data.frame(children=children,
-                  class = sapply(objs,getType),
-                  offspring = sapply(objs,hasChildren))
-  ind = grep("^Gtk",d$class)
-  if(length(ind) == 0) return(d) else return(d[-ind,])
+###################################################
+### chunk number 3: 
+###################################################
+#line 22 "ex-RGtk2-tree.Rnw"
+iter <- store$append(parent=NULL)$iter
+store$setValue(iter, column=0, "GlobalEnv")
+store$setValue(iter, column=1, "environment")
+iter <- store$append(parent=iter)
+
+
+###################################################
+### chunk number 4: 
+###################################################
+#line 33 "ex-RGtk2-tree.Rnw"
+view <- gtkTreeView(sstore)
+view$getSelection()$setMode("multiple")
+
+
+###################################################
+### chunk number 5: 
+###################################################
+#line 42 "ex-RGtk2-tree.Rnw"
+gSignalConnect(view, signal = "row-expanded",
+               f = function(view, iter, tpath, user.data) {
+                 sortedModel <- view$getModel()
+                 iter <- pathToIter(sortedModel, tpath)
+                 path <- iterToRPath(sortedModel, iter)
+                 children <- getChildren(path)
+                 addChildren(store, children, parentIter=iter)
+                 ## remove errant offspring, cf. addChildren
+                 ci <- store$iterChildren(iter)
+                 if(ci$retval) store$remove(ci$iter)
+               })
+
+
+###################################################
+### chunk number 6: trePathToIter
+###################################################
+#line 62 "ex-RGtk2-tree.Rnw"
+pathToIter <- function(sstore, tpath) {
+  store <- sstore$getModel()
+  uspath <- sstore$convertPathToChildPath(tpath)
+  store$getIter(uspath)$iter
 }
 
 
 ###################################################
-### chunk number 3: addChildren
+### chunk number 7: IterToPath
 ###################################################
-addChildren <- function(store,children, parentIter=NULL) {
+#line 73 "ex-RGtk2-tree.Rnw"
+iterToRPath <- function(sstore, iter) {
+  store <- sstore$getModel()
+  indices <- store$getPath(iter)$getIndices()
+  iter <- NULL
+  path <- sapply(indices, function(i) {
+    iter <<- store$iterNthChild(iter, i)$iter
+    store$getValue(iter, 0)$value
+  })
+  return(path[-1])
+}
+
+
+###################################################
+### chunk number 8: getChildren
+###################################################
+#line 91 "ex-RGtk2-tree.Rnw"
+getChildren <- function(path=character(0)) {
+  hasChildren <- function(obj) 
+    (is.list(obj) || is.environment(obj)) && 
+  !is.null(names(as.list(obj)))
   
-  if(nrow(children) == 0) return(NULL)
+  getType <- function(obj) head(class(obj), n=1)
+
+  obj <- 
+    if (!length(path)) {
+      .GlobalEnv
+    } else {
+      x <- get(path[1], envir=.GlobalEnv)
+      if(length(path) > 1)
+        get(path[1], envir=.GlobalEnv)[[path[-1]]]
+      else
+        x
+    }
+
+  children <- as.list(obj)
+  
+  d <- data.frame(children = names(children),
+                  class = sapply(children, getType),
+                  offspring = sapply(children, hasChildren))
+  
+  ## filter out Gtk ones
+  d[!grepl("^Gtk", d$class), ]
+}
+
+
+###################################################
+### chunk number 9: addChildren
+###################################################
+#line 126 "ex-RGtk2-tree.Rnw"
+addChildren <- function(store, children, parentIter = NULL) {
+  if(nrow(children) == 0) 
+    return(NULL)
   for(i in 1:nrow(children)) {
     iter <- store$append(parent=parentIter)$iter
-    ## use last column to indicate logical
-    sapply(1:(ncol(children)-1),function(j)              
-           store$setValue(iter,column=j-1,children[i,j]))
-    ## add Branch.
-    ## no better way, as this adds an extra blank line
-    ## we remove later.
-    if(children[i,ncol(children)])
+    sapply(1:(ncol(children) - 1), function(j)              
+           store$setValue(iter, column = j-1, children[i, j]))
+    ## Add a branch if there are children
+    if(children[i, "offspring"])
       store$append(parent=iter)
   }
 }
 
 
 ###################################################
-### chunk number 4: trePathToIter
+### chunk number 10: 
 ###################################################
-tpathToPIter <- function(view,tpath) {
-  ## view$getModel -- sstore, again store
-  sstore <- view$getModel(); store <- sstore$getModel()
-  uspath <- sstore$convertPathToChildPath(tpath)
-  p.iter <- store$getIter(uspath)$iter
-  return(p.iter)
-}
+#line 145 "ex-RGtk2-tree.Rnw"
+gSignalConnect(view, signal = "row-collapsed",
+       f = function(view, iter, tpath, user.data) {
+         sortedModel <- view$getModel()
+         iter <- pathToIter(sortedModel, tpath)
+         n = store$iterNChildren(iter)
+         if(n > 1) { ## n=1 gets removed when expanded
+           for(i in 1:(n-1)) {
+             child.iter <- store$iterChildren(iter)
+             if(child.iter$retval)
+               store$remove(child.iter$iter)
+           }
+         }
+       })
 
 
 ###################################################
-### chunk number 5: IterToPath
+### chunk number 11: DoubleClickHandler
 ###################################################
-## convert from iter to path
-iterToPath <- function(view,iter) {
-  sstore <- view$getModel(); store <- sstore$getModel()
-  ## get path from iter
-  string <- store$getPath(iter)$toString()
-  indices = unlist(strsplit(string,":"))
-  thePath <- c()
-  for(i in 1:length(indices)) {
-    path <- paste(indices[1:i],collapse=":")
-    iter <- store$getIterFromString(path)$iter
-    thePath[i] <- store$getValue(iter,0)$value
-  }
-  return(thePath[-1])
-}
+#line 164 "ex-RGtk2-tree.Rnw"
+gSignalConnect(view, signal = "row-activated",
+       f = function(view, tpath, tcol) {
+         sortedModel <- view$getModel()
+         iter <- pathToIter(sortedModel, tpath)
+         path <- iterToRPath(sortedModel, iter)
+         sel <- view$getSelection()
+         out <- sel$getSelectedRows()
+         if(length(out) == 0) return(c()) # nothing
+         vals <- c()
+         for(i in out$retval) {  # multiple selections
+           iter <- sortedModel$getIter(i)$iter
+           newValue <- sortedModel$getValue(iter, 0)$value
+           vals <- c(vals, newValue)
+         }
+         print(vals)  # [Replace this]
+       })
 
 
 ###################################################
-### chunk number 6: SetUpStore
+### chunk number 12: addRenderer
 ###################################################
-## set up store with sorting and view
-## sort by clicking on column headers
-store = gtkTreeStoreNew(rep("gchararray",2))
-sstore = gtkTreeModelSortNewWithModel(store)
-view = gtkTreeViewNewWithModel(sstore)
-
-
-###################################################
-### chunk number 7: 
-###################################################
-iter <- store$append(parent=NULL)$iter
-store$setValue(iter,column=0,"GlobalEnv")
-store$setValue(iter,column=1,"")
-iter <- store$append(parent=iter)
-
-
-###################################################
-### chunk number 8: 
-###################################################
-view$setSearchColumn(0)
-## multiple
-sel = view$getSelection()
-sel$setMode(GtkSelectionMode["multiple"])
-
-
-###################################################
-### chunk number 9: addRenderer
-###################################################
+#line 186 "ex-RGtk2-tree.Rnw"
+## Now, we define our GUI. The view will have two similar columns.
 ## add two cell renderers -- 1 for name, 1 for type
 nms <- c("Variable name","type")
 for(i in 1:2) {
@@ -140,94 +189,16 @@ for(i in 1:2) {
 
 
 ###################################################
-### chunk number 10: exampleGUI
+### chunk number 13: exampleGUI
 ###################################################
+#line 202 "ex-RGtk2-tree.Rnw"
+## We now place the tree view widget into a basic GUI.
 sw <- gtkScrolledWindow()
 sw$setPolicy("automatic","automatic")
 sw$add(view)
 
-w <- gtkWindow(); w$setTitle("Tree view")
+w <- gtkWindow()
+w$setTitle("Tree view")
 w$add(sw)
-
-
-###################################################
-### chunk number 11: 
-###################################################
-## That will show the first row, but nothing will happen
-## when we click on the expand row
-## we need to add a signal to do so
-
-
-## add children if we expand
-ID <- gSignalConnect(view,signal="row-expanded",
-                     f = function(view, iter, tpath, ...) {
-                       p.iter <- tpathToPIter(view,tpath)
-                       path <- iterToPath(view,p.iter)
-                       children = getChildren(path)
-                       
-                       addChildren(store, children, parentIter=p.iter)
-                       ## remove errant 1st offspring. See addChildren
-                       ci <- store$iterChildren(p.iter)
-                       if(ci$retval) store$remove(ci$iter)
-                     })
-
-
-
-###################################################
-### chunk number 12: 
-###################################################
-## add handler to remove children -- in case things change
-ID <- gSignalConnect(view,signal="row-collapsed",
-                  f = function(view, iter, tpath, ...) {
-                    p.iter <- tpathToPIter(view,tpath)
-                    
-                    ## get children, remove
-                    n = store$iterNChildren(p.iter)
-                    if(n > 1) { ## n=1 gets removed when expanded
-                      for(i in 1:(n-1)) {
-                        child.iter = store$iterChildren(p.iter)
-                        if(child.iter$retval)
-                          store$remove(child.iter$iter)
-                      }
-                    }
-                  })
-
-
-###################################################
-### chunk number 13: DOubleClickHandler
-###################################################
-## double click handler
-ID <- gSignalConnect(view,signal="row-activated",
-                     f = function(view, tpath, tcol) {
-                       p.iter <- tpathToPIter(view,tpath)
-                       path <- iterToPath(view,p.iter)
-                       
-                       sel <- view$getSelection()
-                       out <- sel$getSelectedRows()
-                       if(length(out) == 0) return(c()) # nothing
-                       tmp <- c()
-                       for(i in out$retval) {  # multiple selections
-                         iter <- out$model$getIter(i)$iter
-                         tmp <- c(tmp,out$model$getValue(iter,0)$value)
-                       }
-                       ## INSERT FUNCTION HERE
-                       print(path)
-                       print(tmp)
-                     })
-
-
-###################################################
-### chunk number 14: 
-###################################################
-
-
-## how to insert into tree store, above shows how to remove
-## append, prepend, insert methods
-## how to refresh? delete, then reload?
-
-
-## add drag and drop from the tree
-
-## include other widget
 
 

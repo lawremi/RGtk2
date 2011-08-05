@@ -354,15 +354,16 @@ FilterItemNumeric <- setRefClass("FilterItemNumeric",
 %
 
 With these two properties, our \meth{get\_value} method becomes a
-matter of pasting together an expression then evaluating it. We
+matter of pasting together an expression then \iprogram{evaluating strings}evaluating it. We
 evaluate this within the data frame so that \code{valVar} could use
 variable names from the data framed. 
 <<FilterItemNumericGetValue>>=
 FilterItemNumeric$methods(
-          get_value = function() {
-            xpr <- paste(nm, tclvalue(ineqVar), tclvalue(valVar))
-            eval(parse(text=xpr), envir=list_ref$df, parent.frame())
-          })
+      get_value = function() {
+        xpr <- paste(nm, tclvalue(ineqVar), tclvalue(valVar))
+        eval(parse(text=xpr), 
+             envir=list_ref$df, parent.frame())
+      })
 
 @ 
 %

@@ -129,7 +129,7 @@ the functions \code{browsegWidgetsFiles}, \code{browseRGtk2Files},
 examples from the respective chapters. 
 
 
-The authors would like to thanks the following people for their very
+The authors would like to thanks the following people for their 
 helpful comments made regarding draft versions of this book; Richie
 Cotton, Erich Neuwirth, \XXX{Others?}.
 

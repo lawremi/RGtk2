@@ -51,12 +51,15 @@ makeMonth <- function(w, year, month) {
     tkgrid(l, row=0, column=i-1, sticky="")
   })
   ## add days
-  sapply(seq_len(ProgGUIinR:::days.in.month(year, month)),  function(day) {
-    l <- ttklabel(w, text=day)
-    tkgrid(l, row=1 + ProgGUIinR:::week.of.month(year, month, day),
-           column=ProgGUIinR:::day.of.week(year, month, day),
-           sticky="e")
-  })
+  sapply(seq_len(ProgGUIinR:::days.in.month(year, month)), 
+         function(day) {
+           l <- ttklabel(w, text=day)
+           row <- ProgGUIinR:::week.of.month(year, month, day)
+           col <- ProgGUIinR:::day.of.week(year, month, day)
+           tkgrid(l, row=1 + row,
+                  column=col, 
+                  sticky="e")
+         })
 }
 @ 
 

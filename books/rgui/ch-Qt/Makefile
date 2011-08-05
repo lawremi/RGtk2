@@ -11,7 +11,8 @@ stangle:
 latex:  
 	pdflatex --interaction scrollmode print-chapter
 	bibtex print-chapter.fb
-	makeindex print-chapter.idx
+	makeindex concepts.idx
+	makeindex general.idx
 	pdflatex  --interaction scrollmode print-chapter
 
 package:
