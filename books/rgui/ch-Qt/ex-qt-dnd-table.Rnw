@@ -26,7 +26,7 @@ qsetClass("VariableSelector", Qt$QWidget, function(parent=NULL) {
   ## widgets
   this$dfcb <- Qt$QComboBox()
   this$varList <- Qt$QListView()
-  this$varList$setModel(qdataFrameModel(data.frame(), this))
+  this$varList$setModel(qdataFrameModel(data.frame(), this, useRoles=TRUE))
   this$varList$dragEnabled <- TRUE
 
   ## layout
@@ -50,7 +50,7 @@ This utility populates the combo box with a list of data frames:
 qsetMethod("updateDataSets", VariableSelector, function() {
   curVal <- dfcb$currentText
   dfcb$clear()
-  dfs <- ProgGUIinR:::avail_dfs()
+  dfs <- ProgGUIinR:::avail_dfs(.GlobalEnv)
   if(length(dfs)) {
     this$dfcb$addItems(dfs)
     if(is.null(curVal) || !curVal %in% dfs) {
@@ -67,23 +67,7 @@ qsetMethod("updateDataSets", VariableSelector, function() {
 The data frame is stored in the following call to
 \function{qsetProperty}. We overwrite the underlying \meth{write}
 method to also update our model for the variable list.
-<<qt-mvc-dnd-dataset, results=hide, echo=FALSE>>=
-## not shown, has spurious call to set attribute
-qsetProperty("dataFrame", VariableSelector, 
-             write = function(df) {
-               if (is.null(df))
-                 df <- data.frame()
-               else if (is.character(df)) 
-                 df <- get(df, .GlobalEnv)
-               model <- varList$model()
-               attr(model, "useRoles") <- FALSE      # Shouldn't need
-               qdataFrame(model) <- data.frame(variable=names(df))
-               this$.dataFrame <- df
-               dataFrameChanged()
-             })
-@ 
-
-<<eval=FALSE>>=
+<<qt-mvc-dnd-dataset, results=hide>>=
 qsetProperty("dataFrame", VariableSelector, 
              write = function(df) {
                if (is.null(df))
@@ -93,17 +77,14 @@ qsetProperty("dataFrame", VariableSelector,
                ##
                model <- varList$model()
                qdataFrame(model) <- 
-                 data.frame(variable=names(df))
+                 data.frame(variable=names(df),
+                            variable.decoration=I(lapply(df, getIcon)))
                this$.dataFrame <- df
                dataFrameChanged()
              })
 @ 
 %
 <<didntWork, echo=FALSE, eval=FALSE>>=
-## XXXX The icon bit isn't working out for me.
-## This isn't working for me right now...
-## in VariableSelector
-this$varList$setModel(qdataFrameModel(data.frame(), this, userRoles=TRUE))
 ## The \function{getIcon} helper function provides an icon from the class of a
 ## column:
 require(grid)
@@ -111,13 +92,10 @@ getIcon <- function(x) {
   f <- tempfile()
   png(file=f, width=16, height=16)
   grid::grid.newpage()
-  grid::grid.draw(ProgGUIinR::make_icon(x))
+  grid::grid.draw(ProgGUIinR:::make_icon(x))
   dev.off()
   Qt$QIcon(f)
 }
-qdataFrame(model) <- data.frame(variable=names(df),
-                                variable.decoration=I(lapply(df, getIcon)))
-
 @ 
 When the property is written the variable selector will emit this signal:
 <<qt-mvc-dnd-datasetChanged, results=hide>>=
@@ -250,6 +228,7 @@ qsetMethod("initWidgets", XtabsWidget, function() {
   
   this$tableView <- Qt$QTableView()
   tableView$setModel(qdataFrameModel(data.frame(), this))
+  str(tableView$model())
   clearLabels()
 })
 @ 
@@ -319,18 +298,7 @@ qsetMethod("invokeXtabs", XtabsWidget, function() {
 @ 
 
 We define a method to update the table view:
-<<updateTableWidget, results=hide, echo=FALSE>>=
-## not shown, as we have spurious call to set attribute
-qsetMethod("updateTableView", XtabsWidget, function(table) {
-  model <- tableView$model()
-  attr(model, "useRoles") <- FALSE      # shouldn't need
-  if (length(dim(table)) == 1)
-    qdataFrame(model) <- data.frame(count = unclass(table))
-  else qdataFrame(model) <- data.frame(unclass(table))
-})
-@ 
-
-<<eval=FALSE>>=
+<<updateTableWidget, results=hide>>=
 qsetMethod("updateTableView", XtabsWidget, function(table) {
   model <- tableView$model()
   if (length(dim(table)) == 1)
