@@ -76,9 +76,11 @@ qdataFrame(model)$hpToMpg <- with(qdataFrame(model), hp / mpg)
 
 Our table view now contains a new column, holding the horsepower to
 miles per gallon ratio. The \class{DataFrameModel} object is a
-reference so assignments can be made within function bodies. It is
-important to notice that any view of the model will reflect changes to
-the underlying model without needing additional programming.
+reference, so modifications occur in place, rather than being
+incorporated in a newly constructed object. One consequence is that
+changes made within a function body may propagate beyond the local
+environment. It is important to notice that any view of the model will
+reflect changes to the underlying model without any explicit updating.
 
 \paragraph{Headers}
 A table view has a horizontal and vertical header. The horizontal header
@@ -148,7 +150,7 @@ qdataFrame(model)$mpg[1] <- NA
 @ 
 %
 The table view will display this as "nan" or "inf", which is
-inconstant with the notation of \R. The conversion of the numeric
+inconsistent with the notation of \R. The conversion of the numeric
 data to text is carried out by an \textit{item delegate}. Similar to a
 \GTK{} cell renderer (Section~\ref{sec:RGtk2:mvc:GtkTreeView}), an
 item delegate is responsible for the rendering and editing of items
@@ -596,10 +598,11 @@ indices between the filtered and unfiltered (or sorted and unsorted)
 coordinate space. Thus, there is little cost in memory.
 
 \Qt{} implements both sorting and filtering in a single class:
-\class{QSortFilterProxyModel}.~\footnote{In \pkg{RGtk2} one can only
-  choose one or the other, cf. Section\ref{sec:RGtk2:mvc:proxies}.}
-After constructing an instance and specifying the child model, the
-proxy model may be handed to a view like any other model:
+\class{QSortFilterProxyModel}.~\footnote{In \pkg{RGtk2} there is a
+  separate proxy model for each of sorting and filtering,
+  cf. Section\ref{sec:RGtk2:mvc:proxies}.}  After constructing an
+instance and specifying the child model, the proxy model may be handed
+to a view like any other model:
 <<qt-mvc-proxy, results=hide>>=
 proxy <- Qt$QSortFilterProxyModel()
 proxy$setSourceModel(model)
@@ -709,11 +712,11 @@ qdataFrame(model)$.makeAndModel.background <- list(qcolor("gray"))
 @ 
 %
 In the above, we store a list of \class{QColor} instances in our data
-frame.~\footnote{Storing values directly into a data frame requires
-  some care, which we avoid here. If we had added that column in a
-  call to \qcode{data.frame} or \function{cbind}, it would have been
-  necessary to wrap the list with \code{I()} in order to prevent
-  coercion of the list to a data frame.}
+frame.~\footnote{Storing objects other than atomic vectors in a data
+  frame requires some care, which we avoid here. If we had added that
+  column in a call to \qcode{data.frame} or \function{cbind}, it would
+  have been necessary to wrap the list with \code{I()} in order to
+  prevent coercion of the list to a data frame.}
 
 The set of supported data types for each role depends on the
 delegate. For delegates derived from \class{QStyledItemDelegate}, see
@@ -954,16 +957,18 @@ To enable editing on a column in a \class{DataFrameModel}, it is
 necessary to specify the \code{edit} role for the column. For example,
 we might add a logical column named \code{Analyze} to the
 \code{mtcars} data frame for indicating whether a record should be
-included in an analysis. We append \code{edit} to the column name, so
-that the column performs the \code{edit} role. The user can then
-toggle the \code{Analyze} values between \code{TRUE} and \code{FALSE}:
-
-%% JV 8-3 XXX I can't get this to work!!
-<<qt-mvc-edit-analyze, eval=FALSE>>=
+included in an analysis. In the view, the user will be able to use a
+combo box to choose between \code{TRUE} and \code{FALSE}. We could
+display an editable \code{Analyze} column by adding a column named
+\code{.Analyze.edit}, but instead we take advantage of a convenience
+of \class{DataFrameModel}. We simply add the \code{Analyze} column and
+pass its name as the \code{editable} argument to \function{qdataFrameModel}:
+<<qt-mvc-edit-analyze>>=
 df <- mtcars 
-df$Analyze.edit <- TRUE
-model <- qdataFrameModel(df, useRoles=TRUE)
+df$Analyze <- TRUE
+model <- qdataFrameModel(df, editable = "Analyze")
 @ 
+
 
 If a view is assigned an editable model, it will enter its editing mode
 upon a certain trigger.  By default, derivatives of
@@ -1199,7 +1204,7 @@ models do not scale well, due to frequent callbacks into R.
 \paragraph{Required methods}
 
 The basic interface of a model requires that at a minimum the methods
-\meth{rowCount}, \meth{columnCount}, and \meth{data} must be provided.
+\meth{rowCount}, \meth{columnCount}, and \meth{data} be provided.
 The first two describe the size of the table for any views. We have
 already demonstrated the use of the \meth{data} method in the previous
 sections, it provides data to the view for a particular cell
@@ -1427,13 +1432,13 @@ cursor$selectedText()
 
 \paragraph{Signals}
 
-There are several different signals to connect to, emitted by
-\class{QTextEdit} instances: the \signal{textChanged} signal when the text is changed;
-the \signal{cursorPositionChanged} signal is emitted when the cursor
-position changes; and the \signal{selectionChanged} signal is emitted
-when the selection (according to the user visible
-cursor) changes. For the latter, the \signal{copyAvailable} signal is largely equivalent, except it
-passes a boolean argument indicating whether the selection is non-empty.
+There are several different signals emitted by \class{QTextEdit}
+instances: \signal{textChanged}, when the text changes;
+\signal{cursorPositionChanged}, when the cursor position changes; and
+\signal{selectionChanged} when the selection (according to the user
+visible cursor) changes. For the latter, the \signal{copyAvailable}
+signal is largely equivalent, except it passes a boolean argument
+indicating whether the selection is non-empty.
 
 <<qt-mvc-textedit-selectionChanged, results=hide>>=
 qconnect(te, "textChanged", function() {
@@ -1470,13 +1475,12 @@ paragraph (the one with the cursor) with values from
 \qtenumeration{Qt::Alignment}.
 
 \paragraph{Character attributes}
-The widget keeps track of a current set of formatting options a class
-\class{QTextCharFormat}. The text edit methods
-\method{setCurrentFont}{QTextEdit},
-\method{setFontFamily}{QTextEdit}, and \method{setFontWeight}{QTextEdit},
-among others, can be used to modify the current settings. If called
-when there is a selection, the change will be applied to the selection
-in addition to any new text.
+The widget keeps track of a current set of formatting options in an
+object of class \class{QTextCharFormat}. The text edit methods
+\method{setCurrentFont}{QTextEdit}, \method{setFontFamily}{QTextEdit},
+and \method{setFontWeight}{QTextEdit}, among others, modify the
+current settings. If called when there is a selection, the change will
+be applied to the selection in addition to any new text.
 
 \paragraph{Syntax highlighting}
 
