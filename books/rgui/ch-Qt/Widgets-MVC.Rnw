@@ -734,9 +734,8 @@ qdataFrame(model)$.mpg.hp.font <-
 @ 
 %
 
-
-After these modifications, the model can be passed to a view, as in Figure~\ref{fig:qt-dataframemodel-role-example}.
-
+After these modifications, the model can be passed to a view, as in
+Figure~\ref{fig:qt-dataframemodel-role-example}.
 <<showView, results=hide>>=
 view <- Qt$QTableView()
 view$setModel(model)
@@ -751,13 +750,10 @@ view$verticalHeader()$hide()       # hide default row names
 \end{figure}
 
 If the \qcode{NAME} component is omitted, the role will apply to all
-columns in the model, as with this specification to change the font
-size.
-
-%% JV: 7-29-11 This is failing XXXXX
-%% Error in map[headerInd] <- match(role, cn) : replacement has length zero
+columns for which a role of the same type has not already been
+specified. Here, we change change the foreground color for all cells:
 <<qt-mvc-role-all-font, eval=FALSE>>=
-qdataFrame(model)$.font <- list(qfont(pointsize = 14))
+qdataFrame(model)$.foreground <- list(qcolor("darkgray"))
 @ 
 
 
