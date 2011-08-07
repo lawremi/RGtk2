@@ -1,9 +1,9 @@
-\Qt{} has the \class{QFileSystemWatcher} class for monitoring changes
-to the underlying file system, here we want to create something
-similar to monitor changes to the users global workspace.  With
+\Qt{} provides the \class{QFileSystemWatcher} class for monitoring
+changes to the underlying file system. Here create an analogous
+component that monitors changes to the global workspace.  With
 \pkg{gWidgets} (cf.  Example~\ref{ex-gWidgets-ws-browser}), we
 implemented the observer pattern to notify listeners for changes to
-the workspace, with Qt, we can leverage the existing signal
+the workspace. With Qt, we can leverage the existing signal
 framework. This example demonstrates only the watcher; implementing a
 view is left to Example~\ref{eg:qt-workspace-browser}.
 <<ws_model, echo=FALSE>>=

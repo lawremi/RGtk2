@@ -14,8 +14,8 @@ mapper$addMapping(label, 1)
 %
 The \method{addMapping}{QDataWidgetMapper} establishes a mapping
 between the view widget and the $0$-based column index in the
-model. The method prefix is \code{add} not \code{set} as more than one
-mapping is possible.
+model. The method prefix is \code{add} rather than \code{set}, as more
+than one mapping is possible.
   
 \begin{figure}
   \centering

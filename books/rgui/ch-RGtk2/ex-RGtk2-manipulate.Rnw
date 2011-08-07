@@ -83,8 +83,8 @@ manipulate(## expression
 @ 
 %
 The first argument is an expression, possibly containing parameters,
-that produces a plot. The other arguments define controls whose values
-provide the parameter values in the plotting expression. There are
+that produces a plot. The other arguments create widgets that
+control the parameter values in the plotting expression. There are
 three basic controls: a slider, a picker (combo box), and a check
 box. As one can glean, the constructors have a terse but simple set
 of arguments. A main task ahead will be mapping these controls to one
@@ -152,9 +152,8 @@ Manipulate$methods(
 
 The \meth{execute} method is called during initialization to setup the
 GUI. We use a \class{GtkHPaned} instance to allow the user to adjust
-the space between the graphic device and the controls
-frame. Otherwise, note how each control is expected to have a
-\meth{make\_gui} interface.
+the space between the graphic device and the controls frame. Each
+control is expected to have a \meth{make\_gui} interface.
 
 <<Manipulate_execute>>=
 Manipulate$methods(  
@@ -226,7 +225,7 @@ manipulate <- function(`_expr`,...)
 %
 
 There are three main controls, but perhaps more could be added. We
-give our selves the flexibility to expand by creating a base class for
+give ourselves the flexibility to expand by creating a base class for
 a control that can be subclassed. We define the class below. The
 properties are \code{l}, to store a list of arguments (a legacy of the
 original code); \code{widget}, to store the widget; \code{label} to
@@ -244,7 +243,8 @@ ManipulateControls <- setRefClass("ManipulateControls",
 @ 
 
 There main interface includes three methods: \meth{validate\_inputs}
-(to ensure the control is defined properly) and the previously noted \meth{get\_value} and \meth{make\_gui}.
+(to ensure the control is defined properly) and the previously noted
+\meth{get\_value} and \meth{make\_gui} (defined separately).
 <<MC_Interface>>=
 ManipulateControls$methods(
             validate_inputs = function(...) {

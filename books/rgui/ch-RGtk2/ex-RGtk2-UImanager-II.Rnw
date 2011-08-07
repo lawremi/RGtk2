@@ -37,11 +37,10 @@ uimanager <- gtkUIManager()
 @ 
 
 
-Our menubar and toolbar layout is specified in XML according to a
+Our menubar and toolbar layout is expressed in XML according to a
 schema specified by the UI manager framework. The XML can be stored in
 a file or an \R\/ character vector.  The structure of the file can be
-grasped quickly from this example, which we use in the sequel.
-
+grasped quickly from this example:
 <<ui-xml>>=
 ui.xml <- readLines(out <- textConnection('
 <ui>
@@ -89,12 +88,12 @@ id <- uimanager$addUiFromString(ui.xml)
 Alternately, we could load the code from a file. The return value is
 an id that can be used to unmerge this part of the UI. The ability to
 merge and unmerge parts of the UI is one main attraction for using
-this framework, although we don't illustrate that here. 
+this framework, although we do not illustrate that here. 
 
 <<echo=FALSE>>=
 fun <- function(...) {}
 @ 
-To define the actions, we can use lists, as in this which is used for
+To define the actions, we can use lists. This list defines
 the file menu:
 <<>>=
 fileL <- list(## name, ID, label, accelerator, tooltip, callback
@@ -125,7 +124,7 @@ ag <- gtkActionGroup("FileGroup")
 ag$addActions(fileL)
 @ 
 
-We can then insert the action group in to the UI manager:
+We can then insert the action group into the UI manager:
 <<>>=
 uimanager$insertActionGroup(ag, 0)
 @
@@ -137,9 +136,8 @@ called, when there is more than one similarly named.
 %% insert into GUI
 We now place the UI manager into the GUI. The UI manager specification
 create widgets which we can retrieve through its
-\meth{getWidget}{GtkUIManager} method. In the layout of our GUI, we
-have the following:
-
+\meth{getWidget}{GtkUIManager} method. The following code sketches
+the layout of the GUI:
 <<GUILayout, eval=FALSE>>=
 w <- gtkWindow(show=FALSE)
 ##
@@ -162,16 +160,14 @@ separated by "/". So, in the definition. the line
 ...
 \end{verbatim}
 define the path \qcode{/menubar}, where \code{<ui>} is always
-the root element, and may be omitted.
+the root element, and may be omitted from the path.
 
 
 Finally, to connect the UI manager to the window, we add the keyboard
-accelerator group through:
+accelerator group:
 <<eval=FALSE>>=
 w$addAccelGroup(uimanager$getAccelGroup())
 @ 
-
-
 
 Figure~\ref{fig:RGtk2-editable-dataframe} shows an illustration of the
 finished application. The full details are found in the code in our accompanying
@@ -180,11 +176,15 @@ package \pkg{ProgGUIinR}. Here we discuss how the \iprogram{command pattern}\dfn
 to our editing.
 
 According to \footcite{head-first-design-patterns}, the command
-pattern is used to \iprogram{encapsulation}encapsulate a request (method
-call) as an object. A basic command object has just one method,
-\meth{execute}. Any needed parameters are stored in the object as
-properties. For our implementation we use a reference class with fields:
+pattern is used to \iprogram{encapsulation}encapsulate a request
+(method call) as an object. A basic command object has just one
+method, \meth{execute}. Any needed parameters are stored in the object
+as properties. The command pattern has GUI-related applications beyond
+the undo/redo stack, including the action objects (i.e., instances of
+\class{GtkAction}) that are managed by \class{GtkUIManager}.
 
+For our implementation of the undo/redo stack, we use a reference
+class with fields:
 <<>>=
 Command <- setRefClass("Command",
                        fields=list(
@@ -195,10 +195,11 @@ Command <- setRefClass("Command",
                          ))
 @ 
 %
-The receiver is the object the method is called on. For a simple
-function call, this could be an environment the function is found
-in. The \code{meth} property is the name of the method, \code{params}
-a list of parameters. With these we define the main methods:
+The receiver is the object that receives the method call. For a simple
+function call, this could be the environment enclosing the
+function. The \code{meth} property is the name of the method, and
+\code{params} is a list of parameters. With these we define the main
+methods:
 <<>>=
 Command$methods(
                 initialize=function(receiver, meth, ...) {
@@ -256,8 +257,8 @@ was done. This stack has methods \code{add}, \code{undo} and
 \code{redo}, each calling the \code{do} or \code{undo} method of the
 appropriate command in the stack.
 
-With this stack a typical action callback includes something like the
-following which is from the action to change a column name:
+The first command we add to the stack is the setting of a column name
+on a data frame:
 <<typicalAction, eval=FALSE>>=
 cmd <- Command$new(df_model, "set_col_name", j=j, value=value)
 command_stack$add(cmd)
@@ -287,12 +288,12 @@ DfModel$methods(
                 })
 @
 %%
-As can be seen we return the old value as that is needed, given how we
-implemented the \meth{do} method for the commands. We used an instance
-of \class{RGtkDataFrame} to store the variable (column) names, hence
-the double index. This allows us to listen for changed through the
-models \signal{row-changed} signal. The details, and more, are in the
-accompanying package.
+We return the old value, as that is required by the implementation of
+the \meth{do} method for the commands. An instance of
+\class{RGtkDataFrame} stores the variable (column) names, hence the
+double index. This allows us to listen for changes through the
+\signal{row-changed} signal on the model. The details, and more, are
+in the accompanying package.
 
 
 <<ensure_type, echo=FALSE, results=hide>>=

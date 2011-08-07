@@ -77,7 +77,7 @@ addOutput <- function(obj, output, tagName="cmdOutput") {
 }
 @ 
 %
-We didn't arrange to truncate large outputs, but that would be a nice
+We did not arrange to truncate large outputs, but that would be a nice
 addition. By passing in the tag name, we can specify whether this is
 normal output or an error message.
 

@@ -25,12 +25,12 @@ owned by Nokia, a major cell-phone producer. While it was originally
 unavailable as open-source on every platform, version 4 was released
 universally under the GPL. With the release of Qt 4.5, Nokia
 additionally placed \Qt{} under the LGPL, so it is available for use
-in proprietary software, as well. We assume version 4.7.3 or later in
-the following. Popular software developed with \Qt{} include the
-communication application Skype and the KDE desktop for Linux. The
-desktop version of RStudio cleverly uses \Qt's \class{QWebView} widget
-to leverage \Qt's cross-platform availability to present a
-feature-rich web application on the desktop.
+in proprietary software, as well. Popular software developed with
+\Qt{} include the communication application Skype and the KDE desktop
+for Linux. The desktop version of RStudio uses the \class{QWebView}
+widget to present a cross-platform web application on the
+desktop. This book assumes version Qt 4.7.3 and should remain
+compatible for the remainder of the 4.x series.
 
 \Qt{} is developed in C++ with extensions that require a special
 preprocessor called the \dfn{Meta Object Compiler}

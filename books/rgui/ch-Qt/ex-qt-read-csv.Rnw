@@ -18,10 +18,7 @@ but first we need to define them.
 \end{figure}
 
 %% how
-We use a named list below to store our controls where the names will
-be mapped to the control's corresponding label. A button is chosen for
-the file, which we will later use to open a file selection
-dialog. Otherwise, the choice of control is fairly straightforward.
+We use a named list below to store our controls:
 <<results=hide>>=
 l <- list()
 l$file <- Qt$QPushButton("click to select...")
@@ -38,10 +35,15 @@ l$quote <- Qt$QLineEdit("\"'")
 l$fill <- Qt$QCheckBox()
 l$fill$setChecked(TRUE)
 @ 
+%
+The names of the list will become the label associated with the
+corresponding control.  A button is chosen for the file, which we will
+later use to open a file selection dialog. Otherwise, the controls
+have a fairly obvious mapping to the arguments of \function{read.csv}.
 
 %% radio button
-To illustrate radio buttons, we use them for the comment
-character. Here we store the container in the list, and create a
+To illustrate radio buttons, we use a set of them to select the comment
+character argument. Here we store the container in the list, and create a
 separate (global) variable to hold the radio buttons widgets themselves.
 <<comment.char, results=hide>>=
 l$comment.char <- Qt$QGroupBox()        # container
@@ -57,9 +59,9 @@ l$comment.char$setLayout(lyt)
 sapply(comment.char, lyt$addWidget)
 @ 
 
-The variable name use a simple line edit widget to which we add a
-placeholder and populate for auto-completion with the current global
-workspace variable names.
+The variable name use a simple line edit widget to which we add an
+instructional placeholder. We also populate its auto-completion
+database with the current global workspace variable names.
 <<results=hide>>=
 l$name <- Qt$QLineEdit("")
 l$name$setPlaceholderText("Variable name to store data")
@@ -95,11 +97,11 @@ wlyt$addLayout(flyt)
 wlyt$addWidget(buttonBox)
 @ 
 %
-At this point, the widgets are set up and layed out. We turn to the
+At this point, the widgets are set up and laid out. We turn to the
 task of adding interactivity. First, the file button when clicked
-should open a file selection dialog. If a file is successful, we
-change the button's label to indicate a selection. We use the global
-\code{fname} to store this name.
+should open a file selection dialog. If a file load is successful, we
+change the label on the button to indicate the selection. We use the
+global \code{fname} to store this name.
 
 <<fileHandler, results=hide>>=
 fname <- NULL
@@ -112,12 +114,13 @@ qconnect(l$file, "clicked", function() {
 })
 @ 
 
-We connect to the button box signals. The \signal{rejected} callback
-simply hides the dialog. The \signal{accepted} callback is more
-work. After checking that a file and variable name have been selected,
-we gather the values from the dialog through various means. These are
-stored in the list \code{args} below. Once that is done, a call to
-\code{read.csv} completes the work.
+We connect to the signals on the dialog button box. The
+\signal{rejected} callback simply hides the dialog. The
+\signal{accepted} callback is more complex. After checking that a file
+and variable name have been selected, we gather the values from the
+dialog through various means. These are stored in the list \code{args}
+below. Finally, once the arguments are collected, we execute the call
+to \code{read.csv}.
 
 <<buttonBox, results=hide>>=
 qconnect(buttonBox, "rejected", function() w$hide())
