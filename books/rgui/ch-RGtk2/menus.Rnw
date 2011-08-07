@@ -140,7 +140,7 @@ A menubar is a special type of container called a menu shell. An
 instance of \class{GtkMenuShell} contains one or more menu
 items. \class{GtkMenuItem} is an implementation of
 \class{GtkActivatable}, so each menu item can proxy an
-action. Usually, a menubar consists multiple instances of the other
+action. Usually, a menubar consists of multiple instances of the other
 type of menu shell: the menu, \class{GtkMenu}. Here, we create a menu
 object for our ``File'' menu:
 <<rgtk2-menus-menu>>=

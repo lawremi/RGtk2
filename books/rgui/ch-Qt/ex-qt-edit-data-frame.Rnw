@@ -39,7 +39,7 @@ qsetClass("DfModel", Qt$QAbstractTableModel,
           })
 @ 
 
-He we configure the \prop{dataframe} property, implementing a
+Here we configure the \prop{dataframe} property, implementing a
 \meth{write} method so that assigning to this property will call the
 \meth{dataChanged} method to notify any views of a change:
 <<results=hide>>=

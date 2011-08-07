@@ -39,7 +39,7 @@ model. For that purpose, we define a new signal below:
 qsetSignal("objectsChanged", WSWatcher)
 @ 
 %
-We then specify this signal name to the
+We then pass this signal name to the
 \argument{notify}{qsetProperty} argument when defining the
 \property{objects}{WSWatcher} property, so that assignment will emit the
 signal:
@@ -77,9 +77,7 @@ qsetMethod("updateVariables", WSWatcher, function() {
 
 For convenience to any user of ths class, we define two more methods: one to
 indicate which objects were changed and one to indicate which objects
-were added. Both task are straightforward, complicated only by needed
-to compared digests, but return variable names.
-
+were added:
 <<change_add>>=
 qsetMethod("changedVariables", WSWatcher, function() {
   changed <- setdiff(old_digests, digests)
@@ -113,7 +111,9 @@ qconnect(timer, "timeout", function() m$updateVariables())
 timer$start(as.integer(3*1000))         # 3 seconds
 @ 
 
-To illustrate, we create a notifier that the objects were changed by assigning a callback:
+To illustrate, we connect a handler to the \signal{objectsChanged}
+signal and expect the handler to be invoked when we create a
+\code{new\_object} in the workspace:
 <<connectSignal, results=hide>>=
 qconnect(m, "objectsChanged", function() 
          message("workspace objects were updated"))
