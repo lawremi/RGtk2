@@ -15,9 +15,10 @@ some of the issues involved in developing GUIs in \R.
 %% generalize a little after each step, but I think we want to lead
 %% with the concrete.
 
-Many GUIs can be thought of as different views of some data model.  In
-this example, the data simply consists of information holding the
-state of the game, defined here in a global variable \code{board}.
+Generally, GUIs provide the means for viewing and controlling some
+underlying data structure.  In this example, the data simply consists
+of information holding the state of the game, defined here in a global
+variable \code{board}.
 
 %% Model
 <<define-board>>=
@@ -25,8 +26,8 @@ board <- matrix(rep(0,9), nrow=3)
 @ 
 
 %% View
-A GUI contains one or more views, each of which is tied to an
-underlying data model. In our case, the view is the game board that we
+A GUI contains one or more views, each of which displays the data in a
+particular manner.  In our case, the view is the game board that we
 display through an \R\/ graphics device. The \function{layoutBoard}
 function creates a canvas for this view:
 <<layoutBoard>>=
@@ -64,11 +65,11 @@ doPlay <- function() {
 The \code{locator} function responds to mouse clicks. One specifies
 how many mouse clicks to gather and the \textit{control} of the
 program is suspended until the user clicks the sufficient number of
-times (or somehow interrupts the loop). Such a GUI that blocks the
-flow of a program contingent on user input is known as a
-\igui{modal dialogs}\textit{modal} GUI. This design is common for simple dialogs that
-require immediate user attention, although in general a GUI will
-listen asynchronously for user input.
+times (or somehow interrupts the loop). Such a GUI that enters a mode
+in which the flow of a program is blocked and waiting on user input is
+known as a \igui{modal dialogs}\textit{modal} GUI. This design is
+common for simple dialogs that require immediate user attention,
+although in general a GUI will listen asynchronously for user input.
 
 \begin{figure}
   \centering
@@ -104,12 +105,15 @@ clickHandler <- function(iloc) {
 The use of \verb+<<-+ in the handler illustrates a typical issue in
 GUI design in \R.  User input changes the state of the application
 through callback functions. These callbacks need to modify variables
-\iprogram{variable scope}in some shared scope, which may be application-wide or specific to a
-component. The lexical scoping rules of \R, i.e., nesting of closures,
-has proven to be a useful strategy for managing GUI state. When this
-is inconvenient, direct manipulation of environment objects is a
-viable alternative. In the above case, we simply modify the global
-environment, which encloses \function{clickHandler}.
+\iprogram{variable scope}in some shared scope, which may be
+application-wide or specific to a component. The lexical scoping rules
+of \R, i.e., nesting of closures, has proven to be a useful strategy
+for managing GUI state. In the above case, we simply modify the global
+environment, which encloses \function{clickHandler}. When this is
+inconvenient, direct manipulation of environment objects is sometimes
+a feasible option. If the scale of the GUI demands more formal
+mechanisms, we recommend the reference class framework from the
+\pkg{methods} package.
 
 %% validation of user input
 \iprogram{validation}Validation of user input is an important task for a GUI. In the above,
@@ -201,6 +205,6 @@ complexity. As with any software, there is always the temptation to
 continually add features without regard for the long term cost. In
 this case, there are many obvious improvements: implementing a better
 artificial intelligence, drawing a line connecting three in a row when
-there is a win, indicating who won, etc. Adding a feature adds
-complexity to the interface, often useful, but sometime it just
-increases the burden on the user.
+there is a win, indicating who won, etc. Adding a feature increases
+the functionality, at the cost of increased complexity and burden on
+the user.

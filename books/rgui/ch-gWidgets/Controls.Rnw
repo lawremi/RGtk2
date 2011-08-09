@@ -13,7 +13,8 @@ options(guiToolkit="RGtk2")
 
   
 This Chapter discusses the basic GUI controls provided by
-\pkg{gWidgets}. In the following one, we discuss some \R-specific widgets.
+\pkg{gWidgets}. We defer discussion of the \R-specific widgets to the
+next chapter.
 
 <<echo=FALSE, results=tex>>=
 df <- rbind(
@@ -84,8 +85,9 @@ cat(booktabs(df,
 %   \label{tab:gWidgets-control-widgets}  
 % \end{table}
 
+%% ML: fooled around with the sectioning here; hope you're OK with it
 
-\subsection{Buttons}
+\section{Buttons}
 \label{sec:gWidgets-buttons}
 
 The button widget allows a user to initiate an action through clicking
@@ -103,8 +105,10 @@ callback (unless it is a \code{gaction} object, whose case is
 described in Section~\ref{sec:gWidgets-acti-menus-toolb}).  The
 default handler is the click handler which can be specified at
 construction, or afterward through
-\method{addHandlerClicked}{gbutton}. The underlying toolkit's method
-of invoking a callback through keyboard navigation is used.
+\method{addHandlerClicked}{gbutton}. 
+% ML: seems to be too much detail? kind of confusing...
+%The underlying toolkit's method
+%of invoking a callback through keyboard navigation is used.
 
 The following example shows how a button can be used to call a sub
 dialog to collect optional information. We imagine this as part of a
@@ -190,7 +194,7 @@ or disable whether a widget can accept input.
 % \end{example}
 
 
-\subsection{Labels}
+\section{Labels}
 \label{asec:gWidgets-labels}
 
 The \constructor{glabel} constructor produces a basic label
@@ -256,7 +260,7 @@ specified at construction with the argument
 
 
 
-\subsection{Displaying icons and images stored in files}
+\subsection{Icons and images}
 \label{sec:gWidgets-displ-icons-imag}
 
 The \pkg{gWidgets} package provides a few stock icons that can be
@@ -591,7 +595,7 @@ The handler, if given to the constructor or set with
 \label{sec:gWidgets-group-checkboxes}
 
 
-The group of checkboxes is produced by the
+A group of checkboxes is produced by the
 \constructor{gcheckboxgroup} constructor. This convenience widget is
 similar to a radio group, only it allows the selection of none, one,
 or more than one of a set of items.  The
@@ -643,6 +647,7 @@ svalue(cbg) <- c("Flop")
 svalue(cbg) <- c(FALSE, TRUE)
 svalue(cbg, index=TRUE) <- 2
 @ 
+% ML: strange that index=TRUE is required here
 
 The labels are returned through the \method{[}{gcheckboxgroup} method
 and if the underlying toolkit allows it, set through the
@@ -1076,7 +1081,6 @@ The \constructor{gtable} constructor~\footnote{The
 the user can select one (or more) rows. The widgets performance under
 \pkg{gWidgetsRGtk2} and \pkg{gWidgetsQt} is much faster and able to
 handle larger data stores
-%% ML: I'm assuming gWidgetsQt will soon take advantage of the DataFrameModel
 than under \pkg{gWidgetstcltk}, as there is no native table widget in
 \tcltk. At a minimum, all perform well on moderate-sized data sets (10
 or so columns and fewer than 500 rows).~\footnote{For

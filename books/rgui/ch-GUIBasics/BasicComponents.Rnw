@@ -18,17 +18,17 @@ considered optional.
 <<echo=FALSE, results=tex>>=
 df <- rbind(
             c("Boolean","Checkbox, toggle button","-"),
-            c("Small list","radio button group\\newline combo box\\newline list box","checkboxgroup\\newline list box"),
+            c("Small list","radio button group\\newline combo box\\newline list box","checkbox group\\newline list box"),
             c("Moderate list","combo box\\newline list box","list box"),
             c("Large list","list box, auto complete","list box"),
-            c("Sequential","slider\\ spin button",""),
+            c("Sequential","slider\\newline spin button",""),
             c("Tabular","table","table"),
             c("Hierarchical","tree","tree")
             )
 colnames(df) <- c("Type of data","Single","Multiple")
 cat(booktabs(df,
              colTypes=c("l","p{0.35\\textwidth}","p{0.35\\textwidth}"),
-             caption="Table of possible selection widgets by data type and size",
+             caption="Table of possible selection widgets by data type, size and selection mode (single or multiple)",
              label="tab:gui-design-widget-type"))
 @ 
 
@@ -149,7 +149,7 @@ the set of choices. A combo box is generally desirable over radio
 buttons when there are more than four or five choices. However, the
 combo box also has its limits. For example, some web forms require
 choosing a country from a list of hundreds. In such cases, features
-like incremental type ahead search are a common alternative.
+like incremental type ahead search are useful.
 
 \subsubsection{List boxes}
 
@@ -161,7 +161,7 @@ space. If a list box contains too many items to display them
 simultaneously, a scrollbar is typically provided for adjusting the
 visible range. Unlike the combo box, the choices are immediately visible
 to the user.  Figure~\ref{fig:GUI:ex-tcltk} shows a list
-box created by \R\/ that is called from the function
+box created by the \R\/ function
 \command{chooseCRANmirror}. There are too many mirrors to fit on the
 screen, but a combo box would not take advantage of the available
 space. The list box is a reasonable compromise.
@@ -208,7 +208,7 @@ slider to dynamically adjust the bandwidth of a density estimate.
 A \dfn{spin button} plays a similar role to the slider, in that it
 selects a value within a set of bounds. Typically, this widget is
 drawn with a text box displaying the current value and two arrows to
-increment or decrement the selection. The text box can usually be
+increment or decrement the selection. Usually, the text box can be
 edited directly.  A spin button has the advantage of using less screen
 space, and directly entering a specific value, if known, is easier
 than selecting it with a slider. One disadvantage is that the position
@@ -266,11 +266,10 @@ button labels.
 In the WIMP paradigm, an \dfn{icon} is a pictorial representation of a
 resource, such as a document or program, or, more generally, a
 concept, such as a type of file. An application GUI typically adopts
-the more general definition, where an icon is used to augment or
-replace a text label on a button, a toolbar, in a list box, etc. When
-icons appear on toolbars and buttons, they are associated with
-actions, so an icon should be a pictorial representation of an
-action.
+the more general definition, where an icon is used to complement or
+replace a text label on a button or other control. A button represents
+an action, so an icon on a button should visually depict an action.
+
 % ML: too much detail?
 % JV: agreed
 % Except for the default installation of \pkg{tcltk}, images and icons
@@ -290,7 +289,7 @@ window. This is enforced by some toolkits and operating systems, but
 not all. In Mac OS X, the menu bar appears on the top line of the
 display, but other platforms place the menu bar at the top of the
 top-level window. In a statistics application, the ``document'' may be
-viewed, for example, as the active data frame, a report, or a graphic.
+the active data frame, a report, or a graphic.
 
 The styles used for menu bars are fairly standardized, as this allows
 new users to quickly orient themselves within a GUI. The visible menu
@@ -300,7 +299,7 @@ names are often in the order \code{File}, \code{Edit}, \code{View},
 possible actions. The text for these actions conventionally use a
 \code{...}  to indicate that a subsequent dialog will open so that
 more information can be gathered to complete the action. The text may
-also indicate a key-board accelerator, such as \code{Find
+also indicate a keyboard accelerator, such as \code{Find
   \underline{N}ext F3} indicating that both ``N'' as a keyboard
 accelerator and F3 as a shortcut will initiate this same
 action. (Shortcuts are not translated, but keyboard accelerators must
@@ -315,9 +314,10 @@ Menus may come to contain many items. To help the user navigate, menu
 items are usually grouped with either horizontal separators or
 hierarchical submenus. %%The latter are indicated with an arrow.
 
-The use of menus has evolved to also allow the user to set properties
-or attributes of current state of the GUI. There may be checkboxes
-drawn next to the menu item or some icon indicating the current state.
+The use of menus has evolved to also allow the user to view and
+control properties of the application state. There may be
+checkboxes drawn next to the menu item or some icon indicating the
+current state.
 
 Another use of menus is to bind contextual menus (popup menus) to
 certain mouse clicks on GUI elements. Typically right mouse clicks
@@ -452,7 +452,7 @@ structures. If the data has a hierarchical structure, then a \dfn{tree
   widget} may be appropriate for its display. Examples of hierarchical
 data in \R\/ are directory structures, the components of a list, or
 class hierarchies. The object browser in \pkg{JGR} uses a tree widget
-to show the components of the objects in a users session
+to show the components of the objects in a user session
 (Figure~\ref{fig:GUI:R-guis-exs-JGR}). The root node of the tree is
 the ``data'' folder, and each data object in the global workspace is
 treated as an offspring of this root node. For the data frame
@@ -543,7 +543,9 @@ the commands, so that the input can be distinguished from the output.
 Some widgets display information but do not respond to user
 input. Their main
 purpose is to guide and the user through the GUI and to display
-feedback and status messages.
+feedback and status messages. Communicating application status, such
+as during long-running calculations or when errors occur, is an often
+over-looked but critically important feature of any effective GUI. 
 
 \subsubsection{Labels}
 \label{sec:GUI:labels}
@@ -558,12 +560,17 @@ shows labels marked in red and blue in \pkg{tcltk}.
 \label{sec:GUI:statusbars}
 
 A statusbar displays general status messages, as well as feedback on
-actions initiated by the user, such as progress or errors. In the
-traditional document-oriented GUI, statusbars are placed at the bottom.
+actions initiated by the user, such as progress or errors. Messages
+replace the previous message and may disappear after a certain period
+of time. In the traditional document-oriented GUI, statusbars are
+placed at the bottom.
 
 Related to status bars are info bars or alert boxes, that allow a
-programmer to leave a transient message for the user usually just
-below the toolbar.
+programmer to display a transient message dialog that emerges from one
+either the top or bottom the application window. An example is the
+Firefox dialog that asks whether Firefox should remember a
+password entered on the previous page. It appears just below the
+toolbar and disappears automatically as the user continues to browse.
 
 \subsubsection{Tooltips}
 \label{sec:GUI:basic-tooltips}

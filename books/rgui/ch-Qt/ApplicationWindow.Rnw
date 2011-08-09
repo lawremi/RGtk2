@@ -37,7 +37,7 @@ mainWindow$setCentralWidget(tableView)
 We will continue by adding a menubar and toolbar to our window. This
 depends on an understanding of how \Qt{} represents actions.
 
-\subsection{Actions}
+\section{Actions}
 \label{sec:actions}
 
 The buttons in the menubar and toolbar, as well as other widgets in
@@ -158,7 +158,7 @@ label text of a menu item. A mnemonic is active only when the parent
 menu is active. Mnemonics are disabled by default on Windows
 and Mac installations of \Qt{} and thus are not covered here.
 
-\subsection{Menubars}
+\section{Menubars}
 \label{sec:menubars}
 
 Applications often support too many actions to display them all at
@@ -213,7 +213,7 @@ In the above, we take advantage of the convenient overloads of
 string title and return a new \class{QAction} or {QMenu},
 respectively.
 
-\subsection{Context menus}
+\section{Context menus}
 \label{sec:qt:app:context-menus}
 
 Sometimes, actions pertain to a single widget or portion of a widget,
@@ -290,7 +290,7 @@ qconnect(ed, "customContextMenuRequested",
          showCompletionPopup, user.data=ed)
 @ 
 
-\subsection{Toolbars}
+\section{Toolbars}
 \label{sec:toolbars}
 
 The toolbar manages a compact layout of frequently executed actions,
@@ -367,7 +367,7 @@ toolbar$setToolButtonStyle(Qt$Qt$ToolButtonTextUnderIcon)
 By default, toolbars pack their items horizontally. Vertical packing
 is also possible; see the \property{orientation} property. 
 
-\subsection{Statusbars}
+\section{Statusbars}
 \label{sec:statusbars}
 
 Main windows reserve an area for a status bar at the bottom of the
@@ -411,7 +411,7 @@ statusbar$addWidget(Qt$QLabel("Ready"))
 statusbar$addPermanentWidget(Qt$QLabel("Version 1.0"))
 @ 
 
-\subsection{Dockable widgets}
+\section{Dockable widgets}
 \label{sec:dockable-widgets}
 
 \class{QMainWindow} supports window docking. There is

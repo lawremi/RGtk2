@@ -11,7 +11,7 @@ create small to medium size GUIs within R. The package provides an
 abstract interface for the other graphical toolkits discussed in this
 text, allowing for similar access to each. Unlike the underlying
 toolkits, \pkg{gWidgets} has relatively few constructors and
-methods. Basically the entire set is enumerated in
+methods. Basically, the entire set is enumerated in
 Tables~\ref{tab:gWidgets-control-widgets},
 \ref{tab:gWidgets-container-constructors}, \ref{tab:gWidgets-methods},
 and \ref{tab:gWidgets-container-methods}. This means \pkg{gWidgets} is
@@ -20,14 +20,15 @@ means that as projects progress, one might need to move to a more
 powerful underlying toolkit.) 
 
 Typical uses of GUIs written in \R{} involve teaching demos, sharing
-functionality with less proficient colleagues, etc. In many cases the
+functionality with less technically proficient colleagues, etc. In many cases 
+the
 end user may have a different operating system or different set of
 graphical libraries installed.  The underlying toolkits supported by
 \pkg{gWidgets} are all cross platform, and \pkg{gWidgets} code is
 mostly cross toolkit, although differences do come up. (Compare for
 example, the same code realized on different operating system and
 toolkits in Figure~\ref{fig:gWidgets-three-oses}.) This means, there
-is a good chance that code you write, can be shared easily with
+is a good chance that code you write can be shared easily with
 someone else.
 
 
@@ -46,8 +47,8 @@ extended and abstracted to work with different GUI toolkit backends
 available for \R. A separate package provides the interface. As of
 writing there are interfaces for \pkg{RGtk2}, \pkg{qtbase}, and
 \pkg{tcltk}. The \pkg{gWidgetsWWW2} package provides a similar
-interface for web programming, but there are enough differences, that
-we don't mention it here..
+interface for web programming, but there are enough differences that
+we will not discuss it further.
 
 Figure~\ref{fig:gWidgets-three-oses} demonstrates the portability of
 \pkg{gWidgets} commands, as it shows realizations on different
@@ -147,7 +148,7 @@ for(j in c("RGtk2","tcltk","Qt")) {
 
 We jump right in with an example~\footnote{Many thanks to Richie
   Cotton for suggesting this example and its follow up in
-  Example~\ref{eg-gwidgets-file-system-II}.} leaving comments about
+  Example~\ref{eg-gwidgets-file-system-II}.} and leave comments about
 installation to the end of the chapter. The following shows some
 sample \pkg{gWidgets} commands that set up a basic interface allowing
 a user to search their hard drive for files matching a user-specified
@@ -231,6 +232,13 @@ gname(arguments, handler = NULL, action = NULL,
 where the \code{arguments} vary depending on the object being made. We
 discuss now the common arguments.
 
+%% ML: I am bit thrown by this next paragraph. It sounds like we are about
+%% to describe each argument of that abstract function signature, but
+%% then we talk about how we called gwindow(). Shouldn't the
+%% 'container' argument be explicitly explained? Shouldn't toolkit
+%% come last in the explanation? What are the '...'? Would it make
+%% more sense for 'arguments' to be represented as '...'?
+
 \paragraph{Containers}
 In the above, we see that the \code{gwindow} constructor, for a
 top-level window, has two arguments passed in, an unnamed one for a
@@ -267,6 +275,9 @@ user to choose one.
 The \args{handler} and \code{action} arguments are used to pass in
 event handlers. We discuss those in Section~\ref{sec:callbacks}.
 
+%% ML: visually it is tough to distinguish the paragraph heading from
+%% the description item headings. Do we need to break this section up
+%% into subsections?
 
 %% return value
 \paragraph{Side effects}
@@ -277,7 +288,7 @@ The constructors produce one of three general types of widgets:
  (Table~\ref{tab:gWidgets-container-constructors});
 %
 \item[Components] such as the unnamed labels, the edit area
-  \code{txtPattern},, or the button \code{searchBtn}
+  \code{txtPattern}, or the button \code{searchBtn}
   (Tables~\ref{tab:gWidgets-control-widgets}
   and~\ref{tab:gWidgets-compound-widgets});
 %
@@ -318,7 +329,7 @@ The constructors produce one of three general types of widgets:
 \section{Methods}
 
 
-In addition to creating a GUI object, most \pkg{gWidgets}'
+In addition to creating a GUI object, most \pkg{gWidgets}
 constructors also return a useful \R\/ object. This is an S4 object of
 a certain class containing two components: \code{toolkit} and
 \code{widget}. (Modal dialogs do not return an object, as the dialog
@@ -329,7 +340,7 @@ dialog.)
 
 GUI objects have a state determined by one or more of their
 properties. In \pkg{gWidgets} many properties are set at the time of
-construction. However, there are also several new generic methods defined
+construction. However, there are also several methods defined
 for \pkg{gWidgets} objects to adjust these properties.~\footnote{ We
   are a bit imprecise about the term ``method'' here. The
   \pkg{gWidgets} methods call further methods in the underlying
@@ -363,7 +374,7 @@ svalue(searchResults) <- fnames
 to update the text for the multi-line text widget \code{searchResults}.
 
 %% selection widgets
-For the selection widgets (which we don't have in our example), there
+For the selection widgets (of which there are none in our example), there
 is a natural mapping between vectors or data frames, and the data to
 be selected. In this case, the user may want the value selected or the
 index of the selected value. The \args{index=TRUE} argument of
@@ -413,7 +424,7 @@ take advantage of a richer API. In most cases, the
 the method \method{\$}{guiWidget} is implemented to call a method on
 the underlying toolkit widget and the methods \verb+[[+
 and \verb+[[<-+ are implemented to inspect and set
-properties of the underlying widget.  We don't illustrate here though,
+properties of the underlying widget.  We will not illustrate here though,
 as we try to stay toolkit agnostic in our examples.
 
 
@@ -525,10 +536,9 @@ For example, a typical idiom within a callback is
 prop <- svalue(h$obj)
 @ 
 %
-which assigns the object's main property to \code{prop}.  We don't see
-that above, as the values we desire belong to other widgets, which are
-referred to through \R's usual scoping rules.  Some toolkits pass
+which assigns the object's main property to \code{prop}. Some toolkits pass
 additional arguments through the callback's \args{...}  argument, so
+%% ML: seems like this would be easy to work around
 for portability this part of the signature is not optional. For some
 handler calls, extra information is passed along through the list
 \code{h}. For instance, in the drop target callback the component
@@ -633,7 +643,7 @@ The \pkg{gWidgets} package provides a few constructors to quickly make
 some basic dialogs for showing messages or gathering
 information. Mostly these are modal dialogs that take control of the
 event loop, not allowing any other part of the GUI to be active for
-programmatic interaction. As such, in \pkg{gWidgets}, constructors of
+interaction. As such, in \pkg{gWidgets}, constructors of
 modal dialogs do not return an object to manipulate through its
 methods, but rather return the user response to the dialog. For example, the
 \code{gfile} dialog, described later, is a modal dialog that pops up a
@@ -799,7 +809,7 @@ package.
   \label{fig:gWidgets-yuml}
 \end{figure}
 %% From
-%%http://yuml.me/diagram/class/[gWidgets%7Cgbutton]-.%3E[gWidgetsRGtk2%7C.gbutton],%20[gWidgetsRGtk2%7C.gbutton]-.%3E[RGtk2%7CgtkButtonNew],%20[RGtk2%7CgtkButtonNew]-.%3E[GTK%7CS_gtk_button_new]
+%%http://yuml.me/diagram/class/[gWidgets%7Cgbutton]-.%3E[gWidgetsRGtk2%7C.gbutton],%20[gWidgetsRGtk2%7C.gbutton]-.%3E[RGtk2%7CgtkButtonNew],%20[RGtk2%7CgtkButtonNew]-.%3E[GTK%7Cgtk_button_new]
 
 
 The difficulty for the end user is the installation of the graphic
@@ -813,13 +823,13 @@ for Windows FAQ.
 %% JV Perhaps this belongs somewhere else in the text...
 <<installation, echo=FALSE, results=tex>>=
 df <- rbind(
-           Windows=c("Windows", "Download exe file",
-             "Install libraries, binary",
+           Windows=c("Windows", "Installed by \pkg{RGtk2}",
+             "Included with \pkg{qtbase}",
              "In binary install of R"
              ),
             Linux=c("Linux","Standard","Standard","Standard"),
             Mac=c("OS X", "Download binary .pkg",
-              "Install from vendor",
+              "Download from vendor",
               "In binary install of R")
             )
 dimnames(df) <- list(NULL,c("","Gtk+", "Qt", "Tk"))

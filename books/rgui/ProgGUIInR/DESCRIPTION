@@ -3,7 +3,7 @@ Version: 0.0-1
 Title: support package for Programming GUIs in R
 Author: John Verzani and Michael Lawrence
 Maintainer: John Verzani <verzani@math.csi.cuny.edu>
-Depends: methods, utils, RGtk2, qtbase, tcltk, ggplot2, svMisc,
+Depends: methods, utils, RGtk2, qtbase, ggplot2, svMisc,
     gWidgets, gWidgetsRGtk2
 Description: sample code, appendices and functions for the text
     Programming GUIs inR

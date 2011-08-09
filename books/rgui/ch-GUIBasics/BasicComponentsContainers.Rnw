@@ -104,21 +104,11 @@ to a document.
 % together and provides the constructor name for the different toolkits
 % discussed in this book.
 
-\subsubsection{Frames}
-\label{sec:GUI:frames}
-
-A frame is a simple container that draws a border, possibly with a
-label, around its child. The purpose of a frame is to enhance
-comprehension of a GUI by visually distinguishing one group of
-components from the others. The displayed page of the notebook in
-Figure~\ref{fig:GUI:print-dialogs} contains two frames, visually
-grouping widgets by their function: either \code{Page Selection}
-or \code{Output Settings}.
-
 \subsubsection{Tabbed notebooks}
 \label{sec:GUI:notebooks}
 
-A notebook represents each of its children as a page in a notebook. A
+A notebook widget depicts each child as if it were a page in a 
+notebook. A
 page is selected by clicking on a button that appears as a tab. Only a
 single child is shown at once. The tabbed notebook is a space
 efficient, categorizing container that is most appropriate when a user
@@ -149,6 +139,16 @@ Options'', and ``Additional Tags''.
 % \end{landscape}
 % }
 
+\subsubsection{Frames}
+\label{sec:GUI:frames}
+
+A frame is a simple container that draws a border, possibly with a
+label, around its child. The purpose of a frame is to enhance
+comprehension of a GUI by visually distinguishing one group of
+components from the others. The displayed page of the notebook in
+Figure~\ref{fig:GUI:print-dialogs} contains two frames, visually
+grouping widgets by their function: either \code{Page Selection}
+or \code{Output Settings}.
 
 \subsubsection{Expanding boxes}
 \label{sec:GUI:expanding-boxes}
@@ -193,7 +193,7 @@ Figure~\ref{fig:GUI:box-possibilities} illustrates these possibilities.
 vertical and horizontal directions. The typical box layout algorithm
 begins by satisfying the minimum size requirements of its
 children. The box may need to request more space for itself in order
-to meet the requirement. 
+to meet the requirements. 
 
 Once the minimum requirements are satisfied, it is conventional and
 usually desirable for the widgets to fill the space in the direction
@@ -338,7 +338,7 @@ align widgets in both dimensions, i.e., to lay them out on a
 most flexible grid layout algorithms allow non-regular sizing of rows
 and columns, as well as the ability for a widget to span multiple
 cells. Usually, a widget fills the cells allocated to it, but if this
-is not possible, it may be anchored at a specific point within their
+is not possible, it may be anchored at a specific point within its
 cell. 
 
 The widgets in the ``Printer'' frame of
@@ -347,4 +347,4 @@ with five columns and six rows. The first row begins with the
 ``Name:'' label, and each widget in that row occupy a separate
 column. This exposes the size of each column. The first column has
 only labels, with text justified to the left.  The labels are aligned
-horizontally to each other and vertically with adjacent field.
+horizontally to each other and vertically with the adjacent field.

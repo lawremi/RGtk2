@@ -68,7 +68,7 @@ child and \code{...}  values are passed from the constructor down to
 the \meth{add} method.  That is, the widget construction and layout
 are coupled together. Although, this isn't necessary when utilizing
 \pkg{RGtk2} or \pkg{qtbase} -- and the two aspects can be separated --
-for the sake of cross-toolkit portability we don't illustrate this
+for the sake of cross-toolkit portability we do not illustrate this
 style here.
 
 
@@ -690,7 +690,9 @@ through:
 <<main_table_prop>>=
 sapply(lyt[,2], svalue)
 @ 
-
+% ML: returning all empty strings is not all that interesting.
+%% Maybe set a different initial value for each entry, so that the
+%% reader can see that the order is preserved, etc?
 
 
 % \begin{example}{Layout with \constructor{glayout}}{ex-gWidgets-glayout}
@@ -707,19 +709,20 @@ The \constructor{gpanedgroup} constructor produces a container which
 has two children separated by a visual gutter that can be
 adjusted by the user with their mouse to allocate the space between them.
 Figure~\ref{fig:gWidgets-sample-layout} uses such a
-container to separate the file selection controls from the file
-display ones.  For this container, the children are aligned
+container to separate the file selection controls from those for file
+display.  For this container, the children are aligned
 side-by-side (by default) or top to bottom if the
 \argument{horizontal}{gpanedgroup} argument is given as
 \code{FALSE}. 
 
 
-To add children, the container should be used as the parent container
-for two constructors. These can be other container constructors which
+To add children, the container should be passed as the parent during
+the construction of each of the two child widgets.
+These might be other container constructors, which
 is the typical usage for more complicated layouts.
 (For toolkits which support the separation of widget
-construction and layout, the \constructor{gpanedgroup} constructor can
-have two children specified to the arguments
+construction and layout, the \constructor{gpanedgroup} constructor
+accepts the two children through the arguments 
 \argument{widget1}{gpanedgroup} and \argument{widget2}{gpanedgroup}.)
 
 The main property of this container is the sash position, a value in
@@ -786,8 +789,8 @@ which tabs, by index, should not be closable.
 \paragraph{Methods}
 Pages are added through the \method{add}{gnotebook} method for the
 notebook container. The extra  \argument{label}{add} argument is used
-to specify the tab label. (As \meth{add} is called implicitly when a a
-widget is constructed, this argument is usually specified to the
+to specify the tab label. (As \meth{add} is called implicitly when a
+widget is constructed, this argument is usually passed to the
 constructor.)
 
 
@@ -800,9 +803,9 @@ a different tab, use this method in combination with
 \meth{svalue\ASSIGN}. (When removing many tabs, you will want to start
 from the end as otherwise the tab positions change during removal.)
 
-From some viewpoint, the notebook widget is viewed as a vector with a
-names attribute (the labels) and components being the child
-components. As such, the \meth{[} method returns the the child
+From some viewpoint, the notebook widget is viewed as a vector of
+child widgets, named according to the tab labels.
+As such, the \meth{[} method returns the child
 components (by index), the \method{names}{gnotebook} method refers to
 the tab names, and the \method{length}{gnotebook} method returns the
 number of pages held by the notebook.
@@ -837,7 +840,7 @@ hg[1,2] <- glabel(paste("To add a page:",
 @ 
 
 
-To manipulate the displayed pages, say to set the page to the last one
+To manipulate the displayed pages, say to set the page to the last one,
 we have:
 <<set_nb_page>>=
 svalue(nb) <- length(nb)

@@ -22,6 +22,9 @@ workspace changes we would like the views to update. Furthermore, we
 may want to have different views, such as one for functions and one
 for data sets.
 
+%% ML: we just put objectSignals on CRAN. Might want to cite that or
+%% even use it here.
+
 This pattern where a central, dynamic source of data is to used and
 shared amongst many different pieces of a GUI is a common one. To
 address the complexity that arises as the components of a GUI get more

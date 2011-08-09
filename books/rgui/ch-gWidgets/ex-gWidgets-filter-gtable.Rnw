@@ -9,7 +9,7 @@
 
 Even with moderate-sized data sets, the number of rows can be quite large, in which case it is
 inconvenient to use a table for selection unless some means of searching or filtering the
-data is used. This example uses the many possible CRAN packages, to show how a
+data is used. This example displays the many possible CRAN packages to show how a
 \code{gedit} instance can be used as a search box to filter the display of
 data (Figure~\ref{fig:gWidgets-filter-example}). The \code{addHandlerKeystroke} method is used so that the search
 results are updated as the user types.
@@ -28,7 +28,7 @@ options(repos="http://streaming.stat.iastate.edu/CRAN")
 ap <- available.packages()       # pick a cran site
 @ 
 
-This basic GUI is barebones, for example we skip adding text labels to guide the user. 
+This basic GUI is barebones: for example, we skip adding text labels to guide the user. 
 <<>>=
 w <- gwindow("test of filter")
 g <- ggroup(cont=w, horizontal=FALSE)

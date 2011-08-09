@@ -23,14 +23,14 @@
 
 
 The most prevalent pattern of user interface design is denoted WIMP,
-which stands for Window, Icon, Menu and Pointer (i.e., mouse). The
+which stands for Window, Icon, Menu and Pointer. The
 WIMP approach was developed at Xerox PARC in the 1970's and later
 popularized by the Apple Macintosh in 1984. This is particularly
 evident in the separation of the window from the menu bar on the Mac
 desktop. Other graphical operating systems, such as Microsoft Windows,
 later adapted the WIMP paradigm, and libraries of reusable GUI
 components emerged to support development of applications in such
-environments. Thus, GUI development in R adheres to a WIMP approach.
+environments. Thus, GUI development in R adheres to the WIMP approach.
 
 The primary WIMP component from our perspective is the window. A
 typical interface design consists of a \igui{top-level window}top-level window referred to as
@@ -46,7 +46,7 @@ Abstractly, WIMP is a command language, where the user executes
 commands, often called actions, on a document by interacting with
 graphical controls. Every control in a window belongs to some abstract
 menu. Two common ways of organizing controls into menus are the
-menu bar and toolbar.
+menu bar and tool bar.
 
 The parameters of an action call, if any, are controlled in
 sub-windows. These sub-windows are termed \dfnref{application windows}
@@ -107,8 +107,8 @@ choice of printer for each is specified through a combo box. However,
 for other choices a variety of widgets are employed. For example, the
 control to indicate the number of copies for the Mac is a simple text
 entry window, whereas for the KDE and Windows dialog it
-is a spin button. The latter minimizes user error, say through entering
-a non-positive integer. The KDE and Mac dialogs have icons to
+is a spin button. The latter provides a bit more functionality, for a
+bit more complexity. The KDE and Mac dialogs have icons to
 compactly represent actions, whereas the the Windows example has none. The
 landscape icon for the Mac is very clear and provides this feature
 without having to use a sub dialog.
@@ -137,7 +137,7 @@ options at once.
 
 %% state visualization: sensitive/not; focus, not, 
 The Mac GUI provides a very nice preview of the current document
-indicating to the user clearly what is to be printed and how
+indicating, to the user clearly what is to be printed and how
 much. Adjusting GUIs to the possible state is an important user
 interface property.  GUI areas that are not currently sensitive to
 user input are grayed out. For example, the ``collate'' feature of the
@@ -149,7 +149,7 @@ possible, given the state of the application.
 %% shortcuts -- default button, keyboard accelerators
  
 The Mac GUI has the number of pages in focus, whereas Windows places
-the printer in focus. This allows the user to interact with the GUI
+the printer in focus. Focus allows the user to interact with the GUI
 without the mouse. Typically the \kbd{tab} key is used to step through
 the controls. GUI's often have shortcuts that allow power users to
 initiate actions or shift the focus directly to a specific widget
@@ -180,6 +180,6 @@ cancel the printing. The Windows ones are set on the right and consist
 of the standard ``OK'' and ``Cancel'' buttons. The Mac interface uses
 a spring to push some buttons to the left, and some to the right to
 keep separate their level of importance. The KDE buttons do so as
-well, although one can't tell from the image. However, one can see the use
-of stock icons on the buttons to guide the user. 
+well, although one cannot tell from the image. The use
+of conventional icons on the buttons also help guide the user. 
 

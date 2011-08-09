@@ -2,7 +2,7 @@
   \begin{figure}
     \centering
     \includegraphics[width=.8\textwidth]{fig-gWidgets-collapse-factor.png}
-    \caption{A GUI to facilitate the recoding or a factor's levels. For this, one selects the desired levels to rename or collapse, then enters a new label on the right. Activating the combo box will update the "new" column on the left.}
+    \caption{A GUI to facilitate the recoding or collapsing of a factor's levels. For this, one selects the desired levels to rename or collapse, then enters a new label on the right. Activating the combo box will update the "new" column on the left.}
     \label{fig:gWidgets-collapse-factor}
   \end{figure}
   
@@ -30,13 +30,13 @@ initialize <- function(f, cont=gwindow()) {
 
 This \code{make\_gui} function does the hard
 work. (Figure~\ref{fig:gWidgets-collapse-factor} shows a screenshot.)
-We have just two widget, placed in a paned group. The left one is a
-table that displays two columns. The first to list the old values, the
-second to list the collapsed or recoded values. The right one is a
-combo box that allows one to enter a new factor level or select a
-current one. The handler on the combo box updates the second column of
-the table to reflect the new values. We block any handler calls to
-avoid a loop when we set the index back to 0.
+We have just two widgets, placed in a paned group. The left one is a
+table that displays two columns: the old values and the collapsed or
+recoded values. The widget on the right is a combo box for entering a
+new factor level or selecting an existing level. The handler on the
+combo box updates the second column of the table to reflect the new
+values. We block any handler calls to avoid a loop when we set the
+index back to 0.
 <<>>=
 make_gui <- function(cont) {
   g <- gpanedgroup(cont=cont)
