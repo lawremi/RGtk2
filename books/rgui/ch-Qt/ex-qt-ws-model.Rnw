@@ -1,5 +1,5 @@
 \Qt{} provides the \class{QFileSystemWatcher} class for monitoring
-changes to the underlying file system. Here create an analogous
+changes to the underlying file system. Here we create an analogous
 component that monitors changes to the global workspace.  With
 \pkg{gWidgets} (cf.  Example~\ref{ex-gWidgets-ws-browser}), we
 implemented the observer pattern to notify listeners for changes to
@@ -53,8 +53,8 @@ qsetProperty("old_digests", WSWatcher)
 qsetProperty("old_objects", WSWatcher)
 @
 
-Our class has a few methods defined for it. We need one to call to
-initiate the update of the variable list. This one simply compares the
+Our class has a few methods defined for it. We need one  to
+initiate the update of the variable list. This simply compares the
 digest of the current workspace objects with a cached list. If there
 are differences, we update the objects, which in turn signals a
 change.
@@ -78,7 +78,7 @@ qsetMethod("updateVariables", WSWatcher, function() {
 For convenience to any user of ths class, we define two more methods: one to
 indicate which objects were changed and one to indicate which objects
 were added:
-<<change_add>>=
+<<change_add, results=hide>>=
 qsetMethod("changedVariables", WSWatcher, function() {
   changed <- setdiff(old_digests, digests)
   old_objects[old_digests %in% changed]
@@ -91,7 +91,7 @@ qsetMethod("addedVariables", WSWatcher, function() {
 @ 
 
 
-Finally, we arrange to call the update function as needed. If the
+Finally, we arrange to call our update function as needed. If the
 workspace size is modest, using a \iprogram{task callback}task callback is a reasonable
 strategy:
 <<addTaskCallback, results=hide>>=

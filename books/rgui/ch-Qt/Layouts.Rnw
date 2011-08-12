@@ -46,6 +46,7 @@ wid$setLayout(layout)
 %% adding a widget
 Child widgets are added to a container through the
 \method{addWidget}{QLayout} method:
+
 <<qt-layout-basic-add, results=hide>>=
 layout$addWidget(Qt$QPushButton("Push Me"))
 @
@@ -88,7 +89,7 @@ button$setParent(NULL)
 
 \ilayout{Space allocation}The allocation of space to child widgets depends on several factors.
 The \Qt{} documentation for layouts spells out well the
-steps:~\footnote{\url{http://doc.qt.nokia.com/4.6/layout.html}}
+steps:~\footnote{\url{http://doc.qt.nokia.com/4.7/layout.html}}
 \\
 \begin{enumerate}
 \item All the widgets will initially be allocated an amount of space
@@ -344,7 +345,9 @@ g$addStrut(10)                    # at least 10 pixels high
 \begin{figure}
   \centering
   \includegraphics[width=.6\textwidth]{fig-qt-layout-example}
-  \caption{A mocked up layout using the \class{QGridLayout} class.}
+  \caption{A mocked up layout using the \class{QGridLayout}
+    class. There are $3$ columns and $4$ non-homogeneous rows, in addition,  several child
+    components span more than one cell.}
   \label{fig:qt-layout-example}
 \end{figure}
 

@@ -169,11 +169,12 @@ updateTopLevelItems <- function(ws_watcher, view,
 %
 We remove objects corresponding to expired digests by their index. We
 need to sort the indices in decreasing order so as not to invalidate
-any indices. Then we add in new or changed variable names. Finally,
-the model is sorted. We set the \property{updatesEnabled} property to
+any indices along the way. Then we add in new or changed variable names. Finally,
+the model is sorted. We set the \prop{updatesEnabled} property to
 freeze the view while the model is updated to make a smoother
 transition.
 
+This function is used to initialize the view
 <<>>=
 initializeTopLevelItems <- function(ws_watcher, view, 
                                     env=.GlobalEnv) {

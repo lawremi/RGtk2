@@ -26,7 +26,8 @@ qsetClass("VariableSelector", Qt$QWidget, function(parent=NULL) {
   ## widgets
   this$dfcb <- Qt$QComboBox()
   this$varList <- Qt$QListView()
-  this$varList$setModel(qdataFrameModel(data.frame(), this, useRoles=TRUE))
+  this$varList$setModel(qdataFrameModel(data.frame(), this, 
+                                        useRoles=TRUE))
   this$varList$dragEnabled <- TRUE
 
   ## layout
@@ -45,8 +46,9 @@ qsetClass("VariableSelector", Qt$QWidget, function(parent=NULL) {
 @ 
 %
 
-This utility populates the combo box with a list of data frames:
-<<qt-mvc-dnd-update-datasets>>=
+This utility populates the combo box with a list of data frames,
+keeping the selected data frame if still valid.
+<<qt-mvc-dnd-update-datasets, results=hide>>=
 qsetMethod("updateDataSets", VariableSelector, function() {
   curVal <- dfcb$currentText
   dfcb$clear()
@@ -64,27 +66,7 @@ qsetMethod("updateDataSets", VariableSelector, function() {
 })
 @ 
 
-The data frame is stored in the following call to
-\function{qsetProperty}. We overwrite the underlying \meth{write}
-method to also update our model for the variable list.
-<<qt-mvc-dnd-dataset, results=hide>>=
-qsetProperty("dataFrame", VariableSelector, 
-             write = function(df) {
-               if (is.null(df))
-                 df <- data.frame()
-               else if (is.character(df)) 
-                 df <- get(df, .GlobalEnv)
-               ##
-               model <- varList$model()
-               qdataFrame(model) <- 
-                 data.frame(variable=names(df),
-                            variable.decoration=I(lapply(df, getIcon)))
-               this$.dataFrame <- df
-               dataFrameChanged()
-             })
-@ 
-%
-<<didntWork, echo=FALSE, eval=FALSE>>=
+<<echo=FALSE>>=
 ## The \function{getIcon} helper function provides an icon from the class of a
 ## column:
 require(grid)
@@ -97,6 +79,28 @@ getIcon <- function(x) {
   Qt$QIcon(f)
 }
 @ 
+
+The data frame is stored in the following call to
+\function{qsetProperty}. We overwrite the underlying \meth{write}
+method to also update our model for the variable list.
+<<qt-mvc-dnd-dataset, results=hide>>=
+qsetProperty("dataFrame", VariableSelector, 
+             write = function(df) {
+               if (is.null(df))
+                 df <- data.frame()
+               else if (is.character(df)) 
+                 df <- get(df, .GlobalEnv)
+               ##
+               model <- varList$model()
+               icons <- lapply(df, getIcon)
+               qdataFrame(model) <- 
+                 data.frame(variable=names(df),
+                            variable.decoration=I(icons))
+               this$.dataFrame <- df
+               dataFrameChanged()
+             })
+@ 
+%
 When the property is written the variable selector will emit this signal:
 <<qt-mvc-dnd-datasetChanged, results=hide>>=
 qsetSignal("dataFrameChanged", VariableSelector)

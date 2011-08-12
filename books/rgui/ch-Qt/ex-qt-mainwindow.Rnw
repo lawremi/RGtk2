@@ -1,6 +1,10 @@
 %% Need to decide whether this example is still necessary
 
+%% JV: 8-12 it seems superflous. It can stay in the package
+
 <<MainWindowExample, echo=FALSE, results=hide>>=
+## An example showing how to mock up a main window to hold the components of an IDE
+## 
 library(qtbase)
 @ 
 

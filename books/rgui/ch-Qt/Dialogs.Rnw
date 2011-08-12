@@ -3,7 +3,7 @@
 
 
 
-
+\igui{dialogs}
 \section{Dialogs}
 \label{sec:built-dialogs}
 
@@ -33,7 +33,7 @@ cost of convenience. Here we take the simple path for presenting a
 warning dialog:
 <<qt-dialogs-static-warning, eval=FALSE>>=
 response <- Qt$QMessageBox$warning(parent = NULL, 
-               title = "Warning!", text = "Warning message...")
+              title = "Warning!", text = "Warning message...")
 @
 %
 This call will block the flow of the program until the user responds
@@ -67,9 +67,9 @@ default values for these.
 
 
 For more control over the appearance and behavior of the dialog, we
-will take a more gradual path. First, we construct an instance of
+may take a more gradual path. Here, we construct an instance of
 \class{QMessageBox}. It is possible to specify several properties at
-construction. Here is how one might construct a warning dialog:
+construction. The following is how one might construct a warning dialog:
 <<qt-dialogs-construct>>=
 dlg <- Qt$QMessageBox(icon = Qt$QMessageBox$Warning,
                       title = "Warning!",
@@ -94,7 +94,7 @@ dlg$detailedText <- "Extra details most do not care to see"
 @ 
 %
 Both provide additional textual information
-at an increasing level of detail. The \prop{informativeText}{QMessageBox} will
+at an increasing level of detail. The \prop{informativeText} will
 be rendered as secondary to the actual message text. To display the
 \prop{detailedText}, the user will need to interact with a control
 in the dialog. An example is a stack trace for the warning.
@@ -104,7 +104,7 @@ approach to showing the dialog depends on whether the dialog should be
 modal. A \igui{modal dialog}modal dialog is displayed with the \method{exec}{QDialog}
 method. 
 <<qt-dialogs-exec>>=
-dlg$exec()                              # returns response code
+dlg$exec()                           # returns response code
 @ 
 As its name implies, \method{exec}{QDialog} executes a loop
 that will block until the user responds. As with the static
@@ -124,7 +124,7 @@ There are several signals that indicate user response, including
 general is \qcode{finished}, which passes the button/response code as
 its only argument.
 
-Then we show, raise and activate the dialog:
+Finally, we show, raise and activate the dialog with:
 <<qt-dialogs-show, results=hide>>=
 dlg$show()
 dlg$raise()
@@ -171,7 +171,7 @@ if(dlg$exec() == Qt$QMessageBox$Ok)
    \includegraphics[width=\textwidth]{fig-qt-dialog-input-text}
  \end{minipage}
 \caption{Qt provides three static constructors for input dialogs,
-   making it straightforward to collect text, integers of selections
+   making it straightforward to collect integers, selections or text
    from a user.}
   \label{fig:qt-dialogs-input}
 \end{figure}
@@ -307,7 +307,7 @@ db$show(); db$raise()
 The first button added with the \code{AcceptRole} role is made the
 default. Overriding this requires adding the default button with
 \method{addButton}{QDialogButtonBox} and setting the
-\property{default} property on the returned button object.
+\prop{default} property on the returned button object.
 
 \subsection{Custom dialogs}
 \label{sec:qdialog}
@@ -409,7 +409,7 @@ lyt <- Qt$QFormLayout()
 getToysPage$setLayout(lyt)
 lyt$addRow("Toys", (toys <- Qt$QLineEdit()))
 wizard$addPage(getToysPage)
-
+##
 getGamesPage <- Qt$QWizardPage(wizard)
 getGamesPage$setTitle("What games do you like?")
 lyt <- Qt$QFormLayout()
@@ -422,6 +422,8 @@ Finally, we run the wizard by calling its \method{exec}{QWizard}
 method:
 <<results=hide>>=
 ret <- wizard$exec()
+if(ret)
+  message(toys$text)
 @ 
 
 % A wizard may be decorated with several different types of
@@ -449,7 +451,7 @@ fname <- Qt$QFileDialog$getOpenFileName(NULL, "Open a file...",
 % 
 All take as initial arguments a parent, a caption and a
 directory. Other arguments allow one to set a filter, say. For basic
-use, these are nearly as easy to use as \R's \function{file.choose}.
+use, these are nearly as easy to use as \R's \function{file.choose} function.
 If a file is selected, \code{fname} will contain the full path to the
 file, otherwise it will be \code{NULL}.
 

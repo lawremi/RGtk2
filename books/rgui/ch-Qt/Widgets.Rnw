@@ -48,7 +48,7 @@ l$show(); l$raise()
 % 
 By default, \class{QLabel} guesses whether the string is rich or plain
 text. In the above, the rich text format is identified from the
-markup. The \property{textFormat}{QLabel} property overrides this.
+markup. The \property{textFormat}{QLabel} property can override this.
 
 The label text is stored in the \property{text}{QLabel} property.
 Properties relevant to text layout include:
@@ -189,7 +189,7 @@ checkBox$checked
 %
 Sometimes, it is useful for a checkbox to have an indeterminate state
 that is neither checked nor unchecked. To enable this, set the
-\property{tristate}{QCheckBox} property to \qcode{TRUE}. In that case,
+\property{tristate}{QCheckBox} property to \code{TRUE}. In that case,
 one needs to call the \method{checkState}{QCheckBox} method to
 determine the state, as it is no longer boolean but from the
 \qtenumeration{Qt::CheckState} enumeration.
@@ -261,14 +261,14 @@ sapply(seq_along(cyls), function(i) {
 sapply(bg$buttons(), function(i) i$checked <- TRUE)
 @ 
 %
-Every button is initially checked.
+Every button is initially checked. (The \method{buttons}{QButtonGroup} method returns a list of the
+managed buttons.)
 
 Buttons can be removed through \method{removeButton}{QButtonGroup},
-where the button object is specified for remove (not the index).
+where the button object is specified for removal (not its index).
 
 
-The \method{buttons}{QButtonGroup} method returns a list of the
-managed buttons. Here we retrieve the buttons in the group and query
+Here we retrieve the buttons in the group and query
 their checked state:
 <<results=hide>>=
 checked <- sapply(bg$buttons(), function(i) i$checked)
@@ -291,8 +291,8 @@ buttons in the group are clicked:
 <<results=hide>>=
 qconnect(bg, "buttonClicked(QAbstractButton*)", 
          function(button) {
-           msg <- paste("Level '", button$text, "': ", 
-                        button$checked, sep = "")
+           msg <- sprintf("Level '%s': %s", 
+                          button$text, button$checked)
            message(msg)
 })
 @ 
@@ -306,8 +306,8 @@ w$raise()
 
 Another type of checkable button is the radio button,
 \class{QRadioButton}. Radio buttons always belong to a group, and only
-one radio button in a group may be checked at once. Continuing our
-filtering example, we create several radio buttons for choosing a
+one radio button in a group may be checked at once (they are exclusive). Continuing our
+filtering example (Figure~\ref{fig:qt-group-checkbox-radio}), we create several radio buttons for choosing a
 range for the \qcode{Weight} variable in the \qcode{Cars93} dataset:
 <<RadioWithList,results=hide>>=
 w <- Qt$QGroupBox("Weight:")
@@ -334,7 +334,7 @@ state is stored in the \property{checked}{QAbstractButton} property:
 l[[1]]$checked
 @ 
 
-The \signal{toggled} signal is emitted twice when a button is checked
+The button's \signal{toggled} signal is emitted when a button is checked
 or unchecked:
 <<results=hide>>=
 sapply(l, function(i) {
@@ -348,7 +348,7 @@ sapply(l, function(i) {
 
 However, one need not do the internal management using a list, as
 above, if a \class{QButtonGroup} instance is used to organize the
-radio buttons (Figure~\ref{fig:qt-group-checkbox-radio}):
+radio buttons:
 <<qt-widget-radio-group, results=hide>>=
 buttonGroup <- Qt$QButtonGroup()
 lapply(l, buttonGroup$addButton)
@@ -362,8 +362,8 @@ buttonGroup$checkedButton()$text
 %
 As well, we can listen for events on the button group, rather than
 listen on each radio button, as was done above. This strategy makes it
-much easier to add (or remove) items, although you do need to add (or
-remove them) to both the layout and the button group.
+much easier to add (or remove) items, although you do need to add to (or
+remove from)  both the layout and the button group.
 
 <<echo=FALSE,results=hide>>=
 w$show()
@@ -625,7 +625,7 @@ le$text
 @ 
 %
 
-We wish to select the text, so that the initial contents are
+Here we select the text, so that the initial contents are
 overwritten when the user begins typing:
 <<qt-widget-lineedit-select, results=hide>>=
 le$setSelection(start = 0, length = nchar(le$text))
@@ -635,9 +635,12 @@ le$setSelection(start = 0, length = nchar(le$text))
 le$selectedText
 @
 %
+
 If \property{dragEnabled}{QLineEdit} is \code{TRUE} the selected text
-may be dragged and dropped on the appropriate targets. The
-\signal{selectionChanged} signal reports selection changes.
+may be dragged and dropped on the appropriate targets.
+
+
+
 
 By default, the line edit displays the typed characters. Other echo
 modes are available, as specified by the
@@ -646,12 +649,12 @@ modes are available, as specified by the
 echoing only asterisks.
 
 In \Qt{} versions 4.7 and above, one can specify place holder text
-that fills the entry it is empty and unfocused. Typically, this text
-indicates the expected contents of the entry:
-%% JV: needs to upgrade
-<<qt-widget-lineedit-placeholder>>=
+that fills the entry if it is empty and unfocused. Typically, this text
+indicates to the user the expected contents of the entry:
+
+<<qt-widget-lineedit-placeholder, results=hide>>=
 le$text <- ""
-le$setPlaceholderText("Enter some text")
+le$setPlaceholderText("Enter some text here")
 @ 
 
 The \signal{editingFinished} signal is emitted when the user has
@@ -664,7 +667,12 @@ qconnect(le, "editingFinished", function() {
 @ 
 %
 To respond to any editing, without waiting for it to be committed,
-connect to the \signal{textEdited} signal.
+connect to the \signal{textEdited} signal. The newly entered text is
+passed to the callback.
+
+
+The \signal{selectionChanged} signal reports selection changes.
+
 
 %% JV: I see that, but it isn't too difficult to implement and fits in
 %% right here quite naturally
@@ -726,7 +734,7 @@ w$raise()
 @ 
 \end{example}
 
-
+\iprogram{validation}
 \subsection{Masks and validation}
 \label{sec:masks-validation}
 
@@ -820,7 +828,7 @@ qsetClass("RPluginFactory", Qt$QWebPluginFactory)
 @ 
 %
 The factory has two duties: describing its available plugins and
-creating a plugin, in the form of a \class{QWidget}, for a given mime
+creating a plugin, in the form of a \class{QWidget}, for a given MIME
 type. The \method{plugins}{QWebPluginFactory} method returns a list of
 plugin descriptions:
 <<qt-widget-webview-plugin-factory-plugins, results=hide>>=
@@ -847,7 +855,7 @@ qsetMethod("create", RPluginFactory,
            })
 @ 
 %
-If the mime type does not match our plugin, we simply return an empty
+If the MIME type does not match our plugin, we simply return an empty
 widget.
 
 Finally, we need to enable plugins, register our factory and load the HTML:
@@ -903,6 +911,7 @@ the graphical primitives after they have been plotted; however, this
 is beyond our scope. See Example~\ref{sec:qt-icons} for a way to
 render the scene to an off-screen \class{QPixmap} for use as an icon.
 
+\igui{drag and drop}
 \section{Drag and drop}
 \label{sec:drag-drop}
 
@@ -914,7 +923,7 @@ drag and drop event consists of several stages: the user selects the
 object that initiates the drag event, drags the object to a target,
 and finally drops the object on the target. For our example, we will
 enable the dragging of text from one label to another, following the
-\Qt{} tutorial.
+\Qt{} tutorial. Example~\ref{eg:qt-dnd-table} has a more realistic example.
 
 \subsection{Initiating a drag} 
 We begin by setting up a label to be a drag target:
@@ -931,7 +940,7 @@ qsetClass("DragLabel", Qt$QLabel,
 
 When a drag and drop sequence is initiated, the source, i.e., the
 widget receiving the mouse press event, needs to encode chosen
-graphical object as mime data. This might be as an image, text or
+graphical object as MIME data. This might be as an image, text or
 other data type. This occurs in the
 \method{mouseEventHandler}{QWidget} of the source:
 <<drag-mouse-press-event, results=hide>>=
@@ -948,8 +957,8 @@ qsetMethod("mousePressEvent", DragLabel, function(e) {
 %
 We store the text in a \class{QMimeData} and pass it to the
 \class{QDrag} object, which represents the drag operation. The
-\qcode{drag} object is given \qcode{this} as its parent, so that
-\qcode{drag} is not garbage collected when the handler
+\code{drag} object is given \code{this} as its parent, so that
+\code{drag} is not garbage collected when the handler
 returns. Finally, calling the \method{exec}{QDrag} method is necessary
 to initiate the drag. It is also possible to call
 \method{setPixmap}{QDrag} to set a pixmap to represent the object as
@@ -978,7 +987,7 @@ qsetClass("DropLabel", Qt$QLabel, function(text="",
 @
 %
 The important step is to allow the widget to receive drops by setting
-\property{acceptDrops}{QWidget} to \qcode{TRUE}. The other settings
+\property{acceptDrops}{QWidget} to \code{TRUE}. The other settings
 ensure that the label fills a minimal amount of space and draws its
 background. The background role is preserved so that we can restore it
 later after applying highlighting.
@@ -1025,7 +1034,7 @@ qsetMethod("dragLeaveEvent", DropLabel, function(e) {
 
 Finally, we have the important drop event handler. The following
 code implements this more generally than is needed for this
-example, as we only have text in our mime data:
+example, as we only have text in our MIME data:
 <<dropevent, results=hide>>=
 qsetMethod("dropEvent", DropLabel, function(e) {
   md <- e$mimeData()

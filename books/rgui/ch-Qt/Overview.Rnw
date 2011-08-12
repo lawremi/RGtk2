@@ -145,7 +145,7 @@ manner. The most convenient extractor is the \code{\$}
 operator, but \code{[[} 
 % ]]
 and \function{get} will also work. (With the
-\code{\$} operator at the command line, completion works.) For
+\code{\$} operator R's completion mechanism works (\code{?rcompgen}).) For
 example, a \class{QWidget} has a \property{windowTitle}{QWidget} property which is
 used when the widget draws itself with a window:
 <<windowTitle>>=
@@ -261,6 +261,7 @@ dim(out)
 head(out[,1:3], n=3)
 @ 
 
+\iprogram{widget properties}
 \section{Properties}
 \label{sec:properties}
 
@@ -341,7 +342,7 @@ signature by considering the number of formal arguments in the
 callback. Rarely, two signatures will have the same number of
 arguments, in which case one will be chosen arbitrarily. To connect to
 a specific signature, the full signature, rather than only the name,
-should be passed to qconnect. For example, there are two signatures
+should be passed to \function{qconnect}. For example, there are two signatures
 for the \code{clicked} signal: \code{clicked()} and
 \code{clicked(bool)}. Even if we only specify \code{clicked} as the signal
 name, the \code{clicked(bool)} signature is chosen, since our handler
@@ -377,7 +378,7 @@ blocked.
 Unlike \GTK, \Qt{} widgets generally do not emit hardware events, such
 as a mouse press, via signals. Instead, a method in the widget is
 invoked upon receipt of an event. The developer is expected to extend
-the widget and override the method to catch the event. The apparent
+the widget's class and override the method to catch the event. The apparent
 philosophy of \Qt{} is that hardware events are low-level and thus
 should be handled by the widget, not some other instance. We will
 discuss extending classes in Section~\ref{sec:qt-defin-class-meth}.
@@ -420,7 +421,7 @@ To check if the alignment is to the right, we could query by:
 <<>>=
 as.logical(l$alignment & Qt$Qt$AlignRight)
 @ 
-
+\iprogram{subclass}
 \section{Extending Qt classes from R}
 \label{sec:qt-defin-class-meth}
 
@@ -746,7 +747,7 @@ should be italicized, as a logical. Defaults are obtained from the
 application font, returned by \code{Qt\$QApplication\$font()}.
 
 For example, we could create a 12 point, bold, italicized font from
-the helvetica family with:
+the Helvetica family with:
 <<>>=
 f <- qfont(family="helvetica", pointsize=12, 
            weight=Qt$QFont$Bold, italic=TRUE)
@@ -882,7 +883,7 @@ qsetClass("LineEditWithError", Qt$QLineEdit)
 
   The main method sets the error state. We use style sheets to place an
   image to the left of the entry message and set the tooltip.
-<<>>=
+<<setError, results=hide>>=
 qsetMethod("setError", LineEditWithError, function(msg) {
   f <- system.file("images/cancel.gif", package="gWidgets")
   qsetStyleSheet("background-image" = sprintf("url(%s)", f),

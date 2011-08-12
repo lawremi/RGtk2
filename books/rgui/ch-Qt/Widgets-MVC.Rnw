@@ -4,6 +4,7 @@ require(qtbase)
 require(MASS)
 @ 
 
+\igui{data frame models}
 The model, view, controller (MVC) pattern\iprogram{model-view-controller} is fundamental to the design
 of widgets that display and manipulate data. Keeping the model
 separate from the view allows multiple views for the same
@@ -341,6 +342,28 @@ including features often found in file browsers and desktops. For
 example, the items may be wrapped into additional columns or displayed in an icon
 mode. The widget also supports unrestricted layout and drag and drop.
 
+
+\section{Model-based combo boxes}
+\label{sec:qt-mvc-combo}
+
+Combo boxes were previously introduced as containers of string items
+and accompanying icons. The high-level API is sufficient for most use
+cases; however, it is beneficial to understand that a combo box
+displays its popup menu with a \class{QListView}, which is based on a
+\class{QStandardItemModel} by default. It is possible to provide a
+custom data model for the list view. Explicitly leveraging the MVC
+pattern with a combo box affords greater aesthetic control and
+facilitates synchronizing the items with other views.
+
+For example, we can create a combo box that lists the same cars that
+are present in our table and list views:
+<<qt-mvc-combo-box, results=hide>>=
+comboBox <- Qt$QComboBox()
+comboBox$setModel(model)
+@ 
+By default, the first column from the model is displayed; this is
+controlled by the \qtproperty{modelColumn} property.
+
 \section{Accessing item models}
 
 We have shown how \class{DataFrameModel} and \class{QStringListModel}
@@ -413,9 +436,11 @@ This design allows views to synchronize selection. It also supports
 views on the selection state, such as a label indicating how many
 items are selected, independent of the particular type of item view.
 
-There are five selection modes for item views defined by the
+The selection modes for item views are defined by the
 \qtenumeration{QAbstractItemView::SelectionMode}
-enumeration:
+enumeration, and include:
+\\
+
 \begin{description}
 \item\qcode{SingleSelection} mode allows only a single item to
 be selected at once.
@@ -429,7 +454,7 @@ the selection.
 \item \qcode{MultiSelection} mode allows selection on mouse-over, with range
 selection by clicking and dragging
 \end{description}
-
+\vspace{12pt}
 
 We configure our list view for single selection with:
 <<qt-mvc-selection-set-mode, results=hide>>=
@@ -449,12 +474,12 @@ indices <- selModel$selectedIndexes()
 indices[[1]]$data()
 @ 
 
-<<qt-mvc-selection-multiple-set-initial, echo=FALSE, results=hide>>=
+<<qt-mvc-selection-multiple-set-initial-I, echo=FALSE, results=hide>>=
 sel <- Qt$QItemSelection()
 sel$select(model$index(3, 0), model$index(5, 0))
 sel$select(model$index(10, 0), model$index(16, 0))
 sel$select(model$index(20, 0), model$index(24, 0))
-selModel$select(sel, Qt$QItemSelectionModel$Select)
+selModel$select(sel, Qt$QItemSelectionModel$ClearAndSelect)
 @
 
 When multiple selection is allowed, we must take care to interpret the
@@ -517,11 +542,13 @@ selModel$select(model$index(0, 0),
 %
 To efficiently select a range of items, we construct a
 \class{QItemSelection} object and set it on the model:
-<<qt-mvc-selection-multiple-set-initial, echo=FALSE, results=hide>>=
+
+<<qt-mvc-selection-multiple-set-initial, results=hide>>=
 sel <- Qt$QItemSelection(model$index(3, 0), model$index(10, 0))
 selModel$select(sel, Qt$QItemSelectionModel$Select)
 @
-%
+
+% 
 We have selected items $3$ to $10$. Multiple ranges may be added to
 the \class{QItemSelection} object by repeatedly calling its
 \method{select}{QItemSelection} method.
@@ -541,8 +568,8 @@ tableView$selectRow(2)
 % 
 Querying a selection is essentially the same as for the list
 view, except we can request indices representing entire rows or
-columns. In this example, we are interested in the rows, where the
-user has selected the third row (2):
+columns. In this example, we are interested in the rows the
+user has selected:
 <<qt-mvc-selection-get-rows>>=
 selModel <- tableView$selectionModel()
 sapply(selModel$selectedRows(), qinvoke, "row")
@@ -550,6 +577,8 @@ sapply(selModel$selectedRows(), qinvoke, "row")
 %
 We invoke the \method{row}{QModelIndex} method on each returned
 \class{QModelIndex} object to get the row indices.
+
+
 When setting the selection, there are conveniences for selecting
 an entire row or column. We select the first row of the table:
 <<qt-mvc-selection-select-row, results=hide>>=
@@ -603,6 +632,11 @@ coordinate space. Thus, there is little cost in memory.
   cf. Section\ref{sec:RGtk2:mvc:proxies}.}  After constructing an
 instance and specifying the child model, the proxy model may be handed
 to a view like any other model:
+
+<<setModel, echo=FALSE, results=hide>>=
+mtcars.id <- cbind(makeAndModel = rownames(mtcars), mtcars)
+model <- qdataFrameModel(mtcars.id)
+@ 
 <<qt-mvc-proxy, results=hide>>=
 proxy <- Qt$QSortFilterProxyModel()
 proxy$setSourceModel(model)
@@ -628,7 +662,7 @@ and list view. It is also possible to sort programmatically by calling
 the \method{sort}{QAbstractItemModel} method, passing the index of the
 sort column. We sort our data by the \qcode{mpg} variable:
 <<qt-mvc-proxy-sort, results=hide>>=
-proxy$sort(1)
+proxy$sort(1)                      # mpg in column 2 of model
 @ 
 %
 The built-in sorting logic understands basic data types like strings
@@ -655,9 +689,9 @@ necessary.
 It is also possible to hide rows and columns at the view by calling
 \method{setColumnHidden}{QTableView} or
 \method{setRowHidden}{QTableView}. For example, we hide the
-\qcode{Price} column:
+\qcode{Price} column (column 5):
 <<qt-mvc-table-hidden, results=hide>>=
-tableView$setColumnHidden(4, TRUE)
+tableView$setColumnHidden(5 - 1L, TRUE)
 @ 
 %
 It is common for different views to display different types of
@@ -679,8 +713,8 @@ identifier. The mapping of roles to visual properties depends on the
 \class{QItemDelegate} associated with the item. The default item
 delegate, \class{QStyledItemDelegate}, understands most of the standard
 roles listed in the \qtenumeration{Qt::ItemDataRole}
-enumeration. Table~\ref{tab:qt:enum:itemDataRole} selectively lists
-this enumeration.
+enumeration, selectively listed in  Table~\ref{tab:qt:enum:itemDataRole}.
+
 
 For example, when we create a \class{DataFrameModel}, the default
 behavior is to associate the data frame values with the
@@ -831,24 +865,24 @@ by(Cars93, Cars93$Manufacturer, function(df) {
 
 \begin{figure}
   \centering
-  \begin{minipage}[c]{.32\textwidth}
+  \begin{minipage}[c]{.3\textwidth}
     \includegraphics[width=\textwidth]{fig-qt-treemodel-treeview}
   \end{minipage}\quad
-  \begin{minipage}[c]{.32\textwidth}
+  \begin{minipage}[c]{.3\textwidth}
     \includegraphics[width=\textwidth]{fig-qt-treemodel-tableview}
   \end{minipage}\quad
-  \begin{minipage}[c]{.32\textwidth}
+  \begin{minipage}[c]{.3\textwidth}
     \includegraphics[width=\textwidth]{fig-qt-treemodel-listview}
   \end{minipage}
   \caption{The \code{treeModel} instance viewed in a tree view, a table view and a list view}
   \label{fig:qt-treemodel-views}
 \end{figure}
 
-As before, we need to create a \class{QModelIndex} object for
-accessing each cell of the model. We need to add rows and columns to
-each manufacturer node before creating its children. This nested loop
+As before, we create a \class{QModelIndex} object for
+accessing each cell of the model (in line 3). We need to add rows and columns to
+each manufacturer node before creating its children (lines 5 and 6). This nested loop
 approach to populating a model is much less efficient than converting
-a \class{data.frame} to a \class{DataFrameModel}, but it is necessary
+a \class{data.frame} to a \class{DataFrameModel}, but here is necessary
 to communicate the hierarchical information.
 
 \paragraph{The \class{QStandardItem} class}
@@ -920,27 +954,6 @@ next example.
 \begin{example}{A workspace browser}{eg:qt-workspace-browser}
   \SweaveInput{ex-qt-treewidget}
 \end{example}
-
-\section{Model-based combo boxes}
-\label{sec:qt-mvc-combo}
-
-Combo boxes were previously introduced as containers of string items
-and accompanying icons. The high-level API is sufficient for most use
-cases; however, it is beneficial to understand that a combo box
-displays its popup menu with a \class{QListView}, which is based on a
-\class{QStandardItemModel} by default. It is possible to provide a
-custom data model for the list view. Explicitly leveraging the MVC
-pattern with a combo box affords greater aesthetic control and
-facilitates synchronizing the items with other views.
-
-For example, we can create a combo box that lists the same cars that
-are present in our table and list views:
-<<qt-mvc-combo-box, results=hide>>=
-comboBox <- Qt$QComboBox()
-comboBox$setModel(model)
-@ 
-By default, the first column from the model is displayed; this is
-controlled by the \qtproperty{modelColumn} property.
 
 \section{User editing of data models}
 
@@ -1261,7 +1274,10 @@ class. An example is the \property{text}{QLabel} property on a
   \SweaveInput{ex-qt-mapping-model}
 \end{example}
 
-Let us consider a different problem: summarizing or aggregating
+
+
+
+Now, let us consider a different problem: summarizing or aggregating
 multiple model items, such as an entire column, and displaying the
 result in a widget. For example, a label might show the mean of a
 column, and the label would be updated as the model changed.  The
@@ -1310,7 +1326,7 @@ Adding text to the document can be done easily through the slots
 \method{setPlainText}{QTextEdit}, which replaces the existing text, or
 \method{append}{QTextEdit} which appends the text as a new paragraph
 to the end of the buffer.
-<<>>=
+<<results=hide>>=
 te$setPlainText("The quick brown fox")
 te$append("jumped over the lazy dog")
 @ 
@@ -1369,7 +1385,8 @@ the user cursor.  For example, we could insert a 32 by 32 pixel image at the beg
 cursor$setPosition(0)                   # move to beginning
 style <- Qt$QApplication$style()
 icon <- style$standardIcon(Qt$QStyle$SP_DialogOkButton)
-cursor$insertImage(icon$pixmap(icon$actualSize(qsize(32L,32L)))$toImage())
+anImage <- icon$pixmap(icon$actualSize(qsize(32L,32L)))$toImage()
+cursor$insertImage(anImage)
 @ 
 %%
 
@@ -1386,11 +1403,13 @@ can choose to move or keep the anchor in place. The motion of the
 cursor is described by the \qtenumeration{QTextCursor\$MoveOperation}
 enumeration, with several values such as \qcode{Start}, \qcode{End},
 \qcode{StartOfLine}, \qcode{EndOfLine}, \qcode{StartOfWord},
-\qcode{EndOfWord} etc. For example, to move the cursor to the start of
+\qcode{EndOfWord} etc. 
+
+For example, to move the cursor to the start of
 the second line, we could do:
 <<results=hide>>=
 cursor <- te$textCursor()
-cursor$movePosition(Qt$QTextCursor$Start) # MoveAnchor is default
+cursor$movePosition(Qt$QTextCursor$Start) # MoveAnchor default
 cursor$movePosition(Qt$QTextCursor$Down)  # down one line
 te$setTextCursor(cursor)
 @ 
@@ -1416,8 +1435,8 @@ include the first three words of the text in the second line, we have:
 <<results=hide>>=
 cursor <- Qt$QTextCursor(te$document()) 
 cursor$movePosition(Qt$QTextCursor$Start) # as before
-cursor$movePosition(Qt$QTextCursor$Down) 
-cursor$movePosition(Qt$QTextCursor$WordRight, 
+cursor$movePosition(Qt$QTextCursor$Down)  # moves anchor
+cursor$movePosition(Qt$QTextCursor$WordRight, # anchor fixed
                     Qt$QTextCursor$KeepAnchor, 3)
 te$setTextCursor(cursor)
 @
@@ -1435,8 +1454,8 @@ cursor$selectedText()
 There are several different signals emitted by \class{QTextEdit}
 instances: \signal{textChanged}, when the text changes;
 \signal{cursorPositionChanged}, when the cursor position changes; and
-\signal{selectionChanged} when the selection (according to the user
-visible cursor) changes. For the latter, the \signal{copyAvailable}
+\signal{selectionChanged} when the selection changes (according to the user
+visible cursor). For the latter, the \signal{copyAvailable}
 signal is largely equivalent, except it passes a boolean argument
 indicating whether the selection is non-empty.
 
@@ -1497,6 +1516,18 @@ The \method{find}{QTextEdit} method will search for a given string and
 adjust the cursor to select the match. For example, we can search
 through a standard typesetting string starting at the cursor point for
 the common word ``qui'' as follows:
+
+
+%
+\begin{figure}
+  \centering
+  \includegraphics[width=.5\textwidth]{fig-qt-textedit-view-context-menu}
+  \caption{Context menu showing completion candidates for the token
+    \qcode{mean.} taken from the current selection.}
+  \label{fig:qt-textedit-view-context-menu}
+\end{figure}
+
+
 
 <<LoremIpsum, echo=FALSE>>=
 ## in misc.R
@@ -1563,15 +1594,6 @@ qsetMethod("contextMenuEvent", QTextEditWithCompletions,
 })
 te <- QTextEditWithCompletions()
 @ 
-%
-\begin{figure}
-  \centering
-  \includegraphics[width=.5\textwidth]{fig-qt-textedit-view-context-menu}
-  \caption{Context menu showing completion candidates for the token
-    \qcode{mean.} taken from the current selection.}
-  \label{fig:qt-textedit-view-context-menu}
-\end{figure}
-
 
 The \method{createStandardContextMenu}{QTextEdit} method returns the
 base context menu, including functions like copy and paste. We add an

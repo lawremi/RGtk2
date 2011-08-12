@@ -44,7 +44,7 @@ have a fairly obvious mapping to the arguments of \function{read.csv}.
 %% radio button
 To illustrate radio buttons, we use a set of them to select the comment
 character argument. Here we store the container in the list, and create a
-separate (global) variable to hold the radio buttons widgets themselves.
+separate (global) variable to hold the radio-button widgets themselves.
 <<comment.char, results=hide>>=
 l$comment.char <- Qt$QGroupBox()        # container
 comment.char <- lapply(sprintf("%s", c("","#","%")),
@@ -100,8 +100,8 @@ wlyt$addWidget(buttonBox)
 At this point, the widgets are set up and laid out. We turn to the
 task of adding interactivity. First, the file button when clicked
 should open a file selection dialog. If a file load is successful, we
-change the label on the button to indicate the selection. We use the
-global \code{fname} to store this name.
+change the label on the button to indicate the selection, using the
+global \code{fname} to store the value.
 
 <<fileHandler, results=hide>>=
 fname <- NULL
@@ -124,6 +124,7 @@ to \code{read.csv}.
 
 <<buttonBox, results=hide>>=
 qconnect(buttonBox, "rejected", function() w$hide())
+##
 qconnect(buttonBox, "accepted", function() {
   if(!is.null(fname) && nchar(l$name$text) > 0) {
     args <- list(file=fname,

@@ -137,7 +137,17 @@ sapply(justAction, function(i)
        })
        )
 @ 
+%%
+One could also connect to the \signal{triggered} signal of the action
+group. The callback is passed the action object.
+<<actionGroupSignal, results=hide>>=
+qconnect(justGroup, "triggered", function(action) {
+  message(action$text)
+})
+@ 
+%%
 
+\igui{keyboard shortcuts}
 \paragraph{Keyboard shortcuts}
 
 Every platform has a particular convention for mapping key presses to
@@ -310,16 +320,18 @@ independent window.
 
 To add items to a toolbar we might call
 \\
+
 \begin{enumerate}
 \item \method{addAction}{QToolBar} to add an action,
 \item \method{addWidget}{QToolBar} to embed an arbitrary widget into
   the toolbar,
 \item \method{addSeparator}{QToolBar} to place a separator between items.
 \end{enumerate}
+\vspace{12pt}
 
-Before adding some actions to our toolbar, we define a function
-\code{getIcon} that loads a \class{QIcon} from a file in the
-\pkg{gWidgets} package:
+## Before adding some actions to our toolbar, we define a function
+## \code{getIcon} that loads a \class{QIcon} from a file in the
+## \pkg{gWidgets} package:
 <<echo=FALSE, results=hide>>=
 getIcon <- function(nm) {
   fname <- system.file(sprintf("images/%s.gif", nm), package="gWidgets")
@@ -327,7 +339,7 @@ getIcon <- function(nm) {
 }
 @ 
 
-We create each action, set its icon, and store it in a
+We create each action, set its icon (the \function{getIcon} is not shown), and store it in a
 list for ease of manipulation at a later time in the program:
 <<results=hide>>=
 fileActions <- list()
@@ -365,7 +377,7 @@ toolbar$setToolButtonStyle(Qt$Qt$ToolButtonTextUnderIcon)
 @ 
 
 By default, toolbars pack their items horizontally. Vertical packing
-is also possible; see the \property{orientation} property. 
+is also possible; see the \property{orientation}{QToolBar} property. 
 
 \section{Statusbars}
 \label{sec:statusbars}
@@ -424,7 +436,7 @@ of a dock area will convert the widget into a top-level window.
 
 For example, we could add an R graphics device as a dockable
 widget. The first step is to wrap the widget in a \class{QDockWidget}:
-<<qt-app-dockwidget>>=
+<<qt-app-dockwidget, results=hide>>=
 library(qtutils)
 device <- QT()
 dock <- Qt$QDockWidget("Device 1")
@@ -466,6 +478,6 @@ To make \Robject{dock2} a top-level window instead, we could set the
 dock2$floating <- TRUE
 @ 
 
-\begin{example}{A main window for an IDE}{ex:qt-rstudio-layout}
-  \SweaveInput{ex-qt-mainwindow}
-\end{example}
+% \begin{example}{A main window for an IDE}{ex:qt-rstudio-layout}
+%   \SweaveInput{ex-qt-mainwindow}
+% \end{example}

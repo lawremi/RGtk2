@@ -61,7 +61,7 @@ buttonLayout$addWidget(b$Help)
 %
 We added a stretch, which acts much like a spring, to pack our
 buttons against the right side of the box. A fixed space of 12
-pixels is inserted between the ``Cancel'' and ''help'' buttons.
+pixels is inserted between the ``Cancel'' and ''Help'' buttons.
 
 The notebook widget is constructed next, with a single page:
 <<nbLayout, results=hide>>=
