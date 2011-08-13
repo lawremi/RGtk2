@@ -59,7 +59,7 @@ While \pkg{qtbase} is not yet as mature as \pkg{tcltk} and
 \pkg{RGtk2}, we include it in this book, as \Qt{} compares favorably
 to \GTK{} in terms of GUI features and excels in several other areas,
 including its fast graphics canvas and integration of the WebKit web
-browser.~\footnote{There is a \GTK{} WebKit port, but it is not
+browser.\footnote{There is a \GTK{} WebKit port, but it is not
   included with \GTK{} itself.} In addition, \Qt{}, as a commercially
 supported package, has thorough documentation of its API\footcite{Qt-Docs}, including
 many C++ examples. However, the complexity of C++ and Qt may present
@@ -83,7 +83,7 @@ framework, available as a binary install from
 The \pkg{qtbase} package exports very few objects. The central one is
 an environment, \code{Qt}, that represents the \Qt{} library in
 %% FIXME: RQtLibrary will become RSmokeLibrary, same with RQtObject, etc
-\R.~\footnote{ The \code{Qt} object is an instance of
+\R.\footnote{ The \code{Qt} object is an instance of
   \class{RQtLibrary}. The \pkg{qtbase} package provides infrastructure
   for binding any conventional C++ library, even those independent of
   \Qt. Third party packages can define their own \class{RQtLibrary}

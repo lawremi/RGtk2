@@ -124,7 +124,7 @@ the key for an ``Ok'' button in a dialog.
 
 We can also create a \class{QIcon} from image data in a
 \class{QPixmap} object.  \class{QPixmap} stores an image in a manner
-that is efficient for display on the screen \footnote{\class{QPixmap}
+that is efficient for display on the screen\footnote{\class{QPixmap}
   is not to be confused with \class{QImage}, which is optimized for
   image manipulation, or the vector-based \class{QPicture}}. One can
 load a pixmap from a file or create a blank image and draw on it using
@@ -284,7 +284,7 @@ if(any(checked)) {
 Button groups emit signals paralleling the \class{QAbstractButton}
 class (in particular the \signal{buttonClicked} signal, but also
 \signal{buttonPressed} and \signal{buttonReleased}).  By attaching a
-callback to the \signal{buttonClicked} signal~\footnote{See
+callback to the \signal{buttonClicked} signal\footnote{See
   Section~\ref{sec:qt-signals} for why we need the
   \code{(QAbstractButton*)}.}, we will be informed when any of the
 buttons in the group are clicked:

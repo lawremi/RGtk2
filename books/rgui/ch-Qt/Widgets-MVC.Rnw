@@ -627,7 +627,7 @@ indices between the filtered and unfiltered (or sorted and unsorted)
 coordinate space. Thus, there is little cost in memory.
 
 \Qt{} implements both sorting and filtering in a single class:
-\class{QSortFilterProxyModel}.~\footnote{In \pkg{RGtk2} there is a
+\class{QSortFilterProxyModel}.\footnote{In \pkg{RGtk2} there is a
   separate proxy model for each of sorting and filtering,
   cf. Section\ref{sec:RGtk2:mvc:proxies}.}  After constructing an
 instance and specifying the child model, the proxy model may be handed
@@ -730,7 +730,7 @@ constructor. It is then up to the programmer to indicate the mapping
 from a data frame column to a column and role in the model. The
 mapping is encoded in the column names. Each column name should have
 the syntax \qcode{[.NAME][.ROLE]}, where \qcode{NAME} indicates the
-column name in the model~\footnote{\qcode{NAME} can refer to multiple
+column name in the model\footnote{\qcode{NAME} can refer to multiple
   columns, if separated by periods, or all columns if omitted.} and
 \qcode{ROLE} refers to a value in \qtenumeration{Qt::ItemDataRole},
 without the \qcode{Role} suffix. If the column name does not contain a
@@ -746,7 +746,7 @@ qdataFrame(model)$.makeAndModel.background <- list(qcolor("gray"))
 @ 
 %
 In the above, we store a list of \class{QColor} instances in our data
-frame.~\footnote{Storing objects other than atomic vectors in a data
+frame.\footnote{Storing objects other than atomic vectors in a data
   frame requires some care, which we avoid here. If we had added that
   column in a call to \qcode{data.frame} or \function{cbind}, it would
   have been necessary to wrap the list with \code{I()} in order to

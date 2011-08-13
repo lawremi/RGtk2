@@ -89,7 +89,7 @@ button$setParent(NULL)
 
 \ilayout{Space allocation}The allocation of space to child widgets depends on several factors.
 The \Qt{} documentation for layouts spells out well the
-steps:~\footnote{\url{http://doc.qt.nokia.com/4.7/layout.html}}
+steps:\footnote{\url{http://doc.qt.nokia.com/4.7/layout.html}}
 \\
 \begin{enumerate}
 \item All the widgets will initially be allocated an amount of space
