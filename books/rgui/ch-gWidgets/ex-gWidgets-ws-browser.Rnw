@@ -31,7 +31,7 @@ shared amongst many different pieces of a GUI is a common one. To
 address the complexity that arises as the components of a GUI get more
 intertwined, standard design patterns have been employed. For this
 task, the \iprogram{observer pattern}\defn{Observer Pattern} is often used. This pattern is
-defined in~\footcite{head-first-design-patterns} to describe a
+defined in\footcite{head-first-design-patterns} to describe a
 one-to-many relationship between a set of objects where when the state
 of one object changes, all of its dependents are notified.
 

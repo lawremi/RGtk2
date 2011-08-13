@@ -26,7 +26,7 @@ The most prevalent pattern of user interface design is denoted WIMP,
 which stands for Window, Icon, Menu and Pointer. The
 WIMP approach was developed at Xerox PARC in the 1970's and later
 popularized by the Apple Macintosh in 1984. This is particularly
-evident in the separation of the window from the menu bar on the Mac
+evident in the separation of the window from the menubar on the Mac
 desktop. Other graphical operating systems, such as Microsoft Windows,
 later adapted the WIMP paradigm, and libraries of reusable GUI
 components emerged to support development of applications in such
@@ -46,11 +46,11 @@ Abstractly, WIMP is a command language, where the user executes
 commands, often called actions, on a document by interacting with
 graphical controls. Every control in a window belongs to some abstract
 menu. Two common ways of organizing controls into menus are the
-menu bar and tool bar.
+menubar and toolbar.
 
 The parameters of an action call, if any, are controlled in
 sub-windows. These sub-windows are termed \dfnref{application windows}
-by Apple~\footcite{APPLE:HIG}, but we prefer the term \igui{dialogs}\dfnref{dialogs},
+by Apple\footcite{APPLE:HIG}, but we prefer the term \igui{dialogs}\dfnref{dialogs},
 or \dfnref{dialog boxes}. These terms may also refer to smaller
 sub-windows that are used for alerts or confirmation. The program
 often needs to wait for user input before continuing with an action,

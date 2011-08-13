@@ -33,14 +33,14 @@ and those who have no interest in programming.
 
 On some platforms, such as Windows and Mac OS, \R{} has graphical
 front-ends that provide a CLI through a text console control. Similar
-examples include the web-based RStudio\texttrademark IDE, the
+examples include the web-based RStudio\texttrademark{} IDE, the
 Java-based JGR and the RKWard GUI for the Linux KDE desktop. Although
 these interfaces are GUIs, they are still very much in essence CLIs,
 in that the primary mode of interacting with \proglang{R} is the
 same. Thus, these GUIs appeal mostly to those who are comfortable with
 \proglang{R} programming.
 
-A separate set of GUIs targets the second group of users, those
+A separate set of GUIs target the second group of users, those
 learning the \proglang{R} language. Since this group includes many
 students, these GUIs are often designed to teach general statistical
 concepts in addition to \proglang{R}.  A CLI component is usually

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.4.5)  5 AUG 2011 16:27
+This is pdfTeX, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.4.5)  13 AUG 2011 17:19
 entering extended mode
 **print-chapter
 (./print-chapter.tex
@@ -639,12 +639,6 @@ Package: multicol 2006/05/18 v1.6g multicolumn formatting (FMi)
 \mult@nat@firstbox=\box60
 \colbreak@box=\box61
 )
-(/opt/local/share/texmf-dist/tex/latex/prelim2e/prelim2e.sty
-Package: prelim2e 2001/02/17 v1.23 prelim2e Package (MS)
-
-(/opt/local/share/texmf-dist/tex/latex/everyshi/everyshi.sty
-Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
-))
 (/opt/local/share/texmf-dist/tex/latex/graphics/lscape.sty
 Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
 )
@@ -690,8 +684,7 @@ LaTeX Font Info:    ... okay on input line 4.
 \openout6 = `print-chapter.fb.aux'.
 
 LaTeX Info: Redefining \selectfont on input line 4.
-
-ABD: EveryShipout initializing macros (../setup2.tex
+ (../setup2.tex
 (/opt/local/share/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2004/09/05 1.3 listings language file
 )
@@ -715,123 +708,123 @@ File: fig-basics-tic-tac-toe.png Graphic file (type png)
 map/pdftex.map}
 
 ]
-LaTeX Font Info:    Try loading font information for OT1+pplx on input line 120
+LaTeX Font Info:    Try loading font information for OT1+pplx on input line 121
 .
  (/opt/local/share/texmf-dist/tex/latex/psnfss/ot1pplx.fd
 File: ot1pplx.fd 2004/09/06 font definitions for OT1/pplx.
 )
-LaTeX Font Info:    Try loading font information for OML+zplm on input line 120
+LaTeX Font Info:    Try loading font information for OML+zplm on input line 121
 .
 
 (/opt/local/share/texmf-dist/tex/latex/psnfss/omlzplm.fd
 File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMS+zplm on input line 120
+LaTeX Font Info:    Try loading font information for OMS+zplm on input line 121
 .
 
 (/opt/local/share/texmf-dist/tex/latex/psnfss/omszplm.fd
 File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMX+zplm on input line 120
+LaTeX Font Info:    Try loading font information for OMX+zplm on input line 121
 .
 
 (/opt/local/share/texmf-dist/tex/latex/psnfss/omxzplm.fd
 File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
 )
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 120.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 121.
 
 
 (/opt/local/share/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 120.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 121.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 120.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 121.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 120.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 121.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 120.
+(Font)              scaled to size 9.37807pt on input line 121.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 120.
+(Font)              scaled to size 7.29405pt on input line 121.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 5.21004pt on input line 120.
+(Font)              scaled to size 5.21004pt on input line 121.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 120.
+(Font)              scaled to size 9.37807pt on input line 121.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 120.
+(Font)              scaled to size 7.29405pt on input line 121.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 5.21004pt on input line 120.
-LaTeX Font Info:    Try loading font information for OT1+zplm on input line 120
+(Font)              scaled to size 5.21004pt on input line 121.
+LaTeX Font Info:    Try loading font information for OT1+zplm on input line 121
 .
 
 (/opt/local/share/texmf-dist/tex/latex/psnfss/ot1zplm.fd
 File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
-) [2 <./fig-basics-tic-tac-toe.png>] [3]
+) [2 <./fig-basics-tic-tac-toe.png>] [3] [4]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 295.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 299.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 295.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 299.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 295.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 299.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 10.42007pt on input line 295.
+(Font)              scaled to size 10.42007pt on input line 299.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.91925pt on input line 295.
+(Font)              scaled to size 7.91925pt on input line 299.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 295.
+(Font)              scaled to size 6.25204pt on input line 299.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 10.42007pt on input line 295.
+(Font)              scaled to size 10.42007pt on input line 299.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.91925pt on input line 295.
+(Font)              scaled to size 7.91925pt on input line 299.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 295.
+(Font)              scaled to size 6.25204pt on input line 299.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 295.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 299.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 8.33606pt on input line 295.
+(Font)              scaled to size 8.33606pt on input line 299.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 8.33606pt on input line 295.
- [4] <fig-mac-print.png, id=23, 825.0825pt x 585.18625pt>
+(Font)              scaled to size 8.33606pt on input line 299.
+ <fig-mac-print.png, id=22, 825.0825pt x 585.18625pt>
 File: fig-mac-print.png Graphic file (type png)
 
-<use fig-mac-print.png> <kde-print.png, id=24, 390.76965pt x 410.03716pt>
+<use fig-mac-print.png> <kde-print.png, id=23, 390.76965pt x 410.03716pt>
 File: kde-print.png Graphic file (type png)
 
-<use kde-print.png> <r-print-dialog.png, id=25, 469.755pt x 365.365pt>
+<use kde-print.png> <r-print-dialog.png, id=24, 469.755pt x 365.365pt>
 File: r-print-dialog.png Graphic file (type png)
 
 <use r-print-dialog.png> [5] [6 <./fig-mac-print.png> <./kde-print.png>]
 [7 <./r-print-dialog.png>]
 LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/pplx/b/n' tried instead on input line 445.
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 449.
  [8]
 <spss-11-formula-editor.png, id=42, 499.8675pt x 347.2975pt>
 File: spss-11-formula-editor.png Graphic file (type png)
 
-<use spss-11-formula-editor.png>
+<use spss-11-formula-editor.png> [9 <./spss-11-formula-editor.png>]
 LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <10> not available
-(Font)              Font shape `T1/pplx/b/n' tried instead on input line 544.
- [9 <./spss-11-formula-editor.png>]
-<ex-listbox.png, id=47, 183.40218pt x 152.72151pt>
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 548.
+ [10]
+<ex-listbox.png, id=50, 183.40218pt x 152.72151pt>
 File: ex-listbox.png Graphic file (type png)
  <use ex-listbox.png>
-<tcltk-tkdensity.png, id=48, 179.99321pt x 199.76518pt>
+<tcltk-tkdensity.png, id=51, 179.99321pt x 199.76518pt>
 File: tcltk-tkdensity.png Graphic file (type png)
 
-<use tcltk-tkdensity.png> [10] [11 <./ex-listbox.png (PNG copy)> <./tcltk-tkden
-sity.png>] [12] [13] <fig-spotfire.png, id=63, 854.19125pt x 744.7825pt>
+<use tcltk-tkdensity.png> [11 <./ex-listbox.png (PNG copy)> <./tcltk-tkdensity.
+png>] [12] [13] [14] <fig-spotfire.png, id=66, 854.19125pt x 744.7825pt>
 File: fig-spotfire.png Graphic file (type png)
 
-<use fig-spotfire.png> [14] [15 <./fig-spotfire.png>]
+<use fig-spotfire.png> [15 <./fig-spotfire.png>]
 <JGR-object-browser.png, id=71, 428.60126pt x 415.5525pt>
 File: JGR-object-browser.png Graphic file (type png)
 
-<use JGR-object-browser.png> [16 <./JGR-object-browser.png (PNG copy)>]
-<Rcmdr-main-window.png, id=75, 657.92972pt x 510.66255pt>
+<use JGR-object-browser.png> [16] [17 <./JGR-object-browser.png (PNG copy)>]
+<Rcmdr-main-window.png, id=78, 657.92972pt x 510.66255pt>
 File: Rcmdr-main-window.png Graphic file (type png)
 
-<use Rcmdr-main-window.png> [17] [18 <./Rcmdr-main-window.png>] [19] [20]
+<use Rcmdr-main-window.png> [18 <./Rcmdr-main-window.png>] [19] [20]
 <fig-basics-hor-ver.png, id=90, 331.2375pt x 252.945pt>
 File: fig-basics-hor-ver.png Graphic file (type png)
 
@@ -846,18 +839,22 @@ File: fig-basics-alignment.png Graphic file (type png)
 <fig-basics-spring.png, id=93, 331.2375pt x 252.945pt>
 File: fig-basics-spring.png Graphic file (type png)
 
-<use fig-basics-spring.png> [21 <./fig-basics-hor-ver.png> <./fig-basics-fill.p
-ng> <./fig-basics-alignment.png> <./fig-basics-spring.png>]) [22]
-(./print-chapter.fb.aux) (./print-chapter.aux)
+<use fig-basics-spring.png> [21]) [22 <./fig-basics-hor-ver.png> <./fig-basics-
+fill.png> <./fig-basics-alignment.png> <./fig-basics-spring.png>]
+(./print-chapter.fb.aux)
+
+Package footbib Warning: Bibliography not yet stable. Rerun LaTeX.
+
+(./print-chapter.aux)
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 8140 strings out of 94073
- 106828 string characters out of 1164798
- 239196 words of memory out of 1500000
- 11273 multiletter control sequences out of 10000+50000
+ 8092 strings out of 94073
+ 105862 string characters out of 1164798
+ 237613 words of memory out of 1500000
+ 11233 multiletter control sequences out of 10000+50000
  63550 words of font info for 119 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
  33i,12n,41p,550b,1701s stack positions out of 5000i,500n,6000p,200000b,5000s
@@ -869,7 +866,7 @@ er/sftt0900.pfb></opt/local/share/texmf-dist/fonts/type1/public/cm-super/sftt10
 00.pfb></opt/local/share/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></opt/l
 ocal/share/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></opt/local/share/tex
 mf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on print-chapter.pdf (22 pages, 637171 bytes).
+Output written on print-chapter.pdf (22 pages, 636156 bytes).
 PDF statistics:
  129 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)

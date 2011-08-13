@@ -28,7 +28,7 @@ if the expression is valid.\footnote{The basic way to evaluate an
   can be errors: parse errors or otherwise. A few packages provide
   functions to assist with this task, notably the \function{evaluate}
   function in the same-named \pkg{evaluate} package, and the
-  \function{Parse} and \function{captureAll} functions in the
+  \function{parseText} and \function{captureAll} functions in the
   \pkg{svMisc} package. We use both in this part of the text.}
 <<>>=
 require(evaluate)

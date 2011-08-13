@@ -21,23 +21,29 @@ The R language, like its predecessor S, is designed for interactive
 use through a command line interface (CLI), and the CLI remains the
 primary interface to R. However, the graphical user interface (GUI)
 has emerged as an effective alternative, depending on the specific
-task and the target audience.  On some platforms, such as Windows and
-Mac OS, \R{} has graphical front-ends that provide a CLI through a
-text console control. The RStudio\texttrademark IDE is another such
-example which runs on all the major platforms and through the
-web. Although these interfaces are GUIs, they are still very much in
-essence CLIs, in that the primary mode of interacting with
-\proglang{R} is the same. Thus, these GUIs appeal mostly to those who
-are comfortable with \proglang{R} programming.
+task and the target audience.  With respect to GUIs, we see R users
+falling into three main target audiences: those who are familiar with
+programming \proglang{R}, those who are still learning how to program,
+and those who have no interest in programming.
 
-A separate set of GUIs targets the second group of users, those
+On some platforms, such as Windows and Mac OS, \R{} has graphical
+front-ends that provide a CLI through a text console control. Similar
+examples include the web-based RStudio\texttrademark{} IDE, the
+Java-based JGR and the RKWard GUI for the Linux KDE desktop. Although
+these interfaces are GUIs, they are still very much in essence CLIs,
+in that the primary mode of interacting with \proglang{R} is the
+same. Thus, these GUIs appeal mostly to those who are comfortable with
+\proglang{R} programming.
+
+A separate set of GUIs target the second group of users, those
 learning the \proglang{R} language. Since this group includes many
 students, these GUIs are often designed to teach general statistical
 concepts in addition to \proglang{R}.  A CLI component is usually
 present in the interface, though it is deemphasized by the surrounding
 GUI, which is analogous to a set of ``training wheels'' on a
-bicycle. An example of such a GUI is \proglang{R} Commander, which provides a menu- and dialog-driven interface to a
-wide range of \R's functionality and supports plugins.
+bicycle. An example of such a GUI is \proglang{R} Commander, which
+provides a menu- and dialog-driven interface to a wide range of \R's
+functionality and supports plugins.
 
 The third group of users, those who only require \proglang{R} for
 certain tasks and do not wish to learn the language, are targeted by
@@ -55,17 +61,15 @@ package and the \function{guiDlgFunction} function from the
 \pkg{svDialogs} package.
 
 All of these examples are within the scope of this book. We set out to
-show that for many purposes adding a graphical interface to one's work
-is not terribly sophisticated nor time-consuming.  This book does not
-attempt to cover the development of GUIs that require knowledge of
+show that, for many purposes, adding a graphical interface to one's
+work is not terribly sophisticated nor time-consuming.  This book does
+not attempt to cover the development of GUIs that require knowledge of
 another programming language, although several such projects
-exist. Many of these are general front-ends to \R\/, such as the
-Java-based GUI \pkg{JGR}, the \pkg{rkWard} GUI for KDE, the
-\pkg{biocep} GUI written using Java and the \pkg{RServe} package, or
-even the Windows GUI that comes with \R's Windows package. There are
-also several special purpose GUIs, like \pkg{iPlots}, which are
-largely implemented in Java, relying on \pkg{rJava}, a native
-interface between \R\/ and Java.
+exist. One example is programming a Java/Swing GUI through
+\pkg{rJava}, a native interface between \R\/ and Java. It is also
+possible to extend the \pkg{RKWard} GUI using a mixture of XML and
+Javascript, and the \pkg{biocep} GUI supports Java extensions. Our
+focus is instead on programming GUIs with the \proglang{R} language.
 
 The bulk of this text covers four different packages for writing GUIs
 in \R. The \pkg{gWidgets} package is covered first. This provides a
@@ -124,9 +128,9 @@ the functions \code{browsegWidgetsFiles}, \code{browseRGtk2Files},
 examples from the respective chapters. 
 
 
-The authors would like to thanks the following people for their very
+The authors would like to thanks the following people for their 
 helpful comments made regarding draft versions of this book; Richie
-Cotton, Erich Neuwirth, \XXX{Others?}.
+Cotton, Erich Neuwirth, Jason Crowley, and Tengfei Yin.
 
 
 

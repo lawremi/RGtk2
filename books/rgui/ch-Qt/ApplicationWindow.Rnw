@@ -329,10 +329,10 @@ To add items to a toolbar we might call
 \end{enumerate}
 \vspace{12pt}
 
+<<echo=FALSE, results=hide>>=
 ## Before adding some actions to our toolbar, we define a function
 ## \code{getIcon} that loads a \class{QIcon} from a file in the
 ## \pkg{gWidgets} package:
-<<echo=FALSE, results=hide>>=
 getIcon <- function(nm) {
   fname <- system.file(sprintf("images/%s.gif", nm), package="gWidgets")
   Qt$QIcon(fname)

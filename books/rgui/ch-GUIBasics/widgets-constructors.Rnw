@@ -13,7 +13,7 @@ table	&gtable	&gtkTreeView	&wxGrid	&(Tktable) tkwidget table	&Jtable	&\\
 tree	&gtree	&gtkTreeView	&wxTreeCtrl	&(Bwidget) tkwidget Tree	&Jtree	&\\
 buttons	&gbutton	&gtkButton	&wxButton	&tkbutton	&Jbutton	&\\
 icons	&gimage	&gtkImage	&wxImage, wxBitmap, wxIcon	&	&ImageIcon	&\\
-menu bars	&gmenu	&gtkMenuBar	&wxMenu	&tkmenu	&JMenuBar	&\\
+menubars	&gmenu	&gtkMenuBar	&wxMenu	&tkmenu	&JMenuBar	&\\
 popup menus	&gmenu	&gtkMenu	&wxMenu	&	&JMenuBar	&\\
 toolbars	&gtoolbar	&gtkToolbar	&wxToolBar	&	&JToolBar	&\\
 single line text	&gedit	&gtkEntry	&wxTextCtrl	&tkentry	&JTextField	&\\

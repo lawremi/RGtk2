@@ -3,7 +3,7 @@
 %% Load packages
 \usepackage{mathptmx}  %% 420 pages          % for math fonts type 1
 \usepackage[pdftex]{graphicx}           % for graphics files
-\usepackage{floatflt}           % for ``floating boxes''
+%%\usepackage{floatflt}           % for ``floating boxes''
 \usepackage{index}
 \usepackage{relsize}            % for relative size fonts
 \usepackage{amsmath}            % for amslatex stuff
@@ -27,9 +27,6 @@
 %% Set up memor for book layout
 %% paragraph
 
-%% showtrims
-%%\showtrimson
-%%\trimXmarks
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -95,13 +92,16 @@
 
 %%% pagestyle
 \pagestyle{ruled}
-%\pagestyle{companion}
+%%\pagestyle{companion}
 
 % captions -- The class uses the following to specify the standard LaTeX caption style: 
 % \captionnamefont{} 
 % \captiontitlefont{} 
+
 \captionstyle[\centering]{\raggedright} 
 \captionwidth{\linewidth} 
+
+
 % \normalcaptionwidth 
 % \normalcaption 
 \captiondelim{: } 
@@ -112,7 +112,7 @@
 
 %%%%%%%%%%
 %% paragraphs, lists
-\tightlists
+%%%\tightlists
 %% WHAT TO DO HERE? \renewcommand{\paragraph}[1]{\marginpar{#1}}
 
 %%%%%%%%%%
@@ -280,6 +280,10 @@
 \widowpenalty=30000
 \clubpenalty=30000
 
+%% From CRC Krantz_style
+\frenchspacing
+\tolerance=5000
+
 
 \usepackage{color}
 %%% Define some colors
@@ -295,11 +299,12 @@
 
 \usepackage{fancyvrb}
 %\usepackage{makeidx}
-\usepackage{multicol}          % for making multiple columns
+%\usepackage{multicol}          % for making multiple columns
 %%\usepackage{fancybox}           % for framing
 
-\usepackage{prelim2e}           % put on bottom of each page
-\renewcommand{\PrelimWords}{Draft version, do not circulate}
+%%% Uncomment for statement about draft on bottom
+%\usepackage{prelim2e}           % put on bottom of each page
+%\renewcommand{\PrelimWords}{Draft version, do not circulate}
 
 %\usepackage{/home/verzani/R/lib/R/share/texmf/Sweave}
 %\usepackage{Sweave}

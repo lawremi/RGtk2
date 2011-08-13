@@ -62,7 +62,7 @@ chance that code you write can be shared easily with someone else.
 
 The \pkg{gWidgets} package started as a port to \pkg{RGtk2} of the
 \pkg{iWidgets} package of Simon Urbanek written for Swing through
-\pkg{rJava}~\footcite{iWidgets}. Along the way, \pkg{gWidgets} was
+\pkg{rJava}\footcite{iWidgets}. Along the way, \pkg{gWidgets} was
 extended and abstracted to work with different GUI toolkit backends
 available for \R. A separate package provides the interface. As of
 writing there are interfaces for \pkg{RGtk2}, \pkg{qtbase}, and
@@ -2209,7 +2209,7 @@ if the expression is valid.\footnote{The basic way to evaluate an
   can be errors: parse errors or otherwise. A few packages provide
   functions to assist with this task, notably the \function{evaluate}
   function in the same-named \pkg{evaluate} package, and the
-  \function{Parse} and \function{captureAll} functions in the
+  \function{parseText} and \function{captureAll} functions in the
   \pkg{svMisc} package. We use both in this part of the text.}
 \begin{Schunk}
 \begin{Sinput}
@@ -3498,7 +3498,7 @@ shared amongst many different pieces of a GUI is a common one. To
 address the complexity that arises as the components of a GUI get more
 intertwined, standard design patterns have been employed. For this
 task, the \iprogram{observer pattern}\defn{Observer Pattern} is often used. This pattern is
-defined in~\footcite{head-first-design-patterns} to describe a
+defined in\footcite{head-first-design-patterns} to describe a
 one-to-many relationship between a set of objects where when the state
 of one object changes, all of its dependents are notified.
 

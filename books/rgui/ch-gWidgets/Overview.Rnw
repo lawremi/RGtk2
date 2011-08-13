@@ -41,7 +41,7 @@ chance that code you write can be shared easily with someone else.
 
 The \pkg{gWidgets} package started as a port to \pkg{RGtk2} of the
 \pkg{iWidgets} package of Simon Urbanek written for Swing through
-\pkg{rJava}~\footcite{iWidgets}. Along the way, \pkg{gWidgets} was
+\pkg{rJava}\footcite{iWidgets}. Along the way, \pkg{gWidgets} was
 extended and abstracted to work with different GUI toolkit backends
 available for \R. A separate package provides the interface. As of
 writing there are interfaces for \pkg{RGtk2}, \pkg{qtbase}, and

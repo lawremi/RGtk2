@@ -232,7 +232,7 @@ A \dfn{button} issues commands when invoked, usually via a mouse click.
 In Figure~\ref{fig:GUI:print-dialogs}, the ``Properties'' button, when
 clicked, opens a dialog for setting printer properties. The button
 with the wizard icon also opens a dialog.  As buttons execute an
-action, they are often labeled with a verb.~\footcite{APPLE:HIG} In
+action, they are often labeled with a verb.\footcite{APPLE:HIG} In
 Figure~\ref{fig:GUI:spss-11-term-selection} we see how SPSS uses
 buttons in its dialogs: buttons which are not valid in the current
 state are disabled; buttons which are designed to open subsequent
@@ -275,7 +275,7 @@ an action, so an icon on a button should visually depict an action.
 % Except for the default installation of \pkg{tcltk}, images and icons
 % may be specified in a variety of different formats.  Icons can come in
 % several different sizes from 16 by 16 pixels to 128 by 128. For
-% toolbars and menu bars, the toolkit takes care of selecting the
+% toolbars and menubars, the toolkit takes care of selecting the
 % appropriate icon.
 
 
@@ -284,14 +284,14 @@ an action, so an icon on a button should visually depict an action.
 
 Menus play a central role in the \acronym{WIMP} desktop. The \dfn{menu
   bar} contains items for many of the actions supported by the
-application.  By convention, menu bars are associated with a top-level
+application.  By convention, menubars are associated with a top-level
 window. This is enforced by some toolkits and operating systems, but
-not all. In Mac OS X, the menu bar appears on the top line of the
-display, but other platforms place the menu bar at the top of the
+not all. In Mac OS X, the menubar appears on the top line of the
+display, but other platforms place the menubar at the top of the
 top-level window. In a statistics application, the ``document'' may be
 the active data frame, a report, or a graphic.
 
-The styles used for menu bars are fairly standardized, as this allows
+The styles used for menubars are fairly standardized, as this allows
 new users to quickly orient themselves within a GUI. The visible menu
 names are often in the order \code{File}, \code{Edit}, \code{View},
 \code{Tools}, then application specific menus, and finally a
@@ -329,7 +329,7 @@ one-button users, these menus are bound to a \kbd{control}-click.
 \label{sec:GUI:toolbars}
 
 Toolbars are used to give immediate access to the frequently used actions
-defined in the menu bar. Toolbars typically have icons representing the
+defined in the menubar. Toolbars typically have icons representing the
 action and perhaps accompanying text. They traditionally appear on the
 top of a window, but sometimes are used along the edges. 
 
@@ -343,7 +343,7 @@ printed.  GUI toolkits commonly represent such actions as formal,
 invisible objects that are proxied by widgets, usually buttons, on the
 screen.  Often, all of the primary commands supported by an
 application have a corresponding action object, and the buttons
-associated with those actions are organized into menu bars and
+associated with those actions are organized into menubars and
 toolbars.
 
 An action object is essentially a data model, with each proxy widget
@@ -523,7 +523,7 @@ the commands, so that the input can be distinguished from the output.
 %       \begin{tabular}{lp{\PARASIZE}@{\quad}p{\LARGEPARASIZE}@{\quad}p{\PARASIZE}@{\quad}p{\PARASIZE}@{\quad}p{\PARASIZE}@{\quad}c}
 %         %%
 %         Widget & \code{gWidgets} & \code{RGtk2} & \code{RwxWidgets} &
-%         \code{tcltk}~\footnote{Some constructors require add-on
+%         \code{tcltk}\footnote{Some constructors require add-on
 %           libraries, as indicated by parentheses.} & \code{rJava} &\\
 %         \hline
 %         \SweaveInput{widgets-constructors}

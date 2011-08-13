@@ -155,7 +155,7 @@ interfaces implemented by \class{GtkWidget}:
  gTypeGetInterfaces("GtkWidget")
 \end{Sinput}
 \begin{Soutput}
-[1] "GtkBuildable"        "AtkImplementorIface"
+[1] "AtkImplementorIface" "GtkBuildable"       
 \end{Soutput}
 \end{Schunk}
 
@@ -296,7 +296,7 @@ interfaces it implements:
  interface(window)
 \end{Sinput}
 \begin{Soutput}
-[1] "GtkBuildable"        "AtkImplementorIface"
+[1] "AtkImplementorIface" "GtkBuildable"       
 \end{Soutput}
 \end{Schunk}
 
@@ -315,7 +315,7 @@ and instruct the widget to perform an action.
 
 Although class information is stored in the style of S3, \pkg{RGtk2}
 introduces its own mechanism for method\iprogram{method dispatch}
-dispatch.~\footnote{\pkg{RGtk2} uses \R's standard dollar-sign
+dispatch.\footnote{\pkg{RGtk2} uses \R's standard dollar-sign
   notation (also used with reference classes) for class-based method
   dispatch.}  \iprogram{R's object oriented notation}The call \code{obj\$method(...)}  resolves to a function
 call \code{f(obj,...)}. The function is found by looking for any
@@ -1024,7 +1024,7 @@ To remove a widget from the screen but not its container, use the
 \method{reparent}{GtkWidget} method is a convenience for moving a
 widget between containers that ensures the child is not
 \iprogram{garbage collection}garbage
-collected during the transition.~\footnote{An object becomes available
+collected during the transition.\footnote{An object becomes available
   for garbage collection when it has no references to it, which can
   happen if it is removed from the parent container.}
 
@@ -3989,7 +3989,7 @@ constructed through \constructor{rGtkDataFrame}. Populating a
 data is retrieved from the data frame on demand. There is no need to
 copy the data row by row into a separate data structure. Such an
 approach would be especially slow if implemented as a loop in
-\R.~\footnote{As is proved with \pkg{tcltk}, where this is needed.} The constructor takes a
+\R.\footnote{As is proved with \pkg{tcltk}, where this is needed.} The constructor takes a
 data frame as an argument. The column classes are important, so even
 if this data frame is empty, the user should specify the desired
 column classes upon construction.
@@ -4820,7 +4820,7 @@ here. Instead we add a bit of extra detail by providing a tooltip.
 %% features of R.
 \paragraph{Tooltips}
 For this example, our function has built-in documentation. Below we
-use an internal function from the \pkg{helpr} package~\footnote{It is
+use an internal function from the \pkg{helpr} package\footnote{It is
   important to note that we are calling internal routines of a package
   still under active development, which in turn relies on volatile
   features of R. In general, such practice can lead to maintenance
@@ -6049,14 +6049,14 @@ $retval
 NULL
 
 $start
-<pointer: 0x125276e60>
+<pointer: 0x125b06de0>
 attr(,"interfaces")
 character(0)
 attr(,"class")
 [1] "GtkTextIter" "GBoxed"      "RGtkObject" 
 
 $end
-<pointer: 0x125276b90>
+<pointer: 0x125b06d90>
 attr(,"interfaces")
 character(0)
 attr(,"class")

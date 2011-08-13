@@ -72,7 +72,7 @@ KDE print dialog example as we proceed.
 
 The top-level window of a GUI is the root of the container
 hierarchy. All other widgets are contained within it.  The
-conventional main application window will consist of a menu bar, a
+conventional main application window will consist of a menubar, a
 tool bar and a status bar. The primary content of the window is
 inserted between the tool bar and the status bar, in an area known as
 the \dfnref{client area} or \dfnref{content area}. In the case of a
@@ -183,7 +183,7 @@ horizontally. The area separating the panes, sometimes called a
 
 \ilayout{box layout}The box layout is the most common type of layout algorithm for
 positioning child components. A box will pack its children either
-horizontally or vertically~\footnote{The \code{pack} command of
+horizontally or vertically\footnote{The \code{pack} command of
   \pkg{tcltk} can mix the two directions}. Usually, the widgets are
 packed from left to right, for horizontal boxes, or from top to
 bottom, in the case of a vertical box.  The upper left figure in
