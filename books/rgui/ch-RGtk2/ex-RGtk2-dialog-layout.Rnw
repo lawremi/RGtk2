@@ -39,8 +39,8 @@ sapply(rb, diagRadios$packStart)
 submitBox <- gtkVBox()
 submitBox$packEnd(gtkButton("Run simulation"), expand = FALSE)
 @ 
-
-we align the labels to the right, up against their corresponding entry
+%%
+We align the labels to the right, up against their corresponding entry
 widgets, which are left-aligned:
 <<gtk-container-layout-align>>=
 sizeLabel['xalign'] <- 1
@@ -53,10 +53,11 @@ The labels are aligned through the \class{GtkMisc} functionality
 inherited by \class{GtkLabel}. The \class{GtkVBox} with the radio
 buttons does not support this, so we have embedded it within a
 \class{GtkAlignment} instance. We have aligned the diagnostic label to
-the top of its cell; otherwise, it would have been in the centered
-vertically. The radio buttons are left aligned, up against the label.
+the top of its cell; otherwise, it would have been  centered
+vertically. The radio buttons are left aligned, up against the label
+(cf. Figure~\ref{fig:RGtk2-dialog-layout}).
 
-Child widgets are added to a table through the
+Child widgets are added to a \class{GtkTable} instance through its
 \method{attach}{GtkTable} method.  The child can span more than one
 cell. The arguments \argument{left.attach}{gtkTableAttach} and
 \argument{right.attach}{gtkTableAttach} specify the horizontal bounds

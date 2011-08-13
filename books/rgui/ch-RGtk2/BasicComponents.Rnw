@@ -1,4 +1,4 @@
-
+In this Chapter we cover many of the basic controls of \GTK.
 
 \section{Buttons}
 \label{sec:RGtk2:gtkButton}
@@ -43,7 +43,7 @@ World'' example and others.
 
 Passing the \argument{stock.id}{gtkButton} argument to
 \function{gtkButton} will use decorations associated with a so-called
-stock identifier, see Section~\ref{sec:RGtk2:stock-icons}. For
+\igui{stock icons}stock identifier, see Section~\ref{sec:RGtk2:stock-icons}. For
 example, ``gtk-ok'' would produce a button with a theme-dependent
 image (such as a checkmark) and the ``Ok'' label, with the appropriate
 mnemonic (see below) and language translation.  The available stock
@@ -84,7 +84,7 @@ ID <- gSignalConnect(b,"clicked",              # keyboard too
 
 As buttons are intended to call an action immediately after being
 clicked, it is advisable to make them insensitive to user input when
-the action is not possible. For example, we could set our button to be
+the action is not possible. For example, we  set our button to be
 insensitive through: 
 <<gtk-widget-button-sensitive>>=
 b$setSensitive(FALSE)
@@ -135,7 +135,7 @@ respects formatting marks.
     \centering
     \includegraphics[width=.5\textwidth]{fig-RGtk2-labels}
     \caption{Various formatting for a label: wrapping, alignment,
-      ellipsizing, PANGO markup}
+      ellipsizing, Pango markup}
     \label{fig:RGtk2:label-formatting}
   \end{figure}
   
@@ -187,6 +187,8 @@ multiple lines within a label. To align the entire block of text
 within the space allocated to the label, modify the \code{xalign}
 property, as described in Section~\ref{sec:RGtk2:layout:align}.
 
+\iprogram{text markup}
+\paragraph{Pango markup}
 \GTK\/ allows markup of text elements using the \defn{Pango} text attribute
 markup language, an XML-based format that resembles basic HTML. The
 method \method{setMarkup}{GtkLabel} accepts text in the format. Text
@@ -220,8 +222,8 @@ within a \class{GtkEventBox}, which provides the \class{GdkWindow}.
 \label{sec:RGtk2:images}
 
 It is often said that a picture can be worth a thousand
-words. Applying this to a GUI, images can be a valuable and more space
-efficient alternative to labels. \class{GtkImage} is the widget that
+words. Applying this to a GUI, good images can be worth a thousand
+pixels, as they can compactly represent ideas and actions. \class{GtkImage} is the widget that
 displays images. The constructor \constructor{gtkImage} creates images
 from various in-memory image representations, files, and other
 sources.  Images can be loaded after construction, as well. For
@@ -399,11 +401,13 @@ One can set an icon on an entry from a \class{GdkPixbuf}, stock ID,
 icon name, or \class{GIcon}
 (Figure~\ref{fig:RGtk2-valid-gtkentry}). Two icons are possible, one
 at the beginning (\code{primary}) and one at the end
-(\code{secondary}). For example, an entry might listen to its input
-and update its icon to indicate whether the entered text is valid (in
-this case, consisting only of letters):
-%% JV: Cool, I didn't know this. The tooltip doesn't seem to work for
-%% my setup.
+(\code{secondary}). A common use would be to place a search icon in an
+entry widget, were it used for searching. In our example below, an
+entry might listen to its input and update its icon to indicate
+whether the entered text is valid (in this case, consisting only of
+letters):
+
+\iprogram{validation}
 <<gtk-widget-entry-validate>>=
 validatedEntry <- gtkEntry()
 gSignalConnect(validatedEntry, "changed", function(entry) {
@@ -456,7 +460,7 @@ callback should check the \code{active} property to determine if the
 button has been enabled or disabled:
 <<gtk-widget-check-button-toggle,results=hide>>=
 gSignalConnect(cb, "toggled", function(x) {
-  message("Button is ", if (x$active) "active" else "inactive")
+  message("Button is ", ifelse(x$active, "active","inactive") )
 })
 @ 
 
@@ -814,12 +818,12 @@ the \class{GtkWidget} object or their page index, $0$-based. The
 value.
 
 %% signal
-\paragraph{signals}
+\paragraph{Signals}
 The \code{cancel} button emits a \signal{cancel} signal that can be
 connected to for destroying the wizard widget. The \signal{apply}
 signal is emitted on a page change. The \signal{prepare} signal is
 emitted just before a page is made visible, which is needed to create
-the dynamically generated pages in our examples.
+the dynamically generated pages in our example.
 
 \begin{example}{An \code{install.packages} wizard}{eg-RGtk2-install-packages}
   \SweaveInput{ex-RGtk2-install-wizard}
@@ -830,6 +834,7 @@ the dynamically generated pages in our examples.
 
 \SweaveInput{cairoDevice}
 
+\igui{drag and drop}
 \section{Drag and drop}
 \label{sec:RGtk2:dnd}
 

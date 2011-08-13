@@ -1,6 +1,6 @@
 This example shows how to pack buttons into a box so that the spacing
 between the similar buttons is 12 pixels, while potentially dangerous
-buttons are separated from the rest by 24 pixels, as per the Mac human
+buttons are separated from the rest by 24 pixels, as per the Apple human
 interface guidelines.  
 
 \GTK\/ provides the widget \class{GtkHButtonBox} for organizing

@@ -37,7 +37,7 @@ sapply(pages, gtkAssistantSetPageType, object=asst,
        type=page_types)
 @ 
 %
-We customize each page with a logo, using a side log here.
+We customize each page with a side logo.
 <<sideLogo, results=hide>>=
 image <- gdkPixbuf(filename = imagefile("rgtk-logo.gif"))[[1]]
 sapply(pages, gtkAssistantSetPageSideImage, object=asst, 

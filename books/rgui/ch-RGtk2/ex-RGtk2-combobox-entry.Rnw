@@ -3,7 +3,7 @@
 ## no tooltip per item, but here we add as detail
 library(RGtk2)
 @ 
-
+%%
 This example uses an editable combo box as an simple interface to the
 \R\/ help system. Along the way, we record the number of times the
 user searches for a page.

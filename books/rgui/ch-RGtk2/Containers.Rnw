@@ -26,7 +26,7 @@ objects provided by \GTK.
 %% constructor Show/Hide
 As we saw in our ``Hello World'' example, top-level windows are
 constructed by the \igui{top-level window}\constructor{gtkWindow} constructor. This function
-has arguments \code{type} to specify the type of window to create. The
+has argument \code{type} to specify the type of window to create. The
 default is a top-level window, which we will always use, as the
 alternative is for ``popups'' which are meant for internal use, e.g.,
 for implementing menus. The second argument is \code{show}, which by
@@ -56,7 +56,7 @@ w$show()                                # show window
 The initial size of the window can be set with the
 \method{setDefaultSize}{GtkWindow} method, as shown above, which takes a
 \argument{width}{gtkWindow} and \argument{height}{gtkWindow} argument
-specified in pixels. This specification allows the window to be
+specified in pixels. \ilayout{toplevel window size}This specification allows the window to be
 resized but must be made before the window is drawn, as the window
 then falls under control of the window manager. The
 \method{setSizeRequest}{GtkWidget} method will request a minimum size,
@@ -85,8 +85,7 @@ child widget.
 \paragraph{Destroying windows}
 A window is normally closed by the window manager. Most often, this
 occurs in response to the user clicking on a close button in a title
-bar.  When the user clicks on the
-close button, the window manager requests that the window be deleted,
+bar.  When this happens, the window manager requests that the window be deleted,
 and the \code{delete-event} signal is emitted. As with any window
 manager event, the default handler is overridden if a callback
 connected to \code{delete-event} returns \code{TRUE}.  This can be
@@ -101,8 +100,8 @@ gSignalConnect(w, "delete-event", function(event) {
 })
 @ 
 %
-We describe the use of message dialogs in
-Section~\ref{sec:gtk-dialog-message}. The contract of deletion is that
+(We describe the use of message dialogs in
+Section~\ref{sec:gtk-dialog-message}.) The contract of deletion is that
 the window should no longer be visible on the screen. It is not
 necessary for the actual window object to be removed from memory,
 although this is the default behavior. Calling the \code{hideOnDelete}
@@ -203,7 +202,7 @@ To remove a widget from the screen but not its container, use the
 \method{reparent}{GtkWidget} method is a convenience for moving a
 widget between containers that ensures the child is not
 \iprogram{garbage collection}garbage
-collected during the transition.~\footnote{An object becomes available
+collected during the transition.\footnote{An object becomes available
   for garbage collection when it has no references to it, which can
   happen if it is removed from the parent container.}
 
@@ -425,7 +424,7 @@ contains several other permutations of the
     difference between \code{padding} (an amount around each child)
     and \code{spacing} (an amount between each child). The last two
     rows show the effect of \code{fill} when \code{expand=TRUE}. This
-    illustration follows one in original \GTK\/ tutorial.}
+    illustration follows one in the original \GTK\/ tutorial.}
   \label{fig:RGtk2-pack-start}
 \end{figure}
 
@@ -611,7 +610,7 @@ although it is usually desirable to allow the user to reorder
 pages. The \method{setTabReorderable}{GtkNotebook} enables drag and
 drop reordering for a specific tab. It is also possible for the user
 to drag and drop pages between notebooks, as long as they belong to
-the same group, which depends on the \property{group-id}
+the same group, which depends on the \prop{group-id}
 property. Pages can be deleted using the method
 \method{removePage}{GtkNotebook}.
 
@@ -643,14 +642,16 @@ of the tabs for direct navigation.
 <<>>=
 gtkNotebookInsertPageWithCloseButton <- 
   function(object, child, label.text="", position=-1) {
-    label <- gtkHBox()
-    label$packStart(gtkLabel(label.text))
     icon <- gtkImage(pixbuf = 
-            object$renderIcon("gtk-close", "button", size="menu"))
+      object$renderIcon("gtk-close", "button", size="menu"))
     closeButton <- gtkButton()
     closeButton$setImage(icon)
     closeButton$setRelief("none")
+    ##
+    label <- gtkHBox()
+    label$packStart(gtkLabel(label.text))
     label$packEnd(closeButton)
+    ##
     gSignalConnect(closeButton, "clicked", function(b) {
       index <- nb$pageNum(child)
       nb$removePage(index)
@@ -736,6 +737,7 @@ the horizontal and vertical adjustments to scroll the window.  The
 value of an adjustment corresponds to the left/top position of the
 window, so we to adjust by half the page size after scaling the value.
 
+\igui{keystroke events}
 We had key press events, so that pressing \kbd{+} zooms in and
 pressing \kbd{-} zooms out:
 <<gtk-container-scrolled-key-press>>=

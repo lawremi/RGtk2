@@ -1,5 +1,6 @@
 %\section{Extending GObject classes from R}
 \label{sec:gtk:extending-classes}
+\iprogram{subclass}
 
 \GTK, as well as several of its dependencies, with the notable
 exception of \pkg{Cairo}, is based on the \pkg{GObject}

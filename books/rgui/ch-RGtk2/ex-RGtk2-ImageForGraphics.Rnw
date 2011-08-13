@@ -22,7 +22,7 @@ The size of the image is taken as the size allocated to the box
 graphic. Unlike an interactive device, after drawing, this graphic
 does not resize itself when the window resizes.
 <<>>=
-theSize <- g$getAllocation()$allocation
+theSize <- hbox$getAllocation()$allocation
 width <- theSize$width; height <- theSize$height
 @ 
 
@@ -39,7 +39,7 @@ hist(rnorm(100))
 
 The final step is to create the \class{GtkImage} widget to display the
 pixmap: 
-<<eval=FALSE>>=
+<<>>=
 image <- gtkImage(pixmap = pixmap)
 hbox$packStart(image, expand=TRUE, fill = TRUE)
 @ 

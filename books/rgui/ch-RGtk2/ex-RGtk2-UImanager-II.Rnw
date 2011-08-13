@@ -97,20 +97,20 @@ To define the actions, we can use lists. This list defines
 the file menu:
 <<>>=
 fileL <- list(## name, ID, label, accelerator, tooltip, callback
-              list("File",NULL,"_File",NULL,NULL,NULL),
-              list("Save", "gtk-save", "Save", "<ctrl>S", 
-                   "Save data to variable", fun),
-              list("SaveAs", "gtk-save", "Save as...", NULL, 
-                   "Save data to variable", fun),
-              list("Export", NULL, "Export", NULL, NULL, NULL),
-              list("ExportToCSV", "gtk-export", "Export to CSV", 
-                   NULL, "Save data to CSV file", fun),
-              list("ExportToSaveFile", "gtk-export", 
-                   "Export to save file", NULL, 
-                   "Save data to save() file", fun),
-              list("CloseWindow", "gtk-close", "Close window", 
-                   "<ctrl>W", "Close current window", fun)
-              )
+           list("File",NULL,"_File",NULL,NULL,NULL),
+           list("Save", "gtk-save", "Save", "<ctrl>S", 
+                "Save data to variable", fun),
+           list("SaveAs", "gtk-save", "Save as...", NULL, 
+                "Save data to variable", fun),
+           list("Export", NULL, "Export", NULL, NULL, NULL),
+           list("ExportToCSV", "gtk-export", "Export to CSV", 
+                NULL, "Save data to CSV file", fun),
+           list("ExportToSaveFile", "gtk-export", 
+                "Export to save file", NULL, 
+                "Save data to save() file", fun),
+           list("CloseWindow", "gtk-close", "Close window", 
+                "<ctrl>W", "Close current window", fun)
+           )
 @ 
 % 
 Each item contains $6$ pieces of information: a name (which we use in
@@ -119,7 +119,7 @@ keyboard accelerator a tooltip, and finally a callback for when the
 action is invoked.
 
 We can add these items to an action group, along the lines of
-<<addActionGroup>>=
+<<addActionGroup, results=hide>>=
 ag <- gtkActionGroup("FileGroup")
 ag$addActions(fileL)
 @ 
@@ -130,13 +130,13 @@ uimanager$insertActionGroup(ag, 0)
 @
 %
 The position (\code{0}) is used to determine which action will be
-called, when there is more than one similarly named.
+called, when there is more than one with the same name.
 
 
 %% insert into GUI
 We now place the UI manager into the GUI. The UI manager specification
 create widgets which we can retrieve through its
-\meth{getWidget}{GtkUIManager} method. The following code sketches
+\method{getWidget}{GtkUIManager} method. The following code sketches
 the layout of the GUI:
 <<GUILayout, eval=FALSE>>=
 w <- gtkWindow(show=FALSE)
@@ -171,17 +171,19 @@ w$addAccelGroup(uimanager$getAccelGroup())
 
 Figure~\ref{fig:RGtk2-editable-dataframe} shows an illustration of the
 finished application. The full details are found in the code in our accompanying
-package \pkg{ProgGUIinR}. Here we discuss how the \iprogram{command pattern}\dfn{command
-  pattern} was implemented to provide a simple undo and redo feature
-to our editing.
+package \pkg{ProgGUIinR}. 
 
-According to \footcite{head-first-design-patterns}, the command
-pattern is used to \iprogram{encapsulation}encapsulate a request
-(method call) as an object. A basic command object has just one
-method, \meth{execute}. Any needed parameters are stored in the object
-as properties. The command pattern has GUI-related applications beyond
-the undo/redo stack, including the action objects (i.e., instances of
-\class{GtkAction}) that are managed by \class{GtkUIManager}.
+\paragraph{Command pattern}
+Now we discuss how the \iprogram{command pattern}\dfn{command pattern}
+was implemented to provide a simple undo and redo feature to our
+editing.  According to \footcite{head-first-design-patterns}, the
+command pattern is used to \iprogram{encapsulation}encapsulate a
+request (method call) as an object. A basic command object has just
+one method, \meth{execute}. Any needed parameters are stored in the
+object as properties. The command pattern has GUI-related applications
+beyond the undo/redo stack, including the action objects (i.e.,
+instances of \class{GtkAction}) that are managed by
+\class{GtkUIManager}.
 
 For our implementation of the undo/redo stack, we use a reference
 class with fields:
@@ -215,7 +217,7 @@ Command$methods(
 %
 
 Notice we pass in the arguments to our \meth{execute} method, rather
-than use those in the proporty \code{params}. This allows us to implement the
+than use those in the property \code{params}. This allows us to implement the
 \meth{do} and \meth{undo} methods in a similar manner:
 <<>>=
 Command$methods(
@@ -229,7 +231,7 @@ Command$methods(
 @                             
 %
 This assumes the method executed can return a value which can be used
-to reverse the call.If a method call is not so straightforward to
+to reverse the call. If a method call is not so straightforward to
 reverse, one needs only subclass the \class{Command} call and provide
 a new \code{undo} method.
 
@@ -242,8 +244,7 @@ set_x <- function(value) {
   old
 }
 cmd <- Command$new(.GlobalEnv, "set_x", value=2)
-cmd$do();
-x
+cmd$do(); x
 @ 
 <<results=hide>>=
 cmd$undo();

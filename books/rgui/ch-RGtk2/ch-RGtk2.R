@@ -250,42 +250,42 @@ function(b, event, data) {
 ###################################################
 ### chunk number 27: intro-enum-window eval=FALSE
 ###################################################
-## #line 549 "ch-RGtk2.Rnw"
+## #line 550 "ch-RGtk2.Rnw"
 ## window <- gtkWindow("toplevel", show = FALSE)
 
 
 ###################################################
 ### chunk number 28: intro-enum-GtkWindowType
 ###################################################
-#line 564 "ch-RGtk2.Rnw"
+#line 565 "ch-RGtk2.Rnw"
 GtkWindowType
 
 
 ###################################################
 ### chunk number 29: intro-enum-GtkWidgetFlags
 ###################################################
-#line 578 "ch-RGtk2.Rnw"
+#line 579 "ch-RGtk2.Rnw"
 GtkWidgetFlags
 
 
 ###################################################
 ### chunk number 30: intro-enum-gtkWidgetFlags
 ###################################################
-#line 587 "ch-RGtk2.Rnw"
+#line 588 "ch-RGtk2.Rnw"
 window$flags()
 
 
 ###################################################
 ### chunk number 31: intro-enum-toplevel
 ###################################################
-#line 602 "ch-RGtk2.Rnw"
+#line 603 "ch-RGtk2.Rnw"
 (window$flags() & GtkWidgetFlags["toplevel"]) > 0
 
 
 ###################################################
 ### chunk number 32: 
 ###################################################
-#line 616 "ch-RGtk2.Rnw"
+#line 618 "ch-RGtk2.Rnw"
 while(gtkEventsPending()) 
   gtkMainIteration()
 
@@ -293,7 +293,7 @@ while(gtkEventsPending())
 ###################################################
 ### chunk number 33:  eval=FALSE
 ###################################################
-## #line 650 "ch-RGtk2.Rnw"
+## #line 652 "ch-RGtk2.Rnw"
 ## g <- gtkBuildableNew()
 ## g$addFromFile("buildable.xml")
 
@@ -301,7 +301,7 @@ while(gtkEventsPending())
 ###################################################
 ### chunk number 34:  eval=FALSE
 ###################################################
-## #line 659 "ch-RGtk2.Rnw"
+## #line 661 "ch-RGtk2.Rnw"
 ## d <- g$getObject("dialog1")
 ## d$showAll()
 
@@ -309,7 +309,7 @@ while(gtkEventsPending())
 ###################################################
 ### chunk number 35:  eval=FALSE
 ###################################################
-## #line 673 "ch-RGtk2.Rnw"
+## #line 675 "ch-RGtk2.Rnw"
 ## ok_button_clicked <- function(w, userData) {
 ##   print("hello world")
 ## }
@@ -319,14 +319,14 @@ while(gtkEventsPending())
 ###################################################
 ### chunk number 36: 
 ###################################################
-#line 709 "ch-RGtk2.Rnw"
+#line 711 "ch-RGtk2.Rnw"
 library(RGtk2)
 
 
 ###################################################
 ### chunk number 37: 
 ###################################################
-#line 747 "ch-RGtk2.Rnw"
+#line 749 "ch-RGtk2.Rnw"
 w <- gtkWindow(show=FALSE)              # use default type
 w$setTitle("Window title")              # set window title
 w['title']                              # or  use getTitle
@@ -337,7 +337,7 @@ w$show()                                # show window
 ###################################################
 ### chunk number 38: basic-window-label
 ###################################################
-#line 774 "ch-RGtk2.Rnw"
+#line 776 "ch-RGtk2.Rnw"
 w <- gtkWindow(show=FALSE); w$setTitle("Hello world")
 l <- gtkLabel("Hello world")
 w$add(l)
@@ -346,7 +346,7 @@ w$add(l)
 ###################################################
 ### chunk number 39: gtk-container-window-delete
 ###################################################
-#line 795 "ch-RGtk2.Rnw"
+#line 796 "ch-RGtk2.Rnw"
 gSignalConnect(w, "delete-event", function(event) {
   gtkMessageDialog(parent=w, flags=0, type="question", 
                    buttons=c("yes", "no"),
@@ -358,14 +358,14 @@ gSignalConnect(w, "delete-event", function(event) {
 ###################################################
 ### chunk number 40: gtk-container-window-destroy
 ###################################################
-#line 813 "ch-RGtk2.Rnw"
+#line 814 "ch-RGtk2.Rnw"
 w$destroy()
 
 
 ###################################################
 ### chunk number 41: 
 ###################################################
-#line 828 "ch-RGtk2.Rnw"
+#line 829 "ch-RGtk2.Rnw"
 ## create a window and a dialog window
 w <- gtkWindow(show=FALSE); w$setTitle("Top level window")
 d <- gtkWindow(show=FALSE); d$setTitle("dialog window")
@@ -379,7 +379,7 @@ d$show()
 ###################################################
 ### chunk number 42: 
 ###################################################
-#line 863 "ch-RGtk2.Rnw"
+#line 864 "ch-RGtk2.Rnw"
 w <- gtkWindow(show=FALSE); w$setTitle("Hello world")
 l <- gtkLabel("Hello world")
 w$add(l)
@@ -388,21 +388,21 @@ w$add(l)
 ###################################################
 ### chunk number 43: 
 ###################################################
-#line 874 "ch-RGtk2.Rnw"
+#line 875 "ch-RGtk2.Rnw"
 w$getChild()['label']
 
 
 ###################################################
 ### chunk number 44: gtk-container-brackets
 ###################################################
-#line 882 "ch-RGtk2.Rnw"
+#line 883 "ch-RGtk2.Rnw"
 w[[1]]['label']
 
 
 ###################################################
 ### chunk number 45:  eval=FALSE
 ###################################################
-## #line 888 "ch-RGtk2.Rnw"
+## #line 889 "ch-RGtk2.Rnw"
 ## ## leave out?
 ## l$getParent()
 
@@ -410,7 +410,7 @@ w[[1]]['label']
 ###################################################
 ### chunk number 46: remove-child-widget-3
 ###################################################
-#line 896 "ch-RGtk2.Rnw"
+#line 897 "ch-RGtk2.Rnw"
 w$remove(l)
 w$add(l)
 
@@ -418,7 +418,7 @@ w$add(l)
 ###################################################
 ### chunk number 47: layout-window-show-first
 ###################################################
-#line 923 "ch-RGtk2.Rnw"
+#line 924 "ch-RGtk2.Rnw"
 w <- gtkWindow(); w$setTitle("Hello world")
 l <- gtkLabel("Hello world")
 w$add(l)
@@ -427,21 +427,21 @@ w$add(l)
 ###################################################
 ### chunk number 48: layout-window-show-first-alloc
 ###################################################
-#line 939 "ch-RGtk2.Rnw"
+#line 940 "ch-RGtk2.Rnw"
 l$getAllocation()$allocation
 
 
 ###################################################
 ### chunk number 49: 
 ###################################################
-#line 943 "ch-RGtk2.Rnw"
+#line 944 "ch-RGtk2.Rnw"
 sapply(l$getAllocation()$allocation, function(i) i)
 
 
 ###################################################
 ### chunk number 50: layout-window-show-later
 ###################################################
-#line 949 "ch-RGtk2.Rnw"
+#line 950 "ch-RGtk2.Rnw"
 w <- gtkWindow(show=FALSE); w$setTitle("Hello world")
 l <- gtkLabel("Hello world")
 w$add(l)
@@ -452,21 +452,21 @@ l$getAllocation()$allocation
 ###################################################
 ### chunk number 51: 
 ###################################################
-#line 956 "ch-RGtk2.Rnw"
+#line 957 "ch-RGtk2.Rnw"
 sapply(l$getAllocation()$allocation, function(i) i)
 
 
 ###################################################
 ### chunk number 52: basic-box-homo
 ###################################################
-#line 1032 "ch-RGtk2.Rnw"
+#line 1033 "ch-RGtk2.Rnw"
 box <- gtkHBox(TRUE, 5)
 
 
 ###################################################
 ### chunk number 53: basic-box-homo-nofill
 ###################################################
-#line 1047 "ch-RGtk2.Rnw"
+#line 1048 "ch-RGtk2.Rnw"
 button_a <- gtkButton("Button A")
 button_b <- gtkButton("Button B")
 box$packStart(button_a, fill = FALSE)
@@ -476,14 +476,14 @@ box$packStart(button_b, fill = FALSE)
 ###################################################
 ### chunk number 54: basic-box-hetero
 ###################################################
-#line 1074 "ch-RGtk2.Rnw"
+#line 1075 "ch-RGtk2.Rnw"
 box <- gtkHBox(FALSE, 5)
 
 
 ###################################################
 ### chunk number 55: 
 ###################################################
-#line 1102 "ch-RGtk2.Rnw"
+#line 1103 "ch-RGtk2.Rnw"
 ## re create buttons
 button_a <- gtkButton("Button A")
 button_b <- gtkButton("Button B")
@@ -492,7 +492,7 @@ button_b <- gtkButton("Button B")
 ###################################################
 ### chunk number 56: basic-box-expand
 ###################################################
-#line 1108 "ch-RGtk2.Rnw"
+#line 1109 "ch-RGtk2.Rnw"
 box$packStart(button_a, expand = TRUE, fill = FALSE)
 box$packStart(button_b, expand = FALSE, fill = FALSE)
 
@@ -500,7 +500,7 @@ box$packStart(button_b, expand = FALSE, fill = FALSE)
 ###################################################
 ### chunk number 57: 
 ###################################################
-#line 1151 "ch-RGtk2.Rnw"
+#line 1152 "ch-RGtk2.Rnw"
 g <- gtkHBox()
 sapply(1:3, function(i) g$packStart(gtkLabel(i)))
 
@@ -508,7 +508,7 @@ sapply(1:3, function(i) g$packStart(gtkLabel(i)))
 ###################################################
 ### chunk number 58: 
 ###################################################
-#line 1155 "ch-RGtk2.Rnw"
+#line 1156 "ch-RGtk2.Rnw"
 b3 <- g[[3]]
 g$reorderChild(b3, 2 - 1)               # second is 2 - 1
 
@@ -516,7 +516,7 @@ g$reorderChild(b3, 2 - 1)               # second is 2 - 1
 ###################################################
 ### chunk number 59: basic-layout-align-window
 ###################################################
-#line 1165 "ch-RGtk2.Rnw"
+#line 1166 "ch-RGtk2.Rnw"
 w <- gtkWindow(); w$setTitle("Hello world")
 l <- gtkLabel("Hello world")
 w$add(l)
@@ -525,14 +525,14 @@ w$add(l)
 ###################################################
 ### chunk number 60: basic-layout-align-left
 ###################################################
-#line 1188 "ch-RGtk2.Rnw"
+#line 1189 "ch-RGtk2.Rnw"
 l["xalign"] <- 0
 
 
 ###################################################
 ### chunk number 61: basic-layout-align-GtkAlignment
 ###################################################
-#line 1199 "ch-RGtk2.Rnw"
+#line 1200 "ch-RGtk2.Rnw"
 w <- gtkWindow(); w$setTitle("Hello world")
 a <- gtkAlignment()
 a$set(xalign = 0, yalign = 0.5, xscale = 0, yscale = 1)
@@ -544,7 +544,7 @@ a$add(l)
 ###################################################
 ### chunk number 62: 
 ###################################################
-#line 1229 "ch-RGtk2.Rnw"
+#line 1232 "ch-RGtk2.Rnw"
 w <- gtkWindow(); w['title'] <- "Parent window"
 #
 dlg <- gtkMessageDialog(parent=w, 
@@ -558,7 +558,7 @@ dlg['secondary-text'] <- "A secondary message"
 ###################################################
 ### chunk number 63: 
 ###################################################
-#line 1257 "ch-RGtk2.Rnw"
+#line 1260 "ch-RGtk2.Rnw"
 response <- dlg$run()
 if(response == GtkResponseType["cancel"] || # for other buttons
    response == GtkResponseType["close"] ||
@@ -573,7 +573,7 @@ dlg$Destroy()
 ###################################################
 ### chunk number 64: 
 ###################################################
-#line 1284 "ch-RGtk2.Rnw"
+#line 1287 "ch-RGtk2.Rnw"
 dlg <- gtkDialogNewWithButtons(title="Enter a value", 
                        parent=NULL, flags=0,
                        "gtk-ok", GtkResponseType["ok"],
@@ -584,7 +584,7 @@ dlg <- gtkDialogNewWithButtons(title="Enter a value",
 ###################################################
 ### chunk number 65: OurDialogsLayout
 ###################################################
-#line 1303 "ch-RGtk2.Rnw"
+#line 1306 "ch-RGtk2.Rnw"
 hb <- gtkHBox()
 hb['spacing'] <- 10
 #
@@ -599,7 +599,7 @@ vb$packStart(hb)
 ###################################################
 ### chunk number 66: connectResponse
 ###################################################
-#line 1322 "ch-RGtk2.Rnw"
+#line 1325 "ch-RGtk2.Rnw"
 ID <- gSignalConnect(dlg, "response", 
                      f=function(dlg, resp, user.data) {
                        if(resp == GtkResponseType["ok"])
@@ -613,7 +613,7 @@ dlg$setModal(TRUE)
 ###################################################
 ### chunk number 67: openFileDialog
 ###################################################
-#line 1348 "ch-RGtk2.Rnw"
+#line 1351 "ch-RGtk2.Rnw"
 dlg <- gtkFileChooserDialog(title="Open a file", 
                      parent=NULL, action="open",
                      "gtk-ok", GtkResponseType["ok"],
@@ -624,7 +624,7 @@ dlg <- gtkFileChooserDialog(title="Open a file",
 ###################################################
 ### chunk number 68: 
 ###################################################
-#line 1363 "ch-RGtk2.Rnw"
+#line 1366 "ch-RGtk2.Rnw"
 gSignalConnect(dlg, "response", f=function(dlg, resp, data) {
   if(resp == GtkResponseType["ok"]) {
     filename <- dlg$getFilename()
@@ -637,7 +637,7 @@ gSignalConnect(dlg, "response", f=function(dlg, resp, data) {
 ###################################################
 ### chunk number 69: 
 ###################################################
-#line 1380 "ch-RGtk2.Rnw"
+#line 1383 "ch-RGtk2.Rnw"
 fileFilter <- gtkFileFilter()
 fileFilter$setName("R files")
 fileFilter$addPattern("*.R")
@@ -648,7 +648,7 @@ dlg$addFilter(fileFilter)
 ###################################################
 ### chunk number 70: gtk-container-frame
 ###################################################
-#line 1437 "ch-RGtk2.Rnw"
+#line 1440 "ch-RGtk2.Rnw"
 frame <- gtkFrame("Options")
 vbox <- gtkVBox()
 vbox$packStart(gtkCheckButton("Option 1"), FALSE)
@@ -659,7 +659,7 @@ frame$add(vbox)
 ###################################################
 ### chunk number 71: gtk-container-expander
 ###################################################
-#line 1458 "ch-RGtk2.Rnw"
+#line 1461 "ch-RGtk2.Rnw"
 expander <- gtkExpander("Advanced")
 expander$add(frame)
 
@@ -667,7 +667,7 @@ expander$add(frame)
 ###################################################
 ### chunk number 72: qt-layout-notebook
 ###################################################
-#line 1481 "ch-RGtk2.Rnw"
+#line 1484 "ch-RGtk2.Rnw"
 nb <- gtkNotebook()
 nb$appendPage(gtkLabel("Page 1"), gtkLabel("Tab 1"))
 nb$appendPage(gtkLabel("Page 2"), gtkLabel("Tab 2"))
@@ -676,14 +676,14 @@ nb$appendPage(gtkLabel("Page 2"), gtkLabel("Tab 2"))
 ###################################################
 ### chunk number 73: qt-layout-notebook-pos
 ###################################################
-#line 1497 "ch-RGtk2.Rnw"
+#line 1500 "ch-RGtk2.Rnw"
 nb['tab-pos'] <- "bottom"
 
 
 ###################################################
 ### chunk number 74: qt-layout-notebook-current
 ###################################################
-#line 1506 "ch-RGtk2.Rnw"
+#line 1509 "ch-RGtk2.Rnw"
 nb['page'] <- 1
 nb['page']
 
@@ -691,17 +691,19 @@ nb['page']
 ###################################################
 ### chunk number 75: 
 ###################################################
-#line 1550 "ch-RGtk2.Rnw"
+#line 1553 "ch-RGtk2.Rnw"
 gtkNotebookInsertPageWithCloseButton <- 
   function(object, child, label.text="", position=-1) {
-    label <- gtkHBox()
-    label$packStart(gtkLabel(label.text))
     icon <- gtkImage(pixbuf = 
-            object$renderIcon("gtk-close", "button", size="menu"))
+      object$renderIcon("gtk-close", "button", size="menu"))
     closeButton <- gtkButton()
     closeButton$setImage(icon)
     closeButton$setRelief("none")
+    ##
+    label <- gtkHBox()
+    label$packStart(gtkLabel(label.text))
     label$packEnd(closeButton)
+    ##
     gSignalConnect(closeButton, "clicked", function(b) {
       index <- nb$pageNum(child)
       nb$removePage(index)
@@ -713,7 +715,7 @@ gtkNotebookInsertPageWithCloseButton <-
 ###################################################
 ### chunk number 76: 
 ###################################################
-#line 1571 "ch-RGtk2.Rnw"
+#line 1576 "ch-RGtk2.Rnw"
 w <- gtkWindow()
 nb <- gtkNotebook(); w$add(nb)
 nb$insertPageWithCloseButton(gtkButton("hello"), 
@@ -725,7 +727,7 @@ nb$insertPageWithCloseButton(gtkButton("world"),
 ###################################################
 ### chunk number 77: gtk-container-scrolled-device
 ###################################################
-#line 1600 "ch-RGtk2.Rnw"
+#line 1605 "ch-RGtk2.Rnw"
 library(cairoDevice)
 device <- gtkDrawingArea()
 device$setSizeRequest(600, 400)
@@ -735,7 +737,7 @@ asCairoDevice(device)
 ###################################################
 ### chunk number 78: gtk-container-scrolled-construct
 ###################################################
-#line 1608 "ch-RGtk2.Rnw"
+#line 1613 "ch-RGtk2.Rnw"
 scrolled <- gtkScrolledWindow()
 scrolled$addWithViewport(device)
 
@@ -743,7 +745,7 @@ scrolled$addWithViewport(device)
 ###################################################
 ### chunk number 79: gtk-container-scrolled-zoom
 ###################################################
-#line 1624 "ch-RGtk2.Rnw"
+#line 1629 "ch-RGtk2.Rnw"
 zoomPlot <- function(x = 2.0) {
   allocation <- device$getAllocation()$allocation
   device$setSizeRequest(allocation$width * x, 
@@ -760,7 +762,7 @@ zoomPlot <- function(x = 2.0) {
 ###################################################
 ### chunk number 80: gtk-container-scrolled-key-press
 ###################################################
-#line 1648 "ch-RGtk2.Rnw"
+#line 1654 "ch-RGtk2.Rnw"
 gSignalConnect(scrolled, "key-press-event", function(x, ev) {
   key <- ev[["keyval"]]
   if (key == GDK_plus)
@@ -774,7 +776,7 @@ gSignalConnect(scrolled, "key-press-event", function(x, ev) {
 ###################################################
 ### chunk number 81: gtk-container-scrolled-window
 ###################################################
-#line 1661 "ch-RGtk2.Rnw"
+#line 1667 "ch-RGtk2.Rnw"
 win <- gtkWindow(show = FALSE)
 win$add(scrolled)
 win$showAll()
@@ -783,21 +785,21 @@ win$showAll()
 ###################################################
 ### chunk number 82: gtk-container-scrolled-plot
 ###################################################
-#line 1668 "ch-RGtk2.Rnw"
+#line 1674 "ch-RGtk2.Rnw"
 plot(mpg ~ hp, data = mtcars)
 
 
 ###################################################
 ### chunk number 83: gtk-container-paned-construct
 ###################################################
-#line 1696 "ch-RGtk2.Rnw"
+#line 1702 "ch-RGtk2.Rnw"
 paned <- gtkHPaned()
 
 
 ###################################################
 ### chunk number 84: gtk-container-paned-add
 ###################################################
-#line 1704 "ch-RGtk2.Rnw"
+#line 1710 "ch-RGtk2.Rnw"
 paned$add1(gtkLabel("Left (1)"))
 paned$add2(gtkLabel("Right (2)"))
 
@@ -805,7 +807,7 @@ paned$add2(gtkLabel("Right (2)"))
 ###################################################
 ### chunk number 85: gtk-container-paned-pack
 ###################################################
-#line 1717 "ch-RGtk2.Rnw"
+#line 1723 "ch-RGtk2.Rnw"
 paned$pack1(gtkLabel("Left (1)"), resize = TRUE, shrink = TRUE)
 paned$pack2(gtkLabel("Right (2)"), resize = TRUE, shrink = TRUE)
 
@@ -813,7 +815,7 @@ paned$pack2(gtkLabel("Right (2)"), resize = TRUE, shrink = TRUE)
 ###################################################
 ### chunk number 86: 
 ###################################################
-#line 1747 "ch-RGtk2.Rnw"
+#line 1753 "ch-RGtk2.Rnw"
 ## layout a basic dialog -- center align
 library(RGtk2)
 
@@ -821,14 +823,14 @@ library(RGtk2)
 ###################################################
 ### chunk number 87: gtk-container-table-construct
 ###################################################
-#line 1760 "ch-RGtk2.Rnw"
+#line 1766 "ch-RGtk2.Rnw"
 tbl <- gtkTable(rows=3, columns=2, homogeneous=FALSE)
 
 
 ###################################################
 ### chunk number 88: 
 ###################################################
-#line 1769 "ch-RGtk2.Rnw"
+#line 1775 "ch-RGtk2.Rnw"
 sizeLabel <- gtkLabel("Sample size:")
 sizeCombo <- gtkComboBoxNewText()
 sapply(c(5, 10, 15, 30), sizeCombo$appendText)
@@ -848,7 +850,7 @@ submitBox$packEnd(gtkButton("Run simulation"), expand = FALSE)
 ###################################################
 ### chunk number 89: gtk-container-layout-align
 ###################################################
-#line 1788 "ch-RGtk2.Rnw"
+#line 1794 "ch-RGtk2.Rnw"
 sizeLabel['xalign'] <- 1
 diagLabel['xalign'] <- 1; diagLabel['yalign'] <- 0
 diagAlign <- gtkAlignment(xalign = 0)
@@ -858,7 +860,7 @@ diagAlign$add(diagRadios)
 ###################################################
 ### chunk number 90: 
 ###################################################
-#line 1820 "ch-RGtk2.Rnw"
+#line 1827 "ch-RGtk2.Rnw"
 tbl$attach(sizeLabel, left.attach=0,1, top.attach=0,1, 
            xoptions = c("expand", "fill"), yoptions="")
 tbl$attach(sizeCombo, left.attach=1,2, top.attach=0,1, 
@@ -878,14 +880,14 @@ tbl$attach(submitBox, left.attach=1,2, top.attach=2,3,
 ###################################################
 ### chunk number 91: gtk-container-table-spacing
 ###################################################
-#line 1845 "ch-RGtk2.Rnw"
+#line 1852 "ch-RGtk2.Rnw"
 tbl$setColSpacing(0, 5)
 
 
 ###################################################
 ### chunk number 92: 
 ###################################################
-#line 1850 "ch-RGtk2.Rnw"
+#line 1857 "ch-RGtk2.Rnw"
 w <- gtkWindow(show=FALSE)
 w['border-width'] <- 14
 w$setTitle("GtkTable Example")
@@ -895,14 +897,14 @@ w$add(tbl)
 ###################################################
 ### chunk number 93: 
 ###################################################
-#line 1857 "ch-RGtk2.Rnw"
+#line 1864 "ch-RGtk2.Rnw"
 w$show()                             
 
 
 ###################################################
 ### chunk number 94: ButtonConstructors
 ###################################################
-#line 1876 "ch-RGtk2.Rnw"
+#line 1883 "ch-RGtk2.Rnw"
 w <- gtkWindow(show=FALSE)
 w$setTitle("Various buttons")
 w$setDefaultSize(400, 25)
@@ -920,7 +922,7 @@ w$show()
 ###################################################
 ### chunk number 95: CallbackExampleForButton
 ###################################################
-#line 1933 "ch-RGtk2.Rnw"
+#line 1940 "ch-RGtk2.Rnw"
 w <- gtkWindow(); b <- gtkButton("click me");
 w$add(b)
 
@@ -938,14 +940,14 @@ ID <- gSignalConnect(b,"clicked",              # keyboard too
 ###################################################
 ### chunk number 96: gtk-widget-button-sensitive
 ###################################################
-#line 1953 "ch-RGtk2.Rnw"
+#line 1960 "ch-RGtk2.Rnw"
 b$setSensitive(FALSE)
 
 
 ###################################################
 ### chunk number 97: MacOSXstyleButton
 ###################################################
-#line 1985 "ch-RGtk2.Rnw"
+#line 1992 "ch-RGtk2.Rnw"
 ## not shown
 w <- gtkWindow(show=FALSE)
 w$setTitle("MAC OS X style buttons")
@@ -961,7 +963,7 @@ fg$packStart(hbox, padding=15)              # for size grip
 ###################################################
 ### chunk number 98: StockButtons
 ###################################################
-#line 2007 "ch-RGtk2.Rnw"
+#line 2014 "ch-RGtk2.Rnw"
 cancel <- gtkButton(stock.id="gtk-cancel")
 ok <- gtkButton(stock.id="gtk-ok")
 delete <- gtkButton(stock.id="gtk-delete")
@@ -970,7 +972,7 @@ delete <- gtkButton(stock.id="gtk-delete")
 ###################################################
 ### chunk number 99: macButtonPack
 ###################################################
-#line 2015 "ch-RGtk2.Rnw"
+#line 2022 "ch-RGtk2.Rnw"
 hbox$packEnd(ok, padding=0)
 hbox$packEnd(cancel, padding=12)
 hbox$packEnd(delete, padding=12)
@@ -980,14 +982,14 @@ hbox$packEnd(gtkLabel(""), expand=TRUE, fill=TRUE) # a spring
 ###################################################
 ### chunk number 100: 
 ###################################################
-#line 2031 "ch-RGtk2.Rnw"
+#line 2038 "ch-RGtk2.Rnw"
 ok$grabFocus()
 
 
 ###################################################
 ### chunk number 101: 
 ###################################################
-#line 2035 "ch-RGtk2.Rnw"
+#line 2042 "ch-RGtk2.Rnw"
 ## not shown
 w$showAll()
 
@@ -995,7 +997,7 @@ w$showAll()
 ###################################################
 ### chunk number 102: gtkHButtonBoxExample
 ###################################################
-#line 2039 "ch-RGtk2.Rnw"
+#line 2046 "ch-RGtk2.Rnw"
 ## not shown
 ## Had we only wanted to use a button box
 w <- gtkWindow()
@@ -1010,7 +1012,7 @@ bb$add(gtkButton(stock.id="gtk-ok"))
 ###################################################
 ### chunk number 103: gtk-widget-label-window
 ###################################################
-#line 2085 "ch-RGtk2.Rnw"
+#line 2092 "ch-RGtk2.Rnw"
 w <- gtkWindow(show=FALSE); w$setTitle("Label formatting")
 w$setSizeRequest(250,300)               # narrow
 g <- gtkVBox(spacing=2); g$setBorderWidth(5); w$add(g)
@@ -1019,7 +1021,7 @@ g <- gtkVBox(spacing=2); g$setBorderWidth(5); w$add(g)
 ###################################################
 ### chunk number 104: LabelFormatting
 ###################################################
-#line 2090 "ch-RGtk2.Rnw"
+#line 2097 "ch-RGtk2.Rnw"
 string <- "the quick brown fox jumped over the lazy dog"
 ## wrap by setting number of characters
 basicLabel <- gtkLabel(string)
@@ -1049,14 +1051,14 @@ w$showAll()
 ###################################################
 ### chunk number 105: 
 ###################################################
-#line 2175 "ch-RGtk2.Rnw"
+#line 2184 "ch-RGtk2.Rnw"
 library(RGtk2)
 
 
 ###################################################
 ### chunk number 106: 
 ###################################################
-#line 2186 "ch-RGtk2.Rnw"
+#line 2195 "ch-RGtk2.Rnw"
 w <- gtkWindow(show=FALSE); w$setTitle("Graphic window");
 w$setSizeRequest(400,400)
 hbox <- gtkHBox(); w$add(hbox)
@@ -1066,15 +1068,15 @@ w$showAll()
 ###################################################
 ### chunk number 107: 
 ###################################################
-#line 2198 "ch-RGtk2.Rnw"
-theSize <- g$getAllocation()$allocation
+#line 2207 "ch-RGtk2.Rnw"
+theSize <- hbox$getAllocation()$allocation
 width <- theSize$width; height <- theSize$height
 
 
 ###################################################
 ### chunk number 108: 
 ###################################################
-#line 2206 "ch-RGtk2.Rnw"
+#line 2215 "ch-RGtk2.Rnw"
 require(cairoDevice)
 pixmap <- gdkPixmap(drawable = NULL, 
                     width = width, height = height, depth = 24)
@@ -1083,17 +1085,17 @@ hist(rnorm(100))
 
 
 ###################################################
-### chunk number 109:  eval=FALSE
+### chunk number 109: 
 ###################################################
-## #line 2216 "ch-RGtk2.Rnw"
-## image <- gtkImage(pixmap = pixmap)
-## hbox$packStart(image, expand=TRUE, fill = TRUE)
+#line 2225 "ch-RGtk2.Rnw"
+image <- gtkImage(pixmap = pixmap)
+hbox$packStart(image, expand=TRUE, fill = TRUE)
 
 
 ###################################################
 ### chunk number 110: notShown
 ###################################################
-#line 2223 "ch-RGtk2.Rnw"
+#line 2232 "ch-RGtk2.Rnw"
 ## Work this into an example ###
 makeIconRGtk2 <- function(w, giffile) {
   if(checkPtrType(w, "GtkWindow")) {
@@ -1107,21 +1109,21 @@ makeIconRGtk2 <- function(w, giffile) {
 ###################################################
 ### chunk number 111: gtkStockListIds
 ###################################################
-#line 2255 "ch-RGtk2.Rnw"
+#line 2264 "ch-RGtk2.Rnw"
 head(unlist(gtkStockListIds()), n=3)   
 
 
 ###################################################
 ### chunk number 112: gtk-widget-entry
 ###################################################
-#line 2311 "ch-RGtk2.Rnw"
+#line 2320 "ch-RGtk2.Rnw"
 e <- gtkEntry()
 
 
 ###################################################
 ### chunk number 113: gtk-widget-entry-activate
 ###################################################
-#line 2321 "ch-RGtk2.Rnw"
+#line 2330 "ch-RGtk2.Rnw"
 gSignalConnect(e, "activate", function() {
   message("Text entered: ", e$getText())
 })
@@ -1130,7 +1132,7 @@ gSignalConnect(e, "activate", function() {
 ###################################################
 ### chunk number 114: gtk-widget-entry-validate
 ###################################################
-#line 2395 "ch-RGtk2.Rnw"
+#line 2406 "ch-RGtk2.Rnw"
 validatedEntry <- gtkEntry()
 gSignalConnect(validatedEntry, "changed", function(entry) {
   text <- entry$getText()
@@ -1149,7 +1151,7 @@ validatedEntry$setIconFromStock("primary", "gtk-yes")
 ###################################################
 ### chunk number 115: 
 ###################################################
-#line 2410 "ch-RGtk2.Rnw"
+#line 2421 "ch-RGtk2.Rnw"
 w <- gtkWindow(show=FALSE)
 w$add(validatedEntry)
 w$showAll()
@@ -1158,14 +1160,14 @@ w$showAll()
 ###################################################
 ### chunk number 116: gtk-widget-check-button
 ###################################################
-#line 2431 "ch-RGtk2.Rnw"
+#line 2442 "ch-RGtk2.Rnw"
 cb <- gtkCheckButton("Option")
 
 
 ###################################################
 ### chunk number 117: gtk-widget-check-button-active
 ###################################################
-#line 2437 "ch-RGtk2.Rnw"
+#line 2448 "ch-RGtk2.Rnw"
 cb['active']
 cb['active'] <- TRUE
 
@@ -1173,16 +1175,16 @@ cb['active'] <- TRUE
 ###################################################
 ### chunk number 118: gtk-widget-check-button-toggle
 ###################################################
-#line 2445 "ch-RGtk2.Rnw"
+#line 2456 "ch-RGtk2.Rnw"
 gSignalConnect(cb, "toggled", function(x) {
-  message("Button is ", if (x$active) "active" else "inactive")
+  message("Button is ", ifelse(x$active, "active","inactive") )
 })
 
 
 ###################################################
 ### chunk number 119: RadioGroupExample
 ###################################################
-#line 2473 "ch-RGtk2.Rnw"
+#line 2484 "ch-RGtk2.Rnw"
 labels <- c("two.sided", "less", "greater")
 radiogp <- list()                           # list for group
 radiogp[[labels[1]]] <- gtkRadioButton(label=labels[1]) 
@@ -1193,7 +1195,7 @@ for(label in labels[-1])
 ###################################################
 ### chunk number 120: 
 ###################################################
-#line 2488 "ch-RGtk2.Rnw"
+#line 2499 "ch-RGtk2.Rnw"
 w <- gtkWindow(); w$setTitle("Radio group example")
 g <- gtkVBox(FALSE, 5); w$add(g)
 sapply(radiogp, gtkBoxPackStart, object = g)
@@ -1202,7 +1204,7 @@ sapply(radiogp, gtkBoxPackStart, object = g)
 ###################################################
 ### chunk number 121: 
 ###################################################
-#line 2495 "ch-RGtk2.Rnw"
+#line 2506 "ch-RGtk2.Rnw"
 g[[3]]$setActive(TRUE)           
 sapply(radiogp, `[`, "active") 
 
@@ -1210,7 +1212,7 @@ sapply(radiogp, `[`, "active")
 ###################################################
 ### chunk number 122: 
 ###################################################
-#line 2502 "ch-RGtk2.Rnw"
+#line 2513 "ch-RGtk2.Rnw"
 sapply(radiogp, gSignalConnect, "toggled",     # connect each
        f = function(w, data) {
          if(w['active']) # set before callback
@@ -1221,7 +1223,7 @@ sapply(radiogp, gSignalConnect, "toggled",     # connect each
 ###################################################
 ### chunk number 123: 
 ###################################################
-#line 2516 "ch-RGtk2.Rnw"
+#line 2527 "ch-RGtk2.Rnw"
 radiogp <- gtkRadioButton(label=labels[1])
 btns <- sapply(labels[-1], gtkRadioButtonNewWithLabelFromWidget, 
                group = radiogp)
@@ -1234,7 +1236,7 @@ sapply(rev(radiogp$getGroup()), gtkBoxPackStart, object = g)
 ###################################################
 ### chunk number 124: gtk-widget-combo
 ###################################################
-#line 2546 "ch-RGtk2.Rnw"
+#line 2557 "ch-RGtk2.Rnw"
 combo <- gtkComboBoxNewText()
 sapply(c("two.sided", "less", "greater"), combo$appendText)
 
@@ -1242,14 +1244,14 @@ sapply(c("two.sided", "less", "greater"), combo$appendText)
 ###################################################
 ### chunk number 125: gtk-widget-combo-active
 ###################################################
-#line 2555 "ch-RGtk2.Rnw"
+#line 2566 "ch-RGtk2.Rnw"
 combo['active']
 
 
 ###################################################
 ### chunk number 126: gtk-widget-combo-changed
 ###################################################
-#line 2564 "ch-RGtk2.Rnw"
+#line 2575 "ch-RGtk2.Rnw"
 gSignalConnect(combo, "changed",
                f = function(w, ...) {
                  if(w$getActive() < 0) 
@@ -1262,7 +1264,7 @@ gSignalConnect(combo, "changed",
 ###################################################
 ### chunk number 127: ComboBoxExample
 ###################################################
-#line 2581 "ch-RGtk2.Rnw"
+#line 2592 "ch-RGtk2.Rnw"
 ## An example of two comboboxes where 1 updates the other
 require(RGtk2)
 data(mtcars); library(MASS); data(Cars93) # need some data frames
@@ -1271,7 +1273,7 @@ data(mtcars); library(MASS); data(Cars93) # need some data frames
 ###################################################
 ### chunk number 128: 
 ###################################################
-#line 2591 "ch-RGtk2.Rnw"
+#line 2602 "ch-RGtk2.Rnw"
 library(ProgGUIinR)                     # for avail_dfs, find_vars
 #source("~/GUI/ProgGUIInR/R/misc.R")
 
@@ -1279,7 +1281,7 @@ library(ProgGUIinR)                     # for avail_dfs, find_vars
 ###################################################
 ### chunk number 129: Widgets
 ###################################################
-#line 2597 "ch-RGtk2.Rnw"
+#line 2608 "ch-RGtk2.Rnw"
 w <- gtkWindow(show=FALSE)
 w$setTitle("gtkComboBox example")
 
@@ -1290,7 +1292,7 @@ var_combo <- gtkComboBoxNewText()
 ###################################################
 ### chunk number 130: Layout
 ###################################################
-#line 2608 "ch-RGtk2.Rnw"
+#line 2619 "ch-RGtk2.Rnw"
 g <- gtkVBox(); w$add(g)
 #
 g1 <- gtkHBox(); g$packStart(g1)
@@ -1306,7 +1308,7 @@ g2$hide()
 ###################################################
 ### chunk number 131: configureComboBoxes
 ###################################################
-#line 2624 "ch-RGtk2.Rnw"
+#line 2635 "ch-RGtk2.Rnw"
 sapply(avail_dfs(), df_combo$appendText)
 df_combo$setActive(-1)
 #
@@ -1320,7 +1322,7 @@ gSignalConnect(df_combo, "changed", function(w, ...) {
 ###################################################
 ### chunk number 132: 
 ###################################################
-#line 2636 "ch-RGtk2.Rnw"
+#line 2647 "ch-RGtk2.Rnw"
 ## show window
 w$show()
 
@@ -1328,7 +1330,7 @@ w$show()
 ###################################################
 ### chunk number 133: 
 ###################################################
-#line 2719 "ch-RGtk2.Rnw"
+#line 2730 "ch-RGtk2.Rnw"
 ## make a range widget combining both a slider and spinbutton to choose a number
 library(RGtk2)
 
@@ -1336,14 +1338,14 @@ library(RGtk2)
 ###################################################
 ### chunk number 134: 
 ###################################################
-#line 2726 "ch-RGtk2.Rnw"
+#line 2737 "ch-RGtk2.Rnw"
 from <- 0; to <- 100; by <- 1
 
 
 ###################################################
 ### chunk number 135: 
 ###################################################
-#line 2734 "ch-RGtk2.Rnw"
+#line 2745 "ch-RGtk2.Rnw"
 slider <- gtkHScale(min=from, max=to, step=by)
 slider['draw-value'] <- FALSE
 adjustment <- slider$getAdjustment()
@@ -1353,7 +1355,7 @@ spinbutton <- gtkSpinButton(adjustment = adjustment)
 ###################################################
 ### chunk number 136: 
 ###################################################
-#line 2744 "ch-RGtk2.Rnw"
+#line 2755 "ch-RGtk2.Rnw"
 g <- gtkHBox()
 g$packStart(slider, expand=TRUE, fill=TRUE, padding=5)
 g$packStart(spinbutton, expand=FALSE, padding=5)
@@ -1362,7 +1364,7 @@ g$packStart(spinbutton, expand=FALSE, padding=5)
 ###################################################
 ### chunk number 137: 
 ###################################################
-#line 2751 "ch-RGtk2.Rnw"
+#line 2762 "ch-RGtk2.Rnw"
 w <- gtkWindow(show=FALSE)
 w['title'] <- "Example of a range widget"
 w$setSizeRequest(width=200, height=-1)
@@ -1373,7 +1375,7 @@ w$show()
 ###################################################
 ### chunk number 138: 
 ###################################################
-#line 2859 "ch-RGtk2.Rnw"
+#line 2870 "ch-RGtk2.Rnw"
 w <- gtkWindow(); w$setTitle("Progress bar example")
 pb <- gtkProgressBar()
 w$add(pb)
@@ -1389,14 +1391,14 @@ pb$setText("All done.")
 ###################################################
 ### chunk number 139: gtk-widget-progress-pulse
 ###################################################
-#line 2874 "ch-RGtk2.Rnw"
+#line 2885 "ch-RGtk2.Rnw"
 pb$pulse()
 
 
 ###################################################
 ### chunk number 140: gtk-widget-spinner eval=FALSE
 ###################################################
-## #line 2884 "ch-RGtk2.Rnw"
+## #line 2895 "ch-RGtk2.Rnw"
 ## spinner <- gtkSpinner()
 ## spinner$start()
 ## spinner$stop()
@@ -1405,7 +1407,7 @@ pb$pulse()
 ###################################################
 ### chunk number 141: installPackagesWizard
 ###################################################
-#line 2924 "ch-RGtk2.Rnw"
+#line 2935 "ch-RGtk2.Rnw"
 ## gtk Assistant example
 require(RGtk2)
 
@@ -1413,7 +1415,7 @@ require(RGtk2)
 ###################################################
 ### chunk number 142: defineAssistant
 ###################################################
-#line 2947 "ch-RGtk2.Rnw"
+#line 2958 "ch-RGtk2.Rnw"
 asst <- gtkAssistant(show=FALSE)
 asst$setSizeRequest(500, 500)
 gSignalConnect(asst, "cancel", function(asst) asst$destroy())
@@ -1422,7 +1424,7 @@ gSignalConnect(asst, "cancel", function(asst) asst$destroy())
 ###################################################
 ### chunk number 143: makePages
 ###################################################
-#line 2955 "ch-RGtk2.Rnw"
+#line 2966 "ch-RGtk2.Rnw"
 pages <- lapply(1:5, gtkVBox, spacing=5, homogeneous=FALSE)
 page_types <- c("intro", rep("confirm",3), "summary")
 sapply(pages, gtkAssistantAppendPage, object=asst)
@@ -1433,7 +1435,7 @@ sapply(pages, gtkAssistantSetPageType, object=asst,
 ###################################################
 ### chunk number 144: sideLogo
 ###################################################
-#line 2964 "ch-RGtk2.Rnw"
+#line 2975 "ch-RGtk2.Rnw"
 image <- gdkPixbuf(filename = imagefile("rgtk-logo.gif"))[[1]]
 sapply(pages, gtkAssistantSetPageSideImage, object=asst, 
        pixbuf=image)
@@ -1442,7 +1444,7 @@ sapply(pages, gtkAssistantSetPageSideImage, object=asst,
 ###################################################
 ### chunk number 145: 
 ###################################################
-#line 2973 "ch-RGtk2.Rnw"
+#line 2984 "ch-RGtk2.Rnw"
 populatePage <- list()                
 gSignalConnect(asst, "prepare", function(a, w, data) {
   page_no <- which(sapply(pages, identical, w))
@@ -1454,7 +1456,7 @@ gSignalConnect(asst, "prepare", function(a, w, data) {
 ###################################################
 ### chunk number 146: 
 ###################################################
-#line 2987 "ch-RGtk2.Rnw"
+#line 2998 "ch-RGtk2.Rnw"
 asst$setForwardPageFunc(function(i, data) {
   ifelse(i == 0 && have_CRAN(), 2L, as.integer(i + 1)) 
 }, data=NULL)
@@ -1463,7 +1465,7 @@ asst$setForwardPageFunc(function(i, data) {
 ###################################################
 ### chunk number 147: 
 ###################################################
-#line 2994 "ch-RGtk2.Rnw"
+#line 3005 "ch-RGtk2.Rnw"
 CRAN_package <- NA
 install_options <- list() #type, dependencies, lib
 
@@ -1471,7 +1473,7 @@ install_options <- list() #type, dependencies, lib
 ###################################################
 ### chunk number 148: HelperFunctions
 ###################################################
-#line 2999 "ch-RGtk2.Rnw"
+#line 3010 "ch-RGtk2.Rnw"
 ## Helper functions
 ##' return value or NA
 ##'
@@ -1498,7 +1500,7 @@ set_CRAN <- function(url) {
 ###################################################
 ### chunk number 149: page1
 ###################################################
-#line 3030 "ch-RGtk2.Rnw"
+#line 3041 "ch-RGtk2.Rnw"
 populatePage[[1]] <- function() {
   asst$setPageTitle(pages[[1]], "Install a CRAN package")
   pages[[1]]$packStart(l <- gtkLabel())
@@ -1517,7 +1519,7 @@ populatePage[[1]] <- function() {
 ###################################################
 ### chunk number 150: CRANMirror
 ###################################################
-#line 3047 "ch-RGtk2.Rnw"
+#line 3058 "ch-RGtk2.Rnw"
 ## Not shown
 populatePage[[2]] <- function() {
   asst$setPageTitle(pages[[2]], "Select a CRAN mirror")
@@ -1550,7 +1552,7 @@ populatePage[[2]] <- function() {
 ###################################################
 ### chunk number 151: SelectPacakge
 ###################################################
-#line 3078 "ch-RGtk2.Rnw"
+#line 3089 "ch-RGtk2.Rnw"
 ## Not shown
 populatePage[[3]] <- function() {
   asst$setPageTitle(pages[[3]], "Select a CRAN package")
@@ -1580,7 +1582,7 @@ populatePage[[3]] <- function() {
 ###################################################
 ### chunk number 152: 
 ###################################################
-#line 3110 "ch-RGtk2.Rnw"
+#line 3121 "ch-RGtk2.Rnw"
 populatePage[[4]] <- function() {
   asst$setPageTitle(pages[[4]], "Install a CRAN package")
   ##
@@ -1654,7 +1656,7 @@ populatePage[[4]] <- function() {
 ###################################################
 ### chunk number 153: 
 ###################################################
-#line 3186 "ch-RGtk2.Rnw"
+#line 3197 "ch-RGtk2.Rnw"
 populatePage[[5]] <- function() {
   asst$setPageTitle(pages[[5]], "Done")
   install_options$pkgs <- CRAN_package
@@ -1679,7 +1681,7 @@ populatePage[[5]] <- function() {
 ###################################################
 ### chunk number 154: showAssistant
 ###################################################
-#line 3210 "ch-RGtk2.Rnw"
+#line 3221 "ch-RGtk2.Rnw"
 populatePage[[1]]()
 asst$show()
 
@@ -1687,7 +1689,7 @@ asst$show()
 ###################################################
 ### chunk number 155: gtk-cairo-device
 ###################################################
-#line 3234 "ch-RGtk2.Rnw"
+#line 3245 "ch-RGtk2.Rnw"
 library(cairoDevice)
 device <- gtkDrawingArea()
 asCairoDevice(device)
@@ -1701,31 +1703,32 @@ plot(mpg ~ hp, data = mtcars)
 ###################################################
 ### chunk number 156: gtk-cairo-print-operation
 ###################################################
-#line 3265 "ch-RGtk2.Rnw"
+#line 3276 "ch-RGtk2.Rnw"
 printOp <- gtkPrintOperation()
 
 
 ###################################################
 ### chunk number 157: gtk-cairo-draw-page
 ###################################################
-#line 3278 "ch-RGtk2.Rnw"
-gSignalConnect(printOp, "draw-page", function(x, context, page_nr) {
-  asCairoDevice(context)
-  plot(mpg ~ wt, data = mtcars)
-})
+#line 3289 "ch-RGtk2.Rnw"
+gSignalConnect(printOp, "draw-page", 
+               function(x, context, page_nr) {
+                 asCairoDevice(context)
+                 plot(mpg ~ wt, data = mtcars)
+               })
 
 
 ###################################################
 ### chunk number 158: gtk-cairo-run-dialog
 ###################################################
-#line 3287 "ch-RGtk2.Rnw"
+#line 3299 "ch-RGtk2.Rnw"
 printOp$run(action = "print-dialog", parent = NULL)
 
 
 ###################################################
 ### chunk number 159: 
 ###################################################
-#line 3299 "ch-RGtk2.Rnw"
+#line 3311 "ch-RGtk2.Rnw"
 ## manipulate for RGtk2
 #
 # Original license for manipulate package
@@ -1757,7 +1760,7 @@ require(cairoDevice)
 ###################################################
 ### chunk number 160: resolveVariableArguments
 ###################################################
-#line 3349 "ch-RGtk2.Rnw"
+#line 3361 "ch-RGtk2.Rnw"
 ## Not shown
 resolveVariableArguments <- function(args) {
   # if the first argument is an unnamed list then just use this list
@@ -1774,7 +1777,7 @@ resolveVariableArguments <- function(args) {
 ###################################################
 ### chunk number 161: manipulate_example eval=FALSE
 ###################################################
-## #line 3370 "ch-RGtk2.Rnw"
+## #line 3382 "ch-RGtk2.Rnw"
 ## manipulate(## expression
 ##            plot(cars, xlim = c(x.min, x.max), type = type, 
 ##                 axes = axes, ann = label),
@@ -1790,7 +1793,7 @@ resolveVariableArguments <- function(args) {
 ###################################################
 ### chunk number 162: ManipulateClass
 ###################################################
-#line 3393 "ch-RGtk2.Rnw"
+#line 3405 "ch-RGtk2.Rnw"
 Manipulate <- setRefClass("Manipulate",
                           fields=list(
                             .code="ANY",
@@ -1801,7 +1804,7 @@ Manipulate <- setRefClass("Manipulate",
 ###################################################
 ### chunk number 163: manipulate_validate_controls
 ###################################################
-#line 3403 "ch-RGtk2.Rnw"
+#line 3415 "ch-RGtk2.Rnw"
 Manipulate$methods(validate_controls=function() {
   "Validate that controls are specified properly"
   ## validate that all controls have unique names
@@ -1828,7 +1831,7 @@ Manipulate$methods(validate_controls=function() {
 ###################################################
 ### chunk number 164: Manipulate_change_handler
 ###################################################
-#line 3433 "ch-RGtk2.Rnw"
+#line 3445 "ch-RGtk2.Rnw"
 Manipulate$methods(
            get_values=function() {
              "Get widget values as list"
@@ -1848,7 +1851,7 @@ Manipulate$methods(
 ###################################################
 ### chunk number 165: Manipulate_execute
 ###################################################
-#line 3457 "ch-RGtk2.Rnw"
+#line 3468 "ch-RGtk2.Rnw"
 Manipulate$methods(  
            execute=function() {
              "Make the GUI"
@@ -1885,15 +1888,13 @@ Manipulate$methods(
 ###################################################
 ### chunk number 166: Manipulate_Initialize
 ###################################################
-#line 3505 "ch-RGtk2.Rnw"
+#line 3516 "ch-RGtk2.Rnw"
 Manipulate$methods(  
            initialize=function(code, ...) {
              controls <- resolveVariableArguments(list(...))
              initFields(.code=code,
                         .controls=controls)
              validate_controls()
-             ## now execute
-             execute()
              .self
            })
 
@@ -1901,15 +1902,17 @@ Manipulate$methods(
 ###################################################
 ### chunk number 167: manipulate_constructor
 ###################################################
-#line 3520 "ch-RGtk2.Rnw"
-manipulate <- function(`_expr`,...)
-  Manipulate$new(substitute(`_expr`),...)
+#line 3529 "ch-RGtk2.Rnw"
+manipulate <- function(`_expr`,...) {
+  obj <- Manipulate$new(substitute(`_expr`),...)
+  obj$execute()
+  }
 
 
 ###################################################
 ### chunk number 168: ManipulateControls
 ###################################################
-#line 3534 "ch-RGtk2.Rnw"
+#line 3545 "ch-RGtk2.Rnw"
 ManipulateControls <- setRefClass("ManipulateControls",
                         fields=list(
                           l="list",
@@ -1922,7 +1925,7 @@ ManipulateControls <- setRefClass("ManipulateControls",
 ###################################################
 ### chunk number 169: MC_Interface
 ###################################################
-#line 3546 "ch-RGtk2.Rnw"
+#line 3558 "ch-RGtk2.Rnw"
 ManipulateControls$methods(
             validate_inputs = function(...) {
               "Validate input code"
@@ -1935,7 +1938,7 @@ ManipulateControls$methods(
 ###################################################
 ### chunk number 170: MC_make_gui
 ###################################################
-#line 3559 "ch-RGtk2.Rnw"
+#line 3571 "ch-RGtk2.Rnw"
 ManipulateControls$methods(make_gui=function(cont) {
             "Create widget, then add to table"
             ## cont a GtkTable instance
@@ -1954,10 +1957,10 @@ ManipulateControls$methods(make_gui=function(cont) {
 ###################################################
 ### chunk number 171: Slider_constructor
 ###################################################
-#line 3579 "ch-RGtk2.Rnw"
+#line 3591 "ch-RGtk2.Rnw"
 slider <- function(min, max, initial=min, label=NULL, 
                    step=-1, ticks=TRUE) {
-  Slider$new(min, max, initial=min, label=label, 
+  Slider$new(min, max, initial=initial, label=label, 
              step=step, ticks=ticks)
 }
 
@@ -1965,7 +1968,7 @@ slider <- function(min, max, initial=min, label=NULL,
 ###################################################
 ### chunk number 172: Slider
 ###################################################
-#line 3588 "ch-RGtk2.Rnw"
+#line 3600 "ch-RGtk2.Rnw"
 Slider <- setRefClass("Slider",
                       contains="ManipulateControls")
 
@@ -1973,7 +1976,7 @@ Slider <- setRefClass("Slider",
 ###################################################
 ### chunk number 173: Slider_validate
 ###################################################
-#line 3594 "ch-RGtk2.Rnw"
+#line 3606 "ch-RGtk2.Rnw"
 Slider$methods(validate_inputs = function(min, max, initial, step, ticks, label) {
                             ## validate inputs
                           if (!is.numeric(initial) || !is.numeric(min) || !is.numeric(max))
@@ -1997,7 +2000,7 @@ Slider$methods(validate_inputs = function(min, max, initial, step, ticks, label)
 ###################################################
 ### chunk number 174: Slider_initialize
 ###################################################
-#line 3618 "ch-RGtk2.Rnw"
+#line 3630 "ch-RGtk2.Rnw"
 Slider$methods(
        initialize=function(min, max, initial=min, label=NULL, 
          step=-1, ticks=TRUE) {
@@ -2016,7 +2019,7 @@ Slider$methods(
 ###################################################
 ### chunk number 175: Slider_make_gui
 ###################################################
-#line 3640 "ch-RGtk2.Rnw"
+#line 3652 "ch-RGtk2.Rnw"
 Slider$methods(
        make_gui=function(cont, handler, ...) {
          widget <<- gtkHScale(min=l$min, max=l$max, step=l$step)
@@ -2032,7 +2035,7 @@ Slider$methods(
 ###################################################
 ### chunk number 176: Picker
 ###################################################
-#line 3653 "ch-RGtk2.Rnw"
+#line 3665 "ch-RGtk2.Rnw"
 ## Not shown -- too long
 Picker <- setRefClass("Picker",
                       contains="ManipulateControls",
@@ -2101,7 +2104,7 @@ picker <- function(..., initial = NULL, label = NULL)
 ###################################################
 ### chunk number 177: Checkbox
 ###################################################
-#line 3719 "ch-RGtk2.Rnw"
+#line 3731 "ch-RGtk2.Rnw"
 Checkbox <- setRefClass("Checkbox", contains="ManipulateControls")
 Checkbox$methods(
                  validate_inputs=function(initial, label) {
@@ -2113,7 +2116,7 @@ Checkbox$methods(
 ###################################################
 ### chunk number 178: 
 ###################################################
-#line 3733 "ch-RGtk2.Rnw"
+#line 3745 "ch-RGtk2.Rnw"
 Checkbox$methods(
          initialize=function(initial=FALSE, label=NULL) {
            validate_inputs(initial, label)
@@ -2134,15 +2137,15 @@ Checkbox$methods(
 ###################################################
 ### chunk number 179: Checkbox_constructor
 ###################################################
-#line 3754 "ch-RGtk2.Rnw"
+#line 3766 "ch-RGtk2.Rnw"
 checkbox <- function(initial = FALSE, label = NULL) Checkbox$new(initial, label)                            
 
 
 ###################################################
 ### chunk number 180: 
 ###################################################
-#line 3759 "ch-RGtk2.Rnw"
-#line 3370 "ch-RGtk2.Rnw"
+#line 3771 "ch-RGtk2.Rnw"
+#line 3382 "ch-RGtk2.Rnw"
 manipulate(## expression
            plot(cars, xlim = c(x.min, x.max), type = type, 
                 axes = axes, ann = label),
@@ -2153,13 +2156,13 @@ manipulate(## expression
            axes = checkbox(TRUE, label="Draw Axes"),
            label = checkbox(FALSE, label="Draw Labels")
            )
-#line 3760 "ch-RGtk2.Rnw"
+#line 3772 "ch-RGtk2.Rnw"
 
 
 ###################################################
 ### chunk number 181: 
 ###################################################
-#line 3783 "ch-RGtk2.Rnw"
+#line 3796 "ch-RGtk2.Rnw"
 TARGET.TYPE.TEXT   <- 80                # our enumeration
 TARGET.TYPE.PIXMAP <- 81                  
 widgetTargetTypes <- 
@@ -2172,7 +2175,7 @@ widgetTargetTypes <-
 ###################################################
 ### chunk number 182: 
 ###################################################
-#line 3800 "ch-RGtk2.Rnw"
+#line 3813 "ch-RGtk2.Rnw"
 w <- gtkWindow(); w['title'] <- "Drag Source"
 dragSourceWidget <-  gtkButton("Text to drag")
 w$add(dragSourceWidget)
@@ -2186,7 +2189,7 @@ gtkDragSourceSet(dragSourceWidget,
 ###################################################
 ### chunk number 183: 
 ###################################################
-#line 3821 "ch-RGtk2.Rnw"
+#line 3834 "ch-RGtk2.Rnw"
 gSignalConnect(dragSourceWidget, "drag-data-get", 
                function(widget, context, sel, tType, eTime) {
                  sel$setText(widget$getLabel()) 
@@ -2196,7 +2199,7 @@ gSignalConnect(dragSourceWidget, "drag-data-get",
 ###################################################
 ### chunk number 184: 
 ###################################################
-#line 3836 "ch-RGtk2.Rnw"
+#line 3849 "ch-RGtk2.Rnw"
 w <- gtkWindow(); w['title'] <- "Drop Target"
 dropTargetWidget <- gtkButton("Drop here")
 w$add(dropTargetWidget)
@@ -2210,7 +2213,7 @@ gtkDragDestSet(dropTargetWidget,
 ###################################################
 ### chunk number 185: 
 ###################################################
-#line 3862 "ch-RGtk2.Rnw"
+#line 3875 "ch-RGtk2.Rnw"
 gSignalConnect(dropTargetWidget, "drag-data-received", 
        function(widget, context, x, y, sel, tType, eTime) {
          dropdata <- sel$getText()
@@ -2221,14 +2224,14 @@ gSignalConnect(dropTargetWidget, "drag-data-received",
 ###################################################
 ### chunk number 186: 
 ###################################################
-#line 3884 "ch-RGtk2.Rnw"
+#line 3897 "ch-RGtk2.Rnw"
 library(RGtk2)
 
 
 ###################################################
 ### chunk number 187: 
 ###################################################
-#line 3966 "ch-RGtk2.Rnw"
+#line 3980 "ch-RGtk2.Rnw"
 data(Cars93, package="MASS")             # mix of classes
 model <- rGtkDataFrame(Cars93)
 model[1, 4] <- 12
@@ -2238,21 +2241,21 @@ model[1, 4]                              # get value
 ###################################################
 ### chunk number 188: 
 ###################################################
-#line 3987 "ch-RGtk2.Rnw"
+#line 4001 "ch-RGtk2.Rnw"
 model$setFrame(Cars93[1:5, 1:5])
 
 
 ###################################################
 ### chunk number 189: rgtk2-mvc-treeview-construc
 ###################################################
-#line 4012 "ch-RGtk2.Rnw"
+#line 4026 "ch-RGtk2.Rnw"
 view <- gtkTreeView(model)
 
 
 ###################################################
 ### chunk number 190: rgtk2-mvc-insert-column-hardway
 ###################################################
-#line 4024 "ch-RGtk2.Rnw"
+#line 4038 "ch-RGtk2.Rnw"
 vc <- gtkTreeViewColumn()
 vc$setTitle("Manufacturer")
 cr <- gtkCellRendererText()
@@ -2264,7 +2267,7 @@ view$insertColumn(vc, 0)
 ###################################################
 ### chunk number 191: rgtk2-mvc-insert-column-easyway
 ###################################################
-#line 4052 "ch-RGtk2.Rnw"
+#line 4066 "ch-RGtk2.Rnw"
 view$insertColumnWithAttributes(position = -1, 
                                 title = "Model", 
                                 cell = gtkCellRendererText(), 
@@ -2274,7 +2277,7 @@ view$insertColumnWithAttributes(position = -1,
 ###################################################
 ### chunk number 192: rgtk2-mvc-insert-all-columns
 ###################################################
-#line 4070 "ch-RGtk2.Rnw"
+#line 4084 "ch-RGtk2.Rnw"
 view <- gtkTreeView(model)
 mapply(view$insertColumnWithAttributes,  
        position=-1, 
@@ -2287,7 +2290,7 @@ mapply(view$insertColumnWithAttributes,
 ###################################################
 ### chunk number 193: scrollView
 ###################################################
-#line 4088 "ch-RGtk2.Rnw"
+#line 4102 "ch-RGtk2.Rnw"
 w <- gtkWindow()
 w$setTitle("Tabular view of data frame")
 sw <- gtkScrolledWindow()
@@ -2298,14 +2301,14 @@ sw$add(view)
 ###################################################
 ### chunk number 194: rgtk2-mvc-path-constructor-list
 ###################################################
-#line 4162 "ch-RGtk2.Rnw"
+#line 4176 "ch-RGtk2.Rnw"
 secondRow <- gtkTreePathNewFromIndices(2)
 
 
 ###################################################
 ### chunk number 195: rgtk2-mvc-path-constructor-tree
 ###################################################
-#line 4167 "ch-RGtk2.Rnw"
+#line 4181 "ch-RGtk2.Rnw"
 abcPath <- gtkTreePathNewFromIndices(c(1, 3, 2))
 abcPath <- gtkTreePathNewFromString("1:3:2")
 
@@ -2313,7 +2316,7 @@ abcPath <- gtkTreePathNewFromString("1:3:2")
 ###################################################
 ### chunk number 196: rgtk2-mvc-iter-traverse
 ###################################################
-#line 4196 "ch-RGtk2.Rnw"
+#line 4210 "ch-RGtk2.Rnw"
 iter <- model$getIterFirst()
 manufacturer <- character()
 while(iter$retval) {
@@ -2325,7 +2328,7 @@ while(iter$retval) {
 ###################################################
 ### chunk number 197: rgtk2-mvc-iter-apply
 ###################################################
-#line 4225 "ch-RGtk2.Rnw"
+#line 4239 "ch-RGtk2.Rnw"
 nrows <- model$iterNChildren(NULL)
 manufacturer <- sapply(seq(nrows), function(i) {
   iter <- model$iterNthChild(NULL, i)
@@ -2336,7 +2339,7 @@ manufacturer <- sapply(seq(nrows), function(i) {
 ###################################################
 ### chunk number 198: 
 ###################################################
-#line 4279 "ch-RGtk2.Rnw"
+#line 4293 "ch-RGtk2.Rnw"
 model <- rGtkDataFrame(mtcars)
 view <- gtkTreeView(model)
 selection <- view$getSelection()
@@ -2346,7 +2349,7 @@ selection$setMode("single")
 ###################################################
 ### chunk number 199: 
 ###################################################
-#line 4291 "ch-RGtk2.Rnw"
+#line 4305 "ch-RGtk2.Rnw"
 vc <- gtkTreeViewColumn()
 view$insertColumnWithAttributes(0, "title", gtkCellRendererText(), text = 0)
 ## pack in GUI
@@ -2365,7 +2368,7 @@ selection$selectPath(gtkTreePathNewFromIndices(3)) # set
 ###################################################
 ### chunk number 200: 
 ###################################################
-#line 4309 "ch-RGtk2.Rnw"
+#line 4323 "ch-RGtk2.Rnw"
 curSel <- selection$getSelected()
 with(curSel, model$getValue(iter, 0)$value)
 
@@ -2373,7 +2376,7 @@ with(curSel, model$getValue(iter, 0)$value)
 ###################################################
 ### chunk number 201: 
 ###################################################
-#line 4322 "ch-RGtk2.Rnw"
+#line 4336 "ch-RGtk2.Rnw"
 gSignalConnect(selection, "changed", function(selection) {
   curSel <- selection$getSelectedRows()
   if(length(curSel$retval)) {
@@ -2386,14 +2389,14 @@ gSignalConnect(selection, "changed", function(selection) {
 ###################################################
 ### chunk number 202:  eval=FALSE
 ###################################################
-## #line 4341 "ch-RGtk2.Rnw"
+## #line 4355 "ch-RGtk2.Rnw"
 ## sapply(view$getColumns(), function(i) i == column)
 
 
 ###################################################
 ### chunk number 203: rgtk2-mvc-sorting-clickable
 ###################################################
-#line 4357 "ch-RGtk2.Rnw"
+#line 4371 "ch-RGtk2.Rnw"
 vc <- view$getColumn(0)
 vc$setSortColumnId(0)
 
@@ -2401,21 +2404,21 @@ vc$setSortColumnId(0)
 ###################################################
 ### chunk number 204: rgtk2-mvc-sorting-sortable
 ###################################################
-#line 4366 "ch-RGtk2.Rnw"
+#line 4380 "ch-RGtk2.Rnw"
 model$setSortColumnId(0, "ascending")
 
 
 ###################################################
 ### chunk number 205: 
 ###################################################
-#line 4377 "ch-RGtk2.Rnw"
+#line 4391 "ch-RGtk2.Rnw"
 require(MASS)
 
 
 ###################################################
 ### chunk number 206: basicSort
 ###################################################
-#line 4380 "ch-RGtk2.Rnw"
+#line 4394 "ch-RGtk2.Rnw"
 store <- rGtkDataFrame(Cars93)
 sorted <- gtkTreeModelSortNewWithModel(store)
 view <- gtkTreeView(sorted)
@@ -2431,21 +2434,23 @@ sapply(seq_len(ncol(store)), function(i)
 ###################################################
 ### chunk number 207: sort-example
 ###################################################
-#line 4408 "ch-RGtk2.Rnw"
+#line 4422 "ch-RGtk2.Rnw"
 f <- function(model, iter1, iter2, user.data) {
-  types <- c("Compact", "Small", "Sporty", "Midsize", "Large", "Van")
+  types <- c("Compact", "Small", "Sporty", "Midsize", 
+             "Large", "Van")
   column <- user.data
   val1 <- model$getValue(iter1, column)$value
   val2 <- model$getValue(iter2, column)$value
   as.integer(match(val1, types) - match(val2, types))
 }
-sorted$setSortFunc(sort.column.id=3-1, sort.func=f, user.data=3 - 1)
+sorted$setSortFunc(sort.column.id=3-1, sort.func=f, 
+                   user.data=3 - 1)
 
 
 ###################################################
 ### chunk number 208: notShown
 ###################################################
-#line 4419 "ch-RGtk2.Rnw"
+#line 4435 "ch-RGtk2.Rnw"
 ## basic GUI
 sw <- gtkScrolledWindow()
 sw$add(view)
@@ -2458,7 +2463,7 @@ w$show()
 ###################################################
 ### chunk number 209: 
 ###################################################
-#line 4442 "ch-RGtk2.Rnw"
+#line 4458 "ch-RGtk2.Rnw"
 df <- Cars93
 model <- rGtkDataFrame(cbind(df, .visible=rep(TRUE, nrow(df))))
 filtered <- model$filter()
@@ -2471,7 +2476,7 @@ model[,".visible"] <- df$MPG.highway >= 30
 ###################################################
 ### chunk number 210: notShown
 ###################################################
-#line 4464 "ch-RGtk2.Rnw"
+#line 4480 "ch-RGtk2.Rnw"
 mapply(view$insertColumnWithAttributes,  
        position=-1, 
        title=colnames(df), 
@@ -2489,14 +2494,14 @@ w$show()
 ###################################################
 ### chunk number 211: 
 ###################################################
-#line 4487 "ch-RGtk2.Rnw"
+#line 4503 "ch-RGtk2.Rnw"
 library(RGtk2)
 
 
 ###################################################
 ### chunk number 212: 
 ###################################################
-#line 4502 "ch-RGtk2.Rnw"
+#line 4518 "ch-RGtk2.Rnw"
 df <- data.frame(state.name)
 df$visible <- rep(TRUE, nrow(df))
 store <- rGtkDataFrame(df)
@@ -2505,7 +2510,7 @@ store <- rGtkDataFrame(df)
 ###################################################
 ### chunk number 213: 
 ###################################################
-#line 4510 "ch-RGtk2.Rnw"
+#line 4526 "ch-RGtk2.Rnw"
 filteredStore <- store$filter()
 filteredStore$setVisibleColumn(ncol(df)-1)      # offset
 view <- gtkTreeView(filteredStore)
@@ -2514,7 +2519,7 @@ view <- gtkTreeView(filteredStore)
 ###################################################
 ### chunk number 214: 
 ###################################################
-#line 4517 "ch-RGtk2.Rnw"
+#line 4533 "ch-RGtk2.Rnw"
 view$insertColumnWithAttributes(0, "Col", 
                  gtkCellRendererText(), text = 0)
 
@@ -2522,7 +2527,7 @@ view$insertColumnWithAttributes(0, "Col",
 ###################################################
 ### chunk number 215: 
 ###################################################
-#line 4527 "ch-RGtk2.Rnw"
+#line 4543 "ch-RGtk2.Rnw"
 e <- gtkEntry()
 gSignalConnect(e, "changed", function(w, data) {
   pattern <- w$getText()
@@ -2535,7 +2540,7 @@ gSignalConnect(e, "changed", function(w, data) {
 ###################################################
 ### chunk number 216: 
 ###################################################
-#line 4540 "ch-RGtk2.Rnw"
+#line 4556 "ch-RGtk2.Rnw"
 ## not shown, but this places widgets into a simple GUI
 w <- gtkWindow(show=FALSE)
 w['title'] <- "A filtered data store"
@@ -2557,7 +2562,7 @@ w$show()
 ###################################################
 ### chunk number 217: gtk-mvc-cell-explicit
 ###################################################
-#line 4587 "ch-RGtk2.Rnw"
+#line 4603 "ch-RGtk2.Rnw"
 renderer <- gtkCellRendererText()
 renderer['cell-background'] <- "gray"
 
@@ -2565,7 +2570,7 @@ renderer['cell-background'] <- "gray"
 ###################################################
 ### chunk number 218: cr-right-aligned
 ###################################################
-#line 4614 "ch-RGtk2.Rnw"
+#line 4630 "ch-RGtk2.Rnw"
 cr <- gtkCellRendererText()
 cr['xalign'] <- 1                    # default 0.5 = centered
 cr['family'] <- "Helvetica"  
@@ -2574,14 +2579,14 @@ cr['family'] <- "Helvetica"
 ###################################################
 ### chunk number 219: 
 ###################################################
-#line 4641 "ch-RGtk2.Rnw"
+#line 4657 "ch-RGtk2.Rnw"
 cr <- gtkCellRendererText()
 
 
 ###################################################
 ### chunk number 220: editedSignal
 ###################################################
-#line 4644 "ch-RGtk2.Rnw"
+#line 4660 "ch-RGtk2.Rnw"
 cr['editable'] <- TRUE
 ID <- gSignalConnect(cr, "edited", 
 f=function(cr, path, newtext, user.data) {
@@ -2595,7 +2600,7 @@ f=function(cr, path, newtext, user.data) {
 ###################################################
 ### chunk number 221: editableTableForCollectingOptions
 ###################################################
-#line 4668 "ch-RGtk2.Rnw"
+#line 4684 "ch-RGtk2.Rnw"
 ## GUI for configuring options -- in a table
 library(RGtk2)
 
@@ -2603,7 +2608,7 @@ library(RGtk2)
 ###################################################
 ### chunk number 222: 
 ###################################################
-#line 4688 "ch-RGtk2.Rnw"
+#line 4704 "ch-RGtk2.Rnw"
 opts <- c("main","sub","xlab","ylab", "line","outer")
 df <- data.frame(option=opts,
            value=c("","","","","0","FALSE"),
@@ -2616,15 +2621,10 @@ df <- data.frame(option=opts,
 ###################################################
 ### chunk number 223: model
 ###################################################
-#line 4705 "ch-RGtk2.Rnw"
+#line 4721 "ch-RGtk2.Rnw"
 m <- rGtkDataFrame(df)
 v <- gtkTreeView(m)
-
-
-###################################################
-### chunk number 224: firstColumn
-###################################################
-#line 4711 "ch-RGtk2.Rnw"
+##
 cr <- gtkCellRendererText()
 cr['background'] <- 'gray80'
 v$insertColumnWithAttributes(position=-1,
@@ -2634,9 +2634,9 @@ v$insertColumnWithAttributes(position=-1,
 
 
 ###################################################
-### chunk number 225: secondColumn
+### chunk number 224: secondColumn
 ###################################################
-#line 4725 "ch-RGtk2.Rnw"
+#line 4738 "ch-RGtk2.Rnw"
 cr <- gtkCellRendererText()
 cr['editable'] <- TRUE
 v$insertColumnWithAttributes(position = -1,
@@ -2648,9 +2648,9 @@ v$insertColumnWithAttributes(position = -1,
 
 
 ###################################################
-### chunk number 226: editConnect
+### chunk number 225: editConnect
 ###################################################
-#line 4740 "ch-RGtk2.Rnw"
+#line 4753 "ch-RGtk2.Rnw"
 gSignalConnect(cr, "edited", function(cr, path, new.text, 
                                       user.data) {
   m <- user.data$model
@@ -2662,9 +2662,9 @@ gSignalConnect(cr, "edited", function(cr, path, new.text,
 
 
 ###################################################
-### chunk number 227: 
+### chunk number 226: 
 ###################################################
-#line 4752 "ch-RGtk2.Rnw"
+#line 4765 "ch-RGtk2.Rnw"
 w <- gtkWindow(show=FALSE)
 w['title'] <- "Option editor"
 w$setSizeRequest(300,500)
@@ -2675,9 +2675,9 @@ w$show()
 
 
 ###################################################
-### chunk number 228: 
+### chunk number 227: 
 ###################################################
-#line 4781 "ch-RGtk2.Rnw"
+#line 4794 "ch-RGtk2.Rnw"
 require(helpr, quietly=TRUE)
 package <- "graphics"; topic <- "title"
 rd <- helpr:::parse_help(helpr:::pkg_topic(package, topic), 
@@ -2687,9 +2687,9 @@ names(descs) <- sapply(descs, function(i) i$param)
 
 
 ###################################################
-### chunk number 229: 
+### chunk number 228: 
 ###################################################
-#line 4796 "ch-RGtk2.Rnw"
+#line 4809 "ch-RGtk2.Rnw"
 v["has-tooltip"] <- TRUE
 gSignalConnect(v, "query-tooltip", 
        function(w, x, y, key_mode, tooltip, user.data) {
@@ -2699,7 +2699,7 @@ gSignalConnect(v, "query-tooltip",
            i <- as.numeric(out$path$toString()) + 1
            val <- m[i, "option"]
            txt <- descs[[val]]$desc
-           txt <- gsub("code>","b>", txt)  # no code in PANGO
+           txt <- gsub("code>","b>", txt)  # no code in Pango
            tooltip$setMarkup(txt)
            TRUE
          } else {
@@ -2709,9 +2709,9 @@ gSignalConnect(v, "query-tooltip",
 
 
 ###################################################
-### chunk number 230: 
+### chunk number 229: 
 ###################################################
-#line 4840 "ch-RGtk2.Rnw"
+#line 4853 "ch-RGtk2.Rnw"
 cr <- gtkCellRendererCombo()
 store <- rGtkDataFrame(state.name)
 cr['model'] <- store
@@ -2720,9 +2720,9 @@ cr['editable'] <- TRUE                  # needed
 
 
 ###################################################
-### chunk number 231: VariableSelectionExample
+### chunk number 230: VariableSelectionExample
 ###################################################
-#line 4882 "ch-RGtk2.Rnw"
+#line 4895 "ch-RGtk2.Rnw"
 ## Example showing implementation of variable selection widget where two tables show possible selections
 ## and selection. Similar to SPSS widget
 ## Illustrates filtered models, icons in view column
@@ -2730,24 +2730,24 @@ library(RGtk2)
 
 
 ###################################################
-### chunk number 232: 
+### chunk number 231: 
 ###################################################
-#line 4905 "ch-RGtk2.Rnw"
+#line 4918 "ch-RGtk2.Rnw"
 df <- get(data(Cars93, package="MASS"))
 
 
 ###################################################
-### chunk number 233: 
+### chunk number 232: 
 ###################################################
-#line 4922 "ch-RGtk2.Rnw"
+#line 4935 "ch-RGtk2.Rnw"
 library(ProgGUIinR)                     # for make_icon
 #source("../ProgGUIInR/R/misc.R")     # for make_icon
 
 
 ###################################################
-### chunk number 234: make_icon
+### chunk number 233: make_icon
 ###################################################
-#line 4927 "ch-RGtk2.Rnw"
+#line 4940 "ch-RGtk2.Rnw"
 make_icon_pixmap <- function(x, ...) {
   require(grid); require(cairoDevice)
   pixmap <- gdkPixmap(drawable=NULL, width=16, height=16, 
@@ -2761,9 +2761,9 @@ make_icon_pixmap <- function(x, ...) {
 
 
 ###################################################
-### chunk number 235: model
+### chunk number 234: model
 ###################################################
-#line 4944 "ch-RGtk2.Rnw"
+#line 4957 "ch-RGtk2.Rnw"
 mdf <- data.frame(Variables = I(sort(names(df))),
                   icon = I(sapply(df, make_icon_pixmap)),
                   selected = rep(FALSE, ncol(df)))
@@ -2771,9 +2771,9 @@ model <- rGtkDataFrame(mdf)
 
 
 ###################################################
-### chunk number 236: filterModels
+### chunk number 235: filterModels
 ###################################################
-#line 4954 "ch-RGtk2.Rnw"
+#line 4967 "ch-RGtk2.Rnw"
 selectedFilter <- model$filter()
 selectedFilter$setVisibleColumn(2)
 unselectedFilter <- model$filter()
@@ -2783,9 +2783,9 @@ unselectedFilter$setVisibleFunc(function(model, iter) {
 
 
 ###################################################
-### chunk number 237: views
+### chunk number 236: views
 ###################################################
-#line 4969 "ch-RGtk2.Rnw"
+#line 4982 "ch-RGtk2.Rnw"
 views <- list()
 views$unselectedView <- gtkTreeView(unselectedFilter)
 views$selectedView <- gtkTreeView(selectedFilter)
@@ -2794,9 +2794,9 @@ sapply(views, function(i) i$getSelection()$setMode('multiple'))
 
 
 ###################################################
-### chunk number 238: viewColumns
+### chunk number 237: viewColumns
 ###################################################
-#line 4979 "ch-RGtk2.Rnw"
+#line 4992 "ch-RGtk2.Rnw"
 make_view_column <- function() {
   vc <- gtkTreeViewColumn()
   vc$setTitle("Variable")
@@ -2812,9 +2812,9 @@ sapply(views, function(i) i$insertColumn(make_view_column(), 0))
 
 
 ###################################################
-### chunk number 239: extendAPI
+### chunk number 238: extendAPI
 ###################################################
-#line 4997 "ch-RGtk2.Rnw"
+#line 5010 "ch-RGtk2.Rnw"
 ## add to the gtkTreeView API for convenience
 gtkTreeViewSelectedIndices <- function(object) {
   model <- object$getModel()          # Filtered!
@@ -2833,9 +2833,9 @@ gtkTreeViewHasSelection <-
 
 
 ###################################################
-### chunk number 240: buttons
+### chunk number 239: buttons
 ###################################################
-#line 5018 "ch-RGtk2.Rnw"
+#line 5031 "ch-RGtk2.Rnw"
 buttons <- list()
 buttons$unselectButton <- gtkButton("<")
 buttons$selectButton <- gtkButton(">")
@@ -2852,9 +2852,9 @@ mapply(toggleSelectionOnClick,
 
 
 ###################################################
-### chunk number 241: sensitiveButtons
+### chunk number 240: sensitiveButtons
 ###################################################
-#line 5036 "ch-RGtk2.Rnw"
+#line 5049 "ch-RGtk2.Rnw"
 sapply(buttons, gtkWidgetSetSensitive, FALSE)
 trackSelection <- function(button, view)
   gSignalConnect(view$getSelection(), "changed", 
@@ -2863,9 +2863,9 @@ mapply(trackSelection, buttons, rev(views))
 
 
 ###################################################
-### chunk number 242: guiLayout
+### chunk number 241: guiLayout
 ###################################################
-#line 5047 "ch-RGtk2.Rnw"
+#line 5060 "ch-RGtk2.Rnw"
 w <- gtkWindow(show=FALSE)
 w$setTitle("Select variables example")
 w$setDefaultSize(600, 400)
@@ -2891,16 +2891,16 @@ g$packStart(scrolls$selectedScroll, expand=TRUE)
 
 
 ###################################################
-### chunk number 243: packButtons
+### chunk number 242: packButtons
 ###################################################
-#line 5073 "ch-RGtk2.Rnw"
+#line 5086 "ch-RGtk2.Rnw"
 w$show()
 
 
 ###################################################
-### chunk number 244: cellRendererToggle
+### chunk number 243: cellRendererToggle
 ###################################################
-#line 5097 "ch-RGtk2.Rnw"
+#line 5110 "ch-RGtk2.Rnw"
 cr <- gtkCellRendererToggle()
 cr['activatable'] <- TRUE             # cell can be activated
 cr['active'] <- TRUE
@@ -2910,41 +2910,41 @@ gSignalConnect(cr, "toggled", function(w, path) {
 
 
 ###################################################
-### chunk number 245: 
+### chunk number 244: 
 ###################################################
-#line 5123 "ch-RGtk2.Rnw"
+#line 5136 "ch-RGtk2.Rnw"
 ## example showing how to add a toggle button on left of data display
 library(RGtk2)
 
 
 ###################################################
-### chunk number 246: FixACRANforSweave
+### chunk number 245: FixACRANforSweave
 ###################################################
-#line 5131 "ch-RGtk2.Rnw"
+#line 5144 "ch-RGtk2.Rnw"
 repos <- getOption("repos")
 repos["CRAN"] <- "http://streaming.stat.iastate.edu/CRAN"
 options(repos = repos)
 
 
 ###################################################
-### chunk number 247: getUpgradablePackages
+### chunk number 246: getUpgradablePackages
 ###################################################
-#line 5136 "ch-RGtk2.Rnw"
+#line 5149 "ch-RGtk2.Rnw"
 d <- old.packages()[,c("Package", "Installed", "ReposVer")]
 d <- as.data.frame(d)
 
 
 ###################################################
-### chunk number 248: 
+### chunk number 247: 
 ###################################################
-#line 5144 "ch-RGtk2.Rnw"
+#line 5157 "ch-RGtk2.Rnw"
 doUpdate <- function(d)  install.packages(d$Package)
 
 
 ###################################################
-### chunk number 249: 
+### chunk number 248: 
 ###################################################
-#line 5157 "ch-RGtk2.Rnw"
+#line 5170 "ch-RGtk2.Rnw"
 n <- ncol(d)
 nms <- colnames(d)
 d$.toggle <- rep(FALSE, nrow(d))
@@ -2952,9 +2952,9 @@ store <- rGtkDataFrame(d)
 
 
 ###################################################
-### chunk number 250: 
+### chunk number 249: 
 ###################################################
-#line 5166 "ch-RGtk2.Rnw"
+#line 5179 "ch-RGtk2.Rnw"
 view <- gtkTreeView()
 # add toggle
 cr <- gtkCellRendererToggle()
@@ -2970,24 +2970,24 @@ gSignalConnect(cr, "toggled", function(cr, path, user.data) {
 
 
 ###################################################
-### chunk number 251: 
+### chunk number 250: 
 ###################################################
-#line 5182 "ch-RGtk2.Rnw"
+#line 5195 "ch-RGtk2.Rnw"
 mapply(view$insertColumnWithAttributes, -1, nms, 
        list(gtkCellRendererText()), text = 1:n-1)
 
 
 ###################################################
-### chunk number 252: 
+### chunk number 251: 
 ###################################################
-#line 5188 "ch-RGtk2.Rnw"
+#line 5201 "ch-RGtk2.Rnw"
 view$setModel(store)
 
 
 ###################################################
-### chunk number 253: 
+### chunk number 252: 
 ###################################################
-#line 5197 "ch-RGtk2.Rnw"
+#line 5210 "ch-RGtk2.Rnw"
 b <- gtkButton("Update packages")
 gSignalConnect(b, "clicked", function(w, data) {
   view <- data
@@ -2999,9 +2999,9 @@ gSignalConnect(b, "clicked", function(w, data) {
 
 
 ###################################################
-### chunk number 254: 
+### chunk number 253: 
 ###################################################
-#line 5211 "ch-RGtk2.Rnw"
+#line 5224 "ch-RGtk2.Rnw"
 w <- gtkWindow(show=FALSE)
 w$setTitle("Installed packages that need upgrading")
 w$setSizeRequest(300, 300)
@@ -3017,17 +3017,17 @@ w$show()
 
 
 ###################################################
-### chunk number 255: comboEditor
+### chunk number 254: comboEditor
 ###################################################
-#line 5239 "ch-RGtk2.Rnw"
+#line 5252 "ch-RGtk2.Rnw"
 cr <- gtkCellRendererProgress()
 cr["value"] <- 50
 
 
 ###################################################
-### chunk number 256: 
+### chunk number 255: 
 ###################################################
-#line 5277 "ch-RGtk2.Rnw"
+#line 5290 "ch-RGtk2.Rnw"
 func <- function(viewCol, cellRend, model, iter, data) {
   curVal <- model$getValue(iter, 0)$value
   fVal <- sprintf("%.3f", curVal)
@@ -3037,9 +3037,9 @@ func <- function(viewCol, cellRend, model, iter, data) {
 
 
 ###################################################
-### chunk number 257: 
+### chunk number 256: 
 ###################################################
-#line 5288 "ch-RGtk2.Rnw"
+#line 5301 "ch-RGtk2.Rnw"
 view <- gtkTreeView(rGtkDataFrame(data.frame(rnorm(100))))
 cr <- gtkCellRendererText()
 view$insertColumnWithAttributes(0, "numbers", cr, text = 0)
@@ -3048,9 +3048,9 @@ vc$setCellDataFunc(cr, func)
 
 
 ###################################################
-### chunk number 258: 
+### chunk number 257: 
 ###################################################
-#line 5347 "ch-RGtk2.Rnw"
+#line 5360 "ch-RGtk2.Rnw"
 tstore <- gtkTreeStore("gchararray")
 by(Cars93, Cars93$Manufacturer, function(df) {
   piter <- tstore$append()              # parent
@@ -3065,17 +3065,17 @@ by(Cars93, Cars93$Manufacturer, function(df) {
 
 
 ###################################################
-### chunk number 259: 
+### chunk number 258: 
 ###################################################
-#line 5361 "ch-RGtk2.Rnw"
+#line 5374 "ch-RGtk2.Rnw"
 iter <- tstore$getIterFromString("0:0")
 tstore$getValue(iter$iter, column = 0)$value
 
 
 ###################################################
-### chunk number 260: rgtk2-mvc-tree-traverse
+### chunk number 259: rgtk2-mvc-tree-traverse
 ###################################################
-#line 5392 "ch-RGtk2.Rnw"
+#line 5405 "ch-RGtk2.Rnw"
 iter <- tstore$getIterFirst()
 models <- NULL
 while(iter$retval) {
@@ -3089,9 +3089,9 @@ while(iter$retval) {
 
 
 ###################################################
-### chunk number 261: notShown
+### chunk number 260: notShown
 ###################################################
-#line 5459 "ch-RGtk2.Rnw"
+#line 5472 "ch-RGtk2.Rnw"
 ## define tstore, but aslo in earlier example so not shown
 data(Cars93, package="MASS")
 tstore <- gtkTreeStore("gchararray")
@@ -3109,25 +3109,25 @@ for(i in unique(Manufacturers)) {
 
 
 ###################################################
-### chunk number 262: 
+### chunk number 261: 
 ###################################################
-#line 5479 "ch-RGtk2.Rnw"
+#line 5492 "ch-RGtk2.Rnw"
 store <- rGtkDataFrame(Cars93[,"Model", drop=FALSE])
 
 
 ###################################################
-### chunk number 263: makeView
+### chunk number 262: makeView
 ###################################################
-#line 5484 "ch-RGtk2.Rnw"
+#line 5497 "ch-RGtk2.Rnw"
 view <- gtkTreeView()
 view$insertColumnWithAttributes(0, "Make", 
            gtkCellRendererText(), text = 0)
 
 
 ###################################################
-### chunk number 264: makeGUI
+### chunk number 263: makeGUI
 ###################################################
-#line 5490 "ch-RGtk2.Rnw"
+#line 5503 "ch-RGtk2.Rnw"
 w <- gtkWindow(show=FALSE)
 w['title'] <- "Example of changing models"
 sw <- gtkScrolledWindow()
@@ -3137,26 +3137,26 @@ w$show()
 
 
 ###################################################
-### chunk number 265: 
+### chunk number 264: 
 ###################################################
-#line 5500 "ch-RGtk2.Rnw"
+#line 5513 "ch-RGtk2.Rnw"
 view$setModel(store)               # the rectangular store
 view$setModel(tstore)              # or the tree store
 
 
 ###################################################
-### chunk number 266: 
+### chunk number 265: 
 ###################################################
-#line 5563 "ch-RGtk2.Rnw"
+#line 5576 "ch-RGtk2.Rnw"
 ## a combobox that learns as you go.
 ## no tooltip per item, but here we add as detail
 library(RGtk2)
 
 
 ###################################################
-### chunk number 267: 
+### chunk number 266: 
 ###################################################
-#line 5577 "ch-RGtk2.Rnw"
+#line 5590 "ch-RGtk2.Rnw"
 m <- rGtkDataFrame(data.frame(
              fname=character(0), visits=character(0), 
              novisits=integer(0), stringsAsFactors=FALSE))
@@ -3164,9 +3164,9 @@ cb <- gtkComboBoxEntryNewWithModel(m, text.column=0)
 
 
 ###################################################
-### chunk number 268: ConfigureCellRenderers
+### chunk number 267: ConfigureCellRenderers
 ###################################################
-#line 5590 "ch-RGtk2.Rnw"
+#line 5603 "ch-RGtk2.Rnw"
 cr <- gtkCellRendererText()
 cb$packStart(cr)
 cb$addAttribute(cr, "text", 1)
@@ -3177,9 +3177,9 @@ cr['alignment'] <- "right"
 
 
 ###################################################
-### chunk number 269: helperFunction2
+### chunk number 268: helperFunction2
 ###################################################
-#line 5622 "ch-RGtk2.Rnw"
+#line 5635 "ch-RGtk2.Rnw"
 callHelpFunction <- function(cb, value) {
   model <- cb$getModel()
   ind <- match(value,model[,1, drop=TRUE])
@@ -3199,9 +3199,9 @@ gSignalConnect(cb, "changed", f=function(w, ...) {
 
 
 ###################################################
-### chunk number 270: 
+### chunk number 269: 
 ###################################################
-#line 5644 "ch-RGtk2.Rnw"
+#line 5657 "ch-RGtk2.Rnw"
 gSignalConnect(cb$getChild(), "activate", 
                f = function(cb, entry, ...) {
   val <- entry$getText()
@@ -3216,9 +3216,9 @@ gSignalConnect(cb$getChild(), "activate",
 
 
 ###################################################
-### chunk number 271: Layout
+### chunk number 270: Layout
 ###################################################
-#line 5659 "ch-RGtk2.Rnw"
+#line 5672 "ch-RGtk2.Rnw"
 w <- gtkWindow(show=FALSE)
 w['border-width'] <- 15
 g <- gtkHBox(); w$add(g)
@@ -3229,25 +3229,25 @@ w$show()
 
 
 ###################################################
-### chunk number 272: 
+### chunk number 271: 
 ###################################################
-#line 5733 "ch-RGtk2.Rnw"
+#line 5746 "ch-RGtk2.Rnw"
 require(RGtk2)
 
 
 ###################################################
-### chunk number 273: AppendWords
+### chunk number 272: AppendWords
 ###################################################
-#line 5739 "ch-RGtk2.Rnw"
+#line 5752 "ch-RGtk2.Rnw"
 entry <- gtkEntry()
 completion <- gtkEntryCompletion()
 entry$setCompletion(completion)
 
 
 ###################################################
-### chunk number 274: SetCompletion
+### chunk number 273: SetCompletion
 ###################################################
-#line 5749 "ch-RGtk2.Rnw"
+#line 5762 "ch-RGtk2.Rnw"
 store <- rGtkDataFrame(state.name)
 completion$setModel(store)
 completion$setTextColumn(0)
@@ -3256,9 +3256,9 @@ completion['popup-single-match'] <- FALSE
 
 
 ###################################################
-### chunk number 275: SetMatchFunc
+### chunk number 274: SetMatchFunc
 ###################################################
-#line 5759 "ch-RGtk2.Rnw"
+#line 5772 "ch-RGtk2.Rnw"
 matchAnywhere <- function(comp, str, iter, user.data) {
   model <- comp$getModel()
   rowVal <- model$getValue(iter, 0)$value # column 0 in model
@@ -3270,9 +3270,9 @@ completion$setMatchFunc(matchAnywhere)
 
 
 ###################################################
-### chunk number 276: notShown
+### chunk number 275: notShown
 ###################################################
-#line 5773 "ch-RGtk2.Rnw"
+#line 5786 "ch-RGtk2.Rnw"
 ## Our basic GUI is basic:
 w <- gtkWindow(show=FALSE)
 w$setTitle("Test of entry with completion")
@@ -3281,9 +3281,9 @@ w$showAll()
 
 
 ###################################################
-### chunk number 277: gtk-mvc-entry-buffer eval=FALSE
+### chunk number 276: gtk-mvc-entry-buffer eval=FALSE
 ###################################################
-## #line 5799 "ch-RGtk2.Rnw"
+## #line 5812 "ch-RGtk2.Rnw"
 ## buffer <- gtkEntryBuffer()        
 ## entry1 <- gtkEntry(buffer = buffer)
 ## entry2 <- gtkEntry(buffer = buffer)
@@ -3292,9 +3292,9 @@ w$showAll()
 
 
 ###################################################
-### chunk number 278: 
+### chunk number 277: 
 ###################################################
-#line 5831 "ch-RGtk2.Rnw"
+#line 5844 "ch-RGtk2.Rnw"
 tv <- gtkTextView()
 sw <- gtkScrolledWindow()
 sw$add(tv)
@@ -3306,71 +3306,71 @@ w$add(sw)
 
 
 ###################################################
-### chunk number 279: setText
+### chunk number 278: setText
 ###################################################
-#line 5844 "ch-RGtk2.Rnw"
+#line 5857 "ch-RGtk2.Rnw"
 buffer <- tv$getBuffer()
 buffer$setText("Lorem ipsum dolor sit amet ...")
 
 
 ###################################################
-### chunk number 280: bufferGetText
+### chunk number 279: bufferGetText
 ###################################################
-#line 5852 "ch-RGtk2.Rnw"
+#line 5865 "ch-RGtk2.Rnw"
 start <- buffer$getStartIter()$iter    
 end <- buffer$getEndIter()$iter
 buffer$getText(start, end)
 
 
 ###################################################
-### chunk number 281: gtk-mvc-text-noneditable
+### chunk number 280: gtk-mvc-text-noneditable
 ###################################################
-#line 5874 "ch-RGtk2.Rnw"
+#line 5887 "ch-RGtk2.Rnw"
 tv['editable'] <- FALSE
 tv['cursor-visible'] <- FALSE
 
 
 ###################################################
-### chunk number 282: gtk-mvc-buffer-iter-bounds
+### chunk number 281: gtk-mvc-buffer-iter-bounds
 ###################################################
-#line 5953 "ch-RGtk2.Rnw"
+#line 5966 "ch-RGtk2.Rnw"
 bounds <- buffer$getBounds()
 bounds
 
 
 ###################################################
-### chunk number 283: gtk-mvc-buffer-iter-atLineOffset
+### chunk number 282: gtk-mvc-buffer-iter-atLineOffset
 ###################################################
-#line 5976 "ch-RGtk2.Rnw"
+#line 5989 "ch-RGtk2.Rnw"
 iter <- buffer$getIterAtLineOffset(0, 6)
 iter$iter$getChar()                     # unicode, not text
 
 
 ###################################################
-### chunk number 284: gtk-mvc-buffer-iter-getChar
+### chunk number 283: gtk-mvc-buffer-iter-getChar
 ###################################################
-#line 5992 "ch-RGtk2.Rnw"
+#line 6005 "ch-RGtk2.Rnw"
 bounds$start$getChar()                  # unicode
 
 
 ###################################################
-### chunk number 285: gtk-mvc-buffer-iter-getText
+### chunk number 284: gtk-mvc-buffer-iter-getText
 ###################################################
-#line 5999 "ch-RGtk2.Rnw"
+#line 6012 "ch-RGtk2.Rnw"
 bounds$start$getText(bounds$end)
 
 
 ###################################################
-### chunk number 286: gtk-mvc-buffer-iter-insert
+### chunk number 285: gtk-mvc-buffer-iter-insert
 ###################################################
-#line 6005 "ch-RGtk2.Rnw"
+#line 6018 "ch-RGtk2.Rnw"
 buffer$insert(bounds$start, "prefix")
 
 
 ###################################################
-### chunk number 287: 
+### chunk number 286: 
 ###################################################
-#line 6032 "ch-RGtk2.Rnw"
+#line 6045 "ch-RGtk2.Rnw"
 ## setup example, not shown
 w <- gtkWindow()
 tv <- gtkTextView()
@@ -3378,9 +3378,9 @@ w$add(tv)
 
 
 ###################################################
-### chunk number 288: FindWordAtMouseClick
+### chunk number 287: FindWordAtMouseClick
 ###################################################
-#line 6044 "ch-RGtk2.Rnw"
+#line 6057 "ch-RGtk2.Rnw"
 ID <- gSignalConnect(tv, "button-press-event", 
                      f=function(w, e, ...) {
   siter <- w$getIterAtLocation(e$getX(), e$getY())$iter
@@ -3394,42 +3394,42 @@ ID <- gSignalConnect(tv, "button-press-event",
 
 
 ###################################################
-### chunk number 289: gtk-mvc-text-mark-insert
+### chunk number 288: gtk-mvc-text-mark-insert
 ###################################################
-#line 6070 "ch-RGtk2.Rnw"
+#line 6083 "ch-RGtk2.Rnw"
 insert <- buffer$getMark("insert")
 
 
 ###################################################
-### chunk number 290: gtk-mvc-text-mark-getIter
+### chunk number 289: gtk-mvc-text-mark-getIter
 ###################################################
-#line 6075 "ch-RGtk2.Rnw"
+#line 6088 "ch-RGtk2.Rnw"
 insertIter <- buffer$getIterAtMark(insert)$iter
 bounds$start$getText(insertIter)
 
 
 ###################################################
-### chunk number 291: gtk-mvc-text-mark-gravity
+### chunk number 290: gtk-mvc-text-mark-gravity
 ###################################################
-#line 6085 "ch-RGtk2.Rnw"
+#line 6098 "ch-RGtk2.Rnw"
 insertIter$getOffset()
 buffer$insert(insertIter, "at insertion point")
 buffer$getIterAtMark(insert)$iter$getOffset()
 
 
 ###################################################
-### chunk number 292: gtk-mvc-text-mark-construct
+### chunk number 291: gtk-mvc-text-mark-construct
 ###################################################
-#line 6093 "ch-RGtk2.Rnw"
+#line 6106 "ch-RGtk2.Rnw"
 mark <- buffer$createMark(mark.name = "start", 
                           where = buffer$getStartIter()$iter, 
                           left.gravity = TRUE)
 
 
 ###################################################
-### chunk number 293: gtk-mvc-text-tags-create
+### chunk number 292: gtk-mvc-text-tags-create
 ###################################################
-#line 6111 "ch-RGtk2.Rnw"
+#line 6124 "ch-RGtk2.Rnw"
 tag.b <- buffer$createTag(tag.name="bold", 
                           weight=PangoWeight["bold"])
 tag.em <- buffer$createTag(tag.name="em", 
@@ -3439,34 +3439,34 @@ tag.large <- buffer$createTag(tag.name="large",
 
 
 ###################################################
-### chunk number 294: gtk-mvc-text-tags-apply
+### chunk number 293: gtk-mvc-text-tags-apply
 ###################################################
-#line 6121 "ch-RGtk2.Rnw"
+#line 6134 "ch-RGtk2.Rnw"
 iter <- buffer$getBounds()
 buffer$applyTag(tag.b, iter$start, iter$end)  # updates iters
 buffer$applyTagByName("em", iter$start, iter$end)
 
 
 ###################################################
-### chunk number 295: gtk-mvc-text-selectRange
+### chunk number 294: gtk-mvc-text-selectRange
 ###################################################
-#line 6134 "ch-RGtk2.Rnw"
+#line 6148 "ch-RGtk2.Rnw"
 siter <- buffer$getStartIter()$iter
 eiter <- siter$copy(); eiter$forwardWordEnd()
 buffer$selectRange(siter, eiter)
 
 
 ###################################################
-### chunk number 296: gtk-mvc-text-clipboard-get
+### chunk number 295: gtk-mvc-text-clipboard-get
 ###################################################
-#line 6145 "ch-RGtk2.Rnw"
+#line 6159 "ch-RGtk2.Rnw"
 cb <- gtkClipboardGet()
 
 
 ###################################################
-### chunk number 297: gtk-mvc-text-clipboard-copy-paste
+### chunk number 296: gtk-mvc-text-clipboard-copy-paste
 ###################################################
-#line 6151 "ch-RGtk2.Rnw"
+#line 6165 "ch-RGtk2.Rnw"
 buffer$copyClipboard(cb)
 buffer$pasteClipboard(cb, 
             override.location = buffer$getEndIter()$iter, 
@@ -3474,32 +3474,32 @@ buffer$pasteClipboard(cb,
 
 
 ###################################################
-### chunk number 298: gtk-mvc-text-anchor
+### chunk number 297: gtk-mvc-text-anchor
 ###################################################
-#line 6179 "ch-RGtk2.Rnw"
+#line 6193 "ch-RGtk2.Rnw"
 anchor <- buffer$createChildAnchor(buffer$getEndIter()$iter)
 
 
 ###################################################
-### chunk number 299: gtk-mvc-text-addChild
+### chunk number 298: gtk-mvc-text-addChild
 ###################################################
-#line 6185 "ch-RGtk2.Rnw"
+#line 6199 "ch-RGtk2.Rnw"
 b <- gtkButton("click me")
 tv$addChildAtAnchor(b, anchor)
 
 
 ###################################################
-### chunk number 300: 
+### chunk number 299: 
 ###################################################
-#line 6203 "ch-RGtk2.Rnw"
+#line 6217 "ch-RGtk2.Rnw"
 ## make a *basic* terminal in RGtk2
 library(RGtk2)
 
 
 ###################################################
-### chunk number 301: TextViewWidget
+### chunk number 300: TextViewWidget
 ###################################################
-#line 6210 "ch-RGtk2.Rnw"
+#line 6224 "ch-RGtk2.Rnw"
 tv <- gtkTextView()
 tb <- tv$getBuffer()
 font <- pangoFontDescriptionFromString("Monospace")
@@ -3507,9 +3507,9 @@ tv$modifyFont(font)                     # widget wide
 
 
 ###################################################
-### chunk number 302: 
+### chunk number 301: 
 ###################################################
-#line 6220 "ch-RGtk2.Rnw"
+#line 6234 "ch-RGtk2.Rnw"
 tb$createTag(tag.name="cmdInput")
 tb$createTag(tag.name="cmdOutput", 
              weight=PangoWeight["bold"])
@@ -3519,18 +3519,18 @@ tb$createTag(tag.name="uneditable", editable=FALSE)
 
 
 ###################################################
-### chunk number 303: 
+### chunk number 302: 
 ###################################################
-#line 6231 "ch-RGtk2.Rnw"
+#line 6245 "ch-RGtk2.Rnw"
 startCmd <- tb$createMark("startCmd", tb$getStartIter()$iter, 
                           left.gravity=TRUE)
 bufferEnd <- tb$createMark("bufferEnd", tb$getEndIter()$iter)
 
 
 ###################################################
-### chunk number 304: 
+### chunk number 303: 
 ###################################################
-#line 6241 "ch-RGtk2.Rnw"
+#line 6255 "ch-RGtk2.Rnw"
 addPrompt <- function(obj, prompt=c("prompt", "continue"),
                       setMark=TRUE) {
   prompt <- match.arg(prompt)
@@ -3547,9 +3547,9 @@ addPrompt(tb) ## place an initial prompt
 
 
 ###################################################
-### chunk number 305: addOutput
+### chunk number 304: addOutput
 ###################################################
-#line 6259 "ch-RGtk2.Rnw"
+#line 6273 "ch-RGtk2.Rnw"
 addOutput <- function(obj, output, tagName="cmdOutput") {
   endIter <- obj$getEndIter()
   if(length(output) > 0)  
@@ -3561,9 +3561,9 @@ addOutput <- function(obj, output, tagName="cmdOutput") {
 
 
 ###################################################
-### chunk number 306: 
+### chunk number 305: 
 ###################################################
-#line 6276 "ch-RGtk2.Rnw"
+#line 6290 "ch-RGtk2.Rnw"
 findCMD <- function(obj) {
   endIter <- obj$getEndIter()
   startIter <- obj$getIterAtMark(startCmd)
@@ -3575,9 +3575,9 @@ findCMD <- function(obj) {
 
 
 ###################################################
-### chunk number 307: evalCmd
+### chunk number 306: evalCmd
 ###################################################
-#line 6293 "ch-RGtk2.Rnw"
+#line 6307 "ch-RGtk2.Rnw"
 require(evaluate)
 evalCMD <- function(tv, cmd) {
   tb <- tv$getBuffer()
@@ -3601,9 +3601,9 @@ evalCMD <- function(tv, cmd) {
 
 
 ###################################################
-### chunk number 308: connectBinding
+### chunk number 307: connectBinding
 ###################################################
-#line 6319 "ch-RGtk2.Rnw"
+#line 6333 "ch-RGtk2.Rnw"
 gSignalConnect(tv, "key-release-event", f=function(w, e) {
   obj <- w$getBuffer()                  # w is textview
   keyval <- e$getKeyval()
@@ -3616,9 +3616,9 @@ gSignalConnect(tv, "key-release-event", f=function(w, e) {
 
 
 ###################################################
-### chunk number 309: 
+### chunk number 308: 
 ###################################################
-#line 6338 "ch-RGtk2.Rnw"
+#line 6352 "ch-RGtk2.Rnw"
 scrollViewport <- function(view, ...) {
   iter <- view$getBuffer()$getEndIter()$iter
   view$scrollToMark(bufferEnd, within.margin=0)
@@ -3629,9 +3629,9 @@ gSignalConnect(tb, "changed", scrollViewport, data=tv,
 
 
 ###################################################
-### chunk number 310: makeGUI
+### chunk number 309: makeGUI
 ###################################################
-#line 6348 "ch-RGtk2.Rnw"
+#line 6362 "ch-RGtk2.Rnw"
 ## scroll window
 sw <- gtkScrolledWindow()
 sw$setPolicy("automatic", "automatic")
@@ -3646,9 +3646,9 @@ w$showAll()
 
 
 ###################################################
-### chunk number 311: 
+### chunk number 310: 
 ###################################################
-#line 6364 "ch-RGtk2.Rnw"
+#line 6378 "ch-RGtk2.Rnw"
 ## History features
 ## This is not illustrated in text, but is added here to illustrate how this might be implemented
 ## The major issue with this example is we can't trap the return or arrow keys before they move 
@@ -3724,49 +3724,49 @@ ID <- gSignalConnect(tv, "key-release-event", f=function(w, e, data) {
 
 
 ###################################################
-### chunk number 312: 
+### chunk number 311: 
 ###################################################
-#line 6453 "ch-RGtk2.Rnw"
+#line 6467 "ch-RGtk2.Rnw"
 require(RGtk2)
 
 
 ###################################################
-### chunk number 313: rgtk2-menus-actions-constructor
+### chunk number 312: rgtk2-menus-actions-constructor
 ###################################################
-#line 6479 "ch-RGtk2.Rnw"
+#line 6493 "ch-RGtk2.Rnw"
 a <- gtkAction(name="ok", label="_Ok", 
                tooltip="An OK button", stock.id="gtk-ok")
 
 
 ###################################################
-### chunk number 314: rgtk2-menus-actions-activate
+### chunk number 313: rgtk2-menus-actions-activate
 ###################################################
-#line 6490 "ch-RGtk2.Rnw"
+#line 6504 "ch-RGtk2.Rnw"
 gSignalConnect(a, "activate", f = function(w, data) {
   print(a$getName())                    # or some useful thing
 })
 
 
 ###################################################
-### chunk number 315: ConnectAction
+### chunk number 314: ConnectAction
 ###################################################
-#line 6511 "ch-RGtk2.Rnw"
+#line 6525 "ch-RGtk2.Rnw"
 b <- gtkButton()
 b$setRelatedAction(a)
 
 
 ###################################################
-### chunk number 316: rgtk2-menus-action-group
+### chunk number 315: rgtk2-menus-action-group
 ###################################################
-#line 6527 "ch-RGtk2.Rnw"
+#line 6541 "ch-RGtk2.Rnw"
 group <- gtkActionGroup()
 group$addActionWithAccel(a, "<control>O")
 
 
 ###################################################
-### chunk number 317: rgtk2-menus-toggle-action
+### chunk number 316: rgtk2-menus-toggle-action
 ###################################################
-#line 6544 "ch-RGtk2.Rnw"
+#line 6558 "ch-RGtk2.Rnw"
 fullScreen <- gtkToggleAction("fullscreen", "Full screen", 
                               "Toggle full screen",
                               stock.id="gtk-fullscreen")
@@ -3779,9 +3779,9 @@ gSignalConnect(fullScreen, "toggled", function(action) {
 
 
 ###################################################
-### chunk number 318: showGUI
+### chunk number 317: showGUI
 ###################################################
-#line 6559 "ch-RGtk2.Rnw"
+#line 6573 "ch-RGtk2.Rnw"
 window <- gtkWindow(show=FALSE)
 window['title'] <- "Action with button example"
 window$add(b)
@@ -3789,45 +3789,45 @@ window$showAll()
 
 
 ###################################################
-### chunk number 319: rgtk2-menus-menubar
+### chunk number 318: rgtk2-menus-menubar
 ###################################################
-#line 6584 "ch-RGtk2.Rnw"
+#line 6598 "ch-RGtk2.Rnw"
 menubar <- gtkMenuBar()
 
 
 ###################################################
-### chunk number 320: rgtk2-menus-menu
+### chunk number 319: rgtk2-menus-menu
 ###################################################
-#line 6596 "ch-RGtk2.Rnw"
+#line 6610 "ch-RGtk2.Rnw"
 fileMenu <- gtkMenu()
 
 
 ###################################################
-### chunk number 321: rgtk2-menus-menuitem
+### chunk number 320: rgtk2-menus-menuitem
 ###################################################
-#line 6602 "ch-RGtk2.Rnw"
+#line 6616 "ch-RGtk2.Rnw"
 fileItem <- gtkMenuItemNewWithMnemonic(label="_File")
 fileItem$setSubmenu(fileMenu)
 
 
 ###################################################
-### chunk number 322: rgtk2-menus-append
+### chunk number 321: rgtk2-menus-append
 ###################################################
-#line 6610 "ch-RGtk2.Rnw"
+#line 6624 "ch-RGtk2.Rnw"
 menubar$append(fileItem)
 
 
 ###################################################
-### chunk number 323: rgtk2-menus-open
+### chunk number 322: rgtk2-menus-open
 ###################################################
-#line 6623 "ch-RGtk2.Rnw"
+#line 6637 "ch-RGtk2.Rnw"
 open <- gtkMenuItemNewWithMnemonic("_Open")
 
 
 ###################################################
-### chunk number 324: rgtk2-menus-open-activate
+### chunk number 323: rgtk2-menus-open-activate
 ###################################################
-#line 6629 "ch-RGtk2.Rnw"
+#line 6643 "ch-RGtk2.Rnw"
 gSignalConnect(open, "activate", function(item) {
   f <- file.choose()
   file.show(f)
@@ -3835,39 +3835,39 @@ gSignalConnect(open, "activate", function(item) {
 
 
 ###################################################
-### chunk number 325: rgtk2-menus-append-item
+### chunk number 324: rgtk2-menus-append-item
 ###################################################
-#line 6637 "ch-RGtk2.Rnw"
+#line 6651 "ch-RGtk2.Rnw"
 fileMenu$append(open)
 
 
 ###################################################
-### chunk number 326: rgtk2-menus-save-action
+### chunk number 325: rgtk2-menus-save-action
 ###################################################
-#line 6644 "ch-RGtk2.Rnw"
+#line 6658 "ch-RGtk2.Rnw"
 saveAction <- 
   gtkAction("save", "Save", "Save object", "gtk-save")
 
 
 ###################################################
-### chunk number 327: rgtk2-menus-save-item
+### chunk number 326: rgtk2-menus-save-item
 ###################################################
-#line 6651 "ch-RGtk2.Rnw"
+#line 6665 "ch-RGtk2.Rnw"
 save <- saveAction$createMenuItem()
 fileMenu$append(save)
 
 
 ###################################################
-### chunk number 328: rgtk2-menus-separator
+### chunk number 327: rgtk2-menus-separator
 ###################################################
-#line 6660 "ch-RGtk2.Rnw"
+#line 6674 "ch-RGtk2.Rnw"
 fileMenu$append(gtkSeparatorMenuItem())
 
 
 ###################################################
-### chunk number 329: rgtk2-menus-toggle-item
+### chunk number 328: rgtk2-menus-toggle-item
 ###################################################
-#line 6666 "ch-RGtk2.Rnw"
+#line 6680 "ch-RGtk2.Rnw"
 autoSaveAction <- gtkToggleAction("autosave", "Autosave", 
                                   "Enable autosave")
 autoSave <- autoSaveAction$createMenuItem()
@@ -3875,9 +3875,9 @@ fileMenu$append(autoSave)
 
 
 ###################################################
-### chunk number 330: rgtk2-menus-window
+### chunk number 329: rgtk2-menus-window
 ###################################################
-#line 6674 "ch-RGtk2.Rnw"
+#line 6688 "ch-RGtk2.Rnw"
 mainWindow <- gtkWindow()
 vbox <- gtkVBox()
 mainWindow$add(vbox)
@@ -3885,9 +3885,9 @@ vbox$packStart(menubar, FALSE, FALSE)
 
 
 ###################################################
-### chunk number 331: "menubar-ex"
+### chunk number 330: "menubar-ex"
 ###################################################
-#line 6687 "ch-RGtk2.Rnw"
+#line 6701 "ch-RGtk2.Rnw"
 popup <- gtkMenu()                       # top level
 popup$append(gtkMenuItem("cut"))
 popup$append(gtkMenuItem("copy"))
@@ -3896,18 +3896,18 @@ popup$append(gtkMenuItem("paste"))
 
 
 ###################################################
-### chunk number 332: rgtk2-menus-popup-button
+### chunk number 331: rgtk2-menus-popup-button
 ###################################################
-#line 6697 "ch-RGtk2.Rnw"
+#line 6711 "ch-RGtk2.Rnw"
 b <- gtkButton("Click me with right mouse button")
 w <- gtkWindow(); w$setTitle("Popup menu example")
 w$add(b)
 
 
 ###################################################
-### chunk number 333: 
+### chunk number 332: 
 ###################################################
-#line 6705 "ch-RGtk2.Rnw"
+#line 6719 "ch-RGtk2.Rnw"
 gSignalConnect(b,"button-press-event",
        f = function(w, e, menu) {
          if(e$getButton() == 3 ||
@@ -3921,9 +3921,9 @@ gSignalConnect(b,"button-press-event",
 
 
 ###################################################
-### chunk number 334: 
+### chunk number 333: 
 ###################################################
-#line 6726 "ch-RGtk2.Rnw"
+#line 6740 "ch-RGtk2.Rnw"
 IDs <- sapply(popup$getChildren(), function(i) {
   if(!inherits(i, "GtkSeparatorMenuItem")) # skip these
     gSignalConnect(i, "activate",
@@ -3932,67 +3932,67 @@ IDs <- sapply(popup$getChildren(), function(i) {
 
 
 ###################################################
-### chunk number 335: rgtk2-menus-toolbar-construct
+### chunk number 334: rgtk2-menus-toolbar-construct
 ###################################################
-#line 6747 "ch-RGtk2.Rnw"
+#line 6761 "ch-RGtk2.Rnw"
 toolbar <- gtkToolbar()
 
 
 ###################################################
-### chunk number 336: rgtk2-menus-toolbar-open-item
+### chunk number 335: rgtk2-menus-toolbar-open-item
 ###################################################
-#line 6756 "ch-RGtk2.Rnw"
+#line 6770 "ch-RGtk2.Rnw"
 openButton <- gtkToolButton(stock.id = "gtk-open") 
 
 
 ###################################################
-### chunk number 337: rgtk2-menus-toolbar-add
+### chunk number 336: rgtk2-menus-toolbar-add
 ###################################################
-#line 6765 "ch-RGtk2.Rnw"
+#line 6779 "ch-RGtk2.Rnw"
 toolbar$add(openButton)
 
 
 ###################################################
-### chunk number 338: rgtk2-menus-toolbar-save-item
+### chunk number 337: rgtk2-menus-toolbar-save-item
 ###################################################
-#line 6776 "ch-RGtk2.Rnw"
+#line 6790 "ch-RGtk2.Rnw"
 saveButton <- saveAction$createToolItem()
 toolbar$add(saveButton)
 
 
 ###################################################
-### chunk number 339: rgtk2-menus-toolbar-separator
+### chunk number 338: rgtk2-menus-toolbar-separator
 ###################################################
-#line 6785 "ch-RGtk2.Rnw"
+#line 6799 "ch-RGtk2.Rnw"
 toolbar$add(gtkSeparatorToolItem())
 
 
 ###################################################
-### chunk number 340: rgtk2-menus-toolbar-toggle
+### chunk number 339: rgtk2-menus-toolbar-toggle
 ###################################################
-#line 6790 "ch-RGtk2.Rnw"
+#line 6804 "ch-RGtk2.Rnw"
 fullScreenButton <- fullScreen$createToolItem()
 toolbar$add(fullScreenButton)
 
 
 ###################################################
-### chunk number 341: rgtk2-menus-toolbar-style eval=FALSE
+### chunk number 340: rgtk2-menus-toolbar-style eval=FALSE
 ###################################################
-## #line 6806 "ch-RGtk2.Rnw"
+## #line 6820 "ch-RGtk2.Rnw"
 ## toolbar$setStyle("icon")
 
 
 ###################################################
-### chunk number 342: rgtk2-menus-toolbar-is-important
+### chunk number 341: rgtk2-menus-toolbar-is-important
 ###################################################
-#line 6815 "ch-RGtk2.Rnw"
+#line 6829 "ch-RGtk2.Rnw"
 fullScreen["is-important"] <- TRUE
 
 
 ###################################################
-### chunk number 343: rgtk2-menus-toolbar-expand eval=FALSE
+### chunk number 342: rgtk2-menus-toolbar-expand eval=FALSE
 ###################################################
-## #line 6824 "ch-RGtk2.Rnw"
+## #line 6838 "ch-RGtk2.Rnw"
 ## expander <- gtkSeparatorToolItem()
 ## expander["draw"] <- FALSE
 ## toolbar$add(expander)
@@ -4000,32 +4000,32 @@ fullScreen["is-important"] <- TRUE
 
 
 ###################################################
-### chunk number 344: rgtk2-menus-toolbar-help
+### chunk number 343: rgtk2-menus-toolbar-help
 ###################################################
-#line 6835 "ch-RGtk2.Rnw"
+#line 6849 "ch-RGtk2.Rnw"
 helpAction <- gtkAction("help", "Help", "Get help", "gtk-help")
 toolbar$add(helpAction$createToolItem())
 
 
 ###################################################
-### chunk number 345: rgtk2-menus-toolbar-place
+### chunk number 344: rgtk2-menus-toolbar-place
 ###################################################
-#line 6842 "ch-RGtk2.Rnw"
+#line 6856 "ch-RGtk2.Rnw"
 vbox$packStart(toolbar, FALSE, FALSE)
 
 
 ###################################################
-### chunk number 346: rgtk2-mennus-toolbar-color-button
+### chunk number 345: rgtk2-mennus-toolbar-color-button
 ###################################################
-#line 6860 "ch-RGtk2.Rnw"
+#line 6874 "ch-RGtk2.Rnw"
 gdkColor <- gdkColorParse(palette()[1])$color
 colorButton <- gtkColorButton(gdkColor)
 
 
 ###################################################
-### chunk number 347: rgtk2-menus-toolbar-color-menu
+### chunk number 346: rgtk2-menus-toolbar-color-menu
 ###################################################
-#line 6870 "ch-RGtk2.Rnw"
+#line 6884 "ch-RGtk2.Rnw"
 colorMenuItem <- function(color) {
   da <- gtkDrawingArea()
   da$setSizeRequest(20, 20)
@@ -4041,9 +4041,9 @@ for (item in colorItems)
 
 
 ###################################################
-### chunk number 348: rgtk2-menus-toolbar-color-cb
+### chunk number 347: rgtk2-menus-toolbar-color-cb
 ###################################################
-#line 6890 "ch-RGtk2.Rnw"
+#line 6904 "ch-RGtk2.Rnw"
 colorMenuItemActivated <- function(item) {
   color <- gdkColorParse(item$getLabel())$color
   colorButton$setColor(color)
@@ -4053,18 +4053,18 @@ sapply(colorItems, gSignalConnect, "activate",
 
 
 ###################################################
-### chunk number 349: rgtk2-menus-toolbar-menu
+### chunk number 348: rgtk2-menus-toolbar-menu
 ###################################################
-#line 6901 "ch-RGtk2.Rnw"
+#line 6915 "ch-RGtk2.Rnw"
 menuButton <- gtkMenuToolButton(colorButton, "Color")
 menuButton$setMenu(colorMenu)
 toolbar$add(menuButton)
 
 
 ###################################################
-### chunk number 350: rgtk2-menus-tool-item-group eval=FALSE
+### chunk number 349: rgtk2-menus-tool-item-group eval=FALSE
 ###################################################
-## #line 6926 "ch-RGtk2.Rnw"
+## #line 6940 "ch-RGtk2.Rnw"
 ## fileGroup <- gtkToolItemGroup("File")
 ## fileGroup$add(gtkToolButton(stock.id = "gtk-open"))
 ## fileGroup$add(saveAction$createToolItem())
@@ -4073,65 +4073,65 @@ toolbar$add(menuButton)
 
 
 ###################################################
-### chunk number 351: rgtk2-menus-tool-palette eval=FALSE
+### chunk number 350: rgtk2-menus-tool-palette eval=FALSE
 ###################################################
-## #line 6936 "ch-RGtk2.Rnw"
+## #line 6950 "ch-RGtk2.Rnw"
 ## palette <- gtkToolPalette()
 ## palette$add(fileGroup)
 ## palette$add(helpGroup)
 
 
 ###################################################
-### chunk number 352: rgtk2-menus-tool-palette-collapse eval=FALSE
+### chunk number 351: rgtk2-menus-tool-palette-collapse eval=FALSE
 ###################################################
-## #line 6943 "ch-RGtk2.Rnw"
+## #line 6957 "ch-RGtk2.Rnw"
 ## helpGroup$setCollapsed(TRUE)
 
 
 ###################################################
-### chunk number 353: 
+### chunk number 352: 
 ###################################################
-#line 6974 "ch-RGtk2.Rnw"
+#line 6988 "ch-RGtk2.Rnw"
 ib <- gtkInfoBar(show=FALSE)
 ib$setNoShowAll(TRUE)
 
 
 ###################################################
-### chunk number 354: 
+### chunk number 353: 
 ###################################################
-#line 6985 "ch-RGtk2.Rnw"
+#line 6999 "ch-RGtk2.Rnw"
 l <- gtkLabel("Warning, Warning ....")
 ib$setMessageType("warning")            
 ib$getContentArea()$add(l)
 
 
 ###################################################
-### chunk number 355: 
+### chunk number 354: 
 ###################################################
-#line 6992 "ch-RGtk2.Rnw"
+#line 7006 "ch-RGtk2.Rnw"
 ib$addButton(button.text="gtk-ok",
              response.id=GtkResponseType['ok'])
 
 
 ###################################################
-### chunk number 356: 
+### chunk number 355: 
 ###################################################
-#line 7001 "ch-RGtk2.Rnw"
+#line 7015 "ch-RGtk2.Rnw"
 gSignalConnect(ib, "response", function(w, resp.id) w$hide())
 
 
 ###################################################
-### chunk number 357: addToWinodw
+### chunk number 356: addToWinodw
 ###################################################
-#line 7006 "ch-RGtk2.Rnw"
+#line 7020 "ch-RGtk2.Rnw"
 vbox$packStart(ib, expand = FALSE)
 ib$show()
 
 
 ###################################################
-### chunk number 358: helperFUnction
+### chunk number 357: helperFUnction
 ###################################################
-#line 7050 "ch-RGtk2.Rnw"
+#line 7064 "ch-RGtk2.Rnw"
 require(RGtk2)
 
 ##' helper function to bypass lack of cached value in method call
@@ -4148,17 +4148,17 @@ call_meth <- function(meth, obj) {
 
 
 ###################################################
-### chunk number 359: 
+### chunk number 358: 
 ###################################################
-#line 7067 "ch-RGtk2.Rnw"
+#line 7081 "ch-RGtk2.Rnw"
 ## Stub UI Manager instance for use with examples
 uimanager <- gtkUIManager()
 
 
 ###################################################
-### chunk number 360: ui-xml
+### chunk number 359: ui-xml
 ###################################################
-#line 7078 "ch-RGtk2.Rnw"
+#line 7091 "ch-RGtk2.Rnw"
 ui.xml <- readLines(out <- textConnection('
 <ui>
   <menubar name="menubar">
@@ -4193,59 +4193,59 @@ close(out)
 
 
 ###################################################
-### chunk number 361: loadUIFromString
+### chunk number 360: loadUIFromString
 ###################################################
-#line 7119 "ch-RGtk2.Rnw"
+#line 7132 "ch-RGtk2.Rnw"
 id <- uimanager$addUiFromString(ui.xml)
+
+
+###################################################
+### chunk number 361: 
+###################################################
+#line 7140 "ch-RGtk2.Rnw"
+fun <- function(...) {}
 
 
 ###################################################
 ### chunk number 362: 
 ###################################################
-#line 7127 "ch-RGtk2.Rnw"
-fun <- function(...) {}
-
-
-###################################################
-### chunk number 363: 
-###################################################
-#line 7132 "ch-RGtk2.Rnw"
+#line 7145 "ch-RGtk2.Rnw"
 fileL <- list(## name, ID, label, accelerator, tooltip, callback
-              list("File",NULL,"_File",NULL,NULL,NULL),
-              list("Save", "gtk-save", "Save", "<ctrl>S", 
-                   "Save data to variable", fun),
-              list("SaveAs", "gtk-save", "Save as...", NULL, 
-                   "Save data to variable", fun),
-              list("Export", NULL, "Export", NULL, NULL, NULL),
-              list("ExportToCSV", "gtk-export", "Export to CSV", 
-                   NULL, "Save data to CSV file", fun),
-              list("ExportToSaveFile", "gtk-export", 
-                   "Export to save file", NULL, 
-                   "Save data to save() file", fun),
-              list("CloseWindow", "gtk-close", "Close window", 
-                   "<ctrl>W", "Close current window", fun)
-              )
+           list("File",NULL,"_File",NULL,NULL,NULL),
+           list("Save", "gtk-save", "Save", "<ctrl>S", 
+                "Save data to variable", fun),
+           list("SaveAs", "gtk-save", "Save as...", NULL, 
+                "Save data to variable", fun),
+           list("Export", NULL, "Export", NULL, NULL, NULL),
+           list("ExportToCSV", "gtk-export", "Export to CSV", 
+                NULL, "Save data to CSV file", fun),
+           list("ExportToSaveFile", "gtk-export", 
+                "Export to save file", NULL, 
+                "Save data to save() file", fun),
+           list("CloseWindow", "gtk-close", "Close window", 
+                "<ctrl>W", "Close current window", fun)
+           )
 
 
 ###################################################
-### chunk number 364: addActionGroup
+### chunk number 363: addActionGroup
 ###################################################
-#line 7156 "ch-RGtk2.Rnw"
+#line 7169 "ch-RGtk2.Rnw"
 ag <- gtkActionGroup("FileGroup")
 ag$addActions(fileL)
 
 
 ###################################################
-### chunk number 365: 
+### chunk number 364: 
 ###################################################
-#line 7162 "ch-RGtk2.Rnw"
+#line 7175 "ch-RGtk2.Rnw"
 uimanager$insertActionGroup(ag, 0)
 
 
 ###################################################
-### chunk number 366: GUILayout eval=FALSE
+### chunk number 365: GUILayout eval=FALSE
 ###################################################
-## #line 7176 "ch-RGtk2.Rnw"
+## #line 7188 "ch-RGtk2.Rnw"
 ## w <- gtkWindow(show=FALSE)
 ## ##
 ## vbox <- gtkVBox()
@@ -4259,16 +4259,16 @@ uimanager$insertActionGroup(ag, 0)
 
 
 ###################################################
-### chunk number 367:  eval=FALSE
+### chunk number 366:  eval=FALSE
 ###################################################
-## #line 7203 "ch-RGtk2.Rnw"
+## #line 7215 "ch-RGtk2.Rnw"
 ## w$addAccelGroup(uimanager$getAccelGroup())
 
 
 ###################################################
-### chunk number 368: 
+### chunk number 367: 
 ###################################################
-#line 7221 "ch-RGtk2.Rnw"
+#line 7237 "ch-RGtk2.Rnw"
 Command <- setRefClass("Command",
                        fields=list(
                          receiver="ANY",
@@ -4279,9 +4279,9 @@ Command <- setRefClass("Command",
 
 
 ###################################################
-### chunk number 369: 
+### chunk number 368: 
 ###################################################
-#line 7235 "ch-RGtk2.Rnw"
+#line 7252 "ch-RGtk2.Rnw"
 Command$methods(
                 initialize=function(receiver, meth, ...) {
                   l <- list(...)
@@ -4295,9 +4295,9 @@ Command$methods(
 
 
 ###################################################
-### chunk number 370: 
+### chunk number 369: 
 ###################################################
-#line 7252 "ch-RGtk2.Rnw"
+#line 7269 "ch-RGtk2.Rnw"
 Command$methods(
                 do=function() {
                   out <- execute(params)
@@ -4309,9 +4309,9 @@ Command$methods(
 
 
 ###################################################
-### chunk number 371: illustrateCommand
+### chunk number 370: illustrateCommand
 ###################################################
-#line 7269 "ch-RGtk2.Rnw"
+#line 7286 "ch-RGtk2.Rnw"
 x <- 1
 set_x <- function(value) {
   old <- x
@@ -4319,36 +4319,35 @@ set_x <- function(value) {
   old
 }
 cmd <- Command$new(.GlobalEnv, "set_x", value=2)
-cmd$do();
-x
+cmd$do(); x
+
+
+###################################################
+### chunk number 371: 
+###################################################
+#line 7296 "ch-RGtk2.Rnw"
+cmd$undo();
 
 
 ###################################################
 ### chunk number 372: 
 ###################################################
-#line 7280 "ch-RGtk2.Rnw"
-cmd$undo();
-
-
-###################################################
-### chunk number 373: 
-###################################################
-#line 7283 "ch-RGtk2.Rnw"
+#line 7299 "ch-RGtk2.Rnw"
 x
 
 
 ###################################################
-### chunk number 374: typicalAction eval=FALSE
+### chunk number 373: typicalAction eval=FALSE
 ###################################################
-## #line 7294 "ch-RGtk2.Rnw"
+## #line 7310 "ch-RGtk2.Rnw"
 ## cmd <- Command$new(df_model, "set_col_name", j=j, value=value)
 ## command_stack$add(cmd)
 
 
 ###################################################
-### chunk number 375: col_name_methods eval=FALSE
+### chunk number 374: col_name_methods eval=FALSE
 ###################################################
-## #line 7311 "ch-RGtk2.Rnw"
+## #line 7327 "ch-RGtk2.Rnw"
 ## DfModel$methods(
 ##                 get_col_name=function(j) varnames[j,1],
 ##                 get_col_names=function() varnames[ ,1],
@@ -4361,9 +4360,9 @@ x
 
 
 ###################################################
-### chunk number 376: ensure_type
+### chunk number 375: ensure_type
 ###################################################
-#line 7331 "ch-RGtk2.Rnw"
+#line 7347 "ch-RGtk2.Rnw"
 ##' S3 generic to ensure we don't change data type when assigning into column
 ##'
 ##' @param x column values
@@ -4379,9 +4378,9 @@ ensure_type.logical <- function(x, value) as.logical(value)
 
 
 ###################################################
-### chunk number 377: DfModel
+### chunk number 376: DfModel
 ###################################################
-#line 7346 "ch-RGtk2.Rnw"
+#line 7362 "ch-RGtk2.Rnw"
 ## Define a model to hold the model for an editable data frame
 sapply(c("RGtkDataFrame"), setOldClass)
 DfModel <- setRefClass("DfModel",
@@ -4489,9 +4488,9 @@ DfModel$methods(
 
 
 ###################################################
-### chunk number 378: CommandStack
+### chunk number 377: CommandStack
 ###################################################
-#line 7453 "ch-RGtk2.Rnw"
+#line 7469 "ch-RGtk2.Rnw"
 ## Command Stack
 ## A list with ptr. delegates call of do or undo to appropriate command
 CommandStack <- setRefClass("CommandStack",
@@ -4544,9 +4543,9 @@ CommandStack$methods(
 
 
 ###################################################
-### chunk number 379: addCellRenderer
+### chunk number 378: addCellRenderer
 ###################################################
-#line 7505 "ch-RGtk2.Rnw"
+#line 7521 "ch-RGtk2.Rnw"
 ## We create our cellrenderers using an S3 generic to dispatch based on the class of the column. This
 ## works out well, as the view is column based as well. The editable commands have 
 ## to find a row, a column and a value before make a command to add to the command stack.
@@ -4617,9 +4616,9 @@ add_cellrenderer_by_class.factor <- function(x, nm, obj, view, j, command_stack)
 
 
 ###################################################
-### chunk number 380: EditDataFrame
+### chunk number 379: EditDataFrame
 ###################################################
-#line 7575 "ch-RGtk2.Rnw"
+#line 7591 "ch-RGtk2.Rnw"
 ## Main reference class to edit a data frame within a GUI
 ## The view relies on a DataFrameModel and CommandStack instance, each of which is 
 ## defined within the initialize method.
@@ -4805,9 +4804,9 @@ EditDataFrame$methods(
 
 
 ###################################################
-### chunk number 381: Actions
+### chunk number 380: Actions
 ###################################################
-#line 7760 "ch-RGtk2.Rnw"
+#line 7776 "ch-RGtk2.Rnw"
 ## Actions are defined here
 ## Basically we delegate down to data frame model
 ## We are lazy about some dialogs, so use the gWidgets package
@@ -4947,9 +4946,9 @@ EditDataFrame$methods(
 
 
 ###################################################
-### chunk number 382: testItOut
+### chunk number 381: testItOut
 ###################################################
-#line 7899 "ch-RGtk2.Rnw"
+#line 7915 "ch-RGtk2.Rnw"
 ## Test it out....
 require(MASS)
 df <- Cars93[sample(1:93, 20),c(1, 5, 26)]; df$American <- df$Origin == "USA"
@@ -4957,9 +4956,9 @@ a = EditDataFrame$new(df)
 
 
 ###################################################
-### chunk number 383: oldWay
+### chunk number 382: oldWay
 ###################################################
-#line 7906 "ch-RGtk2.Rnw"
+#line 7922 "ch-RGtk2.Rnw"
 ## Old way to add actions, menubar, For comparison
 ## not called by the initialize method
 EditDataFrame$methods(
@@ -5021,9 +5020,9 @@ EditDataFrame$methods(
 
 
 ###################################################
-### chunk number 384: gtk-class-def
+### chunk number 383: gtk-class-def
 ###################################################
-#line 8027 "ch-RGtk2.Rnw"
+#line 8044 "ch-RGtk2.Rnw"
 tform_scale_type <- 
   gClass("RTransformedHScale", "GtkHScale",
          .props = list(
@@ -5048,9 +5047,9 @@ tform_scale_type <-
 
 
 ###################################################
-### chunk number 385: gtk-class-madata
+### chunk number 384: gtk-class-madata
 ###################################################
-#line 8116 "ch-RGtk2.Rnw"
+#line 8133 "ch-RGtk2.Rnw"
 n <- 5000
 backbone <- rnorm(n)
 ma_data <- cbind(backbone + c(rnorm(3 * (n / 4), sd = 0.1), 
@@ -5061,9 +5060,9 @@ ma_data <- apply(ma_data, 2, function(col) col - min(col))
 
 
 ###################################################
-### chunk number 386: gtk-class-instance
+### chunk number 385: gtk-class-instance
 ###################################################
-#line 8125 "ch-RGtk2.Rnw"
+#line 8142 "ch-RGtk2.Rnw"
 adj <- gtkAdjustment(0.5, 0.15, 1.00, 0.05, 0.5, 0)
 s <- gObject(tform_scale_type, adjustment = adj, 
              expr = expression(x^3))
@@ -5075,9 +5074,9 @@ gSignalConnect(s, "value_changed", function(scale) {
 
 
 ###################################################
-### chunk number 387: gtk-class-window
+### chunk number 386: gtk-class-window
 ###################################################
-#line 8146 "ch-RGtk2.Rnw"
+#line 8163 "ch-RGtk2.Rnw"
 win <- gtkWindow(show = FALSE)
 da <- gtkDrawingArea()
 vbox <- gtkVBox()
@@ -5095,9 +5094,9 @@ s$setValue(0.7)
 
 
 ###################################################
-### chunk number 388: 
+### chunk number 387: 
 ###################################################
-#line 8254 "ch-RGtk2.Rnw"
+#line 8271 "ch-RGtk2.Rnw"
 options(prompt="> ")
 options(continue="+ ")
 options(width=80)

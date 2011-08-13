@@ -259,7 +259,7 @@ and instruct the widget to perform an action.
 
 Although class information is stored in the style of S3, \pkg{RGtk2}
 introduces its own mechanism for method\iprogram{method dispatch}
-dispatch.~\footnote{\pkg{RGtk2} uses \R's standard dollar-sign
+dispatch.\footnote{\pkg{RGtk2} uses \R's standard dollar-sign
   notation (also used with reference classes) for class-based method
   dispatch.}  \iprogram{R's object oriented notation}The call \code{obj\$method(...)}  resolves to a function
 call \code{f(obj,...)}. The function is found by looking for any
@@ -310,7 +310,7 @@ modify the foreground color.
 
 
 \section{Properties}
-
+\iprogram{properties}
 
 %% --------- Properties ------------
 The \GTK\/ API uses properties to store object state. Properties are
@@ -354,8 +354,8 @@ window$getTitle()
 
 \paragraph{The \code{[} and \code{[\ASSIGN} methods}
 \pkg{RGtk2} provides the convenient and familiar \code{[} and
-\code{[\ASSIGN} methods to get and access the properties. In our example,
-we might check the window to ensure that it is not yet visible:
+\code{[\ASSIGN} methods to get and access an object's properties. In our example,
+we might check the window to ensure that it is not yet visible with:
 <<intro-props-visible>>=
 window["visible"]
 @
@@ -404,10 +404,10 @@ The basic usage is to call \function{gSignalConnect} to connect a
 callback function \argument{f}{gSignalConnect} to the signal named
 \argument{signal}{gSignalConnect} belonging to the object
 \argument{obj}{gSignalConnect}. The function returns an identifier for
-managing the connection. This is not usually necessary but will be
+managing the connection. This is not usually necessary to store, but uses will be
 discussed later.
 
-We demonstrate this usage by adding a callback to our ``Hello World''
+We demonstrate \code{gSignalConnect} by adding a callback to our ``Hello World''
 example, so that ``Hello World'' is printed to the console when the
 button is clicked:
 <<intro-signals-hello-world>>=
@@ -493,11 +493,12 @@ disconnect a handler, if desired, using
 \function{gSignalHandlerDisconnect}. To temporarily block a handler,
 call \function{gSignalHandlerBlock} and then
 \function{gSignalHandlerUnblock} to unblock. The man page for
-\function{gSignalConnect} gives the details on this.
+\function{gSignalConnect} gives the details.
 
 %%% ------ constants --------
 
 \section{Enumerated types and flags}
+\iprogram{enumerations}
 
 At the beginning of our example, we constructed the window thusly: 
 <<intro-enum-window, eval=FALSE>>=
@@ -560,6 +561,7 @@ example, we could check whether our window is top-level:
 %% --------- Event Loop
 
 \section{The event loop}
+\iprogram{event loop}
 
 \pkg{RGtk2} integrates the \GTK\/ and \R\/ event loops by treating the
 \R\/ loop as the master and iterating the \GTK\/ event loop whenever R

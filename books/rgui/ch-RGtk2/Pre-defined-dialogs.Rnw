@@ -1,5 +1,5 @@
-\GTK\/ provides a number of convenient dialogs for the common use
-cases, as well as general infrastructure for constructing custom
+\GTK\/ provides a number of convenient dialogs for the most common use
+cases, as well as a general infrastructure for constructing custom
 dialogs.  A dialog is a window that generally consists of an icon, a
 content area, and an action area containing a row of buttons
 representing the possible user responses.  Typically, a dialog belongs
@@ -7,6 +7,8 @@ to a main application window and might be modal, in which case input
 is blocked to other parts of the GUI.  \class{GtkDialog}
 represents a generic dialog and serves as the base class for all
 special purpose dialogs in \GTK.
+
+\igui{modal dialog}
 
 \subsection{Message dialogs}
 \label{sec:gtk-dialog-message}

@@ -58,10 +58,11 @@ general, one would call Cairo functions to render the document, which
 is beyond our scope. In this case, though, we can pass the context
 directly to \pkg{cairoDevice} for rendering the R plot:
 <<gtk-cairo-draw-page>>=
-gSignalConnect(printOp, "draw-page", function(x, context, page_nr) {
-  asCairoDevice(context)
-  plot(mpg ~ wt, data = mtcars)
-})
+gSignalConnect(printOp, "draw-page", 
+               function(x, context, page_nr) {
+                 asCairoDevice(context)
+                 plot(mpg ~ wt, data = mtcars)
+               })
 @ 
 %
   The final step is to run the operation to perform one of the

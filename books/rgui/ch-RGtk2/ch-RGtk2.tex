@@ -373,7 +373,7 @@ modify the foreground color.
 
 
 \section{Properties}
-
+\iprogram{properties}
 
 %% --------- Properties ------------
 The \GTK\/ API uses properties to store object state. Properties are
@@ -391,7 +391,7 @@ the first eight properties listed with:
  head(names(button), n=8)                 # or b$getPropInfo()
 \end{Sinput}
 \begin{Soutput}
-[1] "use-action-appearance" "related-action"       
+[1] "related-action"        "use-action-appearance"
 [3] "user-data"             "name"                 
 [5] "parent"                "width-request"        
 [7] "height-request"        "visible"              
@@ -432,8 +432,8 @@ and verified the change with \method{getTitle}{GtkWindow}.
 
 \paragraph{The \code{[} and \code{[\ASSIGN} methods}
 \pkg{RGtk2} provides the convenient and familiar \code{[} and
-\code{[\ASSIGN} methods to get and access the properties. In our example,
-we might check the window to ensure that it is not yet visible:
+\code{[\ASSIGN} methods to get and access an object's properties. In our example,
+we might check the window to ensure that it is not yet visible with:
 \begin{Schunk}
 \begin{Sinput}
  window["visible"]
@@ -497,10 +497,10 @@ The basic usage is to call \function{gSignalConnect} to connect a
 callback function \argument{f}{gSignalConnect} to the signal named
 \argument{signal}{gSignalConnect} belonging to the object
 \argument{obj}{gSignalConnect}. The function returns an identifier for
-managing the connection. This is not usually necessary but will be
+managing the connection. This is not usually necessary to store, but uses will be
 discussed later.
 
-We demonstrate this usage by adding a callback to our ``Hello World''
+We demonstrate \code{gSignalConnect} by adding a callback to our ``Hello World''
 example, so that ``Hello World'' is printed to the console when the
 button is clicked:
 \begin{Schunk}
@@ -594,11 +594,12 @@ disconnect a handler, if desired, using
 \function{gSignalHandlerDisconnect}. To temporarily block a handler,
 call \function{gSignalHandlerBlock} and then
 \function{gSignalHandlerUnblock} to unblock. The man page for
-\function{gSignalConnect} gives the details on this.
+\function{gSignalConnect} gives the details.
 
 %%% ------ constants --------
 
 \section{Enumerated types and flags}
+\iprogram{enumerations}
 
 At the beginning of our example, we constructed the window thusly: 
 \begin{Schunk}
@@ -696,6 +697,7 @@ example, we could check whether our window is top-level:
 %% --------- Event Loop
 
 \section{The event loop}
+\iprogram{event loop}
 
 \pkg{RGtk2} integrates the \GTK\/ and \R\/ event loops by treating the
 \R\/ loop as the master and iterating the \GTK\/ event loop whenever R
@@ -821,7 +823,7 @@ objects provided by \GTK.
 %% constructor Show/Hide
 As we saw in our ``Hello World'' example, top-level windows are
 constructed by the \igui{top-level window}\constructor{gtkWindow} constructor. This function
-has arguments \code{type} to specify the type of window to create. The
+has argument \code{type} to specify the type of window to create. The
 default is a top-level window, which we will always use, as the
 alternative is for ``popups'' which are meant for internal use, e.g.,
 for implementing menus. The second argument is \code{show}, which by
@@ -858,7 +860,7 @@ a new window with a title.
 The initial size of the window can be set with the
 \method{setDefaultSize}{GtkWindow} method, as shown above, which takes a
 \argument{width}{gtkWindow} and \argument{height}{gtkWindow} argument
-specified in pixels. This specification allows the window to be
+specified in pixels. \ilayout{toplevel window size}This specification allows the window to be
 resized but must be made before the window is drawn, as the window
 then falls under control of the window manager. The
 \method{setSizeRequest}{GtkWidget} method will request a minimum size,
@@ -889,8 +891,7 @@ child widget.
 \paragraph{Destroying windows}
 A window is normally closed by the window manager. Most often, this
 occurs in response to the user clicking on a close button in a title
-bar.  When the user clicks on the
-close button, the window manager requests that the window be deleted,
+bar.  When this happens, the window manager requests that the window be deleted,
 and the \code{delete-event} signal is emitted. As with any window
 manager event, the default handler is overridden if a callback
 connected to \code{delete-event} returns \code{TRUE}.  This can be
@@ -907,8 +908,8 @@ window. For example:
 \end{Sinput}
 \end{Schunk}
 %
-We describe the use of message dialogs in
-Section~\ref{sec:gtk-dialog-message}. The contract of deletion is that
+(We describe the use of message dialogs in
+Section~\ref{sec:gtk-dialog-message}.) The contract of deletion is that
 the window should no longer be visible on the screen. It is not
 necessary for the actual window object to be removed from memory,
 although this is the default behavior. Calling the \code{hideOnDelete}
@@ -1260,7 +1261,7 @@ contains several other permutations of the
     difference between \code{padding} (an amount around each child)
     and \code{spacing} (an amount between each child). The last two
     rows show the effect of \code{fill} when \code{expand=TRUE}. This
-    illustration follows one in original \GTK\/ tutorial.}
+    illustration follows one in the original \GTK\/ tutorial.}
   \label{fig:RGtk2-pack-start}
 \end{figure}
 
@@ -1347,8 +1348,8 @@ left side of the window:
 \section{Dialogs}
 \label{sec:dialogs}
 
-\GTK\/ provides a number of convenient dialogs for the common use
-cases, as well as general infrastructure for constructing custom
+\GTK\/ provides a number of convenient dialogs for the most common use
+cases, as well as a general infrastructure for constructing custom
 dialogs.  A dialog is a window that generally consists of an icon, a
 content area, and an action area containing a row of buttons
 representing the possible user responses.  Typically, a dialog belongs
@@ -1356,6 +1357,8 @@ to a main application window and might be modal, in which case input
 is blocked to other parts of the GUI.  \class{GtkDialog}
 represents a generic dialog and serves as the base class for all
 special purpose dialogs in \GTK.
+
+\igui{modal dialog}
 
 \subsection{Message dialogs}
 \label{sec:gtk-dialog-message}
@@ -1699,7 +1702,7 @@ although it is usually desirable to allow the user to reorder
 pages. The \method{setTabReorderable}{GtkNotebook} enables drag and
 drop reordering for a specific tab. It is also possible for the user
 to drag and drop pages between notebooks, as long as they belong to
-the same group, which depends on the \property{group-id}
+the same group, which depends on the \prop{group-id}
 property. Pages can be deleted using the method
 \method{removePage}{GtkNotebook}.
 
@@ -1732,14 +1735,16 @@ of the tabs for direct navigation.
 \begin{Sinput}
  gtkNotebookInsertPageWithCloseButton <- 
    function(object, child, label.text="", position=-1) {
-     label <- gtkHBox()
-     label$packStart(gtkLabel(label.text))
      icon <- gtkImage(pixbuf = 
-             object$renderIcon("gtk-close", "button", size="menu"))
+       object$renderIcon("gtk-close", "button", size="menu"))
      closeButton <- gtkButton()
      closeButton$setImage(icon)
      closeButton$setRelief("none")
+     ##
+     label <- gtkHBox()
+     label$packStart(gtkLabel(label.text))
      label$packEnd(closeButton)
+     ##
      gSignalConnect(closeButton, "clicked", function(b) {
        index <- nb$pageNum(child)
        nb$removePage(index)
@@ -1834,6 +1839,7 @@ the horizontal and vertical adjustments to scroll the window.  The
 value of an adjustment corresponds to the left/top position of the
 window, so we to adjust by half the page size after scaling the value.
 
+\igui{keystroke events}
 We had key press events, so that pressing \kbd{+} zooms in and
 pressing \kbd{-} zooms out:
 \begin{Schunk}
@@ -1985,8 +1991,8 @@ We construct the widgets that will be placed in the form:
  submitBox$packEnd(gtkButton("Run simulation"), expand = FALSE)
 \end{Sinput}
 \end{Schunk}
-
-we align the labels to the right, up against their corresponding entry
+%%
+We align the labels to the right, up against their corresponding entry
 widgets, which are left-aligned:
 \begin{Schunk}
 \begin{Sinput}
@@ -2001,10 +2007,11 @@ The labels are aligned through the \class{GtkMisc} functionality
 inherited by \class{GtkLabel}. The \class{GtkVBox} with the radio
 buttons does not support this, so we have embedded it within a
 \class{GtkAlignment} instance. We have aligned the diagnostic label to
-the top of its cell; otherwise, it would have been in the centered
-vertically. The radio buttons are left aligned, up against the label.
+the top of its cell; otherwise, it would have been  centered
+vertically. The radio buttons are left aligned, up against the label
+(cf. Figure~\ref{fig:RGtk2-dialog-layout}).
 
-Child widgets are added to a table through the
+Child widgets are added to a \class{GtkTable} instance through its
 \method{attach}{GtkTable} method.  The child can span more than one
 cell. The arguments \argument{left.attach}{gtkTableAttach} and
 \argument{right.attach}{gtkTableAttach} specify the horizontal bounds
@@ -2070,7 +2077,7 @@ We complete the example by placing the table into a window:
 
 \chapter{RGtk2: Basic Components}
 \label{sec:basic-components}
-
+In this Chapter we cover many of the basic controls of \GTK.
 
 \section{Buttons}
 \label{sec:RGtk2:gtkButton}
@@ -2117,7 +2124,7 @@ World'' example and others.
 
 Passing the \argument{stock.id}{gtkButton} argument to
 \function{gtkButton} will use decorations associated with a so-called
-stock identifier, see Section~\ref{sec:RGtk2:stock-icons}. For
+\igui{stock icons}stock identifier, see Section~\ref{sec:RGtk2:stock-icons}. For
 example, ``gtk-ok'' would produce a button with a theme-dependent
 image (such as a checkmark) and the ``Ok'' label, with the appropriate
 mnemonic (see below) and language translation.  The available stock
@@ -2159,7 +2166,7 @@ for this event to perform a command when the button is clicked.
 
 As buttons are intended to call an action immediately after being
 clicked, it is advisable to make them insensitive to user input when
-the action is not possible. For example, we could set our button to be
+the action is not possible. For example, we  set our button to be
 insensitive through: 
 \begin{Schunk}
 \begin{Sinput}
@@ -2187,7 +2194,7 @@ Section~\ref{sec:RGtk2:UIManager}.
 \begin{example}{Spacing between buttons}{eg:RGtk2:mac-buttons}
 This example shows how to pack buttons into a box so that the spacing
 between the similar buttons is 12 pixels, while potentially dangerous
-buttons are separated from the rest by 24 pixels, as per the Mac human
+buttons are separated from the rest by 24 pixels, as per the Apple human
 interface guidelines.  
 
 \GTK\/ provides the widget \class{GtkHButtonBox} for organizing
@@ -2270,7 +2277,7 @@ respects formatting marks.
     \centering
     \includegraphics[width=.5\textwidth]{fig-RGtk2-labels}
     \caption{Various formatting for a label: wrapping, alignment,
-      ellipsizing, PANGO markup}
+      ellipsizing, Pango markup}
     \label{fig:RGtk2:label-formatting}
   \end{figure}
   
@@ -2316,6 +2323,8 @@ multiple lines within a label. To align the entire block of text
 within the space allocated to the label, modify the \code{xalign}
 property, as described in Section~\ref{sec:RGtk2:layout:align}.
 
+\iprogram{text markup}
+\paragraph{Pango markup}
 \GTK\/ allows markup of text elements using the \defn{Pango} text attribute
 markup language, an XML-based format that resembles basic HTML. The
 method \method{setMarkup}{GtkLabel} accepts text in the format. Text
@@ -2349,8 +2358,8 @@ within a \class{GtkEventBox}, which provides the \class{GdkWindow}.
 \label{sec:RGtk2:images}
 
 It is often said that a picture can be worth a thousand
-words. Applying this to a GUI, images can be a valuable and more space
-efficient alternative to labels. \class{GtkImage} is the widget that
+words. Applying this to a GUI, good images can be worth a thousand
+pixels, as they can compactly represent ideas and actions. \class{GtkImage} is the widget that
 displays images. The constructor \constructor{gtkImage} creates images
 from various in-memory image representations, files, and other
 sources.  Images can be loaded after construction, as well. For
@@ -2382,7 +2391,7 @@ graphic. Unlike an interactive device, after drawing, this graphic
 does not resize itself when the window resizes.
 \begin{Schunk}
 \begin{Sinput}
- theSize <- g$getAllocation()$allocation
+ theSize <- hbox$getAllocation()$allocation
  width <- theSize$width; height <- theSize$height
 \end{Sinput}
 \end{Schunk}
@@ -2577,11 +2586,13 @@ One can set an icon on an entry from a \class{GdkPixbuf}, stock ID,
 icon name, or \class{GIcon}
 (Figure~\ref{fig:RGtk2-valid-gtkentry}). Two icons are possible, one
 at the beginning (\code{primary}) and one at the end
-(\code{secondary}). For example, an entry might listen to its input
-and update its icon to indicate whether the entered text is valid (in
-this case, consisting only of letters):
-%% JV: Cool, I didn't know this. The tooltip doesn't seem to work for
-%% my setup.
+(\code{secondary}). A common use would be to place a search icon in an
+entry widget, were it used for searching. In our example below, an
+entry might listen to its input and update its icon to indicate
+whether the entered text is valid (in this case, consisting only of
+letters):
+
+\iprogram{validation}
 \begin{Schunk}
 \begin{Sinput}
  validatedEntry <- gtkEntry()
@@ -2641,7 +2652,7 @@ button has been enabled or disabled:
 \begin{Schunk}
 \begin{Sinput}
  gSignalConnect(cb, "toggled", function(x) {
-   message("Button is ", if (x$active) "active" else "inactive")
+   message("Button is ", ifelse(x$active, "active","inactive") )
  })
 \end{Sinput}
 \end{Schunk}
@@ -3127,12 +3138,12 @@ the \class{GtkWidget} object or their page index, $0$-based. The
 value.
 
 %% signal
-\paragraph{signals}
+\paragraph{Signals}
 The \code{cancel} button emits a \signal{cancel} signal that can be
 connected to for destroying the wizard widget. The \signal{apply}
 signal is emitted on a page change. The \signal{prepare} signal is
 emitted just before a page is made visible, which is needed to create
-the dynamically generated pages in our examples.
+the dynamically generated pages in our example.
 
 \begin{example}{An \code{install.packages} wizard}{eg-RGtk2-install-packages}
 
@@ -3174,7 +3185,7 @@ using box containers and specify their respective types.
 \end{Sinput}
 \end{Schunk}
 %
-We customize each page with a logo, using a side log here.
+We customize each page with a side logo.
 \begin{Schunk}
 \begin{Sinput}
  image <- gdkPixbuf(filename = imagefile("rgtk-logo.gif"))[[1]]
@@ -3433,10 +3444,11 @@ is beyond our scope. In this case, though, we can pass the context
 directly to \pkg{cairoDevice} for rendering the R plot:
 \begin{Schunk}
 \begin{Sinput}
- gSignalConnect(printOp, "draw-page", function(x, context, page_nr) {
-   asCairoDevice(context)
-   plot(mpg ~ wt, data = mtcars)
- })
+ gSignalConnect(printOp, "draw-page", 
+                function(x, context, page_nr) {
+                  asCairoDevice(context)
+                  plot(mpg ~ wt, data = mtcars)
+                })
 \end{Sinput}
 \end{Schunk}
 %
@@ -3502,8 +3514,8 @@ A typical use of \pkg{manipulate} is along the lines of
 \end{Schunk}
 %
 The first argument is an expression, possibly containing parameters,
-that produces a plot. The other arguments define controls whose values
-provide the parameter values in the plotting expression. There are
+that produces a plot. The other arguments create widgets that
+control the parameter values in the plotting expression. There are
 three basic controls: a slider, a picker (combo box), and a check
 box. As one can glean, the constructors have a terse but simple set
 of arguments. A main task ahead will be mapping these controls to one
@@ -3550,11 +3562,10 @@ as expected. Note that each control is expected to provide a
 \end{Schunk}
 %
 
-The \meth{execute} method is called during initialization to setup the
+The \meth{execute} method is called after initialization to setup the
 GUI. We use a \class{GtkHPaned} instance to allow the user to adjust
-the space between the graphic device and the controls
-frame. Otherwise, note how each control is expected to have a
-\meth{make\_gui} interface.
+the space between the graphic device and the controls frame. Each
+control is expected to have a \meth{make\_gui} interface.
 
 \begin{Schunk}
 \begin{Sinput}
@@ -3614,8 +3625,6 @@ ensuring the controls are defined properly.
               initFields(.code=code,
                          .controls=controls)
               validate_controls()
-              ## now execute
-              execute()
               .self
             })
 \end{Sinput}
@@ -3625,14 +3634,16 @@ ensuring the controls are defined properly.
 We now provide a constructor allowing access to our class.
 \begin{Schunk}
 \begin{Sinput}
- manipulate <- function(`_expr`,...)
-   Manipulate$new(substitute(`_expr`),...)
+ manipulate <- function(`_expr`,...) {
+   obj <- Manipulate$new(substitute(`_expr`),...)
+   obj$execute()
+   }
 \end{Sinput}
 \end{Schunk}
 %
 
 There are three main controls, but perhaps more could be added. We
-give our selves the flexibility to expand by creating a base class for
+give ourselves the flexibility to expand by creating a base class for
 a control that can be subclassed. We define the class below. The
 properties are \code{l}, to store a list of arguments (a legacy of the
 original code); \code{widget}, to store the widget; \code{label} to
@@ -3652,7 +3663,8 @@ hold the label for the control; and \code{initial}.
 \end{Schunk}
 
 There main interface includes three methods: \meth{validate\_inputs}
-(to ensure the control is defined properly) and the previously noted \meth{get\_value} and \meth{make\_gui}.
+(to ensure the control is defined properly) and the previously noted
+\meth{get\_value} and \meth{make\_gui} (defined separately).
 \begin{Schunk}
 \begin{Sinput}
  ManipulateControls$methods(
@@ -3694,7 +3706,7 @@ arguments follow RStudio's.
 \begin{Sinput}
  slider <- function(min, max, initial=min, label=NULL, 
                     step=-1, ticks=TRUE) {
-   Slider$new(min, max, initial=min, label=label, 
+   Slider$new(min, max, initial=initial, label=label, 
               step=step, ticks=ticks)
  }
 \end{Sinput}
@@ -3786,6 +3798,7 @@ the table.
 %% Try it out
 \end{example}
 
+\igui{drag and drop}
 \section{Drag and drop}
 \label{sec:RGtk2:dnd}
 
@@ -3934,7 +3947,7 @@ in the widget where the drop occurred. The text data is returned by
 %% TODO: we need a unified example in the main text that spans loading
 %% a data frame to sorting a model, at least.
 
-Many widgets in \GTK\/ use the model, view, controller \iprogram{model-view-controller}(MVC)
+Many widgets in \GTK\/ use the model-view-controller \iprogram{model-view-controller}(MVC)
 paradigm. For most, like the button, the MVC pattern is implicit;
 however, widgets that primarily display data explicitly incorporate
 the MVC pattern into their design. The data model is factored out as a
@@ -3953,6 +3966,7 @@ describe the display of an \R\/ data frame in a list or table
 view. The display of hierarchical data, as well as further details of
 the \class{GtkTreeModel} framework, are treated subsequently.
 
+\igui{data frame model}
 \subsection{Loading a data frame}
 \label{sec:tabular-stores-tree}
 
@@ -3975,7 +3989,7 @@ constructed through \constructor{rGtkDataFrame}. Populating a
 data is retrieved from the data frame on demand. There is no need to
 copy the data row by row into a separate data structure. Such an
 approach would be especially slow if implemented as a loop in
-\R.~\footnote{As is needed in \pkg{tcltk}.} The constructor takes a
+\R.~\footnote{As is proved with \pkg{tcltk}, where this is needed.} The constructor takes a
 data frame as an argument. The column classes are important, so even
 if this data frame is empty, the user should specify the desired
 column classes upon construction.
@@ -4462,13 +4476,15 @@ can be implemented (Figure~\ref{fig:RGtk2-sortable-treeview}).
 \begin{Schunk}
 \begin{Sinput}
  f <- function(model, iter1, iter2, user.data) {
-   types <- c("Compact", "Small", "Sporty", "Midsize", "Large", "Van")
+   types <- c("Compact", "Small", "Sporty", "Midsize", 
+              "Large", "Van")
    column <- user.data
    val1 <- model$getValue(iter1, column)$value
    val2 <- model$getValue(iter2, column)$value
    as.integer(match(val1, types) - match(val2, types))
  }
- sorted$setSortFunc(sort.column.id=3-1, sort.func=f, user.data=3 - 1)
+ sorted$setSortFunc(sort.column.id=3-1, sort.func=f, 
+                    user.data=3 - 1)
 \end{Sinput}
 \end{Schunk}
 
@@ -4730,17 +4746,12 @@ order to store them in a single column. We preserve the class in the
 \code{dirty} columns are related to editing and explained later.
 %
 
-Now we create our model 
+Now we create our model and configure the first column:
 \begin{Schunk}
 \begin{Sinput}
  m <- rGtkDataFrame(df)
  v <- gtkTreeView(m)
-\end{Sinput}
-\end{Schunk}
-%
-and configure the first column
-\begin{Schunk}
-\begin{Sinput}
+ ##
  cr <- gtkCellRendererText()
  cr['background'] <- 'gray80'
  v$insertColumnWithAttributes(position=-1,
@@ -4845,7 +4856,7 @@ to the \signal{query-tooltip} signal to implement the tooltip:
             i <- as.numeric(out$path$toString()) + 1
             val <- m[i, "option"]
             txt <- descs[[val]]$desc
-            txt <- gsub("code>","b>", txt)  # no code in PANGO
+            txt <- gsub("code>","b>", txt)  # no code in Pango
             tooltip$setMarkup(txt)
             TRUE
           } else {
@@ -4858,7 +4869,7 @@ to the \signal{query-tooltip} signal to implement the tooltip:
 Within this callback we check if we have the appropriate context (we
 are in a row), then, if so, use the path to find the description to
 set in the tooltip. The descriptions use HTML for markup, but the
-tooltip only uses PANGO. As the \code{code} tag is not PANGO, we
+tooltip only uses Pango. As the \code{code} tag is not PANGO, we
 change to a bold tag using \function{gsub}.
 \end{example}
 
@@ -4924,7 +4935,7 @@ holding an image in memory. Using a \class{list}, one can store a
 
 %% JV redid, a tighter programmed
 \begin{example}{A variable selection widget}{ex:RGtk2-variable-selection}
-
+%%
 %% ML: John, I changed this to explicitly treat the selected and
 %% unselected widgets, instead of looping over the pairs. It just
 %% seemed like looping over two discrete things added unnecessary
@@ -4932,7 +4943,7 @@ holding an image in memory. Using a \class{list}, one can store a
 %% probably more readable. The other big change was using one model
 %% and a custom filter.
 %% JV: Cool -- thanks. I use s/mapply to reinforce symmetry
-
+%%
 This example shows how to create a GUI for selecting variables from a
 data frame. The GUI is based on two lists. The left one indicates the
 variables that can be selected, and the right shows the variables that
@@ -5017,13 +5028,6 @@ Next, we create a view for each filter:
  ##
  sapply(views, function(i) i$getSelection()$setMode('multiple'))
 \end{Sinput}
-\begin{Soutput}
-$unselectedView
-NULL
-
-$selectedView
-NULL
-\end{Soutput}
 \end{Schunk}
 
 Each cell needs to display both an icon and a label.  This is achieved
@@ -5631,7 +5635,7 @@ underlying \class{GtkEntry} widget with \method{getChild}{GtkBin} and
 connect to its \code{activate} signal.
 
 \begin{example}{A combo box with memory}{eg:RGtk2-combobox-entry}
-
+%%
 This example uses an editable combo box as an simple interface to the
 \R\/ help system. Along the way, we record the number of times the
 user searches for a page.
@@ -6045,14 +6049,14 @@ $retval
 NULL
 
 $start
-<pointer: 0x10529f8c0>
+<pointer: 0x125276e60>
 attr(,"interfaces")
 character(0)
 attr(,"class")
 [1] "GtkTextIter" "GBoxed"      "RGtkObject" 
 
 $end
-<pointer: 0x10529f870>
+<pointer: 0x125276b90>
 attr(,"interfaces")
 character(0)
 attr(,"class")
@@ -6265,6 +6269,7 @@ Next, we associate the tags with one or more regions of text:
 \end{Sinput}
 \end{Schunk}
 
+\iprogram{clipboard}
 \subsection{Selection and the clipboard}
 
 The selection is defined by the text buffer as the region between the
@@ -6424,7 +6429,7 @@ buffer:
 \end{Sinput}
 \end{Schunk}
 %
-We didn't arrange to truncate large outputs, but that would be a nice
+We did not arrange to truncate large outputs, but that would be a nice
 addition. By passing in the tag name, we can specify whether this is
 normal output or an error message.
 
@@ -6671,7 +6676,7 @@ A menubar is a special type of container called a menu shell. An
 instance of \class{GtkMenuShell} contains one or more menu
 items. \class{GtkMenuItem} is an implementation of
 \class{GtkActivatable}, so each menu item can proxy an
-action. Usually, a menubar consists multiple instances of the other
+action. Usually, a menubar consists of multiple instances of the other
 type of menu shell: the menu, \class{GtkMenu}. Here, we create a menu
 object for our ``File'' menu:
 \begin{Schunk}
@@ -7208,11 +7213,10 @@ functionality, the one produced in some platforms by the
 
 
 
-Our menubar and toolbar layout is specified in XML according to a
+Our menubar and toolbar layout is expressed in XML according to a
 schema specified by the UI manager framework. The XML can be stored in
 a file or an \R\/ character vector.  The structure of the file can be
-grasped quickly from this example, which we use in the sequel.
-
+grasped quickly from this example:
 \begin{Schunk}
 \begin{Sinput}
  ui.xml <- readLines(out <- textConnection('
@@ -7264,27 +7268,27 @@ add this through the command:
 Alternately, we could load the code from a file. The return value is
 an id that can be used to unmerge this part of the UI. The ability to
 merge and unmerge parts of the UI is one main attraction for using
-this framework, although we don't illustrate that here. 
+this framework, although we do not illustrate that here. 
 
-To define the actions, we can use lists, as in this which is used for
+To define the actions, we can use lists. This list defines
 the file menu:
 \begin{Schunk}
 \begin{Sinput}
  fileL <- list(## name, ID, label, accelerator, tooltip, callback
-               list("File",NULL,"_File",NULL,NULL,NULL),
-               list("Save", "gtk-save", "Save", "<ctrl>S", 
-                    "Save data to variable", fun),
-               list("SaveAs", "gtk-save", "Save as...", NULL, 
-                    "Save data to variable", fun),
-               list("Export", NULL, "Export", NULL, NULL, NULL),
-               list("ExportToCSV", "gtk-export", "Export to CSV", 
-                    NULL, "Save data to CSV file", fun),
-               list("ExportToSaveFile", "gtk-export", 
-                    "Export to save file", NULL, 
-                    "Save data to save() file", fun),
-               list("CloseWindow", "gtk-close", "Close window", 
-                    "<ctrl>W", "Close current window", fun)
-               )
+            list("File",NULL,"_File",NULL,NULL,NULL),
+            list("Save", "gtk-save", "Save", "<ctrl>S", 
+                 "Save data to variable", fun),
+            list("SaveAs", "gtk-save", "Save as...", NULL, 
+                 "Save data to variable", fun),
+            list("Export", NULL, "Export", NULL, NULL, NULL),
+            list("ExportToCSV", "gtk-export", "Export to CSV", 
+                 NULL, "Save data to CSV file", fun),
+            list("ExportToSaveFile", "gtk-export", 
+                 "Export to save file", NULL, 
+                 "Save data to save() file", fun),
+            list("CloseWindow", "gtk-close", "Close window", 
+                 "<ctrl>W", "Close current window", fun)
+            )
 \end{Sinput}
 \end{Schunk}
 % 
@@ -7299,12 +7303,9 @@ We can add these items to an action group, along the lines of
  ag <- gtkActionGroup("FileGroup")
  ag$addActions(fileL)
 \end{Sinput}
-\begin{Soutput}
-NULL
-\end{Soutput}
 \end{Schunk}
 
-We can then insert the action group in to the UI manager:
+We can then insert the action group into the UI manager:
 \begin{Schunk}
 \begin{Sinput}
  uimanager$insertActionGroup(ag, 0)
@@ -7312,15 +7313,14 @@ We can then insert the action group in to the UI manager:
 \end{Schunk}
 %
 The position (\code{0}) is used to determine which action will be
-called, when there is more than one similarly named.
+called, when there is more than one with the same name.
 
 
 %% insert into GUI
 We now place the UI manager into the GUI. The UI manager specification
 create widgets which we can retrieve through its
-\meth{getWidget}{GtkUIManager} method. In the layout of our GUI, we
-have the following:
-
+\method{getWidget}{GtkUIManager} method. The following code sketches
+the layout of the GUI:
 \begin{Schunk}
 \begin{Sinput}
  w <- gtkWindow(show=FALSE)
@@ -7345,31 +7345,35 @@ separated by "/". So, in the definition. the line
 ...
 \end{verbatim}
 define the path \qcode{/menubar}, where \code{<ui>} is always
-the root element, and may be omitted.
+the root element, and may be omitted from the path.
 
 
 Finally, to connect the UI manager to the window, we add the keyboard
-accelerator group through:
+accelerator group:
 \begin{Schunk}
 \begin{Sinput}
  w$addAccelGroup(uimanager$getAccelGroup())
 \end{Sinput}
 \end{Schunk}
 
-
-
 Figure~\ref{fig:RGtk2-editable-dataframe} shows an illustration of the
 finished application. The full details are found in the code in our accompanying
-package \pkg{ProgGUIinR}. Here we discuss how the \iprogram{command pattern}\dfn{command
-  pattern} was implemented to provide a simple undo and redo feature
-to our editing.
+package \pkg{ProgGUIinR}. 
 
-According to \footcite{head-first-design-patterns}, the command
-pattern is used to \iprogram{encapsulation}encapsulate a request (method
-call) as an object. A basic command object has just one method,
-\meth{execute}. Any needed parameters are stored in the object as
-properties. For our implementation we use a reference class with fields:
+\paragraph{Command pattern}
+Now we discuss how the \iprogram{command pattern}\dfn{command pattern}
+was implemented to provide a simple undo and redo feature to our
+editing.  According to \footcite{head-first-design-patterns}, the
+command pattern is used to \iprogram{encapsulation}encapsulate a
+request (method call) as an object. A basic command object has just
+one method, \meth{execute}. Any needed parameters are stored in the
+object as properties. The command pattern has GUI-related applications
+beyond the undo/redo stack, including the action objects (i.e.,
+instances of \class{GtkAction}) that are managed by
+\class{GtkUIManager}.
 
+For our implementation of the undo/redo stack, we use a reference
+class with fields:
 \begin{Schunk}
 \begin{Sinput}
  Command <- setRefClass("Command",
@@ -7382,10 +7386,11 @@ properties. For our implementation we use a reference class with fields:
 \end{Sinput}
 \end{Schunk}
 %
-The receiver is the object the method is called on. For a simple
-function call, this could be an environment the function is found
-in. The \code{meth} property is the name of the method, \code{params}
-a list of parameters. With these we define the main methods:
+The receiver is the object that receives the method call. For a simple
+function call, this could be the environment enclosing the
+function. The \code{meth} property is the name of the method, and
+\code{params} is a list of parameters. With these we define the main
+methods:
 \begin{Schunk}
 \begin{Sinput}
  Command$methods(
@@ -7403,7 +7408,7 @@ a list of parameters. With these we define the main methods:
 %
 
 Notice we pass in the arguments to our \meth{execute} method, rather
-than use those in the proporty \code{params}. This allows us to implement the
+than use those in the property \code{params}. This allows us to implement the
 \meth{do} and \meth{undo} methods in a similar manner:
 \begin{Schunk}
 \begin{Sinput}
@@ -7419,7 +7424,7 @@ than use those in the proporty \code{params}. This allows us to implement the
 \end{Schunk}
 %
 This assumes the method executed can return a value which can be used
-to reverse the call.If a method call is not so straightforward to
+to reverse the call. If a method call is not so straightforward to
 reverse, one needs only subclass the \class{Command} call and provide
 a new \code{undo} method.
 
@@ -7433,8 +7438,7 @@ A simple illustration might be:
    old
  }
  cmd <- Command$new(.GlobalEnv, "set_x", value=2)
- cmd$do();
- x
+ cmd$do(); x
 \end{Sinput}
 \begin{Soutput}
 [1] 2
@@ -7459,8 +7463,8 @@ was done. This stack has methods \code{add}, \code{undo} and
 \code{redo}, each calling the \code{do} or \code{undo} method of the
 appropriate command in the stack.
 
-With this stack a typical action callback includes something like the
-following which is from the action to change a column name:
+The first command we add to the stack is the setting of a column name
+on a data frame:
 \begin{Schunk}
 \begin{Sinput}
  cmd <- Command$new(df_model, "set_col_name", j=j, value=value)
@@ -7494,12 +7498,12 @@ above is implemented by:
 \end{Sinput}
 \end{Schunk}
 %%
-As can be seen we return the old value as that is needed, given how we
-implemented the \meth{do} method for the commands. We used an instance
-of \class{RGtkDataFrame} to store the variable (column) names, hence
-the double index. This allows us to listen for changed through the
-models \signal{row-changed} signal. The details, and more, are in the
-accompanying package.
+We return the old value, as that is required by the implementation of
+the \meth{do} method for the commands. An instance of
+\class{RGtkDataFrame} stores the variable (column) names, hence the
+double index. This allows us to listen for changes through the
+\signal{row-changed} signal on the model. The details, and more, are
+in the accompanying package.
 
 
 
@@ -7518,6 +7522,7 @@ accompanying package.
 \label{chapter:extending-GTK}
 %\section{Extending GObject classes from R}
 \label{sec:gtk:extending-classes}
+\iprogram{subclass}
 
 \GTK, as well as several of its dependencies, with the notable
 exception of \pkg{Cairo}, is based on the \pkg{GObject}

@@ -150,7 +150,7 @@ Manipulate$methods(
 @ 
 %
 
-The \meth{execute} method is called during initialization to setup the
+The \meth{execute} method is called after initialization to setup the
 GUI. We use a \class{GtkHPaned} instance to allow the user to adjust
 the space between the graphic device and the controls frame. Each
 control is expected to have a \meth{make\_gui} interface.
@@ -210,8 +210,6 @@ Manipulate$methods(
              initFields(.code=code,
                         .controls=controls)
              validate_controls()
-             ## now execute
-             execute()
              .self
            })
 @ 
@@ -219,8 +217,10 @@ Manipulate$methods(
 
 We now provide a constructor allowing access to our class.
 <<manipulate_constructor>>=
-manipulate <- function(`_expr`,...)
-  Manipulate$new(substitute(`_expr`),...)
+manipulate <- function(`_expr`,...) {
+  obj <- Manipulate$new(substitute(`_expr`),...)
+  obj$execute()
+  }
 @ 
 %
 
@@ -281,7 +281,7 @@ arguments follow RStudio's.
 <<Slider_constructor>>=
 slider <- function(min, max, initial=min, label=NULL, 
                    step=-1, ticks=TRUE) {
-  Slider$new(min, max, initial=min, label=label, 
+  Slider$new(min, max, initial=initial, label=label, 
              step=step, ticks=ticks)
 }
 @ 

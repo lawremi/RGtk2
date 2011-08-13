@@ -4,7 +4,7 @@
 ## Illustrates filtered models, icons in view column
 library(RGtk2)
 @ 
-
+%%
 %% ML: John, I changed this to explicitly treat the selected and
 %% unselected widgets, instead of looping over the pairs. It just
 %% seemed like looping over two discrete things added unnecessary
@@ -12,7 +12,7 @@ library(RGtk2)
 %% probably more readable. The other big change was using one model
 %% and a custom filter.
 %% JV: Cool -- thanks. I use s/mapply to reinforce symmetry
-
+%%
 This example shows how to create a GUI for selecting variables from a
 data frame. The GUI is based on two lists. The left one indicates the
 variables that can be selected, and the right shows the variables that
@@ -85,7 +85,7 @@ need to define a custom visible function that inverts the
 \code{selected} column.
 
 Next, we create a view for each filter:
-<<views>>=
+<<views, results=hide>>=
 views <- list()
 views$unselectedView <- gtkTreeView(unselectedFilter)
 views$selectedView <- gtkTreeView(selectedFilter)

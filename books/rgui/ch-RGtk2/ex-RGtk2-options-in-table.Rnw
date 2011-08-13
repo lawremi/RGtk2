@@ -34,14 +34,11 @@ order to store them in a single column. We preserve the class in the
 \code{dirty} columns are related to editing and explained later.
 %
 
-Now we create our model 
+Now we create our model and configure the first column:
 <<model, results=hide>>=
 m <- rGtkDataFrame(df)
 v <- gtkTreeView(m)
-@ 
-%
-and configure the first column
-<<firstColumn, results=hide>>=
+##
 cr <- gtkCellRendererText()
 cr['background'] <- 'gray80'
 v$insertColumnWithAttributes(position=-1,
@@ -103,7 +100,7 @@ here. Instead we add a bit of extra detail by providing a tooltip.
 %% features of R.
 \paragraph{Tooltips}
 For this example, our function has built-in documentation. Below we
-use an internal function from the \pkg{helpr} package~\footnote{It is
+use an internal function from the \pkg{helpr} package\footnote{It is
   important to note that we are calling internal routines of a package
   still under active development, which in turn relies on volatile
   features of R. In general, such practice can lead to maintenance
@@ -136,7 +133,7 @@ gSignalConnect(v, "query-tooltip",
            i <- as.numeric(out$path$toString()) + 1
            val <- m[i, "option"]
            txt <- descs[[val]]$desc
-           txt <- gsub("code>","b>", txt)  # no code in PANGO
+           txt <- gsub("code>","b>", txt)  # no code in Pango
            tooltip$setMarkup(txt)
            TRUE
          } else {
@@ -148,5 +145,5 @@ gSignalConnect(v, "query-tooltip",
 Within this callback we check if we have the appropriate context (we
 are in a row), then, if so, use the path to find the description to
 set in the tooltip. The descriptions use HTML for markup, but the
-tooltip only uses PANGO. As the \code{code} tag is not PANGO, we
+tooltip only uses Pango. As the \code{code} tag is not PANGO, we
 change to a bold tag using \function{gsub}.

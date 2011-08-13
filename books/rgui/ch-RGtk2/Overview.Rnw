@@ -184,7 +184,7 @@ use of S3 classes for the \R\/ package. In \GTK\/ the
 the \class{GtkBin}, \class{GtkContainer}, \class{GtkWidget},
 \class{GtkObject}, \class{GInitiallyUnowned}, and \class{GObject}
 classes. In \pkg{RGtk2}, by calling \function{class} on a
-\command{gtkWindow} instance~\footnote{We use the term ``instance'' of
+\command{gtkWindow} instance\footnote{We use the term ``instance'' of
   a constructor to refer to the object returned by the constructor,
   which is an instance of some class.}  we can see the class
 hierarchy
@@ -260,7 +260,7 @@ change its foreground color.
 
 
 \subsection{Properties}
-
+\iprogram{properties}
 
 %% --------- Properties ------------
 The state of a widget is described by its properties, which are
