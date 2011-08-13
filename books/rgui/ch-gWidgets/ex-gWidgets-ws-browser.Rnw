@@ -4,26 +4,27 @@
 % By: Eric T Freeman; Elisabeth Robson; Bert Bates; Kathy Sierra
 % Publisher: O'Reilly Media, Inc.
 % Pub. Date: October 25, 2004
-
-
+%%
+%%
 \begin{figure}
   \centering
   \includegraphics[width=.6\textwidth]{fig-gWidgets-ws-browser.png}
   \caption{A notebook showing various views of the objects in the global workspace. The example uses the Observer pattern to keep the views synchronized.}
   \label{fig:gWidgets-ws-browser}
 \end{figure}
-
-
+%%
+%%
 This example takes the long way to make a workspace browser. (The
 short way is to use \constructor{gvarbrowser}.) The goal is to produce
 a GUI that will allow the user to view the objects in their current
-workspace. We would like these views to be dynamic though -- when the
-workspace changes we would like the views to update. Furthermore, we
-may want to have different views, such as one for functions and one
-for data sets.
+workspace. We would like this view to bedynamic -- when the workspace
+changes we would like the view to update. Furthermore, we may want to
+have different views, such as one for functions and one for data
+sets. These should all be coordinated.
 
 %% ML: we just put objectSignals on CRAN. Might want to cite that or
 %% even use it here.
+%% JV: Good idea. Added it in.
 
 This pattern where a central, dynamic source of data is to used and
 shared amongst many different pieces of a GUI is a common one. To
@@ -65,6 +66,8 @@ system("mv model.png fig-gWidgets-observer-observable-uml.png")
 
 Figure~\ref{fig:observer-observable} shows a class diagram of the two
 different types of objects involved:
+
+
 \begin{description}
 \item[Observables] The objects which notify observers when a change is
   made. The basic methods are to add and remove an observer; and to
@@ -77,37 +80,13 @@ different types of objects involved:
   method. In our example, the different views of the workspace are
   observers.
 \end{description}
+\vspace{12pt}
 
-An implementation of the observable class using reference classes
-follows. The different observers are stored in a list.
-
-<<Observable, results=hide>>=
-setRefClass("Observable",
-            fields=list(observers="list"),
-            methods=list(
-              add_observer=function(o) {
-                "Add an observer."
-                observers <<- c(observers, o)
-              },
-              remove_observer=function(o) {
-                "Remove observer"
-                ind <- sapply(observers, identical, y=o)
-                if(any(ind)) 
-                  observers[[which(ind)]] <<- NULL
-                
-              },
-              notify_observers=function(...) {
-                "Notify observers there has been a change"
-                sapply(observers, function(o)
-                       o$update(.self, ...))
-              }))
-
-@ 
-%
-This can get more involved (we implement signals or we could allow
-observers to be blocked, etc.), but we keep
-it simple for this example. 
-
+The package \pkg{objectSignals} provides a comprehensive
+implementation of this pattern which we use below. We use its
+\function{signalingField} function to create an ``observable'' and its
+\function{connect} method to add an observer.
+\\
 
 \begin{figure}
   \centering
@@ -116,158 +95,120 @@ it simple for this example.
   \label{fig:observer-observable}
 \end{figure}
 
-The basic observer pattern just creates a class for observers so that
-they have an \meth{update} method. Again, a simple implementation
-follows:
-
-
-<<Observer, results=hide>>=
-setRefClass("Observer",
-      fields=list(o = "function"),
-      methods=list(
-        update=function(...) {
-          "Call self. Arguments passed by notify_observers"
-          o(.self, ...)
-        }))
-@ 
-%
-
-A model is an observable with properties. When these properties are
-changed, any observers are notified. Our workspace will be stored in a
-model instance.  Models generally have getter and setter methods for
-these properties. The setter method would typically store a value and
-then notify any observers of the model.
-
-As an example, we define this subclass:
-<<Model, results=hide>>=
-setRefClass("Model",
-      contains="Observable",
-      methods=list(
-        get=function(key) {
-          "get value of property"
-          base:::get(key)
-        },
-        set=function(key, value, notify=TRUE) {
-          "Set key field to value. Notify observers."
-          assign(key, value, inherits=TRUE)
-          if(notify)
-            notify_observers(model=.self)
-          invisible()
-        }))
-@ 
-%
-
-
-
-To illustrate how this works, we define a simple subclass of our
-\class{Model} call and an observer.
-<<>>=
-TestModel <- setRefClass("TestModel",
-                         contains="Model",
-                         fields=list(prop1="character"))
-m <- TestModel$new()
-f <- function(model,...) print(model$get("prop1"))
-o <- getRefClass("Observer")$new(o=f)
-m$set("prop1", "Some value")
-m$add_observer(o)
-m$set("prop1", "A new value")           # now f is called
-@ 
-
 
 
 The data in our workspace model keeps track of the objects in the
-workspace by name and a digest of each variable. The digest allows us
-to compare if objects have been updated, not just renamed. As
-notifying views can be potentially expensive, we will only notify on a
-change.
+workspace by name and records a digest of each variable. The digest
+allows us to compare if objects have been updated, not just
+renamed. As notifying views can be potentially expensive, we will only
+notify on a change. 
 
 <<WSModel, results=hide>>=
+require(objectSignals)
 WSModel <- setRefClass("WSModel",
-                       contains="Observable",
-                       fields=list(
-                         ws_objects="character",
-                         ws_objects_digest="character"
-                         ))
+              fields=c(
+                signalingField("ws_objects","character"),
+                ws_objects_digests="character"
+                ))
 @ 
 %
+
+
 
 For the task at hand, we don't really have a \code{set} method, but
 rather we define a \code{refresh} method to synchronize the workspace
-with our model object. We then notify observers if there is a
-change. This model needs to track changes in the underlying
+with our model object. When the property \code{ws\_objects} is set,
+the \pkg{objectSignals} package takes care of notifying any registered observers.
+This model needs to track changes in the underlying
 workspace. This can be done calling the \code{refresh} method at
-periodic intervals, through a \textit{taskCallback}, or by user request.
+periodic intervals, through a \textit{taskCallback}, or by user
+request. In the definitions below, we call a helper function to list
+the objects in the global environment and produce a digest of each.
 
-<<udpate_fun>>=
-require(digest)
-WSModel$methods(refresh = function() {
-  "refresh vector of ws_objects if applicable"
-  x <- sort(ls(envir=.GlobalEnv))
-  ## filter out envRefClass objects --
-  isRef <- function(i) 
-    is(get(i, envir=.GlobalEnv), "envRefClass")
-  ind <- sapply(mget(x, .GlobalEnv), is, class2="envRefClass")
-  x <- x[!ind]
-  ds <- sapply(mget(x,envir=.GlobalEnv), digest)
-  
-  if((length(ds) != length(ws_objects_digest)) ||
-     length(ws_objects_digest) == 0 ||
-     any(ds != ws_objects_digest)) {
-    ws_objects <<- x
-    ws_objects_digest <<- ds 
-    notify_observers()
-  }
-  invisible()
-})
+<<initialize_refresh, results=hide>>=   
+WSModel$methods(
+       .get_objects_digests = function() {
+         "Helper function to return list with names, digests"
+         items <- ls(envir=.GlobalEnv)
+         objects <- mget(items, .GlobalEnv)
+         trim <- !sapply(objects, is, class2="refClass")
+         list(items[trim],
+              sapply(objects[trim], digest))
+       },
+       initialize=function() {
+         objs <- .get_objects_digests() # call helper
+         initFields(ws_objects=objs[[1]],
+                    ws_objects_digests=objs[[2]])
+         .self
+       },
+       refresh=function() {
+         objs <- .get_objects_digests()                           
+         cur_objects <- objs[[1]]
+         cur_digests <- objs[[2]]
+         ## changes?
+         if(length(cur_digests) != ws_objects_digests ||
+            length(ws_objects_digests) == 0 ||
+            any(cur_digests != ws_objects_digests)) {
+           ws_objects <<- cur_objects # signal
+           ws_objects_digests <<- cur_digests
+         }
+       })
+                
 @ 
-%
-The \code{get\_objects} method, which returns the names of the
-objects in the work space,  adds some complexity, but allows us to
-filter by class.
-
-As can be seen we pass in the model to the observers. We need a
-standard interface for getting the data from the model, so define a
-\code{get} method. We add an additional argument, \code{klass}, to
-filter by class.
+%%
+To simplify the work for our views, our model provides a \meth{get}
+method that filters its return value to specified classes. This class
+is specified with a character string, and may include a not operator.
 
 <<"get_objects">>=
-WSModel$methods(get = function(klass) {
-  "Get objects. If klass given, restrict to those. 
-Klass may have ! in front, as in '!function'"
-  if(missing(klass) || length(klass) == 0)
-    return(ws_objects)
-  #
-  ind <- sapply(mget(ws_objects, .GlobalEnv), function(x) {
-    any(sapply(klass, function(j)  {
-      if(grepl("^!", j))
-        !is(x, substr(j, 2, nchar(j)))
-      else
-        is(x, j)
-    }))
-  })
-  #
-  if(length(ind))
-    ws_objects[ind]
-  else
-    character(0)
-})
+WSModel$methods(
+        get=function(klass) {
+          "klass a string, such as 'numeric' or '!function'"
+          if(missing(klass) || length(klass) == 0)
+            return(ws_objects)
+          ## if we have klass, more work
+          ind <- sapply(mget(ws_objects, .GlobalEnv), function(x) {
+            any(sapply(klass, function(j)  {
+              if(grepl("^!", j))
+                !is(x, substr(j, 2, nchar(j)))
+              else
+                is(x, j)
+            }))
+          })
+          ##
+          if(length(ind))
+            ws_objects[ind]
+          else
+            character(0)
+        })
 @ 
-%
+% 
 
+Finally, our model defines a convenience method to add an observer
+using the naming convention of \pkg{objectSignals}.
+<<>>=
+WSModel$methods(
+                add_observer=function(FUN, ...) {
+                  .self$ws_objectsChanged$connect(FUN, ...)
+                })
+@ 
 
 
 To use this model, we create a base view class adding a new method to
-set the model. One could store a reference to the model in the view --
-which makes it easier to remove a model -- but keep it simple here.
+set the model. A view has atleast two methods, an \meth{update}
+method to refresh the view and one to set the model, so that it can
+play the part of an observer. 
 <<View, results=hide>>=
-setRefClass("WSView",
-            contains="Observer",
-            methods=list(
-              set_model=function(model) {
-                "Add view as observer"
-                model$add_observer(.self)
-              }
-              ))
+WSView <- setRefClass("WSView",
+                      methods=list(
+                        update=function(model) {
+                          "Subclass this"
+                        },
+                        set_model=function(model) {
+                          FUN <- function() .self$update(model)
+                          model$add_observer(FUN)
+                        }
+                        ))
 @ 
 %
 
@@ -288,6 +229,7 @@ WidgetView <-
                   if(!missing(model)) set_model(model)
                   if(!missing(parent)) init_widget(parent, ...)
                   initFields()
+                  update(model)
                   .self
                 },
                 init_widget=function(parent, ...) {
@@ -385,7 +327,7 @@ makeDataFrame <- function(x, envir=.GlobalEnv) {
 To illustrate the flexibility of this framework, we also define a
 subclass of \code{WidgetView} to show just the data frames in a combo
 box. Selecting a data frame is a common task in R GUIs, and this
-allows keeps the selection up to date.
+allows keeps the selection synchronized with the workspace.
 
 <<DfView>>=
 DfView <-
@@ -406,11 +348,11 @@ DfView <-
 %
 
 We can put these pieces together to make a simple GUI. 
-<<testit, results=hide>>=
+<<testit, results=hide, eval=FALSE>>=
 w <- gwindow()
 nb <- gnotebook(cont=w)
 #
-model <- getRefClass("WSModel")$new()
+model <- WSModel$new()
 #
 view <- TableView$new(parent=nb, model=model, label="data")
 view$klass <- c("factor", "numeric", "character", 

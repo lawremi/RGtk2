@@ -1,12 +1,12 @@
 %% Example of hand-built filter using gtable
-
+%
 \begin{figure}
   \centering
   \includegraphics[width=.8\textwidth]{fig-gWidgets-filter-example}
   \caption{Example of using a filter to narrow the display of tabular data}
   \label{fig:gWidgets-filter-example}
 \end{figure}
-
+%
 Even with moderate-sized data sets, the number of rows can be quite large, in which case it is
 inconvenient to use a table for selection unless some means of searching or filtering the
 data is used. This example displays the many possible CRAN packages to show how a

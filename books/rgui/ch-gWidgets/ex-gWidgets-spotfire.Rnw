@@ -1,11 +1,12 @@
 %% Example of a spotfire like interface
-
+%%
 \begin{figure}
   \centering
   \includegraphics[width=.6\textwidth]{fig-gWidgets-spotfire-gui}
   \caption{A GUI to filter a data frame and display an accompanying graphic.}
   \label{fig:gWidgets-spotfire-gui}
 \end{figure}
+%%
 A common GUI application for data analysis consists of means to
 visualize, query, aggregate and filter a data set. This example shows
 how one can create such a GUI using \pkg{gWidgets} featuring an

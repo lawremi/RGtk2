@@ -1,7 +1,7 @@
 This example shows how to add to the available stock icons and use
 \code{gimage} to display them. It creates a table
 (Figure~\ref{fig:gWidgets-stock-icons}) to select a color from, as an
-alternative to a more complicated color chooser dialog.~\footnote{If
+alternative to a more complicated color chooser dialog.\footnote{If
   \pkg{gWidgetstcltk} is used the image files would need to be
   converted to \code{gif} format, as \code{png} format is not a
   natively supported image type.}

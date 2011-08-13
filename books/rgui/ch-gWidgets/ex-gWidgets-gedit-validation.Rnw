@@ -20,7 +20,7 @@ tbl[1,2] <- (e <- gedit("", cont = tbl))
 
 
 We use the \iprogram{evaluating strings}\pkg{evaluate} package to see
-if the expression is valid.~\footnote{The basic way to evaluate an
+if the expression is valid.\footnote{The basic way to evaluate an
   \R{} expression given as a string is to use the combination of
   \function{eval} and \function{parse}, as in
   \code{eval(parse(text=string))}. The resulting output can usually be

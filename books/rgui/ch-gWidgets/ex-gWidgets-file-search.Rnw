@@ -1,12 +1,12 @@
 %% REturn to file system search
-
+%%
 \begin{figure}
   \centering
   \includegraphics[width=.8\textwidth]{fig-gWidgets-file-search-advanced.png}
   \caption{File search dialog showing advanced search features disclosed}
   \label{fig:file-search-advanced}
 \end{figure}
-
+%%
 We return to the File selection GUI used as an example in
 Chapter~\ref{sec:overview}. Our goal here is to add in more features
 to have advanced searching. Imagine we have a function \code{file\_search} which in
@@ -69,26 +69,26 @@ searchResults <- gtext("", cont=f1, expand=TRUE, fill="both")
 %% ML: does it really make sense only to consider the options when
 %% they are visible? What happens if they set them, then hide
 %% them. It would be surprising to me if they were then ignored.
-We need to modify our button handler so that it uses these values, if
-specified. We only do so if this part of the GUI is disclosed, by
-checking the output of \code{visible(advSearch)}.
+
+%% Fair enough
+We modify our button handler so that it uses these values, if
+specified.
+
+%% We only do so if this part of the GUI is disclosed, by
+%% checking the output of \code{visible(advSearch)}.
 
 <<>>=
 addHandlerChanged(searchBtn, handler=function(h,...) {
   pattern <- glob2rx(svalue(txtPattern))
   start_dir <- svalue(startDir)
-  subfolders <- TRUE
   modified <- NULL
   size <- NULL
-  visible <- TRUE
 
-  ## new
-  if(visible(advSearch)) {
-    subfolders <- svalue(advRec)
-    if((tmp <- svalue(advSize)) != "") size <- tmp
-    visible <- svalue(advVisible)
-    if(!is.na(tmp <- svalue(advModified))) modified <- tmp
-  }
+  ## from advanced
+  subfolders <- svalue(advRec)
+  visible <- svalue(advVisible)
+  if((tmp <- svalue(advSize)) != "") size <- tmp
+  if(!is.na(tmp <- svalue(advModified))) modified <- tmp
   
   ## function call
   fnames <- file_search(pattern, start_dir, subfolders, 

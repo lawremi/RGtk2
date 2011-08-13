@@ -20,25 +20,25 @@ source("../booktabs.R")
 @ 
 \newcommand{\ONLYIN}[1]{[only in #1]}
 
-\chapter{\pkg{gWidgets}: Overview}
+\chapter{gWidgets: Overview}
 \label{sec:overview}
 
 \SweaveInput{Overview}
 
 
-\chapter{\pkg{gWidgets}: Container Widgets}
+\chapter{gWidgets: Container Widgets}
 \label{sec:gWidgets-Containers}
 \SweaveInput{Containers}
 
 
 
 
-\chapter{\pkg{gWidgets}: Control Widgets}
+\chapter{gWidgets: Control Widgets}
 \label{cha:control-widgets}
 \SweaveInput{Controls}
 
 
-\chapter{\pkg{gWidgets}: R-specific  widgets}
+\chapter{gWidgets: R-specific  widgets}
 \label{cha:compound-widgets}
 \SweaveInput{CompoundWidgets}
 

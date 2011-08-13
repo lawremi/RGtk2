@@ -12,7 +12,7 @@ options(guiToolkit="RGtk2")
   
 
   
-This Chapter discusses the basic GUI controls provided by
+This chapter discusses the basic GUI controls provided by
 \pkg{gWidgets}. We defer discussion of the \R-specific widgets to the
 next chapter.
 
@@ -169,7 +169,7 @@ or disable whether a widget can accept input.
 
 % \begin{example}{Hello world button}{ex-gWidgets-hello-world-button}
 %   This example shows how a button is assigned a handler to respond to
-%   click events.~\footnote{Each toolkit has its idiosyncrasies. If this
+%   click events.\footnote{Each toolkit has its idiosyncrasies. If this
 %     example is run using \pkg{RGtk2} the button will stretch to fill
 %     the space. At times this is not desired. Placing the button within
 %     a \code{ggroup} container can prevent this. Whereas, under
@@ -208,7 +208,7 @@ available to set the text programmatically.
 
 The \method{font\ASSIGN}{glabel} method
 can also be used to set the text markup
-(Table~\ref{tab:gWidgets-font-properties}).~\footnote{For some of the underlying toolkits, setting the argument
+(Table~\ref{tab:gWidgets-font-properties}).\footnote{For some of the underlying toolkits, setting the argument
 \argument{markup}{glabel} to \code{TRUE} allows a native markup language
 to be used (\GTK\/ had PANGO, \Qt\/ has rich text).}
 \\
@@ -222,9 +222,8 @@ lyt[1,1] <- glabel("xbar:", cont=lyt)
 lyt[1,2] <- gedit("", cont=lyt)
 lyt[2,1] <- glabel("s:", cont=lyt)
 lyt[2,2] <- gedit("", cont=lyt)
-sapply(1:2, function(i) {
-  tmp <- lyt[i,1]
-  font(tmp) <- c(weight="bold", color="blue")
+sapply(lyt[,1], function(i) {
+  font(i) <- c(weight="bold", color="blue")
 })
 @ 
 
@@ -274,7 +273,7 @@ adjacent to the label.
 
 %% gimage
 Other graphic files and the stock icons can be displayed by the
-\constructor{gimage} widget. \footnote{Not all file types may be
+\constructor{gimage} widget.\footnote{Not all file types may be
   displayed by each toolkit, in particular \pkg{gWidgetstcltk} can
   only display gif, ppm, and xbm files.} The file to display is
 specified through the \argument{filename}{gimage} argument of the
@@ -282,7 +281,7 @@ constructor. This value is combined with that of the
 \argument{dirname}{gimage} argument to specify the file path.  Stock
 icons are specified by using their name for the \code{filename}
 argument and the character string \code{"stock"} for the
-\code{dirname} argument.~\footnote{For \pkg{gWidgetsRGtk2}, the size
+\code{dirname} argument.\footnote{For \pkg{gWidgetsRGtk2}, the size
   of a stock icon can be adjusted through the \argument{size}{gimage}
   argument, with a value from \qcode{menu}, \qcode{small\_toolbar},
   \qcode{large\_toolbar}, \qcode{button}, or \qcode{dialog}.}
@@ -402,12 +401,13 @@ pressed. Use \meth{addHandlerBlur} to add a callback for the event of
 losing focus. The \method{addHandlerKeystroke}{gedit} method can
 assign a handler to be called when a key is released. For the toolkits
 that support it, the specific key is given in the \code{key} component
-of the list \code{h} (the first argument).~\footnote{There are
+of the list \code{h} (the first argument).\footnote{There are
   differences in what keys are returned. Currently, only the letter
   keys are consistently given. In particular, no modifier keys or
   other keys are returned.}
 
 \begin{example}{Validation}{ex-gWidgets-gedit-validation}
+  \iprogram{validation}
   \SweaveInput{ex-gWidgets-gedit-validation}
 \end{example}
 
@@ -431,10 +431,10 @@ The contents of the text buffer can be replaced with the
 \method{svalue\ASSIGN}{gtext} method. To clear the buffer, the
 \method{dispose}{gtext} method may be used. The \method{insert}{gtext}
 method adds text to a buffer. The signature is \code{insert(obj, text,
-  where, font.attr)}
-where \code{text} is a character vector. New text is added to the end
-of the buffer, by default, but the \argument{where}{insert} argument
-can specify \qcode{beginning} or \qcode{at.cursor}.
+  where, font.attr)} where \code{text} is a character vector. New text
+is added to the end of the buffer, by default, but the
+\argument{where}{insert} argument can specify \qcode{beginning} or
+\qcode{at.cursor}.
 
 
 
@@ -685,7 +685,7 @@ the \method{length}{gcheckboxgroup} method returns the number of items.
 \subsection{A combo box}
 \label{sec:gWidgets-combobox}
 
-Combo boxes are constructed by \constructor{gcombobox}.~\footnote{Some
+Combo boxes are constructed by \constructor{gcombobox}.\footnote{Some
   make a distinction between drop down lists and combo boxes, the
   latter allowing editing. We don't here, although we note that the
   constructor \constructor{gdroplist} is an alias for
@@ -916,7 +916,7 @@ sequence of values to choose from.
 % shows how this can be used to update a graphic.
 
 In Figure~\ref{fig:gWidgets-EBImage-gui} the \pkg{gWidgetsRGtk2}
-package is used. This toolkit shows a tip with the current value, for
+package is used. That toolkit shows a tooltip with the current value, for
 others the slider implementation does not show the value. One can
 add a label to show this (or combine the slider with a spin
 button). Adding a label follows this pattern:
@@ -1068,7 +1068,7 @@ different class, pass a function, such as \code{as.Date} to the
 \label{sec:gWidgets-tabular-data-display}
 
 
-The \constructor{gtable} constructor~\footnote{The
+The \constructor{gtable} constructor\footnote{The
   \constructor{gtable} widget shows clearly the trade offs between
   using \pkg{gWidgets} and a native toolkit under \R. As will be seen
   in later chapters, setting up a table to display a data frame using
@@ -1078,16 +1078,18 @@ The \constructor{gtable} constructor~\footnote{The
   is no means to adjust the formatting of the displayed text, or to
   embed other widgets into the tabular display, such as check boxes.
 } produces a widget that displays data in a tabular form from which
-the user can select one (or more) rows. The widgets performance under
+the user can select one (or more) rows. The performance under
 \pkg{gWidgetsRGtk2} and \pkg{gWidgetsQt} is much faster and able to
 handle larger data stores
-than under \pkg{gWidgetstcltk}, as there is no native table widget in
+than under \pkg{gWidgetstcltk}, as there is no enhanced data frame model in
 \tcltk. At a minimum, all perform well on moderate-sized data sets (10
-or so columns and fewer than 500 rows).~\footnote{For
+or so columns and fewer than 500 rows).\footnote{For
   \pkg{gWidgetsRGtk2}, the \constructor{gdfedit} widget can show very
   large tables taking advantage of the underlying \pkg{RGtk2Extras}
-  package. For \pkg{gWidgetsQt} the constructor
-  \constructor{gbigtable} can be used to show very large tables.}
+  package.}
+
+%%For \pkg{gWidgetsQt} the constructor
+%%  \constructor{gbigtable} can be used to show very large tables.}
 
 The data is specified through the \argument{items}{gtable}
 argument. This value may be a data frame, matrix or vector. Vectors and
@@ -1253,7 +1255,7 @@ hierarchical structures, such as a file system or the components of a
 list. To use \constructor{gtree} one describes the tree to be shown
 dynamically through a function that computes the child components in
 terms of the path of the parent node. Although a bit more complex,
-this approach allows large trees to be shown, without needing to
+this approach allows trees with many ancestors to be shown, without needing to
 compute the entire tree at the time of construction.
 
 The \argument{offspring}{gtree} argument is assigned a function of two
@@ -1316,7 +1318,7 @@ returned by \code{offspring} and should return a character vector with
 each entry indicating which stock icon is to be shown.
 
 For some toolkits, the column type must be determined prior to
-rendering. By default, a call to \code{offspring} with argument
+rendering (just as is needed for \function{gtable}). By default, a call to \code{offspring} with argument
 \code{c()} indicating the root node is made. The returned data frame
 is used to determine the column types. If that is not correct, the
 argument \argument{col.types}{gtree} can be used. It should be a data
@@ -1349,7 +1351,7 @@ that is executable through one or more widgets. Actions in
 \pkg{gWidgets} are created through the \constructor{gaction}
 constructor. The arguments are \argument{label}{gaction},
 \argument{tooltip}{gaction}, \argument{icon}{gaction},
-\argument{key.accel}{gaction},~\footnote{The key accelerator
+\argument{key.accel}{gaction},\footnote{The key accelerator
   implementation varies depending on the underlying toolkit. }
 \argument{parent}{gaction} and the standard
 \argument{handler}{gaction} and \argument{action}{gaction}. 

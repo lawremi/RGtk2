@@ -1,17 +1,15 @@
- 
-  \begin{figure}
-    \centering
-    \includegraphics[width=.8\textwidth]{fig-gWidgets-collapse-factor.png}
-    \caption{A GUI to facilitate the recoding or collapsing of a factor's levels. For this, one selects the desired levels to rename or collapse, then enters a new label on the right. Activating the combo box will update the "new" column on the left.}
-    \label{fig:gWidgets-collapse-factor}
+A somewhat tedious task in \R{} is the recoding or collapsing of
+factor levels. This example provides a GUI to facilitate this. In
+Section~\ref{sec:modal-window} we provided a function to wrap this
+GUI within a modal dialog. Here we just setup the GUI. 
+
+ \begin{figure}
+   \centering
+   \includegraphics[width=.8\textwidth]{fig-gWidgets-collapse-factor.png}
+   \caption{A GUI to facilitate the recoding or collapsing of a factor's levels. For this, one selects the desired levels to rename or collapse, then enters a new label on the right. Activating the combo box will update the "new" column on the left.}
+   \label{fig:gWidgets-collapse-factor}
   \end{figure}
   
-  
-  
-  A somewhat tedious task in \R{} is the recoding or collapsing of
-  factor levels. This example provides a GUI to facilitate this. In
-  Section~\ref{sec:modal-window} we provided a function to wrap this
-  GUI within a modal dialog. Here we just setup the GUI. 
   
   We will use a reference class, as it allows us to couple together
   the main method and the widgets without needing to worry about

@@ -33,6 +33,7 @@ options("guiToolkit"="RGtk2") ## for examples
 
 After identifying the underlying data to manipulate and how to
 represent it, GUI construction involves three basic steps:
+
 \begin{itemize}
 \item creation and configuration of the main components;
 \item the layout of these components; and
@@ -42,7 +43,7 @@ represent it, GUI construction involves three basic steps:
 This chapter discusses the layout process within
 \pkg{gWidgets}. Layout in \pkg{gWidgets} is done by placing child
 components within parent containers which in turn may be nested in
-other containers.~\footnote{This is more like \GTK, and not \Qt, where
+other containers.\footnote{This is more like \GTK, and not \Qt, where
   layout managers control where the components are displayed.} In our
 file search example from the previous chapter, we nested a framed box
 container inside a paned container inside a top level window.  
@@ -75,8 +76,10 @@ style here.
 
 \begin{figure}
   \centering
-  \includegraphics[width=.8\textwidth]{fig-gWidgets-example-browser}
-  \includegraphics[width=.8\textwidth]{fig-example-browser-schematic.png}
+  \includegraphics[width=.9\textwidth]{fig-gWidgets-example-browser}
+  \\
+  
+  \includegraphics[width=.9\textwidth]{fig-example-browser-schematic.png}
   \caption{The example browser for gWidgets showing different layout
     components. The lower image shows the different containers used.}
   \label{fig:gWidgets-sample-layout}
@@ -110,7 +113,7 @@ multiple children.
 
 %% visible
 The optional \argument{visible}{gwindow} argument, used above with its
-default value \code{TRUE}~\footnote{If the option
+default value \code{TRUE}\footnote{If the option
   \code{gWidgets:gwindow-default-visible-is-false} is non NULL, then
   the default will be \code{FALSE}.}, controls whether the window is
 initially drawn. If not drawn, the \method{visible\ASSIGN}{gwindow}
@@ -119,7 +122,7 @@ Often it is good practice to suppress the initial drawing, especially
 for displaying GUIs with several controls, as the incremental drawing
 of subsequent child components can make the GUI seem sluggish. As
 well, this allows the underlying toolkit to compute the necessary size
-before it is displayed.~\footnote{For \pkg{gWidgetstcltk} the \meth{update}
+before it is displayed.\footnote{For \pkg{gWidgetstcltk} the \meth{update}
 method will initiate this recomputation. This may be necessary to get the
 window to size properly.}
 
@@ -163,8 +166,9 @@ childw <- gwindow("A child window", parent=w,
 Windows objects can be closed programmatically through their
 \method{dispose}{gwindow} method. Windows may also be closed through
 the window manager, by clicking a close icon in the title bar. The
-default event is the close event. For example, the following will add
-in a call to \code{galert} when an error occurs until the window is closed:
+default event is the close event. For example, the following will
+popup any error messages through a in a call to \code{galert} until
+the window is closed:
 
 %% Thanks to Richie Cotton for this example
 <<>>=
@@ -255,8 +259,8 @@ used to specify the window title.
 
 As with the \function{gconfirm} dialog, this widget returns
 \code{TRUE} or \code{FALSE} depending on the user's selection. To do
-something more complicated than \code{gconfirm}, a handler should be
-specified at construction which is called just before the dialog is
+something more complicated than \code{gconfirm}, a handler can be
+specified at construction. This is called just before the dialog is
 disposed.
 
 
@@ -266,7 +270,7 @@ There are three basic steps: an initial call to
 \function{gbasicdialog} to return a container to be used as the parent
 container for a child component; a construction of the dialog; then a
 call to the \code{visible} method on the dialog with \code{set=TRUE}
-value. The dialog is closed through clicking one of its buttons,
+specified. The dialog is closed through clicking one of its buttons,
 through a window manager event, or programmatically through its
 \method{dispose}{gbasicdialog} method.
 
@@ -350,14 +354,14 @@ visible(w) <- TRUE
 When packing in child widgets, the \method{add}{ggroup} method is
 used. In our example above, this is called by the
 \code{gbutton} constructor when the \args{container} argument is
-specified.~\footnote{In this text, the \meth{add} method is typically called
+specified.\footnote{In this text, the \meth{add} method is typically called
 from the constructor, but there are two cases where one calls it
 directly. The first is if one wishes to integrate a widget from the
 underlying graphical toolkit into a \pkg{gWidgets} GUI. An example
 where the \pkg{tkrplot} package is embedded in a GUI is given in 
 Section~\ref{sec:gWidgets-graphics-device}. The second case, is when a
 widget is removed from a GUI through \meth{delete}. In most cases it
-may be added back in with \meth{add}.}Unlike with the underlying graphical toolkits, there is no
+may be added back in with \meth{add}.} Unlike with the underlying graphical toolkits, there is no
 means to specify other styles of packing such as from the ends, or in
 the middle by some index.
 
@@ -367,7 +371,7 @@ their parent window is resized. These are passed through the
 \args{...}  argument of the
 constructor. Figure~\ref{fig:gWidgets-ggroup-expand-fill-anchor} shows
 some differences in how these argument are
-implemented.~\footnote{These arguments are not implemented
+implemented.\footnote{These arguments are not implemented
   consistently across toolkits, as the underlying toolkit may prevent
   it. For example, for \pkg{RGtk2} the child widgets always fill in
   the direction opposite of how they are added (horizontal widgets
@@ -375,12 +379,12 @@ implemented.~\footnote{These arguments are not implemented
   fill only if the \code{expand} argument is \code{TRUE}.}
 
 \begin{description}
-\item[expand, fill] The underlying layout algorithms have a means to
-  allocate space to child widgets when the parent container
-  expands. Those widgets which have \code{expand=TRUE}
-  specified should get the excess space shared amongst
-  them. (This isn't the case in \code{gWidgetsQt}, where a \code{fill}
-    value needs to be specified as well.)
+\item[expand] The underlying layout algorithms have a means to
+  allocate space to child widgets when the parent container expands to
+  provide more space then requested by the children. Those widgets
+  which have \code{expand=TRUE} specified should get the excess space
+  shared amongst them. (This isn't the case in \code{gWidgetsQt},
+  where a \code{fill} value needs to be specified as well.)
  
 <<echo=FALSE>>=
 ## ## Example showing expand argument -- it gets implemented differently in the various
@@ -405,7 +409,7 @@ implemented.~\footnote{These arguments are not implemented
   the widget grow to fill the available space.  The \code{fill}
   argument, taking a value of \code{x}, \code{y} or \code{both} (also
   \code{TRUE}) indicates how the widget should fill any additional
-  allocation (only when \code{expand=TRUE}).~\footnote{For \GTK,
+  allocation (only when \code{expand=TRUE}).\footnote{For \GTK,
     filling always occurs orthogonally to the direction of
     packing. This is why the top and bottom buttons (when
     \code{expand=FALSE}) in
@@ -471,7 +475,7 @@ component from a container. In some toolkits, this child may be added
 back at a later time (with \method{add}{ggroup}), but this isn't part
 of the API. In the case where you wish to hide a child temporarily,
 its \meth{visible\ASSIGN} method may usually be used, although some
-widgets give this method a different meaning.~\footnote{In
+widgets give this method a different meaning.\footnote{In
   \pkg{gWidgetstcltk} the use of \meth{visible\ASSIGN} to hide a
   component is not supported.}
 
@@ -561,10 +565,10 @@ displaying lists of data.)
 \subsection{The \code{gframe} and \code{gexpandgroup} containers}
 \label{sec:gWidgets-decorated-cont}
 
-We discuss briefly two widgets that essentially subclass the
-\code{ggroup} class. Much of the previous discussion applies.
+We discuss briefly two widgets that provide the same interface as
+\code{ggroup}. Much of the previous discussion applies.
 
-Framed containers are used to set off its child elements using a
+Framed containers are used to visually link the child elements using a
 border and label. The \constructor{gframe} constructor produces
 them. In Figure~\ref{fig:gWidgets-sample-layout} the table to select
 the file is nested in a frame to give the user some indication
@@ -591,11 +595,11 @@ vars <- gtable(files, cont=f, expand=TRUE)
 Expandable containers are useful when their child items need not be
 visible all the time. The typical design involves a trigger indicator
 with accompanying label indicating to the user that a click can
-disclose or hide some additional information.~\footnote{How each
+disclose or hide some additional information.\footnote{How each
   toolkit resizes when the widget collapse varies, so using this
   container can cause layout issues if cross-toolkit portability is an
-  issue.}  This class essentially subclasses \code{gframe} where the
-\method{visible\ASSIGN}{gexpandgroup} method is overridden to initiate
+  issue.}  This class overrides the
+\method{visible\ASSIGN}{gexpandgroup} method initiate
 the hiding or showing of its child area, not the entire container.
 
 In addition, a handler can be added that is called whenever the widget
@@ -660,7 +664,7 @@ visible(w) <- TRUE
 
 When adding a child, in addition to being on the left hand side of the
 \code{[\ASSIGN} call, the \code{glayout} container should be specified
-as the widget's parent \code{container}.~\footnote{This is necessary
+as the widget's parent \code{container}.\footnote{This is necessary
   only for the toolkits where a container must be specified, where the
   right hand side is used to pass along the parent information and the
   left hand side is used for the layout.} For convenience, if the
@@ -683,7 +687,7 @@ used with the indices indicating the row and column.  A child may span
 more than one row or column. The corresponding index should be a
 contiguous vector of indices indicating so.  
 
-The \code{[} method may be used to return the children. This methods
+The \code{[} method may be used to return the children. This method
 returns a single item, a list of items or a matrix of items. To return
 the main properties of the widgets in the above example can be done
 through:
@@ -733,7 +737,7 @@ child. This specification only works after the containing window is
 drawn, as the percentage is based on the size of the window.
 
 
-A simplified version of the layout in
+A simplified version of the layout code in
 Figure~\ref{fig:gWidgets-sample-layout} would be
 <<layout_example>>=
 d <- system.file("Examples", "ch-gWidgets", 
@@ -834,9 +838,9 @@ For pages holding more than one widget, a container is used:
 hg <- glayout(cont=nb, horizontal=FALSE, label="Help")
 hg[1,1] <- gimage("help", dir="stock", cont=hg)
 hg[1,2] <- glabel(paste("To add a page:",
-             "Click on a file in the left pane, and its contents",
-             "are displayed in a notebook page.", sep="\n"), 
-             cont=hg)
+           "Click on a file in the left pane, and its contents",
+           "are displayed in a notebook page.", sep="\n"), 
+           cont=hg)
 @ 
 
 

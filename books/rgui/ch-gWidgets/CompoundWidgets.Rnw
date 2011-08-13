@@ -104,13 +104,13 @@ The underlying toolkits may pass in more information about the event,
 such as whether a modifier key was being pressed, but this isn't
 toolkit independent.
 
-\paragraph{Using tkrplot} The \pkg{tkrplot} provides a means to embed
+\paragraph{Using \code{tkrplot}} The \pkg{tkrplot} provides a means to embed
 graphics in \code{Tk} GUIs, but is not a graphics device. As such,
 there is no \code{ggraphics} implementation in
 \pkg{gWidgetstcltk}. You can embed \code{tkrplot} though. The
 following is a simple modification of the example from the help page for \code{tkrplot}:
 
-<<tkrplot>>=
+<<tkrplot, results=hide>>=
 options(guiToolkit="tcltk"); require(tkrplot)
 w <- gwindow("How to embed tkrplot", visible=FALSE)
 g <- ggroup(cont=w, horizontal=FALSE)
@@ -151,7 +151,7 @@ The \constructor{gdf} constructor returns a widget for editing data
 frames. The intent is for each toolkit to produce a widget at least as
 powerful as the \function{data.entry} function. The implementations
 differ between toolkits, with some offering much more. We describe
-what is in common below.~\footnote{ For \pkg{gWidgetstcltk}, there is
+what is in common below.\footnote{ For \pkg{gWidgetstcltk}, there is
   no native widget for editing tabular data, so the \code{tktable}
   add-on widget is used (\url{tktable.sourceforge.net}). A warning
   will be issued if this is not installed. Again, as with
@@ -230,8 +230,8 @@ environment. This workspace browser uses a tree widget to display the
 items and their named components.
 
 The \code{svalue} method returns the name of the currently selected value
-using \code{\$} to refer to child elements.  One can call
-\code{svalue} on this string to get the \R\/ object.
+using the \code{\$}-notation to refer to child elements.  One can call
+\code{svalue} on this string to get the corresponding \R\/ object.
 
 The default \argument{handler}{gvarbrowser} object calls
 \code{do.call} on the object for the function specified by name
@@ -244,7 +244,7 @@ other handler functions if desired.
 The \method{update}{gvarbrowser} method will update the list of items
 being displayed.  This can be time consuming. Some heuristics
 are employed to do this automatically, if the size of the workspace is
-modest enough. Otherwise it can be done by programmatically.
+modest enough. Otherwise it can be done programmatically.
 
 \begin{example}{Using drag and drop with \pkg{gWidgets}}{ex-gWidgets-drag-and-drop}
   \SweaveInput{ex-gWidgets-gvarbrowser-dnd}
@@ -298,8 +298,9 @@ methods return the command history.
 \label{sec:gWidgets-designing-forms}
 
 The \pkg{gWidgets} package has two means to simplify the creation of
-GUIs.~\footnote{The \pkg{traitr} package provides another, but is not
-  discussed here. The \pkg{fgui} package can do such a thing for
+GUIs.\footnote{The \pkg{traitr} package provides another, but is not
+  discussed here. There are similar facilities in \pkg{RGtk2Extras} for
+  \pkg{RGtk2} and the \pkg{fgui} package can do such a thing for
   \pkg{tcltk}.}  The \code{gformlayout} constructor takes a list
 defining a layout and produces a GUI, the \code{ggenericwidget}
 constructor can take a function name and produce a GUI based on the
