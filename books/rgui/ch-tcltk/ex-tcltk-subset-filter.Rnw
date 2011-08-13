@@ -1,20 +1,20 @@
 %% Make a subset filter for tcltk
 %% Liviu Androvic
 %
-
+%
 This longish example creates a framework for showing a list of similar
 items, whose length is uncertain. There are several uses of such a framework. For example, a GUI
 for formulas might have items given by terms between \code{+} values,
 or a GUI for \pkg{ggplot2} might have items which represent individual
 layers of a plot. Here we use the framework to create a dialog for the
 \argument{subset}{subset} argument of the \function{subset}
-function.~\footnote{The author's would like to thank Liviu Andronic
+function.\footnote{The author's would like to thank Liviu Andronic for
   ideas related to this example.} That argument
 combines an arbitrary number of statements that produce logical values
 to produce a logical index for a data frame. For our framework, each
 item will produce one of these logical statements, and our list will
 hold the items.
-
+%
 \begin{figure}
   \centering
   \includegraphics[width=.8\textwidth]{fig-tcltk-subset-filter.png}
@@ -35,7 +35,8 @@ library(tcltk)
 %% Filter list reason
 %% properties
 <<FilterList>>=
-setOldClass(c("tkwin","tclVar"))
+setOldClass("tkwin")
+setOldClass("tclVar")
 FilterList <- setRefClass("FilterList",
                           fields=list(
                             df="data.frame",
@@ -59,7 +60,7 @@ the data frame.
 
 First, we define a method to setup our GUI. The \meth{initialize}
 method will be passed a parent container. Here we pack in a frame
-(\code{enc\_frame}) to hold the pieces of our GUI.~\footnote{This
+(\code{enc\_frame}) to hold the pieces of our GUI.\footnote{This
   means that \function{tkpack} needs to be used to manage any other
   children of this parent.  An alternative would be to pass back the
   enclosing frame object so that it can be managed as the user wants.}
@@ -229,7 +230,7 @@ FilterList$methods(
                return()
              }
              ## coerce to character
-             m <- fl$df[ind,]
+             m <- df[ind,]
              for(i in seq_along(m)) m[,i] <- as.character(m[,i])
              ##
              w <- tktoplevel()
@@ -308,7 +309,7 @@ The filter item interface is not complicated. The most important method
 is \code{get\_value} to return a logical variable. This was called by
 the filter list's similarly named \code{get\_value} method. As well,
 we call the item's \meth{make\_gui} method in the filter list. The
-last method is simply a \code{remove} method which calls back up into
+last method is simply a \code{remove} method which calls back up into the
 \meth{remove} method of the item's parent filter list.
 
 %% THe main interface for a filter item is defined below. The
@@ -402,7 +403,7 @@ involved. Our \code{get\_value} method is basically \code{x \%in\%
   cur\_vals}, where \code{cur\_vals} is a selection from all possible
 values.  We might want to use a group of checkboxes here, but that can
 get unwieldy when there are more than a handful of
-choices.~\footnote{A table of checkboxes might also be used, but this
+choices.\footnote{A table of checkboxes might also be used, but this
   isn't directly supported by the treeview widget of
   \pkg{tcltk}. Although, for the intrepid, one could set the image
   attribute for each row to show a check or non-check depending on the
@@ -454,6 +455,20 @@ sel_by_name <- function(tr, nms) {
          function(i) tcl(tr, "selection", "remove", i))
 }
 @ 
+%%
+
+Here is our previously mentioned convenience method to make the button
+size uniform by ``ellipsizing'' the button's label.
+<<FilterItemShortenPoss>>=
+FilterItemCharacter$methods(ellipsize = function() {
+            tmp <- paste(cur_vals, collapse=", ")
+            if((N <- nchar(tmp)) > 50)
+              tmp <- sprintf("%s...%s", substr(tmp, 0, 15),
+                             substr(tmp, N-12,N))
+            sprintf("%50s", tmp)
+          })
+@ 
+%
 
 This is the main dialog to select values. Here multiple selection is
 achieved by extending the selection through holding the \kbd{shift}
@@ -466,7 +481,7 @@ FilterItemCharacter$methods(
             f <- ttkframe(w, padding=c(3,3,12,12))
             tkpack(f, expand=TRUE, fill="both")
             tkpack(ttklabel(f, 
-              text="Select your values by extending selection"))
+              text="Select values by extending selection"))
             ## selection
             m <- matrix(poss_vals); colnames(m) = "Values"
             a <- populate_rectangular_treeview(f, m)
@@ -499,18 +514,6 @@ FilterItemCharacter$methods(
           })
 @ 
 
-Here is our previously mentioned convenience method to make the button
-size uniform by ``ellipsizing'' the button's label.
-<<FilterItemShortenPoss>>=
-FilterItem$methods(ellipsize = function() {
-            tmp <- paste(cur_vals, collapse=", ")
-            if((N <- nchar(tmp)) > 50)
-              tmp <- sprintf("%s...%s", substr(tmp, 0, 15),
-                             substr(tmp, N-12,N))
-            sprintf("%50s", tmp)
-          })
-@ 
-%
 
 Our main GUI for a character or factor item then has three widgets:
 labels for the name and \code{\%in\%} operator and a button.
@@ -525,7 +528,7 @@ FilterItemCharacter$methods(make_gui = function(parent) {
             inLab <- ttklabel(parent, text="%in%")
             ##
             btn <<- ttkbutton(parent, text=ellipsize(), 
-                              command=.self$select_values_dialog)
+                       command=.self$select_values_dialog)
             ##
             sapply(list(lab, inLab), tkpack,
                    side="left", padx=5)
@@ -601,3 +604,9 @@ toggle_sel <- function(tr) {
 We leave it as an exercise for the reader to add a subclass for
 logical variables or date variables.
 
+<<echo=FALSE, eval=FALSE>>=
+## Call when all is said and done
+w <- tktoplevel()
+require(MASS)
+flist <- FilterList$new(df=Cars93, parent=w)
+@ 

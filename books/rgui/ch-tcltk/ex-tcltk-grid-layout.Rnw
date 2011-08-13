@@ -1,6 +1,8 @@
 This example shows how to create a simple calendar using a grid
-layout. (No such widget is standard with \pkg{tcltk}.) The following
-relies on some date functions in the \pkg{ProgGUIInR} package.
+layout. (No such widget is standard with \pkg{tcltk}.) We use some
+data functions for the \pkg{ProgGUIinR} package. The actual use of
+\function{tkgrid} is straightforward once the approporiate row and
+column is figured out.
 
 <<echo=FALSE>>=
 library(tcltk)
@@ -56,9 +58,7 @@ makeMonth <- function(w, year, month) {
            l <- ttklabel(w, text=day)
            row <- ProgGUIinR:::week.of.month(year, month, day)
            col <- ProgGUIinR:::day.of.week(year, month, day)
-           tkgrid(l, row=1 + row,
-                  column=col, 
-                  sticky="e")
+           tkgrid(l, row=1 + row, column=col, sticky="e")
          })
 }
 @ 
@@ -83,7 +83,7 @@ tkpack(calframe, expand=TRUE, anchor="n")
 
 Our step through controls are packed in through a horizontal
 layout. We use anchoring and \code{expand=TRUE} to keep the arrows on the edge and the
-label with the current month centered.
+label with the current month centered, should the container be resized.
 <<>>=
 prevb <- ttklabel(cframe, text="<")
 nextb <- ttklabel(cframe, text=">")

@@ -18,7 +18,7 @@ Section~\ref{sec:tcltk:menus}.)
 Other properties can be queried and set through the \TK\/ command
 \function{wm}. This command has several subcommands, leading to
 \pkg{tcltk} functions with names such as \function{tkwm.title}, the
-function used to set the window title. As with all such functions,
+function used to set the window title. For all such functions,
 either the top-level window object, or its ID must be the first
 argument. In this case, the new title is the second.
 
@@ -96,7 +96,7 @@ window managers respect this.
 Bindings for top-level windows are propagated down to all of their
 child widgets. If a common binding is desired for all the children,
 then it need only be specified once for the top-level window
-(cf. Section~\ref{sec:tcltk:events} where keyboard accelerators are
+(cf. Section~\ref{sec:tcltk:events} where keyboard shortcuts are
 defined this way).
 
 
@@ -212,8 +212,9 @@ newWindow <- function(title, command, parent,
 \section{Frames}
 \label{sec:tcltk:frames}
 
-The \function{ttkframe} constructor produces a themeable container
-that can be used to organize visible components within a GUI. It is
+The \function{ttkframe} constructor produces a themeable containerX
+that can be used to organize visible components within a GUI. As
+mentioned, for theme reasons, It is
 often the first thing packed within a top-level window. 
 
 The options include \option{width}{ttkframe} and
@@ -261,7 +262,7 @@ the text that use nested boxes to construct quite flexible layouts.
 Example~\ref{ex-tcltk-non-modal-dialog} will illustrate that once
 again. When simultaneous horizontal and vertical alignment of child
 components is desired, the \function{tkgrid} function can be used to
-manage the components. ~\footnote{An excellent online reference,
+manage the components.\footnote{An excellent online reference,
   albeit for Perl/Tk, is \textit{Learning Perl/Tk: Graphical User
     Interfaces with Perl} By Nancy Walsh. See
   \url{http://www.rigacci.org/docs/biblio/online/lperltk/ch02.html}
@@ -286,12 +287,14 @@ session.
 We have illustrated how \constructor{tkpack} can be used to manage how
 child components are viewed within their parent. The basic usage
 \code{tkpack(child)} will pack in the child components from top to
-bottom. The \option{side}{tkpack} option can take a value of
-\qcode{left}, \qcode{right}, \qcode{top} (default), or \qcode{bottom}
-to adjust where the children are placed.  Unlike \GTK{} or \Qt,
-where boxes are packed in just one direction, these can be mixed and
-matched, but sticking to just one direction is typical, with nested
-frames to give additional flexibility.
+bottom. There are many options to adjust this default behaviour.
+
+The \option{side}{tkpack} option can take a value of \qcode{left},
+\qcode{right}, \qcode{top} (default), or \qcode{bottom} to adjust
+where the children are placed.  Unlike \GTK{} or \Qt, where boxes are
+packed in just one direction, these can be mixed and matched, but
+sticking to just one direction is typical, with nested frames to give
+additional flexibility.
 
 \paragraph{after, before}
 The \option{after}{tkpack} and \option{before}{tkpack} options can be
@@ -510,8 +513,8 @@ direction, the latter in both.
    space in different manners.}
  \label{fig:tcltk-expand-fill-arguments}
 \end{figure}
-
-
+%%
+%%
 Figure~\ref{fig:tcltk-expand-fill-arguments} shows examples of
 different values for \qcode{fill} when \code{expand=TRUE} is
 specified. Following an example of Walsh\footcite{Walsh} we used the following code to create the
@@ -523,7 +526,7 @@ f <- ttkframe(w, padding=c(3,3,12,12))
 tkpack(f, expand=TRUE, fill="both")
 ##
 packButton <- function(txt, ...) 
-  tkpack(b <- ttkbutton(f, text=txt))
+  tkpack(b <- ttkbutton(f, text=txt), ...)
 ##
 packButton("Top",    side="top",    expand=TRUE, fill="both") 
 packButton("Bottom", side="bottom", expand=TRUE, fill="both") 

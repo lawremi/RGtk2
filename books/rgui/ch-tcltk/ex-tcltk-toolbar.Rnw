@@ -3,17 +3,14 @@
 ## tbFrame and Frame are key containers
 library(tcltk)
 @ 
-
+%
 \begin{figure}
   \centering
   \includegraphics[width=.6\textwidth]{fig-tcltk-toolbar.png}
   \caption{Illustration of using \code{tkpack} and \code{tkgrid} to make a toolbar. }
   \label{fig:fig-tcltk-toolbar}
 \end{figure}
-
-
-
-
+%%
 \TK\/ does not have a toolbar widget. Here we use \function{tkgrid} to
 show how we can add one to a top-level window in a manner that is not
 affected by resizing. We begin by packing a frame into a
@@ -77,10 +74,9 @@ To illustrate, we pack in some icons. Here we use \function{tkpack}.
 One does not use \function{tkpack} and \function{tkgrid} to manage
 children of the same parent, but these are children of \code{tbFrame},
 not \code{f}.
-<<>>=
-tkpack(makeIcon(tbFrame, "ok"), side="left")
-tkpack(makeIcon(tbFrame, "quit"), side="left")
-tkpack(makeIcon(tbFrame, "cancel"), side="left")
+<<addButtons, results=hide>>=
+sapply(c("ok", "quit", "cancel"), function(i)
+       tkpack(makeIcon(tbFrame, i), side="left"))
 @ 
 
 These two bindings change the state of the buttons as the mouse hovers
@@ -95,7 +91,7 @@ tkbind("TButton", "<Leave>", function(W) setState(W, "!active"))
 If one wished to restrict the above to just the toolbar buttons, one
 could check for the style of the button, as with:
 
-<<checkStyle>>=
+<<checkStyle, results=hide>>=
 function(W) {
   if(as.character(tkcget(W, "-style")) == "Toolbar.TButton")
     cat("... do something for toolbar buttons ...")

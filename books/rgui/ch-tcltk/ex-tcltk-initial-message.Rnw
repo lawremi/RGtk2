@@ -96,7 +96,7 @@ Finally, our initialization method follows.
 <<>>=
 TtkEntry$methods(
          initialize=function(parent, text, init_msg="") {
-           v <<-tclVar()
+           v <<- tclVar()
            e <<- ttkentry(parent, textvariable=v)
            init_msg <<- init_msg
            ##

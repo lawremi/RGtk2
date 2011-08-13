@@ -46,7 +46,6 @@ We will use a data store to hold the values to be passed to
 \code{t.test}. For the data store, we  use an environment to hold \Tcl\/ variables.
 
 <<dataModel>>=
-### Data model
 e <- new.env()
 e$x <- tclVar(""); e$f <- tclVar(""); e$data <- tclVar("")
 e$mu <- tclVar(0); e$alternative <- tclVar("two.sided")
@@ -183,7 +182,7 @@ sapply(c("two.sided","less","greater"), function(i) {
 tkgrid(rbFrame, row=3, column=1, sticky="ew", padx=2)
 @ 
 
-Here we use two widgets to specify the confidence level. The slider
+Here we use a range widget to specify the confidence level. The slider
 is quicker to use, but less precise than the spinbox. By sharing a
 text variable, the widgets are automatically synchronized.
 <<>>=
@@ -209,7 +208,7 @@ tkgrid(veCheck, row=4, column=1, stick="w", padx=2)
 @ 
 
 
-The dialog has standard cancel and ok buttons.
+The dialog has standard "cancel" and "ok" buttons.
 <<results=hide>>=
 bf <- ttkframe(f)
 cancel <- ttkbutton(bf, text="cancel")

@@ -54,11 +54,11 @@ tkpack(ttklabel(f, text=message), pady=5)
 @ 
 
 There a different ways to use \code{tkwait}. The function
-\function{tkwait.window} will make a toplevel window modal waiting until it is
-destroyed. In the following we use \function{tkwait.variable}, which
-waits for a change to variable, in this case \code{flag} defined
-next. In the button's command we release the window then change this
-value, ending the wait.
+\function{tkwait.window} will make a toplevel window modal waiting
+until it is destroyed. In the following we use
+\function{tkwait.variable}, which waits for a change to a variable, in
+this case \code{flag}.  In the button's command we release the window
+then change this value, ending the wait.
 <<waitVariable>>=
 flag <- tclVar("")
 tkpack(ttkbutton(f, text="dismiss", command=function() {
@@ -111,7 +111,7 @@ tkgetOpenFile(filetypes = paste(
 Extending this is hopefully clear from the pattern above.
 
 \begin{example}{A ``File'' menu}{ex-tcltk-file-menu}
-  To illustrate, a simple example for a file menu (Section~\ref{sec:tcltk:menus}) could be:
+  To illustrate, a simple example for a file menu (Section~\ref{sec:tcltk:menus}) could include:
 <<>>=  
 w <- tktoplevel(); tkwm.title(w, "File menu example")
 mb <- tkmenu(w); tkconfigure(w, menu=mb)

@@ -1,4 +1,4 @@
-This relatively involved example~\footnote{The idea for the example
+This relatively involved example\footnote{The idea for the example
   code originated with \url{http://wiki.tcl.tk/416}} shows several
 different uses of the event framework to implement drag and drop
 behavior between two widgets. It certainly may be skipped on first reading.

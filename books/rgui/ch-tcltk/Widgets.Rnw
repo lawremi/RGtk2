@@ -2,7 +2,7 @@
 This chapter covers both the standard dialogs provided by \TK\/ and
 the various controls used to create custom dialogs. We begin with a
 discussion of these standard dialogs, then cover the basic controls
-before finishing up with the more involved \constructor{tktext},
+in this chapter, leaving the next chapter for the more involved \constructor{tktext},
 \constructor{ttktreeview}, and \constructor{tkcanvas} widgets.
 
 %% Rewrite
@@ -43,9 +43,9 @@ As \code{tclvalue} coerces the logical into the  character string  \qcode{0} or 
 \begin{figure}
   \centering
   \includegraphics[width=.75\textwidth]{fig-tcltk-t-test.png}
-  \caption{A dialog to collect values for a $t$ test described in
-    Example~\ref{ex-tcltk-t-test} showing several of the selection
-    widgets discussed in the section: a check button, radio button,
+  \caption{A dialog to collect values for a $t$-test (cf.
+    Example~\ref{ex-tcltk-t-test}) showing several of the selection
+    widgets discussed in the section: a checkbutton, radio button,
     combo boxes, a scale widget and a spinbox.}
   \label{fig:fig-tcltk-t-test}
 \end{figure}
@@ -53,8 +53,8 @@ As \code{tclvalue} coerces the logical into the  character string  \qcode{0} or 
 \subsection{Checkbutton}
 \label{sec:tcltk:checkboxes}
 
-The \constructor{ttkcheckbutton} constructor returns a check button
-object. The checkbuttons value (\code{TRUE} or \code{FALSE}) is linked
+The \constructor{ttkcheckbutton} constructor returns a checkbutton
+object. The checkbutton's value (\code{TRUE} or \code{FALSE}) is linked
 to a \TCL\/ variable which can be specified using a logical value.
 The checkbutton label can also be specified through a \TCL\/ variable
 using the \option{textvariable}{ttkcheckbutton} option.  Alternately,
@@ -88,6 +88,20 @@ cb <- ttkcheckbutton(f, variable=value,
 tkpack(cb)
 @ 
 
+
+\paragraph{A toggle button}
+
+By default the widget draws with a check box. Optionally the widget
+can be drawn as a button, which when depressed indicates a \code{TRUE}
+state. This is done by using the style \code{Toolbutton}, as in:
+<<>>=
+tkconfigure(cb, style="Toolbutton")
+@ 
+
+The ``Toolbutton'' style in general is for placing widgets into toolbars.
+
+
+\paragraph{Avoiding global variables}
 To avoid using a global variable is not trivial here. There is no easy
 way to pass user data through to the callback, and there is no easy
 way to get the \R\/ object from the values passed through the \%
@@ -115,7 +129,7 @@ getTclVarById <- function(id) {
 @ 
 
 Assuming we used \function{ourTclVar} above, then the callback above
-could be defined to avoid a global variable by:
+could be defined to avoid a (new) global variable by:
 
 <<ourTclVarExample, echo=FALSE>>=
 w <- tktoplevel(); tkwm.title(w, "Check button example")
@@ -141,17 +155,6 @@ In Section~\ref{sec:tcltk:scale-widgets} we demonstrate how to encapsulate the w
 variable in a reference class so that one need not worry about scoping
 rules to reference the variable. 
 
-
-\paragraph{A toggle button}
-
-By default the widget draws with a check box. Optionally the widget
-can be drawn as a button, which when depressed indicates a \code{TRUE}
-state. This is done by using the style \code{Toolbutton}, as in:
-<<>>=
-tkconfigure(cb, style="Toolbutton")
-@ 
-
-The ``Toolbutton'' style in general is for placing widgets into toolbars.
 
 \subsection{Radio buttons}
 \label{sec:tcltk:radio-buttons}
@@ -243,12 +246,13 @@ tkinsert(e, "end", "new text")
 @ 
 
 Or, we can delete a range of text, in this case the first 4
-characters, using \subcommand{delete}{ttkentry}. The first value is
-the left most index to delete (0-based), the second value the index to
-the right of the last value deleted.
+characters, using \subcommand{delete}{ttkentry}:
 <<>>=
 tkdelete(e, 0, 4)
 @ 
+%
+The first value is the left most index to delete (0-based), the second
+value the index to the right of the last value deleted.
 
 The \subcommand{icursor}{ttkentry} command can be used to set the
 cursor position to the specified index.
@@ -419,7 +423,7 @@ tkbind(cb, "<Return>", function(W) {
 \end{figure}
 
 The \constructor{ttkscale} constructor to produce a themeable scale
-(slider) control is missing~\footnote{As of the version of \pkg{tcltk}
+(slider) control is missing\footnote{As of the version of \pkg{tcltk}
   accompanying \R{} 2.13.1}. You can define your own simply enough:
 <<ttkscale>>=
 ttkscale <- function(parent, ...) 
@@ -526,7 +530,7 @@ writing, the Window libraries accompanying \R{} are 8.5.8, so we will
 assume there is no themeable spinbox widget. In \TK\/ the
 \code{spinbox} command produces a non-themeable spinbox. Again, there
 is no direct \constructor{tkspinbox} constructor, but one can be
-defined with:~\footnote{One could compare the result of
+defined with:\footnote{One could compare the result of
   \code{tcl("info", "patchlevel")} to 8.5.9 and use
   \qcode{ttk::spinbox} if the libraries support it.}
 <<tkspinbox>>=
@@ -545,8 +549,6 @@ states of the U.S.
 
 <<>>=
 w <- tktoplevel()
-@ 
-<<>>=
 sp <- tkspinbox(w, values=state.name, wrap=TRUE)
 @ 
 
@@ -555,7 +557,7 @@ Whereas, this invocation will allow scrolling through a numeric sequence:
 sp1 <- tkspinbox(w, from=1, to=10, increment=1)
 @ 
 
-<<>>=
+<<echo=FALSE>>=
 tkpack(sp)
 tkpack(sp1)
 @ 

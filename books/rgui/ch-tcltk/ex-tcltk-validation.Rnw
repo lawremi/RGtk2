@@ -1,3 +1,4 @@
+\iprogram{validation}
 As previously mentioned, there is no native calendar widget in
 \pkg{tcltk}. This example shows how one can use the validation
 framework for entry widgets to check that user-entered dates conform
@@ -131,7 +132,7 @@ widget receives the focus; \qcode{focusout} for when it loses focus;
 \qcode{focus} for both of the previous; and \qcode{all} for any of the
 previous. We use \qcode{focusout} below, so also give a button widget
 so that the focus can be set elsewhere. 
-<<entryWidgetWithValidation>>=
+<<entryWidgetWithValidation, results=hide>>=
 e <- ttkentry(f, validate="focusout", # f some parent
               validatecommand=isValidDate,
               invalidcommand=indicateInvalidDate)

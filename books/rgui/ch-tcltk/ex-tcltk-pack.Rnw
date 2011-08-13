@@ -3,14 +3,14 @@ library(tcltk)
 ## pack examples
 ## how to pack in buttons
 @ 
-
+%%
 <<echo=FALSE>>=
 w <- tktoplevel()
 tkwm.title(w, "Examples using pack as a geometry manager")
 f <- ttkframe(w, padding=c(3,3,12,12))
 tkpack(f, expand=TRUE, fill="both")
 @ 
-
+%%
 This example shows how one can pack in action buttons, such as when a
 dialog is created.
 
@@ -38,7 +38,7 @@ sapply(l(f1), tkpack, side="left")
 
 Typically the buttons are right justified. One way to do this is to
 pack in using \code{side} with a value of \qcode{right}. This shows
-how to use a blank expanding label to take up the space on the left.
+how to use a blank expanding label to take up the space on the left.\ilayout{spring}
 <<moveRight, results=hide>>=
 f2 <- ttklabelframe(f, text="push to right")
 tkpack(f2, expand=TRUE, fill="x")

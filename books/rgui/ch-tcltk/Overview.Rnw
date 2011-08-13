@@ -12,7 +12,7 @@ middleware, but also as a standalone development tool.
 
 \TK{} is an extension of \TCL\/ that provides GUI components through \TCL.
 This was first developed in 1990, again by John Ousterhout. \TK\/
-quickly found widespread usage, as it made programming GUIs for X11
+quickly found widespread usage, as, at the time, it made programming GUIs for X11
 easier and faster. Over the years, other graphical toolkits have
 evolved and surpassed this one, but \TK\/ still has numerous users.
 
@@ -32,31 +32,31 @@ functions to construct a similar widget. For example,
 \function{tklabel} or \function{ttklabel}. The latter, with the
 \code{ttk} prefix, corresponds to the newer themed variant of the
 widget. We assume the \TK\/ version is 8.5 or higher, as this was a
-major step forward.~\footnote{In fact, we assume version 8.5.8 which
+major step forward.\footnote{In fact, we assume version 8.5.8 which
   was the release accompanying \R{} for Windows version 2.13.1.}
 
 Despite its limitations as a graphical toolkit, as compared to \GTK\/
 or \Qt, the \TK\/ libraries are widely used for \R\/ GUIs, as for most
 users there are no installation issues. \R\/ for Windows has been
 bundled with the necessary \TK\/ version for years, so there are no
-installation issues for that platform. For linux users, it is
+installation issues for that platform. For Linux users, it is
 typically trivial to install the newer libraries and for Mac OS X
 users, the provided binary installations include the newer \TK\/
 libraries.
 
 %% Documentation sources
-\Tk{} has a well documented API~\footcite{TclTk:Api}
+\Tk{} has a well documented API\footcite{TclTk:Api}
 (\url{www.tcl.tk/man/tcl8.5}).  There are also several books to
 supplement. We consulted the one by Welch, Jones and
-Hobbs~\footcite{beedub} often in the development of this
-material. The online sample chapter on Geometry Management
-of~\footcite{Walsh} was perused, as it provides a thorough discussion
+Hobbs\footcite{beedub} often in the development of this
+material. The online sample chapter on geometry management
+of Walsh\footcite{Walsh} was perused, as it provides a thorough discussion
 of that topic. In addition, the Tk Tutorial of Mark
-Roseman~\footcite{TclTk:Tutorial} (\url{www.tkdocs.com/tutorial})
+Roseman\footcite{TclTk:Tutorial} (\url{www.tkdocs.com/tutorial})
 provides much detail. \R{} specific documentation include two
 excellent R News articles and a proceedings
-paper~\footcite{Rnews:Dalgaard:2001a},~\footcite{Rnews:Dalgaard:2002}
-and \footcite{Dalgaard-DSC} by Peter Dalgaard, the package author. A
+paper\footcite{Rnews:Dalgaard:2001a}\footcite{Rnews:Dalgaard:2002}\footcite{Dalgaard-DSC}
+by Peter Dalgaard, the package author. A
 set of examples due to James Wettenhall~\footcite{Wettenhall} are also
 quite instructive. A main use of \pkg{tcltk} is within the \pkg{Rcmdr}
 framework. Writing extensions for that is well documented in an R News
@@ -84,31 +84,35 @@ more detail on the various widgets provided by \Tk.
 
 <<simpleExample>>=
 library(tcltk)
-#
+##
 w <- tktoplevel()
 tkwm.title(w, "Simple dialog")
-#
+##
 f <- ttkframe(w, padding=c(3,3,12,12))
 tkpack(f, expand=TRUE, fill="both")
-#
+##
 g <- ttkframe(f); tkpack(g)
-#
+##
 l <- ttklabel(g, text="Enter your name:")
 tkpack(l, side="left")
-#
+##
 txtVar <- tclVar("")
 txt <- ttkentry(g, textvariable=txtVar)
 tkpack(txt)
-#
+##
 g1 <- ttkframe(f); tkpack(g1, anchor="ne")
 btn <- ttkbutton(g1, text="Click")
 tkpack(btn, side="right")
-#
+##
 msg <- sprintf("Hello %s", tclvalue(txtVar))
 handler <- function() print(msg)
 tkconfigure(btn, command=handler)
 @ 
-
+%%
+In the above, the first block defines a top-level window and the
+second an underlying frame container. We then define and place three
+widgets -- a label, entry widget and button -- into a frame. Finally,
+we add a callback to respond when the button is clicked.
 
 
 \section{Interacting with \TCL}
@@ -116,14 +120,14 @@ tkconfigure(btn, command=handler)
 
 As the example above makes clear, using \pkg{tcltk} does not
 necessarily require knowing anything about the underlying \Tk{} or
-\Tcl{} working, though it can be useful to have a rough sense of these
+\Tcl{} workings, though it can be useful to have a rough sense of these
 technologies and how \pkg{tcltk} interfaces with them. As such, we
 give a quick overview.
 
 
 %% Tclk
-Although both are scripting languages, the basic syntax of \TCL\/ is a
-bit unlike \R. For example a simple string assignment would be made at
+Although both are scripting languages, the basic syntax of \TCL\/ is
+unlike \R. For example a simple string assignment would be made at
 tclsh, the \TCL\/ shell with (using \code{\%} as a prompt):
 \begin{verbatim}
 % set x {hello world}
@@ -182,7 +186,7 @@ of class \dfn{\class{tclObj}} (cf. \code{?.Tcl}).  The \function{.Tcl}
 function can be used to read in \TCL\/ scripts as with
 \code{.Tcl("source filename")}. This allows arbitrary \TCL\/ scripts
 to run within an \R\/ session. \TCL\/ packages may be read in with
-\function{tclRequire}.~\footnote{The add-on package \pkg{tcltk2} uses
+\function{tclRequire}.\footnote{The add-on package \pkg{tcltk2} uses
   both techniques to enhance the base \pkg{tcltk} package with some
   open-source \Tk\/ extensions.}
 
@@ -206,7 +210,7 @@ class through \function{as.tclObj}.
 as.logical.tclObj <- function(x, ...) as.logical(as.numeric(x))
 @ 
 
-\paragraph{\pkg{tcltk} convenience functions}
+\paragraph{Convenience functions}
 The \TK\/ extensions to \TCL\/ have a complicated command structure,
 and thankfully, \pkg{tcltk} provides some more conveniently named
 functions. To illustrate, the \TCL\/ command to configure the text property for
@@ -252,8 +256,9 @@ query the configured value; the option with a value, to modify the
 option; and possibly do more than one at at time.  For commands such
 as \code{configure}, there will usually correspond a function in
 \R\/ of the same name with a \code{tk} prefix, as in this case
-\function{tkconfigure}.~\footnote{The package \pkg{tcltk} was written before
-namespaces were implemented in \R, so the ``tk'' prefix serves that role.}
+\function{tkconfigure}.
+% \footnote{The package \pkg{tcltk} was written before
+% namespaces were implemented in \R, so the ``tk'' prefix serves that role.}
 
 To make consulting the \TK\/ manual pages easier in the text we would
 describe the configure subcommand as
@@ -316,16 +321,16 @@ always the case.
 \section{Constructors}
 \label{sec:tcltk:constructors}
 
-In this Chapter, we will stick to a few basic widgets: labels, entry
-widgets, and buttons; to illustrate the basic usage of \pkg{tcltk},
+In this chapter, we will stick to a few basic widgets: labels, entry
+widgets, and buttons; to illustrate the  usage of \pkg{tcltk},
 leaving for later more detail on containers and widgets.
 
 Unlike \GTK, say, the construction of widgets in \pkg{tcltk} is linked
 to the widget hierarchy. \TK\/ widgets are constructed as children of
-a parent container with the parent specified to the constructor. When
+a parent object with the parent specified to the constructor. When
 the \TK\/ shell, wish, is used or the \TK\/ package is loaded through
 the \TCL\/ command \code{package require Tk}, a top level window named
-``\code{.}'' is created. (This is \code{.TkRoot}.) In the variable name \code{.label}, from
+``\code{.}'' is created. (This is \code{.TkRoot} in \R.) In the variable name \code{.label}, from
 above, the dot refers to the top level window.  In \pkg{tcltk} a
 top-level window is created separately through the
 \constructor{tktoplevel} constructor, as was done in the example:
@@ -337,7 +342,7 @@ Top-level windows will be explained in more detail in
 Chapter~\ref{sec:tcltk:basic-containers}. 
 
 Other widget constructors require that a parent widget be
-specified. This is the first argument of the constructor.  A typical
+specified as the first argument of the constructor.  A typical
 invocation was given in the example.
 <<>>=
 l <- ttklabel(g, text="Enter your name:")
@@ -429,7 +434,7 @@ contains an environment that keeps a count of the subwindows, the parent
 window and any callback functions. This helps ensure that any copies
 of the widget refer to the same object~\footcite{Dalgaard-DSC}. As the
 construction of a new widget requires the \code{ID} and environment of
-its parent, the first argument to \function{tkwidget}, \code{parent},
+its parent, the first argument to \function{tkwidget} (and hence any constructor), \code{parent},
 must be a \class{tkwin} object, not simply its character ID, as is
 possible for the \function{tcl} function.
 
@@ -452,7 +457,7 @@ g1 <- ttkframe(f); tkpack(g1, anchor="ne")
 As with \Qt, when a new widget is constructed it is not automatically
 mapped. \TK\/ uses geometry managers to specify how the widget will be
 drawn within the parent container. We will discuss two such geometry
-managers in Chapter~\ref{sec:tcltk:basic-containers} \code{tkpack} and \code{tkgrid}
+managers, \code{tkpack} and \code{tkgrid}, in Chapter~\ref{sec:tcltk:basic-containers}.
 
 The \code{tkpack} command packs the widgets into the parent container
 in a box-like manner. The example shows various arguments that adjust
@@ -466,7 +471,7 @@ when an excess of space is present.
 
 
 %% textvariables
-For the button and label widgets in out example, their \code{text}
+For the button and label widgets in our example, their \code{text}
 property is configured through calls to their constructors. Many
 widgets allow an alternative way to specify one or two important
 properties using an independent \Tcl\/ variable.
@@ -546,7 +551,7 @@ handler <- function() print(msg)
 tkconfigure(btn, command=handler)
 @ 
 
-Button widgets are used to allow direct access to some action, or
+Button widgets are used to initiate  some action, or
 command, and the \code{command} option is used to specify this. This
 may be given as a function or expression, though we only illustrate
 the former. The command is invoked by clicking and releasing the mouse
@@ -604,12 +609,12 @@ tkpack(f, expand=TRUE, fill="both")
 The arguments to \code{tkpack} are given so that the frame, \code{f},
 will expand and fill all the space allocated by the toplevel
 window. As the toplevel window is not a themed widget, not doing this
-can leave odd-looking effects.
+can leave odd-looking effects~\ref{fig:tcltk-compare-themed-non-themed}.
 
 %% Workign with thems
 There is no built in command to return the theme, so we use
-\code{.Tcl} to call the appropriate \TCL\/ command. The \code{names}
-sub command will return the available themes:
+\code{.Tcl} to call the appropriate \code{names}
+sub command:
 
 <<>>=
 .Tcl("ttk::style theme names")
@@ -725,7 +730,7 @@ argument to \function{tkwinfo}. If the subcommand's API is of the form
 \end{quotation}
 the specification to \function{tkwinfo} is in the same order (the
 widget is not the first argument). For instance, the
-class~\footnote{The class of a widget is more like a attribute and should
+class\footnote{The class of a widget is more like a attribute and should
   not be confused with class in the object oriented sense. The class
   is used internally for bindings and styles.} of a label
 is returned by the \texttt{class} subcommand:
@@ -764,6 +769,7 @@ command returns 1 or 0 if the window is currently mapped (drawn); the
 \subcommand{viewable}{tkwinfo} sub command is similar, only it checks
 that all parent windows are also mapped.  
 
+\iprogram{widget hierarchy}
 For traversing the widget hierarchy, one has available the
 \subcommand{parent}{tkwinfo} sub command which returns the immediate
 parent of the component, \subcommand{toplevel}{tkwinfo} which returns
@@ -829,7 +835,7 @@ cat(booktabs(df,
 @ 
 %
 \paragraph{Using \code{tkfont.create}}
-The \index{tkfont!\code{create}}\function{tkfont.create} function can be used to create a new font, as with the following commands:
+The \index{tkfont!\code{create}} \function{tkfont.create} function can be used to create a new font, as with the following commands:
 <<>>=
 tkfont.create("ourFont", family="Helvetica", size=12, 
               weight="bold")
@@ -890,9 +896,9 @@ label. Constructing images to display is similar to constructing new
 fonts, in that a new image object is created and can be reused by
 various widgets. This shared use of resources reduces memory
 consumption, and is an example of the flyweight design pattern.
+\\
 
 Images are created by the \function{tkimage.create} function.
-
 The following command shows how an image object can be made from the
 file \code{tclp.gif} in the current directory:
 
@@ -903,7 +909,7 @@ tkimage.create("photo", "::img::tclLogo", file = "tclp.gif")
 
 The first argument, \qcode{photo} specifies that a full color image is
 being used. (This option could also be \qcode{bitmap} but that is more
-a legacy option.)~\footnote{The \pkg{tkrplot} package allows a third
+a legacy option.)\footnote{The \pkg{tkrplot} package allows a third
   option \code{Rplot}. This package has the high-level command
   \function{tkrplot}, but the low-level use of a) calling
   \code{.my.tkdev(hscale=1,vscale=1)} b) creating a graphic and c) creating an image
@@ -964,9 +970,7 @@ The button widget has the \code{command} option for assigning a
 callback which is invoked (among other ways) when the user clicks the
 mouse on the button. In addition to such commands, one may use
 \function{tkbind} to invoke callbacks in response to many other events
-that the user may initiate.
-
-The basic call is \code{tkbind(tag, event, script)}. 
+that the user may initiate. The basic call is \code{tkbind(tag, event, script)}. 
 
 %% (Unlike \pkg{RGtk2}, that the event triggers a widget to emit a signal that a callback listens for is not needed)
 
@@ -1064,11 +1068,11 @@ More complicated events can be described with the pattern
 Examples of a ``type'' are \code{\Event{KeyPress}} or
 \code{\Event{ButtonPress}}. The event \code{\Event{Control-q}}, used
 above, has the type \code{q} and modifier \code{Control}. Whereas
-\code{\Event{Double-Button-1}} also has the detail \code{1}. The full
-list of modifiers and types are described in the man page for
-\code{bind}. Some familiar modifiers are \code{Control}, \code{Alt},
-\code{Button1} (also \code{B1}), \code{Double} and \code{Triple}. The
-event types are the standard X event types along with some
+\code{\Event{Double-Button-1}} uses the detail \code{1} to indicate
+which mouse button. The full list of modifiers and types are described
+in the man page for \code{bind}. Some familiar modifiers are
+\code{Control}, \code{Alt}, \code{Double} and \code{Triple}. The event
+types are the standard X event types along with some
 abbreviations. These are also listed in the \code{bind} man page. Some
 commonly used ones are \code{Return} (as above), \code{ButtonPress},
 \code{ButtonRelease}, \code{KeyPress}, \code{KeyRelease},
@@ -1081,7 +1085,7 @@ event happens when a component is resized. The \code{\Event{Map}} and
 
 \paragraph{Virtual events}
 Finally, the event may be a ``virtual event.'' These are represented
-with \code{\VirtualEvent{EventName}}. There are predefined virtual
+as \code{\VirtualEvent{EventName}}. There are predefined virtual
 events listed in the \code{event} man page. These include
 \code{\VirtualEvent{MenuSelect}} when working with menus,
 \code{\VirtualEvent{Modified}} for text widgets,
@@ -1129,7 +1133,7 @@ have percent substitutions passed in.
 %% scope of callback?
 The callback's return value is generally not important, although we
 shall see that within the validation framework of entry widgets
-(Section~\ref{sec:tcltk:entry-widgets}) it can matter.~\footnote{The
+(Section~\ref{sec:tcltk:entry-widgets}) it can matter.\footnote{The
   difference in processing of return values can make porting some
   \Tk\/ code to \pkg{tcltk} difficult. For example, the \code{break}
   command to stop a chain of call backs does not work.}
@@ -1142,7 +1146,7 @@ event through the call
 widget associated with classes or toplevel windows can differ.)
 Calling \code{tkbind} another time will replace the callback. To
 remove a callback, simply assign a new callback which does
-nothing.~\footnote{This event handling can prevent one being able to port
+nothing.\footnote{This event handling can prevent one being able to port
   some \Tk\/ code into \pkg{tcltk}. In those cases, one may consider
   sourcing in \Tcl\/ code directly.}
 

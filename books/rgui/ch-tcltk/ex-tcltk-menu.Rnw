@@ -39,7 +39,9 @@ a text-entry widget. \iprogram{evaluate strings}We use the \pkg{svMisc} package,
 few GUI helpers which we use.
 <<>>=
 library(svMisc)                         # for some helpers
-showCmd <- function(cmd) writeLine(captureAll(Parse(cmd)))
+showCmd <- function(cmd) {
+  writeLines(captureAll(parseText(cmd)))
+}
 @ 
 
 We begin with a simple GUI comprised of a top-level window containing
@@ -55,7 +57,7 @@ addScrollbars(f, tb)
 %
 
 Using \function{tkmenu}, we create a toplevel menubar, \code{mb}, and
-attach it to our toplevel window. Following we makefile and edit submenus.
+attach it to our toplevel window. Following that, we make ``file'' and ``edit'' submenus.
 <<>>=
 mb <- tkmenu(w); tkconfigure(w, menu=mb)
 fileMenu <- tkmenu(mb)
@@ -98,67 +100,55 @@ The edit menu has an undo and redo item. For illustration purposes we add an ico
 img <- system.file("images","up.gif", package="gWidgets")
 tkimage.create("photo", "::img::undo", file=img)
 tkadd(editMenu, "command", label="Undo",
-      image="::img::undo", compound="left",
+      image="::img::undo", compound="left", state="disabled",
       command = function() tcl(tb, "edit", "undo"))
-tkadd(editMenu, "command", label="Redo",
+tkadd(editMenu, "command", label="Redo", state="disabled",
       command = function() tcl(tb, "edit", "redo"))
 @ 
 
-We now define a function to update the user interface to reflect any changes.
-<<updateUI>>=
-updateUI <- function() {
-  states <- c("disabled","normal")
-  ## selection
+For updating the GUI, we want to configure the menu items to reflect
+if the current buffer has a selection or can undo or redo. To check
+the selection we have:
+<<>>=
+tkbind(tb, "<<Selection>>", function(W) {
   hasSelection <- function(W) {
     ranges <- tclvalue(tcl(W, "tag", "ranges", "sel"))
     length(ranges) > 1 || ranges != ""
   }
-  ## by index  
-  tkentryconfigure(fileMenu, 1,  
-                   state=states[hasSelection(tb) + 1]) 
-  ## undo -- if buffer modified, assume undo stack possible
-  ## redo -- no good check for redo
-  canUndo <- function(W) as.logical(tcl(W,"edit", "modified"))
-  tkentryconfigure(editMenu,"Undo",     # by pattern
-                   state=states[canUndo(tb) + 1])
-  tkentryconfigure(editMenu,"Redo", 
-                   state=states[canUndo(tb) + 1])
-}
+  ## configure using an index
+  sel_state <- ifelse(hasSelection(W), "normal", "disabled")
+  tkentryconfigure(fileMenu, 1, state=sel_state)
+})
 @ 
-<<notShown, echo=FALSE>>=
-## We update the UI during idle times. The \function{after} command can be used to run a 
-## command after a period of time. The following repeats a function every second until the
-## toplevel window no longer exists.
-afterID <- ""
-repeatCall <- function(ms=1000, f, w) {
-  afterID <<- tcl("after", ms, function() {
-    if(as.logical(tkwinfo("exists", w))) {
-      f()
-      afterID <<- repeatCall(ms, f, w)
-    } else {
-      tcl("after", "cancel", afterID)
-    }
-  })
-}
-repeatCall(100, updateUI, w)
+%%
+To check for do and undo, we bind to the \code{Modified} virtual event.
+<<>>=
+tkbind(tb, "<<Modified>>", function(W) {
+  ## not really can_undo/can_redo but nothing suitable
+  can_undo <- as.logical(tcl(W,"edit", "modified"))
+  undo_state <- ifelse(can_undo, "normal", "disabled")
+  sapply(c("Undo", "Redo"), function(i)        # match pattern
+         tkentryconfigure(editMenu, i, state=undo_state)) 
+})
 @ 
 
-We addd an accelerator entry to the menubar and a binding to the
+
+We add a shortcut entry to the menubar and a binding to the
 top-level window for the keyboard shortcut for ``undo.''
 <<addKeyboardShortcut>>=
 if(usingMac()) {
   tkentryconfigure(editMenu, "Undo", accelerator="Cmd-z")
-  tkbind(w,"<Option-z>", function() tcl(tb,"edit","undo"))
+  tkbind(w, "<Option-z>", function() tcl(tb, "edit", "undo"))
 } else {
   tkentryconfigure(editMenu, "Undo", accelerator="Control-u")
-  tkbind(w,"<Control-u>", function() tcl(tb,"edit","undo"))
+  tkbind(w, "<Control-u>", function() tcl(tb, "edit", "undo"))
 }
 @ 
 %
 
 To illustrate popup menus, we define one within our text widget that
 will grab all functions that complete the current word, using the
-\function{CompletePlus} function from the \pkg{svMisc} package to
+\function{completion} function from the \pkg{svMisc} package to
 provide the completions.  The use of \code{current wordstart} and
 \code{current wordend}, below, to find the word at the insertion point
 isn't quite right for \R, as it stops at periods, but we don't pursue
@@ -169,7 +159,7 @@ doPopup <- function(W, X, Y) {
                            "current wordend"))
   tcl(W, "tag", "add", "popup", "current  wordstart", 
                                 "current wordend")
-  posVals <- head(CompletePlus(cur)[,1, drop=TRUE], n=20)
+  posVals <- head(completion(cur)[,1, drop=TRUE], n=20)
   if(length(posVals) > 1) {
     popup <- tkmenu(tb)                # create menu for popup
     sapply(posVals, function(i) {         

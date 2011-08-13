@@ -102,9 +102,9 @@ calls to the \code{insert} subcommand.
 insertChild <- function(tr, node, parent="") {
   l <- list(tr, "insert", parent, "end", text=xmlName(node))
   children <- xmlChildren(node)
-  if(length(children) == 0) {           # add in values
+  if(length(children) == 0) {         # add in values
     values <- paste(xmlValue(node), sep=" ", collapse=" ")
-    l$values <- as.tclObj(values)        # avoid split on spaces
+    l$values <- as.tclObj(values)     # avoid split on spaces
   }
   treePath <- do.call("tcl", l)
 

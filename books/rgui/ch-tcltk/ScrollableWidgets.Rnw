@@ -7,13 +7,13 @@ widget.
 
 \TK\/ has several scrollable widgets -- those that use scrollbars.
 Widgets which accept a scrollbar (without too many extra steps) have
-the options \code{xscrollcommand} and \code{yscrollcommand}.  To use
-scrollbars in \pkg{tcltk} requires two steps: the scrollbars must be
-constructed and bound to some widget, and that widget must be told it
-has a scrollbar. This way changes to the widget can update the
-scrollbar and vice versa. Suppose, \code{parent} is a container and
-\code{widget} has these options, then the following will set up both
-horizontal and vertical scrollbars.
+the options \code{xscrollcommand} and \code{yscrollcommand}.  For
+these, to use scrollbars in \pkg{tcltk} requires two steps: the
+scrollbars must be constructed and bound to some widget, and that
+widget must be told it has a scrollbar. This way changes to the widget
+can update the scrollbar and vice versa. Suppose, \code{parent} is a
+container and \code{widget} has these options, then the following will
+set up both horizontal and vertical scrollbars.
 <<scrollbar-example,echo=FALSE>>=
 library(tcltk)
 w <- tktoplevel(); tkwm.title(w, "Scrollbar example")
@@ -113,13 +113,26 @@ the undo mechanism should be used. If so, the subcommand
 \subcommand{edit}{tktext} can be used to undo a change (or the
 \kbd{control-z} keyboard shortcut).
 
+\paragraph{Inserting text}
+Inserting text can be done through the \subcommand{insert}{ttktext}
+subcommand. This shows how one can use \code{$\backslash$n} to add new
+lines:
+<<tkinsert-example>>=
+tkinsert(txt, 
+         "1.0", 
+         paste("Lorem ipsum dolor",
+               "sit amet,", sep="\n"))
+@ 
+Images and other windows can be added to a text buffer, but we do not
+discuss that here. The value \qcode{1.0} is an index (described below)
+marking the beginning of the buffer.
 
 \paragraph{Getting text}
 %% multiline? tclvalue versus as.character
 The \subcommand{get}{tktext} subcommand is used to retrieve the text
 in the buffer. One specifies what part of the text buffer should be
-returned using indices (below). The following shows how to retrieve
-the entire contents of the buffer:
+returned using indices. The following shows how to retrieve the entire
+contents of the buffer:
 
 <<get-values>>=
 value <- tkget(txt, "1.0", "end")
@@ -141,8 +154,7 @@ line and character are needed in some instances. These indices may be
 specified in many ways. One can use row and character numbers
 separated by a period in the pattern \code{line.char}. The line is
 $1$-based, the column $0$-based (e.g., \code{1.0} says start on the
-1st row and first character, although \code{0.0} will do the
-same.). In general, one can specify any line number and character on
+1st row and first character). In general, one can specify any line number and character on
 that line, with the keyword \code{end} used to refer to the last
 character on the line.
 
@@ -180,17 +192,11 @@ beginning and ending of the last word in the buffer. (The \code{end}
 index refers to the character just after the new line so we go back 2
 steps.)
 
-\paragraph{Inserting and deleting text}
-Inserting text can be done through the \subcommand{insert}{ttktext}
-subcommand by specifying first the index then the text to add. One can
-use \code{$\backslash$n} to add new lines.
-<<tkinsert-example>>=
-tkinsert(txt, "end", "more text\n new line")  
-@ 
-Images and other windows can be added to a text buffer, but we do not discuss that here.
+\paragraph{Deleting text}
 
-The buffer can have its contents cleared using \code{tkdelete}, as
-with \code{tkdelete(txt, "1.0", "end")}.
+The text between two indices can be deleted using \code{tkdelete}, as
+with \code{tkdelete(txt, "1.0", "end")}, which would clear the entire
+buffer's contents.
 
 \paragraph{Panning the buffer: \code{tksee}}
 After text is inserted, the visible part of buffer may not be what is
@@ -242,7 +248,7 @@ hasSelection <- function(W) {
 }
 @ 
 
-\paragraph{Cut, copy and paste} 
+\paragraph{Cut, copy and paste} \iprogram{clipboard}
 The cut, copy and paste commands are implemented through the \Tk\/ functions
 \function{tk\_textCut}, \function{tk\_textCopy} and
 \function{tk\_textPaste}. Their lone argument is the text widget. These
@@ -260,7 +266,7 @@ position of the mouse. Such information can be used to provide
 context-sensitive popup menus, as in this code example:
 <<>>=
 popupContext <- function(W, x, y) {
-  ## or use sprintf("@%s,$s", x, y) for "current"
+  ## or use sprintf("@%s,%s", x, y) for "current"
   cur <- tkget(W, "current wordstart", "current wordend") 
   cur <- tclvalue(cur)
   popupContextMenuFor(cur, x, y)        # some function
@@ -400,7 +406,7 @@ There are a few different types of action items that can be added:
   layout. Action commands may %% (Images are not shown in Mac OS X.) 
   possibly be called for different widgets, so the use of percent
   substitution is problematic. One can also specify that a keyboard
-  accelerator be displayed through the option \code{accelerator}, but
+  shortcut be displayed through the option \code{accelerator}, but
   a separate callback must listen for this combination.
 
 \item[Check boxes] Action items may also be proxied by checkboxes. To
@@ -424,7 +430,7 @@ Action items can also be placed after an item, rather than at the end
 using the \subcommand{insert command index}{tkmenu} subcommand. The
 index may be specified numerically with 0 being the first item for a
 menu.  More conveniently the index can be determined by specifying a
-pattern to match the menu's labels.
+pattern to match against the menu's current labels.
 
 
 \paragraph{Set state}
@@ -534,7 +540,7 @@ tktag.configure(tr, "gray", background="gray95") # shade rows
 For filling in each row's content the \code{values} option is used. If
 there is a single column, like the current example, care needs to be
 taken when adding a value. The call to \function{as.tclObj} prevents
-the widget from dropping values after the first space.~\footnote{As
+the widget from dropping values after the first space.\footnote{As
   does wrapping the values within braces.} Otherwise, we can pass a
 character vector of the proper length.
 
@@ -822,14 +828,14 @@ example of how it can be used to provide a useful GUI for \R{} see the
 \pkg{RnavGraph} package by Waddell and Oldford.
 
 
-As described on its manual page, the canvas widget implement
+As described on its manual page, the canvas widget implements
 structured graphics, displaying any number of items or objects of
 various types.  Methods exist to create, move and delete these
 objects, allowing the canvas widget to be the basis for creating
 interactive GUIs. The constructor \constructor{tkcanvas} for the
 widget, being a non-themeable widget, has many arguments including
 these standard ones: \argument{width}{tkcanvas},
-\argument{height}{tkcanvas}, and \argument{background}{tkcanvas},
+\argument{height}{tkcanvas}, \argument{background}{tkcanvas},
 \argument{xscrollcommand}{tkcanvas} and
 \argument{yscrollcommand}{tkcanvas}.
 
