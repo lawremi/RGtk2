@@ -5,7 +5,7 @@ introduction to these concepts will follow this example.
 After ensuring that the underlying libraries are installed, the
 package may be loaded like any other \R{} package:
 <<>>=
-require(qtbase)
+library(qtbase)
 @ 
 
 
@@ -68,7 +68,8 @@ edit$setInputMask("0000-00-00")
 
 %% Layout 
 \paragraph{Layout managers}
-\Qt{} uses layout managers to organize widgets. This is similar to
+\Qt{} uses separate layout manager objects to organize widgets. This is similar
+to
 Java/Swing and \pkg{tcltk}, but not \pkg{RGtk2}. Layout managers will
 be discussed more thoroughly in Chapter~\ref{cha:layout-managers},
 but in this example we will use a grid layout to organize our
@@ -81,7 +82,6 @@ lyt$addWidget(label, row=0, column=0, rowSpan=1, columnSpan=1)
 lyt$addWidget(edit,   0, 1, 1, 1)
 lyt$addWidget(button, 1, 1, 1, 1)
 @ 
-One can adjust properties of the layout, but we leave that discussion for later.
 
 We need to attach our layout to the widget \code{w}:
 <<results=hide>>=
@@ -95,8 +95,8 @@ window$show()
 @ 
 %% interactivity
 \paragraph{Callbacks}
-As with other GUI toolkits, we add interactivity to our GUI by binding
-callbacks to certain signals. To react to the clicking of the button,
+As with other GUI toolkits, interactivity is implemented by callbacks
+connected to particular signals. To react to the clicking of the button,
 the programmer attaches a handler to the
 \signal{clicked} signal using the \function{qconnect}
 function. The function requires the object, the signal name and the
@@ -110,8 +110,8 @@ We will discuss callbacks more completely in Section~\ref{sec:qt-signals}.
 %% Object oriented
 \paragraph{Object-oriented support}
 \class{QLineEdit} can validate text input, and we would like to
-validate the entered date.  There are a few built-in validators, and
-for this purpose the regular expression validator could be used, but
+validate the entered date.  There are a few built-in validators. For this 
+purpose the regular expression validator could be used, but
 it would be difficult to write a sufficiently robust
 expression. Instead we attempt to coerce the string value to a date
 via \R's \code{as.Date} function with a format of

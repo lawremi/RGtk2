@@ -426,17 +426,8 @@ as we describe in the next section.
 
 \igui{selection}
 Selection is likely the most common type of user interaction with
-lists and tables. The selection state is stored in its own data model,
-\class{QItemSelectionModel}:
-<<qt-mvc-selection-model>>=
-selModel <- listView$selectionModel()
-@
-%
-This design allows views to synchronize selection. It also supports
-views on the selection state, such as a label indicating how many
-items are selected, independent of the particular type of item view.
-
-The selection modes for item views are defined by the
+lists and tables. 
+There are five selection modes for item views, and they are defined by the
 \qtenumeration{QAbstractItemView::SelectionMode}
 enumeration, and include:
 \\
@@ -462,9 +453,32 @@ listView$selectionMode <- Qt$QAbstractItemView$SingleSelection
 @ 
 % 
 
+For our tabular view, selection may be row-wise, column-wise or item-wise
+(\GTK{}, by comparison, supports only row-wise selection). By default, 
+selection is by
+item. While this is common in spreadsheets, one usually desires
+row-wise selection in a table, so we will override the default:
+<<qt-mvc-selection-set-behavior>>=
+tableView$selectionBehavior <- Qt$QAbstractItemView$SelectRows
+@ 
+% 
+
+\subsection{Accessing the Selection}
+\label{sec:qt-access-selection}
+
+The selection state is stored in its own data model,
+\class{QItemSelectionModel}:
+<<qt-mvc-selection-model>>=
+selModel <- listView$selectionModel()
+@
 <<qt-mvc-selection-set-initial, echo=FALSE, results=hide>>=
 selModel$select(model$index(2, 0), Qt$QItemSelectionModel$Select)
 @
+
+% 
+This design allows views to synchronize selection. It also supports
+views on the selection state, such as a label indicating how many
+items are selected, independent of the particular type of item view.
 
 We can query the selection model for the selected items in our
 list. Let us assume that we have selected the third row. We retrieve
@@ -513,7 +527,31 @@ small number of ranges, although the ranges may be wide. Looping
 over the ranges, but not the individual indices, will be
 significantly more efficient for large selections.
 
-\paragraph{Assigning the selection}
+\subsection{Responding to Selection Changes}
+
+To respond to a change in selection, connect to the
+\signal{selectionChanged} signal on the selection model:
+<<qt-mvc-selection-changed, results=hide>>=
+selectedIndices <- rep(FALSE, nrow(mtcars))
+selectionChangedHandler <- function(selected, deselected) {
+  selectedIndices[indicesForSelection(selected)] <<- TRUE
+  selectedIndices[indicesForSelection(deselected)] <<- FALSE
+}
+qconnect(selModel, "selectionChanged", selectionChangedHandler)
+@ 
+% 
+The change in selection is communicated as two 
+\class{QItemSelection} objects: one for the selected items, the other
+for the deselected items.  We update a vector of the selected
+indices according to the change.
+
+%% Does not seem to add very much
+% \begin{example}{Selection of variables}{eg:qt-selection-from-tablewidget}
+%   \SweaveInput{ex-qt-table-selection}
+% \end{example}
+
+\subsection{Assigning the Selection}
+
 It is also possible to programmatically change the selection.  For
 example, we may wish to select the first list item:
 <<qt-mvc-selection-set-current, results=hide>>=
@@ -553,22 +591,15 @@ We have selected items $3$ to $10$. Multiple ranges may be added to
 the \class{QItemSelection} object by repeatedly calling its
 \method{select}{QItemSelection} method.
 
-For tabular views, selection may be row-wise, column-wise or item-wise
-(\GTK{} supports only row-wise selection). By default, selection is by
-item. While this is common in spreadsheets, one usually desires
-row-wise selection in a table, so we will override the default:
-<<qt-mvc-selection-set-behavior>>=
-tableView$selectionBehavior <- Qt$QAbstractItemView$SelectRows
-@ 
-%
+
 <<qt-mvc-selection-select-row, echo=FALSE, results=hide>>=
 tableView$selectRow(1)
 tableView$selectRow(2)
 @ 
 % 
-Querying a selection is essentially the same as for the list
-view, except we can request indices representing entire rows or
-columns. In this example, we are interested in the rows the
+Querying a selection in a table view is essentially the same as for
+the list view, except we can request indices representing entire rows
+or columns. In this example, we are interested in the rows, where the
 user has selected:
 <<qt-mvc-selection-get-rows>>=
 selModel <- tableView$selectionModel()
@@ -592,28 +623,6 @@ selModel$select(sel, Qt$QItemSelectionModel$Select |
                 Qt$QItemSelectionModel$Rows)
 @ 
 %%
-
-\paragraph{The \signal{selectionChanged} signal}
-To respond to a change in selection, connect to the
-\signal{selectionChanged} signal on the selection model:
-<<qt-mvc-selection-changed, results=hide>>=
-selectedIndices <- rep(FALSE, nrow(mtcars))
-selectionChangedHandler <- function(selected, deselected) {
-  selectedIndices[indicesForSelection(selected)] <<- TRUE
-  selectedIndices[indicesForSelection(deselected)] <<- FALSE
-}
-qconnect(selModel, "selectionChanged", selectionChangedHandler)
-@ 
-%
-The change in selection is communicated as two 
-\class{QItemSelection} objects: one for the selected items, the other
-for the deselected items.  We update a vector of the selected
-indices according to the change.
-
-%% Does not seem to add very much
-% \begin{example}{Selection of variables}{eg:qt-selection-from-tablewidget}
-%   \SweaveInput{ex-qt-table-selection}
-% \end{example}
 
 \section{Sorting and filtering}
 
@@ -799,7 +808,8 @@ For models other than \class{DataFrameModel}, one sets data for a
 specific role by passing the optional \argument{role}{setData}
 argument to the model's \method{setData}{QAbstractItemModel}
 method. The value of \argument{role}{setData} defaults to
-\qcode{EditRole}, meaning that the data is in an editable form. 
+\qcode{EditRole}, meaning that the data is in an editable form, i.e.,
+it is treated as input from the user. 
 
 Here, we show how to create a list view and set the background of the
 first item to yellow:
@@ -932,7 +942,9 @@ view$windowTitle <- "QListView"
 view$setModel(treeModel); view$show(); view$raise()
 @ 
 
-
+Columns in a \class{QStandardItemModel} may be named by calling
+\method{setHorizontalHeaderNames}{QStandardItemModel}, as shown in the
+workspace browser example, below.
 Often, as in our case, a tree view only has a single column. It may be
 desirable to hide that column header with
 <<qt-mvc-tree-view-header-hidden>>=
@@ -940,16 +952,12 @@ treeView$headerHidden <- TRUE
 @ 
 %
 
-
 %
 Figure~\ref{fig:qt-treemodel-views} shows the \code{treeModel} in
 the three separate types of views we've discussed, the left most being
 with in a \class{QTreeView} instance, as just illustrated.
 
 
-Columns in a \class{QStandardItemModel} may be named by calling
-\method{setHorizontalHeaderNames}{QStandardItemModel}, as shown in the
-next example.
 
 \begin{example}{A workspace browser}{eg:qt-workspace-browser}
   \SweaveInput{ex-qt-treewidget}
@@ -1029,7 +1037,9 @@ view$showDropIndicator <- TRUE
 @
 %
 The second line tells the view to visually indicate where the item
-will be dropped. The following enables
+will be dropped. 
+
+The following enables
 moving items within a view, i.e., reordering:
 <<qt-mvc-dnd-internalmove>>=
 view$dragDropMode <- Qt$QAbstractItemView$InternalMove
@@ -1396,10 +1406,7 @@ a single string of characters, the position $i$ would refer to the
 space between the $i$th and $i+1$st character, $0$ being the initial
 point in the document.
 
-A text cursor has a position and an anchor. The
-\igui{text selection}selection is the text between the two. When moving
-the cursor through its \method{movePosition}{QTextCursor} method, one
-can choose to move or keep the anchor in place. The motion of the
+The motion of the
 cursor is described by the \qtenumeration{QTextCursor\$MoveOperation}
 enumeration, with several values such as \qcode{Start}, \qcode{End},
 \qcode{StartOfLine}, \qcode{EndOfLine}, \qcode{StartOfWord},
@@ -1426,7 +1433,13 @@ te$textCursor()$selectedText()          # no current selection
 @ 
 %
 The \code{NULL} value indicates that the user has not selected any
-text.  Normally, the anchor and cursor are at the same position. To
+text.  
+
+A text cursor has an anchor position, in addition to its position. The
+\igui{text selection}selection is the text between the two. When moving
+the cursor through its \method{movePosition}{QTextCursor} method, one
+can choose to move or keep the anchor in place.  
+Normally, the anchor and cursor are at the same position. To
 make a selection programatically, we move the cursor independently of
 its anchor. The \qtenumeration{QTextCursor\$MoveMode} enumeration with
 values \qcode{MoveAnchor} and \qcode{KeepAnchor} may be specified to
@@ -1485,7 +1498,7 @@ te$lineWrapMode <- Qt$QTextEdit$NoWrap
 @
 % 
 One can fix the wrapping at a certain number of characters by using a
-wrap mode of\code{FixedColumnWidth} and setting the count through
+wrap mode of \code{FixedColumnWidth} and setting the count through
 \method{lineWrapColumnOrWidth}{QTextEdit}.
 
 

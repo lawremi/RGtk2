@@ -16,8 +16,9 @@ gdkColor <- gdkColorParse(palette()[1])$color
 colorButton <- gtkColorButton(gdkColor)
 @
 % 
-\function{gtkColorButton} requires the initial color to be specified
-as a \class{GdkColor}, which we parse from the \R\/ color name.
+The \constructor{gtkColorButton} constructor requires the initial color
+to be specified as a \class{GdkColor}, which we parse from the \R\/
+color name.
 
 The next step is to build the menu. Each menu item will display a
 $20x20$ rectangle, filled with the color, next to the color name:

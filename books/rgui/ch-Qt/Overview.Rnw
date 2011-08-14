@@ -69,8 +69,9 @@ basic understanding of memory management.
 
 %% ML: need to get this on CRAN before the book is published
 The development of \pkg{qtbase} package is hosted on Github
-(\url{http://github.com/ggobi/qtbase}).  It depends on the \Qt{}
-framework, available as a binary install from
+(\url{http://github.com/ggobi/qtbase}) and is distributed by
+Bioconductor (\url{http://www.bioconductor.org/}).  It depends on the
+\Qt{} framework, available as a binary install from
 \url{http://qt.nokia.com/}.
 
 \section{An introductory example}
@@ -171,10 +172,10 @@ b <- Qt$QPushButton()
 @ 
 %
 \class{QPushButton} extends \class{QWidget} and thus inherits the
-properties like \prop{windowTitle}:
+properties like \prop{visible}:
 <<pushbutton-class>>=
 is(b, "QWidget")
-b$windowTitle
+b$visible
 @ 
 %
 It is important to realize this distinction when referencing the
@@ -285,7 +286,7 @@ property, but our attempt to modify the \code{modal} property fails:
 b$objectName <- "My button"
 b$objectName
 b$modal
-try(b$modal <- TRUE)                    # fails
+cat(try(b$modal <- TRUE))
 @ 
 
 \Qt{} provides accessor methods for getting and setting
@@ -303,7 +304,7 @@ previous example, for the sake of symmetry.
 \label{sec:qt-signals}
 
 \iprogram{signals}\iprogram{event handlers}
-\Qt{} in C++ uses an architecture of signals and slots to have
+\Qt{} uses an architecture of signals and slots to have
 components communicate with each other. A component emits a signal
 when some event happens, such as a user clicking on a button. \Qt{}
 allows one to define a special type of method known as a slot in
@@ -475,10 +476,9 @@ subclasses should provide a \code{parent} constructor argument, for
 specifying the parent object. A typical usage would be
 <<results=hide>>=
 qsetClass("SubClass2", Qt$QWidget, 
-          function(title, prop, parent=NULL) {
+          function(prop, parent=NULL) {
             super(parent)
             this$property <- prop
-            setWindowTitle(title)
           })
 @ 
 % 
@@ -495,7 +495,7 @@ properties.
 \label{sec:qt-defin-methods}
 
 
-One may define new methods, or override methods from a base class
+One may define new methods, or override methods from a base class,
 through the \index{general}{qsetmethod}\function{qsetMethod} function.  For example, accessors
 for a field may be defined with
 <<results=hide>>=
@@ -594,16 +594,16 @@ instance$property
 @
 %
 %% JV did this change???
-However, the property is not actually exposed by the \Qt\/ meta object
-system to external systems, which would only understand \Qt\/
-types. To export a property, one must provide the
+However, the property is not actually exposed by \Qt\/ to dynamic
+systems, like the \pkg{QtScript} Javascript engine, which would only
+understand \Qt\/ types. To export a property, one must provide the
 \argument{type}{qsetProperty} argument, which we will cover later.
 
 By default, the property value is actually stored as a (private) field
-in the object, called \qcode{.property}. One can override the default
-behavior by specifying to the \argument{read}{qsetProperty} or
-\argument{write}{qsetProperty} arguments a function for the getter
-and/or the setter:
+in the object, named by the format \qcode{.property}. One can override
+the default behavior by passing a getter and/or setter function to the 
+\argument{read}{qsetProperty} and/or \argument{write}{qsetProperty}
+arguments, respectively. For example:
 <<qt-overview-define-prop-getter-setter, results=hide>>=
 qsetProperty("checkedProperty", SubClass, write = function(x) {
   if (!is(x, "character"))
@@ -663,8 +663,6 @@ property controls whether a widget is visible.
 <<qt-overview-visible>>=
 w <- Qt$QWidget()
 w$visible
-w$visible <- TRUE
-w$visible
 @ 
 %
 The \method{show}{QWidget} and \method{hide}{QWidget} methods are
@@ -693,7 +691,6 @@ widget is sensitive to user input, including mouse events.
 <<qt-overview-enabled>>=
 b <- Qt$QPushButton("button")
 b$enabled <- FALSE
-b$enabled
 @ 
 %
 
@@ -712,7 +709,7 @@ user hovers the mouse over the widget. Similarly, the
 \property{statusTip}{QWidget} property holds a string to be shown in
 the status bar instead of a popup window. Finally, \Qt\/ provides a
 ``What's This?'' tool that will show the text in the
-\property{whatsThis}{QWidget} property in response to query, such as
+\property{whatsThis}{QWidget} property in response to a query, such as
 pressing \kbd{SHIFT+F1} when the widget has focus.
 
 Except for top-level windows, the position and size of a widget are
@@ -839,10 +836,10 @@ qsetStyleSheet(color = "red", background = "white",
 @ 
 %
 The \code{widget} argument defaults to \code{NULL}, which applies the
-stylesheet application-wide through the \class{QApplication}
-instance. The default for \code{what} is \code{"*"}, meaning that the
-stylesheet applies to any widget class. The following would cause all
-widgets in the application to have the same colors as the button:
+stylesheet to every widget matching \code{what} in the
+application. The default for \code{what} is \code{"*"}, meaning that
+the stylesheet applies to any widget class. The following would cause
+all widgets in the application to have the same colors as the button:
 
 \begin{figure}
   \centering
@@ -986,7 +983,6 @@ if(has_uiloader) {
 }
 @ 
 %
-Note that the \function{findText} function above is not implemented.
 
 Alternatively, we could establish the signal connections
 automatically. This requires defining each signal handler to be a slot

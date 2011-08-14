@@ -22,18 +22,12 @@ for(i in unique(Manufacturers)) {
 }
 @ 
 
-
-Now, we make a simple rectangular store for the model information with
-the following:
-<<>>=
-store <- rGtkDataFrame(Cars93[,"Model", drop=FALSE])
-@
-
 Creating a basic view is similar to that for rectangular data already presented:
 <<makeView>>=
 view <- gtkTreeView()
 view$insertColumnWithAttributes(0, "Make", 
            gtkCellRendererText(), text = 0)
+view$setModel(tstore)
 @ 
 
 <<makeGUI, echo=FALSE>>=
@@ -45,8 +39,10 @@ w$add(sw)
 w$show()
 @ 
 
-Finally, we illustrate that the same view can be used with either model:
+To demonstrate that \class{GtkTreeView} supports both hierarchical and
+flat tabular models, we will create an analogous \class{RGtkDataFrame}
+and set it on the view:
 <<>>=
-view$setModel(store)               # the rectangular store
-view$setModel(tstore)              # or the tree store
-@ 
+store <- rGtkDataFrame(Cars93[,"Model", drop=FALSE])
+view$setModel(store)
+@

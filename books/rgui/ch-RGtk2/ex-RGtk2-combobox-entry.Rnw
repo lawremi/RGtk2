@@ -10,12 +10,25 @@ user searches for a page.
 
 Our model for the combo box will be an \class{RGtkDataFrame} instance
 with three columns: a function name, a string describing the
-number of visits and an integer to record the number of visits. We
-create the combo box with this model using the first column for the text:
+number of visits and an integer to record the number of visits. 
 <<>>=
 m <- rGtkDataFrame(data.frame(
              fname=character(0), visits=character(0), 
              novisits=integer(0), stringsAsFactors=FALSE))
+@ 
+
+As introduced in the previous chapter, the \class{GtkComboBoxEntry}
+widget extends \class{GtkComboBox} to provide an entry widget for the
+user to enter arbitrary values. To construct a combo box entry on top
+of a tree model, one should pass the model, as well as the column
+index that holds the textual item labels, to the
+\constructor{gtkComboBoxEntry} constructor. It is not necessary to
+create a cell renderer for displaying the text, as the entry depends
+on having text labels and thus enforces their display. It is still
+possible, of course, to add cell renderers for other model columns.
+We create the combo box with this model using the first column for the
+text:
+<<>>=
 cb <- gtkComboBoxEntryNewWithModel(m, text.column=0)
 @ 
 

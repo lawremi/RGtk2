@@ -23,6 +23,8 @@ options(guiToolkit="RGtk2")
 
 This example is centered around filtering a data set, we choose a
 convenient one and give it a non-specific name.
+%% ML: why do we give this a non-specific name when the rest of this
+%% example is specific to Cars93?
 <<ourData>>=
 data("Cars93", package="MASS")
 x <- Cars93
@@ -62,7 +64,7 @@ graphic device.
 ggraphics(cont = lg)
 @ 
 
-Our view of the data is provided by the \constructor{gtable} widget,
+Our tabular view of the data is provided by the \constructor{gtable} widget,
 which facilitates the display of a data frame. The last two arguments
 allow for multiple selection (for marking points on the graphic) and
 for filtering through the \method{visible\ASSIGN}{gtable} method.

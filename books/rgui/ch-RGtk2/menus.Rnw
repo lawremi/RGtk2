@@ -7,13 +7,13 @@ require(RGtk2)
 In the traditional WIMP-style GUI, the user executes commands by
 selecting items from a menu. In GUI terminology, such a command is
 known as an \textit{action}. A GUI may provide more than one control
-for executing a particular action. Menu Bars and toolbars are the two
+for executing a particular action. Menu bars and tool bars are the two
 most common widgets for organizing application-wide actions. An
 application also needs to report its status in an unobtrusive
 way. Thus, a typical application window contains, from top to bottom, 
-a menubar, a toolbar, a large application-specific region, and a
+a menu bar, a tool bar, a large application-specific region, and a
 status bar.  In this chapter, we will introduce actions, menus,
-toolbars and status bars and conclude by explaining the mechanisms in
+tool bars and status bars and conclude by explaining the mechanisms in
 \GTK\/ for conveniently defining and managing actions and associated
 widgets in a large application.
 
@@ -240,7 +240,7 @@ vbox$packStart(menubar, FALSE, FALSE)
 Toolbars are like menubars in that they are containers for
 activatable items, but toolbars are not hierarchical. Also, their
 items are usually visible for the life-time of the application, not
-upon user click. Thus, toolbars are not appropriate for storing a
+upon user interaction. Thus, toolbars are not appropriate for storing a
 large number of items, only those that are activated most often.
 
 We begin by constructing an instance of \class{GtkToolbar}:
@@ -393,12 +393,32 @@ helpGroup$setCollapsed(TRUE)
 
 In \GTK, a status bar is constructed through the
 \constructor{gtkStatusbar} function. Statusbars must be placed at the
-bottom of a top-level window by the programmer. In \GTK, a status bar
-keeps various stacks of messages for display. One adds a message to
-display for given stack through the \method{Push}{GtkStatusbar} method
-by specifying first an integer value for \code{context.id} and a
-message. To pop the top message on a stack and display the next, the
-method \method{Pop}{GtkStatusbar} method is available.
+bottom of a top-level window. A status bar keeps various stacks of
+messages for display. Stacks and messages are associated with a
+context ID, which represents a message source. It is required to
+register each context ID against a string description. The visibility
+depends on the ordering of the global stack, while the context ID
+allows the status bar to maintain a separate message stack for each
+part of an application, without worry of interference between
+components.
+
+To display a message, one pushes it onto the top of the global stack,
+as well as a context stack, through the \method{push}{GtkStatusbar}
+method, which expects an integer value for \code{context.id} and a
+message.  To pop a message from a context stack, pass the context ID to
+the \method{pop}{GtkStatusbar} method. If the message was on top of
+the global stack, the next message down becomes visible.
+
+Below, we create a status bar, register a context for I/O-related
+messages, display the message and then pop it to restore the original
+state:
+<<gtk-app-status-bar, results=hide>>=
+status_bar <- gtkStatusbar()
+io_id <- status_bar$getContextId("I/O")
+status_bar$push(io_id, "Incomplete final line")
+## ...
+status_bar$pop(io_id)
+@ 
 
 \subsection{Information bars}
 \label{sec:gtkInfoBar}

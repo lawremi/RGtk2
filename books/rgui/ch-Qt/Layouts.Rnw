@@ -227,7 +227,7 @@ $0$ and $1$ is roughly equivalent to the difference between
 policy and hint can alter the effect of a stretch factor. After the
 child has been added, the stretch factor may be modified with
 \meth{setStretchFactor}:
-<<qt-layout-box-stretch>>=
+<<qt-layout-box-stretch,results=hide>>=
 hb$setStretchFactor(buttons[[1]], 2.0) 
 @ 
 %
@@ -333,7 +333,7 @@ stretch factor.
 It is sometimes desirable to restrict the minimum size of a layout in the
 perpendicular direction. For a horizontal box, this is the height. The
 box layout provides the \ilayout{struts}\textit{strut} for this purpose:
-<<qt-layout-box-strut>>=
+<<qt-layout-box-strut, results=hide>>=
 g$addStrut(10)                    # at least 10 pixels high
 @ 
 %

@@ -9,11 +9,11 @@ As the name implies, the \pkg{RGtk2} package is an interface, or
 binding, between \R\/ and \GTK, a mature, cross-platform GUI
 toolkit. The letters \emph{GTK} stand for the \emph{GIMP ToolKit},
 with the word \emph{GIMP} recording the origin of the library as part
-of the GNU Image Manipulation Program. \pkg{GTK+} provides the same
+of the GNU Image Manipulation Program. \GTK\/ provides the same
 widgets on every platform, though it can be customized to emulate
 platform-specific look and feel. The library is written in
 \proglang{C}, which facilitates access from languages like
-\proglang{R} that are also implemented in \proglang{C}. \pkg{GTK+} is
+\proglang{R} that are also implemented in \proglang{C}. \GTK\/ is
 licensed under the \textit{Lesser GNU Public License} (LGPL), while
 \pkg{RGtk2} is under the \textit{GNU Public License} (GPL).
 The package is available from the Comprehensive \proglang{R} Archive
@@ -21,7 +21,7 @@ Network (CRAN) at \url{http://CRAN.R-project.org/package=RGtk2}.
 
 The name \pkg{RGtk2} also implies that there exists a package named
 \pkg{RGtk}, which is indeed the case. The original \pkg{RGtk} is bound
-to the previous generation of \pkg{GTK+}, version 1.2. \pkg{RGtk2} is
+to the previous generation of \GTK\/, version 1.2. \pkg{RGtk2} is
 based on \pkg{GTK+ 2.0}, the current generation. This book covers
 \pkg{RGtk2} specifically, although many of the fundamental features of
 \pkg{RGtk2} are inherited from \pkg{RGtk}. 
@@ -92,12 +92,12 @@ rest of this chapter will explain these basic components of the API.
 In any toolkit, all widget types have functionality in common. For
 example, they are all drawn on the screen in a consistent style. They
 can be hidden and shown again. To formalize this relationship and to
-simplify implementation by sharing code between widgets, \pkg{GTK+},
+simplify implementation by sharing code between widgets, \GTK\/,
 like many other toolkits, defines an inheritance hierarchy for its
 widget types. In the parlance of object-oriented programming, each
 type is represented by a \textit{class}.
 
-For specifying the hierarchy, \pkg{GTK+} relies on \pkg{GObject}, a
+For specifying the hierarchy, \GTK\/ relies on \pkg{GObject}, a
 \proglang{C} library that implements a \iprogram{class structure}class-based, single-inheritance
 object-oriented system. A \pkg{GObject} class encapsulates behaviors
 that all instances of the class share. Every class has at most one
@@ -117,7 +117,7 @@ character vector could be interpreted as it were a class attribute on
 an S3 object.
 
 Single inheritance can be restrictive when a class performs multiple
-roles in a program. To circumvent this, \pkg{GTK+} adopts the popular
+roles in a program. To circumvent this, \GTK\/ adopts the popular
 concept of the \iprogram{interface}\defn{interface}, which is essentially a contract
 that specifies which methods, properties and signals a class must
 implement. As with languages like Java and \proglang{C\#}, a class can
@@ -234,7 +234,7 @@ class(window)
 We find that the \class{GtkWindow} class inherits methods,
 properties, and signals from the \class{GtkBin}, \class{GtkContainer},
 \class{GtkWidget}, \class{GtkObject}, \class{GInitiallyUnowned}, and
-\class{GObject} classes. Every type of \pkg{GTK+} widget inherits from
+\class{GObject} classes. Every type of \GTK\/ widget inherits from
 the base \code{GtkWidget} class, which implements the general
 characteristics shared by all widget classes, e.g., properties storing
 the location and background color; methods for hiding, showing and
@@ -253,9 +253,11 @@ indicating that it can no longer be manipulated.
 The next steps in our example are to create a ``Hello World'' button
 and to place the button in the window that we have already
 created. This depends on an understanding of how of one
-programmatically manipulates widgets by invoking methods.  Methods are
-functions that take an instance of their class as the first argument
-and instruct the widget to perform an action.
+programmatically manipulates widgets by invoking methods.  In
+\pkg{RGtk2}, a method represents a type of message that is passed to a
+widget. Methods are implemented as functions that take an instance of
+their class as the first argument, and instruct the widget to perform
+some behavior, according to any additional parameters.
 
 Although class information is stored in the style of S3, \pkg{RGtk2}
 introduces its own mechanism for method\iprogram{method dispatch}
@@ -298,8 +300,8 @@ button$getLabel()
 @ 
 
 %% common methods
-Some common methods are inherited by most widgets, as they are defined
-in the base \class{GtkWidget} class. These include the methods 
+Some common methods are inherited by all widgets, as they are defined
+in the base \class{GtkWidget} class. These include: 
 \method{show}{GtkWidget} to specify that the widget should be drawn;
 \method{hide}{GtkWidget} to hide the widget until specified;
 \method{destroy}{GtkWidget} to destroy a widget and clear up any
@@ -313,21 +315,22 @@ modify the foreground color.
 \iprogram{properties}
 
 %% --------- Properties ------------
-The \GTK\/ API uses properties to store object state. Properties are
-similar to R attributes and even more so to S4 slots. They are
-inherited, typed, self-describing and
+The \GTK\/ API uses properties to store public object
+state. Properties are similar to R attributes and even more so to S4
+slots. They are inherited, typed, self-describing and
 \iprogram{encapsulation}encapsulated, so that an object can intercept
-access to the underlying data. A list of properties definitions
-belonging to the widget is returned by its
-\method{getPropInfo}{GObject} method. Calling \function{names} on the
-object returns the property names. Auto-completion of property names
-is gained as a side effect.  For the button just defined, we can see
-the first eight properties listed with:
+access to the underlying data, if any (some properties may be fully
+dynamic). A list of properties definitions belonging to the widget is
+returned by its \method{getPropInfo}{GObject} method. Calling
+\function{names} on the object returns the property
+names. Auto-completion of property names is gained as a side effect.
+For the button just defined, we can see the first eight properties
+listed with:
 <<showProperties>>=
 head(names(button), n=8)                 # or b$getPropInfo()
 @ 
 
-Some common properties are: \code{parent}, to store the parent widget
+Some commonly used properties are: \code{parent}, to store the parent widget
 (if any); \code{user-data}, which allows one to store arbitrary data
 with the widget; and \code{sensitive}, to control whether a widget can
 receive user events. 
@@ -416,13 +419,13 @@ gSignalConnect(button, "clicked",
 @ 
 %
 
-The \argument{data}{gSignalConnect} argument allows arbitrary data to
-be passed to the callback.  The
+We now review the remaining arguments. The
+\argument{data}{gSignalConnect} argument allows arbitrary data to be
+passed to the callback.  The
 \argument{user.data.first}{gSignalConnect} argument specifies if the
 \argument{data}{gSignalConnect} argument should be the first argument
-to the callback or (the default) the last.
-
-The \argument{after}{gSignalConnect} argument is a logical value
+to the callback or (the default) the last.  The
+\argument{after}{gSignalConnect} argument is a logical value
 indicating if the callback should be called after the default handler
 (see \command{?gSignalConnect}).
 

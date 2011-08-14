@@ -177,9 +177,9 @@ transition.
 This function is used to initialize the view
 <<>>=
 initializeTopLevelItems <- function(ws_watcher, view, 
-                                    env=.GlobalEnv) {
+                                    env=.GlobalEnv) 
+{
    curNames <- ws_watcher$objects
-   
    model <- view$model()
    view$updatesEnabled <- FALSE
    sapply(curNames, addItem, parentObj = env, # add

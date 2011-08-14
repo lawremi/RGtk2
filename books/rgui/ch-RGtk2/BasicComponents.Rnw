@@ -316,8 +316,8 @@ identifier.
 \subsection{Text entry}
 \label{sec:RGtk2:gtkEntry}
 
-The widgets explained thus far are largely static. For example, \GTK\/
-does not yet support editable labels. \GTK\/ has two different widgets
+The widgets explained thus far are largely static, i.e., it is not
+possible to edit a label or image. \GTK\/ has two different widgets
 for editing text. One is optimized for multi-line text documents, the
 other for single line entry. We will discuss complex multi-line text
 editing in Section~\ref{sec:RGtk2:textviews}. For entering a single
@@ -347,6 +347,7 @@ deprecated. Instead, one should call \method{setMaxLength}{GtkEntry}.
 
 Editing text programmatically relies on the \class{GtkEditable}
 interface, which \class{GtkEntry} implements. The method
+% ML: any way to prevent line wrapping in method names?
 \method{insertText}{GtkEditable} inserts text before a position
 specified by a $0$-based index. The return value is a list with the
 component \code{position} indicating the position \textit{after} the
@@ -440,7 +441,7 @@ Very often, the action performed by a button simply changes the value
 of a state variable in the application. \GTK\/ defines several types
 of buttons that explicitly manage and display one aspect of the
 application state. The simplest type of state variable is binary
-(boolean/logical) and is usually proxied by a \class{GtkCheckButton}.
+(boolean) and is usually proxied by a \class{GtkCheckButton}.
 
 A \class{GtkCheckButton} is constructed by
 \function{gtkCheckButton}:
@@ -467,7 +468,7 @@ gSignalConnect(cb, "toggled", function(x) {
 An alternative to \class{GtkCheckButton} is the lesser used
 \class{GtkToggleButton}, which is actually the parent class of
 \class{GtkCheckButton}. A toggle button is drawn as an ordinary
-button. It remains depressed while the state variable is \code{TRUE},
+button. It is drawn as depressed while the state variable is \code{TRUE},
 instead of relying on a check box to communicate the binary value.
 
 \subsection{Radio button groups}
@@ -656,7 +657,7 @@ A spin button has a few additional features. The property
 \code{snap-to-ticks} can be set to \code{TRUE} to force the new value
 to belong to the sequence of values in the adjustment. The \code{wrap}
 property indicates whether the sequence will ``wrap'' around at the
-bounds
+bounds.
 
 \begin{example}{A range widget}{ex:RGtk2-range-widget}
   \SweaveInput{ex-RGtk2-range-widget}
@@ -750,7 +751,7 @@ bounds
 % to belong to the sequence of values in the adjustment. The \code{wrap}
 % property indicates whether the sequence will ``wrap'' around at the
 % bounds
-.
+
 
 \section{Progress reporting}
 
@@ -774,8 +775,7 @@ for(i in 1:100) {
 pb$setText("All done.")
 @ 
 
-Progress bars can also show indefinite activity by periodically
-pulsing the bar: 
+One can indicate indefinite activity by periodically pulsing the bar:
 <<gtk-widget-progress-pulse>>=
 pb$pulse()
 @ 

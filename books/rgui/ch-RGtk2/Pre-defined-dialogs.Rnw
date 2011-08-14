@@ -66,6 +66,8 @@ example of asynchronous response handling in the next section.
 \subsection{Custom dialogs}
 \label{sec:custom-dialogs}
 
+%% SCREENSHOT 
+
 The \constructor{gtkDialog} constructor returns a generic dialog
 object which can be customized, in terms of its content and response
 buttons.  Usually, a \class{GtkDialog} is constructed with

@@ -53,8 +53,8 @@ qsetProperty("old_digests", WSWatcher)
 qsetProperty("old_objects", WSWatcher)
 @
 
-Our class has a few methods defined for it. We need one  to
-initiate the update of the variable list. This simply compares the
+Our class has a few methods defined for it. We need one to
+update the variable list. This implementation simply compares the
 digest of the current workspace objects with a cached list. If there
 are differences, we update the objects, which in turn signals a
 change.

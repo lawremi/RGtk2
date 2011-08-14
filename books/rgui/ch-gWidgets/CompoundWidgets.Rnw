@@ -217,11 +217,11 @@ The following methods can be used to assign handlers:
 The \constructor{gdfnotebook} constructor produces a notebook that can
 hold several data frames to edit at once.
 
+%% SCREENSHOT
 
 
 
-
-\subsection{Workspace browser}
+\section{Workspace browser}
 \label{sec:gWidgets-workspace-browser}
 
 A workspace browser is constructed by \code{gvarbrowser}, providing a
@@ -250,9 +250,9 @@ modest enough. Otherwise it can be done programmatically.
   \SweaveInput{ex-gWidgets-gvarbrowser-dnd}
 \end{example}
 
+%% SCREENSHOT
 
-
-\subsection{Help browser}
+\section{Help browser}
 \label{sec:gWidgets-help-browser}
 
 The \constructor{ghelp} constructor produces a widget for showing help
@@ -276,9 +276,9 @@ GUI for displaying help pages, running examples from the help pages or
 opening vignettes provided by the package. This GUI provides its own
 top-level window and does not return a value for which methods are defined.
 
+%% SCREENSHOT
 
-
-\subsection{Command line widget}
+\section{Command line widget}
 \label{sec:gWidgets-command-line-widget}
 
 
@@ -286,7 +286,7 @@ top-level window and does not return a value for which methods are defined.
 A simple command line widget is created by the
 \constructor{gcommandline} constructor. This is not meant as a
 replacement for any of \R's command lines, but is provided for
-light-weight usage. A text box allows users to type in \R\/
+light-weight usage. A text box allows users to enter \R\/
 commands. The programmer may issue commands to be evaluated and
 displayed through the \method{svalue\ASSIGN}{gcommandline} method. The
 \code{value} assigned is a character string holding the commands. If
@@ -294,7 +294,7 @@ there is a \code{names} attribute, the results will be assigned to a variable
 in the global workspace with that name. The \code{svalue} and \code{[}
 methods return the command history.
 
-\subsection{Simplifying creation of dialogs}
+\section{Simplifying creation of dialogs}
 \label{sec:gWidgets-designing-forms}
 
 The \pkg{gWidgets} package has two means to simplify the creation of

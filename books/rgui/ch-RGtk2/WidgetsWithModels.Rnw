@@ -46,24 +46,23 @@ the \class{GtkTreeModel} framework, are treated subsequently.
 
 As an interface, \class{GtkTreeModel} may be implemented in any number
 of ways. \GTK\/ provides simple in-memory implementations for
-hierarchical and non-hierarchical data. For improved speed,
-convenience and familiarity, \pkg{RGtk2} includes a custom
-\class{GtkTreeModel} implementation called \class{RGtkDataFrame}, which
-is based on an \R\/ data frame. For non-hierarchical data, this is
-usually the model of choice, so we discuss it first.
+hierarchical and non-hierarchical data.  \R\/ uses data frames to hold
+tabular data, where each column is of a certain class, and each row is
+related to some observational unit. This fits the structure of
+\class{GtkTreeModel} when there is no hierarchy.  The
+\class{RGtkDataFrame} class implements \class{GtkTreeModel} on top of
+an \R\/ data frame. Compared to the model implementations built into
+\GTK, \Rclass{RGtkDataFrame} affords the \R\/ programmer the benefits
+of improved speed, convenience and familiarity.
 
-\R\/ uses data frames to hold tabular data, where each column is of a
-certain class, and each row is related to some observational
-unit. This fits the structure of \class{GtkTreeModel} when there is no
-hierarchy. As such it is natural to have a means to map a data frame
-into a store for a tree view. \class{RGtkDataFrame} implements
-\class{GtkTreeModel} to perform this role and instances are
-constructed through \constructor{rGtkDataFrame}. Populating a
+For non-hierarchical data, this is
+usually the model of choice, so we discuss it first. Populating a
 \class{RGtkDataFrame} is far faster than for a \GTK\/ model, because
 data is retrieved from the data frame on demand. There is no need to
 copy the data row by row into a separate data structure. Such an
 approach would be especially slow if implemented as a loop in
-\R.\footnote{As is proved with \pkg{tcltk}, where this is needed.} The constructor takes a
+\R.~\footnote{As is proved with \pkg{tcltk}, where this is needed.} The constructor
+\constructor{rGtkDataFrame} takes a
 data frame as an argument. The column classes are important, so even
 if this data frame is empty, the user should specify the desired
 column classes upon construction.
@@ -182,7 +181,7 @@ be defined after the third argument.  We will use the above idiom in
 all of the following examples, as it is much more concise than
 performing each step separately.
 
-To display the entire Cars93 data frame, is not much different. Here,
+Displaying the entire Cars93 data frame is not much different. Here,
 we reconstruct the view, inserting a view column for every column in
 the data frame, i.e., the model.
 <<rgtk2-mvc-insert-all-columns, results=hide>>=
@@ -379,6 +378,8 @@ an action. If the cells are editable, then a double click or a click
 on an already selected row will initiate editing of the
 content. Editing of cell values is a complex topic and is handled by
 derivatives of \class{GtkCellRenderer}, see
+%% FIXME: these references are just going to the top of this
+%% section. Apparently, the subsections are not available for reference.
 Section~\ref{sec:RGtk2:cellrenderers}. Here, we limit our discussion
 to selection of rows.
 
@@ -581,7 +582,7 @@ filter, see Example~\ref{ex:RGtk2-variable-selection}. A filter model
 may be treated as any other tree model, including attachment to a
 \class{GtkTreeView}.
 
-<<notShown, echo=FALSE>>=
+<<notShown, echo=FALSE, results=hide>>=
 mapply(view$insertColumnWithAttributes,  
        position=-1, 
        title=colnames(df), 
@@ -654,9 +655,8 @@ important property is \code{text}, the actual text that is
 displayed. Other properties control the display of the text, such as
 the font \code{family} and \code{size}, the \code{foreground} and
 \code{background} colors, and whether to \code{ellipsize} or
-\code{wrap} the text if there is not enough space for display. There
-are several other attributes that can changed.  For example, we
-display right-aligned text in a Helvetica font:
+\code{wrap} the text if there is not enough space for display.  For
+example, we display right-aligned text in a Helvetica font:
 <<cr-right-aligned>>=
 cr <- gtkCellRendererText()
 cr['xalign'] <- 1                    # default 0.5 = centered
@@ -680,8 +680,9 @@ is not true. A callback must be assigned to the \code{editable}
 change. The callback for the \qcode{edited} signal has arguments
 \code{renderer}, \code{path} for the path of the selected row (as a
 string), and \code{new.text} containing the value of the edited text
-as a string. The tree view object and the column index are not passed
-to the callback, unless one uses a closure or user data.
+as a string. These arguments do not include the tree view object nor
+the column index, so these should be provided by some other means,
+e.g., from the enclosing environment of the handler.
 For example, here is how one can update an \code{RGtkDataFrame} model
 from within the callback:
 <<echo=FALSE>>=
@@ -705,10 +706,7 @@ see if the editor provided by the \function{gtkDfEdit} in the
 Users may expect that once a cell is edited, the next cell is then set
 up to be edited. In order to do this, one must advance the cursor and
 activate editing of the next cell. For \class{GtkTreeView}, this is
-implemented by the \method{setCursor}{GtkTreeView} method. The
-\code{path} argument takes a tree path instance, the \code{column}
-argument should be a tree view column object, and the flag
-\code{start.editing} indicates whether to initiate editing.
+implemented by the \method{setCursor}{GtkTreeView} method.
 
 \begin{example}{Using a table to gather arguments}{ex:RGtk2-options-in-table}
   \SweaveInput{ex-RGtk2-options-in-table}
@@ -894,7 +892,7 @@ and \code{digits}.
 
 For customizing rendering further, and in the general case beyond
 \class{GtkTreeView}, one could implement a new type of
-\class{GtkCellRenderer}.  See Section~\ref{sec:gtk:extending-classes}
+\class{GtkCellRenderer}.  See Chapter~\ref{sec:gtk:extending-classes}
 for more details on extending \GTK\/ classes.
 
 %% This function will be set for the tree view column and illustrated in Example~\ref{ex:RGtk2:rGtk2DataFrame}.
@@ -964,12 +962,11 @@ of \code{NULL}, the default, indicates that the row should be at the
 top level. It would also be possible to insert rows using
 \method{insert}{GtkTreeStore}, \method{insertBefore}{GtkTreeStore}, or
 \method{insertAfter}{GtkTreeStore}. The
-\method{setValue}{GtkTreeStore} method expects the row iterator and
-a $0$-based, column index.
-
-An entire row can be assigned through the \method{set}{GtkTreeStore}
-method. The method uses positional arguments to specify the column and
-the value. The column index appears as an even argument (say $2k$) and
+\method{setValue}{GtkTreeStore} method expects the row iterator and a
+$0$-based, column index.  An entire row can be assigned through the
+\method{set}{GtkTreeStore} method. The method uses positional
+arguments to specify the column and the value, in alternating
+fashion. The column index appears as an even argument (say $2k$) and
 the corresponding value in the odd argument (say $2k+1$).  Values are
 returned by the \method{getValue}{GtkListStore} method, in a list with
 component \code{value} storing the value.
@@ -1016,7 +1013,6 @@ iterators.  The methods \method{moveAfter}{GtkTreeStore} and
 another, respectively.  The \method{reorder}{GtkTreeStore} method
 totally reorders the rows under a specified parent given a vector of
 row indices, like that returned by \function{order}.
-
 %% clearing contents
 Once added, rows may be removed using the
 \method{remove}{GtkTreeStore} method. To remove every row, call the
@@ -1065,12 +1061,10 @@ To construct a \class{GtkComboBox} based on a user-created model, one
 should pass the model to the constructor
 \constructor{gtkComboBox}. This model may be changed or set through
 the \method{setModel}{GtkComboBox} method and is returned by
-\method{getModel}{GtkComboBox}. It remains to instruct the combo box
-how to display one or more data columns in the menu. Like
-\class{GtkTreeViewColumn}, \class{GtkComboBox} implements the
-\class{GtkCellLayout} interface and thus delegates the rendering of
-model values to \class{GtkCellRenderer} instances that are packed into
-the combo box.
+\method{getModel}{GtkComboBox}. Like \class{GtkTreeViewColumn},
+\class{GtkComboBox} implements the \class{GtkCellLayout} interface and
+thus delegates the rendering of model values to
+\class{GtkCellRenderer} instances that are packed into the combo box.
 
 The \method{getActiveIter}{GtkComboBox} returns a list containing the iterator
 pointing to the currently selected row in the model.  If no row has been
@@ -1078,24 +1072,7 @@ selected, the \code{retval} component of the list is \code{FALSE}.
 The \method{setActiveIter}{GtkComboBox} sets the currently selected
 item by iterator. As discussed previously, the
 \method{getActive}{GtkComboBox} and \method{setActive}{gtkComboBox}
-behave analogously with $0$-based indices.
-
-As introduced in the previous chapter, the \class{GtkComboBoxEntry}
-widget extends \class{GtkComboBox} to provide an entry widget for the
-user to enter arbitrary values. To construct a combo box entry on top
-of a tree model, one should pass the model, as well as the column
-index that holds the textual item labels, to the
-\constructor{gtkComboBoxEntry} constructor. It is not necessary to
-create a cell renderer for displaying the text, as the entry depends
-on having text labels and thus enforces their display. It is still
-possible, of course, to add cell renderers for other model columns.
-
-When a user selects a value with the mouse, the \code{changed} signal
-is emitted. For combo box entry widgets, the \code{changed} signal
-will also be emitted when a new value has been entered. To detect when
-the user has finished entering text, one needs to retrieve the
-underlying \class{GtkEntry} widget with \method{getChild}{GtkBin} and
-connect to its \code{activate} signal.
+methods behave analogously with $0$-based indices.
 
 \begin{example}{A combo box with memory}{eg:RGtk2-combobox-entry}
   \SweaveInput{ex-RGtk2-combobox-entry}
@@ -1169,13 +1146,7 @@ can synchronize their text through a shared buffer. Each entry obtains
 its text from the same underlying model, a
 \class{GtkEntryBuffer}. Here, we construct two entries, with a shared
 buffer:
-%% JVXXX needed to put in intial.chars, n.initial.chars into
-%% constructor. No defaults, but could be
-%% JV XXX does gtkEntry now have a buffer argument? I had to call
-%% other constructor below to run
-%% ML: The following should work eventually. I just have to re-run the code
-%% generator.
-<<gtk-mvc-entry-buffer, eval=FALSE>>=
+<<gtk-mvc-entry-buffer>>=
 buffer <- gtkEntryBuffer()        
 entry1 <- gtkEntry(buffer = buffer)
 entry2 <- gtkEntry(buffer = buffer)
@@ -1392,7 +1363,7 @@ above methods. Passing the original list would not work.
 
 %% iter methods
 Next, we introduce the methods for updating an iterator. One can move
-an iterator forward or backward, stopping a certain type of
+an iterator forward or backward, stopping at a certain type of
 landmark. Supported landmarks include characters
 (\method{forwardChar}{GtkTextIter},
 \method{forwardChars}{GtkTextIter},
@@ -1438,9 +1409,7 @@ ID <- gSignalConnect(tv, "button-press-event",
 
 A text mark tracks a position in the document that is relative to
 other text and is preserved across buffer modifications. One can think
-of a mark as an invisible object stuck between two characters. A mark
-corresponds to a specific position, like an iterator, except its
-gravity sets it either to the left or right of the character. An
+of a mark as an invisible object stuck between two characters. An
 example is the text cursor, the position of which is represented by a
 mark.
 
@@ -1460,7 +1429,9 @@ Marks have a gravity of \qcode{left} or \qcode{right}, with
 \qcode{right} being the default. If text is inserted at a mark with
 right gravity, then the mark is moved to the end of the insertion. A
 mark with left gravity would not be moved. This is intuitive if one
-relates it to the behavior of the text cursor, which has right gravity:
+relates it to the behavior of the text cursor, which has right
+gravity. For obvious reasons, the cursor always advances as the user
+inserts text by typing. We demonstrate this programmatically:
 <<gtk-mvc-text-mark-gravity>>=
 insertIter$getOffset()
 buffer$insert(insertIter, "at insertion point")

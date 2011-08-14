@@ -1404,7 +1404,7 @@ either describes a toolbar item or a separator, where the toolbar
 items are specified by \code{gaction} instances and separators by
 \code{gseparator} instances with no container specified.
 
-For example. Here we first define some actions:
+For example, here we first define some actions:
 <<results=hide>>=
 stub <- function(h,...) gmessage("called handler", parent=w)
 actlist = list(
@@ -1451,9 +1451,9 @@ Menubars and popup menus are specified in a similar manner as toolbars with menu
 being defined through \code{gaction} instances, and visual separators
 by \code{gseparator} instances. Menus differ from toolbars, as
 submenus require a nested structure. This  is specified using a
-nested list as the component to describe the sub menu. The lists all
-have named components. In this case, the corresponding name is used to
-label the submenu item. For menubars, it is typical that all the
+nested list as the component to describe the submenu. The lists all
+have named components. In this case, the corresponding name 
+labels the submenu item. For menubars, it is typical that all the
 top-level components be lists, but for popup menus, this wouldn't
 necessarily be the case.
 

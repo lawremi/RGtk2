@@ -20,15 +20,15 @@ for software installation.
 
 
 We begin by defining our assistant and connecting to its
-\signal{cancel} signal.
+\signal{cancel} signal:
 <<defineAssistant, results=hide>>=
 asst <- gtkAssistant(show=FALSE)
 asst$setSizeRequest(500, 500)
 gSignalConnect(asst, "cancel", function(asst) asst$destroy())
 @
 
-Our pages will be computed dynamically. here we populate the pages
-using box containers and specify their respective types. 
+Our pages will be computed dynamically. Here we populate the pages
+using box containers and specify their respective types:
 <<makePages, results=hide>>=
 pages <- lapply(1:5, gtkVBox, spacing=5, homogeneous=FALSE)
 page_types <- c("intro", rep("confirm",3), "summary")
@@ -44,9 +44,10 @@ sapply(pages, gtkAssistantSetPageSideImage, object=asst,
        pixbuf=image)
 @ 
 
-When a page is about to be called we check and see if it has any
-children, if not we call a function to create the page. These
-functions are stored in a list so that they can be called by page index.
+When a page is about to be called, the \signal{prepare} signal is
+emitted. In our handler, we check and see if it has any children. If
+not, we call a function to lazily create the page. These functions are
+stored in a list, so that they we can refer to them by index.
 <<>>=
 populatePage <- list()                
 gSignalConnect(asst, "prepare", function(a, w, data) {
@@ -56,18 +57,19 @@ gSignalConnect(asst, "prepare", function(a, w, data) {
 })
 @
 
-Although we don't show how to create the CRAN selection page
+Although we do not show how to create the CRAN selection page
 (cf. Example~\ref{ex:RGtk2-add-toggle-to-df} for a similar
-construction) we call \method{setForwardPageFunc}{GtkAssistant} to set
-a function that will skip this page if it is not needed. This function
-simply returns an integer with the next page number based on the last one.
+construction), we call \method{setForwardPageFunc}{GtkAssistant} to
+set a function that will skip this page if it is not needed, i.e., if
+the mirror has already been selected. The callback simply returns an
+integer with the next page number based on the last one.
 <<results=hide>>=
 asst$setForwardPageFunc(function(i, data) {
-  ifelse(i == 0 && have_CRAN(), 2L, as.integer(i + 1)) 
+  if(i == 0 && have_CRAN()) 2L else as.integer(i + 1)
 }, data=NULL)
 @ 
 
-We have a few script globals that allow us to pass data between pages.
+We have a few script globals that allow us to pass data between pages:
 <<>>=
 CRAN_package <- NA
 install_options <- list() #type, dependencies, lib
@@ -102,8 +104,7 @@ set_CRAN <- function(url) {
 
 
 We now show how some of the pages are populated. The initial screen is
-just a welcome and simply shows a label.
-
+just a welcome and simply shows a label:
 <<page1>>=
 populatePage[[1]] <- function() {
   asst$setPageTitle(pages[[1]], "Install a CRAN package")
@@ -259,7 +260,7 @@ Our last page, where the selected package is installed, would
 naturally be of type \code{progress}, but there is no means to
 interrupt the flow of \function{install.packages} to update the
 page. A real application would reimplement that. Instead we just set a
-message once the package install attempt is done.
+message once the package install attempt is finished.
 <<>>=
 populatePage[[5]] <- function() {
   asst$setPageTitle(pages[[5]], "Done")
@@ -282,8 +283,8 @@ populatePage[[5]] <- function() {
 }
 @ 
 
-To finish we simply need to populate the first page and call the
-assistant's \meth{show} method.
+To conclude, we populate the first page and call the assistant's
+\meth{show} method:
 <<showAssistant>>=
 populatePage[[1]]()
 asst$show()

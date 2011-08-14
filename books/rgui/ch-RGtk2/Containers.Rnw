@@ -26,7 +26,7 @@ objects provided by \GTK.
 %% constructor Show/Hide
 As we saw in our ``Hello World'' example, top-level windows are
 constructed by the \igui{top-level window}\constructor{gtkWindow} constructor. This function
-has argument \code{type} to specify the type of window to create. The
+has the argument \code{type} to specify the type of window to create. The
 default is a top-level window, which we will always use, as the
 alternative is for ``popups'' which are meant for internal use, e.g.,
 for implementing menus. The second argument is \code{show}, which by
@@ -77,9 +77,9 @@ l <- gtkLabel("Hello world")
 w$add(l)
 @
 %
-To display multiple widgets in a
-window, one simply needs to add a non-\class{GtkBin} container as the
-child widget.
+To display multiple widgets in a window, one simply needs to add a
+non-\class{GtkBin} container as the child widget. We will discuss
+additional container types in Section~\ref{sec:RGtk2:layout}.
 
 %% delete-event; destroy
 \paragraph{Destroying windows}
@@ -117,7 +117,7 @@ w$destroy()
 New windows may be standalone top-level windows or may be associated
 with some other window. For example, a dialog is usually associated
 with the primary document window. The
-\method{setTransientFor}{GtkWindow} method can be used to specify the
+\method{setTransientFor}{GtkWindow} method specifies the
 window with which a transient (dialog) window is associated. This
 hints to the window manager that the transient window should be kept on
 top of its parent. The position relative to the parent window can be
@@ -147,10 +147,10 @@ discussed in Section~\ref{sec:dialogs}, that support modal operation.
 Once a top-level window is constructed, it remains to fill the window
 with the controls that will constitute our GUI. As these controls are
 graphical, they must occupy a specific region on the screen. The
-region could be specified explicitly, as a rectangle. However, as a
+region could be specified as a fixed rectangle. However, as a
 user interface, a GUI is dynamic and interactive. The size constraints
 of widgets will change, and the window will be resized. The programmer
-cannot afford to explicitly manage a dynamic layout. Thus, \GTK\/
+can ill afford to explicitly manage a dynamic layout. Thus, \GTK\/
 implements automatic layout in the form of container widgets.
 
 \subsection{Basics}
@@ -210,7 +210,7 @@ collected during the transition.\footnote{An object becomes available
 \label{sec:RGtk2:layout:size}
 
 We have already seen perhaps the simplest automatic layout container,
-\class{GtkWindow}, which fills all of its space with its
+\class{GtkBin}, which fills all of its space with its
 child. Despite the apparent simplicity, there is a considerable amount
 of logic for calculating the size of the widget on the screen. The
 child will first inform the parent of its desired natural size. For
@@ -238,10 +238,12 @@ is allocated more space than it requires.
 <<layout-window-show-first-alloc, results=hide>>=
 l$getAllocation()$allocation
 @ 
-% JV: We tighten up the output here:
-<<echo=FALSE>>=
-sapply(l$getAllocation()$allocation, function(i) i)
-@ 
+% ML: a bit of a hack, because the size is not correct during build
+% Might just have to iterate the event loop, but this is easy:
+\begin{Soutput}
+     x      y  width height 
+     0      0    200    200 
+\end{Soutput}
 %
 If, however, we avoid showing the window until the label is added, the
 window will size itself so that the label has its natural size:
@@ -487,7 +489,7 @@ below to make our label left justified:
 <<basic-layout-align-left>>=
 l["xalign"] <- 0
 @ 
-
+%% SCREENSHOT
 Unlike a block of text or an image, a widget usually does not have a
 fixed size. However, the user may wish to tweak how a widget fills
 the space allocated by its container.  \GTK\/ provides the
@@ -732,10 +734,10 @@ zoomPlot <- function(x = 2.0) {
 The function gets the current size allocation from the device, scales
 it by \qcode{x} and requests the new size. It then scrolls the window
 to preserve the center point. The state of each scroll bar is
-represented by a \class{GtkAdjustment}.  We will update the value of
+represented by a \class{GtkAdjustment}.  We update the value of
 the horizontal and vertical adjustments to scroll the window.  The
 value of an adjustment corresponds to the left/top position of the
-window, so we to adjust by half the page size after scaling the value.
+window, so we adjust by half the page size after scaling the value.
 
 \igui{keystroke events}
 We had key press events, so that pressing \kbd{+} zooms in and
@@ -822,7 +824,7 @@ The screen position of the handle can be set with the
 \method{setPosition}{GtkPaned} method.  The properties
 \code{min-position} and \code{max-position} are useful for converting
 a percentage into a screen position. The \signal{move-handle} signal
-is emitted when the gutter position is changed.
+is emitted when the handle position is changed.
 
 \subsection{Tabular layout}
 \label{sec:RGtk2:gtkTable}

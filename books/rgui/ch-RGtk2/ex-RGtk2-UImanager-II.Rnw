@@ -1,6 +1,6 @@
 In this example, we show how to use a UI manager to create the menu
 and toolbars for a data frame editor, similar to, but with enhanced
-functionality, the one produced in some platforms by the
+functionality, the one produced on some platforms by the
 \function{data.entry} function. 
 
 
