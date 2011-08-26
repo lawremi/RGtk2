@@ -641,9 +641,9 @@ gtkStyleGet <-
 
 ## varargs
 gtkInfoBarNewWithButtons <-
-  function(first.button.text, ...)
+  function(first.button.text, ..., show = TRUE)
 {
-  w <- gtkInfoBar()
+  w <- gtkInfoBar(show = show)
   w$addButtons(first.button.text, ...)
   w
 }
