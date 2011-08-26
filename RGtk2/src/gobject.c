@@ -1414,6 +1414,8 @@ asRGValue(const GValue *value)
 {
     USER_OBJECT_ ans = NULL_USER_OBJECT;
 
+    g_return_val_if_fail(G_IS_VALUE(value), ans);
+    
     switch(G_TYPE_FUNDAMENTAL(G_VALUE_TYPE(value))) {
       case G_TYPE_CHAR:
       {
