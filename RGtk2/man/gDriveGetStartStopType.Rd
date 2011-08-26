@@ -5,6 +5,6 @@
 \usage{gDriveGetStartStopType(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GDrive}}.}}
 \details{Since 2.22}
-\value{[\code{\link{GDriveStartStopType}}]  A value from the \code{\link{GDriveStartStopType}} enumeration.}
+\value{[\code{\link{GDriveStartStopType}}] A value from the \code{\link{GDriveStartStopType}} enumeration.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -11,7 +11,7 @@ arguments, and will release them when they are no longer needed.
 \arguments{
 \item{\verb{colormap}}{the colormap of the icon}
 \item{\verb{pixmap}}{the image data for the icon}
-\item{\verb{mask}}{ the transparency mask for an image, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{mask}}{the transparency mask for an image, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{hot.x}}{The X offset within \code{widget} of the hotspot.}
 \item{\verb{hot.y}}{The Y offset within \code{widget} of the hotspot.}
 }

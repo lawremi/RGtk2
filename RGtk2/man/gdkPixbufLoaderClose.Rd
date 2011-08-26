@@ -18,8 +18,8 @@ reasonable.}
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if all image data written so far was successfully
-            passed out via the update_area signal}
-\item{\verb{error}}{ return location for a \code{\link{GError}}, or \code{NULL} to ignore errors. \emph{[  \acronym{allow-none}  ]}}
+passed out via the update_area signal}
+\item{\verb{error}}{return location for a \code{\link{GError}}, or \code{NULL} to ignore errors. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

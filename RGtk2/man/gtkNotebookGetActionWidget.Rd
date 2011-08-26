@@ -8,7 +8,7 @@
 \item{\verb{pack.type}}{pack type of the action widget to receive}
 }
 \details{Since 2.20}
-\value{[\code{\link{GtkWidget}}]  The action widget with the given \code{pack.type} or
-    \code{NULL} when this action widget has not been set}
+\value{[\code{\link{GtkWidget}}] The action widget with the given \code{pack.type} or
+\code{NULL} when this action widget has not been set}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

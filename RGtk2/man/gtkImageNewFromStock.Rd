@@ -10,8 +10,8 @@ You can register your own stock icon names, see
 \usage{gtkImageNewFromStock(stock.id, size, show = TRUE)}
 \arguments{
 \item{\verb{stock.id}}{a stock icon name}
-\item{\verb{size}}{ a stock icon size. \emph{[type int]}}
+\item{\verb{size}}{a stock icon size. \emph{[  \acronym{type}   int]}}
 }
-\value{[\code{\link{GtkWidget}}]  a new \code{\link{GtkImage}} displaying the stock icon}
+\value{[\code{\link{GtkWidget}}] a new \code{\link{GtkImage}} displaying the stock icon}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

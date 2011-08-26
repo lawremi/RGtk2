@@ -6,6 +6,6 @@ of the content of the editable. }
 \usage{gtkEditableGetPosition(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkEditable}}}}
 \details{Note that this position is in characters, not in bytes.}
-\value{[integer]  the cursor position}
+\value{[integer] the cursor position}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

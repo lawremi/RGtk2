@@ -8,7 +8,7 @@ function is \code{NULL}, no separators are drawn. This is the default value.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkComboBox}}}
 \item{\verb{func}}{a \code{\link{GtkTreeViewRowSeparatorFunc}}}
-\item{\verb{data}}{ user data to pass to \code{func}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{data}}{user data to pass to \code{func}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}

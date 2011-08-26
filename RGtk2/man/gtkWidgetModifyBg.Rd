@@ -8,9 +8,9 @@ All other style values are left untouched. See also
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkWidget}}}
 \item{\verb{state}}{the state for which to set the background color}
-\item{\verb{color}}{ the color to assign (does not need to be allocated),
-        or \code{NULL} to undo the effect of previous calls to
-        of \code{\link{gtkWidgetModifyBg}}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{color}}{the color to assign (does not need to be allocated),
+or \code{NULL} to undo the effect of previous calls to
+of \code{\link{gtkWidgetModifyBg}}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{Note that "no window" widgets (which have the \code{GTK_NO_WINDOW} flag set)
 draw on their parent container's window and thus may not draw any 

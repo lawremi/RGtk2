@@ -21,6 +21,6 @@ language code "xx".  That is, compare to:
 pangoLanguageFromString("xx")$getSampleString()
 
 }}
-\value{[char]  the sample string.}
+\value{[char] the sample string.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -5,6 +5,6 @@
 \usage{gtkActionGetShortLabel(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkAction}}}}
 \details{Since 2.16}
-\value{[character]  the short label text.}
+\value{[character] the short label text.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -11,6 +11,6 @@ rendering the glyph.}
 \item{\verb{data}}{user data pointer}
 }
 \details{Since 1.8}
-\value{[\code{\link{PangoAttribute}}]  the newly allocated \code{\link{PangoAttribute}},}
+\value{[\code{\link{PangoAttribute}}] the newly allocated \code{\link{PangoAttribute}},}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

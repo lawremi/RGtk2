@@ -18,9 +18,9 @@ A list containing the following elements:
 \code{FALSE} if there were errors.}
 \item{\verb{contents}}{a location to place the contents of the file.}
 \item{\verb{length}}{a location to place the length of the contents of the file,
-   or \code{NULL} if the length is not needed}
+or \code{NULL} if the length is not needed}
 \item{\verb{etag.out}}{a location to place the current entity tag for the file,
-   or \code{NULL} if the entity tag is not needed}
+or \code{NULL} if the entity tag is not needed}
 \item{\verb{error}}{a \code{\link{GError}}, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

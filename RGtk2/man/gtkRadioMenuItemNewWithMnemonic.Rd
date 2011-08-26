@@ -8,7 +8,7 @@ in \code{label} indicate the mnemonic for the menu item.}
 \arguments{
 \item{\verb{group}}{group the radio menu item is inside}
 \item{\verb{label}}{the text of the button, with an underscore in front of the
-        mnemonic character}
+mnemonic character}
 }
 \value{[\code{\link{GtkWidget}}] a new \code{\link{GtkRadioMenuItem}}}
 \author{Derived by RGtkGen from GTK+ documentation}

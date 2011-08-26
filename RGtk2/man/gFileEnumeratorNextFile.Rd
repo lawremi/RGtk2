@@ -16,7 +16,7 @@ enumerator is at the end, \code{NULL} will be returned and \code{error} will
 be unset.}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GFileInfo}}]  A \code{\link{GFileInfo}} or \code{NULL} on error or end of enumerator.}
+\item{retval}{[\code{\link{GFileInfo}}] A \code{\link{GFileInfo}} or \code{NULL} on error or end of enumerator.}
 \item{\verb{error}}{location to store the error occuring, or \code{NULL} to ignore}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

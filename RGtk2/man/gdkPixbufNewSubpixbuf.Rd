@@ -15,6 +15,6 @@ is finalized.}
 \item{\verb{width}}{width of region in \code{src.pixbuf}}
 \item{\verb{height}}{height of region in \code{src.pixbuf}}
 }
-\value{[\code{\link{GdkPixbuf}}]  a new pixbuf }
+\value{[\code{\link{GdkPixbuf}}] a new pixbuf}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -6,6 +6,6 @@ themed icon, it will be updated when the theme changes.}
 \usage{gtkStatusIconNewFromGicon(icon)}
 \arguments{\item{\verb{icon}}{a \code{\link{GIcon}}}}
 \details{Since 2.14}
-\value{[\code{\link{GtkStatusIcon}}]  a new \code{\link{GtkStatusIcon}}}
+\value{[\code{\link{GtkStatusIcon}}] a new \code{\link{GtkStatusIcon}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -17,7 +17,7 @@ zero-length item).}
 \details{This function is similar in function to \code{\link{pangoItemSplit}} (and uses
 it internally.)
   Since 1.2}
-\value{[\code{\link{PangoGlyphItem}}]  the newly allocated item representing text before
-              \code{split.index},}
+\value{[\code{\link{PangoGlyphItem}}] the newly allocated item representing text before
+\code{split.index},}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

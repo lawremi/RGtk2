@@ -8,8 +8,8 @@ later received, it will be converted to a \code{\link{GdkPixbuf}}, and
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkClipboard}}}
 \item{\verb{callback}}{a function to call when the image is received,
-            or the retrieval fails. (It will always be called
-            one way or the other.)}
+or the retrieval fails. (It will always be called
+one way or the other.)}
 \item{\verb{user.data}}{user data to pass to \code{callback}.}
 }
 \details{The \code{pixbuf} parameter to \code{callback} will contain the resulting 

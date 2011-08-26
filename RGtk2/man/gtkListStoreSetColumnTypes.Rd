@@ -8,7 +8,7 @@ interface is called.}
 \usage{gtkListStoreSetColumnTypes(object, types)}
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkListStore}}}
-\item{\verb{types}}{ An list length n of \verb{GTypes}. \emph{[  \acronym{array}   length=n_columns]}}
+\item{\verb{types}}{An list length n of \verb{GTypes}. \emph{[  \acronym{array}   length=n_columns]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

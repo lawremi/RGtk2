@@ -69,8 +69,8 @@ handlebox are reattached to the main window.
 \describe{
 \item{\code{handlebox}}{the object which received the signal.}
 \item{\code{widget}}{the child widget of the handlebox.
-         (this argument provides no extra information
-          and is here only for backwards-compatibility)}
+(this argument provides no extra information
+and is here only for backwards-compatibility)}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
@@ -83,8 +83,8 @@ handlebox are detached from the main window.
 \describe{
 \item{\code{handlebox}}{the object which received the signal.}
 \item{\code{widget}}{the child widget of the handlebox.
-         (this argument provides no extra information
-          and is here only for backwards-compatibility)}
+(this argument provides no extra information
+and is here only for backwards-compatibility)}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 

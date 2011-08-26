@@ -8,7 +8,7 @@ the layout's context is used.}
 \arguments{
 \item{\verb{object}}{a \code{\link{PangoLayout}}}
 \item{\verb{desc}}{the new \code{\link{PangoFontDescription}}, or \code{NULL} to unset the
-       current font description}
+current font description}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

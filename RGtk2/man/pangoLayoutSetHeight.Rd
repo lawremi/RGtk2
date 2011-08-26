@@ -8,7 +8,7 @@ negative.}
 \arguments{
 \item{\verb{object}}{a \code{\link{PangoLayout}}.}
 \item{\verb{height}}{the desired height of the layout in Pango units if positive,
-         or desired number of lines if negative.}
+or desired number of lines if negative.}
 }
 \details{If \code{height} is positive, it will be the maximum height of the layout.  Only
 lines would be shown that would fit, and if there is any text omitted,

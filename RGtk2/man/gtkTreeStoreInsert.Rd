@@ -11,7 +11,7 @@ fill in values, you need to call \code{\link{gtkTreeStoreSet}} or
 \usage{gtkTreeStoreInsert(object, parent = NULL, position)}
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkTreeStore}}}
-\item{\verb{parent}}{ A valid \code{\link{GtkTreeIter}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{parent}}{A valid \code{\link{GtkTreeIter}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{position}}{position to insert the new row}
 }
 \value{

@@ -8,7 +8,7 @@ not contain a string, \code{NULL} will be returned.}
 \item{\verb{object}}{a \code{\link{GFileInfo}}.}
 \item{\verb{attribute}}{a file attribute key.}
 }
-\value{[char]  the contents of the \code{attribute} value as a string, or 
+\value{[char] the contents of the \code{attribute} value as a string, or
 \code{NULL} otherwise.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

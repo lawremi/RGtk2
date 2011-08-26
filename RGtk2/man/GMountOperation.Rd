@@ -23,8 +23,16 @@
 \code{\link{gMountOperationReply}(object, result)}\cr
 \code{gMountOperation()}
 }
-\section{Hierarchy}{\preformatted{GObject
-   +----GMountOperation}}
+\section{Hierarchy}{\preformatted{
+GFlags
+   +----GAskPasswordFlags
+GEnum
+   +----GPasswordSave
+GObject
+   +----GMountOperation
+GEnum
+   +----GMountOperationResult
+}}
 \section{Detailed Description}{\code{\link{GMountOperation}} provides a mechanism for interacting with the user.
 It can be used for authenticating mountable operations, such as loop
 mounting files, hard drive partitions or server locations. It can

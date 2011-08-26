@@ -5,6 +5,6 @@
 \usage{gtkPaperSizeCopy(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkPaperSize}}}}
 \details{Since 2.10}
-\value{[\code{\link{GtkPaperSize}}]  a copy of \code{other}}
+\value{[\code{\link{GtkPaperSize}}] a copy of \code{other}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

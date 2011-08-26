@@ -13,6 +13,6 @@ Also note that the dialog needs to have its confirmative button
 added with response \code{GTK_RESPONSE_ACCEPT} or \code{GTK_RESPONSE_OK} in
 order for the button to take over the file selected in the dialog.
   Since 2.6}
-\value{[\code{\link{GtkWidget}}]  a new button widget.}
+\value{[\code{\link{GtkWidget}}] a new button widget.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -9,8 +9,8 @@ toggles when it gets a mouse click.}
 \item{\verb{object}}{a \code{\link{GtkCellRenderer}}}
 \item{\verb{event}}{a \code{\link{GdkEvent}}}
 \item{\verb{widget}}{widget that received the event}
-\item{\verb{path}}{widget-dependent string representation of the event location; 
-   e.g. for \code{\link{GtkTreeView}}, a string representation of \code{\link{GtkTreePath}}}
+\item{\verb{path}}{widget-dependent string representation of the event location;
+e.g. for \code{\link{GtkTreeView}}, a string representation of \code{\link{GtkTreePath}}}
 \item{\verb{background.area}}{background area as passed to \code{\link{gtkCellRendererRender}}}
 \item{\verb{cell.area}}{cell area as passed to \code{\link{gtkCellRendererRender}}}
 \item{\verb{flags}}{render flags}

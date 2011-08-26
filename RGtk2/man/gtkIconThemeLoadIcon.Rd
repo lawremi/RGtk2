@@ -10,7 +10,7 @@ if more details about the icon are needed, use
 \item{\verb{object}}{a \code{\link{GtkIconTheme}}}
 \item{\verb{icon.name}}{the name of the icon to lookup}
 \item{\verb{size}}{the desired icon size. The resulting icon may not be
-       exactly this size; see \code{\link{gtkIconInfoLoadIcon}}.}
+exactly this size; see \code{\link{gtkIconInfoLoadIcon}}.}
 \item{\verb{flags}}{flags modifying the behavior of the icon lookup}
 \item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
@@ -24,10 +24,10 @@ icon theme loaded, which would be a waste of memory.
   Since 2.4}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GdkPixbuf}}]  the rendered icon; this may be a newly created icon
- or a new reference to an internal icon, so you must not modify
- the icon. \code{NULL} if the icon isn't found.}
-\item{\verb{error}}{ Location to store error information on failure, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{retval}{[\code{\link{GdkPixbuf}}] the rendered icon; this may be a newly created icon
+or a new reference to an internal icon, so you must not modify
+the icon. \code{NULL} if the icon isn't found.}
+\item{\verb{error}}{Location to store error information on failure, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

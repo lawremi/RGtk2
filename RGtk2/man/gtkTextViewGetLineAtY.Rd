@@ -13,8 +13,8 @@ edge of the line.}
 }
 \value{
 A list containing the following elements:
-\item{\verb{target.iter}}{ a \code{\link{GtkTextIter}}. \emph{[  \acronym{out}  ]}}
-\item{\verb{line.top}}{ return location for top coordinate of the line. \emph{[  \acronym{out}  ]}}
+\item{\verb{target.iter}}{a \code{\link{GtkTextIter}}}
+\item{\verb{line.top}}{return location for top coordinate of the line}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

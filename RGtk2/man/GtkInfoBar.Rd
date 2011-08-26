@@ -70,11 +70,12 @@ gtk_label_set_text (GTK_LABEL (message_label), error_message);
 gtk_info_bar_set_message_type (GTK_INFO_BAR (info_bar),
                                GTK_MESSAGE_ERROR);
 gtk_widget_show (info_bar);
-}}
-\section{GtkInfoBar as GtkBuildable}{The GtkInfoBar implementation of the GtkBuildable interface exposes
+}  
+ \emph{GtkInfoBar as GtkBuildable}
+The GtkInfoBar implementation of the GtkBuildable interface exposes
 the content area and action area as internal children with the names
 "content_area" and "action_area".
-  
+
 GtkInfoBar supports a custom <action-widgets> element, which
 can contain multiple <action-widget> elements. The "response"
 attribute specifies a numeric response, and the content of the element

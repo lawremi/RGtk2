@@ -5,6 +5,6 @@
 the end of the layout, returns \code{FALSE}.}
 \usage{pangoLayoutIterNextChar(object)}
 \arguments{\item{\verb{object}}{a \code{\link{PangoLayoutIter}}}}
-\value{[logical]  whether motion was possible.}
+\value{[logical] whether motion was possible.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

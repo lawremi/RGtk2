@@ -8,9 +8,9 @@ underscores). The first underlined character represents a keyboard
 accelerator called a mnemonic.
 Pressing Alt and that key activates the button.}
 \usage{gtkExpanderNewWithMnemonic(label = NULL)}
-\arguments{\item{\verb{label}}{ the text of the label with an underscore in front of the
-        mnemonic character. \emph{[  \acronym{allow-none}  ]}}}
+\arguments{\item{\verb{label}}{the text of the label with an underscore in front of the
+mnemonic character. \emph{[  \acronym{allow-none}  ]}}}
 \details{Since 2.4}
-\value{[\code{\link{GtkWidget}}]  a new \code{\link{GtkExpander}} widget.}
+\value{[\code{\link{GtkWidget}}] a new \code{\link{GtkExpander}} widget.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -12,6 +12,6 @@ to distinguish between the text window and entry's icon windows.}
 }
 \details{See also \code{\link{gtkEntryGetTextWindow}}.
   Since 2.20}
-\value{[\code{\link{GdkWindow}}]  the entry's icon window at \code{icon.pos}.}
+\value{[\code{\link{GdkWindow}}] the entry's icon window at \code{icon.pos}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

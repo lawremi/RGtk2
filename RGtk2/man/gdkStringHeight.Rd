@@ -13,6 +13,6 @@ relation to the baseline. See \code{\link{gdkStringExtents}}.
 \item{\verb{object}}{a \code{\link{GdkFont}}}
 \item{\verb{string}}{the string to measure.}
 }
-\value{[integer]  the height of the string in pixels.}
+\value{[integer] the height of the string in pixels.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

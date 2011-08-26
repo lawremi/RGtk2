@@ -10,6 +10,6 @@ embedding a picture or a widget inside a \code{\link{PangoLayout}}.}
 \item{\verb{ink.rect}}{ink rectangle to assign to each character}
 \item{\verb{logical.rect}}{logical rectangle to assign to each character}
 }
-\value{[\code{\link{PangoAttribute}}]  the newly allocated \code{\link{PangoAttribute}},}
+\value{[\code{\link{PangoAttribute}}] the newly allocated \code{\link{PangoAttribute}},}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

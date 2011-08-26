@@ -6,6 +6,6 @@ it into a \code{\link{GtkTextBuffer}} with \code{\link{gtkTextBufferInsertChildA
 To perform the creation and insertion in one step, use the
 convenience function \code{\link{gtkTextBufferCreateChildAnchor}}.}
 \usage{gtkTextChildAnchorNew()}
-\value{[\code{\link{GtkTextChildAnchor}}]  a new \code{\link{GtkTextChildAnchor}}}
+\value{[\code{\link{GtkTextChildAnchor}}] a new \code{\link{GtkTextChildAnchor}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -8,6 +8,6 @@ Returns the \code{\link{GdkDisplay}} for \code{font}.
 \usage{gdkFontGetDisplay(object)}
 \arguments{\item{\verb{object}}{the \code{\link{GdkFont}}.}}
 \details{Since 2.2}
-\value{[\code{\link{GdkDisplay}}]  the corresponding \code{\link{GdkDisplay}}.}
+\value{[\code{\link{GdkDisplay}}] the corresponding \code{\link{GdkDisplay}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

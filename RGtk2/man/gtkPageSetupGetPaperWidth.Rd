@@ -11,6 +11,6 @@
 not margins into consideration. 
 See \code{\link{gtkPageSetupGetPageWidth}}.
   Since 2.10}
-\value{[numeric]  the paper width.}
+\value{[numeric] the paper width.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

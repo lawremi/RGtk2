@@ -17,7 +17,7 @@ combines these two steps if all you need is the pixbuf.)}
 tries them all in the given order before falling back to 
 inherited icon themes.
   Since 2.12}
-\value{[\code{\link{GtkIconInfo}}]  a \code{\link{GtkIconInfo}} structure containing information
+\value{[\code{\link{GtkIconInfo}}] a \code{\link{GtkIconInfo}} structure containing information
 about the icon, or \code{NULL} if the icon wasn't found.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

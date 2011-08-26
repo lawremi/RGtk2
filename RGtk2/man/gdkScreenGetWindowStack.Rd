@@ -16,7 +16,7 @@ it is implementable on that platform.
 The returned list is newly allocated and owns references to the
 windows it contains,
   Since 2.10}
-\value{[list]  a list of \code{\link{GdkWindow}}s for the current window stack,
-              or \code{NULL}.}
+\value{[list] a list of \code{\link{GdkWindow}}s for the current window stack,
+or \code{NULL}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

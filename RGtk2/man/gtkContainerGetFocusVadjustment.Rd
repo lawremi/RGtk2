@@ -5,7 +5,7 @@
 \code{\link{gtkContainerSetFocusVadjustment}}.}
 \usage{gtkContainerGetFocusVadjustment(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkContainer}}}}
-\value{[\code{\link{GtkAdjustment}}]  the vertical focus adjustment, or \code{NULL} if
-  none has been set. \emph{[  \acronym{transfer none}  ]}}
+\value{[\code{\link{GtkAdjustment}}] the vertical focus adjustment, or \code{NULL} if
+none has been set. \emph{[  \acronym{transfer none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

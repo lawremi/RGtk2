@@ -5,6 +5,6 @@
 \usage{gtkPrintSettingsGetQuality(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkPrintSettings}}}}
 \details{Since 2.10}
-\value{[\code{\link{GtkPrintQuality}}]  the print quality}
+\value{[\code{\link{GtkPrintQuality}}] the print quality}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

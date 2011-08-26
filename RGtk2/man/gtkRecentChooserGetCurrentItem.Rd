@@ -5,7 +5,7 @@
 \usage{gtkRecentChooserGetCurrentItem(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkRecentChooser}}}}
 \details{Since 2.10}
-\value{[\code{\link{GtkRecentInfo}}]  a \code{\link{GtkRecentInfo}}.  Use \code{\link{gtkRecentInfoUnref}} when
-  when you have finished using it.}
+\value{[\code{\link{GtkRecentInfo}}] a \code{\link{GtkRecentInfo}}.  Use \code{\link{gtkRecentInfoUnref}} when
+when you have finished using it.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

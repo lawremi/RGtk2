@@ -11,9 +11,9 @@
 \details{Since 2.8}
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  whether there is an item at the given position.}
-\item{\verb{path}}{ Return location for the path of the item, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{pos}}{ Return location for the drop position, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{retval}{[logical] whether there is an item at the given position.}
+\item{\verb{path}}{Return location for the path of the item, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{pos}}{Return location for the drop position, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

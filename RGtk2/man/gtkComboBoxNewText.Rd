@@ -9,6 +9,6 @@ following convenience functions: \code{\link{gtkComboBoxAppendText}},
 \code{\link{gtkComboBoxRemoveText}}.}
 \usage{gtkComboBoxNewText(show = TRUE)}
 \details{Since 2.4}
-\value{[\code{\link{GtkWidget}}]  A new text combo box. \emph{[  \acronym{transfer none}  ]}}
+\value{[\code{\link{GtkWidget}}] A new text combo box. \emph{[  \acronym{transfer none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

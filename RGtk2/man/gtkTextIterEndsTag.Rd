@@ -10,8 +10,8 @@ that the \code{\link{gtkTextIterEndsTag}} returns \code{TRUE} if \code{iter} is 
 \usage{gtkTextIterEndsTag(object, tag = NULL)}
 \arguments{
 \item{\verb{object}}{an iterator}
-\item{\verb{tag}}{ a \code{\link{GtkTextTag}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{tag}}{a \code{\link{GtkTextTag}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
-\value{[logical]  whether \code{iter} is the end of a range tagged with \code{tag}}
+\value{[logical] whether \code{iter} is the end of a range tagged with \code{tag}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -10,8 +10,8 @@
 }
 \value{
 A list containing the following elements:
-\item{retval}{[integer]  number of bytes read in, or -1 on error.}
-\item{\verb{error}}{a \code{\link{GError}} location to store the error occuring, or \code{NULL} to 
+\item{retval}{[integer] number of bytes read in, or -1 on error.}
+\item{\verb{error}}{a \code{\link{GError}} location to store the error occuring, or \code{NULL} to
 ignore.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

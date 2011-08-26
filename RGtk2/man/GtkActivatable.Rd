@@ -17,8 +17,10 @@
 \section{Detailed Description}{Activatable widgets can be connected to a \code{\link{GtkAction}} and reflects
 the state of its action. A \code{\link{GtkActivatable}} can also provide feedback
 through its action, as they are responsible for activating their
-related actions.}
-\section{Implementing GtkActivatable}{When extending a class that is already \code{\link{GtkActivatable}}; it is only
+related actions.
+  
+ \emph{Implementing GtkActivatable}
+When extending a class that is already \code{\link{GtkActivatable}}; it is only
 necessary to implement the \code{\link{GtkActivatable}}->\code{syncActionProperties()}
 and \code{\link{GtkActivatable}}->\code{update()} methods and chain up to the parent
 implementation, however when introducing
@@ -28,7 +30,7 @@ the implementor. Handling these properties is mostly a matter of installing
 the action pointer and boolean flag on your instance, and calling
 \code{\link{gtkActivatableDoSetRelatedAction}} and
 \code{\link{gtkActivatableSyncActionProperties}} at the appropriate times.
-  
+
  \emph{A class fragment implementing   \code{\link{GtkActivatable}}}\preformatted{enum {
 ...
 

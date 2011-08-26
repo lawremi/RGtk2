@@ -58,10 +58,10 @@ allocated or unallocated color.
 
 \describe{
 \item{\verb{pixel}}{[numeric] For allocated colors, the value used to
-  draw this color on the screen.}
+draw this color on the screen.}
 \item{\verb{red}}{[integer] The red component of the color. This is
-  a value between 0 and 65535, with 65535 indicating
-  full intensitiy.}
+a value between 0 and 65535, with 65535 indicating
+full intensitiy.}
 \item{\verb{green}}{[integer] The blue component of the color.}
 \item{\verb{blue}}{[integer] The green component of the color.}
 }
@@ -72,11 +72,11 @@ The colormap structure contains the following public fields.
 
 \describe{
 \item{\code{size}}{For pseudo-color colormaps, the number of colors
-  in the colormap.}
+in the colormap.}
 \item{\code{colors}}{An list containing the current values in the
-  colormap. This can be used to map from pixel values
-  back to RGB values. This is only meaningful for
-  pseudo-color colormaps.}
+colormap. This can be used to map from pixel values
+back to RGB values. This is only meaningful for
+pseudo-color colormaps.}
 }
 
 }

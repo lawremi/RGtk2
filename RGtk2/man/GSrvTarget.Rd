@@ -1,6 +1,5 @@
-\alias{gio-GSrvTarget}
 \alias{GSrvTarget}
-\name{gio-GSrvTarget}
+\name{GSrvTarget}
 \title{GSrvTarget}
 \description{DNS SRV record target}
 \section{Methods and Functions}{
@@ -13,6 +12,8 @@
 \code{\link{gSrvTargetGetWeight}(object)}\cr
 \code{\link{gSrvTargetListSort}(targets)}\cr
 }
+\section{Hierarchy}{\preformatted{GBoxed
+   +----GSrvTarget}}
 \section{Detailed Description}{SRV (service) records are used by some network protocols to provide
 service-specific aliasing and load-balancing. For example, XMPP
 (Jabber) uses SRV records to locate the XMPP server for a domain;
@@ -31,6 +32,6 @@ to the remote service, you can use \code{\link{GNetworkService}}'s
 A single target host/port that a network service is running on.
 
 }}}
-\references{\url{http://library.gnome.org/devel//gio/gio-GSrvTarget.html}}
+\references{\url{http://library.gnome.org/devel//gio/GSrvTarget.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

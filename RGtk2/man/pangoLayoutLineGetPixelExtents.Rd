@@ -11,9 +11,9 @@ passes them as first argument to \code{\link{pangoExtentsToPixels}}).}
 \value{
 A list containing the following elements:
 \item{\verb{ink.rect}}{rectangle used to store the extents of the glyph string
-              as drawn, or \code{NULL}}
-\item{\verb{logical.rect}}{rectangle used to store the logical extents of the glyph
-              string, or \code{NULL}}
+as drawn, or \code{NULL}. \emph{[  \acronym{out}  ]}}
+\item{\verb{logical.rect}}{rectangle used to store the logical extents of the
+glyph string, or \code{NULL}. \emph{[  \acronym{out}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

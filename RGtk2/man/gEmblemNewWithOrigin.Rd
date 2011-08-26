@@ -8,6 +8,6 @@
 \item{\verb{origin}}{a GEmblemOrigin enum defining the emblem's origin}
 }
 \details{Since 2.18}
-\value{[\code{\link{GEmblem}}]  a new \code{\link{GEmblem}}.}
+\value{[\code{\link{GEmblem}}] a new \code{\link{GEmblem}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

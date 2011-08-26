@@ -11,8 +11,8 @@ Since the returned list is \code{NULL} terminated, \code{length} may be \code{NU
   Since 2.10}
 \value{
 A list containing the following elements:
-\item{retval}{[character]  A newly allocated, \code{NULL} terminated list of strings.}
-\item{\verb{length}}{ return location for a the length of the URI list, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{retval}{[character] A newly allocated, \code{NULL} terminated list of strings.}
+\item{\verb{length}}{return location for a the length of the URI list, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

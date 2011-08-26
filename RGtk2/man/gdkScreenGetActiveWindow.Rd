@@ -13,6 +13,6 @@ _NET_ACTIVE_WINDOW hint, this function returns \code{NULL}.
 On other platforms, this function may return \code{NULL}, depending on whether
 it is implementable on that platform.
   Since 2.10}
-\value{[\code{\link{GdkWindow}}]  the currently active window, or \code{NULL}.}
+\value{[\code{\link{GdkWindow}}] the currently active window, or \code{NULL}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

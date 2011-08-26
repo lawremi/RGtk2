@@ -14,7 +14,7 @@ window.}
 \item{\verb{object}}{a \code{\link{GtkWidget}}}
 \item{\verb{event}}{a \code{\link{GdkEvent}}}
 }
-\value{[logical]  return from the event signal emission (\code{TRUE} if 
-              the event was handled)}
+\value{[logical] return from the event signal emission (\code{TRUE} if
+the event was handled)}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

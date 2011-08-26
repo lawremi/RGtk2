@@ -67,8 +67,12 @@
 \code{\link{gtkBorderCopy}(object)}\cr
 \code{gtkStyle()}
 }
-\section{Hierarchy}{\preformatted{GObject
-   +----GtkStyle}}
+\section{Hierarchy}{\preformatted{
+GObject
+   +----GtkStyle
+GBoxed
+   +----GtkBorder
+}}
 \section{Structures}{\describe{
 \item{\verb{GtkStyle}}{
 \emph{undocumented
@@ -106,28 +110,14 @@
 A struct that specifies a border around a rectangular area that can
 be of different width on each side.
 
-\describe{
-\item{\code{left}}{The width of the left border.}
-\item{\code{right}}{The width of the right border.}
-\item{\code{top}}{The width of the top border.}
-\item{\code{bottom}}{The width of the bottom border.}
-}
-
 }
 }}
 \section{Convenient Construction}{\code{gtkStyle} is the equivalent of \code{\link{gtkStyleNew}}.}
-\section{User Functions}{\describe{\item{\code{GtkRcPropertyParser(pspec, rc.string, property.value)}}{
+\section{User Functions}{\describe{\item{\code{GtkRcPropertyParser()}}{
 \emph{undocumented
 }
 
-\describe{
-\item{\code{pspec}}{\emph{undocumented
-}}
-\item{\code{rc.string}}{\emph{undocumented
-}}
-\item{\code{property.value}}{\emph{undocumented
-}}
-}
+
 
 
 }}}

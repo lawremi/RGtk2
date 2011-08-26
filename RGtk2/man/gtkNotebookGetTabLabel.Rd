@@ -9,6 +9,6 @@ been set for \code{child}.}
 \item{\verb{object}}{a \code{\link{GtkNotebook}}}
 \item{\verb{child}}{the page}
 }
-\value{[\code{\link{GtkWidget}}]  the tab label. \emph{[  \acronym{transfer none}  ]}}
+\value{[\code{\link{GtkWidget}}] the tab label. \emph{[  \acronym{transfer none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

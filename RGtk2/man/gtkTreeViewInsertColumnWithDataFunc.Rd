@@ -16,6 +16,6 @@ If \code{tree.view} has "fixed_height" mode enabled, then the new column will ha
 \item{\verb{func}}{function to set attributes of cell renderer}
 \item{\verb{data}}{data for \code{func}}
 }
-\value{[integer]  number of columns in the tree view post-insert}
+\value{[integer] number of columns in the tree view post-insert}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

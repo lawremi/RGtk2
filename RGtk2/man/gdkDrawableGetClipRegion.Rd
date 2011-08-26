@@ -9,6 +9,6 @@ but no area outside of this region will be affected by drawing
 primitives.}
 \usage{gdkDrawableGetClipRegion(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GdkDrawable}}}}
-\value{[\code{\link{GdkRegion}}]  a \code{\link{GdkRegion}}.}
+\value{[\code{\link{GdkRegion}}] a \code{\link{GdkRegion}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

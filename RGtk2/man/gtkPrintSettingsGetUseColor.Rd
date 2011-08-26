@@ -5,6 +5,6 @@
 \usage{gtkPrintSettingsGetUseColor(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkPrintSettings}}}}
 \details{Since 2.10}
-\value{[logical]  whether to use color}
+\value{[logical] whether to use color}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

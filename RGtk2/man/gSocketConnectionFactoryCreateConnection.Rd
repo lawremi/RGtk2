@@ -6,6 +6,6 @@
 \usage{gSocketConnectionFactoryCreateConnection(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GSocket}}}}
 \details{Since 2.22}
-\value{[\code{\link{GSocketConnection}}]  a \code{\link{GSocketConnection}}}
+\value{[\code{\link{GSocketConnection}}] a \code{\link{GSocketConnection}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

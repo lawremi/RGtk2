@@ -6,7 +6,7 @@
 \arguments{\item{\verb{object}}{a \code{\link{GtkColorSelection}}.}}
 \value{
 A list containing the following elements:
-\item{\verb{color}}{ a \code{\link{GdkColor}} to fill in with the current color. \emph{[  \acronym{out}  ]}}
+\item{\verb{color}}{a \code{\link{GdkColor}} to fill in with the current color.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

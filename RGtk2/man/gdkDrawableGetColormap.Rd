@@ -5,6 +5,6 @@
 \code{NULL} otherwise.}
 \usage{gdkDrawableGetColormap(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GdkDrawable}}}}
-\value{[\code{\link{GdkColormap}}]  the colormap, or \code{NULL}}
+\value{[\code{\link{GdkColormap}}] the colormap, or \code{NULL}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

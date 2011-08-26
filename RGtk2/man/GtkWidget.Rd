@@ -1,6 +1,7 @@
 \alias{GtkWidget}
 \alias{GtkWidgetClass}
 \alias{GtkRequisition}
+\alias{GtkAllocation}
 \alias{GtkSelectionData}
 \alias{gtkWidget}
 \alias{GtkCallback}
@@ -187,7 +188,8 @@
 \code{\link{gtkRequisitionCopy}(object)}\cr
 \code{gtkWidget(type, ..., show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{GObject
+\section{Hierarchy}{\preformatted{
+GObject
    +----GInitiallyUnowned
          +----GtkObject
                +----GtkWidget
@@ -204,26 +206,46 @@
                      +----GtkInvisible
                      +----GtkOldEditable
                      +----GtkPreview
-                     +----GtkProgress}}
+                     +----GtkProgress
+GBoxed
+   +----GtkRequisition
+GBoxed
+   +----GtkSelectionData
+}}
 \section{Interfaces}{GtkWidget implements
  AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Interface Derivations}{GtkWidget is required by
  \code{\link{GtkCellEditable}},  \code{\link{GtkFileChooser}} and  \code{\link{GtkToolShell}}.}
 \section{Detailed Description}{GtkWidget is the base class all widgets in GTK+ derive from. It manages the
-widget lifecycle, states and style.}
-\section{GtkWidget as GtkBuildable}{The GtkWidget implementation of the GtkBuildable interface supports a
+widget lifecycle, states and style.
+  \code{GtkWidget} introduces \dfn{style
+properties} - these are basically object properties that are stored
+not on the object, but in the style object associated to the widget. Style
+properties are set in resource files.
+This mechanism is used for configuring such things as the location of the
+scrollbar arrows through the theme, giving theme authors more control over the
+look of applications without the need to write a theme engine in C.
+
+Use \code{\link{gtkWidgetClassInstallStyleProperty}} to install style properties for
+a widget class, \code{\link{gtkWidgetClassFindStyleProperty}} or
+\code{\link{gtkWidgetClassListStyleProperties}} to get information about existing
+style properties and \code{\link{gtkWidgetStyleGetProperty}}, \code{\link{gtkWidgetStyleGet}} or
+\code{gtkWidgetStyleGetValist()} to obtain the value of a style property.
+
+ \emph{GtkWidget as GtkBuildable}
+The GtkWidget implementation of the GtkBuildable interface supports a
 custom <accelerator> element, which has attributes named key,
 modifiers and signal and allows to specify accelerators.
-  
+
  \emph{A UI definition fragment specifying an accelerator}\preformatted{<object class="GtkButton">
   <accelerator key="q" modifiers="GDK_CONTROL_MASK" signal="clicked"/>
 </object>
-}  
+}
 In addition to accelerators, \code{GtkWidget} also support a
 custom <accessible> element, which supports actions and relations.
 Properties on the accessible implementation of an object can be set by accessing the
 internal child "accessible" of a \code{GtkWidget}.
-  
+
  \emph{A UI definition fragment specifying an accessible}\preformatted{<object class="GtkButton" id="label1"/>
   <property name="label">I am a Label for a Button</property>
 </object>
@@ -270,8 +292,22 @@ A \code{GtkRequisition} represents the desired size of a widget. See
  for more information.
 
 \describe{
-\item{\verb{width}}{[integer] the widget's desired width}
-\item{\verb{height}}{[integer] the widget's desired height}
+\item{\verb{width}}{[integer] }
+\item{\verb{height}}{[integer] }
+}
+
+}
+\item{\verb{GtkAllocation}}{
+A \code{GtkAllocation} of a widget represents region which has been allocated to the
+widget by its parent. It is a subregion of its parents allocation. See
+ for more information.
+\strong{\verb{GtkAllocation} is a \link{transparent-type}.}
+
+\describe{
+\item{\code{x}}{the X position of the widget's area relative to its parents allocation.}
+\item{\code{y}}{the Y position of the widget's area relative to its parents allocation.}
+\item{\code{width}}{the width of the widget's allocated area.}
+\item{\code{height}}{the height of the widget's allocated area.}
 }
 
 }
@@ -416,8 +452,8 @@ This signal will be sent to the grab widget if there is one.
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event. 
-  \code{FALSE} to propagate the event further.
+\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event.
+\code{FALSE} to propagate the event further.
 
 }
 \item{\code{button-release-event(widget, event, user.data)}}{
@@ -435,8 +471,8 @@ This signal will be sent to the grab widget if there is one.
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event. 
-  \code{FALSE} to propagate the event further.
+\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event.
+\code{FALSE} to propagate the event further.
 
 }
 \item{\code{can-activate-accel(widget, signal.id, user.data)}}{
@@ -479,8 +515,8 @@ application.
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for 
-  the event. \code{FALSE} to propagate the event further.
+\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for
+the event. \code{FALSE} to propagate the event further.
 
 }
 \item{\code{composited-changed(widget, user.data)}}{
@@ -509,8 +545,8 @@ automatically for all new windows.
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event. 
-  \code{FALSE} to propagate the event further.
+\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event.
+\code{FALSE} to propagate the event further.
 
 }
 \item{\code{damage-event(widget, event, user.data)}}{
@@ -526,7 +562,7 @@ drawable was drawn into.
 }
 
 \emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event.
-  \code{FALSE} to propagate the event further.
+\code{FALSE} to propagate the event further.
 
 }
 \item{\code{delete-event(widget, event, user.data)}}{
@@ -542,8 +578,8 @@ it can later be shown again without reconstructing it.
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event. 
-  \code{FALSE} to propagate the event further.
+\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event.
+\code{FALSE} to propagate the event further.
 
 }
 \item{\code{destroy-event(widget, event, user.data)}}{
@@ -562,8 +598,8 @@ automatically for all new windows.
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event. 
-  \code{FALSE} to propagate the event further.
+\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event.
+\code{FALSE} to propagate the event further.
 
 }
 \item{\code{direction-changed(widget, previous.direction, user.data)}}{
@@ -620,8 +656,8 @@ is indicated by \code{info}. See \code{\link{gtkSelectionDataSet}} and
 \item{\code{widget}}{the object which received the signal}
 \item{\code{drag.context}}{the drag context}
 \item{\code{data}}{the \code{\link{GtkSelectionData}} to be filled with the dragged data}
-\item{\code{info}}{the info that has been registered with the target in the 
-       \code{\link{GtkTargetList}}}
+\item{\code{info}}{the info that has been registered with the target in the
+\code{\link{GtkTargetList}}}
 \item{\code{time}}{the timestamp at which the data was requested}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
@@ -642,20 +678,43 @@ the data was processed successfully.
 The handler may inspect and modify \code{drag.context->action} before calling 
 \code{\link{gtkDragFinish}}, e.g. to implement \code{GDK_ACTION_ASK} as shown in the 
 following example:
-\preformatted{
-drag_data_received <- function(widget, drag_context, x, y, data, info, time)
+\preformatted{void  
+drag_data_received (GtkWidget          *widget,
+                    GdkDragContext     *drag_context,
+                    gint                x,
+                    gint                y,
+                    GtkSelectionData   *data,
+                    guint               info,
+                    guint               time)
 {
-  if ((data[["length"]] >= 0) && (data[["format"]] == 8)) {
-    if (drag_context[["action"]] == "ask")  {
-      dialog <- gtkMessageDialog(NULL, c("modal", "destroy-with-parent"),
-                                 "info", "yes-no", "Move the data ?")
-      response <- dialog$run()
-      dialog$destroy()
-      
-      gtkDragFinish(drag_context, TRUE, response == "yes", time)
+  if ((data->length >= 0) && (data->format == 8))
+    {
+      if (drag_context->action == GDK_ACTION_ASK) 
+        {
+          GtkWidget *dialog;
+          gint response;
+          
+          dialog = gtk_message_dialog_new (NULL,
+                                           GTK_DIALOG_MODAL | 
+                                           GTK_DIALOG_DESTROY_WITH_PARENT,
+                                           GTK_MESSAGE_INFO,
+                                           GTK_BUTTONS_YES_NO,
+                                           "Move the data ?\n");
+          response = gtk_dialog_run (GTK_DIALOG (dialog));
+          gtk_widget_destroy (dialog);
+            
+          if (response == GTK_RESPONSE_YES)
+            drag_context->action = GDK_ACTION_MOVE;
+          else
+            drag_context->action = GDK_ACTION_COPY;
+         }
+         
+      gtk_drag_finish (drag_context, TRUE, FALSE, time);
+      return;
     }
-  } else gtkDragFinish(drag_context, FALSE, FALSE, time)
-}
+      
+   gtk_drag_finish (drag_context, FALSE, FALSE, time);
+ }
 }
 
 \describe{
@@ -664,8 +723,8 @@ drag_data_received <- function(widget, drag_context, x, y, data, info, time)
 \item{\code{x}}{where the drop happened}
 \item{\code{y}}{where the drop happened}
 \item{\code{data}}{the received data}
-\item{\code{info}}{the info that has been registered with the target in the 
-       \code{\link{GtkTargetList}}}
+\item{\code{info}}{the info that has been registered with the target in the
+\code{\link{GtkTargetList}}}
 \item{\code{time}}{the timestamp at which the data was received}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
@@ -840,8 +899,8 @@ This signal will be sent to the grab widget if there is one.
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event. 
-  \code{FALSE} to propagate the event further.
+\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event.
+\code{FALSE} to propagate the event further.
 
 }
 \item{\code{event(widget, event, user.data)}}{
@@ -857,11 +916,11 @@ signal that matches the type of event delivered (e.g.
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event 
+\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event
 and to cancel the emission of the second specific ::event signal.
-  \code{FALSE} to propagate the event further and to allow the emission of 
-  the second signal. The ::event-after signal is emitted regardless of
-  the return value.
+\code{FALSE} to propagate the event further and to allow the emission of
+the second signal. The ::event-after signal is emitted regardless of
+the return value.
 
 }
 \item{\code{event-after(widget, event, user.data)}}{
@@ -892,8 +951,8 @@ to enable the \verb{GDK_EXPOSURE_MASK} mask.
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event. 
-  \code{FALSE} to propagate the event further.
+\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event.
+\code{FALSE} to propagate the event further.
 
 }
 \item{\code{focus(widget, user.data)}}{
@@ -921,8 +980,8 @@ to enable the \verb{GDK_FOCUS_CHANGE_MASK} mask.
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event. 
-  \code{FALSE} to propagate the event further.
+\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event.
+\code{FALSE} to propagate the event further.
 
 }
 \item{\code{focus-out-event(widget, event, user.data)}}{
@@ -938,8 +997,8 @@ to enable the \verb{GDK_FOCUS_CHANGE_MASK} mask.
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event. 
-  \code{FALSE} to propagate the event further.
+\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event.
+\code{FALSE} to propagate the event further.
 
 }
 \item{\code{grab-broken-event(widget, event, user.data)}}{
@@ -957,8 +1016,8 @@ application grabs the pointer or keyboard again.
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for 
-  the event. \code{FALSE} to propagate the event further.
+\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for
+the event. \code{FALSE} to propagate the event further.
 
 }
 \item{\code{grab-focus(widget, user.data)}}{
@@ -985,7 +1044,7 @@ its ancestor.
 \describe{
 \item{\code{widget}}{the object which received the signal}
 \item{\code{was.grabbed}}{\code{FALSE} if the widget becomes shadowed, \code{TRUE}
-              if it becomes unshadowed}
+if it becomes unshadowed}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
@@ -1011,8 +1070,8 @@ a widget changes from un-anchored to anchored or vice-versa.
 
 \describe{
 \item{\code{widget}}{the object on which the signal is emitted}
-\item{\code{previous.toplevel}}{ the previous toplevel ancestor, or \code{NULL}
-  if the widget was previously unanchored. \emph{[  \acronym{allow-none}  ]}}
+\item{\code{previous.toplevel}}{the previous toplevel ancestor, or \code{NULL}
+if the widget was previously unanchored. \emph{[  \acronym{allow-none}  ]}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
@@ -1032,8 +1091,8 @@ This signal will be sent to the grab widget if there is one.
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event. 
-  \code{FALSE} to propagate the event further.
+\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event.
+\code{FALSE} to propagate the event further.
 
 }
 \item{\code{key-release-event(widget, event, user.data)}}{
@@ -1050,8 +1109,8 @@ This signal will be sent to the grab widget if there is one.
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event. 
-  \code{FALSE} to propagate the event further.
+\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event.
+\code{FALSE} to propagate the event further.
 
 }
 \item{\code{keynav-failed(widget, direction, user.data)}}{
@@ -1066,8 +1125,8 @@ See \code{\link{gtkWidgetKeynavFailed}} for details.
 }
 
 \emph{Returns:} [logical] \code{TRUE} if stopping keyboard navigation is fine, \code{FALSE}
-         if the emitting widget should try to handle the keyboard
-         navigation attempt in its parent container(s).
+if the emitting widget should try to handle the keyboard
+navigation attempt in its parent container(s).
 
 }
 \item{\code{leave-notify-event(widget, event, user.data)}}{
@@ -1085,8 +1144,8 @@ This signal will be sent to the grab widget if there is one.
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event. 
-  \code{FALSE} to propagate the event further.
+\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event.
+\code{FALSE} to propagate the event further.
 
 }
 \item{\code{map(widget, user.data)}}{
@@ -1114,8 +1173,8 @@ automatically for all new windows.
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event. 
-  \code{FALSE} to propagate the event further.
+\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event.
+\code{FALSE} to propagate the event further.
 
 }
 \item{\code{mnemonic-activate(widget, user.data)}}{
@@ -1144,8 +1203,8 @@ This signal will be sent to the grab widget if there is one.
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event. 
-  \code{FALSE} to propagate the event further.
+\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event.
+\code{FALSE} to propagate the event further.
 
 }
 \item{\code{move-focus(widget, user.data)}}{
@@ -1172,8 +1231,8 @@ for those areas.
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event. 
-  \code{FALSE} to propagate the event further.
+\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event.
+\code{FALSE} to propagate the event further.
 
 }
 \item{\code{parent-set(widget, old.parent, user.data)}}{
@@ -1182,8 +1241,8 @@ has been set on a widget.
 
 \describe{
 \item{\code{widget}}{the object on which the signal is emitted}
-\item{\code{old.parent}}{ the previous parent, or \code{NULL} if the widget
-  just got its initial parent. \emph{[  \acronym{allow-none}  ]}}
+\item{\code{old.parent}}{the previous parent, or \code{NULL} if the widget
+just got its initial parent. \emph{[  \acronym{allow-none}  ]}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
@@ -1218,8 +1277,8 @@ to enable the \verb{GDK_PROPERTY_CHANGE_MASK} mask.
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event. 
-  \code{FALSE} to propagate the event further.
+\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event.
+\code{FALSE} to propagate the event further.
 
 }
 \item{\code{proximity-in-event(widget, event, user.data)}}{
@@ -1234,8 +1293,8 @@ This signal will be sent to the grab widget if there is one.
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event. 
-  \code{FALSE} to propagate the event further.
+\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event.
+\code{FALSE} to propagate the event further.
 
 }
 \item{\code{proximity-out-event(widget, event, user.data)}}{
@@ -1250,8 +1309,8 @@ This signal will be sent to the grab widget if there is one.
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event. 
-  \code{FALSE} to propagate the event further.
+\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event.
+\code{FALSE} to propagate the event further.
 
 }
 \item{\code{query-tooltip(widget, x, y, keyboard.mode, tooltip, user.data)}}{
@@ -1271,10 +1330,10 @@ destined function calls.
 
 \describe{
 \item{\code{widget}}{the object which received the signal}
-\item{\code{x}}{the x coordinate of the cursor position where the request has 
-    been emitted, relative to \code{widget->window}}
-\item{\code{y}}{the y coordinate of the cursor position where the request has 
-    been emitted, relative to \code{widget->window}}
+\item{\code{x}}{the x coordinate of the cursor position where the request has
+been emitted, relative to \code{widget->window}}
+\item{\code{y}}{the y coordinate of the cursor position where the request has
+been emitted, relative to \code{widget->window}}
 \item{\code{keyboard.mode}}{\code{TRUE} if the tooltip was trigged using the keyboard}
 \item{\code{tooltip}}{a \code{\link{GtkTooltip}}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
@@ -1300,8 +1359,8 @@ screen of a widget has changed.
 
 \describe{
 \item{\code{widget}}{the object on which the signal is emitted}
-\item{\code{previous.screen}}{ the previous screen, or \code{NULL} if the
-  widget was not associated with a screen before. \emph{[  \acronym{allow-none}  ]}}
+\item{\code{previous.screen}}{the previous screen, or \code{NULL} if the
+widget was not associated with a screen before. \emph{[  \acronym{allow-none}  ]}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
@@ -1323,8 +1382,8 @@ This signal will be sent to the grab widget if there is one.
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event. 
-  \code{FALSE} to propagate the event further.
+\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event.
+\code{FALSE} to propagate the event further.
 
 }
 \item{\code{selection-clear-event(widget, event, user.data)}}{
@@ -1337,8 +1396,8 @@ the \code{widget}'s window has lost ownership of a selection.
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event. 
-  \code{FALSE} to propagate the event further.
+\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event.
+\code{FALSE} to propagate the event further.
 
 }
 \item{\code{selection-get(widget, user.data)}}{
@@ -1386,8 +1445,8 @@ the \code{widget}'s window.
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event. 
-  \code{FALSE} to propagate the event further.
+\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event.
+\code{FALSE} to propagate the event further.
 
 }
 \item{\code{show(widget, user.data)}}{
@@ -1453,8 +1512,8 @@ on a widget. Note that style-modifying functions like
 
 \describe{
 \item{\code{widget}}{the object on which the signal is emitted}
-\item{\code{previous.style}}{ the previous style, or \code{NULL} if the widget
-  just got its initial style. \emph{[  \acronym{allow-none}  ]}}
+\item{\code{previous.style}}{the previous style, or \code{NULL} if the widget
+just got its initial style. \emph{[  \acronym{allow-none}  ]}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
@@ -1485,8 +1544,8 @@ automatically for all new windows.
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event. 
-  \code{FALSE} to propagate the event further.
+\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event.
+\code{FALSE} to propagate the event further.
 
 }
 \item{\code{unrealize(widget, user.data)}}{
@@ -1513,8 +1572,8 @@ to enable the \verb{GDK_VISIBILITY_NOTIFY_MASK} mask.
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event. 
-  \code{FALSE} to propagate the event further.
+\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event.
+\code{FALSE} to propagate the event further.
 
 }
 \item{\code{window-state-event(widget, event, user.data)}}{
@@ -1531,8 +1590,8 @@ this mask automatically for all new windows.
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the 
-  event. \code{FALSE} to propagate the event further.
+\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the
+event. \code{FALSE} to propagate the event further.
 
 }
 }}

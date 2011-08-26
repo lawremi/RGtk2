@@ -13,8 +13,8 @@ and from pixels using \code{pangoPixels()} or \verb{PANGO_SCALE}.}
 \arguments{\item{\verb{object}}{a \code{\link{GtkLabel}}}}
 \value{
 A list containing the following elements:
-\item{\verb{x}}{ location to store X offset of layout, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{y}}{ location to store Y offset of layout, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{x}}{location to store X offset of layout, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{y}}{location to store Y offset of layout, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -7,6 +7,6 @@
 \details{This is useful if you have implemented your own recent manager, or if you
 have a customized instance of a \code{\link{GtkRecentManager}} object.
   Since 2.10}
-\value{[\code{\link{GtkWidget}}]  a new \code{\link{GtkRecentChooserWidget}}}
+\value{[\code{\link{GtkWidget}}] a new \code{\link{GtkRecentChooserWidget}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

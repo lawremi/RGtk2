@@ -23,12 +23,16 @@
 \code{\link{gOutputStreamClearPending}(object)}\cr
 
 }
-\section{Hierarchy}{\preformatted{GObject
+\section{Hierarchy}{\preformatted{
+GFlags
+   +----GOutputStreamSpliceFlags
+GObject
    +----GOutputStream
          +----GFilterOutputStream
          +----GFileOutputStream
          +----GMemoryOutputStream
-         +----GUnixOutputStream}}
+         +----GUnixOutputStream
+}}
 \section{Detailed Description}{GOutputStream has functions to write to a stream (\code{\link{gOutputStreamWrite}}),
 to close a stream (\code{\link{gOutputStreamClose}}) and to flush pending writes
 (\code{\link{gOutputStreamFlush}}). 

@@ -11,6 +11,6 @@ by functions such as \code{\link{gdkDrawLayout}}.}
 and \code{\link{gdkPangoRendererSetGc}} to set the drawable and graphics context
 to use for drawing.
   Since 2.6}
-\value{[\code{\link{PangoRenderer}}]  the default \code{\link{PangoRenderer}} for \code{screen}.}
+\value{[\code{\link{PangoRenderer}}] the default \code{\link{PangoRenderer}} for \code{screen}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

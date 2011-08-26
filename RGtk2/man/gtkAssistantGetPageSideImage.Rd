@@ -8,7 +8,7 @@
 \item{\verb{page}}{a page of \code{assistant}}
 }
 \details{Since 2.10}
-\value{[\code{\link{GdkPixbuf}}]  the side image for \code{page}, or \code{NULL}
+\value{[\code{\link{GdkPixbuf}}] the side image for \code{page}, or \code{NULL}
 if there's no side image for the page.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

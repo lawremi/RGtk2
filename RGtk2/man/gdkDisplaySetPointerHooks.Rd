@@ -10,10 +10,10 @@ reason to use this facility.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkDisplay}}}
 \item{\verb{new.hooks}}{a table of pointers to functions for getting
-  quantities related to the current pointer position,
-  or \code{NULL} to restore the default table.}
+quantities related to the current pointer position,
+or \code{NULL} to restore the default table.}
 }
 \details{Since 2.2}
-\value{[GdkDisplayPointerHooks]  the previous pointer hook table}
+\value{[GdkDisplayPointerHooks] the previous pointer hook table}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -10,6 +10,6 @@ blocking the I/O job).}
 \item{\verb{func}}{a \verb{GSourceFunc} callback that will be called in the original thread}
 \item{\verb{user.data}}{data to pass to \code{func}}
 }
-\value{[logical]  The return value of \code{func}}
+\value{[logical] The return value of \code{func}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

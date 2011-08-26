@@ -5,6 +5,6 @@
 if \code{iter} has a character offset of 0.}
 \usage{gtkTextIterIsStart(object)}
 \arguments{\item{\verb{object}}{an iterator}}
-\value{[logical]  whether \code{iter} is the first in the buffer}
+\value{[logical] whether \code{iter} is the first in the buffer}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

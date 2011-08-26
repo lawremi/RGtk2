@@ -7,6 +7,6 @@
 \item{\verb{object}}{a \code{\link{PangoCoverage}}}
 \item{\verb{index}}{the index to check}
 }
-\value{[\code{\link{PangoCoverageLevel}}]  the coverage level of \code{coverage} for character \code{index.}.}
+\value{[\code{\link{PangoCoverageLevel}}] the coverage level of \code{coverage} for character \code{index.}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

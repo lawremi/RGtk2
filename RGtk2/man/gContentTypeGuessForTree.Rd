@@ -13,6 +13,6 @@ specification for more on x-content types.
   
 This function is useful in the implementation of \code{\link{gMountGuessContentType}}.
   Since 2.18}
-\value{[char]  a list of zero or more content types, or \code{NULL}.}
+\value{[char] a list of zero or more content types, or \code{NULL}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -6,6 +6,6 @@
 \usage{gtkRangeGetLowerStepperSensitivity(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkRange}}}}
 \details{Since 2.10}
-\value{[\code{\link{GtkSensitivityType}}]  The lower stepper's sensitivity policy.}
+\value{[\code{\link{GtkSensitivityType}}] The lower stepper's sensitivity policy.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

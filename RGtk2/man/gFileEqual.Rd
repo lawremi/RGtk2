@@ -12,6 +12,6 @@ aliasing.}
 }
 \details{This call does no blocking i/o.}
 \value{[logical] \code{TRUE} if \code{file1} and \code{file2} are equal.
-    \code{FALSE} if either is not a \code{\link{GFile}}.}
+\code{FALSE} if either is not a \code{\link{GFile}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

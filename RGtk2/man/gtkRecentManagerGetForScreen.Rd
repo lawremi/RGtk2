@@ -17,9 +17,9 @@ users.
 \usage{gtkRecentManagerGetForScreen(screen)}
 \arguments{\item{\verb{screen}}{a \code{\link{GdkScreen}}}}
 \details{Since 2.10}
-\value{[\code{\link{GtkRecentManager}}]  A unique \code{\link{GtkRecentManager}} associated with the given
-  screen. This recent manager is associated to the with the screen
-  and can be used as long as the screen is open. Do not ref or
-  unref it.}
+\value{[\code{\link{GtkRecentManager}}] A unique \code{\link{GtkRecentManager}} associated with the given
+screen. This recent manager is associated to the with the screen
+and can be used as long as the screen is open. Do not ref or
+unref it.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

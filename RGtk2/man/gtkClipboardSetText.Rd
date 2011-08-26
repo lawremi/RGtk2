@@ -10,7 +10,7 @@ the requested format.}
 \item{\verb{object}}{a \code{\link{GtkClipboard}} object}
 \item{\verb{text}}{a UTF-8 string.}
 \item{\verb{len}}{length of \code{text}, in bytes, or -1, in which case
-            the length will be determined with \code{strlen()}.}
+the length will be determined with \code{strlen()}.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -23,8 +23,8 @@ triggering the cancellable object from another thread. If the operation
 was cancelled, the error \code{G_IO_ERROR_CANCELLED} will be returned.}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GFile}}]  a \code{\link{GFile}} specifying what \code{file} was renamed to, or \code{NULL} 
-    if there was an error.}
+\item{retval}{[\code{\link{GFile}}] a \code{\link{GFile}} specifying what \code{file} was renamed to, or \code{NULL}
+if there was an error.}
 \item{\verb{error}}{a \code{\link{GError}}, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

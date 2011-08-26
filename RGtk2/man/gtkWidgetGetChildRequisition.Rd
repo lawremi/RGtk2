@@ -22,7 +22,7 @@ implementations have this information; applications should use
 \code{\link{gtkWidgetSizeRequest}}.}
 \value{
 A list containing the following elements:
-\item{\verb{requisition}}{ a \code{\link{GtkRequisition}} to be filled in. \emph{[  \acronym{out}  ]}}
+\item{\verb{requisition}}{a \code{\link{GtkRequisition}} to be filled in}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

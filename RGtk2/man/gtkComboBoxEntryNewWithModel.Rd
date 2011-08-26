@@ -12,6 +12,6 @@ API.}
 \item{\verb{text.column}}{A column in \code{model} to get the strings from.}
 }
 \details{Since 2.4}
-\value{[\code{\link{GtkWidget}}]  A new \code{\link{GtkComboBoxEntry}}.}
+\value{[\code{\link{GtkWidget}}] A new \code{\link{GtkComboBoxEntry}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -16,9 +16,9 @@ widget coordinates to bin_window coordinates.}
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if an item exists at the specified position}
-\item{\verb{path}}{ Return location for the path, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{path}}{Return location for the path, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{cell}}{Return location for the renderer responsible for the cell
-  at (\code{x}, \code{y}), or \code{NULL}}
+at (\code{x}, \code{y}), or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

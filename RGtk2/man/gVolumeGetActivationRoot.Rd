@@ -27,6 +27,6 @@ Activation roots are typically used in \code{\link{GVolumeMonitor}}
 implementations to find the underlying mount to shadow, see
 \code{\link{gMountIsShadowed}} for more details.
   Since 2.18}
-\value{[\code{\link{GFile}}]  the activation root of \code{volume} or \code{NULL}.}
+\value{[\code{\link{GFile}}] the activation root of \code{volume} or \code{NULL}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

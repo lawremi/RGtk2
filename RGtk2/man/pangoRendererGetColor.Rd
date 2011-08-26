@@ -8,8 +8,8 @@
 \item{\verb{part}}{the part to get the color for}
 }
 \details{Since 1.8}
-\value{[\code{\link{PangoColor}}]  the color for the specified part, or \code{NULL}
- if it hasn't been set and should be inherited from the
- environment.}
+\value{[\code{\link{PangoColor}}] the color for the specified part, or \code{NULL}
+if it hasn't been set and should be inherited from the
+environment.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

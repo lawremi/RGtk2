@@ -7,8 +7,7 @@
 }
 \usage{gtkCTreeNodeNth(object, row)}
 \arguments{
-\item{\verb{object}}{\emph{undocumented
-}}
+\item{\verb{object}}{The node corresponding to the \code{row} th row.}
 \item{\verb{row}}{\emph{undocumented
 }}
 }

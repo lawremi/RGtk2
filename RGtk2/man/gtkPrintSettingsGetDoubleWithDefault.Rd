@@ -12,6 +12,6 @@ if the value does not represent a floating point number.}
 }
 \details{Floating point numbers are parsed with \code{gAsciiStrtod()}.
   Since 2.10}
-\value{[numeric]  the floating point number associated with \code{key}}
+\value{[numeric] the floating point number associated with \code{key}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

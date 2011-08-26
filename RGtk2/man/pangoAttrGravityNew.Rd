@@ -5,6 +5,6 @@
 \usage{pangoAttrGravityNew(gravity)}
 \arguments{\item{\verb{gravity}}{the gravity value; should not be \code{PANGO_GRAVITY_AUTO}.}}
 \details{Since 1.16}
-\value{[\code{\link{PangoAttribute}}]  the newly allocated \code{\link{PangoAttribute}},}
+\value{[\code{\link{PangoAttribute}}] the newly allocated \code{\link{PangoAttribute}},}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -14,7 +14,7 @@ Finishes ejecting a drive.
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if the drive has been ejected successfully,
-    \code{FALSE} otherwise.}
+\code{FALSE} otherwise.}
 \item{\verb{error}}{a \code{\link{GError}}, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

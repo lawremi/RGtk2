@@ -8,7 +8,7 @@ A typical use of a secondary child is the help button in a dialog.}
 \item{\verb{object}}{a \code{\link{GtkButtonBox}}}
 \item{\verb{child}}{a child of \code{widget}}
 \item{\verb{is.secondary}}{if \code{TRUE}, the \code{child} appears in a secondary group of the
-               button box.}
+button box.}
 }
 \details{This group appears after the other children if the style
 is \code{GTK_BUTTONBOX_START}, \code{GTK_BUTTONBOX_SPREAD} or

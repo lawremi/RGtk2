@@ -10,7 +10,7 @@ pixbuf, stock or gicon).}
 \item{\verb{icon.pos}}{Icon position}
 }
 \details{Since 2.16}
-\value{[character]  An icon name, or \code{NULL} if no icon is set or if the icon
-         wasn't set from an icon name}
+\value{[character] An icon name, or \code{NULL} if no icon is set or if the icon
+wasn't set from an icon name}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

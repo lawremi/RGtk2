@@ -14,6 +14,6 @@ enclosing \code{iter} affect editability. Typically the result of
 \item{\verb{end}}{another position in the same buffer as \code{start}}
 \item{\verb{default.editable}}{default editability of the buffer}
 }
-\value{[logical]  whether an insertion was possible at \code{iter}}
+\value{[logical] whether an insertion was possible at \code{iter}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

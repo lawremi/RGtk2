@@ -23,8 +23,8 @@ Keep in mind that the layout text may contain a preedit string, so
 indices in the layout to byte indices in the entry contents.}
 \value{
 A list containing the following elements:
-\item{\verb{x}}{ location to store X offset of layout, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{y}}{ location to store Y offset of layout, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{x}}{location to store X offset of layout, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{y}}{location to store Y offset of layout, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

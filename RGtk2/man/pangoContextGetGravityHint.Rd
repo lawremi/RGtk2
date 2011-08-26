@@ -6,6 +6,6 @@
 \usage{pangoContextGetGravityHint(object)}
 \arguments{\item{\verb{object}}{a \code{\link{PangoContext}}}}
 \details{Since 1.16}
-\value{[\code{\link{PangoGravityHint}}]  the gravity hint for the context.}
+\value{[\code{\link{PangoGravityHint}}] the gravity hint for the context.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

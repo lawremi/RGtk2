@@ -13,7 +13,7 @@ as the currently-selected folder if the chooser is in
 currently-selected folder in that mode, use \code{\link{gtkFileChooserGetUri}} as the
 usual way to get the selection.
   Since 2.4}
-\value{[character]  the URI for the current folder.  This
+\value{[character] the URI for the current folder.  This
 function will also return \code{NULL} if the file chooser was unable to load the
 last folder that was requested from it; for example, as would be for calling
 \code{\link{gtkFileChooserSetCurrentFolderUri}} on a nonexistent folder.}

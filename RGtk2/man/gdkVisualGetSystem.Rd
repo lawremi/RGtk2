@@ -5,6 +5,6 @@
 This is the visual for the root window of the display.
 The return value should not be freed.}
 \usage{gdkVisualGetSystem()}
-\value{[\code{\link{GdkVisual}}]  system visual. \emph{[  \acronym{transfer none}  ]}}
+\value{[\code{\link{GdkVisual}}] system visual. \emph{[  \acronym{transfer none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

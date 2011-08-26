@@ -9,6 +9,6 @@
 \item{\verb{childname}}{name of child}
 }
 \details{Since 2.12}
-\value{[\code{\link{GObject}}]  the internal child of the buildable object }
+\value{[\code{\link{GObject}}] the internal child of the buildable object}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

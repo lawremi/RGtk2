@@ -9,7 +9,7 @@ are displayed.
 \usage{gtkItemFactorySetTranslateFunc(object, func, data = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkItemFactory}}}
-\item{\verb{func}}{the \code{\link{GtkTranslateFunc}} function to be used to translate path elements }
+\item{\verb{func}}{the \code{\link{GtkTranslateFunc}} function to be used to translate path elements}
 \item{\verb{data}}{data to pass to \code{func} and \code{notify}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

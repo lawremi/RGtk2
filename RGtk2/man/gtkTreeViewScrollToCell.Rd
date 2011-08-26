@@ -11,8 +11,8 @@ right/bottom alignment, 0.5 means center.}
 \usage{gtkTreeViewScrollToCell(object, path, column = NULL, use.align = FALSE, row.align = 0, col.align = 0)}
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkTreeView}}.}
-\item{\verb{path}}{ The path of the row to move to, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{column}}{ The \code{\link{GtkTreeViewColumn}} to move horizontally to, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{path}}{The path of the row to move to, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{column}}{The \code{\link{GtkTreeViewColumn}} to move horizontally to, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{use.align}}{whether to use alignment arguments, or \code{FALSE}.}
 \item{\verb{row.align}}{The vertical alignment of the row specified by \code{path}.}
 \item{\verb{col.align}}{The horizontal alignment of the column specified by \code{column}.}

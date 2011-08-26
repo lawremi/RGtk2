@@ -7,7 +7,7 @@ called once for each custom tag handled by the \code{buildable}.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkBuildable}}}
 \item{\verb{builder}}{a \code{\link{GtkBuilder}}}
-\item{\verb{child}}{ child object or \code{NULL} for non-child tags. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{child}}{child object or \code{NULL} for non-child tags. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{tagname}}{the name of the tag}
 \item{\verb{data}}{user data created in custom_tag_start}
 }

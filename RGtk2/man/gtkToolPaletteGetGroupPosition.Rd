@@ -9,6 +9,6 @@ See \code{\link{gtkToolPaletteSetGroupPosition}}.}
 \item{\verb{group}}{a \code{\link{GtkToolItemGroup}}}
 }
 \details{Since 2.20}
-\value{[integer]  the index of group or -1 if \code{group} is not a child of \code{palette}}
+\value{[integer] the index of group or -1 if \code{group} is not a child of \code{palette}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

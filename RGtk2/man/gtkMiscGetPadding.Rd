@@ -7,8 +7,8 @@ See \code{\link{gtkMiscSetPadding}}.}
 \arguments{\item{\verb{object}}{a \code{\link{GtkMisc}}}}
 \value{
 A list containing the following elements:
-\item{\verb{xpad}}{ location to store padding in the X direction, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{ypad}}{ location to store padding in the Y direction, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{xpad}}{location to store padding in the X direction, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{ypad}}{location to store padding in the Y direction, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

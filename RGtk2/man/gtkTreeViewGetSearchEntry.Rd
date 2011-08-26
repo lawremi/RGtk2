@@ -7,6 +7,6 @@ will be returned.}
 \usage{gtkTreeViewGetSearchEntry(object)}
 \arguments{\item{\verb{object}}{A \code{\link{GtkTreeView}}}}
 \details{Since 2.10}
-\value{[\code{\link{GtkEntry}}]  the entry currently in use as search entry.}
+\value{[\code{\link{GtkEntry}}] the entry currently in use as search entry.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

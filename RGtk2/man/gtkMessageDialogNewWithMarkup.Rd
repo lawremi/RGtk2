@@ -8,7 +8,7 @@ When the user clicks a button a "response" signal is emitted with
 response IDs from \code{\link{GtkResponseType}}. See \code{\link{GtkDialog}} for more details.}
 \usage{gtkMessageDialogNewWithMarkup(parent, flags, type, buttons, ..., show = TRUE)}
 \arguments{
-\item{\verb{parent}}{ transient parent, or \code{NULL} for none. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{parent}}{transient parent, or \code{NULL} for none. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{flags}}{flags}
 \item{\verb{type}}{type of message}
 \item{\verb{buttons}}{set of buttons to use}
@@ -29,6 +29,6 @@ dialog <- gtkMessageDialog(main_application_window,  "destroy-with-parent",
 dialog$setMarkup(message)
 }
   Since 2.4}
-\value{[\code{\link{GtkWidget}}]  a new \code{\link{GtkMessageDialog}}}
+\value{[\code{\link{GtkWidget}}] a new \code{\link{GtkMessageDialog}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

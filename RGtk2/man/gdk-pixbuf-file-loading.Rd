@@ -3,9 +3,6 @@
 \title{File Loading}
 \description{Loading a pixbuf from a file.}
 \section{Methods and Functions}{
-\code{\link{gdkPixbufNewFromFile}(filename, .errwarn = TRUE)}\cr
-\code{\link{gdkPixbufNewFromFileAtSize}(filename, width, height, .errwarn = TRUE)}\cr
-\code{\link{gdkPixbufNewFromFileAtScale}(filename, width, height, preserve.aspect.ratio, .errwarn = TRUE)}\cr
 \code{\link{gdkPixbufGetFileInfo}(filename)}\cr
 \code{\link{gdkPixbufNewFromStream}(stream, cancellable = NULL, .errwarn = TRUE)}\cr
 \code{\link{gdkPixbufNewFromStreamAtScale}(stream, width = -1, height = -1, preserve.aspect.ratio = 1, cancellable = NULL, .errwarn = TRUE)}\cr

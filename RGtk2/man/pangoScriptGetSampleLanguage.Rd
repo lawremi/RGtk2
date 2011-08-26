@@ -33,7 +33,7 @@ in an otherwise non-Arabic text.  The same trick can be used to
 choose a default language for \code{PANGO_SCRIPT_HAN} when setting
 context language is not feasible.
   Since 1.4}
-\value{[\code{\link{PangoLanguage}}]  a \code{\link{PangoLanguage}} that is representative
+\value{[\code{\link{PangoLanguage}}] a \code{\link{PangoLanguage}} that is representative
 of the script, or \code{NULL} if no such language exists.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

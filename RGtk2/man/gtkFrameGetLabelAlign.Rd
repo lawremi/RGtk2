@@ -7,8 +7,8 @@
 \arguments{\item{\verb{object}}{a \code{\link{GtkFrame}}}}
 \value{
 A list containing the following elements:
-\item{\verb{xalign}}{ location to store X alignment of frame's label, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{yalign}}{ location to store X alignment of frame's label, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{xalign}}{location to store X alignment of frame's label, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{yalign}}{location to store X alignment of frame's label, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -19,8 +19,8 @@ its child (for instance a \code{\link{GtkTreeView}} that depends on its
 \code{\link{GtkTreeModel}}), you have to explicitely list all of them in \code{object.ids}.   Since 2.14}
 \value{
 A list containing the following elements:
-\item{retval}{[numeric]  A positive value on success, 0 if an error occurred}
-\item{\verb{error}}{ return location for an error, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{retval}{[numeric] A positive value on success, 0 if an error occurred}
+\item{\verb{error}}{return location for an error, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \note{If you are adding an object that depends on an object that is not 
 its child (for instance a \code{\link{GtkTreeView}} that depends on its

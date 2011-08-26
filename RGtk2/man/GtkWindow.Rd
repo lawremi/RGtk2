@@ -94,11 +94,9 @@
 \code{\link{gtkWindowResize}(object, width, height)}\cr
 \code{\link{gtkWindowSetDefaultIconList}(list)}\cr
 \code{\link{gtkWindowSetDefaultIcon}(icon)}\cr
-\code{\link{gtkWindowSetDefaultIconFromFile}(filename, .errwarn = TRUE)}\cr
 \code{\link{gtkWindowSetDefaultIconName}(name)}\cr
 \code{\link{gtkWindowSetIcon}(object, icon = NULL)}\cr
 \code{\link{gtkWindowSetIconList}(object, list)}\cr
-\code{\link{gtkWindowSetIconFromFile}(object, filename, .errwarn = TRUE)}\cr
 \code{\link{gtkWindowSetIconName}(object, name = NULL)}\cr
 \code{\link{gtkWindowSetAutoStartupNotification}(setting)}\cr
 \code{\link{gtkWindowGetOpacity}(object)}\cr
@@ -203,14 +201,12 @@ focused widget of \code{window}.
 
 
 }
-\item{\code{frame-event(window, event, user.data)}}{
+\item{\code{frame-event(window, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{window}}{the object which received the signal.}
-\item{\code{event}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
@@ -227,14 +223,12 @@ or mnemonics that are associated with \code{window} changes.
 
 
 }
-\item{\code{set-focus(window, widget, user.data)}}{
+\item{\code{set-focus(window, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{window}}{the object which received the signal.}
-\item{\code{widget}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 

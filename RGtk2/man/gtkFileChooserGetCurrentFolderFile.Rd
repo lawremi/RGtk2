@@ -6,6 +6,6 @@ See \code{\link{gtkFileChooserGetCurrentFolderUri}}.}
 \usage{gtkFileChooserGetCurrentFolderFile(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkFileChooser}}}}
 \details{Since 2.14}
-\value{[\code{\link{GFile}}]  the \code{\link{GFile}} for the current folder.}
+\value{[\code{\link{GFile}}] the \code{\link{GFile}} for the current folder.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

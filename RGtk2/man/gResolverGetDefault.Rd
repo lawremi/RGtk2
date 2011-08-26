@@ -7,6 +7,6 @@ many threads/processes, etc it should allocate for concurrent DNS
 resolutions.}
 \usage{gResolverGetDefault()}
 \details{Since 2.22}
-\value{[\code{\link{GResolver}}]  the default \code{\link{GResolver}}.}
+\value{[\code{\link{GResolver}}] the default \code{\link{GResolver}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

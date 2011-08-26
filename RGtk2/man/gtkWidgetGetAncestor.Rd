@@ -14,6 +14,6 @@ about checking for a toplevel \code{\link{GtkWindow}} in the docs for
 }
 \details{Note that unlike \code{\link{gtkWidgetIsAncestor}}, \code{\link{gtkWidgetGetAncestor}} 
 considers \code{widget} to be an ancestor of itself.}
-\value{[\code{\link{GtkWidget}}]  the ancestor widget, or \code{NULL} if not found. \emph{[  \acronym{transfer none}  ]}}
+\value{[\code{\link{GtkWidget}}] the ancestor widget, or \code{NULL} if not found. \emph{[  \acronym{transfer none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

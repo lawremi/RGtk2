@@ -6,6 +6,6 @@
 \usage{pangoContextGetBaseGravity(object)}
 \arguments{\item{\verb{object}}{a \code{\link{PangoContext}}}}
 \details{Since 1.16}
-\value{[\code{\link{PangoGravity}}]  the base gravity for the context.}
+\value{[\code{\link{PangoGravity}}] the base gravity for the context.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

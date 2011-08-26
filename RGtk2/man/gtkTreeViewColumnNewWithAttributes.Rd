@@ -17,6 +17,6 @@ renderer <- gtkCellRendererText()
 column <- gtkTreeViewColumn("Title", renderer, "text" = TEXT_COLUMN,
                             "foreground" = COLOR_COLUMN)
 }}
-\value{[\code{\link{GtkTreeViewColumn}}]  A newly created \code{\link{GtkTreeViewColumn}}.}
+\value{[\code{\link{GtkTreeViewColumn}}] A newly created \code{\link{GtkTreeViewColumn}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

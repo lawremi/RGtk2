@@ -12,6 +12,6 @@ signal handler.}
 \item{\verb{y}}{the y coordinate of the position to find}
 }
 \details{Since 2.16}
-\value{[integer]  the index of the icon at the given position, or -1}
+\value{[integer] the index of the icon at the given position, or -1}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

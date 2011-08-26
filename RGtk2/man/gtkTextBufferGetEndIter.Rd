@@ -8,7 +8,7 @@ character in the text buffer. If dereferenced with
 the buffer (call \code{\link{gtkTextBufferGetStartIter}} to get
 character position 0) to the end iterator.}
 \usage{gtkTextBufferGetEndIter(object)}
-\arguments{\item{\verb{object}}{a \code{\link{GtkTextBuffer}} }}
+\arguments{\item{\verb{object}}{a \code{\link{GtkTextBuffer}}}}
 \value{
 A list containing the following elements:
 \item{\verb{iter}}{iterator to initialize}

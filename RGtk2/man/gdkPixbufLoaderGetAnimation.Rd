@@ -8,7 +8,7 @@ bytes yet (hasn't emitted the "area-prepared" signal) this function will
 return \code{NULL}.}
 \usage{gdkPixbufLoaderGetAnimation(object)}
 \arguments{\item{\verb{object}}{A pixbuf loader}}
-\value{[\code{\link{GdkPixbufAnimation}}]  The \code{\link{GdkPixbufAnimation}} that the loader is loading, or \code{NULL} if
- not enough data has been read to determine the information.}
+\value{[\code{\link{GdkPixbufAnimation}}] The \code{\link{GdkPixbufAnimation}} that the loader is loading, or \code{NULL} if
+not enough data has been read to determine the information.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

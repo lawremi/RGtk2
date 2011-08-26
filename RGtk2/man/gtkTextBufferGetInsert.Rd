@@ -7,6 +7,6 @@ named "insert", but very slightly more efficient, and involves less
 typing.}
 \usage{gtkTextBufferGetInsert(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkTextBuffer}}}}
-\value{[\code{\link{GtkTextMark}}]  insertion point mark. \emph{[  \acronym{transfer none}  ]}}
+\value{[\code{\link{GtkTextMark}}] insertion point mark. \emph{[  \acronym{transfer none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -6,6 +6,6 @@ This operation never fails, but the returned object might not support any I/O
 operation if the \code{parse.name} cannot be parsed.}
 \usage{gFileParseName(parse.name)}
 \arguments{\item{\verb{parse.name}}{a file name or path to be parsed.}}
-\value{[\code{\link{GFile}}]  a new \code{\link{GFile}}.}
+\value{[\code{\link{GFile}}] a new \code{\link{GFile}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

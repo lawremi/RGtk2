@@ -14,6 +14,6 @@ however it is slightly inefficient since it creates a separate
 \code{\link{PangoContext}} object for each layout. This might matter in an
 application that was laying out large amounts of text.
   Since 1.10}
-\value{[\code{\link{PangoLayout}}]  the newly created \code{\link{PangoLayout}}.}
+\value{[\code{\link{PangoLayout}}] the newly created \code{\link{PangoLayout}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

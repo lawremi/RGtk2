@@ -6,7 +6,7 @@ a stock item.}
 \usage{gtkStockSetTranslateFunc(domain, func, data)}
 \arguments{
 \item{\verb{domain}}{the translation domain for which \code{func} shall be used}
-\item{\verb{func}}{a \code{\link{GtkTranslateFunc}} }
+\item{\verb{func}}{a \code{\link{GtkTranslateFunc}}}
 \item{\verb{data}}{data to pass to \code{func}}
 }
 \details{If no function is registered for a translation domain,

@@ -99,19 +99,19 @@ registering a recently used resource.
 
 \describe{
 \item{\verb{displayName}}{[character] a UTF-8 encoded string, containing the name of the recently
-  used resource to be displayed, or \code{NULL};}
+used resource to be displayed, or \code{NULL};}
 \item{\verb{description}}{[character] a UTF-8 encoded string, containing a short description of
-  the resource, or \code{NULL};}
+the resource, or \code{NULL};}
 \item{\verb{mimeType}}{[character] the MIME type of the resource;}
 \item{\verb{appName}}{[character] the name of the application that is registering this recently
-  used resource;}
+used resource;}
 \item{\verb{appExec}}{[character] command line used to launch this resource; may contain the
-  "\%f" and "\%u" escape characters which will be expanded
-  to the resource file path and URI respectively when the command line
-  is retrieved;}
+"\%f" and "\%u" escape characters which will be expanded
+to the resource file path and URI respectively when the command line
+is retrieved;}
 \item{\verb{groups}}{[character] a vector of strings containing groups names;}
 \item{\verb{isPrivate}}{[logical] whether this resource should be displayed only by the
-  applications that have registered it or not.}
+applications that have registered it or not.}
 }
 
 }

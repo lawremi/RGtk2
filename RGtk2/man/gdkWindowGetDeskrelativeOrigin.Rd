@@ -14,7 +14,7 @@ It's deprecated for that reason.
 \arguments{\item{\verb{object}}{a toplevel \code{\link{GdkWindow}}}}
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  not meaningful}
+\item{retval}{[logical] not meaningful}
 \item{\verb{x}}{return location for X coordinate}
 \item{\verb{y}}{return location for Y coordinate}
 }

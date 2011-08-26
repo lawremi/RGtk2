@@ -5,6 +5,6 @@
 \usage{gtkPlugGetSocketWindow(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkPlug}}}}
 \details{Since 2.14}
-\value{[\code{\link{GdkWindow}}]  the window of the socket, or \code{NULL}}
+\value{[\code{\link{GdkWindow}}] the window of the socket, or \code{NULL}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -6,6 +6,6 @@
 \usage{gtkLabelGetWidthChars(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkLabel}}}}
 \details{Since 2.6}
-\value{[integer]  the width of the label in characters.}
+\value{[integer] the width of the label in characters.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

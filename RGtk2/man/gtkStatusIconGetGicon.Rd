@@ -10,6 +10,6 @@ returned \code{\link{GIcon}}.}
 \arguments{\item{\verb{object}}{a \code{\link{GtkStatusIcon}}}}
 \details{If this function fails, \code{icon} is left unchanged;
   Since 2.14}
-\value{[\code{\link{GIcon}}]  the displayed icon, or \code{NULL} if the image is empty}
+\value{[\code{\link{GIcon}}] the displayed icon, or \code{NULL} if the image is empty}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

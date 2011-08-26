@@ -8,6 +8,6 @@ between the vertical scrollbar and \code{layout}.}
 \usage{gtkLayoutGetVadjustment(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkLayout}}}}
 \details{See \code{\link{GtkScrolledWindow}}, \code{\link{GtkScrollbar}}, \code{\link{GtkAdjustment}} for details.}
-\value{[\code{\link{GtkAdjustment}}]  vertical scroll adjustment}
+\value{[\code{\link{GtkAdjustment}}] vertical scroll adjustment}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

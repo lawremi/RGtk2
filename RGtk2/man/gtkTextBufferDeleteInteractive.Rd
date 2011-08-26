@@ -13,6 +13,6 @@ no text was deleted.}
 \item{\verb{end.iter}}{end of range}
 \item{\verb{default.editable}}{whether the buffer is editable by default}
 }
-\value{[logical]  whether some text was actually deleted}
+\value{[logical] whether some text was actually deleted}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

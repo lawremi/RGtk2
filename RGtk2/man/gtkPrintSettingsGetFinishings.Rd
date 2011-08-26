@@ -5,6 +5,6 @@
 \usage{gtkPrintSettingsGetFinishings(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkPrintSettings}}}}
 \details{Since 2.10}
-\value{[character]  the finishings}
+\value{[character] the finishings}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

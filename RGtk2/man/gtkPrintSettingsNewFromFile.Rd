@@ -13,8 +13,8 @@ file could not be loaded then error is set to either a \code{\link{GFileError}} 
 \details{Since 2.12}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GtkPrintSettings}}]  the restored \code{\link{GtkPrintSettings}}}
-\item{\verb{error}}{ return location for errors, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{retval}{[\code{\link{GtkPrintSettings}}] the restored \code{\link{GtkPrintSettings}}}
+\item{\verb{error}}{return location for errors, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

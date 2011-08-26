@@ -8,7 +8,7 @@
 \item{\verb{size2}}{another \code{\link{GtkPaperSize}} object}
 }
 \details{Since 2.10}
-\value{[logical] \code{TRUE}, if \code{size1} and \code{size2} 
+\value{[logical] \code{TRUE}, if \code{size1} and \code{size2}
 represent the same paper size}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

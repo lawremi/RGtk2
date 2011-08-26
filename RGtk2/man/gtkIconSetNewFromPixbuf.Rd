@@ -8,6 +8,6 @@ using scaling, pixelation, etc. as required to adjust the icon size
 or make the icon look insensitive/prelighted.}
 \usage{gtkIconSetNewFromPixbuf(pixbuf)}
 \arguments{\item{\verb{pixbuf}}{a \code{\link{GdkPixbuf}}}}
-\value{[\code{\link{GtkIconSet}}]  a new \code{\link{GtkIconSet}}}
+\value{[\code{\link{GtkIconSet}}] a new \code{\link{GtkIconSet}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

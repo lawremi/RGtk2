@@ -9,8 +9,8 @@ created styles, so a new style may not be
 created.)}
 \usage{gtkRcGetStyle(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkWidget}}}}
-\value{[\code{\link{GtkStyle}}]  the resulting style. No refcount is added
-  to the returned style, so if you want to save this
-  style around, you should add a reference yourself.}
+\value{[\code{\link{GtkStyle}}] the resulting style. No refcount is added
+to the returned style, so if you want to save this
+style around, you should add a reference yourself.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

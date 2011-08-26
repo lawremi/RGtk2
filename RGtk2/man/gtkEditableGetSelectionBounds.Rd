@@ -10,8 +10,8 @@ selected both will be identical and \code{FALSE} will be returned.}
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if an area is selected, \code{FALSE} otherwise}
-\item{\verb{start}}{ location to store the starting position, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
-\item{\verb{end}}{ location to store the end position, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
+\item{\verb{start}}{location to store the starting position, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
+\item{\verb{end}}{location to store the end position, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

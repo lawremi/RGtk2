@@ -9,7 +9,7 @@ the model will sort using this function.}
 \item{\verb{object}}{A \code{\link{GtkTreeSortable}}}
 \item{\verb{sort.column.id}}{the sort column id to set the function for}
 \item{\verb{sort.func}}{The comparison function}
-\item{\verb{user.data}}{ User data to pass to \code{sort.func}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{user.data}}{User data to pass to \code{sort.func}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

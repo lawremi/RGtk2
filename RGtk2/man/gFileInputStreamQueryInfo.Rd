@@ -10,13 +10,13 @@ any other operations on the stream will fail with \code{G_IO_ERROR_PENDING}.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GFileInputStream}}.}
 \item{\verb{attributes}}{a file attribute query string.}
-\item{\verb{cancellable}}{optional \code{\link{GCancellable}} object, \code{NULL} to ignore. }
+\item{\verb{cancellable}}{optional \code{\link{GCancellable}} object, \code{NULL} to ignore.}
 \item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GFileInfo}}]  a \code{\link{GFileInfo}}, or \code{NULL} on error.}
-\item{\verb{error}}{a \code{\link{GError}} location to store the error occuring, or \code{NULL} to 
+\item{retval}{[\code{\link{GFileInfo}}] a \code{\link{GFileInfo}}, or \code{NULL} on error.}
+\item{\verb{error}}{a \code{\link{GError}} location to store the error occuring, or \code{NULL} to
 ignore.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

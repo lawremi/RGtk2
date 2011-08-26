@@ -8,6 +8,6 @@
 \item{\verb{action.name}}{the name of the action}
 }
 \details{Since 2.4}
-\value{[\code{\link{GtkAction}}]  the action, or \code{NULL} if no action by that name exists. \emph{[transfer-none]}}
+\value{[\code{\link{GtkAction}}] the action, or \code{NULL} if no action by that name exists. \emph{[transfer-none]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

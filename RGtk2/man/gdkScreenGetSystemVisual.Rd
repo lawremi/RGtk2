@@ -7,6 +7,6 @@ The return value should not be freed.}
 \usage{gdkScreenGetSystemVisual(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GdkScreen}}.}}
 \details{Since 2.2}
-\value{[\code{\link{GdkVisual}}]  the system visual. \emph{[  \acronym{transfer none}  ]}}
+\value{[\code{\link{GdkVisual}}] the system visual. \emph{[  \acronym{transfer none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -25,10 +25,10 @@ GtkWidget::query-tooltip), please see
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if a row exists at that coordinate.}
-\item{\verb{path}}{ A pointer to a \code{\link{GtkTreePath}} pointer to be filled in, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
-\item{\verb{column}}{ A pointer to a \code{\link{GtkTreeViewColumn}} pointer to be filled in, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
-\item{\verb{cell.x}}{ A pointer where the X coordinate relative to the cell can be placed, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
-\item{\verb{cell.y}}{ A pointer where the Y coordinate relative to the cell can be placed, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
+\item{\verb{path}}{A pointer to a \code{\link{GtkTreePath}} pointer to be filled in, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
+\item{\verb{column}}{A pointer to a \code{\link{GtkTreeViewColumn}} pointer to be filled in, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
+\item{\verb{cell.x}}{A pointer where the X coordinate relative to the cell can be placed, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
+\item{\verb{cell.y}}{A pointer where the Y coordinate relative to the cell can be placed, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

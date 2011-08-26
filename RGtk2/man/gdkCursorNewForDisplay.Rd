@@ -29,6 +29,6 @@ Some useful ones are:
 \item{\verb{cursor.type}}{cursor to create}
 }
 \details{Since 2.2}
-\value{[\code{\link{GdkCursor}}]  a new \code{\link{GdkCursor}}}
+\value{[\code{\link{GdkCursor}}] a new \code{\link{GdkCursor}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

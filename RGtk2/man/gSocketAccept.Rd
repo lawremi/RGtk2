@@ -19,7 +19,7 @@ To be notified of an incoming connection, wait for the \code{G_IO_IN} condition.
   Since 2.22}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GSocket}}]  a new \code{\link{GSocket}}, or \code{NULL} on error.}
+\item{retval}{[\code{\link{GSocket}}] a new \code{\link{GSocket}}, or \code{NULL} on error.}
 \item{\verb{error}}{\code{\link{GError}} for error reporting, or \code{NULL} to ignore.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

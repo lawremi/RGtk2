@@ -5,6 +5,6 @@
 the actual width of the column on the screen, just what is requested.}
 \usage{gtkTreeViewColumnGetFixedWidth(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkTreeViewColumn}}}}
-\value{[integer]  the fixed width of the column}
+\value{[integer] the fixed width of the column}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

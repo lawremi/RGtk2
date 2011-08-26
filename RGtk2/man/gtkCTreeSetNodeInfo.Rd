@@ -8,17 +8,17 @@ to the parameters of \code{\link{gtkCTreeInsertNode}}.
 }
 \usage{gtkCTreeSetNodeInfo(object, node, text, spacing, pixmap.closed = NULL, mask.closed = NULL, pixmap.opened = NULL, mask.opened = NULL, is.leaf, expanded)}
 \arguments{
-\item{\verb{object}}{\emph{undocumented
-}}
-\item{\verb{node}}{\emph{undocumented
-}}
-\item{\verb{text}}{The text to be in the tree column.}
-\item{\verb{spacing}}{\emph{undocumented
-}}
+\item{\verb{object}}{The text to be in the tree column.}
+\item{\verb{node}}{. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{text}}{. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{spacing}}{. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{pixmap.closed}}{. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{mask.closed}}{. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{pixmap.opened}}{. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{mask.opened}}{. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{mask.closed}}{\emph{undocumented
+}}
+\item{\verb{pixmap.opened}}{\emph{undocumented
+}}
+\item{\verb{mask.opened}}{\emph{undocumented
+}}
 \item{\verb{is.leaf}}{\emph{undocumented
 }}
 \item{\verb{expanded}}{\emph{undocumented

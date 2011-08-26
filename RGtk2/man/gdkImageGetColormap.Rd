@@ -7,6 +7,6 @@ a colormap, or if a colormap was set explicitely with
 \code{\link{gdkImageSetColormap}}.}
 \usage{gdkImageGetColormap(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GdkImage}}}}
-\value{[\code{\link{GdkColormap}}]  colormap for the image}
+\value{[\code{\link{GdkColormap}}] colormap for the image}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

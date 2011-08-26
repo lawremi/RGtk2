@@ -10,8 +10,7 @@ area of the window.
 }
 \usage{gtkCTreeIsViewable(object, node)}
 \arguments{
-\item{\verb{object}}{\emph{undocumented
-}}
+\item{\verb{object}}{Whether the node is viewable.}
 \item{\verb{node}}{\emph{undocumented
 }}
 }

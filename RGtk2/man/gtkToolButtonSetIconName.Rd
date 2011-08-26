@@ -9,7 +9,7 @@ properties.}
 \usage{gtkToolButtonSetIconName(object, icon.name)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkToolButton}}}
-\item{\verb{icon.name}}{ the name of the themed icon. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{icon.name}}{the name of the themed icon. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{Since 2.8}
 \author{Derived by RGtkGen from GTK+ documentation}

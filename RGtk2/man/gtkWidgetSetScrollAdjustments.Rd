@@ -9,8 +9,8 @@ support scrolling.}
 \usage{gtkWidgetSetScrollAdjustments(object, hadjustment = NULL, vadjustment = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkWidget}}}
-\item{\verb{hadjustment}}{ an adjustment for horizontal scrolling, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{vadjustment}}{ an adjustment for vertical scrolling, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{hadjustment}}{an adjustment for horizontal scrolling, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{vadjustment}}{an adjustment for vertical scrolling, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \value{[logical] \code{TRUE} if the widget supports scrolling}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -73,8 +73,12 @@
 \code{\link{gFileAttributeMatcherEnumerateNext}(object)}\cr
 \code{gFileInfo()}
 }
-\section{Hierarchy}{\preformatted{GObject
-   +----GFileInfo}}
+\section{Hierarchy}{\preformatted{
+GEnum
+   +----GFileType
+GObject
+   +----GFileInfo
+}}
 \section{Detailed Description}{Functionality for manipulating basic metadata for files. \code{\link{GFileInfo}}
 implements methods for getting information that all files should 
 contain, and allows for manipulation of extended attributes. 

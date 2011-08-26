@@ -43,48 +43,34 @@ only be accessed using the functions below.
 
 
 }
-\item{\code{extend-selection(listitem, scroll.type, position, auto.start.selection, user.data)}}{
+\item{\code{extend-selection(listitem, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{listitem}}{the object which received the signal.}
-\item{\code{scroll.type}}{\emph{undocumented
-}}
-\item{\code{position}}{\emph{undocumented
-}}
-\item{\code{auto.start.selection}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{scroll-horizontal(listitem, scroll.type, position, user.data)}}{
+\item{\code{scroll-horizontal(listitem, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{listitem}}{the object which received the signal.}
-\item{\code{scroll.type}}{\emph{undocumented
-}}
-\item{\code{position}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{scroll-vertical(listitem, scroll.type, position, user.data)}}{
+\item{\code{scroll-vertical(listitem, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{listitem}}{the object which received the signal.}
-\item{\code{scroll.type}}{\emph{undocumented
-}}
-\item{\code{position}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 

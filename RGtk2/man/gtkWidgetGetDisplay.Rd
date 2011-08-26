@@ -10,6 +10,6 @@ has been added to a widget hierarchy with a \code{\link{GtkWindow}} at the top.}
 resources when a widget has been realized, and you should
 free those resources when the widget is unrealized.
   Since 2.2}
-\value{[\code{\link{GdkDisplay}}]  the \code{\link{GdkDisplay}} for the toplevel for this widget. \emph{[  \acronym{transfer none}  ]}}
+\value{[\code{\link{GdkDisplay}}] the \code{\link{GdkDisplay}} for the toplevel for this widget. \emph{[  \acronym{transfer none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

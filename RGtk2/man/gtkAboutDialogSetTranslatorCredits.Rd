@@ -6,7 +6,7 @@ the translators tab of the secondary credits dialog.}
 \usage{gtkAboutDialogSetTranslatorCredits(object, translator.credits = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkAboutDialog}}}
-\item{\verb{translator.credits}}{ the translator credits. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{translator.credits}}{the translator credits. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{The intended use for this string is to display the translator
 of the language which is currently used in the user interface.

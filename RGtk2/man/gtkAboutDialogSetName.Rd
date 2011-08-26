@@ -9,7 +9,7 @@ If this is not set, it defaults to \code{gGetApplicationName()}.
 \usage{gtkAboutDialogSetName(object, name = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkAboutDialog}}}
-\item{\verb{name}}{ the program name. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{name}}{the program name. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}

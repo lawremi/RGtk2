@@ -10,7 +10,7 @@ widget or not.
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkEntry}}}
 \item{\verb{editable}}{\code{TRUE} if the user is allowed to edit the text
-  in the widget}
+in the widget}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -11,6 +11,6 @@ sorted.  If \code{sorted.path} does not point to a location in the child model,
 \item{\verb{object}}{A \code{\link{GtkTreeModelSort}}}
 \item{\verb{sorted.path}}{A \code{\link{GtkTreePath}} to convert}
 }
-\value{[\code{\link{GtkTreePath}}]  A newly allocated \code{\link{GtkTreePath}}, or \code{NULL}}
+\value{[\code{\link{GtkTreePath}}] A newly allocated \code{\link{GtkTreePath}}, or \code{NULL}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

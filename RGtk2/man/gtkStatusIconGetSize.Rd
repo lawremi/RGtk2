@@ -11,6 +11,6 @@ react to size changes.}
 \details{Note that the returned size is only meaningful while the 
 status icon is embedded (see \code{\link{gtkStatusIconIsEmbedded}}).
   Since 2.10}
-\value{[integer]  the size that is available for the image}
+\value{[integer] the size that is available for the image}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

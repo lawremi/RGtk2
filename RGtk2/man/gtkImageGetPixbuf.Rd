@@ -8,7 +8,7 @@ The caller of this function does not own a reference to the
 returned pixbuf.}
 \usage{gtkImageGetPixbuf(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkImage}}}}
-\value{[\code{\link{GdkPixbuf}}]  the displayed pixbuf, or \code{NULL} if
+\value{[\code{\link{GdkPixbuf}}] the displayed pixbuf, or \code{NULL} if
 the image is empty. \emph{[  \acronym{transfer none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

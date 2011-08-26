@@ -5,6 +5,6 @@
 \usage{pangoLayoutIterGetLayout(iter)}
 \arguments{\item{\verb{iter}}{a \code{\link{PangoLayoutIter}}}}
 \details{Since 1.20}
-\value{[\code{\link{PangoLayout}}]  the layout associated with \code{iter}.}
+\value{[\code{\link{PangoLayout}}] the layout associated with \code{iter}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

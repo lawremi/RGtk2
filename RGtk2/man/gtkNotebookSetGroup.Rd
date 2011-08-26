@@ -8,7 +8,7 @@ not be able to exchange tabs with any other notebook.}
 \usage{gtkNotebookSetGroup(object, group)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkNotebook}}}
-\item{\verb{group}}{ a pointer to identify the notebook group, or \code{NULL} to unset it. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{group}}{a pointer to identify the notebook group, or \code{NULL} to unset it. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{Since 2.12}
 \author{Derived by RGtkGen from GTK+ documentation}

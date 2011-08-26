@@ -8,9 +8,9 @@ in custom buttons, as the \code{assistant} flow can be set with
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkAssistant}}}
 \item{\verb{page.num}}{index of the page to switch to, starting from 0.
-           If negative, the last page will be used. If greater
-           than the number of pages in the \code{assistant}, nothing
-           will be done.}
+If negative, the last page will be used. If greater
+than the number of pages in the \code{assistant}, nothing
+will be done.}
 }
 \details{Since 2.10}
 \author{Derived by RGtkGen from GTK+ documentation}

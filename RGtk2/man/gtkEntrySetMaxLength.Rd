@@ -8,8 +8,8 @@ will be truncated to fit.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkEntry}}}
 \item{\verb{max}}{the maximum length of the entry, or 0 for no maximum.
-  (other than the maximum length of entries.) The value passed in will
-  be clamped to the range 0-65536.}
+(other than the maximum length of entries.) The value passed in will
+be clamped to the range 0-65536.}
 }
 \details{This is equivalent to:
   \preformatted{gtk_entry_buffer_set_max_length (gtk_entry_get_buffer (entry), max);

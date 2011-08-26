@@ -130,14 +130,12 @@ If the function returns \code{NULL}, the drag will be cancelled.
 
 }}}
 \section{Signals}{\describe{
-\item{\code{change-current-page(notebook, arg1, user.data)}}{
+\item{\code{change-current-page(notebook, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{notebook}}{the object which received the signal.}
-\item{\code{arg1}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
@@ -165,30 +163,26 @@ if one has been set with \code{\link{gtkNotebookSetWindowCreationHook}}.
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [\code{\link{GtkNotebook}}]  a \code{\link{GtkNotebook}} that \code{page} should be added to, or \code{NULL}.
+\emph{Returns:} [\code{\link{GtkNotebook}}] a \code{\link{GtkNotebook}} that \code{page} should be added to, or \code{NULL}.
 
 }
-\item{\code{focus-tab(notebook, arg1, user.data)}}{
+\item{\code{focus-tab(notebook, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{notebook}}{the object which received the signal.}
-\item{\code{arg1}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{move-focus-out(notebook, arg1, user.data)}}{
+\item{\code{move-focus-out(notebook, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{notebook}}{the object which received the signal.}
-\item{\code{arg1}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
@@ -236,29 +230,23 @@ right after a page has been reordered.
 
 
 }
-\item{\code{reorder-tab(notebook, arg1, Param3, user.data)}}{
+\item{\code{reorder-tab(notebook, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{notebook}}{the object which received the signal.}
-\item{\code{arg1}}{\emph{undocumented
-}}
-\item{\code{Param3}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{select-page(notebook, arg1, user.data)}}{
+\item{\code{select-page(notebook, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{notebook}}{the object which received the signal.}
-\item{\code{arg1}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 

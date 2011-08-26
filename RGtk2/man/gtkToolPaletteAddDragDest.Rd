@@ -9,9 +9,9 @@ See \code{\link{gtkDragDestSet}}.}
 \item{\verb{object}}{a \code{\link{GtkToolPalette}}}
 \item{\verb{widget}}{a \code{\link{GtkWidget}} which should be a drag destination for \code{palette}}
 \item{\verb{flags}}{the flags that specify what actions GTK+ should take for drops
-    on that widget}
+on that widget}
 \item{\verb{targets}}{the \verb{GtkToolPaletteDragTarget}s which the widget
-    should support}
+should support}
 \item{\verb{actions}}{the \code{\link{GdkDragAction}}s which the widget should suppport}
 }
 \details{Since 2.20}

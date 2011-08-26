@@ -15,6 +15,6 @@ such widgets and synthesizing widget events.}
 \item{\verb{widget.type}}{Type of a aearched for label sibling widget.}
 }
 \details{Since 2.14}
-\value{[\code{\link{GtkWidget}}]  a valid widget if any is found or \code{NULL}.}
+\value{[\code{\link{GtkWidget}}] a valid widget if any is found or \code{NULL}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -111,14 +111,14 @@ link is activated.
 \item{\code{about}}{the \code{\link{GtkAboutDialog}} in which the link was activated}
 \item{\code{link.}}{the URL or email address to which the activated link points}
 \item{\code{data}}{user data that was passed when the function was registered
- with \code{\link{gtkAboutDialogSetEmailHook}} or
- \code{\link{gtkAboutDialogSetUrlHook}}}
+with \code{\link{gtkAboutDialogSetEmailHook}} or
+\code{\link{gtkAboutDialogSetUrlHook}}}
 }
 
 
 }}}
 \section{Properties}{\describe{
-\item{\verb{artists} [character list : *                : Read / Write]}{
+\item{\verb{artists} [character list : Read / Write]}{
 
 The people who contributed artwork to the program, as a \code{NULL}-terminated
 array of strings. Each string may contain email addresses and URLs, which
@@ -126,7 +126,7 @@ will be displayed as links, see the introduction for more details.
   Since 2.6
 
 }
-\item{\verb{authors} [character list : *                : Read / Write]}{
+\item{\verb{authors} [character list : Read / Write]}{
 
 The authors of the program, as a list of strings.
 Each string may contain email addresses and URLs, which will be displayed
@@ -148,7 +148,7 @@ Copyright information for the program.
   Default value: NULL  Since 2.6
 
 }
-\item{\verb{documenters} [character list : *                : Read / Write]}{
+\item{\verb{documenters} [character list : Read / Write]}{
 
 The people documenting the program, as a list of strings.
 Each string may contain email addresses and URLs, which will be displayed

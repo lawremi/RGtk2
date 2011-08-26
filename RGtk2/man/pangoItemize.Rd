@@ -9,12 +9,12 @@ offsets of the items are ascending).}
 \usage{pangoItemize(context, text, start.index, length, attrs, cached.iter = NULL)}
 \arguments{
 \item{\verb{context}}{a structure holding information that affects
-	       the itemization process.}
+the itemization process.}
 \item{\verb{text}}{the text to itemize.}
 \item{\verb{start.index}}{first byte in \code{text} to process}
 \item{\verb{length}}{the number of bytes (not characters) to process
-            after \code{start.index}.
-            This must be >= 0.}
+after \code{start.index}.
+This must be >= 0.}
 \item{\verb{attrs}}{the set of attributes that apply to \code{text}.}
 \item{\verb{cached.iter}}{Cached attribute iterator, or \code{NULL}}
 }
@@ -22,6 +22,6 @@ offsets of the items are ascending).}
 range before or containing \code{start.index}; \code{cached.iter} will be advanced to
 the range covering the position just after \code{start.index} + \code{length}.
 (i.e. if itemizing in a loop, just keep passing in the same \code{cached.iter}).}
-\value{[list]  a \verb{list} of \code{\link{PangoItem}} structures.}
+\value{[list] a \verb{list} of \code{\link{PangoItem}} structures.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

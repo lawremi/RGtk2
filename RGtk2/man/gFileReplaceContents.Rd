@@ -10,8 +10,8 @@ the error \code{G_IO_ERROR_WRONG_ETAG} will be returned.}
 \item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{contents}}{a string containing the new contents for \code{file}.}
 \item{\verb{length}}{the length of \code{contents} in bytes.}
-\item{\verb{etag}}{the old entity tag 
-    for the document, or \code{NULL}}
+\item{\verb{etag}}{the old entity tag
+for the document, or \code{NULL}}
 \item{\verb{make.backup}}{\code{TRUE} if a backup should be created.}
 \item{\verb{flags}}{a set of \code{\link{GFileCreateFlags}}.}
 \item{\verb{cancellable}}{optional \code{\link{GCancellable}} object, \code{NULL} to ignore.}
@@ -31,8 +31,8 @@ A list containing the following elements:
 has occurred, this function will return \code{FALSE} and set \code{error}
 appropriately if present.}
 \item{\verb{new.etag}}{a location to a new entity tag
-     for the document. This should be freed with \code{gFree()} when no longer 
-     needed, or \code{NULL}}
+for the document. This should be freed with \code{gFree()} when no longer
+needed, or \code{NULL}}
 \item{\verb{error}}{a \code{\link{GError}}, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

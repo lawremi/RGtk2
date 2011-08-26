@@ -16,6 +16,6 @@ location, see \code{\link{gdkTestSimulateButton}} for details.}
 \item{\verb{modifiers}}{Keyboard modifiers the event is setup with.}
 }
 \details{Since 2.14}
-\value{[logical]  wether all actions neccessary for the button click simulation were carried out successfully.}
+\value{[logical] wether all actions neccessary for the button click simulation were carried out successfully.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

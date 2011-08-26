@@ -21,7 +21,7 @@ partial result will be returned, without an error.
 On error -1 is returned and \code{error} is set accordingly.}
 \value{
 A list containing the following elements:
-\item{retval}{[integer]  the byte read from the \code{stream}, or -1 on end of stream or error.}
+\item{retval}{[integer] the byte read from the \code{stream}, or -1 on end of stream or error.}
 \item{\verb{error}}{location to store the error occuring, or \code{NULL} to ignore.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

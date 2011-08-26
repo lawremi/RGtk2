@@ -8,6 +8,6 @@
 \item{\verb{num.ranges}}{return location for the length of the returned list}
 }
 \details{Since 2.10}
-\value{[\code{\link{GtkPageRange}}]  a list of \code{\link{GtkPageRange}}s. }
+\value{[\code{\link{GtkPageRange}}] a list of \code{\link{GtkPageRange}}s.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

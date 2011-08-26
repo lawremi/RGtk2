@@ -8,11 +8,11 @@ will be called.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkClipboard}}}
 \item{\verb{target}}{an atom representing the form into which the clipboard
-            owner should convert the selection.}
+owner should convert the selection.}
 \item{\verb{callback}}{A function to call when the results are received
-            (or the retrieval fails). If the retrieval fails
-            the length field of \code{selection.data} will be
-            negative.}
+(or the retrieval fails). If the retrieval fails
+the length field of \code{selection.data} will be
+negative.}
 \item{\verb{user.data}}{user data to pass to \code{callback}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

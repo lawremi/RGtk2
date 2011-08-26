@@ -11,6 +11,6 @@ available to render all characters in a certain string, or when
 used in combination with \code{PANGO_ATTR_FALLBACK}, to check if a
 certain font supports all the characters in the string.
   Since 1.16}
-\value{[integer]  The number of unknown glyphs in \code{layout}.}
+\value{[integer] The number of unknown glyphs in \code{layout}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

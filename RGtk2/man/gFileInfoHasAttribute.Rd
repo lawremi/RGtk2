@@ -7,7 +7,7 @@
 \item{\verb{object}}{a \code{\link{GFileInfo}}.}
 \item{\verb{attribute}}{a file attribute key.}
 }
-\value{[logical] \code{TRUE} if \code{Ginfo} has an attribute named \code{attribute}, 
-    \code{FALSE} otherwise.}
+\value{[logical] \code{TRUE} if \code{Ginfo} has an attribute named \code{attribute},
+\code{FALSE} otherwise.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

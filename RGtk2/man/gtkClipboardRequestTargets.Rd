@@ -7,8 +7,8 @@ When the list is later received, \code{callback} will be called. }
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkClipboard}}}
 \item{\verb{callback}}{a function to call when the targets are received,
-            or the retrieval fails. (It will always be called
-            one way or the other.)}
+or the retrieval fails. (It will always be called
+one way or the other.)}
 \item{\verb{user.data}}{user data to pass to \code{callback}.}
 }
 \details{The \code{targets} parameter to \code{callback} will contain the resulting targets if

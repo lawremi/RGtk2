@@ -5,6 +5,6 @@
 \usage{gtkRadioToolButtonGetGroup(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkRadioToolButton}}}}
 \details{Since 2.4}
-\value{[list]  The group \code{button} belongs to.}
+\value{[list] The group \code{button} belongs to.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -40,6 +40,8 @@
 \code{gAppLaunchContext()}
 }
 \section{Hierarchy}{\preformatted{
+GFlags
+   +----GAppInfoCreateFlags
 GInterface
    +----GAppInfo
 GObject

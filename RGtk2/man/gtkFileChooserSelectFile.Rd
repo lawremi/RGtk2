@@ -14,7 +14,7 @@
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if both the folder could be changed and the path was
 selected successfully, \code{FALSE} otherwise.}
-\item{\verb{error}}{ location to store error, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{error}}{location to store error, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

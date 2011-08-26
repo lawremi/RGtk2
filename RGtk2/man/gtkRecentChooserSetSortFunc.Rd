@@ -8,7 +8,7 @@ the chooser will sort using this function.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkRecentChooser}}}
 \item{\verb{sort.func}}{the comparison function}
-\item{\verb{sort.data}}{ user data to pass to \code{sort.func}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{sort.data}}{user data to pass to \code{sort.func}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{To the comparison function will be passed two \code{\link{GtkRecentInfo}} structs and
 \code{sort.data};  \code{sort.func} should return a positive integer if the first

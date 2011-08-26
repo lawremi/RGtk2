@@ -12,7 +12,7 @@ by \code{\link{gFileIOStreamQueryInfoAsync}}.}
 \details{Since 2.22}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GFileInfo}}]  A \code{\link{GFileInfo}} for the finished query.}
+\item{retval}{[\code{\link{GFileInfo}}] A \code{\link{GFileInfo}} for the finished query.}
 \item{\verb{error}}{a \code{\link{GError}}, \code{NULL} to ignore.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

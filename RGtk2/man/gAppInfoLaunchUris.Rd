@@ -8,7 +8,7 @@ On error, \code{error} will be set accordingly.}
 \usage{gAppInfoLaunchUris(object, uris, launch.context, .errwarn = TRUE)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GAppInfo}}}
-\item{\verb{uris}}{a \verb{list} containing URIs to launch. }
+\item{\verb{uris}}{a \verb{list} containing URIs to launch.}
 \item{\verb{launch.context}}{a \code{\link{GAppLaunchContext}} or \code{NULL}}
 \item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
@@ -19,7 +19,7 @@ can fail to start if it runs into problems during startup. There is
 no way to detect this.}
 \value{
 A list containing the following elements:
-\item{retval}{[logical] \code{TRUE} on successful launch, \code{FALSE} otherwise. }
+\item{retval}{[logical] \code{TRUE} on successful launch, \code{FALSE} otherwise.}
 \item{\verb{error}}{a \code{\link{GError}}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

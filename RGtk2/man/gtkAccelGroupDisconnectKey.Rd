@@ -9,7 +9,7 @@
 \item{\verb{accel.key}}{key value of the accelerator}
 \item{\verb{accel.mods}}{modifier combination of the accelerator}
 }
-\value{[logical] \code{TRUE} if there was an accelerator which could be 
-                   removed, \code{FALSE} otherwise}
+\value{[logical] \code{TRUE} if there was an accelerator which could be
+removed, \code{FALSE} otherwise}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -38,7 +38,7 @@ entire row with the cursor keys, as e.g. known from user interfaces
 that require entering license keys.
   Since 2.12}
 \value{[logical] \code{TRUE} if stopping keyboard navigation is fine, \code{FALSE}
-              if the emitting widget should try to handle the keyboard
-              navigation attempt in its parent container(s).}
+if the emitting widget should try to handle the keyboard
+navigation attempt in its parent container(s).}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

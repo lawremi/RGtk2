@@ -11,6 +11,6 @@ in the wide-character encoding of the current locale).
 \item{\verb{object}}{a \code{\link{GdkFont}}}
 \item{\verb{character}}{the character to measure.}
 }
-\value{[integer]  the width of the character in pixels.}
+\value{[integer] the width of the character in pixels.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -8,6 +8,6 @@ computes the sum of geometry.width for each glyph in the \code{glyphs}.}
 \usage{pangoGlyphStringGetWidth(object)}
 \arguments{\item{\verb{object}}{a \code{\link{PangoGlyphString}}}}
 \details{Since 1.14}
-\value{[integer]  the logical width of the glyph string.}
+\value{[integer] the logical width of the glyph string.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

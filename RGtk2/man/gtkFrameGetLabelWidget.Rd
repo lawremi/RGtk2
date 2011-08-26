@@ -5,6 +5,6 @@
 \code{\link{gtkFrameSetLabelWidget}}.}
 \usage{gtkFrameGetLabelWidget(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkFrame}}}}
-\value{[\code{\link{GtkWidget}}]  the label widget, or \code{NULL} if there is none.}
+\value{[\code{\link{GtkWidget}}] the label widget, or \code{NULL} if there is none.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

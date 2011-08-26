@@ -8,7 +8,7 @@ the values given to this function.}
 \usage{gtkTreeStoreInsertWithValues(object, parent, position, ...)}
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkTreeStore}}}
-\item{\verb{parent}}{ A valid \code{\link{GtkTreeIter}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{parent}}{A valid \code{\link{GtkTreeIter}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{position}}{position to insert the new row}
 \item{\verb{...}}{pairs of column number and value, terminated with -1}
 }
@@ -28,7 +28,7 @@ inserting rows in a sorted tree store.
   Since 2.10}
 \value{
 A list containing the following elements:
-\item{\verb{iter}}{ An unset \code{\link{GtkTreeIter}} to set the new row, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{iter}}{An unset \code{\link{GtkTreeIter}} to set the new row, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

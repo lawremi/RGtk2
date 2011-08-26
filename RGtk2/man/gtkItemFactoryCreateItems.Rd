@@ -9,7 +9,7 @@ Creates the menu items from the \code{entries}.
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkItemFactory}}}
 \item{\verb{entries}}{a list of \code{\link{GtkItemFactoryEntry}}s whose \code{callback} members
-   must by of type \code{\link{GtkItemFactoryCallback1}}}
+must by of type \code{\link{GtkItemFactoryCallback1}}}
 \item{\verb{callback.data}}{data passed to the callback functions of all entries}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

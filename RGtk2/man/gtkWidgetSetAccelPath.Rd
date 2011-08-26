@@ -12,8 +12,8 @@ to be saved for future use. (See \code{\link{gtkAccelMapSave}}.)}
 \usage{gtkWidgetSetAccelPath(object, accel.path, accel.group)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkWidget}}}
-\item{\verb{accel.path}}{ path used to look up the accelerator. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{accel.group}}{ a \code{\link{GtkAccelGroup}}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{accel.path}}{path used to look up the accelerator. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{accel.group}}{a \code{\link{GtkAccelGroup}}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{This function is a low level function that would most likely
 be used by a menu creation system like \code{\link{GtkUIManager}}. If you

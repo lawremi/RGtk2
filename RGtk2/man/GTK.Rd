@@ -8,7 +8,6 @@ The RGtk binding to the GTK library consists of the following components:
 \item{\link{chap-drawing-model}}{    The GTK+ drawing model in detail}
 \item{\link{gtk-Filesystem-utilities}}{Functions for working with GIO}
 \item{\link{GtkAboutDialog}}{Display information about an application}
-\item{\link{GtkAboutDialog}}{Display information about an application}
 \item{\link{gtk-Keyboard-Accelerators}}{Groups of global keyboard accelerators for an entire GtkWindow}
 \item{\link{GtkAccelLabel}}{A label which displays an accelerator key on the right of the text}
 \item{\link{gtk-Accelerator-Maps}}{Loadable keyboard accelerator specifications}
@@ -120,7 +119,7 @@ The RGtk binding to the GTK library consists of the following components:
 \item{\link{gtk-Orientable}}{An interface for flippable widgets}
 \item{\link{GtkPageSetup}}{Stores page setup information}
 \item{\link{GtkPaned}}{Base class for widgets with two adjustable panes}
-\item{\link{gtk-GtkPaperSize}}{Support for named paper sizes}
+\item{\link{GtkPaperSize}}{Support for named paper sizes}
 \item{\link{GtkPixmap}}{A widget displaying a graphical image or icon}
 \item{\link{GtkPlug}}{Toplevel for embedding into other processes}
 \item{\link{GtkPreview}}{A widget to display RGB or grayscale data}
@@ -164,7 +163,7 @@ The RGtk binding to the GTK library consists of the following components:
 \item{\link{GtkTearoffMenuItem}}{A menu item used to tear off and reattach its menu}
 \item{\link{gtk-Testing}}{Utilities for testing GTK+ applications}
 \item{\link{GtkTextBuffer}}{Stores attributed text for display in a GtkTextView}
-\item{\link{gtk-GtkTextIter}}{Text buffer iterator}
+\item{\link{GtkTextIter}}{Text buffer iterator}
 \item{\link{GtkTextMark}}{A position in the buffer preserved across buffer modifications}
 \item{\link{GtkTextTag}}{A tag that can be applied to text in a GtkTextBuffer}
 \item{\link{GtkTextTagTable}}{Collection of tags that can be used together}

@@ -5,6 +5,6 @@
 \usage{gtkMountOperationGetParent(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkMountOperation}}}}
 \details{Since 2.14}
-\value{[\code{\link{GtkWindow}}]  the transient parent for windows shown by \code{op}}
+\value{[\code{\link{GtkWindow}}] the transient parent for windows shown by \code{op}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

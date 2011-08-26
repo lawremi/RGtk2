@@ -7,7 +7,7 @@ If it is \code{NULL}, the default window icon set with
 \usage{gtkAboutDialogSetLogoIconName(object, icon.name = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkAboutDialog}}}
-\item{\verb{icon.name}}{ an icon name, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{icon.name}}{an icon name, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}

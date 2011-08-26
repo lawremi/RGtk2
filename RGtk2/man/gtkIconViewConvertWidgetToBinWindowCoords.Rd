@@ -5,7 +5,7 @@
 as expected by e.g. \code{\link{gtkIconViewGetPathAtPos}}.}
 \usage{gtkIconViewConvertWidgetToBinWindowCoords(object, wx, wy)}
 \arguments{
-\item{\verb{object}}{a \code{\link{GtkIconView}} }
+\item{\verb{object}}{a \code{\link{GtkIconView}}}
 \item{\verb{wx}}{X coordinate relative to the widget}
 \item{\verb{wy}}{Y coordinate relative to the widget}
 }

@@ -12,6 +12,6 @@ being loaded, but still compare \code{FALSE}.)}
 \item{\verb{desc2}}{another \code{\link{PangoFontDescription}}}
 }
 \value{[logical] \code{TRUE} if the two font descriptions are identical,
-	 \code{FALSE} otherwise.}
+\code{FALSE} otherwise.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

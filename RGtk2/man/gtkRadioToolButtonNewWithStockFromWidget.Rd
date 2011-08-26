@@ -7,9 +7,9 @@ stock item indicated by \code{stock.id}.}
 \usage{gtkRadioToolButtonNewWithStockFromWidget(group = NULL, stock.id, show = TRUE)}
 \arguments{
 \item{\verb{group}}{An existing \code{\link{GtkRadioToolButton}}.}
-\item{\verb{stock.id}}{the name of a stock item }
+\item{\verb{stock.id}}{the name of a stock item}
 }
 \details{Since 2.4}
-\value{[\code{\link{GtkToolItem}}]  A new \code{\link{GtkRadioToolButton}}}
+\value{[\code{\link{GtkToolItem}}] A new \code{\link{GtkRadioToolButton}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

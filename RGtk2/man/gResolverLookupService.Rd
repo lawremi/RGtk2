@@ -34,7 +34,7 @@ interface.
   Since 2.22}
 \value{
 A list containing the following elements:
-\item{retval}{[list]  a \verb{list} of \code{\link{GSrvTarget}}, or \code{NULL} on error. You must
+\item{retval}{[list] a \verb{list} of \code{\link{GSrvTarget}}, or \code{NULL} on error. You must
 free each of the targets and the list when you are done with it.
 (You can use \code{\link{gResolverFreeTargets}} to do this.)}
 \item{\verb{error}}{return location for a \code{\link{GError}}, or \code{NULL}}

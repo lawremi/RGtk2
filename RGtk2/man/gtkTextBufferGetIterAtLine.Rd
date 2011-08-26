@@ -4,7 +4,7 @@
 \description{Initializes \code{iter} to the start of the given line.}
 \usage{gtkTextBufferGetIterAtLine(object, line.number)}
 \arguments{
-\item{\verb{object}}{a \code{\link{GtkTextBuffer}} }
+\item{\verb{object}}{a \code{\link{GtkTextBuffer}}}
 \item{\verb{line.number}}{line number counting from 0}
 }
 \value{

@@ -5,6 +5,6 @@
 \code{\link{gtkHandleBoxSetHandlePosition}}.}
 \usage{gtkHandleBoxGetHandlePosition(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkHandleBox}}}}
-\value{[\code{\link{GtkPositionType}}]  the current handle position.}
+\value{[\code{\link{GtkPositionType}}] the current handle position.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

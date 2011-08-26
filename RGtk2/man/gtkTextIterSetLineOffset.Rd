@@ -9,7 +9,7 @@ moves to the start of the next line. See
 a character offset.}
 \usage{gtkTextIterSetLineOffset(object, char.on.line)}
 \arguments{
-\item{\verb{object}}{a \code{\link{GtkTextIter}} }
+\item{\verb{object}}{a \code{\link{GtkTextIter}}}
 \item{\verb{char.on.line}}{a character offset relative to the start of \code{iter}'s current line}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

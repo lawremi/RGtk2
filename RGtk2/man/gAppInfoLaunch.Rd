@@ -24,7 +24,7 @@ a textual uri you want to pass in as argument, consider using
 \code{\link{gAppInfoLaunchUris}} instead.}
 \value{
 A list containing the following elements:
-\item{retval}{[logical] \code{TRUE} on successful launch, \code{FALSE} otherwise. }
+\item{retval}{[logical] \code{TRUE} on successful launch, \code{FALSE} otherwise.}
 \item{\verb{error}}{a \code{\link{GError}}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

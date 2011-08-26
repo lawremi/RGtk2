@@ -52,11 +52,11 @@ to pass information about the tested file to
 
 \describe{
 \item{\verb{contains}}{[\code{\link{GtkFileFilterFlags}}] Flags indicating which of the following fields need
-  are filled}
+are filled}
 \item{\verb{filename}}{[character] the filename of the file being tested}
 \item{\verb{uri}}{[character] the URI for the file being tested}
 \item{\verb{displayName}}{[character] the string that will be used to display the file
-  in the file chooser}
+in the file chooser}
 \item{\verb{mimeType}}{[character] the mime type of the file}
 }
 
@@ -82,7 +82,7 @@ see \code{\link{gtkFileFilterAddCustom}}.
 
 \describe{
 \item{\code{filter.info}}{a \code{\link{GtkFileFilterInfo}} that is filled according
-  to the \code{needed} flags passed to \code{\link{gtkFileFilterAddCustom}}}
+to the \code{needed} flags passed to \code{\link{gtkFileFilterAddCustom}}}
 \item{\code{data}}{user data passed to \code{\link{gtkFileFilterAddCustom}}}
 }
 

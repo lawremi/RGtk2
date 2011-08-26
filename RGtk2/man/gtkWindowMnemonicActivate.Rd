@@ -6,8 +6,8 @@
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkWindow}}}
 \item{\verb{keyval}}{the mnemonic}
-\item{\verb{modifier}}{the modifiers }
+\item{\verb{modifier}}{the modifiers}
 }
-\value{[logical] \code{TRUE} if the activation is done. }
+\value{[logical] \code{TRUE} if the activation is done.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -37,6 +37,6 @@ the frame itself. So your timeout should be reinstalled after any
 area_updated signal.
   
 A delay time of -1 is possible, indicating "infinite."}
-\value{[\code{\link{GdkPixbufAnimationIter}}]  an iterator to move over the animation}
+\value{[\code{\link{GdkPixbufAnimationIter}}] an iterator to move over the animation}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -60,8 +60,14 @@
 \code{\link{gtkTreeModelRowDeleted}(object, path)}\cr
 \code{\link{gtkTreeModelRowsReordered}(object, path, iter, new.order)}\cr
 }
-\section{Hierarchy}{\preformatted{GInterface
-   +----GtkTreeModel}}
+\section{Hierarchy}{\preformatted{
+GInterface
+   +----GtkTreeModel
+GBoxed
+   +----GtkTreeIter
+GBoxed
+   +----GtkTreePath
+}}
 \section{Implementations}{GtkTreeModel is implemented by
  \code{\link{GtkListStore}},  \code{\link{GtkTreeModelFilter}},  \code{\link{GtkTreeModelSort}} and  \code{\link{GtkTreeStore}}.}
 \section{Interface Derivations}{GtkTreeModel is required by
@@ -202,13 +208,6 @@ accessing a structure.  Models are expected to put a unique integer in
 the \code{stamp} member, and put model-specific
 data in the three \code{user_data} members.
 
-\describe{
-\item{\code{stamp}}{A unique stamp to catch invalid iterators}
-\item{\code{user_data}}{Model specific data}
-\item{\code{user_data2}}{Model specific data}
-\item{\code{user_data3}}{Model specific data}
-}
-
 }
 \item{\verb{GtkTreePath}}{
 \emph{undocumented
@@ -322,11 +321,11 @@ by removing and then reinserting the row.
 \describe{
 \item{\code{tree.model}}{the \code{\link{GtkTreeModel}} on which the signal is emitted}
 \item{\code{path}}{a \code{\link{GtkTreePath}} identifying the tree node whose children
-       have been reordered}
-\item{\code{iter}}{a valid \code{\link{GtkTreeIter}} pointing to the node whose }
+have been reordered}
+\item{\code{iter}}{a valid \code{\link{GtkTreeIter}} pointing to the node whose}
 \item{\code{new.order}}{a list of integers mapping the current position of
-            each child to its old position before the re-ordering,
-            i.e. \code{new.order}\code{[newpos] = oldpos}.}
+each child to its old position before the re-ordering,
+i.e. \code{new.order}\code{[newpos] = oldpos}.}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 

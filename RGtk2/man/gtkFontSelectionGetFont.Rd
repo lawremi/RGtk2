@@ -7,6 +7,6 @@ Gets the currently-selected font.
 }
 \usage{gtkFontSelectionGetFont(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkFontSelection}}}}
-\value{[\code{\link{GdkFont}}]  A \code{\link{GdkFont}}.}
+\value{[\code{\link{GdkFont}}] A \code{\link{GdkFont}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

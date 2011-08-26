@@ -7,6 +7,6 @@ the stock item indicated by \code{stock.id}.}
 \usage{gtkMenuToolButtonNewFromStock(stock.id)}
 \arguments{\item{\verb{stock.id}}{the name of a stock item}}
 \details{Since 2.6}
-\value{[\code{\link{GtkToolItem}}]  the new \code{\link{GtkMenuToolButton}}}
+\value{[\code{\link{GtkToolItem}}] the new \code{\link{GtkMenuToolButton}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

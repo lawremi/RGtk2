@@ -6,6 +6,6 @@ doesn't have a label. or uses a the label from a stock item. and must not be mod
 \usage{gtkToolButtonGetLabel(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkToolButton}}}}
 \details{Since 2.4}
-\value{[character]  The label, or \code{NULL}}
+\value{[character] The label, or \code{NULL}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

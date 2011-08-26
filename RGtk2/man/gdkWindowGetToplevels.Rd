@@ -11,6 +11,6 @@ A toplevel window is a child of the root window (see
 \usage{gdkWindowGetToplevels()}
 \details{ but
 its elements need not be freed.}
-\value{[list]  list of toplevel windows,}
+\value{[list] list of toplevel windows,}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -8,7 +8,7 @@ operation.}
 \usage{gOutputStreamWriteAsync(object, buffer, io.priority = 0, cancellable = NULL, callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{A \code{\link{GOutputStream}}.}
-\item{\verb{buffer}}{the buffer containing the data to write. }
+\item{\verb{buffer}}{the buffer containing the data to write.}
 \item{\verb{io.priority}}{the io priority of the request.}
 \item{\verb{cancellable}}{optional \code{\link{GCancellable}} object, \code{NULL} to ignore.}
 \item{\verb{callback}}{callback to call when the request is satisfied}

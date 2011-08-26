@@ -10,6 +10,6 @@ or \code{NULL}.}
 \item{\verb{user.data}}{user data passed to \code{callback}.}
 \item{\verb{source.tag}}{the asynchronous function.}
 }
-\value{[\code{\link{GSimpleAsyncResult}}]  a \code{\link{GSimpleAsyncResult}}.}
+\value{[\code{\link{GSimpleAsyncResult}}] a \code{\link{GSimpleAsyncResult}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

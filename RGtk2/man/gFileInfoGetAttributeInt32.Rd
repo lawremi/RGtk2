@@ -9,6 +9,6 @@ attribute does not contain a signed 32-bit integer, or is invalid,
 \item{\verb{object}}{a \code{\link{GFileInfo}}.}
 \item{\verb{attribute}}{a file attribute key.}
 }
-\value{[integer]  a signed 32-bit integer from the attribute.}
+\value{[integer] a signed 32-bit integer from the attribute.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

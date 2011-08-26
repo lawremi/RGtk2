@@ -10,9 +10,9 @@ Obtains the menu item which was constructed from the first
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkItemFactory}}}
 \item{\verb{action}}{an action as specified in the \code{callback.action} field
-  of \code{\link{GtkItemFactoryEntry}}}
+of \code{\link{GtkItemFactoryEntry}}}
 }
-\value{[\code{\link{GtkWidget}}]  the menu item which corresponds to the given action, or \code{NULL}
-  if no menu item was found. \emph{[  \acronym{allow-none}  ]}}
+\value{[\code{\link{GtkWidget}}] the menu item which corresponds to the given action, or \code{NULL}
+if no menu item was found. \emph{[  \acronym{allow-none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

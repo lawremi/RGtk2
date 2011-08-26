@@ -7,11 +7,11 @@ contents, possibly creating a backup copy of the file first.}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{etag}}{an entity tag for the
-    current \code{\link{GFile}}, or NULL to ignore.}
+current \code{\link{GFile}}, or NULL to ignore.}
 \item{\verb{make.backup}}{\code{TRUE} if a backup should be created.}
 \item{\verb{flags}}{a set of \code{\link{GFileCreateFlags}}.}
 \item{\verb{io.priority}}{the I/O priority
-    of the request.}
+of the request.}
 \item{\verb{cancellable}}{optional \code{\link{GCancellable}} object, \code{NULL} to ignore.}
 \item{\verb{callback}}{a \code{\link{GAsyncReadyCallback}} to call when the request is satisfied}
 \item{\verb{user.data}}{the data to pass to callback function}

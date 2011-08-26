@@ -5,6 +5,6 @@
 \usage{gdkCursorGetDisplay(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GdkCursor}}.}}
 \details{Since 2.2}
-\value{[\code{\link{GdkDisplay}}]  the \code{\link{GdkDisplay}} associated to \code{cursor}}
+\value{[\code{\link{GdkDisplay}}] the \code{\link{GdkDisplay}} associated to \code{cursor}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

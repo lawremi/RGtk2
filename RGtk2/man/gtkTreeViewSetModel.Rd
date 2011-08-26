@@ -7,7 +7,7 @@ then it will unset the old model.}
 \usage{gtkTreeViewSetModel(object, model = NULL)}
 \arguments{
 \item{\verb{object}}{A \verb{GtkTreeNode}.}
-\item{\verb{model}}{ The model. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{model}}{The model. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -50,9 +50,9 @@ until the combo cell renderer emits the edited or editing_canceled signal.
 \describe{
 \item{\code{combo}}{the object on which the signal is emitted}
 \item{\code{path.string}}{a string of the path identifying the edited cell
-              (relative to the tree view model)}
+(relative to the tree view model)}
 \item{\code{new.iter}}{the new iter selected in the combo box
-           (relative to the combo box model)}
+(relative to the combo box model)}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 

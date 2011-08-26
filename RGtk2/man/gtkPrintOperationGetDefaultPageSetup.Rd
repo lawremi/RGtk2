@@ -6,6 +6,6 @@
 \usage{gtkPrintOperationGetDefaultPageSetup(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkPrintOperation}}}}
 \details{Since 2.10}
-\value{[\code{\link{GtkPageSetup}}]  the default page setup }
+\value{[\code{\link{GtkPageSetup}}] the default page setup}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

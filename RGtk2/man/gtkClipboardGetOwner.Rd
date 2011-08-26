@@ -7,6 +7,6 @@
 by \code{\link{gtkClipboardSetWithOwner}}.}
 \usage{gtkClipboardGetOwner(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkClipboard}}}}
-\value{[\code{\link{GObject}}]  the owner of the clipboard, if any; otherwise \code{NULL}.}
+\value{[\code{\link{GObject}}] the owner of the clipboard, if any; otherwise \code{NULL}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

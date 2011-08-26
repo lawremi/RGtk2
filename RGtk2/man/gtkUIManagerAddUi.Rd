@@ -8,10 +8,10 @@
 \item{\verb{merge.id}}{the merge id for the merged UI, see \code{\link{gtkUIManagerNewMergeId}}}
 \item{\verb{path}}{a path}
 \item{\verb{name}}{the name for the added UI element}
-\item{\verb{action}}{ the name of the action to be proxied, or \code{NULL} to add a separator. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{action}}{the name of the action to be proxied, or \code{NULL} to add a separator. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{type}}{the type of UI element to add.}
 \item{\verb{top}}{if \code{TRUE}, the UI element is added before its siblings, otherwise it
-  is added after its siblings.}
+is added after its siblings.}
 }
 \details{If \code{type} is \code{GTK_UI_MANAGER_AUTO}, GTK+ inserts a menuitem, toolitem or 
 separator if such an element can be inserted at the place determined by 

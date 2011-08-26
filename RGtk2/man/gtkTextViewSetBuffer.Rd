@@ -9,7 +9,7 @@ will not "adopt" it.}
 \usage{gtkTextViewSetBuffer(object, buffer)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkTextView}}}
-\item{\verb{buffer}}{ a \code{\link{GtkTextBuffer}}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{buffer}}{a \code{\link{GtkTextBuffer}}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

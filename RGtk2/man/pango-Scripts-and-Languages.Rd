@@ -19,6 +19,12 @@
 \code{\link{pangoLanguageGetDefault}()}\cr
 \code{\link{pangoLanguageGetSampleString}(object)}\cr
 }
+\section{Hierarchy}{\preformatted{
+GEnum
+   +----PangoScript
+GBoxed
+   +----PangoLanguage
+}}
 \section{Detailed Description}{The functions in this section are used to identify the writing
 system, or \dfn{script} of individual characters
 and of ranges within a larger text string.}

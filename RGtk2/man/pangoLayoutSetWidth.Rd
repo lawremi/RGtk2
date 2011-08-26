@@ -7,7 +7,7 @@ ellipsized.  The default value is -1: no width set.}
 \arguments{
 \item{\verb{object}}{a \code{\link{PangoLayout}}.}
 \item{\verb{width}}{the desired width in Pango units, or -1 to indicate that no
-        wrapping or ellipsization should be performed.}
+wrapping or ellipsization should be performed.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

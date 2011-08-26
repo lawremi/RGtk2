@@ -9,7 +9,7 @@
 \item{\verb{y}}{the y position}
 }
 \details{Since 2.20}
-\value{[\code{\link{GtkToolItemGroup}}]  the \code{\link{GtkToolItemGroup}} at position or \code{NULL}
-    if there is no such group}
+\value{[\code{\link{GtkToolItemGroup}}] the \code{\link{GtkToolItemGroup}} at position or \code{NULL}
+if there is no such group}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

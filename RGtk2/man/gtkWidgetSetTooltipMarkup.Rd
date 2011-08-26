@@ -6,7 +6,7 @@
 \usage{gtkWidgetSetTooltipMarkup(object, markup)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkWidget}}}
-\item{\verb{markup}}{ the contents of the tooltip for \code{widget}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{markup}}{the contents of the tooltip for \code{widget}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{This function will take care of setting GtkWidget:has-tooltip to \code{TRUE}
 and of the default handler for the GtkWidget::query-tooltip signal.

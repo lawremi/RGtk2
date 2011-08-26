@@ -8,6 +8,6 @@ next time \code{icon.theme} is accessed.}
 \arguments{\item{\verb{object}}{a \code{\link{GtkIconTheme}}}}
 \details{Since 2.4}
 \value{[logical] \code{TRUE} if the icon theme has changed and needed
-  to be reloaded.}
+to be reloaded.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

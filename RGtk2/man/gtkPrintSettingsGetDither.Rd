@@ -5,6 +5,6 @@
 \usage{gtkPrintSettingsGetDither(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkPrintSettings}}}}
 \details{Since 2.10}
-\value{[character]  the dithering that is used}
+\value{[character] the dithering that is used}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

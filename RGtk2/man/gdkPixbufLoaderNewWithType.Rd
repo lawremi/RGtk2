@@ -19,8 +19,8 @@ supported image formats, call \code{\link{gdkPixbufFormatGetName}} on each
 of the \code{\link{GdkPixbufFormat}} structs returned by \code{\link{gdkPixbufGetFormats}}.}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GdkPixbufLoader}}]  A newly-created pixbuf loader.}
-\item{\verb{error}}{ return location for an allocated \code{\link{GError}}, or \code{NULL} to ignore errors. \emph{[  \acronym{allow-none}  ]}}
+\item{retval}{[\code{\link{GdkPixbufLoader}}] A newly-created pixbuf loader.}
+\item{\verb{error}}{return location for an allocated \code{\link{GError}}, or \code{NULL} to ignore errors. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

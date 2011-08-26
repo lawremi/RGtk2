@@ -11,12 +11,12 @@ transformation matrix to that passed in to this function.}
 \arguments{
 \item{\verb{drawable}}{a \code{\link{GdkDrawable}}}
 \item{\verb{gc}}{a \code{\link{GdkGC}}}
-\item{\verb{matrix}}{ a \code{\link{PangoMatrix}}, or \code{NULL} to use an identity transformation. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{matrix}}{a \code{\link{PangoMatrix}}, or \code{NULL} to use an identity transformation. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{font}}{the font in which to draw the string}
 \item{\verb{x}}{the x position of the start of the string (in Pango
-          units in user space coordinates)}
+units in user space coordinates)}
 \item{\verb{y}}{the y position of the baseline (in Pango units
-          in user space coordinates)}
+in user space coordinates)}
 \item{\verb{glyphs}}{the glyph string to draw}
 }
 \details{See also \code{\link{gdkDrawGlyphs}}, \code{\link{gdkDrawLayout}}.

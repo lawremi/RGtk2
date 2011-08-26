@@ -11,8 +11,8 @@
 }
 \value{
 A list containing the following elements:
-\item{retval}{[logical] \code{TRUE} if \code{info} has an attribute named \code{attribute}, 
-     \code{FALSE} otherwise.}
+\item{retval}{[logical] \code{TRUE} if \code{info} has an attribute named \code{attribute},
+\code{FALSE} otherwise.}
 \item{\verb{value.pp}}{return location for the attribute value, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

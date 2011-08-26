@@ -13,6 +13,6 @@ callbacks that might destroy the widgets, you
 (GFunc)g_object_ref, NULL)} first, and then unref all the
 widgets afterwards.
   Since 2.4}
-\value{[list]  \emph{[  \acronym{element-type}   GtkWidget][  \acronym{transfer container}   GtkWidget]}}
+\value{[list]  \emph{[  \acronym{element-type}   GtkWidget][  \acronym{transfer container}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

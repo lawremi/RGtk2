@@ -9,7 +9,7 @@ page.}
 \usage{gtkAssistantSetForwardPageFunc(object, page.func, data)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkAssistant}}}
-\item{\verb{page.func}}{ the \code{\link{GtkAssistantPageFunc}}, or \code{NULL} to use the default one. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{page.func}}{the \code{\link{GtkAssistantPageFunc}}, or \code{NULL} to use the default one. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{data}}{user data for \code{page.func}}
 }
 \details{Since 2.10}

@@ -8,8 +8,8 @@ version of this function, see \code{\link{gBufferedInputStreamFill}}.}
 \arguments{
 \item{\verb{object}}{\code{\link{GBufferedInputStream}}.}
 \item{\verb{count}}{the number of bytes that will be read from the stream.}
-\item{\verb{io.priority}}{the I/O priority 
-    of the request.}
+\item{\verb{io.priority}}{the I/O priority
+of the request.}
 \item{\verb{cancellable}}{optional \code{\link{GCancellable}} object}
 \item{\verb{callback}}{a \code{\link{GAsyncReadyCallback}}.}
 \item{\verb{user.data}}{a \verb{R object}.}

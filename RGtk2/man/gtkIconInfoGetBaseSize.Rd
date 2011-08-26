@@ -12,7 +12,7 @@ they are attached.}
 \usage{gtkIconInfoGetBaseSize(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkIconInfo}}}}
 \details{Since 2.4}
-\value{[integer]  the base size, or 0, if no base
- size is known for the icon.}
+\value{[integer] the base size, or 0, if no base
+size is known for the icon.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

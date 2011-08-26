@@ -8,8 +8,8 @@ currently has focus, then *\code{focus.column} will be \code{NULL}.}
 \arguments{\item{\verb{object}}{A \code{\link{GtkTreeView}}}}
 \value{
 A list containing the following elements:
-\item{\verb{path}}{ A pointer to be filled with the current cursor path, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{focus.column}}{ A pointer to be filled with the current focus column, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{path}}{A pointer to be filled with the current cursor path, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{focus.column}}{A pointer to be filled with the current focus column, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

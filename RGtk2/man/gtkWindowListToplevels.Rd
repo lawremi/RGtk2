@@ -8,6 +8,6 @@ callbacks that might destroy the widgets, you \emph{must} call
 \code{g_list_foreach (result, (GFunc)g_object_ref, NULL)} first, and
 then unref all the widgets afterwards.}
 \usage{gtkWindowListToplevels()}
-\value{[list]  list of toplevel widgets. \emph{[  \acronym{element-type}   GtkWidget][  \acronym{transfer container}   GtkWidget]}}
+\value{[list] list of toplevel widgets. \emph{[  \acronym{element-type}   GtkWidget][  \acronym{transfer container}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

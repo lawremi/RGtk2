@@ -7,7 +7,7 @@ at the specified position.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkEntry}}}
 \item{\verb{icon.pos}}{the icon position}
-\item{\verb{tooltip}}{ the contents of the tooltip for the icon, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{tooltip}}{the contents of the tooltip for the icon, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{Use \code{NULL} for \code{tooltip} to remove an existing tooltip.
   

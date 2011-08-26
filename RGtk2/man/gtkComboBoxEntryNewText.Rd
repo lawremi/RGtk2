@@ -9,6 +9,6 @@ the following convenience functions: \code{\link{gtkComboBoxAppendText}},
 \code{\link{gtkComboBoxRemoveText}}.}
 \usage{gtkComboBoxEntryNewText()}
 \details{Since 2.4}
-\value{[\code{\link{GtkWidget}}]  A new text \code{\link{GtkComboBoxEntry}}.}
+\value{[\code{\link{GtkWidget}}] A new text \code{\link{GtkComboBoxEntry}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

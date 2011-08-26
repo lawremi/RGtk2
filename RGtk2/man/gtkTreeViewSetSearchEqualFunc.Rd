@@ -8,7 +8,7 @@ that somewhat like \code{strcmp()} returning 0 for equality
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkTreeView}}}
 \item{\verb{search.equal.func}}{the compare function to use during the search}
-\item{\verb{search.user.data}}{ user data to pass to \code{search.equal.func}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{search.user.data}}{user data to pass to \code{search.equal.func}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -7,7 +7,7 @@ The clip mask is interpreted relative to the clip origin. (See
 \usage{gdkGCSetClipRegion(object, region)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkGC}}.}
-\item{\verb{region}}{the \code{\link{GdkRegion}}. }
+\item{\verb{region}}{the \code{\link{GdkRegion}}.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

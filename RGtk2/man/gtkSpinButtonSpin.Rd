@@ -5,7 +5,7 @@
 by a specified amount.}
 \usage{gtkSpinButtonSpin(object, direction, increment)}
 \arguments{
-\item{\verb{object}}{a \code{\link{GtkSpinButton}} }
+\item{\verb{object}}{a \code{\link{GtkSpinButton}}}
 \item{\verb{direction}}{a \code{\link{GtkSpinType}} indicating the direction to spin.}
 \item{\verb{increment}}{step increment to apply in the specified direction.}
 }

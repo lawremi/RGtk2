@@ -8,6 +8,6 @@
 \item{\verb{emblem}}{a \code{\link{GEmblem}}}
 }
 \details{Since 2.18}
-\value{[\code{\link{GIcon}}]  a new \code{\link{GIcon}}}
+\value{[\code{\link{GIcon}}] a new \code{\link{GIcon}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

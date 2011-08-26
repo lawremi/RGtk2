@@ -13,7 +13,7 @@ Normally, \code{\link{gtkWidgetSizeRequest}} should be used.
   Since 2.20}
 \value{
 A list containing the following elements:
-\item{\verb{requisition}}{ a pointer to a \code{\link{GtkRequisition}} to copy to. \emph{[  \acronym{out}  ]}}
+\item{\verb{requisition}}{a pointer to a \code{\link{GtkRequisition}} to copy to. \emph{[  \acronym{out}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -8,8 +8,8 @@ text is later received, \code{callback} will be called.}
 \item{\verb{object}}{a \code{\link{GtkClipboard}}}
 \item{\verb{buffer}}{a \code{\link{GtkTextBuffer}}}
 \item{\verb{callback}}{a function to call when the text is received,
-            or the retrieval fails. (It will always be called
-            one way or the other.)}
+or the retrieval fails. (It will always be called
+one way or the other.)}
 \item{\verb{user.data}}{user data to pass to \code{callback}.}
 }
 \details{The \code{text} parameter to \code{callback} will contain the resulting rich

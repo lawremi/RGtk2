@@ -11,8 +11,8 @@ cursor position.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkTextView}}}
 \item{\verb{iter}}{a \code{\link{GtkTextIter}}}
-\item{\verb{count}}{number of characters to move (negative moves left, 
-   positive moves right)}
+\item{\verb{count}}{number of characters to move (negative moves left,
+positive moves right)}
 }
 \details{In the presence of bi-directional text, the correspondence
 between logical and visual order will depend on the direction

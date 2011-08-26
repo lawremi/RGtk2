@@ -7,7 +7,7 @@ image data from a server-side drawable to a client-side RGB(A) buffer.
 This allows you to efficiently read individual pixels on the client side.}
 \usage{gdkPixbufGetFromDrawable(dest = NULL, src, cmap = NULL, src.x, src.y, dest.x, dest.y, width, height)}
 \arguments{
-\item{\verb{dest}}{ Destination pixbuf, or \code{NULL} if a new pixbuf should be created. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{dest}}{Destination pixbuf, or \code{NULL} if a new pixbuf should be created. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{src}}{Source drawable.}
 \item{\verb{cmap}}{A colormap if \code{src} doesn't have one set.}
 \item{\verb{src.x}}{Source X coordinate within drawable.}
@@ -64,7 +64,7 @@ instead.
 This function calls \code{\link{gdkDrawableGetImage}} internally and
 converts the resulting image to a \code{\link{GdkPixbuf}}, so the
 documentation for \code{\link{gdkDrawableGetImage}} may also be relevant.}
-\value{[\code{\link{GdkPixbuf}}]  The same pixbuf as \code{dest} if it was non-\code{NULL}, or a newly-created
+\value{[\code{\link{GdkPixbuf}}] The same pixbuf as \code{dest} if it was non-\code{NULL}, or a newly-created
 pixbuf with a reference count of 1 if no destination pixbuf was specified, or \code{NULL} on error}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

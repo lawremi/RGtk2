@@ -12,7 +12,7 @@ implemented using \code{\link{gFileQueryInfo}} and as such does blocking I/O.}
 \details{The primary use case of this method is to check if a file is a regular file,
 directory, or symlink.
   Since 2.18}
-\value{[\code{\link{GFileType}}]  The \code{\link{GFileType}} of the file and \verb{G_FILE_TYPE_UNKNOWN} if the file
-         does not exist}
+\value{[\code{\link{GFileType}}] The \code{\link{GFileType}} of the file and \verb{G_FILE_TYPE_UNKNOWN} if the file
+does not exist}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

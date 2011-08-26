@@ -17,6 +17,6 @@ coerced to sane values.
   
 Note that the position and length are in characters, not in bytes.
   Since 2.18}
-\value{[numeric]  The number of characters actually inserted.}
+\value{[numeric] The number of characters actually inserted.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

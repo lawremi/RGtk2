@@ -11,7 +11,7 @@ to use Pango. Using Pango directly will produce better results.
 }
 \usage{gdkFontFromDescription(font.desc)}
 \arguments{\item{\verb{font.desc}}{a \code{\link{PangoFontDescription}}.}}
-\value{[\code{\link{GdkFont}}]  the newly loaded font, or \code{NULL} if the font
+\value{[\code{\link{GdkFont}}] the newly loaded font, or \code{NULL} if the font
 cannot be loaded.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

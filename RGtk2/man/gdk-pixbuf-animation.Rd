@@ -8,7 +8,6 @@
 \title{Animations}
 \description{Animated images.}
 \section{Methods and Functions}{
-\code{\link{gdkPixbufAnimationNewFromFile}(filename, .errwarn = TRUE)}\cr
 \code{\link{gdkPixbufAnimationGetWidth}(object)}\cr
 \code{\link{gdkPixbufAnimationGetHeight}(object)}\cr
 \code{\link{gdkPixbufAnimationGetIter}(object, start.time)}\cr

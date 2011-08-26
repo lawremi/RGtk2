@@ -7,7 +7,7 @@
 \item{\verb{object}}{a \code{\link{GFileAttributeInfoList}}.}
 \item{\verb{name}}{the name of the attribute to lookup.}
 }
-\value{[\code{\link{GFileAttributeInfo}}]  a \code{\link{GFileAttributeInfo}} for the \code{name}, or \code{NULL} if an
+\value{[\code{\link{GFileAttributeInfo}}] a \code{\link{GFileAttributeInfo}} for the \code{name}, or \code{NULL} if an
 attribute isn't found.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

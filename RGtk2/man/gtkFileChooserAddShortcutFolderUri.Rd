@@ -16,7 +16,7 @@ by the application.  For example, you can use this to add a
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if the folder could be added successfully, \code{FALSE}
 otherwise.  In the latter case, the \code{error} will be set as appropriate.}
-\item{\verb{error}}{ location to store error, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{error}}{location to store error, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

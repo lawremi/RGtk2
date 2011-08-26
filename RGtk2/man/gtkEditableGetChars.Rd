@@ -12,7 +12,7 @@ retrieved are those characters from \code{start.pos} to the end of the text.}
 \item{\verb{end.pos}}{end of text}
 }
 \details{Note that positions are specified in characters, not bytes.}
-\value{[character]  a pointer to the contents of the widget as a
-     string.}
+\value{[character] a pointer to the contents of the widget as a
+string.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

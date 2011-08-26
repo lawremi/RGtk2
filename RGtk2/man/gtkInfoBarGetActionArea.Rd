@@ -5,6 +5,6 @@
 \usage{gtkInfoBarGetActionArea(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkInfoBar}}}}
 \details{Since 2.18}
-\value{[\code{\link{GtkWidget}}]  the action area.}
+\value{[\code{\link{GtkWidget}}] the action area.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

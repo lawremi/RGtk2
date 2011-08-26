@@ -6,7 +6,7 @@ will be installed.}
 \usage{gtkActionSetAccelGroup(object, accel.group)}
 \arguments{
 \item{\verb{object}}{the action object}
-\item{\verb{accel.group}}{ a \code{\link{GtkAccelGroup}} or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{accel.group}}{a \code{\link{GtkAccelGroup}} or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{Since 2.4}
 \author{Derived by RGtkGen from GTK+ documentation}

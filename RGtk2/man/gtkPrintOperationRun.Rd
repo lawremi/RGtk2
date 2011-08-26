@@ -7,7 +7,7 @@ print settings in the print dialog, and then print the document.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkPrintOperation}}}
 \item{\verb{action}}{the action to start}
-\item{\verb{parent}}{ Transient parent of the dialog. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{parent}}{Transient parent of the dialog. \emph{[  \acronym{allow-none}  ]}}
 \item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \details{Normally that this function does not return until the rendering of all 
@@ -48,15 +48,15 @@ given \code{\link{GtkPrintOperation}}.
   Since 2.10}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GtkPrintOperationResult}}]  the result of the print operation. A return value of 
-  \code{GTK_PRINT_OPERATION_RESULT_APPLY} indicates that the printing was
-  completed successfully. In this case, it is a good idea to obtain 
-  the used print settings with \code{\link{gtkPrintOperationGetPrintSettings}} 
-  and store them for reuse with the next print operation. A value of
-  \code{GTK_PRINT_OPERATION_RESULT_IN_PROGRESS} means the operation is running
-  asynchronously, and will emit the \verb{"done"} signal when 
-  done.}
-\item{\verb{error}}{ Return location for errors, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{retval}{[\code{\link{GtkPrintOperationResult}}] the result of the print operation. A return value of
+\code{GTK_PRINT_OPERATION_RESULT_APPLY} indicates that the printing was
+completed successfully. In this case, it is a good idea to obtain
+the used print settings with \code{\link{gtkPrintOperationGetPrintSettings}}
+and store them for reuse with the next print operation. A value of
+\code{GTK_PRINT_OPERATION_RESULT_IN_PROGRESS} means the operation is running
+asynchronously, and will emit the \verb{"done"} signal when
+done.}
+\item{\verb{error}}{Return location for errors, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -7,6 +7,6 @@ The storage type of the status icon must be \code{GTK_IMAGE_EMPTY} or
 \usage{gtkStatusIconGetIconName(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkStatusIcon}}}}
 \details{Since 2.10}
-\value{[character]  name of the displayed icon, or \code{NULL} if the image is empty.}
+\value{[character] name of the displayed icon, or \code{NULL} if the image is empty.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -37,7 +37,7 @@ assoicated with the \code{\link{GVolume}} object that represents the volume.
 The other is for implementing a \code{\link{GVolumeMonitor}} whose sole purpose
 is to return \code{\link{GVolume}} objects representing entries in the users
 "favorite servers" list or similar.}
-\value{[\code{\link{GVolume}}]  the \code{\link{GVolume}} object that is the parent for \code{mount} or \code{NULL}
+\value{[\code{\link{GVolume}}] the \code{\link{GVolume}} object that is the parent for \code{mount} or \code{NULL}
 if no wants to adopt the \code{\link{GMount}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

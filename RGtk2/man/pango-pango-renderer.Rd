@@ -24,9 +24,13 @@
 \code{\link{pangoRendererGetLayoutLine}(renderer)}\cr
 
 }
-\section{Hierarchy}{\preformatted{GObject
+\section{Hierarchy}{\preformatted{
+GObject
    +----PangoRenderer
-         +----PangoXftRenderer}}
+         +----PangoXftRenderer
+GEnum
+   +----PangoRenderPart
+}}
 \section{Detailed Description}{\code{\link{PangoRenderer}} is a base class that contains the necessary logic for
 rendering a \code{\link{PangoLayout}} or \code{\link{PangoLayoutLine}}. By subclassing
 \code{\link{PangoRenderer}} and overriding operations such as \code{draw.glyphs} and
@@ -39,7 +43,7 @@ render Pango objects such as \code{\link{PangoGlyphString}} and
   Since 1.8
 
 \describe{\item{\code{matrix}}{the current transformation matrix for the Renderer; may
-   be \code{NULL}, which should be treated the same as the identity matrix.}}
+be \code{NULL}, which should be treated the same as the identity matrix.}}
 
 }}}
 \section{Enums and Flags}{\describe{\item{\verb{PangoRenderPart}}{

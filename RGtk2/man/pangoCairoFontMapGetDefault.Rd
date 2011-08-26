@@ -13,6 +13,6 @@ The default Cairo fontmap can be changed by using
 change the Cairo font backend that the default fontmap
 uses for example.
   Since 1.10}
-\value{[\code{\link{PangoFontMap}}]  the default Cairo fontmap for Pango.}
+\value{[\code{\link{PangoFontMap}}] the default Cairo fontmap for Pango.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

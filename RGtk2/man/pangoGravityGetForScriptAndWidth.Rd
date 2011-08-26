@@ -21,7 +21,7 @@ context.
 If \code{base.gravity} is \code{PANGO_GRAVITY_AUTO}, it is first replaced with the
 preferred gravity of \code{script}.
   Since 1.26}
-\value{[\code{\link{PangoGravity}}]  resolved gravity suitable to use for a run of text
+\value{[\code{\link{PangoGravity}}] resolved gravity suitable to use for a run of text
 with \code{script} and \code{wide}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

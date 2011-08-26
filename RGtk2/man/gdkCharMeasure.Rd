@@ -13,6 +13,6 @@ portion when drawing text in multiple pieces.
 \item{\verb{object}}{a \code{\link{GdkFont}}}
 \item{\verb{character}}{the character to measure.}
 }
-\value{[integer]  the right bearing of the character in pixels.}
+\value{[integer] the right bearing of the character in pixels.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

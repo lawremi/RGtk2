@@ -11,11 +11,11 @@ override the icon you ship with your application.}
 \usage{gtkImageNewFromIconSet(icon.set, size, show = TRUE)}
 \arguments{
 \item{\verb{icon.set}}{a \code{\link{GtkIconSet}}}
-\item{\verb{size}}{ a stock icon size. \emph{[type int]}}
+\item{\verb{size}}{a stock icon size. \emph{[  \acronym{type}   int]}}
 }
 \details{The \code{\link{GtkImage}} does not assume a reference to the
 icon set; you still need to unref it if you own references.
 \code{\link{GtkImage}} will add its own reference rather than adopting yours.}
-\value{[\code{\link{GtkWidget}}]  a new \code{\link{GtkImage}}}
+\value{[\code{\link{GtkWidget}}] a new \code{\link{GtkImage}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

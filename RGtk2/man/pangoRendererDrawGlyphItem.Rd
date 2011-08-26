@@ -10,9 +10,9 @@ output format supports it (PDF for example).}
 \item{\verb{text}}{the UTF-8 text that \code{glyph.item} refers to, or \code{NULL}}
 \item{\verb{glyph.item}}{a \code{\link{PangoGlyphItem}}}
 \item{\verb{x}}{X position of left edge of baseline, in user space coordinates
-  in Pango units.}
+in Pango units.}
 \item{\verb{y}}{Y position of left edge of baseline, in user space coordinates
-   in Pango units.}
+in Pango units.}
 }
 \details{Note that \code{text} is the start of the text for layout, which is then
 indexed by \code{glyph_item->item->offset}.

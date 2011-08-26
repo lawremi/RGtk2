@@ -7,6 +7,6 @@ list don't have a reference added, but you have to free the list
 itself.}
 \usage{gtkTextIterGetTags(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkTextIter}}}}
-\value{[list]  list of \code{\link{GtkTextTag}}. \emph{[  \acronym{element-type}   GtkTextTag][  \acronym{transfer container}   GtkTextTag]}}
+\value{[list] list of \code{\link{GtkTextTag}}. \emph{[  \acronym{element-type}   GtkTextTag][  \acronym{transfer container}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

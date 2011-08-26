@@ -8,8 +8,8 @@ later received, it will be converted to UTF-8 if necessary, and
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkClipboard}}}
 \item{\verb{callback}}{a function to call when the text is received,
-            or the retrieval fails. (It will always be called
-            one way or the other.)}
+or the retrieval fails. (It will always be called
+one way or the other.)}
 \item{\verb{user.data}}{user data to pass to \code{callback}.}
 }
 \details{The \code{text} parameter to \code{callback} will contain the resulting text if

@@ -83,27 +83,23 @@ submenu. For normal applications, the relevant signal is "activate".
 
 
 }
-\item{\code{toggle-size-allocate(menuitem, arg1, user.data)}}{
+\item{\code{toggle-size-allocate(menuitem, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{menuitem}}{the object which received the signal.}
-\item{\code{arg1}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{toggle-size-request(menuitem, arg1, user.data)}}{
+\item{\code{toggle-size-request(menuitem, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{menuitem}}{the object which received the signal.}
-\item{\code{arg1}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 

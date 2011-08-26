@@ -7,8 +7,8 @@
 \item{\verb{object}}{a \code{\link{GtkTextIter}}}
 \item{\verb{pred}}{function to be called on each character}
 \item{\verb{user.data}}{user data for \code{pred}}
-\item{\verb{limit}}{ search limit, or \code{NULL} for none. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{limit}}{search limit, or \code{NULL} for none. \emph{[  \acronym{allow-none}  ]}}
 }
-\value{[logical]  whether a match was found}
+\value{[logical] whether a match was found}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -7,7 +7,7 @@ a stock image.}
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkEntry}}}
 \item{\verb{icon.pos}}{Icon position}
-\item{\verb{stock.id}}{ The name of the stock item, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{stock.id}}{The name of the stock item, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{If \code{stock.id} is \code{NULL}, no icon will be shown in the specified position.
   Since 2.16}

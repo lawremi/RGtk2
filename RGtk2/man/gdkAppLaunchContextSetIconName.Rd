@@ -7,7 +7,7 @@ in desktop files. See also \code{\link{gdkAppLaunchContextSetIcon}}. }
 \usage{gdkAppLaunchContextSetIconName(object, icon.name = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkAppLaunchContext}}}
-\item{\verb{icon.name}}{ an icon name, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{icon.name}}{an icon name, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{If both \code{icon} and \code{icon.name} are set, the \code{icon.name} takes priority.
 If neither \code{icon} or \code{icon.name} is set, the icon is taken from either 

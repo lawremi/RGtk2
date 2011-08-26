@@ -9,8 +9,8 @@ Inserts a new element in the toolbar at the given position.
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkToolbar}}.}
 \item{\verb{type}}{a value of type \code{\link{GtkToolbarChildType}} that determines what \code{widget}
-  will be.}
-\item{\verb{widget}}{ a \code{\link{GtkWidget}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+will be.}
+\item{\verb{widget}}{a \code{\link{GtkWidget}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{text}}{the element's label.}
 \item{\verb{tooltip.text}}{the element's tooltip.}
 \item{\verb{tooltip.private.text}}{used for context-sensitive help about this toolbar element.}
@@ -25,6 +25,6 @@ the radio group for the new element. In all other cases, \code{widget} must
 be \code{NULL}.
   \code{callback} must be a pointer to a function taking a \code{\link{GtkWidget}} and a gpointer as
 arguments. Use \code{gCallback()} to cast the function to \verb{GCallback}.}
-\value{[\code{\link{GtkWidget}}]  the new toolbar element as a \code{\link{GtkWidget}}.}
+\value{[\code{\link{GtkWidget}}] the new toolbar element as a \code{\link{GtkWidget}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

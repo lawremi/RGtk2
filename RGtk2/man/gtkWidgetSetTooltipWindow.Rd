@@ -9,7 +9,7 @@ tooltip window will be used.}
 \usage{gtkWidgetSetTooltipWindow(object, custom.window)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkWidget}}}
-\item{\verb{custom.window}}{ a \code{\link{GtkWindow}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{custom.window}}{a \code{\link{GtkWindow}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{If the custom window should have the default theming it needs to
 have the name "gtk-tooltip", see \code{\link{gtkWidgetSetName}}.

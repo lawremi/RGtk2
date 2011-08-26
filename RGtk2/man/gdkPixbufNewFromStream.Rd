@@ -18,9 +18,9 @@ The stream is not closed.
   Since 2.14}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GdkPixbuf}}]  A newly-created pixbuf, or \code{NULL} if any of several error 
-conditions occurred: the file could not be opened, the image format is 
-not supported, there was not enough memory to allocate the image buffer, 
+\item{retval}{[\code{\link{GdkPixbuf}}] A newly-created pixbuf, or \code{NULL} if any of several error
+conditions occurred: the file could not be opened, the image format is
+not supported, there was not enough memory to allocate the image buffer,
 the stream contained invalid data, or the operation was cancelled.}
 \item{\verb{error}}{Return location for an error}
 }

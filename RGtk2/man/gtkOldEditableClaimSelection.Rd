@@ -9,7 +9,7 @@ Claims or gives up ownership of the selection.
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkOldEditable}}}
 \item{\verb{claim}}{if \code{TRUE}, claim ownership of the selection, if \code{FALSE}, give
-  up ownership}
+up ownership}
 \item{\verb{time}}{timestamp for this operation}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

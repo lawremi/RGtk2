@@ -81,33 +81,19 @@ only be accessed using the functions below.
 }}}
 \section{Convenient Construction}{\code{gtkScrolledWindow} is the equivalent of \code{\link{gtkScrolledWindowNew}}.}
 \section{Signals}{\describe{
-\item{\code{move-focus-out(scrolledwindow, arg1, user.data)}}{
+\item{\code{move-focus-out(user.data)}}{
 \emph{undocumented
 }
 
-\describe{
-\item{\code{scrolledwindow}}{\emph{undocumented
-}}
-\item{\code{arg1}}{\emph{undocumented
-}}
-\item{\code{user.data}}{user data set when the signal handler was connected.}
-}
+\describe{\item{\code{user.data}}{user data set when the signal handler was connected.}}
 
 
 }
-\item{\code{scroll-child(scrolledwindow, arg1, arg2, user.data)}}{
+\item{\code{scroll-child(user.data)}}{
 \emph{undocumented
 }
 
-\describe{
-\item{\code{scrolledwindow}}{\emph{undocumented
-}}
-\item{\code{arg1}}{\emph{undocumented
-}}
-\item{\code{arg2}}{\emph{undocumented
-}}
-\item{\code{user.data}}{user data set when the signal handler was connected.}
-}
+\describe{\item{\code{user.data}}{user data set when the signal handler was connected.}}
 
 
 }

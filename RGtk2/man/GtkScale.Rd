@@ -66,7 +66,7 @@ format_value_callback <- function(scale, value)
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [character]  allocated string representing \code{value}
+\emph{Returns:} [character] allocated string representing \code{value}
 
 }}}
 \section{Properties}{\describe{

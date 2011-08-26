@@ -8,7 +8,7 @@ user-configured setting.}
 \usage{gdkDisplaySetDoubleClickTime(object, msec)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkDisplay}}}
-\item{\verb{msec}}{double click time in milliseconds (thousandths of a second) }
+\item{\verb{msec}}{double click time in milliseconds (thousandths of a second)}
 }
 \details{Since 2.2}
 \author{Derived by RGtkGen from GTK+ documentation}

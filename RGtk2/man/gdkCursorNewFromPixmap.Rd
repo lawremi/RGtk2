@@ -8,13 +8,13 @@ from inline data as in the below example.}
 \usage{gdkCursorNewFromPixmap(source, mask, fg, bg, x, y)}
 \arguments{
 \item{\verb{source}}{the pixmap specifying the cursor.}
-\item{\verb{mask}}{the pixmap specifying the mask, which must be the same size as 
-   \code{source}.}
+\item{\verb{mask}}{the pixmap specifying the mask, which must be the same size as
+\code{source}.}
 \item{\verb{fg}}{the foreground color, used for the bits in the source which are 1.
-   The color does not have to be allocated first. }
+The color does not have to be allocated first.}
 \item{\verb{bg}}{the background color, used for the bits in the source which are 0.
-   The color does not have to be allocated first.}
-\item{\verb{x}}{the horizontal offset of the 'hotspot' of the cursor. }
+The color does not have to be allocated first.}
+\item{\verb{x}}{the horizontal offset of the 'hotspot' of the cursor.}
 \item{\verb{y}}{the vertical offset of the 'hotspot' of the cursor.}
 }
 \details{ \emph{Creating a custom cursor}
@@ -49,6 +49,6 @@ cursor <- gdkCursorNewFromPixmap(source, mask, fg, bg, 8, 8)
 
 widget[["window"]]$setCursor(cursor)
 }}
-\value{[\code{\link{GdkCursor}}]  a new \code{\link{GdkCursor}}.}
+\value{[\code{\link{GdkCursor}}] a new \code{\link{GdkCursor}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

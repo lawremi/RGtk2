@@ -9,6 +9,6 @@ utf8.}
 \item{\verb{object}}{a \code{\link{GFileInfo}}.}
 \item{\verb{attribute}}{a file attribute key.}
 }
-\value{[char]  a UTF-8 string associated with the given \code{attribute}.}
+\value{[char] a UTF-8 string associated with the given \code{attribute}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

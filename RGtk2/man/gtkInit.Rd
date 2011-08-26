@@ -19,7 +19,7 @@ during initialization, to ignore SIGPIPE signals, since these are
 almost never wanted in graphical applications. If you do need to
 handle SIGPIPE for some reason, reset the handler after \code{\link{gtkInit}},
 but notice that other libraries (e.g. libdbus or gvfs) might do
-similar things.}
+similar things.  }
 \note{
 This function will terminate your program if it was unable to initialize 
 the GUI for some reason. If you want your program to fall back to a 
@@ -30,6 +30,7 @@ almost never wanted in graphical applications. If you do need to
 handle SIGPIPE for some reason, reset the handler after \code{\link{gtkInit}},
 but notice that other libraries (e.g. libdbus or gvfs) might do
 similar things.
+
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

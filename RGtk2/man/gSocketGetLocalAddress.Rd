@@ -12,7 +12,7 @@ either explicitly or implicitly when connecting.}
 \details{Since 2.22}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GSocketAddress}}]  a \code{\link{GSocketAddress}} or \code{NULL} on error.}
+\item{retval}{[\code{\link{GSocketAddress}}] a \code{\link{GSocketAddress}} or \code{NULL} on error.}
 \item{\verb{error}}{\code{\link{GError}} for error reporting, or \code{NULL} to ignore.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

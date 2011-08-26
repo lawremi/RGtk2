@@ -9,6 +9,6 @@
 \item{\verb{port}}{the port}
 }
 \details{Since 2.22}
-\value{[\code{\link{GSocketConnectable}}]  the new \code{\link{GNetworkAddress}}}
+\value{[\code{\link{GSocketConnectable}}] the new \code{\link{GNetworkAddress}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

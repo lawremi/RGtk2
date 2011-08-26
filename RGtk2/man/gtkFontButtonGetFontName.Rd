@@ -10,6 +10,6 @@ style, size, weight) just query these properties from the
 \usage{gtkFontButtonGetFontName(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkFontButton}}}}
 \details{Since 2.4}
-\value{[character]  an internal copy of the font name which must not be freed.}
+\value{[character] an internal copy of the font name which must not be freed.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -7,7 +7,7 @@
 \details{\strong{PLEASE NOTE:} Note that due to double-buffering, Cairo contexts created 
 in a GTK+ expose event handler cannot be cached and reused 
 between different expose events.   Since 2.8}
-\value{[\code{\link{Cairo}}]  A newly created Cairo context.}
+\value{[\code{\link{Cairo}}] A newly created Cairo context.}
 \note{Note that due to double-buffering, Cairo contexts created 
 in a GTK+ expose event handler cannot be cached and reused 
 between different expose events. }

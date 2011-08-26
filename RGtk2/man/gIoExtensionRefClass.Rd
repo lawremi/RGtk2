@@ -5,6 +5,6 @@
 associated with \code{extension}.}
 \usage{gIoExtensionRefClass(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GIOExtension}}}}
-\value{[GTypeClass]  the \verb{GTypeClass} for the type of \code{extension}}
+\value{[GTypeClass] the \verb{GTypeClass} for the type of \code{extension}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

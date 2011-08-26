@@ -12,6 +12,6 @@ Creates a new file-selecting button widget using \code{backend}.
 \item{\verb{backend}}{the name of the \verb{GtkFileSystem} backend to use.}
 }
 \details{Since 2.6}
-\value{[\code{\link{GtkWidget}}]  a new button widget.}
+\value{[\code{\link{GtkWidget}}] a new button widget.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

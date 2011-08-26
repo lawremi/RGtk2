@@ -6,7 +6,7 @@
 \arguments{
 \item{\verb{display}}{the \code{\link{GdkDisplay}} for which the cursor will be created}
 \item{\verb{source}}{the \code{\link{GdkPixbuf}} containing the cursor image}
-\item{\verb{x}}{the horizontal offset of the 'hotspot' of the cursor. }
+\item{\verb{x}}{the horizontal offset of the 'hotspot' of the cursor.}
 \item{\verb{y}}{the vertical offset of the 'hotspot' of the cursor.}
 }
 \details{Not all GDK backends support RGBA cursors. If they are not 
@@ -21,6 +21,6 @@ cursor sizes.
 On the X backend, support for RGBA cursors requires a
 sufficently new version of the X Render extension.
   Since 2.4}
-\value{[\code{\link{GdkCursor}}]  a new \code{\link{GdkCursor}}.}
+\value{[\code{\link{GdkCursor}}] a new \code{\link{GdkCursor}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

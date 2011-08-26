@@ -23,9 +23,9 @@ for \code{error}.}
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{FALSE} if \code{error} is set, otherwise \code{TRUE}}
-\item{\verb{attr.list}}{return location for a \code{\link{PangoAttrList}}, or \code{NULL}}
-\item{\verb{text}}{return location for text with tags stripped, or \code{NULL}}
-\item{\verb{accel.char}}{return location for accelerator char, or \code{NULL}}
+\item{\verb{attr.list}}{return location for a \code{\link{PangoAttrList}}, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
+\item{\verb{text}}{return location for text with tags stripped, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
+\item{\verb{accel.char}}{return location for accelerator char, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
 \item{\verb{error}}{return location for errors, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

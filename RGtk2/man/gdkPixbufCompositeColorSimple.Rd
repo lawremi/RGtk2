@@ -15,7 +15,7 @@
 \item{\verb{color1}}{the color of check at upper left}
 \item{\verb{color2}}{the color of the other check}
 }
-\value{[\code{\link{GdkPixbuf}}]  the new \code{\link{GdkPixbuf}}, or \code{NULL} if not enough memory could be
+\value{[\code{\link{GdkPixbuf}}] the new \code{\link{GdkPixbuf}}, or \code{NULL} if not enough memory could be
 allocated for it.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

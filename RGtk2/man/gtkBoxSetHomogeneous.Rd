@@ -8,7 +8,7 @@ in the box.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkBox}}}
 \item{\verb{homogeneous}}{a boolean value, \code{TRUE} to create equal allotments,
-  \code{FALSE} for variable allotments}
+\code{FALSE} for variable allotments}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

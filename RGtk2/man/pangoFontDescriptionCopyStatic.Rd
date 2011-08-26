@@ -7,7 +7,7 @@ be used until \code{desc} is modified or freed. This is meant to be used
 when the copy is only needed temporarily.}
 \usage{pangoFontDescriptionCopyStatic(object)}
 \arguments{\item{\verb{object}}{a \code{\link{PangoFontDescription}}, may be \code{NULL}}}
-\value{[\code{\link{PangoFontDescription}}]  the newly allocated \code{\link{PangoFontDescription}}, or \code{NULL}
-              if \code{desc} was \code{NULL}.}
+\value{[\code{\link{PangoFontDescription}}] the newly allocated \code{\link{PangoFontDescription}}, or \code{NULL}
+if \code{desc} was \code{NULL}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

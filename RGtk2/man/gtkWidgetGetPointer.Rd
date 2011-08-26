@@ -10,8 +10,8 @@ defined as \code{widget->window} coordinates for widgets that are not
 \arguments{\item{\verb{object}}{a \code{\link{GtkWidget}}}}
 \value{
 A list containing the following elements:
-\item{\verb{x}}{ return location for the X coordinate, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
-\item{\verb{y}}{ return location for the Y coordinate, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
+\item{\verb{x}}{return location for the X coordinate, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
+\item{\verb{y}}{return location for the Y coordinate, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

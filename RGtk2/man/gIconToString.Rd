@@ -18,7 +18,7 @@ in the following two cases
 \item    If \code{icon} is a \code{\link{GThemedIcon}} with exactly one name, the encoding is
    simply the name (such as \code{network-server}).
 }  Since 2.20}
-\value{[character]  An allocated UTF8 string or \code{NULL} if \code{icon} can't
+\value{[character] An allocated UTF8 string or \code{NULL} if \code{icon} can't
 be serialized.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

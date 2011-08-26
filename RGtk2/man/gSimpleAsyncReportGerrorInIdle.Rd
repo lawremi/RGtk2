@@ -7,7 +7,7 @@ than building a new one.}
 \usage{gSimpleAsyncReportGerrorInIdle(object, callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GObject}}.}
-\item{\verb{callback}}{a \code{\link{GAsyncReadyCallback}}. }
+\item{\verb{callback}}{a \code{\link{GAsyncReadyCallback}}.}
 \item{\verb{user.data}}{user data passed to \code{callback}.}
 }
 \value{

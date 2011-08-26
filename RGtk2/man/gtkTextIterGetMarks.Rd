@@ -8,6 +8,6 @@ can exist in the same place. The returned list is not in any
 meaningful order.}
 \usage{gtkTextIterGetMarks(object)}
 \arguments{\item{\verb{object}}{an iterator}}
-\value{[list]  list of \code{\link{GtkTextMark}}. \emph{[  \acronym{element-type}   GtkTextMark][  \acronym{transfer container}   GtkTextMark]}}
+\value{[list] list of \code{\link{GtkTextMark}}. \emph{[  \acronym{element-type}   GtkTextMark][  \acronym{transfer container}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

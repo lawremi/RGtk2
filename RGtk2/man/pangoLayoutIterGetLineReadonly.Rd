@@ -8,6 +8,6 @@
 but the user is not expected
 to modify the contents of the line (glyphs, glyph widths, etc.).
   Since 1.16}
-\value{[\code{\link{PangoLayoutLine}}]  the current line, that should not be modified.}
+\value{[\code{\link{PangoLayoutLine}}] the current line, that should not be modified.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

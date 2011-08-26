@@ -10,6 +10,6 @@ virtual function. The reference count on the pixbuf is
 not incremented.}
 \usage{gtkIconSourceGetPixbuf(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkIconSource}}}}
-\value{[\code{\link{GdkPixbuf}}]  source pixbuf}
+\value{[\code{\link{GdkPixbuf}}] source pixbuf}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

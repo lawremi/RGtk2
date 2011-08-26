@@ -14,9 +14,9 @@ of the ellipse to be drawn.}
 \item{\verb{width}}{the width of the bounding rectangle.}
 \item{\verb{height}}{the height of the bounding rectangle.}
 \item{\verb{angle1}}{the start angle of the arc, relative to the 3 o'clock position,
-    counter-clockwise, in 1/64ths of a degree.}
-\item{\verb{angle2}}{the end angle of the arc, relative to \code{angle1}, in 1/64ths 
-    of a degree.}
+counter-clockwise, in 1/64ths of a degree.}
+\item{\verb{angle2}}{the end angle of the arc, relative to \code{angle1}, in 1/64ths
+of a degree.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

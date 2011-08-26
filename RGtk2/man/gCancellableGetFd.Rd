@@ -15,7 +15,7 @@ After a successful return from this function, you should use
 the returned file descriptor.
   
 See also \code{gCancellableMakePollfd()}.}
-\value{[integer]  A valid file descriptor. \code{-1} if the file descriptor 
-is not supported, or on errors. }
+\value{[integer] A valid file descriptor. \code{-1} if the file descriptor
+is not supported, or on errors.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

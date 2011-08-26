@@ -4,6 +4,6 @@
 \description{Retrieves the global language tag for the context.}
 \usage{pangoContextGetLanguage(object)}
 \arguments{\item{\verb{object}}{a \code{\link{PangoContext}}}}
-\value{[\code{\link{PangoLanguage}}]  the global language tag.}
+\value{[\code{\link{PangoLanguage}}] the global language tag.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -5,6 +5,6 @@
 \usage{pangoCairoFontMapGetResolution(object)}
 \arguments{\item{\verb{object}}{a \code{\link{PangoCairoFontMap}}}}
 \details{Since 1.10}
-\value{[numeric]  the resolution in "dots per inch"}
+\value{[numeric] the resolution in "dots per inch"}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

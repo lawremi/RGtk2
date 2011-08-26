@@ -23,11 +23,10 @@ internally.
   Since 1.22}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{PangoScript}}]  An list of \code{\link{PangoScript}} values, with the
+\item{retval}{[\code{\link{PangoScript}}] An list of \code{\link{PangoScript}} values, with the
 number of entries in the list stored in \code{num.scripts}, or
 \code{NULL} if Pango does not have any information about this
-particular language tag (also the case if \code{language} is \code{NULL}).
- }
+particular language tag (also the case if \code{language} is \code{NULL}).}
 \item{\verb{num.scripts}}{location to return number of scripts, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

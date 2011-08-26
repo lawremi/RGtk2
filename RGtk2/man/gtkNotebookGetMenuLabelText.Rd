@@ -8,9 +8,9 @@
 \item{\verb{object}}{a \code{\link{GtkNotebook}}}
 \item{\verb{child}}{the child widget of a page of the notebook.}
 }
-\value{[character]  the text of the tab label, or \code{NULL} if the
-              widget does not have a menu label other than
-              the default menu label, or the menu label widget
-              is not a \code{\link{GtkLabel}}.}
+\value{[character] the text of the tab label, or \code{NULL} if the
+widget does not have a menu label other than
+the default menu label, or the menu label widget
+is not a \code{\link{GtkLabel}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

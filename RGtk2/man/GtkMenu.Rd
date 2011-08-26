@@ -109,15 +109,15 @@ menu shall be drawn.  This is an output parameter.}
 \item{\code{y}}{the \verb{integer} representing the vertical position where the
 menu shall be drawn.  This is an output parameter.}
 \item{\code{push.in}}{This parameter controls how menus placed outside the monitor are handled.
-        If this is set to \code{TRUE} and part of the menu is outside the monitor then
-        GTK+ pushes the window into the visible area, effectively modifying the
-        popup position.
-        Note that moving and possibly resizing the menu around will alter the
-        scroll position to keep the menu items "in place", i.e. at the same monitor
-        position they would have been without resizing.
-        In practice, this behavior is only useful for combobox popups or option
-        menus and cannot be used to simply confine a menu to monitor boundaries.
-        In that case, changing the scroll offset is not desirable.}
+If this is set to \code{TRUE} and part of the menu is outside the monitor then
+GTK+ pushes the window into the visible area, effectively modifying the
+popup position.
+Note that moving and possibly resizing the menu around will alter the
+scroll position to keep the menu items "in place", i.e. at the same monitor
+position they would have been without resizing.
+In practice, this behavior is only useful for combobox popups or option
+menus and cannot be used to simply confine a menu to monitor boundaries.
+In that case, changing the scroll offset is not desirable.}
 \item{\code{user.data}}{the data supplied by the user in the \code{\link{gtkMenuPopup}} \code{data}
 parameter.}
 }
@@ -136,14 +136,12 @@ will be called when the menu is later detached from the widget.
 
 }
 }}
-\section{Signals}{\describe{\item{\code{move-scroll(menu, arg1, user.data)}}{
+\section{Signals}{\describe{\item{\code{move-scroll(menu, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{menu}}{the object which received the signal.}
-\item{\code{arg1}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 

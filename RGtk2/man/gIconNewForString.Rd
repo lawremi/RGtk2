@@ -14,7 +14,7 @@ with the type system prior to calling \code{\link{gIconNewForString}}.
   Since 2.20}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GIcon}}]  An object implementing the \code{\link{GIcon}} interface or \code{NULL} if
+\item{retval}{[\code{\link{GIcon}}] An object implementing the \code{\link{GIcon}} interface or \code{NULL} if
 \code{error} is set.}
 \item{\verb{error}}{Return location for error.}
 }

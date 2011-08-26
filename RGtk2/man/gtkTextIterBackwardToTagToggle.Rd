@@ -11,8 +11,8 @@ if no toggle is found.}
 \usage{gtkTextIterBackwardToTagToggle(object, tag = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkTextIter}}}
-\item{\verb{tag}}{ a \code{\link{GtkTextTag}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{tag}}{a \code{\link{GtkTextTag}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
-\value{[logical]  whether we found a tag toggle before \code{iter}}
+\value{[logical] whether we found a tag toggle before \code{iter}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

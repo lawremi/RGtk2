@@ -7,8 +7,8 @@ it will be created.}
 \usage{gFileReplace(object, etag, make.backup, flags = "G_FILE_CREATE_NONE", cancellable = NULL, .errwarn = TRUE)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}.}
-\item{\verb{etag}}{an optional entity tag for the 
-    current \code{\link{GFile}}, or \verb{NULL} to ignore.}
+\item{\verb{etag}}{an optional entity tag for the
+current \code{\link{GFile}}, or \verb{NULL} to ignore.}
 \item{\verb{make.backup}}{\code{TRUE} if a backup should be created.}
 \item{\verb{flags}}{a set of \code{\link{GFileCreateFlags}}.}
 \item{\verb{cancellable}}{optional \code{\link{GCancellable}} object, \code{NULL} to ignore.}
@@ -53,7 +53,7 @@ Other errors are possible too, and depend on what kind of
 filesystem the file is on.}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GFileOutputStream}}]  a \code{\link{GFileOutputStream}} or \code{NULL} on error.}
+\item{retval}{[\code{\link{GFileOutputStream}}] a \code{\link{GFileOutputStream}} or \code{NULL} on error.}
 \item{\verb{error}}{a \code{\link{GError}}, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

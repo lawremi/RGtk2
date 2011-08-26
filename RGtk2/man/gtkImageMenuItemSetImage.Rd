@@ -7,7 +7,7 @@ the image will be displayed or not.}
 \usage{gtkImageMenuItemSetImage(object, image = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkImageMenuItem}}.}
-\item{\verb{image}}{ a widget to set as the image for the menu item. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{image}}{a widget to set as the image for the menu item. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

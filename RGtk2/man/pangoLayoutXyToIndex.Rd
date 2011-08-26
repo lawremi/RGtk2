@@ -13,18 +13,18 @@ function returns \code{FALSE}; on an exact hit, it returns \code{TRUE}.}
 \arguments{
 \item{\verb{object}}{a \code{\link{PangoLayout}}}
 \item{\verb{x}}{the X offset (in Pango units)
-            from the left edge of the layout.}
+from the left edge of the layout.}
 \item{\verb{y}}{the Y offset (in Pango units)
-            from the top edge of the layout}
+from the top edge of the layout}
 }
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if the coordinates were inside text, \code{FALSE} otherwise.}
-\item{\verb{index}}{location to store calculated byte index}
+\item{\verb{index}}{location to store calculated byte index. \emph{[  \acronym{out}  ]}}
 \item{\verb{trailing}}{location to store a integer indicating where
-            in the grapheme the user clicked. It will either
-            be zero, or the number of characters in the
-            grapheme. 0 represents the trailing edge of the grapheme.}
+in the grapheme the user clicked. It will either
+be zero, or the number of characters in the
+grapheme. 0 represents the trailing edge of the grapheme. \emph{[  \acronym{out}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

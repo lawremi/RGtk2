@@ -9,7 +9,7 @@ wrapped, or ellipsized.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkLabel}}}
 \item{\verb{angle}}{the angle that the baseline of the label makes with
-  the horizontal, in degrees, measured counterclockwise}
+the horizontal, in degrees, measured counterclockwise}
 }
 \details{Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -9,7 +9,7 @@
 }
 \details{This call does no blocking i/o.}
 \value{[logical] \code{TRUE} if \code{\link{GFile}}'s backend supports the
-    given URI scheme, \code{FALSE} if URI scheme is \code{NULL},
-    not supported, or \code{\link{GFile}} is invalid.}
+given URI scheme, \code{FALSE} if URI scheme is \code{NULL},
+not supported, or \code{\link{GFile}} is invalid.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -10,8 +10,8 @@ already set will be replaced as well.}
 \item{\verb{object}}{a \code{\link{PangoFontDescription}}}
 \item{\verb{desc.to.merge}}{the \code{\link{PangoFontDescription}} to merge from, or \code{NULL}}
 \item{\verb{replace.existing}}{if \code{TRUE}, replace fields in \code{desc} with the
-  corresponding values from \code{desc.to.merge}, even if they
-  are already exist.}
+corresponding values from \code{desc.to.merge}, even if they
+are already exist.}
 }
 \details{If \code{desc.to.merge} is \code{NULL}, this function performs nothing.}
 \author{Derived by RGtkGen from GTK+ documentation}

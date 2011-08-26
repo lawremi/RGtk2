@@ -40,7 +40,7 @@ accordingly.
   Since 2.22}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GSocketConnection}}]  a \code{\link{GSocketConnection}} on success, \code{NULL} on error.}
+\item{retval}{[\code{\link{GSocketConnection}}] a \code{\link{GSocketConnection}} on success, \code{NULL} on error.}
 \item{\verb{error}}{a pointer to a \code{\link{GError}}, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

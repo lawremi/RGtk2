@@ -9,11 +9,11 @@ in the tag is '-'.}
 \usage{pangoLanguageMatches(object, range.list)}
 \arguments{
 \item{\verb{object}}{a language tag (see \code{\link{pangoLanguageFromString}}),
-           \code{NULL} is allowed and matches nothing but '*'}
+\code{NULL} is allowed and matches nothing but '*'}
 \item{\verb{range.list}}{a list of language ranges, separated by ';', ':',
-  ',', or space characters.
-  Each element must either be '*', or a RFC 3066 language range
-  canonicalized as by \code{\link{pangoLanguageFromString}}}
+',', or space characters.
+Each element must either be '*', or a RFC 3066 language range
+canonicalized as by \code{\link{pangoLanguageFromString}}}
 }
 \value{[logical] \code{TRUE} if a match was found.}
 \author{Derived by RGtkGen from GTK+ documentation}

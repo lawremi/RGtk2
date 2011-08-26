@@ -28,8 +28,8 @@ Other errors are possible too, and depend on what kind of
 filesystem the file is on.}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GFileOutputStream}}]  a \code{\link{GFileOutputStream}} for the newly created file, or 
-    \code{NULL} on error.}
+\item{retval}{[\code{\link{GFileOutputStream}}] a \code{\link{GFileOutputStream}} for the newly created file, or
+\code{NULL} on error.}
 \item{\verb{error}}{a \code{\link{GError}}, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

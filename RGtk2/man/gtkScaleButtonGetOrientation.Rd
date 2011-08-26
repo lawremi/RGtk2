@@ -8,6 +8,6 @@ Gets the orientation of the \code{\link{GtkScaleButton}}'s popup window.
 \usage{gtkScaleButtonGetOrientation(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkScaleButton}}}}
 \details{Since 2.14}
-\value{[\code{\link{GtkOrientation}}]  the \code{\link{GtkScaleButton}}'s orientation.}
+\value{[\code{\link{GtkOrientation}}] the \code{\link{GtkScaleButton}}'s orientation.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -26,7 +26,7 @@ and \code{default.port} is expected to be provided by the application.
   Since 2.22}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GSocketConnectable}}]  the new \code{\link{GNetworkAddress}}, or \code{NULL} on error}
+\item{retval}{[\code{\link{GSocketConnectable}}] the new \code{\link{GNetworkAddress}}, or \code{NULL} on error}
 \item{\verb{error}}{a pointer to a \code{\link{GError}}, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

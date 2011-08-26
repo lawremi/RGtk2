@@ -9,7 +9,7 @@ optionally call \code{\link{gInitableInit}} instead.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GAsyncInitable}}.}
 \item{\verb{io.priority}}{the I/O priority
-    of the operation.}
+of the operation.}
 \item{\verb{cancellable}}{optional \code{\link{GCancellable}} object, \code{NULL} to ignore.}
 \item{\verb{callback}}{a \code{\link{GAsyncReadyCallback}} to call when the request is satisfied}
 \item{\verb{user.data}}{the data to pass to callback function}

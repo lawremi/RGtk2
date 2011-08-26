@@ -14,7 +14,7 @@ considered a prefix of /foobar, only of /foo/bar.}
 sometimes return \code{FALSE} even if \code{file} is inside a \code{prefix} (from a 
 filesystem point of view), because the prefix of \code{file} is an alias 
 of \code{prefix}.}
-\value{[logical] \code{TRUE} if the \code{files}'s parent, grandparent, etc is \code{prefix}. 
-    \code{FALSE} otherwise.}
+\value{[logical] \code{TRUE} if the \code{files}'s parent, grandparent, etc is \code{prefix}.
+\code{FALSE} otherwise.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

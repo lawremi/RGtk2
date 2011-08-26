@@ -8,7 +8,7 @@ frame, or display it in other contexts.}
 \usage{gtkWindowSetIconList(object, list)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkWindow}}}
-\item{\verb{list}}{ list of \code{\link{GdkPixbuf}}. \emph{[  \acronym{element-type}   GdkPixbuf][  \acronym{transfer container}   GdkPixbuf]}}
+\item{\verb{list}}{list of \code{\link{GdkPixbuf}}}
 }
 \details{\code{\link{gtkWindowSetIconList}} allows you to pass in the same icon in
 several hand-drawn sizes. The list should contain the natural sizes

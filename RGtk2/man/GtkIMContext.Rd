@@ -105,8 +105,8 @@ needs to delete all or part of the context surrounding the cursor.
 \describe{
 \item{\code{context}}{the object on which the signal is emitted}
 \item{\code{offset}}{the character offset from the cursor position of the text
-          to be deleted. A negative value indicates a position before
-          the cursor.}
+to be deleted. A negative value indicates a position before
+the cursor.}
 \item{\code{n.chars}}{the number of characters to be deleted}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }

@@ -13,7 +13,7 @@ forms is '#fff' '#ffffff' '#fffffffff' and '#ffffffffffff')}
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if parsing of the specifier succeeded,
-  otherwise false.}
+otherwise false.}
 \item{\verb{color}}{a \code{\link{PangoColor}} structure in which to store the result, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

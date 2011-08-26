@@ -7,7 +7,7 @@
 \item{\verb{object}}{a \code{\link{GFileInfo}}.}
 \item{\verb{attribute}}{a file attribute key.}
 }
-\value{[\code{\link{GFileAttributeType}}]  a \code{\link{GFileAttributeType}} for the given \code{attribute}, or 
+\value{[\code{\link{GFileAttributeType}}] a \code{\link{GFileAttributeType}} for the given \code{attribute}, or
 \code{G_FILE_ATTRIBUTE_TYPE_INVALID} if the key is not set.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

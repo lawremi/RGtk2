@@ -7,7 +7,7 @@ the buildable.}
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkBuildable}}}
 \item{\verb{builder}}{\code{\link{GtkBuilder}} used to construct this object}
-\item{\verb{child}}{ child object or \code{NULL} for non-child tags. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{child}}{child object or \code{NULL} for non-child tags. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{tagname}}{name of tag}
 \item{\verb{data}}{user data that will be passed in to parser functions}
 }

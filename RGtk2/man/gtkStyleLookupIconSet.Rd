@@ -9,6 +9,6 @@ otherwise \code{NULL}.}
 \item{\verb{object}}{a \code{\link{GtkStyle}}}
 \item{\verb{stock.id}}{an icon name}
 }
-\value{[\code{\link{GtkIconSet}}]  icon set of \code{stock.id}}
+\value{[\code{\link{GtkIconSet}}] icon set of \code{stock.id}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

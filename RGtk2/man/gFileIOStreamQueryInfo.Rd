@@ -27,7 +27,7 @@ be returned.
   Since 2.22}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GFileInfo}}]  a \code{\link{GFileInfo}} for the \code{stream}, or \code{NULL} on error.}
+\item{retval}{[\code{\link{GFileInfo}}] a \code{\link{GFileInfo}} for the \code{stream}, or \code{NULL} on error.}
 \item{\verb{error}}{a \code{\link{GError}}, \code{NULL} to ignore.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

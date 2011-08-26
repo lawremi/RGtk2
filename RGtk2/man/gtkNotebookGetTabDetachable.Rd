@@ -8,6 +8,6 @@
 \item{\verb{child}}{a child \code{\link{GtkWidget}}}
 }
 \details{Since 2.10}
-\value{[logical]  TRUE if the tab is detachable.}
+\value{[logical] TRUE if the tab is detachable.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

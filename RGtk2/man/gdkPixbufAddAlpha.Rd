@@ -17,6 +17,6 @@ is \code{FALSE}, then the (\code{r}, \code{g}, \code{b}) arguments will be ignor
 \details{If \code{substitute.color} is \code{TRUE}, then the color specified by (\code{r}, \code{g}, \code{b}) will be
 assigned zero opacity. That is, if you pass (255, 255, 255) for the
 substitute color, all white pixels will become fully transparent.}
-\value{[\code{\link{GdkPixbuf}}]  A newly-created pixbuf with a reference count of 1.}
+\value{[\code{\link{GdkPixbuf}}] A newly-created pixbuf with a reference count of 1.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

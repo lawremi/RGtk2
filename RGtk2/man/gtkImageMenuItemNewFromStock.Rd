@@ -8,7 +8,7 @@ and \verb{GTK_STOCK_APPLY}.}
 \arguments{
 \item{\verb{stock.id}}{the name of the stock item.}
 \item{\verb{accel.group}}{the \code{\link{GtkAccelGroup}} to add the menu items accelerator to,
-  or \code{NULL}.}
+or \code{NULL}.}
 }
 \details{If you want this menu item to have changeable accelerators, then pass in
 \code{NULL} for accel_group. Next call \code{\link{gtkMenuItemSetAccelPath}} with an

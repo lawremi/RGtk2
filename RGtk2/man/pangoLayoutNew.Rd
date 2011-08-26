@@ -5,7 +5,7 @@
 default values for a particular \code{\link{PangoContext}}.}
 \usage{pangoLayoutNew(context)}
 \arguments{\item{\verb{context}}{a \code{\link{PangoContext}}}}
-\value{[\code{\link{PangoLayout}}]  the newly allocated \code{\link{PangoLayout}}, with a reference
-              count of one,}
+\value{[\code{\link{PangoLayout}}] the newly allocated \code{\link{PangoLayout}}, with a reference
+count of one,}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

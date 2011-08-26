@@ -7,7 +7,7 @@ If model is \code{NULL}, then it will unset the model.}
 \usage{gtkEntryCompletionSetModel(object, model = NULL)}
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkEntryCompletion}}.}
-\item{\verb{model}}{ The \code{\link{GtkTreeModel}}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{model}}{The \code{\link{GtkTreeModel}}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{Since 2.4}
 \author{Derived by RGtkGen from GTK+ documentation}

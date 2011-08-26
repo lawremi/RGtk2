@@ -7,6 +7,6 @@ See \code{\link{PangoGlyphItemIter}} for details of cluster orders.}
 \arguments{\item{\verb{object}}{a \code{\link{PangoGlyphItemIter}}}}
 \details{Since 1.22}
 \value{[logical] \code{TRUE} if the iterator was moved, \code{FALSE} if we were already on the
- first cluster.}
+first cluster.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

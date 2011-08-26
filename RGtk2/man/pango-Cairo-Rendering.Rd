@@ -157,12 +157,12 @@ with Pango's Cairo renderer.
 
 \describe{
 \item{\code{cr}}{a Cairo context with current point set to where the shape should
-     be rendered}
+be rendered}
 \item{\code{attr}}{the \code{PANGO_ATTR_SHAPE} to render}
 \item{\code{do.path}}{whether only the shape path should be appended to current
-          path of \code{cr} and no filling/stroking done.  This will be set
-	  to \code{TRUE} when called from \code{\link{pangoCairoLayoutPath}} and
-	  \code{\link{pangoCairoLayoutLinePath}} rendering functions.}
+path of \code{cr} and no filling/stroking done.  This will be set
+to \code{TRUE} when called from \code{\link{pangoCairoLayoutPath}} and
+\code{\link{pangoCairoLayoutLinePath}} rendering functions.}
 \item{\code{data}}{user data passed to \code{\link{pangoCairoContextSetShapeRenderer}}}
 }
 

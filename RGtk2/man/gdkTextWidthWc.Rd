@@ -10,6 +10,6 @@ Determines the width of a given wide-character string.
 \item{\verb{object}}{a \code{\link{GdkFont}}}
 \item{\verb{text}}{the text to measure.}
 }
-\value{[integer]  the width of the string in pixels.}
+\value{[integer] the width of the string in pixels.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

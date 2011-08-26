@@ -6,7 +6,7 @@
 \description{A single line text entry field}
 \section{Methods and Functions}{
 \code{\link{gtkEntryNew}(show = TRUE)}\cr
-\code{\link{gtkEntryNewWithBuffer}(buffer)}\cr
+\code{\link{gtkEntryNewWithBuffer}(buffer, show = TRUE)}\cr
 \code{\link{gtkEntryNewWithMaxLength}(max = 0, show = TRUE)}\cr
 \code{\link{gtkEntryGetBuffer}(object)}\cr
 \code{\link{gtkEntrySetBuffer}(object, buffer)}\cr
@@ -72,7 +72,7 @@
 \code{\link{gtkEntryGetCurrentIconDragSource}(object)}\cr
 \code{\link{gtkEntryGetIconWindow}(object, icon.pos)}\cr
 \code{\link{gtkEntryGetTextWindow}(object)}\cr
-\code{gtkEntry(max = 0, show = TRUE)}
+\code{gtkEntry(max = 0, buffer, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
@@ -121,7 +121,7 @@ via the context menu of the entry.}
 The \code{\link{GtkEntry}} struct contains only private data.
 
 }}}
-\section{Convenient Construction}{\code{gtkEntry} is the result of collapsing the constructors of \code{GtkEntry} (\code{\link{gtkEntryNew}}, \code{\link{gtkEntryNewWithMaxLength}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
+\section{Convenient Construction}{\code{gtkEntry} is the result of collapsing the constructors of \code{GtkEntry} (\code{\link{gtkEntryNew}}, \code{\link{gtkEntryNewWithMaxLength}}, \code{\link{gtkEntryNewWithBuffer}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{Enums and Flags}{\describe{\item{\verb{GtkEntryIconPosition}}{
 Specifies the side of the entry at which an icon is placed.
 

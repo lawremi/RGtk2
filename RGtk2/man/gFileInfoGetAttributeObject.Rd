@@ -8,7 +8,7 @@ not contain a \code{\link{GObject}}, \code{NULL} will be returned.}
 \item{\verb{object}}{a \code{\link{GFileInfo}}.}
 \item{\verb{attribute}}{a file attribute key.}
 }
-\value{[\code{\link{GObject}}]  a \code{\link{GObject}} associated with the given \code{attribute}, or
+\value{[\code{\link{GObject}}] a \code{\link{GObject}} associated with the given \code{attribute}, or
 \code{NULL} otherwise.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

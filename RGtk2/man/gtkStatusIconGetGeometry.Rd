@@ -17,16 +17,16 @@ is embedded in a notification area, see
   Since 2.10}
 \value{
 A list containing the following elements:
-\item{retval}{[logical] \code{TRUE} if the location information has 
-              been filled in}
-\item{\verb{screen}}{ return location for the screen, or \code{NULL} if the
-         information is not needed. \emph{[  \acronym{out}  ][  \acronym{transfer none}  ][  \acronym{allow-none}  ]}}
-\item{\verb{area}}{ return location for the area occupied by the status
-       icon, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
-\item{\verb{orientation}}{ return location for the orientation of the panel
-   in which the status icon is embedded, or \code{NULL}. A panel
-   at the top or bottom of the screen is horizontal, a panel
-   at the left or right is vertical. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
+\item{retval}{[logical] \code{TRUE} if the location information has
+been filled in}
+\item{\verb{screen}}{return location for the screen, or \code{NULL} if the
+information is not needed. \emph{[  \acronym{out}  ][  \acronym{transfer none}  ][  \acronym{allow-none}  ]}}
+\item{\verb{area}}{return location for the area occupied by the status
+icon, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
+\item{\verb{orientation}}{return location for the orientation of the panel
+in which the status icon is embedded, or \code{NULL}. A panel
+at the top or bottom of the screen is horizontal, a panel
+at the left or right is vertical. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

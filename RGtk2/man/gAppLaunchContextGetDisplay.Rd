@@ -10,6 +10,6 @@ application.}
 \item{\verb{info}}{a \code{\link{GAppInfo}}}
 \item{\verb{files}}{a \verb{list} of \code{\link{GFile}} objects}
 }
-\value{[char]  a display string for the display.}
+\value{[char] a display string for the display.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

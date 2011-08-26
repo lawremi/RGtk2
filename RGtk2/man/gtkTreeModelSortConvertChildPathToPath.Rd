@@ -10,6 +10,6 @@ path on the child model, then \code{NULL} is returned.}
 \item{\verb{object}}{A \code{\link{GtkTreeModelSort}}}
 \item{\verb{child.path}}{A \code{\link{GtkTreePath}} to convert}
 }
-\value{[\code{\link{GtkTreePath}}]  A newly allocated \code{\link{GtkTreePath}}, or \code{NULL}}
+\value{[\code{\link{GtkTreePath}}] A newly allocated \code{\link{GtkTreePath}}, or \code{NULL}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

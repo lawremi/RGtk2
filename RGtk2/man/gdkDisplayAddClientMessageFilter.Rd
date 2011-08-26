@@ -8,8 +8,8 @@ types of events.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkDisplay}} for which this message filter applies}
 \item{\verb{message.type}}{the type of ClientMessage events to receive.
-  This will be checked against the \code{message.type} field 
-  of the XClientMessage event struct.}
+This will be checked against the \code{message.type} field
+of the XClientMessage event struct.}
 \item{\verb{func}}{the function to call to process the event.}
 \item{\verb{data}}{user data to pass to \code{func}.}
 }

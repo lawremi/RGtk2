@@ -10,6 +10,6 @@ pixel positions, in combination with \code{\link{gtkEntryGetLayoutOffsets}}.}
 \code{\link{gtkEntryLayoutIndexToTextIndex}} and
 \code{\link{gtkEntryTextIndexToLayoutIndex}} are needed to convert byte
 indices in the layout to byte indices in the entry contents.}
-\value{[\code{\link{PangoLayout}}]  the \code{\link{PangoLayout}} for this entry. \emph{[  \acronym{transfer none}  ]}}
+\value{[\code{\link{PangoLayout}}] the \code{\link{PangoLayout}} for this entry. \emph{[  \acronym{transfer none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

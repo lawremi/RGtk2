@@ -13,7 +13,7 @@ the width/height returned by \code{\link{gtkIconSizeLookup}}, because themes
 are free to render the pixbuf however they like, including changing
 the usual size.}
 \usage{gtkIconSizeLookup(size)}
-\arguments{\item{\verb{size}}{ an icon size. \emph{[type int]}}}
+\arguments{\item{\verb{size}}{an icon size. \emph{[  \acronym{type}   int]}}}
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if \code{size} was a valid size}

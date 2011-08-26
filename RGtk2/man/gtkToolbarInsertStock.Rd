@@ -16,10 +16,10 @@ except that underscores used to mark mnemonics are removed.
 \item{\verb{callback}}{The callback called when the toolbar button is clicked.}
 \item{\verb{user.data}}{user data passed to callback}
 \item{\verb{position}}{The position the button shall be inserted at.
-           -1 means at the end.}
+-1 means at the end.}
 }
 \details{\code{callback} must be a pointer to a function taking a \code{\link{GtkWidget}} and a gpointer as
 arguments. Use \code{gCallback()} to cast the function to \verb{GCallback}.}
-\value{[\code{\link{GtkWidget}}]  the inserted widget}
+\value{[\code{\link{GtkWidget}}] the inserted widget}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

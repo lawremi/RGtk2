@@ -174,9 +174,9 @@ and is reference counted with \code{gdkFontRef()} and \code{gdkFontUnref()}
 
 \describe{
 \item{\verb{type}}{[\code{\link{GdkFontType}}] a value of type \code{\link{GdkFontType}} which indicates
-  whether this font is a single font or a fontset.}
+whether this font is a single font or a fontset.}
 \item{\verb{ascent}}{[integer] the maximum distance that the font, when drawn,
-  ascends above the baseline.}
+ascends above the baseline.}
 \item{\verb{descent}}{[integer] the maximum distance that the font, when drawn,
 descends below the baseline.}
 }

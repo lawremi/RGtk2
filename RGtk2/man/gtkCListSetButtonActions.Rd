@@ -10,9 +10,9 @@ on the CList.
 \arguments{
 \item{\verb{object}}{The \code{\link{GtkCList}} to affect.}
 \item{\verb{button}}{The mouse button to set. The values here, unlike in the
-         rest of GTK+ start from 0. For instance, the right mouse
-         button, which is 3 elsewhere, should be given as 2 here.}
-\item{\verb{button.actions}}{A logically OR'd value of \code{\link{GtkButtonAction}} values 
+rest of GTK+ start from 0. For instance, the right mouse
+button, which is 3 elsewhere, should be given as 2 here.}
+\item{\verb{button.actions}}{A logically OR'd value of \code{\link{GtkButtonAction}} values
 for the button.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -7,6 +7,6 @@ resizes then you should add a reference to it.}
 \usage{gtkOffscreenWindowGetPixmap(object)}
 \arguments{\item{\verb{object}}{the \code{\link{GtkOffscreenWindow}} contained widget.}}
 \details{Since 2.20}
-\value{[\code{\link{GdkPixmap}}]  A \code{\link{GdkPixmap}} pointer to the offscreen pixmap, or \code{NULL}.}
+\value{[\code{\link{GdkPixmap}}] A \code{\link{GdkPixmap}} pointer to the offscreen pixmap, or \code{NULL}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -15,7 +15,7 @@ this application are reported with respect to \code{window} and only if selected
 \code{event.mask}. In either mode, unreported events are discarded.}
 \item{\verb{event.mask}}{specifies the event mask, which is used in accordance with
 \code{owner.events}. Note that only pointer events (i.e. button and motion events)
-    may be selected.}
+may be selected.}
 \item{\verb{confine.to}}{If non-\code{NULL}, the pointer will be confined to this
 window during the grab. If the pointer is outside \code{confine.to}, it will
 automatically be moved to the closest edge of \code{confine.to} and enter

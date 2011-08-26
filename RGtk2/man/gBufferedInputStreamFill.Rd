@@ -33,8 +33,8 @@ For the asynchronous, non-blocking, version of this function, see
 \code{\link{gBufferedInputStreamFillAsync}}.}
 \value{
 A list containing the following elements:
-\item{retval}{[integer]  the number of bytes read into \code{stream}'s buffer, up to \code{count}, 
-    or -1 on error.}
+\item{retval}{[integer] the number of bytes read into \code{stream}'s buffer, up to \code{count},
+or -1 on error.}
 \item{\verb{error}}{location to store the error occuring, or \code{NULL} to ignore.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

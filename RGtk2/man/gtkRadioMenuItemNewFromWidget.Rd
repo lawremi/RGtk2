@@ -5,6 +5,6 @@
 \usage{gtkRadioMenuItemNewFromWidget(group = NULL, show = TRUE)}
 \arguments{\item{\verb{group}}{An existing \code{\link{GtkRadioMenuItem}}}}
 \details{Since 2.4}
-\value{[\code{\link{GtkWidget}}]  The new \code{\link{GtkRadioMenuItem}}}
+\value{[\code{\link{GtkWidget}}] The new \code{\link{GtkRadioMenuItem}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

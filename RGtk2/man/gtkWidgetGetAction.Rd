@@ -9,7 +9,7 @@ See also \code{\link{gtkActionGetProxies}}.
 \usage{gtkWidgetGetAction(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkWidget}}}}
 \details{Since 2.10}
-\value{[\code{\link{GtkAction}}]  the action that a widget is a proxy for, or
- \code{NULL}, if it is not attached to an action.}
+\value{[\code{\link{GtkAction}}] the action that a widget is a proxy for, or
+\code{NULL}, if it is not attached to an action.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

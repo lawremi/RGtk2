@@ -11,8 +11,8 @@ and \code{\link{gtkMenuSetAccelPath}} for a more convenient variant of this func
 \usage{gtkMenuItemSetAccelPath(object, accel.path)}
 \arguments{
 \item{\verb{object}}{a valid \code{\link{GtkMenuItem}}}
-\item{\verb{accel.path}}{ accelerator path, corresponding to this menu item's
-             functionality, or \code{NULL} to unset the current path. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{accel.path}}{accelerator path, corresponding to this menu item's
+functionality, or \code{NULL} to unset the current path. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{This function is basically a convenience wrapper that handles calling
 \code{\link{gtkWidgetSetAccelPath}} with the appropriate accelerator group for

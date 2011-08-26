@@ -8,6 +8,6 @@ Obtains a button. The button doesn't have any function.
 \usage{gtkFontSelectionDialogGetApplyButton(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkFontSelectionDialog}}}}
 \details{Since 2.14}
-\value{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}
+\value{[\code{\link{GtkWidget}}] a \code{\link{GtkWidget}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

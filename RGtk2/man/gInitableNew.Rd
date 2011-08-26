@@ -9,15 +9,15 @@ and returns \code{NULL}, setting an error on failure.}
 \item{\verb{object.type}}{a \code{\link{GType}} supporting \code{\link{GInitable}}.}
 \item{\verb{cancellable}}{optional \code{\link{GCancellable}} object, \code{NULL} to ignore.}
 \item{\verb{...}}{the value if the first property, followed by and other property
-   value pairs, and ended by \code{NULL}.}
+value pairs, and ended by \code{NULL}.}
 \item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \details{Since 2.22}
 \value{
 A list containing the following elements:
-\item{retval}{[R object]  a newly allocated \code{\link{GObject}}, or \code{NULL} on error}
+\item{retval}{[R object] a newly allocated \code{\link{GObject}}, or \code{NULL} on error}
 \item{\verb{error}}{a \code{\link{GError}} location to store the error occuring, or \code{NULL} to
-   ignore.}
+ignore.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

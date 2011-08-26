@@ -10,15 +10,15 @@ glyph string).}
 \item{\verb{object}}{a \code{\link{PangoGlyphString}}}
 \item{\verb{start}}{start index}
 \item{\verb{end}}{end index (the range is the set of bytes with
-	      indices such that start <= index < end)}
+indices such that start <= index < end)}
 \item{\verb{font}}{a \code{\link{PangoFont}}}
 }
 \value{
 A list containing the following elements:
 \item{\verb{ink.rect}}{rectangle used to store the extents of the glyph string range as drawn
-           or \code{NULL} to indicate that the result is not needed.}
+or \code{NULL} to indicate that the result is not needed.}
 \item{\verb{logical.rect}}{rectangle used to store the logical extents of the glyph string range
-           or \code{NULL} to indicate that the result is not needed.}
+or \code{NULL} to indicate that the result is not needed.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

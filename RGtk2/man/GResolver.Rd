@@ -18,8 +18,12 @@
 \code{\link{gResolverFreeTargets}(targets)}\cr
 
 }
-\section{Hierarchy}{\preformatted{GObject
-   +----GResolver}}
+\section{Hierarchy}{\preformatted{
+GObject
+   +----GResolver
+GEnum
+   +----GResolverError
+}}
 \section{Detailed Description}{\code{\link{GResolver}} provides cancellable synchronous and asynchronous DNS
 resolution, for hostnames (\code{\link{gResolverLookupByAddress}},
 \code{\link{gResolverLookupByName}} and their async variants) and SRV

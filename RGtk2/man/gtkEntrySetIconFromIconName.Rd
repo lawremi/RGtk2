@@ -7,7 +7,7 @@ from the current icon theme.}
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkEntry}}}
 \item{\verb{icon.pos}}{The position at which to set the icon}
-\item{\verb{icon.name}}{ An icon name, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{icon.name}}{An icon name, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{If the icon name isn't known, a "broken image" icon will be displayed
 instead.

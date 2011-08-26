@@ -7,7 +7,7 @@ inside its frame.}
 \usage{gtkEntrySetInnerBorder(object, border = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkEntry}}}
-\item{\verb{border}}{ a \code{\link{GtkBorder}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{border}}{a \code{\link{GtkBorder}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{If set, this property overrides the inner-border style property.
 Overriding the style-provided border is useful when you want to do

@@ -6,7 +6,7 @@
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkImage}}}
 \item{\verb{stock.id}}{a stock icon name}
-\item{\verb{size}}{ a stock icon size. \emph{[type int]}}
+\item{\verb{size}}{a stock icon size. \emph{[  \acronym{type}   int]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

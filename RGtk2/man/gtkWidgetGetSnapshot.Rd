@@ -5,7 +5,7 @@
 \usage{gtkWidgetGetSnapshot(object, clip.rect = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkWidget}}}
-\item{\verb{clip.rect}}{ a \code{\link{GdkRectangle}} or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{clip.rect}}{a \code{\link{GdkRectangle}} or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{Works even if the widget is obscured. The depth and visual of the
 resulting pixmap is dependent on the widget being snapshot and likely

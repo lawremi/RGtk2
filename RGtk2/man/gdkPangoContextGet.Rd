@@ -14,6 +14,6 @@ The newly created context will have the default font options (see
 change it will not be updated. Using \code{\link{gtkWidgetGetPangoContext}}
 is more convenient if you want to keep a context around and track
 changes to the screen's font rendering settings.}
-\value{[\code{\link{PangoContext}}]  a new \code{\link{PangoContext}} for the default display}
+\value{[\code{\link{PangoContext}}] a new \code{\link{PangoContext}} for the default display}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

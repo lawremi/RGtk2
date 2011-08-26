@@ -42,14 +42,12 @@ saturation.}
 
 
 }
-\item{\code{move(hsv, arg1, user.data)}}{
+\item{\code{move(hsv, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{hsv}}{the object which received the signal.}
-\item{\code{arg1}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 

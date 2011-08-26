@@ -7,6 +7,6 @@
 \item{\verb{object}}{an iterator}
 \item{\verb{tag}}{a \code{\link{GtkTextTag}}}
 }
-\value{[logical]  whether \code{iter} is tagged with \code{tag}}
+\value{[logical] whether \code{iter} is tagged with \code{tag}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -7,6 +7,6 @@ of a recently user resource.}
 \arguments{\item{\verb{object}}{a \code{\link{GtkRecentChooser}}}}
 \details{Since 2.10}
 \value{[logical] \code{TRUE} if the recent chooser should show tooltips,
-  \code{FALSE} otherwise.}
+\code{FALSE} otherwise.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

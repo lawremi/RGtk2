@@ -9,6 +9,6 @@ desktop file id from the xdg menu specification.}
 \arguments{\item{\verb{object}}{a \code{\link{GAppInfo}}.}}
 \details{Note that the returned ID may be \code{NULL}, depending on how
 the \code{appinfo} has been constructed.}
-\value{[char]  a string containing the application's ID.}
+\value{[char] a string containing the application's ID.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -11,6 +11,6 @@
 \item{\verb{domain}}{the DNS domain to look up the service in}
 }
 \details{Since 2.22}
-\value{[\code{\link{GSocketConnectable}}]  a new \code{\link{GNetworkService}}}
+\value{[\code{\link{GSocketConnectable}}] a new \code{\link{GNetworkService}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

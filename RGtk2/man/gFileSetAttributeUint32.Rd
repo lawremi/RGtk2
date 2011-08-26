@@ -17,7 +17,7 @@ triggering the cancellable object from another thread. If the operation
 was cancelled, the error \code{G_IO_ERROR_CANCELLED} will be returned.}
 \value{
 A list containing the following elements:
-\item{retval}{[logical] \code{TRUE} if the \code{attribute} was successfully set to \code{value} 
+\item{retval}{[logical] \code{TRUE} if the \code{attribute} was successfully set to \code{value}
 in the \code{file}, \code{FALSE} otherwise.}
 \item{\verb{error}}{a \code{\link{GError}}, or \code{NULL}}
 }

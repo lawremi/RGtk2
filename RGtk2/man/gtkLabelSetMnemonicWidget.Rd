@@ -13,7 +13,7 @@ set it explicitly using this function.}
 \usage{gtkLabelSetMnemonicWidget(object, widget)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkLabel}}}
-\item{\verb{widget}}{ the target \code{\link{GtkWidget}}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{widget}}{the target \code{\link{GtkWidget}}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{The target widget will be accelerated by emitting the 
 GtkWidget::mnemonic-activate signal on it. The default handler for 

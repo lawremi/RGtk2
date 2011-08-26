@@ -10,7 +10,7 @@ text and response ID.}
 \item{\verb{object}}{a \code{\link{GtkInfoBar}}}
 \item{\verb{first.button.text}}{button text or stock ID}
 \item{\verb{...}}{response ID for first button, then more text-response_id pairs,
-    ending with \code{NULL}}
+ending with \code{NULL}}
 }
 \details{Since 2.18}
 \author{Derived by RGtkGen from GTK+ documentation}

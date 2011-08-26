@@ -13,8 +13,8 @@ realized.}
 \usage{gtkTreeViewGetCellArea(object, path, column)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkTreeView}}}
-\item{\verb{path}}{ a \code{\link{GtkTreePath}} for the row, or \code{NULL} to get only horizontal coordinates. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{column}}{ a \code{\link{GtkTreeViewColumn}} for the column, or \code{NULL} to get only vertical coordinates. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{path}}{a \code{\link{GtkTreePath}} for the row, or \code{NULL} to get only horizontal coordinates. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{column}}{a \code{\link{GtkTreeViewColumn}} for the column, or \code{NULL} to get only vertical coordinates. \emph{[  \acronym{allow-none}  ]}}
 }
 \value{
 A list containing the following elements:

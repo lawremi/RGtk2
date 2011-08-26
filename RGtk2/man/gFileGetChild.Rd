@@ -12,6 +12,6 @@ you can still have a \code{\link{GFile}} that points to it. You can use this
 for instance to create that file.
   
 This call does no blocking i/o.}
-\value{[\code{\link{GFile}}]  a \code{\link{GFile}} to a child specified by \code{name}.}
+\value{[\code{\link{GFile}}] a \code{\link{GFile}} to a child specified by \code{name}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

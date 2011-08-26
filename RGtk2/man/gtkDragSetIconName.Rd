@@ -8,8 +8,8 @@ loaded at the symbolic size \verb{GTK_ICON_SIZE_DND}), thus
 \code{hot.x} and \code{hot.y} have to be used with care.}
 \usage{gtkDragSetIconName(object, icon.name, hot.x, hot.y)}
 \arguments{
-\item{\verb{object}}{the context for a drag. (This must be called 
-           with a context for the source side of a drag)}
+\item{\verb{object}}{the context for a drag. (This must be called
+with a context for the source side of a drag)}
 \item{\verb{icon.name}}{name of icon to use}
 \item{\verb{hot.x}}{the X offset of the hotspot within the icon}
 \item{\verb{hot.y}}{the Y offset of the hotspot within the icon}

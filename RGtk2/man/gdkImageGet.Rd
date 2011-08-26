@@ -16,6 +16,6 @@ choice.
 \item{\verb{width}}{width of area in \code{window}}
 \item{\verb{height}}{height of area in \code{window}}
 }
-\value{[\code{\link{GdkImage}}]  a new \code{\link{GdkImage}} or \code{NULL}}
+\value{[\code{\link{GdkImage}}] a new \code{\link{GdkImage}} or \code{NULL}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

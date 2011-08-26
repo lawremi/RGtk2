@@ -7,6 +7,6 @@ stock id to select the stock item for the item.}
 \arguments{\item{\verb{object}}{a \code{\link{GtkImageMenuItem}}}}
 \details{Since 2.16}
 \value{[logical] \code{TRUE} if the label set in the menuitem is used as a
-    stock id to select the stock item for the item}
+stock id to select the stock item for the item}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -12,8 +12,8 @@ or \code{NULL} if an error occurred. See \code{\link{gtkPageSetupToFile}}.}
 \details{Since 2.12}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GtkPageSetup}}]  the restored \code{\link{GtkPageSetup}}}
-\item{\verb{error}}{ return location for an error, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{retval}{[\code{\link{GtkPageSetup}}] the restored \code{\link{GtkPageSetup}}}
+\item{\verb{error}}{return location for an error, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

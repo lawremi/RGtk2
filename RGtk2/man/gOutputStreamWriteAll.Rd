@@ -6,9 +6,9 @@ during the operation.}
 \usage{gOutputStreamWriteAll(object, buffer, bytes.written, cancellable = NULL, .errwarn = TRUE)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GOutputStream}}.}
-\item{\verb{buffer}}{the buffer containing the data to write. }
-\item{\verb{bytes.written}}{location to store the number of bytes that was 
-    written to the stream}
+\item{\verb{buffer}}{the buffer containing the data to write.}
+\item{\verb{bytes.written}}{location to store the number of bytes that was
+written to the stream}
 \item{\verb{cancellable}}{optional \code{\link{GCancellable}} object, \code{NULL} to ignore.}
 \item{.errwarn}{Whether to issue a warning on error or fail silently}
 }

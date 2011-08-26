@@ -11,8 +11,8 @@ widget you'd like to make the default using \code{gtkWidgetSetFlags()}.}
 \usage{gtkWindowSetDefault(object, default.widget = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkWindow}}}
-\item{\verb{default.widget}}{ widget to be the default, or \code{NULL} to unset the
-                 default widget for the toplevel. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{default.widget}}{widget to be the default, or \code{NULL} to unset the
+default widget for the toplevel. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

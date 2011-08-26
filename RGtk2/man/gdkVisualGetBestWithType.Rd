@@ -7,6 +7,6 @@ should not be freed. \code{NULL} may be returned if no visual has type
 \code{visual.type}.}
 \usage{gdkVisualGetBestWithType(visual.type)}
 \arguments{\item{\verb{visual.type}}{a visual type}}
-\value{[\code{\link{GdkVisual}}]  best visual of the given type. \emph{[  \acronym{transfer none}  ]}}
+\value{[\code{\link{GdkVisual}}] best visual of the given type. \emph{[  \acronym{transfer none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

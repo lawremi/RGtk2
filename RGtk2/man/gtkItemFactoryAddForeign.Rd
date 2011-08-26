@@ -11,8 +11,8 @@ be removed in the future.}
 }
 \usage{gtkItemFactoryAddForeign(accel.widget, full.path, accel.group, keyval, modifiers)}
 \arguments{
-\item{\verb{accel.widget}}{widget to install an accelerator on }
-\item{\verb{full.path}}{the full path for the \code{accel.widget} }
+\item{\verb{accel.widget}}{widget to install an accelerator on}
+\item{\verb{full.path}}{the full path for the \code{accel.widget}}
 \item{\verb{accel.group}}{the accelerator group to install the accelerator in}
 \item{\verb{keyval}}{key value of the accelerator}
 \item{\verb{modifiers}}{modifier combination of the accelerator}

@@ -10,9 +10,9 @@
 \details{Since 2.2}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GdkNativeWindow}}] the windowing system id of the window where the drop should happen. This 
-    may be \code{xid} or the id of a proxy window, or zero if \code{xid} doesn't
-    support Drag and Drop.}
+\item{retval}{[\code{\link{GdkNativeWindow}}] the windowing system id of the window where the drop should happen. This
+may be \code{xid} or the id of a proxy window, or zero if \code{xid} doesn't
+support Drag and Drop.}
 \item{\verb{protocol}}{location where the supported DND protocol is returned.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

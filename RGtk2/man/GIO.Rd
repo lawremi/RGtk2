@@ -59,7 +59,7 @@ socket communication}
 \item{\link{GSocketControlMessage}}{A GSocket control message}
 \item{\link{GSocketListener}}{Helper for accepting network client connections}
 \item{\link{GSocketService}}{Make it easy to implement a network service}
-\item{\link{gio-GSrvTarget}}{DNS SRV record target}
+\item{\link{GSrvTarget}}{DNS SRV record target}
 \item{\link{GThemedIcon}}{Icon theming support}
 \item{\link{GThreadedSocketService}}{A threaded GSocketService}
 \item{\link{GVfs}}{Virtual File System}

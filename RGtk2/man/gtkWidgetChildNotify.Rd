@@ -7,8 +7,8 @@ on \code{widget}.}
 \usage{gtkWidgetChildNotify(object, child.property)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkWidget}}}
-\item{\verb{child.property}}{the name of a child property installed on the 
-                 class of \code{widget}'s parent}
+\item{\verb{child.property}}{the name of a child property installed on the
+class of \code{widget}'s parent}
 }
 \details{This is the analogue of \code{gObjectNotify()} for child properties.}
 \author{Derived by RGtkGen from GTK+ documentation}

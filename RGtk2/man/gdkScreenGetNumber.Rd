@@ -6,6 +6,6 @@ to which it belongs. (See \code{\link{gdkScreenGetDisplay}})}
 \usage{gdkScreenGetNumber(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GdkScreen}}}}
 \details{Since 2.2}
-\value{[integer]  the index}
+\value{[integer] the index}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

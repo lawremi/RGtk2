@@ -14,6 +14,6 @@ first ancestor class for which such an implementation is defined.
   
 The documentation of the ATK (\url{http://developer.gnome.org/doc/API/2.0/atk/index.html})
 library contains more information about accessible objects and their uses.}
-\value{[\code{\link{AtkObject}}]  the \code{\link{AtkObject}} associated with \code{widget}. \emph{[  \acronym{transfer none}  ]}}
+\value{[\code{\link{AtkObject}}] the \code{\link{AtkObject}} associated with \code{widget}. \emph{[  \acronym{transfer none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

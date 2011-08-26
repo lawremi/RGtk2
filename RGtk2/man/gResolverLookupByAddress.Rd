@@ -19,8 +19,8 @@ operation, in which case \code{error} (if non-\code{NULL}) will be set to
   Since 2.22}
 \value{
 A list containing the following elements:
-\item{retval}{[character]  a hostname (either ASCII-only, or in ASCII-encoded
-    form), or \code{NULL} on error.}
+\item{retval}{[character] a hostname (either ASCII-only, or in ASCII-encoded
+form), or \code{NULL} on error.}
 \item{\verb{error}}{return location for a \code{\link{GError}}, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

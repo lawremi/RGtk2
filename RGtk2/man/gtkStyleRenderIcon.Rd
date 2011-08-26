@@ -11,10 +11,10 @@ pixbuf.}
 \item{\verb{direction}}{a text direction}
 \item{\verb{state}}{a state}
 \item{\verb{size}}{(type int) the size to render the icon at. A size of
-    (GtkIconSize)-1 means render at the size of the source and
-    don't scale.}
-\item{\verb{widget}}{ the widget. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{detail}}{ a style detail. \emph{[  \acronym{allow-none}  ]}}
+(GtkIconSize)-1 means render at the size of the source and
+don't scale.}
+\item{\verb{widget}}{the widget. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{detail}}{a style detail. \emph{[  \acronym{allow-none}  ]}}
 }
 \value{[\code{\link{GdkPixbuf}}] a newly-created \code{\link{GdkPixbuf}} containing the rendered icon}
 \author{Derived by RGtkGen from GTK+ documentation}

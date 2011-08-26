@@ -7,6 +7,6 @@
 \item{\verb{object}}{A \code{\link{GtkTreeModel}}.}
 \item{\verb{iter}}{The \code{\link{GtkTreeIter}}.}
 }
-\value{[\code{\link{GtkTreePath}}]  a newly-created \code{\link{GtkTreePath}}.}
+\value{[\code{\link{GtkTreePath}}] a newly-created \code{\link{GtkTreePath}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -9,8 +9,8 @@ Adds a widget to the end of the given toolbar.
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkToolbar}}.}
 \item{\verb{widget}}{a \code{\link{GtkWidget}} to add to the toolbar.}
-\item{\verb{tooltip.text}}{ the element's tooltip. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{tooltip.private.text}}{ used for context-sensitive help about this toolbar element. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{tooltip.text}}{the element's tooltip. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{tooltip.private.text}}{used for context-sensitive help about this toolbar element. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

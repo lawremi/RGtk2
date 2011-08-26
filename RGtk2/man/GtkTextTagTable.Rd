@@ -25,56 +25,43 @@ types related to the text widget and how they work together.
 
 }}}
 \section{Convenient Construction}{\code{gtkTextTagTable} is the equivalent of \code{\link{gtkTextTagTableNew}}.}
-\section{User Functions}{\describe{\item{\code{GtkTextTagTableForeach(tag, data)}}{
+\section{User Functions}{\describe{\item{\code{GtkTextTagTableForeach()}}{
 \emph{undocumented
 }
 
-\describe{
-\item{\code{tag}}{\emph{undocumented
-}}
-\item{\code{data}}{\emph{undocumented
-}}
-}
+
 
 
 }}}
 \section{Signals}{\describe{
-\item{\code{tag-added(texttagtable, arg1, user.data)}}{
+\item{\code{tag-added(texttagtable, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{texttagtable}}{the object which received the signal.}
-\item{\code{arg1}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{tag-changed(texttagtable, arg1, arg2, user.data)}}{
+\item{\code{tag-changed(texttagtable, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{texttagtable}}{the object which received the signal.}
-\item{\code{arg1}}{\emph{undocumented
-}}
-\item{\code{arg2}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{tag-removed(texttagtable, arg1, user.data)}}{
+\item{\code{tag-removed(texttagtable, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{texttagtable}}{the object which received the signal.}
-\item{\code{arg1}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 

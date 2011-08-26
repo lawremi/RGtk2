@@ -8,6 +8,6 @@
 \item{\verb{page}}{a page of \code{assistant}}
 }
 \details{Since 2.10}
-\value{[character]  the title for \code{page}.}
+\value{[character] the title for \code{page}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

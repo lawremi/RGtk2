@@ -5,6 +5,6 @@
 \usage{gFileEnumeratorGetContainer(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GFileEnumerator}}}}
 \details{Since 2.18}
-\value{[\code{\link{GFile}}]  the \code{\link{GFile}} which is being enumerated.}
+\value{[\code{\link{GFile}}] the \code{\link{GFile}} which is being enumerated.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

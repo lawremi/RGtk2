@@ -11,10 +11,10 @@ as built-icons.}
 \arguments{
 \item{\verb{icon.name}}{the name of the icon to register}
 \item{\verb{size}}{the size at which to register the icon (different
-       images can be registered for the same icon name
-       at different sizes.)}
+images can be registered for the same icon name
+at different sizes.)}
 \item{\verb{pixbuf}}{\code{\link{GdkPixbuf}} that contains the image to use
-         for \code{icon.name}.}
+for \code{icon.name}.}
 }
 \details{In general, if you use \code{\link{gtkIconThemeAddBuiltinIcon}}
 you should also install the icon in the icon theme, so

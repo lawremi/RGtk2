@@ -9,10 +9,10 @@ at the current mouse cursor position.}
 \usage{gtkMenuPopup(object, parent.menu.shell = NULL, parent.menu.item = NULL, func = NULL, data = NULL, button, activate.time)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkMenu}}.}
-\item{\verb{parent.menu.shell}}{ the menu shell containing the triggering menu item, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{parent.menu.item}}{ the menu item whose activation triggered the popup, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{func}}{ a user supplied function used to position the menu, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{data}}{ user supplied data to be passed to \code{func}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{parent.menu.shell}}{the menu shell containing the triggering menu item, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{parent.menu.item}}{the menu item whose activation triggered the popup, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{func}}{a user supplied function used to position the menu, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{data}}{user supplied data to be passed to \code{func}. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{button}}{the mouse button which was pressed to initiate the event.}
 \item{\verb{activate.time}}{the time at which the activation event occurred.}
 }

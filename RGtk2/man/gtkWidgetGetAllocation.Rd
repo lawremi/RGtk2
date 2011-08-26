@@ -7,7 +7,7 @@
 \details{Since 2.18}
 \value{
 A list containing the following elements:
-\item{\verb{allocation}}{ a pointer to a \code{\link{GtkAllocation}} to copy to. \emph{[  \acronym{out}  ]}}
+\item{\verb{allocation}}{a pointer to a \code{\link{GtkAllocation}} to copy to. \emph{[  \acronym{out}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

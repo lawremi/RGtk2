@@ -6,6 +6,6 @@ a \code{\link{GdkDisplay}} with this screen as the default screen.}
 \usage{gdkScreenMakeDisplayName(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GdkScreen}}}}
 \details{Since 2.2}
-\value{[character]  a newly allocated string,}
+\value{[character] a newly allocated string,}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

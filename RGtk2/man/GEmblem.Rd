@@ -11,8 +11,12 @@
 \code{\link{gEmblemGetOrigin}(object)}\cr
 \code{gEmblem(icon, origin)}
 }
-\section{Hierarchy}{\preformatted{GObject
-   +----GEmblem}}
+\section{Hierarchy}{\preformatted{
+GObject
+   +----GEmblem
+GEnum
+   +----GEmblemOrigin
+}}
 \section{Interfaces}{GEmblem implements
  \code{\link{GIcon}}.}
 \section{Detailed Description}{\code{\link{GEmblem}} is an implementation of \code{\link{GIcon}} that supports

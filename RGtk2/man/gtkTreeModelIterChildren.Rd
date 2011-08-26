@@ -7,7 +7,7 @@ will remain a valid node after this function has been called.}
 \usage{gtkTreeModelIterChildren(object, parent = NULL)}
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkTreeModel}}.}
-\item{\verb{parent}}{ The \code{\link{GtkTreeIter}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{parent}}{The \code{\link{GtkTreeIter}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{If \code{parent} is \code{NULL} returns the first node, equivalent to
 \code{gtk_tree_model_get_iter_first (tree_model, iter);}}

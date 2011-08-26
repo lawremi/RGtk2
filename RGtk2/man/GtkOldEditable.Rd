@@ -24,16 +24,11 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 }
 
 }}}
-\section{User Functions}{\describe{\item{\code{GtkTextFunction(editable, time.)}}{
+\section{User Functions}{\describe{\item{\code{GtkTextFunction()}}{
 \emph{undocumented
 }
 
-\describe{
-\item{\code{editable}}{\emph{undocumented
-}}
-\item{\code{time.}}{\emph{undocumented
-}}
-}
+
 
 
 }}}
@@ -71,109 +66,89 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 
 
 }
-\item{\code{kill-char(oldeditable, arg1, user.data)}}{
+\item{\code{kill-char(oldeditable, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{oldeditable}}{the object which received the signal.}
-\item{\code{arg1}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{kill-line(oldeditable, arg1, user.data)}}{
+\item{\code{kill-line(oldeditable, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{oldeditable}}{the object which received the signal.}
-\item{\code{arg1}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{kill-word(oldeditable, arg1, user.data)}}{
+\item{\code{kill-word(oldeditable, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{oldeditable}}{the object which received the signal.}
-\item{\code{arg1}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{move-cursor(oldeditable, arg1, arg2, user.data)}}{
+\item{\code{move-cursor(oldeditable, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{oldeditable}}{the object which received the signal.}
-\item{\code{arg1}}{\emph{undocumented
-}}
-\item{\code{arg2}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{move-page(oldeditable, arg1, arg2, user.data)}}{
+\item{\code{move-page(oldeditable, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{oldeditable}}{the object which received the signal.}
-\item{\code{arg1}}{\emph{undocumented
-}}
-\item{\code{arg2}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{move-to-column(oldeditable, arg1, user.data)}}{
+\item{\code{move-to-column(oldeditable, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{oldeditable}}{the object which received the signal.}
-\item{\code{arg1}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{move-to-row(oldeditable, arg1, user.data)}}{
+\item{\code{move-to-row(oldeditable, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{oldeditable}}{the object which received the signal.}
-\item{\code{arg1}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{move-word(oldeditable, arg1, user.data)}}{
+\item{\code{move-word(oldeditable, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{oldeditable}}{the object which received the signal.}
-\item{\code{arg1}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
@@ -190,14 +165,12 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 
 
 }
-\item{\code{set-editable(oldeditable, arg1, user.data)}}{
+\item{\code{set-editable(oldeditable, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{oldeditable}}{the object which received the signal.}
-\item{\code{arg1}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 

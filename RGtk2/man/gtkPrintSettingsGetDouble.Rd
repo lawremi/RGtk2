@@ -8,6 +8,6 @@
 \item{\verb{key}}{a key}
 }
 \details{Since 2.10}
-\value{[numeric]  the double value of \code{key}}
+\value{[numeric] the double value of \code{key}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

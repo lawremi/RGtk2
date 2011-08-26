@@ -7,10 +7,10 @@
 \item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{info}}{a \code{\link{GFileInfo}}.}
 \item{\verb{flags}}{a \code{\link{GFileQueryInfoFlags}}.}
-\item{\verb{io.priority}}{the I/O priority 
-    of the request. }
+\item{\verb{io.priority}}{the I/O priority
+of the request.}
 \item{\verb{cancellable}}{optional \code{\link{GCancellable}} object, \code{NULL} to ignore.}
-\item{\verb{callback}}{a \code{\link{GAsyncReadyCallback}}. }
+\item{\verb{callback}}{a \code{\link{GAsyncReadyCallback}}.}
 \item{\verb{user.data}}{a \verb{R object}.}
 }
 \details{For more details, see \code{\link{gFileSetAttributesFromInfo}} which is

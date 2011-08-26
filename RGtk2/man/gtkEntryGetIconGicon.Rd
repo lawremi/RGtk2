@@ -10,7 +10,7 @@ stock, pixbuf, or icon name).}
 \item{\verb{icon.pos}}{Icon position}
 }
 \details{Since 2.16}
-\value{[\code{\link{GIcon}}]  A \code{\link{GIcon}}, or \code{NULL} if no icon is set or if the icon
-         is not a \code{\link{GIcon}}}
+\value{[\code{\link{GIcon}}] A \code{\link{GIcon}}, or \code{NULL} if no icon is set or if the icon
+is not a \code{\link{GIcon}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

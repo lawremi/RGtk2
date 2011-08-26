@@ -8,8 +8,8 @@ themes work by replacing the \code{\link{GtkStyle}}. Instead, use
 \usage{gtkWidgetSetStyle(object, style = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkWidget}}}
-\item{\verb{style}}{ a \code{\link{GtkStyle}}, or \code{NULL} to remove the effect of a previous
-        \code{\link{gtkWidgetSetStyle}} and go back to the default style. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{style}}{a \code{\link{GtkStyle}}, or \code{NULL} to remove the effect of a previous
+\code{\link{gtkWidgetSetStyle}} and go back to the default style. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

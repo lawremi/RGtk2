@@ -9,6 +9,6 @@ is the default.}
 \details{See \code{\link{gtkWidgetSetReceivesDefault}}.
   Since 2.18}
 \value{[logical] \code{TRUE} if \code{widget} acts as default widget when focussed,
-              \code{FALSE} otherwise}
+\code{FALSE} otherwise}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

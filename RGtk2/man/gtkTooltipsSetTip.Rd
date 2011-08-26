@@ -9,8 +9,8 @@ Adds a tooltip containing the message \code{tip.text} to the specified \code{\li
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkTooltips}}.}
 \item{\verb{widget}}{the \code{\link{GtkWidget}} you wish to associate the tip with.}
-\item{\verb{tip.text}}{ a string containing the tip itself. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{tip.private}}{ a string of any further information that may be useful if the user gets stuck. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{tip.text}}{a string containing the tip itself. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{tip.private}}{a string of any further information that may be useful if the user gets stuck. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

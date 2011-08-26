@@ -9,6 +9,6 @@ attribute does not contain an signed 64-bit integer, or is invalid,
 \item{\verb{object}}{a \code{\link{GFileInfo}}.}
 \item{\verb{attribute}}{a file attribute key.}
 }
-\value{[numeric]  a signed 64-bit integer from the attribute. }
+\value{[numeric] a signed 64-bit integer from the attribute.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

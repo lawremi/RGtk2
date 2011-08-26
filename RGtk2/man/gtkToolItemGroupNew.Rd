@@ -5,6 +5,6 @@
 \usage{gtkToolItemGroupNew(label, show = TRUE)}
 \arguments{\item{\verb{label}}{the label of the new group}}
 \details{Since 2.20}
-\value{[\code{\link{GtkWidget}}]  a new \code{\link{GtkToolItemGroup}}.}
+\value{[\code{\link{GtkWidget}}] a new \code{\link{GtkToolItemGroup}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

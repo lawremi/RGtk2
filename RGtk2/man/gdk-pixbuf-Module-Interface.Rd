@@ -79,8 +79,8 @@ use the \code{gdkPixbufFormat*} functions.
 image format.}
 \item{\code{flags}}{a combination of \verb{GdkPixbufFormatFlags}.}
 \item{\code{disabled}}{a boolean determining whether the loader is disabled.}
-\item{\code{license}}{a string containing license information, typically set to 
- shorthands like "GPL", "LGPL", etc.}
+\item{\code{license}}{a string containing license information, typically set to
+shorthands like "GPL", "LGPL", etc.}
 }
 
 }}}

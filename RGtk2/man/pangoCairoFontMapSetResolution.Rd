@@ -9,7 +9,7 @@ units high. (10 * 96. / 72. = 13.3).}
 \arguments{
 \item{\verb{object}}{a \code{\link{PangoCairoFontMap}}}
 \item{\verb{dpi}}{the resolution in "dots per inch". (Physical inches aren't actually
-  involved; the terminology is conventional.)}
+involved; the terminology is conventional.)}
 }
 \details{Since 1.10}
 \author{Derived by RGtkGen from GTK+ documentation}

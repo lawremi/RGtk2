@@ -18,8 +18,8 @@ attributes for the text to compute the valid cursor position.}
 A list containing the following elements:
 \item{\verb{index}}{location to store calculated byte index within \code{text}}
 \item{\verb{trailing}}{location to store a boolean indicating
-            whether the user clicked on the leading or trailing
-            edge of the character.}
+whether the user clicked on the leading or trailing
+edge of the character.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

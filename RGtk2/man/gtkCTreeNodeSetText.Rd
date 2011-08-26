@@ -7,12 +7,12 @@ Set the text in a node.
 }
 \usage{gtkCTreeNodeSetText(object, node, column, text)}
 \arguments{
-\item{\verb{object}}{\emph{undocumented
+\item{\verb{object}}{The column whose text to change.}
+\item{\verb{node}}{The new text.}
+\item{\verb{column}}{\emph{undocumented
 }}
-\item{\verb{node}}{\emph{undocumented
+\item{\verb{text}}{\emph{undocumented
 }}
-\item{\verb{column}}{The column whose text to change.}
-\item{\verb{text}}{The new text.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

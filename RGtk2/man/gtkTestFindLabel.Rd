@@ -14,6 +14,6 @@ predetermined locales, see \code{gtkTestInit()} for more details.}
 \item{\verb{label.pattern}}{Shell-glob pattern to match a label string.}
 }
 \details{Since 2.14}
-\value{[\code{\link{GtkWidget}}]  a GtkLabel widget if any is found.}
+\value{[\code{\link{GtkWidget}}] a GtkLabel widget if any is found.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

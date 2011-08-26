@@ -47,8 +47,8 @@ doing it yourself - \code{\link{gtkWindowSetPosition}} will frequently
 handle the details for you.}
 \value{
 A list containing the following elements:
-\item{\verb{width}}{ return location for width, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{height}}{ return location for height, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{width}}{(out): return location for width, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{height}}{(out): return location for height, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

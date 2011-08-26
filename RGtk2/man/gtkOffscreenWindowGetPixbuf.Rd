@@ -8,6 +8,6 @@ needed.}
 \usage{gtkOffscreenWindowGetPixbuf(object)}
 \arguments{\item{\verb{object}}{the \code{\link{GtkOffscreenWindow}} contained widget.}}
 \details{Since 2.20}
-\value{[\code{\link{GdkPixbuf}}]  A \code{\link{GdkPixbuf}} pointer, or \code{NULL}.}
+\value{[\code{\link{GdkPixbuf}}] A \code{\link{GdkPixbuf}} pointer, or \code{NULL}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

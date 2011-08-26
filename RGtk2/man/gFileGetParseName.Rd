@@ -16,6 +16,6 @@ to UTF8 the pathname is used, otherwise the IRI is used
 (a form of URI that allows UTF8 characters unescaped).
   
 This call does no blocking i/o.}
-\value{[char]  a string containing the \code{\link{GFile}}'s parse name.}
+\value{[char] a string containing the \code{\link{GFile}}'s parse name.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

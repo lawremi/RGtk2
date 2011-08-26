@@ -9,7 +9,7 @@ See \code{\link{gtkDragSourceSet}}.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkToolPalette}}}
 \item{\verb{targets}}{the \verb{GtkToolPaletteDragTarget}s
-    which the widget should support}
+which the widget should support}
 }
 \details{Since 2.20}
 \author{Derived by RGtkGen from GTK+ documentation}

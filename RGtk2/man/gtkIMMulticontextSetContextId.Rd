@@ -5,7 +5,7 @@
 \usage{gtkIMMulticontextSetContextId(object, context.id)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkIMMulticontext}}}
-\item{\verb{context.id}}{the id to use }
+\item{\verb{context.id}}{the id to use}
 }
 \details{This causes the currently active slave of \code{context} to be
 replaced by the slave corresponding to the new context id.

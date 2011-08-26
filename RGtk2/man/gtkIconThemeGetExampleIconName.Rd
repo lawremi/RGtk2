@@ -7,6 +7,6 @@ a list of themes to the user.)}
 \usage{gtkIconThemeGetExampleIconName(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkIconTheme}}}}
 \details{Since 2.4}
-\value{[char]  the name of an example icon or \code{NULL}.}
+\value{[char] the name of an example icon or \code{NULL}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

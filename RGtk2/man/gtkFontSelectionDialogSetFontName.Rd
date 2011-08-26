@@ -8,6 +8,6 @@
 \item{\verb{fontname}}{a font name like "Helvetica 12" or "Times Bold 18"}
 }
 \value{[logical] \code{TRUE} if the font selected in \code{fsd} is now the
-    \code{fontname} specified, \code{FALSE} otherwise. }
+\code{fontname} specified, \code{FALSE} otherwise.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

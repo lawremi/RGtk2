@@ -9,9 +9,9 @@ Sets the data for a portion of a row.
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkPreview}}.}
 \item{\verb{data}}{the new data for the portion. It should contain
-       \code{w} bytes of data if the preview is of type
-       GTK_TYPE_GRAYSCALE, and 3*\code{w} bytes of data
-       if the preview is of type GTK_TYPE_COLOR.}
+\code{w} bytes of data if the preview is of type
+GTK_TYPE_GRAYSCALE, and 3*\code{w} bytes of data
+if the preview is of type GTK_TYPE_COLOR.}
 \item{\verb{y}}{the row to change.}
 \item{\verb{w}}{the number of pixels in the row to change.}
 }

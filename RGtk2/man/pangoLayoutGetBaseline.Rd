@@ -5,6 +5,6 @@
 \usage{pangoLayoutGetBaseline(object)}
 \arguments{\item{\verb{object}}{a \code{\link{PangoLayout}}}}
 \details{Since 1.22}
-\value{[integer]  baseline of first line, from top of \code{layout}.}
+\value{[integer] baseline of first line, from top of \code{layout}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

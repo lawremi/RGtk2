@@ -21,8 +21,8 @@ so be careful relying on ::response when using the
 so the first button in the list will be the leftmost button in the dialog.}
 \usage{gtkDialogNewWithButtons(title = NULL, parent = NULL, flags = 0, ..., show = TRUE)}
 \arguments{
-\item{\verb{title}}{ Title of the dialog, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{parent}}{ Transient parent of the dialog, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{title}}{Title of the dialog, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{parent}}{Transient parent of the dialog, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{flags}}{from \code{\link{GtkDialogFlags}}}
 \item{\verb{...}}{response ID for first button, then additional buttons, ending with \code{NULL}}
 }
@@ -41,6 +41,6 @@ dialog <- gtkDialog("My dialog", main_app_window,
                     "gtk-cancel", GtkResponseType["reject"])
 
 }}
-\value{[\code{\link{GtkWidget}}]  a new \code{\link{GtkDialog}}}
+\value{[\code{\link{GtkWidget}}] a new \code{\link{GtkDialog}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

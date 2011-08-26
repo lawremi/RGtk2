@@ -27,7 +27,7 @@ partial result will be returned, without an error.
 On error -1 is returned and \code{error} is set accordingly.}
 \value{
 A list containing the following elements:
-\item{retval}{[integer]  Number of bytes read, or -1 on error}
+\item{retval}{[integer] Number of bytes read, or -1 on error}
 \item{\verb{buffer}}{a buffer to read data into (which should be at least count bytes long).}
 \item{\verb{error}}{location to store the error occuring, or \code{NULL} to ignore}
 }

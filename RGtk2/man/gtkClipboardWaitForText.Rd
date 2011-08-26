@@ -8,9 +8,9 @@ timeouts, etc, may be dispatched during the wait.}
 \usage{gtkClipboardWaitForText(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkClipboard}}}}
 \value{[character]  or \code{NULL} if retrieving
-              the selection data failed. (This could happen
-              for various reasons, in particular if the
-              clipboard was empty or if the contents of the
-              clipboard could not be converted into text form.)}
+the selection data failed. (This could happen
+for various reasons, in particular if the
+clipboard was empty or if the contents of the
+clipboard could not be converted into text form.)}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -57,16 +57,11 @@
 }}
 \section{Convenient Construction}{\code{gtkItemFactory} is the equivalent of \code{\link{gtkItemFactoryNew}}.}
 \section{User Functions}{\describe{
-\item{\code{GtkPrintFunc(func.data, str)}}{
+\item{\code{GtkPrintFunc()}}{
 \emph{undocumented
 }
 
-\describe{
-\item{\code{func.data}}{\emph{undocumented
-}}
-\item{\code{str}}{\emph{undocumented
-}}
-}
+
 
 
 }
@@ -76,8 +71,8 @@ and \code{\link{GtkActionGroup}}.
 
 \describe{
 \item{\code{path}}{The id of the message. In \code{\link{GtkItemFactory}} this will be a path
-  from a \code{\link{GtkItemFactoryEntry}}, in \code{\link{GtkActionGroup}}, it will be a label
-  or tooltip from a \code{\link{GtkActionEntry}}.}
+from a \code{\link{GtkItemFactoryEntry}}, in \code{\link{GtkActionGroup}}, it will be a label
+or tooltip from a \code{\link{GtkActionEntry}}.}
 \item{\code{func.data}}{user data passed in when registering the function}
 }
 
@@ -92,33 +87,19 @@ and \code{\link{GtkActionGroup}}.
 
 
 }
-\item{\code{GtkItemFactoryCallback1(callback.data, callback.action, widget)}}{
+\item{\code{GtkItemFactoryCallback1()}}{
 \emph{undocumented
 }
 
-\describe{
-\item{\code{callback.data}}{\emph{undocumented
-}}
-\item{\code{callback.action}}{\emph{undocumented
-}}
-\item{\code{widget}}{\emph{undocumented
-}}
-}
+
 
 
 }
-\item{\code{GtkItemFactoryCallback2(widget, callback.data, callback.action)}}{
+\item{\code{GtkItemFactoryCallback2()}}{
 \emph{undocumented
 }
 
-\describe{
-\item{\code{widget}}{\emph{undocumented
-}}
-\item{\code{callback.data}}{\emph{undocumented
-}}
-\item{\code{callback.action}}{\emph{undocumented
-}}
-}
+
 
 
 }

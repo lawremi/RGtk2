@@ -6,6 +6,6 @@ returned.}
 \usage{gtkCellViewGetModel(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkCellView}}}}
 \details{Since 2.16}
-\value{[\code{\link{GtkTreeModel}}]  a \code{\link{GtkTreeModel}} used or \code{NULL}}
+\value{[\code{\link{GtkTreeModel}}] a \code{\link{GtkTreeModel}} used or \code{NULL}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

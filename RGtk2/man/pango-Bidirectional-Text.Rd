@@ -10,6 +10,12 @@
 \code{\link{pangoGetMirrorChar}(ch)}\cr
 \code{\link{pangoBidiTypeForUnichar}(ch)}\cr
 }
+\section{Hierarchy}{\preformatted{
+GEnum
+   +----PangoDirection
+GEnum
+   +----PangoBidiType
+}}
 \section{Detailed Description}{Pango supports bidirectional text (like Arabic and Hebrew) automatically.
 Some applications however, need some help to correctly handle bidirectional
 text.

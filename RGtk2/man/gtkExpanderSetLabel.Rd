@@ -5,7 +5,7 @@
 \usage{gtkExpanderSetLabel(object, label = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkExpander}}}
-\item{\verb{label}}{ a string. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{label}}{a string. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{This will also clear any previously set labels.
   Since 2.4}

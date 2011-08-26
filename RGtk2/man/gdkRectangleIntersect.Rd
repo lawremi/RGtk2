@@ -15,7 +15,7 @@ pass \code{NULL} for \code{dest}.}
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if the rectangles intersect.}
-\item{\verb{dest}}{ return location for the intersection of \code{src1} and \code{src2}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{dest}}{return location for the intersection of \code{src1} and \code{src2}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

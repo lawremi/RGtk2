@@ -11,7 +11,7 @@ and draws it onto the given drawable, \code{window}.
 \item{\verb{object}}{a \code{\link{GtkPreview}}.}
 \item{\verb{window}}{a window or pixmap.}
 \item{\verb{gc}}{The graphics context for the operation. Only the
-     clip mask for this GC matters.}
+clip mask for this GC matters.}
 \item{\verb{srcx}}{the x coordinate of the upper left corner in the source image.}
 \item{\verb{srcy}}{the y coordinate of the upper left corner in the source image.}
 \item{\verb{destx}}{the x coordinate of the upper left corner in the destination image.}

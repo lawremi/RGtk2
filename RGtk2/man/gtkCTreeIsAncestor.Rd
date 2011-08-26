@@ -7,8 +7,7 @@
 }
 \usage{gtkCTreeIsAncestor(object, node, child)}
 \arguments{
-\item{\verb{object}}{\emph{undocumented
-}}
+\item{\verb{object}}{True is \code{node} is an ancestor of \code{child}.}
 \item{\verb{node}}{\emph{undocumented
 }}
 \item{\verb{child}}{\emph{undocumented

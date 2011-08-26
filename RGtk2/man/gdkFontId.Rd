@@ -7,6 +7,6 @@ Returns the X Font ID for the given font.
 }
 \usage{gdkFontId(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GdkFont}}.}}
-\value{[integer]  the numeric X Font ID}
+\value{[integer] the numeric X Font ID}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

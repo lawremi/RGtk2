@@ -9,6 +9,6 @@ GTK_TREE_VIEW_COLUMN_FIXED.}
 \item{\verb{object}}{A \code{\link{GtkTreeView}}.}
 \item{\verb{column}}{The \code{\link{GtkTreeViewColumn}} to add.}
 }
-\value{[integer]  The number of columns in \code{tree.view} after appending.}
+\value{[integer] The number of columns in \code{tree.view} after appending.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

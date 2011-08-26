@@ -7,7 +7,7 @@ activates that accelerator.}
 \usage{gtkAccelGroupsActivate(object, accel.key, accel.mods)}
 \arguments{
 \item{\verb{object}}{the \code{\link{GObject}}, usually a \code{\link{GtkWindow}}, on which
-                to activate the accelerator.}
+to activate the accelerator.}
 \item{\verb{accel.key}}{accelerator keyval from a key event}
 \item{\verb{accel.mods}}{keyboard state mask from a key event}
 }

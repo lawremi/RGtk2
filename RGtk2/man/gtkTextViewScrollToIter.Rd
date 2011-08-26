@@ -13,8 +13,8 @@ screen for purposes of this function is reduced by a margin of size
 \item{\verb{object}}{a \code{\link{GtkTextView}}}
 \item{\verb{iter}}{a \code{\link{GtkTextIter}}}
 \item{\verb{within.margin}}{margin as a [0.0,0.5) fraction of screen size}
-\item{\verb{use.align}}{whether to use alignment arguments (if \code{FALSE}, 
-   just get the mark onscreen)}
+\item{\verb{use.align}}{whether to use alignment arguments (if \code{FALSE},
+just get the mark onscreen)}
 \item{\verb{xalign}}{horizontal alignment of mark within visible area}
 \item{\verb{yalign}}{vertical alignment of mark within visible area}
 }

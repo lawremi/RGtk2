@@ -10,6 +10,6 @@ the return value will be \code{GTK_IMAGE_EMPTY}.}
 \item{\verb{icon.pos}}{Icon position}
 }
 \details{Since 2.16}
-\value{[\code{\link{GtkImageType}}]  image representation being used}
+\value{[\code{\link{GtkImageType}}] image representation being used}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -7,7 +7,7 @@ area of the assistant when \code{page} is the current page.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkAssistant}}}
 \item{\verb{page}}{a page of \code{assistant}}
-\item{\verb{pixbuf}}{ the new header image \code{page}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{pixbuf}}{the new header image \code{page}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{Since 2.10}
 \author{Derived by RGtkGen from GTK+ documentation}

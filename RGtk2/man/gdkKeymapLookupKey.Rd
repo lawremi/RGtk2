@@ -11,6 +11,6 @@ the same as the current keyboard state.}
 \item{\verb{object}}{a \code{\link{GdkKeymap}} or \code{NULL} to use the default keymap}
 \item{\verb{key}}{a \code{\link{GdkKeymapKey}} with keycode, group, and level initialized}
 }
-\value{[numeric]  a keyval, or 0 if none was mapped to the given \code{key}}
+\value{[numeric] a keyval, or 0 if none was mapped to the given \code{key}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

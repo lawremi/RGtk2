@@ -7,7 +7,7 @@ vector that the X coordinate is mapped to.}
 \usage{pangoMatrixGetFontScaleFactor(object)}
 \arguments{\item{\verb{object}}{a \code{\link{PangoMatrix}}, may be \code{NULL}}}
 \details{Since 1.12}
-\value{[numeric]  the scale factor of \code{matrix} on the height of the font,
+\value{[numeric] the scale factor of \code{matrix} on the height of the font,
 or 1.0 if \code{matrix} is \code{NULL}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

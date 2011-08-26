@@ -14,7 +14,7 @@ the \code{\link{gtkShowUri}} call. If timestamp is not known you can take
 \code{GDK_CURRENT_TIME}.}
 \usage{gtkShowUri(screen = NULL, uri, timestamp, .errwarn = TRUE)}
 \arguments{
-\item{\verb{screen}}{ screen to show the uri on or \code{NULL} for the default screen. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{screen}}{screen to show the uri on or \code{NULL} for the default screen. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{uri}}{the uri to show}
 \item{\verb{timestamp}}{a timestamp to prevent focus stealing.}
 \item{.errwarn}{Whether to issue a warning on error or fail silently}

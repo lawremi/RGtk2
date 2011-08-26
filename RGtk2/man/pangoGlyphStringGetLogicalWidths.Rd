@@ -15,9 +15,9 @@ cluster is divided equally among the characters.}
 \value{
 A list containing the following elements:
 \item{\verb{logical.widths}}{a list whose length is the number of characters in
-                 text (equal to g_utf8_strlen (text, length) unless
-                 text has NUL bytes)
-                 to be filled in with the resulting character widths.}
+text (equal to g_utf8_strlen (text, length) unless
+text has NUL bytes)
+to be filled in with the resulting character widths.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

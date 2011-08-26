@@ -12,6 +12,6 @@ is 0, the function does nothing and returns \code{FALSE}.}
 \item{\verb{object}}{an iterator}
 \item{\verb{count}}{number of characters to move, may be negative}
 }
-\value{[logical]  whether \code{iter} moved and is dereferenceable}
+\value{[logical] whether \code{iter} moved and is dereferenceable}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

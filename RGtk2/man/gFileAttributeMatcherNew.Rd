@@ -21,6 +21,6 @@ Examples of strings to use:
 "standard::type,unix::*" \tab matches the type key in the standard namespace and
 all keys in the unix namespace. \cr
 }}
-\value{[\code{\link{GFileAttributeMatcher}}]  a \code{\link{GFileAttributeMatcher}}.}
+\value{[\code{\link{GFileAttributeMatcher}}] a \code{\link{GFileAttributeMatcher}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

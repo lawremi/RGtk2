@@ -9,6 +9,6 @@ then 0 is returned.}
 \item{\verb{object}}{A \code{\link{GtkTreePath}}.}
 \item{\verb{b}}{A \code{\link{GtkTreePath}} to compare with.}
 }
-\value{[integer]  The relative positions of \code{a} and \code{b}}
+\value{[integer] The relative positions of \code{a} and \code{b}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

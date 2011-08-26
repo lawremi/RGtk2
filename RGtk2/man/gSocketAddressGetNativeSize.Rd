@@ -7,7 +7,7 @@ You can use this to allocate memory to pass to
 \usage{gSocketAddressGetNativeSize(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GSocketAddress}}}}
 \details{Since 2.22}
-\value{[integer]  the size of the native \verb{structsockaddr} that
-    \code{address} represents}
+\value{[integer] the size of the native \verb{structsockaddr} that
+\code{address} represents}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

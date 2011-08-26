@@ -10,7 +10,7 @@ Use \code{\link{gtkDragSourceSetIconPixbuf}} instead.}
 \item{\verb{object}}{a \code{\link{GtkWidget}}}
 \item{\verb{colormap}}{the colormap of the icon}
 \item{\verb{pixmap}}{the image data for the icon}
-\item{\verb{mask}}{ the transparency mask for an image. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{mask}}{the transparency mask for an image. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -14,7 +14,7 @@ Finishes an asynchronous eject operation started by
 }
 \value{
 A list containing the following elements:
-\item{retval}{[logical] \code{TRUE} if the \code{file} was ejected successfully. \code{FALSE} 
+\item{retval}{[logical] \code{TRUE} if the \code{file} was ejected successfully. \code{FALSE}
 otherwise.}
 \item{\verb{error}}{a \code{\link{GError}}, or \code{NULL}}
 }

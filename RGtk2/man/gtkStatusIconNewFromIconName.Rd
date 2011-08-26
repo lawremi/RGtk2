@@ -7,6 +7,6 @@ appropriately.}
 \usage{gtkStatusIconNewFromIconName(icon.name)}
 \arguments{\item{\verb{icon.name}}{an icon name}}
 \details{Since 2.10}
-\value{[\code{\link{GtkStatusIcon}}]  a new \code{\link{GtkStatusIcon}}}
+\value{[\code{\link{GtkStatusIcon}}] a new \code{\link{GtkStatusIcon}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

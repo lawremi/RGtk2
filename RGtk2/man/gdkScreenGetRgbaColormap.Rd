@@ -16,7 +16,7 @@ must be running to provide appropriate display.}
 For setting an overall opacity for a top-level window, see
 \code{\link{gdkWindowSetOpacity}}.
   Since 2.8}
-\value{[\code{\link{GdkColormap}}]  a colormap to use for windows with
-    an alpha channel or \code{NULL} if the capability is not available. \emph{[  \acronym{transfer none}  ]}}
+\value{[\code{\link{GdkColormap}}] a colormap to use for windows with
+an alpha channel or \code{NULL} if the capability is not available. \emph{[  \acronym{transfer none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

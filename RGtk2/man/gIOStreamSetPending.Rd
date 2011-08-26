@@ -14,7 +14,7 @@ already set or \code{stream} is closed, it will return \code{FALSE} and set
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if pending was previously unset and is now set.}
 \item{\verb{error}}{a \code{\link{GError}} location to store the error occuring, or \code{NULL} to
-    ignore}
+ignore}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

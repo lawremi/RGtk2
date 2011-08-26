@@ -18,7 +18,7 @@ triggering the cancellable object from another thread. If the operation
 was cancelled, the error \code{G_IO_ERROR_CANCELLED} will be returned.}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GFileAttributeInfoList}}]  a \code{\link{GFileAttributeInfoList}} describing the settable attributes.
+\item{retval}{[\code{\link{GFileAttributeInfoList}}] a \code{\link{GFileAttributeInfoList}} describing the settable attributes.
 When you are done with it,}
 \item{\verb{error}}{a \code{\link{GError}}, or \code{NULL}}
 }

@@ -8,7 +8,7 @@ describing how the child should be added.}
 \item{\verb{object}}{a \code{\link{GtkBuildable}}}
 \item{\verb{builder}}{a \code{\link{GtkBuilder}}}
 \item{\verb{child}}{child to add}
-\item{\verb{type}}{ kind of child or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{type}}{kind of child or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{Since 2.12}
 \author{Derived by RGtkGen from GTK+ documentation}

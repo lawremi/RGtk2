@@ -17,7 +17,7 @@ and \code{end} in the rich text format represented by \code{format}.}
   Since 2.10}
 \value{
 A list containing the following elements:
-\item{retval}{[raw]  the serialized data, encoded as \code{format}}
+\item{retval}{[raw] the serialized data, encoded as \code{format}}
 \item{\verb{length}}{return location for the length of the serialized data}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -7,6 +7,6 @@ registered as private.}
 \arguments{\item{\verb{object}}{a \code{\link{GtkRecentChooser}}}}
 \details{Since 2.10}
 \value{[logical] \code{TRUE} if the recent chooser should show private items,
-  \code{FALSE} otherwise.}
+\code{FALSE} otherwise.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -97,11 +97,11 @@ it from being inserted entirely.
 \item{\code{editable}}{the object which received the signal}
 \item{\code{new.text}}{the new text to insert}
 \item{\code{new.text.length}}{the length of the new text, in bytes,
-    or -1 if new_text is nul-terminated}
+or -1 if new_text is nul-terminated}
 \item{\code{position}}{the position, in characters, at which to insert
-    the new text. this is an in-out parameter.
-    After the signal emission is finished, it should
-    point after the newly inserted text.}
+the new text. this is an in-out parameter.
+After the signal emission is finished, it should
+point after the newly inserted text.}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 

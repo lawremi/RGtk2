@@ -8,12 +8,12 @@ signal is emitted with response IDs from \code{\link{GtkResponseType}}. See
 \code{\link{GtkDialog}} for more details.}
 \usage{gtkMessageDialogNew(parent = NULL, flags, type, buttons, ..., show = TRUE)}
 \arguments{
-\item{\verb{parent}}{ transient parent, or \code{NULL} for none. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{parent}}{transient parent, or \code{NULL} for none. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{flags}}{flags}
 \item{\verb{type}}{type of message}
 \item{\verb{buttons}}{set of buttons to use}
 \item{\verb{...}}{arguments for \code{message.format}}
 }
-\value{[\code{\link{GtkWidget}}]  a new \code{\link{GtkMessageDialog}}. \emph{[  \acronym{transfer none}  ]}}
+\value{[\code{\link{GtkWidget}}] a new \code{\link{GtkMessageDialog}}. \emph{[  \acronym{transfer none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

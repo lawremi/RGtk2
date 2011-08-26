@@ -6,7 +6,7 @@ with.}
 \usage{gtkIconSourceSetSize(object, size)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkIconSource}}}
-\item{\verb{size}}{ icon size this source applies to. \emph{[type int]}}
+\item{\verb{size}}{icon size this source applies to. \emph{[  \acronym{type}   int]}}
 }
 \details{Setting the icon size on an icon source makes no difference
 if the size is wildcarded. Therefore, you should usually

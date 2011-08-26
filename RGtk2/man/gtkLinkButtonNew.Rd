@@ -5,6 +5,6 @@
 \usage{gtkLinkButtonNew(uri)}
 \arguments{\item{\verb{uri}}{a valid URI}}
 \details{Since 2.10}
-\value{[\code{\link{GtkWidget}}]  a new link button widget.}
+\value{[\code{\link{GtkWidget}}] a new link button widget.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

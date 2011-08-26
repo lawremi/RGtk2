@@ -1,7 +1,6 @@
-\alias{gtk-GtkPaperSize}
 \alias{GtkPaperSize}
 \alias{GtkUnit}
-\name{gtk-GtkPaperSize}
+\name{GtkPaperSize}
 \title{GtkPaperSize}
 \description{Support for named paper sizes}
 \section{Methods and Functions}{
@@ -26,6 +25,8 @@
 \code{\link{gtkPaperSizeNewFromKeyFile}(key.file, group.name, .errwarn = TRUE)}\cr
 \code{\link{gtkPaperSizeToKeyFile}(object, key.file, group.name)}\cr
 }
+\section{Hierarchy}{\preformatted{GBoxed
+   +----GtkPaperSize}}
 \section{Detailed Description}{GtkPaperSize handles paper sizes. It uses the standard called
 "PWG 5101.1-2002 PWG: Standard for Media Standardized Names"
 
@@ -59,7 +60,7 @@ Printing support has been added in GTK+ 2.10.}
 }
 
 }}}
-\references{\url{http://library.gnome.org/devel//gtk/gtk-GtkPaperSize.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkPaperSize.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{\code{\link{GtkPageSetup}}}
 \keyword{internal}

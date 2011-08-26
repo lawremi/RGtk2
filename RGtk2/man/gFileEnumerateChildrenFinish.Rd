@@ -11,7 +11,7 @@ See \code{\link{gFileEnumerateChildrenAsync}}.}
 }
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GFileEnumerator}}]  a \code{\link{GFileEnumerator}} or \code{NULL} if an error occurred.}
+\item{retval}{[\code{\link{GFileEnumerator}}] a \code{\link{GFileEnumerator}} or \code{NULL} if an error occurred.}
 \item{\verb{error}}{a \code{\link{GError}}.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

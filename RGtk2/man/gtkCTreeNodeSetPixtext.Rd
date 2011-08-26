@@ -7,8 +7,7 @@ FIXME
 }
 \usage{gtkCTreeNodeSetPixtext(object, node, column, text, spacing, pixmap, mask = NULL)}
 \arguments{
-\item{\verb{object}}{\emph{undocumented
-}}
+\item{\verb{object}}{. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{node}}{\emph{undocumented
 }}
 \item{\verb{column}}{\emph{undocumented
@@ -19,7 +18,8 @@ FIXME
 }}
 \item{\verb{pixmap}}{\emph{undocumented
 }}
-\item{\verb{mask}}{. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{mask}}{\emph{undocumented
+}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

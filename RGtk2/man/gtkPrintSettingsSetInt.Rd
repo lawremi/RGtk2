@@ -6,7 +6,7 @@
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkPrintSettings}}}
 \item{\verb{key}}{a key}
-\item{\verb{value}}{an integer }
+\item{\verb{value}}{an integer}
 }
 \details{Since 2.10}
 \author{Derived by RGtkGen from GTK+ documentation}

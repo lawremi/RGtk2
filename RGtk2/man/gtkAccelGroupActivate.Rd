@@ -9,7 +9,7 @@ activates it.}
 \item{\verb{object}}{a \code{\link{GtkAccelGroup}}}
 \item{\verb{accel.quark}}{the quark for the accelerator name}
 \item{\verb{acceleratable}}{the \code{\link{GObject}}, usually a \code{\link{GtkWindow}}, on which
-                to activate the accelerator.}
+to activate the accelerator.}
 \item{\verb{accel.key}}{accelerator keyval from a key event}
 \item{\verb{accel.mods}}{keyboard state mask from a key event}
 }

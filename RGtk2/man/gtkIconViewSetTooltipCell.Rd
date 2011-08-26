@@ -8,7 +8,7 @@ the item pointed to by \code{path}. See also \code{\link{gtkTooltipSetTipArea}}.
 \item{\verb{object}}{a \code{\link{GtkIconView}}}
 \item{\verb{tooltip}}{a \code{\link{GtkTooltip}}}
 \item{\verb{path}}{a \code{\link{GtkTreePath}}}
-\item{\verb{cell}}{ a \code{\link{GtkCellRenderer}} or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{cell}}{a \code{\link{GtkCellRenderer}} or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{See also \code{\link{gtkIconViewSetTooltipColumn}} for a simpler alternative.
   Since 2.12}

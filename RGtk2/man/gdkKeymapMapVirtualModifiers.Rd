@@ -12,9 +12,9 @@ accelerators.
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if no virtual modifiers were mapped to the
-    same non-virtual modifier. Note that \code{FALSE} is also returned
-    if a virtual modifier is mapped to a non-virtual modifier that
-    was already set in \code{state}.}
+same non-virtual modifier. Note that \code{FALSE} is also returned
+if a virtual modifier is mapped to a non-virtual modifier that
+was already set in \code{state}.}
 \item{\verb{state}}{pointer to the modifier state to map}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

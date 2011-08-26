@@ -6,7 +6,7 @@ used for the mnemonic accelerator key.}
 \usage{gtkMenuItemSetUseUnderline(object, setting)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkMenuItem}}}
-\item{\verb{setting}}{\code{TRUE} if underlines in the text indicate mnemonics  }
+\item{\verb{setting}}{\code{TRUE} if underlines in the text indicate mnemonics}
 }
 \details{Since 2.16}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -10,8 +10,8 @@
 }
 \value{
 A list containing the following elements:
-\item{retval}{[integer]  a \verb{integer} of the number of bytes spliced.}
-\item{\verb{error}}{a \code{\link{GError}} location to store the error occuring, or \code{NULL} to 
+\item{retval}{[integer] a \verb{integer} of the number of bytes spliced.}
+\item{\verb{error}}{a \code{\link{GError}} location to store the error occuring, or \code{NULL} to
 ignore.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

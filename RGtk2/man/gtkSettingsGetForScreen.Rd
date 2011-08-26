@@ -5,6 +5,6 @@
 \usage{gtkSettingsGetForScreen(screen)}
 \arguments{\item{\verb{screen}}{a \code{\link{GdkScreen}}.}}
 \details{Since 2.2}
-\value{[\code{\link{GtkSettings}}]  a \code{\link{GtkSettings}} object.}
+\value{[\code{\link{GtkSettings}}] a \code{\link{GtkSettings}} object.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

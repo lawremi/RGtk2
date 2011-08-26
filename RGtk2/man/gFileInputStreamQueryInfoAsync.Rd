@@ -9,9 +9,9 @@ to get the result of the operation.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GFileInputStream}}.}
 \item{\verb{attributes}}{a file attribute query string.}
-\item{\verb{io.priority}}{the I/O priority 
-    of the request.}
-\item{\verb{cancellable}}{optional \code{\link{GCancellable}} object, \code{NULL} to ignore. }
+\item{\verb{io.priority}}{the I/O priority
+of the request.}
+\item{\verb{cancellable}}{optional \code{\link{GCancellable}} object, \code{NULL} to ignore.}
 \item{\verb{callback}}{callback to call when the request is satisfied}
 \item{\verb{user.data}}{the data to pass to callback function}
 }

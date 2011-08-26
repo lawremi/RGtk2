@@ -5,7 +5,7 @@
 \usage{gtkPrintOperationSetDefaultPageSetup(object, default.page.setup = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkPrintOperation}}}
-\item{\verb{default.page.setup}}{ a \code{\link{GtkPageSetup}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{default.page.setup}}{a \code{\link{GtkPageSetup}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{This page setup will be used by \code{\link{gtkPrintOperationRun}},
 but it can be overridden on a per-page basis by connecting

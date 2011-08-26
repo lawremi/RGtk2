@@ -7,6 +7,6 @@ over grayscale or fixed-colormap visuals. The return value should not
 be freed. \code{NULL} may be returned if no visual supports \code{depth}.}
 \usage{gdkVisualGetBestWithDepth(depth)}
 \arguments{\item{\verb{depth}}{a bit depth}}
-\value{[\code{\link{GdkVisual}}]  best visual for the given depth. \emph{[  \acronym{transfer none}  ]}}
+\value{[\code{\link{GdkVisual}}] best visual for the given depth. \emph{[  \acronym{transfer none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

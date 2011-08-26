@@ -15,6 +15,6 @@ of message and if so deserialize it into a \code{\link{GSocketControlMessage}}.}
 \details{If there is no implementation for this kind of control message, \code{NULL}
 will be returned.
   Since 2.22}
-\value{[\code{\link{GSocketControlMessage}}]  the deserialized message or \code{NULL}}
+\value{[\code{\link{GSocketControlMessage}}] the deserialized message or \code{NULL}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

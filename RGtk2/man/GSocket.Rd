@@ -42,8 +42,16 @@
 \code{\link{gSocketSpeaksIpv4}(object)}\cr
 \code{gSocket(family, type, protocol, .errwarn = TRUE)}
 }
-\section{Hierarchy}{\preformatted{GObject
-   +----GSocket}}
+\section{Hierarchy}{\preformatted{
+GObject
+   +----GSocket
+GEnum
+   +----GSocketType
+GEnum
+   +----GSocketProtocol
+GEnum
+   +----GSocketMsgFlags
+}}
 \section{Interfaces}{GSocket implements
  \code{\link{GInitable}}.}
 \section{Detailed Description}{A \code{\link{GSocket}} is a low-level networking primitive. It is a more or less
@@ -142,7 +150,7 @@ returned by \code{\link{gSocketCreateSource}}.
 \item{\code{user.data}}{data passed in by the user.}
 }
 
-\emph{Returns:} [logical]  it should return \code{FALSE} if the source should be removed.
+\emph{Returns:} [logical] it should return \code{FALSE} if the source should be removed.
 
 }}}
 \section{Properties}{\describe{

@@ -89,8 +89,20 @@
 \code{\link{pangoLayoutLineGetXRanges}(object, start.index, end.index)}\cr
 \code{pangoLayout(context)}
 }
-\section{Hierarchy}{\preformatted{GObject
-   +----PangoLayout}}
+\section{Hierarchy}{\preformatted{
+GObject
+   +----PangoLayout
+GBoxed
+   +----PangoLayoutIter
+GEnum
+   +----PangoWrapMode
+GEnum
+   +----PangoEllipsizeMode
+GEnum
+   +----PangoAlignment
+GBoxed
+   +----PangoLayoutLine
+}}
 \section{Detailed Description}{While complete access to the layout capabilities of Pango is provided
 using the detailed interfaces for itemization and shaping, using
 that functionality directly involves writing a fairly large amount
@@ -135,12 +147,12 @@ Routines for rendering PangoLayout objects are provided in
 code specific to each rendering system.
 
 \describe{
-\item{\verb{layout}}{[\code{\link{PangoLayout}}] the parent layout for this line}
-\item{\verb{startIndex}}{[integer] the start of the line as byte index into \code{layout->text}}
-\item{\verb{length}}{[integer] the length of the line in bytes}
-\item{\verb{runs}}{[list] a list containing the runs of the line in visual order}
-\item{\verb{isParagraphStart}}{[numeric] \code{TRUE} if this is the first line of the paragraph}
-\item{\verb{resolvedDir}}{[numeric] the resolved \code{\link{PangoDirection}} of the line}
+\item{\verb{layout}}{[\code{\link{PangoLayout}}] }
+\item{\verb{startIndex}}{[integer] }
+\item{\verb{length}}{[integer] }
+\item{\verb{runs}}{[list] }
+\item{\verb{isParagraphStart}}{[numeric] }
+\item{\verb{resolvedDir}}{[numeric] }
 }
 
 }

@@ -7,6 +7,6 @@ instead.}
 \usage{gtkToolShellGetTextAlignment(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkToolShell}}}}
 \details{Since 2.14}
-\value{[numeric]  the current text alignment of \code{shell}}
+\value{[numeric] the current text alignment of \code{shell}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

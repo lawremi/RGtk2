@@ -9,7 +9,7 @@ determined by the "stock_id" property is used as label. If
 \usage{gtkToolButtonSetLabelWidget(object, label.widget = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkToolButton}}}
-\item{\verb{label.widget}}{ the widget used as label, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{label.widget}}{the widget used as label, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{Since 2.4}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -5,6 +5,6 @@
 \usage{pangoFontMetricsGetUnderlineThickness(object)}
 \arguments{\item{\verb{object}}{a \code{\link{PangoFontMetrics}} structure}}
 \details{Since 1.6}
-\value{[integer]  the suggested underline thickness, in Pango units.}
+\value{[integer] the suggested underline thickness, in Pango units.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

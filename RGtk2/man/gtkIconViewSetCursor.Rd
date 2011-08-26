@@ -10,7 +10,7 @@ started in the specified cell.  }
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkIconView}}}
 \item{\verb{path}}{A \code{\link{GtkTreePath}}}
-\item{\verb{cell}}{ One of the cell renderers of \code{icon.view}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{cell}}{One of the cell renderers of \code{icon.view}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{start.editing}}{\code{TRUE} if the specified cell should start being edited.}
 }
 \details{This function is often followed by \code{gtk_widget_grab_focus 

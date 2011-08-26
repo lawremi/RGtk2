@@ -15,8 +15,8 @@ gap in one side.
 \item{\verb{shadow.type}}{type of shadow to draw}
 \item{\verb{x}}{x origin of the rectangle}
 \item{\verb{y}}{y origin of the rectangle}
-\item{\verb{width}}{width of the rectangle }
-\item{\verb{height}}{width of the rectangle }
+\item{\verb{width}}{width of the rectangle}
+\item{\verb{height}}{width of the rectangle}
 \item{\verb{gap.side}}{side in which to leave the gap}
 \item{\verb{gap.x}}{starting position of the gap}
 \item{\verb{gap.width}}{width of the gap}

@@ -9,8 +9,8 @@ width and other aspects.}
 \value{
 A list containing the following elements:
 \item{\verb{faces}}{location to store a list of pointers to \code{\link{PangoFontFace}}
-  objects, or \code{NULL}. This list should be freed with \code{gFree()}
-  when it is no longer needed.}
+objects, or \code{NULL}. This list should be freed with \code{gFree()}
+when it is no longer needed.}
 \item{\verb{n.faces}}{location to store number of elements in \code{faces}.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

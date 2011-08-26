@@ -5,7 +5,7 @@
 \usage{pangoMatrixCopy(object)}
 \arguments{\item{\verb{object}}{a \code{\link{PangoMatrix}}, may be \code{NULL}}}
 \details{Since 1.6}
-\value{[\code{\link{PangoMatrix}}]  the newly allocated \code{\link{PangoMatrix}}, or \code{NULL} if
-              \code{matrix} was \code{NULL}.}
+\value{[\code{\link{PangoMatrix}}] the newly allocated \code{\link{PangoMatrix}}, or \code{NULL} if
+\code{matrix} was \code{NULL}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

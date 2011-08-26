@@ -8,7 +8,7 @@ as opposed to the version available at compile-time.}
 \details{A version number can be encoded into an integer using
 \code{pangoVersionEncode()}.
   Since 1.16}
-\value{[integer]  The encoded version of Pango library
-  available at run time.}
+\value{[integer] The encoded version of Pango library
+available at run time.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

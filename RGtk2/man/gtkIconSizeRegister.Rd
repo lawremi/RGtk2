@@ -9,6 +9,6 @@ etc. Returns the integer value for the size.}
 \item{\verb{width}}{the icon width}
 \item{\verb{height}}{the icon height}
 }
-\value{[\code{\link{GtkIconSize}}]  integer value representing the size. \emph{[type int]}}
+\value{[\code{\link{GtkIconSize}}] integer value representing the size. \emph{[  \acronym{type}   int]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

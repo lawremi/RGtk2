@@ -12,6 +12,14 @@
 \code{\link{gFileAttributeInfoListLookup}(object, name)}\cr
 \code{\link{gFileAttributeInfoListAdd}(object, name, type, flags = "G_FILE_ATTRIBUTE_INFO_NONE")}\cr
 }
+\section{Hierarchy}{\preformatted{
+GEnum
+   +----GFileAttributeType
+GFlags
+   +----GFileAttributeInfoFlags
+GEnum
+   +----GFileAttributeStatus
+}}
 \section{Detailed Description}{File attributes in GIO consist of a list of key-value pairs. 
   
 Keys are strings that contain a key namespace and a key name, separated

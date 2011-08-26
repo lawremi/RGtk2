@@ -8,6 +8,6 @@ already at the end of the buffer.}
 \usage{gtkTextIterForwardVisibleLine(object)}
 \arguments{\item{\verb{object}}{an iterator}}
 \details{Since 2.8}
-\value{[logical]  whether \code{iter} can be dereferenced}
+\value{[logical] whether \code{iter} can be dereferenced}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

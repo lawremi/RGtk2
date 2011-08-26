@@ -5,6 +5,6 @@
 \usage{gdkScreenGetSystemColormap(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GdkScreen}}}}
 \details{Since 2.2}
-\value{[\code{\link{GdkColormap}}]  the default colormap for \code{screen}. \emph{[  \acronym{transfer none}  ]}}
+\value{[\code{\link{GdkColormap}}] the default colormap for \code{screen}. \emph{[  \acronym{transfer none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

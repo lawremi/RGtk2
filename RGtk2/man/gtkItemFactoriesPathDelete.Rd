@@ -8,8 +8,8 @@ Deletes all widgets constructed from the specified path.
 \usage{gtkItemFactoriesPathDelete(ifactory.path, path)}
 \arguments{
 \item{\verb{ifactory.path}}{a factory path to prepend to \code{path}. May be \code{NULL} if \code{path}
-  starts with a factory path}
-\item{\verb{path}}{a path }
+starts with a factory path}
+\item{\verb{path}}{a path}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

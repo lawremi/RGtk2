@@ -5,6 +5,6 @@
 \usage{pangoContextGetFontMap(object)}
 \arguments{\item{\verb{object}}{a \code{\link{PangoContext}}}}
 \details{Since 1.6}
-\value{[\code{\link{PangoFontMap}}]  the font map for the \code{\link{PangoContext}}.}
+\value{[\code{\link{PangoFontMap}}] the font map for the \code{\link{PangoContext}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -8,7 +8,7 @@ this method sets \verb{"reorderable"} to \code{FALSE}.}
 \item{\verb{object}}{a \code{\link{GtkTreeView}}}
 \item{\verb{targets}}{the table of targets that the drag will support}
 \item{\verb{actions}}{the bitmask of possible actions for a drag from this
-   widget}
+widget}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

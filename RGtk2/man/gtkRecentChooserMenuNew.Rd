@@ -14,6 +14,6 @@ This widget creates its own \code{\link{GtkRecentManager}} object.  See the
 \code{\link{gtkRecentChooserMenuNewForManager}} function to know how to create
 a \code{\link{GtkRecentChooserMenu}} widget bound to another \code{\link{GtkRecentManager}} object.
   Since 2.10}
-\value{[\code{\link{GtkWidget}}]  a new \code{\link{GtkRecentChooserMenu}}}
+\value{[\code{\link{GtkWidget}}] a new \code{\link{GtkRecentChooserMenu}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -138,10 +138,10 @@ be used by applications and should be wrapped by language bindings.
 
 \describe{
 \item{\code{status.icon}}{the object which received the signal}
-\item{\code{button}}{the button that was pressed, or 0 if the 
-  signal is not emitted in response to a button press event}
+\item{\code{button}}{the button that was pressed, or 0 if the
+signal is not emitted in response to a button press event}
 \item{\code{activate.time}}{the timestamp of the event that
-  triggered the signal emission}
+triggered the signal emission}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
@@ -168,9 +168,9 @@ For plain text tooltips, use \verb{"tooltip-text"} in preference.
 \describe{
 \item{\code{status.icon}}{the object which received the signal}
 \item{\code{x}}{the x coordinate of the cursor position where the request has been
-    emitted, relative to \code{status.icon}}
+emitted, relative to \code{status.icon}}
 \item{\code{y}}{the y coordinate of the cursor position where the request has been
-    emitted, relative to \code{status.icon}}
+emitted, relative to \code{status.icon}}
 \item{\code{keyboard.mode}}{\code{TRUE} if the tooltip was trigged using the keyboard}
 \item{\code{tooltip}}{a \code{\link{GtkTooltip}}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
@@ -192,8 +192,8 @@ Whether this event is emitted is platform-dependent.
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event. 
-  \code{FALSE} to propagate the event further.
+\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the event.
+\code{FALSE} to propagate the event further.
 
 }
 \item{\code{size-changed(status.icon, size, user.data)}}{

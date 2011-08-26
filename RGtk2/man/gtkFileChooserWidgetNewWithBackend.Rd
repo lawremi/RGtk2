@@ -15,6 +15,6 @@ custom windows and it is the same widget that is used by
 \item{\verb{backend}}{The name of the specific filesystem backend to use.}
 }
 \details{Since 2.4}
-\value{[\code{\link{GtkWidget}}]  a new \code{\link{GtkFileChooserWidget}}}
+\value{[\code{\link{GtkWidget}}] a new \code{\link{GtkFileChooserWidget}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

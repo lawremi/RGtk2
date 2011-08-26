@@ -8,6 +8,6 @@ or \code{\link{gtkIconThemeGetForScreen}} rather than creating
 a new icon theme object for scratch.}
 \usage{gtkIconThemeNew()}
 \details{Since 2.4}
-\value{[\code{\link{GtkIconTheme}}]  the newly created \code{\link{GtkIconTheme}} object.}
+\value{[\code{\link{GtkIconTheme}}] the newly created \code{\link{GtkIconTheme}} object.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

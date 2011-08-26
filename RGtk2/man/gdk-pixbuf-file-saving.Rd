@@ -4,8 +4,6 @@
 \title{File saving}
 \description{Saving a pixbuf to a file.}
 \section{Methods and Functions}{
-\code{\link{gdkPixbufSavev}(object, filename, type, option.keys, option.values, .errwarn = TRUE)}\cr
-\code{\link{gdkPixbufSave}(object, filename, type, ..., .errwarn = TRUE)}\cr
 \code{\link{gdkPixbufSaveToCallback}(object, save.func, user.data, type, ..., .errwarn = TRUE)}\cr
 \code{\link{gdkPixbufSaveToCallbackv}(object, save.func, user.data, type, option.keys, option.values, .errwarn = TRUE)}\cr
 \code{\link{gdkPixbufSaveToBuffer}(object, type, ..., .errwarn = TRUE)}\cr

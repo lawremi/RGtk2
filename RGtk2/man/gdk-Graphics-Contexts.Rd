@@ -74,9 +74,9 @@ to create or modify a graphics context.
 
 \describe{
 \item{\code{foreground}}{the foreground color. Note that \code{\link{gdkGCGetValues}}
-  only sets the pixel value.}
+only sets the pixel value.}
 \item{\code{background}}{the background color. Note that \code{\link{gdkGCGetValues}}
-  only sets the pixel value.}
+only sets the pixel value.}
 \item{\code{font}}{the default font.}
 \item{\code{function}}{the bitwise operation used when drawing.}
 \item{\code{fill}}{the fill style.}

@@ -5,7 +5,7 @@
 \usage{gdkEventHandlerSet(func, data)}
 \arguments{
 \item{\verb{func}}{the function to call to handle events from GDK.}
-\item{\verb{data}}{user data to pass to the function. }
+\item{\verb{data}}{user data to pass to the function.}
 }
 \details{Note that GTK+ uses this to install its own event handler, so it is
 usually not useful for GTK+ applications. (Although an application

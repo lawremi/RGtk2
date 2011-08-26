@@ -8,7 +8,7 @@
 \item{\verb{object}}{the action group}
 \item{\verb{entries}}{a list of radio action descriptions}
 \item{\verb{value}}{the value of the action to activate initially, or -1 if
-  no action should be activated}
+no action should be activated}
 \item{\verb{on.change}}{the callback to connect to the changed signal}
 \item{\verb{user.data}}{data to pass to the action callbacks}
 }

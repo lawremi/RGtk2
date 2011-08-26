@@ -650,7 +650,7 @@ child at the given position.
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [\code{\link{GdkWindow}}]  the \code{\link{GdkWindow}} of the embedded child at \code{x}, \code{y}, or \code{NULL}
+\emph{Returns:} [\code{\link{GdkWindow}}] the \code{\link{GdkWindow}} of the embedded child at \code{x}, \code{y}, or \code{NULL}
 
 }
 \item{\code{to-embedder(window, offscreen-x, offscreen-y, embedder-x, embedder-y, user.data)}}{

@@ -8,6 +8,6 @@ between the horizontal scrollbar and \code{layout}.}
 \usage{gtkLayoutGetHadjustment(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkLayout}}}}
 \details{See \code{\link{GtkScrolledWindow}}, \code{\link{GtkScrollbar}}, \code{\link{GtkAdjustment}} for details.}
-\value{[\code{\link{GtkAdjustment}}]  horizontal scroll adjustment}
+\value{[\code{\link{GtkAdjustment}}] horizontal scroll adjustment}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

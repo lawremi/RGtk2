@@ -12,6 +12,6 @@ realized.}
 \item{\verb{object}}{a \code{\link{GtkTextView}}}
 \item{\verb{win}}{window to get}
 }
-\value{[\code{\link{GdkWindow}}]  a \code{\link{GdkWindow}}, or \code{NULL}. \emph{[  \acronym{transfer none}  ]}}
+\value{[\code{\link{GdkWindow}}] a \code{\link{GdkWindow}}, or \code{NULL}. \emph{[  \acronym{transfer none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -7,8 +7,8 @@ in the notebook.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkNotebook}}.}
 \item{\verb{page.num}}{the index of a notebook page, starting
-           from 0. If -1, the last page will
-           be removed.}
+from 0. If -1, the last page will
+be removed.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -9,6 +9,6 @@
 \item{\verb{object}}{a \code{\link{GtkEntry}}}
 \item{\verb{text.index}}{byte index into the entry contents}
 }
-\value{[integer]  byte index into the entry layout text}
+\value{[integer] byte index into the entry layout text}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

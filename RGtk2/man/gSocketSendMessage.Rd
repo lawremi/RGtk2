@@ -10,7 +10,7 @@ fully-featured version of this call. For easier use, see
 \item{\verb{address}}{a \code{\link{GSocketAddress}}, or \code{NULL}}
 \item{\verb{vectors}}{a list of \verb{GOutputVector} structs}
 \item{\verb{messages}}{a pointer to a list of \verb{GSocketControlMessages}, or
-  \code{NULL}.}
+\code{NULL}.}
 \item{\verb{flags}}{an int containing \verb{GSocketMsgFlags} flags}
 \item{\verb{cancellable}}{a \code{\link{GCancellable}} or \code{NULL}}
 \item{.errwarn}{Whether to issue a warning on error or fail silently}
@@ -47,7 +47,7 @@ On error -1 is returned and \code{error} is set accordingly.
   Since 2.22}
 \value{
 A list containing the following elements:
-\item{retval}{[integer]  Number of bytes written (which may be less than \code{size}), or -1
+\item{retval}{[integer] Number of bytes written (which may be less than \code{size}), or -1
 on error}
 \item{\verb{error}}{\code{\link{GError}} for error reporting, or \code{NULL} to ignore.}
 }

@@ -9,6 +9,6 @@ sophisticated. If an animation hasn't loaded any frames yet, this
 function will return \code{NULL}.}
 \usage{gdkPixbufAnimationGetStaticImage(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GdkPixbufAnimation}}}}
-\value{[\code{\link{GdkPixbuf}}]  unanimated image representing the animation}
+\value{[\code{\link{GdkPixbuf}}] unanimated image representing the animation}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

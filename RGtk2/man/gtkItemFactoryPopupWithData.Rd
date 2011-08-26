@@ -11,7 +11,7 @@ can access the \code{popup.data} while the menu is posted via
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkItemFactory}} of type \verb{GTK_TYPE_MENU} (see \code{\link{gtkItemFactoryNew}})}
 \item{\verb{popup.data}}{data available for callbacks while the menu is posted}
-\item{\verb{x}}{the x position }
+\item{\verb{x}}{the x position}
 \item{\verb{y}}{the y position}
 \item{\verb{mouse.button}}{the mouse button which was pressed to initiate the popup}
 \item{\verb{time}}{the time at which the activation event occurred}

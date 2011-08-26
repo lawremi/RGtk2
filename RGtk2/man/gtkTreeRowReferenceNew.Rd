@@ -10,6 +10,6 @@ isn't a valid path in \code{model}, then \code{NULL} is returned.}
 \item{\verb{model}}{A \code{\link{GtkTreeModel}}}
 \item{\verb{path}}{A valid \code{\link{GtkTreePath}} to monitor}
 }
-\value{[\code{\link{GtkTreeRowReference}}]  A newly allocated \code{\link{GtkTreeRowReference}}, or \code{NULL}}
+\value{[\code{\link{GtkTreeRowReference}}] A newly allocated \code{\link{GtkTreeRowReference}}, or \code{NULL}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

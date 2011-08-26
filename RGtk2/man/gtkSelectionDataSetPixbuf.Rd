@@ -11,6 +11,6 @@ The pixbuf is converted to the form determined by
 }
 \details{Since 2.6}
 \value{[logical] \code{TRUE} if the selection was successfully set,
-  otherwise \code{FALSE}.}
+otherwise \code{FALSE}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

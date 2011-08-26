@@ -15,6 +15,6 @@ the icon in a list of default icon factories, maintained by
 add a default icon factory with their icons, which will allow
 themes to override the icons for the application.}
 \usage{gtkIconFactoryNew()}
-\value{[\code{\link{GtkIconFactory}}]  a new \code{\link{GtkIconFactory}}}
+\value{[\code{\link{GtkIconFactory}}] a new \code{\link{GtkIconFactory}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -5,12 +5,9 @@
 \description{Prompt the user for a file or directory name}
 \section{Methods and Functions}{
 \code{\link{gtkFileSelectionNew}(title = NULL, show = TRUE)}\cr
-\code{\link{gtkFileSelectionSetFilename}(object, filename)}\cr
-\code{\link{gtkFileSelectionGetFilename}(object)}\cr
 \code{\link{gtkFileSelectionComplete}(object, pattern)}\cr
 \code{\link{gtkFileSelectionShowFileopButtons}(object)}\cr
 \code{\link{gtkFileSelectionHideFileopButtons}(object)}\cr
-\code{\link{gtkFileSelectionGetSelections}(object)}\cr
 \code{\link{gtkFileSelectionSetSelectMultiple}(object, select.multiple)}\cr
 \code{\link{gtkFileSelectionGetSelectMultiple}(object)}\cr
 \code{gtkFileSelection(title = NULL, show = TRUE)}
@@ -89,26 +86,26 @@ The \code{\link{GtkFileSelection}} struct contains the following \code{\link{Gtk
 \item{\verb{selectionText}}{[\code{\link{GtkWidget}}] }
 \item{\verb{mainVbox}}{[\code{\link{GtkWidget}}] }
 \item{\verb{okButton}}{[\code{\link{GtkWidget}}] }
-\item{\verb{cancelButton}}{[\code{\link{GtkWidget}}] the two main buttons that signals should be connected 
-    to in order to perform an action when the user hits either OK or
-    Cancel.}
+\item{\verb{cancelButton}}{[\code{\link{GtkWidget}}] the two main buttons that signals should be connected
+to in order to perform an action when the user hits either OK or
+Cancel.}
 \item{\verb{helpButton}}{[\code{\link{GtkWidget}}] }
-\item{\verb{historyPulldown}}{[\code{\link{GtkWidget}}] the \code{\link{GtkOptionMenu}} used to create the drop-down 
-    directory history.}
+\item{\verb{historyPulldown}}{[\code{\link{GtkWidget}}] the \code{\link{GtkOptionMenu}} used to create the drop-down
+directory history.}
 \item{\verb{historyMenu}}{[\code{\link{GtkWidget}}] }
 \item{\verb{fileopDialog}}{[\code{\link{GtkWidget}}] }
-\item{\verb{fileopEntry}}{[\code{\link{GtkWidget}}] the dialog box used to display the \code{\link{GtkFileSelection}}. 
-   It can be customized by adding/removing widgets from it using the
-   standard \code{\link{GtkDialog}} functions.}
+\item{\verb{fileopEntry}}{[\code{\link{GtkWidget}}] the dialog box used to display the \code{\link{GtkFileSelection}}.
+It can be customized by adding/removing widgets from it using the
+standard \code{\link{GtkDialog}} functions.}
 \item{\verb{fileopFile}}{[character] }
 \item{\verb{fileopCDir}}{[\code{\link{GtkWidget}}] }
 \item{\verb{fileopDelFile}}{[\code{\link{GtkWidget}}] }
 \item{\verb{fileopRenFile}}{[\code{\link{GtkWidget}}] }
 \item{\verb{buttonArea}}{[\code{\link{GtkWidget}}] }
-\item{\verb{actionArea}}{[\code{\link{GtkWidget}}] the buttons that appear at the top of the file 
-    selection dialog. These "operation buttons" can be hidden and
-    redisplayed with \code{\link{gtkFileSelectionHideFileopButtons}} and
-    \code{\link{gtkFileSelectionShowFileopButtons}} respectively.}
+\item{\verb{actionArea}}{[\code{\link{GtkWidget}}] the buttons that appear at the top of the file
+selection dialog. These "operation buttons" can be hidden and
+redisplayed with \code{\link{gtkFileSelectionHideFileopButtons}} and
+\code{\link{gtkFileSelectionShowFileopButtons}} respectively.}
 }
 
 }}}

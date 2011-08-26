@@ -11,6 +11,6 @@
 method will work regardless of whether the icon was set using a
 \code{\link{GdkPixbuf}}, a \code{\link{GIcon}}, a stock item, or an icon name.
   Since 2.16}
-\value{[\code{\link{GdkPixbuf}}]  A \code{\link{GdkPixbuf}}, or \code{NULL} if no icon is set for this position.}
+\value{[\code{\link{GdkPixbuf}}] A \code{\link{GdkPixbuf}}, or \code{NULL} if no icon is set for this position.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -8,11 +8,11 @@ a new list.}
 \arguments{
 \item{\verb{object}}{a \code{\link{PangoAttrList}}}
 \item{\verb{func}}{callback function; returns \code{TRUE} if an attribute
-       should be filtered out.}
+should be filtered out.}
 \item{\verb{data}}{Data to be passed to \code{func}}
 }
 \details{Since 1.2}
-\value{[\code{\link{PangoAttrList}}]  the new \code{\link{PangoAttrList}} or \code{NULL} if
- no attributes of the given types were found.}
+\value{[\code{\link{PangoAttrList}}] the new \code{\link{PangoAttrList}} or \code{NULL} if
+no attributes of the given types were found.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

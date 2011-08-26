@@ -9,7 +9,7 @@ that can't be reliably identified by looking at the data, or if
 the user manually forces a specific mime type.}
 \usage{gdkPixbufLoaderNewWithMimeType(mime.type, .errwarn = TRUE)}
 \arguments{
-\item{\verb{mime.type}}{the mime type to be loaded }
+\item{\verb{mime.type}}{the mime type to be loaded}
 \item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \details{The list of supported mime types depends on what image loaders
@@ -21,8 +21,8 @@ structs returned by \code{\link{gdkPixbufGetFormats}}.
   Since 2.4}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GdkPixbufLoader}}]  A newly-created pixbuf loader.}
-\item{\verb{error}}{ return location for an allocated \code{\link{GError}}, or \code{NULL} to ignore errors. \emph{[  \acronym{allow-none}  ]}}
+\item{retval}{[\code{\link{GdkPixbufLoader}}] A newly-created pixbuf loader.}
+\item{\verb{error}}{return location for an allocated \code{\link{GError}}, or \code{NULL} to ignore errors. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

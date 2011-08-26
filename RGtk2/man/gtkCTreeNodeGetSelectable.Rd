@@ -7,8 +7,7 @@
 }
 \usage{gtkCTreeNodeGetSelectable(object, node)}
 \arguments{
-\item{\verb{object}}{\emph{undocumented
-}}
+\item{\verb{object}}{Whether this node can be selected by the user.}
 \item{\verb{node}}{\emph{undocumented
 }}
 }

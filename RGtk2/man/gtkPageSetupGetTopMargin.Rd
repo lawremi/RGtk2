@@ -8,6 +8,6 @@
 \item{\verb{unit}}{the unit for the return value}
 }
 \details{Since 2.10}
-\value{[numeric]  the top margin}
+\value{[numeric] the top margin}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

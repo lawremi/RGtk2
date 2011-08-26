@@ -5,7 +5,7 @@
 \usage{gtkViewportSetHadjustment(object, adjustment = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkViewport}}.}
-\item{\verb{adjustment}}{ a \code{\link{GtkAdjustment}}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{adjustment}}{a \code{\link{GtkAdjustment}}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -8,8 +8,7 @@ can be given for the data.
 }
 \usage{gtkCTreeNodeSetRowDataFull(object, node, data)}
 \arguments{
-\item{\verb{object}}{\emph{undocumented
-}}
+\item{\verb{object}}{The routine to be called when \code{data} is no longer needed.}
 \item{\verb{node}}{\emph{undocumented
 }}
 \item{\verb{data}}{\emph{undocumented

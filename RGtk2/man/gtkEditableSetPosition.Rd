@@ -5,7 +5,7 @@
 \usage{gtkEditableSetPosition(object, position)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkEditable}}}
-\item{\verb{position}}{the position of the cursor }
+\item{\verb{position}}{the position of the cursor}
 }
 \details{The cursor is displayed before the character with the given (base 0) 
 index in the contents of the editable. The value must be less than or 

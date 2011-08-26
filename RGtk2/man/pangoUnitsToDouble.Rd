@@ -6,6 +6,6 @@ it by \code{PANGO_SCALE}.}
 \usage{pangoUnitsToDouble(i)}
 \arguments{\item{\verb{i}}{value in Pango units}}
 \details{Since 1.16}
-\value{[numeric]  the double value.}
+\value{[numeric] the double value.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

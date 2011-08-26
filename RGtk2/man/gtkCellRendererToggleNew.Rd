@@ -9,6 +9,6 @@ can bind the "active" property on the cell renderer to a boolean value
 in the model, thus causing the check button to reflect the state of
 the model.}
 \usage{gtkCellRendererToggleNew()}
-\value{[\code{\link{GtkCellRenderer}}]  the new cell renderer}
+\value{[\code{\link{GtkCellRenderer}}] the new cell renderer}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

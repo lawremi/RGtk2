@@ -8,7 +8,7 @@ readers to render the tray icon.}
 \usage{gtkStatusIconSetTitle(object, title)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkStatusIcon}}}
-\item{\verb{title}}{the title }
+\item{\verb{title}}{the title}
 }
 \details{Since 2.18}
 \author{Derived by RGtkGen from GTK+ documentation}

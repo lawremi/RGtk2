@@ -7,6 +7,6 @@ The return value does not have a reference added, so should not
 be unreferenced.}
 \usage{gtkRangeGetAdjustment(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkRange}}}}
-\value{[\code{\link{GtkAdjustment}}]  a \code{\link{GtkAdjustment}}}
+\value{[\code{\link{GtkAdjustment}}] a \code{\link{GtkAdjustment}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

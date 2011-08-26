@@ -63,37 +63,37 @@ a particular visual.
 \item{\verb{byteOrder}}{[\code{\link{GdkByteOrder}}] The number of bits per pixel.}
 \item{\verb{colormapSize}}{[integer] The byte-order for this visual.}
 \item{\verb{bitsPerRgb}}{[integer] The number of entries in the colormap, for
-    visuals of type \code{GDK_VISUAL_PSEUDO_COLOR} or
-    \code{GDK_VISUAL_GRAY_SCALE}. For other visual types, it
-    is the number of possible levels per color component.
-    If the visual has different numbers of levels for
-    different components, the value of this field is undefined.}
+visuals of type \code{GDK_VISUAL_PSEUDO_COLOR} or
+\code{GDK_VISUAL_GRAY_SCALE}. For other visual types, it
+is the number of possible levels per color component.
+If the visual has different numbers of levels for
+different components, the value of this field is undefined.}
 \item{\verb{redMask}}{[numeric] The number of significant bits per red, green, or blue
-    when specifying colors for this visual. (For instance, for
-    \code{\link{gdkColormapAllocColor}})}
+when specifying colors for this visual. (For instance, for
+\code{\link{gdkColormapAllocColor}})}
 \item{\verb{redShift}}{[integer] A mask giving the bits in a pixel value that
-    correspond to the red field. Significant only for
-    \code{GDK_VISUAL_PSEUDOCOLOR} and \code{GDK_VISUAL_DIRECTCOLOR}.}
+correspond to the red field. Significant only for
+\code{GDK_VISUAL_PSEUDOCOLOR} and \code{GDK_VISUAL_DIRECTCOLOR}.}
 \item{\verb{redPrec}}{[integer] The \code{red_shift} and
-    \code{red_prec} give an alternate presentation
-    of the information in \code{red_mask}.
-    \code{red_mask} is a contiguous sequence
-    of \code{red_prec} bits starting at bit
-    number \code{red_shift}. For example,
-     shows constructing a pixel value
-    out of three 16 bit color values.}
+\code{red_prec} give an alternate presentation
+of the information in \code{red_mask}.
+\code{red_mask} is a contiguous sequence
+of \code{red_prec} bits starting at bit
+number \code{red_shift}. For example,
+ shows constructing a pixel value
+out of three 16 bit color values.}
 \item{\verb{greenMask}}{[numeric] See above.}
 \item{\verb{greenShift}}{[integer] A mask giving the bits in a pixel value that
-    correspond to the green field.}
+correspond to the green field.}
 \item{\verb{greenPrec}}{[integer] The \code{green_shift} and
-    \code{green_prec} give an alternate presentation
-    of the information in \code{green_mask}.}
+\code{green_prec} give an alternate presentation
+of the information in \code{green_mask}.}
 \item{\verb{blueMask}}{[numeric] See above.}
 \item{\verb{blueShift}}{[integer] A mask giving the bits in a pixel value that
-    correspond to the blue field.}
+correspond to the blue field.}
 \item{\verb{bluePrec}}{[integer] The \code{blue_shift} and
-    \code{blue_prec} give an alternate presentation
-    of the information in \code{blue_mask}.}
+\code{blue_prec} give an alternate presentation
+of the information in \code{blue_mask}.}
 }
 
 }}}

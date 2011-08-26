@@ -8,7 +8,7 @@ method sets \verb{"reorderable"} to \code{FALSE}.}
 \item{\verb{object}}{a \code{\link{GtkIconView}}}
 \item{\verb{targets}}{the table of targets that the drag will support}
 \item{\verb{actions}}{the bitmask of possible actions for a drag to this
-   widget}
+widget}
 }
 \details{Since 2.8}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -8,7 +8,7 @@ or unset and by the implementing class when
 \usage{gtkActivatableSyncActionProperties(object, action = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkActivatable}}}
-\item{\verb{action}}{ the related \code{\link{GtkAction}} or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{action}}{the related \code{\link{GtkAction}} or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{Since 2.16}
 \author{Derived by RGtkGen from GTK+ documentation}

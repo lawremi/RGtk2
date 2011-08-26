@@ -7,6 +7,6 @@ conveniently takes a timeout in milliseconds, so you can use a timeout
 to schedule the next update.}
 \usage{gdkPixbufAnimationIterGetDelayTime(object)}
 \arguments{\item{\verb{object}}{an animation iterator}}
-\value{[integer]  delay time in milliseconds (thousandths of a second)}
+\value{[integer] delay time in milliseconds (thousandths of a second)}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

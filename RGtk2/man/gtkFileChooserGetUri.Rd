@@ -9,7 +9,7 @@ one of the filenames will be returned at random.}
 \details{If the file chooser is in folder mode, this function returns the selected
 folder.
   Since 2.4}
-\value{[character]  The currently selected URI, or \code{NULL}
- if no file is selected.}
+\value{[character] The currently selected URI, or \code{NULL}
+if no file is selected.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -11,8 +11,7 @@ response to those expose events.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkWindow}}}
 \item{\verb{region}}{a \code{\link{GdkRegion}}}
-\item{\verb{user.data}}{\emph{undocumented
-}}
+\item{\verb{user.data}}{data passed to \code{child.func}}
 }
 \details{GDK will call \code{\link{gdkWindowProcessAllUpdates}} on your behalf
 whenever your program returns to the main loop and becomes idle, so

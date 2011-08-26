@@ -11,7 +11,7 @@ is zero-terminated.}
 \item{\verb{icon.name}}{the name of an icon}
 }
 \details{Since 2.6}
-\value{[integer]  An newly allocated list describing the sizes at
+\value{[integer] An newly allocated list describing the sizes at
 which the icon is available.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -8,7 +8,7 @@ same targets as the passed \code{list}.}
 \details{Since 2.10}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GtkTargetEntry}}]  the new table.}
+\item{retval}{[\code{\link{GtkTargetEntry}}] the new table.}
 \item{\verb{n.targets}}{return location for the number ot targets in the table}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

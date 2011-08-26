@@ -5,6 +5,6 @@
 \usage{gtkPanedGetChild2(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkPaned}} widget}}
 \details{Since 2.4}
-\value{[\code{\link{GtkWidget}}]  second child, or \code{NULL} if it is not set.}
+\value{[\code{\link{GtkWidget}}] second child, or \code{NULL} if it is not set.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

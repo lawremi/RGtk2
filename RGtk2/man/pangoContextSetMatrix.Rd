@@ -11,7 +11,7 @@ matrices, depending on how the text is fit to the pixel grid.}
 \arguments{
 \item{\verb{object}}{a \code{\link{PangoContext}}}
 \item{\verb{matrix}}{a \code{\link{PangoMatrix}}, or \code{NULL} to unset any existing matrix.
- (No matrix set is the same as setting the identity matrix.)}
+(No matrix set is the same as setting the identity matrix.)}
 }
 \details{Since 1.6}
 \author{Derived by RGtkGen from GTK+ documentation}

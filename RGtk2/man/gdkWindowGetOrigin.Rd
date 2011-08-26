@@ -9,7 +9,7 @@ relative to its parent window.)}
 \arguments{\item{\verb{object}}{a \code{\link{GdkWindow}}}}
 \value{
 A list containing the following elements:
-\item{retval}{[integer]  not meaningful, ignore}
+\item{retval}{[integer] not meaningful, ignore}
 \item{\verb{x}}{return location for X coordinate}
 \item{\verb{y}}{return location for Y coordinate}
 }

@@ -5,7 +5,7 @@
 \usage{gdkScreenGetFontOptions(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GdkScreen}}}}
 \details{Since 2.10}
-\value{[\code{\link{CairoFontOptions}}]  the current font options, or \code{NULL} if no default
- font options have been set.}
+\value{[\code{\link{CairoFontOptions}}] the current font options, or \code{NULL} if no default
+font options have been set.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

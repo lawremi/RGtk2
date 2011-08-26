@@ -10,7 +10,7 @@ functions in GTK+ will sometimes call
 \usage{gtkWindowSetTransientFor(object, parent = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkWindow}}}
-\item{\verb{parent}}{ parent window, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{parent}}{parent window, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{Passing \code{NULL} for \code{parent} unsets the current transient window.
   

@@ -13,6 +13,6 @@ the next write or truncate operation on the stream.
   
 If you want the number of bytes currently written to the stream, use
 \code{\link{gMemoryOutputStreamGetDataSize}}.}
-\value{[numeric]  the number of bytes allocated for the data buffer}
+\value{[numeric] the number of bytes allocated for the data buffer}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

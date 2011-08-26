@@ -7,6 +7,6 @@ determining the initial size for a window. Actual characters in
 text will be wider and narrower than this.}
 \usage{pangoFontMetricsGetApproximateCharWidth(object)}
 \arguments{\item{\verb{object}}{a \code{\link{PangoFontMetrics}} structure}}
-\value{[integer]  the character width, in Pango units.}
+\value{[integer] the character width, in Pango units.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

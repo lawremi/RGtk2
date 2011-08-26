@@ -9,6 +9,6 @@ it only returns windows an application created itself.}
 \arguments{\item{\verb{object}}{a \code{\link{GdkWindow}}}}
 \details{The returned list must be freed, but the elements in the
 list need not be.}
-\value{[list]  list of child windows inside \code{window}}
+\value{[list] list of child windows inside \code{window}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

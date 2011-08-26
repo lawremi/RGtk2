@@ -6,6 +6,6 @@
 \arguments{\item{\verb{object}}{a \code{\link{GIOExtension}}}}
 \details{Note that the same type may be registered as extension
 for multiple extension points, under different names.}
-\value{[char]  the name of \code{extension}.}
+\value{[char] the name of \code{extension}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

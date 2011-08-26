@@ -10,6 +10,6 @@ attributes in effect at a given text position.}
 \arguments{\item{\verb{object}}{a \code{\link{GtkTextView}}}}
 \details{
 and should be freed.}
-\value{[\code{\link{GtkTextAttributes}}]  a new \code{\link{GtkTextAttributes}}}
+\value{[\code{\link{GtkTextAttributes}}] a new \code{\link{GtkTextAttributes}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -9,7 +9,7 @@ for more information about paths.}
 \item{\verb{path}}{a path}
 }
 \details{Since 2.4}
-\value{[\code{\link{GtkAction}}]  the action whose proxy widget is found by following the path, 
-    or \code{NULL} if no widget was found.}
+\value{[\code{\link{GtkAction}}] the action whose proxy widget is found by following the path,
+or \code{NULL} if no widget was found.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -6,7 +6,7 @@
 \usage{gtkMountOperationSetParent(object, parent)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkMountOperation}}}
-\item{\verb{parent}}{ transient parent of the window, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{parent}}{transient parent of the window, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{Since 2.14}
 \author{Derived by RGtkGen from GTK+ documentation}

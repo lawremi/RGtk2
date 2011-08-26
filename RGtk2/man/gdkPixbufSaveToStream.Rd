@@ -23,8 +23,8 @@ The stream is not closed.
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if the pixbuf was saved successfully, \code{FALSE} if an
-    error was set.}
-\item{\verb{error}}{ return location for error, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+error was set.}
+\item{\verb{error}}{return location for error, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

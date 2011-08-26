@@ -6,6 +6,6 @@ with the \code{\link{GtkPrintContext}}.}
 \usage{gtkPrintContextCreatePangoLayout(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkPrintContext}}}}
 \details{Since 2.10}
-\value{[\code{\link{PangoLayout}}]  a new Pango layout for \code{context}}
+\value{[\code{\link{PangoLayout}}] a new Pango layout for \code{context}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

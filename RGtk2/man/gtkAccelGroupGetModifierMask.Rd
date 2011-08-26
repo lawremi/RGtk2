@@ -6,6 +6,6 @@
 \usage{gtkAccelGroupGetModifierMask(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkAccelGroup}}}}
 \details{Since 2.14}
-\value{[\code{\link{GdkModifierType}}]  the modifier mask for this accel group.}
+\value{[\code{\link{GdkModifierType}}] the modifier mask for this accel group.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

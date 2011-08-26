@@ -51,7 +51,7 @@ clicked.
 \item{\code{button}}{the \code{\link{GtkLinkButton}} which was clicked}
 \item{\code{link.}}{the URI to which the clicked \code{\link{GtkLinkButton}} points}
 \item{\code{user.data}}{user data that was passed when the function was registered
-  with \code{\link{gtkLinkButtonSetUriHook}}}
+with \code{\link{gtkLinkButtonSetUriHook}}}
 }
 
 

@@ -8,12 +8,12 @@ the \code{layout}.}
 \value{
 A list containing the following elements:
 \item{\verb{attrs}}{location to store a pointer to a list of logical attributes
-        This value must be freed with \code{gFree()}.}
+This value must be freed with \code{gFree()}. \emph{[  \acronym{out}  ][  \acronym{array}   length=n_attrs][  \acronym{transfer container}  ]}}
 \item{\verb{n.attrs}}{location to store the number of the attributes in the
-          list. (The stored value will be one more than the total number
-          of characters in the layout, since there need to be attributes
-          corresponding to both the position before the first character
-          and the position after the last character.)}
+array. (The stored value will be one more than the total number
+of characters in the layout, since there need to be attributes
+corresponding to both the position before the first character
+and the position after the last character.)}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

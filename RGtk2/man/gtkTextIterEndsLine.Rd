@@ -11,6 +11,6 @@ considered to be at the end of a line, even though there are no
 paragraph delimiter chars there.}
 \usage{gtkTextIterEndsLine(object)}
 \arguments{\item{\verb{object}}{an iterator}}
-\value{[logical]  whether \code{iter} is at the end of a line}
+\value{[logical] whether \code{iter} is at the end of a line}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

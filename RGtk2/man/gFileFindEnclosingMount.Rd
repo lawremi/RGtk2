@@ -5,7 +5,7 @@
 \usage{gFileFindEnclosingMount(object, cancellable = NULL, .errwarn = TRUE)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}.}
-\item{\verb{cancellable}}{optional \code{\link{GCancellable}} object, \code{NULL} to ignore. }
+\item{\verb{cancellable}}{optional \code{\link{GCancellable}} object, \code{NULL} to ignore.}
 \item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \details{If the \verb{GFileIface} for \code{file} does not have a mount (e.g. possibly a 
@@ -17,8 +17,8 @@ triggering the cancellable object from another thread. If the operation
 was cancelled, the error \code{G_IO_ERROR_CANCELLED} will be returned.}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GMount}}]  a \code{\link{GMount}} where the \code{file} is located or \code{NULL} on error.}
-\item{\verb{error}}{a \code{\link{GError}}. }
+\item{retval}{[\code{\link{GMount}}] a \code{\link{GMount}} where the \code{file} is located or \code{NULL} on error.}
+\item{\verb{error}}{a \code{\link{GError}}.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

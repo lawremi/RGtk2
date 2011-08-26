@@ -10,6 +10,6 @@ resource.}
 }
 \details{Since 2.10}
 \value{[logical] \code{TRUE} if both \code{\link{GtkRecentInfo}} structures point to se same
-  resource, \code{FALSE} otherwise.}
+resource, \code{FALSE} otherwise.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

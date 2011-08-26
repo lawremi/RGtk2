@@ -7,6 +7,6 @@ instead.}
 \usage{gtkToolShellGetTextSizeGroup(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkToolShell}}}}
 \details{Since 2.14}
-\value{[\code{\link{GtkSizeGroup}}]  the current text size group of \code{shell}}
+\value{[\code{\link{GtkSizeGroup}}] the current text size group of \code{shell}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

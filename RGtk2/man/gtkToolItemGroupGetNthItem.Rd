@@ -8,6 +8,6 @@
 \item{\verb{index}}{the index}
 }
 \details{Since 2.20}
-\value{[\code{\link{GtkToolItem}}]  the \code{\link{GtkToolItem}} at index}
+\value{[\code{\link{GtkToolItem}}] the \code{\link{GtkToolItem}} at index}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

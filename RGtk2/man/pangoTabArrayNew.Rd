@@ -9,6 +9,6 @@ units. All stops are initially at position 0.}
 \item{\verb{initial.size}}{Initial number of tab stops to allocate, can be 0}
 \item{\verb{positions.in.pixels}}{whether positions are in pixel units}
 }
-\value{[\code{\link{PangoTabArray}}]  the newly allocated \code{\link{PangoTabArray}},}
+\value{[\code{\link{PangoTabArray}}] the newly allocated \code{\link{PangoTabArray}},}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

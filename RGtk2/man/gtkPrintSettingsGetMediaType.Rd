@@ -7,6 +7,6 @@
 \details{The set of media types is defined in PWG 5101.1-2002 PWG.
 
   Since 2.10}
-\value{[character]  the media type}
+\value{[character] the media type}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

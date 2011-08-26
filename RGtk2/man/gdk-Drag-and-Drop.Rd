@@ -42,8 +42,8 @@ drag in progress. It is used on both source and destination sides.
 \item{\verb{destWindow}}{[\code{\link{GdkWindow}}] the source of this drag.}
 \item{\verb{targets}}{[list] the destination window of this drag.}
 \item{\verb{actions}}{[\code{\link{GdkDragAction}}] a list of targets offered by the source.}
-\item{\verb{suggestedAction}}{[\code{\link{GdkDragAction}}] a bitmask of actions proposed by the source when 
-   \code{suggested.action} is \code{GDK_ACTION_ASK}.}
+\item{\verb{suggestedAction}}{[\code{\link{GdkDragAction}}] a bitmask of actions proposed by the source when
+\code{suggested.action} is \code{GDK_ACTION_ASK}.}
 \item{\verb{action}}{[\code{\link{GdkDragAction}}] the action suggested by the source.}
 \item{\verb{startTime}}{[numeric] the action chosen by the destination.}
 }

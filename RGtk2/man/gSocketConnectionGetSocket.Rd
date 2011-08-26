@@ -7,6 +7,6 @@ not supported by the \code{\link{GSocketConnection}} APIs.}
 \usage{gSocketConnectionGetSocket(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GSocketConnection}}}}
 \details{Since 2.22}
-\value{[\code{\link{GSocket}}]  a \code{\link{GSocketAddress}} or \code{NULL} on error.}
+\value{[\code{\link{GSocket}}] a \code{\link{GSocketAddress}} or \code{NULL} on error.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

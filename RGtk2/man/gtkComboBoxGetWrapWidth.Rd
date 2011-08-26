@@ -7,6 +7,6 @@ is in table mode.}
 \usage{gtkComboBoxGetWrapWidth(object)}
 \arguments{\item{\verb{object}}{A \code{\link{GtkComboBox}}}}
 \details{Since 2.6}
-\value{[integer]  the wrap width.}
+\value{[integer] the wrap width.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -5,7 +5,7 @@
 \usage{gtkContainerSetFocusChild(object, child)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkContainer}}}
-\item{\verb{child}}{ a \code{\link{GtkWidget}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{child}}{a \code{\link{GtkWidget}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{This function emits the GtkContainer::set_focus_child signal of
 \code{container}. Implementations of \code{\link{GtkContainer}} can override the

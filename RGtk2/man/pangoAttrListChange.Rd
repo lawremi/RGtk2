@@ -8,7 +8,7 @@ and be merged with any adjoining attributes that are identical.}
 \arguments{
 \item{\verb{object}}{a \code{\link{PangoAttrList}}}
 \item{\verb{attr}}{the attribute to insert. Ownership of this value is
-       assumed by the list.}
+assumed by the list.}
 }
 \details{This function is slower than \code{\link{pangoAttrListInsert}} for
 creating a attribute list in order (potentially much slower

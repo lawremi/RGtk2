@@ -11,7 +11,7 @@ then \code{pos->width} will be negative.}
 \arguments{
 \item{\verb{object}}{a \code{\link{PangoLayout}}}
 \item{\verb{index}}{byte index within \code{layout}}
-\item{\verb{pos}}{rectangle in which to store the position of the grapheme}
+\item{\verb{pos}}{rectangle in which to store the position of the grapheme. \emph{[  \acronym{out}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

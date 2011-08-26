@@ -14,6 +14,6 @@ slider moves when using the arrow keys to adjust the scale value.}
 \details{Note that the way in which the precision is derived works best if \code{step}
 is a power of ten. If the resulting precision is not suitable for your
 needs, use \code{\link{gtkScaleSetDigits}} to correct it.}
-\value{[\code{\link{GtkWidget}}]  a new \code{\link{GtkVScale}}}
+\value{[\code{\link{GtkWidget}}] a new \code{\link{GtkVScale}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

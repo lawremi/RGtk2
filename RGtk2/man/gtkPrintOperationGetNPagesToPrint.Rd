@@ -12,6 +12,6 @@ and call \code{\link{gtkPrintOperationGetNPagesToPrint}} when
 print status is \code{GTK_PRINT_STATUS_GENERATING_DATA}.
 This is typically used to track the progress of print operation.
   Since 2.18}
-\value{[integer]  the number of pages that will be printed}
+\value{[integer] the number of pages that will be printed}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

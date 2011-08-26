@@ -10,7 +10,7 @@ implementing the \code{\link{GtkBuildable}} interface on a type.}
 \item{\verb{type.name}}{type name to lookup}
 }
 \details{Since 2.12}
-\value{[\code{\link{GType}}]  the \code{\link{GType}} found for \code{type.name} or \verb{G_TYPE_INVALID} 
-  if no type was found}
+\value{[\code{\link{GType}}] the \code{\link{GType}} found for \code{type.name} or \verb{G_TYPE_INVALID}
+if no type was found}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -11,7 +11,7 @@
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if the drive has been poll_for_mediaed successfully,
-    \code{FALSE} otherwise.}
+\code{FALSE} otherwise.}
 \item{\verb{error}}{a \code{\link{GError}}, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -11,6 +11,6 @@
 margins into consideration. 
 See \code{\link{gtkPageSetupGetPaperHeight}}.
   Since 2.10}
-\value{[numeric]  the page height.}
+\value{[numeric] the page height.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

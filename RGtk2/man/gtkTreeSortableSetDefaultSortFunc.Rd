@@ -9,7 +9,7 @@ this function.}
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkTreeSortable}}}
 \item{\verb{sort.func}}{The comparison function}
-\item{\verb{user.data}}{ User data to pass to \code{sort.func}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{user.data}}{User data to pass to \code{sort.func}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{If \code{sort.func} is \code{NULL}, then there will be no default comparison function.
 This means that once the model  has been sorted, it can't go back to the

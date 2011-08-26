@@ -7,12 +7,12 @@
 \item{\verb{object}}{a \code{\link{PangoLayoutLine}}}
 \item{\verb{index}}{byte offset of a grapheme within the layout}
 \item{\verb{trailing}}{an integer indicating the edge of the grapheme to retrieve
-           the position of. If > 0, the trailing edge of the grapheme,
-           if 0, the leading of the grapheme.}
+the position of. If > 0, the trailing edge of the grapheme,
+if 0, the leading of the grapheme.}
 }
 \value{
 A list containing the following elements:
-\item{\verb{x.pos}}{location to store the x_offset (in Pango unit)}
+\item{\verb{x.pos}}{location to store the x_offset (in Pango unit). \emph{[  \acronym{out}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

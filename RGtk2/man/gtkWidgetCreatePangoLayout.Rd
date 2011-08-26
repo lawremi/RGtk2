@@ -14,6 +14,6 @@ notify the layout of changes to the base direction or font of this
 widget, you must call \code{\link{pangoLayoutContextChanged}} in response to
 the \verb{"style-set"} and \verb{"direction-changed"} signals 
 for the widget.}
-\value{[\code{\link{PangoLayout}}]  the new \code{\link{PangoLayout}}}
+\value{[\code{\link{PangoLayout}}] the new \code{\link{PangoLayout}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

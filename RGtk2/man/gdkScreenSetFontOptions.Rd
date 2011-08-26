@@ -9,8 +9,8 @@ have already been created.}
 \usage{gdkScreenSetFontOptions(object, options)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkScreen}}}
-\item{\verb{options}}{ a \code{\link{CairoFontOptions}}, or \code{NULL} to unset any
-  previously set default font options. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{options}}{a \code{\link{CairoFontOptions}}, or \code{NULL} to unset any
+previously set default font options. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{Since 2.10}
 \author{Derived by RGtkGen from GTK+ documentation}

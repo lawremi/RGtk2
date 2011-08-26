@@ -13,12 +13,12 @@ theme engines can special-case rendering for that widget or code.}
 \item{\verb{object}}{a \code{\link{GtkWidget}}}
 \item{\verb{stock.id}}{a stock ID}
 \item{\verb{size}}{(type int) a stock size. A size of (GtkIconSize)-1 means
-    render at the size of the source and don't scale (if there are
-    multiple source sizes, GTK+ picks one of the available sizes).}
-\item{\verb{detail}}{ render detail to pass to theme engine. \emph{[  \acronym{allow-none}  ]}}
+render at the size of the source and don't scale (if there are
+multiple source sizes, GTK+ picks one of the available sizes).}
+\item{\verb{detail}}{render detail to pass to theme engine. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{The pixels in the returned \code{\link{GdkPixbuf}} are shared with the rest of
 the application and should not be modified.}
-\value{[\code{\link{GdkPixbuf}}]  a new pixbuf, or \code{NULL} if the stock ID wasn't known}
+\value{[\code{\link{GdkPixbuf}}] a new pixbuf, or \code{NULL} if the stock ID wasn't known}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

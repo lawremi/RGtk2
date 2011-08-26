@@ -4,6 +4,8 @@
 \title{GIOError}
 \description{Error helper functions}
 \section{Methods and Functions}{\code{\link{gIoErrorFromErrno}(err.no)}\cr}
+\section{Hierarchy}{\preformatted{GEnum
+   +----GIOErrorEnum}}
 \section{Detailed Description}{Contains helper functions for reporting errors to the user.}
 \section{Enums and Flags}{\describe{\item{\verb{GIOErrorEnum}}{
 Error codes returned by GIO functions.

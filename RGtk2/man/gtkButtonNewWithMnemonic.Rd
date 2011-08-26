@@ -9,7 +9,7 @@ accelerator called a mnemonic.
 Pressing Alt and that key activates the button.}
 \usage{gtkButtonNewWithMnemonic(label, show = TRUE)}
 \arguments{\item{\verb{label}}{The text of the button, with an underscore in front of the
-        mnemonic character}}
+mnemonic character}}
 \value{[\code{\link{GtkWidget}}] a new \code{\link{GtkButton}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

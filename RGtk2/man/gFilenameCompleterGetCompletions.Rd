@@ -7,6 +7,6 @@
 \item{\verb{object}}{the filename completer.}
 \item{\verb{initial.text}}{text to be completed.}
 }
-\value{[char]  list of strings with possible completions for \code{initial.text}. }
+\value{[char] array of strings with possible completions for \code{initial.text}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

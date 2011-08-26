@@ -17,9 +17,9 @@ of \code{widget}'s outermost ancestor.}
 \arguments{\item{\verb{object}}{a \code{\link{GtkWidget}}}}
 \value{
 A list containing the following elements:
-\item{\verb{path.length}}{ location to store length of the path, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
-\item{\verb{path}}{  location to store allocated path string, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
-\item{\verb{path.reversed}}{  location to store allocated reverse path string, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
+\item{\verb{path.length}}{location to store length of the path, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
+\item{\verb{path}}{location to store allocated path string, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
+\item{\verb{path.reversed}}{location to store allocated reverse path string, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

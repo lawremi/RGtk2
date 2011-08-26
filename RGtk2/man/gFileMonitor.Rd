@@ -16,7 +16,7 @@ was cancelled, the error \code{G_IO_ERROR_CANCELLED} will be returned.
   Since 2.18}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GFileMonitor}}]  a \code{\link{GFileMonitor}} for the given \code{file}, or \code{NULL} on error.}
+\item{retval}{[\code{\link{GFileMonitor}}] a \code{\link{GFileMonitor}} for the given \code{file}, or \code{NULL} on error.}
 \item{\verb{error}}{a \code{\link{GError}}, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

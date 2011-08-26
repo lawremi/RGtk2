@@ -10,6 +10,6 @@ acceptable return value for this string.}
 \item{\verb{iter}}{An \code{\link{GtkTreeIter}}.}
 }
 \details{Since 2.2}
-\value{[character]  A newly-allocated string.}
+\value{[character] A newly-allocated string.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

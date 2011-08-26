@@ -12,9 +12,9 @@ returning the created object or \code{NULL} on error.}
 \details{Since 2.22}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GObject}}]  a newly created \code{\link{GObject}}, or \code{NULL} on error.}
+\item{retval}{[\code{\link{GObject}}] a newly created \code{\link{GObject}}, or \code{NULL} on error.}
 \item{\verb{error}}{a \code{\link{GError}} location to store the error occuring, or \code{NULL} to
-    ignore.}
+ignore.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

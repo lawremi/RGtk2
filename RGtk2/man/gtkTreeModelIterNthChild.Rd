@@ -9,7 +9,7 @@ node after this function has been called.  As a special case, if \code{parent} i
 \usage{gtkTreeModelIterNthChild(object, parent = NULL, n)}
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkTreeModel}}.}
-\item{\verb{parent}}{ The \code{\link{GtkTreeIter}} to get the child from, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{parent}}{The \code{\link{GtkTreeIter}} to get the child from, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{n}}{Then index of the desired child.}
 }
 \value{

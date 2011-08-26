@@ -20,10 +20,10 @@ returned by this function will be scaled to the exact size.}
 \details{Since 2.4}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GdkPixbuf}}]  the rendered icon; this may be a newly created icon
- or a new reference to an internal icon, so you must not modify
- the icon.}
-\item{\verb{error}}{ location to store error information on failure, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{retval}{[\code{\link{GdkPixbuf}}] the rendered icon; this may be a newly created icon
+or a new reference to an internal icon, so you must not modify
+the icon.}
+\item{\verb{error}}{location to store error information on failure, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

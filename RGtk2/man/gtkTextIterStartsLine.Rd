@@ -8,6 +8,6 @@ However this function is potentially more efficient than
 the offset, it just has to see whether it's 0.}
 \usage{gtkTextIterStartsLine(object)}
 \arguments{\item{\verb{object}}{an iterator}}
-\value{[logical]  whether \code{iter} begins a line}
+\value{[logical] whether \code{iter} begins a line}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

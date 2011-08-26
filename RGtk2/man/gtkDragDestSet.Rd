@@ -6,10 +6,10 @@
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkWidget}}}
 \item{\verb{flags}}{which types of default drag behavior to use}
-\item{\verb{targets}}{ a pointer to a list of \code{\link{GtkTargetEntry}}s
-    indicating the drop types that this \code{widget} will accept, or \code{NULL}.
-    Later you can access the list with \code{\link{gtkDragDestGetTargetList}}
-    and \code{\link{gtkDragDestFindTarget}}. \emph{[  \acronym{allow-none}  ][  \acronym{array}   length=n_targets]}}
+\item{\verb{targets}}{a pointer to a list of \code{\link{GtkTargetEntry}}s
+indicating the drop types that this \code{widget} will accept, or \code{NULL}.
+Later you can access the list with \code{\link{gtkDragDestGetTargetList}}
+and \code{\link{gtkDragDestFindTarget}}. \emph{[  \acronym{allow-none}  ][  \acronym{array}   length=n_targets]}}
 \item{\verb{actions}}{a bitmask of possible actions for a drop onto this \code{widget}.}
 }
 \details{The default behaviors listed in \code{flags} have an effect similar

@@ -5,8 +5,8 @@
 must be added with \code{gSocketServiceAddListeners()}.}
 \usage{gThreadedSocketServiceNew(max.threads)}
 \arguments{\item{\verb{max.threads}}{the maximal number of threads to execute concurrently
-  handling incoming clients, -1 means no limit}}
+handling incoming clients, -1 means no limit}}
 \details{Since 2.22}
-\value{[\code{\link{GSocketService}}]  a new \code{\link{GSocketService}}.}
+\value{[\code{\link{GSocketService}}] a new \code{\link{GSocketService}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

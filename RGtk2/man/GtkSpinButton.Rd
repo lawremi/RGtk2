@@ -124,27 +124,23 @@ GTK_SPIN_USER_DEFINED \tab The programmer must specify the exact amount to spin 
 }
 }}
 \section{Signals}{\describe{
-\item{\code{change-value(spinbutton, arg1, user.data)}}{
+\item{\code{change-value(spinbutton, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{spinbutton}}{the object which received the signal.}
-\item{\code{arg1}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{input(spinbutton, arg1, user.data)}}{
+\item{\code{input(spinbutton, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{spinbutton}}{the object which received the signal.}
-\item{\code{arg1}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 

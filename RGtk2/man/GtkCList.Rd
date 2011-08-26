@@ -316,16 +316,12 @@ by calling \code{\link{gtkCListSelectAll}}.
 
 
 }
-\item{\code{set-scroll-adjustments(clist, arg1, arg2, user.data)}}{
+\item{\code{set-scroll-adjustments(clist, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{clist}}{the object which received the signal.}
-\item{\code{arg1}}{\emph{undocumented
-}}
-\item{\code{arg2}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
@@ -384,7 +380,7 @@ This signal is emitted when all rows are unselected in a CList.
 
 
 }
-\item{\code{unselect-row(clist, row, column, event, user.data)}}{
+\item{\code{unselect-row(clist, row, column, user.data)}}{
 This signal is emitted when the user unselects a row in the list.
 It is emitted for every row that is unselected in a multi-selection or
 by calling \code{\link{gtkCListUnselectAll}}.  It is also emitted for the
@@ -394,8 +390,6 @@ previously selected row in a "single" or "browse" mode CList.
 \item{\code{clist}}{The object which received the signal.}
 \item{\code{row}}{The selected row}
 \item{\code{column}}{The column where the selection occured.}
-\item{\code{event}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 

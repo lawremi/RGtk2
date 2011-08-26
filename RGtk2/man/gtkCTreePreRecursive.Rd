@@ -10,11 +10,11 @@ for its parent.
 }
 \usage{gtkCTreePreRecursive(object, node, func, data = NULL)}
 \arguments{
-\item{\verb{object}}{\emph{undocumented
+\item{\verb{object}}{The node where to start. \code{NULL} means to start at the root.}
+\item{\verb{node}}{The function to apply to each node.}
+\item{\verb{func}}{A closure argument given to each invocation of the function.}
+\item{\verb{data}}{\emph{undocumented
 }}
-\item{\verb{node}}{The node where to start. \code{NULL} means to start at the root.}
-\item{\verb{func}}{The function to apply to each node.}
-\item{\verb{data}}{A closure argument given to each invocation of the function.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

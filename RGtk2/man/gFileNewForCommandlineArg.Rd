@@ -8,6 +8,6 @@ This operation never fails, but the returned object might not support any
 I/O operation if \code{arg} points to a malformed path.}
 \usage{gFileNewForCommandlineArg(arg)}
 \arguments{\item{\verb{arg}}{a command line string.}}
-\value{[\code{\link{GFile}}]  a new \code{\link{GFile}}. }
+\value{[\code{\link{GFile}}] a new \code{\link{GFile}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

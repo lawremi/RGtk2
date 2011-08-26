@@ -6,7 +6,7 @@
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkNotebook}}}
 \item{\verb{child}}{the child widget}
-\item{\verb{menu.label}}{ the menu label, or NULL for default. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{menu.label}}{the menu label, or NULL for default. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

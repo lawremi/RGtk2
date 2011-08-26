@@ -168,14 +168,12 @@ for regular properties.}
 
 }}}
 \section{Signals}{\describe{
-\item{\code{add(container, widget, user.data)}}{
+\item{\code{add(container, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{container}}{the object which received the signal.}
-\item{\code{widget}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
@@ -192,27 +190,23 @@ for regular properties.}
 
 
 }
-\item{\code{remove(container, widget, user.data)}}{
+\item{\code{remove(container, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{container}}{the object which received the signal.}
-\item{\code{widget}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{set-focus-child(container, widget, user.data)}}{
+\item{\code{set-focus-child(container, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{container}}{the object which received the signal.}
-\item{\code{widget}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 

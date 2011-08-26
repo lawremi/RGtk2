@@ -11,10 +11,10 @@ returned \code{\link{GIcon}}.}
 \details{Since 2.14}
 \value{
 A list containing the following elements:
-\item{\verb{gicon}}{ place to store a
-    \code{\link{GIcon}}, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{transfer none}  ][  \acronym{allow-none}  ]}}
-\item{\verb{size}}{ place to store an icon size,
-    or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ][type int]}}
+\item{\verb{gicon}}{place to store a
+\code{\link{GIcon}}, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{transfer none}  ][  \acronym{allow-none}  ]}}
+\item{\verb{size}}{place to store an icon size,
+or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ][  \acronym{type}   int]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

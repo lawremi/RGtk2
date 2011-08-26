@@ -12,6 +12,6 @@ is returned.}
 \item{\verb{child.path}}{A \code{\link{GtkTreePath}} to convert.}
 }
 \details{Since 2.4}
-\value{[\code{\link{GtkTreePath}}]  A newly allocated \code{\link{GtkTreePath}}, or \code{NULL}.}
+\value{[\code{\link{GtkTreePath}}] A newly allocated \code{\link{GtkTreePath}}, or \code{NULL}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

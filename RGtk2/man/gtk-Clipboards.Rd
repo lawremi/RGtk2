@@ -116,8 +116,8 @@
 \describe{
 \item{\code{clipboard}}{the \code{\link{GtkClipboard}}}
 \item{\code{selection.data}}{a \code{\link{GtkSelectionData}} containing the data was received.
-                 If retrieving the data failed, then then length field
-                 of \code{selection.data} will be negative.}
+If retrieving the data failed, then then length field
+of \code{selection.data} will be negative.}
 \item{\code{data}}{the \code{user.data} supplied to \code{\link{gtkClipboardRequestContents}}.}
 }
 
@@ -130,7 +130,7 @@
 \describe{
 \item{\code{clipboard}}{the \code{\link{GtkClipboard}}}
 \item{\code{text}}{the text received, as a UTF-8 encoded string, or \code{NULL}
-            if retrieving the data failed.}
+if retrieving the data failed.}
 \item{\code{data}}{the \code{user.data} supplied to \code{\link{gtkClipboardRequestText}}.}
 }
 
@@ -156,45 +156,27 @@
 
 \describe{
 \item{\code{clipboard}}{the \code{\link{GtkClipboard}}}
-\item{\code{atoms}}{the supported targets, as list of \code{\link{GdkAtom}}, or \code{NULL} 
-            if retrieving the data failed.}
+\item{\code{atoms}}{the supported targets, as list of \code{\link{GdkAtom}}, or \code{NULL}
+if retrieving the data failed.}
 \item{\code{n.atoms}}{the length of the \code{atoms} list.}
 \item{\code{data}}{the \code{user.data} supplied to \code{\link{gtkClipboardRequestTargets}}.}
 }
 
 
 }
-\item{\code{GtkClipboardRichTextReceivedFunc(clipboard, format, text, length, data)}}{
+\item{\code{GtkClipboardRichTextReceivedFunc()}}{
 \emph{undocumented
 }
 
-\describe{
-\item{\code{clipboard}}{\emph{undocumented
-}}
-\item{\code{format}}{\emph{undocumented
-}}
-\item{\code{text}}{\emph{undocumented
-}}
-\item{\code{length}}{\emph{undocumented
-}}
-\item{\code{data}}{\emph{undocumented
-}}
-}
+
 
 
 }
-\item{\code{GtkClipboardURIReceivedFunc(clipboard, uris, data)}}{
+\item{\code{GtkClipboardURIReceivedFunc()}}{
 \emph{undocumented
 }
 
-\describe{
-\item{\code{clipboard}}{\emph{undocumented
-}}
-\item{\code{uris}}{\emph{undocumented
-}}
-\item{\code{data}}{\emph{undocumented
-}}
-}
+
 
 
 }
@@ -211,12 +193,12 @@ will be informed that the attempt to get the data failed.
 \describe{
 \item{\code{clipboard}}{the \code{\link{GtkClipboard}}}
 \item{\code{selection.data}}{a \code{\link{GtkSelectionData}} argument in which the requested
-                     data should be stored.}
+data should be stored.}
 \item{\code{info}}{the info field corresponding to the requested
-                     target from the \code{\link{GtkTargetEntry}} list passed to
-                     \code{\link{gtkClipboardSetWithData}} or \code{\link{gtkClipboardSetWithOwner}}.}
+target from the \code{\link{GtkTargetEntry}} list passed to
+\code{\link{gtkClipboardSetWithData}} or \code{\link{gtkClipboardSetWithOwner}}.}
 \item{\code{user.data.or.owner}}{the \code{user.data} argument passed to \code{\link{gtkClipboardSetWithData}}, or
-                     the \code{owner} argument passed to \code{\link{gtkClipboardSetWithOwner}}}
+the \code{owner} argument passed to \code{\link{gtkClipboardSetWithOwner}}}
 }
 
 
@@ -229,7 +211,7 @@ will not be used again.
 \describe{
 \item{\code{clipboard}}{the \code{\link{GtkClipboard}}}
 \item{\code{user.data.or.owner}}{the \code{user.data} argument passed to \code{\link{gtkClipboardSetWithData}}, or
-                     the \code{owner} argument passed to \code{\link{gtkClipboardSetWithOwner}}}
+the \code{owner} argument passed to \code{\link{gtkClipboardSetWithOwner}}}
 }
 
 
@@ -243,7 +225,7 @@ associated with \code{clipboard} has changed.
 
 \describe{
 \item{\code{clipboard}}{the \code{\link{GtkClipboard}} on which the signal is emitted}
-\item{\code{event}}{the \code{GdkEventOwnerChange} event }
+\item{\code{event}}{the \code{GdkEventOwnerChange} event}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 

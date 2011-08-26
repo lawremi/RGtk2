@@ -7,11 +7,11 @@
 }
 \usage{gtkCTreeNodeSetSelectable(object, node, selectable)}
 \arguments{
-\item{\verb{object}}{\emph{undocumented
-}}
+\item{\verb{object}}{Whether this node can be selected by the user.}
 \item{\verb{node}}{\emph{undocumented
 }}
-\item{\verb{selectable}}{Whether this node can be selected by the user.}
+\item{\verb{selectable}}{\emph{undocumented
+}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -11,6 +11,6 @@ in a RC file. }
 \details{Note that theme engines should use \code{\link{gtkRcParseColorFull}} in 
 order to support symbolic colors.}
 \value{[numeric] \code{G_TOKEN_NONE} if parsing succeeded, otherwise the token
-    that was expected but not found}
+that was expected but not found}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

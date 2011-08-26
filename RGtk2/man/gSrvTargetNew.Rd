@@ -12,6 +12,6 @@
 \details{You should not need to use this; normally \code{\link{GSrvTarget}}s are
 created by \code{\link{GResolver}}.
   Since 2.22}
-\value{[\code{\link{GSrvTarget}}]  a new \code{\link{GSrvTarget}}.}
+\value{[\code{\link{GSrvTarget}}] a new \code{\link{GSrvTarget}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

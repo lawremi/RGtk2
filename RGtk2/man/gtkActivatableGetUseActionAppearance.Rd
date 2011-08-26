@@ -7,6 +7,6 @@ the action changes appearance.}
 \usage{gtkActivatableGetUseActionAppearance(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkActivatable}}}}
 \details{Since 2.16}
-\value{[logical]  whether \code{activatable} uses its actions appearance.}
+\value{[logical] whether \code{activatable} uses its actions appearance.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

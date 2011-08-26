@@ -10,6 +10,12 @@
 \code{\link{pangoGravityGetForScriptAndWidth}(script, wide, base.gravity, hint)}\cr
 \code{\link{pangoGravityToRotation}(base.gravity)}\cr
 }
+\section{Hierarchy}{\preformatted{
+GEnum
+   +----PangoGravity
+GEnum
+   +----PangoGravityHint
+}}
 \section{Detailed Description}{Since 1.16, Pango is able to correctly lay vertical text out.  In fact, it can
 set layouts of mixed vertical and non-vertical text.  This section describes
 the types used for setting vertical text parameters.

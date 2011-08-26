@@ -30,8 +30,14 @@
 \code{\link{gMountShadow}(object)}\cr
 \code{\link{gMountUnshadow}(object)}\cr
 }
-\section{Hierarchy}{\preformatted{GInterface
-   +----GMount}}
+\section{Hierarchy}{\preformatted{
+GInterface
+   +----GMount
+GEnum
+   +----GMountMountFlags
+GFlags
+   +----GMountUnmountFlags
+}}
 \section{Detailed Description}{The \code{\link{GMount}} interface represents user-visible mounts. Note, when 
 porting from GnomeVFS, \code{\link{GMount}} is the moral equivalent of \verb{GnomeVFSVolume}.
   \code{\link{GMount}} is a "mounted" filesystem that you can access. Mounted is in

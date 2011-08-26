@@ -9,7 +9,7 @@ completion.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkEntryCompletion}}}
 \item{\verb{popup.single.match}}{\code{TRUE} if the popup should appear even for a single
-  match}
+match}
 }
 \details{Since 2.8}
 \author{Derived by RGtkGen from GTK+ documentation}

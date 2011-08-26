@@ -7,7 +7,7 @@ either \code{source1} or \code{source2}.}
 \usage{gdkRegionUnion(object, source2)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkRegion}}}
-\item{\verb{source2}}{a \code{\link{GdkRegion}} }
+\item{\verb{source2}}{a \code{\link{GdkRegion}}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

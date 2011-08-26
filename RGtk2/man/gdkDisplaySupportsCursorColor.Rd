@@ -7,6 +7,6 @@ and a background color.}
 \usage{gdkDisplaySupportsCursorColor(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GdkDisplay}}}}
 \details{Since 2.4}
-\value{[logical]  whether cursors can have multiple colors.}
+\value{[logical] whether cursors can have multiple colors.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

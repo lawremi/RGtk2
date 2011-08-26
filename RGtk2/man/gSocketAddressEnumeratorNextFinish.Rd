@@ -14,8 +14,8 @@ error handling.}
 \value{
 A list containing the following elements:
 \item{retval}{[\code{\link{GSocketAddress}}]  or \code{NULL} on
-    error (in which case *\code{error} will be set) or if there are no
-    more addresses.}
+error (in which case *\code{error} will be set) or if there are no
+more addresses.}
 \item{\verb{error}}{a \code{\link{GError}}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -8,7 +8,7 @@ function should return \code{TRUE} if the given row should be visible and
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkTreeModelFilter}}.}
 \item{\verb{func}}{A \code{\link{GtkTreeModelFilterVisibleFunc}}, the visible function.}
-\item{\verb{data}}{ User data to pass to the visible function, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{data}}{User data to pass to the visible function, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{If the condition calculated by the function changes over time (e.g. because
 it depends on some global parameters), you must call 

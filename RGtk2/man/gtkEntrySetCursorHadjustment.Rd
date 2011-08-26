@@ -8,8 +8,8 @@ the adjustment.}
 \usage{gtkEntrySetCursorHadjustment(object, adjustment)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkEntry}}}
-\item{\verb{adjustment}}{an adjustment which should be adjusted when the cursor 
-             is moved, or \code{NULL}}
+\item{\verb{adjustment}}{an adjustment which should be adjusted when the cursor
+is moved, or \code{NULL}}
 }
 \details{The adjustment has to be in pixel units and in the same coordinate system 
 as the entry.

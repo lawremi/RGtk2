@@ -5,6 +5,6 @@
 activity.}
 \usage{gtkCellRendererSpinnerNew()}
 \details{Since 2.20}
-\value{[\code{\link{GtkCellRenderer}}]  a new \code{\link{GtkCellRenderer}}}
+\value{[\code{\link{GtkCellRenderer}}] a new \code{\link{GtkCellRenderer}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

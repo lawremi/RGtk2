@@ -13,8 +13,8 @@ than letters and '-'.
   
 Use \code{\link{pangoLanguageGetDefault}} if you want to get the \code{\link{PangoLanguage}} for
 the current locale of the process.}
-\value{[\code{\link{PangoLanguage}}]  an opaque pointer to a \code{\link{PangoLanguage}} structure, or \code{NULL}
-              if \code{language} was \code{NULL}.  The returned pointer will be valid
-              forever after, and should not be freed.}
+\value{[\code{\link{PangoLanguage}}] an opaque pointer to a \code{\link{PangoLanguage}} structure, or \code{NULL}
+if \code{language} was \code{NULL}.  The returned pointer will be valid
+forever after, and should not be freed.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

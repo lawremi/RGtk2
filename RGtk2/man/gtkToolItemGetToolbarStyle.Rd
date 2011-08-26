@@ -6,7 +6,7 @@
 GtkToolItem::toolbar_reconfigured signal to find out in what style
 the toolbar is displayed and change themselves accordingly }
 \usage{gtkToolItemGetToolbarStyle(object)}
-\arguments{\item{\verb{object}}{a \code{\link{GtkToolItem}} }}
+\arguments{\item{\verb{object}}{a \code{\link{GtkToolItem}}}}
 \details{Possibilities are:
 \itemize{
 \item 
@@ -15,7 +15,7 @@ the toolbar is displayed and change themselves accordingly }
 \item 
 }
   Since 2.4}
-\value{[\code{\link{GtkToolbarStyle}}]  A \code{\link{GtkToolbarStyle}} indicating the toolbar style used
+\value{[\code{\link{GtkToolbarStyle}}] A \code{\link{GtkToolbarStyle}} indicating the toolbar style used
 for \code{tool.item}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

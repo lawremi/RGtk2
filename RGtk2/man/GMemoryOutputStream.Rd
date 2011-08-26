@@ -34,7 +34,7 @@ The function should have the same semantics as \code{realloc()}.
 \item{\code{size}}{size to reallocate \code{data} to}
 }
 
-\emph{Returns:} [R object]  a pointer to the reallocated memory
+\emph{Returns:} [R object] a pointer to the reallocated memory
 
 }}}
 \references{\url{http://library.gnome.org/devel//gio/GMemoryOutputStream.html}}

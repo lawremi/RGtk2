@@ -5,6 +5,6 @@
 \usage{gtkPrintOperationGetHasSelection(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkPrintOperation}}}}
 \details{Since 2.18}
-\value{[logical]  whether there is a selection}
+\value{[logical] whether there is a selection}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

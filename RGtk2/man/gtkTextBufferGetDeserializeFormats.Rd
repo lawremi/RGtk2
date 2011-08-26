@@ -9,8 +9,8 @@ with \code{buffer} using \code{\link{gtkTextBufferRegisterDeserializeFormat}} or
 \details{Since 2.10}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GdkAtom}}]  a list of \code{\link{GdkAtom}}s representing the registered
-              formats.}
+\item{retval}{[\code{\link{GdkAtom}}] a list of \code{\link{GdkAtom}}s representing the registered
+formats.}
 \item{\verb{n.formats}}{return location for the number of formats}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

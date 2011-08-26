@@ -7,8 +7,8 @@ If you need to present a window without a timestamp, use
 \usage{gtkWindowPresentWithTime(object, timestamp)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkWindow}}}
-\item{\verb{timestamp}}{the timestamp of the user interaction (typically a 
-  button or key press event) which triggered this call}
+\item{\verb{timestamp}}{the timestamp of the user interaction (typically a
+button or key press event) which triggered this call}
 }
 \details{Since 2.8}
 \author{Derived by RGtkGen from GTK+ documentation}

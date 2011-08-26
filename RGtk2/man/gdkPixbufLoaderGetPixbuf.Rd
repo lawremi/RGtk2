@@ -12,7 +12,7 @@ return the "static image" of the animation
 (see \code{\link{gdkPixbufAnimationGetStaticImage}}).}
 \usage{gdkPixbufLoaderGetPixbuf(object)}
 \arguments{\item{\verb{object}}{A pixbuf loader.}}
-\value{[\code{\link{GdkPixbuf}}]  The \code{\link{GdkPixbuf}} that the loader is creating, or \code{NULL} if not
+\value{[\code{\link{GdkPixbuf}}] The \code{\link{GdkPixbuf}} that the loader is creating, or \code{NULL} if not
 enough data has been read to determine how to create the image buffer.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

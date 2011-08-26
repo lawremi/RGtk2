@@ -5,6 +5,6 @@
 \usage{gtkTreeSelectionCountSelectedRows(object)}
 \arguments{\item{\verb{object}}{A \code{\link{GtkTreeSelection}}.}}
 \details{Since 2.2}
-\value{[integer]  The number of rows selected.}
+\value{[integer] The number of rows selected.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

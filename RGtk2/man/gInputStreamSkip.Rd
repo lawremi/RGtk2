@@ -6,7 +6,7 @@
 \arguments{
 \item{\verb{object}}{a \code{\link{GInputStream}}.}
 \item{\verb{count}}{the number of bytes that will be skipped from the stream}
-\item{\verb{cancellable}}{optional \code{\link{GCancellable}} object, \code{NULL} to ignore. }
+\item{\verb{cancellable}}{optional \code{\link{GCancellable}} object, \code{NULL} to ignore.}
 \item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \details{This is identical to \code{\link{gInputStreamRead}}, from a behaviour standpoint,
@@ -23,7 +23,7 @@ operation was partially finished when the operation was cancelled the
 partial result will be returned, without an error.}
 \value{
 A list containing the following elements:
-\item{retval}{[integer]  Number of bytes skipped, or -1 on error}
+\item{retval}{[integer] Number of bytes skipped, or -1 on error}
 \item{\verb{error}}{location to store the error occuring, or \code{NULL} to ignore}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

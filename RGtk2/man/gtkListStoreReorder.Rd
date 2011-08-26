@@ -7,8 +7,8 @@ this function only works with unsorted stores.}
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkListStore}}.}
 \item{\verb{new.order}}{a list of integers mapping the new position of each child
-     to its old position before the re-ordering,
-     i.e. \code{new.order}\code{[newpos] = oldpos}.}
+to its old position before the re-ordering,
+i.e. \code{new.order}\code{[newpos] = oldpos}.}
 }
 \details{Since 2.2}
 \author{Derived by RGtkGen from GTK+ documentation}

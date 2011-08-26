@@ -7,6 +7,6 @@ to the text, not a copy of it, so will become invalid
 if you change the text in the progress bar.}
 \usage{gtkProgressBarGetText(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkProgressBar}}}}
-\value{[character]  text,}
+\value{[character] text,}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

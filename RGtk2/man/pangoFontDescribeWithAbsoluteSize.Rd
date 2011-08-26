@@ -7,6 +7,6 @@ size in points.}
 \usage{pangoFontDescribeWithAbsoluteSize(object)}
 \arguments{\item{\verb{object}}{a \code{\link{PangoFont}}}}
 \details{Since 1.14}
-\value{[\code{\link{PangoFontDescription}}]  a newly-allocated \code{\link{PangoFontDescription}} object.}
+\value{[\code{\link{PangoFontDescription}}] a newly-allocated \code{\link{PangoFontDescription}} object.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

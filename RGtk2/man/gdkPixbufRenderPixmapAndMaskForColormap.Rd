@@ -21,9 +21,9 @@ to \code{NULL}.}
 \value{
 A list containing the following elements:
 \item{\verb{pixmap.return}}{Location to store a pointer to the created pixmap,
-  or \code{NULL} if the pixmap is not needed.}
+or \code{NULL} if the pixmap is not needed.}
 \item{\verb{mask.return}}{Location to store a pointer to the created mask,
-  or \code{NULL} if the mask is not needed.}
+or \code{NULL} if the mask is not needed.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

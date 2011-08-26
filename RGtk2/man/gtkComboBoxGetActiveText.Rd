@@ -8,6 +8,6 @@ boxes constructed with \code{\link{gtkComboBoxNewText}} and with
 \usage{gtkComboBoxGetActiveText(object)}
 \arguments{\item{\verb{object}}{A \code{\link{GtkComboBox}} constructed with \code{\link{gtkComboBoxNewText}}}}
 \details{Since 2.6}
-\value{[character]  a newly allocated string containing the currently active text.}
+\value{[character] a newly allocated string containing the currently active text.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

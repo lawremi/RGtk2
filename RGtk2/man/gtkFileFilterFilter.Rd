@@ -8,7 +8,7 @@ the fields returned from \code{\link{gtkFileFilterGetNeeded}}.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkFileFilter}}}
 \item{\verb{filter.info}}{a \code{\link{GtkFileFilterInfo}} structure containing information
- about a file.}
+about a file.}
 }
 \details{This function will not typically be used by applications; it
 is intended principally for use in the implementation of

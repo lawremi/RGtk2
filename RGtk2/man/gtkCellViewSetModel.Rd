@@ -7,7 +7,7 @@ set, it will remove it before setting the new model.  If \code{model} is
 \usage{gtkCellViewSetModel(object, model = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkCellView}}}
-\item{\verb{model}}{ a \code{\link{GtkTreeModel}}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{model}}{a \code{\link{GtkTreeModel}}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -9,8 +9,8 @@ set, then \code{parent} must be the parent of \code{sibling}.  When \code{siblin
 \usage{gtkTreeStoreInsertBefore(object, parent, sibling)}
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkTreeStore}}}
-\item{\verb{parent}}{ A valid \code{\link{GtkTreeIter}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{sibling}}{ A valid \code{\link{GtkTreeIter}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{parent}}{A valid \code{\link{GtkTreeIter}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{sibling}}{A valid \code{\link{GtkTreeIter}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{\code{iter} will be changed to point to this new row.  The row will be empty after
 this function is called.  To fill in values, you need to call

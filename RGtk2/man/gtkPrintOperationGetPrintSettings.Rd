@@ -8,6 +8,6 @@
 \code{\link{gtkPrintOperationSetPrintSettings}} or 
 \code{\link{gtkPrintOperationRun}} have been called.
   Since 2.10}
-\value{[\code{\link{GtkPrintSettings}}]  the current print settings of \code{op}.}
+\value{[\code{\link{GtkPrintSettings}}] the current print settings of \code{op}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -12,7 +12,7 @@
 see \code{gDataStreamGetByteOrder()} and \code{gDataStreamSetByteOrder()}.}
 \value{
 A list containing the following elements:
-\item{retval}{[integer]  a signed 16-bit/2-byte value read from \code{stream} or \code{0} if 
+\item{retval}{[integer] a signed 16-bit/2-byte value read from \code{stream} or \code{0} if
 an error occurred.}
 \item{\verb{error}}{\code{\link{GError}} for error reporting.}
 }

@@ -11,7 +11,7 @@ Creates an item for \code{entry}.
 \item{\verb{entry}}{the \code{\link{GtkItemFactoryEntry}} to create an item for}
 \item{\verb{callback.data}}{data passed to the callback function of \code{entry}}
 \item{\verb{callback.type}}{1 if the callback function of \code{entry} is of type
-   \code{\link{GtkItemFactoryCallback1}}, 2 if it is of type \code{\link{GtkItemFactoryCallback2}} }
+\code{\link{GtkItemFactoryCallback1}}, 2 if it is of type \code{\link{GtkItemFactoryCallback2}}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

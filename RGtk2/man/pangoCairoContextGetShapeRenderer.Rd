@@ -12,8 +12,8 @@ attributes of type \code{PANGO_ATTR_SHAPE} as set by
   Since 1.18}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{PangoCairoShapeRendererFunc}}]  the shape rendering callback previously set on the context, or \code{NULL}
-  if no shape rendering callback have been set.}
+\item{retval}{[\code{\link{PangoCairoShapeRendererFunc}}] the shape rendering callback previously set on the context, or \code{NULL}
+if no shape rendering callback have been set.}
 \item{\verb{data}}{Pointer to \verb{R object} to return user data}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

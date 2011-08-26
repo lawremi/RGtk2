@@ -9,8 +9,8 @@ units high. (10 * 96. / 72. = 13.3).}
 \arguments{
 \item{\verb{context}}{a \code{\link{PangoContext}}, from a pangocairo font map}
 \item{\verb{dpi}}{the resolution in "dots per inch". (Physical inches aren't actually
-  involved; the terminology is conventional.) A 0 or negative value
-  means to use the resolution from the font map.}
+involved; the terminology is conventional.) A 0 or negative value
+means to use the resolution from the font map.}
 }
 \details{Since 1.10}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -14,7 +14,7 @@ triggering the cancellable object from another thread. If the operation
 was cancelled, the error \code{G_IO_ERROR_CANCELLED} will be returned.}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GAppInfo}}]  a \code{\link{GAppInfo}} if the handle was found, \code{NULL} if there were errors.
+\item{retval}{[\code{\link{GAppInfo}}] a \code{\link{GAppInfo}} if the handle was found, \code{NULL} if there were errors.
 When you are done with it,}
 \item{\verb{error}}{a \code{\link{GError}}, or \code{NULL}}
 }

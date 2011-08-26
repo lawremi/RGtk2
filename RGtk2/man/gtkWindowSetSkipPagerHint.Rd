@@ -8,7 +8,7 @@ switcher that displays a thumbnail representation of the windows
 on the screen.)}
 \usage{gtkWindowSetSkipPagerHint(object, setting)}
 \arguments{
-\item{\verb{object}}{a \code{\link{GtkWindow}} }
+\item{\verb{object}}{a \code{\link{GtkWindow}}}
 \item{\verb{setting}}{\code{TRUE} to keep this window from appearing in the pager}
 }
 \details{Since 2.2}

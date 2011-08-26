@@ -5,7 +5,7 @@
 \usage{gtkUIManagerGetActionGroups(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkUIManager}} object}}
 \details{Since 2.4}
-\value{[list]  a \verb{list} of
-  action groups. \emph{[  \acronym{element-type}   GtkActionGroup][  \acronym{transfer none}   GtkActionGroup]}}
+\value{[list] a \verb{list} of
+action groups. \emph{[  \acronym{element-type}   GtkActionGroup][  \acronym{transfer none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -8,6 +8,6 @@
 on the cursor, GDK may not be able to obtain the image data. In this 
 case, \code{NULL} is returned.
   Since 2.8}
-\value{[\code{\link{GdkPixbuf}}]  a \code{\link{GdkPixbuf}} representing \code{cursor}, or \code{NULL}}
+\value{[\code{\link{GdkPixbuf}}] a \code{\link{GdkPixbuf}} representing \code{cursor}, or \code{NULL}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -5,7 +5,7 @@
 \usage{gtkPrintSettingsSetNumberUp(object, number.up)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkPrintSettings}}}
-\item{\verb{number.up}}{the number of pages per sheet }
+\item{\verb{number.up}}{the number of pages per sheet}
 }
 \details{Since 2.10}
 \author{Derived by RGtkGen from GTK+ documentation}

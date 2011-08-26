@@ -8,7 +8,7 @@ it will unset the old model.}
 \usage{gtkIconViewSetModel(object, model = NULL)}
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkIconView}}.}
-\item{\verb{model}}{ The model. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{model}}{The model. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}

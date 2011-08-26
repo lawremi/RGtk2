@@ -7,8 +7,7 @@ Finds the node pointer given a \code{\link{GtkCTreeRow}} structure.
 }
 \usage{gtkCTreeFindNodePtr(object, ctree.row)}
 \arguments{
-\item{\verb{object}}{\emph{undocumented
-}}
+\item{\verb{object}}{The node pointer.}
 \item{\verb{ctree.row}}{\emph{undocumented
 }}
 }

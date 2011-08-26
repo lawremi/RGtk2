@@ -16,7 +16,6 @@
 \code{\link{gtkUIManagerGetToplevels}(object, types)}\cr
 \code{\link{gtkUIManagerGetAction}(object, path)}\cr
 \code{\link{gtkUIManagerAddUiFromString}(object, buffer, length = -1, .errwarn = TRUE)}\cr
-\code{\link{gtkUIManagerAddUiFromFile}(object, filename, .errwarn = TRUE)}\cr
 \code{\link{gtkUIManagerNewMergeId}(object)}\cr
 \code{\link{gtkUIManagerAddUi}(object, merge.id, path, name, action = NULL, type, top)}\cr
 \code{\link{gtkUIManagerRemoveUi}(object, merge.id)}\cr

@@ -8,7 +8,7 @@
 \item{\verb{relative.path}}{a given relative path string.}
 }
 \details{This call does no blocking i/o.}
-\value{[\code{\link{GFile}}] \code{\link{GFile}} to the resolved path. \code{NULL} if \code{relative.path} 
-    is \code{NULL} or if \code{file} is invalid.}
+\value{[\code{\link{GFile}}] \code{\link{GFile}} to the resolved path. \code{NULL} if \code{relative.path}
+is \code{NULL} or if \code{file} is invalid.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

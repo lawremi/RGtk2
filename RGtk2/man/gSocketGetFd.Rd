@@ -9,6 +9,6 @@ on the socket.}
 \usage{gSocketGetFd(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GSocket}}.}}
 \details{Since 2.22}
-\value{[integer]  the file descriptor of the socket.}
+\value{[integer] the file descriptor of the socket.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

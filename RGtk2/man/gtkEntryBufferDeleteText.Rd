@@ -15,6 +15,6 @@ values.
   
 Note that the positions are specified in characters, not bytes.
   Since 2.18}
-\value{[numeric]  The number of characters deleted.}
+\value{[numeric] The number of characters deleted.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

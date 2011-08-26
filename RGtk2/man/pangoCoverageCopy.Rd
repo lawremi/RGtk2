@@ -5,7 +5,7 @@
 since we refcount the structure. File a bug if you use it.)}
 \usage{pangoCoverageCopy(object)}
 \arguments{\item{\verb{object}}{a \code{\link{PangoCoverage}}}}
-\value{[\code{\link{PangoCoverage}}]  the newly allocated \code{\link{PangoCoverage}},
-              with a reference count of one,}
+\value{[\code{\link{PangoCoverage}}] the newly allocated \code{\link{PangoCoverage}},
+with a reference count of one,}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -221,18 +221,11 @@ multiple pages per sheet.
 
 }
 }}
-\section{User Functions}{\describe{\item{\code{GtkPrintSettingsFunc(key, value, user.data)}}{
+\section{User Functions}{\describe{\item{\code{GtkPrintSettingsFunc()}}{
 \emph{undocumented
 }
 
-\describe{
-\item{\code{key}}{\emph{undocumented
-}}
-\item{\code{value}}{\emph{undocumented
-}}
-\item{\code{user.data}}{\emph{undocumented
-}}
-}
+
 
 
 }}}

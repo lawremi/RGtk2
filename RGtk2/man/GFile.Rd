@@ -120,8 +120,20 @@
 \code{\link{gFileReplaceReadwriteFinish}(object, res, .errwarn = TRUE)}\cr
 \code{\link{gFileSupportsThreadContexts}(object)}\cr
 }
-\section{Hierarchy}{\preformatted{GInterface
-   +----GFile}}
+\section{Hierarchy}{\preformatted{
+GInterface
+   +----GFile
+GFlags
+   +----GFileQueryInfoFlags
+GFlags
+   +----GFileCreateFlags
+GFlags
+   +----GFileCopyFlags
+GFlags
+   +----GFileMonitorFlags
+GEnum
+   +----GFilesystemPreviewType
+}}
 \section{Detailed Description}{\code{\link{GFile}} is a high level abstraction for manipulating files on a 
 virtual file system. \code{\link{GFile}}s are lightweight, immutable 
 objects that do no I/O upon creation. It is necessary to understand that

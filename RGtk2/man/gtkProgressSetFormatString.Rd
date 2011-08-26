@@ -16,7 +16,7 @@ current progress.  The string can contain the following substitution characters:
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkProgress}}.}
 \item{\verb{format}}{a string used to display progress text, or \code{NULL}
-         to restore to the default format.}
+to restore to the default format.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -9,8 +9,8 @@ appropriately for the pixbuf returned by \code{\link{gtkIconInfoLoadIcon}}.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkIconInfo}}}
 \item{\verb{raw.coordinates}}{whether the coordinates of embedded rectangles
-  and attached points should be returned in their original
-  (unscaled) form.}
+and attached points should be returned in their original
+(unscaled) form.}
 }
 \details{Raw coordinates are somewhat strange; they are specified to be with
 respect to the unscaled pixmap for PNG and XPM icons, but for SVG

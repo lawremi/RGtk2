@@ -6,7 +6,7 @@
 \usage{gtkStatusIconSetTooltipMarkup(object, markup = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkStatusIcon}}}
-\item{\verb{markup}}{ the contents of the tooltip for \code{status.icon}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{markup}}{the contents of the tooltip for \code{status.icon}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{This function will take care of setting \verb{"has-tooltip"} to \code{TRUE}
 and of the default handler for the \verb{"query-tooltip"} signal.

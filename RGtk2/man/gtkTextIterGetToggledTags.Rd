@@ -12,6 +12,6 @@ does \emph{not} have the tag applied to it.}
 \item{\verb{object}}{an iterator}
 \item{\verb{toggled.on}}{\code{TRUE} to get toggled-on tags}
 }
-\value{[list]  tags toggled at this point. \emph{[  \acronym{element-type}   GtkTextTag][  \acronym{transfer container}   GtkTextTag]}}
+\value{[list] tags toggled at this point. \emph{[  \acronym{element-type}   GtkTextTag][  \acronym{transfer container}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

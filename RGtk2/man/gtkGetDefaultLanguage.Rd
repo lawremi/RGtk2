@@ -9,7 +9,7 @@ right-to-left or left-to-right text direction.}
 \usage{gtkGetDefaultLanguage()}
 \details{This function is equivalent to \code{\link{pangoLanguageGetDefault}}.  See
 that function for details.}
-\value{[\code{\link{PangoLanguage}}]  the default language as a \code{\link{PangoLanguage}}, must not be
+\value{[\code{\link{PangoLanguage}}] the default language as a \code{\link{PangoLanguage}}, must not be
 freed}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -23,7 +23,7 @@ was cancelled, the error \code{G_IO_ERROR_CANCELLED} will be returned.}
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if there was any error, \code{FALSE} otherwise.}
-\item{\verb{error}}{a \code{\link{GError}}, or \code{NULL} }
+\item{\verb{error}}{a \code{\link{GError}}, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

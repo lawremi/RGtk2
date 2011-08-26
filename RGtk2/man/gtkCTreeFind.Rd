@@ -7,9 +7,8 @@
 }
 \usage{gtkCTreeFind(object, node, child)}
 \arguments{
-\item{\verb{object}}{\emph{undocumented
-}}
-\item{\verb{node}}{The node to start searching from. May be \code{NULL}.}
+\item{\verb{object}}{The node to start searching from. May be \code{NULL}.}
+\item{\verb{node}}{True if \code{child} is on some level a child (grandchild...) of the \code{node}.}
 \item{\verb{child}}{\emph{undocumented
 }}
 }

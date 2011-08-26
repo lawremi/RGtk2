@@ -7,10 +7,10 @@
 \item{\verb{object}}{a \code{\link{PangoLayout}}}
 \item{\verb{text}}{a valid UTF-8 string}
 \item{\verb{length}}{maximum length of \code{text}, in bytes. -1 indicates that
-         the string is and the length should be
-         calculated.  The text will also be truncated on
-         encountering a nul-termination even when \code{length} is
-         positive.}
+the string is and the length should be
+calculated.  The text will also be truncated on
+encountering a nul-termination even when \code{length} is
+positive.}
 }
 \details{Note that if you have used
 \code{\link{pangoLayoutSetMarkup}} or \code{\link{pangoLayoutSetMarkupWithAccel}} on

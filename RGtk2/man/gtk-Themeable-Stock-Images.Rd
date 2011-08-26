@@ -29,7 +29,6 @@
 \code{\link{gtkIconSetGetSizes}(object)}\cr
 \code{\link{gtkIconSourceGetDirection}(object)}\cr
 \code{\link{gtkIconSourceGetDirectionWildcarded}(object)}\cr
-\code{\link{gtkIconSourceGetFilename}(object)}\cr
 \code{\link{gtkIconSourceGetPixbuf}(object)}\cr
 \code{\link{gtkIconSourceGetIconName}(object)}\cr
 \code{\link{gtkIconSourceGetSize}(object)}\cr
@@ -39,7 +38,6 @@
 \code{\link{gtkIconSourceNew}()}\cr
 \code{\link{gtkIconSourceSetDirection}(object, direction)}\cr
 \code{\link{gtkIconSourceSetDirectionWildcarded}(object, setting)}\cr
-\code{\link{gtkIconSourceSetFilename}(object, filename)}\cr
 \code{\link{gtkIconSourceSetPixbuf}(object, pixbuf)}\cr
 \code{\link{gtkIconSourceSetIconName}(object, icon.name)}\cr
 \code{\link{gtkIconSourceSetSize}(object, size)}\cr
@@ -48,8 +46,12 @@
 \code{\link{gtkIconSourceSetStateWildcarded}(object, setting)}\cr
 \code{gtkIconFactory()}
 }
-\section{Hierarchy}{\preformatted{GObject
-   +----GtkIconFactory}}
+\section{Hierarchy}{\preformatted{
+GObject
+   +----GtkIconFactory
+GBoxed
+   +----GtkIconSet
+}}
 \section{Interfaces}{GtkIconFactory implements
  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{Browse the available stock icons in the list of stock IDs found here. You can also use

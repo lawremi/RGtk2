@@ -12,7 +12,7 @@ buffers.}
 \item{\verb{object}}{start of search}
 \item{\verb{str}}{a search string}
 \item{\verb{flags}}{flags affecting how the search is done}
-\item{\verb{limit}}{ bound for the search, or \code{NULL} for the end of the buffer. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{limit}}{bound for the search, or \code{NULL} for the end of the buffer. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{If the \verb{GTK_TEXT_SEARCH_VISIBLE_ONLY} flag is present, the match may
 have invisible text interspersed in \code{str}. i.e. \code{str} will be a
@@ -23,9 +23,9 @@ flags are not given, the match must be exact; the special 0xFFFC
 character in \code{str} will match embedded pixbufs or child widgets.}
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  whether a match was found}
-\item{\verb{match.start}}{ return location for start of match, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{match.end}}{ return location for end of match, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{retval}{[logical] whether a match was found}
+\item{\verb{match.start}}{return location for start of match, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{match.end}}{return location for end of match, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

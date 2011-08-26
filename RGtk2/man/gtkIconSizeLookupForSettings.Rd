@@ -14,8 +14,8 @@ the usual size.}
 \usage{gtkIconSizeLookupForSettings(settings, size)}
 \arguments{
 \item{\verb{settings}}{a \code{\link{GtkSettings}} object, used to determine
-  which set of user preferences to used.}
-\item{\verb{size}}{ an icon size. \emph{[type int]}}
+which set of user preferences to used.}
+\item{\verb{size}}{an icon size. \emph{[  \acronym{type}   int]}}
 }
 \details{Since 2.2}
 \value{

@@ -7,6 +7,6 @@ only a single match.}
 \arguments{\item{\verb{object}}{a \code{\link{GtkEntryCompletion}}}}
 \details{Since 2.8}
 \value{[logical] \code{TRUE} if the popup window will appear regardless of the
-   number of matches.}
+number of matches.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

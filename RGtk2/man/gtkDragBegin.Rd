@@ -9,11 +9,11 @@ starting drags itself, and is not needed when
 \arguments{
 \item{\verb{object}}{the source widget.}
 \item{\verb{targets}}{The targets (data formats) in which the
-   source can provide the data.}
+source can provide the data.}
 \item{\verb{actions}}{A bitmask of the allowed drag actions for this drag.}
 \item{\verb{button}}{The button the user clicked to start the drag.}
 \item{\verb{event}}{The event that triggered the start of the drag.}
 }
-\value{[\code{\link{GdkDragContext}}]  the context for this drag.}
+\value{[\code{\link{GdkDragContext}}] the context for this drag.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

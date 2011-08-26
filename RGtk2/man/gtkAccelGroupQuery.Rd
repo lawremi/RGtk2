@@ -11,8 +11,8 @@
 }
 \value{
 A list containing the following elements:
-\item{retval}{[GtkAccelGroupEntry]           a list of \code{n.entries} \verb{GtkAccelGroupEntry} elements, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{n.entries}}{        location to return the number of entries found, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{retval}{[GtkAccelGroupEntry] a list of \code{n.entries} \verb{GtkAccelGroupEntry} elements, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{n.entries}}{location to return the number of entries found, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

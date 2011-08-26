@@ -26,7 +26,7 @@ if (toplevel$flags() & GtkWidgetFlags["toplevel"])
   # Perform action on toplevel.
 }
 }}
-\value{[\code{\link{GtkWidget}}]  the topmost ancestor of \code{widget}, or \code{widget} itself
-   if there's no ancestor. \emph{[  \acronym{transfer none}  ]}}
+\value{[\code{\link{GtkWidget}}] the topmost ancestor of \code{widget}, or \code{widget} itself
+if there's no ancestor. \emph{[  \acronym{transfer none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

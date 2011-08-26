@@ -15,6 +15,6 @@ options for cursor definitions. The PNG loader provides the tEXt ancillary
 chunk key/value pairs as options. Since 2.12, the TIFF and JPEG loaders
 return an "orientation" option string that corresponds to the embedded 
 TIFF/Exif orientation tag (if present).}
-\value{[character]  the value associated with \code{key}.}
+\value{[character] the value associated with \code{key}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

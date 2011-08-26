@@ -18,6 +18,6 @@ in the toolbar where it will be inserted.
 }
 \details{\code{callback} must be a pointer to a function taking a \code{\link{GtkWidget}} and a gpointer as
 arguments. Use \code{gCallback()} to cast the function to \verb{GCallback}.}
-\value{[\code{\link{GtkWidget}}]  the new toolbar item as a \code{\link{GtkWidget}}.}
+\value{[\code{\link{GtkWidget}}] the new toolbar item as a \code{\link{GtkWidget}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -7,6 +7,6 @@ offset 0), \code{\link{gtkTextIterBackwardChar}} returns \code{FALSE} for conven
 writing loops.}
 \usage{gtkTextIterBackwardChar(object)}
 \arguments{\item{\verb{object}}{an iterator}}
-\value{[logical]  whether movement was possible}
+\value{[logical] whether movement was possible}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

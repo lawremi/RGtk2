@@ -14,7 +14,7 @@ in from the current process.}
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if \code{selection.data} had target type \code{GTK_TREE_MODEL_ROW} and
- is otherwise valid}
+is otherwise valid}
 \item{\verb{tree.model}}{a \code{\link{GtkTreeModel}}}
 \item{\verb{path}}{row in \code{tree.model}}
 }

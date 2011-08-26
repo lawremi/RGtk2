@@ -9,8 +9,8 @@ visual, removing duplicates.}
 \details{The list returned by this function should not be freed.}
 \value{
 A list containing the following elements:
-\item{\verb{depths}}{ return location for available depths. \emph{[  \acronym{out}  ][  \acronym{array}  ]}}
-\item{\verb{count}}{ return location for number of available depths. \emph{[  \acronym{out}  ]}}
+\item{\verb{depths}}{return location for available depths. \emph{[  \acronym{out}  ][  \acronym{array}  ]}}
+\item{\verb{count}}{return location for number of available depths. \emph{[  \acronym{out}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

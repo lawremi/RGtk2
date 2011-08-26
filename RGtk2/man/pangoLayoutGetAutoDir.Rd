@@ -8,6 +8,6 @@ See \code{\link{pangoLayoutSetAutoDir}}.}
 \arguments{\item{\verb{object}}{a \code{\link{PangoLayout}}}}
 \details{Since 1.4}
 \value{[logical] \code{TRUE} if the bidirectional base direction
-  is computed from the layout's contents, \code{FALSE} otherwise.}
+is computed from the layout's contents, \code{FALSE} otherwise.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

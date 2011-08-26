@@ -9,6 +9,6 @@ is mainly intended for language bindings.}
 \item{\verb{string}}{a string}
 }
 \details{Since 2.6}
-\value{[character]  the translation of \code{string}}
+\value{[character] the translation of \code{string}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -13,7 +13,7 @@ side of the text you're typing).}
 \usage{gtkTextBufferCreateMark(object, mark.name = NULL, where, left.gravity = FALSE)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkTextBuffer}}}
-\item{\verb{mark.name}}{ name for mark, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{mark.name}}{name for mark, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{where}}{location to place mark}
 \item{\verb{left.gravity}}{whether the mark has left gravity}
 }
@@ -23,6 +23,6 @@ return value if you like.
   
 Emits the "mark-set" signal as notification of the mark's initial
 placement.}
-\value{[\code{\link{GtkTextMark}}]  the new \code{\link{GtkTextMark}} object}
+\value{[\code{\link{GtkTextMark}}] the new \code{\link{GtkTextMark}} object}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

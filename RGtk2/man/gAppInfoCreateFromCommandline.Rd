@@ -11,7 +11,7 @@
 }
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GAppInfo}}]  new \code{\link{GAppInfo}} for given command.}
+\item{retval}{[\code{\link{GAppInfo}}] new \code{\link{GAppInfo}} for given command.}
 \item{\verb{error}}{a \code{\link{GError}} location to store the error occuring, \code{NULL} to ignore.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

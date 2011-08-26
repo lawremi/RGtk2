@@ -15,6 +15,6 @@ default values. If SIZE is missing, the size in the resulting font
 description will be set to 0.}
 \usage{pangoFontDescriptionFromString(str)}
 \arguments{\item{\verb{str}}{string representation of a font description.}}
-\value{[\code{\link{PangoFontDescription}}]  a new \code{\link{PangoFontDescription}}.}
+\value{[\code{\link{PangoFontDescription}}] a new \code{\link{PangoFontDescription}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -19,10 +19,10 @@ domain.}
   Since 2.4}
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  whether an error was set}
+\item{retval}{[logical] whether an error was set}
 \item{\verb{buffer}}{location to receive a pointer to the new buffer.}
 \item{\verb{buffer.size}}{location to receive the size of the new buffer.}
-\item{\verb{error}}{ return location for error, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{error}}{return location for error, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

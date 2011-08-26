@@ -13,7 +13,7 @@ can only happen when the widget is realized.}
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkTreeView}}}
 \item{\verb{path}}{A \code{\link{GtkTreePath}}}
-\item{\verb{focus.column}}{ A \code{\link{GtkTreeViewColumn}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{focus.column}}{A \code{\link{GtkTreeViewColumn}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{start.editing}}{\code{TRUE} if the specified cell should start being edited.}
 }
 \details{If \code{path} is invalid for \code{model}, the current cursor (if any) will be unset

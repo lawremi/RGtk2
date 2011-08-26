@@ -15,6 +15,6 @@ these conditions will always be set in the output if they are true.
   
 This call never blocks.
   Since 2.22}
-\value{[\code{\link{GIOCondition}}]  the \code{GIOCondition} mask of the current state}
+\value{[\code{\link{GIOCondition}}] the \code{GIOCondition} mask of the current state}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

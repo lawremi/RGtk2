@@ -8,10 +8,10 @@
 \item{\verb{window}}{a \code{\link{GdkWindow}}}
 \item{\verb{state.type}}{a state}
 \item{\verb{shadow.type}}{type of shadow to draw}
-\item{\verb{area}}{ clip rectangle, or \code{NULL} if the
-       output should not be clipped. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{widget}}{ the widget. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{detail}}{ a style detail. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{area}}{clip rectangle, or \code{NULL} if the
+output should not be clipped. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{widget}}{the widget. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{detail}}{a style detail. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{x}}{x origin of the extension}
 \item{\verb{y}}{y origin of the extension}
 \item{\verb{width}}{width of the extension}

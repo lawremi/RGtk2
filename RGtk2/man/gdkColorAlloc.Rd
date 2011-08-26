@@ -8,8 +8,8 @@ Allocates a single color from a colormap.
 \usage{gdkColorAlloc(object, color)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkColormap}}.}
-\item{\verb{color}}{The color to allocate. On return, the 
-   \code{pixel} field will be filled in.}
+\item{\verb{color}}{The color to allocate. On return, the
+\code{pixel} field will be filled in.}
 }
 \value{[integer] \code{TRUE} if the allocation succeeded.}
 \author{Derived by RGtkGen from GTK+ documentation}

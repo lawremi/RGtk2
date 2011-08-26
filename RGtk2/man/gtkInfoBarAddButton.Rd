@@ -13,6 +13,6 @@ returned, but usually you don't need it.}
 \item{\verb{response.id}}{response ID for the button}
 }
 \details{Since 2.18}
-\value{[\code{\link{GtkWidget}}]  the button widget that was added}
+\value{[\code{\link{GtkWidget}}] the button widget that was added}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

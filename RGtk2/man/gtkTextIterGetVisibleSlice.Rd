@@ -9,6 +9,6 @@ Invisible text is usually invisible because a \code{\link{GtkTextTag}} with the
 \item{\verb{object}}{iterator at start of range}
 \item{\verb{end}}{iterator at end of range}
 }
-\value{[character]  slice of text from the buffer}
+\value{[character] slice of text from the buffer}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

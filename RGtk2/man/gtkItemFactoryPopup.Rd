@@ -8,7 +8,7 @@ Pops up the menu constructed from the item factory at (\code{x}, \code{y}).
 \usage{gtkItemFactoryPopup(object, x, y, mouse.button, time = "GDK_CURRENT_TIME")}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkItemFactory}} of type \verb{GTK_TYPE_MENU} (see \code{\link{gtkItemFactoryNew}})}
-\item{\verb{x}}{the x position }
+\item{\verb{x}}{the x position}
 \item{\verb{y}}{the y position}
 \item{\verb{mouse.button}}{the mouse button which was pressed to initiate the popup}
 \item{\verb{time}}{the time at which the activation event occurred}

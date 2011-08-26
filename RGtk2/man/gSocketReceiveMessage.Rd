@@ -59,13 +59,13 @@ On error -1 is returned and \code{error} is set accordingly.
   Since 2.22}
 \value{
 A list containing the following elements:
-\item{retval}{[integer]  Number of bytes read, or -1 on error}
+\item{retval}{[integer] Number of bytes read, or -1 on error}
 \item{\verb{address}}{a pointer to a \code{\link{GSocketAddress}} pointer, or \code{NULL}}
 \item{\verb{vectors}}{a list of \verb{GInputVector} structs}
 \item{\verb{messages}}{a pointer which will be filled with a list of
-    \verb{GSocketControlMessages}, or \code{NULL}}
+\verb{GSocketControlMessages}, or \code{NULL}}
 \item{\verb{num.messages}}{a pointer which will be filled with the number of
-   elements in \code{messages}, or \code{NULL}}
+elements in \code{messages}, or \code{NULL}}
 \item{\verb{error}}{a \code{\link{GError}} pointer, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

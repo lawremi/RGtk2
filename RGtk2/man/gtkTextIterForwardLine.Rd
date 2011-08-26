@@ -7,6 +7,6 @@ If after the operation, the iter is at the end of the buffer and not
 dereferencable, returns \code{FALSE}. Otherwise, returns \code{TRUE}.}
 \usage{gtkTextIterForwardLine(object)}
 \arguments{\item{\verb{object}}{an iterator}}
-\value{[logical]  whether \code{iter} can be dereferenced}
+\value{[logical] whether \code{iter} can be dereferenced}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -10,6 +10,6 @@
 \item{\verb{family}}{the address family of \code{bytes}}
 }
 \details{Since 2.22}
-\value{[\code{\link{GInetAddress}}]  a new \code{\link{GInetAddress}} corresponding to \code{family} and \code{bytes}.}
+\value{[\code{\link{GInetAddress}}] a new \code{\link{GInetAddress}} corresponding to \code{family} and \code{bytes}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

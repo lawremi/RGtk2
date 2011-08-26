@@ -5,7 +5,7 @@
 \usage{gdkPangoRendererSetDrawable(object, drawable = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkPangoRenderer}}}
-\item{\verb{drawable}}{ the new target drawable, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{drawable}}{the new target drawable, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}

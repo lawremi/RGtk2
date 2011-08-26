@@ -29,6 +29,6 @@ they'll be used to create, and add them to the icon set with
 By default, the icon source has all parameters wildcarded. That is,
 the icon source will be used as the base icon for any desired text
 direction, widget state, or icon size.}
-\value{[\code{\link{GtkIconSource}}]  a new \code{\link{GtkIconSource}}}
+\value{[\code{\link{GtkIconSource}}] a new \code{\link{GtkIconSource}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

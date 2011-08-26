@@ -7,6 +7,6 @@ considered an opaque string. Returns \code{NULL} if there is no UUID
 available.}
 \usage{gVolumeGetUuid(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GVolume}}.}}
-\value{[char]  the UUID for \code{volume} or \code{NULL} if no UUID can be computed.}
+\value{[char] the UUID for \code{volume} or \code{NULL} if no UUID can be computed.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

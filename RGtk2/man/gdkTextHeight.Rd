@@ -14,6 +14,6 @@ relation to the baseline. See \code{\link{gdkTextExtents}}.
 \item{\verb{text}}{the text to measure.}
 \item{\verb{text.length}}{the length of the text in bytes.}
 }
-\value{[integer]  the height of the string in pixels.}
+\value{[integer] the height of the string in pixels.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

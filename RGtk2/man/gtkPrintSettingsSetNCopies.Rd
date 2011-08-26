@@ -5,7 +5,7 @@
 \usage{gtkPrintSettingsSetNCopies(object, num.copies)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkPrintSettings}}}
-\item{\verb{num.copies}}{the number of copies }
+\item{\verb{num.copies}}{the number of copies}
 }
 \details{Since 2.10}
 \author{Derived by RGtkGen from GTK+ documentation}

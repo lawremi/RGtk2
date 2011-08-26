@@ -11,6 +11,6 @@ the default font map, then updates it to \code{cr}.  If you just need to
 create a layout for use with \code{cr} and do not need to access \code{\link{PangoContext}}
 directly, you can use \code{\link{pangoCairoCreateLayout}} instead.
   Since 1.22}
-\value{[\code{\link{PangoContext}}]  the newly created \code{\link{PangoContext}}.}
+\value{[\code{\link{PangoContext}}] the newly created \code{\link{PangoContext}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

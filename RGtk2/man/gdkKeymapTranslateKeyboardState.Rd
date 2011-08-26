@@ -12,7 +12,7 @@ affected by the active keyboard group. The \code{level} is derived from
 keyval, so this function isn't as useful as you might think.}
 \usage{gdkKeymapTranslateKeyboardState(object, hardware.keycode, state, group)}
 \arguments{
-\item{\verb{object}}{ a \code{\link{GdkKeymap}}, or \code{NULL} to use the default. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{object}}{a \code{\link{GdkKeymap}}, or \code{NULL} to use the default. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{hardware.keycode}}{a keycode}
 \item{\verb{state}}{a modifier state}
 \item{\verb{group}}{active keyboard group}
@@ -57,11 +57,11 @@ not \code{<Control><Shift>plus},}
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if there was a keyval bound to the keycode/state/group}
-\item{\verb{keyval}}{ return location for keyval, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
-\item{\verb{effective.group}}{ return location for effective group, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
-\item{\verb{level}}{  return location for level, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
-\item{\verb{consumed.modifiers}}{  return location for modifiers that were used to
-    determine the group or level, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
+\item{\verb{keyval}}{return location for keyval, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
+\item{\verb{effective.group}}{return location for effective group, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
+\item{\verb{level}}{return location for level, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
+\item{\verb{consumed.modifiers}}{return location for modifiers that were used to
+determine the group or level, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
 }
 \note{\code{consumed.modifiers} gives modifiers that should be masked out
 from \code{state} when comparing this key press to a hot key. For

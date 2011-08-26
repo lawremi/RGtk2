@@ -10,6 +10,6 @@ is less than the second character in the buffer.}
 \item{\verb{object}}{a \code{\link{GtkTextIter}}}
 \item{\verb{rhs}}{another \code{\link{GtkTextIter}}}
 }
-\value{[integer]  -1 if \code{lhs} is less than \code{rhs}, 1 if \code{lhs} is greater, 0 if they are equal}
+\value{[integer] -1 if \code{lhs} is less than \code{rhs}, 1 if \code{lhs} is greater, 0 if they are equal}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

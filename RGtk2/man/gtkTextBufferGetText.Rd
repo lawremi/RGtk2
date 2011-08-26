@@ -15,6 +15,6 @@ and character indexes into the buffer. Contrast with
 \item{\verb{end}}{end of a range}
 \item{\verb{include.hidden.chars}}{whether to include invisible text}
 }
-\value{[character]  an allocated UTF-8 string}
+\value{[character] an allocated UTF-8 string}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

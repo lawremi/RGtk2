@@ -9,6 +9,6 @@
 So, to call \code{\link{pangoMatrixRotate}} with the output of this function
 you should multiply it by (180. / G_PI).
   Since 1.16}
-\value{[numeric]  the rotation value corresponding to \code{gravity}.}
+\value{[numeric] the rotation value corresponding to \code{gravity}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

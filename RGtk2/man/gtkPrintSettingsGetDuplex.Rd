@@ -5,6 +5,6 @@
 \usage{gtkPrintSettingsGetDuplex(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkPrintSettings}}}}
 \details{Since 2.10}
-\value{[\code{\link{GtkPrintDuplex}}]  whether to print the output in duplex.}
+\value{[\code{\link{GtkPrintDuplex}}] whether to print the output in duplex.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

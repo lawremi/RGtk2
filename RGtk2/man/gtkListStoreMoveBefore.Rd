@@ -8,7 +8,7 @@ will be moved to the end of the list.}
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkListStore}}.}
 \item{\verb{iter}}{A \code{\link{GtkTreeIter}}.}
-\item{\verb{position}}{ A \code{\link{GtkTreeIter}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{position}}{A \code{\link{GtkTreeIter}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{Since 2.2}
 \author{Derived by RGtkGen from GTK+ documentation}

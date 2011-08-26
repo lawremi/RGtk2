@@ -5,6 +5,6 @@
 \usage{gtkComboBoxNewWithModel(model, show = TRUE)}
 \arguments{\item{\verb{model}}{A \code{\link{GtkTreeModel}}.}}
 \details{Since 2.4}
-\value{[\code{\link{GtkWidget}}]  A new \code{\link{GtkComboBox}}.}
+\value{[\code{\link{GtkWidget}}] A new \code{\link{GtkComboBox}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

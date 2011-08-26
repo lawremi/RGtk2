@@ -8,7 +8,7 @@ the fields returned from \code{\link{gtkRecentFilterGetNeeded}}.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkRecentFilter}}}
 \item{\verb{filter.info}}{a \code{\link{GtkRecentFilterInfo}} structure containing information
-  about a recently used resource}
+about a recently used resource}
 }
 \details{This function will not typically be used by applications; it
 is intended principally for use in the implementation of

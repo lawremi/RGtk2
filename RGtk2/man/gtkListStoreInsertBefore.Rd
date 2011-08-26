@@ -8,7 +8,7 @@ values, you need to call \code{\link{gtkListStoreSet}} or \code{\link{gtkListSto
 \usage{gtkListStoreInsertBefore(object, sibling)}
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkListStore}}}
-\item{\verb{sibling}}{ A valid \code{\link{GtkTreeIter}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{sibling}}{A valid \code{\link{GtkTreeIter}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \value{
 A list containing the following elements:

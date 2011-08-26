@@ -10,8 +10,8 @@ setting off will improve performance.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkWidget}}}
 \item{\verb{redraw.on.allocate}}{if \code{TRUE}, the entire widget will be redrawn
-  when it is allocated to a new size. Otherwise, only the
-  new portion of the widget will be redrawn.}
+when it is allocated to a new size. Otherwise, only the
+new portion of the widget will be redrawn.}
 }
 \details{Note that for \code{NO_WINDOW} widgets setting this flag to \code{FALSE} turns
 off all allocation on resizing: the widget will not even redraw if

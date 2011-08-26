@@ -5,6 +5,6 @@
 \usage{gtkPrintSettingsGetNumberUpLayout(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkPrintSettings}}}}
 \details{Since 2.14}
-\value{[\code{\link{GtkNumberUpLayout}}]  layout of page in number-up mode}
+\value{[\code{\link{GtkNumberUpLayout}}] layout of page in number-up mode}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

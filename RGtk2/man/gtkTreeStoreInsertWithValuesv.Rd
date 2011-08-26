@@ -7,7 +7,7 @@ function is mainly intended for language bindings.}
 \usage{gtkTreeStoreInsertWithValuesv(object, parent, position, columns, values)}
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkTreeStore}}}
-\item{\verb{parent}}{ A valid \code{\link{GtkTreeIter}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{parent}}{A valid \code{\link{GtkTreeIter}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{position}}{position to insert the new row}
 \item{\verb{columns}}{a list of column numbers}
 \item{\verb{values}}{a list of GValues}

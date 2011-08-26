@@ -8,7 +8,7 @@
 \item{\verb{property.name}}{the name of the style property to find}
 }
 \details{Since 2.2}
-\value{[\code{\link{GParamSpec}}]  the \code{\link{GParamSpec}} of the style property or \code{NULL} if \code{class} has no
-  style property with that name. \emph{[  \acronym{allow-none}  ]}}
+\value{[\code{\link{GParamSpec}}] the \code{\link{GParamSpec}} of the style property or \code{NULL} if \code{class} has no
+style property with that name. \emph{[  \acronym{allow-none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

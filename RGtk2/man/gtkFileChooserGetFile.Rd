@@ -9,6 +9,6 @@ one of the files will be returned at random.}
 \details{If the file chooser is in folder mode, this function returns the selected
 folder.
   Since 2.14}
-\value{[\code{\link{GFile}}]  a selected \code{\link{GFile}}.}
+\value{[\code{\link{GFile}}] a selected \code{\link{GFile}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

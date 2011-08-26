@@ -9,7 +9,7 @@ item factory.
 \usage{gtkItemFactoryDeleteEntries(object, entries)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkItemFactory}}}
-\item{\verb{entries}}{a list of \code{\link{GtkItemFactoryEntry}}s }
+\item{\verb{entries}}{a list of \code{\link{GtkItemFactoryEntry}}s}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

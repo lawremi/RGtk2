@@ -9,6 +9,6 @@ each time something inside the list changes.}
 \details{\code{\link{GtkRecentManager}} objects are expensive: be sure to create them only when
 needed. You should use \code{\link{gtkRecentManagerGetDefault}} instead.
   Since 2.10}
-\value{[\code{\link{GtkRecentManager}}]  A newly created \code{\link{GtkRecentManager}} object.}
+\value{[\code{\link{GtkRecentManager}}] A newly created \code{\link{GtkRecentManager}} object.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

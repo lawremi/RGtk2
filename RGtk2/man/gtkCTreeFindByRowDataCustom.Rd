@@ -8,11 +8,10 @@ a custom criterion.
 }
 \usage{gtkCTreeFindByRowDataCustom(object, node, data = NULL, func)}
 \arguments{
-\item{\verb{object}}{\emph{undocumented
-}}
-\item{\verb{node}}{The node where to start searching.}
-\item{\verb{data}}{User data for the criterion function.}
-\item{\verb{func}}{The criterion function.}
+\item{\verb{object}}{The node where to start searching.}
+\item{\verb{node}}{User data for the criterion function.}
+\item{\verb{data}}{The criterion function.}
+\item{\verb{func}}{The first node found.}
 }
 \value{[\code{\link{GtkCTreeNode}}] The first node found.}
 \author{Derived by RGtkGen from GTK+ documentation}

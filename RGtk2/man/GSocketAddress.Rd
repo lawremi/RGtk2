@@ -11,10 +11,14 @@ socket communication}
 \code{\link{gSocketAddressGetNativeSize}(object)}\cr
 
 }
-\section{Hierarchy}{\preformatted{GObject
+\section{Hierarchy}{\preformatted{
+GObject
    +----GSocketAddress
          +----GInetSocketAddress
-         +----GUnixSocketAddress}}
+         +----GUnixSocketAddress
+GEnum
+   +----GSocketFamily
+}}
 \section{Interfaces}{GSocketAddress implements
  \code{\link{GSocketConnectable}}.}
 \section{Detailed Description}{\code{\link{GSocketAddress}} is the equivalent of \verb{structsockaddr}

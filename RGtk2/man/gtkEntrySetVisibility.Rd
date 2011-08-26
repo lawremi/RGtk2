@@ -9,7 +9,7 @@ the text in the entry widget is copied elsewhere.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkEntry}}}
 \item{\verb{visible}}{\code{TRUE} if the contents of the entry are displayed
-          as plaintext}
+as plaintext}
 }
 \details{By default, GTK+ picks the best invisible character available
 in the current font, but it can be changed with

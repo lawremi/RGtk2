@@ -9,7 +9,7 @@ original GC.}
 \usage{gdkPangoRendererSetGc(object, gc = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkPangoRenderer}}}
-\item{\verb{gc}}{ the new GC to use for drawing, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{gc}}{the new GC to use for drawing, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}

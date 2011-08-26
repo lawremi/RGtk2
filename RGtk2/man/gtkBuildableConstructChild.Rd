@@ -11,6 +11,6 @@
 \details{\code{\link{GtkBuilder}} calls this function if a "constructor" has been
 specified in the UI definition.
   Since 2.12}
-\value{[\code{\link{GObject}}]  the constructed child}
+\value{[\code{\link{GObject}}] the constructed child}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -49,8 +49,8 @@ A function which decides whether the row indicated by \code{iter} is visible.
 
 \describe{
 \item{\code{model}}{the child model of the \code{\link{GtkTreeModelFilter}}}
-\item{\code{iter}}{a \code{\link{GtkTreeIter}} pointing to the row in \code{model} whose visibility 
-   is determined}
+\item{\code{iter}}{a \code{\link{GtkTreeIter}} pointing to the row in \code{model} whose visibility
+is determined}
 \item{\code{data}}{user data given to \code{\link{gtkTreeModelFilterSetVisibleFunc}}}
 }
 
@@ -68,8 +68,8 @@ particularly efficient operation.
 \describe{
 \item{\code{model}}{the \code{\link{GtkTreeModelFilter}}}
 \item{\code{iter}}{a \code{\link{GtkTreeIter}} pointing to the row whose display values are determined}
-\item{\code{value}}{A \verb{R object} which is already initialized for with the correct type for 
-  the column \code{column}.}
+\item{\code{value}}{A \verb{R object} which is already initialized for with the correct type for
+the column \code{column}.}
 \item{\code{column}}{the column whose display value is determined}
 \item{\code{data}}{user data given to \code{\link{gtkTreeModelFilterSetModifyFunc}}}
 }

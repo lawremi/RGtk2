@@ -8,6 +8,6 @@ Retrieves the current orientation of the toolbar. See
 }
 \usage{gtkToolbarGetOrientation(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkToolbar}}}}
-\value{[\code{\link{GtkOrientation}}]  the orientation}
+\value{[\code{\link{GtkOrientation}}] the orientation}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

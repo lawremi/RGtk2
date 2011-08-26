@@ -7,7 +7,7 @@ of characters in the buffer, \code{iter} is initialized to the end iterator,
 the iterator one past the last valid character in the buffer.}
 \usage{gtkTextBufferGetIterAtOffset(object, char.offset)}
 \arguments{
-\item{\verb{object}}{a \code{\link{GtkTextBuffer}} }
+\item{\verb{object}}{a \code{\link{GtkTextBuffer}}}
 \item{\verb{char.offset}}{char offset from start of buffer, counting from 0, or -1}
 }
 \value{

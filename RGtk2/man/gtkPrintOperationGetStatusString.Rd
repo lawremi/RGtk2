@@ -9,7 +9,7 @@ for displaying the print status e.g. in a \code{\link{GtkStatusbar}}.}
 \details{Use \code{\link{gtkPrintOperationGetStatus}} to obtain a status
 value that is suitable for programmatic use.
   Since 2.10}
-\value{[character]  a string representation of the status
-   of the print operation}
+\value{[character] a string representation of the status
+of the print operation}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

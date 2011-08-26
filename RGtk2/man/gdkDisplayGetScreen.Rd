@@ -8,6 +8,6 @@
 \item{\verb{screen.num}}{the screen number}
 }
 \details{Since 2.2}
-\value{[\code{\link{GdkScreen}}]  the \code{\link{GdkScreen}} object}
+\value{[\code{\link{GdkScreen}}] the \code{\link{GdkScreen}} object}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

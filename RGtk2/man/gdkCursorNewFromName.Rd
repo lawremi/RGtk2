@@ -9,7 +9,7 @@ theme.}
 \item{\verb{name}}{the name of the cursor}
 }
 \details{Since 2.8}
-\value{[\code{\link{GdkCursor}}]  a new \code{\link{GdkCursor}}, or \code{NULL} if there is no cursor with 
-  the given name }
+\value{[\code{\link{GdkCursor}}] a new \code{\link{GdkCursor}}, or \code{NULL} if there is no cursor with
+the given name}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

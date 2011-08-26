@@ -8,7 +8,7 @@ for the default screen. See \code{\link{gdkScreenGetSetting}}.}
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if the setting existed and a value was stored
-  in \code{value}, \code{FALSE} otherwise.}
+in \code{value}, \code{FALSE} otherwise.}
 \item{\verb{value}}{location to store the value of the setting.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

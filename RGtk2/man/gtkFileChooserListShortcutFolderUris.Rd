@@ -6,7 +6,7 @@
 \usage{gtkFileChooserListShortcutFolderUris(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkFileChooser}}}}
 \details{Since 2.4}
-\value{[list]  A list of folder URIs, or \code{NULL} if there are no shortcut
-folders. \emph{[  \acronym{element-type}   utf8][  \acronym{transfer full}   utf8]}}
+\value{[list] A list of folder URIs, or \code{NULL} if there are no shortcut
+folders. \emph{[  \acronym{element-type}   utf8][  \acronym{transfer full}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

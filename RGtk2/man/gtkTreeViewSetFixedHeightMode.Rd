@@ -8,7 +8,7 @@ Only enable this option if all rows are the same height and all
 columns are of type \code{GTK_TREE_VIEW_COLUMN_FIXED}.}
 \usage{gtkTreeViewSetFixedHeightMode(object, enable)}
 \arguments{
-\item{\verb{object}}{a \code{\link{GtkTreeView}} }
+\item{\verb{object}}{a \code{\link{GtkTreeView}}}
 \item{\verb{enable}}{\code{TRUE} to enable fixed height mode}
 }
 \details{Since 2.6}

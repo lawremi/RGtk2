@@ -13,6 +13,6 @@ moves backward by 0 - \code{count} lines.}
 \item{\verb{object}}{a \code{\link{GtkTextIter}}}
 \item{\verb{count}}{number of lines to move forward}
 }
-\value{[logical]  whether \code{iter} moved and is dereferenceable}
+\value{[logical] whether \code{iter} moved and is dereferenceable}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

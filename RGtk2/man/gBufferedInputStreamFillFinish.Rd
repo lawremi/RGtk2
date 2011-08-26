@@ -10,7 +10,7 @@
 }
 \value{
 A list containing the following elements:
-\item{retval}{[integer]  a \verb{integer} of the read stream, or \code{-1} on an error. }
+\item{retval}{[integer] a \verb{integer} of the read stream, or \code{-1} on an error.}
 \item{\verb{error}}{a \code{\link{GError}}.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

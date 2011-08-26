@@ -13,6 +13,6 @@ allocated memory in dynamically loaded modules, if you expect to
 ever unload the module again (e.g. do not use this function in
 GTK+ theme engines).
   Since 2.10}
-\value{[\code{\link{GdkAtom}}]  the atom corresponding to \code{atom.name}}
+\value{[\code{\link{GdkAtom}}] the atom corresponding to \code{atom.name}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

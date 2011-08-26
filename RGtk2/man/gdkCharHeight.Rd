@@ -13,6 +13,6 @@ relation to the baseline. See \code{\link{gdkTextExtents}}.
 \item{\verb{object}}{a \code{\link{GdkFont}}}
 \item{\verb{character}}{the character to measure.}
 }
-\value{[integer]  the height of the character in pixels.}
+\value{[integer] the height of the character in pixels.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

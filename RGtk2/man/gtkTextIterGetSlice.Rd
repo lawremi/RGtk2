@@ -14,6 +14,6 @@ widget is in the buffer.}
 \item{\verb{object}}{iterator at start of a range}
 \item{\verb{end}}{iterator at end of a range}
 }
-\value{[character]  slice of text from the buffer}
+\value{[character] slice of text from the buffer}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -8,10 +8,10 @@ Creates the menu items from the \code{entries}.
 \usage{gtkItemFactoryCreateItemsAc(object, entries, callback.data, callback.type)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkItemFactory}}}
-\item{\verb{entries}}{a list of \code{\link{GtkItemFactoryEntry}}s }
+\item{\verb{entries}}{a list of \code{\link{GtkItemFactoryEntry}}s}
 \item{\verb{callback.data}}{data passed to the callback functions of all entries}
 \item{\verb{callback.type}}{1 if the callback functions in \code{entries} are of type
-   \code{\link{GtkItemFactoryCallback1}}, 2 if they are of type \code{\link{GtkItemFactoryCallback2}} }
+\code{\link{GtkItemFactoryCallback1}}, 2 if they are of type \code{\link{GtkItemFactoryCallback2}}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

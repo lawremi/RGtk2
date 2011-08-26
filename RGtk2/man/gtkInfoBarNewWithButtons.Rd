@@ -8,12 +8,12 @@ some arbitrary text. A response ID can be any positive number,
 or one of the values in the \code{\link{GtkResponseType}} enumeration. If the
 user clicks one of these dialog buttons, GtkInfoBar will emit
 the "response" signal with the corresponding response ID.}
-\usage{gtkInfoBarNewWithButtons(first.button.text, ...)}
+\usage{gtkInfoBarNewWithButtons(first.button.text, ..., show = TRUE)}
 \arguments{
-\item{\verb{first.button.text}}{ stock ID or text to go in first button, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{first.button.text}}{stock ID or text to go in first button, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{...}}{response ID for first button, then additional buttons, ending
-   with \code{NULL}}
+  with \code{NULL}}
 }
-\value{[\code{\link{GtkWidget}}]  a new \code{\link{GtkInfoBar}}}
+\value{[\code{\link{GtkWidget}}] a new \code{\link{GtkInfoBar}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

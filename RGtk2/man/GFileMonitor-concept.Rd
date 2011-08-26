@@ -10,8 +10,12 @@
 \code{\link{gFileMonitorEmitEvent}(object, file, other.file, event.type)}\cr
 
 }
-\section{Hierarchy}{\preformatted{GObject
-   +----GFileMonitor}}
+\section{Hierarchy}{\preformatted{
+GEnum
+   +----GFileMonitorEvent
+GObject
+   +----GFileMonitor
+}}
 \section{Detailed Description}{Monitors a file or directory for changes.
   
 To obtain a \code{\link{GFileMonitor}} for a file or directory, use

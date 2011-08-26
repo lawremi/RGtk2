@@ -14,6 +14,6 @@ PPD information. }
 \code{ppd.display.name}, \code{width} and \code{height} are used to 
 construct a custom \code{\link{GtkPaperSize}} object.
   Since 2.10}
-\value{[\code{\link{GtkPaperSize}}]  a new \code{\link{GtkPaperSize}},}
+\value{[\code{\link{GtkPaperSize}}] a new \code{\link{GtkPaperSize}},}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

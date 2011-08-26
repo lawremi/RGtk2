@@ -10,6 +10,6 @@ on the cell renderer to a string value in the model, thus rendering
 a different string in each row of the \code{\link{GtkTreeView}}.}
 \usage{gtkCellRendererComboNew()}
 \details{Since 2.6}
-\value{[\code{\link{GtkCellRenderer}}]  the new cell renderer}
+\value{[\code{\link{GtkCellRenderer}}] the new cell renderer}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

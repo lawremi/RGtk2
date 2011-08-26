@@ -7,6 +7,6 @@
 \item{\verb{object}}{a \code{\link{PangoFont}}}
 \item{\verb{language}}{the language tag}
 }
-\value{[\code{\link{PangoCoverage}}]  a newly-allocated \code{\link{PangoCoverage}} object.}
+\value{[\code{\link{PangoCoverage}}] a newly-allocated \code{\link{PangoCoverage}} object.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

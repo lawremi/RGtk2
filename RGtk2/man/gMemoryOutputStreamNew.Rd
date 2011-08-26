@@ -16,7 +16,7 @@ stream <- gMemoryOutputStream(0)
 }}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GOutputStream}}]  A newly created \code{\link{GMemoryOutputStream}} object.}
+\item{retval}{[\code{\link{GOutputStream}}] A newly created \code{\link{GMemoryOutputStream}} object.}
 \item{\verb{data}}{pointer to a chunk of memory to use, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

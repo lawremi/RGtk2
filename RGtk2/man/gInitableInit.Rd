@@ -29,7 +29,7 @@ pattern in the GObject constructor function.
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if successful. If an error has occurred, this function will
-    return \code{FALSE} and set \code{error} appropriately if present.}
+return \code{FALSE} and set \code{error} appropriately if present.}
 \item{\verb{error}}{a \code{\link{GError}} location to store the error occuring, or \code{NULL} to
 ignore.}
 }

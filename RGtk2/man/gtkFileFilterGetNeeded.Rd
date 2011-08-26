@@ -9,7 +9,7 @@ passed to \code{\link{gtkFileFilterFilter}}}
 is intended principally for use in the implementation of
 \code{\link{GtkFileChooser}}.
   Since 2.4}
-\value{[\code{\link{GtkFileFilterFlags}}]  bitfield of flags indicating needed fields when
-  calling \code{\link{gtkFileFilterFilter}}}
+\value{[\code{\link{GtkFileFilterFlags}}] bitfield of flags indicating needed fields when
+calling \code{\link{gtkFileFilterFilter}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

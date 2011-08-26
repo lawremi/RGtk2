@@ -7,8 +7,7 @@
 }
 \usage{gtkCTreeIsHotSpot(object, x, y)}
 \arguments{
-\item{\verb{object}}{\emph{undocumented
-}}
+\item{\verb{object}}{True if the given coordinates lie on an expander button.}
 \item{\verb{x}}{\emph{undocumented
 }}
 \item{\verb{y}}{\emph{undocumented

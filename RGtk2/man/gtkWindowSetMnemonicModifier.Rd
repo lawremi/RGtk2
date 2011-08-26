@@ -6,7 +6,7 @@
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkWindow}}}
 \item{\verb{modifier}}{the modifier mask used to activate
-              mnemonics on this window.}
+mnemonics on this window.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

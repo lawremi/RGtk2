@@ -8,6 +8,6 @@
 \item{\verb{pixbuf}}{the pixbuf to wrap in a \code{\link{GtkIconInfo}}}
 }
 \details{Since 2.14}
-\value{[\code{\link{GtkIconInfo}}]  a \code{\link{GtkIconInfo}}}
+\value{[\code{\link{GtkIconInfo}}] a \code{\link{GtkIconInfo}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

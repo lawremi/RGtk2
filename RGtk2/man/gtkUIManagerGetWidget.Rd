@@ -19,7 +19,7 @@ the lifecycle of the ui manager. If you add the widgets returned by this
 function to some container or explicitly ref them, they will survive the
 destruction of the ui manager.
   Since 2.4}
-\value{[\code{\link{GtkWidget}}]  the widget found by following the path, or \code{NULL} if no widget
-  was found. \emph{[  \acronym{transfer none}  ]}}
+\value{[\code{\link{GtkWidget}}] the widget found by following the path, or \code{NULL} if no widget
+was found. \emph{[  \acronym{transfer none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

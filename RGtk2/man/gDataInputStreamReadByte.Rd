@@ -10,7 +10,7 @@
 }
 \value{
 A list containing the following elements:
-\item{retval}{[raw]  an unsigned 8-bit/1-byte value read from the \code{stream} or \code{0} 
+\item{retval}{[raw] an unsigned 8-bit/1-byte value read from the \code{stream} or \code{0}
 if an error occurred.}
 \item{\verb{error}}{\code{\link{GError}} for error reporting.}
 }

@@ -14,9 +14,10 @@ coordinates begin at the top left corner of the layout.}
 \value{
 A list containing the following elements:
 \item{\verb{ink.rect}}{rectangle used to store the extents of the layout as drawn
-           or \code{NULL} to indicate that the result is not needed.}
-\item{\verb{logical.rect}}{rectangle used to store the logical extents of the layout
-		 or \code{NULL} to indicate that the result is not needed.}
+or \code{NULL} to indicate that the result is not needed. \emph{[  \acronym{out}  ]}}
+\item{\verb{logical.rect}}{rectangle used to store the logical extents of the
+layout or \code{NULL} to indicate that the result is not
+needed. \emph{[  \acronym{out}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -11,6 +11,6 @@ used instead.
 \item{\verb{object}}{a \code{\link{GdkDrawable}}}
 \item{\verb{key}}{name the data was stored under}
 }
-\value{[R object]  the data stored at \code{key}}
+\value{[R object] the data stored at \code{key}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -11,7 +11,7 @@ argument is \code{NULL}.)
 \usage{gdkGCSetFont(object, font)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkGC}}.}
-\item{\verb{font}}{the new font. }
+\item{\verb{font}}{the new font.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

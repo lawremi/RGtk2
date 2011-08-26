@@ -9,8 +9,8 @@ the main loop runs, the paste data will be inserted.)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkTextBuffer}}}
 \item{\verb{clipboard}}{the \code{\link{GtkClipboard}} to paste from}
-\item{\verb{override.location}}{ location to insert pasted text, or \code{NULL} for
-                    at the cursor. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{override.location}}{location to insert pasted text, or \code{NULL} for
+at the cursor. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{default.editable}}{whether the buffer is editable by default}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

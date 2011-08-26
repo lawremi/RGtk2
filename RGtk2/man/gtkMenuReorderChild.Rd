@@ -6,7 +6,7 @@
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkMenu}}.}
 \item{\verb{child}}{the \code{\link{GtkMenuItem}} to move.}
-\item{\verb{position}}{the new position to place \code{child}.  Positions are numbered from 
+\item{\verb{position}}{the new position to place \code{child}.  Positions are numbered from
 0 to n-1.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -7,9 +7,9 @@
 \item{\verb{object}}{a \code{\link{PangoRenderer}}}
 \item{\verb{line}}{a \code{\link{PangoLayoutLine}}}
 \item{\verb{x}}{X position of left edge of baseline, in user space coordinates
-  in Pango units.}
+in Pango units.}
 \item{\verb{y}}{Y position of left edge of baseline, in user space coordinates
-   in Pango units.}
+in Pango units.}
 }
 \details{Since 1.8}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -11,6 +11,6 @@ function directly, so that themes are taken into account.}
 \item{\verb{object}}{a \code{\link{GtkIconFactory}}}
 \item{\verb{stock.id}}{an icon name}
 }
-\value{[\code{\link{GtkIconSet}}]  icon set of \code{stock.id}.}
+\value{[\code{\link{GtkIconSet}}] icon set of \code{stock.id}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

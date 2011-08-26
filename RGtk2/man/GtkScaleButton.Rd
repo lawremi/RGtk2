@@ -91,7 +91,7 @@ changed.
 The GtkAdjustment that contains the current value of this scale button object.
 
 }
-\item{\verb{icons} [character list : *                : Read / Write]}{
+\item{\verb{icons} [character list : Read / Write]}{
 
 The names of the icons to be used by the scale button.
 The first item in the list will be used in the button

@@ -5,6 +5,6 @@
 This is different from the file's content type, see \code{\link{gFileInfoGetContentType}}.}
 \usage{gFileInfoGetFileType(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GFileInfo}}.}}
-\value{[\code{\link{GFileType}}]  a \code{\link{GFileType}} for the given file.}
+\value{[\code{\link{GFileType}}] a \code{\link{GFileType}} for the given file.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -7,6 +7,6 @@ operation if \code{uri} is malformed or if the uri type is
 not supported.}
 \usage{gFileNewForUri(uri)}
 \arguments{\item{\verb{uri}}{a string containing a URI.}}
-\value{[\code{\link{GFile}}]  a \code{\link{GFile}} for the given \code{uri}.}
+\value{[\code{\link{GFile}}] a \code{\link{GFile}} for the given \code{uri}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

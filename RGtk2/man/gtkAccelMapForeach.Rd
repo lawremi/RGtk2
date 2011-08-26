@@ -11,7 +11,7 @@ saving during an accelerator map dump).}
 \arguments{
 \item{\verb{data}}{data to be passed into \code{foreach.func}}
 \item{\verb{foreach.func}}{function to be executed for each accel map entry which
-               is not filtered out}
+is not filtered out}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -6,6 +6,6 @@
 and \code{NULL} is returned. Default tabs are every 8 spaces.}
 \usage{pangoLayoutGetTabs(object)}
 \arguments{\item{\verb{object}}{a \code{\link{PangoLayout}}}}
-\value{[\code{\link{PangoTabArray}}]  a copy of the tabs for this layout, or \code{NULL}.}
+\value{[\code{\link{PangoTabArray}}] a copy of the tabs for this layout, or \code{NULL}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

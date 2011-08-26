@@ -8,7 +8,7 @@ Sets the tooltip of the status icon.
 \usage{gtkStatusIconSetTooltip(object, tooltip.text)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkStatusIcon}}}
-\item{\verb{tooltip.text}}{ the tooltip text, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{tooltip.text}}{the tooltip text, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{Since 2.10}
 \author{Derived by RGtkGen from GTK+ documentation}

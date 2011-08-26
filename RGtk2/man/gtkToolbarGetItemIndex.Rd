@@ -9,6 +9,6 @@ It is an error if \code{item} is not a child of the toolbar.}
 \item{\verb{item}}{a \code{\link{GtkToolItem}} that is a child of \code{toolbar}}
 }
 \details{Since 2.4}
-\value{[integer]  the position of item on the toolbar.}
+\value{[integer] the position of item on the toolbar.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

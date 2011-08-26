@@ -13,10 +13,10 @@ timeouts, etc, may be dispatched during the wait.}
 \value{
 A list containing the following elements:
 \item{retval}{[raw]  or \code{NULL} if retrieving
-              the selection data failed. (This could happen
-              for various reasons, in particular if the
-              clipboard was empty or if the contents of the
-              clipboard could not be converted into text form.)}
+the selection data failed. (This could happen
+for various reasons, in particular if the
+clipboard was empty or if the contents of the
+clipboard could not be converted into text form.)}
 \item{\verb{format}}{return location for the format of the returned data}
 \item{\verb{length}}{return location for the length of the returned data}
 }

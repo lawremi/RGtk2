@@ -16,6 +16,6 @@ while (more_actions) {
 }
 }
   Since 2.4}
-\value{[list]  the list representing the radio group for this object. \emph{[  \acronym{element-type}   GtkAction][  \acronym{transfer none}   GtkAction]}}
+\value{[list] the list representing the radio group for this object. \emph{[  \acronym{element-type}   GtkAction][  \acronym{transfer none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

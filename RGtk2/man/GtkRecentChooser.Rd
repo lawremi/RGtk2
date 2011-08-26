@@ -82,18 +82,11 @@ used resource list.
 
 }
 }}
-\section{User Functions}{\describe{\item{\code{GtkRecentSortFunc(a, b, user.data)}}{
+\section{User Functions}{\describe{\item{\code{GtkRecentSortFunc()}}{
 \emph{undocumented
 }
 
-\describe{
-\item{\code{a}}{\emph{undocumented
-}}
-\item{\code{b}}{\emph{undocumented
-}}
-\item{\code{user.data}}{\emph{undocumented
-}}
-}
+
 
 
 }}}

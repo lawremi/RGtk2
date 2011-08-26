@@ -7,6 +7,6 @@ instead.}
 \usage{gtkToolShellGetOrientation(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkToolShell}}}}
 \details{Since 2.14}
-\value{[\code{\link{GtkOrientation}}]  the current orientation of \code{shell}}
+\value{[\code{\link{GtkOrientation}}] the current orientation of \code{shell}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

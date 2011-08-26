@@ -5,6 +5,6 @@
 \usage{gtkComboBoxGetModel(object)}
 \arguments{\item{\verb{object}}{A \code{\link{GtkComboBox}}}}
 \details{Since 2.4}
-\value{[\code{\link{GtkTreeModel}}]  A \code{\link{GtkTreeModel}} which was passed during construction. \emph{[  \acronym{transfer none}  ]}}
+\value{[\code{\link{GtkTreeModel}}] A \code{\link{GtkTreeModel}} which was passed during construction. \emph{[  \acronym{transfer none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -13,8 +13,8 @@ dropped everywhere.}
 \usage{gtkTreeViewSetColumnDragFunction(object, func, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkTreeView}}.}
-\item{\verb{func}}{ A function to determine which columns are reorderable, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{user.data}}{ User data to be passed to \code{func}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{func}}{A function to determine which columns are reorderable, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{user.data}}{User data to be passed to \code{func}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

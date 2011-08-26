@@ -90,7 +90,7 @@ function returns \code{NULL} when no information is available.
 \item{\code{user.data}}{the data passed with \code{\link{gtkCalendarSetDetailFunc}}.}
 }
 
-\emph{Returns:} [character]  Newly allocated string with Pango markup with details
+\emph{Returns:} [character] Newly allocated string with Pango markup with details
 for the specified day, or \code{NULL}.
 
 }}}

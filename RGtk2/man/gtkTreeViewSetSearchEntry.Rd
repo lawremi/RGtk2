@@ -9,7 +9,7 @@ entry again.}
 \usage{gtkTreeViewSetSearchEntry(object, entry = NULL)}
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkTreeView}}}
-\item{\verb{entry}}{ the entry the interactive search code of \code{tree.view} should use or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{entry}}{the entry the interactive search code of \code{tree.view} should use or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{Since 2.10}
 \author{Derived by RGtkGen from GTK+ documentation}

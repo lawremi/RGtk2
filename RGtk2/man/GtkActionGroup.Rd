@@ -87,15 +87,15 @@ members and should not be accessed directly.
 
 \describe{
 \item{\code{name}}{The name of the action.}
-\item{\code{stock_id}}{The stock id for the action, or the name of an icon from the icon 
-    theme.}
-\item{\code{label}}{The label for the action. This field should typically be marked for 
-    translation, see \code{\link{gtkActionGroupSetTranslationDomain}}. If \code{label}
-    is \code{NULL}, the label of the stock item with id \code{stock.id} is used.}
-\item{\code{accelerator}}{The accelerator for the action, in the format understood by 
-    \code{\link{gtkAcceleratorParse}}.}
-\item{\code{tooltip}}{The tooltip for the action. This field should typically be marked 
-    for translation, see \code{\link{gtkActionGroupSetTranslationDomain}}.}
+\item{\code{stock_id}}{The stock id for the action, or the name of an icon from the icon
+theme.}
+\item{\code{label}}{The label for the action. This field should typically be marked for
+translation, see \code{\link{gtkActionGroupSetTranslationDomain}}. If \code{label}
+is \code{NULL}, the label of the stock item with id \code{stock.id} is used.}
+\item{\code{accelerator}}{The accelerator for the action, in the format understood by
+\code{\link{gtkAcceleratorParse}}.}
+\item{\code{tooltip}}{The tooltip for the action. This field should typically be marked
+for translation, see \code{\link{gtkActionGroupSetTranslationDomain}}.}
 \item{\code{callback}}{The function to call when the action is activated.}
 }
 
@@ -107,14 +107,14 @@ members and should not be accessed directly.
 
 \describe{
 \item{\code{name}}{The name of the action.}
-\item{\code{stock_id}}{The stock id for the action, or the name of an icon from the icon 
-    theme.}
-\item{\code{label}}{The label for the action. This field should typically be marked for 
-    translation, see \code{\link{gtkActionGroupSetTranslationDomain}}.}
-\item{\code{accelerator}}{The accelerator for the action, in the format understood by 
-    \code{\link{gtkAcceleratorParse}}.}
-\item{\code{tooltip}}{The tooltip for the action. This field should typically be marked 
-    for translation, see \code{\link{gtkActionGroupSetTranslationDomain}}.}
+\item{\code{stock_id}}{The stock id for the action, or the name of an icon from the icon
+theme.}
+\item{\code{label}}{The label for the action. This field should typically be marked for
+translation, see \code{\link{gtkActionGroupSetTranslationDomain}}.}
+\item{\code{accelerator}}{The accelerator for the action, in the format understood by
+\code{\link{gtkAcceleratorParse}}.}
+\item{\code{tooltip}}{The tooltip for the action. This field should typically be marked
+for translation, see \code{\link{gtkActionGroupSetTranslationDomain}}.}
 \item{\code{callback}}{The function to call when the action is activated.}
 \item{\code{is_active}}{The initial state of the toggle action.}
 }
@@ -127,14 +127,14 @@ members and should not be accessed directly.
 
 \describe{
 \item{\code{name}}{The name of the action.}
-\item{\code{stock_id}}{The stock id for the action, or the name of an icon from the icon 
-    theme.}
-\item{\code{label}}{The label for the action. This field should typically be marked for 
-    translation, see \code{\link{gtkActionGroupSetTranslationDomain}}.}
-\item{\code{accelerator}}{The accelerator for the action, in the format understood by 
-    \code{\link{gtkAcceleratorParse}}.}
-\item{\code{tooltip}}{The tooltip for the action. This field should typically be marked for 
-    translation, see \code{\link{gtkActionGroupSetTranslationDomain}}.}
+\item{\code{stock_id}}{The stock id for the action, or the name of an icon from the icon
+theme.}
+\item{\code{label}}{The label for the action. This field should typically be marked for
+translation, see \code{\link{gtkActionGroupSetTranslationDomain}}.}
+\item{\code{accelerator}}{The accelerator for the action, in the format understood by
+\code{\link{gtkAcceleratorParse}}.}
+\item{\code{tooltip}}{The tooltip for the action. This field should typically be marked for
+translation, see \code{\link{gtkActionGroupSetTranslationDomain}}.}
 \item{\code{value}}{The value to set on the radio action. See \code{\link{gtkRadioActionGetCurrentValue}}.}
 }
 

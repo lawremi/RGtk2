@@ -18,7 +18,7 @@ in the four forms is '#fff' '#ffffff' '#fffffffff' and
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if the parsing succeeded.}
-\item{\verb{color}}{ the \code{\link{GdkColor}} to fill in. \emph{[  \acronym{out}  ]}}
+\item{\verb{color}}{the \code{\link{GdkColor}} to fill in. \emph{[  \acronym{out}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -15,7 +15,7 @@ a value from \verb{GResolverError}. If the operation was cancelled,
   Since 2.22}
 \value{
 A list containing the following elements:
-\item{retval}{[list]  a \verb{list} of \code{\link{GInetAddress}}, or \code{NULL} on error. See
+\item{retval}{[list] a \verb{list} of \code{\link{GInetAddress}}, or \code{NULL} on error. See
 \code{\link{gResolverLookupByName}} for more details.}
 \item{\verb{error}}{return location for a \code{\link{GError}}, or \code{NULL}}
 }

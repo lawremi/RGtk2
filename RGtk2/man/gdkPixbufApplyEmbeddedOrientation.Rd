@@ -12,7 +12,7 @@ is oriented correctly.}
 \usage{gdkPixbufApplyEmbeddedOrientation(object)}
 \arguments{\item{\verb{object}}{A \code{\link{GdkPixbuf}}.}}
 \details{Since 2.12}
-\value{[\code{\link{GdkPixbuf}}]  A newly-created pixbuf, or a reference to the
+\value{[\code{\link{GdkPixbuf}}] A newly-created pixbuf, or a reference to the
 input pixbuf (with an increased reference count).}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

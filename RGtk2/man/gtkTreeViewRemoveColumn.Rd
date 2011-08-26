@@ -7,6 +7,6 @@
 \item{\verb{object}}{A \code{\link{GtkTreeView}}.}
 \item{\verb{column}}{The \code{\link{GtkTreeViewColumn}} to remove.}
 }
-\value{[integer]  The number of columns in \code{tree.view} after removing.}
+\value{[integer] The number of columns in \code{tree.view} after removing.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

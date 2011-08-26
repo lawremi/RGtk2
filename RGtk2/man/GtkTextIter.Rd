@@ -1,8 +1,7 @@
-\alias{gtk-GtkTextIter}
 \alias{GtkTextIter}
 \alias{GtkTextCharPredicate}
 \alias{GtkTextSearchFlags}
-\name{gtk-GtkTextIter}
+\name{GtkTextIter}
 \title{GtkTextIter}
 \description{Text buffer iterator}
 \section{Methods and Functions}{
@@ -96,6 +95,8 @@
 \code{\link{gtkTextIterInRange}(object, start, end)}\cr
 \code{\link{gtkTextIterOrder}(object, second)}\cr
 }
+\section{Hierarchy}{\preformatted{GBoxed
+   +----GtkTextIter}}
 \section{Detailed Description}{You may wish to begin by reading the text widget
 conceptual overview which gives an overview of all the objects and data
 types related to the text widget and how they work together.
@@ -117,19 +118,14 @@ types related to the text widget and how they work together.
 }
 
 }}}
-\section{User Functions}{\describe{\item{\code{GtkTextCharPredicate(ch, user.data)}}{
+\section{User Functions}{\describe{\item{\code{GtkTextCharPredicate()}}{
 \emph{undocumented
 }
 
-\describe{
-\item{\code{ch}}{\emph{undocumented
-}}
-\item{\code{user.data}}{\emph{undocumented
-}}
-}
+
 
 
 }}}
-\references{\url{http://library.gnome.org/devel//gtk/gtk-GtkTextIter.html}}
+\references{\url{http://library.gnome.org/devel//gtk/GtkTextIter.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

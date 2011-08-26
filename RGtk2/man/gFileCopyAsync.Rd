@@ -8,8 +8,8 @@ asynchronously. For details of the behaviour, see \code{\link{gFileCopy}}.}
 \item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{destination}}{destination \code{\link{GFile}}}
 \item{\verb{flags}}{set of \code{\link{GFileCopyFlags}}}
-\item{\verb{io.priority}}{the I/O priority 
-    of the request. }
+\item{\verb{io.priority}}{the I/O priority
+of the request.}
 \item{\verb{cancellable}}{optional \code{\link{GCancellable}} object, \code{NULL} to ignore.}
 \item{\verb{progress.callback}}{function to callback with progress information}
 \item{\verb{progress.callback.data}}{user data to pass to \code{progress.callback}}

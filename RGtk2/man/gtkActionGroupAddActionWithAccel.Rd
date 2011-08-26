@@ -6,9 +6,9 @@
 \arguments{
 \item{\verb{object}}{the action group}
 \item{\verb{action}}{the action to add}
-\item{\verb{accelerator}}{ the accelerator for the action, in
-  the format understood by \code{\link{gtkAcceleratorParse}}, or "" for no accelerator, or
-  \code{NULL} to use the stock accelerator. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{accelerator}}{the accelerator for the action, in
+the format understood by \code{\link{gtkAcceleratorParse}}, or "" for no accelerator, or
+\code{NULL} to use the stock accelerator. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{If \code{accelerator} is \code{NULL}, attempts to use the accelerator associated 
 with the stock_id of the action. 

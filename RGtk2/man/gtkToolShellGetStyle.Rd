@@ -7,6 +7,6 @@ instead.}
 \usage{gtkToolShellGetStyle(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkToolShell}}}}
 \details{Since 2.14}
-\value{[\code{\link{GtkToolbarStyle}}]  the current style of \code{shell}}
+\value{[\code{\link{GtkToolbarStyle}}] the current style of \code{shell}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

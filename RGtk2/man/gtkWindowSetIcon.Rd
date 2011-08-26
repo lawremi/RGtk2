@@ -8,7 +8,7 @@ frame, or display it in other contexts.}
 \usage{gtkWindowSetIcon(object, icon = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkWindow}}}
-\item{\verb{icon}}{ icon image, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{icon}}{icon image, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{The icon should be provided in whatever size it was naturally
 drawn; that is, don't scale the image before passing it to

@@ -7,8 +7,7 @@ Finds all nodes in the tree under \code{node} that have the given user data poin
 }
 \usage{gtkCTreeFindAllByRowData(object, node, data = NULL)}
 \arguments{
-\item{\verb{object}}{\emph{undocumented
-}}
+\item{\verb{object}}{A list of nodes that have the given data pointer.}
 \item{\verb{node}}{\emph{undocumented
 }}
 \item{\verb{data}}{\emph{undocumented

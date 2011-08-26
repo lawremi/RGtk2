@@ -9,7 +9,7 @@ method sets \verb{"reorderable"} to \code{FALSE}.}
 \item{\verb{start.button.mask}}{Mask of allowed buttons to start drag}
 \item{\verb{targets}}{the table of targets that the drag will support}
 \item{\verb{actions}}{the bitmask of possible actions for a drag from this
-   widget}
+widget}
 }
 \details{Since 2.8}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -14,6 +14,6 @@ button or text entry widget, given it's corresponding label widget.}
 \item{\verb{widget.type}}{Type of a aearched for sibling widget}
 }
 \details{Since 2.14}
-\value{[\code{\link{GtkWidget}}]  a widget of type \code{widget.type} if any is found.}
+\value{[\code{\link{GtkWidget}}] a widget of type \code{widget.type} if any is found.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

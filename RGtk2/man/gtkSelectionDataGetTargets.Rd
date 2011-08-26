@@ -10,9 +10,9 @@ any selection.}
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if \code{selection.data} contains a valid
-   list of targets, otherwise \code{FALSE}.}
+array of targets, otherwise \code{FALSE}.}
 \item{\verb{targets}}{location to store a list of targets. The result
-          stored here must be freed with \code{gFree()}.}
+stored here must be freed with \code{gFree()}.}
 \item{\verb{n.atoms}}{location to store number of items in \code{targets}.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -11,6 +11,6 @@ every iteration, if your first iteration is on line 0.)}
 \usage{gtkTextIterBackwardVisibleLine(object)}
 \arguments{\item{\verb{object}}{an iterator}}
 \details{Since 2.8}
-\value{[logical]  whether \code{iter} moved}
+\value{[logical] whether \code{iter} moved}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

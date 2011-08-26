@@ -10,8 +10,8 @@ size is the size reported in the most-recently-processed configure
 event, rather than the current size on the X server.}
 \value{
 A list containing the following elements:
-\item{\verb{width}}{ location to store drawable's width, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{height}}{ location to store drawable's height, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{width}}{(out): location to store drawable's width, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{height}}{(out): location to store drawable's height, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

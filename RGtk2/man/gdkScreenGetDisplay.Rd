@@ -5,6 +5,6 @@
 \usage{gdkScreenGetDisplay(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GdkScreen}}}}
 \details{Since 2.2}
-\value{[\code{\link{GdkDisplay}}]  the display to which \code{screen} belongs}
+\value{[\code{\link{GdkDisplay}}] the display to which \code{screen} belongs}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

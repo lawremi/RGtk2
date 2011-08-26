@@ -10,14 +10,14 @@ of the children. In that case, GTK+ stores \code{NULL} in
 \arguments{\item{\verb{object}}{a \code{\link{GtkContainer}}}}
 \value{
 A list containing the following elements:
-\item{retval}{[logical] \code{TRUE} if the focus chain of the container 
+\item{retval}{[logical] \code{TRUE} if the focus chain of the container
 has been set explicitly.}
-\item{\verb{focusable.widgets}}{ location
-                    to store the focus chain of the
-                    container, or \code{NULL}. You should free this list
-                    using \code{gListFree()} when you are done with it, however
-                    no additional reference count is added to the
-                    individual widgets in the focus chain. \emph{[  \acronym{element-type}   GtkWidget][  \acronym{out}   GtkWidget][  \acronym{transfer container}   GtkWidget]}}
+\item{\verb{focusable.widgets}}{location
+to store the focus chain of the
+container, or \code{NULL}. You should free this list
+using \code{gListFree()} when you are done with it, however
+no additional reference count is added to the
+individual widgets in the focus chain. \emph{[  \acronym{element-type}   GtkWidget][  \acronym{out}  ][  \acronym{transfer container}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -23,7 +23,7 @@ was cancelled, the error \code{G_IO_ERROR_CANCELLED} will be returned.
   Since 2.22}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GSocket}}]  a \code{\link{GSocket}} on success, \code{NULL} on error.}
+\item{retval}{[\code{\link{GSocket}}] a \code{\link{GSocket}} on success, \code{NULL} on error.}
 \item{\verb{source.object}}{location where \code{\link{GObject}} pointer will be stored, or \code{NULL}}
 \item{\verb{error}}{\code{\link{GError}} for error reporting, or \code{NULL} to ignore.}
 }

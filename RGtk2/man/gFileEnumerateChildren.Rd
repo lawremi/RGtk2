@@ -29,7 +29,7 @@ If the file is not a directory, the G_FILE_ERROR_NOTDIR error will be returned.
 Other errors are possible too.}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GFileEnumerator}}]  A \code{\link{GFileEnumerator}} if successful, \code{NULL} on error.}
+\item{retval}{[\code{\link{GFileEnumerator}}] A \code{\link{GFileEnumerator}} if successful, \code{NULL} on error.}
 \item{\verb{error}}{\code{\link{GError}} for error reporting.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

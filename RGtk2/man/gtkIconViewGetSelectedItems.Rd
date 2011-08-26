@@ -10,6 +10,6 @@ To do this, you can use \code{\link{gtkTreeRowReferenceNew}}.}
 \details{To free the return value, use:
 \preformatted{# You don't have to free anything with RGtk2...}
   Since 2.6}
-\value{[list]  A \verb{list} containing a \code{\link{GtkTreePath}} for each selected row. \emph{[  \acronym{element-type}   GtkTreePath][  \acronym{transfer full}   GtkTreePath]}}
+\value{[list] A \verb{list} containing a \code{\link{GtkTreePath}} for each selected row. \emph{[  \acronym{element-type}   GtkTreePath][  \acronym{transfer full}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

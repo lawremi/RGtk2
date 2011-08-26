@@ -7,8 +7,8 @@ by \code{size}.  If \code{icon.name} is \code{NULL}, the image will be hidden.}
 \usage{gtkTooltipSetIconFromIconName(object, icon.name = NULL, size)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkTooltip}}}
-\item{\verb{icon.name}}{ an icon name, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{size}}{ a stock icon size. \emph{[type int]}}
+\item{\verb{icon.name}}{an icon name, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{size}}{a stock icon size. \emph{[  \acronym{type}   int]}}
 }
 \details{Since 2.14}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -8,7 +8,7 @@ mask will be passed on the window below \code{window}.}
 \usage{gdkWindowInputShapeCombineMask(object, mask, x, y)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkWindow}}}
-\item{\verb{mask}}{ shape mask, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{mask}}{shape mask, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{x}}{X position of shape mask with respect to \code{window}}
 \item{\verb{y}}{Y position of shape mask with respect to \code{window}}
 }

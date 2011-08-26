@@ -5,6 +5,6 @@
 See \code{G_FILE_ATTRIBUTE_STANDARD_SORT_ORDER}.}
 \usage{gFileInfoGetSortOrder(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GFileInfo}}.}}
-\value{[integer]  a \verb{integer} containing the value of the "standard::sort_order" attribute.}
+\value{[integer] a \verb{integer} containing the value of the "standard::sort_order" attribute.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

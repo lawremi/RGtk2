@@ -143,7 +143,7 @@ It must return the serialized form of the content.
 }
 
 \emph{Returns:} [raw] a newly-allocated list of guint8 which contains the serialized
-          data, or \code{NULL} if an error occurred
+data, or \code{NULL} if an error occurred
 
 }
 }}

@@ -12,6 +12,6 @@ names <- c("gnome-dev-cdrom-audio", "gnome-dev-cdrom", "gnome-dev", "gnome")
 icon1 <- gThemedIconNewFromNames(names)
 icon2 <- gThemedIconNewWithDefaultCallbacks("gnome-dev-cdrom-audio")
 }}
-\value{[\code{\link{GIcon}}]  a new \code{\link{GThemedIcon}}.}
+\value{[\code{\link{GIcon}}] a new \code{\link{GThemedIcon}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

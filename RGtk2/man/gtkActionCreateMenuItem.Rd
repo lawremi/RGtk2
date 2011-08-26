@@ -5,6 +5,6 @@
 \usage{gtkActionCreateMenuItem(object)}
 \arguments{\item{\verb{object}}{the action object}}
 \details{Since 2.4}
-\value{[\code{\link{GtkWidget}}]  a menu item connected to the action.}
+\value{[\code{\link{GtkWidget}}] a menu item connected to the action.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

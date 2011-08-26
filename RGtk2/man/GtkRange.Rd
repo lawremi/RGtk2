@@ -68,14 +68,12 @@ at the end of range widgets.
 
 }}}
 \section{Signals}{\describe{
-\item{\code{adjust-bounds(range, arg1, user.data)}}{
+\item{\code{adjust-bounds(range, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{range}}{the object which received the signal.}
-\item{\code{arg1}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 

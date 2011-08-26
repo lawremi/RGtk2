@@ -25,7 +25,7 @@ On error -1 is returned and \code{error} is set accordingly.
   Since 2.22}
 \value{
 A list containing the following elements:
-\item{retval}{[integer]  Number of bytes written (which may be less than \code{size}), or -1
+\item{retval}{[integer] Number of bytes written (which may be less than \code{size}), or -1
 on error}
 \item{\verb{error}}{\code{\link{GError}} for error reporting, or \code{NULL} to ignore.}
 }

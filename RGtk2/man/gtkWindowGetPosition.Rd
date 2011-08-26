@@ -39,8 +39,8 @@ Mechanism is to support the session management protocol (see the
 the window manager to save your window sizes and positions.}
 \value{
 A list containing the following elements:
-\item{\verb{root.x}}{ return location for X coordinate of gravity-determined reference point. \emph{[  \acronym{out}  ]}}
-\item{\verb{root.y}}{ return location for Y coordinate of gravity-determined reference point. \emph{[  \acronym{out}  ]}}
+\item{\verb{root.x}}{return location for X coordinate of gravity-determined reference point}
+\item{\verb{root.y}}{return location for Y coordinate of gravity-determined reference point}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -10,11 +10,11 @@ belongs to another application).}
 \details{Since 2.2}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GdkWindow}}]  the window under the mouse pointer, or \code{NULL}. \emph{[  \acronym{transfer none}  ]}}
-\item{\verb{win.x}}{ return location for x coordinate of the pointer location relative
-   to the window origin, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
-\item{\verb{win.y}}{ return location for y coordinate of the pointer location relative
- &    to the window origin, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
+\item{retval}{[\code{\link{GdkWindow}}] the window under the mouse pointer, or \code{NULL}. \emph{[  \acronym{transfer none}  ]}}
+\item{\verb{win.x}}{return location for x coordinate of the pointer location relative
+to the window origin, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
+\item{\verb{win.y}}{return location for y coordinate of the pointer location relative
+&    to the window origin, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

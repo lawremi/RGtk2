@@ -7,6 +7,6 @@ instead.}
 \usage{gtkToolShellGetEllipsizeMode(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkToolShell}}}}
 \details{Since 2.14}
-\value{[\code{\link{PangoEllipsizeMode}}]  the current ellipsize mode of \code{shell}}
+\value{[\code{\link{PangoEllipsizeMode}}] the current ellipsize mode of \code{shell}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -8,6 +8,6 @@ items are numbered from top to bottom, starting with 0.
 }
 \usage{gtkOptionMenuGetHistory(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkOptionMenu}}}}
-\value{[integer]  index of the selected menu item, or -1 if there are no menu items}
+\value{[integer] index of the selected menu item, or -1 if there are no menu items}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

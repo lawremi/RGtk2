@@ -7,6 +7,6 @@ map via the ::changed signal; it isn't a parameter to the
 other accelerator map functions.}
 \usage{gtkAccelMapGet()}
 \details{Since 2.4}
-\value{[\code{\link{GtkAccelMap}}]  the global \code{\link{GtkAccelMap}} object}
+\value{[\code{\link{GtkAccelMap}}] the global \code{\link{GtkAccelMap}} object}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

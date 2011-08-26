@@ -13,6 +13,6 @@ filter$addPattern("*")
 }}
 \usage{gtkFileFilterNew()}
 \details{Since 2.4}
-\value{[\code{\link{GtkFileFilter}}]  a new \code{\link{GtkFileFilter}}}
+\value{[\code{\link{GtkFileFilter}}] a new \code{\link{GtkFileFilter}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

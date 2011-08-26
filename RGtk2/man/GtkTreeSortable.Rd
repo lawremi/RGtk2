@@ -44,7 +44,7 @@ for the "price" column could be one which returns
 }
 
 \emph{Returns:} [integer] a negative integer, zero or a positive integer depending on whether
-    \code{a} sorts before, with or after \code{b}
+\code{a} sorts before, with or after \code{b}
 
 }}}
 \section{Signals}{\describe{\item{\code{sort-column-changed(sortable, user.data)}}{

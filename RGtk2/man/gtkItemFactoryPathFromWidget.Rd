@@ -11,6 +11,6 @@ path specified in \code{\link{gtkItemFactoryNew}} with the path specified in the
 \usage{gtkItemFactoryPathFromWidget(widget)}
 \arguments{\item{\verb{widget}}{a widget}}
 \value{[character] the full path to \code{widget} if it has been created by an item
-  factory, \code{NULL} otherwise.}
+factory, \code{NULL} otherwise.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

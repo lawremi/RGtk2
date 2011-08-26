@@ -5,6 +5,6 @@
 \usage{gtkActionGroupGetName(object)}
 \arguments{\item{\verb{object}}{the action group}}
 \details{Since 2.4}
-\value{[character]  the name of the action group.}
+\value{[character] the name of the action group.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

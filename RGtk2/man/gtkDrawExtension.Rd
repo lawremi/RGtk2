@@ -13,8 +13,8 @@ Draws an extension, i.e. a notebook tab.
 \item{\verb{shadow.type}}{type of shadow to draw}
 \item{\verb{x}}{x origin of the extension}
 \item{\verb{y}}{y origin of the extension}
-\item{\verb{width}}{width of the extension }
-\item{\verb{height}}{width of the extension }
+\item{\verb{width}}{width of the extension}
+\item{\verb{height}}{width of the extension}
 \item{\verb{gap.side}}{the side on to which the extension is attached}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

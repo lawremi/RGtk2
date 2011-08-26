@@ -9,7 +9,7 @@ to the start of the level.}
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkTreeStore}}.}
 \item{\verb{iter}}{A \code{\link{GtkTreeIter}}.}
-\item{\verb{position}}{ A \code{\link{GtkTreeIter}}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{position}}{A \code{\link{GtkTreeIter}}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{Since 2.2}
 \author{Derived by RGtkGen from GTK+ documentation}

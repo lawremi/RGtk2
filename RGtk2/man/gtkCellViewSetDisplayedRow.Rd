@@ -10,7 +10,7 @@ the \code{\link{GtkCellView}} becomes temporarily empty.}
 \usage{gtkCellViewSetDisplayedRow(object, path = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkCellView}}}
-\item{\verb{path}}{ a \code{\link{GtkTreePath}} or \code{NULL} to unset. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{path}}{a \code{\link{GtkTreePath}} or \code{NULL} to unset. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}

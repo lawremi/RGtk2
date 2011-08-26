@@ -6,6 +6,6 @@ writing.}
 \usage{gIOStreamGetOutputStream(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GIOStream}}}}
 \details{Since 2.22}
-\value{[\code{\link{GOutputStream}}]  a \code{\link{GOutputStream}}, Do not free.}
+\value{[\code{\link{GOutputStream}}] a \code{\link{GOutputStream}}, Do not free.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

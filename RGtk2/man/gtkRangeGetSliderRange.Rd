@@ -9,8 +9,8 @@ in widget->window coordinates.}
   Since 2.20}
 \value{
 A list containing the following elements:
-\item{\verb{slider.start}}{ return location for the slider's start, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{slider.end}}{ return location for the slider's end, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{slider.start}}{return location for the slider's start, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{slider.end}}{return location for the slider's end, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -7,8 +7,9 @@
 }
 \usage{gtkCTreeNodeIsVisible(object, node)}
 \arguments{
-\item{\verb{object}}{\emph{undocumented
-}}
+\item{\verb{object}}{True if the node is currently inside the bounds of the window.
+Note that this function can return true even if the node is not
+viewable, if the node's ancestor is visible.}
 \item{\verb{node}}{\emph{undocumented
 }}
 }

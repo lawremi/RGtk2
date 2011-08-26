@@ -7,7 +7,7 @@ for more information.}
 \usage{gtkWidgetShapeCombineMask(object, shape.mask, offset.x, offset.y)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkWidget}}}
-\item{\verb{shape.mask}}{ shape to be added, or \code{NULL} to remove an existing shape. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{shape.mask}}{shape to be added, or \code{NULL} to remove an existing shape. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{offset.x}}{X position of shape mask with respect to \code{window}}
 \item{\verb{offset.y}}{Y position of shape mask with respect to \code{window}}
 }

@@ -7,7 +7,7 @@ by tags applied to \code{text.view}'s buffer.}
 \usage{gtkTextViewSetPixelsBelowLines(object, pixels.below.lines)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkTextView}}}
-\item{\verb{pixels.below.lines}}{pixels below paragraphs }
+\item{\verb{pixels.below.lines}}{pixels below paragraphs}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

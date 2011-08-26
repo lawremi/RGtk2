@@ -8,6 +8,6 @@ using this function directly, so that themes are taken into
 account.}
 \usage{gtkIconFactoryLookupDefault(stock.id)}
 \arguments{\item{\verb{stock.id}}{an icon name}}
-\value{[\code{\link{GtkIconSet}}]  a \code{\link{GtkIconSet}}, or \code{NULL}}
+\value{[\code{\link{GtkIconSet}}] a \code{\link{GtkIconSet}}, or \code{NULL}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

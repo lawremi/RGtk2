@@ -9,7 +9,7 @@ mnemonic for the button.}
 \arguments{
 \item{\verb{group}}{the radio button group}
 \item{\verb{label}}{the text of the button, with an underscore in front of the
-        mnemonic character}
+mnemonic character}
 }
 \value{[\code{\link{GtkWidget}}] a new \code{\link{GtkRadioButton}}}
 \author{Derived by RGtkGen from GTK+ documentation}

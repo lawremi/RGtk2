@@ -8,11 +8,11 @@ mask for a given display.}
 \details{Since 2.2}
 \value{
 A list containing the following elements:
-\item{\verb{screen}}{ location to store the screen that the
-         cursor is on, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{x}}{ location to store root window X coordinate of pointer, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{y}}{ location to store root window Y coordinate of pointer, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{mask}}{ location to store current modifier mask, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{screen}}{location to store the screen that the
+cursor is on, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{x}}{(out): location to store root window X coordinate of pointer, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{y}}{(out): location to store root window Y coordinate of pointer, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{mask}}{(out): location to store current modifier mask, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

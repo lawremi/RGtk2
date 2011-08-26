@@ -13,7 +13,7 @@ widget class is in the given style.}
 \value{
 A list containing the following elements:
 \item{\verb{value}}{a \verb{R object} where the value of the property being
-    queried will be stored}
+queried will be stored}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

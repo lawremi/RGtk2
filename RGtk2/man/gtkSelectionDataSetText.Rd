@@ -11,6 +11,6 @@ The string is converted to the form determined by
 \item{\verb{len}}{the length of \code{str}, or -1 if \code{str} is nul-terminated.}
 }
 \value{[logical] \code{TRUE} if the selection was successfully set,
-  otherwise \code{FALSE}.}
+otherwise \code{FALSE}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

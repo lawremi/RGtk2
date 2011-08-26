@@ -12,7 +12,7 @@ you will have to fill it completely yourself.}
 \item{\verb{width}}{Width of image in pixels, must be > 0}
 \item{\verb{height}}{Height of image in pixels, must be > 0}
 }
-\value{[\code{\link{GdkPixbuf}}]  A newly-created \code{\link{GdkPixbuf}} with a reference count of 1, or 
+\value{[\code{\link{GdkPixbuf}}] A newly-created \code{\link{GdkPixbuf}} with a reference count of 1, or
 \code{NULL} if not enough memory could be allocated for the image buffer.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

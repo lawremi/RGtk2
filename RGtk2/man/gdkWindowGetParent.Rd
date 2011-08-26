@@ -9,6 +9,6 @@ matter for toplevel windows, because the window manager may choose
 to reparent them.}
 \usage{gdkWindowGetParent(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GdkWindow}}}}
-\value{[\code{\link{GdkWindow}}]  parent of \code{window}}
+\value{[\code{\link{GdkWindow}}] parent of \code{window}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

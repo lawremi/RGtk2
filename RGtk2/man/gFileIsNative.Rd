@@ -14,6 +14,6 @@ these cases this call will return \code{FALSE}, but \code{\link{gFileGetPath}}
 will still return a native path.
   
 This call does no blocking i/o.}
-\value{[logical] \code{TRUE} if file is native. }
+\value{[logical] \code{TRUE} if file is native.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

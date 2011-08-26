@@ -8,9 +8,9 @@
 but the user is not expected
 to modify the contents of the lines (glyphs, glyph widths, etc.).
   Since 1.16}
-\value{[list]  a \verb{list} containing
+\value{[list] a \verb{list} containing
 the lines in the layout. This points to internal data of the \code{\link{PangoLayout}} and
 must be used with care. It will become invalid on any change to the layout's
-text or properties.  No changes should be made to the lines. \emph{[  \acronym{element-type}   Pango.LayoutLine): (transfer none]}}
+text or properties.  No changes should be made to the lines. \emph{[  \acronym{element-type}   Pango.LayoutLine][  \acronym{transfer none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

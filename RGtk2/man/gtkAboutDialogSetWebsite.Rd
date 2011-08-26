@@ -5,7 +5,7 @@
 \usage{gtkAboutDialogSetWebsite(object, website = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkAboutDialog}}}
-\item{\verb{website}}{ a URL string starting with "http://". \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{website}}{a URL string starting with "http://". \emph{[  \acronym{allow-none}  ]}}
 }
 \details{Note that that the hook functions need to be set up
 before calling this function.

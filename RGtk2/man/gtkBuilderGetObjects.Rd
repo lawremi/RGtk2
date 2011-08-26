@@ -7,7 +7,7 @@ objects.}
 \usage{gtkBuilderGetObjects(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkBuilder}}}}
 \details{Since 2.12}
-\value{[list]  a newly-allocated \verb{list} containing all the objects
-  constructed by the \code{\link{GtkBuilder}} instance. \emph{[  \acronym{element-type}   GObject][  \acronym{transfer container}   GObject]}}
+\value{[list] a newly-allocated \verb{list} containing all the objects
+constructed by the \code{\link{GtkBuilder}} instance. \emph{[  \acronym{element-type}   GObject][  \acronym{transfer container}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -115,7 +115,7 @@ It has the following fields:
 
 \describe{
 \item{\verb{keyval}}{[numeric] the keyval to generate when the function button is pressed.
-         If this is 0, no keypress will be generated.}
+If this is 0, no keypress will be generated.}
 \item{\verb{modifiers}}{[\code{\link{GdkModifierType}}] the modifiers set for the generated key event.}
 }
 

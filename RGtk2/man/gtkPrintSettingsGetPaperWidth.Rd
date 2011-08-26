@@ -9,6 +9,6 @@ converted to \code{unit}.}
 \item{\verb{unit}}{the unit for the return value}
 }
 \details{Since 2.10}
-\value{[numeric]  the paper width, in units of \code{unit}}
+\value{[numeric] the paper width, in units of \code{unit}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

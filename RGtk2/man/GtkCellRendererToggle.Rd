@@ -34,7 +34,7 @@ The ::toggled signal is emitted when the cell is toggled.
 \describe{
 \item{\code{cell.renderer}}{the object which received the signal}
 \item{\code{path}}{string representation of \code{\link{GtkTreePath}} describing the
-       event location}
+event location}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 

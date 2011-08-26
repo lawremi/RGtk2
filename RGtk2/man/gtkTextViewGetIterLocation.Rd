@@ -12,7 +12,7 @@ coordinates to coordinates for one of the windows in the text view.}
 }
 \value{
 A list containing the following elements:
-\item{\verb{location}}{ bounds of the character at \code{iter}. \emph{[  \acronym{out}  ]}}
+\item{\verb{location}}{bounds of the character at \code{iter}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

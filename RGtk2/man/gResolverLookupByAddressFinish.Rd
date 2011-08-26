@@ -15,7 +15,7 @@ a value from \verb{GResolverError}. If the operation was cancelled,
   Since 2.22}
 \value{
 A list containing the following elements:
-\item{retval}{[character]  a hostname (either ASCII-only, or in ASCII-encoded
+\item{retval}{[character] a hostname (either ASCII-only, or in ASCII-encoded
 form), or \code{NULL} on error.}
 \item{\verb{error}}{return location for a \code{\link{GError}}, or \code{NULL}}
 }

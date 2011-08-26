@@ -10,6 +10,6 @@ drawables with any visual.}
 \usage{gdkScreenGetRgbVisual(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GdkScreen}}}}
 \details{Since 2.2}
-\value{[\code{\link{GdkVisual}}]  The \code{\link{GdkVisual}} chosen by GdkRGB. \emph{[  \acronym{transfer none}  ]}}
+\value{[\code{\link{GdkVisual}}] The \code{\link{GdkVisual}} chosen by GdkRGB. \emph{[  \acronym{transfer none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

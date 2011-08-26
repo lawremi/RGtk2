@@ -15,8 +15,8 @@ when you select a directory and type a filename in the file selector.}
 \details{This call does no blocking i/o.}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GFile}}]  a \code{\link{GFile}} to the specified child, or 
-    \code{NULL} if the display name couldn't be converted.}
+\item{retval}{[\code{\link{GFile}}] a \code{\link{GFile}} to the specified child, or
+\code{NULL} if the display name couldn't be converted.}
 \item{\verb{error}}{\code{\link{GError}}.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -19,7 +19,7 @@ pointing into \code{src}; see \code{\link{gdkPixbufNewSubpixbuf}}.
   
 For more complicated scaling/compositing see \code{\link{gdkPixbufScale}}
 and \code{\link{gdkPixbufComposite}}.}
-\value{[\code{\link{GdkPixbuf}}]  the new \code{\link{GdkPixbuf}}, or \code{NULL} if not enough memory could be
+\value{[\code{\link{GdkPixbuf}}] the new \code{\link{GdkPixbuf}}, or \code{NULL} if not enough memory could be
 allocated for it.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -9,6 +9,6 @@ be parsed by the \code{\link{GVfs}} module.}
 \item{\verb{object}}{a \code{\link{GVfs}}.}
 \item{\verb{parse.name}}{a string to be parsed by the VFS module.}
 }
-\value{[\code{\link{GFile}}]  a \code{\link{GFile}} for the given \code{parse.name}.}
+\value{[\code{\link{GFile}}] a \code{\link{GFile}} for the given \code{parse.name}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

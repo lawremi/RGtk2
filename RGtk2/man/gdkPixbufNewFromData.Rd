@@ -13,6 +13,6 @@ images with 8 bits per sample are supported.}
 \item{\verb{height}}{Height of the image in pixels, must be > 0}
 \item{\verb{rowstride}}{Distance in bytes between row starts}
 }
-\value{[\code{\link{GdkPixbuf}}]  A newly-created \code{\link{GdkPixbuf}} structure with a reference count of 1.}
+\value{[\code{\link{GdkPixbuf}}] A newly-created \code{\link{GdkPixbuf}} structure with a reference count of 1.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

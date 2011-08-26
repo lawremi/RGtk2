@@ -8,6 +8,6 @@ with a buffer set to \code{size}.}
 \item{\verb{base.stream}}{a \code{\link{GInputStream}}.}
 \item{\verb{size}}{a \verb{numeric}.}
 }
-\value{[\code{\link{GInputStream}}]  a \code{\link{GInputStream}}.}
+\value{[\code{\link{GInputStream}}] a \code{\link{GInputStream}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

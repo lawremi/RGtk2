@@ -5,8 +5,8 @@
 \usage{gtkCalendarSelectDay(object, day)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkCalendar}}.}
-\item{\verb{day}}{the day number between 1 and 31, or 0 to unselect 
-  the currently selected day.}
+\item{\verb{day}}{the day number between 1 and 31, or 0 to unselect
+the currently selected day.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

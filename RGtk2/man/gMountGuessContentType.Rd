@@ -9,8 +9,8 @@ specification for more on x-content types.}
 \usage{gMountGuessContentType(object, force.rescan, cancellable = NULL, callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GMount}}}
-\item{\verb{force.rescan}}{Whether to force a rescan of the content. 
-    Otherwise a cached result will be used if available}
+\item{\verb{force.rescan}}{Whether to force a rescan of the content.
+Otherwise a cached result will be used if available}
 \item{\verb{cancellable}}{optional \code{\link{GCancellable}} object, \code{NULL} to ignore}
 \item{\verb{callback}}{a \code{\link{GAsyncReadyCallback}}}
 \item{\verb{user.data}}{user data passed to \code{callback}}

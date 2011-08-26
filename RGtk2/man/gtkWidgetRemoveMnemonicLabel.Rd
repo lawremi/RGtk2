@@ -9,7 +9,7 @@ must have previously been added to the list with
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkWidget}}}
 \item{\verb{label}}{a \code{\link{GtkWidget}} that was previously set as a mnemnic label for
-        \code{widget} with \code{\link{gtkWidgetAddMnemonicLabel}}.}
+\code{widget} with \code{\link{gtkWidgetAddMnemonicLabel}}.}
 }
 \details{Since 2.4}
 \author{Derived by RGtkGen from GTK+ documentation}

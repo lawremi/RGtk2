@@ -13,8 +13,8 @@ list handled by a recent manager.}
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if the item pointed by \code{uri} has been successfully
-  removed by the recently used resources list, and \code{FALSE} otherwise.}
-\item{\verb{error}}{ return location for a \code{\link{GError}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+removed by the recently used resources list, and \code{FALSE} otherwise.}
+\item{\verb{error}}{return location for a \code{\link{GError}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

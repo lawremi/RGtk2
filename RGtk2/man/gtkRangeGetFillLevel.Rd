@@ -5,6 +5,6 @@
 \usage{gtkRangeGetFillLevel(object)}
 \arguments{\item{\verb{object}}{A \code{\link{GtkRange}}}}
 \details{Since 2.12}
-\value{[numeric]  The current fill level}
+\value{[numeric] The current fill level}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

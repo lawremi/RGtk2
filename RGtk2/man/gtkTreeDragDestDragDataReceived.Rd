@@ -13,6 +13,6 @@ a \code{dest} no longer found in the model!}
 \item{\verb{dest}}{row to drop in front of}
 \item{\verb{selection.data}}{data to drop}
 }
-\value{[logical]  whether a new row was created before position \code{dest}}
+\value{[logical] whether a new row was created before position \code{dest}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

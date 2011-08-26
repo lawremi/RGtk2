@@ -6,7 +6,7 @@ header button is set with a \code{\link{GtkLabel}} set to the title of \code{tre
 \usage{gtkTreeViewColumnSetWidget(object, widget = NULL)}
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkTreeViewColumn}}.}
-\item{\verb{widget}}{ A child \code{\link{GtkWidget}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{widget}}{A child \code{\link{GtkWidget}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -11,7 +11,7 @@
 }
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GFileOutputStream}}]  a valid \code{\link{GFileOutputStream}} or \code{NULL} on error.}
+\item{retval}{[\code{\link{GFileOutputStream}}] a valid \code{\link{GFileOutputStream}} or \code{NULL} on error.}
 \item{\verb{error}}{a \code{\link{GError}}, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

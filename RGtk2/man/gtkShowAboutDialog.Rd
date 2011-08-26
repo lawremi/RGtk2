@@ -6,7 +6,7 @@ The constructed dialog is associated with the parent window and
 reused for future invocations of this function.}
 \usage{gtkShowAboutDialog(parent, ...)}
 \arguments{
-\item{\verb{parent}}{ transient parent, or \code{NULL} for none. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{parent}}{transient parent, or \code{NULL} for none. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{...}}{value of first property, followed by more properties, \code{NULL}-terminated}
 }
 \details{Since 2.6}

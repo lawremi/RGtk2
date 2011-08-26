@@ -10,10 +10,10 @@ returned pixmap and mask.}
 \arguments{\item{\verb{object}}{a \code{\link{GtkImage}}}}
 \value{
 A list containing the following elements:
-\item{\verb{pixmap}}{ location to store the
-    pixmap, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{transfer none}  ][  \acronym{allow-none}  ]}}
-\item{\verb{mask}}{ location to store the
-    mask, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{transfer none}  ][  \acronym{allow-none}  ]}}
+\item{\verb{pixmap}}{location to store the
+pixmap, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{transfer none}  ][  \acronym{allow-none}  ]}}
+\item{\verb{mask}}{location to store the
+mask, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{transfer none}  ][  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

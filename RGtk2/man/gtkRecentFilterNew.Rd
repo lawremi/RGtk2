@@ -13,6 +13,6 @@ filter$addPattern("*")
 }}
 \usage{gtkRecentFilterNew()}
 \details{Since 2.10}
-\value{[\code{\link{GtkRecentFilter}}]  a new \code{\link{GtkRecentFilter}}}
+\value{[\code{\link{GtkRecentFilter}}] a new \code{\link{GtkRecentFilter}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

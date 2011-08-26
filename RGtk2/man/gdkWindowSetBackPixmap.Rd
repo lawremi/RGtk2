@@ -7,9 +7,9 @@ of \code{NULL}.}
 \usage{gdkWindowSetBackPixmap(object, pixmap = NULL, parent.relative)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkWindow}}}
-\item{\verb{pixmap}}{ a \code{\link{GdkPixmap}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{pixmap}}{a \code{\link{GdkPixmap}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{parent.relative}}{whether the tiling origin is at the origin of
-  \code{window}'s parent}
+\code{window}'s parent}
 }
 \details{A background pixmap will be tiled, positioning the first tile at
 the origin of \code{window}, or if \code{parent.relative} is \code{TRUE}, the tiling

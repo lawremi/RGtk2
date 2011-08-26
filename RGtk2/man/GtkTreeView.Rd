@@ -238,42 +238,26 @@ has some similarity to \code{strcmp()} returning 0 for equal strings.
 \item{\code{column}}{the search column set by \code{\link{gtkTreeViewSetSearchColumn}}}
 \item{\code{key}}{the key string to compare with}
 \item{\code{iter}}{a \code{\link{GtkTreeIter}} pointing the row of \code{model} that should be compared
-  with \code{key}.}
+with \code{key}.}
 \item{\code{search.data}}{user data from \code{\link{gtkTreeViewSetSearchEqualFunc}}}
 }
 
 \emph{Returns:} [logical] \code{FALSE} if the row matches, \code{TRUE} otherwise.
 
 }
-\item{\code{GtkTreeViewSearchPositionFunc(tree.view, search.dialog, user.data)}}{
+\item{\code{GtkTreeViewSearchPositionFunc()}}{
 \emph{undocumented
 }
 
-\describe{
-\item{\code{tree.view}}{\emph{undocumented
-}}
-\item{\code{search.dialog}}{\emph{undocumented
-}}
-\item{\code{user.data}}{\emph{undocumented
-}}
-}
+
 
 
 }
-\item{\code{GtkTreeDestroyCountFunc(tree.view, path, children, user.data)}}{
+\item{\code{GtkTreeDestroyCountFunc()}}{
 \emph{undocumented
 }
 
-\describe{
-\item{\code{tree.view}}{\emph{undocumented
-}}
-\item{\code{path}}{\emph{undocumented
-}}
-\item{\code{children}}{\emph{undocumented
-}}
-\item{\code{user.data}}{\emph{undocumented
-}}
-}
+
 
 
 }
@@ -314,33 +298,23 @@ The position of the cursor (focused cell) has changed.
 
 
 }
-\item{\code{expand-collapse-cursor-row(tree.view, arg1, arg2, arg3, user.data)}}{
+\item{\code{expand-collapse-cursor-row(tree.view, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{tree.view}}{the object which received the signal.}
-\item{\code{arg1}}{\emph{undocumented
-}}
-\item{\code{arg2}}{\emph{undocumented
-}}
-\item{\code{arg3}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{move-cursor(tree.view, arg1, arg2, user.data)}}{
+\item{\code{move-cursor(tree.view, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{tree.view}}{the object which received the signal.}
-\item{\code{arg1}}{\emph{undocumented
-}}
-\item{\code{arg2}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
@@ -348,7 +322,7 @@ The position of the cursor (focused cell) has changed.
 }
 \item{\code{row-activated(tree.view, path, column, user.data)}}{
 The "row-activated" signal is emitted when the method
-\code{\link{gtkTreeViewRowActivated}} is called or the user double clicks 
+\code{\link{gtkTreeViewRowActivated}} is called or the user double clicks
 a treeview row. It is also emitted when a non-editable row is 
 selected and one of the keys: Space, Shift+Space, Return or 
 Enter is pressed.
@@ -371,7 +345,7 @@ The given row has been collapsed (child nodes are hidden).
 \describe{
 \item{\code{tree.view}}{the object on which the signal is emitted}
 \item{\code{iter}}{the tree iter of the collapsed row}
-\item{\code{path}}{a tree path that points to the row }
+\item{\code{path}}{a tree path that points to the row}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
@@ -383,7 +357,7 @@ The given row has been expanded (child nodes are shown).
 \describe{
 \item{\code{tree.view}}{the object on which the signal is emitted}
 \item{\code{iter}}{the tree iter of the expanded row}
-\item{\code{path}}{a tree path that points to the row }
+\item{\code{path}}{a tree path that points to the row}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
@@ -411,14 +385,12 @@ The given row has been expanded (child nodes are shown).
 
 
 }
-\item{\code{select-cursor-row(tree.view, arg1, user.data)}}{
+\item{\code{select-cursor-row(tree.view, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{tree.view}}{the object which received the signal.}
-\item{\code{arg1}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
@@ -455,7 +427,7 @@ signal if you need to control the collapsibility of individual rows.
 \describe{
 \item{\code{tree.view}}{the object on which the signal is emitted}
 \item{\code{iter}}{the tree iter of the row to collapse}
-\item{\code{path}}{a tree path that points to the row }
+\item{\code{path}}{a tree path that points to the row}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
@@ -469,7 +441,7 @@ signal if you need to control the expandability of individual rows.
 \describe{
 \item{\code{tree.view}}{the object on which the signal is emitted}
 \item{\code{iter}}{the tree iter of the row to expand}
-\item{\code{path}}{a tree path that points to the row }
+\item{\code{path}}{a tree path that points to the row}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 

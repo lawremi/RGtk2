@@ -11,9 +11,9 @@ for it with \code{gdkWindowForeignNew()})}
 \code{\link{gdkDisplayGetWindowAtPointer}} instead.}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GdkWindow}}]  window under the mouse pointer. \emph{[  \acronym{transfer none}  ]}}
-\item{\verb{win.x}}{ return location for origin of the window under the pointer. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
-\item{\verb{win.y}}{ return location for origin of the window under the pointer. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
+\item{retval}{[\code{\link{GdkWindow}}] window under the mouse pointer. \emph{[  \acronym{transfer none}  ]}}
+\item{\verb{win.x}}{return location for origin of the window under the pointer. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
+\item{\verb{win.y}}{return location for origin of the window under the pointer. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

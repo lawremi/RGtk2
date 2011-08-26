@@ -6,9 +6,9 @@
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkToolItemGroup}}}
 \item{\verb{item}}{the \code{\link{GtkToolItem}} to move to a new position, should
-    be a child of \code{group}.}
+be a child of \code{group}.}
 \item{\verb{position}}{the new position of \code{item} in \code{group}, starting with 0.
-    The position -1 means end of list.}
+The position -1 means end of list.}
 }
 \details{Since 2.20}
 \author{Derived by RGtkGen from GTK+ documentation}

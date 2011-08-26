@@ -213,37 +213,17 @@ A generic callback type to do something with a particular node.
 
 
 }
-\item{\code{GtkCTreeGNodeFunc(ctree, depth, gnode, cnode, data)}}{
+\item{\code{GtkCTreeGNodeFunc()}}{
 FIXME
 
-\describe{
-\item{\code{ctree}}{\emph{undocumented
-}}
-\item{\code{depth}}{\emph{undocumented
-}}
-\item{\code{gnode}}{\emph{undocumented
-}}
-\item{\code{cnode}}{\emph{undocumented
-}}
-\item{\code{data}}{\emph{undocumented
-}}
-}
+
 
 
 }
-\item{\code{GtkCTreeCompareDragFunc(ctree, source.node, new.parent, new.sibling)}}{
+\item{\code{GtkCTreeCompareDragFunc()}}{
 FIXME
 
-\describe{
-\item{\code{ctree}}{\emph{undocumented
-}}
-\item{\code{source.node}}{\emph{undocumented
-}}
-\item{\code{new.parent}}{\emph{undocumented
-}}
-\item{\code{new.sibling}}{\emph{undocumented
-}}
-}
+
 
 
 }
@@ -261,25 +241,21 @@ or toggled.
 
 
 }
-\item{\code{tree-collapse(ctree, node, user.data)}}{
+\item{\code{tree-collapse(ctree, user.data)}}{
 Emitted when a node is collapsed.
 
 \describe{
 \item{\code{ctree}}{the object which received the signal.}
-\item{\code{node}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{tree-expand(ctree, node, user.data)}}{
+\item{\code{tree-expand(ctree, user.data)}}{
 Emitted when a node is expanded.
 
 \describe{
 \item{\code{ctree}}{the object which received the signal.}
-\item{\code{node}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
@@ -310,14 +286,12 @@ Emitted when a row is selected.
 
 
 }
-\item{\code{tree-unselect-row(ctree, node, column, user.data)}}{
+\item{\code{tree-unselect-row(ctree, node, user.data)}}{
 Emitted when a node is unselected.
 
 \describe{
 \item{\code{ctree}}{the object which received the signal.}
 \item{\code{node}}{The node  corresponding to the selected row.}
-\item{\code{column}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 

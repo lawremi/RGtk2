@@ -8,6 +8,6 @@ Use \code{\link{gtkTextBufferGetIterAtOffset}} to convert an
 offset back into an iterator.}
 \usage{gtkTextIterGetOffset(object)}
 \arguments{\item{\verb{object}}{an iterator}}
-\value{[integer]  a character offset}
+\value{[integer] a character offset}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

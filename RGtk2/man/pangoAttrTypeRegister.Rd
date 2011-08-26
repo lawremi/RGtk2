@@ -5,6 +5,6 @@
 later by using \code{\link{pangoAttrTypeGetName}}.}
 \usage{pangoAttrTypeRegister(name)}
 \arguments{\item{\verb{name}}{an identifier for the type}}
-\value{[\code{\link{PangoAttrType}}]  the new type ID.}
+\value{[\code{\link{PangoAttrType}}] the new type ID.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

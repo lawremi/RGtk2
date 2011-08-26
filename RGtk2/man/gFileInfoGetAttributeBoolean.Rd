@@ -8,6 +8,6 @@ contain a boolean value, \code{FALSE} will be returned.}
 \item{\verb{object}}{a \code{\link{GFileInfo}}.}
 \item{\verb{attribute}}{a file attribute key.}
 }
-\value{[logical]  the boolean value contained within the attribute. }
+\value{[logical] the boolean value contained within the attribute.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

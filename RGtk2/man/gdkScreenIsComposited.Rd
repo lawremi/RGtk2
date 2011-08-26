@@ -9,7 +9,7 @@ the screen.}
 \details{On X11 this function returns whether a compositing manager is
 compositing \code{screen}.
   Since 2.10}
-\value{[logical]  Whether windows with RGBA visuals can reasonably be
+\value{[logical] Whether windows with RGBA visuals can reasonably be
 expected to have their alpha channels drawn correctly on the screen.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

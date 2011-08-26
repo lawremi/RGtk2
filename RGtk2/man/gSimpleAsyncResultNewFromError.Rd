@@ -10,7 +10,7 @@
 }
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GSimpleAsyncResult}}]  a \code{\link{GSimpleAsyncResult}}.}
+\item{retval}{[\code{\link{GSimpleAsyncResult}}] a \code{\link{GSimpleAsyncResult}}.}
 \item{\verb{error}}{a \code{\link{GError}} location.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -8,9 +8,9 @@ will be updated appropriately.}
 \usage{gtkImageNewFromIconName(icon.name, size)}
 \arguments{
 \item{\verb{icon.name}}{an icon name}
-\item{\verb{size}}{ a stock icon size. \emph{[type int]}}
+\item{\verb{size}}{a stock icon size. \emph{[  \acronym{type}   int]}}
 }
 \details{Since 2.6}
-\value{[\code{\link{GtkWidget}}]  a new \code{\link{GtkImage}} displaying the themed icon}
+\value{[\code{\link{GtkWidget}}] a new \code{\link{GtkImage}} displaying the themed icon}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

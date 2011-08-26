@@ -8,6 +8,6 @@
 \item{\verb{object}}{a \code{\link{GtkTextView}}}
 \item{\verb{type}}{window to return size from}
 }
-\value{[integer]  width of window}
+\value{[integer] width of window}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

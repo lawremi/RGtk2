@@ -14,7 +14,7 @@ combines these two steps if all you need is the pixbuf.)}
 \item{\verb{flags}}{flags modifying the behavior of the icon lookup}
 }
 \details{Since 2.4}
-\value{[\code{\link{GtkIconInfo}}]  a \code{\link{GtkIconInfo}} structure containing information
+\value{[\code{\link{GtkIconInfo}}] a \code{\link{GtkIconInfo}} structure containing information
 about the icon, or \code{NULL} if the icon wasn't found.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

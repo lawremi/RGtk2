@@ -9,7 +9,7 @@ the filesystem.}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{attributes}}{an attribute query string.}
-\item{\verb{cancellable}}{optional \code{\link{GCancellable}} object, \code{NULL} to ignore. }
+\item{\verb{cancellable}}{optional \code{\link{GCancellable}} object, \code{NULL} to ignore.}
 \item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \details{The \code{attribute} value is a string that specifies the file attributes that
@@ -30,8 +30,8 @@ If the file does not exist, the G_IO_ERROR_NOT_FOUND error will be returned.
 Other errors are possible too, and depend on what kind of filesystem the file is on.}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GFileInfo}}]  a \code{\link{GFileInfo}} or \code{NULL} if there was an error.}
-\item{\verb{error}}{a \code{\link{GError}}. }
+\item{retval}{[\code{\link{GFileInfo}}] a \code{\link{GFileInfo}} or \code{NULL} if there was an error.}
+\item{\verb{error}}{a \code{\link{GError}}.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

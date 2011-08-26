@@ -8,6 +8,6 @@ own stock icon names, see \code{\link{gtkIconFactoryAddDefault}} and
 \usage{gtkStatusIconNewFromStock(stock.id)}
 \arguments{\item{\verb{stock.id}}{a stock icon id}}
 \details{Since 2.10}
-\value{[\code{\link{GtkStatusIcon}}]  a new \code{\link{GtkStatusIcon}}}
+\value{[\code{\link{GtkStatusIcon}}] a new \code{\link{GtkStatusIcon}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

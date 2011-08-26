@@ -5,6 +5,6 @@
 \usage{gtkPrintSettingsGetNCopies(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkPrintSettings}}}}
 \details{Since 2.10}
-\value{[integer]  the number of copies to print}
+\value{[integer] the number of copies to print}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

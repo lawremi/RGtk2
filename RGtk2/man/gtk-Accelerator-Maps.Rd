@@ -8,8 +8,6 @@
 \code{\link{gtkAccelMapAddEntry}(accel.path, accel.key, accel.mods)}\cr
 \code{\link{gtkAccelMapLookupEntry}(accel.path)}\cr
 \code{\link{gtkAccelMapChangeEntry}(accel.path, accel.key, accel.mods, replace)}\cr
-\code{\link{gtkAccelMapLoad}(file.name)}\cr
-\code{\link{gtkAccelMapSave}(file.name)}\cr
 \code{\link{gtkAccelMapForeach}(data = NULL, foreach.func)}\cr
 \code{\link{gtkAccelMapLoadFd}(fd)}\cr
 \code{\link{gtkAccelMapSaveFd}(fd)}\cr
@@ -28,22 +26,11 @@
 }
 
 }}}
-\section{User Functions}{\describe{\item{\code{GtkAccelMapForeach(data, accel.path, accel.key, accel.mods, changed)}}{
+\section{User Functions}{\describe{\item{\code{GtkAccelMapForeach()}}{
 \emph{undocumented
 }
 
-\describe{
-\item{\code{data}}{\emph{undocumented
-}}
-\item{\code{accel.path}}{\emph{undocumented
-}}
-\item{\code{accel.key}}{\emph{undocumented
-}}
-\item{\code{accel.mods}}{\emph{undocumented
-}}
-\item{\code{changed}}{\emph{undocumented
-}}
-}
+
 
 
 }}}

@@ -35,7 +35,7 @@ The icon name.
   Default value: NULL
 
 }
-\item{\verb{names} [character list : *                : Read / Write / Construct Only]}{
+\item{\verb{names} [character list : Read / Write / Construct Only]}{
 
 A list of icon names.
 

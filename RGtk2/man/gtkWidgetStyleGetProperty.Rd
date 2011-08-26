@@ -9,7 +9,7 @@
 }
 \value{
 A list containing the following elements:
-\item{\verb{value}}{location to return the property value }
+\item{\verb{value}}{location to return the property value}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -12,7 +12,7 @@
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} on success}
-\item{\verb{error}}{ return location for errors, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{error}}{return location for errors, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

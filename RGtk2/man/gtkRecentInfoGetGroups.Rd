@@ -9,9 +9,9 @@ optionally be \code{NULL}.}
 \details{Since 2.10}
 \value{
 A list containing the following elements:
-\item{retval}{[character]  a newly allocated
+\item{retval}{[character] a newly allocated
 \code{NULL} terminated list of strings. \emph{[  \acronym{array}   length=length zero-terminated=1]}}
-\item{\verb{length}}{ return location for the number of groups returned. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
+\item{\verb{length}}{return location for the number of groups returned. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

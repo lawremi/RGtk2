@@ -7,7 +7,7 @@ was constructed.}
 \usage{gdkPixbufSimpleAnimAddFrame(object, pixbuf)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkPixbufSimpleAnim}}}
-\item{\verb{pixbuf}}{the pixbuf to add }
+\item{\verb{pixbuf}}{the pixbuf to add}
 }
 \details{Since 2.8}
 \author{Derived by RGtkGen from GTK+ documentation}

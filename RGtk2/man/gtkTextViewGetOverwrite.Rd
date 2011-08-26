@@ -5,6 +5,6 @@
 \usage{gtkTextViewGetOverwrite(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkTextView}}}}
 \details{Since 2.4}
-\value{[logical]  whether \code{text.view} is in overwrite mode or not.}
+\value{[logical] whether \code{text.view} is in overwrite mode or not.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

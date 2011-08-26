@@ -11,7 +11,7 @@ Draws a layout on \code{window} using the given parameters.
 \item{\verb{window}}{a \code{\link{GdkWindow}}}
 \item{\verb{state.type}}{a state}
 \item{\verb{use.text}}{whether to use the text or foreground
-           graphics context of \code{style}}
+graphics context of \code{style}}
 \item{\verb{x}}{x origin}
 \item{\verb{y}}{y origin}
 \item{\verb{layout}}{the layout to draw}

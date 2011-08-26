@@ -35,7 +35,7 @@ If the file does not exist, the G_IO_ERROR_NOT_FOUND error will be returned.
 Other errors are possible too, and depend on what kind of filesystem the file is on.}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GFileInfo}}]  a \code{\link{GFileInfo}} for the given \code{file}, or \code{NULL} on error.}
+\item{retval}{[\code{\link{GFileInfo}}] a \code{\link{GFileInfo}} for the given \code{file}, or \code{NULL} on error.}
 \item{\verb{error}}{a \code{\link{GError}}.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

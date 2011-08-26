@@ -9,6 +9,6 @@ the text window and entry's icon windows.}
 \arguments{\item{\verb{object}}{a \code{\link{GtkEntry}}}}
 \details{See also \code{\link{gtkEntryGetIconWindow}}.
   Since 2.20}
-\value{[\code{\link{GdkWindow}}]  the entry's text window.}
+\value{[\code{\link{GdkWindow}}] the entry's text window.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

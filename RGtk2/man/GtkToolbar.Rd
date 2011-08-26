@@ -142,7 +142,7 @@ up using the keybaord, \code{button} is -1.
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical]  return \code{TRUE} if the signal was handled, \code{FALSE} if not
+\emph{Returns:} [logical] return \code{TRUE} if the signal was handled, \code{FALSE} if not
 
 }
 \item{\code{style-changed(toolbar, style, user.data)}}{

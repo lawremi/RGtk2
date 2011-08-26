@@ -9,7 +9,7 @@ call \code{\link{gtkTreeStoreSet}} or \code{\link{gtkTreeStoreSetValue}}.}
 \usage{gtkTreeStorePrepend(object, parent = NULL)}
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkTreeStore}}}
-\item{\verb{parent}}{ A valid \code{\link{GtkTreeIter}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{parent}}{A valid \code{\link{GtkTreeIter}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \value{
 A list containing the following elements:

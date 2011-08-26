@@ -7,8 +7,8 @@
 \usage{gtkTextIterTogglesTag(object, tag = NULL)}
 \arguments{
 \item{\verb{object}}{an iterator}
-\item{\verb{tag}}{ a \code{\link{GtkTextTag}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{tag}}{a \code{\link{GtkTextTag}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
-\value{[logical]  whether \code{tag} is toggled on or off at \code{iter}}
+\value{[logical] whether \code{tag} is toggled on or off at \code{iter}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

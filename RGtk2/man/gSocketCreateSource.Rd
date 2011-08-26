@@ -19,6 +19,6 @@ is likely 0 unless cancellation happened at the same time as a
 condition change). You can check for this in the callback using
 \code{\link{gCancellableIsCancelled}}.
   Since 2.22}
-\value{[GSource]  a newly allocated \code{GSource}, free with \code{gSourceUnref()}.}
+\value{[GSource] a newly allocated \code{GSource}, free with \code{gSourceUnref()}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

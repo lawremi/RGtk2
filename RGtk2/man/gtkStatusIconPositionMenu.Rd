@@ -14,7 +14,7 @@ A list containing the following elements:
 \item{\verb{x}}{return location for the x position}
 \item{\verb{y}}{return location for the y position}
 \item{\verb{push.in}}{whether the first menu item should be offset (pushed in) to be
-          aligned with the menu popup position (only useful for GtkOptionMenu).}
+aligned with the menu popup position (only useful for GtkOptionMenu).}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

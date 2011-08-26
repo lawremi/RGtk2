@@ -8,7 +8,7 @@ global information about preview widgets.
 }
 \usage{gtkPreviewGetInfo()}
 \value{[\code{\link{GtkPreviewInfo}}] a \code{\link{GtkPreviewInfo}} structure. The return
- value belongs to GTK+ and must not be modified
- or freed.}
+value belongs to GTK+ and must not be modified
+or freed.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

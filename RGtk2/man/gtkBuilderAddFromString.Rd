@@ -15,8 +15,8 @@ UI definition and merges it with the current contents of \code{builder}. }
   Since 2.12}
 \value{
 A list containing the following elements:
-\item{retval}{[numeric]  A positive value on success, 0 if an error occurred}
-\item{\verb{error}}{ return location for an error, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{retval}{[numeric] A positive value on success, 0 if an error occurred}
+\item{\verb{error}}{return location for an error, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

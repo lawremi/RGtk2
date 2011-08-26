@@ -76,14 +76,12 @@ Causes the GtkMenuShell::selection-done signal to be emitted.
 
 
 }
-\item{\code{cycle-focus(menushell, arg1, user.data)}}{
+\item{\code{cycle-focus(menushell, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{menushell}}{the object which received the signal.}
-\item{\code{arg1}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 

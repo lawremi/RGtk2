@@ -7,6 +7,6 @@ event will be the \code{\link{GdkEventButton}} that triggered the "clicked"
 signal.
 If there is no current event, the function returns \code{NULL}.}
 \usage{gtkGetCurrentEvent()}
-\value{[\code{\link{GdkEvent}}]  a copy of the current event, or \code{NULL} if no current event.}
+\value{[\code{\link{GdkEvent}}] a copy of the current event, or \code{NULL} if no current event.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

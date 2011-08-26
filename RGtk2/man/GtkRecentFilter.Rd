@@ -56,10 +56,10 @@ to pass information about the tested file to \code{\link{gtkRecentFilterFilter}}
 
 \describe{
 \item{\verb{contains}}{[\code{\link{GtkRecentFilterFlags}}] Flags indicating which of the following fields need
-  are filled}
+are filled}
 \item{\verb{uri}}{[character] the URI of the file being tested}
 \item{\verb{displayName}}{[character] the string that will be used to display the file
-  in the recent chooser}
+in the recent chooser}
 \item{\verb{mimeType}}{[character] the mime type of the file}
 \item{\verb{applications}}{[character] the list of applications that have registered the file}
 \item{\verb{groups}}{[character] the groups to which the file belongs to}
@@ -92,7 +92,7 @@ see \code{\link{gtkRecentFilterAddCustom}}.
 
 \describe{
 \item{\code{filter.info}}{a \code{\link{GtkRecentFilterInfo}} that is filled according
-  to the \code{needed} flags passed to \code{\link{gtkRecentFilterAddCustom}}}
+to the \code{needed} flags passed to \code{\link{gtkRecentFilterAddCustom}}}
 \item{\code{user.data}}{user data passed to \code{\link{gtkRecentFilterAddCustom}}}
 }
 

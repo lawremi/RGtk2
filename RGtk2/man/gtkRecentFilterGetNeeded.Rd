@@ -9,7 +9,7 @@ passed to \code{\link{gtkRecentFilterFilter}}}
 is intended principally for use in the implementation of
 \code{\link{GtkRecentChooser}}.
   Since 2.10}
-\value{[\code{\link{GtkRecentFilterFlags}}]  bitfield of flags indicating needed fields when
-  calling \code{\link{gtkRecentFilterFilter}}}
+\value{[\code{\link{GtkRecentFilterFlags}}] bitfield of flags indicating needed fields when
+calling \code{\link{gtkRecentFilterFilter}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

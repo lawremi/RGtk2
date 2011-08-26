@@ -6,6 +6,6 @@
 \usage{gtkPrintSettingsGetPrinter(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkPrintSettings}}}}
 \details{Since 2.10}
-\value{[character]  the printer name}
+\value{[character] the printer name}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

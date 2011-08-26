@@ -12,6 +12,6 @@ returned, but usually you don't need it.}
 \item{\verb{button.text}}{text of button, or stock ID}
 \item{\verb{response.id}}{response ID for the button}
 }
-\value{[\code{\link{GtkWidget}}]  the button widget that was added}
+\value{[\code{\link{GtkWidget}}] the button widget that was added}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -12,8 +12,8 @@ instead.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkMenuToolButton}}}
 \item{\verb{tooltips}}{the \code{\link{GtkTooltips}} object to be used}
-\item{\verb{tip.text}}{ text to be used as tooltip text for tool_item. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{tip.private}}{ text to be used as private tooltip text. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{tip.text}}{text to be used as tooltip text for tool_item. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{tip.private}}{text to be used as private tooltip text. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}

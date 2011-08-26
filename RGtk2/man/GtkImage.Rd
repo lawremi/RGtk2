@@ -14,7 +14,6 @@
 \code{\link{gtkImageGetIconName}(object)}\cr
 \code{\link{gtkImageGetGicon}(object)}\cr
 \code{\link{gtkImageGetStorageType}(object)}\cr
-\code{\link{gtkImageNewFromFile}(filename, show = TRUE)}\cr
 \code{\link{gtkImageNewFromIconSet}(icon.set, size, show = TRUE)}\cr
 \code{\link{gtkImageNewFromImage}(image = NULL, mask = NULL, show = TRUE)}\cr
 \code{\link{gtkImageNewFromPixbuf}(pixbuf = NULL, show = TRUE)}\cr
@@ -23,7 +22,6 @@
 \code{\link{gtkImageNewFromAnimation}(animation, show = TRUE)}\cr
 \code{\link{gtkImageNewFromIconName}(icon.name, size)}\cr
 \code{\link{gtkImageNewFromGicon}(icon, size, show = TRUE)}\cr
-\code{\link{gtkImageSetFromFile}(object, filename = NULL)}\cr
 \code{\link{gtkImageSetFromIconSet}(object, icon.set, size)}\cr
 \code{\link{gtkImageSetFromImage}(object, gdk.image = NULL, mask = NULL)}\cr
 \code{\link{gtkImageSetFromPixbuf}(object, pixbuf = NULL)}\cr

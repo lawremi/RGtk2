@@ -8,6 +8,6 @@ provide a list or URIs.}
 \arguments{\item{\verb{object}}{a \code{\link{GtkSelectionData}} object}}
 \details{Since 2.10}
 \value{[logical] \code{TRUE} if \code{selection.data} holds a list of targets,
-  and a suitable target for URI lists is included, otherwise \code{FALSE}.}
+and a suitable target for URI lists is included, otherwise \code{FALSE}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

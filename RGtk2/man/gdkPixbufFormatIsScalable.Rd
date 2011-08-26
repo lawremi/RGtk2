@@ -8,6 +8,6 @@ resulting pixbuf to the desired size.}
 \usage{gdkPixbufFormatIsScalable(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GdkPixbufFormat}}}}
 \details{Since 2.6}
-\value{[logical]  whether this image format is scalable.}
+\value{[logical] whether this image format is scalable.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

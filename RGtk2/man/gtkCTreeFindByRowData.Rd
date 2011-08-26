@@ -7,8 +7,7 @@ Finds a node in the tree under \code{node} that has the given user data pointer.
 }
 \usage{gtkCTreeFindByRowData(object, node, data = NULL)}
 \arguments{
-\item{\verb{object}}{\emph{undocumented
-}}
+\item{\verb{object}}{The node, or \code{NULL} if not found.}
 \item{\verb{node}}{\emph{undocumented
 }}
 \item{\verb{data}}{\emph{undocumented

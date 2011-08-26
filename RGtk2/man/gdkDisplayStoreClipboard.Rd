@@ -10,8 +10,8 @@ http://www.freedesktop.org/Standards/clipboard-manager-spec (\url{http://www.fre
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkDisplay}}}
 \item{\verb{clipboard.window}}{a \code{\link{GdkWindow}} belonging to the clipboard owner}
-\item{\verb{targets}}{a list of targets that should be saved, or \code{NULL} 
-                   if all available targets should be saved.}
+\item{\verb{targets}}{a list of targets that should be saved, or \code{NULL}
+if all available targets should be saved.}
 }
 \details{Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}

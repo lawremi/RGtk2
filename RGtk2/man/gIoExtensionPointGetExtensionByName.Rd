@@ -7,7 +7,7 @@
 \item{\verb{object}}{a \code{\link{GIOExtensionPoint}}}
 \item{\verb{name}}{the name of the extension to get}
 }
-\value{[\code{\link{GIOExtension}}]  the \code{\link{GIOExtension}} for \code{extension.point} that has the
-   given name, or \code{NULL} if there is no extension with that name}
+\value{[\code{\link{GIOExtension}}] the \code{\link{GIOExtension}} for \code{extension.point} that has the
+given name, or \code{NULL} if there is no extension with that name}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

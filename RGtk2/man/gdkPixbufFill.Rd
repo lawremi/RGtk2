@@ -8,7 +8,7 @@ doesn't have an alpha channel.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkPixbuf}}}
 \item{\verb{pixel}}{RGBA pixel to clear to
-        (0xffffffff is opaque white, 0x00000000 transparent black)}
+(0xffffffff is opaque white, 0x00000000 transparent black)}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

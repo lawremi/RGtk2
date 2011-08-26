@@ -5,6 +5,6 @@
 \usage{gtkIconViewNewWithModel(model = NULL, show = TRUE)}
 \arguments{\item{\verb{model}}{The model.}}
 \details{Since 2.6}
-\value{[\code{\link{GtkWidget}}]  A newly created \code{\link{GtkIconView}} widget.}
+\value{[\code{\link{GtkWidget}}] A newly created \code{\link{GtkIconView}} widget.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

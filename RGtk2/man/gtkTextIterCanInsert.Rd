@@ -12,6 +12,6 @@ whether insertions are allowed at a given position.}
 \item{\verb{object}}{an iterator}
 \item{\verb{default.editability}}{\code{TRUE} if text is editable by default}
 }
-\value{[logical]  whether text inserted at \code{iter} would be editable}
+\value{[logical] whether text inserted at \code{iter} would be editable}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

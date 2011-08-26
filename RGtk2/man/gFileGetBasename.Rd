@@ -15,7 +15,7 @@ can get by requesting the \code{G_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME}
 attribute with \code{\link{gFileQueryInfo}}.
   
 This call does no blocking i/o.}
-\value{[char]  string containing the \code{\link{GFile}}'s base name, or \code{NULL} 
-    if given \code{\link{GFile}} is invalid.}
+\value{[char] string containing the \code{\link{GFile}}'s base name, or \code{NULL}
+if given \code{\link{GFile}} is invalid.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

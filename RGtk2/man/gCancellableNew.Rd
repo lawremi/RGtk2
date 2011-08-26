@@ -9,6 +9,6 @@ and pass it to the operations.
   
 One \code{\link{GCancellable}} can be used in multiple consecutive
 operations, but not in multiple concurrent operations.}
-\value{[\code{\link{GCancellable}}]  a \code{\link{GCancellable}}.}
+\value{[\code{\link{GCancellable}}] a \code{\link{GCancellable}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

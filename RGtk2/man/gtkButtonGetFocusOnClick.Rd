@@ -7,6 +7,6 @@ See \code{\link{gtkButtonSetFocusOnClick}}.}
 \arguments{\item{\verb{object}}{a \code{\link{GtkButton}}}}
 \details{Since 2.4}
 \value{[logical] \code{TRUE} if the button grabs focus when it is clicked with
-              the mouse.}
+the mouse.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

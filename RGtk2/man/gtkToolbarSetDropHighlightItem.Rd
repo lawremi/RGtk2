@@ -8,7 +8,7 @@ is ignored.}
 \usage{gtkToolbarSetDropHighlightItem(object, tool.item = NULL, index)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkToolbar}}}
-\item{\verb{tool.item}}{ a \code{\link{GtkToolItem}}, or \code{NULL} to turn of highlighting. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{tool.item}}{a \code{\link{GtkToolItem}}, or \code{NULL} to turn of highlighting. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{index}}{a position on \code{toolbar}}
 }
 \details{The \code{tool.item} passed to this function must not be part of any widget

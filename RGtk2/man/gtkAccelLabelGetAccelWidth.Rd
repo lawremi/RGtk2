@@ -6,6 +6,6 @@ This is used by menus to align all of the \code{\link{GtkMenuItem}} widgets, and
 be needed by applications.}
 \usage{gtkAccelLabelGetAccelWidth(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkAccelLabel}}.}}
-\value{[numeric]  the width needed to display the accelerator key(s).}
+\value{[numeric] the width needed to display the accelerator key(s).}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

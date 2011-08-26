@@ -11,6 +11,6 @@ such as panels should place themselves on the primary monitor.}
 \details{If no primary monitor is configured by the user, the return value
 will be 0, defaulting to the first monitor.
   Since 2.20}
-\value{[integer]  An integer index for the primary monitor, or 0 if none is configured.}
+\value{[integer] An integer index for the primary monitor, or 0 if none is configured.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

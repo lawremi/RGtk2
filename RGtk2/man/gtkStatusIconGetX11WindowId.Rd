@@ -13,7 +13,7 @@ pointing to a status icon reliably.}
 more likely to be met by one of the non-X11 specific methods, such
 as \code{\link{gtkStatusIconPositionMenu}}.
   Since 2.14}
-\value{[numeric]  An 32 bit unsigned integer identifier for the 
+\value{[numeric] An 32 bit unsigned integer identifier for the
 underlying X11 Window}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

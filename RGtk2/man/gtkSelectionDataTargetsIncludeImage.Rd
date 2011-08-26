@@ -8,10 +8,10 @@ provide a \code{\link{GdkPixbuf}}.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkSelectionData}} object}
 \item{\verb{writable}}{whether to accept only targets for which GTK+ knows
-  how to convert a pixbuf into the format}
+how to convert a pixbuf into the format}
 }
 \details{Since 2.6}
 \value{[logical] \code{TRUE} if \code{selection.data} holds a list of targets,
-  and a suitable target for images is included, otherwise \code{FALSE}.}
+and a suitable target for images is included, otherwise \code{FALSE}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

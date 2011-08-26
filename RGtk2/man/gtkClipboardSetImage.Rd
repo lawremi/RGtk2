@@ -8,7 +8,7 @@ requested format.}
 \usage{gtkClipboardSetImage(object, pixbuf)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkClipboard}} object}
-\item{\verb{pixbuf}}{a \code{\link{GdkPixbuf}} }
+\item{\verb{pixbuf}}{a \code{\link{GdkPixbuf}}}
 }
 \details{Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}

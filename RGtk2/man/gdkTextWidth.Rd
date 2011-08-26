@@ -11,6 +11,6 @@ Determines the width of a given string.
 \item{\verb{text}}{the text to measure.}
 \item{\verb{text.length}}{the length of the text in bytes.}
 }
-\value{[integer]  the width of the string in pixels.}
+\value{[integer] the width of the string in pixels.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

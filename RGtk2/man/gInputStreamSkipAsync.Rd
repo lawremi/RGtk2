@@ -9,9 +9,9 @@ operation.}
 \arguments{
 \item{\verb{object}}{A \code{\link{GInputStream}}.}
 \item{\verb{count}}{the number of bytes that will be skipped from the stream}
-\item{\verb{io.priority}}{the I/O priority 
-of the request. }
-\item{\verb{cancellable}}{optional \code{\link{GCancellable}} object, \code{NULL} to ignore. }
+\item{\verb{io.priority}}{the I/O priority
+of the request.}
+\item{\verb{cancellable}}{optional \code{\link{GCancellable}} object, \code{NULL} to ignore.}
 \item{\verb{callback}}{callback to call when the request is satisfied}
 \item{\verb{user.data}}{the data to pass to callback function}
 }

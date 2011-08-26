@@ -51,30 +51,18 @@ and should be accessed using the functions below.
 }}}
 \section{Convenient Construction}{\code{gtkColorSelection} is the equivalent of \code{\link{gtkColorSelectionNew}}.}
 \section{User Functions}{\describe{
-\item{\code{GtkColorSelectionChangePaletteFunc(colors, n.colors)}}{
+\item{\code{GtkColorSelectionChangePaletteFunc()}}{
 \emph{undocumented
 }
 
-\describe{
-\item{\code{colors}}{\emph{undocumented
-}}
-\item{\code{n.colors}}{\emph{undocumented
-}}
-}
+
 
 
 }
-\item{\code{GtkColorSelectionChangePaletteWithScreenFunc(screen, colors, n.colors)}}{
+\item{\code{GtkColorSelectionChangePaletteWithScreenFunc()}}{
   Since 2.2
 
-\describe{
-\item{\code{screen}}{\emph{undocumented
-}}
-\item{\code{colors}}{\emph{undocumented
-}}
-\item{\code{n.colors}}{\emph{undocumented
-}}
-}
+
 
 
 }

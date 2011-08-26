@@ -11,8 +11,8 @@ layout's normal colors with \code{foreground} and/or \code{background}.
 \item{\verb{x}}{the X position of the left of the layout (in pixels)}
 \item{\verb{y}}{the Y position of the top of the layout (in pixels)}
 \item{\verb{layout}}{a \code{\link{PangoLayout}}}
-\item{\verb{foreground}}{ foreground override color, or \code{NULL} for none. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{background}}{ background override color, or \code{NULL} for none. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{foreground}}{foreground override color, or \code{NULL} for none. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{background}}{background override color, or \code{NULL} for none. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{If the layout's \code{\link{PangoContext}} has a transformation matrix set, then
 \code{x} and \code{y} specify the position of the top left corner of the

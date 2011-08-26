@@ -11,8 +11,8 @@ If no cell currently has focus, then *\code{cell} will be \code{NULL}.}
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if the cursor is set.}
-\item{\verb{path}}{ Return location for the current cursor path, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{cell}}{ Return location the current focus cell, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{path}}{Return location for the current cursor path, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{cell}}{Return location the current focus cell, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

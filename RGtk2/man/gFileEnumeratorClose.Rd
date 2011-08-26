@@ -6,7 +6,7 @@ enumerator return \code{G_IO_ERROR_CLOSED} on all calls.}
 \usage{gFileEnumeratorClose(object, cancellable = NULL, .errwarn = TRUE)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GFileEnumerator}}.}
-\item{\verb{cancellable}}{optional \code{\link{GCancellable}} object, \code{NULL} to ignore. }
+\item{\verb{cancellable}}{optional \code{\link{GCancellable}} object, \code{NULL} to ignore.}
 \item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \details{This will be automatically called when the last reference

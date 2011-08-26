@@ -11,10 +11,6 @@
 \code{\link{gtkIconThemeGetDefault}()}\cr
 \code{\link{gtkIconThemeGetForScreen}(screen)}\cr
 \code{\link{gtkIconThemeSetScreen}(object, screen)}\cr
-\code{\link{gtkIconThemeSetSearchPath}(object, path)}\cr
-\code{\link{gtkIconThemeGetSearchPath}(object)}\cr
-\code{\link{gtkIconThemeAppendSearchPath}(object, path)}\cr
-\code{\link{gtkIconThemePrependSearchPath}(object, path)}\cr
 \code{\link{gtkIconThemeSetCustomTheme}(object, theme.name)}\cr
 \code{\link{gtkIconThemeHasIcon}(object, icon.name)}\cr
 \code{\link{gtkIconThemeLookupIcon}(object, icon.name, size, flags)}\cr
@@ -30,7 +26,6 @@
 \code{\link{gtkIconInfoCopy}(object)}\cr
 \code{\link{gtkIconInfoNewForPixbuf}(icon.theme, pixbuf)}\cr
 \code{\link{gtkIconInfoGetBaseSize}(object)}\cr
-\code{\link{gtkIconInfoGetFilename}(object)}\cr
 \code{\link{gtkIconInfoGetBuiltinPixbuf}(object)}\cr
 \code{\link{gtkIconInfoLoadIcon}(object, .errwarn = TRUE)}\cr
 \code{\link{gtkIconInfoSetRawCoordinates}(object, raw.coordinates)}\cr

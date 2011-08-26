@@ -8,6 +8,6 @@
 \item{\verb{targets}}{the offered targets, as list of \code{\link{GdkAtom}}s}
 }
 \details{This function is called by the drag source.}
-\value{[\code{\link{GdkDragContext}}]  a newly created \code{\link{GdkDragContext}}.}
+\value{[\code{\link{GdkDragContext}}] a newly created \code{\link{GdkDragContext}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

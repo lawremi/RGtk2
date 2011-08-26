@@ -10,6 +10,6 @@ specified \code{name.space}.}
 }
 \details{Since 2.22}
 \value{[logical] \code{TRUE} if \code{Ginfo} has an attribute in \code{name.space},
-    \code{FALSE} otherwise.}
+\code{FALSE} otherwise.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -8,7 +8,7 @@ it will automatically toggled on the modified bit again. When the modified
 bit flips, the buffer emits a "modified-changed" signal.}
 \usage{gtkTextBufferSetModified(object, setting)}
 \arguments{
-\item{\verb{object}}{a \code{\link{GtkTextBuffer}} }
+\item{\verb{object}}{a \code{\link{GtkTextBuffer}}}
 \item{\verb{setting}}{modification flag setting}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

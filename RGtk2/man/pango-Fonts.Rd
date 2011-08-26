@@ -77,6 +77,20 @@
 
 }
 \section{Hierarchy}{\preformatted{
+GBoxed
+   +----PangoFontDescription
+GEnum
+   +----PangoStyle
+GEnum
+   +----PangoWeight
+GEnum
+   +----PangoVariant
+GEnum
+   +----PangoStretch
+GFlags
+   +----PangoFontMask
+GBoxed
+   +----PangoFontMetrics
 GObject
    +----PangoFont
          +----PangoFcFont
@@ -118,27 +132,6 @@ for a font (possibly restricted to a script). The fields of this
 structure are private to implementations of a font backend. See
 the documentation of the corresponding getters for documentation
 of their meaning.
-
-\describe{
-\item{\code{ref_count}}{reference count.  Used internally.  See \code{pangoFontMetricsRef()}
-            and \code{pangoFontMetricsUnref()}.}
-\item{\code{ascent}}{the distance from the baseline to the highest point of the glyphs of
-	 the font. This is positive in practically all fonts.}
-\item{\code{descent}}{the distance from the baseline to the lowest point of the glyphs of
-	 the font. This is positive in practically all fonts.}
-\item{\code{approximate_char_width}}{approximate average width of the regular glyphs of
-         the font.  Note that for this calculation, East Asian characters
-	 (those passing \code{gUnicharIswide()}) are counted as double-width.
-	 This produces a more uniform value for this measure across languages
-	 and results in more uniform and more expected UI sizes.}
-\item{\code{approximate_digit_width}}{approximate average width of the glyphs for digits
-         of the font.}
-\item{\code{underline_position}}{position of the underline. This is normally negative.}
-\item{\code{underline_thickness}}{thickness of the underline.}
-\item{\code{strikethrough_position}}{position of the strikethrough line. This is
-	 normally positive.}
-\item{\code{strikethrough_thickness}}{thickness of the strikethrough line.}
-}
 
 }
 \item{\verb{PangoFont}}{
@@ -281,7 +274,7 @@ the fonts in a fontset.
 \item{\code{data}}{callback data}
 }
 
-\emph{Returns:} [logical]  if \code{TRUE}, stop iteration and return immediately.
+\emph{Returns:} [logical] if \code{TRUE}, stop iteration and return immediately.
 
 }}}
 \references{\url{http://library.gnome.org/devel//pango/pango-Fonts.html}}

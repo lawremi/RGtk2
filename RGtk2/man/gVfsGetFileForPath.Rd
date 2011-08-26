@@ -7,6 +7,6 @@
 \item{\verb{object}}{a \code{\link{GVfs}}.}
 \item{\verb{path}}{a string containing a VFS path.}
 }
-\value{[\code{\link{GFile}}]  a \code{\link{GFile}}.}
+\value{[\code{\link{GFile}}] a \code{\link{GFile}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

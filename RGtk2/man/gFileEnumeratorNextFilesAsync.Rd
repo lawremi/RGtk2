@@ -8,8 +8,8 @@ the requested information. }
 \arguments{
 \item{\verb{object}}{a \code{\link{GFileEnumerator}}.}
 \item{\verb{num.files}}{the number of file info objects to request}
-\item{\verb{io.priority}}{the io priority 
-    of the request. }
+\item{\verb{io.priority}}{the io priority
+of the request.}
 \item{\verb{cancellable}}{optional \code{\link{GCancellable}} object, \code{NULL} to ignore.}
 \item{\verb{callback}}{a \code{\link{GAsyncReadyCallback}} to call when the request is satisfied}
 \item{\verb{user.data}}{the data to pass to callback function}

@@ -10,9 +10,9 @@ for widgets such as \code{\link{GtkEntry}} and \code{\link{GtkTextView}}. See al
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkWidget}}}
 \item{\verb{state}}{the state for which to set the text color}
-\item{\verb{color}}{ the color to assign (does not need to be allocated),
-        or \code{NULL} to undo the effect of previous calls to
-        of \code{\link{gtkWidgetModifyText}}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{color}}{the color to assign (does not need to be allocated),
+or \code{NULL} to undo the effect of previous calls to
+of \code{\link{gtkWidgetModifyText}}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

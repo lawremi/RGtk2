@@ -5,6 +5,6 @@
 \usage{gSrvTargetListSort(targets)}
 \arguments{\item{\verb{targets}}{a \verb{list} of \code{\link{GSrvTarget}}}}
 \details{Since 2.22}
-\value{[list]  the head of the sorted list.}
+\value{[list] the head of the sorted list.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

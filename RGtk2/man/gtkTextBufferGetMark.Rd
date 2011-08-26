@@ -8,6 +8,6 @@ mark exists in the buffer.}
 \item{\verb{object}}{a \code{\link{GtkTextBuffer}}}
 \item{\verb{name}}{a mark name}
 }
-\value{[\code{\link{GtkTextMark}}]  a \code{\link{GtkTextMark}}, or \code{NULL}. \emph{[  \acronym{transfer none}  ]}}
+\value{[\code{\link{GtkTextMark}}] a \code{\link{GtkTextMark}}, or \code{NULL}. \emph{[  \acronym{transfer none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

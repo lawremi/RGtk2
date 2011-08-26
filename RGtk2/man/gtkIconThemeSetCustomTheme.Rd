@@ -9,7 +9,7 @@ and \code{\link{gtkIconThemeGetForScreen}}.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkIconTheme}}}
 \item{\verb{theme.name}}{name of icon theme to use instead of configured theme,
-  or \code{NULL} to unset a previously set custom theme}
+or \code{NULL} to unset a previously set custom theme}
 }
 \details{Since 2.4}
 \author{Derived by RGtkGen from GTK+ documentation}

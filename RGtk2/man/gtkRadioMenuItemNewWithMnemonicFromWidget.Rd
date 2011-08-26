@@ -8,10 +8,10 @@ indicate the mnemonic for the menu item.}
 \arguments{
 \item{\verb{group}}{An existing \code{\link{GtkRadioMenuItem}}}
 \item{\verb{label}}{the text of the button, with an underscore in front of the
-        mnemonic character}
+mnemonic character}
 }
 \details{The new \code{\link{GtkRadioMenuItem}} is added to the same group as \code{group}.
   Since 2.4}
-\value{[\code{\link{GtkWidget}}]  The new \code{\link{GtkRadioMenuItem}}}
+\value{[\code{\link{GtkWidget}}] The new \code{\link{GtkRadioMenuItem}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

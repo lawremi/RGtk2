@@ -16,8 +16,8 @@ triggering the cancellable object from another thread. If the operation
 was cancelled, the error \code{G_IO_ERROR_CANCELLED} will be returned.}
 \value{
 A list containing the following elements:
-\item{retval}{[numeric]  a signed 64-bit/8-byte value read from \code{stream} or \code{0} if 
-an error occurred.  }
+\item{retval}{[numeric] a signed 64-bit/8-byte value read from \code{stream} or \code{0} if
+an error occurred.}
 \item{\verb{error}}{\code{\link{GError}} for error reporting.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

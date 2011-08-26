@@ -7,7 +7,7 @@
 \value{
 A list containing the following elements:
 \item{\verb{families}}{location to store a pointer to a list of \code{\link{PangoFontFamily}} *.
-           This list should be freed with \code{gFree()}.}
+This list should be freed with \code{gFree()}.}
 \item{\verb{n.families}}{location to store the number of elements in \code{descs}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

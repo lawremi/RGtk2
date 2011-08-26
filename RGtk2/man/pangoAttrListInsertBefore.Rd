@@ -8,7 +8,7 @@ be inserted before all other attributes with a matching
 \arguments{
 \item{\verb{object}}{a \code{\link{PangoAttrList}}}
 \item{\verb{attr}}{the attribute to insert. Ownership of this value is
-       assumed by the list.}
+assumed by the list.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -68,20 +68,11 @@ An object representing and maintaining a group of accelerators.
 }}
 \section{Convenient Construction}{\code{gtkAccelGroup} is the equivalent of \code{\link{gtkAccelGroupNew}}.}
 \section{User Functions}{\describe{
-\item{\code{GtkAccelGroupActivate(accel.group, acceleratable, keyval, modifier)}}{
+\item{\code{GtkAccelGroupActivate()}}{
 \emph{undocumented
 }
 
-\describe{
-\item{\code{accel.group}}{\emph{undocumented
-}}
-\item{\code{acceleratable}}{\emph{undocumented
-}}
-\item{\code{keyval}}{\emph{undocumented
-}}
-\item{\code{modifier}}{\emph{undocumented
-}}
-}
+
 
 
 }

@@ -9,8 +9,8 @@ or Arabic, right-justified-menu-items appear at the left.)}
 \usage{gtkMenuItemSetRightJustified(object, right.justified)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkMenuItem}}.}
-\item{\verb{right.justified}}{if \code{TRUE} the menu item will appear at the 
-  far right if added to a menu bar.}
+\item{\verb{right.justified}}{if \code{TRUE} the menu item will appear at the
+far right if added to a menu bar.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

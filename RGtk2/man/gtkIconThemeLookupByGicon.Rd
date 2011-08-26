@@ -13,8 +13,8 @@ The icon can then be rendered into a pixbuf using
 \item{\verb{flags}}{flags modifying the behavior of the icon lookup}
 }
 \details{Since 2.14}
-\value{[\code{\link{GtkIconInfo}}]  a \code{\link{GtkIconInfo}} structure containing 
-    information about the icon, or \code{NULL} if the icon 
-    wasn't found.}
+\value{[\code{\link{GtkIconInfo}}] a \code{\link{GtkIconInfo}} structure containing
+information about the icon, or \code{NULL} if the icon
+wasn't found.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

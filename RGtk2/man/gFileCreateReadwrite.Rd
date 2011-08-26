@@ -31,7 +31,7 @@ rather than just opening for reading or writing.
   Since 2.22}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GFileIOStream}}]  a \code{\link{GFileIOStream}} for the newly created file, or \code{NULL} on error.}
+\item{retval}{[\code{\link{GFileIOStream}}] a \code{\link{GFileIOStream}} for the newly created file, or \code{NULL} on error.}
 \item{\verb{error}}{return location for a \code{\link{GError}}, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

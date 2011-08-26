@@ -6,10 +6,10 @@
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkStatusbar}}}
 \item{\verb{context.id}}{the message's context id, as returned by
-             \code{\link{gtkStatusbarGetContextId}}}
+\code{\link{gtkStatusbarGetContextId}}}
 \item{\verb{text}}{the message to add to the statusbar}
 }
-\value{[numeric]  a message id that can be used with 
-         \code{\link{gtkStatusbarRemove}}.}
+\value{[numeric] a message id that can be used with
+\code{\link{gtkStatusbarRemove}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -11,7 +11,7 @@
 \details{Since 2.22}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GSocket}}]  a \code{\link{GSocket}} on success, \code{NULL} on error.}
+\item{retval}{[\code{\link{GSocket}}] a \code{\link{GSocket}} on success, \code{NULL} on error.}
 \item{\verb{source.object}}{Optional \code{\link{GObject}} identifying this source}
 \item{\verb{error}}{a \code{\link{GError}} location to store the error occuring, or \code{NULL} to
 ignore.}

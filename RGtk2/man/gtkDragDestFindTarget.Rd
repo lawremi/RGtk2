@@ -12,9 +12,9 @@ passes the correct target list to this function.}
 \arguments{
 \item{\verb{object}}{drag destination widget}
 \item{\verb{context}}{drag context}
-\item{\verb{target.list}}{ list of droppable targets, or \code{NULL} to use
-   gtk_drag_dest_get_target_list (\code{widget}). \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{target.list}}{list of droppable targets, or \code{NULL} to use
+gtk_drag_dest_get_target_list (\code{widget}). \emph{[  \acronym{allow-none}  ]}}
 }
-\value{[\code{\link{GdkAtom}}]  first target that the source offers and the dest can accept, or \code{GDK_NONE}}
+\value{[\code{\link{GdkAtom}}] first target that the source offers and the dest can accept, or \code{GDK_NONE}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

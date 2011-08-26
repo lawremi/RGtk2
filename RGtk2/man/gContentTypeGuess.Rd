@@ -12,8 +12,8 @@ on the other argument.}
 }
 \value{
 A list containing the following elements:
-\item{retval}{[char]  a string indicating a guessed content type for the 
-given data. }
+\item{retval}{[char] a string indicating a guessed content type for the
+given data.}
 \item{\verb{result.uncertain}}{a flag indicating the certainty of the result}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -11,8 +11,8 @@ use style->font_desc instead.
 \usage{gtkStyleSetFont(object, font)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkStyle}}.}
-\item{\verb{font}}{ a \code{\link{GdkFont}}, or \code{NULL} to use the \code{\link{GdkFont}} corresponding
-  to style->font_desc. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{font}}{a \code{\link{GdkFont}}, or \code{NULL} to use the \code{\link{GdkFont}} corresponding
+to style->font_desc. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -9,7 +9,7 @@ Loads a fontset for use on \code{display}.
 \arguments{
 \item{\verb{display}}{a \code{\link{GdkDisplay}}}
 \item{\verb{fontset.name}}{a comma-separated list of XLFDs describing
-  the component fonts of the fontset to load.}
+the component fonts of the fontset to load.}
 }
 \details{The fontset may be newly loaded or looked up in a cache. 
 You should make no assumptions about the initial reference count.

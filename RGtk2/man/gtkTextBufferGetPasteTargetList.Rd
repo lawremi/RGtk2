@@ -9,6 +9,6 @@ using \code{\link{gtkTargetListAddRichTextTargets}} and
 \usage{gtkTextBufferGetPasteTargetList(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkTextBuffer}}}}
 \details{Since 2.10}
-\value{[\code{\link{GtkTargetList}}]  the \code{\link{GtkTargetList}}}
+\value{[\code{\link{GtkTargetList}}] the \code{\link{GtkTargetList}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

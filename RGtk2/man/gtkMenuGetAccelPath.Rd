@@ -5,6 +5,6 @@
 \usage{gtkMenuGetAccelPath(object)}
 \arguments{\item{\verb{object}}{a valid \code{\link{GtkMenu}}}}
 \details{Since 2.14}
-\value{[character]  the accelerator path set on the menu.}
+\value{[character] the accelerator path set on the menu.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

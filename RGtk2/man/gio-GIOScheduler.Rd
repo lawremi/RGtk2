@@ -40,7 +40,7 @@ to see if they have been cancelled.
 }
 
 \emph{Returns:} [logical] \code{TRUE} if this function should be called again to
-   complete the job, \code{FALSE} if the job is complete (or cancelled)
+complete the job, \code{FALSE} if the job is complete (or cancelled)
 
 }}}
 \references{\url{http://library.gnome.org/devel//gio/gio-GIOScheduler.html}}

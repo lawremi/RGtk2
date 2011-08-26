@@ -5,6 +5,6 @@
 \code{\link{pangoContextSetBaseDir}}.}
 \usage{pangoContextGetBaseDir(object)}
 \arguments{\item{\verb{object}}{a \code{\link{PangoContext}}}}
-\value{[\code{\link{PangoDirection}}]  the base direction for the context.}
+\value{[\code{\link{PangoDirection}}] the base direction for the context.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -10,6 +10,6 @@ See \code{\link{gtkToolPaletteGetDropGroup}}.}
 \item{\verb{y}}{the y position}
 }
 \details{Since 2.20}
-\value{[\code{\link{GtkToolItem}}]  the \code{\link{GtkToolItem}} at position or \code{NULL} if there is no such item}
+\value{[\code{\link{GtkToolItem}}] the \code{\link{GtkToolItem}} at position or \code{NULL} if there is no such item}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -5,7 +5,7 @@
 \usage{gtkPrintSettingsSetDouble(object, key, value)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkPrintSettings}}}
-\item{\verb{key}}{a key }
+\item{\verb{key}}{a key}
 \item{\verb{value}}{a double value}
 }
 \details{Since 2.10}

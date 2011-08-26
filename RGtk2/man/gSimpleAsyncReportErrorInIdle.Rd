@@ -7,7 +7,7 @@ information.}
 \usage{gSimpleAsyncReportErrorInIdle(object, callback, user.data, domain, code, format, ...)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GObject}}.}
-\item{\verb{callback}}{a \code{\link{GAsyncReadyCallback}}. }
+\item{\verb{callback}}{a \code{\link{GAsyncReadyCallback}}.}
 \item{\verb{user.data}}{user data passed to \code{callback}.}
 \item{\verb{domain}}{a \verb{numeric} containing the error domain (usually \verb{G_IO_ERROR}).}
 \item{\verb{code}}{a specific error code.}

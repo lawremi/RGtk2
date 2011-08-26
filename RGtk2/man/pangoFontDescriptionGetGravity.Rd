@@ -6,8 +6,8 @@
 \usage{pangoFontDescriptionGetGravity(object)}
 \arguments{\item{\verb{object}}{a \code{\link{PangoFontDescription}}}}
 \details{Since 1.16}
-\value{[\code{\link{PangoGravity}}]  the gravity field for the font description. Use
-  \code{\link{pangoFontDescriptionGetSetFields}} to find out if
-  the field was explicitly set or not.}
+\value{[\code{\link{PangoGravity}}] the gravity field for the font description. Use
+\code{\link{pangoFontDescriptionGetSetFields}} to find out if
+the field was explicitly set or not.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

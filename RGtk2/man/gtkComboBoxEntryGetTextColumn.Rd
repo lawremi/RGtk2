@@ -5,6 +5,6 @@
 \usage{gtkComboBoxEntryGetTextColumn(object)}
 \arguments{\item{\verb{object}}{A \code{\link{GtkComboBoxEntry}}.}}
 \details{Since 2.4}
-\value{[integer]  A column in the data source model of \code{entry.box}.}
+\value{[integer] A column in the data source model of \code{entry.box}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

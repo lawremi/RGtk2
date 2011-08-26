@@ -11,7 +11,7 @@ whether text is selected.}
 \arguments{\item{\verb{object}}{a \code{\link{GtkTextBuffer}} a \code{\link{GtkTextBuffer}}}}
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  whether the selection has nonzero length}
+\item{retval}{[logical] whether the selection has nonzero length}
 \item{\verb{start}}{iterator to initialize with selection start}
 \item{\verb{end}}{iterator to initialize with selection end}
 }

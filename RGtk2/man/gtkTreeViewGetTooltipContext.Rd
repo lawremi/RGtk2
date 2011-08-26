@@ -21,10 +21,10 @@ to be relative to \code{tree.view}'s bin_window if \code{keyboard.tooltip} is \c
   Since 2.12}
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  whether or not the given tooltip context points to a row.}
-\item{\verb{model}}{ a pointer to receive a \code{\link{GtkTreeModel}} or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{path}}{ a pointer to receive a \code{\link{GtkTreePath}} or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{iter}}{ a pointer to receive a \code{\link{GtkTreeIter}} or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{retval}{[logical] whether or not the given tooltip context points to a row.}
+\item{\verb{model}}{a pointer to receive a \code{\link{GtkTreeModel}} or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{path}}{a pointer to receive a \code{\link{GtkTreePath}} or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{iter}}{a pointer to receive a \code{\link{GtkTreeIter}} or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -7,6 +7,6 @@
 \details{Any window type but \code{GDK_WINDOW_CHILD} is considered a
 toplevel window, as is a \code{GDK_WINDOW_CHILD} window that
 has a root window as parent.}
-\value{[\code{\link{GdkWindow}}]  the toplevel window containing \code{window}}
+\value{[\code{\link{GdkWindow}}] the toplevel window containing \code{window}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -10,6 +10,6 @@ an integer, or the default value.}
 \item{\verb{def}}{the default value}
 }
 \details{Since 2.10}
-\value{[integer]  the integer value of \code{key}}
+\value{[integer] the integer value of \code{key}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

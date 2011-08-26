@@ -11,6 +11,6 @@ hierarchy with \code{\link{GtkWindow}} at the top.}
 create display specific resources when a widget has been realized,
 and you should free those resources when the widget is unrealized.
   Since 2.2}
-\value{[\code{\link{GdkWindow}}]  the \code{\link{GdkWindow}} root window for the toplevel for this widget. \emph{[  \acronym{transfer none}  ]}}
+\value{[\code{\link{GdkWindow}}] the \code{\link{GdkWindow}} root window for the toplevel for this widget. \emph{[  \acronym{transfer none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

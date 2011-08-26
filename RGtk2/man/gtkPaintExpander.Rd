@@ -15,15 +15,15 @@ expanded position.}
 \item{\verb{object}}{a \code{\link{GtkStyle}}}
 \item{\verb{window}}{a \code{\link{GdkWindow}}}
 \item{\verb{state.type}}{a state}
-\item{\verb{area}}{ clip rectangle, or \code{NULL} if the
-       output should not be clipped. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{widget}}{ the widget. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{detail}}{ a style detail. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{area}}{clip rectangle, or \code{NULL} if the
+output should not be clipped. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{widget}}{the widget. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{detail}}{a style detail. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{x}}{the x position to draw the expander at}
 \item{\verb{y}}{the y position to draw the expander at}
 \item{\verb{expander.style}}{the style to draw the expander in; determines
-  whether the expander is collapsed, expanded, or in an
-  intermediate state.}
+whether the expander is collapsed, expanded, or in an
+intermediate state.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -9,7 +9,7 @@ is not an immediate child of the root of the tree, this function returns
 \usage{gtkComboBoxGetActive(object)}
 \arguments{\item{\verb{object}}{A \code{\link{GtkComboBox}}}}
 \details{Since 2.4}
-\value{[integer]  An integer which is the index of the currently active item, 
-    or -1 if there's no active item.}
+\value{[integer] An integer which is the index of the currently active item,
+or -1 if there's no active item.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

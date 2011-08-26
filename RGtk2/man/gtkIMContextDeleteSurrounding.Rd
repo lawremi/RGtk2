@@ -10,7 +10,7 @@ places in \code{\link{GtkIMContext}}.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkIMContext}}}
 \item{\verb{offset}}{offset from cursor position in chars;
-   a negative value means start before the cursor.}
+a negative value means start before the cursor.}
 \item{\verb{n.chars}}{number of characters to delete.}
 }
 \details{In order to use this function, you should first call

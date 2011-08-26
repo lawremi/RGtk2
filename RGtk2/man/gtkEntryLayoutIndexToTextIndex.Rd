@@ -10,6 +10,6 @@ with text retrieved via \code{\link{pangoLayoutGetText}}).}
 \item{\verb{object}}{a \code{\link{GtkEntry}}}
 \item{\verb{layout.index}}{byte index into the entry layout text}
 }
-\value{[integer]  byte index into the entry contents}
+\value{[integer] byte index into the entry contents}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

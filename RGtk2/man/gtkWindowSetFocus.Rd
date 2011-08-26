@@ -9,8 +9,8 @@ widget in the toplevel, it is usually more convenient to use
 \usage{gtkWindowSetFocus(object, focus = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkWindow}}}
-\item{\verb{focus}}{ widget to be the new focus widget, or \code{NULL} to unset
-  any focus widget for the toplevel window. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{focus}}{widget to be the new focus widget, or \code{NULL} to unset
+any focus widget for the toplevel window. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -5,7 +5,7 @@
 \usage{gtkAboutDialogSetVersion(object, version = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkAboutDialog}}}
-\item{\verb{version}}{ the version string. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{version}}{the version string. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{Since 2.6}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -8,6 +8,6 @@
 \item{\verb{page}}{a page of \code{assistant}}
 }
 \details{Since 2.10}
-\value{[\code{\link{GtkAssistantPageType}}]  the page type of \code{page}.}
+\value{[\code{\link{GtkAssistantPageType}}] the page type of \code{page}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

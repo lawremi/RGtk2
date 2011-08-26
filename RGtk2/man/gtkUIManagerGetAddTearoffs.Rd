@@ -6,6 +6,6 @@ will have tearoff menu items.}
 \usage{gtkUIManagerGetAddTearoffs(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkUIManager}}}}
 \details{Since 2.4}
-\value{[logical]  whether tearoff menu items are added}
+\value{[logical] whether tearoff menu items are added}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -6,6 +6,6 @@
 \usage{gtkToolItemGetTextSizeGroup(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkToolItem}}}}
 \details{Since 2.20}
-\value{[\code{\link{GtkSizeGroup}}]  a \code{\link{GtkSizeGroup}}}
+\value{[\code{\link{GtkSizeGroup}}] a \code{\link{GtkSizeGroup}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

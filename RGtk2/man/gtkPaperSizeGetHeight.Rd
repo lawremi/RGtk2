@@ -9,6 +9,6 @@ units of \code{unit}.}
 \item{\verb{unit}}{the unit for the return value}
 }
 \details{Since 2.10}
-\value{[numeric]  the paper height }
+\value{[numeric] the paper height}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

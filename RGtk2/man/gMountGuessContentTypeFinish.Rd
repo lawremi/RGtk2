@@ -15,9 +15,9 @@ guessing.}
 \details{Since 2.18}
 \value{
 A list containing the following elements:
-\item{retval}{[character]  a list of content types or \code{NULL} on error.}
-\item{\verb{error}}{a \code{\link{GError}} location to store the error occuring, or \code{NULL} to 
-    ignore}
+\item{retval}{[character] a list of content types or \code{NULL} on error.}
+\item{\verb{error}}{a \code{\link{GError}} location to store the error occuring, or \code{NULL} to
+ignore}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -6,7 +6,7 @@
 \arguments{
 \item{\verb{object}}{a \code{\link{PangoRenderer}}}
 \item{\verb{matrix}}{a \code{\link{PangoMatrix}}, or \code{NULL} to unset any existing matrix.
- (No matrix set is the same as setting the identity matrix.)}
+(No matrix set is the same as setting the identity matrix.)}
 }
 \details{Since 1.8}
 \author{Derived by RGtkGen from GTK+ documentation}

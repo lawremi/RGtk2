@@ -10,7 +10,7 @@ and \code{\link{gtkTooltipSetIcon}}.}
 \usage{gtkTooltipSetCustom(object, custom.widget)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkTooltip}}}
-\item{\verb{custom.widget}}{ a \code{\link{GtkWidget}}, or \code{NULL} to unset the old custom widget. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{custom.widget}}{a \code{\link{GtkWidget}}, or \code{NULL} to unset the old custom widget. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{Since 2.12}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -11,7 +11,7 @@ are computed by dividing up each cluster into equal portions.}
 \item{\verb{analysis}}{the analysis information return from \code{\link{pangoItemize}}}
 \item{\verb{index}}{the byte index within \code{text}}
 \item{\verb{trailing}}{whether we should compute the result for the beginning (\code{FALSE})
-            or end (\code{TRUE}) of the character.}
+or end (\code{TRUE}) of the character.}
 }
 \value{
 A list containing the following elements:

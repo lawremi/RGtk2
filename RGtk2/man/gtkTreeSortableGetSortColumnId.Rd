@@ -10,7 +10,7 @@ order. It returns \code{TRUE} unless the \code{sort.column.id} is
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if the sort column is not one of the special sort
-  column ids.}
+column ids.}
 \item{\verb{sort.column.id}}{The sort column id to be filled in}
 \item{\verb{order}}{The \code{\link{GtkSortType}} to be filled in}
 }

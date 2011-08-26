@@ -12,9 +12,9 @@ occurrence of any of the stop characters.}
 }
 \value{
 A list containing the following elements:
-\item{retval}{[char]  a string with the data that was read before encountering
-    any of the stop characters. Set \code{length} to a \verb{numeric} to get the length
-    of the string. This function will return \code{NULL} on an error.}
+\item{retval}{[char] a string with the data that was read before encountering
+any of the stop characters. Set \code{length} to a \verb{numeric} to get the length
+of the string. This function will return \code{NULL} on an error.}
 \item{\verb{length}}{a \verb{numeric} to get the length of the data read in.}
 \item{\verb{error}}{\code{\link{GError}} for error reporting.}
 }

@@ -13,6 +13,6 @@ less typing.}
 \code{\link{gtkTextBufferGetSelectionBounds}} is another convenient function
 for handling the selection, if you just want to know whether there's a
 selection and what its bounds are.}
-\value{[\code{\link{GtkTextMark}}]  selection bound mark. \emph{[  \acronym{transfer none}  ]}}
+\value{[\code{\link{GtkTextMark}}] selection bound mark. \emph{[  \acronym{transfer none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

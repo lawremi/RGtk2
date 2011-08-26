@@ -9,7 +9,7 @@ and might expect pixels to be in a certain format.}
 \arguments{\item{\verb{object}}{the relevant \code{\link{GdkScreen}}.}}
 \details{
   Since 2.2}
-\value{[list]  a list of visuals; the list must be freed, but not its 
+\value{[list] a list of visuals; the list must be freed, but not its
 contents}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -4,7 +4,7 @@
 \title{GtkEntryBuffer}
 \description{Text buffer for GtkEntry}
 \section{Methods and Functions}{
-\code{\link{gtkEntryBufferNew}(initial.chars, n.initial.chars)}\cr
+\code{\link{gtkEntryBufferNew}(initial.chars = NULL, n.initial.chars = -1)}\cr
 \code{\link{gtkEntryBufferGetText}(object)}\cr
 \code{\link{gtkEntryBufferSetText}(object, chars, n.chars)}\cr
 \code{\link{gtkEntryBufferGetBytes}(object)}\cr
@@ -15,7 +15,7 @@
 \code{\link{gtkEntryBufferDeleteText}(object, position, n.chars)}\cr
 \code{\link{gtkEntryBufferEmitDeletedText}(object, position, n.chars)}\cr
 \code{\link{gtkEntryBufferEmitInsertedText}(object, position, chars, n.chars)}\cr
-\code{gtkEntryBuffer(initial.chars, n.initial.chars)}
+\code{gtkEntryBuffer(initial.chars = NULL, n.initial.chars = -1)}
 }
 \section{Hierarchy}{\preformatted{GObject
    +----GtkEntryBuffer}}
@@ -36,33 +36,23 @@ integrate with an application's concept of undo/redo.}
 }}}
 \section{Convenient Construction}{\code{gtkEntryBuffer} is the equivalent of \code{\link{gtkEntryBufferNew}}.}
 \section{Signals}{\describe{
-\item{\code{deleted-text(entrybuffer, arg1, arg2, user.data)}}{
+\item{\code{deleted-text(entrybuffer, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{entrybuffer}}{the object which received the signal.}
-\item{\code{arg1}}{\emph{undocumented
-}}
-\item{\code{arg2}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{inserted-text(entrybuffer, arg1, arg2, arg3, user.data)}}{
+\item{\code{inserted-text(entrybuffer, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{entrybuffer}}{the object which received the signal.}
-\item{\code{arg1}}{\emph{undocumented
-}}
-\item{\code{arg2}}{\emph{undocumented
-}}
-\item{\code{arg3}}{\emph{undocumented
-}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 

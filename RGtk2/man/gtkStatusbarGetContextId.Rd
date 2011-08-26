@@ -7,9 +7,9 @@ of the actual context. Note that the description is
 \usage{gtkStatusbarGetContextId(object, context.description)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkStatusbar}}}
-\item{\verb{context.description}}{textual description of what context 
-                      the new message is being used in}
+\item{\verb{context.description}}{textual description of what context
+the new message is being used in}
 }
-\value{[numeric]  an integer id}
+\value{[numeric] an integer id}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

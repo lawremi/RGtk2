@@ -5,6 +5,6 @@
 \usage{gtkToolPaletteGetHadjustment(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkToolPalette}}}}
 \details{Since 2.20}
-\value{[\code{\link{GtkAdjustment}}]  the horizontal adjustment of \code{palette}}
+\value{[\code{\link{GtkAdjustment}}] the horizontal adjustment of \code{palette}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

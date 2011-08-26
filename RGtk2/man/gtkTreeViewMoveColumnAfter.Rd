@@ -7,7 +7,7 @@
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkTreeView}}}
 \item{\verb{column}}{The \code{\link{GtkTreeViewColumn}} to be moved.}
-\item{\verb{base.column}}{ The \code{\link{GtkTreeViewColumn}} to be moved relative to, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{base.column}}{The \code{\link{GtkTreeViewColumn}} to be moved relative to, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

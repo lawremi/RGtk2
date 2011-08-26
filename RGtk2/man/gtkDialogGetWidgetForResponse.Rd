@@ -9,6 +9,6 @@ of a dialog.}
 \item{\verb{response.id}}{the response ID used by the \code{dialog} widget}
 }
 \details{Since 2.20}
-\value{[\code{\link{GtkWidget}}]  the \code{widget} button that uses the given \code{response.id}, or \code{NULL}.}
+\value{[\code{\link{GtkWidget}}] the \code{widget} button that uses the given \code{response.id}, or \code{NULL}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

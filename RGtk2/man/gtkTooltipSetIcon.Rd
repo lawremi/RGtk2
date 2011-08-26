@@ -6,7 +6,7 @@
 \usage{gtkTooltipSetIcon(object, pixbuf)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkTooltip}}}
-\item{\verb{pixbuf}}{ a \code{\link{GdkPixbuf}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{pixbuf}}{a \code{\link{GdkPixbuf}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{Since 2.12}
 \author{Derived by RGtkGen from GTK+ documentation}

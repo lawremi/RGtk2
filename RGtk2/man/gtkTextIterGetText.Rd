@@ -11,6 +11,6 @@ byte offsets in the buffer. If you want offsets to correspond, see
 \item{\verb{object}}{iterator at start of a range}
 \item{\verb{end}}{iterator at end of a range}
 }
-\value{[character]  list of characters from the buffer}
+\value{[character] array of characters from the buffer}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

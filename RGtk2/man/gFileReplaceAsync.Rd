@@ -6,12 +6,12 @@ creating a backup copy of the file first.}
 \usage{gFileReplaceAsync(object, etag, make.backup, flags = "G_FILE_CREATE_NONE", io.priority = 0, cancellable = NULL, callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}.}
-\item{\verb{etag}}{an entity tag for the 
-    current \code{\link{GFile}}, or NULL to ignore.}
+\item{\verb{etag}}{an entity tag for the
+current \code{\link{GFile}}, or NULL to ignore.}
 \item{\verb{make.backup}}{\code{TRUE} if a backup should be created.}
 \item{\verb{flags}}{a set of \code{\link{GFileCreateFlags}}.}
-\item{\verb{io.priority}}{the I/O priority 
-    of the request.}
+\item{\verb{io.priority}}{the I/O priority
+of the request.}
 \item{\verb{cancellable}}{optional \code{\link{GCancellable}} object, \code{NULL} to ignore.}
 \item{\verb{callback}}{a \code{\link{GAsyncReadyCallback}} to call when the request is satisfied}
 \item{\verb{user.data}}{the data to pass to callback function}

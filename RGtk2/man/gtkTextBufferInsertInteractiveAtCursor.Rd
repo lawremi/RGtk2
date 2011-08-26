@@ -12,6 +12,6 @@ position.}
 \details{\code{default.editable} indicates the editability of text that doesn't
 have a tag affecting editability applied to it. Typically the
 result of \code{\link{gtkTextViewGetEditable}} is appropriate here.}
-\value{[logical]  whether text was actually inserted}
+\value{[logical] whether text was actually inserted}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

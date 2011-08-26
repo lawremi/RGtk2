@@ -11,14 +11,14 @@ to the left of the old cursor position.}
 \arguments{
 \item{\verb{object}}{a \code{\link{PangoLayout}}.}
 \item{\verb{strong}}{whether the moving cursor is the strong cursor or the
-               weak cursor. The strong cursor is the cursor corresponding
-               to text insertion in the base direction for the layout.}
+weak cursor. The strong cursor is the cursor corresponding
+to text insertion in the base direction for the layout.}
 \item{\verb{old.index}}{the byte index of the grapheme for the old index}
 \item{\verb{old.trailing}}{if 0, the cursor was at the trailing edge of the
-               grapheme indicated by \code{old.index}, if > 0, the cursor
-               was at the leading edge.}
+grapheme indicated by \code{old.index}, if > 0, the cursor
+was at the leading edge.}
 \item{\verb{direction}}{direction to move cursor. A negative
-               value indicates motion to the left.}
+value indicates motion to the left.}
 }
 \details{In the presence of bidirectional text, the correspondence
 between logical and visual order will depend on the direction
@@ -32,15 +32,15 @@ to form a single grapheme.}
 \value{
 A list containing the following elements:
 \item{\verb{new.index}}{location to store the new cursor byte index. A value of -1
-               indicates that the cursor has been moved off the beginning
-               of the layout. A value of \code{G_MAXINT} indicates that
-               the cursor has been moved off the end of the layout.}
+indicates that the cursor has been moved off the beginning
+of the layout. A value of \code{G_MAXINT} indicates that
+the cursor has been moved off the end of the layout. \emph{[  \acronym{out}  ]}}
 \item{\verb{new.trailing}}{number of characters to move forward from the location returned
-               for \code{new.index} to get the position where the cursor should
-               be displayed. This allows distinguishing the position at
-               the beginning of one line from the position at the end
-               of the preceding line. \code{new.index} is always on the line
-               where the cursor should be displayed.}
+for \code{new.index} to get the position where the cursor should
+be displayed. This allows distinguishing the position at
+the beginning of one line from the position at the end
+of the preceding line. \code{new.index} is always on the line
+where the cursor should be displayed.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

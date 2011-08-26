@@ -10,6 +10,6 @@
 letters, right-to-left letters, and everything else.  If full
 Unicode bidirectional type of a character is needed,
 \code{pangoBidiTypeForGunichar()} can be used instead.}
-\value{[\code{\link{PangoDirection}}]  the direction of the character.}
+\value{[\code{\link{PangoDirection}}] the direction of the character.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

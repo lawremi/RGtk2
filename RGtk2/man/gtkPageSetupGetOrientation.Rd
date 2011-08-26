@@ -5,6 +5,6 @@
 \usage{gtkPageSetupGetOrientation(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkPageSetup}}}}
 \details{Since 2.10}
-\value{[\code{\link{GtkPageOrientation}}]  the page orientation}
+\value{[\code{\link{GtkPageOrientation}}] the page orientation}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

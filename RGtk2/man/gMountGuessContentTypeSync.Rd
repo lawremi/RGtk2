@@ -10,7 +10,7 @@ specification for more on x-content types.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GMount}}}
 \item{\verb{force.rescan}}{Whether to force a rescan of the content.
-    Otherwise a cached result will be used if available}
+Otherwise a cached result will be used if available}
 \item{\verb{cancellable}}{optional \code{\link{GCancellable}} object, \code{NULL} to ignore}
 \item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
@@ -19,9 +19,9 @@ see \code{\link{gMountGuessContentType}} for the asynchronous version.
   Since 2.18}
 \value{
 A list containing the following elements:
-\item{retval}{[character]  a list of content types or \code{NULL} on error.}
+\item{retval}{[character] a list of content types or \code{NULL} on error.}
 \item{\verb{error}}{a \code{\link{GError}} location to store the error occuring, or \code{NULL} to
-    ignore}
+ignore}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

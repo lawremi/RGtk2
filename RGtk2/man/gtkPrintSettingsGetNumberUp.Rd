@@ -5,6 +5,6 @@
 \usage{gtkPrintSettingsGetNumberUp(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkPrintSettings}}}}
 \details{Since 2.10}
-\value{[integer]  the number of pages per sheet}
+\value{[integer] the number of pages per sheet}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

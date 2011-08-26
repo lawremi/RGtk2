@@ -15,17 +15,17 @@ in that grapheme. The reverse is true for a left-to-right line.}
 \arguments{
 \item{\verb{object}}{a \code{\link{PangoLayoutLine}}}
 \item{\verb{x.pos}}{the X offset (in Pango units)
-            from the left edge of the line.}
+from the left edge of the line.}
 }
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{FALSE} if \code{x.pos} was outside the line, \code{TRUE} if inside}
 \item{\verb{index}}{location to store calculated byte index for
-            the grapheme in which the user clicked.}
+the grapheme in which the user clicked. \emph{[  \acronym{out}  ]}}
 \item{\verb{trailing}}{location to store an integer indicating where
-            in the grapheme the user clicked. It will either
-            be zero, or the number of characters in the
-            grapheme. 0 represents the leading edge of the grapheme.}
+in the grapheme the user clicked. It will either
+be zero, or the number of characters in the
+grapheme. 0 represents the leading edge of the grapheme. \emph{[  \acronym{out}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

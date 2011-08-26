@@ -4,7 +4,7 @@
 \description{Sets the menu's title in tearoff mode.}
 \usage{gtkComboBoxSetTitle(object, title)}
 \arguments{
-\item{\verb{object}}{a \code{\link{GtkComboBox}} }
+\item{\verb{object}}{a \code{\link{GtkComboBox}}}
 \item{\verb{title}}{a title for the menu in tearoff mode}
 }
 \details{Since 2.10}

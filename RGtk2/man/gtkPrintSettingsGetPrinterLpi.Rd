@@ -5,6 +5,6 @@
 \usage{gtkPrintSettingsGetPrinterLpi(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkPrintSettings}}}}
 \details{Since 2.16}
-\value{[numeric]  the resolution in lpi (lines per inch)}
+\value{[numeric] the resolution in lpi (lines per inch)}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

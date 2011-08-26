@@ -12,8 +12,8 @@
 }
 \value{
 A list containing the following elements:
-\item{retval}{[integer]  a \verb{integer} containing the size of the data spliced, or
-    -1 if an error occurred.}
+\item{retval}{[integer] a \verb{integer} containing the size of the data spliced, or
+-1 if an error occurred.}
 \item{\verb{error}}{a \code{\link{GError}} location to store the error occuring, or \code{NULL} to
 ignore.}
 }

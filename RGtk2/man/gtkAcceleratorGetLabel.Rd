@@ -9,6 +9,6 @@ which can be used to represent the accelerator to the user.}
 \item{\verb{accelerator.mods}}{accelerator modifier mask}
 }
 \details{Since 2.6}
-\value{[character]  a newly-allocated string representing the accelerator.}
+\value{[character] a newly-allocated string representing the accelerator.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

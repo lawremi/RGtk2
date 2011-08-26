@@ -17,8 +17,8 @@ motion history is supported and no events were found.)}
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if the windowing system supports motion history and
- at least one event was found.}
-\item{\verb{events}}{ location to store a newly-allocated list of \code{\link{GdkTimeCoord}}, or \code{NULL}. \emph{[  \acronym{array}   length=n_events][  \acronym{out}   length=n_events][  \acronym{transfer none}   length=n_events]}}
+at least one event was found.}
+\item{\verb{events}}{location to store a newly-allocated list of \code{\link{GdkTimeCoord}}, or \code{NULL}. \emph{[  \acronym{array}   length=n_events][  \acronym{out}  ][  \acronym{transfer none}  ]}}
 \item{\verb{n.events}}{location to store the length of \code{events}, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

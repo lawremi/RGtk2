@@ -10,7 +10,7 @@ its \code{mime.type} with the passed \code{buffer}.}
 \item{\verb{user.data}}{\code{function}'s user_data}
 }
 \details{Since 2.10}
-\value{[\code{\link{GdkAtom}}]  the \code{\link{GdkAtom}} that corresponds to the newly registered
-              format's mime-type.}
+\value{[\code{\link{GdkAtom}}] the \code{\link{GdkAtom}} that corresponds to the newly registered
+format's mime-type.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

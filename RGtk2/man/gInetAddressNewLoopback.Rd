@@ -5,7 +5,7 @@
 \usage{gInetAddressNewLoopback(family)}
 \arguments{\item{\verb{family}}{the address family}}
 \details{Since 2.22}
-\value{[\code{\link{GInetAddress}}]  a new \code{\link{GInetAddress}} corresponding to the loopback address
+\value{[\code{\link{GInetAddress}}] a new \code{\link{GInetAddress}} corresponding to the loopback address
 for \code{family}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

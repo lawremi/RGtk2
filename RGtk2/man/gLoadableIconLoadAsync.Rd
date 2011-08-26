@@ -8,7 +8,7 @@ version of this function, see \code{\link{gLoadableIconLoad}}.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GLoadableIcon}}.}
 \item{\verb{size}}{an integer.}
-\item{\verb{cancellable}}{optional \code{\link{GCancellable}} object, \code{NULL} to ignore. }
+\item{\verb{cancellable}}{optional \code{\link{GCancellable}} object, \code{NULL} to ignore.}
 \item{\verb{callback}}{a \code{\link{GAsyncReadyCallback}} to call when the request is satisfied}
 \item{\verb{user.data}}{the data to pass to callback function}
 }

@@ -5,6 +5,6 @@
 widget has not been set then \code{NULL} is returned.}
 \usage{gtkTreeViewColumnGetWidget(object)}
 \arguments{\item{\verb{object}}{A \code{\link{GtkTreeViewColumn}}.}}
-\value{[\code{\link{GtkWidget}}]  The \code{\link{GtkWidget}} in the column header, or \code{NULL}}
+\value{[\code{\link{GtkWidget}}] The \code{\link{GtkWidget}} in the column header, or \code{NULL}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

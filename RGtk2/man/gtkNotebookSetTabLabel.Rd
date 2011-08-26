@@ -7,8 +7,8 @@ for \code{tab.label}, then the page will have the label 'page N'.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkNotebook}}}
 \item{\verb{child}}{the page}
-\item{\verb{tab.label}}{ the tab label widget to use, or \code{NULL} for default tab
-            label. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{tab.label}}{the tab label widget to use, or \code{NULL} for default tab
+label. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

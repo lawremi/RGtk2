@@ -5,6 +5,6 @@
 width of the layout.}
 \usage{pangoLayoutGetJustify(object)}
 \arguments{\item{\verb{object}}{a \code{\link{PangoLayout}}}}
-\value{[logical]  the justify.}
+\value{[logical] the justify.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

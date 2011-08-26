@@ -30,7 +30,7 @@ address, it may be easier to create a \code{\link{GNetworkAddress}} and use its
   Since 2.22}
 \value{
 A list containing the following elements:
-\item{retval}{[list]  a \verb{list} of \code{\link{GInetAddress}}, or \code{NULL} on error. You
+\item{retval}{[list] a \verb{list} of \code{\link{GInetAddress}}, or \code{NULL} on error. You
 must unref each of the addresses and free the list when you are
 done with it. (You can use \code{\link{gResolverFreeAddresses}} to do this.)}
 \item{\verb{error}}{return location for a \code{\link{GError}}, or \code{NULL}}

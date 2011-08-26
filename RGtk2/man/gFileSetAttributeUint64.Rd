@@ -5,7 +5,7 @@
 If \code{attribute} is of a different type, this operation will fail.}
 \usage{gFileSetAttributeUint64(object, attribute, value, flags = "G_FILE_QUERY_INFO_NONE", cancellable = NULL, .errwarn = TRUE)}
 \arguments{
-\item{\verb{object}}{input \code{\link{GFile}}. }
+\item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{attribute}}{a string containing the attribute's name.}
 \item{\verb{value}}{a \verb{numeric} containing the attribute's new value.}
 \item{\verb{flags}}{a \code{\link{GFileQueryInfoFlags}}.}
@@ -17,7 +17,7 @@ triggering the cancellable object from another thread. If the operation
 was cancelled, the error \code{G_IO_ERROR_CANCELLED} will be returned.}
 \value{
 A list containing the following elements:
-\item{retval}{[logical] \code{TRUE} if the \code{attribute} was successfully set to \code{value} 
+\item{retval}{[logical] \code{TRUE} if the \code{attribute} was successfully set to \code{value}
 in the \code{file}, \code{FALSE} otherwise.}
 \item{\verb{error}}{a \code{\link{GError}}, or \code{NULL}}
 }

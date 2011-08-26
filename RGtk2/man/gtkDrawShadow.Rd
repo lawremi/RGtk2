@@ -14,8 +14,8 @@ using the given style and state and shadow type.
 \item{\verb{shadow.type}}{type of shadow to draw}
 \item{\verb{x}}{x origin of the rectangle}
 \item{\verb{y}}{y origin of the rectangle}
-\item{\verb{width}}{width of the rectangle }
-\item{\verb{height}}{width of the rectangle }
+\item{\verb{width}}{width of the rectangle}
+\item{\verb{height}}{width of the rectangle}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

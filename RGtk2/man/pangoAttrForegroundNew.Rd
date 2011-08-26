@@ -8,6 +8,6 @@
 \item{\verb{green}}{the green value}
 \item{\verb{blue}}{the blue value}
 }
-\value{[\code{\link{PangoAttribute}}]  the newly allocated \code{\link{PangoAttribute}},}
+\value{[\code{\link{PangoAttribute}}] the newly allocated \code{\link{PangoAttribute}},}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -9,6 +9,6 @@ at least one run, even lines consisting of only a newline.}
 \arguments{\item{\verb{object}}{a \code{\link{PangoLayoutIter}}}}
 \details{Use the faster \code{\link{pangoLayoutIterGetRunReadonly}} if you do not plan
 to modify the contents of the run (glyphs, glyph widths, etc.).}
-\value{[PangoLayoutRun]  the current run.}
+\value{[PangoLayoutRun] the current run.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

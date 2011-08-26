@@ -5,6 +5,6 @@
 \usage{gContentTypeFromMimeType(mime.type)}
 \arguments{\item{\verb{mime.type}}{a mime type string.}}
 \details{Since 2.18}
-\value{[char]  Newly allocated string with content type or NULL when does not know.}
+\value{[char] Newly allocated string with content type or NULL when does not know.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

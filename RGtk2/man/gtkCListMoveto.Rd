@@ -11,9 +11,9 @@ row and column.
 \item{\verb{object}}{The \code{\link{GtkCList}} to affect.}
 \item{\verb{row}}{The row to which to move.}
 \item{\verb{column}}{The column to which to move.}
-\item{\verb{row.align}}{A value between 0 and 1 that describes the positioning of 
+\item{\verb{row.align}}{A value between 0 and 1 that describes the positioning of
 the row in relation to the viewable area of the CList's contents.}
-\item{\verb{col.align}}{A value between 0 and 1 that describes the positioning of 
+\item{\verb{col.align}}{A value between 0 and 1 that describes the positioning of
 the column in relation to the viewable area of the CList's contents.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

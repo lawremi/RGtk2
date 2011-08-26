@@ -7,8 +7,8 @@ See \code{\link{gtkMiscSetAlignment}}.}
 \arguments{\item{\verb{object}}{a \code{\link{GtkMisc}}}}
 \value{
 A list containing the following elements:
-\item{\verb{xalign}}{ location to store X alignment of \code{misc}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{yalign}}{ location to store Y alignment of \code{misc}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{xalign}}{location to store X alignment of \code{misc}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{yalign}}{location to store Y alignment of \code{misc}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

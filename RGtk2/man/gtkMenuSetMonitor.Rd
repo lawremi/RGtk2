@@ -7,7 +7,7 @@ See \code{\link{gdkScreenGetMonitorGeometry}}.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkMenu}}}
 \item{\verb{monitor.num}}{the number of the monitor on which the menu should
-   be popped up}
+be popped up}
 }
 \details{This function should be called from a \code{\link{GtkMenuPositionFunc}} if the
 menu should not appear on the same monitor as the pointer. This 

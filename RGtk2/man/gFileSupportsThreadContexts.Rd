@@ -8,6 +8,6 @@ thread-default context.}
 \usage{gFileSupportsThreadContexts(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GFile}}.}}
 \details{Since 2.22}
-\value{[logical]  Whether or not \code{file} supports thread-default contexts.}
+\value{[logical] Whether or not \code{file} supports thread-default contexts.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

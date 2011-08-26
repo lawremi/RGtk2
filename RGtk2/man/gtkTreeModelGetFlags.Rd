@@ -6,6 +6,6 @@ combination of \code{\link{GtkTreeModelFlags}}.  The flags supported should not 
 during the lifecycle of the \code{tree.model}.}
 \usage{gtkTreeModelGetFlags(object)}
 \arguments{\item{\verb{object}}{A \code{\link{GtkTreeModel}}.}}
-\value{[\code{\link{GtkTreeModelFlags}}]  The flags supported by this interface.}
+\value{[\code{\link{GtkTreeModelFlags}}] The flags supported by this interface.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

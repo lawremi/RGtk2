@@ -8,8 +8,8 @@ icon size.}
 \usage{gtkToolbarSetIconSize(object, icon.size)}
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkToolbar}}}
-\item{\verb{icon.size}}{ The \code{\link{GtkIconSize}} that stock icons in the
-    toolbar shall have. \emph{[type int]}}
+\item{\verb{icon.size}}{The \code{\link{GtkIconSize}} that stock icons in the
+toolbar shall have. \emph{[  \acronym{type}   int]}}
 }
 \details{This should only be used for special-purpose toolbars, normal
 application toolbars should respect the user preferences for the

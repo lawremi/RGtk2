@@ -17,13 +17,13 @@ methods must be prepared to function without context.}
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if surrounding text was provided; in this case
-   you must free the result stored in *text.}
+you must free the result stored in *text.}
 \item{\verb{text}}{location to store a UTF-8 encoded string of text
-       holding context around the insertion point.
-       If the function returns \code{TRUE}, then you must free
-       the result stored in this location with \code{gFree()}.}
+holding context around the insertion point.
+If the function returns \code{TRUE}, then you must free
+the result stored in this location with \code{gFree()}.}
 \item{\verb{cursor.index}}{location to store byte index of the insertion cursor
-       within \code{text}.}
+within \code{text}.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

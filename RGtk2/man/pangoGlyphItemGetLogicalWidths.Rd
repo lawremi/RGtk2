@@ -9,16 +9,16 @@ cluster is divided equally among the characters.}
 \arguments{
 \item{\verb{glyph.item}}{a \code{\link{PangoGlyphItem}}}
 \item{\verb{text}}{text that \code{glyph.item} corresponds to
-  (glyph_item->item->offset is an offset from the
-   start of \code{text})}
+(glyph_item->item->offset is an offset from the
+start of \code{text})}
 }
 \details{See also \code{\link{pangoGlyphStringGetLogicalWidths}}.
   Since 1.26}
 \value{
 A list containing the following elements:
 \item{\verb{logical.widths}}{a list whose length is the number of characters in
-                 glyph_item (equal to glyph_item->item->num_chars)
-                 to be filled in with the resulting character widths.}
+glyph_item (equal to glyph_item->item->num_chars)
+to be filled in with the resulting character widths.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -10,6 +10,6 @@ see which window it was.}
 \item{\verb{object}}{a \code{\link{GtkTextView}}}
 \item{\verb{window}}{a window type}
 }
-\value{[\code{\link{GtkTextWindowType}}]  the window type.}
+\value{[\code{\link{GtkTextWindowType}}] the window type.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

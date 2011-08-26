@@ -5,6 +5,6 @@
 \usage{gtkPrintSettingsGetPrintPages(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkPrintSettings}}}}
 \details{Since 2.10}
-\value{[\code{\link{GtkPrintPages}}]  which pages to print}
+\value{[\code{\link{GtkPrintPages}}] which pages to print}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

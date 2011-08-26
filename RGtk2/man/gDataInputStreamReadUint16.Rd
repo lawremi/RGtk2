@@ -12,8 +12,8 @@
 see \code{gDataStreamGetByteOrder()} and \code{gDataStreamSetByteOrder()}.}
 \value{
 A list containing the following elements:
-\item{retval}{[integer]  an unsigned 16-bit/2-byte value read from the \code{stream} or \code{0} if 
-an error occurred. }
+\item{retval}{[integer] an unsigned 16-bit/2-byte value read from the \code{stream} or \code{0} if
+an error occurred.}
 \item{\verb{error}}{\code{\link{GError}} for error reporting.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

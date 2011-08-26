@@ -9,6 +9,6 @@ you can bind the "text" property on the cell renderer to a string
 value in the model, thus rendering a different string in each row
 of the \code{\link{GtkTreeView}}}
 \usage{gtkCellRendererTextNew()}
-\value{[\code{\link{GtkCellRenderer}}]  the new cell renderer}
+\value{[\code{\link{GtkCellRenderer}}] the new cell renderer}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

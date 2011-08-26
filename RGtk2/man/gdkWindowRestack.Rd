@@ -7,7 +7,7 @@ it is above \code{sibling} (if \code{above} is \code{TRUE}) or below \code{sibli
 \usage{gdkWindowRestack(object, sibling, above)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkWindow}}}
-\item{\verb{sibling}}{ a \code{\link{GdkWindow}} that is a sibling of \code{window}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{sibling}}{a \code{\link{GdkWindow}} that is a sibling of \code{window}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{above}}{a boolean}
 }
 \details{If \code{sibling} is \code{NULL}, then this either raises (if \code{above} is \code{TRUE}) or

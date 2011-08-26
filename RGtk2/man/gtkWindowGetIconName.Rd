@@ -6,7 +6,7 @@ see \code{\link{gtkWindowSetIconName}}.}
 \usage{gtkWindowGetIconName(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkWindow}}}}
 \details{Since 2.6}
-\value{[character]  the icon name or \code{NULL} if the window has 
+\value{[character] the icon name or \code{NULL} if the window has
 no themed icon}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

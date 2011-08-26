@@ -27,7 +27,7 @@ inserting rows in a sorted list store.
   Since 2.6}
 \value{
 A list containing the following elements:
-\item{\verb{iter}}{ An unset \code{\link{GtkTreeIter}} to set to the new row, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{iter}}{An unset \code{\link{GtkTreeIter}} to set to the new row, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

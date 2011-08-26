@@ -188,8 +188,8 @@ also serves as destroy notify for \code{data}.
 
 \describe{
 \item{\code{page.setup}}{the \code{\link{GtkPageSetup}} that has been}
-\item{\code{data}}{user data that has been passed to 
-       \code{\link{gtkPrintRunPageSetupDialogAsync}}.}
+\item{\code{data}}{user data that has been passed to
+\code{\link{gtkPrintRunPageSetupDialogAsync}}.}
 }
 
 
@@ -230,8 +230,8 @@ information you need from the widgets.
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [\code{\link{GObject}}]  A custom widget that gets embedded in the print dialog,
-         or \code{NULL}
+\emph{Returns:} [\code{\link{GObject}}] A custom widget that gets embedded in the print dialog,
+or \code{NULL}
 
 }
 \item{\code{custom-widget-apply(operation, widget, user.data)}}{
@@ -379,7 +379,7 @@ finished by calling \code{\link{gtkPrintOperationPreviewEndPreview}}
 \item{\code{operation}}{the \code{\link{GtkPrintOperation}} on which the signal was emitted}
 \item{\code{preview}}{the \verb{GtkPrintPreviewOperation} for the current operation}
 \item{\code{context}}{the \code{\link{GtkPrintContext}} that will be used}
-\item{\code{parent}}{ the \code{\link{GtkWindow}} to use as window parent, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\code{parent}}{the \code{\link{GtkWindow}} to use as window parent, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
@@ -396,7 +396,7 @@ done to \code{setup} will be in force only for printing this page.
 \item{\code{operation}}{the \code{\link{GtkPrintOperation}} on which the signal was emitted}
 \item{\code{context}}{the \code{\link{GtkPrintContext}} for the current operation}
 \item{\code{page.nr}}{the number of the currently printed page (0-based)}
-\item{\code{setup}}{the \code{\link{GtkPageSetup}} }
+\item{\code{setup}}{the \code{\link{GtkPageSetup}}}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 

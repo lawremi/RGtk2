@@ -38,6 +38,6 @@ modal dialog (it prevents the user from interacting with other
 windows in the same window group while the dialog is run), callbacks 
 such as timeouts, IO channel watches, DND drops, etc, \emph{will} 
 be triggered during a \code{\link{gtkDialogRun}} call.}
-\value{[integer]  response ID}
+\value{[integer] response ID}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

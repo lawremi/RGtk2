@@ -11,7 +11,7 @@ function generates.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkPixbuf}}.}
 \item{\verb{save.func}}{a function that is called to save each block of data that
-  the save routine generates.}
+the save routine generates.}
 \item{\verb{user.data}}{user data to pass to the save function.}
 \item{\verb{type}}{name of file format.}
 \item{\verb{...}}{list of key-value save options}
@@ -21,8 +21,8 @@ function generates.}
   Since 2.4}
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  whether an error was set}
-\item{\verb{error}}{ return location for error, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{retval}{[logical] whether an error was set}
+\item{\verb{error}}{return location for error, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

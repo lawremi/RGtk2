@@ -9,6 +9,6 @@ with \code{\link{gtkTextBufferInsertChildAnchor}}.}
 \item{\verb{object}}{a \code{\link{GtkTextBuffer}}}
 \item{\verb{iter}}{location in the buffer}
 }
-\value{[\code{\link{GtkTextChildAnchor}}]  the created child anchor}
+\value{[\code{\link{GtkTextChildAnchor}}] the created child anchor}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

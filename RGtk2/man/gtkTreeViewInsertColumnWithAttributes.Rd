@@ -14,6 +14,6 @@ property set to be GTK_TREE_VIEW_COLUMN_FIXED.}
 \item{\verb{cell}}{The \code{\link{GtkCellRenderer}}.}
 \item{\verb{...}}{A list of attributes.}
 }
-\value{[integer]  The number of columns in \code{tree.view} after insertion.}
+\value{[integer] The number of columns in \code{tree.view} after insertion.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

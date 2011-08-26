@@ -9,8 +9,8 @@ point the timeout is destroyed and will not be called again.
 }
 \usage{gtkTimeoutAdd(interval, fun, data = NULL)}
 \arguments{
-\item{\verb{interval}}{The time between calls to the function, in milliseconds 
-	(1/1000ths of a second.)}
+\item{\verb{interval}}{The time between calls to the function, in milliseconds
+(1/1000ths of a second.)}
 \item{\verb{data}}{The data to pass to the function.}
 }
 \value{[numeric] A unique id for the event source.}

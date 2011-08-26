@@ -9,7 +9,7 @@ be empty after this function is called.  To fill in values, you need to call
 \usage{gtkTreeStoreAppend(object, parent = NULL)}
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkTreeStore}}}
-\item{\verb{parent}}{ A valid \code{\link{GtkTreeIter}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{parent}}{A valid \code{\link{GtkTreeIter}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \value{
 A list containing the following elements:

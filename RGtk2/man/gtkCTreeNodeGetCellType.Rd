@@ -7,8 +7,7 @@
 }
 \usage{gtkCTreeNodeGetCellType(object, node, column)}
 \arguments{
-\item{\verb{object}}{\emph{undocumented
-}}
+\item{\verb{object}}{The type of the given cell.}
 \item{\verb{node}}{\emph{undocumented
 }}
 \item{\verb{column}}{\emph{undocumented

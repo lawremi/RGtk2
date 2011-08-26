@@ -13,7 +13,7 @@ characters get their direction from the surrounding paragraphs.}
 \arguments{
 \item{\verb{object}}{a \code{\link{PangoLayout}}}
 \item{\verb{auto.dir}}{if \code{TRUE}, compute the bidirectional base direction
-  from the layout's contents.}
+from the layout's contents.}
 }
 \details{When \code{FALSE}, the choice between left-to-right and
 right-to-left layout is done according to the base direction

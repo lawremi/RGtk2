@@ -15,10 +15,10 @@ toplevel.}
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{FALSE} if either widget was not realized, or there
-  was no common ancestor. In this case, nothing is stored in
-  *\code{dest.x} and *\code{dest.y}. Otherwise \code{TRUE}.}
-\item{\verb{dest.x}}{ location to store X position relative to \code{dest.widget}. \emph{[  \acronym{out}  ]}}
-\item{\verb{dest.y}}{ location to store Y position relative to \code{dest.widget}. \emph{[  \acronym{out}  ]}}
+was no common ancestor. In this case, nothing is stored in
+*\code{dest.x} and *\code{dest.y}. Otherwise \code{TRUE}.}
+\item{\verb{dest.x}}{location to store X position relative to \code{dest.widget}. \emph{[  \acronym{out}  ]}}
+\item{\verb{dest.y}}{location to store Y position relative to \code{dest.widget}. \emph{[  \acronym{out}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

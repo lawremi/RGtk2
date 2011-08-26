@@ -5,7 +5,7 @@
 spin button is always updated or only when a valid value is set.}
 \usage{gtkSpinButtonSetUpdatePolicy(object, policy)}
 \arguments{
-\item{\verb{object}}{a \code{\link{GtkSpinButton}} }
+\item{\verb{object}}{a \code{\link{GtkSpinButton}}}
 \item{\verb{policy}}{a \code{\link{GtkSpinButtonUpdatePolicy}} value}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

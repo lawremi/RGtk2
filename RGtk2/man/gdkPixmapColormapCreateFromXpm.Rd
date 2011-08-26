@@ -15,7 +15,7 @@ in which case a default color will be used.}
 }
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GdkPixmap}}]  the \code{\link{GdkPixmap}}. \emph{[  \acronym{transfer none}  ]}}
+\item{retval}{[\code{\link{GdkPixmap}}] the \code{\link{GdkPixmap}}. \emph{[  \acronym{transfer none}  ]}}
 \item{\verb{mask}}{a pointer to a place to store a bitmap representing
 the transparency mask of the XPM file. Can be \code{NULL},
 in which case transparency will be ignored.}

@@ -9,8 +9,8 @@ the left, and then merges \code{other} on top of the hole.}
 \item{\verb{other}}{another \code{\link{PangoAttrList}}}
 \item{\verb{pos}}{the position in \code{list} at which to insert \code{other}}
 \item{\verb{len}}{the length of the spliced segment. (Note that this
-      must be specified since the attributes in \code{other}
-      may only be present at some subsection of this range)}
+must be specified since the attributes in \code{other}
+may only be present at some subsection of this range)}
 }
 \details{This operation is equivalent to stretching every attribute
 that applies at position \code{pos} in \code{list} by an amount \code{len},

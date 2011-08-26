@@ -16,10 +16,10 @@ See \code{\link{gSocketReceive}} for additional information.
   Since 2.22}
 \value{
 A list containing the following elements:
-\item{retval}{[integer]  Number of bytes read, or -1 on error}
+\item{retval}{[integer] Number of bytes read, or -1 on error}
 \item{\verb{address}}{a pointer to a \code{\link{GSocketAddress}} pointer, or \code{NULL}}
 \item{\verb{buffer}}{a buffer to read data into (which should be at least \code{size}
-    bytes long).}
+bytes long).}
 \item{\verb{error}}{\code{\link{GError}} for error reporting, or \code{NULL} to ignore.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

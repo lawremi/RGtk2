@@ -10,7 +10,7 @@ older one.}
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkTreeViewColumn}}}
 \item{\verb{cell.renderer}}{A \code{\link{GtkCellRenderer}}}
-\item{\verb{func}}{The \verb{GtkTreeViewColumnFunc} to use. }
+\item{\verb{func}}{The \verb{GtkTreeViewColumnFunc} to use.}
 \item{\verb{func.data}}{The user data for \code{func}.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

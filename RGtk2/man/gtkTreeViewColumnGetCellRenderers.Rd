@@ -8,6 +8,6 @@ in no particular order.
 }
 \usage{gtkTreeViewColumnGetCellRenderers(object)}
 \arguments{\item{\verb{object}}{A \code{\link{GtkTreeViewColumn}}}}
-\value{[list]  A list of \verb{GtkCellRenderers}}
+\value{[list] A list of \verb{GtkCellRenderers}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

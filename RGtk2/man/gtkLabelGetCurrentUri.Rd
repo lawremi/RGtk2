@@ -10,6 +10,6 @@ positioned.}
 \details{This function is intended for use in a \verb{"activate-link"} handler
 or for use in a \verb{"query-tooltip"} handler.
   Since 2.18}
-\value{[character]  the currently active URI.}
+\value{[character] the currently active URI.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

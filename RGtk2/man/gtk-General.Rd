@@ -104,11 +104,10 @@ cleaned from any arguments that GTK+ handles itself.
 
 
 }
-\item{\code{GtkModuleDisplayInitFunc(display)}}{
+\item{\code{GtkModuleDisplayInitFunc()}}{
   Since 2.2
 
-\describe{\item{\code{display}}{\emph{undocumented
-}}}
+
 
 
 }

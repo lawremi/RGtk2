@@ -10,8 +10,8 @@
 }
 \value{
 A list containing the following elements:
-\item{retval}{[list]  a \verb{list} of \code{\link{GFileInfo}}s.}
-\item{\verb{error}}{a \code{\link{GError}} location to store the error occuring, or \code{NULL} to 
+\item{retval}{[list] a \verb{list} of \code{\link{GFileInfo}}s.}
+\item{\verb{error}}{a \code{\link{GError}} location to store the error occuring, or \code{NULL} to
 ignore.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

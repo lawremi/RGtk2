@@ -8,6 +8,6 @@
 \item{\verb{page.num}}{The index of a page in the \code{assistant}, or -1 to get the last page;}
 }
 \details{Since 2.10}
-\value{[\code{\link{GtkWidget}}]  The child widget, or \code{NULL} if \code{page.num} is out of bounds.}
+\value{[\code{\link{GtkWidget}}] The child widget, or \code{NULL} if \code{page.num} is out of bounds.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

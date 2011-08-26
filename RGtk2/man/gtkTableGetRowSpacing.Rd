@@ -8,6 +8,6 @@ row \code{row} + 1. See \code{\link{gtkTableSetRowSpacing}}.}
 \item{\verb{object}}{a \code{\link{GtkTable}}}
 \item{\verb{row}}{a row in the table, 0 indicates the first row}
 }
-\value{[numeric]  the row spacing}
+\value{[numeric] the row spacing}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

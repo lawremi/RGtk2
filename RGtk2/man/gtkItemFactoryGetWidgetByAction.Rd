@@ -10,11 +10,11 @@ with the given \code{action}.
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkItemFactory}}}
 \item{\verb{action}}{an action as specified in the \code{callback.action} field
-  of \code{\link{GtkItemFactoryEntry}}}
+of \code{\link{GtkItemFactoryEntry}}}
 }
 \details{If there are multiple items with the same action, the result is 
 undefined.}
-\value{[\code{\link{GtkWidget}}]  the widget which corresponds to the given action, or \code{NULL}
-  if no widget was found. \emph{[  \acronym{allow-none}  ]}}
+\value{[\code{\link{GtkWidget}}] the widget which corresponds to the given action, or \code{NULL}
+if no widget was found. \emph{[  \acronym{allow-none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

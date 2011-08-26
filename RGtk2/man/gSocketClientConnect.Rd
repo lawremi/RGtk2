@@ -28,7 +28,7 @@ socket will be bound to this address before connecting.
   Since 2.22}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GSocketConnection}}]  a \code{\link{GSocketConnection}} on success, \code{NULL} on error.}
+\item{retval}{[\code{\link{GSocketConnection}}] a \code{\link{GSocketConnection}} on success, \code{NULL} on error.}
 \item{\verb{error}}{\code{\link{GError}} for error reporting, or \code{NULL} to ignore.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

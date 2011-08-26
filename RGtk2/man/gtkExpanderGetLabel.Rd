@@ -14,7 +14,7 @@ underlines indicating mnemonics and Pango markup. This problem can
 be avoided by fetching the label text directly from the label
 widget.
   Since 2.4}
-\value{[character]  The text of the label widget. This string is owned
+\value{[character] The text of the label widget. This string is owned
 by the widget and must not be modified or freed.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -9,6 +9,6 @@ are supported. }
 \details{As an example, \code{gtk_tree_store_new (3, G_TYPE_INT, G_TYPE_STRING,
 GDK_TYPE_PIXBUF);} will create a new \code{\link{GtkListStore}} with three columns, of type
 int, string and \code{\link{GdkPixbuf}} respectively.}
-\value{[\code{\link{GtkListStore}}]  a new \code{\link{GtkListStore}}}
+\value{[\code{\link{GtkListStore}}] a new \code{\link{GtkListStore}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -5,6 +5,6 @@
 \usage{gtkScaleButtonGetValue(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkScaleButton}}}}
 \details{Since 2.12}
-\value{[numeric]  current value of the scale button}
+\value{[numeric] current value of the scale button}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

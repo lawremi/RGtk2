@@ -9,8 +9,8 @@ the list. This is on by default.
 \usage{gtkComboSetUseArrows(object, val)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkCombo}}.}
-\item{\verb{val}}{\code{TRUE} if the arrow keys can be used to step through the items in 
-     the list.}
+\item{\verb{val}}{\code{TRUE} if the arrow keys can be used to step through the items in
+the list.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

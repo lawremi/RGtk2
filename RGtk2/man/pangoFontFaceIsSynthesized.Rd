@@ -7,6 +7,6 @@ or lightening it.}
 \usage{pangoFontFaceIsSynthesized(object)}
 \arguments{\item{\verb{object}}{a \code{\link{PangoFontFace}}}}
 \details{Since 1.18}
-\value{[logical]  whether \code{face} is synthesized.}
+\value{[logical] whether \code{face} is synthesized.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

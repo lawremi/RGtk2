@@ -12,9 +12,9 @@ of the rectangles.}
 \value{
 A list containing the following elements:
 \item{\verb{ink.rect}}{rectangle used to store the extents of the glyph string as drawn
-           or \code{NULL} to indicate that the result is not needed.}
+or \code{NULL} to indicate that the result is not needed.}
 \item{\verb{logical.rect}}{rectangle used to store the logical extents of the glyph string
-           or \code{NULL} to indicate that the result is not needed.}
+or \code{NULL} to indicate that the result is not needed.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

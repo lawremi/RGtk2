@@ -6,6 +6,6 @@ side of the menu bar.}
 \usage{gtkMenuItemGetRightJustified(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkMenuItem}}}}
 \value{[logical] \code{TRUE} if the menu item will appear at the
-  far right if added to a menu bar.}
+far right if added to a menu bar.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -9,6 +9,6 @@ returned pixbuf.}
 \usage{gtkStatusIconGetPixbuf(object)}
 \arguments{\item{\verb{object}}{a \code{\link{GtkStatusIcon}}}}
 \details{Since 2.10}
-\value{[\code{\link{GdkPixbuf}}]  the displayed pixbuf, or \code{NULL} if the image is empty.}
+\value{[\code{\link{GdkPixbuf}}] the displayed pixbuf, or \code{NULL} if the image is empty.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

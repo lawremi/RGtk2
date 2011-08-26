@@ -10,6 +10,6 @@ the end iterator, and \code{\link{gtkTextIterForwardChar}} returns \code{FALSE} 
 convenience when writing loops.}
 \usage{gtkTextIterForwardChar(object)}
 \arguments{\item{\verb{object}}{an iterator}}
-\value{[logical]  whether \code{iter} moved and is dereferenceable}
+\value{[logical] whether \code{iter} moved and is dereferenceable}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -8,7 +8,7 @@ All further configuration of the completion mechanism is done on
 \usage{gtkEntrySetCompletion(object, completion)}
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkEntry}}}
-\item{\verb{completion}}{ The \code{\link{GtkEntryCompletion}} or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{completion}}{The \code{\link{GtkEntryCompletion}} or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{Since 2.4}
 \author{Derived by RGtkGen from GTK+ documentation}

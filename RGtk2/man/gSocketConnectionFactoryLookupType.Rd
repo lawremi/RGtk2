@@ -11,6 +11,6 @@ sockets with the specified \code{family},\code{type} and \code{protocol.id}.}
 }
 \details{If no type is registered, the \code{\link{GSocketConnection}} base type is returned.
   Since 2.22}
-\value{[\code{\link{GType}}]  a \code{\link{GType}}}
+\value{[\code{\link{GType}}] a \code{\link{GType}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

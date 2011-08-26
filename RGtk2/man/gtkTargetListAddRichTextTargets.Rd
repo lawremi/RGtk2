@@ -10,7 +10,7 @@ targets are added with the same \code{info}.}
 \item{\verb{list}}{a \code{\link{GtkTargetList}}}
 \item{\verb{info}}{an ID that will be passed back to the application}
 \item{\verb{deserializable}}{if \code{TRUE}, then deserializable rich text formats
-                 will be added, serializable formats otherwise.}
+will be added, serializable formats otherwise.}
 \item{\verb{buffer}}{a \code{\link{GtkTextBuffer}}.}
 }
 \details{Since 2.10}

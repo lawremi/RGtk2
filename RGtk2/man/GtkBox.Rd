@@ -100,17 +100,17 @@ application.)
 \describe{
 \item{\verb{widget}}{[\code{\link{GtkWidget}}] the child widget, packed into the GtkBox.}
 \item{\verb{padding}}{[integer] the number of extra pixels to put between this child and its
-  neighbors, set when packed, zero by default.}
+neighbors, set when packed, zero by default.}
 \item{\verb{expand}}{[numeric] flag indicates whether extra space should be given to this
-  child. Any extra space given to the parent GtkBox is divided up
-  among all children with this attribute set to \code{TRUE}; set when packed,
-  \code{TRUE} by default.}
-\item{\verb{fill}}{[numeric] flag indicates whether any extra space given to this child due 
-  to its \code{expand} attribute being set is actually allocated to the child,
-  rather than being used as padding around the widget; set when packed,
-  \code{TRUE} by default.}
-\item{\verb{pack}}{[numeric] one of \code{\link{GtkPackType}} indicating whether the child is packed with 
-  reference to the start (top/left) or end (bottom/right) of the GtkBox.}
+child. Any extra space given to the parent GtkBox is divided up
+among all children with this attribute set to \code{TRUE}; set when packed,
+\code{TRUE} by default.}
+\item{\verb{fill}}{[numeric] flag indicates whether any extra space given to this child due
+to its \code{expand} attribute being set is actually allocated to the child,
+rather than being used as padding around the widget; set when packed,
+\code{TRUE} by default.}
+\item{\verb{pack}}{[numeric] one of \code{\link{GtkPackType}} indicating whether the child is packed with
+reference to the start (top/left) or end (bottom/right) of the GtkBox.}
 \item{\verb{isSecondary}}{[numeric] \code{TRUE} if the child is secondary}
 }
 

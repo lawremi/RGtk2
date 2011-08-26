@@ -7,7 +7,7 @@
 \usage{gtkToolButtonSetIconWidget(object, icon.widget = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkToolButton}}}
-\item{\verb{icon.widget}}{ the widget used as icon, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{icon.widget}}{the widget used as icon, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{Since 2.4}
 \author{Derived by RGtkGen from GTK+ documentation}

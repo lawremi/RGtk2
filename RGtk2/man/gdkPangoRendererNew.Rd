@@ -7,6 +7,6 @@ renderer.}
 \usage{gdkPangoRendererNew(screen)}
 \arguments{\item{\verb{screen}}{a \code{\link{GdkScreen}}}}
 \details{Since 2.6}
-\value{[\code{\link{PangoRenderer}}]  a newly created \code{\link{PangoRenderer}}.}
+\value{[\code{\link{PangoRenderer}}] a newly created \code{\link{PangoRenderer}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

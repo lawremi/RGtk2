@@ -13,7 +13,7 @@ Obtains the widget which corresponds to \code{path}.
 \details{If the widget corresponding to \code{path} is a menu item which opens a 
 submenu, then the submenu is returned. If you are interested in the menu 
 item, use \code{\link{gtkItemFactoryGetItem}} instead.}
-\value{[\code{\link{GtkWidget}}]  the widget for the given path, or \code{NULL} if \code{path} doesn't lead
-  to a widget. \emph{[  \acronym{allow-none}  ]}}
+\value{[\code{\link{GtkWidget}}] the widget for the given path, or \code{NULL} if \code{path} doesn't lead
+to a widget. \emph{[  \acronym{allow-none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

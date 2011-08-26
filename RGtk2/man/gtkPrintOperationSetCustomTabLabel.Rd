@@ -5,7 +5,7 @@
 \usage{gtkPrintOperationSetCustomTabLabel(object, label)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkPrintOperation}}}
-\item{\verb{label}}{ the label to use, or \code{NULL} to use the default label. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{label}}{the label to use, or \code{NULL} to use the default label. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{Since 2.10}
 \author{Derived by RGtkGen from GTK+ documentation}

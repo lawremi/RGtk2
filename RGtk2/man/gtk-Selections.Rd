@@ -49,6 +49,8 @@
 \code{\link{gtkSelectionClear}(object, event)}\cr
 \code{\link{gtkSelectionDataCopy}(object)}\cr
 }
+\section{Hierarchy}{\preformatted{GBoxed
+   +----GtkTargetList}}
 \section{Detailed Description}{The selection mechanism provides the basis for different types
 of communication between processes. In particular, drag and drop and
 \code{\link{GtkClipboard}} work via selections. You will very seldom or

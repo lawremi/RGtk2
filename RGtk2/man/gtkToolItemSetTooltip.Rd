@@ -11,8 +11,8 @@ to be used. See \code{\link{gtkTooltipsSetTip}}.
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkToolItem}}}
 \item{\verb{tooltips}}{The \code{\link{GtkTooltips}} object to be used}
-\item{\verb{tip.text}}{ text to be used as tooltip text for \code{tool.item}. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{tip.private}}{ text to be used as private tooltip text. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{tip.text}}{text to be used as tooltip text for \code{tool.item}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{tip.private}}{text to be used as private tooltip text. \emph{[  \acronym{allow-none}  ]}}
 }
 \details{Since 2.4}
 \author{Derived by RGtkGen from GTK+ documentation}

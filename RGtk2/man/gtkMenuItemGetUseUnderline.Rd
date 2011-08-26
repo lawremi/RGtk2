@@ -7,6 +7,6 @@ used for the mnemonic accelerator key.}
 \arguments{\item{\verb{object}}{a \code{\link{GtkMenuItem}}}}
 \details{Since 2.16}
 \value{[logical] \code{TRUE} if an embedded underline in the label indicates
-              the mnemonic accelerator key.}
+the mnemonic accelerator key.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

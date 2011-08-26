@@ -8,8 +8,8 @@ is simply a convenience function around \code{\link{pangoLayoutGetExtents}}.}
 \arguments{\item{\verb{object}}{a \code{\link{PangoLayout}}}}
 \value{
 A list containing the following elements:
-\item{\verb{width}}{location to store the logical width, or \code{NULL}}
-\item{\verb{height}}{location to store the logical height, or \code{NULL}}
+\item{\verb{width}}{location to store the logical width, or \code{NULL}. \emph{[  \acronym{out}  ]}}
+\item{\verb{height}}{location to store the logical height, or \code{NULL}. \emph{[  \acronym{out}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}
