@@ -74,11 +74,11 @@ manipulate(## expression
            plot(cars, xlim = c(x.min, x.max), type = type, 
                 axes = axes, ann = label),
            ## controls
-           x.min = slider(0,15),
-           x.max = slider(15,30, initial = 25),
+           x.min = slider(0, 15),
+           x.max = slider(15, 30, initial = 25),
            type = picker("p", "l", "b", "c", "o", "h", "s"),
-           axes = checkbox(TRUE, label="Draw Axes"),
-           label = checkbox(FALSE, label="Draw Labels")
+           axes = checkbox(TRUE, label = "Draw Axes"),
+           label = checkbox(FALSE, label = "Draw Labels")
            )
 @ 
 %
@@ -103,7 +103,7 @@ Manipulate <- setRefClass("Manipulate",
 
 
 <<manipulate_validate_controls, echo=FALSE>>=
-Manipulate$methods(validate_controls=function() {
+Manipulate$methods(validate_controls = function() {
   "Validate that controls are specified properly"
   ## validate that all controls have unique names
   controlNames <- names(.controls)
@@ -134,15 +134,16 @@ as expected. Note that each control is expected to provide a
 
 <<Manipulate_change_handler>>=
 Manipulate$methods(
-           get_values=function() {
+           get_values = function() {
              "Get widget values as list"
-             sapply(.controls, function(i) i$get_value(), 
+             sapply(.controls, 
+                    function(control) control$get_value(), 
                     simplify=FALSE)
            },
-           change_handler=function(...) {
+           change_handler = function(...) {
              "Evaluate code with current values"
              values <- get_values()
-             result <- withVisible(eval(.code, envir=values))
+             result <- withVisible(eval(.code, envir = values))
              if (result$visible) {
                eval(print(result$value))
              }
@@ -159,17 +160,17 @@ control is expected to have a \meth{make\_gui} interface.
 Manipulate$methods(  
            execute=function() {
              "Make the GUI"
-             w <- gtkWindow(show=FALSE)
-             w$setTitle("ManipulateR")
+             window <- gtkWindow(show=FALSE)
+             window$setTitle("ManipulateR")
              ## Set up graphic device
-             paned <- gtkHPaned()
-             w$add(paned)
+             hpaned <- gtkHPaned()
+             window$add(hpaned)
              device <- gtkDrawingArea()
              device$setSizeRequest(480, 480)
              asCairoDevice(device)
-             paned$add(device)
+             hpaned$add(device)
              ## Controls frame
-             f <- gtkFrame("Controls")
+             frame <- gtkFrame("Controls")
              control_table <- gtkTableNew()
              control_table$setHomogeneous(FALSE)
              control_table['column-spacing'] <- 10
@@ -177,14 +178,14 @@ Manipulate$methods(
              control_table$attach(strut <- gtkHBox(), 1,2,0,1,
                            xoptions="", yoptions="shrink")
              strut$setSizeRequest(75, -1)
-             f$add(control_table)
-             paned$add(f)
+             frame$add(control_table)
+             paned$add(frame)
              ## add each control
-             sapply(.controls, function(i) {
-               i$make_gui(cont=control_table, 
-                          handler=.self$change_handler)
+             sapply(.controls, function(control) {
+               control$make_gui(cont=control_table, 
+                                handler=.self$change_handler)
              })
-             w$show()
+             window$show()
              change_handler()                    # initial
            })
 @ 
@@ -204,11 +205,13 @@ simply borrows code from the package to do some error checking,
 ensuring the controls are defined properly.
 
 <<Manipulate_Initialize>>=
+## ML: shouldn't this delegate to the super initialize?
+## Otherwise, it is difficult to subclass
 Manipulate$methods(  
-           initialize=function(code, ...) {
+           initialize = function(code, ...) {
              controls <- resolveVariableArguments(list(...))
-             initFields(.code=code,
-                        .controls=controls)
+             initFields(.code = code,
+                        .controls = controls)
              validate_controls()
              .self
            })
@@ -218,9 +221,9 @@ Manipulate$methods(
 We now provide a constructor allowing access to our class.
 <<manipulate_constructor>>=
 manipulate <- function(`_expr`,...) {
-  obj <- Manipulate$new(substitute(`_expr`),...)
-  obj$execute()
-  }
+  manip <- Manipulate$new(substitute(`_expr`),...)
+  manip$execute()
+}
 @ 
 %
 
@@ -250,7 +253,7 @@ ManipulateControls$methods(
             validate_inputs = function(...) {
               "Validate input code"
             },
-            get_value=function(...) {
+            get_value = function(...) {
               "Get value of widget"
             })
 @ 
@@ -259,18 +262,18 @@ The \meth{make\_gui} method has two tasks: to define the widget
 instance and to add the widget to the GUI. This is done in the base
 class. The label and widget are added as a row to a \class{GtkTable} instance.
 <<MC_make_gui>>=
-ManipulateControls$methods(make_gui=function(cont) {
+ManipulateControls$methods(make_gui = function(cont) {
             "Create widget, then add to table"
             ## cont a GtkTable instance
             nrows <- cont['n-rows']
             label_widget <- gtkLabel(label)
             label_widget['xalign'] <- 1
-            cont$attach(label_widget, 0, 1, nrows, nrows+1,
-                        xoptions="shrink", yoptions="shrink"
+            cont$attach(label_widget, 0, 1, nrows, nrows + 1,
+                        xoptions = "shrink", yoptions = "shrink"
                         )
-            cont$attach(widget, 1, 2, nrows, nrows+1,
-                        xoptions=c("expand", "fill"),
-                        yoptions="")
+            cont$attach(widget, 1, 2, nrows, nrows + 1,
+                        xoptions = c("expand", "fill"),
+                        yoptions = "")
           })
 @ 
 
@@ -279,17 +282,17 @@ defined sub-class of the \class{ManipulateControls} class. The
 arguments follow RStudio's.
 
 <<Slider_constructor>>=
-slider <- function(min, max, initial=min, label=NULL, 
-                   step=-1, ticks=TRUE) {
-  Slider$new(min, max, initial=initial, label=label, 
-             step=step, ticks=ticks)
+slider <- function(min, max, initial = min, label = NULL, 
+                   step = -1, ticks = TRUE) {
+  Slider$new(min, max, initial = initial, label = label, 
+             step = step, ticks = ticks)
 }
 @ 
 
 The \class{Slider} class has no new properties:
 <<Slider>>=
 Slider <- setRefClass("Slider",
-                      contains="ManipulateControls")
+                      contains = "ManipulateControls")
 @ 
 
 
@@ -319,7 +322,7 @@ The \meth{initialize} method simply creates a list and sets some
 properties. This follows the setup of the original package.
 <<Slider_initialize>>=
 Slider$methods(
-       initialize=function(min, max, initial=min, label=NULL, 
+       initialize = function(min, max, initial = min, label = NULL, 
          step=-1, ticks=TRUE) {
            validate_inputs(min, max, initial, step, ticks)
            ## create slider and return it
@@ -328,7 +331,7 @@ Slider$methods(
                           max = max,
                           step = step,
                           ticks = ticks)
-           initFields(l=slider, label=label, initial=initial)
+           initFields(l = slider, label = label, initial = initial)
            .self
          })
 @ 
@@ -341,13 +344,13 @@ we define a slider and initialize it using the values in the list,
 \class{Manipulate} instance.
 <<Slider_make_gui>>=
 Slider$methods(
-       make_gui=function(cont, handler, ...) {
-         widget <<- gtkHScale(min=l$min, max=l$max, step=l$step)
+       make_gui = function(cont, handler, ...) {
+         widget <<- gtkHScale(min = l$min, max = l$max, step = l$step)
          widget$setValue(initial)
          gSignalConnect(widget, "value-changed", handler)
          callSuper(cont)
        },
-       get_value=function() {
+       get_value = function() {
          as.numeric(widget$getValue())
        })
 @ 
@@ -420,8 +423,7 @@ picker <- function(..., initial = NULL, label = NULL)
 
 <<Checkbox, echo=FALSE>>=
 Checkbox <- setRefClass("Checkbox", contains="ManipulateControls")
-Checkbox$methods(
-                 validate_inputs=function(initial, label) {
+Checkbox$methods(validate_inputs=function(initial, label) {
                    if ( !is.logical(initial) )
                      stop("initial must be a logical")
                  })
@@ -434,19 +436,19 @@ classes) are similarly defined. For example, the \class{Checkbox}
 class, the three main methods are given by:
 <<>>=
 Checkbox$methods(
-         initialize=function(initial=FALSE, label=NULL) {
+         initialize = function(initial = FALSE, label = NULL) {
            validate_inputs(initial, label)
            checkbox <- list(type = 2)
-           initFields(l=checkbox, label=label, initial=initial)
+           initFields(l = checkbox, label = label, initial = initial)
            .self
          },
-         make_gui=function(cont, handler, ...) {
+         make_gui = function(cont, handler, ...) {
            widget <<- gtkCheckButton() # no label
            widget$setActive(initial)
            gSignalConnect(widget, "toggled", handler)
            callSuper(cont)
          },
-         get_value=function() widget['active']
+         get_value = function() widget['active']
          )
 @ 
 %

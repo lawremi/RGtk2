@@ -12,9 +12,10 @@ Our model for the combo box will be an \class{RGtkDataFrame} instance
 with three columns: a function name, a string describing the
 number of visits and an integer to record the number of visits. 
 <<>>=
-m <- rGtkDataFrame(data.frame(
-             fname=character(0), visits=character(0), 
-             novisits=integer(0), stringsAsFactors=FALSE))
+model <- rGtkDataFrame(data.frame(filename = character(0), 
+                                  visits = character(0), 
+                                  nvisits = integer(0), 
+                                  stringsAsFactors = FALSE))
 @ 
 
 As introduced in the previous chapter, the \class{GtkComboBoxEntry}
@@ -29,7 +30,7 @@ possible, of course, to add cell renderers for other model columns.
 We create the combo box with this model using the first column for the
 text:
 <<>>=
-cb <- gtkComboBoxEntryNewWithModel(m, text.column=0)
+combo_box <- gtkComboBoxEntryNewWithModel(model, text.column = 0)
 @ 
 
 It is not currently possible to put tooltip information on the drop
@@ -39,13 +40,13 @@ information about the number of visits to the drop down menu. This
 requires us to pack in a new cell renderer to accompany the original
 label provided by the \code{gtkComboBoxEntry} widget:
 <<ConfigureCellRenderers>>=
-cr <- gtkCellRendererText()
-cb$packStart(cr)
-cb$addAttribute(cr, "text", 1)
-cr['foreground'] <- "gray50"
-cr['ellipsize'] <- "end"
-cr['style'] <- "italic"
-cr['alignment'] <- "right"
+cell_renderer <- gtkCellRendererText()
+combo_box$packStart(cell_renderer)
+combo_box$addAttribute(cell_renderer, "text", 1)
+cell_renderer['foreground'] <- "gray50"
+cell_renderer['ellipsize'] <- "end"
+cell_renderer['style'] <- "italic"
+cell_renderer['alignment'] <- "right"
 @ 
 
 %% JV: This first point seems like a misunderstanding on my part, but
@@ -71,50 +72,51 @@ This helper function will be called each time a help page is
 requested. It first updates the visit information, selects the
 text for easier editing the next time round, then calls \function{help}.
 <<helperFunction2>>=
-callHelpFunction <- function(cb, value) {
-  model <- cb$getModel()
-  ind <- match(value,model[,1, drop=TRUE])
-  n <- model[ind, "novisits"] <- model[ind, "novisits"] + 1
+callHelpFunction <- function(combo_box, value) {
+  model <- combo_box$getModel()
+  ind <- match(value, model[,1,drop=TRUE])
+  nvisits <- model[ind, "nvisits"] <- model[ind, "nvisits"] + 1
   model[ind, "visits"] <- 
-    sprintf(ngettext(n, "%s visit", "%s visits"), n)
+    sprintf(ngettext(nvisits, "%s visit", "%s visits"), nvisits)
   ## select for easier editing
-  cb$getChild()$selectRegion(start=0,end=-1)
+  combo_box$getChild()$selectRegion(start = 0, end = -1)
   help(value)
 }
-gSignalConnect(cb, "changed", f=function(w, ...) {
-  if(cb$getActive() >= 0) {
-    val <- w$getActiveText()
-    callHelpFunction(w, val)
-  }
-})
+gSignalConnect(combo_box, "changed", 
+               f = function(combo_box, ...) {
+                 if(combo_box$getActive() >= 0) {
+                   value <- combo_box$getActiveText()
+                   callHelpFunction(combo_box, value)
+                 }
+               })
 @ 
 %
 
 When the user enters a new value in the entry, we need to check if we
 have previously accessed the item. If not, we add the value to our model.
 <<results=hide>>=
-gSignalConnect(cb$getChild(), "activate", 
-               f = function(cb, entry, ...) {
-  val <- entry$getText()
-  if(!any(val == cb$getModel()[,1, drop=TRUE])) {
-    model <- cb$getModel()
-    tmp <- data.frame(fname=val, visits="", novisits=0,
-                      stringsAsFactors = FALSE)
-    model$appendRows(tmp)
-  }
-  callHelpFunction(cb, val)
-}, data=cb, user.data.first=TRUE)
+gSignalConnect(combo_box$getChild(), "activate", 
+               f = function(combo_box, entry, ...) {
+                 value <- entry$getText()
+                 if(!any(value == combo_box$getModel()[,1,drop=TRUE])) {
+                   model <- combo_box$getModel()
+                   tmp <- data.frame(filename = val, visits = "", nvisits = 0,
+                                     stringsAsFactors = FALSE)
+                   model$appendRows(tmp)
+                 }
+                 callHelpFunction(combo_box, value)
+               }, data = combo_box, user.data.first = TRUE)
 @ 
 
 We place this in a minimal GUI with a label:
 <<Layout>>=
-w <- gtkWindow(show=FALSE)
-w['border-width'] <- 15
-g <- gtkHBox(); w$add(g)
-g$packStart(gtkLabel("Help on:"))
-g$packStart(cb, expand=TRUE, fill=TRUE)
+window <- gtkWindow(show = FALSE)
+window['border-width'] <- 15
+hbox <- gtkHBox(); window$add(hbox)
+hbox$packStart(gtkLabel("Help on:"))
+hbox$packStart(combo_box, expand = TRUE, fill = TRUE)
 #
-w$show()
+window$show()
 @ 
 
 An alternative approach would be to use the completion support of

@@ -18,9 +18,9 @@ library(cairoDevice)
 device <- gtkDrawingArea()
 asCairoDevice(device)
 ##
-win <- gtkWindow(show=FALSE)
-win$add(device)
-win$showAll()
+window <- gtkWindow(show=FALSE)
+window$add(device)
+window$showAll()
 plot(mpg ~ hp, data = mtcars)
 @ 
 %
@@ -45,7 +45,7 @@ printing dialogs.
   
   A print operation is encapsulated by \class{GtkPrintOperation}:
 <<gtk-cairo-print-operation>>=
-printOp <- gtkPrintOperation()
+print_op <- gtkPrintOperation()
 @ 
 %
 A print operation may perform several different actions: print
@@ -58,8 +58,8 @@ general, one would call Cairo functions to render the document, which
 is beyond our scope. In this case, though, we can pass the context
 directly to \pkg{cairoDevice} for rendering the R plot:
 <<gtk-cairo-draw-page>>=
-gSignalConnect(printOp, "draw-page", 
-               function(x, context, page_nr) {
+gSignalConnect(print_op, "draw-page", 
+               function(print_op, context, page_nr) {
                  asCairoDevice(context)
                  plot(mpg ~ wt, data = mtcars)
                })
@@ -68,7 +68,7 @@ gSignalConnect(printOp, "draw-page",
   The final step is to run the operation to perform one of the
   available actions. In this example, we launch a print dialog:
 <<gtk-cairo-run-dialog, results=hide>>=
-printOp$run(action = "print-dialog", parent = NULL)
+print_op$run(action = "print-dialog", parent = NULL)
 @
 % 
   When the user confirms the dialog, the

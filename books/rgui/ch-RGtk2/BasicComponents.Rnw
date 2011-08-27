@@ -1,4 +1,4 @@
-In this Chapter we cover many of the basic controls of \GTK.
+In this chapter we cover many of the basic controls of \GTK.
 
 \section{Buttons}
 \label{sec:RGtk2:gtkButton}
@@ -10,18 +10,18 @@ key press. In \GTK\/, a basic button is usually constructed using
 
 \begin{example}{Button constructors}{eg:RGtk2:button-constructors}
 <<ButtonConstructors>>=
-w <- gtkWindow(show=FALSE)
-w$setTitle("Various buttons")
-w$setDefaultSize(400, 25)
-g <- gtkHBox(homogeneous=FALSE, spacing=5)
-w$add(g)
-b <- gtkButtonNew() 
-b$setLabel("long way")
-g$packStart(b)
-g$packStart(gtkButton(label="label only") )
-g$packStart(gtkButton(stock.id="gtk-ok") )
-g$packStart(gtkButtonNewWithMnemonic("_Mnemonic") )
-w$show()
+window <- gtkWindow(show = FALSE)
+window$setTitle("Various buttons")
+window$setDefaultSize(400, 25)
+hbox <- gtkHBox(homogeneous = FALSE, spacing = 5)
+window$add(hbox)
+button <- gtkButtonNew() 
+button$setLabel("long way")
+hbox$packStart(button)
+hbox$packStart(gtkButton(label = "label only") )
+hbox$packStart(gtkButton(stock.id = "hboxtk-ok") )
+hbox$packStart(gtkButtonNewWithMnemonic("_Mnemonic") )
+window$show()
 @ 
 \end{example}
 
@@ -66,19 +66,19 @@ for this event to perform a command when the button is clicked.
 \begin{example}{Callback example for
     \code{gtkButton}}{eg:RGtk2:gtkButton-callback}
 
-<<CallbackExampleForButton>>=
-w <- gtkWindow(); b <- gtkButton("click me");
-w$add(b)
+<<CallbackExampleForButton,results=hide>>=
+window <- gtkWindow(); button <- gtkButton("click me");
+window$add(button)
 
-ID <- gSignalConnect(b,"button-press-event",   # just mouse
-                     f = function(w,e,data) {
-                       print(e$getButton())    # which button
-                       return(FALSE)           # propagate
-                     })
-ID <- gSignalConnect(b,"clicked",              # keyboard too
-                     f = function(w,...) {
-                       print("clicked")
-                     })
+gSignalConnect(button, "button-press-event", # just mouse
+               f = function(widget, event, data) {
+                 print(event$getButton())    # which button
+                 return(FALSE)               # propagate
+               })
+gSignalConnect(button, "clicked",            # keyboard too
+               f = function(widget, ...) {
+                 print("clicked")
+               })
 @ 
 \end{example}
 
@@ -87,7 +87,7 @@ clicked, it is advisable to make them insensitive to user input when
 the action is not possible. For example, we  set our button to be
 insensitive through: 
 <<gtk-widget-button-sensitive>>=
-b$setSensitive(FALSE)
+button$setSensitive(FALSE)
 @ 
 
 %% Buttons initiate actions
@@ -140,9 +140,9 @@ respects formatting marks.
   \end{figure}
   
 <<gtk-widget-label-window, results=hide, echo=FALSE>>=
-w <- gtkWindow(show=FALSE); w$setTitle("Label formatting")
-w$setSizeRequest(250,300)               # narrow
-g <- gtkVBox(spacing=2); g$setBorderWidth(5); w$add(g)
+window <- gtkWindow(show=FALSE); window$setTitle("Label formatting")
+window$setSizeRequest(250,300)               # narrow
+vbox <- gtkVBox(spacing=2); vbox$setBorderWidth(5); window$add(g)
 @ 
 <<LabelFormatting, results=hide>>=
 string <- "the quick brown fox jumped over the lazy dog"
@@ -157,7 +157,7 @@ ellipsized$setEllipsize("middle")
 
 ## Right justify text lines
 ## use xalign property for aligning entire block
-rightJustified <- gtkLabel("right justify"); 
+rightJustified <- gtkLabel("right justify")
 rightJustified$setJustify("right")
 rightJustified['xalign'] <- 1
 
@@ -167,8 +167,8 @@ tmpl <- "<span foreground='blue' size='x-small'>%s</span>"
 pangoLabel$setMarkup(sprintf(tmpl, string))
 #
 sapply(list(basicLabel, ellipsized, rightJustified, pangoLabel), 
-       g$packStart, expand = TRUE, fill = TRUE)
-w$showAll()
+       vbox$packStart, expand = TRUE, fill = TRUE)
+window$showAll()
 @ 
 \end{example}
 
@@ -236,11 +236,11 @@ a file.
 
 <<notShown, echo=FALSE>>=
 ## Work this into an example ###
-makeIconRGtk2 <- function(w, giffile) {
+makeIconRGtk2 <- function(widget, giffile) {
   if(checkPtrType(w, "GtkWindow")) {
     img <- gdkPixbufNewFromFile(giffile)
     if(!is.null(img$retval))
-      w$setIcon(img$retval)
+      widget$setIcon(img$retval)
   }
 }
 @ 
@@ -323,7 +323,7 @@ other for single line entry. We will discuss complex multi-line text
 editing in Section~\ref{sec:RGtk2:textviews}. For entering a single
 line of text, the \class{GtkEntry} widget is appropriate:
 <<gtk-widget-entry>>=
-e <- gtkEntry()
+entry <- gtkEntry()
 @ 
 
 The \code{text} property stores the text. This can be set with the
@@ -333,8 +333,8 @@ e.g. by pressing the \kbd{enter} key, the \signal{activate} signal is
 emitted. Here we connect to this signal to obtain the entered text upon
 activation:
 <<gtk-widget-entry-activate>>=
-gSignalConnect(e, "activate", function() {
-  message("Text entered: ", e$getText())
+gSignalConnect(entry, "activate", function() {
+  message("Text entered: ", entry$getText())
 })
 @ 
 
@@ -446,22 +446,22 @@ application state. The simplest type of state variable is binary
 A \class{GtkCheckButton} is constructed by
 \function{gtkCheckButton}:
 <<gtk-widget-check-button, results=hide>>=
-cb <- gtkCheckButton("Option")
+checkButton <- gtkCheckButton("Option")
 @
 %
 The state of the binary variable is represented by the
 \code{active} property. We check our button:
 <<gtk-widget-check-button-active>>=
-cb['active']
-cb['active'] <- TRUE
+checkButton['active']
+checkButton['active'] <- TRUE
 @ 
 
 When the state is changed the \signal{toggle} signal is emitted. The
 callback should check the \code{active} property to determine if the
 button has been enabled or disabled:
 <<gtk-widget-check-button-toggle,results=hide>>=
-gSignalConnect(cb, "toggled", function(x) {
-  message("Button is ", ifelse(x$active, "active","inactive") )
+gSignalConnect(checkButton, "toggled", function(button) {
+  message("Button is ", ifelse(button$active, "active","inactive"))
 })
 @ 
 
@@ -503,14 +503,14 @@ to allocate a list and populate it in a \code{for} loop.
 
 We add each button to a vertical box:
 <<results=hide>>=
-w <- gtkWindow(); w$setTitle("Radio group example")
-g <- gtkVBox(FALSE, 5); w$add(g)
-sapply(radiogp, gtkBoxPackStart, object = g)
+window <- gtkWindow(); window$setTitle("Radio group example")
+vbox <- gtkVBox(FALSE, 5); window$add(vbox)
+sapply(radiogp, gtkBoxPackStart, object = vbox)
 @ 
 
 We can set and query which button is active:
 <<>>=
-g[[3]]$setActive(TRUE)           
+vbox[[3]]$setActive(TRUE)           
 sapply(radiogp, `[`, "active") 
 @ 
 
@@ -518,9 +518,9 @@ The \code{toggle} signal is emitted when a button is toggled. We need
 to connect a handler to each button:
 <<results=hide>>=
 sapply(radiogp, gSignalConnect, "toggled",     # connect each
-       f = function(w, data) {
-         if(w['active']) # set before callback
-           message("clicked", w$getLabel(),"\n")
+       f = function(button, data) {
+         if(button['active']) # set before callback
+           message("clicked", button$getLabel(),"\n")
        })
 @ 
 \end{example}
@@ -534,10 +534,10 @@ sapply(radiogp, gSignalConnect, "toggled",     # connect each
 radiogp <- gtkRadioButton(label=labels[1])
 btns <- sapply(labels[-1], gtkRadioButtonNewWithLabelFromWidget, 
                group = radiogp)
-w <- gtkWindow()
-w['title'] <- "Radio group example"
-g <- gtkVBox(); w$add(g)
-sapply(rev(radiogp$getGroup()), gtkBoxPackStart, object = g)
+window <- gtkWindow()
+window['title'] <- "Radio group example"
+vbox <- gtkVBox(); window$add(vbox)
+sapply(rev(radiogp$getGroup()), gtkBoxPackStart, object = vbox)
 @ 
 %
 The \method{getGroup}{GtkRadioButton} method returns a list containing
@@ -580,11 +580,11 @@ When the active index changes, the \signal{changed} signal is
 emitted. The handler then needs to retrieve the active index:
 <<gtk-widget-combo-changed>>=
 gSignalConnect(combo, "changed",
-               f = function(w, ...) {
-                 if(w$getActive() < 0) 
+               f = function(button, ...) {
+                 if(button$getActive() < 0) 
                    message("No value selected")
                  else
-                   message("Value is", w$getActiveText())
+                   message("Value is", button$getActiveText())
                })
 @
 
@@ -763,21 +763,21 @@ running computation. This implemented by \class{GtkProgressBar}. A
 text label describes the current operation, and the progress bar
 communicates the fraction completed:
 <<>>=
-w <- gtkWindow(); w$setTitle("Progress bar example")
-pb <- gtkProgressBar()
-w$add(pb)
+window <- gtkWindow(); window$setTitle("Progress bar example")
+progressBar <- gtkProgressBar()
+window$add(progressBar)
 #
-pb$setText("Please be patient...")
+progressBar$setText("Please be patient...")
 for(i in 1:100) {
-  pb$setFraction(i/100)
+  progressBar$setFraction(i/100)
   Sys.sleep(0.05) ## replace with a step in the process
 }
-pb$setText("All done.")
+progressBar$setText("All done.")
 @ 
 
 One can indicate indefinite activity by periodically pulsing the bar:
 <<gtk-widget-progress-pulse>>=
-pb$pulse()
+progressBar$pulse()
 @ 
 
 \subsection{Spinners}
@@ -872,9 +872,9 @@ only use the \qcode{text} target in this example.
 We construct a button and call \function{gtkDragSourceSet} to instruct
 it to act as a drag source:
 <<results=hide>>=
-w <- gtkWindow(); w['title'] <- "Drag Source"
+window <- gtkWindow(); window['title'] <- "Drag Source"
 dragSourceWidget <-  gtkButton("Text to drag")
-w$add(dragSourceWidget)
+window$add(dragSourceWidget)
 
 gtkDragSourceSet(dragSourceWidget,
        start.button.mask=c("button1-mask", "button3-mask"),
@@ -908,9 +908,9 @@ was moved away.
 In a separate window from the drag source button, we construct another
 button and call \function{gtkDragDestSet} to mark it as a drag target:
 <<results=hide>>=
-w <- gtkWindow(); w['title'] <- "Drop Target"
+window <- gtkWindow(); window['title'] <- "Drop Target"
 dropTargetWidget <- gtkButton("Drop here")
-w$add(dropTargetWidget)
+window$add(dropTargetWidget)
 
 gtkDragDestSet(dropTargetWidget,
                flags="all", 

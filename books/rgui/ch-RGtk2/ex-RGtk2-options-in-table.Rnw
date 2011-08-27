@@ -19,13 +19,13 @@ For this example we collect values for arguments to the
 \function{title} function. We first create a data frame with the
 argument name and default value, along with some additional values:
 <<>>=
-opts <- c("main","sub","xlab","ylab", "line","outer")
-df <- data.frame(option=opts,
-           value=c("","","","","0","FALSE"),
-           class=c(rep("character", 4), "integer", "logical"),
-           edit_color=rep("gray95", 6),
+opts <- c("main", "sub", "xlab", "ylab", "line", "outer")
+df <- data.frame(option = opts,
+           value = c("", "", "", "", "0", "FALSE"),
+           class = c(rep("character", 4), "integer", "logical"),
+           edit_color = rep("gray95", 6),
            dirty = rep(FALSE, 6),
-           stringsAsFactors=FALSE)
+           stringsAsFactors = FALSE)
 @ 
 %
 Unfortunately, we need to coerce the default values to character, in
@@ -36,15 +36,15 @@ order to store them in a single column. We preserve the class in the
 
 Now we create our model and configure the first column:
 <<model, results=hide>>=
-m <- rGtkDataFrame(df)
-v <- gtkTreeView(m)
+model <- rGtkDataFrame(df)
+view <- gtkTreeView(model)
 ##
-cr <- gtkCellRendererText()
-cr['background'] <- 'gray80'
-v$insertColumnWithAttributes(position=-1,
-                             title="Option",
-                             cell=cr,
-                             text=1 - 1)
+cell_renderer <- gtkCellRendererText()
+cell_renderer['background'] <- 'gray80'
+view$insertColumnWithAttributes(position = -1,
+                                title = "Option",
+                                cell = cell_renderer,
+                                text = 1 - 1)
 @ 
 %
 The first column has a special background color which we specify
@@ -53,14 +53,14 @@ The second column is editable and has a background color that is
 state dependent and indicates if a cell has been edited (The
 \code{xlab} column in Figure~\ref{fig:RGtk2-option-editor}):
 <<secondColumn, results=hide>>=
-cr <- gtkCellRendererText()
-cr['editable'] <- TRUE
-v$insertColumnWithAttributes(position = -1,
-                             title = "Value",
-                             cell = cr,
-                             text = 2 - 1,
-                             background = 4 - 1
-                             )
+cell_renderer <- gtkCellRendererText()
+cell_renderer['editable'] <- TRUE
+view$insertColumnWithAttributes(position = -1,
+                                title = "Value",
+                                cell = cr,
+                                text = 2 - 1,
+                                background = 4 - 1
+                                )
 @ 
 
 To attach the view to the model, we connect the cell renderer to the
@@ -68,25 +68,26 @@ To attach the view to the model, we connect the cell renderer to the
 the text and then set the background color and \code{dirty} flag of the
 entry. The latter allows one to easily find the values which were edited.
 <<editConnect>>=
-gSignalConnect(cr, "edited", function(cr, path, new.text, 
-                                      user.data) {
-  m <- user.data$model
-  i <- as.numeric(path) + 1; j <- user.data$column
-  m[i,j] <- as(as(new.text, m[i, 'class']), "character")   
-  m[i, 'dirty'] <- TRUE                     # mark dirty
-  m[i, 'edit_color'] <- 'gray70'            # change color
-}, data=list(model=m, column=2))
+gSignalConnect(cell_renderer, "edited", 
+               function(cell_renderer, path, new.text, user.data) 
+               {
+                 model <- user.data$model
+                 i <- as.numeric(path) + 1; j <- user.data$column
+                 model[i,j] <- as(as(new.text, m[i, 'class']), "character")   
+                 model[i, 'dirty'] <- TRUE                     # mark dirty
+                 model[i, 'edit_color'] <- 'gray70'            # change color
+               }, data=list(model=model, column=2))
 @  
 
 A simple window displays our GUI.
 <<>>=
-w <- gtkWindow(show=FALSE)
-w['title'] <- "Option editor"
-w$setSizeRequest(300,500)
-sw <- gtkScrolledWindow()
-w$add(sw)
-sw$add(v)
-w$show()
+window <- gtkWindow(show=FALSE)
+window['title'] <- "Option editor"
+window$setSizeRequest(300,500)
+scrolled_window <- gtkScrolledWindow()
+window$add(scrolled_window)
+scrolled_window$add(view)
+window$show()
 @ 
 
 Implementing this into a GUI requires writing a function to map the
@@ -124,14 +125,14 @@ a tree view, as each cell should get a different tip.  To add tooltips
 to the tree view we first indicate that we want tooltips, then connect
 to the \signal{query-tooltip} signal to implement the tooltip:
 <<>>=
-v["has-tooltip"] <- TRUE
-gSignalConnect(v, "query-tooltip", 
-       function(w, x, y, key_mode, tooltip, user.data) {
-         out <- w$getTooltipContext(x, y, key_mode)
+view["has-tooltip"] <- TRUE
+gSignalConnect(view, "query-tooltip", 
+       function(view, x, y, key_mode, tooltip, user.data) {
+         out <- view$getTooltipContext(x, y, key_mode)
          if(out$retval) {
-           m <- w$getModel()
+           model <- w$getModel()
            i <- as.numeric(out$path$toString()) + 1
-           val <- m[i, "option"]
+           val <- model[i, "option"]
            txt <- descs[[val]]$desc
            txt <- gsub("code>","b>", txt)  # no code in Pango
            tooltip$setMarkup(txt)

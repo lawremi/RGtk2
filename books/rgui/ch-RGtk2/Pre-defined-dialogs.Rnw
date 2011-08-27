@@ -19,14 +19,14 @@ application of a dialog. \GTK\/ provides the
 \class{GtkDialog} for creating a message dialog showing a primary and
 secondary message.  We construct one presently:
 <<>>=
-w <- gtkWindow(); w['title'] <- "Parent window"
+window <- gtkWindow(); window['title'] <- "Parent window"
 #
-dlg <- gtkMessageDialog(parent=w, 
-                        flags="destroy-with-parent",
-                        type="question", 
-                        buttons="ok",
-                        "My message")
-dlg['secondary-text'] <- "A secondary message"
+dialog <- gtkMessageDialog(parent=w, 
+                           flags="destroy-with-parent",
+                           type="question", 
+                           buttons="ok",
+                           "My message")
+dialog['secondary-text'] <- "A secondary message"
 @ 
 %
 
@@ -47,15 +47,15 @@ Dialogs are optionally modal. Below, we enable modality by calling the
 \method{run}{GtkDialog} method, which will additionally block the \R\/
 session:
 <<>>=
-response <- dlg$run()
+response <- dialog$run()
 if(response == GtkResponseType["cancel"] || # for other buttons
    response == GtkResponseType["close"] ||
    response == GtkResponseType["delete-event"]) {
   ## pass
 } else if(response == GtkResponseType["ok"]) {
-  print("Ok")
+  message("Ok")
 }
-dlg$Destroy()
+dialog$destroy()
 @ 
 %
 The return value can then be inspected for the action, such as what
@@ -76,11 +76,11 @@ contains a set of response buttons, such as \kbd{Ok}, \kbd{Yes},
 \kbd{No} and \kbd{Cancel}.  In this example, we will create a simple
 dialog showing a label and text entry:
 <<>>=
-dlg <- gtkDialogNewWithButtons(title="Enter a value", 
-                       parent=NULL, flags=0,
+dialog <- gtkDialogNewWithButtons(title = "Enter a value", 
+                       parent = NULL, flags = 0,
                        "gtk-ok", GtkResponseType["ok"],
                        "gtk-cancel", GtkResponseType["cancel"],
-                       show=FALSE)
+                       show = FALSE)
 @ 
 %
 Buttons are added with a label and a response id, and their order is
@@ -95,15 +95,15 @@ The dialog has a content area, which is an instance of
 \class{GtkVBox}. To complete our dialog, we place a labeled text entry
 into the content area:
 <<OurDialogsLayout>>=
-hb <- gtkHBox()
-hb['spacing'] <- 10
+hbox <- gtkHBox()
+hbox['spacing'] <- 10
 #
-hb$packStart(gtkLabel("Enter a value:"))
+hbox$packStart(gtkLabel("Enter a value:"))
 entry <- gtkEntry()
-hb$packStart(entry)
+hbox$packStart(entry)
 #
-vb <- dlg$getContentArea()
-vb$packStart(hb)
+vbox <- dialog$getContentArea()
+vbox$packStart(hbox)
 @
 %
 The content is placed above the button box, with a separator between them.
@@ -114,14 +114,14 @@ call \method{run}{GtkDialog} but connect to the \code{response} signal
 of the modal dialog. The response code of the clicked button is passed
 to the callback:
 <<connectResponse>>=
-ID <- gSignalConnect(dlg, "response", 
-                     f=function(dlg, resp, user.data) {
-                       if(resp == GtkResponseType["ok"])
-                         print(entry$getText()) # Replace this
-                       dlg$Destroy()
-                     })
-dlg$showAll()
-dlg$setModal(TRUE)
+gSignalConnect(dialog, "response", 
+               f=function(dialog, response, user.data) {
+                 if(response == GtkResponseType["ok"])
+                   print(entry$getText()) # Replace this
+                 dialog$Destroy()
+               })
+dialog$showAll()
+dialog$setModal(TRUE)
 @
 
 \subsection{File chooser}
@@ -140,11 +140,11 @@ displays a file path and launches the dialog when clicked.
   Here, we demonstrate the use of the dialog, the most commonly used
   of the three.  An open file dialog can be created with:
 <<openFileDialog>>=
-dlg <- gtkFileChooserDialog(title="Open a file", 
-                     parent=NULL, action="open",
+dialog <- gtkFileChooserDialog(title = "Open a file", 
+                     parent = NULL, action = "open",
                      "gtk-ok", GtkResponseType["ok"],
                      "gtk-cancel", GtkResponseType["cancel"],
-                     show=FALSE)
+                     show = FALSE)
 @ 
   % 
   The dialog constructor allows one to specify a title, a parent and an
@@ -155,13 +155,14 @@ dlg <- gtkFileChooserDialog(title="Open a file",
 
   We connect to the \signal{response} signal
 <<results=hide>>=
-gSignalConnect(dlg, "response", f=function(dlg, resp, data) {
-  if(resp == GtkResponseType["ok"]) {
-    filename <- dlg$getFilename()
-    print(filename)
-  }
-  dlg$destroy()
-})
+gSignalConnect(dialog, "response", 
+               f = function(dialog, response, data) {
+                 if(response == GtkResponseType["ok"]) {
+                   filename <- dialog$getFilename()
+                   print(filename)
+                 }
+                 dialog$destroy()
+               })
 @
   % 
   The file selected is returned by
@@ -176,7 +177,7 @@ fileFilter <- gtkFileFilter()
 fileFilter$setName("R files")
 fileFilter$addPattern("*.R")
 fileFilter$addPattern("*.Rdata")
-dlg$addFilter(fileFilter)
+dialog$addFilter(fileFilter)
 @ 
   % 
   The \constructor{gtkFileFilter} function constructs a filter, which is

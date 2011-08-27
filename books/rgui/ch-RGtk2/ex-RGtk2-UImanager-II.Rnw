@@ -96,21 +96,21 @@ fun <- function(...) {}
 To define the actions, we can use lists. This list defines
 the file menu:
 <<>>=
-fileL <- list(## name, ID, label, accelerator, tooltip, callback
-           list("File",NULL,"_File",NULL,NULL,NULL),
-           list("Save", "gtk-save", "Save", "<ctrl>S", 
-                "Save data to variable", fun),
-           list("SaveAs", "gtk-save", "Save as...", NULL, 
-                "Save data to variable", fun),
-           list("Export", NULL, "Export", NULL, NULL, NULL),
-           list("ExportToCSV", "gtk-export", "Export to CSV", 
-                NULL, "Save data to CSV file", fun),
-           list("ExportToSaveFile", "gtk-export", 
-                "Export to save file", NULL, 
-                "Save data to save() file", fun),
-           list("CloseWindow", "gtk-close", "Close window", 
-                "<ctrl>W", "Close current window", fun)
-           )
+file_list <- list(## name, ID, label, accelerator, tooltip, callback
+                  list("File",NULL,"_File",NULL,NULL,NULL),
+                  list("Save", "gtk-save", "Save", "<ctrl>S", 
+                       "Save data to variable", fun),
+                  list("SaveAs", "gtk-save", "Save as...", NULL, 
+                       "Save data to variable", fun),
+                  list("Export", NULL, "Export", NULL, NULL, NULL),
+                  list("ExportToCSV", "gtk-export", "Export to CSV", 
+                       NULL, "Save data to CSV file", fun),
+                  list("ExportToSaveFile", "gtk-export", 
+                       "Export to save file", NULL, 
+                       "Save data to save() file", fun),
+                  list("CloseWindow", "gtk-close", "Close window", 
+                       "<ctrl>W", "Close current window", fun)
+                  )
 @ 
 % 
 Each item contains $6$ pieces of information: a name (which we use in
@@ -120,13 +120,13 @@ action is invoked.
 
 We can add these items to an action group, along the lines of
 <<addActionGroup, results=hide>>=
-ag <- gtkActionGroup("FileGroup")
-ag$addActions(fileL)
+action_group <- gtkActionGroup("FileGroup")
+action_group$addActions(file_list)
 @ 
 
 We can then insert the action group into the UI manager:
 <<>>=
-uimanager$insertActionGroup(ag, 0)
+uimanager$insertActionGroup(action_group, 0)
 @
 %
 The position (\code{0}) is used to determine which action will be
@@ -139,10 +139,10 @@ create widgets which we can retrieve through its
 \method{getWidget}{GtkUIManager} method. The following code sketches
 the layout of the GUI:
 <<GUILayout, eval=FALSE>>=
-w <- gtkWindow(show=FALSE)
+window <- gtkWindow(show = FALSE)
 ##
 vbox <- gtkVBox()
-w$add(vbox)
+window$add(vbox)
 ##
 menubar <- uimanager$getWidget("/menubar")
 vbox$packStart(menubar, FALSE)
@@ -166,7 +166,7 @@ the root element, and may be omitted from the path.
 Finally, to connect the UI manager to the window, we add the keyboard
 accelerator group:
 <<eval=FALSE>>=
-w$addAccelGroup(uimanager$getAccelGroup())
+window$addAccelGroup(uimanager$getAccelGroup())
 @ 
 
 Figure~\ref{fig:RGtk2-editable-dataframe} shows an illustration of the
@@ -189,7 +189,7 @@ For our implementation of the undo/redo stack, we use a reference
 class with fields:
 <<>>=
 Command <- setRefClass("Command",
-                       fields=list(
+                       fields = list(
                          receiver="ANY",
                          meth="character",
                          params="list",
@@ -204,14 +204,14 @@ function. The \code{meth} property is the name of the method, and
 methods:
 <<>>=
 Command$methods(
-                initialize=function(receiver, meth, ...) {
-                  l <- list(...)
-                  initFields(receiver=receiver, meth=meth, 
-                             params=l, old_params=l)
+                initialize = function(receiver, meth, ...) {
+                  params <- list(...)
+                  initFields(receiver = receiver, meth = meth, 
+                             params = params, old_params = params)
                   callSuper()
                 },
-                execute=function(args) {
-                  do.call(call_meth(meth, receiver), args)
+                execute = function(params) {
+                  do.call(call_meth(meth, receiver), params)
                 })
 @
 %
@@ -221,11 +221,11 @@ than use those in the property \code{params}. This allows us to implement the
 \meth{do} and \meth{undo} methods in a similar manner:
 <<>>=
 Command$methods(
-                do=function() {
+                do = function() {
                   out <- execute(params)
                   old_params$value <<- out
                 },
-                undo=function() execute(old_params)
+                undo = function() execute(old_params)
                 )
 
 @                             
@@ -243,7 +243,7 @@ set_x <- function(value) {
   x <<- value
   old
 }
-cmd <- Command$new(.GlobalEnv, "set_x", value=2)
+cmd <- Command$new(.GlobalEnv, "set_x", value = 2)
 cmd$do(); x
 @ 
 <<results=hide>>=
@@ -261,7 +261,7 @@ appropriate command in the stack.
 The first command we add to the stack is the setting of a column name
 on a data frame:
 <<typicalAction, eval=FALSE>>=
-cmd <- Command$new(df_model, "set_col_name", j=j, value=value)
+cmd <- Command$new(df_model, "set_col_name", j = j, value = value)
 command_stack$add(cmd)
 @ 
 %
@@ -279,13 +279,13 @@ The data frame model (defined in our reference class \class{DfModel}) is a wrapp
 above is implemented by:
 <<col_name_methods, eval=FALSE>>=
 DfModel$methods(
-                get_col_name=function(j) varnames[j,1],
-                get_col_names=function() varnames[ ,1],
-                set_col_name=function(j, value) {
+                get_col_name = function(j) varnames[j,1],
+                get_col_names = function() varnames[ ,1],
+                set_col_name = function(j, value) {
                   "Set name, return old"
-                  old <- get_col_name(j)
+                  old_col_name <- get_col_name(j)
                   varnames[j,1] <<- value
-                  old
+                  old_col_name
                 })
 @
 %%

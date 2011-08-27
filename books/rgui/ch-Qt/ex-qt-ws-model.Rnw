@@ -14,7 +14,7 @@ library(qtbase)
 Our basic model subclasses \class{QObject}, not \class{QWidget}, as it
 has no graphical representation -- a job left for its views:
 <<results=hide>>=
-qsetClass("WSWatcher", Qt$QObject, function(parent=NULL) {
+qsetClass("WSWatcher", Qt$QObject, function(parent = NULL) {
   super(parent)
   updateVariables()
 })
@@ -44,7 +44,7 @@ We then pass this signal name to the
 \property{objects}{WSWatcher} property, so that assignment will emit the
 signal:
 <<results=hide>>=
-qsetProperty("objects", WSWatcher, notify="objectsChanged")
+qsetProperty("objects", WSWatcher, notify = "objectsChanged")
 @ 
 
 To monitor changes, we keep track of the digest values and names of the old objects:
@@ -60,7 +60,7 @@ are differences, we update the objects, which in turn signals a
 change.
 <<update_variables, results=hide>>=
 qsetMethod("updateVariables", WSWatcher, function() {
-  x <- sort(ls(envir=.GlobalEnv))
+  x <- sort(ls(envir = .GlobalEnv))
   objs <- sapply(mget(x, .GlobalEnv), digest)
 
   if((length(objs) != length(digests)) ||
@@ -95,9 +95,9 @@ Finally, we arrange to call our update function as needed. If the
 workspace size is modest, using a \iprogram{task callback}task callback is a reasonable
 strategy:
 <<addTaskCallback, results=hide>>=
-m <- WSWatcher()                          # an instance
+watcher <- WSWatcher()                          # an instance
 addTaskCallback(function(expr, value, ok, visible) {
-  m$updateVariables()
+  watcher$updateVariables()
   TRUE
 })
 @ 
@@ -107,7 +107,7 @@ Another alternative would be to use a \iprogram{timers}timer to call the
 <<eval=FALSE>>=
 timer <- Qt$QTimer()
 timer$setSingleShot(FALSE)              # or TRUE for run once
-qconnect(timer, "timeout", function() m$updateVariables())
+qconnect(timer, "timeout", function() watcher$updateVariables())
 timer$start(as.integer(3*1000))         # 3 seconds
 @ 
 
@@ -115,7 +115,7 @@ To illustrate, we connect a handler to the \signal{objectsChanged}
 signal and expect the handler to be invoked when we create a
 \code{new\_object} in the workspace:
 <<connectSignal, results=hide>>=
-qconnect(m, "objectsChanged", function() 
+qconnect(watcher, "objectsChanged", function() 
          message("workspace objects were updated"))
 new_object <- "The change should be announced"
 @ 

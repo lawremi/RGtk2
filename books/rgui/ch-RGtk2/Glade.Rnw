@@ -13,19 +13,18 @@ location.
 We will assume that the reader has saved an interface as a
 \class{GtkBuilder} XML file named \code{buildable.xml} and is ready to
 load it with \pkg{RGtk2}:
-%% JV XXX no constructor? (un eval=FALSE the next 3)
-<<eval=FALSE>>=
-g <- gtkBuildableNew()
-g$addFromFile("buildable.xml")
+<<>>=
+builder <- gtkBuilder()
+builder$addFromFile("buildable.xml")
 @ 
 
 The \method{getObject}{GtkBuilder} extracts a widget by its ID, which
 is specified by the user through \pkg{Glade}. It normally
 suffices to load the top-level widget, named \code{dialog1} in this
 example, and show it:
-<<eval=FALSE>>=
-d <- g$getObject("dialog1")
-d$showAll()
+<<>>=
+dialog1 <- builder$getObject("dialog1")
+dialog1$showAll()
 @
 
 In order to add behaviors to the GUI, we need to register R functions
@@ -37,11 +36,11 @@ to the appropriate signals. Let us assume that the user has named the
 \signal{clicked} signal on a \class{GtkButton}. The
 \method{connectSignals}{GtkBuilder} method will establish that
 connection and any others in the interface:
-<<eval=FALSE>>=
-ok_button_clicked <- function(w, userData) {
-  print("hello world")
+<<>>=
+ok_button_clicked <- function(button, userData) {
+  message("hello world")
 }
-g$connectSignals()
+builder$connectSignals()
 @
 % 
 The GUI should now be ready for use.

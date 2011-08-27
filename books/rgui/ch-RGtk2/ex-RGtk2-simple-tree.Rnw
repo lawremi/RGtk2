@@ -8,16 +8,16 @@ model by \code{tstore} below.
 <<notShown, echo=FALSE>>=
 ## define tstore, but aslo in earlier example so not shown
 data(Cars93, package="MASS")
-tstore <- gtkTreeStore("gchararray")
+model <- gtkTreeStore("gchararray")
 Manufacturers <- Cars93$Manufacturer
 Makes <- split(Cars93[,"Model"], Manufacturers)
 for(i in unique(Manufacturers)) {
-  piter <- tstore$append()              # parent
-  tstore$setValue(piter$iter, column=0, value=i)
+  piter <- model$append()              # parent
+  model$setValue(piter$iter, column=0, value=i)
   for(j in Makes[[i]]) { 
-    sibiter <- tstore$append(parent=piter$iter) # child
+    sibiter <- model$append(parent=piter$iter) # child
     if(is.null(sibiter$retval)) 
-      tstore$setValue(sibiter$iter,column=0, value=j)
+      model$setValue(sibiter$iter,column=0, value=j)
   }
 }
 @ 
@@ -27,7 +27,7 @@ Creating a basic view is similar to that for rectangular data already presented:
 view <- gtkTreeView()
 view$insertColumnWithAttributes(0, "Make", 
            gtkCellRendererText(), text = 0)
-view$setModel(tstore)
+view$setModel(model)
 @ 
 
 <<makeGUI, echo=FALSE>>=
@@ -43,6 +43,6 @@ To demonstrate that \class{GtkTreeView} supports both hierarchical and
 flat tabular models, we will create an analogous \class{RGtkDataFrame}
 and set it on the view:
 <<>>=
-store <- rGtkDataFrame(Cars93[,"Model", drop=FALSE])
-view$setModel(store)
+model <- rGtkDataFrame(Cars93[,"Model", drop=FALSE])
+view$setModel(model)
 @

@@ -32,10 +32,11 @@ Our basic constructor simply assigns to a \prop{dataframe} property the
 data frame passed to it.
 <<DfModel, results=hide>>=
 qsetClass("DfModel", Qt$QAbstractTableModel, 
-          function(dataframe=data.frame(V1=character(0)), 
-                   parent=NULL) {
+          function(df = data.frame(V1 = character(0)), 
+                   parent = NULL) 
+          {
             super(parent)
-            this$dataframe <- dataframe
+            this$df <- df
           })
 @ 
 
@@ -43,8 +44,8 @@ Here we configure the \prop{dataframe} property, implementing a
 \meth{write} method so that assigning to this property will call the
 \meth{dataChanged} method to notify any views of a change:
 <<results=hide>>=
-qsetProperty("dataframe", DfModel, write = function(df) {
-  this$.dataframe <- df
+qsetProperty("df", DfModel, write = function(df) {
+  this$.df <- df
   dataChanged(index(0, 0), index(nrow(df), ncol(df)))
 })
 @ 
@@ -54,9 +55,9 @@ As mentioned, there are three virtual methods required by the interface:
 delegate down to \function{nrow} and \function{ncol}:
 <<results=hide>>=
 qsetMethod("rowCount", DfModel, 
-           function(index) nrow(this$dataframe) + 1)
+           function(index) nrow(this$df) + 1)
 qsetMethod("columnCount", DfModel, 
-           function(index) ncol(this$dataframe))
+           function(index) ncol(this$df))
 @ 
 
 The \meth{data} method is then the main method to implement. Here we
@@ -128,20 +129,19 @@ Our \meth{data} method has this basic structure (we avoid showing the
 cases for all the different roles):
 <<eval=FALSE>>=
 qsetMethod("data", DfModel, function(index, role) {
-  d <- dataframe
   row <- index$row()
   col <- index$column() + 1
 
   if(role == Qt$Qt$DisplayRole) {
     if(row > 0)
-      displayRole(d[,col], row)
+      displayRole(df[,col], row)
     else
-      names(d)[col]
+      names(df)[col]
   } else if(role == Qt$Qt$EditRole) {
     if(row > 0)
-      as.character(d[row, col])
+      as.character(df[row, col])
     else
-      names(d)[col]
+      names(df)[col]
   } else {
     NULL
   }
@@ -151,29 +151,28 @@ qsetMethod("data", DfModel, function(index, role) {
 <<data,echo=FALSE, results=hide>>=
 ## this is not shown in text, but is the definition of the data method
 qsetMethod("data", DfModel, function(index, role) {
-  d <- dataframe
   row <- index$row()
   col <- index$column() + 1
 
   
   if(role == Qt$Qt$DisplayRole) {
     if(row > 0)
-      displayRole(d[,col], row)
+      displayRole(df[,col], row)
     else
-      names(d)[col]
+      names(df)[col]
   } else if(role == Qt$Qt$EditRole) {
     if(row > 0)
-      as.character(d[row, col])
+      as.character(df[row, col])
     else
-      names(d)[col]
+      names(df)[col]
   } else if(role == Qt$Qt$TextAlignmentRole) {
     if(row > 0)
-      textAlignmentRole(d[, col], row)
+      textAlignmentRole(df[, col], row)
     else
       Qt$Qt$AlignCenter | Qt$Qt$AlignTop
   } else if(role == Qt$Qt$BackgroundRole) {
     if(row > 0)
-      backgroundRole(d[, col], row)
+      backgroundRole(df[, col], row)
     else
       Qt$QBrush(Qt$QColor("gray"))
   } else if(role == Qt$Qt$ForegroundRole) {
@@ -181,17 +180,17 @@ qsetMethod("data", DfModel, function(index, role) {
       Qt$QBrush(Qt$QColor("white"))
   } else if(role == Qt$Qt$ToolTipRole) {
     if(row > 0)
-      toolTipRole(d[,col], row)
+      toolTipRole(df[,col], row)
     else
       ""
   } else if(role == Qt$Qt$WhatsThisRole) {
     if(row > 0)
-      whatsThisRole(d[,col], row)
+      whatsThisRole(df[,col], row)
     else
       ""
   } else if(role == Qt$Qt$SizeHintRole) {
     if(row > 0)
-      sizeHintRole(d[,col], row)
+      sizeHintRole(df[,col], row)
     else
       NULL
   } else {
@@ -208,8 +207,8 @@ qsetMethod("flags", DfModel, function(index) {
   if(!index$isValid()) {
     return(Qt$Qt$ItemIsEnabled)
   } else {
-    curFlags <- super("flags", index)
-    return(curFlags | Qt$Qt$ItemIsEditable)
+    current_flags <- super("flags", index)
+    return(current_flags | Qt$Qt$ItemIsEditable)
   }
 })
 @ 
@@ -242,17 +241,17 @@ delegate and assigning it into the model:
 <<results=hide>>=
 qsetMethod("setData", DfModel, function(index, value, role) {
   if(index$isValid() && role == Qt$Qt$EditRole) {
-    d <- this$dataframe
+    df <- this$df
     row <- index$row()
     col <- index$column() + 1
 
     if(row > 0) {
-      x <- d[, col]
-      d[row, col] <- fitIn(x, value)
+      x <- df[, col]
+      df[row, col] <- fitIn(x, value)
     } else {
-      names(d)[col] <- value
+      names(df)[col] <- value
     }
-    this$dataframe <- d
+    this$df <- df
     dataChanged(index, index)
 
     return(TRUE)
@@ -268,14 +267,15 @@ column of values:
 <<results=hide>>=
 qsetMethod("setColumn", DfModel, function(col, value) {
   ## pad with NA if needed
-  n <- nrow(this$dataframe)
+  n <- nrow(this$df)
   if(length(value) < n)
     value <- c(value, rep(NA, n - length(value)))
   value <- value[1:n]
-  d <- this$dataframe
-  d[,col] <- value
-  this$dataframe <- d          # only notify about this column
-  dataChanged(index(0, col-1), index(rowCount()-1, col-1))
+  df <- this$df
+  df[,col] <- value
+  this$df <- df         # only notify about this column
+  dataChanged(index(0, col - 1), 
+              index(rowCount() - 1, col - 1))
   return(TRUE)
 })
 @ 
@@ -285,14 +285,14 @@ specific to our task. Since we may add a new column, we call the
 "begin" and "end" methods to notify any views.
 <<addColumn, results=hide>>=
 qsetMethod("addColumn", DfModel, function(name, value) {
-  d <- this$dataframe
-  if(name %in% names(d)) {
-    return(setColumn(min(which(name == names(d))), value))
+  df <- this$df
+  if(name %in% names(df)) {
+    return(setColumn(min(which(name == names(df))), value))
   }  
   beginInsertColumns(Qt$QModelIndex(),
                      columnCount(), columnCount())
-  d[[name]] <- value
-  this$dataframe <- d
+  df[[name]] <- value
+  this$df <- df
   endInsertColumns()
   return(TRUE)
 })
@@ -309,10 +309,10 @@ view$setModel(model)
 Finally, we customize the view by defining the edit triggers and
 hiding the row and column headers:
 <<customizeView,results=hide>>=
-triggerFlag <- Qt$QAbstractItemView$DoubleClicked | 
-               Qt$QAbstractItemView$SelectedClicked |
-               Qt$QAbstractItemView$EditKeyPressed
-view$setEditTriggers(triggerFlag)
+trigger_flag <- Qt$QAbstractItemView$DoubleClicked | 
+                Qt$QAbstractItemView$SelectedClicked |
+                Qt$QAbstractItemView$EditKeyPressed
+view$setEditTriggers(trigger_flag)
 view$verticalHeader()$setHidden(TRUE)
 view$horizontalHeader()$setHidden(TRUE)
 @ 

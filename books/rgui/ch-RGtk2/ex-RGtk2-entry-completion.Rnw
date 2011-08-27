@@ -16,8 +16,8 @@ taking a convenient list of names for our example.  We set the model
 and text column index on the completion object and then set some
 properties to customize how the completion is handled:
 <<SetCompletion>>=
-store <- rGtkDataFrame(state.name)
-completion$setModel(store)
+model <- rGtkDataFrame(state.name)
+completion$setModel(model)
 completion$setTextColumn(0)
 completion['inline-completion'] <- TRUE
 completion['popup-single-match'] <- FALSE
@@ -26,12 +26,11 @@ completion['popup-single-match'] <- FALSE
 We wish for the text search to match against any part of a string, not
 only the beginning, so we define our own match function:
 <<SetMatchFunc, results=hide>>=
-matchAnywhere <- function(comp, str, iter, user.data) {
-  model <- comp$getModel()
-  rowVal <- model$getValue(iter, 0)$value # column 0 in model
-  
-  str <- comp$getEntry()$getText()      # case sensitive
-  grepl(str, rowVal)
+matchAnywhere <- function(completion, key, iter, user.data) {
+  model <- completion$getModel()
+  row_value <- model$getValue(iter, 0)$value
+  key <- comp$getEntry()$getText() # for case sensitivity
+  grepl(str, row_value)
 }
 completion$setMatchFunc(matchAnywhere)
 @ 

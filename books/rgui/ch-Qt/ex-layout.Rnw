@@ -20,10 +20,10 @@ First, we need a widget as the top-level container. We assign a grid
 layout to the window for arranging the main components of the
 application:
 <<results=hide>>=
-w <- Qt$QWidget()
-w$setWindowTitle("Layout example")
-gridLayout <- Qt$QGridLayout()
-w$setLayout(gridLayout)
+window <- Qt$QWidget()
+window$setWindowTitle("Layout example")
+grid_layout <- Qt$QGridLayout()
+window$setLayout(grid_layout)
 @ 
 %
 
@@ -31,17 +31,17 @@ There are three objects managed by the grid layout: a table (we use a
 label as a placeholder), a notebook, and a horizontal box layout for
 some buttons. We construct them with:
 <<mainComponents, results=hide>>=
-tableWidget <- Qt$QLabel("Table widget") 
-nbWidget <- Qt$QTabWidget()
-buttonLayout <- Qt$QHBoxLayout()
+fake_table <- Qt$QLabel("Table widget") 
+notebook <- Qt$QTabWidget()
+button_layout <- Qt$QHBoxLayout()
 @ 
 %
 Then add them to the grid layout:
 <<qt-layout-ex-add, results=hide>>=
-gridLayout$addWidget(tableWidget, row=0, column=0, 
+grid_layout$addWidget(fake_table, row=0, column=0, 
                      rowspan=1, colspan=1)
-gridLayout$addWidget(nbWidget, 0, 1)
-gridLayout$addLayout(buttonLayout, 1, 1)
+grid_layout$addWidget(notebook, 0, 1)
+grid_layout$addLayout(button_layout, 1, 1)
 @ 
 
 %% resizing?
@@ -51,12 +51,12 @@ pixels of space between the last two.
 <<layoutButtons, results=hide>>=
 b <- sapply(c("OK", "Cancel", "Help"), 
             function(i) Qt$QPushButton(i))
-buttonLayout$setDirection(Qt$QBoxLayout$RightToLeft) 
-buttonLayout$addStretch(1L)             # stretch
-buttonLayout$addWidget(b$OK)
-buttonLayout$addWidget(b$Cancel)
-buttonLayout$addSpacing(12L)            # spacing
-buttonLayout$addWidget(b$Help)
+button_layout$setDirection(Qt$QBoxLayout$RightToLeft) 
+button_layout$addStretch(1L)             # stretch
+button_layout$addWidget(b$OK)
+button_layout$addWidget(b$Cancel)
+button_layout$addSpacing(12L)            # spacing
+button_layout$addWidget(b$Help)
 @ 
 %
 We added a stretch, which acts much like a spring, to pack our
@@ -65,9 +65,9 @@ pixels is inserted between the ``Cancel'' and ''Help'' buttons.
 
 The notebook widget is constructed next, with a single page:
 <<nbLayout, results=hide>>=
-nbPage <- Qt$QWidget()
-nbWidget$addTab(nbPage, "Tab label")
-nbWidget$setTabToolTip(0, "A notebook page with a form")
+notebook_page <- Qt$QWidget()
+notebook$addTab(notebook_page, "Tab label")
+notebook$setTabToolTip(0, "A notebook page with a form")
 @ 
 
 The form layout allows us to create standardized forms where each row
@@ -76,12 +76,12 @@ using the form layout is more convenient, and allows \Qt{} to style the page
 as appropriate for the underlying operating system. We place a form
 layout in the notebook page and populate it:
 <<nbFormLayout, results=hide>>=
-formLayout <- Qt$QFormLayout()
-nbPage$setLayout(formLayout)
+form_layout <- Qt$QFormLayout()
+notebook_page$setLayout(form_layout)
 l <- sapply(c("name", "rank", "snumber"),  Qt$QLineEdit)
-formLayout$addRow("Name", l$name)
-formLayout$addRow("Rank", l$rank)
-formLayout$addRow("Serial number", l$snumber)
+form_layout$addRow("Name", l$name)
+form_layout$addRow("Rank", l$rank)
+form_layout$addRow("Serial number", l$snumber)
 @ 
 %
 Each \method{addRow}{QFormLayout} call adds a label and an adjacent
@@ -92,6 +92,6 @@ constructed a mock-up of a typical application layout using the box,
 grid and form layout managers.
 
 <<echo=FALSE, results=hide>>=
-w$setMinimumSize(width=500, height=400)
-w$show()
+window$setMinimumSize(width=500, height=400)
+window$show()
 @ 

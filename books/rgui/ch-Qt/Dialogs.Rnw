@@ -71,11 +71,11 @@ may take a more gradual path. Here, we construct an instance of
 \class{QMessageBox}. It is possible to specify several properties at
 construction. The following is how one might construct a warning dialog:
 <<qt-dialogs-construct>>=
-dlg <- Qt$QMessageBox(icon = Qt$QMessageBox$Warning,
-                      title = "Warning!",
-                      text = "Warning text...",
-                      buttons = Qt$QMessageBox$Ok,
-                      parent = NULL)
+dialog <- Qt$QMessageBox(icon = Qt$QMessageBox$Warning,
+                         title = "Warning!",
+                         text = "Warning text...",
+                         buttons = Qt$QMessageBox$Ok,
+                         parent = NULL)
 @ 
 %
 This call introduces the \prop{icon} property, which is a code
@@ -89,8 +89,8 @@ we have the opportunity to specify further properties. Two of the most
 useful are \property{informativeText}{QMessageBox} and
 \property{detailedText}{QMessageBox}:
 <<qt-dialogs-extra-text>>=
-dlg$informativeText <- "Less important warning information"
-dlg$detailedText <- "Extra details most do not care to see"
+dialog$informativeText <- "Less important warning information"
+dialog$detailedText <- "Extra details most do not care to see"
 @ 
 %
 Both provide additional textual information
@@ -104,7 +104,7 @@ approach to showing the dialog depends on whether the dialog should be
 modal. A \igui{modal dialog}modal dialog is displayed with the \method{exec}{QDialog}
 method. 
 <<qt-dialogs-exec>>=
-dlg$exec()                           # returns response code
+dialog$exec()                           # returns response code
 @ 
 As its name implies, \method{exec}{QDialog} executes a loop
 that will block until the user responds. As with the static
@@ -114,8 +114,8 @@ button/response.
 To present a non-modal dialog, we first need to register a response
 listener, as the response will arrive asynchronously:
 <<qt-dialogs-listen, results=hide>>=
-qconnect(dlg, "finished", function(response) {
-  dlg$close()
+qconnect(dialog, "finished", function(response) {
+  dialog$close()
 })
 @ 
 %
@@ -126,9 +126,9 @@ its only argument.
 
 Finally, we show, raise and activate the dialog with:
 <<qt-dialogs-show, results=hide>>=
-dlg$show()
-dlg$raise()
-dlg$activateWindow()
+dialog$show()
+dialog$raise()
+dialog$activateWindow()
 @ 
 %
 
@@ -140,19 +140,19 @@ windows are blocked. To specify the type of modality, call
 
 To summarize, we present a general message box, supporting multiple responses:
 <<QMEssageBoxAPI, results=hide>>=
-dlg <- Qt$QMessageBox()
-dlg$windowTitle <- "[This space for rent]"
-dlg$text <- "This is the main text"
-dlg$informativeText <- "This should give extra info"
-dlg$detailedText <- "And this provides\neven more detail"
+dialog <- Qt$QMessageBox()
+dialog$windowTitle <- "[This space for rent]"
+dialog$text <- "This is the main text"
+dialog$informativeText <- "This should give extra info"
+dialog$detailedText <- "And this provides\neven more detail"
 
-dlg$icon <- Qt$QMessageBox$Critical
-dlg$standardButtons <- Qt$QMessageBox$Cancel | Qt$QMessageBox$Ok
+dialog$icon <- Qt$QMessageBox$Critical
+dialog$standardButtons <- Qt$QMessageBox$Cancel | Qt$QMessageBox$Ok
 
 ## 'Cancel' instead of 'Ok' is the default
-dlg$setDefaultButton(Qt$QMessageBox$Cancel)
+dialog$setDefaultButton(Qt$QMessageBox$Cancel)
 
-if(dlg$exec() == Qt$QMessageBox$Ok) 
+if(dialog$exec() == Qt$QMessageBox$Ok) 
   print("A Ok")
 @ 
 
@@ -202,7 +202,7 @@ input.
 We can also display a dialog for integer input. Here, we ask the user
 for an even integer between 1 and 10:
 <<qt-dialogs-input-get-range>>=
-num <- Qt$QInputDialog$getInt(parent = NULL, 
+even_integer <- Qt$QInputDialog$getInt(parent = NULL, 
                        title="Gather integer",
                        label="Enter an integer from 1 to 10",
                        value=0, min = 2, max = 10, step = 2)
@@ -232,16 +232,16 @@ selecting an item with a list widget instead of a combo box. If such
 control is necessary, we must explicitly construct a dialog instance,
 configure it, execute it and retrieve the selected item.
 <<qt-dialogs-input-explicit, results=hide>>=
-dlg <- Qt$QInputDialog()
-dlg$setWindowTitle("Select item")
-dlg$setLabelText("Select a letter")
-dlg$setComboBoxItems(LETTERS)
-dlg$setTextValue(LETTERS[18])
-dlg$setOptions(Qt$QInputDialog$UseListViewForComboBoxItems)
+dialog <- Qt$QInputDialog()
+dialog$setWindowTitle("Select item")
+dialog$setLabelText("Select a letter")
+dialog$setComboBoxItems(LETTERS)
+dialog$setTextValue(LETTERS[18])
+dialog$setOptions(Qt$QInputDialog$UseListViewForComboBoxItems)
 @ 
 <<>>=
-if (dlg$exec())
-  print(dlg$textValue())
+if (dialog$exec())
+  print(dialog$textValue())
 @ 
 
 \subsection{Button boxes}
@@ -264,7 +264,7 @@ environments. \class{QDialogButtonBox} is a container of buttons that
 arranges its children according to the convention of the platform.  We
 place some standard buttons into a button box:
 <<qt-widgets-buttonbox>>=
-db <- Qt$QDialogButtonBox(Qt$QDialogButtonBox$Ok | 
+button_box <- Qt$QDialogButtonBox(Qt$QDialogButtonBox$Ok | 
                           Qt$QDialogButtonBox$Cancel | 
                           Qt$QDialogButtonBox$Help)
 @ 
@@ -294,14 +294,14 @@ button with the \code{AcceptRole} or \code{YesRole} is clicked;
 or \code{clicked} when any button is clicked. For this last signal,
 the callback is passed the button object.
 <<qt-widgets-buttonbox-signals, results=hide>>=
-qconnect(db, "accepted", function() message("accepted"))
-qconnect(db, "rejected", function() message("rejected"))
-qconnect(db, "helpRequested", function() message("help"))
-qconnect(db, "clicked", function(button) message(button$text))
+qconnect(button_box, "accepted", function() message("accepted"))
+qconnect(button_box, "rejected", function() message("rejected"))
+qconnect(button_box, "helpRequested", function() message("help"))
+qconnect(button_box, "clicked", function(button) message(button$text))
 @ 
 
 <<echo=FALSE, results=hide>>=
-db$show(); db$raise()
+button_box$show(); button_box$raise()
 @ 
 
 The first button added with the \code{AcceptRole} role is made the
@@ -337,18 +337,18 @@ qsetClass("DateDialog", Qt$QDialog,
             setWindowTitle("Choose a date")
             this$calendar <- Qt$QCalendarWidget()
             #
-            buttonBox <- 
+            button_box <- 
               Qt$QDialogButtonBox(Qt$QMessageBox$Cancel | 
                                   Qt$QMessageBox$Ok)
-            qconnect(buttonBox, "accepted", function() {
+            qconnect(button_box, "accepted", function() {
               this$close()
               this$setResult(Qt$QMessageBox$Ok)    
             })
-            qconnect(buttonBox, "rejected", 
+            qconnect(button_box, "rejected", 
                      function() this$close())
             #
             layout <- Qt$QVBoxLayout()
-            sapply(list(calendar, buttonBox), layout$addWidget)
+            sapply(list(calendar, button_box), layout$addWidget)
             setLayout(layout)
           })
 @ 
@@ -366,9 +366,9 @@ qsetMethod("selectedDate", DateDialog,
 
 \class{DateDialog} can be executed like any other \class{QDialog}:
 <<extend-date-exec>>=
-dateDialog <- DateDialog()
-if (dateDialog$exec())
-  message(dateDialog$selectedDate())
+date_dialog <- DateDialog()
+if (date_dialog$exec())
+  message(date_dialog$selectedDate())
 @
 
 \subsection{Wizards}
@@ -393,36 +393,36 @@ wizard$setWindowTitle("A wizard")
 Each page is represented by a \class{QWizardPage}. We create one for
 requesting the age of the user and add the page to the wizard:
 <<results=hide>>=
-getAgePage <- Qt$QWizardPage(wizard)
-getAgePage$setTitle("What is your age?")
-lyt <- Qt$QFormLayout()
-getAgePage$setLayout(lyt)
-lyt$addRow("Age", (age <- Qt$QLineEdit()))
-wizard$addPage(getAgePage)
+get_age_page <- Qt$QWizardPage(wizard)
+get_age_page$setTitle("What is your age?")
+layout <- Qt$QFormLayout()
+get_age_page$setLayout(layout)
+layout$addRow("Age", (age <- Qt$QLineEdit()))
+wizard$addPage(get_age_page)
 @ 
 
 Two more pages are added:
 <<results=hide>>=
-getToysPage <- Qt$QWizardPage(wizard)
-getToysPage$setTitle("What toys do you like?")
-lyt <- Qt$QFormLayout()
-getToysPage$setLayout(lyt)
-lyt$addRow("Toys", (toys <- Qt$QLineEdit()))
-wizard$addPage(getToysPage)
+get_toys_page <- Qt$QWizardPage(wizard)
+get_toys_page$setTitle("What toys do you like?")
+layout <- Qt$QFormLayout()
+get_toys_page$setLayout(layout)
+layout$addRow("Toys", (toys <- Qt$QLineEdit()))
+wizard$addPage(get_toys_page)
 ##
-getGamesPage <- Qt$QWizardPage(wizard)
-getGamesPage$setTitle("What games do you like?")
-lyt <- Qt$QFormLayout()
-getGamesPage$setLayout(lyt)
-lyt$addRow("Games", (games <- Qt$QLineEdit()))
-wizard$addPage(getGamesPage)
+get_games_page <- Qt$QWizardPage(wizard)
+get_games_page$setTitle("What games do you like?")
+layout <- Qt$QFormLayout()
+get_games_page$setLayout(layout)
+layout$addRow("Games", (games <- Qt$QLineEdit()))
+wizard$addPage(get_games_page)
 @ 
 
 Finally, we run the wizard by calling its \method{exec}{QWizard}
 method:
 <<results=hide>>=
-ret <- wizard$exec()
-if(ret)
+response <- wizard$exec()
+if(response)
   message(toys$text)
 @ 
 
@@ -445,31 +445,31 @@ options.  These are \qcode{getOpenFileName}, \qcode{getOpenFileNames},
 \qcode{getExistingDirectory}, and \qcode{getSaveFileName}.  To select
 a file name to open we would have:
 <<QFIleDialog, eval=FALSE>>=
-fname <- Qt$QFileDialog$getOpenFileName(NULL, "Open a file...", 
+filename <- Qt$QFileDialog$getOpenFileName(NULL, "Open a file...", 
                                         getwd())
 @ 
 % 
 All take as initial arguments a parent, a caption and a
 directory. Other arguments allow one to set a filter, say. For basic
 use, these are nearly as easy to use as \R's \function{file.choose} function.
-If a file is selected, \code{fname} will contain the full path to the
+If a file is selected, \code{filename} will contain the full path to the
 file, otherwise it will be \code{NULL}.
 
 To allow multiple selection, call the plural form of the method:
 <<eval=FALSE>>=
-fnames <- Qt$QFileDialog$getOpenFileNames(NULL, 
+filenames <- Qt$QFileDialog$getOpenFileNames(NULL, 
                         "Open file(s)...", getwd())
 @ 
 
 To select a file name for saving, we have
 <<eval=FALSE>>=
-fname <- Qt$QFileDialog$getSaveFileName(NULL,
+filename <- Qt$QFileDialog$getSaveFileName(NULL,
                         "Save as...", getwd())
 @ 
 
 And to choose a directory, 
 <<eval=FALSE>>=
-dname <- Qt$QFileDialog$getExistingDirectory(NULL,
+dirname <- Qt$QFileDialog$getExistingDirectory(NULL,
                         "Select directory", getwd())
 @ 
 
@@ -479,13 +479,13 @@ would match files with extensions \code{ext} or \code{ext2}. Multiple
 filters can be used by separating them with two semicolons. For
 example, this would be a natural filter for \R{} users:
 <<>>=
-nameFilter <- paste("R files (*.R .RData)",
+name_filter <- paste("R files (*.R .RData)",
                     "Sweave files (*.Rnw)",
                     "All files (*.*)", 
                     sep=";;")
 ##
-fnames <- Qt$QFileDialog$getOpenFileNames(NULL, 
-             "Open file(s)...", getwd(), nameFilter)
+filenames <- Qt$QFileDialog$getOpenFileNames(NULL, 
+             "Open file(s)...", getwd(), name_filter)
 @ 
 
 Although the static functions provide most of the functionality, to
@@ -499,20 +499,20 @@ like permissions.
   We construct a dialog for opening an R-related file, using the
   directory name selected above as the history:
 <<echo=FALSE>>=
-dname <- ""
+dirname <- ""
 @   
 <<QFileDialogAPI, results=hide>>=
-dlg <- Qt$QFileDialog(NULL, "Choose an R file", getwd(), 
-                      nameFilter)
-dlg$fileMode <- Qt$QFileDialog$ExistingFiles
-dlg$setHistory(dname)
+dialog <- Qt$QFileDialog(NULL, "Choose an R file", getwd(), 
+                      name_filter)
+dialog$fileMode <- Qt$QFileDialog$ExistingFiles
+dialog$setHistory(dirname)
 @
 % 
   The dialog is executed like any other. To get the specified files,
   call \method{selectedFiles}{QFileDialog}:
 <<eval=FALSE>>=
-if(dlg$exec())
-  print(dlg$selectedFiles())
+if(dialog$exec())
+  print(dialog$selectedFiles())
 @ 
 
 \end{example}

@@ -21,26 +21,26 @@ combo box for choosing a data frame and a list view for the variable
 names. When a data frame is chosen in the combo box, its variables are
 shown in the list:
 <<qt-mvc-dnd-variable-selector, results=hide>>=
-qsetClass("VariableSelector", Qt$QWidget, function(parent=NULL) {
+qsetClass("VariableSelector", Qt$QWidget, function(parent = NULL) {
   super(parent)
   ## widgets
-  this$dfcb <- Qt$QComboBox()
-  this$varList <- Qt$QListView()
-  this$varList$setModel(qdataFrameModel(data.frame(), this, 
-                                        useRoles=TRUE))
-  this$varList$dragEnabled <- TRUE
+  this$df_combo_box <- Qt$QComboBox()
+  this$variable_list <- Qt$QListView()
+  this$variable_list$setModel(qdataFrameModel(data.frame(), this, 
+                                        useRoles = TRUE))
+  this$variable_list$dragEnabled <- TRUE
 
   ## layout
-  lyt <- Qt$QVBoxLayout()
-  lyt$addWidget(dfcb)
-  lyt$addWidget(varList)
-  varList$setSizePolicy(Qt$QSizePolicy$Expanding, 
+  layout <- Qt$QVBoxLayout()
+  layout$addWidget(df_combo_box)
+  layout$addWidget(variable_list)
+  variable_list$setSizePolicy(Qt$QSizePolicy$Expanding, 
                         Qt$QSizePolicy$Expanding)
-  setLayout(lyt)
+  setLayout(layout)
   
   updateDataSets()
-  qconnect(dfcb, "activated(int)", function(ind) {
-    this$dataFrame <- dfcb$currentText
+  qconnect(df_combo_box, "activated(int)", function(ind) {
+    this$dataFrame <- df_combo_box$currentText
   })
 })
 @ 
@@ -50,17 +50,18 @@ This utility populates the combo box with a list of data frames,
 keeping the selected data frame if still valid.
 <<qt-mvc-dnd-update-datasets, results=hide>>=
 qsetMethod("updateDataSets", VariableSelector, function() {
-  curVal <- dfcb$currentText
-  dfcb$clear()
+  current_text <- df_combo_box$currentText
+  df_combo_box$clear()
   dfs <- ProgGUIinR:::avail_dfs(.GlobalEnv)
   if(length(dfs)) {
-    this$dfcb$addItems(dfs)
-    if(is.null(curVal) || !curVal %in% dfs) {
-      this$dfcb$currentIndex <- -1
+    this$df_combo_box$addItems(dfs)
+    if(is.null(current_text) || !current_text %in% dfs) {
+      this$df_combo_box$currentIndex <- -1
       this$dataFrame <- NULL
     } else {
-      this$dfcb$currentIndex <- which(curVal == dfs)
-      this$dataFrame <- curVal
+      this$df_combo_box$currentIndex <- 
+        which(current_text == dfs)
+      this$dataFrame <- current_text
     }
   }
 })
@@ -91,7 +92,7 @@ qsetProperty("dataFrame", VariableSelector,
                else if (is.character(df)) 
                  df <- get(df, .GlobalEnv)
                ##
-               model <- varList$model()
+               model <- variable_list$model()
                icons <- lapply(df, getIcon)
                qdataFrame(model) <- 
                  data.frame(variable=names(df),
@@ -134,13 +135,13 @@ qsetSignal("variableNameDropped", VariableLabel)
 This utility tries to extract a variable name from the MIME data,
 which \class{DataFrameModel} should have serialized appropriately:
 <<qt-mvc-dnd-get-variable-name>>=
-variableNameFromMimeData <- function(md) {
+variableNameFromMimeData <- function(mime_data) {
   name <- NULL
   RDA_MIME_TYPE <- "application/x-rlang-transport"
-  if(md$hasFormat(RDA_MIME_TYPE)) {
-    list <- unserialize(md$data(RDA_MIME_TYPE))
-    if (length(list) && is.character(list[[1]]))
-      name <- list[[1]]
+  if(mime_data$hasFormat(RDA_MIME_TYPE)) {
+    name_list <- unserialize(mime_data$data(RDA_MIME_TYPE))
+    if (length(name_list) && is.character(name_list[[1]]))
+      name <- name_list[[1]]
   }
   name
 }
@@ -151,31 +152,31 @@ To handle the drag events we override the methods
 \event{dropEvent}. The first two simply change the background of the
 label to indicate a valid drop: 
 <<results=hide>>=
-qsetMethod("dragEnterEvent", VariableLabel, function(e) {
-  md <- e$mimeData()
-  if(!is.null(variableNameFromMimeData(md))) {
+qsetMethod("dragEnterEvent", VariableLabel, function(event) {
+  mime_data <- event$mimeData()
+  if(!is.null(variableNameFromMimeData(mime_data))) {
     setForegroundRole(Qt$QPalette$Dark)
-    e$acceptProposedAction()
+    event$acceptProposedAction()
   }
 })
-qsetMethod("dragLeaveEvent", VariableLabel, function(e) {
+qsetMethod("dragLeaveEvent", VariableLabel, function(event) {
   setForegroundRole(Qt$QPalette$WindowText)
-  e$accept()
+  event$accept()
 })
 @ 
 
 To respond to a drop event, we get the variable name, set the text of the
 label and emit the \signal{variableNameDropped}{VariableLabel} signal:
 <<dropEvent, results=hide>>=
-qsetMethod("dropEvent", VariableLabel, function(e) {
+qsetMethod("dropEvent", VariableLabel, function(event) {
   setForegroundRole(Qt$QPalette$WindowText)  
-  md <- e$mimeData()
-  this$variableName <- variableNameFromMimeData(md)
-  if(!is.null(variableName)) {
-    this$text <- variableName
+  mime_data <- event$mimeData()
+  this$variable_name <- variableNameFromMimeData(mime_data)
+  if(!is.null(variable_name)) {
+    this$text <- variable_name
     variableNameDropped()
     setBackgroundRole(Qt$QPalette$Window)
-    e$acceptProposedAction()
+    event$acceptProposedAction()
   }
 })
 @ 
@@ -187,17 +188,17 @@ beyond our scope. In short, we translate the origin to the center
 of the label rectangle, rotate the coordinate system by the angle,
 then draw the text:
 <<results=hide>>=
-qsetMethod("paintEvent", VariableLabel, function(e) {
-  p <- Qt$QPainter()
-  p$begin(this)
+qsetMethod("paintEvent", VariableLabel, function(event) {
+  painter <- Qt$QPainter()
+  painter$begin(this)
   
-  p$save()
-  p$translate(width/2, height/2)
-  p$rotate(-(rotation))
-  rect <- p$boundingRect(0, 0, 0, 0, Qt$Qt$AlignCenter, text)
-  p$drawText(rect, Qt$Qt$AlignCenter, text)
-  p$restore()
-  p$end()
+  painter$save()
+  painter$translate(width / 2, height / 2)
+  painter$rotate(-(rotation))
+  rect <- painter$boundingRect(0, 0, 0, 0, Qt$Qt$AlignCenter, text)
+  painter$drawText(rect, Qt$Qt$AlignCenter, text)
+  painter$restore()
+  painter$end()
 })
 @ 
 
@@ -208,7 +209,7 @@ extended to include a third variable for three-way tables, but we leave
 that exercise for the interested reader. The constructor simply calls
 two methods:
 <<XtabsWidget, results=hide>>=
-qsetClass("XtabsWidget", Qt$QWidget, function(parent=NULL) {
+qsetClass("XtabsWidget", Qt$QWidget, function(parent = NULL) {
   super(parent)
   initWidgets()
   initLayout()
@@ -230,9 +231,9 @@ qsetMethod("initWidgets", XtabsWidget, function() {
   ylabel$rotation <- 90L
   qconnect(ylabel, "variableNameDropped", invokeXtabs)
   
-  this$tableView <- Qt$QTableView()
-  tableView$setModel(qdataFrameModel(data.frame(), this))
-  str(tableView$model())
+  this$table_view <- Qt$QTableView()
+  table_view$setModel(qdataFrameModel(data.frame(), this))
+  str(table_view$model())
   clearLabels()
 })
 @ 
@@ -246,26 +247,26 @@ method (not shown) just initializes the labels.
 <<echo=FALSE, results=hide>>=
 ## Not shown
 qsetMethod("clearLabels", XtabsWidget, function() {
-  pt <- xlabel$font$pointSize()
+  point_size <- xlabel$font$pointSize()
   xlabel$text <- "Drop x factor here"
-  xlabel$minimumHeight <- 2*pt
+  xlabel$minimumHeight <- 2 * point_size
   
   ylabel$text <- "Drop y factor here"
-  ylabel$minimumWidth <- 2*pt
+  ylabel$minimumWidth <- 2 * point_size
 })
 @ 
 
 <<echo=FALSE, results=hide>>=
 ## Not shown
 qsetMethod("initLayout", XtabsWidget, function() {
-  lyt <- Qt$QGridLayout()
-  setLayout(lyt)
-  lyt$addWidget(xlabel, 0, 1, 1, 3)
-  lyt$addWidget(ylabel, 1, 0, 1, 1)
-  lyt$addWidget(tableView, 1, 1, 1, 3)
+  layout <- Qt$QGridLayout()
+  setLayout(layout)
+  layout$addWidget(xlabel, 0, 1, 1, 3)
+  layout$addWidget(ylabel, 1, 0, 1, 1)
+  layout$addWidget(table_view, 1, 1, 1, 3)
   
-  lyt$setColumnStretch(2, 1)
-  lyt$setRowStretch(1, 1)
+  layout$setColumnStretch(2, 1)
+  layout$setRowStretch(1, 1)
 })
 @ 
 
@@ -274,37 +275,37 @@ the table view, we hide the conditional call to \function{xtabs}.
 <<echo=FALSE>>=
 ## Hide call to xtabs
 ## Return NULL if not okay, otherwise a table object
-call_xtabs <- function(dataFrame, xVar, yVar) {
-  if(is.character(dataFrame))
-    dataFrame <- get(dataFrame)
-  if(is.null(xVar)) {
-    out <- NULL
-  } else if(is.null(yVar)) {
-    f <- formula(sprintf("~ %s", xVar))
-    out <- xtabs(f, data=dataFrame)
+call_xtabs <- function(df, x, y) {
+  if(is.character(df))
+    df <- get(df)
+  if(is.null(x)) {
+    table <- NULL
+  } else if(is.null(y)) {
+    f <- formula(sprintf("~ %s", x))
+    table <- xtabs(f, data = df)
   } else { 
-    f <- formula(sprintf("~ %s + %s", yVar, xVar))
-    out <- xtabs(f, data=dataFrame)
+    f <- formula(sprintf("~ %s + %s", y, x))
+    table <- xtabs(f, data = df)
   } 
-  out
+  table
 }
 @ 
 <<makeTable, results=hide>>=
 qsetMethod("invokeXtabs", XtabsWidget, function() {
   if (is.null(dataFrame))
     return()
-  xVar <- xlabel$variableName
-  yVar <- ylabel$variableName
+  x <- xlabel$variable_name
+  y <- ylabel$variable_name
   
-  if(!is.null(out <- call_xtabs(dataFrame, xVar, yVar)))
-     updateTableView(out)
+  if(!is.null(table <- call_xtabs(dataFrame, x, y)))
+     updateTableView(table)
 })
 @ 
 
 We define a method to update the table view:
 <<updateTableWidget, results=hide>>=
 qsetMethod("updateTableView", XtabsWidget, function(table) {
-  model <- tableView$model()
+  model <- table_view$model()
   if (length(dim(table)) == 1)
     qdataFrame(model) <- data.frame(count = unclass(table))
   else qdataFrame(model) <- data.frame(unclass(table))
@@ -315,10 +316,11 @@ qsetMethod("updateTableView", XtabsWidget, function(table) {
 Finally, we define a property for the data frame held in the
 \class{XtabsWidget} class:
 <<qt-mvc-dnd-dataframe-xtabs, results=hide>>=
-qsetProperty("dataFrame", XtabsWidget, write = function(df) { 
-  clearLabels()
-  this$.dataFrame <- df
-})
+qsetProperty("dataFrame", XtabsWidget, 
+             write = function(dataFrame) { 
+               clearLabels()
+               this$.dataFrame <- dataFrame
+             })
 @ 
 
 All that remains is to place the \class{VariableSelector} and

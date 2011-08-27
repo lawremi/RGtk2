@@ -15,8 +15,8 @@ library(ProgGUIinR)                     # for avail_dfs, find_vars
 
 We create the two combo boxes and the enclosing window:
 <<Widgets>>=
-w <- gtkWindow(show=FALSE)
-w$setTitle("gtkComboBox example")
+window <- gtkWindow(show = FALSE)
+window$setTitle("gtkComboBox example")
 
 df_combo <- gtkComboBoxNewText()
 var_combo <- gtkComboBoxNewText()
@@ -26,16 +26,16 @@ var_combo <- gtkComboBoxNewText()
 Our layout uses boxes. To add a twist, we will hide our variable combo box
 until after a data frame has been initially selected.
 <<Layout>>=
-g <- gtkVBox(); w$add(g)
+vbox <- gtkVBox(); window$add(vbox)
 #
-g1 <- gtkHBox(); g$packStart(g1)
-g1$packStart(gtkLabel("Data frames:"))
-g1$packStart(df_combo)
+vbox1 <- gtkHBox(); vbox$packStart(vbox1)
+vbox1$packStart(gtkLabel("Data frames:"))
+vbox1$packStart(df_combo)
 #
-g2 <- gtkHBox(); g$packStart(g2)
-g2$packStart(gtkLabel("Variable:"))
-g2$packStart(var_combo)
-g2$hide()
+vbox2 <- gtkHBox(); vbox$packStart(vbox2)
+vbox2$packStart(gtkLabel("Variable:"))
+vbox2$packStart(var_combo)
+vbox2$hide()
 @
 %
 
@@ -45,16 +45,16 @@ first clear out the variable combo box and then populate it:
 sapply(avail_dfs(), df_combo$appendText)
 df_combo$setActive(-1)
 #
-gSignalConnect(df_combo, "changed", function(w, ...) {
+gSignalConnect(df_combo, "changed", function(df_combo, ...) {
   var_combo$getModel()$clear()
-  sapply(find_vars(w$getActiveText()),  var_combo$appendText)
-  g2$show()
+  sapply(find_vars(df_combo$getActiveText()),  var_combo$appendText)
+  vbox2$show()
 })
 @ 
 %
 
 <<echo=FALSE>>=
 ## show window
-w$show()
+window$show()
 @ 
 

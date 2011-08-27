@@ -18,20 +18,20 @@ In the constructor we define a label property and call our
 library(qtbase)
 @ 
 <<CustomView, results=hide>>=
-qsetClass("MeanLabel", Qt$QLabel, function(model, column = 0, 
-                                           parent=NULL) {
-  super(parent)
-  this$model <- model
-  this$column <- column
-  updateMean()                          # initialize text
-  ##
-  qconnect(model, "dataChanged", 
-           function(topLeft, bottomRight) {
-             if (topLeft$column() <= column && 
-                 bottomRight$column() >= column)
-               updateMean()
-           })
-})
+qsetClass("MeanLabel", Qt$QLabel, 
+          function(model, column = 0, parent = NULL) 
+          {
+            super(parent)
+            this$model <- model
+            this$column <- column
+            updateMean()     # initialize text
+            qconnect(model, "dataChanged", 
+                     function(top_left, bottom_right) {
+                       if (top_left$column() <= column && 
+                           bottom_right$column() >= column)
+                         updateMean()
+                     })
+          })
 @ 
 %
 
@@ -40,14 +40,14 @@ of the mean value. In the above we call this private method to perform the updat
 <<label, results=hide>>=
 qsetMethod("updateMean", MeanLabel, function() {
   if(is.null(model)) {
-    txt <- "No model"
+    text <- "No model"
   } else {
     df <- qdataFrame(model)
-    cname <- colnames(df)[column+1L]
-    xbar <- mean(df[,cname])
-    txt <- sprintf("Mean for '%s': %s", cname, xbar)
+    colname <- colnames(df)[column + 1L]
+    text <- sprintf("Mean for '%s': %s", colname, 
+                    mean(df[,colname]))
   }
-  this$text <- txt
+  this$text <- text
 }, access="private")
 @ 
 %
@@ -56,22 +56,22 @@ To demonstrate the use of our custom view, we put it in a simple GUI
 along with an editable data frame view. When we edit the data, the
 text in our label is updated accordingly.
 <<testItOut, results=hide>>=
-model <- qdataFrameModel(mtcars, editable=colnames(mtcars))
+model <- qdataFrameModel(mtcars, editable = colnames(mtcars))
 
-tableView <- Qt$QTableView()
-tableView$setModel(model)
-tableView$setEditTriggers(Qt$QAbstractItemView$DoubleClicked)
+table_view <- Qt$QTableView()
+table_view$setModel(model)
+table_view$setEditTriggers(Qt$QAbstractItemView$DoubleClicked)
 ##
-meanLabel <- MeanLabel(model)
+mean_label <- MeanLabel(model)
 ##
-w <- Qt$QWidget()
-lyt <- Qt$QVBoxLayout()
-w$setLayout(lyt)
-lyt$addWidget(tableView)
-lyt$addWidget(meanLabel)
+window <- Qt$QWidget()
+layout <- Qt$QVBoxLayout()
+window$setLayout(layout)
+layout$addWidget(table_view)
+layout$addWidget(mean_label)
 @ 
 %
 <<echo=FALSE, results=hide>>=
-w$show()
-w$raise()
+window$show()
+window$raise()
 @ 

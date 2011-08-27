@@ -22,15 +22,15 @@ repos["CRAN"] <- "http://streaming.stat.iastate.edu/CRAN"
 options(repos = repos)
 @ 
 <<getUpgradablePackages>>=
-d <- old.packages()[,c("Package", "Installed", "ReposVer")]
-d <- as.data.frame(d)
+old_packages <- old.packages()[,c("Package", "Installed", "ReposVer")]
+df <- as.data.frame(old_packages)
 @ 
 
 
 This function will be called on the selected rows. Here, we simply
 call \function{install.packages} to update the selected packages.
 <<>>=
-doUpdate <- function(d)  install.packages(d$Package)
+doUpdate <- function(old_packages) install.packages(old_packages$Package)
 @ 
 
 \begin{figure}
@@ -43,10 +43,8 @@ To display the data frame, we first append a column to the data frame
 to store the selection information and then create a corresponding
 \class{RGtkDataFrame}.
 <<>>=
-n <- ncol(d)
-nms <- colnames(d)
-d$.toggle <- rep(FALSE, nrow(d))
-store <- rGtkDataFrame(d)
+df$.toggle <- rep(FALSE, nrow(df))
+model <- rGtkDataFrame(df)
 @ 
 
 Our tree view shows each text column using a simple text cell renderer,
@@ -54,27 +52,28 @@ except for the first column that contains the check boxes for selection.
 <<results=hide>>=
 view <- gtkTreeView()
 # add toggle
-cr <- gtkCellRendererToggle()
-view$insertColumnWithAttributes(0, "", cr, active = n)
-cr['activatable'] <- TRUE
-gSignalConnect(cr, "toggled", function(cr, path, user.data) {
-  view <- user.data
-  row <- as.numeric(path) + 1
-  model <- view$getModel()
-  n <- dim(model)[2]
-  model[row, n] <- !model[row, n]
-}, data=view)
+cell_renderer <- gtkCellRendererToggle()
+view$insertColumnWithAttributes(0, "", cell_renderer, active = ncol(d))
+cell_renderer['activatable'] <- TRUE
+gSignalConnect(cell_renderer, "toggled", 
+               function(cell_renderer, path, user.data) {
+                 view <- user.data
+                 row <- as.numeric(path) + 1
+                 model <- view$getModel()
+                 n <- dim(model)[2]
+                 model[row, n] <- !model[row, n]
+               }, data=view)
 @ 
 
 The text columns are added in one go:
 <<results=hide>>=
-mapply(view$insertColumnWithAttributes, -1, nms, 
+mapply(view$insertColumnWithAttributes, -1, colnames(df), 
        list(gtkCellRendererText()), text = 1:n-1)
 @ 
 %
 Finally, we connect the store to the model.
 <<>>=
-view$setModel(store)
+view$setModel(model)
 @ 
 %
 To allow the user to initiate the action, we create a button and
@@ -83,13 +82,12 @@ the model would be recreated by the \code{doUpdate} call. In a real
 application, once a package is upgraded it would be removed from the
 display.
 <<results=hide>>=
-b <- gtkButton("Update packages")
-gSignalConnect(b, "clicked", function(w, data) {
+button <- gtkButton("Update packages")
+gSignalConnect(button, "clicked", function(button, data) {
   view <- data
   model <- view$getModel()
-  n <- dim(model)[2]
-  vals <- model[model[, n], -n, drop=FALSE]
-  doUpdate(vals)
+  old_packages <- model[model[, ncol(model)], -ncol(model), drop = FALSE]
+  doUpdate(old_packages)
 }, data=view)
 @ 
 
@@ -97,16 +95,16 @@ gSignalConnect(b, "clicked", function(w, data) {
 Our basic GUI places the view into a box container that also holds the
 button to initiate the action.
 <<>>=
-w <- gtkWindow(show=FALSE)
-w$setTitle("Installed packages that need upgrading")
-w$setSizeRequest(300, 300)
+window <- gtkWindow(show = FALSE)
+window$setTitle("Installed packages that need upgrading")
+window$setSizeRequest(300, 300)
 
-g <- gtkVBox(); w$add(g)
-sw <- gtkScrolledWindow()
-g$packStart(sw, expand=TRUE, fill=TRUE)
+vbox <- gtkVBox(); window$add(vbox)
+scrolled_window <- gtkScrolledWindow()
+vbox$packStart(scrolled_window, expand = TRUE, fill = TRUE)
 
-sw$add(view)
-sw$setPolicy("automatic", "automatic")
-g$packStart(b, expand=FALSE)
-w$show()
+scrolled_window$add(view)
+scrolled_window$setPolicy("automatic", "automatic")
+vbox$packStart(button, expand = FALSE)
+window$show()
 @ 

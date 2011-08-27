@@ -29,18 +29,18 @@ than one mapping is possible.
 Next, we construct a table view and establish a handler that changes
 the current row of the data mapper upon selection:
 <<qt-mvc-mapper-select, results=hide>>=
-tableView <- Qt$QTableView()
-tableView$setModel(model)
-qconnect(tableView$selectionModel(), "currentRowChanged", 
+table_view <- Qt$QTableView()
+table_view$setModel(model)
+qconnect(table_view$selectionModel(), "currentRowChanged", 
          function(cur, prev) mapper$setCurrentIndex(cur$row()))
 @ 
 
 Finally, we layout our GUI (Figure~\ref{fig:qt-qdatawidgetmapper}):
 <<qt-mvc-mapper-layout, results=hide>>=
-w <- Qt$QWidget()
-lyt <- Qt$QVBoxLayout()
-w$setLayout(lyt)
-lyt$addWidget(tableView)
-lyt$addWidget(label)
+window <- Qt$QWidget()
+layout <- Qt$QVBoxLayout()
+window$setLayout(layout)
+layout$addWidget(table_view)
+layout$addWidget(label)
 @ 
 

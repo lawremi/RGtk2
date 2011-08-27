@@ -73,7 +73,7 @@ combined with other widgets to form the GUI. For example:
 button <- gtkButton("Click Me")
 button['image'] <- gtkImage(stock = "gtk-apply", 
                             size = "button")
-gSignalConnect(button, "clicked", function(x) {
+gSignalConnect(button, "clicked", function(button) {
   message("Hello World!")
 })
 ##
@@ -327,7 +327,7 @@ names. Auto-completion of property names is gained as a side effect.
 For the button just defined, we can see the first eight properties
 listed with:
 <<showProperties>>=
-head(names(button), n=8)                 # or b$getPropInfo()
+head(names(button), n = 8)                 # or b$getPropInfo()
 @ 
 
 Some commonly used properties are: \code{parent}, to store the parent widget
@@ -415,7 +415,7 @@ example, so that ``Hello World'' is printed to the console when the
 button is clicked:
 <<intro-signals-hello-world>>=
 gSignalConnect(button, "clicked", 
-               function(widget) print("Hello world!"))
+               function(button) message("Hello world!"))
 @ 
 %
 
@@ -442,24 +442,24 @@ are references, so their manipulation has side effects outside of the
 callback. This is obviously a critical feature, but it is one that
 may be surprising to the \R\/ user.
 
-<<>>=
-w <- gtkWindow(); w['title'] <- "test signals"
+<<results=hide>>=
+window <- gtkWindow(); window['title'] <- "test signals"
 x <- 1; 
-b <- gtkButton("click me"); w$add(b)
-ID <- gSignalConnect(b, signal = "clicked", 
-                     f = function(widget) {
-                       widget$setData("x", 2)
-                       x <- 2
-                       return(TRUE)
-                     })
+button <- gtkButton("click me"); window$add(button)
+gSignalConnect(button, signal = "clicked", 
+               f = function(button) {
+                 button$setData("x", 2)
+                 x <- 2
+                 return(TRUE)
+               })
 @ 
 Then after clicking, we would have
 <<echo=FALSE>>=
-b$setData("x", 2)                        # fix non-interactivity
+button$setData("x", 2)                        # fix non-interactivity
 @ 
 
 <<>>=
-cat(x, b$getData("x"), "\n") # 1 and 2
+cat(x, button$getData("x"), "\n") # 1 and 2
 @ 
 
 Callbacks for signals emitted by window manager events are expected to
@@ -471,21 +471,21 @@ indicates whether the handler has consumed the event. In the following
 example, only the first two callbacks are executed when the user
 clicks the button:
 <<>>=
-b <- gtkButton("click")
-w <- gtkWindow()
-w$add(b)
-id1 <- gSignalConnect(b, "button-press-event", 
-function(b, event, data) {
-  print("hi"); return(FALSE)
-})
-id2 <- gSignalConnect(b, "button-press-event", 
-function(b, event, data) {
-  print("and"); return(TRUE)
-})
-id3 <- gSignalConnect(b, "button-press-event", 
-function(b, event, data) {
-  print("bye"); return(TRUE)
-})
+button <- gtkButton("click")
+window <- gtkWindow()
+window$add(button)
+gSignalConnect(button, "button-press-event", 
+               function(button, event, data) {
+                 message("hi"); return(FALSE)
+               })
+gSignalConnect(button, "button-press-event", 
+               function(button, event, data) {
+                 message("and"); return(TRUE)
+               })
+gSignalConnect(button, "button-press-event", 
+               function(button, event, data) {
+                 message("bye"); return(TRUE)
+               })
 @ 
 
 %% multiple callbacks; remove; block

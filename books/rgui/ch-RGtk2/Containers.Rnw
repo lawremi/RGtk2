@@ -45,11 +45,11 @@ accessed via the ``get'' and ``set'' methods
 using the \function{[} function. To illustrate, the following sets up
 a new window with a title.
 <<>>=
-w <- gtkWindow(show=FALSE)              # use default type
-w$setTitle("Window title")              # set window title
-w['title']                              # or  use getTitle
-w$setDefaultSize(250,300)               # 250 wide, 300 high
-w$show()                                # show window
+window <- gtkWindow(show=FALSE)              # use default type
+window$setTitle("Window title")              # set window title
+window['title']                              # or  use getTitle
+window$setDefaultSize(250,300)               # 250 wide, 300 high
+window$show()                                # show window
 @ 
 
 \paragraph{Window size}
@@ -72,9 +72,9 @@ only a single child. As before, this child is added through the
 \method{add}{GtkContainer} method. 
 We illustrate the basics by adding a simple label to a window.
 <<basic-window-label>>=
-w <- gtkWindow(show=FALSE); w$setTitle("Hello world")
-l <- gtkLabel("Hello world")
-w$add(l)
+window <- gtkWindow(show = FALSE); window$setTitle("Hello world")
+label <- gtkLabel("Hello world")
+window$add(label)
 @
 %
 To display multiple widgets in a window, one simply needs to add a
@@ -92,11 +92,12 @@ connected to \code{delete-event} returns \code{TRUE}.  This can be
 useful for confirming the intention of the user before closing the
 window. For example:
 <<gtk-container-window-delete>>=
-gSignalConnect(w, "delete-event", function(event) {
-  gtkMessageDialog(parent=w, flags=0, type="question", 
-                   buttons=c("yes", "no"),
-                   "Are you sure you want to quit?")
-  dlg$run() != GtkResponseType["yes"]
+gSignalConnect(window, "delete-event", function(event) {
+  dialog <- gtkMessageDialog(parent = window, flags = 0, 
+                             type = "question", 
+                             buttons = c("yes", "no"),
+                             "Are you sure you want to quit?")
+  dialog$run() != GtkResponseType["yes"]
 })
 @ 
 %
@@ -110,7 +111,7 @@ method configures the window to hide but not destroy itself.
 It is also possible to close a window programmatically by calling
 its \method{destroy}{GtkWidget} method:
 <<gtk-container-window-destroy>>=
-w$destroy()
+window$destroy()
 @ 
 
 \paragraph{Transient windows}
@@ -126,13 +127,13 @@ specified with \code{setPostion}, which takes a value from the
 set to be destroyed with its parent. For example:
 <<>>=
 ## create a window and a dialog window
-w <- gtkWindow(show=FALSE); w$setTitle("Top level window")
-d <- gtkWindow(show=FALSE); d$setTitle("dialog window")
-d$setTransientFor(w)
-d$setPosition("center-on-parent")
-d$setDestroyWithParent(TRUE)
-w$show()
-d$show()
+window <- gtkWindow(show = FALSE); window$setTitle("Top level window")
+dialog <- gtkWindow(show = FALSE); dialog$setTitle("dialog window")
+dialog$setTransientFor(window)
+dialog$setPosition("center-on-parent")
+dialog$setDestroyWithParent(TRUE)
+window$show()
+dialog$show()
 @ 
 % 
 The above code produces a non-modal dialog window from scratch. Due to
@@ -160,9 +161,9 @@ In \GTK{}, the \iprogram{widget hierarchy}widget hierarchy is built
 when children are added to a parent container.  In this example, a
 window is made the parent of a label:
 <<>>=
-w <- gtkWindow(show=FALSE); w$setTitle("Hello world")
-l <- gtkLabel("Hello world")
-w$add(l)
+window <- gtkWindow(show=FALSE); window$setTitle("Hello world")
+label <- gtkLabel("Hello world")
+window$add(label)
 @ 
 
 The method \method{getChildren}{GtkContainer} will return the children
@@ -171,7 +172,7 @@ length one, the \method{getChild}{GtkWidget} method may be more
 convenient, as it directly returns the only child, if any. For
 instance, to retrieve the label text one could do:
 <<>>=
-w$getChild()['label']
+window$getChild()['label']
 @ 
 %% [[ for container
 The \method{[[}{GObject} method 
@@ -179,7 +180,7 @@ The \method{[[}{GObject} method
 accesses the child widgets by number, as a convenient wrapper
 around the \method{getChildren}{GObject} method:
 <<gtk-container-brackets>>=
-w[[1]]['label']
+window[[1]]['label']
 @ 
 %
 Conversely, the \code{getParent} method for \GTK\/ widgets will
@@ -193,8 +194,8 @@ Every container supports removing a child with the
 \method{remove}{GtkWidget} method. The child can later be re-added.
 For instance
 <<remove-child-widget-3>>=
-w$remove(l)
-w$add(l)
+window$remove(label)
+window$add(label)
 @
 % 
 To remove a widget from the screen but not its container, use the
@@ -220,9 +221,9 @@ requested size or to allocate more or less than the requested
 amount. The child then consumes the allocated space. Consider the
 previous example of adding a label to a window:
 <<layout-window-show-first>>=
-w <- gtkWindow(); w$setTitle("Hello world")
-l <- gtkLabel("Hello world")
-w$add(l)
+window <- gtkWindow(); window$setTitle("Hello world")
+label <- gtkLabel("Hello world")
+window$add(label)
 @ 
 
 %% Oddly this is choking for me
@@ -236,7 +237,7 @@ world''. However, as the window size is now controlled by the window
 manager, \class{GtkWindow} will not adjust its size. Thus, the label
 is allocated more space than it requires.
 <<layout-window-show-first-alloc, results=hide>>=
-l$getAllocation()$allocation
+label$getAllocation()$allocation
 @ 
 % ML: a bit of a hack, because the size is not correct during build
 % Might just have to iterate the event loop, but this is easy:
@@ -248,14 +249,14 @@ l$getAllocation()$allocation
 If, however, we avoid showing the window until the label is added, the
 window will size itself so that the label has its natural size:
 <<layout-window-show-later, results=hide>>=
-w <- gtkWindow(show=FALSE); w$setTitle("Hello world")
-l <- gtkLabel("Hello world")
-w$add(l)
-w$show()
-l$getAllocation()$allocation
+window <- gtkWindow(show = FALSE); window$setTitle("Hello world")
+label <- gtkLabel("Hello world")
+window$add(label)
+window$show()
+label$getAllocation()$allocation
 @ 
 <<echo=FALSE>>=
-sapply(l$getAllocation()$allocation, function(i) i)
+sapply(label$getAllocation()$allocation, function(i) i)
 @ 
 %
 One might notice that it is not possible to decrease the size of the
@@ -450,12 +451,12 @@ The \method{reorderChild}{GtkBox} method reorders the child
 widgets. The new position of the child is specified using 0-based
 indexing. This code will move the third child of \code{g} to the second position:
 <<echo=FALSE, results=hide>>=
-g <- gtkHBox()
-sapply(1:3, function(i) g$packStart(gtkLabel(i)))
+hbox <- gtkHBox()
+sapply(1:3, function(i) hbox$packStart(gtkLabel(i)))
 @ 
 <<>>=
-b3 <- g[[3]]
-g$reorderChild(b3, 2 - 1)               # second is 2 - 1
+b3 <- box[[3]]
+hbox$reorderChild(b3, 2 - 1)               # second is 2 - 1
 @ 
 
 \subsection{Alignment}
@@ -464,9 +465,9 @@ g$reorderChild(b3, 2 - 1)               # second is 2 - 1
 We began this section with a simple example of a window containing a
 label:
 <<basic-layout-align-window>>=
-w <- gtkWindow(); w$setTitle("Hello world")
-l <- gtkLabel("Hello world")
-w$add(l)
+window <- gtkWindow(); window$setTitle("Hello world")
+label <- gtkLabel("Hello world")
+window$add(label)
 @ 
 %% again giving me issues
 % <<basic-layout-align-window>>=
@@ -487,7 +488,7 @@ and take values between $0$ and $1$, with $0$ being left and
 top. Their defaults are $0.5$, for centered alignment. We modify them
 below to make our label left justified:
 <<basic-layout-align-left>>=
-l["xalign"] <- 0
+label["xalign"] <- 0
 @ 
 %% SCREENSHOT
 Unlike a block of text or an image, a widget usually does not have a
@@ -498,12 +499,12 @@ than adjust the justification of the label text, we could have
 instructed the layout not to expand but to position itself against the
 left side of the window:
 <<basic-layout-align-GtkAlignment>>=
-w <- gtkWindow(); w$setTitle("Hello world")
-a <- gtkAlignment()
-a$set(xalign = 0, yalign = 0.5, xscale = 0, yscale = 1)
-w$add(a)
-l <- gtkLabel("Hello world")
-a$add(l)
+window <- gtkWindow(); window$setTitle("Hello world")
+alignment <- gtkAlignment()
+alignment$set(xalign = 0, yalign = 0.5, xscale = 0, yscale = 1)
+window$add(alignment)
+label <- gtkLabel("Hello world")
+alignment$add(label)
 @ 
 
 \section{Dialogs}
@@ -573,9 +574,9 @@ like a radio button group.
 
 We create a notebook and add some pages:
 <<qt-layout-notebook>>=
-nb <- gtkNotebook()
-nb$appendPage(gtkLabel("Page 1"), gtkLabel("Tab 1"))
-nb$appendPage(gtkLabel("Page 2"), gtkLabel("Tab 2"))
+notebook <- gtkNotebook()
+notebook$appendPage(gtkLabel("Page 1"), gtkLabel("Tab 1"))
+notebook$appendPage(gtkLabel("Page 2"), gtkLabel("Tab 2"))
 @
 %
 A page specification consists of a widget for the page and a widget
@@ -589,7 +590,7 @@ this depends on the \property{tab-pos}{gtkNotebook} property, with a value from
 \qcode{bottom}. By default, the tabs are on top. We move the current ones to the
 bottom:
 <<qt-layout-notebook-pos>>=
-nb['tab-pos'] <- "bottom"
+notebook['tab-pos'] <- "bottom"
 @ 
 
 Methods and properties that affect pages expect the page index,
@@ -598,8 +599,8 @@ number, use the method \method{pageNum}{GtkNotebook}.  The
 \property{page}{gtkNotebook} property holds the zero-based index of the active
 tab. We make the second tab active:
 <<qt-layout-notebook-current>>=
-nb['page'] <- 1
-nb['page']
+notebook['page'] <- 1
+notebook['page']
 @
 %
 To move sequentially through the pages, call the methods
@@ -645,7 +646,7 @@ of the tabs for direct navigation.
 gtkNotebookInsertPageWithCloseButton <- 
   function(object, child, label.text="", position=-1) {
     icon <- gtkImage(pixbuf = 
-      object$renderIcon("gtk-close", "button", size="menu"))
+      object$renderIcon("gtk-close", "button", size = "menu"))
     closeButton <- gtkButton()
     closeButton$setImage(icon)
     closeButton$setRelief("none")
@@ -654,9 +655,9 @@ gtkNotebookInsertPageWithCloseButton <-
     label$packStart(gtkLabel(label.text))
     label$packEnd(closeButton)
     ##
-    gSignalConnect(closeButton, "clicked", function(b) {
-      index <- nb$pageNum(child)
-      nb$removePage(index)
+    gSignalConnect(closeButton, "clicked", function(button) {
+      index <- notebook$pageNum(child)
+      notebook$removePage(index)
     })
     object$insertPage(child, label, position)
   }
@@ -665,12 +666,12 @@ gtkNotebookInsertPageWithCloseButton <-
 
 Here is a simple demonstration of its usage:
 <<results=hide>>=
-w <- gtkWindow()
-nb <- gtkNotebook(); w$add(nb)
-nb$insertPageWithCloseButton(gtkButton("hello"), 
-                             label.text="page 1")
-nb$insertPageWithCloseButton(gtkButton("world"), 
-                             label.text="page 2")
+window <- gtkWindow()
+notebook <- gtkNotebook(); window$add(notebook)
+notebook$insertPageWithCloseButton(gtkButton("hello"), 
+                                   label.text = "page 1")
+notebook$insertPageWithCloseButton(gtkButton("world"), 
+                                   label.text = "page 2")
 @ 
   
 \end{example}
@@ -722,9 +723,9 @@ zoomPlot <- function(x = 2.0) {
   allocation <- device$getAllocation()$allocation
   device$setSizeRequest(allocation$width * x, 
                         allocation$height * x)
-  updateAdjustment <- function(adj) {
-    adj$setValue(x * adj$getValue() + 
-                 (x - 1) * adj$getPageSize() / 2)
+  updateAdjustment <- function(adjustment) {
+    adjustment$setValue(x * adjustment$getValue() + 
+                        (x - 1) * adjustment$getPageSize() / 2)
   }
   updateAdjustment(scrolled$getHadjustment())
   updateAdjustment(scrolled$getVadjustment())
@@ -743,14 +744,15 @@ window, so we adjust by half the page size after scaling the value.
 We had key press events, so that pressing \kbd{+} zooms in and
 pressing \kbd{-} zooms out:
 <<gtk-container-scrolled-key-press>>=
-gSignalConnect(scrolled, "key-press-event", function(x, ev) {
-  key <- ev[["keyval"]]
-  if (key == GDK_plus)
-    zoomPlot(2.0)
-  else if (key == GDK_minus)
-    zoomPlot(0.5)
-  TRUE
-})
+gSignalConnect(scrolled, "key-press-event", 
+               function(scrolled, event) {
+                 key <- event[["keyval"]]
+                 if (key == GDK_plus)
+                   zoomPlot(2.0)
+                 else if (key == GDK_minus)
+                   zoomPlot(0.5)
+                 TRUE
+               })
 @ 
 
 Despite its name, the scrolled window is not a top-level window. Thus,

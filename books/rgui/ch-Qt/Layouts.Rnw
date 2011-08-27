@@ -39,8 +39,8 @@ A layout is not a widget. Instead, a layout is set on a
 widget, and the widget delegates the layout of its children to the
 layout object:
 <<qt-layout-basic-setLayout, results=hide>>=
-wid <- Qt$QWidget()
-wid$setLayout(layout)
+widget <- Qt$QWidget()
+widget$setLayout(layout)
 @ 
 
 %% adding a widget
@@ -151,9 +151,9 @@ depending on the label dimensions and has the policies
 \code{Fixed} and \code{Minimum} as its vertical and horizontal policies
 respectively. We could prevent a button from expanding at all:
 <<sizePolicy, results=hide>>=
-b <- Qt$QPushButton("No expansion")
-b$setSizePolicy(vertical=Qt$QSizePolicy$Fixed, 
-                horizontal=Qt$QSizePolicy$Fixed)
+button <- Qt$QPushButton("No expansion")
+bbutton$setSizePolicy(vertical = Qt$QSizePolicy$Fixed, 
+                      horizontal = Qt$QSizePolicy$Fixed)
 @   
 
 Thus, the sizing behavior is largely inherent to the widget or its
@@ -200,16 +200,16 @@ provides a vertical one. Both of these classes extend the
 \class{QBoxLayout} class, where most of the functionality is
 documented.  We create a horizontal layout and place it in a window:
 <<qt-layout-box, results=hide>>=
-hb <- Qt$QHBoxLayout()
-w <- Qt$QWidget()
-w$setLayout(hb)
+hbox <- Qt$QHBoxLayout()
+widget <- Qt$QWidget()
+w$setLayout(hbox)
 @ 
  
 Child widgets are added to a box container through the
 \method{addWidget}{QLayout} method:
 <<qt-layout-box-add, results=hide>>=
 buttons <- sapply(letters[1:3], Qt$QPushButton)
-sapply(buttons, hb$addWidget)
+sapply(buttons, hbox$addWidget)
 @
 % 
 The \method{direction}{QBoxLayout} property specifies the direction in
@@ -228,7 +228,7 @@ policy and hint can alter the effect of a stretch factor. After the
 child has been added, the stretch factor may be modified with
 \meth{setStretchFactor}:
 <<qt-layout-box-stretch,results=hide>>=
-hb$setStretchFactor(buttons[[1]], 2.0) 
+hbox$setStretchFactor(buttons[[1]], 2.0) 
 @ 
 %
 If the layout later grows horizontally, the first button will grow
@@ -306,11 +306,11 @@ described. To add a fixed amount of space between two specific
 children, call the \ilayout{spacing}\meth{addSpacing} method while populating the
 container. The following line is from Example~\ref{eg:qt-layouts}:
 <<create_hb, echo=FALSE, results=hide>>=
-hb <- Qt$QHBoxLayout()
+hbox <- Qt$QHBoxLayout()
 @ 
 <<qt-layout-box-spacing, results=hide>>=
-hb$addSpacing(12L)
-hb$addWidget(Qt$QPushButton("d"))
+hbox$addSpacing(12L)
+hbox$addWidget(Qt$QPushButton("d"))
 @ 
 %
 We have placed a gap of $12$ pixels between button \qcode{c} and the
@@ -321,8 +321,8 @@ An expanding, spring-like spacer between two widgets is known as a
 subsequently add a child button that will be pressed against the right
 side of the box as the layout grows horizontally:
 <<qt-layout-box-stretch, results=hide>>=
-hb$addStretch(2)
-hb$addWidget(Qt$QPushButton("Help..."))
+hbox$addStretch(2)
+hbox$addWidget(Qt$QPushButton("Help..."))
 @ 
 %
 This is just a convenience for adding an invisible widget with some
@@ -334,7 +334,7 @@ It is sometimes desirable to restrict the minimum size of a layout in the
 perpendicular direction. For a horizontal box, this is the height. The
 box layout provides the \ilayout{struts}\textit{strut} for this purpose:
 <<qt-layout-box-strut, results=hide>>=
-g$addStrut(10)                    # at least 10 pixels high
+hbox$addStrut(10)                    # at least 10 pixels high
 @ 
 %
 
@@ -358,17 +358,17 @@ mock up a GUI centered around a text area widget
 (Figure~\ref{fig:qt-layout-example}). To begin, we create the window
 with the grid layout:
 <<LayoutExample, results=hide>>=
-w <- Qt$QWidget()
-w$setWindowTitle("Layout example")
-lyt <- Qt$QGridLayout()
-w$setLayout(lyt)
+window <- Qt$QWidget()
+window$setWindowTitle("Layout example")
+layout <- Qt$QGridLayout()
+window$setLayout(layout)
 @ 
 
 When we add a child to the grid layout, we need to specify the
 zero-based row and column indices:
 <<addEntryWidget, results=hide>>=
-lyt$addWidget(Qt$QLabel("Entry:"), 0, 0)
-lyt$addWidget(Qt$QLineEdit(), 0, 1, rowspan=1, colspan=2)
+layout$addWidget(Qt$QLabel("Entry:"), 0, 0)
+layout$addWidget(Qt$QLineEdit(), 0, 1, rowspan = 1, colspan = 2)
 @ 
 %
 In the second call to \meth{addWidget}, we pass values to the optional
@@ -376,23 +376,23 @@ arguments for the row and column span. These are the numbers of rows
 and columns, respectively, that are spanned by the child. For our
 second row, we add a labeled combo box:
 <<addChoiceWidget, results=hide>>=
-lyt$addWidget(Qt$QLabel("Choice:"), 1, 0)
-lyt$addWidget(Qt$QComboBox(), 1, 1)
+layout$addWidget(Qt$QLabel("Choice:"), 1, 0)
+layout$addWidget(Qt$QComboBox(), 1, 1)
 @ 
 
 The bottom three cells in the third column are managed
 by a sub layout, in this case a vertical box layout. We use a label as
 a stub and set a frame style to have it stand out:
 <<addBox, results=hide>>=
-lyt$addLayout(slyt <- Qt$QVBoxLayout(), 1, 2, rowspan=3, 1)
-slyt$addWidget(l <- Qt$QLabel("Category\nSelector"))
-l$setFrameStyle(Qt$QFrame$Box)
+layout$addLayout(sub_layout <- Qt$QVBoxLayout(), 1, 2, rowspan=3, 1)
+sub_layout$addWidget(label <- Qt$QLabel("Category\nSelector"))
+label$setFrameStyle(Qt$QFrame$Box)
 @ 
 
 The text edit widget is added to the third row, second column:
 <<addLabel, results=hide>>=
-lyt$addWidget(Qt$QLabel("Text:"), 2, 0, Qt$Qt$AlignTop)
-lyt$addWidget(l <- Qt$QTextEdit(), 2, 1)
+layout$addWidget(Qt$QLabel("Text:"), 2, 0, Qt$Qt$AlignTop)
+layout$addWidget(edit <- Qt$QTextEdit(), 2, 1)
 @ 
 % 
 Since this widget will expand, we align the label to the top of its
@@ -400,10 +400,10 @@ cell. Otherwise, it will be centered in the vertical direction.
 
 Finally we add a space for information on the fourth row:
 <<addLabel2, results=hide>>=
-lyt$addWidget(l <- Qt$QLabel("More info:"), 3, 0, 
-              rowspan=1, colspan=2)
-l$setSizePolicy(Qt$QSizePolicy$Fixed, Qt$QSizePolicy$Preferred)
-l$setFrameStyle(Qt$QFrame$Box)
+layout$addWidget(label <- Qt$QLabel("More info:"), 3, 0, 
+                 rowspan = 1, colspan = 2)
+label$setSizePolicy(Qt$QSizePolicy$Fixed, Qt$QSizePolicy$Preferred)
+label$setFrameStyle(Qt$QFrame$Box)
 @ 
 % 
 Again we draw a frame around the label. By default the box would
@@ -427,8 +427,8 @@ allocated to each row and column would be identical when resized. To
 allocate extra space to the text area, we set a positive stretch
 factor for the third row and second column:
 <<results=hide>>=
-lyt$setRowStretch(2, 1)                 # third row
-lyt$setColumnStretch(1,1)               # second column
+layout$setRowStretch(2, 1)                 # third row
+layout$setColumnStretch(1,1)               # second column
 @ 
 % 
 As it is the only item with a positive stretch factor, it will be the
@@ -446,7 +446,7 @@ The method \method{itemAtPosition}{QGridLayout} returns the
 \class{QLayoutItem} instance corresponding to the specified row and
 column:
 <<qt-layout-grid-at>>=
-lineEdit <- lyt$itemAtPosition(0, 1)$widget()
+edit <- lyt$itemAtPosition(0, 1)$widget()
 @
 %
 The item method \method{widget}{QLayoutItem} returns the corresponding
@@ -476,17 +476,17 @@ of rows, where each row has a label and an input widget. We create a
 form and add some rows for gathering parameters to the
 \function{dnorm} function:
 <<FormLayoutExample, results=hide>>=
-w <- Qt$QWidget()
-w$setWindowTitle("Wrapper for 'dnorm' function")
-w$setLayout(flyt <- Qt$QFormLayout())
-sapply(c("quantile", "mean", "sd"), function(i) {
-  flyt$addRow(i, Qt$QLineEdit())
+window <- Qt$QWidget()
+window$setWindowTitle("Wrapper for 'dnorm' function")
+window$setLayout(layout <- Qt$QFormLayout())
+sapply(c("quantile", "mean", "sd"), function(statistic) {
+  layout$addRow(statistic, Qt$QLineEdit())
 })
-flyt$addRow(Qt$QCheckBox("log"))
+layout$addRow(Qt$QCheckBox("log"))
 @
 %
 <<echo=FALSE, results=hide>>=
-w$show(); w$raise()
+window$show(); window$raise()
 @ 
 %
 The first three calls to \function{addRow} take a string for the label
@@ -501,8 +501,8 @@ To retrieve a widget from the layout, call the
 and the role of the desired widget. Here, we obtain the edit box for
 the quantile parameter:
 <<qt-layout-form-at>>=
-tmp <- flyt$itemAt(0, Qt$QFormLayout$FieldRole)
-quantileEdit <- tmp$widget()
+item <- layout$itemAt(0, Qt$QFormLayout$FieldRole)
+quantile_edit <- item$widget()
 @ 
 
 \section{Frames}
@@ -569,47 +569,47 @@ This yields a horizontal separator. A frame shape of
 
 A notebook container is provided by the class \class{QTabWidget}:
 <<qt-layout-notebook>>=
-nb <- Qt$QTabWidget()
+notebook <- Qt$QTabWidget()
 @
 
 To create a page, one needs to specify the label for the tab and the
 widget to display when the page is active:
 <<qt-layout-notebook-addtab, results=hide>>=
-nb$addTab(Qt$QPushButton("page 1"), "page 1")
+notebook$addTab(Qt$QPushButton("page 1"), "page 1")
 icon <- Qt$QIcon("small-R-logo.jpg")
-nb$addTab(Qt$QPushButton("page 2"), icon,  "page 2")
+notebook$addTab(Qt$QPushButton("page 2"), icon,  "page 2")
 @ 
 %
 As shown in the second call to \method{addTab}{QTabWidget}, one can
 provide an icon to display next to the tab label. We can also add a
 tooltip for a specific tab, using zero-based indexing:
 <<qt-layout-notebook-tooltip, results=hide>>=
-nb$setTabToolTip(0, "This is the first page")
+notebook$setTabToolTip(0, "This is the first page")
 @ 
 
 The \property{currentIndex}{QTabWidget} property holds the zero-based index of the
 active tab. We make the second tab active:
 <<qt-layout-notebook-current>>=
-nb$currentIndex <- 1
+notebook$currentIndex <- 1
 @ 
 
 The tabs can be positioned on any of the four sides of the notebook;
 this depends on the \property{tabPosition} property. By default, the
 tabs are on top, or \qcode{North}. We move them to the bottom:
 <<qt-layout-notebook-pos, results=hide>>=
-nb$tabPosition <- Qt$QTabWidget$South
+notebook$tabPosition <- Qt$QTabWidget$South
 @ 
 
 Other features include close buttons, movable pages by drag and drop,
 and scroll buttons for when the number of tabs exceeds the available
 space. We enable all of these:
 <<qt-layout-notebook-features, results=hide>>=
-nb$tabsClosable <- TRUE
-qconnect(nb, "tabCloseRequested", function(index) {
-  nb$removeTab(index)
+notebook$tabsClosable <- TRUE
+qconnect(notebook, "tabCloseRequested", function(index) {
+  notebook$removeTab(index)
 })
-nb$movable <- TRUE
-nb$usesScrollButtons <- TRUE
+notebook$movable <- TRUE
+notebook$usesScrollButtons <- TRUE
 @ 
 %
 We need to connect to the \signal{tabCloseRequested} signal to
@@ -631,7 +631,7 @@ actually close the tab when the close button is clicked.
   \end{figure}
 
 <<HelpBrowser, results=hide>>=
-qsetClass("HelpBrowser", Qt$QTabWidget, function(parent=NULL) {
+qsetClass("HelpBrowser", Qt$QTabWidget, function(parent = NULL) {
   super(parent)
   #
   this$tabsClosable <- TRUE
@@ -641,8 +641,7 @@ qsetClass("HelpBrowser", Qt$QTabWidget, function(parent=NULL) {
   this$movable <- TRUE; this$usesScrollButtons <- TRUE
   #
   this$browser <- getOption("browser")
-  f <- function(url) openPage(url)
-  options("browser" = f)
+  options("browser" =  function(url) openPage(url))
 })
 @   
   
@@ -650,21 +649,21 @@ The lone new method for this class is one called to open a page. The
 \code{url} value is generated by \R's help system.
 <<openPage, results=hide>>=
 qsetMethod("openPage", HelpBrowser, function(url) {
-  nm <- strsplit(url, "/")[[1]]
-  nm <- sprintf("%s: %s", nm[length(nm)-2], nm[length(nm)])
-  w <- Qt$QWebView()
-  w$setUrl(Qt$QUrl(url))
-  i <- addTab(w, nm)
-  this$currentIndex <- i
+  tokens <- strsplit(url, "/")[[1]]
+  tab_title <- sprintf("%s: %s", tokens[length(tokens)-2], 
+                       tokens[length(tokens)])
+  webview <- Qt$QWebView()
+  webview$setUrl(Qt$QUrl(url))
+  this$currentIndex <- addTab(webview, tab_title)
 })
 @ 
 
 Figure~\ref{fig:qt-help-browser} was created through this invocation:
 <<illustrateHelpBrowser, results=hide>>=
-w <- HelpBrowser()
-w$windowTitle <- "Help Browser example"
-w$show()
-w$raise()
+help_browser <- HelpBrowser()
+help_browser$windowTitle <- "Help Browser example"
+help_browser$show()
+help_browser$raise()
 ##
 options("help_type"="html")
 help("mean")
@@ -702,8 +701,8 @@ image in a label and add it to a scroll area:
 <<results=hide>>=
 image <- Qt$QLabel()
 image$pixmap <- Qt$QPixmap("someimage.png")
-sa <- Qt$QScrollArea()
-sa$setWidget(image)
+scroll_area <- Qt$QScrollArea()
+scroll_area$setWidget(image)
 @ 
 %
 
@@ -714,8 +713,8 @@ zoomImage <- function(x = 2.0) {
   updateScrollBar <- function(sb) {
     sb$value <- x * sb$value + (x - 1) * sb$pageStep / 2
   }
-  updateScrollBar(sa$horizontalScrollBar())
-  updateScrollBar(sa$verticalScrollBar())
+  updateScrollBar(scroll_area$horizontalScrollBar())
+  updateScrollBar(scroll_area$verticalScrollBar())
 }
 @
 %
@@ -733,8 +732,8 @@ the corner, pass it to the
 \method{setCornerWidget}{QAbstractScrollArea} method.
 
 <<echo=FALSE, results=hide>>=
-sa$show()
-sa$raise()
+scroll_area$show()
+scroll_area$raise()
 @
 % 
 
@@ -748,17 +747,17 @@ balance of the space allocation.
 Unlike \class{GtkPaned} in \GTK{}, there is no limit on the number of
 child panes. We add three with \method{addWidget}{QSplitter}:
 <<splitter, results=hide>>=
-sp <- Qt$QSplitter()
-sp$addWidget(Qt$QLabel("One"))
-sp$addWidget(Qt$QLabel("Two"))
-sp$addWidget(Qt$QLabel("Three"))
+splitter <- Qt$QSplitter()
+splitter$addWidget(Qt$QLabel("One"))
+splitter$addWidget(Qt$QLabel("Two"))
+splitter$addWidget(Qt$QLabel("Three"))
 @ 
 
 
 
 The orientation can be adjusted dynamically through \method{setOrientation}{QSplitter}
 <<splitterOrientation, results=hide>>=
-sp$setOrientation(Qt$Qt$Vertical)
+splitter$setOrientation(Qt$Qt$Vertical)
 @ 
 %
 
@@ -766,7 +765,7 @@ In addition to user adjusting the space allocation with a mouse, one
 can adjust the sizes programmatically through the
 \method{setSizes}{QSplitter} method:
 <<qt-layout-splitter-set, results=hide>>=
-sp$setSizes(c(100L, 200L, 300L))
+splitter$setSizes(c(100L, 200L, 300L))
 @ 
 
 If needed, one can connect to the \signal{splitterMoved} signal. The
@@ -778,6 +777,6 @@ callback receives the position of the moved handle and its index.
 % programmatically moving the a splitter handle is not possible.
 
 <<echo=FALSE, results=hide>>=
-sp$show()
-sp$raise()
+splitter$show()
+splitter$raise()
 @ 

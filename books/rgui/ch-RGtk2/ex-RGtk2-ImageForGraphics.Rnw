@@ -10,10 +10,10 @@ library(RGtk2)
 
   We begin by creating a window of a certain size.
 <<>>=    
-w <- gtkWindow(show=FALSE); w$setTitle("Graphic window");
-w$setSizeRequest(400,400)
-hbox <- gtkHBox(); w$add(hbox)
-w$showAll()
+window <- gtkWindow(show = FALSE); window$setTitle("Graphic window")
+window$setSizeRequest(400,400)
+hbox <- gtkHBox(); window$add(hbox)
+window$showAll()
 @ 
 
 
@@ -41,6 +41,6 @@ The final step is to create the \class{GtkImage} widget to display the
 pixmap: 
 <<>>=
 image <- gtkImage(pixmap = pixmap)
-hbox$packStart(image, expand=TRUE, fill = TRUE)
+hbox$packStart(image, expand = TRUE, fill = TRUE)
 @ 
 

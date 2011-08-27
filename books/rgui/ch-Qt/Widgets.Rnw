@@ -40,11 +40,11 @@ displaying static text and images. Textual labels are the most common,
 and the constructor accepts a string for the text, which can be plain
 text or, for rich text, HTML. Here we use HTML to display red text:
 <<qt-widget-label>>=
-l <- Qt$QLabel("<font color='red'>Red</font>")
+label <- Qt$QLabel("<font color='red'>Red</font>")
 @ 
 <<echo=FALSE, results=hide>>=
 ## labels can use rich text
-l$show(); l$raise()
+label$show(); label$raise()
 @ 
 % 
 By default, \class{QLabel} guesses whether the string is rich or plain
@@ -108,8 +108,8 @@ icon to a standard button in a dialog.  When using \class{QPushButton} directly,
 there are no such conveniences. For our ``Ok'' button, we could add an
 icon from a file:
 <<qt-widget-button-icon>>=
-iconFile <- system.file("images/ok.gif", package="gWidgets")
-button$icon <- Qt$QIcon(iconFile)
+icon_file <- system.file("images/ok.gif", package="gWidgets")
+button$icon <- Qt$QIcon(icon_file)
 @ 
 %
 However, in general, this will not be consistent with the current
@@ -158,13 +158,13 @@ painter$end()
 %
 Finally, we use the icon in a button:
 <<results=hide>>=
-b <- Qt$QPushButton("Histogram")
-b$setIcon(Qt$QIcon(pixmap))
+button <- Qt$QPushButton("Histogram")
+button$setIcon(Qt$QIcon(pixmap))
 @ 
 
 <<echo=FALSE, results=hide>>=
-b$show()
-b$raise()
+button$show()
+button$raise()
 @ 
 
 
@@ -179,13 +179,13 @@ signal \signal{stateChanged} is added.
 
 We create a check box for demonstration with:
 <<qt-widget-checkbox>>=
-checkBox <- Qt$QCheckBox("Option")
+checkbox <- Qt$QCheckBox("Option")
 @ 
 
 The \property{checked}{QCheckBox} property indicates whether the
 button is checked:
 <<qt-widget-checkbox-checked>>=
-checkBox$checked
+checkbox$checked
 @ 
 %
 Sometimes, it is useful for a checkbox to have an indeterminate state
@@ -198,7 +198,7 @@ determine the state, as it is no longer boolean but from the
 The \signal{stateChanged} signal is emitted whenever the checked state
 of the button changes:
 <<qt-widget-checkbox-state-changed, results=hide>>=
-qconnect(checkBox, "stateChanged", function(state) {
+qconnect(checkbox, "stateChanged", function(state) {
   if (state == Qt$Qt$Checked)
     message("checked")
 })
@@ -234,15 +234,16 @@ variable from the \code{Cars93} data set of the \pkg{MASS} package.
 First, we create our \class{QGroupBox} as the container for our
 buttons:
 <<results=hide>>=
-w <- Qt$QGroupBox("Cylinders:")
-lyt <- Qt$QVBoxLayout()
-w$setLayout(lyt)
+window <- Qt$QWidget()
+group_box <- Qt$QGroupBox("Cylinders:")
+layout <- Qt$QVBoxLayout()
+window$setLayout(layout)
 @ 
 
 Next, we create the button group: 
 <<results=hide>>=
-bg <- Qt$QButtonGroup()
-bg$exclusive <- FALSE
+button_group <- Qt$QButtonGroup()
+button_group$exclusive <- FALSE
 @ 
 %
 By default, the buttons are exclusive, like a radio button group. We
@@ -253,13 +254,13 @@ We add a button for each level of the \qcode{Cylinders} variable to
 both the button group and the layout of the group box widget:
 <<results=hide>>=
 data(Cars93, package="MASS")
-cyls <- levels(Cars93$Cylinders)
-sapply(seq_along(cyls), function(i) {
-  button <- Qt$QCheckBox(sprintf("%s Cylinders", cyls[i]))
-  lyt$addWidget(button)
-  bg$addButton(button, i)
+cylinders <- levels(Cars93$Cylinders)
+sapply(seq_along(cylinders), function(i) {
+  button <- Qt$QCheckBox(sprintf("%s Cylinders", cylinders[i]))
+  layout$addWidget(button)
+  button_group$addButton(button, i)
 })
-sapply(bg$buttons(), function(i) i$checked <- TRUE)
+sapply(button_group$buttons(), function(button) button$checked <- TRUE)
 @ 
 %
 Every button is initially checked. (The \method{buttons}{QButtonGroup} method returns a list of the
@@ -272,10 +273,10 @@ where the button object is specified for removal (not its index).
 Here we retrieve the buttons in the group and query
 their checked state:
 <<results=hide>>=
-checked <- sapply(bg$buttons(), function(i) i$checked)
+checked <- sapply(button_group$buttons(), function(i) i$checked)
 if(any(checked)) {
-  ind <- Cars93$Cylinders %in% cyls[checked]
-  print(sprintf("You've selected %d cases", sum(ind)))
+  checked_cylinders <- Cars93$Cylinders %in% cylinders[checked]
+  message(sprintf("You've selected %d cases", sum(checked_cylinders)))
 }
 @ 
 %
@@ -290,7 +291,7 @@ callback to the \signal{buttonClicked} signal\footnote{See
   \code{(QAbstractButton*)}.}, we will be informed when any of the
 buttons in the group are clicked:
 <<results=hide>>=
-qconnect(bg, "buttonClicked(QAbstractButton*)", 
+qconnect(button_group, "buttonClicked(QAbstractButton*)", 
          function(button) {
            msg <- sprintf("Level '%s': %s", 
                           button$text, button$checked)
@@ -298,8 +299,8 @@ qconnect(bg, "buttonClicked(QAbstractButton*)",
 })
 @ 
 <<echo=FALSE, results=hide>>=
-w$show()
-w$raise()
+window$show()
+window$raise()
 @ 
 
 \section{Radio groups}
@@ -311,10 +312,10 @@ one radio button in a group may be checked at once (they are exclusive). Continu
 filtering example (Figure~\ref{fig:qt-group-checkbox-radio}), we create several radio buttons for choosing a
 range for the \qcode{Weight} variable in the \qcode{Cars93} dataset:
 <<RadioWithList,results=hide>>=
-w <- Qt$QGroupBox("Weight:")
-l <- list(Qt$QRadioButton("Weight < 3000", w),
-          Qt$QRadioButton("3000 <= Weight < 4000", w),
-          Qt$QRadioButton("4000 <= Weight", w))
+window <- Qt$QGroupBox("Weight:")
+radio_buttons <- list(Qt$QRadioButton("Weight < 3000", w),
+                      Qt$QRadioButton("3000 <= Weight < 4000", w),
+                      Qt$QRadioButton("4000 <= Weight", w))
 @ 
 %
 In the above we specified the parent to the constructor to group the objects.
@@ -322,26 +323,26 @@ In the above we specified the parent to the constructor to group the objects.
 The simplest way to arrange the radio boxes is to place them into the
 same layout:
 <<qt-widget-radio-layout, results=hide>>=
-lyt <- Qt$QVBoxLayout()
-w$setLayout(lyt)
-sapply(l, function(i) lyt$addWidget(i))
-l[[1]]$setChecked(TRUE)
+layout <- Qt$QVBoxLayout()
+window$setLayout(layout)
+sapply(radio_buttons, layout$addWidget)
+radio_buttons[[1]]$setChecked(TRUE)
 @ 
 %
 
 As with any other derivative of \class{QAbstractButton}, the checked
 state is stored in the \property{checked}{QAbstractButton} property:
 <<qt-widget-radio-checked>>=
-l[[1]]$checked
+radio_buttons[[1]]$checked
 @ 
 
 The button's \signal{toggled} signal is emitted when a button is checked
 or unchecked:
 <<results=hide>>=
-sapply(l, function(i) {
-  qconnect(i, "toggled", function(checked) {
+sapply(radio_buttons, function(button) {
+  qconnect(button, "toggled", function(checked) {
     if(checked) {
-      message(sprintf("You checked %s.", i$text))
+      message(sprintf("You checked %s.", button$text))
     }
   })
 })
@@ -352,14 +353,14 @@ above, is often inconvenient and difficult to maintain. Instead, we
 can have a \class{QButtonGroup} instance manage the
 radio buttons:
 <<qt-widget-radio-group, results=hide>>=
-buttonGroup <- Qt$QButtonGroup()
-lapply(l, buttonGroup$addButton)
+button_group <- Qt$QButtonGroup()
+lapply(radio_buttons, button_group$addButton)
 @ 
 %
 Since our button group is exclusive, we can query for the currently
 checked button through the \method{checkedButton}{QButtonGroup} method:
 <<qt-widget-radio-group-checked>>=
-buttonGroup$checkedButton()$text
+button_group$checkedButton()$text
 @ 
 %
 As well, we can listen for events on the button group, rather than
@@ -368,26 +369,26 @@ much easier to add (or remove) items, although you do need to add to (or
 remove from)  both the layout and the button group.
 
 <<echo=FALSE,results=hide>>=
-w$show()
-w$raise()
+window$show()
+window$raise()
 @           
 
 <<makeFigureFromPrevious,echo=FALSE,results=hide>>=
 ## Code used to make figure, just combines previous
 make_cb <- function() {
   w <- Qt$QGroupBox("Cylinders:")
-  lyt <- Qt$QVBoxLayout()
-  w$setLayout(lyt)
-  bg <- Qt$QButtonGroup()
-  bg$exclusive <- FALSE
+  layout <- Qt$QVBoxLayout()
+  w$setLayout(layout)
+  button_group <- Qt$QButtonGroup()
+  button_group$exclusive <- FALSE
   data(Cars93, package="MASS")
-  cyls <- levels(Cars93$Cylinders)
-  sapply(seq_along(cyls), function(i) {
-    button <- Qt$QCheckBox(sprintf("%s Cylinders", cyls[i]))
-    lyt$addWidget(button)
-    bg$addButton(button, i)
+  cylinders <- levels(Cars93$Cylinders)
+  sapply(seq_along(cylinders), function(i) {
+    button <- Qt$QCheckBox(sprintf("%s Cylinders", cylinders[i]))
+    layout$addWidget(button)
+    button_group$addButton(button, i)
   })
-  sapply(bg$buttons(), function(i) i$checked <- TRUE)
+  sapply(button_group$buttons(), function(i) i$checked <- TRUE)
   w
 }
 
@@ -396,9 +397,9 @@ make_rb <- function() {
   l <- list(Qt$QRadioButton("Weight < 3000", w),
             Qt$QRadioButton("3000 <= Weight < 4000", w),
             Qt$QRadioButton("4000 <= Weight", w))
-  lyt <- Qt$QVBoxLayout()
-  w$setLayout(lyt)
-  sapply(l, function(i) lyt$addWidget(i))
+  layout <- Qt$QVBoxLayout()
+  w$setLayout(layout)
+  sapply(l, function(i) layout$addWidget(i))
   l[[1]]$setChecked(TRUE)
   l[[1]]$checked
   sapply(l, function(i) {
@@ -408,16 +409,16 @@ make_rb <- function() {
       }
     })
   })
-  buttonGroup <- Qt$QButtonGroup()
-  lapply(l, buttonGroup$addButton)
+  button_group <- Qt$QButtonGroup()
+  lapply(l, button_group$addButton)
   w
 }
 
 w <- Qt$QWidget()
-lyt <- Qt$QHBoxLayout()
-lyt$addWidget(make_cb())
-lyt$addWidget(make_rb())
-w$setLayout(lyt) 
+layout <- Qt$QHBoxLayout()
+layout$addWidget(make_cb())
+layout$addWidget(make_rb())
+w$setLayout(layout) 
 w$windowTitle <- "Groups of checkboxes and radio buttons"
 @ 
 
@@ -448,15 +449,15 @@ and split that \class{data.frame} by the regions:
 df <- data.frame(name=state.name, region=state.region,
                  population=state.x77[,'Population'], 
                  stringsAsFactors=FALSE)
-statesByRegion <- split(df, df$region)
+states_by_region <- split(df, df$region)
 @ 
 
 We create our combo boxes, loading the \code{region} combo box with the
 regions:
 <<QComboBox, results=hide>>=
-state <- Qt$QComboBox()
-region <- Qt$QComboBox()
-region$addItems(names(statesByRegion))
+state_combo <- Qt$QComboBox()
+region_combo <- Qt$QComboBox()
+region_combo$addItems(names(states_by_region))
 @ 
 %
 The \method{addItems}{QComboBox} accepts a character vector of options
@@ -468,21 +469,21 @@ holds the current text, whereas the
 \property{currentIndex}{QComboBox} property
 indicates the index of the currently selected item:
 <<qt-widget-combo-currentitem>>=
-region$currentText
-region$currentIndex                     # 0-based
+region_combo$currentText
+region_combo$currentIndex                     # 0-based
 @
 %
 By setting it to $-1$, we make the selection to be empty.
 <<qt-widget-combo-clear-index>>=
-region$currentIndex <- -1
+region_combo$currentIndex <- -1
 @ 
 
 To respond to a change in the current index, we connect to the
 \signal{activated} signal:
 <<results=hide>>=
-qconnect(region, "activated(int)", function(ind) {
-  state$clear()
-  state$addItems(statesByRegion[[ind+1]]$name)
+qconnect(region_combo, "activated(int)", function(index) {
+  state_combo$clear()
+  state_combo$addItems(states_by_region[[index+1]]$name)
 })
 @ 
 %
@@ -491,17 +492,17 @@ region, indicated by \qcode{ind}, which is zero-based.
 
 Finally, we place the widgets in a form layout:
 <<results=hide>>=
-w <- Qt$QGroupBox("Two combo boxes")
-lyt <- Qt$QFormLayout()
-w$setLayout(lyt)
-lyt$addRow("Region:", region)
-lyt$addRow("State:", state)
+window <- Qt$QGroupBox("Two combo boxes")
+layout <- Qt$QFormLayout()
+window$setLayout(layout)
+layout$addRow("Region:", region_combo)
+layout$addRow("State:", state_combo)
 ## grow combo boxes
-lyt$fieldGrowthPolicy = Qt$QFormLayout$AllNonFixedFieldsGrow
+layout$fieldGrowthPolicy <- Qt$QFormLayout$AllNonFixedFieldsGrow
 @ 
 
 <<eval=FALSE, echo=FALSE, results=hide>>=
-w$show(); w$raise()
+window$show(); window$raise()
 @ 
 
 To allow a user to enter a value not in the menu, the property
@@ -526,15 +527,15 @@ Sliders are implemented by \class{QSlider}, a subclass of
 \class{QAbstractSlider}. \class{QSlider} selects only from integer
 values. We create an instance and specify the bounds of the range:
 <<qt-widget-slider>>=
-sl <- Qt$QSlider()
-sl$minimum <- 0
-sl$maximum <- 100
+slider <- Qt$QSlider()
+slider$minimum <- 0
+slider$maximum <- 100
 @
 %
 We can also customize the step size:
 <<qt-widget-slider-step>>=
-sl$singleStep <- 1
-sl$pageStep <- 5
+slider$singleStep <- 1
+slider$pageStep <- 5
 @ 
 %
 Single step refers to the effect of pressing one of the arrow keys,
@@ -544,17 +545,17 @@ while pressing \qcode{Page Up/Down} adjusts the slider by
 The current cursor position is given by the property
 \property{value}{QSlider}; we set it to the middle of the range:
 <<qt-widget-slider-value>>=
-sl$value
-sl$value <- 50
+slider$value
+slider$value <- 50
 @ 
 
 A slider has several aesthetic properties. We set our slider to be
 oriented horizontally (vertical is the default), and place the tick
 marks below the slider, with a mark every $10$ values:
 <<qt-widget-slider-aesthetics>>=
-sl$orientation <- Qt$Qt$Horizontal
-sl$tickPosition <- Qt$QSlider$TicksBelow
-sl$tickInterval <- 10
+slider$orientation <- Qt$Qt$Horizontal
+slider$tickPosition <- Qt$QSlider$TicksBelow
+slider$tickInterval <- 10
 @
 
 The \signal{valueChanged} signal is emitted whenever the
@@ -570,17 +571,17 @@ from a common base, \class{QAbstractSpinBox}. As our slider is
 integer-valued, we will introduce \class{QSpinBox} here. Configuring a
 \class{QSpinBox} proceeds much as it does for \class{QSlider}:
 <<results=hide>>=
-sp <- Qt$QSpinBox()
-sp$minimum <- sl$minimum
-sp$maximum <- sl$maximum
-sp$singleStep <- sl$singleStep
+spinbox <- Qt$QSpinBox()
+spinbox$minimum <- slider$minimum
+spinbox$maximum <- slider$maximum
+spinbox$singleStep <- slider$singleStep
 @ 
 %
 There is no \qcode{pageStep} for a spin box.  Since we are
 communicating a percentage, we specify "\%" as the suffix for the text
 of the spin box:
 <<qt-widget-spin-suffix>>=
-sp$suffix <- "%"
+spinbox$suffix <- "%"
 @ 
 %
 It is also possible to set a prefix.
@@ -590,8 +591,8 @@ Both \class{QSlider} and \class{QSpinBox} emit the
 the signal on both widgets to keep them synchronized:
 <<results=hide>>=
 f <- function(value, obj) obj$value <- value
-qconnect(sp, "valueChanged", f, user.data=sl)
-qconnect(sl, "valueChanged", f, user.data=sp)
+qconnect(spinbox, "valueChanged", f, user.data = slider)
+qconnect(slider, "valueChanged", f, user.data = spinbox)
 @
 %
 We pass the other widget as the user data, so that state changes in
@@ -601,14 +602,14 @@ actually changes.
 
 <<SliderSpinButton, echo=FALSE, results=hide>>=
 w <- Qt$QWidget()
-lyt <- Qt$QHBoxLayout()
-w$setLayout(lyt)
+layout <- Qt$QHBoxLayout()
+w$setLayout(layout)
 @ 
 
 <<echo=FALSE, results=hide>>=
 ## not shown
-lyt$addWidget(sl)
-lyt$addWidget(sp)
+layout$addWidget(slider)
+layout$addWidget(spinbox)
 
 w$show()
 w$raise()
@@ -620,23 +621,23 @@ w$raise()
 As seen in previous examples, a widget for entering or displaying a
 single line of text is provided by the \class{QLineEdit} class:
 <<qt-widget-lineedit>>=
-le <- Qt$QLineEdit("Initial contents")
+edit <- Qt$QLineEdit("Initial contents")
 @ 
 %
 The \property{text}{QLineEdit} property holds the current value:
 <<qt-widget-lineedit-text>>=
-le$text
+edit$text
 @ 
 %
 
 Here we select the text, so that the initial contents are
 overwritten when the user begins typing:
 <<qt-widget-lineedit-select, results=hide>>=
-le$setSelection(start = 0, length = nchar(le$text))
+edit$setSelection(start = 0, length = nchar(edit$text))
 @ 
 %
 <<qt-widget-linedit-selectedText>>=
-le$selectedText
+edit$selectedText
 @
 %
 
@@ -657,16 +658,16 @@ that fills the entry if it is empty and unfocused. Typically, this text
 indicates to the user the expected contents of the entry:
 
 <<qt-widget-lineedit-placeholder, results=hide>>=
-le$text <- ""
-le$setPlaceholderText("Enter some text here")
+edit$text <- ""
+edit$setPlaceholderText("Enter some text here")
 @ 
 
 The \signal{editingFinished} signal is emitted when the user has
 committed the edit, typically by pressing the return key, and the
 input has been validated:
 <<qt-widget-lineedit-editingFinished, results=hide>>=
-qconnect(le, "editingFinished", function() {
-  message("Entered text: '", le$text, "'")
+qconnect(edit, "editingFinished", function() {
+  message("Entered text: '", edit$text, "'")
 })
 @ 
 %
@@ -698,32 +699,32 @@ presented for completion when text is entered into a \class{QLineEdit}.
   Figure~\ref{fig:qt-qwebview-embedded} to see this widget example
   embedded into a web page.
 <<CompleterExample, results=hide>>=
-classBrowser <- Qt$QWidget()
-lyt <- Qt$QFormLayout()
-classBrowser$setLayout(lyt)
+class_browser <- Qt$QWidget()
+layout <- Qt$QFormLayout()
+class_browser$setLayout(layout)
 
-lyt$addRow("Class name", c_name <- Qt$QLineEdit())
-lyt$addRow("Method name", m_name <- Qt$QLineEdit())
+layout$addRow("Class name", class_edit <- Qt$QLineEdit())
+layout$addRow("Method name", method_edit <- Qt$QLineEdit())
 @ 
 
 Next, we construct the completer for the class entry, listing the
 components of the \qcode{Qt} environment with \function{ls}: 
 <<results=hide>>=
-c_comp <- Qt$QCompleter(ls(Qt))
-c_name$setCompleter(c_comp)
+class_completer <- Qt$QCompleter(ls(Qt))
+class_edit$setCompleter(class_completer)
 @ 
 %
 
 The completion for the methods depends on the class. As such, we
 update the completion when editing is finished for the class name:
 <<results=hide>>=
-qconnect(c_name, "editingFinished", function() {
-  cl <- c_name$text
-  if(cl == "") return()
-  val <- get(cl, envir=Qt)
-  if(!is.null(val)) {
-    m_comp <- Qt$QCompleter(ls(val()))
-    m_name$setCompleter(m_comp)
+qconnect(class_edit, "editingFinished", function() {
+  class_name <- class_edit$text
+  if(class_name == "") return()
+  class_object <- get(class_name, envir = Qt)
+  if(!is.null(class_object)) {
+    method_completer <- Qt$QCompleter(ls(val()))
+    method_edit$setCompleter(method_completer)
   }
 })
 @ 
@@ -732,7 +733,7 @@ qconnect(c_name, "editingFinished", function() {
 <<echo=FALSE, results=hide>>=
 w <- Qt$QWidget()
 w$windowTitle <- "Completion example"
-w$setLayout(lyt)
+w$setLayout(layout)
 w$show()
 w$raise()
 @ 
@@ -750,7 +751,7 @@ convenient for restricting input to a simple pattern. We could, for
 example, force the input to conform to the pattern of a U.S. Social
 Security Number:
 <<qt-widget-lineedit-mask>>=
-le$inputMask <- "999-99-9999"
+edit$inputMask <- "999-99-9999"
 @ 
 %
 Please see the API documentation of \class{QLineEdit} for a full
@@ -852,9 +853,9 @@ matches the type of the \qcode{object} element in the HTML. The
 \class{QWidget} corresponding to the plugin:
 <<qt-widget-webview-plugin-factory-create, results=hide>>=
 qsetMethod("create", RPluginFactory, 
-           function(mimeType, url, argNames, argVals) {
-             if (mimeType == "application/x-qt-class-browser")
-              classBrowser
+           function(mime_type, url, arg_names, arg_vals) {
+             if (mime_type == "application/x-qt-class-browser")
+              class_browser
              else Qt$QWidget()
            })
 @ 
@@ -880,7 +881,7 @@ The \pkg{qtutils} package includes a \Qt-based graphics device,
 written by Deepayan Sarkar. We make a simple scatterplot:
 <<qt-widget-graphics-device>>=
 library(qtutils)
-qtDevice <- QT()
+qt_device <- QT()
 plot(mpg ~ hp, data = mtcars)
 @ 
 %
@@ -888,7 +889,7 @@ The \qcode{qtDevice} object may be shown directly or embedded within a
 GUI. For example, we might place it in a notebook of multiple plots:
 <<qt-widget-graphics-device-notebook>>=
 notebook <- Qt$QTabWidget()
-notebook$addTab(qtDevice, "Plot 1")
+notebook$addTab(qt_device, "Plot 1")
 print(notebook)
 @ 
 %
@@ -900,7 +901,7 @@ To increase performance at a slight cost of quality, we could direct
 the device to leverage hardware acceleration through OpenGL. This
 requires passing \qcode{opengl = TRUE} to the \function{QT} constructor:
 <<qt-widget-graphics-device-opengl>>=
-qtOpenGLDevice <- QT(opengl = TRUE)
+qt_opengl_device <- QT(opengl = TRUE)
 @ 
 %
 Even without the help of OpenGL, the device is faster than most other
@@ -933,7 +934,7 @@ enable the dragging of text from one label to another, following the
 We begin by setting up a label to be a drag target:
 <<DragConstructor, results=hide>>=
 qsetClass("DragLabel", Qt$QLabel, 
-          function(text="", parent=NULL) {
+          function(text = "", parent = NULL) {
             super(parent)
             setText(text)
             ##
@@ -948,12 +949,12 @@ graphical object as MIME data. This might be as an image, text or
 other data type. This occurs in the
 \method{mouseEventHandler}{QWidget} of the source:
 <<drag-mouse-press-event, results=hide>>=
-qsetMethod("mousePressEvent", DragLabel, function(e) {
-  md <- Qt$QMimeData()
-  md$setText(text)
+qsetMethod("mousePressEvent", DragLabel, function(event) {
+  mime_data <- Qt$QMimeData()
+  mime_data$setText(text)
 
   drag <- Qt$QDrag(this)
-  drag$setMimeData(md)
+  drag$setMimeData(mime_data)
 
   drag$exec()
 })
@@ -975,19 +976,19 @@ Implementing a label as a drop target is a bit more work, as we
 customize its appearance. Our basic
 constructor follows:
 <<DropConstructor, results=hide>>=
-qsetClass("DropLabel", Qt$QLabel, function(text="", 
-                                           parent=NULL) {
-  super(parent)
-
-  setText(text)
-  this$acceptDrops <- TRUE
-
-  this$bgrole <- backgroundRole()
-  this$alignment <- Qt$Qt$AlignCenter
-  setMinimumSize(200, 200)
-  this$autoFillBackground <- TRUE
-  clear()
-})
+qsetClass("DropLabel", Qt$QLabel, 
+          function(text="", parent=NULL) {
+            super(parent)
+            
+            setText(text)
+            this$acceptDrops <- TRUE
+            
+            this$bgrole <- backgroundRole()
+            this$alignment <- Qt$Qt$AlignCenter
+            setMinimumSize(200, 200)
+            this$autoFillBackground <- TRUE
+            clear()
+          })
 @
 %
 The important step is to allow the widget to receive drops by setting
@@ -1002,9 +1003,9 @@ qsetMethod("clear", DropLabel, function() {
   setText(this$orig_text)
   setBackgroundRole(this$bgrole)
 })
-qsetMethod("setText", DropLabel, function(str) {
-  this$orig_text <- str
-  super("setText", str)                 # next method
+qsetMethod("setText", DropLabel, function(text) {
+  this$orig_text <- text
+  super("setText", text)                 # next method
 })
 @
 The \meth{clear} method is used to restore the label to an initial
@@ -1015,12 +1016,14 @@ When the user drags an object over our target, we need to verify that
 the data is of an acceptable type. This is implemented by the
 \method{dragEnterEvent}{QWidget} handler:
 <<results=hide>>=
-qsetMethod("dragEnterEvent", DropLabel, function(e) {
-  md <- e$mimeData()
-  if (e$hasImage() || e$hasHtml() | e$hasText()) {
+qsetMethod("dragEnterEvent", DropLabel, function(event) {
+  mime_data <- event$mimeData()
+  if (mime_data$hasImage() || mime_data$hasHtml() | 
+      mime_data$hasText()) 
+  {
     super("setText", "<Drop Text Here>")
     setBackgroundRole(Qt$QPalette$Highlight)
-    e$acceptProposedAction()
+    event$acceptProposedAction()
   }
 })
 @
@@ -1031,7 +1034,7 @@ this handler is to indicate that the target is receptive to drops; we
 highlight the background of the label and change the text. To undo the
 highlighting, we override the \method{dragLeaveEvent}{QWidget} method:
 <<results=hide, results=hide>>=
-qsetMethod("dragLeaveEvent", DropLabel, function(e) {
+qsetMethod("dragLeaveEvent", DropLabel, function(event) {
   clear()
 })
 @ 
@@ -1040,23 +1043,23 @@ Finally, we have the important drop event handler. The following
 code implements this more generally than is needed for this
 example, as we only have text in our MIME data:
 <<dropevent, results=hide>>=
-qsetMethod("dropEvent", DropLabel, function(e) {
-  md <- e$mimeData()
+qsetMethod("dropEvent", DropLabel, function(event) {
+  mime_data <- e$mimeData()
   
-  if(md$hasImage()) {
-    setPixmap(md$imageData())
-  } else if(md$hasHtml()) {
-    setText(md$html)
+  if(mime_data$hasImage()) {
+    setPixmap(mime_data$imageData())
+  } else if(mime_data$hasHtml()) {
+    setText(mime_data$html)
     setTextFormat(Qt$Qt$RichText)
-  } else if(md$hasText()) {
-    setText(md$text())
+  } else if(mime_data$hasText()) {
+    setText(mime_data$text())
     setTextFormat(Qt$Qt$PlainText)
   } else {
     setText("No match")                 # replace...
   }
 
   setBackgroundRole(this$bgrole)
-  e$acceptProposedAction()
+  event$acceptProposedAction()
 })
 @
 %

@@ -39,10 +39,10 @@ delete <- gtkButton(stock.id="gtk-delete")
 We specify the padding as we pack the widgets into the box, from right
 to left, with \method{packEnd}{GtkBox}:
 <<macButtonPack>>=
-hbox$packEnd(ok, padding=0)
-hbox$packEnd(cancel, padding=12)
-hbox$packEnd(delete, padding=12)
-hbox$packEnd(gtkLabel(""), expand=TRUE, fill=TRUE) # a spring
+hbox$packEnd(ok, padding = 0)
+hbox$packEnd(cancel, padding = 12)
+hbox$packEnd(delete, padding = 12)
+hbox$packEnd(gtkLabel(""), expand = TRUE, fill = TRUE) # a spring
 @ 
 %
 The padding occurs to the left and right of the child.  The \code{ok}

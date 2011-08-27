@@ -139,12 +139,12 @@ number of columns in the model. Each column, an instance of
 instructed to render content based on one or more columns in the data
 model:
 <<rgtk2-mvc-insert-column-hardway, results=hide>>=
-vc <- gtkTreeViewColumn()
-vc$setTitle("Manufacturer")
-cr <- gtkCellRendererText()
-vc$packStart(cr)
-vc$addAttribute(cr, "text", 0)
-view$insertColumn(vc, 0)
+column <- gtkTreeViewColumn()
+column$setTitle("Manufacturer")
+cell_renderer <- gtkCellRendererText()
+column$packStart(cell_renderer)
+column$addAttribute(cell_renderer, "text", 0)
+view$insertColumn(column, 0)
 @ 
 %
 A column with the title ``Manufacturer'' is inserted at the first,
@@ -187,9 +187,9 @@ the data frame, i.e., the model.
 <<rgtk2-mvc-insert-all-columns, results=hide>>=
 view <- gtkTreeView(model)
 mapply(view$insertColumnWithAttributes,  
-       position=-1, 
-       title=colnames(model), 
-       cell=list(gtkCellRendererText()), 
+       position = -1, 
+       title = colnames(model), 
+       cell = list(gtkCellRendererText()), 
        text = seq_len(ncol(model)) - 1
        )
 @
@@ -203,11 +203,11 @@ mapply(view$insertColumnWithAttributes,
 
 Figure~\ref{fig:RGtk2-scrollable-treeview} shows the view within a scrollable window:
 <<scrollView>>=
-w <- gtkWindow()
-w$setTitle("Tabular view of data frame")
-sw <- gtkScrolledWindow()
-w$add(sw)
-sw$add(view)
+window <- gtkWindow()
+window$setTitle("Tabular view of data frame")
+scrolled_window <- gtkScrolledWindow()
+window$add(scrolled_window)
+scrolled_window$add(view)
 @ 
 %
 %% JV cut this out
@@ -277,13 +277,13 @@ expressed as either a numeric vector or a string, using
 \constructor{gtkTreePathNewFromString}, respectively. For a flat table
 model, there is only one integer in the sequence:
 <<rgtk2-mvc-path-constructor-list>>=
-secondRow <- gtkTreePathNewFromIndices(2)
+second_row <- gtkTreePathNewFromIndices(2)
 @
 %
 Referring to a row in a hierarchy is slightly more complex:
 <<rgtk2-mvc-path-constructor-tree>>=
-abcPath <- gtkTreePathNewFromIndices(c(1, 3, 2))
-abcPath <- gtkTreePathNewFromString("1:3:2")
+abc_path <- gtkTreePathNewFromIndices(c(1, 3, 2))
+abc_path <- gtkTreePathNewFromString("1:3:2")
 @
 %
 In the above, both paths refer to the second child of the third child
@@ -408,16 +408,16 @@ list, with components \code{retval} to indicate success, \code{model}
 pointing to the tree model and \code{iter} representing an iterator to
 the selected row in the model.
 <<echo=FALSE, results=hide>>=
-vc <- gtkTreeViewColumn()
+column <- gtkTreeViewColumn()
 view$insertColumnWithAttributes(0, "title", gtkCellRendererText(), text = 0)
 ## pack in GUI
-sw <- gtkScrolledWindow()
-sw$add(view)
+scrolled_window <- gtkScrolledWindow()
+scrolled_window$add(view)
 ##
-w <- gtkWindow(show=FALSE)
-w['title'] <- "Multiple selection example"
-w$add(sw)
-w$show()
+window <- gtkWindow(show=FALSE)
+window['title'] <- "Multiple selection example"
+window$add(scrolled_window)
+window$show()
 ## some selection
 selection$selectPath(gtkTreePathNewFromIndices(3)) # set 
 # 
@@ -426,8 +426,8 @@ selection$selectPath(gtkTreePathNewFromIndices(3)) # set
 If our tree view is shown and a selection made, this code will
 return the value in the first column:
 <<>>=
-curSel <- selection$getSelected()
-with(curSel, model$getValue(iter, 0)$value)
+selected <- selection$getSelected()
+with(selected, model$getValue(iter, 0)$value)
 @ 
 %
 When multiple selection is permitted, then the method
@@ -440,10 +440,10 @@ To respond to a selection, connect to the \signal{changed} signal on
 the selected values in the first column:
 <<>>=
 gSignalConnect(selection, "changed", function(selection) {
-  curSel <- selection$getSelectedRows()
-  if(length(curSel$retval)) {
-    rows <- sapply(curSel$retval, gtkTreePathGetIndices) + 1L
-    curSel$model[rows, 1]
+  selected_rows <- selection$getSelectedRows()
+  if(length(selected_rows$retval)) {
+    rows <- sapply(selected_rows$retval, gtkTreePathGetIndices) + 1L
+    selected_rows$model[rows, 1]
   }
 })
 @ 
@@ -474,8 +474,8 @@ sorting. \class{RGtkDataFrame} falls into this category. When
 only necessary to inform each view column of the model column to use
 for sorting when the header is clicked:
 <<rgtk2-mvc-sorting-clickable>>=
-vc <- view$getColumn(0)
-vc$setSortColumnId(0)
+column <- view$getColumn(0)
+column$setSortColumnId(0)
 @ 
 %
 In the above, clicking on the header of the first view column,
@@ -497,16 +497,16 @@ sort column. \GTK\/ provides \class{GtkTreeModelSort} for this:
 require(MASS)
 @ 
 <<basicSort, results=hide>>=
-store <- rGtkDataFrame(Cars93)
-sorted <- gtkTreeModelSortNewWithModel(store)
-view <- gtkTreeView(sorted)
+model <- rGtkDataFrame(Cars93)
+sorted_model <- gtkTreeModelSortNewWithModel(model)
+view <- gtkTreeView(sorted_model)
 mapply(view$insertColumnWithAttributes,
-       position=-1,
-       title=colnames(store),
-       cell=list(gtkCellRendererText()),
-       text=seq_len(ncol(store)) - 1)
-sapply(seq_len(ncol(store)), function(i)
-       view$getColumn(i-1)$setSortColumnId(i-1))
+       position = -1,
+       title = colnames(model),
+       cell = list(gtkCellRendererText()),
+       text = seq_len(ncol(model)) - 1)
+sapply(seq_len(ncol(model)), function(i)
+       view$getColumn(i - 1)$setSortColumnId(i - 1))
 @ 
 %
 When the user sorts the table, the underlying \code{store} will not be
@@ -533,8 +533,8 @@ f <- function(model, iter1, iter2, user.data) {
   val2 <- model$getValue(iter2, column)$value
   as.integer(match(val1, types) - match(val2, types))
 }
-sorted$setSortFunc(sort.column.id=3-1, sort.func=f, 
-                   user.data=3 - 1)
+sorted_model$setSortFunc(sort.column.id = 3 - 1, sort.func = f, 
+                         user.data = 3 - 1)
 @ 
 
 <<notShown, echo=FALSE>>=
@@ -563,9 +563,9 @@ This is the basic usage:
 <<>>=
 df <- Cars93
 model <- rGtkDataFrame(cbind(df, .visible=rep(TRUE, nrow(df))))
-filtered <- model$filter()
-filtered$setVisibleColumn(length(df))            # 0-based
-view <- gtkTreeView(filtered)
+filtered_model <- model$filter()
+filtered_model$setVisibleColumn(length(df))            # 0-based
+view <- gtkTreeView(filtered_model)
 ## Adjust filter
 model[,".visible"] <- df$MPG.highway >= 30
 @ 
@@ -632,8 +632,8 @@ row to row. However, the background color (the \code{cell-background}
 property) might be common to all rows in the column and thus is set
 explicitly, without use of an attribute:
 <<gtk-mvc-cell-explicit>>=
-renderer <- gtkCellRendererText()
-renderer['cell-background'] <- "gray"
+cell_renderer <- gtkCellRendererText()
+cell_renderer['cell-background'] <- "gray"
 @ 
 
 The base class \class{GtkCellRenderer} defines a number of properties
@@ -658,9 +658,9 @@ the font \code{family} and \code{size}, the \code{foreground} and
 \code{wrap} the text if there is not enough space for display.  For
 example, we display right-aligned text in a Helvetica font:
 <<cr-right-aligned>>=
-cr <- gtkCellRendererText()
-cr['xalign'] <- 1                    # default 0.5 = centered
-cr['family'] <- "Helvetica"  
+cell_renderer <- gtkCellRendererText()
+cell_renderer['xalign'] <- 1                    # default 0.5 = centered
+cell_renderer['family'] <- "Helvetica"  
 @ 
 
 When an attribute links the \code{text} property to a numeric column
@@ -686,17 +686,17 @@ e.g., from the enclosing environment of the handler.
 For example, here is how one can update an \code{RGtkDataFrame} model
 from within the callback:
 <<echo=FALSE>>=
-cr <- gtkCellRendererText()
+cell_renderer <- gtkCellRendererText()
 @ 
 <<editedSignal>>=
-cr['editable'] <- TRUE
-ID <- gSignalConnect(cr, "edited", 
-f=function(cr, path, newtext, user.data) {
-  i <- as.numeric(path) + 1
-  j <- user.data$column
-  model <- user.data$model
-  model[i, j] <- newtext
-}, data=list(model=store, column=1))
+cell_renderer['editable'] <- TRUE
+gSignalConnect(cr, "edited", 
+               f=function(cell_renderer, path, newtext, user.data) {
+                 i <- as.numeric(path) + 1
+                 j <- user.data$column
+                 model <- user.data$model
+                 model[i, j] <- newtext
+               }, data=list(model=store, column=1))
 @ 
 % 
 Before using editable cells to create a data frame editor, one should
@@ -731,11 +731,11 @@ retrieved from the \class{GtkTreeModel} given by \code{model} at the
 column index given by \code{text-column}.  If \code{has-entry} is
 \code{TRUE}, a combo box entry is displayed.
 <<>>=
-cr <- gtkCellRendererCombo()
-store <- rGtkDataFrame(state.name)
-cr['model'] <- store
-cr['text-column'] <- 0
-cr['editable'] <- TRUE                  # needed
+cell_renderer <- gtkCellRendererCombo()
+model <- rGtkDataFrame(state.name)
+cell_renderer['model'] <- model
+cell_renderer['text-column'] <- 0
+cell_renderer['editable'] <- TRUE                  # needed
 @ 
 %
 The spin button editor is configured by setting a
@@ -793,10 +793,10 @@ for it to receive user input. The programmer then needs to connect to the
 \signal{toggled} to update the model in response to changes in the
 active state.
 <<cellRendererToggle>>=
-cr <- gtkCellRendererToggle()
-cr['activatable'] <- TRUE             # cell can be activated
-cr['active'] <- TRUE
-gSignalConnect(cr, "toggled", function(w, path) {
+cell_renderer <- gtkCellRendererToggle()
+cell_renderer['activatable'] <- TRUE             # cell can be activated
+cell_renderer['active'] <- TRUE
+gSignalConnect(cell_renderer, "toggled", function(w, path) {
   model$active[as.numeric(path) + 1] <- w['active']
 })
 @ 
@@ -824,8 +824,8 @@ property takes a value between $0$ and $100$ indicating the amount
 finished, with a default value of $0$. Values out of this range will
 be signaled by an error message.  For example,
 <<comboEditor>>=
-cr <- gtkCellRendererProgress()
-cr["value"] <- 50
+cell_renderer <- gtkCellRendererProgress()
+cell_renderer["value"] <- 50
 @ 
 
 For indicating progress in the absence of a definite end point,
@@ -862,11 +862,11 @@ is tasked with setting the appropriate attributes of the cell
 renderer. For example, this callback would format floating point
 numbers:
 <<>>=
-func <- function(viewCol, cellRend, model, iter, data) {
-  curVal <- model$getValue(iter, 0)$value
-  fVal <- sprintf("%.3f", curVal)
-  cellRend['text'] <- fVal
-  cellRend['xalign'] <- 1
+func <- function(column, cell_renderer, model, iter, data) {
+  val <- model$getValue(iter, 0)$value
+  f_val <- sprintf("%.3f", val)
+  cell_renderer['text'] <- f_val
+  cell_renderer['xalign'] <- 1
 }
 @ 
 %
@@ -874,10 +874,10 @@ The function then needs to be registered with a
 \class{GtkTreeViewColumn} that is rendering a numeric column from the model:
 <<results=hide>>=
 view <- gtkTreeView(rGtkDataFrame(data.frame(rnorm(100))))
-cr <- gtkCellRendererText()
-view$insertColumnWithAttributes(0, "numbers", cr, text = 0)
-vc <- view$getColumn(0)
-vc$setCellDataFunc(cr, func)
+cell_renderer <- gtkCellRendererText()
+view$insertColumnWithAttributes(0, "numbers", cell_renderer, text = 0)
+column <- view$getColumn(0)
+column$setCellDataFunc(cell_renderer, func)
 @ 
 %
 The last line is the key: calling
@@ -932,22 +932,22 @@ and \code{GObject} for \GTK\/ objects, such as pixbufs.
   (\code{Manufacturer}), i.e., each model row is the child of its
   manufacturer row:
 <<results=hide>>=
-tstore <- gtkTreeStore("gchararray")
+model <- gtkTreeStore("gchararray")
 by(Cars93, Cars93$Manufacturer, function(df) {
-  piter <- tstore$append()              # parent
-  tstore$setValue(piter$iter, column = 0, value = 
-                  df$Manufacturer[1])
+  parent_iter <- model$append()
+  model$setValue(parent_iter$iter, column = 0, value = 
+                 df$Manufacturer[1])
   sapply(df$Model, function(car_model) {
-    sibiter <- tstore$append(parent = piter$iter) # child
-    if (is.null(sibiter$retval)) 
-      tstore$setValue(sibiter$iter, column=0, value=car_model)
+    child_iter <- tstore$append(parent = parent_iter$iter)
+    if (is.null(child_iter$retval)) 
+      model$setValue(child_iter$iter, column = 0, value = car_model)
   })
 })
 @ 
   To retrieve a value from the tree store using its path we have:
 <<>>=
-iter <- tstore$getIterFromString("0:0")
-tstore$getValue(iter$iter, column = 0)$value
+iter <- model$getIterFromString("0:0")
+model$getValue(iter$iter, column = 0)$value
 @ 
 This obtains the first model from the first manufacturer (path \qcode{0:0}).
 \end{example}
@@ -979,12 +979,12 @@ model to obtain the model values:
 iter <- tstore$getIterFirst()
 models <- NULL
 while(iter$retval) {
-  child <- tstore$iterChildren(iter$iter)
-  while(child$retval) {
-    models <- c(models, tstore$get(child$iter, 0)[[1]])
-    child$retval <- tstore$iterNext(child$iter)
+  child_iter <- model$iterChildren(iter$iter)
+  while(child_iter$retval) {
+    models <- c(models, model$get(child_iter$iter, 0)[[1]])
+    child_iter$retval <- model$iterNext(child_iter$iter)
   }
-  iter$retval <- tstore$iterNext(iter$iter)
+  iter$retval <- model$iterNext(iter$iter)
 }
 @ 
 %
@@ -1179,20 +1179,20 @@ scrolling support and thus are easily added to a scrolled window
 \begin{example}{Basic \constructor{gtkTextView} usage}{eg:RGtk2:textview-basics}
   The steps to construct a text view consist of:
 <<>>=
-tv <- gtkTextView()
-sw <- gtkScrolledWindow()
-sw$add(tv)
-sw$setPolicy("automatic", "automatic")
+view <- gtkTextView()
+scrolled_window <- gtkScrolledWindow()
+scrolled_window$add(view)
+scrolled_window$setPolicy("automatic", "automatic")
 ##
-w <- gtkWindow()
-w['border-width'] <- 15
-w$add(sw)
+window <- gtkWindow()
+window['border-width'] <- 15
+window$add(scrolled_window)
 @
 %
 To set all the text in the buffer requires accessing the underlying
 buffer:
 <<setText>>=
-buffer <- tv$getBuffer()
+buffer <- view$getBuffer()
 buffer$setText("Lorem ipsum dolor sit amet ...")
 @ 
 
@@ -1222,8 +1222,8 @@ through the \property{editable}{GtkTextView} property. Typically, one
 then sets the \property{cursor-visible}{GtkTextView} property to
 \qcode{FALSE} so that the cursor is hidden:
 <<gtk-mvc-text-noneditable>>=
-tv['editable'] <- FALSE
-tv['cursor-visible'] <- FALSE
+view['editable'] <- FALSE
+view['cursor-visible'] <- FALSE
 @ 
 
 %% properties: editable, ...
@@ -1382,8 +1382,8 @@ update the iterator rather than return a new one.
 <<echo=FALSE>>=
 ## setup example, not shown
 w <- gtkWindow()
-tv <- gtkTextView()
-w$add(tv)
+view <- gtkTextView()
+w$add(view)
 @ 
 %%
 
@@ -1392,16 +1392,17 @@ mouse click. In the callback we obtain the $X$ and $Y$ coordinates of
 the mouse button press event, find the corresponding iterator, and
 retrieve the surrounding word:
 <<FindWordAtMouseClick>>=
-ID <- gSignalConnect(tv, "button-press-event", 
-                     f=function(w, e, ...) {
-  siter <- w$getIterAtLocation(e$getX(), e$getY())$iter
-  niter <- siter$copy()                 # need copy
-  siter$backwardWordStart()
-  niter$forwardWordEnd()
-  val <- siter$getText(niter)
-  print(val)                            # replace
-  return(FALSE)                         # call next handler
-})
+gSignalConnect(view, "button-press-event", 
+               f=function(view, event, ...) {
+                 start <- view$getIterAtLocation(event$getX(), 
+                                                 event$getY())$iter
+                 end <- start$copy()
+                 start$backwardWordStart()
+                 end$forwardWordEnd()
+                 val <- start$getText(end)
+                 print(val)
+                 return(FALSE) # call next handler
+               })
 @   
 \end{example}
 
@@ -1421,8 +1422,8 @@ insert <- buffer$getMark("insert")
 
 To access the text at a mark, we need to find the corresponding iterator:
 <<gtk-mvc-text-mark-getIter>>=
-insertIter <- buffer$getIterAtMark(insert)$iter
-bounds$start$getText(insertIter)
+insert_iter <- buffer$getIterAtMark(insert)$iter
+bounds$start$getText(insert_iter)
 @ 
 
 Marks have a gravity of \qcode{left} or \qcode{right}, with
@@ -1433,8 +1434,8 @@ relates it to the behavior of the text cursor, which has right
 gravity. For obvious reasons, the cursor always advances as the user
 inserts text by typing. We demonstrate this programmatically:
 <<gtk-mvc-text-mark-gravity>>=
-insertIter$getOffset()
-buffer$insert(insertIter, "at insertion point")
+insert_iter$getOffset()
+buffer$insert(insert_iter, "at insertion point")
 buffer$getIterAtMark(insert)$iter$getOffset()
 @ 
 
@@ -1459,19 +1460,19 @@ which takes an argument for each attribute to apply to the text. Here,
 we create three tags: one for bold text, one for italicized text and
 one for large text:
 <<gtk-mvc-text-tags-create>>=
-tag.b <- buffer$createTag(tag.name="bold", 
-                          weight=PangoWeight["bold"])
-tag.em <- buffer$createTag(tag.name="em", 
-                           style=PangoStyle["italic"])
-tag.large <- buffer$createTag(tag.name="large", 
+tag_bold <- buffer$createTag(tag.name="bold", 
+                             weight=PangoWeight["bold"])
+tag_emph <- buffer$createTag(tag.name="emph", 
+                             style=PangoStyle["italic"])
+tag_large <- buffer$createTag(tag.name="large", 
                               font="Serif normal 18")
 @ 
 %
 Next, we associate the tags with one or more regions of text:
 <<gtk-mvc-text-tags-apply>>=
 iter <- buffer$getBounds()
-buffer$applyTag(tag.b, iter$start, iter$end)  # updates iters
-buffer$applyTagByName("em", iter$start, iter$end)
+buffer$applyTag(tag_bold, iter$start, iter$end)  # updates iters
+buffer$applyTagByName("emph", iter$start, iter$end)
 @ 
 
 \iprogram{clipboard}
@@ -1483,9 +1484,9 @@ directly move the marks around, calling
 \method{selectRange}{GtkTextBuffer} is more efficient and
 convenient. Here, we select the first word:
 <<gtk-mvc-text-selectRange, results=hide>>=
-siter <- buffer$getStartIter()$iter
-eiter <- siter$copy(); eiter$forwardWordEnd()
-buffer$selectRange(siter, eiter)
+start_iter <- buffer$getStartIter()$iter
+end_iter <- start_iter$copy(); end_iter$forwardWordEnd()
+buffer$selectRange(start_iter, end_iter)
 @ 
 
 \class{GtkTextBuffer} provides some convenience methods for
@@ -1494,14 +1495,14 @@ interaction with the clipboard: \method{copyCliboard}{GtkTextBuffer},
 \method{pasteClipboard}{GtkTextBuffer}. To use these, we first need a
 clipboard object:
 <<gtk-mvc-text-clipboard-get>>=
-cb <- gtkClipboardGet()
+clipboard <- gtkClipboardGet()
 @ 
 %
 We can then, for example, copy the selected text (the first word) and
 paste it at the end:
 <<gtk-mvc-text-clipboard-copy-paste>>=
-buffer$copyClipboard(cb)
-buffer$pasteClipboard(cb, 
+buffer$copyClipboard(clipboard)
+buffer$pasteClipboard(clipboard, 
             override.location = buffer$getEndIter()$iter, 
             default.editable = TRUE)
 @ 
@@ -1534,8 +1535,8 @@ anchor <- buffer$createChildAnchor(buffer$getEndIter()$iter)
 To add the widget, we call the text view method
 \method{addChildAtAnchor}{GtkTextView}:
 <<gtk-mvc-text-addChild>>=
-b <- gtkButton("click me")
-tv$addChildAtAnchor(b, anchor)
+button <- gtkButton("click me")
+view$addChildAtAnchor(button, anchor)
 @ 
 
 \begin{example}{A simple command line interface}{eg:RGtk2-command-line}

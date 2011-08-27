@@ -28,7 +28,7 @@ by the spin button. The call to \constructor{gtkHScale} implicitly
 creates an adjustment for the slider. The spin button is then created
 with the same adjustment.
 <<>>=
-slider <- gtkHScale(min=from, max=to, step=by)
+slider <- gtkHScale(min = from, max = to, step = by)
 slider['draw-value'] <- FALSE
 adjustment <- slider$getAdjustment()
 spinbutton <- gtkSpinButton(adjustment = adjustment)
@@ -38,9 +38,9 @@ Our layout places the two widgets in a horizontal box container with
 the slider, but not the spin button, set to expand into the available
 space.
 <<>>=
-g <- gtkHBox()
-g$packStart(slider, expand=TRUE, fill=TRUE, padding=5)
-g$packStart(spinbutton, expand=FALSE, padding=5)
+hbox <- gtkHBox()
+hbox$packStart(slider, expand = TRUE, fill = TRUE, padding = 5)
+hbox$packStart(spinbutton, expand = FALSE, padding = 5)
 @ 
 
 
@@ -48,6 +48,6 @@ g$packStart(spinbutton, expand=FALSE, padding=5)
 w <- gtkWindow(show=FALSE)
 w['title'] <- "Example of a range widget"
 w$setSizeRequest(width=200, height=-1)
-w$add(g)
+w$add(hbox)
 w$show()
 @ 

@@ -22,26 +22,27 @@ for software installation.
 We begin by defining our assistant and connecting to its
 \signal{cancel} signal:
 <<defineAssistant, results=hide>>=
-asst <- gtkAssistant(show=FALSE)
-asst$setSizeRequest(500, 500)
-gSignalConnect(asst, "cancel", function(asst) asst$destroy())
+assistant <- gtkAssistant(show=FALSE)
+assistant$setSizeRequest(500, 500)
+gSignalConnect(assistant, "cancel", 
+               function(assistant) assistant$destroy())
 @
 
 Our pages will be computed dynamically. Here we populate the pages
 using box containers and specify their respective types:
 <<makePages, results=hide>>=
-pages <- lapply(1:5, gtkVBox, spacing=5, homogeneous=FALSE)
-page_types <- c("intro", rep("confirm",3), "summary")
-sapply(pages, gtkAssistantAppendPage, object=asst)
-sapply(pages, gtkAssistantSetPageType, object=asst, 
+pages <- lapply(1:5, gtkVBox, spacing = 5, homogeneous = FALSE)
+page_types <- c("intro", rep("confirm", 3), "summary")
+sapply(pages, gtkAssistantAppendPage, object = assistant)
+sapply(pages, gtkAssistantSetPageType, object = assistant, 
        type=page_types)
 @ 
 %
 We customize each page with a side logo.
 <<sideLogo, results=hide>>=
 image <- gdkPixbuf(filename = imagefile("rgtk-logo.gif"))[[1]]
-sapply(pages, gtkAssistantSetPageSideImage, object=asst, 
-       pixbuf=image)
+sapply(pages, gtkAssistantSetPageSideImage, object = assistant, 
+       pixbuf = image)
 @ 
 
 When a page is about to be called, the \signal{prepare} signal is
@@ -50,11 +51,12 @@ not, we call a function to lazily create the page. These functions are
 stored in a list, so that they we can refer to them by index.
 <<>>=
 populatePage <- list()                
-gSignalConnect(asst, "prepare", function(a, w, data) {
-  page_no <- which(sapply(pages, identical, w))
-  if(!length(w$getChildren()))
-    populatePage[[page_no]]()
-})
+gSignalConnect(assistant, "prepare", 
+               function(assistant, page, data) {
+                 page_no <- which(sapply(pages, identical, page))
+                 if(!length(page$getChildren()))
+                   populatePage[[page_no]]()
+               })
 @
 
 Although we do not show how to create the CRAN selection page
@@ -64,9 +66,12 @@ set a function that will skip this page if it is not needed, i.e., if
 the mirror has already been selected. The callback simply returns an
 integer with the next page number based on the last one.
 <<results=hide>>=
-asst$setForwardPageFunc(function(i, data) {
-  if(i == 0 && have_CRAN()) 2L else as.integer(i + 1)
-}, data=NULL)
+asst$setForwardPageFunc(function(page_index, data) {
+  if(page_index == 0 && have_CRAN()) 
+    2L 
+  else 
+    as.integer(page_index + 1)
+})
 @ 
 
 We have a few script globals that allow us to pass data between pages:
@@ -107,17 +112,17 @@ We now show how some of the pages are populated. The initial screen is
 just a welcome and simply shows a label:
 <<page1>>=
 populatePage[[1]] <- function() {
-  asst$setPageTitle(pages[[1]], "Install a CRAN package")
-  pages[[1]]$packStart(l <- gtkLabel())
+  assistant$setPageTitle(pages[[1]], "Install a CRAN package")
+  pages[[1]]$packStart(label <- gtkLabel())
   pages[[1]]$packStart(gtkLabel(), expand=TRUE) # a spring
   
-  l$setMarkup(paste(
+  label$setMarkup(paste(
        "<span font='x-large'>Install a CRAN package</span>",
        "This wizard will help install a package from",
        "<b>CRAN</b>. If you have not already specified a",
        "CRAN repository, you will be prompted to do so.",
        sep="\n"))
-  asst$setPageComplete(pages[[1]], TRUE)
+  assistant$setPageComplete(pages[[1]], TRUE)
 }
 @ 
 
@@ -125,7 +130,7 @@ populatePage[[1]] <- function() {
 <<CRANMirror, echo=FALSE>>=
 ## Not shown
 populatePage[[2]] <- function() {
-  asst$setPageTitle(pages[[2]], "Select a CRAN mirror")
+  assistant$setPageTitle(pages[[2]], "Select a CRAN mirror")
 
   CRAN_mirrors <- getCRANmirrors(all = FALSE, local.only = FALSE)[, c(1,2,4)]
   nms <- names(CRAN_mirrors)
@@ -139,7 +144,7 @@ populatePage[[2]] <- function() {
   gSignalConnect(view$getSelection(), "changed", function(view, ...) {
     CRAN_repos <- view$getSelectedValue(3)
     set_CRAN(CRAN_repos)
-    asst$setPageComplete(pages[[2]], TRUE)
+    assistant$setPageComplete(pages[[2]], TRUE)
   }, data=view, user.data.first=TRUE)
   
   
@@ -156,7 +161,7 @@ populatePage[[2]] <- function() {
 <<SelectPacakge, echo=FALSE>>=
 ## Not shown
 populatePage[[3]] <- function() {
-  asst$setPageTitle(pages[[3]], "Select a CRAN package")
+  assistant$setPageTitle(pages[[3]], "Select a CRAN package")
   #
   avail_packages <- available.packages()[, c(1,2)]
   nms <- colnames(avail_packages)
@@ -169,7 +174,7 @@ populatePage[[3]] <- function() {
   view$getSelection()$unselectAll()     # no selection
   gSignalConnect(view$getSelection(), "changed", function(view, ...) {
     CRAN_package <<- view$getSelectedValue(1)
-    asst$setPageComplete(pages[[3]], TRUE)
+    assistant$setPageComplete(pages[[3]], TRUE)
   }, data=view, user.data.first=TRUE) 
   #
   sw <- gtkScrolledWindow(); sw$add(view)
@@ -187,7 +192,7 @@ a summary of the package taken from CRAN and a chance for the user to
 configure a few options for the \function{install.packages} function.
 <<>>=
 populatePage[[4]] <- function() {
-  asst$setPageTitle(pages[[4]], "Install a CRAN package")
+  assistant$setPageTitle(pages[[4]], "Install a CRAN package")
   ##
   get_desc <- function(pkgname) {
     o <- "http://cran.r-project.org/web/packages/%s/DESCRIPTION"
@@ -197,19 +202,19 @@ populatePage[[4]] <- function() {
   }
   desc <- get_desc(CRAN_package)
   #
-  l <- gtkLabel()
-  l$setLineWrap(TRUE)
-  l$setWidthChars(40)
-  l$setMarkup(paste(
+  label <- gtkLabel()
+  label$setLineWrap(TRUE)
+  label$setWidthChars(40)
+  label$setMarkup(paste(
     sprintf("Install package: <b>%s</b>", desc[1,'Package']),
     "\n",
     sprintf("%s", gsub("\\n", " ", desc[1,'Description'])),
     sep="\n"))
   
-  pages[[4]]$packStart(l)
+  pages[[4]]$packStart(label)
   ##
-  tbl <- gtkTable()
-  pages[[4]]$packStart(tbl, expand=FALSE)
+  table <- gtkTable()
+  pages[[4]]$packStart(table, expand=FALSE)
   pages[[4]]$packStart(gtkLabel(), expand=TRUE)
   
   ##
@@ -218,41 +223,42 @@ populatePage[[4]] <- function() {
                  "win.binary", "win64.binary")
   sapply(pkg_types, combo$appendText)
   combo$setActive(which(getOption("pkgType") == pkg_types) - 1)
-  gSignalConnect(combo, "changed", function(w, ...) {
-    cur <- 1L + w$getActive()
+  gSignalConnect(combo, "changed", function(combo, ...) {
+    cur <- 1L + combo$getActive()
     install_options[['type']] <<- pkg_types[cur]
   })
-  tbl$attachDefaults(gtkLabel("Package type:"), 0, 1, 0, 1)
-  tbl$attachDefaults(combo, 1, 2, 0, 1)
+  table$attachDefaults(gtkLabel("Package type:"), 0, 1, 0, 1)
+  table$attachDefaults(combo, 1, 2, 0, 1)
 
   ##
-  cb <- gtkCheckButton()
-  cb$setActive(TRUE)
-  gSignalConnect(cb, "toggled", function(w) {
-    install_options[['dependencies']] <<- w$getActive()
+  checkButton <- gtkCheckButton()
+  checkButton$setActive(TRUE)
+  gSignalConnect(checkButton, "toggled", function(checkButton) {
+    install_options[['dependencies']] <<- checkButton$getActive()
   })
-  tbl$attachDefaults(gtkLabel("Install dependencies"),
-                     0, 1, 1, 2)
-  tbl$attachDefaults(cb, 1, 2, 1, 2)
+  table$attachDefaults(gtkLabel("Install dependencies"),
+                       0, 1, 1, 2)
+  table$attachDefaults(cb, 1, 2, 1, 2)
 
   ##
-  fc <- gtkFileChooserButton("Select a directory...", 
-                             "select-folder")
-  fc$setFilename(.libPaths()[1])
-  gSignalConnect(fc, "selection-changed", function(w) {
-    dir <- w$getFilename()
-    install_options[['lib']] <<- dir
-  })
-  tbl$attachDefaults(gtkLabel("Where"), 0, 1, 2, 3)
-  tbl$attachDefaults(fc, 1, 2, 2, 3)
+  fileChooser <- gtkFileChooserButton("Select a directory...", 
+                                      "select-folder")
+  fileChooser$setFilename(.libPaths()[1])
+  gSignalConnect(fileChooser, "selection-changed", 
+                 function(fileChooser) {
+                   dir <- fileChooser$getFilename()
+                   install_options[['lib']] <<- dir
+                 })
+  table$attachDefaults(gtkLabel("Where"), 0, 1, 2, 3)
+  table$attachDefaults(fc, 1, 2, 2, 3)
   ## align labels to right and set spacing
-  sapply(tbl$getChildren(), function(i) {
-    widget <- i$getWidget()
+  sapply(table$getChildren(), function(child) {
+    widget <- child$getWidget()
     if(is(widget, "GtkLabel"))  widget['xalign'] <- 1
   })
-  tbl$setColSpacing(0L, 5L)
+  table$setColSpacing(0L, 5L)
   ##
-  asst$setPageComplete(pages[[4]], TRUE)
+  assistant$setPageComplete(pages[[4]], TRUE)
 }
 @ 
 
@@ -263,23 +269,23 @@ page. A real application would reimplement that. Instead we just set a
 message once the package install attempt is finished.
 <<>>=
 populatePage[[5]] <- function() {
-  asst$setPageTitle(pages[[5]], "Done")
+  assistant$setPageTitle(pages[[5]], "Done")
   install_options$pkgs <- CRAN_package
   out <- try(do.call("install.packages", install_options), 
              silent=TRUE)
 
-  l <- gtkLabel(); pages[[5]]$packStart(l)
+  label <- gtkLabel(); pages[[5]]$packStart(label)
   if(!inherits(out, "try-error")) {
-    l$setMarkup(sprintf("Package %s installed successfully", 
-                        CRAN_package))
+    label$setMarkup(sprintf("Package %s installed successfully", 
+                            CRAN_package))
   } else {
-    l$setMarkup(paste(sprintf("Package %s failed to install", 
-                              CRAN_package),
-                      paste(out, collapse="\n"),
-                      sep="\n"))
+    label$setMarkup(paste(sprintf("Package %s failed to install", 
+                                  CRAN_package),
+                          paste(out, collapse="\n"),
+                          sep="\n"))
   }
 
-  asst$setPageComplete(pages[[5]], FALSE)
+  assistant$setPageComplete(pages[[5]], FALSE)
 }
 @ 
 
@@ -287,5 +293,5 @@ To conclude, we populate the first page and call the assistant's
 \meth{show} method:
 <<showAssistant>>=
 populatePage[[1]]()
-asst$show()
+assistant$show()
 @   

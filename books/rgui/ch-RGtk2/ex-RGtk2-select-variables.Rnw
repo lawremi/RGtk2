@@ -46,13 +46,13 @@ library(ProgGUIinR)                     # for make_icon
 <<make_icon>>=
 make_icon_pixmap <- function(x, ...) {
   require(grid); require(cairoDevice)
-  pixmap <- gdkPixmap(drawable=NULL, width=16, height=16, 
-  depth=24)
+  pixmap <- gdkPixmap(drawable = NULL, width = 16, height = 16, 
+                      depth = 24)
   asCairoDevice(pixmap)
   grid.newpage()
   grid.draw(make_icon(x))
   dev.off()
-  gdkPixbufGetFromDrawable(NULL, pixmap, NULL, 0,0,0,0,-1,-1)
+  gdkPixbufGetFromDrawable(NULL, pixmap, NULL, 0,0, 0,0, -1,-1)
 }
 @ 
 
@@ -61,20 +61,20 @@ contains three columns: the variable name, the icon, and whether the
 variable has been selected. We construct the corresponding data frame
 and wrap it in a \class{RGtkDataFrame} instance:
 <<model>>=
-mdf <- data.frame(Variables = I(sort(names(df))),
-                  icon = I(sapply(df, make_icon_pixmap)),
-                  selected = rep(FALSE, ncol(df)))
-model <- rGtkDataFrame(mdf)
+model_df <- data.frame(Variables = I(sort(names(df))),
+                       icon = I(sapply(df, make_icon_pixmap)),
+                       selected = rep(FALSE, ncol(df)))
+model <- rGtkDataFrame(model_df)
 @ 
 
 The first view shows only unselected variables, while the other is
 limited to selected variables. Thus, each view will be based on a
 different filter:
 <<filterModels, results=hide>>=
-selectedFilter <- model$filter()
-selectedFilter$setVisibleColumn(2)
-unselectedFilter <- model$filter()
-unselectedFilter$setVisibleFunc(function(model, iter) {
+selected_filter <- model$filter()
+selected_filter$setVisibleColumn(2)
+unselected_filter <- model$filter()
+unselected_filter$setVisibleFunc(function(model, iter) {
   !model$get(iter, 2)[[1]]
 })
 @ 
@@ -87,27 +87,23 @@ need to define a custom visible function that inverts the
 Next, we create a view for each filter:
 <<views, results=hide>>=
 views <- list()
-views$unselectedView <- gtkTreeView(unselectedFilter)
-views$selectedView <- gtkTreeView(selectedFilter)
+views$unselected_view <- gtkTreeView(unselected_filter)
+views$selected_view <- gtkTreeView(selected_filter)
 ##
-sapply(views, function(i) i$getSelection()$setMode('multiple'))
+sapply(views, function(view) view$getSelection()$setMode('multiple'))
 @
 
 Each cell needs to display both an icon and a label.  This is achieved
 by packing two cell renderers into the column:
 <<viewColumns, results=hide>>=
 make_view_column <- function() {
-  vc <- gtkTreeViewColumn()
-  vc$setTitle("Variable")
-  cr <- gtkCellRendererPixbuf()
-  vc$packStart(cr)
-  vc$addAttribute(cr, "pixbuf", 1)
-  cr <- gtkCellRendererText()
-  vc$packStart(cr)
-  vc$addAttribute(cr, "text", 0)
-  vc
+  column <- gtkTreeViewColumn()
+  column$setTitle("Variable")
+  column$addAttribute(gtkCellRendererPixbuf(), "pixbuf", 1L)
+  column$addAttribute(gtkCellRendererText(), "text", 0L)
+  column
 }
-sapply(views, function(i) i$insertColumn(make_view_column(), 0))
+sapply(views, function(view) view$insertColumn(make_view_column(), 0))
 @ 
 
 For later use we extend the API for a tree view -- one method to find
@@ -118,13 +114,13 @@ selection:
 gtkTreeViewSelectedIndices <- function(object) {
   model <- object$getModel()          # Filtered!
   paths <- object$getSelection()$getSelectedRows()$retval
-  out <- sapply(paths, function(i) {
+  path_strings <- sapply(paths, function(i) {
     model$convertPathToChildPath(i)$toString()
   })
-  if(length(out) == 0)
+  if(length(path_strings) == 0)
     integer(0)
   else
-    as.numeric(out) + 1                             # 1-based
+    as.numeric(path_strings) + 1 # 1-based
 }
 ## does object have selection?
 gtkTreeViewHasSelection <-
@@ -136,11 +132,11 @@ signal. The handler moves the selected values to the other list by
 toggling the \code{selected} variable:
 <<buttons, results=hide>>=
 buttons <- list()
-buttons$unselectButton <- gtkButton("<")
-buttons$selectButton <- gtkButton(">")
+buttons$unselect_button <- gtkButton("<")
+buttons$select_button <- gtkButton(">")
 toggleSelectionOnClick <- function(button, view) {
-  gSignalConnect(button, "clicked", function (x) {
-    print("clicked")
+  gSignalConnect(button, "clicked", function(button) {
+    message("clicked")
     ind <- view$selectedIndices()
     model[ind, "selected"] <- !model[ind, "selected"]
   })
@@ -164,33 +160,33 @@ We now layout our GUI using a horizontal box, into which is packed the
 views and a box holding the selection buttons. The views
 will be scrollable, so we place them in scrolled windows:
 <<guiLayout, results=hide>>=
-w <- gtkWindow(show=FALSE)
-w$setTitle("Select variables example")
-w$setDefaultSize(600, 400)
-g <- gtkHBox()
-w$add(g)
+window <- gtkWindow(show=FALSE)
+window$setTitle("Select variables example")
+window$setDefaultSize(600, 400)
+hbox <- gtkHBox()
+window$add(hbox)
 ## scrollwindows
 scrolls <- list()
-scrolls$unselectedScroll <- gtkScrolledWindow()
-scrolls$selectedScroll <- gtkScrolledWindow()
-mapply(gtkContainerAdd, object=scrolls, widget=views)
+scrolls$unselected_scroll <- gtkScrolledWindow()
+scrolls$selected_scroll <- gtkScrolledWindow()
+mapply(gtkContainerAdd, object = scrolls, widget = views)
 mapply(gtkScrolledWindowSetPolicy, scrolls, 
        "automatic", "automatic")
 ## buttons
-buttonBox <- gtkVBox()
-centeredBox <- gtkVBox()
-buttonBox$packStart(centeredBox, expand = TRUE, fill = FALSE)
-centeredBox$setSpacing(12)
-sapply(buttons, centeredBox$packStart, expand=FALSE)
+button_box <- gtkVBox()
+centered_box <- gtkVBox()
+button_box$packStart(centered_box, expand = TRUE, fill = FALSE)
+centered_box$setSpacing(12)
+sapply(buttons, centered_box$packStart, expand = FALSE)
 ##
-g$packStart(scrolls$unselectedScroll, expand=TRUE)
-g$packStart(buttonBox, expand=FALSE)
-g$packStart(scrolls$selectedScroll, expand=TRUE)
+hbox$packStart(scrolls$unselected_scroll, expand = TRUE)
+hbox$packStart(button_box, expand = FALSE)
+hbox$packStart(scrolls$selected_scroll, expand = TRUE)
 @ 
 
 Finally, we show the top-level window:
 <<packButtons, results=hide>>=
-w$show()
+window$show()
 @ 
 
 

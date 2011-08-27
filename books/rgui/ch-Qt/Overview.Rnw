@@ -118,7 +118,7 @@ an \R{} \class{function} object, and serves as the constructor of
 instances of the class. For example, we could construct an instance of
 \code{QWidget} with:
 <<qwidget-object>>=
-w <- Qt$QWidget()
+widget <- Qt$QWidget()
 @ 
 
 The \code{w} object has a class structure that reflects the
@@ -150,16 +150,16 @@ and \function{get} will also work. (With the
 example, a \class{QWidget} has a \property{windowTitle}{QWidget} property which is
 used when the widget draws itself with a window:
 <<windowTitle>>=
-w$windowTitle                           # initially NULL
-w$windowTitle <- "a new title"          # set property
-w$windowTitle
+widget$windowTitle                           # initially NULL
+widget$windowTitle <- "a new title"          # set property
+widget$windowTitle
 @ 
 
 Although \Qt{} defines methods for accessing properties, the \R{} user
 will normally invoke methods that perform some action. For example, we
 could show our widget:
 <<results=hide>>=
-w$show()
+widget$show()
 @
 %
 
@@ -168,14 +168,14 @@ properties and methods may be defined in a parent class of the
 object. For example, a button widget is provided by the
 \class{QPushButton} constructor, as in
 <<pushButton>>=
-b <- Qt$QPushButton()
+button <- Qt$QPushButton()
 @ 
 %
 \class{QPushButton} extends \class{QWidget} and thus inherits the
 properties like \prop{visible}:
 <<pushbutton-class>>=
-is(b, "QWidget")
-b$visible
+is(button, "QWidget")
+button$visible
 @ 
 %
 It is important to realize this distinction when referencing the
@@ -218,7 +218,7 @@ simple push button can be constructed in several different ways. Here
 again is the invocation of the \class{QPushButton} constructor with no
 arguments:
 <<>>=
-b <- Qt$QPushButton()
+button <- Qt$QPushButton()
 @ 
 %
 By convention, all classes derived from \class{QObject}, including
@@ -226,21 +226,21 @@ By convention, all classes derived from \class{QObject}, including
 \class{QObject}. This has important consequences that are discussed
 later. We demonstrate this for \class{QPushButton}:
 <<constructor-parent>>=
-w <- Qt$QWidget()
-b <- Qt$QPushButton(w)
+widget <- Qt$QWidget()
+button <- Qt$QPushButton(widget)
 @ 
 %
 An alternative constructor for \class{QPushButton} accepts the text
 for the label on the button:
 <<constructor-text>>=
-b <- Qt$QPushButton("Button text")
+button <- Qt$QPushButton("Button text")
 @
 %
 Buttons may also have icons, for example
 <<constructor-icon-parent>>=
 style <- Qt$QApplication$style()
 icon <- style$standardIcon(Qt$QStyle$SP_DialogOkButton)
-b <- Qt$QPushButton(icon, "Ok")
+button <- Qt$QPushButton(icon, "Ok")
 @ 
 %
 We have passed three different types of object as the first argument
@@ -257,9 +257,9 @@ return value, signature, and whether the method is protected and
 static. For example, to learn the methods for a simple button, we
 would call:
 <<>>=
-out <- qmethods(Qt$QPushButton)
-dim(out)
-head(out[,1:3], n=3)
+method_info <- qmethods(Qt$QPushButton)
+dim(method_info)
+head(method_info[,1:3], n = 3)
 @ 
 
 \iprogram{widget properties}
@@ -274,7 +274,7 @@ Every \class{QObject}, which includes every widget, may declare a set
 of properties that represent its state. We list some of the available
 properties for our button:\index{general}{qproperties}
 <<list-properties>>=
-head(qproperties(b))
+head(qproperties(button))
 @
 %
 As shown in the table, every property has a type and logical settings
@@ -283,10 +283,10 @@ property value may be read, and it is common for properties to be
 read-only. For example, we can fully manipulate the \code{objectName}
 property, but our attempt to modify the \code{modal} property fails: 
 <<modal-property>>=
-b$objectName <- "My button"
-b$objectName
-b$modal
-cat(try(b$modal <- TRUE))
+button$objectName <- "My button"
+button$objectName
+button$modal
+cat(try(button$modal <- TRUE))
 @ 
 
 \Qt{} provides accessor methods for getting and setting
@@ -294,7 +294,7 @@ properties. The getter methods have the same name as the property, so
 they are masked at the \R{} level. Setter methods are available and
 are typically named with the word "set" followed by the property name:
 <<windowTitleMethod, results=hide>>=
-b$setObjectName("My button")
+button$setObjectName("My button")
 @ 
 % 
 However, it is recommended to use the replacement syntax shown in the
@@ -316,16 +316,16 @@ connected as a signal handler. This is similar to the signal handling
 in \pkg{RGtk2}. The function \index{general}{qconnect}\function{qconnect} establishes the
 connection of an R function to a signal. For example
 <<results=hide>>=
-b <- Qt$QPushButton("click me")
-qconnect(b, "clicked", function() print("ouch"))
-b$show()
+button <- Qt$QPushButton("click me")
+qconnect(button, "clicked", function() message("ouch"))
+button$show()
 @ 
 
 Signals are defined by a class and are inherited by
 subclasses.  Here, we list some of the available signals for the
 \class{QPushButton} class:
 <<qt-signals-list>>=
-tail(qsignals(Qt$QPushButton), n=5)
+tail(qsignals(Qt$QPushButton), n = 5)
 @ 
 %
 The signal definition specifies the callback signature, given in the
@@ -349,8 +349,8 @@ for the \code{clicked} signal: \code{clicked()} and
 name, the \code{clicked(bool)} signature is chosen, since our handler
 has a single argument. Thus, these two calls are equivalent:
 <<qt-signals-qconnect-sig, results=hide>>=
-qconnect(b, "clicked", function(checked) print(checked))
-qconnect(b, "clicked(bool)", function(checked) print(checked))
+qconnect(button, "clicked", function(checked) print(checked))
+qconnect(button, "clicked(bool)", function(checked) print(checked))
 @ 
 
 Any object passed to the optional argument
@@ -365,8 +365,8 @@ that provides the slot that wraps the \R{} function. This dummy object
 can be used with the \method{disconnect}{QObject} method on the
 sender to break the signal connection:
 <<qt-signals-disconnect>>=
-proxy <- qconnect(b, "clicked", function() print("ouch"))
-b$disconnect(proxy)
+proxy <- qconnect(button, "clicked", function() message("ouch"))
+button$disconnect(proxy)
 @ 
 %
 The above will permanently disconnect the signal handler. To
@@ -414,13 +414,13 @@ sense when the values correspond to bit flags, as is the case for the
 alignment style. For example, aligning the text in a label in the upper
 right can be done through
 <<alignexample, results=hide>>=
-l <- Qt$QLabel("Our text")
-l$alignment <- Qt$Qt$AlignRight | Qt$Qt$AlignTop
+label <- Qt$QLabel("Our text")
+label$alignment <- Qt$Qt$AlignRight | Qt$Qt$AlignTop
 @ 
 %
 To check if the alignment is to the right, we could query by:
 <<>>=
-as.logical(l$alignment & Qt$Qt$AlignRight)
+as.logical(label$alignment & Qt$Qt$AlignRight)
 @ 
 \iprogram{subclass}
 \section{Extending Qt classes from R}
@@ -476,9 +476,9 @@ subclasses should provide a \code{parent} constructor argument, for
 specifying the parent object. A typical usage would be
 <<results=hide>>=
 qsetClass("SubClass2", Qt$QWidget, 
-          function(prop, parent=NULL) {
+          function(property, parent = NULL) {
             super(parent)
-            this$property <- prop
+            this$property <- property
           })
 @ 
 % 
@@ -661,24 +661,24 @@ Upon construction, widgets are invisible, so that they may be
 configured behind the scenes. The \property{visible}{QWidget}
 property controls whether a widget is visible. 
 <<qt-overview-visible>>=
-w <- Qt$QWidget()
-w$visible
+widget <- Qt$QWidget()
+widget$visible
 @ 
 %
 The \method{show}{QWidget} and \method{hide}{QWidget} methods are
 the corresponding convenience functions for making a widget visible
 and invisible, respectively. 
 <<qt-overview-show-hide, results=hide>>=
-w$show()
+widget$show()
 @ 
 <<>>=
-w$visible
+widget$visible
 @ 
 <<results=hide>>=
-w$hide()
+widget$hide()
 @ 
 <<>>=
-w$visible
+widget$visible
 @ 
 %
 There is an S3 method for \meth{print} on \class{QWidget} that invokes
@@ -689,8 +689,8 @@ will raise the window to the top of the stack of windows.
 Similarly, the property \property{enabled}{QWidget} controls whether a
 widget is sensitive to user input, including mouse events.
 <<qt-overview-enabled>>=
-b <- Qt$QPushButton("button")
-b$enabled <- FALSE
+button <- Qt$QPushButton("button")
+button$enabled <- FALSE
 @ 
 %
 
@@ -718,10 +718,10 @@ Chapter~\ref{cha:layout-managers}. To specify the size of a top-level
 window, manipulate the \property{size}{QWidget} property, which
 holds a \class{QSize} object: 
 <<qt-overview-size, results=hide>>=
-w$size <- qsize(400, 400)
+widget$size <- qsize(400, 400)
 ## or
-w$resize(400, 400)
-w$show()
+widget$resize(400, 400)
+widget$show()
 @ 
 %
 We create the \class{QSize} object with the \function{qsize}
@@ -746,17 +746,17 @@ application font, returned by \code{Qt\$QApplication\$font()}.
 For example, we could create a 12 point, bold, italicized font from
 the Helvetica family with:
 <<>>=
-f <- qfont(family="helvetica", pointsize=12, 
-           weight=Qt$QFont$Bold, italic=TRUE)
+font <- qfont(family = "helvetica", pointsize = 12, 
+              weight = Qt$QFont$Bold, italic = TRUE)
 @ 
 
 The font for a widget is stored in the \property{font}{QWidget}
 property. For example, we change the font for a label:
 <<results=hide>>=
-l <- Qt$QLabel("Text for the label")
-l$font$toString()
-l$font <- f
-l$font$toString()
+label <- Qt$QLabel("Text for the label")
+label$font$toString()
+label$font <- font
+label$font$toString()
 @ 
 
 The \class{QFont} class has several methods to query the font and to
@@ -805,9 +805,9 @@ The style sheet for a widget is stored in its
 a button, we could set the background to white and the foreground to
 red (see Figure~\ref{fig:qt-style-sheet} for an example):
 <<qt-overview-stylesheets, results=hide>>=
-b <- Qt$QPushButton("Style sheet example")
-b$show()
-b$styleSheet <- "QPushButton {color: red; background: white}"
+button <- Qt$QPushButton("Style sheet example")
+button$show()
+button$styleSheet <- "QPushButton {color: red; background: white}"
 @ 
 
 <<echo=FALSE, eval=FALSE>>=
@@ -832,7 +832,7 @@ package provides an alternative interface that is reminiscent of the
 \function{par} function. We specify the above stylesheet in this syntax:
 <<qt-overview-qsetStyleSheet, eval=FALSE>>=
 qsetStyleSheet(color = "red", background = "white", 
-               what = "QPushButton", widget = b)
+               what = "QPushButton", widget = button)
 @ 
 %
 The \code{widget} argument defaults to \code{NULL}, which applies the
@@ -882,8 +882,8 @@ qsetClass("LineEditWithError", Qt$QLineEdit)
   image to the left of the entry message and set the tooltip.
 <<setError, results=hide>>=
 qsetMethod("setError", LineEditWithError, function(msg) {
-  f <- system.file("images/cancel.gif", package="gWidgets")
-  qsetStyleSheet("background-image" = sprintf("url(%s)", f),
+  file <- system.file("images/cancel.gif", package="gWidgets")
+  qsetStyleSheet("background-image" = sprintf("url(%s)", file),
                  "background-repeat" = "no-repeat",
                  "background-position" = "left top",
                  "padding-left" = "20px",
@@ -903,16 +903,16 @@ qsetMethod("clearError", LineEditWithError, function() {
 % 
 
 <<testOut,results=hide>>=
-e <- LineEditWithError()
-e$text <- "The quick brown fox..."
-e$setError("Replace with better boilerplate text")
-e$clearError()
+edit <- LineEditWithError()
+edit$text <- "The quick brown fox..."
+edit$setError("Replace with better boilerplate text")
+edit$clearError()
 @ 
 % 
 <<show_raise,echo=FALSE, results=hide>>=
 w <- Qt$QWidget()
 lyt <- Qt$QHBoxLayout()
-lyt$addWidget(e)
+lyt$addWidget(edit)
 w$setLayout(lyt)
 w$show()
 w$raise()
@@ -962,8 +962,8 @@ find a specific widget. Assume we have a button named ``findButton''
 and corresponding text entry ``lineEdit'' in our UI file, then we
 retrieve them with
 <<qt-overview-designer-find, eval=FALSE>>=
-findButton <- qfindChild(widget, "findButton") # by name
-lineEdit <- qfindChild(widget, "lineEdit")
+find_button <- qfindChild(widget, "findButton") # by name
+line_edit <- qfindChild(widget, "lineEdit")
 @ 
 <<echo=FALSE>>=
 if(has_uiloader) {
@@ -973,8 +973,8 @@ if(has_uiloader) {
 %
 Then we connect to the \signal{clicked} signal:
 <<qt-overview-designer-connect, eval=FALSE>>=
-qconnect(findButton, "clicked", function() {
-  findText(lineEdit$text)
+qconnect(find_button, "clicked", function() {
+  findText(line_edit$text)
 })
 @ 
 <<echo=FALSE>>=
@@ -1010,7 +1010,7 @@ according to the convention
 \qcode{on\_[objectName]\_[signalName]}. For example,
 <<qt-overview-designed-slot-handler, eval=FALSE>>=
 qsetSlot("on_findButton_clicked", MyMainWindow, function() {
-  findText(lineEdit$text)
+  findText(line_edit$text)
 })
 @ 
 <<echo=FALSE>>=

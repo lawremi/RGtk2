@@ -12,8 +12,8 @@ associated button is a \class{GtkColorButton}. When the user
 clicks on the button, a more complex color selection dialog will
 appear, allowing total customization.
 <<rgtk2-mennus-toolbar-color-button>>=
-gdkColor <- gdkColorParse(palette()[1])$color
-colorButton <- gtkColorButton(gdkColor)
+color <- gdkColorParse(palette()[1])$color
+color_button <- gtkColorButton(gdk_color)
 @
 % 
 The \constructor{gtkColorButton} constructor requires the initial color
@@ -24,17 +24,17 @@ The next step is to build the menu. Each menu item will display a
 $20x20$ rectangle, filled with the color, next to the color name:
 <<rgtk2-menus-toolbar-color-menu>>=
 colorMenuItem <- function(color) {
-  da <- gtkDrawingArea()
-  da$setSizeRequest(20, 20)
-  da$modifyBg("normal", color)
-  item <- gtkImageMenuItem(color)
-  item$setImage(da)
-  item
+  drawing_area <- gtkDrawingArea()
+  drawing_area$setSizeRequest(20, 20)
+  drawing_area$modifyBg("normal", color)
+  image_item <- gtkImageMenuItem(color)
+  image_item$setImage(drawing_area)
+  image_item
 }
-colorItems <- sapply(palette(), colorMenuItem)
-colorMenu <- gtkMenu()
-for (item in colorItems)
-  colorMenu$append(item)
+color_items <- sapply(palette(), colorMenuItem)
+color_menu <- gtkMenu()
+for (item in color_items)
+  color_menu$append(item)
 @
 %
 An important realization is that the image in a
@@ -45,16 +45,16 @@ selected, its color will be set on the color button:
 <<rgtk2-menus-toolbar-color-cb, results=hide>>=
 colorMenuItemActivated <- function(item) {
   color <- gdkColorParse(item$getLabel())$color
-  colorButton$setColor(color)
+  color_button$setColor(color)
 }
-sapply(colorItems, gSignalConnect, "activate", 
+sapply(color_items, gSignalConnect, "activate", 
        colorMenuItemActivated)
 @ 
 
 Finally, we place the color button and menu together in the menu tool
 button:
 <<rgtk2-menus-toolbar-menu>>=
-menuButton <- gtkMenuToolButton(colorButton, "Color")
-menuButton$setMenu(colorMenu)
-toolbar$add(menuButton)
+menu_button <- gtkMenuToolButton(color_button, "Color")
+menu_button$setMenu(color_menu)
+toolbar$add(menu_button)
 @ 

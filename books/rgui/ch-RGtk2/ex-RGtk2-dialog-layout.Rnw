@@ -15,7 +15,7 @@ library(RGtk2)
 
 Our form layout will require $3$ rows and $2$ columns:
 <<gtk-container-table-construct>>=
-tbl <- gtkTable(rows=3, columns=2, homogeneous=FALSE)
+table <- gtkTable(rows = 3, columns = 2, homogeneous = FALSE)
 @
 %
 By default, the cells are allowed to have different sizes. This may be
@@ -24,29 +24,29 @@ which forces all cells to have the same size.
 
 We construct the widgets that will be placed in the form:
 <<results=hide>>=
-sizeLabel <- gtkLabel("Sample size:")
-sizeCombo <- gtkComboBoxNewText()
-sapply(c(5, 10, 15, 30), sizeCombo$appendText)
+size_label <- gtkLabel("Sample size:")
+size_combo <- gtkComboBoxNewText()
+sapply(c(5, 10, 15, 30), size_combo$appendText)
 ##
-diagLabel <- gtkLabel("Diagnostic:")
-diagRadios <- gtkVBox()
-rb <- list()
-rb$t <- gtkRadioButton(label="t-statistic")
-rb$mean <- gtkRadioButton(rb, label="mean")
-rb$median <- gtkRadioButton(rb, label="median")
-sapply(rb, diagRadios$packStart)
+diag_label <- gtkLabel("Diagnostic:")
+diag_radio <- gtkVBox()
+radiogp <- list()
+radiogp$t <- gtkRadioButton(label = "t-statistic")
+radiogp$mean <- gtkRadioButton(radiogp, label = "mean")
+radiogp$median <- gtkRadioButton(radiogp, label = "median")
+sapply(radiogp, diag_radio$packStart)
 ##
-submitBox <- gtkVBox()
-submitBox$packEnd(gtkButton("Run simulation"), expand = FALSE)
+submit_vbox <- gtkVBox()
+submit_vbox$packEnd(gtkButton("Run simulation"), expand = FALSE)
 @ 
 %%
 We align the labels to the right, up against their corresponding entry
 widgets, which are left-aligned:
 <<gtk-container-layout-align>>=
-sizeLabel['xalign'] <- 1
-diagLabel['xalign'] <- 1; diagLabel['yalign'] <- 0
-diagAlign <- gtkAlignment(xalign = 0)
-diagAlign$add(diagRadios)
+size_label['xalign'] <- 1
+diag_label['xalign'] <- 1; diag_label['yalign'] <- 0
+diag_align <- gtkAlignment(xalign = 0)
+diag_align$add(diag_radio)
 @ 
 % 
 The labels are aligned through the \class{GtkMisc} functionality
@@ -76,20 +76,20 @@ overridden by specifying additional arguments to
 The following attaches the combo box, radio buttons and their labels
 to the table:
 <<>>=
-tbl$attach(sizeLabel, left.attach=0,1, top.attach=0,1, 
-           xoptions = c("expand", "fill"), yoptions="")
-tbl$attach(sizeCombo, left.attach=1,2, top.attach=0,1, 
-           xoptions="fill", yoptions="")
+table$attach(size_label, left.attach = 0,1, top.attach = 0,1, 
+             xoptions = c("expand", "fill"), yoptions = "")
+table$attach(size_combo, left.attach = 1,2, top.attach = 0,1, 
+             xoptions = "fill", yoptions = "")
 ##
-tbl$attach(diagLabel, left.attach=0,1, top.attach=1,2, 
-           xoptions = c("expand", "fill"), 
-           yoptions=c("expand", "fill"))
+table$attach(diag_label, left.attach = 0,1, top.attach = 1,2, 
+             xoptions = c("expand", "fill"), 
+             yoptions = c("expand", "fill"))
 ##
-tbl$attach(diagAlign, left.attach=1,2, top.attach=1,2, 
-           xoptions=c("expand", "fill"), yoptions = "")
+table$attach(diag_align, left.attach = 1,2, top.attach = 1,2, 
+             xoptions = c("expand", "fill"), yoptions = "")
 ##
-tbl$attach(submitBox, left.attach=1,2, top.attach=2,3, 
-           xoptions="", yoptions=c("expand", "fill"))
+table$attach(submit_box, left.attach = 1,2, top.attach = 2,3, 
+             xoptions = "", yoptions = c("expand", "fill"))
 @ 
 %
 The labels are allowed to expand and fill in the $x$ direction,
@@ -101,17 +101,17 @@ One can add spacing to the right of cells in a particular row or
 column. Here we add $5$ pixels of space to the right of the label
 column:
 <<gtk-container-table-spacing>>=
-tbl$setColSpacing(0, 5)
+table$setColSpacing(0, 5)
 @ 
 
 We complete the example by placing the table into a window:
 <<>>=
-w <- gtkWindow(show=FALSE)
-w['border-width'] <- 14
-w$setTitle("GtkTable Example")
-w$add(tbl)
+window <- gtkWindow(show=FALSE)
+window['border-width'] <- 14
+window$setTitle("GtkTable Example")
+window$add(table)
 @ 
 
 <<echo=false>>=
-w$show()                             
+window$show()
 @ 
