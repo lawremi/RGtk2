@@ -6,8 +6,8 @@ library(RGtk2)
 
 We define a simple data frame, and then create our data store and tree view.
 <<defineSomeData>>=
-df <- data.frame(a=c(1:5), b=c(21.2, rnorm(1), 1, NA, NaN))
-store <- rGtkDataFrame(df)
+DF <- data.frame(a=c(1:5), b=c(21.2, rnorm(1), 1, NA, NaN))
+store <- rGtkDataFrame(DF)
 tv <- gtkTreeView(store)
 @ 
 

@@ -175,7 +175,7 @@ finished application. The full details are found in the code in our accompanying
 package \pkg{ProgGUIinR}. 
 
 \paragraph{Command pattern}
-Now we discuss how the \iprogram{command pattern}\dfn{command pattern}
+Now we discuss how the \iprogram{command pattern}\DFn{command pattern}
 was implemented to provide a simple undo and redo feature to our
 editing.  According to \footcite{head-first-design-patterns}, the
 command pattern is used to \iprogram{encapsulation}encapsulate a
@@ -327,25 +327,25 @@ DfModel <- setRefClass("DfModel",
 
 ## Initialize along with a column for filtering
 DfModel$methods(
-                initialize=function(df, nm, ...) {
-                  store <<- rGtkDataFrame(cbind(df, `_visible`=rep(TRUE, nrow(df))))
-                  varnames <<- rGtkDataFrame(data.frame(names(df), stringsAsFactors=FALSE))
-                  casenames <<- rGtkDataFrame(data.frame(rownames(df), stringsAsFactors=FALSE))
+                initialize=function(DF, nm, ...) {
+                  store <<- rGtkDataFrame(cbind(DF, `_visible`=rep(TRUE, nrow(DF))))
+                  varnames <<- rGtkDataFrame(data.frame(names(DF), stringsAsFactors=FALSE))
+                  casenames <<- rGtkDataFrame(data.frame(rownames(DF), stringsAsFactors=FALSE))
                   if(missing(nm))
-                    name <<- deparse(substitute(df))
+                    name <<- deparse(substitute(DF))
                   else
                     name <<- nm
                   filtered <<- store$filter()
-                  filtered$setVisibleColumn(length(df))
+                  filtered$setVisibleColumn(length(DF))
                   callSuper()
                 })
 
 ## Methods to work with the underlying data frame (Get, save, ...)
 DfModel$methods(
                 get_dataframe=function() {
-                  df <- store[,seq_len(ncol(store)-1)]
-                  dimnames(df) <- list(casenames[,1], varnames[,1])
-                  df
+                  DF <- store[,seq_len(ncol(store)-1)]
+                  dimnames(DF) <- list(casenames[,1], varnames[,1])
+                  DF
                 },
                 save=function(nm) {
                   "Save to global workspace"
@@ -642,11 +642,11 @@ EditDataFrame$methods(
 ## Here we layout the GUI
 EditDataFrame$methods(
                       make_gui=function() {
-                        df <- df_model$get_dataframe()
-                        nms <- names(df)
+                        DF <- df_model$get_dataframe()
+                        nms <- names(DF)
                         view <<- gtkTreeView(df_model$filtered)
-                        sapply(seq_len(length(df)), function(j) {
-                          add_cellrenderer_by_class(df[[j]], nms[j], df_model, view, j, command_stack)
+                        sapply(seq_len(length(DF)), function(j) {
+                          add_cellrenderer_by_class(DF[[j]], nms[j], df_model, view, j, command_stack)
                         })
                         ##
                         ## place into GUI
@@ -712,10 +712,10 @@ EditDataFrame$methods(
                       })
 ## Finally an initialization method
 EditDataFrame$methods(
-                      initialize=function(df) {
-                        if(!is.data.frame(df))
+                      initialize=function(DF) {
+                        if(!is.data.frame(DF))
                           stop("Requires a data frame")
-                        initFields(df_model=DfModel$new(df),
+                        initFields(df_model=DfModel$new(DF),
                                    command_stack=CommandStack$new())
 
                         initialize_actions()
@@ -827,8 +827,8 @@ EditDataFrame$methods(
                         ind <- NULL
                         dlg <- gbasicdialog("Enter an expression", parent=mainwindow, handler=function(h,...) {
                           val <- svalue(e)
-                          df <- df_model$get_dataframe()
-                          out <- try(eval(parse(text=val), df), silent=FALSE)
+                          DF <- df_model$get_dataframe()
+                          out <- try(eval(parse(text=val), DF), silent=FALSE)
                           if(!inherits(out, "try-error"))
                             assign("ind", out, inherits=TRUE)
                         })
@@ -845,12 +845,12 @@ EditDataFrame$methods(
 EditDataFrame$methods(
                       Sort=function() {
                         perm <- integer(0)
-                        df <- df_model$get_dataframe()
+                        DF <- df_model$get_dataframe()
                         varnames <- df_model$get_col_names()
                         dlg <- gbasicdialog("Sort by:", parent=mainwindow, handler=function(h,...) {
                           var <- svalue(tbl, index=TRUE)
                           if(length(var) == 0) return()
-                          x <- df[,var]
+                          x <- DF[,var]
                           assign("perm", order(x, decreasing=svalue(decreasing)), inherits=TRUE)
                         })
                         g <- ggroup(horizontal=FALSE, cont=dlg)
@@ -869,8 +869,8 @@ EditDataFrame$methods(
 <<testItOut, echo=FALSE, results=hide>>=
 ## Test it out....
 require(MASS)
-df <- Cars93[sample(1:93, 20),c(1, 5, 26)]; df$American <- df$Origin == "USA"
-a = EditDataFrame$new(df)
+DF <- Cars93[sample(1:93, 20),c(1, 5, 26)]; DF$American <- DF$Origin == "USA"
+a = EditDataFrame$new(DF)
 @
 
 <<oldWay, echo=FALSE, results=hide>>=

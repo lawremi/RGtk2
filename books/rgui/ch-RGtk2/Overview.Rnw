@@ -317,7 +317,7 @@ information about a \pkg{RGtk2} object in the global environment.
 
 <<echo=FALSE, results=tex>>=
 ## sapply(paste("[[.",class(gtkWindow(show=FALSE)), sep=""), function(i) {x <- try(get(i)); if(!inherits(x,"try-error")) x})
-df <- rbind(
+DF <- rbind(
             c("\method{\[}{GObject}", "Look up property of object"),
             c("\method{\[\ASSIGN}{GObject}", "Set property of object"),
             c("\method{\$}{GObject}", "Get method for object"),
@@ -325,8 +325,8 @@ df <- rbind(
             c("", "For some objects, e.g., \class{GdkEventButton}s, refers to properties") ,          
             c("\method{\[[\ASSIGN}{GObject}", "For containers, sets child component")
             )
-colnames(df) <- c("Generic","Description")
-cat(booktabs(df,
+colnames(DF) <- c("Generic","Description")
+cat(booktabs(DF,
              colTypes=c("l","p{0.7\\textwidth}"),
              caption="Table of familiar \R\/ generics and their usage in \pkg{RGtk2}.",
              label="tab:RGtk2-familiar-generics"))

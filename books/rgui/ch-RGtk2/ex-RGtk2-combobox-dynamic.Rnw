@@ -55,9 +55,9 @@ newDfSelected <- function(varCb, w, ...) {
   if(inherits(w, "GtkComboBox"))        # get entry widget
     w <- w$getChild()
   val <- w$getText()
-  df <- try(get(val, envir=.GlobalEnv), silent=TRUE)
-  if(!inherits(df, "try-error") && is.data.frame(df)) {
-    nms <- names(df)
+  DF <- try(get(val, envir=.GlobalEnv), silent=TRUE)
+  if(!inherits(DF, "try-error") && is.data.frame(DF)) {
+    nms <- names(DF)
     ## update model
     newModel <- rGtkDataFrame(nms)
     varCb$setModel(newModel)

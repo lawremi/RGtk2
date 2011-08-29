@@ -154,7 +154,7 @@ gtkTreeViewAddKeyNavigations <- function(view) {
 To try it out, we first define a small data frame including all the
 types we have.
 <<testIt>>=
-df = data.frame(
+DF = data.frame(
   logical = c(TRUE, TRUE, FALSE),
   character = c("one","two","three"),
   factor = factor(c("ctrl","trt1","trt2")),
@@ -164,15 +164,15 @@ df = data.frame(
 @ 
 The store and view are easily defined
 <<>>=
-store <- rGtkDataFrame(df)
+store <- rGtkDataFrame(DF)
 view <- gtkTreeView(store)
 @ 
 Next to shows the data in the store inside the view.
 
 <<>>=
-nms <- names(df)
-QT <- sapply(1:ncol(df), function(i) {
-  type <- class(df[,i])[1]
+nms <- names(DF)
+QT <- sapply(1:ncol(DF), function(i) {
+  type <- class(DF[,i])[1]
   view$addColumnWithType(name = nms[i], type, viewCol = i, storeCol = i)
   
 })

@@ -562,13 +562,13 @@ model, which provides only those rows where the filter column is
 
 This is the basic usage:
 <<>>=
-df <- Cars93
-model <- rGtkDataFrame(cbind(df, .visible=rep(TRUE, nrow(df))))
+DF <- Cars93
+model <- rGtkDataFrame(cbind(DF, .visible=rep(TRUE, nrow(DF))))
 filtered_model <- model$filter()
-filtered_model$setVisibleColumn(length(df))          # 0-based
+filtered_model$setVisibleColumn(length(DF))          # 0-based
 view <- gtkTreeView(filtered_model)
 ## Adjust filter
-model[,".visible"] <- df$MPG.highway >= 30
+model[,".visible"] <- DF$MPG.highway >= 30
 @ 
 %
 The constructor of the filter model is \function{gtkTreeModelFilter},
@@ -586,9 +586,9 @@ may be treated as any other tree model, including attachment to a
 <<notShown, echo=FALSE, results=hide>>=
 mapply(view$insertColumnWithAttributes,  
        position=-1, 
-       title=colnames(df), 
+       title=colnames(DF), 
        cell=list(gtkCellRendererText()), 
-       text = seq_len(length(df)) - 1
+       text = seq_len(length(DF)) - 1
        )    
 ##
 sw <- gtkScrolledWindow()
@@ -936,11 +936,11 @@ and \code{GObject} for \GTK\/ objects, such as pixbufs.
   manufacturer row:
 <<results=hide>>=
 model <- gtkTreeStore("gchararray")
-by(Cars93, Cars93$Manufacturer, function(df) {
+by(Cars93, Cars93$Manufacturer, function(DF) {
   parent_iter <- model$append()
   model$setValue(parent_iter$iter, column = 0, value = 
-                 df$Manufacturer[1])
-  sapply(df$Model, function(car_model) {
+                 DF$Manufacturer[1])
+  sapply(DF$Model, function(car_model) {
     child_iter <- model$append(parent = parent_iter$iter)
     if (is.null(child_iter$retval)) 
       model$setValue(child_iter$iter, column = 0, 

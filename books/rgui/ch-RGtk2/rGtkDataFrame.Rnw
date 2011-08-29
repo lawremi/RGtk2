@@ -143,7 +143,7 @@ efficient manner. First we set up a data frame containing many
 different types of data.
 <<>>=
 library(RGtk2)
-df <- data.frame(visible = rep(TRUE,3),
+DF <- data.frame(visible = rep(TRUE,3),
                  integer = 1:3,
                  character = gettext(letters[1:3]),
                  markup = c("<b>bold</b>","<i>italics</i>",
@@ -157,11 +157,11 @@ df <- data.frame(visible = rep(TRUE,3),
 
 We use \command{rGtkDataFrame} to provide the data store. The
 \code{sfilter}  is used to filter the data by the 0-column in the data
-store (the \code{visible} column of the data frame \code{df}).
+store (the \code{visible} column of the data frame \code{DF}).
 The view is defined in terms of the filter. Without filtering, we
 would simply use \code{gtkTreeView(store)}.
 <<define-view>>=
-store <- rGtkDataFrame(df)
+store <- rGtkDataFrame(DF)
 filtered.store <- store$FilterNew()
 filtered.store$SetVisibleColumn(0)
 view <- gtkTreeView(filtered.store)                 
@@ -172,14 +172,14 @@ on alternate-row shading and enable searching through the \kbd{CTRL-F}
 command.
 
 <<>>=
-if(ncol(df) > 1)  view$SetRulesHint(TRUE ) # shade alternating rows
+if(ncol(DF) > 1)  view$SetRulesHint(TRUE ) # shade alternating rows
 view$SetEnableSearch(TRUE)                 # enable search
 @ 
 
 \GTK\/ expects 0-based counting, whereas our data store is 1-based
 like a data frame. We define these variables to help translate.
 <<>>=
-cols <- 1:ncol(df); names(cols) <- names(df)[-1]
+cols <- 1:ncol(DF); names(cols) <- names(DF)[-1]
 col <- 1
 @ 
 
@@ -332,7 +332,7 @@ callBack <- function(cell, path, newValue, userData) {
 }
 id <- gSignalConnect(cellrenderer, signal = "edited", f = callBack,
                     data = list(store=store,column=cols["factor"],
-                      levels = levels(df$factor))
+                      levels = levels(DF$factor))
                     )
 @ 
 
@@ -345,7 +345,7 @@ separate model is provided for this which we use \code{gtkListStore}.
 newCol("Combo","combo")
 
 cstore <- gtkListStore("gchararray")     # make the store
-for(i in as.character(df[,"factor"])) {
+for(i in as.character(DF[,"factor"])) {
   iter <- cstore$Append()
   cstore$SetValue(iter$iter,column=0, i)
 }
