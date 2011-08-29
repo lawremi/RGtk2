@@ -10,7 +10,8 @@ library(RGtk2)
 
   We begin by creating a window of a certain size.
 <<>>=    
-window <- gtkWindow(show = FALSE); window$setTitle("Graphic window")
+window <- gtkWindow(show = FALSE)
+window$setTitle("Graphic window")
 window$setSizeRequest(400,400)
 hbox <- gtkHBox(); window$add(hbox)
 window$showAll()

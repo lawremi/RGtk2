@@ -22,15 +22,17 @@ repos["CRAN"] <- "http://streaming.stat.iastate.edu/CRAN"
 options(repos = repos)
 @ 
 <<getUpgradablePackages>>=
-old_packages <- old.packages()[,c("Package", "Installed", "ReposVer")]
-df <- as.data.frame(old_packages)
+old_packages <- 
+  old.packages()[,c("Package", "Installed", "ReposVer")]
+DF <- as.data.frame(old_packages)
 @ 
 
 
 This function will be called on the selected rows. Here, we simply
 call \function{install.packages} to update the selected packages.
 <<>>=
-doUpdate <- function(old_packages) install.packages(old_packages$Package)
+doUpdate <- function(old_packages) 
+  install.packages(old_packages$Package)
 @ 
 
 \begin{figure}
@@ -43,8 +45,7 @@ To display the data frame, we first append a column to the data frame
 to store the selection information and then create a corresponding
 \class{RGtkDataFrame}.
 <<>>=
-df$.toggle <- rep(FALSE, nrow(df))
-model <- rGtkDataFrame(df)
+model <- rGtkDataFrame(cbind(DF, .toggle=rep(FALSE, nrow(DF))))
 @ 
 
 Our tree view shows each text column using a simple text cell renderer,
@@ -53,7 +54,7 @@ except for the first column that contains the check boxes for selection.
 view <- gtkTreeView()
 # add toggle
 cell_renderer <- gtkCellRendererToggle()
-view$insertColumnWithAttributes(0, "", cell_renderer, active = ncol(d))
+view$insertColumnWithAttributes(0, "", cell_renderer, active = ncol(DF))
 cell_renderer['activatable'] <- TRUE
 gSignalConnect(cell_renderer, "toggled", 
                function(cell_renderer, path, user.data) {
@@ -67,8 +68,8 @@ gSignalConnect(cell_renderer, "toggled",
 
 The text columns are added in one go:
 <<results=hide>>=
-mapply(view$insertColumnWithAttributes, -1, colnames(df), 
-       list(gtkCellRendererText()), text = 1:n-1)
+mapply(view$insertColumnWithAttributes, -1, colnames(DF), 
+       list(gtkCellRendererText()), text = seq_along(DF) -1L)
 @ 
 %
 Finally, we connect the store to the model.
@@ -86,7 +87,8 @@ button <- gtkButton("Update packages")
 gSignalConnect(button, "clicked", function(button, data) {
   view <- data
   model <- view$getModel()
-  old_packages <- model[model[, ncol(model)], -ncol(model), drop = FALSE]
+  old_packages <- 
+    model[model[, ncol(model)], -ncol(model), drop = FALSE]
   doUpdate(old_packages)
 }, data=view)
 @ 

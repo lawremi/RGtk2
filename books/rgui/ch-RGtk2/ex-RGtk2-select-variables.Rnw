@@ -22,7 +22,7 @@ similar mechanism is part of the SPSS model specification GUI of
 Figure~\ref{fig:GUI:spss-11-term-selection}. For illustration purposes
 we use the \code{Cars93} data set.
 <<>>=
-df <- get(data(Cars93, package="MASS"))
+DF <- get(data(Cars93, package="MASS"))
 @ 
 
 
@@ -61,9 +61,9 @@ contains three columns: the variable name, the icon, and whether the
 variable has been selected. We construct the corresponding data frame
 and wrap it in a \class{RGtkDataFrame} instance:
 <<model>>=
-model_df <- data.frame(Variables = I(sort(names(df))),
-                       icon = I(sapply(df, make_icon_pixmap)),
-                       selected = rep(FALSE, ncol(df)))
+model_df <- data.frame(Variables = I(sort(names(DF))),
+                       icon = I(sapply(DF, make_icon_pixmap)),
+                       selected = rep(FALSE, ncol(DF)))
 model <- rGtkDataFrame(model_df)
 @ 
 
@@ -90,7 +90,10 @@ views <- list()
 views$unselected_view <- gtkTreeView(unselected_filter)
 views$selected_view <- gtkTreeView(selected_filter)
 ##
-sapply(views, function(view) view$getSelection()$setMode('multiple'))
+sapply(views, function(view) {
+  selection <- view$getSelection()
+  selection$setMode('multiple')
+})
 @
 
 Each cell needs to display both an icon and a label.  This is achieved
@@ -99,11 +102,14 @@ by packing two cell renderers into the column:
 make_view_column <- function() {
   column <- gtkTreeViewColumn()
   column$setTitle("Variable")
-  column$addAttribute(gtkCellRendererPixbuf(), "pixbuf", 1L)
-  column$addAttribute(gtkCellRendererText(), "text", 0L)
+  column$packStart(cell_renderer <- gtkCellRendererPixbuf())
+  column$addAttribute(cell_renderer, "pixbuf", 1L)
+  column$packStart(cell_renderer <- gtkCellRendererText())
+  column$addAttribute(cell_renderer, "text", 0L)
   column
 }
-sapply(views, function(view) view$insertColumn(make_view_column(), 0))
+sapply(views, function(view) 
+       view$insertColumn(make_view_column(), 0))
 @ 
 
 For later use we extend the API for a tree view -- one method to find
@@ -141,19 +147,20 @@ toggleSelectionOnClick <- function(button, view) {
     model[ind, "selected"] <- !model[ind, "selected"]
   })
 }
-mapply(toggleSelectionOnClick, 
-       button=buttons,
-       view=rev(views))
+sapply(1:2, function(i) toggleSelectionOnClick(buttons[[i]], 
+                                               views[[3-i]]))
 @ 
 %
 We only want our buttons sensitive if there is a possible move. This
 is determined by the presence of a selection:
 <<sensitiveButtons, results=hide>>=
 sapply(buttons, gtkWidgetSetSensitive, FALSE)
-trackSelection <- function(button, view)
+trackSelection <- function(button, view) {
   gSignalConnect(view$getSelection(), "changed", 
-    function(x) button['sensitive'] <- view$hasSelection())
-mapply(trackSelection, buttons, rev(views))
+     function(x) button['sensitive'] <- view$hasSelection())
+}
+sapply(1:2, function(i) trackSelection(buttons[[i]], 
+                                       views[[3-i]]))
 @ 
 
 We now layout our GUI using a horizontal box, into which is packed the

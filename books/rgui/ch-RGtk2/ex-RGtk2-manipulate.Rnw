@@ -179,7 +179,7 @@ Manipulate$methods(
                            xoptions="", yoptions="shrink")
              strut$setSizeRequest(75, -1)
              frame$add(control_table)
-             paned$add(frame)
+             hpaned$add(frame)
              ## add each control
              sapply(.controls, function(control) {
                control$make_gui(cont=control_table, 
@@ -205,15 +205,13 @@ simply borrows code from the package to do some error checking,
 ensuring the controls are defined properly.
 
 <<Manipulate_Initialize>>=
-## ML: shouldn't this delegate to the super initialize?
-## Otherwise, it is difficult to subclass
 Manipulate$methods(  
            initialize = function(code, ...) {
              controls <- resolveVariableArguments(list(...))
              initFields(.code = code,
                         .controls = controls)
              validate_controls()
-             .self
+             callSuper()
            })
 @ 
 %
@@ -322,8 +320,8 @@ The \meth{initialize} method simply creates a list and sets some
 properties. This follows the setup of the original package.
 <<Slider_initialize>>=
 Slider$methods(
-       initialize = function(min, max, initial = min, label = NULL, 
-         step=-1, ticks=TRUE) {
+       initialize = function(min, max, initial = min, 
+         label = NULL, step = -1, ticks = TRUE, ...) {
            validate_inputs(min, max, initial, step, ticks)
            ## create slider and return it
            slider <- list(type = 0,
@@ -331,7 +329,8 @@ Slider$methods(
                           max = max,
                           step = step,
                           ticks = ticks)
-           initFields(l = slider, label = label, initial = initial)
+           initFields(l = slider, label = label, 
+                      initial = initial)
            .self
          })
 @ 
@@ -345,7 +344,8 @@ we define a slider and initialize it using the values in the list,
 <<Slider_make_gui>>=
 Slider$methods(
        make_gui = function(cont, handler, ...) {
-         widget <<- gtkHScale(min = l$min, max = l$max, step = l$step)
+         widget <<- gtkHScale(min = l$min, max = l$max, 
+                              step = l$step)
          widget$setValue(initial)
          gSignalConnect(widget, "value-changed", handler)
          callSuper(cont)
@@ -360,7 +360,7 @@ Slider$methods(
 Picker <- setRefClass("Picker",
                       contains="ManipulateControls",
                       methods=list(
-                        initialize=function(..., initial=NULL, label=NULL) {
+                        initialize=function(..., initial = NULL, label = NULL) {
                           
                           ## get values
                           values <- resolveVariableArguments(list(...))
@@ -439,7 +439,8 @@ Checkbox$methods(
          initialize = function(initial = FALSE, label = NULL) {
            validate_inputs(initial, label)
            checkbox <- list(type = 2)
-           initFields(l = checkbox, label = label, initial = initial)
+           initFields(l = checkbox, label = label, 
+                      initial = initial)
            .self
          },
          make_gui = function(cont, handler, ...) {

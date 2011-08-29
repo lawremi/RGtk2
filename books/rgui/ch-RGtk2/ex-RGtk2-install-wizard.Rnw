@@ -39,7 +39,7 @@ sapply(pages, gtkAssistantSetPageType, object = assistant,
 @ 
 %
 We customize each page with a side logo.
-<<sideLogo, results=hide>>=
+<<sideLogo1, results=hide>>=
 image <- gdkPixbuf(filename = imagefile("rgtk-logo.gif"))[[1]]
 sapply(pages, gtkAssistantSetPageSideImage, object = assistant, 
        pixbuf = image)
@@ -52,11 +52,11 @@ stored in a list, so that they we can refer to them by index.
 <<>>=
 populatePage <- list()                
 gSignalConnect(assistant, "prepare", 
-               function(assistant, page, data) {
-                 page_no <- which(sapply(pages, identical, page))
-                 if(!length(page$getChildren()))
-                   populatePage[[page_no]]()
-               })
+       function(assistant, page, data) {
+         page_no <- which(sapply(pages, identical, page))
+         if(!length(page$getChildren()))
+           populatePage[[page_no]]()
+       })
 @
 
 Although we do not show how to create the CRAN selection page
@@ -66,12 +66,12 @@ set a function that will skip this page if it is not needed, i.e., if
 the mirror has already been selected. The callback simply returns an
 integer with the next page number based on the last one.
 <<results=hide>>=
-asst$setForwardPageFunc(function(page_index, data) {
+assistant$setForwardPageFunc(function(page_index, data) {
   if(page_index == 0 && have_CRAN()) 
     2L 
   else 
     as.integer(page_index + 1)
-})
+}, data=NULL)
 @ 
 
 We have a few script globals that allow us to pass data between pages:

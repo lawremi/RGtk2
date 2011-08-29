@@ -18,16 +18,16 @@ First, we create a data frame. The
 \code{visible} column will be added to the \code{rGtkDataFrame}
 instance to adjust the visible rows.
 <<>>=
-df <- data.frame(state.name)
-df$visible <- rep(TRUE, nrow(df))
-model <- rGtkDataFrame(df)
+DF <- data.frame(state.name)
+DF$visible <- rep(TRUE, nrow(DF))
+model <- rGtkDataFrame(DF)
 @ 
 
 The filtered model needs to have the column specified that contains
 the logical values; in this example, it is the last column.
 <<>>=
 filtered_model <- model$filter()
-filtered_model$setVisibleColumn(ncol(df) - 1)      # offset
+filtered_model$setVisibleColumn(ncol(DF) - 1)      # offset
 view <- gtkTreeView(filtered_model)
 @ 
 
@@ -46,9 +46,9 @@ callback, we adjust the \code{visible} column of the
 entry <- gtkEntry()
 gSignalConnect(entry, "changed", function(entry, user.data) {
   pattern <- entry$getText()
-  df <- data$getModel()
-  values <- df[, "state.name"]
-  df[, "visible"] <- grepl(pattern, values)
+  DF <- user.data$getModel()
+  values <- DF[, "state.name"]
+  DF[, "visible"] <- grepl(pattern, values)
 }, data=filtered_model)
 @ 
 
@@ -57,19 +57,19 @@ Figure~\ref{fig:RGtk2-filtered} shows the two widgets placed within a
 simple GUI.
 <<echo=FALSE>>=
 ## not shown, but this places widgets into a simple GUI
-w <- gtkWindow(show=FALSE)
-w['title'] <- "A filtered data model"
-w$setSizeRequest(width=300, height=400)
+window <- gtkWindow(show=FALSE)
+window['title'] <- "A filtered data model"
+window$setSizeRequest(width=300, height=400)
 
-g <- gtkVBox()
-w$add(g)
-g$packStart(e, expand=FALSE)
+box <- gtkVBox()
+window$add(box)
+box$packStart(entry, expand=FALSE)
 
 ## add scroll window
 sw <- gtkScrolledWindow()
 sw$setPolicy("automatic", "automatic")
 sw$add(view)
-g$packStart(sw, expand=TRUE, fill=TRUE)
+box$packStart(sw, expand=TRUE, fill=TRUE)
 
-w$show()
+window$show()
 @ 

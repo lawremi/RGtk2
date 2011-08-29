@@ -47,7 +47,8 @@ df_combo$setActive(-1)
 #
 gSignalConnect(df_combo, "changed", function(df_combo, ...) {
   var_combo$getModel()$clear()
-  sapply(find_vars(df_combo$getActiveText()),  var_combo$appendText)
+  sapply(find_vars(df_combo$getActiveText()),  
+         var_combo$appendText)
   vbox2$show()
 })
 @ 

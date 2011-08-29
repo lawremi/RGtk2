@@ -28,7 +28,7 @@ widgets in a large application.
 function is the constructor:
 <<rgtk2-menus-actions-constructor>>=
 action <- gtkAction(name = "ok", label = "_Ok", 
-                    tooltip = "An OK button", stock.id = "gtk-ok")
+             tooltip = "An OK button", stock.id = "gtk-ok")
 @ 
 %
 The constructor takes arguments \argument{name}{gtkAction} (to
@@ -93,9 +93,10 @@ toggled state is shared across a list of radio actions, via the
 actions with controls resembling check boxes and radio buttons,
 respectively. Here, we create a toggle action for fullscreen mode:
 <<rgtk2-menus-toggle-action>>=
-full_screen_action <- gtkToggleAction("fullscreen", "Full screen", 
-                                      "Toggle full screen",
-                                      stock.id = "gtk-fullscreen")
+full_screen_action <- 
+  gtkToggleAction("fullscreen", "Full screen", 
+                  "Toggle full screen",
+                  stock.id = "gtk-fullscreen")
 gSignalConnect(full_screen_action, "toggled", function(action) {
   if(full_screen_action['active'])
     window$fullscreen()
@@ -199,7 +200,7 @@ save_action <-
 Then the appropriate menu item is generated from the action and added
 to the file menu:
 <<rgtk2-menus-save-item>>=
-save_item <- saveAction$createMenuItem()
+save_item <- save_action$createMenuItem()
 file_menu$append(save_item)
 @ 
 
@@ -217,7 +218,7 @@ supported. A toggle action will create one implicitly:
 auto_save_action <- gtkToggleAction("autosave", "Autosave", 
                                     "Enable autosave")
 auto_save_item <- auto_save_action$createMenuItem()
-file_menu$append(auto_save)
+file_menu$append(auto_save_item)
 @ 
 
 Finally, we add our menubar to the top of a window:

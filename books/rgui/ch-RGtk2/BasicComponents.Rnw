@@ -461,7 +461,8 @@ callback should check the \code{active} property to determine if the
 button has been enabled or disabled:
 <<gtk-widget-check-button-toggle,results=hide>>=
 gSignalConnect(checkButton, "toggled", function(button) {
-  message("Button is ", ifelse(button$active, "active","inactive"))
+  state <- ifelse(button$active, "active","inactive")
+  message("Button is ", state)
 })
 @ 
 

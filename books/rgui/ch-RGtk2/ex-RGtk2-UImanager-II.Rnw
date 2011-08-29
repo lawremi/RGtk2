@@ -96,21 +96,22 @@ fun <- function(...) {}
 To define the actions, we can use lists. This list defines
 the file menu:
 <<>>=
-file_list <- list(## name, ID, label, accelerator, tooltip, callback
-                  list("File",NULL,"_File",NULL,NULL,NULL),
-                  list("Save", "gtk-save", "Save", "<ctrl>S", 
-                       "Save data to variable", fun),
-                  list("SaveAs", "gtk-save", "Save as...", NULL, 
-                       "Save data to variable", fun),
-                  list("Export", NULL, "Export", NULL, NULL, NULL),
-                  list("ExportToCSV", "gtk-export", "Export to CSV", 
-                       NULL, "Save data to CSV file", fun),
-                  list("ExportToSaveFile", "gtk-export", 
-                       "Export to save file", NULL, 
-                       "Save data to save() file", fun),
-                  list("CloseWindow", "gtk-close", "Close window", 
-                       "<ctrl>W", "Close current window", fun)
-                  )
+file_list <- 
+  list(## name, ID, label, accelerator, tooltip, callback
+       list("File",NULL,"_File",NULL,NULL,NULL),
+       list("Save", "gtk-save", "Save", "<ctrl>S", 
+            "Save data to variable", fun),
+       list("SaveAs", "gtk-save", "Save as...", NULL, 
+            "Save data to variable", fun),
+       list("Export", NULL, "Export", NULL, NULL, NULL),
+       list("ExportToCSV", "gtk-export", "Export to CSV", 
+            NULL, "Save data to CSV file", fun),
+       list("ExportToSaveFile", "gtk-export", 
+            "Export to save file", NULL, 
+            "Save data to save() file", fun),
+       list("CloseWindow", "gtk-close", "Close window", 
+            "<ctrl>W", "Close current window", fun)
+       )
 @ 
 % 
 Each item contains $6$ pieces of information: a name (which we use in
@@ -204,15 +205,15 @@ function. The \code{meth} property is the name of the method, and
 methods:
 <<>>=
 Command$methods(
-                initialize = function(receiver, meth, ...) {
-                  params <- list(...)
-                  initFields(receiver = receiver, meth = meth, 
-                             params = params, old_params = params)
-                  callSuper()
-                },
-                execute = function(params) {
-                  do.call(call_meth(meth, receiver), params)
-                })
+        initialize = function(receiver, meth, ...) {
+          .params <- list(...)
+          initFields(receiver = receiver, meth = meth, 
+                     params = .params, old_params = .params)
+          callSuper()
+        },
+        execute = function(params) {
+          do.call(call_meth(meth, receiver), params)
+        })
 @
 %
 

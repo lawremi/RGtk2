@@ -45,11 +45,11 @@ accessed via the ``get'' and ``set'' methods
 using the \function{[} function. To illustrate, the following sets up
 a new window with a title.
 <<>>=
-window <- gtkWindow(show=FALSE)              # use default type
-window$setTitle("Window title")              # set window title
-window['title']                              # or  use getTitle
-window$setDefaultSize(250,300)               # 250 wide, 300 high
-window$show()                                # show window
+window <- gtkWindow(show=FALSE)          # use default type
+window$setTitle("Window title")          # set window title
+window['title']                          # or  use getTitle
+window$setDefaultSize(250,300)           # 250 wide, 300 high
+window$show()                            # show window
 @ 
 
 \paragraph{Window size}
@@ -127,8 +127,11 @@ specified with \code{setPostion}, which takes a value from the
 set to be destroyed with its parent. For example:
 <<>>=
 ## create a window and a dialog window
-window <- gtkWindow(show = FALSE); window$setTitle("Top level window")
-dialog <- gtkWindow(show = FALSE); dialog$setTitle("dialog window")
+window <- gtkWindow(show = FALSE)
+window$setTitle("Top level window")
+##
+dialog <- gtkWindow(show = FALSE)
+dialog$setTitle("dialog window")
 dialog$setTransientFor(window)
 dialog$setPosition("center-on-parent")
 dialog$setDestroyWithParent(TRUE)
@@ -161,7 +164,8 @@ In \GTK{}, the \iprogram{widget hierarchy}widget hierarchy is built
 when children are added to a parent container.  In this example, a
 window is made the parent of a label:
 <<>>=
-window <- gtkWindow(show=FALSE); window$setTitle("Hello world")
+window <- gtkWindow(show=FALSE)
+window$setTitle("Hello world")
 label <- gtkLabel("Hello world")
 window$add(label)
 @ 
@@ -455,7 +459,7 @@ hbox <- gtkHBox()
 sapply(1:3, function(i) hbox$packStart(gtkLabel(i)))
 @ 
 <<>>=
-b3 <- box[[3]]
+b3 <- hbox[[3]]
 hbox$reorderChild(b3, 2 - 1)               # second is 2 - 1
 @ 
 

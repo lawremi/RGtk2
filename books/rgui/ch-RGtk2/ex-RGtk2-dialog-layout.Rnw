@@ -88,7 +88,7 @@ table$attach(diag_label, left.attach = 0,1, top.attach = 1,2,
 table$attach(diag_align, left.attach = 1,2, top.attach = 1,2, 
              xoptions = c("expand", "fill"), yoptions = "")
 ##
-table$attach(submit_box, left.attach = 1,2, top.attach = 2,3, 
+table$attach(submit_vbox, left.attach = 1,2, top.attach = 2,3, 
              xoptions = "", yoptions = c("expand", "fill"))
 @ 
 %

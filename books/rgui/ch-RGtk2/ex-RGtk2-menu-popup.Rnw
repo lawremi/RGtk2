@@ -44,7 +44,7 @@ item is selected. Below we supply a stub for sake of illustration:
 sapply(popup$getChildren(), function(child) {
   if(!inherits(child, "GtkSeparatorMenuItem")) # skip these
     gSignalConnect(child, "activate",
-                   f = function(child, data) message("replace me"))
+           f = function(child, data) message("replace me"))
 })
 @ 
 %

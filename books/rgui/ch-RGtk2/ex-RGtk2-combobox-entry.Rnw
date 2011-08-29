@@ -30,7 +30,8 @@ possible, of course, to add cell renderers for other model columns.
 We create the combo box with this model using the first column for the
 text:
 <<>>=
-combo_box <- gtkComboBoxEntryNewWithModel(model, text.column = 0)
+combo_box <- gtkComboBoxEntryNewWithModel(model, 
+                                          text.column = 0)
 @ 
 
 It is not currently possible to put tooltip information on the drop
@@ -96,16 +97,17 @@ When the user enters a new value in the entry, we need to check if we
 have previously accessed the item. If not, we add the value to our model.
 <<results=hide>>=
 gSignalConnect(combo_box$getChild(), "activate", 
-               f = function(combo_box, entry, ...) {
-                 value <- entry$getText()
-                 if(!any(value == combo_box$getModel()[,1,drop=TRUE])) {
-                   model <- combo_box$getModel()
-                   tmp <- data.frame(filename = val, visits = "", nvisits = 0,
-                                     stringsAsFactors = FALSE)
-                   model$appendRows(tmp)
-                 }
-                 callHelpFunction(combo_box, value)
-               }, data = combo_box, user.data.first = TRUE)
+       f = function(combo_box, entry, ...) {
+         value <- entry$getText()
+         if(!any(value == combo_box$getModel()[,1,drop=TRUE])) {
+           model <- combo_box$getModel()
+           tmp <- data.frame(filename = val, visits = "", 
+                             nvisits = 0, 
+                             stringsAsFactors = FALSE)
+           model$appendRows(tmp)
+         }
+         callHelpFunction(combo_box, value)
+       }, data = combo_box, user.data.first = TRUE)
 @ 
 
 We place this in a minimal GUI with a label:

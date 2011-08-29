@@ -12,7 +12,7 @@ associated button is a \class{GtkColorButton}. When the user
 clicks on the button, a more complex color selection dialog will
 appear, allowing total customization.
 <<rgtk2-mennus-toolbar-color-button>>=
-color <- gdkColorParse(palette()[1])$color
+gdk_color <- gdkColorParse(palette()[1])$color
 color_button <- gtkColorButton(gdk_color)
 @
 % 

@@ -20,7 +20,7 @@ For this example we collect values for arguments to the
 argument name and default value, along with some additional values:
 <<>>=
 opts <- c("main", "sub", "xlab", "ylab", "line", "outer")
-df <- data.frame(option = opts,
+DF <- data.frame(option = opts,
            value = c("", "", "", "", "0", "FALSE"),
            class = c(rep("character", 4), "integer", "logical"),
            edit_color = rep("gray95", 6),
@@ -36,7 +36,7 @@ order to store them in a single column. We preserve the class in the
 
 Now we create our model and configure the first column:
 <<model, results=hide>>=
-model <- rGtkDataFrame(df)
+model <- rGtkDataFrame(DF)
 view <- gtkTreeView(model)
 ##
 cell_renderer <- gtkCellRendererText()
@@ -57,7 +57,7 @@ cell_renderer <- gtkCellRendererText()
 cell_renderer['editable'] <- TRUE
 view$insertColumnWithAttributes(position = -1,
                                 title = "Value",
-                                cell = cr,
+                                cell = cell_renderer,
                                 text = 2 - 1,
                                 background = 4 - 1
                                 )
@@ -69,14 +69,13 @@ the text and then set the background color and \code{dirty} flag of the
 entry. The latter allows one to easily find the values which were edited.
 <<editConnect>>=
 gSignalConnect(cell_renderer, "edited", 
-               function(cell_renderer, path, new.text, user.data) 
-               {
-                 model <- user.data$model
-                 i <- as.numeric(path) + 1; j <- user.data$column
-                 model[i,j] <- as(as(new.text, m[i, 'class']), "character")   
-                 model[i, 'dirty'] <- TRUE                     # mark dirty
-                 model[i, 'edit_color'] <- 'gray70'            # change color
-               }, data=list(model=model, column=2))
+    function(cell_renderer, path, new.text, user.data) {
+      model <- user.data$model
+      i <- as.numeric(path) + 1; j <- user.data$column
+      model[i,j] <- as(as(new.text, m[i, 'class']), "character")   
+      model[i, 'dirty'] <- TRUE                   # mark dirty
+      model[i, 'edit_color'] <- 'gray70'          # change color
+    }, data=list(model=model, column=2))
 @  
 
 A simple window displays our GUI.

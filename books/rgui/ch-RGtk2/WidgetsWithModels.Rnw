@@ -341,7 +341,7 @@ obtain the number of children, generate the sequence of row indices
 and access the row for each index:
 <<rgtk2-mvc-iter-apply>>=
 nrows <- model$iterNChildren(NULL)
-manufacturer <- sapply(seq(nrows), function(i) {
+manufacturer <- sapply(seq(nrows) - 1L, function(i) {
   iter <- model$iterNthChild(NULL, i)
   model$get(iter$iter, 0)[[1]]
 })
@@ -442,7 +442,8 @@ the selected values in the first column:
 gSignalConnect(selection, "changed", function(selection) {
   selected_rows <- selection$getSelectedRows()
   if(length(selected_rows$retval)) {
-    rows <- sapply(selected_rows$retval, gtkTreePathGetIndices) + 1L
+    rows <- sapply(selected_rows$retval, 
+                   gtkTreePathGetIndices) + 1L
     selected_rows$model[rows, 1]
   }
 })
@@ -564,7 +565,7 @@ This is the basic usage:
 df <- Cars93
 model <- rGtkDataFrame(cbind(df, .visible=rep(TRUE, nrow(df))))
 filtered_model <- model$filter()
-filtered_model$setVisibleColumn(length(df))            # 0-based
+filtered_model$setVisibleColumn(length(df))          # 0-based
 view <- gtkTreeView(filtered_model)
 ## Adjust filter
 model[,".visible"] <- df$MPG.highway >= 30
@@ -659,7 +660,7 @@ the font \code{family} and \code{size}, the \code{foreground} and
 example, we display right-aligned text in a Helvetica font:
 <<cr-right-aligned>>=
 cell_renderer <- gtkCellRendererText()
-cell_renderer['xalign'] <- 1                    # default 0.5 = centered
+cell_renderer['xalign'] <- 1          # default 0.5 = centered
 cell_renderer['family'] <- "Helvetica"  
 @ 
 
@@ -687,16 +688,17 @@ For example, here is how one can update an \code{RGtkDataFrame} model
 from within the callback:
 <<echo=FALSE>>=
 cell_renderer <- gtkCellRendererText()
+store <- model
 @ 
 <<editedSignal>>=
 cell_renderer['editable'] <- TRUE
-gSignalConnect(cr, "edited", 
-               f=function(cell_renderer, path, newtext, user.data) {
-                 i <- as.numeric(path) + 1
-                 j <- user.data$column
-                 model <- user.data$model
-                 model[i, j] <- newtext
-               }, data=list(model=store, column=1))
+gSignalConnect(cell_renderer, "edited", 
+       f=function(cell_renderer, path, newtext, user.data) {
+         i <- as.numeric(path) + 1
+         j <- user.data$column
+         model <- user.data$model
+         model[i, j] <- newtext
+       }, data=list(model=store, column=1))
 @ 
 % 
 Before using editable cells to create a data frame editor, one should
@@ -794,7 +796,7 @@ for it to receive user input. The programmer then needs to connect to the
 active state.
 <<cellRendererToggle>>=
 cell_renderer <- gtkCellRendererToggle()
-cell_renderer['activatable'] <- TRUE             # cell can be activated
+cell_renderer['activatable'] <- TRUE   # cell can be activated
 cell_renderer['active'] <- TRUE
 gSignalConnect(cell_renderer, "toggled", function(w, path) {
   model$active[as.numeric(path) + 1] <- w['active']
@@ -875,7 +877,8 @@ The function then needs to be registered with a
 <<results=hide>>=
 view <- gtkTreeView(rGtkDataFrame(data.frame(rnorm(100))))
 cell_renderer <- gtkCellRendererText()
-view$insertColumnWithAttributes(0, "numbers", cell_renderer, text = 0)
+view$insertColumnWithAttributes(0, "numbers", cell_renderer, 
+                                text = 0)
 column <- view$getColumn(0)
 column$setCellDataFunc(cell_renderer, func)
 @ 
@@ -938,9 +941,10 @@ by(Cars93, Cars93$Manufacturer, function(df) {
   model$setValue(parent_iter$iter, column = 0, value = 
                  df$Manufacturer[1])
   sapply(df$Model, function(car_model) {
-    child_iter <- tstore$append(parent = parent_iter$iter)
+    child_iter <- model$append(parent = parent_iter$iter)
     if (is.null(child_iter$retval)) 
-      model$setValue(child_iter$iter, column = 0, value = car_model)
+      model$setValue(child_iter$iter, column = 0, 
+                     value = car_model)
   })
 })
 @ 
@@ -976,7 +980,7 @@ Traversing a tree store is most easily achieved through the use of
 tables. Here we perform a depth-first traversal of our \code{Cars93}
 model to obtain the model values: 
 <<rgtk2-mvc-tree-traverse>>=
-iter <- tstore$getIterFirst()
+iter <- model$getIterFirst()
 models <- NULL
 while(iter$retval) {
   child_iter <- model$iterChildren(iter$iter)
@@ -1393,16 +1397,16 @@ the mouse button press event, find the corresponding iterator, and
 retrieve the surrounding word:
 <<FindWordAtMouseClick>>=
 gSignalConnect(view, "button-press-event", 
-               f=function(view, event, ...) {
-                 start <- view$getIterAtLocation(event$getX(), 
-                                                 event$getY())$iter
-                 end <- start$copy()
-                 start$backwardWordStart()
-                 end$forwardWordEnd()
-                 val <- start$getText(end)
-                 print(val)
-                 return(FALSE) # call next handler
-               })
+       f=function(view, event, ...) {
+         start <- view$getIterAtLocation(event$getX(), 
+                                         event$getY())$iter
+         end <- start$copy()
+         start$backwardWordStart()
+         end$forwardWordEnd()
+         val <- start$getText(end)
+         print(val)
+         return(FALSE) # call next handler
+       })
 @   
 \end{example}
 
@@ -1471,7 +1475,7 @@ tag_large <- buffer$createTag(tag.name="large",
 Next, we associate the tags with one or more regions of text:
 <<gtk-mvc-text-tags-apply>>=
 iter <- buffer$getBounds()
-buffer$applyTag(tag_bold, iter$start, iter$end)  # updates iters
+buffer$applyTag(tag_bold, iter$start, iter$end) # iters update
 buffer$applyTagByName("emph", iter$start, iter$end)
 @ 
 

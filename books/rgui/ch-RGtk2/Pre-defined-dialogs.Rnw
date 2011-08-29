@@ -21,7 +21,7 @@ secondary message.  We construct one presently:
 <<>>=
 window <- gtkWindow(); window['title'] <- "Parent window"
 #
-dialog <- gtkMessageDialog(parent=w, 
+dialog <- gtkMessageDialog(parent=window, 
                            flags="destroy-with-parent",
                            type="question", 
                            buttons="ok",
