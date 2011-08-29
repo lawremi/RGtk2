@@ -152,7 +152,7 @@ depending on the label dimensions and has the policies
 respectively. We could prevent a button from expanding at all:
 <<sizePolicy, results=hide>>=
 button <- Qt$QPushButton("No expansion")
-bbutton$setSizePolicy(vertical = Qt$QSizePolicy$Fixed, 
+button$setSizePolicy(vertical = Qt$QSizePolicy$Fixed, 
                       horizontal = Qt$QSizePolicy$Fixed)
 @   
 
@@ -384,7 +384,8 @@ The bottom three cells in the third column are managed
 by a sub layout, in this case a vertical box layout. We use a label as
 a stub and set a frame style to have it stand out:
 <<addBox, results=hide>>=
-layout$addLayout(sub_layout <- Qt$QVBoxLayout(), 1, 2, rowspan=3, 1)
+layout$addLayout(sub_layout <- Qt$QVBoxLayout(), 
+                 1, 2, rowspan=3, 1)
 sub_layout$addWidget(label <- Qt$QLabel("Category\nSelector"))
 label$setFrameStyle(Qt$QFrame$Box)
 @ 
@@ -402,7 +403,8 @@ Finally we add a space for information on the fourth row:
 <<addLabel2, results=hide>>=
 layout$addWidget(label <- Qt$QLabel("More info:"), 3, 0, 
                  rowspan = 1, colspan = 2)
-label$setSizePolicy(Qt$QSizePolicy$Fixed, Qt$QSizePolicy$Preferred)
+label$setSizePolicy(Qt$QSizePolicy$Fixed, 
+                    Qt$QSizePolicy$Preferred)
 label$setFrameStyle(Qt$QFrame$Box)
 @ 
 % 
@@ -446,7 +448,7 @@ The method \method{itemAtPosition}{QGridLayout} returns the
 \class{QLayoutItem} instance corresponding to the specified row and
 column:
 <<qt-layout-grid-at>>=
-edit <- lyt$itemAtPosition(0, 1)$widget()
+edit <- layout$itemAtPosition(0, 1)$widget()
 @
 %
 The item method \method{widget}{QLayoutItem} returns the corresponding

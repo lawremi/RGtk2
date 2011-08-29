@@ -136,7 +136,8 @@ addItem <- function(varname, parent_object, parent_item) {
     else if (!is.null(names(obj)))
       nms <- names(obj)
   }
-  sapply(nms, addItem, parent_item = item, parent_object = obj)
+  sapply(nms, addItem, parent_item = item, 
+         parent_object = obj)
 }
 @ 
 
@@ -149,7 +150,7 @@ updateTopLevelItems <- function(ws_watcher, view,
   ## remove these (by index)
   remove <- ws_watcher$changedVariables()
   cur_shown <- sapply(seq(model$rowCount()), 
-                      function(i) model$index(i - 1, 0)$data())
+                 function(i) model$index(i - 1, 0)$data())
   indices_to_remove <- which(cur_shown == remove)
   indices_to_remove <- sort(inds_to_remove, decreasing=TRUE)  
   ## add these (by variable name)
@@ -160,7 +161,8 @@ updateTopLevelItems <- function(ws_watcher, view,
   view$updatesEnabled <- FALSE
   if(length(indices_to_remove))
     sapply(indices_to_remove -1L, model$removeRow)
-  sapply(new_names, addItem, parent_object = env, # add
+  ## add
+  sapply(new_names, addItem, parent_object = env,
          parent_item = model$invisibleRootItem())
   model$sort(0, Qt$Qt$AscendingOrder)
   view$updatesEnabled <- TRUE

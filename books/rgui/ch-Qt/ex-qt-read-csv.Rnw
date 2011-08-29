@@ -132,7 +132,8 @@ qconnect(button_box, "accepted", function() {
                  )
     args$comment.char <- comment.char.bg$checkedButton()$text
     ##
-    assign(controls$name$text, do.call("read.csv", args), .GlobalEnv)
+    val <- do.call("read.csv", args)
+    assign(controls$name$text, val, .GlobalEnv)
     window$hide()
   } else {
     Qt$QMessageBox$warning(parent = window, 

@@ -260,7 +260,8 @@ sapply(seq_along(cylinders), function(i) {
   layout$addWidget(button)
   button_group$addButton(button, i)
 })
-sapply(button_group$buttons(), function(button) button$checked <- TRUE)
+sapply(button_group$buttons(), 
+       function(button) button$checked <- TRUE)
 @ 
 %
 Every button is initially checked. (The \method{buttons}{QButtonGroup} method returns a list of the
@@ -276,7 +277,8 @@ their checked state:
 checked <- sapply(button_group$buttons(), function(i) i$checked)
 if(any(checked)) {
   checked_cylinders <- Cars93$Cylinders %in% cylinders[checked]
-  message(sprintf("You've selected %d cases", sum(checked_cylinders)))
+  message(sprintf("You've selected %d cases", 
+                  sum(checked_cylinders)))
 }
 @ 
 %
@@ -313,9 +315,10 @@ filtering example (Figure~\ref{fig:qt-group-checkbox-radio}), we create several 
 range for the \qcode{Weight} variable in the \qcode{Cars93} dataset:
 <<RadioWithList,results=hide>>=
 window <- Qt$QGroupBox("Weight:")
-radio_buttons <- list(Qt$QRadioButton("Weight < 3000", w),
-                      Qt$QRadioButton("3000 <= Weight < 4000", w),
-                      Qt$QRadioButton("4000 <= Weight", w))
+radio_buttons <- 
+  list(Qt$QRadioButton("Weight < 3000", w),
+       Qt$QRadioButton("3000 <= Weight < 4000", w),
+       Qt$QRadioButton("4000 <= Weight", w))
 @ 
 %
 In the above we specified the parent to the constructor to group the objects.
@@ -866,7 +869,8 @@ widget.
 Finally, we need to enable plugins, register our factory and load the HTML:
 <<qt-widget-webview-plugin-factory-register, results=hide>>=
 globalSettings <- Qt$QWebSettings$globalSettings()
-globalSettings$setAttribute(Qt$QWebSettings$PluginsEnabled, TRUE)
+globalSettings$setAttribute(Qt$QWebSettings$PluginsEnabled, 
+                            TRUE)
 webview$page()$setPluginFactory(RPluginFactory())
 webview$setHtml(html)
 @ 

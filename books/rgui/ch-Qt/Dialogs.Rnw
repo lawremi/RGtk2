@@ -147,11 +147,11 @@ dialog$informativeText <- "This should give extra info"
 dialog$detailedText <- "And this provides\neven more detail"
 
 dialog$icon <- Qt$QMessageBox$Critical
-dialog$standardButtons <- Qt$QMessageBox$Cancel | Qt$QMessageBox$Ok
-
+dialog$standardButtons <- 
+  Qt$QMessageBox$Cancel | Qt$QMessageBox$Ok
 ## 'Cancel' instead of 'Ok' is the default
 dialog$setDefaultButton(Qt$QMessageBox$Cancel)
-
+##
 if(dialog$exec() == Qt$QMessageBox$Ok) 
   print("A Ok")
 @ 
@@ -297,7 +297,8 @@ the callback is passed the button object.
 qconnect(button_box, "accepted", function() message("accepted"))
 qconnect(button_box, "rejected", function() message("rejected"))
 qconnect(button_box, "helpRequested", function() message("help"))
-qconnect(button_box, "clicked", function(button) message(button$text))
+qconnect(button_box, "clicked", 
+         function(button) message(button$text))
 @ 
 
 <<echo=FALSE, results=hide>>=
@@ -445,8 +446,8 @@ options.  These are \qcode{getOpenFileName}, \qcode{getOpenFileNames},
 \qcode{getExistingDirectory}, and \qcode{getSaveFileName}.  To select
 a file name to open we would have:
 <<QFIleDialog, eval=FALSE>>=
-filename <- Qt$QFileDialog$getOpenFileName(NULL, "Open a file...", 
-                                        getwd())
+filename <- Qt$QFileDialog$getOpenFileName(NULL, 
+                          "Open a file...", getwd())
 @ 
 % 
 All take as initial arguments a parent, a caption and a

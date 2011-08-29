@@ -78,7 +78,8 @@ the \method{addWidget}{QLayout} method and requires a
 specification, by index and span, of the cells the child will occupy:
 <<results=hide>>=
 layout <- Qt$QGridLayout()
-layout$addWidget(label, row = 0, column = 0, rowSpan = 1, columnSpan = 1)
+layout$addWidget(label, row = 0, column = 0, 
+                 rowSpan = 1, columnSpan = 1)
 layout$addWidget(edit,   0, 1, 1, 1)
 layout$addWidget(button, 1, 1, 1, 1)
 @ 

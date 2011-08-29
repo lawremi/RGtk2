@@ -124,7 +124,7 @@ widget <- Qt$QWidget()
 The \code{w} object has a class structure that reflects the
 \iprogram{class structure}class inheritance structure of \Qt:
 <<qwidget-class, results=hide>>=
-class(w)
+class(widget)
 @ 
 \begin{Soutput}
 [1] "QWidget"             "QObject"       "QPaintDevice"       
@@ -135,7 +135,7 @@ The base class, \class{RQtObject}, is an \iprogram{reflection}environment contai
 the properties and methods of the instance. For \code{w}, we list
 the first few using \function{ls}:
 <<results=hide>>=
-head(ls(w), n=3)
+head(ls(widget), n=3)
 @ 
 \begin{Soutput}
 [1] "mapFromParent"  "setContextMenuPolicy"  "showMinimized"  
@@ -350,7 +350,8 @@ name, the \code{clicked(bool)} signature is chosen, since our handler
 has a single argument. Thus, these two calls are equivalent:
 <<qt-signals-qconnect-sig, results=hide>>=
 qconnect(button, "clicked", function(checked) print(checked))
-qconnect(button, "clicked(bool)", function(checked) print(checked))
+qconnect(button, "clicked(bool)", 
+         function(checked) print(checked))
 @ 
 
 Any object passed to the optional argument
@@ -365,7 +366,8 @@ that provides the slot that wraps the \R{} function. This dummy object
 can be used with the \method{disconnect}{QObject} method on the
 sender to break the signal connection:
 <<qt-signals-disconnect>>=
-proxy <- qconnect(button, "clicked", function() message("ouch"))
+proxy <- qconnect(button, "clicked", 
+                  function() message("ouch"))
 button$disconnect(proxy)
 @ 
 %
@@ -807,7 +809,8 @@ red (see Figure~\ref{fig:qt-style-sheet} for an example):
 <<qt-overview-stylesheets, results=hide>>=
 button <- Qt$QPushButton("Style sheet example")
 button$show()
-button$styleSheet <- "QPushButton {color: red; background: white}"
+button$styleSheet <- 
+  "QPushButton {color: red; background: white}"
 @ 
 
 <<echo=FALSE, eval=FALSE>>=
@@ -862,14 +865,6 @@ qsetStyleSheet(color = "red", background = "white")
   uses a stylesheet to place the icon in the background and to prevent
   the text from overlapping the icon.
 
-  \begin{figure}
-    \centering
-    \includegraphics[width=.7\textwidth]{fig-qt-line-edit-error}
-    \caption{Using a stylesheet to customize the line edit class to show an error indicator}
-    \label{fig:qt-line-edit-error}
-  \end{figure}
-  
-  
   To indicate an error, we will add an icon and set the tooltip to
   display an informative message
   (Figure~\ref{fig:qt-line-edit-error}). The constructor will be the
@@ -878,6 +873,15 @@ qsetStyleSheet(color = "red", background = "white")
 qsetClass("LineEditWithError", Qt$QLineEdit)
 @   
 
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=.7\textwidth]{fig-qt-line-edit-error}
+    \caption{Using a stylesheet to customize the line edit class to show an error indicator}
+    \label{fig:qt-line-edit-error}
+  \end{figure}
+  
+  
   The main method sets the error state. We use style sheets to place an
   image to the left of the entry message and set the tooltip.
 <<setError, results=hide>>=

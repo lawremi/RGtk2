@@ -21,13 +21,15 @@ combo box for choosing a data frame and a list view for the variable
 names. When a data frame is chosen in the combo box, its variables are
 shown in the list:
 <<qt-mvc-dnd-variable-selector, results=hide>>=
-qsetClass("VariableSelector", Qt$QWidget, function(parent = NULL) {
+qsetClass("VariableSelector", Qt$QWidget, 
+          function(parent = NULL) {
   super(parent)
   ## widgets
   this$df_combo_box <- Qt$QComboBox()
   this$variable_list <- Qt$QListView()
-  this$variable_list$setModel(qdataFrameModel(data.frame(), this, 
-                                        useRoles = TRUE))
+  this$variable_list$setModel(
+       qdataFrameModel(data.frame(), this, 
+                       useRoles = TRUE))
   this$variable_list$dragEnabled <- TRUE
 
   ## layout
@@ -195,7 +197,8 @@ qsetMethod("paintEvent", VariableLabel, function(event) {
   painter$save()
   painter$translate(width / 2, height / 2)
   painter$rotate(-(rotation))
-  rect <- painter$boundingRect(0, 0, 0, 0, Qt$Qt$AlignCenter, text)
+  rect <- painter$boundingRect(0, 0, 0, 0, 
+                               Qt$Qt$AlignCenter, text)
   painter$drawText(rect, Qt$Qt$AlignCenter, text)
   painter$restore()
   painter$end()

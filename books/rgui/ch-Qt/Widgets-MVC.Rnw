@@ -539,7 +539,8 @@ selectionChangedHandler <- function(selected, deselected) {
   selected_indices[indicesForSelection(selected)] <<- TRUE
   selected_indices[indicesForSelection(deselected)] <<- FALSE
 }
-qconnect(selection_model, "selectionChanged", selectionChangedHandler)
+qconnect(selection_model, "selectionChanged", 
+         selectionChangedHandler)
 @ 
 % 
 The change in selection is communicated as two 
@@ -675,7 +676,7 @@ and list view. It is also possible to sort programmatically by calling
 the \method{sort}{QAbstractItemModel} method, passing the index of the
 sort column. We sort our data by the \qcode{mpg} variable:
 <<qt-mvc-proxy-sort, results=hide>>=
-proxy_model$sort(1)                      # mpg in column 2 of model
+proxy_model$sort(1)               # mpg in column 2 of model
 @ 
 %
 The built-in sorting logic understands basic data types like strings
@@ -755,7 +756,8 @@ makes and models, in gray:
 <<qt-mvc-role-background>>=
 mtcars_id <- cbind(makeAndModel=rownames(mtcars), mtcars)
 model <- qdataFrameModel(mtcars_id, useRoles = TRUE)
-qdataFrame(model)$.makeAndModel.background <- list(qcolor("gray"))
+qdataFrame(model)$.makeAndModel.background <- 
+  list(qcolor("gray"))
 @ 
 %
 In the above, we store a list of \class{QColor} instances in our data
@@ -888,7 +890,7 @@ by(Cars93, Cars93$Manufacturer, function(df) {
   \begin{minipage}[c]{.3\textwidth}
     \includegraphics[width=\textwidth]{fig-qt-treemodel-listview}
   \end{minipage}
-  \caption{The \code{tree_model} instance viewed in a tree view, a table view and a list view}
+  \caption{The \code{tree\_model} instance viewed in a tree view, a table view and a list view}
   \label{fig:qt-treemodel-views}
 \end{figure}
 
@@ -913,7 +915,7 @@ tree_model <- Qt$QStandardItemModel(rows = 0, columns = 1)
 <<qt-mvc-standard-item-rewrite, results=hide>>=
 by(Cars93, Cars93$Manufacturer, function(df) {
   manufacturer <- as.character(df$Manufacturer[1])
-  manufacturer_item <- Qt$QStandardItem(man)
+  manufacturer_item <- Qt$QStandardItem(manufacturer)
   tree_model$appendRow(manufacturer_item)
   children <- lapply(as.character(df$Model), Qt$QStandardItem)
   lapply(children, manufacturer_item$appendRow)
@@ -957,7 +959,7 @@ tree_view$headerHidden <- TRUE
 %
 
 %
-Figure~\ref{fig:qt-treemodel-views} shows the \code{tree_model} in
+Figure~\ref{fig:qt-treemodel-views} shows the \code{tree\_model} in
 the three separate types of views we've discussed, the left most being
 with in a \class{QTreeView} instance, as just illustrated.
 
@@ -1325,11 +1327,11 @@ text. Although the text is actually stored in a \class{QTextDocument} instance,
 it is usually sufficient to interact with the \class{QTextEdit}
 directly:
 <<QTextEdit, results=hide>>=
-edit <- Qt$QTextEdit()
+text_edit <- Qt$QTextEdit()
 @ 
 <<eval=FALSE, echo=FALSE, results=hide>>=
 ## not shown
-edit$show(); edit$raise()
+text_edit$show(); text_edit$raise()
 @ 
 
 The underlying \class{QTextDocument} instance can be set by the
@@ -1433,7 +1435,7 @@ Selection is a component of the \class{QTextCursor} state. For plain
 text, the selected text is returned by the
 \method{selectedText}{QTextCursor} method:
 <<qt-mvc-textedit-selection>>=
-text_edit$textCursor()$selectedText()          # no current selection
+text_edit$textCursor()$selectedText()    # no current selection
 @ 
 %
 The \code{NULL} value indicates that the user has not selected any
