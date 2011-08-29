@@ -54,15 +54,15 @@ keeping the selected data frame if still valid.
 qsetMethod("updateDataSets", VariableSelector, function() {
   current_text <- df_combo_box$currentText
   df_combo_box$clear()
-  dfs <- ProgGUIinR:::avail_dfs(.GlobalEnv)
-  if(length(dfs)) {
-    this$df_combo_box$addItems(dfs)
-    if(is.null(current_text) || !current_text %in% dfs) {
+  DFs <- ProgGUIinR:::avail_dfs(.GlobalEnv)
+  if(length(DFs)) {
+    this$df_combo_box$addItems(DFs)
+    if(is.null(current_text) || !current_text %in% DFs) {
       this$df_combo_box$currentIndex <- -1
       this$dataFrame <- NULL
     } else {
       this$df_combo_box$currentIndex <- 
-        which(current_text == dfs)
+        which(current_text == DFs)
       this$dataFrame <- current_text
     }
   }
@@ -88,18 +88,18 @@ The data frame is stored in the following call to
 method to also update our model for the variable list.
 <<qt-mvc-dnd-dataset, results=hide>>=
 qsetProperty("dataFrame", VariableSelector, 
-             write = function(df) {
-               if (is.null(df))
-                 df <- data.frame()
-               else if (is.character(df)) 
-                 df <- get(df, .GlobalEnv)
+             write = function(DF) {
+               if (is.null(DF))
+                 DF <- data.frame()
+               else if (is.character(DF)) 
+                 DF <- get(DF, .GlobalEnv)
                ##
                model <- variable_list$model()
-               icons <- lapply(df, getIcon)
+               icons <- lapply(DF, getIcon)
                qdataFrame(model) <- 
-                 data.frame(variable=names(df),
+                 data.frame(variable=names(DF),
                             variable.decoration=I(icons))
-               this$.dataFrame <- df
+               this$.dataFrame <- DF
                dataFrameChanged()
              })
 @ 
@@ -278,17 +278,17 @@ the table view, we hide the conditional call to \function{xtabs}.
 <<echo=FALSE>>=
 ## Hide call to xtabs
 ## Return NULL if not okay, otherwise a table object
-call_xtabs <- function(df, x, y) {
-  if(is.character(df))
-    df <- get(df)
+call_xtabs <- function(DF, x, y) {
+  if(is.character(DF))
+    DF <- get(DF)
   if(is.null(x)) {
     table <- NULL
   } else if(is.null(y)) {
     f <- formula(sprintf("~ %s", x))
-    table <- xtabs(f, data = df)
+    table <- xtabs(f, data = DF)
   } else { 
     f <- formula(sprintf("~ %s + %s", y, x))
-    table <- xtabs(f, data = df)
+    table <- xtabs(f, data = DF)
   } 
   table
 }

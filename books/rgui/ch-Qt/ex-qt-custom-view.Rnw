@@ -42,10 +42,10 @@ qsetMethod("updateMean", MeanLabel, function() {
   if(is.null(model)) {
     text <- "No model"
   } else {
-    df <- qdataFrame(model)
-    colname <- colnames(df)[column + 1L]
+    DF <- qdataFrame(model)
+    colname <- colnames(DF)[column + 1L]
     text <- sprintf("Mean for '%s': %s", colname, 
-                    mean(df[,colname]))
+                    mean(DF[,colname]))
   }
   this$text <- text
 }, access="private")

@@ -127,7 +127,7 @@ layout. The possible size policies are listed in
 Table~\ref{tab:qt:size-policies}.
 
 <<echo=FALSE, results=tex>>=
-df <- rbind(
+DF <- rbind(
             c("Fixed","Require the size hint exactly"),
             c("Minimum", "Treat the size hint as the minimum, allowing expansion"),
             c("Maximum", "Treat the size hint as the maximum, allowing shrinkage"),
@@ -136,8 +136,8 @@ df <- rbind(
             c("MinimumExpanding", "Treat like \\code{Minimum}, except the widget desires  as much space as possible"),
             c("Ignored", "Ignore the size hint and request as much space as possible")
            )
-colnames(df) <- c("Policy","Meaning")
-            cat(booktabs(df,
+colnames(DF) <- c("Policy","Meaning")
+            cat(booktabs(DF,
                          colTypes=c("l","p{0.7\\textwidth}"),
                          caption="Possible size policies from \\class{QSizePolicy}",
                          label="tab:qt:size-policies"))

@@ -7,15 +7,15 @@
 qsetClass("DraggableListWidget", Qt$QListWidget, 
           function(parent=NULL) {
             super(parent)
-            this$df <- NULL
+            this$DF <- NULL
           })
 @   
 %
-The property \code{df} holds the name of the dataframe that will be
+The property \code{DF} holds the name of the dataframe that will be
 selected through a combo box. Here is a method to set the value.
 <<results=hide>>=
 qsetMethod("setDf", DraggableListWidget, 
-           function(df) this$df <- df)
+           function(DF) this$DF <- DF)
 @ 
 %
 For drag and drop we show how to serialize an arbitrary \R{} object to
@@ -28,7 +28,7 @@ define) and a value. This value will be retrieved by the
 <<results=hide>>=
 qsetMethod("mousePressEvent", DraggableListWidget, function(e) {
   item <- itemAt(e$pos())
-  val <- list(df=this$df, var=item$text())
+  val <- list(DF=this$DF, var=item$text())
 
   md <- Qt$QMimeData()
   md$setData("R/serialized-data", serialize(val, NULL))
@@ -74,15 +74,15 @@ qsetMethod("updateDataSets", VariableSelector, function() {
   curVal <- this$dfcb$currentText
   this$dfcb$clear()
   x <- ls(envir=.GlobalEnv)
-  dfs <- x[sapply(x, function(i) 
+  DFs <- x[sapply(x, function(i) 
                   is.data.frame(get(i, inherits=TRUE)))]
-  if(length(dfs)) {
-    this$dfcb$addItems(dfs)
-    if(is.null(curVal) || !curVal %in% dfs) {
+  if(length(DFs)) {
+    this$dfcb$addItems(DFs)
+    if(is.null(curVal) || !curVal %in% DFs) {
       this$dfcb$setCurrentIndex(-1)
       updateVarList(NULL)
     } else {
-      this$dfcb$setCurrentIndex(which(curVal == dfs))
+      this$dfcb$setCurrentIndex(which(curVal == DFs))
       updateVarList(curVal)               # curVal NULL, or a name
     }
   }
@@ -100,11 +100,11 @@ of the combo box selection. As items are automatically drag enabled,
 we do not need to add anything more here, as we've implemented the
 \code{mousePressEvent}.
 <<results=hide>>=
-qsetMethod("updateVarList", VariableSelector, function(df=NULL) {
-  this$varList$setDf(df)
+qsetMethod("updateVarList", VariableSelector, function(DF=NULL) {
+  this$varList$setDf(DF)
   this$varList$clear()
-  if(!is.null(df)) {
-    d <- get(df)
+  if(!is.null(DF)) {
+    d <- get(DF)
     sapply(names(d), function(i) {
       item <- Qt$QListWidgetItem(i, this$varList)
       item$setIcon(make_icon(d[,i]))

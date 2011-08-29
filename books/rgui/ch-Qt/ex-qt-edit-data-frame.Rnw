@@ -32,11 +32,11 @@ Our basic constructor simply assigns to a \prop{dataframe} property the
 data frame passed to it.
 <<DfModel, results=hide>>=
 qsetClass("DfModel", Qt$QAbstractTableModel, 
-          function(df = data.frame(V1 = character(0)), 
+          function(DF = data.frame(V1 = character(0)), 
                    parent = NULL) 
           {
             super(parent)
-            this$df <- df
+            this$DF <- DF
           })
 @ 
 
@@ -44,9 +44,9 @@ Here we configure the \prop{dataframe} property, implementing a
 \meth{write} method so that assigning to this property will call the
 \meth{dataChanged} method to notify any views of a change:
 <<results=hide>>=
-qsetProperty("df", DfModel, write = function(df) {
-  this$.df <- df
-  dataChanged(index(0, 0), index(nrow(df), ncol(df)))
+qsetProperty("DF", DfModel, write = function(DF) {
+  this$.DF <- DF
+  dataChanged(index(0, 0), index(nrow(DF), ncol(DF)))
 })
 @ 
 
@@ -55,9 +55,9 @@ As mentioned, there are three virtual methods required by the interface:
 delegate down to \function{nrow} and \function{ncol}:
 <<results=hide>>=
 qsetMethod("rowCount", DfModel, 
-           function(index) nrow(this$df) + 1)
+           function(index) nrow(this$DF) + 1)
 qsetMethod("columnCount", DfModel, 
-           function(index) ncol(this$df))
+           function(index) ncol(this$DF))
 @ 
 
 The \meth{data} method is then the main method to implement. Here we
@@ -134,14 +134,14 @@ qsetMethod("data", DfModel, function(index, role) {
 
   if(role == Qt$Qt$DisplayRole) {
     if(row > 0)
-      displayRole(df[,col], row)
+      displayRole(DF[,col], row)
     else
-      names(df)[col]
+      names(DF)[col]
   } else if(role == Qt$Qt$EditRole) {
     if(row > 0)
-      as.character(df[row, col])
+      as.character(DF[row, col])
     else
-      names(df)[col]
+      names(DF)[col]
   } else {
     NULL
   }
@@ -157,22 +157,22 @@ qsetMethod("data", DfModel, function(index, role) {
   
   if(role == Qt$Qt$DisplayRole) {
     if(row > 0)
-      displayRole(df[,col], row)
+      displayRole(DF[,col], row)
     else
-      names(df)[col]
+      names(DF)[col]
   } else if(role == Qt$Qt$EditRole) {
     if(row > 0)
-      as.character(df[row, col])
+      as.character(DF[row, col])
     else
-      names(df)[col]
+      names(DF)[col]
   } else if(role == Qt$Qt$TextAlignmentRole) {
     if(row > 0)
-      textAlignmentRole(df[, col], row)
+      textAlignmentRole(DF[, col], row)
     else
       Qt$Qt$AlignCenter | Qt$Qt$AlignTop
   } else if(role == Qt$Qt$BackgroundRole) {
     if(row > 0)
-      backgroundRole(df[, col], row)
+      backgroundRole(DF[, col], row)
     else
       Qt$QBrush(Qt$QColor("gray"))
   } else if(role == Qt$Qt$ForegroundRole) {
@@ -180,17 +180,17 @@ qsetMethod("data", DfModel, function(index, role) {
       Qt$QBrush(Qt$QColor("white"))
   } else if(role == Qt$Qt$ToolTipRole) {
     if(row > 0)
-      toolTipRole(df[,col], row)
+      toolTipRole(DF[,col], row)
     else
       ""
   } else if(role == Qt$Qt$WhatsThisRole) {
     if(row > 0)
-      whatsThisRole(df[,col], row)
+      whatsThisRole(DF[,col], row)
     else
       ""
   } else if(role == Qt$Qt$SizeHintRole) {
     if(row > 0)
-      sizeHintRole(df[,col], row)
+      sizeHintRole(DF[,col], row)
     else
       NULL
   } else {
@@ -241,17 +241,17 @@ delegate and assigning it into the model:
 <<results=hide>>=
 qsetMethod("setData", DfModel, function(index, value, role) {
   if(index$isValid() && role == Qt$Qt$EditRole) {
-    df <- this$df
+    DF <- this$DF
     row <- index$row()
     col <- index$column() + 1
 
     if(row > 0) {
-      x <- df[, col]
-      df[row, col] <- fitIn(x, value)
+      x <- DF[, col]
+      DF[row, col] <- fitIn(x, value)
     } else {
-      names(df)[col] <- value
+      names(DF)[col] <- value
     }
-    this$df <- df
+    this$DF <- DF
     dataChanged(index, index)
 
     return(TRUE)
@@ -267,13 +267,13 @@ column of values:
 <<results=hide>>=
 qsetMethod("setColumn", DfModel, function(col, value) {
   ## pad with NA if needed
-  n <- nrow(this$df)
+  n <- nrow(this$DF)
   if(length(value) < n)
     value <- c(value, rep(NA, n - length(value)))
   value <- value[1:n]
-  df <- this$df
-  df[,col] <- value
-  this$df <- df         # only notify about this column
+  DF <- this$DF
+  DF[,col] <- value
+  this$DF <- DF         # only notify about this column
   dataChanged(index(0, col - 1), 
               index(rowCount() - 1, col - 1))
   return(TRUE)
@@ -285,14 +285,14 @@ specific to our task. Since we may add a new column, we call the
 "begin" and "end" methods to notify any views.
 <<addColumn, results=hide>>=
 qsetMethod("addColumn", DfModel, function(name, value) {
-  df <- this$df
-  if(name %in% names(df)) {
-    return(setColumn(min(which(name == names(df))), value))
+  DF <- this$DF
+  if(name %in% names(DF)) {
+    return(setColumn(min(which(name == names(DF))), value))
   }  
   beginInsertColumns(Qt$QModelIndex(),
                      columnCount(), columnCount())
-  df[[name]] <- value
-  this$df <- df
+  DF[[name]] <- value
+  this$DF <- DF
   endInsertColumns()
   return(TRUE)
 })

@@ -15,7 +15,7 @@ library(qtpaint)
 A circle is defined by a point and radius, the former specified below
 in terms of its $x$ and $y$ component.
 <<>>=
-df = data.frame(x=rep(1:5, rep(5,5)),
+DF <- data.frame(x=rep(1:5, rep(5,5)),
   y = rep(1:5, 5),
   r = rep(25, 25)
 )
@@ -32,7 +32,7 @@ To add the points, we use another layer and the \function{qdrawCircle}
 function within the painter.
 <<>>=
 drawPoints <- function(layer, painter) {
-  qdrawCircle(painter, df$x, df$y, df$r, fill="white")
+  qdrawCircle(painter, DF$x, DF$y, DF$r, fill="white")
 }
 player <- qlayer(scene, limits=lims,
                  paintFun = drawPoints)
@@ -46,7 +46,7 @@ the graphic is redrawn.
 hoverFun <- function(layer, event) {
   pos <- event$pos()
   x <- pos$x(); y <- pos$y()
-  df$r <<- 5*sqrt((df$x - x)^2 + (df$y - y)^2)
+  DF$r <<- 5*sqrt((DF$x - x)^2 + (DF$y - y)^2)
   qupdate(scene)
 }
 mlayer <- qlayer(scene,

@@ -9,12 +9,12 @@ w <- Qt$QGroupBox("Selection example")
 This example shows how to use the table widget to select variable
 names in a data set. \class{QListView} could also display such a list;
 we choose \class{QTableView} in order to add details in extra columns.
-We assume we have a data frame, \code{df}, with two columns -- one for
+We assume we have a data frame, \code{DF}, with two columns -- one for
 the variable name and one for detail, in this case the class of the
 variable:
 <<dataFrame, echo=FALSE>>=
 ## populate table
-df <- data.frame(variable=names(Cars93),
+DF <- data.frame(variable=names(Cars93),
                  class = sapply(sapply(Cars93, class), paste, collapse=", "))
 @ 
 
@@ -45,8 +45,8 @@ the headers. We stretch the last column and set the column width of
 the first to accomodate the longest variable name in our example.
 <<setHeaders, results=hide>>=
 tbl$clear()
-tbl$setRowCount(nrow(df))
-tbl$setColumnCount(ncol(df))
+tbl$setRowCount(nrow(DF))
+tbl$setColumnCount(ncol(DF))
 
 tbl$setHorizontalHeaderLabels(c("Variable", "Class"))
 tbl$horizontalHeader()$setStretchLastSection(TRUE)
@@ -58,12 +58,12 @@ tbl$verticalHeader()$setVisible(FALSE)
 Each row in this example has two items, one for the checkable item
 holding the variable name and one for detail. Here we add row by row.
 <<PopulateRows, results=hide>>=
-for(i in 1:nrow(df)) {
-  item <- Qt$QTableWidgetItem(df[i,1])
+for(i in 1:nrow(DF)) {
+  item <- Qt$QTableWidgetItem(DF[i,1])
   item$setCheckState(Qt$Qt$Unchecked)
   tbl$setItem(i-1, 0, item)
 
-  item <- Qt$QTableWidgetItem(df[i,2])
+  item <- Qt$QTableWidgetItem(DF[i,2])
   item$setTextAlignment(Qt$Qt$AlignLeft)
   tbl$setItem(i-1, 1, item)
 }

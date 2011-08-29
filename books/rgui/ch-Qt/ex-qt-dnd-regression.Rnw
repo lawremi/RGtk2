@@ -9,15 +9,15 @@ We define a bounding rectangle for the layers and a data frame to
 store our date.
 <<>>=
 lims <- qrect(0,0,10,10)
-df <- data.frame(x=runif(10, 0, 10),
+DF <- data.frame(x=runif(10, 0, 10),
                  y=runif(10, 0, 10),
                  label=1:10)
 @ 
 The point drawing layer uses the data frame to draw circles at each point.
 <<>>=
 drawPoints <- function(layer, painter) {
-  qdrawCircle(painter, df$x, df$y, 5, fill="red")
-  res <- lm(y ~ x, df)
+  qdrawCircle(painter, DF$x, DF$y, 5, fill="red")
+  res <- lm(y ~ x, DF)
   x <- xlims; y <- coef(res)[1] + x* coef(res)[2]
   qdrawLine(painter, x, y)
 }
@@ -34,12 +34,12 @@ drag-and-drop.
 mousePress <- function(layer, event) {
   d <- 50/600                          # adjust
   x <- sapply(c("x","y"), function(i) get(i, event$pos())())
-  ind <- which((x[1]-d < df$x & df$x < x[1] + d) &
-               (x[2]-d < df$y & df$y < x[2] + d))
+  ind <- which((x[1]-d < DF$x & DF$x < x[1] + d) &
+               (x[2]-d < DF$y & DF$y < x[2] + d))
   if(length(ind) == 0) return()
 
   md <- Qt$QMimeData()
-  md$setText(df$label[min(ind)])
+  md$setText(DF$label[min(ind)])
 
   drag <- Qt$QDrag(event$widget())
   drag$setMimeData(md)
@@ -55,7 +55,7 @@ dropFun <- function(layer, event) {
   md <- event$mimeData()
   ind <- as.numeric(md$text())
   x <- sapply(c("x","y"), function(i) get(i, event$pos())())
-  df[ind,1:2] <<- x[1:2]
+  DF[ind,1:2] <<- x[1:2]
   qupdate(scene)
 
   
