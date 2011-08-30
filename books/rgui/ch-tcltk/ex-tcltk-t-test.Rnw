@@ -94,27 +94,27 @@ runTTest <- function() {
 
 <<notShown, echo=FALSE>>=
 ### GUI Our standard setup
-w <- tktoplevel()
-tkwm.title(w, "t-test Dialog")
-f <- ttkframe(w, padding = c(3,3,12,12))
-tkpack(f, expand = TRUE, fill = "both")
+window <- tktoplevel()
+tkwm.title(window, "t-test Dialog")
+frame <- ttkframe(window, padding = c(3,3,12,12))
+tkpack(frame, expand = TRUE, fill = "both")
 @ 
 
 Our layout is basic. Here we pack a label frame into the window to give the dialog a nicer look.
 We will use the \code{tkgrid} geometry manager below.
 <<layout>>=
-lf <- ttklabelframe(f, text = "t.test()", padding = 10)
-tkpack(lf, expand = TRUE, fill = "both", padx = 5, pady = 5)
+label_frame <- ttklabelframe(frame, text = "t.test()", padding = 10)
+tkpack(label_frame, expand = TRUE, fill = "both", padx = 5, pady = 5)
 @ 
 
 The grid will have four columns, with columns 0 and 2 being for labels.
 We don't want the labels to expand the same way we want the widget columns to do, so we
 assign different weights:
 <<>>=
-tkgrid.columnconfigure(lf, 0, weight = 1)
-tkgrid.columnconfigure(lf, 1, weight = 10)
-tkgrid.columnconfigure(lf, 2, weight = 1)
-tkgrid.columnconfigure(lf, 1, weight = 10)
+tkgrid.columnconfigure(label_frame, 0, weight = 1)
+tkgrid.columnconfigure(label_frame, 1, weight = 10)
+tkgrid.columnconfigure(label_frame, 2, weight = 1)
+tkgrid.columnconfigure(label_frame, 1, weight = 10)
 @ 
 
 
@@ -130,39 +130,39 @@ putLabel <- function(parent, text, row, column) {
 Our first widget will be one to select a data frame. For this, a
 combo box is used, although if a large number of data frames are a
 possibility, a different widget may be better suited. Also not shown are two
-similar calls to create combo boxes \code{xCombo} and \code{fCombo}
+similar calls to create combo boxes \code{x\_combo} and \code{factor\_combo}
 which allow the user to specify parts of a formula.
 
 <<>>=
-putLabel(lf, "data:",0,0)
-dataCombo <- ttkcombobox(lf, state = "readonly", 
+putLabel(label_frame, "data:",0,0)
+data_combo <- ttkcombobox(label_frame, state = "readonly", 
                          values = ProgGUIinR:::avail_dfs(), 
                          textvariable = e$data)
-tkgrid(dataCombo, row = 0, column = 1, sticky = "ew", padx = 2)
-tkfocus(dataCombo)                      # give focus
+tkgrid(data_combo, row = 0, column = 1, sticky = "ew", padx = 2)
+tkfocus(data_combo)                      # give focus
 @ 
 
 <<notShown, echo=FALSE>>=
 ## not shown
-putLabel(lf, "x:",1,0)
-xCombo <-  ttkcombobox(lf, 
+putLabel(label_frame, "x:",1,0)
+x_combo <-  ttkcombobox(label_frame, 
                        values = getNumericVars(), textvariable = e$x)
-tkgrid(xCombo, row = 1, column = 1, sticky = "ew", padx = 2)
+tkgrid(x_combo, row = 1, column = 1, sticky = "ew", padx = 2)
 @ 
 
 <<notShown, echo=FALSE>>=
 ## not shown
-putLabel(lf, "~ f:",1,2)
-fCombo <-  ttkcombobox(lf, values = getTwoLevelFactor(), textvariable = e$f)
-tkgrid(fCombo, row = 1, column = 3, sticky = "ew", padx = 2)
+putLabel(label_frame, "~ f:",1,2)
+factor_combo <-  ttkcombobox(label_frame, values = getTwoLevelFactor(), textvariable = e$f)
+tkgrid(factor_combo, row = 1, column = 3, sticky = "ew", padx = 2)
 @ 
 
 We use a \constructor{ttkentry} widget for the user to specify
 a mean. For this purpose, the use is straightforward.
 <<mu>>=
-putLabel(lf, "mu:", 2, 0)
-muCombo <-  ttkentry(lf,  textvariable = e$mu)
-tkgrid(muCombo, row = 2, column = 1, sticky = "ew", padx = 2)
+putLabel(label_frame, "mu:", 2, 0)
+mu_combo <-  ttkentry(label_frame,  textvariable = e$mu)
+tkgrid(mu_combo, row = 2, column = 1, sticky = "ew", padx = 2)
 @ 
 
 The selection of an alternative hypothesis is a natural choice for a
@@ -172,76 +172,76 @@ ttkscale <- function(parent, ...) tkwidget(parent, "ttk::scale", ...)
 tkspinbox <- function(parent, ...) tkwidget(parent, "tk::spinbox", ...)
 @ 
 <<results=hide>>=
-putLabel(lf, "alternative:", 3, 0)
-rbFrame <- ttkframe(lf)
+putLabel(label_frame, "alternative:", 3, 0)
+rb_frame <- ttkframe(label_frame)
 sapply(c("two.sided","less","greater"), function(i) {
-  rb <- ttkradiobutton(rbFrame, variable = e$alternative, 
+  radio_button <- ttkradiobutton(rb_frame, variable = e$alternative, 
                        text = i, value = i)
-  tkpack(rb, side = "left")
+  tkpack(radio_button, side = "left")
 })
-tkgrid(rbFrame, row = 3, column = 1, sticky = "ew", padx = 2)
+tkgrid(rb_frame, row = 3, column = 1, sticky = "ew", padx = 2)
 @ 
 
 Here we use a range widget to specify the confidence level. The slider
 is quicker to use, but less precise than the spinbox. By sharing a
 text variable, the widgets are automatically synchronized.
 <<>>=
-putLabel(lf, "conf.level:", 3, 2)
-confFrame <- ttkframe(lf)
-tkgrid(confFrame, row = 3, column = 3, columnspan = 2, 
+putLabel(label_frame, "conf.level:", 3, 2)
+conf_level_frame <- ttkframe(label_frame)
+tkgrid(conf_level_frame, row = 3, column = 3, columnspan = 2, 
        sticky = "ew", padx = 2)
 ##
-confScale <- ttkscale(confFrame, from = 75, to = 100, 
+conf_level_scale <- ttkscale(conf_level_frame, from = 75, to = 100, 
                      variable = e$conf.level)
-confSpin <- tkspinbox(confFrame, from = 75, to = 100, increment = 1, 
+conf_level_spin <- tkspinbox(conf_level_frame, from = 75, to = 100, increment = 1, 
                      textvariable = e$conf.level, width = 5)
 ##
-tkpack(confScale, expand = TRUE, fill = "y", side = "left")
-tkpack(confSpin, side = "left")
+tkpack(conf_level_scale, expand = TRUE, fill = "y", side = "left")
+tkpack(conf_level_spin, side = "left")
 @ 
 
 A checkbox is used to collect the logical value for \code{var.equal}:
 <<>>=
-putLabel(lf, "var.equal:", 4, 0)
-veCheck <- ttkcheckbutton(lf, variable = e$var.equal)
-tkgrid(veCheck, row = 4, column = 1, stick = "w", padx = 2)
+putLabel(label_frame, "var.equal:", 4, 0)
+var_equal_check <- ttkcheckbutton(label_frame, variable = e$var.equal)
+tkgrid(var_equal_check, row = 4, column = 1, stick = "w", padx = 2)
 @ 
 
 
 The dialog has standard "cancel" and "ok" buttons.
 <<results=hide>>=
-bf <- ttkframe(f)
-cancel <- ttkbutton(bf, text = "cancel")
-ok <- ttkbutton(bf, text = "ok")
+button_frame <- ttkframe(frame)
+cancel_button <- ttkbutton(button_frame, text = "cancel")
+ok_button <- ttkbutton(button_frame, text = "ok")
 #
-tkpack(bf, fill = "x", padx = 5, pady = 5)
-tkpack(ttklabel(bf, text = " "), expand = TRUE, fill = "y", 
+tkpack(button_frame, fill = "x", padx = 5, pady = 5)
+tkpack(ttklabel(button_frame, text = " "), expand = TRUE, fill = "y", 
        side = "left")                     # add a spring
-sapply(list(cancel, ok), tkpack, side = "left", padx = 6)
+sapply(list(cancel_button, ok_button), tkpack, side = "left", padx = 6)
 @ 
 %
 
-For the \code{ok} button we want to gather the values and run the
+For the \code{ok\_button} button we want to gather the values and run the
 function. The \code{runTTest} function does this.  We configure both
 buttons, then add to the default button bindings to invoke either of the button's commands
 when they have the focus and \kbd{return} is pressed.
 <<>>=
-tkconfigure(ok, command = runTTest)
-tkconfigure(cancel, command = function() tkdestroy(w))
+tkconfigure(ok_button, command = runTTest)
+tkconfigure(cancel_button, command = function() tkdestroy(window))
 tkbind("TButton", "<Return>", function(W) tcl(W, "invoke"))
 @ 
 
 At this point, our GUI is complete, but we would like to have it
 reflect any changes to the underlying \R\/ environment that effect its
-display. A such, we define
-a function, \code{updateUI}, which does two basic things: it searches for
-new data frames and it adjusts the controls depending on the current
-state.
+display. A such, we define a function, \code{updateUI}, which does two
+basic things: it searches for new data frames and it adjusts the
+controls depending on the current state. The work is cumbersome, as
+three different means are needed to disable theh widgets.
 <<results=hide>>=
 updateUI <- function() {
   dfName <- tclvalue(e$data)
   curDfs <- ProgGUIinR:::avail_dfs()
-  tkconfigure(dataCombo, values = curDfs)
+  tkconfigure(data_combo, values = curDfs)
   if(!dfName %in% curDfs) {
     dfName <- ""
     tclvalue(e$data) <- ""
@@ -249,40 +249,40 @@ updateUI <- function() {
 
   if(dfName == "") {
     ## 3 ways to disable needed!!
-    x <- list(xCombo, fCombo, muCombo,  confScale, veCheck, ok)
+    x <- list(x_combo, factor_combo, mu_combo,  conf_level_scale, var_equal_check, ok_button)
     sapply(x, function(W) tcl(W, "state", "disabled"))
-    sapply(as.character(tkwinfo("children", rbFrame)), 
+    sapply(as.character(tkwinfo("children", rb_frame)), 
            function(W) tcl(W, "state", "disabled"))
-    tkconfigure(confSpin, state = "disabled")
+    tkconfigure(conf_level_spin, state = "disabled")
   } else {
     ## enable univariate, ok
-    sapply(list(xCombo,  muCombo, confScale, ok),
+    sapply(list(x_combo,  mu_combo, conf_level_scale, ok_button),
            function(W) tcl(W, "state", "!disabled"))
-    sapply(as.character(tkwinfo("children", rbFrame)), 
+    sapply(as.character(tkwinfo("children", rb_frame)), 
            function(W) tcl(W, "state", "!disabled"))
-    tkconfigure(confSpin, state = "normal")
+    tkconfigure(conf_level_spin, state = "normal")
     
     DF <- get(dfName, envir = .GlobalEnv)
     numVars <- getNumericVars(DF)
-    tkconfigure(xCombo, values = numVars)
+    tkconfigure(x_combo, values = numVars)
     if(! tclvalue(e$x) %in% numVars)
       tclvalue(e$x) <- ""
 
     ## bivariate
     availFactors <- getTwoLevelFactor(DF)
-    sapply(list(fCombo, veCheck),
+    sapply(list(factor_combo, var_equal_check),
            function(W) {
              val <- if(length(availFactors)) "!" else ""
              tcl(W, "state", sprintf("%sdisabled", val))
            })
-    tkconfigure(fCombo, values = availFactors)
+    tkconfigure(factor_combo, values = availFactors)
     if(!tclvalue(e$f) %in% availFactors)
       tclvalue(e$f) <- ""
       
          }
 }
 updateUI()
-tkbind(dataCombo, "<<ComboboxSelected>>", updateUI)
+tkbind(data_combo, "<<ComboboxSelected>>", updateUI)
 @ 
 
 This function could be bound to a ``refresh'' button or we could

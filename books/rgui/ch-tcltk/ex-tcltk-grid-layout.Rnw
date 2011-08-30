@@ -45,20 +45,20 @@ week.of.month <- function(year, month, day) {
 
 
 <<>>=
-makeMonth <- function(w, year, month) {
+makeMonth <- function(parent, year, month) {
   ## add headers
   days <- c("S","M","T","W","Th","F","S")
   sapply(1:7, function(i) {
-    l <- ttklabel(w, text = days[i])       
-    tkgrid(l, row = 0, column = i-1, sticky = "")
+    label <- ttklabel(parent, text = days[i])       
+    tkgrid(label, row = 0, column = i-1, sticky = "")
   })
   ## add days
   sapply(seq_len(ProgGUIinR:::days.in.month(year, month)), 
          function(day) {
-           l <- ttklabel(w, text = day)
+           label <- ttklabel(parent, text = day)
            row <- ProgGUIinR:::week.of.month(year, month, day)
            col <- ProgGUIinR:::day.of.week(year, month, day)
-           tkgrid(l, row = 1 + row, column = col, sticky = "e")
+           tkgrid(label, row = 1 + row, column = col, sticky = "e")
          })
 }
 @ 
@@ -72,26 +72,26 @@ year <- 2000; month <- 1
 Our basic layout will use a box layout with a nested layout
 for the step-through controls and another holding the calendar widget.
 <<>>=
-w <- tktoplevel()
-f <- ttkframe(w, padding = c(3,3,12,12))
-tkpack(f, expand = TRUE, fill = "both", side = "top")
-cframe <- ttkframe(f)
-calframe <- ttkframe(f)
-tkpack(cframe, fill = "x", side = "top")
-tkpack(calframe, expand = TRUE, anchor = "n")
+window <- tktoplevel()
+frame <- ttkframe(window, padding = c(3,3,12,12))
+tkpack(frame, expand = TRUE, fill = "both", side = "top")
+c_frame <- ttkframe(frame)
+cal_frame <- ttkframe(frame)
+tkpack(c_frame, fill = "x", side = "top")
+tkpack(cal_frame, expand = TRUE, anchor = "n")
 @ 
 
 Our step through controls are packed in through a horizontal
 layout. We use anchoring and \code{expand=TRUE} to keep the arrows on the edge and the
 label with the current month centered, should the container be resized.
 <<>>=
-prevb <- ttklabel(cframe, text = "<")
-nextb <- ttklabel(cframe, text = ">")
-curmo <- ttklabel(cframe)
+previous_button <- ttklabel(c_frame, text = "<")
+next_button <- ttklabel(c_frame, text = ">")
+current_month <- ttklabel(c_frame)
 #
-tkpack(prevb, side = "left", anchor = "w")
-tkpack(curmo, side = "left", anchor = "center", expand = TRUE)
-tkpack(nextb, side = "left", anchor = "e")
+tkpack(previous_button, side = "left", anchor = "w")
+tkpack(current_month, side = "left", anchor = "center", expand = TRUE)
+tkpack(next_button, side = "left", anchor = "e")
 @ 
 
 The \code{setMonth} function first removes the previous calendar
@@ -102,12 +102,12 @@ monthly calendar to match the year and month. The call to
 adding its child components makes the GUI seem much more responsive.
 <<stackedWidget>>=
 setMonth <- function() {
-  tkpack("forget", calframe)
-  calframe <<- ttkframe(f)
-  makeMonth(calframe, year, month)
-  tkconfigure(curmo,                    # month label
+  tkpack("forget", cal_frame)
+  cal_frame <<- ttkframe(frame)
+  makeMonth(cal_frame, year, month)
+  tkconfigure(current_month,              # month label
               text = sprintf("%s %s", month.abb[month], year))
-  tkpack(calframe)
+  tkpack(cal_frame)
 }
 setMonth()                              # initial calendar
 @ 
@@ -117,7 +117,7 @@ The arrow labels are used to scroll, so we connect to the
 binding to decrement the month and year using the global variables
 \code{month} and \code{year}.
 <<connectSignal>>=
-tkbind(prevb, "<Button-1>", function() {
+tkbind(previous_button, "<Button-1>", function() {
   if(month > 1) {
     month <<- month - 1
   } else {
@@ -127,9 +127,9 @@ tkbind(prevb, "<Button-1>", function() {
 })
 @ 
 
-<<echo=FALSE>> = 
-tkbind(nextb, "<Button-1>", function() {
-  if(month < 12) {
+<<echo=FALSE>>= 
+tkbind(next_button, "<Button-1>", function() {
+ if(month < 12) {
     month <<- month + 1
   } else {
     month <<- 1; year <<- year + 1

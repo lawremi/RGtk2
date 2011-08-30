@@ -75,17 +75,18 @@ updated.
 For example, if \code{f} is a frame, we can create a new check button
 with the following:
 <<setup-window,echo=FALSE>>=
-w <- tktoplevel(); tkwm.title(w, "Check button example")
-f <- ttkframe(w); tkpack(f, expand = TRUE, fill = "both")
+window <- tktoplevel(); tkwm.title(window, "Check button example")
+frame <- ttkframe(window); tkpack(frame, expand = TRUE, fill = "both")
 @ 
 
 <<make-TCL-variables>>=
-value <- tclVar(TRUE)
-callback <- function() print(tclvalue(value))   # uses global
-labelVar <- tclVar("check button label")
-cb <- ttkcheckbutton(f, variable = value, 
-                     textvariable = labelVar, command = callback)
-tkpack(cb)
+value_var <- tclVar(TRUE)
+callback <- function() print(tclvalue(value_var))   # uses global
+label_var <- tclVar("check button label")
+check_button <- 
+  ttkcheckbutton(frame, variable = value_var, 
+                 textvariable = label_var, command = callback)
+tkpack(check_button)
 @ 
 
 
@@ -95,7 +96,7 @@ By default the widget draws with a check box. Optionally the widget
 can be drawn as a button, which when depressed indicates a \code{TRUE}
 state. This is done by using the style \code{Toolbutton}, as in:
 <<>>=
-tkconfigure(cb, style = "Toolbutton")
+tkconfigure(check_button, style = "Toolbutton")
 @ 
 
 The ``Toolbutton'' style in general is for placing widgets into toolbars.
@@ -108,7 +109,7 @@ way to get the \R\/ object from the values passed through the \%
 substitution values. The variable holding the value can be found
 through
 <<>>=
-tkcget(cb, "variable" = NULL)
+tkcget(check_button, "variable" = NULL)
 @ 
 
 But then, one needs a means to lookup the variable from this id. Here is a
@@ -132,9 +133,9 @@ Assuming we used \function{ourTclVar} above, then the callback above
 could be defined to avoid a (new) global variable by:
 
 <<ourTclVarExample, echo=FALSE>>=
-w <- tktoplevel(); tkwm.title(w, "Check button example")
-f <- ttkframe(w); tkpack(f, expand = TRUE, fill = "both")
-value <- ourTclVar(TRUE)
+window <- tktoplevel(); tkwm.title(window, "Check button example")
+frame <- ttkframe(window); tkpack(frame, expand = TRUE, fill = "both")
+value_var <- ourTclVar(TRUE)
 @
 
 <<>>=
@@ -145,10 +146,11 @@ callback <- function(W) {
 @ 
 
 <<echo=FALSE>>=
-labelVar <- tclVar("check button label")
-cb <- ttkcheckbutton(f, variable = value, 
-                     textvariable = labelVar, command = callback)
-tkpack(cb)
+label_var <- tclVar("check button label")
+check_button<- 
+  ttkcheckbutton(frame, variable = value_var, 
+                 textvariable = label_var, command = callback)
+tkpack(check_button)
 @ 
 
 In Section~\ref{sec:tcltk:scale-widgets} we demonstrate how to encapsulate the widget and its
@@ -172,8 +174,8 @@ incorporated through the \option{image}{ttkradiobutton} and
 the buttons is managed by the programmer.
 
 <<radio-button-1,echo=FALSE>>=
-w <- tktoplevel(); tkwm.title(w, "Radio example")
-f <- ttkframe(w, padding = c(3,3,12,12)); tkpack(f, expand = TRUE, fill = "both")
+window <- tktoplevel(); tkwm.title(window, "Radio example")
+frame <- ttkframe(window, padding = c(3,3,12,12)); tkpack(frame, expand = TRUE, fill = "both")
 @ 
 
 This small example shows how radio buttons could be used for selection
@@ -184,10 +186,10 @@ values <- c("less", "greater", "two.sided")
 var <- tclVar(values[3])                # initial value
 callback <- function() print(tclvalue(var))
 sapply(values, function(i) {
-  rb <- ttkradiobutton(f, variable = var, 
-                       text = i, value = i, 
-                       command = callback)
-  tkpack(rb, side = "top", anchor = "w")
+  radio_button <- ttkradiobutton(frame, variable = var, 
+                                 text = i, value = i, 
+                                 command = callback)
+  tkpack(radio_button, side = "top", anchor = "w")
 })
 @ 
 
@@ -210,25 +212,25 @@ characters.
 
 The following constructs a basic example
 <<entryExample,echo=FALSE>>=
-w <- tktoplevel()
-tkwm.title(w,"Entry widget test")
-f <- ttkframe(w, padding = c(3,3,12,12)); tkpack(f, expand = TRUE, fill = "both")
+window <- tktoplevel()
+tkwm.title(window, "Entry widget test")
+frame <- ttkframe(window, padding = c(3,3,12,12)); tkpack(frame, expand = TRUE, fill = "both")
 @ 
 <<entryExampleDef>>=
-eVar <- tclVar("initial value")
-e <- ttkentry(w, textvariable = eVar)
-tkpack(e)
+txt_var <- tclVar("initial value")
+entry <- ttkentry(window, textvariable = txt_var)
+tkpack(entry)
 @ 
 
 We can get and set values using the \TCL\/ variable.
 <<>>=
-tclvalue(eVar)
-tclvalue(eVar) <- "set value"
+tclvalue(txt_var)
+tclvalue(txt_var) <- "set value"
 @ 
 
 The \code{get} command can also be used.
 <<tkget>>=
-tkget(e)
+tkget(entry)
 @ 
 
 \paragraph{Indices}
@@ -242,13 +244,13 @@ can also be used to make a selection. In this case the indices
 
 With indices, we can insert  text with the \subcommand{insert}{ttkentry} command
 <<tkinsert>>=
-tkinsert(e, "end", "new text")
+tkinsert(entry, "end", "new text")
 @ 
 
 Or, we can delete a range of text, in this case the first 4
 characters, using \subcommand{delete}{ttkentry}:
 <<>>=
-tkdelete(e, 0, 4)
+tkdelete(entry, 0, 4)
 @ 
 %
 The first value is the left most index to delete (0-based), the second
@@ -257,7 +259,7 @@ value the index to the right of the last value deleted.
 The \subcommand{icursor}{ttkentry} command can be used to set the
 cursor position to the specified index.
 <<>>=
-tkicursor(e, 0)                         # move to beginning
+tkicursor(entry, 0)                         # move to beginning
 @ 
 
 Finally, we note that the selection can be adjusted using the
@@ -266,7 +268,7 @@ indices. Like \code{delete}, the first index specifies the first character of
 the selection, the second indicates the character to the right of the
 selection boundary. The following example would select all the text.
 <<>>=
-tkselection.range(e, 0, "end")
+tkselection.range(entry, 0, "end")
 @ 
 The \subcommand{selection clear}{ttkentry} subcommand clears the selection and \subcommand{selection present}{ttkentry} signals if a selection is currently made.
 
@@ -321,9 +323,9 @@ To illustrate, again suppose \code{f} is a parent container. Then we
 begin by defining some values to choose from and a \TCL\/ variable.
 
 <<echo=FALSE>>=
-w <- tktoplevel(); tkwm.title(w, "Combo box example")
-f <- ttkframe(w, padding = c(3,3,12,12))
-tkpack(f, expand = TRUE, fill = "both")
+window <- tktoplevel(); tkwm.title(window, "Combo box example")
+frame <- ttkframe(window, padding = c(3,3,12,12))
+tkpack(frame, expand = TRUE, fill = "both")
 @ 
 
 <<>>=
@@ -333,26 +335,26 @@ var <- tclVar(values[1])              # initial value
 
 The constructor call is as follows:
 <<>>=
-cb <- ttkcombobox(f,
-                  values = values,
-                  textvariable = var,
-                  state = "normal",     # or "readonly"
-                  justify = "left")
-tkpack(cb)
+combo_box <- ttkcombobox(frame,
+                         values = values,
+                         textvariable = var,
+                         state = "normal",     # or "readonly"
+                         justify = "left")
+tkpack(combo_box)
 @ 
 
 
 The possible values the user can select from can be configured after
 construction through the \option{values}{ttkcombobox} option:
 <<Combobox-set-values>>=
-tkconfigure(cb, values = tolower(values))
+tkconfigure(combo_box, values = tolower(values))
 @ 
 
 There is one case where the above won't work: when there is a single
 value and this value contains spaces. In this case, one can coerce the
 value to be of class \class{tclObj}:
 <<combobox-set-length-1, eval=FALSE>>=
-tkconfigure(cb, values = as.tclObj("New York"))
+tkconfigure(combo_box, values = as.tclObj("New York"))
 @ 
 
 \paragraph{Setting the value}
@@ -363,8 +365,8 @@ command through \function{tkset} or by index (0-based) using the
 
 <<Combobox-set>>=
 tclvalue(var) <- values[2]            # using tcl variable
-tkset(cb, values[4])                  # by value
-tcl(cb, "current", 4)                 # by index
+tkset(combo_box, values[4])           # by value
+tcl(combo_box, "current", 4)          # by index
 @ 
 
 
@@ -375,8 +377,8 @@ can be used through \function{tkget}.
 
 <<Combobox-get>>=
 tclvalue(var)                           # TCL variable
-tkget(cb)                               # get subcommand
-tcl(cb, "current")                      # 0-based index
+tkget(combo_box)                        # get subcommand
+tcl(combo_box, "current")               # 0-based index
 @ 
 
 
@@ -387,13 +389,13 @@ action when the \kbd{return} key is pressed. This triggers a
 \code{\Event{Return}} event. To bind to this event, one can do something
 like the following:
 <<combobox-selection-binding, echo=FALSE>>=
-tkbind(cb, "<<ComboboxSelected>>", function() {
+tkbind(combo_box, "<<ComboboxSelected>>", function() {
   print(tclvalue(var))
-} )
+})
 @ 
 
 <<Combobox-binding-to-return>>=
-tkbind(cb, "<Return>", function(W) {
+tkbind(combo_box, "<Return>", function(W) {
   val <- tkget(W)
   cat(as.character(val), "\n")
 })
@@ -451,21 +453,20 @@ this using an \R{} reference class.
 <<ttksliderclass>>=
 Slider <-
   setRefClass("TtkSlider",
-     fields = c("frame", "widget", "v", "x", "FUN"),
+     fields = c("frame", "widget", "var", "x", "FUN"),
      methods = list(
-       initialize = function(parent, x) {
-         x <<- x;  v <<- tclVar(1)
-         FUN <<- NULL                   # NULL of fuction
-         frame <<- ttkframe(parent)
+       initialize = function(parent, x, ...) {
+         initFields(x = x, var = tclVar(1),
+                    FUN = NULL, frame = ttkframe(parent))
          widget <<- ttkscale(frame, from = 1, to = length(x),
-                             variable = v, orient = "horizontal")
+                             variable = var, orient = "horizontal")
          ## For this widget, the callback is passed a value 
          ## which we ignore here
          tkconfigure(widget, command = function(...) {
            if(is.function(FUN)) FUN(.self)
          })
          layout_gui()
-         .self
+         callSuper(...)
        },
        layout_gui = function() {         
          tkgrid(widget, row = 0, column = 0, columnspan = 3, 
@@ -477,13 +478,13 @@ Slider <-
          tkgrid.columnconfigure(frame, 1, weight = 1)
        },
        add_callback = function(FUN) FUN <<- FUN,
-       get_value = function() x[as.numeric(tclvalue(v))],
+       get_value = function() x[as.numeric(tclvalue(var))],
        set_value = function(value) {
          "Set value. Value must be in x"
          ind <- match(value, x)
          if(!is.na(ind)) {
-           v_local <- v
-           tclvalue(v_local) <- ind
+           var_local <- var
+           tclvalue(var_local) <- ind
          }
        }
        ))
@@ -491,16 +492,16 @@ Slider <-
 
 To use this, we have:
 <<>>=
-w <- tktoplevel()
-f <- ttkframe(w, padding = c(3,3,12,12))
-tkpack(f, expand = TRUE, fill = "both")
+window <- tktoplevel()
+frame <- ttkframe(window, padding = c(3,3,12,12))
+tkpack(frame, expand = TRUE, fill = "both")
 x <- seq(0,1,by = 0.05)
 ##
-s <- Slider$new(parent = w, x = x)
-tkpack(s$frame, expand = TRUE, fill = "x", anchor = "n")
+slider <- Slider$new(parent = window, x = x)
+tkpack(slider$frame, expand = TRUE, fill = "x", anchor = "n")
 ##
-s$set_value(0.5)
-print(s$get_value())
+slider$set_value(0.5)
+print(slider$get_value())
 @ 
 
 As seen in the \meth{initialize} and \meth{get\_value} methods, the
@@ -518,7 +519,7 @@ when the slider changes value. We set up the call to pass back in a
 reference to the object, so there is no issue with finding the \TCL\/
 variable to get the value.
 <<use-slider-command>>=
-s$add_callback(function(obj) print(obj$get_value()))
+slider$add_callback(function(obj) print(obj$get_value()))
 @ 
 
 
@@ -548,18 +549,18 @@ For example, the following allows a user to scroll either direction through the 
 states of the U.S.
 
 <<>>=
-w <- tktoplevel()
-sp <- tkspinbox(w, values = state.name, wrap = TRUE)
+window <- tktoplevel()
+spin_box <- tkspinbox(window, values = state.name, wrap = TRUE)
 @ 
 
 Whereas, this invocation will allow scrolling through a numeric sequence:
 <<>>=
-sp1 <- tkspinbox(w, from = 1, to = 10, increment = 1)
+spin_box1 <- tkspinbox(window, from = 1, to = 10, increment = 1)
 @ 
 
 <<echo=FALSE>>=
-tkpack(sp)
-tkpack(sp1)
+tkpack(spin_box)
+tkpack(spin_box1)
 @ 
 
 

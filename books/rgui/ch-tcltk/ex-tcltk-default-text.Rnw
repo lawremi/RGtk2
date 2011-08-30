@@ -1,3 +1,6 @@
+% DEPRECATED 
+%      DEPRECATED
+
 This example illustrates how one can wrap the \code{ttkentry} widget with a reference class to create a new widget that can have message text specified.
 
 <<>>=
@@ -9,17 +12,20 @@ setOldClass("tclVar")
 <<defaultValueReferenceClass>>=
 setRefClass("TtkEntryWithIntial",
             fields=list(
-              v = "tclVar",               # tclvariable
-              widget = "tkwin"                 # widget
+              tvar = "tclVar",               # tclvariable
+              widget = "tkwin",              # widget
+              init_text = "character",
+              coerce_with = "function"
               ),
             ##
             methods=list(
               ## override
               initialize=function(parent, text="", init_text="", ...) {
                 "Initialize widget"
-                v <<- tclVar(text)
-                widget <<- ttkentry(parent, textvariable=v)
-                init_text <<- init_text
+                tvar <<- tclVar(text)
+                initFields(widget = ttkentry(parent, textvariable=tvar),
+                           init_text = init_text,
+                           coerce_with = function(x) as.character(x))
                 if(nchar(init_text) > 0) {
                   insert_init_text()
                 }
@@ -44,13 +50,12 @@ setRefClass("TtkEntryWithIntial",
               ## coerce_with. Function call for get_value
               ##' @param value value to be coerce
               ##' @param ... ignored?
-              coerce_with = function(value, ...) as.character(value),
               ##' Set function for coercion
               ##' @param FUN function. First argument should be value to be coerced.
               set_coerce_with = function(FUN) coerce_with <<- FUN,
               ## get value
               get_value = function() {
-                value <- tclvalue(v)
+                value <- tclvalue(tvar)
                 if(as.character(value) == init_text())
                   return("")
                 else                  
@@ -58,15 +63,17 @@ setRefClass("TtkEntryWithIntial",
               },
               ##' set value
               ##' @param the value
-              set_value = function(value) tclvalue(v) <- value
-              )
+              set_value = function(value) {
+                tmp <- tvar
+                tclvalue(tmp) <- value
+              })
             )
 @ 
 
 <<testIt>>=
-w = tktoplevel()
-a = getRefClass("TclVar")$new(w)
-tkpack(a$widget)
-tkpack(ttkbutton(w, text = "click me"))
+window = tktoplevel()
+entry_widget = getRefClass("TtkEntryWithIntial")$new(window)
+tkpack(entry_widget$widget)
+tkpack(ttkbutton(window, text = "click me"))
 @ 
 

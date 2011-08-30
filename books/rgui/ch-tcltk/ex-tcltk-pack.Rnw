@@ -5,10 +5,10 @@ library(tcltk)
 @ 
 %%
 <<echo=FALSE>>=
-w <- tktoplevel()
-tkwm.title(w, "Examples using pack as a geometry manager")
-f <- ttkframe(w, padding = c(3,3,12,12))
-tkpack(f, expand = TRUE, fill = "both")
+window <- tktoplevel()
+tkwm.title(window, "Examples using pack as a geometry manager")
+frame <- ttkframe(window, padding = c(3,3,12,12))
+tkpack(frame, expand = TRUE, fill = "both")
 @ 
 %%
 This example shows how one can pack in action buttons, such as when a
@@ -29,30 +29,30 @@ The first example just uses \code{tkpack} without any arguments except
 the side to indicate the buttons are packed in left to right, not top
 to bottom.
 <<results=hide>>=
-f1 <- ttklabelframe(f, text="plain vanilla")
-tkpack(f1, expand = TRUE, fill = "x")
+frame_1 <- ttklabelframe(frame, text="plain vanilla")
+tkpack(frame_1, expand = TRUE, fill = "x")
 l <- function(f) 
   list(ttkbutton(f, text = "cancel"), ttkbutton(f, text = "ok"))
-sapply(l(f1), tkpack, side = "left")
+sapply(l(frame_1), tkpack, side = "left")
 @ 
 
 Typically the buttons are right justified. One way to do this is to
 pack in using \code{side} with a value of \qcode{right}. This shows
 how to use a blank expanding label to take up the space on the left.\ilayout{spring}
 <<moveRight, results=hide>>=
-f2 <- ttklabelframe(f, text = "push to right")
-tkpack(f2, expand = TRUE, fill = "x")
-tkpack(ttklabel(f2, text = " "), 
+frame_2 <- ttklabelframe(frame, text = "push to right")
+tkpack(frame_2, expand = TRUE, fill = "x")
+tkpack(ttklabel(frame_2, text = " "), 
        expand = TRUE, fill = "x", side = "left")
-sapply(l(f2), tkpack, side = "left")
+sapply(l(frame_2), tkpack, side = "left")
 @ 
 
 Finally, we add in some padding to conform to Apple's design specification that such
 buttons should have a 12 pixel separation.
 <<appleSays, results=hide>>=
-f3 <- ttklabelframe(f, text = "push to right with space")
-tkpack(f3, expand = TRUE, fill = "x")
-tkpack(ttklabel(f3, text = " "), expand = TRUE, fill = "x", 
+frame_3 <- ttklabelframe(frame, text = "push to right with space")
+tkpack(frame_3, expand = TRUE, fill = "x")
+tkpack(ttklabel(frame_3, text = " "), expand = TRUE, fill = "x", 
        side = "left")
-sapply(l(f3), tkpack, side = "left", padx = 6)
+sapply(l(frame_3), tkpack, side = "left", padx = 6)
 @ 

@@ -111,7 +111,7 @@ window manager issues a \qcode{WM\_DELETE\_WINDOW} event. To bind to
 this, a command of this form
 \code{tkwm.protocol(win, "WM\_DELETE\_WINDOW", callback)} is used.
 
-To illustrate, if \code{w} is a top-level window, and \code{e} a text
+To illustrate, if \code{window} is a top-level window, and \code{entry} a text
 entry widget (cf. \function{tktext} in
 Section~\ref{sec:tcltk:multi-line-text}) then the following snippet of
 code would check to see if the text widget has been modified before
@@ -121,27 +121,27 @@ Section~\ref{sec:tcltk:dialogs}.
 <<echo=FALSE>>=
 ## set up window etc. for example
 library(tcltk)
-w <- tktoplevel()
-tkwm.title(w, "Simple text entry example")
-e <- tktext(w)
-tkpack(e)
+window <- tktoplevel()
+tkwm.title(window, "Simple text entry example")
+entry <- tktext(window)
+tkpack(entry)
 @
 
 
 <<example-wm-delete-window>>=
-tkwm.protocol(w,"WM_DELETE_WINDOW", function() {
-  modified <- tcl(e, "edit", "modified")
+tkwm.protocol(window, "WM_DELETE_WINDOW", function() {
+  modified <- tcl(entry, "edit", "modified")
   if(as.logical(modified)) {
     response <- 
       tkmessageBox(icon = "question",
                    message = "Really close?",
                    detail = "Changes need to be saved",
                    type = "yesno",
-                   parent = w)
+                   parent = window)
     if(as.character(response) == "no")
       return()
   }
-  tkdestroy(w)                          # otherwise close
+  tkdestroy(window)                     # otherwise close
 })
 @ 
 
@@ -172,39 +172,39 @@ tkwm.protocol(w,"WM_DELETE_WINDOW", function() {
 <<newWindow>>=
 newWindow <- function(title, command, parent,
                       width, height) {
-  w <- tktoplevel()
+  window <- tktoplevel()
 
-  if(!missing(title)) tkwm.title(w, title)
+  if(!missing(title)) tkwm.title(window, title)
 
   if(!missing(command)) 
-    tkwm.protocol(w, "WM_DELETE_WINDOW", function() {
+    tkwm.protocol(window, "WM_DELETE_WINDOW", function() {
       if(command())            # command returns logical
-        tkdestroy(w)
+        tkdestroy(window)
     })
 
   if(!missing(parent)) {
-    parentWin <- tkwinfo("toplevel", parent)
-    if(as.logical(tkwinfo("viewable", parentWin))) {
-      tkwm.transient(w, parent)
+    parent_window <- tkwinfo("toplevel", parent)
+    if(as.logical(tkwinfo("viewable", parent_window))) {
+      tkwm.transient(window, parent)
     }
   }
   
-  if(!missing(width)) tkconfigure(w, width = width)
-  if(!missing(height)) tkconfigure(w, height = height)
+  if(!missing(width)) tkconfigure(window, width = width)
+  if(!missing(height)) tkconfigure(window, height = height)
 
-  windowSystem <- tclvalue(tcl("tk", "windowingsystem"))
-  if(windowSystem == "aqua") {
-    f <- ttkframe(w, padding = c(3,3,12,12))
+  window_system <- tclvalue(tcl("tk", "windowingsystem"))
+  if(window_system == "aqua") {
+    frame <- ttkframe(window, padding = c(3,3,12,12))
   } else {
-    f1 <- ttkframe(w, padding = 0)
-    tkpack(f1, expand = TRUE, fill = "both")
-    f <- ttkframe(f1, padding = c(3,3,12,0))
-    sg <- ttksizegrip(f1)
-    tkpack(sg, side = "bottom", anchor = "se")
+    int_frame <- ttkframe(w, padding = 0)
+    tkpack(int_frame, expand = TRUE, fill = "both")
+    frame <- ttkframe(int_frame, padding = c(3,3,12,0))
+    sizegrip <- ttksizegrip(int_frame)
+    tkpack(sizegrip, side = "bottom", anchor = "se")
   }
-  tkpack(f, expand = TRUE, fill = "both", side = "top")
+  tkpack(frame, expand = TRUE, fill = "both", side = "top")
 
-  return(f)
+  return(frame)
 }
 @ 
 \end{example}
@@ -322,16 +322,16 @@ packing info for a child.
 These commands are illustrated below, where we show how one might
 implement a ticker tape effect, where words scroll to the left.
 <<rotateLabels, results=hide>>=
-w <- tktoplevel()
-f <- ttkframe(w, padding = c(3,3,12,12))
-tkpack(f, expand = TRUE, fill = "both")
+window <- tktoplevel()
+frame <- ttkframe(window, padding = c(3,3,12,12))
+tkpack(frame, expand = TRUE, fill = "both")
 #
 x <- strsplit("Lorem ipsum dolor sit amet ...", "\\s")[[1]]
-labels <- lapply(x, function(i) ttklabel(f, text = i))
+labels <- lapply(x, function(i) ttklabel(frame, text = i))
 sapply(labels, function(i) tkpack(i, side = "left"))
 #
 rotateLabel <- function() {
-  children <- as.character(tkpack("slaves", f))
+  children <- as.character(tkpack("slaves", fframe))
   tkpack.forget(children[1])
   tkpack(children[1], after = children[length(children)], 
          side = "left")
@@ -407,24 +407,24 @@ for asymmetric padding.
 ## not shown
 ## sets up window with some child components to illustrate
 ## tkpack("configure", ...)
-w <- tktoplevel()
-tkwm.title(w,"tkpack configure example")
-f <- ttkframe(w, padding = 5)
-tkpack(f, expand = TRUE, fill = "both")
+window <- tktoplevel()
+tkwm.title(window, "tkpack configure example")
+frame <- ttkframe(window, padding = 5)
+tkpack(frame, expand = TRUE, fill = "both")
 l <- list()
 for(i in 1:5) {
-  l[[i]] <- ttklabel(f, text = i)
+  l[[i]] <- ttklabel(frame, text = i)
   tkpack(l[[i]], side = "left")
 }
 @ 
 
 This sample code shows how one can easily add padding around all the
-children of the frame \code{f} using the
+children of the frame \code{frame} using the
 \subcommand{"configure"}{tkpack} subcommand.
 
 <<echo=TRUE, results=hide>>=
-allChildren <- as.character(tkwinfo("children", f))
-sapply(allChildren, tkpack.configure,  padx = 10, pady = 5)
+all_children <- as.character(tkwinfo("children", frame))
+sapply(all_children, tkpack.configure,  padx = 10, pady = 5)
 
 @ 
 
@@ -520,13 +520,13 @@ different values for \qcode{fill} when \code{expand=TRUE} is
 specified. Following an example of Walsh\footcite{Walsh} we used the following code to create the
 images:
 <<expandFill>>=
-w <- tktoplevel()
-tkwm.title(w, "Expand/Fill arguments")
-f <- ttkframe(w, padding = c(3,3,12,12))
-tkpack(f, expand = TRUE, fill = "both")
+window <- tktoplevel()
+tkwm.title(window, "Expand/Fill arguments")
+frame <- ttkframe(window, padding = c(3,3,12,12))
+tkpack(frame, expand = TRUE, fill = "both")
 ##
 packButton <- function(txt, ...) 
-  tkpack(b <- ttkbutton(f, text = txt), ...)
+  tkpack(button <- ttkbutton(f, text = txt), ...)
 ##
 packButton("Top",    side = "top",    expand = TRUE, fill = "both") 
 packButton("Bottom", side = "bottom", expand = TRUE, fill = "both") 
@@ -537,7 +537,7 @@ packButton("Right",  side = "right",  expand = TRUE, fill = "both")
 
 Modifying the fill styles was easy, for example
 <<results=hide>>=
-children <- as.character(tkwinfo("children", f))
+children <- as.character(tkwinfo("children", frame))
 sapply(children, tkpack.configure, fill = "none")
 @ 
 \end{example}
@@ -554,13 +554,13 @@ highest priority in the size request.
 To force a recomputation of of the size of the toplevel window, one can
 call the \subcommand{geometry}{wm} subcommand with an empty string:
 <<eval=FALSE>>=
-tkwm.geometry(tt, "")
+tkwm.geometry(window, "")
 @ 
 %
-The toplevel window, \code{tt} above, can be recovered from a child
-component, say \code{b}, through
+The toplevel window, \code{window} above, can be recovered from a child
+component, say \code{button}, through
 <<eval=FALSE>>=
-tkwinfo("toplevel", b)
+tkwinfo("toplevel", button)
 @ 
 
 
@@ -639,9 +639,9 @@ starting with $0$ not the usual \R-like $1$. To specify a weight of $1$
 to the first row would be done with a command like:
 
 <<echo=FALSE>>=
-w <- tktoplevel()
-tkwm.title(w, "tkgrid.rowconfigure example")
-parent <- ttkframe(w); tkpack(parent)
+window <- tktoplevel()
+tkwm.title(window, "tkgrid.rowconfigure example")
+parent <- ttkframe(window); tkpack(parent)
 child <- ttklabel(parent, text = "test")
 tkgrid(child)
 @ 
@@ -712,14 +712,15 @@ The returned object can be used as a parent container, although one
 does not use the geometry managers to manage them. Instead, the
 \method{add}{ttkpanedwindow} command is used to add a child component. For example:
 <<panedWindowExample>>=
-w <- tktoplevel(); tkwm.title(w, "Paned window example")
-pw <- ttkpanedwindow(w, orient = "horizontal")
-tkpack(pw, expand = TRUE, fill = "both")
-left <- ttklabel(pw, text = "left")
-right <- ttklabel(pw, text = "right")
+window <- tktoplevel()
+tkwm.title(window, "Paned window example")
+paned <- ttkpanedwindow(window, orient = "horizontal")
+tkpack(paned, expand = TRUE, fill = "both")
+left <- ttklabel(paned, text = "left")
+right <- ttklabel(paned, text = "right")
 #
-tkadd(pw, left, weight = 1)
-tkadd(pw, right, weight = 2)
+tkadd(paned, left, weight = 1)
+tkadd(paned, right, weight = 2)
 @ 
 %
 When resizing which child gets the space is determined by the
@@ -731,8 +732,8 @@ The subcommand \subcommand{forget}{ttkpanedwindow} can be used to
 unmanage a child component. For the paned window, we have no
 convenience function, so we call as follows:
 <<>>=
-tcl(pw, "forget", right)
-tkadd(pw, right, weight = 2) ## how to add back
+tcl(paned, "forget", right)
+tkadd(paned, right, weight = 2) ## how to add back
 @ 
 %
 \paragraph{Sash position}
@@ -742,8 +743,8 @@ specifying, as there can be more than one. Counting starts at 0. The
 value for \code{sashpos} is in terms of pixel width (or height) of the
 paned window. The width can be returned and used as follows:
 <<>>=
-width <- as.integer(tkwinfo("width", pw))  # or "height"
-tcl(pw, "sashpos", 0, floor(0.75*width))
+width <- as.integer(tkwinfo("width", paned))  # or "height"
+tcl(paned, "sashpos", 0, floor(0.75*width))
 @ 
 %
 
@@ -754,8 +755,9 @@ tcl(pw, "sashpos", 0, floor(0.75*width))
 
 <<echo=FALSE>>=
 ## ttknotebook example
-w <- tktoplevel(); tkwm.title(w, "Notebook example")
-nb <- ttknotebook(w); tkpack(nb, expand = TRUE, fill = "both")
+window <- tktoplevel();
+tkwm.title(window, "Notebook example")
+notebook <- ttknotebook(w); tkpack(notebook, expand = TRUE, fill = "both")
 @ 
 %
 \begin{figure}
@@ -790,20 +792,20 @@ coordinates in the form \code{"@x,y"} (likely found through a
 binding).
 
 %% illustrate add, inser
-To illustrate, if \code{nb} is a \code{ttknotebook} object, then these
+To illustrate, if \code{notebook} is a \code{ttknotebook} object, then these
 commands would add pages (cf. Figure~\ref{fig:fig-notebook-example}):
 <<notebookExample, results=hide>>=
-iconFile <- system.file("images",paste("help","gif",sep = "."),
+icon_file <- system.file("images",paste("help","gif",sep = "."),
                         package = "gWidgets")
-iconName <- "::tcl::helpIcon"
-tkimage.create("photo", iconName, file = iconFile)
+icon_name <- "::tcl::helpIcon"
+tkimage.create("photo", icon_name, file = icon_file)
 #
-l2 <- ttklabel(nb, text = "Page 2")
-tkadd(nb, l2, sticky = "nswe", text = "label 2", 
-    image = iconName, compound = "right")
-## put l1 first (a tabID of 0); use tkinsert
-l1 <- ttklabel(nb, text = "Page 1")
-tkinsert(nb, 0, l1, sticky = "nswe", text = "label 1")
+page2_label <- ttklabel(notebook, text = "Page 2")
+tkadd(notebook, page2_label, sticky = "nswe", text = "label 2", 
+    image = icon_name, compound = "right")
+## put page 1 label first (a tabID of 0); use tkinsert
+page1_label <- ttklabel(notebook, text = "Page 1")
+tkinsert(notebook, 0, page1_label, sticky = "nswe", text = "label 1")
 @ 
 %
 There are several useful subcommands to extract information from the
@@ -813,18 +815,18 @@ the displayed page, and \code{forget} to remove a page from the
 notebook. (There is no means to place close icons on the tabs.)
 Except for \code{tabs}, these require a specification of a tab ID.
 <<>>=
-tcl(nb, "index", "current")           # current page for tabID
-length(as.character(tcl(nb,"tabs")))  # number of pages
-tcl(nb, "select", 0)        # select viewable page by index
-tcl(nb, "forget", l1)       # "forget" removes a page
-tcl(nb, "add", l1)          # can be managed again.
+tcl(notebook, "index", "current")           # current page for tabID
+length(as.character(tcl(notebook,"tabs")))  # number of pages
+tcl(notebook, "select", 0)        # select viewable page by index
+tcl(notebook, "forget", page1_label)       # "forget" removes a page
+tcl(notebook, "add", page1_label)          # can be managed again.
 @
 %
 
 %% keyboard
 The notebook state can be manipulated through the keyboard, provided traversal is enabled. This can be done through
 <<notebookTraversal, results=hide>>=
-tcl("ttk::notebook::enableTraversal", nb)
+tcl("ttk::notebook::enableTraversal", notebook)
 @ 
 
 If enabled, the shortcuts such as \kbd{control-tab} to move to the

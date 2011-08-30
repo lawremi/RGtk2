@@ -38,38 +38,38 @@ controlled by the scrolling.
 
 <<>>=
 scrollableFrame <- function(parent, width =  300, height = 300) {
-  canvasWidget <- 
+  canvas_widget <- 
     tkcanvas(parent,
              borderwidth = 0, highlightthickness = 0,
              width = width, height = height)
-  addScrollbars(parent, canvasWidget)
+  addScrollbars(parent, canvas_widget)
   #
-  gp <- ttkframe(canvasWidget, padding = c(0,0,0,0))
-  gpID <- tkcreate(canvasWidget, "window", 0, 0, anchor = "nw", 
-                   window = gp)
-  tkitemconfigure(canvasWidget, gpID, width = width)
+  frame <- ttkframe(canvas_widget, padding = c(0,0,0,0))
+  frame_id <- tkcreate(canvas_widget, "window", 0, 0, 
+                       anchor = "nw", window = frame)
+  tkitemconfigure(canvas_widget, frame_id, width = width)
   ## update scroll region
-  tkbind(gp,"<Configure>",function() {  
-    bbox <- tcl(canvasWidget, "bbox", "all")
-    tcl(canvasWidget,"config", scrollregion = bbox)
+  tkbind(frame, "<Configure>", function() {  
+    bbox <- tcl(canvas_widget, "bbox", "all")
+    tcl(canvas_widget, "config", scrollregion = bbox)
   })
   ## adjust "window" width when canvas is resized.
-  tkbind(canvasWidget, "<Configure>", function(W) {
+  tkbind(canvas_widget, "<Configure>", function(W) {
     width <- as.numeric(tkwinfo("width", W))
-    gpwidth <- as.numeric(tkwinfo("width", gp))
-    if(gpwidth < width)
-      tkitemconfigure(canvasWidget, gpID, width = width)
+    frame_width <- as.numeric(tkwinfo("width", frame))
+    if(frame_width < width)
+      tkitemconfigure(canvas_widget, frame_id, width = width)
   })
-  return(gp)
+  return(frame)
 }
 @ 
 
 To use this, we create a simple GUI as follows:
 <<>>=
-w <- tktoplevel()
-tkwm.title(w,"Scrollable frame example")
-g <- ttkframe(w); tkpack(g, expand = TRUE, fill = "both")
-gp <- scrollableFrame(g, 300, 300)
+window <- tktoplevel()
+tkwm.title(window,"Scrollable frame example")
+frame <- ttkframe(window); tkpack(frame, expand = TRUE, fill = "both")
+scroll_frame <- scrollableFrame(frame, 300, 300)
 @ 
 
 To display a collection of available fonts requires a widget or
@@ -80,14 +80,14 @@ label can be added to the frame whose font is the same as the label
 text. The available fonts are found from \function{tkfont.families}
 and the useful coercion to character by \function{as.character}.
 <<>>=
-fFamilies <- as.character(tkfont.families())
+font_families <- as.character(tkfont.families())
 ## skip odd named ones
-fFamilies <- fFamilies[grepl("^[[:alpha:]]", fFamilies)] 
-for(i in seq_along(fFamilies)) {
-  fName <- sprintf("::font::-%s", i)
-  try(tkfont.create(fName, family = fFamilies[i], size = 14), 
+font_families <- font_families[grepl("^[[:alpha:]]", font_families)] 
+for(i in seq_along(font_families)) {
+  font_name <- sprintf("::font::-%s", i)
+  try(tkfont.create(font_name, family = font_families[i], size = 14), 
       silent = TRUE)
-  l <- ttklabel(gp, text = fFamilies[i], font = fName)
+  l <- ttklabel(scroll_frame, text = font_families[i], font = font_name)
   tkpack(l, side = "top", anchor = "w")
 }
 @ 

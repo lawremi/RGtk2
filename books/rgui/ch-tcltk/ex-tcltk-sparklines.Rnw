@@ -20,19 +20,19 @@ formatting of the numeric values and factoring out the data download, but leave 
 ## sparklines
 library(tcltk)
 library(tseries)
-w <- tktoplevel()
-tkwm.title(w, "Sparklines example")
-f <- ttkframe(w, padding = c(3,3,12,12))
-tkpack(f, expand = TRUE, fill = "both")
+window <- tktoplevel()
+tkwm.title(window, "Sparklines example")
+frame <- ttkframe(window, padding = c(3,3,12,12))
+tkpack(frame, expand = TRUE, fill = "both")
 @ 
 
 This function simply shortens our call to \texttt{ttklabel}. We use
-the global \texttt{f} (a \code{ttkframe}) as the parent.
+the global \texttt{frame} (a \code{ttkframe}) as the parent.
 <<>>=
 mL <- function(label) { # save some typing
   if(is.numeric(label))
     label <- sprintf("%.2f", label)
-  ttklabel(f, text = label, justify = "right") 
+  ttklabel(frame, text = label, justify = "right") 
 }
 @ 
 %
@@ -40,7 +40,7 @@ We begin by making the table header along with a toprule.
 <<makeHeaderRule>>=
 tkgrid(mL(""), mL("2000-01-01"), mL("-- until --"), 
        mL("today"), mL("low"), mL("high"))
-tkgrid(ttkseparator(f), row = 1, column = 1, columnspan = 5, 
+tkgrid(ttkseparator(frame), row = 1, column = 1, columnspan = 5, 
        sticky = "we")
 @ 
 %
@@ -60,7 +60,7 @@ addSparkLine <- function(label, symbol = "MSFT") {
   start <- y[1]; end <- tail(y,n = 1)
   rng <- range(y)
   ##
-  sparkLineCanvas <- tkcanvas(f, width = width, height = height)
+  spark_line_canvas <- tkcanvas(frame, width = width, height = height)
   x <- 0:(length(y)-1) * width/length(y)
   if(diff(rng) !=  0) {
     y1 <- (y - rng[1])/diff(rng) * height
@@ -69,14 +69,14 @@ addSparkLine <- function(label, symbol = "MSFT") {
     y1 <- height/2 + 0 * y
   }
   ## make line with: pathName create line x1 y1... xn yn 
-  l <- list(sparkLineCanvas,"create","line")
+  l <- list(spark_line_canvas, "create","line")
   sapply(seq_along(x), function(i) {
     l[[2*i + 2]] <<- x[i]
     l[[2*i + 3]] <<- y1[i]
   })
-  do.call("tcl",l)
+  do.call("tcl", l)
 
-  tkgrid(mL(label),mL(start), sparkLineCanvas, 
+  tkgrid(mL(label),mL(start), spark_line_canvas, 
          mL(end), mL(min), mL(max), pady = 2, sticky = "e")
 }
 @ 

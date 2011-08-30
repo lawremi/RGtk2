@@ -1,4 +1,6 @@
+%% DEPREACATED...
 <<echo=FALSE>>=
+
 ## Example of using validation to adjust the date
 ## in case a user doesn't use desired format
 

@@ -112,16 +112,16 @@ isValidDate <- function(W, P) { # P is the current value
 This is our invalid command.
 <<setInvalidCallback>>=
 indicateInvalidDate <- function(W) {
-  tkconfigure(W,foreground = "red")
-  tcl("expr","TRUE")
+  tkconfigure(W, foreground = "red")
+  tcl("expr", "TRUE")
 }
 @
 
 <<notShown, echo=FALSE>>=
 ## A simple GUI to show the entry widget.
-w <- tktoplevel(); tkwm.title(w,"Validation of date example")
-f <- ttkframe(w, padding = c(3,3,12,12)); tkpack(f, expand = TRUE, fill = "both")
-tkpack(ttklabel(f, text = "Enter a date (mm/dd/yy):"), side = "left", padx = 2)
+window <- tktoplevel(); tkwm.title(window, "Validation of date example")
+frame <- ttkframe(window, padding = c(3,3,12,12)); tkpack(frame, expand = TRUE, fill = "both")
+tkpack(ttklabel(frame, text = "Enter a date (mm/dd/yy):"), side = "left", padx = 2)
 @ 
 
 The \argument{validate}{ttkentry} argument is used to specify when the
@@ -133,10 +133,10 @@ widget receives the focus; \qcode{focusout} for when it loses focus;
 previous. We use \qcode{focusout} below, so also give a button widget
 so that the focus can be set elsewhere. 
 <<entryWidgetWithValidation, results=hide>>=
-e <- ttkentry(f, validate = "focusout", # f some parent
+entry <- ttkentry(frame, validate = "focusout", # f some parent
               validatecommand = isValidDate,
               invalidcommand = indicateInvalidDate)
-b <- ttkbutton(f,text = "click")        # something to focus on
-sapply(list(e, b), tkpack, side = "left", padx = 2)
+button <- ttkbutton(frame, text = "click")        # something to focus on
+sapply(list(entry, button), tkpack, side = "left", padx = 2)
 @ 
               

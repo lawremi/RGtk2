@@ -28,10 +28,11 @@ tkimage.create("photo", "::img::tclLogo",
 The main top-level window is given a title, then withdrawn while
 the GUI is created. 
 <<>>=
-w <- tktoplevel(); tkwm.title(w, title)
-tkwm.state(w, "withdrawn")
-f <- ttkframe(w,  padding = c(3, 3, 12, 12))
-tkpack(f, expand = TRUE, fill = "both")
+window <- tktoplevel()
+tkwm.title(window, title)
+tkwm.state(window, "withdrawn")
+frame <- ttkframe(window,  padding = c(3, 3, 12, 12))
+tkpack(frame, expand = TRUE, fill = "both")
 @ 
 As usual, we added a frame so that any themes are respected.
 
@@ -43,13 +44,13 @@ until the mouse enters the window area.
 
 <<>>=
 if(!is.null(parent)) {
-  parentWin <- tkwinfo("toplevel", parent)
-  if(as.logical(tkwinfo("viewable", parentWin))) {
-    tkwm.transient(w, parent)
+  parent_window <- tkwinfo("toplevel", parent)
+  if(as.logical(tkwinfo("viewable", parent_window))) {
+    tkwm.transient(window, parent)
     if(as.character(tcl("tk", "windowingsystem")) == "aqua") {
-      tcl("wm","attributes",parentWin, notify = TRUE) # bounce
-      tkbind(parentWin,"<Enter>", function()        # stop
-             tcl("wm","attributes",parentWin, notify = FALSE)) 
+      tcl("wm","attributes", parent_window, notify = TRUE) # bounce
+      tkbind(parent_window, "<Enter>", function()        # stop
+             tcl("wm","attributes", parent_window, notify = FALSE)) 
     }
   }
 }
@@ -58,37 +59,37 @@ if(!is.null(parent)) {
 We will use a standard layout for our dialog with an icon on the left,
 a message and buttons on the right. We pack the icon into the left side of the frame,
 <<>>=
-l <- ttklabel(f, image = "::img::tclLogo", padding = 5) # recycle
-tkpack(l,side = "left")
+label <- ttklabel(frame, image = "::img::tclLogo", padding = 5) # recycle
+tkpack(label, side = "left")
 @ 
 
 A nested frame will be used to layout the message area and button area. Since the \function{tkpack} default is to pack in top to bottom, no \code{side} specification is made.
 <<>>=
-f1 <- ttkframe(f)
-tkpack(f1, expand = TRUE, fill = "both")
+frame_1 <- ttkframe(frame)
+tkpack(frame_1, expand = TRUE, fill = "both")
 #
-m <- ttklabel(f1, text = message)
+m <- ttklabel(frame_1, text = message)
 tkpack(m, expand = TRUE, fill = "both")
 @ 
 
 The buttons have their own frame, as they are layed out horizontally. 
 <<>>=
-f2 <- ttkframe(f1)
-tkpack(f2)
+frame_2 <- ttkframe(frame_1)
+tkpack(frame_2)
 @ 
 %
 The callback function for the OK button prints a message then destroys the window.
 <<>>=
-okCB <- function() {
+ok_callback <- function() {
   print("That's great")
   tkdestroy(w)
 }
-okButton <- ttkbutton(f2, text = "OK", command = okCB)
-cancelButton <- ttkbutton(f2, text = "Cancel", 
-                          command = function() tkdestroy(w))
+ok_button <- ttkbutton(frame_2, text = "OK", command = ok_callback)
+cancel_button <- ttkbutton(frame_2, text = "Cancel", 
+                          command = function() tkdestroy(window))
 #
-tkpack(okButton, side = "left", padx = 12)  # give some space
-tkpack(cancelButton)
+tkpack(ok_button, side = "left", padx = 12)  # give some space
+tkpack(cancel_button)
 @ 
 %
 
@@ -107,7 +108,7 @@ tkbind("TButton", "<FocusOut>", function(W)
 Now we bring the dialog back from its withdrawn state, fix the size
 and set the initial focus on the OK button.
 <<>>=
-tkwm.state(w, "normal")
-tkwm.resizable(w, FALSE, FALSE)
-tkfocus(okButton)
+tkwm.state(window, "normal")
+tkwm.resizable(window, FALSE, FALSE)
+tkfocus(ok_button)
 @ 

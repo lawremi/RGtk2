@@ -35,8 +35,8 @@ addScrollbars <- function(parent, widget,type = c("both", "x", "y")) {
 @ 
 %%
 This example shows how one might make a very simple code editor using
-a text-entry widget. \iprogram{evaluate strings}We use the \pkg{svMisc} package, as it defines a
-few GUI helpers which we use.
+a text-entry widget. \iprogram{evaluate strings}We use the
+\pkg{svMisc} package, as it defines a few GUI helpers which we use.
 <<>>=
 library(svMisc)                         # for some helpers
 showCmd <- function(cmd) {
@@ -47,88 +47,89 @@ showCmd <- function(cmd) {
 We begin with a simple GUI comprised of a top-level window containing
 the text entry widget.
 <<>>=
-w <- tktoplevel()
-tkwm.title(w, "Simple code editor")
-f <- ttkframe(w, padding = c(3,3,12,12)) 
-tkpack(f, expand = TRUE, fill = "both")
-tb <- tktext(f, undo = TRUE)
-addScrollbars(f, tb)
+window <- tktoplevel()
+tkwm.title(window, "Simple code editor")
+frame <- ttkframe(window, padding = c(3,3,12,12)) 
+tkpack(frame, expand = TRUE, fill = "both")
+text_buffer <- tktext(frame, undo = TRUE)
+addScrollbars(frame, text_buffer)
 @ 
 %
 
 Using \function{tkmenu}, we create a toplevel menubar, \code{mb}, and
 attach it to our toplevel window. Following that, we make ``file'' and ``edit'' submenus.
 <<>>=
-mb <- tkmenu(w); tkconfigure(w, menu = mb)
-fileMenu <- tkmenu(mb)
-tkadd(mb, "cascade", label = "File", menu = fileMenu)
+menu_bar <- tkmenu(window); tkconfigure(window, menu = menu_bar)
+file_menu <- tkmenu(menu_bar)
+tkadd(menu_bar, "cascade", label = "File", menu = file_menu)
 #
-editMenu <- tkmenu(mb)
-tkadd(mb, "cascade", label = "Edit", menu = editMenu)
+edit_menu <- tkmenu(menu_bar)
+tkadd(menu_bar, "cascade", label = "Edit", menu = edit_menu)
 @ 
 %
 
 To these sub menubars, we add action items. First a command to
 evaluate the contents of the buffer.
 <<>>=
-tkadd(fileMenu, "command", label = "Evaluate buffer",
+tkadd(file_menu, "command", label = "Evaluate buffer",
       command = function() {
-        curVal <- tclvalue(tkget(tb, "1.0", "end"))
-        showCmd(curVal)
+        cur_val <- tclvalue(tkget(text_buffer, "1.0", "end"))
+        showCmd(cur_val)
       })
 @ 
 
 Then a command to evaluate just the current selection
 <<>>=
-tkadd(fileMenu, "command", label = "Evaluate selection",
+tkadd(file_menu, "command", label = "Evaluate selection",
       state = "disabled",
       command =  function() {
-        curSel <- tclvalue(tkget(tb, "sel.first", "sel.last"))
-        showCmd(curSel)
+        cur_sel <- tclvalue(tkget(text_buffer, "sel.first", "sel.last"))
+        showCmd(cur_sel)
       })
 @ 
 
 Finally, we end the file menu with a quit action. 
 <<addQuit>>=
-tkadd(fileMenu, "separator")
-tkadd(fileMenu, "command", label = "Quit", 
-      command = function() tkdestroy(w))
+tkadd(file_menu, "separator")
+tkadd(file_menu, "command", label = "Quit", 
+      command = function() tkdestroy(window))
 @ 
 
 The edit menu has an undo and redo item. For illustration purposes we add an icon to the undo item.
 <<results=hide>>=
 img <- system.file("images","up.gif", package = "gWidgets")
 tkimage.create("photo", "::img::undo", file = img)
-tkadd(editMenu, "command", label = "Undo",
+tkadd(edit_menu, "command", label = "Undo",
       image = "::img::undo", compound = "left", state = "disabled",
-      command = function() tcl(tb, "edit", "undo"))
-tkadd(editMenu, "command", label = "Redo", state = "disabled",
-      command = function() tcl(tb, "edit", "redo"))
+      command = function() tcl(text_buffer, "edit", "undo"))
+tkadd(edit_menu, "command", label = "Redo", state = "disabled",
+      command = function() tcl(text_buffer, "edit", "redo"))
 @ 
 
 For updating the GUI, we want to configure the menu items to reflect
 if the current buffer has a selection or can undo or redo. To check
 the selection we have:
 <<>>=
-tkbind(tb, "<<Selection>>", function(W) {
+tkbind(text_buffer, "<<Selection>>", function(W) {
   hasSelection <- function(W) {
     ranges <- tclvalue(tcl(W, "tag", "ranges", "sel"))
     length(ranges) > 1 || ranges != ""
   }
   ## configure using an index
   sel_state <- ifelse(hasSelection(W), "normal", "disabled")
-  tkentryconfigure(fileMenu, 1, state = sel_state)
+  print(sel_state)
+  tkentryconfigure(file_menu, 2, state = sel_state)
 })
 @ 
 %%
 To check for do and undo, we bind to the \code{Modified} virtual event.
 <<>>=
-tkbind(tb, "<<Modified>>", function(W) {
+tkbind(text_buffer, "<<Modified>>", function(W) {
   ## not really can_undo/can_redo but nothing suitable
   can_undo <- as.logical(tcl(W,"edit", "modified"))
   undo_state <- ifelse(can_undo, "normal", "disabled")
   sapply(c("Undo", "Redo"), function(i)        # match pattern
-         tkentryconfigure(editMenu, i, state = undo_state)) 
+         tkentryconfigure(edit_menu, i, state = undo_state)) 
 })
 @ 
 
@@ -137,11 +138,11 @@ We add a shortcut entry to the menubar and a binding to the
 top-level window for the keyboard shortcut for ``undo.''
 <<addKeyboardShortcut>>=
 if(usingMac()) {
-  tkentryconfigure(editMenu, "Undo", accelerator = "Cmd-z")
-  tkbind(w, "<Option-z>", function() tcl(tb, "edit", "undo"))
+  tkentryconfigure(edit_menu, "Undo", accelerator = "Cmd-z")
+  tkbind(window, "<Option-z>", function() tcl(text_buffer, "edit", "undo"))
 } else {
-  tkentryconfigure(editMenu, "Undo", accelerator = "Control-u")
-  tkbind(w, "<Control-u>", function() tcl(tb, "edit", "undo"))
+  tkentryconfigure(edit_menu, "Undo", accelerator = "Control-u")
+  tkbind(window, "<Control-u>", function() tcl(text_buffer, "edit", "undo"))
 }
 @ 
 %
@@ -159,10 +160,10 @@ doPopup <- function(W, X, Y) {
                            "current wordend"))
   tcl(W, "tag", "add", "popup", "current  wordstart", 
                                 "current wordend")
-  posVals <- head(completion(cur)[,1, drop = TRUE], n = 20)
-  if(length(posVals) > 1) {
-    popup <- tkmenu(tb)                # create menu for popup
-    sapply(posVals, function(i) {         
+  possible_vals <- head(completion(cur)[,1, drop = TRUE], n = 20)
+  if(length(possible_vals) > 1) {
+    popup <- tkmenu(text_buffer)                # create menu for popup
+    sapply(possible_vals, function(i) {         
       tkadd(popup, "command", label = i, command = function() {
         tcl(W,"replace", "popup.first", "popup.last", i)
       })
@@ -178,13 +179,13 @@ action already has a default binding for the text widget.
 
 <<addPopup>>=
 if (!usingMac()) {
-  tkbind(tb, "<Button-3>", doPopup)
+  tkbind(text_buffer, "<Button-3>", doPopup)
 } else {
-  tkbind(tb, "<Button-2>", function(W,X,Y) {
+  tkbind(text_buffer, "<Button-2>", function(W,X,Y) {
     ## UNIX legacy re mouse-2 click for selection copy
     tcl("clipboard","clear",displayof = W) 
     doPopup(W,X,Y)
     })      # right click
-  tkbind(tb, "<Control-1>", doPopup)     # Control + click
+  tkbind(text_buffer, "<Control-1>", doPopup)     # Control + click
 }
 @       

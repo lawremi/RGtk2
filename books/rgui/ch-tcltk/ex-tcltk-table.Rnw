@@ -69,19 +69,20 @@ DF <- getCRANmirrors()[, c(1,2,5,4)]
 @ 
 
 <<notShown, echo=FALSE>>=
-w <- tktoplevel()
-tkwm.title(w, "Choose a CRAN mirror")
-f <- ttkframe(w, padding = c(3,3,3,12))
-tkpack(f, expand = TRUE, fill = "both")
+window <- tktoplevel()
+tkwm.title(window, "Choose a CRAN mirror")
+frame <- ttkframe(window, padding = c(3,3,3,12))
+tkpack(frame, expand = TRUE, fill = "both")
 @ 
 
 We use a text entry widget to allow the user to filter the values in the display as the user types.
 <<>>=
-f0 <- ttkframe(f); tkpack(f0, fill = "x")
-l <- ttklabel(f0, text = "filter:"); tkpack(l, side = "left")
-filterVar <- tclVar("")
-filterEntry <- ttkentry(f0, textvariable = filterVar)
-tkpack(filterEntry, side = "left")
+frame_0 <- ttkframe(frame); tkpack(frame_0, fill = "x")
+label <- ttklabel(frame_0, text = "filter:")
+tkpack(label, side = "left")
+filter_var <- tclVar("")
+filter_entry <- ttkentry(frame_0, textvariable = filter_var)
+tkpack(filter_entry, side = "left")
 @ 
 
 \begin{figure}
@@ -96,12 +97,12 @@ tkpack(filterEntry, side = "left")
 
 The treeview  will only show the first three columns of the data frame, although we store the fourth which contains the URL.
 <<makeTreeview>>=
-f1 <- ttkframe(f); tkpack(f1, expand = TRUE, fill = "both")
-tr <- ttktreeview(f1, columns = 1:ncol(DF), 
+frame_1 <- ttkframe(frame); tkpack(frame_1, expand = TRUE, fill = "both")
+treeview <- ttktreeview(frame_1, columns = 1:ncol(DF), 
                   displaycolumns = 1:(ncol(DF) - 1), 
                   show = "headings",     # not "tree" 
                   selectmode = "browse") # single selection
-addScrollbars(f1, tr)
+addScrollbars(frame_1, treeview)
 @ 
 
 We configure the column widths and titles as follows:
@@ -109,8 +110,8 @@ We configure the column widths and titles as follows:
 widths <- c(100, 75, 400)            # hard coded
 nms <- names(DF)
 for(i in 1:3) {
-  tcl(tr, "heading", i, text = nms[i])
-  tcl(tr, "column", i, width = widths[i], 
+  tcl(treeview, "heading", i, text = nms[i])
+  tcl(treeview, "column", i, width = widths[i], 
       stretch = TRUE, anchor = "w")
 }
 @
@@ -121,41 +122,42 @@ The treeview widget does not do filtering internally.\footnote{The
 we will replace all the values when filtering.  This following helper
 function is used to fill in the widget with values from a data frame.
 <<>>=
-fillTable <- function(tr, DF) {
-  children <- as.character(tcl(tr, "children", ""))
-  for(i in children) tcl(tr, "delete", i)    # out with old
+fillTable <- function(treeview, DF) {
+  children <- as.character(tcl(treeview, "children", ""))
+  for(i in children) 
+    tcl(treeview, "delete", i)                 # out with old
   shade <- c("none", "gray")
   for(i in seq_len(nrow(DF))) 
-    tcl(tr, "insert", "", "end", tag = shade[i %% 2], 
+    tcl(treeview, "insert", "", "end", tag = shade[i %% 2], 
         text = "",  
         values = unlist(DF[i,]))               # in with new
-  tktag.configure(tr, "gray", background = "gray95")
+  tktag.configure(treeview, "gray", background = "gray95")
 }
 @ 
 %
 The initial call populates the table from the entire data frame.
 <<>>=
-fillTable(tr, DF)
+fillTable(treeview, DF)
 @ 
 
 The filter works by grepping the user input against the host value. We
 bind to \Event{KeyRelease} (and not \Event{KeyPress}) so we capture the last keystroke.
 <<>>=
-curInd <- 1:nrow(DF)
-tkbind(filterEntry, "<KeyRelease>", function(W, K) {
+cur_ind <- 1:nrow(DF)
+tkbind(filter_entry, "<KeyRelease>", function(W, K) {
   val <- tclvalue(tkget(W))
-  possVals <- apply(DF, 1, function(...) 
+  poss_vals <- apply(DF, 1, function(...) 
                     paste(..., collapse = " "))
-  ind<- grep(val, possVals)
+  ind<- grep(val, poss_vals)
   if(length(ind) == 0) ind <- 1:nrow(DF)
-  fillTable(tr, df[ind,])
+  fillTable(treeview, DF[ind,])
 })
 @ 
 %
 This binding is for capturing a users selection through a double-click
 event. In the callback, we set the CRAN option then withdraw the window.
 <<>>=
-tkbind(tr, "<Double-Button-1>", function(W, x, y) {
+tkbind(treeview, "<Double-Button-1>", function(W, x, y) {
   sel <- as.character(tcl(W, "identify", "row", x, y))
   vals <- tcl(W, "item", sel, "-values")
   URL <- as.character(vals)[4]          # not tclvalue

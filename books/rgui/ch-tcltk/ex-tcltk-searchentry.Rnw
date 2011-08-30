@@ -142,7 +142,7 @@ replace the initial text with the value input by the user.
 <<>>=
 tkbind(e,"<FocusIn>", function(W) {
   cur <- as.character(tcl(W, "get"))
-  if(cur == initialText) {              # searching for initial text?
+  if(length(cur) == 0 || cur == initialText) {              # searching for initial text?
     tclvalue(eVar) <- ""
     tkconfigure(W, foreground = "black")
   }

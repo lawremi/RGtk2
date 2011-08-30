@@ -8,9 +8,9 @@ widget in the variable \code{canvas}.
 <<echo=FALSE>>=
 ## Canvas example of moving a point. See tkcanvas for much more
 library(tcltk)
-w <- tktoplevel()
-tkwm.title(w, "Move canvas object example")
-canvas <- tkcanvas(w, width = 450, height = 300)
+window <- tktoplevel()
+tkwm.title(window, "Move canvas object example")
+canvas <- tkcanvas(window, width = 450, height = 300)
 tkpack(canvas, expand = TRUE, fill = "both")
 @ 
 

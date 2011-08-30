@@ -16,8 +16,10 @@ container and \code{widget} has these options, then the following will
 set up both horizontal and vertical scrollbars.
 <<scrollbar-example,echo=FALSE>>=
 library(tcltk)
-w <- tktoplevel(); tkwm.title(w, "Scrollbar example")
-parent <- ttkframe(w); tkpack(parent, expand = TRUE, fill = "both")
+window <- tktoplevel()
+tkwm.title(window, "Scrollbar example")
+parent <- ttkframe(window)
+tkpack(parent, expand = TRUE, fill = "both")
 widget <- tktext(parent)
 @ 
 %
@@ -47,7 +49,7 @@ using the grid manager. The combination of weights and stickiness below
 will have the scrollbars expand as expected if the window is resized.
 <<>>=
 tkgrid(widget, row = 0, column = 0, sticky = "news")
-tkgrid(yscr,row = 0,column = 1, sticky = "ns")
+tkgrid(yscr, row = 0,column = 1, sticky = "ns")
 tkgrid(xscr, row = 1, column = 0, sticky = "ew")
 tkgrid.columnconfigure(parent, 0, weight = 1)
 tkgrid.rowconfigure(parent, 0, weight = 1)
@@ -74,7 +76,7 @@ addScrollbars <- function(parent, widget) {
               yscrollcommand = function(...) tkset(yscr,...))
   ##
   tkgrid(widget, row = 0, column = 0, sticky = "news")
-  tkgrid(yscr,row = 0,column = 1, sticky = "ns")
+  tkgrid(yscr, row = 0,column = 1, sticky = "ns")
   tkgrid(xscr, row = 1, column = 0, sticky = "ew")
   tkgrid.columnconfigure(parent, 0, weight = 1)
   tkgrid.rowconfigure(parent, 0, weight = 1)
@@ -89,10 +91,10 @@ widget. If constructed with no options but a parent container, the
 widget can have text entered into it by the user:
 
 <<ex-tktext-easiest>>=
-w <- tktoplevel()
-tkwm.title(w, "Simple tktext example")
-txt <- tktext(w)
-addScrollbars(w, txt)
+window <- tktoplevel()
+tkwm.title(window, "Simple tktext example")
+txt_widget <- tktext(window)
+addScrollbars(window, txt_widget)
 @ 
 %
 
@@ -118,7 +120,7 @@ Inserting text can be done through the \subcommand{insert}{ttktext}
 subcommand. This shows how one can use \code{$\backslash$n} to add new
 lines:
 <<tkinsert-example>>=
-tkinsert(txt, 
+tkinsert(txt_widget, 
          "1.0", 
          paste("Lorem ipsum dolor",
                "sit amet,", sep = "\n"))
@@ -135,7 +137,7 @@ returned using indices. The following shows how to retrieve the entire
 contents of the buffer:
 
 <<get-values>>=
-value <- tkget(txt, "1.0", "end")
+value <- tkget(txt_widget, "1.0", "end")
 as.character(value)                     # wrong way
 tclvalue(value)
 @ 
@@ -168,7 +170,7 @@ mouse position.
 %% use of index and mark
 The specification
 <<eval=FALSE>>=
-value <- tkget(txt, "1.0", "end")
+value <- tkget(txt_widget, "1.0", "end")
 @ 
 uses the index \code{1.0} to refer to the beginning of the buffer and
 the mark \qcode{end} to refer to the character after the end.
@@ -195,7 +197,7 @@ steps.)
 \paragraph{Deleting text}
 
 The text between two indices can be deleted using \code{tkdelete}, as
-with \code{tkdelete(txt, "1.0", "end")}, which would clear the entire
+with \code{tkdelete(txt\_widget, "1.0", "end")}, which would clear the entire
 buffer's contents.
 
 \paragraph{Panning the buffer: \code{tksee}}
@@ -212,19 +214,19 @@ the time of construction of the widget, or configured thereafter. Tags
 can be set when the text is inserted by appending to the argument
 list, as with
 <<>>=
-tkinsert(txt, "end", "last words", "lastWords") # lastWords tag
+tkinsert(txt_widget, "end", "last words", "lastWords") # lastWords tag
 @ 
 
 Tags can be set after the text is added through the
 \subcommand{tag add}{tktext} subcommand using indices to specify
-location. The following marks the first word with the \code{firstWord}
+location. The following marks the first word with the \code{first\_word}
 tag:
 <<>>=
-tktag.add(txt, "firstWord", "1.0 wordstart", "1.0 wordend")
+tktag.add(txt_widget, "first_word", "1.0 wordstart", "1.0 wordend")
 @ 
 The \subcommand{tag configure}{tktext} can be used to configure properties of the tagged characters, for example:
 <<>>=
-tktag.configure(txt, "firstWord", foreground = "red", 
+tktag.configure(txt_widget, "first_word", foreground = "red", 
                 font = "helvetica 12 bold")
 @ 
 %
@@ -255,7 +257,7 @@ The cut, copy and paste commands are implemented through the \Tk\/ functions
 work with the current selection and insert point. For example to cut
 the current selection, one has
 <<cutSelection>>=
-tcl("tk_textCut", txt)
+tcl("tk_textCut", txt_widget)
 @ 
 
 \paragraph{Marks}
@@ -281,10 +283,10 @@ text inserted is to the left of the mark. For instance, to keep track
 of an initial insert point and the current one, the initial point
 (marked \code{leftlimit} below) can be marked with
 <<>>=
-tkmark.set(txt, "leftlimit", "insert")
-tkmark.gravity(txt, "leftlimit", "left")    # keep on left
-tkinsert(txt, "insert", "new text")
-tkget(txt, "leftlimit", "insert")
+tkmark.set(txt_widget, "leftlimit", "insert")
+tkmark.gravity(txt_widget, "leftlimit", "left")    # keep on left
+tkinsert(txt_widget, "insert", "new text")
+tkget(txt_widget, "leftlimit", "insert")
 @ 
 %
 The use of the subcommand \subcommand{mark gravity}{tktext} is done so
@@ -298,8 +300,8 @@ The subcommand \subcommand{edit}{tktext} can be used to undo text. As
 well, it can be used to test if the buffer has been modified, as
 follows:
 <<>>=
-tcl(txt, "edit", "undo")                  # no output
-tcl(txt, "edit", "modified")              # 1 = TRUE
+tcl(txt_widget, "edit", "undo")                  # no output
+tcl(txt_widget, "edit", "modified")              # 1 = TRUE
 @ 
 
 
@@ -363,21 +365,21 @@ it does it refers to it differently, the callback is bound
 conditionally to different events.
 
 <<echo=FALSE>>=
-w <- tktoplevel()
-tkwm.title(w, "Popup menu example")
-f <- ttkframe(w, padding = c(3,3,12,12))
-tkpack(f, expand = TRUE, fill = "both")
+window <- tktoplevel()
+tkwm.title(window, "Popup menu example")
+frame <- ttkframe(window, padding = c(3,3,12,12))
+tkpack(frame, expand = TRUE, fill = "both")
 
-b <- ttkbutton(f, text = "Click me for popup")
+button <- ttkbutton(frame, text = "Click me for popup")
 @ 
 
 <<>>=
 doPopup <- function(X, Y) tkpopup(pmb, X, Y) # define callback
 if (usingMac()) {
-  tkbind(b, "<Button-2>", doPopup)      # right click
-  tkbind(b, "<Control-1>", doPopup)     # Control + click
+  tkbind(button, "<Button-2>", doPopup)      # right click
+  tkbind(button, "<Control-1>", doPopup)     # Control + click
 } else {
-  tkbind(b, "<Button-3>", doPopup)
+  tkbind(button, "<Button-3>", doPopup)
 }
 @ 
 
@@ -478,22 +480,23 @@ later.
 
 
 <<treeExample,echo=FALSE>>=
-w <- tktoplevel()
-tkwm.title(w, "Choose CRAN mirror")
-f <- ttkframe(w, padding = c(3,3,12,12))
-tkpack(f, expand = TRUE, fill = "both")
+window <- tktoplevel()
+tkwm.title(window, "Choose CRAN mirror")
+frame <- ttkframe(window, padding = c(3,3,12,12))
+tkpack(frame, expand = TRUE, fill = "both")
 @ 
 
-If \code{f} is a frame, then the following call will create a treeview
+If \code{frame} is a frame, then the following call will create a treeview
 widget with just one column showing 25 rows at a time, like the older,
 non-themed, listbox widget of \Tk.
 
 <<>>=
-tr <- ttktreeview(f, 
-                  columns = 1,        # column identifier is "1"
-                  show = "headings",  # not "#0"
-                  height = 25)        
-addScrollbars(f, tr)                # our scrollbar function
+treeview <- 
+  ttktreeview(frame, 
+              columns = 1,        # column identifier is "1"
+              show = "headings",  # not "#0"
+              height = 25)        
+addScrollbars(frame, treeview)    # our scrollbar function
 @ 
 
 
@@ -532,9 +535,10 @@ x <- getCRANmirrors()
 Host <- x$Host
 shade <- c("none", "gray")                     # tag names
 for(i in seq_along(Host))
-  ID <- tkinsert(tr, "", "end", values = as.tclObj(Host[i]),
-                 tag = shade[i %% 2])            # none or gray
-tktag.configure(tr, "gray", background = "gray95") # shade rows
+  ID <- tkinsert(treeview, "", "end", 
+                 values = as.tclObj(Host[i]),
+                 tag = shade[i %% 2])          # none or gray
+tktag.configure(treeview, "gray", background = "gray95") 
 @ 
 
 For filling in each row's content the \code{values} option is used. If
@@ -569,7 +573,7 @@ of the heading may be positioned through the \code{anchor} option. For
 example, this command will center the text heading of the first
 column:
 <<>>=
-tcl(tr, "heading", 1, text = "Host", anchor = "center")
+tcl(treeview, "heading", 1, text = "Host", anchor = "center")
 @ 
 
 The \subcommand{column}{ttktreeview} subcommand can be used to adjust
@@ -585,7 +589,8 @@ column, the placement of each entry within a cell is controlled by the
 
 For example, this command will adjust properties of the lone column of \code{tr}:
 <<>>=
-tcl(tr, "column", 1, width = 400,  stretch = TRUE, anchor = "w")
+tcl(treeview, "column", 1, width = 400,  
+    stretch = TRUE, anchor = "w")
 @ 
 
 
@@ -599,26 +604,26 @@ populate_rectangular_treeview <- function(parent, m) {
   enc_frame <- ttkframe(parent)
   frame <- ttkframe(enc_frame)
   tkpack(frame, expand = TRUE, fill = "both")
-  tr <- ttktreeview(frame,
+  treeview <- ttktreeview(frame,
                     columns = seq_len(ncol(m)),
                     show = "headings")
-  addScrollbars(frame, tr)
+  addScrollbars(frame, treeview)
   tkpack.propagate(enc_frame, FALSE)    # size from frame
   ## headings,widths
   font_measure <- tcl("font","measure","TkTextFont","0")
   charWidth <- as.integer(tclvalue(font_measure))
   sapply(seq_len(ncol(m)), function(i) {
-    tcl(tr, "heading", i, text = colnames(m)[i])
-    tcl(tr, "column", i, 
+    tcl(treeview, "heading", i, text = colnames(m)[i])
+    tcl(treeview, "column", i, 
         width = 10 + charWidth*max(apply(m, 2, nchar)))
   })
-  tcl(tr, "column", ncol(m), stretch = TRUE)
+  tcl(treeview, "column", ncol(m), stretch = TRUE)
   ## values
   if(ncol(m) == 1)  m <- as.matrix(paste("{", m , "}", sep = ""))
   apply(m, 1, function(vals) 
-    tcl(tr, "insert", "", "end", values = vals))
+    tcl(treeview, "insert", "", "end", values = vals))
   ##
-  return(list(tr = tr, frame = enc_frame))
+  return(list(treeview = treeview, frame = enc_frame))
 }
 @   
 %
@@ -637,10 +642,10 @@ widths. However, we use a horizontal scrollbar to avoid this.
 To use this we need to configure the size of the scrollable frame
 widget. For example:
 <<populate_test>>=
-w <- tktoplevel()
+window <- tktoplevel()
 m <- sapply(mtcars, as.character)
-a <- populate_rectangular_treeview(w, m)
-tkconfigure(a$tr, selectmode = "extended") # multiple selection
+a <- populate_rectangular_treeview(window, m)
+tkconfigure(a$treeview, selectmode = "extended") # multiple selection
 tkconfigure(a$frame, width = 300, height = 200) # frame size
 tkpack(a$frame, expand = TRUE, fill = "both")
 @ 
@@ -659,9 +664,9 @@ sub command, which we will describe in the next section.  Here we see
 it used to find the children of the root. As well, we show how the
 \subcommand{index}{ttktreeview} command returns the row index.
 <<showChildrenIndex>>=
-children <- tcl(tr, "children", "")
+children <- tcl(treeview, "children", "")
 (children <- head(as.character(children)))     # as.character
-sapply(children, function(i) tclvalue(tkindex(tr, i)))
+sapply(children, function(i) tclvalue(tkindex(treeview, i)))
 @ 
 
 %% retrieving values
@@ -670,7 +675,7 @@ The \subcommand{item}{ttktreeview} subcommand can be used to get the
 values and other properties stored for each row. One specifies the item and the
 corresponding option:
 <<getValue>>=
-x <- tcl(tr, "item", children[1], "-values") # no tkitem
+x <- tcl(treeview, "item", children[1], "-values") # no tkitem
 as.character(x)
 @ 
 %
@@ -713,17 +718,17 @@ to adjust the selection programatically.
 
 For example, to select the first 6 children, we have:
 <<>>=
-tkselect(tr, "set", children)
+tkselect(treeview, "set", children)
 @ 
 %
 To toggle the selection, we have:
 <<>>=
-tkselect(tr, "toggle", tcl(tr, "children", ""))
+tkselect(treeview, "toggle", tcl(treeview, "children", ""))
 @ 
 %
 Finally, the selected IDs are returned with:
 <<>>=
-IDs <- as.character(tkselect(tr))
+IDs <- as.character(tkselect(treeview))
 @ 
 
 %% XXX clear selection....??
@@ -738,7 +743,7 @@ In addition to the keyboard events \code{\Event{KeyPress}} and
 Within a key or mouse event callback, the clicked on column and row can
 be identified by position, as illustrated in this example callback.
 <<>>=
-callbackExample <- function(W, x, y) {
+callback_example <- function(W, x, y) {
   col <- as.character(tkidentify(W, "column", x, y))
   row <- as.character(tkidentify(W, "row", x, y))
   ## now do something ...
@@ -795,8 +800,8 @@ parent item is opened or closed, the virtual events
 signaled.
 
 %% example?
-%% tcl(tr, "insert","I001","end", text = "child", open = FALSE)
-%% tcl(tr, item, "I001", open = TRUE)
+%% tcl(treeview, "insert","I001","end", text = "child", open = FALSE)
+%% tcl(treeview, item, "I001", open = TRUE)
 
 %% traversal 
 
