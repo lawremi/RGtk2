@@ -23,16 +23,16 @@ library(tcltk)
 ## helper functions
 ## not shown
 
-getNumericVars <- function(df) {
-  if(missing(df))
+getNumericVars <- function(DF) {
+  if(missing(DF))
     return(c(""))
-  ProgGUIinR:::find_vars(df, is.numeric)
+  ProgGUIinR:::find_vars(DF, is.numeric)
 }
-getTwoLevelFactor <- function(df) {
-  if(missing(df))
+getTwoLevelFactor <- function(DF) {
+  if(missing(DF))
     return(c(""))
-  nms <- names(df)
-  ind <- sapply(df, function(i) length(levels(as.factor(i))) == 2)
+  nms <- names(DF)
+  ind <- sapply(DF, function(i) length(levels(as.factor(i))) == 2)
   if(length(ind) > 0)
     nms[ind]
   else
@@ -65,10 +65,10 @@ runTTest <- function() {
   if(l$data == "" || l$x == "")
     return()
 
-  l$data <- get(l$data, envir=.GlobalEnv)
+  l$data <- get(l$data, envir = .GlobalEnv)
 
   if(l$f != "") {
-    l$formula <- formula(paste(l$x,l$f, sep="~"))
+    l$formula <- formula(paste(l$x,l$f, sep = "~"))
     l$x <- l$f <- NULL
     l$mu <- NULL
     l$var.equal <- as.logical(as.numeric(l$var.equal))
@@ -84,7 +84,7 @@ runTTest <- function() {
   }
   l$conf.level <- as.numeric(l$conf.level)/100
   ret <- capture.output(do.call("TTest", l))
-  cat(paste(ret, collapse="\n"))
+  cat(paste(ret, collapse = "\n"))
 }
 @ 
 
@@ -96,33 +96,33 @@ runTTest <- function() {
 ### GUI Our standard setup
 w <- tktoplevel()
 tkwm.title(w, "t-test Dialog")
-f <- ttkframe(w, padding=c(3,3,12,12))
-tkpack(f, expand=TRUE, fill="both")
+f <- ttkframe(w, padding = c(3,3,12,12))
+tkpack(f, expand = TRUE, fill = "both")
 @ 
 
 Our layout is basic. Here we pack a label frame into the window to give the dialog a nicer look.
 We will use the \code{tkgrid} geometry manager below.
 <<layout>>=
-lf <- ttklabelframe(f, text="t.test()", padding=10)
-tkpack(lf, expand=TRUE, fill="both", padx=5, pady=5)
+lf <- ttklabelframe(f, text = "t.test()", padding = 10)
+tkpack(lf, expand = TRUE, fill = "both", padx = 5, pady = 5)
 @ 
 
 The grid will have four columns, with columns 0 and 2 being for labels.
 We don't want the labels to expand the same way we want the widget columns to do, so we
 assign different weights:
 <<>>=
-tkgrid.columnconfigure(lf, 0, weight=1)
-tkgrid.columnconfigure(lf, 1, weight=10)
-tkgrid.columnconfigure(lf, 2, weight=1)
-tkgrid.columnconfigure(lf, 1, weight=10)
+tkgrid.columnconfigure(lf, 0, weight = 1)
+tkgrid.columnconfigure(lf, 1, weight = 10)
+tkgrid.columnconfigure(lf, 2, weight = 1)
+tkgrid.columnconfigure(lf, 1, weight = 10)
 @ 
 
 
 This helper function simplifies the task of adding a label.
 <<tkgridHelper>>=
 putLabel <- function(parent, text, row, column) {
-  label <- ttklabel(parent, text=text)
-  tkgrid(label, row=row, column=column, sticky="e")
+  label <- ttklabel(parent, text = text)
+  tkgrid(label, row = row, column = column, sticky = "e")
 }
 @ 
 %
@@ -135,10 +135,10 @@ which allow the user to specify parts of a formula.
 
 <<>>=
 putLabel(lf, "data:",0,0)
-dataCombo <- ttkcombobox(lf, state="readonly", 
-                         values=ProgGUIinR:::avail_dfs(), 
-                         textvariable=e$data)
-tkgrid(dataCombo, row=0, column=1, sticky="ew", padx=2)
+dataCombo <- ttkcombobox(lf, state = "readonly", 
+                         values = ProgGUIinR:::avail_dfs(), 
+                         textvariable = e$data)
+tkgrid(dataCombo, row = 0, column = 1, sticky = "ew", padx = 2)
 tkfocus(dataCombo)                      # give focus
 @ 
 
@@ -146,23 +146,23 @@ tkfocus(dataCombo)                      # give focus
 ## not shown
 putLabel(lf, "x:",1,0)
 xCombo <-  ttkcombobox(lf, 
-                       values=getNumericVars(), textvariable=e$x)
-tkgrid(xCombo, row=1, column=1, sticky="ew", padx=2)
+                       values = getNumericVars(), textvariable = e$x)
+tkgrid(xCombo, row = 1, column = 1, sticky = "ew", padx = 2)
 @ 
 
 <<notShown, echo=FALSE>>=
 ## not shown
 putLabel(lf, "~ f:",1,2)
-fCombo <-  ttkcombobox(lf, values=getTwoLevelFactor(), textvariable=e$f)
-tkgrid(fCombo, row=1, column=3, sticky="ew", padx=2)
+fCombo <-  ttkcombobox(lf, values = getTwoLevelFactor(), textvariable = e$f)
+tkgrid(fCombo, row = 1, column = 3, sticky = "ew", padx = 2)
 @ 
 
 We use a \constructor{ttkentry} widget for the user to specify
 a mean. For this purpose, the use is straightforward.
 <<mu>>=
 putLabel(lf, "mu:", 2, 0)
-muCombo <-  ttkentry(lf,  textvariable=e$mu)
-tkgrid(muCombo, row=2, column=1, sticky="ew", padx=2)
+muCombo <-  ttkentry(lf,  textvariable = e$mu)
+tkgrid(muCombo, row = 2, column = 1, sticky = "ew", padx = 2)
 @ 
 
 The selection of an alternative hypothesis is a natural choice for a
@@ -175,11 +175,11 @@ tkspinbox <- function(parent, ...) tkwidget(parent, "tk::spinbox", ...)
 putLabel(lf, "alternative:", 3, 0)
 rbFrame <- ttkframe(lf)
 sapply(c("two.sided","less","greater"), function(i) {
-  rb <- ttkradiobutton(rbFrame, variable=e$alternative, 
-                       text=i, value=i)
-  tkpack(rb, side="left")
+  rb <- ttkradiobutton(rbFrame, variable = e$alternative, 
+                       text = i, value = i)
+  tkpack(rb, side = "left")
 })
-tkgrid(rbFrame, row=3, column=1, sticky="ew", padx=2)
+tkgrid(rbFrame, row = 3, column = 1, sticky = "ew", padx = 2)
 @ 
 
 Here we use a range widget to specify the confidence level. The slider
@@ -188,36 +188,36 @@ text variable, the widgets are automatically synchronized.
 <<>>=
 putLabel(lf, "conf.level:", 3, 2)
 confFrame <- ttkframe(lf)
-tkgrid(confFrame, row=3, column=3, columnspan=2, 
-       sticky="ew", padx=2)
+tkgrid(confFrame, row = 3, column = 3, columnspan = 2, 
+       sticky = "ew", padx = 2)
 ##
-confScale <- ttkscale(confFrame, from=75, to=100, 
-                     variable=e$conf.level)
-confSpin <- tkspinbox(confFrame, from=75, to=100, increment=1, 
-                     textvariable=e$conf.level, width=5)
+confScale <- ttkscale(confFrame, from = 75, to = 100, 
+                     variable = e$conf.level)
+confSpin <- tkspinbox(confFrame, from = 75, to = 100, increment = 1, 
+                     textvariable = e$conf.level, width = 5)
 ##
-tkpack(confScale, expand=TRUE, fill="y", side="left")
-tkpack(confSpin, side="left")
+tkpack(confScale, expand = TRUE, fill = "y", side = "left")
+tkpack(confSpin, side = "left")
 @ 
 
 A checkbox is used to collect the logical value for \code{var.equal}:
 <<>>=
 putLabel(lf, "var.equal:", 4, 0)
-veCheck <- ttkcheckbutton(lf, variable=e$var.equal)
-tkgrid(veCheck, row=4, column=1, stick="w", padx=2)
+veCheck <- ttkcheckbutton(lf, variable = e$var.equal)
+tkgrid(veCheck, row = 4, column = 1, stick = "w", padx = 2)
 @ 
 
 
 The dialog has standard "cancel" and "ok" buttons.
 <<results=hide>>=
 bf <- ttkframe(f)
-cancel <- ttkbutton(bf, text="cancel")
-ok <- ttkbutton(bf, text="ok")
+cancel <- ttkbutton(bf, text = "cancel")
+ok <- ttkbutton(bf, text = "ok")
 #
-tkpack(bf, fill="x", padx=5, pady=5)
-tkpack(ttklabel(bf, text=" "), expand=TRUE, fill="y", 
-       side="left")                     # add a spring
-sapply(list(cancel, ok), tkpack, side="left", padx=6)
+tkpack(bf, fill = "x", padx = 5, pady = 5)
+tkpack(ttklabel(bf, text = " "), expand = TRUE, fill = "y", 
+       side = "left")                     # add a spring
+sapply(list(cancel, ok), tkpack, side = "left", padx = 6)
 @ 
 %
 
@@ -226,8 +226,8 @@ function. The \code{runTTest} function does this.  We configure both
 buttons, then add to the default button bindings to invoke either of the button's commands
 when they have the focus and \kbd{return} is pressed.
 <<>>=
-tkconfigure(ok, command=runTTest)
-tkconfigure(cancel, command=function() tkdestroy(w))
+tkconfigure(ok, command = runTTest)
+tkconfigure(cancel, command = function() tkdestroy(w))
 tkbind("TButton", "<Return>", function(W) tcl(W, "invoke"))
 @ 
 
@@ -241,7 +241,7 @@ state.
 updateUI <- function() {
   dfName <- tclvalue(e$data)
   curDfs <- ProgGUIinR:::avail_dfs()
-  tkconfigure(dataCombo, values=curDfs)
+  tkconfigure(dataCombo, values = curDfs)
   if(!dfName %in% curDfs) {
     dfName <- ""
     tclvalue(e$data) <- ""
@@ -253,29 +253,29 @@ updateUI <- function() {
     sapply(x, function(W) tcl(W, "state", "disabled"))
     sapply(as.character(tkwinfo("children", rbFrame)), 
            function(W) tcl(W, "state", "disabled"))
-    tkconfigure(confSpin, state="disabled")
+    tkconfigure(confSpin, state = "disabled")
   } else {
     ## enable univariate, ok
     sapply(list(xCombo,  muCombo, confScale, ok),
            function(W) tcl(W, "state", "!disabled"))
     sapply(as.character(tkwinfo("children", rbFrame)), 
            function(W) tcl(W, "state", "!disabled"))
-    tkconfigure(confSpin, state="normal")
+    tkconfigure(confSpin, state = "normal")
     
-    df <- get(dfName, envir=.GlobalEnv)
-    numVars <- getNumericVars(df)
-    tkconfigure(xCombo, values=numVars)
+    DF <- get(dfName, envir = .GlobalEnv)
+    numVars <- getNumericVars(DF)
+    tkconfigure(xCombo, values = numVars)
     if(! tclvalue(e$x) %in% numVars)
       tclvalue(e$x) <- ""
 
     ## bivariate
-    availFactors <- getTwoLevelFactor(df)
+    availFactors <- getTwoLevelFactor(DF)
     sapply(list(fCombo, veCheck),
            function(W) {
              val <- if(length(availFactors)) "!" else ""
              tcl(W, "state", sprintf("%sdisabled", val))
            })
-    tkconfigure(fCombo, values=availFactors)
+    tkconfigure(fCombo, values = availFactors)
     if(!tclvalue(e$f) %in% availFactors)
       tclvalue(e$f) <- ""
       
@@ -295,10 +295,10 @@ way to arrange that:
 <<>>=
 require(digest)
 create_function <- function() {
-  .dfs <- digest(ProgGUIinR:::avail_dfs())
+  .DFs <- digest(ProgGUIinR:::avail_dfs())
   f <- function(...) {
-    if((val <- digest(ProgGUIinR:::avail_dfs())) != .dfs) {
-      .dfs <<- val
+    if((val <- digest(ProgGUIinR:::avail_dfs())) != .DFs) {
+      .DFs <<- val
       updateUI()
     }
     return(TRUE)

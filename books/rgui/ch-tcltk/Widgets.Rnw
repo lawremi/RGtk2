@@ -76,15 +76,15 @@ For example, if \code{f} is a frame, we can create a new check button
 with the following:
 <<setup-window,echo=FALSE>>=
 w <- tktoplevel(); tkwm.title(w, "Check button example")
-f <- ttkframe(w); tkpack(f, expand=TRUE, fill="both")
+f <- ttkframe(w); tkpack(f, expand = TRUE, fill = "both")
 @ 
 
 <<make-TCL-variables>>=
 value <- tclVar(TRUE)
 callback <- function() print(tclvalue(value))   # uses global
 labelVar <- tclVar("check button label")
-cb <- ttkcheckbutton(f, variable=value, 
-                     textvariable=labelVar, command=callback)
+cb <- ttkcheckbutton(f, variable = value, 
+                     textvariable = labelVar, command = callback)
 tkpack(cb)
 @ 
 
@@ -95,7 +95,7 @@ By default the widget draws with a check box. Optionally the widget
 can be drawn as a button, which when depressed indicates a \code{TRUE}
 state. This is done by using the style \code{Toolbutton}, as in:
 <<>>=
-tkconfigure(cb, style="Toolbutton")
+tkconfigure(cb, style = "Toolbutton")
 @ 
 
 The ``Toolbutton'' style in general is for placing widgets into toolbars.
@@ -108,7 +108,7 @@ way to get the \R\/ object from the values passed through the \%
 substitution values. The variable holding the value can be found
 through
 <<>>=
-tkcget(cb, "variable"=NULL)
+tkcget(cb, "variable" = NULL)
 @ 
 
 But then, one needs a means to lookup the variable from this id. Here is a
@@ -133,21 +133,21 @@ could be defined to avoid a (new) global variable by:
 
 <<ourTclVarExample, echo=FALSE>>=
 w <- tktoplevel(); tkwm.title(w, "Check button example")
-f <- ttkframe(w); tkpack(f, expand=TRUE, fill="both")
+f <- ttkframe(w); tkpack(f, expand = TRUE, fill = "both")
 value <- ourTclVar(TRUE)
 @
 
 <<>>=
 callback <- function(W) {
-  id <- tkcget(W, "variable"=NULL)
+  id <- tkcget(W, "variable" = NULL)
   print(getTclVarById(id))
 }
 @ 
 
 <<echo=FALSE>>=
 labelVar <- tclVar("check button label")
-cb <- ttkcheckbutton(f, variable=value, 
-                     textvariable=labelVar, command=callback)
+cb <- ttkcheckbutton(f, variable = value, 
+                     textvariable = labelVar, command = callback)
 tkpack(cb)
 @ 
 
@@ -173,7 +173,7 @@ the buttons is managed by the programmer.
 
 <<radio-button-1,echo=FALSE>>=
 w <- tktoplevel(); tkwm.title(w, "Radio example")
-f <- ttkframe(w, padding=c(3,3,12,12)); tkpack(f, expand=TRUE, fill="both")
+f <- ttkframe(w, padding = c(3,3,12,12)); tkpack(f, expand = TRUE, fill = "both")
 @ 
 
 This small example shows how radio buttons could be used for selection
@@ -184,10 +184,10 @@ values <- c("less", "greater", "two.sided")
 var <- tclVar(values[3])                # initial value
 callback <- function() print(tclvalue(var))
 sapply(values, function(i) {
-  rb <- ttkradiobutton(f, variable=var, 
-                       text=i, value=i, 
-                       command=callback)
-  tkpack(rb, side="top", anchor="w")
+  rb <- ttkradiobutton(f, variable = var, 
+                       text = i, value = i, 
+                       command = callback)
+  tkpack(rb, side = "top", anchor = "w")
 })
 @ 
 
@@ -212,11 +212,11 @@ The following constructs a basic example
 <<entryExample,echo=FALSE>>=
 w <- tktoplevel()
 tkwm.title(w,"Entry widget test")
-f <- ttkframe(w, padding=c(3,3,12,12)); tkpack(f, expand=TRUE, fill="both")
+f <- ttkframe(w, padding = c(3,3,12,12)); tkpack(f, expand = TRUE, fill = "both")
 @ 
 <<entryExampleDef>>=
 eVar <- tclVar("initial value")
-e <- ttkentry(w, textvariable=eVar)
+e <- ttkentry(w, textvariable = eVar)
 tkpack(e)
 @ 
 
@@ -322,8 +322,8 @@ begin by defining some values to choose from and a \TCL\/ variable.
 
 <<echo=FALSE>>=
 w <- tktoplevel(); tkwm.title(w, "Combo box example")
-f <- ttkframe(w, padding=c(3,3,12,12))
-tkpack(f, expand=TRUE, fill="both")
+f <- ttkframe(w, padding = c(3,3,12,12))
+tkpack(f, expand = TRUE, fill = "both")
 @ 
 
 <<>>=
@@ -334,10 +334,10 @@ var <- tclVar(values[1])              # initial value
 The constructor call is as follows:
 <<>>=
 cb <- ttkcombobox(f,
-                  values=values,
-                  textvariable=var,
-                  state="normal",     # or "readonly"
-                  justify="left")
+                  values = values,
+                  textvariable = var,
+                  state = "normal",     # or "readonly"
+                  justify = "left")
 tkpack(cb)
 @ 
 
@@ -345,14 +345,14 @@ tkpack(cb)
 The possible values the user can select from can be configured after
 construction through the \option{values}{ttkcombobox} option:
 <<Combobox-set-values>>=
-tkconfigure(cb, values=tolower(values))
+tkconfigure(cb, values = tolower(values))
 @ 
 
 There is one case where the above won't work: when there is a single
 value and this value contains spaces. In this case, one can coerce the
 value to be of class \class{tclObj}:
 <<combobox-set-length-1, eval=FALSE>>=
-tkconfigure(cb, values=as.tclObj("New York"))
+tkconfigure(cb, values = as.tclObj("New York"))
 @ 
 
 \paragraph{Setting the value}
@@ -451,34 +451,34 @@ this using an \R{} reference class.
 <<ttksliderclass>>=
 Slider <-
   setRefClass("TtkSlider",
-     fields=c("frame", "widget", "v", "x", "FUN"),
-     methods=list(
-       initialize=function(parent, x) {
+     fields = c("frame", "widget", "v", "x", "FUN"),
+     methods = list(
+       initialize = function(parent, x) {
          x <<- x;  v <<- tclVar(1)
          FUN <<- NULL                   # NULL of fuction
          frame <<- ttkframe(parent)
-         widget <<- ttkscale(frame, from=1, to=length(x),
-                             variable=v, orient="horizontal")
+         widget <<- ttkscale(frame, from = 1, to = length(x),
+                             variable = v, orient = "horizontal")
          ## For this widget, the callback is passed a value 
          ## which we ignore here
-         tkconfigure(widget, command=function(...) {
+         tkconfigure(widget, command = function(...) {
            if(is.function(FUN)) FUN(.self)
          })
          layout_gui()
          .self
        },
-       layout_gui=function() {         
-         tkgrid(widget, row=0, column=0, columnspan=3, 
-                sticky="we")
-         tkgrid(ttklabel(frame, text=x[1]), 
-                row=1, column=0)
-         tkgrid(ttklabel(frame, text=x[length(x)]), 
-                row=1, column=2)
-         tkgrid.columnconfigure(frame, 1, weight=1)
+       layout_gui = function() {         
+         tkgrid(widget, row = 0, column = 0, columnspan = 3, 
+                sticky = "we")
+         tkgrid(ttklabel(frame, text = x[1]), 
+                row = 1, column = 0)
+         tkgrid(ttklabel(frame, text = x[length(x)]), 
+                row = 1, column = 2)
+         tkgrid.columnconfigure(frame, 1, weight = 1)
        },
-       add_callback=function(FUN) FUN <<- FUN,
-       get_value=function() x[as.numeric(tclvalue(v))],
-       set_value=function(value) {
+       add_callback = function(FUN) FUN <<- FUN,
+       get_value = function() x[as.numeric(tclvalue(v))],
+       set_value = function(value) {
          "Set value. Value must be in x"
          ind <- match(value, x)
          if(!is.na(ind)) {
@@ -492,12 +492,12 @@ Slider <-
 To use this, we have:
 <<>>=
 w <- tktoplevel()
-f <- ttkframe(w, padding=c(3,3,12,12))
-tkpack(f, expand=TRUE, fill="both")
-x <- seq(0,1,by=0.05)
+f <- ttkframe(w, padding = c(3,3,12,12))
+tkpack(f, expand = TRUE, fill = "both")
+x <- seq(0,1,by = 0.05)
 ##
-s <- Slider$new(parent=w, x=x)
-tkpack(s$frame, expand=TRUE, fill="x", anchor="n")
+s <- Slider$new(parent = w, x = x)
+tkpack(s$frame, expand = TRUE, fill = "x", anchor = "n")
 ##
 s$set_value(0.5)
 print(s$get_value())
@@ -549,12 +549,12 @@ states of the U.S.
 
 <<>>=
 w <- tktoplevel()
-sp <- tkspinbox(w, values=state.name, wrap=TRUE)
+sp <- tkspinbox(w, values = state.name, wrap = TRUE)
 @ 
 
 Whereas, this invocation will allow scrolling through a numeric sequence:
 <<>>=
-sp1 <- tkspinbox(w, from=1, to=10, increment=1)
+sp1 <- tkspinbox(w, from = 1, to = 10, increment = 1)
 @ 
 
 <<echo=FALSE>>=

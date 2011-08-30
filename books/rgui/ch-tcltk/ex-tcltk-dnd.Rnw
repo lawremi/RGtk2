@@ -26,10 +26,10 @@ for drag and drop, but only for convenience. Other widgets would be
 used in a real application.
 <<>>=
 w <- tktoplevel()
-bDrag <- ttkbutton(w, text="Drag me")
-bDrop <- ttkbutton(w, text="Drop here")
+bDrag <- ttkbutton(w, text = "Drag me")
+bDrop <- ttkbutton(w, text = "Drop here")
 tkpack(bDrag)
-tkpack(ttklabel(w, text="Drag over me"))
+tkpack(ttklabel(w, text = "Drag over me"))
 tkpack(bDrop)
 @ 
 %
@@ -48,11 +48,11 @@ among drop sources to keep track of the drag and drop state.
 ## not shown in text, but here as an example if desired
 tclServiceMode(FALSE)
 tcl("image", "create", "photo", "::dnd::icon",
-    data=paste(                         # uuencode gif image of document
+    data = paste(                         # uuencode gif image of document
       "R0lGODlhEAAQALMAAAAAAMbGxv//////////////////////////////////",
       "/////////////////////yH5BAEAAAEALAAAAAAQABAAAAQwMMhJ6wQ4YyuB",
       "+OBmeeDnAWNpZhWpmu0bxrKAUu57X7VNy7tOLxjIqYiapIjDbDYjADs=",
-      sep=""))
+      sep = ""))
 dragLabel <- tktoplevel()
 tkwm.title(dragLabel, "")
 tkwm.resizable(dragLabel, FALSE,FALSE)  # no size handler in Mac OS X
@@ -60,7 +60,7 @@ tkwm.withdraw(dragLabel)                # minimize window
 tclServiceMode(TRUE)                    # back to redrawing
 tkwm.overrideredirect(dragLabel, TRUE)  # Should remove title bar (not in Mac OS X)
 ## can set this using tkconfigure
-dragLabel_label <- ttklabel(dragLabel,image="::dnd::icon", text="this space for rent", compound="left")
+dragLabel_label <- ttklabel(dragLabel,image = "::dnd::icon", text = "this space for rent", compound = "left")
 tkpack(dragLabel_label)
 @ 
 %
@@ -70,7 +70,7 @@ set the values of the three global variables.
 <<buttonPressEvent>>=
 tkbind(bDrag,"<ButtonPress-1>",function(W) {
   .dragging <<-  TRUE
-  .dragValue <<- as.character(tkcget(W,text=NULL))
+  .dragValue <<- as.character(tkcget(W,text = NULL))
   .lastWidgetID <<- as.character(W)
 })
 @ 
@@ -81,7 +81,7 @@ after a certain minimal movement is detected.
 
 <<echo=FALSE>>=
 ## If using dragLabel, you can add this line to handler code:
-## tkconfigure(dragLabel_label, text=.dragValue)
+## tkconfigure(dragLabel_label, text = .dragValue)
 @ 
 %
 For mouse motion, we do several things. First we set the cursor to
@@ -96,16 +96,16 @@ this widget, and if this widget is different from the previous last
 widget, we generate the \code{\VirtualEvent{DragLeave}} virtual event.
 
 %%  ## This failed with OS X: "
-%%  ##  .Tcl(paste(as.character(bDrag$ID),' configure -cursor "@', getwd(),'/cursor.xbm black"', sep=""))
+%%  ##  .Tcl(paste(as.character(bDrag$ID),' configure -cursor "@', getwd(),'/cursor.xbm black"', sep = ""))
 
 <<>>=
 tkbind(w, "<B1-Motion>", function(W, X, Y) {
   if(!.dragging) return()
   ## see cursor help page in API for more options
   ## For custom cursors cf. http://wiki.tcl.tk/8674. 
-  tkconfigure(W, cursor="coffee_mug")   # set cursor
+  tkconfigure(W, cursor = "coffee_mug")   # set cursor
 
-  w = tkwinfo("containing", X, Y)       # widget mouse is over
+  w <- tkwinfo("containing", X, Y)       # widget mouse is over
   if(as.logical(tkwinfo("exists", w)))  # does widget exist?
     tkevent.generate(w, "<<DragOver>>")
 
@@ -125,7 +125,7 @@ tkbind(w, "<B1-Motion>", function(W, X, Y) {
 ## if doing example with drag label, include the following in the motion event callback
 ## XXX Doesn't raise window above
 ##  tkwm.deiconify(dragLabel)
-##  tkwm.geometry(dragLabel, paste("+",X,"+",Y, sep="")) # put in offset if desired
+##  tkwm.geometry(dragLabel, paste("+",X,"+",Y, sep = "")) # put in offset if desired
 @ 
 
 Finally, if the button is released, we generate the
@@ -140,11 +140,11 @@ over.
   if(as.logical(tkwinfo("exists", w))) {
     tkevent.generate(w, "<<DragLeave>>")
     tkevent.generate(w, "<<DragDrop>>")
-    tkconfigure(w, cursor="")
+    tkconfigure(w, cursor = "")
   }
   .dragging <<- FALSE
   .lastWidgetID <<- "" 
-  tkconfigure(W, cursor="")
+  tkconfigure(W, cursor = "")
 })
 @ 
 %
@@ -169,7 +169,7 @@ state back to not active.
 <<>>=
 tkbind(bDrop,"<<DragLeave>>", function(W) {
   if(.dragging)  {
-    tkconfigure(W, cursor="")
+    tkconfigure(W, cursor = "")
     tcl(W, "state", "!active")  
    }
 })
@@ -180,7 +180,7 @@ the widget value to that stored in the global variable
 \code{.dragValue}.
 <<>>=
 tkbind(bDrop,"<<DragDrop>>", function(W) {
-  tkconfigure(W, text=.dragValue)
+  tkconfigure(W, text = .dragValue)
   .dragValue <- ""
 })
 @ 

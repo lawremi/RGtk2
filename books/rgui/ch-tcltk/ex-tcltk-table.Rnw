@@ -4,13 +4,13 @@ library(tcltk)
 ## helpers
 quoteIt <- function(string) {           
   doQuote <- function(x) {
-    xx <- strsplit(x, '"', fixe=TRUE)[[1]]
-    paste(paste('"', xx, '"', sep=""), collapse='\'"\'')
+    xx <- strsplit(x, '"', fixe = TRUE)[[1]]
+    paste(paste('"', xx, '"', sep = ""), collapse = '\'"\'')
   }
   if(!length(string)) return("")
   has_double_quote <- grep('"',string)
   if(!length(has_double_quote))
-    return(paste('"',string,'"',sep=""))
+    return(paste('"',string,'"',sep = ""))
   if (!length(grep("([$`])", string))) {
     paste("\"", gsub("([\"!\\])", "\\\\\\1", string), 
           "\"", sep = "")
@@ -23,11 +23,11 @@ quoteIt <- function(string) {
 .toCharacter.default <- function(x,width,...) as.character(x)
 .toCharacter.integer <- function(x,width,...) {
  if(missing(width)) width <- max(nchar(as.character(x))) + 2  
-  format(x, justify="right", width=width)
+  format(x, justify = "right", width = width)
 }
 .toCharacter.numeric <- function(x,width,...) {
   if(missing(width)) width <- max(nchar(as.character(x))) + 2
-  format(x,trim=FALSE, width=width, justify="right")
+  format(x,trim = FALSE, width = width, justify = "right")
 }
 .toCharacter.factor <- function(x,width,...) {
   if(missing(width)) width <- max(nchar(as.character(x))) + 2
@@ -35,53 +35,53 @@ quoteIt <- function(string) {
 }
 .toCharacter.logical <- function(x,width,...) {
   if(missing(width)) width <- 7
-  format(as.character(x), justify="centre", width=width)
+  format(as.character(x), justify = "centre", width = width)
 }
-.toCharacter.data.frame <- function(x,width= 10, ...) {
+.toCharacter.data.frame <- function(x,width =  10, ...) {
   nms <- dimnames(x)
-  df <- as.data.frame(lapply(x,function(i) .toCharacter(i, width=width)),
-                      stringsAsFactors=FALSE)
-  dimnames(df) <- nms
-  return(df)
+  DF <- as.data.frame(lapply(x,function(i) .toCharacter(i, width = width)),
+                      stringsAsFactors = FALSE)
+  dimnames(DF) <- nms
+  return(DF)
 }
 
 addScrollbars <- function(parent, widget) {
-  xscr <- ttkscrollbar(parent, orient="horizontal",
-                       command=function(...) tkxview(widget, ...))
-  yscr <- ttkscrollbar(parent, orient="vertical",
-                       command=function(...) tkyview(widget, ...))
+  xscr <- ttkscrollbar(parent, orient = "horizontal",
+                       command = function(...) tkxview(widget, ...))
+  yscr <- ttkscrollbar(parent, orient = "vertical",
+                       command = function(...) tkyview(widget, ...))
 
   tkconfigure(widget,
-              xscrollcommand=function(...) tkset(xscr,...),
-              yscrollcommand=function(...) tkset(yscr,...))
+              xscrollcommand = function(...) tkset(xscr,...),
+              yscrollcommand = function(...) tkset(yscr,...))
 
-  tkgrid(widget, row=0, column=0, sticky="news")
-  tkgrid(yscr,row=0,column=1, sticky="ns")
-  tkgrid(xscr, row=1, column=0, sticky="ew")
-  tkgrid.columnconfigure(parent, 0, weight=1)
-  tkgrid.rowconfigure(parent, 0, weight=1)
+  tkgrid(widget, row = 0, column = 0, sticky = "news")
+  tkgrid(yscr,row = 0,column = 1, sticky = "ns")
+  tkgrid(xscr, row = 1, column = 0, sticky = "ew")
+  tkgrid.columnconfigure(parent, 0, weight = 1)
+  tkgrid.rowconfigure(parent, 0, weight = 1)
 }
 @
 %
 We illustrate the above with a slightly improved GUI for selecting a CRAN mirror. This adds in a text box to filter the possibly large display of items to avoid scrolling through a long list. 
 <<>>=
-df <- getCRANmirrors()[, c(1,2,5,4)]
+DF <- getCRANmirrors()[, c(1,2,5,4)]
 @ 
 
 <<notShown, echo=FALSE>>=
 w <- tktoplevel()
 tkwm.title(w, "Choose a CRAN mirror")
-f <- ttkframe(w, padding=c(3,3,3,12))
-tkpack(f, expand=TRUE, fill="both")
+f <- ttkframe(w, padding = c(3,3,3,12))
+tkpack(f, expand = TRUE, fill = "both")
 @ 
 
 We use a text entry widget to allow the user to filter the values in the display as the user types.
 <<>>=
-f0 <- ttkframe(f); tkpack(f0, fill="x")
-l <- ttklabel(f0, text="filter:"); tkpack(l, side="left")
+f0 <- ttkframe(f); tkpack(f0, fill = "x")
+l <- ttklabel(f0, text = "filter:"); tkpack(l, side = "left")
 filterVar <- tclVar("")
-filterEntry <- ttkentry(f0, textvariable=filterVar)
-tkpack(filterEntry, side="left")
+filterEntry <- ttkentry(f0, textvariable = filterVar)
+tkpack(filterEntry, side = "left")
 @ 
 
 \begin{figure}
@@ -96,9 +96,9 @@ tkpack(filterEntry, side="left")
 
 The treeview  will only show the first three columns of the data frame, although we store the fourth which contains the URL.
 <<makeTreeview>>=
-f1 <- ttkframe(f); tkpack(f1, expand=TRUE, fill="both")
-tr <- ttktreeview(f1, columns=1:ncol(df), 
-                  displaycolumns = 1:(ncol(df) - 1), 
+f1 <- ttkframe(f); tkpack(f1, expand = TRUE, fill = "both")
+tr <- ttktreeview(f1, columns = 1:ncol(DF), 
+                  displaycolumns = 1:(ncol(DF) - 1), 
                   show = "headings",     # not "tree" 
                   selectmode = "browse") # single selection
 addScrollbars(f1, tr)
@@ -107,11 +107,11 @@ addScrollbars(f1, tr)
 We configure the column widths and titles as follows:
 <<configureColumns>>=
 widths <- c(100, 75, 400)            # hard coded
-nms <- names(df)
+nms <- names(DF)
 for(i in 1:3) {
-  tcl(tr, "heading", i, text=nms[i])
-  tcl(tr, "column", i, width=widths[i], 
-      stretch=TRUE, anchor="w")
+  tcl(tr, "heading", i, text = nms[i])
+  tcl(tr, "column", i, width = widths[i], 
+      stretch = TRUE, anchor = "w")
 }
 @
 %
@@ -121,33 +121,33 @@ The treeview widget does not do filtering internally.\footnote{The
 we will replace all the values when filtering.  This following helper
 function is used to fill in the widget with values from a data frame.
 <<>>=
-fillTable <- function(tr, df) {
+fillTable <- function(tr, DF) {
   children <- as.character(tcl(tr, "children", ""))
   for(i in children) tcl(tr, "delete", i)    # out with old
   shade <- c("none", "gray")
-  for(i in seq_len(nrow(df))) 
-    tcl(tr, "insert", "", "end", tag=shade[i %% 2], 
-        text="",  
-        values=unlist(df[i,]))               # in with new
-  tktag.configure(tr, "gray", background="gray95")
+  for(i in seq_len(nrow(DF))) 
+    tcl(tr, "insert", "", "end", tag = shade[i %% 2], 
+        text = "",  
+        values = unlist(DF[i,]))               # in with new
+  tktag.configure(tr, "gray", background = "gray95")
 }
 @ 
 %
 The initial call populates the table from the entire data frame.
 <<>>=
-fillTable(tr, df)
+fillTable(tr, DF)
 @ 
 
 The filter works by grepping the user input against the host value. We
 bind to \Event{KeyRelease} (and not \Event{KeyPress}) so we capture the last keystroke.
 <<>>=
-curInd <- 1:nrow(df)
+curInd <- 1:nrow(DF)
 tkbind(filterEntry, "<KeyRelease>", function(W, K) {
   val <- tclvalue(tkget(W))
-  possVals <- apply(df, 1, function(...) 
-                    paste(..., collapse=" "))
+  possVals <- apply(DF, 1, function(...) 
+                    paste(..., collapse = " "))
   ind<- grep(val, possVals)
-  if(length(ind) == 0) ind <- 1:nrow(df)
+  if(length(ind) == 0) ind <- 1:nrow(DF)
   fillTable(tr, df[ind,])
 })
 @ 

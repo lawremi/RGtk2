@@ -10,8 +10,8 @@ widget in the variable \code{canvas}.
 library(tcltk)
 w <- tktoplevel()
 tkwm.title(w, "Move canvas object example")
-canvas <- tkcanvas(w, width=450, height=300)
-tkpack(canvas, expand=TRUE, fill="both")
+canvas <- tkcanvas(w, width = 450, height = 300)
+tkpack(canvas, expand = TRUE, fill = "both")
 @ 
 
 This following adds a single point to the canvas using an
@@ -20,8 +20,8 @@ later use. Clearly, this code could be modified to add more points.
 <<>>=
 x <- 200; y <- 150; r <- 6
 item <- tkcreate(canvas, "oval", x - r, y - r, x + r, y + r,
-                 width=1, outline="black",
-                 fill="blue")
+                 width = 1, outline = "black",
+                 fill = "blue")
 tkaddtag(canvas, "point", "withtag", item)
 @ 
 
@@ -31,9 +31,9 @@ mouse hovers over. We add this binding using \code{tkitembind}
 so that is will apply to all point items and only the point items.
 <<>>=
 tkitembind(canvas, "point", "<Any-Enter>", function()
-           tkitemconfigure(canvas, "current", fill="red"))
+           tkitemconfigure(canvas, "current", fill = "red"))
 tkitembind(canvas, "point", "<Any-Leave>", function()
-           tkitemconfigure(canvas, "current", fill="blue"))
+           tkitemconfigure(canvas, "current", fill = "blue"))
 @ 
 
 There are two key bindings needed for movement of an object. First, we
@@ -69,7 +69,7 @@ example, the old regression line is deleted, and a new one drawn. Here
 we simply delete the \qcode{selected} tag.
 <<>>=
 tkbind(canvas, "<ButtonRelease-1>", 
-       function(W) tkdtag(W,"selected"))
+       function(W) tkdtag(W, "selected"))
 @ 
 
 

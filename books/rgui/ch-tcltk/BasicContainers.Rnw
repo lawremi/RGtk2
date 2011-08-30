@@ -133,11 +133,11 @@ tkwm.protocol(w,"WM_DELETE_WINDOW", function() {
   modified <- tcl(e, "edit", "modified")
   if(as.logical(modified)) {
     response <- 
-      tkmessageBox(icon="question",
-                   message="Really close?",
-                   detail="Changes need to be saved",
-                   type="yesno",
-                   parent=w)
+      tkmessageBox(icon = "question",
+                   message = "Really close?",
+                   detail = "Changes need to be saved",
+                   type = "yesno",
+                   parent = w)
     if(as.character(response) == "no")
       return()
   }
@@ -153,7 +153,7 @@ tkwm.protocol(w,"WM_DELETE_WINDOW", function() {
 % function as follows: 
 % \begin{Schunk}
 % \begin{Sinput}
-% tcl("wm", "attributes", w, topmost=TRUE)  
+% tcl("wm", "attributes", w, topmost = TRUE)  
 % \end{Sinput}
 % \end{Schunk}
 
@@ -189,20 +189,20 @@ newWindow <- function(title, command, parent,
     }
   }
   
-  if(!missing(width)) tkconfigure(w, width=width)
-  if(!missing(height)) tkconfigure(w, height=height)
+  if(!missing(width)) tkconfigure(w, width = width)
+  if(!missing(height)) tkconfigure(w, height = height)
 
   windowSystem <- tclvalue(tcl("tk", "windowingsystem"))
   if(windowSystem == "aqua") {
-    f <- ttkframe(w, padding=c(3,3,12,12))
+    f <- ttkframe(w, padding = c(3,3,12,12))
   } else {
-    f1 <- ttkframe(w, padding=0)
-    tkpack(f1, expand=TRUE, fill="both")
-    f <- ttkframe(f1, padding=c(3,3,12,0))
+    f1 <- ttkframe(w, padding = 0)
+    tkpack(f1, expand = TRUE, fill = "both")
+    f <- ttkframe(f1, padding = c(3,3,12,0))
     sg <- ttksizegrip(f1)
-    tkpack(sg, side="bottom", anchor="se")
+    tkpack(sg, side = "bottom", anchor = "se")
   }
-  tkpack(f, expand=TRUE, fill="both", side="top")
+  tkpack(f, expand = TRUE, fill = "both", side = "top")
 
   return(f)
 }
@@ -299,7 +299,7 @@ additional flexibility.
 \paragraph{after, before}
 The \option{after}{tkpack} and \option{before}{tkpack} options can be
 used to place the child before or after another component. These are
-used as with \code{tkpack(child1, after=child2)}. The object
+used as with \code{tkpack(child1, after = child2)}. The object
 \code{child2} can be an \R\/ object or its ID. 
 
 
@@ -323,18 +323,18 @@ These commands are illustrated below, where we show how one might
 implement a ticker tape effect, where words scroll to the left.
 <<rotateLabels, results=hide>>=
 w <- tktoplevel()
-f <- ttkframe(w, padding=c(3,3,12,12))
-tkpack(f, expand=TRUE, fill="both")
+f <- ttkframe(w, padding = c(3,3,12,12))
+tkpack(f, expand = TRUE, fill = "both")
 #
 x <- strsplit("Lorem ipsum dolor sit amet ...", "\\s")[[1]]
-labels <- lapply(x, function(i) ttklabel(f, text=i))
-sapply(labels, function(i) tkpack(i, side="left"))
+labels <- lapply(x, function(i) ttklabel(f, text = i))
+sapply(labels, function(i) tkpack(i, side = "left"))
 #
 rotateLabel <- function() {
   children <- as.character(tkpack("slaves", f))
   tkpack.forget(children[1])
-  tkpack(children[1], after=children[length(children)], 
-         side="left")
+  tkpack(children[1], after = children[length(children)], 
+         side = "left")
 }
 @
 
@@ -366,29 +366,29 @@ for(i in 1:20) {rotateLabel(); Sys.sleep(1)}
 ## padding
 w <- tktoplevel();
 tkwm.title(w, "Padding/pady/ipady")
-f1 <- ttkframe(w, padding=c(3,3,12,12))  # Some breathing room
-tkpack(f1, expand=TRUE, fill="both")     # For window expansion
+f1 <- ttkframe(w, padding = c(3,3,12,12))  # Some breathing room
+tkpack(f1, expand = TRUE, fill = "both")     # For window expansion
 
 
-f <- ttkframe(f1,padding=20, border=1);
-tkpack(f, side="left", expand=TRUE, fill="x")
-tkpack(ttkbutton(f, text="padding"))
-tkpack(ttkbutton(f, text="padding"))
+f <- ttkframe(f1,padding = 20, border = 1);
+tkpack(f, side = "left", expand = TRUE, fill = "x")
+tkpack(ttkbutton(f, text = "padding"))
+tkpack(ttkbutton(f, text = "padding"))
 
-tkpack(ttkseparator(f1, orient="vertical"), expand=TRUE, fill="y", side="left")
+tkpack(ttkseparator(f1, orient = "vertical"), expand = TRUE, fill = "y", side = "left")
 
 ##  pady outside border
-f <- ttkframe(f1, border=1)
-tkpack(f, side="left", expand=TRUE, fill="both")
-tkpack(ttkbutton(f, text="pady"), pady=10)
-tkpack(ttkbutton(f, text="pady"), pady=10)
+f <- ttkframe(f1, border = 1)
+tkpack(f, side = "left", expand = TRUE, fill = "both")
+tkpack(ttkbutton(f, text = "pady"), pady = 10)
+tkpack(ttkbutton(f, text = "pady"), pady = 10)
 
-tkpack(ttkseparator(f1, orient="vertical"), expand=TRUE, fill="y", side="left")
+tkpack(ttkseparator(f1, orient = "vertical"), expand = TRUE, fill = "y", side = "left")
 ## ipady within border
-f <- ttkframe(f1, border=1)
-tkpack(f, side="left", expand=TRUE, fill="both")
-tkpack(ttkbutton(f, text="ipady"), ipady=10)
-tkpack(ttkbutton(f, text="ipady"), ipady=10)
+f <- ttkframe(f1, border = 1)
+tkpack(f, side = "left", expand = TRUE, fill = "both")
+tkpack(ttkbutton(f, text = "ipady"), ipady = 10)
+tkpack(ttkbutton(f, text = "ipady"), ipady = 10)
 @ 
 
 \ilayout{spacing}
@@ -409,12 +409,12 @@ for asymmetric padding.
 ## tkpack("configure", ...)
 w <- tktoplevel()
 tkwm.title(w,"tkpack configure example")
-f <- ttkframe(w, padding=5)
-tkpack(f, expand=TRUE, fill="both")
+f <- ttkframe(w, padding = 5)
+tkpack(f, expand = TRUE, fill = "both")
 l <- list()
 for(i in 1:5) {
-  l[[i]] <- ttklabel(f, text=i)
-  tkpack(l[[i]], side="left")
+  l[[i]] <- ttklabel(f, text = i)
+  tkpack(l[[i]], side = "left")
 }
 @ 
 
@@ -424,7 +424,7 @@ children of the frame \code{f} using the
 
 <<echo=TRUE, results=hide>>=
 allChildren <- as.character(tkwinfo("children", f))
-sapply(allChildren, tkpack.configure,  padx=10, pady=5)
+sapply(allChildren, tkpack.configure,  padx = 10, pady = 5)
 
 @ 
 
@@ -468,20 +468,20 @@ leaving blank space around the child (Figure~\ref{fig:fig-tcltk-anchor-compass}.
 ## not shown in text
 w <- tktoplevel()
 tkwm.title(w, "anchor arguments")
-f <- ttkframe(w, padding=c(3,3,12,12)); tkpack(f, expand=TRUE, fill="both")
+f <- ttkframe(w, padding = c(3,3,12,12)); tkpack(f, expand = TRUE, fill = "both")
 tr <- ttkframe(f); mr <- ttkframe(f); br <- ttkframe(f)
-sapply(list(tr, mr, br), tkpack, expand=TRUE, fill="both")
-tkpack(ttklabel(tr, text="nw"), anchor="nw", expand=TRUE, side="left")
-tkpack(ttklabel(tr, text="n"),  anchor="n",  expand=TRUE, side="left")
-tkpack(ttklabel(tr, text="ne"), anchor="ne", expand=TRUE, side="left")
+sapply(list(tr, mr, br), tkpack, expand = TRUE, fill = "both")
+tkpack(ttklabel(tr, text = "nw"), anchor = "nw", expand = TRUE, side = "left")
+tkpack(ttklabel(tr, text = "n"),  anchor = "n",  expand = TRUE, side = "left")
+tkpack(ttklabel(tr, text = "ne"), anchor = "ne", expand = TRUE, side = "left")
 ##
-tkpack(ttklabel(mr, text="w"),       anchor="w",       expand=TRUE, side="left")
-tkpack(ttklabel(mr, text="center"),  anchor="center",  expand=TRUE, side="left")
-tkpack(ttklabel(mr, text="e"),       anchor="e",       expand=TRUE, side="left")
+tkpack(ttklabel(mr, text = "w"),       anchor = "w",       expand = TRUE, side = "left")
+tkpack(ttklabel(mr, text = "center"),  anchor = "center",  expand = TRUE, side = "left")
+tkpack(ttklabel(mr, text = "e"),       anchor = "e",       expand = TRUE, side = "left")
 ##
-tkpack(ttklabel(br, text="sw"), anchor="sw", expand=TRUE,  side="left")
-tkpack(ttklabel(br, text="s"),  anchor="s",  expand=TRUE,  side="left")
-tkpack(ttklabel(br, text="se"), anchor="se", expand=TRUE,  side="left")
+tkpack(ttklabel(br, text = "sw"), anchor = "sw", expand = TRUE,  side = "left")
+tkpack(ttklabel(br, text = "s"),  anchor = "s",  expand = TRUE,  side = "left")
+tkpack(ttklabel(br, text = "se"), anchor = "se", expand = TRUE,  side = "left")
 @   
 
 
@@ -522,23 +522,23 @@ images:
 <<expandFill>>=
 w <- tktoplevel()
 tkwm.title(w, "Expand/Fill arguments")
-f <- ttkframe(w, padding=c(3,3,12,12))
-tkpack(f, expand=TRUE, fill="both")
+f <- ttkframe(w, padding = c(3,3,12,12))
+tkpack(f, expand = TRUE, fill = "both")
 ##
 packButton <- function(txt, ...) 
-  tkpack(b <- ttkbutton(f, text=txt), ...)
+  tkpack(b <- ttkbutton(f, text = txt), ...)
 ##
-packButton("Top",    side="top",    expand=TRUE, fill="both") 
-packButton("Bottom", side="bottom", expand=TRUE, fill="both") 
-packButton("Left",   side="left",   expand=TRUE, fill="both") 
-packButton("Right",  side="right",  expand=TRUE, fill="both") 
+packButton("Top",    side = "top",    expand = TRUE, fill = "both") 
+packButton("Bottom", side = "bottom", expand = TRUE, fill = "both") 
+packButton("Left",   side = "left",   expand = TRUE, fill = "both") 
+packButton("Right",  side = "right",  expand = TRUE, fill = "both") 
 @ 
 %
 
 Modifying the fill styles was easy, for example
 <<results=hide>>=
 children <- as.character(tkwinfo("children", f))
-sapply(children, tkpack.configure, fill="none")
+sapply(children, tkpack.configure, fill = "none")
 @ 
 \end{example}
 
@@ -568,18 +568,18 @@ tkwinfo("toplevel", b)
 ## example of last in first covered
 ## Create this GUI, then shrink window with the mouse
 w <- tktoplevel()
-f <- ttkframe(w); tkpack(f, expand=TRUE, fill="both")
+f <- ttkframe(w); tkpack(f, expand = TRUE, fill = "both")
 
-g1 <- ttkframe(f); tkpack(g1, expand=TRUE, fill="both")
-g2 <- ttkframe(f); tkpack(g2, expand=TRUE, fill="both")
+g1 <- ttkframe(f); tkpack(g1, expand = TRUE, fill = "both")
+g2 <- ttkframe(f); tkpack(g2, expand = TRUE, fill = "both")
 
-b11 <- ttkbutton(g1, text="first")
-b12 <- ttkbutton(g1, text="second")
-b21 <- ttkbutton(g2, text="first")
-b22 <- ttkbutton(g2, text="second")
+b11 <- ttkbutton(g1, text = "first")
+b12 <- ttkbutton(g1, text = "second")
+b21 <- ttkbutton(g2, text = "first")
+b22 <- ttkbutton(g2, text = "second")
 
-tkpack(b11, side="left"); tkpack(b12, side="left")
-tkpack(b21, side="right"); tkpack(b22, side="right")
+tkpack(b11, side = "left"); tkpack(b12, side = "left")
+tkpack(b21, side="right"); tkpack(b22, side = "right")
 ## Now shrink window
 
 @ 
@@ -642,12 +642,12 @@ to the first row would be done with a command like:
 w <- tktoplevel()
 tkwm.title(w, "tkgrid.rowconfigure example")
 parent <- ttkframe(w); tkpack(parent)
-child <- ttklabel(parent, text="test")
+child <- ttklabel(parent, text = "test")
 tkgrid(child)
 @ 
 %
 <<>>=
-tkgrid.rowconfigure(parent, 0, weight=1)
+tkgrid.rowconfigure(parent, 0, weight = 1)
 @ 
 %
 \paragraph{The sticky option}
@@ -713,13 +713,13 @@ does not use the geometry managers to manage them. Instead, the
 \method{add}{ttkpanedwindow} command is used to add a child component. For example:
 <<panedWindowExample>>=
 w <- tktoplevel(); tkwm.title(w, "Paned window example")
-pw <- ttkpanedwindow(w, orient="horizontal")
-tkpack(pw, expand=TRUE, fill="both")
-left <- ttklabel(pw, text="left")
-right <- ttklabel(pw, text="right")
+pw <- ttkpanedwindow(w, orient = "horizontal")
+tkpack(pw, expand = TRUE, fill = "both")
+left <- ttklabel(pw, text = "left")
+right <- ttklabel(pw, text = "right")
 #
-tkadd(pw, left, weight=1)
-tkadd(pw, right, weight=2)
+tkadd(pw, left, weight = 1)
+tkadd(pw, right, weight = 2)
 @ 
 %
 When resizing which child gets the space is determined by the
@@ -732,7 +732,7 @@ unmanage a child component. For the paned window, we have no
 convenience function, so we call as follows:
 <<>>=
 tcl(pw, "forget", right)
-tkadd(pw, right, weight=2) ## how to add back
+tkadd(pw, right, weight = 2) ## how to add back
 @ 
 %
 \paragraph{Sash position}
@@ -755,7 +755,7 @@ tcl(pw, "sashpos", 0, floor(0.75*width))
 <<echo=FALSE>>=
 ## ttknotebook example
 w <- tktoplevel(); tkwm.title(w, "Notebook example")
-nb <- ttknotebook(w); tkpack(nb, expand=TRUE, fill="both")
+nb <- ttknotebook(w); tkpack(nb, expand = TRUE, fill = "both")
 @ 
 %
 \begin{figure}
@@ -793,17 +793,17 @@ binding).
 To illustrate, if \code{nb} is a \code{ttknotebook} object, then these
 commands would add pages (cf. Figure~\ref{fig:fig-notebook-example}):
 <<notebookExample, results=hide>>=
-iconFile <- system.file("images",paste("help","gif",sep="."),
-                        package="gWidgets")
+iconFile <- system.file("images",paste("help","gif",sep = "."),
+                        package = "gWidgets")
 iconName <- "::tcl::helpIcon"
 tkimage.create("photo", iconName, file = iconFile)
 #
-l2 <- ttklabel(nb, text="Page 2")
-tkadd(nb, l2, sticky="nswe", text="label 2", 
-    image=iconName, compound="right")
+l2 <- ttklabel(nb, text = "Page 2")
+tkadd(nb, l2, sticky = "nswe", text = "label 2", 
+    image = iconName, compound = "right")
 ## put l1 first (a tabID of 0); use tkinsert
-l1 <- ttklabel(nb, text="Page 1")
-tkinsert(nb, 0, l1, sticky="nswe", text="label 1")
+l1 <- ttklabel(nb, text = "Page 1")
+tkinsert(nb, 0, l1, sticky = "nswe", text = "label 1")
 @ 
 %
 There are several useful subcommands to extract information from the

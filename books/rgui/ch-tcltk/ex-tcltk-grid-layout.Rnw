@@ -18,7 +18,7 @@ day.of.week <- function (year, month, day) {
 
 ## is this a valid date
 validDate <- function(year, month, day) 
-  !is.na(as.Date(sprintf("%s-%s-%s", year, month, day), format="%Y-%m-%d"))
+  !is.na(as.Date(sprintf("%s-%s-%s", year, month, day), format = "%Y-%m-%d"))
 
 ## how many days in a month
 days.in.month <- function(year, month) {
@@ -49,16 +49,16 @@ makeMonth <- function(w, year, month) {
   ## add headers
   days <- c("S","M","T","W","Th","F","S")
   sapply(1:7, function(i) {
-    l <- ttklabel(w, text=days[i])       
-    tkgrid(l, row=0, column=i-1, sticky="")
+    l <- ttklabel(w, text = days[i])       
+    tkgrid(l, row = 0, column = i-1, sticky = "")
   })
   ## add days
   sapply(seq_len(ProgGUIinR:::days.in.month(year, month)), 
          function(day) {
-           l <- ttklabel(w, text=day)
+           l <- ttklabel(w, text = day)
            row <- ProgGUIinR:::week.of.month(year, month, day)
            col <- ProgGUIinR:::day.of.week(year, month, day)
-           tkgrid(l, row=1 + row, column=col, sticky="e")
+           tkgrid(l, row = 1 + row, column = col, sticky = "e")
          })
 }
 @ 
@@ -73,25 +73,25 @@ Our basic layout will use a box layout with a nested layout
 for the step-through controls and another holding the calendar widget.
 <<>>=
 w <- tktoplevel()
-f <- ttkframe(w, padding=c(3,3,12,12))
-tkpack(f, expand=TRUE, fill="both", side="top")
+f <- ttkframe(w, padding = c(3,3,12,12))
+tkpack(f, expand = TRUE, fill = "both", side = "top")
 cframe <- ttkframe(f)
 calframe <- ttkframe(f)
-tkpack(cframe, fill="x", side="top")
-tkpack(calframe, expand=TRUE, anchor="n")
+tkpack(cframe, fill = "x", side = "top")
+tkpack(calframe, expand = TRUE, anchor = "n")
 @ 
 
 Our step through controls are packed in through a horizontal
 layout. We use anchoring and \code{expand=TRUE} to keep the arrows on the edge and the
 label with the current month centered, should the container be resized.
 <<>>=
-prevb <- ttklabel(cframe, text="<")
-nextb <- ttklabel(cframe, text=">")
+prevb <- ttklabel(cframe, text = "<")
+nextb <- ttklabel(cframe, text = ">")
 curmo <- ttklabel(cframe)
 #
-tkpack(prevb, side="left", anchor="w")
-tkpack(curmo, side="left", anchor="center", expand=TRUE)
-tkpack(nextb, side="left", anchor="e")
+tkpack(prevb, side = "left", anchor = "w")
+tkpack(curmo, side = "left", anchor = "center", expand = TRUE)
+tkpack(nextb, side = "left", anchor = "e")
 @ 
 
 The \code{setMonth} function first removes the previous calendar
@@ -106,7 +106,7 @@ setMonth <- function() {
   calframe <<- ttkframe(f)
   makeMonth(calframe, year, month)
   tkconfigure(curmo,                    # month label
-              text=sprintf("%s %s", month.abb[month], year))
+              text = sprintf("%s %s", month.abb[month], year))
   tkpack(calframe)
 }
 setMonth()                              # initial calendar
@@ -127,7 +127,7 @@ tkbind(prevb, "<Button-1>", function() {
 })
 @ 
 
-<<echo=FALSE>>=
+<<echo=FALSE>> = 
 tkbind(nextb, "<Button-1>", function() {
   if(month < 12) {
     month <<- month + 1

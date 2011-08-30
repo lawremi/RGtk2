@@ -67,6 +67,6 @@ setRefClass("TtkEntryWithIntial",
 w = tktoplevel()
 a = getRefClass("TclVar")$new(w)
 tkpack(a$widget)
-tkpack(ttkbutton(w, text="click me"))
+tkpack(ttkbutton(w, text = "click me"))
 @ 
 

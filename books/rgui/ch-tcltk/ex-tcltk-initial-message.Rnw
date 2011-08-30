@@ -16,10 +16,10 @@ library(tcltk)
 <<>>=
 setOldClass(c("tkwin", "tclVar"))
 TtkEntry <- setRefClass("TtkEntry",
-                        fields=list(
-                          e="tkwin",    # entry
-                          v="tclVar",   # textvariable
-                          init_msg="character"
+                        fields = list(
+                          e = "tkwin",    # entry
+                          v = "tclVar",   # textvariable
+                          init_msg = "character"
                           ))
 @ 
 %
@@ -44,30 +44,30 @@ TtkEntry$methods(
                    "Is the init text showing?"
                    as.character(tclvalue(v)) == init_msg
                  },
-                 hide_init_msg=function() {
+                 hide_init_msg = function() {
                    "Hide the initial text"
                    if(is_init_msg()) {
-                     tkconfigure(e, style="TEntry")
-                     set_text("", hide=FALSE)
+                     tkconfigure(e, style = "TEntry")
+                     set_text("", hide = FALSE)
                    }
                  },
-                 show_init_msg=function() {
+                 show_init_msg = function() {
                    "Show the initial text"
-                   tkconfigure(e, style="Gray.TEntry")
-                   set_text(init_msg, hide=FALSE)
+                   tkconfigure(e, style = "Gray.TEntry")
+                   set_text(init_msg, hide = FALSE)
                  })
 @
 
 Our accessor methods, \meth{set\_text} and \meth{get\_text}, must work around a possible initial message.
 <<get-set-text>>=
 TtkEntry$methods(
-                 set_text=function(text, hide=TRUE) {
+                 set_text = function(text, hide = TRUE) {
                    "Set text into widget"
                    if(hide) hide_init_msg()
                    v_local <- v         # avoid warning
                    tclvalue(v_local) <- text
                  },
-                 get_text=function() {
+                 get_text = function() {
                    "Get the text value"
                    if(!is_init_msg())
                      as.character(tclvalue(v))
@@ -82,7 +82,7 @@ the initial message and the entry area. We use the focus in and out
 events to initiate this.
 <<add-bindings>>=
 TtkEntry$methods(
-                 add_bindings=function() {
+                 add_bindings = function() {
                    "Add focus bindings to make this work"
                    tkbind(e, "<FocusIn>", hide_init_msg)
                    tkbind(e, "<FocusOut>", function() {
@@ -95,9 +95,9 @@ TtkEntry$methods(
 Finally, our initialization method follows.
 <<>>=
 TtkEntry$methods(
-         initialize=function(parent, text, init_msg="") {
+         initialize = function(parent, text, init_msg = "") {
            v <<- tclVar()
-           e <<- ttkentry(parent, textvariable=v)
+           e <<- ttkentry(parent, textvariable = v)
            init_msg <<- init_msg
            ##
            if(missing(text))
@@ -115,11 +115,11 @@ instance. The actual entry widget is kept in the \code{e} field, so we
 pack in \code{e\$e}.
 <<>>=
 w <- tktoplevel()
-e <- TtkEntry$new(parent=w, init_msg="type value here")
+e <- TtkEntry$new(parent = w, init_msg = "type value here")
 tkpack(e$e)
 #
-b <- ttkbutton(w, text="focus out onto this", 
-               command=function() {
+b <- ttkbutton(w, text = "focus out onto this", 
+               command = function() {
                  print(e$get_text())
                })
 tkpack(b)

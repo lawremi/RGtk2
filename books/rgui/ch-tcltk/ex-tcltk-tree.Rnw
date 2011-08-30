@@ -7,20 +7,20 @@ library(tcltk)
 
 ## helper function to add scrollbars
 addScrollbars <- function(parent, widget) {
-  xscr <- ttkscrollbar(parent, orient="horizontal",
-                       command=function(...) tkxview(widget, ...))
-  yscr <- ttkscrollbar(parent, orient="vertical",
-                       command=function(...) tkyview(widget, ...))
+  xscr <- ttkscrollbar(parent, orient = "horizontal",
+                       command = function(...) tkxview(widget, ...))
+  yscr <- ttkscrollbar(parent, orient = "vertical",
+                       command = function(...) tkyview(widget, ...))
 
   tkconfigure(widget,
-              xscrollcommand=function(...) tkset(xscr,...),
-              yscrollcommand=function(...) tkset(yscr,...))
+              xscrollcommand = function(...) tkset(xscr,...),
+              yscrollcommand = function(...) tkset(yscr,...))
 
-  tkgrid(widget, row=0, column=0, sticky="news")
-  tkgrid(yscr,row=0,column=1, sticky="ns")
-  tkgrid(xscr, row=1, column=0, sticky="ew")
-  tkgrid.columnconfigure(parent, 0, weight=1)
-  tkgrid.rowconfigure(parent, 0, weight=1)
+  tkgrid(widget, row = 0, column = 0, sticky = "news")
+  tkgrid(yscr,row = 0,column = 1, sticky = "ns")
+  tkgrid(xscr, row = 1, column = 0, sticky = "ew")
+  tkgrid.columnconfigure(parent, 0, weight = 1)
+  tkgrid.rowconfigure(parent, 0, weight = 1)
 }
 @ 
 
@@ -46,28 +46,28 @@ The \function(htmlTreeParse) (similar to \function{xmlInternalTreeParse}) to par
 library(XML)
 fileName <- "http://www.omegahat.org/RSXML/shortIntro.html"
 QT <- function(...) {}  # quiet next call
-doc <- htmlTreeParse(fileName, useInternalNodes=TRUE, error=QT)
+doc <- htmlTreeParse(fileName, useInternalNodes = TRUE, error = QT)
 root <- xmlRoot(doc)
 @ 
 Our GUI is primitive, with just a treeview instance added.
 <<notShown, echo=FALSE>>=
 w <- tktoplevel()
 tkwm.title(w, "Treeview example with XML")
-f <- ttkframe(w, padding=c(3,3,12,12))
-tkpack(f, expand=TRUE, fill="both")
+f <- ttkframe(w, padding = c(3,3,12,12))
+tkpack(f, expand = TRUE, fill = "both")
 @ 
 <<>>=
-tr <- ttktreeview(f, displaycolumns="#all", columns=1)
+tr <- ttktreeview(f, displaycolumns = "#all", columns = 1)
 addScrollbars(f, tr)                    
 @ 
 
 We configure our column headers and set a minimum
 width below. Recall, the tree column is designated \qcode{\#0}.
 <<columnConfiguration>>=
-tcl(tr, "heading", "#0", text="Name")
-tcl(tr, "column", "#0", minwidth=20)
-tcl(tr, "heading", 1, text="value")
-tcl(tr, "column", 1, minwidth=20)
+tcl(tr, "heading", "#0", text = "Name")
+tcl(tr, "column", "#0", minwidth = 20)
+tcl(tr, "heading", 1, text = "value")
+tcl(tr, "column", 1, minwidth = 20)
 @ 
 <<echo=FALSE>>=
 ## http://www.omegahat.org/RSXML/shortIntro.html
@@ -78,13 +78,13 @@ tcl(tr, "column", 1, minwidth=20)
 ## issue with quoting values of tree. This taken from shout
 quoteIt <- function(string) {           
   doQuote <- function(x) {
-    xx <- strsplit(x, '"', fixe=TRUE)[[1]]
-    paste(paste('"', xx, '"', sep=""), collapse='\'"\'')
+    xx <- strsplit(x, '"', fixe = TRUE)[[1]]
+    paste(paste('"', xx, '"', sep = ""), collapse = '\'"\'')
   }
   if(!length(string)) return("")
   has_double_quote <- grep('"',string)
   if(!length(has_double_quote))
-    return(paste('"',string,'"',sep=""))
+    return(paste('"',string,'"',sep = ""))
   if (!length(grep("([$`])", string))) {
     paste("\"", gsub("([\"!\\])", "\\\\\\1", string), 
           "\"", sep = "")
@@ -99,11 +99,11 @@ instance.  We only add to the \code{value} column (through the
 \code{do.call}, as a convenience, to avoid constructing two different
 calls to the \code{insert} subcommand. 
 <<>>=
-insertChild <- function(tr, node, parent="") {
-  l <- list(tr, "insert", parent, "end", text=xmlName(node))
+insertChild <- function(tr, node, parent = "") {
+  l <- list(tr, "insert", parent, "end", text = xmlName(node))
   children <- xmlChildren(node)
   if(length(children) == 0) {         # add in values
-    values <- paste(xmlValue(node), sep=" ", collapse=" ")
+    values <- paste(xmlValue(node), sep = " ", collapse = " ")
     l$values <- as.tclObj(values)     # avoid split on spaces
   }
   treePath <- do.call("tcl", l)
@@ -140,7 +140,7 @@ the dragging flag. One might also put in code to highlight
 any drop areas.
 <<>>=
 tkbind(tr, "<B1-Motion>", function(W, x, y, X, Y) {
-  tkconfigure(W, cursor="diamond_cross")
+  tkconfigure(W, cursor = "diamond_cross")
   .dragging <<-TRUE
 })
 @ 
@@ -155,10 +155,10 @@ item it is being dropped on. If a different action is desired, the
 <<>>=
 tkbind(tr, "<ButtonRelease-1>", function(W, x, y, X, Y) {
   if(.dragging && .selectedID != "") {
-    w = tkwinfo("containing", X, Y)
+    w <- tkwinfo("containing", X, Y)
     if(as.character(w) == as.character(W)) {
       dropID <- as.character(tcl(W, "identify","row", x, y))
-      try(tkmove(W, .selectedID, dropID, "0"), silent=TRUE)
+      try(tkmove(W, .selectedID, dropID, "0"), silent = TRUE)
     }
   }
   .dragging <<- FALSE; .selectedID <<- "" # reset

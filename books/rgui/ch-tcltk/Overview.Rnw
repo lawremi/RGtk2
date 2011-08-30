@@ -57,10 +57,10 @@ provides much detail. \R{} specific documentation include two
 excellent R News articles and a proceedings
 paper\footcite{Rnews:Dalgaard:2001a}\footcite{Rnews:Dalgaard:2002}\footcite{Dalgaard-DSC}
 by Peter Dalgaard, the package author. A
-set of examples due to James Wettenhall~\footcite{Wettenhall} are also
+set of examples due to James Wettenhall\footcite{Wettenhall} are also
 quite instructive. A main use of \pkg{tcltk} is within the \pkg{Rcmdr}
 framework. Writing extensions for that is well documented in an R News
-article~\footcite{Rnews:Fox:2007} by John Fox, the package author.
+article\footcite{Rnews:Fox:2007} by John Fox, the package author.
  
 
 \section{A first example}
@@ -88,25 +88,25 @@ library(tcltk)
 w <- tktoplevel()
 tkwm.title(w, "Simple dialog")
 ##
-f <- ttkframe(w, padding=c(3,3,12,12))
-tkpack(f, expand=TRUE, fill="both")
+f <- ttkframe(w, padding = c(3,3,12,12))
+tkpack(f, expand = TRUE, fill = "both")
 ##
 g <- ttkframe(f); tkpack(g)
 ##
-l <- ttklabel(g, text="Enter your name:")
-tkpack(l, side="left")
+l <- ttklabel(g, text = "Enter your name:")
+tkpack(l, side = "left")
 ##
 txtVar <- tclVar("")
-txt <- ttkentry(g, textvariable=txtVar)
+txt <- ttkentry(g, textvariable = txtVar)
 tkpack(txt)
 ##
-g1 <- ttkframe(f); tkpack(g1, anchor="ne")
-btn <- ttkbutton(g1, text="Click")
-tkpack(btn, side="right")
+g1 <- ttkframe(f); tkpack(g1, anchor = "ne")
+btn <- ttkbutton(g1, text = "Click")
+tkpack(btn, side = "right")
 ##
 msg <- sprintf("Hello %s", tclvalue(txtVar))
 handler <- function() print(msg)
-tkconfigure(btn, command=handler)
+tkconfigure(btn, command = handler)
 @ 
 %%
 In the above, the first block defines a top-level window and the
@@ -230,7 +230,7 @@ tkpack(lab)
 @ 
 
 <<>>=
-tkconfigure(lab, text="new text")
+tkconfigure(lab, text = "new text")
 @ 
 
 
@@ -303,7 +303,7 @@ always the case.
 \begin{figure}
   \centering
 \begin{verbatim}
-          tcl(widget, subcommand, key=value, callback)
+          tcl(widget, subcommand, key = value, callback)
              /            |           |           \
           widget$ID  subcommand   -key value   makeCallback
 \end{verbatim}
@@ -345,7 +345,7 @@ Other widget constructors require that a parent widget be
 specified as the first argument of the constructor.  A typical
 invocation was given in the example.
 <<>>=
-l <- ttklabel(g, text="Enter your name:")
+l <- ttklabel(g, text = "Enter your name:")
 @ 
 %
 
@@ -396,19 +396,19 @@ and not set it.
 
 <<>>=
 tkcget(l, "-text")                   # retrieve text property
-tkcget(l, text=NULL)                 # alternate syntax
+tkcget(l, text = NULL)                 # alternate syntax
 @ 
 
 \paragraph{Coercion to character}
 As mentioned, the \code{tclObj} objects can be coerced to characters in two ways.
 The conversion through \code{as.character} breaks the return value along whitespace:
 <<>>=
-as.character(tkcget(l, text=NULL))
+as.character(tkcget(l, text = NULL))
 @ 
 %
 Whereas, conversion by the \function{tclvalue} function does not:
 <<>>=
-tclvalue(tkcget(l, text=NULL))
+tclvalue(tkcget(l, text = NULL))
 @ 
 %
 
@@ -432,7 +432,7 @@ generated behind the scenes by the \pkg{tcltk} package using numeric
 values to keep track of the hierarchy. The \code{env} component
 contains an environment that keeps a count of the subwindows, the parent
 window and any callback functions. This helps ensure that any copies
-of the widget refer to the same object~\footcite{Dalgaard-DSC}. As the
+of the widget refer to the same object\footcite{Dalgaard-DSC}. As the
 construction of a new widget requires the \code{ID} and environment of
 its parent, the first argument to \function{tkwidget} (and hence any constructor), \code{parent},
 must be a \class{tkwin} object, not simply its character ID, as is
@@ -447,10 +447,10 @@ possible for the \function{tcl} function.
 In the example we saw several calls to \code{tkpack}. For example,
 
 <<eval=FALSE>>=
-tkpack(f, expand=TRUE, fill="both")
-tkpack(l, side="left")
+tkpack(f, expand = TRUE, fill = "both")
+tkpack(l, side = "left")
 tkpack(txt)
-g1 <- ttkframe(f); tkpack(g1, anchor="ne")
+g1 <- ttkframe(f); tkpack(g1, anchor = "ne")
 @ 
 
 
@@ -480,7 +480,7 @@ In the call to \code{ttkentry} in the example we had:
 
 <<eval=FALSE>>=
 txtVar <- tclVar("")
-txt <- ttkentry(g, textvariable=txtVar)
+txt <- ttkentry(g, textvariable = txtVar)
 @ 
 %
 The first line defines a new object of class \class{tclVar} which is
@@ -544,11 +544,11 @@ x[['2']]                           # match by name, not index
 In the definition of the button we saw:
 
 <<>>=
-btn <- ttkbutton(g1, text="Click")
+btn <- ttkbutton(g1, text = "Click")
 #
 msg <- sprintf("Hello %s", tclvalue(txtVar))
 handler <- function() print(msg)
-tkconfigure(btn, command=handler)
+tkconfigure(btn, command = handler)
 @ 
 
 Button widgets are used to initiate  some action, or
@@ -587,8 +587,8 @@ In our example, the toplevel window has a frame immediately packed
 inside of it through the commands:
 <<eval=FALSE>>=
 w <- tktoplevel()
-f <- ttkframe(w, padding=c(3,3,12,12))
-tkpack(f, expand=TRUE, fill="both")
+f <- ttkframe(w, padding = c(3,3,12,12))
+tkpack(f, expand = TRUE, fill = "both")
 @ 
 
 \begin{figure}
@@ -673,40 +673,40 @@ button. This topic is covered in some detail in the \Tk\/ tutorial by Roseman.
 % <<no-frame, echo=FALSE>>=
 % w <- tktoplevel()
 % tkwm.title(w, "No frame")
-% l <- ttklabel(w, text="new text")
+% l <- ttklabel(w, text = "new text")
 % tkpack(l)
 
-% b <- ttkbutton(w, text="click me", 
-%                command=function() print("thanks"))
+% b <- ttkbutton(w, text = "click me", 
+%                command = function() print("thanks"))
 % tkpack(b)
 
 % textvar <- tclVar("another label")
-% l2 <- ttklabel(w, textvariable=textvar)
+% l2 <- ttklabel(w, textvariable = textvar)
 % tkpack(l2)
 % @ 
 
 % <<with-frame, echo=FALSE>>=
 % w <- tktoplevel()
 % tkwm.title(w, "With frame")
-% w <- ttkframe(w, padding=c(3,3,12,12))  # Some breathing room
-% tkpack(w, expand=TRUE, fill="both")     # For window expansion
-% l <- ttklabel(w, text="new text")
+% w <- ttkframe(w, padding = c(3,3,12,12))  # Some breathing room
+% tkpack(w, expand = TRUE, fill = "both")     # For window expansion
+% l <- ttklabel(w, text = "new text")
 % tkpack(l)
 
-% b <- ttkbutton(w, text="click me", 
-%                command=function() print("thanks"))
+% b <- ttkbutton(w, text = "click me", 
+%                command = function() print("thanks"))
 % tkpack(b)
 
 % textvar <- tclVar("another label")
-% l2 <- ttklabel(w, textvariable=textvar)
+% l2 <- ttklabel(w, textvariable = textvar)
 % tkpack(l2)
 % @ 
 
 % <<UseFrameToTheme>>=
 % w <- tktoplevel()
-% f <- ttkframe(w, padding=c(3,3,12,12))  # Some breathing room
-% tkpack(f, expand=TRUE, fill="both")     # For window expansion
-% l <- ttklabel(f,  text="label")         # some widget
+% f <- ttkframe(w, padding = c(3,3,12,12))  # Some breathing room
+% tkpack(f, expand = TRUE, fill = "both")     # For window expansion
+% l <- ttklabel(f,  text = "label")         # some widget
 % tkpack(l)
 % @ 
 
@@ -787,8 +787,8 @@ The label color can be set through its \code{foreground}
 property. Colors can be specified by name -- for common colors -- or
 by hex RGB values which are common in web programming.
 <<>>=
-tkconfigure(l, foreground="red")
-tkconfigure(l, foreground="#00aa00")
+tkconfigure(l, foreground = "red")
+tkconfigure(l, foreground = "#00aa00")
 @ 
 
 To find the hex RGB value, one can use the \code{rgb} function to
@@ -810,7 +810,7 @@ ease of maintaining code and ease of theming.  To set a font for a
 label, rather than specifying the font properties, one configures the
 \code{font} options using a pre-defined font name, such as
 <<>>=
-tkconfigure(l, font="TkFixedFont")
+tkconfigure(l, font = "TkFixedFont")
 @ 
 
 The \qcode{TkFixedFont} value is one of the standard font names, in
@@ -818,7 +818,7 @@ this case to use a fixed-width font. A complete list of the standard
 names is provided in Table~\ref{tab:tcltk-std-fonts}. Each theme sets
 these defaults accordingly.
 <<echo=FALSE, results=tex>>=
-df <- rbind(
+DF <- rbind(
             c("\\code{TkDefaultFont}","Default font for all GUI items not otherwise specified"),
             c("\\code{TkTextFont}","Font for text widgets"),
             c("\\code{TkFixedFont}","Fixed-width font"),
@@ -828,8 +828,8 @@ df <- rbind(
             c("\\code{TkSmallCaptionFont}","Smaller caption font"),
             c("\\code{TkIconFont}","Icon and text font")
             )
-colnames(df) <- c("Standard font name", "Description")
-cat(booktabs(df, 
+colnames(DF) <- c("Standard font name", "Description")
+cat(booktabs(DF, 
              caption="Standard font names defined by a theme.",
              label="tab:tcltk-std-fonts"))
 @ 
@@ -837,9 +837,9 @@ cat(booktabs(df,
 \paragraph{Using \code{tkfont.create}}
 The \index{tkfont!\code{create}} \function{tkfont.create} function can be used to create a new font, as with the following commands:
 <<>>=
-tkfont.create("ourFont", family="Helvetica", size=12, 
-              weight="bold")
-tkconfigure(l, font="ourFont")
+tkfont.create("ourFont", family = "Helvetica", size = 12, 
+              weight = "bold")
+tkconfigure(l, font = "ourFont")
 @ 
 
 As font families are system dependent, only \qcode{Courier},
@@ -879,10 +879,10 @@ average text size varies for proportional fonts, the size of the
 <<fontSizes>>=
 font_measure <- tcl("font","measure","TkTextFont","M")
 fontWidth <- as.integer(tclvalue(font_measure))
-tmp <- tkfont.metrics("TkTextFont","linespace"=NULL)
+tmp <- tkfont.metrics("TkTextFont","linespace" = NULL)
 fontHeight <- as.numeric(tclvalue(tmp))
 #
-c(width=fontWidth, height=fontHeight)
+c(width = fontWidth, height = fontHeight)
 @ 
 
 
@@ -912,7 +912,7 @@ being used. (This option could also be \qcode{bitmap} but that is more
 a legacy option.)\footnote{The \pkg{tkrplot} package allows a third
   option \code{Rplot}. This package has the high-level command
   \function{tkrplot}, but the low-level use of a) calling
-  \code{.my.tkdev(hscale=1,vscale=1)} b) creating a graphic and c) creating an image
+  \code{.my.tkdev(hscale = 1,vscale = 1)} b) creating a graphic and c) creating an image
   object through \code{tkimage.create("Rplot", img\_name)} will
   produce a new image object one can use.} The second argument
 specifies the name of the object. We follow the advice of the \TK\/
@@ -929,7 +929,7 @@ packages that can display other formats.~
 To use the image, one specifies the image name to the
 \option{image}{ttklabel} option:
 <<>>=
-l <- ttklabel(w, image="::img::tclLogo", text="logo text", 
+l <- ttklabel(w, image = "::img::tclLogo", text = "logo text", 
               compound = "top")
 @ 
 <<echo=FALSE>>=
@@ -949,11 +949,11 @@ image. These are found in the \TK\/ man page for \code{photo}, not
 \code{fullcolor} only 16 shades of gray are used to display the icon,
 one could issue the command
 <<>>=
-tkconfigure("::img::tclLogo", palette=16)
+tkconfigure("::img::tclLogo", palette = 16)
 @ 
 <<echo=FALSE>>=
 ## redo changing of palette
-tkconfigure("::img::tclLogo", palette="fullcolor")
+tkconfigure("::img::tclLogo", palette = "fullcolor")
 @ 
 
 %% changed to active, !active
@@ -994,7 +994,7 @@ example, the following mimics the linux shortcut \code{Control-q} to
 close a window.
 <<Ctrl-q-binding>>=
 w <- tktoplevel()
-b <- ttkbutton(w, text="Some widget with the focus")
+b <- ttkbutton(w, text = "Some widget with the focus")
 tkpack(b)
 tkbind(w, "<Control-q>", function() tkdestroy(w))
 @ 
@@ -1021,19 +1021,19 @@ class \code{TButton}.
 
 <<bind_examples, results=hide>>=
 w <- tktoplevel()
-l <- ttklabel(w, text="Click Ok for a message")
-b1 <- ttkbutton(w, text="Cancel", 
-                command=function() tkdestroy(w))
-b2 <- ttkbutton(w, text="Ok", command=function() {
+l <- ttklabel(w, text = "Click Ok for a message")
+b1 <- ttkbutton(w, text = "Cancel", 
+                command = function() tkdestroy(w))
+b2 <- ttkbutton(w, text = "Ok", command = function() {
   print("initiate an action")
 })
 sapply(list(l,b1,b2), tkpack)
 ##
 tkbind(w, "C", function() tcl(b1, "invoke"))
-tkconfigure(b1, underline=0)
+tkconfigure(b1, underline = 0)
 ##
 tkbind(w, "O", function() tcl(b1, "invoke"))
-tkconfigure(b2, underline=0)
+tkconfigure(b2, underline = 0)
 tkfocus(b2)
 ##
 tkbind("TButton", "<Return>", function(W) {
@@ -1178,7 +1178,7 @@ Example~\ref{ex-tcltk-dnd} will put these to use.
 
 <<>>=
 w <- tktoplevel()
-b <- ttkbutton(w, text="Click me to record the x,y position")
+b <- ttkbutton(w, text = "Click me to record the x,y position")
 tkpack(b)
 tkbind(b, "<ButtonPress-1>", function(W, x, y, X, Y) {
   print(W)                              # an ID
@@ -1193,7 +1193,7 @@ tkbind(b, "<ButtonPress-1>", function(W, x, y, X, Y) {
 ## In this case we can't break out of the chain of handlers called in tcltk
 library(tcltk)
 w <- tktoplevel()
-b <- ttkbutton(w, text="click me", command = function() {
+b <- ttkbutton(w, text = "click me", command = function() {
   ## default command: bind Button <1> {tk::ButtonDown %W}
   print("hi")
 })
@@ -1232,7 +1232,7 @@ done along the lines of:
 <<eval=FALSE>>=
 afterID <- ""
 someFlag <- TRUE
-repeatCall <- function(ms=100, f) {
+repeatCall <- function(ms = 100, f) {
   afterID <<- tcl("after", ms, function() {
     if(someFlag) {                      
       f()

@@ -63,7 +63,7 @@ using styles is available online in Mark Roseman's \Tk\/ tutorial at
                "otQhBRa6VvSJIRwhIkotvgRTzMUYZ6xxMcj4QkspeKDxxRhEmUfIHWjAgQcijEDissuXvCyz",
                "zH7Q8YQURxDhUsn/bCInR3AELfTQZBRt9BBJkCGFFVhMwTNBlnBCSCGEIJQQIAklZMXWRBAR",
                "RRRWENHwRQEBADs=}",
-               sep="\n")
+               sep = "\n")
 @ 
 
 The use of uuencoded gif images allows one to store image data as
@@ -72,9 +72,9 @@ image of our entry widget. The following commands create two images,
 the latter to display when the widget has the focus.
 <<results=hide>>=
 tkimage.create("photo","::image::search1", 
-               data=.imageData, format="gif -index 0")
+               data = .imageData, format = "gif -index 0")
 tkimage.create("photo","::image::search2", 
-               data=.imageData, format="gif -index 1")
+               data = .imageData, format = "gif -index 1")
 @ 
 
 The following command creates a new style, \code{Search.field}, which has an image specified for when it is drawn, another for when it has the focus, a border set so that the magnifying glass icon isn't written over with text, and a value of \code{sticky} so that it stretches from left to right -- but not top to bottom -- when resized.
@@ -82,7 +82,7 @@ The following command creates a new style, \code{Search.field}, which has an ima
 .Tcl(paste("ttk::style element create Search.field ",
            "image {::image::search1 focus ::image::search2} ",
            "-border {22 7 14} -sticky ew",
-           sep=""))
+           sep = ""))
 @ 
 
 The following lays out the entry style. The search field above is given. It has children of padding and textarea which are simply told to stretch in all directions when resized.
@@ -92,12 +92,12 @@ The following lays out the entry style. The search field above is given. It has 
            "Entry.padding -sticky nswe -children {",
            "Entry.textarea -sticky nswe",
            "}}}",
-           sep="\n"))
+           sep = "\n"))
 @ 
 Finally, this command configures the background for the \code{Search.entry} style.
 <<>>=
 tcl("ttk::style", "configure", "Search.entry", 
-    background="#b2b2b2")
+    background = "#b2b2b2")
 @ 
 
 At this point, we can set up a basic GUI to illustrate the use. First
@@ -105,17 +105,17 @@ a toplevel window and themed frame are defined.
 <<>>=
 w <- tktoplevel()
 tkwm.title(w, "Search box example")
-f <- ttkframe(w, padding=c(3,3,12,12))
-tkpack(f, expand=TRUE, fill="both")
+f <- ttkframe(w, padding = c(3,3,12,12))
+tkpack(f, expand = TRUE, fill = "both")
 @ 
 %%
 
 The entry widget has the style set through its \argument{style}{ttkentry} argument, as follows.
 <<>>=
 eVar <- tclVar("")
-e <- ttkentry(f, textvariable=eVar, style="Search.entry")
+e <- ttkentry(f, textvariable = eVar, style = "Search.entry")
 tkpack(e)
-b <- ttkbutton(f, text="click me"); tkpack(b)
+b <- ttkbutton(f, text = "click me"); tkpack(b)
 @ 
 %%
 
@@ -129,9 +129,9 @@ tkbind(e,"<Expose>", function(W) {
   cur <- as.character(tcl(W,"get"))
   if(length(cur) == 0 || cur == "") {    # first time
     tclvalue(eVar) <- initialText
-    tkconfigure(W, foreground="gray50")
+    tkconfigure(W, foreground = "gray50")
   } else {
-    tkconfigure(W, foreground="black")
+    tkconfigure(W, foreground = "black")
   }
 })
 @ 
@@ -144,7 +144,7 @@ tkbind(e,"<FocusIn>", function(W) {
   cur <- as.character(tcl(W, "get"))
   if(cur == initialText) {              # searching for initial text?
     tclvalue(eVar) <- ""
-    tkconfigure(W, foreground="black")
+    tkconfigure(W, foreground = "black")
   }
 })
 @ 

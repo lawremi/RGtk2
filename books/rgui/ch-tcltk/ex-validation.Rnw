@@ -50,7 +50,7 @@ datePatterns <- c()
 for(i in list(c("%m","%d","%Y"),
               c("%m","%d","%y"))) {
   for(j in c("/","-"," ") )
-      datePatterns[length(datePatterns)+1] <- paste(i,sep="", collapse=j)
+      datePatterns[length(datePatterns)+1] <- paste(i,sep = "", collapse = j)
 }
 @ 
 
@@ -73,11 +73,11 @@ the entry widget's value just prior to validations.
 <<setValidDateCallback>>=
 isValidDate <- function(W,P) {          #  P is the current value, W entry
   for(i in datePatterns) {
-    date <- try( as.Date(P, format=i), silent=TRUE)
+    date <- try( as.Date(P, format = i), silent = TRUE)
     if(!inherits(date, "try-error") && !is.na(date)) {
-      tkconfigure(W, foreground="black") #  consult style?
+      tkconfigure(W, foreground = "black") #  consult style?
       tkdelete(W, "0", "end")
-      tkinsert(W, 0, format(date, format="%m/%d/%y"))
+      tkinsert(W, 0, format(date, format = "%m/%d/%y"))
       return(tcl("expr", "TRUE"))
     } 
   }
@@ -87,7 +87,7 @@ isValidDate <- function(W,P) {          #  P is the current value, W entry
 The callback for when a date is invalid simply sets the text color to \code{red}. 
 <<setInvalidCallback>>=
 indicateInvalidDate <- function(W) {
-  tkconfigure(W, foreground="red")
+  tkconfigure(W, foreground = "red")
   tcl("expr", "TRUE")
 }
 @
@@ -95,8 +95,8 @@ indicateInvalidDate <- function(W) {
 Now we define a simple GUI to show the entry widget.
 <<>>=
 w <- tktoplevel(); tkwm.title(w, "Validation of date example")
-f <- ttkframe(w, padding=c(3,3,12,12)); tkpack(f, expand=TRUE, fill="both")
-tkpack(ttklabel(f, text="Enter a date mm/dd/yy"), side="left")
+f <- ttkframe(w, padding = c(3,3,12,12)); tkpack(f, expand = TRUE, fill = "both")
+tkpack(ttklabel(f, text = "Enter a date mm/dd/yy"), side = "left")
 @ 
 
 The \argument{validate}{ttkentry} argument is used to specify when the
@@ -109,12 +109,12 @@ previous}. We use \qcode{focusout} below, so also give a button widget
 so that the focus can be set elsewhere.
 
 <<entryWidgetWithValidation>>=
-e <- ttkentry(f, validate="focusout",
-              validatecommand=isValidDate,
-              invalidcommand=indicateInvalidDate)
-tkpack(e, side="left")
+e <- ttkentry(f, validate = "focusout",
+              validatecommand = isValidDate,
+              invalidcommand = indicateInvalidDate)
+tkpack(e, side = "left")
 
-b <- ttkbutton(f,text="click")       # something to focus on
-tkpack(b, side="bottom")
+b <- ttkbutton(f,text = "click")       # something to focus on
+tkpack(b, side = "bottom")
 @ 
               

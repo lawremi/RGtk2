@@ -6,30 +6,30 @@ library(tcltk)
 usingMac <- function()  
   as.character(tcl("tk", "windowingsystem")) == "aqua"
 
-addScrollbars <- function(parent, widget,type=c("both", "x", "y")) {
+addScrollbars <- function(parent, widget,type = c("both", "x", "y")) {
   if(any(type %in% c("both","x"))) {
-    xscr <- ttkscrollbar(parent, orient="horizontal",
-                         command=function(...) tkxview(widget, ...))
+    xscr <- ttkscrollbar(parent, orient = "horizontal",
+                         command = function(...) tkxview(widget, ...))
     tkconfigure(widget,
-                xscrollcommand=function(...) tkset(xscr,...))
+                xscrollcommand = function(...) tkset(xscr,...))
   }
 
   if(any(type %in% c("both","y"))) {
-     yscr <- ttkscrollbar(parent, orient="vertical",
-                          command=function(...) tkyview(widget, ...))
+     yscr <- ttkscrollbar(parent, orient = "vertical",
+                          command = function(...) tkyview(widget, ...))
      tkconfigure(widget,
-                 yscrollcommand=function(...) tkset(yscr,...))
+                 yscrollcommand = function(...) tkset(yscr,...))
    }
 
   ## place in grid     
-  tkgrid(widget, row=0, column=0, sticky="news")
+  tkgrid(widget, row = 0, column = 0, sticky = "news")
   if(any(type %in% c("both", "x"))) {
-    tkgrid(xscr, row=1, column=0, sticky="ew")
-    tkgrid.columnconfigure(parent, 0, weight=1)
+    tkgrid(xscr, row = 1, column = 0, sticky = "ew")
+    tkgrid.columnconfigure(parent, 0, weight = 1)
   }
   if(any(type %in% c("both", "y"))) {
-    tkgrid(yscr,row=0,column=1, sticky="ns")
-    tkgrid.rowconfigure(parent, 0, weight=1)
+    tkgrid(yscr,row = 0,column = 1, sticky = "ns")
+    tkgrid.rowconfigure(parent, 0, weight = 1)
   }
 }
 @ 
@@ -49,9 +49,9 @@ the text entry widget.
 <<>>=
 w <- tktoplevel()
 tkwm.title(w, "Simple code editor")
-f <- ttkframe(w, padding=c(3,3,12,12)) 
-tkpack(f, expand=TRUE, fill="both")
-tb <- tktext(f, undo=TRUE)
+f <- ttkframe(w, padding = c(3,3,12,12)) 
+tkpack(f, expand = TRUE, fill = "both")
+tb <- tktext(f, undo = TRUE)
 addScrollbars(f, tb)
 @ 
 %
@@ -59,19 +59,19 @@ addScrollbars(f, tb)
 Using \function{tkmenu}, we create a toplevel menubar, \code{mb}, and
 attach it to our toplevel window. Following that, we make ``file'' and ``edit'' submenus.
 <<>>=
-mb <- tkmenu(w); tkconfigure(w, menu=mb)
+mb <- tkmenu(w); tkconfigure(w, menu = mb)
 fileMenu <- tkmenu(mb)
-tkadd(mb, "cascade", label="File", menu=fileMenu)
+tkadd(mb, "cascade", label = "File", menu = fileMenu)
 #
 editMenu <- tkmenu(mb)
-tkadd(mb, "cascade", label="Edit", menu=editMenu)
+tkadd(mb, "cascade", label = "Edit", menu = editMenu)
 @ 
 %
 
 To these sub menubars, we add action items. First a command to
 evaluate the contents of the buffer.
 <<>>=
-tkadd(fileMenu, "command", label="Evaluate buffer",
+tkadd(fileMenu, "command", label = "Evaluate buffer",
       command = function() {
         curVal <- tclvalue(tkget(tb, "1.0", "end"))
         showCmd(curVal)
@@ -80,9 +80,9 @@ tkadd(fileMenu, "command", label="Evaluate buffer",
 
 Then a command to evaluate just the current selection
 <<>>=
-tkadd(fileMenu, "command", label="Evaluate selection",
-      state="disabled",
-      command = function() {
+tkadd(fileMenu, "command", label = "Evaluate selection",
+      state = "disabled",
+      command =  function() {
         curSel <- tclvalue(tkget(tb, "sel.first", "sel.last"))
         showCmd(curSel)
       })
@@ -91,18 +91,18 @@ tkadd(fileMenu, "command", label="Evaluate selection",
 Finally, we end the file menu with a quit action. 
 <<addQuit>>=
 tkadd(fileMenu, "separator")
-tkadd(fileMenu, "command", label="Quit", 
-      command=function() tkdestroy(w))
+tkadd(fileMenu, "command", label = "Quit", 
+      command = function() tkdestroy(w))
 @ 
 
 The edit menu has an undo and redo item. For illustration purposes we add an icon to the undo item.
 <<results=hide>>=
-img <- system.file("images","up.gif", package="gWidgets")
-tkimage.create("photo", "::img::undo", file=img)
-tkadd(editMenu, "command", label="Undo",
-      image="::img::undo", compound="left", state="disabled",
+img <- system.file("images","up.gif", package = "gWidgets")
+tkimage.create("photo", "::img::undo", file = img)
+tkadd(editMenu, "command", label = "Undo",
+      image = "::img::undo", compound = "left", state = "disabled",
       command = function() tcl(tb, "edit", "undo"))
-tkadd(editMenu, "command", label="Redo", state="disabled",
+tkadd(editMenu, "command", label = "Redo", state = "disabled",
       command = function() tcl(tb, "edit", "redo"))
 @ 
 
@@ -117,7 +117,7 @@ tkbind(tb, "<<Selection>>", function(W) {
   }
   ## configure using an index
   sel_state <- ifelse(hasSelection(W), "normal", "disabled")
-  tkentryconfigure(fileMenu, 1, state=sel_state)
+  tkentryconfigure(fileMenu, 1, state = sel_state)
 })
 @ 
 %%
@@ -128,7 +128,7 @@ tkbind(tb, "<<Modified>>", function(W) {
   can_undo <- as.logical(tcl(W,"edit", "modified"))
   undo_state <- ifelse(can_undo, "normal", "disabled")
   sapply(c("Undo", "Redo"), function(i)        # match pattern
-         tkentryconfigure(editMenu, i, state=undo_state)) 
+         tkentryconfigure(editMenu, i, state = undo_state)) 
 })
 @ 
 
@@ -137,10 +137,10 @@ We add a shortcut entry to the menubar and a binding to the
 top-level window for the keyboard shortcut for ``undo.''
 <<addKeyboardShortcut>>=
 if(usingMac()) {
-  tkentryconfigure(editMenu, "Undo", accelerator="Cmd-z")
+  tkentryconfigure(editMenu, "Undo", accelerator = "Cmd-z")
   tkbind(w, "<Option-z>", function() tcl(tb, "edit", "undo"))
 } else {
-  tkentryconfigure(editMenu, "Undo", accelerator="Control-u")
+  tkentryconfigure(editMenu, "Undo", accelerator = "Control-u")
   tkbind(w, "<Control-u>", function() tcl(tb, "edit", "undo"))
 }
 @ 
@@ -159,11 +159,11 @@ doPopup <- function(W, X, Y) {
                            "current wordend"))
   tcl(W, "tag", "add", "popup", "current  wordstart", 
                                 "current wordend")
-  posVals <- head(completion(cur)[,1, drop=TRUE], n=20)
+  posVals <- head(completion(cur)[,1, drop = TRUE], n = 20)
   if(length(posVals) > 1) {
     popup <- tkmenu(tb)                # create menu for popup
     sapply(posVals, function(i) {         
-      tkadd(popup, "command", label=i, command = function() {
+      tkadd(popup, "command", label = i, command = function() {
         tcl(W,"replace", "popup.first", "popup.last", i)
       })
     })
@@ -182,7 +182,7 @@ if (!usingMac()) {
 } else {
   tkbind(tb, "<Button-2>", function(W,X,Y) {
     ## UNIX legacy re mouse-2 click for selection copy
-    tcl("clipboard","clear",displayof=W) 
+    tcl("clipboard","clear",displayof = W) 
     doPopup(W,X,Y)
     })      # right click
   tkbind(tb, "<Control-1>", doPopup)     # Control + click

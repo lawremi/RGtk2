@@ -30,9 +30,9 @@ used when drawing the dialog.
 
 A sample usage is:
 <<tkMessageBox, eval=FALSE>>=
-tkmessageBox(title="Confirm", message="Really exit?", 
-             detail="Changes need saving.", 
-             icon="question", type="okcancel")
+tkmessageBox(title = "Confirm", message = "Really exit?", 
+             detail = "Changes need saving.", 
+             icon = "question", type = "okcancel")
 @ 
 %% 
 
@@ -48,9 +48,9 @@ adding a label to a window:
 message <- "We care ..."
 dlg <- tktoplevel(); tkwm.withdraw(dlg)
 tkwm.overrideredirect(dlg, TRUE)   # no decoration
-f <- ttkframe(dlg, padding=5)
-tkpack(f, expand=TRUE, fill="both")
-tkpack(ttklabel(f, text=message), pady=5)
+f <- ttkframe(dlg, padding = 5)
+tkpack(f, expand = TRUE, fill = "both")
+tkpack(ttklabel(f, text = message), pady = 5)
 @ 
 
 There a different ways to use \code{tkwait}. The function
@@ -61,13 +61,13 @@ this case \code{flag}.  In the button's command we release the window
 then change this value, ending the wait.
 <<waitVariable>>=
 flag <- tclVar("")
-tkpack(ttkbutton(f, text="dismiss", command=function() {
+tkpack(ttkbutton(f, text = "dismiss", command = function() {
   tkgrab.release(dlg)
   tclvalue(flag) <- "Destroy"
 }))
 @ 
 Now we show the window and wait on the \code{flag} variable to change.
-<<eval=FALSE>>=
+<<eval = FALSE>>=
 tkwm.deiconify(dlg)
 tkwait.variable(flag)
 @ 
@@ -106,7 +106,7 @@ to filter out various image types, one could have
 tkgetOpenFile(filetypes = paste(
                 "{{jpeg files} {.jpg .jpeg} }",
                 "{{png files} {.png}}",
-                "{{All files} {*}}", sep=" ")) # needs space
+                "{{All files} {*}}", sep = " ")) # needs space
 @ 
 Extending this is hopefully clear from the pattern above.
 
@@ -114,25 +114,25 @@ Extending this is hopefully clear from the pattern above.
   To illustrate, a simple example for a file menu (Section~\ref{sec:tcltk:menus}) could include:
 <<>>=  
 w <- tktoplevel(); tkwm.title(w, "File menu example")
-mb <- tkmenu(w); tkconfigure(w, menu=mb)
+mb <- tkmenu(w); tkconfigure(w, menu = mb)
 fileMenu <- tkmenu(mb)
-tkadd(mb, "cascade", label="File", menu=fileMenu)
+tkadd(mb, "cascade", label="File", menu = fileMenu)
 
-tkadd(fileMenu,"command",label="Source file...",
-      command= function() {
+tkadd(fileMenu,"command",label = "Source file...",
+      command =  function() {
         fName <- tkgetOpenFile(filetypes=
                         "{{R files} {.R}} {{All files} *}")
         if(file.exists(fName <- as.character(fName)))
            source(tclvalue(fName))
       })
-tkadd(fileMenu, "command", label="Save workspace as...",
-      command=function() {
-        fName <- tkgetSaveFile(defaultextension="Rsave")
+tkadd(fileMenu, "command", label = "Save workspace as...",
+      command = function() {
+        fName <- tkgetSaveFile(defaultextension = "Rsave")
         if(nchar(fname <- as.character(fName)))
-          save.image(file=fName)
+          save.image(file = fName)
       })
-tkadd(fileMenu, "command", label="Set working directory...",
-      command=function() {
+tkadd(fileMenu, "command", label = "Set working directory...",
+      command = function() {
         dName <- tkchooseDirectory()
         if(nchar(dName <- as.character(dName)))
           setwd(dName)
@@ -145,17 +145,17 @@ tkadd(fileMenu, "command", label="Set working directory...",
 There is no constructor in \pkg{tcltk}, but one can use the dialog as follows:
 <<ColorSelection>>=
 w <- tktoplevel(); tkwm.title(w, "Select a color")
-f <- ttkframe(w, padding=c(3,3,3,12))
-tkpack(f, expand=TRUE, fill="both")
-colorWell <- tkcanvas(f, width=40, height=16, 
-                      background="#ee11aa",
-                      highlightbackground="#ababab") 
+f <- ttkframe(w, padding = c(3,3,3,12))
+tkpack(f, expand = TRUE, fill = "both")
+colorWell <- tkcanvas(f, width = 40, height = 16, 
+                      background = "#ee11aa",
+                      highlightbackground = "#ababab") 
 tkpack(colorWell)
-tkpack(ttklabel(f, text="Click color to change"))
+tkpack(ttklabel(f, text = "Click color to change"))
 #
 tkbind(colorWell,"<Button-1>", function(W) {
-  color <- tcl("tk_chooseColor", parent=W, 
-               title="Set box color")
+  color <- tcl("tk_chooseColor", parent = W, 
+               title = "Set box color")
   color <- tclvalue(color)
   print(color)
   if(nchar(color))

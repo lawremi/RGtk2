@@ -4,19 +4,19 @@
 
 library(tcltk)
 addScrollbars <- function(parent, widget) {
-  xscr <- ttkscrollbar(parent, orient="horizontal",
-                       command=function(...) tkxview(widget, ...))
+  xscr <- ttkscrollbar(parent, orient = "horizontal",
+                       command = function(...) tkxview(widget, ...))
   tkconfigure(widget, xscrollcommand = function(...) tkset(xscr,...))
 
-  yscr <- ttkscrollbar(parent, command=function(...) tkyview(widget,...))
+  yscr <- ttkscrollbar(parent, command = function(...) tkyview(widget,...))
   tkconfigure(widget, yscrollcommand = function(...) tkset(yscr,...))
   
   ## Pack into a grid, from tkFAQ 10.1
-  tkgrid(widget,row=0,column=0, sticky="news")
-  tkgrid(xscr,row=1,column=0, sticky="ew")
-  tkgrid(yscr,row=0,column=1, sticky="ns")
-  tkgrid.columnconfigure(parent, 0, weight=1)
-  tkgrid.rowconfigure(parent, 0, weight=1)
+  tkgrid(widget,row = 0,column = 0, sticky = "news")
+  tkgrid(xscr,row = 1,column = 0, sticky = "ew")
+  tkgrid(yscr,row = 0,column = 1, sticky = "ns")
+  tkgrid.columnconfigure(parent, 0, weight = 1)
+  tkgrid.rowconfigure(parent, 0, weight = 1)
 }
 @ 
 %%
@@ -37,28 +37,28 @@ canvas widget resizes. The height is not adjusted, as this is
 controlled by the scrolling.
 
 <<>>=
-scrollableFrame <- function(parent, width= 300, height=300) {
+scrollableFrame <- function(parent, width =  300, height = 300) {
   canvasWidget <- 
     tkcanvas(parent,
-             borderwidth=0, highlightthickness=0,
-             width=width, height=height)
+             borderwidth = 0, highlightthickness = 0,
+             width = width, height = height)
   addScrollbars(parent, canvasWidget)
   #
-  gp <- ttkframe(canvasWidget, padding=c(0,0,0,0))
-  gpID <- tkcreate(canvasWidget, "window", 0, 0, anchor="nw", 
-                   window=gp)
-  tkitemconfigure(canvasWidget, gpID, width=width)
+  gp <- ttkframe(canvasWidget, padding = c(0,0,0,0))
+  gpID <- tkcreate(canvasWidget, "window", 0, 0, anchor = "nw", 
+                   window = gp)
+  tkitemconfigure(canvasWidget, gpID, width = width)
   ## update scroll region
   tkbind(gp,"<Configure>",function() {  
     bbox <- tcl(canvasWidget, "bbox", "all")
-    tcl(canvasWidget,"config", scrollregion=bbox)
+    tcl(canvasWidget,"config", scrollregion = bbox)
   })
   ## adjust "window" width when canvas is resized.
   tkbind(canvasWidget, "<Configure>", function(W) {
     width <- as.numeric(tkwinfo("width", W))
     gpwidth <- as.numeric(tkwinfo("width", gp))
     if(gpwidth < width)
-      tkitemconfigure(canvasWidget, gpID, width=width)
+      tkitemconfigure(canvasWidget, gpID, width = width)
   })
   return(gp)
 }
@@ -68,7 +68,7 @@ To use this, we create a simple GUI as follows:
 <<>>=
 w <- tktoplevel()
 tkwm.title(w,"Scrollable frame example")
-g <- ttkframe(w); tkpack(g, expand=TRUE, fill="both")
+g <- ttkframe(w); tkpack(g, expand = TRUE, fill = "both")
 gp <- scrollableFrame(g, 300, 300)
 @ 
 
@@ -85,10 +85,10 @@ fFamilies <- as.character(tkfont.families())
 fFamilies <- fFamilies[grepl("^[[:alpha:]]", fFamilies)] 
 for(i in seq_along(fFamilies)) {
   fName <- sprintf("::font::-%s", i)
-  try(tkfont.create(fName, family=fFamilies[i], size=14), 
-      silent=TRUE)
-  l <- ttklabel(gp, text=fFamilies[i], font=fName)
-  tkpack(l, side="top", anchor="w")
+  try(tkfont.create(fName, family = fFamilies[i], size = 14), 
+      silent = TRUE)
+  l <- ttklabel(gp, text = fFamilies[i], font = fName)
+  tkpack(l, side = "top", anchor = "w")
 }
 @ 
 

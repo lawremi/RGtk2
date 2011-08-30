@@ -17,15 +17,15 @@ set up both horizontal and vertical scrollbars.
 <<scrollbar-example,echo=FALSE>>=
 library(tcltk)
 w <- tktoplevel(); tkwm.title(w, "Scrollbar example")
-parent <- ttkframe(w); tkpack(parent, expand=TRUE, fill="both")
+parent <- ttkframe(w); tkpack(parent, expand = TRUE, fill = "both")
 widget <- tktext(parent)
 @ 
 %
 <<>>=
-xscr <- ttkscrollbar(parent, orient="horizontal",
-                 command=function(...) tkxview(widget, ...))
-yscr <- ttkscrollbar(parent, orient="vertical",
-                 command=function(...) tkyview(widget, ...))
+xscr <- ttkscrollbar(parent, orient = "horizontal",
+                 command = function(...) tkxview(widget, ...))
+yscr <- ttkscrollbar(parent, orient = "vertical",
+                 command = function(...) tkyview(widget, ...))
 @
 %
 The \function{tkxview} and \function{tkyview} functions set what part of the widget is being shown.
@@ -37,8 +37,8 @@ done at the time of construction as well. Again, the command takes a
 standard form:
 <<>>=
 tkconfigure(widget,
-            xscrollcommand=function(...) tkset(xscr,...),
-            yscrollcommand=function(...) tkset(yscr,...))
+            xscrollcommand = function(...) tkset(xscr,...),
+            yscrollcommand = function(...) tkset(yscr,...))
 @ 
 
 Although scrollbars can appear anywhere, the conventional place is on
@@ -46,11 +46,11 @@ the right and lower side of the parent. The following adds scrollbars
 using the grid manager. The combination of weights and stickiness below
 will have the scrollbars expand as expected if the window is resized.
 <<>>=
-tkgrid(widget, row=0, column=0, sticky="news")
-tkgrid(yscr,row=0,column=1, sticky="ns")
-tkgrid(xscr, row=1, column=0, sticky="ew")
-tkgrid.columnconfigure(parent, 0, weight=1)
-tkgrid.rowconfigure(parent, 0, weight=1)
+tkgrid(widget, row = 0, column = 0, sticky = "news")
+tkgrid(yscr,row = 0,column = 1, sticky = "ns")
+tkgrid(xscr, row = 1, column = 0, sticky = "ew")
+tkgrid.columnconfigure(parent, 0, weight = 1)
+tkgrid.rowconfigure(parent, 0, weight = 1)
 @ 
 %
 Although this is a bit tedious, it does give the programmer some
@@ -64,20 +64,20 @@ employed for that.
 ## function to add scrollbars to widget and pack into grid
 ## parent uses grid manager -- con't pack in other children
 addScrollbars <- function(parent, widget) {
-  xscr <- ttkscrollbar(parent, orient="horizontal",
-                       command=function(...) tkxview(widget, ...))
-  yscr <- ttkscrollbar(parent, orient="vertical",
-                       command=function(...) tkyview(widget, ...))
+  xscr <- ttkscrollbar(parent, orient = "horizontal",
+                       command = function(...) tkxview(widget, ...))
+  yscr <- ttkscrollbar(parent, orient = "vertical",
+                       command = function(...) tkyview(widget, ...))
   ##
   tkconfigure(widget,
-              xscrollcommand=function(...) tkset(xscr,...),
-              yscrollcommand=function(...) tkset(yscr,...))
+              xscrollcommand = function(...) tkset(xscr,...),
+              yscrollcommand = function(...) tkset(yscr,...))
   ##
-  tkgrid(widget, row=0, column=0, sticky="news")
-  tkgrid(yscr,row=0,column=1, sticky="ns")
-  tkgrid(xscr, row=1, column=0, sticky="ew")
-  tkgrid.columnconfigure(parent, 0, weight=1)
-  tkgrid.rowconfigure(parent, 0, weight=1)
+  tkgrid(widget, row = 0, column = 0, sticky = "news")
+  tkgrid(yscr,row = 0,column = 1, sticky = "ns")
+  tkgrid(xscr, row = 1, column = 0, sticky = "ew")
+  tkgrid.columnconfigure(parent, 0, weight = 1)
+  tkgrid.rowconfigure(parent, 0, weight = 1)
 }
 @ 
 
@@ -121,7 +121,7 @@ lines:
 tkinsert(txt, 
          "1.0", 
          paste("Lorem ipsum dolor",
-               "sit amet,", sep="\n"))
+               "sit amet,", sep = "\n"))
 @ 
 Images and other windows can be added to a text buffer, but we do not
 discuss that here. The value \qcode{1.0} is an index (described below)
@@ -224,8 +224,8 @@ tktag.add(txt, "firstWord", "1.0 wordstart", "1.0 wordend")
 @ 
 The \subcommand{tag configure}{tktext} can be used to configure properties of the tagged characters, for example:
 <<>>=
-tktag.configure(txt, "firstWord", foreground="red", 
-                font="helvetica 12 bold")
+tktag.configure(txt, "firstWord", foreground = "red", 
+                font = "helvetica 12 bold")
 @ 
 %
 There are several other configuration options for a tag. From within
@@ -365,10 +365,10 @@ conditionally to different events.
 <<echo=FALSE>>=
 w <- tktoplevel()
 tkwm.title(w, "Popup menu example")
-f <- ttkframe(w, padding=c(3,3,12,12))
-tkpack(f, expand=TRUE, fill="both")
+f <- ttkframe(w, padding = c(3,3,12,12))
+tkpack(f, expand = TRUE, fill = "both")
 
-b <- ttkbutton(f, text="Click me for popup")
+b <- ttkbutton(f, text = "Click me for popup")
 @ 
 
 <<>>=
@@ -480,8 +480,8 @@ later.
 <<treeExample,echo=FALSE>>=
 w <- tktoplevel()
 tkwm.title(w, "Choose CRAN mirror")
-f <- ttkframe(w, padding=c(3,3,12,12))
-tkpack(f, expand=TRUE, fill="both")
+f <- ttkframe(w, padding = c(3,3,12,12))
+tkpack(f, expand = TRUE, fill = "both")
 @ 
 
 If \code{f} is a frame, then the following call will create a treeview
@@ -490,9 +490,9 @@ non-themed, listbox widget of \Tk.
 
 <<>>=
 tr <- ttktreeview(f, 
-                  columns=1,        # column identifier is "1"
-                  show="headings",  # not "#0"
-                  height=25)        
+                  columns = 1,        # column identifier is "1"
+                  show = "headings",  # not "#0"
+                  height = 25)        
 addScrollbars(f, tr)                # our scrollbar function
 @ 
 
@@ -532,9 +532,9 @@ x <- getCRANmirrors()
 Host <- x$Host
 shade <- c("none", "gray")                     # tag names
 for(i in seq_along(Host))
-  ID <- tkinsert(tr, "", "end", values=as.tclObj(Host[i]),
-                 tag=shade[i %% 2])            # none or gray
-tktag.configure(tr, "gray", background="gray95") # shade rows
+  ID <- tkinsert(tr, "", "end", values = as.tclObj(Host[i]),
+                 tag = shade[i %% 2])            # none or gray
+tktag.configure(tr, "gray", background = "gray95") # shade rows
 @ 
 
 For filling in each row's content the \code{values} option is used. If
@@ -569,7 +569,7 @@ of the heading may be positioned through the \code{anchor} option. For
 example, this command will center the text heading of the first
 column:
 <<>>=
-tcl(tr, "heading", 1, text="Host", anchor="center")
+tcl(tr, "heading", 1, text = "Host", anchor = "center")
 @ 
 
 The \subcommand{column}{ttktreeview} subcommand can be used to adjust
@@ -585,7 +585,7 @@ column, the placement of each entry within a cell is controlled by the
 
 For example, this command will adjust properties of the lone column of \code{tr}:
 <<>>=
-tcl(tr, "column", 1, width=400,  stretch=TRUE, anchor="w")
+tcl(tr, "column", 1, width = 400,  stretch = TRUE, anchor = "w")
 @ 
 
 
@@ -598,27 +598,27 @@ tcl(tr, "column", 1, width=400,  stretch=TRUE, anchor="w")
 populate_rectangular_treeview <- function(parent, m) {
   enc_frame <- ttkframe(parent)
   frame <- ttkframe(enc_frame)
-  tkpack(frame, expand=TRUE, fill="both")
+  tkpack(frame, expand = TRUE, fill = "both")
   tr <- ttktreeview(frame,
-                    columns=seq_len(ncol(m)),
-                    show="headings")
+                    columns = seq_len(ncol(m)),
+                    show = "headings")
   addScrollbars(frame, tr)
   tkpack.propagate(enc_frame, FALSE)    # size from frame
   ## headings,widths
   font_measure <- tcl("font","measure","TkTextFont","0")
   charWidth <- as.integer(tclvalue(font_measure))
   sapply(seq_len(ncol(m)), function(i) {
-    tcl(tr, "heading", i, text=colnames(m)[i])
+    tcl(tr, "heading", i, text = colnames(m)[i])
     tcl(tr, "column", i, 
-        width=10 + charWidth*max(apply(m, 2, nchar)))
+        width = 10 + charWidth*max(apply(m, 2, nchar)))
   })
-  tcl(tr, "column", ncol(m), stretch=TRUE)
+  tcl(tr, "column", ncol(m), stretch = TRUE)
   ## values
-  if(ncol(m) == 1)  m <- as.matrix(paste("{", m , "}", sep=""))
+  if(ncol(m) == 1)  m <- as.matrix(paste("{", m , "}", sep = ""))
   apply(m, 1, function(vals) 
-    tcl(tr, "insert", "", "end", values=vals))
+    tcl(tr, "insert", "", "end", values = vals))
   ##
-  return(list(tr=tr, frame=enc_frame))
+  return(list(tr = tr, frame = enc_frame))
 }
 @   
 %
@@ -640,9 +640,9 @@ widget. For example:
 w <- tktoplevel()
 m <- sapply(mtcars, as.character)
 a <- populate_rectangular_treeview(w, m)
-tkconfigure(a$tr, selectmode="extended") # multiple selection
-tkconfigure(a$frame, width=300, height=200) # frame size
-tkpack(a$frame, expand=TRUE, fill="both")
+tkconfigure(a$tr, selectmode = "extended") # multiple selection
+tkconfigure(a$frame, width = 300, height = 200) # frame size
+tkpack(a$frame, expand = TRUE, fill = "both")
 @ 
 
 \end{example}
@@ -795,8 +795,8 @@ parent item is opened or closed, the virtual events
 signaled.
 
 %% example?
-%% tcl(tr, "insert","I001","end", text="child", open=FALSE)
-%% tcl(tr, item, "I001", open=TRUE)
+%% tcl(tr, "insert","I001","end", text = "child", open = FALSE)
+%% tcl(tr, item, "I001", open = TRUE)
 
 %% traversal 
 
@@ -869,7 +869,7 @@ frame widget.
 
 % Once created, a screenshot of the canvas can be created through the
 % \subcommand{postscript}{tkcanvas} subcommand, as in
-% \code{tcl(canvas, "postscript", file="filename")}. To store the
+% \code{tcl(canvas, "postscript", file = "filename")}. To store the
 % widget so that it can be recreated is not supported directly. \TCL\/
 % code to do so can be found at \url{http://wiki.tcl.tk/9168}.
 

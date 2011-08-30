@@ -13,20 +13,20 @@ to evaluate. For this example though, we make a simple GUI
 
 <<makeGUI>>=
 w <- tktoplevel(); tkwm.title(w, "Text buffer example")
-f <- ttkframe(w, padding=c(3,3,12,12))
-tkpack(f, expand=TRUE, fill="both")
-txt <- tktext(f, width=80, height = 24)   # default size
+f <- ttkframe(w, padding = c(3,3,12,12))
+tkpack(f, expand = TRUE, fill = "both")
+txt <- tktext(f, width = 80, height = 24)   # default size
 addScrollbars(f, txt)
 @ 
  
 To distinguish between commands and their output we define the
 following tags:
 <<>>=
-tktag.configure(txt, "commandTag", foreground="blue", 
-                font="courier 12 italic")
-tktag.configure(txt, "outputTag", font="courier 12")
-tktag.configure(txt, "errorTag", foreground="red", 
-                font="courier 12 bold")
+tktag.configure(txt, "commandTag", foreground = "blue", 
+                font = "courier 12 italic")
+tktag.configure(txt, "outputTag", font = "courier 12")
+tktag.configure(txt, "errorTag", foreground = "red", 
+                font = "courier 12 bold")
 @ 
 
 The following function does the work of evaluating a command chunk
@@ -36,7 +36,7 @@ markup tags specified above to indicate commands from output.
 <<>>=
 evalCmdChunk <- function(txt, cmds) {
   
-  cmdChunks <- try(parse(text=cmds), silent=TRUE)
+  cmdChunks <- try(parse(text = cmds), silent = TRUE)
   if(inherits(cmdChunks,"try-error")) {
     tkinsert(t, "end", "Error", "errorTag") # add markup tag
   }
@@ -46,14 +46,14 @@ evalCmdChunk <- function(txt, cmds) {
     dcmd <- deparse(cmd, width.cutoff = cutoff)
     command <- 
       paste(getOption("prompt"),
-            paste(dcmd, collapse=paste("\n", 
-                          getOption("continue"), sep="")),
-            sep="", collapse="")
+            paste(dcmd, collapse = paste("\n", 
+                          getOption("continue"), sep = "")),
+            sep = "", collapse = "")
     tkinsert(txt, "end", command, "commandTag")
     tkinsert(txt, "end","\n")
     ## output, should check for errors in eval!
-    output <- capture.output(eval(cmd, envir=.GlobalEnv))
-    output <- paste(output, collapse="\n")
+    output <- capture.output(eval(cmd, envir = .GlobalEnv))
+    output <- paste(output, collapse = "\n")
     tkinsert(txt, "end", output, "outputTag")
     tkinsert(txt, "end","\n")
   }
@@ -63,25 +63,25 @@ evalCmdChunk <- function(txt, cmds) {
 <<echo=FALSE>>=
 ## function to add scrollbars to a widget
 addScrollbars <- function(parent, widget) {
-  xscr <- ttkscrollbar(parent, orient="horizontal",
-                       command=function(...) tkxview(widget, ...))
-  yscr <- ttkscrollbar(parent, orient="vertical",
-                       command=function(...) tkyview(widget, ...))
+  xscr <- ttkscrollbar(parent, orient = "horizontal",
+                       command = function(...) tkxview(widget, ...))
+  yscr <- ttkscrollbar(parent, orient = "vertical",
+                       command = function(...) tkyview(widget, ...))
 
   tkconfigure(widget,
-              xscrollcommand=function(...) tkset(xscr,...),
-              yscrollcommand=function(...) tkset(yscr,...))
+              xscrollcommand = function(...) tkset(xscr,...),
+              yscrollcommand = function(...) tkset(yscr,...))
 
-  tkgrid(widget, row=0, column=0, sticky="news")
-  tkgrid(yscr,row=0,column=1, sticky="ns")
-  tkgrid(xscr, row=1, column=0, sticky="ew")
-  tkgrid.columnconfigure(parent, 0, weight=1)
-  tkgrid.rowconfigure(parent, 0, weight=1)
+  tkgrid(widget, row = 0, column = 0, sticky = "news")
+  tkgrid(yscr,row = 0,column = 1, sticky = "ns")
+  tkgrid(xscr, row = 1, column = 0, sticky = "ew")
+  tkgrid.columnconfigure(parent, 0, weight = 1)
+  tkgrid.rowconfigure(parent, 0, weight = 1)
 }
 @
 
 
 This is how it can be used.
 <<TryIt>>=    
-evalCmdChunk(txt, "2 + 2; lm(mpg ~ wt, data=mtcars)")
+evalCmdChunk(txt, "2 + 2; lm(mpg ~ wt, data = mtcars)")
 @ 

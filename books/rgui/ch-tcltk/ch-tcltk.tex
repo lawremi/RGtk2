@@ -76,10 +76,10 @@ provides much detail. \R{} specific documentation include two
 excellent R News articles and a proceedings
 paper\footcite{Rnews:Dalgaard:2001a}\footcite{Rnews:Dalgaard:2002}\footcite{Dalgaard-DSC}
 by Peter Dalgaard, the package author. A
-set of examples due to James Wettenhall~\footcite{Wettenhall} are also
+set of examples due to James Wettenhall\footcite{Wettenhall} are also
 quite instructive. A main use of \pkg{tcltk} is within the \pkg{Rcmdr}
 framework. Writing extensions for that is well documented in an R News
-article~\footcite{Rnews:Fox:2007} by John Fox, the package author.
+article\footcite{Rnews:Fox:2007} by John Fox, the package author.
  
 
 \section{A first example}
@@ -108,25 +108,25 @@ more detail on the various widgets provided by \Tk.
  w <- tktoplevel()
  tkwm.title(w, "Simple dialog")
  ##
- f <- ttkframe(w, padding=c(3,3,12,12))
- tkpack(f, expand=TRUE, fill="both")
+ f <- ttkframe(w, padding = c(3,3,12,12))
+ tkpack(f, expand = TRUE, fill = "both")
  ##
  g <- ttkframe(f); tkpack(g)
  ##
- l <- ttklabel(g, text="Enter your name:")
- tkpack(l, side="left")
+ l <- ttklabel(g, text = "Enter your name:")
+ tkpack(l, side = "left")
  ##
  txtVar <- tclVar("")
- txt <- ttkentry(g, textvariable=txtVar)
+ txt <- ttkentry(g, textvariable = txtVar)
  tkpack(txt)
  ##
- g1 <- ttkframe(f); tkpack(g1, anchor="ne")
- btn <- ttkbutton(g1, text="Click")
- tkpack(btn, side="right")
+ g1 <- ttkframe(f); tkpack(g1, anchor = "ne")
+ btn <- ttkbutton(g1, text = "Click")
+ tkpack(btn, side = "right")
  ##
  msg <- sprintf("Hello %s", tclvalue(txtVar))
  handler <- function() print(msg)
- tkconfigure(btn, command=handler)
+ tkconfigure(btn, command = handler)
 \end{Sinput}
 \end{Schunk}
 %%
@@ -254,7 +254,7 @@ label object):
 
 \begin{Schunk}
 \begin{Sinput}
- tkconfigure(lab, text="new text")
+ tkconfigure(lab, text = "new text")
 \end{Sinput}
 \end{Schunk}
 
@@ -328,7 +328,7 @@ always the case.
 \begin{figure}
   \centering
 \begin{verbatim}
-          tcl(widget, subcommand, key=value, callback)
+          tcl(widget, subcommand, key = value, callback)
              /            |           |           \
           widget$ID  subcommand   -key value   makeCallback
 \end{verbatim}
@@ -373,7 +373,7 @@ specified as the first argument of the constructor.  A typical
 invocation was given in the example.
 \begin{Schunk}
 \begin{Sinput}
- l <- ttklabel(g, text="Enter your name:")
+ l <- ttklabel(g, text = "Enter your name:")
 \end{Sinput}
 \end{Schunk}
 %
@@ -441,7 +441,7 @@ and not set it.
 <Tcl> Enter your name: 
 \end{Soutput}
 \begin{Sinput}
- tkcget(l, text=NULL)                 # alternate syntax
+ tkcget(l, text = NULL)                 # alternate syntax
 \end{Sinput}
 \begin{Soutput}
 <Tcl> Enter your name: 
@@ -453,7 +453,7 @@ As mentioned, the \code{tclObj} objects can be coerced to characters in two ways
 The conversion through \code{as.character} breaks the return value along whitespace:
 \begin{Schunk}
 \begin{Sinput}
- as.character(tkcget(l, text=NULL))
+ as.character(tkcget(l, text = NULL))
 \end{Sinput}
 \begin{Soutput}
 [1] "Enter" "your"  "name:"
@@ -463,7 +463,7 @@ The conversion through \code{as.character} breaks the return value along whitesp
 Whereas, conversion by the \function{tclvalue} function does not:
 \begin{Schunk}
 \begin{Sinput}
- tclvalue(tkcget(l, text=NULL))
+ tclvalue(tkcget(l, text = NULL))
 \end{Sinput}
 \begin{Soutput}
 [1] "Enter your name:"
@@ -486,7 +486,7 @@ refer to the drawn widget and not just a top-level window). E.g.,
 \begin{Soutput}
 List of 2
  $ ID : chr ".1.1.2.1"
- $ env:<environment: 0x1032bacd8> 
+ $ env:<environment: 0x1032bac30> 
  - attr(*, "class")= chr "tkwin"
 \end{Soutput}
 \end{Schunk}
@@ -499,7 +499,7 @@ generated behind the scenes by the \pkg{tcltk} package using numeric
 values to keep track of the hierarchy. The \code{env} component
 contains an environment that keeps a count of the subwindows, the parent
 window and any callback functions. This helps ensure that any copies
-of the widget refer to the same object~\footcite{Dalgaard-DSC}. As the
+of the widget refer to the same object\footcite{Dalgaard-DSC}. As the
 construction of a new widget requires the \code{ID} and environment of
 its parent, the first argument to \function{tkwidget} (and hence any constructor), \code{parent},
 must be a \class{tkwin} object, not simply its character ID, as is
@@ -515,10 +515,10 @@ In the example we saw several calls to \code{tkpack}. For example,
 
 \begin{Schunk}
 \begin{Sinput}
- tkpack(f, expand=TRUE, fill="both")
- tkpack(l, side="left")
+ tkpack(f, expand = TRUE, fill = "both")
+ tkpack(l, side = "left")
  tkpack(txt)
- g1 <- ttkframe(f); tkpack(g1, anchor="ne")
+ g1 <- ttkframe(f); tkpack(g1, anchor = "ne")
 \end{Sinput}
 \end{Schunk}
 
@@ -550,7 +550,7 @@ In the call to \code{ttkentry} in the example we had:
 \begin{Schunk}
 \begin{Sinput}
  txtVar <- tclVar("")
- txt <- ttkentry(g, textvariable=txtVar)
+ txt <- ttkentry(g, textvariable = txtVar)
 \end{Sinput}
 \end{Schunk}
 %
@@ -635,11 +635,11 @@ In the definition of the button we saw:
 
 \begin{Schunk}
 \begin{Sinput}
- btn <- ttkbutton(g1, text="Click")
+ btn <- ttkbutton(g1, text = "Click")
  #
  msg <- sprintf("Hello %s", tclvalue(txtVar))
  handler <- function() print(msg)
- tkconfigure(btn, command=handler)
+ tkconfigure(btn, command = handler)
 \end{Sinput}
 \end{Schunk}
 
@@ -680,8 +680,8 @@ inside of it through the commands:
 \begin{Schunk}
 \begin{Sinput}
  w <- tktoplevel()
- f <- ttkframe(w, padding=c(3,3,12,12))
- tkpack(f, expand=TRUE, fill="both")
+ f <- ttkframe(w, padding = c(3,3,12,12))
+ tkpack(f, expand = TRUE, fill = "both")
 \end{Sinput}
 \end{Schunk}
 
@@ -789,40 +789,40 @@ button. This topic is covered in some detail in the \Tk\/ tutorial by Roseman.
 % <<no-frame, echo=FALSE>>=
 % w <- tktoplevel()
 % tkwm.title(w, "No frame")
-% l <- ttklabel(w, text="new text")
+% l <- ttklabel(w, text = "new text")
 % tkpack(l)
 
-% b <- ttkbutton(w, text="click me", 
-%                command=function() print("thanks"))
+% b <- ttkbutton(w, text = "click me", 
+%                command = function() print("thanks"))
 % tkpack(b)
 
 % textvar <- tclVar("another label")
-% l2 <- ttklabel(w, textvariable=textvar)
+% l2 <- ttklabel(w, textvariable = textvar)
 % tkpack(l2)
 % @ 
 
 % <<with-frame, echo=FALSE>>=
 % w <- tktoplevel()
 % tkwm.title(w, "With frame")
-% w <- ttkframe(w, padding=c(3,3,12,12))  # Some breathing room
-% tkpack(w, expand=TRUE, fill="both")     # For window expansion
-% l <- ttklabel(w, text="new text")
+% w <- ttkframe(w, padding = c(3,3,12,12))  # Some breathing room
+% tkpack(w, expand = TRUE, fill = "both")     # For window expansion
+% l <- ttklabel(w, text = "new text")
 % tkpack(l)
 
-% b <- ttkbutton(w, text="click me", 
-%                command=function() print("thanks"))
+% b <- ttkbutton(w, text = "click me", 
+%                command = function() print("thanks"))
 % tkpack(b)
 
 % textvar <- tclVar("another label")
-% l2 <- ttklabel(w, textvariable=textvar)
+% l2 <- ttklabel(w, textvariable = textvar)
 % tkpack(l2)
 % @ 
 
 % <<UseFrameToTheme>>=
 % w <- tktoplevel()
-% f <- ttkframe(w, padding=c(3,3,12,12))  # Some breathing room
-% tkpack(f, expand=TRUE, fill="both")     # For window expansion
-% l <- ttklabel(f,  text="label")         # some widget
+% f <- ttkframe(w, padding = c(3,3,12,12))  # Some breathing room
+% tkpack(f, expand = TRUE, fill = "both")     # For window expansion
+% l <- ttklabel(f,  text = "label")         # some widget
 % tkpack(l)
 % @ 
 
@@ -918,8 +918,8 @@ property. Colors can be specified by name -- for common colors -- or
 by hex RGB values which are common in web programming.
 \begin{Schunk}
 \begin{Sinput}
- tkconfigure(l, foreground="red")
- tkconfigure(l, foreground="#00aa00")
+ tkconfigure(l, foreground = "red")
+ tkconfigure(l, foreground = "#00aa00")
 \end{Sinput}
 \end{Schunk}
 
@@ -943,7 +943,7 @@ label, rather than specifying the font properties, one configures the
 \code{font} options using a pre-defined font name, such as
 \begin{Schunk}
 \begin{Sinput}
- tkconfigure(l, font="TkFixedFont")
+ tkconfigure(l, font = "TkFixedFont")
 \end{Sinput}
 \end{Schunk}
 
@@ -968,14 +968,14 @@ Standard font name&Description\\
 The \index{tkfont!\code{create}} \function{tkfont.create} function can be used to create a new font, as with the following commands:
 \begin{Schunk}
 \begin{Sinput}
- tkfont.create("ourFont", family="Helvetica", size=12, 
-               weight="bold")
+ tkfont.create("ourFont", family = "Helvetica", size = 12, 
+               weight = "bold")
 \end{Sinput}
 \begin{Soutput}
 <Tcl> ourFont 
 \end{Soutput}
 \begin{Sinput}
- tkconfigure(l, font="ourFont")
+ tkconfigure(l, font = "ourFont")
 \end{Sinput}
 \end{Schunk}
 
@@ -1017,10 +1017,10 @@ average text size varies for proportional fonts, the size of the
 \begin{Sinput}
  font_measure <- tcl("font","measure","TkTextFont","M")
  fontWidth <- as.integer(tclvalue(font_measure))
- tmp <- tkfont.metrics("TkTextFont","linespace"=NULL)
+ tmp <- tkfont.metrics("TkTextFont","linespace" = NULL)
  fontHeight <- as.numeric(tclvalue(tmp))
  #
- c(width=fontWidth, height=fontHeight)
+ c(width = fontWidth, height = fontHeight)
 \end{Sinput}
 \begin{Soutput}
  width height 
@@ -1060,7 +1060,7 @@ being used. (This option could also be \qcode{bitmap} but that is more
 a legacy option.)\footnote{The \pkg{tkrplot} package allows a third
   option \code{Rplot}. This package has the high-level command
   \function{tkrplot}, but the low-level use of a) calling
-  \code{.my.tkdev(hscale=1,vscale=1)} b) creating a graphic and c) creating an image
+  \code{.my.tkdev(hscale = 1,vscale = 1)} b) creating a graphic and c) creating an image
   object through \code{tkimage.create("Rplot", img\_name)} will
   produce a new image object one can use.} The second argument
 specifies the name of the object. We follow the advice of the \TK\/
@@ -1078,7 +1078,7 @@ To use the image, one specifies the image name to the
 \option{image}{ttklabel} option:
 \begin{Schunk}
 \begin{Sinput}
- l <- ttklabel(w, image="::img::tclLogo", text="logo text", 
+ l <- ttklabel(w, image = "::img::tclLogo", text = "logo text", 
                compound = "top")
 \end{Sinput}
 \end{Schunk}
@@ -1097,7 +1097,7 @@ image. These are found in the \TK\/ man page for \code{photo}, not
 one could issue the command
 \begin{Schunk}
 \begin{Sinput}
- tkconfigure("::img::tclLogo", palette=16)
+ tkconfigure("::img::tclLogo", palette = 16)
 \end{Sinput}
 \end{Schunk}
 
@@ -1140,7 +1140,7 @@ close a window.
 \begin{Schunk}
 \begin{Sinput}
  w <- tktoplevel()
- b <- ttkbutton(w, text="Some widget with the focus")
+ b <- ttkbutton(w, text = "Some widget with the focus")
  tkpack(b)
  tkbind(w, "<Control-q>", function() tkdestroy(w))
 \end{Sinput}
@@ -1169,19 +1169,19 @@ class \code{TButton}.
 \begin{Schunk}
 \begin{Sinput}
  w <- tktoplevel()
- l <- ttklabel(w, text="Click Ok for a message")
- b1 <- ttkbutton(w, text="Cancel", 
-                 command=function() tkdestroy(w))
- b2 <- ttkbutton(w, text="Ok", command=function() {
+ l <- ttklabel(w, text = "Click Ok for a message")
+ b1 <- ttkbutton(w, text = "Cancel", 
+                 command = function() tkdestroy(w))
+ b2 <- ttkbutton(w, text = "Ok", command = function() {
    print("initiate an action")
  })
  sapply(list(l,b1,b2), tkpack)
  ##
  tkbind(w, "C", function() tcl(b1, "invoke"))
- tkconfigure(b1, underline=0)
+ tkconfigure(b1, underline = 0)
  ##
  tkbind(w, "O", function() tcl(b1, "invoke"))
- tkconfigure(b2, underline=0)
+ tkconfigure(b2, underline = 0)
  tkfocus(b2)
  ##
  tkbind("TButton", "<Return>", function(W) {
@@ -1332,7 +1332,7 @@ Example~\ref{ex-tcltk-dnd} will put these to use.
 \begin{Schunk}
 \begin{Sinput}
  w <- tktoplevel()
- b <- ttkbutton(w, text="Click me to record the x,y position")
+ b <- ttkbutton(w, text = "Click me to record the x,y position")
  tkpack(b)
  tkbind(b, "<ButtonPress-1>", function(W, x, y, X, Y) {
    print(W)                              # an ID
@@ -1363,7 +1363,7 @@ done along the lines of:
 \begin{Sinput}
  afterID <- ""
  someFlag <- TRUE
- repeatCall <- function(ms=100, f) {
+ repeatCall <- function(ms = 100, f) {
    afterID <<- tcl("after", ms, function() {
      if(someFlag) {                      
        f()
@@ -1405,10 +1405,10 @@ used in a real application.
 \begin{Schunk}
 \begin{Sinput}
  w <- tktoplevel()
- bDrag <- ttkbutton(w, text="Drag me")
- bDrop <- ttkbutton(w, text="Drop here")
+ bDrag <- ttkbutton(w, text = "Drag me")
+ bDrop <- ttkbutton(w, text = "Drop here")
  tkpack(bDrag)
- tkpack(ttklabel(w, text="Drag over me"))
+ tkpack(ttklabel(w, text = "Drag over me"))
  tkpack(bDrop)
 \end{Sinput}
 \end{Schunk}
@@ -1432,7 +1432,7 @@ set the values of the three global variables.
 \begin{Sinput}
  tkbind(bDrag,"<ButtonPress-1>",function(W) {
    .dragging <<-  TRUE
-   .dragValue <<- as.character(tkcget(W,text=NULL))
+   .dragValue <<- as.character(tkcget(W,text = NULL))
    .lastWidgetID <<- as.character(W)
  })
 \end{Sinput}
@@ -1455,7 +1455,7 @@ this widget, and if this widget is different from the previous last
 widget, we generate the \code{\VirtualEvent{DragLeave}} virtual event.
 
 %%  ## This failed with OS X: "
-%%  ##  .Tcl(paste(as.character(bDrag$ID),' configure -cursor "@', getwd(),'/cursor.xbm black"', sep=""))
+%%  ##  .Tcl(paste(as.character(bDrag$ID),' configure -cursor "@', getwd(),'/cursor.xbm black"', sep = ""))
 
 \begin{Schunk}
 \begin{Sinput}
@@ -1463,9 +1463,9 @@ widget, we generate the \code{\VirtualEvent{DragLeave}} virtual event.
    if(!.dragging) return()
    ## see cursor help page in API for more options
    ## For custom cursors cf. http://wiki.tcl.tk/8674. 
-   tkconfigure(W, cursor="coffee_mug")   # set cursor
+   tkconfigure(W, cursor = "coffee_mug")   # set cursor
  
-   w = tkwinfo("containing", X, Y)       # widget mouse is over
+   w <- tkwinfo("containing", X, Y)       # widget mouse is over
    if(as.logical(tkwinfo("exists", w)))  # does widget exist?
      tkevent.generate(w, "<<DragOver>>")
  
@@ -1496,11 +1496,11 @@ over.
    if(as.logical(tkwinfo("exists", w))) {
      tkevent.generate(w, "<<DragLeave>>")
      tkevent.generate(w, "<<DragDrop>>")
-     tkconfigure(w, cursor="")
+     tkconfigure(w, cursor = "")
    }
    .dragging <<- FALSE
    .lastWidgetID <<- "" 
-   tkconfigure(W, cursor="")
+   tkconfigure(W, cursor = "")
  })
 \end{Sinput}
 \end{Schunk}
@@ -1525,7 +1525,7 @@ state back to not active.
 \begin{Sinput}
  tkbind(bDrop,"<<DragLeave>>", function(W) {
    if(.dragging)  {
-     tkconfigure(W, cursor="")
+     tkconfigure(W, cursor = "")
      tcl(W, "state", "!active")  
     }
  })
@@ -1538,7 +1538,7 @@ the widget value to that stored in the global variable
 \begin{Schunk}
 \begin{Sinput}
  tkbind(bDrop,"<<DragDrop>>", function(W) {
-   tkconfigure(W, text=.dragValue)
+   tkconfigure(W, text = .dragValue)
    .dragValue <- ""
  })
 \end{Sinput}
@@ -1677,11 +1677,11 @@ Section~\ref{sec:tcltk:dialogs}.
    modified <- tcl(e, "edit", "modified")
    if(as.logical(modified)) {
      response <- 
-       tkmessageBox(icon="question",
-                    message="Really close?",
-                    detail="Changes need to be saved",
-                    type="yesno",
-                    parent=w)
+       tkmessageBox(icon = "question",
+                    message = "Really close?",
+                    detail = "Changes need to be saved",
+                    type = "yesno",
+                    parent = w)
      if(as.character(response) == "no")
        return()
    }
@@ -1698,7 +1698,7 @@ Section~\ref{sec:tcltk:dialogs}.
 % function as follows: 
 % \begin{Schunk}
 % \begin{Sinput}
-% tcl("wm", "attributes", w, topmost=TRUE)  
+% tcl("wm", "attributes", w, topmost = TRUE)  
 % \end{Sinput}
 % \end{Schunk}
 
@@ -1735,20 +1735,20 @@ Section~\ref{sec:tcltk:dialogs}.
      }
    }
    
-   if(!missing(width)) tkconfigure(w, width=width)
-   if(!missing(height)) tkconfigure(w, height=height)
+   if(!missing(width)) tkconfigure(w, width = width)
+   if(!missing(height)) tkconfigure(w, height = height)
  
    windowSystem <- tclvalue(tcl("tk", "windowingsystem"))
    if(windowSystem == "aqua") {
-     f <- ttkframe(w, padding=c(3,3,12,12))
+     f <- ttkframe(w, padding = c(3,3,12,12))
    } else {
-     f1 <- ttkframe(w, padding=0)
-     tkpack(f1, expand=TRUE, fill="both")
-     f <- ttkframe(f1, padding=c(3,3,12,0))
+     f1 <- ttkframe(w, padding = 0)
+     tkpack(f1, expand = TRUE, fill = "both")
+     f <- ttkframe(f1, padding = c(3,3,12,0))
      sg <- ttksizegrip(f1)
-     tkpack(sg, side="bottom", anchor="se")
+     tkpack(sg, side = "bottom", anchor = "se")
    }
-   tkpack(f, expand=TRUE, fill="both", side="top")
+   tkpack(f, expand = TRUE, fill = "both", side = "top")
  
    return(f)
  }
@@ -1846,7 +1846,7 @@ additional flexibility.
 \paragraph{after, before}
 The \option{after}{tkpack} and \option{before}{tkpack} options can be
 used to place the child before or after another component. These are
-used as with \code{tkpack(child1, after=child2)}. The object
+used as with \code{tkpack(child1, after = child2)}. The object
 \code{child2} can be an \R\/ object or its ID. 
 
 
@@ -1871,18 +1871,18 @@ implement a ticker tape effect, where words scroll to the left.
 \begin{Schunk}
 \begin{Sinput}
  w <- tktoplevel()
- f <- ttkframe(w, padding=c(3,3,12,12))
- tkpack(f, expand=TRUE, fill="both")
+ f <- ttkframe(w, padding = c(3,3,12,12))
+ tkpack(f, expand = TRUE, fill = "both")
  #
  x <- strsplit("Lorem ipsum dolor sit amet ...", "\\s")[[1]]
- labels <- lapply(x, function(i) ttklabel(f, text=i))
- sapply(labels, function(i) tkpack(i, side="left"))
+ labels <- lapply(x, function(i) ttklabel(f, text = i))
+ sapply(labels, function(i) tkpack(i, side = "left"))
  #
  rotateLabel <- function() {
    children <- as.character(tkpack("slaves", f))
    tkpack.forget(children[1])
-   tkpack(children[1], after=children[length(children)], 
-          side="left")
+   tkpack(children[1], after = children[length(children)], 
+          side = "left")
  }
 \end{Sinput}
 \end{Schunk}
@@ -1933,7 +1933,7 @@ children of the frame \code{f} using the
 \begin{Schunk}
 \begin{Sinput}
  allChildren <- as.character(tkwinfo("children", f))
- sapply(allChildren, tkpack.configure,  padx=10, pady=5)
+ sapply(allChildren, tkpack.configure,  padx = 10, pady = 5)
  
 \end{Sinput}
 \end{Schunk}
@@ -2013,16 +2013,16 @@ images:
 \begin{Sinput}
  w <- tktoplevel()
  tkwm.title(w, "Expand/Fill arguments")
- f <- ttkframe(w, padding=c(3,3,12,12))
- tkpack(f, expand=TRUE, fill="both")
+ f <- ttkframe(w, padding = c(3,3,12,12))
+ tkpack(f, expand = TRUE, fill = "both")
  ##
  packButton <- function(txt, ...) 
-   tkpack(b <- ttkbutton(f, text=txt), ...)
+   tkpack(b <- ttkbutton(f, text = txt), ...)
  ##
- packButton("Top",    side="top",    expand=TRUE, fill="both") 
- packButton("Bottom", side="bottom", expand=TRUE, fill="both") 
- packButton("Left",   side="left",   expand=TRUE, fill="both") 
- packButton("Right",  side="right",  expand=TRUE, fill="both") 
+ packButton("Top",    side = "top",    expand = TRUE, fill = "both") 
+ packButton("Bottom", side = "bottom", expand = TRUE, fill = "both") 
+ packButton("Left",   side = "left",   expand = TRUE, fill = "both") 
+ packButton("Right",  side = "right",  expand = TRUE, fill = "both") 
 \end{Sinput}
 \end{Schunk}
 %
@@ -2031,7 +2031,7 @@ Modifying the fill styles was easy, for example
 \begin{Schunk}
 \begin{Sinput}
  children <- as.character(tkwinfo("children", f))
- sapply(children, tkpack.configure, fill="none")
+ sapply(children, tkpack.configure, fill = "none")
 \end{Sinput}
 \end{Schunk}
 \end{example}
@@ -2097,10 +2097,10 @@ to bottom.
 \begin{Schunk}
 \begin{Sinput}
  f1 <- ttklabelframe(f, text="plain vanilla")
- tkpack(f1, expand=TRUE, fill="x")
+ tkpack(f1, expand = TRUE, fill = "x")
  l <- function(f) 
-   list(ttkbutton(f, text="cancel"), ttkbutton(f, text="ok"))
- sapply(l(f1), tkpack, side="left")
+   list(ttkbutton(f, text = "cancel"), ttkbutton(f, text = "ok"))
+ sapply(l(f1), tkpack, side = "left")
 \end{Sinput}
 \end{Schunk}
 
@@ -2109,11 +2109,11 @@ pack in using \code{side} with a value of \qcode{right}. This shows
 how to use a blank expanding label to take up the space on the left.\ilayout{spring}
 \begin{Schunk}
 \begin{Sinput}
- f2 <- ttklabelframe(f, text="push to right")
- tkpack(f2, expand=TRUE, fill="x")
- tkpack(ttklabel(f2, text=" "), 
-        expand=TRUE, fill="x", side="left")
- sapply(l(f2), tkpack, side="left")
+ f2 <- ttklabelframe(f, text = "push to right")
+ tkpack(f2, expand = TRUE, fill = "x")
+ tkpack(ttklabel(f2, text = " "), 
+        expand = TRUE, fill = "x", side = "left")
+ sapply(l(f2), tkpack, side = "left")
 \end{Sinput}
 \end{Schunk}
 
@@ -2121,11 +2121,11 @@ Finally, we add in some padding to conform to Apple's design specification that 
 buttons should have a 12 pixel separation.
 \begin{Schunk}
 \begin{Sinput}
- f3 <- ttklabelframe(f, text="push to right with space")
- tkpack(f3, expand=TRUE, fill="x")
- tkpack(ttklabel(f3, text=" "), expand=TRUE, fill="x", 
-        side="left")
- sapply(l(f3), tkpack, side="left", padx=6)
+ f3 <- ttklabelframe(f, text = "push to right with space")
+ tkpack(f3, expand = TRUE, fill = "x")
+ tkpack(ttklabel(f3, text = " "), expand = TRUE, fill = "x", 
+        side = "left")
+ sapply(l(f3), tkpack, side = "left", padx = 6)
 \end{Sinput}
 \end{Schunk}
 \end{example}
@@ -2150,7 +2150,7 @@ be passed in were it.
  parent <- NULL
  tkimage.create("photo", "::img::tclLogo", 
                 file = system.file("images","tclp.gif",
-                  package="ProgGUIinR"))
+                  package = "ProgGUIinR"))
 \end{Sinput}
 \end{Schunk}
 
@@ -2160,8 +2160,8 @@ the GUI is created.
 \begin{Sinput}
  w <- tktoplevel(); tkwm.title(w, title)
  tkwm.state(w, "withdrawn")
- f <- ttkframe(w,  padding=c(3, 3, 12, 12))
- tkpack(f, expand=TRUE, fill="both")
+ f <- ttkframe(w,  padding = c(3, 3, 12, 12))
+ tkpack(f, expand = TRUE, fill = "both")
 \end{Sinput}
 \end{Schunk}
 As usual, we added a frame so that any themes are respected.
@@ -2179,9 +2179,9 @@ until the mouse enters the window area.
    if(as.logical(tkwinfo("viewable", parentWin))) {
      tkwm.transient(w, parent)
      if(as.character(tcl("tk", "windowingsystem")) == "aqua") {
-       tcl("wm","attributes",parentWin, notify=TRUE) # bounce
+       tcl("wm","attributes",parentWin, notify = TRUE) # bounce
        tkbind(parentWin,"<Enter>", function()        # stop
-              tcl("wm","attributes",parentWin, notify=FALSE)) 
+              tcl("wm","attributes",parentWin, notify = FALSE)) 
      }
    }
  }
@@ -2192,8 +2192,8 @@ We will use a standard layout for our dialog with an icon on the left,
 a message and buttons on the right. We pack the icon into the left side of the frame,
 \begin{Schunk}
 \begin{Sinput}
- l <- ttklabel(f, image="::img::tclLogo", padding=5) # recycle
- tkpack(l,side="left")
+ l <- ttklabel(f, image = "::img::tclLogo", padding = 5) # recycle
+ tkpack(l,side = "left")
 \end{Sinput}
 \end{Schunk}
 
@@ -2201,10 +2201,10 @@ A nested frame will be used to layout the message area and button area. Since th
 \begin{Schunk}
 \begin{Sinput}
  f1 <- ttkframe(f)
- tkpack(f1, expand=TRUE, fill="both")
+ tkpack(f1, expand = TRUE, fill = "both")
  #
- m <- ttklabel(f1, text=message)
- tkpack(m, expand=TRUE, fill="both")
+ m <- ttklabel(f1, text = message)
+ tkpack(m, expand = TRUE, fill = "both")
 \end{Sinput}
 \end{Schunk}
 
@@ -2223,11 +2223,11 @@ The callback function for the OK button prints a message then destroys the windo
    print("That's great")
    tkdestroy(w)
  }
- okButton <- ttkbutton(f2, text="OK", command=okCB)
- cancelButton <- ttkbutton(f2, text="Cancel", 
-                           command=function() tkdestroy(w))
+ okButton <- ttkbutton(f2, text = "OK", command = okCB)
+ cancelButton <- ttkbutton(f2, text = "Cancel", 
+                           command = function() tkdestroy(w))
  #
- tkpack(okButton, side="left", padx=12)  # give some space
+ tkpack(okButton, side = "left", padx = 12)  # give some space
  tkpack(cancelButton)
 \end{Sinput}
 \end{Schunk}
@@ -2296,7 +2296,7 @@ to the first row would be done with a command like:
 %
 \begin{Schunk}
 \begin{Sinput}
- tkgrid.rowconfigure(parent, 0, weight=1)
+ tkgrid.rowconfigure(parent, 0, weight = 1)
 \end{Sinput}
 \end{Schunk}
 %
@@ -2350,16 +2350,16 @@ top-level window.
 \begin{Schunk}
 \begin{Sinput}
  w <- tktoplevel(); tkwm.title(w, "Toolbar example")
- f <- ttkframe(w, padding=c(3,3,12,12))
- tkpack(f, expand=TRUE, fill="both")
+ f <- ttkframe(w, padding = c(3,3,12,12))
+ tkpack(f, expand = TRUE, fill = "both")
 \end{Sinput}
 \end{Schunk}
 Our example has two main containers: one to hold the toolbar buttons
 and one to hold the main content.
 \begin{Schunk}
 \begin{Sinput}
- tbFrame <- ttkframe(f, padding=0)
- contentFrame <- ttkframe(f, padding=4)
+ tbFrame <- ttkframe(f, padding = 0)
+ contentFrame <- ttkframe(f, padding = 4)
 \end{Sinput}
 \end{Schunk}
 The \function{tkgrid} geometry manager is used to place the toolbar at
@@ -2367,14 +2367,14 @@ the top, and the content frame below. The choice of sticky and the weights ensur
 the toolbar does not resize if the window does.
 \begin{Schunk}
 \begin{Sinput}
- tkgrid(tbFrame, row=0, column=0, sticky="we")
- tkgrid(contentFrame, row=1, column=0, sticky = "news")
- tkgrid.rowconfigure(f, 0, weight=0)
- tkgrid.rowconfigure(f, 1, weight=1)
- tkgrid.columnconfigure(f, 0, weight=1)
+ tkgrid(tbFrame, row = 0, column = 0, sticky = "we")
+ tkgrid(contentFrame, row = 1, column = 0, sticky  =  "news")
+ tkgrid.rowconfigure(f, 0, weight = 0)
+ tkgrid.rowconfigure(f, 1, weight = 1)
+ tkgrid.columnconfigure(f, 0, weight = 1)
  #
  txt <- "Lorem ipsum dolor sit amet..." # sample text
- tkpack(ttklabel(contentFrame, text=txt))
+ tkpack(ttklabel(contentFrame, text = txt))
 \end{Sinput}
 \end{Schunk}
 
@@ -2384,7 +2384,7 @@ the font and padding, and eliminate the border if the operating system allows.
 \begin{Schunk}
 \begin{Sinput}
  tcl("ttk::style", "configure", "Toolbar.TButton", 
-     font="helvetica 12", padding=0, borderwidth=0)
+     font = "helvetica 12", padding = 0, borderwidth = 0)
 \end{Sinput}
 \end{Schunk}
 %
@@ -2392,20 +2392,20 @@ This \code{makeIcon} function finds stock icons from the
 \pkg{gWidgets} package and adds them to a button.
 \begin{Schunk}
 \begin{Sinput}
- makeIcon <- function(parent, stockName, command=NULL) {
+ makeIcon <- function(parent, stockName, command = NULL) {
    iconFile <- system.file("images", 
-                           paste(stockName,"gif",sep="."), 
-                           package="gWidgets")
+                           paste(stockName,"gif",sep = "."), 
+                           package = "gWidgets")
    if(nchar(iconFile) == 0) {
-     b <- ttkbutton(parent, text=stockName, width=6)
+     b <- ttkbutton(parent, text = stockName, width = 6)
    } else {
-     iconName <- paste("::img::",stockName, sep="")
+     iconName <- paste("::img::",stockName, sep = "")
      tkimage.create("photo", iconName, file = iconFile)
-     b <- ttkbutton(parent, image=iconName, 
-                    style="Toolbar.TButton", text=stockName, 
-                    compound="top", width=6)
+     b <- ttkbutton(parent, image = iconName, 
+                    style = "Toolbar.TButton", text = stockName, 
+                    compound = "top", width = 6)
      if(!is.null(command))
-       tkconfigure(b, command=command)
+       tkconfigure(b, command = command)
    }
    return(b)
  }
@@ -2419,7 +2419,7 @@ not \code{f}.
 \begin{Schunk}
 \begin{Sinput}
  sapply(c("ok", "quit", "cancel"), function(i)
-        tkpack(makeIcon(tbFrame, i), side="left"))
+        tkpack(makeIcon(tbFrame, i), side = "left"))
 \end{Sinput}
 \end{Schunk}
 
@@ -2471,16 +2471,16 @@ column is figured out.
    ## add headers
    days <- c("S","M","T","W","Th","F","S")
    sapply(1:7, function(i) {
-     l <- ttklabel(w, text=days[i])       
-     tkgrid(l, row=0, column=i-1, sticky="")
+     l <- ttklabel(w, text = days[i])       
+     tkgrid(l, row = 0, column = i-1, sticky = "")
    })
    ## add days
    sapply(seq_len(ProgGUIinR:::days.in.month(year, month)), 
           function(day) {
-            l <- ttklabel(w, text=day)
+            l <- ttklabel(w, text = day)
             row <- ProgGUIinR:::week.of.month(year, month, day)
             col <- ProgGUIinR:::day.of.week(year, month, day)
-            tkgrid(l, row=1 + row, column=col, sticky="e")
+            tkgrid(l, row = 1 + row, column = col, sticky = "e")
           })
  }
 \end{Sinput}
@@ -2499,12 +2499,12 @@ for the step-through controls and another holding the calendar widget.
 \begin{Schunk}
 \begin{Sinput}
  w <- tktoplevel()
- f <- ttkframe(w, padding=c(3,3,12,12))
- tkpack(f, expand=TRUE, fill="both", side="top")
+ f <- ttkframe(w, padding = c(3,3,12,12))
+ tkpack(f, expand = TRUE, fill = "both", side = "top")
  cframe <- ttkframe(f)
  calframe <- ttkframe(f)
- tkpack(cframe, fill="x", side="top")
- tkpack(calframe, expand=TRUE, anchor="n")
+ tkpack(cframe, fill = "x", side = "top")
+ tkpack(calframe, expand = TRUE, anchor = "n")
 \end{Sinput}
 \end{Schunk}
 
@@ -2513,13 +2513,13 @@ layout. We use anchoring and \code{expand=TRUE} to keep the arrows on the edge a
 label with the current month centered, should the container be resized.
 \begin{Schunk}
 \begin{Sinput}
- prevb <- ttklabel(cframe, text="<")
- nextb <- ttklabel(cframe, text=">")
+ prevb <- ttklabel(cframe, text = "<")
+ nextb <- ttklabel(cframe, text = ">")
  curmo <- ttklabel(cframe)
  #
- tkpack(prevb, side="left", anchor="w")
- tkpack(curmo, side="left", anchor="center", expand=TRUE)
- tkpack(nextb, side="left", anchor="e")
+ tkpack(prevb, side = "left", anchor = "w")
+ tkpack(curmo, side = "left", anchor = "center", expand = TRUE)
+ tkpack(nextb, side = "left", anchor = "e")
 \end{Sinput}
 \end{Schunk}
 
@@ -2536,7 +2536,7 @@ adding its child components makes the GUI seem much more responsive.
    calframe <<- ttkframe(f)
    makeMonth(calframe, year, month)
    tkconfigure(curmo,                    # month label
-               text=sprintf("%s %s", month.abb[month], year))
+               text = sprintf("%s %s", month.abb[month], year))
    tkpack(calframe)
  }
  setMonth()                              # initial calendar
@@ -2560,6 +2560,15 @@ binding to decrement the month and year using the global variables
 \end{Sinput}
 \end{Schunk}
 
+<<echo=FALSE>> = 
+tkbind(nextb, "<Button-1>", function() {
+  if(month < 12) {
+    month <<- month + 1
+  } else {
+    month <<- 1; year <<- year + 1
+  }
+  setMonth()
+})
 
 Our calendar is static, but if we wanted to add interactivity to a
 mouse click, we could make a binding as follows:
@@ -2599,13 +2608,13 @@ does not use the geometry managers to manage them. Instead, the
 \begin{Schunk}
 \begin{Sinput}
  w <- tktoplevel(); tkwm.title(w, "Paned window example")
- pw <- ttkpanedwindow(w, orient="horizontal")
- tkpack(pw, expand=TRUE, fill="both")
- left <- ttklabel(pw, text="left")
- right <- ttklabel(pw, text="right")
+ pw <- ttkpanedwindow(w, orient = "horizontal")
+ tkpack(pw, expand = TRUE, fill = "both")
+ left <- ttklabel(pw, text = "left")
+ right <- ttklabel(pw, text = "right")
  #
- tkadd(pw, left, weight=1)
- tkadd(pw, right, weight=2)
+ tkadd(pw, left, weight = 1)
+ tkadd(pw, right, weight = 2)
 \end{Sinput}
 \end{Schunk}
 %
@@ -2620,7 +2629,7 @@ convenience function, so we call as follows:
 \begin{Schunk}
 \begin{Sinput}
  tcl(pw, "forget", right)
- tkadd(pw, right, weight=2) ## how to add back
+ tkadd(pw, right, weight = 2) ## how to add back
 \end{Sinput}
 \end{Schunk}
 %
@@ -2683,17 +2692,17 @@ To illustrate, if \code{nb} is a \code{ttknotebook} object, then these
 commands would add pages (cf. Figure~\ref{fig:fig-notebook-example}):
 \begin{Schunk}
 \begin{Sinput}
- iconFile <- system.file("images",paste("help","gif",sep="."),
-                         package="gWidgets")
+ iconFile <- system.file("images",paste("help","gif",sep = "."),
+                         package = "gWidgets")
  iconName <- "::tcl::helpIcon"
  tkimage.create("photo", iconName, file = iconFile)
  #
- l2 <- ttklabel(nb, text="Page 2")
- tkadd(nb, l2, sticky="nswe", text="label 2", 
-     image=iconName, compound="right")
+ l2 <- ttklabel(nb, text = "Page 2")
+ tkadd(nb, l2, sticky = "nswe", text = "label 2", 
+     image = iconName, compound = "right")
  ## put l1 first (a tabID of 0); use tkinsert
- l1 <- ttklabel(nb, text="Page 1")
- tkinsert(nb, 0, l1, sticky="nswe", text="label 1")
+ l1 <- ttklabel(nb, text = "Page 1")
+ tkinsert(nb, 0, l1, sticky = "nswe", text = "label 1")
 \end{Sinput}
 \end{Schunk}
 %
@@ -2808,9 +2817,9 @@ used when drawing the dialog.
 A sample usage is:
 \begin{Schunk}
 \begin{Sinput}
- tkmessageBox(title="Confirm", message="Really exit?", 
-              detail="Changes need saving.", 
-              icon="question", type="okcancel")
+ tkmessageBox(title = "Confirm", message = "Really exit?", 
+              detail = "Changes need saving.", 
+              icon = "question", type = "okcancel")
 \end{Sinput}
 \end{Schunk}
 %% 
@@ -2828,9 +2837,9 @@ adding a label to a window:
  message <- "We care ..."
  dlg <- tktoplevel(); tkwm.withdraw(dlg)
  tkwm.overrideredirect(dlg, TRUE)   # no decoration
- f <- ttkframe(dlg, padding=5)
- tkpack(f, expand=TRUE, fill="both")
- tkpack(ttklabel(f, text=message), pady=5)
+ f <- ttkframe(dlg, padding = 5)
+ tkpack(f, expand = TRUE, fill = "both")
+ tkpack(ttklabel(f, text = message), pady = 5)
 \end{Sinput}
 \end{Schunk}
 
@@ -2843,7 +2852,7 @@ then change this value, ending the wait.
 \begin{Schunk}
 \begin{Sinput}
  flag <- tclVar("")
- tkpack(ttkbutton(f, text="dismiss", command=function() {
+ tkpack(ttkbutton(f, text = "dismiss", command = function() {
    tkgrab.release(dlg)
    tclvalue(flag) <- "Destroy"
  }))
@@ -2899,7 +2908,7 @@ to filter out various image types, one could have
  tkgetOpenFile(filetypes = paste(
                  "{{jpeg files} {.jpg .jpeg} }",
                  "{{png files} {.png}}",
-                 "{{All files} {*}}", sep=" ")) # needs space
+                 "{{All files} {*}}", sep = " ")) # needs space
 \end{Sinput}
 \end{Schunk}
 Extending this is hopefully clear from the pattern above.
@@ -2909,24 +2918,24 @@ Extending this is hopefully clear from the pattern above.
 \begin{Schunk}
 \begin{Sinput}
  w <- tktoplevel(); tkwm.title(w, "File menu example")
- mb <- tkmenu(w); tkconfigure(w, menu=mb)
+ mb <- tkmenu(w); tkconfigure(w, menu = mb)
  fileMenu <- tkmenu(mb)
- tkadd(mb, "cascade", label="File", menu=fileMenu)
- tkadd(fileMenu,"command",label="Source file...",
-       command= function() {
+ tkadd(mb, "cascade", label="File", menu = fileMenu)
+ tkadd(fileMenu,"command",label = "Source file...",
+       command =  function() {
          fName <- tkgetOpenFile(filetypes=
                          "{{R files} {.R}} {{All files} *}")
          if(file.exists(fName <- as.character(fName)))
             source(tclvalue(fName))
        })
- tkadd(fileMenu, "command", label="Save workspace as...",
-       command=function() {
-         fName <- tkgetSaveFile(defaultextension="Rsave")
+ tkadd(fileMenu, "command", label = "Save workspace as...",
+       command = function() {
+         fName <- tkgetSaveFile(defaultextension = "Rsave")
          if(nchar(fname <- as.character(fName)))
-           save.image(file=fName)
+           save.image(file = fName)
        })
- tkadd(fileMenu, "command", label="Set working directory...",
-       command=function() {
+ tkadd(fileMenu, "command", label = "Set working directory...",
+       command = function() {
          dName <- tkchooseDirectory()
          if(nchar(dName <- as.character(dName)))
            setwd(dName)
@@ -2941,17 +2950,17 @@ There is no constructor in \pkg{tcltk}, but one can use the dialog as follows:
 \begin{Schunk}
 \begin{Sinput}
  w <- tktoplevel(); tkwm.title(w, "Select a color")
- f <- ttkframe(w, padding=c(3,3,3,12))
- tkpack(f, expand=TRUE, fill="both")
- colorWell <- tkcanvas(f, width=40, height=16, 
-                       background="#ee11aa",
-                       highlightbackground="#ababab") 
+ f <- ttkframe(w, padding = c(3,3,3,12))
+ tkpack(f, expand = TRUE, fill = "both")
+ colorWell <- tkcanvas(f, width = 40, height = 16, 
+                       background = "#ee11aa",
+                       highlightbackground = "#ababab") 
  tkpack(colorWell)
- tkpack(ttklabel(f, text="Click color to change"))
+ tkpack(ttklabel(f, text = "Click color to change"))
  #
  tkbind(colorWell,"<Button-1>", function(W) {
-   color <- tcl("tk_chooseColor", parent=W, 
-                title="Set box color")
+   color <- tcl("tk_chooseColor", parent = W, 
+                title = "Set box color")
    color <- tclvalue(color)
    print(color)
    if(nchar(color))
@@ -3024,8 +3033,8 @@ with the following:
  value <- tclVar(TRUE)
  callback <- function() print(tclvalue(value))   # uses global
  labelVar <- tclVar("check button label")
- cb <- ttkcheckbutton(f, variable=value, 
-                      textvariable=labelVar, command=callback)
+ cb <- ttkcheckbutton(f, variable = value, 
+                      textvariable = labelVar, command = callback)
  tkpack(cb)
 \end{Sinput}
 \end{Schunk}
@@ -3038,7 +3047,7 @@ can be drawn as a button, which when depressed indicates a \code{TRUE}
 state. This is done by using the style \code{Toolbutton}, as in:
 \begin{Schunk}
 \begin{Sinput}
- tkconfigure(cb, style="Toolbutton")
+ tkconfigure(cb, style = "Toolbutton")
 \end{Sinput}
 \end{Schunk}
 
@@ -3053,7 +3062,7 @@ substitution values. The variable holding the value can be found
 through
 \begin{Schunk}
 \begin{Sinput}
- tkcget(cb, "variable"=NULL)
+ tkcget(cb, "variable" = NULL)
 \end{Sinput}
 \begin{Soutput}
 <Tcl> ::RTcl5 
@@ -3086,7 +3095,7 @@ could be defined to avoid a (new) global variable by:
 \begin{Schunk}
 \begin{Sinput}
  callback <- function(W) {
-   id <- tkcget(W, "variable"=NULL)
+   id <- tkcget(W, "variable" = NULL)
    print(getTclVarById(id))
  }
 \end{Sinput}
@@ -3123,10 +3132,10 @@ of an alternative hypothesis, assuming \code{f} is a parent container.
  var <- tclVar(values[3])                # initial value
  callback <- function() print(tclvalue(var))
  sapply(values, function(i) {
-   rb <- ttkradiobutton(f, variable=var, 
-                        text=i, value=i, 
-                        command=callback)
-   tkpack(rb, side="top", anchor="w")
+   rb <- ttkradiobutton(f, variable = var, 
+                        text = i, value = i, 
+                        command = callback)
+   tkpack(rb, side = "top", anchor = "w")
  })
 \end{Sinput}
 \end{Schunk}
@@ -3152,7 +3161,7 @@ The following constructs a basic example
 \begin{Schunk}
 \begin{Sinput}
  eVar <- tclVar("initial value")
- e <- ttkentry(w, textvariable=eVar)
+ e <- ttkentry(w, textvariable = eVar)
  tkpack(e)
 \end{Sinput}
 \end{Schunk}
@@ -3257,10 +3266,10 @@ initial message. The main properties we have are defined via
 \begin{Sinput}
  setOldClass(c("tkwin", "tclVar"))
  TtkEntry <- setRefClass("TtkEntry",
-                         fields=list(
-                           e="tkwin",    # entry
-                           v="tclVar",   # textvariable
-                           init_msg="character"
+                         fields = list(
+                           e = "tkwin",    # entry
+                           v = "tclVar",   # textvariable
+                           init_msg = "character"
                            ))
 \end{Sinput}
 \end{Schunk}
@@ -3289,17 +3298,17 @@ to toggle the messages. The only novelty is using the
                     "Is the init text showing?"
                     as.character(tclvalue(v)) == init_msg
                   },
-                  hide_init_msg=function() {
+                  hide_init_msg = function() {
                     "Hide the initial text"
                     if(is_init_msg()) {
-                      tkconfigure(e, style="TEntry")
-                      set_text("", hide=FALSE)
+                      tkconfigure(e, style = "TEntry")
+                      set_text("", hide = FALSE)
                     }
                   },
-                  show_init_msg=function() {
+                  show_init_msg = function() {
                     "Show the initial text"
-                    tkconfigure(e, style="Gray.TEntry")
-                    set_text(init_msg, hide=FALSE)
+                    tkconfigure(e, style = "Gray.TEntry")
+                    set_text(init_msg, hide = FALSE)
                   })
 \end{Sinput}
 \end{Schunk}
@@ -3308,13 +3317,13 @@ Our accessor methods, \meth{set\_text} and \meth{get\_text}, must work around a 
 \begin{Schunk}
 \begin{Sinput}
  TtkEntry$methods(
-                  set_text=function(text, hide=TRUE) {
+                  set_text = function(text, hide = TRUE) {
                     "Set text into widget"
                     if(hide) hide_init_msg()
                     v_local <- v         # avoid warning
                     tclvalue(v_local) <- text
                   },
-                  get_text=function() {
+                  get_text = function() {
                     "Get the text value"
                     if(!is_init_msg())
                       as.character(tclvalue(v))
@@ -3331,7 +3340,7 @@ events to initiate this.
 \begin{Schunk}
 \begin{Sinput}
  TtkEntry$methods(
-                  add_bindings=function() {
+                  add_bindings = function() {
                     "Add focus bindings to make this work"
                     tkbind(e, "<FocusIn>", hide_init_msg)
                     tkbind(e, "<FocusOut>", function() {
@@ -3346,9 +3355,9 @@ Finally, our initialization method follows.
 \begin{Schunk}
 \begin{Sinput}
  TtkEntry$methods(
-          initialize=function(parent, text, init_msg="") {
+          initialize = function(parent, text, init_msg = "") {
             v <<- tclVar()
-            e <<- ttkentry(parent, textvariable=v)
+            e <<- ttkentry(parent, textvariable = v)
             init_msg <<- init_msg
             ##
             if(missing(text))
@@ -3368,11 +3377,11 @@ pack in \code{e\$e}.
 \begin{Schunk}
 \begin{Sinput}
  w <- tktoplevel()
- e <- TtkEntry$new(parent=w, init_msg="type value here")
+ e <- TtkEntry$new(parent = w, init_msg = "type value here")
  tkpack(e$e)
  #
- b <- ttkbutton(w, text="focus out onto this", 
-                command=function() {
+ b <- ttkbutton(w, text = "focus out onto this", 
+                command = function() {
                   print(e$get_text())
                 })
  tkpack(b)
@@ -3431,7 +3440,7 @@ To begin,  we define some patterns for acceptable date formats.
                c("%m","%d","%y"))) {
    for(j in c("/","-"," ") )
      datePatterns[length(datePatterns)+1] <- 
-       paste(i,sep="", collapse=j)
+       paste(i,sep = "", collapse = j)
  }
 \end{Sinput}
 \end{Schunk}
@@ -3442,11 +3451,11 @@ have a valid date. First our validation command.
 \begin{Sinput}
  isValidDate <- function(W, P) { # P is the current value
    for(i in datePatterns) {
-     date <- try( as.Date(P, format=i), silent=TRUE)
+     date <- try( as.Date(P, format = i), silent = TRUE)
      if(!inherits(date, "try-error") && !is.na(date)) {
-       tkconfigure(W, foreground="black")  # or use style
+       tkconfigure(W, foreground = "black")  # or use style
        tkdelete(W, 0,"end")
-       tkinsert(W, 0, format(date, format="%m/%d/%y"))
+       tkinsert(W, 0, format(date, format = "%m/%d/%y"))
        return(tcl("expr","TRUE"))        
      } 
    }
@@ -3459,7 +3468,7 @@ This is our invalid command.
 \begin{Schunk}
 \begin{Sinput}
  indicateInvalidDate <- function(W) {
-   tkconfigure(W,foreground="red")
+   tkconfigure(W,foreground = "red")
    tcl("expr","TRUE")
  }
 \end{Sinput}
@@ -3476,11 +3485,11 @@ previous. We use \qcode{focusout} below, so also give a button widget
 so that the focus can be set elsewhere. 
 \begin{Schunk}
 \begin{Sinput}
- e <- ttkentry(f, validate="focusout", # f some parent
-               validatecommand=isValidDate,
-               invalidcommand=indicateInvalidDate)
- b <- ttkbutton(f,text="click")        # something to focus on
- sapply(list(e, b), tkpack, side="left", padx=2)
+ e <- ttkentry(f, validate = "focusout", # f some parent
+               validatecommand = isValidDate,
+               invalidcommand = indicateInvalidDate)
+ b <- ttkbutton(f,text = "click")        # something to focus on
+ sapply(list(e, b), tkpack, side = "left", padx = 2)
 \end{Sinput}
 \end{Schunk}
               
@@ -3525,10 +3534,10 @@ The constructor call is as follows:
 \begin{Schunk}
 \begin{Sinput}
  cb <- ttkcombobox(f,
-                   values=values,
-                   textvariable=var,
-                   state="normal",     # or "readonly"
-                   justify="left")
+                   values = values,
+                   textvariable = var,
+                   state = "normal",     # or "readonly"
+                   justify = "left")
  tkpack(cb)
 \end{Sinput}
 \end{Schunk}
@@ -3538,7 +3547,7 @@ The possible values the user can select from can be configured after
 construction through the \option{values}{ttkcombobox} option:
 \begin{Schunk}
 \begin{Sinput}
- tkconfigure(cb, values=tolower(values))
+ tkconfigure(cb, values = tolower(values))
 \end{Sinput}
 \end{Schunk}
 
@@ -3547,7 +3556,7 @@ value and this value contains spaces. In this case, one can coerce the
 value to be of class \class{tclObj}:
 \begin{Schunk}
 \begin{Sinput}
- tkconfigure(cb, values=as.tclObj("New York"))
+ tkconfigure(cb, values = as.tclObj("New York"))
 \end{Sinput}
 \end{Schunk}
 
@@ -3664,34 +3673,34 @@ this using an \R{} reference class.
 \begin{Sinput}
  Slider <-
    setRefClass("TtkSlider",
-      fields=c("frame", "widget", "v", "x", "FUN"),
-      methods=list(
-        initialize=function(parent, x) {
+      fields = c("frame", "widget", "v", "x", "FUN"),
+      methods = list(
+        initialize = function(parent, x) {
           x <<- x;  v <<- tclVar(1)
           FUN <<- NULL                   # NULL of fuction
           frame <<- ttkframe(parent)
-          widget <<- ttkscale(frame, from=1, to=length(x),
-                              variable=v, orient="horizontal")
+          widget <<- ttkscale(frame, from = 1, to = length(x),
+                              variable = v, orient = "horizontal")
           ## For this widget, the callback is passed a value 
           ## which we ignore here
-          tkconfigure(widget, command=function(...) {
+          tkconfigure(widget, command = function(...) {
             if(is.function(FUN)) FUN(.self)
           })
           layout_gui()
           .self
         },
-        layout_gui=function() {         
-          tkgrid(widget, row=0, column=0, columnspan=3, 
-                 sticky="we")
-          tkgrid(ttklabel(frame, text=x[1]), 
-                 row=1, column=0)
-          tkgrid(ttklabel(frame, text=x[length(x)]), 
-                 row=1, column=2)
-          tkgrid.columnconfigure(frame, 1, weight=1)
+        layout_gui = function() {         
+          tkgrid(widget, row = 0, column = 0, columnspan = 3, 
+                 sticky = "we")
+          tkgrid(ttklabel(frame, text = x[1]), 
+                 row = 1, column = 0)
+          tkgrid(ttklabel(frame, text = x[length(x)]), 
+                 row = 1, column = 2)
+          tkgrid.columnconfigure(frame, 1, weight = 1)
         },
-        add_callback=function(FUN) FUN <<- FUN,
-        get_value=function() x[as.numeric(tclvalue(v))],
-        set_value=function(value) {
+        add_callback = function(FUN) FUN <<- FUN,
+        get_value = function() x[as.numeric(tclvalue(v))],
+        set_value = function(value) {
           "Set value. Value must be in x"
           ind <- match(value, x)
           if(!is.na(ind)) {
@@ -3707,12 +3716,12 @@ To use this, we have:
 \begin{Schunk}
 \begin{Sinput}
  w <- tktoplevel()
- f <- ttkframe(w, padding=c(3,3,12,12))
- tkpack(f, expand=TRUE, fill="both")
- x <- seq(0,1,by=0.05)
+ f <- ttkframe(w, padding = c(3,3,12,12))
+ tkpack(f, expand = TRUE, fill = "both")
+ x <- seq(0,1,by = 0.05)
  ##
- s <- Slider$new(parent=w, x=x)
- tkpack(s$frame, expand=TRUE, fill="x", anchor="n")
+ s <- Slider$new(parent = w, x = x)
+ tkpack(s$frame, expand = TRUE, fill = "x", anchor = "n")
  ##
  s$set_value(0.5)
  print(s$get_value())
@@ -3773,14 +3782,14 @@ states of the U.S.
 \begin{Schunk}
 \begin{Sinput}
  w <- tktoplevel()
- sp <- tkspinbox(w, values=state.name, wrap=TRUE)
+ sp <- tkspinbox(w, values = state.name, wrap = TRUE)
 \end{Sinput}
 \end{Schunk}
 
 Whereas, this invocation will allow scrolling through a numeric sequence:
 \begin{Schunk}
 \begin{Sinput}
- sp1 <- tkspinbox(w, from=1, to=10, increment=1)
+ sp1 <- tkspinbox(w, from = 1, to = 10, increment = 1)
 \end{Sinput}
 \end{Schunk}
 
@@ -3859,8 +3868,8 @@ Our layout is basic. Here we pack a label frame into the window to give the dial
 We will use the \code{tkgrid} geometry manager below.
 \begin{Schunk}
 \begin{Sinput}
- lf <- ttklabelframe(f, text="t.test()", padding=10)
- tkpack(lf, expand=TRUE, fill="both", padx=5, pady=5)
+ lf <- ttklabelframe(f, text = "t.test()", padding = 10)
+ tkpack(lf, expand = TRUE, fill = "both", padx = 5, pady = 5)
 \end{Sinput}
 \end{Schunk}
 
@@ -3869,10 +3878,10 @@ We don't want the labels to expand the same way we want the widget columns to do
 assign different weights:
 \begin{Schunk}
 \begin{Sinput}
- tkgrid.columnconfigure(lf, 0, weight=1)
- tkgrid.columnconfigure(lf, 1, weight=10)
- tkgrid.columnconfigure(lf, 2, weight=1)
- tkgrid.columnconfigure(lf, 1, weight=10)
+ tkgrid.columnconfigure(lf, 0, weight = 1)
+ tkgrid.columnconfigure(lf, 1, weight = 10)
+ tkgrid.columnconfigure(lf, 2, weight = 1)
+ tkgrid.columnconfigure(lf, 1, weight = 10)
 \end{Sinput}
 \end{Schunk}
 
@@ -3881,8 +3890,8 @@ This helper function simplifies the task of adding a label.
 \begin{Schunk}
 \begin{Sinput}
  putLabel <- function(parent, text, row, column) {
-   label <- ttklabel(parent, text=text)
-   tkgrid(label, row=row, column=column, sticky="e")
+   label <- ttklabel(parent, text = text)
+   tkgrid(label, row = row, column = column, sticky = "e")
  }
 \end{Sinput}
 \end{Schunk}
@@ -3897,10 +3906,10 @@ which allow the user to specify parts of a formula.
 \begin{Schunk}
 \begin{Sinput}
  putLabel(lf, "data:",0,0)
- dataCombo <- ttkcombobox(lf, state="readonly", 
-                          values=ProgGUIinR:::avail_dfs(), 
-                          textvariable=e$data)
- tkgrid(dataCombo, row=0, column=1, sticky="ew", padx=2)
+ dataCombo <- ttkcombobox(lf, state = "readonly", 
+                          values = ProgGUIinR:::avail_dfs(), 
+                          textvariable = e$data)
+ tkgrid(dataCombo, row = 0, column = 1, sticky = "ew", padx = 2)
  tkfocus(dataCombo)                      # give focus
 \end{Sinput}
 \end{Schunk}
@@ -3912,8 +3921,8 @@ a mean. For this purpose, the use is straightforward.
 \begin{Schunk}
 \begin{Sinput}
  putLabel(lf, "mu:", 2, 0)
- muCombo <-  ttkentry(lf,  textvariable=e$mu)
- tkgrid(muCombo, row=2, column=1, sticky="ew", padx=2)
+ muCombo <-  ttkentry(lf,  textvariable = e$mu)
+ tkgrid(muCombo, row = 2, column = 1, sticky = "ew", padx = 2)
 \end{Sinput}
 \end{Schunk}
 
@@ -3924,11 +3933,11 @@ combo box or a radio button group, we use the latter.
  putLabel(lf, "alternative:", 3, 0)
  rbFrame <- ttkframe(lf)
  sapply(c("two.sided","less","greater"), function(i) {
-   rb <- ttkradiobutton(rbFrame, variable=e$alternative, 
-                        text=i, value=i)
-   tkpack(rb, side="left")
+   rb <- ttkradiobutton(rbFrame, variable = e$alternative, 
+                        text = i, value = i)
+   tkpack(rb, side = "left")
  })
- tkgrid(rbFrame, row=3, column=1, sticky="ew", padx=2)
+ tkgrid(rbFrame, row = 3, column = 1, sticky = "ew", padx = 2)
 \end{Sinput}
 \end{Schunk}
 
@@ -3939,16 +3948,16 @@ text variable, the widgets are automatically synchronized.
 \begin{Sinput}
  putLabel(lf, "conf.level:", 3, 2)
  confFrame <- ttkframe(lf)
- tkgrid(confFrame, row=3, column=3, columnspan=2, 
-        sticky="ew", padx=2)
+ tkgrid(confFrame, row = 3, column = 3, columnspan = 2, 
+        sticky = "ew", padx = 2)
  ##
- confScale <- ttkscale(confFrame, from=75, to=100, 
-                      variable=e$conf.level)
- confSpin <- tkspinbox(confFrame, from=75, to=100, increment=1, 
-                      textvariable=e$conf.level, width=5)
+ confScale <- ttkscale(confFrame, from = 75, to = 100, 
+                      variable = e$conf.level)
+ confSpin <- tkspinbox(confFrame, from = 75, to = 100, increment = 1, 
+                      textvariable = e$conf.level, width = 5)
  ##
- tkpack(confScale, expand=TRUE, fill="y", side="left")
- tkpack(confSpin, side="left")
+ tkpack(confScale, expand = TRUE, fill = "y", side = "left")
+ tkpack(confSpin, side = "left")
 \end{Sinput}
 \end{Schunk}
 
@@ -3956,8 +3965,8 @@ A checkbox is used to collect the logical value for \code{var.equal}:
 \begin{Schunk}
 \begin{Sinput}
  putLabel(lf, "var.equal:", 4, 0)
- veCheck <- ttkcheckbutton(lf, variable=e$var.equal)
- tkgrid(veCheck, row=4, column=1, stick="w", padx=2)
+ veCheck <- ttkcheckbutton(lf, variable = e$var.equal)
+ tkgrid(veCheck, row = 4, column = 1, stick = "w", padx = 2)
 \end{Sinput}
 \end{Schunk}
 
@@ -3966,13 +3975,13 @@ The dialog has standard "cancel" and "ok" buttons.
 \begin{Schunk}
 \begin{Sinput}
  bf <- ttkframe(f)
- cancel <- ttkbutton(bf, text="cancel")
- ok <- ttkbutton(bf, text="ok")
+ cancel <- ttkbutton(bf, text = "cancel")
+ ok <- ttkbutton(bf, text = "ok")
  #
- tkpack(bf, fill="x", padx=5, pady=5)
- tkpack(ttklabel(bf, text=" "), expand=TRUE, fill="y", 
-        side="left")                     # add a spring
- sapply(list(cancel, ok), tkpack, side="left", padx=6)
+ tkpack(bf, fill = "x", padx = 5, pady = 5)
+ tkpack(ttklabel(bf, text = " "), expand = TRUE, fill = "y", 
+        side = "left")                     # add a spring
+ sapply(list(cancel, ok), tkpack, side = "left", padx = 6)
 \end{Sinput}
 \end{Schunk}
 %
@@ -3983,8 +3992,8 @@ buttons, then add to the default button bindings to invoke either of the button'
 when they have the focus and \kbd{return} is pressed.
 \begin{Schunk}
 \begin{Sinput}
- tkconfigure(ok, command=runTTest)
- tkconfigure(cancel, command=function() tkdestroy(w))
+ tkconfigure(ok, command = runTTest)
+ tkconfigure(cancel, command = function() tkdestroy(w))
  tkbind("TButton", "<Return>", function(W) tcl(W, "invoke"))
 \end{Sinput}
 \end{Schunk}
@@ -4000,7 +4009,7 @@ state.
  updateUI <- function() {
    dfName <- tclvalue(e$data)
    curDfs <- ProgGUIinR:::avail_dfs()
-   tkconfigure(dataCombo, values=curDfs)
+   tkconfigure(dataCombo, values = curDfs)
    if(!dfName %in% curDfs) {
      dfName <- ""
      tclvalue(e$data) <- ""
@@ -4012,29 +4021,29 @@ state.
      sapply(x, function(W) tcl(W, "state", "disabled"))
      sapply(as.character(tkwinfo("children", rbFrame)), 
             function(W) tcl(W, "state", "disabled"))
-     tkconfigure(confSpin, state="disabled")
+     tkconfigure(confSpin, state = "disabled")
    } else {
      ## enable univariate, ok
      sapply(list(xCombo,  muCombo, confScale, ok),
             function(W) tcl(W, "state", "!disabled"))
      sapply(as.character(tkwinfo("children", rbFrame)), 
             function(W) tcl(W, "state", "!disabled"))
-     tkconfigure(confSpin, state="normal")
+     tkconfigure(confSpin, state = "normal")
      
-     df <- get(dfName, envir=.GlobalEnv)
-     numVars <- getNumericVars(df)
-     tkconfigure(xCombo, values=numVars)
+     DF <- get(dfName, envir = .GlobalEnv)
+     numVars <- getNumericVars(DF)
+     tkconfigure(xCombo, values = numVars)
      if(! tclvalue(e$x) %in% numVars)
        tclvalue(e$x) <- ""
  
      ## bivariate
-     availFactors <- getTwoLevelFactor(df)
+     availFactors <- getTwoLevelFactor(DF)
      sapply(list(fCombo, veCheck),
             function(W) {
               val <- if(length(availFactors)) "!" else ""
               tcl(W, "state", sprintf("%sdisabled", val))
             })
-     tkconfigure(fCombo, values=availFactors)
+     tkconfigure(fCombo, values = availFactors)
      if(!tclvalue(e$f) %in% availFactors)
        tclvalue(e$f) <- ""
        
@@ -4056,10 +4065,10 @@ way to arrange that:
 \begin{Sinput}
  require(digest)
  create_function <- function() {
-   .dfs <- digest(ProgGUIinR:::avail_dfs())
+   .DFs <- digest(ProgGUIinR:::avail_dfs())
    f <- function(...) {
-     if((val <- digest(ProgGUIinR:::avail_dfs())) != .dfs) {
-       .dfs <<- val
+     if((val <- digest(ProgGUIinR:::avail_dfs())) != .DFs) {
+       .DFs <<- val
        updateUI()
      }
      return(TRUE)
@@ -4102,10 +4111,10 @@ set up both horizontal and vertical scrollbars.
 %
 \begin{Schunk}
 \begin{Sinput}
- xscr <- ttkscrollbar(parent, orient="horizontal",
-                  command=function(...) tkxview(widget, ...))
- yscr <- ttkscrollbar(parent, orient="vertical",
-                  command=function(...) tkyview(widget, ...))
+ xscr <- ttkscrollbar(parent, orient = "horizontal",
+                  command = function(...) tkxview(widget, ...))
+ yscr <- ttkscrollbar(parent, orient = "vertical",
+                  command = function(...) tkyview(widget, ...))
 \end{Sinput}
 \end{Schunk}
 %
@@ -4119,8 +4128,8 @@ standard form:
 \begin{Schunk}
 \begin{Sinput}
  tkconfigure(widget,
-             xscrollcommand=function(...) tkset(xscr,...),
-             yscrollcommand=function(...) tkset(yscr,...))
+             xscrollcommand = function(...) tkset(xscr,...),
+             yscrollcommand = function(...) tkset(yscr,...))
 \end{Sinput}
 \end{Schunk}
 
@@ -4130,11 +4139,11 @@ using the grid manager. The combination of weights and stickiness below
 will have the scrollbars expand as expected if the window is resized.
 \begin{Schunk}
 \begin{Sinput}
- tkgrid(widget, row=0, column=0, sticky="news")
- tkgrid(yscr,row=0,column=1, sticky="ns")
- tkgrid(xscr, row=1, column=0, sticky="ew")
- tkgrid.columnconfigure(parent, 0, weight=1)
- tkgrid.rowconfigure(parent, 0, weight=1)
+ tkgrid(widget, row = 0, column = 0, sticky = "news")
+ tkgrid(yscr,row = 0,column = 1, sticky = "ns")
+ tkgrid(xscr, row = 1, column = 0, sticky = "ew")
+ tkgrid.columnconfigure(parent, 0, weight = 1)
+ tkgrid.rowconfigure(parent, 0, weight = 1)
 \end{Sinput}
 \end{Schunk}
 %
@@ -4189,7 +4198,7 @@ lines:
  tkinsert(txt, 
           "1.0", 
           paste("Lorem ipsum dolor",
-                "sit amet,", sep="\n"))
+                "sit amet,", sep = "\n"))
 \end{Sinput}
 \end{Schunk}
 Images and other windows can be added to a text buffer, but we do not
@@ -4310,8 +4319,8 @@ tag:
 The \subcommand{tag configure}{tktext} can be used to configure properties of the tagged characters, for example:
 \begin{Schunk}
 \begin{Sinput}
- tktag.configure(txt, "firstWord", foreground="red", 
-                 font="helvetica 12 bold")
+ tktag.configure(txt, "firstWord", foreground = "red", 
+                 font = "helvetica 12 bold")
 \end{Sinput}
 \end{Schunk}
 %
@@ -4435,9 +4444,9 @@ to evaluate. For this example though, we make a simple GUI
 \begin{Schunk}
 \begin{Sinput}
  w <- tktoplevel(); tkwm.title(w, "Text buffer example")
- f <- ttkframe(w, padding=c(3,3,12,12))
- tkpack(f, expand=TRUE, fill="both")
- txt <- tktext(f, width=80, height = 24)   # default size
+ f <- ttkframe(w, padding = c(3,3,12,12))
+ tkpack(f, expand = TRUE, fill = "both")
+ txt <- tktext(f, width = 80, height = 24)   # default size
  addScrollbars(f, txt)
 \end{Sinput}
 \end{Schunk}
@@ -4446,11 +4455,11 @@ To distinguish between commands and their output we define the
 following tags:
 \begin{Schunk}
 \begin{Sinput}
- tktag.configure(txt, "commandTag", foreground="blue", 
-                 font="courier 12 italic")
- tktag.configure(txt, "outputTag", font="courier 12")
- tktag.configure(txt, "errorTag", foreground="red", 
-                 font="courier 12 bold")
+ tktag.configure(txt, "commandTag", foreground = "blue", 
+                 font = "courier 12 italic")
+ tktag.configure(txt, "outputTag", font = "courier 12")
+ tktag.configure(txt, "errorTag", foreground = "red", 
+                 font = "courier 12 bold")
 \end{Sinput}
 \end{Schunk}
 
@@ -4462,7 +4471,7 @@ markup tags specified above to indicate commands from output.
 \begin{Sinput}
  evalCmdChunk <- function(txt, cmds) {
    
-   cmdChunks <- try(parse(text=cmds), silent=TRUE)
+   cmdChunks <- try(parse(text = cmds), silent = TRUE)
    if(inherits(cmdChunks,"try-error")) {
      tkinsert(t, "end", "Error", "errorTag") # add markup tag
    }
@@ -4472,14 +4481,14 @@ markup tags specified above to indicate commands from output.
      dcmd <- deparse(cmd, width.cutoff = cutoff)
      command <- 
        paste(getOption("prompt"),
-             paste(dcmd, collapse=paste("\n", 
-                           getOption("continue"), sep="")),
-             sep="", collapse="")
+             paste(dcmd, collapse = paste("\n", 
+                           getOption("continue"), sep = "")),
+             sep = "", collapse = "")
      tkinsert(txt, "end", command, "commandTag")
      tkinsert(txt, "end","\n")
      ## output, should check for errors in eval!
-     output <- capture.output(eval(cmd, envir=.GlobalEnv))
-     output <- paste(output, collapse="\n")
+     output <- capture.output(eval(cmd, envir = .GlobalEnv))
+     output <- paste(output, collapse = "\n")
      tkinsert(txt, "end", output, "outputTag")
      tkinsert(txt, "end","\n")
    }
@@ -4492,7 +4501,7 @@ markup tags specified above to indicate commands from output.
 This is how it can be used.
 \begin{Schunk}
 \begin{Sinput}
- evalCmdChunk(txt, "2 + 2; lm(mpg ~ wt, data=mtcars)")
+ evalCmdChunk(txt, "2 + 2; lm(mpg ~ wt, data = mtcars)")
 \end{Sinput}
 \end{Schunk}
 \end{example}
@@ -4638,9 +4647,9 @@ the text entry widget.
 \begin{Sinput}
  w <- tktoplevel()
  tkwm.title(w, "Simple code editor")
- f <- ttkframe(w, padding=c(3,3,12,12)) 
- tkpack(f, expand=TRUE, fill="both")
- tb <- tktext(f, undo=TRUE)
+ f <- ttkframe(w, padding = c(3,3,12,12)) 
+ tkpack(f, expand = TRUE, fill = "both")
+ tb <- tktext(f, undo = TRUE)
  addScrollbars(f, tb)
 \end{Sinput}
 \end{Schunk}
@@ -4650,12 +4659,12 @@ Using \function{tkmenu}, we create a toplevel menubar, \code{mb}, and
 attach it to our toplevel window. Following that, we make ``file'' and ``edit'' submenus.
 \begin{Schunk}
 \begin{Sinput}
- mb <- tkmenu(w); tkconfigure(w, menu=mb)
+ mb <- tkmenu(w); tkconfigure(w, menu = mb)
  fileMenu <- tkmenu(mb)
- tkadd(mb, "cascade", label="File", menu=fileMenu)
+ tkadd(mb, "cascade", label = "File", menu = fileMenu)
  #
  editMenu <- tkmenu(mb)
- tkadd(mb, "cascade", label="Edit", menu=editMenu)
+ tkadd(mb, "cascade", label = "Edit", menu = editMenu)
 \end{Sinput}
 \end{Schunk}
 %
@@ -4664,7 +4673,7 @@ To these sub menubars, we add action items. First a command to
 evaluate the contents of the buffer.
 \begin{Schunk}
 \begin{Sinput}
- tkadd(fileMenu, "command", label="Evaluate buffer",
+ tkadd(fileMenu, "command", label = "Evaluate buffer",
        command = function() {
          curVal <- tclvalue(tkget(tb, "1.0", "end"))
          showCmd(curVal)
@@ -4675,9 +4684,9 @@ evaluate the contents of the buffer.
 Then a command to evaluate just the current selection
 \begin{Schunk}
 \begin{Sinput}
- tkadd(fileMenu, "command", label="Evaluate selection",
-       state="disabled",
-       command = function() {
+ tkadd(fileMenu, "command", label = "Evaluate selection",
+       state = "disabled",
+       command =  function() {
          curSel <- tclvalue(tkget(tb, "sel.first", "sel.last"))
          showCmd(curSel)
        })
@@ -4688,20 +4697,20 @@ Finally, we end the file menu with a quit action.
 \begin{Schunk}
 \begin{Sinput}
  tkadd(fileMenu, "separator")
- tkadd(fileMenu, "command", label="Quit", 
-       command=function() tkdestroy(w))
+ tkadd(fileMenu, "command", label = "Quit", 
+       command = function() tkdestroy(w))
 \end{Sinput}
 \end{Schunk}
 
 The edit menu has an undo and redo item. For illustration purposes we add an icon to the undo item.
 \begin{Schunk}
 \begin{Sinput}
- img <- system.file("images","up.gif", package="gWidgets")
- tkimage.create("photo", "::img::undo", file=img)
- tkadd(editMenu, "command", label="Undo",
-       image="::img::undo", compound="left", state="disabled",
+ img <- system.file("images","up.gif", package = "gWidgets")
+ tkimage.create("photo", "::img::undo", file = img)
+ tkadd(editMenu, "command", label = "Undo",
+       image = "::img::undo", compound = "left", state = "disabled",
        command = function() tcl(tb, "edit", "undo"))
- tkadd(editMenu, "command", label="Redo", state="disabled",
+ tkadd(editMenu, "command", label = "Redo", state = "disabled",
        command = function() tcl(tb, "edit", "redo"))
 \end{Sinput}
 \end{Schunk}
@@ -4718,7 +4727,7 @@ the selection we have:
    }
    ## configure using an index
    sel_state <- ifelse(hasSelection(W), "normal", "disabled")
-   tkentryconfigure(fileMenu, 1, state=sel_state)
+   tkentryconfigure(fileMenu, 1, state = sel_state)
  })
 \end{Sinput}
 \end{Schunk}
@@ -4731,7 +4740,7 @@ To check for do and undo, we bind to the \code{Modified} virtual event.
    can_undo <- as.logical(tcl(W,"edit", "modified"))
    undo_state <- ifelse(can_undo, "normal", "disabled")
    sapply(c("Undo", "Redo"), function(i)        # match pattern
-          tkentryconfigure(editMenu, i, state=undo_state)) 
+          tkentryconfigure(editMenu, i, state = undo_state)) 
  })
 \end{Sinput}
 \end{Schunk}
@@ -4742,10 +4751,10 @@ top-level window for the keyboard shortcut for ``undo.''
 \begin{Schunk}
 \begin{Sinput}
  if(usingMac()) {
-   tkentryconfigure(editMenu, "Undo", accelerator="Cmd-z")
+   tkentryconfigure(editMenu, "Undo", accelerator = "Cmd-z")
    tkbind(w, "<Option-z>", function() tcl(tb, "edit", "undo"))
  } else {
-   tkentryconfigure(editMenu, "Undo", accelerator="Control-u")
+   tkentryconfigure(editMenu, "Undo", accelerator = "Control-u")
    tkbind(w, "<Control-u>", function() tcl(tb, "edit", "undo"))
  }
 \end{Sinput}
@@ -4766,11 +4775,11 @@ fixing this.
                             "current wordend"))
    tcl(W, "tag", "add", "popup", "current  wordstart", 
                                  "current wordend")
-   posVals <- head(completion(cur)[,1, drop=TRUE], n=20)
+   posVals <- head(completion(cur)[,1, drop = TRUE], n = 20)
    if(length(posVals) > 1) {
      popup <- tkmenu(tb)                # create menu for popup
      sapply(posVals, function(i) {         
-       tkadd(popup, "command", label=i, command = function() {
+       tkadd(popup, "command", label = i, command = function() {
          tcl(W,"replace", "popup.first", "popup.last", i)
        })
      })
@@ -4791,7 +4800,7 @@ action already has a default binding for the text widget.
  } else {
    tkbind(tb, "<Button-2>", function(W,X,Y) {
      ## UNIX legacy re mouse-2 click for selection copy
-     tcl("clipboard","clear",displayof=W) 
+     tcl("clipboard","clear",displayof = W) 
      doPopup(W,X,Y)
      })      # right click
    tkbind(tb, "<Control-1>", doPopup)     # Control + click
@@ -4839,9 +4848,9 @@ non-themed, listbox widget of \Tk.
 \begin{Schunk}
 \begin{Sinput}
  tr <- ttktreeview(f, 
-                   columns=1,        # column identifier is "1"
-                   show="headings",  # not "#0"
-                   height=25)        
+                   columns = 1,        # column identifier is "1"
+                   show = "headings",  # not "#0"
+                   height = 25)        
  addScrollbars(f, tr)                # our scrollbar function
 \end{Sinput}
 \end{Schunk}
@@ -4883,9 +4892,9 @@ to the treeview display.
  Host <- x$Host
  shade <- c("none", "gray")                     # tag names
  for(i in seq_along(Host))
-   ID <- tkinsert(tr, "", "end", values=as.tclObj(Host[i]),
-                  tag=shade[i %% 2])            # none or gray
- tktag.configure(tr, "gray", background="gray95") # shade rows
+   ID <- tkinsert(tr, "", "end", values = as.tclObj(Host[i]),
+                  tag = shade[i %% 2])            # none or gray
+ tktag.configure(tr, "gray", background = "gray95") # shade rows
 \end{Sinput}
 \end{Schunk}
 
@@ -4922,7 +4931,7 @@ example, this command will center the text heading of the first
 column:
 \begin{Schunk}
 \begin{Sinput}
- tcl(tr, "heading", 1, text="Host", anchor="center")
+ tcl(tr, "heading", 1, text = "Host", anchor = "center")
 \end{Sinput}
 \end{Schunk}
 
@@ -4940,7 +4949,7 @@ column, the placement of each entry within a cell is controlled by the
 For example, this command will adjust properties of the lone column of \code{tr}:
 \begin{Schunk}
 \begin{Sinput}
- tcl(tr, "column", 1, width=400,  stretch=TRUE, anchor="w")
+ tcl(tr, "column", 1, width = 400,  stretch = TRUE, anchor = "w")
 \end{Sinput}
 \end{Schunk}
 
@@ -4955,27 +4964,27 @@ For example, this command will adjust properties of the lone column of \code{tr}
  populate_rectangular_treeview <- function(parent, m) {
    enc_frame <- ttkframe(parent)
    frame <- ttkframe(enc_frame)
-   tkpack(frame, expand=TRUE, fill="both")
+   tkpack(frame, expand = TRUE, fill = "both")
    tr <- ttktreeview(frame,
-                     columns=seq_len(ncol(m)),
-                     show="headings")
+                     columns = seq_len(ncol(m)),
+                     show = "headings")
    addScrollbars(frame, tr)
    tkpack.propagate(enc_frame, FALSE)    # size from frame
    ## headings,widths
    font_measure <- tcl("font","measure","TkTextFont","0")
    charWidth <- as.integer(tclvalue(font_measure))
    sapply(seq_len(ncol(m)), function(i) {
-     tcl(tr, "heading", i, text=colnames(m)[i])
+     tcl(tr, "heading", i, text = colnames(m)[i])
      tcl(tr, "column", i, 
-         width=10 + charWidth*max(apply(m, 2, nchar)))
+         width = 10 + charWidth*max(apply(m, 2, nchar)))
    })
-   tcl(tr, "column", ncol(m), stretch=TRUE)
+   tcl(tr, "column", ncol(m), stretch = TRUE)
    ## values
-   if(ncol(m) == 1)  m <- as.matrix(paste("{", m , "}", sep=""))
+   if(ncol(m) == 1)  m <- as.matrix(paste("{", m , "}", sep = ""))
    apply(m, 1, function(vals) 
-     tcl(tr, "insert", "", "end", values=vals))
+     tcl(tr, "insert", "", "end", values = vals))
    ##
-   return(list(tr=tr, frame=enc_frame))
+   return(list(tr = tr, frame = enc_frame))
  }
 \end{Sinput}
 \end{Schunk}
@@ -4999,9 +5008,9 @@ widget. For example:
  w <- tktoplevel()
  m <- sapply(mtcars, as.character)
  a <- populate_rectangular_treeview(w, m)
- tkconfigure(a$tr, selectmode="extended") # multiple selection
- tkconfigure(a$frame, width=300, height=200) # frame size
- tkpack(a$frame, expand=TRUE, fill="both")
+ tkconfigure(a$tr, selectmode = "extended") # multiple selection
+ tkconfigure(a$frame, width = 300, height = 200) # frame size
+ tkpack(a$frame, expand = TRUE, fill = "both")
 \end{Sinput}
 \end{Schunk}
 
@@ -5136,7 +5145,7 @@ be identified by position, as illustrated in this example callback.
 We illustrate the above with a slightly improved GUI for selecting a CRAN mirror. This adds in a text box to filter the possibly large display of items to avoid scrolling through a long list. 
 \begin{Schunk}
 \begin{Sinput}
- df <- getCRANmirrors()[, c(1,2,5,4)]
+ DF <- getCRANmirrors()[, c(1,2,5,4)]
 \end{Sinput}
 \end{Schunk}
 
@@ -5144,11 +5153,11 @@ We illustrate the above with a slightly improved GUI for selecting a CRAN mirror
 We use a text entry widget to allow the user to filter the values in the display as the user types.
 \begin{Schunk}
 \begin{Sinput}
- f0 <- ttkframe(f); tkpack(f0, fill="x")
- l <- ttklabel(f0, text="filter:"); tkpack(l, side="left")
+ f0 <- ttkframe(f); tkpack(f0, fill = "x")
+ l <- ttklabel(f0, text = "filter:"); tkpack(l, side = "left")
  filterVar <- tclVar("")
- filterEntry <- ttkentry(f0, textvariable=filterVar)
- tkpack(filterEntry, side="left")
+ filterEntry <- ttkentry(f0, textvariable = filterVar)
+ tkpack(filterEntry, side = "left")
 \end{Sinput}
 \end{Schunk}
 
@@ -5165,9 +5174,9 @@ We use a text entry widget to allow the user to filter the values in the display
 The treeview  will only show the first three columns of the data frame, although we store the fourth which contains the URL.
 \begin{Schunk}
 \begin{Sinput}
- f1 <- ttkframe(f); tkpack(f1, expand=TRUE, fill="both")
- tr <- ttktreeview(f1, columns=1:ncol(df), 
-                   displaycolumns = 1:(ncol(df) - 1), 
+ f1 <- ttkframe(f); tkpack(f1, expand = TRUE, fill = "both")
+ tr <- ttktreeview(f1, columns = 1:ncol(DF), 
+                   displaycolumns = 1:(ncol(DF) - 1), 
                    show = "headings",     # not "tree" 
                    selectmode = "browse") # single selection
  addScrollbars(f1, tr)
@@ -5178,11 +5187,11 @@ We configure the column widths and titles as follows:
 \begin{Schunk}
 \begin{Sinput}
  widths <- c(100, 75, 400)            # hard coded
- nms <- names(df)
+ nms <- names(DF)
  for(i in 1:3) {
-   tcl(tr, "heading", i, text=nms[i])
-   tcl(tr, "column", i, width=widths[i], 
-       stretch=TRUE, anchor="w")
+   tcl(tr, "heading", i, text = nms[i])
+   tcl(tr, "column", i, width = widths[i], 
+       stretch = TRUE, anchor = "w")
  }
 \end{Sinput}
 \end{Schunk}
@@ -5194,15 +5203,15 @@ we will replace all the values when filtering.  This following helper
 function is used to fill in the widget with values from a data frame.
 \begin{Schunk}
 \begin{Sinput}
- fillTable <- function(tr, df) {
+ fillTable <- function(tr, DF) {
    children <- as.character(tcl(tr, "children", ""))
    for(i in children) tcl(tr, "delete", i)    # out with old
    shade <- c("none", "gray")
-   for(i in seq_len(nrow(df))) 
-     tcl(tr, "insert", "", "end", tag=shade[i %% 2], 
-         text="",  
-         values=unlist(df[i,]))               # in with new
-   tktag.configure(tr, "gray", background="gray95")
+   for(i in seq_len(nrow(DF))) 
+     tcl(tr, "insert", "", "end", tag = shade[i %% 2], 
+         text = "",  
+         values = unlist(DF[i,]))               # in with new
+   tktag.configure(tr, "gray", background = "gray95")
  }
 \end{Sinput}
 \end{Schunk}
@@ -5210,7 +5219,7 @@ function is used to fill in the widget with values from a data frame.
 The initial call populates the table from the entire data frame.
 \begin{Schunk}
 \begin{Sinput}
- fillTable(tr, df)
+ fillTable(tr, DF)
 \end{Sinput}
 \end{Schunk}
 
@@ -5218,13 +5227,13 @@ The filter works by grepping the user input against the host value. We
 bind to \Event{KeyRelease} (and not \Event{KeyPress}) so we capture the last keystroke.
 \begin{Schunk}
 \begin{Sinput}
- curInd <- 1:nrow(df)
+ curInd <- 1:nrow(DF)
  tkbind(filterEntry, "<KeyRelease>", function(W, K) {
    val <- tclvalue(tkget(W))
-   possVals <- apply(df, 1, function(...) 
-                     paste(..., collapse=" "))
+   possVals <- apply(DF, 1, function(...) 
+                     paste(..., collapse = " "))
    ind<- grep(val, possVals)
-   if(length(ind) == 0) ind <- 1:nrow(df)
+   if(length(ind) == 0) ind <- 1:nrow(DF)
    fillTable(tr, df[ind,])
  })
 \end{Sinput}
@@ -5267,14 +5276,14 @@ hold the items.
 %
 \begin{figure}
   \centering
-  \includegraphics[width=.8\textwidth]{fig-tcltk-subset-filter.png}
+  \includegraphics[width = .8\textwidth]{fig-tcltk-subset-filter.png}
   \caption{A dialog for subsetting a data frame}
   \label{fig:tcltk-subset-filter}
 \end{figure}
 %
 
 To implement this, we first create a \class{FilterList} class. Our
-class has a few properties: \code{df} to hold the data frame; \code{l}
+class has a few properties: \code{DF} to hold the data frame; \code{l}
 to hold the list items; \code{id} to hold an internal counter to
 reference the list items by; and \code{frame} to hold a
 \code{ttkframe} instance, the parent container for each item.
@@ -5286,11 +5295,11 @@ reference the list items by; and \code{frame} to hold a
  setOldClass("tkwin")
  setOldClass("tclVar")
  FilterList <- setRefClass("FilterList",
-                           fields=list(
-                             df="data.frame",
-                             l="list",
-                             id="integer",
-                             frame="tkwin" 
+                           fields = list(
+                             DF = "data.frame",
+                             l = "list",
+                             id = "integer",
+                             frame = "tkwin" 
                              ))
 \end{Sinput}
 \end{Schunk}
@@ -5318,48 +5327,42 @@ buttons. We use the \function{tkgrid} layout manager which allows us
 to grow the top frame as needed, yet have the buttons receive the
 additional expanding space.
 
-\begin{Schunk}
-\begin{Sinput}
- FilterList$methods(
-           setup_gui = function(parent) {
-             enc_frame <- ttkframe(parent, padding=5)
-             tkpack(enc_frame, expand=TRUE, fill="both")
-             frame <<- ttkframe(enc_frame)
-             button_frame <- ttkframe(enc_frame)
-             ## use grid to manage these
-             tkgrid(frame, sticky="news")
-             tkgrid(button_frame, sticky="new")
-             tkgrid.rowconfigure(enc_frame, 1, weight=1)
-             tkgrid.columnconfigure(enc_frame, 0, weight=1)
-             ##
-             addBtn <- 
-               ttkbutton(button_frame, text="Add", 
-                         command=function() .self$add())
-             previewBtn <- 
-               ttkbutton(button_frame, text="Preview", 
-                         command=function() .self$preview())
-             ##
-             sapply(list(addBtn, previewBtn), tkpack, 
-                    side="left", padx=5)
-           })
-\end{Sinput}
-\end{Schunk}
+<<FilterListMethods>> = 
+FilterList$methods(
+          setup_gui = function(parent) {
+            enc_frame <- ttkframe(parent, padding = 5)
+            tkpack(enc_frame, expand = TRUE, fill = "both")
+            frame <<- ttkframe(enc_frame)
+            button_frame <- ttkframe(enc_frame)
+            ## use grid to manage these
+            tkgrid(frame, sticky = "news")
+            tkgrid(button_frame, sticky = "new")
+            tkgrid.rowconfigure(enc_frame, 1, weight = 1)
+            tkgrid.columnconfigure(enc_frame, 0, weight = 1)
+            ##
+            addBtn <- 
+              ttkbutton(button_frame, text = "Add", 
+                        command = function() .self$add())
+            previewBtn <- 
+              ttkbutton(button_frame, text = "Preview", 
+                        command = function() .self$preview())
+            ##
+            sapply(list(addBtn, previewBtn), tkpack, 
+                   side = "left", padx = 5)
+          })
 
 The \meth{initialize} method simply initializes our fields and then
 sets up the GUI. As the point of this is to filter a data frame, the
-\code{df} argument has no default value and must be specified.
+\code{DF} argument has no default value and must be specified.
 
 %% initialize sets the fields, setsup the GUI then returns
-\begin{Schunk}
-\begin{Sinput}
- FilterList$methods(
-            initialize=function(df, parent, ...) {
-              initFields(df=df, l=list(), id=0)
-              setup_gui(parent)
-              callSuper(...)
-            })
-\end{Sinput}
-\end{Schunk}
+<<FilterListInitialize>> = 
+FilterList$methods(
+           initialize = function(DF, parent, ...) {
+             initFields(DF = DF, l = list(), id = 0)
+             setup_gui(parent)
+             callSuper(...)
+           })
 
 Before showing a filter, we force the user to select a variable to
 filter by. This selection involves choosing one from possibly many. A
@@ -5369,33 +5372,30 @@ modal dialog window. Selection happens when a user selects one of the
 rows of the table.
 
 %% This helper function uses a table to select a single value from possible many
-\begin{Schunk}
-\begin{Sinput}
- FilterList$methods(
-            select_variable=function() {
-              "Return a variable name from the data frame"
-              x <- sapply(df, function(i) class(i)[1])
-              m <- cbind(Variables=names(x), Type=x)
-              w <- tktoplevel()
-              f <- ttkframe(w, padding=c(3,3,3,12))
-              tkpack(f, expand=TRUE, fill="both")
-              ##
-              a <- populate_rectangular_treeview(f, m)
-              tkconfigure(a$frame, width=300, height=200)
-              tkpack(a$frame, expand=TRUE, fill="both")
-              ## select a value, store in out
-              out <- NA
-              tkbind(a$tr, "<<TreeviewSelect>>", function(W) {
-                sel <- tcl(W, "selection")
-                val <- tcl(W, "item", sel, "-values")
-                assign("out", as.character(val)[1], inherits=TRUE)
-                tkdestroy(w)
-              })
-              tkwait.window(w)
-              return(out)
-            })
-\end{Sinput}
-\end{Schunk}
+<<FilterListSelectVariable>> = 
+FilterList$methods(
+           select_variable = function() {
+             "Return a variable name from the data frame"
+             x <- sapply(DF, function(i) class(i)[1])
+             m <- cbind(Variables = names(x), Type = x)
+             w <- tktoplevel()
+             f <- ttkframe(w, padding = c(3,3,3,12))
+             tkpack(f, expand = TRUE, fill = "both")
+             ##
+             a <- populate_rectangular_treeview(f, m)
+             tkconfigure(a$frame, width = 300, height = 200)
+             tkpack(a$frame, expand = TRUE, fill = "both")
+             ## select a value, store in out
+             out <- NA
+             tkbind(a$tr, "<<TreeviewSelect>>", function(W) {
+               sel <- tcl(W, "selection")
+               val <- tcl(W, "item", sel, "-values")
+               assign("out", as.character(val)[1], inherits = TRUE)
+               tkdestroy(w)
+             })
+             tkwait.window(w)
+             return(out)
+           })
 %% our main method to add a new variable. We can pass in a name, but
 %% not from our GUI, where we use the just-defined select variable method
 %% our new items will come from the newFilterItem yet to be defined. We see we pass in the values (for S3 dispatch), their name, a unique id and a reference to the filter list.
@@ -5408,25 +5408,22 @@ bookkeeping, and finally to call the items \code{make\_gui}
 method. The \function{newFilterItem} call is an S3 generic used as a
 factory method to find the correct filter item reference class to
 produce an appropriate filter for the variable.
-\begin{Schunk}
-\begin{Sinput}
- FilterList$methods(
-            add=function(varname, ...) {
-              if(missing(varname)) 
-                varname <- select_variable()
-              x <- get(varname, df)
-              ## new item
-              id <<- id + 1
-              item <- newFilterItem(x, varname, id, .self)
-              ## make frame
-              enc_frame <- ttkframe(frame)
-              tkpack(enc_frame, expand=TRUE, fill="both", pady=2)
-              l[[as.character(id)]] <<- list(frame=enc_frame, 
-                                             item=item)
-              item$make_gui(enc_frame)
-            })
-\end{Sinput}
-\end{Schunk}
+<<FilterListAdd>> = 
+FilterList$methods(
+           add = function(varname, ...) {
+             if(missing(varname)) 
+               varname <- select_variable()
+             x <- get(varname, DF)
+             ## new item
+             id <<- id + 1
+             item <- newFilterItem(x, varname, id, .self)
+             ## make frame
+             enc_frame <- ttkframe(frame)
+             tkpack(enc_frame, expand = TRUE, fill = "both", pady = 2)
+             l[[as.character(id)]] <<- list(frame = enc_frame, 
+                                            item = item)
+             item$make_gui(enc_frame)
+           })
 %
 
 To remove an object requires us to remove it from our internal list
@@ -5465,7 +5462,7 @@ specify ``and'' or ``or'' between each item.
             get_value = function() {
               "Return logical value for all filter items"
               if(length(l) == 0)
-                return(rep(TRUE, length=nrow(df)))
+                return(rep(TRUE, length=nrow(DF)))
               ##
               out <- sapply(l, function(i) i$item$get_value())
               out[is.na(out)] <- FALSE   ## coerce NA to FALSE
@@ -5492,19 +5489,19 @@ our previously defined \function{populate\_rectangular\_treeview} function.
                 return()
               }
               ## coerce to character
-              m <- df[ind,]
+              m <- DF[ind,]
               for(i in seq_along(m)) m[,i] <- as.character(m[,i])
               ##
               w <- tktoplevel()
-              f <- ttkframe(w, padding=c(3,3,3,12))
-              tkpack(f, expand=TRUE, fill="both")
+              f <- ttkframe(w, padding = c(3,3,3,12))
+              tkpack(f, expand = TRUE, fill = "both")
               a <- populate_rectangular_treeview(f, m)
-              tkconfigure(a$frame, width=400, height=300)
-              tkpack(a$frame, expand=TRUE, fill="both")
+              tkconfigure(a$frame, width = 400, height = 300)
+              tkpack(a$frame, expand = TRUE, fill = "both")
               ##
-              btn <- ttkbutton(f, text="dismiss", 
-                               command=function() tkdestroy(w))
-              tkpack(btn, anchor="sw")
+              btn <- ttkbutton(f, text = "dismiss", 
+                               command = function() tkdestroy(w))
+              tkpack(btn, anchor = "sw")
               tkwait.window(w)
             })
 \end{Sinput}
@@ -5516,7 +5513,7 @@ call needed would be something along the lines of the following:
 \begin{Sinput}
  w <- tktoplevel()
  require(MASS)
- flist <- FilterList$new(df=Cars93, parent=w)
+ flist <- FilterList$new(DF = Cars93, parent = w)
 \end{Sinput}
 \end{Schunk}
 %
@@ -5530,11 +5527,11 @@ item. These are still be be defined, but we show the default choice.
 %% S3 method to pick correct filter
 \begin{Schunk}
 \begin{Sinput}
- newFilterItem <- function(x, nm=deparse(substitute(x)), id, 
+ newFilterItem <- function(x, nm = deparse(substitute(x)), id, 
                            list_ref) UseMethod("newFilterItem")
- newFilterItem.default <- function(x, nm=deparse(substitute(x)), 
+ newFilterItem.default <- function(x, nm = deparse(substitute(x)), 
                                    id, list_ref) 
-   FilterItemNumeric$new(x=x, nm=nm, id=id, list_ref=list_ref)
+   FilterItemNumeric$new(x = x, nm = nm, id = id, list_ref = list_ref)
 \end{Sinput}
 \end{Schunk}
 
@@ -5555,11 +5552,11 @@ to the filter list.
 \begin{Schunk}
 \begin{Sinput}
  FilterItem <- setRefClass("FilterItem",
-                           fields=list(
-                             x="ANY",
+                           fields = list(
+                             x = "ANY",
                              nm = "character",
                              id = "character",
-                             list_ref="ANY"
+                             list_ref = "ANY"
                              ))
 \end{Sinput}
 \end{Schunk}
@@ -5579,7 +5576,7 @@ last method is simply a \code{remove} method which calls back up into the
 \begin{Schunk}
 \begin{Sinput}
  FilterItem$methods(
-            initialize=function(...) {
+            initialize = function(...) {
               initFields(...)
               .self
             },
@@ -5587,14 +5584,14 @@ last method is simply a \code{remove} method which calls back up into the
               "Return logical value of length x"
               stop("Must be subclassed")
             },
-            remove=function() list_ref$remove(.self),
+            remove = function() list_ref$remove(.self),
             make_gui = function(parent, ...) {
               "Set up GUI, including defining widgets"
-              removeBtn <- ttkbutton(parent, text="remove",
-                                     command=function() {
+              removeBtn <- ttkbutton(parent, text = "remove",
+                                     command = function() {
                                        .self$remove()
                                      })
-              tkpack(removeBtn, side="right")
+              tkpack(removeBtn, side = "right")
             })
 \end{Sinput}
 \end{Schunk}
@@ -5608,10 +5605,10 @@ user can enter.
 \begin{Schunk}
 \begin{Sinput}
  FilterItemNumeric <- setRefClass("FilterItemNumeric",
-                                  contains="FilterItem",
-                                  fields=list(
-                                    ineqVar="tclVar",
-                                    valVar="tclVar"
+                                  contains = "FilterItem",
+                                  fields = list(
+                                    ineqVar = "tclVar",
+                                    valVar = "tclVar"
                                     ))
 \end{Sinput}
 \end{Schunk}
@@ -5626,8 +5623,8 @@ variable names from the data framed.
  FilterItemNumeric$methods(
        get_value = function() {
          xpr <- paste(nm, tclvalue(ineqVar), tclvalue(valVar))
-         eval(parse(text=xpr), 
-              envir=list_ref$df, parent.frame())
+         eval(parse(text = xpr), 
+              envir = list_ref$DF, parent.frame())
        })
  
 \end{Sinput}
@@ -5644,19 +5641,19 @@ we simply pack these widgets into the parent that is passed in to the method cal
  FilterItemNumeric$methods(
            make_gui = function(parent) {
              ## standard width for label
-             labWidth <- max(sapply(names(list_ref$df), nchar))
-             lab <- ttklabel(parent, text=nm, width=labWidth)
+             labWidth <- max(sapply(names(list_ref$DF), nchar))
+             lab <- ttklabel(parent, text = nm, width = labWidth)
              ## ineq combo
              vals <- c(">=", ">", "==", "!=", "<", "<=")
              ineqVar <<- tclVar("<=")
-             ineq <- ttkcombobox(parent, values=vals, 
-                                 textvariable=ineqVar, width=4)
+             ineq <- ttkcombobox(parent, values = vals, 
+                                 textvariable = ineqVar, width = 4)
              ## entry
-             valVar <<- tclVar(max(x, na.rm=TRUE))
-             val <- ttkentry(parent, textvariable=valVar)
+             valVar <<- tclVar(max(x, na.rm = TRUE))
+             val <- ttkentry(parent, textvariable = valVar)
              ##
-             sapply(list(lab, ineq, val), tkpack, side="left",
-                    padx=5)
+             sapply(list(lab, ineq, val), tkpack, side = "left",
+                    padx = 5)
              callSuper(parent)
            })
  
@@ -5691,12 +5688,12 @@ values and the currently selected values.
 \begin{Sinput}
  FilterItemCharacter <- 
    setRefClass("FilterItemCharacter",
-               contains="FilterItem",
-               fields=list(
-                 tr="tkwin",
-                 btn="tkwin",
-                 poss_vals="character",
-                 cur_vals="character"
+               contains = "FilterItem",
+               fields = list(
+                 tr = "tkwin",
+                 btn = "tkwin",
+                 poss_vals = "character",
+                 cur_vals = "character"
                  ))
 \end{Sinput}
 \end{Schunk}
@@ -5735,7 +5732,7 @@ size uniform by ``ellipsizing'' the button's label.
 \begin{Schunk}
 \begin{Sinput}
  FilterItemCharacter$methods(ellipsize = function() {
-             tmp <- paste(cur_vals, collapse=", ")
+             tmp <- paste(cur_vals, collapse = ", ")
              if((N <- nchar(tmp)) > 50)
                tmp <- sprintf("%s...%s", substr(tmp, 0, 15),
                               substr(tmp, N-12,N))
@@ -5752,18 +5749,18 @@ and \kbd{control} keys while clicking on items.
 \begin{Schunk}
 \begin{Sinput}
  FilterItemCharacter$methods(
-           select_values_dialog=function() {
+           select_values_dialog = function() {
              w <- tktoplevel()
-             f <- ttkframe(w, padding=c(3,3,12,12))
-             tkpack(f, expand=TRUE, fill="both")
+             f <- ttkframe(w, padding = c(3,3,12,12))
+             tkpack(f, expand = TRUE, fill = "both")
              tkpack(ttklabel(f, 
-               text="Select values by extending selection"))
+               text = "Select values by extending selection"))
              ## selection
              m <- matrix(poss_vals); colnames(m) = "Values"
              a <- populate_rectangular_treeview(f, m)
-             tkconfigure(a$tr, selectmode="extended")
-             tkconfigure(a$frame, width=200, height=300)
-             tkpack(a$frame, expand=TRUE, fill="both")
+             tkconfigure(a$tr, selectmode = "extended")
+             tkconfigure(a$frame, width = 200, height = 300)
+             tkpack(a$frame, expand = TRUE, fill = "both")
              
              sel_by_name(a$tr, cur_vals)         # see above
              
@@ -5778,15 +5775,15 @@ and \kbd{control} keys while clicking on items.
              })
              ## buttons
              f1 <- ttkframe(f); tkpack(f1)
-             toggleBtn <- ttkbutton(f1, text="toggle", 
-                          command=function() toggle_sel(a$tr))
-             setBtn <- ttkbutton(f1, text="set", 
-                          command=function() tkdestroy(w))
+             toggleBtn <- ttkbutton(f1, text = "toggle", 
+                          command = function() toggle_sel(a$tr))
+             setBtn <- ttkbutton(f1, text = "set", 
+                          command = function() tkdestroy(w))
              sapply(list(toggleBtn, setBtn), tkpack, 
-                    side="left", padx=5)
+                    side = "left", padx = 5)
              ## make modal
              tkwait.window(w)
-             tkconfigure(btn, text=ellipsize())
+             tkconfigure(btn, text = ellipsize())
            })
 \end{Sinput}
 \end{Schunk}
@@ -5800,17 +5797,17 @@ labels for the name and \code{\%in\%} operator and a button.
              poss_vals <<- sort(unique(as.character(x)))
              cur_vals <<- poss_vals
              ## label, ineq, val
-             labWidth <- max(sapply(names(list_ref$df), nchar))
-             lab <- ttklabel(parent, text=nm, width=labWidth)
+             labWidth <- max(sapply(names(list_ref$DF), nchar))
+             lab <- ttklabel(parent, text = nm, width = labWidth)
              ##
-             inLab <- ttklabel(parent, text="%in%")
+             inLab <- ttklabel(parent, text = "%in%")
              ##
-             btn <<- ttkbutton(parent, text=ellipsize(), 
-                        command=.self$select_values_dialog)
+             btn <<- ttkbutton(parent, text = ellipsize(), 
+                        command = .self$select_values_dialog)
              ##
              sapply(list(lab, inLab), tkpack,
-                    side="left", padx=5)
-             tkpack(btn, expand=TRUE, fill="x", side="left")
+                    side = "left", padx = 5)
+             tkpack(btn, expand = TRUE, fill = "x", side = "left")
              callSuper(parent)
            })
 \end{Sinput}
@@ -5862,8 +5859,8 @@ parent item is opened or closed, the virtual events
 signaled.
 
 %% example?
-%% tcl(tr, "insert","I001","end", text="child", open=FALSE)
-%% tcl(tr, item, "I001", open=TRUE)
+%% tcl(tr, "insert","I001","end", text = "child", open = FALSE)
+%% tcl(tr, item, "I001", open = TRUE)
 
 %% traversal 
 
@@ -5907,14 +5904,14 @@ The \function(htmlTreeParse) (similar to \function{xmlInternalTreeParse}) to par
  library(XML)
  fileName <- "http://www.omegahat.org/RSXML/shortIntro.html"
  QT <- function(...) {}  # quiet next call
- doc <- htmlTreeParse(fileName, useInternalNodes=TRUE, error=QT)
+ doc <- htmlTreeParse(fileName, useInternalNodes = TRUE, error = QT)
  root <- xmlRoot(doc)
 \end{Sinput}
 \end{Schunk}
 Our GUI is primitive, with just a treeview instance added.
 \begin{Schunk}
 \begin{Sinput}
- tr <- ttktreeview(f, displaycolumns="#all", columns=1)
+ tr <- ttktreeview(f, displaycolumns = "#all", columns = 1)
  addScrollbars(f, tr)                    
 \end{Sinput}
 \end{Schunk}
@@ -5923,10 +5920,10 @@ We configure our column headers and set a minimum
 width below. Recall, the tree column is designated \qcode{\#0}.
 \begin{Schunk}
 \begin{Sinput}
- tcl(tr, "heading", "#0", text="Name")
- tcl(tr, "column", "#0", minwidth=20)
- tcl(tr, "heading", 1, text="value")
- tcl(tr, "column", 1, minwidth=20)
+ tcl(tr, "heading", "#0", text = "Name")
+ tcl(tr, "column", "#0", minwidth = 20)
+ tcl(tr, "heading", 1, text = "value")
+ tcl(tr, "column", 1, minwidth = 20)
 \end{Sinput}
 \end{Schunk}
 
@@ -5938,11 +5935,11 @@ instance.  We only add to the \code{value} column (through the
 calls to the \code{insert} subcommand. 
 \begin{Schunk}
 \begin{Sinput}
- insertChild <- function(tr, node, parent="") {
-   l <- list(tr, "insert", parent, "end", text=xmlName(node))
+ insertChild <- function(tr, node, parent = "") {
+   l <- list(tr, "insert", parent, "end", text = xmlName(node))
    children <- xmlChildren(node)
    if(length(children) == 0) {         # add in values
-     values <- paste(xmlValue(node), sep=" ", collapse=" ")
+     values <- paste(xmlValue(node), sep = " ", collapse = " ")
      l$values <- as.tclObj(values)     # avoid split on spaces
    }
    treePath <- do.call("tcl", l)
@@ -5985,7 +5982,7 @@ any drop areas.
 \begin{Schunk}
 \begin{Sinput}
  tkbind(tr, "<B1-Motion>", function(W, x, y, X, Y) {
-   tkconfigure(W, cursor="diamond_cross")
+   tkconfigure(W, cursor = "diamond_cross")
    .dragging <<-TRUE
  })
 \end{Sinput}
@@ -6002,10 +5999,10 @@ item it is being dropped on. If a different action is desired, the
 \begin{Sinput}
  tkbind(tr, "<ButtonRelease-1>", function(W, x, y, X, Y) {
    if(.dragging && .selectedID != "") {
-     w = tkwinfo("containing", X, Y)
+     w <- tkwinfo("containing", X, Y)
      if(as.character(w) == as.character(W)) {
        dropID <- as.character(tcl(W, "identify","row", x, y))
-       try(tkmove(W, .selectedID, dropID, "0"), silent=TRUE)
+       try(tkmove(W, .selectedID, dropID, "0"), silent = TRUE)
      }
    }
    .dragging <<- FALSE; .selectedID <<- "" # reset
@@ -6097,7 +6094,7 @@ frame widget.
 
 % Once created, a screenshot of the canvas can be created through the
 % \subcommand{postscript}{tkcanvas} subcommand, as in
-% \code{tcl(canvas, "postscript", file="filename")}. To store the
+% \code{tcl(canvas, "postscript", file = "filename")}. To store the
 % widget so that it can be recreated is not supported directly. \TCL\/
 % code to do so can be found at \url{http://wiki.tcl.tk/9168}.
 
@@ -6163,28 +6160,28 @@ controlled by the scrolling.
 
 \begin{Schunk}
 \begin{Sinput}
- scrollableFrame <- function(parent, width= 300, height=300) {
+ scrollableFrame <- function(parent, width =  300, height = 300) {
    canvasWidget <- 
      tkcanvas(parent,
-              borderwidth=0, highlightthickness=0,
-              width=width, height=height)
+              borderwidth = 0, highlightthickness = 0,
+              width = width, height = height)
    addScrollbars(parent, canvasWidget)
    #
-   gp <- ttkframe(canvasWidget, padding=c(0,0,0,0))
-   gpID <- tkcreate(canvasWidget, "window", 0, 0, anchor="nw", 
-                    window=gp)
-   tkitemconfigure(canvasWidget, gpID, width=width)
+   gp <- ttkframe(canvasWidget, padding = c(0,0,0,0))
+   gpID <- tkcreate(canvasWidget, "window", 0, 0, anchor = "nw", 
+                    window = gp)
+   tkitemconfigure(canvasWidget, gpID, width = width)
    ## update scroll region
    tkbind(gp,"<Configure>",function() {  
      bbox <- tcl(canvasWidget, "bbox", "all")
-     tcl(canvasWidget,"config", scrollregion=bbox)
+     tcl(canvasWidget,"config", scrollregion = bbox)
    })
    ## adjust "window" width when canvas is resized.
    tkbind(canvasWidget, "<Configure>", function(W) {
      width <- as.numeric(tkwinfo("width", W))
      gpwidth <- as.numeric(tkwinfo("width", gp))
      if(gpwidth < width)
-       tkitemconfigure(canvasWidget, gpID, width=width)
+       tkitemconfigure(canvasWidget, gpID, width = width)
    })
    return(gp)
  }
@@ -6196,7 +6193,7 @@ To use this, we create a simple GUI as follows:
 \begin{Sinput}
  w <- tktoplevel()
  tkwm.title(w,"Scrollable frame example")
- g <- ttkframe(w); tkpack(g, expand=TRUE, fill="both")
+ g <- ttkframe(w); tkpack(g, expand = TRUE, fill = "both")
  gp <- scrollableFrame(g, 300, 300)
 \end{Sinput}
 \end{Schunk}
@@ -6215,10 +6212,10 @@ and the useful coercion to character by \function{as.character}.
  fFamilies <- fFamilies[grepl("^[[:alpha:]]", fFamilies)] 
  for(i in seq_along(fFamilies)) {
    fName <- sprintf("::font::-%s", i)
-   try(tkfont.create(fName, family=fFamilies[i], size=14), 
-       silent=TRUE)
-   l <- ttklabel(gp, text=fFamilies[i], font=fName)
-   tkpack(l, side="top", anchor="w")
+   try(tkfont.create(fName, family = fFamilies[i], size = 14), 
+       silent = TRUE)
+   l <- ttklabel(gp, text = fFamilies[i], font = fName)
+   tkpack(l, side = "top", anchor = "w")
  }
 \end{Sinput}
 \end{Schunk}
@@ -6253,7 +6250,7 @@ the global \texttt{f} (a \code{ttkframe}) as the parent.
  mL <- function(label) { # save some typing
    if(is.numeric(label))
      label <- sprintf("%.2f", label)
-   ttklabel(f, text=label, justify="right") 
+   ttklabel(f, text = label, justify = "right") 
  }
 \end{Sinput}
 \end{Schunk}
@@ -6263,8 +6260,8 @@ We begin by making the table header along with a toprule.
 \begin{Sinput}
  tkgrid(mL(""), mL("2000-01-01"), mL("-- until --"), 
         mL("today"), mL("low"), mL("high"))
- tkgrid(ttkseparator(f), row=1, column=1, columnspan=5, 
-        sticky="we")
+ tkgrid(ttkseparator(f), row = 1, column = 1, columnspan = 5, 
+        sticky = "we")
 \end{Sinput}
 \end{Schunk}
 %
@@ -6275,19 +6272,19 @@ we can conveniently employ the \function{get.hist.quote} function from
 the \pkg{tseries} package to get interesting data.
 \begin{Schunk}
 \begin{Sinput}
- addSparkLine <- function(label, symbol="MSFT") {
-   width <- 100; height=15               # fix width, height
-   y <- get.hist.quote(instrument=symbol, start="2000-01-01",
-                       quote="C", provider="yahoo", 
-                       retclass="zoo")$Close
+ addSparkLine <- function(label, symbol = "MSFT") {
+   width <- 100; height = 15               # fix width, height
+   y <- get.hist.quote(instrument = symbol, start = "2000-01-01",
+                       quote = "C", provider = "yahoo", 
+                       retclass = "zoo")$Close
    min <- min(y); max <- max(y)
    ##
-   start <- y[1]; end <- tail(y,n=1)
+   start <- y[1]; end <- tail(y,n = 1)
    rng <- range(y)
    ##
-   sparkLineCanvas <- tkcanvas(f, width=width, height=height)
+   sparkLineCanvas <- tkcanvas(f, width = width, height = height)
    x <- 0:(length(y)-1) * width/length(y)
-   if(diff(rng) != 0) {
+   if(diff(rng) !=  0) {
      y1 <- (y - rng[1])/diff(rng) * height
      y1 <- height - y1   # adjust to canvas coordinates
    } else {
@@ -6302,19 +6299,16 @@ the \pkg{tseries} package to get interesting data.
    do.call("tcl",l)
  
    tkgrid(mL(label),mL(start), sparkLineCanvas, 
-          mL(end), mL(min), mL(max), pady=2, sticky="e")
+          mL(end), mL(min), mL(max), pady = 2, sticky = "e")
  }
 \end{Sinput}
 \end{Schunk}
 
 We can then add some rows to the table as follows:
-\begin{Schunk}
-\begin{Sinput}
- addSparkLine("Microsoft","MSFT")
- addSparkLine("General Electric", "GE")
- addSparkLine("Starbucks","SBUX")
-\end{Sinput}
-\end{Schunk}
+<<eval = FALSE>> = 
+addSparkLine("Microsoft","MSFT")
+addSparkLine("General Electric", "GE")
+addSparkLine("Starbucks","SBUX")
 \end{example}
 
 %% Moving an object
@@ -6334,8 +6328,8 @@ later use. Clearly, this code could be modified to add more points.
 \begin{Sinput}
  x <- 200; y <- 150; r <- 6
  item <- tkcreate(canvas, "oval", x - r, y - r, x + r, y + r,
-                  width=1, outline="black",
-                  fill="blue")
+                  width = 1, outline = "black",
+                  fill = "blue")
  tkaddtag(canvas, "point", "withtag", item)
 \end{Sinput}
 \end{Schunk}
@@ -6347,9 +6341,9 @@ so that is will apply to all point items and only the point items.
 \begin{Schunk}
 \begin{Sinput}
  tkitembind(canvas, "point", "<Any-Enter>", function()
-            tkitemconfigure(canvas, "current", fill="red"))
+            tkitemconfigure(canvas, "current", fill = "red"))
  tkitembind(canvas, "point", "<Any-Leave>", function()
-            tkitemconfigure(canvas, "current", fill="blue"))
+            tkitemconfigure(canvas, "current", fill = "blue"))
 \end{Sinput}
 \end{Schunk}
 
@@ -6391,7 +6385,7 @@ we simply delete the \qcode{selected} tag.
 \begin{Schunk}
 \begin{Sinput}
  tkbind(canvas, "<ButtonRelease-1>", 
-        function(W) tkdtag(W,"selected"))
+        function(W) tkdtag(W, "selected"))
 \end{Sinput}
 \end{Schunk}
 
