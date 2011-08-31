@@ -244,7 +244,7 @@ modified). These tags can be used with \code{tkget} to retrieve the
 currently selected text. An error will be thrown if there is no
 current selection. To check if there is a current selection, the following may be used:
 <<>>=
-hasSelection <- function(W) {
+has_selection <- function(W) {
   ranges <- tclvalue(tcl(W, "tag", "ranges", "sel"))
   length(ranges) > 1 || ranges != ""
 }
@@ -267,11 +267,11 @@ buffer that can be modified. For example, the marks \code{insert} and
 position of the mouse. Such information can be used to provide
 context-sensitive popup menus, as in this code example:
 <<>>=
-popupContext <- function(W, x, y) {
+popup_context <- function(W, x, y) {
   ## or use sprintf("@%s,%s", x, y) for "current"
   cur <- tkget(W, "current wordstart", "current wordend") 
   cur <- tclvalue(cur)
-  popupContextMenuFor(cur, x, y)        # some function
+  popup_context_menu_for(cur, x, y)        # some function
 }
 @ 
 
@@ -352,7 +352,7 @@ relationship to your application will be shown if a menu is not
 provided for a toplevel window. Testing for native Mac OS X may be done via
 the following function:
 <<testIfMac>>=
-usingMac <- function()  
+using_Mac <- function()  
   as.character(tcl("tk", "windowingsystem")) == "aqua"
 @ 
 
@@ -375,7 +375,7 @@ button <- ttkbutton(frame, text = "Click me for popup")
 
 <<>>=
 doPopup <- function(X, Y) tkpopup(pmb, X, Y) # define callback
-if (usingMac()) {
+if (using_Mac()) {
   tkbind(button, "<Button-2>", doPopup)      # right click
   tkbind(button, "<Control-1>", doPopup)     # Control + click
 } else {

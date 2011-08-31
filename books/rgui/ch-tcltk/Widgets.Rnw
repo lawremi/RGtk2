@@ -72,7 +72,7 @@ of the widget before proceeding.  To add a callback with
 for the event \code{\Event{Button-1}} is called before the variable is
 updated.
 
-For example, if \code{f} is a frame, we can create a new check button
+For example, if \code{frame} is a frame, we can create a new check button
 with the following:
 <<setup-window,echo=FALSE>>=
 window <- tktoplevel(); tkwm.title(window, "Check button example")
@@ -118,30 +118,30 @@ use an environment created by the \pkg{tcltk} package in place of a
 global variable.
 
 <<ourTclVar>>=
-ourTclVar <- function(...) {
+our_tcl_var <- function(...) {
   var <- tclVar(...)
   .TkRoot$env[[as.character(var)]] <- var
   var
 }
 ## lookup function
-getTclVarById <- function(id) {
+get_tcl_var_by_id <- function(id) {
   .TkRoot$env[[as.character(id)]]
 }
 @ 
 
-Assuming we used \function{ourTclVar} above, then the callback above
+Assuming we used \function{our_tcl_var} above, then the callback above
 could be defined to avoid a (new) global variable by:
 
-<<ourTclVarExample, echo=FALSE>>=
+<<our_tcl_varExample, echo=FALSE>>=
 window <- tktoplevel(); tkwm.title(window, "Check button example")
 frame <- ttkframe(window); tkpack(frame, expand = TRUE, fill = "both")
-value_var <- ourTclVar(TRUE)
+value_var <- our_tcl_var(TRUE)
 @
 
 <<>>=
 callback <- function(W) {
   id <- tkcget(W, "variable" = NULL)
-  print(getTclVarById(id))
+  print(get_tcl_var_by_id(id))
 }
 @ 
 
@@ -179,7 +179,7 @@ frame <- ttkframe(window, padding = c(3,3,12,12)); tkpack(frame, expand = TRUE, 
 @ 
 
 This small example shows how radio buttons could be used for selection
-of an alternative hypothesis, assuming \code{f} is a parent container.
+of an alternative hypothesis, assuming \code{frame} is a parent container.
 
 <<radio-button-2, results=hide>>=
 values <- c("less", "greater", "two.sided")
@@ -319,7 +319,7 @@ editable combo boxes, the widget also supports some of the
 \function{ttkentry} commands just discussed.
 
 
-To illustrate, again suppose \code{f} is a parent container. Then we
+To illustrate, again suppose \code{frame} is a parent container. Then we
 begin by defining some values to choose from and a \TCL\/ variable.
 
 <<echo=FALSE>>=

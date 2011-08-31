@@ -83,11 +83,11 @@ In the following callback definition we use \code{W} so that we can change the e
 
 To begin,  we define some patterns for acceptable date formats.
 <<>>=
-datePatterns <- c()
+date_patterns <- c()
 for(i in list(c("%m","%d","%Y"),        # U.S. style
               c("%m","%d","%y"))) {
   for(j in c("/","-"," ") )
-    datePatterns[length(datePatterns)+1] <- 
+    date_patterns[length(date_patterns)+1] <- 
       paste(i,sep = "", collapse = j)
 }
 @ 
@@ -95,8 +95,8 @@ for(i in list(c("%m","%d","%Y"),        # U.S. style
 Our callbacks set the color to black or red, depending on whether we
 have a valid date. First our validation command.
 <<setValidDateCallback>>=
-isValidDate <- function(W, P) { # P is the current value
-  for(i in datePatterns) {
+is_valid_date <- function(W, P) { # P is the current value
+  for(i in date_patterns) {
     date <- try( as.Date(P, format = i), silent = TRUE)
     if(!inherits(date, "try-error") && !is.na(date)) {
       tkconfigure(W, foreground = "black")  # or use style
@@ -111,7 +111,7 @@ isValidDate <- function(W, P) { # P is the current value
 
 This is our invalid command.
 <<setInvalidCallback>>=
-indicateInvalidDate <- function(W) {
+indicate_invalid_date <- function(W) {
   tkconfigure(W, foreground = "red")
   tcl("expr", "TRUE")
 }
@@ -134,8 +134,8 @@ previous. We use \qcode{focusout} below, so also give a button widget
 so that the focus can be set elsewhere. 
 <<entryWidgetWithValidation, results=hide>>=
 entry <- ttkentry(frame, validate = "focusout", # f some parent
-              validatecommand = isValidDate,
-              invalidcommand = indicateInvalidDate)
+              validatecommand = is_valid_date,
+              invalidcommand = indicate_invalid_date)
 button <- ttkbutton(frame, text = "click")        # something to focus on
 sapply(list(entry, button), tkpack, side = "left", padx = 2)
 @ 

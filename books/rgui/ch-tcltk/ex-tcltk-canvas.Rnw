@@ -40,13 +40,13 @@ There are two key bindings needed for movement of an object. First, we
 tag the point item that gets selected when a mouse clicks on a point
 and update the last position of the currently selected point.
 <<>>=
-lastPos <- numeric(2)            # global to track position
-tagSelected <- function(W, x, y) {
+last_pos <- numeric(2)            # global to track position
+tag_selected <- function(W, x, y) {
   tkaddtag(W,  "selected",  "withtag",  "current")
   tkitemraise(W, "current")
-  lastPos <<- as.numeric(c(x, y))
+  last_pos <<- as.numeric(c(x, y))
 }
-tkitembind(canvas, "point", "<Button-1>",  tagSelected)
+tkitembind(canvas, "point", "<Button-1>",  tag_selected)
 @
 
 When the mouse moves, we use \code{tkmove} to have the currently
@@ -54,13 +54,13 @@ selected point move too. As \code{tkmove} is parameterized by
 differences, we track the differences
 between the last position recorded and the current position.
 <<moveSelectedPoint>>=
-moveSelected <- function(W, x, y) {
+move_selected <- function(W, x, y) {
   pos <- as.numeric(c(x,y))
-  tkmove(W, "selected", pos[1] - lastPos[1], 
-                        pos[2] - lastPos[2])
-  lastPos <<- pos
+  tkmove(W, "selected", pos[1] - last_pos[1], 
+                        pos[2] - last_pos[2])
+  last_pos <<- pos
 }
-tkbind(canvas, "<B1-Motion>", moveSelected)
+tkbind(canvas, "<B1-Motion>", move_selected)
 @ 
 %
 A further binding, for the \Event{ButtonRelease-1} event, would be

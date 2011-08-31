@@ -45,7 +45,7 @@ week.of.month <- function(year, month, day) {
 
 
 <<>>=
-makeMonth <- function(parent, year, month) {
+make_month <- function(parent, year, month) {
   ## add headers
   days <- c("S","M","T","W","Th","F","S")
   sapply(1:7, function(i) {
@@ -94,22 +94,22 @@ tkpack(current_month, side = "left", anchor = "center", expand = TRUE)
 tkpack(next_button, side = "left", anchor = "e")
 @ 
 
-The \code{setMonth} function first removes the previous calendar
+The \code{set\_month} function first removes the previous calendar
 container and then
 redefines one to hold the monthly calendar. Then it adds in a new
 monthly calendar to match the year and month. The call to
-\code{makeMonth} creates the calendar. Packing in the frame after
+\code{make\_month} creates the calendar. Packing in the frame after
 adding its child components makes the GUI seem much more responsive.
 <<stackedWidget>>=
-setMonth <- function() {
+set_month <- function() {
   tkpack("forget", cal_frame)
   cal_frame <<- ttkframe(frame)
-  makeMonth(cal_frame, year, month)
+  make_month(cal_frame, year, month)
   tkconfigure(current_month,              # month label
               text = sprintf("%s %s", month.abb[month], year))
   tkpack(cal_frame)
 }
-setMonth()                              # initial calendar
+set_month()                              # initial calendar
 @ 
 
 The arrow labels are used to scroll, so we connect to the
@@ -123,7 +123,7 @@ tkbind(previous_button, "<Button-1>", function() {
   } else {
     month <<- 12; year <<- year - 1
   }
-  setMonth()
+  set_month()
 })
 @ 
 
@@ -134,7 +134,7 @@ tkbind(next_button, "<Button-1>", function() {
   } else {
     month <<- 1; year <<- year + 1
   }
-  setMonth()
+  set_month()
 })
 @ 
 

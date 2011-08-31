@@ -608,7 +608,7 @@ tkpack(frame, expand = TRUE, fill = "both")
 \end{figure}
 
 
-The arguments to \code{tkpack} are given so that the frame, \code{f},
+The arguments to \code{tkpack} are given so that the frame, \code{frame},
 will expand and fill all the space allocated by the toplevel
 window. As the toplevel window is not a themed widget, not doing this
 can leave odd-looking effects~\ref{fig:tcltk-compare-themed-non-themed}.
@@ -1237,17 +1237,17 @@ done along the lines of:
 <<eval=FALSE>>=
 after_ID <- ""
 some_flag <- TRUE
-repeatCall <- function(ms = 100, f) {
+repeat_call <- function(ms = 100, f) {
   after_ID <<- tcl("after", ms, function() {
     if(someFlag) {                      
       f()
-      after_ID <<- repeatCall(ms, f)
+      after_ID <<- repeat_call(ms, f)
     }  else {
       tcl("after", "cancel", after_ID)
     }
   })
 }
-repeatCall(2000, function() {
+repeat_call(2000, function() {
   print("Running. Set someFlag <- FALSE to stop.")
 })
 @ 

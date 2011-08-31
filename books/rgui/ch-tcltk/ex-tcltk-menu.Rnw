@@ -3,7 +3,7 @@
 library(tcltk)
 
 ## Helper functions
-usingMac <- function()  
+using_Mac <- function()  
   as.character(tcl("tk", "windowingsystem")) == "aqua"
 
 addScrollbars <- function(parent, widget,type = c("both", "x", "y")) {
@@ -137,7 +137,7 @@ tkbind(text_buffer, "<<Modified>>", function(W) {
 We add a shortcut entry to the menubar and a binding to the
 top-level window for the keyboard shortcut for ``undo.''
 <<addKeyboardShortcut>>=
-if(usingMac()) {
+if(using_Mac()) {
   tkentryconfigure(edit_menu, "Undo", accelerator = "Cmd-z")
   tkbind(window, "<Option-z>", function() tcl(text_buffer, "edit", "undo"))
 } else {
@@ -155,7 +155,7 @@ provide the completions.  The use of \code{current wordstart} and
 isn't quite right for \R, as it stops at periods, but we don't pursue
 fixing this.
 <<definePopup>>=
-doPopup <- function(W, X, Y) {
+do_popup <- function(W, X, Y) {
   cur <- tclvalue(tkget(W, "current  wordstart", 
                            "current wordend"))
   tcl(W, "tag", "add", "popup", "current  wordstart", 
@@ -178,14 +178,14 @@ clear the clipboard. Otherwise the text  will be pasted in, as this mouse
 action already has a default binding for the text widget.
 
 <<addPopup>>=
-if (!usingMac()) {
-  tkbind(text_buffer, "<Button-3>", doPopup)
+if (!using_Mac()) {
+  tkbind(text_buffer, "<Button-3>", do_popup)
 } else {
   tkbind(text_buffer, "<Button-2>", function(W,X,Y) {
     ## UNIX legacy re mouse-2 click for selection copy
     tcl("clipboard","clear",displayof = W) 
-    doPopup(W,X,Y)
+    do_popup(W,X,Y)
     })      # right click
-  tkbind(text_buffer, "<Control-1>", doPopup)     # Control + click
+  tkbind(text_buffer, "<Control-1>", do_popup)     # Control + click
 }
 @       

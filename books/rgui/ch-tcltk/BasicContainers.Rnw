@@ -52,7 +52,7 @@ empty, then the window will resize to accomodate its child components.
 The \function{tkwm.resizable} function can be used to prohibit the
 resizing of a top-level window. The syntax allows either the width or
 height to be constrained. The following command would  prevent
-resizing of both the width and height of the toplevel window \code{w}. 
+resizing of both the width and height of the toplevel window \code{window}. 
 
 \begin{Schunk}
   \begin{Sinput}
@@ -149,7 +149,7 @@ tkwm.protocol(window, "WM_DELETE_WINDOW", function() {
 % %% stack of windows
 % A window can be made to always be the topmost window through the
 % \code{attributes} subcommand of the \code{wm} command. However, there
-% is no direct \pkg{tcltk} function, so if \code{w} was to be on top, one would use the \function{tcl}
+% is no direct \pkg{tcltk} function, so if \code{window} was to be on top, one would use the \function{tcl}
 % function as follows: 
 % \begin{Schunk}
 % \begin{Sinput}
@@ -525,13 +525,13 @@ tkwm.title(window, "Expand/Fill arguments")
 frame <- ttkframe(window, padding = c(3,3,12,12))
 tkpack(frame, expand = TRUE, fill = "both")
 ##
-packButton <- function(txt, ...) 
+pack_button <- function(txt, ...) 
   tkpack(button <- ttkbutton(f, text = txt), ...)
 ##
-packButton("Top",    side = "top",    expand = TRUE, fill = "both") 
-packButton("Bottom", side = "bottom", expand = TRUE, fill = "both") 
-packButton("Left",   side = "left",   expand = TRUE, fill = "both") 
-packButton("Right",  side = "right",  expand = TRUE, fill = "both") 
+pack_button("Top",    side = "top",    expand = TRUE, fill = "both") 
+pack_button("Bottom", side = "bottom", expand = TRUE, fill = "both") 
+pack_button("Left",   side = "left",   expand = TRUE, fill = "both") 
+pack_button("Right",  side = "right",  expand = TRUE, fill = "both") 
 @ 
 %
 

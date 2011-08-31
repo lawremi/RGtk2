@@ -23,12 +23,12 @@ library(tcltk)
 ## helper functions
 ## not shown
 
-getNumericVars <- function(DF) {
+get_numeric_vars <- function(DF) {
   if(missing(DF))
     return(c(""))
   ProgGUIinR:::find_vars(DF, is.numeric)
 }
-getTwoLevelFactor <- function(DF) {
+get_two_level_factor <- function(DF) {
   if(missing(DF))
     return(c(""))
   nms <- names(DF)
@@ -120,7 +120,7 @@ tkgrid.columnconfigure(label_frame, 1, weight = 10)
 
 This helper function simplifies the task of adding a label.
 <<tkgridHelper>>=
-putLabel <- function(parent, text, row, column) {
+put_label <- function(parent, text, row, column) {
   label <- ttklabel(parent, text = text)
   tkgrid(label, row = row, column = column, sticky = "e")
 }
@@ -134,7 +134,7 @@ similar calls to create combo boxes \code{x\_combo} and \code{factor\_combo}
 which allow the user to specify parts of a formula.
 
 <<>>=
-putLabel(label_frame, "data:",0,0)
+put_label(label_frame, "data:",0,0)
 data_combo <- ttkcombobox(label_frame, state = "readonly", 
                          values = ProgGUIinR:::avail_dfs(), 
                          textvariable = e$data)
@@ -144,23 +144,23 @@ tkfocus(data_combo)                      # give focus
 
 <<notShown, echo=FALSE>>=
 ## not shown
-putLabel(label_frame, "x:",1,0)
+put_label(label_frame, "x:",1,0)
 x_combo <-  ttkcombobox(label_frame, 
-                       values = getNumericVars(), textvariable = e$x)
+                       values = get_numeric_vars(), textvariable = e$x)
 tkgrid(x_combo, row = 1, column = 1, sticky = "ew", padx = 2)
 @ 
 
 <<notShown, echo=FALSE>>=
 ## not shown
-putLabel(label_frame, "~ f:",1,2)
-factor_combo <-  ttkcombobox(label_frame, values = getTwoLevelFactor(), textvariable = e$f)
+put_label(label_frame, "~ f:",1,2)
+factor_combo <-  ttkcombobox(label_frame, values = get_two_level_factor(), textvariable = e$f)
 tkgrid(factor_combo, row = 1, column = 3, sticky = "ew", padx = 2)
 @ 
 
 We use a \constructor{ttkentry} widget for the user to specify
 a mean. For this purpose, the use is straightforward.
 <<mu>>=
-putLabel(label_frame, "mu:", 2, 0)
+put_label(label_frame, "mu:", 2, 0)
 mu_combo <-  ttkentry(label_frame,  textvariable = e$mu)
 tkgrid(mu_combo, row = 2, column = 1, sticky = "ew", padx = 2)
 @ 
@@ -172,7 +172,7 @@ ttkscale <- function(parent, ...) tkwidget(parent, "ttk::scale", ...)
 tkspinbox <- function(parent, ...) tkwidget(parent, "tk::spinbox", ...)
 @ 
 <<results=hide>>=
-putLabel(label_frame, "alternative:", 3, 0)
+put_label(label_frame, "alternative:", 3, 0)
 rb_frame <- ttkframe(label_frame)
 sapply(c("two.sided","less","greater"), function(i) {
   radio_button <- ttkradiobutton(rb_frame, variable = e$alternative, 
@@ -186,7 +186,7 @@ Here we use a range widget to specify the confidence level. The slider
 is quicker to use, but less precise than the spinbox. By sharing a
 text variable, the widgets are automatically synchronized.
 <<>>=
-putLabel(label_frame, "conf.level:", 3, 2)
+put_label(label_frame, "conf.level:", 3, 2)
 conf_level_frame <- ttkframe(label_frame)
 tkgrid(conf_level_frame, row = 3, column = 3, columnspan = 2, 
        sticky = "ew", padx = 2)
@@ -202,7 +202,7 @@ tkpack(conf_level_spin, side = "left")
 
 A checkbox is used to collect the logical value for \code{var.equal}:
 <<>>=
-putLabel(label_frame, "var.equal:", 4, 0)
+put_label(label_frame, "var.equal:", 4, 0)
 var_equal_check <- ttkcheckbutton(label_frame, variable = e$var.equal)
 tkgrid(var_equal_check, row = 4, column = 1, stick = "w", padx = 2)
 @ 
@@ -233,12 +233,12 @@ tkbind("TButton", "<Return>", function(W) tcl(W, "invoke"))
 
 At this point, our GUI is complete, but we would like to have it
 reflect any changes to the underlying \R\/ environment that effect its
-display. A such, we define a function, \code{updateUI}, which does two
+display. A such, we define a function, \code{update\_ui}, which does two
 basic things: it searches for new data frames and it adjusts the
 controls depending on the current state. The work is cumbersome, as
 three different means are needed to disable theh widgets.
 <<results=hide>>=
-updateUI <- function() {
+update_ui <- function() {
   dfName <- tclvalue(e$data)
   curDfs <- ProgGUIinR:::avail_dfs()
   tkconfigure(data_combo, values = curDfs)
@@ -263,26 +263,26 @@ updateUI <- function() {
     tkconfigure(conf_level_spin, state = "normal")
     
     DF <- get(dfName, envir = .GlobalEnv)
-    numVars <- getNumericVars(DF)
+    numVars <- get_numeric_vars(DF)
     tkconfigure(x_combo, values = numVars)
     if(! tclvalue(e$x) %in% numVars)
       tclvalue(e$x) <- ""
 
     ## bivariate
-    availFactors <- getTwoLevelFactor(DF)
+    avail_factors <- get_two_level_factor(DF)
     sapply(list(factor_combo, var_equal_check),
            function(W) {
-             val <- if(length(availFactors)) "!" else ""
+             val <- if(length(avail_factors)) "!" else ""
              tcl(W, "state", sprintf("%sdisabled", val))
            })
-    tkconfigure(factor_combo, values = availFactors)
-    if(!tclvalue(e$f) %in% availFactors)
+    tkconfigure(factor_combo, values = avail_factors)
+    if(!tclvalue(e$f) %in% avail_factors)
       tclvalue(e$f) <- ""
       
          }
 }
-updateUI()
-tkbind(data_combo, "<<ComboboxSelected>>", updateUI)
+update_ui()
+tkbind(data_combo, "<<ComboboxSelected>>", update_ui)
 @ 
 
 This function could be bound to a ``refresh'' button or we could
@@ -299,7 +299,7 @@ create_function <- function() {
   f <- function(...) {
     if((val <- digest(ProgGUIinR:::avail_dfs())) != .DFs) {
       .DFs <<- val
-      updateUI()
+      update_ui()
     }
     return(TRUE)
   }
@@ -311,6 +311,6 @@ id <- addTaskCallback(create_function())
 @ 
 
 % <<>>=
-% updateUI()                              # run once
-% tkbind("TCombobox","<<ComboboxSelected>>", updateUI) ## misses update on new data
+% update_ui()                              # run once
+% tkbind("TCombobox","<<ComboboxSelected>>", update_ui) ## misses update on new data
 % @ 

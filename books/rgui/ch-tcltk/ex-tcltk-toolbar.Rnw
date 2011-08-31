@@ -16,28 +16,28 @@ show how we can add one to a top-level window in a manner that is not
 affected by resizing. We begin by packing a frame into a
 top-level window.
 <<>>=
-w <- tktoplevel(); tkwm.title(w, "Toolbar example")
-f <- ttkframe(w, padding = c(3,3,12,12))
-tkpack(f, expand = TRUE, fill = "both")
+window <- tktoplevel(); tkwm.title(window, "Toolbar example")
+frame <- ttkframe(w, padding = c(3,3,12,12))
+tkpack(frame, expand = TRUE, fill = "both")
 @ 
 Our example has two main containers: one to hold the toolbar buttons
 and one to hold the main content.
 <<>>=
-tbFrame <- ttkframe(f, padding = 0)
-contentFrame <- ttkframe(f, padding = 4)
+tool_bar_frame <- ttkframe(frame, padding = 0)
+content_frame <- ttkframe(frame, padding = 4)
 @ 
 The \function{tkgrid} geometry manager is used to place the toolbar at
 the top, and the content frame below. The choice of sticky and the weights ensure that
 the toolbar does not resize if the window does.
 <<>>=
-tkgrid(tbFrame, row = 0, column = 0, sticky = "we")
-tkgrid(contentFrame, row = 1, column = 0, sticky  =  "news")
-tkgrid.rowconfigure(f, 0, weight = 0)
-tkgrid.rowconfigure(f, 1, weight = 1)
-tkgrid.columnconfigure(f, 0, weight = 1)
+tkgrid(tool_bar_frame, row = 0, column = 0, sticky = "we")
+tkgrid(content_frame, row = 1, column = 0, sticky  =  "news")
+tkgrid.rowconfigure(frame, 0, weight = 0)
+tkgrid.rowconfigure(frame, 1, weight = 1)
+tkgrid.columnconfigure(frame, 0, weight = 1)
 #
 txt <- "Lorem ipsum dolor sit amet..." # sample text
-tkpack(ttklabel(contentFrame, text = txt))
+tkpack(ttklabel(content_frame, text = txt))
 @ 
 
 Now to add some buttons to the toolbar. We first show how to create a
@@ -48,20 +48,20 @@ tcl("ttk::style", "configure", "Toolbar.TButton",
     font = "helvetica 12", padding = 0, borderwidth = 0)
 @ 
 %
-This \code{makeIcon} function finds stock icons from the
+This \code{make\_icon} function finds stock icons from the
 \pkg{gWidgets} package and adds them to a button.
 <<>>=
-makeIcon <- function(parent, stockName, command = NULL) {
-  iconFile <- system.file("images", 
-                          paste(stockName,"gif",sep = "."), 
+make_icon <- function(parent, stock_name, command = NULL) {
+  icon_file <- system.file("images", 
+                          paste(stock_name,"gif",sep = "."), 
                           package = "gWidgets")
-  if(nchar(iconFile) == 0) {
-    b <- ttkbutton(parent, text = stockName, width = 6)
+  if(nchar(icon_file) == 0) {
+    b <- ttkbutton(parent, text = stock_name, width = 6)
   } else {
-    iconName <- paste("::img::",stockName, sep = "")
-    tkimage.create("photo", iconName, file = iconFile)
-    b <- ttkbutton(parent, image = iconName, 
-                   style = "Toolbar.TButton", text = stockName, 
+    icon_name <- paste("::img::",stock_name, sep = "")
+    tkimage.create("photo", icon_name, file = icon_file)
+    b <- ttkbutton(parent, image = icon_name, 
+                   style = "Toolbar.TButton", text = stock_name, 
                    compound = "top", width = 6)
     if(!is.null(command))
       tkconfigure(b, command = command)
@@ -72,11 +72,11 @@ makeIcon <- function(parent, stockName, command = NULL) {
 %
 To illustrate, we pack in some icons. Here we use \function{tkpack}.  
 One does not use \function{tkpack} and \function{tkgrid} to manage
-children of the same parent, but these are children of \code{tbFrame},
-not \code{f}.
+children of the same parent, but these are children of \code{tool_bar_frame},
+not \code{frame}.
 <<addButtons, results=hide>>=
 sapply(c("ok", "quit", "cancel"), function(i)
-       tkpack(makeIcon(tbFrame, i), side = "left"))
+       tkpack(make_icon(tool_bar_frame, i), side = "left"))
 @ 
 
 These two bindings change the state of the buttons as the mouse hovers

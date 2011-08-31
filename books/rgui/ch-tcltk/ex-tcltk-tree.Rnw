@@ -178,20 +178,20 @@ as it is used to identify the hierarchical structure. When there are children a 
 
 
 <<walkTreeReturnAList>>=
-treeToList <- function(treeview) {
+tree_to_list <- function(treeview) {
   l <- list()
-  walkTree <- function(child, l) {
+  walk_tree <- function(child, l) {
     l$name <- tclvalue(tcl(treeview,"item", child, "-text"))
     l$value <- as.character(tcl(treeview,"item", child, "-values"))
     children <- as.character(tcl(treeview, "children", child)) 
     if(length(children)) {
       l$children <- list()
       for(i in children) 
-        l$children[[i]] <- walkTree(i, list()) # recurse
+        l$children[[i]] <- walk_tree(i, list()) # recurse
     }
     return(l)
   }
-  walkTree("", l)
+  walk_tree("", l)
 }
 
 @ 

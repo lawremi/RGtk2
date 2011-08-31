@@ -50,7 +50,7 @@ values to fit the allocated space. This example uses stock values, as
 we can conveniently employ the \function{get.hist.quote} function from
 the \pkg{tseries} package to get interesting data.
 <<>>=
-addSparkLine <- function(label, symbol = "MSFT") {
+add_sparkline <- function(label, symbol = "MSFT") {
   width <- 100; height = 15               # fix width, height
   y <- get.hist.quote(instrument = symbol, start = "2000-01-01",
                       quote = "C", provider = "yahoo", 
@@ -83,7 +83,7 @@ addSparkLine <- function(label, symbol = "MSFT") {
 
 We can then add some rows to the table as follows:
 <<eval = FALSE>> = 
-addSparkLine("Microsoft","MSFT")
-addSparkLine("General Electric", "GE")
-addSparkLine("Starbucks","SBUX")
+add_sparkline("Microsoft","MSFT")
+add_sparkline("General Electric", "GE")
+add_sparkline("Starbucks","SBUX")
 @ 

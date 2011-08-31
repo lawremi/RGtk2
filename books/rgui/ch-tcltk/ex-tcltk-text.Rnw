@@ -34,14 +34,14 @@ then inserting the values into the text buffer, using the different
 markup tags specified above to indicate commands from output.
 
 <<>>=
-evalCmdChunk <- function(txt, cmds) {
+eval_cmd_chunk <- function(txt, cmds) {
   
-  cmdChunks <- try(parse(text = cmds), silent = TRUE)
-  if(inherits(cmdChunks,"try-error")) {
+  cmd_chunks <- try(parse(text = cmds), silent = TRUE)
+  if(inherits(cmd_chunks,"try-error")) {
     tkinsert(t, "end", "Error", "errorTag") # add markup tag
   }
 
-  for(cmd in cmdChunks) {
+  for(cmd in cmd_chunks) {
     cutoff <- 0.75 * getOption("width")
     dcmd <- deparse(cmd, width.cutoff = cutoff)
     command <- 
@@ -83,5 +83,5 @@ addScrollbars <- function(parent, widget) {
 
 This is how it can be used.
 <<TryIt>>=    
-evalCmdChunk(txt, "2 + 2; lm(mpg ~ wt, data = mtcars)")
+eval_cmd_chunk(txt, "2 + 2; lm(mpg ~ wt, data = mtcars)")
 @ 
