@@ -1,9 +1,10 @@
-  This example shows how we can combine a combo box and a list widget
-  to select a variable name from a data frame. Here we select a value
-  by dragging it. A such we need to define a sub-class of
-  \class{QListWidget} to implement the \code{mousePressEvent}.
-  
+This example shows how we can combine a combo box and a list widget
+to select a variable name from a data frame. Here we select a value
+by dragging it. A such we need to define a sub-class of
+\class{QListWidget} to implement the \code{mousePressEvent}.
+
 <<VariableSelector, results=hide>>=
+## Not working!!!! 
 qsetClass("DraggableListWidget", Qt$QListWidget, 
           function(parent=NULL) {
             super(parent)
@@ -60,7 +61,7 @@ qsetClass("VariableSelector", Qt$QWidget, function(parent=NULL) {
   setLayout(lyt)
 
   updateDataSets()
-  qconnect(dfcb, "activated", function(ind) {
+  qconnect(dfcb, "activated(int)", function(ind) {
     updateVarList(dfcb$currentText)
   })
 })
@@ -91,8 +92,7 @@ qsetMethod("updateDataSets", VariableSelector, function() {
 
 
 <<echo=FALSE>>=
-source("../ProgGUIinR/R/misc.R")
-## require(ProgGUIinR")
+require(ProgGUIinR)
 @ 
 
 Finally, we need to update the list of variables to reflect the state
@@ -105,10 +105,17 @@ qsetMethod("updateVarList", VariableSelector, function(DF=NULL) {
   this$varList$clear()
   if(!is.null(DF)) {
     d <- get(DF)
+    print(d)
     sapply(names(d), function(i) {
       item <- Qt$QListWidgetItem(i, this$varList)
       item$setIcon(make_icon(d[,i]))
     })
   }
 })
+@ 
+
+<<>>=
+widget <- VariableSelector()
+widget$show()
+widget$raise()
 @ 

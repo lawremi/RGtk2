@@ -2,6 +2,10 @@
   offering the speedier movement of the slider, with the finer
   adjustments of the spin box.
 <<SliderSpinButton, echo=FALSE, results=hide>>=
+## How to make a range widget with qt widgets
+## basically we connect through valueChanged signal, not a shared property
+
+
 w <- Qt$QWidget()
 lyt <- Qt$QHBoxLayout()
 w$setLayout(lyt)
@@ -44,8 +48,8 @@ f <- function(value, obj) {
   if(! isTRUE(all.equal(value, obj$value)))
     obj$setValue(value)
 }
-qconnect(sp, "valueChanged", f, user.data=sp)
-qconnect(sl, "valueChanged", f, user.data=sl)
+qconnect(sp, "valueChanged", f, user.data=sl)
+qconnect(sl, "valueChanged", f, user.data=sp)
 @
 
 <<echo=FALSE, results=hide>>=

@@ -126,7 +126,7 @@ We define two properties, one for the rotation and the other for the
 variable name, which is not always the same as the label text:
 <<qt-mvc-dnd-rotation, results=hide>>=
 qsetProperty("rotation", VariableLabel)
-qsetProperty("variableName", VariableLabel)
+qsetProperty("variable_name", VariableLabel)
 @ 
 %
 To enable client code to respond to a drop, we define a signal:
@@ -297,6 +297,7 @@ call_xtabs <- function(DF, x, y) {
 qsetMethod("invokeXtabs", XtabsWidget, function() {
   if (is.null(dataFrame))
     return()
+
   x <- xlabel$variable_name
   y <- ylabel$variable_name
   
@@ -342,7 +343,7 @@ w$setStretchFactor(1, 1)
 qconnect(vs, "dataFrameChanged", function() {
   tw$dataFrame <- vs$dataFrame
 })
-w$show()
+w$show(); w$raise()
 @ 
 %
 Figure~\ref{fig:eg:qt-table-widget-dnd} shows the result, after the

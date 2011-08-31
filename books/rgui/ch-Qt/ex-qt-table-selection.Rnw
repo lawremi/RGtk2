@@ -84,6 +84,6 @@ runCommand <- function() {
 <<echo=FALSE, results=hide>>=
 ## Show selection example
 w$setLayout(lyt)
-#w$show()
-#w$raise()
+w$show()
+w$raise()
 @ 

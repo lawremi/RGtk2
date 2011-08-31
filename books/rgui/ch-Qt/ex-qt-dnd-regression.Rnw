@@ -18,7 +18,7 @@ The point drawing layer uses the data frame to draw circles at each point.
 drawPoints <- function(layer, painter) {
   qdrawCircle(painter, DF$x, DF$y, 5, fill="red")
   res <- lm(y ~ x, DF)
-  x <- xlims; y <- coef(res)[1] + x* coef(res)[2]
+  x <- DF$x; y <- coef(res)[1] + x* coef(res)[2]
   qdrawLine(painter, x, y)
 }
 player <- qlayer(scene, limits=lims, paintFun=drawPoints)

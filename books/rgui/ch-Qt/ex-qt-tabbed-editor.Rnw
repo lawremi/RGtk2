@@ -1,6 +1,7 @@
 <<echo=FALSE>>=
 ## a tabbed editor
 ## This has a notebook and sheets
+## NOT WORKING
 require(qtbase)
 @ 
 
@@ -48,7 +49,7 @@ the sheet and for labeling the notebook tab. The latter requires
 special logic in the setter for the property:
 <<results=hide>>=
 qsetProperty("filename", TextEditSheet, write = function(fname) {
-  this$filename <- fname
+  this$.filename <- fname
   ## update tab label
   notebook <- this$window()$notebook() 
   ind <- notebook$indexOf(this)
@@ -88,7 +89,7 @@ qsetClass("TextEditWindow", Qt$QMainWindow, function(parent=NULL) {
   notebook$documentMode <- TRUE
   qconnect(notebook, "tabCloseRequested", 
            function(ind) notebook$removeTab(ind))
-  qconnect(this$notebook, "currentChanged", function(ind) {
+  qconnect(notebook, "currentChanged(int)", function(ind) {
     if(ind > 0)
       updateActions()
   })
@@ -109,7 +110,7 @@ constructs the actions and adds them to the window:
 qsetMethod("initActions", TextEditWindow, function() {
   makeSheetAction <- function(name) {
     x <- Qt$QAction(name, this)
-    x$setShortcuts(Qt$QKeySequence[[name]])
+#    x$setShortcuts(Qt$QKeySequence[[name]])
     qconnect(x, "triggered", function() {
       get(tolower(x$text), currentSheet())()
     })
@@ -120,7 +121,7 @@ qsetMethod("initActions", TextEditWindow, function() {
   sapply(c("Redo", "Undo", "Cut", "Copy", "Paste", "Save"), makeSheetAction)
   
   x <- Qt$QAction("open", this)
-  x$setShortcuts(Qt$QKeySequence$Open)
+#  x$setShortcuts(Qt$QKeySequence$Open)
   qconnect(x, "triggered", function() {
     fname <- Qt$QFileDialog$getOpenFileName(this, "Select a file...", getwd())
     openSheet(fname)
@@ -128,7 +129,7 @@ qsetMethod("initActions", TextEditWindow, function() {
   addAction(x)
 
   x <- Qt$QAction("new", this)
-  x$setShortcuts(Qt$QKeySequence$New)
+#  x$setShortcuts(Qt$QKeySequence$New)
   qconnect(x, "triggered", newSheet)
   addAction(x)
 })
@@ -160,13 +161,13 @@ This method opens a new sheet, with optional initial text:
 qsetMethod("newSheet", TextEditWindow, 
 function(title="*scratch*", str="") {
   a <- TextEditSheet()         # a new sheet
-  
-  this$notebook$addTab(a, "")  # add to the notebook
-  ind <- this$notebook$indexOf(a)
-  this$notebook$setCurrentIndex(ind)
+  nb <- this$notebook()
 
+  nb$addTab(a, "")  # add to the notebook
+  ind <- nb$indexOf(a)
+  nb$setCurrentIndex(ind)
   a$setPlainText(str)        
-  a$setFilename(title)         # also updates tab
+  a$filename <- title         # also updates tab
 })
 @ 
 
@@ -212,3 +213,8 @@ qsetMethod("actions", TextEditWindow, function() {
 })
 @ 
 
+<<demo>>=
+widget <- TextEditWindow()
+widget$show()
+widget$raise()
+@ 
