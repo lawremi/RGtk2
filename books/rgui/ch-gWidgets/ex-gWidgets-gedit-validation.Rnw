@@ -12,10 +12,10 @@ require(gWidgets)
 @
 
 <<>>=
-w <- gwindow("Validation example")
-tbl <- glayout(cont=w)
-tbl[1,1] <- "R expression:"
-tbl[1,2] <- (e <- gedit("", cont = tbl))
+window <- gwindow("Validation example")
+lyt <- glayout(cont = window)
+lyt[1,1] <- "R expression:"
+lyt[1,2] <- (entry <- gedit("", cont = lyt))
 @ 
 
 
@@ -29,7 +29,7 @@ if the expression is valid.\footnote{The basic way to evaluate an
   functions to assist with this task, notably the \function{evaluate}
   function in the same-named \pkg{evaluate} package, and the
   \function{parseText} and \function{captureAll} functions in the
-  \pkg{svMisc} package. We use both in this part of the text.}
+  \pkg{svMisc} package. We illustrate both in this part of the text.}
 <<>>=
 require(evaluate)
 isValid <- function(e) {
@@ -49,12 +49,12 @@ pressing the return key while the widget has focus.
 % \code{addHandlerBlur}, to validate when the widget loses focus.
 
 <<validate, results=hide>>=
-addHandlerChanged(e, handler = function(h,...) {
-  curVal <- svalue(e)
-  if(isValid(curVal)) {
-    font(e) <- c(color="black")
+addHandlerChanged(entry, handler = function(h,...) {
+  cur_val <- svalue(entry)
+  if(isValid(cur_val)) {
+    font(entry) <- c(color = "black")
   } else {
-    font(e) <- c(color="red")
+    font(entry) <- c(color = "red")
   }
 })
 @ 

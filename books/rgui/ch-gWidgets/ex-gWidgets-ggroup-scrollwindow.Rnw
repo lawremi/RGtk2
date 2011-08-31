@@ -6,19 +6,20 @@ a consistent item type, in this case just a label and cancel
 button. The latter shows the \method{delete}{ggroup} method for containers.
 
 <<>>=
-w <- gwindow("Scroll window example", visible=FALSE)
-g <- ggroup(cont=w, horizontal=FALSE, use.scrollwindow=TRUE)
+window <- gwindow("Scroll window example", visible = FALSE)
+group <- ggroup(cont = window, horizontal = FALSE, use.scrollwindow = TRUE)
 
 addItem <- function(container, i) {
-  g1 <- ggroup(cont=container)
-  glabel(sprintf("data about %s", i), cont=g1)
-  addSpring(g1)
-  gimage("cancel", dir="stock", cont=g1, handler=function(h,...) {
-    delete(g, g1)
+  nested_group <- ggroup(cont = container)
+  glabel(sprintf("data about %s", i), cont = nested_group)
+  addSpring(nested_group)
+  gimage("cancel", dir = "stock", cont = nested_group, handler = function(h,...) {
+    delete(container, nested_group)
   })
 }
 
-for(i in state.name) addItem(g, i)
 
-visible(w) <- TRUE
+for(i in state.name) addItem(group, i)
+
+visible(window) <- TRUE
 @ 

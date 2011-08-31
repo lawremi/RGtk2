@@ -15,8 +15,8 @@ example appearing in the package's vignette.
 
 <<party>>=
 require(party)
-data("GlaucomaM", package="ipred")      # load data
-gt <- ctree(Class ~ ., data=GlaucomaM)  # fit model
+data("GlaucomaM", package = "ipred")      # load data
+gt <- ctree(Class ~ ., data = GlaucomaM)  # fit model
 @ 
 
 The \pkg{party} object tracks the hierarchical nature through its
@@ -41,13 +41,13 @@ offspring <- function(key, offspring.data) {
     node <- as.numeric(key[length(key)]) # key is a vector
 
   if(nodes(gt, node)[[1]]$terminal)    # return if terminal
-    return(data.frame(node=node, hasOffspring=FALSE,
-                      description="terminal",
-                      stringsAsFactors=FALSE))
+    return(data.frame(node = node, hasOffspring = FALSE,
+                      description = "terminal",
+                      stringsAsFactors = FALSE))
 
-  df <- data.frame(node=integer(2), hasOffspring=logical(2),
-                   description=character(2), 
-                   stringsAsFactors=FALSE)
+  DF <- data.frame(node = integer(2), hasOffspring = logical(2),
+                   description = character(2), 
+                   stringsAsFactors = FALSE)
   ## party internals
   children <-  c("left","right")
   ineq <- c(" <= "," >  ")
@@ -55,11 +55,11 @@ offspring <- function(key, offspring.data) {
   splitPoint <- nodes(gt, node)[[1]]$psplit$splitpoint
 
   for(i in 1:2) {
-    df[i,1] <- nodes(gt, node)[[1]][[children[i]]][[1]]
-    df[i,2] <- !nodes(gt, df[i,1])[[1]]$terminal
-    df[i,3] <- paste(varName, splitPoint, sep=ineq[i])
+    DF[i,1] <- nodes(gt, node)[[1]][[children[i]]][[1]]
+    DF[i,2] <- !nodes(gt, DF[i,1])[[1]]$terminal
+    DF[i,3] <- paste(varName, splitPoint, sep = ineq[i])
   }
-  df                                    # returns a data frame
+  DF                                    # returns a data frame
 }
 @ 
 
@@ -73,11 +73,11 @@ offspring <- function(key, offspring.data) {
 
 We make a simple GUI to show the widget (Figure~\ref{fig:ex-gWidgets-gtree-party})
 <<makeGUI>>=
-w <- gwindow("Example of gtree")
-g <- ggroup(cont=w, horizontal=FALSE)
-l <- glabel("Click on the tree to investigate the partition", 
-            cont=g)
-tr <- gtree(offspring, cont=g, expand=TRUE)
+window <- gwindow("Example of gtree")
+group <- ggroup(cont = window, horizontal = FALSE)
+label <- glabel("Click on the tree to investigate the partition", 
+            cont = group)
+tree <- gtree(offspring, cont = group, expand = TRUE)
 @ 
 
 A single click is used to expand the tree, here we create a binding to
@@ -85,7 +85,7 @@ a double click event to create a basic graphic. The \pkg{party}
 vignette shows how to make more complicated -- and meaningful --
 graphics for this model fit.
 <<eventHandler>>=
-addHandlerDoubleclick(tr, handler=function(h,...) {
+addHandlerDoubleclick(tree, handler = function(h,...) {
   node <- as.numeric(svalue(h$obj))
   if(nodes(gt, node)[[1]]$terminal) {   # if terminal plot
     weights <- as.logical(nodes(gt,node)[[1]]$weights)

@@ -97,13 +97,13 @@ window's title bar. This can be set during construction via the
 \meth{svalue\ASSIGN} method. A basic window then is constructed as follows:
 
 <<windowTest1>>=
-w <- gwindow("Our title", visible=TRUE)
+window <- gwindow("Our title", visible = TRUE)
 @ 
 %
 
 We can then use this as a parent container for a constructor. For example;
 <<windowTest1Container>>=
-l <- glabel("A child label", container=w)
+label <- glabel("A child label", container = window)
 @ 
 %
 However, top-level windows only allow one child component. Typically,
@@ -128,9 +128,9 @@ window to size properly.}
 
 For example, a typical usage follows this pattern:
 <<window-visible-false>>=
-w <- gwindow("Title", visible=FALSE)
+window <- gwindow("Title", visible = FALSE)
 ## perform layout here ...
-visible(w) <- TRUE
+visible(window) <- TRUE
 @ 
 
 %% Size and placement
@@ -156,8 +156,8 @@ window to gather values.
 For example this call makes a child window of \code{w} with a square
 size of 200 pixels.
 <<childWindowTest>>=
-childw <- gwindow("A child window", parent=w, 
-                  width=200, height=200)
+child_window <- gwindow("A child window", parent = window, 
+                        width = 200, height = 200)
 @ 
 
 
@@ -172,25 +172,25 @@ the window is closed:
 
 %% Thanks to Richie Cotton for this example
 <<>>=
-oldOptions <- options(error = function() {
+old_options <- options(error = function() {
   if(msg <- geterrmessage() != "")
-    galert(msg, parent=win)
+    galert(msg, parent = window)
   invisible(msg)
 })
 #
-win <- gwindow( "Popup errors", visible=FALSE,
-               handler = function(h, ...) {
-                 ## restore old options when gui is closed
-                 options(oldOptions)       
-               })
+window <- gwindow( "Popup errors", visible = FALSE,
+                  handler = function(h, ...) {
+                    ## restore old options when gui is closed
+                    options(old_options)       
+                  })
 @ 
 
 To illustrate, we add a button to initiate an error:
 <<>>=
-btn <- gbutton("Click for error",  cont = win,
-               handler = function(h, ...) {
-                 stop("This is an error")
-               })
+button <- gbutton("Click for error",  cont = window,
+                  handler = function(h, ...) {
+                    stop("This is an error")
+                  })
 @ 
 %
 Clicking the button will signal an error and the error handler will
@@ -207,9 +207,9 @@ if \code{TRUE} the window will not be destroyed, if \code{FALSE} the
 window will be. For example:
 
 <<windowUnrealizeMethod>>=
-w <- gwindow("Close through the window manager")
-id <- addHandlerUnrealize(w, handler=function(h,...) {
-  !gconfirm("Really close", parent=h$obj)
+window <- gwindow("Close through the window manager")
+id <- addHandlerUnrealize(window, handler = function(h,...) {
+  !gconfirm("Really close", parent = h$obj)
 })
 @ 
 
@@ -278,16 +278,17 @@ In Example~\ref{eg:gWidgets-collapse-factor} we define a GUI to assist
 with the task of collapsing factor levels. This wrapper function is used:
 
 <<collapseFactor>>=
-collapseFactor <- function(f, parent=NULL) {
+collapseFactor <- function(fac, parent = NULL) {
   out <- character()
-  w <- gbasicdialog("Collapse factor levels", parent=parent,
-                    handler=function(h,...) {
-                      new_f <- relf$get_value()
-                      out <<- factor(new_f)
-                    })
-  g <- ggroup(cont=w)
-  relf <- CollapseFactor$new(f, cont=g)
-  visible(w, set=TRUE)
+  window <- 
+    gbasicdialog("Collapse factor levels", parent = parent,
+                 handler = function(h,...) {
+                   new_fac <- relevel_factor$get_value()
+                   out <<- factor(new_fac)
+                 })
+  group <- ggroup(cont = window)
+  relevel_factor <- CollapseFactor$new(fac, cont = group)
+  visible(window, set = TRUE)
   out
 }
 @   
@@ -343,11 +344,11 @@ vertically from top to bottom.
 
 For example, to pack a \code{cancel} and \code{ok} button into a box container we might have:
 <<cancelOk>>=
-w <- gwindow("Some buttons", visible=FALSE)
-g <- ggroup(horizontal=TRUE, cont=w)
-cancel <- gbutton("cancel", cont=g)
-ok <- gbutton("ok", cont=g)
-visible(w) <- TRUE
+window <- gwindow("Some buttons", visible = FALSE)
+group <- ggroup(horizontal = TRUE, cont = window)
+cancel_button <- gbutton("cancel", cont = group)
+ok_button <- gbutton("ok", cont = group)
+visible(window) <- TRUE
 @ 
 
 \paragraph{The add method}
@@ -389,12 +390,12 @@ implemented.\footnote{These arguments are not implemented
 <<echo=FALSE>>=
 ## ## Example showing expand argument -- it gets implemented differently in the various
 ## ## toolkits.
-## w <- gwindow("Expand", visible=FALSE)
-## g <- ggroup(cont=w, horizontal=FALSE)
+## w <- gwindow("Expand", visible = FALSE)
+## g <- ggroup(cont = w, horizontal = FALSE)
 
-## gbutton("Expand=FALSE", expand=FALSE, cont=g)
-## gbutton("Expand=TRUE, no fill", expand=TRUE, cont=g)
-## gbutton("Expand=TRUE, fill='both'", expand=TRUE, fill="both", cont=g)
+## gbutton("Expand = FALSE", expand = FALSE, cont = g)
+## gbutton("Expand = TRUE, no fill", expand = TRUE, cont = g)
+## gbutton("Expand = TRUE, fill = 'both'", expand = TRUE, fill = "both", cont = g)
 ## visible(w) <- TRUE
 
 ## size(w) <- c(300, 200)
@@ -456,16 +457,16 @@ implemented.\footnote{These arguments are not implemented
   \label{fig:gWidgets-ggroup-expand-fill-anchor}
 \end{figure}
 <<echo=FALSE, results=hide>>=
-w <- gwindow("Add args")
-g <- ggroup(horizontal=FALSE, cont=w)
-b1 <- gbutton("expand=FALSE", expand=FALSE, cont=g)
-gseparator(cont=g)
-b2 <- gbutton("expand=TRUE, fill='x'", expand=TRUE, fill="x", cont=g)
-gseparator(cont=g)
-b3 <- gbutton("expand=TRUE, fill='y'", expand=TRUE, fill="y", cont=g)
-gseparator(cont=g)
-b4 <- gbutton("expand=FALSE, anchor=c(1,0)",anchor=c(1,0), cont=g)
-update(w)
+window <- gwindow("Add args")
+group <- ggroup(horizontal = FALSE, cont = window)
+button1 <- gbutton("expand = FALSE", expand = FALSE, cont = group)
+gseparator(cont = group)
+button2 <- gbutton("expand = TRUE, fill = 'x'", expand = TRUE, fill = "x", cont = group)
+gseparator(cont = group)
+button3 <- gbutton("expand = TRUE, fill = 'y'", expand = TRUE, fill = "y", cont = group)
+gseparator(cont = group)
+button4 <- gbutton("expand = FALSE, anchor = c(1,0)", anchor = c(1,0), cont = group)
+update(window)
 @ 
 
 
@@ -500,14 +501,14 @@ For example, we might modify our button layout example to include a
 ``help'' button on the far left and the others on the right with a
 fixed amount of space between them as follows (Figure~\ref{fig:gWidgets-button-layout}):
 <<results=hide>>=
-w <- gwindow("Some buttons", visible=FALSE)
-g <- ggroup(horizontal=TRUE, spacing=6, cont=w)
-help <- gbutton("help", cont=g)
-addSpring(g)
-cancel <- gbutton("cancel", cont=g)
-addSpace(g, 12)                         # 6 + 12 + 6 pixels
-ok <- gbutton("ok", cont=g)
-visible(w) <- TRUE
+window <- gwindow("Some buttons", visible = FALSE)
+group <- ggroup(horizontal = TRUE, spacing = 6, cont = window)
+help_button <- gbutton("help", cont = group)
+addSpring(group)
+cancel_button <- gbutton("cancel", cont = group)
+addSpace(group, 12)                         # 6 + 12 + 6 pixels
+ok_button <- gbutton("ok", cont = group)
+visible(window) <- TRUE
 @ 
 
 
@@ -528,11 +529,11 @@ visible(w) <- TRUE
 % @ 
 
 % <<nestedLayout, results=hide>>=
-% g <- ggroup(horizontal=FALSE, cont=w)
-% bg <- ggroup(cont=g)                    # nested group
+% g <- ggroup(horizontal = FALSE, cont = w)
+% bg <- ggroup(cont = group)                    # nested group
 % addSpring(bg)
-% b <- gbutton("Source", cont=bg)
-% nb <- gnotebook(cont=g, expand=TRUE)    # fill space
+% b <- gbutton("Source", cont = bg)
+% nb <- gnotebook(cont = group, expand = TRUE)    # fill space
 % @ 
 
 
@@ -584,11 +585,11 @@ positioning with $0$ being the left and $1$ the right.
 
 The basic framed container is used along these lines:
 <<>>=
-w <- gwindow("gframe example")
-f <- gframe("gWidgets Examples:", cont=w)
+window <- gwindow("gframe example")
+frame <- gframe("gWidgets Examples:", cont = window)
 files <- list.files(system.file("Examples","ch-gWidgets", 
-                                package="ProgGUIInR"))
-vars <- gtable(files, cont=f, expand=TRUE)
+                                package = "ProgGUIInR"))
+vars <- gtable(files, cont = frame, expand = TRUE)
 @ 
 
 
@@ -610,12 +611,12 @@ summary of a model.
 <<>>=
 res <- lm(mpg ~ wt, mtcars)
 out <- capture.output(summary(res))
-
-w <- gwindow("gexpandgroup example", visible=FALSE)
-xgrp <- gexpandgroup("Summary", cont=w)
-l <- glabel(out, cont=xgrp)
-visible(xgrp) <- TRUE                   # display summary
-visible(w) <- TRUE
+##
+window <- gwindow("gexpandgroup example", visible = FALSE)
+exp_group <- gexpandgroup("Summary", cont = window)
+label <- glabel(out, cont = exp_group)
+visible(exp_group) <- TRUE                   # display summary
+visible(window) <- TRUE
 @ 
 
 
@@ -647,18 +648,19 @@ To see its use, we can layout a simple form for collecting information
 as follows:
 
 <<glayoutExample, results=hide>>=  
-w <- gwindow("glayout example", visible=FALSE)
-lyt <- glayout(cont=w, spacing=5)
+window <- gwindow("glayout example", visible = FALSE)
+lyt <- glayout(cont = window, spacing = 5)
 right <- c(1,0); left <- c(-1,0)
-lyt[1,1, anchor=right] <- "name"
-lyt[1,2, anchor=left ] <- gedit("", cont=lyt)
+lyt[1,1, anchor = right] <- "name"
+lyt[1,2, anchor = left ] <- gedit("George Washington", 
+           cont = lyt)
 #
-lyt[2,1, anchor=right] <- "rank"
-lyt[2,2, anchor=left ] <- gedit("", cont=lyt)
+lyt[2,1, anchor = right] <- "rank"
+lyt[2,2, anchor = left ] <- gedit("General", cont = lyt)
 #
-lyt[3,1, anchor=right] <- "serial number"
-lyt[3,2, anchor=left ] <- gedit("", cont=lyt)
-visible(w) <- TRUE
+lyt[3,1, anchor = right] <- "serial number"
+lyt[3,2, anchor = left ] <- gedit("1", cont = lyt)
+visible(window) <- TRUE
 @ 
 %
 
@@ -740,27 +742,27 @@ drawn, as the percentage is based on the size of the window.
 A simplified version of the layout code in
 Figure~\ref{fig:gWidgets-sample-layout} would be
 <<layout_example>>=
-d <- system.file("Examples", "ch-gWidgets", 
-                 package="ProgGUIinR")
-files <- list.files(d)
+examples <- system.file("Examples", "ch-gWidgets", 
+                 package = "ProgGUIinR")
+files <- list.files(examples)
 #
-w <- gwindow("gpanedgroup example", visible=FALSE)
-pg <- gpanedgroup(cont = w)
-tbl <- gtable(files, cont=pg)           # left side
-t <- gtext("", cont=pg, expand=TRUE)    # right side
-visible(w) <- TRUE
-svalue(pg) <- 0.33                      # after drawing
+window <- gwindow("gpanedgroup example", visible = FALSE)
+paned <- gpanedgroup(cont  =  window)
+tbl <- gtable(files, cont = paned)           # left side
+txt_widget <- gtext("", cont = paned, expand = TRUE) # right
+visible(window) <- TRUE
+svalue(paned) <- 0.33                        # after drawing
 @ 
 
 
 % \begin{example}{Paned groups}{ex-gWidgets-panedgroups}
 %   This example shows how one could use this container.
 % <<keep.source=TRUE>>=
-% w <- gwindow("gpanedgroup example", visible=FALSE)
-% pg <- gpanedgroup(cont=w)
-% g <- ggroup(cont=pg)                  # left child
-% l <- glabel("left child", cont=g)
-% b <- gbutton("right child", cont=pg)
+% w <- gwindow("gpanedgroup example", visible = FALSE)
+% pg <- gpanedgroup(cont = w)
+% g <- ggroup(cont = pg)                  # left child
+% l <- glabel("left child", cont = group)
+% b <- gbutton("right child", cont = pg)
 % visible(w) <- TRUE
 % @ 
 % To adjust the sash position, one can do:
@@ -820,39 +822,40 @@ number of pages held by the notebook.
  In the GUI of Figure~\ref{fig:gWidgets-sample-layout} a notebook is
  used to hold differing pages. The following is the basic setup used.
 <<tabbed_notebook>>=  
-w <- gwindow("gnotebook example")
-nb <- gnotebook(cont=w)
+window <- gwindow("gnotebook example")
+notebook <- gnotebook(cont = window)
 @ 
 
 New pages are added as follows:
 <<addPage, results=hide>>=
-addAPage <- function(fname) {
-  f <- system.file(fname, package="ProgGUIinR")
-  gtext(readLines(f), cont = nb, label=fname)
+add_a_page <- function(file_name) {
+  f <- system.file(file_name, package = "ProgGUIinR")
+  gtext(readLines(f), cont = notebook, label = file_name)
 }
-addAPage("DESCRIPTION")
+add_a_page("DESCRIPTION")
 @ 
 
 For pages holding more than one widget, a container is used:
 <<helpPage, results=hide>>=
-hg <- glayout(cont=nb, horizontal=FALSE, label="Help")
-hg[1,1] <- gimage("help", dir="stock", cont=hg)
-hg[1,2] <- glabel(paste("To add a page:",
+lyt <- glayout(cont = notebook, horizontal = FALSE, 
+               label = "Help")
+lyt[1,1] <- gimage("help", dir = "stock", cont = lyt)
+lyt[1,2] <- glabel(paste("To add a page:",
            "Click on a file in the left pane, and its contents",
-           "are displayed in a notebook page.", sep="\n"), 
-           cont=hg)
+           "are displayed in a notebook page.", sep = "\n"), 
+           cont = lyt)
 @ 
 
 
 To manipulate the displayed pages, say to set the page to the last one,
 we have:
-<<set_nb_page>>=
-svalue(nb) <- length(nb)
+<<set_notebook_page>>=
+svalue(notebook) <- length(notebook)
 @ 
 %
 To remove the current page
-<<rm_nb_page>>=
-dispose(nb)
+<<rm_notebook_page>>=
+dispose(notebook)
 @ 
 %
 \end{example}

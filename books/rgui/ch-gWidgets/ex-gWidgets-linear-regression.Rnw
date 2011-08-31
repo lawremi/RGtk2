@@ -4,53 +4,53 @@ library(gWidgets)
 @ 
 
 <<>>=
-m <- data.frame(x=c(87,97,99,100,110,110,114,117,121,127),
-                y=c(82,90,99,105,108,107,119,111,125,122))
+DF <- data.frame(x = c(87,97,99,100,110,110,114,117,121,127),
+                y = c(82,90,99,105,108,107,119,111,125,122))
 @ 
 
 <<>>=
-w <- gwindow("Regression demo")
-g <- ggroup(cont=w, expand=TRUE)
+window <- gwindow("Regression demo")
+group <- ggroup(cont = window, expand = TRUE)
 
-lg <- ggroup(horizontal=FALSE, cont=g, expand=TRUE)
-d <- gdf(m, cont=lg, expand=TRUE)
+left_group <- ggroup(horizontal = FALSE, cont = group, expand = TRUE)
+tbl <- gdf(DF, cont = left_group, expand = TRUE)
 @ 
 
 <<>>=
-showLeastSquares <- gcheckbox("Show least squares",selected=TRUE,cont=lg)
-showResistant <- gcheckbox("Show resistant fit",selected=TRUE,cont=lg)
-leastSquaresOutput <- gedit("", cont=lg)
+show_least_squares <- gcheckbox("Show least squares", selected = TRUE, cont = left_group)
+show_resistant <- gcheckbox("Show resistant fit", selected = TRUE, cont = left_group)
+least_squares_output <- gedit("", cont = left_group)
 @ 
 
 <<>>=
-rg <- ggroup(horizontal=FALSE, cont=g, expand=TRUE)
-ggraphics(cont=rg, expand=TRUE)
-glabel("Smoothness of lowess goes from 0 to 1", cont=rg)
-sl <- gslider(from=0, to=1, by=0.1, cont=rg)
-robustOutput <- gedit("", cont=lg)
+right_group <- ggroup(horizontal = FALSE, cont = group, expand = TRUE)
+ggraphics(cont = right_group, expand = TRUE)
+glabel("Smoothness of lowess goes from 0 to 1", cont = right_group)
+slider <- gslider(from = 0, to = 1, by = 0.1, cont = right_group)
+robust_output <- gedit("", cont = left_group)
 @ 
 
 <<>>=
 plotGraphic <- function(...) {
-  df <- d[,]
+  DF <- tbl[,]
   f <- y ~ x
-  res <- lm(f, data=df)
-  plot(f, data=df)
-  if(svalue(showLeastSquares)) {
+  res <- lm(f, data = DF)
+  plot(f, data = DF)
+  if(svalue(show_least_squares)) {
     abline(res)
-    svalue(leastSquaresOutput) <-
+    svalue(least_squares_output) <-
       paste("Least squares: y = ",coef(res)[1],
             ifelse(coef(res)[2] >0,"+","-"),
             abs(coef(res)[2]),"x")
   } else {
-    svalue(leastSquaresOutput) <- ""
+    svalue(least_squares_output) <- ""
   }
-  if(svalue(showResistant)) lines(lowess(df[,1],df[,2],svalue(sl)),col=4)
+  if(svalue(show_resistant)) lines(lowess(DF[,1], DF[,2],svalue(slider)),col = 4)
 
 }
 @ 
 
 <<>>=
-QT <- sapply(list(d,showLeastSquares, showResistant,sl),function(i)
-       addHandlerChanged(i,handler=plotGraphic))
+QT <- sapply(list(tbl, show_least_squares, show_resistant, slider), function(i)
+       addHandlerChanged(i, handler = plotGraphic))
 @ 

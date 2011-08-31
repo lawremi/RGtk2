@@ -7,15 +7,15 @@ dragging. For \pkg{gWidgetsRGtk2}, the \code{addDropTarget} for
 added at the insertion point.
 
 <<>>=
-w <- gwindow("Example of compound widgets")
-pg <- gpanedgroup(cont = w)
-gvarbrowser(cont = pg)
+window <- gwindow("Example of compound widgets")
+paned <- gpanedgroup(cont = window)
+gvarbrowser(cont = paned)
 
-tbl <- glayout(cont = pg, expand=TRUE)
-tbl[1,1, anchor=c(1,0)] <- "x"
-tbl[1,2] <- (e <- gedit("", cont = tbl))
-tbl[2,2, anchor=c(-1,1)] <- "(drop value above)"
-tbl[3,1] <- (b <- gbutton("plot", cont = tbl))
+lyt <- glayout(cont = paned, expand = TRUE)
+lyt[1,1, anchor = c(1,0)] <- "x"
+lyt[1,2] <- (entry <- gedit("", cont = lyt))
+lyt[2,2, anchor = c(-1,1)] <- "(drop value above)"
+lyt[3,1] <- (button <- gbutton("plot", cont = lyt))
 @
 The \code{gvarbrowser} object already has its drop source
 specified. For other drag and drop examples, a call to
@@ -25,10 +25,10 @@ text. For \code{gvarbrowser}, this uses \code{\$} to indicate
 components of lists.
 <<>>=
 ## add drop source already part of gvarbrowser
-addDropTarget(e, handler = function(h,...) svalue(e) <- h$dropdata)
+addDropTarget(entry, handler = function(h,...) svalue(e) <- h$dropdata)
 @
 \XXX{The svalue svalue use described here}
 <<>>=
-addHandlerChanged(b, handler = function(h,...) plot(x=svalue(svalue(e)),xlab=svalue(e)))
+addHandlerChanged(button, handler = function(h,...) plot(x = svalue(svalue(e)),xlab = svalue(e)))
 
 @

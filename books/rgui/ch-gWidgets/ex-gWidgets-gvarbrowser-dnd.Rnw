@@ -1,19 +1,23 @@
 <<echo=FALSE, results=hide>>=
 library(gWidgets)
 @ 
-  We use the drag and drop features to create a means to plot
-  variables from the workspace browser.  Our basic layout is fairly
-  simple. We place the workspace browser on the left, and on the right
-  have a graphic device and few labels to act as drop targets.
+%%
+
+We use the drag and drop features to create a means to plot variables
+from the workspace browser.  Our basic layout is fairly simple. We
+place the workspace browser on the left, and on the right have a
+graphic device and few labels to act as drop targets.
+
 <<results=hide>>=
-w <- gwindow("Drag and drop example")
-g <- ggroup(cont=w)
-vb <- gvarbrowser(cont=g)
-g1 <- ggroup(horizontal=FALSE, cont=g, expand=TRUE)
-ggraphics(cont=g1)
-xlabel <- glabel("", cont=g1)
-ylabel <- glabel("", cont=g1)
-clear <- gbutton("clear", cont=g1)
+window <- gwindow("Drag and drop example")
+group <- ggroup(cont = window)
+workspace_browser <- gvarbrowser(cont = group)
+nested_group <- ggroup(horizontal = FALSE, cont = group, 
+                       expand = TRUE)
+ggraphics(cont = nested_group)
+xlabel <- glabel("", cont = nested_group)
+ylabel <- glabel("", cont = nested_group)
+clear <- gbutton("clear", cont = nested_group)
 @   
 %
 We create a function to initialize the interface.
@@ -29,7 +33,7 @@ initUI()                                # initial call
 %
 Separating this out allows us to link it to the clear button.
 <<>>=
-addHandlerClicked(clear, handler=initUI)
+addHandlerClicked(clear, handler = initUI)
 @ 
 %
 Next, we write a function to update the user interface. As we didn't
@@ -44,13 +48,13 @@ updateUI <- function(...) {
   } else if(grepl(svalue(ylabel), sprintf(init_txt, "y"))) {
     ## x, not y
     enabled(ylabel) <- TRUE
-    x <- eval(parse(text=svalue(xlabel)), envir=.GlobalEnv)
-    plot(x, xlab=svalue(xlabel))
+    x <- eval(parse(text = svalue(xlabel)), envir = .GlobalEnv)
+    plot(x, xlab = svalue(xlabel))
   } else {
     enabled(ylabel) <- TRUE    
-    x <- eval(parse(text=svalue(xlabel)), envir=.GlobalEnv)
-    y <- eval(parse(text=svalue(ylabel)), envir=.GlobalEnv)
-    plot(x, y, xlab=svalue(xlabel), ylab=svalue(ylabel))
+    x <- eval(parse(text = svalue(xlabel)), envir = .GlobalEnv)
+    y <- eval(parse(text = svalue(ylabel)), envir = .GlobalEnv)
+    plot(x, y, xlab = svalue(xlabel), ylab = svalue(ylabel))
   }
 }
 @ 
@@ -81,8 +85,8 @@ dropHandler <- function(h,...) {
   svalue(h$obj) <- h$dropdata
   updateUI()
 }
-addDropTarget(xlabel, handler=dropHandler)
-addDropTarget(ylabel, handler=dropHandler)
+addDropTarget(xlabel, handler = dropHandler)
+addDropTarget(ylabel, handler = dropHandler)
 @ 
 
 

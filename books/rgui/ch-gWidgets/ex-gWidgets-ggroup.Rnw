@@ -21,31 +21,31 @@ in two different toolkits.
 
 
 <<>>=  
-w  <- gwindow("ggroup examples")
-g  <- ggroup(cont=w, horizontal=FALSE, expand=TRUE)
-g1 <- ggroup(cont=g, expand=TRUE)
-b  <- gbutton("no expand", cont=g1)
-b  <- gbutton("expand", cont=g1, expand=TRUE)
-g2 <- ggroup(cont=g)
-l  <- glabel("expand=TRUE, anchor=c(-1,0)", anchor=c(-1,0), 
-            expand=TRUE, cont=g2)
-g3 <- ggroup(cont=g, expand=TRUE)
-l  <- glabel("expand=FALSE, anchor=c(0,0)", anchor=c(0,0), 
-            expand=TRUE, cont=g3)
-g4 <- ggroup(cont=g, expand=TRUE)
-l  <- glabel("expand=TRUE, anchor=c(1,0)", anchor=c(1,0), 
-            expand=TRUE, cont=g4)
+window  <- gwindow("ggroup examples")
+group   <- ggroup(cont = window, horizontal = FALSE, expand = TRUE)
+group_1 <- ggroup(cont = group, expand = TRUE)
+button  <- gbutton("no expand", cont = group_1)
+button  <- gbutton("expand", cont = group_1, expand = TRUE)
+group_2 <- ggroup(cont = group)
+label   <-  glabel("expand = TRUE, anchor = c(-1,0)", anchor = c(-1,0), 
+           expand = TRUE, cont = group_2)
+group_3 <- ggroup(cont = group, expand = TRUE)
+label   <- glabel("expand = FALSE, anchor = c(0,0)", anchor = c(0,0), 
+            expand = TRUE, cont = group_3)
+group_4 <- ggroup(cont = group, expand = TRUE)
+label   <- glabel("expand = TRUE, anchor = c(1,0)", anchor = c(1,0), 
+            expand = TRUE, cont = group_4)
 @ 
   
 
 This demonstrates how one can use the \meth{addSpace} and \meth{addSpring}
 methods to right align buttons in a button bar.
 <<>>=
-g5 <- ggroup(cont=g, expand=FALSE)
-addSpring(g5)
-cancel  <- gbutton("cancel", cont=g5, handler=function(h,..) {
-  dispose(w)
+group_5 <- ggroup(cont = group, expand = FALSE)
+addSpring(group_5)
+cancel  <- gbutton("cancel", cont = group_5, handler = function(h,..) {
+  dispose(window)
 })
-addSpace(g5, 12)
-ok  <- gbutton("ok", cont=g5)
+addSpace(group_5, 12)
+ok  <- gbutton("ok", cont = group_5)
 @ 

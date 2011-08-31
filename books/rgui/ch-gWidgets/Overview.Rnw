@@ -56,18 +56,18 @@ operating systems and with different graphical toolkits.
 <<eval=FALSE, echo=FALSE>>=
 ## show (linux, mac, windows) x (RGtk2, tcltk, rJava)
 ## also test-33.html in rpad dddirectory for gWidgetrs
-f <- function(os,toolkit,parent=NULL) {
-  w <- gwindow(paste(os,toolkit,sep=":"), width=200, parent=parent)
-  g <- ggroup(horiz=FALSE, cont = w)
+f <- function(os,toolkit,parent = NULL) {
+  w <- gwindow(paste(os,toolkit,sep = ":"), width = 200, parent=parent)
+  g <- ggroup(horiz = FALSE, cont = w)
   
-  lst <- list(type="fieldset",
+  lst <- list(type = "fieldset",
   label = "argument",
-  children=list(
-  list(type="gcombobox",
+  children = list(
+  list(type = "gcombobox",
   label = "combo",
-  items=letters),
+  items = letters),
   list(type = "gslider",
-  label="slider"),
+  label = "slider"),
   list(type = "gedit",
   label = "edit",
   text = "edit this")
@@ -84,7 +84,7 @@ f <- function(os,toolkit,parent=NULL) {
 library(gWidgets)
 os <- "Linux"
 for(j in c("RGtk2","tcltk","Qt")) {
-  options(guiToolkit=j)
+  options(guiToolkit = j)
   f(os,j)
 }
 
@@ -183,36 +183,36 @@ described in the following.
 require(gWidgets)
 options(guiToolkit="RGtk2")
 ## 
-w <- gwindow("File search", visible=FALSE)
-g <- gpanedgroup(cont=w)
+window <- gwindow("File search", visible=FALSE)
+paned <- gpanedgroup(cont = window)
 ## label and file selection widget
-f <- ggroup(cont=g, horizontal=FALSE)
-glabel("Search for (filename):", cont=f, anchor=c(-1,0))
-txtPattern <- gedit("", initial.msg="Possibly wildcards", 
-                    cont=f)
+group <- ggroup(cont = paned, horizontal = FALSE)
+glabel("Search for (filename):", cont = group, anchor = c(-1,0))
+txt_pattern <- gedit("", initial.msg = "Possibly wildcards", 
+                    cont = group)
 ##
-glabel("Search in:", cont=f, anchor=c(-1,0))
-startDir <- gfilebrowse(text="Select a directory ...",
-                        quote=FALSE,
-                        type="selectdir", cont=f)
+glabel("Search in:", cont = group, anchor = c(-1,0))
+start_dir <- gfilebrowse(text = "Select a directory ...",
+                        quote = FALSE,
+                        type = "selectdir", cont = group)
 ## A button to initiate the search
-searchBtn <- gbutton("Search", cont=f)
-addSpring(f)
+search_button <- gbutton("Search", cont = group)
+addSpring(group)
 ## Area for output
-f1 <- gframe("Output:", cont=g, horizontal=FALSE)
-searchResults <- gtext("", cont=f1, expand=TRUE)
-size(searchResults) <- c(350, 200)
+frame <- gframe("Output:", cont = paned, horizontal = FALSE)
+search_results <- gtext("", cont = frame, expand = TRUE)
+size(search_results) <- c(350, 200)
 ## add interactivity
-addHandlerChanged(searchBtn, handler=function(h,...) {
-  pattern <- glob2rx(svalue(txtPattern))
-  fnames <- dir(svalue(startDir), pattern, recursive=TRUE)
-  if(length(fnames))
-    svalue(searchResults) <- fnames
+addHandlerChanged(search_button, handler = function(h,...) {
+  pattern <- glob2rx(svalue(txt_pattern))
+  file_names <- dir(svalue(start_dir), pattern, recursive = TRUE)
+  if(length(file_names))
+    svalue(search_results) <- file_names
   else
-    galert("No matching files found", parent=w)
+    galert("No matching files found", parent = window)
 })
 ## display GUI
-visible(w) <- TRUE
+visible(window) <- TRUE
 @ 
 
 This example shows several different widgets being used to construct a
@@ -227,7 +227,7 @@ In the \pkg{gWidgets} API most of these constructors have the
 following basic form:
 <<eval=FALSE>>=
 gname(some_arguments, handler = NULL, action = NULL, 
-      container=NULL, ..., toolkit=guiToolkit())
+      container = NULL, ..., toolkit = guiToolkit())
 @ 
 %%
 where \code{some\_arguments} varies depending on the object being
@@ -265,7 +265,7 @@ allow the user to mix toolkits within the same \R\/ session, but in
 practice this can cause problems due to competing event loops. 
 In our example we have called
 <<eval=FALSE>>=
-options(guiToolkit="RGtk2")
+options(guiToolkit = "RGtk2")
 @ 
 %
 to explicitly set the toolkit. The default for the \args{toolkit}
@@ -287,18 +287,18 @@ event handlers. We discuss those in Section~\ref{sec:callbacks}.
 The constructors produce one of three general types of widgets:
 \\
 
-\begin{description}
-\item[Containers] such as the top level window \code{w}, the paned
-  group \code{g} or the frame \code{f1}
+\begin{itemize}
+\item Containers: such as the top level window \code{window}, the paned
+  group \code{paned} or the frame \code{frame}
  (Table~\ref{tab:gWidgets-container-constructors});
 %
-\item[Components] such as the unnamed labels, the edit area
-  \code{txtPattern}, or the button \code{searchBtn}
+\item Components: such as the unnamed labels, the edit area
+  \code{txt\_pattern}, or the button \code{search\_button}
   (Tables~\ref{tab:gWidgets-control-widgets}
   and~\ref{tab:gWidgets-compound-widgets});
 %
-\item[Dialogs] such as \code{galert} and \code{gfilebrowse} (Table~\ref{tab:gWidgets-basic-dialogs}).
-\end{description}
+\item Dialogs: such as \code{galert} and \code{gfilebrowse} (Table~\ref{tab:gWidgets-basic-dialogs}).
+\end{itemize}
 
 
 
@@ -365,19 +365,19 @@ provides methods for the familiar S3 generics \generic{[},
 In our example, we see two cases of the use of generic methods defined
 by \pkg{gWidgets}. The call
 <<eval=FALSE>>=
-svalue(txtPattern)
+svalue(txt_pattern)
 @ 
 %
 demonstrates the most used new generic \index{svalue} \meth{svalue},
 that is used to get the main property of the widget. For the object
-\code{txtPattern}, the main property is the text, for the button and
+\code{txt\_pattern}, the main property is the text, for the button and
 label widgets this property is the label. The \meth{svalue\ASSIGN}
 assignment method is used to set this property programatically. We see
 the call
 <<eval=FALSE>>=
-svalue(searchResults) <- fnames
+svalue(search_results) <- file_names
 @ 
-to update the text for the multi-line text widget \code{searchResults}.
+to update the text for the multi-line text widget \code{search\_results}.
 
 %% selection widgets
 For the selection widgets (of which there are none in our example), there
@@ -394,7 +394,7 @@ methods refer to the underlying data to be selected from.
 
 The call
 <<eval=FALSE>>=
-visible(w) <- TRUE
+visible(window) <- TRUE
 @ 
 %
 sets the visibility property of the top-level window. In our example,
@@ -510,7 +510,7 @@ cat(booktabs(df, colTypes=c("l","p{0.6\\textwidth}"),
 \igui{event handlers}
 In our example, the search button is created with:
 <<eval=FALSE>>=
-searchBtn <- gbutton("Search", cont=f)
+search_button <- gbutton("Search", cont = group)
 @ 
 %
 However, without doing more work, this button will not initiate an
@@ -521,13 +521,13 @@ pattern into a regular expression; searching for the specified
 pattern; and presenting the results.  In our example, this is done
 through:
 <<eval=FALSE>>=
-addHandlerChanged(searchBtn, handler=function(h,...) {
-  pattern <- glob2rx(svalue(txtPattern))
-  fnames <- dir(svalue(startDir), pattern, recursive=TRUE)
-  if(length(fnames))
-    svalue(searchResults) <- fnames
+addHandlerChanged(search_button, handler = function(h,...) {
+  pattern <- glob2rx(svalue(txt_pattern))
+  file_names <- dir(svalue(start_dir), pattern, recursive = TRUE)
+  if(length(file_names))
+    svalue(search_results) <- file_names
   else
-    galert("No matching files found", parent=w)
+    galert("No matching files found", parent = window)
 })
 @ 
 %
@@ -570,7 +570,7 @@ clicking of a button. We refer to these methods as
 ``\meth{addHandlerXXX}'', where the \code{XXX} describes the
 event. These are useful in the case where more than one event on that
 widget is of interest. For example, for single-line text widgets, like
-\code{txtPattern} in our example, the \meth{addHandlerChanged} method
+\code{txt\_pattern} in our example, the \meth{addHandlerChanged} method
 sets a callback to respond when the user finishes editing, whereas a
 handler set by \meth{addHandlerKeystroke} is called each time a key is
 pressed.
@@ -578,18 +578,18 @@ pressed.
 As an example of combining the handler and constructor, we could have
 specified the search button through:
 <<eval=FALSE>>=
-searchBtn <- gbutton("Search", cont=f,
-             handler=function(h,...) {
+search_button <- gbutton("Search", cont = group,
+             handler = function(h,...) {
                pattern <- glob2rx(svalue(h$action$txt))
-               fnames <- dir(svalue(h$action$dir), 
-                             pattern, recursive=TRUE)
-               if(length(fnames))
-                 svalue(h$action$results) <- fnames
+               file_names <- dir(svalue(h$action$dir), 
+                             pattern, recursive = TRUE)
+               if(length(file_names))
+                 svalue(h$action$results) <- file_names
                else
-                 galert("No matching files found", parent=w)
+                 galert("No matching files found", parent = w)
              },
-             action=list(txt=txtPattern, dir=startDir,
-               results=searchResults)
+             action = list(txt = txt_pattern, dir = start_dir,
+               results = search_results)
              )
 @ 
 %
@@ -735,7 +735,7 @@ displays a message. The user has a cancel button to dismiss the dialog.
 
 For example,
 <<gmessage,eval=FALSE>>=
-gmessage("Message goes here", title="example dialog")
+gmessage("Message goes here", title = "example dialog")
 @ 
 
 
@@ -752,7 +752,7 @@ the user to confirm the message. This dialog returns \code{TRUE} or
 
 Here we use the question icon for a confirmation dialog, as the message is a question.
 <<eval=FALSE>>=
-ret <- gconfirm("Really delete file?", icon="question")
+ret <- gconfirm("Really delete file?", icon = "question")
 @ 
 
 
@@ -765,7 +765,7 @@ cancels the dialog through the button a value of \code{NA} is returned.
 
 This illustrates how to use the return value.
 <<ginput,eval=FALSE>>=
-ret <- ginput("Enter your name", icon="info")
+ret <- ginput("Enter your name", icon = "info")
 if(!is.na(ret)) 
   message("Hello", ret,"\n")
 @ 
@@ -831,19 +831,19 @@ for Windows FAQ.
 %% JV Perhaps this belongs somewhere else in the text...
 <<installation, echo=FALSE, results=tex>>=
 df <- rbind(
-           Windows=c("Windows", "Installed by \\pkg{RGtk2}",
+           Windows = c("Windows", "Installed by \\pkg{RGtk2}",
              "Included with \\pkg{qtbase}",
              "In binary install of R"
              ),
-            Linux=c("Linux","Standard","Standard","Standard"),
-            Mac=c("OS X", "Download binary .pkg",
+            Linux = c("Linux","Standard","Standard","Standard"),
+            Mac = c("OS X", "Download binary .pkg",
               "Download from vendor",
               "In binary install of R")
             )
 dimnames(df) <- list(NULL,c("","Gtk+", "Qt", "Tk"))
-cat(booktabs(df, colTypes=c("l", rep("p{0.3\\textwidth}",3)),
-             caption="Installation notes for GUI toolkits.",
-             label="tab:gWidgets-installation"))
+cat(booktabs(df, colTypes = c("l", rep("p{0.3\\textwidth}",3)),
+             caption = "Installation notes for GUI toolkits.",
+             label = "tab:gWidgets-installation"))
 
 @ 
 

@@ -1,16 +1,16 @@
 This example shows how the \constructor{gframe} container can be used.
 <<>>=  
-w <- gwindow("gframe example")
-f <- gframe(text="title", pos=1, cont=w)
-l <- glabel("Some text goes here", cont=f)
-names(f) <- "new title"
+window <- gwindow("gframe example")
+frame <- gframe(text = "title", pos = 1, cont = window)
+label <- glabel("Some text goes here", cont = frame)
+names(frame) <- "new title"
 @ 
 
 This is a similar example for \constructor{gexpandgroup}.
 <<>>=
-w <- gwindow("gexpandgroup example")
-g <- gexpandgroup(text="title", cont=w)
-l <- glabel("Some text goes here", expand=TRUE, cont=g)
-visible(g) <- FALSE
-visible(g) <- TRUE                      # toggle visibility
+window <- gwindow("gexpandgroup example")
+exp_group <- gexpandgroup(text = "title", cont = window)
+label <- glabel("Some text goes here", expand = TRUE, cont = exp_group)
+visible(exp_group) <- FALSE
+visible(exp_group) <- TRUE                      # toggle visibility
 @ 

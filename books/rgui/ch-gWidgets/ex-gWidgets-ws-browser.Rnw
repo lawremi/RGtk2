@@ -85,7 +85,8 @@ different types of objects involved:
 The package \pkg{objectSignals} provides a comprehensive
 implementation of this pattern which we use below. We use its
 \function{signalingField} function to create an ``observable'' and its
-\function{connect} method to add an observer.
+\function{connect} method to add an observer. When the signaling field
+is changed, any observers are notified.
 \\
 
 \begin{figure}
@@ -105,10 +106,11 @@ notify on a change.
 
 <<WSModel, results=hide>>=
 require(objectSignals)
+require(digest)
 WSModel <- setRefClass("WSModel",
-              fields=c(
+              fields = c(
                 signalingField("ws_objects","character"),
-                ws_objects_digests="character"
+                ws_objects_digests = "character"
                 ))
 @ 
 %
@@ -129,19 +131,19 @@ the objects in the global environment and produce a digest of each.
 WSModel$methods(
        .get_objects_digests = function() {
          "Helper function to return list with names, digests"
-         items <- ls(envir=.GlobalEnv)
+         items <- ls(envir = .GlobalEnv)
          objects <- mget(items, .GlobalEnv)
-         trim <- !sapply(objects, is, class2="refClass")
+         trim <- !sapply(objects, is, class2 = "refClass")
          list(items[trim],
               sapply(objects[trim], digest))
        },
-       initialize=function() {
+       initialize = function() {
          objs <- .get_objects_digests() # call helper
-         initFields(ws_objects=objs[[1]],
-                    ws_objects_digests=objs[[2]])
+         initFields(ws_objects = objs[[1]],
+                    ws_objects_digests = objs[[2]])
          .self
        },
-       refresh=function() {
+       refresh = function() {
          objs <- .get_objects_digests()                           
          cur_objects <- objs[[1]]
          cur_digests <- objs[[2]]
@@ -162,7 +164,7 @@ is specified with a character string, and may include a not operator.
 
 <<"get_objects">>=
 WSModel$methods(
-        get=function(klass) {
+        get = function(klass) {
           "klass a string, such as 'numeric' or '!function'"
           if(missing(klass) || length(klass) == 0)
             return(ws_objects)
@@ -188,7 +190,7 @@ Finally, our model defines a convenience method to add an observer
 using the naming convention of \pkg{objectSignals}.
 <<>>=
 WSModel$methods(
-                add_observer=function(FUN, ...) {
+                add_observer = function(FUN, ...) {
                   .self$ws_objectsChanged$connect(FUN, ...)
                 })
 @ 
@@ -200,11 +202,11 @@ method to refresh the view and one to set the model, so that it can
 play the part of an observer. 
 <<View, results=hide>>=
 WSView <- setRefClass("WSView",
-                      methods=list(
-                        update=function(model) {
+                      methods = list(
+                        update = function(model) {
                           "Subclass this"
                         },
-                        set_model=function(model) {
+                        set_model = function(model) {
                           FUN <- function() .self$update(model)
                           model$add_observer(FUN)
                         }
@@ -219,20 +221,21 @@ to \meth{initialize}.
 <<WidgetView, results=hide>>=
 WidgetView <- 
   setRefClass("WidgetView",
-              contains="WSView",
-              fields=list(
-                klass="character", # which classes to show
+              contains = "WSView",
+              fields = list(
+                klass = "character", # which classes to show
                 widget = "ANY"
                 ),
-              methods=list(
-                initialize=function(parent, model, ...) {
+              methods = list(
+                initialize = function(parent, model, 
+                    klass=character(0), ...) {
                   if(!missing(model)) set_model(model)
                   if(!missing(parent)) init_widget(parent, ...)
-                  initFields()
+                  initFields(klass=klass)
                   update(model)
                   .self
                 },
-                init_widget=function(parent, ...) {
+                init_widget = function(parent, ...) {
                   "Initialize widget"
                 }))
 @ 
@@ -250,13 +253,13 @@ objects using a \code{gtable} widget.
 <<TableView, results=hide>>=
 TableView <-
   setRefClass("TableView",
-        contains="WidgetView",
-        methods=list(
-          init_widget=function(parent, ...) {
+        contains = "WidgetView",
+        methods = list(
+          init_widget = function(parent, ...) {
             widget <<- gtable(makeDataFrame(character(0)),
-                              cont=parent, ...)
+                              cont = parent, ...)
           },
-          update=function(model, ...) {
+          update = function(model, ...) {
             widget[] <<- makeDataFrame(model$get(klass))
           }))
 @ 
@@ -271,12 +274,12 @@ the task of defining that function.
 To generate data on each object, we define some S3 classes. These are
 more convenient than reference classes for this task. First we want a
 nice description of the size of the object:
-<<sizeOf>>=
-sizeOf <- function(x, ...) UseMethod("sizeOf")
-sizeOf.default <- function(x, ...) "NA"
-sizeOf.character <- sizeOf.numeric <- 
+<<size_of>>=
+size_of <- function(x, ...) UseMethod("size_of")
+size_of.default <- function(x, ...) "NA"
+size_of.character <- size_of.numeric <- 
   function(x, ...) sprintf("%s elements", length(x))
-sizeOf.matrix <- function(x, ...) 
+size_of.matrix <- function(x, ...) 
   sprintf("%s x %s", nrow(x), ncol(x))
 @ 
 
@@ -286,19 +289,19 @@ nsprintf <- function(msg1, msg2, x) {
   sprintf(ngettext(x, msg1, msg2), x)
 }
 ## hidden, too long
-sizeOf.factor <- function(x, ...) nsprintf("Factor with %s level", "Factor with %s levels", length(levels(x)))
-sizeOf.data.frame <- function(x, ...) sprintf("%s x %s", nrow(x), ncol(x))
-sizeOf.list <- function(x, ...) nsprintf("%s component", "%s components", length(x))
+size_of.factor <- function(x, ...) nsprintf("Factor with %s level", "Factor with %s levels", length(levels(x)))
+size_of.data.frame <- function(x, ...) sprintf("%s x %s", nrow(x), ncol(x))
+size_of.list <- function(x, ...) nsprintf("%s component", "%s components", length(x))
 @ 
 %
 
 Now, we desire a short description of the type of object we have.
-<<shortDescription, results=hide>>=
-shortDescription <- function(x, ...) 
-  UseMethod("shortDescription")
-shortDescription.default <- function(x, ...) "R object"
-shortDescription.numeric <- function(x, ...) "Numeric vector"
-shortDescription.integer <- function(x, ...) "Integer"
+<<short_description, results = hide>>=
+short_description <- function(x, ...) 
+  UseMethod("short_description")
+short_description.default <- function(x, ...) "R object"
+short_description.numeric <- function(x, ...) "Numeric vector"
+short_description.integer <- function(x, ...) "Integer"
 @ 
 %
 
@@ -307,23 +310,24 @@ by name to \code{x}. It is a bit awkward, as the data comes row by
 row, not column by column and we want to have a default when \code{x}
 is empty.
 <<makeDataFrame, results=hide>>=
-makeDataFrame <- function(x, envir=.GlobalEnv) {
-  d <- data.frame(variable=character(0),
-                  size=character(0), description=character(0), 
-                  class=character(0),
-                  stringsAsFactors=FALSE)
+makeDataFrame <- function(x, envir = .GlobalEnv) {
+  DF <- data.frame(variable = character(0),
+                   size = character(0), 
+                   description = character(0), 
+                   class = character(0),
+                   stringsAsFactors = FALSE)
   if(length(x)) {
     l <- mget(x, envir)
-    d <- data.frame(variable=x,
-                    size=sapply(l, sizeOf),
-                    description=sapply(l, shortDescription),
-                    class = sapply(l, function(i) class(i)[1]),
-                    stringsAsFactors=FALSE)
+    DF <- data.frame(variable = x,
+                    size = sapply(l, size_of),
+                    description = sapply(l, short_description),
+                    class  =  sapply(l, function(i) class(i)[1]),
+                    stringsAsFactors = FALSE)
   }
-  d
+  DF
 }
 @ 
-
+%%
 To illustrate the flexibility of this framework, we also define a
 subclass of \code{WidgetView} to show just the data frames in a combo
 box. Selecting a data frame is a common task in R GUIs, and this
@@ -332,13 +336,13 @@ allows keeps the selection synchronized with the workspace.
 <<DfView>>=
 DfView <-
   setRefClass("DfView",
-        contains="WidgetView",
-        methods=list(
+        contains = "WidgetView",
+        methods = list(
           initFields = function(...) klass <<- "data.frame", 
           init_widget = function(parent, ...) {
-            d <- data.frame("Data frames"=character(0),
-                            stringsAsFactors=FALSE)
-            widget <<- gcombobox(d, cont=parent, ...)
+            DF <- data.frame("Data frames" = character(0),
+                            stringsAsFactors = FALSE)
+            widget <<- gcombobox(DF, cont = parent, ...)
           },
           update = function(model, ...) {
             widget[] <<- model$get(klass)
@@ -348,26 +352,30 @@ DfView <-
 %
 
 We can put these pieces together to make a simple GUI. 
-<<testit, results=hide, eval=FALSE>>=
-w <- gwindow()
-nb <- gnotebook(cont=w)
-#
+<<testit, results=hide, eval=TRUE>>=
+window <- gwindow()
+notebook <- gnotebook(cont = window)
+##
 model <- WSModel$new()
+## basic view of certain classes
+view <- TableView$new(parent = notebook, model = model, 
+                      label = "data",
+                      klass=c("factor", "numeric", "character", 
+                        "data.frame", "matrix", "list"))
+## view of non functions
+view1 <- TableView$new(parent = notebook, model = model, 
+                       label = "not a function",
+                       klass = "!function"
+                       )
+## view of all
+view2 <- TableView$new(parent = notebook, model = model,
+                       label = "all")
+## a bit contrived here, but useful elsewhere
+view3 <- DfView$new(parent = notebook, model = model,
+                    label = "data frames")
 #
-view <- TableView$new(parent=nb, model=model, label="data")
-view$klass <- c("factor", "numeric", "character", 
-                "data.frame", "matrix", "list")
-#
-view1 <- TableView$new(parent=nb, model=model, 
-                       label="not a function")
-view1$klass <- "!function"
-#
-view2 <- TableView$new(parent=nb, model=model, label="all")
-## a bit contrived here
-view3 <- DfView$new(parent=nb, model=model, label="data frames")
-#
-model$refresh()                              # notifies views
-svalue(nb) <- 1
+model$refresh()                          
+svalue(notebook) <- 1
 @ 
 
 

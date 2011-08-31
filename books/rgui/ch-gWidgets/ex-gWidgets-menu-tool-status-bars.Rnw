@@ -5,23 +5,23 @@ library(gWidgets)
 The following commands create some standard looking actions. The
 handler \code{f} is just a stub to be replaced in a real application.
 <<>>=
-f <- function(...) print("stub")        # a stub
-aOpen <- gaction("open", icon="open", handler = f)
-aQuit <- gaction("quit", icon="quit", handler = f)
-aUndo <- gaction("undo", icon="undo", handler = f)
+callback <- function(...) print("stub")        # a stub
+open_action <- gaction("open", icon = "open", handler = callback)
+quit_action <- gaction("quit", icon = "quit", handler = callback)
+undo_action <- gaction("undo", icon = "undo", handler = callback)
 @ 
 
 A menubar and toolbar are specified through a list with named components, as is
 illustrated next. The menubar list uses a nested list with
 named components to specify a submenu.
 <<>>=
-tl <- list(open = aOpen, quit = aQuit)
-ml <- list(File = list(
-             open = aOpen, 
+toolbar_list <- list(open = open_action, quit = quit_action)
+menubar_list <- list(File = list(
+             open = open_action, 
              sep = gseparator(), 
-             quit = aQuit),
+             quit = quit_action),
            Edit = list(
-             undo = aUndo
+             undo = undo_action
              ))
 @ 
 
@@ -29,10 +29,10 @@ ml <- list(File = list(
 Menubars and toolbars are added to top-level windows, so their parent
 containers are \code{gwindow} objects.
 <<>>=
-w <- gwindow("Example of menubars, toolbars")
-mb <- gmenu(ml, cont=w)
-tb <- gtoolbar(tl, cont=w)
-l <- glabel("Test of DOM widgets", cont=w)
+window <- gwindow("Example of menubars, toolbars")
+menu_bar <- gmenu(menubar_list, cont = window)
+tool_bar <- gtoolbar(toolbar_list, cont = window)
+lable <- glabel("Test of DOM widgets", cont = window)
 @ 
 
 
@@ -40,7 +40,7 @@ By disabling a \code{gaction} instance, we change the sensitivity of
 all its realizations. Here this will only affect the menubar.
 
 <<>>=
-enabled(aUndo) <- FALSE
+enabled(undo_action) <- FALSE
 @ 
 
 An ``undo'' menubar item, often changes its label when a new command
@@ -49,8 +49,8 @@ is performed, or the previous command is undone. The
 shows how a new command can be added and how the menu item can be made
 sensitive to mouse events.
 <<>>=
-svalue(aUndo) <- "undo: command"
-enabled(aUndo) <- TRUE
+svalue(undo_action) <- "undo: command"
+enabled(undo_action) <- TRUE
 @ 
 
 %%\XXX{Citation needed}
@@ -62,10 +62,10 @@ with the possible menu items. However, it may be useful to add to a
 menu or toolbar. The \method{add}{gmenu} method can do so. For
 example, to add a help menu item to our example one could do:
 <<>>=
-hl <- list(help = list(
-             help = gaction("manual", handler=f)
-             ))
-add(mb, hl)
+help_list <- list(Help = list(
+                    help = gaction("manual", handler = callback)
+                    ))
+add(menu_bar, help_list)
 @      
 
 

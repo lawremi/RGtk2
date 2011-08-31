@@ -7,29 +7,29 @@ options(guiToolkit="RGtk2")
 require(EBImage)
 
 setRefClass("ImageData",
-            fields=list(                
-              image="Image",            # Original
-              copy="Image",             # copy
+            fields = list(                
+              image = "Image",            # Original
+              copy = "Image",             # copy
               tmp_filename = "character", # some filename
               
               ## widget instances
-              toplevel="gWindow",
-              widgets="list",
-              img="gImage",                # gimage instance
+              toplevel = "gWindow",
+              widgets = "list",
+              img = "gImage",                # gimage instance
               actions = "list",            # gaction list
               
               ## parameter values
-              colormode="character",
-              brightness="numeric",
-              contrast="numeric",
-              gamma="numeric",
-              flipflop="character",
-              thresh="logical",
-              filter="character"
+              colormode = "character",
+              brightness = "numeric",
+              contrast = "numeric",
+              gamma = "numeric",
+              flipflop = "character",
+              thresh = "logical",
+              filter = "character"
               ),
-            methods=list(
+            methods = list(
               #
-              initialize=function(f, tmp_filename="/tmp/file.gif") {
+              initialize = function(f, tmp_filename = "/tmp/file.gif") {
                 "Initialize GUI"
                 ##' @param f filename
                 copy <<- image <<- readImage(f)
@@ -40,14 +40,14 @@ setRefClass("ImageData",
                 .self
               },
               #
-              set = function(key, value, update=TRUE) {
+              set = function(key, value, update = TRUE) {
                 "Set key as value, update image if requested"
-                assign(key, value, inherits=TRUE)
+                assign(key, value, inherits = TRUE)
                 if(update)
                   update_graphic()
               },
               #
-              update_graphic=function() {
+              update_graphic = function() {
                 "Update graphic for give field values"
                 copy <- image
                 colorMode(copy) <- colormode
@@ -58,11 +58,11 @@ setRefClass("ImageData",
                 if("Flop" %in% flipflop) copy <- EBImage:::flop(copy)
                 if(thresh) copy <- thresh(copy)
                 if(filter == "Low") {
-                  f <- makeBrush(21, shape='disc', step=FALSE)
+                  f <- makeBrush(21, shape = 'disc', step = FALSE)
                   f <- f/sum(f)
                   copy <- filter2(copy, f)
                 } else if(filter == "High") {
-                  f <- matrix(1, nc=3, nr=3); f[2,2] <- -8
+                  f <- matrix(1, nc = 3, nr = 3); f[2,2] <- -8
                   copy <- filter2(copy, f)
                 }
                 
@@ -73,19 +73,19 @@ setRefClass("ImageData",
               #
               init_gui = function() {
                 "Initialize GUI"
-                toplevel <<- gwindow("EBImage GUI", visible=FALSE)
-                g <- gpanedgroup(cont=toplevel, horizontal=TRUE)
-                cg <- ggroup(cont=g, horizontal=FALSE)
-                img <<- gimage(cont=g, width=500, height=480)
+                toplevel <<- gwindow("EBImage GUI", visible = FALSE)
+                g <- gpanedgroup(cont = toplevel, horizontal = TRUE)
+                cg <- ggroup(cont = g, horizontal = FALSE)
+                img <<- gimage(cont = g, width = 500, height = 480)
 
-                actions <<- list(quit=gaction("Quit", icon="quit", key.accel="Control-q", parent=toplevel,
-                                   handler=function(h,...) dispose(toplevel)),
-                                 sep=gseparator(),
-                                 open=gaction("Open", icon="open", key.accel="Control-o",parent=toplevel,
-                                   handler=function(h,...) h$action$open(), action=.self),
-                                 save=gaction("Save", icon="save", key.accel="Control-s", parent=toplevel,
-                                   handler=function(h,...) h$action$save(), action=.self))
-                gtoolbar(actions, cont=toplevel)
+                actions <<- list(quit = gaction("Quit", icon = "quit", key.accel = "Control-q", parent = toplevel,
+                                   handler = function(h,...) dispose(toplevel)),
+                                 sep = gseparator(),
+                                 open = gaction("Open", icon = "open", key.accel = "Control-o",parent = toplevel,
+                                   handler = function(h,...) h$action$open(), action = .self),
+                                 save = gaction("Save", icon = "save", key.accel = "Control-s", parent = toplevel,
+                                   handler = function(h,...) h$action$save(), action = .self))
+                gtoolbar(actions, cont = toplevel)
 
                 make_controls(cg)
                 init_controls()
@@ -94,47 +94,47 @@ setRefClass("ImageData",
                 visible(toplevel) <- TRUE
               },
               #
-              make_controls=function(g) {
+              make_controls = function(g) {
                 "Make the controls, save in widgets field"
-                tbl <- glayout(cont=g)
+                tbl <- glayout(cont = g)
                 l <- list(); i <- 1
                 def_handler <- function(h,...)  .self$set(h$action, svalue(h$obj))
 
                 tbl[i,1] <- "ColorMode"
                 tbl[i,2] <- (l$colormode <- gradio(c("Color","Grayscale"), 
-                                                   selected=1, cont=tbl, 
-                                                   handler=def_handler, action="colormode"))
+                                                   selected = 1, cont = tbl, 
+                                                   handler = def_handler, action = "colormode"))
                 i <- i + 1
                 
 
                 
                 tbl[i,1] <- "Brightness"
-                tbl[i,2] <- (l$brightness <- gslider(from=-1, to=1, by=.05, value=0, 
-                                                     handler=def_handler, action="brightness"))
+                tbl[i,2] <- (l$brightness <- gslider(from = -1, to = 1, by = .05, value = 0, 
+                                                     handler = def_handler, action = "brightness"))
                 i <- i+1
                 
                 tbl[i,1] <- "Contrast"
-                tbl[i,2] <- (l$contrast <- gspinbutton(from=0, to=10, by=.05, value=1, 
-                                                       handler=def_handler, action="contrast"))
+                tbl[i,2] <- (l$contrast <- gspinbutton(from = 0, to = 10, by = .05, value = 1, 
+                                                       handler = def_handler, action = "contrast"))
                 i <- i + 1
 
                 tbl[i,1] <- "Gamma"
-                tbl[i,2] <- (l$gamma <- gslider(from=0, to=10, by=.05, value=1, 
-                                                handler=def_handler, action="gamma"))
+                tbl[i,2] <- (l$gamma <- gslider(from = 0, to = 10, by = .05, value = 1, 
+                                                handler = def_handler, action = "gamma"))
                 i <- i + 1
 
                 tbl[i,1] <- "Flip/Flop"
                 tbl[i,2] <- (l$flipflop <- gcheckboxgroup(c("Flip","Flop"), 
-                                                          handler=def_handler, action="flipflop"))
+                                                          handler = def_handler, action = "flipflop"))
                 i <- i + 1
 
-                tbl[i,2] <- (l$thresh <- gcheckbox("Thresh", use.togglebutton=TRUE,
-                                      selected=FALSE, handler=def_handler, action="thresh"))
+                tbl[i,2] <- (l$thresh <- gcheckbox("Thresh", use.togglebutton = TRUE,
+                                      selected = FALSE, handler = def_handler, action = "thresh"))
                 i <- i + 1
 
                 tbl[i,1] <- "Filter"
-                tbl[i,2] <- (l$filter <- gcombobox(c("None", "Low", "High"), cont=tbl, 
-                                                   handler=def_handler, action="filter"))
+                tbl[i,2] <- (l$filter <- gcombobox(c("None", "Low", "High"), cont = tbl, 
+                                                   handler = def_handler, action = "filter"))
                 i <- i + 1
                 
                 widgets <<- l
@@ -143,16 +143,16 @@ setRefClass("ImageData",
               init_controls = function(l) {
                 "Initialize the controls and the fields. Does not update graphic."
                 if(missing(l)) {
-                  l <- list(colormode="Grayscale",
-                            brightness=0,
-                            contrast=1,
-                            gamma=1,
-                            flipflop = character(0),
-                            thresh=FALSE,
-                            filter="None")
+                  l <- list(colormode = "Grayscale",
+                            brightness = 0,
+                            contrast = 1,
+                            gamma = 1,
+                            flipflop  =  character(0),
+                            thresh = FALSE,
+                            filter = "None")
                 }
                 sapply(names(l), function(i) {
-                  set(i, l[[i]], update=FALSE)
+                  set(i, l[[i]], update = FALSE)
                   blockHandler(widgets[[i]]) # don't update graphic
                   svalue(widgets[[i]]) <- l[[i]]
                   unblockHandler(widgets[[i]])
@@ -162,7 +162,7 @@ setRefClass("ImageData",
               open = function() {
                 "Open a new file"
                 f <- gfile("Open an image file",
-                           filter=list("Image file"=list(patterns=c("*.gif", "*.jpeg", "*.png")),
+                           filter = list("Image file" = list(patterns = c("*.gif", "*.jpeg", "*.png")),
                              "All files" = list(patterns = c("*"))
                              ))
                 if(is.na(f)) return()
@@ -170,14 +170,14 @@ setRefClass("ImageData",
                 update_graphic()
               },
               #
-              save = function(quality=100) {
+              save = function(quality = 100) {
                 "Write copy to tmp_filename"
-                writeImage(copy, tmp_filename, quality=quality)
+                writeImage(copy, tmp_filename, quality = quality)
               }
               ))
 
 
 ## Test it out
-f <- system.file("images","lena.gif", package="EBImage")
+f <- system.file("images","lena.gif", package = "EBImage")
 img <- getRefClass("ImageData")$new(f)
 @ 

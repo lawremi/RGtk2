@@ -25,15 +25,16 @@ queried to set one.
 options(repos="http://streaming.stat.iastate.edu/CRAN")
 @ 
 <<>>=
-ap <- available.packages()       # pick a cran site
+avail_pkgs <- available.packages()       # pick a cran site
 @ 
 
 This basic GUI is barebones: for example, we skip adding text labels to guide the user. 
 <<>>=
-w <- gwindow("test of filter")
-g <- ggroup(cont=w, horizontal=FALSE)
-ed <- gedit("", cont=g)
-tbl <- gtable(ap, cont=g, filter.FUN="manual", expand=TRUE)
+window <- gwindow("test of filter")
+group <- ggroup(cont = window, horizontal = FALSE)
+entry <- gedit("", cont = group)
+tbl <- gtable(avail_pkgs, cont = group, filter.FUN = "manual",
+              expand = TRUE)
 @ 
 The \argument{filter.FUN}{gtable} value of \qcode{manual} allows us to
 filter by specifying a logical vector.
@@ -46,22 +47,21 @@ the package. (That filtering could also be specified easily through the
 \argument{filter.FUN}{gtable} argument.)
 
 <<>>=
-ourMatch <- function(curVal, vals) {
-  grepl(curVal, vals)
+our_match <- function(cur_val, vals) {
+  grepl(cur_val, vals)
 }
 @ 
 
 Finally, the \code{addHandlerKeystroke} method calls its handler
 every time a key is released while the focus is in the edit widget. In
 this case, the handler finds the matching indices using the
-\code{ourMatch} function, converts these into logical format, and then
+\code{our\_match} function, converts these into logical format, and then
 updates the display using the \meth{visible\ASSIGN} method for
   \code{gtable}.
 <<>>=
-id <- addHandlerKeystroke(ed, handler=function(h, ...) {
-  vals <- tbl[, 1, drop=TRUE]
-  curVal <- svalue(h$obj)
-  vis <- ourMatch(curVal, vals)
-  visible(tbl) <- vis
+id <- addHandlerKeystroke(entry, handler = function(h, ...) {
+  vals <- tbl[, 1, drop = TRUE]
+  cur_val <- svalue(h$obj)
+  visible(tbl) <- our_match(cur_val, vals)
 })
 @ 

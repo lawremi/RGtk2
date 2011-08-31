@@ -1,12 +1,12 @@
-This example uses \code{gformlayout} to make a GUI for a $t$-test (Figure~\ref{fig:ex-gWidgets-formlayout}). The
-first task is to define the list that will set up the GUI. We do this
-in pieces. This first piece will define the part of the GUI where the
-null and alternative hypotheses are specified. The null is specified
-as a numeric value with a default of 0. We use the \code{gedit} widget
-which by default will return a character value, so the
-\code{coerce.with} argument is specified. For the alternative, this
-requires a selection for just 3 possibilities, so a combo box is
-employed.
+This example uses \code{gformlayout} to make a GUI for a $t$-test
+(Figure~\ref{fig:ex-gWidgets-formlayout}). The first task is to define
+the list that will set up the GUI. We do this in pieces. This first
+piece will define the part of the GUI where the null and alternative
+hypotheses are specified. The null is specified as a numeric value
+with a default of 0. We use the \code{gedit} widget which by default
+will return a character value, so the \code{coerce.with} argument is
+specified. For the alternative, this requires a selection for just 3
+possibilities, so a combo box is employed.
 \begin{figure}
   \centering
   \includegraphics[width=.65\textwidth]{ex-gWidgets-formlayout}
@@ -21,13 +21,13 @@ hypotheses <-
        label = "Hypotheses",
        columns = 2, 
        children = list(
-         list(type="gedit",                            
-              name="mu", label="Ho: mu=",
-              text="0", coerce.with=as.numeric),
+         list(type = "gedit",                            
+              name = "mu", label = "Ho: mu=",
+              text = "0", coerce.with = as.numeric),
          
-         list(type="gcombobox",
-              name="alternative", label="HA: ",
-              items=c("two.sided","less","greater")
+         list(type = "gcombobox",
+              name = "alternative", label = "HA: ",
+              items = c("two.sided","less","greater")
               )))
 @
 
@@ -39,11 +39,11 @@ pressed after the \code{x} value is specified.
 
 <<>>=
 variables <- 
-  list(type="fieldset",
+  list(type = "fieldset",
        columns = 2,
        label = "Variable(s)",
        label.pos = "top",
-       label.font = c(weight="bold"),
+       label.font = c(weight = "bold"),
        children = list(
          list(type = "gedit",
               name = "x", label = "x",
@@ -87,12 +87,12 @@ conf.level <-
        children = list(
          list(type = "gslider",
               name = "conf.level", label = "confidence level",
-              from=0.5, to=1.0, by=.01, value=0.95
+              from = 0.5, to = 1.0, by = .01, value = 0.95
               )))
 @
 Finally, the constituent pieces are placed inside a box container.
 <<>>=
-tTest <- list(type = "ggroup",
+t_test <- list(type = "ggroup",
               horizontal = FALSE,
               children = list(
                 variables,
@@ -107,12 +107,12 @@ call. The following just places the values in a top-level window and adds a
 button to initiate the call to \code{t.test}.
 
 <<>>=
-w <- gwindow("t.test example with gformlayout")
-g <- ggroup(horizontal=FALSE, cont=w)
-fl <- gformlayout(tTest, cont=g, expand=TRUE)
-bg <- ggroup(cont=g)
-addSpring(bg)
-b <- gbutton("Run t.test", cont=bg)
+window <- gwindow("t.test example with gformlayout")
+group <- ggroup(horizontal = FALSE, cont = window)
+form_lyt <- gformlayout(t_test, cont = group, expand = TRUE)
+button_group <- ggroup(cont = group)
+addSpring(button_group)
+button <- gbutton("Run t.test", cont = button_group)
 @
 
 The handler is very simple, as the names chosen match the argument
@@ -121,8 +121,8 @@ method can be used with \code{do.call}. The only needed adjustment is
 for the one-sample case.
 
 <<>>=
-addHandlerChanged(b, function(h, ...) {
-  out <- svalue(fl)
+addHandlerChanged(button, function(h, ...) {
+  out <- svalue(form_lyt)
   out$x <- svalue(out$x) # turns text string into numbers
   if(out$y == "") {
     out$y <- out$paired <- NULL 

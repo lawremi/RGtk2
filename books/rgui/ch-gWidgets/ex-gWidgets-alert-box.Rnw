@@ -13,10 +13,10 @@ This code sets up the area for the alert box to appear from. The basic
 idea is that we keep an inner group holding a label, \code{ig}, to add and delete as necessary.
 <<alertBoxExample>>=
 w <- gwindow("Alert box example")
-g <- ggroup(horizontal=FALSE, cont = w)
+g <- ggroup(horizontal = FALSE, cont = w)
 alertBox <- ggroup(cont = g)
-mainBox <- ggroup(cont = g, expand=TRUE)
-l <- glabel("main box label", cont = mainBox, expand=TRUE)
+mainBox <- ggroup(cont = g, expand = TRUE)
+l <- glabel("main box label", cont = mainBox, expand = TRUE)
 ig <- NULL                              
 @ 
 
@@ -24,8 +24,8 @@ These two functions will open and close the alert box respectively. In
 this example we use global values to keep track of the alert box and
 its inner group.
 <<openCloseAlert>>=
-openAlert <- function(message="message goes here") {
-  ig <<- ggroup(cont=alertBox)
+openAlert <- function(message = "message goes here") {
+  ig <<- ggroup(cont = alertBox)
   glabel(message, cont = ig)
 }
 closeAlert <- function() {

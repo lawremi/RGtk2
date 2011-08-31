@@ -18,23 +18,20 @@ framework that can easily be extended.
 
 <<notShown, echo=FALSE>>=
 library(gWidgets)
-options(guiToolkit="RGtk2")
+options(guiToolkit = "RGtk2")
 @ 
 
 This example is centered around filtering a data set, we choose a
-convenient one and give it a non-specific name.
-%% ML: why do we give this a non-specific name when the rest of this
-%% example is specific to Cars93?
+convenient one:
 <<ourData>>=
-data("Cars93", package="MASS")
-x <- Cars93
+data("Cars93", package = "MASS")
 @ 
 
 We use a notebook to hold two tabs, one to give information and one
 for the main GUI. This basic design comes from the spotfire demos at \url{tibco.com}.
 <<layout>>=
-w <- gwindow("Spotfire example", visible=FALSE)
-nb <- gnotebook(cont=w)
+window <- gwindow("Spotfire example", visible = FALSE)
+notebook <- gnotebook(cont = window)
 @ 
 
 
@@ -43,7 +40,7 @@ description would be warranted in an actual application.
 
 <<page1>>=
 descr <- glabel(gettext("A basic GUI to explore a data set"), 
-                cont=nb, label=gettext("About"))
+                cont = notebook, label = gettext("About"))
 @ 
 %
 Now we specify the layout for the second tab. This is a nested layout
@@ -52,16 +49,16 @@ horizontal layout in which we pack in box containers that will use a
 vertical layout.
 
 <<page2>>=
-g <- ggroup(cont=nb, label=gettext("Explore..."))
-lg <- ggroup(cont=g, horizontal=FALSE) 
-rg <- ggroup(cont=g, horizontal=FALSE)
+group <- ggroup(cont = notebook, label = gettext("Explore..."))
+left_group <- ggroup(cont = group, horizontal = FALSE) 
+right_group <- ggroup(cont = group, horizontal = FALSE)
 @ 
 
 The left side will contain an embedded graphic device and a view of
 the filtered data. The \constructor{ggraphics} widget provides the
 graphic device.
 <<results=hide>>=
-ggraphics(cont = lg)
+ggraphics(cont = left_group)
 @ 
 
 Our tabular view of the data is provided by the \constructor{gtable} widget,
@@ -73,31 +70,34 @@ cases being shown. This label is packed into a box container, and
 forced to the right side through the \method{addSpring}{ggroup} method
 of the box container.
 <<>>=
-tbl <- gtable(x, cont = lg, multiple=TRUE, filter.FUN="manual")
+tbl <- gtable(Cars93, cont = left_group, multiple = TRUE, 
+              filter.FUN = "manual")
 size(tbl) <- c(500, 200)                # set size
-labelg <- ggroup(cont = lg)
-addSpring(labelg)
-noCases <- glabel("", cont = labelg)
+label_group <- ggroup(cont = left_group)
+addSpring(label_group)
+noCases <- glabel("", cont = label_group)
 @
 
 The right panel is used to provide the user a means to filter the
 display. We place the widgets used to do this within a frame to guide
 the user.
 <<filters>>=
-filterg <- gframe(gettext("Filter by:"), cont = rg, expand=TRUE)
+filter_frame <- gframe(gettext("Filter by:"), 
+                       cont = right_group, expand = TRUE)
 @ 
 The controls are layed out in a grid. We have two here to filter by:
 type and the number of cylinders.
 <<filterLayout>>=
-lyt <- glayout(cont=filterg)
-l <- list() # store widgets
+lyt <- glayout(cont = filter_frame)
+widget_list <- list() # store widgets
 lyt[1,1] <- "Type:"
-lyt[1,2] <- (l$Type <- gcombobox(c("", levels(x$Type)), 
-                                 cont=lyt))
+lyt[1,2] <- (widget_list$Type <- 
+             gcombobox(c("", levels(Cars93$Type)), 
+                       cont = lyt))
 
 lyt[2,1] <- "Cylinders:"
-lyt[2,2] <- (l$Cylinders <- 
-             gcombobox(c("", levels(x$Cylinders)), cont=lyt))
+lyt[2,2] <- (widget_list$Cylinders <- 
+             gcombobox(c("", levels(Cars93$Cyl)), cont = lyt))
 @ 
 %
 Of course, we could use many more criteria to filter by. The above
@@ -124,11 +124,13 @@ For the first, we need to compute a logical variable indicating which
 rows are to be displayed.  Within the definition of the following function, we
 use the global variables \code{l}, \code{tbl} and \code{noCases}.
 <<handlers>>=
-updateDataFrame <- function(...) {
-  vals <- lapply(l, svalue)
+update_data_frame <- function(...) {
+  vals <- lapply(widget_list, svalue)
   vals <- vals[vals != ""] 
-  out <- sapply(names(vals), function(i) x[[i]] == vals[[i]])
-  ind <- apply(out, 1, function(x) Filter("&&", x))
+  out <- sapply(names(vals), function(i) {
+    Cars93[[i]] == vals[[i]]
+  })
+  ind <- apply(out, 1, function(x) Reduce("&&", x))
   ## update table
   visible(tbl) <- ind
   ## update label
@@ -151,10 +153,10 @@ updateDataFrame <- function(...) {
 This next function is used to update the graphic. A real application
 would provide a more compelling plot.
 <<>>=
-updateGraphic <- function(...) {
+update_graphic <- function(...) {
   ind <- visible(tbl)
   if(any(ind))
-    plot(MPG.city ~ Weight, data=x[ind,])
+    plot(MPG.city ~ Weight, data = Cars93[ind,])
   else
     plot.new()
 }
@@ -163,22 +165,22 @@ updateGraphic <- function(...) {
 We now add a handler to be called whenever one of our combo boxes is
 changed. This handler simply calls both our update functions.
 <<applyHandler, results=hide>>=
-f <- function(h, ...) {
-  updateDataFrame()
-  updateGraphic()
+callback <- function(h, ...) {
+  update_data_frame()
+  update_graphic()
 }
-sapply(l, addHandlerChanged, handler=f)
+sapply(widget_list, addHandlerChanged, handler = callback)
 @ 
 %
 For the data display, we wish to allow the user to view individual cases
 by clicking on a row of the table. The following will do so.
 
 <<tableHandler>>=
-addHandlerClicked(tbl, handler=function(h,...) {
-  updateGraphic()
-  ind <- svalue(h$obj, index=TRUE)
-  points(MPG.city ~ Weight, cex=2, col="red", pch=16, 
-         data=x[ind,])
+addHandlerClicked(tbl, handler = function(h,...) {
+  update_graphic()
+  ind <- svalue(h$obj, index = TRUE)
+  points(MPG.city ~ Weight, cex = 2, col = "red", pch = 16, 
+         data = Cars93[ind,])
 })
 @ 
 %
@@ -189,6 +191,6 @@ device, but leave this for the interested reader.
 
 Finally, we draw the GUI with an initial graphic
 <<initialGraphic>>=
-visible(w) <- TRUE
-updateGraphic()
+visible(window) <- TRUE
+update_graphic()
 @ 

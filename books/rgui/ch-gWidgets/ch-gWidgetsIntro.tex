@@ -169,36 +169,36 @@ described in the following.
  require(gWidgets)
  options(guiToolkit="RGtk2")
  ## 
- w <- gwindow("File search", visible=FALSE)
- g <- gpanedgroup(cont=w)
+ window <- gwindow("File search", visible=FALSE)
+ paned <- gpanedgroup(cont = window)
  ## label and file selection widget
- f <- ggroup(cont=g, horizontal=FALSE)
- glabel("Search for (filename):", cont=f, anchor=c(-1,0))
- txtPattern <- gedit("", initial.msg="Possibly wildcards", 
-                     cont=f)
+ group <- ggroup(cont = paned, horizontal = FALSE)
+ glabel("Search for (filename):", cont = group, anchor = c(-1,0))
+ txt_pattern <- gedit("", initial.msg = "Possibly wildcards", 
+                     cont = group)
  ##
- glabel("Search in:", cont=f, anchor=c(-1,0))
- startDir <- gfilebrowse(text="Select a directory ...",
-                         quote=FALSE,
-                         type="selectdir", cont=f)
+ glabel("Search in:", cont = group, anchor = c(-1,0))
+ start_dir <- gfilebrowse(text = "Select a directory ...",
+                         quote = FALSE,
+                         type = "selectdir", cont = group)
  ## A button to initiate the search
- searchBtn <- gbutton("Search", cont=f)
- addSpring(f)
+ search_button <- gbutton("Search", cont = group)
+ addSpring(group)
  ## Area for output
- f1 <- gframe("Output:", cont=g, horizontal=FALSE)
- searchResults <- gtext("", cont=f1, expand=TRUE)
- size(searchResults) <- c(350, 200)
+ frame <- gframe("Output:", cont = paned, horizontal = FALSE)
+ search_results <- gtext("", cont = frame, expand = TRUE)
+ size(search_results) <- c(350, 200)
  ## add interactivity
- addHandlerChanged(searchBtn, handler=function(h,...) {
-   pattern <- glob2rx(svalue(txtPattern))
-   fnames <- dir(svalue(startDir), pattern, recursive=TRUE)
-   if(length(fnames))
-     svalue(searchResults) <- fnames
+ addHandlerChanged(search_button, handler = function(h,...) {
+   pattern <- glob2rx(svalue(txt_pattern))
+   file_names <- dir(svalue(start_dir), pattern, recursive = TRUE)
+   if(length(file_names))
+     svalue(search_results) <- file_names
    else
-     galert("No matching files found", parent=w)
+     galert("No matching files found", parent = window)
  })
  ## display GUI
- visible(w) <- TRUE
+ visible(window) <- TRUE
 \end{Sinput}
 \end{Schunk}
 
@@ -215,7 +215,7 @@ following basic form:
 \begin{Schunk}
 \begin{Sinput}
  gname(some_arguments, handler = NULL, action = NULL, 
-       container=NULL, ..., toolkit=guiToolkit())
+       container = NULL, ..., toolkit = guiToolkit())
 \end{Sinput}
 \end{Schunk}
 %%
@@ -255,7 +255,7 @@ practice this can cause problems due to competing event loops.
 In our example we have called
 \begin{Schunk}
 \begin{Sinput}
- options(guiToolkit="RGtk2")
+ options(guiToolkit = "RGtk2")
 \end{Sinput}
 \end{Schunk}
 %
@@ -278,18 +278,18 @@ event handlers. We discuss those in Section~\ref{sec:callbacks}.
 The constructors produce one of three general types of widgets:
 \\
 
-\begin{description}
-\item[Containers] such as the top level window \code{w}, the paned
-  group \code{g} or the frame \code{f1}
+\begin{itemize}
+\item Containers: such as the top level window \code{window}, the paned
+  group \code{paned} or the frame \code{frame}
  (Table~\ref{tab:gWidgets-container-constructors});
 %
-\item[Components] such as the unnamed labels, the edit area
-  \code{txtPattern}, or the button \code{searchBtn}
+\item Components: such as the unnamed labels, the edit area
+  \code{txt\_pattern}, or the button \code{search\_button}
   (Tables~\ref{tab:gWidgets-control-widgets}
   and~\ref{tab:gWidgets-compound-widgets});
 %
-\item[Dialogs] such as \code{galert} and \code{gfilebrowse} (Table~\ref{tab:gWidgets-basic-dialogs}).
-\end{description}
+\item Dialogs: such as \code{galert} and \code{gfilebrowse} (Table~\ref{tab:gWidgets-basic-dialogs}).
+\end{itemize}
 
 
 
@@ -357,22 +357,22 @@ In our example, we see two cases of the use of generic methods defined
 by \pkg{gWidgets}. The call
 \begin{Schunk}
 \begin{Sinput}
- svalue(txtPattern)
+ svalue(txt_pattern)
 \end{Sinput}
 \end{Schunk}
 %
 demonstrates the most used new generic \index{svalue} \meth{svalue},
 that is used to get the main property of the widget. For the object
-\code{txtPattern}, the main property is the text, for the button and
+\code{txt\_pattern}, the main property is the text, for the button and
 label widgets this property is the label. The \meth{svalue\ASSIGN}
 assignment method is used to set this property programatically. We see
 the call
 \begin{Schunk}
 \begin{Sinput}
- svalue(searchResults) <- fnames
+ svalue(search_results) <- file_names
 \end{Sinput}
 \end{Schunk}
-to update the text for the multi-line text widget \code{searchResults}.
+to update the text for the multi-line text widget \code{search\_results}.
 
 %% selection widgets
 For the selection widgets (of which there are none in our example), there
@@ -390,7 +390,7 @@ methods refer to the underlying data to be selected from.
 The call
 \begin{Schunk}
 \begin{Sinput}
- visible(w) <- TRUE
+ visible(window) <- TRUE
 \end{Sinput}
 \end{Schunk}
 %
@@ -491,7 +491,7 @@ Method&Description\\
 In our example, the search button is created with:
 \begin{Schunk}
 \begin{Sinput}
- searchBtn <- gbutton("Search", cont=f)
+ search_button <- gbutton("Search", cont = group)
 \end{Sinput}
 \end{Schunk}
 %
@@ -504,13 +504,13 @@ pattern; and presenting the results.  In our example, this is done
 through:
 \begin{Schunk}
 \begin{Sinput}
- addHandlerChanged(searchBtn, handler=function(h,...) {
-   pattern <- glob2rx(svalue(txtPattern))
-   fnames <- dir(svalue(startDir), pattern, recursive=TRUE)
-   if(length(fnames))
-     svalue(searchResults) <- fnames
+ addHandlerChanged(search_button, handler = function(h,...) {
+   pattern <- glob2rx(svalue(txt_pattern))
+   file_names <- dir(svalue(start_dir), pattern, recursive = TRUE)
+   if(length(file_names))
+     svalue(search_results) <- file_names
    else
-     galert("No matching files found", parent=w)
+     galert("No matching files found", parent = window)
  })
 \end{Sinput}
 \end{Schunk}
@@ -556,7 +556,7 @@ clicking of a button. We refer to these methods as
 ``\meth{addHandlerXXX}'', where the \code{XXX} describes the
 event. These are useful in the case where more than one event on that
 widget is of interest. For example, for single-line text widgets, like
-\code{txtPattern} in our example, the \meth{addHandlerChanged} method
+\code{txt\_pattern} in our example, the \meth{addHandlerChanged} method
 sets a callback to respond when the user finishes editing, whereas a
 handler set by \meth{addHandlerKeystroke} is called each time a key is
 pressed.
@@ -565,18 +565,18 @@ As an example of combining the handler and constructor, we could have
 specified the search button through:
 \begin{Schunk}
 \begin{Sinput}
- searchBtn <- gbutton("Search", cont=f,
-              handler=function(h,...) {
+ search_button <- gbutton("Search", cont = group,
+              handler = function(h,...) {
                 pattern <- glob2rx(svalue(h$action$txt))
-                fnames <- dir(svalue(h$action$dir), 
-                              pattern, recursive=TRUE)
-                if(length(fnames))
-                  svalue(h$action$results) <- fnames
+                file_names <- dir(svalue(h$action$dir), 
+                              pattern, recursive = TRUE)
+                if(length(file_names))
+                  svalue(h$action$results) <- file_names
                 else
-                  galert("No matching files found", parent=w)
+                  galert("No matching files found", parent = w)
               },
-              action=list(txt=txtPattern, dir=startDir,
-                results=searchResults)
+              action = list(txt = txt_pattern, dir = start_dir,
+                results = search_results)
               )
 \end{Sinput}
 \end{Schunk}
@@ -701,7 +701,7 @@ displays a message. The user has a cancel button to dismiss the dialog.
 For example,
 \begin{Schunk}
 \begin{Sinput}
- gmessage("Message goes here", title="example dialog")
+ gmessage("Message goes here", title = "example dialog")
 \end{Sinput}
 \end{Schunk}
 
@@ -720,7 +720,7 @@ the user to confirm the message. This dialog returns \code{TRUE} or
 Here we use the question icon for a confirmation dialog, as the message is a question.
 \begin{Schunk}
 \begin{Sinput}
- ret <- gconfirm("Really delete file?", icon="question")
+ ret <- gconfirm("Really delete file?", icon = "question")
 \end{Sinput}
 \end{Schunk}
 
@@ -735,7 +735,7 @@ cancels the dialog through the button a value of \code{NA} is returned.
 This illustrates how to use the return value.
 \begin{Schunk}
 \begin{Sinput}
- ret <- ginput("Enter your name", icon="info")
+ ret <- ginput("Enter your name", icon = "info")
  if(!is.na(ret)) 
    message("Hello", ret,"\n")
 \end{Sinput}
@@ -946,7 +946,7 @@ window's title bar. This can be set during construction via the
 
 \begin{Schunk}
 \begin{Sinput}
- w <- gwindow("Our title", visible=TRUE)
+ window <- gwindow("Our title", visible = TRUE)
 \end{Sinput}
 \end{Schunk}
 %
@@ -954,7 +954,7 @@ window's title bar. This can be set during construction via the
 We can then use this as a parent container for a constructor. For example;
 \begin{Schunk}
 \begin{Sinput}
- l <- glabel("A child label", container=w)
+ label <- glabel("A child label", container = window)
 \end{Sinput}
 \end{Schunk}
 %
@@ -981,9 +981,9 @@ window to size properly.}
 For example, a typical usage follows this pattern:
 \begin{Schunk}
 \begin{Sinput}
- w <- gwindow("Title", visible=FALSE)
+ window <- gwindow("Title", visible = FALSE)
  ## perform layout here ...
- visible(w) <- TRUE
+ visible(window) <- TRUE
 \end{Sinput}
 \end{Schunk}
 
@@ -1011,8 +1011,8 @@ For example this call makes a child window of \code{w} with a square
 size of 200 pixels.
 \begin{Schunk}
 \begin{Sinput}
- childw <- gwindow("A child window", parent=w, 
-                   width=200, height=200)
+ child_window <- gwindow("A child window", parent = window, 
+                         width = 200, height = 200)
 \end{Sinput}
 \end{Schunk}
 
@@ -1029,27 +1029,27 @@ the window is closed:
 %% Thanks to Richie Cotton for this example
 \begin{Schunk}
 \begin{Sinput}
- oldOptions <- options(error = function() {
+ old_options <- options(error = function() {
    if(msg <- geterrmessage() != "")
-     galert(msg, parent=win)
+     galert(msg, parent = window)
    invisible(msg)
  })
  #
- win <- gwindow( "Popup errors", visible=FALSE,
-                handler = function(h, ...) {
-                  ## restore old options when gui is closed
-                  options(oldOptions)       
-                })
+ window <- gwindow( "Popup errors", visible = FALSE,
+                   handler = function(h, ...) {
+                     ## restore old options when gui is closed
+                     options(old_options)       
+                   })
 \end{Sinput}
 \end{Schunk}
 
 To illustrate, we add a button to initiate an error:
 \begin{Schunk}
 \begin{Sinput}
- btn <- gbutton("Click for error",  cont = win,
-                handler = function(h, ...) {
-                  stop("This is an error")
-                })
+ button <- gbutton("Click for error",  cont = window,
+                   handler = function(h, ...) {
+                     stop("This is an error")
+                   })
 \end{Sinput}
 \end{Schunk}
 %
@@ -1068,9 +1068,9 @@ window will be. For example:
 
 \begin{Schunk}
 \begin{Sinput}
- w <- gwindow("Close through the window manager")
- id <- addHandlerUnrealize(w, handler=function(h,...) {
-   !gconfirm("Really close", parent=h$obj)
+ window <- gwindow("Close through the window manager")
+ id <- addHandlerUnrealize(window, handler = function(h,...) {
+   !gconfirm("Really close", parent = h$obj)
  })
 \end{Sinput}
 \end{Schunk}
@@ -1134,16 +1134,17 @@ with the task of collapsing factor levels. This wrapper function is used:
 
 \begin{Schunk}
 \begin{Sinput}
- collapseFactor <- function(f, parent=NULL) {
+ collapseFactor <- function(fac, parent = NULL) {
    out <- character()
-   w <- gbasicdialog("Collapse factor levels", parent=parent,
-                     handler=function(h,...) {
-                       new_f <- relf$get_value()
-                       out <<- factor(new_f)
-                     })
-   g <- ggroup(cont=w)
-   relf <- CollapseFactor$new(f, cont=g)
-   visible(w, set=TRUE)
+   window <- 
+     gbasicdialog("Collapse factor levels", parent = parent,
+                  handler = function(h,...) {
+                    new_fac <- relevel_factor$get_value()
+                    out <<- factor(new_fac)
+                  })
+   group <- ggroup(cont = window)
+   relevel_factor <- CollapseFactor$new(fac, cont = group)
+   visible(window, set = TRUE)
    out
  }
 \end{Sinput}
@@ -1196,11 +1197,11 @@ vertically from top to bottom.
 For example, to pack a \code{cancel} and \code{ok} button into a box container we might have:
 \begin{Schunk}
 \begin{Sinput}
- w <- gwindow("Some buttons", visible=FALSE)
- g <- ggroup(horizontal=TRUE, cont=w)
- cancel <- gbutton("cancel", cont=g)
- ok <- gbutton("ok", cont=g)
- visible(w) <- TRUE
+ window <- gwindow("Some buttons", visible = FALSE)
+ group <- ggroup(horizontal = TRUE, cont = window)
+ cancel_button <- gbutton("cancel", cont = group)
+ ok_button <- gbutton("ok", cont = group)
+ visible(window) <- TRUE
 \end{Sinput}
 \end{Schunk}
 
@@ -1327,14 +1328,14 @@ For example, we might modify our button layout example to include a
 fixed amount of space between them as follows (Figure~\ref{fig:gWidgets-button-layout}):
 \begin{Schunk}
 \begin{Sinput}
- w <- gwindow("Some buttons", visible=FALSE)
- g <- ggroup(horizontal=TRUE, spacing=6, cont=w)
- help <- gbutton("help", cont=g)
- addSpring(g)
- cancel <- gbutton("cancel", cont=g)
- addSpace(g, 12)                         # 6 + 12 + 6 pixels
- ok <- gbutton("ok", cont=g)
- visible(w) <- TRUE
+ window <- gwindow("Some buttons", visible = FALSE)
+ group <- ggroup(horizontal = TRUE, spacing = 6, cont = window)
+ help_button <- gbutton("help", cont = group)
+ addSpring(group)
+ cancel_button <- gbutton("cancel", cont = group)
+ addSpace(group, 12)                         # 6 + 12 + 6 pixels
+ ok_button <- gbutton("ok", cont = group)
+ visible(window) <- TRUE
 \end{Sinput}
 \end{Schunk}
 
@@ -1356,11 +1357,11 @@ fixed amount of space between them as follows (Figure~\ref{fig:gWidgets-button-l
 % @ 
 
 % <<nestedLayout, results=hide>>=
-% g <- ggroup(horizontal=FALSE, cont=w)
-% bg <- ggroup(cont=g)                    # nested group
+% g <- ggroup(horizontal = FALSE, cont = w)
+% bg <- ggroup(cont = group)                    # nested group
 % addSpring(bg)
-% b <- gbutton("Source", cont=bg)
-% nb <- gnotebook(cont=g, expand=TRUE)    # fill space
+% b <- gbutton("Source", cont = bg)
+% nb <- gnotebook(cont = group, expand = TRUE)    # fill space
 % @ 
 
 
@@ -1413,11 +1414,11 @@ positioning with $0$ being the left and $1$ the right.
 The basic framed container is used along these lines:
 \begin{Schunk}
 \begin{Sinput}
- w <- gwindow("gframe example")
- f <- gframe("gWidgets Examples:", cont=w)
+ window <- gwindow("gframe example")
+ frame <- gframe("gWidgets Examples:", cont = window)
  files <- list.files(system.file("Examples","ch-gWidgets", 
-                                 package="ProgGUIInR"))
- vars <- gtable(files, cont=f, expand=TRUE)
+                                 package = "ProgGUIInR"))
+ vars <- gtable(files, cont = frame, expand = TRUE)
 \end{Sinput}
 \end{Schunk}
 
@@ -1441,11 +1442,12 @@ summary of a model.
 \begin{Sinput}
  res <- lm(mpg ~ wt, mtcars)
  out <- capture.output(summary(res))
- w <- gwindow("gexpandgroup example", visible=FALSE)
- xgrp <- gexpandgroup("Summary", cont=w)
- l <- glabel(out, cont=xgrp)
- visible(xgrp) <- TRUE                   # display summary
- visible(w) <- TRUE
+ ##
+ window <- gwindow("gexpandgroup example", visible = FALSE)
+ exp_group <- gexpandgroup("Summary", cont = window)
+ label <- glabel(out, cont = exp_group)
+ visible(exp_group) <- TRUE                   # display summary
+ visible(window) <- TRUE
 \end{Sinput}
 \end{Schunk}
 
@@ -1479,18 +1481,19 @@ as follows:
 
 \begin{Schunk}
 \begin{Sinput}
- w <- gwindow("glayout example", visible=FALSE)
- lyt <- glayout(cont=w, spacing=5)
+ window <- gwindow("glayout example", visible = FALSE)
+ lyt <- glayout(cont = window, spacing = 5)
  right <- c(1,0); left <- c(-1,0)
- lyt[1,1, anchor=right] <- "name"
- lyt[1,2, anchor=left ] <- gedit("", cont=lyt)
+ lyt[1,1, anchor = right] <- "name"
+ lyt[1,2, anchor = left ] <- gedit("George Washington", 
+            cont = lyt)
  #
- lyt[2,1, anchor=right] <- "rank"
- lyt[2,2, anchor=left ] <- gedit("", cont=lyt)
+ lyt[2,1, anchor = right] <- "rank"
+ lyt[2,2, anchor = left ] <- gedit("General", cont = lyt)
  #
- lyt[3,1, anchor=right] <- "serial number"
- lyt[3,2, anchor=left ] <- gedit("", cont=lyt)
- visible(w) <- TRUE
+ lyt[3,1, anchor = right] <- "serial number"
+ lyt[3,2, anchor = left ] <- gedit("1", cont = lyt)
+ visible(window) <- TRUE
 \end{Sinput}
 \end{Schunk}
 %
@@ -1529,7 +1532,7 @@ through:
  sapply(lyt[,2], svalue)
 \end{Sinput}
 \begin{Soutput}
-[1] "" "" ""
+[1] "George Washington" "General"           "1"                
 \end{Soutput}
 \end{Schunk}
 % ML: returning all empty strings is not all that interesting.
@@ -1579,16 +1582,16 @@ A simplified version of the layout code in
 Figure~\ref{fig:gWidgets-sample-layout} would be
 \begin{Schunk}
 \begin{Sinput}
- d <- system.file("Examples", "ch-gWidgets", 
-                  package="ProgGUIinR")
- files <- list.files(d)
+ examples <- system.file("Examples", "ch-gWidgets", 
+                  package = "ProgGUIinR")
+ files <- list.files(examples)
  #
- w <- gwindow("gpanedgroup example", visible=FALSE)
- pg <- gpanedgroup(cont = w)
- tbl <- gtable(files, cont=pg)           # left side
- t <- gtext("", cont=pg, expand=TRUE)    # right side
- visible(w) <- TRUE
- svalue(pg) <- 0.33                      # after drawing
+ window <- gwindow("gpanedgroup example", visible = FALSE)
+ paned <- gpanedgroup(cont  =  window)
+ tbl <- gtable(files, cont = paned)           # left side
+ txt_widget <- gtext("", cont = paned, expand = TRUE) # right
+ visible(window) <- TRUE
+ svalue(paned) <- 0.33                        # after drawing
 \end{Sinput}
 \end{Schunk}
 
@@ -1596,11 +1599,11 @@ Figure~\ref{fig:gWidgets-sample-layout} would be
 % \begin{example}{Paned groups}{ex-gWidgets-panedgroups}
 %   This example shows how one could use this container.
 % <<keep.source=TRUE>>=
-% w <- gwindow("gpanedgroup example", visible=FALSE)
-% pg <- gpanedgroup(cont=w)
-% g <- ggroup(cont=pg)                  # left child
-% l <- glabel("left child", cont=g)
-% b <- gbutton("right child", cont=pg)
+% w <- gwindow("gpanedgroup example", visible = FALSE)
+% pg <- gpanedgroup(cont = w)
+% g <- ggroup(cont = pg)                  # left child
+% l <- glabel("left child", cont = group)
+% b <- gbutton("right child", cont = pg)
 % visible(w) <- TRUE
 % @ 
 % To adjust the sash position, one can do:
@@ -1661,31 +1664,32 @@ number of pages held by the notebook.
  used to hold differing pages. The following is the basic setup used.
 \begin{Schunk}
 \begin{Sinput}
- w <- gwindow("gnotebook example")
- nb <- gnotebook(cont=w)
+ window <- gwindow("gnotebook example")
+ notebook <- gnotebook(cont = window)
 \end{Sinput}
 \end{Schunk}
 
 New pages are added as follows:
 \begin{Schunk}
 \begin{Sinput}
- addAPage <- function(fname) {
-   f <- system.file(fname, package="ProgGUIinR")
-   gtext(readLines(f), cont = nb, label=fname)
+ add_a_page <- function(file_name) {
+   f <- system.file(file_name, package = "ProgGUIinR")
+   gtext(readLines(f), cont = notebook, label = file_name)
  }
- addAPage("DESCRIPTION")
+ add_a_page("DESCRIPTION")
 \end{Sinput}
 \end{Schunk}
 
 For pages holding more than one widget, a container is used:
 \begin{Schunk}
 \begin{Sinput}
- hg <- glayout(cont=nb, horizontal=FALSE, label="Help")
- hg[1,1] <- gimage("help", dir="stock", cont=hg)
- hg[1,2] <- glabel(paste("To add a page:",
+ lyt <- glayout(cont = notebook, horizontal = FALSE, 
+                label = "Help")
+ lyt[1,1] <- gimage("help", dir = "stock", cont = lyt)
+ lyt[1,2] <- glabel(paste("To add a page:",
             "Click on a file in the left pane, and its contents",
-            "are displayed in a notebook page.", sep="\n"), 
-            cont=hg)
+            "are displayed in a notebook page.", sep = "\n"), 
+            cont = lyt)
 \end{Sinput}
 \end{Schunk}
 
@@ -1694,14 +1698,14 @@ To manipulate the displayed pages, say to set the page to the last one,
 we have:
 \begin{Schunk}
 \begin{Sinput}
- svalue(nb) <- length(nb)
+ svalue(notebook) <- length(notebook)
 \end{Sinput}
 \end{Schunk}
 %
 To remove the current page
 \begin{Schunk}
 \begin{Sinput}
- dispose(nb)
+ dispose(notebook)
 \end{Sinput}
 \end{Schunk}
 %
@@ -1805,30 +1809,31 @@ dialog to generate a plot.
 
 \begin{Schunk}
 \begin{Sinput}
- w <- gwindow("Make a plot")
- g <- ggroup(horizontal=FALSE, cont=w)
- glabel("... Fill me in ...", cont=g)
- bg <- ggroup(cont=g)
- addSpring(bg)
- parButton <- gbutton("par (mfrow) ...", cont=bg)
+ window <- gwindow("Make a plot")
+ group <- ggroup(horizontal = FALSE, cont = window)
+ glabel("... Fill me in ...", cont = group)
+ button_group <- ggroup(cont = group)
+ addSpring(button_group)
+ parButton <- gbutton("par (mfrow) ...", cont = button_group)
 \end{Sinput}
 \end{Schunk}
 Our callback opens a subwindow to collect a few values for the
 \code{mfrow} option.
 \begin{Schunk}
 \begin{Sinput}
- addHandlerClicked(parButton, handler=function(h,...) {
-   w1 <- gwindow("Set par values for mfrow", parent=w)
-   lyt <- glayout(cont=w1)
-   lyt[1,1, align=c(-1,0)] <- "mfrow: c(nr,nc)"
-   lyt[2,1] <- (nr <- gedit(1, cont=lyt))
-   lyt[2,2] <- (nc <- gedit(1, cont=lyt))
-   lyt[3,2] <- gbutton("ok", cont=lyt, handler=
-                 function(h,...) {
-                   x <- as.numeric(c(svalue(nr), svalue(nc)))
-                   par(mfrow=x)
-                   dispose(w1)
-                 })
+ addHandlerClicked(parButton, handler = function(h,...) {
+   child <- gwindow("Set par values for mfrow", parent = window)
+   lyt <- glayout(cont = child)
+   lyt[1,1, align = c(-1,0)] <- "mfrow: c(nr,nc)"
+   lyt[2,1] <- (nr <- gedit(1, cont = lyt))
+   lyt[2,2] <- (nc <- gedit(1, cont = lyt))
+   lyt[3,2] <- 
+     gbutton("ok", cont = lyt, handler = 
+             function(h,...) {
+               x <- as.numeric(c(svalue(nr), svalue(nc)))
+               par(mfrow = x)
+               dispose(child)
+             })
  })
 \end{Sinput}
 \end{Schunk}
@@ -1874,8 +1879,8 @@ or disable whether a widget can accept input.
 
 % <<>>=
 % w <- gwindow("Button example")
-% b <- gbutton("Click me", cont=w)
-% id <- addHandlerChanged(b, action=w, handler=function(h,...) {
+% b <- gbutton("Click me", cont = w)
+% id <- addHandlerChanged(b, action = w, handler = function(h,...) {
 %   btnText <- svalue(h$obj)                   # or svalue(b)
 %   svalue(h$obj) <- paste("don't", btnText, "again") # set text
 %   enabled(h$obj) <- FALSE
@@ -1909,15 +1914,15 @@ to be used (\GTK\/ had PANGO, \Qt\/ has rich text).}
 To make a form's labels have some emphasis we could do:
 \begin{Schunk}
 \begin{Sinput}
- w <- gwindow("label example")
- f <- gframe("Summary statistics:", cont=w)
- lyt <- glayout(cont=f)
- lyt[1,1] <- glabel("xbar:", cont=lyt)
- lyt[1,2] <- gedit("", cont=lyt)
- lyt[2,1] <- glabel("s:", cont=lyt)
- lyt[2,2] <- gedit("", cont=lyt)
+ window <- gwindow("label example")
+ frame <- gframe("Summary statistics:", cont = window)
+ lyt <- glayout(cont = frame)
+ lyt[1,1] <- glabel("xbar:", cont = lyt)
+ lyt[1,2] <- gedit("", cont = lyt)
+ lyt[2,1] <- glabel("s:", cont = lyt)
+ lyt[2,2] <- gedit("", cont = lyt)
  sapply(lyt[,1], function(i) {
-   font(i) <- c(weight="bold", color="blue")
+   font(i) <- c(weight = "bold", color = "blue")
  })
 \end{Sinput}
 \end{Schunk}
@@ -1997,8 +2002,8 @@ To illustrate, a simple means to embed a graph within a GUI is as follows:
  hist(rnorm(100))
  dev.off()
  #
- w <- gwindow("Example to show a graphic")
- gimage(basename(f), dirname(f), cont=w)
+ window <- gwindow("Example to show a graphic")
+ gimage(basename(f), dirname(f), cont = window)
 \end{Sinput}
 \end{Schunk}
 %
@@ -2029,9 +2034,9 @@ We begin by defining 16 arbitrary colors.
 
 \begin{Schunk}
 \begin{Sinput}
- someColors <- c("black", "red", "blue", "brown",
+ some_colors <- c("black", "red", "blue", "brown",
                  "green", "yellow", "purple",
-                 paste("grey", seq.int(10,90,by=10), sep=""))
+                 paste("grey", seq.int(10,90,by = 10), sep = ""))
 \end{Sinput}
 \end{Schunk}
 
@@ -2040,13 +2045,13 @@ low-level \pkg{grid} functions to draw the image to a png file.
 \begin{Schunk}
 \begin{Sinput}
  require(grid)
- iconDir <- tempdir(); iconSize <- 16;
- makeColorIcon <- function(i) {
-   filename <- file.path(iconDir, 
+ icon_dir <- tempdir(); iconSize <- 16;
+ make_color_icon <- function(i) {
+   filename <- file.path(icon_dir, 
                          sprintf("color-%s.png", i))
-   png(file=filename, width=iconSize, height=iconSize)
+   png(file = filename, width = iconSize, height = iconSize)
    grid.newpage()
-   grid.draw(rectGrob(gp=gpar(fill=i)))
+   grid.draw(rectGrob(gp = gpar(fill = i)))
    dev.off()
    return(filename)
  }
@@ -2058,9 +2063,9 @@ for \code{addStockIcons}.
 
 \begin{Schunk}
 \begin{Sinput}
- icons <- sapply(someColors, makeColorIcon)
- iconNames <- sprintf("color-%s", someColors)
- addStockIcons(iconNames, icons)
+ icons <- sapply(some_colors, make_color_icon)
+ icon_names <- sprintf("color-%s", some_colors)
+ addStockIcons(icon_names, icons)
 \end{Sinput}
 \end{Schunk}
 
@@ -2070,16 +2075,17 @@ corresponding stock icon name.
 
 \begin{Schunk}
 \begin{Sinput}
- w <- gwindow("Icon example")
- f <- function(h,...) galert(h$action, parent=w)
- tbl <- glayout(cont=w, spacing=0)
+ window <- gwindow("Icon example", visible=FALSE)
+ callback <- function(h,...) galert(h$action, parent = window)
+ lyt <- glayout(cont = window, spacing = 0)
  for(i in 1:4) {
    for(j in 1:4) {
      ind <- (i - 1) * 4 + j
-     tbl[i,j] <- gimage(icons[ind], handler=f, 
-                        action=iconNames[ind], cont=tbl)
+     lyt[i,j] <- gimage(icons[ind], handler = callback, 
+                        action = icon_names[ind], cont = lyt)
    }
  }
+ visible(window) <- TRUE
 \end{Sinput}
 \end{Schunk}
 \end{example}
@@ -2120,10 +2126,11 @@ through the \method{size\ASSIGN}{guiWidget} method.
 A simple usage might be:
 \begin{Schunk}
 \begin{Sinput}
- w <- gwindow("Simple gedit example", visible=FALSE)
- g <- ggroup(cont=w)
- e <- gedit("", initial.msg="Enter your name...", cont=g)
- visible(w) <- TRUE
+ window <- gwindow("Simple gedit example", visible = FALSE)
+ group <- ggroup(cont = window)
+ entry <- gedit("", initial.msg = "Enter your name...", 
+                cont = group)
+ visible(window) <- TRUE
 \end{Sinput}
 \end{Schunk}
 
@@ -2157,12 +2164,12 @@ For example, the following can be used to collect one of the 50 state
 names in the U.S.:
 \begin{Schunk}
 \begin{Sinput}
- w <- gwindow("gedit example", visible=FALSE) 
- g <- ggroup(cont=w)
- glabel("State name:", cont=g)
- e <- gedit("", cont=g)
- e[] <- state.name
- visible(w) <- TRUE
+ window <- gwindow("gedit example", visible = FALSE) 
+ group <- ggroup(cont = window)
+ glabel("State name:", cont = group)
+ entry <- gedit("", cont = group)
+ entry[] <- state.name
+ visible(window) <- TRUE
 \end{Sinput}
 \end{Schunk}
 
@@ -2192,10 +2199,10 @@ value is invalid we set the text color to red.
 
 \begin{Schunk}
 \begin{Sinput}
- w <- gwindow("Validation example")
- tbl <- glayout(cont=w)
- tbl[1,1] <- "R expression:"
- tbl[1,2] <- (e <- gedit("", cont = tbl))
+ window <- gwindow("Validation example")
+ lyt <- glayout(cont = window)
+ lyt[1,1] <- "R expression:"
+ lyt[1,2] <- (entry <- gedit("", cont = lyt))
 \end{Sinput}
 \end{Schunk}
 
@@ -2210,7 +2217,7 @@ if the expression is valid.\footnote{The basic way to evaluate an
   functions to assist with this task, notably the \function{evaluate}
   function in the same-named \pkg{evaluate} package, and the
   \function{parseText} and \function{captureAll} functions in the
-  \pkg{svMisc} package. We use both in this part of the text.}
+  \pkg{svMisc} package. We illustrate both in this part of the text.}
 \begin{Schunk}
 \begin{Sinput}
  require(evaluate)
@@ -2233,12 +2240,12 @@ pressing the return key while the widget has focus.
 
 \begin{Schunk}
 \begin{Sinput}
- addHandlerChanged(e, handler = function(h,...) {
-   curVal <- svalue(e)
-   if(isValid(curVal)) {
-     font(e) <- c(color="black")
+ addHandlerChanged(entry, handler = function(h,...) {
+   cur_val <- svalue(entry)
+   if(isValid(cur_val)) {
+     font(entry) <- c(color = "black")
    } else {
-     font(e) <- c(color="red")
+     font(entry) <- c(color = "red")
    }
  })
 \end{Sinput}
@@ -2335,26 +2342,26 @@ The following sets up the layout of the display and buttons.
                   c(4:6, "*", "/"),
                   c(1:3, "+", "-"))
  #
- w <- gwindow("glayout for a calculator", visible=FALSE)
- g <- ggroup(cont=w, expand=TRUE, horizontal=FALSE)
- tbl <- glayout(cont=g, spacing=2)
- tbl[1, 1:5, anchor=c(-1,0)] <-          # span 5 columns
-   (eqnArea <- gedit("", cont=tbl))
- tbl[2, 1:5, anchor=c(1,0)] <- 
-   (outputArea <- glabel("", cont=tbl))
+ window <- gwindow("glayout for a calculator", visible = FALSE)
+ group <- ggroup(cont = window, expand = TRUE, horiz = FALSE)
+ lyt <- glayout(cont = group, spacing = 2)
+ lyt[1, 1:5, anchor = c(-1,0)] <-          # span 5 columns
+   (eqn_area <- gedit("", cont = lyt))
+ lyt[2, 1:5, anchor = c(1,0)] <- 
+   (output_area <- glabel("", cont = lyt))
  #
- bList <- list()
+ button_list <- list()
  for(i in 3:5) {
    for(j in 1:5) {
      val <- buttons[i-2, j]
-     tbl[i,j] <- (bList[[val]] <- gbutton(val, cont=tbl))
+     lyt[i,j] <- (button_list[[val]] <- gbutton(val, cont = lyt))
    }
  }
- tbl[6,2] <- (bList[["0"]] <- gbutton("0", cont=tbl))
- tbl[6,3] <- (bList[["."]] <- gbutton(".", cont=tbl))
- tbl[6,4:5] <- (eqButton <- gbutton("=", cont=tbl))
+ lyt[6,2] <- (button_list[["0"]] <- gbutton("0", cont = lyt))
+ lyt[6,3] <- (button_list[["."]] <- gbutton(".", cont = lyt))
+ lyt[6,4:5] <- (eq_button <- gbutton(" = ", cont = lyt))
  #
- visible(w) <- TRUE
+ visible(window) <- TRUE
 \end{Sinput}
 \end{Schunk}
 
@@ -2365,13 +2372,13 @@ the text for each button into the equation area.
 
 \begin{Schunk}
 \begin{Sinput}
- addButton <- function(h, ...) {
-   curExpr <- svalue(eqnArea)
-   newChar <- svalue(h$obj)              # the button's value
-   svalue(eqnArea) <- paste(curExpr, newChar, sep="")
-   svalue(outputArea) <- ""              # clear label 
+ add_button <- function(h, ...) {
+   cur_expr <- svalue(eqn_area)
+   new_char <- svalue(h$obj)              # the button's value
+   svalue(eqn_area) <- paste(cur_expr, new_char, sep = "")
+   svalue(output_area) <- ""              # clear label 
  }
- sapply(bList, addHandlerChanged, handler=addButton)
+ sapply(button_list, addHandlerChanged, handler = add_button)
 \end{Sinput}
 \end{Schunk}
 
@@ -2381,17 +2388,17 @@ label.\iprogram{evaluating strings}
 \begin{Schunk}
 \begin{Sinput}
  require(evaluate)
- addHandlerClicked(eqButton, handler = function(h,...) {
-   curExpr <- svalue(eqnArea)
-   out <- try(evaluate:::evaluate(curExpr), silent=TRUE)
+ addHandlerClicked(eq_button, handler = function(h,...) {
+   curExpr <- svalue(eqn_area)
+   out <- try(evaluate:::evaluate(curExpr), silent = TRUE)
    if(inherits(out, "try-error")) {
-     galert("Parse error", parent=eqButton)
+     galert("Parse error", parent = eq_button)
    } else if(is(out[[2]], "error")) {
      msg <- sprintf("Error: %s", out[[2]]$message)
-     galert(msg, parent=eqButton)
+     galert(msg, parent = eq_button)
    } else {
-     svalue(outputArea) <- out[[2]]
-     svalue(eqnArea) <- ""            # restart
+     svalue(output_area) <- out[[2]]
+     svalue(eqn_area) <- ""            # restart
    }
  })
                    
@@ -2451,9 +2458,9 @@ In Figure~\ref{fig:gWidgets-EBImage-gui} a toggle button is used for
 
 \begin{Schunk}
 \begin{Sinput}
- w <- gwindow("Checkbox example with toggle button")
- cb <- gcheckbox("Thresh", checked=TRUE, use.togglebutton=TRUE,
-                 cont=w)
+ window <- gwindow("Checkbox example with toggle button")
+ check_box <- gcheckbox("Thresh", checked = TRUE, 
+                        use.togglebutton = TRUE, cont = window)
 \end{Sinput}
 \end{Schunk}
 
@@ -2470,11 +2477,12 @@ that the handler be called only in the \code{TRUE} state, say, one
 needs to check within the handler for this. For example
 \begin{Schunk}
 \begin{Sinput}
- w <- gwindow("checkbox example")
- cb <- gcheckbox("label", cont=w, handler=function(h,...) {
-   if(svalue(h$obj))                     # it is checked
-     print("define handler here")
- })
+ window <- gwindow("checkbox example")
+ check_button <- gcheckbox("label", cont = window, 
+                           handler = function(h,...) {
+                             if(svalue(h$obj)) # it is checked
+                               print("define handler here")
+                           })
 \end{Sinput}
 \end{Schunk}
 
@@ -2497,9 +2505,9 @@ In Figure~\ref{fig:gWidgets-EBImage-gui} a radio button is used for
 
 \begin{Schunk}
 \begin{Sinput}
- w <- gwindow("Radio button example")
- rb <- gradio(c("Color", "Grayscale"), selected=2, 
-              horizontal=FALSE, cont=w)
+ window <- gwindow("Radio button example")
+ radio_button <- gradio(c("Color", "Grayscale"), selected = 2, 
+                        horizontal = FALSE, cont = window)
 \end{Sinput}
 \end{Schunk}
 
@@ -2549,9 +2557,10 @@ created with
 
 \begin{Schunk}
 \begin{Sinput}
- w <- gwindow("Checkbox group example")
- cbg <- gcheckboxgroup(c("Flip","Flop"), horizontal=FALSE, 
-                       checked=c(FALSE, TRUE), cont=w)
+ window <- gwindow("Checkbox group example")
+ check_box_group <-
+   gcheckboxgroup(c("Flip","Flop"), horizontal = FALSE, 
+                  checked = c(FALSE, TRUE), cont = window)
  
 \end{Sinput}
 \end{Schunk}
@@ -2559,7 +2568,7 @@ created with
 
 
 The state is retrieved as a character vector through the
-\method{svalue}{gcheckboxgroup} method. The \code{index=TRUE} argument
+\method{svalue}{gcheckboxgroup} method. The \code{index = TRUE} argument
 instructs \meth{svalue} to return the selected indices instead. These
 are $0$-length if no selection is made. As a checkbox group is like
 both a checkbox and a radio button group, one can set the selected
@@ -2567,19 +2576,21 @@ values three different ways. As with a checkbox, the selected values
 can be set by specifying a logical vector through the
 \method{svalue\ASSIGN}{gcheckboxgroup} method. As with radio button
 groups, the selected values can also be set with a character vector
-indicating which labels should be selected, or if \code{index=TRUE} is
+indicating which labels should be selected, or if \code{index = TRUE} is
 given, using a numeric index vector.
 
 
 That is, each of these has the same effect:
 \begin{Schunk}
 \begin{Sinput}
- svalue(cbg) <- c("Flop")
- svalue(cbg) <- c(FALSE, TRUE)
- svalue(cbg, index=TRUE) <- 2
+ svalue(check_box_group) <- c("Flop")
+ svalue(check_box_group) <- c(FALSE, TRUE)
+ svalue(check_box_group, index = TRUE) <- 2
 \end{Sinput}
 \end{Schunk}
-% ML: strange that index=TRUE is required here
+% ML: strange that index = TRUE is required here
+% JV: to be consistent with returning a value without specifying a
+% value for index
 
 The labels are returned through the \method{[}{gcheckboxgroup} method
 and if the underlying toolkit allows it, set through the
@@ -2592,20 +2603,20 @@ the \method{length}{gcheckboxgroup} method returns the number of items.
 % kerns <- as.character(formals(density.default)$kernel)[-1]
 
 % w <- gwindow("Arguments for density example")
-% lyt <- glayout(cont=w)
+% lyt <- glayout(cont = w)
 
 % lyt[1,1] <- "bw"
-% lyt[1,2, anchor=c(-1,0)] <- 
-%   gradio(c("nrd0", "nrd", "ucv", "bcv", "SJ"), cont=lyt)
+% lyt[1,2, anchor = c(-1,0)] <- 
+%   gradio(c("nrd0", "nrd", "ucv", "bcv", "SJ"), cont = lyt)
 
 % lyt[2,1] <- "Kernel"
-% lyt[2,2, anchor=c(-1,0)] <- gcheckboxgroup(kerns, cont=lyt)
+% lyt[2,2, anchor = c(-1,0)] <- gcheckboxgroup(kerns, cont = lyt)
 
 % lyt[3,1] <- "na.rm"
-% lyt[3,2, anchor=c(-1,0)] <- 
-%   gcheckbox("na.rm", checked=TRUE, use.togglebutton=TRUE, cont=lyt)
+% lyt[3,2, anchor = c(-1,0)] <- 
+%   gcheckbox("na.rm", checked = TRUE, use.togglebutton = TRUE, cont = lyt)
 
-% lyt[4,2] <- gbutton("done", cont=lyt, handler=function(h,...) {
+% lyt[4,2] <- gbutton("done", cont = lyt, handler = function(h,...) {
 %   out <- sapply(1:3, function(i) {
 %     widget <- lyt[i,2]
 %     svalue(widget)
@@ -2637,8 +2648,8 @@ Combo boxes are constructed by \constructor{gcombobox}.\footnote{Some
 The combo box in Figure~\ref{fig:gWidgets-EBImage-gui} could be coded with:
 \begin{Schunk}
 \begin{Sinput}
- w <- gwindow("gcombobox example")
- cb <- gcombobox(c("None", "Low", "High"), cont=w)
+ window <- gwindow("gcombobox example")
+ combo_box <- gcombobox(c("None", "Low", "High"), cont = window)
 \end{Sinput}
 \end{Schunk}
 
@@ -2650,10 +2661,10 @@ appear next to the label.
 \begin{Schunk}
 \begin{Sinput}
  nms <- getStockIcons()                  # gWidgets icons
- d <- data.frame(names=names(nms), icons=names(nms), 
-                 stringsAsFactors=FALSE)
- w <- gwindow("Combo box with icons example")
- cb <- gcombobox(d, cont=w)
+ DF <- data.frame(names = names(nms), icons = names(nms), 
+                  stringsAsFactors = FALSE)
+ window <- gwindow("Combo box with icons example")
+ combo_box <- gcombobox(DF, cont = window)
 \end{Sinput}
 \end{Schunk}
 
@@ -2702,15 +2713,15 @@ sets a handler to respond to keystroke events.
 
 \begin{Schunk}
 \begin{Sinput}
- availDfs <- function() {
+ avail_DFs <- function() {
    c("", ".GlobalEnv", ProgGUIinR:::avail_dfs(.GlobalEnv))
  }
 \end{Sinput}
 \end{Schunk}
 \begin{Schunk}
 \begin{Sinput}
- getNumeric <- function(where) {
-   val <- get(where, envir=.GlobalEnv)
+ get_numeric <- function(where) {
+   val <- get(where, envir = .GlobalEnv)
    ProgGUIinR:::find_vars(val, is.numeric)
  }
 \end{Sinput}
@@ -2719,29 +2730,32 @@ sets a handler to respond to keystroke events.
 Our layout uses nested groups and a \code{glayout} container.
 \begin{Schunk}
 \begin{Sinput}
- w <- gwindow("Find the mean", visible=FALSE)
- g <- ggroup(cont=w, horizontal=FALSE)
- g1 <- ggroup(cont=g)
- glabel("Select data frame:", cont=g1)
- dfC <- gcombobox(availDfs(), cont=g1)
+ window <- gwindow("Find the mean", visible = FALSE)
+ group <- ggroup(cont = window, horizontal = FALSE)
+ group1 <- ggroup(cont = group)
+ glabel("Select data frame:", cont = group1)
+ df_combo_box <- gcombobox(avail_DFs(), cont = group1)
  ##
- f <- gframe("Arguments:", cont=g, horizontal=FALSE)
- enabled(f) <- FALSE
- lyt <- glayout(cont=f, expand=TRUE)
- l <- list()                             # store widgets
+ frame <- gframe("Arguments:", cont = group, horizontal = FALSE)
+ enabled(frame) <- FALSE
+ lyt <- glayout(cont = frame, expand = TRUE)
+ widget_list <- list() 
  ##
  lyt[1,1] <- "x"
- lyt[1,2] <- (l$x <- gcombobox("           ", cont=lyt))
+ lyt[1,2] <- (widget_list$x <- gcombobox("           ",
+                                         cont = lyt))
  ##
  lyt[2,1] <- "trim"
  lyt[2,2] <- 
-   (l$trim <- gslider(from=0, to=0.5, by=0.01, cont=lyt))
+   (widget_list$trim <- gslider(from = 0, to = 0.5, by = 0.01,
+                                cont = lyt))
  ##
  lyt[3,1] <- "na.rm"
  lyt[3,2] <- 
-   (l$na.rm <- gcheckbox("", checked=TRUE, cont=lyt))
- g2 <- ggroup(cont=g)
- compute <- gbutton("compute", cont=g2)
+   (widget_list$na.rm <- gcheckbox("", checked = TRUE, 
+                                   cont = lyt))
+ group2 <- ggroup(cont = group)
+ compute_button <- gbutton("compute", cont = group2)
 \end{Sinput}
 \end{Schunk}
 
@@ -2756,13 +2770,13 @@ then populate the secondary combo box with the names of the numeric
 variables.
 \begin{Schunk}
 \begin{Sinput}
- addHandlerChanged(dfC, handler=function(h,...) {
+ addHandlerChanged(df_combo_box, handler = function(h,...) {
    val <- svalue(h$obj)
-   enabled(f) <- val !=""
-   enabled(compute) <- val != ""
+   enabled(frame) <- val !=""
+   enabled(compute_button) <- val != ""
    if(val != "") 
-     l$x[] <- getNumeric(val)
-   svalue(l$x, index=TRUE) <- 0
+     widget_list$x[] <- get_numeric(val)
+   svalue(widget_list$x, index = TRUE) <- 0
  })
 \end{Sinput}
 \end{Schunk}
@@ -2770,13 +2784,14 @@ variables.
 
 As we stored the widgets in an appropriately named list, we can
 conveniently use \function{do.call} below to write the callback for
-the \code{compute} button in just a few lines. The only trick is to
+the \code{compute\_button} button in just a few lines. The only trick is to
 replace the variable name with its actual value.
 \begin{Schunk}
 \begin{Sinput}
- addHandlerChanged(compute, handler=function(h,...) {
-   out <- lapply(l, svalue)
-   out$x <- get(out$x, get(svalue(dfC), envir=.GlobalEnv))
+ addHandlerChanged(compute_button, handler = function(h,...) {
+   out <- lapply(widget_list, svalue)
+   out$x <- get(out$x, get(svalue(df_combo_box),
+                           envir = .GlobalEnv))
    print(do.call(mean.default, out))
  })
 \end{Sinput}
@@ -2838,11 +2853,11 @@ In Figure~\ref{fig:gWidgets-EBImage-gui} a slider is used to update
 the brightness. The call is similar to:
 \begin{Schunk}
 \begin{Sinput}
- w <- gwindow("Slider example")
- brightness <- gslider(from=-1, to=1, by=.05, value=0, 
-    handler=function(h,...) {
+ window <- gwindow("Slider example")
+ brightness <- gslider(from = -1, to = 1, by = .05, value = 0, 
+    handler = function(h,...) {
       cat("Update picture with brightness", svalue(h$obj), "\n")
-    }, cont=w)
+    }, cont = window)
 \end{Sinput}
 \end{Schunk}
 
@@ -2862,15 +2877,16 @@ button). Adding a label follows this pattern:
 
 \begin{Schunk}
 \begin{Sinput}
- w <- gwindow("Add a label to the slider", visible=FALSE)
- g <- ggroup(cont=w, expand=TRUE)
- sl <- gslider(from=0, to=100, by=1, cont=g, expand=TRUE)
- l <- glabel(sprintf("%3d", svalue(sl)), cont=g)
- font(l) <- c(family="monospace")
- addHandlerChanged(sl, function(h,...) {
+ window <- gwindow("Add a label to the slider", visible = FALSE)
+ group <- ggroup(cont = window, expand = TRUE)
+ slider <- gslider(from = 0, to = 100, by = 1, cont = group, 
+                   expand = TRUE)
+ label <- glabel(sprintf("%3d", svalue(slider)), cont = group)
+ font(label) <- c(family = "monospace")
+ addHandlerChanged(slider, function(h,...) {
    svalue(h$action) <- sprintf("%3d", svalue(h$obj))
-   }, action=l)
- visible(w) <- TRUE
+   }, action = label)
+ visible(window) <- TRUE
 \end{Sinput}
 \end{Schunk}
 (Using \code{sprintf} and \code{monospace} ensures the label takes a
@@ -2892,8 +2908,9 @@ adjust the contrast, a numeric value. The following will reproduce it
 
 \begin{Schunk}
 \begin{Sinput}
- w <- gwindow("Spin button example")
- sp <- gspinbutton(from=0, to=10, by=.05, value=1, cont=w)
+ window <- gwindow("Spin button example")
+ spin_button <- gspinbutton(from = 0, to = 10, by = .05, 
+                            value = 1, cont = window)
 \end{Sinput}
 \end{Schunk}
 
@@ -2942,11 +2959,11 @@ to this action:
 \begin{Schunk}
 \begin{Sinput}
  f <- gfile("Open an image file",
-            type="open",
-            filter=list("Image file"=list(
-                          patterns=c("*.gif", "*.jpeg", "*.png")
+            type = "open",
+            filter = list("Image file" = list(
+                          patterns = c("*.gif", "*.jpeg", "*.png")
                           ),
-              "All files" = list(patterns = c("*"))
+              "All files"  =  list(patterns = c("*"))
               ))
  if(!is.na(f)) 
    readImage(f) ## ...
@@ -3027,21 +3044,22 @@ the additional code for the layout:
 
 \begin{Schunk}
 \begin{Sinput}
- advSearch <- gexpandgroup("Advanced search:", cont=f)
- visible(advSearch) <- FALSE
- tbl <- glayout(cont=advSearch)
- tbl[1,1] <- "Recursive"
- tbl[1,2] <- (advRec <- 
-    gcheckbox("search directories", checked=TRUE, cont=tbl))
- tbl[2,1] <- "Size"
- tbl[2,2] <- (advSize <- 
-    gcombobox(c("", "small", "medium", "large"),  cont=tbl))
- tbl[3,1] <- "All files"
- tbl[3,2] <- (advVisible <- 
-    gradio(c(TRUE, FALSE), horizontal=TRUE, cont=tbl))
- tbl[4,1] <- "Last modified"
- tbl[4,2] <- (advModified <- 
-              gcalendar("", format="%Y-%m-%d", cont=tbl))
+ adv_search <- gexpandgroup("Advanced search:", 
+                            cont = nested_group)
+ visible(adv_search) <- FALSE
+ lyt <- glayout(cont = adv_search)
+ lyt[1,1] <- "Recursive"
+ lyt[1,2] <- (adv_rec <- 
+    gcheckbox("search directories", checked = TRUE, cont = lyt))
+ lyt[2,1] <- "Size"
+ lyt[2,2] <- (adv_size <- 
+    gcombobox(c("", "small", "medium", "large"),  cont = lyt))
+ lyt[3,1] <- "All files"
+ lyt[3,2] <- (adv_visible <- 
+    gradio(c(TRUE, FALSE), horizontal = TRUE, cont = lyt))
+ lyt[4,1] <- "Last modified"
+ lyt[4,2] <- (adv_modified <- 
+              gcalendar("", format = "%Y-%m-%d", cont = lyt))
 \end{Sinput}
 \end{Schunk}
 
@@ -3049,40 +3067,33 @@ As can be seen (Figure~\ref{fig:file-search-advanced}), we use a grid
 layout and a mix of the controls offered by \pkg{gWidgets}.
 
 
-%% ML: does it really make sense only to consider the options when
-%% they are visible? What happens if they set them, then hide
-%% them. It would be surprising to me if they were then ignored.
 
-%% Fair enough
 We modify our button handler so that it uses these values, if
 specified.
 
-%% We only do so if this part of the GUI is disclosed, by
-%% checking the output of \code{visible(advSearch)}.
-
 \begin{Schunk}
 \begin{Sinput}
- addHandlerChanged(searchBtn, handler=function(h,...) {
-   pattern <- glob2rx(svalue(txtPattern))
-   start_dir <- svalue(startDir)
+ addHandlerChanged(search_btn, handler=function(h,...) {
+   pattern <- glob2rx(svalue(txt_pattern))
+   start_at <- svalue(start_dir)
    modified <- NULL
    size <- NULL
  
    ## from advanced
-   subfolders <- svalue(advRec)
-   visible <- svalue(advVisible)
-   if((tmp <- svalue(advSize)) != "") size <- tmp
-   if(!is.na(tmp <- svalue(advModified))) modified <- tmp
+   subfolders <- svalue(adv_rec)
+   visible <- svalue(adv_visible)
+   if((tmp <- svalue(adv_size)) != "") size <- tmp
+   if(!is.na(tmp <- svalue(adv_modified))) modified <- tmp
    
    ## function call
-   fnames <- file_search(pattern, start_dir, subfolders, 
-                         modified=modified,
-                         size=size, visible=visible)
-   dispose(searchResults)                # clear
-   if(length(fnames))
-     svalue(searchResults) <- fnames
+   file_names <- file_search(pattern, start_at, subfolders, 
+                         modified = modified,
+                         size = size, visible = visible)
+   dispose(search_results)                # clear
+   if(length(file_names))
+     svalue(search_results) <- file_names
    else
-     galert("No matching files found", parent=w)
+     galert("No matching files found", parent = window)
  })
 \end{Sinput}
 \end{Schunk}
@@ -3134,8 +3145,8 @@ To illustrate, a widget to select from the available data frames in
 the global environment can be generated with
 \begin{Schunk}
 \begin{Sinput}
- w <- gwindow("gtable example")
- dfs <- gtable(ProgGUIinR:::avail_dfs(), cont=w)
+ window <- gwindow("gtable example")
+ DFs <- gtable(ProgGUIinR:::avail_dfs(), cont = window)
 \end{Sinput}
 \end{Schunk}
 
@@ -3188,7 +3199,7 @@ To update the list of data frames in our \code{dfs} widget, one can define a fun
 \begin{Schunk}
 \begin{Sinput}
  updateDfs <- function() {
-   dfs[] <- ProgGUIinR:::avail_dfs()
+   DFs[] <- ProgGUIinR:::avail_dfs()
  }
 \end{Sinput}
 \end{Schunk}
@@ -3207,9 +3218,9 @@ to right-click events.
 To add a handler to the data frame selection widget above, we could have:
 \begin{Schunk}
 \begin{Sinput}
- addHandlerDoubleclick(dfs, handler=function(h,...) {
+ addHandlerDoubleclick(DFs, handler = function(h,...) {
    val <- svalue(h$obj)
-   print(summary(get(val, envir=.GlobalEnv))) # some action
+   print(summary(get(val, envir = .GlobalEnv))) # some action
  
  })
 \end{Sinput}
@@ -3239,8 +3250,8 @@ GUI within a modal dialog. Here we just setup the GUI.
   the call to make the GUI.
 \begin{Schunk}
 \begin{Sinput}
- initialize <- function(f, cont=gwindow()) {
-   old <<- as.character(f)
+ initialize <- function(fac, cont = gwindow()) {
+   old <<- as.character(fac)
    make_gui(cont)
    callSuper()
  }
@@ -3259,39 +3270,40 @@ index back to 0.
 \begin{Schunk}
 \begin{Sinput}
  make_gui <- function(cont) {
-   g <- gpanedgroup(cont=cont)
+   group <- gpanedgroup(cont = cont)
    levs <- sort(unique(as.character(old)))
-   d <- data.frame(original=levs,
-                   new=levs, stringsAsFactors=FALSE)
+   DF <- data.frame(original = levs,
+                   new = levs, stringsAsFactors = FALSE)
    #
-   widget <<- tbl <- gtable(d, cont=g,  multiple=TRUE)
+   widget <<- tbl <- gtable(DF, cont = group,  multiple = TRUE)
    size(tbl) <- c(300, 200)
    #
-   g1 <- ggroup(cont=g, horizontal=FALSE)
+   nested_group <- ggroup(cont = group, horizontal = FALSE)
    instructions <- gettext("Select levels, then\n 
  enter a new combined level\n
  by typing or selecting a level and then enter")
    #
-   glabel(instructions, cont=g1)
-   cb <- gcombobox(levs, selected=0, editable=TRUE, cont=g1)
-   enabled(cb) <- FALSE
+   glabel(instructions, cont = nested_group)
+   combo_box <- gcombobox(levs, selected = 0, editable = TRUE, 
+                          cont = nested_group)
+   enabled(combo_box) <- FALSE
    #
    addHandlerClicked(widget, function(h,...) {
-     ind <- svalue(widget, index=TRUE)
-     enabled(cb) <- (length(ind) > 0)
+     ind <- svalue(widget, index = TRUE)
+     enabled(combo_box) <- (length(ind) > 0)
    })
-   
-   addHandlerChanged(cb, handler=function(h,...) {
-     ind <- svalue(tbl, index=TRUE)
+   ##
+   addHandlerChanged(combo_box, handler = function(h,...) {
+     ind <- svalue(tbl, index = TRUE)
      if(length(ind) == 0) 
        return()
      #
-     tbl[ind,2] <- svalue(cb)
-     svalue(tbl, index=TRUE) <- 0
-     blockHandler(cb)
-     cb[] <- sort(unique(tbl[,2]))
-     svalue(cb, index=TRUE) <- 0
-     unblockHandler(cb)
+     tbl[ind,2] <- svalue(combo_box)
+     svalue(tbl, index = TRUE) <- 0
+     blockHandler(combo_box)
+     combo_box[] <- sort(unique(tbl[,2]))
+     svalue(combo_box, index = TRUE) <- 0
+     unblockHandler(combo_box)
    })
  }
 \end{Sinput}
@@ -3318,14 +3330,14 @@ Finally, we stitch the above together into a reference class.
 \begin{Schunk}
 \begin{Sinput}
  CollapseFactor <- setRefClass("CollapseFactor",
-                               fields=list(
-                                old="ANY",
-                                widget="ANY"
+                               fields = list(
+                                old = "ANY",
+                                widget = "ANY"
                                 ),
-                              methods=list(
-                                initialize=initialize,
+                              methods = list(
+                                initialize = initialize,
                                 make_gui = make_gui,
-                                get_value=get_value
+                                get_value = get_value
                               ))
 \end{Sinput}
 \end{Schunk}
@@ -3371,8 +3383,9 @@ application.
 \begin{Schunk}
 \begin{Sinput}
  require(MASS)
- w <- gwindow("gtable example")
- tbl <- gtable(Cars93, chosencol=1, filter.column=3, cont=w)
+ window <- gwindow("gtable example")
+ tbl <- gtable(Cars93, chosencol = 1, filter.column = 3, 
+               cont = window)
 \end{Sinput}
 \end{Schunk}
 
@@ -3381,8 +3394,8 @@ handler prints both the manufacturer and the model of the currently
 selected row when called.
 \begin{Schunk}
 \begin{Sinput}
- addHandlerChanged(tbl, handler=function(h,...) {
-   val <- svalue(h$obj, drop=FALSE)
+ addHandlerChanged(tbl, handler = function(h,...) {
+   val <- svalue(h$obj, drop = FALSE)
    cat(sprintf("You selected the %s %s", val[,1], val[,2]))
  })
 \end{Sinput}
@@ -3414,17 +3427,18 @@ available packages. If a CRAN site is not set, the user will be
 queried to set one.
 \begin{Schunk}
 \begin{Sinput}
- ap <- available.packages()       # pick a cran site
+ avail_pkgs <- available.packages()       # pick a cran site
 \end{Sinput}
 \end{Schunk}
 
 This basic GUI is barebones: for example, we skip adding text labels to guide the user. 
 \begin{Schunk}
 \begin{Sinput}
- w <- gwindow("test of filter")
- g <- ggroup(cont=w, horizontal=FALSE)
- ed <- gedit("", cont=g)
- tbl <- gtable(ap, cont=g, filter.FUN="manual", expand=TRUE)
+ window <- gwindow("test of filter")
+ group <- ggroup(cont = window, horizontal = FALSE)
+ entry <- gedit("", cont = group)
+ tbl <- gtable(avail_pkgs, cont = group, filter.FUN = "manual",
+               expand = TRUE)
 \end{Sinput}
 \end{Schunk}
 The \argument{filter.FUN}{gtable} value of \qcode{manual} allows us to
@@ -3439,8 +3453,8 @@ the package. (That filtering could also be specified easily through the
 
 \begin{Schunk}
 \begin{Sinput}
- ourMatch <- function(curVal, vals) {
-   grepl(curVal, vals)
+ our_match <- function(cur_val, vals) {
+   grepl(cur_val, vals)
  }
 \end{Sinput}
 \end{Schunk}
@@ -3448,16 +3462,15 @@ the package. (That filtering could also be specified easily through the
 Finally, the \code{addHandlerKeystroke} method calls its handler
 every time a key is released while the focus is in the edit widget. In
 this case, the handler finds the matching indices using the
-\code{ourMatch} function, converts these into logical format, and then
+\code{our\_match} function, converts these into logical format, and then
 updates the display using the \meth{visible\ASSIGN} method for
   \code{gtable}.
 \begin{Schunk}
 \begin{Sinput}
- id <- addHandlerKeystroke(ed, handler=function(h, ...) {
-   vals <- tbl[, 1, drop=TRUE]
-   curVal <- svalue(h$obj)
-   vis <- ourMatch(curVal, vals)
-   visible(tbl) <- vis
+ id <- addHandlerKeystroke(entry, handler = function(h, ...) {
+   vals <- tbl[, 1, drop = TRUE]
+   cur_val <- svalue(h$obj)
+   visible(tbl) <- our_match(cur_val, vals)
  })
 \end{Sinput}
 \end{Schunk}
@@ -3537,7 +3550,8 @@ different types of objects involved:
 The package \pkg{objectSignals} provides a comprehensive
 implementation of this pattern which we use below. We use its
 \function{signalingField} function to create an ``observable'' and its
-\function{connect} method to add an observer.
+\function{connect} method to add an observer. When the signaling field
+is changed, any observers are notified.
 \\
 
 \begin{figure}
@@ -3558,10 +3572,11 @@ notify on a change.
 \begin{Schunk}
 \begin{Sinput}
  require(objectSignals)
+ require(digest)
  WSModel <- setRefClass("WSModel",
-               fields=c(
+               fields = c(
                  signalingField("ws_objects","character"),
-                 ws_objects_digests="character"
+                 ws_objects_digests = "character"
                  ))
 \end{Sinput}
 \end{Schunk}
@@ -3584,19 +3599,19 @@ the objects in the global environment and produce a digest of each.
  WSModel$methods(
         .get_objects_digests = function() {
           "Helper function to return list with names, digests"
-          items <- ls(envir=.GlobalEnv)
+          items <- ls(envir = .GlobalEnv)
           objects <- mget(items, .GlobalEnv)
-          trim <- !sapply(objects, is, class2="refClass")
+          trim <- !sapply(objects, is, class2 = "refClass")
           list(items[trim],
                sapply(objects[trim], digest))
         },
-        initialize=function() {
+        initialize = function() {
           objs <- .get_objects_digests() # call helper
-          initFields(ws_objects=objs[[1]],
-                     ws_objects_digests=objs[[2]])
+          initFields(ws_objects = objs[[1]],
+                     ws_objects_digests = objs[[2]])
           .self
         },
-        refresh=function() {
+        refresh = function() {
           objs <- .get_objects_digests()                           
           cur_objects <- objs[[1]]
           cur_digests <- objs[[2]]
@@ -3619,7 +3634,7 @@ is specified with a character string, and may include a not operator.
 \begin{Schunk}
 \begin{Sinput}
  WSModel$methods(
-         get=function(klass) {
+         get = function(klass) {
            "klass a string, such as 'numeric' or '!function'"
            if(missing(klass) || length(klass) == 0)
              return(ws_objects)
@@ -3647,7 +3662,7 @@ using the naming convention of \pkg{objectSignals}.
 \begin{Schunk}
 \begin{Sinput}
  WSModel$methods(
-                 add_observer=function(FUN, ...) {
+                 add_observer = function(FUN, ...) {
                    .self$ws_objectsChanged$connect(FUN, ...)
                  })
 \end{Sinput}
@@ -3661,11 +3676,11 @@ play the part of an observer.
 \begin{Schunk}
 \begin{Sinput}
  WSView <- setRefClass("WSView",
-                       methods=list(
-                         update=function(model) {
+                       methods = list(
+                         update = function(model) {
                            "Subclass this"
                          },
-                         set_model=function(model) {
+                         set_model = function(model) {
                            FUN <- function() .self$update(model)
                            model$add_observer(FUN)
                          }
@@ -3682,20 +3697,21 @@ to \meth{initialize}.
 \begin{Sinput}
  WidgetView <- 
    setRefClass("WidgetView",
-               contains="WSView",
-               fields=list(
-                 klass="character", # which classes to show
+               contains = "WSView",
+               fields = list(
+                 klass = "character", # which classes to show
                  widget = "ANY"
                  ),
-               methods=list(
-                 initialize=function(parent, model, ...) {
+               methods = list(
+                 initialize = function(parent, model, 
+                     klass=character(0), ...) {
                    if(!missing(model)) set_model(model)
                    if(!missing(parent)) init_widget(parent, ...)
-                   initFields()
+                   initFields(klass=klass)
                    update(model)
                    .self
                  },
-                 init_widget=function(parent, ...) {
+                 init_widget = function(parent, ...) {
                    "Initialize widget"
                  }))
 \end{Sinput}
@@ -3711,13 +3727,13 @@ objects using a \code{gtable} widget.
 \begin{Sinput}
  TableView <-
    setRefClass("TableView",
-         contains="WidgetView",
-         methods=list(
-           init_widget=function(parent, ...) {
+         contains = "WidgetView",
+         methods = list(
+           init_widget = function(parent, ...) {
              widget <<- gtable(makeDataFrame(character(0)),
-                               cont=parent, ...)
+                               cont = parent, ...)
            },
-           update=function(model, ...) {
+           update = function(model, ...) {
              widget[] <<- makeDataFrame(model$get(klass))
            }))
 \end{Sinput}
@@ -3735,11 +3751,11 @@ more convenient than reference classes for this task. First we want a
 nice description of the size of the object:
 \begin{Schunk}
 \begin{Sinput}
- sizeOf <- function(x, ...) UseMethod("sizeOf")
- sizeOf.default <- function(x, ...) "NA"
- sizeOf.character <- sizeOf.numeric <- 
+ size_of <- function(x, ...) UseMethod("size_of")
+ size_of.default <- function(x, ...) "NA"
+ size_of.character <- size_of.numeric <- 
    function(x, ...) sprintf("%s elements", length(x))
- sizeOf.matrix <- function(x, ...) 
+ size_of.matrix <- function(x, ...) 
    sprintf("%s x %s", nrow(x), ncol(x))
 \end{Sinput}
 \end{Schunk}
@@ -3749,11 +3765,11 @@ nice description of the size of the object:
 Now, we desire a short description of the type of object we have.
 \begin{Schunk}
 \begin{Sinput}
- shortDescription <- function(x, ...) 
-   UseMethod("shortDescription")
- shortDescription.default <- function(x, ...) "R object"
- shortDescription.numeric <- function(x, ...) "Numeric vector"
- shortDescription.integer <- function(x, ...) "Integer"
+ short_description <- function(x, ...) 
+   UseMethod("short_description")
+ short_description.default <- function(x, ...) "R object"
+ short_description.numeric <- function(x, ...) "Numeric vector"
+ short_description.integer <- function(x, ...) "Integer"
 \end{Sinput}
 \end{Schunk}
 %
@@ -3764,24 +3780,25 @@ row, not column by column and we want to have a default when \code{x}
 is empty.
 \begin{Schunk}
 \begin{Sinput}
- makeDataFrame <- function(x, envir=.GlobalEnv) {
-   d <- data.frame(variable=character(0),
-                   size=character(0), description=character(0), 
-                   class=character(0),
-                   stringsAsFactors=FALSE)
+ makeDataFrame <- function(x, envir = .GlobalEnv) {
+   DF <- data.frame(variable = character(0),
+                    size = character(0), 
+                    description = character(0), 
+                    class = character(0),
+                    stringsAsFactors = FALSE)
    if(length(x)) {
      l <- mget(x, envir)
-     d <- data.frame(variable=x,
-                     size=sapply(l, sizeOf),
-                     description=sapply(l, shortDescription),
-                     class = sapply(l, function(i) class(i)[1]),
-                     stringsAsFactors=FALSE)
+     DF <- data.frame(variable = x,
+                     size = sapply(l, size_of),
+                     description = sapply(l, short_description),
+                     class  =  sapply(l, function(i) class(i)[1]),
+                     stringsAsFactors = FALSE)
    }
-   d
+   DF
  }
 \end{Sinput}
 \end{Schunk}
-
+%%
 To illustrate the flexibility of this framework, we also define a
 subclass of \code{WidgetView} to show just the data frames in a combo
 box. Selecting a data frame is a common task in R GUIs, and this
@@ -3791,13 +3808,13 @@ allows keeps the selection synchronized with the workspace.
 \begin{Sinput}
  DfView <-
    setRefClass("DfView",
-         contains="WidgetView",
-         methods=list(
+         contains = "WidgetView",
+         methods = list(
            initFields = function(...) klass <<- "data.frame", 
            init_widget = function(parent, ...) {
-             d <- data.frame("Data frames"=character(0),
-                             stringsAsFactors=FALSE)
-             widget <<- gcombobox(d, cont=parent, ...)
+             DF <- data.frame("Data frames" = character(0),
+                             stringsAsFactors = FALSE)
+             widget <<- gcombobox(DF, cont = parent, ...)
            },
            update = function(model, ...) {
              widget[] <<- model$get(klass)
@@ -3810,25 +3827,29 @@ allows keeps the selection synchronized with the workspace.
 We can put these pieces together to make a simple GUI. 
 \begin{Schunk}
 \begin{Sinput}
- w <- gwindow()
- nb <- gnotebook(cont=w)
- #
+ window <- gwindow()
+ notebook <- gnotebook(cont = window)
+ ##
  model <- WSModel$new()
+ ## basic view of certain classes
+ view <- TableView$new(parent = notebook, model = model, 
+                       label = "data",
+                       klass=c("factor", "numeric", "character", 
+                         "data.frame", "matrix", "list"))
+ ## view of non functions
+ view1 <- TableView$new(parent = notebook, model = model, 
+                        label = "not a function",
+                        klass = "!function"
+                        )
+ ## view of all
+ view2 <- TableView$new(parent = notebook, model = model,
+                        label = "all")
+ ## a bit contrived here, but useful elsewhere
+ view3 <- DfView$new(parent = notebook, model = model,
+                     label = "data frames")
  #
- view <- TableView$new(parent=nb, model=model, label="data")
- view$klass <- c("factor", "numeric", "character", 
-                 "data.frame", "matrix", "list")
- #
- view1 <- TableView$new(parent=nb, model=model, 
-                        label="not a function")
- view1$klass <- "!function"
- #
- view2 <- TableView$new(parent=nb, model=model, label="all")
- ## a bit contrived here
- view3 <- DfView$new(parent=nb, model=model, label="data frames")
- #
- model$refresh()                              # notifies views
- svalue(nb) <- 1
+ model$refresh()                          
+ svalue(notebook) <- 1
 \end{Sinput}
 \end{Schunk}
 
@@ -3869,16 +3890,16 @@ in through the
 \argument{offspring.data}{gtree} argument of the constructor.
 \begin{Schunk}
 \begin{Sinput}
- offspring <- function(path=character(0), lst, ...) {
+ offspring <- function(path = character(0), lst, ...) {
    if(length(path))
      obj <- lst[[path]]
    else
        obj <- lst
    #
    f <- function(i) is.recursive(i) && !is.null(names(i))
-   data.frame(comps=names(obj), 
-              hasOffspring=sapply(obj, f),
-              stringsAsFactors=FALSE)
+   data.frame(comps = names(obj), 
+              hasOffspring = sapply(obj, f),
+              stringsAsFactors = FALSE)
  }
 \end{Sinput}
 \end{Schunk}
@@ -3892,9 +3913,10 @@ presented
 To see the above used, we define a list to explore.
 \begin{Schunk}
 \begin{Sinput}
- l <- list(a="1", b= list(a="2", b="3", c=list(a="4")))
- w <- gwindow("Tree test")
- t <- gtree(offspring, offspring.data=l, cont=w)
+ lst <- list(a = "1", b =  list(a = "2", b = "3", 
+                        c = list(a = "4")))
+ window <- gwindow("Tree test")
+ tree <- gtree(offspring, offspring.data = lst, cont = window)
 \end{Sinput}
 \end{Schunk}
 %%
@@ -3943,8 +3965,8 @@ example appearing in the package's vignette.
 \begin{Schunk}
 \begin{Sinput}
  require(party)
- data("GlaucomaM", package="ipred")      # load data
- gt <- ctree(Class ~ ., data=GlaucomaM)  # fit model
+ data("GlaucomaM", package = "ipred")      # load data
+ gt <- ctree(Class ~ ., data = GlaucomaM)  # fit model
 \end{Sinput}
 \end{Schunk}
 
@@ -3971,13 +3993,13 @@ has only 0 or 2 rows.
      node <- as.numeric(key[length(key)]) # key is a vector
  
    if(nodes(gt, node)[[1]]$terminal)    # return if terminal
-     return(data.frame(node=node, hasOffspring=FALSE,
-                       description="terminal",
-                       stringsAsFactors=FALSE))
+     return(data.frame(node = node, hasOffspring = FALSE,
+                       description = "terminal",
+                       stringsAsFactors = FALSE))
  
-   df <- data.frame(node=integer(2), hasOffspring=logical(2),
-                    description=character(2), 
-                    stringsAsFactors=FALSE)
+   DF <- data.frame(node = integer(2), hasOffspring = logical(2),
+                    description = character(2), 
+                    stringsAsFactors = FALSE)
    ## party internals
    children <-  c("left","right")
    ineq <- c(" <= "," >  ")
@@ -3985,11 +4007,11 @@ has only 0 or 2 rows.
    splitPoint <- nodes(gt, node)[[1]]$psplit$splitpoint
  
    for(i in 1:2) {
-     df[i,1] <- nodes(gt, node)[[1]][[children[i]]][[1]]
-     df[i,2] <- !nodes(gt, df[i,1])[[1]]$terminal
-     df[i,3] <- paste(varName, splitPoint, sep=ineq[i])
+     DF[i,1] <- nodes(gt, node)[[1]][[children[i]]][[1]]
+     DF[i,2] <- !nodes(gt, DF[i,1])[[1]]$terminal
+     DF[i,3] <- paste(varName, splitPoint, sep = ineq[i])
    }
-   df                                    # returns a data frame
+   DF                                    # returns a data frame
  }
 \end{Sinput}
 \end{Schunk}
@@ -4005,11 +4027,11 @@ has only 0 or 2 rows.
 We make a simple GUI to show the widget (Figure~\ref{fig:ex-gWidgets-gtree-party})
 \begin{Schunk}
 \begin{Sinput}
- w <- gwindow("Example of gtree")
- g <- ggroup(cont=w, horizontal=FALSE)
- l <- glabel("Click on the tree to investigate the partition", 
-             cont=g)
- tr <- gtree(offspring, cont=g, expand=TRUE)
+ window <- gwindow("Example of gtree")
+ group <- ggroup(cont = window, horizontal = FALSE)
+ label <- glabel("Click on the tree to investigate the partition", 
+             cont = group)
+ tree <- gtree(offspring, cont = group, expand = TRUE)
 \end{Sinput}
 \end{Schunk}
 
@@ -4019,7 +4041,7 @@ vignette shows how to make more complicated -- and meaningful --
 graphics for this model fit.
 \begin{Schunk}
 \begin{Sinput}
- addHandlerDoubleclick(tr, handler=function(h,...) {
+ addHandlerDoubleclick(tree, handler = function(h,...) {
    node <- as.numeric(svalue(h$obj))
    if(nodes(gt, node)[[1]]$terminal) {   # if terminal plot
      weights <- as.logical(nodes(gt,node)[[1]]$weights)
@@ -4065,16 +4087,16 @@ in which case all other arguments for the constructor are ignored.
 
 \begin{Schunk}
 \begin{Sinput}
- w <- gwindow("gaction example")
- a <- gaction("click me", tooltip="Click for a message", 
-              icon="ok", 
-              handler=function(h, ...) {
-                print("Hello")
-              },
-              parent=w)
- b <- gbutton(action=a, cont=w)
+ window <- gwindow("gaction example")
+ action <- gaction("click me", tooltip = "Click for a message", 
+                   icon = "ok", 
+                   handler = function(h, ...) {
+                     print("Hello")
+                   },
+                   parent = window)
+ button <- gbutton(action = action, cont = window)
  ## .. to change
- enabled(a) <- FALSE                     # can't click now
+ enabled(action) <- FALSE                     # can't click now
 \end{Sinput}
 \end{Schunk}
 %%
@@ -4097,23 +4119,24 @@ either describes a toolbar item or a separator, where the toolbar
 items are specified by \code{gaction} instances and separators by
 \code{gseparator} instances with no container specified.
 
-For example. Here we first define some actions:
+For example, here we first define some actions:
 \begin{Schunk}
 \begin{Sinput}
- stub <- function(h,...) gmessage("called handler", parent=w)
- actlist = list(
-   new = gaction(label="new", icon="new", 
-     handler = stub, parent = w),
-   open = gaction(label="open", icon="open", 
-     handler = stub, parent = w),
-   save = gaction(label="save", icon="save", 
-     handler = stub, parent = w),
-   save.as = gaction(label="save as...", icon="save as...", 
-     handler = stub, parent = w),
-   quit = gaction(label="quit", icon="quit", 
-     handler = function(...) dispose(w), parent = w),
-   cut = gaction(label="cut", icon="cut", 
-     handler = stub, parent = w)
+ stub <- function(h,...) gmessage("called handler", 
+                                  parent = window)
+ action_list = list(
+   new = gaction(label = "new", icon = "new", 
+     handler = stub, parent = window),
+   open = gaction(label = "open", icon = "open", 
+     handler = stub, parent = window),
+   save = gaction(label = "save", icon = "save", 
+     handler = stub, parent = window),
+   save.as = gaction(label = "save as...", icon = "save as...", 
+     handler = stub, parent = window),
+   quit = gaction(label = "quit", icon = "quit", 
+     handler = function(...) dispose(w), parent = window),
+   cut = gaction(label = "cut", icon = "cut", 
+     handler = stub, parent = window)
    )
  
 \end{Sinput}
@@ -4122,12 +4145,12 @@ For example. Here we first define some actions:
 Then a toolbar list might look like:
 \begin{Schunk}
 \begin{Sinput}
- w <- gwindow("gtoolbar example")
- tl <- c(actlist[c("new","save")], 
-         sep=gseparator(), 
-         actlist["quit"])
- tb <- gtoolbar(tl, cont=w)
- gtext("Lorem ipsum ...", cont=w)
+ window <- gwindow("gtoolbar example")
+ tool_bar_list<- c(action_list[c("new","save")], 
+                  sep = gseparator(), 
+                  action_list["quit"])
+ tool_bar <- gtoolbar(tool_bar_list, cont = window)
+ gtext("Lorem ipsum ...", cont = window)
 \end{Sinput}
 \end{Schunk}
 
@@ -4148,25 +4171,25 @@ Menubars and popup menus are specified in a similar manner as toolbars with menu
 being defined through \code{gaction} instances, and visual separators
 by \code{gseparator} instances. Menus differ from toolbars, as
 submenus require a nested structure. This  is specified using a
-nested list as the component to describe the sub menu. The lists all
-have named components. In this case, the corresponding name is used to
-label the submenu item. For menubars, it is typical that all the
+nested list as the component to describe the submenu. The lists all
+have named components. In this case, the corresponding name 
+labels the submenu item. For menubars, it is typical that all the
 top-level components be lists, but for popup menus, this wouldn't
 necessarily be the case.
 
 A example of such a list might be
 \begin{Schunk}
 \begin{Sinput}
- ml <- list(file = list(
-              new = actlist$new,
-              open = actlist$open,
-              save = actlist$save,
-              "save as..." = actlist$save.as,
-              sep=gseparator(),
-              quit = actlist$quit
+ menu_bar_list <- list(file = list(
+              new = action_list$new,
+              open = action_list$open,
+              save = action_list$save,
+              "save as..." = action_list$save.as,
+              sep = gseparator(),
+              quit = action_list$quit
               ),
             edit = list(
-              cut = actlist$cut
+              cut = action_list$cut
               )
             )
  
@@ -4202,12 +4225,13 @@ text buffer, then we could use this handler:
 
 \begin{Schunk}
 \begin{Sinput}
- noChanges <- c("save","save.as","cut")
+ no_changes <- c("save","save.as","cut")
  keyhandler <- function(...) {
-   for(i in noChanges)
-     enabled(actlist[[i]]) <- (nchar(svalue(txt)) > 0)
+   for(i in no_changes)
+     enabled(action_list[[i]]) <- 
+       (nchar(svalue(txt_widget)) > 0)
  }
- addHandlerKeystroke(txt, handler=keyhandler)
+ addHandlerKeystroke(txt_widget, handler = keyhandler)
  keyhandler()
 \end{Sinput}
 \end{Schunk}
@@ -4230,16 +4254,17 @@ Popup menus can be created for a right click event through the
   This example shows how to add a simple popup menu to a button.
 \begin{Schunk}
 \begin{Sinput}
- w <- gwindow("Popup example")
- b <- gbutton("click me or right click me", cont=w, 
-              handler=function(h, ...) {
-                cat("You clicked me\n")
-              })
+ window <- gwindow("Popup example")
+ button <- gbutton("click me or right click me", cont = window, 
+                   handler = function(h, ...) {
+                     cat("You clicked me\n")
+                   })
  f <- function(h,...) cat("you right clicked on", h$action)
- mbList <- list(one = gaction("one", action="one", handler=f),
-                two = gaction("two", action="two", handler=f)
-                )
- add3rdMousePopupmenu(b, mbList)
+ menu_bar_list <- 
+   list(one = gaction("one", action = "one", handler = f),
+        two = gaction("two", action = "two", handler = f)
+        )
+ add3rdMousePopupmenu(button, menu_bar_list)
 \end{Sinput}
 \end{Schunk}
 
@@ -4331,24 +4356,24 @@ again in user coordinates.
 This shows how the two can be used:
 \begin{Schunk}
 \begin{Sinput}
- library(gWidgets); options(guiToolkit="RGtk2")
- w <- gwindow("ggraphics example", visible=FALSE)
- g <- ggraphics(cont=w)
+ library(gWidgets); options(guiToolkit = "RGtk2")
+ window <- gwindow("ggraphics example", visible = FALSE)
+ plot_device <- ggraphics(cont = window)
  x <- mtcars$wt; y <- mtcars$mpg
  #
- addHandlerClicked(g, handler=function(h, ...) {
+ addHandlerClicked(plot_device, handler = function(h, ...) {
    cat(sprintf("You clicked %.2f x %.2f\n", h$x, h$y))
  })
- addHandlerChanged(g, handler=function(h,...) {
+ addHandlerChanged(plot_device, handler = function(h,...) {
    rx <- h$x; ry <- h$y
    if(diff(rx) > diff(range(x))/100 && 
       diff(ry) > diff(range(y))/100) {
      ind <- rx[1] <= x & x <= rx[2] & ry[1] <=y & y <= ry[2]
      if(any(ind))
-       print(cbind(x=x[ind], y=y[ind]))
+       print(cbind(x = x[ind], y = y[ind]))
    }
  })
- visible(w) <- TRUE
+ visible(window) <- TRUE
  #
  plot(x, y)
 \end{Sinput}
@@ -4367,24 +4392,24 @@ following is a simple modification of the example from the help page for \code{t
 
 \begin{Schunk}
 \begin{Sinput}
- options(guiToolkit="tcltk"); require(tkrplot)
- w <- gwindow("How to embed tkrplot", visible=FALSE)
- g <- ggroup(cont=w, horizontal=FALSE)
- bb<-1
- img <-tkrplot(getToolkitWidget(g), 
-               fun=function() plot(1:20,(1:20)^bb))
- add(g, img)
- f<-function(...) {
-   b <- svalue(sl)
+ options(guiToolkit = "tcltk"); require(tkrplot)
+ window <- gwindow("How to embed tkrplot", visible = FALSE)
+ group <- ggroup(cont = window, horizontal = FALSE)
+ bb <- 1
+ img <- tkrplot(getToolkitWidget(group), 
+                fun = function() plot(1:20,(1:20)^bb))
+ add(group, img)
+ f <- function(...) {
+   b <- svalue(slider)
    print(b)
    if (b != bb) {
      bb <<- b
      tkrreplot(img)
    }
  }
- sl <- gslider(from=0.05, to=2, by=0.05, cont=g, 
-               handler=f, expand=TRUE)
- visible(w) <- TRUE
+ slider <- gslider(from = 0.05, to = 2, by = 0.05, cont = group, 
+                   handler = f, expand = TRUE)
+ visible(window) <- TRUE
  
 \end{Sinput}
 \end{Schunk}
@@ -4412,11 +4437,10 @@ framework that can easily be extended.
 
 
 This example is centered around filtering a data set, we choose a
-convenient one and give it a non-specific name.
+convenient one:
 \begin{Schunk}
 \begin{Sinput}
- data("Cars93", package="MASS")
- x <- Cars93
+ data("Cars93", package = "MASS")
 \end{Sinput}
 \end{Schunk}
 
@@ -4424,8 +4448,8 @@ We use a notebook to hold two tabs, one to give information and one
 for the main GUI. This basic design comes from the spotfire demos at \url{tibco.com}.
 \begin{Schunk}
 \begin{Sinput}
- w <- gwindow("Spotfire example", visible=FALSE)
- nb <- gnotebook(cont=w)
+ window <- gwindow("Spotfire example", visible = FALSE)
+ notebook <- gnotebook(cont = window)
 \end{Sinput}
 \end{Schunk}
 
@@ -4436,7 +4460,7 @@ description would be warranted in an actual application.
 \begin{Schunk}
 \begin{Sinput}
  descr <- glabel(gettext("A basic GUI to explore a data set"), 
-                 cont=nb, label=gettext("About"))
+                 cont = notebook, label = gettext("About"))
 \end{Sinput}
 \end{Schunk}
 %
@@ -4447,9 +4471,9 @@ vertical layout.
 
 \begin{Schunk}
 \begin{Sinput}
- g <- ggroup(cont=nb, label=gettext("Explore..."))
- lg <- ggroup(cont=g, horizontal=FALSE) 
- rg <- ggroup(cont=g, horizontal=FALSE)
+ group <- ggroup(cont = notebook, label = gettext("Explore..."))
+ left_group <- ggroup(cont = group, horizontal = FALSE) 
+ right_group <- ggroup(cont = group, horizontal = FALSE)
 \end{Sinput}
 \end{Schunk}
 
@@ -4458,11 +4482,11 @@ the filtered data. The \constructor{ggraphics} widget provides the
 graphic device.
 \begin{Schunk}
 \begin{Sinput}
- ggraphics(cont = lg)
+ ggraphics(cont = left_group)
 \end{Sinput}
 \end{Schunk}
 
-Our view of the data is provided by the \constructor{gtable} widget,
+Our tabular view of the data is provided by the \constructor{gtable} widget,
 which facilitates the display of a data frame. The last two arguments
 allow for multiple selection (for marking points on the graphic) and
 for filtering through the \method{visible\ASSIGN}{gtable} method.
@@ -4472,11 +4496,12 @@ forced to the right side through the \method{addSpring}{ggroup} method
 of the box container.
 \begin{Schunk}
 \begin{Sinput}
- tbl <- gtable(x, cont = lg, multiple=TRUE, filter.FUN="manual")
+ tbl <- gtable(Cars93, cont = left_group, multiple = TRUE, 
+               filter.FUN = "manual")
  size(tbl) <- c(500, 200)                # set size
- labelg <- ggroup(cont = lg)
- addSpring(labelg)
- noCases <- glabel("", cont = labelg)
+ label_group <- ggroup(cont = left_group)
+ addSpring(label_group)
+ noCases <- glabel("", cont = label_group)
 \end{Sinput}
 \end{Schunk}
 
@@ -4485,21 +4510,23 @@ display. We place the widgets used to do this within a frame to guide
 the user.
 \begin{Schunk}
 \begin{Sinput}
- filterg <- gframe(gettext("Filter by:"), cont = rg, expand=TRUE)
+ filter_frame <- gframe(gettext("Filter by:"), 
+                        cont = right_group, expand = TRUE)
 \end{Sinput}
 \end{Schunk}
 The controls are layed out in a grid. We have two here to filter by:
 type and the number of cylinders.
 \begin{Schunk}
 \begin{Sinput}
- lyt <- glayout(cont=filterg)
- l <- list() # store widgets
+ lyt <- glayout(cont = filter_frame)
+ widget_list <- list() # store widgets
  lyt[1,1] <- "Type:"
- lyt[1,2] <- (l$Type <- gcombobox(c("", levels(x$Type)), 
-                                  cont=lyt))
+ lyt[1,2] <- (widget_list$Type <- 
+              gcombobox(c("", levels(Cars93$Type)), 
+                        cont = lyt))
  lyt[2,1] <- "Cylinders:"
- lyt[2,2] <- (l$Cylinders <- 
-              gcombobox(c("", levels(x$Cylinders)), cont=lyt))
+ lyt[2,2] <- (widget_list$Cylinders <- 
+              gcombobox(c("", levels(Cars93$Cyl)), cont = lyt))
 \end{Sinput}
 \end{Schunk}
 %
@@ -4528,11 +4555,13 @@ rows are to be displayed.  Within the definition of the following function, we
 use the global variables \code{l}, \code{tbl} and \code{noCases}.
 \begin{Schunk}
 \begin{Sinput}
- updateDataFrame <- function(...) {
-   vals <- lapply(l, svalue)
+ update_data_frame <- function(...) {
+   vals <- lapply(widget_list, svalue)
    vals <- vals[vals != ""] 
-   out <- sapply(names(vals), function(i) x[[i]] == vals[[i]])
-   ind <- apply(out, 1, function(x) Filter("&&", x))
+   out <- sapply(names(vals), function(i) {
+     Cars93[[i]] == vals[[i]]
+   })
+   ind <- apply(out, 1, function(x) Reduce("&&", x))
    ## update table
    visible(tbl) <- ind
    ## update label
@@ -4557,10 +4586,10 @@ This next function is used to update the graphic. A real application
 would provide a more compelling plot.
 \begin{Schunk}
 \begin{Sinput}
- updateGraphic <- function(...) {
+ update_graphic <- function(...) {
    ind <- visible(tbl)
    if(any(ind))
-     plot(MPG.city ~ Weight, data=x[ind,])
+     plot(MPG.city ~ Weight, data = Cars93[ind,])
    else
      plot.new()
  }
@@ -4571,11 +4600,11 @@ We now add a handler to be called whenever one of our combo boxes is
 changed. This handler simply calls both our update functions.
 \begin{Schunk}
 \begin{Sinput}
- f <- function(h, ...) {
-   updateDataFrame()
-   updateGraphic()
+ callback <- function(h, ...) {
+   update_data_frame()
+   update_graphic()
  }
- sapply(l, addHandlerChanged, handler=f)
+ sapply(widget_list, addHandlerChanged, handler = callback)
 \end{Sinput}
 \end{Schunk}
 %
@@ -4584,11 +4613,11 @@ by clicking on a row of the table. The following will do so.
 
 \begin{Schunk}
 \begin{Sinput}
- addHandlerClicked(tbl, handler=function(h,...) {
-   updateGraphic()
-   ind <- svalue(h$obj, index=TRUE)
-   points(MPG.city ~ Weight, cex=2, col="red", pch=16, 
-          data=x[ind,])
+ addHandlerClicked(tbl, handler = function(h,...) {
+   update_graphic()
+   ind <- svalue(h$obj, index = TRUE)
+   points(MPG.city ~ Weight, cex = 2, col = "red", pch = 16, 
+          data = Cars93[ind,])
  })
 \end{Sinput}
 \end{Schunk}
@@ -4601,8 +4630,8 @@ device, but leave this for the interested reader.
 Finally, we draw the GUI with an initial graphic
 \begin{Schunk}
 \begin{Sinput}
- visible(w) <- TRUE
- updateGraphic()
+ visible(window) <- TRUE
+ update_graphic()
 \end{Sinput}
 \end{Schunk}
 \end{example}
@@ -4640,10 +4669,10 @@ frame to edit. A basic usage might be:
 
 \begin{Schunk}
 \begin{Sinput}
- w <- gwindow("gdf example")
- df <- gdf(mtcars, cont=w)
+ window <- gwindow("gdf example")
+ DF <- gdf(mtcars, cont = window)
  ## ... make some edits ...
- newDataFrame <- df[,]                   # store changes
+ new_data_frame <- DF[,]                   # store changes
 \end{Sinput}
 \end{Schunk}
 %
@@ -4688,11 +4717,11 @@ The following methods can be used to assign handlers:
 The \constructor{gdfnotebook} constructor produces a notebook that can
 hold several data frames to edit at once.
 
+%% SCREENSHOT
 
 
 
-
-\subsection{Workspace browser}
+\section{Workspace browser}
 \label{sec:gWidgets-workspace-browser}
 
 A workspace browser is constructed by \code{gvarbrowser}, providing a
@@ -4718,20 +4747,24 @@ are employed to do this automatically, if the size of the workspace is
 modest enough. Otherwise it can be done programmatically.
 
 \begin{example}{Using drag and drop with \pkg{gWidgets}}{ex-gWidgets-drag-and-drop}
-  We use the drag and drop features to create a means to plot
-  variables from the workspace browser.  Our basic layout is fairly
-  simple. We place the workspace browser on the left, and on the right
-  have a graphic device and few labels to act as drop targets.
+%%
+
+We use the drag and drop features to create a means to plot variables
+from the workspace browser.  Our basic layout is fairly simple. We
+place the workspace browser on the left, and on the right have a
+graphic device and few labels to act as drop targets.
+
 \begin{Schunk}
 \begin{Sinput}
- w <- gwindow("Drag and drop example")
- g <- ggroup(cont=w)
- vb <- gvarbrowser(cont=g)
- g1 <- ggroup(horizontal=FALSE, cont=g, expand=TRUE)
- ggraphics(cont=g1)
- xlabel <- glabel("", cont=g1)
- ylabel <- glabel("", cont=g1)
- clear <- gbutton("clear", cont=g1)
+ window <- gwindow("Drag and drop example")
+ group <- ggroup(cont = window)
+ workspace_browser <- gvarbrowser(cont = group)
+ nested_group <- ggroup(horizontal = FALSE, cont = group, 
+                        expand = TRUE)
+ ggraphics(cont = nested_group)
+ xlabel <- glabel("", cont = nested_group)
+ ylabel <- glabel("", cont = nested_group)
+ clear <- gbutton("clear", cont = nested_group)
 \end{Sinput}
 \end{Schunk}
 %
@@ -4751,7 +4784,7 @@ We create a function to initialize the interface.
 Separating this out allows us to link it to the clear button.
 \begin{Schunk}
 \begin{Sinput}
- addHandlerClicked(clear, handler=initUI)
+ addHandlerClicked(clear, handler = initUI)
 \end{Sinput}
 \end{Schunk}
 %
@@ -4768,13 +4801,13 @@ label.\iprogram{evaluating strings}
    } else if(grepl(svalue(ylabel), sprintf(init_txt, "y"))) {
      ## x, not y
      enabled(ylabel) <- TRUE
-     x <- eval(parse(text=svalue(xlabel)), envir=.GlobalEnv)
-     plot(x, xlab=svalue(xlabel))
+     x <- eval(parse(text = svalue(xlabel)), envir = .GlobalEnv)
+     plot(x, xlab = svalue(xlabel))
    } else {
      enabled(ylabel) <- TRUE    
-     x <- eval(parse(text=svalue(xlabel)), envir=.GlobalEnv)
-     y <- eval(parse(text=svalue(ylabel)), envir=.GlobalEnv)
-     plot(x, y, xlab=svalue(xlabel), ylab=svalue(ylabel))
+     x <- eval(parse(text = svalue(xlabel)), envir = .GlobalEnv)
+     y <- eval(parse(text = svalue(ylabel)), envir = .GlobalEnv)
+     plot(x, y, xlab = svalue(xlabel), ylab = svalue(ylabel))
    }
  }
 \end{Sinput}
@@ -4807,8 +4840,8 @@ this to update the receiver object, either the $x$ or $y$ label.
    svalue(h$obj) <- h$dropdata
    updateUI()
  }
- addDropTarget(xlabel, handler=dropHandler)
- addDropTarget(ylabel, handler=dropHandler)
+ addDropTarget(xlabel, handler = dropHandler)
+ addDropTarget(ylabel, handler = dropHandler)
 \end{Sinput}
 \end{Schunk}
 
@@ -4818,9 +4851,9 @@ passes over a widget. We don't need this for our GUI.
     
 \end{example}
 
+%% SCREENSHOT
 
-
-\subsection{Help browser}
+\section{Help browser}
 \label{sec:gWidgets-help-browser}
 
 The \constructor{ghelp} constructor produces a widget for showing help
@@ -4844,9 +4877,9 @@ GUI for displaying help pages, running examples from the help pages or
 opening vignettes provided by the package. This GUI provides its own
 top-level window and does not return a value for which methods are defined.
 
+%% SCREENSHOT
 
-
-\subsection{Command line widget}
+\section{Command line widget}
 \label{sec:gWidgets-command-line-widget}
 
 
@@ -4854,7 +4887,7 @@ top-level window and does not return a value for which methods are defined.
 A simple command line widget is created by the
 \constructor{gcommandline} constructor. This is not meant as a
 replacement for any of \R's command lines, but is provided for
-light-weight usage. A text box allows users to type in \R\/
+light-weight usage. A text box allows users to enter \R\/
 commands. The programmer may issue commands to be evaluated and
 displayed through the \method{svalue\ASSIGN}{gcommandline} method. The
 \code{value} assigned is a character string holding the commands. If
@@ -4862,7 +4895,7 @@ there is a \code{names} attribute, the results will be assigned to a variable
 in the global workspace with that name. The \code{svalue} and \code{[}
 methods return the command history.
 
-\subsection{Simplifying creation of dialogs}
+\section{Simplifying creation of dialogs}
 \label{sec:gWidgets-designing-forms}
 
 The \pkg{gWidgets} package has two means to simplify the creation of

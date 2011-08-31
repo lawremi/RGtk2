@@ -1,7 +1,7 @@
 %% organize by function
 <<echo=FALSE>>=
 library(gWidgets)
-options(guiToolkit="RGtk2")
+options(guiToolkit = "RGtk2")
 
 @ 
 
@@ -115,28 +115,29 @@ dialog to collect optional information. We imagine this as part of a
 dialog to generate a plot.
 
 <<results=hide>>=
-w <- gwindow("Make a plot")
-g <- ggroup(horizontal=FALSE, cont=w)
-glabel("... Fill me in ...", cont=g)
-bg <- ggroup(cont=g)
-addSpring(bg)
-parButton <- gbutton("par (mfrow) ...", cont=bg)
+window <- gwindow("Make a plot")
+group <- ggroup(horizontal = FALSE, cont = window)
+glabel("... Fill me in ...", cont = group)
+button_group <- ggroup(cont = group)
+addSpring(button_group)
+parButton <- gbutton("par (mfrow) ...", cont = button_group)
 @ 
 Our callback opens a subwindow to collect a few values for the
 \code{mfrow} option.
 <<>>=
-addHandlerClicked(parButton, handler=function(h,...) {
-  w1 <- gwindow("Set par values for mfrow", parent=w)
-  lyt <- glayout(cont=w1)
-  lyt[1,1, align=c(-1,0)] <- "mfrow: c(nr,nc)"
-  lyt[2,1] <- (nr <- gedit(1, cont=lyt))
-  lyt[2,2] <- (nc <- gedit(1, cont=lyt))
-  lyt[3,2] <- gbutton("ok", cont=lyt, handler=
-                function(h,...) {
-                  x <- as.numeric(c(svalue(nr), svalue(nc)))
-                  par(mfrow=x)
-                  dispose(w1)
-                })
+addHandlerClicked(parButton, handler = function(h,...) {
+  child <- gwindow("Set par values for mfrow", parent = window)
+  lyt <- glayout(cont = child)
+  lyt[1,1, align = c(-1,0)] <- "mfrow: c(nr,nc)"
+  lyt[2,1] <- (nr <- gedit(1, cont = lyt))
+  lyt[2,2] <- (nc <- gedit(1, cont = lyt))
+  lyt[3,2] <- 
+    gbutton("ok", cont = lyt, handler = 
+            function(h,...) {
+              x <- as.numeric(c(svalue(nr), svalue(nc)))
+              par(mfrow = x)
+              dispose(child)
+            })
 })
 @ 
 
@@ -181,8 +182,8 @@ or disable whether a widget can accept input.
 
 % <<>>=
 % w <- gwindow("Button example")
-% b <- gbutton("Click me", cont=w)
-% id <- addHandlerChanged(b, action=w, handler=function(h,...) {
+% b <- gbutton("Click me", cont = w)
+% id <- addHandlerChanged(b, action = w, handler = function(h,...) {
 %   btnText <- svalue(h$obj)                   # or svalue(b)
 %   svalue(h$obj) <- paste("don't", btnText, "again") # set text
 %   enabled(h$obj) <- FALSE
@@ -215,15 +216,15 @@ to be used (\GTK\/ had PANGO, \Qt\/ has rich text).}
 
 To make a form's labels have some emphasis we could do:
 <<results=hide>>=
-w <- gwindow("label example")
-f <- gframe("Summary statistics:", cont=w)
-lyt <- glayout(cont=f)
-lyt[1,1] <- glabel("xbar:", cont=lyt)
-lyt[1,2] <- gedit("", cont=lyt)
-lyt[2,1] <- glabel("s:", cont=lyt)
-lyt[2,2] <- gedit("", cont=lyt)
+window <- gwindow("label example")
+frame <- gframe("Summary statistics:", cont = window)
+lyt <- glayout(cont = frame)
+lyt[1,1] <- glabel("xbar:", cont = lyt)
+lyt[1,2] <- gedit("", cont = lyt)
+lyt[2,1] <- glabel("s:", cont = lyt)
+lyt[2,2] <- gedit("", cont = lyt)
 sapply(lyt[,1], function(i) {
-  font(i) <- c(weight="bold", color="blue")
+  font(i) <- c(weight = "bold", color = "blue")
 })
 @ 
 
@@ -301,8 +302,8 @@ png(f)                                  # not gWidgetstcltk!
 hist(rnorm(100))
 dev.off()
 #
-w <- gwindow("Example to show a graphic")
-gimage(basename(f), dirname(f), cont=w)
+window <- gwindow("Example to show a graphic")
+gimage(basename(f), dirname(f), cont = window)
 @ 
 %
 
@@ -351,10 +352,11 @@ through the \method{size\ASSIGN}{guiWidget} method.
 
 A simple usage might be:
 <<gedit>>=
-w <- gwindow("Simple gedit example", visible=FALSE)
-g <- ggroup(cont=w)
-e <- gedit("", initial.msg="Enter your name...", cont=g)
-visible(w) <- TRUE
+window <- gwindow("Simple gedit example", visible = FALSE)
+group <- ggroup(cont = window)
+entry <- gedit("", initial.msg = "Enter your name...", 
+               cont = group)
+visible(window) <- TRUE
 @ 
 
 
@@ -386,12 +388,12 @@ values to be specified through a character vector, as in \code{obj[]
 For example, the following can be used to collect one of the 50 state
 names in the U.S.:
 <<results=hide>>=
-w <- gwindow("gedit example", visible=FALSE) 
-g <- ggroup(cont=w)
-glabel("State name:", cont=g)
-e <- gedit("", cont=g)
-e[] <- state.name
-visible(w) <- TRUE
+window <- gwindow("gedit example", visible = FALSE) 
+group <- ggroup(cont = window)
+glabel("State name:", cont = group)
+entry <- gedit("", cont = group)
+entry[] <- state.name
+visible(window) <- TRUE
 @ 
 
 \paragraph{Handlers}
@@ -528,9 +530,9 @@ In Figure~\ref{fig:gWidgets-EBImage-gui} a toggle button is used for
 ``Thresh''  and could be constructed as
 
 <<>>=
-w <- gwindow("Checkbox example with toggle button")
-cb <- gcheckbox("Thresh", checked=TRUE, use.togglebutton=TRUE,
-                cont=w)
+window <- gwindow("Checkbox example with toggle button")
+check_box <- gcheckbox("Thresh", checked = TRUE, 
+                       use.togglebutton = TRUE, cont = window)
 @ 
 
 The \method{svalue}{gcheckbox} method returns a logical indicating if
@@ -545,11 +547,12 @@ The default handler would be called on a click event, when the state toggles. If
 that the handler be called only in the \code{TRUE} state, say, one
 needs to check within the handler for this. For example
 <<>>=
-w <- gwindow("checkbox example")
-cb <- gcheckbox("label", cont=w, handler=function(h,...) {
-  if(svalue(h$obj))                     # it is checked
-    print("define handler here")
-})
+window <- gwindow("checkbox example")
+check_button <- gcheckbox("label", cont = window, 
+                          handler = function(h,...) {
+                            if(svalue(h$obj)) # it is checked
+                              print("define handler here")
+                          })
 @ 
 
 \subsection{Radio button widget}
@@ -570,9 +573,9 @@ In Figure~\ref{fig:gWidgets-EBImage-gui} a radio button is used for
 ``ColorMode''  and could be constructed as
 
 <<>>=
-w <- gwindow("Radio button example")
-rb <- gradio(c("Color", "Grayscale"), selected=2, 
-             horizontal=FALSE, cont=w)
+window <- gwindow("Radio button example")
+radio_button <- gradio(c("Color", "Grayscale"), selected = 2, 
+                       horizontal = FALSE, cont = window)
 @ 
 
 
@@ -620,16 +623,17 @@ used to allow the user to ``flip'' or ``flop'' the image. It could be
 created with
 
 <<>>=
-w <- gwindow("Checkbox group example")
-cbg <- gcheckboxgroup(c("Flip","Flop"), horizontal=FALSE, 
-                      checked=c(FALSE, TRUE), cont=w)
+window <- gwindow("Checkbox group example")
+check_box_group <-
+  gcheckboxgroup(c("Flip","Flop"), horizontal = FALSE, 
+                 checked = c(FALSE, TRUE), cont = window)
 
 @ 
 %
 
 
 The state is retrieved as a character vector through the
-\method{svalue}{gcheckboxgroup} method. The \code{index=TRUE} argument
+\method{svalue}{gcheckboxgroup} method. The \code{index = TRUE} argument
 instructs \meth{svalue} to return the selected indices instead. These
 are $0$-length if no selection is made. As a checkbox group is like
 both a checkbox and a radio button group, one can set the selected
@@ -637,17 +641,19 @@ values three different ways. As with a checkbox, the selected values
 can be set by specifying a logical vector through the
 \method{svalue\ASSIGN}{gcheckboxgroup} method. As with radio button
 groups, the selected values can also be set with a character vector
-indicating which labels should be selected, or if \code{index=TRUE} is
+indicating which labels should be selected, or if \code{index = TRUE} is
 given, using a numeric index vector.
 
 
 That is, each of these has the same effect:
 <<>>=
-svalue(cbg) <- c("Flop")
-svalue(cbg) <- c(FALSE, TRUE)
-svalue(cbg, index=TRUE) <- 2
+svalue(check_box_group) <- c("Flop")
+svalue(check_box_group) <- c(FALSE, TRUE)
+svalue(check_box_group, index = TRUE) <- 2
 @ 
-% ML: strange that index=TRUE is required here
+% ML: strange that index = TRUE is required here
+% JV: to be consistent with returning a value without specifying a
+% value for index
 
 The labels are returned through the \method{[}{gcheckboxgroup} method
 and if the underlying toolkit allows it, set through the
@@ -660,20 +666,20 @@ the \method{length}{gcheckboxgroup} method returns the number of items.
 % kerns <- as.character(formals(density.default)$kernel)[-1]
 
 % w <- gwindow("Arguments for density example")
-% lyt <- glayout(cont=w)
+% lyt <- glayout(cont = w)
 
 % lyt[1,1] <- "bw"
-% lyt[1,2, anchor=c(-1,0)] <- 
-%   gradio(c("nrd0", "nrd", "ucv", "bcv", "SJ"), cont=lyt)
+% lyt[1,2, anchor = c(-1,0)] <- 
+%   gradio(c("nrd0", "nrd", "ucv", "bcv", "SJ"), cont = lyt)
 
 % lyt[2,1] <- "Kernel"
-% lyt[2,2, anchor=c(-1,0)] <- gcheckboxgroup(kerns, cont=lyt)
+% lyt[2,2, anchor = c(-1,0)] <- gcheckboxgroup(kerns, cont = lyt)
 
 % lyt[3,1] <- "na.rm"
-% lyt[3,2, anchor=c(-1,0)] <- 
-%   gcheckbox("na.rm", checked=TRUE, use.togglebutton=TRUE, cont=lyt)
+% lyt[3,2, anchor = c(-1,0)] <- 
+%   gcheckbox("na.rm", checked = TRUE, use.togglebutton = TRUE, cont = lyt)
 
-% lyt[4,2] <- gbutton("done", cont=lyt, handler=function(h,...) {
+% lyt[4,2] <- gbutton("done", cont = lyt, handler = function(h,...) {
 %   out <- sapply(1:3, function(i) {
 %     widget <- lyt[i,2]
 %     svalue(widget)
@@ -704,8 +710,8 @@ Combo boxes are constructed by \constructor{gcombobox}.\footnote{Some
 
 The combo box in Figure~\ref{fig:gWidgets-EBImage-gui} could be coded with:
 <<>>=
-w <- gwindow("gcombobox example")
-cb <- gcombobox(c("None", "Low", "High"), cont=w)
+window <- gwindow("gcombobox example")
+combo_box <- gcombobox(c("None", "Low", "High"), cont = window)
 @ 
 
 
@@ -715,10 +721,10 @@ available stock icons. For toolkits that support icons in a combo box, they
 appear next to the label.
 <<comboboxExample, results=hide>>=
 nms <- getStockIcons()                  # gWidgets icons
-d <- data.frame(names=names(nms), icons=names(nms), 
-                stringsAsFactors=FALSE)
-w <- gwindow("Combo box with icons example")
-cb <- gcombobox(d, cont=w)
+DF <- data.frame(names = names(nms), icons = names(nms), 
+                 stringsAsFactors = FALSE)
+window <- gwindow("Combo box with icons example")
+combo_box <- gcombobox(DF, cont = window)
 @ 
 
 
@@ -765,7 +771,7 @@ sets a handler to respond to keystroke events.
   numeric variables.
 
 <<>>=
-availDfs <- function() {
+avail_DFs <- function() {
   c("", ".GlobalEnv", ProgGUIinR:::avail_dfs(.GlobalEnv))
 }
 @ 
@@ -776,37 +782,40 @@ availDfs <- function() {
 ##' @return vector of numeric variable names
 @ 
 <<getNumeric>>=
-getNumeric <- function(where) {
-  val <- get(where, envir=.GlobalEnv)
+get_numeric <- function(where) {
+  val <- get(where, envir = .GlobalEnv)
   ProgGUIinR:::find_vars(val, is.numeric)
 }
 @ 
 
 Our layout uses nested groups and a \code{glayout} container.
 <<results=hide>>=
-w <- gwindow("Find the mean", visible=FALSE)
-g <- ggroup(cont=w, horizontal=FALSE)
-g1 <- ggroup(cont=g)
-glabel("Select data frame:", cont=g1)
-dfC <- gcombobox(availDfs(), cont=g1)
+window <- gwindow("Find the mean", visible = FALSE)
+group <- ggroup(cont = window, horizontal = FALSE)
+group1 <- ggroup(cont = group)
+glabel("Select data frame:", cont = group1)
+df_combo_box <- gcombobox(avail_DFs(), cont = group1)
 ##
-f <- gframe("Arguments:", cont=g, horizontal=FALSE)
-enabled(f) <- FALSE
-lyt <- glayout(cont=f, expand=TRUE)
-l <- list()                             # store widgets
+frame <- gframe("Arguments:", cont = group, horizontal = FALSE)
+enabled(frame) <- FALSE
+lyt <- glayout(cont = frame, expand = TRUE)
+widget_list <- list() 
 ##
 lyt[1,1] <- "x"
-lyt[1,2] <- (l$x <- gcombobox("           ", cont=lyt))
+lyt[1,2] <- (widget_list$x <- gcombobox("           ",
+                                        cont = lyt))
 ##
 lyt[2,1] <- "trim"
 lyt[2,2] <- 
-  (l$trim <- gslider(from=0, to=0.5, by=0.01, cont=lyt))
+  (widget_list$trim <- gslider(from = 0, to = 0.5, by = 0.01,
+                               cont = lyt))
 ##
 lyt[3,1] <- "na.rm"
 lyt[3,2] <- 
-  (l$na.rm <- gcheckbox("", checked=TRUE, cont=lyt))
-g2 <- ggroup(cont=g)
-compute <- gbutton("compute", cont=g2)
+  (widget_list$na.rm <- gcheckbox("", checked = TRUE, 
+                                  cont = lyt))
+group2 <- ggroup(cont = group)
+compute_button <- gbutton("compute", cont = group2)
 @ 
 
 We stored the primary widgets in a list with names matching the
@@ -819,31 +828,32 @@ combo box is changed. If there is a value, we enable our widgets and
 then populate the secondary combo box with the names of the numeric
 variables.
 <<>>=
-addHandlerChanged(dfC, handler=function(h,...) {
+addHandlerChanged(df_combo_box, handler = function(h,...) {
   val <- svalue(h$obj)
-  enabled(f) <- val !=""
-  enabled(compute) <- val != ""
+  enabled(frame) <- val !=""
+  enabled(compute_button) <- val != ""
   if(val != "") 
-    l$x[] <- getNumeric(val)
-  svalue(l$x, index=TRUE) <- 0
+    widget_list$x[] <- get_numeric(val)
+  svalue(widget_list$x, index = TRUE) <- 0
 })
 @ 
 %
 
 As we stored the widgets in an appropriately named list, we can
 conveniently use \function{do.call} below to write the callback for
-the \code{compute} button in just a few lines. The only trick is to
+the \code{compute\_button} button in just a few lines. The only trick is to
 replace the variable name with its actual value.
 <<computeHandler>>=
-addHandlerChanged(compute, handler=function(h,...) {
-  out <- lapply(l, svalue)
-  out$x <- get(out$x, get(svalue(dfC), envir=.GlobalEnv))
+addHandlerChanged(compute_button, handler = function(h,...) {
+  out <- lapply(widget_list, svalue)
+  out$x <- get(out$x, get(svalue(df_combo_box),
+                          envir = .GlobalEnv))
   print(do.call(mean.default, out))
 })
 @ 
 
-<<echo=FALSE>>=
-visible(w) <- TRUE
+<<visible,echo=FALSE>>=
+visible(window) <- TRUE
 @   
 \end{example}
 
@@ -899,12 +909,12 @@ drawn, \code{TRUE} for horizontal, \code{FALSE} for vertical.
 
 In Figure~\ref{fig:gWidgets-EBImage-gui} a slider is used to update
 the brightness. The call is similar to:
-<<>>=
-w <- gwindow("Slider example")
-brightness <- gslider(from=-1, to=1, by=.05, value=0, 
-   handler=function(h,...) {
+<<brightness>>=
+window <- gwindow("Slider example")
+brightness <- gslider(from = -1, to = 1, by = .05, value = 0, 
+   handler = function(h,...) {
      cat("Update picture with brightness", svalue(h$obj), "\n")
-   }, cont=w)
+   }, cont = window)
 @ 
 
 The \method{svalue}{gslider} method returns the currently chosen
@@ -921,16 +931,17 @@ others the slider implementation does not show the value. One can
 add a label to show this (or combine the slider with a spin
 button). Adding a label follows this pattern:
 
-<<>>=
-w <- gwindow("Add a label to the slider", visible=FALSE)
-g <- ggroup(cont=w, expand=TRUE)
-sl <- gslider(from=0, to=100, by=1, cont=g, expand=TRUE)
-l <- glabel(sprintf("%3d", svalue(sl)), cont=g)
-font(l) <- c(family="monospace")
-addHandlerChanged(sl, function(h,...) {
+<<slider>>=
+window <- gwindow("Add a label to the slider", visible = FALSE)
+group <- ggroup(cont = window, expand = TRUE)
+slider <- gslider(from = 0, to = 100, by = 1, cont = group, 
+                  expand = TRUE)
+label <- glabel(sprintf("%3d", svalue(slider)), cont = group)
+font(label) <- c(family = "monospace")
+addHandlerChanged(slider, function(h,...) {
   svalue(h$action) <- sprintf("%3d", svalue(h$obj))
-  }, action=l)
-visible(w) <- TRUE
+  }, action = label)
+visible(window) <- TRUE
 @ 
 (Using \code{sprintf} and \code{monospace} ensures the label takes a
 fixed amount of space.)
@@ -950,8 +961,9 @@ In Figure~\ref{fig:gWidgets-EBImage-gui} a spin button is used to
 adjust the contrast, a numeric value. The following will reproduce it
 
 <<spinbutton>>=
-w <- gwindow("Spin button example")
-sp <- gspinbutton(from=0, to=10, by=.05, value=1, cont=w)
+window <- gwindow("Spin button example")
+spin_button <- gspinbutton(from = 0, to = 10, by = .05, 
+                           value = 1, cont = window)
 @ 
 
 
@@ -1000,13 +1012,13 @@ to this action:
 readImage <- function() {}
 @ 
 
-<<openImage, eval=FALSE>>=
+<<openImage, eval = FALSE>>=
 f <- gfile("Open an image file",
-           type="open",
-           filter=list("Image file"=list(
-                         patterns=c("*.gif", "*.jpeg", "*.png")
+           type = "open",
+           filter = list("Image file" = list(
+                         patterns = c("*.gif", "*.jpeg", "*.png")
                          ),
-             "All files" = list(patterns = c("*"))
+             "All files"  =  list(patterns = c("*"))
              ))
 if(!is.na(f)) 
   readImage(f) ## ...
@@ -1104,8 +1116,8 @@ match the eventual data to be used.
 To illustrate, a widget to select from the available data frames in
 the global environment can be generated with
 <<>>=
-w <- gwindow("gtable example")
-dfs <- gtable(ProgGUIinR:::avail_dfs(), cont=w)
+window <- gwindow("gtable example")
+DFs <- gtable(ProgGUIinR:::avail_dfs(), cont = window)
 @ 
 
 %% sizes
@@ -1156,7 +1168,7 @@ the underlying dimensions of the data store.
 To update the list of data frames in our \code{dfs} widget, one can define a function such as
 <<updateDfs>>=
 updateDfs <- function() {
-  dfs[] <- ProgGUIinR:::avail_dfs()
+  DFs[] <- ProgGUIinR:::avail_dfs()
 }
 @ 
 
@@ -1173,9 +1185,9 @@ to right-click events.
 
 To add a handler to the data frame selection widget above, we could have:
 <<results=hide>>=
-addHandlerDoubleclick(dfs, handler=function(h,...) {
+addHandlerDoubleclick(DFs, handler = function(h,...) {
   val <- svalue(h$obj)
-  print(summary(get(val, envir=.GlobalEnv))) # some action
+  print(summary(get(val, envir = .GlobalEnv))) # some action
 
 })
 @ 
@@ -1221,16 +1233,17 @@ application.
   
 <<>>=  
 require(MASS)
-w <- gwindow("gtable example")
-tbl <- gtable(Cars93, chosencol=1, filter.column=3, cont=w)
+window <- gwindow("gtable example")
+tbl <- gtable(Cars93, chosencol = 1, filter.column = 3, 
+              cont = window)
 @ 
 
 Adding a handler for the double click event is illustrated below. This
 handler prints both the manufacturer and the model of the currently
 selected row when called.
 <<>>=
-addHandlerChanged(tbl, handler=function(h,...) {
-  val <- svalue(h$obj, drop=FALSE)
+addHandlerChanged(tbl, handler = function(h,...) {
+  val <- svalue(h$obj, drop = FALSE)
   cat(sprintf("You selected the %s %s", val[,1], val[,2]))
 })
 @ 
@@ -1279,16 +1292,16 @@ explore the hierarchical structure of a list. It has the list passed
 in through the
 \argument{offspring.data}{gtree} argument of the constructor.
 <<>>=
-offspring <- function(path=character(0), lst, ...) {
+offspring <- function(path = character(0), lst, ...) {
   if(length(path))
     obj <- lst[[path]]
   else
       obj <- lst
   #
   f <- function(i) is.recursive(i) && !is.null(names(i))
-  data.frame(comps=names(obj), 
-             hasOffspring=sapply(obj, f),
-             stringsAsFactors=FALSE)
+  data.frame(comps = names(obj), 
+             hasOffspring = sapply(obj, f),
+             stringsAsFactors = FALSE)
 }
 @ 
 %
@@ -1300,9 +1313,10 @@ presented
 
 To see the above used, we define a list to explore.
 <<>>=
-l <- list(a="1", b= list(a="2", b="3", c=list(a="4")))
-w <- gwindow("Tree test")
-t <- gtree(offspring, offspring.data=l, cont=w)
+lst <- list(a = "1", b =  list(a = "2", b = "3", 
+                       c = list(a = "4")))
+window <- gwindow("Tree test")
+tree <- gtree(offspring, offspring.data = lst, cont = window)
 @ 
 %%
 
@@ -1373,16 +1387,16 @@ An action can be assigned to a button by setting it as the
 in which case all other arguments for the constructor are ignored.
 
 <<>>=
-w <- gwindow("gaction example")
-a <- gaction("click me", tooltip="Click for a message", 
-             icon="ok", 
-             handler=function(h, ...) {
-               print("Hello")
-             },
-             parent=w)
-b <- gbutton(action=a, cont=w)
+window <- gwindow("gaction example")
+action <- gaction("click me", tooltip = "Click for a message", 
+                  icon = "ok", 
+                  handler = function(h, ...) {
+                    print("Hello")
+                  },
+                  parent = window)
+button <- gbutton(action = action, cont = window)
 ## .. to change
-enabled(a) <- FALSE                     # can't click now
+enabled(action) <- FALSE                     # can't click now
 @ 
 %%
 Action handlers do not have the sender object (\code{b} above)
@@ -1406,32 +1420,33 @@ items are specified by \code{gaction} instances and separators by
 
 For example, here we first define some actions:
 <<results=hide>>=
-stub <- function(h,...) gmessage("called handler", parent=w)
-actlist = list(
-  new = gaction(label="new", icon="new", 
-    handler = stub, parent = w),
-  open = gaction(label="open", icon="open", 
-    handler = stub, parent = w),
-  save = gaction(label="save", icon="save", 
-    handler = stub, parent = w),
-  save.as = gaction(label="save as...", icon="save as...", 
-    handler = stub, parent = w),
-  quit = gaction(label="quit", icon="quit", 
-    handler = function(...) dispose(w), parent = w),
-  cut = gaction(label="cut", icon="cut", 
-    handler = stub, parent = w)
+stub <- function(h,...) gmessage("called handler", 
+                                 parent = window)
+action_list = list(
+  new = gaction(label = "new", icon = "new", 
+    handler = stub, parent = window),
+  open = gaction(label = "open", icon = "open", 
+    handler = stub, parent = window),
+  save = gaction(label = "save", icon = "save", 
+    handler = stub, parent = window),
+  save.as = gaction(label = "save as...", icon = "save as...", 
+    handler = stub, parent = window),
+  quit = gaction(label = "quit", icon = "quit", 
+    handler = function(...) dispose(w), parent = window),
+  cut = gaction(label = "cut", icon = "cut", 
+    handler = stub, parent = window)
   )
 
 @ 
 
 Then a toolbar list might look like:
 <<results=hide>>=
-w <- gwindow("gtoolbar example")
-tl <- c(actlist[c("new","save")], 
-        sep=gseparator(), 
-        actlist["quit"])
-tb <- gtoolbar(tl, cont=w)
-gtext("Lorem ipsum ...", cont=w)
+window <- gwindow("gtoolbar example")
+tool_bar_list<- c(action_list[c("new","save")], 
+                 sep = gseparator(), 
+                 action_list["quit"])
+tool_bar <- gtoolbar(tool_bar_list, cont = window)
+gtext("Lorem ipsum ...", cont = window)
 @ 
 
 
@@ -1459,26 +1474,26 @@ necessarily be the case.
 
 A example of such a list might be
 <<results=hide>>=
-ml <- list(file = list(
-             new = actlist$new,
-             open = actlist$open,
-             save = actlist$save,
-             "save as..." = actlist$save.as,
-             sep=gseparator(),
-             quit = actlist$quit
+menu_bar_list <- list(file = list(
+             new = action_list$new,
+             open = action_list$open,
+             save = action_list$save,
+             "save as..." = action_list$save.as,
+             sep = gseparator(),
+             quit = action_list$quit
              ),
            edit = list(
-             cut = actlist$cut
+             cut = action_list$cut
              )
            )
 
 @ 
 
 <<echo=FALSE, results=hide>>=
-w <- gwindow("Menubar example")
-mb <- gmenu(ml, cont=w)
-tb <- gtoolbar(tl, cont=w)
-txt <- gtext("", cont=w, expand=TRUE)
+window <- gwindow("Menubar example")
+menu_bar <- gmenu(menu_bar_list, cont = window)
+tool_bar <- gtoolbar(tool_bar_list, cont = window)
+txt_widget <- gtext("", cont = window, expand = TRUE)
 @ 
 
 Figure~\ref{fig:fig-gWidgets-menubar-disabled} shows this simple GUI
@@ -1508,12 +1523,13 @@ disable the saving and cut actions if there are no characters in the
 text buffer, then we could use this handler:
 
 <<>>=
-noChanges <- c("save","save.as","cut")
+no_changes <- c("save","save.as","cut")
 keyhandler <- function(...) {
-  for(i in noChanges)
-    enabled(actlist[[i]]) <- (nchar(svalue(txt)) > 0)
+  for(i in no_changes)
+    enabled(action_list[[i]]) <- 
+      (nchar(svalue(txt_widget)) > 0)
 }
-addHandlerKeystroke(txt, handler=keyhandler)
+addHandlerKeystroke(txt_widget, handler = keyhandler)
 keyhandler()
 @ 
 
@@ -1534,16 +1550,17 @@ Popup menus can be created for a right click event through the
 \begin{example}{Popup menus}{ex-gWidgets-context-menus}
   This example shows how to add a simple popup menu to a button.
 <<>>=  
-w <- gwindow("Popup example")
-b <- gbutton("click me or right click me", cont=w, 
-             handler=function(h, ...) {
-               cat("You clicked me\n")
-             })
+window <- gwindow("Popup example")
+button <- gbutton("click me or right click me", cont = window, 
+                  handler = function(h, ...) {
+                    cat("You clicked me\n")
+                  })
 f <- function(h,...) cat("you right clicked on", h$action)
-mbList <- list(one = gaction("one", action="one", handler=f),
-               two = gaction("two", action="two", handler=f)
-               )
-add3rdMousePopupmenu(b, mbList)
+menu_bar_list <- 
+  list(one = gaction("one", action = "one", handler = f),
+       two = gaction("two", action = "two", handler = f)
+       )
+add3rdMousePopupmenu(button, menu_bar_list)
 @ 
 
 \end{example}

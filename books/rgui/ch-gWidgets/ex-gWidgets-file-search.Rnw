@@ -23,87 +23,81 @@ the additional code for the layout:
 
 <<advSearch, echo=FALSE, results=hide>>=
 ## thanks to Richie Cotton for this example
-w <- gwindow("File search", visible=FALSE)
+window <- gwindow("File search", visible = FALSE)
 
-g <- gpanedgroup(cont=w)
+paned <- gpanedgroup(cont = window)
 
-f <- ggroup(cont=g, horizontal=FALSE)
-glabel("Search for (filename):", cont=f, anchor=c(-1,0))
-txtPattern <- gedit("", initial.msg="Possibly wildcards", cont=f)
+nested_group <- ggroup(cont = paned, horizontal = FALSE)
+glabel("Search for (filename):", cont = nested_group, anchor = c(-1,0))
+txt_pattern <- gedit("", initial.msg = "Possibly wildcards", cont = nested_group)
 
-glabel("Search in:", cont=f, anchor=c(-1,0))
-startDir <- gfilebrowse(text="Select a directory ...",
-                        quote=FALSE,
-                        type="selectdir", cont=f)
+glabel("Search in:", cont = nested_group, anchor = c(-1,0))
+start_dir <- gfilebrowse(text = "Select a directory ...",
+                        quote = FALSE,
+                        type = "selectdir", cont = nested_group)
 @ 
 
 <<advSearch, results=hide>>=
-advSearch <- gexpandgroup("Advanced search:", cont=f)
-visible(advSearch) <- FALSE
-tbl <- glayout(cont=advSearch)
-tbl[1,1] <- "Recursive"
-tbl[1,2] <- (advRec <- 
-   gcheckbox("search directories", checked=TRUE, cont=tbl))
-tbl[2,1] <- "Size"
-tbl[2,2] <- (advSize <- 
-   gcombobox(c("", "small", "medium", "large"),  cont=tbl))
-tbl[3,1] <- "All files"
-tbl[3,2] <- (advVisible <- 
-   gradio(c(TRUE, FALSE), horizontal=TRUE, cont=tbl))
-tbl[4,1] <- "Last modified"
-tbl[4,2] <- (advModified <- 
-             gcalendar("", format="%Y-%m-%d", cont=tbl))
+adv_search <- gexpandgroup("Advanced search:", 
+                           cont = nested_group)
+visible(adv_search) <- FALSE
+lyt <- glayout(cont = adv_search)
+lyt[1,1] <- "Recursive"
+lyt[1,2] <- (adv_rec <- 
+   gcheckbox("search directories", checked = TRUE, cont = lyt))
+lyt[2,1] <- "Size"
+lyt[2,2] <- (adv_size <- 
+   gcombobox(c("", "small", "medium", "large"),  cont = lyt))
+lyt[3,1] <- "All files"
+lyt[3,2] <- (adv_visible <- 
+   gradio(c(TRUE, FALSE), horizontal = TRUE, cont = lyt))
+lyt[4,1] <- "Last modified"
+lyt[4,2] <- (adv_modified <- 
+             gcalendar("", format = "%Y-%m-%d", cont = lyt))
 @ 
 
 As can be seen (Figure~\ref{fig:file-search-advanced}), we use a grid
 layout and a mix of the controls offered by \pkg{gWidgets}.
 
 <<echo=FALSE, results=hide>>=
-searchBtn <- gbutton("Search", cont=f)
-addSpring(f)
+search_btn <- gbutton("Search", cont = nested_group)
+addSpring(nested_group)
 
-f1 <- gframe("Output:", cont=g, horizontal=FALSE)
-searchResults <- gtext("", cont=f1, expand=TRUE, fill="both")
+frame <- gframe("Output:", cont = paned, horizontal = FALSE)
+search_results <- gtext("", cont = frame, expand = TRUE, fill = "both")
 @ 
 
-%% ML: does it really make sense only to consider the options when
-%% they are visible? What happens if they set them, then hide
-%% them. It would be surprising to me if they were then ignored.
 
-%% Fair enough
 We modify our button handler so that it uses these values, if
 specified.
 
-%% We only do so if this part of the GUI is disclosed, by
-%% checking the output of \code{visible(advSearch)}.
-
 <<>>=
-addHandlerChanged(searchBtn, handler=function(h,...) {
-  pattern <- glob2rx(svalue(txtPattern))
-  start_dir <- svalue(startDir)
+addHandlerChanged(search_btn, handler=function(h,...) {
+  pattern <- glob2rx(svalue(txt_pattern))
+  start_at <- svalue(start_dir)
   modified <- NULL
   size <- NULL
 
   ## from advanced
-  subfolders <- svalue(advRec)
-  visible <- svalue(advVisible)
-  if((tmp <- svalue(advSize)) != "") size <- tmp
-  if(!is.na(tmp <- svalue(advModified))) modified <- tmp
+  subfolders <- svalue(adv_rec)
+  visible <- svalue(adv_visible)
+  if((tmp <- svalue(adv_size)) != "") size <- tmp
+  if(!is.na(tmp <- svalue(adv_modified))) modified <- tmp
   
   ## function call
-  fnames <- file_search(pattern, start_dir, subfolders, 
-                        modified=modified,
-                        size=size, visible=visible)
-  dispose(searchResults)                # clear
-  if(length(fnames))
-    svalue(searchResults) <- fnames
+  file_names <- file_search(pattern, start_at, subfolders, 
+                        modified = modified,
+                        size = size, visible = visible)
+  dispose(search_results)                # clear
+  if(length(file_names))
+    svalue(search_results) <- file_names
   else
-    galert("No matching files found", parent=w)
+    galert("No matching files found", parent = window)
 })
 @ 
 
 <<results=hide, echo=FALSE>>=
-visible(w) <- TRUE
+visible(window) <- TRUE
 @ 
 
 
@@ -113,11 +107,11 @@ visible(w) <- TRUE
 #I thought this might be good for showing off gexpandgroup (to show/hide the advanced options) and gcalendar.
 file_search <- function(pattern, start_dir = getwd(), subfolders = TRUE,
                         modified,
-                        modified_format = "%Y-%m-%d",
+                        modified_format  =  "%Y-%m-%d",
                         size,
                         visible = TRUE)
 {
-  fnames <- dir(
+  file_names <- dir(
     start_dir, 
     pattern, 
     recursive = subfolders, 
@@ -127,7 +121,7 @@ file_search <- function(pattern, start_dir = getwd(), subfolders = TRUE,
   filter_by_size <- !missing(size) && !is.null(size)
   if(filter_by_date || filter_by_size)
   {
-    finfo <- file.info(fnames)     
+    finfo <- file.info(file_names)     
   }
   if(filter_by_date)
   {
@@ -142,7 +136,7 @@ file_search <- function(pattern, start_dir = getwd(), subfolders = TRUE,
         if(length(modified) == 1L) c(modified, now) else modified
       }
     )
-    fnames <- fnames[finfo$mtime > time_range[1] && finfo$mtime < time_range[2]]
+    file_names <- file_names[finfo$mtime > time_range[1] && finfo$mtime < time_range[2]]
   }
   if(filter_by_size)
   {
@@ -152,9 +146,9 @@ file_search <- function(pattern, start_dir = getwd(), subfolders = TRUE,
       large  = c(1024 * 1024, Inf),
       size
     )
-    fnames <- fnames[finfo$size > size[1] && finfo$size < size[2]]  
+    file_names <- file_names[finfo$size > size[1] && finfo$size < size[2]]  
   }
-  fnames
+  file_names
 }
 
 @ 

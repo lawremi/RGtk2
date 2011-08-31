@@ -19,8 +19,8 @@ GUI within a modal dialog. Here we just setup the GUI.
   Our initialization call simple stores the values and then passes on
   the call to make the GUI.
 <<initialize>>=
-initialize <- function(f, cont=gwindow()) {
-  old <<- as.character(f)
+initialize <- function(fac, cont = gwindow()) {
+  old <<- as.character(fac)
   make_gui(cont)
   callSuper()
 }
@@ -37,39 +37,40 @@ values. We block any handler calls to avoid a loop when we set the
 index back to 0.
 <<>>=
 make_gui <- function(cont) {
-  g <- gpanedgroup(cont=cont)
+  group <- gpanedgroup(cont = cont)
   levs <- sort(unique(as.character(old)))
-  d <- data.frame(original=levs,
-                  new=levs, stringsAsFactors=FALSE)
+  DF <- data.frame(original = levs,
+                  new = levs, stringsAsFactors = FALSE)
   #
-  widget <<- tbl <- gtable(d, cont=g,  multiple=TRUE)
+  widget <<- tbl <- gtable(DF, cont = group,  multiple = TRUE)
   size(tbl) <- c(300, 200)
   #
-  g1 <- ggroup(cont=g, horizontal=FALSE)
+  nested_group <- ggroup(cont = group, horizontal = FALSE)
   instructions <- gettext("Select levels, then\n 
 enter a new combined level\n
 by typing or selecting a level and then enter")
   #
-  glabel(instructions, cont=g1)
-  cb <- gcombobox(levs, selected=0, editable=TRUE, cont=g1)
-  enabled(cb) <- FALSE
+  glabel(instructions, cont = nested_group)
+  combo_box <- gcombobox(levs, selected = 0, editable = TRUE, 
+                         cont = nested_group)
+  enabled(combo_box) <- FALSE
   #
   addHandlerClicked(widget, function(h,...) {
-    ind <- svalue(widget, index=TRUE)
-    enabled(cb) <- (length(ind) > 0)
+    ind <- svalue(widget, index = TRUE)
+    enabled(combo_box) <- (length(ind) > 0)
   })
-  
-  addHandlerChanged(cb, handler=function(h,...) {
-    ind <- svalue(tbl, index=TRUE)
+  ##
+  addHandlerChanged(combo_box, handler = function(h,...) {
+    ind <- svalue(tbl, index = TRUE)
     if(length(ind) == 0) 
       return()
     #
-    tbl[ind,2] <- svalue(cb)
-    svalue(tbl, index=TRUE) <- 0
-    blockHandler(cb)
-    cb[] <- sort(unique(tbl[,2]))
-    svalue(cb, index=TRUE) <- 0
-    unblockHandler(cb)
+    tbl[ind,2] <- svalue(combo_box)
+    svalue(tbl, index = TRUE) <- 0
+    blockHandler(combo_box)
+    combo_box[] <- sort(unique(tbl[,2]))
+    svalue(combo_box, index = TRUE) <- 0
+    unblockHandler(combo_box)
   })
 }
 @   
@@ -92,14 +93,14 @@ get_value <- function() {
 Finally, we stitch the above together into a reference class.
 <<>>=
 CollapseFactor <- setRefClass("CollapseFactor",
-                              fields=list(
-                               old="ANY",
-                               widget="ANY"
+                              fields = list(
+                               old = "ANY",
+                               widget = "ANY"
                                ),
-                             methods=list(
-                               initialize=initialize,
+                             methods = list(
+                               initialize = initialize,
                                make_gui = make_gui,
-                               get_value=get_value
+                               get_value = get_value
                              ))
 @ 
 
@@ -111,16 +112,16 @@ CollapseFactor <- setRefClass("CollapseFactor",
 ##' @param f factor to collapse
 ##' @param parent optional, where to place editing dialog
 ##' @return releved factor
-collapseFactor <- function(f, parent=NULL) {
+collapseFactor <- function(f, parent = NULL) {
   out <- character()
-  w <- gbasicdialog("Collapse factor levels", parent=parent,
-                    handler=function(h,...) {
+  w <- gbasicdialog("Collapse factor levels", parent = parent,
+                    handler = function(h,...) {
                       new_f <- relf$get_value()
                       out <<- factor(new_f)
                     })
-  g <- ggroup(cont=w)
-  relf <- CollapseFactor$new(f, cont=g)
-  visible(w, set=TRUE)
+  g <- ggroup(cont = w)
+  relf <- CollapseFactor$new(f, cont = g)
+  visible(w, set = TRUE)
   out
 }
   

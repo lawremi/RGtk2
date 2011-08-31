@@ -16,22 +16,22 @@ alternative to a more complicated color chooser dialog.\footnote{If
 We begin by defining 16 arbitrary colors.
 
 <<>>=
-someColors <- c("black", "red", "blue", "brown",
+some_colors <- c("black", "red", "blue", "brown",
                 "green", "yellow", "purple",
-                paste("grey", seq.int(10,90,by=10), sep=""))
+                paste("grey", seq.int(10,90,by = 10), sep = ""))
 @ 
 
 This is the function that is used to create an icon file. We use some
 low-level \pkg{grid} functions to draw the image to a png file.
 <<>>=
 require(grid)
-iconDir <- tempdir(); iconSize <- 16;
-makeColorIcon <- function(i) {
-  filename <- file.path(iconDir, 
+icon_dir <- tempdir(); iconSize <- 16;
+make_color_icon <- function(i) {
+  filename <- file.path(icon_dir, 
                         sprintf("color-%s.png", i))
-  png(file=filename, width=iconSize, height=iconSize)
+  png(file = filename, width = iconSize, height = iconSize)
   grid.newpage()
-  grid.draw(rectGrob(gp=gpar(fill=i)))
+  grid.draw(rectGrob(gp = gpar(fill = i)))
   dev.off()
   return(filename)
 }
@@ -41,9 +41,9 @@ To add the icons, we need to define the stock names and the file paths
 for \code{addStockIcons}.
 
 <<results=hide>>=
-icons <- sapply(someColors, makeColorIcon)
-iconNames <- sprintf("color-%s", someColors)
-addStockIcons(iconNames, icons)
+icons <- sapply(some_colors, make_color_icon)
+icon_names <- sprintf("color-%s", some_colors)
+addStockIcons(icon_names, icons)
 @ 
 
 We use a table layout to show the 16 colors. As an illustration of
@@ -51,14 +51,15 @@ assigning a handler for a click event, we assign one that returns the
 corresponding stock icon name.
 
 <<>>=    
-w <- gwindow("Icon example")
-f <- function(h,...) galert(h$action, parent=w)
-tbl <- glayout(cont=w, spacing=0)
+window <- gwindow("Icon example", visible=FALSE)
+callback <- function(h,...) galert(h$action, parent = window)
+lyt <- glayout(cont = window, spacing = 0)
 for(i in 1:4) {
   for(j in 1:4) {
     ind <- (i - 1) * 4 + j
-    tbl[i,j] <- gimage(icons[ind], handler=f, 
-                       action=iconNames[ind], cont=tbl)
+    lyt[i,j] <- gimage(icons[ind], handler = callback, 
+                       action = icon_names[ind], cont = lyt)
   }
 }
+visible(window) <- TRUE
 @ 
