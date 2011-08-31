@@ -17,8 +17,8 @@ library(tcltk)
 setOldClass(c("tkwin", "tclVar"))
 TtkEntry <- setRefClass("TtkEntry",
                         fields = list(
-                          entry = "tkwin",    # entry
-                          tcl_var  = "tclVar",   # text variable
+                          entry = "tkwin",     # entry
+                          tcl_var  = "tclVar", # text variable
                           init_msg = "character"
                           ))
 @ 
@@ -64,7 +64,7 @@ TtkEntry$methods(
                  set_text = function(text, hide = TRUE) {
                    "Set text into widget"
                    if(hide) hide_init_msg()
-                   tcl_var_local <- tcl_var         # avoid warning
+                   tcl_var_local <- tcl_var     # avoid warning
                    tclvalue(tcl_var_local) <- text
                  },
                  get_text = function() {
@@ -115,7 +115,8 @@ instance. The actual entry widget is kept in the \code{e} field, so we
 pack in \code{widget\$entry}.
 <<>>=
 window <- tktoplevel()
-widget <- TtkEntry$new(parent = window, init_msg = "type value here")
+widget <- TtkEntry$new(parent = window, 
+                       init_msg = "type value here")
 tkpack(widget$entry)
 #
 button <- ttkbutton(window, text = "focus out onto this", 

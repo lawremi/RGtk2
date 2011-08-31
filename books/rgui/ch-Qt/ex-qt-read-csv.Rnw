@@ -98,7 +98,7 @@ At this point, the widgets are set up and laid out. We turn to the
 task of adding interactivity. First, the file button when clicked
 should open a file selection dialog. If a file load is successful, we
 change the label on the button to indicate the selection, using the
-global \code{fname} to store the value.
+global \code{filename} to store the value.
 
 <<fileHandler, results=hide>>=
 filename <- NULL

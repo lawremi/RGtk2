@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.4.5)  13 AUG 2011 17:19
+This is pdfTeX, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.4.5)  31 AUG 2011 10:50
 entering extended mode
 **print-chapter
 (./print-chapter.tex
@@ -384,28 +384,6 @@ File: pdftex.def 2007/01/08 v0.04d Graphics/color for pdfTeX
 \Gin@req@height=\dimen144
 \Gin@req@width=\dimen145
 )
-(/opt/local/share/texmf-dist/tex/latex/floatflt/floatflt.sty
-Package: floatflt 1997/07/16 v. 1.31
-\c@OptionTest=\count133
-\figbox=\box28
-\tabbox=\box29
-\pagebox=\box30
-\ffigcount=\count134
-\ftabcount=\count135
-\fftest=\count136
-\hangcount=\count137
-\nosuccesstryfig=\count138
-\nosuccesstrytab=\count139
-\figgutter=\dimen146
-\tabgutter=\dimen147
-\htdone=\dimen148
-\pageht=\dimen149
-\startpageht=\dimen150
-\tabbredd=\dimen151
-\floatfltwidth=\dimen152
-\fltitemwidth=\dimen153
-\outputpretest=\toks23
-)
 (/opt/local/share/texmf-dist/tex/latex/ltxmisc/relsize.sty
 Package: relsize 2003/07/04 ver 3.1
 )
@@ -419,51 +397,51 @@ Package: amstext 2000/06/29 v2.01
 
 (/opt/local/share/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0
-\@emptytoks=\toks24
-\ex@=\dimen154
+\@emptytoks=\toks23
+\ex@=\dimen146
 ))
 (/opt/local/share/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d
-\pmbraise@=\dimen155
+\pmbraise@=\dimen147
 )
 (/opt/local/share/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
 )
-\inf@bad=\count140
+\inf@bad=\count133
 LaTeX Info: Redefining \frac on input line 211.
-\uproot@=\count141
-\leftroot@=\count142
+\uproot@=\count134
+\leftroot@=\count135
 LaTeX Info: Redefining \overline on input line 307.
-\classnum@=\count143
-\DOTSCASE@=\count144
+\classnum@=\count136
+\DOTSCASE@=\count137
 LaTeX Info: Redefining \ldots on input line 379.
 LaTeX Info: Redefining \dots on input line 382.
 LaTeX Info: Redefining \cdots on input line 467.
-\Mathstrutbox@=\box31
-\strutbox@=\box32
-\big@size=\dimen156
+\Mathstrutbox@=\box28
+\strutbox@=\box29
+\big@size=\dimen148
 LaTeX Font Info:    Redeclaring font encoding OML on input line 567.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
-\macc@depth=\count145
-\c@MaxMatrixCols=\count146
+\macc@depth=\count138
+\c@MaxMatrixCols=\count139
 \dotsspace@=\muskip10
-\c@parentequation=\count147
-\dspbrk@lvl=\count148
-\tag@help=\toks25
-\row@=\count149
-\column@=\count150
-\maxfields@=\count151
-\andhelp@=\toks26
-\eqnshift@=\dimen157
-\alignsep@=\dimen158
-\tagshift@=\dimen159
-\tagwidth@=\dimen160
-\totwidth@=\dimen161
-\lineht@=\dimen162
-\@envbody=\toks27
+\c@parentequation=\count140
+\dspbrk@lvl=\count141
+\tag@help=\toks24
+\row@=\count142
+\column@=\count143
+\maxfields@=\count144
+\andhelp@=\toks25
+\eqnshift@=\dimen149
+\alignsep@=\dimen150
+\tagshift@=\dimen151
+\tagwidth@=\dimen152
+\totwidth@=\dimen153
+\lineht@=\dimen154
+\@envbody=\toks26
 \multlinegap=\skip193
 \multlinetaggap=\skip194
-\mathdisplay@stack=\toks28
+\mathdisplay@stack=\toks27
 LaTeX Info: Redefining \[ on input line 2666.
 LaTeX Info: Redefining \] on input line 2667.
 )
@@ -479,28 +457,28 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 Package: url 2005/06/27  ver 3.2  Verb mode for urls, etc.
 )
 (/opt/local/share/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count152
-\lst@gtempboxa=\box33
-\lst@token=\toks29
-\lst@length=\count153
-\lst@currlwidth=\dimen163
-\lst@column=\count154
-\lst@pos=\count155
-\lst@lostspace=\dimen164
-\lst@width=\dimen165
-\lst@newlines=\count156
-\lst@lineno=\count157
-\c@lstlisting=\count158
-\lst@maxwidth=\dimen166
+\lst@mode=\count145
+\lst@gtempboxa=\box30
+\lst@token=\toks28
+\lst@length=\count146
+\lst@currlwidth=\dimen155
+\lst@column=\count147
+\lst@pos=\count148
+\lst@lostspace=\dimen156
+\lst@width=\dimen157
+\lst@newlines=\count149
+\lst@lineno=\count150
+\c@lstlisting=\count151
+\lst@maxwidth=\dimen158
 
 (/opt/local/share/texmf-dist/tex/latex/listings/lstpatch.sty
 File: lstpatch.sty 2004/10/17 1.3b (Carsten Heinz)
 )
 (/opt/local/share/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2004/09/07 1.3 (Carsten Heinz)
-\c@lstnumber=\count159
-\lst@skipnumbers=\count160
-\lst@framebox=\box34
+\c@lstnumber=\count152
+\lst@skipnumbers=\count153
+\lst@framebox=\box31
 )
 (/opt/local/share/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2004/09/05 1.3 listings configuration
@@ -538,16 +516,16 @@ Type  X <return>  to quit or cross your fingers and just type <return>.
 
 \fb@ins=\insert229
 \fb@auxout=\write6
-\fb@numunit=\count161
-\fb@citeunit=\count162
-\fb@xrefunit=\count163
-\fb@prevpage=\count164
-\fb@refcount=\count165
-\fb@lbl=\toks30
-\fb@txt=\toks31
-\fb@citecount=\count166
-\fb@lastrefnumunit=\count167
-\fb@lblwidth=\dimen167
+\fb@numunit=\count154
+\fb@citeunit=\count155
+\fb@xrefunit=\count156
+\fb@prevpage=\count157
+\fb@refcount=\count158
+\fb@lbl=\toks29
+\fb@txt=\toks30
+\fb@citecount=\count159
+\fb@lastrefnumunit=\count160
+\fb@lblwidth=\dimen159
 ) (/opt/local/share/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
 
@@ -559,12 +537,12 @@ LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
 Package: mathpazo 2005/04/12 PSNFSS-v9.2a Palatino w/ Pazo Math (D.Puga, WaS) 
 \symupright=\mathgroup8
 )
-LaTeX Font Info:    Try loading font information for T1+pplx on input line 84.
+LaTeX Font Info:    Try loading font information for T1+pplx on input line 81.
 
 (/opt/local/share/texmf-dist/tex/latex/psnfss/t1pplx.fd
 File: t1pplx.fd 2004/09/06 font definitions for T1/pplx.
 )
-LaTeX Font Info:    Try loading font information for T1+cmss on input line 84.
+LaTeX Font Info:    Try loading font information for T1+cmss on input line 81.
 
 (/opt/local/share/texmf-dist/tex/latex/base/t1cmss.fd
 File: t1cmss.fd 1999/05/25 v2.5h Standard LaTeX font definitions
@@ -576,11 +554,11 @@ Package: everysel 1999/06/08 v1.03 EverySelectfont Package (MS)
 Package: fancyvrb 1998/07/17
 
 Style option: `fancyvrb' v2.6, with DG/SPQR fixes <1998/07/17> (tvz)
-\FV@CodeLineNo=\count168
+\FV@CodeLineNo=\count161
 \FV@InFile=\read2
-\FV@TabBox=\box35
-\c@FancyVerbLine=\count169
-\FV@StepNumber=\count170
+\FV@TabBox=\box32
+\c@FancyVerbLine=\count162
+\FV@StepNumber=\count163
 \FV@OutFile=\write7
 
 No file fancyvrb.cfg.
@@ -592,65 +570,18 @@ File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package color Info: Driver file: pdftex.def on input line 130.
 )
-(/opt/local/share/texmf-dist/tex/latex/tools/multicol.sty
-Package: multicol 2006/05/18 v1.6g multicolumn formatting (FMi)
-\c@tracingmulticols=\count171
-\mult@box=\box36
-\multicol@leftmargin=\dimen168
-\c@unbalance=\count172
-\c@collectmore=\count173
-\doublecol@number=\count174
-\multicoltolerance=\count175
-\multicolpretolerance=\count176
-\full@width=\dimen169
-\page@free=\dimen170
-\premulticols=\dimen171
-\postmulticols=\dimen172
-\multicolsep=\skip195
-\multicolbaselineskip=\skip196
-\partial@page=\box37
-\last@line=\box38
-\mult@rightbox=\box39
-\mult@grightbox=\box40
-\mult@gfirstbox=\box41
-\mult@firstbox=\box42
-\@tempa=\box43
-\@tempa=\box44
-\@tempa=\box45
-\@tempa=\box46
-\@tempa=\box47
-\@tempa=\box48
-\@tempa=\box49
-\@tempa=\box50
-\@tempa=\box51
-\@tempa=\box52
-\@tempa=\box53
-\@tempa=\box54
-\@tempa=\box55
-\@tempa=\box56
-\@tempa=\box57
-\@tempa=\box58
-\@tempa=\box59
-\c@columnbadness=\count177
-\c@finalcolumnbadness=\count178
-\last@try=\dimen173
-\multicolovershoot=\dimen174
-\multicolundershoot=\dimen175
-\mult@nat@firstbox=\box60
-\colbreak@box=\box61
-)
 (/opt/local/share/texmf-dist/tex/latex/graphics/lscape.sty
 Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
 )
 (/opt/local/share/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2007/02/05 8.0 (PWD)
-\bibhang=\skip197
-\bibsep=\skip198
+\bibhang=\skip195
+\bibsep=\skip196
 LaTeX Info: Redefining \cite on input line 602.
-\c@NAT@ctr=\count179
+\c@NAT@ctr=\count164
 )
-\c@Example=\count180
-\c@CodeExample=\count181
+\c@Example=\count165
+\c@CodeExample=\count166
 ) (./print-chapter.aux)
 \openout1 = `print-chapter.aux'.
 
@@ -668,18 +599,18 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 4.
 LaTeX Font Info:    ... okay on input line 4.
  (/opt/local/share/texmf-dist/tex/context/base/supp-pdf.tex
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count182
-\scratchdimen=\dimen176
-\scratchbox=\box62
-\nofMPsegments=\count183
-\nofMParguments=\count184
-\MPscratchCnt=\count185
-\MPscratchDim=\dimen177
-\MPnumerator=\count186
-\everyMPtoPDFconversion=\toks32
+\scratchcounter=\count167
+\scratchdimen=\dimen160
+\scratchbox=\box33
+\nofMPsegments=\count168
+\nofMParguments=\count169
+\MPscratchCnt=\count170
+\MPscratchDim=\dimen161
+\MPnumerator=\count171
+\everyMPtoPDFconversion=\toks31
 ) (./print-chapter.fb.bbl
-\@bracelevel=\count187
-\@bgrouplineno=\count188
+\@bracelevel=\count172
+\@bgrouplineno=\count173
 ) (./print-chapter.fb.aux)
 \openout6 = `print-chapter.fb.aux'.
 
@@ -805,18 +736,18 @@ File: spss-11-formula-editor.png Graphic file (type png)
 <use spss-11-formula-editor.png> [9 <./spss-11-formula-editor.png>]
 LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <10> not available
 (Font)              Font shape `T1/pplx/b/n' tried instead on input line 548.
- [10]
-<ex-listbox.png, id=50, 183.40218pt x 152.72151pt>
+
+<ex-listbox.png, id=47, 183.40218pt x 152.72151pt>
 File: ex-listbox.png Graphic file (type png)
  <use ex-listbox.png>
-<tcltk-tkdensity.png, id=51, 179.99321pt x 199.76518pt>
+<tcltk-tkdensity.png, id=48, 179.99321pt x 199.76518pt>
 File: tcltk-tkdensity.png Graphic file (type png)
 
-<use tcltk-tkdensity.png> [11 <./ex-listbox.png (PNG copy)> <./tcltk-tkdensity.
-png>] [12] [13] [14] <fig-spotfire.png, id=66, 854.19125pt x 744.7825pt>
+<use tcltk-tkdensity.png> [10] [11 <./ex-listbox.png (PNG copy)> <./tcltk-tkden
+sity.png>] [12] [13] <fig-spotfire.png, id=63, 854.19125pt x 744.7825pt>
 File: fig-spotfire.png Graphic file (type png)
 
-<use fig-spotfire.png> [15 <./fig-spotfire.png>]
+<use fig-spotfire.png> [14] [15 <./fig-spotfire.png>]
 <JGR-object-browser.png, id=71, 428.60126pt x 415.5525pt>
 File: JGR-object-browser.png Graphic file (type png)
 
@@ -841,32 +772,25 @@ File: fig-basics-spring.png Graphic file (type png)
 
 <use fig-basics-spring.png> [21]) [22 <./fig-basics-hor-ver.png> <./fig-basics-
 fill.png> <./fig-basics-alignment.png> <./fig-basics-spring.png>]
-(./print-chapter.fb.aux)
-
-Package footbib Warning: Bibliography not yet stable. Rerun LaTeX.
-
-(./print-chapter.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+(./print-chapter.fb.aux) (./print-chapter.aux) ) 
 Here is how much of TeX's memory you used:
- 8092 strings out of 94073
- 105862 string characters out of 1164798
- 237613 words of memory out of 1500000
- 11233 multiletter control sequences out of 10000+50000
+ 7923 strings out of 94073
+ 103384 string characters out of 1164798
+ 231629 words of memory out of 1500000
+ 11072 multiletter control sequences out of 10000+50000
  63550 words of font info for 119 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
  33i,12n,41p,550b,1701s stack positions out of 5000i,500n,6000p,200000b,5000s
-{/opt/local/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/opt/l
-ocal/share/texmf-dist/fonts/enc/dvips/base/8r.enc}</opt/local/share/texmf-dist/
-fonts/type1/bluesky/cm/cmsy10.pfb></opt/local/share/texmf-dist/fonts/type1/publ
-ic/cm-super/sftt0800.pfb></opt/local/share/texmf-dist/fonts/type1/public/cm-sup
-er/sftt0900.pfb></opt/local/share/texmf-dist/fonts/type1/public/cm-super/sftt10
-00.pfb></opt/local/share/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></opt/l
-ocal/share/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></opt/local/share/tex
-mf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on print-chapter.pdf (22 pages, 636156 bytes).
+{/opt/local/share/texmf-dist/fo
+nts/enc/dvips/cm-super/cm-super-t1.enc}{/opt/local/share/texmf-dist/fonts/enc/d
+vips/base/8r.enc}</opt/local/share/texmf-dist/fonts/type1/bluesky/cm/cmsy10.pfb
+></opt/local/share/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></opt/lo
+cal/share/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb></opt/local/share
+/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></opt/local/share/texmf-di
+st/fonts/type1/urw/palatino/uplb8a.pfb></opt/local/share/texmf-dist/fonts/type1
+/urw/palatino/uplr8a.pfb></opt/local/share/texmf-dist/fonts/type1/urw/palatino/
+uplri8a.pfb>
+Output written on print-chapter.pdf (22 pages, 634067 bytes).
 PDF statistics:
  129 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)

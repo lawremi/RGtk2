@@ -104,7 +104,7 @@ approach to showing the dialog depends on whether the dialog should be
 modal. A \igui{modal dialog}modal dialog is displayed with the \method{exec}{QDialog}
 method. 
 <<qt-dialogs-exec>>=
-dialog$exec()                           # returns response code
+dialog$exec()                       # returns response code
 @ 
 As its name implies, \method{exec}{QDialog} executes a loop
 that will block until the user responds. As with the static

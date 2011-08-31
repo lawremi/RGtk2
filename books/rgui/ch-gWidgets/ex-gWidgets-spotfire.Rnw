@@ -44,7 +44,7 @@ descr <- glabel(gettext("A basic GUI to explore a data set"),
 @ 
 %
 Now we specify the layout for the second tab. This is a nested layout
-made up of three box containers. The first, \code{g}, uses a
+made up of three box containers. The first, \code{group}, uses a
 horizontal layout in which we pack in box containers that will use a
 vertical layout.
 
@@ -75,7 +75,7 @@ tbl <- gtable(Cars93, cont = left_group, multiple = TRUE,
 size(tbl) <- c(500, 200)                # set size
 label_group <- ggroup(cont = left_group)
 addSpring(label_group)
-noCases <- glabel("", cont = label_group)
+no_cases <- glabel("", cont = label_group)
 @
 
 The right panel is used to provide the user a means to filter the
@@ -122,7 +122,7 @@ graphic.
 
 For the first, we need to compute a logical variable indicating which
 rows are to be displayed.  Within the definition of the following function, we
-use the global variables \code{l}, \code{tbl} and \code{noCases}.
+use the global variables \code{widget\_list}, \code{tbl} and \code{no\_cases}.
 <<handlers>>=
 update_data_frame <- function(...) {
   vals <- lapply(widget_list, svalue)
@@ -136,7 +136,7 @@ update_data_frame <- function(...) {
   ## update label
   nsprintf <- function(n, msg1, msg2,...)
     ngettext(n, sprintf(msg1, n), sprintf(msg2,n), ...)
-  svalue(noCases) <- nsprintf(sum(ind), "%s case", "%s cases")
+  svalue(no_cases) <- nsprintf(sum(ind), "%s case", "%s cases")
 }
 @
 

@@ -175,7 +175,7 @@ finished application. The full details are found in the code in our accompanying
 package \pkg{ProgGUIinR}. 
 
 \paragraph{Command pattern}
-Now we discuss how the \iprogram{command pattern}\DFn{command pattern}
+Now we discuss how the \iprogram{command pattern}\Dfn{command pattern}
 was implemented to provide a simple undo and redo feature to our
 editing.  According to \footcite{head-first-design-patterns}, the
 command pattern is used to \iprogram{encapsulation}encapsulate a

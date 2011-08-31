@@ -1007,7 +1007,7 @@ transient for the window. That is, it will be disposed when the parent
 window is. This is useful, say, when a main window opens a dialog
 window to gather values.
 
-For example this call makes a child window of \code{w} with a square
+For example this call makes a child window of \code{window} with a square
 size of 200 pixels.
 \begin{Schunk}
 \begin{Sinput}
@@ -4465,7 +4465,7 @@ description would be warranted in an actual application.
 \end{Schunk}
 %
 Now we specify the layout for the second tab. This is a nested layout
-made up of three box containers. The first, \code{g}, uses a
+made up of three box containers. The first, \code{group}, uses a
 horizontal layout in which we pack in box containers that will use a
 vertical layout.
 
@@ -4501,7 +4501,7 @@ of the box container.
  size(tbl) <- c(500, 200)                # set size
  label_group <- ggroup(cont = left_group)
  addSpring(label_group)
- noCases <- glabel("", cont = label_group)
+ no_cases <- glabel("", cont = label_group)
 \end{Sinput}
 \end{Schunk}
 
@@ -4552,7 +4552,7 @@ graphic.
 
 For the first, we need to compute a logical variable indicating which
 rows are to be displayed.  Within the definition of the following function, we
-use the global variables \code{l}, \code{tbl} and \code{noCases}.
+use the global variables \code{widget\_list}, \code{tbl} and \code{no\_cases}.
 \begin{Schunk}
 \begin{Sinput}
  update_data_frame <- function(...) {
@@ -4567,7 +4567,7 @@ use the global variables \code{l}, \code{tbl} and \code{noCases}.
    ## update label
    nsprintf <- function(n, msg1, msg2,...)
      ngettext(n, sprintf(msg1, n), sprintf(msg2,n), ...)
-   svalue(noCases) <- nsprintf(sum(ind), "%s case", "%s cases")
+   svalue(no_cases) <- nsprintf(sum(ind), "%s case", "%s cases")
  }
 \end{Sinput}
 \end{Schunk}

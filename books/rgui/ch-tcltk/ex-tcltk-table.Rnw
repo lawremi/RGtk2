@@ -97,7 +97,8 @@ tkpack(filter_entry, side = "left")
 
 The treeview  will only show the first three columns of the data frame, although we store the fourth which contains the URL.
 <<makeTreeview>>=
-frame_1 <- ttkframe(frame); tkpack(frame_1, expand = TRUE, fill = "both")
+frame_1 <- ttkframe(frame)
+tkpack(frame_1, expand = TRUE, fill = "both")
 treeview <- ttktreeview(frame_1, columns = 1:ncol(DF), 
                   displaycolumns = 1:(ncol(DF) - 1), 
                   show = "headings",     # not "tree" 

@@ -60,7 +60,8 @@ add_sparkline <- function(label, symbol = "MSFT") {
   start <- y[1]; end <- tail(y,n = 1)
   rng <- range(y)
   ##
-  spark_line_canvas <- tkcanvas(frame, width = width, height = height)
+  spark_line_canvas <- tkcanvas(frame,
+                                width = width, height = height)
   x <- 0:(length(y)-1) * width/length(y)
   if(diff(rng) !=  0) {
     y1 <- (y - rng[1])/diff(rng) * height
@@ -82,7 +83,7 @@ add_sparkline <- function(label, symbol = "MSFT") {
 @ 
 
 We can then add some rows to the table as follows:
-<<eval = FALSE>> = 
+<<eval = FALSE>>= 
 add_sparkline("Microsoft","MSFT")
 add_sparkline("General Electric", "GE")
 add_sparkline("Starbucks","SBUX")

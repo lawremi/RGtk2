@@ -214,7 +214,7 @@ the time of construction of the widget, or configured thereafter. Tags
 can be set when the text is inserted by appending to the argument
 list, as with
 <<>>=
-tkinsert(txt_widget, "end", "last words", "lastWords") # lastWords tag
+tkinsert(txt_widget, "end", "last words", "lastWords") 
 @ 
 
 Tags can be set after the text is added through the
@@ -645,7 +645,7 @@ widget. For example:
 window <- tktoplevel()
 m <- sapply(mtcars, as.character)
 a <- populate_rectangular_treeview(window, m)
-tkconfigure(a$treeview, selectmode = "extended") # multiple selection
+tkconfigure(a$treeview, selectmode = "extended") # multiple 
 tkconfigure(a$frame, width = 300, height = 200) # frame size
 tkpack(a$frame, expand = TRUE, fill = "both")
 @ 

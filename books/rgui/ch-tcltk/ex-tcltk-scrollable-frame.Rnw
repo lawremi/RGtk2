@@ -82,12 +82,15 @@ and the useful coercion to character by \function{as.character}.
 <<>>=
 font_families <- as.character(tkfont.families())
 ## skip odd named ones
-font_families <- font_families[grepl("^[[:alpha:]]", font_families)] 
+font_families <- font_families[grepl("^[[:alpha:]]",
+                                     font_families)] 
 for(i in seq_along(font_families)) {
   font_name <- sprintf("::font::-%s", i)
-  try(tkfont.create(font_name, family = font_families[i], size = 14), 
+  try(tkfont.create(font_name, family = font_families[i],
+                    size = 14), 
       silent = TRUE)
-  l <- ttklabel(scroll_frame, text = font_families[i], font = font_name)
+  l <- ttklabel(scroll_frame, text = font_families[i],
+                font = font_name)
   tkpack(l, side = "top", anchor = "w")
 }
 @ 

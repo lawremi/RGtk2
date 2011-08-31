@@ -805,7 +805,8 @@ tkadd(notebook, page2_label, sticky = "nswe", text = "label 2",
     image = icon_name, compound = "right")
 ## put page 1 label first (a tabID of 0); use tkinsert
 page1_label <- ttklabel(notebook, text = "Page 1")
-tkinsert(notebook, 0, page1_label, sticky = "nswe", text = "label 1")
+tkinsert(notebook, 0, page1_label, sticky = "nswe", 
+         text = "label 1")
 @ 
 %
 There are several useful subcommands to extract information from the
@@ -815,11 +816,11 @@ the displayed page, and \code{forget} to remove a page from the
 notebook. (There is no means to place close icons on the tabs.)
 Except for \code{tabs}, these require a specification of a tab ID.
 <<>>=
-tcl(notebook, "index", "current")           # current page for tabID
+tcl(notebook, "index", "current")    # current page for tabID
 length(as.character(tcl(notebook,"tabs")))  # number of pages
-tcl(notebook, "select", 0)        # select viewable page by index
-tcl(notebook, "forget", page1_label)       # "forget" removes a page
-tcl(notebook, "add", page1_label)          # can be managed again.
+tcl(notebook, "select", 0)           # select by index
+tcl(notebook, "forget", page1_label) # "forget" removes a page
+tcl(notebook, "add", page1_label)    # can be managed again.
 @
 %
 

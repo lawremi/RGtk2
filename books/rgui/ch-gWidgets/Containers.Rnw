@@ -153,7 +153,7 @@ transient for the window. That is, it will be disposed when the parent
 window is. This is useful, say, when a main window opens a dialog
 window to gather values.
 
-For example this call makes a child window of \code{w} with a square
+For example this call makes a child window of \code{window} with a square
 size of 200 pixels.
 <<childWindowTest>>=
 child_window <- gwindow("A child window", parent = window, 

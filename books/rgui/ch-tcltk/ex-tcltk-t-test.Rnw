@@ -191,12 +191,15 @@ conf_level_frame <- ttkframe(label_frame)
 tkgrid(conf_level_frame, row = 3, column = 3, columnspan = 2, 
        sticky = "ew", padx = 2)
 ##
-conf_level_scale <- ttkscale(conf_level_frame, from = 75, to = 100, 
+conf_level_scale <- ttkscale(conf_level_frame, 
+                     from = 75, to = 100,  
                      variable = e$conf.level)
-conf_level_spin <- tkspinbox(conf_level_frame, from = 75, to = 100, increment = 1, 
+conf_level_spin <- tkspinbox(conf_level_frame, 
+                     from = 75, to = 100, increment = 1, 
                      textvariable = e$conf.level, width = 5)
 ##
-tkpack(conf_level_scale, expand = TRUE, fill = "y", side = "left")
+tkpack(conf_level_scale, expand = TRUE, fill = "y",
+       side = "left")
 tkpack(conf_level_spin, side = "left")
 @ 
 
@@ -215,9 +218,10 @@ cancel_button <- ttkbutton(button_frame, text = "cancel")
 ok_button <- ttkbutton(button_frame, text = "ok")
 #
 tkpack(button_frame, fill = "x", padx = 5, pady = 5)
-tkpack(ttklabel(button_frame, text = " "), expand = TRUE, fill = "y", 
-       side = "left")                     # add a spring
-sapply(list(cancel_button, ok_button), tkpack, side = "left", padx = 6)
+tkpack(ttklabel(button_frame, text = " "), expand = TRUE,
+       fill = "y", side = "left")               # add a spring
+sapply(list(cancel_button, ok_button), tkpack, 
+       side = "left", padx = 6)
 @ 
 %
 
@@ -249,7 +253,8 @@ update_ui <- function() {
 
   if(dfName == "") {
     ## 3 ways to disable needed!!
-    x <- list(x_combo, factor_combo, mu_combo,  conf_level_scale, var_equal_check, ok_button)
+    x <- list(x_combo, factor_combo, mu_combo,  
+              conf_level_scale, var_equal_check, ok_button)
     sapply(x, function(W) tcl(W, "state", "disabled"))
     sapply(as.character(tkwinfo("children", rb_frame)), 
            function(W) tcl(W, "state", "disabled"))

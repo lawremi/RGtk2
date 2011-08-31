@@ -479,8 +479,8 @@ column <- view$getColumn(0)
 column$setSortColumnId(0)
 @ 
 %
-In the above, clicking on the header of the first view column,
-\code{vc}, will sort by the first model column. Behind the scenes,
+In the above, clicking on the header of the first view column will
+sort by the first model column. Behind the scenes,
 \class{GtkTreeViewColumn} will set its sort column as the sort column
 on the model, i.e.:
 <<rgtk2-mvc-sorting-sortable>>=

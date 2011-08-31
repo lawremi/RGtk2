@@ -48,9 +48,10 @@ if(!is.null(parent)) {
   if(as.logical(tkwinfo("viewable", parent_window))) {
     tkwm.transient(window, parent)
     if(as.character(tcl("tk", "windowingsystem")) == "aqua") {
-      tcl("wm","attributes", parent_window, notify = TRUE) # bounce
-      tkbind(parent_window, "<Enter>", function()        # stop
-             tcl("wm","attributes", parent_window, notify = FALSE)) 
+      tcl("wm","attributes", parent_window, notify = TRUE)
+      tkbind(parent_window, "<Enter>", function() # stop bounce
+             tcl("wm","attributes", parent_window, 
+                 notify = FALSE)) 
     }
   }
 }
@@ -59,7 +60,7 @@ if(!is.null(parent)) {
 We will use a standard layout for our dialog with an icon on the left,
 a message and buttons on the right. We pack the icon into the left side of the frame,
 <<>>=
-label <- ttklabel(frame, image = "::img::tclLogo", padding = 5) # recycle
+label <- ttklabel(frame, image = "::img::tclLogo", padding = 5) 
 tkpack(label, side = "left")
 @ 
 
@@ -84,9 +85,10 @@ ok_callback <- function() {
   print("That's great")
   tkdestroy(w)
 }
-ok_button <- ttkbutton(frame_2, text = "OK", command = ok_callback)
+ok_button <- ttkbutton(frame_2, text = "OK", 
+                       command = ok_callback)
 cancel_button <- ttkbutton(frame_2, text = "Cancel", 
-                          command = function() tkdestroy(window))
+                    command = function() tkdestroy(window))
 #
 tkpack(ok_button, side = "left", padx = 12)  # give some space
 tkpack(cancel_button)

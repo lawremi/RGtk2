@@ -134,7 +134,8 @@ FilterList$methods(
              tkbind(a$tr, "<<TreeviewSelect>>", function(W) {
                sel <- tcl(W, "selection")
                val <- tcl(W, "item", sel, "-values")
-               assign("out", as.character(val)[1], inherits = TRUE)
+               assign("out", as.character(val)[1], 
+                      inherits = TRUE)
                tkdestroy(window)
              })
              tkwait.window(window)
@@ -164,7 +165,8 @@ FilterList$methods(
              item <- newFilterItem(x, variable_name, id, .self)
              ## make frame
              enc_frame <- ttkframe(frame)
-             tkpack(enc_frame, expand = TRUE, fill = "both", pady = 2)
+             tkpack(enc_frame, 
+                    expand = TRUE, fill = "both", pady = 2)
              l[[as.character(id)]] <<- list(frame = enc_frame, 
                                             item = item)
              item$make_gui(enc_frame)
@@ -241,7 +243,7 @@ FilterList$methods(
              tkpack(a$frame, expand = TRUE, fill = "both")
              ##
              button <- ttkbutton(fr, text = "dismiss", 
-                              command = function() tkdestroy(window))
+                         command = function() tkdestroy(window))
              tkpack(button, anchor = "sw")
              tkwait.window(window)
            })
@@ -356,12 +358,13 @@ FilterItemNumeric <- setRefClass("FilterItemNumeric",
 
 With these two properties, our \meth{get\_value} method becomes a
 matter of pasting together an expression then \iprogram{evaluating strings}evaluating it. We
-evaluate this within the data frame so that \code{value_variable} could use
+evaluate this within the data frame so that \code{value\_variable} could use
 variable names from the data framed. 
 <<FilterItemNumericGetValue>>=
 FilterItemNumeric$methods(
       get_value = function() {
-        xpr <- paste(nm, tclvalue(ineq_variable), tclvalue(value_variable))
+        xpr <- paste(nm, tclvalue(ineq_variable), 
+                     tclvalue(value_variable))
         eval(parse(text = xpr), 
              envir = list_ref$DF, parent.frame())
       })
@@ -376,23 +379,23 @@ entry widget gives more flexibility in the specification. We see that
 we simply pack these widgets into the parent that is passed in to the method call.
 <<FilterItemNumericMakeGui>>=
 FilterItemNumeric$methods(
-          make_gui = function(parent) {
-            ## standard width for label
-            label_width <- max(sapply(names(list_ref$DF), nchar))
-            label <- ttklabel(parent, text = nm, width = label_width)
-            ## ineq combo
-            vals <- c(">=", ">", "==", "!=", "<", "<=")
-            ineq_variable <<- tclVar("<=")
-            ineq <- ttkcombobox(parent, values = vals, 
-                                textvariable = ineq_variable, width = 4)
-            ## entry
-            value_variable <<- tclVar(max(x, na.rm = TRUE))
-            val <- ttkentry(parent, textvariable = value_variable)
-            ##
-            sapply(list(label, ineq, val), tkpack, side = "left",
-                   padx = 5)
-            callSuper(parent)
-          })
+      make_gui = function(parent) {
+        ## standard width for label
+        label_width <- max(sapply(names(list_ref$DF), nchar))
+        label <- ttklabel(parent, text = nm, width = label_width)
+        ## ineq combo
+        vals <- c(">=", ">", "==", "!=", "<", "<=")
+        ineq_variable <<- tclVar("<=")
+        ineq <- ttkcombobox(parent, values = vals, 
+                   textvariable = ineq_variable, width = 4)
+        ## entry
+        value_variable <<- tclVar(max(x, na.rm = TRUE))
+        val <- ttkentry(parent, textvariable = value_variable)
+        ##
+        sapply(list(label, ineq, val), tkpack, side = "left",
+               padx = 5)
+        callSuper(parent)
+      })
 
 @ 
 %
@@ -525,7 +528,8 @@ FilterItemCharacter$methods(make_gui = function(parent) {
             cur_vals <<- poss_vals
             ## label, ineq, val
             label_width <- max(sapply(names(list_ref$DF), nchar))
-            label <- ttklabel(parent, text = nm, width = label_width)
+            label <- ttklabel(parent, text = nm, 
+                              width = label_width)
             ##
             in_label <- ttklabel(parent, text = "%in%")
             ##
@@ -534,7 +538,8 @@ FilterItemCharacter$methods(make_gui = function(parent) {
             ##
             sapply(list(label, in_label), tkpack,
                    side = "left", padx = 5)
-            tkpack(button, expand = TRUE, fill = "x", side = "left")
+            tkpack(button, 
+                   expand = TRUE, fill = "x", side = "left")
             callSuper(parent)
           })
 @ 

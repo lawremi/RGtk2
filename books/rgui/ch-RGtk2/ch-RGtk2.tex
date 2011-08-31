@@ -155,7 +155,7 @@ interfaces implemented by \class{GtkWidget}:
  gTypeGetInterfaces("GtkWidget")
 \end{Sinput}
 \begin{Soutput}
-[1] "GtkBuildable"        "AtkImplementorIface"
+[1] "AtkImplementorIface" "GtkBuildable"       
 \end{Soutput}
 \end{Schunk}
 
@@ -296,7 +296,7 @@ interfaces it implements:
  interface(window)
 \end{Sinput}
 \begin{Soutput}
-[1] "GtkBuildable"        "AtkImplementorIface"
+[1] "AtkImplementorIface" "GtkBuildable"       
 \end{Soutput}
 \end{Schunk}
 
@@ -4454,8 +4454,8 @@ for sorting when the header is clicked:
 \end{Sinput}
 \end{Schunk}
 %
-In the above, clicking on the header of the first view column,
-\code{vc}, will sort by the first model column. Behind the scenes,
+In the above, clicking on the header of the first view column will
+sort by the first model column. Behind the scenes,
 \class{GtkTreeViewColumn} will set its sort column as the sort column
 on the model, i.e.:
 \begin{Schunk}
@@ -6059,14 +6059,14 @@ $retval
 NULL
 
 $start
-<pointer: 0x12491feb0>
+<pointer: 0x124023d90>
 attr(,"interfaces")
 character(0)
 attr(,"class")
 [1] "GtkTextIter" "GBoxed"      "RGtkObject" 
 
 $end
-<pointer: 0x12491fe10>
+<pointer: 0x124023ca0>
 attr(,"interfaces")
 character(0)
 attr(,"class")
@@ -7403,7 +7403,7 @@ finished application. The full details are found in the code in our accompanying
 package \pkg{ProgGUIinR}. 
 
 \paragraph{Command pattern}
-Now we discuss how the \iprogram{command pattern}\DFn{command pattern}
+Now we discuss how the \iprogram{command pattern}\Dfn{command pattern}
 was implemented to provide a simple undo and redo feature to our
 editing.  According to \footcite{head-first-design-patterns}, the
 command pattern is used to \iprogram{encapsulation}encapsulate a

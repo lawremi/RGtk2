@@ -83,7 +83,8 @@ Then a command to evaluate just the current selection
 tkadd(file_menu, "command", label = "Evaluate selection",
       state = "disabled",
       command =  function() {
-        cur_sel <- tclvalue(tkget(text_buffer, "sel.first", "sel.last"))
+        cur_sel <- tclvalue(tkget(text_buffer,
+                                  "sel.first", "sel.last"))
         showCmd(cur_sel)
       })
 @ 
@@ -100,7 +101,8 @@ The edit menu has an undo and redo item. For illustration purposes we add an ico
 img <- system.file("images","up.gif", package = "gWidgets")
 tkimage.create("photo", "::img::undo", file = img)
 tkadd(edit_menu, "command", label = "Undo",
-      image = "::img::undo", compound = "left", state = "disabled",
+      image = "::img::undo", compound = "left", 
+      state = "disabled",
       command = function() tcl(text_buffer, "edit", "undo"))
 tkadd(edit_menu, "command", label = "Redo", state = "disabled",
       command = function() tcl(text_buffer, "edit", "redo"))
@@ -139,10 +141,14 @@ top-level window for the keyboard shortcut for ``undo.''
 <<addKeyboardShortcut>>=
 if(using_Mac()) {
   tkentryconfigure(edit_menu, "Undo", accelerator = "Cmd-z")
-  tkbind(window, "<Option-z>", function() tcl(text_buffer, "edit", "undo"))
+  tkbind(window, "<Option-z>", function() {
+    tcl(text_buffer, "edit", "undo")
+  })
 } else {
   tkentryconfigure(edit_menu, "Undo", accelerator = "Control-u")
-  tkbind(window, "<Control-u>", function() tcl(text_buffer, "edit", "undo"))
+  tkbind(window, "<Control-u>", function() {
+    tcl(text_buffer, "edit", "undo")
+  })
 }
 @ 
 %
@@ -162,7 +168,7 @@ do_popup <- function(W, X, Y) {
                                 "current wordend")
   possible_vals <- head(completion(cur)[,1, drop = TRUE], n = 20)
   if(length(possible_vals) > 1) {
-    popup <- tkmenu(text_buffer)                # create menu for popup
+    popup <- tkmenu(text_buffer)         # create menu for popup
     sapply(possible_vals, function(i) {         
       tkadd(popup, "command", label = i, command = function() {
         tcl(W,"replace", "popup.first", "popup.last", i)

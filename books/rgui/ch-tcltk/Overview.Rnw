@@ -1183,7 +1183,8 @@ Example~\ref{ex-tcltk-dnd} will put these to use.
 
 <<>>=
 window <- tktoplevel()
-button <- ttkbutton(window, text = "Click me to record the x,y position")
+button <- 
+  ttkbutton(window, text = "Click me for the x,y position")
 tkpack(button)
 tkbind(button, "<ButtonPress-1>", function(W, x, y, X, Y) {
   print(W)                              # an ID

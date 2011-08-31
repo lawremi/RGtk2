@@ -1,15 +1,15 @@
 ###################################################
 ### chunk number 1: define-board
 ###################################################
-#line 24 "TicTacToe.Rnw"
+#line 25 "TicTacToe.Rnw"
 board <- matrix(rep(0,9), nrow=3)      
 
 
 ###################################################
-### chunk number 2: layoutBoard
+### chunk number 2: layout_board
 ###################################################
-#line 33 "TicTacToe.Rnw"
-layoutBoard <- function() {
+#line 34 "TicTacToe.Rnw"
+layout_board <- function() {
   plot.new()
   plot.window(xlim=c(1,4), ylim=c(1,4))
   abline(v=2:3);  abline(h=2:3)
@@ -18,37 +18,37 @@ layoutBoard <- function() {
 
 
 ###################################################
-### chunk number 3: doPlay
+### chunk number 3: do_play
 ###################################################
-#line 58 "TicTacToe.Rnw"
-doPlay <- function() {
+#line 59 "TicTacToe.Rnw"
+do_play <- function() {
   iloc <- locator(n=1, type="n")
-  clickHandler(iloc)
+  click_handler(iloc)
 }
 
 
 ###################################################
-### chunk number 4: clickHandler
+### chunk number 4: click_handler
 ###################################################
-#line 83 "TicTacToe.Rnw"
-clickHandler <- function(iloc) {
+#line 92 "TicTacToe.Rnw"
+click_handler <- function(iloc) {
   if(is.null(iloc)) 
     stop("Game terminated early")
   move <- floor(unlist(iloc))
-  drawMove(move,"x")
+  draw_move(move,"x")
   board[3*(move[2]-1) + move[1]] <<- 1
-  if(!isFinished()) 
-    doComputerMove()
-  if(!isFinished()) 
-    doPlay()
+  if(!is_finished()) 
+    do_computer_move()
+  if(!is_finished()) 
+    do_play()
 }
 
 
 ###################################################
-### chunk number 5: drawMove
+### chunk number 5: draw_move
 ###################################################
-#line 121 "TicTacToe.Rnw"
-drawMove <- function(z,type="x") {
+#line 133 "TicTacToe.Rnw"
+draw_move <- function(z,type="x") {
   i <- max(1,min(3,z[1])); j <- max(1,min(3,z[2]))
   if(type == "x") {
     lines(i + c(.1,.9),j + c(.1,.9))
@@ -61,10 +61,10 @@ drawMove <- function(z,type="x") {
 
 
 ###################################################
-### chunk number 6: isFinished
+### chunk number 6: is_finished
 ###################################################
-#line 144 "TicTacToe.Rnw"
-isFinished <- function() {
+#line 156 "TicTacToe.Rnw"
+is_finished <- function() {
   (any(abs(rowSums(board)) == 3) || 
    any(abs(colSums(board)) == 3) || 
    abs(sum(diag(board))) == 3 || 
@@ -73,24 +73,25 @@ isFinished <- function() {
 
 
 ###################################################
-### chunk number 7: doComputerMove
+### chunk number 7: do_computer_move
 ###################################################
-#line 157 "TicTacToe.Rnw"
-doComputerMove <- function() {
-  newMove <- sample(which(board == 0),1) # random !
-  board[newMove] <<- -1    
-  z <- c((newMove-1) %% 3, (newMove-1) %/% 3) + 1
-  drawMove(z,"o")
+#line 169 "TicTacToe.Rnw"
+do_computer_move <- function() {
+  new_move <- sample(which(board == 0),1) # random !
+  board[new_move] <<- -1    
+  z <- c((new_move-1) %% 3, (new_move-1) %/% 3) + 1
+  draw_move(z,"o")
 }
 
 
 ###################################################
-### chunk number 8: playGame
+### chunk number 8: play_game
 ###################################################
-#line 174 "TicTacToe.Rnw"
-playGame <- function() {
-  layoutBoard()
-  doPlay()
+#line 186 "TicTacToe.Rnw"
+play_game <- function() {
+  board <<- matrix(rep(0,9), nrow=3)  
+  layout_board()
+  do_play()
   mtext("All done\n",1)
 }
 

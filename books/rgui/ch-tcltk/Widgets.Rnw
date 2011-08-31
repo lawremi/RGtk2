@@ -81,7 +81,7 @@ frame <- ttkframe(window); tkpack(frame, expand = TRUE, fill = "both")
 
 <<make-TCL-variables>>=
 value_var <- tclVar(TRUE)
-callback <- function() print(tclvalue(value_var))   # uses global
+callback <- function() print(tclvalue(value_var)) # uses global
 label_var <- tclVar("check button label")
 check_button <- 
   ttkcheckbutton(frame, variable = value_var, 
@@ -129,7 +129,7 @@ get_tcl_var_by_id <- function(id) {
 }
 @ 
 
-Assuming we used \function{our_tcl_var} above, then the callback above
+Assuming we used \function{our\_tcl\_var} above, then the callback above
 could be defined to avoid a (new) global variable by:
 
 <<our_tcl_varExample, echo=FALSE>>=

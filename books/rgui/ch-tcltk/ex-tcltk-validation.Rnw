@@ -133,10 +133,10 @@ widget receives the focus; \qcode{focusout} for when it loses focus;
 previous. We use \qcode{focusout} below, so also give a button widget
 so that the focus can be set elsewhere. 
 <<entryWidgetWithValidation, results=hide>>=
-entry <- ttkentry(frame, validate = "focusout", # f some parent
-              validatecommand = is_valid_date,
-              invalidcommand = indicate_invalid_date)
-button <- ttkbutton(frame, text = "click")        # something to focus on
+entry <- ttkentry(frame, validate = "focusout",
+                  validatecommand = is_valid_date,
+                  invalidcommand = indicate_invalid_date)
+button <- ttkbutton(frame, text = "click")  # focus target
 sapply(list(entry, button), tkpack, side = "left", padx = 2)
 @ 
               

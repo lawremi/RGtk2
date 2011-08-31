@@ -103,16 +103,16 @@ tkbind(window, "<B1-Motion>", function(W, X, Y) {
   if(!.dragging) return()
   ## see cursor help page in API for more options
   ## For custom cursors cf. http://wiki.tcl.tk/8674. 
-  tkconfigure(W, cursor = "coffee_mug")   # set cursor
+  tkconfigure(W, cursor = "coffee_mug")  # set cursor
 
-  win <- tkwinfo("containing", X, Y)       # widget mouse is over
-  if(as.logical(tkwinfo("exists", win)))  # does widget exist?
+  win <- tkwinfo("containing", X, Y)     # widget mouse is over
+  if(as.logical(tkwinfo("exists", win))) # does widget exist?
     tkevent.generate(win, "<<DragOver>>")
 
   ## generate drag leave if we left last widget
   if(as.logical(tkwinfo("exists", win)) &&
      nchar(as.character(win)) > 0 && 
-     length(.last_widget_id) > 0          # if not character(0) 
+     length(.last_widget_id) > 0         # if not character(0) 
      ) {
     if(as.character(win) != .last_widget_id) 
       tkevent.generate(.last_widget_id, "<<DragLeave>>")

@@ -44,9 +44,9 @@ The \function(htmlTreeParse) (similar to \function{xmlInternalTreeParse}) to par
 \end{figure}
 <<>>=
 library(XML)
-fileName <- "http://www.omegahat.org/RSXML/shortIntro.html"
-QT <- function(...) {}  # quiet next call
-doc <- htmlTreeParse(fileName, useInternalNodes = TRUE, error = QT)
+file_name <- "http://www.omegahat.org/RSXML/shortIntro.html"
+doc <- htmlTreeParse(file_name, useInternalNodes = TRUE, 
+                     error = function(...) {})
 root <- xmlRoot(doc)
 @ 
 %%
@@ -59,7 +59,8 @@ tkpack(frame, expand = TRUE, fill = "both")
 @ 
 %%
 <<>>=
-treeview <- ttktreeview(frame, displaycolumns = "#all", columns = 1)
+treeview <- ttktreeview(frame, displaycolumns = "#all", 
+                        columns = 1)
 addScrollbars(frame, treeview)                    
 @ 
 
@@ -102,7 +103,8 @@ instance.  We only add to the \code{value} column (through the
 calls to the \code{insert} subcommand. 
 <<>>=
 insertChild <- function(treeview, node, parent = "") {
-  l <- list(treeview, "insert", parent, "end", text = xmlName(node))
+  l <- list(treeview, "insert", parent, "end", 
+            text = xmlName(node))
   children <- xmlChildren(node)
   if(length(children) == 0) {         # add in values
     values <- paste(xmlValue(node), sep = " ", collapse = " ")
@@ -182,7 +184,8 @@ tree_to_list <- function(treeview) {
   l <- list()
   walk_tree <- function(child, l) {
     l$name <- tclvalue(tcl(treeview,"item", child, "-text"))
-    l$value <- as.character(tcl(treeview,"item", child, "-values"))
+    l$value <- as.character(tcl(treeview,"item", child,
+                                "-values"))
     children <- as.character(tcl(treeview, "children", child)) 
     if(length(children)) {
       l$children <- list()

@@ -67,7 +67,8 @@ open_action$statusTip <- "Load a spreadsheet from a CSV file"
 One could also set an icon:
 <<qt-app-action-icon, results=hide>>=
 style <- Qt$QApplication$style()
-open_action$icon <- style$standardIcon(Qt$QStyle$SP_DialogOpenButton)
+open_action$icon <- 
+  style$standardIcon(Qt$QStyle$SP_DialogOpenButton)
 @ 
 
 %% ML: avoiding the '&' here, as it really indicates a keyboard
@@ -129,7 +130,8 @@ what button was pressed.
 <<results=hide>>=
 sapply(just_action, function(action) 
        qconnect(action, "changed", function() {
-         button_number <- which(sapply(just_action, `[[`, "checked"))
+         button_number <- 
+           which(sapply(just_action, `[[`, "checked"))
          message("Button ", button_number, " was depressed")
        })
        )

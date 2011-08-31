@@ -633,7 +633,7 @@ check_box_group <-
 
 
 The state is retrieved as a character vector through the
-\method{svalue}{gcheckboxgroup} method. The \code{index = TRUE} argument
+\method{svalue}{gcheckboxgroup} method. The \code{index=TRUE} argument
 instructs \meth{svalue} to return the selected indices instead. These
 are $0$-length if no selection is made. As a checkbox group is like
 both a checkbox and a radio button group, one can set the selected
@@ -641,7 +641,7 @@ values three different ways. As with a checkbox, the selected values
 can be set by specifying a logical vector through the
 \method{svalue\ASSIGN}{gcheckboxgroup} method. As with radio button
 groups, the selected values can also be set with a character vector
-indicating which labels should be selected, or if \code{index = TRUE} is
+indicating which labels should be selected, or if \code{index=TRUE} is
 given, using a numeric index vector.
 
 
@@ -1165,7 +1165,7 @@ be used, as with \code{obj[] \ASSIGN\/ new\_data\_frame}. The methods
 column headers, and \method{dim}{gtable} and \method{length}{gtable}
 the underlying dimensions of the data store.
 
-To update the list of data frames in our \code{dfs} widget, one can define a function such as
+To update the list of data frames in our \code{DFs} widget, one can define a function such as
 <<updateDfs>>=
 updateDfs <- function() {
   DFs[] <- ProgGUIinR:::avail_dfs()

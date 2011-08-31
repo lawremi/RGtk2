@@ -72,7 +72,7 @@ make_icon <- function(parent, stock_name, command = NULL) {
 %
 To illustrate, we pack in some icons. Here we use \function{tkpack}.  
 One does not use \function{tkpack} and \function{tkgrid} to manage
-children of the same parent, but these are children of \code{tool_bar_frame},
+children of the same parent, but these are children of \code{tool\_bar\_frame},
 not \code{frame}.
 <<addButtons, results=hide>>=
 sapply(c("ok", "quit", "cancel"), function(i)
