@@ -29,8 +29,8 @@ only the beginning, so we define our own match function:
 matchAnywhere <- function(completion, key, iter, user.data) {
   model <- completion$getModel()
   row_value <- model$getValue(iter, 0)$value
-  key <- comp$getEntry()$getText() # for case sensitivity
-  grepl(str, row_value)
+  key <- completion$getEntry()$getText() # for case sensitivity
+  grepl(key, row_value)
 }
 completion$setMatchFunc(matchAnywhere)
 @ 

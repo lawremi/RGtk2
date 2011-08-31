@@ -1,6 +1,9 @@
 We illustrate the basics of using a text view, including setting some
 of the view's properties.
 <<textViewBasics>>=
+%%   We illustrate the basics of using a text view, including setting some
+%% of the view's properties.
+
 tv <- gtkTextView()
 sw <- gtkScrolledWindow()
 sw$setPolicy("automatic", "automatic")

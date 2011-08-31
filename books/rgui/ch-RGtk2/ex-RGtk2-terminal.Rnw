@@ -16,7 +16,7 @@ library(RGtk2)
 @ 
 
 We begin by defining our text view widget and retrieving its
-buffer. We also specify a fixed-width font for the buffer.
+buffer then we specify a fixed-width font for the buffer:
 <<TextViewWidget>>=
 view <- gtkTextView()
 buffer <- view$getBuffer()
@@ -39,7 +39,7 @@ buffer$createTag(tag.name = "uneditable", editable = FALSE)
 We define a mark to indicate the beginning of a newly entered
 command, and another mark tracks the end of the buffer:
 <<>>=
-startCmd <- buffer$createMark("startCmd", 
+start_cmd <- buffer$createMark("start_cmd", 
                               buffer$getStartIter()$iter, 
                               left.gravity = TRUE)
 bufferEnd <- buffer$createMark("bufferEnd", 
@@ -51,7 +51,7 @@ There are two types of prompts needed: one for entering a new command
 and one for a continuation. This function adds either, depending on
 its argument:
 <<>>=
-addPrompt <- function(obj, prompt = c("prompt", "continue"),
+add_prompt <- function(obj, prompt = c("prompt", "continue"),
                       set_mark = TRUE) 
 {
   prompt <- match.arg(prompt)
@@ -60,17 +60,17 @@ addPrompt <- function(obj, prompt = c("prompt", "continue"),
   end_iter <- obj$getEndIter()
   obj$insert(end_iter$iter, prompt)
   if(set_mark)
-    obj$moveMarkByName("startCmd", end_iter$iter)
+    obj$moveMarkByName("start_cmd", end_iter$iter)
   obj$applyTagByName("uneditable", obj$getStartIter()$iter, 
                      end_iter$iter)
 }
-addPrompt(buffer) ## place an initial prompt
+add_prompt(buffer) ## place an initial prompt
 @ 
 
 This helper method writes the output of a command to the text
 buffer:
-<<addOutput>>=
-addOutput <- function(obj, output, tag_name = "cmdOutput") {
+<<add_ouput>>=
+add_ouput <- function(obj, output, tag_name = "cmdOutput") {
   end_iter <- obj$getEndIter()
   if(length(output) > 0)  
     sapply(output, function(i)  {
@@ -84,12 +84,12 @@ We did not arrange to truncate large outputs, but that would be a nice
 addition. By passing in the tag name, we can specify whether this is
 normal output or an error message.
 
-This next function uses the \code{startCmd} mark and the end of the buffer
+This next function uses the \code{start\_cmd} mark and the end of the buffer
 to extract the current command. The \qcode{regex} is used to parse multi-line commands.
 <<>>=  
-findCMD <- function(obj) {
+find_cmd <- function(obj) {
   end_iter <- obj$getEndIter()
-  start_iter <- obj$getIterAtMark(startCmd)
+  start_iter <- obj$getIterAtMark(start_cmd)
   cmd <- obj$getText(start_iter$iter, end_iter$iter, TRUE)
   regex <- paste("\n[", getOption("continue"), "] ", sep = "")
   cmd <- unlist(strsplit(cmd, regex))
@@ -105,29 +105,29 @@ syntax error.
 
 <<evalCmd>>=
 require(evaluate)
-evalCMD <- function(view, cmd) {
+eval_cmd <- function(view, cmd) {
   buffer <- view$getBuffer()
   out <- try(evaluate:::evaluate(cmd, .GlobalEnv), 
              silent = TRUE)
-  
+
   if(inherits(out, "try-error")) {
     ## parse error
-    addOutput(buffer, out, "cmdError")
+    add_ouput(buffer, out, "cmdError")
   } else if(inherits(out[[2]], "error")) {
     if(grepl("end", out[[2]])) {        # a hack here
-      addPrompt(buffer, "continue", setMark = FALSE)
+      add_prompt(buffer, "continue", set_mark = FALSE)
       return()
     } else {
-      addOutput(buffer, out[[2]]$message, "cmdError")
+      add_ouput(buffer, out[[2]]$message, "cmdError")
     }
   } else {
-    addOutput(buffer, out[[2]], "cmdOutput")
+    add_ouput(buffer, out[[2]], "cmdOutput")
   }
-  addPrompt(buffer, "prompt", setMark = TRUE)
+  add_prompt(buffer, "prompt", set_mark = TRUE)
 }
 @ 
 
-We arrange that the \code{evalCMD} command is called when the
+We arrange that the \code{eval\_cmd} command is called when the
 \kbd{return} key is pressed next. Other key bindings might also be of
 interest, such as one for \kbd{tab} completion.
 <<connectBinding, results=hide>>=
@@ -136,9 +136,9 @@ gSignalConnect(view, "key-release-event",
                  buffer <- view$getBuffer()
                  keyval <- event$getKeyval()
                  if(keyval == GDK_Return) {
-                   cmd <- findCMD(buffer)
+                   cmd <- find_cmd(buffer)
                    if(length(cmd) && nchar(cmd) > 0)
-                     evalCMD(view, cmd)
+                     eval_cmd(view, cmd)
                  }
                })
 @
@@ -151,11 +151,11 @@ signal of the text buffer, so that the view always scrolls to the
 bottom when the contents of the buffer are modified:
 
 <<results=hide>>=
-scrollViewport <- function(view, ...) {
+scroll_viewport <- function(view, ...) {
   view$scrollToMark(bufferEnd, within.margin = 0)
   return(FALSE)
 }
-gSignalConnect(buffer, "changed", scrollViewport, data = view, 
+gSignalConnect(buffer, "changed", scroll_viewport, data = view, 
                after = TRUE, user.data.first = TRUE)
 @ 
 
@@ -187,9 +187,9 @@ buffer$setData("ptr", 0)
 
 
 ## replace cmd with that in str.
-replaceCMD <- function(obj, str) {
+replace_cmd <- function(obj, str) {
   end_iter <- obj$getEndIter()
-  start_iter <- obj$getIterAtMark(startCmd)
+  start_iter <- obj$getIterAtMark(start_cmd)
   obj$delete(start_iter$iter, end_iter$iter)
   end_iter <- obj$getEndIter()
   obj$insertWithTagsByName(end_iter$iter, str[1], "cmdInput")
@@ -204,7 +204,7 @@ replaceCMD <- function(obj, str) {
 }
 
 ## This adds the command to the history stack and moves the pointer.
-addHistory <- function(obj, cmd) {
+add_history <- function(obj, cmd) {
   history <- obj$GetData("history"); ptr <- obj$GetData("ptr")
   history <- c(history, cmd)
   ptr <- length(history)
@@ -213,21 +213,21 @@ addHistory <- function(obj, cmd) {
 }
 
 ## these next two functions scroll through the history
-scrollHistoryUp <- function(obj) {
+scroll_history_up <- function(obj) {
   ## move through history
   ptr <- obj$GetData("ptr") - 1
   if(ptr > 0)
-    replaceCMD(obj, obj$GetData("history")[[ptr]])
+    replace_cmd(obj, obj$GetData("history")[[ptr]])
   obj$SetData("ptr", max(ptr,0))
   obj$PlaceCursor(obj$GetEndIter()$iter)
 }
 
-scrollHistoryDown <- function(obj) {
+scroll_history_down <- function(obj) {
   ## move through history
   ptr <- obj$GetData("ptr") + 1
   history <- obj$GetData("history")
   if(ptr <= length(history)) 
-    replaceCMD(obj, history[[ptr]])
+    replace_cmd(obj, history[[ptr]])
   obj$SetData("ptr", min(ptr,length(history)))
   obj$PlaceCursor(obj$GetEndIter()$iter)
 }
@@ -242,9 +242,9 @@ ID <- gSignalConnect(view, "key-release-event", f=function(w, e, data) {
   keyval <- e$GetKeyval()
 
   if(keyval == GDK_p) {
-    scrollHistoryUp(obj)
+    scroll_history_up(obj)
   } else if(keyval == GDK_n) {
-    scrollHistoryDown(obj)
+    scroll_history_down(obj)
   }
   return(TRUE)
 })

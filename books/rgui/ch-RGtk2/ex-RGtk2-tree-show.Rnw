@@ -90,7 +90,7 @@ gtkTreeStoreGetPathNames <- function(store,iter, path) {
 }
 @ 
 
-We define s quick function to display a column of the view and then
+We define a quick function to display a column of the view and then
 wrap the view in a scrolled window.
 <<>>=
 showView <- function(view)  {

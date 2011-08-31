@@ -142,7 +142,7 @@ respects formatting marks.
 <<gtk-widget-label-window, results=hide, echo=FALSE>>=
 window <- gtkWindow(show=FALSE); window$setTitle("Label formatting")
 window$setSizeRequest(250,300)               # narrow
-vbox <- gtkVBox(spacing=2); vbox$setBorderWidth(5); window$add(g)
+vbox <- gtkVBox(spacing=2); vbox$setBorderWidth(5); window$add(vbox)
 @ 
 <<LabelFormatting, results=hide>>=
 string <- "the quick brown fox jumped over the lazy dog"

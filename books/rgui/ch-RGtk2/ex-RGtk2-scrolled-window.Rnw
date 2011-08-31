@@ -9,6 +9,8 @@ locates where a label is placed.
 %% zoomed and panned with GtkViewport.
 
 <<ScrolledWindowExample, echo=FALSE>>=
+%% Simplistic example of a scrolled window
+%% there are better uses.
 library(RGtk2)
 @
 

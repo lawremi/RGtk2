@@ -10,12 +10,11 @@ will illustrate how to customize the spacing.  We assume that our
 parent container, \code{hbox}, is a horizontal box container.
 <<MacOSXstyleButton,echo=FALSE>>=
 ## not shown
-w <- gtkWindow(show=FALSE)
-w$setTitle("MAC OS X style buttons")
-g <- gtkHButtonBox()
-fg <- gtkHBox()
+window <- gtkWindow(show=FALSE)
+window$setTitle("MAC OS X style buttons")
+fg <- gtkVBox()
 fg$setSizeRequest(width=800, height=-1)
-w$add(fg)
+window$add(fg)
 
 hbox <- gtkHBox()
 fg$packStart(hbox, padding=15)              # for size grip
@@ -31,8 +30,8 @@ fg$packStart(hbox, padding=15)              # for size grip
 
 We include standard buttons, so we use the stock names and icons.
 <<StockButtons>>=
-cancel <- gtkButton(stock.id="gtk-cancel")
 ok <- gtkButton(stock.id="gtk-ok")
+cancel <- gtkButton(stock.id="gtk-cancel")
 delete <- gtkButton(stock.id="gtk-delete")
 @ 
 
@@ -60,18 +59,17 @@ ok$grabFocus()
 
 <<echo=FALSE>>=
 ## not shown
-w$showAll()
+window$showAll()
 @ 
 <<gtkHButtonBoxExample, echo=FALSE>>=
 ## not shown
 ## Had we only wanted to use a button box
-w <- gtkWindow()
-bb <- gtkHButtonBox()
-w$add(bb)
+button_box <- gtkHButtonBox()
+fg$packStart(button_box, padding=15)              # for size grip
 
-bb$add(gtkButton(stock.id="gtk-delete"))
-bb$add(gtkButton(stock.id="gtk-cancel"))
-bb$add(gtkButton(stock.id="gtk-ok"))
+button_box$add(gtkButton(stock.id="gtk-delete"))
+button_box$add(gtkButton(stock.id="gtk-cancel"))
+button_box$add(gtkButton(stock.id="gtk-ok"))
 @ 
 
 

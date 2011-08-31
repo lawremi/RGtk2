@@ -777,11 +777,6 @@ holding an image in memory. Using a \class{list}, one can store a
   \SweaveInput{ex-RGtk2-select-variables}
 \end{example}
 
-% %% ping pong
-% \begin{example}{A widget for variable selection}{ex:RGtk2-pingpong}
-%   \SweaveInput{ex-RGtk2-pingpong}
-% \end{example}
-
 \paragraph{Toggle cell renderers}
 
 Binary data can be represented by a toggle. The

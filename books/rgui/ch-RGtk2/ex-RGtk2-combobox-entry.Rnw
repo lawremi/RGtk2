@@ -101,7 +101,7 @@ gSignalConnect(combo_box$getChild(), "activate",
          value <- entry$getText()
          if(!any(value == combo_box$getModel()[,1,drop=TRUE])) {
            model <- combo_box$getModel()
-           tmp <- data.frame(filename = val, visits = "", 
+           tmp <- data.frame(filename = value, visits = "", 
                              nvisits = 0, 
                              stringsAsFactors = FALSE)
            model$appendRows(tmp)

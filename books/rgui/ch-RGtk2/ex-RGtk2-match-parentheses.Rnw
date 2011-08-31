@@ -15,6 +15,13 @@ iter passed into the function using the method
 \method{Copy}{GtkTextIter}.
 
 <<>>=
+window <- gtkWindowNew()
+view <- gtkTextView()
+window$add(view)
+buffer <- view$getBuffer()
+@ 
+
+<<>>=
 gtkTextIterGetTextAtIter <- function(iter) {
   siter <- iter$copy();  eiter <- iter$copy()
   val <- siter$backwardChar()
@@ -70,7 +77,7 @@ Now to create a text tag to implement the highlighting. This one sets
 the background color to yellow.
 <<>>=
 tag.highlight <-
-  tb$createTag(tag.name="highlight", background="yellow")
+  buffer$createTag(tag.name="highlight", background="yellow")
 @ 
 
 Finally, we connect a callback to the \signal{changed} signal that
@@ -82,17 +89,17 @@ the inserted value.
 
 <<>>=
 ID <- 
-  gSignalConnect(tb,"changed",
-                 f = function(tb, data) {
+  gSignalConnect(buffer,"changed",
+                 f = function(buffer, data) {
                    ## get iter at cursor
-                   iter <- tb$getIterAtMark(tb$getInsert())$iter
+                   iter <- buffer$getIterAtMark(buffer$getInsert())$iter
                    char <- iter$getTextAtIter()
                    val <- findLeftMatch(iter)
                    if(val$retval) {
-                     tb$applyTagByName("highlight",val$iter,iter)
+                     buffer$applyTagByName("highlight",val$iter,iter)
                    } else {
-                     bnds <- tb$getBounds() # remove all
-                     tb$removeTagByName("highlight",bnds$start, bnds$end)
+                     bnds <- buffer$getBounds() # remove all
+                     buffer$removeTagByName("highlight",bnds$start, bnds$end)
                    }
                  })
 @ 

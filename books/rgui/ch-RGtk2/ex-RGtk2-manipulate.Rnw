@@ -27,9 +27,9 @@ require(RGtk2)
 require(cairoDevice)
 @ 
 
-The RStudio\texttrademark{} Workbench is an IDE for R that provides a
+RStudio\texttrademark{} is an IDE for R that provides a
 similar interface whether run on any of its supported operating
-systems or through a web browser. Accompanying the workbench is an
+systems or through a web browser. Accompanying the IDE is an
 \R{} package \pkg{manipulate} that provides a convenient means to
 create simple graphical interfaces for plotting. As RStudio leverages
 web technologies to render its widgets and there is no public
@@ -154,7 +154,7 @@ Manipulate$methods(
 The \meth{execute} method is called after initialization to setup the
 GUI. We use a \class{GtkHPaned} instance to allow the user to adjust
 the space between the graphic device and the controls frame. Each
-control is expected to have a \meth{make\_gui} interface.
+control is expected to provide a \meth{make\_gui} interface.
 
 <<Manipulate_execute>>=
 Manipulate$methods(  

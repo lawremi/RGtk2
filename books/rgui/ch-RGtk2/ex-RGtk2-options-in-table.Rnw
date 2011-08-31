@@ -72,9 +72,10 @@ gSignalConnect(cell_renderer, "edited",
     function(cell_renderer, path, new.text, user.data) {
       model <- user.data$model
       i <- as.numeric(path) + 1; j <- user.data$column
-      model[i,j] <- as(as(new.text, m[i, 'class']), "character")   
-      model[i, 'dirty'] <- TRUE                   # mark dirty
-      model[i, 'edit_color'] <- 'gray70'          # change color
+      val <- as(new.text, model[i, 'class'])
+      model[i,j] <- as(val, "character")   
+      model[i, 'dirty'] <- TRUE                 # mark dirty
+      model[i, 'edit_color'] <- 'gray70'        # change color
     }, data=list(model=model, column=2))
 @  
 
@@ -129,7 +130,7 @@ gSignalConnect(view, "query-tooltip",
        function(view, x, y, key_mode, tooltip, user.data) {
          out <- view$getTooltipContext(x, y, key_mode)
          if(out$retval) {
-           model <- w$getModel()
+           model <- view$getModel()
            i <- as.numeric(out$path$toString()) + 1
            val <- model[i, "option"]
            txt <- descs[[val]]$desc

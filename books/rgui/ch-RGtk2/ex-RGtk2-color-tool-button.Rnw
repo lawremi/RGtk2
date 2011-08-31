@@ -51,6 +51,10 @@ sapply(color_items, gSignalConnect, "activate",
        colorMenuItemActivated)
 @ 
 
+<<echo=FALSE, results=hide>>=
+toolbar <- gtkToolbar()
+@ 
+
 Finally, we place the color button and menu together in the menu tool
 button:
 <<rgtk2-menus-toolbar-menu>>=

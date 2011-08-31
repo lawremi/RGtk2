@@ -46,7 +46,7 @@ pixbufs <- sapply(iconNames, function(name) {
   grid.newpage()
   try(grid.draw(val$icon()), silent=TRUE)
   dev.off()
-  gdkPixbufGetFromDrawable(NULL, pixmap, NULL, 0, 0, 0, 0, -1 -1)
+  gdkPixbufGetFromDrawable(NULL, pixmap, NULL, 0, 0, 0, 0, -1, -1)
 })
 @ 
 The following function works through the steps to add a new icon. The

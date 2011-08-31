@@ -2226,8 +2226,8 @@ parent container, \code{hbox}, is a horizontal box container.
 We include standard buttons, so we use the stock names and icons.
 \begin{Schunk}
 \begin{Sinput}
- cancel <- gtkButton(stock.id="gtk-cancel")
  ok <- gtkButton(stock.id="gtk-ok")
+ cancel <- gtkButton(stock.id="gtk-cancel")
  delete <- gtkButton(stock.id="gtk-delete")
 \end{Sinput}
 \end{Schunk}
@@ -3216,12 +3216,12 @@ not, we call a function to lazily create the page. These functions are
 stored in a list, so that they we can refer to them by index.
 \begin{Schunk}
 \begin{Sinput}
- populatePage <- list()                
+ populate_page <- list()                
  gSignalConnect(assistant, "prepare", 
         function(assistant, page, data) {
           page_no <- which(sapply(pages, identical, page))
           if(!length(page$getChildren()))
-            populatePage[[page_no]]()
+            populate_page[[page_no]]()
         })
 \end{Sinput}
 \end{Schunk}
@@ -3260,7 +3260,7 @@ We now show how some of the pages are populated. The initial screen is
 just a welcome and simply shows a label:
 \begin{Schunk}
 \begin{Sinput}
- populatePage[[1]] <- function() {
+ populate_page[[1]] <- function() {
    assistant$setPageTitle(pages[[1]], "Install a CRAN package")
    pages[[1]]$packStart(label <- gtkLabel())
    pages[[1]]$packStart(gtkLabel(), expand=TRUE) # a spring
@@ -3287,7 +3287,7 @@ a summary of the package taken from CRAN and a chance for the user to
 configure a few options for the \function{install.packages} function.
 \begin{Schunk}
 \begin{Sinput}
- populatePage[[4]] <- function() {
+ populate_page[[4]] <- function() {
    assistant$setPageTitle(pages[[4]], "Install a CRAN package")
    ##
    get_desc <- function(pkgname) {
@@ -3334,19 +3334,19 @@ configure a few options for the \function{install.packages} function.
    })
    table$attachDefaults(gtkLabel("Install dependencies"),
                         0, 1, 1, 2)
-   table$attachDefaults(cb, 1, 2, 1, 2)
+   table$attachDefaults(checkButton, 1, 2, 1, 2)
  
    ##
-   fileChooser <- gtkFileChooserButton("Select a directory...", 
+   file_chooser <- gtkFileChooserButton("Select a directory...", 
                                        "select-folder")
-   fileChooser$setFilename(.libPaths()[1])
-   gSignalConnect(fileChooser, "selection-changed", 
-                  function(fileChooser) {
-                    dir <- fileChooser$getFilename()
+   file_chooser$setFilename(.libPaths()[1])
+   gSignalConnect(file_chooser, "selection-changed", 
+                  function(file_chooser) {
+                    dir <- file_chooser$getFilename()
                     install_options[['lib']] <<- dir
                   })
    table$attachDefaults(gtkLabel("Where"), 0, 1, 2, 3)
-   table$attachDefaults(fc, 1, 2, 2, 3)
+   table$attachDefaults(file_chooser, 1, 2, 2, 3)
    ## align labels to right and set spacing
    sapply(table$getChildren(), function(child) {
      widget <- child$getWidget()
@@ -3366,7 +3366,7 @@ page. A real application would reimplement that. Instead we just set a
 message once the package install attempt is finished.
 \begin{Schunk}
 \begin{Sinput}
- populatePage[[5]] <- function() {
+ populate_page[[5]] <- function() {
    assistant$setPageTitle(pages[[5]], "Done")
    install_options$pkgs <- CRAN_package
    out <- try(do.call("install.packages", install_options), 
@@ -3392,7 +3392,7 @@ To conclude, we populate the first page and call the assistant's
 \meth{show} method:
 \begin{Schunk}
 \begin{Sinput}
- populatePage[[1]]()
+ populate_page[[1]]()
  assistant$show()
 \end{Sinput}
 \end{Schunk}
@@ -3491,9 +3491,9 @@ directly to \pkg{cairoDevice} for rendering the R plot:
 %% device and a reference class
 \begin{example}{The \pkg{manipulate} package in \pkg{RGtk2}}{eg-RGtk2-manipulate}
 
-The RStudio\texttrademark{} Workbench is an IDE for R that provides a
+RStudio\texttrademark{} is an IDE for R that provides a
 similar interface whether run on any of its supported operating
-systems or through a web browser. Accompanying the workbench is an
+systems or through a web browser. Accompanying the IDE is an
 \R{} package \pkg{manipulate} that provides a convenient means to
 create simple graphical interfaces for plotting. As RStudio leverages
 web technologies to render its widgets and there is no public
@@ -3588,7 +3588,7 @@ as expected. Note that each control is expected to provide a
 The \meth{execute} method is called after initialization to setup the
 GUI. We use a \class{GtkHPaned} instance to allow the user to adjust
 the space between the graphic device and the controls frame. Each
-control is expected to have a \meth{make\_gui} interface.
+control is expected to provide a \meth{make\_gui} interface.
 
 \begin{Schunk}
 \begin{Sinput}
@@ -4532,13 +4532,13 @@ model, which provides only those rows where the filter column is
 This is the basic usage:
 \begin{Schunk}
 \begin{Sinput}
- df <- Cars93
- model <- rGtkDataFrame(cbind(df, .visible=rep(TRUE, nrow(df))))
+ DF <- Cars93
+ model <- rGtkDataFrame(cbind(DF, .visible=rep(TRUE, nrow(DF))))
  filtered_model <- model$filter()
- filtered_model$setVisibleColumn(length(df))          # 0-based
+ filtered_model$setVisibleColumn(length(DF))          # 0-based
  view <- gtkTreeView(filtered_model)
  ## Adjust filter
- model[,".visible"] <- df$MPG.highway >= 30
+ model[,".visible"] <- DF$MPG.highway >= 30
 \end{Sinput}
 \end{Schunk}
 %
@@ -4808,9 +4808,10 @@ entry. The latter allows one to easily find the values which were edited.
      function(cell_renderer, path, new.text, user.data) {
        model <- user.data$model
        i <- as.numeric(path) + 1; j <- user.data$column
-       model[i,j] <- as(as(new.text, m[i, 'class']), "character")   
-       model[i, 'dirty'] <- TRUE                   # mark dirty
-       model[i, 'edit_color'] <- 'gray70'          # change color
+       val <- as(new.text, model[i, 'class'])
+       model[i,j] <- as(val, "character")   
+       model[i, 'dirty'] <- TRUE                 # mark dirty
+       model[i, 'edit_color'] <- 'gray70'        # change color
      }, data=list(model=model, column=2))
 \end{Sinput}
 \end{Schunk}
@@ -4871,7 +4872,7 @@ to the \signal{query-tooltip} signal to implement the tooltip:
         function(view, x, y, key_mode, tooltip, user.data) {
           out <- view$getTooltipContext(x, y, key_mode)
           if(out$retval) {
-            model <- w$getModel()
+            model <- view$getModel()
             i <- as.numeric(out$path$toString()) + 1
             val <- model[i, "option"]
             txt <- descs[[val]]$desc
@@ -5167,11 +5168,6 @@ Finally, we show the top-level window:
 
 \end{example}
 
-% %% ping pong
-% \begin{example}{A widget for variable selection}{ex:RGtk2-pingpong}
-%   \SweaveInput{ex-RGtk2-pingpong}
-% \end{example}
-
 \paragraph{Toggle cell renderers}
 
 Binary data can be represented by a toggle. The
@@ -5451,11 +5447,11 @@ and \code{GObject} for \GTK\/ objects, such as pixbufs.
 \begin{Schunk}
 \begin{Sinput}
  model <- gtkTreeStore("gchararray")
- by(Cars93, Cars93$Manufacturer, function(df) {
+ by(Cars93, Cars93$Manufacturer, function(DF) {
    parent_iter <- model$append()
    model$setValue(parent_iter$iter, column = 0, value = 
-                  df$Manufacturer[1])
-   sapply(df$Model, function(car_model) {
+                  DF$Manufacturer[1])
+   sapply(DF$Model, function(car_model) {
      child_iter <- model$append(parent = parent_iter$iter)
      if (is.null(child_iter$retval)) 
        model$setValue(child_iter$iter, column = 0, 
@@ -5741,7 +5737,7 @@ have previously accessed the item. If not, we add the value to our model.
           value <- entry$getText()
           if(!any(value == combo_box$getModel()[,1,drop=TRUE])) {
             model <- combo_box$getModel()
-            tmp <- data.frame(filename = val, visits = "", 
+            tmp <- data.frame(filename = value, visits = "", 
                               nvisits = 0, 
                               stringsAsFactors = FALSE)
             model$appendRows(tmp)
@@ -5860,8 +5856,8 @@ only the beginning, so we define our own match function:
  matchAnywhere <- function(completion, key, iter, user.data) {
    model <- completion$getModel()
    row_value <- model$getValue(iter, 0)$value
-   key <- comp$getEntry()$getText() # for case sensitivity
-   grepl(str, row_value)
+   key <- completion$getEntry()$getText() # for case sensitivity
+   grepl(key, row_value)
  }
  completion$setMatchFunc(matchAnywhere)
 \end{Sinput}
@@ -6063,14 +6059,14 @@ $retval
 NULL
 
 $start
-<pointer: 0x121681ec0>
+<pointer: 0x12491feb0>
 attr(,"interfaces")
 character(0)
 attr(,"class")
 [1] "GtkTextIter" "GBoxed"      "RGtkObject" 
 
 $end
-<pointer: 0x121681e70>
+<pointer: 0x12491fe10>
 attr(,"interfaces")
 character(0)
 attr(,"class")
@@ -6373,7 +6369,7 @@ different, but useful, aspects of the widget.
 
 
 We begin by defining our text view widget and retrieving its
-buffer. We also specify a fixed-width font for the buffer.
+buffer then we specify a fixed-width font for the buffer:
 \begin{Schunk}
 \begin{Sinput}
  view <- gtkTextView()
@@ -6401,7 +6397,7 @@ We define a mark to indicate the beginning of a newly entered
 command, and another mark tracks the end of the buffer:
 \begin{Schunk}
 \begin{Sinput}
- startCmd <- buffer$createMark("startCmd", 
+ start_cmd <- buffer$createMark("start_cmd", 
                                buffer$getStartIter()$iter, 
                                left.gravity = TRUE)
  bufferEnd <- buffer$createMark("bufferEnd", 
@@ -6415,7 +6411,7 @@ and one for a continuation. This function adds either, depending on
 its argument:
 \begin{Schunk}
 \begin{Sinput}
- addPrompt <- function(obj, prompt = c("prompt", "continue"),
+ add_prompt <- function(obj, prompt = c("prompt", "continue"),
                        set_mark = TRUE) 
  {
    prompt <- match.arg(prompt)
@@ -6424,11 +6420,11 @@ its argument:
    end_iter <- obj$getEndIter()
    obj$insert(end_iter$iter, prompt)
    if(set_mark)
-     obj$moveMarkByName("startCmd", end_iter$iter)
+     obj$moveMarkByName("start_cmd", end_iter$iter)
    obj$applyTagByName("uneditable", obj$getStartIter()$iter, 
                       end_iter$iter)
  }
- addPrompt(buffer) ## place an initial prompt
+ add_prompt(buffer) ## place an initial prompt
 \end{Sinput}
 \end{Schunk}
 
@@ -6436,7 +6432,7 @@ This helper method writes the output of a command to the text
 buffer:
 \begin{Schunk}
 \begin{Sinput}
- addOutput <- function(obj, output, tag_name = "cmdOutput") {
+ add_ouput <- function(obj, output, tag_name = "cmdOutput") {
    end_iter <- obj$getEndIter()
    if(length(output) > 0)  
      sapply(output, function(i)  {
@@ -6451,13 +6447,13 @@ We did not arrange to truncate large outputs, but that would be a nice
 addition. By passing in the tag name, we can specify whether this is
 normal output or an error message.
 
-This next function uses the \code{startCmd} mark and the end of the buffer
+This next function uses the \code{start\_cmd} mark and the end of the buffer
 to extract the current command. The \qcode{regex} is used to parse multi-line commands.
 \begin{Schunk}
 \begin{Sinput}
- findCMD <- function(obj) {
+ find_cmd <- function(obj) {
    end_iter <- obj$getEndIter()
-   start_iter <- obj$getIterAtMark(startCmd)
+   start_iter <- obj$getIterAtMark(start_cmd)
    cmd <- obj$getText(start_iter$iter, end_iter$iter, TRUE)
    regex <- paste("\n[", getOption("continue"), "] ", sep = "")
    cmd <- unlist(strsplit(cmd, regex))
@@ -6475,30 +6471,30 @@ syntax error.
 \begin{Schunk}
 \begin{Sinput}
  require(evaluate)
- evalCMD <- function(view, cmd) {
+ eval_cmd <- function(view, cmd) {
    buffer <- view$getBuffer()
    out <- try(evaluate:::evaluate(cmd, .GlobalEnv), 
               silent = TRUE)
-   
+ 
    if(inherits(out, "try-error")) {
      ## parse error
-     addOutput(buffer, out, "cmdError")
+     add_ouput(buffer, out, "cmdError")
    } else if(inherits(out[[2]], "error")) {
      if(grepl("end", out[[2]])) {        # a hack here
-       addPrompt(buffer, "continue", setMark = FALSE)
+       add_prompt(buffer, "continue", set_mark = FALSE)
        return()
      } else {
-       addOutput(buffer, out[[2]]$message, "cmdError")
+       add_ouput(buffer, out[[2]]$message, "cmdError")
      }
    } else {
-     addOutput(buffer, out[[2]], "cmdOutput")
+     add_ouput(buffer, out[[2]], "cmdOutput")
    }
-   addPrompt(buffer, "prompt", setMark = TRUE)
+   add_prompt(buffer, "prompt", set_mark = TRUE)
  }
 \end{Sinput}
 \end{Schunk}
 
-We arrange that the \code{evalCMD} command is called when the
+We arrange that the \code{eval\_cmd} command is called when the
 \kbd{return} key is pressed next. Other key bindings might also be of
 interest, such as one for \kbd{tab} completion.
 \begin{Schunk}
@@ -6508,9 +6504,9 @@ interest, such as one for \kbd{tab} completion.
                   buffer <- view$getBuffer()
                   keyval <- event$getKeyval()
                   if(keyval == GDK_Return) {
-                    cmd <- findCMD(buffer)
+                    cmd <- find_cmd(buffer)
                     if(length(cmd) && nchar(cmd) > 0)
-                      evalCMD(view, cmd)
+                      eval_cmd(view, cmd)
                   }
                 })
 \end{Sinput}
@@ -6525,11 +6521,11 @@ bottom when the contents of the buffer are modified:
 
 \begin{Schunk}
 \begin{Sinput}
- scrollViewport <- function(view, ...) {
+ scroll_viewport <- function(view, ...) {
    view$scrollToMark(bufferEnd, within.margin = 0)
    return(FALSE)
  }
- gSignalConnect(buffer, "changed", scrollViewport, data = view, 
+ gSignalConnect(buffer, "changed", scroll_viewport, data = view, 
                 after = TRUE, user.data.first = TRUE)
 \end{Sinput}
 \end{Schunk}
@@ -7061,6 +7057,7 @@ selected, its color will be set on the color button:
 \end{Sinput}
 \end{Schunk}
 
+
 Finally, we place the color button and menu together in the menu tool
 button:
 \begin{Schunk}
@@ -7406,7 +7403,7 @@ finished application. The full details are found in the code in our accompanying
 package \pkg{ProgGUIinR}. 
 
 \paragraph{Command pattern}
-Now we discuss how the \iprogram{command pattern}\dfn{command pattern}
+Now we discuss how the \iprogram{command pattern}\DFn{command pattern}
 was implemented to provide a simple undo and redo feature to our
 editing.  According to \footcite{head-first-design-patterns}, the
 command pattern is used to \iprogram{encapsulation}encapsulate a
