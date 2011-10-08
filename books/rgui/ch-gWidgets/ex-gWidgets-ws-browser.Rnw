@@ -83,9 +83,13 @@ different types of objects involved:
 \vspace{12pt}
 
 The package \pkg{objectSignals} provides a comprehensive
-implementation of this pattern which we use below. We use its
-\function{signalingField} function to create an ``observable'' and its
-\function{connect} method to add an observer. When the signaling field
+implementation of this pattern. Based on that, the
+\pkg{objectProperties} package implements \textit{properties}: fields
+with enhanced functionality, including observability. These are
+similar to the properties that we will see later in the \GTK\/ and
+\Qt\/ libraries. We use the \function{properties} function to create
+an ``observable'' property and \function{connect}, from
+\pkg{objectSignals}, to add an observer. When the property
 is changed, any observers are notified.
 \\
 
@@ -105,11 +109,11 @@ renamed. As notifying views can be potentially expensive, we will only
 notify on a change. 
 
 <<WSModel, results=hide>>=
-require(objectSignals)
+library(objectProperties)
 require(digest)
 WSModel <- setRefClass("WSModel",
               fields = c(
-                signalingField("ws_objects","character"),
+                properties(list(ws_objects = "character")),
                 ws_objects_digests = "character"
                 ))
 @ 
@@ -120,12 +124,13 @@ WSModel <- setRefClass("WSModel",
 For the task at hand, we don't really have a \code{set} method, but
 rather we define a \code{refresh} method to synchronize the workspace
 with our model object. When the property \code{ws\_objects} is set,
-the \pkg{objectSignals} package takes care of notifying any registered observers.
-This model needs to track changes in the underlying
-workspace. This can be done calling the \code{refresh} method at
-periodic intervals, through a \textit{taskCallback}, or by user
-request. In the definitions below, we call a helper function to list
-the objects in the global environment and produce a digest of each.
+the \pkg{objectProperties} and \pkg{objectSignals} packages takes care
+of notifying any registered observers.  This model needs to track
+changes in the underlying workspace. This can be done calling the
+\code{refresh} method at periodic intervals, through a
+\textit{taskCallback}, or by user request. In the definitions below,
+we call a helper function to list the objects in the global
+environment and produce a digest of each.
 
 <<initialize_refresh, results=hide>>=   
 WSModel$methods(
@@ -187,7 +192,7 @@ WSModel$methods(
 % 
 
 Finally, our model defines a convenience method to add an observer
-using the naming convention of \pkg{objectSignals}.
+using the naming convention of \pkg{objectProperties}.
 <<>>=
 WSModel$methods(
                 add_observer = function(FUN, ...) {
