@@ -288,12 +288,15 @@ function(from,  into)
 ### Issues:
 
 ## 1) missing 'since' information: could merge multiple repositories,
-## but the versions are not fully specified.
+## but the versions are not fully specified. UPDATE: Apparently there
+## is now a version on everything in GIR.
 
 ## 2) nested namespaces: not supported by GIR, but in anticipation,
 ## namespaces should be nested lists, with entries named by GIR
 ## name. Then we just recurse, while keeping a bread trail, so that we can
 ## resolve local symbols.
+
+## 3) Still waiting on default value support.
 
 parseGIR <- function(filename, db, includePaths = "/usr/share/gir") {
 
