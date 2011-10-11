@@ -443,7 +443,8 @@ markup <- function(nodes, verbatim = FALSE, collapse="  ", code = FALSE) {
 		"text" = markup_text,
 		"comment" = NULL,
 		"literal" = markup_literal,
-		"para" = NULL, "simpara" = NULL, "entry" = NULL, "refsect3" = NULL,
+		"para" = NULL, "simpara" = NULL, "entry" = NULL,
+                "refsect3" = NULL, "refsect2" = NULL,
 		"link" = markup_link,
 		"type" = markup_type,
 		"parameter" = markup_param, "symbol" = markup_literal,
@@ -628,11 +629,12 @@ toDescs <- function(nodes, item_info, name_path = desc_name_path, text_path = de
 	type_names <- names <- code <- NULL
 	items <- sapply(nodes, function(node) {
 		name <- xmlValue(getNodeSet(node, name_path)[[1]])
-		if (!(gsub(".* ", "", name) %in% types || name %in% transparentTypes)) {
+                name <- gsub(".* ", "", name)
+		if (!(name %in% c(types, transparentTypes))) {
 			#message(paste("Omitting type: ", name))
 			return(NA)
 		}
-		name <- gsub(".* ", "", name)
+		
 		type_name <- asRTypeName(name)
 		text <- ensureText(markup(getNodeSet(node, text_path)))
 		warning <- getNodeSet(node, warning_path)
