@@ -12,7 +12,9 @@ Bound versions
 }
 \description{
 These functions are for querying (\code{bound}*) and checking
-(\code{check}*) the bound versions of the libraries (GTK, Pango and Cairo).
+(\code{check}*) the bound versions of the libraries (GTK, Pango and
+Cairo). As of RGtk2 2.20.19, the \code{check*} functions are deprecated
+in favor of the more explicit \code{boundVersion() >= version} syntax.
 }
 \usage{
 checkGTK(version)
@@ -26,26 +28,24 @@ boundCairoVersion()
 \arguments{
   \item{version}{
     Version description to compare to the bound version, as in:
-    \code{compareVersion(boundGTKVersion(), version)}.
+    \code{boundGTKVersion() >= version}.
   }
 }
 \value{
-The \code{check}* functions return the result of the comparison as an
-integer, as from \code{\link{compareVersion}}.
+The \code{check}* functions return \code{TRUE} if \code{version} is
+satisfied, otherwise \code{FALSE}.
 
-The \code{bound}* functions return a character vector representation of
-the bound library version.
+The \code{bound}* functions return a \code{\link{numeric_version}}
+representation of the bound library version.
 }
 \author{
 Michael Lawrence
 }
 
-\seealso{
-\code{\link{compareVersion}}
-}
 \examples{
-checkGTK("2.12.0")
-# same as
-compareVersion(boundGTKVersion(), "2.12.0")
+## instead of
+# checkGTK("2.12.0")
+## do this:
+boundGTKVersion() >= "2.12.0"
 }
 \keyword{interface}

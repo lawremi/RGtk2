@@ -660,11 +660,13 @@ gtkInfoBarAddButtons <-
 ## Create an instance of RGtkBuilder, which can find the types by name
 
 .initClasses <- function() {
-  gClass("RGtkBuilder", "GtkBuilder",
-         GtkBuilder = list(
-           get_type_from_name = function(self, name) as.GType(name)
+  if (boundGTKVersion() >= "2.12.0") {
+    gClass("RGtkBuilder", "GtkBuilder",
+           GtkBuilder = list(
+             get_type_from_name = function(self, name) as.GType(name)
+             )
            )
-         )
+  }
 }
 
 gtkBuilderNew <- function() gObject("RGtkBuilder")
@@ -925,9 +927,10 @@ function(klass, pspec, parser)
 ## version checking ##
 
 boundGTKVersion <- function() {
-  paste(.RGtkCall("boundGTKVersion"), collapse=".")
+  as.numeric_version(paste(.RGtkCall("boundGTKVersion"), collapse="."))
 }
 
 checkGTK <- function(version) {
-  compareVersion(boundGTKVersion(), version)
+  .Deprecated("boundGTKVersion() >= version")
+  boundGTKVersion() >= version
 }

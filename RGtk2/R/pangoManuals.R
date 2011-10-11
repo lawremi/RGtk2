@@ -171,9 +171,10 @@ function(logical.items)
 ## version checking ##
 
 boundPangoVersion <- function() {
-  paste(.RGtkCall("boundPangoVersion"), collapse=".")
+  as.numeric_version(paste(.RGtkCall("boundPangoVersion"), collapse="."))
 }
 
 checkPango <- function(version) {
-  compareVersion(boundPangoVersion(), version)
+  .Deprecated("boundPangoVersion() >= version")
+  boundPangoVersion() >= version
 }

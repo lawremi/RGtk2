@@ -12,9 +12,10 @@ function (surface, con)
 ## version checking ##
 
 boundCairoVersion <- function() {
-  paste(.RGtkCall("boundCairoVersion"), collapse=".")
+  as.numeric_version(paste(.RGtkCall("boundCairoVersion"), collapse="."))
 }
 
 checkCairo <- function(version) {
-  compareVersion(boundCairoVersion(), version)
+  .Deprecated("boundCairoVersion() >= version")
+  boundCairoVersion() >= version
 }
