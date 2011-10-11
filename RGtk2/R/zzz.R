@@ -21,6 +21,8 @@ function(libname, pkgname)
  if (is.character(dll)) {
    message("Failed to load RGtk2 dynamic library, attempting to install it.")
    .install_system_dependencies()
+   if (.Platform$OS.type == "windows") # just try to load the package again
+     .onLoad(libname, pkgname)
    return()
  }
    
