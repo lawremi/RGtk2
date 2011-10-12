@@ -681,25 +681,64 @@ gtkRadioButtonNewWithLabel <-
 function(group = NULL, label, show = TRUE)
 gtkRadioButtonNewWithLabelFromWidget(group[[1]], label, show) 
 
-gtkRadioMenuItemNew <-
-function(group = NULL, show = TRUE) 
-gtkRadioMenuItemNewFromWidget(group[[1]], show)
+## Unlike GtkRadioButton, the GtkRadioMenuItem from_widget
+## constructors do not accept a NULL value for 'widget'. Thus, we have
+## to catch NULL and call the original function (where NULL becomes an
+## empty list). Otherwise, we call from_widget as in the above. In the
+## GTK+ source, it looks like they have written to code to be robust
+## to NULL, but there is an assertion up-front that fails. Since the
+## function is not documented to accept NULL, this must be the desired
+## behavior.
 
-gtkRadioMenuItemNewWithLabel <-
-function(group = NULL, label, show = TRUE) 
-gtkRadioMenuItemNewWithLabelFromWidget(group[[1]], label, show)
+gtkRadioMenuItemNew <- function(group = NULL, show = TRUE) {
+  if (is.null(group)) {
+    w <- .RGtkCall("S_gtk_radio_menu_item_new", group, PACKAGE="RGtk2")
+    if (show)
+      w$show()
+    w
+  } else gtkRadioMenuItemNewFromWidget(group[[1]], show)
+}
 
-gtkRadioMenuItemNewWithMnemonic <-
-function(group = NULL, label, show = TRUE)
-gtkRadioMenuItemNewWithMnemonicFromWidget(group[[1]], label, show) 
+gtkRadioMenuItemNewWithLabel <- function(group = NULL, label, show = TRUE) {
+  if (is.null(group)) {
+    w <- .RGtkCall("S_gtk_radio_menu_item_new_with_label", group, label,
+                   PACKAGE="RGtk2")
+    if (show)
+      w$show()
+    w
+  } else gtkRadioMenuItemNewWithLabelFromWidget(group[[1]], label, show)
+}
+
+gtkRadioMenuItemNewWithMnemonic <- function(group = NULL, label, show = TRUE) {
+  if (is.null(group)) {
+    w <- .RGtkCall("S_gtk_radio_menu_item_new_with_mnemonic", group, label,
+                   PACKAGE="RGtk2")
+    if (show)
+      w$show()
+    w
+  } else gtkRadioMenuItemNewWithMnemonicFromWidget(group[[1]], label, show) 
+}
 
 gtkRadioToolButtonNew <-
-function(group = NULL, show = TRUE) 
-gtkRadioToolButtonNewFromWidget(group[[1]], show)
+function(group = NULL, show = TRUE) {
+  if (is.null(group)) {
+    w <- .RGtkCall("S_gtk_radio_tool_button_new", group, PACKAGE="RGtk2")
+    if (show)
+      w$show()
+    w
+  } else gtkRadioToolButtonNewFromWidget(group[[1]], show)
+}
 
-gtkRadioToolButtonNewFromStock <-
-function(group = NULL, stock.id, show = TRUE) 
-gtkRadioToolButtonNewWithStockFromWidget(group[[1]], stock.id, show)
+gtkRadioToolButtonNewFromStock <- function(group = NULL, stock.id, show = TRUE)
+{
+  if (is.null(group)) {
+    w <- .RGtkCall("S_gtk_radio_tool_button_new_from_stock", group, stock.id,
+                   PACKAGE="RGtk2")
+    if (show)
+      w$show()
+    w
+  } else gtkRadioToolButtonNewWithStockFromWidget(group[[1]], stock.id, show)
+}
 
 # getting child widgets by index
 "[[.GtkContainer" <-
