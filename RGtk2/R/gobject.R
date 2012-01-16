@@ -552,8 +552,11 @@ function(x, field, where = parent.frame())
 {
   fun <- try(.getAutoElementByName(x, field, error = FALSE, where = where),
              TRUE)
-  if (!inherits(fun, "try-error"))
+  if (!inherits(fun, "try-error")) {
     val <- fun(x)
+    if (is.list(val) && "retval" %in% names(val))
+      val <- val[[2]] # attempt to handle return-by-reference getters
+  }
   else stop("Cannot find '", field, "' for classes ",
             paste(class(x), collapse=", "))
   return(val)
