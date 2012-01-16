@@ -26,7 +26,7 @@ scribble.expose.event <- function(widget, event, data)
   #
 
   cr <- gdkCairoCreate(widget[["window"]])
-  cr$setSourcePixmap(pixmap, 0, 0)
+  gdkCairoSetSourcePixmap(cr, pixmap, 0, 0)
   gdkCairoRectangle(cr, event[["area"]])
   cr$fill()
   
@@ -40,7 +40,7 @@ draw.brush <- function(widget, x, y)
   update.rect <- c(x=x-3, y=y-3, width=6, height=6)
 
   cr <- gdkCairoCreate(pixmap)
-  gdkCairoRectangle(cr, update_rect)
+  gdkCairoRectangle(cr, update.rect)
   cr$fill()
   
   # Now invalidate the affected region of the drawing area. (so it will be updated)
