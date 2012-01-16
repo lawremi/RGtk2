@@ -15,11 +15,11 @@
 \description{Convenience functions and operators for operating on bitflags and enums}
 \usage{
 as.flag(x)
-"[.flags"(x, value)
-"|.flag"(x, y)
-"&.flag"(x, y)
-"!.flag"(x)
-"==.enum"(x, y)
+\method{[}{flags}(x, value)
+\method{|}{flag}(x, y)
+\method{&}{flag}(x, y)
+\method{!}{flag}(x)
+\method{==}{enum}(x, y)
 }
 \arguments{
 \item{x}{Numeric value to coerce to a \code{flag}, an object of class \code{flags}, or the left hand operand}

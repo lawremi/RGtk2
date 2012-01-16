@@ -9,9 +9,9 @@
 Practically, it allows convenience operators to be specified for any external object.
 }
 \usage{
-"[[.RGtkObject"(x, field, where = parent.frame())
-"$.RGtkObject"(x, member)
-"==.RGtkObject"(x, y)
+\method{[[}{RGtkObject}(x, field, where = parent.frame())
+\method{$}{RGtkObject}(x, member)
+\method{==}{RGtkObject}(x, y)
 }
 \arguments{
 \item{x}{The \code{RGtkObject} to which the method or field belongs or the left hand of a comparison}

@@ -10,7 +10,7 @@
   such as its type and whether it can be set or only read.
 }
 \usage{
-names.GtkObject(x)
+\method{names}{GtkObject}(x)
 gtkObjectGetArgInfo(obj, parents=TRUE, collapse=TRUE)
 }
 \arguments{
