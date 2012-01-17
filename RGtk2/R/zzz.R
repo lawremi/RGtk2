@@ -19,7 +19,8 @@ function(libname, pkgname)
  else dll <- try(library.dynam("RGtk2", pkgname, libname),
                  silent = getOption("verbose"))
  if (is.character(dll)) {
-   message("Failed to load RGtk2 dynamic library, attempting to install it.")
+   warning("Failed to load RGtk2 dynamic library, attempting to install it.",
+           call. = FALSE)
    .install_system_dependencies()
    if (.Platform$OS.type == "windows") # just try to load the package again
      .onLoad(libname, pkgname)
@@ -32,15 +33,8 @@ function(libname, pkgname)
  else
   args <- as.character(.gtkArgs)
 
- #if ("REventLoop" %in% rownames(installed.packages())) {
- #    library(REventLoop)
- #    eventLoop(REventLoop("R_Gtk2EventLoop"))
- #    runEventLoop()
- #} else
  if(!(gtkInit(args))) {
-   message("R session is headless; GTK+ not initialized.")
-   if (length(grep("darwin", R.version$platform)))
-     message("Please try running R inside an X11 terminal.")
+   .init_failed()
  }
 
  .initClasses()
@@ -116,4 +110,8 @@ function(libname, pkgname)
   message("If the package still does not load, please ensure that GTK+ is",
           " installed and that it is on your PATH environment variable")
   message("IN ANY CASE, RESTART R BEFORE TRYING TO LOAD THE PACKAGE AGAIN")
+}
+
+.init_failed <- function() {
+  message("R session is headless; GTK+ not initialized.")
 }
