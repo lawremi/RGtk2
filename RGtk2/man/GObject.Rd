@@ -30,11 +30,11 @@ It provides facilities for object construction, properties, and signals.
 gObjectGet(obj, ..., drop = T)
 \method{[}{GObject}(obj, value, ...)
 gObjectSet(obj, ...)
-"[<-.GObject"(obj, propNames, value)
+\method{[}{GObject}(obj, propNames) <- value
 \method{[[}{GObject}(obj, member, where = parent.frame())
-"[[<-.GObject"(obj, member, value)
+\method{[[}{GObject}(obj, member) <- value
 \method{$}{GObject}(x, member)
-"$<-.GObject"(obj, member, value)
+\method{$}{GObject}(obj, member) <- value
 gObject(type, ...)
 gObjectNew(type, ...)
 gObjectSetData(obj, key, data = NULL) 

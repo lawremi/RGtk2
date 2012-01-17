@@ -21,10 +21,10 @@ rGtkDataFrameAppendRows(x, ...)
 \method{as.data.frame}{RGtkDataFrame}(x, ...)
 rGtkDataFrameSetFrame(x, frame = data.frame())
 \method{[}{RGtkDataFrame}(x, i, j, drop = T)
-"[<-.RGtkDataFrame"(x, i, j, value)
+\method{[}{RGtkDataFrame}(x, i, j) <- value
 \method{dim}{RGtkDataFrame}(x, ...)
 \method{dimnames}{RGtkDataFrame}(x, ...)
-"dimnames<-.RGtkDataFrame"(x, value)
+\method{dimnames}{RGtkDataFrame}(x) <- value
 }
 \arguments{
 \item{frame}{The frame to use as the backing store of the model}
