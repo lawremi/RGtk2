@@ -369,8 +369,8 @@ parseConstructorParams(GType obj_type, char **prop_names, GParameter *params,
         g_value_init(&params[param_i].value, spec->value_type);
         if (R_setGValueFromSValue(&params[param_i].value, args[arg_i]) == -1) {
             int i;
-            fprintf(stderr, "Could not convert property '%s' of type '%s'\n",
-                         prop_names[arg_i], g_type_name(spec->value_type));
+            warning("Could not convert property '%s' of type '%s'",
+                    prop_names[arg_i], g_type_name(spec->value_type));
             g_type_class_unref(oclass);
             for (i = 0; i < param_i; ++i)
                 g_value_unset(&params[i].value);
@@ -1388,7 +1388,7 @@ R_setGValueFromSValue(GValue *value, USER_OBJECT_ sval)
         g_value_set_string(raw, asCString(sval));
     break;
      default:
-     fprintf(stderr, "Unhandled R type %d\n", TYPEOF(sval));fflush(stderr);
+     warning("Unhandled R type %d", TYPEOF(sval));
     }
 
     if (g_value_type_compatible(G_VALUE_TYPE(raw), G_VALUE_TYPE(value))) {
@@ -1397,7 +1397,8 @@ R_setGValueFromSValue(GValue *value, USER_OBJECT_ sval)
     else if (g_value_type_transformable(G_VALUE_TYPE(raw), G_VALUE_TYPE(value)))
         g_value_transform(raw, value);
     else {
-        fprintf(stderr, "Could not set GValue type %s\n", g_type_name(G_VALUE_TYPE(value)));fflush(stderr);
+        warning("Could not set GValue type %s",
+                g_type_name(G_VALUE_TYPE(value)));
         ret = -1;
     }
 
@@ -1486,11 +1487,11 @@ asRGValue(const GValue *value)
       break;
 
       case G_TYPE_INVALID:
-      fprintf(stderr, "Attempt to get invalid type\n");fflush(stderr);
+        warning("Attempt to get invalid type");
       break;
 
       case G_TYPE_NONE:
-      fprintf(stderr, "None type\n");fflush(stderr);
+        warning("None type");
       break;
 
       case G_TYPE_OBJECT:
