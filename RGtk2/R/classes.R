@@ -79,22 +79,22 @@ gClass <- function(name, parent = "GObject", ..., abstract = FALSE)
   
   # check init function
   
-  init <- class_list[[".init"]]
+  init <- class_list$.init
   if (!is.null(init))
     init <- as.function(init)
   
   # check property paramspecs
   
-  props <- lapply(class_list[[".props"]], as.GParamSpec)
+  props <- lapply(class_list$.props, as.GParamSpec)
   
   # and get any overriden properties
   
-  prop_overrides <- as.character(class_list[[".prop_overrides"]])
+  prop_overrides <- as.character(class_list$.prop_overrides)
   
   # check signals
   
   signal_fields <- c("name", "param_types", "ret_type", "flags")
-  signals <- lapply(class_list[[".signals"]], function(signal) {
+  signals <- lapply(class_list$.signals, function(signal) {
     signal <- as.struct(signal, "GSignal", signal_fields)
     name <- as.character(signal[[1]])
     invalid_chars <- sub("^[a-zA-Z][a-zA-Z_-]*", "", name)
@@ -116,14 +116,14 @@ gClass <- function(name, parent = "GObject", ..., abstract = FALSE)
   })
   
   whichFuncs <- function(env, syms) 
-    as.logical(unlist(sapply(sapply(syms, get, env), is.function)))
+    as.logical(unlist(sapply(mget(syms, env), is.function)))
   
   # get the public members (env locked, fields locked, functions locked)
   # public env is static, so always inherits from parent
   public_parent <- emptyenv()
   if ("SGObject" %in% gTypeGetInterfaces(parent))
     public_parent <- .Call("S_g_object_type_get_public_env", parent, PACKAGE = "RGtk2")
-  publics <- .newEnv(class_list[[".public"]], public_parent)
+  publics <- list2env(class_list$.public, parent = public_parent)
   public_syms <- ls(publics)
   public_which_funcs <- whichFuncs(publics, public_syms)
   # this can be retrieved by R, so lock it now
@@ -131,13 +131,13 @@ gClass <- function(name, parent = "GObject", ..., abstract = FALSE)
   
   # get the protected members (env locked, fields unlocked, functions locked)
   # protected is attached to parent after being cloned
-  protecteds <- .newEnv(class_list[[".protected"]])
+  protecteds <- list2env(class_list$.protected)
   protected_syms <- ls(protecteds)
   protected_which_funcs <- whichFuncs(protecteds, protected_syms)
   
   # get the private members (env unlocked, fields and methods unlocked)
   # private env inherits from protected after cloning
-  privates <- .newEnv(class_list[[".private"]])
+  privates <- list2env(class_list$.private)
   private_syms <- ls(privates)
   
   # check for conflicts between declared members
@@ -185,7 +185,7 @@ gClass <- function(name, parent = "GObject", ..., abstract = FALSE)
     interface_init_syms <- sapply(get_class_init_funcs(interface_names),
       function(interface_name) getNativeSymbolInfo(interface_name)$address)
   
-  class_env <- .as.environment(types)
+  class_env <- list2env(types)
   assign(".initialize", init, class_env)
   
   # add public, protected, and private to the class env
@@ -206,21 +206,12 @@ gClass <- function(name, parent = "GObject", ..., abstract = FALSE)
 
 registerVirtuals <- function(virtuals)
 {
-  .massign(virtuals, .virtuals)
-}
-
-unregisterVirtuals <- function(virtuals)
-{
-  .mrm(virtuals, .virtuals)
+  list2env(virtuals, .virtuals)
 }
 
 .registerFields <- function(fields)
 {
-  .massign(fields, .fields)
-}
-.unregisterFields <- function(fields)
-{
-  .mrm(fields, .fields)
+  list2env(fields, .fields)
 }
 
 gObjectParentClass <- function(obj)
@@ -249,24 +240,22 @@ getProp <- function(obj, pspec)
   static <- hierarchy[[length(hierarchy)]]
   prot <- emptyenv()
   sapply(hierarchy, function(env) {
-    prot <<- .copyEnv(get(".protected", env), prot)
+    prot <<- list2env(as.list(env$.protected), parent = prot)
   })
-  priv <- .copyEnv(get(".private", static), prot)
-  pub <- get(".public", static)
-  assign(".public", pub, static)
+  priv <- list2env(as.list(static$.private), parent = prot)
+  pub <- static$.public
+  assign(".public", pub, static) # ????
   # if something in static exists in public or protected (parents), copy it over
   static_syms <- ls(static)
-  static_syms <- static_syms[!(static_syms %in% .reserved)]
-  sapply(static_syms[sapply(static_syms, exists, pub)], function(sym) 
-    assign(sym, get(sym, static), pub))
-  sapply(static_syms[sapply(static_syms, exists, priv)], function(sym) 
-    assign(sym, get(sym, static), priv))
+  static_syms <- setdiff(static_syms, .reserved)
+  list2env(mget(intersect(static_syms, ls(pub)), static), pub)
+  list2env(mget(intersect(static_syms, ls(priv)), static), priv)
   # note that C overrides are not copied here, and they shouldn't be
   # need to lock up the envs now (public completely, protected just funcs)
   lockEnvironment(pub, TRUE)
   lockEnvironment(prot)
   prot_syms <- ls(prot)
-  prot_funcs <- as.logical(sapply(sapply(prot_syms, get, prot), is.function))
+  prot_funcs <- as.logical(sapply(mget(prot_syms, prot), is.function))
   sapply(prot_syms[prot_funcs], lockBinding, prot)
   priv
 }

@@ -205,53 +205,6 @@ function(name)
   gsub("_([abcdefghijklmnopqrstuvwxyz])_","_\\1", tmp)
 }
 
-# make a new environment by copying an existing one or creating one from scratch
-.newEnv <- function(env, parent = emptyenv())
-{
-  if (is.environment(env))
-    .copyEnv(env, parent)
-  else .as.environment(env, parent)
-}
-
-# make a copy of an environment
-# the new root environment is given 'parent' as its parent
-.copyEnv <- function(env, parent = emptyenv(), pattern)
-{
-  #p <- parentenv(env)
-  #if (recursive && p != emptyenv())
-  #  parent <- .copyEnv(p, parent, TRUE)
-  syms <- ls(env, pattern)
-  elements <- structure(lapply(syms, get, env), names = syms)
-  .as.environment(elements, parent)
-}
-
-# Coerce a list (or something coerceable to a list) to an environment
-.as.environment <- function(l, parent = emptyenv())
-{
-  if (is.environment(l))
-    return(l)
-  l <- as.list(l)
-  e <- new.env(TRUE, parent)
-  sapply(names(l), function(name) assign(name, l[[name]], e))
-  e
-}
-
-# assigning and removing elements of a structure into/from an environment
-# most efficient when 'elements' is an environment
-.massign <- function(elements, env)
-{
-  e <- .as.environment(elements)
-  sapply(ls(e), function(name) 
-    assign(name, get(name, e), env))
-}
-.mrm <- function(elements, env)
-{
-  e <- .as.environment(elements)
-  eapply(e, rm, env)
-}
-
-# .Call("R_getSignalNames", gtkButton())
-
 ## Binding to RGtk2's bindtextdomain(), which is different from R's on Windows
 rgtk2_bindtextdomain <- function(domain, dirname = NULL) {
   base::bindtextdomain(domain, dirname)
