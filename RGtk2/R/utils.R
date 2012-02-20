@@ -178,7 +178,7 @@ print.flags <- function(x, ...) {
 # file shortcuts
 imagefile <- function(name)
 {
-	file.path(installed.packages()["RGtk2", "LibPath"], "RGtk2", "images", name)
+	system.file("images", name, package = "RGtk2")
 }
 
 .notimplemented <- function(reason, func = sys.call(-1)) {
