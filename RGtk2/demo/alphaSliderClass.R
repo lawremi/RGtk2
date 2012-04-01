@@ -1,6 +1,3 @@
-require(RGtk2)
-
-#debug(gClass)
 tform_scale_type <- gClass("RTransformedHScale", "GtkHScale",
   .props = list(
     gParamSpec("R", "expr", "e", "Transformation of scale value",
@@ -8,7 +5,7 @@ tform_scale_type <- gClass("RTransformedHScale", "GtkHScale",
   ),
   .public = list(
     getExpr = function(self) self["expr"],
-    getTransformedValue = function(self) self$transformValue(self$value)
+    getTransformedValue = function(self) self$transformValue(self$getValue())
   ),
   .private = list(
     transformValue = function(self, x) eval(self$expr, list(x = x))
@@ -34,7 +31,7 @@ gSignalConnect(s, "value-changed", function(scale) {
 n <- 5000
 backbone <- rnorm(n)
 ma_data <- cbind(backbone, backbone+rnorm(n,,0.3))
-require(cairoDevice)
+library(cairoDevice)
 win <- gtkWindow(show = F)
 da <- gtkDrawingArea()
 asCairoDevice(da)
