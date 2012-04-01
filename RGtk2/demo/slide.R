@@ -1,7 +1,7 @@
 ##### PUZZLE CLASS ######
 # warning: not yet stable
 #source("/home/larman/research/RGtk2/RGtk2/demo/slide.R")
-gClass("Puzzle", "GtkDrawingArea", list(
+gClass("Puzzle", "GtkDrawingArea",
   .props = list( # note the flags parameter is missing (read/write/construct)
     gParamSpec("integer", "rows", "r", "Number of rows",, 0, 20, 0),
     gParamSpec("integer", "cols", "c", "Number of columns",, 0, 20, 0)
@@ -229,9 +229,7 @@ gClass("Puzzle", "GtkDrawingArea", list(
     gSignalConnect(self, "motion-notify-event", self$event_motion)
     gSignalConnect(self, "button-press-event", self$event_press)
     gSignalConnect(self, "button-release-event", self$event_release)
-  }
-  
-))
+  })
 
 #### END PUZZLE CLASS, BEGIN APPLICATION CODE ####
 
