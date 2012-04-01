@@ -43,6 +43,15 @@ function(libname, pkgname)
 .windows_gtk_path <- function()
   file.path(system.file(package = "RGtk2"), "gtk", .Platform$r_arch)
 
+.configure_gtk_theme <- function(theme) {
+  ## Only applies to Windows so far
+  config_path <- file.path(system.file(package = "RGtk2"), "gtk",
+                           .Platform$r_arch, "etc", "gtk-2.0")
+  dir.create(config_path, recursive = TRUE)
+  writeLines(sprintf("gtk-theme-name = \"%s\"", theme),
+             file.path(config_path, "gtkrc"))
+}
+
 .install_system_dependencies <- function()
 {
   windows32_config <-
@@ -54,6 +63,7 @@ function(libname, pkgname)
            ## unzip does this, but we want to see any warnings
            dir.create(gtk_path, recursive = TRUE) 
            unzip(path, exdir = gtk_path)
+           .configure_gtk_theme("MS-Windows")
          }
          )
 
