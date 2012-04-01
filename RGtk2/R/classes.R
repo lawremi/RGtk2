@@ -38,6 +38,10 @@ gClass <- function(name, parent = "GObject", ..., abstract = FALSE)
   # process class definition
 
   class_list <- list(...)
+  missing_method_lists <- setdiff(c(".public", ".protected", ".private"),
+                                  names(class_list))
+  class_list[missing_method_lists] <-
+    list(structure(list(), names = character()))
   types <- class_list[!(names(class_list) %in% .reserved)]
   known_types <- names(types) %in% names(virtuals)
   if (any(!known_types))
