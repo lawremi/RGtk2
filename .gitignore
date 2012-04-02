@@ -138,3 +138,10 @@
 /RGtkGen/inst/pygtk/definitions.pyc
 /RGtkGen/inst/pygtk/defsparser.pyc
 /RGtkGen/inst/pygtk/scmexpr.pyc
+/RGtkGen/inst/data/gen/atkzConstructors.R
+/RGtkGen/inst/data/gen/cairozConstructors.R
+/RGtkGen/inst/data/gen/gdkzConstructors.R
+/RGtkGen/inst/data/gen/giozConstructors.R
+/RGtkGen/inst/data/gen/gtkzConstructors.R
+/RGtkGen/inst/data/gen/pangozConstructors.R
+/books/rgui/K12672.PDF

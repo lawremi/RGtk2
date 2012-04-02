@@ -653,11 +653,11 @@ gtkEntryBuffer <- gtkEntryBufferNew
 gtkInfoBar <-
 function(first.button.text, ..., show = TRUE)
 {
-  if (!missing(show)) {
-    gtkInfoBarNew(show)
+  if (!missing(first.button.text)) {
+    gtkInfoBarNewWithButtons(first.button.text, ..., show = show)
   }
   else {
-    gtkInfoBarNewWithButtons(first.button.text, ...)
+    gtkInfoBarNew(show)
   }
 }
 
