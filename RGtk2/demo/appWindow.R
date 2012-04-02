@@ -227,6 +227,11 @@ table$attach(infobar, 0, 1, 2, 3, yoptions = 0)
 
 # now let the user put some text in the scrolling window
 
+scrolled.window <- gtkScrolledWindow()
+scrolled.window$setPolicy("automatic", "automatic")
+scrolled.window$setShadowType("in")
+table$attach(scrolled.window, 0, 1, 3, 4)
+
 contents <- gtkTextViewNew()
 contents$grabFocus()
 scrolled.window$add(contents)
@@ -234,7 +239,7 @@ scrolled.window$add(contents)
 # how about a cool status bar?
 
 statusbar <- gtkStatusbarNew() # squeeze it in at the bottom
-table$attach(statusbar, 0, 1, 3, 4, yoptions = 0)
+table$attach(statusbar, 0, 1, 4, 5, yoptions = 0)
 
 buffer <- contents$getBuffer() # statusbar listens to buffer
 gSignalConnect(buffer, "changed", update.statusbar, statusbar)
