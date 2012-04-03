@@ -288,15 +288,12 @@ function(from,  into)
 ### Issues:
 
 ## 1) missing 'since' information: could merge multiple repositories,
-## but the versions are not fully specified. UPDATE: Apparently there
-## is now a version on everything in GIR.
+## but the versions are not fully specified.
 
 ## 2) nested namespaces: not supported by GIR, but in anticipation,
 ## namespaces should be nested lists, with entries named by GIR
 ## name. Then we just recurse, while keeping a bread trail, so that we can
 ## resolve local symbols.
-
-## 3) Still waiting on default value support.
 
 parseGIR <- function(filename, db, includePaths = "/usr/share/gir") {
 
@@ -444,7 +441,7 @@ parseGIR <- function(filename, db, includePaths = "/usr/share/gir") {
     parseMethod <- function() {
       counts <- sapply(xpquery("..", "method"), getNodeSet,
                        "count(core:method)", xns)  
-       objects <- xpquery("../@c:type", "method")
+      objects <- xpquery("../@c:type", "method")
       buildEntry(parseCall("method"), list(ofobject = rep(objects, counts)))
     }
     parseFunction <- function() {
@@ -460,6 +457,14 @@ parseGIR <- function(filename, db, includePaths = "/usr/share/gir") {
       call <- parseCall("callback")
       call$name <- xpquery("@c:type", "callback")
       buildEntry(call)
+    }
+    parseVirtualMethod <- function() {
+      entry <- buildEntry(parseCall("function"),
+                          list(ofobject = xpquery("core:@invoker",
+                                 "virtual-method")))
+      entry$vname <- sub(paste0(collapseClassName(entry$ofobject), "_"), "",
+                         entry$name)
+      entry
     }
 
     ns <- list()
@@ -497,9 +502,7 @@ parseGIR <- function(filename, db, includePaths = "/usr/share/gir") {
     ns$functions <- c(parseFunction(), parseMethod(), parseConstructor())
 
     ## Virtuals
-### FIXME: no explicit virtual support yet (there are callbacks in
-### class pointers though, which is ugly)
-    ##defs$virtuals <- parseVirtual()
+    defs$virtuals <- parseVirtual()
     
     ## User defined functions
     ns$userfunctions <- parseCallback()
@@ -1140,9 +1143,7 @@ structinit <- function(...) {
   arrinit(paste("\n", ind(elements), sep=""))
 }
 # declares a function in C
-declareFunction <- function(ret, name, ptypes, pnames, prefix = TRUE,
-                            static = FALSE)
-{
+declareFunction <- function(ret, name, ptypes, pnames, prefix = T) {
     if (ret == "none")
         ret <- "void"
 
@@ -1155,12 +1156,10 @@ declareFunction <- function(ret, name, ptypes, pnames, prefix = TRUE,
     if (prefix)
       name <- nameToC(name)
     
-    decl <- paste(ret, "\n",
-                  name, "(", args, ")",
-                  sep="")
-    if (static)
-      decl <- static(decl)
-    decl
+    paste(
+        ret, "\n",
+        name, "(", args, ")",
+    sep="")
 }
 
 s_signature <- function(formal_args)
@@ -2025,13 +2024,10 @@ function(type, name, out = T)
 # gets the actual function used for cleaning an instance of a type
 getCleanupFunc <- function(type, name, out)
 {
-  func <- NULL
-  btype <- baseType(type)
-  ## custom array cases: in parameters are allocated on R's heap,
-  ## while 'out' parameters and return values are allocated in some
-  ## special way
-  if (btype %in% names(cleanupFuncs) && (!isArray(btype) || out))
-    func <- cleanupFuncs[[btype]]
+	func <- NULL
+	btype <- baseType(type)
+	if (btype %in% names(cleanupFuncs))
+    func <- cleanupFuncs[[btype]] # custom cases
   else if (out && isPrimitiveTypeRef(type) && getGenericTypeRef(type) == "string")
     func <- "g_strfreev" # string arrays
   else if (out && !isConst(type) && ((btype %in% transparentTypes && 
@@ -2217,8 +2213,7 @@ genUserFunctionCode <- function(fun, defs, name = fun$name, virtual = 0, package
   param_names <- names(params)
   ret_type <- toValidType(fun$return)
   
-  header <- declareFunction(ret_type, name, param_types, param_names,
-                            static = virtual)
+  header <- declareFunction(ret_type, name, param_types, param_names)
   declaration <- header
   
   export_code <- exportFunc(fun, nameToC(name), param_types, param_names, package)
@@ -2348,8 +2343,10 @@ genUserFunctionCode <- function(fun, defs, name = fun$name, virtual = 0, package
           owns=fun$owns)$code)))
   code <- c(code,
   "}")
-
-  code <- since(fun, code, .error = FALSE)
+  
+  if (!virtual) # virtuals are conditioned differently
+    code <- since(fun, code, .error = FALSE)
+  
   decl <- since(fun, statement(declaration), .error = FALSE)
   
   list(code=paste(code,collapse="\n"), decl = paste(decl, collapse="\n"),
