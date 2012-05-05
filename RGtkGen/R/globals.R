@@ -206,14 +206,14 @@ CPrimitiveToGeneric <- c("gchar" = "character", "guchar" = "raw",
                          "gint64" = "numeric", "gsize" = "numeric",
                          "goffset" = "numeric", "gunichar" = "numeric", 
                          "guint" = "numeric", "PangoGlyph" = "numeric", 
-                         "GQuark" = "numeric", "guint32" = "numeric",
+                         "GQuark" = "GQuark", "guint32" = "numeric",
                          "GdkWChar" = "numeric",
                          "guint64" = "numeric", "AtkState" = "numeric",
                          "gfloat" = "numeric",
                          "float" = "numeric", "gdouble" = "numeric",
                          "double" = "numeric", 
                          "glong" = "numeric", "gulong" = "numeric",
-                         "GType" = "numeric", 
+                         "GType" = "GType", 
                          "gboolean" = "logical", "cairo_bool_t" = "logical"
                          )
 

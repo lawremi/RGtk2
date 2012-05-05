@@ -147,6 +147,9 @@ __extension__ \
     _asRPrimArrayWithSize(array, size, NUMERIC); \
 })
 
+#define asRGTypeArrayWithSize(array, size) \
+  asRArrayWithSize(array, asRGType, size)
+
 #define asRLogicalArray(array) \
 __extension__ \
 ({ \
@@ -365,6 +368,7 @@ gpointer getPtrValueWithRef(USER_OBJECT_ sval);
 
 
 /********* GLib structure conversion *********/
+GQuark asCGQuark(USER_OBJECT_ sval);
 USER_OBJECT_ asRGQuark(GQuark val);
 GTimeVal* asCGTimeVal(USER_OBJECT_ s_timeval);
 USER_OBJECT_ asRGTimeVal(const GTimeVal *timeval);
@@ -394,6 +398,7 @@ gboolean initGValueFromSValue(USER_OBJECT_ sval, GValue *raw);
 gboolean initGValueFromVector(USER_OBJECT_ sval, gint n, GValue *raw);
 USER_OBJECT_ asRGValue(const GValue *val);
 GValue* asCGValue(USER_OBJECT_ sval);
+GType asCGType(USER_OBJECT_ sval);
 USER_OBJECT_ asRGType(GType type);
 GParamSpec* asCGParamSpec(USER_OBJECT_ s_spec);
 USER_OBJECT_ asRGParamSpec(GParamSpec* spec);

@@ -13846,7 +13846,7 @@ function()
 gtkListStoreNewv <-
 function(value)
 {
-  value <- as.list(as.numeric(value))
+  value <- as.list(as.GType(value))
 
   w <- .RGtkCall("S_gtk_list_store_newv", value, PACKAGE = "RGtk2")
 
@@ -13858,7 +13858,7 @@ gtkListStoreSetColumnTypes <-
 function(object, types)
 {
   checkPtrType(object, "GtkListStore")
-  types <- as.list(as.numeric(types))
+  types <- as.list(as.GType(types))
 
   w <- .RGtkCall("S_gtk_list_store_set_column_types", object, types, PACKAGE = "RGtk2")
 
@@ -25313,7 +25313,7 @@ gtkTreeModelFilterSetModifyFunc <-
 function(object, types, func, data = NULL)
 {
   checkPtrType(object, "GtkTreeModelFilter")
-  types <- as.list(as.numeric(types))
+  types <- as.list(as.GType(types))
   func <- as.function(func)
   
 
@@ -25864,7 +25864,7 @@ function()
 gtkTreeStoreNewv <-
 function(types)
 {
-  types <- as.list(as.numeric(types))
+  types <- as.list(as.GType(types))
 
   w <- .RGtkCall("S_gtk_tree_store_newv", types, PACKAGE = "RGtk2")
 
@@ -25876,7 +25876,7 @@ gtkTreeStoreSetColumnTypes <-
 function(object, types)
 {
   checkPtrType(object, "GtkTreeStore")
-  types <- as.list(as.numeric(types))
+  types <- as.list(as.GType(types))
 
   w <- .RGtkCall("S_gtk_tree_store_set_column_types", object, types, PACKAGE = "RGtk2")
 

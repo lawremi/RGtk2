@@ -10067,7 +10067,7 @@ S_g_io_extension_point_set_required_type(USER_OBJECT_ s_object, USER_OBJECT_ s_t
   USER_OBJECT_ _result = NULL_USER_OBJECT;
 #if GIO_CHECK_VERSION(2, 16, 0)
   GIOExtensionPoint* object = ((GIOExtensionPoint*)getPtrValue(s_object));
-  GType type = ((GType)asCNumeric(s_type));
+  GType type = ((GType)asCGType(s_type));
 
 
   g_io_extension_point_set_required_type(object, type);
@@ -10147,7 +10147,7 @@ S_g_io_extension_point_implement(USER_OBJECT_ s_extension_point_name, USER_OBJEC
   USER_OBJECT_ _result = NULL_USER_OBJECT;
 #if GIO_CHECK_VERSION(2, 16, 0)
   const char* extension_point_name = ((const char*)asCString(s_extension_point_name));
-  GType type = ((GType)asCNumeric(s_type));
+  GType type = ((GType)asCGType(s_type));
   const char* extension_name = ((const char*)asCString(s_extension_name));
   gint priority = ((gint)asCInteger(s_priority));
 
@@ -14167,7 +14167,7 @@ S_g_socket_connection_factory_register_type(USER_OBJECT_ s_g_type, USER_OBJECT_ 
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
 #if GIO_CHECK_VERSION(2, 22, 0)
-  GType g_type = ((GType)asCNumeric(s_g_type));
+  GType g_type = ((GType)asCGType(s_g_type));
   GSocketFamily family = ((GSocketFamily)asCEnum(s_family, G_TYPE_SOCKET_FAMILY));
   GSocketType type = ((GSocketType)asCEnum(s_type, G_TYPE_SOCKET_TYPE));
   gint protocol = ((gint)asCInteger(s_protocol));

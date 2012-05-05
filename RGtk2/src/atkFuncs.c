@@ -1342,8 +1342,8 @@ S_atk_registry_set_factory_type(USER_OBJECT_ s_object, USER_OBJECT_ s_type, USER
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkRegistry* object = ATK_REGISTRY(getPtrValue(s_object));
-  GType type = ((GType)asCNumeric(s_type));
-  GType factory_type = ((GType)asCNumeric(s_factory_type));
+  GType type = ((GType)asCGType(s_type));
+  GType factory_type = ((GType)asCGType(s_factory_type));
 
 
   atk_registry_set_factory_type(object, type, factory_type);
@@ -1358,7 +1358,7 @@ S_atk_registry_get_factory_type(USER_OBJECT_ s_object, USER_OBJECT_ s_type)
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkRegistry* object = ATK_REGISTRY(getPtrValue(s_object));
-  GType type = ((GType)asCNumeric(s_type));
+  GType type = ((GType)asCGType(s_type));
 
   GType ans;
 
@@ -1375,7 +1375,7 @@ S_atk_registry_get_factory(USER_OBJECT_ s_object, USER_OBJECT_ s_type)
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkRegistry* object = ATK_REGISTRY(getPtrValue(s_object));
-  GType type = ((GType)asCNumeric(s_type));
+  GType type = ((GType)asCGType(s_type));
 
   AtkObjectFactory* ans;
 

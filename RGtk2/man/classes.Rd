@@ -1,7 +1,6 @@
 \alias{gClass}
 \alias{parentHandler}
 \alias{registerVirtuals}
-\alias{unregisterVirtuals}
 \alias{assignProp}
 \alias{getProp}
 \name{classes}
@@ -14,7 +13,6 @@ classes entirely from with R.}
   assignProp(obj, pspec, value)
   getProp(obj, pspec)
   registerVirtuals(virtuals)
-  unregisterVirtuals(virtuals)
 }
 \arguments{
   \item{name}{The name of the new class}

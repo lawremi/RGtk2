@@ -746,7 +746,7 @@ S_gtk_accel_group_activate(USER_OBJECT_ s_object, USER_OBJECT_ s_accel_quark, US
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
   GtkAccelGroup* object = GTK_ACCEL_GROUP(getPtrValue(s_object));
-  GQuark accel_quark = ((GQuark)asCNumeric(s_accel_quark));
+  GQuark accel_quark = ((GQuark)asCGQuark(s_accel_quark));
   GObject* acceleratable = G_OBJECT(getPtrValue(s_acceleratable));
   guint accel_key = ((guint)asCNumeric(s_accel_key));
   GdkModifierType accel_mods = ((GdkModifierType)asCFlag(s_accel_mods, GDK_TYPE_MODIFIER_TYPE));
@@ -16403,7 +16403,7 @@ USER_OBJECT_
 S_gtk_item_factory_new(USER_OBJECT_ s_container_type, USER_OBJECT_ s_path, USER_OBJECT_ s_accel_group)
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
-  GType container_type = ((GType)asCNumeric(s_container_type));
+  GType container_type = ((GType)asCGType(s_container_type));
   const gchar* path = ((const gchar*)asCString(s_path));
   GtkAccelGroup* accel_group = GET_LENGTH(s_accel_group) == 0 ? NULL : GTK_ACCEL_GROUP(getPtrValue(s_accel_group));
 
@@ -16422,7 +16422,7 @@ S_gtk_item_factory_construct(USER_OBJECT_ s_object, USER_OBJECT_ s_container_typ
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
   GtkItemFactory* object = GTK_ITEM_FACTORY(getPtrValue(s_object));
-  GType container_type = ((GType)asCNumeric(s_container_type));
+  GType container_type = ((GType)asCGType(s_container_type));
   const gchar* path = ((const gchar*)asCString(s_path));
   GtkAccelGroup* accel_group = GTK_ACCEL_GROUP(getPtrValue(s_accel_group));
 
@@ -18062,7 +18062,7 @@ S_gtk_list_store_newv(USER_OBJECT_ s_value)
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
   gint n_columns = ((gint)GET_LENGTH(s_value));
-  GType* value = ((GType*)asCArray(s_value, GType, asCNumeric));
+  GType* value = ((GType*)asCArray(s_value, GType, asCGType));
 
   GtkListStore* ans;
 
@@ -18080,7 +18080,7 @@ S_gtk_list_store_set_column_types(USER_OBJECT_ s_object, USER_OBJECT_ s_types)
   USER_OBJECT_ _result = NULL_USER_OBJECT;
   GtkListStore* object = GTK_LIST_STORE(getPtrValue(s_object));
   gint n_columns = ((gint)GET_LENGTH(s_types));
-  GType* types = ((GType*)asCArray(s_types, GType, asCNumeric));
+  GType* types = ((GType*)asCArray(s_types, GType, asCGType));
 
 
   gtk_list_store_set_column_types(object, n_columns, types);
@@ -22584,7 +22584,7 @@ S_gtk_rc_get_style_by_paths(USER_OBJECT_ s_settings, USER_OBJECT_ s_widget_path,
   GtkSettings* settings = GTK_SETTINGS(getPtrValue(s_settings));
   const char* widget_path = ((const char*)asCString(s_widget_path));
   const char* class_path = ((const char*)asCString(s_class_path));
-  GType type = ((GType)asCNumeric(s_type));
+  GType type = ((GType)asCGType(s_type));
 
   GtkStyle* ans;
 
@@ -33453,7 +33453,7 @@ S_gtk_tree_model_filter_set_modify_func(USER_OBJECT_ s_object, USER_OBJECT_ s_ty
   R_CallbackData* data = R_createCBData(s_func, s_data);
   GtkTreeModelFilter* object = GTK_TREE_MODEL_FILTER(getPtrValue(s_object));
   gint n_columns = ((gint)GET_LENGTH(s_types));
-  GType* types = ((GType*)asCArray(s_types, GType, asCNumeric));
+  GType* types = ((GType*)asCArray(s_types, GType, asCGType));
   GtkDestroyNotify destroy = ((GtkDestroyNotify)R_freeCBData);
 
 
@@ -34223,7 +34223,7 @@ S_gtk_tree_store_newv(USER_OBJECT_ s_types)
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
   gint n_columns = ((gint)GET_LENGTH(s_types));
-  GType* types = ((GType*)asCArray(s_types, GType, asCNumeric));
+  GType* types = ((GType*)asCArray(s_types, GType, asCGType));
 
   GtkTreeStore* ans;
 
@@ -34241,7 +34241,7 @@ S_gtk_tree_store_set_column_types(USER_OBJECT_ s_object, USER_OBJECT_ s_types)
   USER_OBJECT_ _result = NULL_USER_OBJECT;
   GtkTreeStore* object = GTK_TREE_STORE(getPtrValue(s_object));
   gint n_columns = ((gint)GET_LENGTH(s_types));
-  GType* types = ((GType*)asCArray(s_types, GType, asCNumeric));
+  GType* types = ((GType*)asCArray(s_types, GType, asCGType));
 
 
   gtk_tree_store_set_column_types(object, n_columns, types);
@@ -38252,7 +38252,7 @@ S_gtk_widget_get_ancestor(USER_OBJECT_ s_object, USER_OBJECT_ s_widget_type)
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
   GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
-  GType widget_type = ((GType)asCNumeric(s_widget_type));
+  GType widget_type = ((GType)asCGType(s_widget_type));
 
   GtkWidget* ans;
 
@@ -48860,7 +48860,7 @@ S_gtk_builder_value_from_string_type(USER_OBJECT_ s_object, USER_OBJECT_ s_type,
   USER_OBJECT_ _result = NULL_USER_OBJECT;
 #if GTK_CHECK_VERSION(2, 12, 0)
   GtkBuilder* object = GTK_BUILDER(getPtrValue(s_object));
-  GType type = ((GType)asCNumeric(s_type));
+  GType type = ((GType)asCGType(s_type));
   const gchar* string = ((const gchar*)asCString(s_string));
 
   gboolean ans;
@@ -53187,7 +53187,7 @@ S_gtk_test_list_all_types(void)
 
   ans = gtk_test_list_all_types(&n_types);
 
-  _result = asRNumericArrayWithSize(ans, n_types);
+  _result = asRGTypeArrayWithSize(ans, n_types);
 
   _result = retByVal(_result, "n.types", asRNumeric(n_types), NULL);
   ;
@@ -53206,7 +53206,7 @@ S_gtk_test_find_widget(USER_OBJECT_ s_widget, USER_OBJECT_ s_label_pattern, USER
 #if GTK_CHECK_VERSION(2, 14, 0)
   GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
   const gchar* label_pattern = ((const gchar*)asCString(s_label_pattern));
-  GType widget_type = ((GType)asCNumeric(s_widget_type));
+  GType widget_type = ((GType)asCGType(s_widget_type));
 
   GtkWidget* ans;
 
@@ -53393,7 +53393,7 @@ S_gtk_test_find_sibling(USER_OBJECT_ s_base_widget, USER_OBJECT_ s_widget_type)
   USER_OBJECT_ _result = NULL_USER_OBJECT;
 #if GTK_CHECK_VERSION(2, 14, 0)
   GtkWidget* base_widget = GTK_WIDGET(getPtrValue(s_base_widget));
-  GType widget_type = ((GType)asCNumeric(s_widget_type));
+  GType widget_type = ((GType)asCGType(s_widget_type));
 
   GtkWidget* ans;
 
@@ -55090,7 +55090,7 @@ S_gtk_style_get_style_property(USER_OBJECT_ s_object, USER_OBJECT_ s_widget_type
   USER_OBJECT_ _result = NULL_USER_OBJECT;
 #if GTK_CHECK_VERSION(2, 16, 0)
   GtkStyle* object = GTK_STYLE(getPtrValue(s_object));
-  GType widget_type = ((GType)asCNumeric(s_widget_type));
+  GType widget_type = ((GType)asCGType(s_widget_type));
   const gchar* property_name = ((const gchar*)asCString(s_property_name));
 
   GValue* value = ((GValue *)g_new0(GValue, 1));

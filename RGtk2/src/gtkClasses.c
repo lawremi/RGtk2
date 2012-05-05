@@ -3610,7 +3610,7 @@ S_virtual_gtk_container_child_type(GtkContainer* s_object)
 
   if(err)
     return(((GType)0));
-  return(((GType)asCNumeric(s_ans)));
+  return(((GType)asCGType(s_ans)));
 }
 
 static gchar*
@@ -21631,7 +21631,7 @@ S_virtual_gtk_builder_get_type_from_name(GtkBuilder* s_object, const char* s_typ
 
   if(err)
     return(((GType)0));
-  return(((GType)asCNumeric(s_ans)));
+  return(((GType)asCGType(s_ans)));
 }
 #endif
 void
@@ -23321,7 +23321,7 @@ S_virtual_gtk_tree_model_get_column_type(GtkTreeModel* s_object, gint s_index_)
 
   if(err)
     return(((GType)0));
-  return(((GType)asCNumeric(s_ans)));
+  return(((GType)asCGType(s_ans)));
 }
 
 static gboolean

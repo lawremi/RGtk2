@@ -62,7 +62,7 @@ USER_OBJECT_
 R_getGTypeAncestors(USER_OBJECT_ sobj)
 {
   GType type;
-  type = (GType) NUMERIC_POINTER(sobj)[0];
+  type = (GType) asCGType(sobj);
 
   return(R_internal_getGTypeAncestors(type));
 }
@@ -71,7 +71,7 @@ USER_OBJECT_
 R_getGTypeClass(USER_OBJECT_ sobj)
 {
   GType type;
-  type = (GType) NUMERIC_POINTER(sobj)[0];
+  type = (GType) asCGType(sobj);
 
   return(toRPointerWithFinalizer(g_type_class_ref(type), "GTypeClass", 
   	(RPointerFinalizer)g_type_class_unref));
@@ -130,26 +130,33 @@ R_gObjectType(USER_OBJECT_ sobj)
     return(ans);
 }
 
+GType
+asCGType(USER_OBJECT_ sobj) {
+  if (!inherits(sobj, "GType")) {
+    PROBLEM "invalid GType value"
+      ERROR;
+  }
+return (GType)getPtrValue(sobj);
+}
+
 USER_OBJECT_
 asRGType(GType type)
 {
     USER_OBJECT_ ans;
     const gchar *name;
 
-    PROTECT(ans = NEW_NUMERIC(1));
-    NUMERIC_DATA(ans)[0] = type;
-
     name = g_type_name(type);
-
     if(!name) {
       PROBLEM "object has no G type"
       ERROR;
     }
+    
+    PROTECT(ans = R_MakeExternalPtr((void *)type, R_NilValue, R_NilValue));
 
-    SET_NAMES(ans, asRString(name));
+    setAttrib(ans, install("name"), asRString(name));
     SET_CLASS(ans, asRString("GType"));
-    UNPROTECT(1);
 
+    UNPROTECT(1);
     return(ans);
 }
 
@@ -157,7 +164,7 @@ USER_OBJECT_
 R_getInterfaces(USER_OBJECT_ s_type)
 {
     GType type;
-    type = (GType) NUMERIC_POINTER(s_type)[0];
+    type = (GType) asCGType(s_type);
 
     return(R_internal_getInterfaces(type));
 }
@@ -226,7 +233,7 @@ R_internal_getClassParamSpecs(GObjectClass *class)
 USER_OBJECT_
 R_getGTypeParamSpecs(USER_OBJECT_ sobj)
 {
-    GType type = (GType) NUMERIC_POINTER(sobj)[0];
+    GType type = (GType) asCGType(sobj);
     USER_OBJECT_ ans;
     gpointer class = g_type_class_ref(type);
     
@@ -325,7 +332,7 @@ USER_OBJECT_
 R_gObjectNew(USER_OBJECT_ stype, USER_OBJECT_ svals)
 {
     USER_OBJECT_ argNames = GET_NAMES(svals);
-	GType type = asCNumeric(stype);
+    GType type = asCGType(stype);
     int i,n = GET_LENGTH(argNames);
 	GParameter *params = g_new0(GParameter, n);
 	GObjectClass *class = g_type_class_ref(type);
@@ -1050,7 +1057,7 @@ R_getGSignalIdsByType(USER_OBJECT_ className)
 {
     GType type;
 
-    type = (GType)  NUMERIC_DATA(className)[0];
+    type = (GType)  asCGType(className);
     if(type == 0 || type == G_TYPE_INVALID) {
     PROBLEM "No type for class %s",
         asCString(className)

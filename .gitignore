@@ -145,3 +145,5 @@
 /RGtkGen/inst/data/gen/gtkzConstructors.R
 /RGtkGen/inst/data/gen/pangozConstructors.R
 /books/rgui/K12672.PDF
+/RGtk2.Rcheck/*
+/RGtk2/src/symbols.rds

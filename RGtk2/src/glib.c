@@ -195,16 +195,25 @@ R_gQuarkFromString(USER_OBJECT_ s_string)
 	return(asRGQuark(quark));
 }
 
+GQuark
+asCGQuark(USER_OBJECT_ sobj) {
+  if (!inherits(sobj, "GQuark")) {
+    PROBLEM "invalid GQuark value"
+      ERROR;
+  }
+  return (GQuark)getPtrValue(sobj);
+}
+
 USER_OBJECT_
 asRGQuark(GQuark val)
 {
   USER_OBJECT_ ans;
   const gchar *tmp;
-  PROTECT(ans = NEW_NUMERIC(1));
-  NUMERIC_DATA(ans)[0] = (double)val;
+  PROTECT(ans = R_MakeExternalPtr((void *)val, R_NilValue, R_NilValue));
+
   tmp = g_quark_to_string(val);
   if(tmp)
-      SET_NAMES(ans, asRString(tmp));
+    setAttrib(ans, install("name"), asRString(tmp));
   SET_CLASS(ans, asRString("GQuark"));
   UNPROTECT(1);
 

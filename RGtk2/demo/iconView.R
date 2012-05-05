@@ -1,5 +1,3 @@
-# source("~/research/RGtk2/RGtk2/demo/iconView.R")
-
 window <- NULL
 
 FOLDER.NAME <- imagefile("gnome-fs-directory.png")
