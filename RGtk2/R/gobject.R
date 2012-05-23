@@ -219,7 +219,7 @@ function(type)
   if (!("GObject" %in% gTypeGetAncestors(type)))
     stop("Cannot retrieve properties, because type is not a GObject type")
   
-  .RGtkCall("R_getGTypeParamSpecs", as.numeric(type))
+  .RGtkCall("R_getGTypeParamSpecs", type)
 }
 
 gObjectGet <-
