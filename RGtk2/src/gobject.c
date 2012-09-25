@@ -1,5 +1,7 @@
 #include "RGtk2/gobject.h"
 
+#include <R_ext/PrtUtil.h>
+
 /* GType */
 
 USER_OBJECT_
