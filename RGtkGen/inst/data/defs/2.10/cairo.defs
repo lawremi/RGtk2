@@ -307,6 +307,7 @@
 (define-function cairo_pdf_surface_create
   (in-module "cairo")
   (c-name "cairo_pdf_surface_create")
+  (is-constructor-of "cairo_surface_t")
   (return-type "cairo_surface_t*")
   (parameters
     '("const-gchar*" "filename")
@@ -318,10 +319,11 @@
 (define-function cairo_pdf_surface_create_for_stream
   (in-module "cairo")
   (c-name "cairo_pdf_surface_create_for_stream")
+  (is-constructor-of "cairo_surface_t")
   (return-type "cairo_surface_t*")
   (parameters
     '("cairo_write_func_t" "write_func")
-    '("gpointer" "closure")
+    '("gpointer" "closure" (null-ok))
     '("double" "width_in_points")
     '("double" "height_in_points")
   )
@@ -344,6 +346,7 @@
 (define-function cairo_ps_surface_create
   (in-module "cairo")
   (c-name "cairo_ps_surface_create")
+  (is-constructor-of "cairo_surface_t")
   (return-type "cairo_surface_t*")
   (parameters
     '("const-char*" "filename")
@@ -355,10 +358,11 @@
 (define-function cairo_ps_surface_create_for_stream
   (in-module "cairo")
   (c-name "cairo_ps_surface_create_for_stream")
+  (is-constructor-of "cairo_surface_t")
   (return-type "cairo_surface_t*")
   (parameters
     '("cairo_write_func_t" "write_func")
-    '("gpointer" "closure")
+    '("gpointer" "closure" (null-ok))
     '("double" "width_in_points")
     '("double" "height_in_points")
   )
@@ -413,6 +417,7 @@
 (define-function cairo_svg_surface_create
   (in-module "cairo")
   (c-name "cairo_svg_surface_create")
+  (is-constructor-of "cairo_surface_t")
   (return-type "cairo_surface_t*")
   (parameters
     '("const-char*" "filename")
@@ -425,10 +430,11 @@
 (define-function cairo_svg_surface_create_for_stream
   (in-module "cairo")
   (c-name "cairo_svg_surface_create_for_stream")
+  (is-constructor-of "cairo_surface_t")
   (return-type "cairo_surface_t*")
   (parameters
     '("cairo_write_func_t" "write_func")
-    '("gpointer" "closure")
+    '("gpointer" "closure" (null-ok))
     '("double" "width_in_points")
     '("double" "height_in_points")
   )
