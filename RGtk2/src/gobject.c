@@ -1009,7 +1009,7 @@ R_gSignalEmit(USER_OBJECT_ sobj, USER_OBJECT_ signal, USER_OBJECT_ sargs)
 }
 
 USER_OBJECT_
-R_gSignalStopEmssion(USER_OBJECT_ s_obj, USER_OBJECT_ s_signal)
+R_gSignalStopEmission(USER_OBJECT_ s_obj, USER_OBJECT_ s_signal)
 {
 	gpointer obj = getPtrValue(s_obj);
 	const gchar *signal = asCString(s_signal);
