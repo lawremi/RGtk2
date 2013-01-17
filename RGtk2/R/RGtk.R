@@ -9,3 +9,7 @@
   }
 })
 gtkInit <- .gtkInitCheck
+
+gtkCleanup <- function() {
+  .C("R_gtkCleanup", PACKAGE = "RGtk2")
+}

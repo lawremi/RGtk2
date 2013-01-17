@@ -40,6 +40,11 @@ function(libname, pkgname)
  .initClasses()
 }
 
+.onUnload <- function(libpath) {
+  gtkCleanup()
+  library.dynam.unload("RGtk2", libpath)
+}
+
 .windows_gtk_path <- function()
   file.path(system.file(package = "RGtk2"), "gtk", .Platform$r_arch)
 

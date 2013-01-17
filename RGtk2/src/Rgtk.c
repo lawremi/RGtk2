@@ -45,6 +45,8 @@ void R_gtk_handle_events() {
 #define RGTK2_TIMER_ID 0
 #define RGTK2_TIMER_DELAY 50
 
+static HWND win;
+
 VOID CALLBACK R_gtk_timer_proc(HWND hwnd, UINT uMsg, UINT_PTR idEvent,
                                DWORD dwTime)
 {
@@ -55,6 +57,9 @@ VOID CALLBACK R_gtk_timer_proc(HWND hwnd, UINT uMsg, UINT_PTR idEvent,
 
 #else
 
+static InputHandler *eventLoopInputHandler = NULL;
+static GThread *eventLoopThread = NULL;
+static GMainLoop *eventLoopMain = NULL;
 static int fired = 0;
 static int ifd, ofd;
 
@@ -74,12 +79,15 @@ gboolean R_gtk_timerFunc(gpointer data) {
 
 gpointer R_gtk_timerThreadFunc(gpointer data) {
   GMainContext *ctx = g_main_context_new();
-  GMainLoop *loop = g_main_loop_new(ctx, FALSE);
+  eventLoopMain = g_main_loop_new(ctx, FALSE);
   GSource *timeout = g_timeout_source_new(100);
   //g_timeout_add(100, R_gtk_timerFunc, NULL);
   g_source_set_callback(timeout, R_gtk_timerFunc, NULL, NULL);
   g_source_attach(timeout, ctx);
-  g_main_loop_run(loop);
+  g_main_loop_run(eventLoopMain);
+  g_source_destroy(timeout);
+  g_main_loop_unref(eventLoopMain);
+  g_main_context_unref(ctx);
   return 0;
 }
 
@@ -130,9 +138,11 @@ R_gtkInit(long *rargc, char **rargv, Rboolean *success)
     if (!pipe(fds)) {
       ifd = fds[0];
       ofd = fds[1];
-      addInputHandler(R_InputHandlers, ifd, R_gtk_timerInputHandler, 32);
+      eventLoopInputHandler = addInputHandler(R_InputHandlers, ifd,
+                                              R_gtk_timerInputHandler, 32);
       if (!g_thread_supported ()) g_thread_init (NULL);
-      g_thread_create(R_gtk_timerThreadFunc, NULL, FALSE, NULL);
+      eventLoopThread = g_thread_create(R_gtk_timerThreadFunc, NULL, TRUE,
+                                        NULL);
       R_CStackLimit = -1;
     } else g_warning("Failed to establish pipe; ",
                      "disabling timer-based event handling");
@@ -150,8 +160,8 @@ R_gtkInit(long *rargc, char **rargv, Rboolean *success)
   WNDCLASS wndclass = { 0, DefWindowProc, 0, 0, instance, NULL, 0, 0, NULL,
                         class };
   RegisterClass(&wndclass);
-  HWND win = CreateWindow(class, NULL, 0, 1, 1, 1, 1, HWND_MESSAGE,
-                          NULL, instance, NULL);
+  win = CreateWindow(class, NULL, 0, 1, 1, 1, 1, HWND_MESSAGE,
+                     NULL, instance, NULL);
 
   SetTimer(win, RGTK2_TIMER_ID, RGTK2_TIMER_DELAY, (TIMERPROC)R_gtk_timer_proc);
 #endif // R < 2.8.0
@@ -167,6 +177,18 @@ R_gtkInit(long *rargc, char **rargv, Rboolean *success)
                                   transformBooleanString);
   
   *success = TRUE;
+}
+
+void R_gtkCleanup() {
+#ifndef G_OS_WIN32
+  removeInputHandler(&R_InputHandlers, eventLoopInputHandler);
+  g_main_loop_quit(eventLoopMain);
+  g_thread_join(eventLoopThread);
+  close(ifd);
+  close(ofd);
+#else
+  DestroyWindow(win);
+#endif
 }
 
 #include <R_ext/Rdynload.h>
