@@ -9,5 +9,5 @@ function(lib, pkg)
  } else
   path <- tmp
 
- Sys.putenv("PYTHONPATH"=path)
+ Sys.setenv("PYTHONPATH"=path)
 }  
