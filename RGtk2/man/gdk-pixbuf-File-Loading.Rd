@@ -10,7 +10,7 @@
 \code{\link{gdkPixbufNewFromStream}(stream, cancellable = NULL, .errwarn = TRUE)}\cr
 \code{\link{gdkPixbufNewFromStreamAtScale}(stream, width = -1, height = -1, preserve.aspect.ratio = 1, cancellable = NULL, .errwarn = TRUE)}\cr
 }
-\section{Detailed Description}{The &gdk-pixbuf; library provides a simple mechanism for loading
+\section{Detailed Description}{The \command{gdk-pixbuf} library provides a simple mechanism for loading
 an image from a file in synchronous fashion.  This means that the
 library takes control of the application while the file is being
 loaded; from the user's point of view, the application will block

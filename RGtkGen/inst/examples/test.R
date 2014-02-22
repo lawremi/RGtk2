@@ -44,7 +44,7 @@ startWithFile <- function(f) {
   genDocs(docs, allDefs, file.path(path, "docgen"), libraryDescriptions,
           verbose = TRUE)
 }
-startWithFile("gtkcomboboxentry.xml")
+startWithFile("file-saving.xml")
 
 genDocs(doc_files, allDefs, file.path(path, "docgen"), libraryDescriptions,
         verbose = TRUE)

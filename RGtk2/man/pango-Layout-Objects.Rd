@@ -139,7 +139,7 @@ code specific to each rendering system.
 \item{\verb{startIndex}}{[integer] the start of the line as byte index into \code{layout->text}}
 \item{\verb{length}}{[integer] the length of the line in bytes}
 \item{\verb{runs}}{[list] a list containing the runs of the line in visual order}
-\item{\verb{isParagraphStart}}{[numeric] %TRUE if this is the first line of the paragraph}
+\item{\verb{isParagraphStart}}{[numeric] \code{TRUE} if this is the first line of the paragraph}
 \item{\verb{resolvedDir}}{[numeric] the resolved \code{\link{PangoDirection}} of the line}
 }
 

@@ -7,8 +7,8 @@ The RGtk binding to the GDK-Pixbuf library consists of the following components:
 \describe{
 \item{\link{gdk-pixbuf-animation}}{Animated images.}
 \item{\link{gdk-pixbuf-creating}}{Creating a pixbuf from image data that is already in memory.}
-\item{\link{gdk-pixbuf-file-loading}}{Loading a pixbuf from a file.}
-\item{\link{gdk-pixbuf-file-saving}}{Saving a pixbuf to a file.}
+\item{\link{gdk-pixbuf-File-Loading}}{Loading a pixbuf from a file.}
+\item{\link{gdk-pixbuf-File-saving}}{Saving a pixbuf to a file.}
 \item{\link{GdkPixbufLoader}}{Application-driven progressive image loading.}
 \item{\link{gdk-pixbuf-gdk-pixbuf}}{Information that describes an image.}
 \item{\link{gdk-pixbuf-Versioning}}{Library version numbers.}
