@@ -498,8 +498,8 @@ markup <- function(nodes, verbatim = FALSE, collapse="  ", code = FALSE) {
 
 escape_all <- function(text) gsub("([^\\])([%])", "\\1\\\\\\2", text)
 escape_text <- function(text) {
-  gsub("([\\])", "\\\\\\1", text)
-	#text
+  escaped <- gsub("([\\])", "\\\\\\1", text)
+  gsub("\\n\\n", "\n", escaped) # these would become new paragraphs in Rd
 }
 strip <- function(text) {
 	sub("\n*$", "", sub("^\n*", "", text))
