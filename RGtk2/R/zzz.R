@@ -41,7 +41,7 @@ function(libname, pkgname)
 }
 
 .onUnload <- function(libpath) {
-  gtkCleanup()
+  .gtkCleanup()
   library.dynam.unload("RGtk2", libpath)
 }
 
@@ -77,7 +77,7 @@ function(libname, pkgname)
   
   darwin_config <- list(
     source = FALSE,
-    gtk_url = "http://r.research.att.com/libs/GTK_2.18.5-X11.pkg", 
+    gtk_url = "http://r.research.att.com/libs/GTK_2.24.17-X11.pkg", 
     installer = function(path) {
       system(paste("open", path))
     }
