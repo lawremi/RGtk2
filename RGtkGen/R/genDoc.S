@@ -184,7 +184,7 @@ parseFunction <- function(node, defs, verbose) {
 		func[["description"]] <- c(func["description"], toWarning(warning[[1]]))
 	f <- formals(s_name)
 	f <- f[which(!sapply(names(f), isBuiltInParam))]
-	func["usage"] <- invoke(s_name, s_signature(f))
+	func["usage"] <- codewrap(invoke(s_name, s_signature(f)))
 	fun <- defs$fun[[name]]
 	params <- fun$parameters
 	if (isMethod(fun))
@@ -799,6 +799,9 @@ examplefile <- function(name)
   ##file.path(installed.packages()["RGtk2", "LibPath"], "RGtk2", "examples", name)
 }
 
+codewrap <- function(x) {
+  paste(capture.output(print(parse(text=x)[[1]])), collapse="\n")
+}
 
 ## hacks for XML package
 
