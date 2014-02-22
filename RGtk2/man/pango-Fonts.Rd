@@ -77,20 +77,6 @@
 
 }
 \section{Hierarchy}{\preformatted{
-GBoxed
-   +----PangoFontDescription
-GEnum
-   +----PangoStyle
-GEnum
-   +----PangoWeight
-GEnum
-   +----PangoVariant
-GEnum
-   +----PangoStretch
-GFlags
-   +----PangoFontMask
-GBoxed
-   +----PangoFontMetrics
 GObject
    +----PangoFont
          +----PangoFcFont
@@ -132,6 +118,27 @@ for a font (possibly restricted to a script). The fields of this
 structure are private to implementations of a font backend. See
 the documentation of the corresponding getters for documentation
 of their meaning.
+
+\describe{
+\item{\code{ref_count}}{[numeric] reference count.  Used internally.  See \code{pangoFontMetricsRef()}
+            and \code{pangoFontMetricsUnref()}.}
+\item{\code{ascent}}{[integer] the distance from the baseline to the highest point of the glyphs of
+	 the font. This is positive in practically all fonts.}
+\item{\code{descent}}{[integer] the distance from the baseline to the lowest point of the glyphs of
+	 the font. This is positive in practically all fonts.}
+\item{\code{approximate_char_width}}{[integer] approximate average width of the regular glyphs of
+         the font.  Note that for this calculation, East Asian characters
+	 (those passing \code{gUnicharIswide()}) are counted as double-width.
+	 This produces a more uniform value for this measure across languages
+	 and results in more uniform and more expected UI sizes.}
+\item{\code{approximate_digit_width}}{[integer] approximate average width of the glyphs for digits
+         of the font.}
+\item{\code{underline_position}}{[integer] position of the underline. This is normally negative.}
+\item{\code{underline_thickness}}{[integer] thickness of the underline.}
+\item{\code{strikethrough_position}}{[integer] position of the strikethrough line. This is
+	 normally positive.}
+\item{\code{strikethrough_thickness}}{[integer] thickness of the strikethrough line.}
+}
 
 }
 \item{\verb{PangoFont}}{
@@ -193,12 +200,12 @@ which the creator provides when constructing the
 }}
 \section{Enums and Flags}{\describe{
 \item{\verb{PangoStyle}}{
-An enumeration specifying the various slant styles possible for a font.
+An enumeration specifying the various slant styles possible for a font.  
 
 \describe{
-\item{\verb{normal}}{the font is upright.}
-\item{\verb{oblique}}{the font is slanted, but in a roman style.}
-\item{\verb{italic}}{the font is slanted in an italic style.}
+\item{\verb{normal}}{ the font is upright.}
+\item{\verb{oblique}}{ the font is slanted, but in a roman style.}
+\item{\verb{italic}}{ the font is slanted in an italic style.}
 }
 
 }
@@ -265,16 +272,16 @@ The bits in a \code{\link{PangoFontMask}} correspond to fields in a
 }}
 \section{User Functions}{\describe{\item{\code{PangoFontsetForeachFunc(fontset, font, data)}}{
 A callback function used by \code{\link{pangoFontsetForeach}} when enumerating
-the fonts in a fontset.
+the fonts in a fontset.  
   Since 1.4
 
 \describe{
-\item{\code{fontset}}{a \code{\link{PangoFontset}}}
-\item{\code{font}}{a font from \code{fontset}}
-\item{\code{data}}{callback data}
+\item{\code{fontset}}{[\code{\link{PangoFontset}}]  a \code{\link{PangoFontset}}}
+\item{\code{font}}{[\code{\link{PangoFont}}]  a font from \code{fontset}}
+\item{\code{data}}{[R object]  callback data}
 }
 
-\emph{Returns:} [logical] if \code{TRUE}, stop iteration and return immediately.
+\emph{Returns:} [logical]  if \code{TRUE}, stop iteration and return immediately.
 
 }}}
 \references{\url{http://library.gnome.org/devel//pango/pango-Fonts.html}}

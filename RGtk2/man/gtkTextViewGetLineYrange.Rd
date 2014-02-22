@@ -11,8 +11,8 @@ convert to window coordinates with \code{\link{gtkTextViewBufferToWindowCoords}}
 }
 \value{
 A list containing the following elements:
-\item{\verb{y}}{return location for a y coordinate}
-\item{\verb{height}}{return location for a height}
+\item{\verb{y}}{return location for a y coordinate. \emph{[  \acronym{out}  ]}}
+\item{\verb{height}}{return location for a height. \emph{[  \acronym{out}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -5,7 +5,8 @@
 representation inside a \code{\link{GdkPixbuf}}. In other words, copies
 image data from a server-side drawable to a client-side RGB(A) buffer.
 This allows you to efficiently read individual pixels on the client side.}
-\usage{gdkPixbufGetFromDrawable(dest = NULL, src, cmap = NULL, src.x, src.y, dest.x, dest.y, width, height)}
+\usage{gdkPixbufGetFromDrawable(dest = NULL, src, cmap = NULL, src.x, 
+    src.y, dest.x, dest.y, width, height)}
 \arguments{
 \item{\verb{dest}}{Destination pixbuf, or \code{NULL} if a new pixbuf should be created. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{src}}{Source drawable.}

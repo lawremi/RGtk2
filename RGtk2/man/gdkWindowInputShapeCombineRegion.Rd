@@ -5,7 +5,8 @@
 only to event handling. Mouse events which happen while
 the pointer position corresponds to an unset bit in the
 mask will be passed on the window below \code{window}.}
-\usage{gdkWindowInputShapeCombineRegion(object, shape.region, offset.x, offset.y)}
+\usage{gdkWindowInputShapeCombineRegion(object, shape.region, offset.x, 
+    offset.y)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkWindow}}}
 \item{\verb{shape.region}}{region of window to be non-transparent}

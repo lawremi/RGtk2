@@ -2,7 +2,8 @@
 \name{gFileSetAttributesAsync}
 \title{gFileSetAttributesAsync}
 \description{Asynchronously sets the attributes of \code{file} with \code{info}.}
-\usage{gFileSetAttributesAsync(object, info, flags = "G_FILE_QUERY_INFO_NONE", io.priority = 0, cancellable = NULL, callback, user.data = NULL)}
+\usage{gFileSetAttributesAsync(object, info, flags = "G_FILE_QUERY_INFO_NONE", 
+    io.priority = 0, cancellable = NULL, callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{info}}{a \code{\link{GFileInfo}}.}

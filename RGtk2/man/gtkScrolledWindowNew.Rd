@@ -2,7 +2,8 @@
 \name{gtkScrolledWindowNew}
 \title{gtkScrolledWindowNew}
 \description{Creates a new scrolled window.}
-\usage{gtkScrolledWindowNew(hadjustment = NULL, vadjustment = NULL, show = TRUE)}
+\usage{gtkScrolledWindowNew(hadjustment = NULL, vadjustment = NULL, 
+    show = TRUE)}
 \arguments{
 \item{\verb{hadjustment}}{horizontal adjustment. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{vadjustment}}{vertical adjustment. \emph{[  \acronym{allow-none}  ]}}

@@ -3,7 +3,8 @@
 \title{gtkPaintFocus}
 \description{Draws a focus indicator around the given rectangle on \code{window} using the
 given style.}
-\usage{gtkPaintFocus(object, window, state.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height)}
+\usage{gtkPaintFocus(object, window, state.type, area = NULL, widget = NULL, 
+    detail = NULL, x, y, width, height)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkStyle}}}
 \item{\verb{window}}{a \code{\link{GdkWindow}}}

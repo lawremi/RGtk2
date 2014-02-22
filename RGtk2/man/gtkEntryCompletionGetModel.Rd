@@ -1,8 +1,7 @@
 \alias{gtkEntryCompletionGetModel}
 \name{gtkEntryCompletionGetModel}
 \title{gtkEntryCompletionGetModel}
-\description{Returns the model the \code{\link{GtkEntryCompletion}} is using as data source.
-Returns \code{NULL} if the model is unset.}
+\description{Returns \code{NULL} if the model is unset.}
 \usage{gtkEntryCompletionGetModel(object)}
 \arguments{\item{\verb{object}}{A \code{\link{GtkEntryCompletion}}.}}
 \details{Since 2.4}

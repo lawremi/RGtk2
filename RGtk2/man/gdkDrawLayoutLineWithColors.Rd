@@ -4,7 +4,8 @@
 \description{Render a \code{\link{PangoLayoutLine}} onto a \code{\link{GdkDrawable}}, overriding the
 layout's normal colors with \code{foreground} and/or \code{background}.
 \code{foreground} and \code{background} need not be allocated.}
-\usage{gdkDrawLayoutLineWithColors(drawable, gc, x, y, line, foreground, background)}
+\usage{gdkDrawLayoutLineWithColors(drawable, gc, x, y, line, foreground, 
+    background)}
 \arguments{
 \item{\verb{drawable}}{the drawable on which to draw the line}
 \item{\verb{gc}}{base graphics to use}

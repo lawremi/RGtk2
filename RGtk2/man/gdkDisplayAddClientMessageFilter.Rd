@@ -4,7 +4,8 @@
 \description{Adds a filter to be called when X ClientMessage events are received.
 See \code{\link{gdkWindowAddFilter}} if you are interested in filtering other
 types of events.}
-\usage{gdkDisplayAddClientMessageFilter(object, message.type, func, data)}
+\usage{gdkDisplayAddClientMessageFilter(object, message.type, func, 
+    data)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkDisplay}} for which this message filter applies}
 \item{\verb{message.type}}{the type of ClientMessage events to receive.

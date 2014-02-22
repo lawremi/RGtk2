@@ -249,8 +249,8 @@ It is not emitted for generated popup menus, which can be obtained by
 
 }
 \item{\code{connect-proxy(uimanager, action, proxy, user.data)}}{
-The connect_proxy signal is emitted after connecting a proxy to 
-an action in the group. 
+The connect_proxy signal is emitted after connecting a proxy to
+an action in the group.
   
 This is intended for simple customizations for which a custom action
 class would be too clumsy, e.g. showing tooltips for menuitems in the
@@ -267,7 +267,7 @@ statusbar.
 
 }
 \item{\code{disconnect-proxy(uimanager, action, proxy, user.data)}}{
-The disconnect_proxy signal is emitted after disconnecting a proxy 
+The disconnect_proxy signal is emitted after disconnecting a proxy
 from an action in the group.
   Since 2.4
 
@@ -317,9 +317,9 @@ just before any action is activated.
 \item{\verb{add-tearoffs} [logical : Read / Write]}{
 
 The "add-tearoffs" property controls whether generated menus
-have tearoff menu items. 
+have tearoff menu items.
   
-Note that this only affects regular menus. Generated popup 
+Note that this only affects regular menus. Generated popup
 menus never have tearoff menu items.
   Default value: FALSE  Since 2.4
 

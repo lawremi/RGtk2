@@ -3,7 +3,8 @@
 \title{gOutputStreamWriteAll}
 \description{Tries to write \code{count} bytes from \code{buffer} into the stream. Will block
 during the operation.}
-\usage{gOutputStreamWriteAll(object, buffer, bytes.written, cancellable = NULL, .errwarn = TRUE)}
+\usage{gOutputStreamWriteAll(object, buffer, bytes.written, cancellable = NULL, 
+    .errwarn = TRUE)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GOutputStream}}.}
 \item{\verb{buffer}}{the buffer containing the data to write.}

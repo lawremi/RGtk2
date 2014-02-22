@@ -3,7 +3,8 @@
 \title{gFileReplaceReadwriteAsync}
 \description{Asynchronously overwrites the file in read-write mode, replacing the
 contents, possibly creating a backup copy of the file first.}
-\usage{gFileReplaceReadwriteAsync(object, etag, make.backup, flags, io.priority, cancellable = NULL, callback, user.data = NULL)}
+\usage{gFileReplaceReadwriteAsync(object, etag, make.backup, flags, 
+    io.priority, cancellable = NULL, callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{etag}}{an entity tag for the

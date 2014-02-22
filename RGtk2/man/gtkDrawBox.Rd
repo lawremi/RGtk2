@@ -5,7 +5,8 @@
 Draws a box on \code{window} with the given parameters.
 \strong{WARNING: \code{gtk_draw_box} has been deprecated since version 2.0 and should not be used in newly-written code. Use \code{\link{gtkPaintBox}} instead.}
 }
-\usage{gtkDrawBox(object, window, state.type, shadow.type, x, y, width, height)}
+\usage{gtkDrawBox(object, window, state.type, shadow.type, x, y, width, 
+    height)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkStyle}}}
 \item{\verb{window}}{a \code{\link{GdkWindow}}}

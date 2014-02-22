@@ -5,7 +5,8 @@
 Draws a text string on \code{window} with the given parameters.
 \strong{WARNING: \code{gtk_paint_string} has been deprecated since version 2.0 and should not be used in newly-written code. Use \code{\link{gtkPaintLayout}} instead.}
 }
-\usage{gtkPaintString(object, window, state.type, area = NULL, widget = NULL, detail = NULL, x, y, string)}
+\usage{gtkPaintString(object, window, state.type, area = NULL, widget = NULL, 
+    detail = NULL, x, y, string)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkStyle}}}
 \item{\verb{window}}{a \code{\link{GdkWindow}}}

@@ -2,7 +2,8 @@
 \name{gFileFindEnclosingMountAsync}
 \title{gFileFindEnclosingMountAsync}
 \description{Asynchronously gets the mount for the file.}
-\usage{gFileFindEnclosingMountAsync(object, io.priority = 0, cancellable = NULL, callback, user.data = NULL)}
+\usage{gFileFindEnclosingMountAsync(object, io.priority = 0, cancellable = NULL, 
+    callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GFile}}}
 \item{\verb{io.priority}}{the I/O priority

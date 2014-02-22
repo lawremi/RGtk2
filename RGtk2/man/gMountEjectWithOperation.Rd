@@ -4,7 +4,8 @@
 \description{Ejects a mount. This is an asynchronous operation, and is
 finished by calling \code{\link{gMountEjectWithOperationFinish}} with the \code{mount}
 and \code{\link{GAsyncResult}} data returned in the \code{callback}.}
-\usage{gMountEjectWithOperation(object, flags, mount.operation, cancellable = NULL, callback, user.data = NULL)}
+\usage{gMountEjectWithOperation(object, flags, mount.operation, cancellable = NULL, 
+    callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GMount}}.}
 \item{\verb{flags}}{flags affecting the unmount if required for eject}

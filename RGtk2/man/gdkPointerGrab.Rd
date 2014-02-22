@@ -5,7 +5,8 @@
 application until the pointer is ungrabbed with \code{\link{gdkPointerUngrab}}, or
 the grab window becomes unviewable.
 This overrides any previous pointer grab by this client.}
-\usage{gdkPointerGrab(window, owner.events = FALSE, event.mask = 0, confine.to = NULL, cursor = NULL, time = "GDK_CURRENT_TIME")}
+\usage{gdkPointerGrab(window, owner.events = FALSE, event.mask = 0, 
+    confine.to = NULL, cursor = NULL, time = "GDK_CURRENT_TIME")}
 \arguments{
 \item{\verb{window}}{the \code{\link{GdkWindow}} which will own the grab (the grab window).}
 \item{\verb{owner.events}}{if \code{FALSE} then all pointer events are reported with respect to

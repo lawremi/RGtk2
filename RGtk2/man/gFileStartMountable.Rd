@@ -4,7 +4,8 @@
 \description{Starts a file of type G_FILE_TYPE_MOUNTABLE.
 Using \code{start.operation}, you can request callbacks when, for instance,
 passwords are needed during authentication.}
-\usage{gFileStartMountable(object, flags, start.operation, cancellable = NULL, callback, user.data = NULL)}
+\usage{gFileStartMountable(object, flags, start.operation, cancellable = NULL, 
+    callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{flags}}{flags affecting the operation}

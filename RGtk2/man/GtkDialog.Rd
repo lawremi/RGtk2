@@ -204,9 +204,9 @@ The default binding for this signal is the Escape key.
 
 }
 \item{\code{response(dialog, response.id, user.data)}}{
-Emitted when an action widget is clicked, the dialog receives a 
-delete event, or the application programmer calls \code{\link{gtkDialogResponse}}. 
-On a delete event, the response ID is \verb{GTK_RESPONSE_DELETE_EVENT}. 
+Emitted when an action widget is clicked, the dialog receives a
+delete event, or the application programmer calls \code{\link{gtkDialogResponse}}.
+On a delete event, the response ID is \verb{GTK_RESPONSE_DELETE_EVENT}.
 Otherwise, it depends on which action widget was clicked.
 
 \describe{

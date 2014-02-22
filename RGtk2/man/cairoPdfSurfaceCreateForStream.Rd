@@ -3,7 +3,8 @@
 \title{cairoPdfSurfaceCreateForStream}
 \description{Creates a PDF surface of the specified size in points to be written
 incrementally to the stream represented by \code{write.func} and \code{closure}.}
-\usage{cairoPdfSurfaceCreateForStream(write.func, closure, width.in.points, height.in.points)}
+\usage{cairoPdfSurfaceCreateForStream(write.func, closure, width.in.points, 
+    height.in.points)}
 \arguments{
 \item{\verb{write.func}}{[\code{\link{CairoWriteFunc}}]  a \code{\link{CairoWriteFunc}} to accept the output data, may be \code{NULL}
              to indicate a no-op \code{write.func}. With a no-op \code{write.func},
@@ -17,7 +18,6 @@ incrementally to the stream represented by \code{write.func} and \code{closure}.
 \value{[\code{\link{CairoSurface}}]  a pointer to the newly created surface. The caller
 owns the surface and should call \code{\link{cairoSurfaceDestroy}} when done
 with it.
-
 This function always returns a valid pointer, but it will return a
 pointer to a "nil" surface if an error such as out of memory
 occurs. You can use \code{\link{cairoSurfaceStatus}} to check for this.}

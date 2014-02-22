@@ -268,7 +268,7 @@ since the row is already deleted.
   
 Implementations of GtkTreeModel must emit row-deleted
 \emph{before} removing the node from its
-internal data structures.  This is because models and 
+internal data structures.  This is because models and
 views which access and monitor this model might have
 references on the node which need to be released in the
 row-deleted handler.
@@ -298,7 +298,7 @@ its last child row.
 This signal is emitted when a new row has been inserted in the model.
   
 Note that the row may still be empty at this point, since
-it is a common pattern to first insert an empty row, and 
+it is a common pattern to first insert an empty row, and
 then fill it with the desired values.
 
 \describe{
@@ -312,7 +312,7 @@ then fill it with the desired values.
 }
 \item{\code{rows-reordered(tree.model, path, iter, new.order, user.data)}}{
 This signal is emitted when the children of a node in the \code{\link{GtkTreeModel}}
-have been reordered. 
+have been reordered.
   
 Note that this signal is \emph{not} emitted
 when rows are reordered by DND, since this is implemented

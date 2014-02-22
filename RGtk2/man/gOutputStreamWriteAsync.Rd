@@ -5,7 +5,8 @@
 the stream. When the operation is finished \code{callback} will be called.
 You can then call \code{\link{gOutputStreamWriteFinish}} to get the result of the 
 operation.}
-\usage{gOutputStreamWriteAsync(object, buffer, io.priority = 0, cancellable = NULL, callback, user.data = NULL)}
+\usage{gOutputStreamWriteAsync(object, buffer, io.priority = 0, cancellable = NULL, 
+    callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{A \code{\link{GOutputStream}}.}
 \item{\verb{buffer}}{the buffer containing the data to write.}

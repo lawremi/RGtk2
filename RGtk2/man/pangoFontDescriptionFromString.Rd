@@ -14,7 +14,7 @@ STYLE-OPTIONS is missing, then all style options will be set to the
 default values. If SIZE is missing, the size in the resulting font
 description will be set to 0.}
 \usage{pangoFontDescriptionFromString(str)}
-\arguments{\item{\verb{str}}{string representation of a font description.}}
-\value{[\code{\link{PangoFontDescription}}] a new \code{\link{PangoFontDescription}}.}
+\arguments{\item{\verb{str}}{[char]  string representation of a font description.}}
+\value{[\code{\link{PangoFontDescription}}]  a new \code{\link{PangoFontDescription}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

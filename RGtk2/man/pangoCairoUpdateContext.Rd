@@ -8,9 +8,9 @@ it's necessary to call \code{\link{pangoLayoutContextChanged}} on those
 layouts.}
 \usage{pangoCairoUpdateContext(cr, context)}
 \arguments{
-\item{\verb{cr}}{a Cairo context}
-\item{\verb{context}}{a \code{\link{PangoContext}}, from a pangocairo font map}
+\item{\verb{cr}}{[\code{\link{Cairo}}]  a Cairo context}
+\item{\verb{context}}{[\code{\link{PangoContext}}]  a \code{\link{PangoContext}}, from a pangocairo font map}
 }
-\details{Since 1.10}
+\details{  Since 1.10}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

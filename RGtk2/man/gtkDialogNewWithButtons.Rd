@@ -19,12 +19,13 @@ However, destroying a dialog does not emit the ::response signal;
 so be careful relying on ::response when using the 
 \verb{GTK_DIALOG_DESTROY_WITH_PARENT} flag. Buttons are from left to right,
 so the first button in the list will be the leftmost button in the dialog.}
-\usage{gtkDialogNewWithButtons(title = NULL, parent = NULL, flags = 0, ..., show = TRUE)}
+\usage{gtkDialogNewWithButtons(title = NULL, parent = NULL, flags = 0, 
+    ..., show = TRUE)}
 \arguments{
 \item{\verb{title}}{Title of the dialog, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{parent}}{Transient parent of the dialog, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{flags}}{from \code{\link{GtkDialogFlags}}}
-\item{\verb{...}}{response ID for first button, then additional buttons, ending with \code{NULL}}
+\item{\verb{...}}{a new \code{\link{GtkDialog}}}
 }
 \details{Here's a simple example:
 \preformatted{

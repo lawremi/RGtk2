@@ -197,7 +197,7 @@ A value of 0 allows any width. See \code{\link{gtkCalendarSetDetailFunc}}.
 }
 \item{\verb{month} [integer : Read / Write]}{
 
-The selected month (as a number between 0 and 11). 
+The selected month (as a number between 0 and 11).
 This property gets initially set to the current month.
   Allowed values: [0,11]  Default value: 0
 
@@ -236,7 +236,7 @@ Determines whether week numbers are displayed.
 }
 \item{\verb{year} [integer : Read / Write]}{
 
-The selected year. 
+The selected year.
 This property gets initially set to the current year.
   Allowed values: [0,4194303]  Default value: 0
 

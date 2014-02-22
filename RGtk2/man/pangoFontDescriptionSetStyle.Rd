@@ -11,8 +11,8 @@ match italic specifications with oblique fonts and vice-versa
 if an exact match is not found.}
 \usage{pangoFontDescriptionSetStyle(object, style)}
 \arguments{
-\item{\verb{object}}{a \code{\link{PangoFontDescription}}}
-\item{\verb{style}}{the style for the font description}
+\item{\verb{object}}{[\code{\link{PangoFontDescription}}]  a \code{\link{PangoFontDescription}}}
+\item{\verb{style}}{[\code{\link{PangoStyle}}]  the style for the font description}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

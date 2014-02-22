@@ -7,7 +7,8 @@ can access the \code{popup.data} while the menu is posted via
 \code{\link{gtkItemFactoryPopupData}} and \code{\link{gtkItemFactoryPopupDataFromWidget}}.
 \strong{WARNING: \code{gtk_item_factory_popup_with_data} has been deprecated since version 2.4 and should not be used in newly-written code. Use \code{\link{GtkUIManager}} instead.}
 }
-\usage{gtkItemFactoryPopupWithData(object, popup.data, x, y, mouse.button, time = "GDK_CURRENT_TIME")}
+\usage{gtkItemFactoryPopupWithData(object, popup.data, x, y, mouse.button, 
+    time = "GDK_CURRENT_TIME")}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkItemFactory}} of type \verb{GTK_TYPE_MENU} (see \code{\link{gtkItemFactoryNew}})}
 \item{\verb{popup.data}}{data available for callbacks while the menu is posted}

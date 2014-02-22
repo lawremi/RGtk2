@@ -1,7 +1,7 @@
 \alias{cairoCurveTo}
 \name{cairoCurveTo}
 \title{cairoCurveTo}
-\description{Adds a cubic Bézier spline to the path from the current point to
+\description{Adds a cubic B<U+00E9>zier spline to the path from the current point to
 position (\code{x3}, \code{y3}) in user-space coordinates, using (\code{x1}, \code{y1}) and
 (\code{x2}, \code{y2}) as the control points. After this call the current point
 will be (\code{x3}, \code{y3}).}

@@ -323,11 +323,11 @@ The position of the cursor (focused cell) has changed.
 \item{\code{row-activated(tree.view, path, column, user.data)}}{
 The "row-activated" signal is emitted when the method
 \code{\link{gtkTreeViewRowActivated}} is called or the user double clicks
-a treeview row. It is also emitted when a non-editable row is 
-selected and one of the keys: Space, Shift+Space, Return or 
+a treeview row. It is also emitted when a non-editable row is
+selected and one of the keys: Space, Shift+Space, Return or
 Enter is pressed.
   
-For selection handling refer to the tree 
+For selection handling refer to the tree
 widget conceptual overview as well as \code{\link{GtkTreeSelection}}.
 
 \describe{
@@ -495,9 +495,9 @@ Set the column for the expander column.
 \item{\verb{fixed-height-mode} [logical : Read / Write]}{
 
 Setting the ::fixed-height-mode property to \code{TRUE} speeds up
-\code{\link{GtkTreeView}} by assuming that all rows have the same height. 
-Only enable this option if all rows are the same height.  
-Please see \code{\link{gtkTreeViewSetFixedHeightMode}} for more 
+\code{\link{GtkTreeView}} by assuming that all rows have the same height.
+Only enable this option if all rows are the same height.
+Please see \code{\link{gtkTreeViewSetFixedHeightMode}} for more
 information on this option.
   Default value: FALSE  Since 2.4
 
@@ -520,7 +520,7 @@ Show the column header buttons.  Default value: TRUE
 \item{\verb{hover-expand} [logical : Read / Write]}{
 
 Enables of disables the hover expansion mode of \code{tree.view}.
-Hover expansion makes rows expand or collapse if the pointer moves 
+Hover expansion makes rows expand or collapse if the pointer moves
 over them.
   
 This mode is primarily intended for treeviews in popups, e.g.
@@ -532,7 +532,7 @@ in \code{\link{GtkComboBox}} or \code{\link{GtkEntryCompletion}}.
 
 Enables of disables the hover selection mode of \code{tree.view}.
 Hover selection makes the selected row follow the pointer.
-Currently, this works only for the selection modes 
+Currently, this works only for the selection modes
 \code{GTK_SELECTION_SINGLE} and \code{GTK_SELECTION_BROWSE}.
   
 This mode is primarily intended for treeviews in popups, e.g.

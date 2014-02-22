@@ -66,7 +66,7 @@ The GtkAdjustment for the horizontal position.
 }
 \item{\verb{height} [numeric : Read / Write]}{
 
-The height of the layout.  Allowed values: <= G_MAXLONG  Default value: 100
+The height of the layout.  Allowed values: <= G_MAXINT  Default value: 100
 
 }
 \item{\verb{vadjustment} [\code{\link{GtkAdjustment}} : *        : Read / Write]}{
@@ -76,7 +76,7 @@ The GtkAdjustment for the vertical position.
 }
 \item{\verb{width} [numeric : Read / Write]}{
 
-The width of the layout.  Allowed values: <= G_MAXLONG  Default value: 100
+The width of the layout.  Allowed values: <= G_MAXINT  Default value: 100
 
 }
 }}

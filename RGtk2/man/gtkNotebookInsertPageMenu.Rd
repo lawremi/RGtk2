@@ -3,7 +3,8 @@
 \title{gtkNotebookInsertPageMenu}
 \description{Insert a page into \code{notebook} at the given position, specifying
 the widget to use as the label in the popup menu.}
-\usage{gtkNotebookInsertPageMenu(object, child, tab.label = NULL, menu.label = NULL, position = -1)}
+\usage{gtkNotebookInsertPageMenu(object, child, tab.label = NULL, menu.label = NULL, 
+    position = -1)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkNotebook}}}
 \item{\verb{child}}{the \code{\link{GtkWidget}} to use as the contents of the page.}

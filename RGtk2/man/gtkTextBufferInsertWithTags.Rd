@@ -11,7 +11,8 @@ then \code{\link{gtkTextBufferApplyTag}} on the inserted text;
 \item{\verb{object}}{a \code{\link{GtkTextBuffer}}}
 \item{\verb{iter}}{an iterator in \code{buffer}}
 \item{\verb{text}}{UTF-8 text}
-\item{\verb{...}}{list of tags to apply}
+\item{\verb{...}}{\emph{undocumented
+}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

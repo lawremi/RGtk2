@@ -4,7 +4,8 @@
 \description{Asynchronously gets the requested information about specified \code{file}. The result
 is a \code{\link{GFileInfo}} object that contains key-value attributes (such as type or size
 for the file).}
-\usage{gFileQueryInfoAsync(object, attributes, flags = "G_FILE_QUERY_INFO_NONE", io.priority = 0, cancellable = NULL, callback, user.data = NULL)}
+\usage{gFileQueryInfoAsync(object, attributes, flags = "G_FILE_QUERY_INFO_NONE", 
+    io.priority = 0, cancellable = NULL, callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{attributes}}{an attribute query string.}

@@ -4,7 +4,8 @@
 \description{Mounts a file of type G_FILE_TYPE_MOUNTABLE.
 Using \code{mount.operation}, you can request callbacks when, for instance, 
 passwords are needed during authentication.}
-\usage{gFileMountMountable(object, flags, mount.operation, cancellable = NULL, callback, user.data = NULL)}
+\usage{gFileMountMountable(object, flags, mount.operation, cancellable = NULL, 
+    callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{flags}}{flags affecting the operation}

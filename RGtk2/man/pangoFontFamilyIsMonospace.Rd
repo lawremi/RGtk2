@@ -9,11 +9,11 @@ double-width characters: characters that occupy two grid cells.
 \code{gUnicharIswide()} returns a result that indicates whether a
 character is typically double-width in a monospace font.}
 \usage{pangoFontFamilyIsMonospace(object)}
-\arguments{\item{\verb{object}}{a \code{\link{PangoFontFamily}}}}
+\arguments{\item{\verb{object}}{[\code{\link{PangoFontFamily}}]  a \code{\link{PangoFontFamily}}}}
 \details{The best way to find out the grid-cell size is to call
 \code{\link{pangoFontMetricsGetApproximateDigitWidth}}, since the results
 of \code{\link{pangoFontMetricsGetApproximateCharWidth}} may be affected
-by double-width characters.
+by double-width characters.  
   Since 1.4}
 \value{[logical] \code{TRUE} if the family is monospace.}
 \author{Derived by RGtkGen from GTK+ documentation}

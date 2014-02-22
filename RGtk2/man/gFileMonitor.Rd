@@ -3,7 +3,8 @@
 \title{gFileMonitor}
 \description{Obtains a file or directory monitor for the given file, depending
 on the type of the file.}
-\usage{gFileMonitor(object, flags = "G_FILE_MONITOR_NONE", cancellable = NULL, .errwarn = TRUE)}
+\usage{gFileMonitor(object, flags = "G_FILE_MONITOR_NONE", cancellable = NULL, 
+    .errwarn = TRUE)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}}
 \item{\verb{flags}}{a set of \code{\link{GFileMonitorFlags}}}

@@ -2,7 +2,8 @@
 \name{gFileStopMountable}
 \title{gFileStopMountable}
 \description{Stops a file of type G_FILE_TYPE_MOUNTABLE.}
-\usage{gFileStopMountable(object, flags, mount.operation, cancellable = NULL, callback, user.data = NULL)}
+\usage{gFileStopMountable(object, flags, mount.operation, cancellable = NULL, 
+    callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{flags}}{flags affecting the operation}

@@ -2,7 +2,8 @@
 \name{gtkSpinButtonNew}
 \title{gtkSpinButtonNew}
 \description{Creates a new \code{\link{GtkSpinButton}}.}
-\usage{gtkSpinButtonNew(adjustment = NULL, climb.rate = NULL, digits = NULL, show = TRUE)}
+\usage{gtkSpinButtonNew(adjustment = NULL, climb.rate = NULL, digits = NULL, 
+    show = TRUE)}
 \arguments{
 \item{\verb{adjustment}}{the \code{\link{GtkAdjustment}} object that this spin button should use.}
 \item{\verb{climb.rate}}{specifies how much the spin button changes when an arrow is clicked on.}

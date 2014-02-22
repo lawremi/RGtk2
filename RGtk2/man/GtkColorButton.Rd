@@ -37,7 +37,7 @@ should not be used directly.
 \section{Convenient Construction}{\code{gtkColorButton} is the result of collapsing the constructors of \code{GtkColorButton} (\code{\link{gtkColorButtonNew}}, \code{\link{gtkColorButtonNewWithColor}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{Signals}{\describe{\item{\code{color-set(widget, user.data)}}{
 The ::color-set signal is emitted when the user selects a color.
-When handling this signal, use \code{\link{gtkColorButtonGetColor}} and 
+When handling this signal, use \code{\link{gtkColorButtonGetColor}} and
 \code{\link{gtkColorButtonGetAlpha}} to find out which color was just selected.
   
 Note that this signal is only emitted when the \emph{user}
@@ -74,7 +74,7 @@ The title of the color selection dialog
 \item{\verb{use-alpha} [logical : Read / Write]}{
 
 If this property is set to \code{TRUE}, the color swatch on the button is rendered against a
-checkerboard background to show its opacity and the opacity slider is displayed in the 
+checkerboard background to show its opacity and the opacity slider is displayed in the
 color selection dialog.
   Default value: FALSE  Since 2.4
 

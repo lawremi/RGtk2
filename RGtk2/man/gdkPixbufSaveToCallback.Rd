@@ -7,14 +7,15 @@ other than a file, such as an in-memory buffer or a socket.
 If \code{error} is set, \code{FALSE} will be returned. Possible errors
 include those in the \verb{GDK_PIXBUF_ERROR} domain and whatever the save
 function generates.}
-\usage{gdkPixbufSaveToCallback(object, save.func, user.data, type, ..., .errwarn = TRUE)}
+\usage{gdkPixbufSaveToCallback(object, save.func, user.data, type, ..., 
+    .errwarn = TRUE)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkPixbuf}}.}
 \item{\verb{save.func}}{a function that is called to save each block of data that
 the save routine generates.}
 \item{\verb{user.data}}{user data to pass to the save function.}
 \item{\verb{type}}{name of file format.}
-\item{\verb{...}}{list of key-value save options}
+\item{\verb{...}}{whether an error was set}
 \item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \details{See \code{\link{gdkPixbufSave}} for more details.

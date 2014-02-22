@@ -6,7 +6,8 @@ Takes a portion of the contents of a preview widget
 and draws it onto the given drawable, \code{window}.
 \strong{WARNING: \code{gtk_preview_put} is deprecated and should not be used in newly-written code.}
 }
-\usage{gtkPreviewPut(object, window, gc, srcx, srcy, destx, desty, width, height)}
+\usage{gtkPreviewPut(object, window, gc, srcx, srcy, destx, desty, width, 
+    height)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkPreview}}.}
 \item{\verb{window}}{a window or pixmap.}

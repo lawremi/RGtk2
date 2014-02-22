@@ -5,7 +5,7 @@
 \description{Report important messages to the user}
 \section{Methods and Functions}{
 \code{\link{gtkInfoBarNew}(show = TRUE)}\cr
-\code{\link{gtkInfoBarNewWithButtons}(first.button.text, ...)}\cr
+\code{\link{gtkInfoBarNewWithButtons}(first.button.text, ..., show = TRUE)}\cr
 \code{\link{gtkInfoBarAddActionWidget}(object, child, response.id)}\cr
 \code{\link{gtkInfoBarAddButton}(object, button.text, response.id)}\cr
 \code{\link{gtkInfoBarAddButtons}(object, first.button.text, ...)}\cr

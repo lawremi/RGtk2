@@ -6,7 +6,8 @@ an item will occupy is specified by \code{left.attach}, \code{right.attach},
 \code{top.attach} and \code{bottom.attach}. These each represent the leftmost,
 rightmost, uppermost and lower column and row numbers of the table.
 (Columns and rows are indexed from zero).}
-\usage{gtkMenuAttach(object, child, left.attach, right.attach, top.attach, bottom.attach)}
+\usage{gtkMenuAttach(object, child, left.attach, right.attach, top.attach, 
+    bottom.attach)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkMenu}}.}
 \item{\verb{child}}{a \code{\link{GtkMenuItem}}.}

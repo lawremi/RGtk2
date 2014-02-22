@@ -118,7 +118,7 @@ event. \code{FALSE} to propagate the event further.
 Whether the margins accumulate or override each other.
   
 When set to \code{TRUE} the margins of this tag are added to the margins
-of any other non-accumulative margins present. When set to \code{FALSE} 
+of any other non-accumulative margins present. When set to \code{FALSE}
 the margins override one another (the default).
   Default value: FALSE  Since 2.12
 
@@ -185,7 +185,7 @@ Whether this tag affects the font family.  Default value: FALSE
 }
 \item{\verb{font} [character : *                : Read / Write]}{
 
-Font description as string, e.g. \\"Sans Italic 12\\". 
+Font description as string, e.g. \\"Sans Italic 12\\".
   
 Note that the initial value of this property depends on
 the internals of \code{\link{PangoFontDescription}}.
@@ -236,7 +236,7 @@ Whether this tag affects indentation.  Default value: FALSE
 
 Whether this text is hidden.
   
-Note that there may still be problems with the support for invisible 
+Note that there may still be problems with the support for invisible
 text, in particular when navigating programmatically inside a buffer
 containing invisible segments.
   Default value: FALSE  Since 2.8
@@ -259,8 +259,8 @@ Whether this tag affects paragraph justification.  Default value: FALSE
 }
 \item{\verb{language} [character : *                : Read / Write]}{
 
-The language this text is in, as an ISO code. Pango can use this as a 
-hint when rendering the text. If not set, an appropriate default will be 
+The language this text is in, as an ISO code. Pango can use this as a
+hint when rendering the text. If not set, an appropriate default will be
 used.
   
 Note that the initial value of this property depends on the current
@@ -296,7 +296,7 @@ The paragraph background color as a string.
 }
 \item{\verb{paragraph-background-gdk} [\code{\link{GdkColor}} : *             : Read / Write]}{
 
-The paragraph background color as a as a (possibly unallocated) 
+The paragraph background color as a as a (possibly unallocated)
 \code{\link{GdkColor}}.
   Since 2.8
 

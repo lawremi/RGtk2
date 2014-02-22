@@ -8,7 +8,8 @@ should be honored with respect to \code{cell.area}. \code{background.area} inclu
 blank space around the cell, and also the area containing the tree expander;
 so the \code{background.area} rectangles for all cells tile to cover the entire
 \code{window}.  \code{expose.area} is a clip rectangle.}
-\usage{gtkCellRendererRender(object, window, widget, background.area, cell.area, expose.area, flags)}
+\usage{gtkCellRendererRender(object, window, widget, background.area, 
+    cell.area, expose.area, flags)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkCellRenderer}}}
 \item{\verb{window}}{a \code{\link{GdkDrawable}} to draw to}

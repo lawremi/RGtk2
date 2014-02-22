@@ -4,7 +4,8 @@
 \description{Loads an icon asynchronously. To finish this function, see 
 \code{\link{gLoadableIconLoadFinish}}. For the synchronous, blocking 
 version of this function, see \code{\link{gLoadableIconLoad}}.}
-\usage{gLoadableIconLoadAsync(object, size, cancellable = NULL, callback, user.data = NULL)}
+\usage{gLoadableIconLoadAsync(object, size, cancellable = NULL, callback, 
+    user.data = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GLoadableIcon}}.}
 \item{\verb{size}}{an integer.}

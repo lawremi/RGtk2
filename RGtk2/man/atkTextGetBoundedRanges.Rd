@@ -2,7 +2,8 @@
 \name{atkTextGetBoundedRanges}
 \title{atkTextGetBoundedRanges}
 \description{Get the ranges of text in the specified bounding box.}
-\usage{atkTextGetBoundedRanges(object, rect, coord.type, x.clip.type, y.clip.type)}
+\usage{atkTextGetBoundedRanges(object, rect, coord.type, x.clip.type, 
+    y.clip.type)}
 \arguments{
 \item{\verb{object}}{[\code{\link{AtkText}}]  an \code{\link{AtkText}}}
 \item{\verb{rect}}{[\code{\link{AtkTextRectangle}}]  An AtkTextRectagle giving the dimensions of the bounding box.}

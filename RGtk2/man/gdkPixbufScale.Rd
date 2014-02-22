@@ -6,7 +6,8 @@
 then renders the rectangle (\code{dest.x}, \code{dest.y}, \code{dest.width},
 \code{dest.height}) of the resulting image onto the destination image
 replacing the previous contents.}
-\usage{gdkPixbufScale(object, dest, dest.x, dest.y, dest.width, dest.height, offset.x, offset.y, scale.x, scale.y, interp.type)}
+\usage{gdkPixbufScale(object, dest, dest.x, dest.y, dest.width, dest.height, 
+    offset.x, offset.y, scale.x, scale.y, interp.type)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkPixbuf}}}
 \item{\verb{dest}}{the \code{\link{GdkPixbuf}} into which to render the results}

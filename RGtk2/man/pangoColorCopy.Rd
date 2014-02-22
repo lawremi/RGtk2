@@ -5,8 +5,8 @@
 not that useful otherwise (since colors can just be copied
 by assignment in C).}
 \usage{pangoColorCopy(object)}
-\arguments{\item{\verb{object}}{color to copy, may be \code{NULL}}}
-\value{[\code{\link{PangoColor}}] the newly allocated \code{\link{PangoColor}}, or \code{NULL}
-if \code{src} was \code{NULL}.}
+\arguments{\item{\verb{object}}{[\code{\link{PangoColor}}]  color to copy, may be \code{NULL}}}
+\value{[\code{\link{PangoColor}}]  the newly allocated \code{\link{PangoColor}}, or \code{NULL}
+              if \code{src} was \code{NULL}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -132,7 +132,7 @@ Where the contents are located with respect to the scrollbars. This property onl
 \item{\verb{window-placement-set} [logical : Read / Write]}{
 
 Whether "window-placement" should be used to determine the location
-of the contents with respect to the scrollbars. Otherwise, the 
+of the contents with respect to the scrollbars. Otherwise, the
 "gtk-scrolled-window-placement" setting is used.
   Default value: FALSE  Since 2.10
 

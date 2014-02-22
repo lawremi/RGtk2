@@ -2,7 +2,8 @@
 \name{gDriveStart}
 \title{gDriveStart}
 \description{Asynchronously starts a drive.}
-\usage{gDriveStart(object, flags, mount.operation, cancellable = NULL, callback, user.data = NULL)}
+\usage{gDriveStart(object, flags, mount.operation, cancellable = NULL, 
+    callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GDrive}}.}
 \item{\verb{flags}}{flags affecting the start operation.}

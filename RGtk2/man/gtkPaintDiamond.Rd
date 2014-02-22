@@ -3,7 +3,8 @@
 \title{gtkPaintDiamond}
 \description{Draws a diamond in the given rectangle on \code{window} using the given
 parameters.}
-\usage{gtkPaintDiamond(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height)}
+\usage{gtkPaintDiamond(object, window, state.type, shadow.type, area = NULL, 
+    widget = NULL, detail = NULL, x, y, width, height)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkStyle}}}
 \item{\verb{window}}{a \code{\link{GdkWindow}}}

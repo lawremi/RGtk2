@@ -6,8 +6,8 @@ This is only for internal use by Pango backends, a \code{\link{PangoContext}} ob
 via one of the recommended methods should already have a suitable font map.}
 \usage{pangoContextSetFontMap(object, font.map)}
 \arguments{
-\item{\verb{object}}{a \code{\link{PangoContext}}}
-\item{\verb{font.map}}{the \code{\link{PangoFontMap}} to set.}
+\item{\verb{object}}{[\code{\link{PangoContext}}]  a \code{\link{PangoContext}}}
+\item{\verb{font.map}}{[\code{\link{PangoFontMap}}]  the \code{\link{PangoFontMap}} to set.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

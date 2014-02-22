@@ -88,7 +88,7 @@ may be a possibility.
 
 }
 \item{\code{size-changed(screen, user.data)}}{
-The ::size-changed signal is emitted when the pixel width or 
+The ::size-changed signal is emitted when the pixel width or
 height of a screen changes.
   Since 2.2
 

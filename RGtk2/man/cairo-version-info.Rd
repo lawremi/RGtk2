@@ -53,22 +53,24 @@ rather the many states between snapshots and releases.}
 compile-time or run-time and in both a human-readable form as well as
 an encoded form suitable for direct comparison. Cairo also provides the
 function \code{cairoVersionEncode()} to perform the encoding.
-  \preformatted{Compile-time
-------------
-CAIRO_VERSION_STRING	Human-readable
-CAIRO_VERSION		Encoded, suitable for comparison
+  \preformatted{
+Compile-time
+--------
+R users should not be concerned with compile-time version checking.
+
 Run-time
 --------
-cairo_version_string()	Human-readable
-cairo_version()		Encoded, suitable for comparison
+cairoVersionString()	Human-readable, use compareVersion() for comparison
+cairoVersion()		Encoded, not very useful in R
 }  
 For example, checking that the cairo version is greater than or equal
 to 1.0.0 could be achieved at compile-time or run-time as follows:
-\preformatted{##if CAIRO_VERSION >= CAIRO_VERSION_ENCODE(1, 0, 0)
-printf ("Compiling with suitable cairo version: \%s\n", \%CAIRO_VERSION_STRING);
-##endif
-if (cairo_version() >= CAIRO_VERSION_ENCODE(1, 0, 0))
-    printf ("Running with suitable cairo version: \%s\n", cairo_version_string ());
+\preformatted{
+# R users should not be concerned with compile-time checking, but at runtime:
+
+if (compareVersion(cairoVersionString(), "1.0.0") == 1)
+  cat("Running with suitable cairo version:", cairoVersionString(), "\n")
+
 }}
 \references{\url{http://www.cairographics.org/manual/cairo-version-info.html}}
 \author{Derived by RGtkGen from GTK+ documentation}

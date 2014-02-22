@@ -10,7 +10,8 @@ have sufficient information to position the expander, this is
 likely not useful.) The expander is expander_size pixels tall
 in the collapsed position and expander_size pixels wide in the
 expanded position.}
-\usage{gtkPaintExpander(object, window, state.type, area = NULL, widget = NULL, detail = NULL, x, y, expander.style)}
+\usage{gtkPaintExpander(object, window, state.type, area = NULL, widget = NULL, 
+    detail = NULL, x, y, expander.style)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkStyle}}}
 \item{\verb{window}}{a \code{\link{GdkWindow}}}

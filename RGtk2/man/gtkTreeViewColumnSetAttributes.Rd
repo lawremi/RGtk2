@@ -9,7 +9,8 @@ are removed, and replaced with the new attributes.}
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkTreeViewColumn}}.}
 \item{\verb{cell.renderer}}{the \code{\link{GtkCellRenderer}} we're setting the attributes of}
-\item{\verb{...}}{A list of attributes.}
+\item{\verb{...}}{\emph{undocumented
+}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

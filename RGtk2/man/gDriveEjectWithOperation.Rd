@@ -4,7 +4,8 @@
 \description{Ejects a drive. This is an asynchronous operation, and is
 finished by calling \code{\link{gDriveEjectWithOperationFinish}} with the \code{drive}
 and \code{\link{GAsyncResult}} data returned in the \code{callback}.}
-\usage{gDriveEjectWithOperation(object, flags, mount.operation, cancellable = NULL, callback, user.data = NULL)}
+\usage{gDriveEjectWithOperation(object, flags, mount.operation, cancellable = NULL, 
+    callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GDrive}}.}
 \item{\verb{flags}}{flags affecting the unmount if required for eject}

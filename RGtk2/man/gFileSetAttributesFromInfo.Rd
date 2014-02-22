@@ -3,7 +3,8 @@
 \title{gFileSetAttributesFromInfo}
 \description{Tries to set all attributes in the \code{\link{GFileInfo}} on the target values, 
 not stopping on the first error.}
-\usage{gFileSetAttributesFromInfo(object, info, flags = "G_FILE_QUERY_INFO_NONE", cancellable = NULL, .errwarn = TRUE)}
+\usage{gFileSetAttributesFromInfo(object, info, flags = "G_FILE_QUERY_INFO_NONE", 
+    cancellable = NULL, .errwarn = TRUE)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{info}}{a \code{\link{GFileInfo}}.}

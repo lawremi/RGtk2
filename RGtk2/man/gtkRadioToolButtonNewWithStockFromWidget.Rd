@@ -4,7 +4,8 @@
 \description{Creates a new \code{\link{GtkRadioToolButton}} adding it to the same group as \code{group}.
 The new \code{\link{GtkRadioToolButton}} will contain an icon and label from the
 stock item indicated by \code{stock.id}.}
-\usage{gtkRadioToolButtonNewWithStockFromWidget(group = NULL, stock.id, show = TRUE)}
+\usage{gtkRadioToolButtonNewWithStockFromWidget(group = NULL, stock.id, 
+    show = TRUE)}
 \arguments{
 \item{\verb{group}}{An existing \code{\link{GtkRadioToolButton}}.}
 \item{\verb{stock.id}}{the name of a stock item}

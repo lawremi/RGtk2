@@ -9,7 +9,7 @@ accelerators are consistent.}
 \item{\verb{object}}{the action object}
 \item{\verb{accel.path}}{the accelerator path}
 }
-\details{Note that \code{accel.path} string will be stored in a \verb{numeric}. Therefore, if you
+\details{Note that \code{accel.path} string will be stored in a \code{\link{GQuark}}. Therefore, if you
 pass a static string, you can save some memory by interning it first with 
 \code{gInternStaticString()}.
   Since 2.4}

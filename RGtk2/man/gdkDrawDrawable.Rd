@@ -5,7 +5,8 @@
 \code{ysrc}) to coordinates (\code{xdest}, \code{ydest}) in \code{drawable}.
 \code{width} and/or \code{height} may be given as -1, in which case the entire
 \code{src} drawable will be copied.}
-\usage{gdkDrawDrawable(object, gc, src, xsrc, ysrc, xdest, ydest, width, height)}
+\usage{gdkDrawDrawable(object, gc, src, xsrc, ysrc, xdest, ydest, width, 
+    height)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkDrawable}}}
 \item{\verb{gc}}{a \code{\link{GdkGC}} sharing the drawable's visual and colormap}

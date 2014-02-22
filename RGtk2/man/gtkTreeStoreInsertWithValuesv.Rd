@@ -4,7 +4,8 @@
 \description{A variant of \code{\link{gtkTreeStoreInsertWithValues}} which takes
 the columns and values as two lists, instead of varargs.  This
 function is mainly intended for language bindings.}
-\usage{gtkTreeStoreInsertWithValuesv(object, parent, position, columns, values)}
+\usage{gtkTreeStoreInsertWithValuesv(object, parent, position, columns, 
+    values)}
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkTreeStore}}}
 \item{\verb{parent}}{A valid \code{\link{GtkTreeIter}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}

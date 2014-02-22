@@ -4,7 +4,8 @@
 \description{Makes pixels in \code{window} outside \code{shape.region} be transparent,
 so that the window may be nonrectangular. See also
 \code{\link{gdkWindowShapeCombineMask}} to use a bitmap as the mask.}
-\usage{gdkWindowShapeCombineRegion(object, shape.region = NULL, offset.x, offset.y)}
+\usage{gdkWindowShapeCombineRegion(object, shape.region = NULL, offset.x, 
+    offset.y)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkWindow}}}
 \item{\verb{shape.region}}{region of window to be non-transparent}

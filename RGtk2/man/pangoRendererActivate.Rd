@@ -9,7 +9,7 @@ activate the layout before drawing on it. Calls to
 be nested and the renderer will only be initialized and
 deinitialized once.}
 \usage{pangoRendererActivate(object)}
-\arguments{\item{\verb{object}}{a \code{\link{PangoRenderer}}}}
-\details{Since 1.8}
+\arguments{\item{\verb{object}}{[\code{\link{PangoRenderer}}]  a \code{\link{PangoRenderer}}}}
+\details{  Since 1.8}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

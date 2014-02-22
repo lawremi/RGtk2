@@ -2,7 +2,8 @@
 \name{gtkAdjustmentConfigure}
 \title{gtkAdjustmentConfigure}
 \description{Sets all properties of the adjustment at once.}
-\usage{gtkAdjustmentConfigure(object, value, lower, upper, step.increment, page.increment, page.size)}
+\usage{gtkAdjustmentConfigure(object, value, lower, upper, step.increment, 
+    page.increment, page.size)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkAdjustment}}}
 \item{\verb{value}}{the new value}

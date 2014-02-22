@@ -6,7 +6,8 @@ this function to display context-sensitive menus, and will typically supply
 \code{NULL} for the \code{parent.menu.shell}, \code{parent.menu.item}, \code{func} and \code{data} 
 parameters. The default menu positioning function will position the menu
 at the current mouse cursor position.}
-\usage{gtkMenuPopup(object, parent.menu.shell = NULL, parent.menu.item = NULL, func = NULL, data = NULL, button, activate.time)}
+\usage{gtkMenuPopup(object, parent.menu.shell = NULL, parent.menu.item = NULL, 
+    func = NULL, data = NULL, button, activate.time)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkMenu}}.}
 \item{\verb{parent.menu.shell}}{the menu shell containing the triggering menu item, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}

@@ -12,7 +12,8 @@ the specified cell.  This function is often followed by
 \code{gtk.widget.grab.focus} (\code{tree.view}) in order to give keyboard focus to the
 widget.  Please note that editing can only happen when the widget is
 realized.}
-\usage{gtkTreeViewSetCursorOnCell(object, path, focus.column = NULL, focus.cell = NULL, start.editing = FALSE)}
+\usage{gtkTreeViewSetCursorOnCell(object, path, focus.column = NULL, 
+    focus.cell = NULL, start.editing = FALSE)}
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkTreeView}}}
 \item{\verb{path}}{A \code{\link{GtkTreePath}}}

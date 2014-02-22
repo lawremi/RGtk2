@@ -2,7 +2,8 @@
 \name{gFileEnumeratorCloseAsync}
 \title{gFileEnumeratorCloseAsync}
 \description{Asynchronously closes the file enumerator. }
-\usage{gFileEnumeratorCloseAsync(object, io.priority = 0, cancellable = NULL, callback, user.data = NULL)}
+\usage{gFileEnumeratorCloseAsync(object, io.priority = 0, cancellable = NULL, 
+    callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GFileEnumerator}}.}
 \item{\verb{io.priority}}{the I/O priority

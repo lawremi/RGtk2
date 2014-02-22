@@ -2,7 +2,8 @@
 \name{gdkPixmapCreateFromData}
 \title{gdkPixmapCreateFromData}
 \description{Create a two-color pixmap from data in XBM data.}
-\usage{gdkPixmapCreateFromData(drawable = NULL, data, height, depth, fg, bg)}
+\usage{gdkPixmapCreateFromData(drawable = NULL, data, height, depth, 
+    fg, bg)}
 \arguments{
 \item{\verb{drawable}}{a \code{\link{GdkDrawable}}, used to determine default values
 for the new pixmap. Can be \code{NULL}, if the depth is given.}

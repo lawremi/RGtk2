@@ -139,14 +139,14 @@ window$showAll()
 \item{\verb{PangoCairoFont}}{
 \code{\link{PangoCairoFont}} is an interface exported by fonts for
 use with Cairo. The actual type of the font will depend
-on the particular font technology Cairo was compiled to use.
+on the particular font technology Cairo was compiled to use.  
   Since 1.18
 
 }
 \item{\verb{PangoCairoFontMap}}{
 \code{\link{PangoCairoFontMap}} is an interface exported by font maps for
 use with Cairo. The actual type of the font map will depend
-on the particular font technology Cairo was compiled to use.
+on the particular font technology Cairo was compiled to use.  
   Since 1.10
 
 }
@@ -156,14 +156,14 @@ Function type for rendering attributes of type \code{PANGO_ATTR_SHAPE}
 with Pango's Cairo renderer.
 
 \describe{
-\item{\code{cr}}{a Cairo context with current point set to where the shape should
-be rendered}
-\item{\code{attr}}{the \code{PANGO_ATTR_SHAPE} to render}
-\item{\code{do.path}}{whether only the shape path should be appended to current
-path of \code{cr} and no filling/stroking done.  This will be set
-to \code{TRUE} when called from \code{\link{pangoCairoLayoutPath}} and
-\code{\link{pangoCairoLayoutLinePath}} rendering functions.}
-\item{\code{data}}{user data passed to \code{\link{pangoCairoContextSetShapeRenderer}}}
+\item{\code{cr}}{[\code{\link{Cairo}}] a Cairo context with current point set to where the shape should
+     be rendered}
+\item{\code{attr}}{[\code{\link{PangoAttrShape}}] the \code{PANGO_ATTR_SHAPE} to render}
+\item{\code{do.path}}{[logical] whether only the shape path should be appended to current
+          path of \code{cr} and no filling/stroking done.  This will be set
+	  to \code{TRUE} when called from \code{\link{pangoCairoLayoutPath}} and
+	  \code{\link{pangoCairoLayoutLinePath}} rendering functions.}
+\item{\code{data}}{[R object] user data passed to \code{\link{pangoCairoContextSetShapeRenderer}}}
 }
 
 

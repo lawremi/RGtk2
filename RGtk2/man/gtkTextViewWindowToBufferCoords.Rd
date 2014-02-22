@@ -14,8 +14,8 @@ coordinates, storing the result in (\code{buffer.x},\code{buffer.y}).}
 \code{\link{gtkTextViewSetBorderWindowSize}}).}
 \value{
 A list containing the following elements:
-\item{\verb{buffer.x}}{buffer x coordinate return location}
-\item{\verb{buffer.y}}{buffer y coordinate return location}
+\item{\verb{buffer.x}}{buffer x coordinate return location or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
+\item{\verb{buffer.y}}{buffer y coordinate return location or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

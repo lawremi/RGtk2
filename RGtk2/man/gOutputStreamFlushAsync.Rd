@@ -3,7 +3,8 @@
 \title{gOutputStreamFlushAsync}
 \description{Flushes a stream asynchronously.
 For behaviour details see \code{\link{gOutputStreamFlush}}.}
-\usage{gOutputStreamFlushAsync(object, io.priority = 0, cancellable = NULL, callback, user.data = NULL)}
+\usage{gOutputStreamFlushAsync(object, io.priority = 0, cancellable = NULL, 
+    callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GOutputStream}}.}
 \item{\verb{io.priority}}{the io priority of the request.}

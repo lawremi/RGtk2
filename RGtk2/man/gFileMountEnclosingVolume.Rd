@@ -2,7 +2,8 @@
 \name{gFileMountEnclosingVolume}
 \title{gFileMountEnclosingVolume}
 \description{Starts a \code{mount.operation}, mounting the volume that contains the file \code{location}. }
-\usage{gFileMountEnclosingVolume(object, flags, mount.operation, cancellable = NULL, callback, user.data = NULL)}
+\usage{gFileMountEnclosingVolume(object, flags, mount.operation, cancellable = NULL, 
+    callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{flags}}{flags affecting the operation}

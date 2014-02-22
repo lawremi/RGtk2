@@ -12,14 +12,14 @@ convert a keyboard between Hebrew to English modes, for example.
 keyboard group. The level is computed from the modifier mask.}
 \usage{gdkKeymapGetEntriesForKeyval(object, keyval)}
 \arguments{
-\item{\verb{object}}{a \code{\link{GdkKeymap}}, or \code{NULL} to use the default keymap. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{object}}{a \code{\link{GdkKeymap}}, or \code{NULL} to use the default keymap}
 \item{\verb{keyval}}{a keyval, such as \code{GDK_a}, \code{GDK_Up}, \code{GDK_Return}, etc.}
 }
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if keys were found and returned}
-\item{\verb{keys}}{return location for a list of \code{\link{GdkKeymapKey}}. \emph{[  \acronym{out}  ]}}
-\item{\verb{n.keys}}{return location for number of elements in returned list. \emph{[  \acronym{out}  ]}}
+\item{\verb{keys}}{return location for a list of \code{\link{GdkKeymapKey}}}
+\item{\verb{n.keys}}{return location for number of elements in returned list}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

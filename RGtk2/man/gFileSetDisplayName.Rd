@@ -2,7 +2,8 @@
 \name{gFileSetDisplayName}
 \title{gFileSetDisplayName}
 \description{Renames \code{file} to the specified display name.}
-\usage{gFileSetDisplayName(object, display.name, cancellable = NULL, .errwarn = TRUE)}
+\usage{gFileSetDisplayName(object, display.name, cancellable = NULL, 
+    .errwarn = TRUE)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{display.name}}{a string.}

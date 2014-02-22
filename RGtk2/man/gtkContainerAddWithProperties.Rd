@@ -7,8 +7,8 @@ See \code{\link{gtkContainerAdd}} and \code{\link{gtkContainerChildSet}} for mor
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkContainer}}}
 \item{\verb{widget}}{a widget to be placed inside \code{container}}
-\item{\verb{...}}{a list of property names and values, starting
-with \code{first.prop.name}}
+\item{\verb{...}}{\emph{undocumented
+}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

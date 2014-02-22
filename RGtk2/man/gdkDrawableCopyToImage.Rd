@@ -4,7 +4,8 @@
 \description{Copies a portion of \code{drawable} into the client side image structure
 \code{image}. If \code{image} is \code{NULL}, creates a new image of size \code{width} x \code{height}
 and copies into that. See \code{\link{gdkDrawableGetImage}} for further details.}
-\usage{gdkDrawableCopyToImage(object, image = NULL, src.x, src.y, dest.x, dest.y, width, height)}
+\usage{gdkDrawableCopyToImage(object, image = NULL, src.x, src.y, dest.x, 
+    dest.y, width, height)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkDrawable}}}
 \item{\verb{image}}{a \code{\link{GdkDrawable}}, or \code{NULL} if a new \code{image} should be created. \emph{[  \acronym{allow-none}  ]}}

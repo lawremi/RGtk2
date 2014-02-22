@@ -3,7 +3,8 @@
 \title{gtkPaintHline}
 \description{Draws a horizontal line from (\code{x1}, \code{y}) to (\code{x2}, \code{y}) in \code{window}
 using the given style and state.}
-\usage{gtkPaintHline(object, window, state.type, area = NULL, widget = NULL, detail = NULL, x1, x2, y)}
+\usage{gtkPaintHline(object, window, state.type, area = NULL, widget = NULL, 
+    detail = NULL, x1, x2, y)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkStyle}}}
 \item{\verb{window}}{a \code{\link{GdkWindow}}}

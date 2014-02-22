@@ -7,9 +7,9 @@ particular glyph. This might be used, for instance, for
 embedding a picture or a widget inside a \code{\link{PangoLayout}}.}
 \usage{pangoAttrShapeNew(ink.rect, logical.rect)}
 \arguments{
-\item{\verb{ink.rect}}{ink rectangle to assign to each character}
-\item{\verb{logical.rect}}{logical rectangle to assign to each character}
+\item{\verb{ink.rect}}{[\code{\link{PangoRectangle}}]      ink rectangle to assign to each character}
+\item{\verb{logical.rect}}{[\code{\link{PangoRectangle}}]  logical rectangle to assign to each character}
 }
-\value{[\code{\link{PangoAttribute}}] the newly allocated \code{\link{PangoAttribute}},}
+\value{[\code{\link{PangoAttribute}}]  the newly allocated \code{\link{PangoAttribute}},}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

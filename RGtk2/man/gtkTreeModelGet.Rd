@@ -14,7 +14,8 @@ If appropriate,}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkTreeModel}}}
 \item{\verb{iter}}{a row in \code{tree.model}}
-\item{\verb{...}}{pairs of column number and value return locations, terminated by -1}
+\item{\verb{...}}{\emph{undocumented
+}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

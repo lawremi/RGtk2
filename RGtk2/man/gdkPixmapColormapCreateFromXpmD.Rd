@@ -3,7 +3,8 @@
 \title{gdkPixmapColormapCreateFromXpmD}
 \description{Create a pixmap from data in XPM format using a particular
 colormap.}
-\usage{gdkPixmapColormapCreateFromXpmD(drawable, colormap, transparent.color, data)}
+\usage{gdkPixmapColormapCreateFromXpmD(drawable, colormap, transparent.color, 
+    data)}
 \arguments{
 \item{\verb{drawable}}{a \code{\link{GdkDrawable}}, used to determine default values
 for the new pixmap. Can be \code{NULL} if \code{colormap} is given.}

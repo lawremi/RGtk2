@@ -129,10 +129,10 @@ without their image.
 
 The \code{\link{GIcon}} displayed in the \code{\link{GtkAction}}.
   
-Note that the stock icon is preferred, if the \verb{"stock-id"} 
+Note that the stock icon is preferred, if the \verb{"stock-id"}
 property holds the id of an existing stock icon.
   
-This is an appearance property and thus only applies if 
+This is an appearance property and thus only applies if
 \verb{"use-action-appearance"} is \code{TRUE}.
   Since 2.16
 
@@ -144,13 +144,13 @@ When TRUE, empty menu proxies for this action are hidden.  Default value: TRUE
 }
 \item{\verb{icon-name} [character : *                : Read / Write]}{
 
-The name of the icon from the icon theme. 
+The name of the icon from the icon theme.
   
-Note that the stock icon is preferred, if the \verb{"stock-id"} 
+Note that the stock icon is preferred, if the \verb{"stock-id"}
 property holds the id of an existing stock icon, and the \code{\link{GIcon}} is
-preferred if the \verb{"gicon"} property is set. 
+preferred if the \verb{"gicon"} property is set.
   
-This is an appearance property and thus only applies if 
+This is an appearance property and thus only applies if
 \verb{"use-action-appearance"} is \code{TRUE}.
   Default value: NULL  Since 2.10
 
@@ -163,10 +163,10 @@ Whether the action is considered important. When TRUE, toolitem proxies for this
 \item{\verb{label} [character : *                : Read / Write]}{
 
 The label used for menu items and buttons that activate
-this action. If the label is \code{NULL}, GTK+ uses the stock 
+this action. If the label is \code{NULL}, GTK+ uses the stock
 label specified via the stock-id property.
   
-This is an appearance property and thus only applies if 
+This is an appearance property and thus only applies if
 \verb{"use-action-appearance"} is \code{TRUE}.
   Default value: NULL
 
@@ -185,7 +185,7 @@ Whether the action is enabled.  Default value: TRUE
 
 A shorter label that may be used on toolbar buttons.
   
-This is an appearance property and thus only applies if 
+This is an appearance property and thus only applies if
 \verb{"use-action-appearance"} is \code{TRUE}.
   Default value: NULL
 
@@ -194,7 +194,7 @@ This is an appearance property and thus only applies if
 
 The stock icon displayed in widgets representing this action.
   
-This is an appearance property and thus only applies if 
+This is an appearance property and thus only applies if
 \verb{"use-action-appearance"} is \code{TRUE}.
   Default value: NULL
 
@@ -216,7 +216,7 @@ Whether the toolbar item is visible when the toolbar is in a horizontal orientat
 }
 \item{\verb{visible-overflown} [logical : Read / Write]}{
 
-When \code{TRUE}, toolitem proxies for this action are represented in the 
+When \code{TRUE}, toolitem proxies for this action are represented in the
 toolbar overflow menu.
   Default value: TRUE  Since 2.6
 

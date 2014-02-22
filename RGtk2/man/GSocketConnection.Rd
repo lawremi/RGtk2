@@ -48,7 +48,7 @@ A socket connection GIOStream object for connection-oriented sockets.
 
 }
 \item{\verb{GTcpConnection}}{
-A \code{\link{GSocketConnection}} for TCP/IP connections.
+A \code{\link{GSocketConnection}} for UNIX domain socket connections.
   Since 2.22
 
 }

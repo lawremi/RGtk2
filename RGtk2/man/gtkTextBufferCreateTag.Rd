@@ -8,7 +8,7 @@ tag to the buffer's tag table. so the ref count will be equal to one.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkTextBuffer}}}
 \item{\verb{tag.name}}{name of the new tag, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{...}}{list of property names and values}
+\item{\verb{...}}{a new tag}
 }
 \details{If \code{tag.name} is \code{NULL}, the tag is anonymous.
   

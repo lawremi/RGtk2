@@ -3,7 +3,8 @@
 \title{gDataInputStreamReadUntilAsync}
 \description{The asynchronous version of \code{\link{gDataInputStreamReadUntil}}.
 It is an error to have two outstanding calls to this function.}
-\usage{gDataInputStreamReadUntilAsync(object, stop.chars, io.priority, cancellable = NULL, callback, user.data = NULL)}
+\usage{gDataInputStreamReadUntilAsync(object, stop.chars, io.priority, 
+    cancellable = NULL, callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{a given \code{\link{GDataInputStream}}.}
 \item{\verb{stop.chars}}{characters to terminate the read.}

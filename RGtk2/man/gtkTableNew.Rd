@@ -5,7 +5,8 @@
 specifying how many rows and columns the table should have, although
 this can be changed later with \code{\link{gtkTableResize}}.  \code{rows} and \code{columns}
 must both be in the range 0 .. 65535.}
-\usage{gtkTableNew(rows = NULL, columns = NULL, homogeneous = NULL, show = TRUE)}
+\usage{gtkTableNew(rows = NULL, columns = NULL, homogeneous = NULL, 
+    show = TRUE)}
 \arguments{
 \item{\verb{rows}}{The number of rows the new table should have.}
 \item{\verb{columns}}{The number of columns the new table should have.}

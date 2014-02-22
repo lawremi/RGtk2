@@ -5,7 +5,8 @@
 \code{override.location}. (Note: pasting is asynchronous, that is, we'll 
 ask for the paste data and return, and at some point later after 
 the main loop runs, the paste data will be inserted.)}
-\usage{gtkTextBufferPasteClipboard(object, clipboard, override.location = NULL, default.editable)}
+\usage{gtkTextBufferPasteClipboard(object, clipboard, override.location = NULL, 
+    default.editable)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkTextBuffer}}}
 \item{\verb{clipboard}}{the \code{\link{GtkClipboard}} to paste from}

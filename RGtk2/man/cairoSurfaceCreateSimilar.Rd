@@ -19,7 +19,6 @@ have transparency, black otherwise.)  }
 \value{[\code{\link{CairoSurface}}]  a pointer to the newly allocated surface. The caller
 owns the surface and should call \code{\link{cairoSurfaceDestroy}} when done
 with it.
-
 This function always returns a valid pointer, but it will return a
 pointer to a "nil" surface if \code{other} is already in an error state
 or any other error occurs.}

@@ -2,7 +2,8 @@
 \name{gFileUnmountMountableWithOperation}
 \title{gFileUnmountMountableWithOperation}
 \description{Unmounts a file of type G_FILE_TYPE_MOUNTABLE.}
-\usage{gFileUnmountMountableWithOperation(object, flags, mount.operation, cancellable = NULL, callback, user.data = NULL)}
+\usage{gFileUnmountMountableWithOperation(object, flags, mount.operation, 
+    cancellable = NULL, callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{flags}}{flags affecting the operation}

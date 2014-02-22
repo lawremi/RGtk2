@@ -4,7 +4,8 @@
 \description{Mounts a volume. This is an asynchronous operation, and is
 finished by calling \code{\link{gVolumeMountFinish}} with the \code{volume}
 and \code{\link{GAsyncResult}} returned in the \code{callback}.}
-\usage{gVolumeMount(object, flags, mount.operation, cancellable = NULL, callback, user.data = NULL)}
+\usage{gVolumeMount(object, flags, mount.operation, cancellable = NULL, 
+    callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GVolume}}.}
 \item{\verb{flags}}{flags affecting the operation}

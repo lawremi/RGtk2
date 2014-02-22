@@ -7,7 +7,8 @@ most of the arguments from the current widget settings.  This
 function never returns \code{NULL}; if the icon can't be rendered
 (perhaps because an image file fails to load), a default "missing
 image" icon will be returned instead.}
-\usage{gtkIconSetRenderIcon(object, style, direction, state, size, widget = NULL, detail = NULL)}
+\usage{gtkIconSetRenderIcon(object, style, direction, state, size, widget = NULL, 
+    detail = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkIconSet}}}
 \item{\verb{style}}{a \code{\link{GtkStyle}} associated with \code{widget}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}

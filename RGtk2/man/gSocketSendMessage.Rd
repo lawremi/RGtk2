@@ -4,7 +4,8 @@
 \description{Send data to \code{address} on \code{socket}.  This is the most complicated and
 fully-featured version of this call. For easier use, see
 \code{\link{gSocketSend}} and \code{\link{gSocketSendTo}}.}
-\usage{gSocketSendMessage(object, address, vectors, messages = NULL, flags = 0, cancellable = NULL, .errwarn = TRUE)}
+\usage{gSocketSendMessage(object, address, vectors, messages = NULL, 
+    flags = 0, cancellable = NULL, .errwarn = TRUE)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GSocket}}}
 \item{\verb{address}}{a \code{\link{GSocketAddress}}, or \code{NULL}}

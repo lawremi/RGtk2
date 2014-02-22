@@ -13,10 +13,10 @@
 See \code{\link{gtkWindowSetHasFrame}}, \code{\link{gtkWindowSetFrameDimensions}}.}
 \value{
 A list containing the following elements:
-\item{\verb{left}}{location to store the width of the frame at the left, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{top}}{location to store the height of the frame at the top, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{right}}{location to store the width of the frame at the returns, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{bottom}}{location to store the height of the frame at the bottom, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{left}}{location to store the width of the frame at the left, or \code{NULL}. \emph{[  \acronym{allow-none}  ][  \acronym{out}  ]}}
+\item{\verb{top}}{location to store the height of the frame at the top, or \code{NULL}. \emph{[  \acronym{allow-none}  ][  \acronym{out}  ]}}
+\item{\verb{right}}{location to store the width of the frame at the returns, or \code{NULL}. \emph{[  \acronym{allow-none}  ][  \acronym{out}  ]}}
+\item{\verb{bottom}}{location to store the height of the frame at the bottom, or \code{NULL}. \emph{[  \acronym{allow-none}  ][  \acronym{out}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

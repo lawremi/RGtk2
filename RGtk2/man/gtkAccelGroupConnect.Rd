@@ -5,7 +5,8 @@
 in response to a call to \code{\link{gtkAccelGroupsActivate}}, \code{closure} will be
 invoked if the \code{accel.key} and \code{accel.mods} from \code{\link{gtkAccelGroupsActivate}}
 match those of this connection.}
-\usage{gtkAccelGroupConnect(object, accel.key, accel.mods, accel.flags, closure)}
+\usage{gtkAccelGroupConnect(object, accel.key, accel.mods, accel.flags, 
+    closure)}
 \arguments{
 \item{\verb{object}}{the accelerator group to install an accelerator in}
 \item{\verb{accel.key}}{key value of the accelerator}

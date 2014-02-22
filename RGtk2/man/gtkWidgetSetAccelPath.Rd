@@ -24,7 +24,7 @@ Even when you you aren't using \code{\link{GtkUIManager}}, if you only want to
 set up accelerators on menu items \code{\link{gtkMenuItemSetAccelPath}}
 provides a somewhat more convenient interface.
   
-Note that \code{accel.path} string will be stored in a \verb{numeric}. Therefore, if you
+Note that \code{accel.path} string will be stored in a \code{\link{GQuark}}. Therefore, if you
 pass a static string, you can save some memory by interning it first with 
 \code{gInternStaticString()}.}
 \author{Derived by RGtkGen from GTK+ documentation}

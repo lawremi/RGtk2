@@ -6,7 +6,7 @@ different faces in the \code{\link{PangoFontFamily}} for the face. This
 name is unique among all faces in the family and is suitable
 for displaying to users.}
 \usage{pangoFontFaceGetFaceName(object)}
-\arguments{\item{\verb{object}}{a \code{\link{PangoFontFace}}.}}
-\value{[char] the face name for the face.}
+\arguments{\item{\verb{object}}{[\code{\link{PangoFontFace}}]  a \code{\link{PangoFontFace}}.}}
+\value{[char]  the face name for the face.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -5,7 +5,8 @@
 When the operation is finished \code{callback} will be called. 
 You can then call \code{\link{gFileInputStreamQueryInfoFinish}} 
 to get the result of the operation.}
-\usage{gFileInputStreamQueryInfoAsync(object, attributes, io.priority = 0, cancellable = NULL, callback, user.data = NULL)}
+\usage{gFileInputStreamQueryInfoAsync(object, attributes, io.priority = 0, 
+    cancellable = NULL, callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GFileInputStream}}.}
 \item{\verb{attributes}}{a file attribute query string.}

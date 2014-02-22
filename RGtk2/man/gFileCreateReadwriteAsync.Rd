@@ -3,7 +3,8 @@
 \title{gFileCreateReadwriteAsync}
 \description{Asynchronously creates a new file and returns a stream for reading and
 writing to it. The file must not already exist.}
-\usage{gFileCreateReadwriteAsync(object, flags, io.priority, cancellable = NULL, callback, user.data = NULL)}
+\usage{gFileCreateReadwriteAsync(object, flags, io.priority, cancellable = NULL, 
+    callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}}
 \item{\verb{flags}}{a set of \code{\link{GFileCreateFlags}}}

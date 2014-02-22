@@ -3,7 +3,8 @@
 \title{gtkTreeViewEnableModelDragSource}
 \description{Turns \code{tree.view} into a drag source for automatic DND. Calling this
 method sets \verb{"reorderable"} to \code{FALSE}.}
-\usage{gtkTreeViewEnableModelDragSource(object, start.button.mask, targets, actions)}
+\usage{gtkTreeViewEnableModelDragSource(object, start.button.mask, targets, 
+    actions)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkTreeView}}}
 \item{\verb{start.button.mask}}{Mask of allowed buttons to start drag}

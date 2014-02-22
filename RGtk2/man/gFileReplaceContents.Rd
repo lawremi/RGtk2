@@ -5,7 +5,8 @@
  
 If \code{etag} is specified (not \code{NULL}) any existing file must have that etag, or
 the error \code{G_IO_ERROR_WRONG_ETAG} will be returned.}
-\usage{gFileReplaceContents(object, contents, length, etag, make.backup, flags = "G_FILE_CREATE_NONE", cancellable = NULL, .errwarn = TRUE)}
+\usage{gFileReplaceContents(object, contents, length, etag, make.backup, 
+    flags = "G_FILE_CREATE_NONE", cancellable = NULL, .errwarn = TRUE)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{contents}}{a string containing the new contents for \code{file}.}

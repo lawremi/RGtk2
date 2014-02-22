@@ -4,7 +4,8 @@
 \description{Receive data from a socket.  This is the most complicated and
 fully-featured version of this call. For easier use, see
 \code{\link{gSocketReceive}} and \code{\link{gSocketReceiveFrom}}.}
-\usage{gSocketReceiveMessage(object, flags = 0, cancellable = NULL, .errwarn = TRUE)}
+\usage{gSocketReceiveMessage(object, flags = 0, cancellable = NULL, 
+    .errwarn = TRUE)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GSocket}}}
 \item{\verb{flags}}{a pointer to an int containing \verb{GSocketMsgFlags} flags}

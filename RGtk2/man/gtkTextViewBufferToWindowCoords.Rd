@@ -14,8 +14,8 @@
 \code{\link{gtkTextViewSetBorderWindowSize}}).}
 \value{
 A list containing the following elements:
-\item{\verb{window.x}}{window x coordinate return location}
-\item{\verb{window.y}}{window y coordinate return location}
+\item{\verb{window.x}}{window x coordinate return location or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
+\item{\verb{window.y}}{window y coordinate return location or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

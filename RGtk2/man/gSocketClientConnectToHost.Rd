@@ -2,7 +2,8 @@
 \name{gSocketClientConnectToHost}
 \title{gSocketClientConnectToHost}
 \description{This is a helper function for \code{\link{gSocketClientConnect}}.}
-\usage{gSocketClientConnectToHost(object, host.and.port, default.port, cancellable = NULL, .errwarn = TRUE)}
+\usage{gSocketClientConnectToHost(object, host.and.port, default.port, 
+    cancellable = NULL, .errwarn = TRUE)}
 \arguments{
 \item{\verb{object}}{a \verb{SocketClient}}
 \item{\verb{host.and.port}}{the name and optionally port of the host to connect to}

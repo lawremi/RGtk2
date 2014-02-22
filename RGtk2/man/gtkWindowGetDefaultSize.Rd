@@ -9,8 +9,8 @@ used.}
 \arguments{\item{\verb{object}}{a \code{\link{GtkWindow}}}}
 \value{
 A list containing the following elements:
-\item{\verb{width}}{location to store the default width, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
-\item{\verb{height}}{location to store the default height, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{\verb{width}}{location to store the default width, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
+\item{\verb{height}}{location to store the default height, or \code{NULL}. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

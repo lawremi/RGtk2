@@ -10,7 +10,8 @@ the values given to this function.}
 \item{\verb{object}}{A \code{\link{GtkTreeStore}}}
 \item{\verb{parent}}{A valid \code{\link{GtkTreeIter}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{position}}{position to insert the new row}
-\item{\verb{...}}{pairs of column number and value, terminated with -1}
+\item{\verb{...}}{\emph{undocumented
+}}
 }
 \details{Calling
 \code{gtk_tree_store_insert_with_values (tree_store, iter, position, ...)}

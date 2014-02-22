@@ -7,7 +7,8 @@ automatically picks an optimium color cube for the
 display.
 \strong{WARNING: \code{gtk_preview_set_color_cube} is deprecated and should not be used in newly-written code.}
 }
-\usage{gtkPreviewSetColorCube(nred.shades, ngreen.shades, nblue.shades, ngray.shades)}
+\usage{gtkPreviewSetColorCube(nred.shades, ngreen.shades, nblue.shades, 
+    ngray.shades)}
 \arguments{
 \item{\verb{nred.shades}}{ignored}
 \item{\verb{ngreen.shades}}{ignored}

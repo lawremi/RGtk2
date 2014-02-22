@@ -4,7 +4,8 @@
 \description{Gets the requested information about specified \code{file}. The result
 is a \code{\link{GFileInfo}} object that contains key-value attributes (such as 
 the type or size of the file).}
-\usage{gFileQueryInfo(object, attributes, flags = "G_FILE_QUERY_INFO_NONE", cancellable = NULL, .errwarn = TRUE)}
+\usage{gFileQueryInfo(object, attributes, flags = "G_FILE_QUERY_INFO_NONE", 
+    cancellable = NULL, .errwarn = TRUE)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{attributes}}{an attribute query string.}

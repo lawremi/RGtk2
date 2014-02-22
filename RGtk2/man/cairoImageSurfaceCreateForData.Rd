@@ -31,14 +31,12 @@ to allocate the data and to create the image surface. See
 \value{[\code{\link{CairoSurface}}]  a pointer to the newly created surface. The caller
 owns the surface and should call \code{\link{cairoSurfaceDestroy}} when done
 with it.
-
 This function always returns a valid pointer, but it will return a
 pointer to a "nil" surface in the case of an error such as out of
 memory or an invalid stride value. In case of invalid stride value
 the error status of the returned surface will be
 \code{CAIRO_STATUS_INVALID_STRIDE}.  You can use
 \code{\link{cairoSurfaceStatus}} to check for this.
-
 See \code{\link{cairoSurfaceSetUserData}} for a means of attaching a
 destroy-notification fallback to the surface if necessary.}
 \author{Derived by RGtkGen from GTK+ documentation}

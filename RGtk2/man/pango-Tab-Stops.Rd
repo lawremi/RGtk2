@@ -15,12 +15,6 @@
 \code{\link{pangoTabArrayGetTabs}(object)}\cr
 \code{\link{pangoTabArrayGetPositionsInPixels}(object)}\cr
 }
-\section{Hierarchy}{\preformatted{
-GBoxed
-   +----PangoTabArray
-GEnum
-   +----PangoTabAlign
-}}
 \section{Detailed Description}{Functions in this section are used to deal with \code{\link{PangoTabArray}} objects
 that can be used to set tab stop positions in a \code{\link{PangoLayout}}.}
 \section{Structures}{\describe{\item{\verb{PangoTabArray}}{

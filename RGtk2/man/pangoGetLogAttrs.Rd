@@ -10,13 +10,13 @@ paragraph; logical attributes can't be computed without context
 the word is a word).}
 \usage{pangoGetLogAttrs(text, level, language)}
 \arguments{
-\item{\verb{text}}{text to process}
-\item{\verb{level}}{embedding level, or -1 if unknown}
-\item{\verb{language}}{language tag}
+\item{\verb{text}}{[char]  text to process}
+\item{\verb{level}}{[integer]  embedding level, or -1 if unknown}
+\item{\verb{language}}{[\code{\link{PangoLanguage}}]  language tag}
 }
 \value{
 A list containing the following elements:
-\item{\verb{log.attrs}}{array with one \code{\link{PangoLogAttr}} per character in \code{text}, plus one extra, to be filled in}
+\item{\verb{log.attrs}}{[\code{\link{PangoLogAttr}}]  list with one \code{\link{PangoLogAttr}} per character in \code{text}, plus one extra, to be filled in}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

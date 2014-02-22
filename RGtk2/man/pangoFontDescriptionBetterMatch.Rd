@@ -12,11 +12,11 @@ and PANGO_STYLE_ITALIC as matches, but not as good a match as when the
 styles are equal.}
 \usage{pangoFontDescriptionBetterMatch(object, old.match = NULL, new.match)}
 \arguments{
-\item{\verb{object}}{a \code{\link{PangoFontDescription}}}
-\item{\verb{old.match}}{a \code{\link{PangoFontDescription}}, or \code{NULL}}
-\item{\verb{new.match}}{a \code{\link{PangoFontDescription}}}
+\item{\verb{object}}{[\code{\link{PangoFontDescription}}]  a \code{\link{PangoFontDescription}}}
+\item{\verb{old.match}}{[\code{\link{PangoFontDescription}}]  a \code{\link{PangoFontDescription}}, or \code{NULL}}
+\item{\verb{new.match}}{[\code{\link{PangoFontDescription}}]  a \code{\link{PangoFontDescription}}}
 }
-\details{Note that \code{old.match} must match \code{desc}.}
+\details{Note that \code{old.match} must match \code{desc}.  }
 \value{[logical] \code{TRUE} if \code{new.match} is a better match}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -2,7 +2,8 @@
 \name{gtkUIManagerAddUi}
 \title{gtkUIManagerAddUi}
 \description{Adds a UI element to the current contents of \code{self}. }
-\usage{gtkUIManagerAddUi(object, merge.id, path, name, action = NULL, type, top)}
+\usage{gtkUIManagerAddUi(object, merge.id, path, name, action = NULL, 
+    type, top)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkUIManager}}}
 \item{\verb{merge.id}}{the merge id for the merged UI, see \code{\link{gtkUIManagerNewMergeId}}}

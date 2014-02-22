@@ -2,7 +2,8 @@
 \name{gFileSetDisplayNameAsync}
 \title{gFileSetDisplayNameAsync}
 \description{Asynchronously sets the display name for a given \code{\link{GFile}}.}
-\usage{gFileSetDisplayNameAsync(object, display.name, io.priority = 0, cancellable = NULL, callback, user.data = NULL)}
+\usage{gFileSetDisplayNameAsync(object, display.name, io.priority = 0, 
+    cancellable = NULL, callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{display.name}}{a string.}

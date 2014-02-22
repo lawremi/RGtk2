@@ -106,7 +106,7 @@ The number of rows of the pixbuf.  Allowed values: >= 1  Default value: 1
 }
 \item{\verb{n-channels} [integer : Read / Write / Construct Only]}{
 
-The number of samples per pixel. 
+The number of samples per pixel.
 Currently, only 3 or 4 samples per pixel are supported.
   Allowed values: >= 0  Default value: 3
 
@@ -118,7 +118,7 @@ A pointer to the pixel data of the pixbuf.
 }
 \item{\verb{rowstride} [integer : Read / Write / Construct Only]}{
 
-The number of bytes between the start of a row and 
+The number of bytes between the start of a row and
 the start of the next row. This number must (obviously)
 be at least as large as the width of the pixbuf.
   Allowed values: >= 1  Default value: 1

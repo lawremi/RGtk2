@@ -2,7 +2,8 @@
 \name{gFileReadAsync}
 \title{gFileReadAsync}
 \description{Asynchronously opens \code{file} for reading.}
-\usage{gFileReadAsync(object, io.priority = 0, cancellable = NULL, callback, user.data = NULL)}
+\usage{gFileReadAsync(object, io.priority = 0, cancellable = NULL, callback, 
+    user.data = NULL)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}}
 \item{\verb{io.priority}}{the I/O priority

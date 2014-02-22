@@ -8,7 +8,7 @@ for instance, the sample language for \code{PANGO_SCRIPT_CYRILLIC}
 is \code{ru} (Russian), the sample language
 for \code{PANGO_SCRIPT_ARABIC} is \code{ar}.}
 \usage{pangoScriptGetSampleLanguage(script)}
-\arguments{\item{\verb{script}}{a \code{\link{PangoScript}}}}
+\arguments{\item{\verb{script}}{[\code{\link{PangoScript}}]  a \code{\link{PangoScript}}}}
 \details{For some
 scripts, no sample language will be returned because there
 is no language that is sufficiently representative. The best
@@ -31,9 +31,9 @@ set to "en:fa" makes Pango choose fonts suitable for Persian (fa)
 instead of Arabic (ar) when a segment of Arabic text is found
 in an otherwise non-Arabic text.  The same trick can be used to
 choose a default language for \code{PANGO_SCRIPT_HAN} when setting
-context language is not feasible.
+context language is not feasible.  
   Since 1.4}
-\value{[\code{\link{PangoLanguage}}] a \code{\link{PangoLanguage}} that is representative
+\value{[\code{\link{PangoLanguage}}]  a \code{\link{PangoLanguage}} that is representative
 of the script, or \code{NULL} if no such language exists.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

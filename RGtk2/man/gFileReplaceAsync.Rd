@@ -3,7 +3,8 @@
 \title{gFileReplaceAsync}
 \description{Asynchronously overwrites the file, replacing the contents, possibly
 creating a backup copy of the file first.}
-\usage{gFileReplaceAsync(object, etag, make.backup, flags = "G_FILE_CREATE_NONE", io.priority = 0, cancellable = NULL, callback, user.data = NULL)}
+\usage{gFileReplaceAsync(object, etag, make.backup, flags = "G_FILE_CREATE_NONE", 
+    io.priority = 0, cancellable = NULL, callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{etag}}{an entity tag for the

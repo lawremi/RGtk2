@@ -6,7 +6,8 @@ specifies the location along the gradient's control vector. For
 example, a linear gradient's control vector is from (x0,y0) to
 (x1,y1) while a radial gradient's control vector is from any point
 on the start circle to the corresponding point on the end circle.}
-\usage{cairoPatternAddColorStopRgba(pattern, offset, red, green, blue, alpha)}
+\usage{cairoPatternAddColorStopRgba(pattern, offset, red, green, blue, 
+    alpha)}
 \arguments{
 \item{\verb{pattern}}{[\code{\link{CairoPattern}}]  a \code{\link{CairoPattern}}}
 \item{\verb{offset}}{[numeric]  an offset in the range [0.0 .. 1.0]}

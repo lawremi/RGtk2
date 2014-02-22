@@ -5,8 +5,8 @@
 \code{PANGO_SCALE} factor and performing rounding.}
 \usage{pangoExtentsToPixels(inclusive, nearest)}
 \arguments{
-\item{\verb{inclusive}}{rectangle to round to pixels inclusively, or \code{NULL}.}
-\item{\verb{nearest}}{rectangle to round to nearest pixels, or \code{NULL}.}
+\item{\verb{inclusive}}{[\code{\link{PangoRectangle}}]  rectangle to round to pixels inclusively, or \code{NULL}.}
+\item{\verb{nearest}}{[\code{\link{PangoRectangle}}]  rectangle to round to nearest pixels, or \code{NULL}.}
 }
 \details{The \code{inclusive} rectangle is converted by flooring the x/y coordinates and extending
 width/height, such that the final rectangle completely includes the original
@@ -19,7 +19,7 @@ The rule to which argument to use is: if you want the resulting device-space
 rectangle to completely contain the original rectangle, pass it in as \code{inclusive}.
 If you want two touching-but-not-overlapping rectangles stay
 touching-but-not-overlapping after rounding to device units, pass them in
-as \code{nearest}.
+as \code{nearest}.  
   Since 1.16}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

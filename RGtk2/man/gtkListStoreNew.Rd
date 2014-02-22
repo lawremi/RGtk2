@@ -5,7 +5,7 @@
 in.  Note that only types derived from standard GObject fundamental types 
 are supported. }
 \usage{gtkListStoreNew(...)}
-\arguments{\item{\verb{...}}{all \code{\link{GType}} types for the columns, from first to last}}
+\arguments{\item{\verb{...}}{a new \code{\link{GtkListStore}}}}
 \details{As an example, \code{gtk_tree_store_new (3, G_TYPE_INT, G_TYPE_STRING,
 GDK_TYPE_PIXBUF);} will create a new \code{\link{GtkListStore}} with three columns, of type
 int, string and \code{\link{GdkPixbuf}} respectively.}

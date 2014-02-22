@@ -67,7 +67,7 @@ adapt an existing file selector to expose a standard programming
 interface.
   \code{\link{GtkFileChooser}} allows for shortcuts to various places in the filesystem.
 In the default implementation these are displayed in the left pane. It
-may be a bit confusing at first taht these shortcuts come from various
+may be a bit confusing at first that these shortcuts come from various
 sources and in various flavours, so lets explain the terminology here:
 \describe{
 \item{Bookmarks}{\emph{undocumented
@@ -406,6 +406,7 @@ illustrates this.
 confirm_overwrite_callback (GtkFileChooser *chooser, gpointer data)
 {
   char *uri;
+
   uri = gtk_file_chooser_get_uri (chooser);
 
   if (is_uri_read_only (uri))

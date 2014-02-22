@@ -3,7 +3,8 @@
 \title{gSocketClientConnectToServiceAsync}
 \description{This is the asynchronous version of
 \code{\link{gSocketClientConnectToService}}.}
-\usage{gSocketClientConnectToServiceAsync(object, domain, service, cancellable = NULL, callback, user.data = NULL)}
+\usage{gSocketClientConnectToServiceAsync(object, domain, service, cancellable = NULL, 
+    callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GSocketClient}}}
 \item{\verb{domain}}{a domain name}

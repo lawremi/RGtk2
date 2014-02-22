@@ -6,7 +6,7 @@
 \code{g} and \code{b} are hex digits representing
 the red, green, and blue components respectively.}
 \usage{pangoColorToString(object)}
-\arguments{\item{\verb{object}}{a \code{\link{PangoColor}}}}
-\details{Since 1.16}
+\arguments{\item{\verb{object}}{[\code{\link{PangoColor}}]  a \code{\link{PangoColor}}}}
+\details{  Since 1.16}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

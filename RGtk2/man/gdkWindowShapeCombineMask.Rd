@@ -5,7 +5,8 @@
 set bits in the \code{mask} will be visible; pixels in \code{window}
 corresponding to unset bits in the \code{mask} will be transparent. This
 gives a non-rectangular window.}
-\usage{gdkWindowShapeCombineMask(object, shape.mask = NULL, offset.x, offset.y)}
+\usage{gdkWindowShapeCombineMask(object, shape.mask = NULL, offset.x, 
+    offset.y)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkWindow}}}
 \item{\verb{shape.mask}}{shape mask}

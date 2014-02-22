@@ -5,9 +5,8 @@
 \usage{gtkWidgetStyleGet(object, ...)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkWidget}}}
-\item{\verb{...}}{pairs of property names and locations to
-return the property values, starting with the location for
-\code{first.property.name}, terminated by \code{NULL}.}
+\item{\verb{...}}{\emph{undocumented
+}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

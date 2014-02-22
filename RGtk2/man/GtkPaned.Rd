@@ -85,7 +85,7 @@ frame2$setSizeRequest(50, -1)
 \item{\code{accept-position(widget, user.data)}}{
 The ::accept-position signal is a
 keybinding signal
-which gets emitted to accept the current position of the handle when 
+which gets emitted to accept the current position of the handle when
 moving it using key bindings.
   
 The default binding for this signal is Return or Space.
@@ -99,10 +99,10 @@ The default binding for this signal is Return or Space.
 
 }
 \item{\code{cancel-position(widget, user.data)}}{
-The ::cancel-position signal is a 
+The ::cancel-position signal is a
 keybinding signal
-which gets emitted to cancel moving the position of the handle using key 
-bindings. The position of the handle will be reset to the value prior to 
+which gets emitted to cancel moving the position of the handle using key
+bindings. The position of the handle will be reset to the value prior to
 moving it.
   
 The default binding for this signal is Escape.
@@ -116,7 +116,7 @@ The default binding for this signal is Escape.
 
 }
 \item{\code{cycle-child-focus(widget, reversed, user.data)}}{
-The ::cycle-child-focus signal is a 
+The ::cycle-child-focus signal is a
 keybinding signal
 which gets emitted to cycle the focus between the children of the paned.
   
@@ -132,7 +132,7 @@ The default binding is f6.
 
 }
 \item{\code{cycle-handle-focus(widget, reversed, user.data)}}{
-The ::cycle-handle-focus signal is a 
+The ::cycle-handle-focus signal is a
 keybinding signal
 which gets emitted to cycle whether the paned should grab focus to allow
 the user to change position of the handle by using key bindings.
@@ -149,9 +149,9 @@ The default binding for this signal is f8.
 
 }
 \item{\code{move-handle(widget, scroll.type, user.data)}}{
-The ::move-handle signal is a 
+The ::move-handle signal is a
 keybinding signal
-which gets emitted to move the handle when the user is using key bindings 
+which gets emitted to move the handle when the user is using key bindings
 to move it.
   Since 2.0
 
@@ -164,9 +164,9 @@ to move it.
 
 }
 \item{\code{toggle-handle-focus(widget, user.data)}}{
-The ::toggle-handle-focus is a 
+The ::toggle-handle-focus is a
 keybinding signal
-which gets emitted to accept the current position of the handle and then 
+which gets emitted to accept the current position of the handle and then
 move focus to the next widget in the focus chain.
   
 The default binding is Tab.

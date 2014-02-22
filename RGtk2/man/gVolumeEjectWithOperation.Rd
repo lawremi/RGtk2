@@ -4,7 +4,8 @@
 \description{Ejects a volume. This is an asynchronous operation, and is
 finished by calling \code{\link{gVolumeEjectWithOperationFinish}} with the \code{volume}
 and \code{\link{GAsyncResult}} data returned in the \code{callback}.}
-\usage{gVolumeEjectWithOperation(object, flags, mount.operation, cancellable = NULL, callback, user.data = NULL)}
+\usage{gVolumeEjectWithOperation(object, flags, mount.operation, cancellable = NULL, 
+    callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GVolume}}.}
 \item{\verb{flags}}{flags affecting the unmount if required for eject}

@@ -5,7 +5,8 @@
 Unmounts a file of type G_FILE_TYPE_MOUNTABLE.
 \strong{WARNING: \code{g_file_unmount_mountable} has been deprecated since version 2.22 and should not be used in newly-written code. Use \code{\link{gFileUnmountMountableWithOperation}} instead.}
 }
-\usage{gFileUnmountMountable(object, flags = "G_MOUNT_UNMOUNT_NONE", cancellable = NULL, callback, user.data = NULL)}
+\usage{gFileUnmountMountable(object, flags = "G_MOUNT_UNMOUNT_NONE", 
+    cancellable = NULL, callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{flags}}{flags affecting the operation}

@@ -95,7 +95,7 @@ added to the socket.
 }
 \item{\code{plug-removed(socket., user.data)}}{
 This signal is emitted when a client is removed from the socket.
-The default action is to destroy the \code{\link{GtkSocket}} widget, so if you 
+The default action is to destroy the \code{\link{GtkSocket}} widget, so if you
 want to reuse it you must add a signal handler that returns \code{TRUE}.
 
 \describe{

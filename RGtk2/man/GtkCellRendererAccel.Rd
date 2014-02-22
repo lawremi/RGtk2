@@ -70,7 +70,7 @@ Gets emitted when the user has selected a new accelerator.
 \item{\verb{accel-key} [numeric : Read / Write]}{
 
 The keyval of the accelerator.
-  Allowed values: <= G_MAXLONG  Default value: 0  Since 2.10
+  Allowed values: <= G_MAXINT  Default value: 0  Since 2.10
 
 }
 \item{\verb{accel-mode} [\code{\link{GtkCellRendererAccelMode}} : Read / Write]}{
@@ -93,7 +93,7 @@ The modifier mask of the accelerator.
 The hardware keycode of the accelerator. Note that the hardware keycode is
 only relevant if the key does not have a keyval. Normally, the keyboard
 configuration should assign keyvals to all keys.
-  Allowed values: <= G_MAXLONG  Default value: 0  Since 2.10
+  Allowed values: <= G_MAXINT  Default value: 0  Since 2.10
 
 }
 }}

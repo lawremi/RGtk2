@@ -3,7 +3,8 @@
 \title{gFileAppendTo}
 \description{Gets an output stream for appending data to the file. If
 the file doesn't already exist it is created.}
-\usage{gFileAppendTo(object, flags = "G_FILE_CREATE_NONE", cancellable = NULL, .errwarn = TRUE)}
+\usage{gFileAppendTo(object, flags = "G_FILE_CREATE_NONE", cancellable = NULL, 
+    .errwarn = TRUE)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{flags}}{a set of \code{\link{GFileCreateFlags}}.}

@@ -2,7 +2,8 @@
 \name{gSocketClientConnectAsync}
 \title{gSocketClientConnectAsync}
 \description{This is the asynchronous version of \code{\link{gSocketClientConnect}}.}
-\usage{gSocketClientConnectAsync(object, connectable, cancellable = NULL, callback, user.data = NULL)}
+\usage{gSocketClientConnectAsync(object, connectable, cancellable = NULL, 
+    callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{a \verb{GTcpClient}}
 \item{\verb{connectable}}{a \code{\link{GSocketConnectable}} specifying the remote address.}

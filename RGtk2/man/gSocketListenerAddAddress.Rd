@@ -4,7 +4,8 @@
 \description{Creates a socket of type \code{type} and protocol \code{protocol}, binds
 it to \code{address} and adds it to the set of sockets we're accepting
 sockets from.}
-\usage{gSocketListenerAddAddress(object, address, type, protocol, source.object, .errwarn = TRUE)}
+\usage{gSocketListenerAddAddress(object, address, type, protocol, source.object, 
+    .errwarn = TRUE)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GSocketListener}}}
 \item{\verb{address}}{a \code{\link{GSocketAddress}}}

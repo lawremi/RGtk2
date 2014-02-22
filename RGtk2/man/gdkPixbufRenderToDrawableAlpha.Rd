@@ -8,7 +8,10 @@ only have colormap by default if they were created with a non-\code{NULL} window
 Otherwise a colormap must be set on them with gdk_drawable_set_colormap.
 \strong{WARNING: \code{gdk_pixbuf_render_to_drawable_alpha} has been deprecated since version 2.4 and should not be used in newly-written code. This function is obsolete. Use \code{\link{gdkDrawPixbuf}} instead.}
 }
-\usage{gdkPixbufRenderToDrawableAlpha(object, drawable, src.x = 0, src.y = 0, dest.x, dest.y, width = -1, height = -1, alpha.mode = NULL, alpha.threshold = NULL, dither = "GDK_RGB_DITHER_NORMAL", x.dither = 0, y.dither = 0)}
+\usage{gdkPixbufRenderToDrawableAlpha(object, drawable, src.x = 0, src.y = 0, 
+    dest.x, dest.y, width = -1, height = -1, alpha.mode = NULL, 
+    alpha.threshold = NULL, dither = "GDK_RGB_DITHER_NORMAL", 
+    x.dither = 0, y.dither = 0)}
 \arguments{
 \item{\verb{object}}{A pixbuf.}
 \item{\verb{drawable}}{Destination drawable.}

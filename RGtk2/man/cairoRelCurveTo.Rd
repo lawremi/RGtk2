@@ -2,7 +2,7 @@
 \name{cairoRelCurveTo}
 \title{cairoRelCurveTo}
 \description{Relative-coordinate version of \code{\link{cairoCurveTo}}. All offsets are
-relative to the current point. Adds a cubic Bézier spline to the
+relative to the current point. Adds a cubic B<U+00E9>zier spline to the
 path from the current point to a point offset from the current
 point by (\code{dx3}, \code{dy3}), using points offset by (\code{dx1}, \code{dy1}) and
 (\code{dx2}, \code{dy2}) as the control points. After this call the current

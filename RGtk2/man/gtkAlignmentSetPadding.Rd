@@ -5,7 +5,8 @@
 The padding adds blank space to the sides of the widget. For instance,
 this can be used to indent the child widget towards the right by adding
 padding on the left.}
-\usage{gtkAlignmentSetPadding(object, padding.top, padding.bottom, padding.left, padding.right)}
+\usage{gtkAlignmentSetPadding(object, padding.top, padding.bottom, padding.left, 
+    padding.right)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkAlignment}}}
 \item{\verb{padding.top}}{the padding at the top of the widget}

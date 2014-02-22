@@ -5,7 +5,8 @@
 Adds a widget to the beginning of the given toolbar.
 \strong{WARNING: \code{gtk_toolbar_prepend_widget} has been deprecated since version 2.4 and should not be used in newly-written code. Use \code{\link{gtkToolbarInsert}} instead.}
 }
-\usage{gtkToolbarPrependWidget(object, widget, tooltip.text = NULL, tooltip.private.text = NULL)}
+\usage{gtkToolbarPrependWidget(object, widget, tooltip.text = NULL, 
+    tooltip.private.text = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkToolbar}}.}
 \item{\verb{widget}}{a \code{\link{GtkWidget}} to add to the toolbar.}

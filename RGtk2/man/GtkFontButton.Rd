@@ -40,7 +40,7 @@ directly.
 \section{Convenient Construction}{\code{gtkFontButton} is the equivalent of \code{\link{gtkFontButtonNew}}.}
 \section{Signals}{\describe{\item{\code{font-set(widget, user.data)}}{
 The ::font-set signal is emitted when the user selects a font.
-When handling this signal, use \code{\link{gtkFontButtonGetFontName}} 
+When handling this signal, use \code{\link{gtkFontButtonGetFontName}}
 to find out which font was just selected.
   
 Note that this signal is only emitted when the \emph{user}
@@ -65,15 +65,15 @@ The name of the currently selected font.
 \item{\verb{show-size} [logical : Read / Write]}{
 
 If this property is set to \code{TRUE}, the selected font size will be shown
-in the label. For a more WYSIWYG way to show the selected size, see the 
+in the label. For a more WYSIWYG way to show the selected size, see the
 ::use-size property.
   Default value: TRUE  Since 2.4
 
 }
 \item{\verb{show-style} [logical : Read / Write]}{
 
-If this property is set to \code{TRUE}, the name of the selected font style 
-will be shown in the label. For a more WYSIWYG way to show the selected 
+If this property is set to \code{TRUE}, the name of the selected font style
+will be shown in the label. For a more WYSIWYG way to show the selected
 style, see the ::use-font property.
   Default value: TRUE  Since 2.4
 
@@ -86,14 +86,14 @@ The title of the font selection dialog.
 }
 \item{\verb{use-font} [logical : Read / Write]}{
 
-If this property is set to \code{TRUE}, the label will be drawn 
+If this property is set to \code{TRUE}, the label will be drawn
 in the selected font.
   Default value: FALSE  Since 2.4
 
 }
 \item{\verb{use-size} [logical : Read / Write]}{
 
-If this property is set to \code{TRUE}, the label will be drawn 
+If this property is set to \code{TRUE}, the label will be drawn
 with the selected font size.
   Default value: FALSE  Since 2.4
 

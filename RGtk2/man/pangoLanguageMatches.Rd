@@ -8,12 +8,12 @@ or the range is a prefix of the tag, and the character after it
 in the tag is '-'.}
 \usage{pangoLanguageMatches(object, range.list)}
 \arguments{
-\item{\verb{object}}{a language tag (see \code{\link{pangoLanguageFromString}}),
-\code{NULL} is allowed and matches nothing but '*'}
-\item{\verb{range.list}}{a list of language ranges, separated by ';', ':',
-',', or space characters.
-Each element must either be '*', or a RFC 3066 language range
-canonicalized as by \code{\link{pangoLanguageFromString}}}
+\item{\verb{object}}{[\code{\link{PangoLanguage}}]  a language tag (see \code{\link{pangoLanguageFromString}}),
+           \code{NULL} is allowed and matches nothing but '*'}
+\item{\verb{range.list}}{[char]  a list of language ranges, separated by ';', ':',
+  ',', or space characters.
+  Each element must either be '*', or a RFC 3066 language range
+  canonicalized as by \code{\link{pangoLanguageFromString}}}
 }
 \value{[logical] \code{TRUE} if a match was found.}
 \author{Derived by RGtkGen from GTK+ documentation}

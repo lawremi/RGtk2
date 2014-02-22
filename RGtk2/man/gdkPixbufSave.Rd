@@ -13,19 +13,22 @@ following way:}
 \item{\verb{...}}{list of key-value save options}
 \item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
-\details{\preformatted{
-formats <- gdkPixbufGetFormats()
-writeable_formats <- formats[sapply(formats, gdkPixbufFormatIsWritable)]
-}  
-If \code{error} is set, \code{FALSE} will be returned. Possible errors include 
+\details{\preformatted{void add_if_writable (GdkPixbufFormat *data, GSList **list)
+{
+  if (gdk_pixbuf_format_is_writable (data))
+    *list = g_slist_prepend (*list, data);
+}
+
+GSList *formats = gdk_pixbuf_get_formats ();
+GSList *writable_formats = NULL;
+g_slist_foreach (formats, add_if_writable, \code{FALSE} will be returned. Possible errors include 
 those in the \verb{GDK_PIXBUF_ERROR} domain and those in the \verb{G_FILE_ERROR} domain.
   
 The variable argument list should be \code{NULL}-terminated; if not empty,
 it should contain pairs of strings that modify the save
 parameters. For example:
-\preformatted{
-# (R does not require vararg lists)
-pixbuf$save(handle, "jpeg", "quality", "100") 
+\preformatted{gdk_pixbuf_save (pixbuf, handle, "jpeg", &error,
+                 "quality", "100", NULL);
 }
   
 Currently only few parameters exist. JPEG images can be saved with a
@@ -58,8 +61,8 @@ parameter. When the ICO saver is given "x_hot" and "y_hot" parameters,
 it produces a CUR instead of an ICO.}
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  whether an error was set}
-\item{\verb{error}}{ return location for error, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
+\item{retval}{[logical] whether an error was set}
+\item{\verb{error}}{return location for error, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

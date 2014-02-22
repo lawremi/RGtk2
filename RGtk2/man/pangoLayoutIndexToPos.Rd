@@ -9,9 +9,9 @@ edge of the grapheme. If the directionality of the grapheme is right-to-left,
 then \code{pos->width} will be negative.}
 \usage{pangoLayoutIndexToPos(object, index, pos)}
 \arguments{
-\item{\verb{object}}{a \code{\link{PangoLayout}}}
-\item{\verb{index}}{byte index within \code{layout}}
-\item{\verb{pos}}{rectangle in which to store the position of the grapheme. \emph{[  \acronym{out}  ]}}
+\item{\verb{object}}{[\code{\link{PangoLayout}}]  a \code{\link{PangoLayout}}}
+\item{\verb{index}}{[integer]  byte index within \code{layout}}
+\item{\verb{pos}}{[\code{\link{PangoRectangle}}]  rectangle in which to store the position of the grapheme}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

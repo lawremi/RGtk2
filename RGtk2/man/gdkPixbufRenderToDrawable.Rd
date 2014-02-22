@@ -9,7 +9,9 @@ opacity information for images with an alpha channel; the GC must already
 have the clipping mask set if you want transparent regions to show through.
 \strong{WARNING: \code{gdk_pixbuf_render_to_drawable} has been deprecated since version 2.4 and should not be used in newly-written code. This function is obsolete. Use \code{\link{gdkDrawPixbuf}} instead.}
 }
-\usage{gdkPixbufRenderToDrawable(object, drawable, gc, src.x = 0, src.y = 0, dest.x, dest.y, width = -1, height = -1, dither = "GDK_RGB_DITHER_NORMAL", x.dither = 0, y.dither = 0)}
+\usage{gdkPixbufRenderToDrawable(object, drawable, gc, src.x = 0, src.y = 0, 
+    dest.x, dest.y, width = -1, height = -1, dither = "GDK_RGB_DITHER_NORMAL", 
+    x.dither = 0, y.dither = 0)}
 \arguments{
 \item{\verb{object}}{A pixbuf.}
 \item{\verb{drawable}}{Destination drawable.}

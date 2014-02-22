@@ -115,13 +115,13 @@ pointed to by \code{iter}.
 
 }
 \item{\code{insert-prefix(widget, prefix, user.data)}}{
-Gets emitted when the inline autocompletion is triggered. 
-The default behaviour is to make the entry display the 
+Gets emitted when the inline autocompletion is triggered.
+The default behaviour is to make the entry display the
 whole prefix and select the newly inserted part.
   
 Applications may connect to this signal in order to insert only a
 smaller part of the \code{prefix} into the entry - e.g. the entry used in
-the \code{\link{GtkFileChooser}} inserts only the part of the prefix up to the 
+the \code{\link{GtkFileChooser}} inserts only the part of the prefix up to the
 next '/'.
   Since 2.6
 
@@ -135,9 +135,9 @@ next '/'.
 
 }
 \item{\code{match-selected(widget, model, iter, user.data)}}{
-Gets emitted when a match from the list is selected. 
-The default behaviour is to replace the contents of the 
-entry with the contents of the text column in the row 
+Gets emitted when a match from the list is selected.
+The default behaviour is to replace the contents of the
+entry with the contents of the text column in the row
 pointed to by \code{iter}.
   Since 2.4
 
@@ -181,7 +181,7 @@ The model to find matches in.
 }
 \item{\verb{popup-completion} [logical : Read / Write]}{
 
-Determines whether the possible completions should be 
+Determines whether the possible completions should be
 shown in a popup window.
   Default value: TRUE  Since 2.6
 
@@ -197,8 +197,8 @@ resized to the width of the entry.
 
 Determines whether the completions popup window will shown
 for a single possible completion. You probably want to set
-this to \code{FALSE} if you are using 
-inline 
+this to \code{FALSE} if you are using
+inline
 completion.
   Default value: TRUE  Since 2.8
 

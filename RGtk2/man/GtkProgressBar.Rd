@@ -124,12 +124,12 @@ The number of discrete blocks in a progress bar (when shown in the discrete styl
 \item{\verb{ellipsize} [\code{\link{PangoEllipsizeMode}} : Read / Write]}{
 
 The preferred place to ellipsize the string, if the progressbar does
-not have enough room to display the entire string, specified as a 
-\verb{PangoEllisizeMode}. 
+not have enough room to display the entire string, specified as a
+\verb{PangoEllisizeMode}.
   
-Note that setting this property to a value other than 
-\code{PANGO_ELLIPSIZE_NONE} has the side-effect that the progressbar requests 
-only enough space to display the ellipsis "...". Another means to set a 
+Note that setting this property to a value other than
+\code{PANGO_ELLIPSIZE_NONE} has the side-effect that the progressbar requests
+only enough space to display the ellipsis "...". Another means to set a
 progressbar's width is \code{\link{gtkWidgetSetSizeRequest}}.
   Default value: PANGO_ELLIPSIZE_NONE  Since 2.6
 

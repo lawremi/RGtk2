@@ -2,7 +2,8 @@
 \name{gdkDrawRgbImageDithalign}
 \title{gdkDrawRgbImageDithalign}
 \description{Draws an RGB image in the drawable, with an adjustment for dither alignment.}
-\usage{gdkDrawRgbImageDithalign(object, gc, x, y, width, height, dith, rgb.buf, xdith, ydith)}
+\usage{gdkDrawRgbImageDithalign(object, gc, x, y, width, height, dith, 
+    rgb.buf, xdith, ydith)}
 \arguments{
 \item{\verb{object}}{The \code{\link{GdkDrawable}} to draw in (usually a \code{\link{GdkWindow}}).}
 \item{\verb{gc}}{The graphics context.}

@@ -4,7 +4,8 @@
 \description{Finds the first accelerator in \code{accel.group} 
 that matches \code{accel.key} and \code{accel.mods}, and
 activates it.}
-\usage{gtkAccelGroupActivate(object, accel.quark, acceleratable, accel.key, accel.mods)}
+\usage{gtkAccelGroupActivate(object, accel.quark, acceleratable, accel.key, 
+    accel.mods)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkAccelGroup}}}
 \item{\verb{accel.quark}}{the quark for the accelerator name}

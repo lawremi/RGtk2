@@ -5,7 +5,8 @@
 If native move operations are supported then this is used, otherwise a copy + delete
 fallback is used. The native implementation may support moving directories (for instance
 on moves inside the same filesystem), but the fallback code does not.}
-\usage{gFileMove(object, destination, flags = "G_FILE_COPY_NONE", cancellable = NULL, progress.callback, progress.callback.data, .errwarn = TRUE)}
+\usage{gFileMove(object, destination, flags = "G_FILE_COPY_NONE", cancellable = NULL, 
+    progress.callback, progress.callback.data, .errwarn = TRUE)}
 \arguments{
 \item{\verb{object}}{\code{\link{GFile}} pointing to the source location.}
 \item{\verb{destination}}{\code{\link{GFile}} pointing to the destination location.}

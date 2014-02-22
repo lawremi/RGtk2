@@ -4,7 +4,8 @@
 \description{Request information for a number of files from the enumerator asynchronously.
 When all i/o for the operation is finished the \code{callback} will be called with
 the requested information. }
-\usage{gFileEnumeratorNextFilesAsync(object, num.files, io.priority = 0, cancellable = NULL, callback, user.data = NULL)}
+\usage{gFileEnumeratorNextFilesAsync(object, num.files, io.priority = 0, 
+    cancellable = NULL, callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GFileEnumerator}}.}
 \item{\verb{num.files}}{the number of file info objects to request}

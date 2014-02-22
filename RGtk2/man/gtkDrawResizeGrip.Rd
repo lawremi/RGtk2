@@ -6,7 +6,8 @@ Draws a resize grip in the given rectangle on \code{window} using the given
 parameters.
 \strong{WARNING: \code{gtk_draw_resize_grip} has been deprecated since version 2.0 and should not be used in newly-written code. Use \code{\link{gtkPaintResizeGrip}} instead.}
 }
-\usage{gtkDrawResizeGrip(object, window, state.type, edge, x, y, width, height)}
+\usage{gtkDrawResizeGrip(object, window, state.type, edge, x, y, width, 
+    height)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkStyle}}}
 \item{\verb{window}}{a \code{\link{GdkWindow}}}

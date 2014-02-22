@@ -2,7 +2,8 @@
 \name{gdkPixbufNewFromStreamAtScale}
 \title{gdkPixbufNewFromStreamAtScale}
 \description{Creates a new pixbuf by loading an image from an input stream.  }
-\usage{gdkPixbufNewFromStreamAtScale(stream, width = -1, height = -1, preserve.aspect.ratio = 1, cancellable = NULL, .errwarn = TRUE)}
+\usage{gdkPixbufNewFromStreamAtScale(stream, width = -1, height = -1, 
+    preserve.aspect.ratio = 1, cancellable = NULL, .errwarn = TRUE)}
 \arguments{
 \item{\verb{stream}}{a \code{\link{GInputStream}} to load the pixbuf from}
 \item{\verb{width}}{The width the image should have or -1 to not constrain the width}

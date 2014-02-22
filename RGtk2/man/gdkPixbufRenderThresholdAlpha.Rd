@@ -4,7 +4,8 @@
 \description{Takes the opacity values in a rectangular portion of a pixbuf and thresholds
 them to produce a bi-level alpha mask that can be used as a clipping mask for
 a drawable.}
-\usage{gdkPixbufRenderThresholdAlpha(object, bitmap, src.x, src.y, dest.x, dest.y, width = -1, height = -1, alpha.threshold)}
+\usage{gdkPixbufRenderThresholdAlpha(object, bitmap, src.x, src.y, dest.x, 
+    dest.y, width = -1, height = -1, alpha.threshold)}
 \arguments{
 \item{\verb{object}}{A pixbuf.}
 \item{\verb{bitmap}}{Bitmap where the bilevel mask will be painted to.}

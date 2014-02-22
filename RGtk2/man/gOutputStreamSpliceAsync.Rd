@@ -5,7 +5,8 @@
 When the operation is finished \code{callback} will be called.
 You can then call \code{\link{gOutputStreamSpliceFinish}} to get the 
 result of the operation.}
-\usage{gOutputStreamSpliceAsync(object, source, flags = "G_OUTPUT_STREAM_SPLICE_NONE", io.priority = 0, cancellable = NULL, callback, user.data = NULL)}
+\usage{gOutputStreamSpliceAsync(object, source, flags = "G_OUTPUT_STREAM_SPLICE_NONE", 
+    io.priority = 0, cancellable = NULL, callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GOutputStream}}.}
 \item{\verb{source}}{a \code{\link{GInputStream}}.}

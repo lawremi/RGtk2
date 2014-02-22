@@ -10,12 +10,6 @@
 \code{\link{pangoGravityGetForScriptAndWidth}(script, wide, base.gravity, hint)}\cr
 \code{\link{pangoGravityToRotation}(base.gravity)}\cr
 }
-\section{Hierarchy}{\preformatted{
-GEnum
-   +----PangoGravity
-GEnum
-   +----PangoGravityHint
-}}
 \section{Detailed Description}{Since 1.16, Pango is able to correctly lay vertical text out.  In fact, it can
 set layouts of mixed vertical and non-vertical text.  This section describes
 the types used for setting vertical text parameters.
@@ -70,15 +64,15 @@ Not every value in this enumeration makes sense for every usage of
 \code{\link{pangoContextSetBaseGravity}} and can only be returned by
 \code{\link{pangoContextGetBaseGravity}}.
   
-See also: \code{\link{PangoGravityHint}}
+See also: \code{\link{PangoGravityHint}}  
   Since 1.16
 
 \describe{
-\item{\verb{south}}{Glyphs stand upright (default)}
-\item{\verb{east}}{Glyphs are rotated 90 degrees clockwise}
-\item{\verb{north}}{Glyphs are upside-down}
-\item{\verb{west}}{Glyphs are rotated 90 degrees counter-clockwise}
-\item{\verb{auto}}{Gravity is resolved from the context matrix}
+\item{\verb{south}}{ Glyphs stand upright (default)}
+\item{\verb{east}}{ Glyphs are rotated 90 degrees clockwise}
+\item{\verb{north}}{ Glyphs are upside-down}
+\item{\verb{west}}{ Glyphs are rotated 90 degrees counter-clockwise}
+\item{\verb{auto}}{ Gravity is resolved from the context matrix}
 }
 
 }
@@ -87,15 +81,15 @@ The \code{\link{PangoGravityHint}} defines how horizontal scripts should behave 
 vertical context.  That is, English excerpt in a vertical paragraph for
 example.
   
-See \code{\link{PangoGravity}}.
+See \code{\link{PangoGravity}}.  
   Since 1.16
 
 \describe{
-\item{\verb{natural}}{scripts will take their natural gravity based
+\item{\verb{natural}}{ scripts will take their natural gravity based
 on the base gravity and the script.  This is the default.}
-\item{\verb{strong}}{always use the base gravity set, regardless of
+\item{\verb{strong}}{ always use the base gravity set, regardless of
 the script.}
-\item{\verb{line}}{for scripts not in their natural direction (eg.
+\item{\verb{line}}{ for scripts not in their natural direction (eg.
 Latin in East gravity), choose per-script gravity such that every script
 respects the line progression.  This means, Latin and Arabic will take
 opposite gravities and both flow top-to-bottom for example.}

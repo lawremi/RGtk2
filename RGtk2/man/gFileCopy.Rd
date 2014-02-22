@@ -3,7 +3,8 @@
 \title{gFileCopy}
 \description{Copies the file \code{source} to the location specified by \code{destination}.
 Can not handle recursive copies of directories.}
-\usage{gFileCopy(object, destination, flags = "G_FILE_COPY_NONE", cancellable = NULL, progress.callback, progress.callback.data, .errwarn = TRUE)}
+\usage{gFileCopy(object, destination, flags = "G_FILE_COPY_NONE", cancellable = NULL, 
+    progress.callback, progress.callback.data, .errwarn = TRUE)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{destination}}{destination \code{\link{GFile}}}

@@ -26,9 +26,9 @@ either said environment variables or the thread's current locale.
 Your application should call \code{setlocale(LC_ALL, "");}
 for the user settings to take effect.  Gtk+ does this in its initialization
 functions automatically (by calling \code{gtkSetLocale()}).
-See \code{man setlocale} for more details.
+See \code{man setlocale} for more details.  
   Since 1.16}
-\value{[\code{\link{PangoLanguage}}] the default language as a \code{\link{PangoLanguage}}, must not be
-freed.}
+\value{[\code{\link{PangoLanguage}}]  the default language as a \code{\link{PangoLanguage}}, must not be
+              freed.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -6,7 +6,8 @@ more textual identifiers of well-known content types (typically
 prefixed with "x-content/"), e.g. x-content/image-dcf for camera 
 memory cards. See the shared-mime-info (\url{http://www.freedesktop.org/wiki/Specifications/shared-mime-info-spec})
 specification for more on x-content types.}
-\usage{gMountGuessContentType(object, force.rescan, cancellable = NULL, callback, user.data = NULL)}
+\usage{gMountGuessContentType(object, force.rescan, cancellable = NULL, 
+    callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GMount}}}
 \item{\verb{force.rescan}}{Whether to force a rescan of the content.

@@ -2,7 +2,8 @@
 \name{gDataOutputStreamPutUint32}
 \title{gDataOutputStreamPutUint32}
 \description{Puts an unsigned 32-bit integer into the stream.}
-\usage{gDataOutputStreamPutUint32(object, data, cancellable = NULL, .errwarn = TRUE)}
+\usage{gDataOutputStreamPutUint32(object, data, cancellable = NULL, 
+    .errwarn = TRUE)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GDataOutputStream}}.}
 \item{\verb{data}}{a \verb{numeric}.}

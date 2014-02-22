@@ -144,13 +144,13 @@ translation, see \code{\link{gtkActionGroupSetTranslationDomain}}.}
 \section{Signals}{\describe{
 \item{\code{connect-proxy(action.group, action, proxy, user.data)}}{
 The ::connect-proxy signal is emitted after connecting a proxy to
-an action in the group. Note that the proxy may have been connected 
+an action in the group. Note that the proxy may have been connected
 to a different action before.
   
 This is intended for simple customizations for which a custom action
 class would be too clumsy, e.g. showing tooltips for menuitems in the
 statusbar.
-  \code{\link{GtkUIManager}} proxies the signal and provides global notification 
+  \code{\link{GtkUIManager}} proxies the signal and provides global notification
 just before any action is connected to a proxy, which is probably more
 convenient to use.
   Since 2.4
@@ -165,9 +165,9 @@ convenient to use.
 
 }
 \item{\code{disconnect-proxy(action.group, action, proxy, user.data)}}{
-The ::disconnect-proxy signal is emitted after disconnecting a proxy 
-from an action in the group. 
-  \code{\link{GtkUIManager}} proxies the signal and provides global notification 
+The ::disconnect-proxy signal is emitted after disconnecting a proxy
+from an action in the group.
+  \code{\link{GtkUIManager}} proxies the signal and provides global notification
 just before any action is connected to a proxy, which is probably more
 convenient to use.
   Since 2.4

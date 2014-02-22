@@ -3,7 +3,8 @@
 \title{gdkDrawRgbImage}
 \description{Draws an RGB image in the drawable. This is the core GdkRGB
 function, and likely the only one you will need to use.}
-\usage{gdkDrawRgbImage(object, gc, x, y, width, height, dith, rgb.buf, rowstride)}
+\usage{gdkDrawRgbImage(object, gc, x, y, width, height, dith, rgb.buf, 
+    rowstride)}
 \arguments{
 \item{\verb{object}}{The \code{\link{GdkDrawable}} to draw in (usually a \code{\link{GdkWindow}}).}
 \item{\verb{gc}}{The graphics context (all GDK drawing operations require one; its

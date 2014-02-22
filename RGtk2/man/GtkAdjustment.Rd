@@ -98,7 +98,7 @@ The page increment of the adjustment.
 
 The page size of the adjustment.
 Note that the page-size is irrelevant and should be set to zero
-if the adjustment is used for a simple scalar value, e.g. in a 
+if the adjustment is used for a simple scalar value, e.g. in a
 \code{\link{GtkSpinButton}}.
   Default value: 0  Since 2.4
 
@@ -111,9 +111,9 @@ The step increment of the adjustment.
 }
 \item{\verb{upper} [numeric : Read / Write]}{
 
-The maximum value of the adjustment. 
-Note that values will be restricted by 
-\code{upper - page-size} if the page-size 
+The maximum value of the adjustment.
+Note that values will be restricted by
+\code{upper - page-size} if the page-size
 property is nonzero.
   Default value: 0  Since 2.4
 

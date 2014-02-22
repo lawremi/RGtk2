@@ -4,7 +4,8 @@
 \description{Returns an output stream for overwriting the file, possibly
 creating a backup copy of the file first. If the file doesn't exist,
 it will be created.}
-\usage{gFileReplace(object, etag, make.backup, flags = "G_FILE_CREATE_NONE", cancellable = NULL, .errwarn = TRUE)}
+\usage{gFileReplace(object, etag, make.backup, flags = "G_FILE_CREATE_NONE", 
+    cancellable = NULL, .errwarn = TRUE)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{etag}}{an optional entity tag for the

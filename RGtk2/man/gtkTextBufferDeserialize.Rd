@@ -3,7 +3,8 @@
 \title{gtkTextBufferDeserialize}
 \description{This function deserializes rich text in format \code{format} and inserts
 it at \code{iter}.}
-\usage{gtkTextBufferDeserialize(object, content.buffer, format, iter, data, .errwarn = TRUE)}
+\usage{gtkTextBufferDeserialize(object, content.buffer, format, iter, 
+    data, .errwarn = TRUE)}
 \arguments{
 \item{\verb{object}}{the \code{\link{GtkTextBuffer}} \code{format} is registered with}
 \item{\verb{content.buffer}}{the \code{\link{GtkTextBuffer}} to deserialize into}

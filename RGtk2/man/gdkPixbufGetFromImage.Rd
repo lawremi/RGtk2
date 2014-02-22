@@ -3,7 +3,8 @@
 \title{gdkPixbufGetFromImage}
 \description{Same as \code{\link{gdkPixbufGetFromDrawable}} but gets the pixbuf from
 an image.}
-\usage{gdkPixbufGetFromImage(src, cmap, src.x, src.y, dest.x, dest.y, width, height)}
+\usage{gdkPixbufGetFromImage(src, cmap, src.x, src.y, dest.x, dest.y, 
+    width, height)}
 \arguments{
 \item{\verb{src}}{Source \code{\link{GdkImage}}.}
 \item{\verb{cmap}}{A colormap, or \code{NULL} to use the one for \code{src}. \emph{[  \acronym{allow-none}  ]}}

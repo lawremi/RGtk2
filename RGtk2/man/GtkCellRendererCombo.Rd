@@ -68,20 +68,20 @@ values other than the ones in the popup list.
 }
 \item{\verb{model} [\code{\link{GtkTreeModel}} : *         : Read / Write]}{
 
-Holds a tree model containing the possible values for the combo box. 
+Holds a tree model containing the possible values for the combo box.
 Use the text_column property to specify the column holding the values.
   Since 2.6
 
 }
 \item{\verb{text-column} [integer : Read / Write]}{
 
-Specifies the model column which holds the possible values for the 
-combo box. 
+Specifies the model column which holds the possible values for the
+combo box.
   
-Note that this refers to the model specified in the model property, 
-\emph{not} the model backing the tree view to which 
+Note that this refers to the model specified in the model property,
+\emph{not} the model backing the tree view to which
 this cell renderer is attached.
-  \code{\link{GtkCellRendererCombo}} automatically adds a text cell renderer for 
+  \code{\link{GtkCellRendererCombo}} automatically adds a text cell renderer for
 this column to its combo box.
   Allowed values: >= -1  Default value: -1  Since 2.6
 

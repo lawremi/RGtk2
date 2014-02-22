@@ -292,8 +292,8 @@ A \code{GtkRequisition} represents the desired size of a widget. See
  for more information.
 
 \describe{
-\item{\verb{width}}{[integer] }
-\item{\verb{height}}{[integer] }
+\item{\verb{width}}{[integer] the widget's desired width}
+\item{\verb{height}}{[integer] the widget's desired height}
 }
 
 }
@@ -460,7 +460,7 @@ This signal will be sent to the grab widget if there is one.
 The ::button-release-event signal will be emitted when a button
 (typically from a mouse) is released.
   
-To receive this signal, the \code{\link{GdkWindow}} associated to the 
+To receive this signal, the \code{\link{GdkWindow}} associated to the
 widget needs to enable the \verb{GDK_BUTTON_RELEASE_MASK} mask.
   
 This signal will be sent to the grab widget if there is one.
@@ -492,7 +492,7 @@ for determining whether an accelerator can be activated.
 
 }
 \item{\code{child-notify(widget, pspec, user.data)}}{
-The ::child-notify signal is emitted for each 
+The ::child-notify signal is emitted for each
 child property  that has
 changed on an object. The signal's detail holds the property name.
 
@@ -521,7 +521,7 @@ the event. \code{FALSE} to propagate the event further.
 }
 \item{\code{composited-changed(widget, user.data)}}{
 The ::composited-changed signal is emitted when the composited
-status of \code{widget}s screen changes. 
+status of \code{widget}s screen changes.
 See \code{\link{gdkScreenIsComposited}}.
 
 \describe{
@@ -584,8 +584,8 @@ it can later be shown again without reconstructing it.
 }
 \item{\code{destroy-event(widget, event, user.data)}}{
 The ::destroy-event signal is emitted when a \code{\link{GdkWindow}} is destroyed.
-You rarely get this signal, because most widgets disconnect themselves 
-from their window before they destroy it, so no widget owns the 
+You rarely get this signal, because most widgets disconnect themselves
+from their window before they destroy it, so no widget owns the
 window at destroy time.
   
 To receive this signal, the \code{\link{GdkWindow}} associated to the widget needs
@@ -615,8 +615,8 @@ of a widget changes.
 
 }
 \item{\code{drag-begin(widget, drag.context, user.data)}}{
-The ::drag-begin signal is emitted on the drag source when a drag is 
-started. A typical reason to connect to this signal is to set up a 
+The ::drag-begin signal is emitted on the drag source when a drag is
+started. A typical reason to connect to this signal is to set up a
 custom drag icon with \code{\link{gtkDragSourceSetIcon}}.
   
 Note that some widgets set up a drag icon in the default handler of
@@ -632,9 +632,9 @@ override what the default handler did.
 
 }
 \item{\code{drag-data-delete(widget, drag.context, user.data)}}{
-The ::drag-data-delete signal is emitted on the drag source when a drag 
-with the action \code{GDK_ACTION_MOVE} is successfully completed. The signal 
-handler is responsible for deleting the data that has been dropped. What 
+The ::drag-data-delete signal is emitted on the drag source when a drag
+with the action \code{GDK_ACTION_MOVE} is successfully completed. The signal
+handler is responsible for deleting the data that has been dropped. What
 "delete" means depends on the context of the drag operation.
 
 \describe{
@@ -646,10 +646,10 @@ handler is responsible for deleting the data that has been dropped. What
 
 }
 \item{\code{drag-data-get(widget, drag.context, data, info, time, user.data)}}{
-The ::drag-data-get signal is emitted on the drag source when the drop 
-site requests the data which is dragged. It is the responsibility of 
-the signal handler to fill \code{data} with the data in the format which 
-is indicated by \code{info}. See \code{\link{gtkSelectionDataSet}} and 
+The ::drag-data-get signal is emitted on the drag source when the drop
+site requests the data which is dragged. It is the responsibility of
+the signal handler to fill \code{data} with the data in the format which
+is indicated by \code{info}. See \code{\link{gtkSelectionDataSet}} and
 \code{\link{gtkSelectionDataSetText}}.
 
 \describe{
@@ -665,56 +665,44 @@ is indicated by \code{info}. See \code{\link{gtkSelectionDataSet}} and
 
 }
 \item{\code{drag-data-received(widget, drag.context, x, y, data, info, time, user.data)}}{
-The ::drag-data-received signal is emitted on the drop site when the 
-dragged data has been received. If the data was received in order to 
-determine whether the drop will be accepted, the handler is expected 
-to call \code{\link{gdkDragStatus}} and \emph{not} finish the drag. 
-If the data was received in response to a \verb{"drag-drop"} signal 
-(and this is the last target to be received), the handler for this 
-signal is expected to process the received data and then call 
-\code{\link{gtkDragFinish}}, setting the \code{success} parameter depending on whether 
-the data was processed successfully. 
+The ::drag-data-received signal is emitted on the drop site when the
+dragged data has been received. If the data was received in order to
+determine whether the drop will be accepted, the handler is expected
+to call \code{\link{gdkDragStatus}} and \emph{not} finish the drag.
+If the data was received in response to a \verb{"drag-drop"} signal
+(and this is the last target to be received), the handler for this
+signal is expected to process the received data and then call
+\code{\link{gtkDragFinish}}, setting the \code{success} parameter depending on whether
+the data was processed successfully.
   
-The handler may inspect and modify \code{drag.context->action} before calling 
-\code{\link{gtkDragFinish}}, e.g. to implement \code{GDK_ACTION_ASK} as shown in the 
+The handler may inspect and modify \code{drag.context->action} before calling
+\code{\link{gtkDragFinish}}, e.g. to implement \code{GDK_ACTION_ASK} as shown in the
 following example:
-\preformatted{void  
-drag_data_received (GtkWidget          *widget,
-                    GdkDragContext     *drag_context,
-                    gint                x,
-                    gint                y,
-                    GtkSelectionData   *data,
-                    guint               info,
-                    guint               time)
+\preformatted{
+drag_data_received <- function(widget, drag_context, x, y, data, info, time)
 {
-  if ((data->length >= 0) && (data->format == 8))
+  if (data$getLength() > 0L)
     {
-      if (drag_context->action == GDK_ACTION_ASK) 
+      if (drag_context$getAction() == "ask")
         {
-          GtkWidget *dialog;
-          gint response;
-          
-          dialog = gtk_message_dialog_new (NULL,
-                                           GTK_DIALOG_MODAL | 
-                                           GTK_DIALOG_DESTROY_WITH_PARENT,
-                                           GTK_MESSAGE_INFO,
-                                           GTK_BUTTONS_YES_NO,
-                                           "Move the data ?\n");
-          response = gtk_dialog_run (GTK_DIALOG (dialog));
-          gtk_widget_destroy (dialog);
-            
-          if (response == GTK_RESPONSE_YES)
-            drag_context->action = GDK_ACTION_MOVE;
+          dialog <- gtkMessageDialog(NULL,
+                                     c("modal", "destroy-with-parent"),
+                                     "info", "yes-no", "Move the data ?\n")
+          response <- dialog$run()
+          dialog$destroy()
+
+### FIXME: setAction() not yet supported
+          if (response == GtkResponseType["yes"])
+            drag_context$setAction("move")
           else
-            drag_context->action = GDK_ACTION_COPY;
-         }
-         
-      gtk_drag_finish (drag_context, TRUE, FALSE, time);
-      return;
+            drag_context$setAction("copy")
+        }
+
+      gtkDragFinish(drag_context, TRUE, FALSE, time)
     }
-      
-   gtk_drag_finish (drag_context, FALSE, FALSE, time);
- }
+
+  gtkDragFinish (drag_context, FALSE, FALSE, time)
+}
 }
 
 \describe{
@@ -732,15 +720,15 @@ drag_data_received (GtkWidget          *widget,
 
 }
 \item{\code{drag-drop(widget, drag.context, x, y, time, returns, user.data)}}{
-The ::drag-drop signal is emitted on the drop site when the user drops 
-the data onto the widget. The signal handler must determine whether 
-the cursor position is in a drop zone or not. If it is not in a drop 
-zone, it returns \code{FALSE} and no further processing is necessary. 
-Otherwise, the handler returns \code{TRUE}. In this case, the handler must 
-ensure that \code{\link{gtkDragFinish}} is called to let the source know that 
-the drop is done. The call to \code{\link{gtkDragFinish}} can be done either 
-directly or in a \verb{"drag-data-received"} handler which gets 
-triggered by calling \code{\link{gtkDragGetData}} to receive the data for one 
+The ::drag-drop signal is emitted on the drop site when the user drops
+the data onto the widget. The signal handler must determine whether
+the cursor position is in a drop zone or not. If it is not in a drop
+zone, it returns \code{FALSE} and no further processing is necessary.
+Otherwise, the handler returns \code{TRUE}. In this case, the handler must
+ensure that \code{\link{gtkDragFinish}} is called to let the source know that
+the drop is done. The call to \code{\link{gtkDragFinish}} can be done either
+directly or in a \verb{"drag-data-received"} handler which gets
+triggered by calling \code{\link{gtkDragGetData}} to receive the data for one
 or more of the supported targets.
 
 \describe{
@@ -756,8 +744,8 @@ or more of the supported targets.
 
 }
 \item{\code{drag-end(widget, drag.context, user.data)}}{
-The ::drag-end signal is emitted on the drag source when a drag is 
-finished.  A typical reason to connect to this signal is to undo 
+The ::drag-end signal is emitted on the drag source when a drag is
+finished.  A typical reason to connect to this signal is to undo
 things done in \verb{"drag-begin"}.
 
 \describe{
@@ -787,9 +775,9 @@ animation), otherwise it returns \code{FALSE}.
 
 }
 \item{\code{drag-leave(widget, drag.context, time, user.data)}}{
-The ::drag-leave signal is emitted on the drop site when the cursor 
-leaves the widget. A typical reason to connect to this signal is to 
-undo things done in \verb{"drag-motion"}, e.g. undo highlighting 
+The ::drag-leave signal is emitted on the drop site when the cursor
+leaves the widget. A typical reason to connect to this signal is to
+undo things done in \verb{"drag-motion"}, e.g. undo highlighting
 with \code{\link{gtkDragUnhighlight}}
 
 \describe{
@@ -906,8 +894,8 @@ This signal will be sent to the grab widget if there is one.
 \item{\code{event(widget, event, user.data)}}{
 The GTK+ main loop will emit three signals for each GDK event delivered
 to a widget: one generic ::event signal, another, more specific,
-signal that matches the type of event delivered (e.g. 
-\verb{"key-press-event"}) and finally a generic 
+signal that matches the type of event delivered (e.g.
+\verb{"key-press-event"}) and finally a generic
 \verb{"event-after"} signal.
 
 \describe{
@@ -924,8 +912,8 @@ the return value.
 
 }
 \item{\code{event-after(widget, event, user.data)}}{
-After the emission of the \code{\link{gtkWidgetEvent}} signal and (optionally) 
-the second more specific signal, ::event-after will be emitted 
+After the emission of the \code{\link{gtkWidgetEvent}} signal and (optionally)
+the second more specific signal, ::event-after will be emitted
 regardless of the previous two signals handlers return values.
 
 \describe{
@@ -939,7 +927,7 @@ regardless of the previous two signals handlers return values.
 \item{\code{expose-event(widget, event, user.data)}}{
 The ::expose-event signal is emitted when an area of a previously
 obscured \code{\link{GdkWindow}} is made visible and needs to be redrawn.
-\verb{GTK_NO_WINDOW} widgets will get a synthesized event from their parent 
+\verb{GTK_NO_WINDOW} widgets will get a synthesized event from their parent
 widget.
   
 To receive this signal, the \code{\link{GdkWindow}} associated to the widget needs
@@ -1002,11 +990,11 @@ to enable the \verb{GDK_FOCUS_CHANGE_MASK} mask.
 
 }
 \item{\code{grab-broken-event(widget, event, user.data)}}{
-Emitted when a pointer or keyboard grab on a window belonging 
-to \code{widget} gets broken. 
+Emitted when a pointer or keyboard grab on a window belonging
+to \code{widget} gets broken.
   
-On X11, this happens when the grab window becomes unviewable 
-(i.e. it or one of its ancestors is unmapped), or if the same 
+On X11, this happens when the grab window becomes unviewable
+(i.e. it or one of its ancestors is unmapped), or if the same
 application grabs the pointer or keyboard again.
   Since 2.8
 
@@ -1033,12 +1021,12 @@ the event. \code{FALSE} to propagate the event further.
 }
 \item{\code{grab-notify(widget, was.grabbed, user.data)}}{
 The ::grab-notify signal is emitted when a widget becomes
-shadowed by a GTK+ grab (not a pointer or keyboard grab) on 
-another widget, or when it becomes unshadowed due to a grab 
+shadowed by a GTK+ grab (not a pointer or keyboard grab) on
+another widget, or when it becomes unshadowed due to a grab
 being removed.
   
-A widget is shadowed by a \code{\link{gtkGrabAdd}} when the topmost 
-grab widget in the grab stack of its window group is not 
+A widget is shadowed by a \code{\link{gtkGrabAdd}} when the topmost
+grab widget in the grab stack of its window group is not
 its ancestor.
 
 \describe{
@@ -1114,7 +1102,7 @@ This signal will be sent to the grab widget if there is one.
 
 }
 \item{\code{keynav-failed(widget, direction, user.data)}}{
-Gets emitted if keyboard navigation fails. 
+Gets emitted if keyboard navigation fails.
 See \code{\link{gtkWidgetKeynavFailed}} for details.
   Since 2.12
 
@@ -1189,10 +1177,10 @@ automatically for all new windows.
 
 }
 \item{\code{motion-notify-event(widget, event, user.data)}}{
-The ::motion-notify-event signal is emitted when the pointer moves 
+The ::motion-notify-event signal is emitted when the pointer moves
 over the widget's \code{\link{GdkWindow}}.
   
-To receive this signal, the \code{\link{GdkWindow}} associated to the widget 
+To receive this signal, the \code{\link{GdkWindow}} associated to the widget
 needs to enable the \verb{GDK_POINTER_MOTION_MASK} mask.
   
 This signal will be sent to the grab widget if there is one.
@@ -1219,7 +1207,7 @@ This signal will be sent to the grab widget if there is one.
 
 }
 \item{\code{no-expose-event(widget, event, user.data)}}{
-The ::no-expose-event will be emitted when the \code{widget}'s window is 
+The ::no-expose-event will be emitted when the \code{widget}'s window is
 drawn as a copy of another \code{\link{GdkDrawable}} (with \code{\link{gdkDrawDrawable}} or
 \code{gdkWindowCopyArea()}) which was completely unobscured. If the source
 window was partially obscured \code{\link{GdkEventExpose}} events will be generated
@@ -1236,7 +1224,7 @@ for those areas.
 
 }
 \item{\code{parent-set(widget, old.parent, user.data)}}{
-The ::parent-set signal is emitted when a new parent 
+The ::parent-set signal is emitted when a new parent
 has been set on a widget.
 
 \describe{
@@ -1249,11 +1237,11 @@ just got its initial parent. \emph{[  \acronym{allow-none}  ]}}
 
 }
 \item{\code{popup-menu(widget, user.data)}}{
-This signal gets emitted whenever a widget should pop up a context 
-menu. This usually happens through the standard key binding mechanism; 
-by pressing a certain key while a widget is focused, the user can cause 
-the widget to pop up a menu.  For example, the \code{\link{GtkEntry}} widget creates 
-a menu with clipboard commands. See  
+This signal gets emitted whenever a widget should pop up a context
+menu. This usually happens through the standard key binding mechanism;
+by pressing a certain key while a widget is focused, the user can cause
+the widget to pop up a menu.  For example, the \code{\link{GtkEntry}} widget creates
+a menu with clipboard commands. See 
 for an example of how to use this signal.
 
 \describe{
@@ -1314,8 +1302,8 @@ This signal will be sent to the grab widget if there is one.
 
 }
 \item{\code{query-tooltip(widget, x, y, keyboard.mode, tooltip, user.data)}}{
-Emitted when \verb{"has-tooltip"} is \code{TRUE} and the \verb{"gtk-tooltip-timeout"} 
-has expired with the cursor hovering "above" \code{widget}; or emitted when \code{widget} got 
+Emitted when \verb{"has-tooltip"} is \code{TRUE} and the \verb{"gtk-tooltip-timeout"}
+has expired with the cursor hovering "above" \code{widget}; or emitted when \code{widget} got
 focus in keyboard mode.
   
 Using the given coordinates, the signal handler should determine
@@ -1368,7 +1356,7 @@ widget was not associated with a screen before. \emph{[  \acronym{allow-none}  ]
 }
 \item{\code{scroll-event(widget, event, user.data)}}{
 The ::scroll-event signal is emitted when a button in the 4 to 7
-range is pressed. Wheel mice are usually configured to generate 
+range is pressed. Wheel mice are usually configured to generate
 button press events for buttons 4 and 5 when the wheel is turned.
   
 To receive this signal, the \code{\link{GdkWindow}} associated to the widget needs
@@ -1506,8 +1494,8 @@ See \code{\link{gtkWidgetGetState}}.
 
 }
 \item{\code{style-set(widget, previous.style, user.data)}}{
-The ::style-set signal is emitted when a new style has been set 
-on a widget. Note that style-modifying functions like 
+The ::style-set signal is emitted when a new style has been set
+on a widget. Note that style-modifying functions like
 \code{\link{gtkWidgetModifyBase}} also cause this signal to be emitted.
 
 \describe{
@@ -1577,11 +1565,11 @@ to enable the \verb{GDK_VISIBILITY_NOTIFY_MASK} mask.
 
 }
 \item{\code{window-state-event(widget, event, user.data)}}{
-The ::window-state-event will be emitted when the state of the 
+The ::window-state-event will be emitted when the state of the
 toplevel window associated to the \code{widget} changes.
   
-To receive this signal the \code{\link{GdkWindow}} associated to the widget 
-needs to enable the \verb{GDK_STRUCTURE_MASK} mask. GDK will enable 
+To receive this signal the \code{\link{GdkWindow}} associated to the widget
+needs to enable the \verb{GDK_STRUCTURE_MASK} mask. GDK will enable
 this mask automatically for all new windows.
 
 \describe{
@@ -1785,14 +1773,14 @@ The "link-color" style property defines the color of unvisited links.
 }
 \item{\verb{scroll-arrow-hlength} [integer : Read]}{
 
-The "scroll-arrow-hlength" style property defines the length of 
+The "scroll-arrow-hlength" style property defines the length of
 horizontal scroll arrows.
   Allowed values: >= 1  Default value: 16  Since 2.10
 
 }
 \item{\verb{scroll-arrow-vlength} [integer : Read]}{
 
-The "scroll-arrow-vlength" style property defines the length of 
+The "scroll-arrow-vlength" style property defines the length of
 vertical scroll arrows.
   Allowed values: >= 1  Default value: 16  Since 2.10
 
@@ -1824,7 +1812,7 @@ The "visited-link-color" style property defines the color of visited links.
 }
 \item{\verb{wide-separators} [logical : Read]}{
 
-The "wide-separators" style property defines whether separators have 
+The "wide-separators" style property defines whether separators have
 configurable width and should be drawn using a box instead of a line.
   Default value: FALSE  Since 2.10
 

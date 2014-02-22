@@ -21,7 +21,7 @@ and their default setups can be found at \code{\link{gtkAccelMapAddEntry}}.}
 \item{\verb{object}}{a valid \code{\link{GtkMenu}}}
 \item{\verb{accel.path}}{a valid accelerator path. \emph{[  \acronym{allow-none}  ]}}
 }
-\details{Note that \code{accel.path} string will be stored in a \verb{numeric}. Therefore, if you
+\details{Note that \code{accel.path} string will be stored in a \code{\link{GQuark}}. Therefore, if you
 pass a static string, you can save some memory by interning it first with 
 \code{gInternStaticString()}.}
 \author{Derived by RGtkGen from GTK+ documentation}

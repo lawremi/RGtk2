@@ -112,7 +112,8 @@ object and set the icon theme name explicitely using
 \section{Convenient Construction}{\code{gtkIconTheme} is the equivalent of \code{\link{gtkIconThemeNew}}.}
 \section{Enums and Flags}{\describe{
 \item{\verb{GtkIconLookupFlags}}{
-Used to specify options for \code{\link{gtkIconThemeLookupIcon}}
+\emph{undocumented
+}
 
 \describe{
 \item{\verb{no-svg}}{Never return SVG icons, even if gdk-pixbuf
@@ -122,8 +123,7 @@ Used to specify options for \code{\link{gtkIconThemeLookupIcon}}
   Cannot be used together with \code{GTK_ICON_LOOKUP_NO_SVG}.}
 \item{\verb{use-builtin}}{When passed to
   \code{\link{gtkIconThemeLookupIcon}} includes builtin icons
-  as well as files. For a builtin icon, \code{\link{gtkIconInfoGetFilename}}
-  returns \code{NULL} and you need to call \code{\link{gtkIconInfoGetBuiltinPixbuf}}.}
+  as well as files. For a builtin icon, \code{\link{gtkIconInfoGetFilename}}}
 }
 
 }

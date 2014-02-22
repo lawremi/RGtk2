@@ -7,7 +7,8 @@ parameter on \code{cell.renderer} to be set from the value. So for example
 if column 2 of the model contains strings, you could have the
 "text" attribute of a \code{\link{GtkCellRendererText}} get its values from
 column 2.}
-\usage{gtkTreeViewColumnAddAttribute(object, cell.renderer, attribute, column)}
+\usage{gtkTreeViewColumnAddAttribute(object, cell.renderer, attribute, 
+    column)}
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkTreeViewColumn}}.}
 \item{\verb{cell.renderer}}{the \code{\link{GtkCellRenderer}} to set attributes on}

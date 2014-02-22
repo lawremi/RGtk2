@@ -6,13 +6,14 @@ indicating the dialog type (error, warning, etc.) and some text which
 is marked up with the Pango text markup language.
 When the user clicks a button a "response" signal is emitted with
 response IDs from \code{\link{GtkResponseType}}. See \code{\link{GtkDialog}} for more details.}
-\usage{gtkMessageDialogNewWithMarkup(parent, flags, type, buttons, ..., show = TRUE)}
+\usage{gtkMessageDialogNewWithMarkup(parent, flags, type, buttons, ..., 
+    show = TRUE)}
 \arguments{
 \item{\verb{parent}}{transient parent, or \code{NULL} for none. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{flags}}{flags}
 \item{\verb{type}}{type of message}
 \item{\verb{buttons}}{set of buttons to use}
-\item{\verb{...}}{arguments for \code{message.format}}
+\item{\verb{...}}{a new \code{\link{GtkMessageDialog}}}
 }
 \details{Special XML characters in the \code{printf()} arguments passed to this
 function will automatically be escaped as necessary.

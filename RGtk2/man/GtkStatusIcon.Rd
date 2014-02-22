@@ -77,7 +77,7 @@ on Win32 doesn't allow to embed arbitrary widgets.}
 Gets emitted when the user activates the status icon.
 If and how status icons can activated is platform-dependent.
   
-Unlike most G_SIGNAL_ACTION signals, this signal is meant to 
+Unlike most G_SIGNAL_ACTION signals, this signal is meant to
 be used by applications and should be wrapped by language bindings.
   Since 2.10
 
@@ -126,13 +126,13 @@ for the event. \code{FALSE} to propagate the event further.
 }
 \item{\code{popup-menu(status.icon, button, activate.time, user.data)}}{
 Gets emitted when the user brings up the context menu
-of the status icon. Whether status icons can have context 
+of the status icon. Whether status icons can have context
 menus and how these are activated is platform-dependent.
   
-The \code{button} and \code{activate.time} parameters should be 
+The \code{button} and \code{activate.time} parameters should be
 passed as the last to arguments to \code{\link{gtkMenuPopup}}.
   
-Unlike most G_SIGNAL_ACTION signals, this signal is meant to 
+Unlike most G_SIGNAL_ACTION signals, this signal is meant to
 be used by applications and should be wrapped by language bindings.
   Since 2.10
 
@@ -181,7 +181,7 @@ emitted, relative to \code{status.icon}}
 }
 \item{\code{scroll-event(status.icon, event, user.data)}}{
 The ::scroll-event signal is emitted when a button in the 4 to 7
-range is pressed. Wheel mice are usually configured to generate 
+range is pressed. Wheel mice are usually configured to generate
 button press events for buttons 4 and 5 when the wheel is turned.
   
 Whether this event is emitted is platform-dependent.
@@ -302,7 +302,7 @@ like screen readers to render the tray icon.
 \item{\verb{tooltip-markup} [character : *                : Read / Write]}{
 
 Sets the text of tooltip to be the given string, which is marked up
-with the Pango text markup 
+with the Pango text markup
 language. Also see \code{\link{gtkTooltipSetMarkup}}.
   
 This is a convenience property which will take care of getting the

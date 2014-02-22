@@ -50,7 +50,7 @@ Memory management of \code{\link{CairoSurface}} is done with
 \code{cairoSurfaceReference()} and \code{\link{cairoSurfaceDestroy}}.  
 
 }}}
-\section{Convenient Construction}{\code{cairoSurface} is the result of collapsing the constructors of \code{cairo_surface_t} (\code{\link{cairoSurfaceCreateSimilar}}, \code{\link{cairoImageSurfaceCreate}}, \code{\link{cairoImageSurfaceCreateForData}}, \code{\link{cairoImageSurfaceCreateFromPng}}, \code{\link{cairoImageSurfaceCreateFromPngStream}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
+\section{Convenient Construction}{\code{cairoSurface} is the result of collapsing the constructors of \code{cairo_surface_t} (\code{\link{cairoSurfaceCreateSimilar}}, \code{\link{cairoImageSurfaceCreate}}, \code{\link{cairoImageSurfaceCreateForData}}, \code{\link{cairoImageSurfaceCreateFromPng}}, \code{\link{cairoImageSurfaceCreateFromPngStream}}, \code{\link{cairoPdfSurfaceCreate}}, \code{\link{cairoPdfSurfaceCreateForStream}}, \code{\link{cairoPsSurfaceCreate}}, \code{\link{cairoPsSurfaceCreateForStream}}, \code{\link{cairoSvgSurfaceCreate}}, \code{\link{cairoSvgSurfaceCreateForStream}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{Enums and Flags}{\describe{
 \item{\verb{CairoContent}}{
 \code{\link{CairoContent}} is used to describe the content that a surface will

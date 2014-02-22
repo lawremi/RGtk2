@@ -5,7 +5,6 @@
 \usage{cairoGetFontFace(cr)}
 \arguments{\item{\verb{cr}}{[\code{\link{Cairo}}]  a \code{\link{Cairo}}}}
 \value{[\code{\link{CairoFontFace}}]  the current font face. To keep a reference to it,
-
 This function never returns \code{NULL}. If memory cannot be allocated, a
 special "nil" \code{\link{CairoFontFace}} object will be returned on which
 \code{\link{cairoFontFaceStatus}} returns \code{CAIRO_STATUS_NO_MEMORY}. Using

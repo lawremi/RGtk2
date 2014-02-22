@@ -5,7 +5,8 @@
 starting at \code{buffer}. When the operation is finished \code{callback} will be called. 
 You can then call \code{\link{gInputStreamReadFinish}} to get the result of the 
 operation.}
-\usage{gInputStreamReadAsync(object, count, io.priority = 0, cancellable = NULL, callback, user.data = NULL)}
+\usage{gInputStreamReadAsync(object, count, io.priority = 0, cancellable = NULL, 
+    callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{A \code{\link{GInputStream}}.}
 \item{\verb{count}}{the number of bytes that will be read from the stream}

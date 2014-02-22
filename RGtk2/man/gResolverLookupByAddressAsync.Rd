@@ -4,7 +4,8 @@
 \description{Begins asynchronously reverse-resolving \code{address} to determine its
 associated hostname, and eventually calls \code{callback}, which must
 call \code{\link{gResolverLookupByAddressFinish}} to get the final result.}
-\usage{gResolverLookupByAddressAsync(object, address, cancellable = NULL, callback, user.data = NULL)}
+\usage{gResolverLookupByAddressAsync(object, address, cancellable = NULL, 
+    callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GResolver}}}
 \item{\verb{address}}{the address to reverse-resolve}

@@ -14,7 +14,7 @@ event, you have to convert those to buffer coordinates with
 }
 \value{
 A list containing the following elements:
-\item{\verb{iter}}{a \code{\link{GtkTextIter}}}
+\item{\verb{iter}}{a \code{\link{GtkTextIter}}. \emph{[  \acronym{out}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

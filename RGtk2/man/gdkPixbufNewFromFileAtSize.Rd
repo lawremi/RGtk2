@@ -20,10 +20,10 @@ and image at the requested size, regardless of aspect ratio, use
   Since 2.4}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GdkPixbuf}}]  A newly-created pixbuf with a reference count of 1, or 
-\code{NULL} if any of several error conditions occurred:  the file could not 
-be opened, there was no loader for the file's format, there was not 
-enough memory to allocate the image buffer, or the image file contained 
+\item{retval}{[\code{\link{GdkPixbuf}}] A newly-created pixbuf with a reference count of 1, or
+\code{NULL} if any of several error conditions occurred:  the file could not
+be opened, there was no loader for the file's format, there was not
+enough memory to allocate the image buffer, or the image file contained
 invalid data.}
 \item{\verb{error}}{Return location for an error}
 }

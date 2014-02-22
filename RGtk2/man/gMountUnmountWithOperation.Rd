@@ -4,7 +4,8 @@
 \description{Unmounts a mount. This is an asynchronous operation, and is
 finished by calling \code{\link{gMountUnmountWithOperationFinish}} with the \code{mount} 
 and \code{\link{GAsyncResult}} data returned in the \code{callback}.}
-\usage{gMountUnmountWithOperation(object, flags, mount.operation, cancellable = NULL, callback, user.data = NULL)}
+\usage{gMountUnmountWithOperation(object, flags, mount.operation, cancellable = NULL, 
+    callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GMount}}.}
 \item{\verb{flags}}{flags affecting the operation}

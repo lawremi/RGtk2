@@ -162,7 +162,7 @@ Emitted when the style of the toolbar changes.
 
 The size of the icons in a toolbar is normally determined by
 the toolbar-icon-size setting. When this property is set, it
-overrides the setting. 
+overrides the setting.
   
 This should only be used for special-purpose toolbars, normal
 application toolbars should respect the user preferences for the

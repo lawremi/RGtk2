@@ -42,16 +42,6 @@
 \code{\link{pangoGlyphItemIterNextCluster}(object)}\cr
 \code{\link{pangoGlyphItemIterPrevCluster}(object)}\cr
 }
-\section{Hierarchy}{\preformatted{
-GBoxed
-   +----PangoMatrix
-GBoxed
-   +----PangoGlyphString
-GBoxed
-   +----PangoGlyphItem
-GBoxed
-   +----PangoGlyphItemIter
-}}
 \section{Detailed Description}{\code{\link{pangoShape}} produces a string of glyphs which
 can be measured or drawn to the screen. The following
 structures are used to store information about
@@ -64,10 +54,10 @@ of text. (See, for instance, \code{\link{pangoFontGetGlyphExtents}})
 \strong{\verb{PangoRectangle} is a \link{transparent-type}.}
 
 \describe{
-\item{\code{x}}{X coordinate of the left side of the rectangle.}
-\item{\code{y}}{Y coordinate of the the top side of the rectangle.}
-\item{\code{width}}{width of the rectangle.}
-\item{\code{height}}{height of the rectangle.}
+\item{\code{x}}{[integer] X coordinate of the left side of the rectangle.}
+\item{\code{y}}{[integer] Y coordinate of the the top side of the rectangle.}
+\item{\code{width}}{[integer] width of the rectangle.}
+\item{\code{height}}{[integer] height of the rectangle.}
 }
 
 }
@@ -77,9 +67,17 @@ coordinates and device coordinates. The transformation
 is given by
   \preformatted{x_device = x_user * matrix->xx + y_user * matrix->xy + matrix->x0;
 y_device = x_user * matrix->yx + y_user * matrix->yy + matrix->y0;
-}  Since 1.6
+}  
+  Since 1.6
 
-
+\describe{
+\item{\code{xx}}{[numeric]  1st component of the transformation matrix}
+\item{\code{xy}}{[numeric]  2nd component of the transformation matrix}
+\item{\code{yx}}{[numeric]  3rd component of the transformation matrix}
+\item{\code{yy}}{[numeric]  4th component of the transformation matrix}
+\item{\code{x0}}{[numeric]  x translation}
+\item{\code{y0}}{[numeric]  y translation}
+}
 
 }
 \item{\verb{PangoGlyphInfo}}{
@@ -111,10 +109,10 @@ the shaping phase and the rendering phase.  More attributes may be
 added in the future.
 
 \describe{\item{\verb{isClusterStart}}{[numeric] set for the first logical glyph in each cluster. (Clusters
-are stored in visual order, within the cluster, glyphs
-are always ordered in logical order, since visual
-order is meaningless; that is, in Arabic text, accent glyphs
-follow the glyphs for the base character.)}}
+		   are stored in visual order, within the cluster, glyphs
+		   are always ordered in logical order, since visual
+		   order is meaningless; that is, in Arabic text, accent glyphs
+		   follow the glyphs for the base character.)}}
 
 }
 \item{\verb{PangoGlyphString}}{
@@ -124,9 +122,11 @@ The storage for the glyph information is owned
 by the structure which simplifies memory management.
 
 \describe{
-\item{\verb{numGlyphs}}{[integer] }
-\item{\verb{glyphs}}{[\code{\link{PangoGlyphInfo}}] }
-\item{\verb{logClusters}}{[integer] }
+\item{\verb{numGlyphs}}{[integer] the number of glyphs in the string.}
+\item{\verb{glyphs}}{[\code{\link{PangoGlyphInfo}}] a list of \code{\link{PangoGlyphInfo}} structures of length \code{num_glyphs}.}
+\item{\verb{logClusters}}{[integer] for each glyph, byte index of the starting character for the
+cluster. The indices are relative to the start of the text
+corresponding to the PangoGlyphString.}
 }
 
 }
@@ -138,8 +138,10 @@ of shaping text with \code{\link{PangoLayout}} is a list of \code{\link{PangoLay
 each of which contains a list of \code{\link{PangoGlyphItem}}.
 
 \describe{
-\item{\verb{item}}{[\code{\link{PangoItem}}] }
-\item{\verb{glyphs}}{[\code{\link{PangoGlyphString}}] }
+\item{\verb{item}}{[\code{\link{PangoItem}}] a \code{\link{PangoItem}} structure that provides information
+       about a segment of text.}
+\item{\verb{glyphs}}{[\code{\link{PangoGlyphString}}] the glyphs obtained by shaping the text
+         corresponding to \code{item}.}
 }
 
 }
@@ -177,6 +179,17 @@ item pointed at by the start variables is included in the cluster while
 the one pointed at by end variables is not.
 None of the members of a \code{\link{PangoGlyphItemIter}} should be modified manually.
   Since 1.22
+
+\describe{
+\item{\code{glyph_item}}{[\code{\link{PangoGlyphItem}}] the \code{\link{PangoGlyphItem}} this iterator iterates over}
+\item{\code{text}}{[character] the UTF-8 text that \code{glyph.item} refers to}
+\item{\code{start_glyph}}{[integer] starting glyph of the cluster}
+\item{\code{start_index}}{[integer] starting text index of the cluster}
+\item{\code{start_char}}{[integer] starting number of characters of the cluster}
+\item{\code{end_glyph}}{[integer] ending glyph of the cluster}
+\item{\code{end_index}}{[integer] ending text index of the cluster}
+\item{\code{end_char}}{[integer] ending number of characters of the cluster}
+}
 
 }
 }}

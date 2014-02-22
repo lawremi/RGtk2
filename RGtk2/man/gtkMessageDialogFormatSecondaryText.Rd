@@ -6,7 +6,8 @@
 \usage{gtkMessageDialogFormatSecondaryText(object, ...)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkMessageDialog}}}
-\item{\verb{...}}{arguments for \code{message.format}}
+\item{\verb{...}}{\emph{undocumented
+}}
 }
 \details{Note that setting a secondary text makes the primary text become
 bold, unless you have provided explicit markup.

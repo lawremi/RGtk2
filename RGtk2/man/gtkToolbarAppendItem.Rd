@@ -6,7 +6,8 @@ Inserts a new item into the toolbar. You must specify the position
 in the toolbar where it will be inserted.
 \strong{WARNING: \code{gtk_toolbar_append_item} has been deprecated since version 2.4 and should not be used in newly-written code. Use \code{\link{gtkToolbarInsert}} instead.}
 }
-\usage{gtkToolbarAppendItem(object, text, tooltip.text, tooltip.private.text, icon, callback, user.data = NULL)}
+\usage{gtkToolbarAppendItem(object, text, tooltip.text, tooltip.private.text, 
+    icon, callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkToolbar}}.}
 \item{\verb{text}}{give your toolbar button a label.}

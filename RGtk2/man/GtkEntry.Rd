@@ -308,8 +308,8 @@ Ctrl-v and Shift-Insert.
 
 }
 \item{\code{populate-popup(entry, menu, user.data)}}{
-The ::populate-popup signal gets emitted before showing the 
-context menu of the entry. 
+The ::populate-popup signal gets emitted before showing the
+context menu of the entry.
   
 If you need to add items to the context menu, connect
 to this signal and append your menuitems to the \code{menu}.
@@ -389,11 +389,11 @@ FALSE removes outside bevel from entry.  Default value: TRUE
 }
 \item{\verb{im-module} [character : *                : Read / Write]}{
 
-Which IM (input method) module should be used for this entry. 
+Which IM (input method) module should be used for this entry.
 See \code{\link{GtkIMContext}}.
   
 Setting this to a non-\code{NULL} value overrides the
-system-wide IM module setting. See the GtkSettings 
+system-wide IM module setting. See the GtkSettings
 \verb{"gtk-im-module"} property.
   Default value: NULL  Since 2.16
 
@@ -438,10 +438,10 @@ If text is overwritten when typing in the \code{\link{GtkEntry}}.
 
 Whether the primary icon is activatable.
   
-GTK+ emits the \verb{"icon-press"} and \verb{"icon-release"} 
-signals only on sensitive, activatable icons. 
+GTK+ emits the \verb{"icon-press"} and \verb{"icon-release"}
+signals only on sensitive, activatable icons.
   
-Sensitive, but non-activatable icons can be used for purely 
+Sensitive, but non-activatable icons can be used for purely
 informational purposes.
   Default value: FALSE  Since 2.16
 
@@ -468,8 +468,8 @@ A pixbuf to use as the primary icon for the entry.
 
 Whether the primary icon is sensitive.
   
-An insensitive icon appears grayed out. GTK+ does not emit the 
-\verb{"icon-press"} and \verb{"icon-release"} signals and 
+An insensitive icon appears grayed out. GTK+ does not emit the
+\verb{"icon-press"} and \verb{"icon-release"} signals and
 does not allow DND from insensitive icons.
   
 An icon should be set insensitive if the action that would trigger
@@ -492,7 +492,7 @@ The representation which is used for the primary icon of the entry.
 \item{\verb{primary-icon-tooltip-markup} [character : *                : Read / Write]}{
 
 The contents of the tooltip on the primary icon, which is marked up
-with the Pango text markup 
+with the Pango text markup
 language.
   
 Also see \code{\link{gtkEntrySetIconTooltipMarkup}}.
@@ -529,10 +529,10 @@ Number of pixels of the entry scrolled off the screen to the left.  Allowed valu
 
 Whether the secondary icon is activatable.
   
-GTK+ emits the \verb{"icon-press"} and \verb{"icon-release"} 
+GTK+ emits the \verb{"icon-press"} and \verb{"icon-release"}
 signals only on sensitive, activatable icons.
   
-Sensitive, but non-activatable icons can be used for purely 
+Sensitive, but non-activatable icons can be used for purely
 informational purposes.
   Default value: FALSE  Since 2.16
 
@@ -559,8 +559,8 @@ An pixbuf to use as the secondary icon for the entry.
 
 Whether the secondary icon is sensitive.
   
-An insensitive icon appears grayed out. GTK+ does not emit the 
-\verb{"icon-press"} and \verb{"icon-release"} signals and 
+An insensitive icon appears grayed out. GTK+ does not emit the
+\verb{"icon-press"} and \verb{"icon-release"} signals and
 does not allow DND from insensitive icons.
   
 An icon should be set insensitive if the action that would trigger
@@ -583,7 +583,7 @@ The representation which is used for the secondary icon of the entry.
 \item{\verb{secondary-icon-tooltip-markup} [character : *                : Read / Write]}{
 
 The contents of the tooltip on the secondary icon, which is marked up
-with the Pango text markup 
+with the Pango text markup
 language.
   
 Also see \code{\link{gtkEntrySetIconTooltipMarkup}}.
@@ -605,7 +605,7 @@ The position of the opposite end of the selection from the cursor in chars.  All
 }
 \item{\verb{shadow-type} [\code{\link{GtkShadowType}} : Read / Write]}{
 
-Which kind of shadow to draw around the entry when 
+Which kind of shadow to draw around the entry when
 \verb{"has-frame"} is set to \code{TRUE}.
   Default value: GTK_SHADOW_IN  Since 2.12
 
@@ -639,7 +639,7 @@ Number of characters to leave space for in the entry.  Allowed values: >= -1  De
 }
 \item{\verb{xalign} [numeric : Read / Write]}{
 
-The horizontal alignment, from 0 (left) to 1 (right). 
+The horizontal alignment, from 0 (left) to 1 (right).
 Reversed for RTL layouts.
   Allowed values: [0,1]  Default value: 0  Since 2.4
 

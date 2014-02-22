@@ -145,10 +145,10 @@ If the function returns \code{NULL}, the drag will be cancelled.
 The ::create-window signal is emitted when a detachable
 tab is dropped on the root window.
   
-A handler for this signal can create a window containing 
-a notebook where the tab will be attached. It is also 
-responsible for moving/resizing the window and adding the 
-necessary properties to the notebook (e.g. the 
+A handler for this signal can create a window containing
+a notebook where the tab will be attached. It is also
+responsible for moving/resizing the window and adding the
+necessary properties to the notebook (e.g. the
 \verb{"group-id"} ).
   
 The default handler uses the global window creation hook,
@@ -345,23 +345,23 @@ the standard backward arrow button is displayed.
 }
 \item{\verb{has-forward-stepper} [logical : Read]}{
 
-The "has-forward-stepper" property determines whether 
+The "has-forward-stepper" property determines whether
 the standard forward arrow button is displayed.
   Default value: TRUE  Since 2.4
 
 }
 \item{\verb{has-secondary-backward-stepper} [logical : Read]}{
 
-The "has-secondary-backward-stepper" property determines whether 
-a second backward arrow button is displayed on the opposite end 
+The "has-secondary-backward-stepper" property determines whether
+a second backward arrow button is displayed on the opposite end
 of the tab area.
   Default value: FALSE  Since 2.4
 
 }
 \item{\verb{has-secondary-forward-stepper} [logical : Read]}{
 
-The "has-secondary-forward-stepper" property determines whether 
-a second forward arrow button is displayed on the opposite end 
+The "has-secondary-forward-stepper" property determines whether
+a second forward arrow button is displayed on the opposite end
 of the tab area.
   Default value: FALSE  Since 2.4
 

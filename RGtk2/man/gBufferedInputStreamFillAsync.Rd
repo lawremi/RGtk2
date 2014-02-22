@@ -4,7 +4,8 @@
 \description{Reads data into \code{stream}'s buffer asynchronously, up to \code{count} size.
 \code{io.priority} can be used to prioritize reads. For the synchronous
 version of this function, see \code{\link{gBufferedInputStreamFill}}.}
-\usage{gBufferedInputStreamFillAsync(object, count, io.priority = 0, cancellable = NULL, callback, user.data = NULL)}
+\usage{gBufferedInputStreamFillAsync(object, count, io.priority = 0, 
+    cancellable = NULL, callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{\code{\link{GBufferedInputStream}}.}
 \item{\verb{count}}{the number of bytes that will be read from the stream.}

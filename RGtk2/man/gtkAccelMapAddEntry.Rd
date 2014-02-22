@@ -21,7 +21,7 @@ So a full valid accelerator path may look like:
 \item{\verb{accel.key}}{the accelerator key}
 \item{\verb{accel.mods}}{the accelerator modifiers}
 }
-\details{Note that \code{accel.path} string will be stored in a \verb{numeric}. Therefore, if you
+\details{Note that \code{accel.path} string will be stored in a \code{\link{GQuark}}. Therefore, if you
 pass a static string, you can save some memory by interning it first with 
 \code{gInternStaticString()}.}
 \author{Derived by RGtkGen from GTK+ documentation}

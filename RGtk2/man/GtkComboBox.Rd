@@ -83,7 +83,7 @@ The changed signal is emitted when the active
 item is changed. The can be due to the user selecting
 a different item from the list, or due to a
 call to \code{\link{gtkComboBoxSetActiveIter}}.
-It will also be emitted while typing into a GtkComboBoxEntry, 
+It will also be emitted while typing into a GtkComboBoxEntry,
 as well as when selecting an item from the GtkComboBoxEntry's list.
   Since 2.4
 
@@ -95,7 +95,7 @@ as well as when selecting an item from the GtkComboBoxEntry's list.
 
 }
 \item{\code{move-active(widget, scroll.type, user.data)}}{
-The ::move-active signal is a 
+The ::move-active signal is a
 keybinding signal
 which gets emitted to move the active selection.
   Since 2.12
@@ -109,8 +109,8 @@ which gets emitted to move the active selection.
 
 }
 \item{\code{popdown(button, user.data)}}{
-The ::popdown signal is a 
-keybinding signal 
+The ::popdown signal is a
+keybinding signal
 which gets emitted to popdown the combo box list.
   
 The default bindings for this signal are Alt+Up and Escape.
@@ -124,7 +124,7 @@ The default bindings for this signal are Alt+Up and Escape.
 
 }
 \item{\code{popup(widget, user.data)}}{
-The ::popup signal is a 
+The ::popup signal is a
 keybinding signal
 which gets emitted to popup the combo box list.
   
@@ -152,8 +152,8 @@ where \code{path} is the \code{\link{GtkTreePath}} of the active item.
 }
 \item{\verb{add-tearoffs} [logical : Read / Write]}{
 
-The add-tearoffs property controls whether generated menus 
-have tearoff menu items. 
+The add-tearoffs property controls whether generated menus
+have tearoff menu items.
   
 Note that this only affects menu style combo boxes.
   Default value: FALSE  Since 2.6
@@ -168,10 +168,10 @@ the model is empty.
 }
 \item{\verb{column-span-column} [integer : Read / Write]}{
 
-If this is set to a non-negative value, it must be the index of a column 
-of type \code{G_TYPE_INT} in the model. 
+If this is set to a non-negative value, it must be the index of a column
+of type \code{G_TYPE_INT} in the model.
   
-The values of that column are used to determine how many columns a value 
+The values of that column are used to determine how many columns a value
 in the list will span.
   Allowed values: >= -1  Default value: -1  Since 2.4
 
@@ -197,7 +197,7 @@ in the list.
 }
 \item{\verb{popup-shown} [logical : Read]}{
 
-Whether the combo boxes dropdown is popped up. 
+Whether the combo boxes dropdown is popped up.
 Note that this property is mainly useful, because
 it allows you to connect to notify::popup-shown.
   Default value: FALSE  Since 2.10
@@ -205,18 +205,18 @@ it allows you to connect to notify::popup-shown.
 }
 \item{\verb{row-span-column} [integer : Read / Write]}{
 
-If this is set to a non-negative value, it must be the index of a column 
-of type \code{G_TYPE_INT} in the model. 
+If this is set to a non-negative value, it must be the index of a column
+of type \code{G_TYPE_INT} in the model.
   
-The values of that column are used to determine how many rows a value in 
-the list will span. Therefore, the values in the model column pointed to 
+The values of that column are used to determine how many rows a value in
+the list will span. Therefore, the values in the model column pointed to
 by this property must be greater than zero and not larger than wrap-width.
   Allowed values: >= -1  Default value: -1  Since 2.4
 
 }
 \item{\verb{tearoff-title} [character : *                : Read / Write]}{
 
-A title that may be displayed by the window manager 
+A title that may be displayed by the window manager
 when the popup is torn-off.
   Default value: NULL  Since 2.10
 

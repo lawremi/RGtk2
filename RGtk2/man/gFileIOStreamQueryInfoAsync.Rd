@@ -4,7 +4,8 @@
 \description{Asynchronously queries the \code{stream} for a \code{\link{GFileInfo}}. When completed,
 \code{callback} will be called with a \code{\link{GAsyncResult}} which can be used to
 finish the operation with \code{\link{gFileIOStreamQueryInfoFinish}}.}
-\usage{gFileIOStreamQueryInfoAsync(object, attributes, io.priority, cancellable = NULL, callback, user.data = NULL)}
+\usage{gFileIOStreamQueryInfoAsync(object, attributes, io.priority, 
+    cancellable = NULL, callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GFileIOStream}}.}
 \item{\verb{attributes}}{a file attribute query string.}

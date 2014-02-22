@@ -4,7 +4,8 @@
 \description{Creates a new \code{\link{GtkToggleAction}} object. To add the action to
 a \code{\link{GtkActionGroup}} and set the accelerator for the action,
 call \code{\link{gtkActionGroupAddActionWithAccel}}.}
-\usage{gtkToggleActionNew(name = NULL, label = NULL, tooltip = NULL, stock.id = NULL)}
+\usage{gtkToggleActionNew(name = NULL, label = NULL, tooltip = NULL, 
+    stock.id = NULL)}
 \arguments{
 \item{\verb{name}}{A unique name for the action}
 \item{\verb{label}}{The label displayed in menu items and on buttons, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}

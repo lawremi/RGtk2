@@ -90,6 +90,12 @@ when parts of a drawable were copied. This is not very useful.}
 \item{\verb{window-state}}{the state of a window has changed. See \code{\link{GdkWindowState}}
 for the possible window states}
 \item{\verb{setting}}{a setting has been modified.}
+\item{\verb{owner-change}}{the owner of a selection has changed. This event type
+  was added in 2.6}
+\item{\verb{grab-broken}}{a pointer or keyboard grab was broken. This event type
+  was added in 2.8.}
+\item{\verb{gdk-damage}}{the content of the window has been changed. This event type
+  was added in 2.14.}
 }
 
 }

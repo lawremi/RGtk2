@@ -7,7 +7,8 @@
 \code{service} and \code{protocol} arguments \emph{do not}
 include the leading underscore that appears in the actual DNS
 entry.}
-\usage{gResolverLookupService(object, service, protocol, domain, cancellable = NULL, .errwarn = TRUE)}
+\usage{gResolverLookupService(object, service, protocol, domain, cancellable = NULL, 
+    .errwarn = TRUE)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GResolver}}}
 \item{\verb{service}}{the service type to look up (eg, "ldap")}

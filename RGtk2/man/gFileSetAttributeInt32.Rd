@@ -3,7 +3,8 @@
 \title{gFileSetAttributeInt32}
 \description{Sets \code{attribute} of type \code{G_FILE_ATTRIBUTE_TYPE_INT32} to \code{value}. 
 If \code{attribute} is of a different type, this operation will fail.}
-\usage{gFileSetAttributeInt32(object, attribute, value, flags = "G_FILE_QUERY_INFO_NONE", cancellable = NULL, .errwarn = TRUE)}
+\usage{gFileSetAttributeInt32(object, attribute, value, flags = "G_FILE_QUERY_INFO_NONE", 
+    cancellable = NULL, .errwarn = TRUE)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{attribute}}{a string containing the attribute's name.}

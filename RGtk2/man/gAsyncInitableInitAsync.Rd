@@ -5,7 +5,8 @@
 interface. This must be done before any real use of the object after
 initial construction. If the object also implements \code{\link{GInitable}} you can
 optionally call \code{\link{gInitableInit}} instead.}
-\usage{gAsyncInitableInitAsync(object, io.priority, cancellable = NULL, callback, user.data = NULL)}
+\usage{gAsyncInitableInitAsync(object, io.priority, cancellable = NULL, 
+    callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GAsyncInitable}}.}
 \item{\verb{io.priority}}{the I/O priority

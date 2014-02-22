@@ -6,10 +6,10 @@
 implementation.}
 \usage{pangoTabArraySetTab(object, tab.index, alignment, location)}
 \arguments{
-\item{\verb{object}}{a \code{\link{PangoTabArray}}}
-\item{\verb{tab.index}}{the index of a tab stop}
-\item{\verb{alignment}}{tab alignment}
-\item{\verb{location}}{tab location in Pango units}
+\item{\verb{object}}{[\code{\link{PangoTabArray}}]  a \code{\link{PangoTabArray}}}
+\item{\verb{tab.index}}{[integer]  the index of a tab stop}
+\item{\verb{alignment}}{[\code{\link{PangoTabAlign}}]  tab alignment}
+\item{\verb{location}}{[integer]  tab location in Pango units}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

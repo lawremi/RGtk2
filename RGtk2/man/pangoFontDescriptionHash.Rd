@@ -5,7 +5,7 @@
 to be used, for example, as an argument to \code{gHashTableNew()}.
 The hash value is independent of \code{desc->mask}.}
 \usage{pangoFontDescriptionHash(object)}
-\arguments{\item{\verb{object}}{a \code{\link{PangoFontDescription}}}}
-\value{[numeric] the hash value.}
+\arguments{\item{\verb{object}}{[\code{\link{PangoFontDescription}}]  a \code{\link{PangoFontDescription}}}}
+\value{[numeric]  the hash value.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

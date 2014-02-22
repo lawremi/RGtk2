@@ -285,13 +285,13 @@ The current position of the insertion cursor in chars.  Allowed values: >= 0  De
 \item{\verb{ellipsize} [\code{\link{PangoEllipsizeMode}} : Read / Write]}{
 
 The preferred place to ellipsize the string, if the label does
-not have enough room to display the entire string, specified as a 
-\verb{PangoEllisizeMode}. 
+not have enough room to display the entire string, specified as a
+\verb{PangoEllisizeMode}.
   
-Note that setting this property to a value other than 
-\code{PANGO_ELLIPSIZE_NONE} has the side-effect that the label requests 
-only enough space to display the ellipsis "...". In particular, this 
-means that ellipsizing labels do not work well in notebook tabs, unless 
+Note that setting this property to a value other than
+\code{PANGO_ELLIPSIZE_NONE} has the side-effect that the label requests
+only enough space to display the ellipsis "...". In particular, this
+means that ellipsizing labels do not work well in notebook tabs, unless
 the tab's \verb{"tab-expand"} property is set to \code{TRUE}. Other ways
 to set a label's width are \code{\link{gtkWidgetSetSizeRequest}} and
 \code{\link{gtkLabelSetWidthChars}}.
@@ -310,10 +310,10 @@ The text of the label.  Default value: ""
 }
 \item{\verb{max-width-chars} [integer : Read / Write]}{
 
-The desired maximum width of the label, in characters. If this property 
-is set to -1, the width will be calculated automatically, otherwise the 
-label will request space for no more than the requested number of 
-characters. If the \verb{"width-chars"} property is set to a positive 
+The desired maximum width of the label, in characters. If this property
+is set to -1, the width will be calculated automatically, otherwise the
+label will request space for no more than the requested number of
+characters. If the \verb{"width-chars"} property is set to a positive
 value, then the "max-width-chars" property is ignored.
   Allowed values: >= -1  Default value: -1  Since 2.6
 
@@ -348,7 +348,7 @@ The position of the opposite end of the selection from the cursor in chars.  All
 Whether the label is in single line mode. In single line mode,
 the height of the label does not depend on the actual text, it
 is always set to ascent + descent of the font. This can be an
-advantage in situations where resizing the label because of text 
+advantage in situations where resizing the label because of text
 changes would be distracting, e.g. in a statusbar.
   Default value: FALSE  Since 2.6
 
@@ -376,7 +376,7 @@ If set, an underline in the text indicates the next character should be used for
 The desired width of the label, in characters. If this property is set to
 -1, the width will be calculated automatically, otherwise the label will
 request either 3 characters or the property value, whichever is greater.
-If the "width-chars" property is set to a positive value, then the 
+If the "width-chars" property is set to a positive value, then the
 \verb{"max-width-chars"} property is ignored.
   Allowed values: >= -1  Default value: -1  Since 2.6
 
@@ -388,8 +388,8 @@ If set, wrap lines if the text becomes too wide.  Default value: FALSE
 }
 \item{\verb{wrap-mode} [\code{\link{PangoWrapMode}} : Read / Write]}{
 
-If line wrapping is on (see the \verb{"wrap"} property) this controls 
-how the line wrapping is done. The default is \code{PANGO_WRAP_WORD}, which 
+If line wrapping is on (see the \verb{"wrap"} property) this controls
+how the line wrapping is done. The default is \code{PANGO_WRAP_WORD}, which
 means wrap on word boundaries.
   Default value: PANGO_WRAP_WORD  Since 2.10
 

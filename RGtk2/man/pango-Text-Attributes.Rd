@@ -68,16 +68,6 @@
 \code{\link{pangoAttrIteratorGetFont}(object)}\cr
 \code{\link{pangoAttrIteratorGetAttrs}(object)}\cr
 }
-\section{Hierarchy}{\preformatted{
-GEnum
-   +----PangoAttrType
-GEnum
-   +----PangoUnderline
-GBoxed
-   +----PangoColor
-GBoxed
-   +----PangoAttrList
-}}
 \section{Detailed Description}{Attributed text is used in a number of places in Pango. It
 is used as the input to the itemization process and also when
 creating a \code{\link{PangoLayout}}. The data types and functions in
@@ -105,7 +95,7 @@ By default an attribute will have an all-inclusive range of [0,\code{G_MAXUINT}]
 \item{\verb{klass}}{[\code{\link{PangoAttrClass}}] the class structure holding information about the type of the attribute}
 \item{\verb{startIndex}}{[numeric] the start index of the range (in bytes).}
 \item{\verb{endIndex}}{[numeric] end index of the range (in bytes). The character at this index
-is not included in the range.}
+	is not included in the range.}
 }
 
 }
@@ -168,7 +158,7 @@ set font size.
 \describe{
 \item{\verb{size}}{[integer] the common portion of the attribute}
 \item{\verb{absolute}}{[numeric] size of font, in units of 1/\code{PANGO_SCALE} of a point (for
-\code{PANGO_ATTR_SIZE}) or of a device uni (for \code{PANGO_ATTR_ABSOLUTE_SIZE})}
+  \code{PANGO_ATTR_SIZE}) or of a device uni (for \code{PANGO_ATTR_ABSOLUTE_SIZE})}
 }
 
 }
@@ -177,9 +167,12 @@ The \code{\link{PangoColor}} structure is used to
 represent a color in an uncalibrated RGB color-space.
 
 \describe{
-\item{\verb{red}}{[integer] }
-\item{\verb{green}}{[integer] }
-\item{\verb{blue}}{[integer] }
+\item{\verb{red}}{[integer] The red component of the color. This is a value between 0 and 65535, 
+      with 65535 indicating full intensity.}
+\item{\verb{green}}{[integer] The green component of the color. This is a value between 0 and 65535, 
+      with 65535 indicating full intensity.}
+\item{\verb{blue}}{[integer] The blue component of the color. This is a value between 0 and 65535, 
+      with 65535 indicating full intensity.}
 }
 
 }
@@ -267,7 +260,7 @@ of underlining.
 A copy function passed to attribute new functions that take
 user data.
 
-\describe{\item{\code{data}}{the user data}}
+\describe{\item{\code{data}}{[R object] the user data}}
 
 \emph{Returns:} [R object] a new copy of \code{data}.
 
@@ -277,8 +270,8 @@ A predicate function used by \code{\link{pangoAttrListFilter}}
 to filter out a subset of attributes for a list.
 
 \describe{
-\item{\code{attribute}}{a \code{\link{PangoAttribute}}}
-\item{\code{data}}{callback data passed to \code{\link{pangoAttrListFilter}}}
+\item{\code{attribute}}{[\code{\link{PangoAttribute}}] a \code{\link{PangoAttribute}}}
+\item{\code{data}}{[R object] callback data passed to \code{\link{pangoAttrListFilter}}}
 }
 
 \emph{Returns:} [logical] \code{TRUE} if the attribute should be filtered out

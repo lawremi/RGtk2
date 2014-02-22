@@ -5,7 +5,8 @@
 Draws a polygon on \code{window} with the given parameters.
 \strong{WARNING: \code{gtk_draw_polygon} has been deprecated since version 2.0 and should not be used in newly-written code. Use \code{\link{gtkPaintPolygon}} instead.}
 }
-\usage{gtkDrawPolygon(object, window, state.type, shadow.type, points, fill)}
+\usage{gtkDrawPolygon(object, window, state.type, shadow.type, points, 
+    fill)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkStyle}}}
 \item{\verb{window}}{a \code{\link{GdkWindow}}}

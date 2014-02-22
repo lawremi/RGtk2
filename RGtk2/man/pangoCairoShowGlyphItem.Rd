@@ -7,15 +7,15 @@ output format supports it (PDF for example), otherwise it acts
 similar to \code{\link{pangoCairoShowGlyphString}}.}
 \usage{pangoCairoShowGlyphItem(cr, text, glyph.item)}
 \arguments{
-\item{\verb{cr}}{a Cairo context}
-\item{\verb{text}}{the UTF-8 text that \code{glyph.item} refers to}
-\item{\verb{glyph.item}}{a \code{\link{PangoGlyphItem}}}
+\item{\verb{cr}}{[\code{\link{Cairo}}]  a Cairo context}
+\item{\verb{text}}{[char]  the UTF-8 text that \code{glyph.item} refers to}
+\item{\verb{glyph.item}}{[\code{\link{PangoGlyphItem}}]  a \code{\link{PangoGlyphItem}}}
 }
 \details{The origin of the glyphs (the left edge of the baseline) will
 be drawn at the current point of the cairo context.
   
 Note that \code{text} is the start of the text for layout, which is then
-indexed by \code{glyph_item->item->offset}.
+indexed by \code{glyph_item->item->offset}.  
   Since 1.22}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

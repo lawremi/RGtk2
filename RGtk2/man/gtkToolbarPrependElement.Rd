@@ -5,7 +5,8 @@
 Adds a new element to the beginning of a toolbar.
 \strong{WARNING: \code{gtk_toolbar_prepend_element} has been deprecated since version 2.4 and should not be used in newly-written code. Use \code{\link{gtkToolbarInsert}} instead.}
 }
-\usage{gtkToolbarPrependElement(object, type, widget, text, tooltip.text, tooltip.private.text, icon, callback, user.data = NULL)}
+\usage{gtkToolbarPrependElement(object, type, widget, text, tooltip.text, 
+    tooltip.private.text, icon, callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkToolbar}}.}
 \item{\verb{type}}{a value of type \code{\link{GtkToolbarChildType}} that determines what \code{widget} will be.}

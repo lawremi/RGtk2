@@ -9,7 +9,8 @@ values given to this function. }
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkListStore}}}
 \item{\verb{position}}{position to insert the new row}
-\item{\verb{...}}{pairs of column number and value, terminated with -1}
+\item{\verb{...}}{\emph{undocumented
+}}
 }
 \details{Calling
 \code{gtk_list_store_insert_with_values(list_store, iter, position...)} 

@@ -2,7 +2,8 @@
 \name{gtkPrintRunPageSetupDialogAsync}
 \title{gtkPrintRunPageSetupDialogAsync}
 \description{Runs a page setup dialog, letting the user modify the values from \code{page.setup}. }
-\usage{gtkPrintRunPageSetupDialogAsync(parent, page.setup, settings, done.cb, data)}
+\usage{gtkPrintRunPageSetupDialogAsync(parent, page.setup, settings, 
+    done.cb, data)}
 \arguments{
 \item{\verb{parent}}{transient parent, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{page.setup}}{an existing \code{\link{GtkPageSetup}}, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}

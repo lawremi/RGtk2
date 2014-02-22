@@ -8,7 +8,7 @@ text can be wider or narrower than this, though this value
 is generally somewhat more accurate than the result of
 \code{\link{pangoFontMetricsGetApproximateCharWidth}} for digits.}
 \usage{pangoFontMetricsGetApproximateDigitWidth(object)}
-\arguments{\item{\verb{object}}{a \code{\link{PangoFontMetrics}} structure}}
-\value{[integer] the digit width, in Pango units.}
+\arguments{\item{\verb{object}}{[\code{\link{PangoFontMetrics}}]  a \code{\link{PangoFontMetrics}} structure}}
+\value{[integer]  the digit width, in Pango units.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

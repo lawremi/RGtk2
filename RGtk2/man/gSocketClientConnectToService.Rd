@@ -2,7 +2,8 @@
 \name{gSocketClientConnectToService}
 \title{gSocketClientConnectToService}
 \description{Attempts to create a TCP connection to a service.}
-\usage{gSocketClientConnectToService(object, domain, service, cancellable = NULL, .errwarn = TRUE)}
+\usage{gSocketClientConnectToService(object, domain, service, cancellable = NULL, 
+    .errwarn = TRUE)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GSocketConnection}}}
 \item{\verb{domain}}{a domain name}

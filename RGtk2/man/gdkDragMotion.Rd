@@ -3,7 +3,8 @@
 \title{gdkDragMotion}
 \description{Updates the drag context when the pointer moves or the 
 set of actions changes.}
-\usage{gdkDragMotion(object, dest.window, protocol, x.root, y.root, suggested.action, possible.actions, time)}
+\usage{gdkDragMotion(object, dest.window, protocol, x.root, y.root, 
+    suggested.action, possible.actions, time)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkDragContext}}.}
 \item{\verb{dest.window}}{the new destination window, obtained by

@@ -4,7 +4,8 @@
 \description{Gets the requested information about the files in a directory. The result
 is a \code{\link{GFileEnumerator}} object that will give out \code{\link{GFileInfo}} objects for
 all the files in the directory.}
-\usage{gFileEnumerateChildren(object, attributes, flags = "G_FILE_QUERY_INFO_NONE", cancellable = NULL, .errwarn = TRUE)}
+\usage{gFileEnumerateChildren(object, attributes, flags = "G_FILE_QUERY_INFO_NONE", 
+    cancellable = NULL, .errwarn = TRUE)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{attributes}}{an attribute query string.}

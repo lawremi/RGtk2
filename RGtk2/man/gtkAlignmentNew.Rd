@@ -2,7 +2,8 @@
 \name{gtkAlignmentNew}
 \title{gtkAlignmentNew}
 \description{Creates a new \code{\link{GtkAlignment}}.}
-\usage{gtkAlignmentNew(xalign = NULL, yalign = NULL, xscale = NULL, yscale = NULL, show = TRUE)}
+\usage{gtkAlignmentNew(xalign = NULL, yalign = NULL, xscale = NULL, 
+    yscale = NULL, show = TRUE)}
 \arguments{
 \item{\verb{xalign}}{the horizontal alignment of the child widget, from 0 (left) to 1
 (right).}

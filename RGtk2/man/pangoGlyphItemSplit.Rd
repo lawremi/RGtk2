@@ -10,14 +10,14 @@ be at least one byte assigned to each item, you can't create a
 zero-length item).}
 \usage{pangoGlyphItemSplit(orig, text, split.index)}
 \arguments{
-\item{\verb{orig}}{a \code{\link{PangoItem}}}
-\item{\verb{text}}{text to which positions in \code{orig} apply}
-\item{\verb{split.index}}{byte index of position to split item, relative to the start of the item}
+\item{\verb{orig}}{[\code{\link{PangoGlyphItem}}]  a \code{\link{PangoItem}}}
+\item{\verb{text}}{[char]  text to which positions in \code{orig} apply}
+\item{\verb{split.index}}{[integer]  byte index of position to split item, relative to the start of the item}
 }
 \details{This function is similar in function to \code{\link{pangoItemSplit}} (and uses
-it internally.)
+it internally.)  
   Since 1.2}
-\value{[\code{\link{PangoGlyphItem}}] the newly allocated item representing text before
-\code{split.index},}
+\value{[\code{\link{PangoGlyphItem}}]  the newly allocated item representing text before
+              \code{split.index},}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -3,7 +3,9 @@
 \title{gFileCopyAsync}
 \description{Copies the file \code{source} to the location specified by \code{destination} 
 asynchronously. For details of the behaviour, see \code{\link{gFileCopy}}.}
-\usage{gFileCopyAsync(object, destination, flags = "G_FILE_COPY_NONE", io.priority = 0, cancellable = NULL, progress.callback, progress.callback.data, callback, user.data = NULL)}
+\usage{gFileCopyAsync(object, destination, flags = "G_FILE_COPY_NONE", 
+    io.priority = 0, cancellable = NULL, progress.callback, progress.callback.data, 
+    callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{destination}}{destination \code{\link{GFile}}}

@@ -3,7 +3,8 @@
 \title{gdkDrawImage}
 \description{Draws a \code{\link{GdkImage}} onto a drawable.
 The depth of the \code{\link{GdkImage}} must match the depth of the \code{\link{GdkDrawable}}.}
-\usage{gdkDrawImage(object, gc, image, xsrc, ysrc, xdest, ydest, width, height)}
+\usage{gdkDrawImage(object, gc, image, xsrc, ysrc, xdest, ydest, width, 
+    height)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkDrawable}} (a \code{\link{GdkWindow}} or a \code{\link{GdkPixmap}}).}
 \item{\verb{gc}}{a \code{\link{GdkGC}}.}

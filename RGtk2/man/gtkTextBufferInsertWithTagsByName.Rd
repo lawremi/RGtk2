@@ -8,7 +8,8 @@ to pass in tag names instead of tag objects.}
 \item{\verb{object}}{a \code{\link{GtkTextBuffer}}}
 \item{\verb{iter}}{position in \code{buffer}}
 \item{\verb{text}}{UTF-8 text}
-\item{\verb{...}}{more tag names}
+\item{\verb{...}}{\emph{undocumented
+}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

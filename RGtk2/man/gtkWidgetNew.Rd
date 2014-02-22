@@ -10,8 +10,7 @@ cast the object yourself.}
 \usage{gtkWidgetNew(type, ..., show = TRUE)}
 \arguments{
 \item{\verb{type}}{type ID of the widget to create}
-\item{\verb{...}}{value of first property, followed by more properties,
-\code{NULL}-terminated}
+\item{\verb{...}}{a new \code{\link{GtkWidget}} of type \code{widget.type}}
 }
 \value{[\code{\link{GtkWidget}}] a new \code{\link{GtkWidget}} of type \code{widget.type}}
 \author{Derived by RGtkGen from GTK+ documentation}

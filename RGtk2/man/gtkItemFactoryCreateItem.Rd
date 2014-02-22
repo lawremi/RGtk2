@@ -5,7 +5,8 @@
 Creates an item for \code{entry}.
 \strong{WARNING: \code{gtk_item_factory_create_item} has been deprecated since version 2.4 and should not be used in newly-written code. Use \code{\link{GtkUIManager}} instead.}
 }
-\usage{gtkItemFactoryCreateItem(object, entry, callback.data = NULL, callback.type)}
+\usage{gtkItemFactoryCreateItem(object, entry, callback.data = NULL, 
+    callback.type)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkItemFactory}}}
 \item{\verb{entry}}{the \code{\link{GtkItemFactoryEntry}} to create an item for}

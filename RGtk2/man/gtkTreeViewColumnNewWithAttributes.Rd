@@ -9,7 +9,7 @@ equivalent to calling \code{\link{gtkTreeViewColumnSetTitle}},
 \arguments{
 \item{\verb{title}}{The title to set the header to.}
 \item{\verb{cell}}{The \code{\link{GtkCellRenderer}}.}
-\item{\verb{...}}{A list of attributes.}
+\item{\verb{...}}{A newly created \code{\link{GtkTreeViewColumn}}.}
 }
 \details{Here's a simple example:
 \preformatted{

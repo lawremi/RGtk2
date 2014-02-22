@@ -4,7 +4,8 @@
 \description{Asynchronously gets the requested information about the files in a directory. The result
 is a \code{\link{GFileEnumerator}} object that will give out \code{\link{GFileInfo}} objects for
 all the files in the directory.}
-\usage{gFileEnumerateChildrenAsync(object, attributes, flags = "G_FILE_QUERY_INFO_NONE", io.priority = 0, cancellable = NULL, callback, user.data = NULL)}
+\usage{gFileEnumerateChildrenAsync(object, attributes, flags = "G_FILE_QUERY_INFO_NONE", 
+    io.priority = 0, cancellable = NULL, callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{attributes}}{an attribute query string.}

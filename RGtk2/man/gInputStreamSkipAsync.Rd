@@ -5,7 +5,8 @@
 When the operation is finished \code{callback} will be called. 
 You can then call \code{\link{gInputStreamSkipFinish}} to get the result of the 
 operation.}
-\usage{gInputStreamSkipAsync(object, count, io.priority = 0, cancellable = NULL, callback, user.data = NULL)}
+\usage{gInputStreamSkipAsync(object, count, io.priority = 0, cancellable = NULL, 
+    callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{A \code{\link{GInputStream}}.}
 \item{\verb{count}}{the number of bytes that will be skipped from the stream}

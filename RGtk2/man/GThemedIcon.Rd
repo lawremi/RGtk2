@@ -43,10 +43,10 @@ A list of icon names.
 \item{\verb{use-default-fallbacks} [logical : Read / Write / Construct Only]}{
 
 Whether to use the default fallbacks found by shortening the icon name
-at '-' characters. If the "names" list has more than one element, 
+at '-' characters. If the "names" list has more than one element,
 ignores any past the first.
   
-For example, if the icon name was "gnome-dev-cdrom-audio", the list 
+For example, if the icon name was "gnome-dev-cdrom-audio", the list
 would become
 \preformatted{
 c("gnome-dev-cdrom-audio", "gnome-dev-cdrom", "gnome-dev", "gnome")

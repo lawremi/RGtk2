@@ -115,7 +115,7 @@ selected rows.  It will be called on every selected row in the view.
 \item{\code{activate-cursor-item(iconview, user.data)}}{
 A keybinding signal
 which gets emitted when the user activates the currently
-focused item. 
+focused item.
   
 Applications should not connect to it, but may emit it with
 \code{gSignalEmitByName()} if they need to control activation
@@ -132,7 +132,7 @@ The default bindings for this signal are Space, Return and Enter.
 }
 \item{\code{item-activated(iconview, path, user.data)}}{
 The ::item-activated signal is emitted when the method
-\code{\link{gtkIconViewItemActivated}} is called or the user double 
+\code{\link{gtkIconViewItemActivated}} is called or the user double
 clicks an item. It is also emitted when a non-editable item
 is selected and one of the keys: Space, Return or Enter is
 pressed.
@@ -235,7 +235,7 @@ of \code{\link{GtkScrollbar}} to the scroll directions of the \code{\link{GtkIco
 \item{\code{toggle-cursor-item(iconview, user.data)}}{
 A keybinding signal
 which gets emitted when the user toggles whether the currently
-focused item is selected or not. The exact effect of this 
+focused item is selected or not. The exact effect of this
 depend on the selection mode.
   
 Applications should not connect to it, but may emit it with
@@ -295,14 +295,14 @@ of the icon view's item.
 \item{\verb{item-width} [integer : Read / Write]}{
 
 The item-width property specifies the width to use for each item.
-If it is set to -1, the icon view will automatically determine a 
+If it is set to -1, the icon view will automatically determine a
 suitable item size.
   Allowed values: >= -1  Default value: -1  Since 2.6
 
 }
 \item{\verb{margin} [integer : Read / Write]}{
 
-The margin property specifies the space which is inserted 
+The margin property specifies the space which is inserted
 at the edges of the icon view.
   Allowed values: >= 0  Default value: 6  Since 2.6
 
@@ -310,8 +310,8 @@ at the edges of the icon view.
 \item{\verb{markup-column} [integer : Read / Write]}{
 
 The ::markup-column property contains the number of the model column
-containing markup information to be displayed. The markup column must be 
-of type \verb{G_TYPE_STRING}. If this property and the :text-column property 
+containing markup information to be displayed. The markup column must be
+of type \verb{G_TYPE_STRING}. If this property and the :text-column property
 are both set to column numbers, it overrides the text column.
 If both are set to -1, no texts are displayed.
   Allowed values: >= -1  Default value: -1  Since 2.6
@@ -324,7 +324,7 @@ The model for the icon view.
 }
 \item{\verb{orientation} [\code{\link{GtkOrientation}} : Read / Write]}{
 
-The orientation property specifies how the cells (i.e. the icon and 
+The orientation property specifies how the cells (i.e. the icon and
 the text) of the item are positioned relative to each other.
   Default value: GTK_ORIENTATION_VERTICAL  Since 2.6
 
@@ -332,7 +332,7 @@ the text) of the item are positioned relative to each other.
 \item{\verb{pixbuf-column} [integer : Read / Write]}{
 
 The ::pixbuf-column property contains the number of the model column
-containing the pixbufs which are displayed. The pixbuf column must be 
+containing the pixbufs which are displayed. The pixbuf column must be
 of type \verb{GDK_TYPE_PIXBUF}. Setting this property to -1 turns off the
 display of pixbufs.
   Allowed values: >= -1  Default value: -1  Since 2.6
@@ -370,8 +370,8 @@ the cells (i.e. the icon and the text) of an item.
 \item{\verb{text-column} [integer : Read / Write]}{
 
 The ::text-column property contains the number of the model column
-containing the texts which are displayed. The text column must be 
-of type \verb{G_TYPE_STRING}. If this property and the :markup-column 
+containing the texts which are displayed. The text column must be
+of type \verb{G_TYPE_STRING}. If this property and the :markup-column
 property are both set to -1, no texts are displayed.
   Allowed values: >= -1  Default value: -1  Since 2.6
 

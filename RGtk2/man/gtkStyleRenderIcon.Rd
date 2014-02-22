@@ -4,7 +4,8 @@
 \description{Renders the icon specified by \code{source} at the given \code{size}
 according to the given parameters and returns the result in a
 pixbuf.}
-\usage{gtkStyleRenderIcon(object, source, direction, state, size, widget = NULL, detail = NULL)}
+\usage{gtkStyleRenderIcon(object, source, direction, state, size, widget = NULL, 
+    detail = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkStyle}}}
 \item{\verb{source}}{the \code{\link{GtkIconSource}} specifying the icon to render}

@@ -6,7 +6,8 @@ has window resizing controls. When GDK can support it, the resize
 will be done using the standard mechanism for the window manager or windowing
 system. Otherwise, GDK will try to emulate window resizing,
 potentially not all that well, depending on the windowing system.}
-\usage{gtkWindowBeginResizeDrag(object, edge, button, root.x, root.y, timestamp)}
+\usage{gtkWindowBeginResizeDrag(object, edge, button, root.x, root.y, 
+    timestamp)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkWindow}}}
 \item{\verb{edge}}{position of the resize control}

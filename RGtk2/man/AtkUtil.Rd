@@ -119,7 +119,6 @@ notification is being given.}
 \emph{Returns:} [integer]  TRUE (nonzero) if the event emission should be stopped and the event 
 discarded without being passed to the normal GUI recipient; FALSE (zero) if the 
 event dispatch to the client application should proceed as normal.
-
 \code{see}: atk_add_key_event_listener.
 
 }

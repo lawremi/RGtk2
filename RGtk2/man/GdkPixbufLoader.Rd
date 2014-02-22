@@ -67,8 +67,8 @@ fields.
 \section{Signals}{\describe{
 \item{\code{area-prepared(loader, user.data)}}{
 This signal is emitted when the pixbuf loader has allocated the
-pixbuf in the desired size.  After this signal is emitted, 
-applications can call \code{\link{gdkPixbufLoaderGetPixbuf}} to fetch 
+pixbuf in the desired size.  After this signal is emitted,
+applications can call \code{\link{gdkPixbufLoaderGetPixbuf}} to fetch
 the partially-loaded pixbuf.
 
 \describe{
@@ -112,7 +112,7 @@ drives it.
 \item{\code{size-prepared(loader, width, height, user.data)}}{
 This signal is emitted when the pixbuf loader has been fed the
 initial amount of data that is required to figure out the size
-of the image that it will create.  Applications can call  
+of the image that it will create.  Applications can call
 \code{\link{gdkPixbufLoaderSetSize}} in response to this signal to set
 the desired size to which the image should be scaled.
 

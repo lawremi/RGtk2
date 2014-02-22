@@ -10,7 +10,8 @@ actually used for the translation; some keys such as Enter are not
 affected by the active keyboard group. The \code{level} is derived from
 \code{state}. For convenience, \code{\link{GdkEventKey}} already contains the translated
 keyval, so this function isn't as useful as you might think.}
-\usage{gdkKeymapTranslateKeyboardState(object, hardware.keycode, state, group)}
+\usage{gdkKeymapTranslateKeyboardState(object, hardware.keycode, state, 
+    group)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkKeymap}}, or \code{NULL} to use the default. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{hardware.keycode}}{a keycode}

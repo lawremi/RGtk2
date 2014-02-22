@@ -3,7 +3,8 @@
 \title{gResolverLookupByAddress}
 \description{Synchronously reverse-resolves \code{address} to determine its
 associated hostname.}
-\usage{gResolverLookupByAddress(object, address, cancellable = NULL, .errwarn = TRUE)}
+\usage{gResolverLookupByAddress(object, address, cancellable = NULL, 
+    .errwarn = TRUE)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GResolver}}}
 \item{\verb{address}}{the address to reverse-resolve}

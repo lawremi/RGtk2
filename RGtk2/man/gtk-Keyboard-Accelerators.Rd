@@ -104,8 +104,8 @@ The accel-activate signal is an implementation detail of
 The accel-changed signal is emitted when a \verb{GtkAccelGroupEntry}
 is added to or removed from the accel group.
   
-Widgets like \code{\link{GtkAccelLabel}} which display an associated 
-accelerator should connect to this signal, and rebuild 
+Widgets like \code{\link{GtkAccelLabel}} which display an associated
+accelerator should connect to this signal, and rebuild
 their visual representation if the \code{accel.closure} is theirs.
 
 \describe{

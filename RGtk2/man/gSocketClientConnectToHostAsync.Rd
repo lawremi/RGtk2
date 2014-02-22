@@ -2,7 +2,8 @@
 \name{gSocketClientConnectToHostAsync}
 \title{gSocketClientConnectToHostAsync}
 \description{This is the asynchronous version of \code{\link{gSocketClientConnectToHost}}.}
-\usage{gSocketClientConnectToHostAsync(object, host.and.port, default.port, cancellable = NULL, callback, user.data = NULL)}
+\usage{gSocketClientConnectToHostAsync(object, host.and.port, default.port, 
+    cancellable = NULL, callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{a \verb{GTcpClient}}
 \item{\verb{host.and.port}}{the name and optionally the port of the host to connect to}

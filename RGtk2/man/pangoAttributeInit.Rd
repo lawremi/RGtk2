@@ -8,9 +8,9 @@ such that the attribute applies
 to the entire text by default.}
 \usage{pangoAttributeInit(attr, klass)}
 \arguments{
-\item{\verb{attr}}{a \code{\link{PangoAttribute}}}
-\item{\verb{klass}}{a \verb{PangoAttributeClass}}
+\item{\verb{attr}}{[\code{\link{PangoAttribute}}]  a \code{\link{PangoAttribute}}}
+\item{\verb{klass}}{[\code{\link{PangoAttrClass}}]  a \verb{PangoAttributeClass}}
 }
-\details{Since 1.20}
+\details{  Since 1.20}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

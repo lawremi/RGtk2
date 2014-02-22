@@ -8,7 +8,8 @@ If using GTK+, use functions such as \code{\link{gtkWindowResize}}, \code{gtkWin
 depending on what you're trying to do.
 \strong{WARNING: \code{gdk_window_set_hints} is deprecated and should not be used in newly-written code.}
 }
-\usage{gdkWindowSetHints(object, x, y, min.width, min.height, max.width, max.height, flags)}
+\usage{gdkWindowSetHints(object, x, y, min.width, min.height, max.width, 
+    max.height, flags)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkWindow}}}
 \item{\verb{x}}{ignored field, does not matter}

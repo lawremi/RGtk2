@@ -2,7 +2,8 @@
 \name{gtkPaintPolygon}
 \title{gtkPaintPolygon}
 \description{Draws a polygon on \code{window} with the given parameters.}
-\usage{gtkPaintPolygon(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, points, fill)}
+\usage{gtkPaintPolygon(object, window, state.type, shadow.type, area = NULL, 
+    widget = NULL, detail = NULL, points, fill)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkStyle}}}
 \item{\verb{window}}{a \code{\link{GdkWindow}}}

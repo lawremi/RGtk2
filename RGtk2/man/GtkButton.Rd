@@ -163,15 +163,15 @@ If set, an underline in the text indicates the next character should be used for
 \item{\verb{xalign} [numeric : Read / Write]}{
 
 If the child of the button is a \code{\link{GtkMisc}} or \code{\link{GtkAlignment}}, this property
-can be used to control it's horizontal alignment. 0.0 is left aligned, 
+can be used to control it's horizontal alignment. 0.0 is left aligned,
 1.0 is right aligned.
   Allowed values: [0,1]  Default value: 0.5  Since 2.4
 
 }
 \item{\verb{yalign} [numeric : Read / Write]}{
 
-If the child of the button is a \code{\link{GtkMisc}} or \code{\link{GtkAlignment}}, this property 
-can be used to control it's vertical alignment. 0.0 is top aligned, 
+If the child of the button is a \code{\link{GtkMisc}} or \code{\link{GtkAlignment}}, this property
+can be used to control it's vertical alignment. 0.0 is top aligned,
 1.0 is bottom aligned.
   Allowed values: [0,1]  Default value: 0.5  Since 2.4
 

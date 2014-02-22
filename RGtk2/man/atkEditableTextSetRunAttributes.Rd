@@ -5,7 +5,8 @@
 functions (such as \verb{ATK_ATTRIBUTE_LEFT_MARGIN}) for examples of attributes 
 that can be set. Note that other attributes that do not have corresponding
 ATK_ATTRIBUTE functions may also be set for certain text widgets.}
-\usage{atkEditableTextSetRunAttributes(object, attrib.set, start.offset, end.offset)}
+\usage{atkEditableTextSetRunAttributes(object, attrib.set, start.offset, 
+    end.offset)}
 \arguments{
 \item{\verb{object}}{[\code{\link{AtkEditableText}}]  an \code{\link{AtkEditableText}}}
 \item{\verb{attrib.set}}{[\code{\link{AtkAttributeSet}}]  an \code{\link{AtkAttributeSet}}}

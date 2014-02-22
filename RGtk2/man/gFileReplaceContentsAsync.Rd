@@ -4,7 +4,9 @@
 \description{Starts an asynchronous replacement of \code{file} with the given 
 \code{contents} of \code{length} bytes. \code{etag} will replace the document's 
 current entity tag.}
-\usage{gFileReplaceContentsAsync(object, contents, length, etag, make.backup, flags = "G_FILE_CREATE_NONE", cancellable = NULL, callback, user.data = NULL)}
+\usage{gFileReplaceContentsAsync(object, contents, length, etag, make.backup, 
+    flags = "G_FILE_CREATE_NONE", cancellable = NULL, callback, 
+    user.data = NULL)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{contents}}{string of contents to replace the file with.}

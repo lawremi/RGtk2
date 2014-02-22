@@ -64,24 +64,25 @@ PageSetup section: \%\code{BeginPageSetup}, \%\code{PageBoundingBox},
 Other sections: \%\code{BeginProlog}, \%\code{EndProlog}, \%\code{Page}, \%\code{Trailer}, \%\code{EOF}
   
 Here is an example sequence showing how this function might be used:
-  \preformatted{cairo_surface_t   *surface = cairo_ps_surface_create (filename, width, height);
-...
-cairo_ps_surface_dsc_comment (surface, "\%\%Title: My excellent document");
-cairo_ps_surface_dsc_comment (surface, "\%\%Copyright: Copyright (C) 2006 Cairo Lover")
-...
-cairo_ps_surface_dsc_begin_setup (surface);
-cairo_ps_surface_dsc_comment (surface, "\%\%IncludeFeature: *MediaColor White");
-...
-cairo_ps_surface_dsc_begin_page_setup (surface);
-cairo_ps_surface_dsc_comment (surface, "\%\%IncludeFeature: *PageSize A3");
-cairo_ps_surface_dsc_comment (surface, "\%\%IncludeFeature: *InputSlot LargeCapacity");
-cairo_ps_surface_dsc_comment (surface, "\%\%IncludeFeature: *MediaType Glossy");
-cairo_ps_surface_dsc_comment (surface, "\%\%IncludeFeature: *MediaColor Blue");
-... draw to first page here ..
-cairo_show_page (cr);
-...
-cairo_ps_surface_dsc_comment (surface, "\%\%IncludeFeature: *PageSize A5");
-...
+  \preformatted{
+surface <- cairoPsSurfaceCreate(filename, width, height)
+# ...
+surface$dscComment("\%Title: My excellent document")
+surface$dscComment("\%Copyright: Copyright (C) 2006 Cairo Lover")
+# ...
+surface$dscBeginSetup()
+surface$dscComment("\%IncludeFeature: *MediaColor White")
+# ...
+surface$dscBeginPageSetup()
+surface$dscComment("\%IncludeFeature: *PageSize A3")
+surface$dscComment("\%IncludeFeature: *InputSlot LargeCapacity")
+surface$dscComment("\%IncludeFeature: *MediaType Glossy")
+surface$dscComment("\%IncludeFeature: *MediaColor Blue")
+# ... draw to first page here ..
+cr$showPage()
+# ...
+surface$dscComment(surface, "\%IncludeFeature: *PageSize A5")
+# ...
 }  
   Since 1.2}
 \author{Derived by RGtkGen from GTK+ documentation}

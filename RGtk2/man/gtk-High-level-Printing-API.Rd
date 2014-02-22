@@ -218,10 +218,10 @@ widget in a handler for this signal it will be added to a custom
 tab in the print dialog. You typically return a container widget
 with multiple widgets in it.
   
-The print dialog owns the returned widget, and its lifetime is not 
-controlled by the application. However, the widget is guaranteed 
-to stay around until the \verb{"custom-widget-apply"} 
-signal is emitted on the operation. Then you can read out any 
+The print dialog owns the returned widget, and its lifetime is not
+controlled by the application. However, the widget is guaranteed
+to stay around until the \verb{"custom-widget-apply"}
+signal is emitted on the operation. Then you can read out any
 information you need from the widgets.
   Since 2.10
 
@@ -236,9 +236,9 @@ or \code{NULL}
 }
 \item{\code{custom-widget-apply(operation, widget, user.data)}}{
 Emitted right before \verb{"begin-print"} if you added
-a custom widget in the \verb{"create-custom-widget"} handler. 
-When you get this signal you should read the information from the 
-custom widgets, as the widgets are not guaraneed to be around at a 
+a custom widget in the \verb{"create-custom-widget"} handler.
+When you get this signal you should read the information from the
+custom widgets, as the widgets are not guaraneed to be around at a
 later time.
   Since 2.10
 
@@ -252,13 +252,13 @@ later time.
 }
 \item{\code{done(operation, result, user.data)}}{
 Emitted when the print operation run has finished doing
-everything required for printing. 
-  \code{result} gives you information about what happened during the run. 
+everything required for printing.
+  \code{result} gives you information about what happened during the run.
 If \code{result} is \code{GTK_PRINT_OPERATION_RESULT_ERROR} then you can call
 \code{\link{gtkPrintOperationGetError}} for more information.
   
-If you enabled print status tracking then 
-\code{\link{gtkPrintOperationIsFinished}} may still return \code{FALSE} 
+If you enabled print status tracking then
+\code{\link{gtkPrintOperationIsFinished}} may still return \code{FALSE}
 after \verb{"done"} was emitted.
   Since 2.10
 
@@ -302,7 +302,7 @@ draw_page <- (operation, context, page_nr, user_data)
 }
 }
   
-Use \code{\link{gtkPrintOperationSetUseFullPage}} and 
+Use \code{\link{gtkPrintOperationSetUseFullPage}} and
 \code{\link{gtkPrintOperationSetUnit}} before starting the print operation
 to set up the transformation of the cairo context according to your
 needs.
@@ -318,7 +318,7 @@ needs.
 
 }
 \item{\code{end-print(operation, context, user.data)}}{
-Emitted after all pages have been rendered. 
+Emitted after all pages have been rendered.
 A handler for this signal can clean up any resources that have
 been allocated in the \verb{"begin-print"} handler.
   Since 2.10
@@ -332,8 +332,8 @@ been allocated in the \verb{"begin-print"} handler.
 
 }
 \item{\code{paginate(operation, context, user.data)}}{
-Emitted after the \verb{"begin-print"} signal, but before 
-the actual rendering starts. It keeps getting emitted until a connected 
+Emitted after the \verb{"begin-print"} signal, but before
+the actual rendering starts. It keeps getting emitted until a connected
 signal handler returns \code{TRUE}.
   
 The ::paginate signal is intended to be used for paginating a document
@@ -359,7 +359,7 @@ from there.
 \item{\code{preview(operation, preview, context, parent, user.data)}}{
 Gets emitted when a preview is requested from the native dialog.
   
-The default handler for this signal uses an external viewer 
+The default handler for this signal uses an external viewer
 application to preview.
   
 To implement a custom print preview, an application must return
@@ -367,8 +367,8 @@ To implement a custom print preview, an application must return
 provided \code{context} for the preview implementation, it must be
 given a suitable cairo context with \code{\link{gtkPrintContextSetCairoContext}}.
   
-The custom preview implementation can use 
-\code{\link{gtkPrintOperationPreviewIsSelected}} and 
+The custom preview implementation can use
+\code{\link{gtkPrintOperationPreviewIsSelected}} and
 \code{\link{gtkPrintOperationPreviewRenderPage}} to find pages which
 are selected for print and render them. The preview must be
 finished by calling \code{\link{gtkPrintOperationPreviewEndPreview}}
@@ -388,7 +388,7 @@ finished by calling \code{\link{gtkPrintOperationPreviewEndPreview}}
 }
 \item{\code{request-page-setup(operation, context, page.nr, setup, user.data)}}{
 Emitted once for every page that is printed, to give
-the application a chance to modify the page setup. Any changes 
+the application a chance to modify the page setup. Any changes
 done to \code{setup} will be in force only for printing this page.
   Since 2.10
 
@@ -434,7 +434,7 @@ itself according to this change.
 }
 \item{\code{got-page-size(preview, context, page.setup, user.data)}}{
 The ::got-page-size signal is emitted once for each page
-that gets rendered to the preview. 
+that gets rendered to the preview.
   
 A handler for this signal should update the \code{context}
 according to \code{page.setup} and set up a suitable cairo
@@ -474,8 +474,8 @@ will return \code{GTK_PRINT_OPERATION_RESULT_IN_PROGRESS} as the status, and
 emit the \verb{"done"} signal when the operation is actually
 done.
   
-The Windows port does not support asynchronous operation at all (this 
-is unlikely to change). On other platforms, all actions except for 
+The Windows port does not support asynchronous operation at all (this
+is unlikely to change). On other platforms, all actions except for
 \code{GTK_PRINT_OPERATION_ACTION_EXPORT} support asynchronous operation.
   Default value: FALSE  Since 2.10
 
@@ -484,7 +484,7 @@ is unlikely to change). On other platforms, all actions except for
 
 The current page in the document.
   
-If this is set before \code{\link{gtkPrintOperationRun}}, 
+If this is set before \code{\link{gtkPrintOperationRun}},
 the user will be able to select to print only the current page.
   
 Note that this only makes sense for pre-paginated documents.
@@ -518,14 +518,14 @@ If \code{TRUE}, page size combo box and orientation combo box are embedded into 
 }
 \item{\verb{export-filename} [character : *                : Read / Write]}{
 
-The name of a file to generate instead of showing the print dialog. 
+The name of a file to generate instead of showing the print dialog.
 Currently, PDF is the only supported format.
   
-The intended use of this property is for implementing 
+The intended use of this property is for implementing
 "Export to PDF" actions.
   
 "Print to PDF" support is independent of this and is done
-by letting the user pick the "Print to PDF" item from the 
+by letting the user pick the "Print to PDF" item from the
 list of printers in the print dialog.
   Default value: NULL  Since 2.10
 
@@ -540,26 +540,26 @@ This is typically used to make a "Selection" button sensitive.
 }
 \item{\verb{job-name} [character : *                : Read / Write]}{
 
-A string used to identify the job (e.g. in monitoring 
-applications like eggcups). 
+A string used to identify the job (e.g. in monitoring
+applications like eggcups).
   
-If you don't set a job name, GTK+ picks a default one 
+If you don't set a job name, GTK+ picks a default one
 by numbering successive print jobs.
   Default value: ""  Since 2.10
 
 }
 \item{\verb{n-pages} [integer : Read / Write]}{
 
-The number of pages in the document. 
+The number of pages in the document.
   
 This \emph{must} be set to a positive number
-before the rendering starts. It may be set in a 
+before the rendering starts. It may be set in a
 \verb{"begin-print"} signal hander.
   
-Note that the page numbers passed to the 
-\verb{"request-page-setup"} and 
-\verb{"draw-page"} signals are 0-based, i.e. if 
-the user chooses to print all pages, the last ::draw-page signal 
+Note that the page numbers passed to the
+\verb{"request-page-setup"} and
+\verb{"draw-page"} signals are 0-based, i.e. if
+the user chooses to print all pages, the last ::draw-page signal
 will be for page \code{n.pages} - 1.
   Allowed values: >= -1  Default value: -1  Since 2.10
 
@@ -582,15 +582,15 @@ This is typically used to track the progress of print operation.
 
 The \code{\link{GtkPrintSettings}} used for initializing the dialog.
   
-Setting this property is typically used to re-establish 
-print settings from a previous print operation, see 
+Setting this property is typically used to re-establish
+print settings from a previous print operation, see
 \code{\link{gtkPrintOperationRun}}.
   Since 2.10
 
 }
 \item{\verb{show-progress} [logical : Read / Write]}{
 
-Determines whether to show a progress dialog during the 
+Determines whether to show a progress dialog during the
 print operation.
   Default value: FALSE  Since 2.10
 
@@ -603,11 +603,11 @@ The status of the print operation.
 }
 \item{\verb{status-string} [character : *                : Read]}{
 
-A string representation of the status of the print operation. 
-The string is translated and suitable for displaying the print 
+A string representation of the status of the print operation.
+The string is translated and suitable for displaying the print
 status e.g. in a \code{\link{GtkStatusbar}}.
   
-See the \verb{"status"} property for a status value that 
+See the \verb{"status"} property for a status value that
 is suitable for programmatic use.
   Default value: ""  Since 2.10
 
@@ -621,11 +621,11 @@ This allows the print dialog to show a "Selection" button.
 }
 \item{\verb{track-print-status} [logical : Read / Write]}{
 
-If \code{TRUE}, the print operation will try to continue report on 
-the status of the print job in the printer queues and printer. 
-This can allow your application to show things like "out of paper" 
-issues, and when the print job actually reaches the printer. 
-However, this is often implemented using polling, and should 
+If \code{TRUE}, the print operation will try to continue report on
+the status of the print job in the printer queues and printer.
+This can allow your application to show things like "out of paper"
+issues, and when the print job actually reaches the printer.
+However, this is often implemented using polling, and should
 not be enabled unless needed.
   Default value: FALSE  Since 2.10
 
@@ -633,18 +633,18 @@ not be enabled unless needed.
 \item{\verb{unit} [\code{\link{GtkUnit}} : Read / Write]}{
 
 The transformation for the cairo context obtained from
-\code{\link{GtkPrintContext}} is set up in such a way that distances 
+\code{\link{GtkPrintContext}} is set up in such a way that distances
 are measured in units of \code{unit}.
   Default value: GTK_UNIT_PIXEL  Since 2.10
 
 }
 \item{\verb{use-full-page} [logical : Read / Write]}{
 
-If \code{TRUE}, the transformation for the cairo context obtained 
-from \code{\link{GtkPrintContext}} puts the origin at the top left corner 
-of the page (which may not be the top left corner of the sheet, 
-depending on page orientation and the number of pages per sheet). 
-Otherwise, the origin is at the top left corner of the imageable 
+If \code{TRUE}, the transformation for the cairo context obtained
+from \code{\link{GtkPrintContext}} puts the origin at the top left corner
+of the page (which may not be the top left corner of the sheet,
+depending on page orientation and the number of pages per sheet).
+Otherwise, the origin is at the top left corner of the imageable
 area (i.e. inside the margins).
   Default value: FALSE  Since 2.10
 

@@ -19,11 +19,11 @@ characters.
   Since 2.6}
 \value{
 A list containing the following elements:
-\item{\verb{iter}}{a \code{\link{GtkTextIter}}}
+\item{\verb{iter}}{a \code{\link{GtkTextIter}}. \emph{[  \acronym{out}  ]}}
 \item{\verb{trailing}}{if non-\code{NULL}, location to store an integer indicating where
 in the grapheme the user clicked. It will either be
 zero, or the number of characters in the grapheme.
-0 represents the trailing edge of the grapheme.}
+0 represents the trailing edge of the grapheme. \emph{[  \acronym{out}  ][  \acronym{allow-none}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

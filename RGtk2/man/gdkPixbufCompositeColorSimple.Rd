@@ -4,7 +4,8 @@
 \description{Creates a new \code{\link{GdkPixbuf}} by scaling \code{src} to \code{dest.width} x
 \code{dest.height} and compositing the result with a checkboard of colors
 \code{color1} and \code{color2}.}
-\usage{gdkPixbufCompositeColorSimple(object, dest.width, dest.height, interp.type, overall.alpha, check.size, color1, color2)}
+\usage{gdkPixbufCompositeColorSimple(object, dest.width, dest.height, 
+    interp.type, overall.alpha, check.size, color1, color2)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkPixbuf}}}
 \item{\verb{dest.width}}{the width of destination image}

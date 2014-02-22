@@ -2,7 +2,8 @@
 \name{gSocketListenerAcceptAsync}
 \title{gSocketListenerAcceptAsync}
 \description{This is the asynchronous version of \code{\link{gSocketListenerAccept}}.}
-\usage{gSocketListenerAcceptAsync(object, cancellable = NULL, callback, user.data = NULL)}
+\usage{gSocketListenerAcceptAsync(object, cancellable = NULL, callback, 
+    user.data = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GSocketListener}}}
 \item{\verb{cancellable}}{a \code{\link{GCancellable}}, or \code{NULL}}

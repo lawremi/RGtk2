@@ -2,7 +2,8 @@
 \name{gtkPaintExtension}
 \title{gtkPaintExtension}
 \description{Draws an extension, i.e. a notebook tab.}
-\usage{gtkPaintExtension(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height, gap.side)}
+\usage{gtkPaintExtension(object, window, state.type, shadow.type, area = NULL, 
+    widget = NULL, detail = NULL, x, y, width, height, gap.side)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkStyle}}}
 \item{\verb{window}}{a \code{\link{GdkWindow}}}

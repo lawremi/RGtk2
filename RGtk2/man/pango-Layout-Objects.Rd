@@ -89,20 +89,8 @@
 \code{\link{pangoLayoutLineGetXRanges}(object, start.index, end.index)}\cr
 \code{pangoLayout(context)}
 }
-\section{Hierarchy}{\preformatted{
-GObject
-   +----PangoLayout
-GBoxed
-   +----PangoLayoutIter
-GEnum
-   +----PangoWrapMode
-GEnum
-   +----PangoEllipsizeMode
-GEnum
-   +----PangoAlignment
-GBoxed
-   +----PangoLayoutLine
-}}
+\section{Hierarchy}{\preformatted{GObject
+   +----PangoLayout}}
 \section{Detailed Description}{While complete access to the layout capabilities of Pango is provided
 using the detailed interfaces for itemization and shaping, using
 that functionality directly involves writing a fairly large amount
@@ -147,12 +135,12 @@ Routines for rendering PangoLayout objects are provided in
 code specific to each rendering system.
 
 \describe{
-\item{\verb{layout}}{[\code{\link{PangoLayout}}] }
-\item{\verb{startIndex}}{[integer] }
-\item{\verb{length}}{[integer] }
-\item{\verb{runs}}{[list] }
-\item{\verb{isParagraphStart}}{[numeric] }
-\item{\verb{resolvedDir}}{[numeric] }
+\item{\verb{layout}}{[\code{\link{PangoLayout}}] the parent layout for this line}
+\item{\verb{startIndex}}{[integer] the start of the line as byte index into \code{layout->text}}
+\item{\verb{length}}{[integer] the length of the line in bytes}
+\item{\verb{runs}}{[list] a list containing the runs of the line in visual order}
+\item{\verb{isParagraphStart}}{[numeric] %TRUE if this is the first line of the paragraph}
+\item{\verb{resolvedDir}}{[numeric] the resolved \code{\link{PangoDirection}} of the line}
 }
 
 }
@@ -173,13 +161,13 @@ The \code{\link{PangoEllipsizeMode}} type describes what sort of (if any)
 ellipsization should be applied to a line of text. In
 the ellipsization process characters are removed from the
 text in order to make it fit to a given width and replaced
-with an ellipsis.
+with an ellipsis.  
 
 \describe{
-\item{\verb{none}}{No ellipsization}
-\item{\verb{start}}{Omit characters at the start of the text}
-\item{\verb{middle}}{Omit characters in the middle of the text}
-\item{\verb{end}}{Omit characters at the end of the text}
+\item{\verb{none}}{ No ellipsization}
+\item{\verb{start}}{ Omit characters at the start of the text}
+\item{\verb{middle}}{ Omit characters in the middle of the text}
+\item{\verb{end}}{ Omit characters at the end of the text}
 }
 
 }

@@ -4,7 +4,9 @@
 \description{Draws a shadow around the given rectangle in \code{window} 
 using the given style and state and shadow type, leaving a 
 gap in one side.}
-\usage{gtkPaintShadowGap(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height, gap.side, gap.x, gap.width)}
+\usage{gtkPaintShadowGap(object, window, state.type, shadow.type, area = NULL, 
+    widget = NULL, detail = NULL, x, y, width, height, gap.side, 
+    gap.x, gap.width)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkStyle}}}
 \item{\verb{window}}{a \code{\link{GdkWindow}}}

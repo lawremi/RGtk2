@@ -5,7 +5,8 @@
 window in the rectangle specified by \code{src.x}, \code{src.y},
 \code{width} and \code{height} is also drawn into \code{drawable} at
 \code{dest.x}, \code{dest.y}.}
-\usage{gdkWindowRedirectToDrawable(object, drawable, src.x, src.y, dest.x, dest.y, width, height)}
+\usage{gdkWindowRedirectToDrawable(object, drawable, src.x, src.y, dest.x, 
+    dest.y, width, height)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkWindow}}}
 \item{\verb{drawable}}{a \code{\link{GdkDrawable}}}

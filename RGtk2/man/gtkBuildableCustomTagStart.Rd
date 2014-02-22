@@ -2,7 +2,8 @@
 \name{gtkBuildableCustomTagStart}
 \title{gtkBuildableCustomTagStart}
 \description{This is called for each unknown element under <child>.}
-\usage{gtkBuildableCustomTagStart(object, builder, child, tagname, parser, data)}
+\usage{gtkBuildableCustomTagStart(object, builder, child, tagname, parser, 
+    data)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkBuildable}}}
 \item{\verb{builder}}{a \code{\link{GtkBuilder}} used to construct this object}

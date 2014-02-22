@@ -3,7 +3,8 @@
 \title{gtkTextBufferSerialize}
 \description{This function serializes the portion of text between \code{start}
 and \code{end} in the rich text format represented by \code{format}.}
-\usage{gtkTextBufferSerialize(object, content.buffer, format, start, end)}
+\usage{gtkTextBufferSerialize(object, content.buffer, format, start, 
+    end)}
 \arguments{
 \item{\verb{object}}{the \code{\link{GtkTextBuffer}} \code{format} is registered with}
 \item{\verb{content.buffer}}{the \code{\link{GtkTextBuffer}} to serialize}

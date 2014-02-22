@@ -6,13 +6,13 @@ fonts. For scalable fonts, stores \code{NULL} at the location pointed to by
 \code{sizes} and 0 at the location pointed to by \code{n.sizes}. The sizes returned
 are in Pango units and are sorted in ascending order.}
 \usage{pangoFontFaceListSizes(object)}
-\arguments{\item{\verb{object}}{a \code{\link{PangoFontFace}}.}}
-\details{Since 1.4}
+\arguments{\item{\verb{object}}{[\code{\link{PangoFontFace}}]  a \code{\link{PangoFontFace}}.}}
+\details{  Since 1.4}
 \value{
 A list containing the following elements:
-\item{\verb{sizes}}{location to store a pointer to a list of int. This list
-should be freed with \code{gFree()}.}
-\item{\verb{n.sizes}}{location to store the number of elements in \code{sizes}}
+\item{\verb{sizes}}{[integer]  location to store a pointer to a list of int. This list
+        should be freed with \code{gFree()}.}
+\item{\verb{n.sizes}}{[integer]  location to store the number of elements in \code{sizes}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -7,7 +7,8 @@ attributes (normally using data from the model). See also
 \code{\link{gtkTreeViewColumnSetCellDataFunc}}, \code{\link{gtkTreeViewColumnPackStart}}.
 If \code{tree.view} has "fixed_height" mode enabled, then the new column will have its
 "sizing" property set to be GTK_TREE_VIEW_COLUMN_FIXED.}
-\usage{gtkTreeViewInsertColumnWithDataFunc(object, position, title, cell, func, data = NULL)}
+\usage{gtkTreeViewInsertColumnWithDataFunc(object, position, title, 
+    cell, func, data = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkTreeView}}}
 \item{\verb{position}}{Position to insert, -1 for append}

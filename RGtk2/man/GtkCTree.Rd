@@ -163,6 +163,15 @@ GTK_CTREE_POS_AS_CHILD \tab As a child of the specified node. \cr
 GTK_CTREE_POS_AFTER \tab As a sibling, after the specified node. \cr
 }
 
+\describe{
+\item{\verb{before}}{\emph{undocumented
+}}
+\item{\verb{as-child}}{\emph{undocumented
+}}
+\item{\verb{after}}{\emph{undocumented
+}}
+}
+
 }
 \item{\verb{GtkCTreeLineStyle}}{
 \strong{WARNING: \code{GtkCTreeLineStyle} is deprecated and should not be used in newly-written code.}
@@ -172,6 +181,17 @@ GTK_CTREE_LINES_NONE \tab No lines. \cr
 GTK_CTREE_LINES_SOLID \tab Solid lines. \cr
 GTK_CTREE_LINES_DOTTED \tab Dotted lines. \cr
 GTK_CTREE_LINES_TABBED \tab FIXME. \cr
+}
+
+\describe{
+\item{\verb{none}}{\emph{undocumented
+}}
+\item{\verb{solid}}{\emph{undocumented
+}}
+\item{\verb{dotted}}{\emph{undocumented
+}}
+\item{\verb{tabbed}}{\emph{undocumented
+}}
 }
 
 }
@@ -186,6 +206,17 @@ GTK_CTREE_EXPANDER_TRIANGLE \tab Triangular expanders. \cr
 GTK_CTREE_EXPANDER_CIRCULAR \tab Round expanders. \cr
 }
 
+\describe{
+\item{\verb{none}}{\emph{undocumented
+}}
+\item{\verb{square}}{\emph{undocumented
+}}
+\item{\verb{triangle}}{\emph{undocumented
+}}
+\item{\verb{circular}}{\emph{undocumented
+}}
+}
+
 }
 \item{\verb{GtkCTreeExpansionType}}{
 \strong{WARNING: \code{GtkCTreeExpansionType} is deprecated and should not be used in newly-written code.}
@@ -197,6 +228,21 @@ GTK_CTREE_EXPANSION_COLLAPSE \tab Collapse this node. \cr
 GTK_CTREE_EXPANSION_COLLAPSE_RECURSIVE \tab Collapse this node and everything below it in the hierarchy. \cr
 GTK_CTREE_EXPANSION_TOGGLE \tab Toggle this node (i.e. expand if collapsed and vice versa). \cr
 GTK_CTREE_EXPANSION_TOGGLE_RECURSIVE \tab Toggle this node and everything below it in the hierarchy. \cr
+}
+
+\describe{
+\item{\verb{expand}}{\emph{undocumented
+}}
+\item{\verb{expand-recursive}}{\emph{undocumented
+}}
+\item{\verb{collapse}}{\emph{undocumented
+}}
+\item{\verb{collapse-recursive}}{\emph{undocumented
+}}
+\item{\verb{toggle}}{\emph{undocumented
+}}
+\item{\verb{toggle-recursive}}{\emph{undocumented
+}}
 }
 
 }

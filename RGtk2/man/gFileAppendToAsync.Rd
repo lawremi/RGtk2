@@ -2,7 +2,8 @@
 \name{gFileAppendToAsync}
 \title{gFileAppendToAsync}
 \description{Asynchronously opens \code{file} for appending.}
-\usage{gFileAppendToAsync(object, flags = "G_FILE_CREATE_NONE", io.priority = 0, cancellable = NULL, callback, user.data = NULL)}
+\usage{gFileAppendToAsync(object, flags = "G_FILE_CREATE_NONE", io.priority = 0, 
+    cancellable = NULL, callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{flags}}{a set of \code{\link{GFileCreateFlags}}.}

@@ -4,7 +4,8 @@
 \description{Returns an output stream for overwriting the file in readwrite mode,
 possibly creating a backup copy of the file first. If the file doesn't
 exist, it will be created.}
-\usage{gFileReplaceReadwrite(object, etag, make.backup, flags, cancellable = NULL, .errwarn = TRUE)}
+\usage{gFileReplaceReadwrite(object, etag, make.backup, flags, cancellable = NULL, 
+    .errwarn = TRUE)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GFile}}}
 \item{\verb{etag}}{an optional entity tag for the

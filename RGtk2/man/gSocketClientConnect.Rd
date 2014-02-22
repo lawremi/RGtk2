@@ -2,7 +2,8 @@
 \name{gSocketClientConnect}
 \title{gSocketClientConnect}
 \description{Tries to resolve the \code{connectable} and make a network connection to it..}
-\usage{gSocketClientConnect(object, connectable, cancellable = NULL, .errwarn = TRUE)}
+\usage{gSocketClientConnect(object, connectable, cancellable = NULL, 
+    .errwarn = TRUE)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GSocketClient}}.}
 \item{\verb{connectable}}{a \code{\link{GSocketConnectable}} specifying the remote address.}

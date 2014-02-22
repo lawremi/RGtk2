@@ -123,21 +123,21 @@ The secondary text of the message dialog.
 }
 \item{\verb{secondary-use-markup} [logical : Read / Write]}{
 
-\code{TRUE} if the secondary text of the dialog includes Pango markup. 
+\code{TRUE} if the secondary text of the dialog includes Pango markup.
 See \code{\link{pangoParseMarkup}}.
   Default value: FALSE  Since 2.10
 
 }
 \item{\verb{text} [character : *                : Read / Write]}{
 
-The primary text of the message dialog. If the dialog has 
+The primary text of the message dialog. If the dialog has
 a secondary text, this will appear as the title.
   Default value: ""  Since 2.10
 
 }
 \item{\verb{use-markup} [logical : Read / Write]}{
 
-\code{TRUE} if the primary text of the dialog includes Pango markup. 
+\code{TRUE} if the primary text of the dialog includes Pango markup.
 See \code{\link{pangoParseMarkup}}.
   Default value: FALSE  Since 2.10
 

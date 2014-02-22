@@ -9,12 +9,12 @@ form '#rgb' '#rrggbb' '#rrrgggbbb' or '#rrrrggggbbbb' where
 components of the color, respectively. (White in the four
 forms is '#fff' '#ffffff' '#fffffffff' and '#ffffffffffff')}
 \usage{pangoColorParse(spec)}
-\arguments{\item{\verb{spec}}{a string specifying the new color}}
+\arguments{\item{\verb{spec}}{[char]  a string specifying the new color}}
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if parsing of the specifier succeeded,
-otherwise false.}
-\item{\verb{color}}{a \code{\link{PangoColor}} structure in which to store the result, or \code{NULL}}
+  otherwise false.}
+\item{\verb{color}}{[\code{\link{PangoColor}}]  a \code{\link{PangoColor}} structure in which to store the result, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

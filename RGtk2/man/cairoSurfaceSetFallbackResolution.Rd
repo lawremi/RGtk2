@@ -2,7 +2,8 @@
 \name{cairoSurfaceSetFallbackResolution}
 \title{cairoSurfaceSetFallbackResolution}
 \description{Set the horizontal and vertical resolution for image fallbacks.}
-\usage{cairoSurfaceSetFallbackResolution(surface, x.pixels.per.inch, y.pixels.per.inch)}
+\usage{cairoSurfaceSetFallbackResolution(surface, x.pixels.per.inch, 
+    y.pixels.per.inch)}
 \arguments{
 \item{\verb{surface}}{[\code{\link{CairoSurface}}]  a \code{\link{CairoSurface}}}
 \item{\verb{x.pixels.per.inch}}{[numeric]  horizontal setting for pixels per inch}

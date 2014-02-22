@@ -4,7 +4,8 @@
 \description{Sets various attributes of how lines are drawn. See
 the corresponding members of \code{\link{GdkGCValues}} for full
 explanations of the arguments.}
-\usage{gdkGCSetLineAttributes(object, line.width, line.style, cap.style, join.style)}
+\usage{gdkGCSetLineAttributes(object, line.width, line.style, cap.style, 
+    join.style)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkGC}}.}
 \item{\verb{line.width}}{the width of lines.}

@@ -5,7 +5,8 @@
 Draws a handle as used in \code{\link{GtkHandleBox}} and \code{\link{GtkPaned}}.
 \strong{WARNING: \code{gtk_draw_handle} has been deprecated since version 2.0 and should not be used in newly-written code. Use \code{\link{gtkPaintHandle}} instead.}
 }
-\usage{gtkDrawHandle(object, window, state.type, shadow.type, x, y, width, height, orientation)}
+\usage{gtkDrawHandle(object, window, state.type, shadow.type, x, y, 
+    width, height, orientation)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkStyle}}}
 \item{\verb{window}}{a \code{\link{GdkWindow}}}

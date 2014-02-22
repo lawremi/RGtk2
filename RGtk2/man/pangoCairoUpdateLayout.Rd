@@ -6,9 +6,9 @@
 and target surface of a Cairo context.}
 \usage{pangoCairoUpdateLayout(cr, layout)}
 \arguments{
-\item{\verb{cr}}{a Cairo context}
-\item{\verb{layout}}{a \code{\link{PangoLayout}}, from \code{\link{pangoCairoCreateLayout}}}
+\item{\verb{cr}}{[\code{\link{Cairo}}]  a Cairo context}
+\item{\verb{layout}}{[\code{\link{PangoLayout}}]  a \code{\link{PangoLayout}}, from \code{\link{pangoCairoCreateLayout}}}
 }
-\details{Since 1.10}
+\details{  Since 1.10}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

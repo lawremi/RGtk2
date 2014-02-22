@@ -3,7 +3,8 @@
 \title{gtkPaintShadow}
 \description{Draws a shadow around the given rectangle in \code{window} 
 using the given style and state and shadow type.}
-\usage{gtkPaintShadow(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height)}
+\usage{gtkPaintShadow(object, window, state.type, shadow.type, area = NULL, 
+    widget = NULL, detail = NULL, x, y, width, height)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkStyle}}}
 \item{\verb{window}}{a \code{\link{GdkWindow}}}

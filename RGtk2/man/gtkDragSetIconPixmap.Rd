@@ -11,7 +11,7 @@ will be more convenient to use.}
 with a  context for the source side of a drag)}
 \item{\verb{colormap}}{the colormap of the icon}
 \item{\verb{pixmap}}{the image data for the icon}
-\item{\verb{mask}}{the transparency mask for the icon}
+\item{\verb{mask}}{the transparency mask for the icon or \code{NULL} for none. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{hot.x}}{the X offset within \code{pixmap} of the hotspot.}
 \item{\verb{hot.y}}{the Y offset within \code{pixmap} of the hotspot.}
 }

@@ -5,7 +5,8 @@
 related to it. When the operation is finished \code{callback} will be
 called. You can then call \code{\link{gIOStreamCloseFinish}} to get
 the result of the operation.}
-\usage{gIOStreamCloseAsync(object, io.priority, cancellable = NULL, callback, user.data = NULL)}
+\usage{gIOStreamCloseAsync(object, io.priority, cancellable = NULL, 
+    callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GIOStream}}}
 \item{\verb{io.priority}}{the io priority of the request}

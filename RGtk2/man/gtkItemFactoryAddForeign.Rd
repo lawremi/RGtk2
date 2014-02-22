@@ -9,7 +9,8 @@ the ::activate signal to be emitted if the accelerator is activated.
 use \code{\link{gtkItemFactoryAddForeign}} in new code, since it is likely to
 be removed in the future.}
 }
-\usage{gtkItemFactoryAddForeign(accel.widget, full.path, accel.group, keyval, modifiers)}
+\usage{gtkItemFactoryAddForeign(accel.widget, full.path, accel.group, 
+    keyval, modifiers)}
 \arguments{
 \item{\verb{accel.widget}}{widget to install an accelerator on}
 \item{\verb{full.path}}{the full path for the \code{accel.widget}}

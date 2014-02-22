@@ -3,7 +3,8 @@
 \title{gdkDragFindWindowForScreen}
 \description{Finds the destination window and DND protocol to use at the
 given pointer position.}
-\usage{gdkDragFindWindowForScreen(object, drag.window, screen, x.root, y.root)}
+\usage{gdkDragFindWindowForScreen(object, drag.window, screen, x.root, 
+    y.root)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkDragContext}}}
 \item{\verb{drag.window}}{a window which may be at the pointer position, but

@@ -128,7 +128,7 @@ multiple views.
 \section{Signals}{\describe{
 \item{\code{backspace(text.view, user.data)}}{
 The ::backspace signal is a
-keybinding signal 
+keybinding signal
 which gets emitted when the user asks for it.
   
 The default bindings for this signal are
@@ -142,8 +142,8 @@ Backspace and Shift-Backspace.
 
 }
 \item{\code{copy-clipboard(text.view, user.data)}}{
-The ::copy-clipboard signal is a 
-keybinding signal 
+The ::copy-clipboard signal is a
+keybinding signal
 which gets emitted to copy the selection to the clipboard.
   
 The default bindings for this signal are
@@ -157,8 +157,8 @@ Ctrl-c and Ctrl-Insert.
 
 }
 \item{\code{cut-clipboard(text.view, user.data)}}{
-The ::cut-clipboard signal is a 
-keybinding signal 
+The ::cut-clipboard signal is a
+keybinding signal
 which gets emitted to cut the selection to the clipboard.
   
 The default bindings for this signal are
@@ -172,8 +172,8 @@ Ctrl-x and Shift-Delete.
 
 }
 \item{\code{delete-from-cursor(text.view, type, count, user.data)}}{
-The ::delete-from-cursor signal is a 
-keybinding signal 
+The ::delete-from-cursor signal is a
+keybinding signal
 which gets emitted when the user initiates a text deletion.
   
 If the \code{type} is \code{GTK_DELETE_CHARS}, GTK+ deletes the selection
@@ -181,8 +181,8 @@ if there is one, otherwise it deletes the requested number
 of characters.
   
 The default bindings for this signal are
-Delete for deleting a character, Ctrl-Delete for 
-deleting a word and Ctrl-Backspace for deleting a word 
+Delete for deleting a character, Ctrl-Delete for
+deleting a word and Ctrl-Backspace for deleting a word
 backwords.
 
 \describe{
@@ -197,7 +197,7 @@ backwords.
 \item{\code{insert-at-cursor(text.view, string, user.data)}}{
 The ::insert-at-cursor signal is a
 keybinding signal
-which gets emitted when the user initiates the insertion of a 
+which gets emitted when the user initiates the insertion of a
 fixed string at the cursor.
   
 This signal has no default bindings.
@@ -211,13 +211,13 @@ This signal has no default bindings.
 
 }
 \item{\code{move-cursor(text.view, step, count, extend.selection, user.data)}}{
-The ::move-cursor signal is a 
-keybinding signal 
-which gets emitted when the user initiates a cursor movement. 
+The ::move-cursor signal is a
+keybinding signal
+which gets emitted when the user initiates a cursor movement.
 If the cursor is not visible in \code{text.view}, this signal causes
 the viewport to be moved instead.
   
-Applications should not connect to it, but may emit it with 
+Applications should not connect to it, but may emit it with
 \code{gSignalEmitByName()} if they need to control the cursor
 programmatically.
   
@@ -244,8 +244,8 @@ There are too many key combinations to list them all here.
 
 }
 \item{\code{move-viewport(text.view, step, count, user.data)}}{
-The ::move-viewport signal is a 
-keybinding signal 
+The ::move-viewport signal is a
+keybinding signal
 which can be bound to key combinations to allow the user
 to move the viewport, i.e. change what part of the text view
 is visible in a containing scrolled window.
@@ -262,10 +262,10 @@ There are no default bindings for this signal.
 
 }
 \item{\code{page-horizontally(text.view, count, extend.selection, user.data)}}{
-The ::page-horizontally signal is a 
-keybinding signal 
+The ::page-horizontally signal is a
+keybinding signal
 which can be bound to key combinations to allow the user
-to initiate horizontal cursor movement by pages.  
+to initiate horizontal cursor movement by pages.
   
 This signal should not be used anymore, instead use the
 \verb{"move-cursor"} signal with the \verb{GTK_MOVEMENT_HORIZONTAL_PAGES}
@@ -281,9 +281,9 @@ granularity.
 
 }
 \item{\code{paste-clipboard(text.view, user.data)}}{
-The ::paste-clipboard signal is a 
-keybinding signal 
-which gets emitted to paste the contents of the clipboard 
+The ::paste-clipboard signal is a
+keybinding signal
+which gets emitted to paste the contents of the clipboard
 into the text view.
   
 The default bindings for this signal are
@@ -297,7 +297,7 @@ Ctrl-v and Shift-Insert.
 
 }
 \item{\code{populate-popup(entry, menu, user.data)}}{
-The ::populate-popup signal gets emitted before showing the 
+The ::populate-popup signal gets emitted before showing the
 context menu of the text view.
   
 If you need to add items to the context menu, connect
@@ -329,12 +329,12 @@ is actually editable.
 
 }
 \item{\code{select-all(text.view, select, user.data)}}{
-The ::select-all signal is a 
-keybinding signal 
+The ::select-all signal is a
+keybinding signal
 which gets emitted to select or unselect the complete
 contents of the text view.
   
-The default bindings for this signal are Ctrl-a and Ctrl-/ 
+The default bindings for this signal are Ctrl-a and Ctrl-/
 for selecting and Shift-Ctrl-a and Ctrl-\\ for unselecting.
 
 \describe{
@@ -348,7 +348,7 @@ for selecting and Shift-Ctrl-a and Ctrl-\\ for unselecting.
 \item{\code{set-anchor(text.view, user.data)}}{
 The ::set-anchor signal is a
 keybinding signal
-which gets emitted when the user initiates setting the "anchor" 
+which gets emitted when the user initiates setting the "anchor"
 mark. The "anchor" mark gets placed at the same position as the
 "insert" mark.
   
@@ -375,8 +375,8 @@ of \code{\link{GtkScrollbar}} to the scroll directions of the \code{\link{GtkTex
 
 }
 \item{\code{toggle-cursor-visible(text.view, user.data)}}{
-The ::toggle-cursor-visible signal is a 
-keybinding signal 
+The ::toggle-cursor-visible signal is a
+keybinding signal
 which gets emitted to toggle the visibility of the cursor.
   
 The default binding for this signal is F7.
@@ -389,8 +389,8 @@ The default binding for this signal is F7.
 
 }
 \item{\code{toggle-overwrite(text.view, user.data)}}{
-The ::toggle-overwrite signal is a 
-keybinding signal 
+The ::toggle-overwrite signal is a
+keybinding signal
 which gets emitted to toggle the overwrite mode of the text view.
   
 The default bindings for this signal is Insert.
@@ -430,7 +430,7 @@ Which IM (input method) module should be used for this entry.
 See \code{\link{GtkIMContext}}.
   
 Setting this to a non-\code{NULL} value overrides the
-system-wide IM module setting. See the GtkSettings 
+system-wide IM module setting. See the GtkSettings
 \verb{"gtk-im-module"} property.
   Default value: NULL  Since 2.16
 

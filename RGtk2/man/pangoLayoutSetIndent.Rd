@@ -7,10 +7,10 @@ have the full width, and subsequent lines will be indented by the
 absolute value of \code{indent}.}
 \usage{pangoLayoutSetIndent(object, indent)}
 \arguments{
-\item{\verb{object}}{a \code{\link{PangoLayout}}.}
-\item{\verb{indent}}{the amount by which to indent.}
+\item{\verb{object}}{[\code{\link{PangoLayout}}]  a \code{\link{PangoLayout}}.}
+\item{\verb{indent}}{[integer]  the amount by which to indent.}
 }
 \details{The indent setting is ignored if layout alignment is set to
-\code{PANGO_ALIGN_CENTER}.}
+\code{PANGO_ALIGN_CENTER}.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

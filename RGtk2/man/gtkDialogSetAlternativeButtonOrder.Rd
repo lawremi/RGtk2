@@ -8,7 +8,8 @@ response ids passed to this function.}
 \usage{gtkDialogSetAlternativeButtonOrder(object, ...)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkDialog}}}
-\item{\verb{...}}{a list of more response ids of \code{dialog}'s buttons, terminated by -1}
+\item{\verb{...}}{\emph{undocumented
+}}
 }
 \details{By default, GTK+ dialogs use the button order advocated by the Gnome 
 Human 

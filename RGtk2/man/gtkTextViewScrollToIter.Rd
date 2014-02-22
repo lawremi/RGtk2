@@ -8,7 +8,8 @@ If \code{use.align} is \code{FALSE}, the text scrolls the minimal distance to
 get the mark onscreen, possibly not scrolling at all. The effective 
 screen for purposes of this function is reduced by a margin of size 
 \code{within.margin}.}
-\usage{gtkTextViewScrollToIter(object, iter, within.margin, use.align = FALSE, xalign = 0.5, yalign = 0.5)}
+\usage{gtkTextViewScrollToIter(object, iter, within.margin, use.align = FALSE, 
+    xalign = 0.5, yalign = 0.5)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkTextView}}}
 \item{\verb{iter}}{a \code{\link{GtkTextIter}}}

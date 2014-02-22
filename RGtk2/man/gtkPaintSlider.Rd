@@ -3,7 +3,8 @@
 \title{gtkPaintSlider}
 \description{Draws a slider in the given rectangle on \code{window} using the
 given style and orientation.}
-\usage{gtkPaintSlider(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height, orientation)}
+\usage{gtkPaintSlider(object, window, state.type, shadow.type, area = NULL, 
+    widget = NULL, detail = NULL, x, y, width, height, orientation)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkStyle}}}
 \item{\verb{window}}{a \code{\link{GdkWindow}}}

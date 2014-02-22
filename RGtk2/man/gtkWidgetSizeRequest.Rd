@@ -18,7 +18,7 @@ a widget will actually be allocated.
 See also \code{\link{gtkWidgetGetChildRequisition}}.}
 \value{
 A list containing the following elements:
-\item{\verb{requisition}}{a \code{\link{GtkRequisition}} to be filled in}
+\item{\verb{requisition}}{a \code{\link{GtkRequisition}} to be filled in. \emph{[  \acronym{out}  ]}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

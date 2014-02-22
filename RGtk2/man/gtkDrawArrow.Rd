@@ -6,7 +6,8 @@ Draws an arrow in the given rectangle on \code{window} using the given
 parameters. \code{arrow.type} determines the direction of the arrow.
 \strong{WARNING: \code{gtk_draw_arrow} has been deprecated since version 2.0 and should not be used in newly-written code. Use \code{\link{gtkPaintArrow}} instead.}
 }
-\usage{gtkDrawArrow(object, window, state.type, shadow.type, arrow.type, fill, x, y, width, height)}
+\usage{gtkDrawArrow(object, window, state.type, shadow.type, arrow.type, 
+    fill, x, y, width, height)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkStyle}}}
 \item{\verb{window}}{a \code{\link{GdkWindow}}}

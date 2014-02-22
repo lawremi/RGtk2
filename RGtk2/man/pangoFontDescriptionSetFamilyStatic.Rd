@@ -9,8 +9,8 @@ or the name is set again. This function can be used if
 if \code{desc} is only needed temporarily.}
 \usage{pangoFontDescriptionSetFamilyStatic(object, family)}
 \arguments{
-\item{\verb{object}}{a \code{\link{PangoFontDescription}}}
-\item{\verb{family}}{a string representing the family name.}
+\item{\verb{object}}{[\code{\link{PangoFontDescription}}]  a \code{\link{PangoFontDescription}}}
+\item{\verb{family}}{[char]  a string representing the family name.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

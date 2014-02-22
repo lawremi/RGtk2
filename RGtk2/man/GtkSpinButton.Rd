@@ -109,6 +109,13 @@ GTK_UPDATE_ALWAYS \tab When refreshing your   \code{\link{GtkSpinButton}}  , the
 GTK_UPDATE_IF_VALID \tab When refreshing your   \code{\link{GtkSpinButton}}  , the value is only displayed if it is valid within the bounds of the spin button's   \code{\link{GtkAdjustment}}  . \cr
 }
 
+\describe{
+\item{\verb{always}}{\emph{undocumented
+}}
+\item{\verb{if-valid}}{\emph{undocumented
+}}
+}
+
 }
 \item{\verb{GtkSpinType}}{
 \tabular{ll}{
@@ -119,6 +126,23 @@ GTK_SPIN_PAGE_BACKWARD \tab These values spin a   \code{\link{GtkSpinButton}}   
 GTK_SPIN_HOME,
 GTK_SPIN_END \tab These set the spin button's value to the minimum or maxmimum possible values, (set by its   \code{\link{GtkAdjustment}}  ), respectively. \cr
 GTK_SPIN_USER_DEFINED \tab The programmer must specify the exact amount to spin the   \code{\link{GtkSpinButton}}  . \cr
+}
+
+\describe{
+\item{\verb{step-forward}}{\emph{undocumented
+}}
+\item{\verb{step-backward}}{\emph{undocumented
+}}
+\item{\verb{page-forward}}{\emph{undocumented
+}}
+\item{\verb{page-backward}}{\emph{undocumented
+}}
+\item{\verb{home}}{\emph{undocumented
+}}
+\item{\verb{end}}{\emph{undocumented
+}}
+\item{\verb{user-defined}}{\emph{undocumented
+}}
 }
 
 }
@@ -157,12 +181,13 @@ on_output (GtkSpinButton *spin,
    GtkAdjustment *adj;
    gchar *text;
    int value;
+
    adj = gtk_spin_button_get_adjustment (spin);
    value = (int)gtk_adjustment_get_value (adj);
    text = g_strdup_printf ("\%02d", value);
    gtk_entry_set_text (GTK_ENTRY (spin), text);
    g_free (text);
-   
+
    return TRUE;
 }
 }

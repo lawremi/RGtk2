@@ -3,7 +3,8 @@
 \title{gtkPaintCheck}
 \description{Draws a check button indicator in the given rectangle on \code{window} with 
 the given parameters.}
-\usage{gtkPaintCheck(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height)}
+\usage{gtkPaintCheck(object, window, state.type, shadow.type, area = NULL, 
+    widget = NULL, detail = NULL, x, y, width, height)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkStyle}}}
 \item{\verb{window}}{a \code{\link{GdkWindow}}}

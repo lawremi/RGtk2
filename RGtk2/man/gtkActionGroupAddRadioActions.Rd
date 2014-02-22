@@ -3,7 +3,8 @@
 \title{gtkActionGroupAddRadioActions}
 \description{This is a convenience routine to create a group of radio actions and
 add them to the action group. }
-\usage{gtkActionGroupAddRadioActions(object, entries, value, on.change = NULL, user.data = NULL)}
+\usage{gtkActionGroupAddRadioActions(object, entries, value, on.change = NULL, 
+    user.data = NULL)}
 \arguments{
 \item{\verb{object}}{the action group}
 \item{\verb{entries}}{a list of radio action descriptions}

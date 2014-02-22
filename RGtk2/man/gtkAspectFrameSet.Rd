@@ -2,7 +2,8 @@
 \name{gtkAspectFrameSet}
 \title{gtkAspectFrameSet}
 \description{Set parameters for an existing \code{\link{GtkAspectFrame}}.}
-\usage{gtkAspectFrameSet(object, xalign = 0, yalign = 0, ratio = 1, obey.child = 1)}
+\usage{gtkAspectFrameSet(object, xalign = 0, yalign = 0, ratio = 1, 
+    obey.child = 1)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkAspectFrame}}}
 \item{\verb{xalign}}{Horizontal alignment of the child within the allocation of

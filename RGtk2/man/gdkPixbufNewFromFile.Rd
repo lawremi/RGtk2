@@ -11,7 +11,7 @@ Possible errors are in the \verb{GDK_PIXBUF_ERROR} and \verb{G_FILE_ERROR} domai
 }
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GdkPixbuf}}]  A newly-created pixbuf with a reference count of 1, or \code{NULL} if
+\item{retval}{[\code{\link{GdkPixbuf}}] A newly-created pixbuf with a reference count of 1, or \code{NULL} if
 any of several error conditions occurred:  the file could not be opened,
 there was no loader for the file's format, there was not enough memory to
 allocate the image buffer, or the image file contained invalid data.}

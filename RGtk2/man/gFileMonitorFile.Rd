@@ -3,7 +3,8 @@
 \title{gFileMonitorFile}
 \description{Obtains a file monitor for the given file. If no file notification
 mechanism exists, then regular polling of the file is used.}
-\usage{gFileMonitorFile(object, flags = "G_FILE_MONITOR_NONE", cancellable = NULL, .errwarn = TRUE)}
+\usage{gFileMonitorFile(object, flags = "G_FILE_MONITOR_NONE", cancellable = NULL, 
+    .errwarn = TRUE)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{flags}}{a set of \code{\link{GFileMonitorFlags}}.}

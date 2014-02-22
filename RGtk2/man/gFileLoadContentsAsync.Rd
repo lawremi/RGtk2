@@ -2,7 +2,8 @@
 \name{gFileLoadContentsAsync}
 \title{gFileLoadContentsAsync}
 \description{Starts an asynchronous load of the \code{file}'s contents.}
-\usage{gFileLoadContentsAsync(object, cancellable = NULL, callback, user.data = NULL)}
+\usage{gFileLoadContentsAsync(object, cancellable = NULL, callback, 
+    user.data = NULL)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{cancellable}}{optional \code{\link{GCancellable}} object, \code{NULL} to ignore.}

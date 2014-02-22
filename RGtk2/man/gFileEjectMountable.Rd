@@ -8,7 +8,8 @@ When this operation has completed, \code{callback} will be called with
 \code{\link{gFileEjectMountableFinish}}.
 \strong{WARNING: \code{g_file_eject_mountable} has been deprecated since version 2.22 and should not be used in newly-written code. Use \code{\link{gFileEjectMountableWithOperation}} instead.}
 }
-\usage{gFileEjectMountable(object, flags = "G_MOUNT_UNMOUNT_NONE", cancellable = NULL, callback, user.data = NULL)}
+\usage{gFileEjectMountable(object, flags = "G_MOUNT_UNMOUNT_NONE", cancellable = NULL, 
+    callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{flags}}{flags affecting the operation}

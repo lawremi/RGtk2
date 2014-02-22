@@ -3,7 +3,8 @@
 \title{gtkPaintResizeGrip}
 \description{Draws a resize grip in the given rectangle on \code{window} using the given
 parameters.}
-\usage{gtkPaintResizeGrip(object, window, state.type, area = NULL, widget = NULL, detail = NULL, edge, x, y, width, height)}
+\usage{gtkPaintResizeGrip(object, window, state.type, area = NULL, widget = NULL, 
+    detail = NULL, edge, x, y, width, height)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkStyle}}}
 \item{\verb{window}}{a \code{\link{GdkWindow}}}

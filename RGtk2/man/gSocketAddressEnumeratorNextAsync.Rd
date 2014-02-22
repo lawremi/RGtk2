@@ -4,7 +4,8 @@
 \description{Asynchronously retrieves the next \code{\link{GSocketAddress}} from \code{enumerator}
 and then calls \code{callback}, which must call
 \code{\link{gSocketAddressEnumeratorNextFinish}} to get the result.}
-\usage{gSocketAddressEnumeratorNextAsync(object, cancellable = NULL, callback, user.data = NULL)}
+\usage{gSocketAddressEnumeratorNextAsync(object, cancellable = NULL, 
+    callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GSocketAddressEnumerator}}}
 \item{\verb{cancellable}}{optional \code{\link{GCancellable}} object, \code{NULL} to ignore.}

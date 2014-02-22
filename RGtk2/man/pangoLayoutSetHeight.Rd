@@ -6,9 +6,9 @@ are two different behaviors, based on whether \code{height} is positive or
 negative.}
 \usage{pangoLayoutSetHeight(object, height)}
 \arguments{
-\item{\verb{object}}{a \code{\link{PangoLayout}}.}
-\item{\verb{height}}{the desired height of the layout in Pango units if positive,
-or desired number of lines if negative.}
+\item{\verb{object}}{[\code{\link{PangoLayout}}]  a \code{\link{PangoLayout}}.}
+\item{\verb{height}}{[integer]  the desired height of the layout in Pango units if positive,
+         or desired number of lines if negative.}
 }
 \details{If \code{height} is positive, it will be the maximum height of the layout.  Only
 lines would be shown that would fit, and if there is any text omitted,
@@ -28,7 +28,7 @@ Height setting only has effect if a positive width is set on
 \code{layout} and ellipsization mode of \code{layout} is not \code{PANGO_ELLIPSIZE_NONE}.
 The behavior is undefined if a height other than -1 is set and
 ellipsization mode is set to \code{PANGO_ELLIPSIZE_NONE}, and may change in the
-future.
+future.  
   Since 1.20}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

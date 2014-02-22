@@ -38,7 +38,7 @@ enter "activity mode", where a block bounces back and forth to
 indicate that some progress is made, without specifying exactly how
 much.
   
-Each increment of the property causes the block to move by a little 
+Each increment of the property causes the block to move by a little
 bit.
   
 To indicate that the activity has not started yet, set the property
@@ -49,8 +49,8 @@ to zero. To indicate completion, set the property to \code{G_MAXINT}.
 \item{\verb{text} [character : *                : Read / Write]}{
 
 The "text" property determines the label which will be drawn
-over the progress bar. Setting this property to \code{NULL} causes the default 
-label to be displayed. Setting this property to an empty string causes 
+over the progress bar. Setting this property to \code{NULL} causes the default
+label to be displayed. Setting this property to an empty string causes
 no label to be displayed.
   Default value: NULL  Since 2.6
 

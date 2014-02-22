@@ -19,13 +19,12 @@ handles launching an application in a graphical context. It provides
 startup notification and allows to launch applications on a specific
 screen or workspace.
   
- \emph{Launching an application}\preformatted{GdkAppLaunchContext *context;
-context = gdk_app_launch_context_new (    );
-gdk_app_launch_context_set_screen (my_screen);
-gdk_app_launch_context_set_timestamp (event->time);
-if (!g_app_info_launch_default_for_uri ("http://www.gtk.org", context, &error))
-  g_warning ("Launching failed: \%s\n", error->message);
-g_object_unref (context);
+ \emph{Launching an application}
+\preformatted{
+context <- gdkAppLaunchContext()
+context$setScreen(my_screen)
+context$setTimestamp(event$time)
+gAppInfoLaunchDefaultForUri("http://www.gtk.org", context)
 }}
 \section{Structures}{\describe{\item{\verb{GdkAppLaunchContext}}{
 An opaque structure representing an application launch context.

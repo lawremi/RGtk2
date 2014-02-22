@@ -5,7 +5,8 @@
 about the filesystem the \code{file} is on, rather than the file itself.
 For instance the amount of space available and the type of
 the filesystem.}
-\usage{gFileQueryFilesystemInfo(object, attributes, cancellable = NULL, .errwarn = TRUE)}
+\usage{gFileQueryFilesystemInfo(object, attributes, cancellable = NULL, 
+    .errwarn = TRUE)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{attributes}}{an attribute query string.}

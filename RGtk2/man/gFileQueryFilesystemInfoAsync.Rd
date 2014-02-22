@@ -5,7 +5,8 @@
 that the specified \code{file} is on. The result is a \code{\link{GFileInfo}} object
 that contains key-value attributes (such as type or size for the
 file).}
-\usage{gFileQueryFilesystemInfoAsync(object, attributes, io.priority, cancellable, callback, user.data = NULL)}
+\usage{gFileQueryFilesystemInfoAsync(object, attributes, io.priority, 
+    cancellable, callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{attributes}}{an attribute query string.}

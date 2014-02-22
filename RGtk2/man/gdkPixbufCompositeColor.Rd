@@ -7,7 +7,9 @@ then composites the rectangle (\code{dest.x} ,\code{dest.y}, \code{dest.width},
 \code{dest.height}) of the resulting image with a checkboard of the
 colors \code{color1} and \code{color2} and renders it onto the destination
 image.}
-\usage{gdkPixbufCompositeColor(object, dest, dest.x, dest.y, dest.width, dest.height, offset.x, offset.y, scale.x, scale.y, interp.type, overall.alpha, check.x, check.y, check.size, color1, color2)}
+\usage{gdkPixbufCompositeColor(object, dest, dest.x, dest.y, dest.width, 
+    dest.height, offset.x, offset.y, scale.x, scale.y, interp.type, 
+    overall.alpha, check.x, check.y, check.size, color1, color2)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkPixbuf}}}
 \item{\verb{dest}}{the \code{\link{GdkPixbuf}} into which to render the results}

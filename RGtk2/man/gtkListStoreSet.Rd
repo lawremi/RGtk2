@@ -12,7 +12,8 @@ The value will be copied or referenced by the store if appropriate.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkListStore}}}
 \item{\verb{iter}}{row iterator}
-\item{\verb{...}}{pairs of column number and value, terminated with -1}
+\item{\verb{...}}{\emph{undocumented
+}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

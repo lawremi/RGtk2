@@ -4,7 +4,8 @@
 \description{Sets the comparison function used when sorting to be \code{sort.func}. If the
 current sort column id of \code{sortable} is the same as \code{sort.column.id}, then 
 the model will sort using this function.}
-\usage{gtkTreeSortableSetSortFunc(object, sort.column.id, sort.func, user.data = NULL)}
+\usage{gtkTreeSortableSetSortFunc(object, sort.column.id, sort.func, 
+    user.data = NULL)}
 \arguments{
 \item{\verb{object}}{A \code{\link{GtkTreeSortable}}}
 \item{\verb{sort.column.id}}{the sort column id to set the function for}

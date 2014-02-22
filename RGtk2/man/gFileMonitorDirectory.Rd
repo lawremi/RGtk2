@@ -3,7 +3,8 @@
 \title{gFileMonitorDirectory}
 \description{Obtains a directory monitor for the given file.
 This may fail if directory monitoring is not supported.}
-\usage{gFileMonitorDirectory(object, flags = "G_FILE_MONITOR_NONE", cancellable = NULL, .errwarn = TRUE)}
+\usage{gFileMonitorDirectory(object, flags = "G_FILE_MONITOR_NONE", 
+    cancellable = NULL, .errwarn = TRUE)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{flags}}{a set of \code{\link{GFileMonitorFlags}}.}

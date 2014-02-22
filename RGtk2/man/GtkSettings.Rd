@@ -107,7 +107,7 @@ A palette of named colors for use in themes. The format of the string is
 name2: color2
 ...
 }
-Color names must be acceptable as identifiers in the 
+Color names must be acceptable as identifiers in the
 gtkrc syntax, and
 color specifications must be in the format accepted by
 \code{\link{gdkColorParse}}.
@@ -125,9 +125,9 @@ by ';' instead of newlines:
 }
 \item{\verb{gtk-cursor-blink} [logical : Read / Write]}{
 
-Whether the cursor should blink. 
+Whether the cursor should blink.
   
-Also see the \verb{"gtk-cursor-blink-timeout"} setting, 
+Also see the \verb{"gtk-cursor-blink-timeout"} setting,
 which allows more flexible control over cursor blinking.
   Default value: TRUE
 
@@ -188,10 +188,10 @@ Whether to enable toolkit-wide animations.  Default value: TRUE
 
 Whether to play any event sounds at all.
   
-See the Sound Theme spec (\url{http://www.freedesktop.org/wiki/Specifications/sound-theme-spec}) 
+See the Sound Theme spec (\url{http://www.freedesktop.org/wiki/Specifications/sound-theme-spec})
 for more information on event sounds and sound themes.
   
-GTK+ itself does not support event sounds, you have to use a loadable 
+GTK+ itself does not support event sounds, you have to use a loadable
 module like the one that comes with libcanberra.
   Default value: TRUE  Since 2.14
 
@@ -200,10 +200,10 @@ module like the one that comes with libcanberra.
 
 Whether to play event sounds as feedback to user input.
   
-See the Sound Theme spec (\url{http://www.freedesktop.org/wiki/Specifications/sound-theme-spec}) 
+See the Sound Theme spec (\url{http://www.freedesktop.org/wiki/Specifications/sound-theme-spec})
 for more information on event sounds and sound themes.
   
-GTK+ itself does not support event sounds, you have to use a loadable 
+GTK+ itself does not support event sounds, you have to use a loadable
 module like the one that comes with libcanberra.
   Default value: TRUE  Since 2.14
 
@@ -270,10 +270,10 @@ A list of icon sizes. The list is separated by colons, and
 item has the form:
   \\var{size-name} = \\var{width} , \\var{height}
   
-E.g. "gtk-menu=16,16:gtk-button=20,20:gtk-dialog=48,48". 
-GTK+ itself use the following named icon sizes: gtk-menu, 
-gtk-button, gtk-small-toolbar, gtk-large-toolbar, gtk-dnd, 
-gtk-dialog. Applications can register their own named icon 
+E.g. "gtk-menu=16,16:gtk-button=20,20:gtk-dialog=48,48".
+GTK+ itself use the following named icon sizes: gtk-menu,
+gtk-button, gtk-small-toolbar, gtk-large-toolbar, gtk-dnd,
+gtk-dialog. Applications can register their own named icon
 sizes with \code{\link{gtkIconSizeRegister}}.
   Default value: NULL
 
@@ -285,9 +285,9 @@ Name of icon theme to use.  Default value: "hicolor"
 }
 \item{\verb{gtk-im-module} [character : *                : Read / Write]}{
 
-Which IM (input method) module should be used by default. This is the 
-input method that will be used if the user has not explicitly chosen 
-another input method from the IM context menu.  
+Which IM (input method) module should be used by default. This is the
+input method that will be used if the user has not explicitly chosen
+another input method from the IM context menu.
   
 See \code{\link{GtkIMContext}} and see the \verb{"gtk-show-input-method-menu"} property.
   Default value: NULL
@@ -353,7 +353,7 @@ List of currently active GTK modules.  Default value: NULL
 A comma-separated list of print backends to use in the print
 dialog. Available print backends depend on the GTK+ installation,
 and may include "file", "cups", "lpr" or "papi".
-  Default value: "file,cups"  Since 2.10
+  Default value: "file,lpr"  Since 2.10
 
 }
 \item{\verb{gtk-print-preview-command} [character : *                : Read / Write]}{
@@ -362,7 +362,7 @@ A command to run for displaying the print preview. The command
 should contain a \code{f} placeholder, which will get replaced by
 the path to the pdf file. The command may also contain a \code{s}
 placeholder, which will get replaced by the path to a file
-containing the print settings in the format produced by 
+containing the print settings in the format produced by
 \code{\link{gtkPrintSettingsToFile}}.
   
 The preview application is responsible for removing the pdf file
@@ -389,7 +389,7 @@ set to -1, no item will be removed.
 }
 \item{\verb{gtk-scrolled-window-placement} [\code{\link{GtkCornerType}} : Read / Write]}{
 
-Where the contents of scrolled windows are located with respect to the 
+Where the contents of scrolled windows are located with respect to the
 scrollbars, if not overridden by the scrolled window's own placement.
   Default value: GTK_CORNER_TOP_LEFT  Since 2.10
 
@@ -408,10 +408,10 @@ Whether the context menus of entries and text views should offer to insert contr
 
 The XDG sound theme to use for event sounds.
   
-See the Sound Theme spec (\url{http://www.freedesktop.org/wiki/Specifications/sound-theme-spec}) 
+See the Sound Theme spec (\url{http://www.freedesktop.org/wiki/Specifications/sound-theme-spec})
 for more information on event sounds and sound themes.
   
-GTK+ itself does not support event sounds, you have to use a loadable 
+GTK+ itself does not support event sounds, you have to use a loadable
 module like the one that comes with libcanberra.
   Default value: "freedesktop"  Since 2.14
 
@@ -469,7 +469,7 @@ browse mode is enabled, in milliseconds.
 Browse mode is enabled when the mouse pointer moves off an object
 where a tooltip was currently being displayed. If the mouse pointer
 hits another object before the browse mode timeout expires (see
-\verb{"gtk-tooltip-browse-mode-timeout"}), it will take the 
+\verb{"gtk-tooltip-browse-mode-timeout"}), it will take the
 amount of milliseconds specified by this setting to popup the tooltip
 for the new object.
   Allowed values: >= 0  Default value: 60  Since 2.12

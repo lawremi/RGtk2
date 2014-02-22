@@ -3,7 +3,8 @@
 \title{gAsyncInitableNewAsync}
 \description{Helper function for constructing \verb{GAsyncInitiable} object. This is
 similar to \code{\link{gObjectNew}} but also initializes the object asyncronously.}
-\usage{gAsyncInitableNewAsync(object.type, io.priority, cancellable, callback, user.data, ...)}
+\usage{gAsyncInitableNewAsync(object.type, io.priority, cancellable, 
+    callback, user.data, ...)}
 \arguments{
 \item{\verb{object.type}}{a \code{\link{GType}} supporting \code{\link{GAsyncInitable}}.}
 \item{\verb{io.priority}}{the I/O priority

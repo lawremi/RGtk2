@@ -42,9 +42,9 @@
 The ::show-menu signal is emitted before the menu is shown.
   
 It can be used to populate the menu on demand, using
-\code{\link{gtkMenuToolButtonGetMenu}}. 
+\code{\link{gtkMenuToolButtonGetMenu}}.
   
-Note that even if you populate the menu dynamically in this way, 
+Note that even if you populate the menu dynamically in this way,
 you must set an empty menu on the \code{\link{GtkMenuToolButton}} beforehand,
 since the arrow is made insensitive if the menu is not set.
 

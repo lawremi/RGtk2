@@ -12,7 +12,7 @@ domain.}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkPixbuf}}.}
 \item{\verb{type}}{name of file format.}
-\item{\verb{...}}{list of key-value save options}
+\item{\verb{...}}{whether an error was set}
 \item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \details{See \code{\link{gdkPixbufSave}} for more details.

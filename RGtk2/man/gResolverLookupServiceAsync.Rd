@@ -6,7 +6,8 @@
 \code{callback}, which must call \code{\link{gResolverLookupServiceFinish}} to
 get the final result. See \code{\link{gResolverLookupService}} for more
 details.}
-\usage{gResolverLookupServiceAsync(object, service, protocol, domain, cancellable = NULL, callback, user.data = NULL)}
+\usage{gResolverLookupServiceAsync(object, service, protocol, domain, 
+    cancellable = NULL, callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GResolver}}}
 \item{\verb{service}}{the service type to look up (eg, "ldap")}

@@ -4,7 +4,8 @@
 \description{Render a \code{\link{PangoLayout}} onto a \code{\link{GdkDrawable}}, overriding the
 layout's normal colors with \code{foreground} and/or \code{background}.
 \code{foreground} and \code{background} need not be allocated.}
-\usage{gdkDrawLayoutWithColors(drawable, gc, x, y, layout, foreground, background)}
+\usage{gdkDrawLayoutWithColors(drawable, gc, x, y, layout, foreground, 
+    background)}
 \arguments{
 \item{\verb{drawable}}{the drawable on which to draw string}
 \item{\verb{gc}}{base graphics context to use}

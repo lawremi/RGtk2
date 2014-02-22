@@ -5,7 +5,8 @@
 Sets text and a pixmap/bitmap on the specified cell.
 \strong{WARNING: \code{gtk_clist_set_pixtext} is deprecated and should not be used in newly-written code.}
 }
-\usage{gtkCListSetPixtext(object, row, column, text, spacing, pixmap, mask)}
+\usage{gtkCListSetPixtext(object, row, column, text, spacing, pixmap, 
+    mask)}
 \arguments{
 \item{\verb{object}}{The \code{\link{GtkCList}} to affect.}
 \item{\verb{row}}{The row of the cell.}

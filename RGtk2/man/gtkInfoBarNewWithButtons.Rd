@@ -12,7 +12,7 @@ the "response" signal with the corresponding response ID.}
 \arguments{
 \item{\verb{first.button.text}}{stock ID or text to go in first button, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}
 \item{\verb{...}}{response ID for first button, then additional buttons, ending
-  with \code{NULL}}
+with \code{NULL}}
 }
 \value{[\code{\link{GtkWidget}}] a new \code{\link{GtkInfoBar}}}
 \author{Derived by RGtkGen from GTK+ documentation}

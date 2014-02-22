@@ -5,7 +5,8 @@
 Inserts a new element in the toolbar at the given position. 
 \strong{WARNING: \code{gtk_toolbar_insert_element} has been deprecated since version 2.4 and should not be used in newly-written code. Use \code{\link{gtkToolbarInsert}} instead.}
 }
-\usage{gtkToolbarInsertElement(object, type, widget, text, tooltip.text, tooltip.private.text, icon, callback, user.data = NULL, position)}
+\usage{gtkToolbarInsertElement(object, type, widget, text, tooltip.text, 
+    tooltip.private.text, icon, callback, user.data = NULL, position)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkToolbar}}.}
 \item{\verb{type}}{a value of type \code{\link{GtkToolbarChildType}} that determines what \code{widget}

@@ -3,7 +3,8 @@
 \title{gtkSelectionOwnerSetForDisplay}
 \description{Claim ownership of a given selection for a particular widget, or,
 if \code{widget} is \code{NULL}, release ownership of the selection.}
-\usage{gtkSelectionOwnerSetForDisplay(display, widget = NULL, selection, time = "GDK_CURRENT_TIME")}
+\usage{gtkSelectionOwnerSetForDisplay(display, widget = NULL, selection, 
+    time = "GDK_CURRENT_TIME")}
 \arguments{
 \item{\verb{display}}{the \verb{Gdkdisplay} where the selection is set}
 \item{\verb{widget}}{new selection owner (a \verb{GdkWidget}), or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}

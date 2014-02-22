@@ -4,7 +4,8 @@
 \description{Creates a new \code{\link{GtkRadioAction}} object. To add the action to
 a \code{\link{GtkActionGroup}} and set the accelerator for the action,
 call \code{\link{gtkActionGroupAddActionWithAccel}}.}
-\usage{gtkRadioActionNew(name = NULL, label = NULL, tooltip = NULL, stock.id = NULL, value = NULL)}
+\usage{gtkRadioActionNew(name = NULL, label = NULL, tooltip = NULL, 
+    stock.id = NULL, value = NULL)}
 \arguments{
 \item{\verb{name}}{A unique name for the action}
 \item{\verb{label}}{The label displayed in menu items and on buttons, or \code{NULL}. \emph{[  \acronym{allow-none}  ]}}

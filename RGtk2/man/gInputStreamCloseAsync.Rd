@@ -5,7 +5,8 @@
 When the operation is finished \code{callback} will be called. 
 You can then call \code{\link{gInputStreamCloseFinish}} to get the result of the 
 operation.}
-\usage{gInputStreamCloseAsync(object, io.priority = 0, cancellable = NULL, callback, user.data = NULL)}
+\usage{gInputStreamCloseAsync(object, io.priority = 0, cancellable = NULL, 
+    callback, user.data = NULL)}
 \arguments{
 \item{\verb{object}}{A \code{\link{GInputStream}}.}
 \item{\verb{io.priority}}{the I/O priority

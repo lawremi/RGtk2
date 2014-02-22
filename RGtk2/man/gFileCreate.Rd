@@ -3,7 +3,8 @@
 \title{gFileCreate}
 \description{Creates a new file and returns an output stream for writing to it.
 The file must not already exist.}
-\usage{gFileCreate(object, flags = "G_FILE_CREATE_NONE", cancellable = NULL, .errwarn = TRUE)}
+\usage{gFileCreate(object, flags = "G_FILE_CREATE_NONE", cancellable = NULL, 
+    .errwarn = TRUE)}
 \arguments{
 \item{\verb{object}}{input \code{\link{GFile}}.}
 \item{\verb{flags}}{a set of \code{\link{GFileCreateFlags}}.}

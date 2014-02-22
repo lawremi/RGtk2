@@ -10,12 +10,6 @@
 \code{\link{pangoGetMirrorChar}(ch)}\cr
 \code{\link{pangoBidiTypeForUnichar}(ch)}\cr
 }
-\section{Hierarchy}{\preformatted{
-GEnum
-   +----PangoDirection
-GEnum
-   +----PangoBidiType
-}}
 \section{Detailed Description}{Pango supports bidirectional text (like Arabic and Hebrew) automatically.
 Some applications however, need some help to correctly handle bidirectional
 text.
@@ -41,14 +35,14 @@ The \code{PANGO_DIRECTION_TTB_LTR}, \code{PANGO_DIRECTION_TTB_RTL}
 values come from an earlier interpretation of this
 enumeration as the writing direction of a block of
 text and are no longer used; See \code{\link{PangoGravity}} for how
-vertical text is handled in Pango.
+vertical text is handled in Pango.  
 
 \describe{
-\item{\verb{ltr}}{A strong left-to-right direction}
-\item{\verb{rtl}}{A strong right-to-left direction}
-\item{\verb{ttb-ltr}}{Deprecated value; treated the
+\item{\verb{ltr}}{ A strong left-to-right direction}
+\item{\verb{rtl}}{ A strong right-to-left direction}
+\item{\verb{ttb-ltr}}{ Deprecated value; treated the
   same as \code{PANGO_DIRECTION_RTL}.}
-\item{\verb{ttb-rtl}}{Deprecated value; treated the
+\item{\verb{ttb-rtl}}{ Deprecated value; treated the
   same as \code{PANGO_DIRECTION_LTR}}
 }
 
@@ -56,29 +50,29 @@ vertical text is handled in Pango.
 \item{\verb{PangoBidiType}}{
 The \code{\link{PangoBidiType}} type represents the bidirectional character
 type of a Unicode character as specified by the
-Unicode bidirectional algorithm (\url{http://www.unicode.org/reports/tr9/}).
+Unicode bidirectional algorithm (\url{http://www.unicode.org/reports/tr9/}).  
   Since 1.22
 
 \describe{
-\item{\verb{l}}{Left-to-Right}
-\item{\verb{lre}}{Left-to-Right Embedding}
-\item{\verb{lro}}{Left-to-Right Override}
-\item{\verb{r}}{Right-to-Left}
-\item{\verb{al}}{Right-to-Left Arabic}
-\item{\verb{rle}}{Right-to-Left Embedding}
-\item{\verb{rlo}}{Right-to-Left Override}
-\item{\verb{pdf}}{Pop Directional Format}
-\item{\verb{en}}{European Number}
-\item{\verb{es}}{European Number Separator}
-\item{\verb{et}}{European Number Terminator}
-\item{\verb{an}}{Arabic Number}
-\item{\verb{cs}}{Common Number Separator}
-\item{\verb{nsm}}{Nonspacing Mark}
-\item{\verb{bn}}{Boundary Neutral}
-\item{\verb{b}}{Paragraph Separator}
-\item{\verb{s}}{Segment Separator}
-\item{\verb{ws}}{Whitespace}
-\item{\verb{on}}{Other Neutrals}
+\item{\verb{l}}{ Left-to-Right}
+\item{\verb{lre}}{ Left-to-Right Embedding}
+\item{\verb{lro}}{ Left-to-Right Override}
+\item{\verb{r}}{ Right-to-Left}
+\item{\verb{al}}{ Right-to-Left Arabic}
+\item{\verb{rle}}{ Right-to-Left Embedding}
+\item{\verb{rlo}}{ Right-to-Left Override}
+\item{\verb{pdf}}{ Pop Directional Format}
+\item{\verb{en}}{ European Number}
+\item{\verb{es}}{ European Number Separator}
+\item{\verb{et}}{ European Number Terminator}
+\item{\verb{an}}{ Arabic Number}
+\item{\verb{cs}}{ Common Number Separator}
+\item{\verb{nsm}}{ Nonspacing Mark}
+\item{\verb{bn}}{ Boundary Neutral}
+\item{\verb{b}}{ Paragraph Separator}
+\item{\verb{s}}{ Segment Separator}
+\item{\verb{ws}}{ Whitespace}
+\item{\verb{on}}{ Other Neutrals}
 }
 
 }

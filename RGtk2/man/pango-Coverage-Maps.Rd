@@ -13,8 +13,6 @@
 \code{\link{pangoCoverageToBytes}(object)}\cr
 \code{\link{pangoCoverageFromBytes}(bytes)}\cr
 }
-\section{Hierarchy}{\preformatted{GEnum
-   +----PangoCoverageLevel}}
 \section{Detailed Description}{It is often necessary in Pango to determine if a particular font can
 represent a particular character, and also how well it can represent
 that character. The \code{\link{PangoCoverage}} is a data structure that is used

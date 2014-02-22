@@ -54,8 +54,8 @@ Whether this tag affects the alignment mode.  Default value: FALSE
 
 Specifies how to align the lines of text with respect to each other.
   
-Note that this property describes how to align the lines of text in 
-case there are several of them. The "xalign" property of \code{\link{GtkCellRenderer}}, 
+Note that this property describes how to align the lines of text in
+case there are several of them. The "xalign" property of \code{\link{GtkCellRenderer}},
 on the other hand, sets the horizontal alignment of the whole text.
   Default value: PANGO_ALIGN_LEFT  Since 2.10
 
@@ -92,8 +92,8 @@ Whether this tag affects text editability.  Default value: FALSE
 }
 \item{\verb{ellipsize} [\code{\link{PangoEllipsizeMode}} : Read / Write]}{
 
-Specifies the preferred place to ellipsize the string, if the cell renderer 
-does not have enough room to display the entire string. Setting it to 
+Specifies the preferred place to ellipsize the string, if the cell renderer
+does not have enough room to display the entire string. Setting it to
 \code{PANGO_ELLIPSIZE_NONE} turns off ellipsizing. See the wrap-width property
 for another way of making the text fit into a given width.
   Default value: PANGO_ELLIPSIZE_NONE  Since 2.6
@@ -269,15 +269,15 @@ request either 3 characters or the property value, whichever is greater.
 }
 \item{\verb{wrap-mode} [\code{\link{PangoWrapMode}} : Read / Write]}{
 
-Specifies how to break the string into multiple lines, if the cell 
-renderer does not have enough room to display the entire string. 
+Specifies how to break the string into multiple lines, if the cell
+renderer does not have enough room to display the entire string.
 This property has no effect unless the wrap-width property is set.
   Default value: PANGO_WRAP_CHAR  Since 2.8
 
 }
 \item{\verb{wrap-width} [integer : Read / Write]}{
 
-Specifies the width at which the text is wrapped. The wrap-mode property can 
+Specifies the width at which the text is wrapped. The wrap-mode property can
 be used to influence at what character positions the line breaks can be placed.
 Setting wrap-width to -1 turns wrapping off.
   Allowed values: >= -1  Default value: -1  Since 2.8

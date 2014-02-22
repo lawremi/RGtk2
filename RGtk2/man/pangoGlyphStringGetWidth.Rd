@@ -6,8 +6,8 @@ using \code{\link{pangoGlyphStringExtents}}.  However, since this only computes 
 width, it's much faster.  This is in fact only a convenience function that
 computes the sum of geometry.width for each glyph in the \code{glyphs}.}
 \usage{pangoGlyphStringGetWidth(object)}
-\arguments{\item{\verb{object}}{a \code{\link{PangoGlyphString}}}}
-\details{Since 1.14}
-\value{[integer] the logical width of the glyph string.}
+\arguments{\item{\verb{object}}{[\code{\link{PangoGlyphString}}]    a \code{\link{PangoGlyphString}}}}
+\details{  Since 1.14}
+\value{[integer]  the logical width of the glyph string.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

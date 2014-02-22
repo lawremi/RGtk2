@@ -6,7 +6,6 @@
 \arguments{\item{\verb{cr}}{[\code{\link{Cairo}}]  a \code{\link{Cairo}}}}
 \details{  Since 1.4}
 \value{[\code{\link{CairoScaledFont}}]  the current scaled font. To keep a reference to it,
-
 This function never returns \code{NULL}. If memory cannot be allocated, a
 special "nil" \code{\link{CairoScaledFont}} object will be returned on which
 \code{\link{cairoScaledFontStatus}} returns \code{CAIRO_STATUS_NO_MEMORY}. Using

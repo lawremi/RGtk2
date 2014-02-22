@@ -4,7 +4,7 @@
 \description{Get a string that is representative of the characters needed to
 render a particular language.}
 \usage{pangoLanguageGetSampleString(object)}
-\arguments{\item{\verb{object}}{a \code{\link{PangoLanguage}}, or \code{NULL}}}
+\arguments{\item{\verb{object}}{[\code{\link{PangoLanguage}}]  a \code{\link{PangoLanguage}}, or \code{NULL}}}
 \details{The sample text may be a pangram, but is not necessarily.  It is chosen to
 be demonstrative of normal text in the language, as well as exposing font
 feature requirements unique to the language.  It is suitable for use
@@ -20,7 +20,7 @@ language code "xx".  That is, compare to:
 \preformatted{
 pangoLanguageFromString("xx")$getSampleString()
 
-}}
-\value{[char] the sample string.}
+}  }
+\value{[char]  the sample string.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

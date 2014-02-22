@@ -7,7 +7,9 @@ This gives an image in the coordinates of the destination pixbuf.
 The rectangle (\code{dest.x}, \code{dest.y}, \code{dest.width}, \code{dest.height})
 is then composited onto the corresponding rectangle of the
 original destination image.}
-\usage{gdkPixbufComposite(object, dest, dest.x, dest.y, dest.width, dest.height, offset.x, offset.y, scale.x, scale.y, interp.type, overall.alpha)}
+\usage{gdkPixbufComposite(object, dest, dest.x, dest.y, dest.width, 
+    dest.height, offset.x, offset.y, scale.x, scale.y, interp.type, 
+    overall.alpha)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GdkPixbuf}}}
 \item{\verb{dest}}{the \code{\link{GdkPixbuf}} into which to render the results}

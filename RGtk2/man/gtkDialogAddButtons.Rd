@@ -8,7 +8,8 @@ text and response ID.}
 \usage{gtkDialogAddButtons(object, ...)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkDialog}}}
-\item{\verb{...}}{response ID for first button, then more text-response_id pairs}
+\item{\verb{...}}{\emph{undocumented
+}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

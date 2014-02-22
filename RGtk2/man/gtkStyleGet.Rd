@@ -8,9 +8,8 @@ from \code{style}.}
 \item{\verb{object}}{a \code{\link{GtkStyle}}}
 \item{\verb{widget.type}}{the \code{\link{GType}} of a descendant of \code{\link{GtkWidget}}}
 \item{\verb{first.property.name}}{the name of the first style property to get}
-\item{\verb{...}}{pairs of property names and locations to
-return the property values, starting with the location for
-\code{first.property.name}, terminated by \code{NULL}.}
+\item{\verb{...}}{\emph{undocumented
+}}
 }
 \details{Since 2.16}
 \author{Derived by RGtkGen from GTK+ documentation}

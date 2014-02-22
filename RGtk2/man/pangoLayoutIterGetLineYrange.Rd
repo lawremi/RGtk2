@@ -9,11 +9,11 @@ extents, plus half of the spacing above and below the line, if
 The Y positions are in layout coordinates (origin at top left of the
 entire layout).}
 \usage{pangoLayoutIterGetLineYrange(object)}
-\arguments{\item{\verb{object}}{a \code{\link{PangoLayoutIter}}}}
+\arguments{\item{\verb{object}}{[\code{\link{PangoLayoutIter}}]  a \code{\link{PangoLayoutIter}}}}
 \value{
 A list containing the following elements:
-\item{\verb{y0}}{start of line}
-\item{\verb{y1}}{end of line}
+\item{\verb{y0}}{[integer]  start of line}
+\item{\verb{y1}}{[integer]  end of line}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

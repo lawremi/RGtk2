@@ -11,7 +11,7 @@ The RGtk binding to the Pango library consists of the following components:
 \item{\link{pango-Glyph-Storage}}{Structures for storing information about glyphs}
 \item{\link{pango-Layout-Objects}}{High-level layout driver objects}
 \item{\link{pango-Text-Processing}}{Functions to run the rendering pipeline}
-\item{\link{pango-pango-renderer}}{Rendering driver base class}
+\item{\link{PangoRenderer}}{Rendering driver base class}
 \item{\link{pango-Version-Checking}}{Tools for checking Pango version at compile- and run-time.}
 \item{\link{pango-Cairo-Rendering}}{Rendering with the Cairo backend}
 \item{\link{pango-Scripts-and-Languages}}{Identifying writing systems and languages}

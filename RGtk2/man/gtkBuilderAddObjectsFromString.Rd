@@ -4,7 +4,8 @@
 \description{Parses a string containing a GtkBuilder 
 UI definition building only the requested objects and merges
 them with the current contents of \code{builder}. }
-\usage{gtkBuilderAddObjectsFromString(object, buffer, length, object.ids, .errwarn = TRUE)}
+\usage{gtkBuilderAddObjectsFromString(object, buffer, length, object.ids, 
+    .errwarn = TRUE)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GtkBuilder}}}
 \item{\verb{buffer}}{the string to parse}

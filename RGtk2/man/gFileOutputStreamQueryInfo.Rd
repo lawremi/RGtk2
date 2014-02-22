@@ -7,7 +7,8 @@ version of this function, see \code{\link{gFileOutputStreamQueryInfoAsync}}.
 While the stream is blocked, the stream will set the pending flag 
 internally, and any other operations on the stream will fail with 
 \code{G_IO_ERROR_PENDING}.}
-\usage{gFileOutputStreamQueryInfo(object, attributes, cancellable = NULL, .errwarn = TRUE)}
+\usage{gFileOutputStreamQueryInfo(object, attributes, cancellable = NULL, 
+    .errwarn = TRUE)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GFileOutputStream}}.}
 \item{\verb{attributes}}{a file attribute query string.}
