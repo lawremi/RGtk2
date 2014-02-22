@@ -1,0 +1,1 @@
+cp RGtkGen/inst/data/docgen/*.Rd RGtk2/man
