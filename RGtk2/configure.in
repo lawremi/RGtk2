@@ -3,6 +3,8 @@ AC_INIT(src/Rgtk.c)
 DEFINES=
 EXTRA_MODULES=
 
+CC=`"${R_HOME}/bin/R" CMD config CC`
+
 AC_ARG_ENABLE(introspection,
   [  --disable-introspection          Disable introspection support],
   [use_introspection=$enableval], [use_introspection=yes])
