@@ -194,7 +194,7 @@ S_g_simple_async_report_error_in_idle(USER_OBJECT_ s_object,
 
 
   g_simple_async_report_error_in_idle(object, callback, user_data, domain, code,
-                                      format);
+                                      "%s", format);
 
 #else
   error("g_simple_async_report_error_in_idle exists only in gio >= 2.16.0");
