@@ -144,7 +144,7 @@ R_gtkInit(long *rargc, char **rargv, Rboolean *success)
       eventLoopThread = g_thread_create(R_gtk_timerThreadFunc, NULL, TRUE,
                                         NULL);
       R_CStackLimit = -1;
-    } else g_warning("Failed to establish pipe; ",
+    } else g_warning("Failed to establish pipe; "
                      "disabling timer-based event handling");
 #endif
 #endif
