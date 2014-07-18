@@ -466,7 +466,7 @@ r_gtk_data_frame_set (RGtkDataFrame *data_frame,
 	R_PreserveObject(frame);
 	
 	data_frame->frame = frame;
-	data_frame->stamp = data_frame->stamp++;
+	data_frame->stamp = data_frame->stamp + 1;
         data_frame->nrows = frame_nrows;
         
 	for (i = 0; i < nrows; i++) {
@@ -509,7 +509,7 @@ r_gtk_data_frame_remove (RGtkDataFrame *data_frame,
 	g_return_if_fail (frame != NULL);
 	
 	data_frame->frame = frame;
-	data_frame->stamp = data_frame->stamp++;
+	data_frame->stamp = data_frame->stamp + 1;
 	
 	for (i = 0; i < nrows; i++) {
 		GtkTreePath *path = gtk_tree_path_new_from_indices(deleted_rows[i], -1);
