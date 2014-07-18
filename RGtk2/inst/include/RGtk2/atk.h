@@ -6,14 +6,16 @@
 #include <atk/atk.h>
 #include <atk/atk-enum-types.h>
 
-/* Unlike the other libraries, ATK does not provide version information,
-   so we are just fixing ATK at 1.10.0 for now (all later stuff disabled).
-   This does not bother me too much, since I have yet to find a use for ATK */
+/* Unlike the other libraries, ATK did not always provide version information,
+   so we assume 1.10.0 when the macro is not present.
+*/
+#ifndef ATK_CHECK_VERSION
 #define ATK_CHECK_VERSION(major,minor,micro)    \
     (1 > (major) || \
      (1 == (major) && 10 > (minor)) || \
      (1 == (major) && 10 == (minor) && \
       0 >= (micro)))
+#endif
 
 #include <RGtk2/atkUserFuncs.h>
 #include <RGtk2/atkClasses.h>
