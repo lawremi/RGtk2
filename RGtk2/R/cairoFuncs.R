@@ -2096,7 +2096,7 @@ function(filename, width.in.points, height.in.points)
 
 
 cairoPdfSurfaceCreateForStream <-
-function(write.func, closure, width.in.points, height.in.points)
+function(write.func, closure = NULL, width.in.points, height.in.points)
 {
   write.func <- as.function(write.func)
   
@@ -2136,7 +2136,7 @@ function(filename, width.in.points, height.in.points)
 
 
 cairoPsSurfaceCreateForStream <-
-function(write.func, closure, width.in.points, height.in.points)
+function(write.func, closure = NULL, width.in.points, height.in.points)
 {
   write.func <- as.function(write.func)
   
@@ -2210,7 +2210,7 @@ function(filename, width.in.points, height.in.points)
 
 
 cairoSvgSurfaceCreateForStream <-
-function(write.func, closure, width.in.points, height.in.points)
+function(write.func, closure = NULL, width.in.points, height.in.points)
 {
   write.func <- as.function(write.func)
   

@@ -594,7 +594,7 @@ S_cairo_svg_surface_create_for_stream(USER_OBJECT_ s_write_func, USER_OBJECT_ s_
 S_cairo_svg_surface_restrict_to_version(USER_OBJECT_ s_surface, USER_OBJECT_ s_version); 
 
   USER_OBJECT_
-S_cairo_svg_get_versions(USER_OBJECT_ s_versions, USER_OBJECT_ s_num_versions); 
+S_cairo_svg_get_versions(void); 
 
   USER_OBJECT_
 S_cairo_svg_version_to_string(USER_OBJECT_ s_version); 
