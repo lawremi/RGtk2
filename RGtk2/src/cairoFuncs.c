@@ -3353,16 +3353,20 @@ S_cairo_svg_surface_restrict_to_version(USER_OBJECT_ s_surface, USER_OBJECT_ s_v
  
 
 USER_OBJECT_
-S_cairo_svg_get_versions(USER_OBJECT_ s_versions, USER_OBJECT_ s_num_versions)
+S_cairo_svg_get_versions(void)
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
 #if CAIRO_CHECK_VERSION(1, 2, 0)
-  cairo_svg_version_t const** versions = ((cairo_svg_version_t const**)asCEnum(s_versions, CAIRO_TYPE_SVG_VERSION));
-  int* num_versions = ((int*)asCArray(s_num_versions, int, asCInteger));
+
+  cairo_svg_version_t const* versions = NULL;
+  int num_versions;
+
+  cairo_svg_get_versions(&versions, &num_versions);
 
 
-  cairo_svg_get_versions(versions, num_versions);
-
+  _result = retByVal(_result, "versions", asREnumArrayWithSize(versions, CAIRO_TYPE_SVG_VERSION, num_versions), "num.versions", asRInteger(num_versions), NULL);
+    CLEANUP(g_free, versions);;
+  ;
 #else
   error("cairo_svg_get_versions exists only in cairo >= 1.2.0");
 #endif

@@ -681,7 +681,7 @@ S_g_file_info_has_attribute(USER_OBJECT_ s_object, USER_OBJECT_ s_attribute);
 S_g_file_info_list_attributes(USER_OBJECT_ s_object, USER_OBJECT_ s_name_space); 
 
   USER_OBJECT_
-S_g_file_info_get_attribute_data(USER_OBJECT_ s_object, USER_OBJECT_ s_attribute, USER_OBJECT_ s_type, USER_OBJECT_ s_status); 
+S_g_file_info_get_attribute_data(USER_OBJECT_ s_object, USER_OBJECT_ s_attribute); 
 
   USER_OBJECT_
 S_g_file_info_get_attribute_type(USER_OBJECT_ s_object, USER_OBJECT_ s_attribute); 

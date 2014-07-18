@@ -2907,14 +2907,12 @@ function(object, name.space)
 
 
 gFileInfoGetAttributeData <-
-function(object, attribute, type, status)
+function(object, attribute)
 {
   checkPtrType(object, "GFileInfo")
   attribute <- as.character(attribute)
-  
-  
 
-  w <- .RGtkCall("S_g_file_info_get_attribute_data", object, attribute, type, status, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_g_file_info_get_attribute_data", object, attribute, PACKAGE = "RGtk2")
 
   return(w)
 } 

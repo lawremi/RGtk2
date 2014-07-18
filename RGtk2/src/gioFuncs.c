@@ -5131,23 +5131,25 @@ S_g_file_info_list_attributes(USER_OBJECT_ s_object, USER_OBJECT_ s_name_space)
  
 
 USER_OBJECT_
-S_g_file_info_get_attribute_data(USER_OBJECT_ s_object, USER_OBJECT_ s_attribute, USER_OBJECT_ s_type, USER_OBJECT_ s_status)
+S_g_file_info_get_attribute_data(USER_OBJECT_ s_object, USER_OBJECT_ s_attribute)
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
 #if GIO_CHECK_VERSION(2, 16, 0)
   GFileInfo* object = G_FILE_INFO(getPtrValue(s_object));
   const char* attribute = ((const char*)asCString(s_attribute));
-  GFileAttributeType* type = ((GFileAttributeType*)asCEnum(s_type, G_TYPE_FILE_ATTRIBUTE_TYPE));
-  GFileAttributeStatus* status = ((GFileAttributeStatus*)asCEnum(s_status, G_TYPE_FILE_ATTRIBUTE_STATUS));
 
   gboolean ans;
+  GFileAttributeType type;
   gpointer value_pp;
+  GFileAttributeStatus status;
 
-  ans = g_file_info_get_attribute_data(object, attribute, type, &value_pp, status);
+  ans = g_file_info_get_attribute_data(object, attribute, &type, &value_pp, &status);
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "value.pp", value_pp, NULL);
+  _result = retByVal(_result, "type", asREnum(type, G_TYPE_FILE_ATTRIBUTE_TYPE), "value.pp", value_pp, "status", asREnum(status, G_TYPE_FILE_ATTRIBUTE_STATUS), NULL);
+  ;
+  ;
   ;
 #else
   error("g_file_info_get_attribute_data exists only in gio >= 2.16.0");

@@ -4351,9 +4351,9 @@
   (return-type "gboolean")
   (parameters
     '("const-char*" "attribute")
-    '("GFileAttributeType*" "type")
+    '("GFileAttributeType*" "type" (out))
     '("gpointer*" "value_pp" (out))
-    '("GFileAttributeStatus*" "status")
+    '("GFileAttributeStatus*" "status" (out))
   )
   (since "2.16.0")
 )
