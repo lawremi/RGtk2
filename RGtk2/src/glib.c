@@ -201,7 +201,7 @@ asCGQuark(USER_OBJECT_ sobj) {
     PROBLEM "invalid GQuark value"
       ERROR;
   }
-  return (GQuark)getPtrValue(sobj);
+  return (GQuark)asInteger(sobj);
 }
 
 USER_OBJECT_
@@ -209,7 +209,7 @@ asRGQuark(GQuark val)
 {
   USER_OBJECT_ ans;
   const gchar *tmp;
-  PROTECT(ans = R_MakeExternalPtr((void *)val, R_NilValue, R_NilValue));
+  PROTECT(ans = ScalarInteger((gint32)val));
 
   tmp = g_quark_to_string(val);
   if(tmp)

@@ -41,7 +41,7 @@ function(x)
 	if (is.character(x))
 		x <- .Call("R_gQuarkFromString", x, PACKAGE = "RGtk2")
 	else {
-		x <- as.numeric(x)
+		x <- as.integer(x)
 		class(x) <- "GQuark"
 	}
 	x
