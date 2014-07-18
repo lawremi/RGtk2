@@ -511,7 +511,7 @@ function(obj, name, where)
 
 "==.RGtkObject" <-
 function(x, y) {
-  .ptrToNumeric(x) == .ptrToNumeric(y)
+  identical(unclass(x), unclass(y))
 }
 
 # Fields

@@ -185,11 +185,6 @@ imagefile <- function(name)
 	stop("Sorry, ", func, " is not (yet) implemented because it is ", reason, ".")
 }
 
-# this lets you get a pointer as a numeric value so that you can compare by address
-.ptrToNumeric <- function(ptr) {
-	.Call("convertPtrToNumeric", ptr, PACKAGE="RGtk2")
-}
-
 # Text manipulation
 
 .collapseClassName <-

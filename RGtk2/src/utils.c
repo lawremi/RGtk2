@@ -185,19 +185,13 @@ void R_freeCBData(R_CallbackData *cbdata) {
     g_free(cbdata);
 }
 
-/* Convert an externalptr to a numeric type (for comparisons) */
-USER_OBJECT_
-convertPtrToNumeric(USER_OBJECT_ extptr) {
-	return(asRNumeric((double) (long) getPtrValue(extptr)));
-}
-
 USER_OBJECT_
 getNumericType(USER_OBJECT_ s)
 {
   /* Get the numeric type code for an R object */
   /*return asRNumeric(TYPEOF(s));*/
   /* Instead, get the numeric type for an R type name */
-  asRNumeric(str2type(asCString(s)));
+  return asRNumeric(str2type(asCString(s)));
 }
 
 /* Provide bindtextdomain() for the libintl linked to RGtk2.
