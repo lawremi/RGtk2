@@ -2,7 +2,7 @@
 \name{gFileInfoGetAttributeData}
 \title{gFileInfoGetAttributeData}
 \description{Gets the attribute type, value and status for an attribute key.}
-\usage{gFileInfoGetAttributeData(object, attribute, type, status)}
+\usage{gFileInfoGetAttributeData(object, attribute)}
 \arguments{
 \item{\verb{object}}{a \code{\link{GFileInfo}}}
 \item{\verb{attribute}}{a file attribute key}

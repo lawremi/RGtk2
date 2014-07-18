@@ -3,7 +3,7 @@
 \title{cairoSvgGetVersions}
 \description{Used to retrieve the list of supported versions. See
 \code{\link{cairoSvgSurfaceRestrictToVersion}}.}
-\usage{cairoSvgGetVersions(versions, num.versions)}
+\usage{cairoSvgGetVersions()}
 \details{  Since 1.2}
 \value{
 A list containing the following elements:
