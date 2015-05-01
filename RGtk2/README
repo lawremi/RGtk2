@@ -1,37 +1,9 @@
-This RGtk package is an interface to Gtk.  As such, it allows one to
-do in the S language what one can do with Gtk in any other language
+This RGtk package is an interface to Gtk and other libraries in the GTK+ platform.  
+As such, it allows one to do in the R language what one can do with Gtk in any other language
 for which there are bindings. For the most part, there is a one-to-one
-mapping from the C-level routines provided by Gtk to R functions.
-Hence, to find out about these functions and what they do
-one should look at the Gtk documentation. There are reference
-pages for each of the widgets and the general topics 
-as well as _tutorials_, etc.  which are available at
-  http://www.gtk.org
+mapping from the C-level routines provided by Gtk to R functions. 
+One can register handlers for GTK+ events, and even define new GObject classes in R.
 
-Additionally, there are currently a few books on Gtk
-that I am aware of. 
+This is a mature package that is feature complete and stable, despite receiving few updates.
 
- Gtk+ Programming in C, 
-  Syd Logan
-  http://www.amazon.com/exec/obidos/ASIN/0130142646/ref=pd_sim_books/104-2258217-5695136
-
- Gtk+/Gnome Application Development,
-  Havoc Pennington, New Riders.
-  http://www.amazon.com/exec/obidos/ASIN/0735700788/ref=pd_sim_books/104-2258217-5695136
-
- Developing Linux Applications with Gtk+ and GDK
-  Eric Harlow, New Riders.
- 
-There are also several books that I have not seen:
-  Beginning Gtk+ and GNOME,
-   Peter Wright
-
- Gnome/Gtk+ Programming Bible
-  Arthur Griffith, 
-
- Sams Teach Yourself GTK+ Programming in 21 Days
-
-
-All of these relate to programming in C, and not in a higher-level
-language such as S. However, they provide the necessary information
-for using Gtk, regardless of the particular language.
+For an in-depth treatment of the package, see the book "Programming GUIs in R" by Lawrence and Verzani.
