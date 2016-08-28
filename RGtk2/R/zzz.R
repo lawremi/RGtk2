@@ -8,6 +8,7 @@ function()
 function(libname, pkgname)
 {
  options(depwarn = TRUE, gdkFlush = TRUE)
+ options("RGtk2::newErrorHandling" = TRUE)
 
  if (.Platform$OS.type == "windows") {
    dllpath <- Sys.getenv("RGTK2_GTK2_PATH")

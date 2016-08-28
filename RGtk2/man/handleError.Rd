@@ -18,18 +18,17 @@ handleError(x, .errwarn)
     The result of a call to an underlying library.
   }
   \item{.errwarn}{
-    Whether to emit a warning if there is an error
-    and \code{getOption("RGtk2::newErrorHandling")} is not
-    \code{TRUE}. The value for this is usually passed by the user
-    through the wrapper.
+    \emph{DEPRECATED}. Whether to emit a warning if there is an error
+    and \code{getOption("RGtk2::newErrorHandling")} is 
+    \code{FALSE} (\code{TRUE} is now the default).
   }
 }
 \details{
   There are currently two modes of error handling in RGtk2. One was
-  introduced with RGtk2 2.20.0 and will eventually replace the older
-  one. Setting the option \code{RGtk2::newErrorHandling} to \code{TRUE}
-  enables the newer error handling. It is currently not enabled by
-  default, to ease the transition of code.
+  introduced with RGtk2 2.20.0. It is now the default and
+  will eventually replace the older
+  one. Setting the option \code{RGtk2::newErrorHandling} to \code{FALSE}
+  disables the newer error handling, to ease the transition of code.
 
   The original behavior is to return a list from every library function
   that might raise an error. The \code{error} component of the list

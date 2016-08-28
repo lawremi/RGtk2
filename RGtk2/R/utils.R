@@ -42,6 +42,10 @@ function(obj, fun)
 
 handleError <- function(x, .errwarn) {
   if (isTRUE(getOption("RGtk2::newErrorHandling"))) {
+    if (!.errwarn) {
+        warning("passing '.errwarn' is deprecated; set option ",
+                "'RGtk2::newErrorHandling' to FALSE to keep it working")
+    }  
     if (!is.null(x$error)) { # have an error, throw it
       x$error$call <- sys.call(-1)
       stop(x$error)
