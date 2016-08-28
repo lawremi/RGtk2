@@ -2949,7 +2949,7 @@
  '("GSocketAddress*" "address")
  '("GSocketType" "type")
  '("GSocketProtocol" "protocol")
- '("GObject*" "source_object")
+ '("GObject*" "source_object" (null-ok) (default "NULL"))
  '("GSocketAddress**" "effective_address" (out))
  '("GError**" "error" (out))
  )

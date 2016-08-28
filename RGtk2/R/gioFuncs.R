@@ -8816,14 +8816,11 @@ function(object, socket, source.object, .errwarn = TRUE)
 
 
 gSocketListenerAddAddress <-
-function(object, address, type, protocol, source.object, .errwarn = TRUE)
+function(object, address, type, protocol, source.object = NULL, .errwarn = TRUE)
 {
   checkPtrType(object, "GSocketListener")
   checkPtrType(address, "GSocketAddress")
   
-  
-  checkPtrType(source.object, "GObject")
-
   w <- .RGtkCall("S_g_socket_listener_add_address", object, address, type, protocol, source.object, PACKAGE = "RGtk2")
 
   w <- handleError(w, .errwarn)
