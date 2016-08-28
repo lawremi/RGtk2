@@ -3,6 +3,9 @@ export(.RGtkCall)
 
 #useDynLib(RGtk2)
 
+importFrom(utils, unzip, menu, download.file)
+importFrom(methods, new)
+
 S3method(dimnames, RGtkDataFrame)
 S3method("dimnames<-", RGtkDataFrame)
 S3method(dim, RGtkDataFrame)
@@ -11,6 +14,7 @@ S3method("[", RGtkDataFrame)
 S3method("as.data.frame", RGtkDataFrame)
 
 S3method(names, GObject)
+S3method(names, GtkObject)
 S3method("[", GObject)
 S3method("[<-", GObject)
 S3method("$", GObject)
@@ -34,3 +38,9 @@ S3method(print, enums)
 S3method(print, flags)
 
 S3method("$", "<invalid>")
+
+S3method("!", flag)
+S3method("&", flag)
+S3method("|", flag)
+
+S3method(print, GType)
