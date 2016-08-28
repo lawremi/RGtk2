@@ -178,6 +178,16 @@ print.flags <- function(x, ...) {
   print(unclass(x))
 }
 
+`[.enums` <- function(x, name) {
+    if (!is.character(name) || length(name) != 1L) {
+        stop("An enum value must be a single string")
+    }
+    if (!name %in% names(x)) {
+        stop("invalid enum value: ", name,
+             " (valid: ", paste(names(x), collapse=", "), ")")
+    }
+    NextMethod()
+}
 
 # file shortcuts
 imagefile <- function(name)
