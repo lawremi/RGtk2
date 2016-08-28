@@ -223,23 +223,26 @@ asCEnum(USER_OBJECT_ s_enum, GType etype)
     gint eval = 0;
 
     if (IS_INTEGER(s_enum) || IS_NUMERIC(s_enum)) {
-        eval = IS_NUMERIC(s_enum) ? (gint)asCNumeric(s_enum) :
-          asCInteger(s_enum);
+        eval = asCInteger(s_enum);
         evalue = g_enum_get_value(eclass, eval);
+        if (evalue == NULL) {
+          PROBLEM "Could not map to enum value %d", asCInteger(s_enum)
+            ERROR;
+        }
     } else if (IS_CHARACTER(s_enum)) {
         const gchar* ename = asCString(s_enum);
         evalue = g_enum_get_value_by_name(eclass, ename);
-        if (!evalue)
+        if (evalue == NULL)
             evalue = g_enum_get_value_by_nick(eclass, ename);
-        if (!evalue)
+        if (evalue == NULL)
             evalue = g_enum_get_value(eclass, atoi(ename));
+        if (evalue == NULL) {
+          PROBLEM "Could not parse enum value %s", asCString(s_enum)
+            ERROR;
+        }
     }
 
-    if (!evalue) {
-        PROBLEM "Could not parse enum value %s", asCString(s_enum)
-        ERROR;
-    } else eval = evalue->value;
-
+    eval = evalue->value;
     return(eval);
 }
 
