@@ -1458,14 +1458,14 @@ USER_OBJECT_
 S_gdk_drag_get_protocol(USER_OBJECT_ s_xid)
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
-  guint32 xid = ((guint32)asCNumeric(s_xid));
+  GdkNativeWindow xid = asCGdkNativeWindow(s_xid);
 
-  guint32 ans;
+  GdkNativeWindow ans;
   GdkDragProtocol protocol;
 
   ans = gdk_drag_get_protocol(xid, &protocol);
 
-  _result = asRNumeric(ans);
+  _result = asRGdkNativeWindow(ans);
 
   _result = retByVal(_result, "protocol", asREnum(protocol, GDK_TYPE_DRAG_PROTOCOL), NULL);
   ;
@@ -1502,14 +1502,14 @@ S_gdk_drag_get_protocol_for_display(USER_OBJECT_ s_display, USER_OBJECT_ s_xid)
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkDisplay* display = GDK_DISPLAY_OBJECT(getPtrValue(s_display));
-  guint32 xid = ((guint32)asCNumeric(s_xid));
+  GdkNativeWindow xid = asCGdkNativeWindow(s_xid);
 
-  guint32 ans;
+  GdkNativeWindow ans;
   GdkDragProtocol protocol;
 
   ans = gdk_drag_get_protocol_for_display(display, xid, &protocol);
 
-  _result = asRNumeric(ans);
+  _result = asRGdkNativeWindow(ans);
 
   _result = retByVal(_result, "protocol", asREnum(protocol, GDK_TYPE_DRAG_PROTOCOL), NULL);
   ;

@@ -1039,7 +1039,7 @@ function(object, targets)
 gdkDragGetProtocol <-
 function(xid)
 {
-  xid <- as.numeric(xid)
+  xid <- as.GdkNativeWindow(xid)
 
   w <- .RGtkCall("S_gdk_drag_get_protocol", xid, PACKAGE = "RGtk2")
 
@@ -1065,7 +1065,7 @@ gdkDragGetProtocolForDisplay <-
 function(display, xid)
 {
   checkPtrType(display, "GdkDisplay")
-  xid <- as.numeric(xid)
+  xid <- as.GdkNativeWindow(xid)
 
   w <- .RGtkCall("S_gdk_drag_get_protocol_for_display", display, xid, PACKAGE = "RGtk2")
 

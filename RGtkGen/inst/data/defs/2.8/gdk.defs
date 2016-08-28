@@ -791,9 +791,9 @@
 (define-function drag_get_protocol
   (in-module "Gdk")
   (c-name "gdk_drag_get_protocol")
-  (return-type "guint32")
+  (return-type "GdkNativeWindow")
   (parameters
-    '("guint32" "xid" (in))
+    '("GdkNativeWindow" "xid" (in))
     '("GdkDragProtocol*" "protocol" (out))
   )
 )
@@ -814,10 +814,10 @@
 (define-function drag_get_protocol_for_display
   (in-module "Gdk")
   (c-name "gdk_drag_get_protocol_for_display")
-  (return-type "guint32")
+  (return-type "GdkNativeWindow")
   (parameters
     '("GdkDisplay*" "display" (in))
-    '("guint32" "xid" (in))
+    '("GdkNativeWindow" "xid" (in))
     '("GdkDragProtocol*" "protocol" (out))
   )
 )
