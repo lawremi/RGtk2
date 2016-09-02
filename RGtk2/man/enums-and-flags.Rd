@@ -3,6 +3,7 @@
 \alias{enums-and-flags}
 \alias{as.flag}
 \alias{[.flags}
+\alias{[.enums}
 \alias{|.flag}
 \alias{&.flag}
 \alias{!.flag}
@@ -38,9 +39,9 @@ and comparisons.
 
 RGtk2 defines all of the enum and flag types from the API's as vectors of class 
 \code{flags} or \code{enums} with their names corresponding to the 
-nicknames of the values. The \code{[} operator on the \code{flags} class 
-retrieves a value as a \code{flag}. This only necessary for the bitwise ops and 
-thus is not necessary for enums.
+nicknames of the values. The \code{[} operator on the
+\code{flags} or \code{enums} class 
+retrieves a value as a \code{flag} or \code{enum}, respectively.
 
 The \code{==.enum} method compares a \code{enum} with either a 
 character or numeric representation of an enum value.
