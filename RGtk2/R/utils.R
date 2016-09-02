@@ -219,3 +219,8 @@ rgtk2_bindtextdomain <- function(domain, dirname = NULL) {
   base::bindtextdomain(domain, dirname)
   .External("RGtk2_bindtextdomain", domain, dirname, PACKAGE = "RGtk2")
 }
+
+.isTRUEorFALSE <- function(x)
+{
+    is.logical(x) && length(x) == 1L && !is.na(x)
+}
