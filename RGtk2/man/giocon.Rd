@@ -1,4 +1,5 @@
 \name{giocon}
+\alias{giocon}
 \alias{giocon.GInputStream}
 \alias{giocon.GOutputStream}
 \alias{giocon.GIOStream}
