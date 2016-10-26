@@ -33,7 +33,7 @@ gtkTextClearText(w, start=0, end=-1)
 
 \references{
 \url{http://www.gtk.org}
-\url{http://www.omegahat.org/RGtk}
+\url{http://www.omegahat.net/RGtk}
 }
 \author{Duncan Temple Lang}
 \note{

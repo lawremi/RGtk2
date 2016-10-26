@@ -109,7 +109,7 @@ Using \code{JSON} is not much different, although the JSON is just the
 data, so there will need to be some formatting within JavaScript. This
 illustration will use the package \pkg{rjson} to create encode the data
 into json markup, but \pkg{RJSONIO} can be used instead (from
-\url{www.omegahat.org}) or one could create the JSON within \R\/
+\url{www.omegahat.net}) or one could create the JSON within \R\/
 directly. Here is the server side code (not written with any
 generality):
 <<serverSideJson>>=

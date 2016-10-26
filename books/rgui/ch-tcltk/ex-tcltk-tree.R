@@ -30,7 +30,7 @@ addScrollbars <- function(parent, widget) {
 ###################################################
 #line 46 "ex-tcltk-tree.Rnw"
 library(XML)
-fileName <- "http://www.omegahat.org/RSXML/shortIntro.html"
+fileName <- "http://www.omegahat.net/RSXML/shortIntro.html"
 QT <- function(...) {}  # quiet next call
 doc <- htmlTreeParse(fileName, useInternalNodes=TRUE, error=QT)
 root <- xmlRoot(doc)
@@ -68,7 +68,7 @@ tcl(tr, "column", 1, minwidth=20)
 ### chunk number 6: 
 ###################################################
 #line 73 "ex-tcltk-tree.Rnw"
-## http://www.omegahat.org/RSXML/shortIntro.html
+## http://www.omegahat.net/RSXML/shortIntro.html
 ## xmlChildren gives children
 ## xmlName gives name of node
 ## xmlValue gives values stored in node -- text

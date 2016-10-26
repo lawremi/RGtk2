@@ -47,8 +47,8 @@ getEnumCRoutineName(name)
 \value{
 
 }
-\references{\url{http://www.omegahat.org/RGtk},
-  \url{http://www.omegahat.org/RGtkBindingGenerator},
+\references{\url{http://www.omegahat.net/RGtk},
+  \url{http://www.omegahat.net/RGtkBindingGenerator},
   \url{http://www.gtk.org}
   \url{http://www.pygtk.org}(?)
 }

@@ -54,7 +54,7 @@ generateCodeFiles(..., classNames = NULL, dir = c(C="/tmp", S="tmp"),
 }
 \details{
   This uses Python code to read the .defs files
-  and uses the \url{http://www.omegahat.org/RSPython}
+  and uses the \url{http://www.omegahat.net/RSPython}
   package to do this from R and return the results
   (as recursive named lists of character strings)
   to R where we then generate the code.
@@ -70,8 +70,8 @@ generateCodeFiles(..., classNames = NULL, dir = c(C="/tmp", S="tmp"),
 }
 
 \references{
- \url{http://www.omegahat.org/RGtk}
- \url{http://www.omegahat.org/GtkAutoBindingGen}  
+ \url{http://www.omegahat.net/RGtk}
+ \url{http://www.omegahat.net/GtkAutoBindingGen}  
  \url{http://www.gtk.org}
 }
 \author{Duncan Temple Lang <duncan@research.bell-labs.com>}

@@ -8,8 +8,8 @@ Maintainer: Michael Lawrence <lawremi@iastate.edu>
 Description: A meta-package which generates C and R code
   to provide bindings to a GObject library.
 License: GPL
-URL:  http://www.omegahat.org/RGtkBindingGenerator, 
-      http://www.omegahat.org/RGtk, 
-      http://www.omegahat.org
-      http://www.omegahat.org/bugs
+URL:  http://www.omegahat.net/RGtkBindingGenerator, 
+      http://www.omegahat.net/RGtk, 
+      http://www.omegahat.net
+      http://www.omegahat.net/bugs
 

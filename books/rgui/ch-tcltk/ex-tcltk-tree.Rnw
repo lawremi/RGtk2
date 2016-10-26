@@ -44,7 +44,7 @@ The \function(htmlTreeParse) (similar to \function{xmlInternalTreeParse}) to par
 \end{figure}
 <<>>=
 library(XML)
-file_name <- "http://www.omegahat.org/RSXML/shortIntro.html"
+file_name <- "http://www.omegahat.net/RSXML/shortIntro.html"
 doc <- htmlTreeParse(file_name, useInternalNodes = TRUE, 
                      error = function(...) {})
 root <- xmlRoot(doc)
@@ -73,7 +73,7 @@ tcl(treeview, "heading",  1,   text = "value")
 tcl(treeview, "column",   1,   minwidth = 20)
 @ 
 <<echo=FALSE>>=
-## http://www.omegahat.org/RSXML/shortIntro.html
+## http://www.omegahat.net/RSXML/shortIntro.html
 ## xmlChildren gives children
 ## xmlName gives name of node
 ## xmlValue gives values stored in node -- text

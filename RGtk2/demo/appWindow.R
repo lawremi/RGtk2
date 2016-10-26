@@ -48,7 +48,7 @@ about.cb <- function(action, window)
     gtkShowAboutDialog(window, program_name="RGtk Example", version="2.0",
                        copyright="(C) M. Lawrence and D. Temple Lang",
                        license="GPL",
-                       website="http://www.omegahat.org/RGtk",
+                       website="http://www.omegahat.net/RGtk",
                        comments="An example of RGtk2",
                        authors=c("Michael <mflawren@fhcrc.org>", "Duncan"),
                        documenters="See authors", logo=transparent)

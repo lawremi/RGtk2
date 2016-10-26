@@ -28,7 +28,7 @@
   Python module which is part of \url{pygtk}.
 }
 \references{
- \url{http://www.omegahat.org/RGtk}
+ \url{http://www.omegahat.net/RGtk}
 }
 \examples{
 data(GtkDefs)

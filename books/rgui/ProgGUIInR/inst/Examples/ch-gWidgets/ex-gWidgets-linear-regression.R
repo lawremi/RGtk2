@@ -1,7 +1,7 @@
 ###################################################
 ### chunk number 1: 
 ###################################################
-## see http://www.omegahat.org/RGtk/examples/contrib/ScreenShots/regression.jpg
+## see http://www.omegahat.net/RGtk/examples/contrib/ScreenShots/regression.jpg
 library(gWidgets)
 
 

@@ -9,5 +9,5 @@ Maintainer: Michael Lawrence <michafla@gene.com>
 Description: Facilities in the R language for programming
   graphical interfaces using Gtk, the Gimp Tool Kit.
 License: GPL
-URL:  http://www.ggobi.org/rgtk2,  http://www.omegahat.org
+URL:  http://www.ggobi.org/rgtk2,  http://www.omegahat.net
 Encoding: UTF-8

@@ -37,8 +37,8 @@ genCode(defs = getDefs(), filePrefix = "gtk", dir = "/tmp", existingDefs = NULL,
   
 }
 \references{
- \url{http://www.omegahat.org/RGtk}
- \url{http://www.omegahat.org/GtkAutoBindingGen}  
+ \url{http://www.omegahat.net/RGtk}
+ \url{http://www.omegahat.net/GtkAutoBindingGen}  
  \url{http://www.gtk.org}
 }
 \author{Duncan Temple Lang}

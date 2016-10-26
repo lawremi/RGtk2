@@ -34,8 +34,8 @@ getSArgs(params)
   defining the default value or simply the empty string ("").
   The names of the elements are the names of the parameters.
 }
-\references{\url{http://www.omegahat.org/RGtk},
-  \url{http://www.omegahat.org/RGtkBindingGenerator},
+\references{\url{http://www.omegahat.net/RGtk},
+  \url{http://www.omegahat.net/RGtkBindingGenerator},
   \url{http://www.gtk.org}
   \url{http://www.pygtk.org}(?)
 }

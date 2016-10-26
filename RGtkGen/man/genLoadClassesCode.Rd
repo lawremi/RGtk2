@@ -50,8 +50,8 @@ genLoadClassesCode(classes, fileName)
 }
 
 \references{
- \url{http://www.omegahat.org/RGtk}
- \url{http://www.omegahat.org/GtkAutoBindingGen}  
+ \url{http://www.omegahat.net/RGtk}
+ \url{http://www.omegahat.net/GtkAutoBindingGen}  
  \url{http://www.gtk.org}
 }
 \author{Duncan Temple Lang <duncan@research.bell-labs.com>}

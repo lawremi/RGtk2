@@ -574,7 +574,7 @@ in png format.
 \label{sec:svg-graphics}
 The web has other means to display graphics than an inclusion of an
 image file. For example, Flash is a very popular method.~\footnote{The
-  \pkg{FlashMXML} from \url{omegahat.org} provides a means to
+  \pkg{FlashMXML} from \url{omegahat.net} provides a means to
   genearate flash files from within \R.} SVG (Scalable vector graphics)~\footnote{\url{http://www.w3.org/Graphics/SVG/}} is another way to specify graphical objects using XML. Many modern web browsers have support for
 the display of SVG graphics. To insert the file, we have the
 \tagger{object} tag and its attributes \tagattr{data}{object} and
@@ -658,5 +658,5 @@ The first \tagger{script} tag is used to define the variable
 \code{ctx} to hold the canvas object, as this is assumed by the canvas
 package.
 
-The \pkg{RGraphicsDevice} device from \url{omegahat.org} provides a
+The \pkg{RGraphicsDevice} device from \url{omegahat.net} provides a
 possible alternative to the \pkg{canvas} package.
