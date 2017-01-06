@@ -35,6 +35,6 @@ very little need for applications to call any
 }
 
 }}}
-\references{\url{https://developer.gnome.org/gtk2/stable/gtk2-gtkbuildable.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkBuildable.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}
