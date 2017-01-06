@@ -77,9 +77,13 @@ badCFuncs <- c("gtk_editable_insert_text", "gtk_clipboard_set_with_owner",
                "g_memory_output_stream_new",
                "g_cancellable_connect",
                "cairo_user_font_face_set_init_func",
+               "cairo_user_font_face_get_init_func",
                "cairo_user_font_face_set_render_glyph_func",
+               "cairo_user_font_face_get_render_glyph_func",
                "cairo_user_font_face_set_text_to_glyphs_func",
-               "cairo_user_font_face_set_unicode_to_glyph_func"
+               "cairo_user_font_face_get_text_to_glyphs_func",
+               "cairo_user_font_face_set_unicode_to_glyph_func",
+               "cairo_user_font_face_get_unicode_to_glyph_func"
                )
 
 # sometimes it's easier to fix things from the R side (simple aliasing) or
