@@ -63,6 +63,6 @@ The window of the socket the plug is embedded in.
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkPlug.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkPlug.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

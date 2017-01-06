@@ -131,6 +131,6 @@ Modifier Mask.  Default value: GDK_SHIFT_MASK|GDK_CONTROL_MASK|GDK_MOD1_MASK|GDK
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/gtk-Keyboard-Accelerators.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/gtk2-Keyboard-Accelerators.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

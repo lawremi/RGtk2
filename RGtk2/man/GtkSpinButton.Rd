@@ -272,6 +272,6 @@ the type of border that surrounds the arrows of a spin button.
   Default value: GTK_SHADOW_IN
 
 }}}
-\references{\url{http://library.gnome.org/devel//gtk/GtkSpinButton.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkSpinButton.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

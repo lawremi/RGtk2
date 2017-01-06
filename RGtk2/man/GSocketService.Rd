@@ -62,6 +62,6 @@ asynchronous operations must be used.
 \emph{Returns:} [logical] \code{TRUE} to stop other handlers from being called
 
 }}}
-\references{\url{http://library.gnome.org/devel//gio/GSocketService.html}}
+\references{\url{https://developer.gnome.org/gio/stable/GSocketService.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

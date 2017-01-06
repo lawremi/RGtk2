@@ -129,6 +129,6 @@ Indicates the file's on-disk type.
 }
 
 }}}
-\references{\url{http://library.gnome.org/devel//gio/GFileInfo.html}}
+\references{\url{https://developer.gnome.org/gio/stable/GFileInfo.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -81,6 +81,6 @@ operation within GIO has been completed.
 
 
 }}}
-\references{\url{http://library.gnome.org/devel//gio/GAsyncResult.html}}
+\references{\url{https://developer.gnome.org/gio/stable/GAsyncResult.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

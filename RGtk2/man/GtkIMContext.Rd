@@ -164,6 +164,6 @@ the input method surrounding context by calling the
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkIMContext.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkIMContext.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

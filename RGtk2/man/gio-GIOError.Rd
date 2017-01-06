@@ -46,6 +46,6 @@ Error codes returned by GIO functions.
 }
 
 }}}
-\references{\url{http://library.gnome.org/devel//gio/gio-GIOError.html}}
+\references{\url{https://developer.gnome.org/gio/stable/gio-GIOError.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

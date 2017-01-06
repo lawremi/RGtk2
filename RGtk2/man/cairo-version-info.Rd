@@ -72,6 +72,6 @@ if (compareVersion(cairoVersionString(), "1.0.0") == 1)
   cat("Running with suitable cairo version:", cairoVersionString(), "\n")
 
 }}
-\references{\url{http://www.cairographics.org/manual/cairo-version-info.html}}
+\references{\url{https://www.cairographics.org/manual/cairo-Version-Information.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

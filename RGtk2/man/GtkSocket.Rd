@@ -65,7 +65,7 @@ is running. To prevent this from happening, you can
 connect to the \verb{"plug-removed"} signal.
   
 The communication between a \code{\link{GtkSocket}} and a \code{\link{GtkPlug}} follows the
-XEmbed (\url{http://www.freedesktop.org/standards/xembed-spec})
+XEmbed (\url{https://specifications.freedesktop.org/xembed-spec/})
 protocol. This protocol has also been implemented in other toolkits, e.g.
 \command{Qt}, allowing the same level of integration
 when embedding a \command{Qt} widget in GTK or vice versa.  
@@ -107,6 +107,6 @@ want to reuse it you must add a signal handler that returns \code{TRUE}.
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkSocket.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkSocket.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -126,6 +126,6 @@ the desired size to which the image should be scaled.
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gdk-pixbuf/GdkPixbufLoader.html}}
+\references{\url{https://developer.gnome.org/gdk-pixbuf/stable/GdkPixbufLoader.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

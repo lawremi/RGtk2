@@ -225,6 +225,6 @@ Whether spacers are vertical lines or just blank.  Default value: GTK_TOOLBAR_SP
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkToolbar.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkToolbar.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

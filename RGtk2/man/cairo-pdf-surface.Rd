@@ -9,6 +9,6 @@
 }
 \section{Detailed Description}{The PDF surface is used to render cairo graphics to Adobe
 PDF files and is a multi-page vector surface backend.}
-\references{\url{http://www.cairographics.org/manual/cairo-pdf-surface.html}}
+\references{\url{https://www.cairographics.org/manual/cairo-PDF-Surfaces.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -28,6 +28,6 @@ should be accessed using the functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkVScale} is the result of collapsing the constructors of \code{GtkVScale} (\code{\link{gtkVScaleNew}}, \code{\link{gtkVScaleNewWithRange}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\references{\url{http://library.gnome.org/devel//gtk/GtkVScale.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkVScale.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

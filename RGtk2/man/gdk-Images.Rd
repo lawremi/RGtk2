@@ -64,6 +64,6 @@ and if that fails then \code{GDK_IMAGE_NORMAL} will be used.}
 }
 
 }}}
-\references{\url{http://library.gnome.org/devel//gdk/gdk-Images.html}}
+\references{\url{https://developer.gnome.org/gdk2/stable/gdk2-Images.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

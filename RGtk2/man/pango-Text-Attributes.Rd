@@ -278,6 +278,6 @@ to filter out a subset of attributes for a list.
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//pango/pango-Text-Attributes.html}}
+\references{\url{https://developer.gnome.org/pango/stable/pango-Text-Attributes.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

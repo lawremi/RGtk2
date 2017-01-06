@@ -219,6 +219,6 @@ Determines how the joins between segments of a polygon are drawn.
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gdk/gdk-Graphics-Contexts.html}}
+\references{\url{https://developer.gnome.org/gdk2/stable/gdk2-Graphics-Contexts.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

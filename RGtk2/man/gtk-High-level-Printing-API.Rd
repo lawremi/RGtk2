@@ -650,7 +650,7 @@ area (i.e. inside the margins).
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/gtk-High-level-Printing-API.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/gtk2-High-level-Printing-API.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{\code{\link{GtkPrintContext}}}
 \keyword{internal}

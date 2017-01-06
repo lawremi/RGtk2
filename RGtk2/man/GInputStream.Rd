@@ -37,6 +37,6 @@ All of these functions have async variants too.}
 Base class for streaming input operations.
 
 }}}
-\references{\url{http://library.gnome.org/devel//gio/GInputStream.html}}
+\references{\url{https://developer.gnome.org/gio/stable/GInputStream.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

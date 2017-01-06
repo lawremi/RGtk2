@@ -51,7 +51,7 @@ a number acting as a unique mnemonic.
   Default value: FALSE  Since 2.10
 
 }}}
-\references{\url{http://library.gnome.org/devel//gtk/GtkRecentChooserMenu.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkRecentChooserMenu.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{\code{\link{GtkRecentChooser}}}
 \keyword{internal}

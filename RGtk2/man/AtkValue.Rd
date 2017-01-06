@@ -24,6 +24,6 @@ indicate failure.}
 The AtkValue structure does not contain any fields.
 
 }}}
-\references{\url{http://library.gnome.org/devel//atk/AtkValue.html}}
+\references{\url{https://developer.gnome.org/atk/stable/AtkValue.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

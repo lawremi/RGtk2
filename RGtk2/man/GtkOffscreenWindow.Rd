@@ -44,6 +44,6 @@ will emit a \verb{"damage-event"} signal.}
 
 }}}
 \section{Convenient Construction}{\code{gtkOffscreenWindow} is the equivalent of \code{\link{gtkOffscreenWindowNew}}.}
-\references{\url{http://library.gnome.org/devel//gtk/GtkOffscreenWindow.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkOffscreenWindow.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

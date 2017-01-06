@@ -59,6 +59,6 @@ The start index of the AtkHyperlink object.  Allowed values: >= 0  Default value
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//atk/AtkHyperlink.html}}
+\references{\url{https://developer.gnome.org/atk/stable/AtkHyperlink.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

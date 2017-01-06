@@ -70,7 +70,7 @@ The GtkAdjustment that determines the values of the vertical position for this v
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkViewport.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkViewport.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
 \code{\link{GtkScrolledWindow}}

@@ -27,6 +27,6 @@ Emitted when the file name completion information comes available.
 
 
 }}}
-\references{\url{http://library.gnome.org/devel//gio/GFilenameCompleter.html}}
+\references{\url{https://developer.gnome.org/gio/stable/GFilenameCompleter.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

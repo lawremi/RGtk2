@@ -71,7 +71,7 @@ different color.
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkLinkButton.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkLinkButton.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{\code{\link{GtkButton}}}
 \keyword{internal}

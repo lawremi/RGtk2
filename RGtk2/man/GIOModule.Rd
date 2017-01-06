@@ -19,6 +19,6 @@ be used by others to implement module loading.}
 Opaque module base class for extending GIO.
 
 }}}
-\references{\url{http://library.gnome.org/devel//gio/GIOModule.html}}
+\references{\url{https://developer.gnome.org/gio/stable/GIOModule.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

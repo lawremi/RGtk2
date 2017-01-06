@@ -34,6 +34,6 @@ a few file-specific operations and seeking and truncating.
   \code{\link{GFileOutputStream}} implements GSeekable.
 
 }}}
-\references{\url{http://library.gnome.org/devel//gio/GFileOutputStream.html}}
+\references{\url{https://developer.gnome.org/gio/stable/GFileOutputStream.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

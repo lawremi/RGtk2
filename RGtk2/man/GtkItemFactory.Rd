@@ -104,6 +104,6 @@ or tooltip from a \code{\link{GtkActionEntry}}.}
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkItemFactory.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkItemFactory.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -28,7 +28,7 @@ using the functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkHScrollbar} is the equivalent of \code{\link{gtkHScrollbarNew}}.}
-\references{\url{http://library.gnome.org/devel//gtk/GtkHScrollbar.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkHScrollbar.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
 \code{\link{GtkScrollbar}}

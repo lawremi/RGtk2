@@ -32,6 +32,6 @@ the hyperlinks associated with the object is selected.
 
 
 }}}
-\references{\url{http://library.gnome.org/devel//atk/AtkHypertext.html}}
+\references{\url{https://developer.gnome.org/atk/stable/AtkHypertext.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

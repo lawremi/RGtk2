@@ -135,6 +135,6 @@ It is hoped that in the future methods and fields may also be introspected.
 \code{\link{GType}}
 \code{\link{GSignal}}
 }
-\references{\url{http://developer.gnome.org/doc/API/2.0/gobject/gobject-The-Base-Object-Type.html}}
+\references{\url{https://developer.gnome.org/gobject/stable/gobject-The-Base-Object-Type.html}}
 \author{Michael Lawrence}
 \keyword{interface}

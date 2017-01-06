@@ -97,6 +97,6 @@ opposite gravities and both flow top-to-bottom for example.}
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//pango/pango-Vertical-Text.html}}
+\references{\url{https://developer.gnome.org/pango/stable/pango-Vertical-Text.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -43,6 +43,6 @@ GtkHButtonBox does not contain any public fields.
 
 }}}
 \section{Convenient Construction}{\code{gtkHButtonBox} is the equivalent of \code{\link{gtkHButtonBoxNew}}.}
-\references{\url{http://library.gnome.org/devel//gtk/GtkHButtonBox.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkHButtonBox.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

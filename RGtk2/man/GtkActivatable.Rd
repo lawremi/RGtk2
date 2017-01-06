@@ -118,6 +118,6 @@ widget when it changes.  Default value: TRUE  Since 2.16
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkActivatable.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkActivatable.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -125,6 +125,6 @@ They can be used to implement custom key event handling.
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/gtk-General.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/gtk2-General.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

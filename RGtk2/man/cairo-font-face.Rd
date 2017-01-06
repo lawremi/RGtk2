@@ -75,6 +75,6 @@ New entries may be added in future versions.
 }
 
 }}}
-\references{\url{http://www.cairographics.org/manual/cairo-font-face.html}}
+\references{\url{https://www.cairographics.org/manual/cairo-cairo-font-face-t.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -133,6 +133,6 @@ color. It may be opaque or translucent.}
 
 }
 }}
-\references{\url{http://www.cairographics.org/manual/cairo-pattern.html}}
+\references{\url{https://www.cairographics.org/manual/cairo-cairo-pattern-t.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

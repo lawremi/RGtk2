@@ -139,6 +139,6 @@ been pressed.
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gio/GDrive.html}}
+\references{\url{https://developer.gnome.org/gio/stable/GDrive.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

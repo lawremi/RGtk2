@@ -50,6 +50,6 @@ to get a human-readable representation of an error message.
 }
 
 }}}
-\references{\url{http://www.cairographics.org/manual/cairo-error-status.html}}
+\references{\url{https://www.cairographics.org/manual/cairo-Error-handling.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

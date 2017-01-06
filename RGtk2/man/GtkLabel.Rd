@@ -395,6 +395,6 @@ means wrap on word boundaries.
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkLabel.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkLabel.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

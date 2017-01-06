@@ -387,6 +387,6 @@ The column in which the actual tree graphic appears.
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkCTree.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkCTree.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -77,6 +77,6 @@ Unicode bidirectional algorithm (\url{http://www.unicode.org/reports/tr9/}).
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//pango/pango-Bidirectional-Text.html}}
+\references{\url{https://developer.gnome.org/pango/stable/pango-Bidirectional-Text.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

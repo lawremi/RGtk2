@@ -98,6 +98,6 @@ The directions in which the size group affects the requested sizes of its compon
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkSizeGroup.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkSizeGroup.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

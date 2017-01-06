@@ -219,7 +219,7 @@ The ypad.  Default value: 0
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkCellRenderer.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkCellRenderer.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
 \code{\link{GtkCellRendererText}}

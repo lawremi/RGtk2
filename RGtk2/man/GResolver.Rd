@@ -47,6 +47,6 @@ configuration has changed.
 
 
 }}}
-\references{\url{http://library.gnome.org/devel//gio/GResolver.html}}
+\references{\url{https://developer.gnome.org/gio/stable/GResolver.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

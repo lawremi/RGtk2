@@ -54,6 +54,6 @@ not return until the connection is closed.
 The max number of threads handling clients for this service.  Allowed values: >= -1  Default value: 10
 
 }}}
-\references{\url{http://library.gnome.org/devel//gio/GThreadedSocketService.html}}
+\references{\url{https://developer.gnome.org/gio/stable/GThreadedSocketService.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

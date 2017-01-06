@@ -72,6 +72,6 @@ Minimum width of buttons inside the box.  Allowed values: >= 0  Default value: 8
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkButtonBox.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkButtonBox.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

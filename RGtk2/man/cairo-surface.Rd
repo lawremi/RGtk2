@@ -107,6 +107,6 @@ New entries may be added in future versions.
 
 }
 }}
-\references{\url{http://www.cairographics.org/manual/cairo-surface.html}}
+\references{\url{https://www.cairographics.org/manual/cairo-cairo-surface-t.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

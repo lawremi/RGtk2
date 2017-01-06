@@ -54,6 +54,6 @@ This is an appearance property and thus only applies if
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkToggleAction.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkToggleAction.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

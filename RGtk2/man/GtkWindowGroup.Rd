@@ -18,6 +18,6 @@
 
 }}}
 \section{Convenient Construction}{\code{gtkWindowGroup} is the equivalent of \code{\link{gtkWindowGroupNew}}.}
-\references{\url{http://library.gnome.org/devel//gtk/GtkWindowGroup.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkWindowGroup.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

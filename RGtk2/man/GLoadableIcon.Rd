@@ -18,6 +18,6 @@ Generic type for all kinds of icons that can be loaded
 as a stream.
 
 }}}
-\references{\url{http://library.gnome.org/devel//gio/GLoadableIcon.html}}
+\references{\url{https://developer.gnome.org/gio/stable/GLoadableIcon.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

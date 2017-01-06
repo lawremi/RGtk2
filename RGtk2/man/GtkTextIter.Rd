@@ -126,6 +126,6 @@ types related to the text widget and how they work together.
 
 
 }}}
-\references{\url{http://library.gnome.org/devel//gtk/GtkTextIter.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkTextIter.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

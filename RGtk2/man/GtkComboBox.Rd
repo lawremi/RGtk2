@@ -252,7 +252,7 @@ Which kind of shadow to draw around the combo box.
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkComboBox.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkComboBox.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
 \code{\link{GtkComboBoxEntry}}

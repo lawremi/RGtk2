@@ -32,6 +32,6 @@ to the remote service, you can use \code{\link{GNetworkService}}'s
 A single target host/port that a network service is running on.
 
 }}}
-\references{\url{http://library.gnome.org/devel//gio/GSrvTarget.html}}
+\references{\url{https://developer.gnome.org/gio/stable/GSrvTarget.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

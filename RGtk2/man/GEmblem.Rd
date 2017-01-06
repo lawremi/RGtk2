@@ -55,6 +55,6 @@ Tells which origin the emblem is derived from.  Default value: G_EMBLEM_ORIGIN_U
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gio/GEmblem.html}}
+\references{\url{https://developer.gnome.org/gio/stable/GEmblem.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

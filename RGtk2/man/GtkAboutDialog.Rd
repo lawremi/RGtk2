@@ -222,6 +222,6 @@ Whether to wrap the text in the license dialog.
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkAboutDialog.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkAboutDialog.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

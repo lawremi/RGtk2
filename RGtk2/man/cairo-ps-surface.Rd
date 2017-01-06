@@ -29,6 +29,6 @@ conform to.
 }
 
 }}}
-\references{\url{http://www.cairographics.org/manual/cairo-ps-surface.html}}
+\references{\url{https://www.cairographics.org/manual/cairo-PostScript-Surfaces.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

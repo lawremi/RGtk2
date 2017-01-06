@@ -516,6 +516,6 @@ Type of subpixel antialiasing; none, rgb, bgr, vrgb, vbgr.  Default value: NULL
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkSettings.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkSettings.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

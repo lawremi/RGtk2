@@ -650,7 +650,7 @@ Vertical space between cells.  Must be an even number.  Allowed values: >= 0  De
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkTreeView.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkTreeView.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
 \code{\link{GtkTreeViewColumn}}

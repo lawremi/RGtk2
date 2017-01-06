@@ -193,6 +193,6 @@ None of the members of a \code{\link{PangoGlyphItemIter}} should be modified man
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//pango/pango-Glyph-Storage.html}}
+\references{\url{https://developer.gnome.org/pango/stable/pango-Glyph-Storage.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -50,6 +50,6 @@ If the toggle tool button should be pressed in or not.
   Default value: FALSE  Since 2.8
 
 }}}
-\references{\url{http://library.gnome.org/devel//gtk/GtkToggleToolButton.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkToggleToolButton.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -44,6 +44,6 @@ New entries may be added in future versions.
 }
 
 }}}
-\references{\url{http://www.cairographics.org/manual/cairo-image-surface.html}}
+\references{\url{https://www.cairographics.org/manual/cairo-Image-Surfaces.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

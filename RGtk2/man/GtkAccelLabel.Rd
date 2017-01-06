@@ -82,6 +82,6 @@ The widget to be monitored for accelerator changes.
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkAccelLabel.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkAccelLabel.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

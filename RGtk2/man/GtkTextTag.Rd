@@ -462,6 +462,6 @@ Whether this tag affects line wrap mode.  Default value: FALSE
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkTextTag.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkTextTag.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

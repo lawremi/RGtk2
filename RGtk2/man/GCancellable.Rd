@@ -82,6 +82,6 @@ cancellable signal should not do something that can block.
 
 
 }}}
-\references{\url{http://library.gnome.org/devel//gio/GCancellable.html}}
+\references{\url{https://developer.gnome.org/gio/stable/GCancellable.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

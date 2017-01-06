@@ -508,6 +508,6 @@ Specifies why a selection ownership was changed.
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gdk/gdk-Event-Structures.html}}
+\references{\url{https://developer.gnome.org/gdk2/stable/gdk2-Event-Structures.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

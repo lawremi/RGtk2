@@ -200,6 +200,6 @@ glyph value for other purposes.
 
 }
 }}
-\references{\url{http://www.cairographics.org/manual/cairo-user-font.html}}
+\references{\url{https://www.cairographics.org/manual/cairo-User-Fonts.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

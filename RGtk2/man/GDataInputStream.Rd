@@ -83,6 +83,6 @@ The accepted types of line ending.  Default value: G_DATA_STREAM_NEWLINE_TYPE_LF
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gio/GDataInputStream.html}}
+\references{\url{https://developer.gnome.org/gio/stable/GDataInputStream.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

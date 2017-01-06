@@ -127,6 +127,6 @@ Whether buttons for creating/manipulating files should be displayed.  Default va
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkFileSelection.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkFileSelection.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

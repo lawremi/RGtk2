@@ -448,6 +448,6 @@ operations.
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkCList.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkCList.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -170,6 +170,6 @@ The size of the recently used resources list.
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkRecentManager.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkRecentManager.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

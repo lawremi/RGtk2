@@ -107,6 +107,6 @@ will be laid out differently at different zoom factors.
 
 }
 }}
-\references{\url{http://www.cairographics.org/manual/cairo-font-options.html}}
+\references{\url{https://www.cairographics.org/manual/cairo-cairo-font-options-t.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -394,6 +394,6 @@ Color of the selection box.
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkIconView.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkIconView.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

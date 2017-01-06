@@ -108,6 +108,6 @@ of the group that a button belongs to changes.
 Sets a new group for a radio button.
 
 }}}
-\references{\url{http://library.gnome.org/devel//gtk/GtkRadioButton.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkRadioButton.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

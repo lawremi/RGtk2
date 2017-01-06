@@ -56,6 +56,6 @@ The vertical text alignment, from 0 (top) to 1 (bottom).  Allowed values: [0,1] 
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkProgress.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkProgress.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

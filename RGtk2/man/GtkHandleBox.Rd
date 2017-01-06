@@ -123,6 +123,6 @@ Whether to use the value from the snap_edge property or a value derived from han
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkHandleBox.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkHandleBox.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

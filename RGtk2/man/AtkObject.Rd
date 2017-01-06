@@ -353,7 +353,7 @@ Is used to notify that the value has changed.  Allowed values: >= 0  Default val
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//atk/AtkObject.html}}
+\references{\url{https://developer.gnome.org/atk/stable/AtkObject.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
 \code{\link{AtkObjectFactory}}

@@ -403,17 +403,18 @@ libraryDescriptions <-
 c("ATK" = "ATK is the Accessibility Toolkit. It provides a set of generic interfaces allowing accessibility technologies to interact with a graphical user interface. For example, a screen reader uses ATK to discover the text in an interface and read it to blind users. GTK+ widgets have built-in support for accessibility using the ATK framework.",
   "Pango" = "Pango is a library for internationalized text handling. It centers around the \\code{\\link{PangoLayout}} object, representing a paragraph of text. Pango provides the engine for \\code{\\link{GtkTextView}}, \\code{\\link{GtkLabel}}, \\code{\\link{GtkEntry}}, and other widgets that display text.",
   "GIO" = "GIO is a modern, easy-to-use VFS API",
-  "GDK" = "GDK is the abstraction layer that allows GTK+ to support multiple windowing systems. GDK provides drawing and window system facilities on X11, Windows, and the Linux framebuffer device.",
-  "GTK" = "The GTK+ library itself contains widgets, that is, GUI components such as \\code{\\link{GtkButton}} or \\code{\\link{GtkTextView}}.",
+  "GDK2" = "GDK is the abstraction layer that allows GTK+ to support multiple windowing systems. GDK provides drawing and window system facilities on X11, Windows, and the Linux framebuffer device.",
+  "GTK2" = "The GTK+ library itself contains widgets, that is, GUI components such as \\code{\\link{GtkButton}} or \\code{\\link{GtkTextView}}.",
   "GDK-Pixbuf" = "This is a small library which allows you to create GdkPixbuf ('pixel buffer') objects from image data or image files. Use a \\code{\\link{GdkPixbuf}} in combination with \\code{\\link{GtkImage}} to display images.",
   "CAIRO" = "Cairo is a 2D graphics library with support for multiple output devices. Currently supported output targets include the X Window System, win32, and image buffers.",
   "Libglade" = "Libglade loads and parses XML descriptions of user interfaces at runtime. It also provides functions that can be used to connect signal handlers to parts of the interface."
 )
 
-gnome_prefix <- "http://library.gnome.org/devel/"
-urlPrefices <- paste(gnome_prefix, tolower(names(libraryDescriptions)), sep="/")
+gnome_prefix <- "https://developer.gnome.org/"
+urlPrefices <- paste(gnome_prefix, tolower(names(libraryDescriptions)),
+                     "stable", sep="/")
 names(urlPrefices) <- tolower(names(libraryDescriptions))
-urlPrefices[["cairo"]] <- "http://www.cairographics.org/manual"
+urlPrefices[["cairo"]] <- "https://www.cairographics.org/manual"
 
 customNotes <- c(
 "gtk-Stock-Items" = "Please see the reference for a detailed list of the stock items",

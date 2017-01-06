@@ -242,6 +242,6 @@ This property gets initially set to the current year.
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkCalendar.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkCalendar.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

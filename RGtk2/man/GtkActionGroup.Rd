@@ -231,6 +231,6 @@ Whether the action group is visible.  Default value: TRUE
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkActionGroup.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkActionGroup.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

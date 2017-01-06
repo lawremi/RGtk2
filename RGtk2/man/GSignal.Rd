@@ -101,6 +101,6 @@ contains the following elements:
 \item{runFlags}{The flags determining behavior of the signal, see reference}
 }
 \author{Adapted from GSignal documentation by Michael Lawrence}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gobject/gobject-Signals.html}}
+\references{\url{https://developer.gnome.org/gobject/stable/gobject-Signals.html}}
 \seealso{\code{\link{GObject}}}
 \keyword{interface}

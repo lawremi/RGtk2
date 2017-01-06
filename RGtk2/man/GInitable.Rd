@@ -33,6 +33,6 @@ Interface for initializable objects.
   Since 2.22
 
 }}}
-\references{\url{http://library.gnome.org/devel//gio/GInitable.html}}
+\references{\url{https://developer.gnome.org/gio/stable/GInitable.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

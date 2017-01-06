@@ -61,6 +61,6 @@ GOutputStreamSpliceFlags determine how streams should be spliced.
 }
 
 }}}
-\references{\url{http://library.gnome.org/devel//gio/GOutputStream.html}}
+\references{\url{https://developer.gnome.org/gio/stable/GOutputStream.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

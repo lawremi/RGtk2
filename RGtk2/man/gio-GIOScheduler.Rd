@@ -43,6 +43,6 @@ to see if they have been cancelled.
 complete the job, \code{FALSE} if the job is complete (or cancelled)
 
 }}}
-\references{\url{http://library.gnome.org/devel//gio/gio-GIOScheduler.html}}
+\references{\url{https://developer.gnome.org/gio/stable/gio-GIOScheduler.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -20,6 +20,6 @@ two-dimensional affine transformation that maps all coordinates and other
 drawing instruments from the \dfn{user space} into the
 surface's canonical coordinate system, also known as the \dfn{device
 space}.}
-\references{\url{http://www.cairographics.org/manual/cairo-transformations.html}}
+\references{\url{https://www.cairographics.org/manual/cairo-Transformations.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -491,7 +491,7 @@ Whether to wrap lines never, at word boundaries, or at character boundaries.  De
 Color with which to draw error-indication underlines.
 
 }}}
-\references{\url{http://library.gnome.org/devel//gtk/GtkTextView.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkTextView.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
 \code{\link{GtkTextBuffer}}

@@ -50,6 +50,6 @@ The animation will complete a full cycle in one second by default
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkSpinner.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkSpinner.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

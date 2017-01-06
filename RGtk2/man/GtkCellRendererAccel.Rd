@@ -97,6 +97,6 @@ configuration should assign keyvals to all keys.
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkCellRendererAccel.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkCellRendererAccel.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

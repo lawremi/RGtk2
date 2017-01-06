@@ -68,6 +68,6 @@ stock id to select the stock item for the item.
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkImageMenuItem.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkImageMenuItem.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -16,6 +16,6 @@
 \code{\link{gtkTestWidgetClick}(widget, button, modifiers)}\cr
 \code{\link{gtkTestWidgetSendKey}(widget, keyval, modifiers)}\cr
 }
-\references{\url{http://library.gnome.org/devel//gtk/gtk-Testing.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/gtk2-Testing.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

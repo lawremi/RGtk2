@@ -120,6 +120,6 @@ Whether entered values must already be present in the list.  Default value: FALS
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkCombo.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkCombo.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

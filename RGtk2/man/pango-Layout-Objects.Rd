@@ -184,6 +184,6 @@ using \code{\link{pangoLayoutSetJustify}}, this only has effect for partial line
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//pango/pango-Layout-Objects.html}}
+\references{\url{https://developer.gnome.org/pango/stable/pango-Layout-Objects.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

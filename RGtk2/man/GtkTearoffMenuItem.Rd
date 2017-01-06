@@ -36,6 +36,6 @@ should be accessed using the functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkTearoffMenuItem} is the equivalent of \code{\link{gtkTearoffMenuItemNew}}.}
-\references{\url{http://library.gnome.org/devel//gtk/GtkTearoffMenuItem.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkTearoffMenuItem.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

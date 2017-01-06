@@ -151,6 +151,6 @@ The style of items in the tool palette.
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkToolPalette.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkToolPalette.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

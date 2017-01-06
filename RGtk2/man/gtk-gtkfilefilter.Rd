@@ -89,7 +89,7 @@ to the \code{needed} flags passed to \code{\link{gtkFileFilterAddCustom}}}
 \emph{Returns:} [logical] \code{TRUE} if the file should be displayed
 
 }}}
-\references{\url{http://library.gnome.org/devel//gtk/gtk-gtkfilefilter.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/gtk2-gtkfilefilter.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{\code{\link{GtkFileChooser}}}
 \keyword{internal}

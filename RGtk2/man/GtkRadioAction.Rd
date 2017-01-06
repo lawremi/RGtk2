@@ -65,6 +65,6 @@ for convenient ways to get and set this property.
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkRadioAction.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkRadioAction.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

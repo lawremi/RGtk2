@@ -38,6 +38,6 @@ Base class for socket-type specific control messages that can be sent and
 received over \code{\link{GSocket}}.
 
 }}}
-\references{\url{http://library.gnome.org/devel//gio/GSocketControlMessage.html}}
+\references{\url{https://developer.gnome.org/gio/stable/GSocketControlMessage.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

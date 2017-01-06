@@ -41,5 +41,5 @@ If one needs to externally remove a handler from the loop, \code{gSourceRemove}
 will serve this purpose.
 }
 \author{Michael Lawrence}
-\references{\url{http://developer.gnome.org/doc/API/2.0/glib/glib-The-Main-Event-Loop.html}}
+\references{\url{https://developer.gnome.org/glib/stable/glib-The-Main-Event-Loop.html}}
 \keyword{interface}

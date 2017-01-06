@@ -43,6 +43,6 @@ A per matched file iterator.
 The container that is being enumerated.
 
 }}}
-\references{\url{http://library.gnome.org/devel//gio/GFileEnumerator.html}}
+\references{\url{https://developer.gnome.org/gio/stable/GFileEnumerator.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

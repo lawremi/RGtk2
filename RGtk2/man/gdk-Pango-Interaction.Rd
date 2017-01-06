@@ -178,6 +178,6 @@ rendering the text.
 the GdkScreen for the renderer.
 
 }}}
-\references{\url{http://library.gnome.org/devel//gdk/gdk-Pango-Interaction.html}}
+\references{\url{https://developer.gnome.org/gdk2/stable/gdk2-Pango-Interaction.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

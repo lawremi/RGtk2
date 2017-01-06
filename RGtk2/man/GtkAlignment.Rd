@@ -83,6 +83,6 @@ If available vertical space is bigger than needed for the child, how much of it 
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkAlignment.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkAlignment.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

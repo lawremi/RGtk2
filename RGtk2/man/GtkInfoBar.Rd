@@ -161,6 +161,6 @@ content area of the info bar.
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkInfoBar.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkInfoBar.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

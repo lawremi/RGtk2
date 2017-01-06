@@ -45,6 +45,6 @@ Implements \code{\link{GFilterInputStream}} with a sized input buffer.
 The size of the backend buffer.  Allowed values: >= 1  Default value: 4096
 
 }}}
-\references{\url{http://library.gnome.org/devel//gio/GBufferedInputStream.html}}
+\references{\url{https://developer.gnome.org/gio/stable/GBufferedInputStream.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

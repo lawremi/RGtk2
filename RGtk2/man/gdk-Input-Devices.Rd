@@ -202,6 +202,6 @@ are desired for a particular widget.
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gdk/gdk-Input-Devices.html}}
+\references{\url{https://developer.gnome.org/gdk2/stable/gdk2-Input-Devices.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

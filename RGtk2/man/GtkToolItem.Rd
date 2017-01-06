@@ -141,6 +141,6 @@ Whether the toolbar item is visible when the toolbar is in a vertical orientatio
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkToolItem.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkToolItem.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

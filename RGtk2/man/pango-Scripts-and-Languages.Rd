@@ -118,6 +118,6 @@ to handle unknown values.  This enumeration is interchangeable with
 }
 
 }}}
-\references{\url{http://library.gnome.org/devel//pango/pango-Scripts-and-Languages.html}}
+\references{\url{https://developer.gnome.org/pango/stable/pango-Scripts-and-Languages.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

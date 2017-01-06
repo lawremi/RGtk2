@@ -99,7 +99,7 @@ to the \code{needed} flags passed to \code{\link{gtkRecentFilterAddCustom}}}
 \emph{Returns:} [logical] \code{TRUE} if the file should be displayed
 
 }}}
-\references{\url{http://library.gnome.org/devel//gtk/GtkRecentFilter.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkRecentFilter.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{\code{\link{GtkRecentChooser}}}
 \keyword{internal}

@@ -90,6 +90,6 @@ events from the AtkText interface.  This state supplants \code{ATK.ROLE.AUTOCOMP
 }
 
 }}}
-\references{\url{http://library.gnome.org/devel//atk/atk-AtkState.html}}
+\references{\url{https://developer.gnome.org/atk/stable/atk-AtkState.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

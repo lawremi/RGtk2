@@ -39,6 +39,6 @@ an application.)
 \tabular{ll}{\code{\link{GtkWidget}}   *child; \tab the child widget. \cr}
 
 }}}
-\references{\url{http://library.gnome.org/devel//gtk/GtkBin.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkBin.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

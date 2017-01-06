@@ -50,6 +50,6 @@ and auto-scroll, but your models have to implement the
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/gtk-GtkTreeView-drag-and-drop.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/gtk2-GtkTreeView-drag-and-drop.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

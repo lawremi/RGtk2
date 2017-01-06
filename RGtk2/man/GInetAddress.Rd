@@ -121,6 +121,6 @@ See \code{\link{gInetAddressGetIsLoopback}}.
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gio/GInetAddress.html}}
+\references{\url{https://developer.gnome.org/gio/stable/GInetAddress.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

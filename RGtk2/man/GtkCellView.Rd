@@ -59,6 +59,6 @@ since 2.10
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkCellView.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkCellView.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

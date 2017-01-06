@@ -49,6 +49,6 @@ a component changes.
 
 
 }}}
-\references{\url{http://library.gnome.org/devel//atk/AtkComponent.html}}
+\references{\url{https://developer.gnome.org/atk/stable/AtkComponent.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

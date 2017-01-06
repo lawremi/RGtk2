@@ -128,6 +128,6 @@ The amount of space between children.  Allowed values: >= 0  Default value: 0
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkBox.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkBox.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -41,7 +41,7 @@ used for right-to-left locales.}
 }
 
 }}}
-\references{\url{http://library.gnome.org/devel//gtk/gtk-Stock-Items.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/gtk2-Stock-Items.html}}
 \note{Please see the reference for a detailed list of the stock items}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

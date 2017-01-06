@@ -61,7 +61,7 @@ child with name "entry".}
 A column in the data source model to get the strings from.  Allowed values: >= -1  Default value: -1
 
 }}}
-\references{\url{http://library.gnome.org/devel//gtk/GtkComboBoxEntry.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkComboBoxEntry.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{\code{\link{GtkComboBox}}}
 \keyword{internal}

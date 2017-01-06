@@ -61,6 +61,6 @@ necessarily correspond to \code{GType}s, but they do for all
 little use unless one is working with pure \code{GType}s.
 }
 \seealso{\code{\link{GObject}}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/gobject/gobject-Type-Information.html}}
+\references{\url{https://developer.gnome.org/gobject/stable/gobject-Type-Information.html}}
 \author{Michael Lawrence}
 \keyword{interface}

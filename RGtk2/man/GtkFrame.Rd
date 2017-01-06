@@ -83,6 +83,6 @@ Appearance of the frame border.  Default value: GTK_SHADOW_ETCHED_IN
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkFrame.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkFrame.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

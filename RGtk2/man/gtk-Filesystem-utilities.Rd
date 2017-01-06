@@ -54,6 +54,6 @@ The screen where this window will be displayed.
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/gtk-Filesystem-utilities.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/gtk2-Filesystem-utilities.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

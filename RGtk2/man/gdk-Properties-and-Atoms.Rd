@@ -56,6 +56,6 @@ using \code{\link{gdkPropertyChange}}.
 }
 
 }}}
-\references{\url{http://library.gnome.org/devel//gdk/gdk-Properties-and-Atoms.html}}
+\references{\url{https://developer.gnome.org/gdk2/stable/gdk2-Properties-and-Atoms.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -27,6 +27,6 @@ should be accessed using the functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkSeparatorMenuItem} is the equivalent of \code{\link{gtkSeparatorMenuItemNew}}.}
-\references{\url{http://library.gnome.org/devel//gtk/GtkSeparatorMenuItem.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkSeparatorMenuItem.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

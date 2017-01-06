@@ -67,7 +67,7 @@ Style of bevel around the menubar.  Default value: GTK_SHADOW_OUT
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkMenuBar.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkMenuBar.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
 \code{\link{GtkMenuShell}}

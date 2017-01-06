@@ -22,6 +22,6 @@ specification that a generated SVG file will conform to.
 }
 
 }}}
-\references{\url{http://www.cairographics.org/manual/cairo-svg-surface.html}}
+\references{\url{https://www.cairographics.org/manual/cairo-SVG-Surfaces.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

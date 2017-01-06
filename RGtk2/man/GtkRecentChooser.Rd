@@ -192,7 +192,7 @@ Sorting order to be used when displaying the recently used resources.
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkRecentChooser.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkRecentChooser.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
 \code{\link{GtkRecentManager}}

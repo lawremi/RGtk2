@@ -38,6 +38,6 @@ The ::display_opened signal is emitted when a display is opened.
 The default display for GDK.
 
 }}}
-\references{\url{http://library.gnome.org/devel//gdk/GdkDisplayManager.html}}
+\references{\url{https://developer.gnome.org/gdk2/stable/GdkDisplayManager.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

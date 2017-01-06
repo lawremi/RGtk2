@@ -24,6 +24,6 @@ element and should free any memory and resources allocated for it.
 
 
 }}}
-\references{\url{http://www.cairographics.org/manual/cairo-types.html}}
+\references{\url{https://www.cairographics.org/manual/cairo-Types.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

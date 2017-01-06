@@ -236,6 +236,6 @@ disjoint geometries}
 
 }
 }}
-\references{\url{http://www.cairographics.org/manual/cairo-context.html}}
+\references{\url{https://www.cairographics.org/manual/cairo-cairo-t.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

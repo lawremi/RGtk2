@@ -397,6 +397,6 @@ The initial position of the window.  Default value: GTK_WIN_POS_NONE
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkWindow.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkWindow.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

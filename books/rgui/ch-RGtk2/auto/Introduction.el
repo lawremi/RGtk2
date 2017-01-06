@@ -1,6 +1,8 @@
-(TeX-add-style-hook "Introduction"
+(TeX-add-style-hook
+ "Introduction"
  (lambda ()
-    (LaTeX-add-labels
-     "sec:RGtk2:constructors"
-     "sec:RGtk2:gWidgetsRGtk2")))
+   (LaTeX-add-labels
+    "fig:hello-world"
+    "sec:gtk-glade"))
+ :latex)
 

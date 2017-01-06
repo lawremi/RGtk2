@@ -40,6 +40,6 @@ a few file-specific operations and seeking and truncating.
   \code{\link{GFileIOStream}} implements GSeekable.
 
 }}}
-\references{\url{http://library.gnome.org/devel//gio/GFileIOStream.html}}
+\references{\url{https://developer.gnome.org/gio/stable/GFileIOStream.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -35,7 +35,7 @@
 
 }}}
 \section{Convenient Construction}{\code{gtkFileChooserWidget} is the result of collapsing the constructors of \code{GtkFileChooserWidget} (\code{\link{gtkFileChooserWidgetNew}}, \code{\link{gtkFileChooserWidgetNewWithBackend}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\references{\url{http://library.gnome.org/devel//gtk/GtkFileChooserWidget.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkFileChooserWidget.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
 \code{\link{GtkFileChooser}}

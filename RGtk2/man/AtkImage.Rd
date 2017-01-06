@@ -28,6 +28,6 @@ most significant information present in the image.}
 The AtkImage structure does not contain any fields.
 
 }}}
-\references{\url{http://library.gnome.org/devel//atk/AtkImage.html}}
+\references{\url{https://developer.gnome.org/atk/stable/AtkImage.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

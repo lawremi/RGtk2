@@ -64,6 +64,6 @@ The sockets type to use for socket construction.  Default value: G_SOCKET_TYPE_S
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gio/GSocketClient.html}}
+\references{\url{https://developer.gnome.org/gio/stable/GSocketClient.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

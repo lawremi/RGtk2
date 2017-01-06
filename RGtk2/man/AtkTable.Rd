@@ -146,7 +146,7 @@ AtkTable interface when the columns are reordered.
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//atk/AtkTable.html}}
+\references{\url{https://developer.gnome.org/atk/stable/AtkTable.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{\code{\link{AtkObject}}}
 \keyword{internal}

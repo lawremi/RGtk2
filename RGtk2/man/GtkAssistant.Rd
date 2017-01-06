@@ -155,6 +155,6 @@ Number of pixels around the header.  Allowed values: >= 0  Default value: 6
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkAssistant.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkAssistant.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

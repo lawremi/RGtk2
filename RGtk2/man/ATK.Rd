@@ -42,6 +42,6 @@ row/column information.}
 select a value from a bounded range of values.}
 }
 }
-\references{\url{http://library.gnome.org/devel//atk}}
+\references{\url{https://developer.gnome.org/atk}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{interface}

@@ -216,6 +216,6 @@ The representation being used for image data.  Default value: GTK_IMAGE_EMPTY
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkImage.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkImage.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

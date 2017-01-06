@@ -79,6 +79,6 @@ progress bar will be "filled in".
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkCellRendererProgress.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkCellRendererProgress.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

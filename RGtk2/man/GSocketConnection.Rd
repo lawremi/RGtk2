@@ -65,6 +65,6 @@ Whether or not close does a graceful disconnect.  Default value: FALSE
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gio/GSocketConnection.html}}
+\references{\url{https://developer.gnome.org/gio/stable/GSocketConnection.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

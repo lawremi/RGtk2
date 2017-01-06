@@ -33,7 +33,7 @@ Recently used files are supported since GTK+ 2.10.}
 
 }}}
 \section{Convenient Construction}{\code{gtkRecentChooserWidget} is the equivalent of \code{\link{gtkRecentChooserWidgetNewForManager}}.}
-\references{\url{http://library.gnome.org/devel//gtk/GtkRecentChooserWidget.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkRecentChooserWidget.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
 \code{\link{GtkRecentChooser}}

@@ -66,7 +66,7 @@ Whether the animation should loop when it reaches the end.
   Default value: FALSE  Since 2.18
 
 }}}
-\references{\url{http://library.gnome.org/devel//gdk-pixbuf/gdk-pixbuf-animation.html}}
+\references{\url{https://developer.gnome.org/gdk-pixbuf/stable/gdk-pixbuf-Animations.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{\code{\link{GdkPixbufLoader}}}
 \keyword{internal}

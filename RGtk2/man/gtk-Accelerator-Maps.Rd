@@ -51,6 +51,6 @@ changed::\\var{accel_path}.
 
 
 }}}
-\references{\url{http://library.gnome.org/devel//gtk/gtk-Accelerator-Maps.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/gtk2-Accelerator-Maps.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

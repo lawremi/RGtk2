@@ -99,6 +99,6 @@ bottom edges.
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gdk/gdk-Drawing-Primitives.html}}
+\references{\url{https://developer.gnome.org/gdk2/stable/gdk2-Drawing-Primitives.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

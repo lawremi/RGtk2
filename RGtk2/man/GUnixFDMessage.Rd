@@ -14,6 +14,6 @@ It may be sent using \code{\link{gSocketSendMessage}} and received using
 For an easier way to send and receive file descriptors over
 stream-oriented UNIX sockets, see \code{gUnixConnectionSendFd()} and
 \code{gUnixConnectionReceiveFd()}.}
-\references{\url{http://library.gnome.org/devel//gio/GUnixFDMessage.html}}
+\references{\url{https://developer.gnome.org/gio/stable/GUnixFDMessage.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

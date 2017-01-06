@@ -111,6 +111,6 @@ See \code{\link{CairoPathData}} for details.
 }
 
 }}}
-\references{\url{http://www.cairographics.org/manual/cairo-paths.html}}
+\references{\url{https://www.cairographics.org/manual/cairo-Paths.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

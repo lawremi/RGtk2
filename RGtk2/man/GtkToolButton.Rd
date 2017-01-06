@@ -107,6 +107,6 @@ If set, an underline in the label property indicates that the next character sho
 Spacing in pixels between the icon and label.  Allowed values: >= 0  Default value: 3
 
 }}}
-\references{\url{http://library.gnome.org/devel//gtk/GtkToolButton.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkToolButton.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

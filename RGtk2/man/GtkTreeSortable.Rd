@@ -59,7 +59,7 @@ the contents of \code{sortable} are resorted.
 
 
 }}}
-\references{\url{http://library.gnome.org/devel//gtk/GtkTreeSortable.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkTreeSortable.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
 \code{\link{GtkTreeModel}}

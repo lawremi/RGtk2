@@ -284,6 +284,6 @@ otherwise \code{gDgettext()}.
   Default value: NULL  Since 2.12
 
 }}}
-\references{\url{http://library.gnome.org/devel//gtk/GtkBuilder.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkBuilder.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

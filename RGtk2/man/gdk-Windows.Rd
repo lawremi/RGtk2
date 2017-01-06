@@ -679,6 +679,6 @@ The mouse pointer for a \code{\link{GdkWindow}}. See \code{\link{gdkWindowSetCur
   Since 2.18
 
 }}}
-\references{\url{http://library.gnome.org/devel//gdk/gdk-Windows.html}}
+\references{\url{https://developer.gnome.org/gdk2/stable/gdk2-Windows.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

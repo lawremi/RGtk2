@@ -61,6 +61,6 @@ return \code{TRUE} to show the window, \code{FALSE} to not show it.
 }
 
 }}}
-\references{\url{http://library.gnome.org/devel//gtk/GtkTooltip.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkTooltip.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

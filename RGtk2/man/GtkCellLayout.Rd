@@ -68,6 +68,6 @@ as appropriate.
 
 
 }}}
-\references{\url{http://library.gnome.org/devel//gtk/GtkCellLayout.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkCellLayout.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

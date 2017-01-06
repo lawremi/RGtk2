@@ -168,6 +168,6 @@ with Pango's Cairo renderer.
 
 
 }}}
-\references{\url{http://library.gnome.org/devel//pango/pango-Cairo-Rendering.html}}
+\references{\url{https://developer.gnome.org/pango/stable/pango-Cairo-Rendering.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

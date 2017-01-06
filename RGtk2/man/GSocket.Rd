@@ -200,6 +200,6 @@ The sockets type.  Default value: G_SOCKET_TYPE_STREAM
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gio/GSocket.html}}
+\references{\url{https://developer.gnome.org/gio/stable/GSocket.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

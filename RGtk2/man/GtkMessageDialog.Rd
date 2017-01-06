@@ -157,7 +157,7 @@ in the dialog.
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkMessageDialog.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkMessageDialog.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{\code{\link{GtkDialog}}}
 \keyword{internal}

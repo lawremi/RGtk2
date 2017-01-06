@@ -151,7 +151,7 @@ Whether to place scrollbars within the scrolled window's bevel.
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkScrolledWindow.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkScrolledWindow.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
 \code{\link{GtkViewport}}

@@ -60,6 +60,6 @@ gIoExtensionPointImplement ("my-extension-point",
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gio/gio-Extension-Points.html}}
+\references{\url{https://developer.gnome.org/gio/stable/gio-Extension-Points.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

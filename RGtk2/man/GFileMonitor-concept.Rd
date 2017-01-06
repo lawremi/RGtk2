@@ -72,6 +72,6 @@ The limit of the monitor to watch for changes, in milliseconds.  Allowed values:
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gio/GFileMonitor.html}}
+\references{\url{https://developer.gnome.org/gio/stable/GFileMonitor.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -19,6 +19,6 @@
 
 }}}
 \section{Convenient Construction}{\code{gtkIMMulticontext} is the equivalent of \code{\link{gtkIMMulticontextNew}}.}
-\references{\url{http://library.gnome.org/devel//gtk/GtkIMMulticontext.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkIMMulticontext.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -27,6 +27,6 @@ Interface for asynchronously initializable objects.
   Since 2.22
 
 }}}
-\references{\url{http://library.gnome.org/devel//gio/GAsyncInitable.html}}
+\references{\url{https://developer.gnome.org/gio/stable/GAsyncInitable.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

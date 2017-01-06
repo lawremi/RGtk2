@@ -42,7 +42,7 @@ Encapsulates information about a key event.
 \item{\verb{state}}{[numeric]  A bitmask representing the state of the modifier keys immediately after the event takes place.   
 The meaning of the bits is currently defined to match the bitmask used by GDK in
 GdkEventType.state, see 
-http://developer.gnome.org/doc/API/2.0/gdk/gdk-Event-Structures.html\code{\link{GdkEventKey}}}
+https://developer.gnome.org/gdk2/stable/gdk2-Event-Structures.html\code{\link{GdkEventKey}}}
 \item{\verb{keyval}}{[numeric]  A guint representing a keysym value corresponding to those used by GDK and X11: see
 /usr/X11/include/keysymdef.h.}
 \item{\verb{length}}{[integer]  The length of member \verb{string}.}
@@ -123,6 +123,6 @@ event dispatch to the client application should proceed as normal.
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//atk/AtkUtil.html}}
+\references{\url{https://developer.gnome.org/atk/stable/AtkUtil.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

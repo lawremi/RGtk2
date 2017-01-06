@@ -79,6 +79,6 @@ Minimum possible value for Y.  Default value: 0
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//gtk/GtkCurve.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkCurve.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -196,6 +196,6 @@ The standard cursors available.
 }
 
 }}}
-\references{\url{http://library.gnome.org/devel//gdk/gdk-Cursors.html}}
+\references{\url{https://developer.gnome.org/gdk2/stable/gdk2-Cursors.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -47,7 +47,7 @@ Recently used files are supported since GTK+ 2.10.}
 
 }}}
 \section{Convenient Construction}{\code{gtkRecentChooserDialog} is the equivalent of \code{\link{gtkRecentChooserDialogNew}}.}
-\references{\url{http://library.gnome.org/devel//gtk/GtkRecentChooserDialog.html}}
+\references{\url{https://developer.gnome.org/gtk2/stable/GtkRecentChooserDialog.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
 \code{\link{GtkRecentChooser}}

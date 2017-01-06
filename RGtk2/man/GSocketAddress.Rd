@@ -49,6 +49,6 @@ if available.)
 The family of the socket address.  Default value: G_SOCKET_FAMILY_INVALID
 
 }}}
-\references{\url{http://library.gnome.org/devel//gio/GSocketAddress.html}}
+\references{\url{https://developer.gnome.org/gio/stable/GSocketAddress.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -69,6 +69,6 @@ interrogating ATK for the latest document content.
 
 }
 }}
-\references{\url{http://library.gnome.org/devel//atk/AtkDocument.html}}
+\references{\url{https://developer.gnome.org/atk/stable/AtkDocument.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

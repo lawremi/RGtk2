@@ -50,6 +50,6 @@ data in bytes.  The write function should return
 
 }
 }}
-\references{\url{http://www.cairographics.org/manual/cairo-png-functions.html}}
+\references{\url{https://www.cairographics.org/manual/cairo-PNG-Support.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

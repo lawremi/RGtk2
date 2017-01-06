@@ -33,6 +33,6 @@ You can also copy an existing pixbuf with the \code{\link{gdkPixbufCopy}}
 function.  This is not the same as just doing a \code{gObjectRef()}
 on the old pixbuf; the copy function will actually duplicate the
 pixel data in memory and create a new \code{\link{GdkPixbuf}} structure for it.}
-\references{\url{http://library.gnome.org/devel//gdk-pixbuf/gdk-pixbuf-Image-Data-in-Memory.html}}
+\references{\url{https://developer.gnome.org/gdk-pixbuf/stable/gdk-pixbuf-Image-Data-in-Memory.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}
