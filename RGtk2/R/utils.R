@@ -179,11 +179,11 @@ print.flags <- function(x, ...) {
 }
 
 `[.enums` <- function(x, name) {
-    if (!is.character(name) || length(name) != 1L) {
-        stop("An enum value must be a single string")
+    if (!is.character(name)) {
+        stop("Enum values must be strings")
     }
-    if (!name %in% names(x)) {
-        stop("invalid enum value: ", name,
+    if (!all(name %in% names(x))) {
+        stop("invalid enum value(s): ", paste(name, collapse=", "),
              " (valid: ", paste(names(x), collapse=", "), ")")
     }
     NextMethod()
