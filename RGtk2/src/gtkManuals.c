@@ -838,6 +838,7 @@ S_gtk_container_child_get(USER_OBJECT_ s_object, USER_OBJECT_ s_child, USER_OBJE
 			SET_VECTOR_ELT(_result, i, VECTOR_ELT(
 				S_gtk_container_child_get_property(s_object, s_child, STRING_ELT(s_names, i)), 1));
 
+	UNPROTECT(1);
         return(_result);
 }
 
@@ -1251,7 +1252,7 @@ S_GtkBuilderConnectFuncDefault(GtkBuilder* builder, GObject* object,
   const gchar* signal_name, const gchar* handler_name, 
   GObject* connect_object, guint flags, gpointer s_user_data)
 {	
-  USER_OBJECT_ s_func = Rf_findFun(install(handler_name), R_GlobalEnv);
+  USER_OBJECT_ s_func = PROTECT(Rf_findFun(install(handler_name), R_GlobalEnv));
   GClosure *closure;
   
 	if (connect_object) /* FIXME: we can't use g_signal_connect_object */
@@ -1260,6 +1261,7 @@ S_GtkBuilderConnectFuncDefault(GtkBuilder* builder, GObject* object,
   closure = R_createGClosure(s_func, s_user_data);
 	((R_CallbackData *)closure->data)->userDataFirst = flags & G_CONNECT_SWAPPED;
   
+  UNPROTECT(1);
   g_signal_connect_closure(object, signal_name, closure, flags & G_CONNECT_AFTER);
 }
 

@@ -45,8 +45,9 @@ asRCairoPath(cairo_path_t *path)
 			PROBLEM "Converting Cairo path: did not understand type %d", data->header.type
 			ERROR;
 		}
-		setAttrib(s_data_el, install("type"), asRInteger(data->header.type));
-		UNPROTECT(1);
+		setAttrib(s_data_el, install("type"),
+			  PROTECT(asRInteger(data->header.type)));
+		UNPROTECT(2);
 		SET_VECTOR_ELT(s_data, j, s_data_el);
 	}
 	

@@ -25,7 +25,8 @@ S_virtual_gobject_set_property(GObject *object, guint id, const GValue *value, G
   */
   if (s_fun == NULL_USER_OBJECT) {
     USER_OBJECT_ s_prop_env = S_G_OBJECT_GET_INSTANCE_ENV(object);
-    defineVar(install(pspec->name), asRGValue(value), s_prop_env);
+    defineVar(install(pspec->name), PROTECT(asRGValue(value)), s_prop_env);
+    UNPROTECT(1);
   } else {
     USER_OBJECT_ e;
     USER_OBJECT_ tmp;

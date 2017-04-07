@@ -154,7 +154,9 @@ toRPointerWithFinalizer(gconstpointer val, const gchar *typeName, RPointerFinali
         if (G_TYPE_IS_INSTANTIATABLE(type) || G_TYPE_IS_INTERFACE(type))
             type = G_TYPE_FROM_INSTANCE(val);
         if (G_TYPE_IS_DERIVED(type)) {
-            setAttrib(ans, install("interfaces"), R_internal_getInterfaces(type));
+            setAttrib(ans, install("interfaces"),
+		      PROTECT(R_internal_getInterfaces(type)));
+	    UNPROTECT(1);
             PROTECT(klass = R_internal_getGTypeAncestors(type));
         }
     }

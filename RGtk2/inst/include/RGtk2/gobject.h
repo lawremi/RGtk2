@@ -465,8 +465,9 @@ __extension__ \
 #define S_G_OBJECT_ADD_ENV(s_object, user_object) \
 __extension__ \
 ({ \
-    USER_OBJECT_ user_obj = user_object; \
+    USER_OBJECT_ user_obj = PROTECT(user_object);			\
     setAttrib(user_obj, install(".private"), S_G_OBJECT_GET_INSTANCE_ENV(s_object)); \
+    UNPROTECT(1); \
     user_obj; \
 })
 

@@ -5,10 +5,13 @@ asRGdkAtom(GdkAtom val)
 {
   USER_OBJECT_ ans;
   char *tmp;
-  ans = toRPointer(GDK_ATOM_TO_POINTER(val), "GdkAtom");
+  PROTECT(ans = toRPointer(GDK_ATOM_TO_POINTER(val), "GdkAtom"));
   tmp = gdk_atom_name(val);
-  if(tmp)
-     setAttrib(ans, install("name"), asRString(tmp));
+  if(tmp) {
+    setAttrib(ans, install("name"), PROTECT(asRString(tmp)));
+    UNPROTECT(1);
+  }
+  UNPROTECT(1);
   return(ans);
 }
 GdkAtom

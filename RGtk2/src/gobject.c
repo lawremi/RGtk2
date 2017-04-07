@@ -155,10 +155,10 @@ asRGType(GType type)
     
     PROTECT(ans = R_MakeExternalPtr((void *)type, R_NilValue, R_NilValue));
 
-    setAttrib(ans, install("name"), asRString(name));
+    setAttrib(ans, install("name"), PROTECT(asRString(name)));
     SET_CLASS(ans, asRString("GType"));
 
-    UNPROTECT(1);
+    UNPROTECT(2);
     return(ans);
 }
 
