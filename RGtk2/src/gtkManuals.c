@@ -1210,8 +1210,11 @@ S_GtkTextBufferSerializeFunc(GtkTextBuffer* s_register_buffer, GtkTextBuffer* s_
 
   *s_length = GET_LENGTH(s_ans);
   
+  guint8 *ans = g_malloc_n(*s_length, sizeof(guint8));
+  memcpy(ans, RAW(s_ans), *s_length);
+
   UNPROTECT(1);
-  return(((guint8*)asCArray(s_ans, guint8, asCRaw)));
+  return ans;
 }
 
 /* need to return the x, y, and in_push params */
