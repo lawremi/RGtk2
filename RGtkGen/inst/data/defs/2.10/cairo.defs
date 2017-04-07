@@ -457,7 +457,7 @@
   (c-name "cairo_svg_get_versions")
   (return-type "none")
   (parameters
-    '("cairo_svg_version_t-const*[]" "versions" (out))
+    '("const-cairo_svg_version_t*[]" "versions" (out))
     '("int*" "num_versions" (out))
   )
   (since "1.2.0")

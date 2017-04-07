@@ -3360,14 +3360,15 @@ S_cairo_svg_get_versions(void)
   USER_OBJECT_ _result = NULL_USER_OBJECT;
 #if CAIRO_CHECK_VERSION(1, 2, 0)
 
-  cairo_svg_version_t const* versions = NULL;
+  const cairo_svg_version_t* versions = NULL;
   int num_versions;
 
   cairo_svg_get_versions(&versions, &num_versions);
 
 
-  _result = retByVal(_result, "versions", asREnumArrayWithSize(versions, CAIRO_TYPE_SVG_VERSION, num_versions), "num.versions", asRInteger(num_versions), NULL);
-    CLEANUP(g_free, versions);;
+  _result = retByVal(PROTECT(_result), "versions", PROTECT(asREnumArrayWithSize(versions, CAIRO_TYPE_SVG_VERSION, num_versions)), "num.versions", PROTECT(asRInteger(num_versions)), NULL);
+  UNPROTECT(3);
+  ;
   ;
 #else
   error("cairo_svg_get_versions exists only in cairo >= 1.2.0");
