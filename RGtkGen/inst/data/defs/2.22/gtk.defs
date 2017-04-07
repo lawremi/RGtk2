@@ -10,24 +10,28 @@
   (parameters
     '("GtkWidget*" "widget")
   )
+  (since "2.22.0")
 )
 
 (define-method get_widget
   (of-object "GtkAccessible")
   (c-name "gtk_accessible_get_widget")
   (return-type "GtkWidget*")
+  (since "2.22.0")
 )
 
 (define-method commit
   (of-object "GtkAssistant")
   (c-name "gtk_assistant_commit")
   (return-type "none")
+  (since "2.22.0")
 )
 
 (define-method get_event_window
   (of-object "GtkButton")
   (c-name "gtk_button_get_event_window")
   (return-type "GdkWindow*")
+  (since "2.22.0")
 )
 
 (define-method im_context_filter_keypress
@@ -37,18 +41,21 @@
   (parameters
     '("GdkEventKey*" "event")
   )
+  (since "2.22.0")
 )
 
 (define-method reset_im_context
   (of-object "GtkEntry")
   (c-name "gtk_entry_reset_im_context")
   (return-type "none")
+  (since "2.22.0")
 )
 
 (define-method get_font_selection
   (of-object "GtkFontSelectionDialog")
   (c-name "gtk_font_selection_dialog_get_font_selection")
   (return-type "GtkWidget*")
+  (since "2.22.0")
 )
 
 (define-method get_item_row
@@ -58,6 +65,7 @@
   (parameters
     '("GtkTreePath*" "path")
   )
+  (since "2.22.0")
 )
 
 (define-method get_item_column
@@ -67,12 +75,14 @@
   (parameters
     '("GtkTreePath*" "path")
   )
+  (since "2.22.0")
 )
 
 (define-method get_message_area
   (of-object "GtkMessageDialog")
   (c-name "gtk_message_dialog_get_message_area")
   (return-type "GtkWidget*")
+  (since "2.22.0")
 )
 
 (define-method remove_all
@@ -82,6 +92,7 @@
   (parameters
     '("guint" "context_id")
   )
+  (since "2.22.0")
 )
 
 (define-method get_size
@@ -92,18 +103,21 @@
     '("guint*" "rows" (out))
     '("guint*" "columns" (out))
   )
+  (since "2.22.0")
 )
 
 (define-method get_hadjustment
   (of-object "GtkTextView")
   (c-name "gtk_text_view_get_hadjustment")
   (return-type "GtkAdjustment*")
+  (since "2.22.0")
 )
 
 (define-method get_vadjustment
   (of-object "GtkTextView")
   (c-name "gtk_text_view_get_vadjustment")
   (return-type "GtkAdjustment*")
+  (since "2.22.0")
 )
 
 (define-method im_context_filter_keypress
@@ -113,18 +127,21 @@
   (parameters
     '("GdkEventKey*" "event")
   )
+  (since "2.22.0")
 )
 
 (define-method reset_im_context
   (of-object "GtkTextView")
   (c-name "gtk_text_view_reset_im_context")
   (return-type "none")
+  (since "2.22.0")
 )
 
 (define-method get_view_window
   (of-object "GtkViewport")
   (c-name "gtk_viewport_get_view_window")
   (return-type "GdkWindow*")
+  (since "2.22.0")
 )
 
 (define-method send_focus_change
@@ -134,16 +151,19 @@
   (parameters
     '("GdkEvent*" "event")
   )
+  (since "2.22.0")
 )
 
 (define-method has_group
   (of-object "GtkWindow")
   (c-name "gtk_window_has_group")
   (return-type "gboolean")
+  (since "2.22.0")
 )
 
 (define-method get_current_grab
   (of-object "GtkWindowGroup")
   (c-name "gtk_window_group_get_current_grab")
   (return-type "GtkWidget*")
+  (since "2.22.0")
 )
