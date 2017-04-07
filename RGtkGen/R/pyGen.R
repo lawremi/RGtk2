@@ -1097,7 +1097,7 @@ getParamNames <- function(params) {
 decl <-
 function(type, var, size)
 {
- decl <- paste(toValidType(type), var)
+ decl <- paste(toValidType(type), paste(var, collapse=", "))
  if (!missing(size))
      decl <- paste(decl,"[",size,"]",sep="")
  decl
@@ -1281,6 +1281,10 @@ alloc <- function(obj, type, length)
 unprotect <- function(count)
 {
   invoke("UNPROTECT", count)
+}
+protect <- function(obj)
+{
+    invoke("PROTECT", obj)
 }
 # returns a value from a function
 returnValue <- function(name = "_result") {
@@ -1957,13 +1961,17 @@ function(fun, defs, name)
        if (isBoxed(dtype, defs) && !(dtype %in% transparentTypes))
          conv_name <- refName(name)
        else conv_name <- name
-       outRetParams <<- c(outRetParams, lit(nameToS(name)), 
-        convertToR(conv_name, deref(outParams[[name]]$type), fun, defs)$code)
+       converted <-
+           convertToR(conv_name, deref(outParams[[name]]$type), fun,defs)$code
+       outRetParams <<- c(outRetParams, lit(nameToS(name)), protect(converted))
      })
 
      if (!is.null(outRetParams)) {
+         retByValArgs <- c(protect("_result"), outRetParams)
+         retByValCall <- invoke("retByVal", c(retByValArgs, "NULL"))
          outRet <- c("",
-         statement(cassign("_result", invoke("retByVal", c("_result", outRetParams, "NULL")))))
+                     statement(cassign("_result", retByValCall)),
+                     statement(unprotect(length(outRetParams)/2L + 1L)))
      }
  }
 
@@ -2215,6 +2223,9 @@ genUserFunctionCode <- function(fun, defs, name = fun$name, virtual = 0, package
   
   header <- declareFunction(ret_type, name, param_types, param_names)
   declaration <- header
+  if (virtual) {
+      header <- static(header)
+  }
   
   export_code <- exportFunc(fun, nameToC(name), param_types, param_names, package)
   import_code <- importFunc(fun, nameToC(name), ret_type, param_types, param_names, package)

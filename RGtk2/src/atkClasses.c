@@ -3002,7 +3002,8 @@ S_atk_table_iface_get_selected_columns(USER_OBJECT_ s_object_class, USER_OBJECT_
 
   _result = asRInteger(ans);
 
-  _result = retByVal(_result, "selected", asRIntegerArrayWithSize(selected, ans), NULL);
+  _result = retByVal(PROTECT(_result), "selected", PROTECT(asRIntegerArrayWithSize(selected, ans)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_free, selected);;
 
   return(_result);
@@ -3022,7 +3023,8 @@ S_atk_table_iface_get_selected_rows(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 
   _result = asRInteger(ans);
 
-  _result = retByVal(_result, "selected", asRIntegerArrayWithSize(selected, ans), NULL);
+  _result = retByVal(PROTECT(_result), "selected", PROTECT(asRIntegerArrayWithSize(selected, ans)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_free, selected);;
 
   return(_result);
@@ -3930,7 +3932,8 @@ S_atk_image_iface_get_image_position(USER_OBJECT_ s_object_class, USER_OBJECT_ s
   object_class->get_image_position(object, &x, &y, coord_type);
 
 
-  _result = retByVal(_result, "x", asRInteger(x), "y", asRInteger(y), NULL);
+  _result = retByVal(PROTECT(_result), "x", PROTECT(asRInteger(x)), "y", PROTECT(asRInteger(y)), NULL);
+  UNPROTECT(3);
   ;
   ;
 
@@ -3966,7 +3969,8 @@ S_atk_image_iface_get_image_size(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obj
   object_class->get_image_size(object, &width, &height);
 
 
-  _result = retByVal(_result, "width", asRInteger(width), "height", asRInteger(height), NULL);
+  _result = retByVal(PROTECT(_result), "width", PROTECT(asRInteger(width)), "height", PROTECT(asRInteger(height)), NULL);
+  UNPROTECT(3);
   ;
   ;
 
@@ -5002,7 +5006,8 @@ S_atk_component_iface_get_extents(USER_OBJECT_ s_object_class, USER_OBJECT_ s_ob
   object_class->get_extents(object, &x, &y, &width, &height, coord_type);
 
 
-  _result = retByVal(_result, "x", asRInteger(x), "y", asRInteger(y), "width", asRInteger(width), "height", asRInteger(height), NULL);
+  _result = retByVal(PROTECT(_result), "x", PROTECT(asRInteger(x)), "y", PROTECT(asRInteger(y)), "width", PROTECT(asRInteger(width)), "height", PROTECT(asRInteger(height)), NULL);
+  UNPROTECT(5);
   ;
   ;
   ;
@@ -5025,7 +5030,8 @@ S_atk_component_iface_get_position(USER_OBJECT_ s_object_class, USER_OBJECT_ s_o
   object_class->get_position(object, &x, &y, coord_type);
 
 
-  _result = retByVal(_result, "x", asRInteger(x), "y", asRInteger(y), NULL);
+  _result = retByVal(PROTECT(_result), "x", PROTECT(asRInteger(x)), "y", PROTECT(asRInteger(y)), NULL);
+  UNPROTECT(3);
   ;
   ;
 
@@ -5045,7 +5051,8 @@ S_atk_component_iface_get_size(USER_OBJECT_ s_object_class, USER_OBJECT_ s_objec
   object_class->get_size(object, &width, &height);
 
 
-  _result = retByVal(_result, "width", asRInteger(width), "height", asRInteger(height), NULL);
+  _result = retByVal(PROTECT(_result), "width", PROTECT(asRInteger(width)), "height", PROTECT(asRInteger(height)), NULL);
+  UNPROTECT(3);
   ;
   ;
 
@@ -5649,7 +5656,6 @@ S_virtual_atk_value_set_current_value(AtkValue* s_object, const GValue* s_value)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-#if ATK_CHECK_VERSION(1, 11, 0)
 
 static void
 S_virtual_atk_value_get_minimum_increment(AtkValue* s_object, GValue* s_value)
@@ -5680,7 +5686,6 @@ S_virtual_atk_value_get_minimum_increment(AtkValue* s_object, GValue* s_value)
   g_free(value);
 }
 }
-#endif
 void
 S_atk_value_class_init(AtkValueIface * c, SEXP e)
 {
@@ -5715,7 +5720,8 @@ S_atk_value_iface_get_current_value(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
   object_class->get_current_value(object, value);
 
 
-  _result = retByVal(_result, "value", asRGValue(value), NULL);
+  _result = retByVal(PROTECT(_result), "value", PROTECT(asRGValue(value)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_value_unset, value);
   CLEANUP(g_free, value);;
 
@@ -5734,7 +5740,8 @@ S_atk_value_iface_get_maximum_value(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
   object_class->get_maximum_value(object, value);
 
 
-  _result = retByVal(_result, "value", asRGValue(value), NULL);
+  _result = retByVal(PROTECT(_result), "value", PROTECT(asRGValue(value)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_value_unset, value);
   CLEANUP(g_free, value);;
 
@@ -5753,7 +5760,8 @@ S_atk_value_iface_get_minimum_value(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
   object_class->get_minimum_value(object, value);
 
 
-  _result = retByVal(_result, "value", asRGValue(value), NULL);
+  _result = retByVal(PROTECT(_result), "value", PROTECT(asRGValue(value)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_value_unset, value);
   CLEANUP(g_free, value);;
 
@@ -5792,7 +5800,8 @@ S_atk_value_iface_get_minimum_increment(USER_OBJECT_ s_object_class, USER_OBJECT
   object_class->get_minimum_increment(object, value);
 
 
-  _result = retByVal(_result, "value", asRGValue(value), NULL);
+  _result = retByVal(PROTECT(_result), "value", PROTECT(asRGValue(value)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_value_unset, value);
   CLEANUP(g_free, value);;
 #else
@@ -6573,7 +6582,8 @@ S_atk_text_iface_get_text_after_offset(USER_OBJECT_ s_object_class, USER_OBJECT_
 
   _result = asRString(ans);
 
-  _result = retByVal(_result, "start.offset", asRInteger(start_offset), "end.offset", asRInteger(end_offset), NULL);
+  _result = retByVal(PROTECT(_result), "start.offset", PROTECT(asRInteger(start_offset)), "end.offset", PROTECT(asRInteger(end_offset)), NULL);
+  UNPROTECT(3);
     CLEANUP(g_free, ans);;
   ;
   ;
@@ -6598,7 +6608,8 @@ S_atk_text_iface_get_text_at_offset(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 
   _result = asRString(ans);
 
-  _result = retByVal(_result, "start.offset", asRInteger(start_offset), "end.offset", asRInteger(end_offset), NULL);
+  _result = retByVal(PROTECT(_result), "start.offset", PROTECT(asRInteger(start_offset)), "end.offset", PROTECT(asRInteger(end_offset)), NULL);
+  UNPROTECT(3);
     CLEANUP(g_free, ans);;
   ;
   ;
@@ -6640,7 +6651,8 @@ S_atk_text_iface_get_text_before_offset(USER_OBJECT_ s_object_class, USER_OBJECT
 
   _result = asRString(ans);
 
-  _result = retByVal(_result, "start.offset", asRInteger(start_offset), "end.offset", asRInteger(end_offset), NULL);
+  _result = retByVal(PROTECT(_result), "start.offset", PROTECT(asRInteger(start_offset)), "end.offset", PROTECT(asRInteger(end_offset)), NULL);
+  UNPROTECT(3);
     CLEANUP(g_free, ans);;
   ;
   ;
@@ -6680,7 +6692,8 @@ S_atk_text_iface_get_run_attributes(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 
   _result = asRAtkAttributeSet(ans);
 
-  _result = retByVal(_result, "start.offset", asRInteger(start_offset), "end.offset", asRInteger(end_offset), NULL);
+  _result = retByVal(PROTECT(_result), "start.offset", PROTECT(asRInteger(start_offset)), "end.offset", PROTECT(asRInteger(end_offset)), NULL);
+  UNPROTECT(3);
   ;
   ;
 
@@ -6720,7 +6733,8 @@ S_atk_text_iface_get_character_extents(USER_OBJECT_ s_object_class, USER_OBJECT_
   object_class->get_character_extents(object, offset, &x, &y, &width, &height, coords);
 
 
-  _result = retByVal(_result, "x", asRInteger(x), "y", asRInteger(y), "width", asRInteger(width), "height", asRInteger(height), NULL);
+  _result = retByVal(PROTECT(_result), "x", PROTECT(asRInteger(x)), "y", PROTECT(asRInteger(y)), "width", PROTECT(asRInteger(width)), "height", PROTECT(asRInteger(height)), NULL);
+  UNPROTECT(5);
   ;
   ;
   ;
@@ -6796,7 +6810,8 @@ S_atk_text_iface_get_selection(USER_OBJECT_ s_object_class, USER_OBJECT_ s_objec
 
   _result = asRString(ans);
 
-  _result = retByVal(_result, "start.offset", asRInteger(start_offset), "end.offset", asRInteger(end_offset), NULL);
+  _result = retByVal(PROTECT(_result), "start.offset", PROTECT(asRInteger(start_offset)), "end.offset", PROTECT(asRInteger(end_offset)), NULL);
+  UNPROTECT(3);
     CLEANUP(g_free, ans);;
   ;
   ;
@@ -6949,7 +6964,8 @@ S_atk_text_iface_get_range_extents(USER_OBJECT_ s_object_class, USER_OBJECT_ s_o
   object_class->get_range_extents(object, start_offset, end_offset, coord_type, rect);
 
 
-  _result = retByVal(_result, "rect", asRAtkTextRectangle(rect), NULL);
+  _result = retByVal(PROTECT(_result), "rect", PROTECT(asRAtkTextRectangle(rect)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_free, rect);;
 
   return(_result);

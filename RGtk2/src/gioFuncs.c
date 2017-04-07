@@ -38,7 +38,8 @@ S_g_app_info_launch_default_for_uri(USER_OBJECT_ s_uri, USER_OBJECT_ s_launch_co
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_app_info_launch_default_for_uri exists only in gio >= 2.16.0");
@@ -83,7 +84,8 @@ S_g_app_info_create_from_commandline(USER_OBJECT_ s_commandline, USER_OBJECT_ s_
 
   _result = toRPointerWithFinalizer(ans, "GAppInfo", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_app_info_create_from_commandline exists only in gio >= 2.16.0");
@@ -250,7 +252,8 @@ S_g_app_info_launch(USER_OBJECT_ s_object, USER_OBJECT_ s_files, USER_OBJECT_ s_
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_list_free, ((GList*)files));;
     CLEANUP(g_error_free, error);;
 #else
@@ -317,7 +320,8 @@ S_g_app_info_launch_uris(USER_OBJECT_ s_object, USER_OBJECT_ s_uris, USER_OBJECT
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_list_free, ((GList*)uris));;
     CLEANUP(g_error_free, error);;
 #else
@@ -363,7 +367,8 @@ S_g_app_info_set_as_default_for_type(USER_OBJECT_ s_object, USER_OBJECT_ s_conte
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_app_info_set_as_default_for_type exists only in gio >= 2.16.0");
@@ -388,7 +393,8 @@ S_g_app_info_set_as_default_for_extension(USER_OBJECT_ s_object, USER_OBJECT_ s_
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_app_info_set_as_default_for_extension exists only in gio >= 2.16.0");
@@ -413,7 +419,8 @@ S_g_app_info_add_supports_type(USER_OBJECT_ s_object, USER_OBJECT_ s_content_typ
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_app_info_add_supports_type exists only in gio >= 2.16.0");
@@ -458,7 +465,8 @@ S_g_app_info_remove_supports_type(USER_OBJECT_ s_object, USER_OBJECT_ s_content_
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_app_info_remove_supports_type exists only in gio >= 2.16.0");
@@ -852,7 +860,8 @@ S_g_buffered_input_stream_peek_buffer(USER_OBJECT_ s_object)
 
   _result = asRRawArrayWithSize(ans, count);
 
-  _result = retByVal(_result, "count", asRNumeric(count), NULL);
+  _result = retByVal(PROTECT(_result), "count", PROTECT(asRNumeric(count)), NULL);
+  UNPROTECT(2);
   ;
 #else
   error("g_buffered_input_stream_peek_buffer exists only in gio >= 2.16.0");
@@ -878,7 +887,8 @@ S_g_buffered_input_stream_fill(USER_OBJECT_ s_object, USER_OBJECT_ s_count, USER
 
   _result = asRInteger(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_buffered_input_stream_fill exists only in gio >= 2.16.0");
@@ -926,7 +936,8 @@ S_g_buffered_input_stream_fill_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_resu
 
   _result = asRInteger(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_buffered_input_stream_fill_finish exists only in gio >= 2.16.0");
@@ -951,7 +962,8 @@ S_g_buffered_input_stream_read_byte(USER_OBJECT_ s_object, USER_OBJECT_ s_cancel
 
   _result = asRInteger(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_buffered_input_stream_read_byte exists only in gio >= 2.16.0");
@@ -1172,7 +1184,8 @@ S_g_cancellable_set_error_if_cancelled(USER_OBJECT_ s_object)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_cancellable_set_error_if_cancelled exists only in gio >= 2.16.0");
@@ -1453,7 +1466,8 @@ S_g_content_type_guess(USER_OBJECT_ s_filename, USER_OBJECT_ s_data)
 
   _result = asRString(ans);
 
-  _result = retByVal(_result, "result.uncertain", asRLogical(result_uncertain), NULL);
+  _result = retByVal(PROTECT(_result), "result.uncertain", PROTECT(asRLogical(result_uncertain)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_free, ans);;
   ;
 #else
@@ -1618,7 +1632,8 @@ S_g_data_input_stream_read_byte(USER_OBJECT_ s_object, USER_OBJECT_ s_cancellabl
 
   _result = asRRaw(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_data_input_stream_read_byte exists only in gio >= 2.16.0");
@@ -1643,7 +1658,8 @@ S_g_data_input_stream_read_int16(USER_OBJECT_ s_object, USER_OBJECT_ s_cancellab
 
   _result = asRInteger(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_data_input_stream_read_int16 exists only in gio >= 2.16.0");
@@ -1668,7 +1684,8 @@ S_g_data_input_stream_read_uint16(USER_OBJECT_ s_object, USER_OBJECT_ s_cancella
 
   _result = asRInteger(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_data_input_stream_read_uint16 exists only in gio >= 2.16.0");
@@ -1693,7 +1710,8 @@ S_g_data_input_stream_read_int32(USER_OBJECT_ s_object, USER_OBJECT_ s_cancellab
 
   _result = asRInteger(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_data_input_stream_read_int32 exists only in gio >= 2.16.0");
@@ -1718,7 +1736,8 @@ S_g_data_input_stream_read_uint32(USER_OBJECT_ s_object, USER_OBJECT_ s_cancella
 
   _result = asRNumeric(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_data_input_stream_read_uint32 exists only in gio >= 2.16.0");
@@ -1743,7 +1762,8 @@ S_g_data_input_stream_read_int64(USER_OBJECT_ s_object, USER_OBJECT_ s_cancellab
 
   _result = asRNumeric(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_data_input_stream_read_int64 exists only in gio >= 2.16.0");
@@ -1768,7 +1788,8 @@ S_g_data_input_stream_read_uint64(USER_OBJECT_ s_object, USER_OBJECT_ s_cancella
 
   _result = asRNumeric(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_data_input_stream_read_uint64 exists only in gio >= 2.16.0");
@@ -1794,7 +1815,8 @@ S_g_data_input_stream_read_line(USER_OBJECT_ s_object, USER_OBJECT_ s_cancellabl
 
   _result = asRString(ans);
 
-  _result = retByVal(_result, "length", asRNumeric(length), "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "length", PROTECT(asRNumeric(length)), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(3);
     CLEANUP(g_free, ans);;
   ;
     CLEANUP(g_error_free, error);;
@@ -1823,7 +1845,8 @@ S_g_data_input_stream_read_until(USER_OBJECT_ s_object, USER_OBJECT_ s_stop_char
 
   _result = asRString(ans);
 
-  _result = retByVal(_result, "length", asRNumeric(length), "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "length", PROTECT(asRNumeric(length)), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(3);
     CLEANUP(g_free, ans);;
   ;
     CLEANUP(g_error_free, error);;
@@ -1930,7 +1953,8 @@ S_g_data_output_stream_put_byte(USER_OBJECT_ s_object, USER_OBJECT_ s_data, USER
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_data_output_stream_put_byte exists only in gio >= 2.16.0");
@@ -1956,7 +1980,8 @@ S_g_data_output_stream_put_int16(USER_OBJECT_ s_object, USER_OBJECT_ s_data, USE
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_data_output_stream_put_int16 exists only in gio >= 2.16.0");
@@ -1982,7 +2007,8 @@ S_g_data_output_stream_put_uint16(USER_OBJECT_ s_object, USER_OBJECT_ s_data, US
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_data_output_stream_put_uint16 exists only in gio >= 2.16.0");
@@ -2008,7 +2034,8 @@ S_g_data_output_stream_put_int32(USER_OBJECT_ s_object, USER_OBJECT_ s_data, USE
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_data_output_stream_put_int32 exists only in gio >= 2.16.0");
@@ -2034,7 +2061,8 @@ S_g_data_output_stream_put_uint32(USER_OBJECT_ s_object, USER_OBJECT_ s_data, US
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_data_output_stream_put_uint32 exists only in gio >= 2.16.0");
@@ -2060,7 +2088,8 @@ S_g_data_output_stream_put_int64(USER_OBJECT_ s_object, USER_OBJECT_ s_data, USE
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_data_output_stream_put_int64 exists only in gio >= 2.16.0");
@@ -2086,7 +2115,8 @@ S_g_data_output_stream_put_uint64(USER_OBJECT_ s_object, USER_OBJECT_ s_data, US
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_data_output_stream_put_uint64 exists only in gio >= 2.16.0");
@@ -2112,7 +2142,8 @@ S_g_data_output_stream_put_string(USER_OBJECT_ s_object, USER_OBJECT_ s_str, USE
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_data_output_stream_put_string exists only in gio >= 2.16.0");
@@ -2360,7 +2391,8 @@ S_g_drive_eject_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_drive_eject_finish exists only in gio >= 2.16.0");
@@ -2406,7 +2438,8 @@ S_g_drive_poll_for_media_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_drive_poll_for_media_finish exists only in gio >= 2.16.0");
@@ -2612,7 +2645,8 @@ S_g_file_enumerator_next_file(USER_OBJECT_ s_object, USER_OBJECT_ s_cancellable)
 
   _result = toRPointerWithFinalizer(ans, "GFileInfo", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_enumerator_next_file exists only in gio >= 2.16.0");
@@ -2637,7 +2671,8 @@ S_g_file_enumerator_close(USER_OBJECT_ s_object, USER_OBJECT_ s_cancellable)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_enumerator_close exists only in gio >= 2.16.0");
@@ -2685,7 +2720,8 @@ S_g_file_enumerator_next_files_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_resu
 
   _result = asRGListWithRef(ans, "GFileInfo");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_list_free, ans);;
     CLEANUP(g_error_free, error);;
 #else
@@ -2733,7 +2769,8 @@ S_g_file_enumerator_close_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_enumerator_close_finish exists only in gio >= 2.16.0");
@@ -3102,7 +3139,8 @@ S_g_file_get_child_for_display_name(USER_OBJECT_ s_object, USER_OBJECT_ s_displa
 
   _result = toRPointerWithFinalizer(ans, "GFile", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_get_child_for_display_name exists only in gio >= 2.16.0");
@@ -3253,7 +3291,8 @@ S_g_file_read(USER_OBJECT_ s_object, USER_OBJECT_ s_cancellable)
 
   _result = toRPointerWithFinalizer(ans, "GFileInputStream", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_read exists only in gio >= 2.16.0");
@@ -3300,7 +3339,8 @@ S_g_file_read_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_res)
 
   _result = toRPointerWithFinalizer(ans, "GFileInputStream", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_read_finish exists only in gio >= 2.16.0");
@@ -3326,7 +3366,8 @@ S_g_file_append_to(USER_OBJECT_ s_object, USER_OBJECT_ s_flags, USER_OBJECT_ s_c
 
   _result = toRPointerWithFinalizer(ans, "GFileOutputStream", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_append_to exists only in gio >= 2.16.0");
@@ -3352,7 +3393,8 @@ S_g_file_create(USER_OBJECT_ s_object, USER_OBJECT_ s_flags, USER_OBJECT_ s_canc
 
   _result = toRPointerWithFinalizer(ans, "GFileOutputStream", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_create exists only in gio >= 2.16.0");
@@ -3380,7 +3422,8 @@ S_g_file_replace(USER_OBJECT_ s_object, USER_OBJECT_ s_etag, USER_OBJECT_ s_make
 
   _result = toRPointerWithFinalizer(ans, "GFileOutputStream", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_replace exists only in gio >= 2.16.0");
@@ -3428,7 +3471,8 @@ S_g_file_append_to_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_res)
 
   _result = toRPointerWithFinalizer(ans, "GFileOutputStream", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_append_to_finish exists only in gio >= 2.16.0");
@@ -3476,7 +3520,8 @@ S_g_file_create_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_res)
 
   _result = toRPointerWithFinalizer(ans, "GFileOutputStream", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_create_finish exists only in gio >= 2.16.0");
@@ -3526,7 +3571,8 @@ S_g_file_replace_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_res)
 
   _result = toRPointerWithFinalizer(ans, "GFileOutputStream", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_replace_finish exists only in gio >= 2.16.0");
@@ -3574,7 +3620,8 @@ S_g_file_query_info(USER_OBJECT_ s_object, USER_OBJECT_ s_attributes, USER_OBJEC
 
   _result = toRPointerWithFinalizer(ans, "GFileInfo", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_query_info exists only in gio >= 2.16.0");
@@ -3623,7 +3670,8 @@ S_g_file_query_info_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_res)
 
   _result = toRPointerWithFinalizer(ans, "GFileInfo", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_query_info_finish exists only in gio >= 2.16.0");
@@ -3649,7 +3697,8 @@ S_g_file_query_filesystem_info(USER_OBJECT_ s_object, USER_OBJECT_ s_attributes,
 
   _result = toRPointerWithFinalizer(ans, "GFileInfo", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_query_filesystem_info exists only in gio >= 2.16.0");
@@ -3697,7 +3746,8 @@ S_g_file_query_filesystem_info_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_res)
 
   _result = toRPointerWithRef(ans, "GFileInfo");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_query_filesystem_info_finish exists only in gio >= 2.16.0");
@@ -3722,7 +3772,8 @@ S_g_file_find_enclosing_mount(USER_OBJECT_ s_object, USER_OBJECT_ s_cancellable)
 
   _result = toRPointerWithFinalizer(ans, "GMount", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_find_enclosing_mount exists only in gio >= 2.16.0");
@@ -3769,7 +3820,8 @@ S_g_file_find_enclosing_mount_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_res)
 
   _result = toRPointerWithFinalizer(ans, "GMount", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_find_enclosing_mount_finish exists only in gio >= 2.16.0");
@@ -3796,7 +3848,8 @@ S_g_file_enumerate_children(USER_OBJECT_ s_object, USER_OBJECT_ s_attributes, US
 
   _result = toRPointerWithFinalizer(ans, "GFileEnumerator", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_enumerate_children exists only in gio >= 2.16.0");
@@ -3845,7 +3898,8 @@ S_g_file_enumerate_children_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_res)
 
   _result = toRPointerWithFinalizer(ans, "GFileEnumerator", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_enumerate_children_finish exists only in gio >= 2.16.0");
@@ -3871,7 +3925,8 @@ S_g_file_set_display_name(USER_OBJECT_ s_object, USER_OBJECT_ s_display_name, US
 
   _result = toRPointerWithFinalizer(ans, "GFile", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_set_display_name exists only in gio >= 2.16.0");
@@ -3919,7 +3974,8 @@ S_g_file_set_display_name_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_res)
 
   _result = toRPointerWithFinalizer(ans, "GFile", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_set_display_name_finish exists only in gio >= 2.16.0");
@@ -3944,7 +4000,8 @@ S_g_file_delete(USER_OBJECT_ s_object, USER_OBJECT_ s_cancellable)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_delete exists only in gio >= 2.16.0");
@@ -3969,7 +4026,8 @@ S_g_file_trash(USER_OBJECT_ s_object, USER_OBJECT_ s_cancellable)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_trash exists only in gio >= 2.16.0");
@@ -3998,7 +4056,8 @@ S_g_file_copy(USER_OBJECT_ s_object, USER_OBJECT_ s_destination, USER_OBJECT_ s_
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
   R_freeCBData(progress_callback_data);
     CLEANUP(g_error_free, error);;
 #else
@@ -4051,7 +4110,8 @@ S_g_file_copy_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_res)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_copy_finish exists only in gio >= 2.16.0");
@@ -4080,7 +4140,8 @@ S_g_file_move(USER_OBJECT_ s_object, USER_OBJECT_ s_destination, USER_OBJECT_ s_
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
   R_freeCBData(progress_callback_data);
     CLEANUP(g_error_free, error);;
 #else
@@ -4106,7 +4167,8 @@ S_g_file_make_directory(USER_OBJECT_ s_object, USER_OBJECT_ s_cancellable)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_make_directory exists only in gio >= 2.16.0");
@@ -4132,7 +4194,8 @@ S_g_file_make_symbolic_link(USER_OBJECT_ s_object, USER_OBJECT_ s_symlink_value,
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_make_symbolic_link exists only in gio >= 2.16.0");
@@ -4157,7 +4220,8 @@ S_g_file_query_settable_attributes(USER_OBJECT_ s_object, USER_OBJECT_ s_cancell
 
   _result = toRPointerWithFinalizer(ans ? g_file_attribute_info_list_ref(ans) : NULL, "GFileAttributeInfoList", (RPointerFinalizer) g_file_attribute_info_list_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_query_settable_attributes exists only in gio >= 2.16.0");
@@ -4182,7 +4246,8 @@ S_g_file_query_writable_namespaces(USER_OBJECT_ s_object, USER_OBJECT_ s_cancell
 
   _result = toRPointerWithFinalizer(ans ? g_file_attribute_info_list_ref(ans) : NULL, "GFileAttributeInfoList", (RPointerFinalizer) g_file_attribute_info_list_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_query_writable_namespaces exists only in gio >= 2.16.0");
@@ -4211,7 +4276,8 @@ S_g_file_set_attribute(USER_OBJECT_ s_object, USER_OBJECT_ s_attribute, USER_OBJ
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_set_attribute exists only in gio >= 2.16.0");
@@ -4238,7 +4304,8 @@ S_g_file_set_attributes_from_info(USER_OBJECT_ s_object, USER_OBJECT_ s_info, US
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_set_attributes_from_info exists only in gio >= 2.16.0");
@@ -4288,7 +4355,8 @@ S_g_file_set_attributes_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "info", toRPointerWithRef(info, "GFileInfo"), "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "info", PROTECT(toRPointerWithRef(info, "GFileInfo")), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(3);
   ;
     CLEANUP(g_error_free, error);;
 #else
@@ -4317,7 +4385,8 @@ S_g_file_set_attribute_string(USER_OBJECT_ s_object, USER_OBJECT_ s_attribute, U
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_set_attribute_string exists only in gio >= 2.16.0");
@@ -4345,7 +4414,8 @@ S_g_file_set_attribute_byte_string(USER_OBJECT_ s_object, USER_OBJECT_ s_attribu
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_set_attribute_byte_string exists only in gio >= 2.16.0");
@@ -4373,7 +4443,8 @@ S_g_file_set_attribute_uint32(USER_OBJECT_ s_object, USER_OBJECT_ s_attribute, U
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_set_attribute_uint32 exists only in gio >= 2.16.0");
@@ -4401,7 +4472,8 @@ S_g_file_set_attribute_int32(USER_OBJECT_ s_object, USER_OBJECT_ s_attribute, US
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_set_attribute_int32 exists only in gio >= 2.16.0");
@@ -4429,7 +4501,8 @@ S_g_file_set_attribute_uint64(USER_OBJECT_ s_object, USER_OBJECT_ s_attribute, U
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_set_attribute_uint64 exists only in gio >= 2.16.0");
@@ -4457,7 +4530,8 @@ S_g_file_set_attribute_int64(USER_OBJECT_ s_object, USER_OBJECT_ s_attribute, US
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_set_attribute_int64 exists only in gio >= 2.16.0");
@@ -4505,7 +4579,8 @@ S_g_file_mount_enclosing_volume_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_res
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_mount_enclosing_volume_finish exists only in gio >= 2.16.0");
@@ -4553,7 +4628,8 @@ S_g_file_mount_mountable_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result)
 
   _result = toRPointerWithFinalizer(ans, "GFile", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_mount_mountable_finish exists only in gio >= 2.16.0");
@@ -4600,7 +4676,8 @@ S_g_file_unmount_mountable_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_unmount_mountable_finish exists only in gio >= 2.16.0");
@@ -4647,7 +4724,8 @@ S_g_file_eject_mountable_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_eject_mountable_finish exists only in gio >= 2.16.0");
@@ -4674,7 +4752,8 @@ S_g_file_copy_attributes(USER_OBJECT_ s_object, USER_OBJECT_ s_destination, USER
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_copy_attributes exists only in gio >= 2.16.0");
@@ -4700,7 +4779,8 @@ S_g_file_monitor_directory(USER_OBJECT_ s_object, USER_OBJECT_ s_flags, USER_OBJ
 
   _result = toRPointerWithFinalizer(ans, "GFileMonitor", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_monitor_directory exists only in gio >= 2.16.0");
@@ -4726,7 +4806,8 @@ S_g_file_monitor_file(USER_OBJECT_ s_object, USER_OBJECT_ s_flags, USER_OBJECT_ 
 
   _result = toRPointerWithFinalizer(ans, "GFileMonitor", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_monitor_file exists only in gio >= 2.16.0");
@@ -4751,7 +4832,8 @@ S_g_file_query_default_handler(USER_OBJECT_ s_object, USER_OBJECT_ s_cancellable
 
   _result = toRPointerWithFinalizer(ans, "GAppInfo", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_query_default_handler exists only in gio >= 2.16.0");
@@ -4779,7 +4861,8 @@ S_g_file_load_contents(USER_OBJECT_ s_object, USER_OBJECT_ s_cancellable)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "contents", asRString(contents), "length", asRNumeric(length), "etag.out", asRString(etag_out), "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "contents", PROTECT(asRString(contents)), "length", PROTECT(asRNumeric(length)), "etag.out", PROTECT(asRString(etag_out)), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(5);
   ;
     CLEANUP(g_error_free, error);;
 #else
@@ -4829,7 +4912,8 @@ S_g_file_load_contents_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_res)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "contents", asRString(contents), "length", asRNumeric(length), "etag.out", asRString(etag_out), "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "contents", PROTECT(asRString(contents)), "length", PROTECT(asRNumeric(length)), "etag.out", PROTECT(asRString(etag_out)), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(5);
   ;
     CLEANUP(g_error_free, error);;
 #else
@@ -4858,7 +4942,8 @@ S_g_file_load_partial_contents_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_res)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "contents", asRString(contents), "length", asRNumeric(length), "etag.out", asRString(etag_out), "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "contents", PROTECT(asRString(contents)), "length", PROTECT(asRNumeric(length)), "etag.out", PROTECT(asRString(etag_out)), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(5);
   ;
     CLEANUP(g_error_free, error);;
 #else
@@ -4890,7 +4975,8 @@ S_g_file_replace_contents(USER_OBJECT_ s_object, USER_OBJECT_ s_contents, USER_O
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "new.etag", asRString(new_etag), "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "new.etag", PROTECT(asRString(new_etag)), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(3);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_replace_contents exists only in gio >= 2.16.0");
@@ -4942,7 +5028,8 @@ S_g_file_replace_contents_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_res)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "new.etag", asRString(new_etag), "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "new.etag", PROTECT(asRString(new_etag)), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(3);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_replace_contents_finish exists only in gio >= 2.16.0");
@@ -5147,7 +5234,8 @@ S_g_file_info_get_attribute_data(USER_OBJECT_ s_object, USER_OBJECT_ s_attribute
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "type", asREnum(type, G_TYPE_FILE_ATTRIBUTE_TYPE), "value.pp", value_pp, "status", asREnum(status, G_TYPE_FILE_ATTRIBUTE_STATUS), NULL);
+  _result = retByVal(PROTECT(_result), "type", PROTECT(asREnum(type, G_TYPE_FILE_ATTRIBUTE_TYPE)), "value.pp", PROTECT(value_pp), "status", PROTECT(asREnum(status, G_TYPE_FILE_ATTRIBUTE_STATUS)), NULL);
+  UNPROTECT(4);
   ;
   ;
   ;
@@ -6329,7 +6417,8 @@ S_g_file_input_stream_query_info(USER_OBJECT_ s_object, USER_OBJECT_ s_attribute
 
   _result = toRPointerWithRef(ans, "GFileInfo");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_input_stream_query_info exists only in gio >= 2.16.0");
@@ -6377,7 +6466,8 @@ S_g_file_input_stream_query_info_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_re
 
   _result = toRPointerWithRef(ans, "GFileInfo");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_input_stream_query_info_finish exists only in gio >= 2.16.0");
@@ -6621,7 +6711,8 @@ S_g_file_output_stream_query_info(USER_OBJECT_ s_object, USER_OBJECT_ s_attribut
 
   _result = toRPointerWithRef(ans, "GFileInfo");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_output_stream_query_info exists only in gio >= 2.16.0");
@@ -6669,7 +6760,8 @@ S_g_file_output_stream_query_info_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_r
 
   _result = toRPointerWithRef(ans, "GFileInfo");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_output_stream_query_info_finish exists only in gio >= 2.16.0");
@@ -6873,7 +6965,8 @@ S_g_input_stream_skip(USER_OBJECT_ s_object, USER_OBJECT_ s_count, USER_OBJECT_ 
 
   _result = asRInteger(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_input_stream_skip exists only in gio >= 2.16.0");
@@ -6898,7 +6991,8 @@ S_g_input_stream_close(USER_OBJECT_ s_object, USER_OBJECT_ s_cancellable)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_input_stream_close exists only in gio >= 2.16.0");
@@ -6946,7 +7040,8 @@ S_g_input_stream_skip_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result)
 
   _result = asRInteger(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_input_stream_skip_finish exists only in gio >= 2.16.0");
@@ -6993,7 +7088,8 @@ S_g_input_stream_close_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_input_stream_close_finish exists only in gio >= 2.16.0");
@@ -7057,7 +7153,8 @@ S_g_input_stream_set_pending(USER_OBJECT_ s_object)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_input_stream_set_pending exists only in gio >= 2.16.0");
@@ -7585,7 +7682,8 @@ S_g_loadable_icon_load(USER_OBJECT_ s_object, USER_OBJECT_ s_size, USER_OBJECT_ 
 
   _result = toRPointerWithRef(ans, "GInputStream");
 
-  _result = retByVal(_result, "type", asRString(type), "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "type", PROTECT(asRString(type)), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(3);
     CLEANUP(g_error_free, error);;
 #else
   error("g_loadable_icon_load exists only in gio >= 2.16.0");
@@ -7633,7 +7731,8 @@ S_g_loadable_icon_load_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_res, USER_OB
 
   _result = toRPointerWithRef(ans, "GInputStream");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_loadable_icon_load_finish exists only in gio >= 2.16.0");
@@ -8001,7 +8100,8 @@ S_g_mount_unmount_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_mount_unmount_finish exists only in gio >= 2.16.0");
@@ -8048,7 +8148,8 @@ S_g_mount_eject_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_mount_eject_finish exists only in gio >= 2.16.0");
@@ -8096,7 +8197,8 @@ S_g_mount_remount_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_mount_remount_finish exists only in gio >= 2.16.0");
@@ -8452,7 +8554,8 @@ S_g_output_stream_write(USER_OBJECT_ s_object, USER_OBJECT_ s_buffer, USER_OBJEC
 
   _result = asRInteger(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_output_stream_write exists only in gio >= 2.16.0");
@@ -8480,7 +8583,8 @@ S_g_output_stream_write_all(USER_OBJECT_ s_object, USER_OBJECT_ s_buffer, USER_O
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_output_stream_write_all exists only in gio >= 2.16.0");
@@ -8507,7 +8611,8 @@ S_g_output_stream_splice(USER_OBJECT_ s_object, USER_OBJECT_ s_source, USER_OBJE
 
   _result = asRInteger(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_output_stream_splice exists only in gio >= 2.16.0");
@@ -8532,7 +8637,8 @@ S_g_output_stream_flush(USER_OBJECT_ s_object, USER_OBJECT_ s_cancellable)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_output_stream_flush exists only in gio >= 2.16.0");
@@ -8557,7 +8663,8 @@ S_g_output_stream_close(USER_OBJECT_ s_object, USER_OBJECT_ s_cancellable)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_output_stream_close exists only in gio >= 2.16.0");
@@ -8606,7 +8713,8 @@ S_g_output_stream_write_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result)
 
   _result = asRInteger(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_output_stream_write_finish exists only in gio >= 2.16.0");
@@ -8655,7 +8763,8 @@ S_g_output_stream_splice_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result)
 
   _result = asRInteger(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_output_stream_splice_finish exists only in gio >= 2.16.0");
@@ -8702,7 +8811,8 @@ S_g_output_stream_flush_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_output_stream_flush_finish exists only in gio >= 2.16.0");
@@ -8749,7 +8859,8 @@ S_g_output_stream_close_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_output_stream_close_finish exists only in gio >= 2.16.0");
@@ -8813,7 +8924,8 @@ S_g_output_stream_set_pending(USER_OBJECT_ s_object)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_output_stream_set_pending exists only in gio >= 2.16.0");
@@ -8917,7 +9029,8 @@ S_g_seekable_seek(USER_OBJECT_ s_object, USER_OBJECT_ s_offset, USER_OBJECT_ s_t
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_seekable_seek exists only in gio >= 2.16.0");
@@ -8963,7 +9076,8 @@ S_g_seekable_truncate(USER_OBJECT_ s_object, USER_OBJECT_ s_offset, USER_OBJECT_
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_seekable_truncate exists only in gio >= 2.16.0");
@@ -9031,7 +9145,8 @@ S_g_simple_async_result_new_from_error(USER_OBJECT_ s_source_object, USER_OBJECT
 
   _result = toRPointerWithFinalizer(ans, "GSimpleAsyncResult", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_simple_async_result_new_from_error exists only in gio >= 2.16.0");
@@ -9246,7 +9361,8 @@ S_g_simple_async_result_set_from_error(USER_OBJECT_ s_object)
   g_simple_async_result_set_from_error(object, error);
 
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_simple_async_result_set_from_error exists only in gio >= 2.16.0");
@@ -9270,7 +9386,8 @@ S_g_simple_async_result_propagate_error(USER_OBJECT_ s_object)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "dest", asRGError(dest), NULL);
+  _result = retByVal(PROTECT(_result), "dest", PROTECT(asRGError(dest)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, dest);;
 #else
   error("g_simple_async_result_propagate_error exists only in gio >= 2.16.0");
@@ -9294,7 +9411,8 @@ S_g_simple_async_report_gerror_in_idle(USER_OBJECT_ s_object, USER_OBJECT_ s_cal
   g_simple_async_report_gerror_in_idle(object, callback, user_data, error);
 
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_simple_async_report_gerror_in_idle exists only in gio >= 2.16.0");
@@ -9803,7 +9921,8 @@ S_g_volume_mount_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_volume_mount_finish exists only in gio >= 2.16.0");
@@ -9850,7 +9969,8 @@ S_g_volume_eject_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_volume_eject_finish exists only in gio >= 2.16.0");
@@ -10524,7 +10644,8 @@ S_g_file_make_directory_with_parents(USER_OBJECT_ s_object, USER_OBJECT_ s_cance
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_make_directory_with_parents exists only in gio >= 2.18.0");
@@ -10550,7 +10671,8 @@ S_g_file_monitor(USER_OBJECT_ s_object, USER_OBJECT_ s_flags, USER_OBJECT_ s_can
 
   _result = toRPointerWithRef(ans, "GFileMonitor");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_monitor exists only in gio >= 2.18.0");
@@ -10617,7 +10739,8 @@ S_g_mount_guess_content_type_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result
 
   _result = asRStringArray(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_mount_guess_content_type_finish exists only in gio >= 2.18.0");
@@ -10643,7 +10766,8 @@ S_g_mount_guess_content_type_sync(USER_OBJECT_ s_object, USER_OBJECT_ s_force_re
 
   _result = asRStringArray(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_mount_guess_content_type_sync exists only in gio >= 2.18.0");
@@ -10871,7 +10995,8 @@ S_g_data_input_stream_read_until_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_re
 
   _result = asRString(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_free, ans);;
     CLEANUP(g_error_free, error);;
 #else
@@ -10920,7 +11045,8 @@ S_g_data_input_stream_read_line_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_res
 
   _result = asRString(ans);
 
-  _result = retByVal(_result, "length", asRNumeric(length), "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "length", PROTECT(asRNumeric(length)), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(3);
     CLEANUP(g_free, ans);;
   ;
     CLEANUP(g_error_free, error);;
@@ -10967,7 +11093,8 @@ S_g_icon_new_for_string(USER_OBJECT_ s_str)
 
   _result = toRPointerWithFinalizer(ans, "GIcon", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_icon_new_for_string exists only in gio >= 2.20.0");
@@ -11167,7 +11294,8 @@ S_g_async_initable_init_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_res)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_async_initable_init_finish exists only in gio >= 2.22.0");
@@ -11192,7 +11320,8 @@ S_g_async_initable_new_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_res)
 
   _result = toRPointerWithRef(ans, "GObject");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_async_initable_new_finish exists only in gio >= 2.22.0");
@@ -11337,7 +11466,8 @@ S_g_drive_eject_with_operation_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_resu
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_drive_eject_with_operation_finish exists only in gio >= 2.22.0");
@@ -11405,7 +11535,8 @@ S_g_drive_start_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_drive_start_finish exists only in gio >= 2.22.0");
@@ -11453,7 +11584,8 @@ S_g_drive_stop_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_drive_stop_finish exists only in gio >= 2.22.0");
@@ -11479,7 +11611,8 @@ S_g_file_create_readwrite(USER_OBJECT_ s_object, USER_OBJECT_ s_flags, USER_OBJE
 
   _result = toRPointerWithRef(ans, "GFileIOStream");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_create_readwrite exists only in gio >= 2.22.0");
@@ -11527,7 +11660,8 @@ S_g_file_create_readwrite_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_res)
 
   _result = toRPointerWithRef(ans, "GFileIOStream");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_create_readwrite_finish exists only in gio >= 2.22.0");
@@ -11575,7 +11709,8 @@ S_g_file_eject_mountable_with_operation_finish(USER_OBJECT_ s_object, USER_OBJEC
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_eject_mountable_with_operation_finish exists only in gio >= 2.22.0");
@@ -11600,7 +11735,8 @@ S_g_file_open_readwrite(USER_OBJECT_ s_object, USER_OBJECT_ s_cancellable)
 
   _result = toRPointerWithRef(ans, "GFileIOStream");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_open_readwrite exists only in gio >= 2.22.0");
@@ -11647,7 +11783,8 @@ S_g_file_open_readwrite_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_res)
 
   _result = toRPointerWithRef(ans, "GFileIOStream");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_open_readwrite_finish exists only in gio >= 2.22.0");
@@ -11693,7 +11830,8 @@ S_g_file_poll_mountable_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_poll_mountable_finish exists only in gio >= 2.22.0");
@@ -11721,7 +11859,8 @@ S_g_file_replace_readwrite(USER_OBJECT_ s_object, USER_OBJECT_ s_etag, USER_OBJE
 
   _result = toRPointerWithRef(ans, "GFileIOStream");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_replace_readwrite exists only in gio >= 2.22.0");
@@ -11771,7 +11910,8 @@ S_g_file_replace_readwrite_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_res)
 
   _result = toRPointerWithRef(ans, "GFileIOStream");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_replace_readwrite_finish exists only in gio >= 2.22.0");
@@ -11819,7 +11959,8 @@ S_g_file_start_mountable_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_start_mountable_finish exists only in gio >= 2.22.0");
@@ -11867,7 +12008,8 @@ S_g_file_stop_mountable_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_stop_mountable_finish exists only in gio >= 2.22.0");
@@ -11935,7 +12077,8 @@ S_g_file_unmount_mountable_with_operation_finish(USER_OBJECT_ s_object, USER_OBJ
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_unmount_mountable_with_operation_finish exists only in gio >= 2.22.0");
@@ -12064,7 +12207,8 @@ S_g_file_io_stream_query_info(USER_OBJECT_ s_object, USER_OBJECT_ s_attributes, 
 
   _result = toRPointerWithRef(ans, "GFileInfo");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_io_stream_query_info exists only in gio >= 2.22.0");
@@ -12112,7 +12256,8 @@ S_g_file_io_stream_query_info_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_resul
 
   _result = toRPointerWithRef(ans, "GFileInfo");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_file_io_stream_query_info_finish exists only in gio >= 2.22.0");
@@ -12558,7 +12703,8 @@ S_g_initable_init(USER_OBJECT_ s_object, USER_OBJECT_ s_cancellable)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_initable_init exists only in gio >= 2.22.0");
@@ -12642,7 +12788,8 @@ S_g_io_stream_close(USER_OBJECT_ s_object, USER_OBJECT_ s_cancellable)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_io_stream_close exists only in gio >= 2.22.0");
@@ -12689,7 +12836,8 @@ S_g_io_stream_close_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_io_stream_close_finish exists only in gio >= 2.22.0");
@@ -12753,7 +12901,8 @@ S_g_io_stream_set_pending(USER_OBJECT_ s_object)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_io_stream_set_pending exists only in gio >= 2.22.0");
@@ -12819,7 +12968,8 @@ S_g_mount_unmount_with_operation_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_re
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_mount_unmount_with_operation_finish exists only in gio >= 2.22.0");
@@ -12867,7 +13017,8 @@ S_g_mount_eject_with_operation_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_resu
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_mount_eject_with_operation_finish exists only in gio >= 2.22.0");
@@ -12932,7 +13083,8 @@ S_g_network_address_parse(USER_OBJECT_ s_host_and_port, USER_OBJECT_ s_default_p
 
   _result = toRPointerWithRef(ans, "GSocketConnectable");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_network_address_parse exists only in gio >= 2.22.0");
@@ -13155,7 +13307,8 @@ S_g_resolver_lookup_by_name(USER_OBJECT_ s_object, USER_OBJECT_ s_hostname, USER
 
   _result = asRGListWithRef(ans, "GInetAddress");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_list_free, ans);;
     CLEANUP(g_error_free, error);;
 #else
@@ -13203,7 +13356,8 @@ S_g_resolver_lookup_by_name_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result)
 
   _result = asRGListWithRef(ans, "GInetAddress");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_list_free, ans);;
     CLEANUP(g_error_free, error);;
 #else
@@ -13249,7 +13403,8 @@ S_g_resolver_lookup_by_address(USER_OBJECT_ s_object, USER_OBJECT_ s_address, US
 
   _result = asRString(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_free, ans);;
     CLEANUP(g_error_free, error);;
 #else
@@ -13297,7 +13452,8 @@ S_g_resolver_lookup_by_address_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_resu
 
   _result = asRString(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_free, ans);;
     CLEANUP(g_error_free, error);;
 #else
@@ -13326,7 +13482,8 @@ S_g_resolver_lookup_service(USER_OBJECT_ s_object, USER_OBJECT_ s_service, USER_
 
   _result = asRGList(ans, "GSrvTarget");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_list_free, ans);;
     CLEANUP(g_error_free, error);;
 #else
@@ -13376,7 +13533,8 @@ S_g_resolver_lookup_service_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result)
 
   _result = asRGList(ans, "GSrvTarget");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_list_free, ans);;
     CLEANUP(g_error_free, error);;
 #else
@@ -13459,7 +13617,8 @@ S_g_socket_address_enumerator_next(USER_OBJECT_ s_object, USER_OBJECT_ s_cancell
 
   _result = toRPointerWithRef(ans, "GSocketAddress");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_socket_address_enumerator_next exists only in gio >= 2.22.0");
@@ -13505,7 +13664,8 @@ S_g_socket_address_enumerator_next_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_
 
   _result = toRPointerWithRef(ans, "GSocketAddress");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_socket_address_enumerator_next_finish exists only in gio >= 2.22.0");
@@ -13591,7 +13751,8 @@ S_g_socket_address_to_native(USER_OBJECT_ s_object, USER_OBJECT_ s_dest, USER_OB
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_socket_address_to_native exists only in gio >= 2.22.0");
@@ -13831,7 +13992,8 @@ S_g_socket_client_connect(USER_OBJECT_ s_object, USER_OBJECT_ s_connectable, USE
 
   _result = toRPointerWithRef(ans, "GSocketConnection");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_socket_client_connect exists only in gio >= 2.22.0");
@@ -13858,7 +14020,8 @@ S_g_socket_client_connect_to_host(USER_OBJECT_ s_object, USER_OBJECT_ s_host_and
 
   _result = toRPointerWithRef(ans, "GSocketConnection");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_socket_client_connect_to_host exists only in gio >= 2.22.0");
@@ -13885,7 +14048,8 @@ S_g_socket_client_connect_to_service(USER_OBJECT_ s_object, USER_OBJECT_ s_domai
 
   _result = toRPointerWithRef(ans, "GSocketConnection");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_socket_client_connect_to_service exists only in gio >= 2.22.0");
@@ -13932,7 +14096,8 @@ S_g_socket_client_connect_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result)
 
   _result = toRPointerWithRef(ans, "GSocketConnection");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_socket_client_connect_finish exists only in gio >= 2.22.0");
@@ -13980,7 +14145,8 @@ S_g_socket_client_connect_to_host_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_r
 
   _result = toRPointerWithRef(ans, "GSocketConnection");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_socket_client_connect_to_host_finish exists only in gio >= 2.22.0");
@@ -14028,7 +14194,8 @@ S_g_socket_client_connect_to_service_finish(USER_OBJECT_ s_object, USER_OBJECT_ 
 
   _result = toRPointerWithRef(ans, "GSocketConnection");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_socket_client_connect_to_service_finish exists only in gio >= 2.22.0");
@@ -14130,7 +14297,8 @@ S_g_socket_connection_get_local_address(USER_OBJECT_ s_object)
 
   _result = toRPointerWithRef(ans, "GSocketAddress");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_socket_connection_get_local_address exists only in gio >= 2.22.0");
@@ -14154,7 +14322,8 @@ S_g_socket_connection_get_remote_address(USER_OBJECT_ s_object)
 
   _result = toRPointerWithRef(ans, "GSocketAddress");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_socket_connection_get_remote_address exists only in gio >= 2.22.0");
@@ -14383,7 +14552,8 @@ S_g_socket_new(USER_OBJECT_ s_family, USER_OBJECT_ s_type, USER_OBJECT_ s_protoc
 
   _result = toRPointerWithFinalizer(ans, "GSocket", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_socket_new exists only in gio >= 2.22.0");
@@ -14407,7 +14577,8 @@ S_g_socket_new_from_fd(USER_OBJECT_ s_fd)
 
   _result = toRPointerWithRef(ans, "GSocket");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_socket_new_from_fd exists only in gio >= 2.22.0");
@@ -14511,7 +14682,8 @@ S_g_socket_get_local_address(USER_OBJECT_ s_object)
 
   _result = toRPointerWithRef(ans, "GSocketAddress");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_socket_get_local_address exists only in gio >= 2.22.0");
@@ -14535,7 +14707,8 @@ S_g_socket_get_remote_address(USER_OBJECT_ s_object)
 
   _result = toRPointerWithRef(ans, "GSocketAddress");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_socket_get_remote_address exists only in gio >= 2.22.0");
@@ -14698,7 +14871,8 @@ S_g_socket_bind(USER_OBJECT_ s_object, USER_OBJECT_ s_address, USER_OBJECT_ s_al
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_socket_bind exists only in gio >= 2.22.0");
@@ -14724,7 +14898,8 @@ S_g_socket_connect(USER_OBJECT_ s_object, USER_OBJECT_ s_address, USER_OBJECT_ s
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_socket_connect exists only in gio >= 2.22.0");
@@ -14748,7 +14923,8 @@ S_g_socket_check_connect_result(USER_OBJECT_ s_object)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_socket_check_connect_result exists only in gio >= 2.22.0");
@@ -14795,7 +14971,8 @@ S_g_socket_condition_wait(USER_OBJECT_ s_object, USER_OBJECT_ s_condition, USER_
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_socket_condition_wait exists only in gio >= 2.22.0");
@@ -14820,7 +14997,8 @@ S_g_socket_accept(USER_OBJECT_ s_object, USER_OBJECT_ s_cancellable)
 
   _result = toRPointerWithRef(ans, "GSocket");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_socket_accept exists only in gio >= 2.22.0");
@@ -14844,7 +15022,8 @@ S_g_socket_listen(USER_OBJECT_ s_object)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_socket_listen exists only in gio >= 2.22.0");
@@ -14871,7 +15050,8 @@ S_g_socket_send(USER_OBJECT_ s_object, USER_OBJECT_ s_buffer, USER_OBJECT_ s_siz
 
   _result = asRInteger(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_socket_send exists only in gio >= 2.22.0");
@@ -14899,7 +15079,8 @@ S_g_socket_send_to(USER_OBJECT_ s_object, USER_OBJECT_ s_address, USER_OBJECT_ s
 
   _result = asRInteger(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_socket_send_to exists only in gio >= 2.22.0");
@@ -14923,7 +15104,8 @@ S_g_socket_close(USER_OBJECT_ s_object)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_socket_close exists only in gio >= 2.22.0");
@@ -14949,7 +15131,8 @@ S_g_socket_shutdown(USER_OBJECT_ s_object, USER_OBJECT_ s_shutdown_read, USER_OB
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_socket_shutdown exists only in gio >= 2.22.0");
@@ -15094,7 +15277,8 @@ S_g_socket_listener_add_socket(USER_OBJECT_ s_object, USER_OBJECT_ s_socket, USE
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_socket_listener_add_socket exists only in gio >= 2.22.0");
@@ -15113,7 +15297,7 @@ S_g_socket_listener_add_address(USER_OBJECT_ s_object, USER_OBJECT_ s_address, U
   GSocketAddress* address = G_SOCKET_ADDRESS(getPtrValue(s_address));
   GSocketType type = ((GSocketType)asCEnum(s_type, G_TYPE_SOCKET_TYPE));
   GSocketProtocol protocol = ((GSocketProtocol)asCEnum(s_protocol, G_TYPE_SOCKET_PROTOCOL));
-  GObject* source_object = G_OBJECT(getPtrValue(s_source_object));
+  GObject* source_object = GET_LENGTH(s_source_object) == 0 ? NULL : G_OBJECT(getPtrValue(s_source_object));
 
   gboolean ans;
   GSocketAddress* effective_address = NULL;
@@ -15123,7 +15307,8 @@ S_g_socket_listener_add_address(USER_OBJECT_ s_object, USER_OBJECT_ s_address, U
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "effective.address", toRPointerWithRef(effective_address, "GSocketAddress"), "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "effective.address", PROTECT(toRPointerWithRef(effective_address, "GSocketAddress")), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(3);
   ;
     CLEANUP(g_error_free, error);;
 #else
@@ -15150,7 +15335,8 @@ S_g_socket_listener_add_inet_port(USER_OBJECT_ s_object, USER_OBJECT_ s_port, US
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_socket_listener_add_inet_port exists only in gio >= 2.22.0");
@@ -15176,7 +15362,8 @@ S_g_socket_listener_accept_socket(USER_OBJECT_ s_object, USER_OBJECT_ s_cancella
 
   _result = toRPointerWithRef(ans, "GSocket");
 
-  _result = retByVal(_result, "source.object", toRPointerWithRef(source_object, "GObject"), "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "source.object", PROTECT(toRPointerWithRef(source_object, "GObject")), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(3);
   ;
     CLEANUP(g_error_free, error);;
 #else
@@ -15224,7 +15411,8 @@ S_g_socket_listener_accept_socket_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_r
 
   _result = toRPointerWithRef(ans, "GSocket");
 
-  _result = retByVal(_result, "source.object", toRPointerWithRef(source_object, "GObject"), "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "source.object", PROTECT(toRPointerWithRef(source_object, "GObject")), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(3);
   ;
     CLEANUP(g_error_free, error);;
 #else
@@ -15251,7 +15439,8 @@ S_g_socket_listener_accept(USER_OBJECT_ s_object, USER_OBJECT_ s_cancellable)
 
   _result = toRPointerWithRef(ans, "GSocketConnection");
 
-  _result = retByVal(_result, "source.object", toRPointerWithRef(source_object, "GObject"), "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "source.object", PROTECT(toRPointerWithRef(source_object, "GObject")), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(3);
   ;
     CLEANUP(g_error_free, error);;
 #else
@@ -15299,7 +15488,8 @@ S_g_socket_listener_accept_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result)
 
   _result = toRPointerWithRef(ans, "GSocketConnection");
 
-  _result = retByVal(_result, "source.object", toRPointerWithRef(source_object, "GObject"), "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "source.object", PROTECT(toRPointerWithRef(source_object, "GObject")), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(3);
   ;
     CLEANUP(g_error_free, error);;
 #else
@@ -15681,7 +15871,8 @@ S_g_volume_eject_with_operation_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_res
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("g_volume_eject_with_operation_finish exists only in gio >= 2.22.0");

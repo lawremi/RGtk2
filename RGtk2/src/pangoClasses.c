@@ -214,7 +214,8 @@ S_pango_font_class_get_glyph_extents(USER_OBJECT_ s_object_class, USER_OBJECT_ s
   object_class->get_glyph_extents(object, glyph, ink_rect, logical_rect);
 
 
-  _result = retByVal(_result, "ink.rect", asRPangoRectangle(ink_rect), "logical.rect", asRPangoRectangle(logical_rect), NULL);
+  _result = retByVal(PROTECT(_result), "ink.rect", PROTECT(asRPangoRectangle(ink_rect)), "logical.rect", PROTECT(asRPangoRectangle(logical_rect)), NULL);
+  UNPROTECT(3);
     CLEANUP(g_free, ink_rect);;
     CLEANUP(g_free, logical_rect);;
 
@@ -398,7 +399,8 @@ S_pango_font_face_class_list_sizes(USER_OBJECT_ s_object_class, USER_OBJECT_ s_o
   object_class->list_sizes(object, &sizes, &n_sizes);
 
 
-  _result = retByVal(_result, "sizes", asRIntegerArrayWithSize(sizes, n_sizes), "n.sizes", asRInteger(n_sizes), NULL);
+  _result = retByVal(PROTECT(_result), "sizes", PROTECT(asRIntegerArrayWithSize(sizes, n_sizes)), "n.sizes", PROTECT(asRInteger(n_sizes)), NULL);
+  UNPROTECT(3);
     CLEANUP(g_free, sizes);;
   ;
 
@@ -517,7 +519,8 @@ S_pango_font_family_class_list_faces(USER_OBJECT_ s_object_class, USER_OBJECT_ s
   object_class->list_faces(object, &faces, &n_faces);
 
 
-  _result = retByVal(_result, "faces", toRPointerWithRefArrayWithSize(faces, "PangoFontFace", n_faces), "n.faces", asRInteger(n_faces), NULL);
+  _result = retByVal(PROTECT(_result), "faces", PROTECT(toRPointerWithRefArrayWithSize(faces, "PangoFontFace", n_faces)), "n.faces", PROTECT(asRInteger(n_faces)), NULL);
+  UNPROTECT(3);
     CLEANUP(g_free, faces);;
   ;
 
@@ -696,7 +699,8 @@ S_pango_font_map_class_list_families(USER_OBJECT_ s_object_class, USER_OBJECT_ s
   object_class->list_families(object, &families, &n_families);
 
 
-  _result = retByVal(_result, "families", toRPointerWithRefArrayWithSize(families, "PangoFontFamily", n_families), "n.families", asRInteger(n_families), NULL);
+  _result = retByVal(PROTECT(_result), "families", PROTECT(toRPointerWithRefArrayWithSize(families, "PangoFontFamily", n_families)), "n.families", PROTECT(asRInteger(n_families)), NULL);
+  UNPROTECT(3);
     CLEANUP(g_free, families);;
   ;
 
@@ -1229,7 +1233,6 @@ S_virtual_pango_renderer_prepare_run(PangoRenderer* s_object, PangoGlyphItem* s_
   if(err)
     return;
 }
-#if PANGO_CHECK_VERSION(1, 22, 0)
 
 static void
 S_virtual_pango_renderer_draw_glyph_item(PangoRenderer* s_object, const char* s_text, PangoGlyphItem* s_glyph_item, int s_x, int s_y)
@@ -1263,7 +1266,6 @@ S_virtual_pango_renderer_draw_glyph_item(PangoRenderer* s_object, const char* s_
   if(err)
     return;
 }
-#endif
 void
 S_pango_renderer_class_init(PangoRendererClass * c, SEXP e)
 {

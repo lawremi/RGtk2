@@ -206,7 +206,8 @@ S_atk_component_get_extents(USER_OBJECT_ s_object, USER_OBJECT_ s_coord_type)
   atk_component_get_extents(object, &x, &y, &width, &height, coord_type);
 
 
-  _result = retByVal(_result, "x", asRInteger(x), "y", asRInteger(y), "width", asRInteger(width), "height", asRInteger(height), NULL);
+  _result = retByVal(PROTECT(_result), "x", PROTECT(asRInteger(x)), "y", PROTECT(asRInteger(y)), "width", PROTECT(asRInteger(width)), "height", PROTECT(asRInteger(height)), NULL);
+  UNPROTECT(5);
   ;
   ;
   ;
@@ -229,7 +230,8 @@ S_atk_component_get_position(USER_OBJECT_ s_object, USER_OBJECT_ s_coord_type)
   atk_component_get_position(object, &x, &y, coord_type);
 
 
-  _result = retByVal(_result, "x", asRInteger(x), "y", asRInteger(y), NULL);
+  _result = retByVal(PROTECT(_result), "x", PROTECT(asRInteger(x)), "y", PROTECT(asRInteger(y)), NULL);
+  UNPROTECT(3);
   ;
   ;
 
@@ -249,7 +251,8 @@ S_atk_component_get_size(USER_OBJECT_ s_object)
   atk_component_get_size(object, &width, &height);
 
 
-  _result = retByVal(_result, "width", asRInteger(width), "height", asRInteger(height), NULL);
+  _result = retByVal(PROTECT(_result), "width", PROTECT(asRInteger(width)), "height", PROTECT(asRInteger(height)), NULL);
+  UNPROTECT(3);
   ;
   ;
 
@@ -839,7 +842,8 @@ S_atk_image_get_image_size(USER_OBJECT_ s_object)
   atk_image_get_image_size(object, &width, &height);
 
 
-  _result = retByVal(_result, "width", asRInteger(width), "height", asRInteger(height), NULL);
+  _result = retByVal(PROTECT(_result), "width", PROTECT(asRInteger(width)), "height", PROTECT(asRInteger(height)), NULL);
+  UNPROTECT(3);
   ;
   ;
 
@@ -877,7 +881,8 @@ S_atk_image_get_image_position(USER_OBJECT_ s_object, USER_OBJECT_ s_coord_type)
   atk_image_get_image_position(object, &x, &y, coord_type);
 
 
-  _result = retByVal(_result, "x", asRInteger(x), "y", asRInteger(y), NULL);
+  _result = retByVal(PROTECT(_result), "x", PROTECT(asRInteger(x)), "y", PROTECT(asRInteger(y)), NULL);
+  UNPROTECT(3);
   ;
   ;
 
@@ -2473,7 +2478,8 @@ S_atk_table_get_selected_columns(USER_OBJECT_ s_object)
 
   _result = asRInteger(ans);
 
-  _result = retByVal(_result, "selected", asRIntegerArrayWithSize(selected, ans), NULL);
+  _result = retByVal(PROTECT(_result), "selected", PROTECT(asRIntegerArrayWithSize(selected, ans)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_free, selected);;
 
   return(_result);
@@ -2493,7 +2499,8 @@ S_atk_table_get_selected_rows(USER_OBJECT_ s_object)
 
   _result = asRInteger(ans);
 
-  _result = retByVal(_result, "selected", asRIntegerArrayWithSize(selected, ans), NULL);
+  _result = retByVal(PROTECT(_result), "selected", PROTECT(asRIntegerArrayWithSize(selected, ans)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_free, selected);;
 
   return(_result);
@@ -2687,7 +2694,8 @@ S_atk_text_get_text_after_offset(USER_OBJECT_ s_object, USER_OBJECT_ s_offset, U
 
   _result = asRString(ans);
 
-  _result = retByVal(_result, "start.offset", asRInteger(start_offset), "end.offset", asRInteger(end_offset), NULL);
+  _result = retByVal(PROTECT(_result), "start.offset", PROTECT(asRInteger(start_offset)), "end.offset", PROTECT(asRInteger(end_offset)), NULL);
+  UNPROTECT(3);
     CLEANUP(g_free, ans);;
   ;
   ;
@@ -2712,7 +2720,8 @@ S_atk_text_get_text_at_offset(USER_OBJECT_ s_object, USER_OBJECT_ s_offset, USER
 
   _result = asRString(ans);
 
-  _result = retByVal(_result, "start.offset", asRInteger(start_offset), "end.offset", asRInteger(end_offset), NULL);
+  _result = retByVal(PROTECT(_result), "start.offset", PROTECT(asRInteger(start_offset)), "end.offset", PROTECT(asRInteger(end_offset)), NULL);
+  UNPROTECT(3);
     CLEANUP(g_free, ans);;
   ;
   ;
@@ -2737,7 +2746,8 @@ S_atk_text_get_text_before_offset(USER_OBJECT_ s_object, USER_OBJECT_ s_offset, 
 
   _result = asRString(ans);
 
-  _result = retByVal(_result, "start.offset", asRInteger(start_offset), "end.offset", asRInteger(end_offset), NULL);
+  _result = retByVal(PROTECT(_result), "start.offset", PROTECT(asRInteger(start_offset)), "end.offset", PROTECT(asRInteger(end_offset)), NULL);
+  UNPROTECT(3);
     CLEANUP(g_free, ans);;
   ;
   ;
@@ -2776,7 +2786,8 @@ S_atk_text_get_range_extents(USER_OBJECT_ s_object, USER_OBJECT_ s_start_offset,
   atk_text_get_range_extents(object, start_offset, end_offset, coord_type, rect);
 
 
-  _result = retByVal(_result, "rect", asRAtkTextRectangle(rect), NULL);
+  _result = retByVal(PROTECT(_result), "rect", PROTECT(asRAtkTextRectangle(rect)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_free, rect);;
 
   return(_result);
@@ -2820,7 +2831,8 @@ S_atk_text_get_character_extents(USER_OBJECT_ s_object, USER_OBJECT_ s_offset, U
   atk_text_get_character_extents(object, offset, &x, &y, &width, &height, coords);
 
 
-  _result = retByVal(_result, "x", asRInteger(x), "y", asRInteger(y), "width", asRInteger(width), "height", asRInteger(height), NULL);
+  _result = retByVal(PROTECT(_result), "x", PROTECT(asRInteger(x)), "y", PROTECT(asRInteger(y)), "width", PROTECT(asRInteger(width)), "height", PROTECT(asRInteger(height)), NULL);
+  UNPROTECT(5);
   ;
   ;
   ;
@@ -2845,7 +2857,8 @@ S_atk_text_get_run_attributes(USER_OBJECT_ s_object, USER_OBJECT_ s_offset)
 
   _result = asRAtkAttributeSet(ans);
 
-  _result = retByVal(_result, "start.offset", asRInteger(start_offset), "end.offset", asRInteger(end_offset), NULL);
+  _result = retByVal(PROTECT(_result), "start.offset", PROTECT(asRInteger(start_offset)), "end.offset", PROTECT(asRInteger(end_offset)), NULL);
+  UNPROTECT(3);
     CLEANUP(atk_attribute_set_free, ans);;
   ;
   ;
@@ -2937,7 +2950,8 @@ S_atk_text_get_selection(USER_OBJECT_ s_object, USER_OBJECT_ s_selection_num)
 
   _result = asRString(ans);
 
-  _result = retByVal(_result, "start.offset", asRInteger(start_offset), "end.offset", asRInteger(end_offset), NULL);
+  _result = retByVal(PROTECT(_result), "start.offset", PROTECT(asRInteger(start_offset)), "end.offset", PROTECT(asRInteger(end_offset)), NULL);
+  UNPROTECT(3);
     CLEANUP(g_free, ans);;
   ;
   ;
@@ -3272,7 +3286,8 @@ S_atk_value_get_current_value(USER_OBJECT_ s_object)
   atk_value_get_current_value(object, value);
 
 
-  _result = retByVal(_result, "value", asRGValue(value), NULL);
+  _result = retByVal(PROTECT(_result), "value", PROTECT(asRGValue(value)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_value_unset, value);
   CLEANUP(g_free, value);;
 
@@ -3291,7 +3306,8 @@ S_atk_value_get_maximum_value(USER_OBJECT_ s_object)
   atk_value_get_maximum_value(object, value);
 
 
-  _result = retByVal(_result, "value", asRGValue(value), NULL);
+  _result = retByVal(PROTECT(_result), "value", PROTECT(asRGValue(value)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_value_unset, value);
   CLEANUP(g_free, value);;
 
@@ -3310,7 +3326,8 @@ S_atk_value_get_minimum_value(USER_OBJECT_ s_object)
   atk_value_get_minimum_value(object, value);
 
 
-  _result = retByVal(_result, "value", asRGValue(value), NULL);
+  _result = retByVal(PROTECT(_result), "value", PROTECT(asRGValue(value)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_value_unset, value);
   CLEANUP(g_free, value);;
 

@@ -1421,7 +1421,8 @@ S_gtk_cell_renderer_class_get_size(USER_OBJECT_ s_object_class, USER_OBJECT_ s_o
   object_class->get_size(object, widget, cell_area, &x_offset, &y_offset, &width, &height);
 
 
-  _result = retByVal(_result, "x.offset", asRInteger(x_offset), "y.offset", asRInteger(y_offset), "width", asRInteger(width), "height", asRInteger(height), NULL);
+  _result = retByVal(PROTECT(_result), "x.offset", PROTECT(asRInteger(x_offset)), "y.offset", PROTECT(asRInteger(y_offset)), "width", PROTECT(asRInteger(width)), "height", PROTECT(asRInteger(height)), NULL);
+  UNPROTECT(5);
   ;
   ;
   ;
@@ -6537,7 +6538,8 @@ S_gtk_imcontext_class_get_preedit_string(USER_OBJECT_ s_object_class, USER_OBJEC
   object_class->get_preedit_string(object, &str, &attrs, &cursor_pos);
 
 
-  _result = retByVal(_result, "str", asRString(str), "attrs", toRPointerWithFinalizer(attrs, "PangoAttrList", (RPointerFinalizer) pango_attr_list_unref), "cursor.pos", asRInteger(cursor_pos), NULL);
+  _result = retByVal(PROTECT(_result), "str", PROTECT(asRString(str)), "attrs", PROTECT(toRPointerWithFinalizer(attrs, "PangoAttrList", (RPointerFinalizer) pango_attr_list_unref)), "cursor.pos", PROTECT(asRInteger(cursor_pos)), NULL);
+  UNPROTECT(4);
   ;
   ;
 
@@ -6665,7 +6667,8 @@ S_gtk_imcontext_class_get_surrounding(USER_OBJECT_ s_object_class, USER_OBJECT_ 
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "text", asRString(text), "cursor.index", asRInteger(cursor_index), NULL);
+  _result = retByVal(PROTECT(_result), "text", PROTECT(asRString(text)), "cursor.index", PROTECT(asRInteger(cursor_index)), NULL);
+  UNPROTECT(3);
   ;
 
   return(_result);
@@ -7971,7 +7974,8 @@ S_gtk_menu_item_class_toggle_size_request(USER_OBJECT_ s_object_class, USER_OBJE
   object_class->toggle_size_request(object, &requisition);
 
 
-  _result = retByVal(_result, "requisition", asRInteger(requisition), NULL);
+  _result = retByVal(PROTECT(_result), "requisition", PROTECT(asRInteger(requisition)), NULL);
+  UNPROTECT(2);
   ;
 
   return(_result);
@@ -8576,7 +8580,6 @@ S_virtual_gtk_notebook_move_focus_out(GtkNotebook* s_object, GtkDirectionType s_
   if(err)
     return;
 }
-#if GTK_CHECK_VERSION(2, 10, 7)
 
 static gboolean
 S_virtual_gtk_notebook_reorder_tab(GtkNotebook* s_object, GtkDirectionType s_direction, gboolean s_move_to_last)
@@ -8607,8 +8610,6 @@ S_virtual_gtk_notebook_reorder_tab(GtkNotebook* s_object, GtkDirectionType s_dir
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-#endif
-#if GTK_CHECK_VERSION(2, 10, 0)
 
 static gint
 S_virtual_gtk_notebook_insert_page(GtkNotebook* s_object, GtkWidget* s_child, GtkWidget* s_tab_label, GtkWidget* s_menu_label, gint s_position)
@@ -8643,7 +8644,6 @@ S_virtual_gtk_notebook_insert_page(GtkNotebook* s_object, GtkWidget* s_child, Gt
     return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
-#endif
 void
 S_gtk_notebook_class_init(GtkNotebookClass * c, SEXP e)
 {
@@ -11015,7 +11015,8 @@ S_gtk_scale_class_get_layout_offsets(USER_OBJECT_ s_object_class, USER_OBJECT_ s
   object_class->get_layout_offsets(object, &x, &y);
 
 
-  _result = retByVal(_result, "x", asRInteger(x), "y", asRInteger(y), NULL);
+  _result = retByVal(PROTECT(_result), "x", PROTECT(asRInteger(x)), "y", PROTECT(asRInteger(y)), NULL);
+  UNPROTECT(3);
   ;
   ;
 
@@ -11417,7 +11418,6 @@ S_virtual_gtk_spin_button_change_value(GtkSpinButton* s_object, GtkScrollType s_
   if(err)
     return;
 }
-#if GTK_CHECK_VERSION(2, 10, 0)
 
 static void
 S_virtual_gtk_spin_button_wrapped(GtkSpinButton* s_object)
@@ -11443,7 +11443,6 @@ S_virtual_gtk_spin_button_wrapped(GtkSpinButton* s_object)
   if(err)
     return;
 }
-#endif
 void
 S_gtk_spin_button_class_init(GtkSpinButtonClass * c, SEXP e)
 {
@@ -11482,7 +11481,8 @@ S_gtk_spin_button_class_input(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object
 
   _result = asRInteger(ans);
 
-  _result = retByVal(_result, "new.value", asRNumeric(new_value), NULL);
+  _result = retByVal(PROTECT(_result), "new.value", PROTECT(asRNumeric(new_value)), NULL);
+  UNPROTECT(2);
   ;
 
   return(_result);
@@ -18867,7 +18867,6 @@ S_virtual_gtk_widget_grab_broken_event(GtkWidget* s_object, GdkEventGrabBroken* 
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-#if GTK_CHECK_VERSION(2, 10, 0)
 
 static void
 S_virtual_gtk_widget_composited_changed(GtkWidget* s_object)
@@ -18893,7 +18892,6 @@ S_virtual_gtk_widget_composited_changed(GtkWidget* s_object)
   if(err)
     return;
 }
-#endif
 void
 S_gtk_widget_class_init(GtkWidgetClass * c, SEXP e)
 {
@@ -20386,7 +20384,6 @@ S_gtk_window_group_class_init(GtkWindowGroupClass * c, SEXP e)
 
 #if GTK_CHECK_VERSION(2, 10, 0)
 static SEXP S_GtkCellRendererAccel_symbol;
-#if GTK_CHECK_VERSION(2, 10, 0)
 
 static void
 S_virtual_gtk_cell_renderer_accel_accel_edited(GtkCellRendererAccel* s_object, const gchar* s_path_string, guint s_accel_key, GdkModifierType s_accel_mods, guint s_hardware_keycode)
@@ -20420,8 +20417,6 @@ S_virtual_gtk_cell_renderer_accel_accel_edited(GtkCellRendererAccel* s_object, c
   if(err)
     return;
 }
-#endif
-#if GTK_CHECK_VERSION(2, 10, 0)
 
 static void
 S_virtual_gtk_cell_renderer_accel_accel_cleared(GtkCellRendererAccel* s_object, const gchar* s_path_string)
@@ -20449,7 +20444,6 @@ S_virtual_gtk_cell_renderer_accel_accel_cleared(GtkCellRendererAccel* s_object, 
   if(err)
     return;
 }
-#endif
 void
 S_gtk_cell_renderer_accel_class_init(GtkCellRendererAccelClass * c, SEXP e)
 {
@@ -20531,7 +20525,6 @@ S_gtk_cell_renderer_spin_class_init(GtkCellRendererSpinClass * c, SEXP e)
 
 #if GTK_CHECK_VERSION(2, 10, 0)
 static SEXP S_GtkPrintOperation_symbol;
-#if GTK_CHECK_VERSION(2, 10, 0)
 
 static void
 S_virtual_gtk_print_operation_done(GtkPrintOperation* s_object, GtkPrintOperationResult s_result)
@@ -20559,8 +20552,6 @@ S_virtual_gtk_print_operation_done(GtkPrintOperation* s_object, GtkPrintOperatio
   if(err)
     return;
 }
-#endif
-#if GTK_CHECK_VERSION(2, 10, 0)
 
 static void
 S_virtual_gtk_print_operation_begin_print(GtkPrintOperation* s_object, GtkPrintContext* s_context)
@@ -20588,8 +20579,6 @@ S_virtual_gtk_print_operation_begin_print(GtkPrintOperation* s_object, GtkPrintC
   if(err)
     return;
 }
-#endif
-#if GTK_CHECK_VERSION(2, 10, 0)
 
 static gboolean
 S_virtual_gtk_print_operation_paginate(GtkPrintOperation* s_object, GtkPrintContext* s_context)
@@ -20618,8 +20607,6 @@ S_virtual_gtk_print_operation_paginate(GtkPrintOperation* s_object, GtkPrintCont
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-#endif
-#if GTK_CHECK_VERSION(2, 10, 0)
 
 static void
 S_virtual_gtk_print_operation_request_page_setup(GtkPrintOperation* s_object, GtkPrintContext* s_context, gint s_page_nr, GtkPageSetup* s_setup)
@@ -20651,8 +20638,6 @@ S_virtual_gtk_print_operation_request_page_setup(GtkPrintOperation* s_object, Gt
   if(err)
     return;
 }
-#endif
-#if GTK_CHECK_VERSION(2, 10, 0)
 
 static void
 S_virtual_gtk_print_operation_draw_page(GtkPrintOperation* s_object, GtkPrintContext* s_context, gint s_page_nr)
@@ -20682,8 +20667,6 @@ S_virtual_gtk_print_operation_draw_page(GtkPrintOperation* s_object, GtkPrintCon
   if(err)
     return;
 }
-#endif
-#if GTK_CHECK_VERSION(2, 10, 0)
 
 static void
 S_virtual_gtk_print_operation_end_print(GtkPrintOperation* s_object, GtkPrintContext* s_context)
@@ -20711,8 +20694,6 @@ S_virtual_gtk_print_operation_end_print(GtkPrintOperation* s_object, GtkPrintCon
   if(err)
     return;
 }
-#endif
-#if GTK_CHECK_VERSION(2, 10, 0)
 
 static void
 S_virtual_gtk_print_operation_status_changed(GtkPrintOperation* s_object)
@@ -20738,8 +20719,6 @@ S_virtual_gtk_print_operation_status_changed(GtkPrintOperation* s_object)
   if(err)
     return;
 }
-#endif
-#if GTK_CHECK_VERSION(2, 10, 0)
 
 static GtkWidget*
 S_virtual_gtk_print_operation_create_custom_widget(GtkPrintOperation* s_object)
@@ -20766,8 +20745,6 @@ S_virtual_gtk_print_operation_create_custom_widget(GtkPrintOperation* s_object)
     return(((GtkWidget*)0));
   return(GTK_WIDGET(getPtrValue(s_ans)));
 }
-#endif
-#if GTK_CHECK_VERSION(2, 10, 0)
 
 static void
 S_virtual_gtk_print_operation_custom_widget_apply(GtkPrintOperation* s_object, GtkWidget* s_widget)
@@ -20795,8 +20772,6 @@ S_virtual_gtk_print_operation_custom_widget_apply(GtkPrintOperation* s_object, G
   if(err)
     return;
 }
-#endif
-#if GTK_CHECK_VERSION(2, 10, 0)
 
 static gboolean
 S_virtual_gtk_print_operation_preview(GtkPrintOperation* s_object, GtkPrintOperationPreview* s_preview, GtkPrintContext* s_context, GtkWindow* s_parent)
@@ -20829,7 +20804,6 @@ S_virtual_gtk_print_operation_preview(GtkPrintOperation* s_object, GtkPrintOpera
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-#endif
 void
 S_gtk_print_operation_class_init(GtkPrintOperationClass * c, SEXP e)
 {
@@ -21085,7 +21059,6 @@ S_gtk_print_operation_class_preview(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 
 #if GTK_CHECK_VERSION(2, 10, 0)
 static SEXP S_GtkRecentManager_symbol;
-#if GTK_CHECK_VERSION(2, 10, 0)
 
 static void
 S_virtual_gtk_recent_manager_changed(GtkRecentManager* s_object)
@@ -21111,7 +21084,6 @@ S_virtual_gtk_recent_manager_changed(GtkRecentManager* s_object)
   if(err)
     return;
 }
-#endif
 void
 S_gtk_recent_manager_class_init(GtkRecentManagerClass * c, SEXP e)
 {
@@ -21150,7 +21122,6 @@ S_gtk_recent_manager_class_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_o
 
 #if GTK_CHECK_VERSION(2, 10, 0)
 static SEXP S_GtkStatusIcon_symbol;
-#if GTK_CHECK_VERSION(2, 10, 0)
 
 static void
 S_virtual_gtk_status_icon_activate(GtkStatusIcon* s_object)
@@ -21176,8 +21147,6 @@ S_virtual_gtk_status_icon_activate(GtkStatusIcon* s_object)
   if(err)
     return;
 }
-#endif
-#if GTK_CHECK_VERSION(2, 10, 0)
 
 static void
 S_virtual_gtk_status_icon_popup_menu(GtkStatusIcon* s_object, guint s_button, guint32 s_activate_time)
@@ -21207,8 +21176,6 @@ S_virtual_gtk_status_icon_popup_menu(GtkStatusIcon* s_object, guint s_button, gu
   if(err)
     return;
 }
-#endif
-#if GTK_CHECK_VERSION(2, 10, 0)
 
 static gboolean
 S_virtual_gtk_status_icon_size_changed(GtkStatusIcon* s_object, gint s_size)
@@ -21237,7 +21204,6 @@ S_virtual_gtk_status_icon_size_changed(GtkStatusIcon* s_object, gint s_size)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-#endif
 void
 S_gtk_status_icon_class_init(GtkStatusIconClass * c, SEXP e)
 {
@@ -21389,7 +21355,6 @@ S_gtk_recent_chooser_dialog_class_init(GtkRecentChooserDialogClass * c, SEXP e)
 
 #if GTK_CHECK_VERSION(2, 10, 0)
 static SEXP S_GtkAssistant_symbol;
-#if GTK_CHECK_VERSION(2, 10, 0)
 
 static void
 S_virtual_gtk_assistant_prepare(GtkAssistant* s_object, GtkWidget* s_page)
@@ -21417,8 +21382,6 @@ S_virtual_gtk_assistant_prepare(GtkAssistant* s_object, GtkWidget* s_page)
   if(err)
     return;
 }
-#endif
-#if GTK_CHECK_VERSION(2, 10, 0)
 
 static void
 S_virtual_gtk_assistant_apply(GtkAssistant* s_object)
@@ -21444,8 +21407,6 @@ S_virtual_gtk_assistant_apply(GtkAssistant* s_object)
   if(err)
     return;
 }
-#endif
-#if GTK_CHECK_VERSION(2, 10, 0)
 
 static void
 S_virtual_gtk_assistant_close(GtkAssistant* s_object)
@@ -21471,8 +21432,6 @@ S_virtual_gtk_assistant_close(GtkAssistant* s_object)
   if(err)
     return;
 }
-#endif
-#if GTK_CHECK_VERSION(2, 10, 0)
 
 static void
 S_virtual_gtk_assistant_cancel(GtkAssistant* s_object)
@@ -21498,7 +21457,6 @@ S_virtual_gtk_assistant_cancel(GtkAssistant* s_object)
   if(err)
     return;
 }
-#endif
 void
 S_gtk_assistant_class_init(GtkAssistantClass * c, SEXP e)
 {
@@ -21604,7 +21562,6 @@ S_gtk_assistant_class_cancel(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 
 #if GTK_CHECK_VERSION(2, 12, 0)
 static SEXP S_GtkBuilder_symbol;
-#if GTK_CHECK_VERSION(2, 12, 0)
 
 static GType
 S_virtual_gtk_builder_get_type_from_name(GtkBuilder* s_object, const char* s_type_name)
@@ -21633,7 +21590,6 @@ S_virtual_gtk_builder_get_type_from_name(GtkBuilder* s_object, const char* s_typ
     return(((GType)0));
   return(((GType)asCGType(s_ans)));
 }
-#endif
 void
 S_gtk_builder_class_init(GtkBuilderClass * c, SEXP e)
 {
@@ -22790,7 +22746,8 @@ S_gtk_editable_iface_get_selection_bounds(USER_OBJECT_ s_object_class, USER_OBJE
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "start.pos", asRInteger(start_pos), "end.pos", asRInteger(end_pos), NULL);
+  _result = retByVal(PROTECT(_result), "start.pos", PROTECT(asRInteger(start_pos)), "end.pos", PROTECT(asRInteger(end_pos)), NULL);
+  UNPROTECT(3);
   ;
   ;
 
@@ -23833,7 +23790,8 @@ S_gtk_tree_model_iface_get_iter(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obje
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "iter", toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
+  _result = retByVal(PROTECT(_result), "iter", PROTECT(toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free)), NULL);
+  UNPROTECT(2);
   ;
 
   return(_result);
@@ -23870,7 +23828,8 @@ S_gtk_tree_model_iface_get_value(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obj
   object_class->get_value(object, iter, column, value);
 
 
-  _result = retByVal(_result, "value", asRGValue(value), NULL);
+  _result = retByVal(PROTECT(_result), "value", PROTECT(asRGValue(value)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_value_unset, value);
   CLEANUP(g_free, value);;
 
@@ -23909,7 +23868,8 @@ S_gtk_tree_model_iface_iter_children(USER_OBJECT_ s_object_class, USER_OBJECT_ s
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "iter", toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
+  _result = retByVal(PROTECT(_result), "iter", PROTECT(toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free)), NULL);
+  UNPROTECT(2);
   ;
 
   return(_result);
@@ -23965,7 +23925,8 @@ S_gtk_tree_model_iface_iter_nth_child(USER_OBJECT_ s_object_class, USER_OBJECT_ 
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "iter", toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
+  _result = retByVal(PROTECT(_result), "iter", PROTECT(toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free)), NULL);
+  UNPROTECT(2);
   ;
 
   return(_result);
@@ -23986,7 +23947,8 @@ S_gtk_tree_model_iface_iter_parent(USER_OBJECT_ s_object_class, USER_OBJECT_ s_o
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "iter", toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
+  _result = retByVal(PROTECT(_result), "iter", PROTECT(toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free)), NULL);
+  UNPROTECT(2);
   ;
 
   return(_result);
@@ -24247,7 +24209,8 @@ S_gtk_tree_sortable_iface_get_sort_column_id(USER_OBJECT_ s_object_class, USER_O
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "sort.column.id", asRInteger(sort_column_id), "order", asREnum(order, GTK_TYPE_SORT_TYPE), NULL);
+  _result = retByVal(PROTECT(_result), "sort.column.id", PROTECT(asRInteger(sort_column_id)), "order", PROTECT(asREnum(order, GTK_TYPE_SORT_TYPE)), NULL);
+  UNPROTECT(3);
   ;
   ;
 
@@ -24324,7 +24287,6 @@ S_gtk_tree_sortable_iface_has_default_sort_func(USER_OBJECT_ s_object_class, USE
 
 #if GTK_CHECK_VERSION(2, 12, 0)
 static SEXP S_GtkBuildable_symbol;
-#if GTK_CHECK_VERSION(2, 12, 0)
 
 static void
 S_virtual_gtk_buildable_set_name(GtkBuildable* s_object, const gchar* s_name)
@@ -24352,8 +24314,6 @@ S_virtual_gtk_buildable_set_name(GtkBuildable* s_object, const gchar* s_name)
   if(err)
     return;
 }
-#endif
-#if GTK_CHECK_VERSION(2, 12, 0)
 
 static const gchar*
 S_virtual_gtk_buildable_get_name(GtkBuildable* s_object)
@@ -24380,8 +24340,6 @@ S_virtual_gtk_buildable_get_name(GtkBuildable* s_object)
     return(((const gchar*)0));
   return(((const gchar*)asCString(s_ans)));
 }
-#endif
-#if GTK_CHECK_VERSION(2, 12, 0)
 
 static void
 S_virtual_gtk_buildable_add_child(GtkBuildable* s_object, GtkBuilder* s_builder, GObject* s_child, const gchar* s_type)
@@ -24413,8 +24371,6 @@ S_virtual_gtk_buildable_add_child(GtkBuildable* s_object, GtkBuilder* s_builder,
   if(err)
     return;
 }
-#endif
-#if GTK_CHECK_VERSION(2, 12, 0)
 
 static void
 S_virtual_gtk_buildable_set_buildable_property(GtkBuildable* s_object, GtkBuilder* s_builder, const gchar* s_name, const GValue* s_value)
@@ -24446,8 +24402,6 @@ S_virtual_gtk_buildable_set_buildable_property(GtkBuildable* s_object, GtkBuilde
   if(err)
     return;
 }
-#endif
-#if GTK_CHECK_VERSION(2, 12, 0)
 
 static GObject*
 S_virtual_gtk_buildable_construct_child(GtkBuildable* s_object, GtkBuilder* s_builder, const gchar* s_name)
@@ -24478,8 +24432,6 @@ S_virtual_gtk_buildable_construct_child(GtkBuildable* s_object, GtkBuilder* s_bu
     return(((GObject*)0));
   return(G_OBJECT(getPtrValue(s_ans)));
 }
-#endif
-#if GTK_CHECK_VERSION(2, 12, 0)
 
 static gboolean
 S_virtual_gtk_buildable_custom_tag_start(GtkBuildable* s_object, GtkBuilder* s_builder, GObject* s_child, const gchar* s_tagname, GMarkupParser* s_parser, gpointer* s_data)
@@ -24515,8 +24467,6 @@ S_virtual_gtk_buildable_custom_tag_start(GtkBuildable* s_object, GtkBuilder* s_b
   *s_data = ((gpointer)asCGenericData(VECTOR_ELT(s_ans, 1)));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GTK_CHECK_VERSION(2, 12, 0)
 
 static void
 S_virtual_gtk_buildable_custom_tag_end(GtkBuildable* s_object, GtkBuilder* s_builder, GObject* s_child, const gchar* s_tagname, gpointer* s_data)
@@ -24549,8 +24499,6 @@ S_virtual_gtk_buildable_custom_tag_end(GtkBuildable* s_object, GtkBuilder* s_bui
     return;
   *s_data = ((gpointer)asCGenericData(VECTOR_ELT(s_ans, 0)));
 }
-#endif
-#if GTK_CHECK_VERSION(2, 12, 0)
 
 static void
 S_virtual_gtk_buildable_custom_finished(GtkBuildable* s_object, GtkBuilder* s_builder, GObject* s_child, const gchar* s_tagname, gpointer s_data)
@@ -24584,8 +24532,6 @@ S_virtual_gtk_buildable_custom_finished(GtkBuildable* s_object, GtkBuilder* s_bu
   if(err)
     return;
 }
-#endif
-#if GTK_CHECK_VERSION(2, 12, 0)
 
 static void
 S_virtual_gtk_buildable_parser_finished(GtkBuildable* s_object, GtkBuilder* s_builder)
@@ -24613,8 +24559,6 @@ S_virtual_gtk_buildable_parser_finished(GtkBuildable* s_object, GtkBuilder* s_bu
   if(err)
     return;
 }
-#endif
-#if GTK_CHECK_VERSION(2, 12, 0)
 
 static GObject*
 S_virtual_gtk_buildable_get_internal_child(GtkBuildable* s_object, GtkBuilder* s_builder, const gchar* s_childname)
@@ -24645,7 +24589,6 @@ S_virtual_gtk_buildable_get_internal_child(GtkBuildable* s_object, GtkBuilder* s
     return(((GObject*)0));
   return(G_OBJECT(getPtrValue(s_ans)));
 }
-#endif
 void
 S_gtk_buildable_class_init(GtkBuildableIface * c, SEXP e)
 {
@@ -24821,7 +24764,8 @@ S_gtk_buildable_iface_custom_tag_start(USER_OBJECT_ s_object_class, USER_OBJECT_
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "data", data, NULL);
+  _result = retByVal(PROTECT(_result), "data", PROTECT(data), NULL);
+  UNPROTECT(2);
   ;
 #else
   error("gtk_buildable_custom_tag_start exists only in Gtk >= 2.12.0");
@@ -24846,7 +24790,8 @@ S_gtk_buildable_iface_custom_tag_end(USER_OBJECT_ s_object_class, USER_OBJECT_ s
   object_class->custom_tag_end(object, builder, child, tagname, &data);
 
 
-  _result = retByVal(_result, "data", data, NULL);
+  _result = retByVal(PROTECT(_result), "data", PROTECT(data), NULL);
+  UNPROTECT(2);
   ;
 #else
   error("gtk_buildable_custom_tag_end exists only in Gtk >= 2.12.0");
@@ -24921,7 +24866,6 @@ S_gtk_buildable_iface_get_internal_child(USER_OBJECT_ s_object_class, USER_OBJEC
 
 #if GTK_CHECK_VERSION(2, 14, 0)
 static SEXP S_GtkToolShell_symbol;
-#if GTK_CHECK_VERSION(2, 14, 0)
 
 static GtkIconSize
 S_virtual_gtk_tool_shell_get_icon_size(GtkToolShell* s_object)
@@ -24948,8 +24892,6 @@ S_virtual_gtk_tool_shell_get_icon_size(GtkToolShell* s_object)
     return(((GtkIconSize)0));
   return(((GtkIconSize)asCEnum(s_ans, GTK_TYPE_ICON_SIZE)));
 }
-#endif
-#if GTK_CHECK_VERSION(2, 14, 0)
 
 static GtkOrientation
 S_virtual_gtk_tool_shell_get_orientation(GtkToolShell* s_object)
@@ -24976,8 +24918,6 @@ S_virtual_gtk_tool_shell_get_orientation(GtkToolShell* s_object)
     return(((GtkOrientation)0));
   return(((GtkOrientation)asCEnum(s_ans, GTK_TYPE_ORIENTATION)));
 }
-#endif
-#if GTK_CHECK_VERSION(2, 14, 0)
 
 static GtkToolbarStyle
 S_virtual_gtk_tool_shell_get_style(GtkToolShell* s_object)
@@ -25004,8 +24944,6 @@ S_virtual_gtk_tool_shell_get_style(GtkToolShell* s_object)
     return(((GtkToolbarStyle)0));
   return(((GtkToolbarStyle)asCEnum(s_ans, GTK_TYPE_TOOLBAR_STYLE)));
 }
-#endif
-#if GTK_CHECK_VERSION(2, 14, 0)
 
 static GtkReliefStyle
 S_virtual_gtk_tool_shell_get_relief_style(GtkToolShell* s_object)
@@ -25032,8 +24970,6 @@ S_virtual_gtk_tool_shell_get_relief_style(GtkToolShell* s_object)
     return(((GtkReliefStyle)0));
   return(((GtkReliefStyle)asCEnum(s_ans, GTK_TYPE_RELIEF_STYLE)));
 }
-#endif
-#if GTK_CHECK_VERSION(2, 14, 0)
 
 static void
 S_virtual_gtk_tool_shell_rebuild_menu(GtkToolShell* s_object)
@@ -25059,7 +24995,6 @@ S_virtual_gtk_tool_shell_rebuild_menu(GtkToolShell* s_object)
   if(err)
     return;
 }
-#endif
 void
 S_gtk_tool_shell_class_init(GtkToolShellIface * c, SEXP e)
 {
@@ -25192,7 +25127,6 @@ S_gtk_tool_shell_iface_rebuild_menu(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 
 #if GTK_CHECK_VERSION(2, 16, 0)
 static SEXP S_GtkActivatable_symbol;
-#if GTK_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_gtk_activatable_update(GtkActivatable* s_object, GtkAction* s_action, const gchar* s_property_name)
@@ -25222,8 +25156,6 @@ S_virtual_gtk_activatable_update(GtkActivatable* s_object, GtkAction* s_action, 
   if(err)
     return;
 }
-#endif
-#if GTK_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_gtk_activatable_sync_action_properties(GtkActivatable* s_object, GtkAction* s_action)
@@ -25251,7 +25183,6 @@ S_virtual_gtk_activatable_sync_action_properties(GtkActivatable* s_object, GtkAc
   if(err)
     return;
 }
-#endif
 void
 S_gtk_activatable_class_init(GtkActivatableIface * c, SEXP e)
 {

@@ -1,7 +1,6 @@
 #include "RGtk2/gioClasses.h"
 #if GIO_CHECK_VERSION(2, 16, 0)
 static SEXP S_GAppLaunchContext_symbol;
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static char*
 S_virtual_gapp_launch_context_get_display(GAppLaunchContext* s_object, GAppInfo* s_info, GList* s_files)
@@ -32,8 +31,6 @@ S_virtual_gapp_launch_context_get_display(GAppLaunchContext* s_object, GAppInfo*
     return(((char*)0));
   return(((char*)g_strdup(asCString(s_ans))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static char*
 S_virtual_gapp_launch_context_get_startup_notify_id(GAppLaunchContext* s_object, GAppInfo* s_info, GList* s_files)
@@ -64,8 +61,6 @@ S_virtual_gapp_launch_context_get_startup_notify_id(GAppLaunchContext* s_object,
     return(((char*)0));
   return(((char*)g_strdup(asCString(s_ans))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_gapp_launch_context_launch_failed(GAppLaunchContext* s_object, const char* s_startup_notify_id)
@@ -93,7 +88,6 @@ S_virtual_gapp_launch_context_launch_failed(GAppLaunchContext* s_object, const c
   if(err)
     return;
 }
-#endif
 void
 S_gapp_launch_context_class_init(GAppLaunchContextClass * c, SEXP e)
 {
@@ -221,7 +215,6 @@ S_gfilename_completer_class_init(GFilenameCompleterClass * c, SEXP e)
 
 #if GIO_CHECK_VERSION(2, 16, 0)
 static SEXP S_GFileEnumerator_symbol;
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GFileInfo*
 S_virtual_gfile_enumerator_next_file(GFileEnumerator* s_object, GCancellable* s_cancellable, GError** s_error)
@@ -251,8 +244,6 @@ S_virtual_gfile_enumerator_next_file(GFileEnumerator* s_object, GCancellable* s_
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_FILE_INFO(getPtrValueWithRef(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gfile_enumerator_close_fn(GFileEnumerator* s_object, GCancellable* s_cancellable, GError** s_error)
@@ -282,8 +273,6 @@ S_virtual_gfile_enumerator_close_fn(GFileEnumerator* s_object, GCancellable* s_c
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_gfile_enumerator_next_files_async(GFileEnumerator* s_object, int s_num_files, int s_io_priority, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -319,8 +308,6 @@ S_virtual_gfile_enumerator_next_files_async(GFileEnumerator* s_object, int s_num
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GList*
 S_virtual_gfile_enumerator_next_files_finish(GFileEnumerator* s_object, GAsyncResult* s_result, GError** s_error)
@@ -350,8 +337,6 @@ S_virtual_gfile_enumerator_next_files_finish(GFileEnumerator* s_object, GAsyncRe
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((GList*)asCArrayRef(VECTOR_ELT(s_ans, 0), GList, asCGListDup)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_gfile_enumerator_close_async(GFileEnumerator* s_object, int s_io_priority, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -385,8 +370,6 @@ S_virtual_gfile_enumerator_close_async(GFileEnumerator* s_object, int s_io_prior
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gfile_enumerator_close_finish(GFileEnumerator* s_object, GAsyncResult* s_result, GError** s_error)
@@ -416,7 +399,6 @@ S_virtual_gfile_enumerator_close_finish(GFileEnumerator* s_object, GAsyncResult*
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
 void
 S_gfile_enumerator_class_init(GFileEnumeratorClass * c, SEXP e)
 {
@@ -470,7 +452,8 @@ S_gfile_enumerator_class_next_file(USER_OBJECT_ s_object_class, USER_OBJECT_ s_o
 
   _result = toRPointerWithFinalizer(ans, "GFileInfo", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_enumerator_next_file exists only in gio >= 2.16.0");
@@ -495,7 +478,8 @@ S_gfile_enumerator_class_close_fn(USER_OBJECT_ s_object_class, USER_OBJECT_ s_ob
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_enumerator_close_fn exists only in gio >= 2.16.0");
@@ -543,7 +527,8 @@ S_gfile_enumerator_class_next_files_finish(USER_OBJECT_ s_object_class, USER_OBJ
 
   _result = asRGListWithRef(ans, "GFileInfo");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_list_free, ans);;
     CLEANUP(g_error_free, error);;
 #else
@@ -591,7 +576,8 @@ S_gfile_enumerator_class_close_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ 
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_enumerator_close_finish exists only in gio >= 2.16.0");
@@ -603,7 +589,6 @@ S_gfile_enumerator_class_close_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ 
 
 #if GIO_CHECK_VERSION(2, 16, 0)
 static SEXP S_GFileMonitor_symbol;
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gfile_monitor_cancel(GFileMonitor* s_object)
@@ -630,7 +615,6 @@ S_virtual_gfile_monitor_cancel(GFileMonitor* s_object)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-#endif
 void
 S_gfile_monitor_class_init(GFileMonitorClass * c, SEXP e)
 {
@@ -671,7 +655,6 @@ S_gfile_monitor_class_cancel(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 
 #if GIO_CHECK_VERSION(2, 16, 0)
 static SEXP S_GInputStream_symbol;
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gssize
 S_virtual_ginput_stream_skip(GInputStream* s_object, gsize s_count, GCancellable* s_cancellable, GError** s_error)
@@ -703,8 +686,6 @@ S_virtual_ginput_stream_skip(GInputStream* s_object, gsize s_count, GCancellable
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gssize)asCInteger(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_ginput_stream_close_fn(GInputStream* s_object, GCancellable* s_cancellable, GError** s_error)
@@ -734,8 +715,6 @@ S_virtual_ginput_stream_close_fn(GInputStream* s_object, GCancellable* s_cancell
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gssize
 S_virtual_ginput_stream_read_finish(GInputStream* s_object, GAsyncResult* s_result, GError** s_error)
@@ -765,8 +744,6 @@ S_virtual_ginput_stream_read_finish(GInputStream* s_object, GAsyncResult* s_resu
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gssize)asCInteger(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_ginput_stream_skip_async(GInputStream* s_object, gsize s_count, int s_io_priority, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -802,8 +779,6 @@ S_virtual_ginput_stream_skip_async(GInputStream* s_object, gsize s_count, int s_
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gssize
 S_virtual_ginput_stream_skip_finish(GInputStream* s_object, GAsyncResult* s_result, GError** s_error)
@@ -833,8 +808,6 @@ S_virtual_ginput_stream_skip_finish(GInputStream* s_object, GAsyncResult* s_resu
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gssize)asCInteger(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_ginput_stream_close_async(GInputStream* s_object, int s_io_priority, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -868,8 +841,6 @@ S_virtual_ginput_stream_close_async(GInputStream* s_object, int s_io_priority, G
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_ginput_stream_close_finish(GInputStream* s_object, GAsyncResult* s_result, GError** s_error)
@@ -899,7 +870,6 @@ S_virtual_ginput_stream_close_finish(GInputStream* s_object, GAsyncResult* s_res
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
 void
 S_ginput_stream_class_init(GInputStreamClass * c, SEXP e)
 {
@@ -958,7 +928,8 @@ S_ginput_stream_class_skip(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, U
 
   _result = asRInteger(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("ginput_stream_skip exists only in gio >= 2.16.0");
@@ -983,7 +954,8 @@ S_ginput_stream_class_close_fn(USER_OBJECT_ s_object_class, USER_OBJECT_ s_objec
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("ginput_stream_close_fn exists only in gio >= 2.16.0");
@@ -1008,7 +980,8 @@ S_ginput_stream_class_read_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ s_ob
 
   _result = asRInteger(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("ginput_stream_read_finish exists only in gio >= 2.16.0");
@@ -1056,7 +1029,8 @@ S_ginput_stream_class_skip_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ s_ob
 
   _result = asRInteger(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("ginput_stream_skip_finish exists only in gio >= 2.16.0");
@@ -1103,7 +1077,8 @@ S_ginput_stream_class_close_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ s_o
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("ginput_stream_close_finish exists only in gio >= 2.16.0");
@@ -1115,7 +1090,6 @@ S_ginput_stream_class_close_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ s_o
 
 #if GIO_CHECK_VERSION(2, 16, 0)
 static SEXP S_GFileInputStream_symbol;
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GFileInfo*
 S_virtual_gfile_input_stream_query_info(GFileInputStream* s_object, const char* s_attributes, GCancellable* s_cancellable, GError** s_error)
@@ -1147,8 +1121,6 @@ S_virtual_gfile_input_stream_query_info(GFileInputStream* s_object, const char* 
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_FILE_INFO(getPtrValue(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_gfile_input_stream_query_info_async(GFileInputStream* s_object, const char* s_attributes, int s_io_priority, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -1184,8 +1156,6 @@ S_virtual_gfile_input_stream_query_info_async(GFileInputStream* s_object, const 
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GFileInfo*
 S_virtual_gfile_input_stream_query_info_finish(GFileInputStream* s_object, GAsyncResult* s_result, GError** s_error)
@@ -1215,7 +1185,6 @@ S_virtual_gfile_input_stream_query_info_finish(GFileInputStream* s_object, GAsyn
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_FILE_INFO(getPtrValue(VECTOR_ELT(s_ans, 0))));
 }
-#endif
 void
 S_gfile_input_stream_class_init(GFileInputStreamClass * c, SEXP e)
 {
@@ -1258,7 +1227,8 @@ S_gfile_input_stream_class_query_info(USER_OBJECT_ s_object_class, USER_OBJECT_ 
 
   _result = toRPointerWithRef(ans, "GFileInfo");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_input_stream_query_info exists only in gio >= 2.16.0");
@@ -1306,7 +1276,8 @@ S_gfile_input_stream_class_query_info_finish(USER_OBJECT_ s_object_class, USER_O
 
   _result = toRPointerWithRef(ans, "GFileInfo");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_input_stream_query_info_finish exists only in gio >= 2.16.0");
@@ -1334,7 +1305,6 @@ S_gfilter_input_stream_class_init(GFilterInputStreamClass * c, SEXP e)
 
 #if GIO_CHECK_VERSION(2, 16, 0)
 static SEXP S_GBufferedInputStream_symbol;
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gssize
 S_virtual_gbuffered_input_stream_fill(GBufferedInputStream* s_object, gssize s_count, GCancellable* s_cancellable, GError** s_error)
@@ -1366,8 +1336,6 @@ S_virtual_gbuffered_input_stream_fill(GBufferedInputStream* s_object, gssize s_c
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gssize)asCInteger(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_gbuffered_input_stream_fill_async(GBufferedInputStream* s_object, gssize s_count, int s_io_priority, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -1403,8 +1371,6 @@ S_virtual_gbuffered_input_stream_fill_async(GBufferedInputStream* s_object, gssi
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gssize
 S_virtual_gbuffered_input_stream_fill_finish(GBufferedInputStream* s_object, GAsyncResult* s_result, GError** s_error)
@@ -1434,7 +1400,6 @@ S_virtual_gbuffered_input_stream_fill_finish(GBufferedInputStream* s_object, GAs
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gssize)asCInteger(VECTOR_ELT(s_ans, 0))));
 }
-#endif
 void
 S_gbuffered_input_stream_class_init(GBufferedInputStreamClass * c, SEXP e)
 {
@@ -1477,7 +1442,8 @@ S_gbuffered_input_stream_class_fill(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 
   _result = asRInteger(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gbuffered_input_stream_fill exists only in gio >= 2.16.0");
@@ -1525,7 +1491,8 @@ S_gbuffered_input_stream_class_fill_finish(USER_OBJECT_ s_object_class, USER_OBJ
 
   _result = asRInteger(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gbuffered_input_stream_fill_finish exists only in gio >= 2.16.0");
@@ -1585,7 +1552,6 @@ S_gmount_operation_class_init(GMountOperationClass * c, SEXP e)
 
 #if GIO_CHECK_VERSION(2, 16, 0)
 static SEXP S_GOutputStream_symbol;
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gssize
 S_virtual_goutput_stream_write_fn(GOutputStream* s_object, const guchar* s_buffer, gsize s_count, GCancellable* s_cancellable, GError** s_error)
@@ -1619,8 +1585,6 @@ S_virtual_goutput_stream_write_fn(GOutputStream* s_object, const guchar* s_buffe
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gssize)asCInteger(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gssize
 S_virtual_goutput_stream_splice(GOutputStream* s_object, GInputStream* s_source, GOutputStreamSpliceFlags s_flags, GCancellable* s_cancellable, GError** s_error)
@@ -1654,8 +1618,6 @@ S_virtual_goutput_stream_splice(GOutputStream* s_object, GInputStream* s_source,
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gssize)asCInteger(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_goutput_stream_flush(GOutputStream* s_object, GCancellable* s_cancellable, GError** s_error)
@@ -1685,8 +1647,6 @@ S_virtual_goutput_stream_flush(GOutputStream* s_object, GCancellable* s_cancella
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_goutput_stream_close_fn(GOutputStream* s_object, GCancellable* s_cancellable, GError** s_error)
@@ -1716,8 +1676,6 @@ S_virtual_goutput_stream_close_fn(GOutputStream* s_object, GCancellable* s_cance
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_goutput_stream_write_async(GOutputStream* s_object, const guchar* s_buffer, gsize s_count, int s_io_priority, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -1755,8 +1713,6 @@ S_virtual_goutput_stream_write_async(GOutputStream* s_object, const guchar* s_bu
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gssize
 S_virtual_goutput_stream_write_finish(GOutputStream* s_object, GAsyncResult* s_result, GError** s_error)
@@ -1786,8 +1742,6 @@ S_virtual_goutput_stream_write_finish(GOutputStream* s_object, GAsyncResult* s_r
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gssize)asCInteger(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_goutput_stream_splice_async(GOutputStream* s_object, GInputStream* s_source, GOutputStreamSpliceFlags s_flags, int s_io_priority, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -1825,8 +1779,6 @@ S_virtual_goutput_stream_splice_async(GOutputStream* s_object, GInputStream* s_s
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gssize
 S_virtual_goutput_stream_splice_finish(GOutputStream* s_object, GAsyncResult* s_result, GError** s_error)
@@ -1856,8 +1808,6 @@ S_virtual_goutput_stream_splice_finish(GOutputStream* s_object, GAsyncResult* s_
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gssize)asCInteger(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_goutput_stream_flush_async(GOutputStream* s_object, int s_io_priority, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -1891,8 +1841,6 @@ S_virtual_goutput_stream_flush_async(GOutputStream* s_object, int s_io_priority,
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_goutput_stream_flush_finish(GOutputStream* s_object, GAsyncResult* s_result, GError** s_error)
@@ -1922,8 +1870,6 @@ S_virtual_goutput_stream_flush_finish(GOutputStream* s_object, GAsyncResult* s_r
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_goutput_stream_close_async(GOutputStream* s_object, int s_io_priority, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -1957,8 +1903,6 @@ S_virtual_goutput_stream_close_async(GOutputStream* s_object, int s_io_priority,
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_goutput_stream_close_finish(GOutputStream* s_object, GAsyncResult* s_result, GError** s_error)
@@ -1988,7 +1932,6 @@ S_virtual_goutput_stream_close_finish(GOutputStream* s_object, GAsyncResult* s_r
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
 void
 S_goutput_stream_class_init(GOutputStreamClass * c, SEXP e)
 {
@@ -2068,7 +2011,8 @@ S_goutput_stream_class_write_fn(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obje
 
   _result = asRInteger(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("goutput_stream_write_fn exists only in gio >= 2.16.0");
@@ -2095,7 +2039,8 @@ S_goutput_stream_class_splice(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object
 
   _result = asRInteger(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("goutput_stream_splice exists only in gio >= 2.16.0");
@@ -2120,7 +2065,8 @@ S_goutput_stream_class_flush(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object,
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("goutput_stream_flush exists only in gio >= 2.16.0");
@@ -2145,7 +2091,8 @@ S_goutput_stream_class_close_fn(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obje
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("goutput_stream_close_fn exists only in gio >= 2.16.0");
@@ -2194,7 +2141,8 @@ S_goutput_stream_class_write_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 
   _result = asRInteger(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("goutput_stream_write_finish exists only in gio >= 2.16.0");
@@ -2243,7 +2191,8 @@ S_goutput_stream_class_splice_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ s
 
   _result = asRInteger(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("goutput_stream_splice_finish exists only in gio >= 2.16.0");
@@ -2290,7 +2239,8 @@ S_goutput_stream_class_flush_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("goutput_stream_flush_finish exists only in gio >= 2.16.0");
@@ -2337,7 +2287,8 @@ S_goutput_stream_class_close_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("goutput_stream_close_finish exists only in gio >= 2.16.0");
@@ -2413,7 +2364,6 @@ S_gdata_output_stream_class_init(GDataOutputStreamClass * c, SEXP e)
 
 #if GIO_CHECK_VERSION(2, 16, 0)
 static SEXP S_GFileOutputStream_symbol;
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GFileInfo*
 S_virtual_gfile_output_stream_query_info(GFileOutputStream* s_object, const char* s_attributes, GCancellable* s_cancellable, GError** s_error)
@@ -2445,8 +2395,6 @@ S_virtual_gfile_output_stream_query_info(GFileOutputStream* s_object, const char
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_FILE_INFO(getPtrValue(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_gfile_output_stream_query_info_async(GFileOutputStream* s_object, const char* s_attributes, int s_io_priority, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -2482,8 +2430,6 @@ S_virtual_gfile_output_stream_query_info_async(GFileOutputStream* s_object, cons
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GFileInfo*
 S_virtual_gfile_output_stream_query_info_finish(GFileOutputStream* s_object, GAsyncResult* s_result, GError** s_error)
@@ -2513,8 +2459,6 @@ S_virtual_gfile_output_stream_query_info_finish(GFileOutputStream* s_object, GAs
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_FILE_INFO(getPtrValue(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static char*
 S_virtual_gfile_output_stream_get_etag(GFileOutputStream* s_object)
@@ -2541,7 +2485,6 @@ S_virtual_gfile_output_stream_get_etag(GFileOutputStream* s_object)
     return(((char*)0));
   return(((char*)g_strdup(asCString(s_ans))));
 }
-#endif
 void
 S_gfile_output_stream_class_init(GFileOutputStreamClass * c, SEXP e)
 {
@@ -2588,7 +2531,8 @@ S_gfile_output_stream_class_query_info(USER_OBJECT_ s_object_class, USER_OBJECT_
 
   _result = toRPointerWithRef(ans, "GFileInfo");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_output_stream_query_info exists only in gio >= 2.16.0");
@@ -2636,7 +2580,8 @@ S_gfile_output_stream_class_query_info_finish(USER_OBJECT_ s_object_class, USER_
 
   _result = toRPointerWithRef(ans, "GFileInfo");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_output_stream_query_info_finish exists only in gio >= 2.16.0");
@@ -2669,7 +2614,6 @@ S_gfile_output_stream_class_get_etag(USER_OBJECT_ s_object_class, USER_OBJECT_ s
 
 #if GIO_CHECK_VERSION(2, 16, 0)
 static SEXP S_GVfs_symbol;
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gvfs_is_active(GVfs* s_object)
@@ -2696,8 +2640,6 @@ S_virtual_gvfs_is_active(GVfs* s_object)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GFile*
 S_virtual_gvfs_get_file_for_path(GVfs* s_object, const char* s_path)
@@ -2726,8 +2668,6 @@ S_virtual_gvfs_get_file_for_path(GVfs* s_object, const char* s_path)
     return(((GFile*)0));
   return(G_FILE(getPtrValue(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GFile*
 S_virtual_gvfs_get_file_for_uri(GVfs* s_object, const char* s_uri)
@@ -2756,8 +2696,6 @@ S_virtual_gvfs_get_file_for_uri(GVfs* s_object, const char* s_uri)
     return(((GFile*)0));
   return(G_FILE(getPtrValue(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GFile*
 S_virtual_gvfs_parse_name(GVfs* s_object, const char* s_parse_name)
@@ -2786,8 +2724,6 @@ S_virtual_gvfs_parse_name(GVfs* s_object, const char* s_parse_name)
     return(((GFile*)0));
   return(G_FILE(getPtrValue(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static const char* const*
 S_virtual_gvfs_get_supported_uri_schemes(GVfs* s_object)
@@ -2814,7 +2750,6 @@ S_virtual_gvfs_get_supported_uri_schemes(GVfs* s_object)
     return(((const char* const*)0));
   return(((const char* const*)asCStringArray(s_ans)));
 }
-#endif
 void
 S_gvfs_class_init(GVfsClass * c, SEXP e)
 {
@@ -2954,7 +2889,6 @@ S_gvfs_class_get_supported_uri_schemes(USER_OBJECT_ s_object_class, USER_OBJECT_
 
 #if GIO_CHECK_VERSION(2, 16, 0)
 static SEXP S_GVolumeMonitor_symbol;
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GList*
 S_virtual_gvolume_monitor_get_connected_drives(GVolumeMonitor* s_object)
@@ -2981,8 +2915,6 @@ S_virtual_gvolume_monitor_get_connected_drives(GVolumeMonitor* s_object)
     return(((GList*)0));
   return(((GList*)asCArrayRef(s_ans, GList, asCGListDup)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GList*
 S_virtual_gvolume_monitor_get_volumes(GVolumeMonitor* s_object)
@@ -3009,8 +2941,6 @@ S_virtual_gvolume_monitor_get_volumes(GVolumeMonitor* s_object)
     return(((GList*)0));
   return(((GList*)asCArrayRef(s_ans, GList, asCGListDup)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GList*
 S_virtual_gvolume_monitor_get_mounts(GVolumeMonitor* s_object)
@@ -3037,8 +2967,6 @@ S_virtual_gvolume_monitor_get_mounts(GVolumeMonitor* s_object)
     return(((GList*)0));
   return(((GList*)asCArrayRef(s_ans, GList, asCGListDup)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GVolume*
 S_virtual_gvolume_monitor_get_volume_for_uuid(GVolumeMonitor* s_object, const char* s_uuid)
@@ -3067,8 +2995,6 @@ S_virtual_gvolume_monitor_get_volume_for_uuid(GVolumeMonitor* s_object, const ch
     return(((GVolume*)0));
   return(G_VOLUME(getPtrValue(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GMount*
 S_virtual_gvolume_monitor_get_mount_for_uuid(GVolumeMonitor* s_object, const char* s_uuid)
@@ -3097,7 +3023,6 @@ S_virtual_gvolume_monitor_get_mount_for_uuid(GVolumeMonitor* s_object, const cha
     return(((GMount*)0));
   return(G_MOUNT(getPtrValue(s_ans)));
 }
-#endif
 void
 S_gvolume_monitor_class_init(GVolumeMonitorClass * c, SEXP e)
 {
@@ -3255,7 +3180,6 @@ S_gnative_volume_monitor_class_init(GNativeVolumeMonitorClass * c, SEXP e)
 
 #if GIO_CHECK_VERSION(2, 22, 0)
 static SEXP S_GFileIOStream_symbol;
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static GFileInfo*
 S_virtual_gfile_iostream_query_info(GFileIOStream* s_object, const char* s_attributes, GCancellable* s_cancellable, GError** s_error)
@@ -3287,8 +3211,6 @@ S_virtual_gfile_iostream_query_info(GFileIOStream* s_object, const char* s_attri
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_FILE_INFO(getPtrValue(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static void
 S_virtual_gfile_iostream_query_info_async(GFileIOStream* s_object, const char* s_attributes, int s_io_priority, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -3324,8 +3246,6 @@ S_virtual_gfile_iostream_query_info_async(GFileIOStream* s_object, const char* s
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static GFileInfo*
 S_virtual_gfile_iostream_query_info_finish(GFileIOStream* s_object, GAsyncResult* s_result, GError** s_error)
@@ -3355,8 +3275,6 @@ S_virtual_gfile_iostream_query_info_finish(GFileIOStream* s_object, GAsyncResult
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_FILE_INFO(getPtrValue(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static char*
 S_virtual_gfile_iostream_get_etag(GFileIOStream* s_object)
@@ -3383,7 +3301,6 @@ S_virtual_gfile_iostream_get_etag(GFileIOStream* s_object)
     return(((char*)0));
   return(((char*)g_strdup(asCString(s_ans))));
 }
-#endif
 void
 S_gfile_iostream_class_init(GFileIOStreamClass * c, SEXP e)
 {
@@ -3430,7 +3347,8 @@ S_gfile_iostream_class_query_info(USER_OBJECT_ s_object_class, USER_OBJECT_ s_ob
 
   _result = toRPointerWithRef(ans, "GFileInfo");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_iostream_query_info exists only in gio >= 2.22.0");
@@ -3478,7 +3396,8 @@ S_gfile_iostream_class_query_info_finish(USER_OBJECT_ s_object_class, USER_OBJEC
 
   _result = toRPointerWithRef(ans, "GFileInfo");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_iostream_query_info_finish exists only in gio >= 2.22.0");
@@ -3511,7 +3430,6 @@ S_gfile_iostream_class_get_etag(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obje
 
 #if GIO_CHECK_VERSION(2, 22, 0)
 static SEXP S_GInetAddress_symbol;
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static gchar*
 S_virtual_ginet_address_to_string(GInetAddress* s_object)
@@ -3538,8 +3456,6 @@ S_virtual_ginet_address_to_string(GInetAddress* s_object)
     return(((gchar*)0));
   return(((gchar*)g_strdup(asCString(s_ans))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static const guint8*
 S_virtual_ginet_address_to_bytes(GInetAddress* s_object)
@@ -3566,7 +3482,6 @@ S_virtual_ginet_address_to_bytes(GInetAddress* s_object)
     return(((const guint8*)0));
   return(((const guint8*)asCArray(s_ans, guint8, asCRaw)));
 }
-#endif
 void
 S_ginet_address_class_init(GInetAddressClass * c, SEXP e)
 {
@@ -3664,7 +3579,6 @@ S_gnetwork_service_class_init(GNetworkServiceClass * c, SEXP e)
 
 #if GIO_CHECK_VERSION(2, 22, 0)
 static SEXP S_GResolver_symbol;
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static GList*
 S_virtual_gresolver_lookup_by_name(GResolver* s_object, const gchar* s_hostname, GCancellable* s_cancellable, GError** s_error)
@@ -3696,8 +3610,6 @@ S_virtual_gresolver_lookup_by_name(GResolver* s_object, const gchar* s_hostname,
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((GList*)asCArrayRef(VECTOR_ELT(s_ans, 0), GList, asCGListDup)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static void
 S_virtual_gresolver_lookup_by_name_async(GResolver* s_object, const gchar* s_hostname, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -3731,8 +3643,6 @@ S_virtual_gresolver_lookup_by_name_async(GResolver* s_object, const gchar* s_hos
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static GList*
 S_virtual_gresolver_lookup_by_name_finish(GResolver* s_object, GAsyncResult* s_result, GError** s_error)
@@ -3762,8 +3672,6 @@ S_virtual_gresolver_lookup_by_name_finish(GResolver* s_object, GAsyncResult* s_r
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((GList*)asCArrayRef(VECTOR_ELT(s_ans, 0), GList, asCGListDup)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static gchar*
 S_virtual_gresolver_lookup_by_address(GResolver* s_object, GInetAddress* s_address, GCancellable* s_cancellable, GError** s_error)
@@ -3795,8 +3703,6 @@ S_virtual_gresolver_lookup_by_address(GResolver* s_object, GInetAddress* s_addre
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gchar*)g_strdup(asCString(VECTOR_ELT(s_ans, 0)))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static void
 S_virtual_gresolver_lookup_by_address_async(GResolver* s_object, GInetAddress* s_address, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -3830,8 +3736,6 @@ S_virtual_gresolver_lookup_by_address_async(GResolver* s_object, GInetAddress* s
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static gchar*
 S_virtual_gresolver_lookup_by_address_finish(GResolver* s_object, GAsyncResult* s_result, GError** s_error)
@@ -3861,8 +3765,6 @@ S_virtual_gresolver_lookup_by_address_finish(GResolver* s_object, GAsyncResult* 
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gchar*)g_strdup(asCString(VECTOR_ELT(s_ans, 0)))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static GList*
 S_virtual_gresolver_lookup_service(GResolver* s_object, const gchar* s_rrname, GCancellable* s_cancellable, GError** s_error)
@@ -3894,8 +3796,6 @@ S_virtual_gresolver_lookup_service(GResolver* s_object, const gchar* s_rrname, G
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((GList*)asCArrayRef(VECTOR_ELT(s_ans, 0), GList, asCGListDup)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static void
 S_virtual_gresolver_lookup_service_async(GResolver* s_object, const gchar* s_rrname, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -3929,8 +3829,6 @@ S_virtual_gresolver_lookup_service_async(GResolver* s_object, const gchar* s_rrn
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static GList*
 S_virtual_gresolver_lookup_service_finish(GResolver* s_object, GAsyncResult* s_result, GError** s_error)
@@ -3960,7 +3858,6 @@ S_virtual_gresolver_lookup_service_finish(GResolver* s_object, GAsyncResult* s_r
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((GList*)asCArrayRef(VECTOR_ELT(s_ans, 0), GList, asCGListDup)));
 }
-#endif
 void
 S_gresolver_class_init(GResolverClass * c, SEXP e)
 {
@@ -4027,7 +3924,8 @@ S_gresolver_class_lookup_by_name(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obj
 
   _result = asRGListWithRef(ans, "GInetAddress");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_list_free, ans);;
     CLEANUP(g_error_free, error);;
 #else
@@ -4075,7 +3973,8 @@ S_gresolver_class_lookup_by_name_finish(USER_OBJECT_ s_object_class, USER_OBJECT
 
   _result = asRGListWithRef(ans, "GInetAddress");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_list_free, ans);;
     CLEANUP(g_error_free, error);;
 #else
@@ -4102,7 +4001,8 @@ S_gresolver_class_lookup_by_address(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 
   _result = asRString(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_free, ans);;
     CLEANUP(g_error_free, error);;
 #else
@@ -4150,7 +4050,8 @@ S_gresolver_class_lookup_by_address_finish(USER_OBJECT_ s_object_class, USER_OBJ
 
   _result = asRString(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_free, ans);;
     CLEANUP(g_error_free, error);;
 #else
@@ -4177,7 +4078,8 @@ S_gresolver_class_lookup_service(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obj
 
   _result = asRGList(ans, "GSrvTarget");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_list_free, ans);;
     CLEANUP(g_error_free, error);;
 #else
@@ -4225,7 +4127,8 @@ S_gresolver_class_lookup_service_finish(USER_OBJECT_ s_object_class, USER_OBJECT
 
   _result = asRGList(ans, "GSrvTarget");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_list_free, ans);;
     CLEANUP(g_error_free, error);;
 #else
@@ -4254,7 +4157,6 @@ S_gsocket_class_init(GSocketClass * c, SEXP e)
 
 #if GIO_CHECK_VERSION(2, 22, 0)
 static SEXP S_GSocketAddress_symbol;
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static GSocketFamily
 S_virtual_gsocket_address_get_family(GSocketAddress* s_object)
@@ -4281,8 +4183,6 @@ S_virtual_gsocket_address_get_family(GSocketAddress* s_object)
     return(((GSocketFamily)0));
   return(((GSocketFamily)asCEnum(s_ans, G_TYPE_SOCKET_FAMILY)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static gboolean
 S_virtual_gsocket_address_to_native(GSocketAddress* s_object, gpointer s_dest, gsize s_destlen, GError** s_error)
@@ -4314,8 +4214,6 @@ S_virtual_gsocket_address_to_native(GSocketAddress* s_object, gpointer s_dest, g
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static gssize
 S_virtual_gsocket_address_get_native_size(GSocketAddress* s_object)
@@ -4342,7 +4240,6 @@ S_virtual_gsocket_address_get_native_size(GSocketAddress* s_object)
     return(((gssize)0));
   return(((gssize)asCInteger(s_ans)));
 }
-#endif
 void
 S_gsocket_address_class_init(GSocketAddressClass * c, SEXP e)
 {
@@ -4405,7 +4302,8 @@ S_gsocket_address_class_to_native(USER_OBJECT_ s_object_class, USER_OBJECT_ s_ob
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gsocket_address_to_native exists only in gio >= 2.22.0");
@@ -4437,7 +4335,6 @@ S_gsocket_address_class_get_native_size(USER_OBJECT_ s_object_class, USER_OBJECT
 
 #if GIO_CHECK_VERSION(2, 22, 0)
 static SEXP S_GSocketAddressEnumerator_symbol;
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static GSocketAddress*
 S_virtual_gsocket_address_enumerator_next(GSocketAddressEnumerator* s_object, GCancellable* s_cancellable, GError** s_error)
@@ -4467,8 +4364,6 @@ S_virtual_gsocket_address_enumerator_next(GSocketAddressEnumerator* s_object, GC
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_SOCKET_ADDRESS(getPtrValue(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static void
 S_virtual_gsocket_address_enumerator_next_async(GSocketAddressEnumerator* s_object, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -4500,8 +4395,6 @@ S_virtual_gsocket_address_enumerator_next_async(GSocketAddressEnumerator* s_obje
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static GSocketAddress*
 S_virtual_gsocket_address_enumerator_next_finish(GSocketAddressEnumerator* s_object, GAsyncResult* s_result, GError** s_error)
@@ -4531,7 +4424,6 @@ S_virtual_gsocket_address_enumerator_next_finish(GSocketAddressEnumerator* s_obj
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_SOCKET_ADDRESS(getPtrValue(VECTOR_ELT(s_ans, 0))));
 }
-#endif
 void
 S_gsocket_address_enumerator_class_init(GSocketAddressEnumeratorClass * c, SEXP e)
 {
@@ -4573,7 +4465,8 @@ S_gsocket_address_enumerator_class_next(USER_OBJECT_ s_object_class, USER_OBJECT
 
   _result = toRPointerWithRef(ans, "GSocketAddress");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gsocket_address_enumerator_next exists only in gio >= 2.22.0");
@@ -4619,7 +4512,8 @@ S_gsocket_address_enumerator_class_next_finish(USER_OBJECT_ s_object_class, USER
 
   _result = toRPointerWithRef(ans, "GSocketAddress");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gsocket_address_enumerator_next_finish exists only in gio >= 2.22.0");
@@ -4663,7 +4557,6 @@ S_gsocket_connection_class_init(GSocketConnectionClass * c, SEXP e)
 
 #if GIO_CHECK_VERSION(2, 22, 0)
 static SEXP S_GSocketControlMessage_symbol;
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static gsize
 S_virtual_gsocket_control_message_get_size(GSocketControlMessage* s_object)
@@ -4690,8 +4583,6 @@ S_virtual_gsocket_control_message_get_size(GSocketControlMessage* s_object)
     return(((gsize)0));
   return(((gsize)asCNumeric(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static int
 S_virtual_gsocket_control_message_get_level(GSocketControlMessage* s_object)
@@ -4718,8 +4609,6 @@ S_virtual_gsocket_control_message_get_level(GSocketControlMessage* s_object)
     return(((int)0));
   return(((int)asCInteger(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static int
 S_virtual_gsocket_control_message_get_type(GSocketControlMessage* s_object)
@@ -4746,8 +4635,6 @@ S_virtual_gsocket_control_message_get_type(GSocketControlMessage* s_object)
     return(((int)0));
   return(((int)asCInteger(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static void
 S_virtual_gsocket_control_message_serialize(GSocketControlMessage* s_object, gpointer s_data)
@@ -4775,7 +4662,6 @@ S_virtual_gsocket_control_message_serialize(GSocketControlMessage* s_object, gpo
   if(err)
     return;
 }
-#endif
 void
 S_gsocket_control_message_class_init(GSocketControlMessageClass * c, SEXP e)
 {
@@ -4887,7 +4773,6 @@ S_gsocket_control_message_class_serialize(USER_OBJECT_ s_object_class, USER_OBJE
 
 #if GIO_CHECK_VERSION(2, 22, 0)
 static SEXP S_GSocketListener_symbol;
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static void
 S_virtual_gsocket_listener_changed(GSocketListener* s_object)
@@ -4913,7 +4798,6 @@ S_virtual_gsocket_listener_changed(GSocketListener* s_object)
   if(err)
     return;
 }
-#endif
 void
 S_gsocket_listener_class_init(GSocketListenerClass * c, SEXP e)
 {
@@ -5000,7 +4884,6 @@ S_gthreaded_socket_service_class_init(GThreadedSocketServiceClass * c, SEXP e)
 
 #if GIO_CHECK_VERSION(2, 22, 0)
 static SEXP S_GIOStream_symbol;
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static GInputStream*
 S_virtual_giostream_get_input_stream(GIOStream* s_object)
@@ -5027,8 +4910,6 @@ S_virtual_giostream_get_input_stream(GIOStream* s_object)
     return(((GInputStream*)0));
   return(G_INPUT_STREAM(getPtrValue(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static GOutputStream*
 S_virtual_giostream_get_output_stream(GIOStream* s_object)
@@ -5055,8 +4936,6 @@ S_virtual_giostream_get_output_stream(GIOStream* s_object)
     return(((GOutputStream*)0));
   return(G_OUTPUT_STREAM(getPtrValue(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static gboolean
 S_virtual_giostream_close_fn(GIOStream* s_object, GCancellable* s_cancellable, GError** s_error)
@@ -5086,8 +4965,6 @@ S_virtual_giostream_close_fn(GIOStream* s_object, GCancellable* s_cancellable, G
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static void
 S_virtual_giostream_close_async(GIOStream* s_object, int s_io_priority, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -5121,8 +4998,6 @@ S_virtual_giostream_close_async(GIOStream* s_object, int s_io_priority, GCancell
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static gboolean
 S_virtual_giostream_close_finish(GIOStream* s_object, GAsyncResult* s_result, GError** s_error)
@@ -5152,7 +5027,6 @@ S_virtual_giostream_close_finish(GIOStream* s_object, GAsyncResult* s_result, GE
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
 void
 S_giostream_class_init(GIOStreamClass * c, SEXP e)
 {
@@ -5242,7 +5116,8 @@ S_giostream_class_close_fn(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, U
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("giostream_close_fn exists only in gio >= 2.22.0");
@@ -5289,7 +5164,8 @@ S_giostream_class_close_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ s_objec
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("giostream_close_finish exists only in gio >= 2.22.0");
@@ -5317,7 +5193,6 @@ S_ginet_socket_address_class_init(GInetSocketAddressClass * c, SEXP e)
 
 #if GIO_CHECK_VERSION(2, 16, 0)
 static SEXP S_GAppInfo_symbol;
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GAppInfo*
 S_virtual_gapp_info_dup(GAppInfo* s_object)
@@ -5344,8 +5219,6 @@ S_virtual_gapp_info_dup(GAppInfo* s_object)
     return(((GAppInfo*)0));
   return(G_APP_INFO(getPtrValue(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gapp_info_equal(GAppInfo* s_object, GAppInfo* s_appinfo2)
@@ -5374,8 +5247,6 @@ S_virtual_gapp_info_equal(GAppInfo* s_object, GAppInfo* s_appinfo2)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static const char*
 S_virtual_gapp_info_get_id(GAppInfo* s_object)
@@ -5402,8 +5273,6 @@ S_virtual_gapp_info_get_id(GAppInfo* s_object)
     return(((const char*)0));
   return(((const char*)asCString(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static const char*
 S_virtual_gapp_info_get_name(GAppInfo* s_object)
@@ -5430,8 +5299,6 @@ S_virtual_gapp_info_get_name(GAppInfo* s_object)
     return(((const char*)0));
   return(((const char*)asCString(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static const char*
 S_virtual_gapp_info_get_description(GAppInfo* s_object)
@@ -5458,8 +5325,6 @@ S_virtual_gapp_info_get_description(GAppInfo* s_object)
     return(((const char*)0));
   return(((const char*)asCString(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static const char*
 S_virtual_gapp_info_get_executable(GAppInfo* s_object)
@@ -5486,8 +5351,6 @@ S_virtual_gapp_info_get_executable(GAppInfo* s_object)
     return(((const char*)0));
   return(((const char*)asCString(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GIcon*
 S_virtual_gapp_info_get_icon(GAppInfo* s_object)
@@ -5514,8 +5377,6 @@ S_virtual_gapp_info_get_icon(GAppInfo* s_object)
     return(((GIcon*)0));
   return(G_ICON(getPtrValue(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gapp_info_launch(GAppInfo* s_object, GList* s_files, GAppLaunchContext* s_launch_context, GError** s_error)
@@ -5547,8 +5408,6 @@ S_virtual_gapp_info_launch(GAppInfo* s_object, GList* s_files, GAppLaunchContext
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gapp_info_supports_uris(GAppInfo* s_object)
@@ -5575,8 +5434,6 @@ S_virtual_gapp_info_supports_uris(GAppInfo* s_object)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gapp_info_supports_files(GAppInfo* s_object)
@@ -5603,8 +5460,6 @@ S_virtual_gapp_info_supports_files(GAppInfo* s_object)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gapp_info_launch_uris(GAppInfo* s_object, GList* s_uris, GAppLaunchContext* s_launch_context, GError** s_error)
@@ -5636,8 +5491,6 @@ S_virtual_gapp_info_launch_uris(GAppInfo* s_object, GList* s_uris, GAppLaunchCon
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gapp_info_should_show(GAppInfo* s_object)
@@ -5664,8 +5517,6 @@ S_virtual_gapp_info_should_show(GAppInfo* s_object)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gapp_info_set_as_default_for_type(GAppInfo* s_object, const char* s_content_type, GError** s_error)
@@ -5695,8 +5546,6 @@ S_virtual_gapp_info_set_as_default_for_type(GAppInfo* s_object, const char* s_co
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gapp_info_set_as_default_for_extension(GAppInfo* s_object, const char* s_extension, GError** s_error)
@@ -5726,8 +5575,6 @@ S_virtual_gapp_info_set_as_default_for_extension(GAppInfo* s_object, const char*
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gapp_info_add_supports_type(GAppInfo* s_object, const char* s_content_type, GError** s_error)
@@ -5757,8 +5604,6 @@ S_virtual_gapp_info_add_supports_type(GAppInfo* s_object, const char* s_content_
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gapp_info_can_remove_supports_type(GAppInfo* s_object)
@@ -5785,8 +5630,6 @@ S_virtual_gapp_info_can_remove_supports_type(GAppInfo* s_object)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gapp_info_remove_supports_type(GAppInfo* s_object, const char* s_content_type, GError** s_error)
@@ -5816,8 +5659,6 @@ S_virtual_gapp_info_remove_supports_type(GAppInfo* s_object, const char* s_conte
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 20, 0)
 
 static const char*
 S_virtual_gapp_info_get_commandline(GAppInfo* s_object)
@@ -5844,7 +5685,6 @@ S_virtual_gapp_info_get_commandline(GAppInfo* s_object)
     return(((const char*)0));
   return(((const char*)asCString(s_ans)));
 }
-#endif
 void
 S_gapp_info_class_init(GAppInfoIface * c, SEXP e)
 {
@@ -6086,7 +5926,8 @@ S_gapp_info_iface_launch(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USE
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_list_free, ((GList*)files));;
     CLEANUP(g_error_free, error);;
 #else
@@ -6153,7 +5994,8 @@ S_gapp_info_iface_launch_uris(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(GListFreeStrings, ((GList*)uris));
   CLEANUP(g_list_free, ((GList*)uris));;
     CLEANUP(g_error_free, error);;
@@ -6200,7 +6042,8 @@ S_gapp_info_iface_set_as_default_for_type(USER_OBJECT_ s_object_class, USER_OBJE
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gapp_info_set_as_default_for_type exists only in gio >= 2.16.0");
@@ -6225,7 +6068,8 @@ S_gapp_info_iface_set_as_default_for_extension(USER_OBJECT_ s_object_class, USER
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gapp_info_set_as_default_for_extension exists only in gio >= 2.16.0");
@@ -6250,7 +6094,8 @@ S_gapp_info_iface_add_supports_type(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gapp_info_add_supports_type exists only in gio >= 2.16.0");
@@ -6295,7 +6140,8 @@ S_gapp_info_iface_remove_supports_type(USER_OBJECT_ s_object_class, USER_OBJECT_
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gapp_info_remove_supports_type exists only in gio >= 2.16.0");
@@ -6327,7 +6173,6 @@ S_gapp_info_iface_get_commandline(USER_OBJECT_ s_object_class, USER_OBJECT_ s_ob
 
 #if GIO_CHECK_VERSION(2, 16, 0)
 static SEXP S_GAsyncResult_symbol;
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gpointer
 S_virtual_gasync_result_get_user_data(GAsyncResult* s_object)
@@ -6354,8 +6199,6 @@ S_virtual_gasync_result_get_user_data(GAsyncResult* s_object)
     return(((gpointer)0));
   return(((gpointer)asCGenericData(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GObject*
 S_virtual_gasync_result_get_source_object(GAsyncResult* s_object)
@@ -6382,7 +6225,6 @@ S_virtual_gasync_result_get_source_object(GAsyncResult* s_object)
     return(((GObject*)0));
   return(G_OBJECT(getPtrValue(s_ans)));
 }
-#endif
 void
 S_gasync_result_class_init(GAsyncResultIface * c, SEXP e)
 {
@@ -6445,7 +6287,6 @@ S_gasync_result_iface_get_source_object(USER_OBJECT_ s_object_class, USER_OBJECT
 
 #if GIO_CHECK_VERSION(2, 16, 0)
 static SEXP S_GDrive_symbol;
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static char*
 S_virtual_gdrive_get_name(GDrive* s_object)
@@ -6472,8 +6313,6 @@ S_virtual_gdrive_get_name(GDrive* s_object)
     return(((char*)0));
   return(((char*)g_strdup(asCString(s_ans))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GIcon*
 S_virtual_gdrive_get_icon(GDrive* s_object)
@@ -6500,8 +6339,6 @@ S_virtual_gdrive_get_icon(GDrive* s_object)
     return(((GIcon*)0));
   return(G_ICON(getPtrValue(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gdrive_has_volumes(GDrive* s_object)
@@ -6528,8 +6365,6 @@ S_virtual_gdrive_has_volumes(GDrive* s_object)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GList*
 S_virtual_gdrive_get_volumes(GDrive* s_object)
@@ -6556,8 +6391,6 @@ S_virtual_gdrive_get_volumes(GDrive* s_object)
     return(((GList*)0));
   return(((GList*)asCArrayRef(s_ans, GList, asCGListDup)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gdrive_is_media_removable(GDrive* s_object)
@@ -6584,8 +6417,6 @@ S_virtual_gdrive_is_media_removable(GDrive* s_object)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gdrive_has_media(GDrive* s_object)
@@ -6612,8 +6443,6 @@ S_virtual_gdrive_has_media(GDrive* s_object)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gdrive_is_media_check_automatic(GDrive* s_object)
@@ -6640,8 +6469,6 @@ S_virtual_gdrive_is_media_check_automatic(GDrive* s_object)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gdrive_can_poll_for_media(GDrive* s_object)
@@ -6668,8 +6495,6 @@ S_virtual_gdrive_can_poll_for_media(GDrive* s_object)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gdrive_can_eject(GDrive* s_object)
@@ -6696,8 +6521,6 @@ S_virtual_gdrive_can_eject(GDrive* s_object)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_gdrive_eject(GDrive* s_object, GMountUnmountFlags s_flags, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -6731,8 +6554,6 @@ S_virtual_gdrive_eject(GDrive* s_object, GMountUnmountFlags s_flags, GCancellabl
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gdrive_eject_finish(GDrive* s_object, GAsyncResult* s_result, GError** s_error)
@@ -6762,8 +6583,6 @@ S_virtual_gdrive_eject_finish(GDrive* s_object, GAsyncResult* s_result, GError**
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_gdrive_poll_for_media(GDrive* s_object, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -6795,8 +6614,6 @@ S_virtual_gdrive_poll_for_media(GDrive* s_object, GCancellable* s_cancellable, G
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gdrive_poll_for_media_finish(GDrive* s_object, GAsyncResult* s_result, GError** s_error)
@@ -6826,8 +6643,6 @@ S_virtual_gdrive_poll_for_media_finish(GDrive* s_object, GAsyncResult* s_result,
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static char*
 S_virtual_gdrive_get_identifier(GDrive* s_object, const char* s_kind)
@@ -6856,8 +6671,6 @@ S_virtual_gdrive_get_identifier(GDrive* s_object, const char* s_kind)
     return(((char*)0));
   return(((char*)g_strdup(asCString(s_ans))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static char**
 S_virtual_gdrive_enumerate_identifiers(GDrive* s_object)
@@ -6884,8 +6697,6 @@ S_virtual_gdrive_enumerate_identifiers(GDrive* s_object)
     return(((char**)0));
   return(((char**)asCStringArray(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static GDriveStartStopType
 S_virtual_gdrive_get_start_stop_type(GDrive* s_object)
@@ -6912,8 +6723,6 @@ S_virtual_gdrive_get_start_stop_type(GDrive* s_object)
     return(((GDriveStartStopType)0));
   return(((GDriveStartStopType)asCEnum(s_ans, G_TYPE_DRIVE_START_STOP_TYPE)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static void
 S_virtual_gdrive_start(GDrive* s_object, GDriveStartFlags s_flags, GMountOperation* s_mount_operation, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -6949,8 +6758,6 @@ S_virtual_gdrive_start(GDrive* s_object, GDriveStartFlags s_flags, GMountOperati
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static gboolean
 S_virtual_gdrive_start_finish(GDrive* s_object, GAsyncResult* s_result, GError** s_error)
@@ -6980,8 +6787,6 @@ S_virtual_gdrive_start_finish(GDrive* s_object, GAsyncResult* s_result, GError**
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static void
 S_virtual_gdrive_stop(GDrive* s_object, GMountUnmountFlags s_flags, GMountOperation* s_mount_operation, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -7017,8 +6822,6 @@ S_virtual_gdrive_stop(GDrive* s_object, GMountUnmountFlags s_flags, GMountOperat
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static gboolean
 S_virtual_gdrive_stop_finish(GDrive* s_object, GAsyncResult* s_result, GError** s_error)
@@ -7048,8 +6851,6 @@ S_virtual_gdrive_stop_finish(GDrive* s_object, GAsyncResult* s_result, GError** 
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static gboolean
 S_virtual_gdrive_can_start(GDrive* s_object)
@@ -7076,8 +6877,6 @@ S_virtual_gdrive_can_start(GDrive* s_object)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static gboolean
 S_virtual_gdrive_can_start_degraded(GDrive* s_object)
@@ -7104,8 +6903,6 @@ S_virtual_gdrive_can_start_degraded(GDrive* s_object)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static gboolean
 S_virtual_gdrive_can_stop(GDrive* s_object)
@@ -7132,8 +6929,6 @@ S_virtual_gdrive_can_stop(GDrive* s_object)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static void
 S_virtual_gdrive_eject_with_operation(GDrive* s_object, GMountUnmountFlags s_flags, GMountOperation* s_mount_operation, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -7169,8 +6964,6 @@ S_virtual_gdrive_eject_with_operation(GDrive* s_object, GMountUnmountFlags s_fla
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static gboolean
 S_virtual_gdrive_eject_with_operation_finish(GDrive* s_object, GAsyncResult* s_result, GError** s_error)
@@ -7200,7 +6993,6 @@ S_virtual_gdrive_eject_with_operation_finish(GDrive* s_object, GAsyncResult* s_r
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
 void
 S_gdrive_class_init(GDriveIface * c, SEXP e)
 {
@@ -7532,7 +7324,8 @@ S_gdrive_iface_eject_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, 
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gdrive_eject_finish exists only in gio >= 2.16.0");
@@ -7578,7 +7371,8 @@ S_gdrive_iface_poll_for_media_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ s
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gdrive_poll_for_media_finish exists only in gio >= 2.16.0");
@@ -7689,7 +7483,8 @@ S_gdrive_iface_start_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, 
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gdrive_start_finish exists only in gio >= 2.22.0");
@@ -7737,7 +7532,8 @@ S_gdrive_iface_stop_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, U
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gdrive_stop_finish exists only in gio >= 2.22.0");
@@ -7845,7 +7641,8 @@ S_gdrive_iface_eject_with_operation_finish(USER_OBJECT_ s_object_class, USER_OBJ
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gdrive_eject_with_operation_finish exists only in gio >= 2.22.0");
@@ -7857,7 +7654,6 @@ S_gdrive_iface_eject_with_operation_finish(USER_OBJECT_ s_object_class, USER_OBJ
 
 #if GIO_CHECK_VERSION(2, 16, 0)
 static SEXP S_GFile_symbol;
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GFile*
 S_virtual_gfile_dup(GFile* s_object)
@@ -7884,8 +7680,6 @@ S_virtual_gfile_dup(GFile* s_object)
     return(((GFile*)0));
   return(G_FILE(getPtrValue(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gfile_equal(GFile* s_object, GFile* s_file2)
@@ -7914,8 +7708,6 @@ S_virtual_gfile_equal(GFile* s_object, GFile* s_file2)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static char*
 S_virtual_gfile_get_basename(GFile* s_object)
@@ -7942,8 +7734,6 @@ S_virtual_gfile_get_basename(GFile* s_object)
     return(((char*)0));
   return(((char*)g_strdup(asCString(s_ans))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static char*
 S_virtual_gfile_get_path(GFile* s_object)
@@ -7970,8 +7760,6 @@ S_virtual_gfile_get_path(GFile* s_object)
     return(((char*)0));
   return(((char*)g_strdup(asCString(s_ans))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static char*
 S_virtual_gfile_get_uri(GFile* s_object)
@@ -7998,8 +7786,6 @@ S_virtual_gfile_get_uri(GFile* s_object)
     return(((char*)0));
   return(((char*)g_strdup(asCString(s_ans))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static char*
 S_virtual_gfile_get_parse_name(GFile* s_object)
@@ -8026,8 +7812,6 @@ S_virtual_gfile_get_parse_name(GFile* s_object)
     return(((char*)0));
   return(((char*)g_strdup(asCString(s_ans))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GFile*
 S_virtual_gfile_get_parent(GFile* s_object)
@@ -8054,8 +7838,6 @@ S_virtual_gfile_get_parent(GFile* s_object)
     return(((GFile*)0));
   return(G_FILE(getPtrValue(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GFile*
 S_virtual_gfile_get_child_for_display_name(GFile* s_object, const char* s_display_name, GError** s_error)
@@ -8085,8 +7867,6 @@ S_virtual_gfile_get_child_for_display_name(GFile* s_object, const char* s_displa
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_FILE(getPtrValue(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gfile_prefix_matches(GFile* s_object, GFile* s_file)
@@ -8115,8 +7895,6 @@ S_virtual_gfile_prefix_matches(GFile* s_object, GFile* s_file)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static char*
 S_virtual_gfile_get_relative_path(GFile* s_object, GFile* s_descendant)
@@ -8145,8 +7923,6 @@ S_virtual_gfile_get_relative_path(GFile* s_object, GFile* s_descendant)
     return(((char*)0));
   return(((char*)g_strdup(asCString(s_ans))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GFile*
 S_virtual_gfile_resolve_relative_path(GFile* s_object, const char* s_relative_path)
@@ -8175,8 +7951,6 @@ S_virtual_gfile_resolve_relative_path(GFile* s_object, const char* s_relative_pa
     return(((GFile*)0));
   return(G_FILE(getPtrValue(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gfile_is_native(GFile* s_object)
@@ -8203,8 +7977,6 @@ S_virtual_gfile_is_native(GFile* s_object)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gfile_has_uri_scheme(GFile* s_object, const char* s_uri_scheme)
@@ -8233,8 +8005,6 @@ S_virtual_gfile_has_uri_scheme(GFile* s_object, const char* s_uri_scheme)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static char*
 S_virtual_gfile_get_uri_scheme(GFile* s_object)
@@ -8261,8 +8031,6 @@ S_virtual_gfile_get_uri_scheme(GFile* s_object)
     return(((char*)0));
   return(((char*)g_strdup(asCString(s_ans))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GFileInputStream*
 S_virtual_gfile_read_fn(GFile* s_object, GCancellable* s_cancellable, GError** s_error)
@@ -8292,8 +8060,6 @@ S_virtual_gfile_read_fn(GFile* s_object, GCancellable* s_cancellable, GError** s
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_FILE_INPUT_STREAM(getPtrValueWithRef(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_gfile_read_async(GFile* s_object, int s_io_priority, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -8327,8 +8093,6 @@ S_virtual_gfile_read_async(GFile* s_object, int s_io_priority, GCancellable* s_c
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GFileInputStream*
 S_virtual_gfile_read_finish(GFile* s_object, GAsyncResult* s_res, GError** s_error)
@@ -8358,8 +8122,6 @@ S_virtual_gfile_read_finish(GFile* s_object, GAsyncResult* s_res, GError** s_err
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_FILE_INPUT_STREAM(getPtrValueWithRef(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GFileOutputStream*
 S_virtual_gfile_append_to(GFile* s_object, GFileCreateFlags s_flags, GCancellable* s_cancellable, GError** s_error)
@@ -8391,8 +8153,6 @@ S_virtual_gfile_append_to(GFile* s_object, GFileCreateFlags s_flags, GCancellabl
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_FILE_OUTPUT_STREAM(getPtrValueWithRef(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GFileOutputStream*
 S_virtual_gfile_create(GFile* s_object, GFileCreateFlags s_flags, GCancellable* s_cancellable, GError** s_error)
@@ -8424,8 +8184,6 @@ S_virtual_gfile_create(GFile* s_object, GFileCreateFlags s_flags, GCancellable* 
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_FILE_OUTPUT_STREAM(getPtrValueWithRef(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GFileOutputStream*
 S_virtual_gfile_replace(GFile* s_object, const char* s_etag, gboolean s_make_backup, GFileCreateFlags s_flags, GCancellable* s_cancellable, GError** s_error)
@@ -8461,8 +8219,6 @@ S_virtual_gfile_replace(GFile* s_object, const char* s_etag, gboolean s_make_bac
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_FILE_OUTPUT_STREAM(getPtrValueWithRef(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_gfile_append_to_async(GFile* s_object, GFileCreateFlags s_flags, int s_io_priority, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -8498,8 +8254,6 @@ S_virtual_gfile_append_to_async(GFile* s_object, GFileCreateFlags s_flags, int s
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GFileOutputStream*
 S_virtual_gfile_append_to_finish(GFile* s_object, GAsyncResult* s_res, GError** s_error)
@@ -8529,8 +8283,6 @@ S_virtual_gfile_append_to_finish(GFile* s_object, GAsyncResult* s_res, GError** 
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_FILE_OUTPUT_STREAM(getPtrValueWithRef(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_gfile_create_async(GFile* s_object, GFileCreateFlags s_flags, int s_io_priority, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -8566,8 +8318,6 @@ S_virtual_gfile_create_async(GFile* s_object, GFileCreateFlags s_flags, int s_io
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GFileOutputStream*
 S_virtual_gfile_create_finish(GFile* s_object, GAsyncResult* s_res, GError** s_error)
@@ -8597,8 +8347,6 @@ S_virtual_gfile_create_finish(GFile* s_object, GAsyncResult* s_res, GError** s_e
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_FILE_OUTPUT_STREAM(getPtrValueWithRef(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_gfile_replace_async(GFile* s_object, const char* s_etag, gboolean s_make_backup, GFileCreateFlags s_flags, int s_io_priority, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -8638,8 +8386,6 @@ S_virtual_gfile_replace_async(GFile* s_object, const char* s_etag, gboolean s_ma
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GFileOutputStream*
 S_virtual_gfile_replace_finish(GFile* s_object, GAsyncResult* s_res, GError** s_error)
@@ -8669,8 +8415,6 @@ S_virtual_gfile_replace_finish(GFile* s_object, GAsyncResult* s_res, GError** s_
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_FILE_OUTPUT_STREAM(getPtrValueWithRef(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GFileInfo*
 S_virtual_gfile_query_info(GFile* s_object, const char* s_attributes, GFileQueryInfoFlags s_flags, GCancellable* s_cancellable, GError** s_error)
@@ -8704,8 +8448,6 @@ S_virtual_gfile_query_info(GFile* s_object, const char* s_attributes, GFileQuery
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_FILE_INFO(getPtrValueWithRef(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_gfile_query_info_async(GFile* s_object, const char* s_attributes, GFileQueryInfoFlags s_flags, int s_io_priority, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -8743,8 +8485,6 @@ S_virtual_gfile_query_info_async(GFile* s_object, const char* s_attributes, GFil
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GFileInfo*
 S_virtual_gfile_query_info_finish(GFile* s_object, GAsyncResult* s_res, GError** s_error)
@@ -8774,8 +8514,6 @@ S_virtual_gfile_query_info_finish(GFile* s_object, GAsyncResult* s_res, GError**
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_FILE_INFO(getPtrValueWithRef(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GFileInfo*
 S_virtual_gfile_query_filesystem_info(GFile* s_object, const char* s_attributes, GCancellable* s_cancellable, GError** s_error)
@@ -8807,8 +8545,6 @@ S_virtual_gfile_query_filesystem_info(GFile* s_object, const char* s_attributes,
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_FILE_INFO(getPtrValueWithRef(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_gfile_query_filesystem_info_async(GFile* s_object, const char* s_attributes, int s_io_priority, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -8844,8 +8580,6 @@ S_virtual_gfile_query_filesystem_info_async(GFile* s_object, const char* s_attri
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GFileInfo*
 S_virtual_gfile_query_filesystem_info_finish(GFile* s_object, GAsyncResult* s_res, GError** s_error)
@@ -8875,8 +8609,6 @@ S_virtual_gfile_query_filesystem_info_finish(GFile* s_object, GAsyncResult* s_re
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_FILE_INFO(getPtrValue(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GMount*
 S_virtual_gfile_find_enclosing_mount(GFile* s_object, GCancellable* s_cancellable, GError** s_error)
@@ -8906,8 +8638,6 @@ S_virtual_gfile_find_enclosing_mount(GFile* s_object, GCancellable* s_cancellabl
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_MOUNT(getPtrValue(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_gfile_find_enclosing_mount_async(GFile* s_object, int s_io_priority, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -8941,8 +8671,6 @@ S_virtual_gfile_find_enclosing_mount_async(GFile* s_object, int s_io_priority, G
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GMount*
 S_virtual_gfile_find_enclosing_mount_finish(GFile* s_object, GAsyncResult* s_res, GError** s_error)
@@ -8972,8 +8700,6 @@ S_virtual_gfile_find_enclosing_mount_finish(GFile* s_object, GAsyncResult* s_res
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_MOUNT(getPtrValue(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GFileEnumerator*
 S_virtual_gfile_enumerate_children(GFile* s_object, const char* s_attributes, GFileQueryInfoFlags s_flags, GCancellable* s_cancellable, GError** s_error)
@@ -9007,8 +8733,6 @@ S_virtual_gfile_enumerate_children(GFile* s_object, const char* s_attributes, GF
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_FILE_ENUMERATOR(getPtrValueWithRef(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_gfile_enumerate_children_async(GFile* s_object, const char* s_attributes, GFileQueryInfoFlags s_flags, int s_io_priority, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -9046,8 +8770,6 @@ S_virtual_gfile_enumerate_children_async(GFile* s_object, const char* s_attribut
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GFileEnumerator*
 S_virtual_gfile_enumerate_children_finish(GFile* s_object, GAsyncResult* s_res, GError** s_error)
@@ -9077,8 +8799,6 @@ S_virtual_gfile_enumerate_children_finish(GFile* s_object, GAsyncResult* s_res, 
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_FILE_ENUMERATOR(getPtrValueWithRef(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GFile*
 S_virtual_gfile_set_display_name(GFile* s_object, const char* s_display_name, GCancellable* s_cancellable, GError** s_error)
@@ -9110,8 +8830,6 @@ S_virtual_gfile_set_display_name(GFile* s_object, const char* s_display_name, GC
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_FILE(getPtrValue(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_gfile_set_display_name_async(GFile* s_object, const char* s_display_name, int s_io_priority, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -9147,8 +8865,6 @@ S_virtual_gfile_set_display_name_async(GFile* s_object, const char* s_display_na
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GFile*
 S_virtual_gfile_set_display_name_finish(GFile* s_object, GAsyncResult* s_res, GError** s_error)
@@ -9178,8 +8894,6 @@ S_virtual_gfile_set_display_name_finish(GFile* s_object, GAsyncResult* s_res, GE
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_FILE(getPtrValue(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gfile_delete_file(GFile* s_object, GCancellable* s_cancellable, GError** s_error)
@@ -9209,8 +8923,6 @@ S_virtual_gfile_delete_file(GFile* s_object, GCancellable* s_cancellable, GError
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gfile_trash(GFile* s_object, GCancellable* s_cancellable, GError** s_error)
@@ -9240,8 +8952,6 @@ S_virtual_gfile_trash(GFile* s_object, GCancellable* s_cancellable, GError** s_e
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gfile_copy(GFile* s_object, GFile* s_destination, GFileCopyFlags s_flags, GCancellable* s_cancellable, GFileProgressCallback s_progress_callback, gpointer s_progress_callback_data, GError** s_error)
@@ -9279,8 +8989,6 @@ S_virtual_gfile_copy(GFile* s_object, GFile* s_destination, GFileCopyFlags s_fla
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_gfile_copy_async(GFile* s_object, GFile* s_destination, GFileCopyFlags s_flags, int s_io_priority, GCancellable* s_cancellable, GFileProgressCallback s_progress_callback, gpointer s_progress_callback_data, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -9322,8 +9030,6 @@ S_virtual_gfile_copy_async(GFile* s_object, GFile* s_destination, GFileCopyFlags
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gfile_copy_finish(GFile* s_object, GAsyncResult* s_res, GError** s_error)
@@ -9353,8 +9059,6 @@ S_virtual_gfile_copy_finish(GFile* s_object, GAsyncResult* s_res, GError** s_err
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gfile_move(GFile* s_object, GFile* s_destination, GFileCopyFlags s_flags, GCancellable* s_cancellable, GFileProgressCallback s_progress_callback, gpointer s_progress_callback_data, GError** s_error)
@@ -9392,8 +9096,6 @@ S_virtual_gfile_move(GFile* s_object, GFile* s_destination, GFileCopyFlags s_fla
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gfile_make_directory(GFile* s_object, GCancellable* s_cancellable, GError** s_error)
@@ -9423,8 +9125,6 @@ S_virtual_gfile_make_directory(GFile* s_object, GCancellable* s_cancellable, GEr
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gfile_make_symbolic_link(GFile* s_object, const char* s_symlink_value, GCancellable* s_cancellable, GError** s_error)
@@ -9456,8 +9156,6 @@ S_virtual_gfile_make_symbolic_link(GFile* s_object, const char* s_symlink_value,
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GFileAttributeInfoList*
 S_virtual_gfile_query_settable_attributes(GFile* s_object, GCancellable* s_cancellable, GError** s_error)
@@ -9487,8 +9185,6 @@ S_virtual_gfile_query_settable_attributes(GFile* s_object, GCancellable* s_cance
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((GFileAttributeInfoList*)getPtrValue(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GFileAttributeInfoList*
 S_virtual_gfile_query_writable_namespaces(GFile* s_object, GCancellable* s_cancellable, GError** s_error)
@@ -9518,8 +9214,6 @@ S_virtual_gfile_query_writable_namespaces(GFile* s_object, GCancellable* s_cance
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((GFileAttributeInfoList*)getPtrValue(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gfile_set_attribute(GFile* s_object, const char* s_attribute, GFileAttributeType s_type, gpointer s_value_p, GFileQueryInfoFlags s_flags, GCancellable* s_cancellable, GError** s_error)
@@ -9557,8 +9251,6 @@ S_virtual_gfile_set_attribute(GFile* s_object, const char* s_attribute, GFileAtt
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gfile_set_attributes_from_info(GFile* s_object, GFileInfo* s_info, GFileQueryInfoFlags s_flags, GCancellable* s_cancellable, GError** s_error)
@@ -9592,8 +9284,6 @@ S_virtual_gfile_set_attributes_from_info(GFile* s_object, GFileInfo* s_info, GFi
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_gfile_set_attributes_async(GFile* s_object, GFileInfo* s_info, GFileQueryInfoFlags s_flags, int s_io_priority, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -9631,8 +9321,6 @@ S_virtual_gfile_set_attributes_async(GFile* s_object, GFileInfo* s_info, GFileQu
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gfile_set_attributes_finish(GFile* s_object, GAsyncResult* s_result, GFileInfo** s_info, GError** s_error)
@@ -9663,8 +9351,6 @@ S_virtual_gfile_set_attributes_finish(GFile* s_object, GAsyncResult* s_result, G
   *s_error = asCGError(VECTOR_ELT(s_ans, 2));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_gfile_mount_enclosing_volume(GFile* s_object, GMountMountFlags s_flags, GMountOperation* s_mount_operation, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -9700,8 +9386,6 @@ S_virtual_gfile_mount_enclosing_volume(GFile* s_object, GMountMountFlags s_flags
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gfile_mount_enclosing_volume_finish(GFile* s_object, GAsyncResult* s_result, GError** s_error)
@@ -9731,8 +9415,6 @@ S_virtual_gfile_mount_enclosing_volume_finish(GFile* s_object, GAsyncResult* s_r
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_gfile_mount_mountable(GFile* s_object, GMountMountFlags s_flags, GMountOperation* s_mount_operation, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -9768,8 +9450,6 @@ S_virtual_gfile_mount_mountable(GFile* s_object, GMountMountFlags s_flags, GMoun
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GFile*
 S_virtual_gfile_mount_mountable_finish(GFile* s_object, GAsyncResult* s_result, GError** s_error)
@@ -9799,8 +9479,6 @@ S_virtual_gfile_mount_mountable_finish(GFile* s_object, GAsyncResult* s_result, 
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_FILE(getPtrValue(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_gfile_unmount_mountable(GFile* s_object, GMountUnmountFlags s_flags, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -9834,8 +9512,6 @@ S_virtual_gfile_unmount_mountable(GFile* s_object, GMountUnmountFlags s_flags, G
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gfile_unmount_mountable_finish(GFile* s_object, GAsyncResult* s_result, GError** s_error)
@@ -9865,8 +9541,6 @@ S_virtual_gfile_unmount_mountable_finish(GFile* s_object, GAsyncResult* s_result
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_gfile_eject_mountable(GFile* s_object, GMountUnmountFlags s_flags, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -9900,8 +9574,6 @@ S_virtual_gfile_eject_mountable(GFile* s_object, GMountUnmountFlags s_flags, GCa
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gfile_eject_mountable_finish(GFile* s_object, GAsyncResult* s_result, GError** s_error)
@@ -9931,8 +9603,6 @@ S_virtual_gfile_eject_mountable_finish(GFile* s_object, GAsyncResult* s_result, 
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GFileMonitor*
 S_virtual_gfile_monitor_dir(GFile* s_object, GFileMonitorFlags s_flags, GCancellable* s_cancellable, GError** s_error)
@@ -9964,8 +9634,6 @@ S_virtual_gfile_monitor_dir(GFile* s_object, GFileMonitorFlags s_flags, GCancell
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_FILE_MONITOR(getPtrValueWithRef(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GFileMonitor*
 S_virtual_gfile_monitor_file(GFile* s_object, GFileMonitorFlags s_flags, GCancellable* s_cancellable, GError** s_error)
@@ -9997,8 +9665,6 @@ S_virtual_gfile_monitor_file(GFile* s_object, GFileMonitorFlags s_flags, GCancel
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_FILE_MONITOR(getPtrValueWithRef(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static GFileIOStream*
 S_virtual_gfile_create_readwrite(GFile* s_object, GFileCreateFlags s_flags, GCancellable* s_cancellable, GError** s_error)
@@ -10030,8 +9696,6 @@ S_virtual_gfile_create_readwrite(GFile* s_object, GFileCreateFlags s_flags, GCan
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_FILE_IO_STREAM(getPtrValue(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static void
 S_virtual_gfile_create_readwrite_async(GFile* s_object, GFileCreateFlags s_flags, int s_io_priority, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -10067,8 +9731,6 @@ S_virtual_gfile_create_readwrite_async(GFile* s_object, GFileCreateFlags s_flags
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static GFileIOStream*
 S_virtual_gfile_create_readwrite_finish(GFile* s_object, GAsyncResult* s_res, GError** s_error)
@@ -10098,8 +9760,6 @@ S_virtual_gfile_create_readwrite_finish(GFile* s_object, GAsyncResult* s_res, GE
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_FILE_IO_STREAM(getPtrValue(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static void
 S_virtual_gfile_eject_mountable_with_operation(GFile* s_object, GMountUnmountFlags s_flags, GMountOperation* s_mount_operation, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -10135,8 +9795,6 @@ S_virtual_gfile_eject_mountable_with_operation(GFile* s_object, GMountUnmountFla
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static gboolean
 S_virtual_gfile_eject_mountable_with_operation_finish(GFile* s_object, GAsyncResult* s_result, GError** s_error)
@@ -10166,8 +9824,6 @@ S_virtual_gfile_eject_mountable_with_operation_finish(GFile* s_object, GAsyncRes
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static GFileIOStream*
 S_virtual_gfile_open_readwrite(GFile* s_object, GCancellable* s_cancellable, GError** s_error)
@@ -10197,8 +9853,6 @@ S_virtual_gfile_open_readwrite(GFile* s_object, GCancellable* s_cancellable, GEr
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_FILE_IO_STREAM(getPtrValue(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static void
 S_virtual_gfile_open_readwrite_async(GFile* s_object, int s_io_priority, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -10232,8 +9886,6 @@ S_virtual_gfile_open_readwrite_async(GFile* s_object, int s_io_priority, GCancel
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static GFileIOStream*
 S_virtual_gfile_open_readwrite_finish(GFile* s_object, GAsyncResult* s_res, GError** s_error)
@@ -10263,8 +9915,6 @@ S_virtual_gfile_open_readwrite_finish(GFile* s_object, GAsyncResult* s_res, GErr
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_FILE_IO_STREAM(getPtrValue(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static void
 S_virtual_gfile_poll_mountable(GFile* s_object, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -10296,8 +9946,6 @@ S_virtual_gfile_poll_mountable(GFile* s_object, GCancellable* s_cancellable, GAs
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static gboolean
 S_virtual_gfile_poll_mountable_finish(GFile* s_object, GAsyncResult* s_result, GError** s_error)
@@ -10327,8 +9975,6 @@ S_virtual_gfile_poll_mountable_finish(GFile* s_object, GAsyncResult* s_result, G
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static GFileIOStream*
 S_virtual_gfile_replace_readwrite(GFile* s_object, const char* s_etag, gboolean s_make_backup, GFileCreateFlags s_flags, GCancellable* s_cancellable, GError** s_error)
@@ -10364,8 +10010,6 @@ S_virtual_gfile_replace_readwrite(GFile* s_object, const char* s_etag, gboolean 
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_FILE_IO_STREAM(getPtrValue(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static void
 S_virtual_gfile_replace_readwrite_async(GFile* s_object, const char* s_etag, gboolean s_make_backup, GFileCreateFlags s_flags, int s_io_priority, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -10405,8 +10049,6 @@ S_virtual_gfile_replace_readwrite_async(GFile* s_object, const char* s_etag, gbo
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static GFileIOStream*
 S_virtual_gfile_replace_readwrite_finish(GFile* s_object, GAsyncResult* s_res, GError** s_error)
@@ -10436,8 +10078,6 @@ S_virtual_gfile_replace_readwrite_finish(GFile* s_object, GAsyncResult* s_res, G
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_FILE_IO_STREAM(getPtrValue(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static void
 S_virtual_gfile_start_mountable(GFile* s_object, GDriveStartFlags s_flags, GMountOperation* s_start_operation, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -10473,8 +10113,6 @@ S_virtual_gfile_start_mountable(GFile* s_object, GDriveStartFlags s_flags, GMoun
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static gboolean
 S_virtual_gfile_start_mountable_finish(GFile* s_object, GAsyncResult* s_result, GError** s_error)
@@ -10504,8 +10142,6 @@ S_virtual_gfile_start_mountable_finish(GFile* s_object, GAsyncResult* s_result, 
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static void
 S_virtual_gfile_stop_mountable(GFile* s_object, GMountUnmountFlags s_flags, GMountOperation* s_mount_operation, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -10541,8 +10177,6 @@ S_virtual_gfile_stop_mountable(GFile* s_object, GMountUnmountFlags s_flags, GMou
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static gboolean
 S_virtual_gfile_stop_mountable_finish(GFile* s_object, GAsyncResult* s_result, GError** s_error)
@@ -10572,8 +10206,6 @@ S_virtual_gfile_stop_mountable_finish(GFile* s_object, GAsyncResult* s_result, G
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static void
 S_virtual_gfile_unmount_mountable_with_operation(GFile* s_object, GMountUnmountFlags s_flags, GMountOperation* s_mount_operation, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -10609,8 +10241,6 @@ S_virtual_gfile_unmount_mountable_with_operation(GFile* s_object, GMountUnmountF
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static gboolean
 S_virtual_gfile_unmount_mountable_with_operation_finish(GFile* s_object, GAsyncResult* s_result, GError** s_error)
@@ -10640,7 +10270,6 @@ S_virtual_gfile_unmount_mountable_with_operation_finish(GFile* s_object, GAsyncR
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
 void
 S_gfile_class_init(GFileIface * c, SEXP e)
 {
@@ -11149,7 +10778,8 @@ S_gfile_iface_get_child_for_display_name(USER_OBJECT_ s_object_class, USER_OBJEC
 
   _result = toRPointerWithFinalizer(ans, "GFile", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_get_child_for_display_name exists only in gio >= 2.16.0");
@@ -11300,7 +10930,8 @@ S_gfile_iface_read_fn(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_O
 
   _result = toRPointerWithFinalizer(ans, "GFileInputStream", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_read_fn exists only in gio >= 2.16.0");
@@ -11347,7 +10978,8 @@ S_gfile_iface_read_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, US
 
   _result = toRPointerWithFinalizer(ans, "GFileInputStream", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_read_finish exists only in gio >= 2.16.0");
@@ -11373,7 +11005,8 @@ S_gfile_iface_append_to(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER
 
   _result = toRPointerWithFinalizer(ans, "GFileOutputStream", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_append_to exists only in gio >= 2.16.0");
@@ -11399,7 +11032,8 @@ S_gfile_iface_create(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OB
 
   _result = toRPointerWithFinalizer(ans, "GFileOutputStream", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_create exists only in gio >= 2.16.0");
@@ -11427,7 +11061,8 @@ S_gfile_iface_replace(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_O
 
   _result = toRPointerWithFinalizer(ans, "GFileOutputStream", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_replace exists only in gio >= 2.16.0");
@@ -11475,7 +11110,8 @@ S_gfile_iface_append_to_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ s_objec
 
   _result = toRPointerWithFinalizer(ans, "GFileOutputStream", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_append_to_finish exists only in gio >= 2.16.0");
@@ -11523,7 +11159,8 @@ S_gfile_iface_create_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, 
 
   _result = toRPointerWithFinalizer(ans, "GFileOutputStream", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_create_finish exists only in gio >= 2.16.0");
@@ -11573,7 +11210,8 @@ S_gfile_iface_replace_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object,
 
   _result = toRPointerWithFinalizer(ans, "GFileOutputStream", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_replace_finish exists only in gio >= 2.16.0");
@@ -11600,7 +11238,8 @@ S_gfile_iface_query_info(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USE
 
   _result = toRPointerWithFinalizer(ans, "GFileInfo", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_query_info exists only in gio >= 2.16.0");
@@ -11649,7 +11288,8 @@ S_gfile_iface_query_info_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obje
 
   _result = toRPointerWithFinalizer(ans, "GFileInfo", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_query_info_finish exists only in gio >= 2.16.0");
@@ -11675,7 +11315,8 @@ S_gfile_iface_query_filesystem_info(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 
   _result = toRPointerWithFinalizer(ans, "GFileInfo", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_query_filesystem_info exists only in gio >= 2.16.0");
@@ -11723,7 +11364,8 @@ S_gfile_iface_query_filesystem_info_finish(USER_OBJECT_ s_object_class, USER_OBJ
 
   _result = toRPointerWithRef(ans, "GFileInfo");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_query_filesystem_info_finish exists only in gio >= 2.16.0");
@@ -11748,7 +11390,8 @@ S_gfile_iface_find_enclosing_mount(USER_OBJECT_ s_object_class, USER_OBJECT_ s_o
 
   _result = toRPointerWithFinalizer(ans, "GMount", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_find_enclosing_mount exists only in gio >= 2.16.0");
@@ -11795,7 +11438,8 @@ S_gfile_iface_find_enclosing_mount_finish(USER_OBJECT_ s_object_class, USER_OBJE
 
   _result = toRPointerWithFinalizer(ans, "GMount", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_find_enclosing_mount_finish exists only in gio >= 2.16.0");
@@ -11822,7 +11466,8 @@ S_gfile_iface_enumerate_children(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obj
 
   _result = toRPointerWithFinalizer(ans, "GFileEnumerator", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_enumerate_children exists only in gio >= 2.16.0");
@@ -11871,7 +11516,8 @@ S_gfile_iface_enumerate_children_finish(USER_OBJECT_ s_object_class, USER_OBJECT
 
   _result = toRPointerWithFinalizer(ans, "GFileEnumerator", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_enumerate_children_finish exists only in gio >= 2.16.0");
@@ -11897,7 +11543,8 @@ S_gfile_iface_set_display_name(USER_OBJECT_ s_object_class, USER_OBJECT_ s_objec
 
   _result = toRPointerWithFinalizer(ans, "GFile", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_set_display_name exists only in gio >= 2.16.0");
@@ -11945,7 +11592,8 @@ S_gfile_iface_set_display_name_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ 
 
   _result = toRPointerWithFinalizer(ans, "GFile", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_set_display_name_finish exists only in gio >= 2.16.0");
@@ -11970,7 +11618,8 @@ S_gfile_iface_delete_file(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, US
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_delete_file exists only in gio >= 2.16.0");
@@ -11995,7 +11644,8 @@ S_gfile_iface_trash(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJ
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_trash exists only in gio >= 2.16.0");
@@ -12024,7 +11674,8 @@ S_gfile_iface_copy(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJE
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
   R_freeCBData(progress_callback_data);
     CLEANUP(g_error_free, error);;
 #else
@@ -12077,7 +11728,8 @@ S_gfile_iface_copy_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, US
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_copy_finish exists only in gio >= 2.16.0");
@@ -12106,7 +11758,8 @@ S_gfile_iface_move(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJE
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
   R_freeCBData(progress_callback_data);
     CLEANUP(g_error_free, error);;
 #else
@@ -12132,7 +11785,8 @@ S_gfile_iface_make_directory(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object,
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_make_directory exists only in gio >= 2.16.0");
@@ -12158,7 +11812,8 @@ S_gfile_iface_make_symbolic_link(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obj
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_make_symbolic_link exists only in gio >= 2.16.0");
@@ -12183,7 +11838,8 @@ S_gfile_iface_query_settable_attributes(USER_OBJECT_ s_object_class, USER_OBJECT
 
   _result = toRPointerWithFinalizer(ans ? g_file_attribute_info_list_ref(ans) : NULL, "GFileAttributeInfoList", (RPointerFinalizer) g_file_attribute_info_list_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_query_settable_attributes exists only in gio >= 2.16.0");
@@ -12208,7 +11864,8 @@ S_gfile_iface_query_writable_namespaces(USER_OBJECT_ s_object_class, USER_OBJECT
 
   _result = toRPointerWithFinalizer(ans ? g_file_attribute_info_list_ref(ans) : NULL, "GFileAttributeInfoList", (RPointerFinalizer) g_file_attribute_info_list_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_query_writable_namespaces exists only in gio >= 2.16.0");
@@ -12237,7 +11894,8 @@ S_gfile_iface_set_attribute(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, 
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_set_attribute exists only in gio >= 2.16.0");
@@ -12264,7 +11922,8 @@ S_gfile_iface_set_attributes_from_info(USER_OBJECT_ s_object_class, USER_OBJECT_
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_set_attributes_from_info exists only in gio >= 2.16.0");
@@ -12314,7 +11973,8 @@ S_gfile_iface_set_attributes_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "info", toRPointerWithRef(info, "GFileInfo"), "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "info", PROTECT(toRPointerWithRef(info, "GFileInfo")), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(3);
   ;
     CLEANUP(g_error_free, error);;
 #else
@@ -12363,7 +12023,8 @@ S_gfile_iface_mount_enclosing_volume_finish(USER_OBJECT_ s_object_class, USER_OB
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_mount_enclosing_volume_finish exists only in gio >= 2.16.0");
@@ -12411,7 +12072,8 @@ S_gfile_iface_mount_mountable_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ s
 
   _result = toRPointerWithFinalizer(ans, "GFile", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_mount_mountable_finish exists only in gio >= 2.16.0");
@@ -12458,7 +12120,8 @@ S_gfile_iface_unmount_mountable_finish(USER_OBJECT_ s_object_class, USER_OBJECT_
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_unmount_mountable_finish exists only in gio >= 2.16.0");
@@ -12505,7 +12168,8 @@ S_gfile_iface_eject_mountable_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ s
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_eject_mountable_finish exists only in gio >= 2.16.0");
@@ -12531,7 +12195,8 @@ S_gfile_iface_monitor_dir(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, US
 
   _result = toRPointerWithFinalizer(ans, "GFileMonitor", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_monitor_dir exists only in gio >= 2.16.0");
@@ -12557,7 +12222,8 @@ S_gfile_iface_monitor_file(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, U
 
   _result = toRPointerWithFinalizer(ans, "GFileMonitor", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_monitor_file exists only in gio >= 2.16.0");
@@ -12583,7 +12249,8 @@ S_gfile_iface_create_readwrite(USER_OBJECT_ s_object_class, USER_OBJECT_ s_objec
 
   _result = toRPointerWithRef(ans, "GFileIOStream");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_create_readwrite exists only in gio >= 2.22.0");
@@ -12631,7 +12298,8 @@ S_gfile_iface_create_readwrite_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ 
 
   _result = toRPointerWithRef(ans, "GFileIOStream");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_create_readwrite_finish exists only in gio >= 2.22.0");
@@ -12679,7 +12347,8 @@ S_gfile_iface_eject_mountable_with_operation_finish(USER_OBJECT_ s_object_class,
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_eject_mountable_with_operation_finish exists only in gio >= 2.22.0");
@@ -12704,7 +12373,8 @@ S_gfile_iface_open_readwrite(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object,
 
   _result = toRPointerWithRef(ans, "GFileIOStream");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_open_readwrite exists only in gio >= 2.22.0");
@@ -12751,7 +12421,8 @@ S_gfile_iface_open_readwrite_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 
   _result = toRPointerWithRef(ans, "GFileIOStream");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_open_readwrite_finish exists only in gio >= 2.22.0");
@@ -12797,7 +12468,8 @@ S_gfile_iface_poll_mountable_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_poll_mountable_finish exists only in gio >= 2.22.0");
@@ -12825,7 +12497,8 @@ S_gfile_iface_replace_readwrite(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obje
 
   _result = toRPointerWithRef(ans, "GFileIOStream");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_replace_readwrite exists only in gio >= 2.22.0");
@@ -12875,7 +12548,8 @@ S_gfile_iface_replace_readwrite_finish(USER_OBJECT_ s_object_class, USER_OBJECT_
 
   _result = toRPointerWithRef(ans, "GFileIOStream");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_replace_readwrite_finish exists only in gio >= 2.22.0");
@@ -12923,7 +12597,8 @@ S_gfile_iface_start_mountable_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ s
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_start_mountable_finish exists only in gio >= 2.22.0");
@@ -12971,7 +12646,8 @@ S_gfile_iface_stop_mountable_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_stop_mountable_finish exists only in gio >= 2.22.0");
@@ -13019,7 +12695,8 @@ S_gfile_iface_unmount_mountable_with_operation_finish(USER_OBJECT_ s_object_clas
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gfile_unmount_mountable_with_operation_finish exists only in gio >= 2.22.0");
@@ -13031,7 +12708,6 @@ S_gfile_iface_unmount_mountable_with_operation_finish(USER_OBJECT_ s_object_clas
 
 #if GIO_CHECK_VERSION(2, 16, 0)
 static SEXP S_GIcon_symbol;
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static guint
 S_virtual_gicon_hash(GIcon* s_object)
@@ -13058,8 +12734,6 @@ S_virtual_gicon_hash(GIcon* s_object)
     return(((guint)0));
   return(((guint)asCNumeric(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gicon_equal(GIcon* s_object, GIcon* s_icon2)
@@ -13088,7 +12762,6 @@ S_virtual_gicon_equal(GIcon* s_object, GIcon* s_icon2)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-#endif
 void
 S_gicon_class_init(GIconIface * c, SEXP e)
 {
@@ -13152,7 +12825,6 @@ S_gicon_iface_equal(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJ
 
 #if GIO_CHECK_VERSION(2, 16, 0)
 static SEXP S_GLoadableIcon_symbol;
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GInputStream*
 S_virtual_gloadable_icon_load(GLoadableIcon* s_object, int s_size, char** s_type, GCancellable* s_cancellable, GError** s_error)
@@ -13185,8 +12857,6 @@ S_virtual_gloadable_icon_load(GLoadableIcon* s_object, int s_size, char** s_type
   *s_error = asCGError(VECTOR_ELT(s_ans, 2));
   return(G_INPUT_STREAM(getPtrValue(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_gloadable_icon_load_async(GLoadableIcon* s_object, int s_size, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -13220,8 +12890,6 @@ S_virtual_gloadable_icon_load_async(GLoadableIcon* s_object, int s_size, GCancel
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GInputStream*
 S_virtual_gloadable_icon_load_finish(GLoadableIcon* s_object, GAsyncResult* s_res, char** s_type, GError** s_error)
@@ -13253,7 +12921,6 @@ S_virtual_gloadable_icon_load_finish(GLoadableIcon* s_object, GAsyncResult* s_re
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(G_INPUT_STREAM(getPtrValue(VECTOR_ELT(s_ans, 0))));
 }
-#endif
 void
 S_gloadable_icon_class_init(GLoadableIconIface * c, SEXP e)
 {
@@ -13295,7 +12962,8 @@ S_gloadable_icon_iface_load(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, 
 
   _result = toRPointerWithRef(ans, "GInputStream");
 
-  _result = retByVal(_result, "type", asRString(type), "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "type", PROTECT(asRString(type)), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(3);
     CLEANUP(g_error_free, error);;
 #else
   error("gloadable_icon_load exists only in gio >= 2.16.0");
@@ -13343,7 +13011,8 @@ S_gloadable_icon_iface_load_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ s_o
 
   _result = toRPointerWithRef(ans, "GInputStream");
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gloadable_icon_load_finish exists only in gio >= 2.16.0");
@@ -13355,7 +13024,6 @@ S_gloadable_icon_iface_load_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ s_o
 
 #if GIO_CHECK_VERSION(2, 16, 0)
 static SEXP S_GMount_symbol;
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GFile*
 S_virtual_gmount_get_root(GMount* s_object)
@@ -13382,8 +13050,6 @@ S_virtual_gmount_get_root(GMount* s_object)
     return(((GFile*)0));
   return(G_FILE(getPtrValue(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static char*
 S_virtual_gmount_get_name(GMount* s_object)
@@ -13410,8 +13076,6 @@ S_virtual_gmount_get_name(GMount* s_object)
     return(((char*)0));
   return(((char*)g_strdup(asCString(s_ans))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GIcon*
 S_virtual_gmount_get_icon(GMount* s_object)
@@ -13438,8 +13102,6 @@ S_virtual_gmount_get_icon(GMount* s_object)
     return(((GIcon*)0));
   return(G_ICON(getPtrValue(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static char*
 S_virtual_gmount_get_uuid(GMount* s_object)
@@ -13466,8 +13128,6 @@ S_virtual_gmount_get_uuid(GMount* s_object)
     return(((char*)0));
   return(((char*)g_strdup(asCString(s_ans))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GVolume*
 S_virtual_gmount_get_volume(GMount* s_object)
@@ -13494,8 +13154,6 @@ S_virtual_gmount_get_volume(GMount* s_object)
     return(((GVolume*)0));
   return(G_VOLUME(getPtrValue(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GDrive*
 S_virtual_gmount_get_drive(GMount* s_object)
@@ -13522,8 +13180,6 @@ S_virtual_gmount_get_drive(GMount* s_object)
     return(((GDrive*)0));
   return(G_DRIVE(getPtrValue(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gmount_can_unmount(GMount* s_object)
@@ -13550,8 +13206,6 @@ S_virtual_gmount_can_unmount(GMount* s_object)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gmount_can_eject(GMount* s_object)
@@ -13578,8 +13232,6 @@ S_virtual_gmount_can_eject(GMount* s_object)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_gmount_unmount(GMount* s_object, GMountUnmountFlags s_flags, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -13613,8 +13265,6 @@ S_virtual_gmount_unmount(GMount* s_object, GMountUnmountFlags s_flags, GCancella
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gmount_unmount_finish(GMount* s_object, GAsyncResult* s_result, GError** s_error)
@@ -13644,8 +13294,6 @@ S_virtual_gmount_unmount_finish(GMount* s_object, GAsyncResult* s_result, GError
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_gmount_eject(GMount* s_object, GMountUnmountFlags s_flags, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -13679,8 +13327,6 @@ S_virtual_gmount_eject(GMount* s_object, GMountUnmountFlags s_flags, GCancellabl
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gmount_eject_finish(GMount* s_object, GAsyncResult* s_result, GError** s_error)
@@ -13710,8 +13356,6 @@ S_virtual_gmount_eject_finish(GMount* s_object, GAsyncResult* s_result, GError**
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_gmount_remount(GMount* s_object, GMountMountFlags s_flags, GMountOperation* s_mount_operation, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -13747,8 +13391,6 @@ S_virtual_gmount_remount(GMount* s_object, GMountMountFlags s_flags, GMountOpera
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gmount_remount_finish(GMount* s_object, GAsyncResult* s_result, GError** s_error)
@@ -13778,8 +13420,6 @@ S_virtual_gmount_remount_finish(GMount* s_object, GAsyncResult* s_result, GError
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 18, 0)
 
 static void
 S_virtual_gmount_guess_content_type(GMount* s_object, gboolean s_force_rescan, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -13813,8 +13453,6 @@ S_virtual_gmount_guess_content_type(GMount* s_object, gboolean s_force_rescan, G
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 18, 0)
 
 static gchar**
 S_virtual_gmount_guess_content_type_finish(GMount* s_object, GAsyncResult* s_result, GError** s_error)
@@ -13844,8 +13482,6 @@ S_virtual_gmount_guess_content_type_finish(GMount* s_object, GAsyncResult* s_res
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gchar**)asCStringArray(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 18, 0)
 
 static gchar**
 S_virtual_gmount_guess_content_type_sync(GMount* s_object, gboolean s_force_rescan, GCancellable* s_cancellable, GError** s_error)
@@ -13877,8 +13513,6 @@ S_virtual_gmount_guess_content_type_sync(GMount* s_object, gboolean s_force_resc
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gchar**)asCStringArray(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static void
 S_virtual_gmount_unmount_with_operation(GMount* s_object, GMountUnmountFlags s_flags, GMountOperation* s_mount_operation, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -13914,8 +13548,6 @@ S_virtual_gmount_unmount_with_operation(GMount* s_object, GMountUnmountFlags s_f
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static gboolean
 S_virtual_gmount_unmount_with_operation_finish(GMount* s_object, GAsyncResult* s_result, GError** s_error)
@@ -13945,8 +13577,6 @@ S_virtual_gmount_unmount_with_operation_finish(GMount* s_object, GAsyncResult* s
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static void
 S_virtual_gmount_eject_with_operation(GMount* s_object, GMountUnmountFlags s_flags, GMountOperation* s_mount_operation, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -13982,8 +13612,6 @@ S_virtual_gmount_eject_with_operation(GMount* s_object, GMountUnmountFlags s_fla
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static gboolean
 S_virtual_gmount_eject_with_operation_finish(GMount* s_object, GAsyncResult* s_result, GError** s_error)
@@ -14013,7 +13641,6 @@ S_virtual_gmount_eject_with_operation_finish(GMount* s_object, GAsyncResult* s_r
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
 void
 S_gmount_class_init(GMountIface * c, SEXP e)
 {
@@ -14309,7 +13936,8 @@ S_gmount_iface_unmount_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gmount_unmount_finish exists only in gio >= 2.16.0");
@@ -14356,7 +13984,8 @@ S_gmount_iface_eject_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, 
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gmount_eject_finish exists only in gio >= 2.16.0");
@@ -14404,7 +14033,8 @@ S_gmount_iface_remount_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gmount_remount_finish exists only in gio >= 2.16.0");
@@ -14451,7 +14081,8 @@ S_gmount_iface_guess_content_type_finish(USER_OBJECT_ s_object_class, USER_OBJEC
 
   _result = asRStringArray(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gmount_guess_content_type_finish exists only in gio >= 2.18.0");
@@ -14477,7 +14108,8 @@ S_gmount_iface_guess_content_type_sync(USER_OBJECT_ s_object_class, USER_OBJECT_
 
   _result = asRStringArray(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gmount_guess_content_type_sync exists only in gio >= 2.18.0");
@@ -14525,7 +14157,8 @@ S_gmount_iface_unmount_with_operation_finish(USER_OBJECT_ s_object_class, USER_O
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gmount_unmount_with_operation_finish exists only in gio >= 2.22.0");
@@ -14573,7 +14206,8 @@ S_gmount_iface_eject_with_operation_finish(USER_OBJECT_ s_object_class, USER_OBJ
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gmount_eject_with_operation_finish exists only in gio >= 2.22.0");
@@ -14585,7 +14219,6 @@ S_gmount_iface_eject_with_operation_finish(USER_OBJECT_ s_object_class, USER_OBJ
 
 #if GIO_CHECK_VERSION(2, 16, 0)
 static SEXP S_GSeekable_symbol;
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static goffset
 S_virtual_gseekable_tell(GSeekable* s_object)
@@ -14612,8 +14245,6 @@ S_virtual_gseekable_tell(GSeekable* s_object)
     return(((goffset)0));
   return(((goffset)asCNumeric(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gseekable_can_seek(GSeekable* s_object)
@@ -14640,8 +14271,6 @@ S_virtual_gseekable_can_seek(GSeekable* s_object)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gseekable_seek(GSeekable* s_object, goffset s_offset, GSeekType s_type, GCancellable* s_cancellable, GError** s_error)
@@ -14675,8 +14304,6 @@ S_virtual_gseekable_seek(GSeekable* s_object, goffset s_offset, GSeekType s_type
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gseekable_can_truncate(GSeekable* s_object)
@@ -14703,8 +14330,6 @@ S_virtual_gseekable_can_truncate(GSeekable* s_object)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gseekable_truncate_fn(GSeekable* s_object, goffset s_offset, GCancellable* s_cancellable, GError** s_error)
@@ -14736,7 +14361,6 @@ S_virtual_gseekable_truncate_fn(GSeekable* s_object, goffset s_offset, GCancella
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
 void
 S_gseekable_class_init(GSeekableIface * c, SEXP e)
 {
@@ -14826,7 +14450,8 @@ S_gseekable_iface_seek(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gseekable_seek exists only in gio >= 2.16.0");
@@ -14872,7 +14497,8 @@ S_gseekable_iface_truncate_fn(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gseekable_truncate_fn exists only in gio >= 2.16.0");
@@ -14884,7 +14510,6 @@ S_gseekable_iface_truncate_fn(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object
 
 #if GIO_CHECK_VERSION(2, 16, 0)
 static SEXP S_GVolume_symbol;
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static char*
 S_virtual_gvolume_get_name(GVolume* s_object)
@@ -14911,8 +14536,6 @@ S_virtual_gvolume_get_name(GVolume* s_object)
     return(((char*)0));
   return(((char*)g_strdup(asCString(s_ans))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GIcon*
 S_virtual_gvolume_get_icon(GVolume* s_object)
@@ -14939,8 +14562,6 @@ S_virtual_gvolume_get_icon(GVolume* s_object)
     return(((GIcon*)0));
   return(G_ICON(getPtrValue(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static char*
 S_virtual_gvolume_get_uuid(GVolume* s_object)
@@ -14967,8 +14588,6 @@ S_virtual_gvolume_get_uuid(GVolume* s_object)
     return(((char*)0));
   return(((char*)g_strdup(asCString(s_ans))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GDrive*
 S_virtual_gvolume_get_drive(GVolume* s_object)
@@ -14995,8 +14614,6 @@ S_virtual_gvolume_get_drive(GVolume* s_object)
     return(((GDrive*)0));
   return(G_DRIVE(getPtrValue(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static GMount*
 S_virtual_gvolume_get_mount(GVolume* s_object)
@@ -15023,8 +14640,6 @@ S_virtual_gvolume_get_mount(GVolume* s_object)
     return(((GMount*)0));
   return(G_MOUNT(getPtrValue(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gvolume_can_mount(GVolume* s_object)
@@ -15051,8 +14666,6 @@ S_virtual_gvolume_can_mount(GVolume* s_object)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gvolume_can_eject(GVolume* s_object)
@@ -15079,8 +14692,6 @@ S_virtual_gvolume_can_eject(GVolume* s_object)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gvolume_should_automount(GVolume* s_object)
@@ -15107,8 +14718,6 @@ S_virtual_gvolume_should_automount(GVolume* s_object)
     return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_gvolume_mount_fn(GVolume* s_object, GMountMountFlags s_flags, GMountOperation* s_mount_operation, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -15144,8 +14753,6 @@ S_virtual_gvolume_mount_fn(GVolume* s_object, GMountMountFlags s_flags, GMountOp
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gvolume_mount_finish(GVolume* s_object, GAsyncResult* s_result, GError** s_error)
@@ -15175,8 +14782,6 @@ S_virtual_gvolume_mount_finish(GVolume* s_object, GAsyncResult* s_result, GError
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static void
 S_virtual_gvolume_eject(GVolume* s_object, GMountUnmountFlags s_flags, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -15210,8 +14815,6 @@ S_virtual_gvolume_eject(GVolume* s_object, GMountUnmountFlags s_flags, GCancella
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 16, 0)
 
 static gboolean
 S_virtual_gvolume_eject_finish(GVolume* s_object, GAsyncResult* s_result, GError** s_error)
@@ -15241,8 +14844,6 @@ S_virtual_gvolume_eject_finish(GVolume* s_object, GAsyncResult* s_result, GError
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 18, 0)
 
 static char*
 S_virtual_gvolume_get_identifier(GVolume* s_object, const char* s_kind)
@@ -15271,8 +14872,6 @@ S_virtual_gvolume_get_identifier(GVolume* s_object, const char* s_kind)
     return(((char*)0));
   return(((char*)g_strdup(asCString(s_ans))));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 18, 0)
 
 static char**
 S_virtual_gvolume_enumerate_identifiers(GVolume* s_object)
@@ -15299,8 +14898,6 @@ S_virtual_gvolume_enumerate_identifiers(GVolume* s_object)
     return(((char**)0));
   return(((char**)asCStringArray(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 18, 0)
 
 static GFile*
 S_virtual_gvolume_get_activation_root(GVolume* s_object)
@@ -15327,8 +14924,6 @@ S_virtual_gvolume_get_activation_root(GVolume* s_object)
     return(((GFile*)0));
   return(G_FILE(getPtrValue(s_ans)));
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static void
 S_virtual_gvolume_eject_with_operation(GVolume* s_object, GMountUnmountFlags s_flags, GMountOperation* s_mount_operation, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -15364,8 +14959,6 @@ S_virtual_gvolume_eject_with_operation(GVolume* s_object, GMountUnmountFlags s_f
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static gboolean
 S_virtual_gvolume_eject_with_operation_finish(GVolume* s_object, GAsyncResult* s_result, GError** s_error)
@@ -15395,7 +14988,6 @@ S_virtual_gvolume_eject_with_operation_finish(GVolume* s_object, GAsyncResult* s
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
 void
 S_gvolume_class_init(GVolumeIface * c, SEXP e)
 {
@@ -15676,7 +15268,8 @@ S_gvolume_iface_mount_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object,
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gvolume_mount_finish exists only in gio >= 2.16.0");
@@ -15723,7 +15316,8 @@ S_gvolume_iface_eject_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object,
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gvolume_eject_finish exists only in gio >= 2.16.0");
@@ -15833,7 +15427,8 @@ S_gvolume_iface_eject_with_operation_finish(USER_OBJECT_ s_object_class, USER_OB
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gvolume_eject_with_operation_finish exists only in gio >= 2.22.0");
@@ -15845,7 +15440,6 @@ S_gvolume_iface_eject_with_operation_finish(USER_OBJECT_ s_object_class, USER_OB
 
 #if GIO_CHECK_VERSION(2, 22, 0)
 static SEXP S_GAsyncInitable_symbol;
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static void
 S_virtual_gasync_initable_init_async(GAsyncInitable* s_object, int s_io_priority, GCancellable* s_cancellable, GAsyncReadyCallback s_callback, gpointer s_user_data)
@@ -15879,8 +15473,6 @@ S_virtual_gasync_initable_init_async(GAsyncInitable* s_object, int s_io_priority
   if(err)
     return;
 }
-#endif
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static gboolean
 S_virtual_gasync_initable_init_finish(GAsyncInitable* s_object, GAsyncResult* s_res, GError** s_error)
@@ -15910,7 +15502,6 @@ S_virtual_gasync_initable_init_finish(GAsyncInitable* s_object, GAsyncResult* s_
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
 void
 S_gasync_initable_class_init(GAsyncInitableIface * c, SEXP e)
 {
@@ -15968,7 +15559,8 @@ S_gasync_initable_iface_init_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("gasync_initable_init_finish exists only in gio >= 2.22.0");
@@ -15980,7 +15572,6 @@ S_gasync_initable_iface_init_finish(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 
 #if GIO_CHECK_VERSION(2, 22, 0)
 static SEXP S_GInitable_symbol;
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static gboolean
 S_virtual_ginitable_init(GInitable* s_object, GCancellable* s_cancellable, GError** s_error)
@@ -16010,7 +15601,6 @@ S_virtual_ginitable_init(GInitable* s_object, GCancellable* s_cancellable, GErro
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
-#endif
 void
 S_ginitable_class_init(GInitableIface * c, SEXP e)
 {
@@ -16042,7 +15632,8 @@ S_ginitable_iface_init(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
+  _result = retByVal(PROTECT(_result), "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_error_free, error);;
 #else
   error("ginitable_init exists only in gio >= 2.22.0");
@@ -16054,7 +15645,6 @@ S_ginitable_iface_init(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_
 
 #if GIO_CHECK_VERSION(2, 22, 0)
 static SEXP S_GSocketConnectable_symbol;
-#if GIO_CHECK_VERSION(2, 22, 0)
 
 static GSocketAddressEnumerator*
 S_virtual_gsocket_connectable_enumerate(GSocketConnectable* s_object)
@@ -16081,7 +15671,6 @@ S_virtual_gsocket_connectable_enumerate(GSocketConnectable* s_object)
     return(((GSocketAddressEnumerator*)0));
   return(G_SOCKET_ADDRESS_ENUMERATOR(getPtrValue(s_ans)));
 }
-#endif
 void
 S_gsocket_connectable_class_init(GSocketConnectableIface * c, SEXP e)
 {

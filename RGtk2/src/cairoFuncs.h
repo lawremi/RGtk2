@@ -707,16 +707,4 @@ S_cairo_scaled_font_text_to_glyphs(USER_OBJECT_ s_scaled_font, USER_OBJECT_ s_x,
   USER_OBJECT_
 S_cairo_user_font_face_create(void); 
 
-  USER_OBJECT_
-S_cairo_user_font_face_get_init_func(USER_OBJECT_ s_font_face); 
-
-  USER_OBJECT_
-S_cairo_user_font_face_get_render_glyph_func(USER_OBJECT_ s_font_face); 
-
-  USER_OBJECT_
-S_cairo_user_font_face_get_unicode_to_glyph_func(USER_OBJECT_ s_font_face); 
-
-  USER_OBJECT_
-S_cairo_user_font_face_get_text_to_glyphs_func(USER_OBJECT_ s_font_face); 
-
 #endif

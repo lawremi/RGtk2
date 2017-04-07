@@ -1490,7 +1490,8 @@ S_gdk_drawable_class_get_size(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object
   object_class->get_size(object, &width, &height);
 
 
-  _result = retByVal(_result, "width", asRInteger(width), "height", asRInteger(height), NULL);
+  _result = retByVal(PROTECT(_result), "width", PROTECT(asRInteger(width)), "height", PROTECT(asRInteger(height)), NULL);
+  UNPROTECT(3);
   ;
   ;
 
@@ -1631,7 +1632,8 @@ S_gdk_drawable_class_get_composite_drawable(USER_OBJECT_ s_object_class, USER_OB
 
   _result = toRPointerWithFinalizer(ans, "GdkDrawable", (RPointerFinalizer) g_object_unref);
 
-  _result = retByVal(_result, "composite.x.offset", asRInteger(composite_x_offset), "composite.y.offset", asRInteger(composite_y_offset), NULL);
+  _result = retByVal(PROTECT(_result), "composite.x.offset", PROTECT(asRInteger(composite_x_offset)), "composite.y.offset", PROTECT(asRInteger(composite_y_offset)), NULL);
+  UNPROTECT(3);
   ;
   ;
 
@@ -1866,7 +1868,8 @@ S_gdk_gcclass_get_values(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
   object_class->get_values(object, values);
 
 
-  _result = retByVal(_result, "values", asRGdkGCValues(values), NULL);
+  _result = retByVal(PROTECT(_result), "values", PROTECT(asRGdkGCValues(values)), NULL);
+  UNPROTECT(2);
     CLEANUP(g_free, values);;
 
   return(_result);
@@ -2173,7 +2176,8 @@ S_gdk_pixbuf_animation_class_get_size(USER_OBJECT_ s_object_class, USER_OBJECT_ 
   object_class->get_size(object, &width, &height);
 
 
-  _result = retByVal(_result, "width", asRInteger(width), "height", asRInteger(height), NULL);
+  _result = retByVal(PROTECT(_result), "width", PROTECT(asRInteger(width)), "height", PROTECT(asRInteger(height)), NULL);
+  UNPROTECT(3);
   ;
   ;
 
@@ -2627,7 +2631,6 @@ S_virtual_gdk_screen_size_changed(GdkScreen* s_object)
   if(err)
     return;
 }
-#if GDK_CHECK_VERSION(2, 10, 0)
 
 static void
 S_virtual_gdk_screen_composited_changed(GdkScreen* s_object)
@@ -2653,7 +2656,6 @@ S_virtual_gdk_screen_composited_changed(GdkScreen* s_object)
   if(err)
     return;
 }
-#endif
 void
 S_gdk_screen_class_init(GdkScreenClass * c, SEXP e)
 {
