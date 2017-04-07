@@ -1,0 +1,5 @@
+;; -*- scheme -*-
+
+; for cairo 1.14 (todo)
+
+(include "../2.20/cairo.defs")

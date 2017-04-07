@@ -1,0 +1,151 @@
+;; -*- scheme -*-
+; object definitions ...
+
+(include "../2.22/gtk.defs")
+
+(define-method get_entry_text_column
+  (of-object "GtkComboBox")
+  (c-name "gtk_combo_box_get_entry_text_column")
+  (return-type "gint")
+  (parameters
+    '("GtkComboBox*" "combo_box")
+  )
+  (since "2.24.0")
+)
+
+(define-method get_has_text_entry
+  (of-object "GtkComboBox")
+  (c-name "gtk_combo_box_get_has_text_entry")
+  (return-type "gboolean")
+  (parameters
+    '("GtkComboBox*" "combo_box")
+  )
+  (since "2.24.0")
+)
+
+(define-method set_entry_text_column
+  (of-object "GtkComboBox")
+  (c-name "gtk_combo_box_set_entry_text_column")
+  (return-type "none")
+  (parameters
+    '("GtkComboBox*" "combo_box")
+    '("gint" "text_column")
+  )
+  (since "2.24.0")
+)
+
+(define-function gtk_combo_box_new_with_entry
+  (in-module "Gtk")
+  (c-name "gtk_combo_box_new_with_entry")
+  (is-constructor-of "GtkComboBox")
+  (return-type "GtkWidget*")
+  (since "2.24.0")
+)
+
+(define-function gtk_combo_box_new_with_model_and_entry
+  (in-module "Gtk")
+  (c-name "gtk_combo_box_new_with_entry")
+  (is-constructor-of "GtkComboBox")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkTreeModel*" "model")
+  )
+  (since "2.24.0")
+)
+
+(define-method text_append_text
+  (of-object "GtkComboBox")
+  (c-name "gtk_combo_box_text_append_text")
+  (return-type "none")
+  (parameters
+    '("GtkComboBox*" "combo_box")
+    '("const gchar*" "text")
+  )
+  (since "2.24.0")
+)
+
+(define-method text_insert_text
+  (of-object "GtkComboBox")
+  (c-name "gtk_combo_box_text_insert_text")
+  (return-type "none")
+  (parameters
+    '("GtkComboBox*" "combo_box")
+    '("const gchar*" "text")
+  )
+  (since "2.24.0")
+)
+
+(define-method text_prepend_text
+  (of-object "GtkComboBox")
+  (c-name "gtk_combo_box_text_prepend_text")
+  (return-type "none")
+  (parameters
+    '("GtkComboBox*" "combo_box")
+    '("const gchar*" "text")
+  )
+  (since "2.24.0")
+)
+
+(define-method text_remove
+  (of-object "GtkComboBox")
+  (c-name "gtk_combo_box_text_remove")
+  (return-type "none")
+  (parameters
+    '("GtkComboBox*" "combo_box")
+    '("gint" "position")
+  )
+  (since "2.24.0")
+)
+
+(define-method text_get_active_text
+  (of-object "GtkComboBox")
+  (c-name "gtk_combo_box_get_active_text")
+  (return-type "gchar *")
+  (parameters
+    '("GtkComboBox*" "combo_box")
+  )
+  (since "2.24.0")
+)
+
+(define-method get_group_name
+  (of-object "GtkNotebook")
+  (c-name "gtk_notebook_get_group_name")
+  (return-type "const gchar *")
+  (parameters
+    '("GtkNotebook*" "notebook")
+  )
+  (since "2.24.0")
+)
+
+(define-method set_group_name
+  (of-object "GtkNotebook")
+  (c-name "gtk_notebook_set_group_name")
+  (return-type "none")
+  (parameters
+    '("GtkNotebook*" "notebook")
+    '("const gchar *" "group_name")
+  )
+  (since "2.24.0")
+)
+
+(define-method get_round_digits
+  (of-object "GtkRange")
+  (c-name "gtk_range_get_round_digits")
+  (return-type "gint")
+  (parameters
+    '("GtkRange*" "range")
+  )
+  (since "2.24.0")
+)
+
+(define-method set_round_digits
+  (of-object "GtkRange")
+  (c-name "gtk_range_set_round_digits")
+  (return-type "none")
+  (parameters
+    '("GtkRange*" "range")
+    '("gint" "round_digits")
+  )
+  (since "2.24.0")
+)
+

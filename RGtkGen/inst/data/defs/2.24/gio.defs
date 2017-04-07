@@ -1,0 +1,10 @@
+;; -*- scheme -*-
+
+(include "../2.22/gio.defs")
+
+;; For GIO 2.52 (todo)
+
+;; just grep source code for Since 2.x
+
+
+

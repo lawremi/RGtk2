@@ -1,0 +1,3 @@
+;; -*- scheme -*-
+
+(include "../2.22/gdk.defs")
