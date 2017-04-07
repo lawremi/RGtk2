@@ -8821,6 +8821,9 @@ function(object, address, type, protocol, source.object = NULL, .errwarn = TRUE)
   checkPtrType(object, "GSocketListener")
   checkPtrType(address, "GSocketAddress")
   
+  
+  if (!is.null( source.object )) checkPtrType(source.object, "GObject")
+
   w <- .RGtkCall("S_g_socket_listener_add_address", object, address, type, protocol, source.object, PACKAGE = "RGtk2")
 
   w <- handleError(w, .errwarn)
