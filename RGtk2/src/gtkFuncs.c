@@ -46414,7 +46414,7 @@ S_gtk_recent_info_get_application_info(USER_OBJECT_ s_object, USER_OBJECT_ s_app
   const gchar* app_name = ((const gchar*)asCString(s_app_name));
 
   gboolean ans;
-  gchar* app_exec = NULL;
+  const gchar* app_exec = NULL;
   guint count;
   time_t time_;
 

@@ -3130,7 +3130,7 @@
   (return-type "gboolean")
   (parameters
     '("const-gchar*" "app_name")
-    '("gchar**" "app_exec" (out))
+    '("const-gchar**" "app_exec" (out))
     '("guint*" "count" (out))
     '("time_t*" "time_" (out))
   )
