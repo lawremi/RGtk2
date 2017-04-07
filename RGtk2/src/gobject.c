@@ -1286,7 +1286,11 @@ R_setGValueFromSValue(GValue *value, USER_OBJECT_ sval) {
         g_value_transform(raw, value);
 	else switch(G_TYPE_FUNDAMENTAL(G_VALUE_TYPE(value))) {
 		case G_TYPE_CHAR:
+#if GLIB_CHECK_VERSION(2,32,0)
+			g_value_set_schar(value, asCCharacter(sval));
+#else
 			g_value_set_char(value, asCCharacter(sval));
+#endif
 		break;
 		case G_TYPE_UCHAR:
 			g_value_set_uchar(value, asCCharacter(sval));
@@ -1430,7 +1434,11 @@ asRGValue(const GValue *value)
       case G_TYPE_CHAR:
       {
           char tmp[2] = "a";
-          tmp[0] = g_value_get_char(value);
+#if GLIB_CHECK_VERSION(2,32,0)
+          tmp[0] = g_value_get_schar(value);
+#else
+	  tmp[0] = g_value_get_char(value);
+#endif
           ans = asRString(tmp);
       }
       break;
