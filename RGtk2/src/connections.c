@@ -225,11 +225,11 @@ static int goutput_fflush(GOutputStream *ostream) {
 }
 
 static int R_goutput_fflush(Rconnection con) {
-  goutput_fflush(G_OUTPUT_STREAM(con->private));
+  return goutput_fflush(G_OUTPUT_STREAM(con->private));
 }
 
 static int R_gio_fflush(Rconnection con) {
-  goutput_fflush(g_io_stream_get_output_stream(G_IO_STREAM(con->private)));
+  return goutput_fflush(g_io_stream_get_output_stream(G_IO_STREAM(con->private)));
 }
 
 static size_t goutput_write(GOutputStream *ostream, const void *ptr,
