@@ -124,9 +124,20 @@ void RGtk_finalizer(USER_OBJECT_ extptr) {
     void *ptr = getPtrValue(extptr);
     /*Rprintf("finalizing a %s\n", asCString(GET_CLASS(extptr)));*/
     if (ptr) {
-        ((RPointerFinalizer)getPtrValue(R_ExternalPtrTag(extptr)))(ptr);
+        ((RPointerFinalizer)getPtrValueFn(R_ExternalPtrTag(extptr)))(ptr);
         R_ClearExternalPtr(extptr);
     }
+}
+
+USER_OBJECT_
+toRPointerFn(DL_FUNC val, const gchar *typeName) {
+    USER_OBJECT_ ans;
+    if(!val)
+	return(NULL_USER_OBJECT);
+    PROTECT(ans = R_MakeExternalPtrFn(val, NULL_USER_OBJECT, NULL_USER_OBJECT));
+    SET_CLASS(ans, asRString(typeName));
+    UNPROTECT(1);
+    return ans;
 }
 
 USER_OBJECT_
@@ -142,7 +153,7 @@ toRPointerWithFinalizer(gconstpointer val, const gchar *typeName, RPointerFinali
        return(NULL_USER_OBJECT);
 
     if (finalizer) {
-        PROTECT(r_finalizer = R_MakeExternalPtr(finalizer, NULL_USER_OBJECT, NULL_USER_OBJECT));
+        PROTECT(r_finalizer = R_MakeExternalPtrFn((DL_FUNC)finalizer, NULL_USER_OBJECT, NULL_USER_OBJECT));
     }
     PROTECT(ans = R_MakeExternalPtr((gpointer)val, r_finalizer, NULL_USER_OBJECT));
     if (finalizer) {
