@@ -296,7 +296,7 @@ S_virtual_gfile_enumerator_next_files_async(GFileEnumerator* s_object, int s_num
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -358,7 +358,7 @@ S_virtual_gfile_enumerator_close_async(GFileEnumerator* s_object, int s_io_prior
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -767,7 +767,7 @@ S_virtual_ginput_stream_skip_async(GInputStream* s_object, gsize s_count, int s_
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -829,7 +829,7 @@ S_virtual_ginput_stream_close_async(GInputStream* s_object, int s_io_priority, G
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -1144,7 +1144,7 @@ S_virtual_gfile_input_stream_query_info_async(GFileInputStream* s_object, const 
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -1359,7 +1359,7 @@ S_virtual_gbuffered_input_stream_fill_async(GBufferedInputStream* s_object, gssi
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -1701,7 +1701,7 @@ S_virtual_goutput_stream_write_async(GOutputStream* s_object, const guchar* s_bu
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -1767,7 +1767,7 @@ S_virtual_goutput_stream_splice_async(GOutputStream* s_object, GInputStream* s_s
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -1829,7 +1829,7 @@ S_virtual_goutput_stream_flush_async(GOutputStream* s_object, int s_io_priority,
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -1891,7 +1891,7 @@ S_virtual_goutput_stream_close_async(GOutputStream* s_object, int s_io_priority,
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -2418,7 +2418,7 @@ S_virtual_gfile_output_stream_query_info_async(GFileOutputStream* s_object, cons
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -3234,7 +3234,7 @@ S_virtual_gfile_iostream_query_info_async(GFileIOStream* s_object, const char* s
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -3631,7 +3631,7 @@ S_virtual_gresolver_lookup_by_name_async(GResolver* s_object, const gchar* s_hos
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -3724,7 +3724,7 @@ S_virtual_gresolver_lookup_by_address_async(GResolver* s_object, GInetAddress* s
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -3817,7 +3817,7 @@ S_virtual_gresolver_lookup_service_async(GResolver* s_object, const gchar* s_rrn
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -4383,7 +4383,7 @@ S_virtual_gsocket_address_enumerator_next_async(GSocketAddressEnumerator* s_obje
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -4986,7 +4986,7 @@ S_virtual_giostream_close_async(GIOStream* s_object, int s_io_priority, GCancell
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -6542,7 +6542,7 @@ S_virtual_gdrive_eject(GDrive* s_object, GMountUnmountFlags s_flags, GCancellabl
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -6602,7 +6602,7 @@ S_virtual_gdrive_poll_for_media(GDrive* s_object, GCancellable* s_cancellable, G
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -6746,7 +6746,7 @@ S_virtual_gdrive_start(GDrive* s_object, GDriveStartFlags s_flags, GMountOperati
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -6810,7 +6810,7 @@ S_virtual_gdrive_stop(GDrive* s_object, GMountUnmountFlags s_flags, GMountOperat
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -6952,7 +6952,7 @@ S_virtual_gdrive_eject_with_operation(GDrive* s_object, GMountUnmountFlags s_fla
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -8081,7 +8081,7 @@ S_virtual_gfile_read_async(GFile* s_object, int s_io_priority, GCancellable* s_c
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -8242,7 +8242,7 @@ S_virtual_gfile_append_to_async(GFile* s_object, GFileCreateFlags s_flags, int s
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -8306,7 +8306,7 @@ S_virtual_gfile_create_async(GFile* s_object, GFileCreateFlags s_flags, int s_io
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -8374,7 +8374,7 @@ S_virtual_gfile_replace_async(GFile* s_object, const char* s_etag, gboolean s_ma
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -8473,7 +8473,7 @@ S_virtual_gfile_query_info_async(GFile* s_object, const char* s_attributes, GFil
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -8568,7 +8568,7 @@ S_virtual_gfile_query_filesystem_info_async(GFile* s_object, const char* s_attri
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -8659,7 +8659,7 @@ S_virtual_gfile_find_enclosing_mount_async(GFile* s_object, int s_io_priority, G
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -8758,7 +8758,7 @@ S_virtual_gfile_enumerate_children_async(GFile* s_object, const char* s_attribut
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -8853,7 +8853,7 @@ S_virtual_gfile_set_display_name_async(GFile* s_object, const char* s_display_na
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -8975,7 +8975,7 @@ S_virtual_gfile_copy(GFile* s_object, GFile* s_destination, GFileCopyFlags s_fla
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_progress_callback, "GFileProgressCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_progress_callback), "GFileProgressCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_progress_callback_data);
   tmp = CDR(tmp);
@@ -9014,11 +9014,11 @@ S_virtual_gfile_copy_async(GFile* s_object, GFile* s_destination, GFileCopyFlags
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_progress_callback, "GFileProgressCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_progress_callback), "GFileProgressCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_progress_callback_data);
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -9082,7 +9082,7 @@ S_virtual_gfile_move(GFile* s_object, GFile* s_destination, GFileCopyFlags s_fla
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_progress_callback, "GFileProgressCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_progress_callback), "GFileProgressCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_progress_callback_data);
   tmp = CDR(tmp);
@@ -9309,7 +9309,7 @@ S_virtual_gfile_set_attributes_async(GFile* s_object, GFileInfo* s_info, GFileQu
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -9374,7 +9374,7 @@ S_virtual_gfile_mount_enclosing_volume(GFile* s_object, GMountMountFlags s_flags
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -9438,7 +9438,7 @@ S_virtual_gfile_mount_mountable(GFile* s_object, GMountMountFlags s_flags, GMoun
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -9500,7 +9500,7 @@ S_virtual_gfile_unmount_mountable(GFile* s_object, GMountUnmountFlags s_flags, G
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -9562,7 +9562,7 @@ S_virtual_gfile_eject_mountable(GFile* s_object, GMountUnmountFlags s_flags, GCa
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -9719,7 +9719,7 @@ S_virtual_gfile_create_readwrite_async(GFile* s_object, GFileCreateFlags s_flags
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -9783,7 +9783,7 @@ S_virtual_gfile_eject_mountable_with_operation(GFile* s_object, GMountUnmountFla
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -9874,7 +9874,7 @@ S_virtual_gfile_open_readwrite_async(GFile* s_object, int s_io_priority, GCancel
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -9934,7 +9934,7 @@ S_virtual_gfile_poll_mountable(GFile* s_object, GCancellable* s_cancellable, GAs
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -10037,7 +10037,7 @@ S_virtual_gfile_replace_readwrite_async(GFile* s_object, const char* s_etag, gbo
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -10101,7 +10101,7 @@ S_virtual_gfile_start_mountable(GFile* s_object, GDriveStartFlags s_flags, GMoun
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -10165,7 +10165,7 @@ S_virtual_gfile_stop_mountable(GFile* s_object, GMountUnmountFlags s_flags, GMou
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -10229,7 +10229,7 @@ S_virtual_gfile_unmount_mountable_with_operation(GFile* s_object, GMountUnmountF
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -12878,7 +12878,7 @@ S_virtual_gloadable_icon_load_async(GLoadableIcon* s_object, int s_size, GCancel
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -13253,7 +13253,7 @@ S_virtual_gmount_unmount(GMount* s_object, GMountUnmountFlags s_flags, GCancella
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -13315,7 +13315,7 @@ S_virtual_gmount_eject(GMount* s_object, GMountUnmountFlags s_flags, GCancellabl
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -13379,7 +13379,7 @@ S_virtual_gmount_remount(GMount* s_object, GMountMountFlags s_flags, GMountOpera
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -13441,7 +13441,7 @@ S_virtual_gmount_guess_content_type(GMount* s_object, gboolean s_force_rescan, G
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -13536,7 +13536,7 @@ S_virtual_gmount_unmount_with_operation(GMount* s_object, GMountUnmountFlags s_f
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -13600,7 +13600,7 @@ S_virtual_gmount_eject_with_operation(GMount* s_object, GMountUnmountFlags s_fla
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -14741,7 +14741,7 @@ S_virtual_gvolume_mount_fn(GVolume* s_object, GMountMountFlags s_flags, GMountOp
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -14803,7 +14803,7 @@ S_virtual_gvolume_eject(GVolume* s_object, GMountUnmountFlags s_flags, GCancella
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -14947,7 +14947,7 @@ S_virtual_gvolume_eject_with_operation(GVolume* s_object, GMountUnmountFlags s_f
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);
@@ -15461,7 +15461,7 @@ S_virtual_gasync_initable_init_async(GAsyncInitable* s_object, int s_io_priority
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_cancellable, "GCancellable"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GAsyncReadyCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GAsyncReadyCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_user_data);
   tmp = CDR(tmp);

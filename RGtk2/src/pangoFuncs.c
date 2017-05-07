@@ -5643,7 +5643,7 @@ S_pango_cairo_context_get_shape_renderer(USER_OBJECT_ s_object)
 
   ans = pango_cairo_context_get_shape_renderer(object, &data);
 
-  _result = toRPointer(ans, "PangoCairoShapeRendererFunc");
+  _result = toRPointerFn(((DL_FUNC)ans), "PangoCairoShapeRendererFunc");
 
   _result = retByVal(PROTECT(_result), "data", PROTECT(data), NULL);
   UNPROTECT(2);

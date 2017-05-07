@@ -362,6 +362,7 @@ USER_OBJECT_ toRPointerWithFinalizer(gconstpointer val, const gchar *typeName,
   RPointerFinalizer finalizer);
 #define toRPointer(val, name) toRPointerWithFinalizer(val, name, NULL)
 USER_OBJECT_ toRPointerWithRef(gconstpointer val, const gchar *type);
+USER_OBJECT_ toRPointerFn(DL_FUNC val, const gchar *typeName);
 
 #define getPtrValue(sval) (sval == NULL_USER_OBJECT ? NULL : R_ExternalPtrAddr(sval))
 #define getPtrValueFn(sval) (sval == NULL_USER_OBJECT ? NULL : R_ExternalPtrAddrFn(sval))

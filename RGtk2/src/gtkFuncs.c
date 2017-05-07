@@ -590,7 +590,7 @@ S_gtk_about_dialog_set_email_hook(USER_OBJECT_ s_func, USER_OBJECT_ s_data)
 
   ans = gtk_about_dialog_set_email_hook(func, data, destroy);
 
-  _result = toRPointer(ans, "GtkAboutDialogActivateLinkFunc");
+  _result = toRPointerFn(((DL_FUNC)ans), "GtkAboutDialogActivateLinkFunc");
 
   return(_result);
 }
@@ -608,7 +608,7 @@ S_gtk_about_dialog_set_url_hook(USER_OBJECT_ s_func, USER_OBJECT_ s_data)
 
   ans = gtk_about_dialog_set_url_hook(func, data, destroy);
 
-  _result = toRPointer(ans, "GtkAboutDialogActivateLinkFunc");
+  _result = toRPointerFn(((DL_FUNC)ans), "GtkAboutDialogActivateLinkFunc");
 
   return(_result);
 }
@@ -6213,7 +6213,7 @@ GtkColorSelectionChangePaletteFunc_cbdata = R_createCBData(s_func, NULL);
 
   ans = gtk_color_selection_set_change_palette_hook(func);
 
-  _result = toRPointer(ans, "GtkColorSelectionChangePaletteFunc");
+  _result = toRPointerFn(((DL_FUNC)ans), "GtkColorSelectionChangePaletteFunc");
 
   return(_result);
 }
@@ -6231,7 +6231,7 @@ GtkColorSelectionChangePaletteWithScreenFunc_cbdata = R_createCBData(s_func, NUL
 
   ans = gtk_color_selection_set_change_palette_with_screen_hook(func);
 
-  _result = toRPointer(ans, "GtkColorSelectionChangePaletteWithScreenFunc");
+  _result = toRPointerFn(((DL_FUNC)ans), "GtkColorSelectionChangePaletteWithScreenFunc");
 
   return(_result);
 }
@@ -6885,7 +6885,7 @@ S_gtk_combo_box_get_row_separator_func(USER_OBJECT_ s_object)
 
   ans = gtk_combo_box_get_row_separator_func(object);
 
-  _result = toRPointer(ans, "GtkTreeViewRowSeparatorFunc");
+  _result = toRPointerFn(((DL_FUNC)ans), "GtkTreeViewRowSeparatorFunc");
 
   return(_result);
 }
@@ -35692,7 +35692,7 @@ S_gtk_tree_view_get_search_equal_func(USER_OBJECT_ s_object)
 
   ans = gtk_tree_view_get_search_equal_func(object);
 
-  _result = toRPointer(ans, "GtkTreeViewSearchEqualFunc");
+  _result = toRPointerFn(((DL_FUNC)ans), "GtkTreeViewSearchEqualFunc");
 
   return(_result);
 }
@@ -35835,7 +35835,7 @@ S_gtk_tree_view_get_row_separator_func(USER_OBJECT_ s_object)
 
   ans = gtk_tree_view_get_row_separator_func(object);
 
-  _result = toRPointer(ans, "GtkTreeViewRowSeparatorFunc");
+  _result = toRPointerFn(((DL_FUNC)ans), "GtkTreeViewRowSeparatorFunc");
 
   return(_result);
 }
@@ -41831,7 +41831,7 @@ S_gtk_link_button_set_uri_hook(USER_OBJECT_ s_func, USER_OBJECT_ s_data)
 
   ans = gtk_link_button_set_uri_hook(func, data, destroy);
 
-  _result = toRPointer(ans, "GtkLinkButtonUriFunc");
+  _result = toRPointerFn(((DL_FUNC)ans), "GtkLinkButtonUriFunc");
 #else
   error("gtk_link_button_set_uri_hook exists only in Gtk >= 2.10.0");
 #endif
@@ -47986,7 +47986,7 @@ S_gtk_tree_view_get_search_position_func(USER_OBJECT_ s_object)
 
   ans = gtk_tree_view_get_search_position_func(object);
 
-  _result = toRPointer(ans, "GtkTreeViewSearchPositionFunc");
+  _result = toRPointerFn(((DL_FUNC)ans), "GtkTreeViewSearchPositionFunc");
 #else
   error("gtk_tree_view_get_search_position_func exists only in Gtk >= 2.10.0");
 #endif
@@ -53218,7 +53218,7 @@ S_gtk_tree_selection_get_select_function(USER_OBJECT_ s_object)
 
   ans = gtk_tree_selection_get_select_function(object);
 
-  _result = toRPointer(ans, "GtkTreeSelectionFunc");
+  _result = toRPointerFn(((DL_FUNC)ans), "GtkTreeSelectionFunc");
 #else
   error("gtk_tree_selection_get_select_function exists only in Gtk >= 2.14.0");
 #endif

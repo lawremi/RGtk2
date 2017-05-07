@@ -825,7 +825,7 @@ S_virtual_pango_fontset_foreach(PangoFontset* s_object, PangoFontsetForeachFunc 
 
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoFontset")));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_func, "PangoFontsetForeachFunc"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_func), "PangoFontsetForeachFunc"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_data);
   tmp = CDR(tmp);

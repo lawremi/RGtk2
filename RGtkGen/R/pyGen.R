@@ -1766,6 +1766,9 @@ function(var, ptype, fun = NULL, defs)
         if (!is.null(finalizer) && nchar(finalizer) > 0 && !isConst(ptype)) {
           postfix <- "WithFinalizer"
           args <- c(args, paste("(RPointerFinalizer)", finalizer))
+        } else if (isUserFunction(type, defs)) {
+            postfix <- "Fn"
+            args[[1L]] <- cast("DL_FUNC", args[[1L]])
         }
       } else if (inheritsClass(type, defs$objects, "GtkObject"))
         postfix <- "WithSink" # we claim ownership of GtkObjects

@@ -3548,7 +3548,7 @@ S_virtual_gtk_container_forall(GtkContainer* s_object, gboolean s_include_intern
   tmp = CDR(tmp);
   SETCAR(tmp, asRLogical(s_include_internals));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_callback, "GtkCallback"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_callback), "GtkCallback"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_callback_data);
   tmp = CDR(tmp);
@@ -22093,7 +22093,7 @@ S_virtual_gtk_cell_layout_set_cell_data_func(GtkCellLayout* s_object, GtkCellRen
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithSink(s_cell, "GtkCellRenderer"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_func, "GtkCellLayoutDataFunc"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_func), "GtkCellLayoutDataFunc"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_func_data);
   tmp = CDR(tmp);
@@ -24087,7 +24087,7 @@ S_virtual_gtk_tree_sortable_set_sort_func(GtkTreeSortable* s_object, gint s_sort
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_sort_column_id));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_func, "GtkTreeIterCompareFunc"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_func), "GtkTreeIterCompareFunc"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_data);
   tmp = CDR(tmp);
@@ -24118,7 +24118,7 @@ S_virtual_gtk_tree_sortable_set_default_sort_func(GtkTreeSortable* s_object, Gtk
 
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkTreeSortable")));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_func, "GtkTreeIterCompareFunc"));
+  SETCAR(tmp, toRPointerFn(((DL_FUNC)s_func), "GtkTreeIterCompareFunc"));
   tmp = CDR(tmp);
   SETCAR(tmp, s_data);
   tmp = CDR(tmp);
