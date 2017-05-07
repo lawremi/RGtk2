@@ -140,9 +140,13 @@ R_gtkInit(long *rargc, char **rargv, Rboolean *success)
       ofd = fds[1];
       eventLoopInputHandler = addInputHandler(R_InputHandlers, ifd,
                                               R_gtk_timerInputHandler, 32);
+#if GLIB_CHECK_VERSION(2,32,0)
+      eventLoopThread = g_thread_new("RGtk2", R_gtk_timerThreadFunc, NULL);
+#else
       if (!g_thread_supported ()) g_thread_init (NULL);
       eventLoopThread = g_thread_create(R_gtk_timerThreadFunc, NULL, TRUE,
                                         NULL);
+#endif
       R_CStackLimit = -1;
     } else g_warning("Failed to establish pipe; "
                      "disabling timer-based event handling");
