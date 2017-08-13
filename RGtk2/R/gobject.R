@@ -509,13 +509,13 @@ function(obj, name, where)
 
 # Comparing pointers
 
-comparePointers <- function(x, y) {
+.comparePointers <- function(x, y) {
     .Call("comparePointers", x, y, PACKAGE="RGtk2")
 }
 
 "==.RGtkObject" <-
 function(x, y) {
-  comparePointers(x, y)
+  .comparePointers(x, y)
 }
 
 # Fields
