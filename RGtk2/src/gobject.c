@@ -1817,3 +1817,14 @@ g_io_condition_get_type (void)
 
   return etype;
 }
+
+/* Pointer comparison for ==.RGtkObject */
+
+USER_OBJECT_
+comparePointers(SEXP x, SEXP y) {
+    if (TYPEOF(x) != EXTPTRSXP || TYPEOF(y) != EXTPTRSXP)
+	PROBLEM "'x' and 'y' must be extptrs"
+	ERROR;
+    return ScalarLogical(R_ExternalPtrAddr(x) == R_ExternalPtrAddr(y));
+}
+
