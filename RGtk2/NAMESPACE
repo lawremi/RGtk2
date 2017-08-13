@@ -26,10 +26,12 @@ S3method(print, CallbackID)
 
 S3method("==", RGtkObject)
 S3method("[[", RGtkObject)
+S3method("$", RGtkObject)
 
 S3method("[[", GtkContainer)
 
 S3method("[", flags)
+S3method("[", enums)
 S3method("==", enum)
 
 S3method(print, enum)
