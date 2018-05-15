@@ -4,7 +4,9 @@
 #include <windows.h>
 #else
 #include <R_ext/eventloop.h>
+#ifdef GDK_WINDOWING_X11
 #include <gdk/gdkx.h>
+#endif
 #include <unistd.h>
 #include <stdint.h>
 #define CSTACK_DEFNS
@@ -123,6 +125,7 @@ R_gtkInit(long *rargc, char **rargv, Rboolean *success)
   {
     int fds[2];
 
+#ifdef GDK_WINDOWING_X11
     if (!GDK_DISPLAY()) {
       *success = FALSE;
       return;
@@ -131,7 +134,7 @@ R_gtkInit(long *rargc, char **rargv, Rboolean *success)
 
     addInputHandler(R_InputHandlers, ConnectionNumber(GDK_DISPLAY()),
                     R_gtk_eventHandler, -1);
-
+#endif
     /* Experimental timer-based piping to a file descriptor */
 #ifdef G_THREADS_ENABLED
 #ifndef __FreeBSD__
