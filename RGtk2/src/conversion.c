@@ -247,8 +247,6 @@ asCEnum(USER_OBJECT_ s_enum, GType etype)
         evalue = g_enum_get_value_by_name(eclass, ename);
         if (evalue == NULL)
             evalue = g_enum_get_value_by_nick(eclass, ename);
-        if (evalue == NULL)
-            evalue = g_enum_get_value(eclass, atoi(ename));
         if (evalue == NULL) {
           PROBLEM "Could not parse enum value %s", asCString(s_enum)
             ERROR;

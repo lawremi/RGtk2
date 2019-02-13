@@ -12,9 +12,14 @@ function(x)
 as.GdkColor <-
 function(x)
 {
-	if (is.character(x))
-		return(gdkColorParse(x)$color)
-	
+    if (is.character(x)) {
+        stopifnot(length(x) == 1L, !is.na(x))
+        p <- gdkColorParse(x)
+        if (!p$retval) {
+            stop("Failed to parse color: ", x)
+        }
+        return(p$color)
+    }
   if (length(x) == 1) # only one field, must be 'pixel'
     fields <- "pixel"
   else { # otherwise, must have 'rgb' and possibly 'pixel'
