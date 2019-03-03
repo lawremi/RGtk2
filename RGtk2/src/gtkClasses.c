@@ -6,10 +6,12 @@ S_gtk_about_dialog_class_init(GtkAboutDialogClass * c, SEXP e)
   SEXP s;
 
   S_GtkAboutDialog_symbol = install("GtkAboutDialog");
-  s = findVar(S_GtkAboutDialog_symbol, e);
+  s = PROTECT(findVar(S_GtkAboutDialog_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkAboutDialogClass)) = e;
 
   S_gtk_dialog_class_init(((GtkDialogClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -51,10 +53,12 @@ S_gtk_accel_group_class_init(GtkAccelGroupClass * c, SEXP e)
   SEXP s;
 
   S_GtkAccelGroup_symbol = install("GtkAccelGroup");
-  s = findVar(S_GtkAccelGroup_symbol, e);
+  s = PROTECT(findVar(S_GtkAccelGroup_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkAccelGroupClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->accel_changed = S_virtual_gtk_accel_group_accel_changed;
@@ -84,10 +88,12 @@ S_gtk_accel_label_class_init(GtkAccelLabelClass * c, SEXP e)
   SEXP s;
 
   S_GtkAccelLabel_symbol = install("GtkAccelLabel");
-  s = findVar(S_GtkAccelLabel_symbol, e);
+  s = PROTECT(findVar(S_GtkAccelLabel_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkAccelLabelClass)) = e;
 
   S_gtk_label_class_init(((GtkLabelClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -123,10 +129,12 @@ S_gtk_accessible_class_init(GtkAccessibleClass * c, SEXP e)
   SEXP s;
 
   S_GtkAccessible_symbol = install("GtkAccessible");
-  s = findVar(S_GtkAccessible_symbol, e);
+  s = PROTECT(findVar(S_GtkAccessible_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkAccessibleClass)) = e;
 
   S_atk_object_class_init(((AtkObjectClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->connect_widget_destroyed = S_virtual_gtk_accessible_connect_widget_destroyed;
@@ -284,10 +292,12 @@ S_gtk_action_class_init(GtkActionClass * c, SEXP e)
   SEXP s;
 
   S_GtkAction_symbol = install("GtkAction");
-  s = findVar(S_GtkAction_symbol, e);
+  s = PROTECT(findVar(S_GtkAction_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkActionClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->activate = S_virtual_gtk_action_activate;
@@ -412,10 +422,12 @@ S_gtk_action_group_class_init(GtkActionGroupClass * c, SEXP e)
   SEXP s;
 
   S_GtkActionGroup_symbol = install("GtkActionGroup");
-  s = findVar(S_GtkActionGroup_symbol, e);
+  s = PROTECT(findVar(S_GtkActionGroup_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkActionGroupClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->get_action = S_virtual_gtk_action_group_get_action;
@@ -495,10 +507,12 @@ S_gtk_adjustment_class_init(GtkAdjustmentClass * c, SEXP e)
   SEXP s;
 
   S_GtkAdjustment_symbol = install("GtkAdjustment");
-  s = findVar(S_GtkAdjustment_symbol, e);
+  s = PROTECT(findVar(S_GtkAdjustment_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkAdjustmentClass)) = e;
 
   S_gtk_object_class_init(((GtkObjectClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->changed = S_virtual_gtk_adjustment_changed;
@@ -541,10 +555,12 @@ S_gtk_alignment_class_init(GtkAlignmentClass * c, SEXP e)
   SEXP s;
 
   S_GtkAlignment_symbol = install("GtkAlignment");
-  s = findVar(S_GtkAlignment_symbol, e);
+  s = PROTECT(findVar(S_GtkAlignment_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkAlignmentClass)) = e;
 
   S_gtk_bin_class_init(((GtkBinClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -555,10 +571,12 @@ S_gtk_arrow_class_init(GtkArrowClass * c, SEXP e)
   SEXP s;
 
   S_GtkArrow_symbol = install("GtkArrow");
-  s = findVar(S_GtkArrow_symbol, e);
+  s = PROTECT(findVar(S_GtkArrow_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkArrowClass)) = e;
 
   S_gtk_misc_class_init(((GtkMiscClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -569,10 +587,12 @@ S_gtk_aspect_frame_class_init(GtkAspectFrameClass * c, SEXP e)
   SEXP s;
 
   S_GtkAspectFrame_symbol = install("GtkAspectFrame");
-  s = findVar(S_GtkAspectFrame_symbol, e);
+  s = PROTECT(findVar(S_GtkAspectFrame_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkAspectFrameClass)) = e;
 
   S_gtk_frame_class_init(((GtkFrameClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -583,10 +603,12 @@ S_gtk_bin_class_init(GtkBinClass * c, SEXP e)
   SEXP s;
 
   S_GtkBin_symbol = install("GtkBin");
-  s = findVar(S_GtkBin_symbol, e);
+  s = PROTECT(findVar(S_GtkBin_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkBinClass)) = e;
 
   S_gtk_container_class_init(((GtkContainerClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -597,10 +619,12 @@ S_gtk_box_class_init(GtkBoxClass * c, SEXP e)
   SEXP s;
 
   S_GtkBox_symbol = install("GtkBox");
-  s = findVar(S_GtkBox_symbol, e);
+  s = PROTECT(findVar(S_GtkBox_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkBoxClass)) = e;
 
   S_gtk_container_class_init(((GtkContainerClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -761,10 +785,12 @@ S_gtk_button_class_init(GtkButtonClass * c, SEXP e)
   SEXP s;
 
   S_GtkButton_symbol = install("GtkButton");
-  s = findVar(S_GtkButton_symbol, e);
+  s = PROTECT(findVar(S_GtkButton_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkButtonClass)) = e;
 
   S_gtk_bin_class_init(((GtkBinClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->pressed = S_virtual_gtk_button_pressed;
@@ -871,10 +897,12 @@ S_gtk_button_box_class_init(GtkButtonBoxClass * c, SEXP e)
   SEXP s;
 
   S_GtkButtonBox_symbol = install("GtkButtonBox");
-  s = findVar(S_GtkButtonBox_symbol, e);
+  s = PROTECT(findVar(S_GtkButtonBox_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkButtonBoxClass)) = e;
 
   S_gtk_box_class_init(((GtkBoxClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -1060,10 +1088,12 @@ S_gtk_calendar_class_init(GtkCalendarClass * c, SEXP e)
   SEXP s;
 
   S_GtkCalendar_symbol = install("GtkCalendar");
-  s = findVar(S_GtkCalendar_symbol, e);
+  s = PROTECT(findVar(S_GtkCalendar_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkCalendarClass)) = e;
 
   S_gtk_widget_class_init(((GtkWidgetClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->month_changed = S_virtual_gtk_calendar_month_changed;
@@ -1386,10 +1416,12 @@ S_gtk_cell_renderer_class_init(GtkCellRendererClass * c, SEXP e)
   SEXP s;
 
   S_GtkCellRenderer_symbol = install("GtkCellRenderer");
-  s = findVar(S_GtkCellRenderer_symbol, e);
+  s = PROTECT(findVar(S_GtkCellRenderer_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkCellRendererClass)) = e;
 
   S_gtk_object_class_init(((GtkObjectClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->get_size = S_virtual_gtk_cell_renderer_get_size;
@@ -1533,10 +1565,12 @@ S_gtk_cell_renderer_combo_class_init(GtkCellRendererComboClass * c, SEXP e)
   SEXP s;
 
   S_GtkCellRendererCombo_symbol = install("GtkCellRendererCombo");
-  s = findVar(S_GtkCellRendererCombo_symbol, e);
+  s = PROTECT(findVar(S_GtkCellRendererCombo_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkCellRendererComboClass)) = e;
 
   S_gtk_cell_renderer_text_class_init(((GtkCellRendererTextClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -1547,10 +1581,12 @@ S_gtk_cell_renderer_pixbuf_class_init(GtkCellRendererPixbufClass * c, SEXP e)
   SEXP s;
 
   S_GtkCellRendererPixbuf_symbol = install("GtkCellRendererPixbuf");
-  s = findVar(S_GtkCellRendererPixbuf_symbol, e);
+  s = PROTECT(findVar(S_GtkCellRendererPixbuf_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkCellRendererPixbufClass)) = e;
 
   S_gtk_cell_renderer_class_init(((GtkCellRendererClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -1561,10 +1597,12 @@ S_gtk_cell_renderer_progress_class_init(GtkCellRendererProgressClass * c, SEXP e
   SEXP s;
 
   S_GtkCellRendererProgress_symbol = install("GtkCellRendererProgress");
-  s = findVar(S_GtkCellRendererProgress_symbol, e);
+  s = PROTECT(findVar(S_GtkCellRendererProgress_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkCellRendererProgressClass)) = e;
 
   S_gtk_cell_renderer_class_init(((GtkCellRendererClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -1604,10 +1642,12 @@ S_gtk_cell_renderer_text_class_init(GtkCellRendererTextClass * c, SEXP e)
   SEXP s;
 
   S_GtkCellRendererText_symbol = install("GtkCellRendererText");
-  s = findVar(S_GtkCellRendererText_symbol, e);
+  s = PROTECT(findVar(S_GtkCellRendererText_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkCellRendererTextClass)) = e;
 
   S_gtk_cell_renderer_class_init(((GtkCellRendererClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->edited = S_virtual_gtk_cell_renderer_text_edited;
@@ -1663,10 +1703,12 @@ S_gtk_cell_renderer_toggle_class_init(GtkCellRendererToggleClass * c, SEXP e)
   SEXP s;
 
   S_GtkCellRendererToggle_symbol = install("GtkCellRendererToggle");
-  s = findVar(S_GtkCellRendererToggle_symbol, e);
+  s = PROTECT(findVar(S_GtkCellRendererToggle_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkCellRendererToggleClass)) = e;
 
   S_gtk_cell_renderer_class_init(((GtkCellRendererClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->toggled = S_virtual_gtk_cell_renderer_toggle_toggled;
@@ -1694,10 +1736,12 @@ S_gtk_cell_view_class_init(GtkCellViewClass * c, SEXP e)
   SEXP s;
 
   S_GtkCellView_symbol = install("GtkCellView");
-  s = findVar(S_GtkCellView_symbol, e);
+  s = PROTECT(findVar(S_GtkCellView_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkCellViewClass)) = e;
 
   S_gtk_widget_class_init(((GtkWidgetClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -1735,10 +1779,12 @@ S_gtk_check_button_class_init(GtkCheckButtonClass * c, SEXP e)
   SEXP s;
 
   S_GtkCheckButton_symbol = install("GtkCheckButton");
-  s = findVar(S_GtkCheckButton_symbol, e);
+  s = PROTECT(findVar(S_GtkCheckButton_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkCheckButtonClass)) = e;
 
   S_gtk_toggle_button_class_init(((GtkToggleButtonClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->draw_indicator = S_virtual_gtk_check_button_draw_indicator;
@@ -1818,10 +1864,12 @@ S_gtk_check_menu_item_class_init(GtkCheckMenuItemClass * c, SEXP e)
   SEXP s;
 
   S_GtkCheckMenuItem_symbol = install("GtkCheckMenuItem");
-  s = findVar(S_GtkCheckMenuItem_symbol, e);
+  s = PROTECT(findVar(S_GtkCheckMenuItem_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkCheckMenuItemClass)) = e;
 
   S_gtk_menu_item_class_init(((GtkMenuItemClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->toggled = S_virtual_gtk_check_menu_item_toggled;
@@ -2678,10 +2726,12 @@ S_gtk_clist_class_init(GtkCListClass * c, SEXP e)
   SEXP s;
 
   S_GtkCList_symbol = install("GtkCList");
-  s = findVar(S_GtkCList_symbol, e);
+  s = PROTECT(findVar(S_GtkCList_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkCListClass)) = e;
 
   S_gtk_container_class_init(((GtkContainerClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->set_scroll_adjustments = S_virtual_gtk_clist_set_scroll_adjustments;
@@ -3229,10 +3279,12 @@ S_gtk_color_button_class_init(GtkColorButtonClass * c, SEXP e)
   SEXP s;
 
   S_GtkColorButton_symbol = install("GtkColorButton");
-  s = findVar(S_GtkColorButton_symbol, e);
+  s = PROTECT(findVar(S_GtkColorButton_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkColorButtonClass)) = e;
 
   S_gtk_button_class_init(((GtkButtonClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->color_set = S_virtual_gtk_color_button_color_set;
@@ -3284,10 +3336,12 @@ S_gtk_color_selection_class_init(GtkColorSelectionClass * c, SEXP e)
   SEXP s;
 
   S_GtkColorSelection_symbol = install("GtkColorSelection");
-  s = findVar(S_GtkColorSelection_symbol, e);
+  s = PROTECT(findVar(S_GtkColorSelection_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkColorSelectionClass)) = e;
 
   S_gtk_vbox_class_init(((GtkVBoxClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->color_changed = S_virtual_gtk_color_selection_color_changed;
@@ -3314,10 +3368,12 @@ S_gtk_color_selection_dialog_class_init(GtkColorSelectionDialogClass * c, SEXP e
   SEXP s;
 
   S_GtkColorSelectionDialog_symbol = install("GtkColorSelectionDialog");
-  s = findVar(S_GtkColorSelectionDialog_symbol, e);
+  s = PROTECT(findVar(S_GtkColorSelectionDialog_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkColorSelectionDialogClass)) = e;
 
   S_gtk_dialog_class_init(((GtkDialogClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -3328,10 +3384,12 @@ S_gtk_combo_class_init(GtkComboClass * c, SEXP e)
   SEXP s;
 
   S_GtkCombo_symbol = install("GtkCombo");
-  s = findVar(S_GtkCombo_symbol, e);
+  s = PROTECT(findVar(S_GtkCombo_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkComboClass)) = e;
 
   S_gtk_hbox_class_init(((GtkHBoxClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -3393,10 +3451,12 @@ S_gtk_combo_box_class_init(GtkComboBoxClass * c, SEXP e)
   SEXP s;
 
   S_GtkComboBox_symbol = install("GtkComboBox");
-  s = findVar(S_GtkComboBox_symbol, e);
+  s = PROTECT(findVar(S_GtkComboBox_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkComboBoxClass)) = e;
 
   S_gtk_bin_class_init(((GtkBinClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->changed = S_virtual_gtk_combo_box_changed;
@@ -3442,10 +3502,12 @@ S_gtk_combo_box_entry_class_init(GtkComboBoxEntryClass * c, SEXP e)
   SEXP s;
 
   S_GtkComboBoxEntry_symbol = install("GtkComboBoxEntry");
-  s = findVar(S_GtkComboBoxEntry_symbol, e);
+  s = PROTECT(findVar(S_GtkComboBoxEntry_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkComboBoxEntryClass)) = e;
 
   S_gtk_combo_box_class_init(((GtkComboBoxClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -3713,10 +3775,12 @@ S_gtk_container_class_init(GtkContainerClass * c, SEXP e)
   SEXP s;
 
   S_GtkContainer_symbol = install("GtkContainer");
-  s = findVar(S_GtkContainer_symbol, e);
+  s = PROTECT(findVar(S_GtkContainer_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkContainerClass)) = e;
 
   S_gtk_widget_class_init(((GtkWidgetClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->add = S_virtual_gtk_container_add;
@@ -4068,10 +4132,12 @@ S_gtk_ctree_class_init(GtkCTreeClass * c, SEXP e)
   SEXP s;
 
   S_GtkCTree_symbol = install("GtkCTree");
-  s = findVar(S_GtkCTree_symbol, e);
+  s = PROTECT(findVar(S_GtkCTree_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkCTreeClass)) = e;
 
   S_gtk_clist_class_init(((GtkCListClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->tree_select_row = S_virtual_gtk_ctree_tree_select_row;
@@ -4213,10 +4279,12 @@ S_gtk_curve_class_init(GtkCurveClass * c, SEXP e)
   SEXP s;
 
   S_GtkCurve_symbol = install("GtkCurve");
-  s = findVar(S_GtkCurve_symbol, e);
+  s = PROTECT(findVar(S_GtkCurve_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkCurveClass)) = e;
 
   S_gtk_drawing_area_class_init(((GtkDrawingAreaClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->curve_type_changed = S_virtual_gtk_curve_curve_type_changed;
@@ -4295,10 +4363,12 @@ S_gtk_dialog_class_init(GtkDialogClass * c, SEXP e)
   SEXP s;
 
   S_GtkDialog_symbol = install("GtkDialog");
-  s = findVar(S_GtkDialog_symbol, e);
+  s = PROTECT(findVar(S_GtkDialog_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkDialogClass)) = e;
 
   S_gtk_window_class_init(((GtkWindowClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->response = S_virtual_gtk_dialog_response;
@@ -4342,10 +4412,12 @@ S_gtk_drawing_area_class_init(GtkDrawingAreaClass * c, SEXP e)
   SEXP s;
 
   S_GtkDrawingArea_symbol = install("GtkDrawingArea");
-  s = findVar(S_GtkDrawingArea_symbol, e);
+  s = PROTECT(findVar(S_GtkDrawingArea_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkDrawingAreaClass)) = e;
 
   S_gtk_widget_class_init(((GtkWidgetClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -4620,10 +4692,12 @@ S_gtk_entry_class_init(GtkEntryClass * c, SEXP e)
   SEXP s;
 
   S_GtkEntry_symbol = install("GtkEntry");
-  s = findVar(S_GtkEntry_symbol, e);
+  s = PROTECT(findVar(S_GtkEntry_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkEntryClass)) = e;
 
   S_gtk_widget_class_init(((GtkWidgetClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->populate_popup = S_virtual_gtk_entry_populate_popup;
@@ -4886,10 +4960,12 @@ S_gtk_entry_completion_class_init(GtkEntryCompletionClass * c, SEXP e)
   SEXP s;
 
   S_GtkEntryCompletion_symbol = install("GtkEntryCompletion");
-  s = findVar(S_GtkEntryCompletion_symbol, e);
+  s = PROTECT(findVar(S_GtkEntryCompletion_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkEntryCompletionClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->match_selected = S_virtual_gtk_entry_completion_match_selected;
@@ -4956,10 +5032,12 @@ S_gtk_event_box_class_init(GtkEventBoxClass * c, SEXP e)
   SEXP s;
 
   S_GtkEventBox_symbol = install("GtkEventBox");
-  s = findVar(S_GtkEventBox_symbol, e);
+  s = PROTECT(findVar(S_GtkEventBox_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkEventBoxClass)) = e;
 
   S_gtk_bin_class_init(((GtkBinClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -4995,10 +5073,12 @@ S_gtk_expander_class_init(GtkExpanderClass * c, SEXP e)
   SEXP s;
 
   S_GtkExpander_symbol = install("GtkExpander");
-  s = findVar(S_GtkExpander_symbol, e);
+  s = PROTECT(findVar(S_GtkExpander_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkExpanderClass)) = e;
 
   S_gtk_bin_class_init(((GtkBinClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->activate = S_virtual_gtk_expander_activate;
@@ -5025,10 +5105,12 @@ S_gtk_file_chooser_button_class_init(GtkFileChooserButtonClass * c, SEXP e)
   SEXP s;
 
   S_GtkFileChooserButton_symbol = install("GtkFileChooserButton");
-  s = findVar(S_GtkFileChooserButton_symbol, e);
+  s = PROTECT(findVar(S_GtkFileChooserButton_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkFileChooserButtonClass)) = e;
 
   S_gtk_hbox_class_init(((GtkHBoxClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -5039,10 +5121,12 @@ S_gtk_file_chooser_dialog_class_init(GtkFileChooserDialogClass * c, SEXP e)
   SEXP s;
 
   S_GtkFileChooserDialog_symbol = install("GtkFileChooserDialog");
-  s = findVar(S_GtkFileChooserDialog_symbol, e);
+  s = PROTECT(findVar(S_GtkFileChooserDialog_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkFileChooserDialogClass)) = e;
 
   S_gtk_dialog_class_init(((GtkDialogClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -5053,10 +5137,12 @@ S_gtk_file_chooser_widget_class_init(GtkFileChooserWidgetClass * c, SEXP e)
   SEXP s;
 
   S_GtkFileChooserWidget_symbol = install("GtkFileChooserWidget");
-  s = findVar(S_GtkFileChooserWidget_symbol, e);
+  s = PROTECT(findVar(S_GtkFileChooserWidget_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkFileChooserWidgetClass)) = e;
 
   S_gtk_vbox_class_init(((GtkVBoxClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -5067,10 +5153,12 @@ S_gtk_file_selection_class_init(GtkFileSelectionClass * c, SEXP e)
   SEXP s;
 
   S_GtkFileSelection_symbol = install("GtkFileSelection");
-  s = findVar(S_GtkFileSelection_symbol, e);
+  s = PROTECT(findVar(S_GtkFileSelection_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkFileSelectionClass)) = e;
 
   S_gtk_dialog_class_init(((GtkDialogClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -5081,10 +5169,12 @@ S_gtk_fixed_class_init(GtkFixedClass * c, SEXP e)
   SEXP s;
 
   S_GtkFixed_symbol = install("GtkFixed");
-  s = findVar(S_GtkFixed_symbol, e);
+  s = PROTECT(findVar(S_GtkFixed_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkFixedClass)) = e;
 
   S_gtk_container_class_init(((GtkContainerClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -5120,10 +5210,12 @@ S_gtk_font_button_class_init(GtkFontButtonClass * c, SEXP e)
   SEXP s;
 
   S_GtkFontButton_symbol = install("GtkFontButton");
-  s = findVar(S_GtkFontButton_symbol, e);
+  s = PROTECT(findVar(S_GtkFontButton_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkFontButtonClass)) = e;
 
   S_gtk_button_class_init(((GtkButtonClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->font_set = S_virtual_gtk_font_button_font_set;
@@ -5150,10 +5242,12 @@ S_gtk_font_selection_class_init(GtkFontSelectionClass * c, SEXP e)
   SEXP s;
 
   S_GtkFontSelection_symbol = install("GtkFontSelection");
-  s = findVar(S_GtkFontSelection_symbol, e);
+  s = PROTECT(findVar(S_GtkFontSelection_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkFontSelectionClass)) = e;
 
   S_gtk_vbox_class_init(((GtkVBoxClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -5164,10 +5258,12 @@ S_gtk_font_selection_dialog_class_init(GtkFontSelectionDialogClass * c, SEXP e)
   SEXP s;
 
   S_GtkFontSelectionDialog_symbol = install("GtkFontSelectionDialog");
-  s = findVar(S_GtkFontSelectionDialog_symbol, e);
+  s = PROTECT(findVar(S_GtkFontSelectionDialog_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkFontSelectionDialogClass)) = e;
 
   S_gtk_dialog_class_init(((GtkDialogClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -5205,10 +5301,12 @@ S_gtk_frame_class_init(GtkFrameClass * c, SEXP e)
   SEXP s;
 
   S_GtkFrame_symbol = install("GtkFrame");
-  s = findVar(S_GtkFrame_symbol, e);
+  s = PROTECT(findVar(S_GtkFrame_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkFrameClass)) = e;
 
   S_gtk_bin_class_init(((GtkBinClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->compute_child_allocation = S_virtual_gtk_frame_compute_child_allocation;
@@ -5236,10 +5334,12 @@ S_gtk_gamma_curve_class_init(GtkGammaCurveClass * c, SEXP e)
   SEXP s;
 
   S_GtkGammaCurve_symbol = install("GtkGammaCurve");
-  s = findVar(S_GtkGammaCurve_symbol, e);
+  s = PROTECT(findVar(S_GtkGammaCurve_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkGammaCurveClass)) = e;
 
   S_gtk_vbox_class_init(((GtkVBoxClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -5304,10 +5404,12 @@ S_gtk_handle_box_class_init(GtkHandleBoxClass * c, SEXP e)
   SEXP s;
 
   S_GtkHandleBox_symbol = install("GtkHandleBox");
-  s = findVar(S_GtkHandleBox_symbol, e);
+  s = PROTECT(findVar(S_GtkHandleBox_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkHandleBoxClass)) = e;
 
   S_gtk_bin_class_init(((GtkBinClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->child_attached = S_virtual_gtk_handle_box_child_attached;
@@ -5352,10 +5454,12 @@ S_gtk_hbox_class_init(GtkHBoxClass * c, SEXP e)
   SEXP s;
 
   S_GtkHBox_symbol = install("GtkHBox");
-  s = findVar(S_GtkHBox_symbol, e);
+  s = PROTECT(findVar(S_GtkHBox_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkHBoxClass)) = e;
 
   S_gtk_box_class_init(((GtkBoxClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -5366,10 +5470,12 @@ S_gtk_hbutton_box_class_init(GtkHButtonBoxClass * c, SEXP e)
   SEXP s;
 
   S_GtkHButtonBox_symbol = install("GtkHButtonBox");
-  s = findVar(S_GtkHButtonBox_symbol, e);
+  s = PROTECT(findVar(S_GtkHButtonBox_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkHButtonBoxClass)) = e;
 
   S_gtk_button_box_class_init(((GtkButtonBoxClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -5380,10 +5486,12 @@ S_gtk_hpaned_class_init(GtkHPanedClass * c, SEXP e)
   SEXP s;
 
   S_GtkHPaned_symbol = install("GtkHPaned");
-  s = findVar(S_GtkHPaned_symbol, e);
+  s = PROTECT(findVar(S_GtkHPaned_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkHPanedClass)) = e;
 
   S_gtk_paned_class_init(((GtkPanedClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -5394,10 +5502,12 @@ S_gtk_hruler_class_init(GtkHRulerClass * c, SEXP e)
   SEXP s;
 
   S_GtkHRuler_symbol = install("GtkHRuler");
-  s = findVar(S_GtkHRuler_symbol, e);
+  s = PROTECT(findVar(S_GtkHRuler_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkHRulerClass)) = e;
 
   S_gtk_ruler_class_init(((GtkRulerClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -5408,10 +5518,12 @@ S_gtk_hscale_class_init(GtkHScaleClass * c, SEXP e)
   SEXP s;
 
   S_GtkHScale_symbol = install("GtkHScale");
-  s = findVar(S_GtkHScale_symbol, e);
+  s = PROTECT(findVar(S_GtkHScale_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkHScaleClass)) = e;
 
   S_gtk_scale_class_init(((GtkScaleClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -5422,10 +5534,12 @@ S_gtk_hscrollbar_class_init(GtkHScrollbarClass * c, SEXP e)
   SEXP s;
 
   S_GtkHScrollbar_symbol = install("GtkHScrollbar");
-  s = findVar(S_GtkHScrollbar_symbol, e);
+  s = PROTECT(findVar(S_GtkHScrollbar_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkHScrollbarClass)) = e;
 
   S_gtk_scrollbar_class_init(((GtkScrollbarClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -5436,10 +5550,12 @@ S_gtk_hseparator_class_init(GtkHSeparatorClass * c, SEXP e)
   SEXP s;
 
   S_GtkHSeparator_symbol = install("GtkHSeparator");
-  s = findVar(S_GtkHSeparator_symbol, e);
+  s = PROTECT(findVar(S_GtkHSeparator_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkHSeparatorClass)) = e;
 
   S_gtk_separator_class_init(((GtkSeparatorClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -5450,10 +5566,12 @@ S_gtk_icon_factory_class_init(GtkIconFactoryClass * c, SEXP e)
   SEXP s;
 
   S_GtkIconFactory_symbol = install("GtkIconFactory");
-  s = findVar(S_GtkIconFactory_symbol, e);
+  s = PROTECT(findVar(S_GtkIconFactory_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkIconFactoryClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -5489,10 +5607,12 @@ S_gtk_icon_theme_class_init(GtkIconThemeClass * c, SEXP e)
   SEXP s;
 
   S_GtkIconTheme_symbol = install("GtkIconTheme");
-  s = findVar(S_GtkIconTheme_symbol, e);
+  s = PROTECT(findVar(S_GtkIconTheme_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkIconThemeClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->changed = S_virtual_gtk_icon_theme_changed;
@@ -5756,10 +5876,12 @@ S_gtk_icon_view_class_init(GtkIconViewClass * c, SEXP e)
   SEXP s;
 
   S_GtkIconView_symbol = install("GtkIconView");
-  s = findVar(S_GtkIconView_symbol, e);
+  s = PROTECT(findVar(S_GtkIconView_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkIconViewClass)) = e;
 
   S_gtk_container_class_init(((GtkContainerClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->set_scroll_adjustments = S_virtual_gtk_icon_view_set_scroll_adjustments;
@@ -5923,10 +6045,12 @@ S_gtk_image_class_init(GtkImageClass * c, SEXP e)
   SEXP s;
 
   S_GtkImage_symbol = install("GtkImage");
-  s = findVar(S_GtkImage_symbol, e);
+  s = PROTECT(findVar(S_GtkImage_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkImageClass)) = e;
 
   S_gtk_misc_class_init(((GtkMiscClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -5937,10 +6061,12 @@ S_gtk_image_menu_item_class_init(GtkImageMenuItemClass * c, SEXP e)
   SEXP s;
 
   S_GtkImageMenuItem_symbol = install("GtkImageMenuItem");
-  s = findVar(S_GtkImageMenuItem_symbol, e);
+  s = PROTECT(findVar(S_GtkImageMenuItem_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkImageMenuItemClass)) = e;
 
   S_gtk_menu_item_class_init(((GtkMenuItemClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -6380,10 +6506,12 @@ S_gtk_imcontext_class_init(GtkIMContextClass * c, SEXP e)
   SEXP s;
 
   S_GtkIMContext_symbol = install("GtkIMContext");
-  s = findVar(S_GtkIMContext_symbol, e);
+  s = PROTECT(findVar(S_GtkIMContext_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkIMContextClass)) = e;
 
   S_gtk_object_class_init(((GtkObjectClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->preedit_start = S_virtual_gtk_imcontext_preedit_start;
@@ -6682,10 +6810,12 @@ S_gtk_imcontext_simple_class_init(GtkIMContextSimpleClass * c, SEXP e)
   SEXP s;
 
   S_GtkIMContextSimple_symbol = install("GtkIMContextSimple");
-  s = findVar(S_GtkIMContextSimple_symbol, e);
+  s = PROTECT(findVar(S_GtkIMContextSimple_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkIMContextSimpleClass)) = e;
 
   S_gtk_imcontext_class_init(((GtkIMContextClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -6696,10 +6826,12 @@ S_gtk_immulticontext_class_init(GtkIMMulticontextClass * c, SEXP e)
   SEXP s;
 
   S_GtkIMMulticontext_symbol = install("GtkIMMulticontext");
-  s = findVar(S_GtkIMMulticontext_symbol, e);
+  s = PROTECT(findVar(S_GtkIMMulticontext_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkIMMulticontextClass)) = e;
 
   S_gtk_imcontext_class_init(((GtkIMContextClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -6764,10 +6896,12 @@ S_gtk_input_dialog_class_init(GtkInputDialogClass * c, SEXP e)
   SEXP s;
 
   S_GtkInputDialog_symbol = install("GtkInputDialog");
-  s = findVar(S_GtkInputDialog_symbol, e);
+  s = PROTECT(findVar(S_GtkInputDialog_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkInputDialogClass)) = e;
 
   S_gtk_dialog_class_init(((GtkDialogClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->enable_device = S_virtual_gtk_input_dialog_enable_device;
@@ -6812,10 +6946,12 @@ S_gtk_invisible_class_init(GtkInvisibleClass * c, SEXP e)
   SEXP s;
 
   S_GtkInvisible_symbol = install("GtkInvisible");
-  s = findVar(S_GtkInvisible_symbol, e);
+  s = PROTECT(findVar(S_GtkInvisible_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkInvisibleClass)) = e;
 
   S_gtk_widget_class_init(((GtkWidgetClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -6901,10 +7037,12 @@ S_gtk_item_class_init(GtkItemClass * c, SEXP e)
   SEXP s;
 
   S_GtkItem_symbol = install("GtkItem");
-  s = findVar(S_GtkItem_symbol, e);
+  s = PROTECT(findVar(S_GtkItem_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkItemClass)) = e;
 
   S_gtk_bin_class_init(((GtkBinClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->select = S_virtual_gtk_item_select;
@@ -6963,10 +7101,12 @@ S_gtk_item_factory_class_init(GtkItemFactoryClass * c, SEXP e)
   SEXP s;
 
   S_GtkItemFactory_symbol = install("GtkItemFactory");
-  s = findVar(S_GtkItemFactory_symbol, e);
+  s = PROTECT(findVar(S_GtkItemFactory_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkItemFactoryClass)) = e;
 
   S_gtk_object_class_init(((GtkObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -7060,10 +7200,12 @@ S_gtk_label_class_init(GtkLabelClass * c, SEXP e)
   SEXP s;
 
   S_GtkLabel_symbol = install("GtkLabel");
-  s = findVar(S_GtkLabel_symbol, e);
+  s = PROTECT(findVar(S_GtkLabel_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkLabelClass)) = e;
 
   S_gtk_misc_class_init(((GtkMiscClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->move_cursor = S_virtual_gtk_label_move_cursor;
@@ -7155,10 +7297,12 @@ S_gtk_layout_class_init(GtkLayoutClass * c, SEXP e)
   SEXP s;
 
   S_GtkLayout_symbol = install("GtkLayout");
-  s = findVar(S_GtkLayout_symbol, e);
+  s = PROTECT(findVar(S_GtkLayout_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkLayoutClass)) = e;
 
   S_gtk_container_class_init(((GtkContainerClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->set_scroll_adjustments = S_virtual_gtk_layout_set_scroll_adjustments;
@@ -7266,10 +7410,12 @@ S_gtk_list_class_init(GtkListClass * c, SEXP e)
   SEXP s;
 
   S_GtkList_symbol = install("GtkList");
-  s = findVar(S_GtkList_symbol, e);
+  s = PROTECT(findVar(S_GtkList_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkListClass)) = e;
 
   S_gtk_container_class_init(((GtkContainerClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->selection_changed = S_virtual_gtk_list_selection_changed;
@@ -7594,10 +7740,12 @@ S_gtk_list_item_class_init(GtkListItemClass * c, SEXP e)
   SEXP s;
 
   S_GtkListItem_symbol = install("GtkListItem");
-  s = findVar(S_GtkListItem_symbol, e);
+  s = PROTECT(findVar(S_GtkListItem_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkListItemClass)) = e;
 
   S_gtk_item_class_init(((GtkItemClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->toggle_focus_row = S_virtual_gtk_list_item_toggle_focus_row;
@@ -7775,10 +7923,12 @@ S_gtk_list_store_class_init(GtkListStoreClass * c, SEXP e)
   SEXP s;
 
   S_GtkListStore_symbol = install("GtkListStore");
-  s = findVar(S_GtkListStore_symbol, e);
+  s = PROTECT(findVar(S_GtkListStore_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkListStoreClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -7789,10 +7939,12 @@ S_gtk_menu_class_init(GtkMenuClass * c, SEXP e)
   SEXP s;
 
   S_GtkMenu_symbol = install("GtkMenu");
-  s = findVar(S_GtkMenu_symbol, e);
+  s = PROTECT(findVar(S_GtkMenu_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkMenuClass)) = e;
 
   S_gtk_menu_shell_class_init(((GtkMenuShellClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -7803,10 +7955,12 @@ S_gtk_menu_bar_class_init(GtkMenuBarClass * c, SEXP e)
   SEXP s;
 
   S_GtkMenuBar_symbol = install("GtkMenuBar");
-  s = findVar(S_GtkMenuBar_symbol, e);
+  s = PROTECT(findVar(S_GtkMenuBar_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkMenuBarClass)) = e;
 
   S_gtk_menu_shell_class_init(((GtkMenuShellClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -7920,10 +8074,12 @@ S_gtk_menu_item_class_init(GtkMenuItemClass * c, SEXP e)
   SEXP s;
 
   S_GtkMenuItem_symbol = install("GtkMenuItem");
-  s = findVar(S_GtkMenuItem_symbol, e);
+  s = PROTECT(findVar(S_GtkMenuItem_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkMenuItemClass)) = e;
 
   S_gtk_item_class_init(((GtkItemClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->activate = S_virtual_gtk_menu_item_activate;
@@ -8215,10 +8371,12 @@ S_gtk_menu_shell_class_init(GtkMenuShellClass * c, SEXP e)
   SEXP s;
 
   S_GtkMenuShell_symbol = install("GtkMenuShell");
-  s = findVar(S_GtkMenuShell_symbol, e);
+  s = PROTECT(findVar(S_GtkMenuShell_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkMenuShellClass)) = e;
 
   S_gtk_container_class_init(((GtkContainerClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->deactivate = S_virtual_gtk_menu_shell_deactivate;
@@ -8389,10 +8547,12 @@ S_gtk_menu_tool_button_class_init(GtkMenuToolButtonClass * c, SEXP e)
   SEXP s;
 
   S_GtkMenuToolButton_symbol = install("GtkMenuToolButton");
-  s = findVar(S_GtkMenuToolButton_symbol, e);
+  s = PROTECT(findVar(S_GtkMenuToolButton_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkMenuToolButtonClass)) = e;
 
   S_gtk_tool_button_class_init(((GtkToolButtonClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->show_menu = S_virtual_gtk_menu_tool_button_show_menu;
@@ -8419,10 +8579,12 @@ S_gtk_message_dialog_class_init(GtkMessageDialogClass * c, SEXP e)
   SEXP s;
 
   S_GtkMessageDialog_symbol = install("GtkMessageDialog");
-  s = findVar(S_GtkMessageDialog_symbol, e);
+  s = PROTECT(findVar(S_GtkMessageDialog_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkMessageDialogClass)) = e;
 
   S_gtk_dialog_class_init(((GtkDialogClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -8433,10 +8595,12 @@ S_gtk_misc_class_init(GtkMiscClass * c, SEXP e)
   SEXP s;
 
   S_GtkMisc_symbol = install("GtkMisc");
-  s = findVar(S_GtkMisc_symbol, e);
+  s = PROTECT(findVar(S_GtkMisc_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkMiscClass)) = e;
 
   S_gtk_widget_class_init(((GtkWidgetClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -8650,10 +8814,12 @@ S_gtk_notebook_class_init(GtkNotebookClass * c, SEXP e)
   SEXP s;
 
   S_GtkNotebook_symbol = install("GtkNotebook");
-  s = findVar(S_GtkNotebook_symbol, e);
+  s = PROTECT(findVar(S_GtkNotebook_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkNotebookClass)) = e;
 
   S_gtk_container_class_init(((GtkContainerClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->switch_page = S_virtual_gtk_notebook_switch_page;
@@ -8808,10 +8974,12 @@ S_gtk_object_class_init(GtkObjectClass * c, SEXP e)
   SEXP s;
 
   S_GtkObject_symbol = install("GtkObject");
-  s = findVar(S_GtkObject_symbol, e);
+  s = PROTECT(findVar(S_GtkObject_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkObjectClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -9284,10 +9452,12 @@ S_gtk_old_editable_class_init(GtkOldEditableClass * c, SEXP e)
   SEXP s;
 
   S_GtkOldEditable_symbol = install("GtkOldEditable");
-  s = findVar(S_GtkOldEditable_symbol, e);
+  s = PROTECT(findVar(S_GtkOldEditable_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkOldEditableClass)) = e;
 
   S_gtk_widget_class_init(((GtkWidgetClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->activate = S_virtual_gtk_old_editable_activate;
@@ -9616,10 +9786,12 @@ S_gtk_option_menu_class_init(GtkOptionMenuClass * c, SEXP e)
   SEXP s;
 
   S_GtkOptionMenu_symbol = install("GtkOptionMenu");
-  s = findVar(S_GtkOptionMenu_symbol, e);
+  s = PROTECT(findVar(S_GtkOptionMenu_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkOptionMenuClass)) = e;
 
   S_gtk_button_class_init(((GtkButtonClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->changed = S_virtual_gtk_option_menu_changed;
@@ -9808,10 +9980,12 @@ S_gtk_paned_class_init(GtkPanedClass * c, SEXP e)
   SEXP s;
 
   S_GtkPaned_symbol = install("GtkPaned");
-  s = findVar(S_GtkPaned_symbol, e);
+  s = PROTECT(findVar(S_GtkPaned_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkPanedClass)) = e;
 
   S_gtk_container_class_init(((GtkContainerClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->cycle_child_focus = S_virtual_gtk_paned_cycle_child_focus;
@@ -9933,10 +10107,12 @@ S_gtk_pixmap_class_init(GtkPixmapClass * c, SEXP e)
   SEXP s;
 
   S_GtkPixmap_symbol = install("GtkPixmap");
-  s = findVar(S_GtkPixmap_symbol, e);
+  s = PROTECT(findVar(S_GtkPixmap_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkPixmapClass)) = e;
 
   S_gtk_misc_class_init(((GtkMiscClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -9972,10 +10148,12 @@ S_gtk_plug_class_init(GtkPlugClass * c, SEXP e)
   SEXP s;
 
   S_GtkPlug_symbol = install("GtkPlug");
-  s = findVar(S_GtkPlug_symbol, e);
+  s = PROTECT(findVar(S_GtkPlug_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkPlugClass)) = e;
 
   S_gtk_window_class_init(((GtkWindowClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->embedded = S_virtual_gtk_plug_embedded;
@@ -10002,10 +10180,12 @@ S_gtk_preview_class_init(GtkPreviewClass * c, SEXP e)
   SEXP s;
 
   S_GtkPreview_symbol = install("GtkPreview");
-  s = findVar(S_GtkPreview_symbol, e);
+  s = PROTECT(findVar(S_GtkPreview_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkPreviewClass)) = e;
 
   S_gtk_widget_class_init(((GtkWidgetClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -10091,10 +10271,12 @@ S_gtk_progress_class_init(GtkProgressClass * c, SEXP e)
   SEXP s;
 
   S_GtkProgress_symbol = install("GtkProgress");
-  s = findVar(S_GtkProgress_symbol, e);
+  s = PROTECT(findVar(S_GtkProgress_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkProgressClass)) = e;
 
   S_gtk_widget_class_init(((GtkWidgetClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->paint = S_virtual_gtk_progress_paint;
@@ -10153,10 +10335,12 @@ S_gtk_progress_bar_class_init(GtkProgressBarClass * c, SEXP e)
   SEXP s;
 
   S_GtkProgressBar_symbol = install("GtkProgressBar");
-  s = findVar(S_GtkProgressBar_symbol, e);
+  s = PROTECT(findVar(S_GtkProgressBar_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkProgressBarClass)) = e;
 
   S_gtk_progress_class_init(((GtkProgressClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -10194,10 +10378,12 @@ S_gtk_radio_action_class_init(GtkRadioActionClass * c, SEXP e)
   SEXP s;
 
   S_GtkRadioAction_symbol = install("GtkRadioAction");
-  s = findVar(S_GtkRadioAction_symbol, e);
+  s = PROTECT(findVar(S_GtkRadioAction_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkRadioActionClass)) = e;
 
   S_gtk_toggle_action_class_init(((GtkToggleActionClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->changed = S_virtual_gtk_radio_action_changed;
@@ -10250,10 +10436,12 @@ S_gtk_radio_button_class_init(GtkRadioButtonClass * c, SEXP e)
   SEXP s;
 
   S_GtkRadioButton_symbol = install("GtkRadioButton");
-  s = findVar(S_GtkRadioButton_symbol, e);
+  s = PROTECT(findVar(S_GtkRadioButton_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkRadioButtonClass)) = e;
 
   S_gtk_check_button_class_init(((GtkCheckButtonClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->group_changed = S_virtual_gtk_radio_button_group_changed;
@@ -10305,10 +10493,12 @@ S_gtk_radio_menu_item_class_init(GtkRadioMenuItemClass * c, SEXP e)
   SEXP s;
 
   S_GtkRadioMenuItem_symbol = install("GtkRadioMenuItem");
-  s = findVar(S_GtkRadioMenuItem_symbol, e);
+  s = PROTECT(findVar(S_GtkRadioMenuItem_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkRadioMenuItemClass)) = e;
 
   S_gtk_check_menu_item_class_init(((GtkCheckMenuItemClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->group_changed = S_virtual_gtk_radio_menu_item_group_changed;
@@ -10335,10 +10525,12 @@ S_gtk_radio_tool_button_class_init(GtkRadioToolButtonClass * c, SEXP e)
   SEXP s;
 
   S_GtkRadioToolButton_symbol = install("GtkRadioToolButton");
-  s = findVar(S_GtkRadioToolButton_symbol, e);
+  s = PROTECT(findVar(S_GtkRadioToolButton_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkRadioToolButtonClass)) = e;
 
   S_gtk_toggle_tool_button_class_init(((GtkToggleToolButtonClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -10485,10 +10677,12 @@ S_gtk_range_class_init(GtkRangeClass * c, SEXP e)
   SEXP s;
 
   S_GtkRange_symbol = install("GtkRange");
-  s = findVar(S_GtkRange_symbol, e);
+  s = PROTECT(findVar(S_GtkRange_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkRangeClass)) = e;
 
   S_gtk_widget_class_init(((GtkWidgetClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->value_changed = S_virtual_gtk_range_value_changed;
@@ -10695,10 +10889,12 @@ S_gtk_rc_style_class_init(GtkRcStyleClass * c, SEXP e)
   SEXP s;
 
   S_GtkRcStyle_symbol = install("GtkRcStyle");
-  s = findVar(S_GtkRcStyle_symbol, e);
+  s = PROTECT(findVar(S_GtkRcStyle_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkRcStyleClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->create_rc_style = S_virtual_gtk_rc_style_create_rc_style;
@@ -10832,10 +11028,12 @@ S_gtk_ruler_class_init(GtkRulerClass * c, SEXP e)
   SEXP s;
 
   S_GtkRuler_symbol = install("GtkRuler");
-  s = findVar(S_GtkRuler_symbol, e);
+  s = PROTECT(findVar(S_GtkRuler_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkRulerClass)) = e;
 
   S_gtk_widget_class_init(((GtkWidgetClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->draw_ticks = S_virtual_gtk_ruler_draw_ticks;
@@ -10958,10 +11156,12 @@ S_gtk_scale_class_init(GtkScaleClass * c, SEXP e)
   SEXP s;
 
   S_GtkScale_symbol = install("GtkScale");
-  s = findVar(S_GtkScale_symbol, e);
+  s = PROTECT(findVar(S_GtkScale_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkScaleClass)) = e;
 
   S_gtk_range_class_init(((GtkRangeClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->format_value = S_virtual_gtk_scale_format_value;
@@ -11031,10 +11231,12 @@ S_gtk_scrollbar_class_init(GtkScrollbarClass * c, SEXP e)
   SEXP s;
 
   S_GtkScrollbar_symbol = install("GtkScrollbar");
-  s = findVar(S_GtkScrollbar_symbol, e);
+  s = PROTECT(findVar(S_GtkScrollbar_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkScrollbarClass)) = e;
 
   S_gtk_range_class_init(((GtkRangeClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -11101,10 +11303,12 @@ S_gtk_scrolled_window_class_init(GtkScrolledWindowClass * c, SEXP e)
   SEXP s;
 
   S_GtkScrolledWindow_symbol = install("GtkScrolledWindow");
-  s = findVar(S_GtkScrolledWindow_symbol, e);
+  s = PROTECT(findVar(S_GtkScrolledWindow_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkScrolledWindowClass)) = e;
 
   S_gtk_bin_class_init(((GtkBinClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->scroll_child = S_virtual_gtk_scrolled_window_scroll_child;
@@ -11150,10 +11354,12 @@ S_gtk_separator_class_init(GtkSeparatorClass * c, SEXP e)
   SEXP s;
 
   S_GtkSeparator_symbol = install("GtkSeparator");
-  s = findVar(S_GtkSeparator_symbol, e);
+  s = PROTECT(findVar(S_GtkSeparator_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkSeparatorClass)) = e;
 
   S_gtk_widget_class_init(((GtkWidgetClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -11164,10 +11370,12 @@ S_gtk_separator_menu_item_class_init(GtkSeparatorMenuItemClass * c, SEXP e)
   SEXP s;
 
   S_GtkSeparatorMenuItem_symbol = install("GtkSeparatorMenuItem");
-  s = findVar(S_GtkSeparatorMenuItem_symbol, e);
+  s = PROTECT(findVar(S_GtkSeparatorMenuItem_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkSeparatorMenuItemClass)) = e;
 
   S_gtk_menu_item_class_init(((GtkMenuItemClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -11178,10 +11386,12 @@ S_gtk_separator_tool_item_class_init(GtkSeparatorToolItemClass * c, SEXP e)
   SEXP s;
 
   S_GtkSeparatorToolItem_symbol = install("GtkSeparatorToolItem");
-  s = findVar(S_GtkSeparatorToolItem_symbol, e);
+  s = PROTECT(findVar(S_GtkSeparatorToolItem_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkSeparatorToolItemClass)) = e;
 
   S_gtk_tool_item_class_init(((GtkToolItemClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -11192,10 +11402,12 @@ S_gtk_settings_class_init(GtkSettingsClass * c, SEXP e)
   SEXP s;
 
   S_GtkSettings_symbol = install("GtkSettings");
-  s = findVar(S_GtkSettings_symbol, e);
+  s = PROTECT(findVar(S_GtkSettings_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkSettingsClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -11206,10 +11418,12 @@ S_gtk_size_group_class_init(GtkSizeGroupClass * c, SEXP e)
   SEXP s;
 
   S_GtkSizeGroup_symbol = install("GtkSizeGroup");
-  s = findVar(S_GtkSizeGroup_symbol, e);
+  s = PROTECT(findVar(S_GtkSizeGroup_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkSizeGroupClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -11271,10 +11485,12 @@ S_gtk_socket_class_init(GtkSocketClass * c, SEXP e)
   SEXP s;
 
   S_GtkSocket_symbol = install("GtkSocket");
-  s = findVar(S_GtkSocket_symbol, e);
+  s = PROTECT(findVar(S_GtkSocket_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkSocketClass)) = e;
 
   S_gtk_container_class_init(((GtkContainerClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->plug_added = S_virtual_gtk_socket_plug_added;
@@ -11449,10 +11665,12 @@ S_gtk_spin_button_class_init(GtkSpinButtonClass * c, SEXP e)
   SEXP s;
 
   S_GtkSpinButton_symbol = install("GtkSpinButton");
-  s = findVar(S_GtkSpinButton_symbol, e);
+  s = PROTECT(findVar(S_GtkSpinButton_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkSpinButtonClass)) = e;
 
   S_gtk_entry_class_init(((GtkEntryClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->input = S_virtual_gtk_spin_button_input;
@@ -11617,10 +11835,12 @@ S_gtk_statusbar_class_init(GtkStatusbarClass * c, SEXP e)
   SEXP s;
 
   S_GtkStatusbar_symbol = install("GtkStatusbar");
-  s = findVar(S_GtkStatusbar_symbol, e);
+  s = PROTECT(findVar(S_GtkStatusbar_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkStatusbarClass)) = e;
 
   S_gtk_hbox_class_init(((GtkHBoxClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->text_pushed = S_virtual_gtk_statusbar_text_pushed;
@@ -12809,10 +13029,12 @@ S_gtk_style_class_init(GtkStyleClass * c, SEXP e)
   SEXP s;
 
   S_GtkStyle_symbol = install("GtkStyle");
-  s = findVar(S_GtkStyle_symbol, e);
+  s = PROTECT(findVar(S_GtkStyle_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkStyleClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->realize = S_virtual_gtk_style_realize;
@@ -13495,10 +13717,12 @@ S_gtk_table_class_init(GtkTableClass * c, SEXP e)
   SEXP s;
 
   S_GtkTable_symbol = install("GtkTable");
-  s = findVar(S_GtkTable_symbol, e);
+  s = PROTECT(findVar(S_GtkTable_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkTableClass)) = e;
 
   S_gtk_container_class_init(((GtkContainerClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -13509,10 +13733,12 @@ S_gtk_tearoff_menu_item_class_init(GtkTearoffMenuItemClass * c, SEXP e)
   SEXP s;
 
   S_GtkTearoffMenuItem_symbol = install("GtkTearoffMenuItem");
-  s = findVar(S_GtkTearoffMenuItem_symbol, e);
+  s = PROTECT(findVar(S_GtkTearoffMenuItem_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkTearoffMenuItemClass)) = e;
 
   S_gtk_menu_item_class_init(((GtkMenuItemClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -13859,10 +14085,12 @@ S_gtk_text_buffer_class_init(GtkTextBufferClass * c, SEXP e)
   SEXP s;
 
   S_GtkTextBuffer_symbol = install("GtkTextBuffer");
-  s = findVar(S_GtkTextBuffer_symbol, e);
+  s = PROTECT(findVar(S_GtkTextBuffer_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkTextBufferClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->insert_text = S_virtual_gtk_text_buffer_insert_text;
@@ -14083,10 +14311,12 @@ S_gtk_text_child_anchor_class_init(GtkTextChildAnchorClass * c, SEXP e)
   SEXP s;
 
   S_GtkTextChildAnchor_symbol = install("GtkTextChildAnchor");
-  s = findVar(S_GtkTextChildAnchor_symbol, e);
+  s = PROTECT(findVar(S_GtkTextChildAnchor_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkTextChildAnchorClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -14097,10 +14327,12 @@ S_gtk_text_mark_class_init(GtkTextMarkClass * c, SEXP e)
   SEXP s;
 
   S_GtkTextMark_symbol = install("GtkTextMark");
-  s = findVar(S_GtkTextMark_symbol, e);
+  s = PROTECT(findVar(S_GtkTextMark_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkTextMarkClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -14143,10 +14375,12 @@ S_gtk_text_tag_class_init(GtkTextTagClass * c, SEXP e)
   SEXP s;
 
   S_GtkTextTag_symbol = install("GtkTextTag");
-  s = findVar(S_GtkTextTag_symbol, e);
+  s = PROTECT(findVar(S_GtkTextTag_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkTextTagClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->event = S_virtual_gtk_text_tag_event;
@@ -14261,10 +14495,12 @@ S_gtk_text_tag_table_class_init(GtkTextTagTableClass * c, SEXP e)
   SEXP s;
 
   S_GtkTextTagTable_symbol = install("GtkTextTagTable");
-  s = findVar(S_GtkTextTagTable_symbol, e);
+  s = PROTECT(findVar(S_GtkTextTagTable_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkTextTagTableClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->tag_changed = S_virtual_gtk_text_tag_table_tag_changed;
@@ -14676,10 +14912,12 @@ S_gtk_text_view_class_init(GtkTextViewClass * c, SEXP e)
   SEXP s;
 
   S_GtkTextView_symbol = install("GtkTextView");
-  s = findVar(S_GtkTextView_symbol, e);
+  s = PROTECT(findVar(S_GtkTextView_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkTextViewClass)) = e;
 
   S_gtk_container_class_init(((GtkContainerClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->set_scroll_adjustments = S_virtual_gtk_text_view_set_scroll_adjustments;
@@ -15025,10 +15263,12 @@ S_gtk_tips_query_class_init(GtkTipsQueryClass * c, SEXP e)
   SEXP s;
 
   S_GtkTipsQuery_symbol = install("GtkTipsQuery");
-  s = findVar(S_GtkTipsQuery_symbol, e);
+  s = PROTECT(findVar(S_GtkTipsQuery_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkTipsQueryClass)) = e;
 
   S_gtk_label_class_init(((GtkLabelClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->start_query = S_virtual_gtk_tips_query_start_query;
@@ -15137,10 +15377,12 @@ S_gtk_toggle_action_class_init(GtkToggleActionClass * c, SEXP e)
   SEXP s;
 
   S_GtkToggleAction_symbol = install("GtkToggleAction");
-  s = findVar(S_GtkToggleAction_symbol, e);
+  s = PROTECT(findVar(S_GtkToggleAction_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkToggleActionClass)) = e;
 
   S_gtk_action_class_init(((GtkActionClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->toggled = S_virtual_gtk_toggle_action_toggled;
@@ -15192,10 +15434,12 @@ S_gtk_toggle_button_class_init(GtkToggleButtonClass * c, SEXP e)
   SEXP s;
 
   S_GtkToggleButton_symbol = install("GtkToggleButton");
-  s = findVar(S_GtkToggleButton_symbol, e);
+  s = PROTECT(findVar(S_GtkToggleButton_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkToggleButtonClass)) = e;
 
   S_gtk_button_class_init(((GtkButtonClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->toggled = S_virtual_gtk_toggle_button_toggled;
@@ -15247,10 +15491,12 @@ S_gtk_toggle_tool_button_class_init(GtkToggleToolButtonClass * c, SEXP e)
   SEXP s;
 
   S_GtkToggleToolButton_symbol = install("GtkToggleToolButton");
-  s = findVar(S_GtkToggleToolButton_symbol, e);
+  s = PROTECT(findVar(S_GtkToggleToolButton_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkToggleToolButtonClass)) = e;
 
   S_gtk_tool_button_class_init(((GtkToolButtonClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->toggled = S_virtual_gtk_toggle_tool_button_toggled;
@@ -15363,10 +15609,12 @@ S_gtk_toolbar_class_init(GtkToolbarClass * c, SEXP e)
   SEXP s;
 
   S_GtkToolbar_symbol = install("GtkToolbar");
-  s = findVar(S_GtkToolbar_symbol, e);
+  s = PROTECT(findVar(S_GtkToolbar_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkToolbarClass)) = e;
 
   S_gtk_container_class_init(((GtkContainerClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->orientation_changed = S_virtual_gtk_toolbar_orientation_changed;
@@ -15457,10 +15705,12 @@ S_gtk_tool_button_class_init(GtkToolButtonClass * c, SEXP e)
   SEXP s;
 
   S_GtkToolButton_symbol = install("GtkToolButton");
-  s = findVar(S_GtkToolButton_symbol, e);
+  s = PROTECT(findVar(S_GtkToolButton_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkToolButtonClass)) = e;
 
   S_gtk_tool_item_class_init(((GtkToolItemClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->clicked = S_virtual_gtk_tool_button_clicked;
@@ -15570,10 +15820,12 @@ S_gtk_tool_item_class_init(GtkToolItemClass * c, SEXP e)
   SEXP s;
 
   S_GtkToolItem_symbol = install("GtkToolItem");
-  s = findVar(S_GtkToolItem_symbol, e);
+  s = PROTECT(findVar(S_GtkToolItem_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkToolItemClass)) = e;
 
   S_gtk_bin_class_init(((GtkBinClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->create_menu_proxy = S_virtual_gtk_tool_item_create_menu_proxy;
@@ -15639,10 +15891,12 @@ S_gtk_tooltips_class_init(GtkTooltipsClass * c, SEXP e)
   SEXP s;
 
   S_GtkTooltips_symbol = install("GtkTooltips");
-  s = findVar(S_GtkTooltips_symbol, e);
+  s = PROTECT(findVar(S_GtkTooltips_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkTooltipsClass)) = e;
 
   S_gtk_object_class_init(((GtkObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -15653,10 +15907,12 @@ S_gtk_tree_model_filter_class_init(GtkTreeModelFilterClass * c, SEXP e)
   SEXP s;
 
   S_GtkTreeModelFilter_symbol = install("GtkTreeModelFilter");
-  s = findVar(S_GtkTreeModelFilter_symbol, e);
+  s = PROTECT(findVar(S_GtkTreeModelFilter_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkTreeModelFilterClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -15667,10 +15923,12 @@ S_gtk_tree_model_sort_class_init(GtkTreeModelSortClass * c, SEXP e)
   SEXP s;
 
   S_GtkTreeModelSort_symbol = install("GtkTreeModelSort");
-  s = findVar(S_GtkTreeModelSort_symbol, e);
+  s = PROTECT(findVar(S_GtkTreeModelSort_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkTreeModelSortClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -15706,10 +15964,12 @@ S_gtk_tree_selection_class_init(GtkTreeSelectionClass * c, SEXP e)
   SEXP s;
 
   S_GtkTreeSelection_symbol = install("GtkTreeSelection");
-  s = findVar(S_GtkTreeSelection_symbol, e);
+  s = PROTECT(findVar(S_GtkTreeSelection_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkTreeSelectionClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->changed = S_virtual_gtk_tree_selection_changed;
@@ -15736,10 +15996,12 @@ S_gtk_tree_store_class_init(GtkTreeStoreClass * c, SEXP e)
   SEXP s;
 
   S_GtkTreeStore_symbol = install("GtkTreeStore");
-  s = findVar(S_GtkTreeStore_symbol, e);
+  s = PROTECT(findVar(S_GtkTreeStore_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkTreeStoreClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -16196,10 +16458,12 @@ S_gtk_tree_view_class_init(GtkTreeViewClass * c, SEXP e)
   SEXP s;
 
   S_GtkTreeView_symbol = install("GtkTreeView");
-  s = findVar(S_GtkTreeView_symbol, e);
+  s = PROTECT(findVar(S_GtkTreeView_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkTreeViewClass)) = e;
 
   S_gtk_container_class_init(((GtkContainerClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->set_scroll_adjustments = S_virtual_gtk_tree_view_set_scroll_adjustments;
@@ -16529,10 +16793,12 @@ S_gtk_tree_view_column_class_init(GtkTreeViewColumnClass * c, SEXP e)
   SEXP s;
 
   S_GtkTreeViewColumn_symbol = install("GtkTreeViewColumn");
-  s = findVar(S_GtkTreeViewColumn_symbol, e);
+  s = PROTECT(findVar(S_GtkTreeViewColumn_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkTreeViewColumnClass)) = e;
 
   S_gtk_object_class_init(((GtkObjectClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->clicked = S_virtual_gtk_tree_view_column_clicked;
@@ -16779,10 +17045,12 @@ S_gtk_uimanager_class_init(GtkUIManagerClass * c, SEXP e)
   SEXP s;
 
   S_GtkUIManager_symbol = install("GtkUIManager");
-  s = findVar(S_GtkUIManager_symbol, e);
+  s = PROTECT(findVar(S_GtkUIManager_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkUIManagerClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->add_widget = S_virtual_gtk_uimanager_add_widget;
@@ -16934,10 +17202,12 @@ S_gtk_vbox_class_init(GtkVBoxClass * c, SEXP e)
   SEXP s;
 
   S_GtkVBox_symbol = install("GtkVBox");
-  s = findVar(S_GtkVBox_symbol, e);
+  s = PROTECT(findVar(S_GtkVBox_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkVBoxClass)) = e;
 
   S_gtk_box_class_init(((GtkBoxClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -16948,10 +17218,12 @@ S_gtk_vbutton_box_class_init(GtkVButtonBoxClass * c, SEXP e)
   SEXP s;
 
   S_GtkVButtonBox_symbol = install("GtkVButtonBox");
-  s = findVar(S_GtkVButtonBox_symbol, e);
+  s = PROTECT(findVar(S_GtkVButtonBox_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkVButtonBoxClass)) = e;
 
   S_gtk_button_box_class_init(((GtkButtonBoxClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -16991,10 +17263,12 @@ S_gtk_viewport_class_init(GtkViewportClass * c, SEXP e)
   SEXP s;
 
   S_GtkViewport_symbol = install("GtkViewport");
-  s = findVar(S_GtkViewport_symbol, e);
+  s = PROTECT(findVar(S_GtkViewport_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkViewportClass)) = e;
 
   S_gtk_bin_class_init(((GtkBinClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->set_scroll_adjustments = S_virtual_gtk_viewport_set_scroll_adjustments;
@@ -17023,10 +17297,12 @@ S_gtk_vpaned_class_init(GtkVPanedClass * c, SEXP e)
   SEXP s;
 
   S_GtkVPaned_symbol = install("GtkVPaned");
-  s = findVar(S_GtkVPaned_symbol, e);
+  s = PROTECT(findVar(S_GtkVPaned_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkVPanedClass)) = e;
 
   S_gtk_paned_class_init(((GtkPanedClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -17037,10 +17313,12 @@ S_gtk_vruler_class_init(GtkVRulerClass * c, SEXP e)
   SEXP s;
 
   S_GtkVRuler_symbol = install("GtkVRuler");
-  s = findVar(S_GtkVRuler_symbol, e);
+  s = PROTECT(findVar(S_GtkVRuler_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkVRulerClass)) = e;
 
   S_gtk_ruler_class_init(((GtkRulerClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -17051,10 +17329,12 @@ S_gtk_vscale_class_init(GtkVScaleClass * c, SEXP e)
   SEXP s;
 
   S_GtkVScale_symbol = install("GtkVScale");
-  s = findVar(S_GtkVScale_symbol, e);
+  s = PROTECT(findVar(S_GtkVScale_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkVScaleClass)) = e;
 
   S_gtk_scale_class_init(((GtkScaleClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -17065,10 +17345,12 @@ S_gtk_vscrollbar_class_init(GtkVScrollbarClass * c, SEXP e)
   SEXP s;
 
   S_GtkVScrollbar_symbol = install("GtkVScrollbar");
-  s = findVar(S_GtkVScrollbar_symbol, e);
+  s = PROTECT(findVar(S_GtkVScrollbar_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkVScrollbarClass)) = e;
 
   S_gtk_scrollbar_class_init(((GtkScrollbarClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -17079,10 +17361,12 @@ S_gtk_vseparator_class_init(GtkVSeparatorClass * c, SEXP e)
   SEXP s;
 
   S_GtkVSeparator_symbol = install("GtkVSeparator");
-  s = findVar(S_GtkVSeparator_symbol, e);
+  s = PROTECT(findVar(S_GtkVSeparator_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkVSeparatorClass)) = e;
 
   S_gtk_separator_class_init(((GtkSeparatorClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -18898,10 +19182,12 @@ S_gtk_widget_class_init(GtkWidgetClass * c, SEXP e)
   SEXP s;
 
   S_GtkWidget_symbol = install("GtkWidget");
-  s = findVar(S_GtkWidget_symbol, e);
+  s = PROTECT(findVar(S_GtkWidget_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkWidgetClass)) = e;
 
   S_gtk_object_class_init(((GtkObjectClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->dispatch_child_properties_changed = S_virtual_gtk_widget_dispatch_child_properties_changed;
@@ -20260,10 +20546,12 @@ S_gtk_window_class_init(GtkWindowClass * c, SEXP e)
   SEXP s;
 
   S_GtkWindow_symbol = install("GtkWindow");
-  s = findVar(S_GtkWindow_symbol, e);
+  s = PROTECT(findVar(S_GtkWindow_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkWindowClass)) = e;
 
   S_gtk_bin_class_init(((GtkBinClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->set_focus = S_virtual_gtk_window_set_focus;
@@ -20375,10 +20663,12 @@ S_gtk_window_group_class_init(GtkWindowGroupClass * c, SEXP e)
   SEXP s;
 
   S_GtkWindowGroup_symbol = install("GtkWindowGroup");
-  s = findVar(S_GtkWindowGroup_symbol, e);
+  s = PROTECT(findVar(S_GtkWindowGroup_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkWindowGroupClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -20450,10 +20740,12 @@ S_gtk_cell_renderer_accel_class_init(GtkCellRendererAccelClass * c, SEXP e)
   SEXP s;
 
   S_GtkCellRendererAccel_symbol = install("GtkCellRendererAccel");
-  s = findVar(S_GtkCellRendererAccel_symbol, e);
+  s = PROTECT(findVar(S_GtkCellRendererAccel_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkCellRendererAccelClass)) = e;
 
   S_gtk_cell_renderer_text_class_init(((GtkCellRendererTextClass *)c), e);
+
+  UNPROTECT(1);
 
 #if GTK_CHECK_VERSION(2, 10, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -20515,10 +20807,12 @@ S_gtk_cell_renderer_spin_class_init(GtkCellRendererSpinClass * c, SEXP e)
   SEXP s;
 
   S_GtkCellRendererSpin_symbol = install("GtkCellRendererSpin");
-  s = findVar(S_GtkCellRendererSpin_symbol, e);
+  s = PROTECT(findVar(S_GtkCellRendererSpin_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkCellRendererSpinClass)) = e;
 
   S_gtk_cell_renderer_text_class_init(((GtkCellRendererTextClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -20810,10 +21104,12 @@ S_gtk_print_operation_class_init(GtkPrintOperationClass * c, SEXP e)
   SEXP s;
 
   S_GtkPrintOperation_symbol = install("GtkPrintOperation");
-  s = findVar(S_GtkPrintOperation_symbol, e);
+  s = PROTECT(findVar(S_GtkPrintOperation_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkPrintOperationClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 #if GTK_CHECK_VERSION(2, 10, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -21090,10 +21386,12 @@ S_gtk_recent_manager_class_init(GtkRecentManagerClass * c, SEXP e)
   SEXP s;
 
   S_GtkRecentManager_symbol = install("GtkRecentManager");
-  s = findVar(S_GtkRecentManager_symbol, e);
+  s = PROTECT(findVar(S_GtkRecentManager_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkRecentManagerClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 #if GTK_CHECK_VERSION(2, 10, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -21210,10 +21508,12 @@ S_gtk_status_icon_class_init(GtkStatusIconClass * c, SEXP e)
   SEXP s;
 
   S_GtkStatusIcon_symbol = install("GtkStatusIcon");
-  s = findVar(S_GtkStatusIcon_symbol, e);
+  s = PROTECT(findVar(S_GtkStatusIcon_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkStatusIconClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 #if GTK_CHECK_VERSION(2, 10, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -21297,10 +21597,12 @@ S_gtk_recent_chooser_menu_class_init(GtkRecentChooserMenuClass * c, SEXP e)
   SEXP s;
 
   S_GtkRecentChooserMenu_symbol = install("GtkRecentChooserMenu");
-  s = findVar(S_GtkRecentChooserMenu_symbol, e);
+  s = PROTECT(findVar(S_GtkRecentChooserMenu_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkRecentChooserMenuClass)) = e;
 
   S_gtk_menu_class_init(((GtkMenuClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -21313,10 +21615,12 @@ S_gtk_link_button_class_init(GtkLinkButtonClass * c, SEXP e)
   SEXP s;
 
   S_GtkLinkButton_symbol = install("GtkLinkButton");
-  s = findVar(S_GtkLinkButton_symbol, e);
+  s = PROTECT(findVar(S_GtkLinkButton_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkLinkButtonClass)) = e;
 
   S_gtk_button_class_init(((GtkButtonClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -21329,10 +21633,12 @@ S_gtk_recent_chooser_widget_class_init(GtkRecentChooserWidgetClass * c, SEXP e)
   SEXP s;
 
   S_GtkRecentChooserWidget_symbol = install("GtkRecentChooserWidget");
-  s = findVar(S_GtkRecentChooserWidget_symbol, e);
+  s = PROTECT(findVar(S_GtkRecentChooserWidget_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkRecentChooserWidgetClass)) = e;
 
   S_gtk_vbox_class_init(((GtkVBoxClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -21345,10 +21651,12 @@ S_gtk_recent_chooser_dialog_class_init(GtkRecentChooserDialogClass * c, SEXP e)
   SEXP s;
 
   S_GtkRecentChooserDialog_symbol = install("GtkRecentChooserDialog");
-  s = findVar(S_GtkRecentChooserDialog_symbol, e);
+  s = PROTECT(findVar(S_GtkRecentChooserDialog_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkRecentChooserDialogClass)) = e;
 
   S_gtk_dialog_class_init(((GtkDialogClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -21463,10 +21771,12 @@ S_gtk_assistant_class_init(GtkAssistantClass * c, SEXP e)
   SEXP s;
 
   S_GtkAssistant_symbol = install("GtkAssistant");
-  s = findVar(S_GtkAssistant_symbol, e);
+  s = PROTECT(findVar(S_GtkAssistant_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkAssistantClass)) = e;
 
   S_gtk_window_class_init(((GtkWindowClass *)c), e);
+
+  UNPROTECT(1);
 
 #if GTK_CHECK_VERSION(2, 10, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -21596,10 +21906,12 @@ S_gtk_builder_class_init(GtkBuilderClass * c, SEXP e)
   SEXP s;
 
   S_GtkBuilder_symbol = install("GtkBuilder");
-  s = findVar(S_GtkBuilder_symbol, e);
+  s = PROTECT(findVar(S_GtkBuilder_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkBuilderClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 #if GTK_CHECK_VERSION(2, 12, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -21637,10 +21949,12 @@ S_gtk_recent_action_class_init(GtkRecentActionClass * c, SEXP e)
   SEXP s;
 
   S_GtkRecentAction_symbol = install("GtkRecentAction");
-  s = findVar(S_GtkRecentAction_symbol, e);
+  s = PROTECT(findVar(S_GtkRecentAction_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkRecentActionClass)) = e;
 
   S_gtk_action_class_init(((GtkActionClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -21653,10 +21967,12 @@ S_gtk_scale_button_class_init(GtkScaleButtonClass * c, SEXP e)
   SEXP s;
 
   S_GtkScaleButton_symbol = install("GtkScaleButton");
-  s = findVar(S_GtkScaleButton_symbol, e);
+  s = PROTECT(findVar(S_GtkScaleButton_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkScaleButtonClass)) = e;
 
   S_gtk_button_class_init(((GtkButtonClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -21669,10 +21985,12 @@ S_gtk_volume_button_class_init(GtkVolumeButtonClass * c, SEXP e)
   SEXP s;
 
   S_GtkVolumeButton_symbol = install("GtkVolumeButton");
-  s = findVar(S_GtkVolumeButton_symbol, e);
+  s = PROTECT(findVar(S_GtkVolumeButton_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkVolumeButtonClass)) = e;
 
   S_gtk_scale_button_class_init(((GtkScaleButtonClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -21685,10 +22003,12 @@ S_gtk_mount_operation_class_init(GtkMountOperationClass * c, SEXP e)
   SEXP s;
 
   S_GtkMountOperation_symbol = install("GtkMountOperation");
-  s = findVar(S_GtkMountOperation_symbol, e);
+  s = PROTECT(findVar(S_GtkMountOperation_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkMountOperationClass)) = e;
 
   S_gmount_operation_class_init(((GMountOperationClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -21701,10 +22021,12 @@ S_gtk_entry_buffer_class_init(GtkEntryBufferClass * c, SEXP e)
   SEXP s;
 
   S_GtkEntryBuffer_symbol = install("GtkEntryBuffer");
-  s = findVar(S_GtkEntryBuffer_symbol, e);
+  s = PROTECT(findVar(S_GtkEntryBuffer_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkEntryBufferClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -21717,10 +22039,12 @@ S_gtk_info_bar_class_init(GtkInfoBarClass * c, SEXP e)
   SEXP s;
 
   S_GtkInfoBar_symbol = install("GtkInfoBar");
-  s = findVar(S_GtkInfoBar_symbol, e);
+  s = PROTECT(findVar(S_GtkInfoBar_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkInfoBarClass)) = e;
 
   S_gtk_hbox_class_init(((GtkHBoxClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -21733,10 +22057,12 @@ S_gtk_hsv_class_init(GtkHSVClass * c, SEXP e)
   SEXP s;
 
   S_GtkHSV_symbol = install("GtkHSV");
-  s = findVar(S_GtkHSV_symbol, e);
+  s = PROTECT(findVar(S_GtkHSV_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkHSVClass)) = e;
 
   S_gtk_widget_class_init(((GtkWidgetClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -21749,10 +22075,12 @@ S_gtk_tool_item_group_class_init(GtkToolItemGroupClass * c, SEXP e)
   SEXP s;
 
   S_GtkToolItemGroup_symbol = install("GtkToolItemGroup");
-  s = findVar(S_GtkToolItemGroup_symbol, e);
+  s = PROTECT(findVar(S_GtkToolItemGroup_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkToolItemGroupClass)) = e;
 
   S_gtk_container_class_init(((GtkContainerClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -21765,10 +22093,12 @@ S_gtk_tool_palette_class_init(GtkToolPaletteClass * c, SEXP e)
   SEXP s;
 
   S_GtkToolPalette_symbol = install("GtkToolPalette");
-  s = findVar(S_GtkToolPalette_symbol, e);
+  s = PROTECT(findVar(S_GtkToolPalette_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkToolPaletteClass)) = e;
 
   S_gtk_container_class_init(((GtkContainerClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -21781,10 +22111,12 @@ S_gtk_cell_renderer_spinner_class_init(GtkCellRendererSpinnerClass * c, SEXP e)
   SEXP s;
 
   S_GtkCellRendererSpinner_symbol = install("GtkCellRendererSpinner");
-  s = findVar(S_GtkCellRendererSpinner_symbol, e);
+  s = PROTECT(findVar(S_GtkCellRendererSpinner_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkCellRendererSpinnerClass)) = e;
 
   S_gtk_cell_renderer_class_init(((GtkCellRendererClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -21797,10 +22129,12 @@ S_gtk_offscreen_window_class_init(GtkOffscreenWindowClass * c, SEXP e)
   SEXP s;
 
   S_GtkOffscreenWindow_symbol = install("GtkOffscreenWindow");
-  s = findVar(S_GtkOffscreenWindow_symbol, e);
+  s = PROTECT(findVar(S_GtkOffscreenWindow_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkOffscreenWindowClass)) = e;
 
   S_gtk_window_class_init(((GtkWindowClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -21813,10 +22147,12 @@ S_gtk_spinner_class_init(GtkSpinnerClass * c, SEXP e)
   SEXP s;
 
   S_GtkSpinner_symbol = install("GtkSpinner");
-  s = findVar(S_GtkSpinner_symbol, e);
+  s = PROTECT(findVar(S_GtkSpinner_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkSpinnerClass)) = e;
 
   S_gtk_drawing_area_class_init(((GtkDrawingAreaClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -21905,8 +22241,10 @@ S_gtk_cell_editable_class_init(GtkCellEditableIface * c, SEXP e)
   SEXP s;
 
   S_GtkCellEditable_symbol = install("GtkCellEditable");
-  s = findVar(S_GtkCellEditable_symbol, e);
+  s = PROTECT(findVar(S_GtkCellEditable_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkCellEditableIface)) = e;
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->editing_done = S_virtual_gtk_cell_editable_editing_done;
@@ -22169,8 +22507,10 @@ S_gtk_cell_layout_class_init(GtkCellLayoutIface * c, SEXP e)
   SEXP s;
 
   S_GtkCellLayout_symbol = install("GtkCellLayout");
-  s = findVar(S_GtkCellLayout_symbol, e);
+  s = PROTECT(findVar(S_GtkCellLayout_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkCellLayoutIface)) = e;
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->pack_start = S_virtual_gtk_cell_layout_pack_start;
@@ -22592,8 +22932,10 @@ S_gtk_editable_class_init(GtkEditableClass * c, SEXP e)
   SEXP s;
 
   S_GtkEditable_symbol = install("GtkEditable");
-  s = findVar(S_GtkEditable_symbol, e);
+  s = PROTECT(findVar(S_GtkEditable_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkEditableClass)) = e;
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->insert_text = S_virtual_gtk_editable_insert_text;
@@ -22853,8 +23195,10 @@ S_gtk_tree_drag_dest_class_init(GtkTreeDragDestIface * c, SEXP e)
   SEXP s;
 
   S_GtkTreeDragDest_symbol = install("GtkTreeDragDest");
-  s = findVar(S_GtkTreeDragDest_symbol, e);
+  s = PROTECT(findVar(S_GtkTreeDragDest_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkTreeDragDestIface)) = e;
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->drag_data_received = S_virtual_gtk_tree_drag_dest_drag_data_received;
@@ -22991,8 +23335,10 @@ S_gtk_tree_drag_source_class_init(GtkTreeDragSourceIface * c, SEXP e)
   SEXP s;
 
   S_GtkTreeDragSource_symbol = install("GtkTreeDragSource");
-  s = findVar(S_GtkTreeDragSource_symbol, e);
+  s = PROTECT(findVar(S_GtkTreeDragSource_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkTreeDragSourceIface)) = e;
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->row_draggable = S_virtual_gtk_tree_drag_source_row_draggable;
@@ -23604,8 +23950,10 @@ S_gtk_tree_model_class_init(GtkTreeModelIface * c, SEXP e)
   SEXP s;
 
   S_GtkTreeModel_symbol = install("GtkTreeModel");
-  s = findVar(S_GtkTreeModel_symbol, e);
+  s = PROTECT(findVar(S_GtkTreeModel_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkTreeModelIface)) = e;
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->row_changed = S_virtual_gtk_tree_model_row_changed;
@@ -24164,8 +24512,10 @@ S_gtk_tree_sortable_class_init(GtkTreeSortableIface * c, SEXP e)
   SEXP s;
 
   S_GtkTreeSortable_symbol = install("GtkTreeSortable");
-  s = findVar(S_GtkTreeSortable_symbol, e);
+  s = PROTECT(findVar(S_GtkTreeSortable_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkTreeSortableIface)) = e;
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->sort_column_changed = S_virtual_gtk_tree_sortable_sort_column_changed;
@@ -24595,8 +24945,10 @@ S_gtk_buildable_class_init(GtkBuildableIface * c, SEXP e)
   SEXP s;
 
   S_GtkBuildable_symbol = install("GtkBuildable");
-  s = findVar(S_GtkBuildable_symbol, e);
+  s = PROTECT(findVar(S_GtkBuildable_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkBuildableIface)) = e;
+
+  UNPROTECT(1);
 
 #if GTK_CHECK_VERSION(2, 12, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -25001,8 +25353,10 @@ S_gtk_tool_shell_class_init(GtkToolShellIface * c, SEXP e)
   SEXP s;
 
   S_GtkToolShell_symbol = install("GtkToolShell");
-  s = findVar(S_GtkToolShell_symbol, e);
+  s = PROTECT(findVar(S_GtkToolShell_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkToolShellIface)) = e;
+
+  UNPROTECT(1);
 
 #if GTK_CHECK_VERSION(2, 14, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -25189,8 +25543,10 @@ S_gtk_activatable_class_init(GtkActivatableIface * c, SEXP e)
   SEXP s;
 
   S_GtkActivatable_symbol = install("GtkActivatable");
-  s = findVar(S_GtkActivatable_symbol, e);
+  s = PROTECT(findVar(S_GtkActivatable_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkActivatableIface)) = e;
+
+  UNPROTECT(1);
 
 #if GTK_CHECK_VERSION(2, 16, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -25250,8 +25606,10 @@ S_gtk_orientable_class_init(GtkOrientableIface * c, SEXP e)
   SEXP s;
 
   S_GtkOrientable_symbol = install("GtkOrientable");
-  s = findVar(S_GtkOrientable_symbol, e);
+  s = PROTECT(findVar(S_GtkOrientable_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GtkOrientableIface)) = e;
+
+  UNPROTECT(1);
 
 }
 #endif 

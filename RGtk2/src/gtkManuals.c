@@ -259,7 +259,12 @@ USER_OBJECT_
 USER_OBJECT_
  S_gtk_item_factory_create_items ( USER_OBJECT_ s_object, USER_OBJECT_ s_entries, USER_OBJECT_ s_callback_data )
 {
-         return(S_gtk_item_factory_create_items_ac(s_object, s_entries, s_callback_data, asRInteger(1)));
+    USER_OBJECT_ s_callback_type = PROTECT(asRInteger(1));
+    USER_OBJECT_ ans = S_gtk_item_factory_create_items_ac(s_object, s_entries,
+							  s_callback_data,
+							  s_callback_type);
+    UNPROTECT(1);
+    return ans;
 }
 /* reason: array must be pre-allocated */
 USER_OBJECT_
@@ -272,9 +277,10 @@ USER_OBJECT_
          gfloat* vector = g_malloc(sizeof(gfloat)*veclen) ;
           gtk_curve_get_vector ( object, veclen, vector );
 
-        _result = retByVal(_result, "vector", asRNumericArrayWithSize ( vector, veclen ), NULL);
+	  _result = retByVal(_result, "vector", PROTECT(asRNumericArrayWithSize ( vector, veclen )), NULL);
         g_free(vector);
 
+	UNPROTECT(1);
         return(_result);
 }
 
@@ -298,7 +304,8 @@ USER_OBJECT_
          GtkTreeIter iter;
           gtk_list_store_insert_with_valuesv ( object, &iter, position, columns, values, n_values );
 
-        _result = retByVal(_result, "iter", toRPointerWithFinalizer ( gtk_tree_iter_copy(&iter), "GtkTreeIter", (RPointerFinalizer)gtk_tree_iter_free ), NULL);
+	  _result = retByVal(_result, "iter", PROTECT(toRPointerWithFinalizer ( gtk_tree_iter_copy(&iter), "GtkTreeIter", (RPointerFinalizer)gtk_tree_iter_free )), NULL);
+	  UNPROTECT(1);
 
 		for (i = 0; i < n_values; i++)
 			g_value_unset(&values[i]);
@@ -327,8 +334,9 @@ USER_OBJECT_
  GtkTreeIter iter;
  gtk_tree_store_insert_with_valuesv ( object, &iter, parent, position, columns, values, n_values );
 
- _result = retByVal(_result, "iter", toRPointerWithFinalizer ( gtk_tree_iter_copy(&iter), "GtkTreeIter", (RPointerFinalizer)gtk_tree_iter_free ), NULL);
-
+ _result = retByVal(_result, "iter", PROTECT(toRPointerWithFinalizer ( gtk_tree_iter_copy(&iter), "GtkTreeIter", (RPointerFinalizer)gtk_tree_iter_free )), NULL);
+ UNPROTECT(1);
+ 
  for (i = 0; i < n_values; i++)
     g_value_unset(&values[i]);
  g_free(values);
@@ -780,7 +788,7 @@ S_gtk_cell_layout_set_attributes(USER_OBJECT_ s_object, USER_OBJECT_ s_cell, USE
 {
         GtkCellLayout* object = GTK_CELL_LAYOUT(getPtrValue(s_object));
         GtkCellRenderer* cell = GTK_CELL_RENDERER(getPtrValue(s_cell));
-		USER_OBJECT_ names = GET_NAMES(s_attributes);
+	USER_OBJECT_ names = PROTECT(GET_NAMES(s_attributes));
 		gint i;
 		
         USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -789,6 +797,7 @@ S_gtk_cell_layout_set_attributes(USER_OBJECT_ s_object, USER_OBJECT_ s_cell, USE
 			gtk_cell_layout_add_attribute(object, cell, asCString(STRING_ELT(names, i)), 
 				asCInteger(VECTOR_ELT(s_attributes, i)));
 
+	UNPROTECT(1);
         return(_result);
 }
 
@@ -798,7 +807,7 @@ S_gtk_container_child_set(USER_OBJECT_ s_object, USER_OBJECT_ s_child, USER_OBJE
 {
         GtkContainer* object = GTK_CONTAINER(getPtrValue(s_object));
         GtkWidget* child = GTK_WIDGET(getPtrValue(s_child));
-        USER_OBJECT_ names = GET_NAMES(s_props);
+        USER_OBJECT_ names = PROTECT(GET_NAMES(s_props));
 		gint i;
 
         USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -807,6 +816,7 @@ S_gtk_container_child_set(USER_OBJECT_ s_object, USER_OBJECT_ s_child, USER_OBJE
 			gtk_container_child_set_property(object, child, asCString(STRING_ELT(names, i)), 
 				asCGValue(VECTOR_ELT(s_props, i)));
 
+        UNPROTECT(1);
         return(_result);
 }
 
@@ -862,7 +872,7 @@ S_gtk_tree_view_insert_column_with_attributes(USER_OBJECT_ s_object, USER_OBJECT
 		gtk_tree_view_column_set_title(column, title);
 		gtk_tree_view_column_pack_start(column, cell, TRUE);
 
-		s_names = GET_NAMES(s_attributes);
+		s_names = PROTECT(GET_NAMES(s_attributes));
 		for (i = 0; i < GET_LENGTH(s_attributes); i++) {
 			gtk_tree_view_column_add_attribute(column, cell, asCString(STRING_ELT(s_names, i)), 
 				asCInteger(VECTOR_ELT(s_attributes, i)));
@@ -871,6 +881,7 @@ S_gtk_tree_view_insert_column_with_attributes(USER_OBJECT_ s_object, USER_OBJECT
 		
         _result = asRInteger(ans);
 
+	UNPROTECT(1);
         return(_result);
 }
 
@@ -940,7 +951,8 @@ S_gtk_editable_insert_text(USER_OBJECT_ s_object, USER_OBJECT_ s_new_text, USER_
 
         gtk_editable_insert_text(object, new_text, new_text_length, position);
 
-		_result = retByVal(_result, "position", asRInteger(*position), NULL);
+	_result = retByVal(_result, "position", PROTECT(asRInteger(*position)), NULL);
+	UNPROTECT(1);
         return(_result);
 }
 
@@ -1303,8 +1315,8 @@ S_gtk_tree_view_get_tooltip_context(USER_OBJECT_ s_object, USER_OBJECT_ s_x, USE
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "x", asRInteger(x), "y", asRInteger(y), "model", toRPointerWithRef(model, "GtkTreeModel"), "path", toRPointerWithFinalizer(path, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), "iter", toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
-  ;
+  _result = retByVal(_result, "x", PROTECT(asRInteger(x)), "y", PROTECT(asRInteger(y)), "model", PROTECT(toRPointerWithRef(model, "GtkTreeModel")), "path", PROTECT(toRPointerWithFinalizer(path, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free)), "iter", PROTECT(toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free)), NULL);
+  UNPROTECT(5);
   ;
   ;
 #else
@@ -1332,8 +1344,8 @@ S_gtk_icon_view_get_tooltip_context(USER_OBJECT_ s_object, USER_OBJECT_ s_x, USE
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "x", asRInteger(x), "y", asRInteger(y), "model", toRPointerWithRef(model, "GtkTreeModel"), "path", toRPointerWithFinalizer(path, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), "iter", toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
-  ;
+  _result = retByVal(_result, "x", PROTECT(asRInteger(x)), "y", PROTECT(asRInteger(y)), "model", PROTECT(toRPointerWithRef(model, "GtkTreeModel")), "path", PROTECT(toRPointerWithFinalizer(path, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free)), "iter", PROTECT(toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free)), NULL);
+  UNPROTECT(5);
   ;
   ;
 #else

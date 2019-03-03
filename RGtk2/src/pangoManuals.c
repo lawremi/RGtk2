@@ -16,7 +16,8 @@ USER_OBJECT_
          log_attrs = (PangoLogAttr*)R_alloc(attrs_len, sizeof(PangoLogAttr));
          pango_get_log_attrs(text, length, level, language, log_attrs, attrs_len);
 
-         _result = retByVal(_result, "log.attrs", asRStructArrayWithSize(log_attrs, "PangoLogAttr", attrs_len), NULL);
+         _result = retByVal(_result, "log.attrs", PROTECT(asRStructArrayWithSize(log_attrs, "PangoLogAttr", attrs_len)), NULL);
+	 UNPROTECT(1);
          return(_result);
 }
 
@@ -33,8 +34,9 @@ USER_OBJECT_
         attrs = ( PangoLogAttr* )R_alloc(attrs_len, sizeof( PangoLogAttr )) ;
         pango_break ( text, length, analysis, attrs, attrs_len );
 
-        _result = retByVal(_result, "attrs", asRStructArrayWithSize(attrs, "PangoLogAttr", attrs_len), NULL);
+        _result = retByVal(_result, "attrs", PROTECT(asRStructArrayWithSize(attrs, "PangoLogAttr", attrs_len)), NULL);
 
+	UNPROTECT(1);
         return(_result);
 }
 USER_OBJECT_
@@ -52,8 +54,9 @@ USER_OBJECT_
 		 logical_widths = (int *)R_alloc(widths_len, sizeof(int));
           pango_glyph_string_get_logical_widths ( object, text, length, embedding_level, logical_widths );
 
-        _result = retByVal(_result, "logical.widths", asRIntegerArrayWithSize ( logical_widths, widths_len ), NULL);
+	  _result = retByVal(_result, "logical.widths", PROTECT(asRIntegerArrayWithSize ( logical_widths, widths_len )), NULL);
 
+	  UNPROTECT(1);
         return(_result);
 }
 
@@ -72,8 +75,9 @@ USER_OBJECT_
 
           size = pango_tab_array_get_size(object);
 
-        _result = retByVal(_result, "alignments", asRIntegerArrayWithSize ( alignments, size ), "locations", asRIntegerArrayWithSize ( locations, size ), NULL);
+	  _result = retByVal(_result, "alignments", PROTECT(asRIntegerArrayWithSize ( alignments, size )), "locations", PROTECT(asRIntegerArrayWithSize ( locations, size )), NULL);
 
+	  UNPROTECT(2);
         return(_result);
 }
 
@@ -116,9 +120,10 @@ S_pango_attr_iterator_get_font(USER_OBJECT_ s_object)
 	pango_attr_iterator_get_font(object, desc, &language, &extra_attrs);
 
 
-	_result = retByVal(_result, "desc", toRPointerWithFinalizer(desc, "PangoFontDescription", (RPointerFinalizer) pango_font_description_free), "language", toRPointer(language, "PangoLanguage"), "extra.attrs", asRGSListWithFinalizer(extra_attrs, "PangoAttribute", (RPointerFinalizer) pango_attribute_destroy), NULL);
+	_result = retByVal(_result, "desc", PROTECT(toRPointerWithFinalizer(desc, "PangoFontDescription", (RPointerFinalizer) pango_font_description_free)), "language", PROTECT(toRPointer(language, "PangoLanguage")), "extra.attrs", PROTECT(asRGSListWithFinalizer(extra_attrs, "PangoAttribute", (RPointerFinalizer) pango_attribute_destroy)), NULL);
 	CLEANUP(g_slist_free, extra_attrs);
 
+	UNPROTECT(3);
 	return(_result);
 }
 
@@ -157,10 +162,11 @@ S_pango_glyph_item_get_logical_widths(USER_OBJECT_ s_glyph_item,
 
 
   _result = retByVal(_result, "logical.widths",
-                     asRIntegerArrayWithSize(logical_widths,
-                                             glyph_item->item->num_chars),
+                     PROTECT(asRIntegerArrayWithSize(logical_widths,
+						     glyph_item->item->num_chars)),
                      NULL);
   ;
+  UNPROTECT(1);
 #else
   error("pango_glyph_item_get_logical_widths exists only in Pango >= 1.26.0");
 #endif

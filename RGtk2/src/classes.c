@@ -92,7 +92,8 @@ S_virtual_gobject_get_property(GObject *object, guint id, GValue *value, GParamS
     UNPROTECT(1);
   }
   
-  R_setGValueFromSValue(value, s_ans);
+  R_setGValueFromSValue(value, PROTECT(s_ans));
+  UNPROTECT(1);
 }
 
 /* It's not clear whether we want to override the 'constructor' method. In a way,
@@ -131,17 +132,18 @@ S_gobject_class_init(GObjectClass *c, USER_OBJECT_ e)
   c->get_property = S_virtual_gobject_get_property;
   c->finalize = S_virtual_gobject_finalize;
   
-  s_props = findVar(install(".props"), e);
+  s_props = PROTECT(findVar(install(".props"), e));
   /* initialize properties */
   for (i = 0; i < GET_LENGTH(s_props); i++) {
     GParamSpec *pspec = asCGParamSpec(VECTOR_ELT(s_props, i));
     g_object_class_install_property(c, i+1, pspec);
   }
-  s_prop_overrides = findVar(install(".prop_overrides"), e);
+  s_prop_overrides = PROTECT(findVar(install(".prop_overrides"), e));
   for (j = 0; j < GET_LENGTH(s_prop_overrides); j++)
     g_object_class_override_property(c, i+1, 
       asCString(STRING_ELT(s_prop_overrides, j)));
-    
+
+  UNPROTECT(2);
   /*if (VECTOR_ELT(s, 2) != NULL_USER_OBJECT)
     c->constructor = S_virtual_gobject_constructor;*/
 }
@@ -153,7 +155,7 @@ S_gobject_instance_init(GObject *object, GObjectClass *class)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_env = S_GOBJECT_GET_ENV(object);
-  USER_OBJECT_ s_fun = findVar(_S_InstanceInit_symbol, s_env);
+  USER_OBJECT_ s_fun = PROTECT(findVar(_S_InstanceInit_symbol, s_env));
   USER_OBJECT_ instance_env, envs;
   guint size = 0;
   gint i;
@@ -181,8 +183,10 @@ S_gobject_instance_init(GObject *object, GObjectClass *class)
   
   /* run user function if it exists */
   
-  if (s_fun == NULL_USER_OBJECT)
+  if (s_fun == NULL_USER_OBJECT) {
+    UNPROTECT(1);
     return;
+  }
   
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -194,7 +198,7 @@ S_gobject_instance_init(GObject *object, GObjectClass *class)
   
   eval(e, R_GlobalEnv);
   
-  UNPROTECT(1);
+  UNPROTECT(2);
 }
 
 /* clone a pointer to the SGObject and add parent envs */
@@ -207,13 +211,15 @@ S_g_object_parent(USER_OBJECT_ s_obj)
   
   if (!g_type_is_a(g_type_parent(G_OBJECT_TYPE(obj)), S_TYPE_G_OBJECT))
     return NULL_USER_OBJECT;
-  
+
+  PROTECT(parent);
   public_env = findVar(install(".public"), S_GOBJECT_GET_ENV(obj));
   private_env = S_G_OBJECT_GET_INSTANCE_ENV(s_obj);
   
   setAttrib(parent, install(".public"), ENCLOS(public_env));
   setAttrib(parent, install(".private"), ENCLOS(private_env));
-  
+
+  UNPROTECT(1);
   return parent;
 }
 
@@ -223,9 +229,11 @@ S_g_object_private(USER_OBJECT_ s_obj)
 {
   USER_OBJECT_ private = toRPointerWithRef(getPtrValue(s_obj), "GObject");
   USER_OBJECT_ private_env = S_G_OBJECT_GET_INSTANCE_ENV(getPtrValue(s_obj));
-  
+
+  PROTECT(private);
   setAttrib(private, install(".private"), private_env);
   
+  UNPROTECT(1);
   return private;
 }
 
@@ -267,7 +275,8 @@ S_gobject_class_new(USER_OBJECT_ s_name, USER_OBJECT_ s_parent, USER_OBJECT_ s_i
   if (!_S_InstanceInit_symbol) { /* initialize globals */
     _S_InstanceInit_symbol = install(".initialize");
     _S_InstanceEnv_fun = findFun(install(".instanceEnv"), 
-      R_FindNamespace(asRString("RGtk2")));
+				 PROTECT(R_FindNamespace(asRString("RGtk2"))));
+    UNPROTECT(1);
   }
     
   R_PreserveObject(s_def);

@@ -151,10 +151,12 @@ S_pango_font_class_init(PangoFontClass * c, SEXP e)
   SEXP s;
 
   S_PangoFont_symbol = install("PangoFont");
-  s = findVar(S_PangoFont_symbol, e);
+  s = PROTECT(findVar(S_PangoFont_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(PangoFontClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->describe = S_virtual_pango_font_describe;
@@ -342,10 +344,12 @@ S_pango_font_face_class_init(PangoFontFaceClass * c, SEXP e)
   SEXP s;
 
   S_PangoFontFace_symbol = install("PangoFontFace");
-  s = findVar(S_PangoFontFace_symbol, e);
+  s = PROTECT(findVar(S_PangoFontFace_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(PangoFontFaceClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->get_face_name = S_virtual_pango_font_face_get_face_name;
@@ -494,10 +498,12 @@ S_pango_font_family_class_init(PangoFontFamilyClass * c, SEXP e)
   SEXP s;
 
   S_PangoFontFamily_symbol = install("PangoFontFamily");
-  s = findVar(S_PangoFontFamily_symbol, e);
+  s = PROTECT(findVar(S_PangoFontFamily_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(PangoFontFamilyClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->list_faces = S_virtual_pango_font_family_list_faces;
@@ -656,10 +662,12 @@ S_pango_font_map_class_init(PangoFontMapClass * c, SEXP e)
   SEXP s;
 
   S_PangoFontMap_symbol = install("PangoFontMap");
-  s = findVar(S_PangoFontMap_symbol, e);
+  s = PROTECT(findVar(S_PangoFontMap_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(PangoFontMapClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->load_font = S_virtual_pango_font_map_load_font;
@@ -843,10 +851,12 @@ S_pango_fontset_class_init(PangoFontsetClass * c, SEXP e)
   SEXP s;
 
   S_PangoFontset_symbol = install("PangoFontset");
-  s = findVar(S_PangoFontset_symbol, e);
+  s = PROTECT(findVar(S_PangoFontset_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(PangoFontsetClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->get_font = S_virtual_pango_fontset_get_font;
@@ -1272,10 +1282,12 @@ S_pango_renderer_class_init(PangoRendererClass * c, SEXP e)
   SEXP s;
 
   S_PangoRenderer_symbol = install("PangoRenderer");
-  s = findVar(S_PangoRenderer_symbol, e);
+  s = PROTECT(findVar(S_PangoRenderer_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(PangoRendererClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->draw_glyphs = S_virtual_pango_renderer_draw_glyphs;

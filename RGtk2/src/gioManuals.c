@@ -20,9 +20,10 @@ S_g_input_stream_read(USER_OBJECT_ s_object, USER_OBJECT_ s_count,
 
   _result = asRInteger(ans);
 
-  _result = retByVal(_result, "buffer", asRRawArrayWithSize(buffer, count),
-                     "error", asRGError(error), NULL);
-  ;
+  _result = retByVal(_result,
+		     "buffer", PROTECT(asRRawArrayWithSize(buffer, count)),
+                     "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
   CLEANUP(g_error_free, error);;
 #else
   error("g_input_stream_read exists only in gio >= 2.16.0");
@@ -52,11 +53,12 @@ S_g_input_stream_read_all(USER_OBJECT_ s_object, USER_OBJECT_ s_count,
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "buffer", asRRawArrayWithSize(buffer, count),
-                     "bytes.read", asRNumeric(bytes_read),
-                     "error", asRGError(error), NULL);
-  ;
-  ;
+  _result = retByVal(_result,
+		     "buffer", PROTECT(asRRawArrayWithSize(buffer, count)),
+                     "bytes.read", PROTECT(asRNumeric(bytes_read)),
+                     "error", PROTECT(asRGError(error)), NULL);
+  
+  UNPROTECT(3);
   CLEANUP(g_error_free, error);;
 #else
   error("g_input_stream_read_all exists only in gio >= 2.16.0");
@@ -116,8 +118,9 @@ S_g_input_stream_read_finish(USER_OBJECT_ s_object, USER_OBJECT_ s_result)
   if (ans >= 0)
     _result = asRRawArrayWithSize(buffer, ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
-  CLEANUP(g_error_free, error);;
+  _result = retByVal(_result, "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(1);
+  CLEANUP(g_error_free, error);
 #else
   error("g_input_stream_read_finish exists only in gio >= 2.16.0");
 #endif
@@ -224,13 +227,14 @@ S_g_async_initable_new_async(USER_OBJECT_ s_object_type,
 
   int i, n = GET_LENGTH(s_properties);
   GParameter *params = g_new0(GParameter, n);
-  USER_OBJECT_ propNames = GET_NAMES(s_properties);
+  USER_OBJECT_ propNames = PROTECT(GET_NAMES(s_properties));
 
   for(i = 0; i < n; i++) {
     params[i].name = asCString(STRING_ELT(propNames, i));
     R_setGValueForProperty(&params[i].value, object_class, params[i].name,
                            VECTOR_ELT(s_properties, i));
   }
+  UNPROTECT(1);
 
   g_async_initable_newv_async(object_type, n, params, io_priority, cancellable,
                               callback, user_data);
@@ -259,7 +263,7 @@ S_g_initable_new(USER_OBJECT_ s_object_type, USER_OBJECT_ s_cancellable,
   
   int i, n = GET_LENGTH(s_properties);
   GParameter *params = g_new0(GParameter, n);
-  USER_OBJECT_ propNames = GET_NAMES(s_properties);
+  USER_OBJECT_ propNames = PROTECT(GET_NAMES(s_properties));
 
   for(i = 0; i < n; i++) {
     params[i].name = asCString(STRING_ELT(propNames, i));
@@ -271,8 +275,9 @@ S_g_initable_new(USER_OBJECT_ s_object_type, USER_OBJECT_ s_cancellable,
 
   _result = ans;
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
-  CLEANUP(g_error_free, error);;
+  _result = retByVal(_result, "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
+  CLEANUP(g_error_free, error);
 #else
   error("g_initable_new exists only in gio >= 2.22.0");
 #endif
@@ -301,9 +306,9 @@ S_g_socket_receive(USER_OBJECT_ s_object, USER_OBJECT_ s_size,
 
   _result = asRInteger(ans);
 
-  _result = retByVal(_result, "buffer", asRRawArrayWithSize(buffer, size),
-                     "error", asRGError(error), NULL);
-  ;
+  _result = retByVal(_result, "buffer", PROTECT(asRRawArrayWithSize(buffer, size)),
+                     "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(2);
   CLEANUP(g_error_free, error);;
 #else
   error("g_socket_receive exists only in gio >= 2.22.0");
@@ -334,12 +339,12 @@ S_g_socket_receive_from(USER_OBJECT_ s_object, USER_OBJECT_ s_size,
   _result = asRInteger(ans);
 
   _result = retByVal(_result,
-                     "address", toRPointerWithFinalizer(address, "GSocketAddress", (RPointerFinalizer) g_object_unref),
-                     "buffer", asRRawArrayWithSize(buffer, size),
-                     "error", asRGError(error),
+                     "address", PROTECT(toRPointerWithFinalizer(address, "GSocketAddress", (RPointerFinalizer) g_object_unref)),
+                     "buffer", PROTECT(asRRawArrayWithSize(buffer, size)),
+                     "error", PROTECT(asRGError(error)),
                      NULL);
-  ;
-  ;
+  
+  UNPROTECT(3);
   CLEANUP(g_error_free, error);;
 #else
   error("g_socket_receive_from exists only in gio >= 2.22.0");
@@ -381,14 +386,14 @@ S_g_socket_receive_message(USER_OBJECT_ s_object, USER_OBJECT_ s_num_vectors,
   _result = asRInteger(ans);
 
   _result = retByVal(_result,
-                     "address", toRPointerWithFinalizer(address, "GSocketAddress", (RPointerFinalizer) g_object_unref),
-                     "vectors", toRPointer(vectors, "GInputVector"),
-                     "messages", toRPointerWithFinalizerArrayWithSize(messages, "GSocketControlMessage", (RPointerFinalizer) g_object_unref, num_messages),
-                     "num.messages", asRInteger(num_messages),
-                     "flags", asRInteger(flags),
-                     "error", asRGError(error), NULL);
-  ;
-  ;
+                     "address", PROTECT(toRPointerWithFinalizer(address, "GSocketAddress", (RPointerFinalizer) g_object_unref)),
+                     "vectors", PROTECT(toRPointer(vectors, "GInputVector")),
+                     "messages", PROTECT(toRPointerWithFinalizerArrayWithSize(messages, "GSocketControlMessage", (RPointerFinalizer) g_object_unref, num_messages)),
+                     "num.messages", PROTECT(asRInteger(num_messages)),
+                     "flags", PROTECT(asRInteger(flags)),
+                     "error", PROTECT(asRGError(error)), NULL);
+  
+  UNPROTECT(6);
   CLEANUP(g_free, messages);;
   ;
   CLEANUP(g_error_free, error);;
@@ -426,8 +431,9 @@ S_g_socket_send_message(USER_OBJECT_ s_object, USER_OBJECT_ s_address,
 
   _result = asRInteger(ans);
 
-  _result = retByVal(_result, "error", asRGError(error), NULL);
-  CLEANUP(g_error_free, error);;
+  _result = retByVal(_result, "error", PROTECT(asRGError(error)), NULL);
+  UNPROTECT(1);
+  CLEANUP(g_error_free, error);
 #else
   error("g_socket_send_message exists only in gio >= 2.22.0");
 #endif

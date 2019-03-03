@@ -322,18 +322,20 @@ R_setGObjectProps(USER_OBJECT_ sobj, USER_OBJECT_ svals)
     n = GET_LENGTH(argNames);
     if(n == 0)
         return(NULL_USER_OBJECT);
+    PROTECT(argNames);
 
     for(i = 0; i < n; i++) {
        S_g_object_set_property(sobj, STRING_ELT(argNames, i), VECTOR_ELT(svals, i));
     }
 
+    UNPROTECT(1);
     return(ans);
 }
 
 USER_OBJECT_
 R_gObjectNew(USER_OBJECT_ stype, USER_OBJECT_ svals)
 {
-    USER_OBJECT_ argNames = GET_NAMES(svals);
+    USER_OBJECT_ argNames = PROTECT(GET_NAMES(svals));
     GType type = asCGType(stype);
     int i,n = GET_LENGTH(argNames);
 	GParameter *params = g_new0(GParameter, n);
@@ -355,7 +357,8 @@ R_gObjectNew(USER_OBJECT_ stype, USER_OBJECT_ svals)
 	else result = toRPointerWithFinalizer(ans, "GObject", g_object_unref);
 	
   g_type_class_unref(class);
-  
+
+    UNPROTECT(1);
     return(result);
 }
 

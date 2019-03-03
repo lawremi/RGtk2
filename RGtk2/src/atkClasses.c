@@ -243,10 +243,12 @@ S_atk_hyperlink_class_init(AtkHyperlinkClass * c, SEXP e)
   SEXP s;
 
   S_AtkHyperlink_symbol = install("AtkHyperlink");
-  s = findVar(S_AtkHyperlink_symbol, e);
+  s = PROTECT(findVar(S_AtkHyperlink_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkHyperlinkClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->get_uri = S_virtual_atk_hyperlink_get_uri;
@@ -1007,10 +1009,12 @@ S_atk_object_class_init(AtkObjectClass * c, SEXP e)
   SEXP s;
 
   S_AtkObject_symbol = install("AtkObject");
-  s = findVar(S_AtkObject_symbol, e);
+  s = PROTECT(findVar(S_AtkObject_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkObjectClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->get_name = S_virtual_atk_object_get_name;
@@ -1408,10 +1412,12 @@ S_atk_gobject_accessible_class_init(AtkGObjectAccessibleClass * c, SEXP e)
   SEXP s;
 
   S_AtkGObjectAccessible_symbol = install("AtkGObjectAccessible");
-  s = findVar(S_AtkGObjectAccessible_symbol, e);
+  s = PROTECT(findVar(S_AtkGObjectAccessible_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkGObjectAccessibleClass)) = e;
 
   S_atk_object_class_init(((AtkObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -1422,10 +1428,12 @@ S_atk_no_op_object_class_init(AtkNoOpObjectClass * c, SEXP e)
   SEXP s;
 
   S_AtkNoOpObject_symbol = install("AtkNoOpObject");
-  s = findVar(S_AtkNoOpObject_symbol, e);
+  s = PROTECT(findVar(S_AtkNoOpObject_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkNoOpObjectClass)) = e;
 
   S_atk_object_class_init(((AtkObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -1461,10 +1469,12 @@ S_atk_object_factory_class_init(AtkObjectFactoryClass * c, SEXP e)
   SEXP s;
 
   S_AtkObjectFactory_symbol = install("AtkObjectFactory");
-  s = findVar(S_AtkObjectFactory_symbol, e);
+  s = PROTECT(findVar(S_AtkObjectFactory_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkObjectFactoryClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->invalidate = S_virtual_atk_object_factory_invalidate;
@@ -1491,10 +1501,12 @@ S_atk_no_op_object_factory_class_init(AtkNoOpObjectFactoryClass * c, SEXP e)
   SEXP s;
 
   S_AtkNoOpObjectFactory_symbol = install("AtkNoOpObjectFactory");
-  s = findVar(S_AtkNoOpObjectFactory_symbol, e);
+  s = PROTECT(findVar(S_AtkNoOpObjectFactory_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkNoOpObjectFactoryClass)) = e;
 
   S_atk_object_factory_class_init(((AtkObjectFactoryClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -1505,10 +1517,12 @@ S_atk_registry_class_init(AtkRegistryClass * c, SEXP e)
   SEXP s;
 
   S_AtkRegistry_symbol = install("AtkRegistry");
-  s = findVar(S_AtkRegistry_symbol, e);
+  s = PROTECT(findVar(S_AtkRegistry_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkRegistryClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -1519,10 +1533,12 @@ S_atk_relation_class_init(AtkRelationClass * c, SEXP e)
   SEXP s;
 
   S_AtkRelation_symbol = install("AtkRelation");
-  s = findVar(S_AtkRelation_symbol, e);
+  s = PROTECT(findVar(S_AtkRelation_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkRelationClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -1533,10 +1549,12 @@ S_atk_relation_set_class_init(AtkRelationSetClass * c, SEXP e)
   SEXP s;
 
   S_AtkRelationSet_symbol = install("AtkRelationSet");
-  s = findVar(S_AtkRelationSet_symbol, e);
+  s = PROTECT(findVar(S_AtkRelationSet_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkRelationSetClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -1547,10 +1565,12 @@ S_atk_state_set_class_init(AtkStateSetClass * c, SEXP e)
   SEXP s;
 
   S_AtkStateSet_symbol = install("AtkStateSet");
-  s = findVar(S_AtkStateSet_symbol, e);
+  s = PROTECT(findVar(S_AtkStateSet_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkStateSetClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -1561,10 +1581,12 @@ S_atk_util_class_init(AtkUtilClass * c, SEXP e)
   SEXP s;
 
   S_AtkUtil_symbol = install("AtkUtil");
-  s = findVar(S_AtkUtil_symbol, e);
+  s = PROTECT(findVar(S_AtkUtil_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkUtilClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -2580,8 +2602,10 @@ S_atk_table_class_init(AtkTableIface * c, SEXP e)
   SEXP s;
 
   S_AtkTable_symbol = install("AtkTable");
-  s = findVar(S_AtkTable_symbol, e);
+  s = PROTECT(findVar(S_AtkTable_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkTableIface)) = e;
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->ref_at = S_virtual_atk_table_ref_at;
@@ -3318,8 +3342,10 @@ S_atk_streamable_content_class_init(AtkStreamableContentIface * c, SEXP e)
   SEXP s;
 
   S_AtkStreamableContent_symbol = install("AtkStreamableContent");
-  s = findVar(S_AtkStreamableContent_symbol, e);
+  s = PROTECT(findVar(S_AtkStreamableContent_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkStreamableContentIface)) = e;
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->get_n_mime_types = S_virtual_atk_streamable_content_get_n_mime_types;
@@ -3582,8 +3608,10 @@ S_atk_selection_class_init(AtkSelectionIface * c, SEXP e)
   SEXP s;
 
   S_AtkSelection_symbol = install("AtkSelection");
-  s = findVar(S_AtkSelection_symbol, e);
+  s = PROTECT(findVar(S_AtkSelection_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkSelectionIface)) = e;
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->add_selection = S_virtual_atk_selection_add_selection;
@@ -3766,8 +3794,10 @@ S_atk_implementor_class_init(AtkImplementorIface * c, SEXP e)
   SEXP s;
 
   S_AtkImplementor_symbol = install("AtkImplementor");
-  s = findVar(S_AtkImplementor_symbol, e);
+  s = PROTECT(findVar(S_AtkImplementor_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkImplementorIface)) = e;
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->ref_accessible = S_virtual_atk_implementor_ref_accessible;
@@ -3906,8 +3936,10 @@ S_atk_image_class_init(AtkImageIface * c, SEXP e)
   SEXP s;
 
   S_AtkImage_symbol = install("AtkImage");
-  s = findVar(S_AtkImage_symbol, e);
+  s = PROTECT(findVar(S_AtkImage_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkImageIface)) = e;
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->get_image_position = S_virtual_atk_image_get_image_position;
@@ -4111,8 +4143,10 @@ S_atk_hypertext_class_init(AtkHypertextIface * c, SEXP e)
   SEXP s;
 
   S_AtkHypertext_symbol = install("AtkHypertext");
-  s = findVar(S_AtkHypertext_symbol, e);
+  s = PROTECT(findVar(S_AtkHypertext_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkHypertextIface)) = e;
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->get_link = S_virtual_atk_hypertext_get_link;
@@ -4400,8 +4434,10 @@ S_atk_editable_text_class_init(AtkEditableTextIface * c, SEXP e)
   SEXP s;
 
   S_AtkEditableText_symbol = install("AtkEditableText");
-  s = findVar(S_AtkEditableText_symbol, e);
+  s = PROTECT(findVar(S_AtkEditableText_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkEditableTextIface)) = e;
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->set_run_attributes = S_virtual_atk_editable_text_set_run_attributes;
@@ -4922,8 +4958,10 @@ S_atk_component_class_init(AtkComponentIface * c, SEXP e)
   SEXP s;
 
   S_AtkComponent_symbol = install("AtkComponent");
-  s = findVar(S_AtkComponent_symbol, e);
+  s = PROTECT(findVar(S_AtkComponent_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkComponentIface)) = e;
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->contains = S_virtual_atk_component_contains;
@@ -5399,8 +5437,10 @@ S_atk_action_class_init(AtkActionIface * c, SEXP e)
   SEXP s;
 
   S_AtkAction_symbol = install("AtkAction");
-  s = findVar(S_AtkAction_symbol, e);
+  s = PROTECT(findVar(S_AtkAction_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkActionIface)) = e;
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->do_action = S_virtual_atk_action_do_action;
@@ -5692,8 +5732,10 @@ S_atk_value_class_init(AtkValueIface * c, SEXP e)
   SEXP s;
 
   S_AtkValue_symbol = install("AtkValue");
-  s = findVar(S_AtkValue_symbol, e);
+  s = PROTECT(findVar(S_AtkValue_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkValueIface)) = e;
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->get_current_value = S_virtual_atk_value_get_current_value;
@@ -6496,8 +6538,10 @@ S_atk_text_class_init(AtkTextIface * c, SEXP e)
   SEXP s;
 
   S_AtkText_symbol = install("AtkText");
-  s = findVar(S_AtkText_symbol, e);
+  s = PROTECT(findVar(S_AtkText_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkTextIface)) = e;
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->get_text = S_virtual_atk_text_get_text;
@@ -7052,8 +7096,10 @@ S_atk_document_class_init(AtkDocumentIface * c, SEXP e)
   SEXP s;
 
   S_AtkDocument_symbol = install("AtkDocument");
-  s = findVar(S_AtkDocument_symbol, e);
+  s = PROTECT(findVar(S_AtkDocument_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkDocumentIface)) = e;
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->get_document_type = S_virtual_atk_document_get_document_type;
@@ -7101,8 +7147,10 @@ S_atk_hyperlink_impl_class_init(AtkHyperlinkImplIface * c, SEXP e)
   SEXP s;
 
   S_AtkHyperlinkImpl_symbol = install("AtkHyperlinkImpl");
-  s = findVar(S_AtkHyperlinkImpl_symbol, e);
+  s = PROTECT(findVar(S_AtkHyperlinkImpl_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkHyperlinkImplIface)) = e;
+
+  UNPROTECT(1);
 
 }
 #endif 

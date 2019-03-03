@@ -94,10 +94,12 @@ S_gapp_launch_context_class_init(GAppLaunchContextClass * c, SEXP e)
   SEXP s;
 
   S_GAppLaunchContext_symbol = install("GAppLaunchContext");
-  s = findVar(S_GAppLaunchContext_symbol, e);
+  s = PROTECT(findVar(S_GAppLaunchContext_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GAppLaunchContextClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 #if GIO_CHECK_VERSION(2, 16, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -189,10 +191,12 @@ S_gcancellable_class_init(GCancellableClass * c, SEXP e)
   SEXP s;
 
   S_GCancellable_symbol = install("GCancellable");
-  s = findVar(S_GCancellable_symbol, e);
+  s = PROTECT(findVar(S_GCancellable_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GCancellableClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -205,10 +209,12 @@ S_gfilename_completer_class_init(GFilenameCompleterClass * c, SEXP e)
   SEXP s;
 
   S_GFilenameCompleter_symbol = install("GFilenameCompleter");
-  s = findVar(S_GFilenameCompleter_symbol, e);
+  s = PROTECT(findVar(S_GFilenameCompleter_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GFilenameCompleterClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -405,10 +411,12 @@ S_gfile_enumerator_class_init(GFileEnumeratorClass * c, SEXP e)
   SEXP s;
 
   S_GFileEnumerator_symbol = install("GFileEnumerator");
-  s = findVar(S_GFileEnumerator_symbol, e);
+  s = PROTECT(findVar(S_GFileEnumerator_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GFileEnumeratorClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 #if GIO_CHECK_VERSION(2, 16, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -621,10 +629,12 @@ S_gfile_monitor_class_init(GFileMonitorClass * c, SEXP e)
   SEXP s;
 
   S_GFileMonitor_symbol = install("GFileMonitor");
-  s = findVar(S_GFileMonitor_symbol, e);
+  s = PROTECT(findVar(S_GFileMonitor_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GFileMonitorClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 #if GIO_CHECK_VERSION(2, 16, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -876,10 +886,12 @@ S_ginput_stream_class_init(GInputStreamClass * c, SEXP e)
   SEXP s;
 
   S_GInputStream_symbol = install("GInputStream");
-  s = findVar(S_GInputStream_symbol, e);
+  s = PROTECT(findVar(S_GInputStream_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GInputStreamClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 #if GIO_CHECK_VERSION(2, 16, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -1191,10 +1203,12 @@ S_gfile_input_stream_class_init(GFileInputStreamClass * c, SEXP e)
   SEXP s;
 
   S_GFileInputStream_symbol = install("GFileInputStream");
-  s = findVar(S_GFileInputStream_symbol, e);
+  s = PROTECT(findVar(S_GFileInputStream_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GFileInputStreamClass)) = e;
 
   S_ginput_stream_class_init(((GInputStreamClass *)c), e);
+
+  UNPROTECT(1);
 
 #if GIO_CHECK_VERSION(2, 16, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -1295,10 +1309,12 @@ S_gfilter_input_stream_class_init(GFilterInputStreamClass * c, SEXP e)
   SEXP s;
 
   S_GFilterInputStream_symbol = install("GFilterInputStream");
-  s = findVar(S_GFilterInputStream_symbol, e);
+  s = PROTECT(findVar(S_GFilterInputStream_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GFilterInputStreamClass)) = e;
 
   S_ginput_stream_class_init(((GInputStreamClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -1406,10 +1422,12 @@ S_gbuffered_input_stream_class_init(GBufferedInputStreamClass * c, SEXP e)
   SEXP s;
 
   S_GBufferedInputStream_symbol = install("GBufferedInputStream");
-  s = findVar(S_GBufferedInputStream_symbol, e);
+  s = PROTECT(findVar(S_GBufferedInputStream_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GBufferedInputStreamClass)) = e;
 
   S_gfilter_input_stream_class_init(((GFilterInputStreamClass *)c), e);
+
+  UNPROTECT(1);
 
 #if GIO_CHECK_VERSION(2, 16, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -1510,10 +1528,12 @@ S_gdata_input_stream_class_init(GDataInputStreamClass * c, SEXP e)
   SEXP s;
 
   S_GDataInputStream_symbol = install("GDataInputStream");
-  s = findVar(S_GDataInputStream_symbol, e);
+  s = PROTECT(findVar(S_GDataInputStream_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GDataInputStreamClass)) = e;
 
   S_gfilter_input_stream_class_init(((GFilterInputStreamClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -1526,10 +1546,12 @@ S_gmemory_input_stream_class_init(GMemoryInputStreamClass * c, SEXP e)
   SEXP s;
 
   S_GMemoryInputStream_symbol = install("GMemoryInputStream");
-  s = findVar(S_GMemoryInputStream_symbol, e);
+  s = PROTECT(findVar(S_GMemoryInputStream_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GMemoryInputStreamClass)) = e;
 
   S_ginput_stream_class_init(((GInputStreamClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -1542,10 +1564,12 @@ S_gmount_operation_class_init(GMountOperationClass * c, SEXP e)
   SEXP s;
 
   S_GMountOperation_symbol = install("GMountOperation");
-  s = findVar(S_GMountOperation_symbol, e);
+  s = PROTECT(findVar(S_GMountOperation_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GMountOperationClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -1938,10 +1962,12 @@ S_goutput_stream_class_init(GOutputStreamClass * c, SEXP e)
   SEXP s;
 
   S_GOutputStream_symbol = install("GOutputStream");
-  s = findVar(S_GOutputStream_symbol, e);
+  s = PROTECT(findVar(S_GOutputStream_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GOutputStreamClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 #if GIO_CHECK_VERSION(2, 16, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -2306,10 +2332,12 @@ S_gmemory_output_stream_class_init(GMemoryOutputStreamClass * c, SEXP e)
   SEXP s;
 
   S_GMemoryOutputStream_symbol = install("GMemoryOutputStream");
-  s = findVar(S_GMemoryOutputStream_symbol, e);
+  s = PROTECT(findVar(S_GMemoryOutputStream_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GMemoryOutputStreamClass)) = e;
 
   S_goutput_stream_class_init(((GOutputStreamClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -2322,10 +2350,12 @@ S_gfilter_output_stream_class_init(GFilterOutputStreamClass * c, SEXP e)
   SEXP s;
 
   S_GFilterOutputStream_symbol = install("GFilterOutputStream");
-  s = findVar(S_GFilterOutputStream_symbol, e);
+  s = PROTECT(findVar(S_GFilterOutputStream_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GFilterOutputStreamClass)) = e;
 
   S_goutput_stream_class_init(((GOutputStreamClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -2338,10 +2368,12 @@ S_gbuffered_output_stream_class_init(GBufferedOutputStreamClass * c, SEXP e)
   SEXP s;
 
   S_GBufferedOutputStream_symbol = install("GBufferedOutputStream");
-  s = findVar(S_GBufferedOutputStream_symbol, e);
+  s = PROTECT(findVar(S_GBufferedOutputStream_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GBufferedOutputStreamClass)) = e;
 
   S_gfilter_output_stream_class_init(((GFilterOutputStreamClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -2354,10 +2386,12 @@ S_gdata_output_stream_class_init(GDataOutputStreamClass * c, SEXP e)
   SEXP s;
 
   S_GDataOutputStream_symbol = install("GDataOutputStream");
-  s = findVar(S_GDataOutputStream_symbol, e);
+  s = PROTECT(findVar(S_GDataOutputStream_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GDataOutputStreamClass)) = e;
 
   S_gfilter_output_stream_class_init(((GFilterOutputStreamClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -2491,10 +2525,12 @@ S_gfile_output_stream_class_init(GFileOutputStreamClass * c, SEXP e)
   SEXP s;
 
   S_GFileOutputStream_symbol = install("GFileOutputStream");
-  s = findVar(S_GFileOutputStream_symbol, e);
+  s = PROTECT(findVar(S_GFileOutputStream_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GFileOutputStreamClass)) = e;
 
   S_goutput_stream_class_init(((GOutputStreamClass *)c), e);
+
+  UNPROTECT(1);
 
 #if GIO_CHECK_VERSION(2, 16, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -2756,10 +2792,12 @@ S_gvfs_class_init(GVfsClass * c, SEXP e)
   SEXP s;
 
   S_GVfs_symbol = install("GVfs");
-  s = findVar(S_GVfs_symbol, e);
+  s = PROTECT(findVar(S_GVfs_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GVfsClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 #if GIO_CHECK_VERSION(2, 16, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -3029,10 +3067,12 @@ S_gvolume_monitor_class_init(GVolumeMonitorClass * c, SEXP e)
   SEXP s;
 
   S_GVolumeMonitor_symbol = install("GVolumeMonitor");
-  s = findVar(S_GVolumeMonitor_symbol, e);
+  s = PROTECT(findVar(S_GVolumeMonitor_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GVolumeMonitorClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 #if GIO_CHECK_VERSION(2, 16, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -3170,10 +3210,12 @@ S_gnative_volume_monitor_class_init(GNativeVolumeMonitorClass * c, SEXP e)
   SEXP s;
 
   S_GNativeVolumeMonitor_symbol = install("GNativeVolumeMonitor");
-  s = findVar(S_GNativeVolumeMonitor_symbol, e);
+  s = PROTECT(findVar(S_GNativeVolumeMonitor_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GNativeVolumeMonitorClass)) = e;
 
   S_gvolume_monitor_class_init(((GVolumeMonitorClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -3307,10 +3349,12 @@ S_gfile_iostream_class_init(GFileIOStreamClass * c, SEXP e)
   SEXP s;
 
   S_GFileIOStream_symbol = install("GFileIOStream");
-  s = findVar(S_GFileIOStream_symbol, e);
+  s = PROTECT(findVar(S_GFileIOStream_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GFileIOStreamClass)) = e;
 
   S_giostream_class_init(((GIOStreamClass *)c), e);
+
+  UNPROTECT(1);
 
 #if GIO_CHECK_VERSION(2, 22, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -3488,10 +3532,12 @@ S_ginet_address_class_init(GInetAddressClass * c, SEXP e)
   SEXP s;
 
   S_GInetAddress_symbol = install("GInetAddress");
-  s = findVar(S_GInetAddress_symbol, e);
+  s = PROTECT(findVar(S_GInetAddress_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GInetAddressClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 #if GIO_CHECK_VERSION(2, 22, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -3553,10 +3599,12 @@ S_gnetwork_address_class_init(GNetworkAddressClass * c, SEXP e)
   SEXP s;
 
   S_GNetworkAddress_symbol = install("GNetworkAddress");
-  s = findVar(S_GNetworkAddress_symbol, e);
+  s = PROTECT(findVar(S_GNetworkAddress_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GNetworkAddressClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -3569,10 +3617,12 @@ S_gnetwork_service_class_init(GNetworkServiceClass * c, SEXP e)
   SEXP s;
 
   S_GNetworkService_symbol = install("GNetworkService");
-  s = findVar(S_GNetworkService_symbol, e);
+  s = PROTECT(findVar(S_GNetworkService_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GNetworkServiceClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -3864,10 +3914,12 @@ S_gresolver_class_init(GResolverClass * c, SEXP e)
   SEXP s;
 
   S_GResolver_symbol = install("GResolver");
-  s = findVar(S_GResolver_symbol, e);
+  s = PROTECT(findVar(S_GResolver_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GResolverClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 #if GIO_CHECK_VERSION(2, 22, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -4147,10 +4199,12 @@ S_gsocket_class_init(GSocketClass * c, SEXP e)
   SEXP s;
 
   S_GSocket_symbol = install("GSocket");
-  s = findVar(S_GSocket_symbol, e);
+  s = PROTECT(findVar(S_GSocket_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GSocketClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -4246,10 +4300,12 @@ S_gsocket_address_class_init(GSocketAddressClass * c, SEXP e)
   SEXP s;
 
   S_GSocketAddress_symbol = install("GSocketAddress");
-  s = findVar(S_GSocketAddress_symbol, e);
+  s = PROTECT(findVar(S_GSocketAddress_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GSocketAddressClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 #if GIO_CHECK_VERSION(2, 22, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -4430,10 +4486,12 @@ S_gsocket_address_enumerator_class_init(GSocketAddressEnumeratorClass * c, SEXP 
   SEXP s;
 
   S_GSocketAddressEnumerator_symbol = install("GSocketAddressEnumerator");
-  s = findVar(S_GSocketAddressEnumerator_symbol, e);
+  s = PROTECT(findVar(S_GSocketAddressEnumerator_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GSocketAddressEnumeratorClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 #if GIO_CHECK_VERSION(2, 22, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -4531,10 +4589,12 @@ S_gsocket_client_class_init(GSocketClientClass * c, SEXP e)
   SEXP s;
 
   S_GSocketClient_symbol = install("GSocketClient");
-  s = findVar(S_GSocketClient_symbol, e);
+  s = PROTECT(findVar(S_GSocketClient_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GSocketClientClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -4547,10 +4607,12 @@ S_gsocket_connection_class_init(GSocketConnectionClass * c, SEXP e)
   SEXP s;
 
   S_GSocketConnection_symbol = install("GSocketConnection");
-  s = findVar(S_GSocketConnection_symbol, e);
+  s = PROTECT(findVar(S_GSocketConnection_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GSocketConnectionClass)) = e;
 
   S_giostream_class_init(((GIOStreamClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -4668,10 +4730,12 @@ S_gsocket_control_message_class_init(GSocketControlMessageClass * c, SEXP e)
   SEXP s;
 
   S_GSocketControlMessage_symbol = install("GSocketControlMessage");
-  s = findVar(S_GSocketControlMessage_symbol, e);
+  s = PROTECT(findVar(S_GSocketControlMessage_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GSocketControlMessageClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 #if GIO_CHECK_VERSION(2, 22, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -4804,10 +4868,12 @@ S_gsocket_listener_class_init(GSocketListenerClass * c, SEXP e)
   SEXP s;
 
   S_GSocketListener_symbol = install("GSocketListener");
-  s = findVar(S_GSocketListener_symbol, e);
+  s = PROTECT(findVar(S_GSocketListener_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GSocketListenerClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 #if GIO_CHECK_VERSION(2, 22, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -4842,10 +4908,12 @@ S_gsocket_service_class_init(GSocketServiceClass * c, SEXP e)
   SEXP s;
 
   S_GSocketService_symbol = install("GSocketService");
-  s = findVar(S_GSocketService_symbol, e);
+  s = PROTECT(findVar(S_GSocketService_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GSocketServiceClass)) = e;
 
   S_gsocket_listener_class_init(((GSocketListenerClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -4858,10 +4926,12 @@ S_gtcp_connection_class_init(GTcpConnectionClass * c, SEXP e)
   SEXP s;
 
   S_GTcpConnection_symbol = install("GTcpConnection");
-  s = findVar(S_GTcpConnection_symbol, e);
+  s = PROTECT(findVar(S_GTcpConnection_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GTcpConnectionClass)) = e;
 
   S_gsocket_connection_class_init(((GSocketConnectionClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -4874,10 +4944,12 @@ S_gthreaded_socket_service_class_init(GThreadedSocketServiceClass * c, SEXP e)
   SEXP s;
 
   S_GThreadedSocketService_symbol = install("GThreadedSocketService");
-  s = findVar(S_GThreadedSocketService_symbol, e);
+  s = PROTECT(findVar(S_GThreadedSocketService_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GThreadedSocketServiceClass)) = e;
 
   S_gsocket_service_class_init(((GSocketServiceClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -5033,10 +5105,12 @@ S_giostream_class_init(GIOStreamClass * c, SEXP e)
   SEXP s;
 
   S_GIOStream_symbol = install("GIOStream");
-  s = findVar(S_GIOStream_symbol, e);
+  s = PROTECT(findVar(S_GIOStream_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GIOStreamClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 #if GIO_CHECK_VERSION(2, 22, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -5183,10 +5257,12 @@ S_ginet_socket_address_class_init(GInetSocketAddressClass * c, SEXP e)
   SEXP s;
 
   S_GInetSocketAddress_symbol = install("GInetSocketAddress");
-  s = findVar(S_GInetSocketAddress_symbol, e);
+  s = PROTECT(findVar(S_GInetSocketAddress_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GInetSocketAddressClass)) = e;
 
   S_gsocket_address_class_init(((GSocketAddressClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 
@@ -5691,8 +5767,10 @@ S_gapp_info_class_init(GAppInfoIface * c, SEXP e)
   SEXP s;
 
   S_GAppInfo_symbol = install("GAppInfo");
-  s = findVar(S_GAppInfo_symbol, e);
+  s = PROTECT(findVar(S_GAppInfo_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GAppInfoIface)) = e;
+
+  UNPROTECT(1);
 
 #if GIO_CHECK_VERSION(2, 16, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -6231,8 +6309,10 @@ S_gasync_result_class_init(GAsyncResultIface * c, SEXP e)
   SEXP s;
 
   S_GAsyncResult_symbol = install("GAsyncResult");
-  s = findVar(S_GAsyncResult_symbol, e);
+  s = PROTECT(findVar(S_GAsyncResult_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GAsyncResultIface)) = e;
+
+  UNPROTECT(1);
 
 #if GIO_CHECK_VERSION(2, 16, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -6999,8 +7079,10 @@ S_gdrive_class_init(GDriveIface * c, SEXP e)
   SEXP s;
 
   S_GDrive_symbol = install("GDrive");
-  s = findVar(S_GDrive_symbol, e);
+  s = PROTECT(findVar(S_GDrive_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GDriveIface)) = e;
+
+  UNPROTECT(1);
 
 #if GIO_CHECK_VERSION(2, 16, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -10276,8 +10358,10 @@ S_gfile_class_init(GFileIface * c, SEXP e)
   SEXP s;
 
   S_GFile_symbol = install("GFile");
-  s = findVar(S_GFile_symbol, e);
+  s = PROTECT(findVar(S_GFile_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GFileIface)) = e;
+
+  UNPROTECT(1);
 
 #if GIO_CHECK_VERSION(2, 16, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -12768,8 +12852,10 @@ S_gicon_class_init(GIconIface * c, SEXP e)
   SEXP s;
 
   S_GIcon_symbol = install("GIcon");
-  s = findVar(S_GIcon_symbol, e);
+  s = PROTECT(findVar(S_GIcon_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GIconIface)) = e;
+
+  UNPROTECT(1);
 
 #if GIO_CHECK_VERSION(2, 16, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -12927,8 +13013,10 @@ S_gloadable_icon_class_init(GLoadableIconIface * c, SEXP e)
   SEXP s;
 
   S_GLoadableIcon_symbol = install("GLoadableIcon");
-  s = findVar(S_GLoadableIcon_symbol, e);
+  s = PROTECT(findVar(S_GLoadableIcon_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GLoadableIconIface)) = e;
+
+  UNPROTECT(1);
 
 #if GIO_CHECK_VERSION(2, 16, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -13647,8 +13735,10 @@ S_gmount_class_init(GMountIface * c, SEXP e)
   SEXP s;
 
   S_GMount_symbol = install("GMount");
-  s = findVar(S_GMount_symbol, e);
+  s = PROTECT(findVar(S_GMount_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GMountIface)) = e;
+
+  UNPROTECT(1);
 
 #if GIO_CHECK_VERSION(2, 16, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -14367,8 +14457,10 @@ S_gseekable_class_init(GSeekableIface * c, SEXP e)
   SEXP s;
 
   S_GSeekable_symbol = install("GSeekable");
-  s = findVar(S_GSeekable_symbol, e);
+  s = PROTECT(findVar(S_GSeekable_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GSeekableIface)) = e;
+
+  UNPROTECT(1);
 
 #if GIO_CHECK_VERSION(2, 16, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -14994,8 +15086,10 @@ S_gvolume_class_init(GVolumeIface * c, SEXP e)
   SEXP s;
 
   S_GVolume_symbol = install("GVolume");
-  s = findVar(S_GVolume_symbol, e);
+  s = PROTECT(findVar(S_GVolume_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GVolumeIface)) = e;
+
+  UNPROTECT(1);
 
 #if GIO_CHECK_VERSION(2, 16, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -15508,8 +15602,10 @@ S_gasync_initable_class_init(GAsyncInitableIface * c, SEXP e)
   SEXP s;
 
   S_GAsyncInitable_symbol = install("GAsyncInitable");
-  s = findVar(S_GAsyncInitable_symbol, e);
+  s = PROTECT(findVar(S_GAsyncInitable_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GAsyncInitableIface)) = e;
+
+  UNPROTECT(1);
 
 #if GIO_CHECK_VERSION(2, 22, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -15607,8 +15703,10 @@ S_ginitable_class_init(GInitableIface * c, SEXP e)
   SEXP s;
 
   S_GInitable_symbol = install("GInitable");
-  s = findVar(S_GInitable_symbol, e);
+  s = PROTECT(findVar(S_GInitable_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GInitableIface)) = e;
+
+  UNPROTECT(1);
 
 #if GIO_CHECK_VERSION(2, 22, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
@@ -15677,8 +15775,10 @@ S_gsocket_connectable_class_init(GSocketConnectableIface * c, SEXP e)
   SEXP s;
 
   S_GSocketConnectable_symbol = install("GSocketConnectable");
-  s = findVar(S_GSocketConnectable_symbol, e);
+  s = PROTECT(findVar(S_GSocketConnectable_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GSocketConnectableIface)) = e;
+
+  UNPROTECT(1);
 
 #if GIO_CHECK_VERSION(2, 22, 0)
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)

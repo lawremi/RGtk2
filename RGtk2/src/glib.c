@@ -212,8 +212,10 @@ asRGQuark(GQuark val)
   PROTECT(ans = ScalarInteger((gint32)val));
 
   tmp = g_quark_to_string(val);
-  if(tmp)
-    setAttrib(ans, install("name"), asRString(tmp));
+  if(tmp) {
+      setAttrib(ans, install("name"), PROTECT(asRString(tmp)));
+      UNPROTECT(1);
+  }
   SET_CLASS(ans, asRString("GQuark"));
   UNPROTECT(1);
 

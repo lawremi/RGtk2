@@ -63,12 +63,13 @@ genCClass <- function(name = "GtkWidget", virtuals, defs, package = "RGtk2")
       statement(decl("SEXP", "s")),
       "",
       statement(cassign(classSymbol(name), invoke("install", lit(name)))),
-      statement(cassign("s", invokev("findVar", classSymbol(name), "e"))),
+      statement(cassign("s", invokev("PROTECT", invokev("findVar", classSymbol(name), "e")))),
       statement(cassign(invokev("G_STRUCT_MEMBER", "SEXP", "c", invoke("sizeof", class_type)), "e")),
       "",
       if (length(parent_class_init))
         c(statement(parent_class_init),
-        ""),
+          ""),
+     statement(invokev("UNPROTECT", 1L)), "",
       virtual_assigns,
     "}")
   

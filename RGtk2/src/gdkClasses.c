@@ -6,10 +6,12 @@ S_gdk_bitmap_class_init(GdkDrawableClass * c, SEXP e)
   SEXP s;
 
   S_GdkBitmap_symbol = install("GdkBitmap");
-  s = findVar(S_GdkBitmap_symbol, e);
+  s = PROTECT(findVar(S_GdkBitmap_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GdkDrawableClass)) = e;
 
   S_gdk_drawable_class_init(((GdkDrawableClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -20,10 +22,12 @@ S_gdk_colormap_class_init(GdkColormapClass * c, SEXP e)
   SEXP s;
 
   S_GdkColormap_symbol = install("GdkColormap");
-  s = findVar(S_GdkColormap_symbol, e);
+  s = PROTECT(findVar(S_GdkColormap_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GdkColormapClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -167,10 +171,12 @@ S_gdk_display_class_init(GdkDisplayClass * c, SEXP e)
   SEXP s;
 
   S_GdkDisplay_symbol = install("GdkDisplay");
-  s = findVar(S_GdkDisplay_symbol, e);
+  s = PROTECT(findVar(S_GdkDisplay_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GdkDisplayClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->get_display_name = S_virtual_gdk_display_get_display_name;
@@ -298,10 +304,12 @@ S_gdk_display_manager_class_init(GdkDisplayManagerClass * c, SEXP e)
   SEXP s;
 
   S_GdkDisplayManager_symbol = install("GdkDisplayManager");
-  s = findVar(S_GdkDisplayManager_symbol, e);
+  s = PROTECT(findVar(S_GdkDisplayManager_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GdkDisplayManagerClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->display_opened = S_virtual_gdk_display_manager_display_opened;
@@ -329,10 +337,12 @@ S_gdk_drag_context_class_init(GdkDragContextClass * c, SEXP e)
   SEXP s;
 
   S_GdkDragContext_symbol = install("GdkDragContext");
-  s = findVar(S_GdkDragContext_symbol, e);
+  s = PROTECT(findVar(S_GdkDragContext_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GdkDragContextClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -1189,10 +1199,12 @@ S_gdk_drawable_class_init(GdkDrawableClass * c, SEXP e)
   SEXP s;
 
   S_GdkDrawable_symbol = install("GdkDrawable");
-  s = findVar(S_GdkDrawable_symbol, e);
+  s = PROTECT(findVar(S_GdkDrawable_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GdkDrawableClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->create_gc = S_virtual_gdk_drawable_create_gc;
@@ -1726,10 +1738,12 @@ S_gdk_window_class_init(GdkWindowClass * c, SEXP e)
   SEXP s;
 
   S_GdkWindow_symbol = install("GdkWindow");
-  s = findVar(S_GdkWindow_symbol, e);
+  s = PROTECT(findVar(S_GdkWindow_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GdkWindowClass)) = e;
 
   S_gdk_drawable_class_init(((GdkDrawableClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -1740,10 +1754,12 @@ S_gdk_pixmap_class_init(GdkPixmapObjectClass * c, SEXP e)
   SEXP s;
 
   S_GdkPixmap_symbol = install("GdkPixmap");
-  s = findVar(S_GdkPixmap_symbol, e);
+  s = PROTECT(findVar(S_GdkPixmap_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GdkPixmapObjectClass)) = e;
 
   S_gdk_drawable_class_init(((GdkDrawableClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -1844,10 +1860,12 @@ S_gdk_gc_class_init(GdkGCClass * c, SEXP e)
   SEXP s;
 
   S_GdkGC_symbol = install("GdkGC");
-  s = findVar(S_GdkGC_symbol, e);
+  s = PROTECT(findVar(S_GdkGC_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GdkGCClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->get_values = S_virtual_gdk_gc_get_values;
@@ -1900,10 +1918,12 @@ S_gdk_image_class_init(GdkImageClass * c, SEXP e)
   SEXP s;
 
   S_GdkImage_symbol = install("GdkImage");
-  s = findVar(S_GdkImage_symbol, e);
+  s = PROTECT(findVar(S_GdkImage_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GdkImageClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -1964,10 +1984,12 @@ S_gdk_keymap_class_init(GdkKeymapClass * c, SEXP e)
   SEXP s;
 
   S_GdkKeymap_symbol = install("GdkKeymap");
-  s = findVar(S_GdkKeymap_symbol, e);
+  s = PROTECT(findVar(S_GdkKeymap_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GdkKeymapClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->direction_changed = S_virtual_gdk_keymap_direction_changed;
@@ -2117,10 +2139,12 @@ S_gdk_pixbuf_animation_class_init(GdkPixbufAnimationClass * c, SEXP e)
   SEXP s;
 
   S_GdkPixbufAnimation_symbol = install("GdkPixbufAnimation");
-  s = findVar(S_GdkPixbufAnimation_symbol, e);
+  s = PROTECT(findVar(S_GdkPixbufAnimation_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GdkPixbufAnimationClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->is_static_image = S_virtual_gdk_pixbuf_animation_is_static_image;
@@ -2315,10 +2339,12 @@ S_gdk_pixbuf_animation_iter_class_init(GdkPixbufAnimationIterClass * c, SEXP e)
   SEXP s;
 
   S_GdkPixbufAnimationIter_symbol = install("GdkPixbufAnimationIter");
-  s = findVar(S_GdkPixbufAnimationIter_symbol, e);
+  s = PROTECT(findVar(S_GdkPixbufAnimationIter_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GdkPixbufAnimationIterClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->get_delay_time = S_virtual_gdk_pixbuf_animation_iter_get_delay_time;
@@ -2514,10 +2540,12 @@ S_gdk_pixbuf_loader_class_init(GdkPixbufLoaderClass * c, SEXP e)
   SEXP s;
 
   S_GdkPixbufLoader_symbol = install("GdkPixbufLoader");
-  s = findVar(S_GdkPixbufLoader_symbol, e);
+  s = PROTECT(findVar(S_GdkPixbufLoader_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GdkPixbufLoaderClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->size_prepared = S_virtual_gdk_pixbuf_loader_size_prepared;
@@ -2598,10 +2626,12 @@ S_gdk_pango_renderer_class_init(GdkPangoRendererClass * c, SEXP e)
   SEXP s;
 
   S_GdkPangoRenderer_symbol = install("GdkPangoRenderer");
-  s = findVar(S_GdkPangoRenderer_symbol, e);
+  s = PROTECT(findVar(S_GdkPangoRenderer_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GdkPangoRendererClass)) = e;
 
   S_pango_renderer_class_init(((PangoRendererClass *)c), e);
+
+  UNPROTECT(1);
 
 } 
 
@@ -2662,10 +2692,12 @@ S_gdk_screen_class_init(GdkScreenClass * c, SEXP e)
   SEXP s;
 
   S_GdkScreen_symbol = install("GdkScreen");
-  s = findVar(S_GdkScreen_symbol, e);
+  s = PROTECT(findVar(S_GdkScreen_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GdkScreenClass)) = e;
 
   S_gobject_class_init(((GObjectClass *)c), e);
+
+  UNPROTECT(1);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->size_changed = S_virtual_gdk_screen_size_changed;
@@ -2715,10 +2747,12 @@ S_gdk_app_launch_context_class_init(GdkAppLaunchContextClass * c, SEXP e)
   SEXP s;
 
   S_GdkAppLaunchContext_symbol = install("GdkAppLaunchContext");
-  s = findVar(S_GdkAppLaunchContext_symbol, e);
+  s = PROTECT(findVar(S_GdkAppLaunchContext_symbol, e));
   G_STRUCT_MEMBER(SEXP, c, sizeof(GdkAppLaunchContextClass)) = e;
 
   S_gapp_launch_context_class_init(((GAppLaunchContextClass *)c), e);
+
+  UNPROTECT(1);
 
 }
 #endif 

@@ -16,7 +16,8 @@ S_atk_editable_text_insert_text(USER_OBJECT_ s_object, USER_OBJECT_ s_string, US
 
         atk_editable_text_insert_text(object, string, length, position);
 
-		_result = retByVal(_result, "position", asRInteger(*position), NULL);
+	_result = retByVal(_result, "position", PROTECT(asRInteger(*position)), NULL);
+	UNPROTECT(1);
         return(_result);
 }
 
