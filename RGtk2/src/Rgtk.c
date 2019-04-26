@@ -59,7 +59,7 @@ VOID CALLBACK R_gtk_timer_proc(HWND hwnd, UINT uMsg, UINT_PTR idEvent,
 
 #else
 
-static InputHandler *eventLoopInputHandler = NULL;
+static InputHandler *eventLoopInputHandler = NULL, *displayInputHandler = NULL;
 static GThread *eventLoopThread = NULL;
 static GMainLoop *eventLoopMain = NULL;
 static int fired = 0;
@@ -132,8 +132,9 @@ R_gtkInit(long *rargc, char **rargv, Rboolean *success)
     }
 
 
-    addInputHandler(R_InputHandlers, ConnectionNumber(GDK_DISPLAY()),
-                    R_gtk_eventHandler, -1);
+    displayInputHandler = addInputHandler(R_InputHandlers,
+					  ConnectionNumber(GDK_DISPLAY()),
+					  R_gtk_eventHandler, -1);
 #endif
     /* Experimental timer-based piping to a file descriptor */
 #ifdef G_THREADS_ENABLED
@@ -189,6 +190,7 @@ R_gtkInit(long *rargc, char **rargv, Rboolean *success)
 void R_gtkCleanup() {
 #ifndef G_OS_WIN32
   removeInputHandler(&R_InputHandlers, eventLoopInputHandler);
+  removeInputHandler(&R_InputHandlers, displayInputHandler);
   g_main_loop_quit(eventLoopMain);
   g_thread_join(eventLoopThread);
   close(ifd);
