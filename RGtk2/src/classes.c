@@ -213,13 +213,13 @@ S_g_object_parent(USER_OBJECT_ s_obj)
     return NULL_USER_OBJECT;
 
   PROTECT(parent);
-  public_env = findVar(install(".public"), S_GOBJECT_GET_ENV(obj));
+  public_env = PROTECT(findVar(install(".public"), S_GOBJECT_GET_ENV(obj)));
   private_env = S_G_OBJECT_GET_INSTANCE_ENV(s_obj);
   
   setAttrib(parent, install(".public"), ENCLOS(public_env));
   setAttrib(parent, install(".private"), ENCLOS(private_env));
 
-  UNPROTECT(1);
+  UNPROTECT(2);
   return parent;
 }
 

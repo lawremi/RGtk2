@@ -18,12 +18,12 @@ S_g_input_stream_read(USER_OBJECT_ s_object, USER_OBJECT_ s_count,
 
   ans = g_input_stream_read(object, buffer, count, cancellable, &error);
 
-  _result = asRInteger(ans);
+  _result = PROTECT(asRInteger(ans));
 
   _result = retByVal(_result,
 		     "buffer", PROTECT(asRRawArrayWithSize(buffer, count)),
                      "error", PROTECT(asRGError(error)), NULL);
-  UNPROTECT(2);
+  UNPROTECT(3);
   CLEANUP(g_error_free, error);;
 #else
   error("g_input_stream_read exists only in gio >= 2.16.0");
@@ -304,11 +304,12 @@ S_g_socket_receive(USER_OBJECT_ s_object, USER_OBJECT_ s_size,
 
   ans = g_socket_receive(object, buffer, size, cancellable, &error);
 
-  _result = asRInteger(ans);
+  _result = PROTECT(asRInteger(ans));
 
-  _result = retByVal(_result, "buffer", PROTECT(asRRawArrayWithSize(buffer, size)),
+  _result = retByVal(_result, "buffer",
+		     PROTECT(asRRawArrayWithSize(buffer, size)),
                      "error", PROTECT(asRGError(error)), NULL);
-  UNPROTECT(2);
+  UNPROTECT(3);
   CLEANUP(g_error_free, error);;
 #else
   error("g_socket_receive exists only in gio >= 2.22.0");
@@ -336,7 +337,7 @@ S_g_socket_receive_from(USER_OBJECT_ s_object, USER_OBJECT_ s_size,
   ans = g_socket_receive_from(object, &address, buffer, size, cancellable,
                               &error);
 
-  _result = asRInteger(ans);
+  _result = PROTECT(asRInteger(ans));
 
   _result = retByVal(_result,
                      "address", PROTECT(toRPointerWithFinalizer(address, "GSocketAddress", (RPointerFinalizer) g_object_unref)),
@@ -344,7 +345,7 @@ S_g_socket_receive_from(USER_OBJECT_ s_object, USER_OBJECT_ s_size,
                      "error", PROTECT(asRGError(error)),
                      NULL);
   
-  UNPROTECT(3);
+  UNPROTECT(4);
   CLEANUP(g_error_free, error);;
 #else
   error("g_socket_receive_from exists only in gio >= 2.22.0");
@@ -383,7 +384,7 @@ S_g_socket_receive_message(USER_OBJECT_ s_object, USER_OBJECT_ s_num_vectors,
                                  &messages, &num_messages, &flags, cancellable,
                                  &error);
 
-  _result = asRInteger(ans);
+  _result = PROTECT(asRInteger(ans));
 
   _result = retByVal(_result,
                      "address", PROTECT(toRPointerWithFinalizer(address, "GSocketAddress", (RPointerFinalizer) g_object_unref)),
@@ -393,7 +394,7 @@ S_g_socket_receive_message(USER_OBJECT_ s_object, USER_OBJECT_ s_num_vectors,
                      "flags", PROTECT(asRInteger(flags)),
                      "error", PROTECT(asRGError(error)), NULL);
   
-  UNPROTECT(6);
+  UNPROTECT(7);
   CLEANUP(g_free, messages);;
   ;
   CLEANUP(g_error_free, error);;
@@ -429,10 +430,10 @@ S_g_socket_send_message(USER_OBJECT_ s_object, USER_OBJECT_ s_address,
   ans = g_socket_send_message(object, address, vectors, num_vectors, messages,
                               num_messages, flags, cancellable, &error);
 
-  _result = asRInteger(ans);
+  _result = PROTECT(asRInteger(ans));
 
   _result = retByVal(_result, "error", PROTECT(asRGError(error)), NULL);
-  UNPROTECT(1);
+  UNPROTECT(2);
   CLEANUP(g_error_free, error);
 #else
   error("g_socket_send_message exists only in gio >= 2.22.0");

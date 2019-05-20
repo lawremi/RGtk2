@@ -90,7 +90,8 @@ S_cairo_get_dash(USER_OBJECT_ s_cr)
   cairo_get_dash(cr, dashes, &offset);
 
 
-  _result = retByVal(_result, "dashes", asRArrayWithSize(dashes, asRNumeric, count), "offset", asRNumeric(offset), NULL);
+  _result = retByVal(_result, "dashes", PROTECT(asRArrayWithSize(dashes, asRNumeric, count)), "offset", PROTECT(asRNumeric(offset)), NULL);
+  UNPROTECT(2);
 #else
   error("cairo_get_dash exists only in cairo >= 1.4.0");
 #endif
