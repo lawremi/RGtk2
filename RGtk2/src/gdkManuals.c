@@ -425,7 +425,7 @@ S_gdk_colormap_alloc_color(USER_OBJECT_ s_object, USER_OBJECT_ s_color, USER_OBJ
 	ans = gdk_colormap_alloc_color(object, color, writeable, best_match);
 
 	_result = retByVal(PROTECT(asRLogical(ans)), "color",
-			   PROTECT(asRGdkColor(color)));
+			   PROTECT(asRGdkColor(color)), NULL);
 
 	UNPROTECT(2);
 	return(_result);
