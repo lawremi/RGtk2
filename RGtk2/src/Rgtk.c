@@ -191,12 +191,16 @@ void R_gtkCleanup() {
 #ifndef G_OS_WIN32
   removeInputHandler(&R_InputHandlers, eventLoopInputHandler);
   removeInputHandler(&R_InputHandlers, displayInputHandler);
-  g_main_loop_quit(eventLoopMain);
-  g_thread_join(eventLoopThread);
-  close(ifd);
-  close(ofd);
+  if (eventLoopMain) {
+      g_main_loop_quit(eventLoopMain);
+      g_thread_join(eventLoopThread);
+      close(ifd);
+      close(ofd);
+  }
 #else
-  DestroyWindow(win);
+  if (win) {
+      DestroyWindow(win);
+  }
 #endif
 }
 
