@@ -219,16 +219,6 @@ getPtrValueWithRef(USER_OBJECT_ sval)
 /* enum and flag stuff - experimental */
 
 gint
-R_asEnum(USER_OBJECT_ s_enum, USER_OBJECT_ etype)
-{
-    GType type = g_type_from_name(asCString(etype));
-    if (!type) {
-        PROBLEM "Invalid enum type %s", asCString(etype)
-        ERROR;
-    }
-    return(asCEnum(s_enum, type));
-}
-gint
 asCEnum(USER_OBJECT_ s_enum, GType etype)
 {
     GEnumClass *eclass = g_type_class_ref(etype);
@@ -257,16 +247,6 @@ asCEnum(USER_OBJECT_ s_enum, GType etype)
     return(eval);
 }
 
-guint
-R_asFlag(USER_OBJECT_ s_flag, USER_OBJECT_ ftype)
-{
-    GType type = g_type_from_name(asCString(ftype));
-    if (!type) {
-        PROBLEM "Invalid flag type %s", asCString(ftype)
-        ERROR;
-    }
-    return(asCFlag(s_flag, type));
-}
 guint
 asCFlag(USER_OBJECT_ s_flag, GType ftype)
 {

@@ -9,19 +9,3 @@ function(x, type, fields)
   class(struct) <- type
   struct
 }
-if (FALSE) {
-as.enum <-
-function(val, type)
-{
-  if(inherits(val, type))
-    return(val)
-  .Call("R_asEnum", val, type, PACKAGE="RGtk2")
-}
-flag <-
-function(val, type)
-{
-  if(inherits(val, type))
-    return(val)
-  .Call("R_asFlag", val, type, PACKAGE="RGtk2")
-}
-}
