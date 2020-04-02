@@ -22,8 +22,7 @@
 \section{Hierarchy}{\preformatted{GObject
    +----GtkSettings}}
 \section{Detailed Description}{GtkSettings provide a mechanism to share global settings between applications.
-On the X window system, this sharing is realized by an XSettings (\url{\emph{undocumented
-}})
+On the X window system, this sharing is realized by an XSettings 
 manager that is usually part of the desktop environment, along with utilities
 that let the user change these settings. In the absence of an Xsettings manager,
 settings can also be specified in RC files.
