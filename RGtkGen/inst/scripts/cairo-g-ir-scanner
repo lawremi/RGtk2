@@ -1,0 +1,1 @@
+g-ir-scanner -n Cairo --identifier-prefix=cairo --symbol-prefix=cairo --c-include=cairo.h --library=cairo --output cairo-1.0.gir /usr/include/cairo/cairo.h /usr/include/cairo/cairo-svg.h /usr/include/cairo/cairo-ps.h /usr/include/cairo/cairo-pdf.h 
