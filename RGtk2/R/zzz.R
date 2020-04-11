@@ -129,5 +129,5 @@ function(libname, pkgname)
 }
 
 .init_failed <- function() {
-  message("R session is headless; GTK+ not initialized.")
+  packageStartupMessage("R session is headless; GTK+ not initialized.")
 }
