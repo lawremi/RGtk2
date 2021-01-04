@@ -110,7 +110,7 @@ function(libname, pkgname)
       if (.Platform$r_arch == "i386")
         config <- windows32_config
       else config <- windows64_config
-    } else if (length(grep("darwin", R.version$platform))) 
+    } else if (grepl("^x86.*darwin", R.version$platform))
       config <- darwin_config
     else config <- unix_config
     
