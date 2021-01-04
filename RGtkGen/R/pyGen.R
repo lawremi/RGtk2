@@ -64,11 +64,22 @@ function(fileNames = c("/usr/share/pygtk/2.0/defs/gtk.defs"))
   ##   access -> direction
   ##   nullok -> mayBeNull
   ##   dflt -> ***FIXME*** http://bugzilla.gnome.org/show_bug.cgi?id=558620
+  ##     Could workaround via assumptions:
+  ##     - nullable default to NULL
+  ##     - enum/flags default to c() vector of choices; call match.args()
+  ##     - any argument named 'io_priority' should default to 0
+  ##     - any argument named 'time_' should default to Sys.time()
+  ##     - gtk_box_pack_start/end() will no longer use defaults (breakage)
+  ##       - this code has to change anyway, because there is now just GtkBox,
+  ##         no GtkH/VBox
   ## calls:
   ##   return -> returnType
   ##   owns -> callerOwnsReturn
   ##   deprecated -> deprecated
-  ##   varargs -> currently filtered from the typelib
+  ##   - Should exclude anything deprecated for initial RGtk3 release
+  ##   varargs -> 'rename-to' maps array-based variant to variadic
+  ##              - could auto identify the array and generate variadic
+  ##                wrapper that passes list(...) to it
   ## method:
   ##   ofobject -> isMethod (and then first argument type)
   ## function:
@@ -287,10 +298,7 @@ function(from,  into)
 
 ### Issues:
 
-## 1) missing 'since' information: could merge multiple repositories,
-## but the versions are not fully specified.
-
-## 2) nested namespaces: not supported by GIR, but in anticipation,
+## 1) nested namespaces: not supported by GIR, but in anticipation,
 ## namespaces should be nested lists, with entries named by GIR
 ## name. Then we just recurse, while keeping a bread trail, so that we can
 ## resolve local symbols.
@@ -312,8 +320,8 @@ parseGIR <- function(filename, db, includePaths = "/usr/share/gir") {
 
     ## yes, this loops over the nodes. it seems that XPath is not
     ## designed for this vectorized querying strategy.
-    optattr <- function(nodes, attr, default) {
-      sapply(nodes, xmlGetAttr, attr, default)
+    optattr <- function(nodes, ...) {
+      vapply(nodes, xmlGetAttr, character(1L), ...)
     }
     
     xpquery <- function(query, prefix = NULL) {
@@ -403,17 +411,22 @@ parseGIR <- function(filename, db, includePaths = "/usr/share/gir") {
     }
     parseBoxed <- function() buildEntry(parseType("glib:boxed"))
 
-### FIXME: no default values, the GIR people are working on it
+### FIXME: no default values, but see above for how we can guess
     parseParameter <- function(prefix) {
 ### TODO: consider ownership here
+        
+### TODO: '@closure' is 0-based non-instance parameter index (add 2)
+###       of the user data for a callback; '@scope="call"' indicates
+###       that the callback only needs to exist for the duration of
+###       the call (otherwise there will typically be a destroy function).
       calls <- xpquery(".", prefix)
       ## parameters must have names (not '...')
       counts <- sapply(calls, getNodeSet,
                        "count(core:parameters/core:parameter[@name])", xns)
       prefix <- paste(prefix, "core:parameters/core:parameter[@name]", sep="/")
       params <- xpquery(".", prefix)
-      allow_none <- optattr(params, "allow_none", FALSE)
-      optional <- optattr(params, "optional", FALSE)
+      allow_none <- as.logical(optattr(params, "allow_none", "0"))
+      optional <- as.logical(optattr(params, "optional", "0"))
       entries <- buildEntry(parseEntry(prefix),
                             list(name = xpquery("@name", prefix),
                                  access = optattr(params, "direction", "in"),
@@ -422,20 +435,33 @@ parseGIR <- function(filename, db, includePaths = "/usr/share/gir") {
       inds <- seq_along(counts)
       split(entries, factor(rep(inds, counts), inds))
     }
-    
+
+      parseDeprecated <- function(entries) {
+        deprecated <- optattr(entries, "deprecated", "0") == "1"
+        deprecated_version <- optattr(entries, "deprecated-version",
+                                      NA_character_)
+        doc_deprecated <-
+            vapply(entries,
+                   function(x) xmlValue(x[["doc-deprecated"]][[1L]]),
+                   character(1L))
+        list(deprecated = deprecated, deprecated_version = deprecated_version,
+             deprecated_msg = doc_deprecated)
+      }
+      
     parseCall <- function(prefix) {
 ### TODO: consider 'container' ownership
       ownership <- xpquery("core:return-value/@transfer-ownership", prefix)
       varargs <- xpquery("/varargs/../../../@name", prefix)
       entry <- parseEntry(prefix)
       calls <- xpquery(".", prefix)
+      deprecated <- parseDeprecated(calls)
       c(entry,
+        deprecated,
         list(name = xpquery("@c:identifier", prefix),
              return = xpquery("core:return-value/core:type/@c:type", prefix),
-
+             since = optattr(calls, "version", NA_character_),
              owns = ownership == "full", parameters = parseParameter(prefix),
-             varargs = entry$id %in% varargs,
-             deprecated = optattr(calls, "deprecated", NULL)))
+             varargs = entry$id %in% varargs))
     }
     
     parseMethod <- function() {
@@ -1205,7 +1231,10 @@ invoke <- function(name, args) {
 }
 # invokes the named function with args passed as remaining arguments
 invokev <- function(name, ...) {
-    paste(name, "(", paste(...,sep=", "), ")", sep="")
+    args <- list(...)
+    if (!is.null(names(args)))
+        args <- paste(names(args), "=", args)
+    paste(name, "(", paste(args, collapse=", "), ")", sep="")
 }
 # assigns a value in C
 cassign <- function(var, val) {
@@ -1480,9 +1509,13 @@ function(fun, defs, name, sname, className = NULL, package = "RGtk2")
     "{")
     # check for deprecation
     if(isDeprecated(fun)) {
-        txt <- c(txt,
+      msg <- paste(name, "has been deprecated since", fun$deprecated_version,
+                   "and should not be used in newly-written code.")
+      if (!is.na(fun$deprecated_doc))
+          msg <- paste(msg, deprecated_doc)
+      txt <- c(txt,
         ind(c(invoke("if", invoke("getOption", lit("depwarn"))),
-            ind(invokev(".Deprecated", lit(fun$deprecated), lit(package))))),
+            ind(invokev(".Deprecated", msg=lit(msg), package=lit(package))))),
         "")
     }
 
@@ -1789,6 +1822,10 @@ function(name, params, defs)
 {
     # we get the first gpointer-typed param searching from func to end then func to beginning
     # and call that the data param
+### FIXME: do not need to guess 'freeData' anymore, because
+###        @scope="call" in GIR indicates that we should immediate
+###        free; there is also @scope="async" where the callback
+###        should free itself after it is first called (only once)
     freeData <- FALSE
     func <- which(name == names(params))
     type <- params[[func]]$type

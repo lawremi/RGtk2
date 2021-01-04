@@ -278,7 +278,9 @@ c("pango_context_new", "pango_fontset_simple_new",
   "gtk_input_add_full", "gtk_set_locale",
   "g_cancellable_make_pollfd", "g_io_scheduler_push_job",
   "g_simple_async_result_is_valid", "g_unix_connection_receive_fd",
-  "g_unix_connection_send_fd", "gtk_test_init")
+  "g_unix_connection_send_fd", "gtk_test_init",
+  "cairo_surface_observer_print"
+)
 
 useless_funcs <- c("pango_default_break", "gdk_colormap_change",
                    "gdk_color_copy", "gdk_colors_alloc", "gdk_color_hash",
@@ -370,8 +372,16 @@ mem_funcs <-
 ## too tough right now
 unsupported_funcs <- c(# user data shared between two callbacks
                        "g_file_load_partial_contents_async",
-                       # obviously, multi-threading is not supported
-                       "g_simple_async_result_run_in_thread")
+    ## obviously, multi-threading is not supported
+    "g_simple_async_result_run_in_thread",
+    ## not easy to bind user func patterns
+    "cairo_pattern_create_raster_source",
+    "cairo_raster_source_pattern_set_callback_data",
+    "cairo_raster_source_pattern_set_acquire",
+    "cairo_raster_source_pattern_set_snapshot",
+    "cairo_raster_source_pattern_set_copy",
+    "cairo_raster_source_pattern_set_finish"
+    )
 
 cleanups <- unlist(cleanupFuncs)[sapply(unlist(cleanupFuncs), function(func) nchar(func) > 0)]
 mem_funcs <- unique(c(mem_funcs, cleanups, finalizerFuncs, "g_object_unref", "g_object_ref", "g_strfreev"))

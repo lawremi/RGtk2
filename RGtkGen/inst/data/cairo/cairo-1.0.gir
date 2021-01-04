@@ -2336,16 +2336,16 @@ would just use the address of a static #cairo_data_key_t object.</doc>
         <parameter name="cr" transfer-ownership="none">
           <type name="_t" c:type="cairo_t*"/>
         </parameter>
-        <parameter name="x1" transfer-ownership="none">
+        <parameter name="x1" direction="out" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
-        <parameter name="y1" transfer-ownership="none">
+        <parameter name="y1" direction="out" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
-        <parameter name="x2" transfer-ownership="none">
+        <parameter name="x2" direction="out" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
-        <parameter name="y2" transfer-ownership="none">
+        <parameter name="y2" direction="out" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
       </parameters>
@@ -2716,6 +2716,8 @@ element and should free any memory and resources allocated for it.</doc>
         <parameter name="device" transfer-ownership="none">
           <type name="_device_t" c:type="cairo_device_t*"/>
         </parameter>
+	<!--- FIXME: this has always been broken; perhaps pass the
+	    address of a CHARSXP as the opaque key? -->
         <parameter name="key" transfer-ownership="none">
           <type name="_user_data_key_t" c:type="const cairo_user_data_key_t*"/>
         </parameter>
@@ -2750,10 +2752,10 @@ element and should free any memory and resources allocated for it.</doc>
         <parameter name="cr" transfer-ownership="none">
           <type name="_t" c:type="cairo_t*"/>
         </parameter>
-        <parameter name="x" transfer-ownership="none">
+        <parameter name="x" direction="inout" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
-        <parameter name="y" transfer-ownership="none">
+        <parameter name="y" direction="inout" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
       </parameters>
@@ -2768,10 +2770,10 @@ element and should free any memory and resources allocated for it.</doc>
         <parameter name="cr" transfer-ownership="none">
           <type name="_t" c:type="cairo_t*"/>
         </parameter>
-        <parameter name="dx" transfer-ownership="none">
+        <parameter name="dx" direction="inout" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
-        <parameter name="dy" transfer-ownership="none">
+        <parameter name="dy" direction="inout" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
       </parameters>
@@ -2830,7 +2832,8 @@ element and should free any memory and resources allocated for it.</doc>
         <parameter name="cr" transfer-ownership="none">
           <type name="_t" c:type="cairo_t*"/>
         </parameter>
-        <parameter name="extents" transfer-ownership="none">
+        <parameter name="extents" caller-allocates="1"
+                   direction="out" transfer-ownership="none">
           <type name="_font_extents_t" c:type="cairo_font_extents_t*"/>
         </parameter>
       </parameters>
@@ -2909,6 +2912,8 @@ element and should free any memory and resources allocated for it.</doc>
         <parameter name="font_face" transfer-ownership="none">
           <type name="_font_face_t" c:type="cairo_font_face_t*"/>
         </parameter>
+	<!--- FIXME: this has always been broken; perhaps pass the
+	    address of a CHARSXP as the opaque key? -->
         <parameter name="key" transfer-ownership="none">
           <type name="_user_data_key_t" c:type="const cairo_user_data_key_t*"/>
         </parameter>
@@ -3207,10 +3212,10 @@ element and should free any memory and resources allocated for it.</doc>
         <parameter name="cr" transfer-ownership="none">
           <type name="_t" c:type="cairo_t*"/>
         </parameter>
-        <parameter name="dashes" transfer-ownership="none">
+        <parameter name="dashes" direction="out" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
-        <parameter name="offset" transfer-ownership="none">
+        <parameter name="offset" direction="out" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
       </parameters>
@@ -3464,7 +3469,8 @@ element and should free any memory and resources allocated for it.</doc>
         <parameter name="num_glyphs" transfer-ownership="none">
           <type name="gint" c:type="int"/>
         </parameter>
-        <parameter name="extents" transfer-ownership="none">
+        <parameter name="extents" caller-allocates="1"
+                   direction="out" transfer-ownership="none">
           <type name="_text_extents_t" c:type="cairo_text_extents_t*"/>
         </parameter>
       </parameters>
@@ -3490,7 +3496,9 @@ element and should free any memory and resources allocated for it.</doc>
           <type name="_t" c:type="cairo_t*"/>
         </parameter>
         <parameter name="glyphs" transfer-ownership="none">
-          <type name="_glyph_t" c:type="const cairo_glyph_t*"/>
+	  <array length="2" c:type="const cairo_glyph_t*">
+            <type name="_glyph_t" c:type="const cairo_glyph_t"/>
+	  </array>
         </parameter>
         <parameter name="num_glyphs" transfer-ownership="none">
           <type name="gint" c:type="int"/>
@@ -3764,7 +3772,8 @@ element and should free any memory and resources allocated for it.</doc>
         <type name="none" c:type="void"/>
       </return-value>
       <parameters>
-        <parameter name="matrix" transfer-ownership="none">
+        <parameter name="matrix" direction="out" caller-allocates="1"
+		   transfer-ownership="none">
           <type name="_matrix_t" c:type="cairo_matrix_t*"/>
         </parameter>
         <parameter name="xx" transfer-ownership="none">
@@ -3794,7 +3803,8 @@ element and should free any memory and resources allocated for it.</doc>
         <type name="none" c:type="void"/>
       </return-value>
       <parameters>
-        <parameter name="matrix" transfer-ownership="none">
+        <parameter name="matrix" direction="out" caller-allocates="1"
+		   transfer-ownership="none">
           <type name="_matrix_t" c:type="cairo_matrix_t*"/>
         </parameter>
       </parameters>
@@ -3806,7 +3816,8 @@ element and should free any memory and resources allocated for it.</doc>
         <type name="none" c:type="void"/>
       </return-value>
       <parameters>
-        <parameter name="matrix" transfer-ownership="none">
+        <parameter name="matrix" direction="out" caller-allocates="1"
+		   transfer-ownership="none">
           <type name="_matrix_t" c:type="cairo_matrix_t*"/>
         </parameter>
         <parameter name="radians" transfer-ownership="none">
@@ -3820,7 +3831,8 @@ element and should free any memory and resources allocated for it.</doc>
         <type name="none" c:type="void"/>
       </return-value>
       <parameters>
-        <parameter name="matrix" transfer-ownership="none">
+        <parameter name="matrix" direction="out" caller-allocates="1"
+		   transfer-ownership="none">
           <type name="_matrix_t" c:type="cairo_matrix_t*"/>
         </parameter>
         <parameter name="sx" transfer-ownership="none">
@@ -3838,7 +3850,8 @@ element and should free any memory and resources allocated for it.</doc>
         <type name="none" c:type="void"/>
       </return-value>
       <parameters>
-        <parameter name="matrix" transfer-ownership="none">
+        <parameter name="matrix" direction="out" caller-allocates="1"
+		   transfer-ownership="none">
           <type name="_matrix_t" c:type="cairo_matrix_t*"/>
         </parameter>
         <parameter name="tx" transfer-ownership="none">
@@ -3918,10 +3931,10 @@ element and should free any memory and resources allocated for it.</doc>
         <parameter name="matrix" transfer-ownership="none">
           <type name="_matrix_t" c:type="const cairo_matrix_t*"/>
         </parameter>
-        <parameter name="dx" transfer-ownership="none">
+        <parameter name="dx" direction="inout" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
-        <parameter name="dy" transfer-ownership="none">
+        <parameter name="dy" direction="inout" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
       </parameters>
@@ -3936,10 +3949,10 @@ element and should free any memory and resources allocated for it.</doc>
         <parameter name="matrix" transfer-ownership="none">
           <type name="_matrix_t" c:type="const cairo_matrix_t*"/>
         </parameter>
-        <parameter name="x" transfer-ownership="none">
+        <parameter name="x" direction="inout" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
-        <parameter name="y" transfer-ownership="none">
+        <parameter name="y" direction="inout" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
       </parameters>
@@ -4292,16 +4305,16 @@ element and should free any memory and resources allocated for it.</doc>
         <parameter name="cr" transfer-ownership="none">
           <type name="_t" c:type="cairo_t*"/>
         </parameter>
-        <parameter name="x1" transfer-ownership="none">
+        <parameter name="x1" direction="out" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
-        <parameter name="y1" transfer-ownership="none">
+        <parameter name="y1" direction="out" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
-        <parameter name="x2" transfer-ownership="none">
+        <parameter name="x2" direction="out" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
-        <parameter name="y2" transfer-ownership="none">
+        <parameter name="y2" direction="out" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
       </parameters>
@@ -4515,7 +4528,7 @@ element and should free any memory and resources allocated for it.</doc>
         <parameter name="pattern" transfer-ownership="none">
           <type name="_pattern_t" c:type="cairo_pattern_t*"/>
         </parameter>
-        <parameter name="count" transfer-ownership="none">
+        <parameter name="count" direction="out" transfer-ownership="none">
           <type name="gint" c:type="int*"/>
         </parameter>
       </parameters>
@@ -4533,19 +4546,19 @@ element and should free any memory and resources allocated for it.</doc>
         <parameter name="index" transfer-ownership="none">
           <type name="gint" c:type="int"/>
         </parameter>
-        <parameter name="offset" transfer-ownership="none">
+        <parameter name="offset" direction="out" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
-        <parameter name="red" transfer-ownership="none">
+        <parameter name="red" direction="out" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
-        <parameter name="green" transfer-ownership="none">
+        <parameter name="green" direction="out" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
-        <parameter name="blue" transfer-ownership="none">
+        <parameter name="blue" direction="out" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
-        <parameter name="alpha" transfer-ownership="none">
+        <parameter name="alpha" direction="out" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
       </parameters>
@@ -4584,16 +4597,16 @@ element and should free any memory and resources allocated for it.</doc>
         <parameter name="pattern" transfer-ownership="none">
           <type name="_pattern_t" c:type="cairo_pattern_t*"/>
         </parameter>
-        <parameter name="x0" transfer-ownership="none">
+        <parameter name="x0" direction="out" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
-        <parameter name="y0" transfer-ownership="none">
+        <parameter name="y0" direction="out" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
-        <parameter name="x1" transfer-ownership="none">
+        <parameter name="x1" direction="out" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
-        <parameter name="y1" transfer-ownership="none">
+        <parameter name="y1" direction="out" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
       </parameters>
@@ -4623,22 +4636,22 @@ element and should free any memory and resources allocated for it.</doc>
         <parameter name="pattern" transfer-ownership="none">
           <type name="_pattern_t" c:type="cairo_pattern_t*"/>
         </parameter>
-        <parameter name="x0" transfer-ownership="none">
+        <parameter name="x0" direction="out" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
-        <parameter name="y0" transfer-ownership="none">
+        <parameter name="y0" direction="out" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
-        <parameter name="r0" transfer-ownership="none">
+        <parameter name="r0" direction="out" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
-        <parameter name="x1" transfer-ownership="none">
+        <parameter name="x1" direction="out" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
-        <parameter name="y1" transfer-ownership="none">
+        <parameter name="y1" direction="out" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
-        <parameter name="r1" transfer-ownership="none">
+        <parameter name="r1" direction="out" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
       </parameters>
@@ -4664,16 +4677,16 @@ element and should free any memory and resources allocated for it.</doc>
         <parameter name="pattern" transfer-ownership="none">
           <type name="_pattern_t" c:type="cairo_pattern_t*"/>
         </parameter>
-        <parameter name="red" transfer-ownership="none">
+        <parameter name="red" direction="out" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
-        <parameter name="green" transfer-ownership="none">
+        <parameter name="green" direction="out" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
-        <parameter name="blue" transfer-ownership="none">
+        <parameter name="blue" direction="out" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
-        <parameter name="alpha" transfer-ownership="none">
+        <parameter name="alpha" direction="out" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
       </parameters>
@@ -4689,7 +4702,7 @@ element and should free any memory and resources allocated for it.</doc>
           <type name="_pattern_t" c:type="cairo_pattern_t*"/>
         </parameter>
         <parameter name="surface" transfer-ownership="none">
-          <type name="_surface_t" c:type="cairo_surface_t**"/>
+          <type name="_surface_t" direction="out" c:type="cairo_surface_t**"/>
         </parameter>
       </parameters>
     </function>
@@ -4788,6 +4801,8 @@ element and should free any memory and resources allocated for it.</doc>
         <parameter name="pattern" transfer-ownership="none">
           <type name="_pattern_t" c:type="cairo_pattern_t*"/>
         </parameter>
+	<!--- FIXME: this has always been broken; perhaps pass the
+	    address of a CHARSXP as the opaque key? -->
         <parameter name="key" transfer-ownership="none">
           <type name="_user_data_key_t" c:type="const cairo_user_data_key_t*"/>
         </parameter>
@@ -5919,7 +5934,8 @@ length of the data in bytes.  The read function should return
         <parameter name="scaled_font" transfer-ownership="none">
           <type name="_scaled_font_t" c:type="cairo_scaled_font_t*"/>
         </parameter>
-        <parameter name="options" transfer-ownership="none">
+        <parameter name="options" direction="out" caller-allocates="1"
+		   transfer-ownership="none">
           <type name="_font_options_t" c:type="cairo_font_options_t*"/>
         </parameter>
       </parameters>
@@ -5946,7 +5962,8 @@ length of the data in bytes.  The read function should return
         <parameter name="scaled_font" transfer-ownership="none">
           <type name="_scaled_font_t" c:type="cairo_scaled_font_t*"/>
         </parameter>
-        <parameter name="scale_matrix" transfer-ownership="none">
+        <parameter name="scale_matrix" direction="out" caller-allocates="1"
+		   transfer-ownership="none">
           <type name="_matrix_t" c:type="cairo_matrix_t*"/>
         </parameter>
       </parameters>
@@ -5994,7 +6011,8 @@ length of the data in bytes.  The read function should return
         <parameter name="num_glyphs" transfer-ownership="none">
           <type name="gint" c:type="int"/>
         </parameter>
-        <parameter name="extents" transfer-ownership="none">
+        <parameter name="extents" direction="out" caller-allocates="1"
+		   transfer-ownership="none">
           <type name="_text_extents_t" c:type="cairo_text_extents_t*"/>
         </parameter>
       </parameters>
@@ -6023,6 +6041,8 @@ length of the data in bytes.  The read function should return
         <parameter name="scaled_font" transfer-ownership="none">
           <type name="_scaled_font_t" c:type="cairo_scaled_font_t*"/>
         </parameter>
+	<!--- FIXME: this has always been broken; perhaps pass the
+	    address of a CHARSXP as the opaque key? -->
         <parameter name="key" transfer-ownership="none">
           <type name="_user_data_key_t" c:type="const cairo_user_data_key_t*"/>
         </parameter>
@@ -6083,25 +6103,30 @@ length of the data in bytes.  The read function should return
         <parameter name="y" transfer-ownership="none">
           <type name="gdouble" c:type="double"/>
         </parameter>
-        <parameter name="utf8" transfer-ownership="none">
+        <parameter name="utf8" length="4" transfer-ownership="none">
           <type name="utf8" c:type="const char*"/>
         </parameter>
         <parameter name="utf8_len" transfer-ownership="none">
           <type name="gint" c:type="int"/>
         </parameter>
         <parameter name="glyphs" transfer-ownership="none">
-          <type name="_glyph_t" c:type="cairo_glyph_t**"/>
+	  <array c:type="cairo_glyph_t**" direction="out" length="6">
+            <type name="_glyph_t" c:type="cairo_glyph_t"/>
+	  </array>
         </parameter>
-        <parameter name="num_glyphs" transfer-ownership="none">
+        <parameter name="num_glyphs" direction="out" transfer-ownership="none">
           <type name="gint" c:type="int*"/>
         </parameter>
         <parameter name="clusters" transfer-ownership="none">
-          <type name="_text_cluster_t" c:type="cairo_text_cluster_t**"/>
+	  <array c:type="cairo_text_cluster_t**" direction="out" length="8">
+            <type name="_text_cluster_t" c:type="cairo_text_cluster_t"/>
+	  </array>
         </parameter>
-        <parameter name="num_clusters" transfer-ownership="none">
+        <parameter name="num_clusters" direction="out" transfer-ownership="none">
           <type name="gint" c:type="int*"/>
         </parameter>
-        <parameter name="cluster_flags" transfer-ownership="none">
+        <parameter name="cluster_flags" direction="out"
+		   transfer-ownership="none">
           <type name="_text_cluster_flags_t"
                 c:type="cairo_text_cluster_flags_t*"/>
         </parameter>
@@ -6432,6 +6457,8 @@ length of the data in bytes.  The read function should return
         <parameter name="cr" transfer-ownership="none">
           <type name="_t" c:type="cairo_t*"/>
         </parameter>
+	<!--- FIXME: this has always been broken; perhaps pass the
+	    address of a CHARSXP as the opaque key? -->
         <parameter name="key" transfer-ownership="none">
           <type name="_user_data_key_t" c:type="const cairo_user_data_key_t*"/>
         </parameter>
@@ -6497,20 +6524,24 @@ length of the data in bytes.  The read function should return
         <parameter name="cr" transfer-ownership="none">
           <type name="_t" c:type="cairo_t*"/>
         </parameter>
-        <parameter name="utf8" transfer-ownership="none">
-          <type name="utf8" c:type="const char*"/>
+        <parameter name="utf8" length="2" transfer-ownership="none">
+	  <type name="utf8" c:type="const char*"/>
         </parameter>
         <parameter name="utf8_len" transfer-ownership="none">
           <type name="gint" c:type="int"/>
         </parameter>
         <parameter name="glyphs" transfer-ownership="none">
-          <type name="_glyph_t" c:type="const cairo_glyph_t*"/>
+	  <array c:type="const cairo_glyph_t*" length="4">
+            <type name="_glyph_t" c:type="const cairo_glyph_t"/>
+	  </array>
         </parameter>
         <parameter name="num_glyphs" transfer-ownership="none">
           <type name="gint" c:type="int"/>
         </parameter>
         <parameter name="clusters" transfer-ownership="none">
-          <type name="_text_cluster_t" c:type="const cairo_text_cluster_t*"/>
+	  <array c:type="const cairo_text_cluster_t*" length="6">
+            <type name="_text_cluster_t" c:type="const cairo_text_cluster_t"/>
+	  </array>
         </parameter>
         <parameter name="num_clusters" transfer-ownership="none">
           <type name="gint" c:type="int"/>
@@ -6753,10 +6784,10 @@ length of the data in bytes.  The read function should return
         <parameter name="surface" transfer-ownership="none">
           <type name="_surface_t" c:type="cairo_surface_t*"/>
         </parameter>
-        <parameter name="x_offset" transfer-ownership="none">
+        <parameter name="x_offset" direction="out" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
-        <parameter name="y_offset" transfer-ownership="none">
+        <parameter name="y_offset" direction="out" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
       </parameters>
@@ -6771,10 +6802,10 @@ length of the data in bytes.  The read function should return
         <parameter name="surface" transfer-ownership="none">
           <type name="_surface_t" c:type="cairo_surface_t*"/>
         </parameter>
-        <parameter name="x_scale" transfer-ownership="none">
+        <parameter name="x_scale" direction="out" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
-        <parameter name="y_scale" transfer-ownership="none">
+        <parameter name="y_scale" direction="out" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
       </parameters>
@@ -6789,10 +6820,12 @@ length of the data in bytes.  The read function should return
         <parameter name="surface" transfer-ownership="none">
           <type name="_surface_t" c:type="cairo_surface_t*"/>
         </parameter>
-        <parameter name="x_pixels_per_inch" transfer-ownership="none">
+        <parameter name="x_pixels_per_inch" direction="out"
+		   transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
-        <parameter name="y_pixels_per_inch" transfer-ownership="none">
+        <parameter name="y_pixels_per_inch" direction="out"
+		   transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
       </parameters>
@@ -6807,7 +6840,8 @@ length of the data in bytes.  The read function should return
         <parameter name="surface" transfer-ownership="none">
           <type name="_surface_t" c:type="cairo_surface_t*"/>
         </parameter>
-        <parameter name="options" transfer-ownership="none">
+        <parameter name="options" direction="out" caller-allocates="1"
+		   transfer-ownership="none">
           <type name="_font_options_t" c:type="cairo_font_options_t*"/>
         </parameter>
       </parameters>
@@ -7263,6 +7297,8 @@ length of the data in bytes.  The read function should return
         <parameter name="surface" transfer-ownership="none">
           <type name="_surface_t" c:type="cairo_surface_t*"/>
         </parameter>
+	<!--- FIXME: this has always been broken; perhaps pass the
+	    address of a CHARSXP as the opaque key? -->
         <parameter name="key" transfer-ownership="none">
           <type name="_user_data_key_t" c:type="const cairo_user_data_key_t*"/>
         </parameter>
@@ -7435,7 +7471,8 @@ length of the data in bytes.  The read function should return
         <parameter name="utf8" transfer-ownership="none">
           <type name="utf8" c:type="const char*"/>
         </parameter>
-        <parameter name="extents" transfer-ownership="none">
+        <parameter name="extents" caller-allocates="1"
+                   direction="out" transfer-ownership="none">
           <type name="_text_extents_t" c:type="cairo_text_extents_t*"/>
         </parameter>
       </parameters>
@@ -7722,7 +7759,8 @@ in deadlock.</doc>
           <doc xml:space="preserve"
                filename="cairo.h"
                line="1705">font extents to fill in, in font space</doc>
-          <type name="_font_extents_t" c:type="cairo_font_extents_t*"/>
+          <type name="_font_extents_t" direction="out" caller-allocates="1"
+		c:type="cairo_font_extents_t*"/>
         </parameter>
       </parameters>
     </callback>
@@ -7788,7 +7826,8 @@ done to @cr in the callback.</doc>
                line="1741">cairo context to draw to, in font space</doc>
           <type name="_t" c:type="cairo_t*"/>
         </parameter>
-        <parameter name="extents" transfer-ownership="none">
+        <parameter name="extents" direction="out" caller-allocates="1"
+		   transfer-ownership="none">
           <doc xml:space="preserve"
                filename="cairo.h"
                line="1742">glyph extents to fill in, in font space</doc>
@@ -7863,7 +7902,7 @@ or %CAIRO_STATUS_USER_FONT_ERROR or any other error status on error.</doc>
                line="1787">the scaled-font being created</doc>
           <type name="_scaled_font_t" c:type="cairo_scaled_font_t*"/>
         </parameter>
-        <parameter name="utf8" transfer-ownership="none">
+        <parameter name="utf8" length="2" transfer-ownership="none">
           <doc xml:space="preserve"
                filename="cairo.h"
                line="1788">a string of text encoded in UTF-8</doc>
@@ -7875,31 +7914,35 @@ or %CAIRO_STATUS_USER_FONT_ERROR or any other error status on error.</doc>
                line="1789">length of @utf8 in bytes</doc>
           <type name="gint" c:type="int"/>
         </parameter>
-        <parameter name="glyphs" transfer-ownership="none">
-          <doc xml:space="preserve"
-               filename="cairo.h"
-               line="1790">pointer to array of glyphs to fill, in font space</doc>
-          <type name="_glyph_t" c:type="cairo_glyph_t**"/>
+        <parameter name="glyphs" direction="out" transfer-ownership="none">
+	  <doc xml:space="preserve"
+		 filename="cairo.h"
+		 line="1790">pointer to array of glyphs to fill, in font space</doc>
+	  <array c:type="cairo_glyph_t**" length="4">
+            <type name="_glyph_t" c:type="cairo_glyph_t*"/>
+	  </array>
         </parameter>
-        <parameter name="num_glyphs" transfer-ownership="none">
+        <parameter name="num_glyphs" direction="out" transfer-ownership="none">
           <doc xml:space="preserve"
                filename="cairo.h"
                line="1791">pointer to number of glyphs</doc>
           <type name="gint" c:type="int*"/>
         </parameter>
-        <parameter name="clusters" transfer-ownership="none">
+        <parameter name="clusters" direction="out" transfer-ownership="none">
           <doc xml:space="preserve"
                filename="cairo.h"
                line="1792">pointer to array of cluster mapping information to fill, or %NULL</doc>
-          <type name="_text_cluster_t" c:type="cairo_text_cluster_t**"/>
+	  <array c:type="cairo_text_cluster_t**" length="6">
+            <type name="_text_cluster_t" c:type="cairo_text_cluster_t*"/>
+	  </array>
         </parameter>
-        <parameter name="num_clusters" transfer-ownership="none">
+        <parameter name="num_clusters" direction="out" transfer-ownership="none">
           <doc xml:space="preserve"
                filename="cairo.h"
                line="1793">pointer to number of clusters</doc>
           <type name="gint" c:type="int*"/>
         </parameter>
-        <parameter name="cluster_flags" transfer-ownership="none">
+        <parameter name="cluster_flags" direction="out" transfer-ownership="none">
           <doc xml:space="preserve"
                filename="cairo.h"
                line="1794">pointer to location to store cluster flags corresponding to the
@@ -7961,7 +8004,7 @@ or %CAIRO_STATUS_USER_FONT_ERROR or any other error status on error.</doc>
                line="1862">input unicode character code-point</doc>
           <type name="gulong" c:type="unsigned long"/>
         </parameter>
-        <parameter name="glyph_index" transfer-ownership="none">
+        <parameter name="glyph_index" direction="out" transfer-ownership="none">
           <doc xml:space="preserve"
                filename="cairo.h"
                line="1863">output glyph index</doc>
@@ -7978,10 +8021,10 @@ or %CAIRO_STATUS_USER_FONT_ERROR or any other error status on error.</doc>
         <parameter name="cr" transfer-ownership="none">
           <type name="_t" c:type="cairo_t*"/>
         </parameter>
-        <parameter name="x" transfer-ownership="none">
+        <parameter name="x" direction="inout" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
-        <parameter name="y" transfer-ownership="none">
+        <parameter name="y" direction="inout" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
       </parameters>
@@ -7996,10 +8039,10 @@ or %CAIRO_STATUS_USER_FONT_ERROR or any other error status on error.</doc>
         <parameter name="cr" transfer-ownership="none">
           <type name="_t" c:type="cairo_t*"/>
         </parameter>
-        <parameter name="dx" transfer-ownership="none">
+        <parameter name="dx" direction="inout" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
-        <parameter name="dy" transfer-ownership="none">
+        <parameter name="dy" direction="inout" transfer-ownership="none">
           <type name="gdouble" c:type="double*"/>
         </parameter>
       </parameters>
@@ -8047,7 +8090,9 @@ data in bytes.  The write function should return
           <doc xml:space="preserve"
                filename="cairo.h"
                line="434">the buffer containing the data to write</doc>
-          <type name="guint8" c:type="const unsigned char*"/>
+	  <array length="2" zero-terminated="0" c:type="const unsigned char*">
+            <type name="guint8" c:type="const unsigned char"/>
+	  </array> 
         </parameter>
         <parameter name="length" transfer-ownership="none">
           <doc xml:space="preserve"
@@ -8147,10 +8192,13 @@ specification that a generated SVG file will conform to.</doc>
         <type name="none" c:type="void"/>
       </return-value>
       <parameters>
-        <parameter name="versions" transfer-ownership="none">
-          <type name="_svg_version_t" c:type="const cairo_svg_version_t**"/>
+        <parameter name="versions" direction="out"
+		   transfer-ownership="none">
+	  <array c:type="const cairo_svg_version_t**">
+            <type name="_svg_version_t" c:type="const cairo_svg_version_t*"/>
+	  </array>
         </parameter>
-        <parameter name="num_versions" transfer-ownership="none">
+        <parameter name="num_versions" direction="out" transfer-ownership="none">
           <type name="gint" c:type="int*"/>
         </parameter>
       </parameters>
@@ -8280,10 +8328,12 @@ conform to.</doc>
         <type name="none" c:type="void"/>
       </return-value>
       <parameters>
-        <parameter name="levels" transfer-ownership="none">
-          <type name="_ps_level_t" c:type="const cairo_ps_level_t**"/>
+        <parameter name="levels" direction="out" transfer-ownership="none">
+	  <array c:type="const cairo_ps_level_t**" length="1">
+            <type name="_ps_level_t" c:type="const cairo_ps_level_t*"/>
+	  </array>
         </parameter>
-        <parameter name="num_levels" transfer-ownership="none">
+        <parameter name="num_levels" direction="out" transfer-ownership="none">
           <type name="gint" c:type="int*"/>
         </parameter>
       </parameters>
