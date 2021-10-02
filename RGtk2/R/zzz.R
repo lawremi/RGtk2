@@ -91,8 +91,7 @@ function(libname, pkgname)
   install_system_dep <- function(dep_name, dep_url, dep_web, installer)
   {
     if (!interactive()) {
-      message("Please install ", dep_name, " from ", dep_url)
-      return()
+      stop("Please install ", dep_name, " from ", dep_url)
     }
     choice <- menu(paste(c("Install", "Do not install"), dep_name), T, 
       paste("Need", dep_name, "? (Restart R after installing)"))
@@ -101,6 +100,8 @@ function(libname, pkgname)
       if (download.file(dep_url, path, mode="wb") > 0)
         stop("Failed to download ", dep_name)
       installer(path)
+    } else {
+      stop("Please install ", dep_name, " from ", dep_url, ".")
     }
     message("Learn more about ", dep_name, " at ", dep_web)
   }
