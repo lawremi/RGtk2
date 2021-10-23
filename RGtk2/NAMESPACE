@@ -45,6 +45,7 @@ S3method("!", flag)
 S3method("&", flag)
 S3method("|", flag)
 
+S3method(format, GType)
 S3method(print, GType)
 
 S3method(giocon, GIOStream)

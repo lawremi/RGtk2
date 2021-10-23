@@ -6,6 +6,7 @@
 \alias{gTypeGetClass}
 \alias{gTypeGetSignals}
 \alias{print.GType}
+\alias{format.GType}
 \title{The GType system}
 \description{
 "The GType API is the foundation of the GObject system. It provides the
