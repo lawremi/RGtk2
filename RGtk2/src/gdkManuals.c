@@ -218,9 +218,8 @@ S_GdkEventClientGetData(USER_OBJECT_ s_obj)
         size = 5;
         val = (int *)obj->data.l;
     } else {
-		PROBLEM "Unknown data_format %d in GdkEventClient", data_format
-		ERROR;
-	}
+	Rf_error("Unknown data_format %d in GdkEventClient", data_format);
+    }
 
     _result = asRIntegerArrayWithSize(val, size);
 

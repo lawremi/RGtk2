@@ -86,8 +86,7 @@ asREnum(int value, GType etype)
     INTEGER_DATA(ans)[0] = value;
 
     if (!(evalue = g_enum_get_value(g_type_class_ref(etype), value))) {
-        PROBLEM "Unknown enum value %d", value
-        ERROR;
+        Rf_error("Unknown enum value %d", value);
     }
 
     PROTECT(names = NEW_CHARACTER(1));
@@ -229,8 +228,7 @@ asCEnum(USER_OBJECT_ s_enum, GType etype)
         eval = asCInteger(s_enum);
         evalue = g_enum_get_value(eclass, eval);
         if (evalue == NULL) {
-          PROBLEM "Could not map to enum value %d", asCInteger(s_enum)
-            ERROR;
+	    Rf_error("Could not map to enum value %d", asCInteger(s_enum));
         }
     } else if (IS_CHARACTER(s_enum)) {
         const gchar* ename = asCString(s_enum);
@@ -238,8 +236,7 @@ asCEnum(USER_OBJECT_ s_enum, GType etype)
         if (evalue == NULL)
             evalue = g_enum_get_value_by_nick(eclass, ename);
         if (evalue == NULL) {
-          PROBLEM "Could not parse enum value %s", asCString(s_enum)
-            ERROR;
+	    Rf_error("Could not parse enum value %s", asCString(s_enum));
         }
     }
 
@@ -255,8 +252,7 @@ asCFlag(USER_OBJECT_ s_flag, GType ftype)
 
     if (IS_INTEGER(s_flag) || IS_NUMERIC(s_flag)) {
         if (asCNumeric(s_flag) > fclass->mask) {
-            PROBLEM "The flags value %f is too high", asCNumeric(s_flag)
-            ERROR;
+            Rf_error("The flags value %f is too high", asCNumeric(s_flag));
         }
         flags = asCNumeric(s_flag);
     } else {
@@ -272,8 +268,7 @@ asCFlag(USER_OBJECT_ s_flag, GType ftype)
                 continue;
             }
             if (!fvalue) {
-                PROBLEM "Could not find flag by name %s", fname
-                ERROR;
+                Rf_error("Could not find flag by name %s", fname);
             }
             /*Rprintf("Found: %d\n", fvalue->value);*/
             flags |= fvalue->value;

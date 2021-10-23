@@ -42,8 +42,7 @@ asRCairoPath(cairo_path_t *path)
 			PROTECT(s_data_el = NEW_INTEGER(0));
 		break;
 		default:
-			PROBLEM "Converting Cairo path: did not understand type %d", data->header.type
-			ERROR;
+		    Rf_error("Converting Cairo path: did not understand type %d", data->header.type);
 		}
 		setAttrib(s_data_el, install("type"),
 			  PROTECT(asRInteger(data->header.type)));
@@ -92,8 +91,7 @@ asCCairoPath(USER_OBJECT_ s_path)
 				points = 0;
 			break;
 			default:
-				PROBLEM "Converting Cairo path: did not understand type %d", type
-				ERROR;
+			    Rf_error("Converting Cairo path: did not understand type %d", type);
 		}
 		len = points + 1; /* have to include header */
 		element = (cairo_path_data_t*)R_alloc(len, sizeof(cairo_path_data_t));

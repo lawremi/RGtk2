@@ -140,26 +140,6 @@ extern "C" {
    /* SET_CLASS and SET_NAMES have been moved to Rdefines.h in the R distribution.*/
   #endif  /* of defined(_R_) */
 
-
-
-  #if defined(_Octave_)
-
-  #include <octave/oct.h>
-  extern char error_buf[];
-  #define PROBLEM sprintf(error_buf,
-  #define ERROR  ); error(error_buf)
-
-  #define STRING_VALUE(a)  a.all_strings()[0].c_str()
-
-  #define GET_LENGTH(a)  getLength(a)
-
-  #define LOCAL_EVALUATOR /**/
-  #define COPY_TO_USER_STRING(a) strdup(a) /*XXX*/
-
-  #endif /* end of defined(_Octave_)*/
-
-
-
 #ifdef __cplusplus 
 }
 #endif

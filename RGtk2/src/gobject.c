@@ -52,8 +52,7 @@ R_getGObjectTypeAncestors(USER_OBJECT_ sobj)
 
   obj = G_OBJECT(getPtrValue(sobj));
   if(!G_IS_OBJECT(obj)) {
-   PROBLEM "Non-GObject passed to getObjectTypeHierarchy"
-   ERROR;
+      Rf_error("Non-GObject passed to getObjectTypeHierarchy");
   }
   type = G_OBJECT_TYPE(obj);
 
@@ -110,8 +109,7 @@ R_gTypeFromName(USER_OBJECT_ name)
     type = g_type_from_name(val);
 
     if( type == G_TYPE_INVALID) {
-      PROBLEM "No type for %s", val
-      ERROR;
+	Rf_error("No type for %s", val);
     }
 
     return(asRGType(type));
@@ -135,8 +133,7 @@ R_gObjectType(USER_OBJECT_ sobj)
 GType
 asCGType(USER_OBJECT_ sobj) {
   if (!inherits(sobj, "GType")) {
-    PROBLEM "invalid GType value"
-      ERROR;
+      Rf_error("invalid GType value");
   }
 return (GType)getPtrValue(sobj);
 }
@@ -149,8 +146,7 @@ asRGType(GType type)
 
     name = g_type_name(type);
     if(!name) {
-      PROBLEM "object has no G type"
-      ERROR;
+	Rf_error("object has no G type");
     }
     
     PROTECT(ans = R_MakeExternalPtr((void *)type, R_NilValue, R_NilValue));
@@ -250,9 +246,8 @@ R_setGValueForProperty(GValue *value, GObjectClass *class, const gchar *property
 	GParamSpec *spec = g_object_class_find_property(class, property_name);
 	
 	if (!spec) {
-		PROBLEM "Invalid property %s!\n", property_name
-		ERROR;
-    }
+	    Rf_error("Invalid property %s!\n", property_name);
+	}
     g_value_init(value, G_PARAM_SPEC_VALUE_TYPE(spec));
     R_setGValueFromSValue(value, s_value);
 	
@@ -283,9 +278,8 @@ S_g_object_get_property(USER_OBJECT_ s_object, USER_OBJECT_ s_property_name)
     GValue value = { 0, };
 
 		if (!spec) {
-      PROBLEM "Invalid property %s!\n", property_name
-      ERROR;
-    }
+		    Rf_error("Invalid property %s!\n", property_name);
+		}
 		g_value_init(&value, G_PARAM_SPEC_VALUE_TYPE(spec));
     g_object_get_property(object, property_name, &value);
     _result = asRGValue(&value);
@@ -923,9 +917,8 @@ R_connectGSignalHandler(USER_OBJECT_ swidget, USER_OBJECT_ sfunc, USER_OBJECT_ s
 
     if(id == 0) {
         g_closure_sink(closure);
-        PROBLEM "Couldn't register callback %s. Check name",
-                      asCString(signalName)
-        ERROR;
+        Rf_error("Couldn't register callback %s. Check name",
+		 asCString(signalName));
     }
 
     PROTECT(ans = NEW_INTEGER(1));
@@ -1064,9 +1057,7 @@ R_getGSignalIdsByType(USER_OBJECT_ className)
 
     type = (GType)  asCGType(className);
     if(type == 0 || type == G_TYPE_INVALID) {
-    PROBLEM "No type for class %s",
-        asCString(className)
-        ERROR;
+	Rf_error("No type for class %s", asCString(className));
     }
     return(R_internal_getGSignalIds(type));
 }
@@ -1211,8 +1202,7 @@ R_createCBData(USER_OBJECT_ s_func, USER_OBJECT_ s_data)
 {
   R_CallbackData *cbdata = (R_CallbackData*) g_malloc(sizeof(R_CallbackData));
     if(!cbdata) {
-        PROBLEM "Cannot allocate space for a measly R_CallbackData!"
-        ERROR;
+        Rf_error("Cannot allocate space for a measly R_CallbackData!");
     }
 
     R_PreserveObject(s_func);
@@ -1353,17 +1343,16 @@ R_setGValueFromSValue(GValue *value, USER_OBJECT_ sval) {
                   */
                   /* If we get here, we know that initGValueFromSValue()
                      found that 'sval' is not an externalptr */
-                  PROBLEM "Cannot set pointer value from non-externalptr\n"
-                    ERROR;
+		    Rf_error("Cannot set pointer value from non-externalptr");
 		case G_TYPE_INVALID:
-                  PROBLEM "Attempt to set invalid type\n" ERROR;
+		    Rf_error("Attempt to set invalid type");
 		break;
 		case G_TYPE_NONE:
-                  PROBLEM "Attempt to set none type\n" ERROR;
+		    Rf_error("Attempt to set none type");
 		break;
 		default:
-			PROBLEM "got an unknown/unhandled type named: %s\n", g_type_name(G_VALUE_TYPE(value))
-			ERROR;
+		    Rf_error("got an unknown/unhandled type named: %s",
+			     g_type_name(G_VALUE_TYPE(value)));
 		break;
 	}
     
@@ -1524,8 +1513,8 @@ asRGValue(const GValue *value)
         ans = asRGParamSpec(g_value_get_param(value));
       break;
       default:
-        PROBLEM "got an unknown/unhandled type named: %s\n", G_VALUE_TYPE_NAME(value)
-        ERROR;
+	  Rf_error("got an unknown/unhandled type named: %s",
+		   G_VALUE_TYPE_NAME(value));
       break;
     }
 
@@ -1671,8 +1660,7 @@ asCGValue(USER_OBJECT_ sval)
 { 
 	GValue *gval = createGValueFromSValue(sval);
 	if (!gval) {
-		PROBLEM "Could not create GValue for R type %d\n", TYPEOF(sval)
-		ERROR;
+	    Rf_error("Could not create GValue for R type %d", TYPEOF(sval));
 	}
 	return(gval);
 }
@@ -1826,8 +1814,7 @@ g_io_condition_get_type (void)
 USER_OBJECT_
 comparePointers(SEXP x, SEXP y) {
     if (TYPEOF(x) != EXTPTRSXP || TYPEOF(y) != EXTPTRSXP)
-	PROBLEM "'x' and 'y' must be extptrs"
-	ERROR;
+	Rf_error("'x' and 'y' must be extptrs");
     return ScalarLogical(R_ExternalPtrAddr(x) == R_ExternalPtrAddr(y));
 }
 

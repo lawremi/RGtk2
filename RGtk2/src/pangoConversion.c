@@ -71,8 +71,7 @@ toRPangoAttribute(PangoAttribute *attr, gboolean owns)
 		 	type = "PangoAttrInvalid";
 		 break;
 		 default:
-		 	PROBLEM "Error converting PangoAttribute: unknown type %d", attr->klass->type
-			ERROR;
+		     Rf_error("Error converting PangoAttribute: unknown type %d", attr->klass->type);
 	}
 	
 	classes[0] = type;

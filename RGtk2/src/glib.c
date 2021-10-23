@@ -198,8 +198,7 @@ R_gQuarkFromString(USER_OBJECT_ s_string)
 GQuark
 asCGQuark(USER_OBJECT_ sobj) {
   if (!inherits(sobj, "GQuark")) {
-    PROBLEM "invalid GQuark value"
-      ERROR;
+      Rf_error("invalid GQuark value");
   }
   return (GQuark)asInteger(sobj);
 }
