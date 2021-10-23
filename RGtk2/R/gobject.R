@@ -59,8 +59,12 @@ function(name)
  .Call("R_gTypeFromName", as.character(name), PACKAGE = "RGtk2")
 }
 
+format.GType <- function(x, ...) {
+    paste("GType:", attr(x, "name"))
+}
+
 print.GType <- function(x, ...) {
-  cat("GType identifier for '", attr(x, "name"), "'\n", sep = "")
+  cat(format(x), "'\n", sep = "")
 }
 
 # GSignal support
