@@ -28,6 +28,6 @@ a few file-specific operations and seeking.
   \code{\link{GFileInputStream}} implements \code{\link{GSeekable}}.
 
 }}}
-\references{\url{https://developer.gnome.org/gio/stable/GFileInputStream.html}}
+\references{\url{https://developer-old.gnome.org/gio/stable/GFileInputStream.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

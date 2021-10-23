@@ -19,6 +19,6 @@
 Seek object for streaming operations.
 
 }}}
-\references{\url{https://developer.gnome.org/gio/stable/GSeekable.html}}
+\references{\url{https://developer-old.gnome.org/gio/stable/GSeekable.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

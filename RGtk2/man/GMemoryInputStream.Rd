@@ -21,6 +21,6 @@ Implements \code{\link{GInputStream}} for arbitrary memory chunks.
 
 }}}
 \section{Convenient Construction}{\code{gMemoryInputStream} is the result of collapsing the constructors of \code{GMemoryInputStream} (\code{\link{gMemoryInputStreamNew}}, \code{\link{gMemoryInputStreamNewFromData}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\references{\url{https://developer.gnome.org/gio/stable/GMemoryInputStream.html}}
+\references{\url{https://developer-old.gnome.org/gio/stable/GMemoryInputStream.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

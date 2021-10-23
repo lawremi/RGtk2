@@ -90,17 +90,17 @@ args <- function(name) {
 % * ...
 
 % * widget gallery
-% https://developer.gnome.org/gtk2/stable/ch02.html
+% https://developer-old.gnome.org/gtk2/stable/ch02.html
 
-%  good source: http://developer.gnome.org/doc/GGAD/ggad.html
+%  good source: http://developer-old.gnome.org/doc/GGAD/ggad.html
 
 % * http://gtk.org/documentation.html
 
 % * gtk API
-% https://developer.gnome.org/gtk2/stable/
+% https://developer-old.gnome.org/gtk2/stable/
 
 % * pango manual 
-% https://developer.gnome.org/pango/stable/PangoMarkupFormat.html
+% https://developer-old.gnome.org/pango/stable/PangoMarkupFormat.html
 
 % * Missing discussion on standard dialogs: message, confirmations, etc.
 % filebrowser, colors selector, font selector, 

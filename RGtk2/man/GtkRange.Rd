@@ -243,6 +243,6 @@ automatically enable trough-under-steppers too.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkRange.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkRange.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

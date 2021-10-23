@@ -41,6 +41,6 @@ Spacing around check or radio indicator.  Allowed values: >= 0  Default value: 2
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkCheckButton.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkCheckButton.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

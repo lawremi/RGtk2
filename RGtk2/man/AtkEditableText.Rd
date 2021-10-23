@@ -24,7 +24,7 @@ implements \code{\link{AtkEditableText}} is by definition an \code{\link{AtkText
 The AtkEditableText structure does not contain any fields.
 
 }}}
-\references{\url{https://developer.gnome.org/atk/stable/AtkEditableText.html}}
+\references{\url{https://developer-old.gnome.org/atk/stable/AtkEditableText.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{\code{\link{AtkText}}}
 \keyword{internal}

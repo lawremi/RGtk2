@@ -208,7 +208,7 @@ Current width of the column.  Allowed values: >= 0  Default value: 0
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkTreeViewColumn.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkTreeViewColumn.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
 \code{\link{GtkTreeView}}

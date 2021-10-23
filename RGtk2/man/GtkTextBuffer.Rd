@@ -430,7 +430,7 @@ see \code{\link{gtkTextBufferGetText}} for more information.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkTextBuffer.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkTextBuffer.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
 \code{\link{GtkTextView}}

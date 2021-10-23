@@ -64,7 +64,7 @@ Upper limit of ruler.  Default value: 0
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkRuler.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkRuler.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
 \code{\link{GtkHRuler}}

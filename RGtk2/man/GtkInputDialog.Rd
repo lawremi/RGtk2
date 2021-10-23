@@ -68,6 +68,6 @@ mode of a device from \verb{GDK_MODE_DISABLED} to a
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkInputDialog.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkInputDialog.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -115,6 +115,6 @@ finalized.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gio/stable/GMount.html}}
+\references{\url{https://developer-old.gnome.org/gio/stable/GMount.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

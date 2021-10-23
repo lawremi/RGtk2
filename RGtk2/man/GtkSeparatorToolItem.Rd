@@ -39,6 +39,6 @@ should only be accessed through the functions described below.
 Whether the separator is drawn, or just blank.  Default value: TRUE
 
 }}}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkSeparatorToolItem.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkSeparatorToolItem.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

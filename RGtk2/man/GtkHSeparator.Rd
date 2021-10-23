@@ -28,6 +28,6 @@ should be accessed using the functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkHSeparator} is the equivalent of \code{\link{gtkHSeparatorNew}}.}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkHSeparator.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkHSeparator.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -41,6 +41,6 @@ Whether the event box is visible, as opposed to invisible and only used to trap 
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkEventBox.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkEventBox.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

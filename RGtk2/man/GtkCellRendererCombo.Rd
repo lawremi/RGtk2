@@ -87,6 +87,6 @@ this column to its combo box.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkCellRendererCombo.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkCellRendererCombo.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

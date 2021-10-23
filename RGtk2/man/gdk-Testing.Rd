@@ -9,6 +9,6 @@
 }
 \section{Detailed Description}{The functions in this section are intended to be used in test programs.
 They allow to simulate some user input.}
-\references{\url{https://developer.gnome.org/gdk2/stable/gdk2-Testing.html}}
+\references{\url{https://developer-old.gnome.org/gdk2/stable/gdk2-Testing.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -61,6 +61,6 @@ their positions. \cr}
 
 }}}
 \section{Convenient Construction}{\code{gtkFixed} is the equivalent of \code{\link{gtkFixedNew}}.}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkFixed.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkFixed.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

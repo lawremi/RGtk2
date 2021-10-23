@@ -25,6 +25,6 @@ Use fallback (of form \\<hexval>) for invalid bytes.  Default value: FALSE
 
 }
 }}
-\references{\url{https://developer.gnome.org/gio/stable/GCharsetConverter.html}}
+\references{\url{https://developer-old.gnome.org/gio/stable/GCharsetConverter.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

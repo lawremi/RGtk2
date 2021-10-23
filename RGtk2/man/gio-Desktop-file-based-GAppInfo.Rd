@@ -16,6 +16,6 @@ desktop files.
 Note that \file{<gio/gdesktopappinfo.h>} belongs to 
 the UNIX-specific GIO interfaces, thus you have to use the 
 \file{gio-unix-2.0.pc} pkg-config file when using it.}
-\references{\url{https://developer.gnome.org/gio/stable/gio-Desktop-file-based-GAppInfo.html}}
+\references{\url{https://developer-old.gnome.org/gio/stable/gio-Desktop-file-based-GAppInfo.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

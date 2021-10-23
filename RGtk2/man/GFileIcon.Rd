@@ -24,6 +24,6 @@ Gets an icon for a \code{\link{GFile}}. Implements \code{\link{GLoadableIcon}}.
 The file containing the icon.
 
 }}}
-\references{\url{https://developer.gnome.org/gio/stable/GFileIcon.html}}
+\references{\url{https://developer-old.gnome.org/gio/stable/GFileIcon.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

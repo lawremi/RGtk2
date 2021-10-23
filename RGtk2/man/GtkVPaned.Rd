@@ -26,6 +26,6 @@ a handle. See \code{\link{GtkPaned}} for details.}
 
 }}}
 \section{Convenient Construction}{\code{gtkVPaned} is the equivalent of \code{\link{gtkVPanedNew}}.}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkVPaned.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkVPaned.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

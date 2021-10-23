@@ -114,6 +114,6 @@ map to glyphs in the glyph list from end to start.}}
 
 }
 }}
-\references{\url{http://www.cairographics.org/manual/cairo-text.html}}
+\references{\url{https://www.cairographics.org/manual/cairo-text.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

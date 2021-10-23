@@ -85,6 +85,6 @@ should do with the dropped data.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gdk2/stable/gdk2-Drag-and-Drop.html}}
+\references{\url{https://developer-old.gnome.org/gdk2/stable/gdk2-Drag-and-Drop.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

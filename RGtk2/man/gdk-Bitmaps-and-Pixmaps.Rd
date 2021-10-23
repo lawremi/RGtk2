@@ -42,6 +42,6 @@ refers generically to any of these types.
 }
 }}
 \section{Convenient Construction}{\code{gdkPixmap} is the result of collapsing the constructors of \code{GdkPixmap} (\code{\link{gdkPixmapNew}}, \code{\link{gdkBitmapCreateFromData}}, \code{\link{gdkPixmapCreateFromData}}, \code{\link{gdkPixmapCreateFromXpm}}, \code{\link{gdkPixmapColormapCreateFromXpm}}, \code{\link{gdkPixmapCreateFromXpmD}}, \code{\link{gdkPixmapColormapCreateFromXpmD}}, NULL, NULL) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\references{\url{https://developer.gnome.org/gdk2/stable/gdk2-Bitmaps-and-Pixmaps.html}}
+\references{\url{https://developer-old.gnome.org/gdk2/stable/gdk2-Bitmaps-and-Pixmaps.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

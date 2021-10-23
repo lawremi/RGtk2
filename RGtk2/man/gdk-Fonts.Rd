@@ -193,6 +193,6 @@ are currently:
 }
 
 }}}
-\references{\url{https://developer.gnome.org/gdk2/stable/gdk2-Fonts.html}}
+\references{\url{https://developer-old.gnome.org/gdk2/stable/gdk2-Fonts.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -163,6 +163,6 @@ signal.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gdk-pixbuf/stable/gdk-pixbuf-Module-Interface.html}}
+\references{\url{https://developer-old.gnome.org/gdk-pixbuf/stable/gdk-pixbuf-Module-Interface.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

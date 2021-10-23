@@ -28,6 +28,6 @@ If the base stream should be closed when the filter stream is closed.  Default v
 
 }
 }}
-\references{\url{https://developer.gnome.org/gio/stable/GFilterInputStream.html}}
+\references{\url{https://developer-old.gnome.org/gio/stable/GFilterInputStream.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

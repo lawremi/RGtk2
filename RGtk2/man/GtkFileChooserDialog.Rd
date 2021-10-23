@@ -92,7 +92,7 @@ dialog = gtk_file_chooser_dialog_new ("Open File",
 
 }}}
 \section{Convenient Construction}{\code{gtkFileChooserDialog} is the result of collapsing the constructors of \code{GtkFileChooserDialog} (\code{\link{gtkFileChooserDialogNew}}, \code{\link{gtkFileChooserDialogNewWithBackend}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkFileChooserDialog.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkFileChooserDialog.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
 \code{\link{GtkFileChooser}}

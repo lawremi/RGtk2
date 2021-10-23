@@ -35,6 +35,6 @@ with the type system prior to calling \code{\link{gIconNewForString}}.}
 An abstract type that specifies an icon.
 
 }}}
-\references{\url{https://developer.gnome.org/gio/stable/GIcon.html}}
+\references{\url{https://developer-old.gnome.org/gio/stable/GIcon.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

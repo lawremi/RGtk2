@@ -80,6 +80,6 @@ Holds information about a group of tooltips. Fields should be changed using the 
 }
 }}
 \section{Convenient Construction}{\code{gtkTooltips} is the equivalent of \code{\link{gtkTooltipsNew}}.}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkTooltips.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkTooltips.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

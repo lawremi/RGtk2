@@ -153,6 +153,6 @@ all GDK events.
 
 
 }}}
-\references{\url{https://developer.gnome.org/gdk2/stable/gdk2-Events.html}}
+\references{\url{https://developer-old.gnome.org/gdk2/stable/gdk2-Events.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

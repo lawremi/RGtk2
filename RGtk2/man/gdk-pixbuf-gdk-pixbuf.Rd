@@ -130,6 +130,6 @@ The number of columns of the pixbuf.  Allowed values: >= 1  Default value: 1
 
 }
 }}
-\references{\url{https://developer.gnome.org/gdk-pixbuf/stable/gdk-pixbuf-The-GdkPixbuf-Structure.html}}
+\references{\url{https://developer-old.gnome.org/gdk-pixbuf/stable/gdk-pixbuf-The-GdkPixbuf-Structure.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

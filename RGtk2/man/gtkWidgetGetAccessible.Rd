@@ -12,7 +12,7 @@ if no class-specific \code{\link{AtkObject}} implementation is available for the
 instance in question, it will inherit an \code{\link{AtkObject}} implementation from the 
 first ancestor class for which such an implementation is defined.
   
-The documentation of the ATK (\url{https://developer.gnome.org/atk/index.html})
+The documentation of the ATK (\url{https://developer-old.gnome.org/atk/index.html})
 library contains more information about accessible objects and their uses.}
 \value{[\code{\link{AtkObject}}] the \code{\link{AtkObject}} associated with \code{widget}. \emph{[  \acronym{transfer none}  ]}}
 \author{Derived by RGtkGen from GTK+ documentation}

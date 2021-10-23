@@ -19,6 +19,6 @@
 Virtual File System object.
 
 }}}
-\references{\url{https://developer.gnome.org/gio/stable/GVfs.html}}
+\references{\url{https://developer-old.gnome.org/gio/stable/GVfs.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

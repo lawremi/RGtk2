@@ -145,6 +145,6 @@ This attribute is optional.}
 }
 
 }}}
-\references{\url{https://developer.gnome.org/gtk2/stable/gtk2-Themeable-Stock-Images.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/gtk2-Themeable-Stock-Images.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

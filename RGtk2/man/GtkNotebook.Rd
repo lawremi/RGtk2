@@ -380,6 +380,6 @@ area.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkNotebook.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkNotebook.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

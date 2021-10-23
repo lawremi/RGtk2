@@ -49,6 +49,6 @@ Enumerator type for objects that contain or generate
 
 }
 }}
-\references{\url{https://developer.gnome.org/gio/stable/GSocketConnectable.html}}
+\references{\url{https://developer-old.gnome.org/gio/stable/GSocketConnectable.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

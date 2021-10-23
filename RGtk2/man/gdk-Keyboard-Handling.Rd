@@ -160,7 +160,7 @@ See \code{\link{gdkKeymapGetCapsLockState}}.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gdk2/stable/gdk2-Keyboard-Handling.html}}
+\references{\url{https://developer-old.gnome.org/gdk2/stable/gdk2-Keyboard-Handling.html}}
 \note{The keyval constants exist in RGtk2 as .gdkKeyvalName, so \code{.gdkPlus} for \kbd{plus}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

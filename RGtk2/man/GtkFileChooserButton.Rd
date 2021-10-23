@@ -91,7 +91,7 @@ The width of the entry and label inside the button, in characters.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkFileChooserButton.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkFileChooserButton.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{\code{\link{GtkFileChooserDialog}}}
 \keyword{internal}

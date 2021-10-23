@@ -63,6 +63,6 @@ The GOutputStream to write to.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gio/stable/GIOStream.html}}
+\references{\url{https://developer-old.gnome.org/gio/stable/GIOStream.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -29,6 +29,6 @@ If the base stream should be closed when the filter stream is closed.  Default v
 
 }
 }}
-\references{\url{https://developer.gnome.org/gio/stable/GFilterOutputStream.html}}
+\references{\url{https://developer-old.gnome.org/gio/stable/GFilterOutputStream.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

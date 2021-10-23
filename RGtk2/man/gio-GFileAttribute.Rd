@@ -234,6 +234,6 @@ Used by \code{\link{gFileSetAttributesFromInfo}} when setting file attributes.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gio/stable/gio-GFileAttribute.html}}
+\references{\url{https://developer-old.gnome.org/gio/stable/gio-GFileAttribute.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

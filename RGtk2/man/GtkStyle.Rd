@@ -151,6 +151,6 @@ This signal provides a convenient place to free such cached objects.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkStyle.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkStyle.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -62,6 +62,6 @@ Indicates whether editing on the cell has been canceled.
   Default value: FALSE  Since 2.20
 
 }}}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkCellEditable.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkCellEditable.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

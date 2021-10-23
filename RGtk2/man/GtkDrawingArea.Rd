@@ -83,7 +83,7 @@ should be accessed using the functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkDrawingArea} is the equivalent of \code{\link{gtkDrawingAreaNew}}.}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkDrawingArea.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkDrawingArea.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
 \code{\link{GtkImage}}

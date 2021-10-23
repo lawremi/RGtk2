@@ -211,6 +211,6 @@ TRUE if the Position property should be used.  Default value: FALSE
 Width of handle.  Allowed values: >= 0  Default value: 5
 
 }}}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkPaned.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkPaned.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

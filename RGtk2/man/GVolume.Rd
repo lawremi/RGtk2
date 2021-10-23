@@ -84,6 +84,6 @@ release them so the object can be finalized.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gio/stable/GVolume.html}}
+\references{\url{https://developer-old.gnome.org/gio/stable/GVolume.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

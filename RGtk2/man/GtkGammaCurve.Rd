@@ -43,6 +43,6 @@ should be accessed using the functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkGammaCurve} is the equivalent of \code{\link{gtkGammaCurveNew}}.}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkGammaCurve.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkGammaCurve.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

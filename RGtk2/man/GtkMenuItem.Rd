@@ -173,6 +173,6 @@ The minimum desired width of the menu item in characters.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkMenuItem.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkMenuItem.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

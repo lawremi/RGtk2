@@ -99,7 +99,7 @@ with the selected font size.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkFontButton.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkFontButton.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
 \code{\link{GtkFontSelectionDialog}}

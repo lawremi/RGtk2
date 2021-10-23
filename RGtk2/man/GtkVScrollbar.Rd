@@ -28,6 +28,6 @@ using the functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkVScrollbar} is the equivalent of \code{\link{gtkVScrollbarNew}}.}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkVScrollbar.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkVScrollbar.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

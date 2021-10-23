@@ -124,6 +124,6 @@ about the attributes of a single character.
 
 }
 }}
-\references{\url{https://developer.gnome.org/pango/stable/pango-Text-Processing.html}}
+\references{\url{https://developer-old.gnome.org/pango/stable/pango-Text-Processing.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

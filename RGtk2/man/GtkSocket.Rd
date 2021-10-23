@@ -107,6 +107,6 @@ want to reuse it you must add a signal handler that returns \code{TRUE}.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkSocket.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkSocket.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

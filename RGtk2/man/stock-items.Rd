@@ -94,6 +94,6 @@
 \alias{GTK_STOCK_ZOOM_FIT}
 \alias{GTK_STOCK_ZOOM_IN}
 \alias{GTK_STOCK_ZOOM_OUT}
-\description{Please see \url{https://developer.gnome.org/gtk2/stable/gtk2-Stock-Items.html} for details on stock items.}
+\description{Please see \url{https://developer-old.gnome.org/gtk2/stable/gtk2-Stock-Items.html} for details on stock items.}
 \author{Michael Lawrence}
 \keyword{internal}

@@ -126,6 +126,6 @@ and the widget that the pointer is over has no tooltip.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkTipsQuery.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkTipsQuery.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -19,6 +19,6 @@
 of a file. On unix it is a mime type, on win32 it is an extension string
 like ".doc", ".txt" or a percieved string like "audio". Such strings
 can be looked up in the registry at HKEY_CLASSES_ROOT.}
-\references{\url{https://developer.gnome.org/gio/stable/gio-GContentType.html}}
+\references{\url{https://developer-old.gnome.org/gio/stable/gio-GContentType.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

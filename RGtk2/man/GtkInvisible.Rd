@@ -32,6 +32,6 @@ The \code{\link{GtkInvisible}} struct contains no public fields.
 The screen where this window will be displayed.
 
 }}}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkInvisible.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkInvisible.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

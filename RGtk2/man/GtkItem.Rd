@@ -59,6 +59,6 @@ Emitted when the item is toggled.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkItem.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkItem.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

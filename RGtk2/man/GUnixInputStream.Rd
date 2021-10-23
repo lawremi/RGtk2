@@ -26,6 +26,6 @@ The file descriptor that the stream reads from.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gio/stable/GUnixInputStream.html}}
+\references{\url{https://developer-old.gnome.org/gio/stable/GUnixInputStream.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

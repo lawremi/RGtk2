@@ -46,6 +46,6 @@ Service name, eg "ldap".  Default value: NULL
 
 }
 }}
-\references{\url{https://developer.gnome.org/gio/stable/GNetworkService.html}}
+\references{\url{https://developer-old.gnome.org/gio/stable/GNetworkService.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -162,6 +162,6 @@ Emitted when a mountable volume is removed from the system.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gio/stable/GVolumeMonitor.html}}
+\references{\url{https://developer-old.gnome.org/gio/stable/GVolumeMonitor.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

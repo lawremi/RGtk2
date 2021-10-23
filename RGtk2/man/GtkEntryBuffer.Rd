@@ -79,6 +79,6 @@ The contents of the buffer.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkEntryBuffer.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkEntryBuffer.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

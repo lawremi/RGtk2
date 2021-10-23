@@ -130,7 +130,7 @@ and common wisdom is to separate the two, as far as possible.
 
 }}}
 \section{Convenient Construction}{\code{gtkListStore} is the result of collapsing the constructors of \code{GtkListStore} (\code{\link{gtkListStoreNew}}, \code{\link{gtkListStoreNewv}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkListStore.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkListStore.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
 \code{\link{GtkTreeModel}}

@@ -143,6 +143,6 @@ only be accessed using the functions below.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkListItem.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkListItem.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

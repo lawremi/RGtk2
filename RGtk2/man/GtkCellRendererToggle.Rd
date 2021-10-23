@@ -67,6 +67,6 @@ Draw the toggle button as a radio button.  Default value: FALSE
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkCellRendererToggle.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkCellRendererToggle.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

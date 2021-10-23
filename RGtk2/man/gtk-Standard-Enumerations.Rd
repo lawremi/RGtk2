@@ -663,6 +663,6 @@ Determines the direction of a sort.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/gtk2-Standard-Enumerations.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/gtk2-Standard-Enumerations.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

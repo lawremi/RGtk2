@@ -38,6 +38,6 @@ Network port.  Allowed values: <= 65535  Default value: 0
 
 }
 }}
-\references{\url{https://developer.gnome.org/gio/stable/GNetworkAddress.html}}
+\references{\url{https://developer-old.gnome.org/gio/stable/GNetworkAddress.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

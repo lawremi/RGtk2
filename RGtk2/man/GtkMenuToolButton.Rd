@@ -60,6 +60,6 @@ since the arrow is made insensitive if the menu is not set.
 The dropdown menu.
 
 }}}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkMenuToolButton.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkMenuToolButton.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

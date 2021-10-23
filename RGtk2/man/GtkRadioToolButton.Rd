@@ -47,6 +47,6 @@ Sets a new group for a radio tool button.
   Since 2.4
 
 }}}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkRadioToolButton.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkRadioToolButton.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

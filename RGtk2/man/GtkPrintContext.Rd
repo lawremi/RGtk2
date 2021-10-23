@@ -78,6 +78,6 @@ Printing support was added in GTK+ 2.10.}
 }
 
 }}}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkPrintContext.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkPrintContext.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

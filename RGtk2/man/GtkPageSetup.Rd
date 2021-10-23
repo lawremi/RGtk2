@@ -71,6 +71,6 @@ Printing support was added in GTK+ 2.10.}
 
 }}}
 \section{Convenient Construction}{\code{gtkPageSetup} is the equivalent of \code{\link{gtkPageSetupNew}}.}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkPageSetup.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkPageSetup.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

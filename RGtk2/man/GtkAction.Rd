@@ -227,7 +227,7 @@ Whether the toolbar item is visible when the toolbar is in a vertical orientatio
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkAction.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkAction.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
 \code{\link{GtkActionGroup}}

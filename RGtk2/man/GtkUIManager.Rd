@@ -330,7 +330,7 @@ An XML string describing the merged UI.  Default value: "<ui>\\n</ui>\\n"
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkUIManager.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkUIManager.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{\code{\link{GtkBuilder}}}
 \keyword{internal}

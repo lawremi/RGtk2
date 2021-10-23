@@ -102,7 +102,7 @@ has happened.
 
 
 }}}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkTreeSelection.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkTreeSelection.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
 \code{\link{GtkTreeView}}

@@ -77,6 +77,6 @@ system for \code{display} is closed.
 
 
 }}}
-\references{\url{https://developer.gnome.org/gdk2/stable/GdkDisplay.html}}
+\references{\url{https://developer-old.gnome.org/gdk2/stable/GdkDisplay.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

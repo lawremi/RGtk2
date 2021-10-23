@@ -53,7 +53,7 @@ The number of decimal places to display.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkCellRendererSpin.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkCellRendererSpin.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
 \code{\link{GtkCellRendererText}}

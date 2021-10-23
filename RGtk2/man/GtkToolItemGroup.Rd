@@ -78,6 +78,6 @@ Spacing between expander arrow and caption.  Allowed values: >= 0  Default value
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkToolItemGroup.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkToolItemGroup.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

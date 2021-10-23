@@ -91,6 +91,6 @@ The child \code{widget} has just been unselected.
   Default value: GTK_SELECTION_NONE
 
 }}}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkList.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkList.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

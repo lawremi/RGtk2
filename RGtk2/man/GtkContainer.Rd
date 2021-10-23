@@ -230,6 +230,6 @@ Specify how resize events are handled.  Default value: GTK_RESIZE_PARENT
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkContainer.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkContainer.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

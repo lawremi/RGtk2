@@ -38,6 +38,6 @@ multi-byte entities (such as integers) to the stream.
   Default value: G_DATA_STREAM_BYTE_ORDER_BIG_ENDIAN
 
 }}}
-\references{\url{https://developer.gnome.org/gio/stable/GDataOutputStream.html}}
+\references{\url{https://developer-old.gnome.org/gio/stable/GDataOutputStream.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

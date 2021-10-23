@@ -57,7 +57,7 @@ column. The "type" attribute specifies the data type for the column.
 
 }}}
 \section{Convenient Construction}{\code{gtkTreeStore} is the result of collapsing the constructors of \code{GtkTreeStore} (\code{\link{gtkTreeStoreNew}}, \code{\link{gtkTreeStoreNewv}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkTreeStore.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkTreeStore.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
 \code{\link{GtkTreeModel}}

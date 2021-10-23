@@ -222,6 +222,6 @@ Sets the border between the button edges and child.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkButton.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkButton.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

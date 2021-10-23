@@ -122,6 +122,6 @@ The value of the scale.  Default value: 0
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkScaleButton.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkScaleButton.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

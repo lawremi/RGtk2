@@ -339,6 +339,6 @@ Whether or not the status icon is visible.  Default value: TRUE
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkStatusIcon.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkStatusIcon.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

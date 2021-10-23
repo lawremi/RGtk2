@@ -115,6 +115,6 @@ but otherwise will remain unchanged.
 }
 }}
 \section{Convenient Construction}{\code{cairoScaledFont} is the equivalent of \code{\link{cairoScaledFontCreate}}.}
-\references{\url{http://www.cairographics.org/manual/cairo-cairo-scaled-font-t.html}}
+\references{\url{https://www.cairographics.org/manual/cairo-cairo-scaled-font-t.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

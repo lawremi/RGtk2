@@ -229,6 +229,6 @@ multiple pages per sheet.
 
 
 }}}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkPrintSettings.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkPrintSettings.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

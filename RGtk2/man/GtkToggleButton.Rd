@@ -98,6 +98,6 @@ If the toggle button is in an "in between" state.  Default value: FALSE
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkToggleButton.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkToggleButton.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

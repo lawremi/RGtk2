@@ -37,6 +37,6 @@ The function should have the same semantics as \code{realloc()}.
 \emph{Returns:} [R object] a pointer to the reallocated memory
 
 }}}
-\references{\url{https://developer.gnome.org/gio/stable/GMemoryOutputStream.html}}
+\references{\url{https://developer-old.gnome.org/gio/stable/GMemoryOutputStream.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

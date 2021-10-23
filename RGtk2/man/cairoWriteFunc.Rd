@@ -20,7 +20,7 @@ like svg and png.}
     }
   }
 }
-\references{\url{http://www.cairographics.org/manual/cairo-PNG-Support.html}}
+\references{\url{https://www.cairographics.org/manual/cairo-PNG-Support.html}}
 \author{Michael Lawrence}
 \keyword{internal}
 \keyword{IO}

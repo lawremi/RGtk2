@@ -211,6 +211,6 @@ Note that the strings must be UTF-8.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkEntryCompletion.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkEntryCompletion.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -119,6 +119,6 @@ This defines the type of the function passed to
 
 
 }}}
-\references{\url{https://developer.gnome.org/gdk2/stable/gdk2-Points-Rectangles-and-Regions.html}}
+\references{\url{https://developer-old.gnome.org/gdk2/stable/gdk2-Points-Rectangles-and-Regions.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

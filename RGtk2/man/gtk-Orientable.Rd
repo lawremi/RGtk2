@@ -30,6 +30,6 @@ The orientation of the orientable.
   Default value: GTK_ORIENTATION_HORIZONTAL  Since 2.16
 
 }}}
-\references{\url{https://developer.gnome.org/gtk2/stable/gtk2-Orientable.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/gtk2-Orientable.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

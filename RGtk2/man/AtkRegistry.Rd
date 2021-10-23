@@ -21,6 +21,6 @@ appropriate GType for application custom widget classes.}
 The AtkRegistry structure should not be accessed directly.
 
 }}}
-\references{\url{https://developer.gnome.org/atk/stable/AtkRegistry.html}}
+\references{\url{https://developer-old.gnome.org/atk/stable/AtkRegistry.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

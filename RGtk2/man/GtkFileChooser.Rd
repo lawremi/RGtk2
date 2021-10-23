@@ -606,6 +606,6 @@ Whether to display a stock label with the name of the previewed file.  Default v
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkFileChooser.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkFileChooser.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

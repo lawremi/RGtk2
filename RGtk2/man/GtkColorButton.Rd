@@ -80,7 +80,7 @@ color selection dialog.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkColorButton.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkColorButton.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
 \code{\link{GtkColorSelectionDialog}}

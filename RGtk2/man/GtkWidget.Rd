@@ -1818,6 +1818,6 @@ configurable width and should be drawn using a box instead of a line.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkWidget.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkWidget.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

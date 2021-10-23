@@ -33,6 +33,6 @@ All children are allocated the same width.}
 
 }}}
 \section{Convenient Construction}{\code{gtkVBox} is the equivalent of \code{\link{gtkVBoxNew}}.}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkVBox.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkVBox.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

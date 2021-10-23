@@ -415,7 +415,7 @@ c("ATK" = "ATK is the Accessibility Toolkit. It provides a set of generic interf
   "Libglade" = "Libglade loads and parses XML descriptions of user interfaces at runtime. It also provides functions that can be used to connect signal handlers to parts of the interface."
 )
 
-gnome_prefix <- "https://developer.gnome.org/"
+gnome_prefix <- "https://developer-old.gnome.org/"
 urlPrefices <- paste(gnome_prefix, tolower(names(libraryDescriptions)),
                      "stable", sep="/")
 names(urlPrefices) <- tolower(names(libraryDescriptions))

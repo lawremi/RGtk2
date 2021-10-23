@@ -25,6 +25,6 @@ An implementation of \code{\link{GIcon}} for icons with emblems.
 
 }}}
 \section{Convenient Construction}{\code{gEmblemedIcon} is the equivalent of \code{\link{gEmblemedIconNew}}.}
-\references{\url{https://developer.gnome.org/gio/stable/GEmblemedIcon.html}}
+\references{\url{https://developer-old.gnome.org/gio/stable/GEmblemedIcon.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

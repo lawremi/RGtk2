@@ -108,6 +108,6 @@ point after the newly inserted text.}
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkEditable.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkEditable.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

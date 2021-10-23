@@ -54,6 +54,6 @@ purposes as setting colors.
 }
 
 }}}
-\references{\url{https://developer.gnome.org/pango/stable/PangoRenderer.html}}
+\references{\url{https://developer-old.gnome.org/pango/stable/PangoRenderer.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

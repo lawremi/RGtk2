@@ -112,6 +112,6 @@ The resolution for fonts on the screen.  Default value: -1
 
 }
 }}
-\references{\url{https://developer.gnome.org/gdk2/stable/GdkScreen.html}}
+\references{\url{https://developer-old.gnome.org/gdk2/stable/GdkScreen.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

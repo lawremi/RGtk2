@@ -40,7 +40,7 @@ AtkSelection interface when the selection changes.
 
 
 }}}
-\references{\url{https://developer.gnome.org/atk/stable/AtkSelection.html}}
+\references{\url{https://developer-old.gnome.org/atk/stable/AtkSelection.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{\code{\link{AtkText}}}
 \keyword{internal}

@@ -52,6 +52,6 @@ name "font_selection". It also exposes the buttons with the names
 
 }}}
 \section{Convenient Construction}{\code{gtkFontSelectionDialog} is the equivalent of \code{\link{gtkFontSelectionDialogNew}}.}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkFontSelectionDialog.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkFontSelectionDialog.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

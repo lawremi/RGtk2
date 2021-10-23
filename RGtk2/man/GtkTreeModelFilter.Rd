@@ -89,7 +89,7 @@ The virtual root (relative to the child model) for this filtermodel.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkTreeModelFilter.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkTreeModelFilter.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{\code{\link{GtkTreeModelSort}}}
 \keyword{internal}

@@ -4,6 +4,6 @@
 \description{Library version numbers.}
 \section{Detailed Description}{These functions and variables let you check the version of \command{gdk-pixbuf}
 you're linking against.}
-\references{\url{https://developer.gnome.org/gdk-pixbuf/stable/gdk-pixbuf-Versioning.html}}
+\references{\url{https://developer-old.gnome.org/gdk-pixbuf/stable/gdk-pixbuf-Versioning.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

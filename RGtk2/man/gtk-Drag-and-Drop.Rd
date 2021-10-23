@@ -93,6 +93,6 @@ constraints on an entry in a \verb{GtkTargetTable}.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/gtk2-Drag-and-Drop.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/gtk2-Drag-and-Drop.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

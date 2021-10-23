@@ -67,6 +67,6 @@ socket communication}
 \item{\link{GVolumeMonitor}}{Volume Monitor}
 }
 }
-\references{\url{https://developer.gnome.org/gio}}
+\references{\url{https://developer-old.gnome.org/gio}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{interface}

@@ -68,6 +68,6 @@ The OK button of the dialog.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkColorSelectionDialog.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkColorSelectionDialog.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

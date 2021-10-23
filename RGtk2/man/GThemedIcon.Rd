@@ -56,6 +56,6 @@ c("gnome-dev-cdrom-audio", "gnome-dev-cdrom", "gnome-dev", "gnome")
 
 }
 }}
-\references{\url{https://developer.gnome.org/gio/stable/GThemedIcon.html}}
+\references{\url{https://developer-old.gnome.org/gio/stable/GThemedIcon.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

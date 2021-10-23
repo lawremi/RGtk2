@@ -53,6 +53,6 @@ The \code{\link{GtkIconSize}} value that specifies the size of the rendered spin
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkCellRendererSpinner.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkCellRendererSpinner.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

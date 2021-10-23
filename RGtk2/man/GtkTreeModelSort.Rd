@@ -97,7 +97,7 @@ This should not be accessed directly.  Use the accessor functions below.
 The model for the TreeModelSort to sort.
 
 }}}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkTreeModelSort.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkTreeModelSort.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
 \code{\link{GtkTreeModel}}

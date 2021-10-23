@@ -125,6 +125,6 @@ The value of the adjustment.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkAdjustment.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkAdjustment.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

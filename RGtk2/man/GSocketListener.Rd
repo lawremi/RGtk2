@@ -39,6 +39,6 @@ that makes this even easier.}
 outstanding connections in the listen queue.  Allowed values: [0,2000]  Default value: 10
 
 }}}
-\references{\url{https://developer.gnome.org/gio/stable/GSocketListener.html}}
+\references{\url{https://developer-old.gnome.org/gio/stable/GSocketListener.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

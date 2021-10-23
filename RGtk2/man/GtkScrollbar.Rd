@@ -59,6 +59,6 @@ Minimum length of scrollbar slider.  Allowed values: >= 0  Default value: 21
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkScrollbar.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkScrollbar.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

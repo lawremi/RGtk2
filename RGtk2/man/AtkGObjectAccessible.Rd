@@ -19,6 +19,6 @@ for GnomeCanvasItem in the GAIL library.}
 The AtkGObjectAccessible structure should not be accessed directly.
 
 }}}
-\references{\url{https://developer.gnome.org/atk/stable/AtkGObjectAccessible.html}}
+\references{\url{https://developer-old.gnome.org/atk/stable/AtkGObjectAccessible.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

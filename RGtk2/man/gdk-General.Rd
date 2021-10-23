@@ -39,6 +39,6 @@ success or the reason for the failure of the grab attempt.
 }
 
 }}}
-\references{\url{https://developer.gnome.org/gdk2/stable/gdk2-General.html}}
+\references{\url{https://developer-old.gnome.org/gdk2/stable/gdk2-General.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

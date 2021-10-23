@@ -82,6 +82,6 @@ pseudo-color colormaps.}
 }
 }}
 \section{Convenient Construction}{\code{gdkColormap} is the equivalent of \code{\link{gdkColormapNew}}.}
-\references{\url{https://developer.gnome.org/gdk2/stable/gdk2-Colormaps-and-Colors.html}}
+\references{\url{https://developer-old.gnome.org/gdk2/stable/gdk2-Colormaps-and-Colors.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

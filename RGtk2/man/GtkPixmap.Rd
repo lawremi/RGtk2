@@ -37,6 +37,6 @@ should be accessed using the functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkPixmap} is the equivalent of \code{\link{gtkPixmapNew}}.}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkPixmap.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkPixmap.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

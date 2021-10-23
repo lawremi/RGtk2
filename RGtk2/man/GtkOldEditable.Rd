@@ -189,6 +189,6 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkOldEditable.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkOldEditable.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

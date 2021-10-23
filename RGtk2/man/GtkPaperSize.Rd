@@ -60,7 +60,7 @@ Printing support has been added in GTK+ 2.10.}
 }
 
 }}}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkPaperSize.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkPaperSize.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{\code{\link{GtkPageSetup}}}
 \keyword{internal}

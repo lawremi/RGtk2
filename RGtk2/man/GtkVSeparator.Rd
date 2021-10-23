@@ -24,6 +24,6 @@ should be accessed using the functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkVSeparator} is the equivalent of \code{\link{gtkVSeparatorNew}}.}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkVSeparator.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkVSeparator.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

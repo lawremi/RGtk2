@@ -143,6 +143,6 @@ keyboard focus. See \code{\link{gtkMenuShellSetTakeFocus}} and
   Default value: TRUE  Since 2.8
 
 }}}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkMenuShell.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkMenuShell.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

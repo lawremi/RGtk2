@@ -31,6 +31,6 @@ Emitted when the unix mounts have changed.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gio/stable/gio-Unix-Mounts.html}}
+\references{\url{https://developer-old.gnome.org/gio/stable/gio-Unix-Mounts.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

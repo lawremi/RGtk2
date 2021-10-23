@@ -3,6 +3,6 @@
 \title{AtkMisc}
 \description{\emph{undocumented
 }}
-\references{\url{https://developer.gnome.org/atk/stable/AtkMisc.html}}
+\references{\url{https://developer-old.gnome.org/atk/stable/AtkMisc.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

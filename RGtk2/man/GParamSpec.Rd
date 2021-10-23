@@ -37,7 +37,7 @@ A list representing a \code{GParamSpec}, ready to be passed to the underlying C 
 }
 \author{Michael Lawrence}
 \references{
-\url{https://developer.gnome.org/gobject/stable/gobject-GParamSpec.html}
+\url{https://developer-old.gnome.org/gobject/stable/gobject-GParamSpec.html}
 }
 \keyword{interface}
 \keyword{internal}

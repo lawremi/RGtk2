@@ -114,6 +114,6 @@ To make them easier to use, their numerical values are the actual degrees.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gdk-pixbuf/stable/gdk-pixbuf-Scaling.html}}
+\references{\url{https://developer-old.gnome.org/gdk-pixbuf/stable/gdk-pixbuf-Scaling.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

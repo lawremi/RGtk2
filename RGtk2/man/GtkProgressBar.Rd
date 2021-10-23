@@ -191,6 +191,6 @@ Extra spacing applied to the height of a progress bar.  Allowed values: >= 0  De
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkProgressBar.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkProgressBar.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

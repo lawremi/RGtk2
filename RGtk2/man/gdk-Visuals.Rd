@@ -137,7 +137,7 @@ in memory as 0x00, 0xcc, 0xee, 0xff.}
 
 }
 }}
-\references{\url{https://developer.gnome.org/gdk2/stable/gdk2-Visuals.html}}
+\references{\url{https://developer-old.gnome.org/gdk2/stable/gdk2-Visuals.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
 \code{\link{GdkImage}}

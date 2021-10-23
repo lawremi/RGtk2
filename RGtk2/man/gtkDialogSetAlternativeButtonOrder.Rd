@@ -13,7 +13,7 @@ response ids passed to this function.}
 }
 \details{By default, GTK+ dialogs use the button order advocated by the Gnome 
 Human 
-Interface Guidelines (\url{https://developer.gnome.org/hig/stable/}) with the affirmative button at the far 
+Interface Guidelines (\url{https://developer-old.gnome.org/hig/stable/}) with the affirmative button at the far 
 right, and the cancel button left of it. But the builtin GTK+ dialogs
 and \code{\link{GtkMessageDialog}}s do provide an alternative button order,
 which is more suitable on some platforms, e.g. Windows.

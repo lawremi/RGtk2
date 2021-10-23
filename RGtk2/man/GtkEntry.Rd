@@ -686,6 +686,6 @@ drawing the shadow and the widget background.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkEntry.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkEntry.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

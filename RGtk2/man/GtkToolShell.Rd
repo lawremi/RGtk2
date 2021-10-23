@@ -24,6 +24,6 @@ information when embedding \code{\link{GtkToolItem}} widgets.
 Dummy structure for accessing instances of \verb{GtkToolShellIface}.
 
 }}}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkToolShell.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkToolShell.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

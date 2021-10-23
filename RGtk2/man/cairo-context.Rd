@@ -206,7 +206,7 @@ transparent or fully opaque.  The actual implementation works for
 translucent layers too.
 For a more detailed explanation of the effects of each operator, including
 the mathematical definitions, see
-http://cairographics.org/operators/ (\url{http://cairographics.org/operators/}).  
+https://cairographics.org/operators/ (\url{https://cairographics.org/operators/}).  
 
 \describe{
 \item{\verb{clear}}{ clear destination layer (bounded)}

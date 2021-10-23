@@ -71,6 +71,6 @@ Spacing around indicator.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkOptionMenu.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkOptionMenu.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

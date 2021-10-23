@@ -42,7 +42,7 @@ GInterface
 GInterface
    +----PangoCairoFontMap
 }}
-\section{Detailed Description}{The Cairo library (\url{http://cairographics.org}) is a
+\section{Detailed Description}{The Cairo library (\url{https://cairographics.org}) is a
 vector graphics library with a powerful rendering model. It has such
 features as anti-aliased primitives, alpha-compositing, and
 gradients. Multiple backends for Cairo are available, to allow
@@ -168,6 +168,6 @@ with Pango's Cairo renderer.
 
 
 }}}
-\references{\url{https://developer.gnome.org/pango/stable/pango-Cairo-Rendering.html}}
+\references{\url{https://developer-old.gnome.org/pango/stable/pango-Cairo-Rendering.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

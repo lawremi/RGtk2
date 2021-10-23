@@ -279,6 +279,6 @@ should be read, or \code{FALSE} otherwise.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gio/stable/GFile.html}}
+\references{\url{https://developer-old.gnome.org/gio/stable/GFile.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

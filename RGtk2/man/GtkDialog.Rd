@@ -250,6 +250,6 @@ was called on that widget directly.
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkDialog.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkDialog.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

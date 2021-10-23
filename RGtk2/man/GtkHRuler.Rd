@@ -34,6 +34,6 @@ with the functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkHRuler} is the equivalent of \code{\link{gtkHRulerNew}}.}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkHRuler.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkHRuler.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

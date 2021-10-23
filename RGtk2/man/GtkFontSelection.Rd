@@ -65,6 +65,6 @@ The text to display in order to demonstrate the selected font.  Default value: "
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkFontSelection.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkFontSelection.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

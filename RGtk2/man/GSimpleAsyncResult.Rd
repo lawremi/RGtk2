@@ -109,6 +109,6 @@ checks for cancellation.
 
 
 }}}
-\references{\url{https://developer.gnome.org/gio/stable/GSimpleAsyncResult.html}}
+\references{\url{https://developer-old.gnome.org/gio/stable/GSimpleAsyncResult.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

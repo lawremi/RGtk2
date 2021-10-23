@@ -59,6 +59,6 @@ Mark name.  Default value: NULL
 
 }
 }}
-\references{\url{https://developer.gnome.org/gtk2/stable/GtkTextMark.html}}
+\references{\url{https://developer-old.gnome.org/gtk2/stable/GtkTextMark.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}
