@@ -1,4 +1,5 @@
-AC_INIT(src/Rgtk.c)
+AC_INIT
+AC_CONFIG_SRCDIR([src/Rgtk.c])
 
 DEFINES=
 EXTRA_MODULES=
@@ -42,6 +43,7 @@ AC_SUBST(INSTALL_DIR)
 
 AC_SUBST(DEFINES)
 
-AC_OUTPUT(src/Makevars)
+AC_CONFIG_FILES([src/Makevars])
+AC_OUTPUT
 
 
