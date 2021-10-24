@@ -33,6 +33,6 @@ The RGtk binding to the GDK library consists of the following components:
 \item{\link{gdk-Windows}}{Onscreen display areas in the target window system}
 }
 }
-\references{\url{https://developer-old.gnome.org/gdk2}}
+\references{\url{https://developer-old.gnome.org/gdk2/}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{interface}

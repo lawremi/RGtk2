@@ -420,6 +420,7 @@ urlPrefices <- paste(gnome_prefix, tolower(names(libraryDescriptions)),
                      "stable", sep="/")
 names(urlPrefices) <- tolower(names(libraryDescriptions))
 urlPrefices[["cairo"]] <- "https://www.cairographics.org/manual"
+urlPrefices[["pango"]] <- "https://docs.gtk.org/Pango"
 
 customNotes <- c(
 "gtk-Stock-Items" = "Please see the reference for a detailed list of the stock items",

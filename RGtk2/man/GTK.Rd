@@ -204,6 +204,6 @@ The RGtk binding to the GTK library consists of the following components:
 \item{\link{GtkWindowGroup}}{Limit the effect of grabs}
 }
 }
-\references{\url{https://developer-old.gnome.org/gtk}}
+\references{\url{https://developer-old.gnome.org/gtk/}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{interface}

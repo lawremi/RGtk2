@@ -27,6 +27,6 @@ The AtkRelationSet structure should not be accessed directly.
 
 }}}
 \section{Convenient Construction}{\code{atkRelationSet} is the equivalent of \code{\link{atkRelationSetNew}}.}
-\references{\url{https://developer-old.gnome.org/atk/stable/AtkRelationSet.html}}
+\references{\url{https://developer-old.gnome.org/atk/1.32/AtkRelationSet.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -233,7 +233,7 @@ genIndex <- function(concepts, description) {
                  concept[["description"]])
             })))
 	url_key <- tolower(names(description))
-	index["references"] <- rd("url", urlPrefices[[url_key]])
+	index["references"] <- paste0(rd("url", urlPrefices[[url_key]]), "/")
 	index["keyword"] <- "interface"
 	index
 }

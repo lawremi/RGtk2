@@ -27,7 +27,7 @@ computeSubClasses(classes)
 }
 
 \references{
- \url{http://www.omegahat.net/RGtk}
+ \url{http://www.omegahat.net/RGtk/}
  \url{http://www.omegahat.net/GtkAutoBindingGen}  
  \url{http://www.gtk.org}
 }

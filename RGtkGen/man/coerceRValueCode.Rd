@@ -44,7 +44,7 @@ getPrimitiveTypeAs(x)
  converts the primitive S value to the appropriate type.
 }
 \references{
- \url{http://www.omegahat.net/RGtk}
+ \url{http://www.omegahat.net/RGtk/}
  \url{http://www.omegahat.net/GtkAutoBindingGen}  
  \url{http://www.gtk.org}
 }

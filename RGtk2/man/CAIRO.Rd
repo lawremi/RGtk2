@@ -26,6 +26,6 @@ The RGtk binding to the CAIRO library consists of the following components:
 \item{\link{cairo-context}}{The cairo drawing context}
 }
 }
-\references{\url{https://www.cairographics.org/manual}}
+\references{\url{https://www.cairographics.org/manual/}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{interface}

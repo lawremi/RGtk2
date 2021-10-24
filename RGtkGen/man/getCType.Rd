@@ -37,7 +37,7 @@ CtypeDecl(type, var, defs)
   statement since some of the matching is computational rather than lookup-based.
  
 }
-\references{\url{http://www.omegahat.net/RGtk},
+\references{\url{http://www.omegahat.net/RGtk/},
   \url{http://www.omegahat.net/RGtkBindingGenerator},
   \url{http://www.gtk.org}
   \url{http://www.pygtk.org}(?)

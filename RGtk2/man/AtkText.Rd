@@ -214,6 +214,6 @@ an object which implements AtkText changes.
 
 }
 }}
-\references{\url{https://developer-old.gnome.org/atk/stable/AtkText.html}}
+\references{\url{https://developer-old.gnome.org/atk/1.32/AtkText.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

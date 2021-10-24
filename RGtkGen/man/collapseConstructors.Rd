@@ -33,7 +33,7 @@ collapseConstructors(k = getConstructors(defs), defs, filter = NULL)
   ...
 }
 
-\references{\url{http://www.omegahat.net/RGtk},
+\references{\url{http://www.omegahat.net/RGtk/},
   \url{http://www.omegahat.net/RGtkBindingGenerator},
   \url{http://www.gtk.org}
   \url{http://www.pygtk.org}(?)

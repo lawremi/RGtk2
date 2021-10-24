@@ -21,6 +21,6 @@ particular GType.}
 The AtkObjectFactory structure should not be accessed directly.
 
 }}}
-\references{\url{https://developer-old.gnome.org/atk/stable/AtkObjectFactory.html}}
+\references{\url{https://developer-old.gnome.org/atk/1.32/AtkObjectFactory.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

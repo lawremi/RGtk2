@@ -27,6 +27,6 @@ of AtkStates.}
 
 }}}
 \section{Convenient Construction}{\code{atkStateSet} is the equivalent of \code{\link{atkStateSetNew}}.}
-\references{\url{https://developer-old.gnome.org/atk/stable/AtkStateSet.html}}
+\references{\url{https://developer-old.gnome.org/atk/1.32/AtkStateSet.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

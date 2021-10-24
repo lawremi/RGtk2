@@ -32,7 +32,7 @@ that were realized in the call.
 }
 \references{
 \url{http://www.gtk.org}
-\url{http://www.omegahat.net/RGtk}
+\url{http://www.omegahat.net/RGtk/}
 }
 \author{Duncan Temple Lang}
 

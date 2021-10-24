@@ -123,6 +123,6 @@ event dispatch to the client application should proceed as normal.
 
 }
 }}
-\references{\url{https://developer-old.gnome.org/atk/stable/AtkUtil.html}}
+\references{\url{https://developer-old.gnome.org/atk/1.32/AtkUtil.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

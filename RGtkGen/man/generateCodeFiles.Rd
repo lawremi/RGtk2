@@ -70,7 +70,7 @@ generateCodeFiles(..., classNames = NULL, dir = c(C="/tmp", S="tmp"),
 }
 
 \references{
- \url{http://www.omegahat.net/RGtk}
+ \url{http://www.omegahat.net/RGtk/}
  \url{http://www.omegahat.net/GtkAutoBindingGen}  
  \url{http://www.gtk.org}
 }

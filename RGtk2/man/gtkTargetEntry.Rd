@@ -29,7 +29,7 @@ gtkTargetEntryNew(target, flags, info)
 }
 \references{
   Information on the package is available
-  from \url{http://www.omegahat.net/RGtk}.
+  from \url{http://www.omegahat.net/RGtk/}.
 
   Information on Gtk is available from
   \url{http://www.gtk.org}.

@@ -49,7 +49,7 @@ getDefs(fileNames = c("gtk.defs"))
   \item{boxes}{}  
 
 }
-\references{\url{http://www.omegahat.net/RGtk},
+\references{\url{http://www.omegahat.net/RGtk/},
   \url{http://www.omegahat.net/RGtkBindingGenerator},
   \url{http://www.gtk.org}
   \url{http://www.pygtk.org}(?)
