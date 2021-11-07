@@ -40,6 +40,6 @@ character point for a particular script.
 }
 
 }}}
-\references{\url{https://developer-old.gnome.org/pango/stable/pango-Coverage-Maps.html}}
+\references{\url{https://docs.gtk.org/Pango/}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -12,6 +12,6 @@ Pango at compile-time, and to \dfn{encode} Pango versions into
 integers.
 The functions can be used to check the version of the linked Pango library
 at run-time.}
-\references{\url{https://developer-old.gnome.org/pango/stable/pango-Version-Checking.html}}
+\references{\url{https://docs.gtk.org/Pango/}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -322,7 +322,12 @@ toHierarchy <- function(tree) {
 
 toUrlReference <- function(library, name) {
 	library <- tolower(sub(".*?([a-zA-Z-]*) Library.*", "\\1", library))
-	rd("url", paste(paste(urlPrefices[[library]], name, sep="/"), ".html", sep=""))
+	if (library == "pango") { # Pango no longer uses gtk-doc
+	  url <- "https://docs.gtk.org/Pango/"
+	} else {
+	  url <- paste0(paste(urlPrefices[[library]], name, sep="/"), ".html")
+	}
+	rd("url", url)
 }
 
 xmlTraverse <- function(node, handlers) {

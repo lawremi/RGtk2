@@ -284,6 +284,6 @@ the fonts in a fontset.
 \emph{Returns:} [logical]  if \code{TRUE}, stop iteration and return immediately.
 
 }}}
-\references{\url{https://developer-old.gnome.org/pango/stable/pango-Fonts.html}}
+\references{\url{https://docs.gtk.org/Pango/}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}
