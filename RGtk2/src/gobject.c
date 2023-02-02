@@ -1786,29 +1786,6 @@ g_seek_type_get_type (void)
   return etype;
 }
 
-
-GType
-g_io_condition_get_type (void)
-{
-  static GType etype = 0;
-  if (etype == 0) {
-      static const GFlagsValue values[] = {
-        { G_IO_IN, "G_IO_IN", "in" },
-        { G_IO_OUT, "G_IO_OUT", "out" },
-        { G_IO_PRI, "G_IO_PRI", "pri" },
-        { G_IO_ERR, "G_IO_ERR", "err" },
-        { G_IO_HUP, "G_IO_HUP", "hup" },
-        { G_IO_NVAL, "G_IO_NVAL", "nval" }, 
-        { 0, NULL, NULL }
-      };
-      etype =
-        g_flags_register_static (g_intern_static_string ("GIOCondition"),
-                                 values);
-    }
-
-  return etype;
-}
-
 /* Pointer comparison for ==.RGtkObject */
 
 USER_OBJECT_

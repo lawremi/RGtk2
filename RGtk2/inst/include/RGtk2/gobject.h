@@ -521,7 +521,6 @@ void transformBooleanString(const GValue *src, GValue *dst);
 #define G_TYPE_SEEK_TYPE (g_seek_type_get_type ())
 GType g_seek_type_get_type (void) G_GNUC_CONST;
 #define G_TYPE_IO_CONDITION (g_io_condition_get_type ())
-GType g_io_condition_get_type (void) G_GNUC_CONST;
 
 /* do this by name, so that it is resolved at runtime, simplifying header dependencies */
 #if GLIB_CHECK_VERSION(2,10,0)
