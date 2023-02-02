@@ -4,6 +4,9 @@
 #define RGTK2_GOBJECT_H
 
 #include "RSCommon.h"
+
+#define GLIB_VERSION_MIN_REQUIRED (GLIB_VERSION_2_26)
+
 #include <glib.h>
 #include <glib-object.h>
 
