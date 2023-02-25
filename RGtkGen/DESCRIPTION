@@ -1,15 +1,16 @@
 Package: RGtkGen
-Version: 2.0
-Date:    2005/7/29
+Version: 4.0
+Date: 2023/2/21
 Title: Generates bindings to GObject-based libraries (and more)
-Author:  Duncan Temple Lang <duncan@research.bell-labs.com> and Michael Lawrence <lawremi@iastate.edu>
+Author: Duncan Temple Lang <duncan@research.bell-labs.com> and Michael
+        Lawrence <michafla@gene.com>
 Depends: R (>= 1.2.0)
-Maintainer: Michael Lawrence <lawremi@iastate.edu>
+Maintainer: Michael Lawrence <michafla@gene.com>
 Description: A meta-package which generates C and R code
   to provide bindings to a GObject library.
 License: GPL
-URL:  http://www.omegahat.net/RGtkBindingGenerator/,
-      http://www.omegahat.net/RGtk/,
-      http://www.omegahat.net/,
-      http://www.omegahat.net/bugs/
-
+URL: http://www.omegahat.net/RGtkBindingGenerator/,
+        http://www.omegahat.net/RGtk/, http://www.omegahat.net/,
+        http://www.omegahat.net/bugs/
+Imports: XML
+Suggests: tinytest

@@ -1,0 +1,4 @@
+export(generateCodeFiles, genDocs, genExports)
+
+importFrom(XML, xmlParse, getNodeSet, xmlGetAttr, xmlName)
+
