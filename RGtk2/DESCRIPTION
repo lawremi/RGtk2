@@ -1,7 +1,7 @@
 Package: RGtk2
 Version: 2.20.40
 Title: R Bindings for Gtk 2.8.0 and Above
-Author:  Michael Lawrence <michafla@gene.com> and Duncan Temple Lang <duncan@wald.ucdavis.edu>
+Author:  Michael Lawrence <lawremi@gmail.com> and Duncan Temple Lang <duncan@wald.ucdavis.edu>
 Depends: R (>= 3.4.0)
 Imports: methods
 SystemRequirements: Cairo (>= 1.0.0), ATK (>= 1.10.0), Pango (>= 1.10.0), GTK+ (>= 2.8.0), GLib (>= 2.8.0)
